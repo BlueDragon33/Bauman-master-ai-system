@@ -1,0 +1,2077 @@
+{
+  "id": "systems",
+  "title": "АСОИУ/АСОИУ, hệ tự hành và độ tin cậy hệ thống",
+  "target": "Xây năng lực mô tả, thiết kế, đánh giá và bảo vệ hệ thống АСОИУ/robot tự hành theo chuẩn kỹ thuật và nghiên cứu.",
+  "outcomes": [
+    "Vẽ kiến trúc АСОИУ/UGV/USV có sensor, compute, control, data.",
+    "Mô tả interface, data contract, failure mode, reliability và lifecycle.",
+    "Liên hệ các môn Bauman với proposal NIR/ВКР.",
+    "Tạo tài liệu hệ thống đủ dùng cho luận văn."
+  ],
+  "principles": [
+    "System boundary rõ trước khi chọn mô hình AI.",
+    "Mọi module phải có input/output/state/failure mode.",
+    "Reliability và safety phải xuất hiện từ thiết kế đầu, không để cuối kỳ."
+  ],
+  "stages": [
+    {
+      "id": "prepare",
+      "short": "GĐ1",
+      "title": "GĐ1 · Chuẩn bị tại Việt Nam",
+      "period": "06/2026 – 09/2026",
+      "target": "АСОИУ/АСОИУ, hệ tự hành và độ tin cậy hệ thống trong GĐ1 · Chuẩn bị tại Việt Nam: học đúng nội dung cần cho lộ trình, tạo sản phẩm có thể dùng lại và liên kết với Main.",
+      "outcomes": [
+        "Hoàn thành module trọng tâm của GĐ1.",
+        "Có ghi chú, bài tập, sản phẩm hoặc báo cáo nhỏ.",
+        "Biết liên hệ nội dung với môn khác và luận văn."
+      ],
+      "focusBlocks": [
+        "Mục tiêu kiến thức: nắm lõi node, sensor, controller, feedback, reliability và lifecycle.",
+        "Mục tiêu kỹ năng: dùng được sơ đồ hệ thống, bảng lỗi cho bài tập thật.",
+        "Mục tiêu hồ sơ: có sản phẩm nhỏ, ghi chú lỗi và bằng chứng học tập để gửi tiến độ về Main."
+      ],
+      "weeklyRhythm": [
+        "Buổi 1: đọc bài và ghi chú thuật ngữ/ký hiệu.",
+        "Buổi 2: làm bài mẫu hoặc chạy mô phỏng để thấy cơ chế.",
+        "Buổi 3: làm bài tập/challenge và ghi lại lỗi sai.",
+        "Cuối tuần: ôn tập, kiểm tra nhanh, cập nhật tiến độ."
+      ]
+    },
+    {
+      "id": "preparatory",
+      "short": "GĐ2",
+      "title": "GĐ2 · Dự bị Nga / STANKIN",
+      "period": "10–11/2026 – 07/2027",
+      "target": "АСОИУ/АСОИУ, hệ tự hành và độ tin cậy hệ thống trong GĐ2 · Dự bị Nga / STANKIN: học đúng nội dung cần cho lộ trình, tạo sản phẩm có thể dùng lại và liên kết với Main.",
+      "outcomes": [
+        "Hoàn thành module trọng tâm của GĐ2.",
+        "Có ghi chú, bài tập, sản phẩm hoặc báo cáo nhỏ.",
+        "Biết liên hệ nội dung với môn khác và luận văn."
+      ],
+      "focusBlocks": [
+        "Mục tiêu kiến thức: nắm lõi node, sensor, controller, feedback, reliability và lifecycle.",
+        "Mục tiêu kỹ năng: dùng được sơ đồ hệ thống, bảng lỗi cho bài tập thật.",
+        "Mục tiêu hồ sơ: có sản phẩm nhỏ, ghi chú lỗi và bằng chứng học tập để gửi tiến độ về Main."
+      ],
+      "weeklyRhythm": [
+        "Buổi 1: đọc bài và ghi chú thuật ngữ/ký hiệu.",
+        "Buổi 2: làm bài mẫu hoặc chạy mô phỏng để thấy cơ chế.",
+        "Buổi 3: làm bài tập/challenge và ghi lại lỗi sai.",
+        "Cuối tuần: ôn tập, kiểm tra nhanh, cập nhật tiến độ."
+      ]
+    },
+    {
+      "id": "m1",
+      "short": "HK1",
+      "title": "Bauman HK1",
+      "period": "09/2027 – 01/2028",
+      "target": "АСОИУ/АСОИУ, hệ tự hành và độ tin cậy hệ thống trong Bauman HK1: học đúng nội dung cần cho lộ trình, tạo sản phẩm có thể dùng lại và liên kết với Main.",
+      "outcomes": [
+        "Hoàn thành module trọng tâm của HK1.",
+        "Có ghi chú, bài tập, sản phẩm hoặc báo cáo nhỏ.",
+        "Biết liên hệ nội dung với môn khác và luận văn."
+      ],
+      "focusBlocks": [
+        "Mục tiêu kiến thức: nắm lõi node, sensor, controller, feedback, reliability và lifecycle.",
+        "Mục tiêu kỹ năng: dùng được sơ đồ hệ thống, bảng lỗi cho bài tập thật.",
+        "Mục tiêu hồ sơ: có sản phẩm nhỏ, ghi chú lỗi và bằng chứng học tập để gửi tiến độ về Main."
+      ],
+      "weeklyRhythm": [
+        "Buổi 1: đọc bài và ghi chú thuật ngữ/ký hiệu.",
+        "Buổi 2: làm bài mẫu hoặc chạy mô phỏng để thấy cơ chế.",
+        "Buổi 3: làm bài tập/challenge và ghi lại lỗi sai.",
+        "Cuối tuần: ôn tập, kiểm tra nhanh, cập nhật tiến độ."
+      ]
+    },
+    {
+      "id": "m2",
+      "short": "HK2",
+      "title": "Bauman HK2",
+      "period": "02/2028 – 06/2028",
+      "target": "АСОИУ/АСОИУ, hệ tự hành và độ tin cậy hệ thống trong Bauman HK2: học đúng nội dung cần cho lộ trình, tạo sản phẩm có thể dùng lại và liên kết với Main.",
+      "outcomes": [
+        "Hoàn thành module trọng tâm của HK2.",
+        "Có ghi chú, bài tập, sản phẩm hoặc báo cáo nhỏ.",
+        "Biết liên hệ nội dung với môn khác và luận văn."
+      ],
+      "focusBlocks": [
+        "Mục tiêu kiến thức: nắm lõi node, sensor, controller, feedback, reliability và lifecycle.",
+        "Mục tiêu kỹ năng: dùng được sơ đồ hệ thống, bảng lỗi cho bài tập thật.",
+        "Mục tiêu hồ sơ: có sản phẩm nhỏ, ghi chú lỗi và bằng chứng học tập để gửi tiến độ về Main."
+      ],
+      "weeklyRhythm": [
+        "Buổi 1: đọc bài và ghi chú thuật ngữ/ký hiệu.",
+        "Buổi 2: làm bài mẫu hoặc chạy mô phỏng để thấy cơ chế.",
+        "Buổi 3: làm bài tập/challenge và ghi lại lỗi sai.",
+        "Cuối tuần: ôn tập, kiểm tra nhanh, cập nhật tiến độ."
+      ]
+    },
+    {
+      "id": "m3",
+      "short": "HK3",
+      "title": "Bauman HK3",
+      "period": "09/2028 – 01/2029",
+      "target": "АСОИУ/АСОИУ, hệ tự hành và độ tin cậy hệ thống trong Bauman HK3: học đúng nội dung cần cho lộ trình, tạo sản phẩm có thể dùng lại và liên kết với Main.",
+      "outcomes": [
+        "Hoàn thành module trọng tâm của HK3.",
+        "Có ghi chú, bài tập, sản phẩm hoặc báo cáo nhỏ.",
+        "Biết liên hệ nội dung với môn khác và luận văn."
+      ],
+      "focusBlocks": [
+        "Mục tiêu kiến thức: nắm lõi node, sensor, controller, feedback, reliability và lifecycle.",
+        "Mục tiêu kỹ năng: dùng được sơ đồ hệ thống, bảng lỗi cho bài tập thật.",
+        "Mục tiêu hồ sơ: có sản phẩm nhỏ, ghi chú lỗi và bằng chứng học tập để gửi tiến độ về Main."
+      ],
+      "weeklyRhythm": [
+        "Buổi 1: đọc bài và ghi chú thuật ngữ/ký hiệu.",
+        "Buổi 2: làm bài mẫu hoặc chạy mô phỏng để thấy cơ chế.",
+        "Buổi 3: làm bài tập/challenge và ghi lại lỗi sai.",
+        "Cuối tuần: ôn tập, kiểm tra nhanh, cập nhật tiến độ."
+      ]
+    },
+    {
+      "id": "m4",
+      "short": "HK4",
+      "title": "Bauman HK4 & bảo vệ",
+      "period": "02/2029 – 06/2029",
+      "target": "АСОИУ/АСОИУ, hệ tự hành và độ tin cậy hệ thống trong Bauman HK4 & bảo vệ: học đúng nội dung cần cho lộ trình, tạo sản phẩm có thể dùng lại và liên kết với Main.",
+      "outcomes": [
+        "Hoàn thành module trọng tâm của HK4.",
+        "Có ghi chú, bài tập, sản phẩm hoặc báo cáo nhỏ.",
+        "Biết liên hệ nội dung với môn khác và luận văn."
+      ],
+      "focusBlocks": [
+        "Mục tiêu kiến thức: nắm lõi node, sensor, controller, feedback, reliability và lifecycle.",
+        "Mục tiêu kỹ năng: dùng được sơ đồ hệ thống, bảng lỗi cho bài tập thật.",
+        "Mục tiêu hồ sơ: có sản phẩm nhỏ, ghi chú lỗi và bằng chứng học tập để gửi tiến độ về Main."
+      ],
+      "weeklyRhythm": [
+        "Buổi 1: đọc bài và ghi chú thuật ngữ/ký hiệu.",
+        "Buổi 2: làm bài mẫu hoặc chạy mô phỏng để thấy cơ chế.",
+        "Buổi 3: làm bài tập/challenge và ghi lại lỗi sai.",
+        "Cuối tuần: ôn tập, kiểm tra nhanh, cập nhật tiến độ."
+      ]
+    }
+  ],
+  "modules": [
+    {
+      "id": "s_p01",
+      "stage": "prepare",
+      "week": "W1",
+      "title": "Tư duy hệ thống cho UGV/USV tự hành",
+      "goal": "Boundary, actor, sensor, actuator, feedback loop.",
+      "hours": 6,
+      "level": "Cơ bản",
+      "lessons": [
+        "s_p01_l1",
+        "s_p01_l2",
+        "s_p01_l3"
+      ],
+      "outputs": [
+        "Ghi chú module 'Tư duy hệ thống cho UGV/USV tự hành' có định nghĩa, ví dụ, lỗi thường gặp.",
+        "Một sản phẩm thực hành: sơ đồ architecture + bảng risk.",
+        "Một mục nhật ký học tập: đã học gì, sai gì, cần ôn gì.",
+        "Cập nhật tiến độ module và gửi phản hồi về Main."
+      ],
+      "phaseObjective": "Trong GĐ1 · Chuẩn bị tại Việt Nam, module này biến chủ đề 'Tư duy hệ thống cho UGV/USV tự hành' thành năng lực dùng được: hiểu khái niệm, làm bài, chạy mô phỏng và tạo sản phẩm kiểm chứng.",
+      "whyImportant": [
+        "Đây là mắt xích của môn АСОИУ trong lộ trình Bauman, giúp học phần sau không bị hổng nền.",
+        "Nội dung liên quan trực tiếp tới node, sensor, controller, feedback, reliability và lifecycle.",
+        "Kết quả module được dùng để Main biết nên nhắc ôn, kiểm tra hay chuyển module tiếp theo."
+      ],
+      "prerequisites": [
+        "Đọc lại mục tiêu giai đoạn và các module trước đó trong cùng môn.",
+        "Chuẩn bị công cụ: sơ đồ hệ thống, bảng lỗi, mô phỏng node/sensor.",
+        "Tạo file ghi chú riêng: mục tiêu, thuật ngữ, lỗi sai, sản phẩm đầu ra."
+      ],
+      "conceptMap": [
+        "Khái niệm trung tâm của 'Tư duy hệ thống cho UGV/USV tự hành'.",
+        "Input cần nhận diện: dữ liệu, ký hiệu, biến, điều kiện hoặc tình huống.",
+        "Output cần tạo: kết quả tính toán, code, bảng đánh giá, sơ đồ hoặc câu trả lời học thuật.",
+        "Tiêu chí kiểm tra: đúng logic, giải thích được lý do, có bằng chứng thực hành."
+      ],
+      "studyPlan": [
+        {
+          "session": "Ca 1 · Nắm lõi",
+          "time": "60–90 phút",
+          "work": "Đọc bài nền về Tư duy hệ thống cho UGV/USV tự hành, ghi thuật ngữ, viết lại bằng lời của mình.",
+          "evidence": "Ghi chú 7–10 dòng + 5 thuật ngữ chính."
+        },
+        {
+          "session": "Ca 2 · Mô phỏng",
+          "time": "45–75 phút",
+          "work": "Chạy mô phỏng node-sensor-controller hoặc ví dụ tham số để quan sát cơ chế.",
+          "evidence": "Ảnh/chú thích kết quả mô phỏng + nhận xét."
+        },
+        {
+          "session": "Ca 3 · Bài tập",
+          "time": "60–120 phút",
+          "work": "Làm bài tập từ dễ đến trung bình, đánh dấu lỗi sai và nguyên nhân.",
+          "evidence": "sơ đồ architecture + bảng risk"
+        },
+        {
+          "session": "Ca 4 · Kiểm tra nhỏ",
+          "time": "20–40 phút",
+          "work": "Tự kiểm tra nhanh, đạt ≥ 8/10 mới chuyển module kế tiếp.",
+          "evidence": "Điểm kiểm tra + danh sách mục cần ôn."
+        }
+      ],
+      "practicePlan": [
+        "Bài dễ: nhận diện khái niệm và áp dụng công thức/quy trình trực tiếp.",
+        "Bài trung bình: kết hợp 2–3 kỹ năng, giải thích từng bước.",
+        "Bài khá: xử lý tình huống có nhiễu/lỗi/điều kiện thiếu.",
+        "Bài giỏi: tự thiết kế ví dụ nhỏ hoặc mini-project liên môn."
+      ],
+      "simulationPlan": [
+        "Mô phỏng riêng: quan sát mô phỏng node-sensor-controller với tham số thay đổi.",
+        "Mô phỏng thực hành: nhận nhiệm vụ, chọn cách xử lý, hệ thống phản hồi đúng/sai.",
+        "Ghi lại kết quả mô phỏng để liên hệ với bài tập và kiểm tra."
+      ],
+      "assessmentPlan": {
+        "unlock": "Mức Dễ mở mặc định; Trung bình/Khá/Giỏi mở khi mức trước đạt ≥ 8/10.",
+        "rubric": [
+          "Hiểu khái niệm",
+          "Làm được bài",
+          "Giải thích được lỗi",
+          "Tạo được sản phẩm nhỏ"
+        ],
+        "pass": "Đạt module khi hoàn thành bài học chính, chạy mô phỏng, làm bài tập và kiểm tra ≥ 8/10."
+      },
+      "baumanLinks": [
+        "Liên hệ học phần Bauman/HK: GĐ1 · Chuẩn bị tại Việt Nam.",
+        "Liên hệ luận văn: UGV/USV, telemetry, AI hoặc hệ thống điều khiển tùy môn.",
+        "Liên hệ tiếng Nga: chuẩn bị cách trình bày khái niệm bằng câu ngắn, dễ nói."
+      ],
+      "completionCriteria": [
+        "Đã mở và đọc toàn bộ bài học trong module.",
+        "Đã chạy ít nhất 1 mô phỏng hoặc ví dụ tương tác.",
+        "Đã làm tối thiểu 3 bài tập và ghi lại lỗi sai.",
+        "Đã đạt kiểm tra nhanh ≥ 8/10 hoặc đánh dấu cần ôn."
+      ],
+      "risks": [
+        "Chỉ đọc lý thuyết nhưng không làm bài tập/mô phỏng.",
+        "Không ghi lại lỗi sai nên tuần sau quên điểm yếu.",
+        "Nhảy sang module mới khi chưa đạt tiêu chí ≥ 8/10."
+      ],
+      "nextStep": "Sau khi hoàn thành 'Tư duy hệ thống cho UGV/USV tự hành', chuyển sang module tiếp theo trong GĐ1 · Chuẩn bị tại Việt Nam hoặc làm bài kiểm tra mức cao hơn."
+    },
+    {
+      "id": "s_p02",
+      "stage": "prepare",
+      "week": "W2",
+      "title": "Kiến trúc UGV cấp cao: sensing, planning, control",
+      "goal": "Chassis, sensor, compute, power, communication, control.",
+      "hours": 7,
+      "level": "Cơ bản",
+      "lessons": [
+        "s_p02_l1",
+        "s_p02_l2",
+        "s_p02_l3"
+      ],
+      "outputs": [
+        "Ghi chú module 'Kiến trúc UGV cấp cao: sensing, planning, control' có định nghĩa, ví dụ, lỗi thường gặp.",
+        "Một sản phẩm thực hành: sơ đồ architecture + bảng risk.",
+        "Một mục nhật ký học tập: đã học gì, sai gì, cần ôn gì.",
+        "Cập nhật tiến độ module và gửi phản hồi về Main."
+      ],
+      "phaseObjective": "Trong GĐ1 · Chuẩn bị tại Việt Nam, module này biến chủ đề 'Kiến trúc UGV cấp cao: sensing, planning, control' thành năng lực dùng được: hiểu khái niệm, làm bài, chạy mô phỏng và tạo sản phẩm kiểm chứng.",
+      "whyImportant": [
+        "Đây là mắt xích của môn АСОИУ trong lộ trình Bauman, giúp học phần sau không bị hổng nền.",
+        "Nội dung liên quan trực tiếp tới node, sensor, controller, feedback, reliability và lifecycle.",
+        "Kết quả module được dùng để Main biết nên nhắc ôn, kiểm tra hay chuyển module tiếp theo."
+      ],
+      "prerequisites": [
+        "Đọc lại mục tiêu giai đoạn và các module trước đó trong cùng môn.",
+        "Chuẩn bị công cụ: sơ đồ hệ thống, bảng lỗi, mô phỏng node/sensor.",
+        "Tạo file ghi chú riêng: mục tiêu, thuật ngữ, lỗi sai, sản phẩm đầu ra."
+      ],
+      "conceptMap": [
+        "Khái niệm trung tâm của 'Kiến trúc UGV cấp cao: sensing, planning, control'.",
+        "Input cần nhận diện: dữ liệu, ký hiệu, biến, điều kiện hoặc tình huống.",
+        "Output cần tạo: kết quả tính toán, code, bảng đánh giá, sơ đồ hoặc câu trả lời học thuật.",
+        "Tiêu chí kiểm tra: đúng logic, giải thích được lý do, có bằng chứng thực hành."
+      ],
+      "studyPlan": [
+        {
+          "session": "Ca 1 · Nắm lõi",
+          "time": "60–90 phút",
+          "work": "Đọc bài nền về Kiến trúc UGV cấp cao: sensing, planning, control, ghi thuật ngữ, viết lại bằng lời của mình.",
+          "evidence": "Ghi chú 7–10 dòng + 5 thuật ngữ chính."
+        },
+        {
+          "session": "Ca 2 · Mô phỏng",
+          "time": "45–75 phút",
+          "work": "Chạy mô phỏng node-sensor-controller hoặc ví dụ tham số để quan sát cơ chế.",
+          "evidence": "Ảnh/chú thích kết quả mô phỏng + nhận xét."
+        },
+        {
+          "session": "Ca 3 · Bài tập",
+          "time": "60–120 phút",
+          "work": "Làm bài tập từ dễ đến trung bình, đánh dấu lỗi sai và nguyên nhân.",
+          "evidence": "sơ đồ architecture + bảng risk"
+        },
+        {
+          "session": "Ca 4 · Kiểm tra nhỏ",
+          "time": "20–40 phút",
+          "work": "Tự kiểm tra nhanh, đạt ≥ 8/10 mới chuyển module kế tiếp.",
+          "evidence": "Điểm kiểm tra + danh sách mục cần ôn."
+        }
+      ],
+      "practicePlan": [
+        "Bài dễ: nhận diện khái niệm và áp dụng công thức/quy trình trực tiếp.",
+        "Bài trung bình: kết hợp 2–3 kỹ năng, giải thích từng bước.",
+        "Bài khá: xử lý tình huống có nhiễu/lỗi/điều kiện thiếu.",
+        "Bài giỏi: tự thiết kế ví dụ nhỏ hoặc mini-project liên môn."
+      ],
+      "simulationPlan": [
+        "Mô phỏng riêng: quan sát mô phỏng node-sensor-controller với tham số thay đổi.",
+        "Mô phỏng thực hành: nhận nhiệm vụ, chọn cách xử lý, hệ thống phản hồi đúng/sai.",
+        "Ghi lại kết quả mô phỏng để liên hệ với bài tập và kiểm tra."
+      ],
+      "assessmentPlan": {
+        "unlock": "Mức Dễ mở mặc định; Trung bình/Khá/Giỏi mở khi mức trước đạt ≥ 8/10.",
+        "rubric": [
+          "Hiểu khái niệm",
+          "Làm được bài",
+          "Giải thích được lỗi",
+          "Tạo được sản phẩm nhỏ"
+        ],
+        "pass": "Đạt module khi hoàn thành bài học chính, chạy mô phỏng, làm bài tập và kiểm tra ≥ 8/10."
+      },
+      "baumanLinks": [
+        "Liên hệ học phần Bauman/HK: GĐ1 · Chuẩn bị tại Việt Nam.",
+        "Liên hệ luận văn: UGV/USV, telemetry, AI hoặc hệ thống điều khiển tùy môn.",
+        "Liên hệ tiếng Nga: chuẩn bị cách trình bày khái niệm bằng câu ngắn, dễ nói."
+      ],
+      "completionCriteria": [
+        "Đã mở và đọc toàn bộ bài học trong module.",
+        "Đã chạy ít nhất 1 mô phỏng hoặc ví dụ tương tác.",
+        "Đã làm tối thiểu 3 bài tập và ghi lại lỗi sai.",
+        "Đã đạt kiểm tra nhanh ≥ 8/10 hoặc đánh dấu cần ôn."
+      ],
+      "risks": [
+        "Chỉ đọc lý thuyết nhưng không làm bài tập/mô phỏng.",
+        "Không ghi lại lỗi sai nên tuần sau quên điểm yếu.",
+        "Nhảy sang module mới khi chưa đạt tiêu chí ≥ 8/10."
+      ],
+      "nextStep": "Sau khi hoàn thành 'Kiến trúc UGV cấp cao: sensing, planning, control', chuyển sang module tiếp theo trong GĐ1 · Chuẩn bị tại Việt Nam hoặc làm bài kiểm tra mức cao hơn."
+    },
+    {
+      "id": "s_p03",
+      "stage": "prepare",
+      "week": "W3",
+      "title": "Vòng lặp điều khiển và ra quyết định",
+      "goal": "Sense → perceive → decide → act → log.",
+      "hours": 8,
+      "level": "Trung bình",
+      "lessons": [
+        "s_p03_l1",
+        "s_p03_l2",
+        "s_p03_l3"
+      ],
+      "outputs": [
+        "Ghi chú module 'Vòng lặp điều khiển và ra quyết định' có định nghĩa, ví dụ, lỗi thường gặp.",
+        "Một sản phẩm thực hành: sơ đồ architecture + bảng risk.",
+        "Một mục nhật ký học tập: đã học gì, sai gì, cần ôn gì.",
+        "Cập nhật tiến độ module và gửi phản hồi về Main."
+      ],
+      "phaseObjective": "Trong GĐ1 · Chuẩn bị tại Việt Nam, module này biến chủ đề 'Vòng lặp điều khiển và ra quyết định' thành năng lực dùng được: hiểu khái niệm, làm bài, chạy mô phỏng và tạo sản phẩm kiểm chứng.",
+      "whyImportant": [
+        "Đây là mắt xích của môn АСОИУ trong lộ trình Bauman, giúp học phần sau không bị hổng nền.",
+        "Nội dung liên quan trực tiếp tới node, sensor, controller, feedback, reliability và lifecycle.",
+        "Kết quả module được dùng để Main biết nên nhắc ôn, kiểm tra hay chuyển module tiếp theo."
+      ],
+      "prerequisites": [
+        "Đọc lại mục tiêu giai đoạn và các module trước đó trong cùng môn.",
+        "Chuẩn bị công cụ: sơ đồ hệ thống, bảng lỗi, mô phỏng node/sensor.",
+        "Tạo file ghi chú riêng: mục tiêu, thuật ngữ, lỗi sai, sản phẩm đầu ra."
+      ],
+      "conceptMap": [
+        "Khái niệm trung tâm của 'Vòng lặp điều khiển và ra quyết định'.",
+        "Input cần nhận diện: dữ liệu, ký hiệu, biến, điều kiện hoặc tình huống.",
+        "Output cần tạo: kết quả tính toán, code, bảng đánh giá, sơ đồ hoặc câu trả lời học thuật.",
+        "Tiêu chí kiểm tra: đúng logic, giải thích được lý do, có bằng chứng thực hành."
+      ],
+      "studyPlan": [
+        {
+          "session": "Ca 1 · Nắm lõi",
+          "time": "60–90 phút",
+          "work": "Đọc bài nền về Vòng lặp điều khiển và ra quyết định, ghi thuật ngữ, viết lại bằng lời của mình.",
+          "evidence": "Ghi chú 7–10 dòng + 5 thuật ngữ chính."
+        },
+        {
+          "session": "Ca 2 · Mô phỏng",
+          "time": "45–75 phút",
+          "work": "Chạy mô phỏng node-sensor-controller hoặc ví dụ tham số để quan sát cơ chế.",
+          "evidence": "Ảnh/chú thích kết quả mô phỏng + nhận xét."
+        },
+        {
+          "session": "Ca 3 · Bài tập",
+          "time": "60–120 phút",
+          "work": "Làm bài tập từ dễ đến trung bình, đánh dấu lỗi sai và nguyên nhân.",
+          "evidence": "sơ đồ architecture + bảng risk"
+        },
+        {
+          "session": "Ca 4 · Kiểm tra nhỏ",
+          "time": "20–40 phút",
+          "work": "Tự kiểm tra nhanh, đạt ≥ 8/10 mới chuyển module kế tiếp.",
+          "evidence": "Điểm kiểm tra + danh sách mục cần ôn."
+        }
+      ],
+      "practicePlan": [
+        "Bài dễ: nhận diện khái niệm và áp dụng công thức/quy trình trực tiếp.",
+        "Bài trung bình: kết hợp 2–3 kỹ năng, giải thích từng bước.",
+        "Bài khá: xử lý tình huống có nhiễu/lỗi/điều kiện thiếu.",
+        "Bài giỏi: tự thiết kế ví dụ nhỏ hoặc mini-project liên môn."
+      ],
+      "simulationPlan": [
+        "Mô phỏng riêng: quan sát mô phỏng node-sensor-controller với tham số thay đổi.",
+        "Mô phỏng thực hành: nhận nhiệm vụ, chọn cách xử lý, hệ thống phản hồi đúng/sai.",
+        "Ghi lại kết quả mô phỏng để liên hệ với bài tập và kiểm tra."
+      ],
+      "assessmentPlan": {
+        "unlock": "Mức Dễ mở mặc định; Trung bình/Khá/Giỏi mở khi mức trước đạt ≥ 8/10.",
+        "rubric": [
+          "Hiểu khái niệm",
+          "Làm được bài",
+          "Giải thích được lỗi",
+          "Tạo được sản phẩm nhỏ"
+        ],
+        "pass": "Đạt module khi hoàn thành bài học chính, chạy mô phỏng, làm bài tập và kiểm tra ≥ 8/10."
+      },
+      "baumanLinks": [
+        "Liên hệ học phần Bauman/HK: GĐ1 · Chuẩn bị tại Việt Nam.",
+        "Liên hệ luận văn: UGV/USV, telemetry, AI hoặc hệ thống điều khiển tùy môn.",
+        "Liên hệ tiếng Nga: chuẩn bị cách trình bày khái niệm bằng câu ngắn, dễ nói."
+      ],
+      "completionCriteria": [
+        "Đã mở và đọc toàn bộ bài học trong module.",
+        "Đã chạy ít nhất 1 mô phỏng hoặc ví dụ tương tác.",
+        "Đã làm tối thiểu 3 bài tập và ghi lại lỗi sai.",
+        "Đã đạt kiểm tra nhanh ≥ 8/10 hoặc đánh dấu cần ôn."
+      ],
+      "risks": [
+        "Chỉ đọc lý thuyết nhưng không làm bài tập/mô phỏng.",
+        "Không ghi lại lỗi sai nên tuần sau quên điểm yếu.",
+        "Nhảy sang module mới khi chưa đạt tiêu chí ≥ 8/10."
+      ],
+      "nextStep": "Sau khi hoàn thành 'Vòng lặp điều khiển và ra quyết định', chuyển sang module tiếp theo trong GĐ1 · Chuẩn bị tại Việt Nam hoặc làm bài kiểm tra mức cao hơn."
+    },
+    {
+      "id": "s_p04",
+      "stage": "prepare",
+      "week": "W4",
+      "title": "Data contract và giao diện tích hợp hệ thống",
+      "goal": "Message schema, topic, API, timestamp, version.",
+      "hours": 7,
+      "level": "Trung bình",
+      "lessons": [
+        "s_p04_l1",
+        "s_p04_l2",
+        "s_p04_l3"
+      ],
+      "outputs": [
+        "Ghi chú module 'Data contract và giao diện tích hợp hệ thống' có định nghĩa, ví dụ, lỗi thường gặp.",
+        "Một sản phẩm thực hành: sơ đồ architecture + bảng risk.",
+        "Một mục nhật ký học tập: đã học gì, sai gì, cần ôn gì.",
+        "Cập nhật tiến độ module và gửi phản hồi về Main."
+      ],
+      "phaseObjective": "Trong GĐ1 · Chuẩn bị tại Việt Nam, module này biến chủ đề 'Data contract và giao diện tích hợp hệ thống' thành năng lực dùng được: hiểu khái niệm, làm bài, chạy mô phỏng và tạo sản phẩm kiểm chứng.",
+      "whyImportant": [
+        "Đây là mắt xích của môn АСОИУ trong lộ trình Bauman, giúp học phần sau không bị hổng nền.",
+        "Nội dung liên quan trực tiếp tới node, sensor, controller, feedback, reliability và lifecycle.",
+        "Kết quả module được dùng để Main biết nên nhắc ôn, kiểm tra hay chuyển module tiếp theo."
+      ],
+      "prerequisites": [
+        "Đọc lại mục tiêu giai đoạn và các module trước đó trong cùng môn.",
+        "Chuẩn bị công cụ: sơ đồ hệ thống, bảng lỗi, mô phỏng node/sensor.",
+        "Tạo file ghi chú riêng: mục tiêu, thuật ngữ, lỗi sai, sản phẩm đầu ra."
+      ],
+      "conceptMap": [
+        "Khái niệm trung tâm của 'Data contract và giao diện tích hợp hệ thống'.",
+        "Input cần nhận diện: dữ liệu, ký hiệu, biến, điều kiện hoặc tình huống.",
+        "Output cần tạo: kết quả tính toán, code, bảng đánh giá, sơ đồ hoặc câu trả lời học thuật.",
+        "Tiêu chí kiểm tra: đúng logic, giải thích được lý do, có bằng chứng thực hành."
+      ],
+      "studyPlan": [
+        {
+          "session": "Ca 1 · Nắm lõi",
+          "time": "60–90 phút",
+          "work": "Đọc bài nền về Data contract và giao diện tích hợp hệ thống, ghi thuật ngữ, viết lại bằng lời của mình.",
+          "evidence": "Ghi chú 7–10 dòng + 5 thuật ngữ chính."
+        },
+        {
+          "session": "Ca 2 · Mô phỏng",
+          "time": "45–75 phút",
+          "work": "Chạy mô phỏng node-sensor-controller hoặc ví dụ tham số để quan sát cơ chế.",
+          "evidence": "Ảnh/chú thích kết quả mô phỏng + nhận xét."
+        },
+        {
+          "session": "Ca 3 · Bài tập",
+          "time": "60–120 phút",
+          "work": "Làm bài tập từ dễ đến trung bình, đánh dấu lỗi sai và nguyên nhân.",
+          "evidence": "sơ đồ architecture + bảng risk"
+        },
+        {
+          "session": "Ca 4 · Kiểm tra nhỏ",
+          "time": "20–40 phút",
+          "work": "Tự kiểm tra nhanh, đạt ≥ 8/10 mới chuyển module kế tiếp.",
+          "evidence": "Điểm kiểm tra + danh sách mục cần ôn."
+        }
+      ],
+      "practicePlan": [
+        "Bài dễ: nhận diện khái niệm và áp dụng công thức/quy trình trực tiếp.",
+        "Bài trung bình: kết hợp 2–3 kỹ năng, giải thích từng bước.",
+        "Bài khá: xử lý tình huống có nhiễu/lỗi/điều kiện thiếu.",
+        "Bài giỏi: tự thiết kế ví dụ nhỏ hoặc mini-project liên môn."
+      ],
+      "simulationPlan": [
+        "Mô phỏng riêng: quan sát mô phỏng node-sensor-controller với tham số thay đổi.",
+        "Mô phỏng thực hành: nhận nhiệm vụ, chọn cách xử lý, hệ thống phản hồi đúng/sai.",
+        "Ghi lại kết quả mô phỏng để liên hệ với bài tập và kiểm tra."
+      ],
+      "assessmentPlan": {
+        "unlock": "Mức Dễ mở mặc định; Trung bình/Khá/Giỏi mở khi mức trước đạt ≥ 8/10.",
+        "rubric": [
+          "Hiểu khái niệm",
+          "Làm được bài",
+          "Giải thích được lỗi",
+          "Tạo được sản phẩm nhỏ"
+        ],
+        "pass": "Đạt module khi hoàn thành bài học chính, chạy mô phỏng, làm bài tập và kiểm tra ≥ 8/10."
+      },
+      "baumanLinks": [
+        "Liên hệ học phần Bauman/HK: GĐ1 · Chuẩn bị tại Việt Nam.",
+        "Liên hệ luận văn: UGV/USV, telemetry, AI hoặc hệ thống điều khiển tùy môn.",
+        "Liên hệ tiếng Nga: chuẩn bị cách trình bày khái niệm bằng câu ngắn, dễ nói."
+      ],
+      "completionCriteria": [
+        "Đã mở và đọc toàn bộ bài học trong module.",
+        "Đã chạy ít nhất 1 mô phỏng hoặc ví dụ tương tác.",
+        "Đã làm tối thiểu 3 bài tập và ghi lại lỗi sai.",
+        "Đã đạt kiểm tra nhanh ≥ 8/10 hoặc đánh dấu cần ôn."
+      ],
+      "risks": [
+        "Chỉ đọc lý thuyết nhưng không làm bài tập/mô phỏng.",
+        "Không ghi lại lỗi sai nên tuần sau quên điểm yếu.",
+        "Nhảy sang module mới khi chưa đạt tiêu chí ≥ 8/10."
+      ],
+      "nextStep": "Sau khi hoàn thành 'Data contract và giao diện tích hợp hệ thống', chuyển sang module tiếp theo trong GĐ1 · Chuẩn bị tại Việt Nam hoặc làm bài kiểm tra mức cao hơn."
+    },
+    {
+      "id": "s_p05",
+      "stage": "prepare",
+      "week": "W5",
+      "title": "Độ tin cậy của hệ thống kỹ thuật phức hợp nhập môn",
+      "goal": "Fault, failure, availability, redundancy, risk.",
+      "hours": 8,
+      "level": "Khá",
+      "lessons": [
+        "s_p05_l1",
+        "s_p05_l2",
+        "s_p05_l3"
+      ],
+      "outputs": [
+        "Ghi chú module 'Độ tin cậy của hệ thống kỹ thuật phức hợp nhập môn' có định nghĩa, ví dụ, lỗi thường gặp.",
+        "Một sản phẩm thực hành: sơ đồ architecture + bảng risk.",
+        "Một mục nhật ký học tập: đã học gì, sai gì, cần ôn gì.",
+        "Cập nhật tiến độ module và gửi phản hồi về Main."
+      ],
+      "phaseObjective": "Trong GĐ1 · Chuẩn bị tại Việt Nam, module này biến chủ đề 'Độ tin cậy của hệ thống kỹ thuật phức hợp nhập môn' thành năng lực dùng được: hiểu khái niệm, làm bài, chạy mô phỏng và tạo sản phẩm kiểm chứng.",
+      "whyImportant": [
+        "Đây là mắt xích của môn АСОИУ trong lộ trình Bauman, giúp học phần sau không bị hổng nền.",
+        "Nội dung liên quan trực tiếp tới node, sensor, controller, feedback, reliability và lifecycle.",
+        "Kết quả module được dùng để Main biết nên nhắc ôn, kiểm tra hay chuyển module tiếp theo."
+      ],
+      "prerequisites": [
+        "Đọc lại mục tiêu giai đoạn và các module trước đó trong cùng môn.",
+        "Chuẩn bị công cụ: sơ đồ hệ thống, bảng lỗi, mô phỏng node/sensor.",
+        "Tạo file ghi chú riêng: mục tiêu, thuật ngữ, lỗi sai, sản phẩm đầu ra."
+      ],
+      "conceptMap": [
+        "Khái niệm trung tâm của 'Độ tin cậy của hệ thống kỹ thuật phức hợp nhập môn'.",
+        "Input cần nhận diện: dữ liệu, ký hiệu, biến, điều kiện hoặc tình huống.",
+        "Output cần tạo: kết quả tính toán, code, bảng đánh giá, sơ đồ hoặc câu trả lời học thuật.",
+        "Tiêu chí kiểm tra: đúng logic, giải thích được lý do, có bằng chứng thực hành."
+      ],
+      "studyPlan": [
+        {
+          "session": "Ca 1 · Nắm lõi",
+          "time": "60–90 phút",
+          "work": "Đọc bài nền về Độ tin cậy của hệ thống kỹ thuật phức hợp nhập môn, ghi thuật ngữ, viết lại bằng lời của mình.",
+          "evidence": "Ghi chú 7–10 dòng + 5 thuật ngữ chính."
+        },
+        {
+          "session": "Ca 2 · Mô phỏng",
+          "time": "45–75 phút",
+          "work": "Chạy mô phỏng node-sensor-controller hoặc ví dụ tham số để quan sát cơ chế.",
+          "evidence": "Ảnh/chú thích kết quả mô phỏng + nhận xét."
+        },
+        {
+          "session": "Ca 3 · Bài tập",
+          "time": "60–120 phút",
+          "work": "Làm bài tập từ dễ đến trung bình, đánh dấu lỗi sai và nguyên nhân.",
+          "evidence": "sơ đồ architecture + bảng risk"
+        },
+        {
+          "session": "Ca 4 · Kiểm tra nhỏ",
+          "time": "20–40 phút",
+          "work": "Tự kiểm tra nhanh, đạt ≥ 8/10 mới chuyển module kế tiếp.",
+          "evidence": "Điểm kiểm tra + danh sách mục cần ôn."
+        }
+      ],
+      "practicePlan": [
+        "Bài dễ: nhận diện khái niệm và áp dụng công thức/quy trình trực tiếp.",
+        "Bài trung bình: kết hợp 2–3 kỹ năng, giải thích từng bước.",
+        "Bài khá: xử lý tình huống có nhiễu/lỗi/điều kiện thiếu.",
+        "Bài giỏi: tự thiết kế ví dụ nhỏ hoặc mini-project liên môn."
+      ],
+      "simulationPlan": [
+        "Mô phỏng riêng: quan sát mô phỏng node-sensor-controller với tham số thay đổi.",
+        "Mô phỏng thực hành: nhận nhiệm vụ, chọn cách xử lý, hệ thống phản hồi đúng/sai.",
+        "Ghi lại kết quả mô phỏng để liên hệ với bài tập và kiểm tra."
+      ],
+      "assessmentPlan": {
+        "unlock": "Mức Dễ mở mặc định; Trung bình/Khá/Giỏi mở khi mức trước đạt ≥ 8/10.",
+        "rubric": [
+          "Hiểu khái niệm",
+          "Làm được bài",
+          "Giải thích được lỗi",
+          "Tạo được sản phẩm nhỏ"
+        ],
+        "pass": "Đạt module khi hoàn thành bài học chính, chạy mô phỏng, làm bài tập và kiểm tra ≥ 8/10."
+      },
+      "baumanLinks": [
+        "Liên hệ học phần Bauman/HK: GĐ1 · Chuẩn bị tại Việt Nam.",
+        "Liên hệ luận văn: UGV/USV, telemetry, AI hoặc hệ thống điều khiển tùy môn.",
+        "Liên hệ tiếng Nga: chuẩn bị cách trình bày khái niệm bằng câu ngắn, dễ nói."
+      ],
+      "completionCriteria": [
+        "Đã mở và đọc toàn bộ bài học trong module.",
+        "Đã chạy ít nhất 1 mô phỏng hoặc ví dụ tương tác.",
+        "Đã làm tối thiểu 3 bài tập và ghi lại lỗi sai.",
+        "Đã đạt kiểm tra nhanh ≥ 8/10 hoặc đánh dấu cần ôn."
+      ],
+      "risks": [
+        "Chỉ đọc lý thuyết nhưng không làm bài tập/mô phỏng.",
+        "Không ghi lại lỗi sai nên tuần sau quên điểm yếu.",
+        "Nhảy sang module mới khi chưa đạt tiêu chí ≥ 8/10."
+      ],
+      "nextStep": "Sau khi hoàn thành 'Độ tin cậy của hệ thống kỹ thuật phức hợp nhập môn', chuyển sang module tiếp theo trong GĐ1 · Chuẩn bị tại Việt Nam hoặc làm bài kiểm tra mức cao hơn."
+    },
+    {
+      "id": "s_p06",
+      "stage": "prepare",
+      "week": "W6",
+      "title": "FMEA và bảng rủi ro cho hệ thống tự hành",
+      "goal": "Failure mode, effect, severity, occurrence, detection.",
+      "hours": 8,
+      "level": "Khá",
+      "lessons": [
+        "s_p06_l1",
+        "s_p06_l2",
+        "s_p06_l3"
+      ],
+      "outputs": [
+        "Ghi chú module 'FMEA và bảng rủi ro cho hệ thống tự hành' có định nghĩa, ví dụ, lỗi thường gặp.",
+        "Một sản phẩm thực hành: sơ đồ architecture + bảng risk.",
+        "Một mục nhật ký học tập: đã học gì, sai gì, cần ôn gì.",
+        "Cập nhật tiến độ module và gửi phản hồi về Main."
+      ],
+      "phaseObjective": "Trong GĐ1 · Chuẩn bị tại Việt Nam, module này biến chủ đề 'FMEA và bảng rủi ro cho hệ thống tự hành' thành năng lực dùng được: hiểu khái niệm, làm bài, chạy mô phỏng và tạo sản phẩm kiểm chứng.",
+      "whyImportant": [
+        "Đây là mắt xích của môn АСОИУ trong lộ trình Bauman, giúp học phần sau không bị hổng nền.",
+        "Nội dung liên quan trực tiếp tới node, sensor, controller, feedback, reliability và lifecycle.",
+        "Kết quả module được dùng để Main biết nên nhắc ôn, kiểm tra hay chuyển module tiếp theo."
+      ],
+      "prerequisites": [
+        "Đọc lại mục tiêu giai đoạn và các module trước đó trong cùng môn.",
+        "Chuẩn bị công cụ: sơ đồ hệ thống, bảng lỗi, mô phỏng node/sensor.",
+        "Tạo file ghi chú riêng: mục tiêu, thuật ngữ, lỗi sai, sản phẩm đầu ra."
+      ],
+      "conceptMap": [
+        "Khái niệm trung tâm của 'FMEA và bảng rủi ro cho hệ thống tự hành'.",
+        "Input cần nhận diện: dữ liệu, ký hiệu, biến, điều kiện hoặc tình huống.",
+        "Output cần tạo: kết quả tính toán, code, bảng đánh giá, sơ đồ hoặc câu trả lời học thuật.",
+        "Tiêu chí kiểm tra: đúng logic, giải thích được lý do, có bằng chứng thực hành."
+      ],
+      "studyPlan": [
+        {
+          "session": "Ca 1 · Nắm lõi",
+          "time": "60–90 phút",
+          "work": "Đọc bài nền về FMEA và bảng rủi ro cho hệ thống tự hành, ghi thuật ngữ, viết lại bằng lời của mình.",
+          "evidence": "Ghi chú 7–10 dòng + 5 thuật ngữ chính."
+        },
+        {
+          "session": "Ca 2 · Mô phỏng",
+          "time": "45–75 phút",
+          "work": "Chạy mô phỏng node-sensor-controller hoặc ví dụ tham số để quan sát cơ chế.",
+          "evidence": "Ảnh/chú thích kết quả mô phỏng + nhận xét."
+        },
+        {
+          "session": "Ca 3 · Bài tập",
+          "time": "60–120 phút",
+          "work": "Làm bài tập từ dễ đến trung bình, đánh dấu lỗi sai và nguyên nhân.",
+          "evidence": "sơ đồ architecture + bảng risk"
+        },
+        {
+          "session": "Ca 4 · Kiểm tra nhỏ",
+          "time": "20–40 phút",
+          "work": "Tự kiểm tra nhanh, đạt ≥ 8/10 mới chuyển module kế tiếp.",
+          "evidence": "Điểm kiểm tra + danh sách mục cần ôn."
+        }
+      ],
+      "practicePlan": [
+        "Bài dễ: nhận diện khái niệm và áp dụng công thức/quy trình trực tiếp.",
+        "Bài trung bình: kết hợp 2–3 kỹ năng, giải thích từng bước.",
+        "Bài khá: xử lý tình huống có nhiễu/lỗi/điều kiện thiếu.",
+        "Bài giỏi: tự thiết kế ví dụ nhỏ hoặc mini-project liên môn."
+      ],
+      "simulationPlan": [
+        "Mô phỏng riêng: quan sát mô phỏng node-sensor-controller với tham số thay đổi.",
+        "Mô phỏng thực hành: nhận nhiệm vụ, chọn cách xử lý, hệ thống phản hồi đúng/sai.",
+        "Ghi lại kết quả mô phỏng để liên hệ với bài tập và kiểm tra."
+      ],
+      "assessmentPlan": {
+        "unlock": "Mức Dễ mở mặc định; Trung bình/Khá/Giỏi mở khi mức trước đạt ≥ 8/10.",
+        "rubric": [
+          "Hiểu khái niệm",
+          "Làm được bài",
+          "Giải thích được lỗi",
+          "Tạo được sản phẩm nhỏ"
+        ],
+        "pass": "Đạt module khi hoàn thành bài học chính, chạy mô phỏng, làm bài tập và kiểm tra ≥ 8/10."
+      },
+      "baumanLinks": [
+        "Liên hệ học phần Bauman/HK: GĐ1 · Chuẩn bị tại Việt Nam.",
+        "Liên hệ luận văn: UGV/USV, telemetry, AI hoặc hệ thống điều khiển tùy môn.",
+        "Liên hệ tiếng Nga: chuẩn bị cách trình bày khái niệm bằng câu ngắn, dễ nói."
+      ],
+      "completionCriteria": [
+        "Đã mở và đọc toàn bộ bài học trong module.",
+        "Đã chạy ít nhất 1 mô phỏng hoặc ví dụ tương tác.",
+        "Đã làm tối thiểu 3 bài tập và ghi lại lỗi sai.",
+        "Đã đạt kiểm tra nhanh ≥ 8/10 hoặc đánh dấu cần ôn."
+      ],
+      "risks": [
+        "Chỉ đọc lý thuyết nhưng không làm bài tập/mô phỏng.",
+        "Không ghi lại lỗi sai nên tuần sau quên điểm yếu.",
+        "Nhảy sang module mới khi chưa đạt tiêu chí ≥ 8/10."
+      ],
+      "nextStep": "Sau khi hoàn thành 'FMEA và bảng rủi ro cho hệ thống tự hành', chuyển sang module tiếp theo trong GĐ1 · Chuẩn bị tại Việt Nam hoặc làm bài kiểm tra mức cao hơn."
+    },
+    {
+      "id": "s_p07",
+      "stage": "prepare",
+      "week": "W7",
+      "title": "Mini-design hệ thống UGV AI: kiến trúc và fallback",
+      "goal": "Kiến trúc đề tài UGV/USV khả thi về linh kiện.",
+      "hours": 12,
+      "level": "Khá",
+      "lessons": [
+        "s_p07_l1",
+        "s_p07_l2",
+        "s_p07_l3"
+      ],
+      "outputs": [
+        "Ghi chú module 'Mini-design hệ thống UGV AI: kiến trúc và fallback' có định nghĩa, ví dụ, lỗi thường gặp.",
+        "Một sản phẩm thực hành: sơ đồ architecture + bảng risk.",
+        "Một mục nhật ký học tập: đã học gì, sai gì, cần ôn gì.",
+        "Cập nhật tiến độ module và gửi phản hồi về Main."
+      ],
+      "phaseObjective": "Trong GĐ1 · Chuẩn bị tại Việt Nam, module này biến chủ đề 'Mini-design hệ thống UGV AI: kiến trúc và fallback' thành năng lực dùng được: hiểu khái niệm, làm bài, chạy mô phỏng và tạo sản phẩm kiểm chứng.",
+      "whyImportant": [
+        "Đây là mắt xích của môn АСОИУ trong lộ trình Bauman, giúp học phần sau không bị hổng nền.",
+        "Nội dung liên quan trực tiếp tới node, sensor, controller, feedback, reliability và lifecycle.",
+        "Kết quả module được dùng để Main biết nên nhắc ôn, kiểm tra hay chuyển module tiếp theo."
+      ],
+      "prerequisites": [
+        "Đọc lại mục tiêu giai đoạn và các module trước đó trong cùng môn.",
+        "Chuẩn bị công cụ: sơ đồ hệ thống, bảng lỗi, mô phỏng node/sensor.",
+        "Tạo file ghi chú riêng: mục tiêu, thuật ngữ, lỗi sai, sản phẩm đầu ra."
+      ],
+      "conceptMap": [
+        "Khái niệm trung tâm của 'Mini-design hệ thống UGV AI: kiến trúc và fallback'.",
+        "Input cần nhận diện: dữ liệu, ký hiệu, biến, điều kiện hoặc tình huống.",
+        "Output cần tạo: kết quả tính toán, code, bảng đánh giá, sơ đồ hoặc câu trả lời học thuật.",
+        "Tiêu chí kiểm tra: đúng logic, giải thích được lý do, có bằng chứng thực hành."
+      ],
+      "studyPlan": [
+        {
+          "session": "Ca 1 · Nắm lõi",
+          "time": "60–90 phút",
+          "work": "Đọc bài nền về Mini-design hệ thống UGV AI: kiến trúc và fallback, ghi thuật ngữ, viết lại bằng lời của mình.",
+          "evidence": "Ghi chú 7–10 dòng + 5 thuật ngữ chính."
+        },
+        {
+          "session": "Ca 2 · Mô phỏng",
+          "time": "45–75 phút",
+          "work": "Chạy mô phỏng node-sensor-controller hoặc ví dụ tham số để quan sát cơ chế.",
+          "evidence": "Ảnh/chú thích kết quả mô phỏng + nhận xét."
+        },
+        {
+          "session": "Ca 3 · Bài tập",
+          "time": "60–120 phút",
+          "work": "Làm bài tập từ dễ đến trung bình, đánh dấu lỗi sai và nguyên nhân.",
+          "evidence": "sơ đồ architecture + bảng risk"
+        },
+        {
+          "session": "Ca 4 · Kiểm tra nhỏ",
+          "time": "20–40 phút",
+          "work": "Tự kiểm tra nhanh, đạt ≥ 8/10 mới chuyển module kế tiếp.",
+          "evidence": "Điểm kiểm tra + danh sách mục cần ôn."
+        }
+      ],
+      "practicePlan": [
+        "Bài dễ: nhận diện khái niệm và áp dụng công thức/quy trình trực tiếp.",
+        "Bài trung bình: kết hợp 2–3 kỹ năng, giải thích từng bước.",
+        "Bài khá: xử lý tình huống có nhiễu/lỗi/điều kiện thiếu.",
+        "Bài giỏi: tự thiết kế ví dụ nhỏ hoặc mini-project liên môn."
+      ],
+      "simulationPlan": [
+        "Mô phỏng riêng: quan sát mô phỏng node-sensor-controller với tham số thay đổi.",
+        "Mô phỏng thực hành: nhận nhiệm vụ, chọn cách xử lý, hệ thống phản hồi đúng/sai.",
+        "Ghi lại kết quả mô phỏng để liên hệ với bài tập và kiểm tra."
+      ],
+      "assessmentPlan": {
+        "unlock": "Mức Dễ mở mặc định; Trung bình/Khá/Giỏi mở khi mức trước đạt ≥ 8/10.",
+        "rubric": [
+          "Hiểu khái niệm",
+          "Làm được bài",
+          "Giải thích được lỗi",
+          "Tạo được sản phẩm nhỏ"
+        ],
+        "pass": "Đạt module khi hoàn thành bài học chính, chạy mô phỏng, làm bài tập và kiểm tra ≥ 8/10."
+      },
+      "baumanLinks": [
+        "Liên hệ học phần Bauman/HK: GĐ1 · Chuẩn bị tại Việt Nam.",
+        "Liên hệ luận văn: UGV/USV, telemetry, AI hoặc hệ thống điều khiển tùy môn.",
+        "Liên hệ tiếng Nga: chuẩn bị cách trình bày khái niệm bằng câu ngắn, dễ nói."
+      ],
+      "completionCriteria": [
+        "Đã mở và đọc toàn bộ bài học trong module.",
+        "Đã chạy ít nhất 1 mô phỏng hoặc ví dụ tương tác.",
+        "Đã làm tối thiểu 3 bài tập và ghi lại lỗi sai.",
+        "Đã đạt kiểm tra nhanh ≥ 8/10 hoặc đánh dấu cần ôn."
+      ],
+      "risks": [
+        "Chỉ đọc lý thuyết nhưng không làm bài tập/mô phỏng.",
+        "Không ghi lại lỗi sai nên tuần sau quên điểm yếu.",
+        "Nhảy sang module mới khi chưa đạt tiêu chí ≥ 8/10."
+      ],
+      "nextStep": "Sau khi hoàn thành 'Mini-design hệ thống UGV AI: kiến trúc và fallback', chuyển sang module tiếp theo trong GĐ1 · Chuẩn bị tại Việt Nam hoặc làm bài kiểm tra mức cao hơn."
+    },
+    {
+      "id": "s_s01",
+      "stage": "preparatory",
+      "week": "ST1",
+      "title": "Thuật ngữ АСОИУ tiếng Nga",
+      "goal": "Автоматизированная система, обработка информации, управление.",
+      "hours": 5,
+      "level": "Cơ bản",
+      "lessons": [
+        "s_s01_l1",
+        "s_s01_l2",
+        "s_s01_l3"
+      ],
+      "outputs": [
+        "Ghi chú module 'Thuật ngữ АСОИУ tiếng Nga' có định nghĩa, ví dụ, lỗi thường gặp.",
+        "Một sản phẩm thực hành: sơ đồ architecture + bảng risk.",
+        "Một mục nhật ký học tập: đã học gì, sai gì, cần ôn gì.",
+        "Cập nhật tiến độ module và gửi phản hồi về Main."
+      ],
+      "phaseObjective": "Trong GĐ2 · Dự bị Nga / STANKIN, module này biến chủ đề 'Thuật ngữ АСОИУ tiếng Nga' thành năng lực dùng được: hiểu khái niệm, làm bài, chạy mô phỏng và tạo sản phẩm kiểm chứng.",
+      "whyImportant": [
+        "Đây là mắt xích của môn АСОИУ trong lộ trình Bauman, giúp học phần sau không bị hổng nền.",
+        "Nội dung liên quan trực tiếp tới node, sensor, controller, feedback, reliability và lifecycle.",
+        "Kết quả module được dùng để Main biết nên nhắc ôn, kiểm tra hay chuyển module tiếp theo."
+      ],
+      "prerequisites": [
+        "Đọc lại mục tiêu giai đoạn và các module trước đó trong cùng môn.",
+        "Chuẩn bị công cụ: sơ đồ hệ thống, bảng lỗi, mô phỏng node/sensor.",
+        "Tạo file ghi chú riêng: mục tiêu, thuật ngữ, lỗi sai, sản phẩm đầu ra."
+      ],
+      "conceptMap": [
+        "Khái niệm trung tâm của 'Thuật ngữ АСОИУ tiếng Nga'.",
+        "Input cần nhận diện: dữ liệu, ký hiệu, biến, điều kiện hoặc tình huống.",
+        "Output cần tạo: kết quả tính toán, code, bảng đánh giá, sơ đồ hoặc câu trả lời học thuật.",
+        "Tiêu chí kiểm tra: đúng logic, giải thích được lý do, có bằng chứng thực hành."
+      ],
+      "studyPlan": [
+        {
+          "session": "Ca 1 · Nắm lõi",
+          "time": "60–90 phút",
+          "work": "Đọc bài nền về Thuật ngữ АСОИУ tiếng Nga, ghi thuật ngữ, viết lại bằng lời của mình.",
+          "evidence": "Ghi chú 7–10 dòng + 5 thuật ngữ chính."
+        },
+        {
+          "session": "Ca 2 · Mô phỏng",
+          "time": "45–75 phút",
+          "work": "Chạy mô phỏng node-sensor-controller hoặc ví dụ tham số để quan sát cơ chế.",
+          "evidence": "Ảnh/chú thích kết quả mô phỏng + nhận xét."
+        },
+        {
+          "session": "Ca 3 · Bài tập",
+          "time": "60–120 phút",
+          "work": "Làm bài tập từ dễ đến trung bình, đánh dấu lỗi sai và nguyên nhân.",
+          "evidence": "sơ đồ architecture + bảng risk"
+        },
+        {
+          "session": "Ca 4 · Kiểm tra nhỏ",
+          "time": "20–40 phút",
+          "work": "Tự kiểm tra nhanh, đạt ≥ 8/10 mới chuyển module kế tiếp.",
+          "evidence": "Điểm kiểm tra + danh sách mục cần ôn."
+        }
+      ],
+      "practicePlan": [
+        "Bài dễ: nhận diện khái niệm và áp dụng công thức/quy trình trực tiếp.",
+        "Bài trung bình: kết hợp 2–3 kỹ năng, giải thích từng bước.",
+        "Bài khá: xử lý tình huống có nhiễu/lỗi/điều kiện thiếu.",
+        "Bài giỏi: tự thiết kế ví dụ nhỏ hoặc mini-project liên môn."
+      ],
+      "simulationPlan": [
+        "Mô phỏng riêng: quan sát mô phỏng node-sensor-controller với tham số thay đổi.",
+        "Mô phỏng thực hành: nhận nhiệm vụ, chọn cách xử lý, hệ thống phản hồi đúng/sai.",
+        "Ghi lại kết quả mô phỏng để liên hệ với bài tập và kiểm tra."
+      ],
+      "assessmentPlan": {
+        "unlock": "Mức Dễ mở mặc định; Trung bình/Khá/Giỏi mở khi mức trước đạt ≥ 8/10.",
+        "rubric": [
+          "Hiểu khái niệm",
+          "Làm được bài",
+          "Giải thích được lỗi",
+          "Tạo được sản phẩm nhỏ"
+        ],
+        "pass": "Đạt module khi hoàn thành bài học chính, chạy mô phỏng, làm bài tập và kiểm tra ≥ 8/10."
+      },
+      "baumanLinks": [
+        "Liên hệ học phần Bauman/HK: GĐ2 · Dự bị Nga / STANKIN.",
+        "Liên hệ luận văn: UGV/USV, telemetry, AI hoặc hệ thống điều khiển tùy môn.",
+        "Liên hệ tiếng Nga: chuẩn bị cách trình bày khái niệm bằng câu ngắn, dễ nói."
+      ],
+      "completionCriteria": [
+        "Đã mở và đọc toàn bộ bài học trong module.",
+        "Đã chạy ít nhất 1 mô phỏng hoặc ví dụ tương tác.",
+        "Đã làm tối thiểu 3 bài tập và ghi lại lỗi sai.",
+        "Đã đạt kiểm tra nhanh ≥ 8/10 hoặc đánh dấu cần ôn."
+      ],
+      "risks": [
+        "Chỉ đọc lý thuyết nhưng không làm bài tập/mô phỏng.",
+        "Không ghi lại lỗi sai nên tuần sau quên điểm yếu.",
+        "Nhảy sang module mới khi chưa đạt tiêu chí ≥ 8/10."
+      ],
+      "nextStep": "Sau khi hoàn thành 'Thuật ngữ АСОИУ tiếng Nga', chuyển sang module tiếp theo trong GĐ2 · Dự bị Nga / STANKIN hoặc làm bài kiểm tra mức cao hơn."
+    },
+    {
+      "id": "s_s02",
+      "stage": "preparatory",
+      "week": "ST2",
+      "title": "Đọc tên học phần ИУ-5 và hiểu ngữ cảnh chuyên ngành",
+      "goal": "Hiểu tên môn, yêu cầu, dạng kiểm tra và từ vựng hệ thống.",
+      "hours": 5,
+      "level": "Cơ bản",
+      "lessons": [
+        "s_s02_l1",
+        "s_s02_l2",
+        "s_s02_l3"
+      ],
+      "outputs": [
+        "Ghi chú module 'Đọc tên học phần ИУ-5 và hiểu ngữ cảnh chuyên ngành' có định nghĩa, ví dụ, lỗi thường gặp.",
+        "Một sản phẩm thực hành: sơ đồ architecture + bảng risk.",
+        "Một mục nhật ký học tập: đã học gì, sai gì, cần ôn gì.",
+        "Cập nhật tiến độ module và gửi phản hồi về Main."
+      ],
+      "phaseObjective": "Trong GĐ2 · Dự bị Nga / STANKIN, module này biến chủ đề 'Đọc tên học phần ИУ-5 và hiểu ngữ cảnh chuyên ngành' thành năng lực dùng được: hiểu khái niệm, làm bài, chạy mô phỏng và tạo sản phẩm kiểm chứng.",
+      "whyImportant": [
+        "Đây là mắt xích của môn АСОИУ trong lộ trình Bauman, giúp học phần sau không bị hổng nền.",
+        "Nội dung liên quan trực tiếp tới node, sensor, controller, feedback, reliability và lifecycle.",
+        "Kết quả module được dùng để Main biết nên nhắc ôn, kiểm tra hay chuyển module tiếp theo."
+      ],
+      "prerequisites": [
+        "Đọc lại mục tiêu giai đoạn và các module trước đó trong cùng môn.",
+        "Chuẩn bị công cụ: sơ đồ hệ thống, bảng lỗi, mô phỏng node/sensor.",
+        "Tạo file ghi chú riêng: mục tiêu, thuật ngữ, lỗi sai, sản phẩm đầu ra."
+      ],
+      "conceptMap": [
+        "Khái niệm trung tâm của 'Đọc tên học phần ИУ-5 và hiểu ngữ cảnh chuyên ngành'.",
+        "Input cần nhận diện: dữ liệu, ký hiệu, biến, điều kiện hoặc tình huống.",
+        "Output cần tạo: kết quả tính toán, code, bảng đánh giá, sơ đồ hoặc câu trả lời học thuật.",
+        "Tiêu chí kiểm tra: đúng logic, giải thích được lý do, có bằng chứng thực hành."
+      ],
+      "studyPlan": [
+        {
+          "session": "Ca 1 · Nắm lõi",
+          "time": "60–90 phút",
+          "work": "Đọc bài nền về Đọc tên học phần ИУ-5 và hiểu ngữ cảnh chuyên ngành, ghi thuật ngữ, viết lại bằng lời của mình.",
+          "evidence": "Ghi chú 7–10 dòng + 5 thuật ngữ chính."
+        },
+        {
+          "session": "Ca 2 · Mô phỏng",
+          "time": "45–75 phút",
+          "work": "Chạy mô phỏng node-sensor-controller hoặc ví dụ tham số để quan sát cơ chế.",
+          "evidence": "Ảnh/chú thích kết quả mô phỏng + nhận xét."
+        },
+        {
+          "session": "Ca 3 · Bài tập",
+          "time": "60–120 phút",
+          "work": "Làm bài tập từ dễ đến trung bình, đánh dấu lỗi sai và nguyên nhân.",
+          "evidence": "sơ đồ architecture + bảng risk"
+        },
+        {
+          "session": "Ca 4 · Kiểm tra nhỏ",
+          "time": "20–40 phút",
+          "work": "Tự kiểm tra nhanh, đạt ≥ 8/10 mới chuyển module kế tiếp.",
+          "evidence": "Điểm kiểm tra + danh sách mục cần ôn."
+        }
+      ],
+      "practicePlan": [
+        "Bài dễ: nhận diện khái niệm và áp dụng công thức/quy trình trực tiếp.",
+        "Bài trung bình: kết hợp 2–3 kỹ năng, giải thích từng bước.",
+        "Bài khá: xử lý tình huống có nhiễu/lỗi/điều kiện thiếu.",
+        "Bài giỏi: tự thiết kế ví dụ nhỏ hoặc mini-project liên môn."
+      ],
+      "simulationPlan": [
+        "Mô phỏng riêng: quan sát mô phỏng node-sensor-controller với tham số thay đổi.",
+        "Mô phỏng thực hành: nhận nhiệm vụ, chọn cách xử lý, hệ thống phản hồi đúng/sai.",
+        "Ghi lại kết quả mô phỏng để liên hệ với bài tập và kiểm tra."
+      ],
+      "assessmentPlan": {
+        "unlock": "Mức Dễ mở mặc định; Trung bình/Khá/Giỏi mở khi mức trước đạt ≥ 8/10.",
+        "rubric": [
+          "Hiểu khái niệm",
+          "Làm được bài",
+          "Giải thích được lỗi",
+          "Tạo được sản phẩm nhỏ"
+        ],
+        "pass": "Đạt module khi hoàn thành bài học chính, chạy mô phỏng, làm bài tập và kiểm tra ≥ 8/10."
+      },
+      "baumanLinks": [
+        "Liên hệ học phần Bauman/HK: GĐ2 · Dự bị Nga / STANKIN.",
+        "Liên hệ luận văn: UGV/USV, telemetry, AI hoặc hệ thống điều khiển tùy môn.",
+        "Liên hệ tiếng Nga: chuẩn bị cách trình bày khái niệm bằng câu ngắn, dễ nói."
+      ],
+      "completionCriteria": [
+        "Đã mở và đọc toàn bộ bài học trong module.",
+        "Đã chạy ít nhất 1 mô phỏng hoặc ví dụ tương tác.",
+        "Đã làm tối thiểu 3 bài tập và ghi lại lỗi sai.",
+        "Đã đạt kiểm tra nhanh ≥ 8/10 hoặc đánh dấu cần ôn."
+      ],
+      "risks": [
+        "Chỉ đọc lý thuyết nhưng không làm bài tập/mô phỏng.",
+        "Không ghi lại lỗi sai nên tuần sau quên điểm yếu.",
+        "Nhảy sang module mới khi chưa đạt tiêu chí ≥ 8/10."
+      ],
+      "nextStep": "Sau khi hoàn thành 'Đọc tên học phần ИУ-5 và hiểu ngữ cảnh chuyên ngành', chuyển sang module tiếp theo trong GĐ2 · Dự bị Nga / STANKIN hoặc làm bài kiểm tra mức cao hơn."
+    },
+    {
+      "id": "s_s03",
+      "stage": "preparatory",
+      "week": "ST3",
+      "title": "System memo tiếng Nga: mô tả kiến trúc và rủi ro",
+      "goal": "Viết mô tả hệ thống ngắn theo mẫu.",
+      "hours": 6,
+      "level": "Trung bình",
+      "lessons": [
+        "s_s03_l1",
+        "s_s03_l2",
+        "s_s03_l3"
+      ],
+      "outputs": [
+        "Ghi chú module 'System memo tiếng Nga: mô tả kiến trúc và rủi ro' có định nghĩa, ví dụ, lỗi thường gặp.",
+        "Một sản phẩm thực hành: sơ đồ architecture + bảng risk.",
+        "Một mục nhật ký học tập: đã học gì, sai gì, cần ôn gì.",
+        "Cập nhật tiến độ module và gửi phản hồi về Main."
+      ],
+      "phaseObjective": "Trong GĐ2 · Dự bị Nga / STANKIN, module này biến chủ đề 'System memo tiếng Nga: mô tả kiến trúc và rủi ro' thành năng lực dùng được: hiểu khái niệm, làm bài, chạy mô phỏng và tạo sản phẩm kiểm chứng.",
+      "whyImportant": [
+        "Đây là mắt xích của môn АСОИУ trong lộ trình Bauman, giúp học phần sau không bị hổng nền.",
+        "Nội dung liên quan trực tiếp tới node, sensor, controller, feedback, reliability và lifecycle.",
+        "Kết quả module được dùng để Main biết nên nhắc ôn, kiểm tra hay chuyển module tiếp theo."
+      ],
+      "prerequisites": [
+        "Đọc lại mục tiêu giai đoạn và các module trước đó trong cùng môn.",
+        "Chuẩn bị công cụ: sơ đồ hệ thống, bảng lỗi, mô phỏng node/sensor.",
+        "Tạo file ghi chú riêng: mục tiêu, thuật ngữ, lỗi sai, sản phẩm đầu ra."
+      ],
+      "conceptMap": [
+        "Khái niệm trung tâm của 'System memo tiếng Nga: mô tả kiến trúc và rủi ro'.",
+        "Input cần nhận diện: dữ liệu, ký hiệu, biến, điều kiện hoặc tình huống.",
+        "Output cần tạo: kết quả tính toán, code, bảng đánh giá, sơ đồ hoặc câu trả lời học thuật.",
+        "Tiêu chí kiểm tra: đúng logic, giải thích được lý do, có bằng chứng thực hành."
+      ],
+      "studyPlan": [
+        {
+          "session": "Ca 1 · Nắm lõi",
+          "time": "60–90 phút",
+          "work": "Đọc bài nền về System memo tiếng Nga: mô tả kiến trúc và rủi ro, ghi thuật ngữ, viết lại bằng lời của mình.",
+          "evidence": "Ghi chú 7–10 dòng + 5 thuật ngữ chính."
+        },
+        {
+          "session": "Ca 2 · Mô phỏng",
+          "time": "45–75 phút",
+          "work": "Chạy mô phỏng node-sensor-controller hoặc ví dụ tham số để quan sát cơ chế.",
+          "evidence": "Ảnh/chú thích kết quả mô phỏng + nhận xét."
+        },
+        {
+          "session": "Ca 3 · Bài tập",
+          "time": "60–120 phút",
+          "work": "Làm bài tập từ dễ đến trung bình, đánh dấu lỗi sai và nguyên nhân.",
+          "evidence": "sơ đồ architecture + bảng risk"
+        },
+        {
+          "session": "Ca 4 · Kiểm tra nhỏ",
+          "time": "20–40 phút",
+          "work": "Tự kiểm tra nhanh, đạt ≥ 8/10 mới chuyển module kế tiếp.",
+          "evidence": "Điểm kiểm tra + danh sách mục cần ôn."
+        }
+      ],
+      "practicePlan": [
+        "Bài dễ: nhận diện khái niệm và áp dụng công thức/quy trình trực tiếp.",
+        "Bài trung bình: kết hợp 2–3 kỹ năng, giải thích từng bước.",
+        "Bài khá: xử lý tình huống có nhiễu/lỗi/điều kiện thiếu.",
+        "Bài giỏi: tự thiết kế ví dụ nhỏ hoặc mini-project liên môn."
+      ],
+      "simulationPlan": [
+        "Mô phỏng riêng: quan sát mô phỏng node-sensor-controller với tham số thay đổi.",
+        "Mô phỏng thực hành: nhận nhiệm vụ, chọn cách xử lý, hệ thống phản hồi đúng/sai.",
+        "Ghi lại kết quả mô phỏng để liên hệ với bài tập và kiểm tra."
+      ],
+      "assessmentPlan": {
+        "unlock": "Mức Dễ mở mặc định; Trung bình/Khá/Giỏi mở khi mức trước đạt ≥ 8/10.",
+        "rubric": [
+          "Hiểu khái niệm",
+          "Làm được bài",
+          "Giải thích được lỗi",
+          "Tạo được sản phẩm nhỏ"
+        ],
+        "pass": "Đạt module khi hoàn thành bài học chính, chạy mô phỏng, làm bài tập và kiểm tra ≥ 8/10."
+      },
+      "baumanLinks": [
+        "Liên hệ học phần Bauman/HK: GĐ2 · Dự bị Nga / STANKIN.",
+        "Liên hệ luận văn: UGV/USV, telemetry, AI hoặc hệ thống điều khiển tùy môn.",
+        "Liên hệ tiếng Nga: chuẩn bị cách trình bày khái niệm bằng câu ngắn, dễ nói."
+      ],
+      "completionCriteria": [
+        "Đã mở và đọc toàn bộ bài học trong module.",
+        "Đã chạy ít nhất 1 mô phỏng hoặc ví dụ tương tác.",
+        "Đã làm tối thiểu 3 bài tập và ghi lại lỗi sai.",
+        "Đã đạt kiểm tra nhanh ≥ 8/10 hoặc đánh dấu cần ôn."
+      ],
+      "risks": [
+        "Chỉ đọc lý thuyết nhưng không làm bài tập/mô phỏng.",
+        "Không ghi lại lỗi sai nên tuần sau quên điểm yếu.",
+        "Nhảy sang module mới khi chưa đạt tiêu chí ≥ 8/10."
+      ],
+      "nextStep": "Sau khi hoàn thành 'System memo tiếng Nga: mô tả kiến trúc và rủi ro', chuyển sang module tiếp theo trong GĐ2 · Dự bị Nga / STANKIN hoặc làm bài kiểm tra mức cao hơn."
+    },
+    {
+      "id": "s_m101",
+      "stage": "m1",
+      "week": "HK1-1",
+      "title": "Mô hình phân tích trong АСОИУ",
+      "goal": "State, input/output, analytical abstraction, evaluation.",
+      "hours": 12,
+      "level": "Nâng cao",
+      "lessons": [
+        "s_m101_l1",
+        "s_m101_l2",
+        "s_m101_l3"
+      ],
+      "outputs": [
+        "Ghi chú module 'Mô hình phân tích trong АСОИУ' có định nghĩa, ví dụ, lỗi thường gặp.",
+        "Một sản phẩm thực hành: sơ đồ architecture + bảng risk.",
+        "Một mục nhật ký học tập: đã học gì, sai gì, cần ôn gì.",
+        "Cập nhật tiến độ module và gửi phản hồi về Main."
+      ],
+      "phaseObjective": "Trong HK1 · Bauman, module này biến chủ đề 'Mô hình phân tích trong АСОИУ' thành năng lực dùng được: hiểu khái niệm, làm bài, chạy mô phỏng và tạo sản phẩm kiểm chứng.",
+      "whyImportant": [
+        "Đây là mắt xích của môn АСОИУ trong lộ trình Bauman, giúp học phần sau không bị hổng nền.",
+        "Nội dung liên quan trực tiếp tới node, sensor, controller, feedback, reliability và lifecycle.",
+        "Kết quả module được dùng để Main biết nên nhắc ôn, kiểm tra hay chuyển module tiếp theo."
+      ],
+      "prerequisites": [
+        "Đọc lại mục tiêu giai đoạn và các module trước đó trong cùng môn.",
+        "Chuẩn bị công cụ: sơ đồ hệ thống, bảng lỗi, mô phỏng node/sensor.",
+        "Tạo file ghi chú riêng: mục tiêu, thuật ngữ, lỗi sai, sản phẩm đầu ra."
+      ],
+      "conceptMap": [
+        "Khái niệm trung tâm của 'Mô hình phân tích trong АСОИУ'.",
+        "Input cần nhận diện: dữ liệu, ký hiệu, biến, điều kiện hoặc tình huống.",
+        "Output cần tạo: kết quả tính toán, code, bảng đánh giá, sơ đồ hoặc câu trả lời học thuật.",
+        "Tiêu chí kiểm tra: đúng logic, giải thích được lý do, có bằng chứng thực hành."
+      ],
+      "studyPlan": [
+        {
+          "session": "Ca 1 · Nắm lõi",
+          "time": "60–90 phút",
+          "work": "Đọc bài nền về Mô hình phân tích trong АСОИУ, ghi thuật ngữ, viết lại bằng lời của mình.",
+          "evidence": "Ghi chú 7–10 dòng + 5 thuật ngữ chính."
+        },
+        {
+          "session": "Ca 2 · Mô phỏng",
+          "time": "45–75 phút",
+          "work": "Chạy mô phỏng node-sensor-controller hoặc ví dụ tham số để quan sát cơ chế.",
+          "evidence": "Ảnh/chú thích kết quả mô phỏng + nhận xét."
+        },
+        {
+          "session": "Ca 3 · Bài tập",
+          "time": "60–120 phút",
+          "work": "Làm bài tập từ dễ đến trung bình, đánh dấu lỗi sai và nguyên nhân.",
+          "evidence": "sơ đồ architecture + bảng risk"
+        },
+        {
+          "session": "Ca 4 · Kiểm tra nhỏ",
+          "time": "20–40 phút",
+          "work": "Tự kiểm tra nhanh, đạt ≥ 8/10 mới chuyển module kế tiếp.",
+          "evidence": "Điểm kiểm tra + danh sách mục cần ôn."
+        }
+      ],
+      "practicePlan": [
+        "Bài dễ: nhận diện khái niệm và áp dụng công thức/quy trình trực tiếp.",
+        "Bài trung bình: kết hợp 2–3 kỹ năng, giải thích từng bước.",
+        "Bài khá: xử lý tình huống có nhiễu/lỗi/điều kiện thiếu.",
+        "Bài giỏi: tự thiết kế ví dụ nhỏ hoặc mini-project liên môn."
+      ],
+      "simulationPlan": [
+        "Mô phỏng riêng: quan sát mô phỏng node-sensor-controller với tham số thay đổi.",
+        "Mô phỏng thực hành: nhận nhiệm vụ, chọn cách xử lý, hệ thống phản hồi đúng/sai.",
+        "Ghi lại kết quả mô phỏng để liên hệ với bài tập và kiểm tra."
+      ],
+      "assessmentPlan": {
+        "unlock": "Mức Dễ mở mặc định; Trung bình/Khá/Giỏi mở khi mức trước đạt ≥ 8/10.",
+        "rubric": [
+          "Hiểu khái niệm",
+          "Làm được bài",
+          "Giải thích được lỗi",
+          "Tạo được sản phẩm nhỏ"
+        ],
+        "pass": "Đạt module khi hoàn thành bài học chính, chạy mô phỏng, làm bài tập và kiểm tra ≥ 8/10."
+      },
+      "baumanLinks": [
+        "Liên hệ học phần Bauman/HK: HK1 · Bauman.",
+        "Liên hệ luận văn: UGV/USV, telemetry, AI hoặc hệ thống điều khiển tùy môn.",
+        "Liên hệ tiếng Nga: chuẩn bị cách trình bày khái niệm bằng câu ngắn, dễ nói."
+      ],
+      "completionCriteria": [
+        "Đã mở và đọc toàn bộ bài học trong module.",
+        "Đã chạy ít nhất 1 mô phỏng hoặc ví dụ tương tác.",
+        "Đã làm tối thiểu 3 bài tập và ghi lại lỗi sai.",
+        "Đã đạt kiểm tra nhanh ≥ 8/10 hoặc đánh dấu cần ôn."
+      ],
+      "risks": [
+        "Chỉ đọc lý thuyết nhưng không làm bài tập/mô phỏng.",
+        "Không ghi lại lỗi sai nên tuần sau quên điểm yếu.",
+        "Nhảy sang module mới khi chưa đạt tiêu chí ≥ 8/10."
+      ],
+      "nextStep": "Sau khi hoàn thành 'Mô hình phân tích trong АСОИУ', chuyển sang module tiếp theo trong HK1 · Bauman hoặc làm bài kiểm tra mức cao hơn."
+    },
+    {
+      "id": "s_m102",
+      "stage": "m1",
+      "week": "HK1-2",
+      "title": "Liên kết thiết kế hướng đối tượng với АСОИУ",
+      "goal": "Class/module/interface gắn với system architecture.",
+      "hours": 10,
+      "level": "Nâng cao",
+      "lessons": [
+        "s_m102_l1",
+        "s_m102_l2",
+        "s_m102_l3"
+      ],
+      "outputs": [
+        "Ghi chú module 'Liên kết thiết kế hướng đối tượng với АСОИУ' có định nghĩa, ví dụ, lỗi thường gặp.",
+        "Một sản phẩm thực hành: sơ đồ architecture + bảng risk.",
+        "Một mục nhật ký học tập: đã học gì, sai gì, cần ôn gì.",
+        "Cập nhật tiến độ module và gửi phản hồi về Main."
+      ],
+      "phaseObjective": "Trong HK1 · Bauman, module này biến chủ đề 'Liên kết thiết kế hướng đối tượng với АСОИУ' thành năng lực dùng được: hiểu khái niệm, làm bài, chạy mô phỏng và tạo sản phẩm kiểm chứng.",
+      "whyImportant": [
+        "Đây là mắt xích của môn АСОИУ trong lộ trình Bauman, giúp học phần sau không bị hổng nền.",
+        "Nội dung liên quan trực tiếp tới node, sensor, controller, feedback, reliability và lifecycle.",
+        "Kết quả module được dùng để Main biết nên nhắc ôn, kiểm tra hay chuyển module tiếp theo."
+      ],
+      "prerequisites": [
+        "Đọc lại mục tiêu giai đoạn và các module trước đó trong cùng môn.",
+        "Chuẩn bị công cụ: sơ đồ hệ thống, bảng lỗi, mô phỏng node/sensor.",
+        "Tạo file ghi chú riêng: mục tiêu, thuật ngữ, lỗi sai, sản phẩm đầu ra."
+      ],
+      "conceptMap": [
+        "Khái niệm trung tâm của 'Liên kết thiết kế hướng đối tượng với АСОИУ'.",
+        "Input cần nhận diện: dữ liệu, ký hiệu, biến, điều kiện hoặc tình huống.",
+        "Output cần tạo: kết quả tính toán, code, bảng đánh giá, sơ đồ hoặc câu trả lời học thuật.",
+        "Tiêu chí kiểm tra: đúng logic, giải thích được lý do, có bằng chứng thực hành."
+      ],
+      "studyPlan": [
+        {
+          "session": "Ca 1 · Nắm lõi",
+          "time": "60–90 phút",
+          "work": "Đọc bài nền về Liên kết thiết kế hướng đối tượng với АСОИУ, ghi thuật ngữ, viết lại bằng lời của mình.",
+          "evidence": "Ghi chú 7–10 dòng + 5 thuật ngữ chính."
+        },
+        {
+          "session": "Ca 2 · Mô phỏng",
+          "time": "45–75 phút",
+          "work": "Chạy mô phỏng node-sensor-controller hoặc ví dụ tham số để quan sát cơ chế.",
+          "evidence": "Ảnh/chú thích kết quả mô phỏng + nhận xét."
+        },
+        {
+          "session": "Ca 3 · Bài tập",
+          "time": "60–120 phút",
+          "work": "Làm bài tập từ dễ đến trung bình, đánh dấu lỗi sai và nguyên nhân.",
+          "evidence": "sơ đồ architecture + bảng risk"
+        },
+        {
+          "session": "Ca 4 · Kiểm tra nhỏ",
+          "time": "20–40 phút",
+          "work": "Tự kiểm tra nhanh, đạt ≥ 8/10 mới chuyển module kế tiếp.",
+          "evidence": "Điểm kiểm tra + danh sách mục cần ôn."
+        }
+      ],
+      "practicePlan": [
+        "Bài dễ: nhận diện khái niệm và áp dụng công thức/quy trình trực tiếp.",
+        "Bài trung bình: kết hợp 2–3 kỹ năng, giải thích từng bước.",
+        "Bài khá: xử lý tình huống có nhiễu/lỗi/điều kiện thiếu.",
+        "Bài giỏi: tự thiết kế ví dụ nhỏ hoặc mini-project liên môn."
+      ],
+      "simulationPlan": [
+        "Mô phỏng riêng: quan sát mô phỏng node-sensor-controller với tham số thay đổi.",
+        "Mô phỏng thực hành: nhận nhiệm vụ, chọn cách xử lý, hệ thống phản hồi đúng/sai.",
+        "Ghi lại kết quả mô phỏng để liên hệ với bài tập và kiểm tra."
+      ],
+      "assessmentPlan": {
+        "unlock": "Mức Dễ mở mặc định; Trung bình/Khá/Giỏi mở khi mức trước đạt ≥ 8/10.",
+        "rubric": [
+          "Hiểu khái niệm",
+          "Làm được bài",
+          "Giải thích được lỗi",
+          "Tạo được sản phẩm nhỏ"
+        ],
+        "pass": "Đạt module khi hoàn thành bài học chính, chạy mô phỏng, làm bài tập và kiểm tra ≥ 8/10."
+      },
+      "baumanLinks": [
+        "Liên hệ học phần Bauman/HK: HK1 · Bauman.",
+        "Liên hệ luận văn: UGV/USV, telemetry, AI hoặc hệ thống điều khiển tùy môn.",
+        "Liên hệ tiếng Nga: chuẩn bị cách trình bày khái niệm bằng câu ngắn, dễ nói."
+      ],
+      "completionCriteria": [
+        "Đã mở và đọc toàn bộ bài học trong module.",
+        "Đã chạy ít nhất 1 mô phỏng hoặc ví dụ tương tác.",
+        "Đã làm tối thiểu 3 bài tập và ghi lại lỗi sai.",
+        "Đã đạt kiểm tra nhanh ≥ 8/10 hoặc đánh dấu cần ôn."
+      ],
+      "risks": [
+        "Chỉ đọc lý thuyết nhưng không làm bài tập/mô phỏng.",
+        "Không ghi lại lỗi sai nên tuần sau quên điểm yếu.",
+        "Nhảy sang module mới khi chưa đạt tiêu chí ≥ 8/10."
+      ],
+      "nextStep": "Sau khi hoàn thành 'Liên kết thiết kế hướng đối tượng với АСОИУ', chuyển sang module tiếp theo trong HK1 · Bauman hoặc làm bài kiểm tra mức cao hơn."
+    },
+    {
+      "id": "s_m201",
+      "stage": "m2",
+      "week": "HK2-1",
+      "title": "Mô hình độ tin cậy và trạng thái hỏng",
+      "goal": "Reliability block, failure rate idea, availability, risk mitigation.",
+      "hours": 12,
+      "level": "Nâng cao",
+      "lessons": [
+        "s_m201_l1",
+        "s_m201_l2",
+        "s_m201_l3"
+      ],
+      "outputs": [
+        "Ghi chú module 'Mô hình độ tin cậy và trạng thái hỏng' có định nghĩa, ví dụ, lỗi thường gặp.",
+        "Một sản phẩm thực hành: sơ đồ architecture + bảng risk.",
+        "Một mục nhật ký học tập: đã học gì, sai gì, cần ôn gì.",
+        "Cập nhật tiến độ module và gửi phản hồi về Main."
+      ],
+      "phaseObjective": "Trong HK2 · Bauman, module này biến chủ đề 'Mô hình độ tin cậy và trạng thái hỏng' thành năng lực dùng được: hiểu khái niệm, làm bài, chạy mô phỏng và tạo sản phẩm kiểm chứng.",
+      "whyImportant": [
+        "Đây là mắt xích của môn АСОИУ trong lộ trình Bauman, giúp học phần sau không bị hổng nền.",
+        "Nội dung liên quan trực tiếp tới node, sensor, controller, feedback, reliability và lifecycle.",
+        "Kết quả module được dùng để Main biết nên nhắc ôn, kiểm tra hay chuyển module tiếp theo."
+      ],
+      "prerequisites": [
+        "Đọc lại mục tiêu giai đoạn và các module trước đó trong cùng môn.",
+        "Chuẩn bị công cụ: sơ đồ hệ thống, bảng lỗi, mô phỏng node/sensor.",
+        "Tạo file ghi chú riêng: mục tiêu, thuật ngữ, lỗi sai, sản phẩm đầu ra."
+      ],
+      "conceptMap": [
+        "Khái niệm trung tâm của 'Mô hình độ tin cậy và trạng thái hỏng'.",
+        "Input cần nhận diện: dữ liệu, ký hiệu, biến, điều kiện hoặc tình huống.",
+        "Output cần tạo: kết quả tính toán, code, bảng đánh giá, sơ đồ hoặc câu trả lời học thuật.",
+        "Tiêu chí kiểm tra: đúng logic, giải thích được lý do, có bằng chứng thực hành."
+      ],
+      "studyPlan": [
+        {
+          "session": "Ca 1 · Nắm lõi",
+          "time": "60–90 phút",
+          "work": "Đọc bài nền về Mô hình độ tin cậy và trạng thái hỏng, ghi thuật ngữ, viết lại bằng lời của mình.",
+          "evidence": "Ghi chú 7–10 dòng + 5 thuật ngữ chính."
+        },
+        {
+          "session": "Ca 2 · Mô phỏng",
+          "time": "45–75 phút",
+          "work": "Chạy mô phỏng node-sensor-controller hoặc ví dụ tham số để quan sát cơ chế.",
+          "evidence": "Ảnh/chú thích kết quả mô phỏng + nhận xét."
+        },
+        {
+          "session": "Ca 3 · Bài tập",
+          "time": "60–120 phút",
+          "work": "Làm bài tập từ dễ đến trung bình, đánh dấu lỗi sai và nguyên nhân.",
+          "evidence": "sơ đồ architecture + bảng risk"
+        },
+        {
+          "session": "Ca 4 · Kiểm tra nhỏ",
+          "time": "20–40 phút",
+          "work": "Tự kiểm tra nhanh, đạt ≥ 8/10 mới chuyển module kế tiếp.",
+          "evidence": "Điểm kiểm tra + danh sách mục cần ôn."
+        }
+      ],
+      "practicePlan": [
+        "Bài dễ: nhận diện khái niệm và áp dụng công thức/quy trình trực tiếp.",
+        "Bài trung bình: kết hợp 2–3 kỹ năng, giải thích từng bước.",
+        "Bài khá: xử lý tình huống có nhiễu/lỗi/điều kiện thiếu.",
+        "Bài giỏi: tự thiết kế ví dụ nhỏ hoặc mini-project liên môn."
+      ],
+      "simulationPlan": [
+        "Mô phỏng riêng: quan sát mô phỏng node-sensor-controller với tham số thay đổi.",
+        "Mô phỏng thực hành: nhận nhiệm vụ, chọn cách xử lý, hệ thống phản hồi đúng/sai.",
+        "Ghi lại kết quả mô phỏng để liên hệ với bài tập và kiểm tra."
+      ],
+      "assessmentPlan": {
+        "unlock": "Mức Dễ mở mặc định; Trung bình/Khá/Giỏi mở khi mức trước đạt ≥ 8/10.",
+        "rubric": [
+          "Hiểu khái niệm",
+          "Làm được bài",
+          "Giải thích được lỗi",
+          "Tạo được sản phẩm nhỏ"
+        ],
+        "pass": "Đạt module khi hoàn thành bài học chính, chạy mô phỏng, làm bài tập và kiểm tra ≥ 8/10."
+      },
+      "baumanLinks": [
+        "Liên hệ học phần Bauman/HK: HK2 · Bauman.",
+        "Liên hệ luận văn: UGV/USV, telemetry, AI hoặc hệ thống điều khiển tùy môn.",
+        "Liên hệ tiếng Nga: chuẩn bị cách trình bày khái niệm bằng câu ngắn, dễ nói."
+      ],
+      "completionCriteria": [
+        "Đã mở và đọc toàn bộ bài học trong module.",
+        "Đã chạy ít nhất 1 mô phỏng hoặc ví dụ tương tác.",
+        "Đã làm tối thiểu 3 bài tập và ghi lại lỗi sai.",
+        "Đã đạt kiểm tra nhanh ≥ 8/10 hoặc đánh dấu cần ôn."
+      ],
+      "risks": [
+        "Chỉ đọc lý thuyết nhưng không làm bài tập/mô phỏng.",
+        "Không ghi lại lỗi sai nên tuần sau quên điểm yếu.",
+        "Nhảy sang module mới khi chưa đạt tiêu chí ≥ 8/10."
+      ],
+      "nextStep": "Sau khi hoàn thành 'Mô hình độ tin cậy và trạng thái hỏng', chuyển sang module tiếp theo trong HK2 · Bauman hoặc làm bài kiểm tra mức cao hơn."
+    },
+    {
+      "id": "s_m202",
+      "stage": "m2",
+      "week": "HK2-2",
+      "title": "Thực tập vận hành: quan sát, log và báo cáo hệ thống",
+      "goal": "Logging, monitoring, operator workflow, incident notes.",
+      "hours": 8,
+      "level": "Khá",
+      "lessons": [
+        "s_m202_l1",
+        "s_m202_l2",
+        "s_m202_l3"
+      ],
+      "outputs": [
+        "Ghi chú module 'Thực tập vận hành: quan sát, log và báo cáo hệ thống' có định nghĩa, ví dụ, lỗi thường gặp.",
+        "Một sản phẩm thực hành: sơ đồ architecture + bảng risk.",
+        "Một mục nhật ký học tập: đã học gì, sai gì, cần ôn gì.",
+        "Cập nhật tiến độ module và gửi phản hồi về Main."
+      ],
+      "phaseObjective": "Trong HK2 · Bauman, module này biến chủ đề 'Thực tập vận hành: quan sát, log và báo cáo hệ thống' thành năng lực dùng được: hiểu khái niệm, làm bài, chạy mô phỏng và tạo sản phẩm kiểm chứng.",
+      "whyImportant": [
+        "Đây là mắt xích của môn АСОИУ trong lộ trình Bauman, giúp học phần sau không bị hổng nền.",
+        "Nội dung liên quan trực tiếp tới node, sensor, controller, feedback, reliability và lifecycle.",
+        "Kết quả module được dùng để Main biết nên nhắc ôn, kiểm tra hay chuyển module tiếp theo."
+      ],
+      "prerequisites": [
+        "Đọc lại mục tiêu giai đoạn và các module trước đó trong cùng môn.",
+        "Chuẩn bị công cụ: sơ đồ hệ thống, bảng lỗi, mô phỏng node/sensor.",
+        "Tạo file ghi chú riêng: mục tiêu, thuật ngữ, lỗi sai, sản phẩm đầu ra."
+      ],
+      "conceptMap": [
+        "Khái niệm trung tâm của 'Thực tập vận hành: quan sát, log và báo cáo hệ thống'.",
+        "Input cần nhận diện: dữ liệu, ký hiệu, biến, điều kiện hoặc tình huống.",
+        "Output cần tạo: kết quả tính toán, code, bảng đánh giá, sơ đồ hoặc câu trả lời học thuật.",
+        "Tiêu chí kiểm tra: đúng logic, giải thích được lý do, có bằng chứng thực hành."
+      ],
+      "studyPlan": [
+        {
+          "session": "Ca 1 · Nắm lõi",
+          "time": "60–90 phút",
+          "work": "Đọc bài nền về Thực tập vận hành: quan sát, log và báo cáo hệ thống, ghi thuật ngữ, viết lại bằng lời của mình.",
+          "evidence": "Ghi chú 7–10 dòng + 5 thuật ngữ chính."
+        },
+        {
+          "session": "Ca 2 · Mô phỏng",
+          "time": "45–75 phút",
+          "work": "Chạy mô phỏng node-sensor-controller hoặc ví dụ tham số để quan sát cơ chế.",
+          "evidence": "Ảnh/chú thích kết quả mô phỏng + nhận xét."
+        },
+        {
+          "session": "Ca 3 · Bài tập",
+          "time": "60–120 phút",
+          "work": "Làm bài tập từ dễ đến trung bình, đánh dấu lỗi sai và nguyên nhân.",
+          "evidence": "sơ đồ architecture + bảng risk"
+        },
+        {
+          "session": "Ca 4 · Kiểm tra nhỏ",
+          "time": "20–40 phút",
+          "work": "Tự kiểm tra nhanh, đạt ≥ 8/10 mới chuyển module kế tiếp.",
+          "evidence": "Điểm kiểm tra + danh sách mục cần ôn."
+        }
+      ],
+      "practicePlan": [
+        "Bài dễ: nhận diện khái niệm và áp dụng công thức/quy trình trực tiếp.",
+        "Bài trung bình: kết hợp 2–3 kỹ năng, giải thích từng bước.",
+        "Bài khá: xử lý tình huống có nhiễu/lỗi/điều kiện thiếu.",
+        "Bài giỏi: tự thiết kế ví dụ nhỏ hoặc mini-project liên môn."
+      ],
+      "simulationPlan": [
+        "Mô phỏng riêng: quan sát mô phỏng node-sensor-controller với tham số thay đổi.",
+        "Mô phỏng thực hành: nhận nhiệm vụ, chọn cách xử lý, hệ thống phản hồi đúng/sai.",
+        "Ghi lại kết quả mô phỏng để liên hệ với bài tập và kiểm tra."
+      ],
+      "assessmentPlan": {
+        "unlock": "Mức Dễ mở mặc định; Trung bình/Khá/Giỏi mở khi mức trước đạt ≥ 8/10.",
+        "rubric": [
+          "Hiểu khái niệm",
+          "Làm được bài",
+          "Giải thích được lỗi",
+          "Tạo được sản phẩm nhỏ"
+        ],
+        "pass": "Đạt module khi hoàn thành bài học chính, chạy mô phỏng, làm bài tập và kiểm tra ≥ 8/10."
+      },
+      "baumanLinks": [
+        "Liên hệ học phần Bauman/HK: HK2 · Bauman.",
+        "Liên hệ luận văn: UGV/USV, telemetry, AI hoặc hệ thống điều khiển tùy môn.",
+        "Liên hệ tiếng Nga: chuẩn bị cách trình bày khái niệm bằng câu ngắn, dễ nói."
+      ],
+      "completionCriteria": [
+        "Đã mở và đọc toàn bộ bài học trong module.",
+        "Đã chạy ít nhất 1 mô phỏng hoặc ví dụ tương tác.",
+        "Đã làm tối thiểu 3 bài tập và ghi lại lỗi sai.",
+        "Đã đạt kiểm tra nhanh ≥ 8/10 hoặc đánh dấu cần ôn."
+      ],
+      "risks": [
+        "Chỉ đọc lý thuyết nhưng không làm bài tập/mô phỏng.",
+        "Không ghi lại lỗi sai nên tuần sau quên điểm yếu.",
+        "Nhảy sang module mới khi chưa đạt tiêu chí ≥ 8/10."
+      ],
+      "nextStep": "Sau khi hoàn thành 'Thực tập vận hành: quan sát, log và báo cáo hệ thống', chuyển sang module tiếp theo trong HK2 · Bauman hoặc làm bài kiểm tra mức cao hơn."
+    },
+    {
+      "id": "s_m301",
+      "stage": "m3",
+      "week": "HK3-1",
+      "title": "Quản lý thiết kế hệ thống thông tin",
+      "goal": "Requirement control, traceability, design review.",
+      "hours": 8,
+      "level": "Nâng cao",
+      "lessons": [
+        "s_m301_l1",
+        "s_m301_l2",
+        "s_m301_l3"
+      ],
+      "outputs": [
+        "Ghi chú module 'Quản lý thiết kế hệ thống thông tin' có định nghĩa, ví dụ, lỗi thường gặp.",
+        "Một sản phẩm thực hành: sơ đồ architecture + bảng risk.",
+        "Một mục nhật ký học tập: đã học gì, sai gì, cần ôn gì.",
+        "Cập nhật tiến độ module và gửi phản hồi về Main."
+      ],
+      "phaseObjective": "Trong HK3 · Bauman, module này biến chủ đề 'Quản lý thiết kế hệ thống thông tin' thành năng lực dùng được: hiểu khái niệm, làm bài, chạy mô phỏng và tạo sản phẩm kiểm chứng.",
+      "whyImportant": [
+        "Đây là mắt xích của môn АСОИУ trong lộ trình Bauman, giúp học phần sau không bị hổng nền.",
+        "Nội dung liên quan trực tiếp tới node, sensor, controller, feedback, reliability và lifecycle.",
+        "Kết quả module được dùng để Main biết nên nhắc ôn, kiểm tra hay chuyển module tiếp theo."
+      ],
+      "prerequisites": [
+        "Đọc lại mục tiêu giai đoạn và các module trước đó trong cùng môn.",
+        "Chuẩn bị công cụ: sơ đồ hệ thống, bảng lỗi, mô phỏng node/sensor.",
+        "Tạo file ghi chú riêng: mục tiêu, thuật ngữ, lỗi sai, sản phẩm đầu ra."
+      ],
+      "conceptMap": [
+        "Khái niệm trung tâm của 'Quản lý thiết kế hệ thống thông tin'.",
+        "Input cần nhận diện: dữ liệu, ký hiệu, biến, điều kiện hoặc tình huống.",
+        "Output cần tạo: kết quả tính toán, code, bảng đánh giá, sơ đồ hoặc câu trả lời học thuật.",
+        "Tiêu chí kiểm tra: đúng logic, giải thích được lý do, có bằng chứng thực hành."
+      ],
+      "studyPlan": [
+        {
+          "session": "Ca 1 · Nắm lõi",
+          "time": "60–90 phút",
+          "work": "Đọc bài nền về Quản lý thiết kế hệ thống thông tin, ghi thuật ngữ, viết lại bằng lời của mình.",
+          "evidence": "Ghi chú 7–10 dòng + 5 thuật ngữ chính."
+        },
+        {
+          "session": "Ca 2 · Mô phỏng",
+          "time": "45–75 phút",
+          "work": "Chạy mô phỏng node-sensor-controller hoặc ví dụ tham số để quan sát cơ chế.",
+          "evidence": "Ảnh/chú thích kết quả mô phỏng + nhận xét."
+        },
+        {
+          "session": "Ca 3 · Bài tập",
+          "time": "60–120 phút",
+          "work": "Làm bài tập từ dễ đến trung bình, đánh dấu lỗi sai và nguyên nhân.",
+          "evidence": "sơ đồ architecture + bảng risk"
+        },
+        {
+          "session": "Ca 4 · Kiểm tra nhỏ",
+          "time": "20–40 phút",
+          "work": "Tự kiểm tra nhanh, đạt ≥ 8/10 mới chuyển module kế tiếp.",
+          "evidence": "Điểm kiểm tra + danh sách mục cần ôn."
+        }
+      ],
+      "practicePlan": [
+        "Bài dễ: nhận diện khái niệm và áp dụng công thức/quy trình trực tiếp.",
+        "Bài trung bình: kết hợp 2–3 kỹ năng, giải thích từng bước.",
+        "Bài khá: xử lý tình huống có nhiễu/lỗi/điều kiện thiếu.",
+        "Bài giỏi: tự thiết kế ví dụ nhỏ hoặc mini-project liên môn."
+      ],
+      "simulationPlan": [
+        "Mô phỏng riêng: quan sát mô phỏng node-sensor-controller với tham số thay đổi.",
+        "Mô phỏng thực hành: nhận nhiệm vụ, chọn cách xử lý, hệ thống phản hồi đúng/sai.",
+        "Ghi lại kết quả mô phỏng để liên hệ với bài tập và kiểm tra."
+      ],
+      "assessmentPlan": {
+        "unlock": "Mức Dễ mở mặc định; Trung bình/Khá/Giỏi mở khi mức trước đạt ≥ 8/10.",
+        "rubric": [
+          "Hiểu khái niệm",
+          "Làm được bài",
+          "Giải thích được lỗi",
+          "Tạo được sản phẩm nhỏ"
+        ],
+        "pass": "Đạt module khi hoàn thành bài học chính, chạy mô phỏng, làm bài tập và kiểm tra ≥ 8/10."
+      },
+      "baumanLinks": [
+        "Liên hệ học phần Bauman/HK: HK3 · Bauman.",
+        "Liên hệ luận văn: UGV/USV, telemetry, AI hoặc hệ thống điều khiển tùy môn.",
+        "Liên hệ tiếng Nga: chuẩn bị cách trình bày khái niệm bằng câu ngắn, dễ nói."
+      ],
+      "completionCriteria": [
+        "Đã mở và đọc toàn bộ bài học trong module.",
+        "Đã chạy ít nhất 1 mô phỏng hoặc ví dụ tương tác.",
+        "Đã làm tối thiểu 3 bài tập và ghi lại lỗi sai.",
+        "Đã đạt kiểm tra nhanh ≥ 8/10 hoặc đánh dấu cần ôn."
+      ],
+      "risks": [
+        "Chỉ đọc lý thuyết nhưng không làm bài tập/mô phỏng.",
+        "Không ghi lại lỗi sai nên tuần sau quên điểm yếu.",
+        "Nhảy sang module mới khi chưa đạt tiêu chí ≥ 8/10."
+      ],
+      "nextStep": "Sau khi hoàn thành 'Quản lý thiết kế hệ thống thông tin', chuyển sang module tiếp theo trong HK3 · Bauman hoặc làm bài kiểm tra mức cao hơn."
+    },
+    {
+      "id": "s_m302",
+      "stage": "m3",
+      "week": "HK3-2",
+      "title": "Phân tích ergonomic và giao diện người - hệ thống",
+      "goal": "Operator dashboard, information display, cognitive load.",
+      "hours": 10,
+      "level": "Nâng cao",
+      "lessons": [
+        "s_m302_l1",
+        "s_m302_l2",
+        "s_m302_l3"
+      ],
+      "outputs": [
+        "Ghi chú module 'Phân tích ergonomic và giao diện người - hệ thống' có định nghĩa, ví dụ, lỗi thường gặp.",
+        "Một sản phẩm thực hành: sơ đồ architecture + bảng risk.",
+        "Một mục nhật ký học tập: đã học gì, sai gì, cần ôn gì.",
+        "Cập nhật tiến độ module và gửi phản hồi về Main."
+      ],
+      "phaseObjective": "Trong HK3 · Bauman, module này biến chủ đề 'Phân tích ergonomic và giao diện người - hệ thống' thành năng lực dùng được: hiểu khái niệm, làm bài, chạy mô phỏng và tạo sản phẩm kiểm chứng.",
+      "whyImportant": [
+        "Đây là mắt xích của môn АСОИУ trong lộ trình Bauman, giúp học phần sau không bị hổng nền.",
+        "Nội dung liên quan trực tiếp tới node, sensor, controller, feedback, reliability và lifecycle.",
+        "Kết quả module được dùng để Main biết nên nhắc ôn, kiểm tra hay chuyển module tiếp theo."
+      ],
+      "prerequisites": [
+        "Đọc lại mục tiêu giai đoạn và các module trước đó trong cùng môn.",
+        "Chuẩn bị công cụ: sơ đồ hệ thống, bảng lỗi, mô phỏng node/sensor.",
+        "Tạo file ghi chú riêng: mục tiêu, thuật ngữ, lỗi sai, sản phẩm đầu ra."
+      ],
+      "conceptMap": [
+        "Khái niệm trung tâm của 'Phân tích ergonomic và giao diện người - hệ thống'.",
+        "Input cần nhận diện: dữ liệu, ký hiệu, biến, điều kiện hoặc tình huống.",
+        "Output cần tạo: kết quả tính toán, code, bảng đánh giá, sơ đồ hoặc câu trả lời học thuật.",
+        "Tiêu chí kiểm tra: đúng logic, giải thích được lý do, có bằng chứng thực hành."
+      ],
+      "studyPlan": [
+        {
+          "session": "Ca 1 · Nắm lõi",
+          "time": "60–90 phút",
+          "work": "Đọc bài nền về Phân tích ergonomic và giao diện người - hệ thống, ghi thuật ngữ, viết lại bằng lời của mình.",
+          "evidence": "Ghi chú 7–10 dòng + 5 thuật ngữ chính."
+        },
+        {
+          "session": "Ca 2 · Mô phỏng",
+          "time": "45–75 phút",
+          "work": "Chạy mô phỏng node-sensor-controller hoặc ví dụ tham số để quan sát cơ chế.",
+          "evidence": "Ảnh/chú thích kết quả mô phỏng + nhận xét."
+        },
+        {
+          "session": "Ca 3 · Bài tập",
+          "time": "60–120 phút",
+          "work": "Làm bài tập từ dễ đến trung bình, đánh dấu lỗi sai và nguyên nhân.",
+          "evidence": "sơ đồ architecture + bảng risk"
+        },
+        {
+          "session": "Ca 4 · Kiểm tra nhỏ",
+          "time": "20–40 phút",
+          "work": "Tự kiểm tra nhanh, đạt ≥ 8/10 mới chuyển module kế tiếp.",
+          "evidence": "Điểm kiểm tra + danh sách mục cần ôn."
+        }
+      ],
+      "practicePlan": [
+        "Bài dễ: nhận diện khái niệm và áp dụng công thức/quy trình trực tiếp.",
+        "Bài trung bình: kết hợp 2–3 kỹ năng, giải thích từng bước.",
+        "Bài khá: xử lý tình huống có nhiễu/lỗi/điều kiện thiếu.",
+        "Bài giỏi: tự thiết kế ví dụ nhỏ hoặc mini-project liên môn."
+      ],
+      "simulationPlan": [
+        "Mô phỏng riêng: quan sát mô phỏng node-sensor-controller với tham số thay đổi.",
+        "Mô phỏng thực hành: nhận nhiệm vụ, chọn cách xử lý, hệ thống phản hồi đúng/sai.",
+        "Ghi lại kết quả mô phỏng để liên hệ với bài tập và kiểm tra."
+      ],
+      "assessmentPlan": {
+        "unlock": "Mức Dễ mở mặc định; Trung bình/Khá/Giỏi mở khi mức trước đạt ≥ 8/10.",
+        "rubric": [
+          "Hiểu khái niệm",
+          "Làm được bài",
+          "Giải thích được lỗi",
+          "Tạo được sản phẩm nhỏ"
+        ],
+        "pass": "Đạt module khi hoàn thành bài học chính, chạy mô phỏng, làm bài tập và kiểm tra ≥ 8/10."
+      },
+      "baumanLinks": [
+        "Liên hệ học phần Bauman/HK: HK3 · Bauman.",
+        "Liên hệ luận văn: UGV/USV, telemetry, AI hoặc hệ thống điều khiển tùy môn.",
+        "Liên hệ tiếng Nga: chuẩn bị cách trình bày khái niệm bằng câu ngắn, dễ nói."
+      ],
+      "completionCriteria": [
+        "Đã mở và đọc toàn bộ bài học trong module.",
+        "Đã chạy ít nhất 1 mô phỏng hoặc ví dụ tương tác.",
+        "Đã làm tối thiểu 3 bài tập và ghi lại lỗi sai.",
+        "Đã đạt kiểm tra nhanh ≥ 8/10 hoặc đánh dấu cần ôn."
+      ],
+      "risks": [
+        "Chỉ đọc lý thuyết nhưng không làm bài tập/mô phỏng.",
+        "Không ghi lại lỗi sai nên tuần sau quên điểm yếu.",
+        "Nhảy sang module mới khi chưa đạt tiêu chí ≥ 8/10."
+      ],
+      "nextStep": "Sau khi hoàn thành 'Phân tích ergonomic và giao diện người - hệ thống', chuyển sang module tiếp theo trong HK3 · Bauman hoặc làm bài kiểm tra mức cao hơn."
+    },
+    {
+      "id": "s_m303",
+      "stage": "m3",
+      "week": "HK3-3",
+      "title": "An toàn thông tin cho hệ thống tự hành",
+      "goal": "Threat model, data access, communication risk.",
+      "hours": 8,
+      "level": "Nâng cao",
+      "lessons": [
+        "s_m303_l1",
+        "s_m303_l2",
+        "s_m303_l3"
+      ],
+      "outputs": [
+        "Ghi chú module 'An toàn thông tin cho hệ thống tự hành' có định nghĩa, ví dụ, lỗi thường gặp.",
+        "Một sản phẩm thực hành: sơ đồ architecture + bảng risk.",
+        "Một mục nhật ký học tập: đã học gì, sai gì, cần ôn gì.",
+        "Cập nhật tiến độ module và gửi phản hồi về Main."
+      ],
+      "phaseObjective": "Trong HK3 · Bauman, module này biến chủ đề 'An toàn thông tin cho hệ thống tự hành' thành năng lực dùng được: hiểu khái niệm, làm bài, chạy mô phỏng và tạo sản phẩm kiểm chứng.",
+      "whyImportant": [
+        "Đây là mắt xích của môn АСОИУ trong lộ trình Bauman, giúp học phần sau không bị hổng nền.",
+        "Nội dung liên quan trực tiếp tới node, sensor, controller, feedback, reliability và lifecycle.",
+        "Kết quả module được dùng để Main biết nên nhắc ôn, kiểm tra hay chuyển module tiếp theo."
+      ],
+      "prerequisites": [
+        "Đọc lại mục tiêu giai đoạn và các module trước đó trong cùng môn.",
+        "Chuẩn bị công cụ: sơ đồ hệ thống, bảng lỗi, mô phỏng node/sensor.",
+        "Tạo file ghi chú riêng: mục tiêu, thuật ngữ, lỗi sai, sản phẩm đầu ra."
+      ],
+      "conceptMap": [
+        "Khái niệm trung tâm của 'An toàn thông tin cho hệ thống tự hành'.",
+        "Input cần nhận diện: dữ liệu, ký hiệu, biến, điều kiện hoặc tình huống.",
+        "Output cần tạo: kết quả tính toán, code, bảng đánh giá, sơ đồ hoặc câu trả lời học thuật.",
+        "Tiêu chí kiểm tra: đúng logic, giải thích được lý do, có bằng chứng thực hành."
+      ],
+      "studyPlan": [
+        {
+          "session": "Ca 1 · Nắm lõi",
+          "time": "60–90 phút",
+          "work": "Đọc bài nền về An toàn thông tin cho hệ thống tự hành, ghi thuật ngữ, viết lại bằng lời của mình.",
+          "evidence": "Ghi chú 7–10 dòng + 5 thuật ngữ chính."
+        },
+        {
+          "session": "Ca 2 · Mô phỏng",
+          "time": "45–75 phút",
+          "work": "Chạy mô phỏng node-sensor-controller hoặc ví dụ tham số để quan sát cơ chế.",
+          "evidence": "Ảnh/chú thích kết quả mô phỏng + nhận xét."
+        },
+        {
+          "session": "Ca 3 · Bài tập",
+          "time": "60–120 phút",
+          "work": "Làm bài tập từ dễ đến trung bình, đánh dấu lỗi sai và nguyên nhân.",
+          "evidence": "sơ đồ architecture + bảng risk"
+        },
+        {
+          "session": "Ca 4 · Kiểm tra nhỏ",
+          "time": "20–40 phút",
+          "work": "Tự kiểm tra nhanh, đạt ≥ 8/10 mới chuyển module kế tiếp.",
+          "evidence": "Điểm kiểm tra + danh sách mục cần ôn."
+        }
+      ],
+      "practicePlan": [
+        "Bài dễ: nhận diện khái niệm và áp dụng công thức/quy trình trực tiếp.",
+        "Bài trung bình: kết hợp 2–3 kỹ năng, giải thích từng bước.",
+        "Bài khá: xử lý tình huống có nhiễu/lỗi/điều kiện thiếu.",
+        "Bài giỏi: tự thiết kế ví dụ nhỏ hoặc mini-project liên môn."
+      ],
+      "simulationPlan": [
+        "Mô phỏng riêng: quan sát mô phỏng node-sensor-controller với tham số thay đổi.",
+        "Mô phỏng thực hành: nhận nhiệm vụ, chọn cách xử lý, hệ thống phản hồi đúng/sai.",
+        "Ghi lại kết quả mô phỏng để liên hệ với bài tập và kiểm tra."
+      ],
+      "assessmentPlan": {
+        "unlock": "Mức Dễ mở mặc định; Trung bình/Khá/Giỏi mở khi mức trước đạt ≥ 8/10.",
+        "rubric": [
+          "Hiểu khái niệm",
+          "Làm được bài",
+          "Giải thích được lỗi",
+          "Tạo được sản phẩm nhỏ"
+        ],
+        "pass": "Đạt module khi hoàn thành bài học chính, chạy mô phỏng, làm bài tập và kiểm tra ≥ 8/10."
+      },
+      "baumanLinks": [
+        "Liên hệ học phần Bauman/HK: HK3 · Bauman.",
+        "Liên hệ luận văn: UGV/USV, telemetry, AI hoặc hệ thống điều khiển tùy môn.",
+        "Liên hệ tiếng Nga: chuẩn bị cách trình bày khái niệm bằng câu ngắn, dễ nói."
+      ],
+      "completionCriteria": [
+        "Đã mở và đọc toàn bộ bài học trong module.",
+        "Đã chạy ít nhất 1 mô phỏng hoặc ví dụ tương tác.",
+        "Đã làm tối thiểu 3 bài tập và ghi lại lỗi sai.",
+        "Đã đạt kiểm tra nhanh ≥ 8/10 hoặc đánh dấu cần ôn."
+      ],
+      "risks": [
+        "Chỉ đọc lý thuyết nhưng không làm bài tập/mô phỏng.",
+        "Không ghi lại lỗi sai nên tuần sau quên điểm yếu.",
+        "Nhảy sang module mới khi chưa đạt tiêu chí ≥ 8/10."
+      ],
+      "nextStep": "Sau khi hoàn thành 'An toàn thông tin cho hệ thống tự hành', chuyển sang module tiếp theo trong HK3 · Bauman hoặc làm bài kiểm tra mức cao hơn."
+    },
+    {
+      "id": "s_m401",
+      "stage": "m4",
+      "week": "HK4-1",
+      "title": "Vòng đời hệ thống kỹ thuật phức hợp",
+      "goal": "Lifecycle processes, verification, validation, maintenance.",
+      "hours": 10,
+      "level": "Nâng cao",
+      "lessons": [
+        "s_m401_l1",
+        "s_m401_l2",
+        "s_m401_l3"
+      ],
+      "outputs": [
+        "Ghi chú module 'Vòng đời hệ thống kỹ thuật phức hợp' có định nghĩa, ví dụ, lỗi thường gặp.",
+        "Một sản phẩm thực hành: sơ đồ architecture + bảng risk.",
+        "Một mục nhật ký học tập: đã học gì, sai gì, cần ôn gì.",
+        "Cập nhật tiến độ module và gửi phản hồi về Main."
+      ],
+      "phaseObjective": "Trong HK4 · Tốt nghiệp, module này biến chủ đề 'Vòng đời hệ thống kỹ thuật phức hợp' thành năng lực dùng được: hiểu khái niệm, làm bài, chạy mô phỏng và tạo sản phẩm kiểm chứng.",
+      "whyImportant": [
+        "Đây là mắt xích của môn АСОИУ trong lộ trình Bauman, giúp học phần sau không bị hổng nền.",
+        "Nội dung liên quan trực tiếp tới node, sensor, controller, feedback, reliability và lifecycle.",
+        "Kết quả module được dùng để Main biết nên nhắc ôn, kiểm tra hay chuyển module tiếp theo."
+      ],
+      "prerequisites": [
+        "Đọc lại mục tiêu giai đoạn và các module trước đó trong cùng môn.",
+        "Chuẩn bị công cụ: sơ đồ hệ thống, bảng lỗi, mô phỏng node/sensor.",
+        "Tạo file ghi chú riêng: mục tiêu, thuật ngữ, lỗi sai, sản phẩm đầu ra."
+      ],
+      "conceptMap": [
+        "Khái niệm trung tâm của 'Vòng đời hệ thống kỹ thuật phức hợp'.",
+        "Input cần nhận diện: dữ liệu, ký hiệu, biến, điều kiện hoặc tình huống.",
+        "Output cần tạo: kết quả tính toán, code, bảng đánh giá, sơ đồ hoặc câu trả lời học thuật.",
+        "Tiêu chí kiểm tra: đúng logic, giải thích được lý do, có bằng chứng thực hành."
+      ],
+      "studyPlan": [
+        {
+          "session": "Ca 1 · Nắm lõi",
+          "time": "60–90 phút",
+          "work": "Đọc bài nền về Vòng đời hệ thống kỹ thuật phức hợp, ghi thuật ngữ, viết lại bằng lời của mình.",
+          "evidence": "Ghi chú 7–10 dòng + 5 thuật ngữ chính."
+        },
+        {
+          "session": "Ca 2 · Mô phỏng",
+          "time": "45–75 phút",
+          "work": "Chạy mô phỏng node-sensor-controller hoặc ví dụ tham số để quan sát cơ chế.",
+          "evidence": "Ảnh/chú thích kết quả mô phỏng + nhận xét."
+        },
+        {
+          "session": "Ca 3 · Bài tập",
+          "time": "60–120 phút",
+          "work": "Làm bài tập từ dễ đến trung bình, đánh dấu lỗi sai và nguyên nhân.",
+          "evidence": "sơ đồ architecture + bảng risk"
+        },
+        {
+          "session": "Ca 4 · Kiểm tra nhỏ",
+          "time": "20–40 phút",
+          "work": "Tự kiểm tra nhanh, đạt ≥ 8/10 mới chuyển module kế tiếp.",
+          "evidence": "Điểm kiểm tra + danh sách mục cần ôn."
+        }
+      ],
+      "practicePlan": [
+        "Bài dễ: nhận diện khái niệm và áp dụng công thức/quy trình trực tiếp.",
+        "Bài trung bình: kết hợp 2–3 kỹ năng, giải thích từng bước.",
+        "Bài khá: xử lý tình huống có nhiễu/lỗi/điều kiện thiếu.",
+        "Bài giỏi: tự thiết kế ví dụ nhỏ hoặc mini-project liên môn."
+      ],
+      "simulationPlan": [
+        "Mô phỏng riêng: quan sát mô phỏng node-sensor-controller với tham số thay đổi.",
+        "Mô phỏng thực hành: nhận nhiệm vụ, chọn cách xử lý, hệ thống phản hồi đúng/sai.",
+        "Ghi lại kết quả mô phỏng để liên hệ với bài tập và kiểm tra."
+      ],
+      "assessmentPlan": {
+        "unlock": "Mức Dễ mở mặc định; Trung bình/Khá/Giỏi mở khi mức trước đạt ≥ 8/10.",
+        "rubric": [
+          "Hiểu khái niệm",
+          "Làm được bài",
+          "Giải thích được lỗi",
+          "Tạo được sản phẩm nhỏ"
+        ],
+        "pass": "Đạt module khi hoàn thành bài học chính, chạy mô phỏng, làm bài tập và kiểm tra ≥ 8/10."
+      },
+      "baumanLinks": [
+        "Liên hệ học phần Bauman/HK: HK4 · Tốt nghiệp.",
+        "Liên hệ luận văn: UGV/USV, telemetry, AI hoặc hệ thống điều khiển tùy môn.",
+        "Liên hệ tiếng Nga: chuẩn bị cách trình bày khái niệm bằng câu ngắn, dễ nói."
+      ],
+      "completionCriteria": [
+        "Đã mở và đọc toàn bộ bài học trong module.",
+        "Đã chạy ít nhất 1 mô phỏng hoặc ví dụ tương tác.",
+        "Đã làm tối thiểu 3 bài tập và ghi lại lỗi sai.",
+        "Đã đạt kiểm tra nhanh ≥ 8/10 hoặc đánh dấu cần ôn."
+      ],
+      "risks": [
+        "Chỉ đọc lý thuyết nhưng không làm bài tập/mô phỏng.",
+        "Không ghi lại lỗi sai nên tuần sau quên điểm yếu.",
+        "Nhảy sang module mới khi chưa đạt tiêu chí ≥ 8/10."
+      ],
+      "nextStep": "Sau khi hoàn thành 'Vòng đời hệ thống kỹ thuật phức hợp', chuyển sang module tiếp theo trong HK4 · Tốt nghiệp hoặc làm bài kiểm tra mức cao hơn."
+    },
+    {
+      "id": "s_m402",
+      "stage": "m4",
+      "week": "HK4-2",
+      "title": "Kiến trúc hệ thống bảo vệ luận văn",
+      "goal": "Final diagrams, interfaces, risks and lifecycle proof.",
+      "hours": 8,
+      "level": "Nâng cao",
+      "lessons": [
+        "s_m402_l1",
+        "s_m402_l2",
+        "s_m402_l3"
+      ],
+      "outputs": [
+        "Ghi chú module 'Kiến trúc hệ thống bảo vệ luận văn' có định nghĩa, ví dụ, lỗi thường gặp.",
+        "Một sản phẩm thực hành: sơ đồ architecture + bảng risk.",
+        "Một mục nhật ký học tập: đã học gì, sai gì, cần ôn gì.",
+        "Cập nhật tiến độ module và gửi phản hồi về Main."
+      ],
+      "phaseObjective": "Trong HK4 · Tốt nghiệp, module này biến chủ đề 'Kiến trúc hệ thống bảo vệ luận văn' thành năng lực dùng được: hiểu khái niệm, làm bài, chạy mô phỏng và tạo sản phẩm kiểm chứng.",
+      "whyImportant": [
+        "Đây là mắt xích của môn АСОИУ trong lộ trình Bauman, giúp học phần sau không bị hổng nền.",
+        "Nội dung liên quan trực tiếp tới node, sensor, controller, feedback, reliability và lifecycle.",
+        "Kết quả module được dùng để Main biết nên nhắc ôn, kiểm tra hay chuyển module tiếp theo."
+      ],
+      "prerequisites": [
+        "Đọc lại mục tiêu giai đoạn và các module trước đó trong cùng môn.",
+        "Chuẩn bị công cụ: sơ đồ hệ thống, bảng lỗi, mô phỏng node/sensor.",
+        "Tạo file ghi chú riêng: mục tiêu, thuật ngữ, lỗi sai, sản phẩm đầu ra."
+      ],
+      "conceptMap": [
+        "Khái niệm trung tâm của 'Kiến trúc hệ thống bảo vệ luận văn'.",
+        "Input cần nhận diện: dữ liệu, ký hiệu, biến, điều kiện hoặc tình huống.",
+        "Output cần tạo: kết quả tính toán, code, bảng đánh giá, sơ đồ hoặc câu trả lời học thuật.",
+        "Tiêu chí kiểm tra: đúng logic, giải thích được lý do, có bằng chứng thực hành."
+      ],
+      "studyPlan": [
+        {
+          "session": "Ca 1 · Nắm lõi",
+          "time": "60–90 phút",
+          "work": "Đọc bài nền về Kiến trúc hệ thống bảo vệ luận văn, ghi thuật ngữ, viết lại bằng lời của mình.",
+          "evidence": "Ghi chú 7–10 dòng + 5 thuật ngữ chính."
+        },
+        {
+          "session": "Ca 2 · Mô phỏng",
+          "time": "45–75 phút",
+          "work": "Chạy mô phỏng node-sensor-controller hoặc ví dụ tham số để quan sát cơ chế.",
+          "evidence": "Ảnh/chú thích kết quả mô phỏng + nhận xét."
+        },
+        {
+          "session": "Ca 3 · Bài tập",
+          "time": "60–120 phút",
+          "work": "Làm bài tập từ dễ đến trung bình, đánh dấu lỗi sai và nguyên nhân.",
+          "evidence": "sơ đồ architecture + bảng risk"
+        },
+        {
+          "session": "Ca 4 · Kiểm tra nhỏ",
+          "time": "20–40 phút",
+          "work": "Tự kiểm tra nhanh, đạt ≥ 8/10 mới chuyển module kế tiếp.",
+          "evidence": "Điểm kiểm tra + danh sách mục cần ôn."
+        }
+      ],
+      "practicePlan": [
+        "Bài dễ: nhận diện khái niệm và áp dụng công thức/quy trình trực tiếp.",
+        "Bài trung bình: kết hợp 2–3 kỹ năng, giải thích từng bước.",
+        "Bài khá: xử lý tình huống có nhiễu/lỗi/điều kiện thiếu.",
+        "Bài giỏi: tự thiết kế ví dụ nhỏ hoặc mini-project liên môn."
+      ],
+      "simulationPlan": [
+        "Mô phỏng riêng: quan sát mô phỏng node-sensor-controller với tham số thay đổi.",
+        "Mô phỏng thực hành: nhận nhiệm vụ, chọn cách xử lý, hệ thống phản hồi đúng/sai.",
+        "Ghi lại kết quả mô phỏng để liên hệ với bài tập và kiểm tra."
+      ],
+      "assessmentPlan": {
+        "unlock": "Mức Dễ mở mặc định; Trung bình/Khá/Giỏi mở khi mức trước đạt ≥ 8/10.",
+        "rubric": [
+          "Hiểu khái niệm",
+          "Làm được bài",
+          "Giải thích được lỗi",
+          "Tạo được sản phẩm nhỏ"
+        ],
+        "pass": "Đạt module khi hoàn thành bài học chính, chạy mô phỏng, làm bài tập và kiểm tra ≥ 8/10."
+      },
+      "baumanLinks": [
+        "Liên hệ học phần Bauman/HK: HK4 · Tốt nghiệp.",
+        "Liên hệ luận văn: UGV/USV, telemetry, AI hoặc hệ thống điều khiển tùy môn.",
+        "Liên hệ tiếng Nga: chuẩn bị cách trình bày khái niệm bằng câu ngắn, dễ nói."
+      ],
+      "completionCriteria": [
+        "Đã mở và đọc toàn bộ bài học trong module.",
+        "Đã chạy ít nhất 1 mô phỏng hoặc ví dụ tương tác.",
+        "Đã làm tối thiểu 3 bài tập và ghi lại lỗi sai.",
+        "Đã đạt kiểm tra nhanh ≥ 8/10 hoặc đánh dấu cần ôn."
+      ],
+      "risks": [
+        "Chỉ đọc lý thuyết nhưng không làm bài tập/mô phỏng.",
+        "Không ghi lại lỗi sai nên tuần sau quên điểm yếu.",
+        "Nhảy sang module mới khi chưa đạt tiêu chí ≥ 8/10."
+      ],
+      "nextStep": "Sau khi hoàn thành 'Kiến trúc hệ thống bảo vệ luận văn', chuyển sang module tiếp theo trong HK4 · Tốt nghiệp hoặc làm bài kiểm tra mức cao hơn."
+    }
+  ]
+}

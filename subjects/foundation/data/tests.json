@@ -1,0 +1,472 @@
+{
+  "rules": {
+    "easy": {
+      "questions": 20,
+      "unlockScore": 8
+    },
+    "medium": {
+      "questions": 30,
+      "unlockScore": 8
+    },
+    "hard": {
+      "questions": 40,
+      "unlockScore": 8
+    },
+    "excellent": {
+      "questions": 50,
+      "unlockScore": 8
+    }
+  },
+  "questions": [
+    {
+      "id": "q_f_s01",
+      "moduleId": "f_s01",
+      "stage": "preparatory",
+      "difficulty": "easy",
+      "prompt": "Mục tiêu chính của module 'Quy trình học dự bị STANKIN: lớp học, bài tập và kiểm tra' là gì?",
+      "options": [
+        "Lịch lớp, điểm danh, bài tập, kiểm tra, giao tiếp với giáo viên.",
+        "Chỉ đọc tên bài mà không làm sản phẩm",
+        "Bỏ qua kiểm tra lỗi và không ghi kết quả",
+        "Đợi đến cuối khóa mới học"
+      ],
+      "answerIndex": 0,
+      "reviewLesson": "f_s01_l1"
+    },
+    {
+      "id": "q_f_s02",
+      "moduleId": "f_s02",
+      "stage": "preparatory",
+      "difficulty": "medium",
+      "prompt": "Mục tiêu chính của module 'Toán nền bằng tiếng Nga cho dự bị kỹ thuật' là gì?",
+      "options": [
+        "Đọc đề, ký hiệu, trình bày lời giải ngắn.",
+        "Chỉ đọc tên bài mà không làm sản phẩm",
+        "Bỏ qua kiểm tra lỗi và không ghi kết quả",
+        "Đợi đến cuối khóa mới học"
+      ],
+      "answerIndex": 0,
+      "reviewLesson": "f_s02_l1"
+    },
+    {
+      "id": "q_f_s03",
+      "moduleId": "f_s03",
+      "stage": "preparatory",
+      "difficulty": "medium",
+      "prompt": "Mục tiêu chính của module 'Tin học nền bằng tiếng Nga' là gì?",
+      "options": [
+        "Algorithm, program, data, file, table, database.",
+        "Chỉ đọc tên bài mà không làm sản phẩm",
+        "Bỏ qua kiểm tra lỗi và không ghi kết quả",
+        "Đợi đến cuối khóa mới học"
+      ],
+      "answerIndex": 0,
+      "reviewLesson": "f_s03_l1"
+    },
+    {
+      "id": "q_f_s04",
+      "moduleId": "f_s04",
+      "stage": "preparatory",
+      "difficulty": "medium",
+      "prompt": "Mục tiêu chính của module 'Vật lý và khoa học nền bằng tiếng Nga' là gì?",
+      "options": [
+        "Đại lượng, đơn vị, đồ thị, bài tập cơ bản.",
+        "Chỉ đọc tên bài mà không làm sản phẩm",
+        "Bỏ qua kiểm tra lỗi và không ghi kết quả",
+        "Đợi đến cuối khóa mới học"
+      ],
+      "answerIndex": 0,
+      "reviewLesson": "f_s04_l1"
+    },
+    {
+      "id": "q_f_s05",
+      "moduleId": "f_s05",
+      "stage": "preparatory",
+      "difficulty": "easy",
+      "prompt": "Mục tiêu chính của module 'Kỹ năng học đại học Nga: lịch, giao tiếp và tự học' là gì?",
+      "options": [
+        "Email, seminar, note-taking, hỏi bài, lịch cá nhân.",
+        "Chỉ đọc tên bài mà không làm sản phẩm",
+        "Bỏ qua kiểm tra lỗi và không ghi kết quả",
+        "Đợi đến cuối khóa mới học"
+      ],
+      "answerIndex": 0,
+      "reviewLesson": "f_s05_l1"
+    },
+    {
+      "id": "q_f_m201",
+      "moduleId": "f_m201",
+      "stage": "m2",
+      "difficulty": "easy",
+      "prompt": "Mục tiêu chính của module 'Cơ sở khởi nghiệp trong môi trường công nghệ' là gì?",
+      "options": [
+        "Problem, value proposition, stakeholder, presentation.",
+        "Chỉ đọc tên bài mà không làm sản phẩm",
+        "Bỏ qua kiểm tra lỗi và không ghi kết quả",
+        "Đợi đến cuối khóa mới học"
+      ],
+      "answerIndex": 0,
+      "reviewLesson": "f_m201_l1"
+    },
+    {
+      "id": "q_f_m202",
+      "moduleId": "f_m202",
+      "stage": "m2",
+      "difficulty": "easy",
+      "prompt": "Mục tiêu chính của module 'Pháp luật và phòng chống tham nhũng tại Liên bang Nga' là gì?",
+      "options": [
+        "Thuật ngữ pháp lý cơ bản, quy tắc ứng xử học thuật.",
+        "Chỉ đọc tên bài mà không làm sản phẩm",
+        "Bỏ qua kiểm tra lỗi và không ghi kết quả",
+        "Đợi đến cuối khóa mới học"
+      ],
+      "answerIndex": 0,
+      "reviewLesson": "f_m202_l1"
+    },
+    {
+      "id": "q_f_s01_v1",
+      "moduleId": "f_s01",
+      "stage": "preparatory",
+      "difficulty": "medium",
+      "prompt": "Chọn phát biểu đúng nhất: Mục tiêu chính của module 'Quy trình học dự bị STANKIN: lớp học, bài tập và kiểm tra' là gì?",
+      "options": [
+        "Lịch lớp, điểm danh, bài tập, kiểm tra, giao tiếp với giáo viên.",
+        "Chỉ đọc tên bài mà không làm sản phẩm",
+        "Bỏ qua kiểm tra lỗi và không ghi kết quả",
+        "Đợi đến cuối khóa mới học"
+      ],
+      "answerIndex": 0,
+      "reviewLesson": "f_s01_l1"
+    },
+    {
+      "id": "q_f_s02_v2",
+      "moduleId": "f_s02",
+      "stage": "preparatory",
+      "difficulty": "hard",
+      "prompt": "Chọn phát biểu đúng nhất: Mục tiêu chính của module 'Toán nền bằng tiếng Nga cho dự bị kỹ thuật' là gì?",
+      "options": [
+        "Đọc đề, ký hiệu, trình bày lời giải ngắn.",
+        "Chỉ đọc tên bài mà không làm sản phẩm",
+        "Bỏ qua kiểm tra lỗi và không ghi kết quả",
+        "Đợi đến cuối khóa mới học"
+      ],
+      "answerIndex": 0,
+      "reviewLesson": "f_s02_l1"
+    },
+    {
+      "id": "q_f_s03_v3",
+      "moduleId": "f_s03",
+      "stage": "preparatory",
+      "difficulty": "easy",
+      "prompt": "Chọn phát biểu đúng nhất: Mục tiêu chính của module 'Tin học nền bằng tiếng Nga' là gì?",
+      "options": [
+        "Algorithm, program, data, file, table, database.",
+        "Chỉ đọc tên bài mà không làm sản phẩm",
+        "Bỏ qua kiểm tra lỗi và không ghi kết quả",
+        "Đợi đến cuối khóa mới học"
+      ],
+      "answerIndex": 0,
+      "reviewLesson": "f_s03_l1"
+    },
+    {
+      "id": "q_f_s04_v4",
+      "moduleId": "f_s04",
+      "stage": "preparatory",
+      "difficulty": "medium",
+      "prompt": "Chọn phát biểu đúng nhất: Mục tiêu chính của module 'Vật lý và khoa học nền bằng tiếng Nga' là gì?",
+      "options": [
+        "Đại lượng, đơn vị, đồ thị, bài tập cơ bản.",
+        "Chỉ đọc tên bài mà không làm sản phẩm",
+        "Bỏ qua kiểm tra lỗi và không ghi kết quả",
+        "Đợi đến cuối khóa mới học"
+      ],
+      "answerIndex": 0,
+      "reviewLesson": "f_s04_l1"
+    },
+    {
+      "id": "q_f_s05_v5",
+      "moduleId": "f_s05",
+      "stage": "preparatory",
+      "difficulty": "hard",
+      "prompt": "Chọn phát biểu đúng nhất: Mục tiêu chính của module 'Kỹ năng học đại học Nga: lịch, giao tiếp và tự học' là gì?",
+      "options": [
+        "Email, seminar, note-taking, hỏi bài, lịch cá nhân.",
+        "Chỉ đọc tên bài mà không làm sản phẩm",
+        "Bỏ qua kiểm tra lỗi và không ghi kết quả",
+        "Đợi đến cuối khóa mới học"
+      ],
+      "answerIndex": 0,
+      "reviewLesson": "f_s05_l1"
+    },
+    {
+      "id": "q_f_m201_v6",
+      "moduleId": "f_m201",
+      "stage": "m2",
+      "difficulty": "easy",
+      "prompt": "Chọn phát biểu đúng nhất: Mục tiêu chính của module 'Cơ sở khởi nghiệp trong môi trường công nghệ' là gì?",
+      "options": [
+        "Problem, value proposition, stakeholder, presentation.",
+        "Chỉ đọc tên bài mà không làm sản phẩm",
+        "Bỏ qua kiểm tra lỗi và không ghi kết quả",
+        "Đợi đến cuối khóa mới học"
+      ],
+      "answerIndex": 0,
+      "reviewLesson": "f_m201_l1"
+    },
+    {
+      "id": "q_f_m202_v7",
+      "moduleId": "f_m202",
+      "stage": "m2",
+      "difficulty": "medium",
+      "prompt": "Chọn phát biểu đúng nhất: Mục tiêu chính của module 'Pháp luật và phòng chống tham nhũng tại Liên bang Nga' là gì?",
+      "options": [
+        "Thuật ngữ pháp lý cơ bản, quy tắc ứng xử học thuật.",
+        "Chỉ đọc tên bài mà không làm sản phẩm",
+        "Bỏ qua kiểm tra lỗi và không ghi kết quả",
+        "Đợi đến cuối khóa mới học"
+      ],
+      "answerIndex": 0,
+      "reviewLesson": "f_m202_l1"
+    },
+    {
+      "id": "q_f_s01_v8",
+      "moduleId": "f_s01",
+      "stage": "preparatory",
+      "difficulty": "hard",
+      "prompt": "Chọn phát biểu đúng nhất: Mục tiêu chính của module 'Quy trình học dự bị STANKIN: lớp học, bài tập và kiểm tra' là gì?",
+      "options": [
+        "Lịch lớp, điểm danh, bài tập, kiểm tra, giao tiếp với giáo viên.",
+        "Chỉ đọc tên bài mà không làm sản phẩm",
+        "Bỏ qua kiểm tra lỗi và không ghi kết quả",
+        "Đợi đến cuối khóa mới học"
+      ],
+      "answerIndex": 0,
+      "reviewLesson": "f_s01_l1"
+    },
+    {
+      "id": "q_f_s02_v9",
+      "moduleId": "f_s02",
+      "stage": "preparatory",
+      "difficulty": "easy",
+      "prompt": "Chọn phát biểu đúng nhất: Mục tiêu chính của module 'Toán nền bằng tiếng Nga cho dự bị kỹ thuật' là gì?",
+      "options": [
+        "Đọc đề, ký hiệu, trình bày lời giải ngắn.",
+        "Chỉ đọc tên bài mà không làm sản phẩm",
+        "Bỏ qua kiểm tra lỗi và không ghi kết quả",
+        "Đợi đến cuối khóa mới học"
+      ],
+      "answerIndex": 0,
+      "reviewLesson": "f_s02_l1"
+    },
+    {
+      "id": "q_f_s03_v10",
+      "moduleId": "f_s03",
+      "stage": "preparatory",
+      "difficulty": "medium",
+      "prompt": "Chọn phát biểu đúng nhất: Mục tiêu chính của module 'Tin học nền bằng tiếng Nga' là gì?",
+      "options": [
+        "Algorithm, program, data, file, table, database.",
+        "Chỉ đọc tên bài mà không làm sản phẩm",
+        "Bỏ qua kiểm tra lỗi và không ghi kết quả",
+        "Đợi đến cuối khóa mới học"
+      ],
+      "answerIndex": 0,
+      "reviewLesson": "f_s03_l1"
+    },
+    {
+      "id": "q_f_s04_v11",
+      "moduleId": "f_s04",
+      "stage": "preparatory",
+      "difficulty": "hard",
+      "prompt": "Chọn phát biểu đúng nhất: Mục tiêu chính của module 'Vật lý và khoa học nền bằng tiếng Nga' là gì?",
+      "options": [
+        "Đại lượng, đơn vị, đồ thị, bài tập cơ bản.",
+        "Chỉ đọc tên bài mà không làm sản phẩm",
+        "Bỏ qua kiểm tra lỗi và không ghi kết quả",
+        "Đợi đến cuối khóa mới học"
+      ],
+      "answerIndex": 0,
+      "reviewLesson": "f_s04_l1"
+    },
+    {
+      "id": "q_f_s05_v12",
+      "moduleId": "f_s05",
+      "stage": "preparatory",
+      "difficulty": "easy",
+      "prompt": "Chọn phát biểu đúng nhất: Mục tiêu chính của module 'Kỹ năng học đại học Nga: lịch, giao tiếp và tự học' là gì?",
+      "options": [
+        "Email, seminar, note-taking, hỏi bài, lịch cá nhân.",
+        "Chỉ đọc tên bài mà không làm sản phẩm",
+        "Bỏ qua kiểm tra lỗi và không ghi kết quả",
+        "Đợi đến cuối khóa mới học"
+      ],
+      "answerIndex": 0,
+      "reviewLesson": "f_s05_l1"
+    },
+    {
+      "id": "q_f_m201_v13",
+      "moduleId": "f_m201",
+      "stage": "m2",
+      "difficulty": "medium",
+      "prompt": "Chọn phát biểu đúng nhất: Mục tiêu chính của module 'Cơ sở khởi nghiệp trong môi trường công nghệ' là gì?",
+      "options": [
+        "Problem, value proposition, stakeholder, presentation.",
+        "Chỉ đọc tên bài mà không làm sản phẩm",
+        "Bỏ qua kiểm tra lỗi và không ghi kết quả",
+        "Đợi đến cuối khóa mới học"
+      ],
+      "answerIndex": 0,
+      "reviewLesson": "f_m201_l1"
+    },
+    {
+      "id": "q_f_m202_v14",
+      "moduleId": "f_m202",
+      "stage": "m2",
+      "difficulty": "hard",
+      "prompt": "Chọn phát biểu đúng nhất: Mục tiêu chính của module 'Pháp luật và phòng chống tham nhũng tại Liên bang Nga' là gì?",
+      "options": [
+        "Thuật ngữ pháp lý cơ bản, quy tắc ứng xử học thuật.",
+        "Chỉ đọc tên bài mà không làm sản phẩm",
+        "Bỏ qua kiểm tra lỗi và không ghi kết quả",
+        "Đợi đến cuối khóa mới học"
+      ],
+      "answerIndex": 0,
+      "reviewLesson": "f_m202_l1"
+    },
+    {
+      "id": "q_f_s01_v15",
+      "moduleId": "f_s01",
+      "stage": "preparatory",
+      "difficulty": "easy",
+      "prompt": "Chọn phát biểu đúng nhất: Mục tiêu chính của module 'Quy trình học dự bị STANKIN: lớp học, bài tập và kiểm tra' là gì?",
+      "options": [
+        "Lịch lớp, điểm danh, bài tập, kiểm tra, giao tiếp với giáo viên.",
+        "Chỉ đọc tên bài mà không làm sản phẩm",
+        "Bỏ qua kiểm tra lỗi và không ghi kết quả",
+        "Đợi đến cuối khóa mới học"
+      ],
+      "answerIndex": 0,
+      "reviewLesson": "f_s01_l1"
+    },
+    {
+      "id": "q_f_s02_v16",
+      "moduleId": "f_s02",
+      "stage": "preparatory",
+      "difficulty": "medium",
+      "prompt": "Chọn phát biểu đúng nhất: Mục tiêu chính của module 'Toán nền bằng tiếng Nga cho dự bị kỹ thuật' là gì?",
+      "options": [
+        "Đọc đề, ký hiệu, trình bày lời giải ngắn.",
+        "Chỉ đọc tên bài mà không làm sản phẩm",
+        "Bỏ qua kiểm tra lỗi và không ghi kết quả",
+        "Đợi đến cuối khóa mới học"
+      ],
+      "answerIndex": 0,
+      "reviewLesson": "f_s02_l1"
+    },
+    {
+      "id": "q_f_s03_v17",
+      "moduleId": "f_s03",
+      "stage": "preparatory",
+      "difficulty": "hard",
+      "prompt": "Chọn phát biểu đúng nhất: Mục tiêu chính của module 'Tin học nền bằng tiếng Nga' là gì?",
+      "options": [
+        "Algorithm, program, data, file, table, database.",
+        "Chỉ đọc tên bài mà không làm sản phẩm",
+        "Bỏ qua kiểm tra lỗi và không ghi kết quả",
+        "Đợi đến cuối khóa mới học"
+      ],
+      "answerIndex": 0,
+      "reviewLesson": "f_s03_l1"
+    },
+    {
+      "id": "q_f_s04_v18",
+      "moduleId": "f_s04",
+      "stage": "preparatory",
+      "difficulty": "easy",
+      "prompt": "Chọn phát biểu đúng nhất: Mục tiêu chính của module 'Vật lý và khoa học nền bằng tiếng Nga' là gì?",
+      "options": [
+        "Đại lượng, đơn vị, đồ thị, bài tập cơ bản.",
+        "Chỉ đọc tên bài mà không làm sản phẩm",
+        "Bỏ qua kiểm tra lỗi và không ghi kết quả",
+        "Đợi đến cuối khóa mới học"
+      ],
+      "answerIndex": 0,
+      "reviewLesson": "f_s04_l1"
+    },
+    {
+      "id": "q_f_s05_v19",
+      "moduleId": "f_s05",
+      "stage": "preparatory",
+      "difficulty": "medium",
+      "prompt": "Chọn phát biểu đúng nhất: Mục tiêu chính của module 'Kỹ năng học đại học Nga: lịch, giao tiếp và tự học' là gì?",
+      "options": [
+        "Email, seminar, note-taking, hỏi bài, lịch cá nhân.",
+        "Chỉ đọc tên bài mà không làm sản phẩm",
+        "Bỏ qua kiểm tra lỗi và không ghi kết quả",
+        "Đợi đến cuối khóa mới học"
+      ],
+      "answerIndex": 0,
+      "reviewLesson": "f_s05_l1"
+    },
+    {
+      "id": "q_f_m201_v20",
+      "moduleId": "f_m201",
+      "stage": "m2",
+      "difficulty": "hard",
+      "prompt": "Chọn phát biểu đúng nhất: Mục tiêu chính của module 'Cơ sở khởi nghiệp trong môi trường công nghệ' là gì?",
+      "options": [
+        "Problem, value proposition, stakeholder, presentation.",
+        "Chỉ đọc tên bài mà không làm sản phẩm",
+        "Bỏ qua kiểm tra lỗi và không ghi kết quả",
+        "Đợi đến cuối khóa mới học"
+      ],
+      "answerIndex": 0,
+      "reviewLesson": "f_m201_l1"
+    },
+    {
+      "id": "q_f_m202_v21",
+      "moduleId": "f_m202",
+      "stage": "m2",
+      "difficulty": "easy",
+      "prompt": "Chọn phát biểu đúng nhất: Mục tiêu chính của module 'Pháp luật và phòng chống tham nhũng tại Liên bang Nga' là gì?",
+      "options": [
+        "Thuật ngữ pháp lý cơ bản, quy tắc ứng xử học thuật.",
+        "Chỉ đọc tên bài mà không làm sản phẩm",
+        "Bỏ qua kiểm tra lỗi và không ghi kết quả",
+        "Đợi đến cuối khóa mới học"
+      ],
+      "answerIndex": 0,
+      "reviewLesson": "f_m202_l1"
+    },
+    {
+      "id": "q_f_s01_v22",
+      "moduleId": "f_s01",
+      "stage": "preparatory",
+      "difficulty": "medium",
+      "prompt": "Chọn phát biểu đúng nhất: Mục tiêu chính của module 'Quy trình học dự bị STANKIN: lớp học, bài tập và kiểm tra' là gì?",
+      "options": [
+        "Lịch lớp, điểm danh, bài tập, kiểm tra, giao tiếp với giáo viên.",
+        "Chỉ đọc tên bài mà không làm sản phẩm",
+        "Bỏ qua kiểm tra lỗi và không ghi kết quả",
+        "Đợi đến cuối khóa mới học"
+      ],
+      "answerIndex": 0,
+      "reviewLesson": "f_s01_l1"
+    },
+    {
+      "id": "q_f_s02_v23",
+      "moduleId": "f_s02",
+      "stage": "preparatory",
+      "difficulty": "hard",
+      "prompt": "Chọn phát biểu đúng nhất: Mục tiêu chính của module 'Toán nền bằng tiếng Nga cho dự bị kỹ thuật' là gì?",
+      "options": [
+        "Đọc đề, ký hiệu, trình bày lời giải ngắn.",
+        "Chỉ đọc tên bài mà không làm sản phẩm",
+        "Bỏ qua kiểm tra lỗi và không ghi kết quả",
+        "Đợi đến cuối khóa mới học"
+      ],
+      "answerIndex": 0,
+      "reviewLesson": "f_s02_l1"
+    }
+  ]
+}

@@ -1,0 +1,32 @@
+{
+  "name": "Russian_Bauman_Assessment_BalancedScroll_HOTFIX",
+  "base": "Russian_Bauman_FlagPanel_Width_HOTFIX.zip",
+  "changes": [
+    "Cân lại tỉ lệ hai cột Ôn tập/Kiểm tra bằng clamp width: trái vừa đủ, phải rộng hơn.",
+    "Bảng bên phải có cuộn dọc riêng, không kéo/dịch khung khi câu hỏi/đáp án/giải thích dài.",
+    "Flag rail trái có cuộn riêng và không cắt số câu 2-3 chữ số.",
+    "Giữ layout flag trái + nội dung phải, không đổi logic dữ liệu."
+  ],
+  "checks": {
+    "assets/core.js": {
+      "ok": true,
+      "stderr": ""
+    },
+    "assets/subject-adapter.js": {
+      "ok": true,
+      "stderr": ""
+    },
+    "subject-manifest.js": {
+      "ok": true,
+      "stderr": ""
+    },
+    "json_parse": {
+      "ok": true,
+      "files": 15,
+      "bad": []
+    },
+    "css_patch_present": {
+      "ok": true
+    }
+  }
+}

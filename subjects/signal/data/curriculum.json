@@ -1,0 +1,1301 @@
+{
+  "id": "signal",
+  "title": "Xử lý tín hiệu, chuỗi thời gian, telemetry và cảm biến",
+  "target": "Xây năng lực thu, làm sạch, phân tích, dự báo và trình bày dữ liệu cảm biến/thời gian cho robot và luận văn.",
+  "outcomes": [
+    "Hiểu timestamp, sampling rate, drift, noise, missing, outlier.",
+    "Làm sạch và trực quan hóa telemetry.",
+    "Tạo rolling feature, decomposition, anomaly baseline.",
+    "Chuẩn bị bảng thực nghiệm và dataset cho ВКР."
+  ],
+  "principles": [
+    "Kiểm tra timestamp trước khi làm model.",
+    "Không shuffle time series bừa bãi.",
+    "Mọi dataset cần metadata: thiết bị, đơn vị, điều kiện, version."
+  ],
+  "stages": [
+    {
+      "id": "prepare",
+      "short": "GĐ1",
+      "title": "GĐ1 · Chuẩn bị tại Việt Nam",
+      "period": "06/2026 – 09/2026",
+      "target": "Xử lý tín hiệu, chuỗi thời gian, telemetry và cảm biến trong GĐ1 · Chuẩn bị tại Việt Nam: học đúng nội dung cần cho lộ trình, tạo sản phẩm có thể dùng lại và liên kết với Main.",
+      "outcomes": [
+        "Hoàn thành module trọng tâm của GĐ1.",
+        "Có ghi chú, bài tập, sản phẩm hoặc báo cáo nhỏ.",
+        "Biết liên hệ nội dung với môn khác và luận văn."
+      ],
+      "focusBlocks": [
+        "Mục tiêu kiến thức: nắm lõi log thời gian, sampling, noise, anomaly, forecast và dashboard.",
+        "Mục tiêu kỹ năng: dùng được CSV telemetry, notebook time-series cho bài tập thật.",
+        "Mục tiêu hồ sơ: có sản phẩm nhỏ, ghi chú lỗi và bằng chứng học tập để gửi tiến độ về Main."
+      ],
+      "weeklyRhythm": [
+        "Buổi 1: đọc bài và ghi chú thuật ngữ/ký hiệu.",
+        "Buổi 2: làm bài mẫu hoặc chạy mô phỏng để thấy cơ chế.",
+        "Buổi 3: làm bài tập/challenge và ghi lại lỗi sai.",
+        "Cuối tuần: ôn tập, kiểm tra nhanh, cập nhật tiến độ."
+      ]
+    },
+    {
+      "id": "m3",
+      "short": "HK3",
+      "title": "Bauman HK3",
+      "period": "09/2028 – 01/2029",
+      "target": "Xử lý tín hiệu, chuỗi thời gian, telemetry và cảm biến trong Bauman HK3: học đúng nội dung cần cho lộ trình, tạo sản phẩm có thể dùng lại và liên kết với Main.",
+      "outcomes": [
+        "Hoàn thành module trọng tâm của HK3.",
+        "Có ghi chú, bài tập, sản phẩm hoặc báo cáo nhỏ.",
+        "Biết liên hệ nội dung với môn khác và luận văn."
+      ],
+      "focusBlocks": [
+        "Mục tiêu kiến thức: nắm lõi log thời gian, sampling, noise, anomaly, forecast và dashboard.",
+        "Mục tiêu kỹ năng: dùng được CSV telemetry, notebook time-series cho bài tập thật.",
+        "Mục tiêu hồ sơ: có sản phẩm nhỏ, ghi chú lỗi và bằng chứng học tập để gửi tiến độ về Main."
+      ],
+      "weeklyRhythm": [
+        "Buổi 1: đọc bài và ghi chú thuật ngữ/ký hiệu.",
+        "Buổi 2: làm bài mẫu hoặc chạy mô phỏng để thấy cơ chế.",
+        "Buổi 3: làm bài tập/challenge và ghi lại lỗi sai.",
+        "Cuối tuần: ôn tập, kiểm tra nhanh, cập nhật tiến độ."
+      ]
+    },
+    {
+      "id": "m4",
+      "short": "HK4",
+      "title": "Bauman HK4 & bảo vệ",
+      "period": "02/2029 – 06/2029",
+      "target": "Xử lý tín hiệu, chuỗi thời gian, telemetry và cảm biến trong Bauman HK4 & bảo vệ: học đúng nội dung cần cho lộ trình, tạo sản phẩm có thể dùng lại và liên kết với Main.",
+      "outcomes": [
+        "Hoàn thành module trọng tâm của HK4.",
+        "Có ghi chú, bài tập, sản phẩm hoặc báo cáo nhỏ.",
+        "Biết liên hệ nội dung với môn khác và luận văn."
+      ],
+      "focusBlocks": [
+        "Mục tiêu kiến thức: nắm lõi log thời gian, sampling, noise, anomaly, forecast và dashboard.",
+        "Mục tiêu kỹ năng: dùng được CSV telemetry, notebook time-series cho bài tập thật.",
+        "Mục tiêu hồ sơ: có sản phẩm nhỏ, ghi chú lỗi và bằng chứng học tập để gửi tiến độ về Main."
+      ],
+      "weeklyRhythm": [
+        "Buổi 1: đọc bài và ghi chú thuật ngữ/ký hiệu.",
+        "Buổi 2: làm bài mẫu hoặc chạy mô phỏng để thấy cơ chế.",
+        "Buổi 3: làm bài tập/challenge và ghi lại lỗi sai.",
+        "Cuối tuần: ôn tập, kiểm tra nhanh, cập nhật tiến độ."
+      ]
+    }
+  ],
+  "modules": [
+    {
+      "id": "t_p01",
+      "stage": "prepare",
+      "week": "W1",
+      "title": "Telemetry căn bản: timestamp, log và trạng thái hệ thống",
+      "goal": "Timestamp, sampling, units, log structure.",
+      "hours": 6,
+      "level": "Cơ bản",
+      "lessons": [
+        "t_p01_l1",
+        "t_p01_l2",
+        "t_p01_l3"
+      ],
+      "outputs": [
+        "Ghi chú module 'Telemetry căn bản: timestamp, log và trạng thái hệ thống' có định nghĩa, ví dụ, lỗi thường gặp.",
+        "Một sản phẩm thực hành: notebook phát hiện bất thường có biểu đồ.",
+        "Một mục nhật ký học tập: đã học gì, sai gì, cần ôn gì.",
+        "Cập nhật tiến độ module và gửi phản hồi về Main."
+      ],
+      "phaseObjective": "Trong GĐ1 · Chuẩn bị tại Việt Nam, module này biến chủ đề 'Telemetry căn bản: timestamp, log và trạng thái hệ thống' thành năng lực dùng được: hiểu khái niệm, làm bài, chạy mô phỏng và tạo sản phẩm kiểm chứng.",
+      "whyImportant": [
+        "Đây là mắt xích của môn Signal/Telemetry trong lộ trình Bauman, giúp học phần sau không bị hổng nền.",
+        "Nội dung liên quan trực tiếp tới log thời gian, sampling, noise, anomaly, forecast và dashboard.",
+        "Kết quả module được dùng để Main biết nên nhắc ôn, kiểm tra hay chuyển module tiếp theo."
+      ],
+      "prerequisites": [
+        "Đọc lại mục tiêu giai đoạn và các module trước đó trong cùng môn.",
+        "Chuẩn bị công cụ: CSV telemetry, notebook time-series, canvas tín hiệu.",
+        "Tạo file ghi chú riêng: mục tiêu, thuật ngữ, lỗi sai, sản phẩm đầu ra."
+      ],
+      "conceptMap": [
+        "Khái niệm trung tâm của 'Telemetry căn bản: timestamp, log và trạng thái hệ thống'.",
+        "Input cần nhận diện: dữ liệu, ký hiệu, biến, điều kiện hoặc tình huống.",
+        "Output cần tạo: kết quả tính toán, code, bảng đánh giá, sơ đồ hoặc câu trả lời học thuật.",
+        "Tiêu chí kiểm tra: đúng logic, giải thích được lý do, có bằng chứng thực hành."
+      ],
+      "studyPlan": [
+        {
+          "session": "Ca 1 · Nắm lõi",
+          "time": "60–90 phút",
+          "work": "Đọc bài nền về Telemetry căn bản: timestamp, log và trạng thái hệ thống, ghi thuật ngữ, viết lại bằng lời của mình.",
+          "evidence": "Ghi chú 7–10 dòng + 5 thuật ngữ chính."
+        },
+        {
+          "session": "Ca 2 · Mô phỏng",
+          "time": "45–75 phút",
+          "work": "Chạy mô phỏng tín hiệu/nhiễu/anomaly hoặc ví dụ tham số để quan sát cơ chế.",
+          "evidence": "Ảnh/chú thích kết quả mô phỏng + nhận xét."
+        },
+        {
+          "session": "Ca 3 · Bài tập",
+          "time": "60–120 phút",
+          "work": "Làm bài tập từ dễ đến trung bình, đánh dấu lỗi sai và nguyên nhân.",
+          "evidence": "notebook phát hiện bất thường có biểu đồ"
+        },
+        {
+          "session": "Ca 4 · Kiểm tra nhỏ",
+          "time": "20–40 phút",
+          "work": "Tự kiểm tra nhanh, đạt ≥ 8/10 mới chuyển module kế tiếp.",
+          "evidence": "Điểm kiểm tra + danh sách mục cần ôn."
+        }
+      ],
+      "practicePlan": [
+        "Bài dễ: nhận diện khái niệm và áp dụng công thức/quy trình trực tiếp.",
+        "Bài trung bình: kết hợp 2–3 kỹ năng, giải thích từng bước.",
+        "Bài khá: xử lý tình huống có nhiễu/lỗi/điều kiện thiếu.",
+        "Bài giỏi: tự thiết kế ví dụ nhỏ hoặc mini-project liên môn."
+      ],
+      "simulationPlan": [
+        "Mô phỏng riêng: quan sát mô phỏng tín hiệu/nhiễu/anomaly với tham số thay đổi.",
+        "Mô phỏng thực hành: nhận nhiệm vụ, chọn cách xử lý, hệ thống phản hồi đúng/sai.",
+        "Ghi lại kết quả mô phỏng để liên hệ với bài tập và kiểm tra."
+      ],
+      "assessmentPlan": {
+        "unlock": "Mức Dễ mở mặc định; Trung bình/Khá/Giỏi mở khi mức trước đạt ≥ 8/10.",
+        "rubric": [
+          "Hiểu khái niệm",
+          "Làm được bài",
+          "Giải thích được lỗi",
+          "Tạo được sản phẩm nhỏ"
+        ],
+        "pass": "Đạt module khi hoàn thành bài học chính, chạy mô phỏng, làm bài tập và kiểm tra ≥ 8/10."
+      },
+      "baumanLinks": [
+        "Liên hệ học phần Bauman/HK: GĐ1 · Chuẩn bị tại Việt Nam.",
+        "Liên hệ luận văn: UGV/USV, telemetry, AI hoặc hệ thống điều khiển tùy môn.",
+        "Liên hệ tiếng Nga: chuẩn bị cách trình bày khái niệm bằng câu ngắn, dễ nói."
+      ],
+      "completionCriteria": [
+        "Đã mở và đọc toàn bộ bài học trong module.",
+        "Đã chạy ít nhất 1 mô phỏng hoặc ví dụ tương tác.",
+        "Đã làm tối thiểu 3 bài tập và ghi lại lỗi sai.",
+        "Đã đạt kiểm tra nhanh ≥ 8/10 hoặc đánh dấu cần ôn."
+      ],
+      "risks": [
+        "Chỉ đọc lý thuyết nhưng không làm bài tập/mô phỏng.",
+        "Không ghi lại lỗi sai nên tuần sau quên điểm yếu.",
+        "Nhảy sang module mới khi chưa đạt tiêu chí ≥ 8/10."
+      ],
+      "nextStep": "Sau khi hoàn thành 'Telemetry căn bản: timestamp, log và trạng thái hệ thống', chuyển sang module tiếp theo trong GĐ1 · Chuẩn bị tại Việt Nam hoặc làm bài kiểm tra mức cao hơn."
+    },
+    {
+      "id": "t_p02",
+      "stage": "prepare",
+      "week": "W2",
+      "title": "Chất lượng dữ liệu cảm biến: nhiễu, drift và missing",
+      "goal": "Noise, drift, missing, outlier, calibration note.",
+      "hours": 7,
+      "level": "Trung bình",
+      "lessons": [
+        "t_p02_l1",
+        "t_p02_l2",
+        "t_p02_l3"
+      ],
+      "outputs": [
+        "Ghi chú module 'Chất lượng dữ liệu cảm biến: nhiễu, drift và missing' có định nghĩa, ví dụ, lỗi thường gặp.",
+        "Một sản phẩm thực hành: notebook phát hiện bất thường có biểu đồ.",
+        "Một mục nhật ký học tập: đã học gì, sai gì, cần ôn gì.",
+        "Cập nhật tiến độ module và gửi phản hồi về Main."
+      ],
+      "phaseObjective": "Trong GĐ1 · Chuẩn bị tại Việt Nam, module này biến chủ đề 'Chất lượng dữ liệu cảm biến: nhiễu, drift và missing' thành năng lực dùng được: hiểu khái niệm, làm bài, chạy mô phỏng và tạo sản phẩm kiểm chứng.",
+      "whyImportant": [
+        "Đây là mắt xích của môn Signal/Telemetry trong lộ trình Bauman, giúp học phần sau không bị hổng nền.",
+        "Nội dung liên quan trực tiếp tới log thời gian, sampling, noise, anomaly, forecast và dashboard.",
+        "Kết quả module được dùng để Main biết nên nhắc ôn, kiểm tra hay chuyển module tiếp theo."
+      ],
+      "prerequisites": [
+        "Đọc lại mục tiêu giai đoạn và các module trước đó trong cùng môn.",
+        "Chuẩn bị công cụ: CSV telemetry, notebook time-series, canvas tín hiệu.",
+        "Tạo file ghi chú riêng: mục tiêu, thuật ngữ, lỗi sai, sản phẩm đầu ra."
+      ],
+      "conceptMap": [
+        "Khái niệm trung tâm của 'Chất lượng dữ liệu cảm biến: nhiễu, drift và missing'.",
+        "Input cần nhận diện: dữ liệu, ký hiệu, biến, điều kiện hoặc tình huống.",
+        "Output cần tạo: kết quả tính toán, code, bảng đánh giá, sơ đồ hoặc câu trả lời học thuật.",
+        "Tiêu chí kiểm tra: đúng logic, giải thích được lý do, có bằng chứng thực hành."
+      ],
+      "studyPlan": [
+        {
+          "session": "Ca 1 · Nắm lõi",
+          "time": "60–90 phút",
+          "work": "Đọc bài nền về Chất lượng dữ liệu cảm biến: nhiễu, drift và missing, ghi thuật ngữ, viết lại bằng lời của mình.",
+          "evidence": "Ghi chú 7–10 dòng + 5 thuật ngữ chính."
+        },
+        {
+          "session": "Ca 2 · Mô phỏng",
+          "time": "45–75 phút",
+          "work": "Chạy mô phỏng tín hiệu/nhiễu/anomaly hoặc ví dụ tham số để quan sát cơ chế.",
+          "evidence": "Ảnh/chú thích kết quả mô phỏng + nhận xét."
+        },
+        {
+          "session": "Ca 3 · Bài tập",
+          "time": "60–120 phút",
+          "work": "Làm bài tập từ dễ đến trung bình, đánh dấu lỗi sai và nguyên nhân.",
+          "evidence": "notebook phát hiện bất thường có biểu đồ"
+        },
+        {
+          "session": "Ca 4 · Kiểm tra nhỏ",
+          "time": "20–40 phút",
+          "work": "Tự kiểm tra nhanh, đạt ≥ 8/10 mới chuyển module kế tiếp.",
+          "evidence": "Điểm kiểm tra + danh sách mục cần ôn."
+        }
+      ],
+      "practicePlan": [
+        "Bài dễ: nhận diện khái niệm và áp dụng công thức/quy trình trực tiếp.",
+        "Bài trung bình: kết hợp 2–3 kỹ năng, giải thích từng bước.",
+        "Bài khá: xử lý tình huống có nhiễu/lỗi/điều kiện thiếu.",
+        "Bài giỏi: tự thiết kế ví dụ nhỏ hoặc mini-project liên môn."
+      ],
+      "simulationPlan": [
+        "Mô phỏng riêng: quan sát mô phỏng tín hiệu/nhiễu/anomaly với tham số thay đổi.",
+        "Mô phỏng thực hành: nhận nhiệm vụ, chọn cách xử lý, hệ thống phản hồi đúng/sai.",
+        "Ghi lại kết quả mô phỏng để liên hệ với bài tập và kiểm tra."
+      ],
+      "assessmentPlan": {
+        "unlock": "Mức Dễ mở mặc định; Trung bình/Khá/Giỏi mở khi mức trước đạt ≥ 8/10.",
+        "rubric": [
+          "Hiểu khái niệm",
+          "Làm được bài",
+          "Giải thích được lỗi",
+          "Tạo được sản phẩm nhỏ"
+        ],
+        "pass": "Đạt module khi hoàn thành bài học chính, chạy mô phỏng, làm bài tập và kiểm tra ≥ 8/10."
+      },
+      "baumanLinks": [
+        "Liên hệ học phần Bauman/HK: GĐ1 · Chuẩn bị tại Việt Nam.",
+        "Liên hệ luận văn: UGV/USV, telemetry, AI hoặc hệ thống điều khiển tùy môn.",
+        "Liên hệ tiếng Nga: chuẩn bị cách trình bày khái niệm bằng câu ngắn, dễ nói."
+      ],
+      "completionCriteria": [
+        "Đã mở và đọc toàn bộ bài học trong module.",
+        "Đã chạy ít nhất 1 mô phỏng hoặc ví dụ tương tác.",
+        "Đã làm tối thiểu 3 bài tập và ghi lại lỗi sai.",
+        "Đã đạt kiểm tra nhanh ≥ 8/10 hoặc đánh dấu cần ôn."
+      ],
+      "risks": [
+        "Chỉ đọc lý thuyết nhưng không làm bài tập/mô phỏng.",
+        "Không ghi lại lỗi sai nên tuần sau quên điểm yếu.",
+        "Nhảy sang module mới khi chưa đạt tiêu chí ≥ 8/10."
+      ],
+      "nextStep": "Sau khi hoàn thành 'Chất lượng dữ liệu cảm biến: nhiễu, drift và missing', chuyển sang module tiếp theo trong GĐ1 · Chuẩn bị tại Việt Nam hoặc làm bài kiểm tra mức cao hơn."
+    },
+    {
+      "id": "t_p03",
+      "stage": "prepare",
+      "week": "W3",
+      "title": "Trực quan hóa chuỗi thời gian và tín hiệu cảm biến",
+      "goal": "Line chart, rolling mean, resampling, event marking.",
+      "hours": 7,
+      "level": "Trung bình",
+      "lessons": [
+        "t_p03_l1",
+        "t_p03_l2",
+        "t_p03_l3"
+      ],
+      "outputs": [
+        "Ghi chú module 'Trực quan hóa chuỗi thời gian và tín hiệu cảm biến' có định nghĩa, ví dụ, lỗi thường gặp.",
+        "Một sản phẩm thực hành: notebook phát hiện bất thường có biểu đồ.",
+        "Một mục nhật ký học tập: đã học gì, sai gì, cần ôn gì.",
+        "Cập nhật tiến độ module và gửi phản hồi về Main."
+      ],
+      "phaseObjective": "Trong GĐ1 · Chuẩn bị tại Việt Nam, module này biến chủ đề 'Trực quan hóa chuỗi thời gian và tín hiệu cảm biến' thành năng lực dùng được: hiểu khái niệm, làm bài, chạy mô phỏng và tạo sản phẩm kiểm chứng.",
+      "whyImportant": [
+        "Đây là mắt xích của môn Signal/Telemetry trong lộ trình Bauman, giúp học phần sau không bị hổng nền.",
+        "Nội dung liên quan trực tiếp tới log thời gian, sampling, noise, anomaly, forecast và dashboard.",
+        "Kết quả module được dùng để Main biết nên nhắc ôn, kiểm tra hay chuyển module tiếp theo."
+      ],
+      "prerequisites": [
+        "Đọc lại mục tiêu giai đoạn và các module trước đó trong cùng môn.",
+        "Chuẩn bị công cụ: CSV telemetry, notebook time-series, canvas tín hiệu.",
+        "Tạo file ghi chú riêng: mục tiêu, thuật ngữ, lỗi sai, sản phẩm đầu ra."
+      ],
+      "conceptMap": [
+        "Khái niệm trung tâm của 'Trực quan hóa chuỗi thời gian và tín hiệu cảm biến'.",
+        "Input cần nhận diện: dữ liệu, ký hiệu, biến, điều kiện hoặc tình huống.",
+        "Output cần tạo: kết quả tính toán, code, bảng đánh giá, sơ đồ hoặc câu trả lời học thuật.",
+        "Tiêu chí kiểm tra: đúng logic, giải thích được lý do, có bằng chứng thực hành."
+      ],
+      "studyPlan": [
+        {
+          "session": "Ca 1 · Nắm lõi",
+          "time": "60–90 phút",
+          "work": "Đọc bài nền về Trực quan hóa chuỗi thời gian và tín hiệu cảm biến, ghi thuật ngữ, viết lại bằng lời của mình.",
+          "evidence": "Ghi chú 7–10 dòng + 5 thuật ngữ chính."
+        },
+        {
+          "session": "Ca 2 · Mô phỏng",
+          "time": "45–75 phút",
+          "work": "Chạy mô phỏng tín hiệu/nhiễu/anomaly hoặc ví dụ tham số để quan sát cơ chế.",
+          "evidence": "Ảnh/chú thích kết quả mô phỏng + nhận xét."
+        },
+        {
+          "session": "Ca 3 · Bài tập",
+          "time": "60–120 phút",
+          "work": "Làm bài tập từ dễ đến trung bình, đánh dấu lỗi sai và nguyên nhân.",
+          "evidence": "notebook phát hiện bất thường có biểu đồ"
+        },
+        {
+          "session": "Ca 4 · Kiểm tra nhỏ",
+          "time": "20–40 phút",
+          "work": "Tự kiểm tra nhanh, đạt ≥ 8/10 mới chuyển module kế tiếp.",
+          "evidence": "Điểm kiểm tra + danh sách mục cần ôn."
+        }
+      ],
+      "practicePlan": [
+        "Bài dễ: nhận diện khái niệm và áp dụng công thức/quy trình trực tiếp.",
+        "Bài trung bình: kết hợp 2–3 kỹ năng, giải thích từng bước.",
+        "Bài khá: xử lý tình huống có nhiễu/lỗi/điều kiện thiếu.",
+        "Bài giỏi: tự thiết kế ví dụ nhỏ hoặc mini-project liên môn."
+      ],
+      "simulationPlan": [
+        "Mô phỏng riêng: quan sát mô phỏng tín hiệu/nhiễu/anomaly với tham số thay đổi.",
+        "Mô phỏng thực hành: nhận nhiệm vụ, chọn cách xử lý, hệ thống phản hồi đúng/sai.",
+        "Ghi lại kết quả mô phỏng để liên hệ với bài tập và kiểm tra."
+      ],
+      "assessmentPlan": {
+        "unlock": "Mức Dễ mở mặc định; Trung bình/Khá/Giỏi mở khi mức trước đạt ≥ 8/10.",
+        "rubric": [
+          "Hiểu khái niệm",
+          "Làm được bài",
+          "Giải thích được lỗi",
+          "Tạo được sản phẩm nhỏ"
+        ],
+        "pass": "Đạt module khi hoàn thành bài học chính, chạy mô phỏng, làm bài tập và kiểm tra ≥ 8/10."
+      },
+      "baumanLinks": [
+        "Liên hệ học phần Bauman/HK: GĐ1 · Chuẩn bị tại Việt Nam.",
+        "Liên hệ luận văn: UGV/USV, telemetry, AI hoặc hệ thống điều khiển tùy môn.",
+        "Liên hệ tiếng Nga: chuẩn bị cách trình bày khái niệm bằng câu ngắn, dễ nói."
+      ],
+      "completionCriteria": [
+        "Đã mở và đọc toàn bộ bài học trong module.",
+        "Đã chạy ít nhất 1 mô phỏng hoặc ví dụ tương tác.",
+        "Đã làm tối thiểu 3 bài tập và ghi lại lỗi sai.",
+        "Đã đạt kiểm tra nhanh ≥ 8/10 hoặc đánh dấu cần ôn."
+      ],
+      "risks": [
+        "Chỉ đọc lý thuyết nhưng không làm bài tập/mô phỏng.",
+        "Không ghi lại lỗi sai nên tuần sau quên điểm yếu.",
+        "Nhảy sang module mới khi chưa đạt tiêu chí ≥ 8/10."
+      ],
+      "nextStep": "Sau khi hoàn thành 'Trực quan hóa chuỗi thời gian và tín hiệu cảm biến', chuyển sang module tiếp theo trong GĐ1 · Chuẩn bị tại Việt Nam hoặc làm bài kiểm tra mức cao hơn."
+    },
+    {
+      "id": "t_p04",
+      "stage": "prepare",
+      "week": "W4",
+      "title": "Trích xuất đặc trưng từ tín hiệu",
+      "goal": "Lag, rolling statistics, difference, normalization.",
+      "hours": 8,
+      "level": "Khá",
+      "lessons": [
+        "t_p04_l1",
+        "t_p04_l2",
+        "t_p04_l3"
+      ],
+      "outputs": [
+        "Ghi chú module 'Trích xuất đặc trưng từ tín hiệu' có định nghĩa, ví dụ, lỗi thường gặp.",
+        "Một sản phẩm thực hành: notebook phát hiện bất thường có biểu đồ.",
+        "Một mục nhật ký học tập: đã học gì, sai gì, cần ôn gì.",
+        "Cập nhật tiến độ module và gửi phản hồi về Main."
+      ],
+      "phaseObjective": "Trong GĐ1 · Chuẩn bị tại Việt Nam, module này biến chủ đề 'Trích xuất đặc trưng từ tín hiệu' thành năng lực dùng được: hiểu khái niệm, làm bài, chạy mô phỏng và tạo sản phẩm kiểm chứng.",
+      "whyImportant": [
+        "Đây là mắt xích của môn Signal/Telemetry trong lộ trình Bauman, giúp học phần sau không bị hổng nền.",
+        "Nội dung liên quan trực tiếp tới log thời gian, sampling, noise, anomaly, forecast và dashboard.",
+        "Kết quả module được dùng để Main biết nên nhắc ôn, kiểm tra hay chuyển module tiếp theo."
+      ],
+      "prerequisites": [
+        "Đọc lại mục tiêu giai đoạn và các module trước đó trong cùng môn.",
+        "Chuẩn bị công cụ: CSV telemetry, notebook time-series, canvas tín hiệu.",
+        "Tạo file ghi chú riêng: mục tiêu, thuật ngữ, lỗi sai, sản phẩm đầu ra."
+      ],
+      "conceptMap": [
+        "Khái niệm trung tâm của 'Trích xuất đặc trưng từ tín hiệu'.",
+        "Input cần nhận diện: dữ liệu, ký hiệu, biến, điều kiện hoặc tình huống.",
+        "Output cần tạo: kết quả tính toán, code, bảng đánh giá, sơ đồ hoặc câu trả lời học thuật.",
+        "Tiêu chí kiểm tra: đúng logic, giải thích được lý do, có bằng chứng thực hành."
+      ],
+      "studyPlan": [
+        {
+          "session": "Ca 1 · Nắm lõi",
+          "time": "60–90 phút",
+          "work": "Đọc bài nền về Trích xuất đặc trưng từ tín hiệu, ghi thuật ngữ, viết lại bằng lời của mình.",
+          "evidence": "Ghi chú 7–10 dòng + 5 thuật ngữ chính."
+        },
+        {
+          "session": "Ca 2 · Mô phỏng",
+          "time": "45–75 phút",
+          "work": "Chạy mô phỏng tín hiệu/nhiễu/anomaly hoặc ví dụ tham số để quan sát cơ chế.",
+          "evidence": "Ảnh/chú thích kết quả mô phỏng + nhận xét."
+        },
+        {
+          "session": "Ca 3 · Bài tập",
+          "time": "60–120 phút",
+          "work": "Làm bài tập từ dễ đến trung bình, đánh dấu lỗi sai và nguyên nhân.",
+          "evidence": "notebook phát hiện bất thường có biểu đồ"
+        },
+        {
+          "session": "Ca 4 · Kiểm tra nhỏ",
+          "time": "20–40 phút",
+          "work": "Tự kiểm tra nhanh, đạt ≥ 8/10 mới chuyển module kế tiếp.",
+          "evidence": "Điểm kiểm tra + danh sách mục cần ôn."
+        }
+      ],
+      "practicePlan": [
+        "Bài dễ: nhận diện khái niệm và áp dụng công thức/quy trình trực tiếp.",
+        "Bài trung bình: kết hợp 2–3 kỹ năng, giải thích từng bước.",
+        "Bài khá: xử lý tình huống có nhiễu/lỗi/điều kiện thiếu.",
+        "Bài giỏi: tự thiết kế ví dụ nhỏ hoặc mini-project liên môn."
+      ],
+      "simulationPlan": [
+        "Mô phỏng riêng: quan sát mô phỏng tín hiệu/nhiễu/anomaly với tham số thay đổi.",
+        "Mô phỏng thực hành: nhận nhiệm vụ, chọn cách xử lý, hệ thống phản hồi đúng/sai.",
+        "Ghi lại kết quả mô phỏng để liên hệ với bài tập và kiểm tra."
+      ],
+      "assessmentPlan": {
+        "unlock": "Mức Dễ mở mặc định; Trung bình/Khá/Giỏi mở khi mức trước đạt ≥ 8/10.",
+        "rubric": [
+          "Hiểu khái niệm",
+          "Làm được bài",
+          "Giải thích được lỗi",
+          "Tạo được sản phẩm nhỏ"
+        ],
+        "pass": "Đạt module khi hoàn thành bài học chính, chạy mô phỏng, làm bài tập và kiểm tra ≥ 8/10."
+      },
+      "baumanLinks": [
+        "Liên hệ học phần Bauman/HK: GĐ1 · Chuẩn bị tại Việt Nam.",
+        "Liên hệ luận văn: UGV/USV, telemetry, AI hoặc hệ thống điều khiển tùy môn.",
+        "Liên hệ tiếng Nga: chuẩn bị cách trình bày khái niệm bằng câu ngắn, dễ nói."
+      ],
+      "completionCriteria": [
+        "Đã mở và đọc toàn bộ bài học trong module.",
+        "Đã chạy ít nhất 1 mô phỏng hoặc ví dụ tương tác.",
+        "Đã làm tối thiểu 3 bài tập và ghi lại lỗi sai.",
+        "Đã đạt kiểm tra nhanh ≥ 8/10 hoặc đánh dấu cần ôn."
+      ],
+      "risks": [
+        "Chỉ đọc lý thuyết nhưng không làm bài tập/mô phỏng.",
+        "Không ghi lại lỗi sai nên tuần sau quên điểm yếu.",
+        "Nhảy sang module mới khi chưa đạt tiêu chí ≥ 8/10."
+      ],
+      "nextStep": "Sau khi hoàn thành 'Trích xuất đặc trưng từ tín hiệu', chuyển sang module tiếp theo trong GĐ1 · Chuẩn bị tại Việt Nam hoặc làm bài kiểm tra mức cao hơn."
+    },
+    {
+      "id": "t_p05",
+      "stage": "prepare",
+      "week": "W5",
+      "title": "Baseline phát hiện bất thường trong telemetry",
+      "goal": "Z-score, threshold, residual, false alarm.",
+      "hours": 8,
+      "level": "Khá",
+      "lessons": [
+        "t_p05_l1",
+        "t_p05_l2",
+        "t_p05_l3"
+      ],
+      "outputs": [
+        "Ghi chú module 'Baseline phát hiện bất thường trong telemetry' có định nghĩa, ví dụ, lỗi thường gặp.",
+        "Một sản phẩm thực hành: notebook phát hiện bất thường có biểu đồ.",
+        "Một mục nhật ký học tập: đã học gì, sai gì, cần ôn gì.",
+        "Cập nhật tiến độ module và gửi phản hồi về Main."
+      ],
+      "phaseObjective": "Trong GĐ1 · Chuẩn bị tại Việt Nam, module này biến chủ đề 'Baseline phát hiện bất thường trong telemetry' thành năng lực dùng được: hiểu khái niệm, làm bài, chạy mô phỏng và tạo sản phẩm kiểm chứng.",
+      "whyImportant": [
+        "Đây là mắt xích của môn Signal/Telemetry trong lộ trình Bauman, giúp học phần sau không bị hổng nền.",
+        "Nội dung liên quan trực tiếp tới log thời gian, sampling, noise, anomaly, forecast và dashboard.",
+        "Kết quả module được dùng để Main biết nên nhắc ôn, kiểm tra hay chuyển module tiếp theo."
+      ],
+      "prerequisites": [
+        "Đọc lại mục tiêu giai đoạn và các module trước đó trong cùng môn.",
+        "Chuẩn bị công cụ: CSV telemetry, notebook time-series, canvas tín hiệu.",
+        "Tạo file ghi chú riêng: mục tiêu, thuật ngữ, lỗi sai, sản phẩm đầu ra."
+      ],
+      "conceptMap": [
+        "Khái niệm trung tâm của 'Baseline phát hiện bất thường trong telemetry'.",
+        "Input cần nhận diện: dữ liệu, ký hiệu, biến, điều kiện hoặc tình huống.",
+        "Output cần tạo: kết quả tính toán, code, bảng đánh giá, sơ đồ hoặc câu trả lời học thuật.",
+        "Tiêu chí kiểm tra: đúng logic, giải thích được lý do, có bằng chứng thực hành."
+      ],
+      "studyPlan": [
+        {
+          "session": "Ca 1 · Nắm lõi",
+          "time": "60–90 phút",
+          "work": "Đọc bài nền về Baseline phát hiện bất thường trong telemetry, ghi thuật ngữ, viết lại bằng lời của mình.",
+          "evidence": "Ghi chú 7–10 dòng + 5 thuật ngữ chính."
+        },
+        {
+          "session": "Ca 2 · Mô phỏng",
+          "time": "45–75 phút",
+          "work": "Chạy mô phỏng tín hiệu/nhiễu/anomaly hoặc ví dụ tham số để quan sát cơ chế.",
+          "evidence": "Ảnh/chú thích kết quả mô phỏng + nhận xét."
+        },
+        {
+          "session": "Ca 3 · Bài tập",
+          "time": "60–120 phút",
+          "work": "Làm bài tập từ dễ đến trung bình, đánh dấu lỗi sai và nguyên nhân.",
+          "evidence": "notebook phát hiện bất thường có biểu đồ"
+        },
+        {
+          "session": "Ca 4 · Kiểm tra nhỏ",
+          "time": "20–40 phút",
+          "work": "Tự kiểm tra nhanh, đạt ≥ 8/10 mới chuyển module kế tiếp.",
+          "evidence": "Điểm kiểm tra + danh sách mục cần ôn."
+        }
+      ],
+      "practicePlan": [
+        "Bài dễ: nhận diện khái niệm và áp dụng công thức/quy trình trực tiếp.",
+        "Bài trung bình: kết hợp 2–3 kỹ năng, giải thích từng bước.",
+        "Bài khá: xử lý tình huống có nhiễu/lỗi/điều kiện thiếu.",
+        "Bài giỏi: tự thiết kế ví dụ nhỏ hoặc mini-project liên môn."
+      ],
+      "simulationPlan": [
+        "Mô phỏng riêng: quan sát mô phỏng tín hiệu/nhiễu/anomaly với tham số thay đổi.",
+        "Mô phỏng thực hành: nhận nhiệm vụ, chọn cách xử lý, hệ thống phản hồi đúng/sai.",
+        "Ghi lại kết quả mô phỏng để liên hệ với bài tập và kiểm tra."
+      ],
+      "assessmentPlan": {
+        "unlock": "Mức Dễ mở mặc định; Trung bình/Khá/Giỏi mở khi mức trước đạt ≥ 8/10.",
+        "rubric": [
+          "Hiểu khái niệm",
+          "Làm được bài",
+          "Giải thích được lỗi",
+          "Tạo được sản phẩm nhỏ"
+        ],
+        "pass": "Đạt module khi hoàn thành bài học chính, chạy mô phỏng, làm bài tập và kiểm tra ≥ 8/10."
+      },
+      "baumanLinks": [
+        "Liên hệ học phần Bauman/HK: GĐ1 · Chuẩn bị tại Việt Nam.",
+        "Liên hệ luận văn: UGV/USV, telemetry, AI hoặc hệ thống điều khiển tùy môn.",
+        "Liên hệ tiếng Nga: chuẩn bị cách trình bày khái niệm bằng câu ngắn, dễ nói."
+      ],
+      "completionCriteria": [
+        "Đã mở và đọc toàn bộ bài học trong module.",
+        "Đã chạy ít nhất 1 mô phỏng hoặc ví dụ tương tác.",
+        "Đã làm tối thiểu 3 bài tập và ghi lại lỗi sai.",
+        "Đã đạt kiểm tra nhanh ≥ 8/10 hoặc đánh dấu cần ôn."
+      ],
+      "risks": [
+        "Chỉ đọc lý thuyết nhưng không làm bài tập/mô phỏng.",
+        "Không ghi lại lỗi sai nên tuần sau quên điểm yếu.",
+        "Nhảy sang module mới khi chưa đạt tiêu chí ≥ 8/10."
+      ],
+      "nextStep": "Sau khi hoàn thành 'Baseline phát hiện bất thường trong telemetry', chuyển sang module tiếp theo trong GĐ1 · Chuẩn bị tại Việt Nam hoặc làm bài kiểm tra mức cao hơn."
+    },
+    {
+      "id": "t_p06",
+      "stage": "prepare",
+      "week": "W6",
+      "title": "Mini-project telemetry: dataset, dashboard và nhận xét",
+      "goal": "Dataset nhỏ, notebook, report và error log.",
+      "hours": 12,
+      "level": "Khá",
+      "lessons": [
+        "t_p06_l1",
+        "t_p06_l2",
+        "t_p06_l3"
+      ],
+      "outputs": [
+        "Ghi chú module 'Mini-project telemetry: dataset, dashboard và nhận xét' có định nghĩa, ví dụ, lỗi thường gặp.",
+        "Một sản phẩm thực hành: notebook phát hiện bất thường có biểu đồ.",
+        "Một mục nhật ký học tập: đã học gì, sai gì, cần ôn gì.",
+        "Cập nhật tiến độ module và gửi phản hồi về Main."
+      ],
+      "phaseObjective": "Trong GĐ1 · Chuẩn bị tại Việt Nam, module này biến chủ đề 'Mini-project telemetry: dataset, dashboard và nhận xét' thành năng lực dùng được: hiểu khái niệm, làm bài, chạy mô phỏng và tạo sản phẩm kiểm chứng.",
+      "whyImportant": [
+        "Đây là mắt xích của môn Signal/Telemetry trong lộ trình Bauman, giúp học phần sau không bị hổng nền.",
+        "Nội dung liên quan trực tiếp tới log thời gian, sampling, noise, anomaly, forecast và dashboard.",
+        "Kết quả module được dùng để Main biết nên nhắc ôn, kiểm tra hay chuyển module tiếp theo."
+      ],
+      "prerequisites": [
+        "Đọc lại mục tiêu giai đoạn và các module trước đó trong cùng môn.",
+        "Chuẩn bị công cụ: CSV telemetry, notebook time-series, canvas tín hiệu.",
+        "Tạo file ghi chú riêng: mục tiêu, thuật ngữ, lỗi sai, sản phẩm đầu ra."
+      ],
+      "conceptMap": [
+        "Khái niệm trung tâm của 'Mini-project telemetry: dataset, dashboard và nhận xét'.",
+        "Input cần nhận diện: dữ liệu, ký hiệu, biến, điều kiện hoặc tình huống.",
+        "Output cần tạo: kết quả tính toán, code, bảng đánh giá, sơ đồ hoặc câu trả lời học thuật.",
+        "Tiêu chí kiểm tra: đúng logic, giải thích được lý do, có bằng chứng thực hành."
+      ],
+      "studyPlan": [
+        {
+          "session": "Ca 1 · Nắm lõi",
+          "time": "60–90 phút",
+          "work": "Đọc bài nền về Mini-project telemetry: dataset, dashboard và nhận xét, ghi thuật ngữ, viết lại bằng lời của mình.",
+          "evidence": "Ghi chú 7–10 dòng + 5 thuật ngữ chính."
+        },
+        {
+          "session": "Ca 2 · Mô phỏng",
+          "time": "45–75 phút",
+          "work": "Chạy mô phỏng tín hiệu/nhiễu/anomaly hoặc ví dụ tham số để quan sát cơ chế.",
+          "evidence": "Ảnh/chú thích kết quả mô phỏng + nhận xét."
+        },
+        {
+          "session": "Ca 3 · Bài tập",
+          "time": "60–120 phút",
+          "work": "Làm bài tập từ dễ đến trung bình, đánh dấu lỗi sai và nguyên nhân.",
+          "evidence": "notebook phát hiện bất thường có biểu đồ"
+        },
+        {
+          "session": "Ca 4 · Kiểm tra nhỏ",
+          "time": "20–40 phút",
+          "work": "Tự kiểm tra nhanh, đạt ≥ 8/10 mới chuyển module kế tiếp.",
+          "evidence": "Điểm kiểm tra + danh sách mục cần ôn."
+        }
+      ],
+      "practicePlan": [
+        "Bài dễ: nhận diện khái niệm và áp dụng công thức/quy trình trực tiếp.",
+        "Bài trung bình: kết hợp 2–3 kỹ năng, giải thích từng bước.",
+        "Bài khá: xử lý tình huống có nhiễu/lỗi/điều kiện thiếu.",
+        "Bài giỏi: tự thiết kế ví dụ nhỏ hoặc mini-project liên môn."
+      ],
+      "simulationPlan": [
+        "Mô phỏng riêng: quan sát mô phỏng tín hiệu/nhiễu/anomaly với tham số thay đổi.",
+        "Mô phỏng thực hành: nhận nhiệm vụ, chọn cách xử lý, hệ thống phản hồi đúng/sai.",
+        "Ghi lại kết quả mô phỏng để liên hệ với bài tập và kiểm tra."
+      ],
+      "assessmentPlan": {
+        "unlock": "Mức Dễ mở mặc định; Trung bình/Khá/Giỏi mở khi mức trước đạt ≥ 8/10.",
+        "rubric": [
+          "Hiểu khái niệm",
+          "Làm được bài",
+          "Giải thích được lỗi",
+          "Tạo được sản phẩm nhỏ"
+        ],
+        "pass": "Đạt module khi hoàn thành bài học chính, chạy mô phỏng, làm bài tập và kiểm tra ≥ 8/10."
+      },
+      "baumanLinks": [
+        "Liên hệ học phần Bauman/HK: GĐ1 · Chuẩn bị tại Việt Nam.",
+        "Liên hệ luận văn: UGV/USV, telemetry, AI hoặc hệ thống điều khiển tùy môn.",
+        "Liên hệ tiếng Nga: chuẩn bị cách trình bày khái niệm bằng câu ngắn, dễ nói."
+      ],
+      "completionCriteria": [
+        "Đã mở và đọc toàn bộ bài học trong module.",
+        "Đã chạy ít nhất 1 mô phỏng hoặc ví dụ tương tác.",
+        "Đã làm tối thiểu 3 bài tập và ghi lại lỗi sai.",
+        "Đã đạt kiểm tra nhanh ≥ 8/10 hoặc đánh dấu cần ôn."
+      ],
+      "risks": [
+        "Chỉ đọc lý thuyết nhưng không làm bài tập/mô phỏng.",
+        "Không ghi lại lỗi sai nên tuần sau quên điểm yếu.",
+        "Nhảy sang module mới khi chưa đạt tiêu chí ≥ 8/10."
+      ],
+      "nextStep": "Sau khi hoàn thành 'Mini-project telemetry: dataset, dashboard và nhận xét', chuyển sang module tiếp theo trong GĐ1 · Chuẩn bị tại Việt Nam hoặc làm bài kiểm tra mức cao hơn."
+    },
+    {
+      "id": "t_m301",
+      "stage": "m3",
+      "week": "HK3-1",
+      "title": "Phân tích chuỗi thời gian cho dữ liệu kỹ thuật",
+      "goal": "Stationarity, decomposition, ACF/PACF concept.",
+      "hours": 12,
+      "level": "Nâng cao",
+      "lessons": [
+        "t_m301_l1",
+        "t_m301_l2",
+        "t_m301_l3"
+      ],
+      "outputs": [
+        "Ghi chú module 'Phân tích chuỗi thời gian cho dữ liệu kỹ thuật' có định nghĩa, ví dụ, lỗi thường gặp.",
+        "Một sản phẩm thực hành: notebook phát hiện bất thường có biểu đồ.",
+        "Một mục nhật ký học tập: đã học gì, sai gì, cần ôn gì.",
+        "Cập nhật tiến độ module và gửi phản hồi về Main."
+      ],
+      "phaseObjective": "Trong HK3 · Bauman, module này biến chủ đề 'Phân tích chuỗi thời gian cho dữ liệu kỹ thuật' thành năng lực dùng được: hiểu khái niệm, làm bài, chạy mô phỏng và tạo sản phẩm kiểm chứng.",
+      "whyImportant": [
+        "Đây là mắt xích của môn Signal/Telemetry trong lộ trình Bauman, giúp học phần sau không bị hổng nền.",
+        "Nội dung liên quan trực tiếp tới log thời gian, sampling, noise, anomaly, forecast và dashboard.",
+        "Kết quả module được dùng để Main biết nên nhắc ôn, kiểm tra hay chuyển module tiếp theo."
+      ],
+      "prerequisites": [
+        "Đọc lại mục tiêu giai đoạn và các module trước đó trong cùng môn.",
+        "Chuẩn bị công cụ: CSV telemetry, notebook time-series, canvas tín hiệu.",
+        "Tạo file ghi chú riêng: mục tiêu, thuật ngữ, lỗi sai, sản phẩm đầu ra."
+      ],
+      "conceptMap": [
+        "Khái niệm trung tâm của 'Phân tích chuỗi thời gian cho dữ liệu kỹ thuật'.",
+        "Input cần nhận diện: dữ liệu, ký hiệu, biến, điều kiện hoặc tình huống.",
+        "Output cần tạo: kết quả tính toán, code, bảng đánh giá, sơ đồ hoặc câu trả lời học thuật.",
+        "Tiêu chí kiểm tra: đúng logic, giải thích được lý do, có bằng chứng thực hành."
+      ],
+      "studyPlan": [
+        {
+          "session": "Ca 1 · Nắm lõi",
+          "time": "60–90 phút",
+          "work": "Đọc bài nền về Phân tích chuỗi thời gian cho dữ liệu kỹ thuật, ghi thuật ngữ, viết lại bằng lời của mình.",
+          "evidence": "Ghi chú 7–10 dòng + 5 thuật ngữ chính."
+        },
+        {
+          "session": "Ca 2 · Mô phỏng",
+          "time": "45–75 phút",
+          "work": "Chạy mô phỏng tín hiệu/nhiễu/anomaly hoặc ví dụ tham số để quan sát cơ chế.",
+          "evidence": "Ảnh/chú thích kết quả mô phỏng + nhận xét."
+        },
+        {
+          "session": "Ca 3 · Bài tập",
+          "time": "60–120 phút",
+          "work": "Làm bài tập từ dễ đến trung bình, đánh dấu lỗi sai và nguyên nhân.",
+          "evidence": "notebook phát hiện bất thường có biểu đồ"
+        },
+        {
+          "session": "Ca 4 · Kiểm tra nhỏ",
+          "time": "20–40 phút",
+          "work": "Tự kiểm tra nhanh, đạt ≥ 8/10 mới chuyển module kế tiếp.",
+          "evidence": "Điểm kiểm tra + danh sách mục cần ôn."
+        }
+      ],
+      "practicePlan": [
+        "Bài dễ: nhận diện khái niệm và áp dụng công thức/quy trình trực tiếp.",
+        "Bài trung bình: kết hợp 2–3 kỹ năng, giải thích từng bước.",
+        "Bài khá: xử lý tình huống có nhiễu/lỗi/điều kiện thiếu.",
+        "Bài giỏi: tự thiết kế ví dụ nhỏ hoặc mini-project liên môn."
+      ],
+      "simulationPlan": [
+        "Mô phỏng riêng: quan sát mô phỏng tín hiệu/nhiễu/anomaly với tham số thay đổi.",
+        "Mô phỏng thực hành: nhận nhiệm vụ, chọn cách xử lý, hệ thống phản hồi đúng/sai.",
+        "Ghi lại kết quả mô phỏng để liên hệ với bài tập và kiểm tra."
+      ],
+      "assessmentPlan": {
+        "unlock": "Mức Dễ mở mặc định; Trung bình/Khá/Giỏi mở khi mức trước đạt ≥ 8/10.",
+        "rubric": [
+          "Hiểu khái niệm",
+          "Làm được bài",
+          "Giải thích được lỗi",
+          "Tạo được sản phẩm nhỏ"
+        ],
+        "pass": "Đạt module khi hoàn thành bài học chính, chạy mô phỏng, làm bài tập và kiểm tra ≥ 8/10."
+      },
+      "baumanLinks": [
+        "Liên hệ học phần Bauman/HK: HK3 · Bauman.",
+        "Liên hệ luận văn: UGV/USV, telemetry, AI hoặc hệ thống điều khiển tùy môn.",
+        "Liên hệ tiếng Nga: chuẩn bị cách trình bày khái niệm bằng câu ngắn, dễ nói."
+      ],
+      "completionCriteria": [
+        "Đã mở và đọc toàn bộ bài học trong module.",
+        "Đã chạy ít nhất 1 mô phỏng hoặc ví dụ tương tác.",
+        "Đã làm tối thiểu 3 bài tập và ghi lại lỗi sai.",
+        "Đã đạt kiểm tra nhanh ≥ 8/10 hoặc đánh dấu cần ôn."
+      ],
+      "risks": [
+        "Chỉ đọc lý thuyết nhưng không làm bài tập/mô phỏng.",
+        "Không ghi lại lỗi sai nên tuần sau quên điểm yếu.",
+        "Nhảy sang module mới khi chưa đạt tiêu chí ≥ 8/10."
+      ],
+      "nextStep": "Sau khi hoàn thành 'Phân tích chuỗi thời gian cho dữ liệu kỹ thuật', chuyển sang module tiếp theo trong HK3 · Bauman hoặc làm bài kiểm tra mức cao hơn."
+    },
+    {
+      "id": "t_m302",
+      "stage": "m3",
+      "week": "HK3-2",
+      "title": "Kiểm định dự báo và sai số ngoài mẫu",
+      "goal": "Rolling validation, metric table, baseline forecast.",
+      "hours": 10,
+      "level": "Nâng cao",
+      "lessons": [
+        "t_m302_l1",
+        "t_m302_l2",
+        "t_m302_l3"
+      ],
+      "outputs": [
+        "Ghi chú module 'Kiểm định dự báo và sai số ngoài mẫu' có định nghĩa, ví dụ, lỗi thường gặp.",
+        "Một sản phẩm thực hành: notebook phát hiện bất thường có biểu đồ.",
+        "Một mục nhật ký học tập: đã học gì, sai gì, cần ôn gì.",
+        "Cập nhật tiến độ module và gửi phản hồi về Main."
+      ],
+      "phaseObjective": "Trong HK3 · Bauman, module này biến chủ đề 'Kiểm định dự báo và sai số ngoài mẫu' thành năng lực dùng được: hiểu khái niệm, làm bài, chạy mô phỏng và tạo sản phẩm kiểm chứng.",
+      "whyImportant": [
+        "Đây là mắt xích của môn Signal/Telemetry trong lộ trình Bauman, giúp học phần sau không bị hổng nền.",
+        "Nội dung liên quan trực tiếp tới log thời gian, sampling, noise, anomaly, forecast và dashboard.",
+        "Kết quả module được dùng để Main biết nên nhắc ôn, kiểm tra hay chuyển module tiếp theo."
+      ],
+      "prerequisites": [
+        "Đọc lại mục tiêu giai đoạn và các module trước đó trong cùng môn.",
+        "Chuẩn bị công cụ: CSV telemetry, notebook time-series, canvas tín hiệu.",
+        "Tạo file ghi chú riêng: mục tiêu, thuật ngữ, lỗi sai, sản phẩm đầu ra."
+      ],
+      "conceptMap": [
+        "Khái niệm trung tâm của 'Kiểm định dự báo và sai số ngoài mẫu'.",
+        "Input cần nhận diện: dữ liệu, ký hiệu, biến, điều kiện hoặc tình huống.",
+        "Output cần tạo: kết quả tính toán, code, bảng đánh giá, sơ đồ hoặc câu trả lời học thuật.",
+        "Tiêu chí kiểm tra: đúng logic, giải thích được lý do, có bằng chứng thực hành."
+      ],
+      "studyPlan": [
+        {
+          "session": "Ca 1 · Nắm lõi",
+          "time": "60–90 phút",
+          "work": "Đọc bài nền về Kiểm định dự báo và sai số ngoài mẫu, ghi thuật ngữ, viết lại bằng lời của mình.",
+          "evidence": "Ghi chú 7–10 dòng + 5 thuật ngữ chính."
+        },
+        {
+          "session": "Ca 2 · Mô phỏng",
+          "time": "45–75 phút",
+          "work": "Chạy mô phỏng tín hiệu/nhiễu/anomaly hoặc ví dụ tham số để quan sát cơ chế.",
+          "evidence": "Ảnh/chú thích kết quả mô phỏng + nhận xét."
+        },
+        {
+          "session": "Ca 3 · Bài tập",
+          "time": "60–120 phút",
+          "work": "Làm bài tập từ dễ đến trung bình, đánh dấu lỗi sai và nguyên nhân.",
+          "evidence": "notebook phát hiện bất thường có biểu đồ"
+        },
+        {
+          "session": "Ca 4 · Kiểm tra nhỏ",
+          "time": "20–40 phút",
+          "work": "Tự kiểm tra nhanh, đạt ≥ 8/10 mới chuyển module kế tiếp.",
+          "evidence": "Điểm kiểm tra + danh sách mục cần ôn."
+        }
+      ],
+      "practicePlan": [
+        "Bài dễ: nhận diện khái niệm và áp dụng công thức/quy trình trực tiếp.",
+        "Bài trung bình: kết hợp 2–3 kỹ năng, giải thích từng bước.",
+        "Bài khá: xử lý tình huống có nhiễu/lỗi/điều kiện thiếu.",
+        "Bài giỏi: tự thiết kế ví dụ nhỏ hoặc mini-project liên môn."
+      ],
+      "simulationPlan": [
+        "Mô phỏng riêng: quan sát mô phỏng tín hiệu/nhiễu/anomaly với tham số thay đổi.",
+        "Mô phỏng thực hành: nhận nhiệm vụ, chọn cách xử lý, hệ thống phản hồi đúng/sai.",
+        "Ghi lại kết quả mô phỏng để liên hệ với bài tập và kiểm tra."
+      ],
+      "assessmentPlan": {
+        "unlock": "Mức Dễ mở mặc định; Trung bình/Khá/Giỏi mở khi mức trước đạt ≥ 8/10.",
+        "rubric": [
+          "Hiểu khái niệm",
+          "Làm được bài",
+          "Giải thích được lỗi",
+          "Tạo được sản phẩm nhỏ"
+        ],
+        "pass": "Đạt module khi hoàn thành bài học chính, chạy mô phỏng, làm bài tập và kiểm tra ≥ 8/10."
+      },
+      "baumanLinks": [
+        "Liên hệ học phần Bauman/HK: HK3 · Bauman.",
+        "Liên hệ luận văn: UGV/USV, telemetry, AI hoặc hệ thống điều khiển tùy môn.",
+        "Liên hệ tiếng Nga: chuẩn bị cách trình bày khái niệm bằng câu ngắn, dễ nói."
+      ],
+      "completionCriteria": [
+        "Đã mở và đọc toàn bộ bài học trong module.",
+        "Đã chạy ít nhất 1 mô phỏng hoặc ví dụ tương tác.",
+        "Đã làm tối thiểu 3 bài tập và ghi lại lỗi sai.",
+        "Đã đạt kiểm tra nhanh ≥ 8/10 hoặc đánh dấu cần ôn."
+      ],
+      "risks": [
+        "Chỉ đọc lý thuyết nhưng không làm bài tập/mô phỏng.",
+        "Không ghi lại lỗi sai nên tuần sau quên điểm yếu.",
+        "Nhảy sang module mới khi chưa đạt tiêu chí ≥ 8/10."
+      ],
+      "nextStep": "Sau khi hoàn thành 'Kiểm định dự báo và sai số ngoài mẫu', chuyển sang module tiếp theo trong HK3 · Bauman hoặc làm bài kiểm tra mức cao hơn."
+    },
+    {
+      "id": "t_m303",
+      "stage": "m3",
+      "week": "HK3-3",
+      "title": "Quy trình thực nghiệm telemetry",
+      "goal": "Experiment ID, sensor setup, repeatability, data sheet.",
+      "hours": 10,
+      "level": "Nâng cao",
+      "lessons": [
+        "t_m303_l1",
+        "t_m303_l2",
+        "t_m303_l3"
+      ],
+      "outputs": [
+        "Ghi chú module 'Quy trình thực nghiệm telemetry' có định nghĩa, ví dụ, lỗi thường gặp.",
+        "Một sản phẩm thực hành: notebook phát hiện bất thường có biểu đồ.",
+        "Một mục nhật ký học tập: đã học gì, sai gì, cần ôn gì.",
+        "Cập nhật tiến độ module và gửi phản hồi về Main."
+      ],
+      "phaseObjective": "Trong HK3 · Bauman, module này biến chủ đề 'Quy trình thực nghiệm telemetry' thành năng lực dùng được: hiểu khái niệm, làm bài, chạy mô phỏng và tạo sản phẩm kiểm chứng.",
+      "whyImportant": [
+        "Đây là mắt xích của môn Signal/Telemetry trong lộ trình Bauman, giúp học phần sau không bị hổng nền.",
+        "Nội dung liên quan trực tiếp tới log thời gian, sampling, noise, anomaly, forecast và dashboard.",
+        "Kết quả module được dùng để Main biết nên nhắc ôn, kiểm tra hay chuyển module tiếp theo."
+      ],
+      "prerequisites": [
+        "Đọc lại mục tiêu giai đoạn và các module trước đó trong cùng môn.",
+        "Chuẩn bị công cụ: CSV telemetry, notebook time-series, canvas tín hiệu.",
+        "Tạo file ghi chú riêng: mục tiêu, thuật ngữ, lỗi sai, sản phẩm đầu ra."
+      ],
+      "conceptMap": [
+        "Khái niệm trung tâm của 'Quy trình thực nghiệm telemetry'.",
+        "Input cần nhận diện: dữ liệu, ký hiệu, biến, điều kiện hoặc tình huống.",
+        "Output cần tạo: kết quả tính toán, code, bảng đánh giá, sơ đồ hoặc câu trả lời học thuật.",
+        "Tiêu chí kiểm tra: đúng logic, giải thích được lý do, có bằng chứng thực hành."
+      ],
+      "studyPlan": [
+        {
+          "session": "Ca 1 · Nắm lõi",
+          "time": "60–90 phút",
+          "work": "Đọc bài nền về Quy trình thực nghiệm telemetry, ghi thuật ngữ, viết lại bằng lời của mình.",
+          "evidence": "Ghi chú 7–10 dòng + 5 thuật ngữ chính."
+        },
+        {
+          "session": "Ca 2 · Mô phỏng",
+          "time": "45–75 phút",
+          "work": "Chạy mô phỏng tín hiệu/nhiễu/anomaly hoặc ví dụ tham số để quan sát cơ chế.",
+          "evidence": "Ảnh/chú thích kết quả mô phỏng + nhận xét."
+        },
+        {
+          "session": "Ca 3 · Bài tập",
+          "time": "60–120 phút",
+          "work": "Làm bài tập từ dễ đến trung bình, đánh dấu lỗi sai và nguyên nhân.",
+          "evidence": "notebook phát hiện bất thường có biểu đồ"
+        },
+        {
+          "session": "Ca 4 · Kiểm tra nhỏ",
+          "time": "20–40 phút",
+          "work": "Tự kiểm tra nhanh, đạt ≥ 8/10 mới chuyển module kế tiếp.",
+          "evidence": "Điểm kiểm tra + danh sách mục cần ôn."
+        }
+      ],
+      "practicePlan": [
+        "Bài dễ: nhận diện khái niệm và áp dụng công thức/quy trình trực tiếp.",
+        "Bài trung bình: kết hợp 2–3 kỹ năng, giải thích từng bước.",
+        "Bài khá: xử lý tình huống có nhiễu/lỗi/điều kiện thiếu.",
+        "Bài giỏi: tự thiết kế ví dụ nhỏ hoặc mini-project liên môn."
+      ],
+      "simulationPlan": [
+        "Mô phỏng riêng: quan sát mô phỏng tín hiệu/nhiễu/anomaly với tham số thay đổi.",
+        "Mô phỏng thực hành: nhận nhiệm vụ, chọn cách xử lý, hệ thống phản hồi đúng/sai.",
+        "Ghi lại kết quả mô phỏng để liên hệ với bài tập và kiểm tra."
+      ],
+      "assessmentPlan": {
+        "unlock": "Mức Dễ mở mặc định; Trung bình/Khá/Giỏi mở khi mức trước đạt ≥ 8/10.",
+        "rubric": [
+          "Hiểu khái niệm",
+          "Làm được bài",
+          "Giải thích được lỗi",
+          "Tạo được sản phẩm nhỏ"
+        ],
+        "pass": "Đạt module khi hoàn thành bài học chính, chạy mô phỏng, làm bài tập và kiểm tra ≥ 8/10."
+      },
+      "baumanLinks": [
+        "Liên hệ học phần Bauman/HK: HK3 · Bauman.",
+        "Liên hệ luận văn: UGV/USV, telemetry, AI hoặc hệ thống điều khiển tùy môn.",
+        "Liên hệ tiếng Nga: chuẩn bị cách trình bày khái niệm bằng câu ngắn, dễ nói."
+      ],
+      "completionCriteria": [
+        "Đã mở và đọc toàn bộ bài học trong module.",
+        "Đã chạy ít nhất 1 mô phỏng hoặc ví dụ tương tác.",
+        "Đã làm tối thiểu 3 bài tập và ghi lại lỗi sai.",
+        "Đã đạt kiểm tra nhanh ≥ 8/10 hoặc đánh dấu cần ôn."
+      ],
+      "risks": [
+        "Chỉ đọc lý thuyết nhưng không làm bài tập/mô phỏng.",
+        "Không ghi lại lỗi sai nên tuần sau quên điểm yếu.",
+        "Nhảy sang module mới khi chưa đạt tiêu chí ≥ 8/10."
+      ],
+      "nextStep": "Sau khi hoàn thành 'Quy trình thực nghiệm telemetry', chuyển sang module tiếp theo trong HK3 · Bauman hoặc làm bài kiểm tra mức cao hơn."
+    },
+    {
+      "id": "t_m304",
+      "stage": "m3",
+      "week": "HK3-4",
+      "title": "Phát hiện bất thường phục vụ luận văn",
+      "goal": "Threshold/model-based anomaly, evaluation and visualization.",
+      "hours": 12,
+      "level": "Nâng cao",
+      "lessons": [
+        "t_m304_l1",
+        "t_m304_l2",
+        "t_m304_l3"
+      ],
+      "outputs": [
+        "Ghi chú module 'Phát hiện bất thường phục vụ luận văn' có định nghĩa, ví dụ, lỗi thường gặp.",
+        "Một sản phẩm thực hành: notebook phát hiện bất thường có biểu đồ.",
+        "Một mục nhật ký học tập: đã học gì, sai gì, cần ôn gì.",
+        "Cập nhật tiến độ module và gửi phản hồi về Main."
+      ],
+      "phaseObjective": "Trong HK3 · Bauman, module này biến chủ đề 'Phát hiện bất thường phục vụ luận văn' thành năng lực dùng được: hiểu khái niệm, làm bài, chạy mô phỏng và tạo sản phẩm kiểm chứng.",
+      "whyImportant": [
+        "Đây là mắt xích của môn Signal/Telemetry trong lộ trình Bauman, giúp học phần sau không bị hổng nền.",
+        "Nội dung liên quan trực tiếp tới log thời gian, sampling, noise, anomaly, forecast và dashboard.",
+        "Kết quả module được dùng để Main biết nên nhắc ôn, kiểm tra hay chuyển module tiếp theo."
+      ],
+      "prerequisites": [
+        "Đọc lại mục tiêu giai đoạn và các module trước đó trong cùng môn.",
+        "Chuẩn bị công cụ: CSV telemetry, notebook time-series, canvas tín hiệu.",
+        "Tạo file ghi chú riêng: mục tiêu, thuật ngữ, lỗi sai, sản phẩm đầu ra."
+      ],
+      "conceptMap": [
+        "Khái niệm trung tâm của 'Phát hiện bất thường phục vụ luận văn'.",
+        "Input cần nhận diện: dữ liệu, ký hiệu, biến, điều kiện hoặc tình huống.",
+        "Output cần tạo: kết quả tính toán, code, bảng đánh giá, sơ đồ hoặc câu trả lời học thuật.",
+        "Tiêu chí kiểm tra: đúng logic, giải thích được lý do, có bằng chứng thực hành."
+      ],
+      "studyPlan": [
+        {
+          "session": "Ca 1 · Nắm lõi",
+          "time": "60–90 phút",
+          "work": "Đọc bài nền về Phát hiện bất thường phục vụ luận văn, ghi thuật ngữ, viết lại bằng lời của mình.",
+          "evidence": "Ghi chú 7–10 dòng + 5 thuật ngữ chính."
+        },
+        {
+          "session": "Ca 2 · Mô phỏng",
+          "time": "45–75 phút",
+          "work": "Chạy mô phỏng tín hiệu/nhiễu/anomaly hoặc ví dụ tham số để quan sát cơ chế.",
+          "evidence": "Ảnh/chú thích kết quả mô phỏng + nhận xét."
+        },
+        {
+          "session": "Ca 3 · Bài tập",
+          "time": "60–120 phút",
+          "work": "Làm bài tập từ dễ đến trung bình, đánh dấu lỗi sai và nguyên nhân.",
+          "evidence": "notebook phát hiện bất thường có biểu đồ"
+        },
+        {
+          "session": "Ca 4 · Kiểm tra nhỏ",
+          "time": "20–40 phút",
+          "work": "Tự kiểm tra nhanh, đạt ≥ 8/10 mới chuyển module kế tiếp.",
+          "evidence": "Điểm kiểm tra + danh sách mục cần ôn."
+        }
+      ],
+      "practicePlan": [
+        "Bài dễ: nhận diện khái niệm và áp dụng công thức/quy trình trực tiếp.",
+        "Bài trung bình: kết hợp 2–3 kỹ năng, giải thích từng bước.",
+        "Bài khá: xử lý tình huống có nhiễu/lỗi/điều kiện thiếu.",
+        "Bài giỏi: tự thiết kế ví dụ nhỏ hoặc mini-project liên môn."
+      ],
+      "simulationPlan": [
+        "Mô phỏng riêng: quan sát mô phỏng tín hiệu/nhiễu/anomaly với tham số thay đổi.",
+        "Mô phỏng thực hành: nhận nhiệm vụ, chọn cách xử lý, hệ thống phản hồi đúng/sai.",
+        "Ghi lại kết quả mô phỏng để liên hệ với bài tập và kiểm tra."
+      ],
+      "assessmentPlan": {
+        "unlock": "Mức Dễ mở mặc định; Trung bình/Khá/Giỏi mở khi mức trước đạt ≥ 8/10.",
+        "rubric": [
+          "Hiểu khái niệm",
+          "Làm được bài",
+          "Giải thích được lỗi",
+          "Tạo được sản phẩm nhỏ"
+        ],
+        "pass": "Đạt module khi hoàn thành bài học chính, chạy mô phỏng, làm bài tập và kiểm tra ≥ 8/10."
+      },
+      "baumanLinks": [
+        "Liên hệ học phần Bauman/HK: HK3 · Bauman.",
+        "Liên hệ luận văn: UGV/USV, telemetry, AI hoặc hệ thống điều khiển tùy môn.",
+        "Liên hệ tiếng Nga: chuẩn bị cách trình bày khái niệm bằng câu ngắn, dễ nói."
+      ],
+      "completionCriteria": [
+        "Đã mở và đọc toàn bộ bài học trong module.",
+        "Đã chạy ít nhất 1 mô phỏng hoặc ví dụ tương tác.",
+        "Đã làm tối thiểu 3 bài tập và ghi lại lỗi sai.",
+        "Đã đạt kiểm tra nhanh ≥ 8/10 hoặc đánh dấu cần ôn."
+      ],
+      "risks": [
+        "Chỉ đọc lý thuyết nhưng không làm bài tập/mô phỏng.",
+        "Không ghi lại lỗi sai nên tuần sau quên điểm yếu.",
+        "Nhảy sang module mới khi chưa đạt tiêu chí ≥ 8/10."
+      ],
+      "nextStep": "Sau khi hoàn thành 'Phát hiện bất thường phục vụ luận văn', chuyển sang module tiếp theo trong HK3 · Bauman hoặc làm bài kiểm tra mức cao hơn."
+    },
+    {
+      "id": "t_m401",
+      "stage": "m4",
+      "week": "HK4-1",
+      "title": "Khóa dataset cho ВКР: phiên bản, metadata và rủi ro",
+      "goal": "Lock data, version, hash, metadata, final plots.",
+      "hours": 8,
+      "level": "Nâng cao",
+      "lessons": [
+        "t_m401_l1",
+        "t_m401_l2",
+        "t_m401_l3"
+      ],
+      "outputs": [
+        "Ghi chú module 'Khóa dataset cho ВКР: phiên bản, metadata và rủi ro' có định nghĩa, ví dụ, lỗi thường gặp.",
+        "Một sản phẩm thực hành: notebook phát hiện bất thường có biểu đồ.",
+        "Một mục nhật ký học tập: đã học gì, sai gì, cần ôn gì.",
+        "Cập nhật tiến độ module và gửi phản hồi về Main."
+      ],
+      "phaseObjective": "Trong HK4 · Tốt nghiệp, module này biến chủ đề 'Khóa dataset cho ВКР: phiên bản, metadata và rủi ro' thành năng lực dùng được: hiểu khái niệm, làm bài, chạy mô phỏng và tạo sản phẩm kiểm chứng.",
+      "whyImportant": [
+        "Đây là mắt xích của môn Signal/Telemetry trong lộ trình Bauman, giúp học phần sau không bị hổng nền.",
+        "Nội dung liên quan trực tiếp tới log thời gian, sampling, noise, anomaly, forecast và dashboard.",
+        "Kết quả module được dùng để Main biết nên nhắc ôn, kiểm tra hay chuyển module tiếp theo."
+      ],
+      "prerequisites": [
+        "Đọc lại mục tiêu giai đoạn và các module trước đó trong cùng môn.",
+        "Chuẩn bị công cụ: CSV telemetry, notebook time-series, canvas tín hiệu.",
+        "Tạo file ghi chú riêng: mục tiêu, thuật ngữ, lỗi sai, sản phẩm đầu ra."
+      ],
+      "conceptMap": [
+        "Khái niệm trung tâm của 'Khóa dataset cho ВКР: phiên bản, metadata và rủi ro'.",
+        "Input cần nhận diện: dữ liệu, ký hiệu, biến, điều kiện hoặc tình huống.",
+        "Output cần tạo: kết quả tính toán, code, bảng đánh giá, sơ đồ hoặc câu trả lời học thuật.",
+        "Tiêu chí kiểm tra: đúng logic, giải thích được lý do, có bằng chứng thực hành."
+      ],
+      "studyPlan": [
+        {
+          "session": "Ca 1 · Nắm lõi",
+          "time": "60–90 phút",
+          "work": "Đọc bài nền về Khóa dataset cho ВКР: phiên bản, metadata và rủi ro, ghi thuật ngữ, viết lại bằng lời của mình.",
+          "evidence": "Ghi chú 7–10 dòng + 5 thuật ngữ chính."
+        },
+        {
+          "session": "Ca 2 · Mô phỏng",
+          "time": "45–75 phút",
+          "work": "Chạy mô phỏng tín hiệu/nhiễu/anomaly hoặc ví dụ tham số để quan sát cơ chế.",
+          "evidence": "Ảnh/chú thích kết quả mô phỏng + nhận xét."
+        },
+        {
+          "session": "Ca 3 · Bài tập",
+          "time": "60–120 phút",
+          "work": "Làm bài tập từ dễ đến trung bình, đánh dấu lỗi sai và nguyên nhân.",
+          "evidence": "notebook phát hiện bất thường có biểu đồ"
+        },
+        {
+          "session": "Ca 4 · Kiểm tra nhỏ",
+          "time": "20–40 phút",
+          "work": "Tự kiểm tra nhanh, đạt ≥ 8/10 mới chuyển module kế tiếp.",
+          "evidence": "Điểm kiểm tra + danh sách mục cần ôn."
+        }
+      ],
+      "practicePlan": [
+        "Bài dễ: nhận diện khái niệm và áp dụng công thức/quy trình trực tiếp.",
+        "Bài trung bình: kết hợp 2–3 kỹ năng, giải thích từng bước.",
+        "Bài khá: xử lý tình huống có nhiễu/lỗi/điều kiện thiếu.",
+        "Bài giỏi: tự thiết kế ví dụ nhỏ hoặc mini-project liên môn."
+      ],
+      "simulationPlan": [
+        "Mô phỏng riêng: quan sát mô phỏng tín hiệu/nhiễu/anomaly với tham số thay đổi.",
+        "Mô phỏng thực hành: nhận nhiệm vụ, chọn cách xử lý, hệ thống phản hồi đúng/sai.",
+        "Ghi lại kết quả mô phỏng để liên hệ với bài tập và kiểm tra."
+      ],
+      "assessmentPlan": {
+        "unlock": "Mức Dễ mở mặc định; Trung bình/Khá/Giỏi mở khi mức trước đạt ≥ 8/10.",
+        "rubric": [
+          "Hiểu khái niệm",
+          "Làm được bài",
+          "Giải thích được lỗi",
+          "Tạo được sản phẩm nhỏ"
+        ],
+        "pass": "Đạt module khi hoàn thành bài học chính, chạy mô phỏng, làm bài tập và kiểm tra ≥ 8/10."
+      },
+      "baumanLinks": [
+        "Liên hệ học phần Bauman/HK: HK4 · Tốt nghiệp.",
+        "Liên hệ luận văn: UGV/USV, telemetry, AI hoặc hệ thống điều khiển tùy môn.",
+        "Liên hệ tiếng Nga: chuẩn bị cách trình bày khái niệm bằng câu ngắn, dễ nói."
+      ],
+      "completionCriteria": [
+        "Đã mở và đọc toàn bộ bài học trong module.",
+        "Đã chạy ít nhất 1 mô phỏng hoặc ví dụ tương tác.",
+        "Đã làm tối thiểu 3 bài tập và ghi lại lỗi sai.",
+        "Đã đạt kiểm tra nhanh ≥ 8/10 hoặc đánh dấu cần ôn."
+      ],
+      "risks": [
+        "Chỉ đọc lý thuyết nhưng không làm bài tập/mô phỏng.",
+        "Không ghi lại lỗi sai nên tuần sau quên điểm yếu.",
+        "Nhảy sang module mới khi chưa đạt tiêu chí ≥ 8/10."
+      ],
+      "nextStep": "Sau khi hoàn thành 'Khóa dataset cho ВКР: phiên bản, metadata và rủi ro', chuyển sang module tiếp theo trong HK4 · Tốt nghiệp hoặc làm bài kiểm tra mức cao hơn."
+    },
+    {
+      "id": "t_m402",
+      "stage": "m4",
+      "week": "HK4-2",
+      "title": "Bảng kết quả và hình minh họa bảo vệ",
+      "goal": "Make final figures, tables, appendix and reproducibility notes.",
+      "hours": 8,
+      "level": "Nâng cao",
+      "lessons": [
+        "t_m402_l1",
+        "t_m402_l2",
+        "t_m402_l3"
+      ],
+      "outputs": [
+        "Ghi chú module 'Bảng kết quả và hình minh họa bảo vệ' có định nghĩa, ví dụ, lỗi thường gặp.",
+        "Một sản phẩm thực hành: notebook phát hiện bất thường có biểu đồ.",
+        "Một mục nhật ký học tập: đã học gì, sai gì, cần ôn gì.",
+        "Cập nhật tiến độ module và gửi phản hồi về Main."
+      ],
+      "phaseObjective": "Trong HK4 · Tốt nghiệp, module này biến chủ đề 'Bảng kết quả và hình minh họa bảo vệ' thành năng lực dùng được: hiểu khái niệm, làm bài, chạy mô phỏng và tạo sản phẩm kiểm chứng.",
+      "whyImportant": [
+        "Đây là mắt xích của môn Signal/Telemetry trong lộ trình Bauman, giúp học phần sau không bị hổng nền.",
+        "Nội dung liên quan trực tiếp tới log thời gian, sampling, noise, anomaly, forecast và dashboard.",
+        "Kết quả module được dùng để Main biết nên nhắc ôn, kiểm tra hay chuyển module tiếp theo."
+      ],
+      "prerequisites": [
+        "Đọc lại mục tiêu giai đoạn và các module trước đó trong cùng môn.",
+        "Chuẩn bị công cụ: CSV telemetry, notebook time-series, canvas tín hiệu.",
+        "Tạo file ghi chú riêng: mục tiêu, thuật ngữ, lỗi sai, sản phẩm đầu ra."
+      ],
+      "conceptMap": [
+        "Khái niệm trung tâm của 'Bảng kết quả và hình minh họa bảo vệ'.",
+        "Input cần nhận diện: dữ liệu, ký hiệu, biến, điều kiện hoặc tình huống.",
+        "Output cần tạo: kết quả tính toán, code, bảng đánh giá, sơ đồ hoặc câu trả lời học thuật.",
+        "Tiêu chí kiểm tra: đúng logic, giải thích được lý do, có bằng chứng thực hành."
+      ],
+      "studyPlan": [
+        {
+          "session": "Ca 1 · Nắm lõi",
+          "time": "60–90 phút",
+          "work": "Đọc bài nền về Bảng kết quả và hình minh họa bảo vệ, ghi thuật ngữ, viết lại bằng lời của mình.",
+          "evidence": "Ghi chú 7–10 dòng + 5 thuật ngữ chính."
+        },
+        {
+          "session": "Ca 2 · Mô phỏng",
+          "time": "45–75 phút",
+          "work": "Chạy mô phỏng tín hiệu/nhiễu/anomaly hoặc ví dụ tham số để quan sát cơ chế.",
+          "evidence": "Ảnh/chú thích kết quả mô phỏng + nhận xét."
+        },
+        {
+          "session": "Ca 3 · Bài tập",
+          "time": "60–120 phút",
+          "work": "Làm bài tập từ dễ đến trung bình, đánh dấu lỗi sai và nguyên nhân.",
+          "evidence": "notebook phát hiện bất thường có biểu đồ"
+        },
+        {
+          "session": "Ca 4 · Kiểm tra nhỏ",
+          "time": "20–40 phút",
+          "work": "Tự kiểm tra nhanh, đạt ≥ 8/10 mới chuyển module kế tiếp.",
+          "evidence": "Điểm kiểm tra + danh sách mục cần ôn."
+        }
+      ],
+      "practicePlan": [
+        "Bài dễ: nhận diện khái niệm và áp dụng công thức/quy trình trực tiếp.",
+        "Bài trung bình: kết hợp 2–3 kỹ năng, giải thích từng bước.",
+        "Bài khá: xử lý tình huống có nhiễu/lỗi/điều kiện thiếu.",
+        "Bài giỏi: tự thiết kế ví dụ nhỏ hoặc mini-project liên môn."
+      ],
+      "simulationPlan": [
+        "Mô phỏng riêng: quan sát mô phỏng tín hiệu/nhiễu/anomaly với tham số thay đổi.",
+        "Mô phỏng thực hành: nhận nhiệm vụ, chọn cách xử lý, hệ thống phản hồi đúng/sai.",
+        "Ghi lại kết quả mô phỏng để liên hệ với bài tập và kiểm tra."
+      ],
+      "assessmentPlan": {
+        "unlock": "Mức Dễ mở mặc định; Trung bình/Khá/Giỏi mở khi mức trước đạt ≥ 8/10.",
+        "rubric": [
+          "Hiểu khái niệm",
+          "Làm được bài",
+          "Giải thích được lỗi",
+          "Tạo được sản phẩm nhỏ"
+        ],
+        "pass": "Đạt module khi hoàn thành bài học chính, chạy mô phỏng, làm bài tập và kiểm tra ≥ 8/10."
+      },
+      "baumanLinks": [
+        "Liên hệ học phần Bauman/HK: HK4 · Tốt nghiệp.",
+        "Liên hệ luận văn: UGV/USV, telemetry, AI hoặc hệ thống điều khiển tùy môn.",
+        "Liên hệ tiếng Nga: chuẩn bị cách trình bày khái niệm bằng câu ngắn, dễ nói."
+      ],
+      "completionCriteria": [
+        "Đã mở và đọc toàn bộ bài học trong module.",
+        "Đã chạy ít nhất 1 mô phỏng hoặc ví dụ tương tác.",
+        "Đã làm tối thiểu 3 bài tập và ghi lại lỗi sai.",
+        "Đã đạt kiểm tra nhanh ≥ 8/10 hoặc đánh dấu cần ôn."
+      ],
+      "risks": [
+        "Chỉ đọc lý thuyết nhưng không làm bài tập/mô phỏng.",
+        "Không ghi lại lỗi sai nên tuần sau quên điểm yếu.",
+        "Nhảy sang module mới khi chưa đạt tiêu chí ≥ 8/10."
+      ],
+      "nextStep": "Sau khi hoàn thành 'Bảng kết quả và hình minh họa bảo vệ', chuyển sang module tiếp theo trong HK4 · Tốt nghiệp hoặc làm bài kiểm tra mức cao hơn."
+    }
+  ]
+}

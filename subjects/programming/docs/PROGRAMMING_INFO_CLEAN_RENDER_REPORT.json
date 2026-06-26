@@ -1,0 +1,31 @@
+{
+  "package": "Programming INFO Clean Render",
+  "basedOn": "A3 Programming Clean_NoMeta + fixed Math INFO renderer policy",
+  "actions": [
+    "Moved visible lesson tags/keywords to _internalMetaForSearchOnly: 48",
+    "Moved knowledge-index keywords to _internalMetaForSearchOnly: 48"
+  ],
+  "validation": {
+    "jsonErrors": [],
+    "grep_vocabulary_seed_ru": {
+      "count": 1,
+      "files": [
+        "subjects/programming/assets/core.js"
+      ]
+    },
+    "renderRelatedConceptsCallCount": 1,
+    "coreJsSha256": "ede60044550191268a5f4923d8d99d40ecb4c5cb4524ed2ccbff1a9b3922f925",
+    "nodeCheckCoreJs": {
+      "returncode": 0,
+      "stderr": ""
+    },
+    "visibleKeywordLabel_1": {
+      "count": 0,
+      "files": []
+    },
+    "visibleKeywordLabel_2": {
+      "count": 0,
+      "files": []
+    }
+  }
+}

@@ -1,0 +1,35 @@
+{
+  "checkpoint": "E55_GLOBAL_QA_REGRESSION_CHECKPOINT_TEST_SNAPSHOT",
+  "notFinal": true,
+  "source": "E54_SIM_FORMULA_DEEP_REBUILD",
+  "summary": "Global QA/regression pass after rebuilding theory, exercises, QA, applications, simulations, formulas and deep formulas.",
+  "actions": [
+    "Sorted all major learning datasets by chapter and lesson order.",
+    "Normalized chapter/lesson/slide labels to prevent repeated prefixes.",
+    "Locked summary policy: only final slide can carry final summary.",
+    "Validated exercises, QA answers, theory-dependent applications, visual simulations and formula/deep-formula metadata.",
+    "Added runtime E55 guard to clean duplicated labels if old renderer tries to reintroduce them."
+  ],
+  "counts": {
+    "lessons": 260,
+    "chapters": 32,
+    "exercises": 1040,
+    "exercise_lessons_with_4_levels": 260,
+    "qa": 260,
+    "qa_missing_answer": 0,
+    "applications": 520,
+    "apps_not_theory": 0,
+    "simulations": 520,
+    "sim_unique_keys": 520,
+    "formulas": 678,
+    "formulas_missing_e55": 0,
+    "non_last_summary": 0,
+    "last_missing_summary": 0,
+    "object_object_literals": 0,
+    "duplicate_chapter_labels_in_data": 0,
+    "duplicate_lesson_labels_in_data": 0
+  },
+  "jsonErrors": [],
+  "jsErrors": [],
+  "pass": true
+}

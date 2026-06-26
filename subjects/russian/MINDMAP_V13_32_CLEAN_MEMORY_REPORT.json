@@ -1,0 +1,11 @@
+{
+  "version": "V13_32_Clean_Memory_Mindmap",
+  "changes": [
+    "Removed decorative glowing blobs/circles",
+    "Reset old broken drag offsets once via layout version",
+    "Rebuilt lane layout with larger margins and content-aware node heights",
+    "Frames grow with font while widths stay inside canvas",
+    "Added active/hover memory hooks, deeper route-aware mind map content",
+    "Kept draggable persistence until refresh"
+  ]
+}

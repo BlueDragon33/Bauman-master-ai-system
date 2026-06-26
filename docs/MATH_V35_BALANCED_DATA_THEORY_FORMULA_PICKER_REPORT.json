@@ -1,0 +1,11 @@
+{
+  "version": "V35",
+  "title": "Balanced Data/Theory UX and Formula Picker Modal",
+  "changes": [
+    "Rebalanced Tab Ly thuyet sidebar/content grid; chapter tree no longer squeezes main content.",
+    "Rebuilt Tab Du lieu layout with safer single-column source selector header to stop vertical text squeezing.",
+    "Changed Tab Cong thuc and Cong thuc sau from inline chapter tree to a dedicated 'Chon chuong' modal picker.",
+    "Added responsive fallbacks for narrow screens.",
+    "Patched formula and grammar selection to close picker modal after choosing an item."
+  ]
+}

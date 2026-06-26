@@ -1,0 +1,206 @@
+{
+  "id": "bauman_programming_roadmap_v1",
+  "title": "Python, CSDL và kỹ nghệ phần mềm Bauman · lộ trình từ nền tảng đến ВКР",
+  "target": "Lập trình, dữ liệu, repo, kiểm thử, pipeline ML và phần mềm nghiên cứu cho AI/АСОИУ.",
+  "outcomes": [
+    "Có nền Python, SQL, Git, notebook và kiểm thử đủ để tự học AI/dữ liệu.",
+    "Biết biến ý tưởng thành repo có cấu trúc, pipeline, artifact, log và tài liệu.",
+    "Đóng gói được demo và mã nguồn phục vụ НИР/ВКР, có thể chạy lại và bảo vệ."
+  ],
+  "principles": [
+    "Code phải chạy được, đọc được và chạy lại được.",
+    "Mỗi bài có input, output, test, lỗi thường gặp và artifact rõ ràng.",
+    "Không nhồi framework; ưu tiên nền tảng, repo sạch, dữ liệu sạch và metric sạch.",
+    "Bám lộ trình Main: Python/SQL/Git → thuật ngữ dự bị → OOP/CSDL/Kỹ nghệ → НИР/ВКР."
+  ],
+  "stages": [
+    {
+      "id": "vn",
+      "short": "GĐ1",
+      "title": "GĐ1 · Việt Nam: Python, SQL, Git và notebook thực nghiệm",
+      "period": "06/2026 – 10/2026",
+      "target": "Dựng nền Python, SQL, Git và notebook tái lập để tự học AI/dữ liệu trước khi vào dự bị.",
+      "goal": "Tạo repo học tập có notebook, dữ liệu mẫu, README, lịch commit và khả năng giải bài bằng code sạch.",
+      "days": 150,
+      "outcomes": [
+        "Viết được mã có mục tiêu, input/output rõ và có kiểm thử tối thiểu.",
+        "Quản lý dữ liệu, phiên bản, notebook và báo cáo theo hướng tái lập.",
+        "Giải thích được thiết kế phần mềm bằng Việt - Nga - Anh khi học ở Bauman."
+      ],
+      "focusBlocks": [
+        "Lý thuyết: khái niệm, thuật ngữ, cấu trúc dữ liệu, luồng xử lý và giới hạn.",
+        "Thực hành: code nhỏ, test nhỏ, commit rõ, ghi lỗi sai vào sổ lỗi.",
+        "Ứng dụng: repo, pipeline dữ liệu, demo, tài liệu và liên hệ UGV/USV/НИР/ВКР."
+      ],
+      "weeklyRhythm": [
+        "Buổi 1: đọc yêu cầu, thiết kế input/output và viết pseudocode.",
+        "Buổi 2: code phần lõi, chạy test, sửa lỗi logic.",
+        "Buổi 3: ghi README, commit, xuất artifact hoặc mini-report.",
+        "Cuối tuần: refactor nhẹ, làm kiểm tra 20 câu, cập nhật tiến độ về Main."
+      ]
+    },
+    {
+      "id": "prep",
+      "short": "GĐ2",
+      "title": "GĐ2 · Dự bị Nga/STANKIN: tin học, thuật ngữ và repo song ngữ",
+      "period": "11/2026 – 08/2027",
+      "target": "Giữ nhịp lập trình nhẹ, chuyển thuật ngữ tin học sang tiếng Nga, quản lý bài tập/lab bằng Git.",
+      "goal": "Không để mất kỹ năng code trong năm dự bị; đọc được đề tin học và mô tả thuật toán bằng tiếng Nga.",
+      "days": 300,
+      "outcomes": [
+        "Viết được mã có mục tiêu, input/output rõ và có kiểm thử tối thiểu.",
+        "Quản lý dữ liệu, phiên bản, notebook và báo cáo theo hướng tái lập.",
+        "Giải thích được thiết kế phần mềm bằng Việt - Nga - Anh khi học ở Bauman."
+      ],
+      "focusBlocks": [
+        "Lý thuyết: khái niệm, thuật ngữ, cấu trúc dữ liệu, luồng xử lý và giới hạn.",
+        "Thực hành: code nhỏ, test nhỏ, commit rõ, ghi lỗi sai vào sổ lỗi.",
+        "Ứng dụng: repo, pipeline dữ liệu, demo, tài liệu và liên hệ UGV/USV/НИР/ВКР."
+      ],
+      "weeklyRhythm": [
+        "Buổi 1: đọc yêu cầu, thiết kế input/output và viết pseudocode.",
+        "Buổi 2: code phần lõi, chạy test, sửa lỗi logic.",
+        "Buổi 3: ghi README, commit, xuất artifact hoặc mini-report.",
+        "Cuối tuần: refactor nhẹ, làm kiểm tra 20 câu, cập nhật tiến độ về Main."
+      ]
+    },
+    {
+      "id": "hk1",
+      "short": "HK1",
+      "title": "HK1 · Bauman: OOP cho АСОИУ, CSDL ML và kỹ nghệ phần mềm",
+      "period": "09/2027 – 01/2028",
+      "target": "Bám các học phần ứng viên trong Main: thiết kế hướng đối tượng cho АСОИУ, CSDL hệ thống học máy, công nghệ phát triển phần mềm.",
+      "goal": "Tạo skeleton phần mềm, schema dữ liệu và repo có test/README/release cho hệ UGV/USV.",
+      "days": 120,
+      "outcomes": [
+        "Viết được mã có mục tiêu, input/output rõ và có kiểm thử tối thiểu.",
+        "Quản lý dữ liệu, phiên bản, notebook và báo cáo theo hướng tái lập.",
+        "Giải thích được thiết kế phần mềm bằng Việt - Nga - Anh khi học ở Bauman."
+      ],
+      "focusBlocks": [
+        "Lý thuyết: khái niệm, thuật ngữ, cấu trúc dữ liệu, luồng xử lý và giới hạn.",
+        "Thực hành: code nhỏ, test nhỏ, commit rõ, ghi lỗi sai vào sổ lỗi.",
+        "Ứng dụng: repo, pipeline dữ liệu, demo, tài liệu và liên hệ UGV/USV/НИР/ВКР."
+      ],
+      "weeklyRhythm": [
+        "Buổi 1: đọc yêu cầu, thiết kế input/output và viết pseudocode.",
+        "Buổi 2: code phần lõi, chạy test, sửa lỗi logic.",
+        "Buổi 3: ghi README, commit, xuất artifact hoặc mini-report.",
+        "Cuối tuần: refactor nhẹ, làm kiểm tra 20 câu, cập nhật tiến độ về Main."
+      ]
+    },
+    {
+      "id": "hk2",
+      "short": "HK2",
+      "title": "HK2 · Bauman: pipeline ML, API, kiểm thử và tái lập thí nghiệm",
+      "period": "02/2028 – 06/2028",
+      "target": "Kết nối lập trình với ML/Neural Systems: pipeline dữ liệu, training log, API inference, test và quản lý phiên bản.",
+      "goal": "Có năng lực biến mô hình thành phần mềm thí nghiệm đo được, không chỉ notebook chạy một lần.",
+      "days": 120,
+      "outcomes": [
+        "Viết được mã có mục tiêu, input/output rõ và có kiểm thử tối thiểu.",
+        "Quản lý dữ liệu, phiên bản, notebook và báo cáo theo hướng tái lập.",
+        "Giải thích được thiết kế phần mềm bằng Việt - Nga - Anh khi học ở Bauman."
+      ],
+      "focusBlocks": [
+        "Lý thuyết: khái niệm, thuật ngữ, cấu trúc dữ liệu, luồng xử lý và giới hạn.",
+        "Thực hành: code nhỏ, test nhỏ, commit rõ, ghi lỗi sai vào sổ lỗi.",
+        "Ứng dụng: repo, pipeline dữ liệu, demo, tài liệu và liên hệ UGV/USV/НИР/ВКР."
+      ],
+      "weeklyRhythm": [
+        "Buổi 1: đọc yêu cầu, thiết kế input/output và viết pseudocode.",
+        "Buổi 2: code phần lõi, chạy test, sửa lỗi logic.",
+        "Buổi 3: ghi README, commit, xuất artifact hoặc mini-report.",
+        "Cuối tuần: refactor nhẹ, làm kiểm tra 20 câu, cập nhật tiến độ về Main."
+      ]
+    },
+    {
+      "id": "hk3",
+      "short": "HK3",
+      "title": "HK3 · НИР: phần mềm dữ liệu, telemetry và experiment tracking",
+      "period": "09/2028 – 01/2029",
+      "target": "Đóng gói mã cho НИР: dataset card, pipeline xử lý log cảm biến, bảng metric, model card và ablation.",
+      "goal": "Phần mềm phục vụ nghiên cứu UGV/USV có cấu trúc, có log, có kiểm chứng và tái lập.",
+      "days": 120,
+      "outcomes": [
+        "Viết được mã có mục tiêu, input/output rõ và có kiểm thử tối thiểu.",
+        "Quản lý dữ liệu, phiên bản, notebook và báo cáo theo hướng tái lập.",
+        "Giải thích được thiết kế phần mềm bằng Việt - Nga - Anh khi học ở Bauman."
+      ],
+      "focusBlocks": [
+        "Lý thuyết: khái niệm, thuật ngữ, cấu trúc dữ liệu, luồng xử lý và giới hạn.",
+        "Thực hành: code nhỏ, test nhỏ, commit rõ, ghi lỗi sai vào sổ lỗi.",
+        "Ứng dụng: repo, pipeline dữ liệu, demo, tài liệu và liên hệ UGV/USV/НИР/ВКР."
+      ],
+      "weeklyRhythm": [
+        "Buổi 1: đọc yêu cầu, thiết kế input/output và viết pseudocode.",
+        "Buổi 2: code phần lõi, chạy test, sửa lỗi logic.",
+        "Buổi 3: ghi README, commit, xuất artifact hoặc mini-report.",
+        "Cuối tuần: refactor nhẹ, làm kiểm tra 20 câu, cập nhật tiến độ về Main."
+      ]
+    },
+    {
+      "id": "hk4",
+      "short": "HK4",
+      "title": "HK4 · ВКР: khóa mã nguồn, demo, tài liệu và bảo vệ",
+      "period": "02/2029 – 06/2029",
+      "target": "Đóng băng phiên bản, chuẩn hóa demo, tài liệu kỹ thuật, script chạy lại và slide bảo vệ.",
+      "goal": "Bảo vệ luận văn với phần mềm chạy ổn định, dữ liệu cố định, kết quả tái lập và trả lời phản biện rõ.",
+      "days": 120,
+      "outcomes": [
+        "Viết được mã có mục tiêu, input/output rõ và có kiểm thử tối thiểu.",
+        "Quản lý dữ liệu, phiên bản, notebook và báo cáo theo hướng tái lập.",
+        "Giải thích được thiết kế phần mềm bằng Việt - Nga - Anh khi học ở Bauman."
+      ],
+      "focusBlocks": [
+        "Lý thuyết: khái niệm, thuật ngữ, cấu trúc dữ liệu, luồng xử lý và giới hạn.",
+        "Thực hành: code nhỏ, test nhỏ, commit rõ, ghi lỗi sai vào sổ lỗi.",
+        "Ứng dụng: repo, pipeline dữ liệu, demo, tài liệu và liên hệ UGV/USV/НИР/ВКР."
+      ],
+      "weeklyRhythm": [
+        "Buổi 1: đọc yêu cầu, thiết kế input/output và viết pseudocode.",
+        "Buổi 2: code phần lõi, chạy test, sửa lỗi logic.",
+        "Buổi 3: ghi README, commit, xuất artifact hoặc mini-report.",
+        "Cuối tuần: refactor nhẹ, làm kiểm tra 20 câu, cập nhật tiến độ về Main."
+      ]
+    }
+  ],
+  "modules": [
+    {
+      "id": "mod_vn",
+      "stage": "vn",
+      "title": "Python, SQL, Git và notebook thực nghiệm",
+      "description": "Dựng nền Python, SQL, Git và notebook tái lập để tự học AI/dữ liệu trước khi vào dự bị."
+    },
+    {
+      "id": "mod_prep",
+      "stage": "prep",
+      "title": "tin học, thuật ngữ và repo song ngữ",
+      "description": "Giữ nhịp lập trình nhẹ, chuyển thuật ngữ tin học sang tiếng Nga, quản lý bài tập/lab bằng Git."
+    },
+    {
+      "id": "mod_hk1",
+      "stage": "hk1",
+      "title": "OOP cho АСОИУ, CSDL ML và kỹ nghệ phần mềm",
+      "description": "Bám các học phần ứng viên trong Main: thiết kế hướng đối tượng cho АСОИУ, CSDL hệ thống học máy, công nghệ phát triển phần mềm."
+    },
+    {
+      "id": "mod_hk2",
+      "stage": "hk2",
+      "title": "pipeline ML, API, kiểm thử và tái lập thí nghiệm",
+      "description": "Kết nối lập trình với ML/Neural Systems: pipeline dữ liệu, training log, API inference, test và quản lý phiên bản."
+    },
+    {
+      "id": "mod_hk3",
+      "stage": "hk3",
+      "title": "phần mềm dữ liệu, telemetry và experiment tracking",
+      "description": "Đóng gói mã cho НИР: dataset card, pipeline xử lý log cảm biến, bảng metric, model card và ablation."
+    },
+    {
+      "id": "mod_hk4",
+      "stage": "hk4",
+      "title": "khóa mã nguồn, demo, tài liệu và bảo vệ",
+      "description": "Đóng băng phiên bản, chuẩn hóa demo, tài liệu kỹ thuật, script chạy lại và slide bảo vệ."
+    }
+  ]
+}

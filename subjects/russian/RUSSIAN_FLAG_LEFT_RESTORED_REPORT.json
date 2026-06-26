@@ -1,0 +1,26 @@
+{
+  "name": "Russian Bauman Flag Left Restored Hotfix",
+  "version": "V13.00_FLAG_LEFT_RESTORED",
+  "date": "2026-06-08",
+  "base_zip": "Russian_Bauman_FlagList_RESTORED_HOTFIX.zip",
+  "status": "completed",
+  "changes": [
+    "Restored the flag list as a small left-side panel for Review.",
+    "Restored the flag list as a small left-side panel for Exam.",
+    "Removed horizontal flag tray placement from the active Review/Exam render paths.",
+    "Kept the right side as the main question/content panel.",
+    "Added V13.00 CSS overrides to prevent the previous single-column layout from hiding the left flag rail.",
+    "Added responsive fallback: on narrow screens, the left rail stacks above content with its own scroll area."
+  ],
+  "integrity_checks": {
+    "core_js_syntax": "passed",
+    "subject_adapter_js_syntax": "passed",
+    "subject_manifest_js_syntax": "passed",
+    "json_parse_all_data_files": "passed",
+    "review_render_has_left_flag_rail": true,
+    "exam_render_has_left_flag_rail": true,
+    "active_render_uses_horizontal_flag_tray": false,
+    "live_server_gui_test": "not_available_in_sandbox"
+  },
+  "important_note": "This hotfix restores the old standard behavior requested by the user: flags as a small left-side panel, main question content on the right. It does not restore the earlier broken hidden sidebar behavior; the left flag rail now has fixed scroll limits and responsive fallback."
+}

@@ -1,0 +1,4034 @@
+[
+  {
+    "id": "theory_PR01",
+    "stage": "vn",
+    "lessonId": "PR01",
+    "applicationId": "app_PR01",
+    "group": "Mô phỏng lý thuyết",
+    "type": "theory-simulation",
+    "title": "Mô phỏng lý thuyết · Thiết lập môi trường Python, VS Code và Live Server",
+    "purpose": "Thử thay đổi tham số để quan sát tác động đến mở module học, chạy notebook, kiểm thử HTML/JSON cục bộ.",
+    "file": "simulations/sim_python_env_lab.html",
+    "formula": "python -m venv .venv; pip install -r requirements.txt; code .",
+    "applicationDomain": "mở module học, chạy notebook, kiểm thử HTML/JSON cục bộ",
+    "variables": [
+      {
+        "name": "dataSize",
+        "label": "Quy mô dữ liệu/code",
+        "min": 1,
+        "max": 100,
+        "default": 45,
+        "effect": "Quy mô tăng làm chi phí, lỗi và nhu cầu cấu trúc hóa tăng."
+      },
+      {
+        "name": "quality",
+        "label": "Chất lượng test/tài liệu",
+        "min": 0,
+        "max": 100,
+        "default": 70,
+        "effect": "Test/tài liệu tốt làm rủi ro demo giảm và khả năng tái lập tăng."
+      }
+    ],
+    "inputEffects": [
+      "Tăng quy mô để thấy khi nào code script đơn lẻ không còn đủ.",
+      "Giảm chất lượng test/tài liệu để thấy rủi ro lỗi logic, lỗi môi trường và demo vỡ."
+    ],
+    "explorationSteps": [
+      "Đổi một biến mỗi lần.",
+      "Ghi quan sát về thời gian, lỗi, tái lập và artifact.",
+      "Giải thích bằng workflow-cú-pháp lõi và đề xuất cải tiến."
+    ],
+    "expectedOutput": "Kết quả mong muốn: workflow python -m venv .venv; pip install -r requirements.txt; code . chạy được hoặc được mô tả rõ; có log/test và kết luận ngắn.",
+    "reportPrompt": "Ghi: tham số đã đổi, kết quả trước/sau, lỗi phát hiện, test/log và ứng dụng vào mở module học, chạy notebook, kiểm thử HTML/JSON cục bộ."
+  },
+  {
+    "id": "application_PR01",
+    "stage": "vn",
+    "lessonId": "PR01",
+    "applicationId": "app_PR01",
+    "group": "Mô phỏng ứng dụng",
+    "type": "application-simulation",
+    "title": "Mô phỏng ứng dụng · Thiết lập môi trường Python, VS Code và Live Server",
+    "purpose": "Thử thay đổi tham số để quan sát tác động đến mở module học, chạy notebook, kiểm thử HTML/JSON cục bộ.",
+    "file": "simulations/sim_python_env_lab.html",
+    "formula": "python -m venv .venv; pip install -r requirements.txt; code .",
+    "applicationDomain": "mở module học, chạy notebook, kiểm thử HTML/JSON cục bộ",
+    "variables": [
+      {
+        "name": "dataSize",
+        "label": "Quy mô dữ liệu/code",
+        "min": 1,
+        "max": 100,
+        "default": 45,
+        "effect": "Quy mô tăng làm chi phí, lỗi và nhu cầu cấu trúc hóa tăng."
+      },
+      {
+        "name": "quality",
+        "label": "Chất lượng test/tài liệu",
+        "min": 0,
+        "max": 100,
+        "default": 70,
+        "effect": "Test/tài liệu tốt làm rủi ro demo giảm và khả năng tái lập tăng."
+      }
+    ],
+    "inputEffects": [
+      "Tăng quy mô để thấy khi nào code script đơn lẻ không còn đủ.",
+      "Giảm chất lượng test/tài liệu để thấy rủi ro lỗi logic, lỗi môi trường và demo vỡ."
+    ],
+    "explorationSteps": [
+      "Đổi một biến mỗi lần.",
+      "Ghi quan sát về thời gian, lỗi, tái lập và artifact.",
+      "Giải thích bằng workflow-cú-pháp lõi và đề xuất cải tiến."
+    ],
+    "expectedOutput": "Kết quả mong muốn: workflow python -m venv .venv; pip install -r requirements.txt; code . chạy được hoặc được mô tả rõ; có log/test và kết luận ngắn.",
+    "reportPrompt": "Ghi: tham số đã đổi, kết quả trước/sau, lỗi phát hiện, test/log và ứng dụng vào mở module học, chạy notebook, kiểm thử HTML/JSON cục bộ."
+  },
+  {
+    "id": "theory_PR02",
+    "stage": "vn",
+    "lessonId": "PR02",
+    "applicationId": "app_PR02",
+    "group": "Mô phỏng lý thuyết",
+    "type": "theory-simulation",
+    "title": "Mô phỏng lý thuyết · Tư duy thuật toán và độ phức tạp",
+    "purpose": "Thử thay đổi tham số để quan sát tác động đến chọn thuật toán đủ nhanh cho xử lý dữ liệu robot.",
+    "file": "simulations/sim_algorithm_complexity_lab.html",
+    "formula": "T(n)=O(n log n); space=O(n)",
+    "applicationDomain": "chọn thuật toán đủ nhanh cho xử lý dữ liệu robot",
+    "variables": [
+      {
+        "name": "dataSize",
+        "label": "Quy mô dữ liệu/code",
+        "min": 1,
+        "max": 100,
+        "default": 45,
+        "effect": "Quy mô tăng làm chi phí, lỗi và nhu cầu cấu trúc hóa tăng."
+      },
+      {
+        "name": "quality",
+        "label": "Chất lượng test/tài liệu",
+        "min": 0,
+        "max": 100,
+        "default": 70,
+        "effect": "Test/tài liệu tốt làm rủi ro demo giảm và khả năng tái lập tăng."
+      }
+    ],
+    "inputEffects": [
+      "Tăng quy mô để thấy khi nào code script đơn lẻ không còn đủ.",
+      "Giảm chất lượng test/tài liệu để thấy rủi ro lỗi logic, lỗi môi trường và demo vỡ."
+    ],
+    "explorationSteps": [
+      "Đổi một biến mỗi lần.",
+      "Ghi quan sát về thời gian, lỗi, tái lập và artifact.",
+      "Giải thích bằng workflow-cú-pháp lõi và đề xuất cải tiến."
+    ],
+    "expectedOutput": "Kết quả mong muốn: workflow T(n)=O(n log n); space=O(n) chạy được hoặc được mô tả rõ; có log/test và kết luận ngắn.",
+    "reportPrompt": "Ghi: tham số đã đổi, kết quả trước/sau, lỗi phát hiện, test/log và ứng dụng vào chọn thuật toán đủ nhanh cho xử lý dữ liệu robot."
+  },
+  {
+    "id": "application_PR02",
+    "stage": "vn",
+    "lessonId": "PR02",
+    "applicationId": "app_PR02",
+    "group": "Mô phỏng ứng dụng",
+    "type": "application-simulation",
+    "title": "Mô phỏng ứng dụng · Tư duy thuật toán và độ phức tạp",
+    "purpose": "Thử thay đổi tham số để quan sát tác động đến chọn thuật toán đủ nhanh cho xử lý dữ liệu robot.",
+    "file": "simulations/sim_algorithm_complexity_lab.html",
+    "formula": "T(n)=O(n log n); space=O(n)",
+    "applicationDomain": "chọn thuật toán đủ nhanh cho xử lý dữ liệu robot",
+    "variables": [
+      {
+        "name": "dataSize",
+        "label": "Quy mô dữ liệu/code",
+        "min": 1,
+        "max": 100,
+        "default": 45,
+        "effect": "Quy mô tăng làm chi phí, lỗi và nhu cầu cấu trúc hóa tăng."
+      },
+      {
+        "name": "quality",
+        "label": "Chất lượng test/tài liệu",
+        "min": 0,
+        "max": 100,
+        "default": 70,
+        "effect": "Test/tài liệu tốt làm rủi ro demo giảm và khả năng tái lập tăng."
+      }
+    ],
+    "inputEffects": [
+      "Tăng quy mô để thấy khi nào code script đơn lẻ không còn đủ.",
+      "Giảm chất lượng test/tài liệu để thấy rủi ro lỗi logic, lỗi môi trường và demo vỡ."
+    ],
+    "explorationSteps": [
+      "Đổi một biến mỗi lần.",
+      "Ghi quan sát về thời gian, lỗi, tái lập và artifact.",
+      "Giải thích bằng workflow-cú-pháp lõi và đề xuất cải tiến."
+    ],
+    "expectedOutput": "Kết quả mong muốn: workflow T(n)=O(n log n); space=O(n) chạy được hoặc được mô tả rõ; có log/test và kết luận ngắn.",
+    "reportPrompt": "Ghi: tham số đã đổi, kết quả trước/sau, lỗi phát hiện, test/log và ứng dụng vào chọn thuật toán đủ nhanh cho xử lý dữ liệu robot."
+  },
+  {
+    "id": "theory_PR03",
+    "stage": "vn",
+    "lessonId": "PR03",
+    "applicationId": "app_PR03",
+    "group": "Mô phỏng lý thuyết",
+    "type": "theory-simulation",
+    "title": "Mô phỏng lý thuyết · Python căn bản: kiểu dữ liệu, hàm, module",
+    "purpose": "Thử thay đổi tham số để quan sát tác động đến viết script sạch để xử lý bài tập và dữ liệu nhỏ.",
+    "file": "simulations/sim_dataframe_cleaning_lab.html",
+    "formula": "def f(x): return y; list/dict/set/tuple",
+    "applicationDomain": "viết script sạch để xử lý bài tập và dữ liệu nhỏ",
+    "variables": [
+      {
+        "name": "dataSize",
+        "label": "Quy mô dữ liệu/code",
+        "min": 1,
+        "max": 100,
+        "default": 45,
+        "effect": "Quy mô tăng làm chi phí, lỗi và nhu cầu cấu trúc hóa tăng."
+      },
+      {
+        "name": "quality",
+        "label": "Chất lượng test/tài liệu",
+        "min": 0,
+        "max": 100,
+        "default": 70,
+        "effect": "Test/tài liệu tốt làm rủi ro demo giảm và khả năng tái lập tăng."
+      }
+    ],
+    "inputEffects": [
+      "Tăng quy mô để thấy khi nào code script đơn lẻ không còn đủ.",
+      "Giảm chất lượng test/tài liệu để thấy rủi ro lỗi logic, lỗi môi trường và demo vỡ."
+    ],
+    "explorationSteps": [
+      "Đổi một biến mỗi lần.",
+      "Ghi quan sát về thời gian, lỗi, tái lập và artifact.",
+      "Giải thích bằng workflow-cú-pháp lõi và đề xuất cải tiến."
+    ],
+    "expectedOutput": "Kết quả mong muốn: workflow def f(x): return y; list/dict/set/tuple chạy được hoặc được mô tả rõ; có log/test và kết luận ngắn.",
+    "reportPrompt": "Ghi: tham số đã đổi, kết quả trước/sau, lỗi phát hiện, test/log và ứng dụng vào viết script sạch để xử lý bài tập và dữ liệu nhỏ."
+  },
+  {
+    "id": "application_PR03",
+    "stage": "vn",
+    "lessonId": "PR03",
+    "applicationId": "app_PR03",
+    "group": "Mô phỏng ứng dụng",
+    "type": "application-simulation",
+    "title": "Mô phỏng ứng dụng · Python căn bản: kiểu dữ liệu, hàm, module",
+    "purpose": "Thử thay đổi tham số để quan sát tác động đến viết script sạch để xử lý bài tập và dữ liệu nhỏ.",
+    "file": "simulations/sim_dataframe_cleaning_lab.html",
+    "formula": "def f(x): return y; list/dict/set/tuple",
+    "applicationDomain": "viết script sạch để xử lý bài tập và dữ liệu nhỏ",
+    "variables": [
+      {
+        "name": "dataSize",
+        "label": "Quy mô dữ liệu/code",
+        "min": 1,
+        "max": 100,
+        "default": 45,
+        "effect": "Quy mô tăng làm chi phí, lỗi và nhu cầu cấu trúc hóa tăng."
+      },
+      {
+        "name": "quality",
+        "label": "Chất lượng test/tài liệu",
+        "min": 0,
+        "max": 100,
+        "default": 70,
+        "effect": "Test/tài liệu tốt làm rủi ro demo giảm và khả năng tái lập tăng."
+      }
+    ],
+    "inputEffects": [
+      "Tăng quy mô để thấy khi nào code script đơn lẻ không còn đủ.",
+      "Giảm chất lượng test/tài liệu để thấy rủi ro lỗi logic, lỗi môi trường và demo vỡ."
+    ],
+    "explorationSteps": [
+      "Đổi một biến mỗi lần.",
+      "Ghi quan sát về thời gian, lỗi, tái lập và artifact.",
+      "Giải thích bằng workflow-cú-pháp lõi và đề xuất cải tiến."
+    ],
+    "expectedOutput": "Kết quả mong muốn: workflow def f(x): return y; list/dict/set/tuple chạy được hoặc được mô tả rõ; có log/test và kết luận ngắn.",
+    "reportPrompt": "Ghi: tham số đã đổi, kết quả trước/sau, lỗi phát hiện, test/log và ứng dụng vào viết script sạch để xử lý bài tập và dữ liệu nhỏ."
+  },
+  {
+    "id": "theory_PR04",
+    "stage": "vn",
+    "lessonId": "PR04",
+    "applicationId": "app_PR04",
+    "group": "Mô phỏng lý thuyết",
+    "type": "theory-simulation",
+    "title": "Mô phỏng lý thuyết · NumPy và vector hóa dữ liệu",
+    "purpose": "Thử thay đổi tham số để quan sát tác động đến tính toán ma trận/đặc trưng cho AI nhanh và gọn.",
+    "file": "simulations/sim_sql_query_lab.html",
+    "formula": "X.shape=(n,d); y = X @ w + b",
+    "applicationDomain": "tính toán ma trận/đặc trưng cho AI nhanh và gọn",
+    "variables": [
+      {
+        "name": "dataSize",
+        "label": "Quy mô dữ liệu/code",
+        "min": 1,
+        "max": 100,
+        "default": 45,
+        "effect": "Quy mô tăng làm chi phí, lỗi và nhu cầu cấu trúc hóa tăng."
+      },
+      {
+        "name": "quality",
+        "label": "Chất lượng test/tài liệu",
+        "min": 0,
+        "max": 100,
+        "default": 70,
+        "effect": "Test/tài liệu tốt làm rủi ro demo giảm và khả năng tái lập tăng."
+      }
+    ],
+    "inputEffects": [
+      "Tăng quy mô để thấy khi nào code script đơn lẻ không còn đủ.",
+      "Giảm chất lượng test/tài liệu để thấy rủi ro lỗi logic, lỗi môi trường và demo vỡ."
+    ],
+    "explorationSteps": [
+      "Đổi một biến mỗi lần.",
+      "Ghi quan sát về thời gian, lỗi, tái lập và artifact.",
+      "Giải thích bằng workflow-cú-pháp lõi và đề xuất cải tiến."
+    ],
+    "expectedOutput": "Kết quả mong muốn: workflow X.shape=(n,d); y = X @ w + b chạy được hoặc được mô tả rõ; có log/test và kết luận ngắn.",
+    "reportPrompt": "Ghi: tham số đã đổi, kết quả trước/sau, lỗi phát hiện, test/log và ứng dụng vào tính toán ma trận/đặc trưng cho AI nhanh và gọn."
+  },
+  {
+    "id": "application_PR04",
+    "stage": "vn",
+    "lessonId": "PR04",
+    "applicationId": "app_PR04",
+    "group": "Mô phỏng ứng dụng",
+    "type": "application-simulation",
+    "title": "Mô phỏng ứng dụng · NumPy và vector hóa dữ liệu",
+    "purpose": "Thử thay đổi tham số để quan sát tác động đến tính toán ma trận/đặc trưng cho AI nhanh và gọn.",
+    "file": "simulations/sim_sql_query_lab.html",
+    "formula": "X.shape=(n,d); y = X @ w + b",
+    "applicationDomain": "tính toán ma trận/đặc trưng cho AI nhanh và gọn",
+    "variables": [
+      {
+        "name": "dataSize",
+        "label": "Quy mô dữ liệu/code",
+        "min": 1,
+        "max": 100,
+        "default": 45,
+        "effect": "Quy mô tăng làm chi phí, lỗi và nhu cầu cấu trúc hóa tăng."
+      },
+      {
+        "name": "quality",
+        "label": "Chất lượng test/tài liệu",
+        "min": 0,
+        "max": 100,
+        "default": 70,
+        "effect": "Test/tài liệu tốt làm rủi ro demo giảm và khả năng tái lập tăng."
+      }
+    ],
+    "inputEffects": [
+      "Tăng quy mô để thấy khi nào code script đơn lẻ không còn đủ.",
+      "Giảm chất lượng test/tài liệu để thấy rủi ro lỗi logic, lỗi môi trường và demo vỡ."
+    ],
+    "explorationSteps": [
+      "Đổi một biến mỗi lần.",
+      "Ghi quan sát về thời gian, lỗi, tái lập và artifact.",
+      "Giải thích bằng workflow-cú-pháp lõi và đề xuất cải tiến."
+    ],
+    "expectedOutput": "Kết quả mong muốn: workflow X.shape=(n,d); y = X @ w + b chạy được hoặc được mô tả rõ; có log/test và kết luận ngắn.",
+    "reportPrompt": "Ghi: tham số đã đổi, kết quả trước/sau, lỗi phát hiện, test/log và ứng dụng vào tính toán ma trận/đặc trưng cho AI nhanh và gọn."
+  },
+  {
+    "id": "theory_PR05",
+    "stage": "vn",
+    "lessonId": "PR05",
+    "applicationId": "app_PR05",
+    "group": "Mô phỏng lý thuyết",
+    "type": "theory-simulation",
+    "title": "Mô phỏng lý thuyết · Pandas và làm sạch bảng dữ liệu",
+    "purpose": "Thử thay đổi tham số để quan sát tác động đến làm sạch log cảm biến, bảng điểm đo, dữ liệu CSV.",
+    "file": "simulations/sim_git_workflow_lab.html",
+    "formula": "df.dropna(); df.groupby(); df.merge()",
+    "applicationDomain": "làm sạch log cảm biến, bảng điểm đo, dữ liệu CSV",
+    "variables": [
+      {
+        "name": "dataSize",
+        "label": "Quy mô dữ liệu/code",
+        "min": 1,
+        "max": 100,
+        "default": 45,
+        "effect": "Quy mô tăng làm chi phí, lỗi và nhu cầu cấu trúc hóa tăng."
+      },
+      {
+        "name": "quality",
+        "label": "Chất lượng test/tài liệu",
+        "min": 0,
+        "max": 100,
+        "default": 70,
+        "effect": "Test/tài liệu tốt làm rủi ro demo giảm và khả năng tái lập tăng."
+      }
+    ],
+    "inputEffects": [
+      "Tăng quy mô để thấy khi nào code script đơn lẻ không còn đủ.",
+      "Giảm chất lượng test/tài liệu để thấy rủi ro lỗi logic, lỗi môi trường và demo vỡ."
+    ],
+    "explorationSteps": [
+      "Đổi một biến mỗi lần.",
+      "Ghi quan sát về thời gian, lỗi, tái lập và artifact.",
+      "Giải thích bằng workflow-cú-pháp lõi và đề xuất cải tiến."
+    ],
+    "expectedOutput": "Kết quả mong muốn: workflow df.dropna(); df.groupby(); df.merge() chạy được hoặc được mô tả rõ; có log/test và kết luận ngắn.",
+    "reportPrompt": "Ghi: tham số đã đổi, kết quả trước/sau, lỗi phát hiện, test/log và ứng dụng vào làm sạch log cảm biến, bảng điểm đo, dữ liệu CSV."
+  },
+  {
+    "id": "application_PR05",
+    "stage": "vn",
+    "lessonId": "PR05",
+    "applicationId": "app_PR05",
+    "group": "Mô phỏng ứng dụng",
+    "type": "application-simulation",
+    "title": "Mô phỏng ứng dụng · Pandas và làm sạch bảng dữ liệu",
+    "purpose": "Thử thay đổi tham số để quan sát tác động đến làm sạch log cảm biến, bảng điểm đo, dữ liệu CSV.",
+    "file": "simulations/sim_git_workflow_lab.html",
+    "formula": "df.dropna(); df.groupby(); df.merge()",
+    "applicationDomain": "làm sạch log cảm biến, bảng điểm đo, dữ liệu CSV",
+    "variables": [
+      {
+        "name": "dataSize",
+        "label": "Quy mô dữ liệu/code",
+        "min": 1,
+        "max": 100,
+        "default": 45,
+        "effect": "Quy mô tăng làm chi phí, lỗi và nhu cầu cấu trúc hóa tăng."
+      },
+      {
+        "name": "quality",
+        "label": "Chất lượng test/tài liệu",
+        "min": 0,
+        "max": 100,
+        "default": 70,
+        "effect": "Test/tài liệu tốt làm rủi ro demo giảm và khả năng tái lập tăng."
+      }
+    ],
+    "inputEffects": [
+      "Tăng quy mô để thấy khi nào code script đơn lẻ không còn đủ.",
+      "Giảm chất lượng test/tài liệu để thấy rủi ro lỗi logic, lỗi môi trường và demo vỡ."
+    ],
+    "explorationSteps": [
+      "Đổi một biến mỗi lần.",
+      "Ghi quan sát về thời gian, lỗi, tái lập và artifact.",
+      "Giải thích bằng workflow-cú-pháp lõi và đề xuất cải tiến."
+    ],
+    "expectedOutput": "Kết quả mong muốn: workflow df.dropna(); df.groupby(); df.merge() chạy được hoặc được mô tả rõ; có log/test và kết luận ngắn.",
+    "reportPrompt": "Ghi: tham số đã đổi, kết quả trước/sau, lỗi phát hiện, test/log và ứng dụng vào làm sạch log cảm biến, bảng điểm đo, dữ liệu CSV."
+  },
+  {
+    "id": "theory_PR06",
+    "stage": "vn",
+    "lessonId": "PR06",
+    "applicationId": "app_PR06",
+    "group": "Mô phỏng lý thuyết",
+    "type": "theory-simulation",
+    "title": "Mô phỏng lý thuyết · SQL căn bản và mô hình quan hệ",
+    "purpose": "Thử thay đổi tham số để quan sát tác động đến lưu kết quả thí nghiệm, metadata và truy vấn nhanh.",
+    "file": "simulations/sim_oop_architecture_lab.html",
+    "formula": "SELECT col FROM table WHERE condition; PK/FK",
+    "applicationDomain": "lưu kết quả thí nghiệm, metadata và truy vấn nhanh",
+    "variables": [
+      {
+        "name": "dataSize",
+        "label": "Quy mô dữ liệu/code",
+        "min": 1,
+        "max": 100,
+        "default": 45,
+        "effect": "Quy mô tăng làm chi phí, lỗi và nhu cầu cấu trúc hóa tăng."
+      },
+      {
+        "name": "quality",
+        "label": "Chất lượng test/tài liệu",
+        "min": 0,
+        "max": 100,
+        "default": 70,
+        "effect": "Test/tài liệu tốt làm rủi ro demo giảm và khả năng tái lập tăng."
+      }
+    ],
+    "inputEffects": [
+      "Tăng quy mô để thấy khi nào code script đơn lẻ không còn đủ.",
+      "Giảm chất lượng test/tài liệu để thấy rủi ro lỗi logic, lỗi môi trường và demo vỡ."
+    ],
+    "explorationSteps": [
+      "Đổi một biến mỗi lần.",
+      "Ghi quan sát về thời gian, lỗi, tái lập và artifact.",
+      "Giải thích bằng workflow-cú-pháp lõi và đề xuất cải tiến."
+    ],
+    "expectedOutput": "Kết quả mong muốn: workflow SELECT col FROM table WHERE condition; PK/FK chạy được hoặc được mô tả rõ; có log/test và kết luận ngắn.",
+    "reportPrompt": "Ghi: tham số đã đổi, kết quả trước/sau, lỗi phát hiện, test/log và ứng dụng vào lưu kết quả thí nghiệm, metadata và truy vấn nhanh."
+  },
+  {
+    "id": "application_PR06",
+    "stage": "vn",
+    "lessonId": "PR06",
+    "applicationId": "app_PR06",
+    "group": "Mô phỏng ứng dụng",
+    "type": "application-simulation",
+    "title": "Mô phỏng ứng dụng · SQL căn bản và mô hình quan hệ",
+    "purpose": "Thử thay đổi tham số để quan sát tác động đến lưu kết quả thí nghiệm, metadata và truy vấn nhanh.",
+    "file": "simulations/sim_oop_architecture_lab.html",
+    "formula": "SELECT col FROM table WHERE condition; PK/FK",
+    "applicationDomain": "lưu kết quả thí nghiệm, metadata và truy vấn nhanh",
+    "variables": [
+      {
+        "name": "dataSize",
+        "label": "Quy mô dữ liệu/code",
+        "min": 1,
+        "max": 100,
+        "default": 45,
+        "effect": "Quy mô tăng làm chi phí, lỗi và nhu cầu cấu trúc hóa tăng."
+      },
+      {
+        "name": "quality",
+        "label": "Chất lượng test/tài liệu",
+        "min": 0,
+        "max": 100,
+        "default": 70,
+        "effect": "Test/tài liệu tốt làm rủi ro demo giảm và khả năng tái lập tăng."
+      }
+    ],
+    "inputEffects": [
+      "Tăng quy mô để thấy khi nào code script đơn lẻ không còn đủ.",
+      "Giảm chất lượng test/tài liệu để thấy rủi ro lỗi logic, lỗi môi trường và demo vỡ."
+    ],
+    "explorationSteps": [
+      "Đổi một biến mỗi lần.",
+      "Ghi quan sát về thời gian, lỗi, tái lập và artifact.",
+      "Giải thích bằng workflow-cú-pháp lõi và đề xuất cải tiến."
+    ],
+    "expectedOutput": "Kết quả mong muốn: workflow SELECT col FROM table WHERE condition; PK/FK chạy được hoặc được mô tả rõ; có log/test và kết luận ngắn.",
+    "reportPrompt": "Ghi: tham số đã đổi, kết quả trước/sau, lỗi phát hiện, test/log và ứng dụng vào lưu kết quả thí nghiệm, metadata và truy vấn nhanh."
+  },
+  {
+    "id": "theory_PR07",
+    "stage": "vn",
+    "lessonId": "PR07",
+    "applicationId": "app_PR07",
+    "group": "Mô phỏng lý thuyết",
+    "type": "theory-simulation",
+    "title": "Mô phỏng lý thuyết · Git, GitHub và nhật ký học tập",
+    "purpose": "Thử thay đổi tham số để quan sát tác động đến quản lý phiên bản bài học, notebook, mã mô phỏng.",
+    "file": "simulations/sim_ml_pipeline_lab.html",
+    "formula": "git add .; git commit -m \"message\"; git branch",
+    "applicationDomain": "quản lý phiên bản bài học, notebook, mã mô phỏng",
+    "variables": [
+      {
+        "name": "dataSize",
+        "label": "Quy mô dữ liệu/code",
+        "min": 1,
+        "max": 100,
+        "default": 45,
+        "effect": "Quy mô tăng làm chi phí, lỗi và nhu cầu cấu trúc hóa tăng."
+      },
+      {
+        "name": "quality",
+        "label": "Chất lượng test/tài liệu",
+        "min": 0,
+        "max": 100,
+        "default": 70,
+        "effect": "Test/tài liệu tốt làm rủi ro demo giảm và khả năng tái lập tăng."
+      }
+    ],
+    "inputEffects": [
+      "Tăng quy mô để thấy khi nào code script đơn lẻ không còn đủ.",
+      "Giảm chất lượng test/tài liệu để thấy rủi ro lỗi logic, lỗi môi trường và demo vỡ."
+    ],
+    "explorationSteps": [
+      "Đổi một biến mỗi lần.",
+      "Ghi quan sát về thời gian, lỗi, tái lập và artifact.",
+      "Giải thích bằng workflow-cú-pháp lõi và đề xuất cải tiến."
+    ],
+    "expectedOutput": "Kết quả mong muốn: workflow git add .; git commit -m \"message\"; git branch chạy được hoặc được mô tả rõ; có log/test và kết luận ngắn.",
+    "reportPrompt": "Ghi: tham số đã đổi, kết quả trước/sau, lỗi phát hiện, test/log và ứng dụng vào quản lý phiên bản bài học, notebook, mã mô phỏng."
+  },
+  {
+    "id": "application_PR07",
+    "stage": "vn",
+    "lessonId": "PR07",
+    "applicationId": "app_PR07",
+    "group": "Mô phỏng ứng dụng",
+    "type": "application-simulation",
+    "title": "Mô phỏng ứng dụng · Git, GitHub và nhật ký học tập",
+    "purpose": "Thử thay đổi tham số để quan sát tác động đến quản lý phiên bản bài học, notebook, mã mô phỏng.",
+    "file": "simulations/sim_ml_pipeline_lab.html",
+    "formula": "git add .; git commit -m \"message\"; git branch",
+    "applicationDomain": "quản lý phiên bản bài học, notebook, mã mô phỏng",
+    "variables": [
+      {
+        "name": "dataSize",
+        "label": "Quy mô dữ liệu/code",
+        "min": 1,
+        "max": 100,
+        "default": 45,
+        "effect": "Quy mô tăng làm chi phí, lỗi và nhu cầu cấu trúc hóa tăng."
+      },
+      {
+        "name": "quality",
+        "label": "Chất lượng test/tài liệu",
+        "min": 0,
+        "max": 100,
+        "default": 70,
+        "effect": "Test/tài liệu tốt làm rủi ro demo giảm và khả năng tái lập tăng."
+      }
+    ],
+    "inputEffects": [
+      "Tăng quy mô để thấy khi nào code script đơn lẻ không còn đủ.",
+      "Giảm chất lượng test/tài liệu để thấy rủi ro lỗi logic, lỗi môi trường và demo vỡ."
+    ],
+    "explorationSteps": [
+      "Đổi một biến mỗi lần.",
+      "Ghi quan sát về thời gian, lỗi, tái lập và artifact.",
+      "Giải thích bằng workflow-cú-pháp lõi và đề xuất cải tiến."
+    ],
+    "expectedOutput": "Kết quả mong muốn: workflow git add .; git commit -m \"message\"; git branch chạy được hoặc được mô tả rõ; có log/test và kết luận ngắn.",
+    "reportPrompt": "Ghi: tham số đã đổi, kết quả trước/sau, lỗi phát hiện, test/log và ứng dụng vào quản lý phiên bản bài học, notebook, mã mô phỏng."
+  },
+  {
+    "id": "theory_PR08",
+    "stage": "vn",
+    "lessonId": "PR08",
+    "applicationId": "app_PR08",
+    "group": "Mô phỏng lý thuyết",
+    "type": "theory-simulation",
+    "title": "Mô phỏng lý thuyết · Notebook thực nghiệm và README tái lập",
+    "purpose": "Thử thay đổi tham số để quan sát tác động đến tạo artifact học tập có thể mở lại, chạy lại, giải thích lại.",
+    "file": "simulations/sim_reproducible_demo_lab.html",
+    "formula": "README + notebook + data/ + src/ + results/",
+    "applicationDomain": "tạo artifact học tập có thể mở lại, chạy lại, giải thích lại",
+    "variables": [
+      {
+        "name": "dataSize",
+        "label": "Quy mô dữ liệu/code",
+        "min": 1,
+        "max": 100,
+        "default": 45,
+        "effect": "Quy mô tăng làm chi phí, lỗi và nhu cầu cấu trúc hóa tăng."
+      },
+      {
+        "name": "quality",
+        "label": "Chất lượng test/tài liệu",
+        "min": 0,
+        "max": 100,
+        "default": 70,
+        "effect": "Test/tài liệu tốt làm rủi ro demo giảm và khả năng tái lập tăng."
+      }
+    ],
+    "inputEffects": [
+      "Tăng quy mô để thấy khi nào code script đơn lẻ không còn đủ.",
+      "Giảm chất lượng test/tài liệu để thấy rủi ro lỗi logic, lỗi môi trường và demo vỡ."
+    ],
+    "explorationSteps": [
+      "Đổi một biến mỗi lần.",
+      "Ghi quan sát về thời gian, lỗi, tái lập và artifact.",
+      "Giải thích bằng workflow-cú-pháp lõi và đề xuất cải tiến."
+    ],
+    "expectedOutput": "Kết quả mong muốn: workflow README + notebook + data/ + src/ + results/ chạy được hoặc được mô tả rõ; có log/test và kết luận ngắn.",
+    "reportPrompt": "Ghi: tham số đã đổi, kết quả trước/sau, lỗi phát hiện, test/log và ứng dụng vào tạo artifact học tập có thể mở lại, chạy lại, giải thích lại."
+  },
+  {
+    "id": "application_PR08",
+    "stage": "vn",
+    "lessonId": "PR08",
+    "applicationId": "app_PR08",
+    "group": "Mô phỏng ứng dụng",
+    "type": "application-simulation",
+    "title": "Mô phỏng ứng dụng · Notebook thực nghiệm và README tái lập",
+    "purpose": "Thử thay đổi tham số để quan sát tác động đến tạo artifact học tập có thể mở lại, chạy lại, giải thích lại.",
+    "file": "simulations/sim_reproducible_demo_lab.html",
+    "formula": "README + notebook + data/ + src/ + results/",
+    "applicationDomain": "tạo artifact học tập có thể mở lại, chạy lại, giải thích lại",
+    "variables": [
+      {
+        "name": "dataSize",
+        "label": "Quy mô dữ liệu/code",
+        "min": 1,
+        "max": 100,
+        "default": 45,
+        "effect": "Quy mô tăng làm chi phí, lỗi và nhu cầu cấu trúc hóa tăng."
+      },
+      {
+        "name": "quality",
+        "label": "Chất lượng test/tài liệu",
+        "min": 0,
+        "max": 100,
+        "default": 70,
+        "effect": "Test/tài liệu tốt làm rủi ro demo giảm và khả năng tái lập tăng."
+      }
+    ],
+    "inputEffects": [
+      "Tăng quy mô để thấy khi nào code script đơn lẻ không còn đủ.",
+      "Giảm chất lượng test/tài liệu để thấy rủi ro lỗi logic, lỗi môi trường và demo vỡ."
+    ],
+    "explorationSteps": [
+      "Đổi một biến mỗi lần.",
+      "Ghi quan sát về thời gian, lỗi, tái lập và artifact.",
+      "Giải thích bằng workflow-cú-pháp lõi và đề xuất cải tiến."
+    ],
+    "expectedOutput": "Kết quả mong muốn: workflow README + notebook + data/ + src/ + results/ chạy được hoặc được mô tả rõ; có log/test và kết luận ngắn.",
+    "reportPrompt": "Ghi: tham số đã đổi, kết quả trước/sau, lỗi phát hiện, test/log và ứng dụng vào tạo artifact học tập có thể mở lại, chạy lại, giải thích lại."
+  },
+  {
+    "id": "theory_PR09",
+    "stage": "prep",
+    "lessonId": "PR09",
+    "applicationId": "app_PR09",
+    "group": "Mô phỏng lý thuyết",
+    "type": "theory-simulation",
+    "title": "Mô phỏng lý thuyết · Thuật ngữ tin học Nga cho lớp dự bị",
+    "purpose": "Thử thay đổi tham số để quan sát tác động đến nghe/đọc đề bài tin học và hỏi giáo viên bằng tiếng Nga.",
+    "file": "simulations/sim_python_env_lab.html",
+    "formula": "алгоритм, переменная, функция, массив, база данных",
+    "applicationDomain": "nghe/đọc đề bài tin học và hỏi giáo viên bằng tiếng Nga",
+    "variables": [
+      {
+        "name": "dataSize",
+        "label": "Quy mô dữ liệu/code",
+        "min": 1,
+        "max": 100,
+        "default": 45,
+        "effect": "Quy mô tăng làm chi phí, lỗi và nhu cầu cấu trúc hóa tăng."
+      },
+      {
+        "name": "quality",
+        "label": "Chất lượng test/tài liệu",
+        "min": 0,
+        "max": 100,
+        "default": 70,
+        "effect": "Test/tài liệu tốt làm rủi ro demo giảm và khả năng tái lập tăng."
+      }
+    ],
+    "inputEffects": [
+      "Tăng quy mô để thấy khi nào code script đơn lẻ không còn đủ.",
+      "Giảm chất lượng test/tài liệu để thấy rủi ro lỗi logic, lỗi môi trường và demo vỡ."
+    ],
+    "explorationSteps": [
+      "Đổi một biến mỗi lần.",
+      "Ghi quan sát về thời gian, lỗi, tái lập và artifact.",
+      "Giải thích bằng workflow-cú-pháp lõi và đề xuất cải tiến."
+    ],
+    "expectedOutput": "Kết quả mong muốn: workflow алгоритм, переменная, функция, массив, база данных chạy được hoặc được mô tả rõ; có log/test và kết luận ngắn.",
+    "reportPrompt": "Ghi: tham số đã đổi, kết quả trước/sau, lỗi phát hiện, test/log và ứng dụng vào nghe/đọc đề bài tin học và hỏi giáo viên bằng tiếng Nga."
+  },
+  {
+    "id": "application_PR09",
+    "stage": "prep",
+    "lessonId": "PR09",
+    "applicationId": "app_PR09",
+    "group": "Mô phỏng ứng dụng",
+    "type": "application-simulation",
+    "title": "Mô phỏng ứng dụng · Thuật ngữ tin học Nga cho lớp dự bị",
+    "purpose": "Thử thay đổi tham số để quan sát tác động đến nghe/đọc đề bài tin học và hỏi giáo viên bằng tiếng Nga.",
+    "file": "simulations/sim_python_env_lab.html",
+    "formula": "алгоритм, переменная, функция, массив, база данных",
+    "applicationDomain": "nghe/đọc đề bài tin học và hỏi giáo viên bằng tiếng Nga",
+    "variables": [
+      {
+        "name": "dataSize",
+        "label": "Quy mô dữ liệu/code",
+        "min": 1,
+        "max": 100,
+        "default": 45,
+        "effect": "Quy mô tăng làm chi phí, lỗi và nhu cầu cấu trúc hóa tăng."
+      },
+      {
+        "name": "quality",
+        "label": "Chất lượng test/tài liệu",
+        "min": 0,
+        "max": 100,
+        "default": 70,
+        "effect": "Test/tài liệu tốt làm rủi ro demo giảm và khả năng tái lập tăng."
+      }
+    ],
+    "inputEffects": [
+      "Tăng quy mô để thấy khi nào code script đơn lẻ không còn đủ.",
+      "Giảm chất lượng test/tài liệu để thấy rủi ro lỗi logic, lỗi môi trường và demo vỡ."
+    ],
+    "explorationSteps": [
+      "Đổi một biến mỗi lần.",
+      "Ghi quan sát về thời gian, lỗi, tái lập và artifact.",
+      "Giải thích bằng workflow-cú-pháp lõi và đề xuất cải tiến."
+    ],
+    "expectedOutput": "Kết quả mong muốn: workflow алгоритм, переменная, функция, массив, база данных chạy được hoặc được mô tả rõ; có log/test và kết luận ngắn.",
+    "reportPrompt": "Ghi: tham số đã đổi, kết quả trước/sau, lỗi phát hiện, test/log và ứng dụng vào nghe/đọc đề bài tin học và hỏi giáo viên bằng tiếng Nga."
+  },
+  {
+    "id": "theory_PR10",
+    "stage": "prep",
+    "lessonId": "PR10",
+    "applicationId": "app_PR10",
+    "group": "Mô phỏng lý thuyết",
+    "type": "theory-simulation",
+    "title": "Mô phỏng lý thuyết · Pseudocode và giải thích thuật toán bằng tiếng Nga",
+    "purpose": "Thử thay đổi tham số để quan sát tác động đến trình bày lời giải không kẹt ngôn ngữ.",
+    "file": "simulations/sim_algorithm_complexity_lab.html",
+    "formula": "input → process → output; if/for/while",
+    "applicationDomain": "trình bày lời giải không kẹt ngôn ngữ",
+    "variables": [
+      {
+        "name": "dataSize",
+        "label": "Quy mô dữ liệu/code",
+        "min": 1,
+        "max": 100,
+        "default": 45,
+        "effect": "Quy mô tăng làm chi phí, lỗi và nhu cầu cấu trúc hóa tăng."
+      },
+      {
+        "name": "quality",
+        "label": "Chất lượng test/tài liệu",
+        "min": 0,
+        "max": 100,
+        "default": 70,
+        "effect": "Test/tài liệu tốt làm rủi ro demo giảm và khả năng tái lập tăng."
+      }
+    ],
+    "inputEffects": [
+      "Tăng quy mô để thấy khi nào code script đơn lẻ không còn đủ.",
+      "Giảm chất lượng test/tài liệu để thấy rủi ro lỗi logic, lỗi môi trường và demo vỡ."
+    ],
+    "explorationSteps": [
+      "Đổi một biến mỗi lần.",
+      "Ghi quan sát về thời gian, lỗi, tái lập và artifact.",
+      "Giải thích bằng workflow-cú-pháp lõi và đề xuất cải tiến."
+    ],
+    "expectedOutput": "Kết quả mong muốn: workflow input → process → output; if/for/while chạy được hoặc được mô tả rõ; có log/test và kết luận ngắn.",
+    "reportPrompt": "Ghi: tham số đã đổi, kết quả trước/sau, lỗi phát hiện, test/log và ứng dụng vào trình bày lời giải không kẹt ngôn ngữ."
+  },
+  {
+    "id": "application_PR10",
+    "stage": "prep",
+    "lessonId": "PR10",
+    "applicationId": "app_PR10",
+    "group": "Mô phỏng ứng dụng",
+    "type": "application-simulation",
+    "title": "Mô phỏng ứng dụng · Pseudocode và giải thích thuật toán bằng tiếng Nga",
+    "purpose": "Thử thay đổi tham số để quan sát tác động đến trình bày lời giải không kẹt ngôn ngữ.",
+    "file": "simulations/sim_algorithm_complexity_lab.html",
+    "formula": "input → process → output; if/for/while",
+    "applicationDomain": "trình bày lời giải không kẹt ngôn ngữ",
+    "variables": [
+      {
+        "name": "dataSize",
+        "label": "Quy mô dữ liệu/code",
+        "min": 1,
+        "max": 100,
+        "default": 45,
+        "effect": "Quy mô tăng làm chi phí, lỗi và nhu cầu cấu trúc hóa tăng."
+      },
+      {
+        "name": "quality",
+        "label": "Chất lượng test/tài liệu",
+        "min": 0,
+        "max": 100,
+        "default": 70,
+        "effect": "Test/tài liệu tốt làm rủi ro demo giảm và khả năng tái lập tăng."
+      }
+    ],
+    "inputEffects": [
+      "Tăng quy mô để thấy khi nào code script đơn lẻ không còn đủ.",
+      "Giảm chất lượng test/tài liệu để thấy rủi ro lỗi logic, lỗi môi trường và demo vỡ."
+    ],
+    "explorationSteps": [
+      "Đổi một biến mỗi lần.",
+      "Ghi quan sát về thời gian, lỗi, tái lập và artifact.",
+      "Giải thích bằng workflow-cú-pháp lõi và đề xuất cải tiến."
+    ],
+    "expectedOutput": "Kết quả mong muốn: workflow input → process → output; if/for/while chạy được hoặc được mô tả rõ; có log/test và kết luận ngắn.",
+    "reportPrompt": "Ghi: tham số đã đổi, kết quả trước/sau, lỗi phát hiện, test/log và ứng dụng vào trình bày lời giải không kẹt ngôn ngữ."
+  },
+  {
+    "id": "theory_PR11",
+    "stage": "prep",
+    "lessonId": "PR11",
+    "applicationId": "app_PR11",
+    "group": "Mô phỏng lý thuyết",
+    "type": "theory-simulation",
+    "title": "Mô phỏng lý thuyết · Cấu trúc dữ liệu nhập môn",
+    "purpose": "Thử thay đổi tham số để quan sát tác động đến làm bài tin học dự bị và mô tả dữ liệu kỹ thuật.",
+    "file": "simulations/sim_dataframe_cleaning_lab.html",
+    "formula": "array, stack, queue, dict, graph",
+    "applicationDomain": "làm bài tin học dự bị và mô tả dữ liệu kỹ thuật",
+    "variables": [
+      {
+        "name": "dataSize",
+        "label": "Quy mô dữ liệu/code",
+        "min": 1,
+        "max": 100,
+        "default": 45,
+        "effect": "Quy mô tăng làm chi phí, lỗi và nhu cầu cấu trúc hóa tăng."
+      },
+      {
+        "name": "quality",
+        "label": "Chất lượng test/tài liệu",
+        "min": 0,
+        "max": 100,
+        "default": 70,
+        "effect": "Test/tài liệu tốt làm rủi ro demo giảm và khả năng tái lập tăng."
+      }
+    ],
+    "inputEffects": [
+      "Tăng quy mô để thấy khi nào code script đơn lẻ không còn đủ.",
+      "Giảm chất lượng test/tài liệu để thấy rủi ro lỗi logic, lỗi môi trường và demo vỡ."
+    ],
+    "explorationSteps": [
+      "Đổi một biến mỗi lần.",
+      "Ghi quan sát về thời gian, lỗi, tái lập và artifact.",
+      "Giải thích bằng workflow-cú-pháp lõi và đề xuất cải tiến."
+    ],
+    "expectedOutput": "Kết quả mong muốn: workflow array, stack, queue, dict, graph chạy được hoặc được mô tả rõ; có log/test và kết luận ngắn.",
+    "reportPrompt": "Ghi: tham số đã đổi, kết quả trước/sau, lỗi phát hiện, test/log và ứng dụng vào làm bài tin học dự bị và mô tả dữ liệu kỹ thuật."
+  },
+  {
+    "id": "application_PR11",
+    "stage": "prep",
+    "lessonId": "PR11",
+    "applicationId": "app_PR11",
+    "group": "Mô phỏng ứng dụng",
+    "type": "application-simulation",
+    "title": "Mô phỏng ứng dụng · Cấu trúc dữ liệu nhập môn",
+    "purpose": "Thử thay đổi tham số để quan sát tác động đến làm bài tin học dự bị và mô tả dữ liệu kỹ thuật.",
+    "file": "simulations/sim_dataframe_cleaning_lab.html",
+    "formula": "array, stack, queue, dict, graph",
+    "applicationDomain": "làm bài tin học dự bị và mô tả dữ liệu kỹ thuật",
+    "variables": [
+      {
+        "name": "dataSize",
+        "label": "Quy mô dữ liệu/code",
+        "min": 1,
+        "max": 100,
+        "default": 45,
+        "effect": "Quy mô tăng làm chi phí, lỗi và nhu cầu cấu trúc hóa tăng."
+      },
+      {
+        "name": "quality",
+        "label": "Chất lượng test/tài liệu",
+        "min": 0,
+        "max": 100,
+        "default": 70,
+        "effect": "Test/tài liệu tốt làm rủi ro demo giảm và khả năng tái lập tăng."
+      }
+    ],
+    "inputEffects": [
+      "Tăng quy mô để thấy khi nào code script đơn lẻ không còn đủ.",
+      "Giảm chất lượng test/tài liệu để thấy rủi ro lỗi logic, lỗi môi trường và demo vỡ."
+    ],
+    "explorationSteps": [
+      "Đổi một biến mỗi lần.",
+      "Ghi quan sát về thời gian, lỗi, tái lập và artifact.",
+      "Giải thích bằng workflow-cú-pháp lõi và đề xuất cải tiến."
+    ],
+    "expectedOutput": "Kết quả mong muốn: workflow array, stack, queue, dict, graph chạy được hoặc được mô tả rõ; có log/test và kết luận ngắn.",
+    "reportPrompt": "Ghi: tham số đã đổi, kết quả trước/sau, lỗi phát hiện, test/log và ứng dụng vào làm bài tin học dự bị và mô tả dữ liệu kỹ thuật."
+  },
+  {
+    "id": "theory_PR12",
+    "stage": "prep",
+    "lessonId": "PR12",
+    "applicationId": "app_PR12",
+    "group": "Mô phỏng lý thuyết",
+    "type": "theory-simulation",
+    "title": "Mô phỏng lý thuyết · File, JSON, CSV và dữ liệu học tập",
+    "purpose": "Thử thay đổi tham số để quan sát tác động đến đọc/ghi dữ liệu module môn học, kho dữ liệu và bài tập.",
+    "file": "simulations/sim_sql_query_lab.html",
+    "formula": "json.load(); csv.DictReader(); pathlib.Path",
+    "applicationDomain": "đọc/ghi dữ liệu module môn học, kho dữ liệu và bài tập",
+    "variables": [
+      {
+        "name": "dataSize",
+        "label": "Quy mô dữ liệu/code",
+        "min": 1,
+        "max": 100,
+        "default": 45,
+        "effect": "Quy mô tăng làm chi phí, lỗi và nhu cầu cấu trúc hóa tăng."
+      },
+      {
+        "name": "quality",
+        "label": "Chất lượng test/tài liệu",
+        "min": 0,
+        "max": 100,
+        "default": 70,
+        "effect": "Test/tài liệu tốt làm rủi ro demo giảm và khả năng tái lập tăng."
+      }
+    ],
+    "inputEffects": [
+      "Tăng quy mô để thấy khi nào code script đơn lẻ không còn đủ.",
+      "Giảm chất lượng test/tài liệu để thấy rủi ro lỗi logic, lỗi môi trường và demo vỡ."
+    ],
+    "explorationSteps": [
+      "Đổi một biến mỗi lần.",
+      "Ghi quan sát về thời gian, lỗi, tái lập và artifact.",
+      "Giải thích bằng workflow-cú-pháp lõi và đề xuất cải tiến."
+    ],
+    "expectedOutput": "Kết quả mong muốn: workflow json.load(); csv.DictReader(); pathlib.Path chạy được hoặc được mô tả rõ; có log/test và kết luận ngắn.",
+    "reportPrompt": "Ghi: tham số đã đổi, kết quả trước/sau, lỗi phát hiện, test/log và ứng dụng vào đọc/ghi dữ liệu module môn học, kho dữ liệu và bài tập."
+  },
+  {
+    "id": "application_PR12",
+    "stage": "prep",
+    "lessonId": "PR12",
+    "applicationId": "app_PR12",
+    "group": "Mô phỏng ứng dụng",
+    "type": "application-simulation",
+    "title": "Mô phỏng ứng dụng · File, JSON, CSV và dữ liệu học tập",
+    "purpose": "Thử thay đổi tham số để quan sát tác động đến đọc/ghi dữ liệu module môn học, kho dữ liệu và bài tập.",
+    "file": "simulations/sim_sql_query_lab.html",
+    "formula": "json.load(); csv.DictReader(); pathlib.Path",
+    "applicationDomain": "đọc/ghi dữ liệu module môn học, kho dữ liệu và bài tập",
+    "variables": [
+      {
+        "name": "dataSize",
+        "label": "Quy mô dữ liệu/code",
+        "min": 1,
+        "max": 100,
+        "default": 45,
+        "effect": "Quy mô tăng làm chi phí, lỗi và nhu cầu cấu trúc hóa tăng."
+      },
+      {
+        "name": "quality",
+        "label": "Chất lượng test/tài liệu",
+        "min": 0,
+        "max": 100,
+        "default": 70,
+        "effect": "Test/tài liệu tốt làm rủi ro demo giảm và khả năng tái lập tăng."
+      }
+    ],
+    "inputEffects": [
+      "Tăng quy mô để thấy khi nào code script đơn lẻ không còn đủ.",
+      "Giảm chất lượng test/tài liệu để thấy rủi ro lỗi logic, lỗi môi trường và demo vỡ."
+    ],
+    "explorationSteps": [
+      "Đổi một biến mỗi lần.",
+      "Ghi quan sát về thời gian, lỗi, tái lập và artifact.",
+      "Giải thích bằng workflow-cú-pháp lõi và đề xuất cải tiến."
+    ],
+    "expectedOutput": "Kết quả mong muốn: workflow json.load(); csv.DictReader(); pathlib.Path chạy được hoặc được mô tả rõ; có log/test và kết luận ngắn.",
+    "reportPrompt": "Ghi: tham số đã đổi, kết quả trước/sau, lỗi phát hiện, test/log và ứng dụng vào đọc/ghi dữ liệu module môn học, kho dữ liệu và bài tập."
+  },
+  {
+    "id": "theory_PR13",
+    "stage": "prep",
+    "lessonId": "PR13",
+    "applicationId": "app_PR13",
+    "group": "Mô phỏng lý thuyết",
+    "type": "theory-simulation",
+    "title": "Mô phỏng lý thuyết · Debug, exception và logging",
+    "purpose": "Thử thay đổi tham số để quan sát tác động đến tìm lỗi render, lỗi dữ liệu, lỗi logic khi tự làm module.",
+    "file": "simulations/sim_git_workflow_lab.html",
+    "formula": "try/except; logging.info(); assert condition",
+    "applicationDomain": "tìm lỗi render, lỗi dữ liệu, lỗi logic khi tự làm module",
+    "variables": [
+      {
+        "name": "dataSize",
+        "label": "Quy mô dữ liệu/code",
+        "min": 1,
+        "max": 100,
+        "default": 45,
+        "effect": "Quy mô tăng làm chi phí, lỗi và nhu cầu cấu trúc hóa tăng."
+      },
+      {
+        "name": "quality",
+        "label": "Chất lượng test/tài liệu",
+        "min": 0,
+        "max": 100,
+        "default": 70,
+        "effect": "Test/tài liệu tốt làm rủi ro demo giảm và khả năng tái lập tăng."
+      }
+    ],
+    "inputEffects": [
+      "Tăng quy mô để thấy khi nào code script đơn lẻ không còn đủ.",
+      "Giảm chất lượng test/tài liệu để thấy rủi ro lỗi logic, lỗi môi trường và demo vỡ."
+    ],
+    "explorationSteps": [
+      "Đổi một biến mỗi lần.",
+      "Ghi quan sát về thời gian, lỗi, tái lập và artifact.",
+      "Giải thích bằng workflow-cú-pháp lõi và đề xuất cải tiến."
+    ],
+    "expectedOutput": "Kết quả mong muốn: workflow try/except; logging.info(); assert condition chạy được hoặc được mô tả rõ; có log/test và kết luận ngắn.",
+    "reportPrompt": "Ghi: tham số đã đổi, kết quả trước/sau, lỗi phát hiện, test/log và ứng dụng vào tìm lỗi render, lỗi dữ liệu, lỗi logic khi tự làm module."
+  },
+  {
+    "id": "application_PR13",
+    "stage": "prep",
+    "lessonId": "PR13",
+    "applicationId": "app_PR13",
+    "group": "Mô phỏng ứng dụng",
+    "type": "application-simulation",
+    "title": "Mô phỏng ứng dụng · Debug, exception và logging",
+    "purpose": "Thử thay đổi tham số để quan sát tác động đến tìm lỗi render, lỗi dữ liệu, lỗi logic khi tự làm module.",
+    "file": "simulations/sim_git_workflow_lab.html",
+    "formula": "try/except; logging.info(); assert condition",
+    "applicationDomain": "tìm lỗi render, lỗi dữ liệu, lỗi logic khi tự làm module",
+    "variables": [
+      {
+        "name": "dataSize",
+        "label": "Quy mô dữ liệu/code",
+        "min": 1,
+        "max": 100,
+        "default": 45,
+        "effect": "Quy mô tăng làm chi phí, lỗi và nhu cầu cấu trúc hóa tăng."
+      },
+      {
+        "name": "quality",
+        "label": "Chất lượng test/tài liệu",
+        "min": 0,
+        "max": 100,
+        "default": 70,
+        "effect": "Test/tài liệu tốt làm rủi ro demo giảm và khả năng tái lập tăng."
+      }
+    ],
+    "inputEffects": [
+      "Tăng quy mô để thấy khi nào code script đơn lẻ không còn đủ.",
+      "Giảm chất lượng test/tài liệu để thấy rủi ro lỗi logic, lỗi môi trường và demo vỡ."
+    ],
+    "explorationSteps": [
+      "Đổi một biến mỗi lần.",
+      "Ghi quan sát về thời gian, lỗi, tái lập và artifact.",
+      "Giải thích bằng workflow-cú-pháp lõi và đề xuất cải tiến."
+    ],
+    "expectedOutput": "Kết quả mong muốn: workflow try/except; logging.info(); assert condition chạy được hoặc được mô tả rõ; có log/test và kết luận ngắn.",
+    "reportPrompt": "Ghi: tham số đã đổi, kết quả trước/sau, lỗi phát hiện, test/log và ứng dụng vào tìm lỗi render, lỗi dữ liệu, lỗi logic khi tự làm module."
+  },
+  {
+    "id": "theory_PR14",
+    "stage": "prep",
+    "lessonId": "PR14",
+    "applicationId": "app_PR14",
+    "group": "Mô phỏng lý thuyết",
+    "type": "theory-simulation",
+    "title": "Mô phỏng lý thuyết · Unit test căn bản với pytest",
+    "purpose": "Thử thay đổi tham số để quan sát tác động đến kiểm thử hàm xử lý dữ liệu và logic nút bấm.",
+    "file": "simulations/sim_oop_architecture_lab.html",
+    "formula": "assert f(x)==expected; pytest -q",
+    "applicationDomain": "kiểm thử hàm xử lý dữ liệu và logic nút bấm",
+    "variables": [
+      {
+        "name": "dataSize",
+        "label": "Quy mô dữ liệu/code",
+        "min": 1,
+        "max": 100,
+        "default": 45,
+        "effect": "Quy mô tăng làm chi phí, lỗi và nhu cầu cấu trúc hóa tăng."
+      },
+      {
+        "name": "quality",
+        "label": "Chất lượng test/tài liệu",
+        "min": 0,
+        "max": 100,
+        "default": 70,
+        "effect": "Test/tài liệu tốt làm rủi ro demo giảm và khả năng tái lập tăng."
+      }
+    ],
+    "inputEffects": [
+      "Tăng quy mô để thấy khi nào code script đơn lẻ không còn đủ.",
+      "Giảm chất lượng test/tài liệu để thấy rủi ro lỗi logic, lỗi môi trường và demo vỡ."
+    ],
+    "explorationSteps": [
+      "Đổi một biến mỗi lần.",
+      "Ghi quan sát về thời gian, lỗi, tái lập và artifact.",
+      "Giải thích bằng workflow-cú-pháp lõi và đề xuất cải tiến."
+    ],
+    "expectedOutput": "Kết quả mong muốn: workflow assert f(x)==expected; pytest -q chạy được hoặc được mô tả rõ; có log/test và kết luận ngắn.",
+    "reportPrompt": "Ghi: tham số đã đổi, kết quả trước/sau, lỗi phát hiện, test/log và ứng dụng vào kiểm thử hàm xử lý dữ liệu và logic nút bấm."
+  },
+  {
+    "id": "application_PR14",
+    "stage": "prep",
+    "lessonId": "PR14",
+    "applicationId": "app_PR14",
+    "group": "Mô phỏng ứng dụng",
+    "type": "application-simulation",
+    "title": "Mô phỏng ứng dụng · Unit test căn bản với pytest",
+    "purpose": "Thử thay đổi tham số để quan sát tác động đến kiểm thử hàm xử lý dữ liệu và logic nút bấm.",
+    "file": "simulations/sim_oop_architecture_lab.html",
+    "formula": "assert f(x)==expected; pytest -q",
+    "applicationDomain": "kiểm thử hàm xử lý dữ liệu và logic nút bấm",
+    "variables": [
+      {
+        "name": "dataSize",
+        "label": "Quy mô dữ liệu/code",
+        "min": 1,
+        "max": 100,
+        "default": 45,
+        "effect": "Quy mô tăng làm chi phí, lỗi và nhu cầu cấu trúc hóa tăng."
+      },
+      {
+        "name": "quality",
+        "label": "Chất lượng test/tài liệu",
+        "min": 0,
+        "max": 100,
+        "default": 70,
+        "effect": "Test/tài liệu tốt làm rủi ro demo giảm và khả năng tái lập tăng."
+      }
+    ],
+    "inputEffects": [
+      "Tăng quy mô để thấy khi nào code script đơn lẻ không còn đủ.",
+      "Giảm chất lượng test/tài liệu để thấy rủi ro lỗi logic, lỗi môi trường và demo vỡ."
+    ],
+    "explorationSteps": [
+      "Đổi một biến mỗi lần.",
+      "Ghi quan sát về thời gian, lỗi, tái lập và artifact.",
+      "Giải thích bằng workflow-cú-pháp lõi và đề xuất cải tiến."
+    ],
+    "expectedOutput": "Kết quả mong muốn: workflow assert f(x)==expected; pytest -q chạy được hoặc được mô tả rõ; có log/test và kết luận ngắn.",
+    "reportPrompt": "Ghi: tham số đã đổi, kết quả trước/sau, lỗi phát hiện, test/log và ứng dụng vào kiểm thử hàm xử lý dữ liệu và logic nút bấm."
+  },
+  {
+    "id": "theory_PR15",
+    "stage": "prep",
+    "lessonId": "PR15",
+    "applicationId": "app_PR15",
+    "group": "Mô phỏng lý thuyết",
+    "type": "theory-simulation",
+    "title": "Mô phỏng lý thuyết · SQL nâng nền: JOIN, GROUP BY, index",
+    "purpose": "Thử thay đổi tham số để quan sát tác động đến truy vấn dữ liệu thí nghiệm có nhiều bảng.",
+    "file": "simulations/sim_ml_pipeline_lab.html",
+    "formula": "JOIN; GROUP BY; CREATE INDEX idx ON table(col)",
+    "applicationDomain": "truy vấn dữ liệu thí nghiệm có nhiều bảng",
+    "variables": [
+      {
+        "name": "dataSize",
+        "label": "Quy mô dữ liệu/code",
+        "min": 1,
+        "max": 100,
+        "default": 45,
+        "effect": "Quy mô tăng làm chi phí, lỗi và nhu cầu cấu trúc hóa tăng."
+      },
+      {
+        "name": "quality",
+        "label": "Chất lượng test/tài liệu",
+        "min": 0,
+        "max": 100,
+        "default": 70,
+        "effect": "Test/tài liệu tốt làm rủi ro demo giảm và khả năng tái lập tăng."
+      }
+    ],
+    "inputEffects": [
+      "Tăng quy mô để thấy khi nào code script đơn lẻ không còn đủ.",
+      "Giảm chất lượng test/tài liệu để thấy rủi ro lỗi logic, lỗi môi trường và demo vỡ."
+    ],
+    "explorationSteps": [
+      "Đổi một biến mỗi lần.",
+      "Ghi quan sát về thời gian, lỗi, tái lập và artifact.",
+      "Giải thích bằng workflow-cú-pháp lõi và đề xuất cải tiến."
+    ],
+    "expectedOutput": "Kết quả mong muốn: workflow JOIN; GROUP BY; CREATE INDEX idx ON table(col) chạy được hoặc được mô tả rõ; có log/test và kết luận ngắn.",
+    "reportPrompt": "Ghi: tham số đã đổi, kết quả trước/sau, lỗi phát hiện, test/log và ứng dụng vào truy vấn dữ liệu thí nghiệm có nhiều bảng."
+  },
+  {
+    "id": "application_PR15",
+    "stage": "prep",
+    "lessonId": "PR15",
+    "applicationId": "app_PR15",
+    "group": "Mô phỏng ứng dụng",
+    "type": "application-simulation",
+    "title": "Mô phỏng ứng dụng · SQL nâng nền: JOIN, GROUP BY, index",
+    "purpose": "Thử thay đổi tham số để quan sát tác động đến truy vấn dữ liệu thí nghiệm có nhiều bảng.",
+    "file": "simulations/sim_ml_pipeline_lab.html",
+    "formula": "JOIN; GROUP BY; CREATE INDEX idx ON table(col)",
+    "applicationDomain": "truy vấn dữ liệu thí nghiệm có nhiều bảng",
+    "variables": [
+      {
+        "name": "dataSize",
+        "label": "Quy mô dữ liệu/code",
+        "min": 1,
+        "max": 100,
+        "default": 45,
+        "effect": "Quy mô tăng làm chi phí, lỗi và nhu cầu cấu trúc hóa tăng."
+      },
+      {
+        "name": "quality",
+        "label": "Chất lượng test/tài liệu",
+        "min": 0,
+        "max": 100,
+        "default": 70,
+        "effect": "Test/tài liệu tốt làm rủi ro demo giảm và khả năng tái lập tăng."
+      }
+    ],
+    "inputEffects": [
+      "Tăng quy mô để thấy khi nào code script đơn lẻ không còn đủ.",
+      "Giảm chất lượng test/tài liệu để thấy rủi ro lỗi logic, lỗi môi trường và demo vỡ."
+    ],
+    "explorationSteps": [
+      "Đổi một biến mỗi lần.",
+      "Ghi quan sát về thời gian, lỗi, tái lập và artifact.",
+      "Giải thích bằng workflow-cú-pháp lõi và đề xuất cải tiến."
+    ],
+    "expectedOutput": "Kết quả mong muốn: workflow JOIN; GROUP BY; CREATE INDEX idx ON table(col) chạy được hoặc được mô tả rõ; có log/test và kết luận ngắn.",
+    "reportPrompt": "Ghi: tham số đã đổi, kết quả trước/sau, lỗi phát hiện, test/log và ứng dụng vào truy vấn dữ liệu thí nghiệm có nhiều bảng."
+  },
+  {
+    "id": "theory_PR16",
+    "stage": "prep",
+    "lessonId": "PR16",
+    "applicationId": "app_PR16",
+    "group": "Mô phỏng lý thuyết",
+    "type": "theory-simulation",
+    "title": "Mô phỏng lý thuyết · Quy tắc đặt tên, comment và tài liệu song ngữ",
+    "purpose": "Thử thay đổi tham số để quan sát tác động đến ghi chú Việt-Nga-Anh để đọc code trong môi trường Bauman.",
+    "file": "simulations/sim_reproducible_demo_lab.html",
+    "formula": "name = intent; docstring = input + output + limit",
+    "applicationDomain": "ghi chú Việt-Nga-Anh để đọc code trong môi trường Bauman",
+    "variables": [
+      {
+        "name": "dataSize",
+        "label": "Quy mô dữ liệu/code",
+        "min": 1,
+        "max": 100,
+        "default": 45,
+        "effect": "Quy mô tăng làm chi phí, lỗi và nhu cầu cấu trúc hóa tăng."
+      },
+      {
+        "name": "quality",
+        "label": "Chất lượng test/tài liệu",
+        "min": 0,
+        "max": 100,
+        "default": 70,
+        "effect": "Test/tài liệu tốt làm rủi ro demo giảm và khả năng tái lập tăng."
+      }
+    ],
+    "inputEffects": [
+      "Tăng quy mô để thấy khi nào code script đơn lẻ không còn đủ.",
+      "Giảm chất lượng test/tài liệu để thấy rủi ro lỗi logic, lỗi môi trường và demo vỡ."
+    ],
+    "explorationSteps": [
+      "Đổi một biến mỗi lần.",
+      "Ghi quan sát về thời gian, lỗi, tái lập và artifact.",
+      "Giải thích bằng workflow-cú-pháp lõi và đề xuất cải tiến."
+    ],
+    "expectedOutput": "Kết quả mong muốn: workflow name = intent; docstring = input + output + limit chạy được hoặc được mô tả rõ; có log/test và kết luận ngắn.",
+    "reportPrompt": "Ghi: tham số đã đổi, kết quả trước/sau, lỗi phát hiện, test/log và ứng dụng vào ghi chú Việt-Nga-Anh để đọc code trong môi trường Bauman."
+  },
+  {
+    "id": "application_PR16",
+    "stage": "prep",
+    "lessonId": "PR16",
+    "applicationId": "app_PR16",
+    "group": "Mô phỏng ứng dụng",
+    "type": "application-simulation",
+    "title": "Mô phỏng ứng dụng · Quy tắc đặt tên, comment và tài liệu song ngữ",
+    "purpose": "Thử thay đổi tham số để quan sát tác động đến ghi chú Việt-Nga-Anh để đọc code trong môi trường Bauman.",
+    "file": "simulations/sim_reproducible_demo_lab.html",
+    "formula": "name = intent; docstring = input + output + limit",
+    "applicationDomain": "ghi chú Việt-Nga-Anh để đọc code trong môi trường Bauman",
+    "variables": [
+      {
+        "name": "dataSize",
+        "label": "Quy mô dữ liệu/code",
+        "min": 1,
+        "max": 100,
+        "default": 45,
+        "effect": "Quy mô tăng làm chi phí, lỗi và nhu cầu cấu trúc hóa tăng."
+      },
+      {
+        "name": "quality",
+        "label": "Chất lượng test/tài liệu",
+        "min": 0,
+        "max": 100,
+        "default": 70,
+        "effect": "Test/tài liệu tốt làm rủi ro demo giảm và khả năng tái lập tăng."
+      }
+    ],
+    "inputEffects": [
+      "Tăng quy mô để thấy khi nào code script đơn lẻ không còn đủ.",
+      "Giảm chất lượng test/tài liệu để thấy rủi ro lỗi logic, lỗi môi trường và demo vỡ."
+    ],
+    "explorationSteps": [
+      "Đổi một biến mỗi lần.",
+      "Ghi quan sát về thời gian, lỗi, tái lập và artifact.",
+      "Giải thích bằng workflow-cú-pháp lõi và đề xuất cải tiến."
+    ],
+    "expectedOutput": "Kết quả mong muốn: workflow name = intent; docstring = input + output + limit chạy được hoặc được mô tả rõ; có log/test và kết luận ngắn.",
+    "reportPrompt": "Ghi: tham số đã đổi, kết quả trước/sau, lỗi phát hiện, test/log và ứng dụng vào ghi chú Việt-Nga-Anh để đọc code trong môi trường Bauman."
+  },
+  {
+    "id": "theory_PR17",
+    "stage": "hk1",
+    "lessonId": "PR17",
+    "applicationId": "app_PR17",
+    "group": "Mô phỏng lý thuyết",
+    "type": "theory-simulation",
+    "title": "Mô phỏng lý thuyết · OOP cho АСОИУ: class, interface, responsibility",
+    "purpose": "Thử thay đổi tham số để quan sát tác động đến tạo skeleton phần mềm UGV gồm sensor/model/control.",
+    "file": "simulations/sim_python_env_lab.html",
+    "formula": "class Sensor: read(); class Model: predict()",
+    "applicationDomain": "tạo skeleton phần mềm UGV gồm sensor/model/control",
+    "variables": [
+      {
+        "name": "dataSize",
+        "label": "Quy mô dữ liệu/code",
+        "min": 1,
+        "max": 100,
+        "default": 45,
+        "effect": "Quy mô tăng làm chi phí, lỗi và nhu cầu cấu trúc hóa tăng."
+      },
+      {
+        "name": "quality",
+        "label": "Chất lượng test/tài liệu",
+        "min": 0,
+        "max": 100,
+        "default": 70,
+        "effect": "Test/tài liệu tốt làm rủi ro demo giảm và khả năng tái lập tăng."
+      }
+    ],
+    "inputEffects": [
+      "Tăng quy mô để thấy khi nào code script đơn lẻ không còn đủ.",
+      "Giảm chất lượng test/tài liệu để thấy rủi ro lỗi logic, lỗi môi trường và demo vỡ."
+    ],
+    "explorationSteps": [
+      "Đổi một biến mỗi lần.",
+      "Ghi quan sát về thời gian, lỗi, tái lập và artifact.",
+      "Giải thích bằng workflow-cú-pháp lõi và đề xuất cải tiến."
+    ],
+    "expectedOutput": "Kết quả mong muốn: workflow class Sensor: read(); class Model: predict() chạy được hoặc được mô tả rõ; có log/test và kết luận ngắn.",
+    "reportPrompt": "Ghi: tham số đã đổi, kết quả trước/sau, lỗi phát hiện, test/log và ứng dụng vào tạo skeleton phần mềm UGV gồm sensor/model/control."
+  },
+  {
+    "id": "application_PR17",
+    "stage": "hk1",
+    "lessonId": "PR17",
+    "applicationId": "app_PR17",
+    "group": "Mô phỏng ứng dụng",
+    "type": "application-simulation",
+    "title": "Mô phỏng ứng dụng · OOP cho АСОИУ: class, interface, responsibility",
+    "purpose": "Thử thay đổi tham số để quan sát tác động đến tạo skeleton phần mềm UGV gồm sensor/model/control.",
+    "file": "simulations/sim_python_env_lab.html",
+    "formula": "class Sensor: read(); class Model: predict()",
+    "applicationDomain": "tạo skeleton phần mềm UGV gồm sensor/model/control",
+    "variables": [
+      {
+        "name": "dataSize",
+        "label": "Quy mô dữ liệu/code",
+        "min": 1,
+        "max": 100,
+        "default": 45,
+        "effect": "Quy mô tăng làm chi phí, lỗi và nhu cầu cấu trúc hóa tăng."
+      },
+      {
+        "name": "quality",
+        "label": "Chất lượng test/tài liệu",
+        "min": 0,
+        "max": 100,
+        "default": 70,
+        "effect": "Test/tài liệu tốt làm rủi ro demo giảm và khả năng tái lập tăng."
+      }
+    ],
+    "inputEffects": [
+      "Tăng quy mô để thấy khi nào code script đơn lẻ không còn đủ.",
+      "Giảm chất lượng test/tài liệu để thấy rủi ro lỗi logic, lỗi môi trường và demo vỡ."
+    ],
+    "explorationSteps": [
+      "Đổi một biến mỗi lần.",
+      "Ghi quan sát về thời gian, lỗi, tái lập và artifact.",
+      "Giải thích bằng workflow-cú-pháp lõi và đề xuất cải tiến."
+    ],
+    "expectedOutput": "Kết quả mong muốn: workflow class Sensor: read(); class Model: predict() chạy được hoặc được mô tả rõ; có log/test và kết luận ngắn.",
+    "reportPrompt": "Ghi: tham số đã đổi, kết quả trước/sau, lỗi phát hiện, test/log và ứng dụng vào tạo skeleton phần mềm UGV gồm sensor/model/control."
+  },
+  {
+    "id": "theory_PR18",
+    "stage": "hk1",
+    "lessonId": "PR18",
+    "applicationId": "app_PR18",
+    "group": "Mô phỏng lý thuyết",
+    "type": "theory-simulation",
+    "title": "Mô phỏng lý thuyết · Thiết kế module và kiến trúc package Python",
+    "purpose": "Thử thay đổi tham số để quan sát tác động đến chia dự án thành module rõ, dễ bảo trì và mở rộng.",
+    "file": "simulations/sim_algorithm_complexity_lab.html",
+    "formula": "src/, tests/, configs/, data/, scripts/",
+    "applicationDomain": "chia dự án thành module rõ, dễ bảo trì và mở rộng",
+    "variables": [
+      {
+        "name": "dataSize",
+        "label": "Quy mô dữ liệu/code",
+        "min": 1,
+        "max": 100,
+        "default": 45,
+        "effect": "Quy mô tăng làm chi phí, lỗi và nhu cầu cấu trúc hóa tăng."
+      },
+      {
+        "name": "quality",
+        "label": "Chất lượng test/tài liệu",
+        "min": 0,
+        "max": 100,
+        "default": 70,
+        "effect": "Test/tài liệu tốt làm rủi ro demo giảm và khả năng tái lập tăng."
+      }
+    ],
+    "inputEffects": [
+      "Tăng quy mô để thấy khi nào code script đơn lẻ không còn đủ.",
+      "Giảm chất lượng test/tài liệu để thấy rủi ro lỗi logic, lỗi môi trường và demo vỡ."
+    ],
+    "explorationSteps": [
+      "Đổi một biến mỗi lần.",
+      "Ghi quan sát về thời gian, lỗi, tái lập và artifact.",
+      "Giải thích bằng workflow-cú-pháp lõi và đề xuất cải tiến."
+    ],
+    "expectedOutput": "Kết quả mong muốn: workflow src/, tests/, configs/, data/, scripts/ chạy được hoặc được mô tả rõ; có log/test và kết luận ngắn.",
+    "reportPrompt": "Ghi: tham số đã đổi, kết quả trước/sau, lỗi phát hiện, test/log và ứng dụng vào chia dự án thành module rõ, dễ bảo trì và mở rộng."
+  },
+  {
+    "id": "application_PR18",
+    "stage": "hk1",
+    "lessonId": "PR18",
+    "applicationId": "app_PR18",
+    "group": "Mô phỏng ứng dụng",
+    "type": "application-simulation",
+    "title": "Mô phỏng ứng dụng · Thiết kế module và kiến trúc package Python",
+    "purpose": "Thử thay đổi tham số để quan sát tác động đến chia dự án thành module rõ, dễ bảo trì và mở rộng.",
+    "file": "simulations/sim_algorithm_complexity_lab.html",
+    "formula": "src/, tests/, configs/, data/, scripts/",
+    "applicationDomain": "chia dự án thành module rõ, dễ bảo trì và mở rộng",
+    "variables": [
+      {
+        "name": "dataSize",
+        "label": "Quy mô dữ liệu/code",
+        "min": 1,
+        "max": 100,
+        "default": 45,
+        "effect": "Quy mô tăng làm chi phí, lỗi và nhu cầu cấu trúc hóa tăng."
+      },
+      {
+        "name": "quality",
+        "label": "Chất lượng test/tài liệu",
+        "min": 0,
+        "max": 100,
+        "default": 70,
+        "effect": "Test/tài liệu tốt làm rủi ro demo giảm và khả năng tái lập tăng."
+      }
+    ],
+    "inputEffects": [
+      "Tăng quy mô để thấy khi nào code script đơn lẻ không còn đủ.",
+      "Giảm chất lượng test/tài liệu để thấy rủi ro lỗi logic, lỗi môi trường và demo vỡ."
+    ],
+    "explorationSteps": [
+      "Đổi một biến mỗi lần.",
+      "Ghi quan sát về thời gian, lỗi, tái lập và artifact.",
+      "Giải thích bằng workflow-cú-pháp lõi và đề xuất cải tiến."
+    ],
+    "expectedOutput": "Kết quả mong muốn: workflow src/, tests/, configs/, data/, scripts/ chạy được hoặc được mô tả rõ; có log/test và kết luận ngắn.",
+    "reportPrompt": "Ghi: tham số đã đổi, kết quả trước/sau, lỗi phát hiện, test/log và ứng dụng vào chia dự án thành module rõ, dễ bảo trì và mở rộng."
+  },
+  {
+    "id": "theory_PR19",
+    "stage": "hk1",
+    "lessonId": "PR19",
+    "applicationId": "app_PR19",
+    "group": "Mô phỏng lý thuyết",
+    "type": "theory-simulation",
+    "title": "Mô phỏng lý thuyết · Mẫu thiết kế ứng dụng: factory, strategy, adapter",
+    "purpose": "Thử thay đổi tham số để quan sát tác động đến đổi cảm biến/mô hình mà không phá toàn bộ code.",
+    "file": "simulations/sim_dataframe_cleaning_lab.html",
+    "formula": "Strategy(model); Adapter(sensor); Factory(config)",
+    "applicationDomain": "đổi cảm biến/mô hình mà không phá toàn bộ code",
+    "variables": [
+      {
+        "name": "dataSize",
+        "label": "Quy mô dữ liệu/code",
+        "min": 1,
+        "max": 100,
+        "default": 45,
+        "effect": "Quy mô tăng làm chi phí, lỗi và nhu cầu cấu trúc hóa tăng."
+      },
+      {
+        "name": "quality",
+        "label": "Chất lượng test/tài liệu",
+        "min": 0,
+        "max": 100,
+        "default": 70,
+        "effect": "Test/tài liệu tốt làm rủi ro demo giảm và khả năng tái lập tăng."
+      }
+    ],
+    "inputEffects": [
+      "Tăng quy mô để thấy khi nào code script đơn lẻ không còn đủ.",
+      "Giảm chất lượng test/tài liệu để thấy rủi ro lỗi logic, lỗi môi trường và demo vỡ."
+    ],
+    "explorationSteps": [
+      "Đổi một biến mỗi lần.",
+      "Ghi quan sát về thời gian, lỗi, tái lập và artifact.",
+      "Giải thích bằng workflow-cú-pháp lõi và đề xuất cải tiến."
+    ],
+    "expectedOutput": "Kết quả mong muốn: workflow Strategy(model); Adapter(sensor); Factory(config) chạy được hoặc được mô tả rõ; có log/test và kết luận ngắn.",
+    "reportPrompt": "Ghi: tham số đã đổi, kết quả trước/sau, lỗi phát hiện, test/log và ứng dụng vào đổi cảm biến/mô hình mà không phá toàn bộ code."
+  },
+  {
+    "id": "application_PR19",
+    "stage": "hk1",
+    "lessonId": "PR19",
+    "applicationId": "app_PR19",
+    "group": "Mô phỏng ứng dụng",
+    "type": "application-simulation",
+    "title": "Mô phỏng ứng dụng · Mẫu thiết kế ứng dụng: factory, strategy, adapter",
+    "purpose": "Thử thay đổi tham số để quan sát tác động đến đổi cảm biến/mô hình mà không phá toàn bộ code.",
+    "file": "simulations/sim_dataframe_cleaning_lab.html",
+    "formula": "Strategy(model); Adapter(sensor); Factory(config)",
+    "applicationDomain": "đổi cảm biến/mô hình mà không phá toàn bộ code",
+    "variables": [
+      {
+        "name": "dataSize",
+        "label": "Quy mô dữ liệu/code",
+        "min": 1,
+        "max": 100,
+        "default": 45,
+        "effect": "Quy mô tăng làm chi phí, lỗi và nhu cầu cấu trúc hóa tăng."
+      },
+      {
+        "name": "quality",
+        "label": "Chất lượng test/tài liệu",
+        "min": 0,
+        "max": 100,
+        "default": 70,
+        "effect": "Test/tài liệu tốt làm rủi ro demo giảm và khả năng tái lập tăng."
+      }
+    ],
+    "inputEffects": [
+      "Tăng quy mô để thấy khi nào code script đơn lẻ không còn đủ.",
+      "Giảm chất lượng test/tài liệu để thấy rủi ro lỗi logic, lỗi môi trường và demo vỡ."
+    ],
+    "explorationSteps": [
+      "Đổi một biến mỗi lần.",
+      "Ghi quan sát về thời gian, lỗi, tái lập và artifact.",
+      "Giải thích bằng workflow-cú-pháp lõi và đề xuất cải tiến."
+    ],
+    "expectedOutput": "Kết quả mong muốn: workflow Strategy(model); Adapter(sensor); Factory(config) chạy được hoặc được mô tả rõ; có log/test và kết luận ngắn.",
+    "reportPrompt": "Ghi: tham số đã đổi, kết quả trước/sau, lỗi phát hiện, test/log và ứng dụng vào đổi cảm biến/mô hình mà không phá toàn bộ code."
+  },
+  {
+    "id": "theory_PR20",
+    "stage": "hk1",
+    "lessonId": "PR20",
+    "applicationId": "app_PR20",
+    "group": "Mô phỏng lý thuyết",
+    "type": "theory-simulation",
+    "title": "Mô phỏng lý thuyết · CSDL cho hệ thống học máy: schema và metadata",
+    "purpose": "Thử thay đổi tham số để quan sát tác động đến lưu tham số, metric, dataset và đường dẫn artifact.",
+    "file": "simulations/sim_sql_query_lab.html",
+    "formula": "experiment(id, params, metrics, artifact_path)",
+    "applicationDomain": "lưu tham số, metric, dataset và đường dẫn artifact",
+    "variables": [
+      {
+        "name": "dataSize",
+        "label": "Quy mô dữ liệu/code",
+        "min": 1,
+        "max": 100,
+        "default": 45,
+        "effect": "Quy mô tăng làm chi phí, lỗi và nhu cầu cấu trúc hóa tăng."
+      },
+      {
+        "name": "quality",
+        "label": "Chất lượng test/tài liệu",
+        "min": 0,
+        "max": 100,
+        "default": 70,
+        "effect": "Test/tài liệu tốt làm rủi ro demo giảm và khả năng tái lập tăng."
+      }
+    ],
+    "inputEffects": [
+      "Tăng quy mô để thấy khi nào code script đơn lẻ không còn đủ.",
+      "Giảm chất lượng test/tài liệu để thấy rủi ro lỗi logic, lỗi môi trường và demo vỡ."
+    ],
+    "explorationSteps": [
+      "Đổi một biến mỗi lần.",
+      "Ghi quan sát về thời gian, lỗi, tái lập và artifact.",
+      "Giải thích bằng workflow-cú-pháp lõi và đề xuất cải tiến."
+    ],
+    "expectedOutput": "Kết quả mong muốn: workflow experiment(id, params, metrics, artifact_path) chạy được hoặc được mô tả rõ; có log/test và kết luận ngắn.",
+    "reportPrompt": "Ghi: tham số đã đổi, kết quả trước/sau, lỗi phát hiện, test/log và ứng dụng vào lưu tham số, metric, dataset và đường dẫn artifact."
+  },
+  {
+    "id": "application_PR20",
+    "stage": "hk1",
+    "lessonId": "PR20",
+    "applicationId": "app_PR20",
+    "group": "Mô phỏng ứng dụng",
+    "type": "application-simulation",
+    "title": "Mô phỏng ứng dụng · CSDL cho hệ thống học máy: schema và metadata",
+    "purpose": "Thử thay đổi tham số để quan sát tác động đến lưu tham số, metric, dataset và đường dẫn artifact.",
+    "file": "simulations/sim_sql_query_lab.html",
+    "formula": "experiment(id, params, metrics, artifact_path)",
+    "applicationDomain": "lưu tham số, metric, dataset và đường dẫn artifact",
+    "variables": [
+      {
+        "name": "dataSize",
+        "label": "Quy mô dữ liệu/code",
+        "min": 1,
+        "max": 100,
+        "default": 45,
+        "effect": "Quy mô tăng làm chi phí, lỗi và nhu cầu cấu trúc hóa tăng."
+      },
+      {
+        "name": "quality",
+        "label": "Chất lượng test/tài liệu",
+        "min": 0,
+        "max": 100,
+        "default": 70,
+        "effect": "Test/tài liệu tốt làm rủi ro demo giảm và khả năng tái lập tăng."
+      }
+    ],
+    "inputEffects": [
+      "Tăng quy mô để thấy khi nào code script đơn lẻ không còn đủ.",
+      "Giảm chất lượng test/tài liệu để thấy rủi ro lỗi logic, lỗi môi trường và demo vỡ."
+    ],
+    "explorationSteps": [
+      "Đổi một biến mỗi lần.",
+      "Ghi quan sát về thời gian, lỗi, tái lập và artifact.",
+      "Giải thích bằng workflow-cú-pháp lõi và đề xuất cải tiến."
+    ],
+    "expectedOutput": "Kết quả mong muốn: workflow experiment(id, params, metrics, artifact_path) chạy được hoặc được mô tả rõ; có log/test và kết luận ngắn.",
+    "reportPrompt": "Ghi: tham số đã đổi, kết quả trước/sau, lỗi phát hiện, test/log và ứng dụng vào lưu tham số, metric, dataset và đường dẫn artifact."
+  },
+  {
+    "id": "theory_PR21",
+    "stage": "hk1",
+    "lessonId": "PR21",
+    "applicationId": "app_PR21",
+    "group": "Mô phỏng lý thuyết",
+    "type": "theory-simulation",
+    "title": "Mô phỏng lý thuyết · ORM và migration nhập môn",
+    "purpose": "Thử thay đổi tham số để quan sát tác động đến quản lý thay đổi CSDL khi project lớn dần.",
+    "file": "simulations/sim_git_workflow_lab.html",
+    "formula": "Model ↔ table; migration = schema version",
+    "applicationDomain": "quản lý thay đổi CSDL khi project lớn dần",
+    "variables": [
+      {
+        "name": "dataSize",
+        "label": "Quy mô dữ liệu/code",
+        "min": 1,
+        "max": 100,
+        "default": 45,
+        "effect": "Quy mô tăng làm chi phí, lỗi và nhu cầu cấu trúc hóa tăng."
+      },
+      {
+        "name": "quality",
+        "label": "Chất lượng test/tài liệu",
+        "min": 0,
+        "max": 100,
+        "default": 70,
+        "effect": "Test/tài liệu tốt làm rủi ro demo giảm và khả năng tái lập tăng."
+      }
+    ],
+    "inputEffects": [
+      "Tăng quy mô để thấy khi nào code script đơn lẻ không còn đủ.",
+      "Giảm chất lượng test/tài liệu để thấy rủi ro lỗi logic, lỗi môi trường và demo vỡ."
+    ],
+    "explorationSteps": [
+      "Đổi một biến mỗi lần.",
+      "Ghi quan sát về thời gian, lỗi, tái lập và artifact.",
+      "Giải thích bằng workflow-cú-pháp lõi và đề xuất cải tiến."
+    ],
+    "expectedOutput": "Kết quả mong muốn: workflow Model ↔ table; migration = schema version chạy được hoặc được mô tả rõ; có log/test và kết luận ngắn.",
+    "reportPrompt": "Ghi: tham số đã đổi, kết quả trước/sau, lỗi phát hiện, test/log và ứng dụng vào quản lý thay đổi CSDL khi project lớn dần."
+  },
+  {
+    "id": "application_PR21",
+    "stage": "hk1",
+    "lessonId": "PR21",
+    "applicationId": "app_PR21",
+    "group": "Mô phỏng ứng dụng",
+    "type": "application-simulation",
+    "title": "Mô phỏng ứng dụng · ORM và migration nhập môn",
+    "purpose": "Thử thay đổi tham số để quan sát tác động đến quản lý thay đổi CSDL khi project lớn dần.",
+    "file": "simulations/sim_git_workflow_lab.html",
+    "formula": "Model ↔ table; migration = schema version",
+    "applicationDomain": "quản lý thay đổi CSDL khi project lớn dần",
+    "variables": [
+      {
+        "name": "dataSize",
+        "label": "Quy mô dữ liệu/code",
+        "min": 1,
+        "max": 100,
+        "default": 45,
+        "effect": "Quy mô tăng làm chi phí, lỗi và nhu cầu cấu trúc hóa tăng."
+      },
+      {
+        "name": "quality",
+        "label": "Chất lượng test/tài liệu",
+        "min": 0,
+        "max": 100,
+        "default": 70,
+        "effect": "Test/tài liệu tốt làm rủi ro demo giảm và khả năng tái lập tăng."
+      }
+    ],
+    "inputEffects": [
+      "Tăng quy mô để thấy khi nào code script đơn lẻ không còn đủ.",
+      "Giảm chất lượng test/tài liệu để thấy rủi ro lỗi logic, lỗi môi trường và demo vỡ."
+    ],
+    "explorationSteps": [
+      "Đổi một biến mỗi lần.",
+      "Ghi quan sát về thời gian, lỗi, tái lập và artifact.",
+      "Giải thích bằng workflow-cú-pháp lõi và đề xuất cải tiến."
+    ],
+    "expectedOutput": "Kết quả mong muốn: workflow Model ↔ table; migration = schema version chạy được hoặc được mô tả rõ; có log/test và kết luận ngắn.",
+    "reportPrompt": "Ghi: tham số đã đổi, kết quả trước/sau, lỗi phát hiện, test/log và ứng dụng vào quản lý thay đổi CSDL khi project lớn dần."
+  },
+  {
+    "id": "theory_PR22",
+    "stage": "hk1",
+    "lessonId": "PR22",
+    "applicationId": "app_PR22",
+    "group": "Mô phỏng lý thuyết",
+    "type": "theory-simulation",
+    "title": "Mô phỏng lý thuyết · Kỹ nghệ phần mềm: requirement, issue, milestone",
+    "purpose": "Thử thay đổi tham số để quan sát tác động đến quản lý tiến độ bài tập và module luận văn.",
+    "file": "simulations/sim_oop_architecture_lab.html",
+    "formula": "requirement → issue → branch → PR → release",
+    "applicationDomain": "quản lý tiến độ bài tập và module luận văn",
+    "variables": [
+      {
+        "name": "dataSize",
+        "label": "Quy mô dữ liệu/code",
+        "min": 1,
+        "max": 100,
+        "default": 45,
+        "effect": "Quy mô tăng làm chi phí, lỗi và nhu cầu cấu trúc hóa tăng."
+      },
+      {
+        "name": "quality",
+        "label": "Chất lượng test/tài liệu",
+        "min": 0,
+        "max": 100,
+        "default": 70,
+        "effect": "Test/tài liệu tốt làm rủi ro demo giảm và khả năng tái lập tăng."
+      }
+    ],
+    "inputEffects": [
+      "Tăng quy mô để thấy khi nào code script đơn lẻ không còn đủ.",
+      "Giảm chất lượng test/tài liệu để thấy rủi ro lỗi logic, lỗi môi trường và demo vỡ."
+    ],
+    "explorationSteps": [
+      "Đổi một biến mỗi lần.",
+      "Ghi quan sát về thời gian, lỗi, tái lập và artifact.",
+      "Giải thích bằng workflow-cú-pháp lõi và đề xuất cải tiến."
+    ],
+    "expectedOutput": "Kết quả mong muốn: workflow requirement → issue → branch → PR → release chạy được hoặc được mô tả rõ; có log/test và kết luận ngắn.",
+    "reportPrompt": "Ghi: tham số đã đổi, kết quả trước/sau, lỗi phát hiện, test/log và ứng dụng vào quản lý tiến độ bài tập và module luận văn."
+  },
+  {
+    "id": "application_PR22",
+    "stage": "hk1",
+    "lessonId": "PR22",
+    "applicationId": "app_PR22",
+    "group": "Mô phỏng ứng dụng",
+    "type": "application-simulation",
+    "title": "Mô phỏng ứng dụng · Kỹ nghệ phần mềm: requirement, issue, milestone",
+    "purpose": "Thử thay đổi tham số để quan sát tác động đến quản lý tiến độ bài tập và module luận văn.",
+    "file": "simulations/sim_oop_architecture_lab.html",
+    "formula": "requirement → issue → branch → PR → release",
+    "applicationDomain": "quản lý tiến độ bài tập và module luận văn",
+    "variables": [
+      {
+        "name": "dataSize",
+        "label": "Quy mô dữ liệu/code",
+        "min": 1,
+        "max": 100,
+        "default": 45,
+        "effect": "Quy mô tăng làm chi phí, lỗi và nhu cầu cấu trúc hóa tăng."
+      },
+      {
+        "name": "quality",
+        "label": "Chất lượng test/tài liệu",
+        "min": 0,
+        "max": 100,
+        "default": 70,
+        "effect": "Test/tài liệu tốt làm rủi ro demo giảm và khả năng tái lập tăng."
+      }
+    ],
+    "inputEffects": [
+      "Tăng quy mô để thấy khi nào code script đơn lẻ không còn đủ.",
+      "Giảm chất lượng test/tài liệu để thấy rủi ro lỗi logic, lỗi môi trường và demo vỡ."
+    ],
+    "explorationSteps": [
+      "Đổi một biến mỗi lần.",
+      "Ghi quan sát về thời gian, lỗi, tái lập và artifact.",
+      "Giải thích bằng workflow-cú-pháp lõi và đề xuất cải tiến."
+    ],
+    "expectedOutput": "Kết quả mong muốn: workflow requirement → issue → branch → PR → release chạy được hoặc được mô tả rõ; có log/test và kết luận ngắn.",
+    "reportPrompt": "Ghi: tham số đã đổi, kết quả trước/sau, lỗi phát hiện, test/log và ứng dụng vào quản lý tiến độ bài tập và module luận văn."
+  },
+  {
+    "id": "theory_PR23",
+    "stage": "hk1",
+    "lessonId": "PR23",
+    "applicationId": "app_PR23",
+    "group": "Mô phỏng lý thuyết",
+    "type": "theory-simulation",
+    "title": "Mô phỏng lý thuyết · Kiểm thử tích hợp và test dữ liệu",
+    "purpose": "Thử thay đổi tham số để quan sát tác động đến phát hiện dữ liệu hỏng trước khi train mô hình.",
+    "file": "simulations/sim_ml_pipeline_lab.html",
+    "formula": "test pipeline(input) → expected artifact",
+    "applicationDomain": "phát hiện dữ liệu hỏng trước khi train mô hình",
+    "variables": [
+      {
+        "name": "dataSize",
+        "label": "Quy mô dữ liệu/code",
+        "min": 1,
+        "max": 100,
+        "default": 45,
+        "effect": "Quy mô tăng làm chi phí, lỗi và nhu cầu cấu trúc hóa tăng."
+      },
+      {
+        "name": "quality",
+        "label": "Chất lượng test/tài liệu",
+        "min": 0,
+        "max": 100,
+        "default": 70,
+        "effect": "Test/tài liệu tốt làm rủi ro demo giảm và khả năng tái lập tăng."
+      }
+    ],
+    "inputEffects": [
+      "Tăng quy mô để thấy khi nào code script đơn lẻ không còn đủ.",
+      "Giảm chất lượng test/tài liệu để thấy rủi ro lỗi logic, lỗi môi trường và demo vỡ."
+    ],
+    "explorationSteps": [
+      "Đổi một biến mỗi lần.",
+      "Ghi quan sát về thời gian, lỗi, tái lập và artifact.",
+      "Giải thích bằng workflow-cú-pháp lõi và đề xuất cải tiến."
+    ],
+    "expectedOutput": "Kết quả mong muốn: workflow test pipeline(input) → expected artifact chạy được hoặc được mô tả rõ; có log/test và kết luận ngắn.",
+    "reportPrompt": "Ghi: tham số đã đổi, kết quả trước/sau, lỗi phát hiện, test/log và ứng dụng vào phát hiện dữ liệu hỏng trước khi train mô hình."
+  },
+  {
+    "id": "application_PR23",
+    "stage": "hk1",
+    "lessonId": "PR23",
+    "applicationId": "app_PR23",
+    "group": "Mô phỏng ứng dụng",
+    "type": "application-simulation",
+    "title": "Mô phỏng ứng dụng · Kiểm thử tích hợp và test dữ liệu",
+    "purpose": "Thử thay đổi tham số để quan sát tác động đến phát hiện dữ liệu hỏng trước khi train mô hình.",
+    "file": "simulations/sim_ml_pipeline_lab.html",
+    "formula": "test pipeline(input) → expected artifact",
+    "applicationDomain": "phát hiện dữ liệu hỏng trước khi train mô hình",
+    "variables": [
+      {
+        "name": "dataSize",
+        "label": "Quy mô dữ liệu/code",
+        "min": 1,
+        "max": 100,
+        "default": 45,
+        "effect": "Quy mô tăng làm chi phí, lỗi và nhu cầu cấu trúc hóa tăng."
+      },
+      {
+        "name": "quality",
+        "label": "Chất lượng test/tài liệu",
+        "min": 0,
+        "max": 100,
+        "default": 70,
+        "effect": "Test/tài liệu tốt làm rủi ro demo giảm và khả năng tái lập tăng."
+      }
+    ],
+    "inputEffects": [
+      "Tăng quy mô để thấy khi nào code script đơn lẻ không còn đủ.",
+      "Giảm chất lượng test/tài liệu để thấy rủi ro lỗi logic, lỗi môi trường và demo vỡ."
+    ],
+    "explorationSteps": [
+      "Đổi một biến mỗi lần.",
+      "Ghi quan sát về thời gian, lỗi, tái lập và artifact.",
+      "Giải thích bằng workflow-cú-pháp lõi và đề xuất cải tiến."
+    ],
+    "expectedOutput": "Kết quả mong muốn: workflow test pipeline(input) → expected artifact chạy được hoặc được mô tả rõ; có log/test và kết luận ngắn.",
+    "reportPrompt": "Ghi: tham số đã đổi, kết quả trước/sau, lỗi phát hiện, test/log và ứng dụng vào phát hiện dữ liệu hỏng trước khi train mô hình."
+  },
+  {
+    "id": "theory_PR24",
+    "stage": "hk1",
+    "lessonId": "PR24",
+    "applicationId": "app_PR24",
+    "group": "Mô phỏng lý thuyết",
+    "type": "theory-simulation",
+    "title": "Mô phỏng lý thuyết · CI nhẹ và kiểm tra chất lượng code",
+    "purpose": "Thử thay đổi tham số để quan sát tác động đến tự động kiểm tra repo trước khi nộp/đẩy code.",
+    "file": "simulations/sim_reproducible_demo_lab.html",
+    "formula": "lint + tests + type check = green build",
+    "applicationDomain": "tự động kiểm tra repo trước khi nộp/đẩy code",
+    "variables": [
+      {
+        "name": "dataSize",
+        "label": "Quy mô dữ liệu/code",
+        "min": 1,
+        "max": 100,
+        "default": 45,
+        "effect": "Quy mô tăng làm chi phí, lỗi và nhu cầu cấu trúc hóa tăng."
+      },
+      {
+        "name": "quality",
+        "label": "Chất lượng test/tài liệu",
+        "min": 0,
+        "max": 100,
+        "default": 70,
+        "effect": "Test/tài liệu tốt làm rủi ro demo giảm và khả năng tái lập tăng."
+      }
+    ],
+    "inputEffects": [
+      "Tăng quy mô để thấy khi nào code script đơn lẻ không còn đủ.",
+      "Giảm chất lượng test/tài liệu để thấy rủi ro lỗi logic, lỗi môi trường và demo vỡ."
+    ],
+    "explorationSteps": [
+      "Đổi một biến mỗi lần.",
+      "Ghi quan sát về thời gian, lỗi, tái lập và artifact.",
+      "Giải thích bằng workflow-cú-pháp lõi và đề xuất cải tiến."
+    ],
+    "expectedOutput": "Kết quả mong muốn: workflow lint + tests + type check = green build chạy được hoặc được mô tả rõ; có log/test và kết luận ngắn.",
+    "reportPrompt": "Ghi: tham số đã đổi, kết quả trước/sau, lỗi phát hiện, test/log và ứng dụng vào tự động kiểm tra repo trước khi nộp/đẩy code."
+  },
+  {
+    "id": "application_PR24",
+    "stage": "hk1",
+    "lessonId": "PR24",
+    "applicationId": "app_PR24",
+    "group": "Mô phỏng ứng dụng",
+    "type": "application-simulation",
+    "title": "Mô phỏng ứng dụng · CI nhẹ và kiểm tra chất lượng code",
+    "purpose": "Thử thay đổi tham số để quan sát tác động đến tự động kiểm tra repo trước khi nộp/đẩy code.",
+    "file": "simulations/sim_reproducible_demo_lab.html",
+    "formula": "lint + tests + type check = green build",
+    "applicationDomain": "tự động kiểm tra repo trước khi nộp/đẩy code",
+    "variables": [
+      {
+        "name": "dataSize",
+        "label": "Quy mô dữ liệu/code",
+        "min": 1,
+        "max": 100,
+        "default": 45,
+        "effect": "Quy mô tăng làm chi phí, lỗi và nhu cầu cấu trúc hóa tăng."
+      },
+      {
+        "name": "quality",
+        "label": "Chất lượng test/tài liệu",
+        "min": 0,
+        "max": 100,
+        "default": 70,
+        "effect": "Test/tài liệu tốt làm rủi ro demo giảm và khả năng tái lập tăng."
+      }
+    ],
+    "inputEffects": [
+      "Tăng quy mô để thấy khi nào code script đơn lẻ không còn đủ.",
+      "Giảm chất lượng test/tài liệu để thấy rủi ro lỗi logic, lỗi môi trường và demo vỡ."
+    ],
+    "explorationSteps": [
+      "Đổi một biến mỗi lần.",
+      "Ghi quan sát về thời gian, lỗi, tái lập và artifact.",
+      "Giải thích bằng workflow-cú-pháp lõi và đề xuất cải tiến."
+    ],
+    "expectedOutput": "Kết quả mong muốn: workflow lint + tests + type check = green build chạy được hoặc được mô tả rõ; có log/test và kết luận ngắn.",
+    "reportPrompt": "Ghi: tham số đã đổi, kết quả trước/sau, lỗi phát hiện, test/log và ứng dụng vào tự động kiểm tra repo trước khi nộp/đẩy code."
+  },
+  {
+    "id": "theory_PR25",
+    "stage": "hk2",
+    "lessonId": "PR25",
+    "applicationId": "app_PR25",
+    "group": "Mô phỏng lý thuyết",
+    "type": "theory-simulation",
+    "title": "Mô phỏng lý thuyết · Pipeline dữ liệu cho ML",
+    "purpose": "Thử thay đổi tham số để quan sát tác động đến tạo quy trình lặp lại cho dữ liệu UGV/USV.",
+    "file": "simulations/sim_python_env_lab.html",
+    "formula": "raw → clean → features → train → evaluate",
+    "applicationDomain": "tạo quy trình lặp lại cho dữ liệu UGV/USV",
+    "variables": [
+      {
+        "name": "dataSize",
+        "label": "Quy mô dữ liệu/code",
+        "min": 1,
+        "max": 100,
+        "default": 45,
+        "effect": "Quy mô tăng làm chi phí, lỗi và nhu cầu cấu trúc hóa tăng."
+      },
+      {
+        "name": "quality",
+        "label": "Chất lượng test/tài liệu",
+        "min": 0,
+        "max": 100,
+        "default": 70,
+        "effect": "Test/tài liệu tốt làm rủi ro demo giảm và khả năng tái lập tăng."
+      }
+    ],
+    "inputEffects": [
+      "Tăng quy mô để thấy khi nào code script đơn lẻ không còn đủ.",
+      "Giảm chất lượng test/tài liệu để thấy rủi ro lỗi logic, lỗi môi trường và demo vỡ."
+    ],
+    "explorationSteps": [
+      "Đổi một biến mỗi lần.",
+      "Ghi quan sát về thời gian, lỗi, tái lập và artifact.",
+      "Giải thích bằng workflow-cú-pháp lõi và đề xuất cải tiến."
+    ],
+    "expectedOutput": "Kết quả mong muốn: workflow raw → clean → features → train → evaluate chạy được hoặc được mô tả rõ; có log/test và kết luận ngắn.",
+    "reportPrompt": "Ghi: tham số đã đổi, kết quả trước/sau, lỗi phát hiện, test/log và ứng dụng vào tạo quy trình lặp lại cho dữ liệu UGV/USV."
+  },
+  {
+    "id": "application_PR25",
+    "stage": "hk2",
+    "lessonId": "PR25",
+    "applicationId": "app_PR25",
+    "group": "Mô phỏng ứng dụng",
+    "type": "application-simulation",
+    "title": "Mô phỏng ứng dụng · Pipeline dữ liệu cho ML",
+    "purpose": "Thử thay đổi tham số để quan sát tác động đến tạo quy trình lặp lại cho dữ liệu UGV/USV.",
+    "file": "simulations/sim_python_env_lab.html",
+    "formula": "raw → clean → features → train → evaluate",
+    "applicationDomain": "tạo quy trình lặp lại cho dữ liệu UGV/USV",
+    "variables": [
+      {
+        "name": "dataSize",
+        "label": "Quy mô dữ liệu/code",
+        "min": 1,
+        "max": 100,
+        "default": 45,
+        "effect": "Quy mô tăng làm chi phí, lỗi và nhu cầu cấu trúc hóa tăng."
+      },
+      {
+        "name": "quality",
+        "label": "Chất lượng test/tài liệu",
+        "min": 0,
+        "max": 100,
+        "default": 70,
+        "effect": "Test/tài liệu tốt làm rủi ro demo giảm và khả năng tái lập tăng."
+      }
+    ],
+    "inputEffects": [
+      "Tăng quy mô để thấy khi nào code script đơn lẻ không còn đủ.",
+      "Giảm chất lượng test/tài liệu để thấy rủi ro lỗi logic, lỗi môi trường và demo vỡ."
+    ],
+    "explorationSteps": [
+      "Đổi một biến mỗi lần.",
+      "Ghi quan sát về thời gian, lỗi, tái lập và artifact.",
+      "Giải thích bằng workflow-cú-pháp lõi và đề xuất cải tiến."
+    ],
+    "expectedOutput": "Kết quả mong muốn: workflow raw → clean → features → train → evaluate chạy được hoặc được mô tả rõ; có log/test và kết luận ngắn.",
+    "reportPrompt": "Ghi: tham số đã đổi, kết quả trước/sau, lỗi phát hiện, test/log và ứng dụng vào tạo quy trình lặp lại cho dữ liệu UGV/USV."
+  },
+  {
+    "id": "theory_PR26",
+    "stage": "hk2",
+    "lessonId": "PR26",
+    "applicationId": "app_PR26",
+    "group": "Mô phỏng lý thuyết",
+    "type": "theory-simulation",
+    "title": "Mô phỏng lý thuyết · Scikit-learn baseline và metric",
+    "purpose": "Thử thay đổi tham số để quan sát tác động đến dựng baseline có metric rõ cho ML trong АСОИУ.",
+    "file": "simulations/sim_algorithm_complexity_lab.html",
+    "formula": "model.fit(X_train,y_train); score=f(metric)",
+    "applicationDomain": "dựng baseline có metric rõ cho ML trong АСОИУ",
+    "variables": [
+      {
+        "name": "dataSize",
+        "label": "Quy mô dữ liệu/code",
+        "min": 1,
+        "max": 100,
+        "default": 45,
+        "effect": "Quy mô tăng làm chi phí, lỗi và nhu cầu cấu trúc hóa tăng."
+      },
+      {
+        "name": "quality",
+        "label": "Chất lượng test/tài liệu",
+        "min": 0,
+        "max": 100,
+        "default": 70,
+        "effect": "Test/tài liệu tốt làm rủi ro demo giảm và khả năng tái lập tăng."
+      }
+    ],
+    "inputEffects": [
+      "Tăng quy mô để thấy khi nào code script đơn lẻ không còn đủ.",
+      "Giảm chất lượng test/tài liệu để thấy rủi ro lỗi logic, lỗi môi trường và demo vỡ."
+    ],
+    "explorationSteps": [
+      "Đổi một biến mỗi lần.",
+      "Ghi quan sát về thời gian, lỗi, tái lập và artifact.",
+      "Giải thích bằng workflow-cú-pháp lõi và đề xuất cải tiến."
+    ],
+    "expectedOutput": "Kết quả mong muốn: workflow model.fit(X_train,y_train); score=f(metric) chạy được hoặc được mô tả rõ; có log/test và kết luận ngắn.",
+    "reportPrompt": "Ghi: tham số đã đổi, kết quả trước/sau, lỗi phát hiện, test/log và ứng dụng vào dựng baseline có metric rõ cho ML trong АСОИУ."
+  },
+  {
+    "id": "application_PR26",
+    "stage": "hk2",
+    "lessonId": "PR26",
+    "applicationId": "app_PR26",
+    "group": "Mô phỏng ứng dụng",
+    "type": "application-simulation",
+    "title": "Mô phỏng ứng dụng · Scikit-learn baseline và metric",
+    "purpose": "Thử thay đổi tham số để quan sát tác động đến dựng baseline có metric rõ cho ML trong АСОИУ.",
+    "file": "simulations/sim_algorithm_complexity_lab.html",
+    "formula": "model.fit(X_train,y_train); score=f(metric)",
+    "applicationDomain": "dựng baseline có metric rõ cho ML trong АСОИУ",
+    "variables": [
+      {
+        "name": "dataSize",
+        "label": "Quy mô dữ liệu/code",
+        "min": 1,
+        "max": 100,
+        "default": 45,
+        "effect": "Quy mô tăng làm chi phí, lỗi và nhu cầu cấu trúc hóa tăng."
+      },
+      {
+        "name": "quality",
+        "label": "Chất lượng test/tài liệu",
+        "min": 0,
+        "max": 100,
+        "default": 70,
+        "effect": "Test/tài liệu tốt làm rủi ro demo giảm và khả năng tái lập tăng."
+      }
+    ],
+    "inputEffects": [
+      "Tăng quy mô để thấy khi nào code script đơn lẻ không còn đủ.",
+      "Giảm chất lượng test/tài liệu để thấy rủi ro lỗi logic, lỗi môi trường và demo vỡ."
+    ],
+    "explorationSteps": [
+      "Đổi một biến mỗi lần.",
+      "Ghi quan sát về thời gian, lỗi, tái lập và artifact.",
+      "Giải thích bằng workflow-cú-pháp lõi và đề xuất cải tiến."
+    ],
+    "expectedOutput": "Kết quả mong muốn: workflow model.fit(X_train,y_train); score=f(metric) chạy được hoặc được mô tả rõ; có log/test và kết luận ngắn.",
+    "reportPrompt": "Ghi: tham số đã đổi, kết quả trước/sau, lỗi phát hiện, test/log và ứng dụng vào dựng baseline có metric rõ cho ML trong АСОИУ."
+  },
+  {
+    "id": "theory_PR27",
+    "stage": "hk2",
+    "lessonId": "PR27",
+    "applicationId": "app_PR27",
+    "group": "Mô phỏng lý thuyết",
+    "type": "theory-simulation",
+    "title": "Mô phỏng lý thuyết · API inference với FastAPI",
+    "purpose": "Thử thay đổi tham số để quan sát tác động đến biến mô hình thành dịch vụ thử nghiệm được.",
+    "file": "simulations/sim_dataframe_cleaning_lab.html",
+    "formula": "POST /predict → input schema → prediction",
+    "applicationDomain": "biến mô hình thành dịch vụ thử nghiệm được",
+    "variables": [
+      {
+        "name": "dataSize",
+        "label": "Quy mô dữ liệu/code",
+        "min": 1,
+        "max": 100,
+        "default": 45,
+        "effect": "Quy mô tăng làm chi phí, lỗi và nhu cầu cấu trúc hóa tăng."
+      },
+      {
+        "name": "quality",
+        "label": "Chất lượng test/tài liệu",
+        "min": 0,
+        "max": 100,
+        "default": 70,
+        "effect": "Test/tài liệu tốt làm rủi ro demo giảm và khả năng tái lập tăng."
+      }
+    ],
+    "inputEffects": [
+      "Tăng quy mô để thấy khi nào code script đơn lẻ không còn đủ.",
+      "Giảm chất lượng test/tài liệu để thấy rủi ro lỗi logic, lỗi môi trường và demo vỡ."
+    ],
+    "explorationSteps": [
+      "Đổi một biến mỗi lần.",
+      "Ghi quan sát về thời gian, lỗi, tái lập và artifact.",
+      "Giải thích bằng workflow-cú-pháp lõi và đề xuất cải tiến."
+    ],
+    "expectedOutput": "Kết quả mong muốn: workflow POST /predict → input schema → prediction chạy được hoặc được mô tả rõ; có log/test và kết luận ngắn.",
+    "reportPrompt": "Ghi: tham số đã đổi, kết quả trước/sau, lỗi phát hiện, test/log và ứng dụng vào biến mô hình thành dịch vụ thử nghiệm được."
+  },
+  {
+    "id": "application_PR27",
+    "stage": "hk2",
+    "lessonId": "PR27",
+    "applicationId": "app_PR27",
+    "group": "Mô phỏng ứng dụng",
+    "type": "application-simulation",
+    "title": "Mô phỏng ứng dụng · API inference với FastAPI",
+    "purpose": "Thử thay đổi tham số để quan sát tác động đến biến mô hình thành dịch vụ thử nghiệm được.",
+    "file": "simulations/sim_dataframe_cleaning_lab.html",
+    "formula": "POST /predict → input schema → prediction",
+    "applicationDomain": "biến mô hình thành dịch vụ thử nghiệm được",
+    "variables": [
+      {
+        "name": "dataSize",
+        "label": "Quy mô dữ liệu/code",
+        "min": 1,
+        "max": 100,
+        "default": 45,
+        "effect": "Quy mô tăng làm chi phí, lỗi và nhu cầu cấu trúc hóa tăng."
+      },
+      {
+        "name": "quality",
+        "label": "Chất lượng test/tài liệu",
+        "min": 0,
+        "max": 100,
+        "default": 70,
+        "effect": "Test/tài liệu tốt làm rủi ro demo giảm và khả năng tái lập tăng."
+      }
+    ],
+    "inputEffects": [
+      "Tăng quy mô để thấy khi nào code script đơn lẻ không còn đủ.",
+      "Giảm chất lượng test/tài liệu để thấy rủi ro lỗi logic, lỗi môi trường và demo vỡ."
+    ],
+    "explorationSteps": [
+      "Đổi một biến mỗi lần.",
+      "Ghi quan sát về thời gian, lỗi, tái lập và artifact.",
+      "Giải thích bằng workflow-cú-pháp lõi và đề xuất cải tiến."
+    ],
+    "expectedOutput": "Kết quả mong muốn: workflow POST /predict → input schema → prediction chạy được hoặc được mô tả rõ; có log/test và kết luận ngắn.",
+    "reportPrompt": "Ghi: tham số đã đổi, kết quả trước/sau, lỗi phát hiện, test/log và ứng dụng vào biến mô hình thành dịch vụ thử nghiệm được."
+  },
+  {
+    "id": "theory_PR28",
+    "stage": "hk2",
+    "lessonId": "PR28",
+    "applicationId": "app_PR28",
+    "group": "Mô phỏng lý thuyết",
+    "type": "theory-simulation",
+    "title": "Mô phỏng lý thuyết · Serialization model và artifact version",
+    "purpose": "Thử thay đổi tham số để quan sát tác động đến lưu model/dataset/metric theo phiên bản để chạy lại.",
+    "file": "simulations/sim_sql_query_lab.html",
+    "formula": "joblib.dump(model); artifact_v1.pkl",
+    "applicationDomain": "lưu model/dataset/metric theo phiên bản để chạy lại",
+    "variables": [
+      {
+        "name": "dataSize",
+        "label": "Quy mô dữ liệu/code",
+        "min": 1,
+        "max": 100,
+        "default": 45,
+        "effect": "Quy mô tăng làm chi phí, lỗi và nhu cầu cấu trúc hóa tăng."
+      },
+      {
+        "name": "quality",
+        "label": "Chất lượng test/tài liệu",
+        "min": 0,
+        "max": 100,
+        "default": 70,
+        "effect": "Test/tài liệu tốt làm rủi ro demo giảm và khả năng tái lập tăng."
+      }
+    ],
+    "inputEffects": [
+      "Tăng quy mô để thấy khi nào code script đơn lẻ không còn đủ.",
+      "Giảm chất lượng test/tài liệu để thấy rủi ro lỗi logic, lỗi môi trường và demo vỡ."
+    ],
+    "explorationSteps": [
+      "Đổi một biến mỗi lần.",
+      "Ghi quan sát về thời gian, lỗi, tái lập và artifact.",
+      "Giải thích bằng workflow-cú-pháp lõi và đề xuất cải tiến."
+    ],
+    "expectedOutput": "Kết quả mong muốn: workflow joblib.dump(model); artifact_v1.pkl chạy được hoặc được mô tả rõ; có log/test và kết luận ngắn.",
+    "reportPrompt": "Ghi: tham số đã đổi, kết quả trước/sau, lỗi phát hiện, test/log và ứng dụng vào lưu model/dataset/metric theo phiên bản để chạy lại."
+  },
+  {
+    "id": "application_PR28",
+    "stage": "hk2",
+    "lessonId": "PR28",
+    "applicationId": "app_PR28",
+    "group": "Mô phỏng ứng dụng",
+    "type": "application-simulation",
+    "title": "Mô phỏng ứng dụng · Serialization model và artifact version",
+    "purpose": "Thử thay đổi tham số để quan sát tác động đến lưu model/dataset/metric theo phiên bản để chạy lại.",
+    "file": "simulations/sim_sql_query_lab.html",
+    "formula": "joblib.dump(model); artifact_v1.pkl",
+    "applicationDomain": "lưu model/dataset/metric theo phiên bản để chạy lại",
+    "variables": [
+      {
+        "name": "dataSize",
+        "label": "Quy mô dữ liệu/code",
+        "min": 1,
+        "max": 100,
+        "default": 45,
+        "effect": "Quy mô tăng làm chi phí, lỗi và nhu cầu cấu trúc hóa tăng."
+      },
+      {
+        "name": "quality",
+        "label": "Chất lượng test/tài liệu",
+        "min": 0,
+        "max": 100,
+        "default": 70,
+        "effect": "Test/tài liệu tốt làm rủi ro demo giảm và khả năng tái lập tăng."
+      }
+    ],
+    "inputEffects": [
+      "Tăng quy mô để thấy khi nào code script đơn lẻ không còn đủ.",
+      "Giảm chất lượng test/tài liệu để thấy rủi ro lỗi logic, lỗi môi trường và demo vỡ."
+    ],
+    "explorationSteps": [
+      "Đổi một biến mỗi lần.",
+      "Ghi quan sát về thời gian, lỗi, tái lập và artifact.",
+      "Giải thích bằng workflow-cú-pháp lõi và đề xuất cải tiến."
+    ],
+    "expectedOutput": "Kết quả mong muốn: workflow joblib.dump(model); artifact_v1.pkl chạy được hoặc được mô tả rõ; có log/test và kết luận ngắn.",
+    "reportPrompt": "Ghi: tham số đã đổi, kết quả trước/sau, lỗi phát hiện, test/log và ứng dụng vào lưu model/dataset/metric theo phiên bản để chạy lại."
+  },
+  {
+    "id": "theory_PR29",
+    "stage": "hk2",
+    "lessonId": "PR29",
+    "applicationId": "app_PR29",
+    "group": "Mô phỏng lý thuyết",
+    "type": "theory-simulation",
+    "title": "Mô phỏng lý thuyết · Cấu hình thí nghiệm bằng YAML/JSON",
+    "purpose": "Thử thay đổi tham số để quan sát tác động đến khóa tham số thí nghiệm để tránh loạn kết quả.",
+    "file": "simulations/sim_git_workflow_lab.html",
+    "formula": "config = params + seed + paths",
+    "applicationDomain": "khóa tham số thí nghiệm để tránh loạn kết quả",
+    "variables": [
+      {
+        "name": "dataSize",
+        "label": "Quy mô dữ liệu/code",
+        "min": 1,
+        "max": 100,
+        "default": 45,
+        "effect": "Quy mô tăng làm chi phí, lỗi và nhu cầu cấu trúc hóa tăng."
+      },
+      {
+        "name": "quality",
+        "label": "Chất lượng test/tài liệu",
+        "min": 0,
+        "max": 100,
+        "default": 70,
+        "effect": "Test/tài liệu tốt làm rủi ro demo giảm và khả năng tái lập tăng."
+      }
+    ],
+    "inputEffects": [
+      "Tăng quy mô để thấy khi nào code script đơn lẻ không còn đủ.",
+      "Giảm chất lượng test/tài liệu để thấy rủi ro lỗi logic, lỗi môi trường và demo vỡ."
+    ],
+    "explorationSteps": [
+      "Đổi một biến mỗi lần.",
+      "Ghi quan sát về thời gian, lỗi, tái lập và artifact.",
+      "Giải thích bằng workflow-cú-pháp lõi và đề xuất cải tiến."
+    ],
+    "expectedOutput": "Kết quả mong muốn: workflow config = params + seed + paths chạy được hoặc được mô tả rõ; có log/test và kết luận ngắn.",
+    "reportPrompt": "Ghi: tham số đã đổi, kết quả trước/sau, lỗi phát hiện, test/log và ứng dụng vào khóa tham số thí nghiệm để tránh loạn kết quả."
+  },
+  {
+    "id": "application_PR29",
+    "stage": "hk2",
+    "lessonId": "PR29",
+    "applicationId": "app_PR29",
+    "group": "Mô phỏng ứng dụng",
+    "type": "application-simulation",
+    "title": "Mô phỏng ứng dụng · Cấu hình thí nghiệm bằng YAML/JSON",
+    "purpose": "Thử thay đổi tham số để quan sát tác động đến khóa tham số thí nghiệm để tránh loạn kết quả.",
+    "file": "simulations/sim_git_workflow_lab.html",
+    "formula": "config = params + seed + paths",
+    "applicationDomain": "khóa tham số thí nghiệm để tránh loạn kết quả",
+    "variables": [
+      {
+        "name": "dataSize",
+        "label": "Quy mô dữ liệu/code",
+        "min": 1,
+        "max": 100,
+        "default": 45,
+        "effect": "Quy mô tăng làm chi phí, lỗi và nhu cầu cấu trúc hóa tăng."
+      },
+      {
+        "name": "quality",
+        "label": "Chất lượng test/tài liệu",
+        "min": 0,
+        "max": 100,
+        "default": 70,
+        "effect": "Test/tài liệu tốt làm rủi ro demo giảm và khả năng tái lập tăng."
+      }
+    ],
+    "inputEffects": [
+      "Tăng quy mô để thấy khi nào code script đơn lẻ không còn đủ.",
+      "Giảm chất lượng test/tài liệu để thấy rủi ro lỗi logic, lỗi môi trường và demo vỡ."
+    ],
+    "explorationSteps": [
+      "Đổi một biến mỗi lần.",
+      "Ghi quan sát về thời gian, lỗi, tái lập và artifact.",
+      "Giải thích bằng workflow-cú-pháp lõi và đề xuất cải tiến."
+    ],
+    "expectedOutput": "Kết quả mong muốn: workflow config = params + seed + paths chạy được hoặc được mô tả rõ; có log/test và kết luận ngắn.",
+    "reportPrompt": "Ghi: tham số đã đổi, kết quả trước/sau, lỗi phát hiện, test/log và ứng dụng vào khóa tham số thí nghiệm để tránh loạn kết quả."
+  },
+  {
+    "id": "theory_PR30",
+    "stage": "hk2",
+    "lessonId": "PR30",
+    "applicationId": "app_PR30",
+    "group": "Mô phỏng lý thuyết",
+    "type": "theory-simulation",
+    "title": "Mô phỏng lý thuyết · Docker nhập môn cho môi trường tái lập",
+    "purpose": "Thử thay đổi tham số để quan sát tác động đến chạy lại demo trên máy khác ít lỗi hơn.",
+    "file": "simulations/sim_oop_architecture_lab.html",
+    "formula": "Dockerfile + requirements + command",
+    "applicationDomain": "chạy lại demo trên máy khác ít lỗi hơn",
+    "variables": [
+      {
+        "name": "dataSize",
+        "label": "Quy mô dữ liệu/code",
+        "min": 1,
+        "max": 100,
+        "default": 45,
+        "effect": "Quy mô tăng làm chi phí, lỗi và nhu cầu cấu trúc hóa tăng."
+      },
+      {
+        "name": "quality",
+        "label": "Chất lượng test/tài liệu",
+        "min": 0,
+        "max": 100,
+        "default": 70,
+        "effect": "Test/tài liệu tốt làm rủi ro demo giảm và khả năng tái lập tăng."
+      }
+    ],
+    "inputEffects": [
+      "Tăng quy mô để thấy khi nào code script đơn lẻ không còn đủ.",
+      "Giảm chất lượng test/tài liệu để thấy rủi ro lỗi logic, lỗi môi trường và demo vỡ."
+    ],
+    "explorationSteps": [
+      "Đổi một biến mỗi lần.",
+      "Ghi quan sát về thời gian, lỗi, tái lập và artifact.",
+      "Giải thích bằng workflow-cú-pháp lõi và đề xuất cải tiến."
+    ],
+    "expectedOutput": "Kết quả mong muốn: workflow Dockerfile + requirements + command chạy được hoặc được mô tả rõ; có log/test và kết luận ngắn.",
+    "reportPrompt": "Ghi: tham số đã đổi, kết quả trước/sau, lỗi phát hiện, test/log và ứng dụng vào chạy lại demo trên máy khác ít lỗi hơn."
+  },
+  {
+    "id": "application_PR30",
+    "stage": "hk2",
+    "lessonId": "PR30",
+    "applicationId": "app_PR30",
+    "group": "Mô phỏng ứng dụng",
+    "type": "application-simulation",
+    "title": "Mô phỏng ứng dụng · Docker nhập môn cho môi trường tái lập",
+    "purpose": "Thử thay đổi tham số để quan sát tác động đến chạy lại demo trên máy khác ít lỗi hơn.",
+    "file": "simulations/sim_oop_architecture_lab.html",
+    "formula": "Dockerfile + requirements + command",
+    "applicationDomain": "chạy lại demo trên máy khác ít lỗi hơn",
+    "variables": [
+      {
+        "name": "dataSize",
+        "label": "Quy mô dữ liệu/code",
+        "min": 1,
+        "max": 100,
+        "default": 45,
+        "effect": "Quy mô tăng làm chi phí, lỗi và nhu cầu cấu trúc hóa tăng."
+      },
+      {
+        "name": "quality",
+        "label": "Chất lượng test/tài liệu",
+        "min": 0,
+        "max": 100,
+        "default": 70,
+        "effect": "Test/tài liệu tốt làm rủi ro demo giảm và khả năng tái lập tăng."
+      }
+    ],
+    "inputEffects": [
+      "Tăng quy mô để thấy khi nào code script đơn lẻ không còn đủ.",
+      "Giảm chất lượng test/tài liệu để thấy rủi ro lỗi logic, lỗi môi trường và demo vỡ."
+    ],
+    "explorationSteps": [
+      "Đổi một biến mỗi lần.",
+      "Ghi quan sát về thời gian, lỗi, tái lập và artifact.",
+      "Giải thích bằng workflow-cú-pháp lõi và đề xuất cải tiến."
+    ],
+    "expectedOutput": "Kết quả mong muốn: workflow Dockerfile + requirements + command chạy được hoặc được mô tả rõ; có log/test và kết luận ngắn.",
+    "reportPrompt": "Ghi: tham số đã đổi, kết quả trước/sau, lỗi phát hiện, test/log và ứng dụng vào chạy lại demo trên máy khác ít lỗi hơn."
+  },
+  {
+    "id": "theory_PR31",
+    "stage": "hk2",
+    "lessonId": "PR31",
+    "applicationId": "app_PR31",
+    "group": "Mô phỏng lý thuyết",
+    "type": "theory-simulation",
+    "title": "Mô phỏng lý thuyết · Bảo mật dữ liệu và quản lý secret",
+    "purpose": "Thử thay đổi tham số để quan sát tác động đến không lộ key, dữ liệu, đường dẫn nhạy cảm.",
+    "file": "simulations/sim_ml_pipeline_lab.html",
+    "formula": ".env; never commit secrets; access control",
+    "applicationDomain": "không lộ key, dữ liệu, đường dẫn nhạy cảm",
+    "variables": [
+      {
+        "name": "dataSize",
+        "label": "Quy mô dữ liệu/code",
+        "min": 1,
+        "max": 100,
+        "default": 45,
+        "effect": "Quy mô tăng làm chi phí, lỗi và nhu cầu cấu trúc hóa tăng."
+      },
+      {
+        "name": "quality",
+        "label": "Chất lượng test/tài liệu",
+        "min": 0,
+        "max": 100,
+        "default": 70,
+        "effect": "Test/tài liệu tốt làm rủi ro demo giảm và khả năng tái lập tăng."
+      }
+    ],
+    "inputEffects": [
+      "Tăng quy mô để thấy khi nào code script đơn lẻ không còn đủ.",
+      "Giảm chất lượng test/tài liệu để thấy rủi ro lỗi logic, lỗi môi trường và demo vỡ."
+    ],
+    "explorationSteps": [
+      "Đổi một biến mỗi lần.",
+      "Ghi quan sát về thời gian, lỗi, tái lập và artifact.",
+      "Giải thích bằng workflow-cú-pháp lõi và đề xuất cải tiến."
+    ],
+    "expectedOutput": "Kết quả mong muốn: workflow .env; never commit secrets; access control chạy được hoặc được mô tả rõ; có log/test và kết luận ngắn.",
+    "reportPrompt": "Ghi: tham số đã đổi, kết quả trước/sau, lỗi phát hiện, test/log và ứng dụng vào không lộ key, dữ liệu, đường dẫn nhạy cảm."
+  },
+  {
+    "id": "application_PR31",
+    "stage": "hk2",
+    "lessonId": "PR31",
+    "applicationId": "app_PR31",
+    "group": "Mô phỏng ứng dụng",
+    "type": "application-simulation",
+    "title": "Mô phỏng ứng dụng · Bảo mật dữ liệu và quản lý secret",
+    "purpose": "Thử thay đổi tham số để quan sát tác động đến không lộ key, dữ liệu, đường dẫn nhạy cảm.",
+    "file": "simulations/sim_ml_pipeline_lab.html",
+    "formula": ".env; never commit secrets; access control",
+    "applicationDomain": "không lộ key, dữ liệu, đường dẫn nhạy cảm",
+    "variables": [
+      {
+        "name": "dataSize",
+        "label": "Quy mô dữ liệu/code",
+        "min": 1,
+        "max": 100,
+        "default": 45,
+        "effect": "Quy mô tăng làm chi phí, lỗi và nhu cầu cấu trúc hóa tăng."
+      },
+      {
+        "name": "quality",
+        "label": "Chất lượng test/tài liệu",
+        "min": 0,
+        "max": 100,
+        "default": 70,
+        "effect": "Test/tài liệu tốt làm rủi ro demo giảm và khả năng tái lập tăng."
+      }
+    ],
+    "inputEffects": [
+      "Tăng quy mô để thấy khi nào code script đơn lẻ không còn đủ.",
+      "Giảm chất lượng test/tài liệu để thấy rủi ro lỗi logic, lỗi môi trường và demo vỡ."
+    ],
+    "explorationSteps": [
+      "Đổi một biến mỗi lần.",
+      "Ghi quan sát về thời gian, lỗi, tái lập và artifact.",
+      "Giải thích bằng workflow-cú-pháp lõi và đề xuất cải tiến."
+    ],
+    "expectedOutput": "Kết quả mong muốn: workflow .env; never commit secrets; access control chạy được hoặc được mô tả rõ; có log/test và kết luận ngắn.",
+    "reportPrompt": "Ghi: tham số đã đổi, kết quả trước/sau, lỗi phát hiện, test/log và ứng dụng vào không lộ key, dữ liệu, đường dẫn nhạy cảm."
+  },
+  {
+    "id": "theory_PR32",
+    "stage": "hk2",
+    "lessonId": "PR32",
+    "applicationId": "app_PR32",
+    "group": "Mô phỏng lý thuyết",
+    "type": "theory-simulation",
+    "title": "Mô phỏng lý thuyết · Tài liệu kỹ thuật và sơ đồ kiến trúc",
+    "purpose": "Thử thay đổi tham số để quan sát tác động đến giải thích phần mềm cho giáo sư và nhóm nghiên cứu.",
+    "file": "simulations/sim_reproducible_demo_lab.html",
+    "formula": "architecture.md + sequence diagram + API spec",
+    "applicationDomain": "giải thích phần mềm cho giáo sư và nhóm nghiên cứu",
+    "variables": [
+      {
+        "name": "dataSize",
+        "label": "Quy mô dữ liệu/code",
+        "min": 1,
+        "max": 100,
+        "default": 45,
+        "effect": "Quy mô tăng làm chi phí, lỗi và nhu cầu cấu trúc hóa tăng."
+      },
+      {
+        "name": "quality",
+        "label": "Chất lượng test/tài liệu",
+        "min": 0,
+        "max": 100,
+        "default": 70,
+        "effect": "Test/tài liệu tốt làm rủi ro demo giảm và khả năng tái lập tăng."
+      }
+    ],
+    "inputEffects": [
+      "Tăng quy mô để thấy khi nào code script đơn lẻ không còn đủ.",
+      "Giảm chất lượng test/tài liệu để thấy rủi ro lỗi logic, lỗi môi trường và demo vỡ."
+    ],
+    "explorationSteps": [
+      "Đổi một biến mỗi lần.",
+      "Ghi quan sát về thời gian, lỗi, tái lập và artifact.",
+      "Giải thích bằng workflow-cú-pháp lõi và đề xuất cải tiến."
+    ],
+    "expectedOutput": "Kết quả mong muốn: workflow architecture.md + sequence diagram + API spec chạy được hoặc được mô tả rõ; có log/test và kết luận ngắn.",
+    "reportPrompt": "Ghi: tham số đã đổi, kết quả trước/sau, lỗi phát hiện, test/log và ứng dụng vào giải thích phần mềm cho giáo sư và nhóm nghiên cứu."
+  },
+  {
+    "id": "application_PR32",
+    "stage": "hk2",
+    "lessonId": "PR32",
+    "applicationId": "app_PR32",
+    "group": "Mô phỏng ứng dụng",
+    "type": "application-simulation",
+    "title": "Mô phỏng ứng dụng · Tài liệu kỹ thuật và sơ đồ kiến trúc",
+    "purpose": "Thử thay đổi tham số để quan sát tác động đến giải thích phần mềm cho giáo sư và nhóm nghiên cứu.",
+    "file": "simulations/sim_reproducible_demo_lab.html",
+    "formula": "architecture.md + sequence diagram + API spec",
+    "applicationDomain": "giải thích phần mềm cho giáo sư và nhóm nghiên cứu",
+    "variables": [
+      {
+        "name": "dataSize",
+        "label": "Quy mô dữ liệu/code",
+        "min": 1,
+        "max": 100,
+        "default": 45,
+        "effect": "Quy mô tăng làm chi phí, lỗi và nhu cầu cấu trúc hóa tăng."
+      },
+      {
+        "name": "quality",
+        "label": "Chất lượng test/tài liệu",
+        "min": 0,
+        "max": 100,
+        "default": 70,
+        "effect": "Test/tài liệu tốt làm rủi ro demo giảm và khả năng tái lập tăng."
+      }
+    ],
+    "inputEffects": [
+      "Tăng quy mô để thấy khi nào code script đơn lẻ không còn đủ.",
+      "Giảm chất lượng test/tài liệu để thấy rủi ro lỗi logic, lỗi môi trường và demo vỡ."
+    ],
+    "explorationSteps": [
+      "Đổi một biến mỗi lần.",
+      "Ghi quan sát về thời gian, lỗi, tái lập và artifact.",
+      "Giải thích bằng workflow-cú-pháp lõi và đề xuất cải tiến."
+    ],
+    "expectedOutput": "Kết quả mong muốn: workflow architecture.md + sequence diagram + API spec chạy được hoặc được mô tả rõ; có log/test và kết luận ngắn.",
+    "reportPrompt": "Ghi: tham số đã đổi, kết quả trước/sau, lỗi phát hiện, test/log và ứng dụng vào giải thích phần mềm cho giáo sư và nhóm nghiên cứu."
+  },
+  {
+    "id": "theory_PR33",
+    "stage": "hk3",
+    "lessonId": "PR33",
+    "applicationId": "app_PR33",
+    "group": "Mô phỏng lý thuyết",
+    "type": "theory-simulation",
+    "title": "Mô phỏng lý thuyết · Dataset card cho telemetry và cảm biến",
+    "purpose": "Thử thay đổi tham số để quan sát tác động đến mô tả dữ liệu НИР đủ rõ để phản biện.",
+    "file": "simulations/sim_python_env_lab.html",
+    "formula": "dataset card = source + schema + limits + ethics",
+    "applicationDomain": "mô tả dữ liệu НИР đủ rõ để phản biện",
+    "variables": [
+      {
+        "name": "dataSize",
+        "label": "Quy mô dữ liệu/code",
+        "min": 1,
+        "max": 100,
+        "default": 45,
+        "effect": "Quy mô tăng làm chi phí, lỗi và nhu cầu cấu trúc hóa tăng."
+      },
+      {
+        "name": "quality",
+        "label": "Chất lượng test/tài liệu",
+        "min": 0,
+        "max": 100,
+        "default": 70,
+        "effect": "Test/tài liệu tốt làm rủi ro demo giảm và khả năng tái lập tăng."
+      }
+    ],
+    "inputEffects": [
+      "Tăng quy mô để thấy khi nào code script đơn lẻ không còn đủ.",
+      "Giảm chất lượng test/tài liệu để thấy rủi ro lỗi logic, lỗi môi trường và demo vỡ."
+    ],
+    "explorationSteps": [
+      "Đổi một biến mỗi lần.",
+      "Ghi quan sát về thời gian, lỗi, tái lập và artifact.",
+      "Giải thích bằng workflow-cú-pháp lõi và đề xuất cải tiến."
+    ],
+    "expectedOutput": "Kết quả mong muốn: workflow dataset card = source + schema + limits + ethics chạy được hoặc được mô tả rõ; có log/test và kết luận ngắn.",
+    "reportPrompt": "Ghi: tham số đã đổi, kết quả trước/sau, lỗi phát hiện, test/log và ứng dụng vào mô tả dữ liệu НИР đủ rõ để phản biện."
+  },
+  {
+    "id": "application_PR33",
+    "stage": "hk3",
+    "lessonId": "PR33",
+    "applicationId": "app_PR33",
+    "group": "Mô phỏng ứng dụng",
+    "type": "application-simulation",
+    "title": "Mô phỏng ứng dụng · Dataset card cho telemetry và cảm biến",
+    "purpose": "Thử thay đổi tham số để quan sát tác động đến mô tả dữ liệu НИР đủ rõ để phản biện.",
+    "file": "simulations/sim_python_env_lab.html",
+    "formula": "dataset card = source + schema + limits + ethics",
+    "applicationDomain": "mô tả dữ liệu НИР đủ rõ để phản biện",
+    "variables": [
+      {
+        "name": "dataSize",
+        "label": "Quy mô dữ liệu/code",
+        "min": 1,
+        "max": 100,
+        "default": 45,
+        "effect": "Quy mô tăng làm chi phí, lỗi và nhu cầu cấu trúc hóa tăng."
+      },
+      {
+        "name": "quality",
+        "label": "Chất lượng test/tài liệu",
+        "min": 0,
+        "max": 100,
+        "default": 70,
+        "effect": "Test/tài liệu tốt làm rủi ro demo giảm và khả năng tái lập tăng."
+      }
+    ],
+    "inputEffects": [
+      "Tăng quy mô để thấy khi nào code script đơn lẻ không còn đủ.",
+      "Giảm chất lượng test/tài liệu để thấy rủi ro lỗi logic, lỗi môi trường và demo vỡ."
+    ],
+    "explorationSteps": [
+      "Đổi một biến mỗi lần.",
+      "Ghi quan sát về thời gian, lỗi, tái lập và artifact.",
+      "Giải thích bằng workflow-cú-pháp lõi và đề xuất cải tiến."
+    ],
+    "expectedOutput": "Kết quả mong muốn: workflow dataset card = source + schema + limits + ethics chạy được hoặc được mô tả rõ; có log/test và kết luận ngắn.",
+    "reportPrompt": "Ghi: tham số đã đổi, kết quả trước/sau, lỗi phát hiện, test/log và ứng dụng vào mô tả dữ liệu НИР đủ rõ để phản biện."
+  },
+  {
+    "id": "theory_PR34",
+    "stage": "hk3",
+    "lessonId": "PR34",
+    "applicationId": "app_PR34",
+    "group": "Mô phỏng lý thuyết",
+    "type": "theory-simulation",
+    "title": "Mô phỏng lý thuyết · Experiment tracking và bảng metric",
+    "purpose": "Thử thay đổi tham số để quan sát tác động đến so sánh mô hình trong НИР có bằng chứng.",
+    "file": "simulations/sim_algorithm_complexity_lab.html",
+    "formula": "run_id + params + metrics + artifacts",
+    "applicationDomain": "so sánh mô hình trong НИР có bằng chứng",
+    "variables": [
+      {
+        "name": "dataSize",
+        "label": "Quy mô dữ liệu/code",
+        "min": 1,
+        "max": 100,
+        "default": 45,
+        "effect": "Quy mô tăng làm chi phí, lỗi và nhu cầu cấu trúc hóa tăng."
+      },
+      {
+        "name": "quality",
+        "label": "Chất lượng test/tài liệu",
+        "min": 0,
+        "max": 100,
+        "default": 70,
+        "effect": "Test/tài liệu tốt làm rủi ro demo giảm và khả năng tái lập tăng."
+      }
+    ],
+    "inputEffects": [
+      "Tăng quy mô để thấy khi nào code script đơn lẻ không còn đủ.",
+      "Giảm chất lượng test/tài liệu để thấy rủi ro lỗi logic, lỗi môi trường và demo vỡ."
+    ],
+    "explorationSteps": [
+      "Đổi một biến mỗi lần.",
+      "Ghi quan sát về thời gian, lỗi, tái lập và artifact.",
+      "Giải thích bằng workflow-cú-pháp lõi và đề xuất cải tiến."
+    ],
+    "expectedOutput": "Kết quả mong muốn: workflow run_id + params + metrics + artifacts chạy được hoặc được mô tả rõ; có log/test và kết luận ngắn.",
+    "reportPrompt": "Ghi: tham số đã đổi, kết quả trước/sau, lỗi phát hiện, test/log và ứng dụng vào so sánh mô hình trong НИР có bằng chứng."
+  },
+  {
+    "id": "application_PR34",
+    "stage": "hk3",
+    "lessonId": "PR34",
+    "applicationId": "app_PR34",
+    "group": "Mô phỏng ứng dụng",
+    "type": "application-simulation",
+    "title": "Mô phỏng ứng dụng · Experiment tracking và bảng metric",
+    "purpose": "Thử thay đổi tham số để quan sát tác động đến so sánh mô hình trong НИР có bằng chứng.",
+    "file": "simulations/sim_algorithm_complexity_lab.html",
+    "formula": "run_id + params + metrics + artifacts",
+    "applicationDomain": "so sánh mô hình trong НИР có bằng chứng",
+    "variables": [
+      {
+        "name": "dataSize",
+        "label": "Quy mô dữ liệu/code",
+        "min": 1,
+        "max": 100,
+        "default": 45,
+        "effect": "Quy mô tăng làm chi phí, lỗi và nhu cầu cấu trúc hóa tăng."
+      },
+      {
+        "name": "quality",
+        "label": "Chất lượng test/tài liệu",
+        "min": 0,
+        "max": 100,
+        "default": 70,
+        "effect": "Test/tài liệu tốt làm rủi ro demo giảm và khả năng tái lập tăng."
+      }
+    ],
+    "inputEffects": [
+      "Tăng quy mô để thấy khi nào code script đơn lẻ không còn đủ.",
+      "Giảm chất lượng test/tài liệu để thấy rủi ro lỗi logic, lỗi môi trường và demo vỡ."
+    ],
+    "explorationSteps": [
+      "Đổi một biến mỗi lần.",
+      "Ghi quan sát về thời gian, lỗi, tái lập và artifact.",
+      "Giải thích bằng workflow-cú-pháp lõi và đề xuất cải tiến."
+    ],
+    "expectedOutput": "Kết quả mong muốn: workflow run_id + params + metrics + artifacts chạy được hoặc được mô tả rõ; có log/test và kết luận ngắn.",
+    "reportPrompt": "Ghi: tham số đã đổi, kết quả trước/sau, lỗi phát hiện, test/log và ứng dụng vào so sánh mô hình trong НИР có bằng chứng."
+  },
+  {
+    "id": "theory_PR35",
+    "stage": "hk3",
+    "lessonId": "PR35",
+    "applicationId": "app_PR35",
+    "group": "Mô phỏng lý thuyết",
+    "type": "theory-simulation",
+    "title": "Mô phỏng lý thuyết · Ablation study bằng code có kiểm soát",
+    "purpose": "Thử thay đổi tham số để quan sát tác động đến chứng minh yếu tố nào làm mô hình tốt hơn/xấu hơn.",
+    "file": "simulations/sim_dataframe_cleaning_lab.html",
+    "formula": "one change per run; compare metric deltas",
+    "applicationDomain": "chứng minh yếu tố nào làm mô hình tốt hơn/xấu hơn",
+    "variables": [
+      {
+        "name": "dataSize",
+        "label": "Quy mô dữ liệu/code",
+        "min": 1,
+        "max": 100,
+        "default": 45,
+        "effect": "Quy mô tăng làm chi phí, lỗi và nhu cầu cấu trúc hóa tăng."
+      },
+      {
+        "name": "quality",
+        "label": "Chất lượng test/tài liệu",
+        "min": 0,
+        "max": 100,
+        "default": 70,
+        "effect": "Test/tài liệu tốt làm rủi ro demo giảm và khả năng tái lập tăng."
+      }
+    ],
+    "inputEffects": [
+      "Tăng quy mô để thấy khi nào code script đơn lẻ không còn đủ.",
+      "Giảm chất lượng test/tài liệu để thấy rủi ro lỗi logic, lỗi môi trường và demo vỡ."
+    ],
+    "explorationSteps": [
+      "Đổi một biến mỗi lần.",
+      "Ghi quan sát về thời gian, lỗi, tái lập và artifact.",
+      "Giải thích bằng workflow-cú-pháp lõi và đề xuất cải tiến."
+    ],
+    "expectedOutput": "Kết quả mong muốn: workflow one change per run; compare metric deltas chạy được hoặc được mô tả rõ; có log/test và kết luận ngắn.",
+    "reportPrompt": "Ghi: tham số đã đổi, kết quả trước/sau, lỗi phát hiện, test/log và ứng dụng vào chứng minh yếu tố nào làm mô hình tốt hơn/xấu hơn."
+  },
+  {
+    "id": "application_PR35",
+    "stage": "hk3",
+    "lessonId": "PR35",
+    "applicationId": "app_PR35",
+    "group": "Mô phỏng ứng dụng",
+    "type": "application-simulation",
+    "title": "Mô phỏng ứng dụng · Ablation study bằng code có kiểm soát",
+    "purpose": "Thử thay đổi tham số để quan sát tác động đến chứng minh yếu tố nào làm mô hình tốt hơn/xấu hơn.",
+    "file": "simulations/sim_dataframe_cleaning_lab.html",
+    "formula": "one change per run; compare metric deltas",
+    "applicationDomain": "chứng minh yếu tố nào làm mô hình tốt hơn/xấu hơn",
+    "variables": [
+      {
+        "name": "dataSize",
+        "label": "Quy mô dữ liệu/code",
+        "min": 1,
+        "max": 100,
+        "default": 45,
+        "effect": "Quy mô tăng làm chi phí, lỗi và nhu cầu cấu trúc hóa tăng."
+      },
+      {
+        "name": "quality",
+        "label": "Chất lượng test/tài liệu",
+        "min": 0,
+        "max": 100,
+        "default": 70,
+        "effect": "Test/tài liệu tốt làm rủi ro demo giảm và khả năng tái lập tăng."
+      }
+    ],
+    "inputEffects": [
+      "Tăng quy mô để thấy khi nào code script đơn lẻ không còn đủ.",
+      "Giảm chất lượng test/tài liệu để thấy rủi ro lỗi logic, lỗi môi trường và demo vỡ."
+    ],
+    "explorationSteps": [
+      "Đổi một biến mỗi lần.",
+      "Ghi quan sát về thời gian, lỗi, tái lập và artifact.",
+      "Giải thích bằng workflow-cú-pháp lõi và đề xuất cải tiến."
+    ],
+    "expectedOutput": "Kết quả mong muốn: workflow one change per run; compare metric deltas chạy được hoặc được mô tả rõ; có log/test và kết luận ngắn.",
+    "reportPrompt": "Ghi: tham số đã đổi, kết quả trước/sau, lỗi phát hiện, test/log và ứng dụng vào chứng minh yếu tố nào làm mô hình tốt hơn/xấu hơn."
+  },
+  {
+    "id": "theory_PR36",
+    "stage": "hk3",
+    "lessonId": "PR36",
+    "applicationId": "app_PR36",
+    "group": "Mô phỏng lý thuyết",
+    "type": "theory-simulation",
+    "title": "Mô phỏng lý thuyết · Xử lý log cảm biến và chuỗi thời gian",
+    "purpose": "Thử thay đổi tham số để quan sát tác động đến làm sạch log UGV trước khi phân tích tín hiệu/AI.",
+    "file": "simulations/sim_sql_query_lab.html",
+    "formula": "timestamp + value + quality_flag",
+    "applicationDomain": "làm sạch log UGV trước khi phân tích tín hiệu/AI",
+    "variables": [
+      {
+        "name": "dataSize",
+        "label": "Quy mô dữ liệu/code",
+        "min": 1,
+        "max": 100,
+        "default": 45,
+        "effect": "Quy mô tăng làm chi phí, lỗi và nhu cầu cấu trúc hóa tăng."
+      },
+      {
+        "name": "quality",
+        "label": "Chất lượng test/tài liệu",
+        "min": 0,
+        "max": 100,
+        "default": 70,
+        "effect": "Test/tài liệu tốt làm rủi ro demo giảm và khả năng tái lập tăng."
+      }
+    ],
+    "inputEffects": [
+      "Tăng quy mô để thấy khi nào code script đơn lẻ không còn đủ.",
+      "Giảm chất lượng test/tài liệu để thấy rủi ro lỗi logic, lỗi môi trường và demo vỡ."
+    ],
+    "explorationSteps": [
+      "Đổi một biến mỗi lần.",
+      "Ghi quan sát về thời gian, lỗi, tái lập và artifact.",
+      "Giải thích bằng workflow-cú-pháp lõi và đề xuất cải tiến."
+    ],
+    "expectedOutput": "Kết quả mong muốn: workflow timestamp + value + quality_flag chạy được hoặc được mô tả rõ; có log/test và kết luận ngắn.",
+    "reportPrompt": "Ghi: tham số đã đổi, kết quả trước/sau, lỗi phát hiện, test/log và ứng dụng vào làm sạch log UGV trước khi phân tích tín hiệu/AI."
+  },
+  {
+    "id": "application_PR36",
+    "stage": "hk3",
+    "lessonId": "PR36",
+    "applicationId": "app_PR36",
+    "group": "Mô phỏng ứng dụng",
+    "type": "application-simulation",
+    "title": "Mô phỏng ứng dụng · Xử lý log cảm biến và chuỗi thời gian",
+    "purpose": "Thử thay đổi tham số để quan sát tác động đến làm sạch log UGV trước khi phân tích tín hiệu/AI.",
+    "file": "simulations/sim_sql_query_lab.html",
+    "formula": "timestamp + value + quality_flag",
+    "applicationDomain": "làm sạch log UGV trước khi phân tích tín hiệu/AI",
+    "variables": [
+      {
+        "name": "dataSize",
+        "label": "Quy mô dữ liệu/code",
+        "min": 1,
+        "max": 100,
+        "default": 45,
+        "effect": "Quy mô tăng làm chi phí, lỗi và nhu cầu cấu trúc hóa tăng."
+      },
+      {
+        "name": "quality",
+        "label": "Chất lượng test/tài liệu",
+        "min": 0,
+        "max": 100,
+        "default": 70,
+        "effect": "Test/tài liệu tốt làm rủi ro demo giảm và khả năng tái lập tăng."
+      }
+    ],
+    "inputEffects": [
+      "Tăng quy mô để thấy khi nào code script đơn lẻ không còn đủ.",
+      "Giảm chất lượng test/tài liệu để thấy rủi ro lỗi logic, lỗi môi trường và demo vỡ."
+    ],
+    "explorationSteps": [
+      "Đổi một biến mỗi lần.",
+      "Ghi quan sát về thời gian, lỗi, tái lập và artifact.",
+      "Giải thích bằng workflow-cú-pháp lõi và đề xuất cải tiến."
+    ],
+    "expectedOutput": "Kết quả mong muốn: workflow timestamp + value + quality_flag chạy được hoặc được mô tả rõ; có log/test và kết luận ngắn.",
+    "reportPrompt": "Ghi: tham số đã đổi, kết quả trước/sau, lỗi phát hiện, test/log và ứng dụng vào làm sạch log UGV trước khi phân tích tín hiệu/AI."
+  },
+  {
+    "id": "theory_PR37",
+    "stage": "hk3",
+    "lessonId": "PR37",
+    "applicationId": "app_PR37",
+    "group": "Mô phỏng lý thuyết",
+    "type": "theory-simulation",
+    "title": "Mô phỏng lý thuyết · Module đánh giá lỗi và phân tích thất bại",
+    "purpose": "Thử thay đổi tham số để quan sát tác động đến biết mô hình sai ở đâu, vì sao, sửa thế nào.",
+    "file": "simulations/sim_git_workflow_lab.html",
+    "formula": "error case → label → root cause → fix",
+    "applicationDomain": "biết mô hình sai ở đâu, vì sao, sửa thế nào",
+    "variables": [
+      {
+        "name": "dataSize",
+        "label": "Quy mô dữ liệu/code",
+        "min": 1,
+        "max": 100,
+        "default": 45,
+        "effect": "Quy mô tăng làm chi phí, lỗi và nhu cầu cấu trúc hóa tăng."
+      },
+      {
+        "name": "quality",
+        "label": "Chất lượng test/tài liệu",
+        "min": 0,
+        "max": 100,
+        "default": 70,
+        "effect": "Test/tài liệu tốt làm rủi ro demo giảm và khả năng tái lập tăng."
+      }
+    ],
+    "inputEffects": [
+      "Tăng quy mô để thấy khi nào code script đơn lẻ không còn đủ.",
+      "Giảm chất lượng test/tài liệu để thấy rủi ro lỗi logic, lỗi môi trường và demo vỡ."
+    ],
+    "explorationSteps": [
+      "Đổi một biến mỗi lần.",
+      "Ghi quan sát về thời gian, lỗi, tái lập và artifact.",
+      "Giải thích bằng workflow-cú-pháp lõi và đề xuất cải tiến."
+    ],
+    "expectedOutput": "Kết quả mong muốn: workflow error case → label → root cause → fix chạy được hoặc được mô tả rõ; có log/test và kết luận ngắn.",
+    "reportPrompt": "Ghi: tham số đã đổi, kết quả trước/sau, lỗi phát hiện, test/log và ứng dụng vào biết mô hình sai ở đâu, vì sao, sửa thế nào."
+  },
+  {
+    "id": "application_PR37",
+    "stage": "hk3",
+    "lessonId": "PR37",
+    "applicationId": "app_PR37",
+    "group": "Mô phỏng ứng dụng",
+    "type": "application-simulation",
+    "title": "Mô phỏng ứng dụng · Module đánh giá lỗi và phân tích thất bại",
+    "purpose": "Thử thay đổi tham số để quan sát tác động đến biết mô hình sai ở đâu, vì sao, sửa thế nào.",
+    "file": "simulations/sim_git_workflow_lab.html",
+    "formula": "error case → label → root cause → fix",
+    "applicationDomain": "biết mô hình sai ở đâu, vì sao, sửa thế nào",
+    "variables": [
+      {
+        "name": "dataSize",
+        "label": "Quy mô dữ liệu/code",
+        "min": 1,
+        "max": 100,
+        "default": 45,
+        "effect": "Quy mô tăng làm chi phí, lỗi và nhu cầu cấu trúc hóa tăng."
+      },
+      {
+        "name": "quality",
+        "label": "Chất lượng test/tài liệu",
+        "min": 0,
+        "max": 100,
+        "default": 70,
+        "effect": "Test/tài liệu tốt làm rủi ro demo giảm và khả năng tái lập tăng."
+      }
+    ],
+    "inputEffects": [
+      "Tăng quy mô để thấy khi nào code script đơn lẻ không còn đủ.",
+      "Giảm chất lượng test/tài liệu để thấy rủi ro lỗi logic, lỗi môi trường và demo vỡ."
+    ],
+    "explorationSteps": [
+      "Đổi một biến mỗi lần.",
+      "Ghi quan sát về thời gian, lỗi, tái lập và artifact.",
+      "Giải thích bằng workflow-cú-pháp lõi và đề xuất cải tiến."
+    ],
+    "expectedOutput": "Kết quả mong muốn: workflow error case → label → root cause → fix chạy được hoặc được mô tả rõ; có log/test và kết luận ngắn.",
+    "reportPrompt": "Ghi: tham số đã đổi, kết quả trước/sau, lỗi phát hiện, test/log và ứng dụng vào biết mô hình sai ở đâu, vì sao, sửa thế nào."
+  },
+  {
+    "id": "theory_PR38",
+    "stage": "hk3",
+    "lessonId": "PR38",
+    "applicationId": "app_PR38",
+    "group": "Mô phỏng lý thuyết",
+    "type": "theory-simulation",
+    "title": "Mô phỏng lý thuyết · Prototype dashboard kết quả nghiên cứu",
+    "purpose": "Thử thay đổi tham số để quan sát tác động đến xem kết quả thí nghiệm, hình minh họa và log.",
+    "file": "simulations/sim_oop_architecture_lab.html",
+    "formula": "metrics + plots + filters + notes",
+    "applicationDomain": "xem kết quả thí nghiệm, hình minh họa và log",
+    "variables": [
+      {
+        "name": "dataSize",
+        "label": "Quy mô dữ liệu/code",
+        "min": 1,
+        "max": 100,
+        "default": 45,
+        "effect": "Quy mô tăng làm chi phí, lỗi và nhu cầu cấu trúc hóa tăng."
+      },
+      {
+        "name": "quality",
+        "label": "Chất lượng test/tài liệu",
+        "min": 0,
+        "max": 100,
+        "default": 70,
+        "effect": "Test/tài liệu tốt làm rủi ro demo giảm và khả năng tái lập tăng."
+      }
+    ],
+    "inputEffects": [
+      "Tăng quy mô để thấy khi nào code script đơn lẻ không còn đủ.",
+      "Giảm chất lượng test/tài liệu để thấy rủi ro lỗi logic, lỗi môi trường và demo vỡ."
+    ],
+    "explorationSteps": [
+      "Đổi một biến mỗi lần.",
+      "Ghi quan sát về thời gian, lỗi, tái lập và artifact.",
+      "Giải thích bằng workflow-cú-pháp lõi và đề xuất cải tiến."
+    ],
+    "expectedOutput": "Kết quả mong muốn: workflow metrics + plots + filters + notes chạy được hoặc được mô tả rõ; có log/test và kết luận ngắn.",
+    "reportPrompt": "Ghi: tham số đã đổi, kết quả trước/sau, lỗi phát hiện, test/log và ứng dụng vào xem kết quả thí nghiệm, hình minh họa và log."
+  },
+  {
+    "id": "application_PR38",
+    "stage": "hk3",
+    "lessonId": "PR38",
+    "applicationId": "app_PR38",
+    "group": "Mô phỏng ứng dụng",
+    "type": "application-simulation",
+    "title": "Mô phỏng ứng dụng · Prototype dashboard kết quả nghiên cứu",
+    "purpose": "Thử thay đổi tham số để quan sát tác động đến xem kết quả thí nghiệm, hình minh họa và log.",
+    "file": "simulations/sim_oop_architecture_lab.html",
+    "formula": "metrics + plots + filters + notes",
+    "applicationDomain": "xem kết quả thí nghiệm, hình minh họa và log",
+    "variables": [
+      {
+        "name": "dataSize",
+        "label": "Quy mô dữ liệu/code",
+        "min": 1,
+        "max": 100,
+        "default": 45,
+        "effect": "Quy mô tăng làm chi phí, lỗi và nhu cầu cấu trúc hóa tăng."
+      },
+      {
+        "name": "quality",
+        "label": "Chất lượng test/tài liệu",
+        "min": 0,
+        "max": 100,
+        "default": 70,
+        "effect": "Test/tài liệu tốt làm rủi ro demo giảm và khả năng tái lập tăng."
+      }
+    ],
+    "inputEffects": [
+      "Tăng quy mô để thấy khi nào code script đơn lẻ không còn đủ.",
+      "Giảm chất lượng test/tài liệu để thấy rủi ro lỗi logic, lỗi môi trường và demo vỡ."
+    ],
+    "explorationSteps": [
+      "Đổi một biến mỗi lần.",
+      "Ghi quan sát về thời gian, lỗi, tái lập và artifact.",
+      "Giải thích bằng workflow-cú-pháp lõi và đề xuất cải tiến."
+    ],
+    "expectedOutput": "Kết quả mong muốn: workflow metrics + plots + filters + notes chạy được hoặc được mô tả rõ; có log/test và kết luận ngắn.",
+    "reportPrompt": "Ghi: tham số đã đổi, kết quả trước/sau, lỗi phát hiện, test/log và ứng dụng vào xem kết quả thí nghiệm, hình minh họa và log."
+  },
+  {
+    "id": "theory_PR39",
+    "stage": "hk3",
+    "lessonId": "PR39",
+    "applicationId": "app_PR39",
+    "group": "Mô phỏng lý thuyết",
+    "type": "theory-simulation",
+    "title": "Mô phỏng lý thuyết · Đóng gói demo nghiên cứu",
+    "purpose": "Thử thay đổi tham số để quan sát tác động đến cho giáo viên mở demo nhanh mà không vỡ môi trường.",
+    "file": "simulations/sim_ml_pipeline_lab.html",
+    "formula": "make run-demo; sample data; expected output",
+    "applicationDomain": "cho giáo viên mở demo nhanh mà không vỡ môi trường",
+    "variables": [
+      {
+        "name": "dataSize",
+        "label": "Quy mô dữ liệu/code",
+        "min": 1,
+        "max": 100,
+        "default": 45,
+        "effect": "Quy mô tăng làm chi phí, lỗi và nhu cầu cấu trúc hóa tăng."
+      },
+      {
+        "name": "quality",
+        "label": "Chất lượng test/tài liệu",
+        "min": 0,
+        "max": 100,
+        "default": 70,
+        "effect": "Test/tài liệu tốt làm rủi ro demo giảm và khả năng tái lập tăng."
+      }
+    ],
+    "inputEffects": [
+      "Tăng quy mô để thấy khi nào code script đơn lẻ không còn đủ.",
+      "Giảm chất lượng test/tài liệu để thấy rủi ro lỗi logic, lỗi môi trường và demo vỡ."
+    ],
+    "explorationSteps": [
+      "Đổi một biến mỗi lần.",
+      "Ghi quan sát về thời gian, lỗi, tái lập và artifact.",
+      "Giải thích bằng workflow-cú-pháp lõi và đề xuất cải tiến."
+    ],
+    "expectedOutput": "Kết quả mong muốn: workflow make run-demo; sample data; expected output chạy được hoặc được mô tả rõ; có log/test và kết luận ngắn.",
+    "reportPrompt": "Ghi: tham số đã đổi, kết quả trước/sau, lỗi phát hiện, test/log và ứng dụng vào cho giáo viên mở demo nhanh mà không vỡ môi trường."
+  },
+  {
+    "id": "application_PR39",
+    "stage": "hk3",
+    "lessonId": "PR39",
+    "applicationId": "app_PR39",
+    "group": "Mô phỏng ứng dụng",
+    "type": "application-simulation",
+    "title": "Mô phỏng ứng dụng · Đóng gói demo nghiên cứu",
+    "purpose": "Thử thay đổi tham số để quan sát tác động đến cho giáo viên mở demo nhanh mà không vỡ môi trường.",
+    "file": "simulations/sim_ml_pipeline_lab.html",
+    "formula": "make run-demo; sample data; expected output",
+    "applicationDomain": "cho giáo viên mở demo nhanh mà không vỡ môi trường",
+    "variables": [
+      {
+        "name": "dataSize",
+        "label": "Quy mô dữ liệu/code",
+        "min": 1,
+        "max": 100,
+        "default": 45,
+        "effect": "Quy mô tăng làm chi phí, lỗi và nhu cầu cấu trúc hóa tăng."
+      },
+      {
+        "name": "quality",
+        "label": "Chất lượng test/tài liệu",
+        "min": 0,
+        "max": 100,
+        "default": 70,
+        "effect": "Test/tài liệu tốt làm rủi ro demo giảm và khả năng tái lập tăng."
+      }
+    ],
+    "inputEffects": [
+      "Tăng quy mô để thấy khi nào code script đơn lẻ không còn đủ.",
+      "Giảm chất lượng test/tài liệu để thấy rủi ro lỗi logic, lỗi môi trường và demo vỡ."
+    ],
+    "explorationSteps": [
+      "Đổi một biến mỗi lần.",
+      "Ghi quan sát về thời gian, lỗi, tái lập và artifact.",
+      "Giải thích bằng workflow-cú-pháp lõi và đề xuất cải tiến."
+    ],
+    "expectedOutput": "Kết quả mong muốn: workflow make run-demo; sample data; expected output chạy được hoặc được mô tả rõ; có log/test và kết luận ngắn.",
+    "reportPrompt": "Ghi: tham số đã đổi, kết quả trước/sau, lỗi phát hiện, test/log và ứng dụng vào cho giáo viên mở demo nhanh mà không vỡ môi trường."
+  },
+  {
+    "id": "theory_PR40",
+    "stage": "hk3",
+    "lessonId": "PR40",
+    "applicationId": "app_PR40",
+    "group": "Mô phỏng lý thuyết",
+    "type": "theory-simulation",
+    "title": "Mô phỏng lý thuyết · Quản lý rủi ro phần mềm trong НИР",
+    "purpose": "Thử thay đổi tham số để quan sát tác động đến giảm rủi ro hỏng demo, mất dữ liệu, lệch kết quả.",
+    "file": "simulations/sim_reproducible_demo_lab.html",
+    "formula": "risk = probability × impact; mitigation plan",
+    "applicationDomain": "giảm rủi ro hỏng demo, mất dữ liệu, lệch kết quả",
+    "variables": [
+      {
+        "name": "dataSize",
+        "label": "Quy mô dữ liệu/code",
+        "min": 1,
+        "max": 100,
+        "default": 45,
+        "effect": "Quy mô tăng làm chi phí, lỗi và nhu cầu cấu trúc hóa tăng."
+      },
+      {
+        "name": "quality",
+        "label": "Chất lượng test/tài liệu",
+        "min": 0,
+        "max": 100,
+        "default": 70,
+        "effect": "Test/tài liệu tốt làm rủi ro demo giảm và khả năng tái lập tăng."
+      }
+    ],
+    "inputEffects": [
+      "Tăng quy mô để thấy khi nào code script đơn lẻ không còn đủ.",
+      "Giảm chất lượng test/tài liệu để thấy rủi ro lỗi logic, lỗi môi trường và demo vỡ."
+    ],
+    "explorationSteps": [
+      "Đổi một biến mỗi lần.",
+      "Ghi quan sát về thời gian, lỗi, tái lập và artifact.",
+      "Giải thích bằng workflow-cú-pháp lõi và đề xuất cải tiến."
+    ],
+    "expectedOutput": "Kết quả mong muốn: workflow risk = probability × impact; mitigation plan chạy được hoặc được mô tả rõ; có log/test và kết luận ngắn.",
+    "reportPrompt": "Ghi: tham số đã đổi, kết quả trước/sau, lỗi phát hiện, test/log và ứng dụng vào giảm rủi ro hỏng demo, mất dữ liệu, lệch kết quả."
+  },
+  {
+    "id": "application_PR40",
+    "stage": "hk3",
+    "lessonId": "PR40",
+    "applicationId": "app_PR40",
+    "group": "Mô phỏng ứng dụng",
+    "type": "application-simulation",
+    "title": "Mô phỏng ứng dụng · Quản lý rủi ro phần mềm trong НИР",
+    "purpose": "Thử thay đổi tham số để quan sát tác động đến giảm rủi ro hỏng demo, mất dữ liệu, lệch kết quả.",
+    "file": "simulations/sim_reproducible_demo_lab.html",
+    "formula": "risk = probability × impact; mitigation plan",
+    "applicationDomain": "giảm rủi ro hỏng demo, mất dữ liệu, lệch kết quả",
+    "variables": [
+      {
+        "name": "dataSize",
+        "label": "Quy mô dữ liệu/code",
+        "min": 1,
+        "max": 100,
+        "default": 45,
+        "effect": "Quy mô tăng làm chi phí, lỗi và nhu cầu cấu trúc hóa tăng."
+      },
+      {
+        "name": "quality",
+        "label": "Chất lượng test/tài liệu",
+        "min": 0,
+        "max": 100,
+        "default": 70,
+        "effect": "Test/tài liệu tốt làm rủi ro demo giảm và khả năng tái lập tăng."
+      }
+    ],
+    "inputEffects": [
+      "Tăng quy mô để thấy khi nào code script đơn lẻ không còn đủ.",
+      "Giảm chất lượng test/tài liệu để thấy rủi ro lỗi logic, lỗi môi trường và demo vỡ."
+    ],
+    "explorationSteps": [
+      "Đổi một biến mỗi lần.",
+      "Ghi quan sát về thời gian, lỗi, tái lập và artifact.",
+      "Giải thích bằng workflow-cú-pháp lõi và đề xuất cải tiến."
+    ],
+    "expectedOutput": "Kết quả mong muốn: workflow risk = probability × impact; mitigation plan chạy được hoặc được mô tả rõ; có log/test và kết luận ngắn.",
+    "reportPrompt": "Ghi: tham số đã đổi, kết quả trước/sau, lỗi phát hiện, test/log và ứng dụng vào giảm rủi ro hỏng demo, mất dữ liệu, lệch kết quả."
+  },
+  {
+    "id": "theory_PR41",
+    "stage": "hk4",
+    "lessonId": "PR41",
+    "applicationId": "app_PR41",
+    "group": "Mô phỏng lý thuyết",
+    "type": "theory-simulation",
+    "title": "Mô phỏng lý thuyết · Đóng băng mã nguồn và tag release",
+    "purpose": "Thử thay đổi tham số để quan sát tác động đến khóa phiên bản phục vụ ВКР, tránh đổi sát ngày bảo vệ.",
+    "file": "simulations/sim_python_env_lab.html",
+    "formula": "git tag v1.0-defense; CHANGELOG.md",
+    "applicationDomain": "khóa phiên bản phục vụ ВКР, tránh đổi sát ngày bảo vệ",
+    "variables": [
+      {
+        "name": "dataSize",
+        "label": "Quy mô dữ liệu/code",
+        "min": 1,
+        "max": 100,
+        "default": 45,
+        "effect": "Quy mô tăng làm chi phí, lỗi và nhu cầu cấu trúc hóa tăng."
+      },
+      {
+        "name": "quality",
+        "label": "Chất lượng test/tài liệu",
+        "min": 0,
+        "max": 100,
+        "default": 70,
+        "effect": "Test/tài liệu tốt làm rủi ro demo giảm và khả năng tái lập tăng."
+      }
+    ],
+    "inputEffects": [
+      "Tăng quy mô để thấy khi nào code script đơn lẻ không còn đủ.",
+      "Giảm chất lượng test/tài liệu để thấy rủi ro lỗi logic, lỗi môi trường và demo vỡ."
+    ],
+    "explorationSteps": [
+      "Đổi một biến mỗi lần.",
+      "Ghi quan sát về thời gian, lỗi, tái lập và artifact.",
+      "Giải thích bằng workflow-cú-pháp lõi và đề xuất cải tiến."
+    ],
+    "expectedOutput": "Kết quả mong muốn: workflow git tag v1.0-defense; CHANGELOG.md chạy được hoặc được mô tả rõ; có log/test và kết luận ngắn.",
+    "reportPrompt": "Ghi: tham số đã đổi, kết quả trước/sau, lỗi phát hiện, test/log và ứng dụng vào khóa phiên bản phục vụ ВКР, tránh đổi sát ngày bảo vệ."
+  },
+  {
+    "id": "application_PR41",
+    "stage": "hk4",
+    "lessonId": "PR41",
+    "applicationId": "app_PR41",
+    "group": "Mô phỏng ứng dụng",
+    "type": "application-simulation",
+    "title": "Mô phỏng ứng dụng · Đóng băng mã nguồn và tag release",
+    "purpose": "Thử thay đổi tham số để quan sát tác động đến khóa phiên bản phục vụ ВКР, tránh đổi sát ngày bảo vệ.",
+    "file": "simulations/sim_python_env_lab.html",
+    "formula": "git tag v1.0-defense; CHANGELOG.md",
+    "applicationDomain": "khóa phiên bản phục vụ ВКР, tránh đổi sát ngày bảo vệ",
+    "variables": [
+      {
+        "name": "dataSize",
+        "label": "Quy mô dữ liệu/code",
+        "min": 1,
+        "max": 100,
+        "default": 45,
+        "effect": "Quy mô tăng làm chi phí, lỗi và nhu cầu cấu trúc hóa tăng."
+      },
+      {
+        "name": "quality",
+        "label": "Chất lượng test/tài liệu",
+        "min": 0,
+        "max": 100,
+        "default": 70,
+        "effect": "Test/tài liệu tốt làm rủi ro demo giảm và khả năng tái lập tăng."
+      }
+    ],
+    "inputEffects": [
+      "Tăng quy mô để thấy khi nào code script đơn lẻ không còn đủ.",
+      "Giảm chất lượng test/tài liệu để thấy rủi ro lỗi logic, lỗi môi trường và demo vỡ."
+    ],
+    "explorationSteps": [
+      "Đổi một biến mỗi lần.",
+      "Ghi quan sát về thời gian, lỗi, tái lập và artifact.",
+      "Giải thích bằng workflow-cú-pháp lõi và đề xuất cải tiến."
+    ],
+    "expectedOutput": "Kết quả mong muốn: workflow git tag v1.0-defense; CHANGELOG.md chạy được hoặc được mô tả rõ; có log/test và kết luận ngắn.",
+    "reportPrompt": "Ghi: tham số đã đổi, kết quả trước/sau, lỗi phát hiện, test/log và ứng dụng vào khóa phiên bản phục vụ ВКР, tránh đổi sát ngày bảo vệ."
+  },
+  {
+    "id": "theory_PR42",
+    "stage": "hk4",
+    "lessonId": "PR42",
+    "applicationId": "app_PR42",
+    "group": "Mô phỏng lý thuyết",
+    "type": "theory-simulation",
+    "title": "Mô phỏng lý thuyết · Script chạy lại toàn bộ kết quả",
+    "purpose": "Thử thay đổi tham số để quan sát tác động đến tái tạo bảng và hình trong luận văn.",
+    "file": "simulations/sim_algorithm_complexity_lab.html",
+    "formula": "make reproduce → data → model → figures",
+    "applicationDomain": "tái tạo bảng và hình trong luận văn",
+    "variables": [
+      {
+        "name": "dataSize",
+        "label": "Quy mô dữ liệu/code",
+        "min": 1,
+        "max": 100,
+        "default": 45,
+        "effect": "Quy mô tăng làm chi phí, lỗi và nhu cầu cấu trúc hóa tăng."
+      },
+      {
+        "name": "quality",
+        "label": "Chất lượng test/tài liệu",
+        "min": 0,
+        "max": 100,
+        "default": 70,
+        "effect": "Test/tài liệu tốt làm rủi ro demo giảm và khả năng tái lập tăng."
+      }
+    ],
+    "inputEffects": [
+      "Tăng quy mô để thấy khi nào code script đơn lẻ không còn đủ.",
+      "Giảm chất lượng test/tài liệu để thấy rủi ro lỗi logic, lỗi môi trường và demo vỡ."
+    ],
+    "explorationSteps": [
+      "Đổi một biến mỗi lần.",
+      "Ghi quan sát về thời gian, lỗi, tái lập và artifact.",
+      "Giải thích bằng workflow-cú-pháp lõi và đề xuất cải tiến."
+    ],
+    "expectedOutput": "Kết quả mong muốn: workflow make reproduce → data → model → figures chạy được hoặc được mô tả rõ; có log/test và kết luận ngắn.",
+    "reportPrompt": "Ghi: tham số đã đổi, kết quả trước/sau, lỗi phát hiện, test/log và ứng dụng vào tái tạo bảng và hình trong luận văn."
+  },
+  {
+    "id": "application_PR42",
+    "stage": "hk4",
+    "lessonId": "PR42",
+    "applicationId": "app_PR42",
+    "group": "Mô phỏng ứng dụng",
+    "type": "application-simulation",
+    "title": "Mô phỏng ứng dụng · Script chạy lại toàn bộ kết quả",
+    "purpose": "Thử thay đổi tham số để quan sát tác động đến tái tạo bảng và hình trong luận văn.",
+    "file": "simulations/sim_algorithm_complexity_lab.html",
+    "formula": "make reproduce → data → model → figures",
+    "applicationDomain": "tái tạo bảng và hình trong luận văn",
+    "variables": [
+      {
+        "name": "dataSize",
+        "label": "Quy mô dữ liệu/code",
+        "min": 1,
+        "max": 100,
+        "default": 45,
+        "effect": "Quy mô tăng làm chi phí, lỗi và nhu cầu cấu trúc hóa tăng."
+      },
+      {
+        "name": "quality",
+        "label": "Chất lượng test/tài liệu",
+        "min": 0,
+        "max": 100,
+        "default": 70,
+        "effect": "Test/tài liệu tốt làm rủi ro demo giảm và khả năng tái lập tăng."
+      }
+    ],
+    "inputEffects": [
+      "Tăng quy mô để thấy khi nào code script đơn lẻ không còn đủ.",
+      "Giảm chất lượng test/tài liệu để thấy rủi ro lỗi logic, lỗi môi trường và demo vỡ."
+    ],
+    "explorationSteps": [
+      "Đổi một biến mỗi lần.",
+      "Ghi quan sát về thời gian, lỗi, tái lập và artifact.",
+      "Giải thích bằng workflow-cú-pháp lõi và đề xuất cải tiến."
+    ],
+    "expectedOutput": "Kết quả mong muốn: workflow make reproduce → data → model → figures chạy được hoặc được mô tả rõ; có log/test và kết luận ngắn.",
+    "reportPrompt": "Ghi: tham số đã đổi, kết quả trước/sau, lỗi phát hiện, test/log và ứng dụng vào tái tạo bảng và hình trong luận văn."
+  },
+  {
+    "id": "theory_PR43",
+    "stage": "hk4",
+    "lessonId": "PR43",
+    "applicationId": "app_PR43",
+    "group": "Mô phỏng lý thuyết",
+    "type": "theory-simulation",
+    "title": "Mô phỏng lý thuyết · Chuẩn hóa thư mục luận văn và artifact",
+    "purpose": "Thử thay đổi tham số để quan sát tác động đến không thất lạc hình, bảng, code khi viết ВКР.",
+    "file": "simulations/sim_dataframe_cleaning_lab.html",
+    "formula": "thesis/ figures/ tables/ code/ appendix/",
+    "applicationDomain": "không thất lạc hình, bảng, code khi viết ВКР",
+    "variables": [
+      {
+        "name": "dataSize",
+        "label": "Quy mô dữ liệu/code",
+        "min": 1,
+        "max": 100,
+        "default": 45,
+        "effect": "Quy mô tăng làm chi phí, lỗi và nhu cầu cấu trúc hóa tăng."
+      },
+      {
+        "name": "quality",
+        "label": "Chất lượng test/tài liệu",
+        "min": 0,
+        "max": 100,
+        "default": 70,
+        "effect": "Test/tài liệu tốt làm rủi ro demo giảm và khả năng tái lập tăng."
+      }
+    ],
+    "inputEffects": [
+      "Tăng quy mô để thấy khi nào code script đơn lẻ không còn đủ.",
+      "Giảm chất lượng test/tài liệu để thấy rủi ro lỗi logic, lỗi môi trường và demo vỡ."
+    ],
+    "explorationSteps": [
+      "Đổi một biến mỗi lần.",
+      "Ghi quan sát về thời gian, lỗi, tái lập và artifact.",
+      "Giải thích bằng workflow-cú-pháp lõi và đề xuất cải tiến."
+    ],
+    "expectedOutput": "Kết quả mong muốn: workflow thesis/ figures/ tables/ code/ appendix/ chạy được hoặc được mô tả rõ; có log/test và kết luận ngắn.",
+    "reportPrompt": "Ghi: tham số đã đổi, kết quả trước/sau, lỗi phát hiện, test/log và ứng dụng vào không thất lạc hình, bảng, code khi viết ВКР."
+  },
+  {
+    "id": "application_PR43",
+    "stage": "hk4",
+    "lessonId": "PR43",
+    "applicationId": "app_PR43",
+    "group": "Mô phỏng ứng dụng",
+    "type": "application-simulation",
+    "title": "Mô phỏng ứng dụng · Chuẩn hóa thư mục luận văn và artifact",
+    "purpose": "Thử thay đổi tham số để quan sát tác động đến không thất lạc hình, bảng, code khi viết ВКР.",
+    "file": "simulations/sim_dataframe_cleaning_lab.html",
+    "formula": "thesis/ figures/ tables/ code/ appendix/",
+    "applicationDomain": "không thất lạc hình, bảng, code khi viết ВКР",
+    "variables": [
+      {
+        "name": "dataSize",
+        "label": "Quy mô dữ liệu/code",
+        "min": 1,
+        "max": 100,
+        "default": 45,
+        "effect": "Quy mô tăng làm chi phí, lỗi và nhu cầu cấu trúc hóa tăng."
+      },
+      {
+        "name": "quality",
+        "label": "Chất lượng test/tài liệu",
+        "min": 0,
+        "max": 100,
+        "default": 70,
+        "effect": "Test/tài liệu tốt làm rủi ro demo giảm và khả năng tái lập tăng."
+      }
+    ],
+    "inputEffects": [
+      "Tăng quy mô để thấy khi nào code script đơn lẻ không còn đủ.",
+      "Giảm chất lượng test/tài liệu để thấy rủi ro lỗi logic, lỗi môi trường và demo vỡ."
+    ],
+    "explorationSteps": [
+      "Đổi một biến mỗi lần.",
+      "Ghi quan sát về thời gian, lỗi, tái lập và artifact.",
+      "Giải thích bằng workflow-cú-pháp lõi và đề xuất cải tiến."
+    ],
+    "expectedOutput": "Kết quả mong muốn: workflow thesis/ figures/ tables/ code/ appendix/ chạy được hoặc được mô tả rõ; có log/test và kết luận ngắn.",
+    "reportPrompt": "Ghi: tham số đã đổi, kết quả trước/sau, lỗi phát hiện, test/log và ứng dụng vào không thất lạc hình, bảng, code khi viết ВКР."
+  },
+  {
+    "id": "theory_PR44",
+    "stage": "hk4",
+    "lessonId": "PR44",
+    "applicationId": "app_PR44",
+    "group": "Mô phỏng lý thuyết",
+    "type": "theory-simulation",
+    "title": "Mô phỏng lý thuyết · Demo offline và kế hoạch dự phòng",
+    "purpose": "Thử thay đổi tham số để quan sát tác động đến bảo vệ khi mạng/hardware có vấn đề.",
+    "file": "simulations/sim_sql_query_lab.html",
+    "formula": "offline mode + sample data + screenshots",
+    "applicationDomain": "bảo vệ khi mạng/hardware có vấn đề",
+    "variables": [
+      {
+        "name": "dataSize",
+        "label": "Quy mô dữ liệu/code",
+        "min": 1,
+        "max": 100,
+        "default": 45,
+        "effect": "Quy mô tăng làm chi phí, lỗi và nhu cầu cấu trúc hóa tăng."
+      },
+      {
+        "name": "quality",
+        "label": "Chất lượng test/tài liệu",
+        "min": 0,
+        "max": 100,
+        "default": 70,
+        "effect": "Test/tài liệu tốt làm rủi ro demo giảm và khả năng tái lập tăng."
+      }
+    ],
+    "inputEffects": [
+      "Tăng quy mô để thấy khi nào code script đơn lẻ không còn đủ.",
+      "Giảm chất lượng test/tài liệu để thấy rủi ro lỗi logic, lỗi môi trường và demo vỡ."
+    ],
+    "explorationSteps": [
+      "Đổi một biến mỗi lần.",
+      "Ghi quan sát về thời gian, lỗi, tái lập và artifact.",
+      "Giải thích bằng workflow-cú-pháp lõi và đề xuất cải tiến."
+    ],
+    "expectedOutput": "Kết quả mong muốn: workflow offline mode + sample data + screenshots chạy được hoặc được mô tả rõ; có log/test và kết luận ngắn.",
+    "reportPrompt": "Ghi: tham số đã đổi, kết quả trước/sau, lỗi phát hiện, test/log và ứng dụng vào bảo vệ khi mạng/hardware có vấn đề."
+  },
+  {
+    "id": "application_PR44",
+    "stage": "hk4",
+    "lessonId": "PR44",
+    "applicationId": "app_PR44",
+    "group": "Mô phỏng ứng dụng",
+    "type": "application-simulation",
+    "title": "Mô phỏng ứng dụng · Demo offline và kế hoạch dự phòng",
+    "purpose": "Thử thay đổi tham số để quan sát tác động đến bảo vệ khi mạng/hardware có vấn đề.",
+    "file": "simulations/sim_sql_query_lab.html",
+    "formula": "offline mode + sample data + screenshots",
+    "applicationDomain": "bảo vệ khi mạng/hardware có vấn đề",
+    "variables": [
+      {
+        "name": "dataSize",
+        "label": "Quy mô dữ liệu/code",
+        "min": 1,
+        "max": 100,
+        "default": 45,
+        "effect": "Quy mô tăng làm chi phí, lỗi và nhu cầu cấu trúc hóa tăng."
+      },
+      {
+        "name": "quality",
+        "label": "Chất lượng test/tài liệu",
+        "min": 0,
+        "max": 100,
+        "default": 70,
+        "effect": "Test/tài liệu tốt làm rủi ro demo giảm và khả năng tái lập tăng."
+      }
+    ],
+    "inputEffects": [
+      "Tăng quy mô để thấy khi nào code script đơn lẻ không còn đủ.",
+      "Giảm chất lượng test/tài liệu để thấy rủi ro lỗi logic, lỗi môi trường và demo vỡ."
+    ],
+    "explorationSteps": [
+      "Đổi một biến mỗi lần.",
+      "Ghi quan sát về thời gian, lỗi, tái lập và artifact.",
+      "Giải thích bằng workflow-cú-pháp lõi và đề xuất cải tiến."
+    ],
+    "expectedOutput": "Kết quả mong muốn: workflow offline mode + sample data + screenshots chạy được hoặc được mô tả rõ; có log/test và kết luận ngắn.",
+    "reportPrompt": "Ghi: tham số đã đổi, kết quả trước/sau, lỗi phát hiện, test/log và ứng dụng vào bảo vệ khi mạng/hardware có vấn đề."
+  },
+  {
+    "id": "theory_PR45",
+    "stage": "hk4",
+    "lessonId": "PR45",
+    "applicationId": "app_PR45",
+    "group": "Mô phỏng lý thuyết",
+    "type": "theory-simulation",
+    "title": "Mô phỏng lý thuyết · Tối ưu nhỏ: runtime, memory và latency",
+    "purpose": "Thử thay đổi tham số để quan sát tác động đến trả lời phản biện về khả năng chạy trên phần cứng robot.",
+    "file": "simulations/sim_git_workflow_lab.html",
+    "formula": "latency_ms; memory_mb; throughput",
+    "applicationDomain": "trả lời phản biện về khả năng chạy trên phần cứng robot",
+    "variables": [
+      {
+        "name": "dataSize",
+        "label": "Quy mô dữ liệu/code",
+        "min": 1,
+        "max": 100,
+        "default": 45,
+        "effect": "Quy mô tăng làm chi phí, lỗi và nhu cầu cấu trúc hóa tăng."
+      },
+      {
+        "name": "quality",
+        "label": "Chất lượng test/tài liệu",
+        "min": 0,
+        "max": 100,
+        "default": 70,
+        "effect": "Test/tài liệu tốt làm rủi ro demo giảm và khả năng tái lập tăng."
+      }
+    ],
+    "inputEffects": [
+      "Tăng quy mô để thấy khi nào code script đơn lẻ không còn đủ.",
+      "Giảm chất lượng test/tài liệu để thấy rủi ro lỗi logic, lỗi môi trường và demo vỡ."
+    ],
+    "explorationSteps": [
+      "Đổi một biến mỗi lần.",
+      "Ghi quan sát về thời gian, lỗi, tái lập và artifact.",
+      "Giải thích bằng workflow-cú-pháp lõi và đề xuất cải tiến."
+    ],
+    "expectedOutput": "Kết quả mong muốn: workflow latency_ms; memory_mb; throughput chạy được hoặc được mô tả rõ; có log/test và kết luận ngắn.",
+    "reportPrompt": "Ghi: tham số đã đổi, kết quả trước/sau, lỗi phát hiện, test/log và ứng dụng vào trả lời phản biện về khả năng chạy trên phần cứng robot."
+  },
+  {
+    "id": "application_PR45",
+    "stage": "hk4",
+    "lessonId": "PR45",
+    "applicationId": "app_PR45",
+    "group": "Mô phỏng ứng dụng",
+    "type": "application-simulation",
+    "title": "Mô phỏng ứng dụng · Tối ưu nhỏ: runtime, memory và latency",
+    "purpose": "Thử thay đổi tham số để quan sát tác động đến trả lời phản biện về khả năng chạy trên phần cứng robot.",
+    "file": "simulations/sim_git_workflow_lab.html",
+    "formula": "latency_ms; memory_mb; throughput",
+    "applicationDomain": "trả lời phản biện về khả năng chạy trên phần cứng robot",
+    "variables": [
+      {
+        "name": "dataSize",
+        "label": "Quy mô dữ liệu/code",
+        "min": 1,
+        "max": 100,
+        "default": 45,
+        "effect": "Quy mô tăng làm chi phí, lỗi và nhu cầu cấu trúc hóa tăng."
+      },
+      {
+        "name": "quality",
+        "label": "Chất lượng test/tài liệu",
+        "min": 0,
+        "max": 100,
+        "default": 70,
+        "effect": "Test/tài liệu tốt làm rủi ro demo giảm và khả năng tái lập tăng."
+      }
+    ],
+    "inputEffects": [
+      "Tăng quy mô để thấy khi nào code script đơn lẻ không còn đủ.",
+      "Giảm chất lượng test/tài liệu để thấy rủi ro lỗi logic, lỗi môi trường và demo vỡ."
+    ],
+    "explorationSteps": [
+      "Đổi một biến mỗi lần.",
+      "Ghi quan sát về thời gian, lỗi, tái lập và artifact.",
+      "Giải thích bằng workflow-cú-pháp lõi và đề xuất cải tiến."
+    ],
+    "expectedOutput": "Kết quả mong muốn: workflow latency_ms; memory_mb; throughput chạy được hoặc được mô tả rõ; có log/test và kết luận ngắn.",
+    "reportPrompt": "Ghi: tham số đã đổi, kết quả trước/sau, lỗi phát hiện, test/log và ứng dụng vào trả lời phản biện về khả năng chạy trên phần cứng robot."
+  },
+  {
+    "id": "theory_PR46",
+    "stage": "hk4",
+    "lessonId": "PR46",
+    "applicationId": "app_PR46",
+    "group": "Mô phỏng lý thuyết",
+    "type": "theory-simulation",
+    "title": "Mô phỏng lý thuyết · Kiểm tra license, citation và nguồn mở",
+    "purpose": "Thử thay đổi tham số để quan sát tác động đến tránh lỗi trích dẫn thư viện/dữ liệu khi nộp luận văn.",
+    "file": "simulations/sim_oop_architecture_lab.html",
+    "formula": "LICENSE + CITATION + third-party notices",
+    "applicationDomain": "tránh lỗi trích dẫn thư viện/dữ liệu khi nộp luận văn",
+    "variables": [
+      {
+        "name": "dataSize",
+        "label": "Quy mô dữ liệu/code",
+        "min": 1,
+        "max": 100,
+        "default": 45,
+        "effect": "Quy mô tăng làm chi phí, lỗi và nhu cầu cấu trúc hóa tăng."
+      },
+      {
+        "name": "quality",
+        "label": "Chất lượng test/tài liệu",
+        "min": 0,
+        "max": 100,
+        "default": 70,
+        "effect": "Test/tài liệu tốt làm rủi ro demo giảm và khả năng tái lập tăng."
+      }
+    ],
+    "inputEffects": [
+      "Tăng quy mô để thấy khi nào code script đơn lẻ không còn đủ.",
+      "Giảm chất lượng test/tài liệu để thấy rủi ro lỗi logic, lỗi môi trường và demo vỡ."
+    ],
+    "explorationSteps": [
+      "Đổi một biến mỗi lần.",
+      "Ghi quan sát về thời gian, lỗi, tái lập và artifact.",
+      "Giải thích bằng workflow-cú-pháp lõi và đề xuất cải tiến."
+    ],
+    "expectedOutput": "Kết quả mong muốn: workflow LICENSE + CITATION + third-party notices chạy được hoặc được mô tả rõ; có log/test và kết luận ngắn.",
+    "reportPrompt": "Ghi: tham số đã đổi, kết quả trước/sau, lỗi phát hiện, test/log và ứng dụng vào tránh lỗi trích dẫn thư viện/dữ liệu khi nộp luận văn."
+  },
+  {
+    "id": "application_PR46",
+    "stage": "hk4",
+    "lessonId": "PR46",
+    "applicationId": "app_PR46",
+    "group": "Mô phỏng ứng dụng",
+    "type": "application-simulation",
+    "title": "Mô phỏng ứng dụng · Kiểm tra license, citation và nguồn mở",
+    "purpose": "Thử thay đổi tham số để quan sát tác động đến tránh lỗi trích dẫn thư viện/dữ liệu khi nộp luận văn.",
+    "file": "simulations/sim_oop_architecture_lab.html",
+    "formula": "LICENSE + CITATION + third-party notices",
+    "applicationDomain": "tránh lỗi trích dẫn thư viện/dữ liệu khi nộp luận văn",
+    "variables": [
+      {
+        "name": "dataSize",
+        "label": "Quy mô dữ liệu/code",
+        "min": 1,
+        "max": 100,
+        "default": 45,
+        "effect": "Quy mô tăng làm chi phí, lỗi và nhu cầu cấu trúc hóa tăng."
+      },
+      {
+        "name": "quality",
+        "label": "Chất lượng test/tài liệu",
+        "min": 0,
+        "max": 100,
+        "default": 70,
+        "effect": "Test/tài liệu tốt làm rủi ro demo giảm và khả năng tái lập tăng."
+      }
+    ],
+    "inputEffects": [
+      "Tăng quy mô để thấy khi nào code script đơn lẻ không còn đủ.",
+      "Giảm chất lượng test/tài liệu để thấy rủi ro lỗi logic, lỗi môi trường và demo vỡ."
+    ],
+    "explorationSteps": [
+      "Đổi một biến mỗi lần.",
+      "Ghi quan sát về thời gian, lỗi, tái lập và artifact.",
+      "Giải thích bằng workflow-cú-pháp lõi và đề xuất cải tiến."
+    ],
+    "expectedOutput": "Kết quả mong muốn: workflow LICENSE + CITATION + third-party notices chạy được hoặc được mô tả rõ; có log/test và kết luận ngắn.",
+    "reportPrompt": "Ghi: tham số đã đổi, kết quả trước/sau, lỗi phát hiện, test/log và ứng dụng vào tránh lỗi trích dẫn thư viện/dữ liệu khi nộp luận văn."
+  },
+  {
+    "id": "theory_PR47",
+    "stage": "hk4",
+    "lessonId": "PR47",
+    "applicationId": "app_PR47",
+    "group": "Mô phỏng lý thuyết",
+    "type": "theory-simulation",
+    "title": "Mô phỏng lý thuyết · Slide kỹ thuật: kiến trúc, pipeline, kết quả",
+    "purpose": "Thử thay đổi tham số để quan sát tác động đến trình bày phần code không loạn trước hội đồng.",
+    "file": "simulations/sim_ml_pipeline_lab.html",
+    "formula": "problem → architecture → experiment → result → limit",
+    "applicationDomain": "trình bày phần code không loạn trước hội đồng",
+    "variables": [
+      {
+        "name": "dataSize",
+        "label": "Quy mô dữ liệu/code",
+        "min": 1,
+        "max": 100,
+        "default": 45,
+        "effect": "Quy mô tăng làm chi phí, lỗi và nhu cầu cấu trúc hóa tăng."
+      },
+      {
+        "name": "quality",
+        "label": "Chất lượng test/tài liệu",
+        "min": 0,
+        "max": 100,
+        "default": 70,
+        "effect": "Test/tài liệu tốt làm rủi ro demo giảm và khả năng tái lập tăng."
+      }
+    ],
+    "inputEffects": [
+      "Tăng quy mô để thấy khi nào code script đơn lẻ không còn đủ.",
+      "Giảm chất lượng test/tài liệu để thấy rủi ro lỗi logic, lỗi môi trường và demo vỡ."
+    ],
+    "explorationSteps": [
+      "Đổi một biến mỗi lần.",
+      "Ghi quan sát về thời gian, lỗi, tái lập và artifact.",
+      "Giải thích bằng workflow-cú-pháp lõi và đề xuất cải tiến."
+    ],
+    "expectedOutput": "Kết quả mong muốn: workflow problem → architecture → experiment → result → limit chạy được hoặc được mô tả rõ; có log/test và kết luận ngắn.",
+    "reportPrompt": "Ghi: tham số đã đổi, kết quả trước/sau, lỗi phát hiện, test/log và ứng dụng vào trình bày phần code không loạn trước hội đồng."
+  },
+  {
+    "id": "application_PR47",
+    "stage": "hk4",
+    "lessonId": "PR47",
+    "applicationId": "app_PR47",
+    "group": "Mô phỏng ứng dụng",
+    "type": "application-simulation",
+    "title": "Mô phỏng ứng dụng · Slide kỹ thuật: kiến trúc, pipeline, kết quả",
+    "purpose": "Thử thay đổi tham số để quan sát tác động đến trình bày phần code không loạn trước hội đồng.",
+    "file": "simulations/sim_ml_pipeline_lab.html",
+    "formula": "problem → architecture → experiment → result → limit",
+    "applicationDomain": "trình bày phần code không loạn trước hội đồng",
+    "variables": [
+      {
+        "name": "dataSize",
+        "label": "Quy mô dữ liệu/code",
+        "min": 1,
+        "max": 100,
+        "default": 45,
+        "effect": "Quy mô tăng làm chi phí, lỗi và nhu cầu cấu trúc hóa tăng."
+      },
+      {
+        "name": "quality",
+        "label": "Chất lượng test/tài liệu",
+        "min": 0,
+        "max": 100,
+        "default": 70,
+        "effect": "Test/tài liệu tốt làm rủi ro demo giảm và khả năng tái lập tăng."
+      }
+    ],
+    "inputEffects": [
+      "Tăng quy mô để thấy khi nào code script đơn lẻ không còn đủ.",
+      "Giảm chất lượng test/tài liệu để thấy rủi ro lỗi logic, lỗi môi trường và demo vỡ."
+    ],
+    "explorationSteps": [
+      "Đổi một biến mỗi lần.",
+      "Ghi quan sát về thời gian, lỗi, tái lập và artifact.",
+      "Giải thích bằng workflow-cú-pháp lõi và đề xuất cải tiến."
+    ],
+    "expectedOutput": "Kết quả mong muốn: workflow problem → architecture → experiment → result → limit chạy được hoặc được mô tả rõ; có log/test và kết luận ngắn.",
+    "reportPrompt": "Ghi: tham số đã đổi, kết quả trước/sau, lỗi phát hiện, test/log và ứng dụng vào trình bày phần code không loạn trước hội đồng."
+  },
+  {
+    "id": "theory_PR48",
+    "stage": "hk4",
+    "lessonId": "PR48",
+    "applicationId": "app_PR48",
+    "group": "Mô phỏng lý thuyết",
+    "type": "theory-simulation",
+    "title": "Mô phỏng lý thuyết · Trả lời phản biện kỹ thuật phần mềm",
+    "purpose": "Thử thay đổi tham số để quan sát tác động đến bảo vệ lựa chọn kiến trúc, dữ liệu, metric và demo.",
+    "file": "simulations/sim_reproducible_demo_lab.html",
+    "formula": "why design? why metric? why reproducible?",
+    "applicationDomain": "bảo vệ lựa chọn kiến trúc, dữ liệu, metric và demo",
+    "variables": [
+      {
+        "name": "dataSize",
+        "label": "Quy mô dữ liệu/code",
+        "min": 1,
+        "max": 100,
+        "default": 45,
+        "effect": "Quy mô tăng làm chi phí, lỗi và nhu cầu cấu trúc hóa tăng."
+      },
+      {
+        "name": "quality",
+        "label": "Chất lượng test/tài liệu",
+        "min": 0,
+        "max": 100,
+        "default": 70,
+        "effect": "Test/tài liệu tốt làm rủi ro demo giảm và khả năng tái lập tăng."
+      }
+    ],
+    "inputEffects": [
+      "Tăng quy mô để thấy khi nào code script đơn lẻ không còn đủ.",
+      "Giảm chất lượng test/tài liệu để thấy rủi ro lỗi logic, lỗi môi trường và demo vỡ."
+    ],
+    "explorationSteps": [
+      "Đổi một biến mỗi lần.",
+      "Ghi quan sát về thời gian, lỗi, tái lập và artifact.",
+      "Giải thích bằng workflow-cú-pháp lõi và đề xuất cải tiến."
+    ],
+    "expectedOutput": "Kết quả mong muốn: workflow why design? why metric? why reproducible? chạy được hoặc được mô tả rõ; có log/test và kết luận ngắn.",
+    "reportPrompt": "Ghi: tham số đã đổi, kết quả trước/sau, lỗi phát hiện, test/log và ứng dụng vào bảo vệ lựa chọn kiến trúc, dữ liệu, metric và demo."
+  },
+  {
+    "id": "application_PR48",
+    "stage": "hk4",
+    "lessonId": "PR48",
+    "applicationId": "app_PR48",
+    "group": "Mô phỏng ứng dụng",
+    "type": "application-simulation",
+    "title": "Mô phỏng ứng dụng · Trả lời phản biện kỹ thuật phần mềm",
+    "purpose": "Thử thay đổi tham số để quan sát tác động đến bảo vệ lựa chọn kiến trúc, dữ liệu, metric và demo.",
+    "file": "simulations/sim_reproducible_demo_lab.html",
+    "formula": "why design? why metric? why reproducible?",
+    "applicationDomain": "bảo vệ lựa chọn kiến trúc, dữ liệu, metric và demo",
+    "variables": [
+      {
+        "name": "dataSize",
+        "label": "Quy mô dữ liệu/code",
+        "min": 1,
+        "max": 100,
+        "default": 45,
+        "effect": "Quy mô tăng làm chi phí, lỗi và nhu cầu cấu trúc hóa tăng."
+      },
+      {
+        "name": "quality",
+        "label": "Chất lượng test/tài liệu",
+        "min": 0,
+        "max": 100,
+        "default": 70,
+        "effect": "Test/tài liệu tốt làm rủi ro demo giảm và khả năng tái lập tăng."
+      }
+    ],
+    "inputEffects": [
+      "Tăng quy mô để thấy khi nào code script đơn lẻ không còn đủ.",
+      "Giảm chất lượng test/tài liệu để thấy rủi ro lỗi logic, lỗi môi trường và demo vỡ."
+    ],
+    "explorationSteps": [
+      "Đổi một biến mỗi lần.",
+      "Ghi quan sát về thời gian, lỗi, tái lập và artifact.",
+      "Giải thích bằng workflow-cú-pháp lõi và đề xuất cải tiến."
+    ],
+    "expectedOutput": "Kết quả mong muốn: workflow why design? why metric? why reproducible? chạy được hoặc được mô tả rõ; có log/test và kết luận ngắn.",
+    "reportPrompt": "Ghi: tham số đã đổi, kết quả trước/sau, lỗi phát hiện, test/log và ứng dụng vào bảo vệ lựa chọn kiến trúc, dữ liệu, metric và demo."
+  }
+]

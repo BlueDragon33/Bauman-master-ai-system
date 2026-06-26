@@ -1,0 +1,33 @@
+{
+  "name": "Russian_Bauman_FlagPanel_Width_HOTFIX",
+  "base": "Russian_Bauman_UI_DataTheme_12Pass_FINAL.zip",
+  "fixes": [
+    "Widened review flag left panel to 320-340px.",
+    "Widened exam flag left panel to 420-440px.",
+    "Increased qflag width/height to avoid clipped 2-3 digit question numbers.",
+    "Added independent vertical scrolling in flag rails to avoid hidden bottom content.",
+    "Kept right-side question content as minmax(0,1fr) to preserve main area."
+  ],
+  "checks": {
+    "assets/core.js": {
+      "ok": true,
+      "stderr": ""
+    },
+    "assets/subject-adapter.js": {
+      "ok": true,
+      "stderr": ""
+    },
+    "subject-manifest.js": {
+      "ok": true,
+      "stderr": ""
+    },
+    "json_parse": {
+      "ok": true,
+      "bad": [],
+      "count": 15
+    },
+    "css_hotfix_present": {
+      "ok": true
+    }
+  }
+}

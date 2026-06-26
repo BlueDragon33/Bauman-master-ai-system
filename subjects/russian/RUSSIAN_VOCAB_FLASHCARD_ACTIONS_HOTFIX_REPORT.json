@@ -1,0 +1,27 @@
+{
+  "name": "Russian_Bauman_Vocab_Flashcard_Actions_HOTFIX",
+  "scope": "Tab Từ vựng / Flashcard trực quan",
+  "changes": [
+    "Removed the upper vocab hero/banner panel shown above the flashcard.",
+    "Moved the four controls (Trước, Nghe, Lật nghĩa/Mặt từ, Sau) into the bottom area of the main flashcard panel.",
+    "Kept controls outside the flip button so flipping the flashcard does not move or affect the control row.",
+    "Added responsive CSS so the controls stay centered and wrap safely on smaller screens."
+  ],
+  "validation": {
+    "node_check_core_js": "passed",
+    "node_check_subject_adapter_js": "passed",
+    "node_check_subject_manifest_js": "passed",
+    "json_parse_data_folder": "passed",
+    "render_vocab_hero_removed_in_source": true,
+    "render_vocab_card_actions_present": true,
+    "browser_gui_test_in_sandbox": "not_available"
+  },
+  "manual_test_on_live_server": [
+    "Open subjects/russian/index.html with Live Server.",
+    "Go to tab Từ vựng / flashcard visual mode.",
+    "Confirm the top CANVA 3 banner panel is gone.",
+    "Confirm four controls appear at the bottom of the main flashcard panel.",
+    "Click Lật nghĩa and Mặt từ several times; the four controls should stay in place.",
+    "Click Trước/Sau and Nghe; controls should not toggle the flashcard except the Lật nghĩa/Mặt từ button."
+  ]
+}

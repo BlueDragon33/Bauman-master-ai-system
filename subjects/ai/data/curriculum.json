@@ -1,0 +1,1852 @@
+{
+  "id": "ai",
+  "title": "Machine Learning, Neural Systems và đánh giá mô hình",
+  "target": "Xây năng lực AI theo lộ trình Bauman: baseline, model validation, neural systems, time-series/analytics, mivar/logic và thực nghiệm luận văn.",
+  "outcomes": [
+    "Thiết kế quy trình ML đầy đủ từ dữ liệu đến báo cáo.",
+    "So sánh mô hình bằng metric phù hợp và phân tích lỗi.",
+    "Hiểu neural network cơ bản và cách dùng cho dữ liệu cảm biến/tabular.",
+    "Gắn AI với АСОИУ, business analytics, mivar logic và luận văn."
+  ],
+  "principles": [
+    "Baseline trước, mô hình phức tạp sau.",
+    "Metric phải phục vụ quyết định hệ thống, không chạy model trang trí.",
+    "Mỗi mô hình cần error analysis và khả năng tái lập."
+  ],
+  "stages": [
+    {
+      "id": "prepare",
+      "short": "GĐ1",
+      "title": "GĐ1 · Chuẩn bị tại Việt Nam",
+      "period": "06/2026 – 09/2026",
+      "target": "Machine Learning, Neural Systems và đánh giá mô hình trong GĐ1 · Chuẩn bị tại Việt Nam: học đúng nội dung cần cho lộ trình, tạo sản phẩm có thể dùng lại và liên kết với Main.",
+      "outcomes": [
+        "Hoàn thành module trọng tâm của GĐ1.",
+        "Có ghi chú, bài tập, sản phẩm hoặc báo cáo nhỏ.",
+        "Biết liên hệ nội dung với môn khác và luận văn."
+      ],
+      "focusBlocks": [
+        "Mục tiêu kiến thức: nắm lõi workflow mô hình, metric, overfit/underfit và giải thích kết quả.",
+        "Mục tiêu kỹ năng: dùng được scikit-learn/PyTorch, notebook cho bài tập thật.",
+        "Mục tiêu hồ sơ: có sản phẩm nhỏ, ghi chú lỗi và bằng chứng học tập để gửi tiến độ về Main."
+      ],
+      "weeklyRhythm": [
+        "Buổi 1: đọc bài và ghi chú thuật ngữ/ký hiệu.",
+        "Buổi 2: làm bài mẫu hoặc chạy mô phỏng để thấy cơ chế.",
+        "Buổi 3: làm bài tập/challenge và ghi lại lỗi sai.",
+        "Cuối tuần: ôn tập, kiểm tra nhanh, cập nhật tiến độ."
+      ]
+    },
+    {
+      "id": "preparatory",
+      "short": "GĐ2",
+      "title": "GĐ2 · Dự bị Nga / STANKIN",
+      "period": "10–11/2026 – 07/2027",
+      "target": "Machine Learning, Neural Systems và đánh giá mô hình trong GĐ2 · Dự bị Nga / STANKIN: học đúng nội dung cần cho lộ trình, tạo sản phẩm có thể dùng lại và liên kết với Main.",
+      "outcomes": [
+        "Hoàn thành module trọng tâm của GĐ2.",
+        "Có ghi chú, bài tập, sản phẩm hoặc báo cáo nhỏ.",
+        "Biết liên hệ nội dung với môn khác và luận văn."
+      ],
+      "focusBlocks": [
+        "Mục tiêu kiến thức: nắm lõi workflow mô hình, metric, overfit/underfit và giải thích kết quả.",
+        "Mục tiêu kỹ năng: dùng được scikit-learn/PyTorch, notebook cho bài tập thật.",
+        "Mục tiêu hồ sơ: có sản phẩm nhỏ, ghi chú lỗi và bằng chứng học tập để gửi tiến độ về Main."
+      ],
+      "weeklyRhythm": [
+        "Buổi 1: đọc bài và ghi chú thuật ngữ/ký hiệu.",
+        "Buổi 2: làm bài mẫu hoặc chạy mô phỏng để thấy cơ chế.",
+        "Buổi 3: làm bài tập/challenge và ghi lại lỗi sai.",
+        "Cuối tuần: ôn tập, kiểm tra nhanh, cập nhật tiến độ."
+      ]
+    },
+    {
+      "id": "m2",
+      "short": "HK2",
+      "title": "Bauman HK2",
+      "period": "02/2028 – 06/2028",
+      "target": "Machine Learning, Neural Systems và đánh giá mô hình trong Bauman HK2: học đúng nội dung cần cho lộ trình, tạo sản phẩm có thể dùng lại và liên kết với Main.",
+      "outcomes": [
+        "Hoàn thành module trọng tâm của HK2.",
+        "Có ghi chú, bài tập, sản phẩm hoặc báo cáo nhỏ.",
+        "Biết liên hệ nội dung với môn khác và luận văn."
+      ],
+      "focusBlocks": [
+        "Mục tiêu kiến thức: nắm lõi workflow mô hình, metric, overfit/underfit và giải thích kết quả.",
+        "Mục tiêu kỹ năng: dùng được scikit-learn/PyTorch, notebook cho bài tập thật.",
+        "Mục tiêu hồ sơ: có sản phẩm nhỏ, ghi chú lỗi và bằng chứng học tập để gửi tiến độ về Main."
+      ],
+      "weeklyRhythm": [
+        "Buổi 1: đọc bài và ghi chú thuật ngữ/ký hiệu.",
+        "Buổi 2: làm bài mẫu hoặc chạy mô phỏng để thấy cơ chế.",
+        "Buổi 3: làm bài tập/challenge và ghi lại lỗi sai.",
+        "Cuối tuần: ôn tập, kiểm tra nhanh, cập nhật tiến độ."
+      ]
+    },
+    {
+      "id": "m3",
+      "short": "HK3",
+      "title": "Bauman HK3",
+      "period": "09/2028 – 01/2029",
+      "target": "Machine Learning, Neural Systems và đánh giá mô hình trong Bauman HK3: học đúng nội dung cần cho lộ trình, tạo sản phẩm có thể dùng lại và liên kết với Main.",
+      "outcomes": [
+        "Hoàn thành module trọng tâm của HK3.",
+        "Có ghi chú, bài tập, sản phẩm hoặc báo cáo nhỏ.",
+        "Biết liên hệ nội dung với môn khác và luận văn."
+      ],
+      "focusBlocks": [
+        "Mục tiêu kiến thức: nắm lõi workflow mô hình, metric, overfit/underfit và giải thích kết quả.",
+        "Mục tiêu kỹ năng: dùng được scikit-learn/PyTorch, notebook cho bài tập thật.",
+        "Mục tiêu hồ sơ: có sản phẩm nhỏ, ghi chú lỗi và bằng chứng học tập để gửi tiến độ về Main."
+      ],
+      "weeklyRhythm": [
+        "Buổi 1: đọc bài và ghi chú thuật ngữ/ký hiệu.",
+        "Buổi 2: làm bài mẫu hoặc chạy mô phỏng để thấy cơ chế.",
+        "Buổi 3: làm bài tập/challenge và ghi lại lỗi sai.",
+        "Cuối tuần: ôn tập, kiểm tra nhanh, cập nhật tiến độ."
+      ]
+    },
+    {
+      "id": "m4",
+      "short": "HK4",
+      "title": "Bauman HK4 & bảo vệ",
+      "period": "02/2029 – 06/2029",
+      "target": "Machine Learning, Neural Systems và đánh giá mô hình trong Bauman HK4 & bảo vệ: học đúng nội dung cần cho lộ trình, tạo sản phẩm có thể dùng lại và liên kết với Main.",
+      "outcomes": [
+        "Hoàn thành module trọng tâm của HK4.",
+        "Có ghi chú, bài tập, sản phẩm hoặc báo cáo nhỏ.",
+        "Biết liên hệ nội dung với môn khác và luận văn."
+      ],
+      "focusBlocks": [
+        "Mục tiêu kiến thức: nắm lõi workflow mô hình, metric, overfit/underfit và giải thích kết quả.",
+        "Mục tiêu kỹ năng: dùng được scikit-learn/PyTorch, notebook cho bài tập thật.",
+        "Mục tiêu hồ sơ: có sản phẩm nhỏ, ghi chú lỗi và bằng chứng học tập để gửi tiến độ về Main."
+      ],
+      "weeklyRhythm": [
+        "Buổi 1: đọc bài và ghi chú thuật ngữ/ký hiệu.",
+        "Buổi 2: làm bài mẫu hoặc chạy mô phỏng để thấy cơ chế.",
+        "Buổi 3: làm bài tập/challenge và ghi lại lỗi sai.",
+        "Cuối tuần: ôn tập, kiểm tra nhanh, cập nhật tiến độ."
+      ]
+    }
+  ],
+  "modules": [
+    {
+      "id": "a_p01",
+      "stage": "prepare",
+      "week": "W1",
+      "title": "Quy trình học máy: dữ liệu, đặc trưng, mô hình và metric",
+      "goal": "Problem, data, split, model, metric, report.",
+      "hours": 6,
+      "level": "Cơ bản",
+      "lessons": [
+        "a_p01_l1",
+        "a_p01_l2",
+        "a_p01_l3"
+      ],
+      "outputs": [
+        "Ghi chú module 'Quy trình học máy: dữ liệu, đặc trưng, mô hình và metric' có định nghĩa, ví dụ, lỗi thường gặp.",
+        "Một sản phẩm thực hành: notebook huấn luyện có nhận xét train-test.",
+        "Một mục nhật ký học tập: đã học gì, sai gì, cần ôn gì.",
+        "Cập nhật tiến độ module và gửi phản hồi về Main."
+      ],
+      "phaseObjective": "Trong GĐ1 · Chuẩn bị tại Việt Nam, module này biến chủ đề 'Quy trình học máy: dữ liệu, đặc trưng, mô hình và metric' thành năng lực dùng được: hiểu khái niệm, làm bài, chạy mô phỏng và tạo sản phẩm kiểm chứng.",
+      "whyImportant": [
+        "Đây là mắt xích của môn AI/ML trong lộ trình Bauman, giúp học phần sau không bị hổng nền.",
+        "Nội dung liên quan trực tiếp tới workflow mô hình, metric, overfit/underfit và giải thích kết quả.",
+        "Kết quả module được dùng để Main biết nên nhắc ôn, kiểm tra hay chuyển module tiếp theo."
+      ],
+      "prerequisites": [
+        "Đọc lại mục tiêu giai đoạn và các module trước đó trong cùng môn.",
+        "Chuẩn bị công cụ: scikit-learn/PyTorch, notebook, bảng metric.",
+        "Tạo file ghi chú riêng: mục tiêu, thuật ngữ, lỗi sai, sản phẩm đầu ra."
+      ],
+      "conceptMap": [
+        "Khái niệm trung tâm của 'Quy trình học máy: dữ liệu, đặc trưng, mô hình và metric'.",
+        "Input cần nhận diện: dữ liệu, ký hiệu, biến, điều kiện hoặc tình huống.",
+        "Output cần tạo: kết quả tính toán, code, bảng đánh giá, sơ đồ hoặc câu trả lời học thuật.",
+        "Tiêu chí kiểm tra: đúng logic, giải thích được lý do, có bằng chứng thực hành."
+      ],
+      "studyPlan": [
+        {
+          "session": "Ca 1 · Nắm lõi",
+          "time": "60–90 phút",
+          "work": "Đọc bài nền về Quy trình học máy: dữ liệu, đặc trưng, mô hình và metric, ghi thuật ngữ, viết lại bằng lời của mình.",
+          "evidence": "Ghi chú 7–10 dòng + 5 thuật ngữ chính."
+        },
+        {
+          "session": "Ca 2 · Mô phỏng",
+          "time": "45–75 phút",
+          "work": "Chạy sandbox model/metric hoặc ví dụ tham số để quan sát cơ chế.",
+          "evidence": "Ảnh/chú thích kết quả mô phỏng + nhận xét."
+        },
+        {
+          "session": "Ca 3 · Bài tập",
+          "time": "60–120 phút",
+          "work": "Làm bài tập từ dễ đến trung bình, đánh dấu lỗi sai và nguyên nhân.",
+          "evidence": "notebook huấn luyện có nhận xét train-test"
+        },
+        {
+          "session": "Ca 4 · Kiểm tra nhỏ",
+          "time": "20–40 phút",
+          "work": "Tự kiểm tra nhanh, đạt ≥ 8/10 mới chuyển module kế tiếp.",
+          "evidence": "Điểm kiểm tra + danh sách mục cần ôn."
+        }
+      ],
+      "practicePlan": [
+        "Bài dễ: nhận diện khái niệm và áp dụng công thức/quy trình trực tiếp.",
+        "Bài trung bình: kết hợp 2–3 kỹ năng, giải thích từng bước.",
+        "Bài khá: xử lý tình huống có nhiễu/lỗi/điều kiện thiếu.",
+        "Bài giỏi: tự thiết kế ví dụ nhỏ hoặc mini-project liên môn."
+      ],
+      "simulationPlan": [
+        "Mô phỏng riêng: quan sát sandbox model/metric với tham số thay đổi.",
+        "Mô phỏng thực hành: nhận nhiệm vụ, chọn cách xử lý, hệ thống phản hồi đúng/sai.",
+        "Ghi lại kết quả mô phỏng để liên hệ với bài tập và kiểm tra."
+      ],
+      "assessmentPlan": {
+        "unlock": "Mức Dễ mở mặc định; Trung bình/Khá/Giỏi mở khi mức trước đạt ≥ 8/10.",
+        "rubric": [
+          "Hiểu khái niệm",
+          "Làm được bài",
+          "Giải thích được lỗi",
+          "Tạo được sản phẩm nhỏ"
+        ],
+        "pass": "Đạt module khi hoàn thành bài học chính, chạy mô phỏng, làm bài tập và kiểm tra ≥ 8/10."
+      },
+      "baumanLinks": [
+        "Liên hệ học phần Bauman/HK: GĐ1 · Chuẩn bị tại Việt Nam.",
+        "Liên hệ luận văn: UGV/USV, telemetry, AI hoặc hệ thống điều khiển tùy môn.",
+        "Liên hệ tiếng Nga: chuẩn bị cách trình bày khái niệm bằng câu ngắn, dễ nói."
+      ],
+      "completionCriteria": [
+        "Đã mở và đọc toàn bộ bài học trong module.",
+        "Đã chạy ít nhất 1 mô phỏng hoặc ví dụ tương tác.",
+        "Đã làm tối thiểu 3 bài tập và ghi lại lỗi sai.",
+        "Đã đạt kiểm tra nhanh ≥ 8/10 hoặc đánh dấu cần ôn."
+      ],
+      "risks": [
+        "Chỉ đọc lý thuyết nhưng không làm bài tập/mô phỏng.",
+        "Không ghi lại lỗi sai nên tuần sau quên điểm yếu.",
+        "Nhảy sang module mới khi chưa đạt tiêu chí ≥ 8/10."
+      ],
+      "nextStep": "Sau khi hoàn thành 'Quy trình học máy: dữ liệu, đặc trưng, mô hình và metric', chuyển sang module tiếp theo trong GĐ1 · Chuẩn bị tại Việt Nam hoặc làm bài kiểm tra mức cao hơn."
+    },
+    {
+      "id": "a_p02",
+      "stage": "prepare",
+      "week": "W2",
+      "title": "Baseline hồi quy và phân loại",
+      "goal": "Linear/logistic regression, metrics, confusion matrix.",
+      "hours": 8,
+      "level": "Cơ bản",
+      "lessons": [
+        "a_p02_l1",
+        "a_p02_l2",
+        "a_p02_l3"
+      ],
+      "outputs": [
+        "Ghi chú module 'Baseline hồi quy và phân loại' có định nghĩa, ví dụ, lỗi thường gặp.",
+        "Một sản phẩm thực hành: notebook huấn luyện có nhận xét train-test.",
+        "Một mục nhật ký học tập: đã học gì, sai gì, cần ôn gì.",
+        "Cập nhật tiến độ module và gửi phản hồi về Main."
+      ],
+      "phaseObjective": "Trong GĐ1 · Chuẩn bị tại Việt Nam, module này biến chủ đề 'Baseline hồi quy và phân loại' thành năng lực dùng được: hiểu khái niệm, làm bài, chạy mô phỏng và tạo sản phẩm kiểm chứng.",
+      "whyImportant": [
+        "Đây là mắt xích của môn AI/ML trong lộ trình Bauman, giúp học phần sau không bị hổng nền.",
+        "Nội dung liên quan trực tiếp tới workflow mô hình, metric, overfit/underfit và giải thích kết quả.",
+        "Kết quả module được dùng để Main biết nên nhắc ôn, kiểm tra hay chuyển module tiếp theo."
+      ],
+      "prerequisites": [
+        "Đọc lại mục tiêu giai đoạn và các module trước đó trong cùng môn.",
+        "Chuẩn bị công cụ: scikit-learn/PyTorch, notebook, bảng metric.",
+        "Tạo file ghi chú riêng: mục tiêu, thuật ngữ, lỗi sai, sản phẩm đầu ra."
+      ],
+      "conceptMap": [
+        "Khái niệm trung tâm của 'Baseline hồi quy và phân loại'.",
+        "Input cần nhận diện: dữ liệu, ký hiệu, biến, điều kiện hoặc tình huống.",
+        "Output cần tạo: kết quả tính toán, code, bảng đánh giá, sơ đồ hoặc câu trả lời học thuật.",
+        "Tiêu chí kiểm tra: đúng logic, giải thích được lý do, có bằng chứng thực hành."
+      ],
+      "studyPlan": [
+        {
+          "session": "Ca 1 · Nắm lõi",
+          "time": "60–90 phút",
+          "work": "Đọc bài nền về Baseline hồi quy và phân loại, ghi thuật ngữ, viết lại bằng lời của mình.",
+          "evidence": "Ghi chú 7–10 dòng + 5 thuật ngữ chính."
+        },
+        {
+          "session": "Ca 2 · Mô phỏng",
+          "time": "45–75 phút",
+          "work": "Chạy sandbox model/metric hoặc ví dụ tham số để quan sát cơ chế.",
+          "evidence": "Ảnh/chú thích kết quả mô phỏng + nhận xét."
+        },
+        {
+          "session": "Ca 3 · Bài tập",
+          "time": "60–120 phút",
+          "work": "Làm bài tập từ dễ đến trung bình, đánh dấu lỗi sai và nguyên nhân.",
+          "evidence": "notebook huấn luyện có nhận xét train-test"
+        },
+        {
+          "session": "Ca 4 · Kiểm tra nhỏ",
+          "time": "20–40 phút",
+          "work": "Tự kiểm tra nhanh, đạt ≥ 8/10 mới chuyển module kế tiếp.",
+          "evidence": "Điểm kiểm tra + danh sách mục cần ôn."
+        }
+      ],
+      "practicePlan": [
+        "Bài dễ: nhận diện khái niệm và áp dụng công thức/quy trình trực tiếp.",
+        "Bài trung bình: kết hợp 2–3 kỹ năng, giải thích từng bước.",
+        "Bài khá: xử lý tình huống có nhiễu/lỗi/điều kiện thiếu.",
+        "Bài giỏi: tự thiết kế ví dụ nhỏ hoặc mini-project liên môn."
+      ],
+      "simulationPlan": [
+        "Mô phỏng riêng: quan sát sandbox model/metric với tham số thay đổi.",
+        "Mô phỏng thực hành: nhận nhiệm vụ, chọn cách xử lý, hệ thống phản hồi đúng/sai.",
+        "Ghi lại kết quả mô phỏng để liên hệ với bài tập và kiểm tra."
+      ],
+      "assessmentPlan": {
+        "unlock": "Mức Dễ mở mặc định; Trung bình/Khá/Giỏi mở khi mức trước đạt ≥ 8/10.",
+        "rubric": [
+          "Hiểu khái niệm",
+          "Làm được bài",
+          "Giải thích được lỗi",
+          "Tạo được sản phẩm nhỏ"
+        ],
+        "pass": "Đạt module khi hoàn thành bài học chính, chạy mô phỏng, làm bài tập và kiểm tra ≥ 8/10."
+      },
+      "baumanLinks": [
+        "Liên hệ học phần Bauman/HK: GĐ1 · Chuẩn bị tại Việt Nam.",
+        "Liên hệ luận văn: UGV/USV, telemetry, AI hoặc hệ thống điều khiển tùy môn.",
+        "Liên hệ tiếng Nga: chuẩn bị cách trình bày khái niệm bằng câu ngắn, dễ nói."
+      ],
+      "completionCriteria": [
+        "Đã mở và đọc toàn bộ bài học trong module.",
+        "Đã chạy ít nhất 1 mô phỏng hoặc ví dụ tương tác.",
+        "Đã làm tối thiểu 3 bài tập và ghi lại lỗi sai.",
+        "Đã đạt kiểm tra nhanh ≥ 8/10 hoặc đánh dấu cần ôn."
+      ],
+      "risks": [
+        "Chỉ đọc lý thuyết nhưng không làm bài tập/mô phỏng.",
+        "Không ghi lại lỗi sai nên tuần sau quên điểm yếu.",
+        "Nhảy sang module mới khi chưa đạt tiêu chí ≥ 8/10."
+      ],
+      "nextStep": "Sau khi hoàn thành 'Baseline hồi quy và phân loại', chuyển sang module tiếp theo trong GĐ1 · Chuẩn bị tại Việt Nam hoặc làm bài kiểm tra mức cao hơn."
+    },
+    {
+      "id": "a_p03",
+      "stage": "prepare",
+      "week": "W3",
+      "title": "Tiền xử lý dữ liệu và phòng tránh rò rỉ dữ liệu",
+      "goal": "Missing, encoding, scaling, train/test leakage.",
+      "hours": 8,
+      "level": "Trung bình",
+      "lessons": [
+        "a_p03_l1",
+        "a_p03_l2",
+        "a_p03_l3"
+      ],
+      "outputs": [
+        "Ghi chú module 'Tiền xử lý dữ liệu và phòng tránh rò rỉ dữ liệu' có định nghĩa, ví dụ, lỗi thường gặp.",
+        "Một sản phẩm thực hành: notebook huấn luyện có nhận xét train-test.",
+        "Một mục nhật ký học tập: đã học gì, sai gì, cần ôn gì.",
+        "Cập nhật tiến độ module và gửi phản hồi về Main."
+      ],
+      "phaseObjective": "Trong GĐ1 · Chuẩn bị tại Việt Nam, module này biến chủ đề 'Tiền xử lý dữ liệu và phòng tránh rò rỉ dữ liệu' thành năng lực dùng được: hiểu khái niệm, làm bài, chạy mô phỏng và tạo sản phẩm kiểm chứng.",
+      "whyImportant": [
+        "Đây là mắt xích của môn AI/ML trong lộ trình Bauman, giúp học phần sau không bị hổng nền.",
+        "Nội dung liên quan trực tiếp tới workflow mô hình, metric, overfit/underfit và giải thích kết quả.",
+        "Kết quả module được dùng để Main biết nên nhắc ôn, kiểm tra hay chuyển module tiếp theo."
+      ],
+      "prerequisites": [
+        "Đọc lại mục tiêu giai đoạn và các module trước đó trong cùng môn.",
+        "Chuẩn bị công cụ: scikit-learn/PyTorch, notebook, bảng metric.",
+        "Tạo file ghi chú riêng: mục tiêu, thuật ngữ, lỗi sai, sản phẩm đầu ra."
+      ],
+      "conceptMap": [
+        "Khái niệm trung tâm của 'Tiền xử lý dữ liệu và phòng tránh rò rỉ dữ liệu'.",
+        "Input cần nhận diện: dữ liệu, ký hiệu, biến, điều kiện hoặc tình huống.",
+        "Output cần tạo: kết quả tính toán, code, bảng đánh giá, sơ đồ hoặc câu trả lời học thuật.",
+        "Tiêu chí kiểm tra: đúng logic, giải thích được lý do, có bằng chứng thực hành."
+      ],
+      "studyPlan": [
+        {
+          "session": "Ca 1 · Nắm lõi",
+          "time": "60–90 phút",
+          "work": "Đọc bài nền về Tiền xử lý dữ liệu và phòng tránh rò rỉ dữ liệu, ghi thuật ngữ, viết lại bằng lời của mình.",
+          "evidence": "Ghi chú 7–10 dòng + 5 thuật ngữ chính."
+        },
+        {
+          "session": "Ca 2 · Mô phỏng",
+          "time": "45–75 phút",
+          "work": "Chạy sandbox model/metric hoặc ví dụ tham số để quan sát cơ chế.",
+          "evidence": "Ảnh/chú thích kết quả mô phỏng + nhận xét."
+        },
+        {
+          "session": "Ca 3 · Bài tập",
+          "time": "60–120 phút",
+          "work": "Làm bài tập từ dễ đến trung bình, đánh dấu lỗi sai và nguyên nhân.",
+          "evidence": "notebook huấn luyện có nhận xét train-test"
+        },
+        {
+          "session": "Ca 4 · Kiểm tra nhỏ",
+          "time": "20–40 phút",
+          "work": "Tự kiểm tra nhanh, đạt ≥ 8/10 mới chuyển module kế tiếp.",
+          "evidence": "Điểm kiểm tra + danh sách mục cần ôn."
+        }
+      ],
+      "practicePlan": [
+        "Bài dễ: nhận diện khái niệm và áp dụng công thức/quy trình trực tiếp.",
+        "Bài trung bình: kết hợp 2–3 kỹ năng, giải thích từng bước.",
+        "Bài khá: xử lý tình huống có nhiễu/lỗi/điều kiện thiếu.",
+        "Bài giỏi: tự thiết kế ví dụ nhỏ hoặc mini-project liên môn."
+      ],
+      "simulationPlan": [
+        "Mô phỏng riêng: quan sát sandbox model/metric với tham số thay đổi.",
+        "Mô phỏng thực hành: nhận nhiệm vụ, chọn cách xử lý, hệ thống phản hồi đúng/sai.",
+        "Ghi lại kết quả mô phỏng để liên hệ với bài tập và kiểm tra."
+      ],
+      "assessmentPlan": {
+        "unlock": "Mức Dễ mở mặc định; Trung bình/Khá/Giỏi mở khi mức trước đạt ≥ 8/10.",
+        "rubric": [
+          "Hiểu khái niệm",
+          "Làm được bài",
+          "Giải thích được lỗi",
+          "Tạo được sản phẩm nhỏ"
+        ],
+        "pass": "Đạt module khi hoàn thành bài học chính, chạy mô phỏng, làm bài tập và kiểm tra ≥ 8/10."
+      },
+      "baumanLinks": [
+        "Liên hệ học phần Bauman/HK: GĐ1 · Chuẩn bị tại Việt Nam.",
+        "Liên hệ luận văn: UGV/USV, telemetry, AI hoặc hệ thống điều khiển tùy môn.",
+        "Liên hệ tiếng Nga: chuẩn bị cách trình bày khái niệm bằng câu ngắn, dễ nói."
+      ],
+      "completionCriteria": [
+        "Đã mở và đọc toàn bộ bài học trong module.",
+        "Đã chạy ít nhất 1 mô phỏng hoặc ví dụ tương tác.",
+        "Đã làm tối thiểu 3 bài tập và ghi lại lỗi sai.",
+        "Đã đạt kiểm tra nhanh ≥ 8/10 hoặc đánh dấu cần ôn."
+      ],
+      "risks": [
+        "Chỉ đọc lý thuyết nhưng không làm bài tập/mô phỏng.",
+        "Không ghi lại lỗi sai nên tuần sau quên điểm yếu.",
+        "Nhảy sang module mới khi chưa đạt tiêu chí ≥ 8/10."
+      ],
+      "nextStep": "Sau khi hoàn thành 'Tiền xử lý dữ liệu và phòng tránh rò rỉ dữ liệu', chuyển sang module tiếp theo trong GĐ1 · Chuẩn bị tại Việt Nam hoặc làm bài kiểm tra mức cao hơn."
+    },
+    {
+      "id": "a_p04",
+      "stage": "prepare",
+      "week": "W4",
+      "title": "Mô hình cây, ensemble và kiểm định chéo",
+      "goal": "Decision tree, random forest, CV, feature importance.",
+      "hours": 8,
+      "level": "Trung bình",
+      "lessons": [
+        "a_p04_l1",
+        "a_p04_l2",
+        "a_p04_l3"
+      ],
+      "outputs": [
+        "Ghi chú module 'Mô hình cây, ensemble và kiểm định chéo' có định nghĩa, ví dụ, lỗi thường gặp.",
+        "Một sản phẩm thực hành: notebook huấn luyện có nhận xét train-test.",
+        "Một mục nhật ký học tập: đã học gì, sai gì, cần ôn gì.",
+        "Cập nhật tiến độ module và gửi phản hồi về Main."
+      ],
+      "phaseObjective": "Trong GĐ1 · Chuẩn bị tại Việt Nam, module này biến chủ đề 'Mô hình cây, ensemble và kiểm định chéo' thành năng lực dùng được: hiểu khái niệm, làm bài, chạy mô phỏng và tạo sản phẩm kiểm chứng.",
+      "whyImportant": [
+        "Đây là mắt xích của môn AI/ML trong lộ trình Bauman, giúp học phần sau không bị hổng nền.",
+        "Nội dung liên quan trực tiếp tới workflow mô hình, metric, overfit/underfit và giải thích kết quả.",
+        "Kết quả module được dùng để Main biết nên nhắc ôn, kiểm tra hay chuyển module tiếp theo."
+      ],
+      "prerequisites": [
+        "Đọc lại mục tiêu giai đoạn và các module trước đó trong cùng môn.",
+        "Chuẩn bị công cụ: scikit-learn/PyTorch, notebook, bảng metric.",
+        "Tạo file ghi chú riêng: mục tiêu, thuật ngữ, lỗi sai, sản phẩm đầu ra."
+      ],
+      "conceptMap": [
+        "Khái niệm trung tâm của 'Mô hình cây, ensemble và kiểm định chéo'.",
+        "Input cần nhận diện: dữ liệu, ký hiệu, biến, điều kiện hoặc tình huống.",
+        "Output cần tạo: kết quả tính toán, code, bảng đánh giá, sơ đồ hoặc câu trả lời học thuật.",
+        "Tiêu chí kiểm tra: đúng logic, giải thích được lý do, có bằng chứng thực hành."
+      ],
+      "studyPlan": [
+        {
+          "session": "Ca 1 · Nắm lõi",
+          "time": "60–90 phút",
+          "work": "Đọc bài nền về Mô hình cây, ensemble và kiểm định chéo, ghi thuật ngữ, viết lại bằng lời của mình.",
+          "evidence": "Ghi chú 7–10 dòng + 5 thuật ngữ chính."
+        },
+        {
+          "session": "Ca 2 · Mô phỏng",
+          "time": "45–75 phút",
+          "work": "Chạy sandbox model/metric hoặc ví dụ tham số để quan sát cơ chế.",
+          "evidence": "Ảnh/chú thích kết quả mô phỏng + nhận xét."
+        },
+        {
+          "session": "Ca 3 · Bài tập",
+          "time": "60–120 phút",
+          "work": "Làm bài tập từ dễ đến trung bình, đánh dấu lỗi sai và nguyên nhân.",
+          "evidence": "notebook huấn luyện có nhận xét train-test"
+        },
+        {
+          "session": "Ca 4 · Kiểm tra nhỏ",
+          "time": "20–40 phút",
+          "work": "Tự kiểm tra nhanh, đạt ≥ 8/10 mới chuyển module kế tiếp.",
+          "evidence": "Điểm kiểm tra + danh sách mục cần ôn."
+        }
+      ],
+      "practicePlan": [
+        "Bài dễ: nhận diện khái niệm và áp dụng công thức/quy trình trực tiếp.",
+        "Bài trung bình: kết hợp 2–3 kỹ năng, giải thích từng bước.",
+        "Bài khá: xử lý tình huống có nhiễu/lỗi/điều kiện thiếu.",
+        "Bài giỏi: tự thiết kế ví dụ nhỏ hoặc mini-project liên môn."
+      ],
+      "simulationPlan": [
+        "Mô phỏng riêng: quan sát sandbox model/metric với tham số thay đổi.",
+        "Mô phỏng thực hành: nhận nhiệm vụ, chọn cách xử lý, hệ thống phản hồi đúng/sai.",
+        "Ghi lại kết quả mô phỏng để liên hệ với bài tập và kiểm tra."
+      ],
+      "assessmentPlan": {
+        "unlock": "Mức Dễ mở mặc định; Trung bình/Khá/Giỏi mở khi mức trước đạt ≥ 8/10.",
+        "rubric": [
+          "Hiểu khái niệm",
+          "Làm được bài",
+          "Giải thích được lỗi",
+          "Tạo được sản phẩm nhỏ"
+        ],
+        "pass": "Đạt module khi hoàn thành bài học chính, chạy mô phỏng, làm bài tập và kiểm tra ≥ 8/10."
+      },
+      "baumanLinks": [
+        "Liên hệ học phần Bauman/HK: GĐ1 · Chuẩn bị tại Việt Nam.",
+        "Liên hệ luận văn: UGV/USV, telemetry, AI hoặc hệ thống điều khiển tùy môn.",
+        "Liên hệ tiếng Nga: chuẩn bị cách trình bày khái niệm bằng câu ngắn, dễ nói."
+      ],
+      "completionCriteria": [
+        "Đã mở và đọc toàn bộ bài học trong module.",
+        "Đã chạy ít nhất 1 mô phỏng hoặc ví dụ tương tác.",
+        "Đã làm tối thiểu 3 bài tập và ghi lại lỗi sai.",
+        "Đã đạt kiểm tra nhanh ≥ 8/10 hoặc đánh dấu cần ôn."
+      ],
+      "risks": [
+        "Chỉ đọc lý thuyết nhưng không làm bài tập/mô phỏng.",
+        "Không ghi lại lỗi sai nên tuần sau quên điểm yếu.",
+        "Nhảy sang module mới khi chưa đạt tiêu chí ≥ 8/10."
+      ],
+      "nextStep": "Sau khi hoàn thành 'Mô hình cây, ensemble và kiểm định chéo', chuyển sang module tiếp theo trong GĐ1 · Chuẩn bị tại Việt Nam hoặc làm bài kiểm tra mức cao hơn."
+    },
+    {
+      "id": "a_p05",
+      "stage": "prepare",
+      "week": "W5",
+      "title": "Clustering và PCA trong khám phá cấu trúc dữ liệu",
+      "goal": "KMeans, silhouette, PCA visualization.",
+      "hours": 7,
+      "level": "Khá",
+      "lessons": [
+        "a_p05_l1",
+        "a_p05_l2",
+        "a_p05_l3"
+      ],
+      "outputs": [
+        "Ghi chú module 'Clustering và PCA trong khám phá cấu trúc dữ liệu' có định nghĩa, ví dụ, lỗi thường gặp.",
+        "Một sản phẩm thực hành: notebook huấn luyện có nhận xét train-test.",
+        "Một mục nhật ký học tập: đã học gì, sai gì, cần ôn gì.",
+        "Cập nhật tiến độ module và gửi phản hồi về Main."
+      ],
+      "phaseObjective": "Trong GĐ1 · Chuẩn bị tại Việt Nam, module này biến chủ đề 'Clustering và PCA trong khám phá cấu trúc dữ liệu' thành năng lực dùng được: hiểu khái niệm, làm bài, chạy mô phỏng và tạo sản phẩm kiểm chứng.",
+      "whyImportant": [
+        "Đây là mắt xích của môn AI/ML trong lộ trình Bauman, giúp học phần sau không bị hổng nền.",
+        "Nội dung liên quan trực tiếp tới workflow mô hình, metric, overfit/underfit và giải thích kết quả.",
+        "Kết quả module được dùng để Main biết nên nhắc ôn, kiểm tra hay chuyển module tiếp theo."
+      ],
+      "prerequisites": [
+        "Đọc lại mục tiêu giai đoạn và các module trước đó trong cùng môn.",
+        "Chuẩn bị công cụ: scikit-learn/PyTorch, notebook, bảng metric.",
+        "Tạo file ghi chú riêng: mục tiêu, thuật ngữ, lỗi sai, sản phẩm đầu ra."
+      ],
+      "conceptMap": [
+        "Khái niệm trung tâm của 'Clustering và PCA trong khám phá cấu trúc dữ liệu'.",
+        "Input cần nhận diện: dữ liệu, ký hiệu, biến, điều kiện hoặc tình huống.",
+        "Output cần tạo: kết quả tính toán, code, bảng đánh giá, sơ đồ hoặc câu trả lời học thuật.",
+        "Tiêu chí kiểm tra: đúng logic, giải thích được lý do, có bằng chứng thực hành."
+      ],
+      "studyPlan": [
+        {
+          "session": "Ca 1 · Nắm lõi",
+          "time": "60–90 phút",
+          "work": "Đọc bài nền về Clustering và PCA trong khám phá cấu trúc dữ liệu, ghi thuật ngữ, viết lại bằng lời của mình.",
+          "evidence": "Ghi chú 7–10 dòng + 5 thuật ngữ chính."
+        },
+        {
+          "session": "Ca 2 · Mô phỏng",
+          "time": "45–75 phút",
+          "work": "Chạy sandbox model/metric hoặc ví dụ tham số để quan sát cơ chế.",
+          "evidence": "Ảnh/chú thích kết quả mô phỏng + nhận xét."
+        },
+        {
+          "session": "Ca 3 · Bài tập",
+          "time": "60–120 phút",
+          "work": "Làm bài tập từ dễ đến trung bình, đánh dấu lỗi sai và nguyên nhân.",
+          "evidence": "notebook huấn luyện có nhận xét train-test"
+        },
+        {
+          "session": "Ca 4 · Kiểm tra nhỏ",
+          "time": "20–40 phút",
+          "work": "Tự kiểm tra nhanh, đạt ≥ 8/10 mới chuyển module kế tiếp.",
+          "evidence": "Điểm kiểm tra + danh sách mục cần ôn."
+        }
+      ],
+      "practicePlan": [
+        "Bài dễ: nhận diện khái niệm và áp dụng công thức/quy trình trực tiếp.",
+        "Bài trung bình: kết hợp 2–3 kỹ năng, giải thích từng bước.",
+        "Bài khá: xử lý tình huống có nhiễu/lỗi/điều kiện thiếu.",
+        "Bài giỏi: tự thiết kế ví dụ nhỏ hoặc mini-project liên môn."
+      ],
+      "simulationPlan": [
+        "Mô phỏng riêng: quan sát sandbox model/metric với tham số thay đổi.",
+        "Mô phỏng thực hành: nhận nhiệm vụ, chọn cách xử lý, hệ thống phản hồi đúng/sai.",
+        "Ghi lại kết quả mô phỏng để liên hệ với bài tập và kiểm tra."
+      ],
+      "assessmentPlan": {
+        "unlock": "Mức Dễ mở mặc định; Trung bình/Khá/Giỏi mở khi mức trước đạt ≥ 8/10.",
+        "rubric": [
+          "Hiểu khái niệm",
+          "Làm được bài",
+          "Giải thích được lỗi",
+          "Tạo được sản phẩm nhỏ"
+        ],
+        "pass": "Đạt module khi hoàn thành bài học chính, chạy mô phỏng, làm bài tập và kiểm tra ≥ 8/10."
+      },
+      "baumanLinks": [
+        "Liên hệ học phần Bauman/HK: GĐ1 · Chuẩn bị tại Việt Nam.",
+        "Liên hệ luận văn: UGV/USV, telemetry, AI hoặc hệ thống điều khiển tùy môn.",
+        "Liên hệ tiếng Nga: chuẩn bị cách trình bày khái niệm bằng câu ngắn, dễ nói."
+      ],
+      "completionCriteria": [
+        "Đã mở và đọc toàn bộ bài học trong module.",
+        "Đã chạy ít nhất 1 mô phỏng hoặc ví dụ tương tác.",
+        "Đã làm tối thiểu 3 bài tập và ghi lại lỗi sai.",
+        "Đã đạt kiểm tra nhanh ≥ 8/10 hoặc đánh dấu cần ôn."
+      ],
+      "risks": [
+        "Chỉ đọc lý thuyết nhưng không làm bài tập/mô phỏng.",
+        "Không ghi lại lỗi sai nên tuần sau quên điểm yếu.",
+        "Nhảy sang module mới khi chưa đạt tiêu chí ≥ 8/10."
+      ],
+      "nextStep": "Sau khi hoàn thành 'Clustering và PCA trong khám phá cấu trúc dữ liệu', chuyển sang module tiếp theo trong GĐ1 · Chuẩn bị tại Việt Nam hoặc làm bài kiểm tra mức cao hơn."
+    },
+    {
+      "id": "a_p06",
+      "stage": "prepare",
+      "week": "W6",
+      "title": "Mạng neural nhập môn: kiến trúc, loss và huấn luyện",
+      "goal": "MLP, activation, loss, gradient descent concept.",
+      "hours": 8,
+      "level": "Khá",
+      "lessons": [
+        "a_p06_l1",
+        "a_p06_l2",
+        "a_p06_l3"
+      ],
+      "outputs": [
+        "Ghi chú module 'Mạng neural nhập môn: kiến trúc, loss và huấn luyện' có định nghĩa, ví dụ, lỗi thường gặp.",
+        "Một sản phẩm thực hành: notebook huấn luyện có nhận xét train-test.",
+        "Một mục nhật ký học tập: đã học gì, sai gì, cần ôn gì.",
+        "Cập nhật tiến độ module và gửi phản hồi về Main."
+      ],
+      "phaseObjective": "Trong GĐ1 · Chuẩn bị tại Việt Nam, module này biến chủ đề 'Mạng neural nhập môn: kiến trúc, loss và huấn luyện' thành năng lực dùng được: hiểu khái niệm, làm bài, chạy mô phỏng và tạo sản phẩm kiểm chứng.",
+      "whyImportant": [
+        "Đây là mắt xích của môn AI/ML trong lộ trình Bauman, giúp học phần sau không bị hổng nền.",
+        "Nội dung liên quan trực tiếp tới workflow mô hình, metric, overfit/underfit và giải thích kết quả.",
+        "Kết quả module được dùng để Main biết nên nhắc ôn, kiểm tra hay chuyển module tiếp theo."
+      ],
+      "prerequisites": [
+        "Đọc lại mục tiêu giai đoạn và các module trước đó trong cùng môn.",
+        "Chuẩn bị công cụ: scikit-learn/PyTorch, notebook, bảng metric.",
+        "Tạo file ghi chú riêng: mục tiêu, thuật ngữ, lỗi sai, sản phẩm đầu ra."
+      ],
+      "conceptMap": [
+        "Khái niệm trung tâm của 'Mạng neural nhập môn: kiến trúc, loss và huấn luyện'.",
+        "Input cần nhận diện: dữ liệu, ký hiệu, biến, điều kiện hoặc tình huống.",
+        "Output cần tạo: kết quả tính toán, code, bảng đánh giá, sơ đồ hoặc câu trả lời học thuật.",
+        "Tiêu chí kiểm tra: đúng logic, giải thích được lý do, có bằng chứng thực hành."
+      ],
+      "studyPlan": [
+        {
+          "session": "Ca 1 · Nắm lõi",
+          "time": "60–90 phút",
+          "work": "Đọc bài nền về Mạng neural nhập môn: kiến trúc, loss và huấn luyện, ghi thuật ngữ, viết lại bằng lời của mình.",
+          "evidence": "Ghi chú 7–10 dòng + 5 thuật ngữ chính."
+        },
+        {
+          "session": "Ca 2 · Mô phỏng",
+          "time": "45–75 phút",
+          "work": "Chạy sandbox model/metric hoặc ví dụ tham số để quan sát cơ chế.",
+          "evidence": "Ảnh/chú thích kết quả mô phỏng + nhận xét."
+        },
+        {
+          "session": "Ca 3 · Bài tập",
+          "time": "60–120 phút",
+          "work": "Làm bài tập từ dễ đến trung bình, đánh dấu lỗi sai và nguyên nhân.",
+          "evidence": "notebook huấn luyện có nhận xét train-test"
+        },
+        {
+          "session": "Ca 4 · Kiểm tra nhỏ",
+          "time": "20–40 phút",
+          "work": "Tự kiểm tra nhanh, đạt ≥ 8/10 mới chuyển module kế tiếp.",
+          "evidence": "Điểm kiểm tra + danh sách mục cần ôn."
+        }
+      ],
+      "practicePlan": [
+        "Bài dễ: nhận diện khái niệm và áp dụng công thức/quy trình trực tiếp.",
+        "Bài trung bình: kết hợp 2–3 kỹ năng, giải thích từng bước.",
+        "Bài khá: xử lý tình huống có nhiễu/lỗi/điều kiện thiếu.",
+        "Bài giỏi: tự thiết kế ví dụ nhỏ hoặc mini-project liên môn."
+      ],
+      "simulationPlan": [
+        "Mô phỏng riêng: quan sát sandbox model/metric với tham số thay đổi.",
+        "Mô phỏng thực hành: nhận nhiệm vụ, chọn cách xử lý, hệ thống phản hồi đúng/sai.",
+        "Ghi lại kết quả mô phỏng để liên hệ với bài tập và kiểm tra."
+      ],
+      "assessmentPlan": {
+        "unlock": "Mức Dễ mở mặc định; Trung bình/Khá/Giỏi mở khi mức trước đạt ≥ 8/10.",
+        "rubric": [
+          "Hiểu khái niệm",
+          "Làm được bài",
+          "Giải thích được lỗi",
+          "Tạo được sản phẩm nhỏ"
+        ],
+        "pass": "Đạt module khi hoàn thành bài học chính, chạy mô phỏng, làm bài tập và kiểm tra ≥ 8/10."
+      },
+      "baumanLinks": [
+        "Liên hệ học phần Bauman/HK: GĐ1 · Chuẩn bị tại Việt Nam.",
+        "Liên hệ luận văn: UGV/USV, telemetry, AI hoặc hệ thống điều khiển tùy môn.",
+        "Liên hệ tiếng Nga: chuẩn bị cách trình bày khái niệm bằng câu ngắn, dễ nói."
+      ],
+      "completionCriteria": [
+        "Đã mở và đọc toàn bộ bài học trong module.",
+        "Đã chạy ít nhất 1 mô phỏng hoặc ví dụ tương tác.",
+        "Đã làm tối thiểu 3 bài tập và ghi lại lỗi sai.",
+        "Đã đạt kiểm tra nhanh ≥ 8/10 hoặc đánh dấu cần ôn."
+      ],
+      "risks": [
+        "Chỉ đọc lý thuyết nhưng không làm bài tập/mô phỏng.",
+        "Không ghi lại lỗi sai nên tuần sau quên điểm yếu.",
+        "Nhảy sang module mới khi chưa đạt tiêu chí ≥ 8/10."
+      ],
+      "nextStep": "Sau khi hoàn thành 'Mạng neural nhập môn: kiến trúc, loss và huấn luyện', chuyển sang module tiếp theo trong GĐ1 · Chuẩn bị tại Việt Nam hoặc làm bài kiểm tra mức cao hơn."
+    },
+    {
+      "id": "a_p07",
+      "stage": "prepare",
+      "week": "W7",
+      "title": "Mini-project AI cho UGV/USV: dữ liệu, model và báo cáo",
+      "goal": "Tabular/sensor baseline, report và error analysis.",
+      "hours": 12,
+      "level": "Khá",
+      "lessons": [
+        "a_p07_l1",
+        "a_p07_l2",
+        "a_p07_l3"
+      ],
+      "outputs": [
+        "Ghi chú module 'Mini-project AI cho UGV/USV: dữ liệu, model và báo cáo' có định nghĩa, ví dụ, lỗi thường gặp.",
+        "Một sản phẩm thực hành: notebook huấn luyện có nhận xét train-test.",
+        "Một mục nhật ký học tập: đã học gì, sai gì, cần ôn gì.",
+        "Cập nhật tiến độ module và gửi phản hồi về Main."
+      ],
+      "phaseObjective": "Trong GĐ1 · Chuẩn bị tại Việt Nam, module này biến chủ đề 'Mini-project AI cho UGV/USV: dữ liệu, model và báo cáo' thành năng lực dùng được: hiểu khái niệm, làm bài, chạy mô phỏng và tạo sản phẩm kiểm chứng.",
+      "whyImportant": [
+        "Đây là mắt xích của môn AI/ML trong lộ trình Bauman, giúp học phần sau không bị hổng nền.",
+        "Nội dung liên quan trực tiếp tới workflow mô hình, metric, overfit/underfit và giải thích kết quả.",
+        "Kết quả module được dùng để Main biết nên nhắc ôn, kiểm tra hay chuyển module tiếp theo."
+      ],
+      "prerequisites": [
+        "Đọc lại mục tiêu giai đoạn và các module trước đó trong cùng môn.",
+        "Chuẩn bị công cụ: scikit-learn/PyTorch, notebook, bảng metric.",
+        "Tạo file ghi chú riêng: mục tiêu, thuật ngữ, lỗi sai, sản phẩm đầu ra."
+      ],
+      "conceptMap": [
+        "Khái niệm trung tâm của 'Mini-project AI cho UGV/USV: dữ liệu, model và báo cáo'.",
+        "Input cần nhận diện: dữ liệu, ký hiệu, biến, điều kiện hoặc tình huống.",
+        "Output cần tạo: kết quả tính toán, code, bảng đánh giá, sơ đồ hoặc câu trả lời học thuật.",
+        "Tiêu chí kiểm tra: đúng logic, giải thích được lý do, có bằng chứng thực hành."
+      ],
+      "studyPlan": [
+        {
+          "session": "Ca 1 · Nắm lõi",
+          "time": "60–90 phút",
+          "work": "Đọc bài nền về Mini-project AI cho UGV/USV: dữ liệu, model và báo cáo, ghi thuật ngữ, viết lại bằng lời của mình.",
+          "evidence": "Ghi chú 7–10 dòng + 5 thuật ngữ chính."
+        },
+        {
+          "session": "Ca 2 · Mô phỏng",
+          "time": "45–75 phút",
+          "work": "Chạy sandbox model/metric hoặc ví dụ tham số để quan sát cơ chế.",
+          "evidence": "Ảnh/chú thích kết quả mô phỏng + nhận xét."
+        },
+        {
+          "session": "Ca 3 · Bài tập",
+          "time": "60–120 phút",
+          "work": "Làm bài tập từ dễ đến trung bình, đánh dấu lỗi sai và nguyên nhân.",
+          "evidence": "notebook huấn luyện có nhận xét train-test"
+        },
+        {
+          "session": "Ca 4 · Kiểm tra nhỏ",
+          "time": "20–40 phút",
+          "work": "Tự kiểm tra nhanh, đạt ≥ 8/10 mới chuyển module kế tiếp.",
+          "evidence": "Điểm kiểm tra + danh sách mục cần ôn."
+        }
+      ],
+      "practicePlan": [
+        "Bài dễ: nhận diện khái niệm và áp dụng công thức/quy trình trực tiếp.",
+        "Bài trung bình: kết hợp 2–3 kỹ năng, giải thích từng bước.",
+        "Bài khá: xử lý tình huống có nhiễu/lỗi/điều kiện thiếu.",
+        "Bài giỏi: tự thiết kế ví dụ nhỏ hoặc mini-project liên môn."
+      ],
+      "simulationPlan": [
+        "Mô phỏng riêng: quan sát sandbox model/metric với tham số thay đổi.",
+        "Mô phỏng thực hành: nhận nhiệm vụ, chọn cách xử lý, hệ thống phản hồi đúng/sai.",
+        "Ghi lại kết quả mô phỏng để liên hệ với bài tập và kiểm tra."
+      ],
+      "assessmentPlan": {
+        "unlock": "Mức Dễ mở mặc định; Trung bình/Khá/Giỏi mở khi mức trước đạt ≥ 8/10.",
+        "rubric": [
+          "Hiểu khái niệm",
+          "Làm được bài",
+          "Giải thích được lỗi",
+          "Tạo được sản phẩm nhỏ"
+        ],
+        "pass": "Đạt module khi hoàn thành bài học chính, chạy mô phỏng, làm bài tập và kiểm tra ≥ 8/10."
+      },
+      "baumanLinks": [
+        "Liên hệ học phần Bauman/HK: GĐ1 · Chuẩn bị tại Việt Nam.",
+        "Liên hệ luận văn: UGV/USV, telemetry, AI hoặc hệ thống điều khiển tùy môn.",
+        "Liên hệ tiếng Nga: chuẩn bị cách trình bày khái niệm bằng câu ngắn, dễ nói."
+      ],
+      "completionCriteria": [
+        "Đã mở và đọc toàn bộ bài học trong module.",
+        "Đã chạy ít nhất 1 mô phỏng hoặc ví dụ tương tác.",
+        "Đã làm tối thiểu 3 bài tập và ghi lại lỗi sai.",
+        "Đã đạt kiểm tra nhanh ≥ 8/10 hoặc đánh dấu cần ôn."
+      ],
+      "risks": [
+        "Chỉ đọc lý thuyết nhưng không làm bài tập/mô phỏng.",
+        "Không ghi lại lỗi sai nên tuần sau quên điểm yếu.",
+        "Nhảy sang module mới khi chưa đạt tiêu chí ≥ 8/10."
+      ],
+      "nextStep": "Sau khi hoàn thành 'Mini-project AI cho UGV/USV: dữ liệu, model và báo cáo', chuyển sang module tiếp theo trong GĐ1 · Chuẩn bị tại Việt Nam hoặc làm bài kiểm tra mức cao hơn."
+    },
+    {
+      "id": "a_s01",
+      "stage": "preparatory",
+      "week": "ST1",
+      "title": "Thuật ngữ học máy tiếng Nga cho lớp kỹ thuật",
+      "goal": "Модель, обучение, выборка, признаки, ошибка, точность.",
+      "hours": 5,
+      "level": "Cơ bản",
+      "lessons": [
+        "a_s01_l1",
+        "a_s01_l2",
+        "a_s01_l3"
+      ],
+      "outputs": [
+        "Ghi chú module 'Thuật ngữ học máy tiếng Nga cho lớp kỹ thuật' có định nghĩa, ví dụ, lỗi thường gặp.",
+        "Một sản phẩm thực hành: notebook huấn luyện có nhận xét train-test.",
+        "Một mục nhật ký học tập: đã học gì, sai gì, cần ôn gì.",
+        "Cập nhật tiến độ module và gửi phản hồi về Main."
+      ],
+      "phaseObjective": "Trong GĐ2 · Dự bị Nga / STANKIN, module này biến chủ đề 'Thuật ngữ học máy tiếng Nga cho lớp kỹ thuật' thành năng lực dùng được: hiểu khái niệm, làm bài, chạy mô phỏng và tạo sản phẩm kiểm chứng.",
+      "whyImportant": [
+        "Đây là mắt xích của môn AI/ML trong lộ trình Bauman, giúp học phần sau không bị hổng nền.",
+        "Nội dung liên quan trực tiếp tới workflow mô hình, metric, overfit/underfit và giải thích kết quả.",
+        "Kết quả module được dùng để Main biết nên nhắc ôn, kiểm tra hay chuyển module tiếp theo."
+      ],
+      "prerequisites": [
+        "Đọc lại mục tiêu giai đoạn và các module trước đó trong cùng môn.",
+        "Chuẩn bị công cụ: scikit-learn/PyTorch, notebook, bảng metric.",
+        "Tạo file ghi chú riêng: mục tiêu, thuật ngữ, lỗi sai, sản phẩm đầu ra."
+      ],
+      "conceptMap": [
+        "Khái niệm trung tâm của 'Thuật ngữ học máy tiếng Nga cho lớp kỹ thuật'.",
+        "Input cần nhận diện: dữ liệu, ký hiệu, biến, điều kiện hoặc tình huống.",
+        "Output cần tạo: kết quả tính toán, code, bảng đánh giá, sơ đồ hoặc câu trả lời học thuật.",
+        "Tiêu chí kiểm tra: đúng logic, giải thích được lý do, có bằng chứng thực hành."
+      ],
+      "studyPlan": [
+        {
+          "session": "Ca 1 · Nắm lõi",
+          "time": "60–90 phút",
+          "work": "Đọc bài nền về Thuật ngữ học máy tiếng Nga cho lớp kỹ thuật, ghi thuật ngữ, viết lại bằng lời của mình.",
+          "evidence": "Ghi chú 7–10 dòng + 5 thuật ngữ chính."
+        },
+        {
+          "session": "Ca 2 · Mô phỏng",
+          "time": "45–75 phút",
+          "work": "Chạy sandbox model/metric hoặc ví dụ tham số để quan sát cơ chế.",
+          "evidence": "Ảnh/chú thích kết quả mô phỏng + nhận xét."
+        },
+        {
+          "session": "Ca 3 · Bài tập",
+          "time": "60–120 phút",
+          "work": "Làm bài tập từ dễ đến trung bình, đánh dấu lỗi sai và nguyên nhân.",
+          "evidence": "notebook huấn luyện có nhận xét train-test"
+        },
+        {
+          "session": "Ca 4 · Kiểm tra nhỏ",
+          "time": "20–40 phút",
+          "work": "Tự kiểm tra nhanh, đạt ≥ 8/10 mới chuyển module kế tiếp.",
+          "evidence": "Điểm kiểm tra + danh sách mục cần ôn."
+        }
+      ],
+      "practicePlan": [
+        "Bài dễ: nhận diện khái niệm và áp dụng công thức/quy trình trực tiếp.",
+        "Bài trung bình: kết hợp 2–3 kỹ năng, giải thích từng bước.",
+        "Bài khá: xử lý tình huống có nhiễu/lỗi/điều kiện thiếu.",
+        "Bài giỏi: tự thiết kế ví dụ nhỏ hoặc mini-project liên môn."
+      ],
+      "simulationPlan": [
+        "Mô phỏng riêng: quan sát sandbox model/metric với tham số thay đổi.",
+        "Mô phỏng thực hành: nhận nhiệm vụ, chọn cách xử lý, hệ thống phản hồi đúng/sai.",
+        "Ghi lại kết quả mô phỏng để liên hệ với bài tập và kiểm tra."
+      ],
+      "assessmentPlan": {
+        "unlock": "Mức Dễ mở mặc định; Trung bình/Khá/Giỏi mở khi mức trước đạt ≥ 8/10.",
+        "rubric": [
+          "Hiểu khái niệm",
+          "Làm được bài",
+          "Giải thích được lỗi",
+          "Tạo được sản phẩm nhỏ"
+        ],
+        "pass": "Đạt module khi hoàn thành bài học chính, chạy mô phỏng, làm bài tập và kiểm tra ≥ 8/10."
+      },
+      "baumanLinks": [
+        "Liên hệ học phần Bauman/HK: GĐ2 · Dự bị Nga / STANKIN.",
+        "Liên hệ luận văn: UGV/USV, telemetry, AI hoặc hệ thống điều khiển tùy môn.",
+        "Liên hệ tiếng Nga: chuẩn bị cách trình bày khái niệm bằng câu ngắn, dễ nói."
+      ],
+      "completionCriteria": [
+        "Đã mở và đọc toàn bộ bài học trong module.",
+        "Đã chạy ít nhất 1 mô phỏng hoặc ví dụ tương tác.",
+        "Đã làm tối thiểu 3 bài tập và ghi lại lỗi sai.",
+        "Đã đạt kiểm tra nhanh ≥ 8/10 hoặc đánh dấu cần ôn."
+      ],
+      "risks": [
+        "Chỉ đọc lý thuyết nhưng không làm bài tập/mô phỏng.",
+        "Không ghi lại lỗi sai nên tuần sau quên điểm yếu.",
+        "Nhảy sang module mới khi chưa đạt tiêu chí ≥ 8/10."
+      ],
+      "nextStep": "Sau khi hoàn thành 'Thuật ngữ học máy tiếng Nga cho lớp kỹ thuật', chuyển sang module tiếp theo trong GĐ2 · Dự bị Nga / STANKIN hoặc làm bài kiểm tra mức cao hơn."
+    },
+    {
+      "id": "a_s02",
+      "stage": "preparatory",
+      "week": "ST2",
+      "title": "Đọc abstract ML tiếng Nga: mục tiêu, phương pháp và kết quả",
+      "goal": "Tóm tắt paper/lecture bằng tiếng Nga kỹ thuật.",
+      "hours": 6,
+      "level": "Trung bình",
+      "lessons": [
+        "a_s02_l1",
+        "a_s02_l2",
+        "a_s02_l3"
+      ],
+      "outputs": [
+        "Ghi chú module 'Đọc abstract ML tiếng Nga: mục tiêu, phương pháp và kết quả' có định nghĩa, ví dụ, lỗi thường gặp.",
+        "Một sản phẩm thực hành: notebook huấn luyện có nhận xét train-test.",
+        "Một mục nhật ký học tập: đã học gì, sai gì, cần ôn gì.",
+        "Cập nhật tiến độ module và gửi phản hồi về Main."
+      ],
+      "phaseObjective": "Trong GĐ2 · Dự bị Nga / STANKIN, module này biến chủ đề 'Đọc abstract ML tiếng Nga: mục tiêu, phương pháp và kết quả' thành năng lực dùng được: hiểu khái niệm, làm bài, chạy mô phỏng và tạo sản phẩm kiểm chứng.",
+      "whyImportant": [
+        "Đây là mắt xích của môn AI/ML trong lộ trình Bauman, giúp học phần sau không bị hổng nền.",
+        "Nội dung liên quan trực tiếp tới workflow mô hình, metric, overfit/underfit và giải thích kết quả.",
+        "Kết quả module được dùng để Main biết nên nhắc ôn, kiểm tra hay chuyển module tiếp theo."
+      ],
+      "prerequisites": [
+        "Đọc lại mục tiêu giai đoạn và các module trước đó trong cùng môn.",
+        "Chuẩn bị công cụ: scikit-learn/PyTorch, notebook, bảng metric.",
+        "Tạo file ghi chú riêng: mục tiêu, thuật ngữ, lỗi sai, sản phẩm đầu ra."
+      ],
+      "conceptMap": [
+        "Khái niệm trung tâm của 'Đọc abstract ML tiếng Nga: mục tiêu, phương pháp và kết quả'.",
+        "Input cần nhận diện: dữ liệu, ký hiệu, biến, điều kiện hoặc tình huống.",
+        "Output cần tạo: kết quả tính toán, code, bảng đánh giá, sơ đồ hoặc câu trả lời học thuật.",
+        "Tiêu chí kiểm tra: đúng logic, giải thích được lý do, có bằng chứng thực hành."
+      ],
+      "studyPlan": [
+        {
+          "session": "Ca 1 · Nắm lõi",
+          "time": "60–90 phút",
+          "work": "Đọc bài nền về Đọc abstract ML tiếng Nga: mục tiêu, phương pháp và kết quả, ghi thuật ngữ, viết lại bằng lời của mình.",
+          "evidence": "Ghi chú 7–10 dòng + 5 thuật ngữ chính."
+        },
+        {
+          "session": "Ca 2 · Mô phỏng",
+          "time": "45–75 phút",
+          "work": "Chạy sandbox model/metric hoặc ví dụ tham số để quan sát cơ chế.",
+          "evidence": "Ảnh/chú thích kết quả mô phỏng + nhận xét."
+        },
+        {
+          "session": "Ca 3 · Bài tập",
+          "time": "60–120 phút",
+          "work": "Làm bài tập từ dễ đến trung bình, đánh dấu lỗi sai và nguyên nhân.",
+          "evidence": "notebook huấn luyện có nhận xét train-test"
+        },
+        {
+          "session": "Ca 4 · Kiểm tra nhỏ",
+          "time": "20–40 phút",
+          "work": "Tự kiểm tra nhanh, đạt ≥ 8/10 mới chuyển module kế tiếp.",
+          "evidence": "Điểm kiểm tra + danh sách mục cần ôn."
+        }
+      ],
+      "practicePlan": [
+        "Bài dễ: nhận diện khái niệm và áp dụng công thức/quy trình trực tiếp.",
+        "Bài trung bình: kết hợp 2–3 kỹ năng, giải thích từng bước.",
+        "Bài khá: xử lý tình huống có nhiễu/lỗi/điều kiện thiếu.",
+        "Bài giỏi: tự thiết kế ví dụ nhỏ hoặc mini-project liên môn."
+      ],
+      "simulationPlan": [
+        "Mô phỏng riêng: quan sát sandbox model/metric với tham số thay đổi.",
+        "Mô phỏng thực hành: nhận nhiệm vụ, chọn cách xử lý, hệ thống phản hồi đúng/sai.",
+        "Ghi lại kết quả mô phỏng để liên hệ với bài tập và kiểm tra."
+      ],
+      "assessmentPlan": {
+        "unlock": "Mức Dễ mở mặc định; Trung bình/Khá/Giỏi mở khi mức trước đạt ≥ 8/10.",
+        "rubric": [
+          "Hiểu khái niệm",
+          "Làm được bài",
+          "Giải thích được lỗi",
+          "Tạo được sản phẩm nhỏ"
+        ],
+        "pass": "Đạt module khi hoàn thành bài học chính, chạy mô phỏng, làm bài tập và kiểm tra ≥ 8/10."
+      },
+      "baumanLinks": [
+        "Liên hệ học phần Bauman/HK: GĐ2 · Dự bị Nga / STANKIN.",
+        "Liên hệ luận văn: UGV/USV, telemetry, AI hoặc hệ thống điều khiển tùy môn.",
+        "Liên hệ tiếng Nga: chuẩn bị cách trình bày khái niệm bằng câu ngắn, dễ nói."
+      ],
+      "completionCriteria": [
+        "Đã mở và đọc toàn bộ bài học trong module.",
+        "Đã chạy ít nhất 1 mô phỏng hoặc ví dụ tương tác.",
+        "Đã làm tối thiểu 3 bài tập và ghi lại lỗi sai.",
+        "Đã đạt kiểm tra nhanh ≥ 8/10 hoặc đánh dấu cần ôn."
+      ],
+      "risks": [
+        "Chỉ đọc lý thuyết nhưng không làm bài tập/mô phỏng.",
+        "Không ghi lại lỗi sai nên tuần sau quên điểm yếu.",
+        "Nhảy sang module mới khi chưa đạt tiêu chí ≥ 8/10."
+      ],
+      "nextStep": "Sau khi hoàn thành 'Đọc abstract ML tiếng Nga: mục tiêu, phương pháp và kết quả', chuyển sang module tiếp theo trong GĐ2 · Dự bị Nga / STANKIN hoặc làm bài kiểm tra mức cao hơn."
+    },
+    {
+      "id": "a_s03",
+      "stage": "preparatory",
+      "week": "ST3",
+      "title": "Baseline ML bằng notebook song ngữ Nga-Việt",
+      "goal": "Giải thích pipeline ML với thuật ngữ Nga.",
+      "hours": 6,
+      "level": "Trung bình",
+      "lessons": [
+        "a_s03_l1",
+        "a_s03_l2",
+        "a_s03_l3"
+      ],
+      "outputs": [
+        "Ghi chú module 'Baseline ML bằng notebook song ngữ Nga-Việt' có định nghĩa, ví dụ, lỗi thường gặp.",
+        "Một sản phẩm thực hành: notebook huấn luyện có nhận xét train-test.",
+        "Một mục nhật ký học tập: đã học gì, sai gì, cần ôn gì.",
+        "Cập nhật tiến độ module và gửi phản hồi về Main."
+      ],
+      "phaseObjective": "Trong GĐ2 · Dự bị Nga / STANKIN, module này biến chủ đề 'Baseline ML bằng notebook song ngữ Nga-Việt' thành năng lực dùng được: hiểu khái niệm, làm bài, chạy mô phỏng và tạo sản phẩm kiểm chứng.",
+      "whyImportant": [
+        "Đây là mắt xích của môn AI/ML trong lộ trình Bauman, giúp học phần sau không bị hổng nền.",
+        "Nội dung liên quan trực tiếp tới workflow mô hình, metric, overfit/underfit và giải thích kết quả.",
+        "Kết quả module được dùng để Main biết nên nhắc ôn, kiểm tra hay chuyển module tiếp theo."
+      ],
+      "prerequisites": [
+        "Đọc lại mục tiêu giai đoạn và các module trước đó trong cùng môn.",
+        "Chuẩn bị công cụ: scikit-learn/PyTorch, notebook, bảng metric.",
+        "Tạo file ghi chú riêng: mục tiêu, thuật ngữ, lỗi sai, sản phẩm đầu ra."
+      ],
+      "conceptMap": [
+        "Khái niệm trung tâm của 'Baseline ML bằng notebook song ngữ Nga-Việt'.",
+        "Input cần nhận diện: dữ liệu, ký hiệu, biến, điều kiện hoặc tình huống.",
+        "Output cần tạo: kết quả tính toán, code, bảng đánh giá, sơ đồ hoặc câu trả lời học thuật.",
+        "Tiêu chí kiểm tra: đúng logic, giải thích được lý do, có bằng chứng thực hành."
+      ],
+      "studyPlan": [
+        {
+          "session": "Ca 1 · Nắm lõi",
+          "time": "60–90 phút",
+          "work": "Đọc bài nền về Baseline ML bằng notebook song ngữ Nga-Việt, ghi thuật ngữ, viết lại bằng lời của mình.",
+          "evidence": "Ghi chú 7–10 dòng + 5 thuật ngữ chính."
+        },
+        {
+          "session": "Ca 2 · Mô phỏng",
+          "time": "45–75 phút",
+          "work": "Chạy sandbox model/metric hoặc ví dụ tham số để quan sát cơ chế.",
+          "evidence": "Ảnh/chú thích kết quả mô phỏng + nhận xét."
+        },
+        {
+          "session": "Ca 3 · Bài tập",
+          "time": "60–120 phút",
+          "work": "Làm bài tập từ dễ đến trung bình, đánh dấu lỗi sai và nguyên nhân.",
+          "evidence": "notebook huấn luyện có nhận xét train-test"
+        },
+        {
+          "session": "Ca 4 · Kiểm tra nhỏ",
+          "time": "20–40 phút",
+          "work": "Tự kiểm tra nhanh, đạt ≥ 8/10 mới chuyển module kế tiếp.",
+          "evidence": "Điểm kiểm tra + danh sách mục cần ôn."
+        }
+      ],
+      "practicePlan": [
+        "Bài dễ: nhận diện khái niệm và áp dụng công thức/quy trình trực tiếp.",
+        "Bài trung bình: kết hợp 2–3 kỹ năng, giải thích từng bước.",
+        "Bài khá: xử lý tình huống có nhiễu/lỗi/điều kiện thiếu.",
+        "Bài giỏi: tự thiết kế ví dụ nhỏ hoặc mini-project liên môn."
+      ],
+      "simulationPlan": [
+        "Mô phỏng riêng: quan sát sandbox model/metric với tham số thay đổi.",
+        "Mô phỏng thực hành: nhận nhiệm vụ, chọn cách xử lý, hệ thống phản hồi đúng/sai.",
+        "Ghi lại kết quả mô phỏng để liên hệ với bài tập và kiểm tra."
+      ],
+      "assessmentPlan": {
+        "unlock": "Mức Dễ mở mặc định; Trung bình/Khá/Giỏi mở khi mức trước đạt ≥ 8/10.",
+        "rubric": [
+          "Hiểu khái niệm",
+          "Làm được bài",
+          "Giải thích được lỗi",
+          "Tạo được sản phẩm nhỏ"
+        ],
+        "pass": "Đạt module khi hoàn thành bài học chính, chạy mô phỏng, làm bài tập và kiểm tra ≥ 8/10."
+      },
+      "baumanLinks": [
+        "Liên hệ học phần Bauman/HK: GĐ2 · Dự bị Nga / STANKIN.",
+        "Liên hệ luận văn: UGV/USV, telemetry, AI hoặc hệ thống điều khiển tùy môn.",
+        "Liên hệ tiếng Nga: chuẩn bị cách trình bày khái niệm bằng câu ngắn, dễ nói."
+      ],
+      "completionCriteria": [
+        "Đã mở và đọc toàn bộ bài học trong module.",
+        "Đã chạy ít nhất 1 mô phỏng hoặc ví dụ tương tác.",
+        "Đã làm tối thiểu 3 bài tập và ghi lại lỗi sai.",
+        "Đã đạt kiểm tra nhanh ≥ 8/10 hoặc đánh dấu cần ôn."
+      ],
+      "risks": [
+        "Chỉ đọc lý thuyết nhưng không làm bài tập/mô phỏng.",
+        "Không ghi lại lỗi sai nên tuần sau quên điểm yếu.",
+        "Nhảy sang module mới khi chưa đạt tiêu chí ≥ 8/10."
+      ],
+      "nextStep": "Sau khi hoàn thành 'Baseline ML bằng notebook song ngữ Nga-Việt', chuyển sang module tiếp theo trong GĐ2 · Dự bị Nga / STANKIN hoặc làm bài kiểm tra mức cao hơn."
+    },
+    {
+      "id": "a_m201",
+      "stage": "m2",
+      "week": "HK2-1",
+      "title": "Phương pháp học máy trong АСОИУ",
+      "goal": "Mapping ML task vào hệ thống xử lý thông tin và điều khiển.",
+      "hours": 12,
+      "level": "Nâng cao",
+      "lessons": [
+        "a_m201_l1",
+        "a_m201_l2",
+        "a_m201_l3"
+      ],
+      "outputs": [
+        "Ghi chú module 'Phương pháp học máy trong АСОИУ' có định nghĩa, ví dụ, lỗi thường gặp.",
+        "Một sản phẩm thực hành: notebook huấn luyện có nhận xét train-test.",
+        "Một mục nhật ký học tập: đã học gì, sai gì, cần ôn gì.",
+        "Cập nhật tiến độ module và gửi phản hồi về Main."
+      ],
+      "phaseObjective": "Trong HK2 · Bauman, module này biến chủ đề 'Phương pháp học máy trong АСОИУ' thành năng lực dùng được: hiểu khái niệm, làm bài, chạy mô phỏng và tạo sản phẩm kiểm chứng.",
+      "whyImportant": [
+        "Đây là mắt xích của môn AI/ML trong lộ trình Bauman, giúp học phần sau không bị hổng nền.",
+        "Nội dung liên quan trực tiếp tới workflow mô hình, metric, overfit/underfit và giải thích kết quả.",
+        "Kết quả module được dùng để Main biết nên nhắc ôn, kiểm tra hay chuyển module tiếp theo."
+      ],
+      "prerequisites": [
+        "Đọc lại mục tiêu giai đoạn và các module trước đó trong cùng môn.",
+        "Chuẩn bị công cụ: scikit-learn/PyTorch, notebook, bảng metric.",
+        "Tạo file ghi chú riêng: mục tiêu, thuật ngữ, lỗi sai, sản phẩm đầu ra."
+      ],
+      "conceptMap": [
+        "Khái niệm trung tâm của 'Phương pháp học máy trong АСОИУ'.",
+        "Input cần nhận diện: dữ liệu, ký hiệu, biến, điều kiện hoặc tình huống.",
+        "Output cần tạo: kết quả tính toán, code, bảng đánh giá, sơ đồ hoặc câu trả lời học thuật.",
+        "Tiêu chí kiểm tra: đúng logic, giải thích được lý do, có bằng chứng thực hành."
+      ],
+      "studyPlan": [
+        {
+          "session": "Ca 1 · Nắm lõi",
+          "time": "60–90 phút",
+          "work": "Đọc bài nền về Phương pháp học máy trong АСОИУ, ghi thuật ngữ, viết lại bằng lời của mình.",
+          "evidence": "Ghi chú 7–10 dòng + 5 thuật ngữ chính."
+        },
+        {
+          "session": "Ca 2 · Mô phỏng",
+          "time": "45–75 phút",
+          "work": "Chạy sandbox model/metric hoặc ví dụ tham số để quan sát cơ chế.",
+          "evidence": "Ảnh/chú thích kết quả mô phỏng + nhận xét."
+        },
+        {
+          "session": "Ca 3 · Bài tập",
+          "time": "60–120 phút",
+          "work": "Làm bài tập từ dễ đến trung bình, đánh dấu lỗi sai và nguyên nhân.",
+          "evidence": "notebook huấn luyện có nhận xét train-test"
+        },
+        {
+          "session": "Ca 4 · Kiểm tra nhỏ",
+          "time": "20–40 phút",
+          "work": "Tự kiểm tra nhanh, đạt ≥ 8/10 mới chuyển module kế tiếp.",
+          "evidence": "Điểm kiểm tra + danh sách mục cần ôn."
+        }
+      ],
+      "practicePlan": [
+        "Bài dễ: nhận diện khái niệm và áp dụng công thức/quy trình trực tiếp.",
+        "Bài trung bình: kết hợp 2–3 kỹ năng, giải thích từng bước.",
+        "Bài khá: xử lý tình huống có nhiễu/lỗi/điều kiện thiếu.",
+        "Bài giỏi: tự thiết kế ví dụ nhỏ hoặc mini-project liên môn."
+      ],
+      "simulationPlan": [
+        "Mô phỏng riêng: quan sát sandbox model/metric với tham số thay đổi.",
+        "Mô phỏng thực hành: nhận nhiệm vụ, chọn cách xử lý, hệ thống phản hồi đúng/sai.",
+        "Ghi lại kết quả mô phỏng để liên hệ với bài tập và kiểm tra."
+      ],
+      "assessmentPlan": {
+        "unlock": "Mức Dễ mở mặc định; Trung bình/Khá/Giỏi mở khi mức trước đạt ≥ 8/10.",
+        "rubric": [
+          "Hiểu khái niệm",
+          "Làm được bài",
+          "Giải thích được lỗi",
+          "Tạo được sản phẩm nhỏ"
+        ],
+        "pass": "Đạt module khi hoàn thành bài học chính, chạy mô phỏng, làm bài tập và kiểm tra ≥ 8/10."
+      },
+      "baumanLinks": [
+        "Liên hệ học phần Bauman/HK: HK2 · Bauman.",
+        "Liên hệ luận văn: UGV/USV, telemetry, AI hoặc hệ thống điều khiển tùy môn.",
+        "Liên hệ tiếng Nga: chuẩn bị cách trình bày khái niệm bằng câu ngắn, dễ nói."
+      ],
+      "completionCriteria": [
+        "Đã mở và đọc toàn bộ bài học trong module.",
+        "Đã chạy ít nhất 1 mô phỏng hoặc ví dụ tương tác.",
+        "Đã làm tối thiểu 3 bài tập và ghi lại lỗi sai.",
+        "Đã đạt kiểm tra nhanh ≥ 8/10 hoặc đánh dấu cần ôn."
+      ],
+      "risks": [
+        "Chỉ đọc lý thuyết nhưng không làm bài tập/mô phỏng.",
+        "Không ghi lại lỗi sai nên tuần sau quên điểm yếu.",
+        "Nhảy sang module mới khi chưa đạt tiêu chí ≥ 8/10."
+      ],
+      "nextStep": "Sau khi hoàn thành 'Phương pháp học máy trong АСОИУ', chuyển sang module tiếp theo trong HK2 · Bauman hoặc làm bài kiểm tra mức cao hơn."
+    },
+    {
+      "id": "a_m202",
+      "stage": "m2",
+      "week": "HK2-2",
+      "title": "Phát triển hệ thống neural",
+      "goal": "MLP/CNN concept, training loop, experiment design.",
+      "hours": 12,
+      "level": "Nâng cao",
+      "lessons": [
+        "a_m202_l1",
+        "a_m202_l2",
+        "a_m202_l3"
+      ],
+      "outputs": [
+        "Ghi chú module 'Phát triển hệ thống neural' có định nghĩa, ví dụ, lỗi thường gặp.",
+        "Một sản phẩm thực hành: notebook huấn luyện có nhận xét train-test.",
+        "Một mục nhật ký học tập: đã học gì, sai gì, cần ôn gì.",
+        "Cập nhật tiến độ module và gửi phản hồi về Main."
+      ],
+      "phaseObjective": "Trong HK2 · Bauman, module này biến chủ đề 'Phát triển hệ thống neural' thành năng lực dùng được: hiểu khái niệm, làm bài, chạy mô phỏng và tạo sản phẩm kiểm chứng.",
+      "whyImportant": [
+        "Đây là mắt xích của môn AI/ML trong lộ trình Bauman, giúp học phần sau không bị hổng nền.",
+        "Nội dung liên quan trực tiếp tới workflow mô hình, metric, overfit/underfit và giải thích kết quả.",
+        "Kết quả module được dùng để Main biết nên nhắc ôn, kiểm tra hay chuyển module tiếp theo."
+      ],
+      "prerequisites": [
+        "Đọc lại mục tiêu giai đoạn và các module trước đó trong cùng môn.",
+        "Chuẩn bị công cụ: scikit-learn/PyTorch, notebook, bảng metric.",
+        "Tạo file ghi chú riêng: mục tiêu, thuật ngữ, lỗi sai, sản phẩm đầu ra."
+      ],
+      "conceptMap": [
+        "Khái niệm trung tâm của 'Phát triển hệ thống neural'.",
+        "Input cần nhận diện: dữ liệu, ký hiệu, biến, điều kiện hoặc tình huống.",
+        "Output cần tạo: kết quả tính toán, code, bảng đánh giá, sơ đồ hoặc câu trả lời học thuật.",
+        "Tiêu chí kiểm tra: đúng logic, giải thích được lý do, có bằng chứng thực hành."
+      ],
+      "studyPlan": [
+        {
+          "session": "Ca 1 · Nắm lõi",
+          "time": "60–90 phút",
+          "work": "Đọc bài nền về Phát triển hệ thống neural, ghi thuật ngữ, viết lại bằng lời của mình.",
+          "evidence": "Ghi chú 7–10 dòng + 5 thuật ngữ chính."
+        },
+        {
+          "session": "Ca 2 · Mô phỏng",
+          "time": "45–75 phút",
+          "work": "Chạy sandbox model/metric hoặc ví dụ tham số để quan sát cơ chế.",
+          "evidence": "Ảnh/chú thích kết quả mô phỏng + nhận xét."
+        },
+        {
+          "session": "Ca 3 · Bài tập",
+          "time": "60–120 phút",
+          "work": "Làm bài tập từ dễ đến trung bình, đánh dấu lỗi sai và nguyên nhân.",
+          "evidence": "notebook huấn luyện có nhận xét train-test"
+        },
+        {
+          "session": "Ca 4 · Kiểm tra nhỏ",
+          "time": "20–40 phút",
+          "work": "Tự kiểm tra nhanh, đạt ≥ 8/10 mới chuyển module kế tiếp.",
+          "evidence": "Điểm kiểm tra + danh sách mục cần ôn."
+        }
+      ],
+      "practicePlan": [
+        "Bài dễ: nhận diện khái niệm và áp dụng công thức/quy trình trực tiếp.",
+        "Bài trung bình: kết hợp 2–3 kỹ năng, giải thích từng bước.",
+        "Bài khá: xử lý tình huống có nhiễu/lỗi/điều kiện thiếu.",
+        "Bài giỏi: tự thiết kế ví dụ nhỏ hoặc mini-project liên môn."
+      ],
+      "simulationPlan": [
+        "Mô phỏng riêng: quan sát sandbox model/metric với tham số thay đổi.",
+        "Mô phỏng thực hành: nhận nhiệm vụ, chọn cách xử lý, hệ thống phản hồi đúng/sai.",
+        "Ghi lại kết quả mô phỏng để liên hệ với bài tập và kiểm tra."
+      ],
+      "assessmentPlan": {
+        "unlock": "Mức Dễ mở mặc định; Trung bình/Khá/Giỏi mở khi mức trước đạt ≥ 8/10.",
+        "rubric": [
+          "Hiểu khái niệm",
+          "Làm được bài",
+          "Giải thích được lỗi",
+          "Tạo được sản phẩm nhỏ"
+        ],
+        "pass": "Đạt module khi hoàn thành bài học chính, chạy mô phỏng, làm bài tập và kiểm tra ≥ 8/10."
+      },
+      "baumanLinks": [
+        "Liên hệ học phần Bauman/HK: HK2 · Bauman.",
+        "Liên hệ luận văn: UGV/USV, telemetry, AI hoặc hệ thống điều khiển tùy môn.",
+        "Liên hệ tiếng Nga: chuẩn bị cách trình bày khái niệm bằng câu ngắn, dễ nói."
+      ],
+      "completionCriteria": [
+        "Đã mở và đọc toàn bộ bài học trong module.",
+        "Đã chạy ít nhất 1 mô phỏng hoặc ví dụ tương tác.",
+        "Đã làm tối thiểu 3 bài tập và ghi lại lỗi sai.",
+        "Đã đạt kiểm tra nhanh ≥ 8/10 hoặc đánh dấu cần ôn."
+      ],
+      "risks": [
+        "Chỉ đọc lý thuyết nhưng không làm bài tập/mô phỏng.",
+        "Không ghi lại lỗi sai nên tuần sau quên điểm yếu.",
+        "Nhảy sang module mới khi chưa đạt tiêu chí ≥ 8/10."
+      ],
+      "nextStep": "Sau khi hoàn thành 'Phát triển hệ thống neural', chuyển sang module tiếp theo trong HK2 · Bauman hoặc làm bài kiểm tra mức cao hơn."
+    },
+    {
+      "id": "a_m203",
+      "stage": "m2",
+      "week": "HK2-3",
+      "title": "So sánh mô hình và độ tin cậy dự đoán",
+      "goal": "Metric, robustness, failure cases, baseline vs neural.",
+      "hours": 10,
+      "level": "Nâng cao",
+      "lessons": [
+        "a_m203_l1",
+        "a_m203_l2",
+        "a_m203_l3"
+      ],
+      "outputs": [
+        "Ghi chú module 'So sánh mô hình và độ tin cậy dự đoán' có định nghĩa, ví dụ, lỗi thường gặp.",
+        "Một sản phẩm thực hành: notebook huấn luyện có nhận xét train-test.",
+        "Một mục nhật ký học tập: đã học gì, sai gì, cần ôn gì.",
+        "Cập nhật tiến độ module và gửi phản hồi về Main."
+      ],
+      "phaseObjective": "Trong HK2 · Bauman, module này biến chủ đề 'So sánh mô hình và độ tin cậy dự đoán' thành năng lực dùng được: hiểu khái niệm, làm bài, chạy mô phỏng và tạo sản phẩm kiểm chứng.",
+      "whyImportant": [
+        "Đây là mắt xích của môn AI/ML trong lộ trình Bauman, giúp học phần sau không bị hổng nền.",
+        "Nội dung liên quan trực tiếp tới workflow mô hình, metric, overfit/underfit và giải thích kết quả.",
+        "Kết quả module được dùng để Main biết nên nhắc ôn, kiểm tra hay chuyển module tiếp theo."
+      ],
+      "prerequisites": [
+        "Đọc lại mục tiêu giai đoạn và các module trước đó trong cùng môn.",
+        "Chuẩn bị công cụ: scikit-learn/PyTorch, notebook, bảng metric.",
+        "Tạo file ghi chú riêng: mục tiêu, thuật ngữ, lỗi sai, sản phẩm đầu ra."
+      ],
+      "conceptMap": [
+        "Khái niệm trung tâm của 'So sánh mô hình và độ tin cậy dự đoán'.",
+        "Input cần nhận diện: dữ liệu, ký hiệu, biến, điều kiện hoặc tình huống.",
+        "Output cần tạo: kết quả tính toán, code, bảng đánh giá, sơ đồ hoặc câu trả lời học thuật.",
+        "Tiêu chí kiểm tra: đúng logic, giải thích được lý do, có bằng chứng thực hành."
+      ],
+      "studyPlan": [
+        {
+          "session": "Ca 1 · Nắm lõi",
+          "time": "60–90 phút",
+          "work": "Đọc bài nền về So sánh mô hình và độ tin cậy dự đoán, ghi thuật ngữ, viết lại bằng lời của mình.",
+          "evidence": "Ghi chú 7–10 dòng + 5 thuật ngữ chính."
+        },
+        {
+          "session": "Ca 2 · Mô phỏng",
+          "time": "45–75 phút",
+          "work": "Chạy sandbox model/metric hoặc ví dụ tham số để quan sát cơ chế.",
+          "evidence": "Ảnh/chú thích kết quả mô phỏng + nhận xét."
+        },
+        {
+          "session": "Ca 3 · Bài tập",
+          "time": "60–120 phút",
+          "work": "Làm bài tập từ dễ đến trung bình, đánh dấu lỗi sai và nguyên nhân.",
+          "evidence": "notebook huấn luyện có nhận xét train-test"
+        },
+        {
+          "session": "Ca 4 · Kiểm tra nhỏ",
+          "time": "20–40 phút",
+          "work": "Tự kiểm tra nhanh, đạt ≥ 8/10 mới chuyển module kế tiếp.",
+          "evidence": "Điểm kiểm tra + danh sách mục cần ôn."
+        }
+      ],
+      "practicePlan": [
+        "Bài dễ: nhận diện khái niệm và áp dụng công thức/quy trình trực tiếp.",
+        "Bài trung bình: kết hợp 2–3 kỹ năng, giải thích từng bước.",
+        "Bài khá: xử lý tình huống có nhiễu/lỗi/điều kiện thiếu.",
+        "Bài giỏi: tự thiết kế ví dụ nhỏ hoặc mini-project liên môn."
+      ],
+      "simulationPlan": [
+        "Mô phỏng riêng: quan sát sandbox model/metric với tham số thay đổi.",
+        "Mô phỏng thực hành: nhận nhiệm vụ, chọn cách xử lý, hệ thống phản hồi đúng/sai.",
+        "Ghi lại kết quả mô phỏng để liên hệ với bài tập và kiểm tra."
+      ],
+      "assessmentPlan": {
+        "unlock": "Mức Dễ mở mặc định; Trung bình/Khá/Giỏi mở khi mức trước đạt ≥ 8/10.",
+        "rubric": [
+          "Hiểu khái niệm",
+          "Làm được bài",
+          "Giải thích được lỗi",
+          "Tạo được sản phẩm nhỏ"
+        ],
+        "pass": "Đạt module khi hoàn thành bài học chính, chạy mô phỏng, làm bài tập và kiểm tra ≥ 8/10."
+      },
+      "baumanLinks": [
+        "Liên hệ học phần Bauman/HK: HK2 · Bauman.",
+        "Liên hệ luận văn: UGV/USV, telemetry, AI hoặc hệ thống điều khiển tùy môn.",
+        "Liên hệ tiếng Nga: chuẩn bị cách trình bày khái niệm bằng câu ngắn, dễ nói."
+      ],
+      "completionCriteria": [
+        "Đã mở và đọc toàn bộ bài học trong module.",
+        "Đã chạy ít nhất 1 mô phỏng hoặc ví dụ tương tác.",
+        "Đã làm tối thiểu 3 bài tập và ghi lại lỗi sai.",
+        "Đã đạt kiểm tra nhanh ≥ 8/10 hoặc đánh dấu cần ôn."
+      ],
+      "risks": [
+        "Chỉ đọc lý thuyết nhưng không làm bài tập/mô phỏng.",
+        "Không ghi lại lỗi sai nên tuần sau quên điểm yếu.",
+        "Nhảy sang module mới khi chưa đạt tiêu chí ≥ 8/10."
+      ],
+      "nextStep": "Sau khi hoàn thành 'So sánh mô hình và độ tin cậy dự đoán', chuyển sang module tiếp theo trong HK2 · Bauman hoặc làm bài kiểm tra mức cao hơn."
+    },
+    {
+      "id": "a_m301",
+      "stage": "m3",
+      "week": "HK3-1",
+      "title": "AI cho phân tích kinh doanh và dữ liệu vận hành",
+      "goal": "Forecasting/analytics workflow, dashboard metric, decision support.",
+      "hours": 10,
+      "level": "Nâng cao",
+      "lessons": [
+        "a_m301_l1",
+        "a_m301_l2",
+        "a_m301_l3"
+      ],
+      "outputs": [
+        "Ghi chú module 'AI cho phân tích kinh doanh và dữ liệu vận hành' có định nghĩa, ví dụ, lỗi thường gặp.",
+        "Một sản phẩm thực hành: notebook huấn luyện có nhận xét train-test.",
+        "Một mục nhật ký học tập: đã học gì, sai gì, cần ôn gì.",
+        "Cập nhật tiến độ module và gửi phản hồi về Main."
+      ],
+      "phaseObjective": "Trong HK3 · Bauman, module này biến chủ đề 'AI cho phân tích kinh doanh và dữ liệu vận hành' thành năng lực dùng được: hiểu khái niệm, làm bài, chạy mô phỏng và tạo sản phẩm kiểm chứng.",
+      "whyImportant": [
+        "Đây là mắt xích của môn AI/ML trong lộ trình Bauman, giúp học phần sau không bị hổng nền.",
+        "Nội dung liên quan trực tiếp tới workflow mô hình, metric, overfit/underfit và giải thích kết quả.",
+        "Kết quả module được dùng để Main biết nên nhắc ôn, kiểm tra hay chuyển module tiếp theo."
+      ],
+      "prerequisites": [
+        "Đọc lại mục tiêu giai đoạn và các module trước đó trong cùng môn.",
+        "Chuẩn bị công cụ: scikit-learn/PyTorch, notebook, bảng metric.",
+        "Tạo file ghi chú riêng: mục tiêu, thuật ngữ, lỗi sai, sản phẩm đầu ra."
+      ],
+      "conceptMap": [
+        "Khái niệm trung tâm của 'AI cho phân tích kinh doanh và dữ liệu vận hành'.",
+        "Input cần nhận diện: dữ liệu, ký hiệu, biến, điều kiện hoặc tình huống.",
+        "Output cần tạo: kết quả tính toán, code, bảng đánh giá, sơ đồ hoặc câu trả lời học thuật.",
+        "Tiêu chí kiểm tra: đúng logic, giải thích được lý do, có bằng chứng thực hành."
+      ],
+      "studyPlan": [
+        {
+          "session": "Ca 1 · Nắm lõi",
+          "time": "60–90 phút",
+          "work": "Đọc bài nền về AI cho phân tích kinh doanh và dữ liệu vận hành, ghi thuật ngữ, viết lại bằng lời của mình.",
+          "evidence": "Ghi chú 7–10 dòng + 5 thuật ngữ chính."
+        },
+        {
+          "session": "Ca 2 · Mô phỏng",
+          "time": "45–75 phút",
+          "work": "Chạy sandbox model/metric hoặc ví dụ tham số để quan sát cơ chế.",
+          "evidence": "Ảnh/chú thích kết quả mô phỏng + nhận xét."
+        },
+        {
+          "session": "Ca 3 · Bài tập",
+          "time": "60–120 phút",
+          "work": "Làm bài tập từ dễ đến trung bình, đánh dấu lỗi sai và nguyên nhân.",
+          "evidence": "notebook huấn luyện có nhận xét train-test"
+        },
+        {
+          "session": "Ca 4 · Kiểm tra nhỏ",
+          "time": "20–40 phút",
+          "work": "Tự kiểm tra nhanh, đạt ≥ 8/10 mới chuyển module kế tiếp.",
+          "evidence": "Điểm kiểm tra + danh sách mục cần ôn."
+        }
+      ],
+      "practicePlan": [
+        "Bài dễ: nhận diện khái niệm và áp dụng công thức/quy trình trực tiếp.",
+        "Bài trung bình: kết hợp 2–3 kỹ năng, giải thích từng bước.",
+        "Bài khá: xử lý tình huống có nhiễu/lỗi/điều kiện thiếu.",
+        "Bài giỏi: tự thiết kế ví dụ nhỏ hoặc mini-project liên môn."
+      ],
+      "simulationPlan": [
+        "Mô phỏng riêng: quan sát sandbox model/metric với tham số thay đổi.",
+        "Mô phỏng thực hành: nhận nhiệm vụ, chọn cách xử lý, hệ thống phản hồi đúng/sai.",
+        "Ghi lại kết quả mô phỏng để liên hệ với bài tập và kiểm tra."
+      ],
+      "assessmentPlan": {
+        "unlock": "Mức Dễ mở mặc định; Trung bình/Khá/Giỏi mở khi mức trước đạt ≥ 8/10.",
+        "rubric": [
+          "Hiểu khái niệm",
+          "Làm được bài",
+          "Giải thích được lỗi",
+          "Tạo được sản phẩm nhỏ"
+        ],
+        "pass": "Đạt module khi hoàn thành bài học chính, chạy mô phỏng, làm bài tập và kiểm tra ≥ 8/10."
+      },
+      "baumanLinks": [
+        "Liên hệ học phần Bauman/HK: HK3 · Bauman.",
+        "Liên hệ luận văn: UGV/USV, telemetry, AI hoặc hệ thống điều khiển tùy môn.",
+        "Liên hệ tiếng Nga: chuẩn bị cách trình bày khái niệm bằng câu ngắn, dễ nói."
+      ],
+      "completionCriteria": [
+        "Đã mở và đọc toàn bộ bài học trong module.",
+        "Đã chạy ít nhất 1 mô phỏng hoặc ví dụ tương tác.",
+        "Đã làm tối thiểu 3 bài tập và ghi lại lỗi sai.",
+        "Đã đạt kiểm tra nhanh ≥ 8/10 hoặc đánh dấu cần ôn."
+      ],
+      "risks": [
+        "Chỉ đọc lý thuyết nhưng không làm bài tập/mô phỏng.",
+        "Không ghi lại lỗi sai nên tuần sau quên điểm yếu.",
+        "Nhảy sang module mới khi chưa đạt tiêu chí ≥ 8/10."
+      ],
+      "nextStep": "Sau khi hoàn thành 'AI cho phân tích kinh doanh và dữ liệu vận hành', chuyển sang module tiếp theo trong HK3 · Bauman hoặc làm bài kiểm tra mức cao hơn."
+    },
+    {
+      "id": "a_m302",
+      "stage": "m3",
+      "week": "HK3-2",
+      "title": "Thực nghiệm AI cho đề tài НИР/ВКР cho luận văn: ablation, metric và báo cáo",
+      "goal": "Ablation, protocol, result table, reproducibility.",
+      "hours": 12,
+      "level": "Nâng cao",
+      "lessons": [
+        "a_m302_l1",
+        "a_m302_l2",
+        "a_m302_l3"
+      ],
+      "outputs": [
+        "Ghi chú module 'Thực nghiệm AI cho đề tài НИР/ВКР cho luận văn: ablation, metric và báo cáo' có định nghĩa, ví dụ, lỗi thường gặp.",
+        "Một sản phẩm thực hành: notebook huấn luyện có nhận xét train-test.",
+        "Một mục nhật ký học tập: đã học gì, sai gì, cần ôn gì.",
+        "Cập nhật tiến độ module và gửi phản hồi về Main."
+      ],
+      "phaseObjective": "Trong HK3 · Bauman, module này biến chủ đề 'Thực nghiệm AI cho đề tài НИР/ВКР cho luận văn: ablation, metric và báo cáo' thành năng lực dùng được: hiểu khái niệm, làm bài, chạy mô phỏng và tạo sản phẩm kiểm chứng.",
+      "whyImportant": [
+        "Đây là mắt xích của môn AI/ML trong lộ trình Bauman, giúp học phần sau không bị hổng nền.",
+        "Nội dung liên quan trực tiếp tới workflow mô hình, metric, overfit/underfit và giải thích kết quả.",
+        "Kết quả module được dùng để Main biết nên nhắc ôn, kiểm tra hay chuyển module tiếp theo."
+      ],
+      "prerequisites": [
+        "Đọc lại mục tiêu giai đoạn và các module trước đó trong cùng môn.",
+        "Chuẩn bị công cụ: scikit-learn/PyTorch, notebook, bảng metric.",
+        "Tạo file ghi chú riêng: mục tiêu, thuật ngữ, lỗi sai, sản phẩm đầu ra."
+      ],
+      "conceptMap": [
+        "Khái niệm trung tâm của 'Thực nghiệm AI cho đề tài НИР/ВКР cho luận văn: ablation, metric và báo cáo'.",
+        "Input cần nhận diện: dữ liệu, ký hiệu, biến, điều kiện hoặc tình huống.",
+        "Output cần tạo: kết quả tính toán, code, bảng đánh giá, sơ đồ hoặc câu trả lời học thuật.",
+        "Tiêu chí kiểm tra: đúng logic, giải thích được lý do, có bằng chứng thực hành."
+      ],
+      "studyPlan": [
+        {
+          "session": "Ca 1 · Nắm lõi",
+          "time": "60–90 phút",
+          "work": "Đọc bài nền về Thực nghiệm AI cho đề tài НИР/ВКР cho luận văn: ablation, metric và báo cáo, ghi thuật ngữ, viết lại bằng lời của mình.",
+          "evidence": "Ghi chú 7–10 dòng + 5 thuật ngữ chính."
+        },
+        {
+          "session": "Ca 2 · Mô phỏng",
+          "time": "45–75 phút",
+          "work": "Chạy sandbox model/metric hoặc ví dụ tham số để quan sát cơ chế.",
+          "evidence": "Ảnh/chú thích kết quả mô phỏng + nhận xét."
+        },
+        {
+          "session": "Ca 3 · Bài tập",
+          "time": "60–120 phút",
+          "work": "Làm bài tập từ dễ đến trung bình, đánh dấu lỗi sai và nguyên nhân.",
+          "evidence": "notebook huấn luyện có nhận xét train-test"
+        },
+        {
+          "session": "Ca 4 · Kiểm tra nhỏ",
+          "time": "20–40 phút",
+          "work": "Tự kiểm tra nhanh, đạt ≥ 8/10 mới chuyển module kế tiếp.",
+          "evidence": "Điểm kiểm tra + danh sách mục cần ôn."
+        }
+      ],
+      "practicePlan": [
+        "Bài dễ: nhận diện khái niệm và áp dụng công thức/quy trình trực tiếp.",
+        "Bài trung bình: kết hợp 2–3 kỹ năng, giải thích từng bước.",
+        "Bài khá: xử lý tình huống có nhiễu/lỗi/điều kiện thiếu.",
+        "Bài giỏi: tự thiết kế ví dụ nhỏ hoặc mini-project liên môn."
+      ],
+      "simulationPlan": [
+        "Mô phỏng riêng: quan sát sandbox model/metric với tham số thay đổi.",
+        "Mô phỏng thực hành: nhận nhiệm vụ, chọn cách xử lý, hệ thống phản hồi đúng/sai.",
+        "Ghi lại kết quả mô phỏng để liên hệ với bài tập và kiểm tra."
+      ],
+      "assessmentPlan": {
+        "unlock": "Mức Dễ mở mặc định; Trung bình/Khá/Giỏi mở khi mức trước đạt ≥ 8/10.",
+        "rubric": [
+          "Hiểu khái niệm",
+          "Làm được bài",
+          "Giải thích được lỗi",
+          "Tạo được sản phẩm nhỏ"
+        ],
+        "pass": "Đạt module khi hoàn thành bài học chính, chạy mô phỏng, làm bài tập và kiểm tra ≥ 8/10."
+      },
+      "baumanLinks": [
+        "Liên hệ học phần Bauman/HK: HK3 · Bauman.",
+        "Liên hệ luận văn: UGV/USV, telemetry, AI hoặc hệ thống điều khiển tùy môn.",
+        "Liên hệ tiếng Nga: chuẩn bị cách trình bày khái niệm bằng câu ngắn, dễ nói."
+      ],
+      "completionCriteria": [
+        "Đã mở và đọc toàn bộ bài học trong module.",
+        "Đã chạy ít nhất 1 mô phỏng hoặc ví dụ tương tác.",
+        "Đã làm tối thiểu 3 bài tập và ghi lại lỗi sai.",
+        "Đã đạt kiểm tra nhanh ≥ 8/10 hoặc đánh dấu cần ôn."
+      ],
+      "risks": [
+        "Chỉ đọc lý thuyết nhưng không làm bài tập/mô phỏng.",
+        "Không ghi lại lỗi sai nên tuần sau quên điểm yếu.",
+        "Nhảy sang module mới khi chưa đạt tiêu chí ≥ 8/10."
+      ],
+      "nextStep": "Sau khi hoàn thành 'Thực nghiệm AI cho đề tài НИР/ВКР cho luận văn: ablation, metric và báo cáo', chuyển sang module tiếp theo trong HK3 · Bauman hoặc làm bài kiểm tra mức cao hơn."
+    },
+    {
+      "id": "a_m401",
+      "stage": "m4",
+      "week": "HK4-1",
+      "title": "Mivar, logic AI và biểu diễn tri thức",
+      "goal": "Rule-based reasoning, logic network, hybrid decision layer.",
+      "hours": 10,
+      "level": "Nâng cao",
+      "lessons": [
+        "a_m401_l1",
+        "a_m401_l2",
+        "a_m401_l3"
+      ],
+      "outputs": [
+        "Ghi chú module 'Mivar, logic AI và biểu diễn tri thức' có định nghĩa, ví dụ, lỗi thường gặp.",
+        "Một sản phẩm thực hành: notebook huấn luyện có nhận xét train-test.",
+        "Một mục nhật ký học tập: đã học gì, sai gì, cần ôn gì.",
+        "Cập nhật tiến độ module và gửi phản hồi về Main."
+      ],
+      "phaseObjective": "Trong HK4 · Tốt nghiệp, module này biến chủ đề 'Mivar, logic AI và biểu diễn tri thức' thành năng lực dùng được: hiểu khái niệm, làm bài, chạy mô phỏng và tạo sản phẩm kiểm chứng.",
+      "whyImportant": [
+        "Đây là mắt xích của môn AI/ML trong lộ trình Bauman, giúp học phần sau không bị hổng nền.",
+        "Nội dung liên quan trực tiếp tới workflow mô hình, metric, overfit/underfit và giải thích kết quả.",
+        "Kết quả module được dùng để Main biết nên nhắc ôn, kiểm tra hay chuyển module tiếp theo."
+      ],
+      "prerequisites": [
+        "Đọc lại mục tiêu giai đoạn và các module trước đó trong cùng môn.",
+        "Chuẩn bị công cụ: scikit-learn/PyTorch, notebook, bảng metric.",
+        "Tạo file ghi chú riêng: mục tiêu, thuật ngữ, lỗi sai, sản phẩm đầu ra."
+      ],
+      "conceptMap": [
+        "Khái niệm trung tâm của 'Mivar, logic AI và biểu diễn tri thức'.",
+        "Input cần nhận diện: dữ liệu, ký hiệu, biến, điều kiện hoặc tình huống.",
+        "Output cần tạo: kết quả tính toán, code, bảng đánh giá, sơ đồ hoặc câu trả lời học thuật.",
+        "Tiêu chí kiểm tra: đúng logic, giải thích được lý do, có bằng chứng thực hành."
+      ],
+      "studyPlan": [
+        {
+          "session": "Ca 1 · Nắm lõi",
+          "time": "60–90 phút",
+          "work": "Đọc bài nền về Mivar, logic AI và biểu diễn tri thức, ghi thuật ngữ, viết lại bằng lời của mình.",
+          "evidence": "Ghi chú 7–10 dòng + 5 thuật ngữ chính."
+        },
+        {
+          "session": "Ca 2 · Mô phỏng",
+          "time": "45–75 phút",
+          "work": "Chạy sandbox model/metric hoặc ví dụ tham số để quan sát cơ chế.",
+          "evidence": "Ảnh/chú thích kết quả mô phỏng + nhận xét."
+        },
+        {
+          "session": "Ca 3 · Bài tập",
+          "time": "60–120 phút",
+          "work": "Làm bài tập từ dễ đến trung bình, đánh dấu lỗi sai và nguyên nhân.",
+          "evidence": "notebook huấn luyện có nhận xét train-test"
+        },
+        {
+          "session": "Ca 4 · Kiểm tra nhỏ",
+          "time": "20–40 phút",
+          "work": "Tự kiểm tra nhanh, đạt ≥ 8/10 mới chuyển module kế tiếp.",
+          "evidence": "Điểm kiểm tra + danh sách mục cần ôn."
+        }
+      ],
+      "practicePlan": [
+        "Bài dễ: nhận diện khái niệm và áp dụng công thức/quy trình trực tiếp.",
+        "Bài trung bình: kết hợp 2–3 kỹ năng, giải thích từng bước.",
+        "Bài khá: xử lý tình huống có nhiễu/lỗi/điều kiện thiếu.",
+        "Bài giỏi: tự thiết kế ví dụ nhỏ hoặc mini-project liên môn."
+      ],
+      "simulationPlan": [
+        "Mô phỏng riêng: quan sát sandbox model/metric với tham số thay đổi.",
+        "Mô phỏng thực hành: nhận nhiệm vụ, chọn cách xử lý, hệ thống phản hồi đúng/sai.",
+        "Ghi lại kết quả mô phỏng để liên hệ với bài tập và kiểm tra."
+      ],
+      "assessmentPlan": {
+        "unlock": "Mức Dễ mở mặc định; Trung bình/Khá/Giỏi mở khi mức trước đạt ≥ 8/10.",
+        "rubric": [
+          "Hiểu khái niệm",
+          "Làm được bài",
+          "Giải thích được lỗi",
+          "Tạo được sản phẩm nhỏ"
+        ],
+        "pass": "Đạt module khi hoàn thành bài học chính, chạy mô phỏng, làm bài tập và kiểm tra ≥ 8/10."
+      },
+      "baumanLinks": [
+        "Liên hệ học phần Bauman/HK: HK4 · Tốt nghiệp.",
+        "Liên hệ luận văn: UGV/USV, telemetry, AI hoặc hệ thống điều khiển tùy môn.",
+        "Liên hệ tiếng Nga: chuẩn bị cách trình bày khái niệm bằng câu ngắn, dễ nói."
+      ],
+      "completionCriteria": [
+        "Đã mở và đọc toàn bộ bài học trong module.",
+        "Đã chạy ít nhất 1 mô phỏng hoặc ví dụ tương tác.",
+        "Đã làm tối thiểu 3 bài tập và ghi lại lỗi sai.",
+        "Đã đạt kiểm tra nhanh ≥ 8/10 hoặc đánh dấu cần ôn."
+      ],
+      "risks": [
+        "Chỉ đọc lý thuyết nhưng không làm bài tập/mô phỏng.",
+        "Không ghi lại lỗi sai nên tuần sau quên điểm yếu.",
+        "Nhảy sang module mới khi chưa đạt tiêu chí ≥ 8/10."
+      ],
+      "nextStep": "Sau khi hoàn thành 'Mivar, logic AI và biểu diễn tri thức', chuyển sang module tiếp theo trong HK4 · Tốt nghiệp hoặc làm bài kiểm tra mức cao hơn."
+    },
+    {
+      "id": "a_m402",
+      "stage": "m4",
+      "week": "HK4-2",
+      "title": "Kiểm toán mô hình AI cuối khóa: dữ liệu, metric và rủi ro",
+      "goal": "Model freeze, error analysis, defense-ready explanation.",
+      "hours": 10,
+      "level": "Nâng cao",
+      "lessons": [
+        "a_m402_l1",
+        "a_m402_l2",
+        "a_m402_l3"
+      ],
+      "outputs": [
+        "Ghi chú module 'Kiểm toán mô hình AI cuối khóa: dữ liệu, metric và rủi ro' có định nghĩa, ví dụ, lỗi thường gặp.",
+        "Một sản phẩm thực hành: notebook huấn luyện có nhận xét train-test.",
+        "Một mục nhật ký học tập: đã học gì, sai gì, cần ôn gì.",
+        "Cập nhật tiến độ module và gửi phản hồi về Main."
+      ],
+      "phaseObjective": "Trong HK4 · Tốt nghiệp, module này biến chủ đề 'Kiểm toán mô hình AI cuối khóa: dữ liệu, metric và rủi ro' thành năng lực dùng được: hiểu khái niệm, làm bài, chạy mô phỏng và tạo sản phẩm kiểm chứng.",
+      "whyImportant": [
+        "Đây là mắt xích của môn AI/ML trong lộ trình Bauman, giúp học phần sau không bị hổng nền.",
+        "Nội dung liên quan trực tiếp tới workflow mô hình, metric, overfit/underfit và giải thích kết quả.",
+        "Kết quả module được dùng để Main biết nên nhắc ôn, kiểm tra hay chuyển module tiếp theo."
+      ],
+      "prerequisites": [
+        "Đọc lại mục tiêu giai đoạn và các module trước đó trong cùng môn.",
+        "Chuẩn bị công cụ: scikit-learn/PyTorch, notebook, bảng metric.",
+        "Tạo file ghi chú riêng: mục tiêu, thuật ngữ, lỗi sai, sản phẩm đầu ra."
+      ],
+      "conceptMap": [
+        "Khái niệm trung tâm của 'Kiểm toán mô hình AI cuối khóa: dữ liệu, metric và rủi ro'.",
+        "Input cần nhận diện: dữ liệu, ký hiệu, biến, điều kiện hoặc tình huống.",
+        "Output cần tạo: kết quả tính toán, code, bảng đánh giá, sơ đồ hoặc câu trả lời học thuật.",
+        "Tiêu chí kiểm tra: đúng logic, giải thích được lý do, có bằng chứng thực hành."
+      ],
+      "studyPlan": [
+        {
+          "session": "Ca 1 · Nắm lõi",
+          "time": "60–90 phút",
+          "work": "Đọc bài nền về Kiểm toán mô hình AI cuối khóa: dữ liệu, metric và rủi ro, ghi thuật ngữ, viết lại bằng lời của mình.",
+          "evidence": "Ghi chú 7–10 dòng + 5 thuật ngữ chính."
+        },
+        {
+          "session": "Ca 2 · Mô phỏng",
+          "time": "45–75 phút",
+          "work": "Chạy sandbox model/metric hoặc ví dụ tham số để quan sát cơ chế.",
+          "evidence": "Ảnh/chú thích kết quả mô phỏng + nhận xét."
+        },
+        {
+          "session": "Ca 3 · Bài tập",
+          "time": "60–120 phút",
+          "work": "Làm bài tập từ dễ đến trung bình, đánh dấu lỗi sai và nguyên nhân.",
+          "evidence": "notebook huấn luyện có nhận xét train-test"
+        },
+        {
+          "session": "Ca 4 · Kiểm tra nhỏ",
+          "time": "20–40 phút",
+          "work": "Tự kiểm tra nhanh, đạt ≥ 8/10 mới chuyển module kế tiếp.",
+          "evidence": "Điểm kiểm tra + danh sách mục cần ôn."
+        }
+      ],
+      "practicePlan": [
+        "Bài dễ: nhận diện khái niệm và áp dụng công thức/quy trình trực tiếp.",
+        "Bài trung bình: kết hợp 2–3 kỹ năng, giải thích từng bước.",
+        "Bài khá: xử lý tình huống có nhiễu/lỗi/điều kiện thiếu.",
+        "Bài giỏi: tự thiết kế ví dụ nhỏ hoặc mini-project liên môn."
+      ],
+      "simulationPlan": [
+        "Mô phỏng riêng: quan sát sandbox model/metric với tham số thay đổi.",
+        "Mô phỏng thực hành: nhận nhiệm vụ, chọn cách xử lý, hệ thống phản hồi đúng/sai.",
+        "Ghi lại kết quả mô phỏng để liên hệ với bài tập và kiểm tra."
+      ],
+      "assessmentPlan": {
+        "unlock": "Mức Dễ mở mặc định; Trung bình/Khá/Giỏi mở khi mức trước đạt ≥ 8/10.",
+        "rubric": [
+          "Hiểu khái niệm",
+          "Làm được bài",
+          "Giải thích được lỗi",
+          "Tạo được sản phẩm nhỏ"
+        ],
+        "pass": "Đạt module khi hoàn thành bài học chính, chạy mô phỏng, làm bài tập và kiểm tra ≥ 8/10."
+      },
+      "baumanLinks": [
+        "Liên hệ học phần Bauman/HK: HK4 · Tốt nghiệp.",
+        "Liên hệ luận văn: UGV/USV, telemetry, AI hoặc hệ thống điều khiển tùy môn.",
+        "Liên hệ tiếng Nga: chuẩn bị cách trình bày khái niệm bằng câu ngắn, dễ nói."
+      ],
+      "completionCriteria": [
+        "Đã mở và đọc toàn bộ bài học trong module.",
+        "Đã chạy ít nhất 1 mô phỏng hoặc ví dụ tương tác.",
+        "Đã làm tối thiểu 3 bài tập và ghi lại lỗi sai.",
+        "Đã đạt kiểm tra nhanh ≥ 8/10 hoặc đánh dấu cần ôn."
+      ],
+      "risks": [
+        "Chỉ đọc lý thuyết nhưng không làm bài tập/mô phỏng.",
+        "Không ghi lại lỗi sai nên tuần sau quên điểm yếu.",
+        "Nhảy sang module mới khi chưa đạt tiêu chí ≥ 8/10."
+      ],
+      "nextStep": "Sau khi hoàn thành 'Kiểm toán mô hình AI cuối khóa: dữ liệu, metric và rủi ro', chuyển sang module tiếp theo trong HK4 · Tốt nghiệp hoặc làm bài kiểm tra mức cao hơn."
+    }
+  ]
+}

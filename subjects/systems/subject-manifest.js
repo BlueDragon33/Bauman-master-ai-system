@@ -1,0 +1,1 @@
+window.SUBJECT_CONFIG={"id": "systems", "title": "АСОИУ/АСОИУ, hệ tự hành và độ tin cậy hệ thống", "short": "АСОИУ · UGV · Reliability", "icon": "⚙", "tagline": "Kiến trúc hệ thống xử lý thông tin và điều khiển, robot tự hành, reliability và lifecycle.", "formulaLabel": "Mẫu / Công thức / Checklist"};

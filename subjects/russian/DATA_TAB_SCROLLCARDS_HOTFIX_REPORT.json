@@ -1,0 +1,22 @@
+{
+  "name": "Russian Bauman Data Tab Scrollcards Hotfix",
+  "version": "DATA_TAB_SCROLLCARDS_HOTFIX",
+  "status": "completed_with_limitations",
+  "fixed": [
+    "Thay bố cục tab Dữ liệu từ cây trái + panel phải sang dạng thẻ nguồn dữ liệu có cuộn riêng.",
+    "Loại bỏ aside bên trái trong renderStorage để tránh bị ẩn/khuyết nút khi chiều cao màn hình nhỏ.",
+    "Tất cả nguồn dữ liệu, gồm dialogue-bauman-az, deep-speaking-bauman và speaking-link-index, hiển thị bằng thẻ dù chưa lazy-load.",
+    "Panel chi tiết nguồn có vùng preview cuộn riêng, không ép nội dung làm mất nút thao tác.",
+    "Bổ sung CSS chống tràn cho thẻ nguồn, trạng thái, mô tả, file path và record preview."
+  ],
+  "checks": {
+    "node_syntax_core_js": "passed",
+    "json_parse_data_folder": "passed",
+    "renderStorage_vm": "passed",
+    "storage_old_aside_removed": "passed",
+    "storage_scroll_card_mode_present": "passed",
+    "lazy_sources_visible_without_loading": "passed",
+    "live_server_gui_test": "not_run_in_sandbox"
+  },
+  "important_note": "Môi trường sandbox không chạy được Live Server GUI thực tế như máy người dùng. Đã kiểm tra cú pháp, JSON và renderStorage bằng Node VM. Cần người dùng mở bằng Live Server để nhìn UI thật."
+}

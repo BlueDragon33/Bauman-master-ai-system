@@ -1,0 +1,34 @@
+[
+  {
+    "id": "f1",
+    "group": "mẫu/công thức",
+    "name": "Control loop",
+    "formula": "sensor → estimator → planner → controller → actuator",
+    "meaning": "Vòng điều khiển hệ tự hành.",
+    "example": "Dùng cho UGV/USV."
+  },
+  {
+    "id": "f2",
+    "group": "mẫu/công thức",
+    "name": "FMEA RPN",
+    "formula": "RPN=S×O×D",
+    "meaning": "Ưu tiên rủi ro.",
+    "example": "Bảng failure mode."
+  },
+  {
+    "id": "f3",
+    "group": "mẫu/công thức",
+    "name": "Reliability",
+    "formula": "R(t)=P(T>t)",
+    "meaning": "Khái niệm xác suất hệ thống sống đến t.",
+    "example": "Mô hình độ tin cậy và trạng thái hỏng."
+  },
+  {
+    "id": "f4",
+    "group": "mẫu/công thức",
+    "name": "Requirement pattern",
+    "formula": "System shall ... under ... with ...",
+    "meaning": "Mẫu yêu cầu hệ thống.",
+    "example": "Proposal/ВКР."
+  }
+]

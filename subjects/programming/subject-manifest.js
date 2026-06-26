@@ -1,0 +1,218 @@
+window.SUBJECT_MANIFEST = {
+  "id": "programming",
+  "title": "Python, CSDL và kỹ nghệ phần mềm Bauman · INFO Clean Render",
+  "entry": "subjects/programming/index.html",
+  "editor": "subjects/programming/editor.html",
+  "schema": "subject-v7-clean",
+  "core": {
+    "source": "A3 Programming shell",
+    "themeBase": "assets/programming.css",
+    "cleaned": "removed duplicate template folder and stale subject labels",
+    "rendererClean": "same policy as A2_Math_Bauman_Elearning_INFO: metadata hidden from slide body and presentation"
+  },
+  "tabs": [
+    "overview",
+    "learning",
+    "dialogue",
+    "writing",
+    "media",
+    "vocab",
+    "grammar",
+    "mindmap",
+    "storage"
+  ],
+  "data": {
+    "lessons": 48,
+    "exercises": 144,
+    "tests": 384,
+    "syntaxWorkflows": 48,
+    "syntaxCards": 80,
+    "oralDefense": 48,
+    "labReports": 48,
+    "simulations": 96,
+    "applicationCases": 48,
+    "deepDefenseCases": 48,
+    "metadataPolicy": "metadata kept only in hidden/internal fields; not rendered in lesson/presentation body"
+  },
+  "release": "INFO Clean Render · Math INFO renderer policy applied",
+  "focus": "Ẩn metadata/tags/keywords khỏi giáo trình và trình chiếu; giữ khung UX/UI như file Toán INFO mới sửa.",
+  "bridge": {
+    "protocol": "BAUMAN_PLANNING_BRIDGE_V3_ROUTE_CARDS"
+  },
+  "version": "Programming Bauman Clean V2",
+  "coreVersion": "Shared Bauman UX shell · clean programming identity",
+  "bridgeProtocol": "BAUMAN_PLANNING_BRIDGE_V3_ROUTE_CARDS",
+  "name": "Programming Bauman · Clean Roadmap",
+  "ui": {
+    "coreLabel": "PROGRAMMING BAUMAN · CLEAN ROADMAP"
+  },
+  "updated": "2026-06-13",
+  "package": "A3_Programming_Bauman_Elearning_VIP_Clean",
+  "paths": {
+    "assets": "assets/",
+    "data": "data/",
+    "docs": "docs/",
+    "coreJs": "assets/core.js",
+    "coreCss": "assets/core.css",
+    "themeCss": "assets/programming.css",
+    "subjectJs": "assets/programming.js",
+    "adapterJs": "assets/subject-adapter.js",
+    "planningBridgeJs": "assets/planning-bridge.js"
+  },
+  "dataFiles": [
+    {
+      "id": "curriculum",
+      "label": "curriculum",
+      "path": "data/curriculum.json",
+      "required": true
+    },
+    {
+      "id": "lessons",
+      "label": "lessons",
+      "path": "data/lessons.json",
+      "required": true
+    },
+    {
+      "id": "grammar",
+      "label": "workflow-cú-pháp",
+      "path": "data/grammar.json",
+      "required": true
+    },
+    {
+      "id": "grammar-path",
+      "label": "lộ trình workflow",
+      "path": "data/grammar-path.json",
+      "required": true
+    },
+    {
+      "id": "vocab",
+      "label": "vocab",
+      "path": "data/vocab.json",
+      "required": true
+    },
+    {
+      "id": "mindmap",
+      "label": "mindmap",
+      "path": "data/mindmap.json",
+      "required": true
+    },
+    {
+      "id": "exercises",
+      "label": "exercises",
+      "path": "data/exercises.json",
+      "required": true
+    },
+    {
+      "id": "tests",
+      "label": "tests",
+      "path": "data/tests.json",
+      "required": true
+    },
+    {
+      "id": "simulations",
+      "label": "mô phỏng lab",
+      "path": "data/simulations.json",
+      "required": true
+    },
+    {
+      "id": "speaking",
+      "label": "vấn đáp giáo sư",
+      "path": "data/speaking.json",
+      "required": true
+    },
+    {
+      "id": "handwriting",
+      "label": "ký hiệu/lệnh",
+      "path": "data/handwriting.json",
+      "required": true
+    },
+    {
+      "id": "writing",
+      "label": "báo cáo lab",
+      "path": "data/writing.json",
+      "required": true
+    },
+    {
+      "id": "videos",
+      "label": "videos",
+      "path": "data/videos.json",
+      "required": true
+    },
+    {
+      "id": "knowledge-index",
+      "label": "knowledge-index",
+      "path": "data/knowledge-index.json",
+      "required": true
+    }
+  ],
+  "externalDataFiles": [
+    {
+      "id": "dialogue-bauman-az",
+      "path": "data/dialogue-bauman-az.json",
+      "required": true,
+      "lazy": false
+    },
+    {
+      "id": "deep-speaking-bauman",
+      "path": "data/deep-speaking-bauman.json",
+      "required": true,
+      "lazy": false
+    },
+    {
+      "id": "speaking-link-index",
+      "path": "data/speaking-link-index.json",
+      "required": true,
+      "lazy": false
+    }
+  ],
+  "capabilities": {
+    "overview": true,
+    "learningTheory": true,
+    "learningExercises": true,
+    "formulaCards": true,
+    "writingPractice": false,
+    "videoSimulation": true,
+    "storageTree": true,
+    "jsonImportExport": true,
+    "mainPlanningBridge": true,
+    "standaloneFallback": true,
+    "lazyDataLoading": true,
+    "professorOralDefense": true,
+    "applicationCases": true,
+    "parameterSimulation": true,
+    "programmingOralDefense": true,
+    "syntaxCards": true,
+    "softwareLab": true
+  },
+  "routeMapping": {
+    "mainSubjectId": "programming",
+    "stages": {
+      "vn": "GĐ1 · Việt Nam: Python, SQL, Git và notebook thực nghiệm",
+      "prep": "GĐ2 · Dự bị Nga/STANKIN: tin học, thuật ngữ và repo song ngữ",
+      "hk1": "HK1 · Bauman: OOP cho АСОИУ, CSDL ML và kỹ nghệ phần mềm",
+      "hk2": "HK2 · Bauman: pipeline ML, API, kiểm thử và tái lập thí nghiệm",
+      "hk3": "HK3 · НИР: phần mềm dữ liệu, telemetry và experiment tracking",
+      "hk4": "HK4 · ВКР: khóa mã nguồn, demo, tài liệu và bảo vệ"
+    },
+    "defaultStage": "vn",
+    "prioritySkills": [
+      "theory",
+      "exercises",
+      "formula",
+      "simulation",
+      "proof",
+      "presentation",
+      "test"
+    ]
+  },
+  "qa": {
+    "templateDuplicateRemoved": true,
+    "requiredDataFilesChecked": true,
+    "staleLabelsCleaned": "legacy subject/version labels cleaned",
+    "runtimePathScan": "runtime uses only subjects/programming relative paths",
+    "learningIntegrity": "lessons, exercises, tests, simulations, oral defense and data manager remain available."
+  },
+  "notes": "Bản này ưu tiên gọn, sạch và dễ tiếp tục nhân bản sang môn kế tiếp; không thay đổi bố cục UX/UI lõi.",
+  "description": "Module Programming bám lộ trình Main: Python, SQL, Git, OOP, CSDL ML, pipeline, kiểm thử, Docker, tài liệu kỹ thuật và repo nghiên cứu.",
+  "packageProtocol": "PROGRAMMING_BAUMAN_CLEAN_V2"
+};

@@ -1,0 +1,252 @@
+{
+  "meta": {
+    "subjectId": "systems",
+    "title": "АСОИУ/АСОИУ, hệ tự hành và độ tin cậy hệ thống",
+    "version": "simulation-v1",
+    "description": "Tách riêng mô phỏng quan sát và mô phỏng thực hành."
+  },
+  "observation": [
+    {
+      "id": "systems_prepare_obs_1",
+      "stage": "prepare",
+      "type": "mô phỏng riêng",
+      "title": "GĐ1 · Node–Sensor–Controller",
+      "goal": "Quan sát trạng thái hệ thống АСОИУ khi sensor, node hoặc kênh truyền thay đổi.",
+      "scenario": "Bật/tắt sensor, thay đổi độ tin cậy, delay, lỗi node và xem hệ thống phản ứng.",
+      "parameters": [
+        "delay",
+        "độ tin cậy sensor",
+        "mất gói",
+        "trạng thái node",
+        "mức rủi ro"
+      ],
+      "outputs": [
+        "sơ đồ trạng thái",
+        "cảnh báo lỗi",
+        "đề xuất fallback"
+      ]
+    },
+    {
+      "id": "systems_preparatory_obs_1",
+      "stage": "preparatory",
+      "type": "mô phỏng riêng",
+      "title": "GĐ2 · Node–Sensor–Controller",
+      "goal": "Quan sát trạng thái hệ thống АСОИУ khi sensor, node hoặc kênh truyền thay đổi.",
+      "scenario": "Bật/tắt sensor, thay đổi độ tin cậy, delay, lỗi node và xem hệ thống phản ứng.",
+      "parameters": [
+        "delay",
+        "độ tin cậy sensor",
+        "mất gói",
+        "trạng thái node",
+        "mức rủi ro"
+      ],
+      "outputs": [
+        "sơ đồ trạng thái",
+        "cảnh báo lỗi",
+        "đề xuất fallback"
+      ]
+    },
+    {
+      "id": "systems_m1_obs_1",
+      "stage": "m1",
+      "type": "mô phỏng riêng",
+      "title": "HK1 · Node–Sensor–Controller",
+      "goal": "Quan sát trạng thái hệ thống АСОИУ khi sensor, node hoặc kênh truyền thay đổi.",
+      "scenario": "Bật/tắt sensor, thay đổi độ tin cậy, delay, lỗi node và xem hệ thống phản ứng.",
+      "parameters": [
+        "delay",
+        "độ tin cậy sensor",
+        "mất gói",
+        "trạng thái node",
+        "mức rủi ro"
+      ],
+      "outputs": [
+        "sơ đồ trạng thái",
+        "cảnh báo lỗi",
+        "đề xuất fallback"
+      ]
+    },
+    {
+      "id": "systems_m2_obs_1",
+      "stage": "m2",
+      "type": "mô phỏng riêng",
+      "title": "HK2 · Node–Sensor–Controller",
+      "goal": "Quan sát trạng thái hệ thống АСОИУ khi sensor, node hoặc kênh truyền thay đổi.",
+      "scenario": "Bật/tắt sensor, thay đổi độ tin cậy, delay, lỗi node và xem hệ thống phản ứng.",
+      "parameters": [
+        "delay",
+        "độ tin cậy sensor",
+        "mất gói",
+        "trạng thái node",
+        "mức rủi ro"
+      ],
+      "outputs": [
+        "sơ đồ trạng thái",
+        "cảnh báo lỗi",
+        "đề xuất fallback"
+      ]
+    },
+    {
+      "id": "systems_m3_obs_1",
+      "stage": "m3",
+      "type": "mô phỏng riêng",
+      "title": "HK3 · Node–Sensor–Controller",
+      "goal": "Quan sát trạng thái hệ thống АСОИУ khi sensor, node hoặc kênh truyền thay đổi.",
+      "scenario": "Bật/tắt sensor, thay đổi độ tin cậy, delay, lỗi node và xem hệ thống phản ứng.",
+      "parameters": [
+        "delay",
+        "độ tin cậy sensor",
+        "mất gói",
+        "trạng thái node",
+        "mức rủi ro"
+      ],
+      "outputs": [
+        "sơ đồ trạng thái",
+        "cảnh báo lỗi",
+        "đề xuất fallback"
+      ]
+    },
+    {
+      "id": "systems_m4_obs_1",
+      "stage": "m4",
+      "type": "mô phỏng riêng",
+      "title": "HK4 · Node–Sensor–Controller",
+      "goal": "Quan sát trạng thái hệ thống АСОИУ khi sensor, node hoặc kênh truyền thay đổi.",
+      "scenario": "Bật/tắt sensor, thay đổi độ tin cậy, delay, lỗi node và xem hệ thống phản ứng.",
+      "parameters": [
+        "delay",
+        "độ tin cậy sensor",
+        "mất gói",
+        "trạng thái node",
+        "mức rủi ro"
+      ],
+      "outputs": [
+        "sơ đồ trạng thái",
+        "cảnh báo lỗi",
+        "đề xuất fallback"
+      ]
+    }
+  ],
+  "practice": [
+    {
+      "id": "systems_prepare_prac_1",
+      "stage": "prepare",
+      "type": "mô phỏng thực hành",
+      "title": "GĐ1 · Xử lý sự cố hệ thống tự hành",
+      "mission": "Nhận tình huống UGV/USV có lỗi sensor hoặc lỗi quyết định, chọn cách xử lý và lập báo cáo ngắn.",
+      "steps": [
+        "đọc telemetry",
+        "xác định lỗi",
+        "chọn cơ chế dự phòng",
+        "ghi báo cáo vận hành"
+      ],
+      "rubric": [
+        "xác định đúng nguồn lỗi",
+        "ưu tiên an toàn",
+        "phù hợp mô hình АСОИУ",
+        "có đề xuất kiểm thử lại"
+      ],
+      "feedback": "Nếu sai, hệ thống gợi ý ôn reliability, lifecycle, АСОИУ model."
+    },
+    {
+      "id": "systems_preparatory_prac_1",
+      "stage": "preparatory",
+      "type": "mô phỏng thực hành",
+      "title": "GĐ2 · Xử lý sự cố hệ thống tự hành",
+      "mission": "Nhận tình huống UGV/USV có lỗi sensor hoặc lỗi quyết định, chọn cách xử lý và lập báo cáo ngắn.",
+      "steps": [
+        "đọc telemetry",
+        "xác định lỗi",
+        "chọn cơ chế dự phòng",
+        "ghi báo cáo vận hành"
+      ],
+      "rubric": [
+        "xác định đúng nguồn lỗi",
+        "ưu tiên an toàn",
+        "phù hợp mô hình АСОИУ",
+        "có đề xuất kiểm thử lại"
+      ],
+      "feedback": "Nếu sai, hệ thống gợi ý ôn reliability, lifecycle, АСОИУ model."
+    },
+    {
+      "id": "systems_m1_prac_1",
+      "stage": "m1",
+      "type": "mô phỏng thực hành",
+      "title": "HK1 · Xử lý sự cố hệ thống tự hành",
+      "mission": "Nhận tình huống UGV/USV có lỗi sensor hoặc lỗi quyết định, chọn cách xử lý và lập báo cáo ngắn.",
+      "steps": [
+        "đọc telemetry",
+        "xác định lỗi",
+        "chọn cơ chế dự phòng",
+        "ghi báo cáo vận hành"
+      ],
+      "rubric": [
+        "xác định đúng nguồn lỗi",
+        "ưu tiên an toàn",
+        "phù hợp mô hình АСОИУ",
+        "có đề xuất kiểm thử lại"
+      ],
+      "feedback": "Nếu sai, hệ thống gợi ý ôn reliability, lifecycle, АСОИУ model."
+    },
+    {
+      "id": "systems_m2_prac_1",
+      "stage": "m2",
+      "type": "mô phỏng thực hành",
+      "title": "HK2 · Xử lý sự cố hệ thống tự hành",
+      "mission": "Nhận tình huống UGV/USV có lỗi sensor hoặc lỗi quyết định, chọn cách xử lý và lập báo cáo ngắn.",
+      "steps": [
+        "đọc telemetry",
+        "xác định lỗi",
+        "chọn cơ chế dự phòng",
+        "ghi báo cáo vận hành"
+      ],
+      "rubric": [
+        "xác định đúng nguồn lỗi",
+        "ưu tiên an toàn",
+        "phù hợp mô hình АСОИУ",
+        "có đề xuất kiểm thử lại"
+      ],
+      "feedback": "Nếu sai, hệ thống gợi ý ôn reliability, lifecycle, АСОИУ model."
+    },
+    {
+      "id": "systems_m3_prac_1",
+      "stage": "m3",
+      "type": "mô phỏng thực hành",
+      "title": "HK3 · Xử lý sự cố hệ thống tự hành",
+      "mission": "Nhận tình huống UGV/USV có lỗi sensor hoặc lỗi quyết định, chọn cách xử lý và lập báo cáo ngắn.",
+      "steps": [
+        "đọc telemetry",
+        "xác định lỗi",
+        "chọn cơ chế dự phòng",
+        "ghi báo cáo vận hành"
+      ],
+      "rubric": [
+        "xác định đúng nguồn lỗi",
+        "ưu tiên an toàn",
+        "phù hợp mô hình АСОИУ",
+        "có đề xuất kiểm thử lại"
+      ],
+      "feedback": "Nếu sai, hệ thống gợi ý ôn reliability, lifecycle, АСОИУ model."
+    },
+    {
+      "id": "systems_m4_prac_1",
+      "stage": "m4",
+      "type": "mô phỏng thực hành",
+      "title": "HK4 · Xử lý sự cố hệ thống tự hành",
+      "mission": "Nhận tình huống UGV/USV có lỗi sensor hoặc lỗi quyết định, chọn cách xử lý và lập báo cáo ngắn.",
+      "steps": [
+        "đọc telemetry",
+        "xác định lỗi",
+        "chọn cơ chế dự phòng",
+        "ghi báo cáo vận hành"
+      ],
+      "rubric": [
+        "xác định đúng nguồn lỗi",
+        "ưu tiên an toàn",
+        "phù hợp mô hình АСОИУ",
+        "có đề xuất kiểm thử lại"
+      ],
+      "feedback": "Nếu sai, hệ thống gợi ý ôn reliability, lifecycle, АСОИУ model."
+    }
+  ]
+}

@@ -1,0 +1,592 @@
+{
+  "rules": {
+    "easy": {
+      "questions": 20,
+      "unlockScore": 8
+    },
+    "medium": {
+      "questions": 30,
+      "unlockScore": 8
+    },
+    "hard": {
+      "questions": 40,
+      "unlockScore": 8
+    },
+    "excellent": {
+      "questions": 50,
+      "unlockScore": 8
+    }
+  },
+  "questions": [
+    {
+      "id": "q_s_p01",
+      "moduleId": "s_p01",
+      "stage": "prepare",
+      "difficulty": "easy",
+      "prompt": "Mục tiêu chính của module 'Tư duy hệ thống cho UGV/USV tự hành' là gì?",
+      "options": [
+        "Boundary, actor, sensor, actuator, feedback loop.",
+        "Chỉ đọc tên bài mà không làm sản phẩm",
+        "Bỏ qua kiểm tra lỗi và không ghi kết quả",
+        "Đợi đến cuối khóa mới học"
+      ],
+      "answerIndex": 0,
+      "reviewLesson": "s_p01_l1"
+    },
+    {
+      "id": "q_s_p02",
+      "moduleId": "s_p02",
+      "stage": "prepare",
+      "difficulty": "easy",
+      "prompt": "Mục tiêu chính của module 'Kiến trúc UGV cấp cao: sensing, planning, control' là gì?",
+      "options": [
+        "Chassis, sensor, compute, power, communication, control.",
+        "Chỉ đọc tên bài mà không làm sản phẩm",
+        "Bỏ qua kiểm tra lỗi và không ghi kết quả",
+        "Đợi đến cuối khóa mới học"
+      ],
+      "answerIndex": 0,
+      "reviewLesson": "s_p02_l1"
+    },
+    {
+      "id": "q_s_p03",
+      "moduleId": "s_p03",
+      "stage": "prepare",
+      "difficulty": "medium",
+      "prompt": "Mục tiêu chính của module 'Vòng lặp điều khiển và ra quyết định' là gì?",
+      "options": [
+        "Sense → perceive → decide → act → log.",
+        "Chỉ đọc tên bài mà không làm sản phẩm",
+        "Bỏ qua kiểm tra lỗi và không ghi kết quả",
+        "Đợi đến cuối khóa mới học"
+      ],
+      "answerIndex": 0,
+      "reviewLesson": "s_p03_l1"
+    },
+    {
+      "id": "q_s_p04",
+      "moduleId": "s_p04",
+      "stage": "prepare",
+      "difficulty": "medium",
+      "prompt": "Mục tiêu chính của module 'Data contract và giao diện tích hợp hệ thống' là gì?",
+      "options": [
+        "Message schema, topic, API, timestamp, version.",
+        "Chỉ đọc tên bài mà không làm sản phẩm",
+        "Bỏ qua kiểm tra lỗi và không ghi kết quả",
+        "Đợi đến cuối khóa mới học"
+      ],
+      "answerIndex": 0,
+      "reviewLesson": "s_p04_l1"
+    },
+    {
+      "id": "q_s_p05",
+      "moduleId": "s_p05",
+      "stage": "prepare",
+      "difficulty": "medium",
+      "prompt": "Mục tiêu chính của module 'Độ tin cậy của hệ thống kỹ thuật phức hợp nhập môn' là gì?",
+      "options": [
+        "Fault, failure, availability, redundancy, risk.",
+        "Chỉ đọc tên bài mà không làm sản phẩm",
+        "Bỏ qua kiểm tra lỗi và không ghi kết quả",
+        "Đợi đến cuối khóa mới học"
+      ],
+      "answerIndex": 0,
+      "reviewLesson": "s_p05_l1"
+    },
+    {
+      "id": "q_s_p06",
+      "moduleId": "s_p06",
+      "stage": "prepare",
+      "difficulty": "medium",
+      "prompt": "Mục tiêu chính của module 'FMEA và bảng rủi ro cho hệ thống tự hành' là gì?",
+      "options": [
+        "Failure mode, effect, severity, occurrence, detection.",
+        "Chỉ đọc tên bài mà không làm sản phẩm",
+        "Bỏ qua kiểm tra lỗi và không ghi kết quả",
+        "Đợi đến cuối khóa mới học"
+      ],
+      "answerIndex": 0,
+      "reviewLesson": "s_p06_l1"
+    },
+    {
+      "id": "q_s_p07",
+      "moduleId": "s_p07",
+      "stage": "prepare",
+      "difficulty": "medium",
+      "prompt": "Mục tiêu chính của module 'Mini-design hệ thống UGV AI: kiến trúc và fallback' là gì?",
+      "options": [
+        "Kiến trúc đề tài UGV/USV khả thi về linh kiện.",
+        "Chỉ đọc tên bài mà không làm sản phẩm",
+        "Bỏ qua kiểm tra lỗi và không ghi kết quả",
+        "Đợi đến cuối khóa mới học"
+      ],
+      "answerIndex": 0,
+      "reviewLesson": "s_p07_l1"
+    },
+    {
+      "id": "q_s_s01",
+      "moduleId": "s_s01",
+      "stage": "preparatory",
+      "difficulty": "easy",
+      "prompt": "Mục tiêu chính của module 'Thuật ngữ АСОИУ tiếng Nga' là gì?",
+      "options": [
+        "Автоматизированная система, обработка информации, управление.",
+        "Chỉ đọc tên bài mà không làm sản phẩm",
+        "Bỏ qua kiểm tra lỗi và không ghi kết quả",
+        "Đợi đến cuối khóa mới học"
+      ],
+      "answerIndex": 0,
+      "reviewLesson": "s_s01_l1"
+    },
+    {
+      "id": "q_s_s02",
+      "moduleId": "s_s02",
+      "stage": "preparatory",
+      "difficulty": "easy",
+      "prompt": "Mục tiêu chính của module 'Đọc tên học phần ИУ-5 và hiểu ngữ cảnh chuyên ngành' là gì?",
+      "options": [
+        "Hiểu tên môn, yêu cầu, dạng kiểm tra và từ vựng hệ thống.",
+        "Chỉ đọc tên bài mà không làm sản phẩm",
+        "Bỏ qua kiểm tra lỗi và không ghi kết quả",
+        "Đợi đến cuối khóa mới học"
+      ],
+      "answerIndex": 0,
+      "reviewLesson": "s_s02_l1"
+    },
+    {
+      "id": "q_s_s03",
+      "moduleId": "s_s03",
+      "stage": "preparatory",
+      "difficulty": "medium",
+      "prompt": "Mục tiêu chính của module 'System memo tiếng Nga: mô tả kiến trúc và rủi ro' là gì?",
+      "options": [
+        "Viết mô tả hệ thống ngắn theo mẫu.",
+        "Chỉ đọc tên bài mà không làm sản phẩm",
+        "Bỏ qua kiểm tra lỗi và không ghi kết quả",
+        "Đợi đến cuối khóa mới học"
+      ],
+      "answerIndex": 0,
+      "reviewLesson": "s_s03_l1"
+    },
+    {
+      "id": "q_s_m101",
+      "moduleId": "s_m101",
+      "stage": "m1",
+      "difficulty": "hard",
+      "prompt": "Mục tiêu chính của module 'Mô hình phân tích trong АСОИУ' là gì?",
+      "options": [
+        "State, input/output, analytical abstraction, evaluation.",
+        "Chỉ đọc tên bài mà không làm sản phẩm",
+        "Bỏ qua kiểm tra lỗi và không ghi kết quả",
+        "Đợi đến cuối khóa mới học"
+      ],
+      "answerIndex": 0,
+      "reviewLesson": "s_m101_l1"
+    },
+    {
+      "id": "q_s_m102",
+      "moduleId": "s_m102",
+      "stage": "m1",
+      "difficulty": "hard",
+      "prompt": "Mục tiêu chính của module 'Liên kết thiết kế hướng đối tượng với АСОИУ' là gì?",
+      "options": [
+        "Class/module/interface gắn với system architecture.",
+        "Chỉ đọc tên bài mà không làm sản phẩm",
+        "Bỏ qua kiểm tra lỗi và không ghi kết quả",
+        "Đợi đến cuối khóa mới học"
+      ],
+      "answerIndex": 0,
+      "reviewLesson": "s_m102_l1"
+    },
+    {
+      "id": "q_s_m201",
+      "moduleId": "s_m201",
+      "stage": "m2",
+      "difficulty": "hard",
+      "prompt": "Mục tiêu chính của module 'Mô hình độ tin cậy và trạng thái hỏng' là gì?",
+      "options": [
+        "Reliability block, failure rate idea, availability, risk mitigation.",
+        "Chỉ đọc tên bài mà không làm sản phẩm",
+        "Bỏ qua kiểm tra lỗi và không ghi kết quả",
+        "Đợi đến cuối khóa mới học"
+      ],
+      "answerIndex": 0,
+      "reviewLesson": "s_m201_l1"
+    },
+    {
+      "id": "q_s_m202",
+      "moduleId": "s_m202",
+      "stage": "m2",
+      "difficulty": "medium",
+      "prompt": "Mục tiêu chính của module 'Thực tập vận hành: quan sát, log và báo cáo hệ thống' là gì?",
+      "options": [
+        "Logging, monitoring, operator workflow, incident notes.",
+        "Chỉ đọc tên bài mà không làm sản phẩm",
+        "Bỏ qua kiểm tra lỗi và không ghi kết quả",
+        "Đợi đến cuối khóa mới học"
+      ],
+      "answerIndex": 0,
+      "reviewLesson": "s_m202_l1"
+    },
+    {
+      "id": "q_s_m301",
+      "moduleId": "s_m301",
+      "stage": "m3",
+      "difficulty": "hard",
+      "prompt": "Mục tiêu chính của module 'Quản lý thiết kế hệ thống thông tin' là gì?",
+      "options": [
+        "Requirement control, traceability, design review.",
+        "Chỉ đọc tên bài mà không làm sản phẩm",
+        "Bỏ qua kiểm tra lỗi và không ghi kết quả",
+        "Đợi đến cuối khóa mới học"
+      ],
+      "answerIndex": 0,
+      "reviewLesson": "s_m301_l1"
+    },
+    {
+      "id": "q_s_m302",
+      "moduleId": "s_m302",
+      "stage": "m3",
+      "difficulty": "hard",
+      "prompt": "Mục tiêu chính của module 'Phân tích ergonomic và giao diện người - hệ thống' là gì?",
+      "options": [
+        "Operator dashboard, information display, cognitive load.",
+        "Chỉ đọc tên bài mà không làm sản phẩm",
+        "Bỏ qua kiểm tra lỗi và không ghi kết quả",
+        "Đợi đến cuối khóa mới học"
+      ],
+      "answerIndex": 0,
+      "reviewLesson": "s_m302_l1"
+    },
+    {
+      "id": "q_s_m303",
+      "moduleId": "s_m303",
+      "stage": "m3",
+      "difficulty": "hard",
+      "prompt": "Mục tiêu chính của module 'An toàn thông tin cho hệ thống tự hành' là gì?",
+      "options": [
+        "Threat model, data access, communication risk.",
+        "Chỉ đọc tên bài mà không làm sản phẩm",
+        "Bỏ qua kiểm tra lỗi và không ghi kết quả",
+        "Đợi đến cuối khóa mới học"
+      ],
+      "answerIndex": 0,
+      "reviewLesson": "s_m303_l1"
+    },
+    {
+      "id": "q_s_m401",
+      "moduleId": "s_m401",
+      "stage": "m4",
+      "difficulty": "hard",
+      "prompt": "Mục tiêu chính của module 'Vòng đời hệ thống kỹ thuật phức hợp' là gì?",
+      "options": [
+        "Lifecycle processes, verification, validation, maintenance.",
+        "Chỉ đọc tên bài mà không làm sản phẩm",
+        "Bỏ qua kiểm tra lỗi và không ghi kết quả",
+        "Đợi đến cuối khóa mới học"
+      ],
+      "answerIndex": 0,
+      "reviewLesson": "s_m401_l1"
+    },
+    {
+      "id": "q_s_m402",
+      "moduleId": "s_m402",
+      "stage": "m4",
+      "difficulty": "hard",
+      "prompt": "Mục tiêu chính của module 'Kiến trúc hệ thống bảo vệ luận văn' là gì?",
+      "options": [
+        "Final diagrams, interfaces, risks and lifecycle proof.",
+        "Chỉ đọc tên bài mà không làm sản phẩm",
+        "Bỏ qua kiểm tra lỗi và không ghi kết quả",
+        "Đợi đến cuối khóa mới học"
+      ],
+      "answerIndex": 0,
+      "reviewLesson": "s_m402_l1"
+    },
+    {
+      "id": "q_s_p01_v1",
+      "moduleId": "s_p01",
+      "stage": "prepare",
+      "difficulty": "medium",
+      "prompt": "Chọn phát biểu đúng nhất: Mục tiêu chính của module 'Tư duy hệ thống cho UGV/USV tự hành' là gì?",
+      "options": [
+        "Boundary, actor, sensor, actuator, feedback loop.",
+        "Chỉ đọc tên bài mà không làm sản phẩm",
+        "Bỏ qua kiểm tra lỗi và không ghi kết quả",
+        "Đợi đến cuối khóa mới học"
+      ],
+      "answerIndex": 0,
+      "reviewLesson": "s_p01_l1"
+    },
+    {
+      "id": "q_s_p02_v2",
+      "moduleId": "s_p02",
+      "stage": "prepare",
+      "difficulty": "hard",
+      "prompt": "Chọn phát biểu đúng nhất: Mục tiêu chính của module 'Kiến trúc UGV cấp cao: sensing, planning, control' là gì?",
+      "options": [
+        "Chassis, sensor, compute, power, communication, control.",
+        "Chỉ đọc tên bài mà không làm sản phẩm",
+        "Bỏ qua kiểm tra lỗi và không ghi kết quả",
+        "Đợi đến cuối khóa mới học"
+      ],
+      "answerIndex": 0,
+      "reviewLesson": "s_p02_l1"
+    },
+    {
+      "id": "q_s_p03_v3",
+      "moduleId": "s_p03",
+      "stage": "prepare",
+      "difficulty": "easy",
+      "prompt": "Chọn phát biểu đúng nhất: Mục tiêu chính của module 'Vòng lặp điều khiển và ra quyết định' là gì?",
+      "options": [
+        "Sense → perceive → decide → act → log.",
+        "Chỉ đọc tên bài mà không làm sản phẩm",
+        "Bỏ qua kiểm tra lỗi và không ghi kết quả",
+        "Đợi đến cuối khóa mới học"
+      ],
+      "answerIndex": 0,
+      "reviewLesson": "s_p03_l1"
+    },
+    {
+      "id": "q_s_p04_v4",
+      "moduleId": "s_p04",
+      "stage": "prepare",
+      "difficulty": "medium",
+      "prompt": "Chọn phát biểu đúng nhất: Mục tiêu chính của module 'Data contract và giao diện tích hợp hệ thống' là gì?",
+      "options": [
+        "Message schema, topic, API, timestamp, version.",
+        "Chỉ đọc tên bài mà không làm sản phẩm",
+        "Bỏ qua kiểm tra lỗi và không ghi kết quả",
+        "Đợi đến cuối khóa mới học"
+      ],
+      "answerIndex": 0,
+      "reviewLesson": "s_p04_l1"
+    },
+    {
+      "id": "q_s_p05_v5",
+      "moduleId": "s_p05",
+      "stage": "prepare",
+      "difficulty": "hard",
+      "prompt": "Chọn phát biểu đúng nhất: Mục tiêu chính của module 'Độ tin cậy của hệ thống kỹ thuật phức hợp nhập môn' là gì?",
+      "options": [
+        "Fault, failure, availability, redundancy, risk.",
+        "Chỉ đọc tên bài mà không làm sản phẩm",
+        "Bỏ qua kiểm tra lỗi và không ghi kết quả",
+        "Đợi đến cuối khóa mới học"
+      ],
+      "answerIndex": 0,
+      "reviewLesson": "s_p05_l1"
+    },
+    {
+      "id": "q_s_p06_v6",
+      "moduleId": "s_p06",
+      "stage": "prepare",
+      "difficulty": "easy",
+      "prompt": "Chọn phát biểu đúng nhất: Mục tiêu chính của module 'FMEA và bảng rủi ro cho hệ thống tự hành' là gì?",
+      "options": [
+        "Failure mode, effect, severity, occurrence, detection.",
+        "Chỉ đọc tên bài mà không làm sản phẩm",
+        "Bỏ qua kiểm tra lỗi và không ghi kết quả",
+        "Đợi đến cuối khóa mới học"
+      ],
+      "answerIndex": 0,
+      "reviewLesson": "s_p06_l1"
+    },
+    {
+      "id": "q_s_p07_v7",
+      "moduleId": "s_p07",
+      "stage": "prepare",
+      "difficulty": "medium",
+      "prompt": "Chọn phát biểu đúng nhất: Mục tiêu chính của module 'Mini-design hệ thống UGV AI: kiến trúc và fallback' là gì?",
+      "options": [
+        "Kiến trúc đề tài UGV/USV khả thi về linh kiện.",
+        "Chỉ đọc tên bài mà không làm sản phẩm",
+        "Bỏ qua kiểm tra lỗi và không ghi kết quả",
+        "Đợi đến cuối khóa mới học"
+      ],
+      "answerIndex": 0,
+      "reviewLesson": "s_p07_l1"
+    },
+    {
+      "id": "q_s_s01_v8",
+      "moduleId": "s_s01",
+      "stage": "preparatory",
+      "difficulty": "hard",
+      "prompt": "Chọn phát biểu đúng nhất: Mục tiêu chính của module 'Thuật ngữ АСОИУ tiếng Nga' là gì?",
+      "options": [
+        "Автоматизированная система, обработка информации, управление.",
+        "Chỉ đọc tên bài mà không làm sản phẩm",
+        "Bỏ qua kiểm tra lỗi và không ghi kết quả",
+        "Đợi đến cuối khóa mới học"
+      ],
+      "answerIndex": 0,
+      "reviewLesson": "s_s01_l1"
+    },
+    {
+      "id": "q_s_s02_v9",
+      "moduleId": "s_s02",
+      "stage": "preparatory",
+      "difficulty": "easy",
+      "prompt": "Chọn phát biểu đúng nhất: Mục tiêu chính của module 'Đọc tên học phần ИУ-5 và hiểu ngữ cảnh chuyên ngành' là gì?",
+      "options": [
+        "Hiểu tên môn, yêu cầu, dạng kiểm tra và từ vựng hệ thống.",
+        "Chỉ đọc tên bài mà không làm sản phẩm",
+        "Bỏ qua kiểm tra lỗi và không ghi kết quả",
+        "Đợi đến cuối khóa mới học"
+      ],
+      "answerIndex": 0,
+      "reviewLesson": "s_s02_l1"
+    },
+    {
+      "id": "q_s_s03_v10",
+      "moduleId": "s_s03",
+      "stage": "preparatory",
+      "difficulty": "medium",
+      "prompt": "Chọn phát biểu đúng nhất: Mục tiêu chính của module 'System memo tiếng Nga: mô tả kiến trúc và rủi ro' là gì?",
+      "options": [
+        "Viết mô tả hệ thống ngắn theo mẫu.",
+        "Chỉ đọc tên bài mà không làm sản phẩm",
+        "Bỏ qua kiểm tra lỗi và không ghi kết quả",
+        "Đợi đến cuối khóa mới học"
+      ],
+      "answerIndex": 0,
+      "reviewLesson": "s_s03_l1"
+    },
+    {
+      "id": "q_s_m101_v11",
+      "moduleId": "s_m101",
+      "stage": "m1",
+      "difficulty": "hard",
+      "prompt": "Chọn phát biểu đúng nhất: Mục tiêu chính của module 'Mô hình phân tích trong АСОИУ' là gì?",
+      "options": [
+        "State, input/output, analytical abstraction, evaluation.",
+        "Chỉ đọc tên bài mà không làm sản phẩm",
+        "Bỏ qua kiểm tra lỗi và không ghi kết quả",
+        "Đợi đến cuối khóa mới học"
+      ],
+      "answerIndex": 0,
+      "reviewLesson": "s_m101_l1"
+    },
+    {
+      "id": "q_s_m102_v12",
+      "moduleId": "s_m102",
+      "stage": "m1",
+      "difficulty": "easy",
+      "prompt": "Chọn phát biểu đúng nhất: Mục tiêu chính của module 'Liên kết thiết kế hướng đối tượng với АСОИУ' là gì?",
+      "options": [
+        "Class/module/interface gắn với system architecture.",
+        "Chỉ đọc tên bài mà không làm sản phẩm",
+        "Bỏ qua kiểm tra lỗi và không ghi kết quả",
+        "Đợi đến cuối khóa mới học"
+      ],
+      "answerIndex": 0,
+      "reviewLesson": "s_m102_l1"
+    },
+    {
+      "id": "q_s_m201_v13",
+      "moduleId": "s_m201",
+      "stage": "m2",
+      "difficulty": "medium",
+      "prompt": "Chọn phát biểu đúng nhất: Mục tiêu chính của module 'Mô hình độ tin cậy và trạng thái hỏng' là gì?",
+      "options": [
+        "Reliability block, failure rate idea, availability, risk mitigation.",
+        "Chỉ đọc tên bài mà không làm sản phẩm",
+        "Bỏ qua kiểm tra lỗi và không ghi kết quả",
+        "Đợi đến cuối khóa mới học"
+      ],
+      "answerIndex": 0,
+      "reviewLesson": "s_m201_l1"
+    },
+    {
+      "id": "q_s_m202_v14",
+      "moduleId": "s_m202",
+      "stage": "m2",
+      "difficulty": "hard",
+      "prompt": "Chọn phát biểu đúng nhất: Mục tiêu chính của module 'Thực tập vận hành: quan sát, log và báo cáo hệ thống' là gì?",
+      "options": [
+        "Logging, monitoring, operator workflow, incident notes.",
+        "Chỉ đọc tên bài mà không làm sản phẩm",
+        "Bỏ qua kiểm tra lỗi và không ghi kết quả",
+        "Đợi đến cuối khóa mới học"
+      ],
+      "answerIndex": 0,
+      "reviewLesson": "s_m202_l1"
+    },
+    {
+      "id": "q_s_m301_v15",
+      "moduleId": "s_m301",
+      "stage": "m3",
+      "difficulty": "easy",
+      "prompt": "Chọn phát biểu đúng nhất: Mục tiêu chính của module 'Quản lý thiết kế hệ thống thông tin' là gì?",
+      "options": [
+        "Requirement control, traceability, design review.",
+        "Chỉ đọc tên bài mà không làm sản phẩm",
+        "Bỏ qua kiểm tra lỗi và không ghi kết quả",
+        "Đợi đến cuối khóa mới học"
+      ],
+      "answerIndex": 0,
+      "reviewLesson": "s_m301_l1"
+    },
+    {
+      "id": "q_s_m302_v16",
+      "moduleId": "s_m302",
+      "stage": "m3",
+      "difficulty": "medium",
+      "prompt": "Chọn phát biểu đúng nhất: Mục tiêu chính của module 'Phân tích ergonomic và giao diện người - hệ thống' là gì?",
+      "options": [
+        "Operator dashboard, information display, cognitive load.",
+        "Chỉ đọc tên bài mà không làm sản phẩm",
+        "Bỏ qua kiểm tra lỗi và không ghi kết quả",
+        "Đợi đến cuối khóa mới học"
+      ],
+      "answerIndex": 0,
+      "reviewLesson": "s_m302_l1"
+    },
+    {
+      "id": "q_s_m303_v17",
+      "moduleId": "s_m303",
+      "stage": "m3",
+      "difficulty": "hard",
+      "prompt": "Chọn phát biểu đúng nhất: Mục tiêu chính của module 'An toàn thông tin cho hệ thống tự hành' là gì?",
+      "options": [
+        "Threat model, data access, communication risk.",
+        "Chỉ đọc tên bài mà không làm sản phẩm",
+        "Bỏ qua kiểm tra lỗi và không ghi kết quả",
+        "Đợi đến cuối khóa mới học"
+      ],
+      "answerIndex": 0,
+      "reviewLesson": "s_m303_l1"
+    },
+    {
+      "id": "q_s_m401_v18",
+      "moduleId": "s_m401",
+      "stage": "m4",
+      "difficulty": "easy",
+      "prompt": "Chọn phát biểu đúng nhất: Mục tiêu chính của module 'Vòng đời hệ thống kỹ thuật phức hợp' là gì?",
+      "options": [
+        "Lifecycle processes, verification, validation, maintenance.",
+        "Chỉ đọc tên bài mà không làm sản phẩm",
+        "Bỏ qua kiểm tra lỗi và không ghi kết quả",
+        "Đợi đến cuối khóa mới học"
+      ],
+      "answerIndex": 0,
+      "reviewLesson": "s_m401_l1"
+    },
+    {
+      "id": "q_s_m402_v19",
+      "moduleId": "s_m402",
+      "stage": "m4",
+      "difficulty": "medium",
+      "prompt": "Chọn phát biểu đúng nhất: Mục tiêu chính của module 'Kiến trúc hệ thống bảo vệ luận văn' là gì?",
+      "options": [
+        "Final diagrams, interfaces, risks and lifecycle proof.",
+        "Chỉ đọc tên bài mà không làm sản phẩm",
+        "Bỏ qua kiểm tra lỗi và không ghi kết quả",
+        "Đợi đến cuối khóa mới học"
+      ],
+      "answerIndex": 0,
+      "reviewLesson": "s_m402_l1"
+    }
+  ]
+}

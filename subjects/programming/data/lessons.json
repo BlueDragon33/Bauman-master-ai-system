@@ -1,0 +1,2690 @@
+[
+  {
+    "id": "PR01",
+    "lessonId": "PR01",
+    "stage": "vn",
+    "moduleId": "mod_vn",
+    "title": "Thiết lập môi trường Python, VS Code và Live Server",
+    "ruTitle": "",
+    "summary": "Thiết lập môi trường Python, VS Code và Live Server: nắm mục tiêu, input/output, workflow cốt lõi, test tối thiểu và ứng dụng vào mở module học, chạy notebook, kiểm thử HTML/JSON cục bộ.",
+    "description": "Bài học tập trung vào Thiết lập môi trường Python, VS Code và Live Server. Người học phải tạo được artifact nhỏ: code hoặc cấu hình, test/log và ghi chú tái lập.",
+    "object": "mở module học, chạy notebook, kiểm thử HTML/JSON cục bộ",
+    "method": "Đọc yêu cầu → xác định input/output → viết code/pseudocode nhỏ → test/log → lưu artifact → tự vấn đáp.",
+    "keyPoints": [
+      "Xác định đúng vấn đề và đầu ra của: Thiết lập môi trường Python, VS Code và Live Server.",
+      "Dùng workflow/cú pháp lõi: python -m venv .venv; pip install -r requirements.txt; code ..",
+      "Có tối thiểu một kiểm thử, log hoặc ví dụ chạy được.",
+      "Liên hệ với ứng dụng: mở module học, chạy notebook, kiểm thử HTML/JSON cục bộ.",
+      "Ghi lại README ngắn để lần sau mở lại không mất ngữ cảnh."
+    ],
+    "slides": [
+      {
+        "title": "Mục tiêu bài học",
+        "body": "Sau bài này phải giải thích được Thiết lập môi trường Python, VS Code và Live Server, biết dùng trong mở module học, chạy notebook, kiểm thử HTML/JSON cục bộ và tạo artifact kiểm chứng."
+      },
+      {
+        "title": "Workflow lõi",
+        "body": "Cú pháp/quy trình trọng tâm: python -m venv .venv; pip install -r requirements.txt; code .. Không học thuộc rời rạc, luôn gắn với input/output và lỗi thường gặp."
+      },
+      {
+        "title": "Ví dụ tối thiểu",
+        "body": "Tạo một ví dụ nhỏ cho mở module học, chạy notebook, kiểm thử HTML/JSON cục bộ: dữ liệu vào, bước xử lý, kết quả ra và một dòng test/log."
+      },
+      {
+        "title": "Sai lầm cần tránh",
+        "body": "Không copy code mù; không bỏ qua phiên bản thư viện; không nộp kết quả nếu thiếu test, README hoặc dữ liệu mẫu."
+      },
+      {
+        "title": "Ứng dụng Bauman",
+        "body": "Gắn bài học với repo học tập, dữ liệu thí nghiệm, pipeline AI/АСОИУ, НИР hoặc ВКР."
+      }
+    ],
+    "formula": "python -m venv .venv; pip install -r requirements.txt; code .",
+    "application": "mở module học, chạy notebook, kiểm thử HTML/JSON cục bộ",
+    "terminology": {
+      "vi": "Môi trường phát triển",
+      "ru": "среда разработки",
+      "en": "development environment"
+    },
+    "_internalMetaForSearchOnly": {
+      "tags": [
+        "vn",
+        "environment, venv, VS Code, Live Server",
+        "programming",
+        "clean"
+      ]
+    }
+  },
+  {
+    "id": "PR02",
+    "lessonId": "PR02",
+    "stage": "vn",
+    "moduleId": "mod_vn",
+    "title": "Tư duy thuật toán và độ phức tạp",
+    "ruTitle": "",
+    "summary": "Tư duy thuật toán và độ phức tạp: nắm mục tiêu, input/output, workflow cốt lõi, test tối thiểu và ứng dụng vào chọn thuật toán đủ nhanh cho xử lý dữ liệu robot.",
+    "description": "Bài học tập trung vào Tư duy thuật toán và độ phức tạp. Người học phải tạo được artifact nhỏ: code hoặc cấu hình, test/log và ghi chú tái lập.",
+    "object": "chọn thuật toán đủ nhanh cho xử lý dữ liệu robot",
+    "method": "Đọc yêu cầu → xác định input/output → viết code/pseudocode nhỏ → test/log → lưu artifact → tự vấn đáp.",
+    "keyPoints": [
+      "Xác định đúng vấn đề và đầu ra của: Tư duy thuật toán và độ phức tạp.",
+      "Dùng workflow/cú pháp lõi: T(n)=O(n log n); space=O(n).",
+      "Có tối thiểu một kiểm thử, log hoặc ví dụ chạy được.",
+      "Liên hệ với ứng dụng: chọn thuật toán đủ nhanh cho xử lý dữ liệu robot.",
+      "Ghi lại README ngắn để lần sau mở lại không mất ngữ cảnh."
+    ],
+    "slides": [
+      {
+        "title": "Mục tiêu bài học",
+        "body": "Sau bài này phải giải thích được Tư duy thuật toán và độ phức tạp, biết dùng trong chọn thuật toán đủ nhanh cho xử lý dữ liệu robot và tạo artifact kiểm chứng."
+      },
+      {
+        "title": "Workflow lõi",
+        "body": "Cú pháp/quy trình trọng tâm: T(n)=O(n log n); space=O(n). Không học thuộc rời rạc, luôn gắn với input/output và lỗi thường gặp."
+      },
+      {
+        "title": "Ví dụ tối thiểu",
+        "body": "Tạo một ví dụ nhỏ cho chọn thuật toán đủ nhanh cho xử lý dữ liệu robot: dữ liệu vào, bước xử lý, kết quả ra và một dòng test/log."
+      },
+      {
+        "title": "Sai lầm cần tránh",
+        "body": "Không copy code mù; không bỏ qua phiên bản thư viện; không nộp kết quả nếu thiếu test, README hoặc dữ liệu mẫu."
+      },
+      {
+        "title": "Ứng dụng Bauman",
+        "body": "Gắn bài học với repo học tập, dữ liệu thí nghiệm, pipeline AI/АСОИУ, НИР hoặc ВКР."
+      }
+    ],
+    "formula": "T(n)=O(n log n); space=O(n)",
+    "application": "chọn thuật toán đủ nhanh cho xử lý dữ liệu robot",
+    "terminology": {
+      "vi": "Độ phức tạp",
+      "ru": "сложность алгоритма",
+      "en": "algorithmic complexity"
+    },
+    "_internalMetaForSearchOnly": {
+      "tags": [
+        "vn",
+        "algorithmic thinking, complexity, data structures",
+        "programming",
+        "clean"
+      ]
+    }
+  },
+  {
+    "id": "PR03",
+    "lessonId": "PR03",
+    "stage": "vn",
+    "moduleId": "mod_vn",
+    "title": "Python căn bản: kiểu dữ liệu, hàm, module",
+    "ruTitle": "",
+    "summary": "Python căn bản: kiểu dữ liệu, hàm, module: nắm mục tiêu, input/output, workflow cốt lõi, test tối thiểu và ứng dụng vào viết script sạch để xử lý bài tập và dữ liệu nhỏ.",
+    "description": "Bài học tập trung vào Python căn bản: kiểu dữ liệu, hàm, module. Người học phải tạo được artifact nhỏ: code hoặc cấu hình, test/log và ghi chú tái lập.",
+    "object": "viết script sạch để xử lý bài tập và dữ liệu nhỏ",
+    "method": "Đọc yêu cầu → xác định input/output → viết code/pseudocode nhỏ → test/log → lưu artifact → tự vấn đáp.",
+    "keyPoints": [
+      "Xác định đúng vấn đề và đầu ra của: Python căn bản: kiểu dữ liệu, hàm, module.",
+      "Dùng workflow/cú pháp lõi: def f(x): return y; list/dict/set/tuple.",
+      "Có tối thiểu một kiểm thử, log hoặc ví dụ chạy được.",
+      "Liên hệ với ứng dụng: viết script sạch để xử lý bài tập và dữ liệu nhỏ.",
+      "Ghi lại README ngắn để lần sau mở lại không mất ngữ cảnh."
+    ],
+    "slides": [
+      {
+        "title": "Mục tiêu bài học",
+        "body": "Sau bài này phải giải thích được Python căn bản: kiểu dữ liệu, hàm, module, biết dùng trong viết script sạch để xử lý bài tập và dữ liệu nhỏ và tạo artifact kiểm chứng."
+      },
+      {
+        "title": "Workflow lõi",
+        "body": "Cú pháp/quy trình trọng tâm: def f(x): return y; list/dict/set/tuple. Không học thuộc rời rạc, luôn gắn với input/output và lỗi thường gặp."
+      },
+      {
+        "title": "Ví dụ tối thiểu",
+        "body": "Tạo một ví dụ nhỏ cho viết script sạch để xử lý bài tập và dữ liệu nhỏ: dữ liệu vào, bước xử lý, kết quả ra và một dòng test/log."
+      },
+      {
+        "title": "Sai lầm cần tránh",
+        "body": "Không copy code mù; không bỏ qua phiên bản thư viện; không nộp kết quả nếu thiếu test, README hoặc dữ liệu mẫu."
+      },
+      {
+        "title": "Ứng dụng Bauman",
+        "body": "Gắn bài học với repo học tập, dữ liệu thí nghiệm, pipeline AI/АСОИУ, НИР hoặc ВКР."
+      }
+    ],
+    "formula": "def f(x): return y; list/dict/set/tuple",
+    "application": "viết script sạch để xử lý bài tập và dữ liệu nhỏ",
+    "terminology": {
+      "vi": "Hàm",
+      "ru": "функция",
+      "en": "function"
+    },
+    "_internalMetaForSearchOnly": {
+      "tags": [
+        "vn",
+        "Python basics, functions, modules",
+        "programming",
+        "clean"
+      ]
+    }
+  },
+  {
+    "id": "PR04",
+    "lessonId": "PR04",
+    "stage": "vn",
+    "moduleId": "mod_vn",
+    "title": "NumPy và vector hóa dữ liệu",
+    "ruTitle": "",
+    "summary": "NumPy và vector hóa dữ liệu: nắm mục tiêu, input/output, workflow cốt lõi, test tối thiểu và ứng dụng vào tính toán ma trận/đặc trưng cho AI nhanh và gọn.",
+    "description": "Bài học tập trung vào NumPy và vector hóa dữ liệu. Người học phải tạo được artifact nhỏ: code hoặc cấu hình, test/log và ghi chú tái lập.",
+    "object": "tính toán ma trận/đặc trưng cho AI nhanh và gọn",
+    "method": "Đọc yêu cầu → xác định input/output → viết code/pseudocode nhỏ → test/log → lưu artifact → tự vấn đáp.",
+    "keyPoints": [
+      "Xác định đúng vấn đề và đầu ra của: NumPy và vector hóa dữ liệu.",
+      "Dùng workflow/cú pháp lõi: X.shape=(n,d); y = X @ w + b.",
+      "Có tối thiểu một kiểm thử, log hoặc ví dụ chạy được.",
+      "Liên hệ với ứng dụng: tính toán ma trận/đặc trưng cho AI nhanh và gọn.",
+      "Ghi lại README ngắn để lần sau mở lại không mất ngữ cảnh."
+    ],
+    "slides": [
+      {
+        "title": "Mục tiêu bài học",
+        "body": "Sau bài này phải giải thích được NumPy và vector hóa dữ liệu, biết dùng trong tính toán ma trận/đặc trưng cho AI nhanh và gọn và tạo artifact kiểm chứng."
+      },
+      {
+        "title": "Workflow lõi",
+        "body": "Cú pháp/quy trình trọng tâm: X.shape=(n,d); y = X @ w + b. Không học thuộc rời rạc, luôn gắn với input/output và lỗi thường gặp."
+      },
+      {
+        "title": "Ví dụ tối thiểu",
+        "body": "Tạo một ví dụ nhỏ cho tính toán ma trận/đặc trưng cho AI nhanh và gọn: dữ liệu vào, bước xử lý, kết quả ra và một dòng test/log."
+      },
+      {
+        "title": "Sai lầm cần tránh",
+        "body": "Không copy code mù; không bỏ qua phiên bản thư viện; không nộp kết quả nếu thiếu test, README hoặc dữ liệu mẫu."
+      },
+      {
+        "title": "Ứng dụng Bauman",
+        "body": "Gắn bài học với repo học tập, dữ liệu thí nghiệm, pipeline AI/АСОИУ, НИР hoặc ВКР."
+      }
+    ],
+    "formula": "X.shape=(n,d); y = X @ w + b",
+    "application": "tính toán ma trận/đặc trưng cho AI nhanh và gọn",
+    "terminology": {
+      "vi": "Vector hóa",
+      "ru": "векторизация",
+      "en": "vectorization"
+    },
+    "_internalMetaForSearchOnly": {
+      "tags": [
+        "vn",
+        "NumPy, arrays, vectorization",
+        "programming",
+        "clean"
+      ]
+    }
+  },
+  {
+    "id": "PR05",
+    "lessonId": "PR05",
+    "stage": "vn",
+    "moduleId": "mod_vn",
+    "title": "Pandas và làm sạch bảng dữ liệu",
+    "ruTitle": "",
+    "summary": "Pandas và làm sạch bảng dữ liệu: nắm mục tiêu, input/output, workflow cốt lõi, test tối thiểu và ứng dụng vào làm sạch log cảm biến, bảng điểm đo, dữ liệu CSV.",
+    "description": "Bài học tập trung vào Pandas và làm sạch bảng dữ liệu. Người học phải tạo được artifact nhỏ: code hoặc cấu hình, test/log và ghi chú tái lập.",
+    "object": "làm sạch log cảm biến, bảng điểm đo, dữ liệu CSV",
+    "method": "Đọc yêu cầu → xác định input/output → viết code/pseudocode nhỏ → test/log → lưu artifact → tự vấn đáp.",
+    "keyPoints": [
+      "Xác định đúng vấn đề và đầu ra của: Pandas và làm sạch bảng dữ liệu.",
+      "Dùng workflow/cú pháp lõi: df.dropna(); df.groupby(); df.merge().",
+      "Có tối thiểu một kiểm thử, log hoặc ví dụ chạy được.",
+      "Liên hệ với ứng dụng: làm sạch log cảm biến, bảng điểm đo, dữ liệu CSV.",
+      "Ghi lại README ngắn để lần sau mở lại không mất ngữ cảnh."
+    ],
+    "slides": [
+      {
+        "title": "Mục tiêu bài học",
+        "body": "Sau bài này phải giải thích được Pandas và làm sạch bảng dữ liệu, biết dùng trong làm sạch log cảm biến, bảng điểm đo, dữ liệu CSV và tạo artifact kiểm chứng."
+      },
+      {
+        "title": "Workflow lõi",
+        "body": "Cú pháp/quy trình trọng tâm: df.dropna(); df.groupby(); df.merge(). Không học thuộc rời rạc, luôn gắn với input/output và lỗi thường gặp."
+      },
+      {
+        "title": "Ví dụ tối thiểu",
+        "body": "Tạo một ví dụ nhỏ cho làm sạch log cảm biến, bảng điểm đo, dữ liệu CSV: dữ liệu vào, bước xử lý, kết quả ra và một dòng test/log."
+      },
+      {
+        "title": "Sai lầm cần tránh",
+        "body": "Không copy code mù; không bỏ qua phiên bản thư viện; không nộp kết quả nếu thiếu test, README hoặc dữ liệu mẫu."
+      },
+      {
+        "title": "Ứng dụng Bauman",
+        "body": "Gắn bài học với repo học tập, dữ liệu thí nghiệm, pipeline AI/АСОИУ, НИР hoặc ВКР."
+      }
+    ],
+    "formula": "df.dropna(); df.groupby(); df.merge()",
+    "application": "làm sạch log cảm biến, bảng điểm đo, dữ liệu CSV",
+    "terminology": {
+      "vi": "Khung dữ liệu",
+      "ru": "таблица данных",
+      "en": "dataframe"
+    },
+    "_internalMetaForSearchOnly": {
+      "tags": [
+        "vn",
+        "pandas, dataframe, cleaning",
+        "programming",
+        "clean"
+      ]
+    }
+  },
+  {
+    "id": "PR06",
+    "lessonId": "PR06",
+    "stage": "vn",
+    "moduleId": "mod_vn",
+    "title": "SQL căn bản và mô hình quan hệ",
+    "ruTitle": "",
+    "summary": "SQL căn bản và mô hình quan hệ: nắm mục tiêu, input/output, workflow cốt lõi, test tối thiểu và ứng dụng vào lưu kết quả thí nghiệm, metadata và truy vấn nhanh.",
+    "description": "Bài học tập trung vào SQL căn bản và mô hình quan hệ. Người học phải tạo được artifact nhỏ: code hoặc cấu hình, test/log và ghi chú tái lập.",
+    "object": "lưu kết quả thí nghiệm, metadata và truy vấn nhanh",
+    "method": "Đọc yêu cầu → xác định input/output → viết code/pseudocode nhỏ → test/log → lưu artifact → tự vấn đáp.",
+    "keyPoints": [
+      "Xác định đúng vấn đề và đầu ra của: SQL căn bản và mô hình quan hệ.",
+      "Dùng workflow/cú pháp lõi: SELECT col FROM table WHERE condition; PK/FK.",
+      "Có tối thiểu một kiểm thử, log hoặc ví dụ chạy được.",
+      "Liên hệ với ứng dụng: lưu kết quả thí nghiệm, metadata và truy vấn nhanh.",
+      "Ghi lại README ngắn để lần sau mở lại không mất ngữ cảnh."
+    ],
+    "slides": [
+      {
+        "title": "Mục tiêu bài học",
+        "body": "Sau bài này phải giải thích được SQL căn bản và mô hình quan hệ, biết dùng trong lưu kết quả thí nghiệm, metadata và truy vấn nhanh và tạo artifact kiểm chứng."
+      },
+      {
+        "title": "Workflow lõi",
+        "body": "Cú pháp/quy trình trọng tâm: SELECT col FROM table WHERE condition; PK/FK. Không học thuộc rời rạc, luôn gắn với input/output và lỗi thường gặp."
+      },
+      {
+        "title": "Ví dụ tối thiểu",
+        "body": "Tạo một ví dụ nhỏ cho lưu kết quả thí nghiệm, metadata và truy vấn nhanh: dữ liệu vào, bước xử lý, kết quả ra và một dòng test/log."
+      },
+      {
+        "title": "Sai lầm cần tránh",
+        "body": "Không copy code mù; không bỏ qua phiên bản thư viện; không nộp kết quả nếu thiếu test, README hoặc dữ liệu mẫu."
+      },
+      {
+        "title": "Ứng dụng Bauman",
+        "body": "Gắn bài học với repo học tập, dữ liệu thí nghiệm, pipeline AI/АСОИУ, НИР hoặc ВКР."
+      }
+    ],
+    "formula": "SELECT col FROM table WHERE condition; PK/FK",
+    "application": "lưu kết quả thí nghiệm, metadata và truy vấn nhanh",
+    "terminology": {
+      "vi": "Truy vấn SQL",
+      "ru": "SQL-запрос",
+      "en": "SQL query"
+    },
+    "_internalMetaForSearchOnly": {
+      "tags": [
+        "vn",
+        "SQL, relational model, query",
+        "programming",
+        "clean"
+      ]
+    }
+  },
+  {
+    "id": "PR07",
+    "lessonId": "PR07",
+    "stage": "vn",
+    "moduleId": "mod_vn",
+    "title": "Git, GitHub và nhật ký học tập",
+    "ruTitle": "",
+    "summary": "Git, GitHub và nhật ký học tập: nắm mục tiêu, input/output, workflow cốt lõi, test tối thiểu và ứng dụng vào quản lý phiên bản bài học, notebook, mã mô phỏng.",
+    "description": "Bài học tập trung vào Git, GitHub và nhật ký học tập. Người học phải tạo được artifact nhỏ: code hoặc cấu hình, test/log và ghi chú tái lập.",
+    "object": "quản lý phiên bản bài học, notebook, mã mô phỏng",
+    "method": "Đọc yêu cầu → xác định input/output → viết code/pseudocode nhỏ → test/log → lưu artifact → tự vấn đáp.",
+    "keyPoints": [
+      "Xác định đúng vấn đề và đầu ra của: Git, GitHub và nhật ký học tập.",
+      "Dùng workflow/cú pháp lõi: git add .; git commit -m \"message\"; git branch.",
+      "Có tối thiểu một kiểm thử, log hoặc ví dụ chạy được.",
+      "Liên hệ với ứng dụng: quản lý phiên bản bài học, notebook, mã mô phỏng.",
+      "Ghi lại README ngắn để lần sau mở lại không mất ngữ cảnh."
+    ],
+    "slides": [
+      {
+        "title": "Mục tiêu bài học",
+        "body": "Sau bài này phải giải thích được Git, GitHub và nhật ký học tập, biết dùng trong quản lý phiên bản bài học, notebook, mã mô phỏng và tạo artifact kiểm chứng."
+      },
+      {
+        "title": "Workflow lõi",
+        "body": "Cú pháp/quy trình trọng tâm: git add .; git commit -m \"message\"; git branch. Không học thuộc rời rạc, luôn gắn với input/output và lỗi thường gặp."
+      },
+      {
+        "title": "Ví dụ tối thiểu",
+        "body": "Tạo một ví dụ nhỏ cho quản lý phiên bản bài học, notebook, mã mô phỏng: dữ liệu vào, bước xử lý, kết quả ra và một dòng test/log."
+      },
+      {
+        "title": "Sai lầm cần tránh",
+        "body": "Không copy code mù; không bỏ qua phiên bản thư viện; không nộp kết quả nếu thiếu test, README hoặc dữ liệu mẫu."
+      },
+      {
+        "title": "Ứng dụng Bauman",
+        "body": "Gắn bài học với repo học tập, dữ liệu thí nghiệm, pipeline AI/АСОИУ, НИР hoặc ВКР."
+      }
+    ],
+    "formula": "git add .; git commit -m \"message\"; git branch",
+    "application": "quản lý phiên bản bài học, notebook, mã mô phỏng",
+    "terminology": {
+      "vi": "Kho mã nguồn",
+      "ru": "репозиторий",
+      "en": "repository"
+    },
+    "_internalMetaForSearchOnly": {
+      "tags": [
+        "vn",
+        "Git, commit, branch, repository",
+        "programming",
+        "clean"
+      ]
+    }
+  },
+  {
+    "id": "PR08",
+    "lessonId": "PR08",
+    "stage": "vn",
+    "moduleId": "mod_vn",
+    "title": "Notebook thực nghiệm và README tái lập",
+    "ruTitle": "",
+    "summary": "Notebook thực nghiệm và README tái lập: nắm mục tiêu, input/output, workflow cốt lõi, test tối thiểu và ứng dụng vào tạo artifact học tập có thể mở lại, chạy lại, giải thích lại.",
+    "description": "Bài học tập trung vào Notebook thực nghiệm và README tái lập. Người học phải tạo được artifact nhỏ: code hoặc cấu hình, test/log và ghi chú tái lập.",
+    "object": "tạo artifact học tập có thể mở lại, chạy lại, giải thích lại",
+    "method": "Đọc yêu cầu → xác định input/output → viết code/pseudocode nhỏ → test/log → lưu artifact → tự vấn đáp.",
+    "keyPoints": [
+      "Xác định đúng vấn đề và đầu ra của: Notebook thực nghiệm và README tái lập.",
+      "Dùng workflow/cú pháp lõi: README + notebook + data/ + src/ + results/.",
+      "Có tối thiểu một kiểm thử, log hoặc ví dụ chạy được.",
+      "Liên hệ với ứng dụng: tạo artifact học tập có thể mở lại, chạy lại, giải thích lại.",
+      "Ghi lại README ngắn để lần sau mở lại không mất ngữ cảnh."
+    ],
+    "slides": [
+      {
+        "title": "Mục tiêu bài học",
+        "body": "Sau bài này phải giải thích được Notebook thực nghiệm và README tái lập, biết dùng trong tạo artifact học tập có thể mở lại, chạy lại, giải thích lại và tạo artifact kiểm chứng."
+      },
+      {
+        "title": "Workflow lõi",
+        "body": "Cú pháp/quy trình trọng tâm: README + notebook + data/ + src/ + results/. Không học thuộc rời rạc, luôn gắn với input/output và lỗi thường gặp."
+      },
+      {
+        "title": "Ví dụ tối thiểu",
+        "body": "Tạo một ví dụ nhỏ cho tạo artifact học tập có thể mở lại, chạy lại, giải thích lại: dữ liệu vào, bước xử lý, kết quả ra và một dòng test/log."
+      },
+      {
+        "title": "Sai lầm cần tránh",
+        "body": "Không copy code mù; không bỏ qua phiên bản thư viện; không nộp kết quả nếu thiếu test, README hoặc dữ liệu mẫu."
+      },
+      {
+        "title": "Ứng dụng Bauman",
+        "body": "Gắn bài học với repo học tập, dữ liệu thí nghiệm, pipeline AI/АСОИУ, НИР hoặc ВКР."
+      }
+    ],
+    "formula": "README + notebook + data/ + src/ + results/",
+    "application": "tạo artifact học tập có thể mở lại, chạy lại, giải thích lại",
+    "terminology": {
+      "vi": "Tái lập kết quả",
+      "ru": "воспроизводимость",
+      "en": "reproducibility"
+    },
+    "_internalMetaForSearchOnly": {
+      "tags": [
+        "vn",
+        "notebook, reproducibility, README",
+        "programming",
+        "clean"
+      ]
+    }
+  },
+  {
+    "id": "PR09",
+    "lessonId": "PR09",
+    "stage": "prep",
+    "moduleId": "mod_prep",
+    "title": "Thuật ngữ tin học Nga cho lớp dự bị",
+    "ruTitle": "",
+    "summary": "Thuật ngữ tin học Nga cho lớp dự bị: nắm mục tiêu, input/output, workflow cốt lõi, test tối thiểu và ứng dụng vào nghe/đọc đề bài tin học và hỏi giáo viên bằng tiếng Nga.",
+    "description": "Bài học tập trung vào Thuật ngữ tin học Nga cho lớp dự bị. Người học phải tạo được artifact nhỏ: code hoặc cấu hình, test/log và ghi chú tái lập.",
+    "object": "nghe/đọc đề bài tin học và hỏi giáo viên bằng tiếng Nga",
+    "method": "Đọc yêu cầu → xác định input/output → viết code/pseudocode nhỏ → test/log → lưu artifact → tự vấn đáp.",
+    "keyPoints": [
+      "Xác định đúng vấn đề và đầu ra của: Thuật ngữ tin học Nga cho lớp dự bị.",
+      "Dùng workflow/cú pháp lõi: алгоритм, переменная, функция, массив, база данных.",
+      "Có tối thiểu một kiểm thử, log hoặc ví dụ chạy được.",
+      "Liên hệ với ứng dụng: nghe/đọc đề bài tin học và hỏi giáo viên bằng tiếng Nga.",
+      "Ghi lại README ngắn để lần sau mở lại không mất ngữ cảnh."
+    ],
+    "slides": [
+      {
+        "title": "Mục tiêu bài học",
+        "body": "Sau bài này phải giải thích được Thuật ngữ tin học Nga cho lớp dự bị, biết dùng trong nghe/đọc đề bài tin học và hỏi giáo viên bằng tiếng Nga và tạo artifact kiểm chứng."
+      },
+      {
+        "title": "Workflow lõi",
+        "body": "Cú pháp/quy trình trọng tâm: алгоритм, переменная, функция, массив, база данных. Không học thuộc rời rạc, luôn gắn với input/output và lỗi thường gặp."
+      },
+      {
+        "title": "Ví dụ tối thiểu",
+        "body": "Tạo một ví dụ nhỏ cho nghe/đọc đề bài tin học và hỏi giáo viên bằng tiếng Nga: dữ liệu vào, bước xử lý, kết quả ra và một dòng test/log."
+      },
+      {
+        "title": "Sai lầm cần tránh",
+        "body": "Không copy code mù; không bỏ qua phiên bản thư viện; không nộp kết quả nếu thiếu test, README hoặc dữ liệu mẫu."
+      },
+      {
+        "title": "Ứng dụng Bauman",
+        "body": "Gắn bài học với repo học tập, dữ liệu thí nghiệm, pipeline AI/АСОИУ, НИР hoặc ВКР."
+      }
+    ],
+    "formula": "алгоритм, переменная, функция, массив, база данных",
+    "application": "nghe/đọc đề bài tin học và hỏi giáo viên bằng tiếng Nga",
+    "terminology": {
+      "vi": "Thuật toán",
+      "ru": "алгоритм",
+      "en": "algorithm"
+    },
+    "_internalMetaForSearchOnly": {
+      "tags": [
+        "prep",
+        "Russian CS terminology, class commands",
+        "programming",
+        "clean"
+      ]
+    }
+  },
+  {
+    "id": "PR10",
+    "lessonId": "PR10",
+    "stage": "prep",
+    "moduleId": "mod_prep",
+    "title": "Pseudocode và giải thích thuật toán bằng tiếng Nga",
+    "ruTitle": "",
+    "summary": "Pseudocode và giải thích thuật toán bằng tiếng Nga: nắm mục tiêu, input/output, workflow cốt lõi, test tối thiểu và ứng dụng vào trình bày lời giải không kẹt ngôn ngữ.",
+    "description": "Bài học tập trung vào Pseudocode và giải thích thuật toán bằng tiếng Nga. Người học phải tạo được artifact nhỏ: code hoặc cấu hình, test/log và ghi chú tái lập.",
+    "object": "trình bày lời giải không kẹt ngôn ngữ",
+    "method": "Đọc yêu cầu → xác định input/output → viết code/pseudocode nhỏ → test/log → lưu artifact → tự vấn đáp.",
+    "keyPoints": [
+      "Xác định đúng vấn đề và đầu ra của: Pseudocode và giải thích thuật toán bằng tiếng Nga.",
+      "Dùng workflow/cú pháp lõi: input → process → output; if/for/while.",
+      "Có tối thiểu một kiểm thử, log hoặc ví dụ chạy được.",
+      "Liên hệ với ứng dụng: trình bày lời giải không kẹt ngôn ngữ.",
+      "Ghi lại README ngắn để lần sau mở lại không mất ngữ cảnh."
+    ],
+    "slides": [
+      {
+        "title": "Mục tiêu bài học",
+        "body": "Sau bài này phải giải thích được Pseudocode và giải thích thuật toán bằng tiếng Nga, biết dùng trong trình bày lời giải không kẹt ngôn ngữ và tạo artifact kiểm chứng."
+      },
+      {
+        "title": "Workflow lõi",
+        "body": "Cú pháp/quy trình trọng tâm: input → process → output; if/for/while. Không học thuộc rời rạc, luôn gắn với input/output và lỗi thường gặp."
+      },
+      {
+        "title": "Ví dụ tối thiểu",
+        "body": "Tạo một ví dụ nhỏ cho trình bày lời giải không kẹt ngôn ngữ: dữ liệu vào, bước xử lý, kết quả ra và một dòng test/log."
+      },
+      {
+        "title": "Sai lầm cần tránh",
+        "body": "Không copy code mù; không bỏ qua phiên bản thư viện; không nộp kết quả nếu thiếu test, README hoặc dữ liệu mẫu."
+      },
+      {
+        "title": "Ứng dụng Bauman",
+        "body": "Gắn bài học với repo học tập, dữ liệu thí nghiệm, pipeline AI/АСОИУ, НИР hoặc ВКР."
+      }
+    ],
+    "formula": "input → process → output; if/for/while",
+    "application": "trình bày lời giải không kẹt ngôn ngữ",
+    "terminology": {
+      "vi": "Mã giả",
+      "ru": "псевдокод",
+      "en": "pseudocode"
+    },
+    "_internalMetaForSearchOnly": {
+      "tags": [
+        "prep",
+        "pseudocode, control flow, Russian explanation",
+        "programming",
+        "clean"
+      ]
+    }
+  },
+  {
+    "id": "PR11",
+    "lessonId": "PR11",
+    "stage": "prep",
+    "moduleId": "mod_prep",
+    "title": "Cấu trúc dữ liệu nhập môn",
+    "ruTitle": "",
+    "summary": "Cấu trúc dữ liệu nhập môn: nắm mục tiêu, input/output, workflow cốt lõi, test tối thiểu và ứng dụng vào làm bài tin học dự bị và mô tả dữ liệu kỹ thuật.",
+    "description": "Bài học tập trung vào Cấu trúc dữ liệu nhập môn. Người học phải tạo được artifact nhỏ: code hoặc cấu hình, test/log và ghi chú tái lập.",
+    "object": "làm bài tin học dự bị và mô tả dữ liệu kỹ thuật",
+    "method": "Đọc yêu cầu → xác định input/output → viết code/pseudocode nhỏ → test/log → lưu artifact → tự vấn đáp.",
+    "keyPoints": [
+      "Xác định đúng vấn đề và đầu ra của: Cấu trúc dữ liệu nhập môn.",
+      "Dùng workflow/cú pháp lõi: array, stack, queue, dict, graph.",
+      "Có tối thiểu một kiểm thử, log hoặc ví dụ chạy được.",
+      "Liên hệ với ứng dụng: làm bài tin học dự bị và mô tả dữ liệu kỹ thuật.",
+      "Ghi lại README ngắn để lần sau mở lại không mất ngữ cảnh."
+    ],
+    "slides": [
+      {
+        "title": "Mục tiêu bài học",
+        "body": "Sau bài này phải giải thích được Cấu trúc dữ liệu nhập môn, biết dùng trong làm bài tin học dự bị và mô tả dữ liệu kỹ thuật và tạo artifact kiểm chứng."
+      },
+      {
+        "title": "Workflow lõi",
+        "body": "Cú pháp/quy trình trọng tâm: array, stack, queue, dict, graph. Không học thuộc rời rạc, luôn gắn với input/output và lỗi thường gặp."
+      },
+      {
+        "title": "Ví dụ tối thiểu",
+        "body": "Tạo một ví dụ nhỏ cho làm bài tin học dự bị và mô tả dữ liệu kỹ thuật: dữ liệu vào, bước xử lý, kết quả ra và một dòng test/log."
+      },
+      {
+        "title": "Sai lầm cần tránh",
+        "body": "Không copy code mù; không bỏ qua phiên bản thư viện; không nộp kết quả nếu thiếu test, README hoặc dữ liệu mẫu."
+      },
+      {
+        "title": "Ứng dụng Bauman",
+        "body": "Gắn bài học với repo học tập, dữ liệu thí nghiệm, pipeline AI/АСОИУ, НИР hoặc ВКР."
+      }
+    ],
+    "formula": "array, stack, queue, dict, graph",
+    "application": "làm bài tin học dự bị và mô tả dữ liệu kỹ thuật",
+    "terminology": {
+      "vi": "Cấu trúc dữ liệu",
+      "ru": "структура данных",
+      "en": "data structure"
+    },
+    "_internalMetaForSearchOnly": {
+      "tags": [
+        "prep",
+        "data structures, arrays, maps, graph",
+        "programming",
+        "clean"
+      ]
+    }
+  },
+  {
+    "id": "PR12",
+    "lessonId": "PR12",
+    "stage": "prep",
+    "moduleId": "mod_prep",
+    "title": "File, JSON, CSV và dữ liệu học tập",
+    "ruTitle": "",
+    "summary": "File, JSON, CSV và dữ liệu học tập: nắm mục tiêu, input/output, workflow cốt lõi, test tối thiểu và ứng dụng vào đọc/ghi dữ liệu module môn học, kho dữ liệu và bài tập.",
+    "description": "Bài học tập trung vào File, JSON, CSV và dữ liệu học tập. Người học phải tạo được artifact nhỏ: code hoặc cấu hình, test/log và ghi chú tái lập.",
+    "object": "đọc/ghi dữ liệu module môn học, kho dữ liệu và bài tập",
+    "method": "Đọc yêu cầu → xác định input/output → viết code/pseudocode nhỏ → test/log → lưu artifact → tự vấn đáp.",
+    "keyPoints": [
+      "Xác định đúng vấn đề và đầu ra của: File, JSON, CSV và dữ liệu học tập.",
+      "Dùng workflow/cú pháp lõi: json.load(); csv.DictReader(); pathlib.Path.",
+      "Có tối thiểu một kiểm thử, log hoặc ví dụ chạy được.",
+      "Liên hệ với ứng dụng: đọc/ghi dữ liệu module môn học, kho dữ liệu và bài tập.",
+      "Ghi lại README ngắn để lần sau mở lại không mất ngữ cảnh."
+    ],
+    "slides": [
+      {
+        "title": "Mục tiêu bài học",
+        "body": "Sau bài này phải giải thích được File, JSON, CSV và dữ liệu học tập, biết dùng trong đọc/ghi dữ liệu module môn học, kho dữ liệu và bài tập và tạo artifact kiểm chứng."
+      },
+      {
+        "title": "Workflow lõi",
+        "body": "Cú pháp/quy trình trọng tâm: json.load(); csv.DictReader(); pathlib.Path. Không học thuộc rời rạc, luôn gắn với input/output và lỗi thường gặp."
+      },
+      {
+        "title": "Ví dụ tối thiểu",
+        "body": "Tạo một ví dụ nhỏ cho đọc/ghi dữ liệu module môn học, kho dữ liệu và bài tập: dữ liệu vào, bước xử lý, kết quả ra và một dòng test/log."
+      },
+      {
+        "title": "Sai lầm cần tránh",
+        "body": "Không copy code mù; không bỏ qua phiên bản thư viện; không nộp kết quả nếu thiếu test, README hoặc dữ liệu mẫu."
+      },
+      {
+        "title": "Ứng dụng Bauman",
+        "body": "Gắn bài học với repo học tập, dữ liệu thí nghiệm, pipeline AI/АСОИУ, НИР hoặc ВКР."
+      }
+    ],
+    "formula": "json.load(); csv.DictReader(); pathlib.Path",
+    "application": "đọc/ghi dữ liệu module môn học, kho dữ liệu và bài tập",
+    "terminology": {
+      "vi": "Tệp JSON",
+      "ru": "JSON-файл",
+      "en": "JSON file"
+    },
+    "_internalMetaForSearchOnly": {
+      "tags": [
+        "prep",
+        "JSON, CSV, file IO",
+        "programming",
+        "clean"
+      ]
+    }
+  },
+  {
+    "id": "PR13",
+    "lessonId": "PR13",
+    "stage": "prep",
+    "moduleId": "mod_prep",
+    "title": "Debug, exception và logging",
+    "ruTitle": "",
+    "summary": "Debug, exception và logging: nắm mục tiêu, input/output, workflow cốt lõi, test tối thiểu và ứng dụng vào tìm lỗi render, lỗi dữ liệu, lỗi logic khi tự làm module.",
+    "description": "Bài học tập trung vào Debug, exception và logging. Người học phải tạo được artifact nhỏ: code hoặc cấu hình, test/log và ghi chú tái lập.",
+    "object": "tìm lỗi render, lỗi dữ liệu, lỗi logic khi tự làm module",
+    "method": "Đọc yêu cầu → xác định input/output → viết code/pseudocode nhỏ → test/log → lưu artifact → tự vấn đáp.",
+    "keyPoints": [
+      "Xác định đúng vấn đề và đầu ra của: Debug, exception và logging.",
+      "Dùng workflow/cú pháp lõi: try/except; logging.info(); assert condition.",
+      "Có tối thiểu một kiểm thử, log hoặc ví dụ chạy được.",
+      "Liên hệ với ứng dụng: tìm lỗi render, lỗi dữ liệu, lỗi logic khi tự làm module.",
+      "Ghi lại README ngắn để lần sau mở lại không mất ngữ cảnh."
+    ],
+    "slides": [
+      {
+        "title": "Mục tiêu bài học",
+        "body": "Sau bài này phải giải thích được Debug, exception và logging, biết dùng trong tìm lỗi render, lỗi dữ liệu, lỗi logic khi tự làm module và tạo artifact kiểm chứng."
+      },
+      {
+        "title": "Workflow lõi",
+        "body": "Cú pháp/quy trình trọng tâm: try/except; logging.info(); assert condition. Không học thuộc rời rạc, luôn gắn với input/output và lỗi thường gặp."
+      },
+      {
+        "title": "Ví dụ tối thiểu",
+        "body": "Tạo một ví dụ nhỏ cho tìm lỗi render, lỗi dữ liệu, lỗi logic khi tự làm module: dữ liệu vào, bước xử lý, kết quả ra và một dòng test/log."
+      },
+      {
+        "title": "Sai lầm cần tránh",
+        "body": "Không copy code mù; không bỏ qua phiên bản thư viện; không nộp kết quả nếu thiếu test, README hoặc dữ liệu mẫu."
+      },
+      {
+        "title": "Ứng dụng Bauman",
+        "body": "Gắn bài học với repo học tập, dữ liệu thí nghiệm, pipeline AI/АСОИУ, НИР hoặc ВКР."
+      }
+    ],
+    "formula": "try/except; logging.info(); assert condition",
+    "application": "tìm lỗi render, lỗi dữ liệu, lỗi logic khi tự làm module",
+    "terminology": {
+      "vi": "Gỡ lỗi",
+      "ru": "отладка",
+      "en": "debugging"
+    },
+    "_internalMetaForSearchOnly": {
+      "tags": [
+        "prep",
+        "debugging, exceptions, logging",
+        "programming",
+        "clean"
+      ]
+    }
+  },
+  {
+    "id": "PR14",
+    "lessonId": "PR14",
+    "stage": "prep",
+    "moduleId": "mod_prep",
+    "title": "Unit test căn bản với pytest",
+    "ruTitle": "",
+    "summary": "Unit test căn bản với pytest: nắm mục tiêu, input/output, workflow cốt lõi, test tối thiểu và ứng dụng vào kiểm thử hàm xử lý dữ liệu và logic nút bấm.",
+    "description": "Bài học tập trung vào Unit test căn bản với pytest. Người học phải tạo được artifact nhỏ: code hoặc cấu hình, test/log và ghi chú tái lập.",
+    "object": "kiểm thử hàm xử lý dữ liệu và logic nút bấm",
+    "method": "Đọc yêu cầu → xác định input/output → viết code/pseudocode nhỏ → test/log → lưu artifact → tự vấn đáp.",
+    "keyPoints": [
+      "Xác định đúng vấn đề và đầu ra của: Unit test căn bản với pytest.",
+      "Dùng workflow/cú pháp lõi: assert f(x)==expected; pytest -q.",
+      "Có tối thiểu một kiểm thử, log hoặc ví dụ chạy được.",
+      "Liên hệ với ứng dụng: kiểm thử hàm xử lý dữ liệu và logic nút bấm.",
+      "Ghi lại README ngắn để lần sau mở lại không mất ngữ cảnh."
+    ],
+    "slides": [
+      {
+        "title": "Mục tiêu bài học",
+        "body": "Sau bài này phải giải thích được Unit test căn bản với pytest, biết dùng trong kiểm thử hàm xử lý dữ liệu và logic nút bấm và tạo artifact kiểm chứng."
+      },
+      {
+        "title": "Workflow lõi",
+        "body": "Cú pháp/quy trình trọng tâm: assert f(x)==expected; pytest -q. Không học thuộc rời rạc, luôn gắn với input/output và lỗi thường gặp."
+      },
+      {
+        "title": "Ví dụ tối thiểu",
+        "body": "Tạo một ví dụ nhỏ cho kiểm thử hàm xử lý dữ liệu và logic nút bấm: dữ liệu vào, bước xử lý, kết quả ra và một dòng test/log."
+      },
+      {
+        "title": "Sai lầm cần tránh",
+        "body": "Không copy code mù; không bỏ qua phiên bản thư viện; không nộp kết quả nếu thiếu test, README hoặc dữ liệu mẫu."
+      },
+      {
+        "title": "Ứng dụng Bauman",
+        "body": "Gắn bài học với repo học tập, dữ liệu thí nghiệm, pipeline AI/АСОИУ, НИР hoặc ВКР."
+      }
+    ],
+    "formula": "assert f(x)==expected; pytest -q",
+    "application": "kiểm thử hàm xử lý dữ liệu và logic nút bấm",
+    "terminology": {
+      "vi": "Kiểm thử đơn vị",
+      "ru": "модульное тестирование",
+      "en": "unit testing"
+    },
+    "_internalMetaForSearchOnly": {
+      "tags": [
+        "prep",
+        "unit test, pytest, assertions",
+        "programming",
+        "clean"
+      ]
+    }
+  },
+  {
+    "id": "PR15",
+    "lessonId": "PR15",
+    "stage": "prep",
+    "moduleId": "mod_prep",
+    "title": "SQL nâng nền: JOIN, GROUP BY, index",
+    "ruTitle": "",
+    "summary": "SQL nâng nền: JOIN, GROUP BY, index: nắm mục tiêu, input/output, workflow cốt lõi, test tối thiểu và ứng dụng vào truy vấn dữ liệu thí nghiệm có nhiều bảng.",
+    "description": "Bài học tập trung vào SQL nâng nền: JOIN, GROUP BY, index. Người học phải tạo được artifact nhỏ: code hoặc cấu hình, test/log và ghi chú tái lập.",
+    "object": "truy vấn dữ liệu thí nghiệm có nhiều bảng",
+    "method": "Đọc yêu cầu → xác định input/output → viết code/pseudocode nhỏ → test/log → lưu artifact → tự vấn đáp.",
+    "keyPoints": [
+      "Xác định đúng vấn đề và đầu ra của: SQL nâng nền: JOIN, GROUP BY, index.",
+      "Dùng workflow/cú pháp lõi: JOIN; GROUP BY; CREATE INDEX idx ON table(col).",
+      "Có tối thiểu một kiểm thử, log hoặc ví dụ chạy được.",
+      "Liên hệ với ứng dụng: truy vấn dữ liệu thí nghiệm có nhiều bảng.",
+      "Ghi lại README ngắn để lần sau mở lại không mất ngữ cảnh."
+    ],
+    "slides": [
+      {
+        "title": "Mục tiêu bài học",
+        "body": "Sau bài này phải giải thích được SQL nâng nền: JOIN, GROUP BY, index, biết dùng trong truy vấn dữ liệu thí nghiệm có nhiều bảng và tạo artifact kiểm chứng."
+      },
+      {
+        "title": "Workflow lõi",
+        "body": "Cú pháp/quy trình trọng tâm: JOIN; GROUP BY; CREATE INDEX idx ON table(col). Không học thuộc rời rạc, luôn gắn với input/output và lỗi thường gặp."
+      },
+      {
+        "title": "Ví dụ tối thiểu",
+        "body": "Tạo một ví dụ nhỏ cho truy vấn dữ liệu thí nghiệm có nhiều bảng: dữ liệu vào, bước xử lý, kết quả ra và một dòng test/log."
+      },
+      {
+        "title": "Sai lầm cần tránh",
+        "body": "Không copy code mù; không bỏ qua phiên bản thư viện; không nộp kết quả nếu thiếu test, README hoặc dữ liệu mẫu."
+      },
+      {
+        "title": "Ứng dụng Bauman",
+        "body": "Gắn bài học với repo học tập, dữ liệu thí nghiệm, pipeline AI/АСОИУ, НИР hoặc ВКР."
+      }
+    ],
+    "formula": "JOIN; GROUP BY; CREATE INDEX idx ON table(col)",
+    "application": "truy vấn dữ liệu thí nghiệm có nhiều bảng",
+    "terminology": {
+      "vi": "Chỉ mục",
+      "ru": "индекс",
+      "en": "index"
+    },
+    "_internalMetaForSearchOnly": {
+      "tags": [
+        "prep",
+        "join, aggregate, index",
+        "programming",
+        "clean"
+      ]
+    }
+  },
+  {
+    "id": "PR16",
+    "lessonId": "PR16",
+    "stage": "prep",
+    "moduleId": "mod_prep",
+    "title": "Quy tắc đặt tên, comment và tài liệu song ngữ",
+    "ruTitle": "",
+    "summary": "Quy tắc đặt tên, comment và tài liệu song ngữ: nắm mục tiêu, input/output, workflow cốt lõi, test tối thiểu và ứng dụng vào ghi chú Việt-Nga-Anh để đọc code trong môi trường Bauman.",
+    "description": "Bài học tập trung vào Quy tắc đặt tên, comment và tài liệu song ngữ. Người học phải tạo được artifact nhỏ: code hoặc cấu hình, test/log và ghi chú tái lập.",
+    "object": "ghi chú Việt-Nga-Anh để đọc code trong môi trường Bauman",
+    "method": "Đọc yêu cầu → xác định input/output → viết code/pseudocode nhỏ → test/log → lưu artifact → tự vấn đáp.",
+    "keyPoints": [
+      "Xác định đúng vấn đề và đầu ra của: Quy tắc đặt tên, comment và tài liệu song ngữ.",
+      "Dùng workflow/cú pháp lõi: name = intent; docstring = input + output + limit.",
+      "Có tối thiểu một kiểm thử, log hoặc ví dụ chạy được.",
+      "Liên hệ với ứng dụng: ghi chú Việt-Nga-Anh để đọc code trong môi trường Bauman.",
+      "Ghi lại README ngắn để lần sau mở lại không mất ngữ cảnh."
+    ],
+    "slides": [
+      {
+        "title": "Mục tiêu bài học",
+        "body": "Sau bài này phải giải thích được Quy tắc đặt tên, comment và tài liệu song ngữ, biết dùng trong ghi chú Việt-Nga-Anh để đọc code trong môi trường Bauman và tạo artifact kiểm chứng."
+      },
+      {
+        "title": "Workflow lõi",
+        "body": "Cú pháp/quy trình trọng tâm: name = intent; docstring = input + output + limit. Không học thuộc rời rạc, luôn gắn với input/output và lỗi thường gặp."
+      },
+      {
+        "title": "Ví dụ tối thiểu",
+        "body": "Tạo một ví dụ nhỏ cho ghi chú Việt-Nga-Anh để đọc code trong môi trường Bauman: dữ liệu vào, bước xử lý, kết quả ra và một dòng test/log."
+      },
+      {
+        "title": "Sai lầm cần tránh",
+        "body": "Không copy code mù; không bỏ qua phiên bản thư viện; không nộp kết quả nếu thiếu test, README hoặc dữ liệu mẫu."
+      },
+      {
+        "title": "Ứng dụng Bauman",
+        "body": "Gắn bài học với repo học tập, dữ liệu thí nghiệm, pipeline AI/АСОИУ, НИР hoặc ВКР."
+      }
+    ],
+    "formula": "name = intent; docstring = input + output + limit",
+    "application": "ghi chú Việt-Nga-Anh để đọc code trong môi trường Bauman",
+    "terminology": {
+      "vi": "Chuỗi tài liệu",
+      "ru": "строка документации",
+      "en": "docstring"
+    },
+    "_internalMetaForSearchOnly": {
+      "tags": [
+        "prep",
+        "naming, docstring, bilingual docs",
+        "programming",
+        "clean"
+      ]
+    }
+  },
+  {
+    "id": "PR17",
+    "lessonId": "PR17",
+    "stage": "hk1",
+    "moduleId": "mod_hk1",
+    "title": "OOP cho АСОИУ: class, interface, responsibility",
+    "ruTitle": "",
+    "summary": "OOP cho АСОИУ: class, interface, responsibility: nắm mục tiêu, input/output, workflow cốt lõi, test tối thiểu và ứng dụng vào tạo skeleton phần mềm UGV gồm sensor/model/control.",
+    "description": "Bài học tập trung vào OOP cho АСОИУ: class, interface, responsibility. Người học phải tạo được artifact nhỏ: code hoặc cấu hình, test/log và ghi chú tái lập.",
+    "object": "tạo skeleton phần mềm UGV gồm sensor/model/control",
+    "method": "Đọc yêu cầu → xác định input/output → viết code/pseudocode nhỏ → test/log → lưu artifact → tự vấn đáp.",
+    "keyPoints": [
+      "Xác định đúng vấn đề và đầu ra của: OOP cho АСОИУ: class, interface, responsibility.",
+      "Dùng workflow/cú pháp lõi: class Sensor: read(); class Model: predict().",
+      "Có tối thiểu một kiểm thử, log hoặc ví dụ chạy được.",
+      "Liên hệ với ứng dụng: tạo skeleton phần mềm UGV gồm sensor/model/control.",
+      "Ghi lại README ngắn để lần sau mở lại không mất ngữ cảnh."
+    ],
+    "slides": [
+      {
+        "title": "Mục tiêu bài học",
+        "body": "Sau bài này phải giải thích được OOP cho АСОИУ: class, interface, responsibility, biết dùng trong tạo skeleton phần mềm UGV gồm sensor/model/control và tạo artifact kiểm chứng."
+      },
+      {
+        "title": "Workflow lõi",
+        "body": "Cú pháp/quy trình trọng tâm: class Sensor: read(); class Model: predict(). Không học thuộc rời rạc, luôn gắn với input/output và lỗi thường gặp."
+      },
+      {
+        "title": "Ví dụ tối thiểu",
+        "body": "Tạo một ví dụ nhỏ cho tạo skeleton phần mềm UGV gồm sensor/model/control: dữ liệu vào, bước xử lý, kết quả ra và một dòng test/log."
+      },
+      {
+        "title": "Sai lầm cần tránh",
+        "body": "Không copy code mù; không bỏ qua phiên bản thư viện; không nộp kết quả nếu thiếu test, README hoặc dữ liệu mẫu."
+      },
+      {
+        "title": "Ứng dụng Bauman",
+        "body": "Gắn bài học với repo học tập, dữ liệu thí nghiệm, pipeline AI/АСОИУ, НИР hoặc ВКР."
+      }
+    ],
+    "formula": "class Sensor: read(); class Model: predict()",
+    "application": "tạo skeleton phần mềm UGV gồm sensor/model/control",
+    "terminology": {
+      "vi": "Lớp",
+      "ru": "класс",
+      "en": "class"
+    },
+    "_internalMetaForSearchOnly": {
+      "tags": [
+        "hk1",
+        "OOP, class, interface, responsibility",
+        "programming",
+        "clean"
+      ]
+    }
+  },
+  {
+    "id": "PR18",
+    "lessonId": "PR18",
+    "stage": "hk1",
+    "moduleId": "mod_hk1",
+    "title": "Thiết kế module và kiến trúc package Python",
+    "ruTitle": "",
+    "summary": "Thiết kế module và kiến trúc package Python: nắm mục tiêu, input/output, workflow cốt lõi, test tối thiểu và ứng dụng vào chia dự án thành module rõ, dễ bảo trì và mở rộng.",
+    "description": "Bài học tập trung vào Thiết kế module và kiến trúc package Python. Người học phải tạo được artifact nhỏ: code hoặc cấu hình, test/log và ghi chú tái lập.",
+    "object": "chia dự án thành module rõ, dễ bảo trì và mở rộng",
+    "method": "Đọc yêu cầu → xác định input/output → viết code/pseudocode nhỏ → test/log → lưu artifact → tự vấn đáp.",
+    "keyPoints": [
+      "Xác định đúng vấn đề và đầu ra của: Thiết kế module và kiến trúc package Python.",
+      "Dùng workflow/cú pháp lõi: src/, tests/, configs/, data/, scripts/.",
+      "Có tối thiểu một kiểm thử, log hoặc ví dụ chạy được.",
+      "Liên hệ với ứng dụng: chia dự án thành module rõ, dễ bảo trì và mở rộng.",
+      "Ghi lại README ngắn để lần sau mở lại không mất ngữ cảnh."
+    ],
+    "slides": [
+      {
+        "title": "Mục tiêu bài học",
+        "body": "Sau bài này phải giải thích được Thiết kế module và kiến trúc package Python, biết dùng trong chia dự án thành module rõ, dễ bảo trì và mở rộng và tạo artifact kiểm chứng."
+      },
+      {
+        "title": "Workflow lõi",
+        "body": "Cú pháp/quy trình trọng tâm: src/, tests/, configs/, data/, scripts/. Không học thuộc rời rạc, luôn gắn với input/output và lỗi thường gặp."
+      },
+      {
+        "title": "Ví dụ tối thiểu",
+        "body": "Tạo một ví dụ nhỏ cho chia dự án thành module rõ, dễ bảo trì và mở rộng: dữ liệu vào, bước xử lý, kết quả ra và một dòng test/log."
+      },
+      {
+        "title": "Sai lầm cần tránh",
+        "body": "Không copy code mù; không bỏ qua phiên bản thư viện; không nộp kết quả nếu thiếu test, README hoặc dữ liệu mẫu."
+      },
+      {
+        "title": "Ứng dụng Bauman",
+        "body": "Gắn bài học với repo học tập, dữ liệu thí nghiệm, pipeline AI/АСОИУ, НИР hoặc ВКР."
+      }
+    ],
+    "formula": "src/, tests/, configs/, data/, scripts/",
+    "application": "chia dự án thành module rõ, dễ bảo trì và mở rộng",
+    "terminology": {
+      "vi": "Module phần mềm",
+      "ru": "программный модуль",
+      "en": "software module"
+    },
+    "_internalMetaForSearchOnly": {
+      "tags": [
+        "hk1",
+        "package architecture, modularity, imports",
+        "programming",
+        "clean"
+      ]
+    }
+  },
+  {
+    "id": "PR19",
+    "lessonId": "PR19",
+    "stage": "hk1",
+    "moduleId": "mod_hk1",
+    "title": "Mẫu thiết kế ứng dụng: factory, strategy, adapter",
+    "ruTitle": "",
+    "summary": "Mẫu thiết kế ứng dụng: factory, strategy, adapter: nắm mục tiêu, input/output, workflow cốt lõi, test tối thiểu và ứng dụng vào đổi cảm biến/mô hình mà không phá toàn bộ code.",
+    "description": "Bài học tập trung vào Mẫu thiết kế ứng dụng: factory, strategy, adapter. Người học phải tạo được artifact nhỏ: code hoặc cấu hình, test/log và ghi chú tái lập.",
+    "object": "đổi cảm biến/mô hình mà không phá toàn bộ code",
+    "method": "Đọc yêu cầu → xác định input/output → viết code/pseudocode nhỏ → test/log → lưu artifact → tự vấn đáp.",
+    "keyPoints": [
+      "Xác định đúng vấn đề và đầu ra của: Mẫu thiết kế ứng dụng: factory, strategy, adapter.",
+      "Dùng workflow/cú pháp lõi: Strategy(model); Adapter(sensor); Factory(config).",
+      "Có tối thiểu một kiểm thử, log hoặc ví dụ chạy được.",
+      "Liên hệ với ứng dụng: đổi cảm biến/mô hình mà không phá toàn bộ code.",
+      "Ghi lại README ngắn để lần sau mở lại không mất ngữ cảnh."
+    ],
+    "slides": [
+      {
+        "title": "Mục tiêu bài học",
+        "body": "Sau bài này phải giải thích được Mẫu thiết kế ứng dụng: factory, strategy, adapter, biết dùng trong đổi cảm biến/mô hình mà không phá toàn bộ code và tạo artifact kiểm chứng."
+      },
+      {
+        "title": "Workflow lõi",
+        "body": "Cú pháp/quy trình trọng tâm: Strategy(model); Adapter(sensor); Factory(config). Không học thuộc rời rạc, luôn gắn với input/output và lỗi thường gặp."
+      },
+      {
+        "title": "Ví dụ tối thiểu",
+        "body": "Tạo một ví dụ nhỏ cho đổi cảm biến/mô hình mà không phá toàn bộ code: dữ liệu vào, bước xử lý, kết quả ra và một dòng test/log."
+      },
+      {
+        "title": "Sai lầm cần tránh",
+        "body": "Không copy code mù; không bỏ qua phiên bản thư viện; không nộp kết quả nếu thiếu test, README hoặc dữ liệu mẫu."
+      },
+      {
+        "title": "Ứng dụng Bauman",
+        "body": "Gắn bài học với repo học tập, dữ liệu thí nghiệm, pipeline AI/АСОИУ, НИР hoặc ВКР."
+      }
+    ],
+    "formula": "Strategy(model); Adapter(sensor); Factory(config)",
+    "application": "đổi cảm biến/mô hình mà không phá toàn bộ code",
+    "terminology": {
+      "vi": "Mẫu thiết kế",
+      "ru": "шаблон проектирования",
+      "en": "design pattern"
+    },
+    "_internalMetaForSearchOnly": {
+      "tags": [
+        "hk1",
+        "design patterns, adapter, strategy",
+        "programming",
+        "clean"
+      ]
+    }
+  },
+  {
+    "id": "PR20",
+    "lessonId": "PR20",
+    "stage": "hk1",
+    "moduleId": "mod_hk1",
+    "title": "CSDL cho hệ thống học máy: schema và metadata",
+    "ruTitle": "",
+    "summary": "CSDL cho hệ thống học máy: schema và metadata: nắm mục tiêu, input/output, workflow cốt lõi, test tối thiểu và ứng dụng vào lưu tham số, metric, dataset và đường dẫn artifact.",
+    "description": "Bài học tập trung vào CSDL cho hệ thống học máy: schema và metadata. Người học phải tạo được artifact nhỏ: code hoặc cấu hình, test/log và ghi chú tái lập.",
+    "object": "lưu tham số, metric, dataset và đường dẫn artifact",
+    "method": "Đọc yêu cầu → xác định input/output → viết code/pseudocode nhỏ → test/log → lưu artifact → tự vấn đáp.",
+    "keyPoints": [
+      "Xác định đúng vấn đề và đầu ra của: CSDL cho hệ thống học máy: schema và metadata.",
+      "Dùng workflow/cú pháp lõi: experiment(id, params, metrics, artifact_path).",
+      "Có tối thiểu một kiểm thử, log hoặc ví dụ chạy được.",
+      "Liên hệ với ứng dụng: lưu tham số, metric, dataset và đường dẫn artifact.",
+      "Ghi lại README ngắn để lần sau mở lại không mất ngữ cảnh."
+    ],
+    "slides": [
+      {
+        "title": "Mục tiêu bài học",
+        "body": "Sau bài này phải giải thích được CSDL cho hệ thống học máy: schema và metadata, biết dùng trong lưu tham số, metric, dataset và đường dẫn artifact và tạo artifact kiểm chứng."
+      },
+      {
+        "title": "Workflow lõi",
+        "body": "Cú pháp/quy trình trọng tâm: experiment(id, params, metrics, artifact_path). Không học thuộc rời rạc, luôn gắn với input/output và lỗi thường gặp."
+      },
+      {
+        "title": "Ví dụ tối thiểu",
+        "body": "Tạo một ví dụ nhỏ cho lưu tham số, metric, dataset và đường dẫn artifact: dữ liệu vào, bước xử lý, kết quả ra và một dòng test/log."
+      },
+      {
+        "title": "Sai lầm cần tránh",
+        "body": "Không copy code mù; không bỏ qua phiên bản thư viện; không nộp kết quả nếu thiếu test, README hoặc dữ liệu mẫu."
+      },
+      {
+        "title": "Ứng dụng Bauman",
+        "body": "Gắn bài học với repo học tập, dữ liệu thí nghiệm, pipeline AI/АСОИУ, НИР hoặc ВКР."
+      }
+    ],
+    "formula": "experiment(id, params, metrics, artifact_path)",
+    "application": "lưu tham số, metric, dataset và đường dẫn artifact",
+    "terminology": {
+      "vi": "Lược đồ dữ liệu",
+      "ru": "схема данных",
+      "en": "data schema"
+    },
+    "_internalMetaForSearchOnly": {
+      "tags": [
+        "hk1",
+        "database schema, metadata, experiment log",
+        "programming",
+        "clean"
+      ]
+    }
+  },
+  {
+    "id": "PR21",
+    "lessonId": "PR21",
+    "stage": "hk1",
+    "moduleId": "mod_hk1",
+    "title": "ORM và migration nhập môn",
+    "ruTitle": "",
+    "summary": "ORM và migration nhập môn: nắm mục tiêu, input/output, workflow cốt lõi, test tối thiểu và ứng dụng vào quản lý thay đổi CSDL khi project lớn dần.",
+    "description": "Bài học tập trung vào ORM và migration nhập môn. Người học phải tạo được artifact nhỏ: code hoặc cấu hình, test/log và ghi chú tái lập.",
+    "object": "quản lý thay đổi CSDL khi project lớn dần",
+    "method": "Đọc yêu cầu → xác định input/output → viết code/pseudocode nhỏ → test/log → lưu artifact → tự vấn đáp.",
+    "keyPoints": [
+      "Xác định đúng vấn đề và đầu ra của: ORM và migration nhập môn.",
+      "Dùng workflow/cú pháp lõi: Model ↔ table; migration = schema version.",
+      "Có tối thiểu một kiểm thử, log hoặc ví dụ chạy được.",
+      "Liên hệ với ứng dụng: quản lý thay đổi CSDL khi project lớn dần.",
+      "Ghi lại README ngắn để lần sau mở lại không mất ngữ cảnh."
+    ],
+    "slides": [
+      {
+        "title": "Mục tiêu bài học",
+        "body": "Sau bài này phải giải thích được ORM và migration nhập môn, biết dùng trong quản lý thay đổi CSDL khi project lớn dần và tạo artifact kiểm chứng."
+      },
+      {
+        "title": "Workflow lõi",
+        "body": "Cú pháp/quy trình trọng tâm: Model ↔ table; migration = schema version. Không học thuộc rời rạc, luôn gắn với input/output và lỗi thường gặp."
+      },
+      {
+        "title": "Ví dụ tối thiểu",
+        "body": "Tạo một ví dụ nhỏ cho quản lý thay đổi CSDL khi project lớn dần: dữ liệu vào, bước xử lý, kết quả ra và một dòng test/log."
+      },
+      {
+        "title": "Sai lầm cần tránh",
+        "body": "Không copy code mù; không bỏ qua phiên bản thư viện; không nộp kết quả nếu thiếu test, README hoặc dữ liệu mẫu."
+      },
+      {
+        "title": "Ứng dụng Bauman",
+        "body": "Gắn bài học với repo học tập, dữ liệu thí nghiệm, pipeline AI/АСОИУ, НИР hoặc ВКР."
+      }
+    ],
+    "formula": "Model ↔ table; migration = schema version",
+    "application": "quản lý thay đổi CSDL khi project lớn dần",
+    "terminology": {
+      "vi": "Di trú CSDL",
+      "ru": "миграция базы данных",
+      "en": "database migration"
+    },
+    "_internalMetaForSearchOnly": {
+      "tags": [
+        "hk1",
+        "ORM, migration, schema version",
+        "programming",
+        "clean"
+      ]
+    }
+  },
+  {
+    "id": "PR22",
+    "lessonId": "PR22",
+    "stage": "hk1",
+    "moduleId": "mod_hk1",
+    "title": "Kỹ nghệ phần mềm: requirement, issue, milestone",
+    "ruTitle": "",
+    "summary": "Kỹ nghệ phần mềm: requirement, issue, milestone: nắm mục tiêu, input/output, workflow cốt lõi, test tối thiểu và ứng dụng vào quản lý tiến độ bài tập và module luận văn.",
+    "description": "Bài học tập trung vào Kỹ nghệ phần mềm: requirement, issue, milestone. Người học phải tạo được artifact nhỏ: code hoặc cấu hình, test/log và ghi chú tái lập.",
+    "object": "quản lý tiến độ bài tập và module luận văn",
+    "method": "Đọc yêu cầu → xác định input/output → viết code/pseudocode nhỏ → test/log → lưu artifact → tự vấn đáp.",
+    "keyPoints": [
+      "Xác định đúng vấn đề và đầu ra của: Kỹ nghệ phần mềm: requirement, issue, milestone.",
+      "Dùng workflow/cú pháp lõi: requirement → issue → branch → PR → release.",
+      "Có tối thiểu một kiểm thử, log hoặc ví dụ chạy được.",
+      "Liên hệ với ứng dụng: quản lý tiến độ bài tập và module luận văn.",
+      "Ghi lại README ngắn để lần sau mở lại không mất ngữ cảnh."
+    ],
+    "slides": [
+      {
+        "title": "Mục tiêu bài học",
+        "body": "Sau bài này phải giải thích được Kỹ nghệ phần mềm: requirement, issue, milestone, biết dùng trong quản lý tiến độ bài tập và module luận văn và tạo artifact kiểm chứng."
+      },
+      {
+        "title": "Workflow lõi",
+        "body": "Cú pháp/quy trình trọng tâm: requirement → issue → branch → PR → release. Không học thuộc rời rạc, luôn gắn với input/output và lỗi thường gặp."
+      },
+      {
+        "title": "Ví dụ tối thiểu",
+        "body": "Tạo một ví dụ nhỏ cho quản lý tiến độ bài tập và module luận văn: dữ liệu vào, bước xử lý, kết quả ra và một dòng test/log."
+      },
+      {
+        "title": "Sai lầm cần tránh",
+        "body": "Không copy code mù; không bỏ qua phiên bản thư viện; không nộp kết quả nếu thiếu test, README hoặc dữ liệu mẫu."
+      },
+      {
+        "title": "Ứng dụng Bauman",
+        "body": "Gắn bài học với repo học tập, dữ liệu thí nghiệm, pipeline AI/АСОИУ, НИР hoặc ВКР."
+      }
+    ],
+    "formula": "requirement → issue → branch → PR → release",
+    "application": "quản lý tiến độ bài tập và module luận văn",
+    "terminology": {
+      "vi": "Yêu cầu phần mềm",
+      "ru": "требование к ПО",
+      "en": "software requirement"
+    },
+    "_internalMetaForSearchOnly": {
+      "tags": [
+        "hk1",
+        "software engineering, workflow, release",
+        "programming",
+        "clean"
+      ]
+    }
+  },
+  {
+    "id": "PR23",
+    "lessonId": "PR23",
+    "stage": "hk1",
+    "moduleId": "mod_hk1",
+    "title": "Kiểm thử tích hợp và test dữ liệu",
+    "ruTitle": "",
+    "summary": "Kiểm thử tích hợp và test dữ liệu: nắm mục tiêu, input/output, workflow cốt lõi, test tối thiểu và ứng dụng vào phát hiện dữ liệu hỏng trước khi train mô hình.",
+    "description": "Bài học tập trung vào Kiểm thử tích hợp và test dữ liệu. Người học phải tạo được artifact nhỏ: code hoặc cấu hình, test/log và ghi chú tái lập.",
+    "object": "phát hiện dữ liệu hỏng trước khi train mô hình",
+    "method": "Đọc yêu cầu → xác định input/output → viết code/pseudocode nhỏ → test/log → lưu artifact → tự vấn đáp.",
+    "keyPoints": [
+      "Xác định đúng vấn đề và đầu ra của: Kiểm thử tích hợp và test dữ liệu.",
+      "Dùng workflow/cú pháp lõi: test pipeline(input) → expected artifact.",
+      "Có tối thiểu một kiểm thử, log hoặc ví dụ chạy được.",
+      "Liên hệ với ứng dụng: phát hiện dữ liệu hỏng trước khi train mô hình.",
+      "Ghi lại README ngắn để lần sau mở lại không mất ngữ cảnh."
+    ],
+    "slides": [
+      {
+        "title": "Mục tiêu bài học",
+        "body": "Sau bài này phải giải thích được Kiểm thử tích hợp và test dữ liệu, biết dùng trong phát hiện dữ liệu hỏng trước khi train mô hình và tạo artifact kiểm chứng."
+      },
+      {
+        "title": "Workflow lõi",
+        "body": "Cú pháp/quy trình trọng tâm: test pipeline(input) → expected artifact. Không học thuộc rời rạc, luôn gắn với input/output và lỗi thường gặp."
+      },
+      {
+        "title": "Ví dụ tối thiểu",
+        "body": "Tạo một ví dụ nhỏ cho phát hiện dữ liệu hỏng trước khi train mô hình: dữ liệu vào, bước xử lý, kết quả ra và một dòng test/log."
+      },
+      {
+        "title": "Sai lầm cần tránh",
+        "body": "Không copy code mù; không bỏ qua phiên bản thư viện; không nộp kết quả nếu thiếu test, README hoặc dữ liệu mẫu."
+      },
+      {
+        "title": "Ứng dụng Bauman",
+        "body": "Gắn bài học với repo học tập, dữ liệu thí nghiệm, pipeline AI/АСОИУ, НИР hoặc ВКР."
+      }
+    ],
+    "formula": "test pipeline(input) → expected artifact",
+    "application": "phát hiện dữ liệu hỏng trước khi train mô hình",
+    "terminology": {
+      "vi": "Kiểm thử tích hợp",
+      "ru": "интеграционное тестирование",
+      "en": "integration testing"
+    },
+    "_internalMetaForSearchOnly": {
+      "tags": [
+        "hk1",
+        "integration testing, data tests, pipeline tests",
+        "programming",
+        "clean"
+      ]
+    }
+  },
+  {
+    "id": "PR24",
+    "lessonId": "PR24",
+    "stage": "hk1",
+    "moduleId": "mod_hk1",
+    "title": "CI nhẹ và kiểm tra chất lượng code",
+    "ruTitle": "",
+    "summary": "CI nhẹ và kiểm tra chất lượng code: nắm mục tiêu, input/output, workflow cốt lõi, test tối thiểu và ứng dụng vào tự động kiểm tra repo trước khi nộp/đẩy code.",
+    "description": "Bài học tập trung vào CI nhẹ và kiểm tra chất lượng code. Người học phải tạo được artifact nhỏ: code hoặc cấu hình, test/log và ghi chú tái lập.",
+    "object": "tự động kiểm tra repo trước khi nộp/đẩy code",
+    "method": "Đọc yêu cầu → xác định input/output → viết code/pseudocode nhỏ → test/log → lưu artifact → tự vấn đáp.",
+    "keyPoints": [
+      "Xác định đúng vấn đề và đầu ra của: CI nhẹ và kiểm tra chất lượng code.",
+      "Dùng workflow/cú pháp lõi: lint + tests + type check = green build.",
+      "Có tối thiểu một kiểm thử, log hoặc ví dụ chạy được.",
+      "Liên hệ với ứng dụng: tự động kiểm tra repo trước khi nộp/đẩy code.",
+      "Ghi lại README ngắn để lần sau mở lại không mất ngữ cảnh."
+    ],
+    "slides": [
+      {
+        "title": "Mục tiêu bài học",
+        "body": "Sau bài này phải giải thích được CI nhẹ và kiểm tra chất lượng code, biết dùng trong tự động kiểm tra repo trước khi nộp/đẩy code và tạo artifact kiểm chứng."
+      },
+      {
+        "title": "Workflow lõi",
+        "body": "Cú pháp/quy trình trọng tâm: lint + tests + type check = green build. Không học thuộc rời rạc, luôn gắn với input/output và lỗi thường gặp."
+      },
+      {
+        "title": "Ví dụ tối thiểu",
+        "body": "Tạo một ví dụ nhỏ cho tự động kiểm tra repo trước khi nộp/đẩy code: dữ liệu vào, bước xử lý, kết quả ra và một dòng test/log."
+      },
+      {
+        "title": "Sai lầm cần tránh",
+        "body": "Không copy code mù; không bỏ qua phiên bản thư viện; không nộp kết quả nếu thiếu test, README hoặc dữ liệu mẫu."
+      },
+      {
+        "title": "Ứng dụng Bauman",
+        "body": "Gắn bài học với repo học tập, dữ liệu thí nghiệm, pipeline AI/АСОИУ, НИР hoặc ВКР."
+      }
+    ],
+    "formula": "lint + tests + type check = green build",
+    "application": "tự động kiểm tra repo trước khi nộp/đẩy code",
+    "terminology": {
+      "vi": "Tích hợp liên tục",
+      "ru": "непрерывная интеграция",
+      "en": "continuous integration"
+    },
+    "_internalMetaForSearchOnly": {
+      "tags": [
+        "hk1",
+        "CI, lint, type check",
+        "programming",
+        "clean"
+      ]
+    }
+  },
+  {
+    "id": "PR25",
+    "lessonId": "PR25",
+    "stage": "hk2",
+    "moduleId": "mod_hk2",
+    "title": "Pipeline dữ liệu cho ML",
+    "ruTitle": "",
+    "summary": "Pipeline dữ liệu cho ML: nắm mục tiêu, input/output, workflow cốt lõi, test tối thiểu và ứng dụng vào tạo quy trình lặp lại cho dữ liệu UGV/USV.",
+    "description": "Bài học tập trung vào Pipeline dữ liệu cho ML. Người học phải tạo được artifact nhỏ: code hoặc cấu hình, test/log và ghi chú tái lập.",
+    "object": "tạo quy trình lặp lại cho dữ liệu UGV/USV",
+    "method": "Đọc yêu cầu → xác định input/output → viết code/pseudocode nhỏ → test/log → lưu artifact → tự vấn đáp.",
+    "keyPoints": [
+      "Xác định đúng vấn đề và đầu ra của: Pipeline dữ liệu cho ML.",
+      "Dùng workflow/cú pháp lõi: raw → clean → features → train → evaluate.",
+      "Có tối thiểu một kiểm thử, log hoặc ví dụ chạy được.",
+      "Liên hệ với ứng dụng: tạo quy trình lặp lại cho dữ liệu UGV/USV.",
+      "Ghi lại README ngắn để lần sau mở lại không mất ngữ cảnh."
+    ],
+    "slides": [
+      {
+        "title": "Mục tiêu bài học",
+        "body": "Sau bài này phải giải thích được Pipeline dữ liệu cho ML, biết dùng trong tạo quy trình lặp lại cho dữ liệu UGV/USV và tạo artifact kiểm chứng."
+      },
+      {
+        "title": "Workflow lõi",
+        "body": "Cú pháp/quy trình trọng tâm: raw → clean → features → train → evaluate. Không học thuộc rời rạc, luôn gắn với input/output và lỗi thường gặp."
+      },
+      {
+        "title": "Ví dụ tối thiểu",
+        "body": "Tạo một ví dụ nhỏ cho tạo quy trình lặp lại cho dữ liệu UGV/USV: dữ liệu vào, bước xử lý, kết quả ra và một dòng test/log."
+      },
+      {
+        "title": "Sai lầm cần tránh",
+        "body": "Không copy code mù; không bỏ qua phiên bản thư viện; không nộp kết quả nếu thiếu test, README hoặc dữ liệu mẫu."
+      },
+      {
+        "title": "Ứng dụng Bauman",
+        "body": "Gắn bài học với repo học tập, dữ liệu thí nghiệm, pipeline AI/АСОИУ, НИР hoặc ВКР."
+      }
+    ],
+    "formula": "raw → clean → features → train → evaluate",
+    "application": "tạo quy trình lặp lại cho dữ liệu UGV/USV",
+    "terminology": {
+      "vi": "Đường ống dữ liệu",
+      "ru": "конвейер данных",
+      "en": "data pipeline"
+    },
+    "_internalMetaForSearchOnly": {
+      "tags": [
+        "hk2",
+        "ML pipeline, ETL, feature engineering",
+        "programming",
+        "clean"
+      ]
+    }
+  },
+  {
+    "id": "PR26",
+    "lessonId": "PR26",
+    "stage": "hk2",
+    "moduleId": "mod_hk2",
+    "title": "Scikit-learn baseline và metric",
+    "ruTitle": "",
+    "summary": "Scikit-learn baseline và metric: nắm mục tiêu, input/output, workflow cốt lõi, test tối thiểu và ứng dụng vào dựng baseline có metric rõ cho ML trong АСОИУ.",
+    "description": "Bài học tập trung vào Scikit-learn baseline và metric. Người học phải tạo được artifact nhỏ: code hoặc cấu hình, test/log và ghi chú tái lập.",
+    "object": "dựng baseline có metric rõ cho ML trong АСОИУ",
+    "method": "Đọc yêu cầu → xác định input/output → viết code/pseudocode nhỏ → test/log → lưu artifact → tự vấn đáp.",
+    "keyPoints": [
+      "Xác định đúng vấn đề và đầu ra của: Scikit-learn baseline và metric.",
+      "Dùng workflow/cú pháp lõi: model.fit(X_train,y_train); score=f(metric).",
+      "Có tối thiểu một kiểm thử, log hoặc ví dụ chạy được.",
+      "Liên hệ với ứng dụng: dựng baseline có metric rõ cho ML trong АСОИУ.",
+      "Ghi lại README ngắn để lần sau mở lại không mất ngữ cảnh."
+    ],
+    "slides": [
+      {
+        "title": "Mục tiêu bài học",
+        "body": "Sau bài này phải giải thích được Scikit-learn baseline và metric, biết dùng trong dựng baseline có metric rõ cho ML trong АСОИУ và tạo artifact kiểm chứng."
+      },
+      {
+        "title": "Workflow lõi",
+        "body": "Cú pháp/quy trình trọng tâm: model.fit(X_train,y_train); score=f(metric). Không học thuộc rời rạc, luôn gắn với input/output và lỗi thường gặp."
+      },
+      {
+        "title": "Ví dụ tối thiểu",
+        "body": "Tạo một ví dụ nhỏ cho dựng baseline có metric rõ cho ML trong АСОИУ: dữ liệu vào, bước xử lý, kết quả ra và một dòng test/log."
+      },
+      {
+        "title": "Sai lầm cần tránh",
+        "body": "Không copy code mù; không bỏ qua phiên bản thư viện; không nộp kết quả nếu thiếu test, README hoặc dữ liệu mẫu."
+      },
+      {
+        "title": "Ứng dụng Bauman",
+        "body": "Gắn bài học với repo học tập, dữ liệu thí nghiệm, pipeline AI/АСОИУ, НИР hoặc ВКР."
+      }
+    ],
+    "formula": "model.fit(X_train,y_train); score=f(metric)",
+    "application": "dựng baseline có metric rõ cho ML trong АСОИУ",
+    "terminology": {
+      "vi": "Mô hình cơ sở",
+      "ru": "базовая модель",
+      "en": "baseline model"
+    },
+    "_internalMetaForSearchOnly": {
+      "tags": [
+        "hk2",
+        "baseline, metrics, train test split",
+        "programming",
+        "clean"
+      ]
+    }
+  },
+  {
+    "id": "PR27",
+    "lessonId": "PR27",
+    "stage": "hk2",
+    "moduleId": "mod_hk2",
+    "title": "API inference với FastAPI",
+    "ruTitle": "",
+    "summary": "API inference với FastAPI: nắm mục tiêu, input/output, workflow cốt lõi, test tối thiểu và ứng dụng vào biến mô hình thành dịch vụ thử nghiệm được.",
+    "description": "Bài học tập trung vào API inference với FastAPI. Người học phải tạo được artifact nhỏ: code hoặc cấu hình, test/log và ghi chú tái lập.",
+    "object": "biến mô hình thành dịch vụ thử nghiệm được",
+    "method": "Đọc yêu cầu → xác định input/output → viết code/pseudocode nhỏ → test/log → lưu artifact → tự vấn đáp.",
+    "keyPoints": [
+      "Xác định đúng vấn đề và đầu ra của: API inference với FastAPI.",
+      "Dùng workflow/cú pháp lõi: POST /predict → input schema → prediction.",
+      "Có tối thiểu một kiểm thử, log hoặc ví dụ chạy được.",
+      "Liên hệ với ứng dụng: biến mô hình thành dịch vụ thử nghiệm được.",
+      "Ghi lại README ngắn để lần sau mở lại không mất ngữ cảnh."
+    ],
+    "slides": [
+      {
+        "title": "Mục tiêu bài học",
+        "body": "Sau bài này phải giải thích được API inference với FastAPI, biết dùng trong biến mô hình thành dịch vụ thử nghiệm được và tạo artifact kiểm chứng."
+      },
+      {
+        "title": "Workflow lõi",
+        "body": "Cú pháp/quy trình trọng tâm: POST /predict → input schema → prediction. Không học thuộc rời rạc, luôn gắn với input/output và lỗi thường gặp."
+      },
+      {
+        "title": "Ví dụ tối thiểu",
+        "body": "Tạo một ví dụ nhỏ cho biến mô hình thành dịch vụ thử nghiệm được: dữ liệu vào, bước xử lý, kết quả ra và một dòng test/log."
+      },
+      {
+        "title": "Sai lầm cần tránh",
+        "body": "Không copy code mù; không bỏ qua phiên bản thư viện; không nộp kết quả nếu thiếu test, README hoặc dữ liệu mẫu."
+      },
+      {
+        "title": "Ứng dụng Bauman",
+        "body": "Gắn bài học với repo học tập, dữ liệu thí nghiệm, pipeline AI/АСОИУ, НИР hoặc ВКР."
+      }
+    ],
+    "formula": "POST /predict → input schema → prediction",
+    "application": "biến mô hình thành dịch vụ thử nghiệm được",
+    "terminology": {
+      "vi": "API dự đoán",
+      "ru": "API предсказания",
+      "en": "prediction API"
+    },
+    "_internalMetaForSearchOnly": {
+      "tags": [
+        "hk2",
+        "API, FastAPI, inference service",
+        "programming",
+        "clean"
+      ]
+    }
+  },
+  {
+    "id": "PR28",
+    "lessonId": "PR28",
+    "stage": "hk2",
+    "moduleId": "mod_hk2",
+    "title": "Serialization model và artifact version",
+    "ruTitle": "",
+    "summary": "Serialization model và artifact version: nắm mục tiêu, input/output, workflow cốt lõi, test tối thiểu và ứng dụng vào lưu model/dataset/metric theo phiên bản để chạy lại.",
+    "description": "Bài học tập trung vào Serialization model và artifact version. Người học phải tạo được artifact nhỏ: code hoặc cấu hình, test/log và ghi chú tái lập.",
+    "object": "lưu model/dataset/metric theo phiên bản để chạy lại",
+    "method": "Đọc yêu cầu → xác định input/output → viết code/pseudocode nhỏ → test/log → lưu artifact → tự vấn đáp.",
+    "keyPoints": [
+      "Xác định đúng vấn đề và đầu ra của: Serialization model và artifact version.",
+      "Dùng workflow/cú pháp lõi: joblib.dump(model); artifact_v1.pkl.",
+      "Có tối thiểu một kiểm thử, log hoặc ví dụ chạy được.",
+      "Liên hệ với ứng dụng: lưu model/dataset/metric theo phiên bản để chạy lại.",
+      "Ghi lại README ngắn để lần sau mở lại không mất ngữ cảnh."
+    ],
+    "slides": [
+      {
+        "title": "Mục tiêu bài học",
+        "body": "Sau bài này phải giải thích được Serialization model và artifact version, biết dùng trong lưu model/dataset/metric theo phiên bản để chạy lại và tạo artifact kiểm chứng."
+      },
+      {
+        "title": "Workflow lõi",
+        "body": "Cú pháp/quy trình trọng tâm: joblib.dump(model); artifact_v1.pkl. Không học thuộc rời rạc, luôn gắn với input/output và lỗi thường gặp."
+      },
+      {
+        "title": "Ví dụ tối thiểu",
+        "body": "Tạo một ví dụ nhỏ cho lưu model/dataset/metric theo phiên bản để chạy lại: dữ liệu vào, bước xử lý, kết quả ra và một dòng test/log."
+      },
+      {
+        "title": "Sai lầm cần tránh",
+        "body": "Không copy code mù; không bỏ qua phiên bản thư viện; không nộp kết quả nếu thiếu test, README hoặc dữ liệu mẫu."
+      },
+      {
+        "title": "Ứng dụng Bauman",
+        "body": "Gắn bài học với repo học tập, dữ liệu thí nghiệm, pipeline AI/АСОИУ, НИР hoặc ВКР."
+      }
+    ],
+    "formula": "joblib.dump(model); artifact_v1.pkl",
+    "application": "lưu model/dataset/metric theo phiên bản để chạy lại",
+    "terminology": {
+      "vi": "Artifact",
+      "ru": "артефакт",
+      "en": "artifact"
+    },
+    "_internalMetaForSearchOnly": {
+      "tags": [
+        "hk2",
+        "serialization, artifacts, versioning",
+        "programming",
+        "clean"
+      ]
+    }
+  },
+  {
+    "id": "PR29",
+    "lessonId": "PR29",
+    "stage": "hk2",
+    "moduleId": "mod_hk2",
+    "title": "Cấu hình thí nghiệm bằng YAML/JSON",
+    "ruTitle": "",
+    "summary": "Cấu hình thí nghiệm bằng YAML/JSON: nắm mục tiêu, input/output, workflow cốt lõi, test tối thiểu và ứng dụng vào khóa tham số thí nghiệm để tránh loạn kết quả.",
+    "description": "Bài học tập trung vào Cấu hình thí nghiệm bằng YAML/JSON. Người học phải tạo được artifact nhỏ: code hoặc cấu hình, test/log và ghi chú tái lập.",
+    "object": "khóa tham số thí nghiệm để tránh loạn kết quả",
+    "method": "Đọc yêu cầu → xác định input/output → viết code/pseudocode nhỏ → test/log → lưu artifact → tự vấn đáp.",
+    "keyPoints": [
+      "Xác định đúng vấn đề và đầu ra của: Cấu hình thí nghiệm bằng YAML/JSON.",
+      "Dùng workflow/cú pháp lõi: config = params + seed + paths.",
+      "Có tối thiểu một kiểm thử, log hoặc ví dụ chạy được.",
+      "Liên hệ với ứng dụng: khóa tham số thí nghiệm để tránh loạn kết quả.",
+      "Ghi lại README ngắn để lần sau mở lại không mất ngữ cảnh."
+    ],
+    "slides": [
+      {
+        "title": "Mục tiêu bài học",
+        "body": "Sau bài này phải giải thích được Cấu hình thí nghiệm bằng YAML/JSON, biết dùng trong khóa tham số thí nghiệm để tránh loạn kết quả và tạo artifact kiểm chứng."
+      },
+      {
+        "title": "Workflow lõi",
+        "body": "Cú pháp/quy trình trọng tâm: config = params + seed + paths. Không học thuộc rời rạc, luôn gắn với input/output và lỗi thường gặp."
+      },
+      {
+        "title": "Ví dụ tối thiểu",
+        "body": "Tạo một ví dụ nhỏ cho khóa tham số thí nghiệm để tránh loạn kết quả: dữ liệu vào, bước xử lý, kết quả ra và một dòng test/log."
+      },
+      {
+        "title": "Sai lầm cần tránh",
+        "body": "Không copy code mù; không bỏ qua phiên bản thư viện; không nộp kết quả nếu thiếu test, README hoặc dữ liệu mẫu."
+      },
+      {
+        "title": "Ứng dụng Bauman",
+        "body": "Gắn bài học với repo học tập, dữ liệu thí nghiệm, pipeline AI/АСОИУ, НИР hoặc ВКР."
+      }
+    ],
+    "formula": "config = params + seed + paths",
+    "application": "khóa tham số thí nghiệm để tránh loạn kết quả",
+    "terminology": {
+      "vi": "Cấu hình",
+      "ru": "конфигурация",
+      "en": "configuration"
+    },
+    "_internalMetaForSearchOnly": {
+      "tags": [
+        "hk2",
+        "configuration, seed, experiment settings",
+        "programming",
+        "clean"
+      ]
+    }
+  },
+  {
+    "id": "PR30",
+    "lessonId": "PR30",
+    "stage": "hk2",
+    "moduleId": "mod_hk2",
+    "title": "Docker nhập môn cho môi trường tái lập",
+    "ruTitle": "",
+    "summary": "Docker nhập môn cho môi trường tái lập: nắm mục tiêu, input/output, workflow cốt lõi, test tối thiểu và ứng dụng vào chạy lại demo trên máy khác ít lỗi hơn.",
+    "description": "Bài học tập trung vào Docker nhập môn cho môi trường tái lập. Người học phải tạo được artifact nhỏ: code hoặc cấu hình, test/log và ghi chú tái lập.",
+    "object": "chạy lại demo trên máy khác ít lỗi hơn",
+    "method": "Đọc yêu cầu → xác định input/output → viết code/pseudocode nhỏ → test/log → lưu artifact → tự vấn đáp.",
+    "keyPoints": [
+      "Xác định đúng vấn đề và đầu ra của: Docker nhập môn cho môi trường tái lập.",
+      "Dùng workflow/cú pháp lõi: Dockerfile + requirements + command.",
+      "Có tối thiểu một kiểm thử, log hoặc ví dụ chạy được.",
+      "Liên hệ với ứng dụng: chạy lại demo trên máy khác ít lỗi hơn.",
+      "Ghi lại README ngắn để lần sau mở lại không mất ngữ cảnh."
+    ],
+    "slides": [
+      {
+        "title": "Mục tiêu bài học",
+        "body": "Sau bài này phải giải thích được Docker nhập môn cho môi trường tái lập, biết dùng trong chạy lại demo trên máy khác ít lỗi hơn và tạo artifact kiểm chứng."
+      },
+      {
+        "title": "Workflow lõi",
+        "body": "Cú pháp/quy trình trọng tâm: Dockerfile + requirements + command. Không học thuộc rời rạc, luôn gắn với input/output và lỗi thường gặp."
+      },
+      {
+        "title": "Ví dụ tối thiểu",
+        "body": "Tạo một ví dụ nhỏ cho chạy lại demo trên máy khác ít lỗi hơn: dữ liệu vào, bước xử lý, kết quả ra và một dòng test/log."
+      },
+      {
+        "title": "Sai lầm cần tránh",
+        "body": "Không copy code mù; không bỏ qua phiên bản thư viện; không nộp kết quả nếu thiếu test, README hoặc dữ liệu mẫu."
+      },
+      {
+        "title": "Ứng dụng Bauman",
+        "body": "Gắn bài học với repo học tập, dữ liệu thí nghiệm, pipeline AI/АСОИУ, НИР hoặc ВКР."
+      }
+    ],
+    "formula": "Dockerfile + requirements + command",
+    "application": "chạy lại demo trên máy khác ít lỗi hơn",
+    "terminology": {
+      "vi": "Container",
+      "ru": "контейнер",
+      "en": "container"
+    },
+    "_internalMetaForSearchOnly": {
+      "tags": [
+        "hk2",
+        "Docker, container, environment lock",
+        "programming",
+        "clean"
+      ]
+    }
+  },
+  {
+    "id": "PR31",
+    "lessonId": "PR31",
+    "stage": "hk2",
+    "moduleId": "mod_hk2",
+    "title": "Bảo mật dữ liệu và quản lý secret",
+    "ruTitle": "",
+    "summary": "Bảo mật dữ liệu và quản lý secret: nắm mục tiêu, input/output, workflow cốt lõi, test tối thiểu và ứng dụng vào không lộ key, dữ liệu, đường dẫn nhạy cảm.",
+    "description": "Bài học tập trung vào Bảo mật dữ liệu và quản lý secret. Người học phải tạo được artifact nhỏ: code hoặc cấu hình, test/log và ghi chú tái lập.",
+    "object": "không lộ key, dữ liệu, đường dẫn nhạy cảm",
+    "method": "Đọc yêu cầu → xác định input/output → viết code/pseudocode nhỏ → test/log → lưu artifact → tự vấn đáp.",
+    "keyPoints": [
+      "Xác định đúng vấn đề và đầu ra của: Bảo mật dữ liệu và quản lý secret.",
+      "Dùng workflow/cú pháp lõi: .env; never commit secrets; access control.",
+      "Có tối thiểu một kiểm thử, log hoặc ví dụ chạy được.",
+      "Liên hệ với ứng dụng: không lộ key, dữ liệu, đường dẫn nhạy cảm.",
+      "Ghi lại README ngắn để lần sau mở lại không mất ngữ cảnh."
+    ],
+    "slides": [
+      {
+        "title": "Mục tiêu bài học",
+        "body": "Sau bài này phải giải thích được Bảo mật dữ liệu và quản lý secret, biết dùng trong không lộ key, dữ liệu, đường dẫn nhạy cảm và tạo artifact kiểm chứng."
+      },
+      {
+        "title": "Workflow lõi",
+        "body": "Cú pháp/quy trình trọng tâm: .env; never commit secrets; access control. Không học thuộc rời rạc, luôn gắn với input/output và lỗi thường gặp."
+      },
+      {
+        "title": "Ví dụ tối thiểu",
+        "body": "Tạo một ví dụ nhỏ cho không lộ key, dữ liệu, đường dẫn nhạy cảm: dữ liệu vào, bước xử lý, kết quả ra và một dòng test/log."
+      },
+      {
+        "title": "Sai lầm cần tránh",
+        "body": "Không copy code mù; không bỏ qua phiên bản thư viện; không nộp kết quả nếu thiếu test, README hoặc dữ liệu mẫu."
+      },
+      {
+        "title": "Ứng dụng Bauman",
+        "body": "Gắn bài học với repo học tập, dữ liệu thí nghiệm, pipeline AI/АСОИУ, НИР hoặc ВКР."
+      }
+    ],
+    "formula": ".env; never commit secrets; access control",
+    "application": "không lộ key, dữ liệu, đường dẫn nhạy cảm",
+    "terminology": {
+      "vi": "Bí mật hệ thống",
+      "ru": "секрет",
+      "en": "secret"
+    },
+    "_internalMetaForSearchOnly": {
+      "tags": [
+        "hk2",
+        "security, secrets, access control",
+        "programming",
+        "clean"
+      ]
+    }
+  },
+  {
+    "id": "PR32",
+    "lessonId": "PR32",
+    "stage": "hk2",
+    "moduleId": "mod_hk2",
+    "title": "Tài liệu kỹ thuật và sơ đồ kiến trúc",
+    "ruTitle": "",
+    "summary": "Tài liệu kỹ thuật và sơ đồ kiến trúc: nắm mục tiêu, input/output, workflow cốt lõi, test tối thiểu và ứng dụng vào giải thích phần mềm cho giáo sư và nhóm nghiên cứu.",
+    "description": "Bài học tập trung vào Tài liệu kỹ thuật và sơ đồ kiến trúc. Người học phải tạo được artifact nhỏ: code hoặc cấu hình, test/log và ghi chú tái lập.",
+    "object": "giải thích phần mềm cho giáo sư và nhóm nghiên cứu",
+    "method": "Đọc yêu cầu → xác định input/output → viết code/pseudocode nhỏ → test/log → lưu artifact → tự vấn đáp.",
+    "keyPoints": [
+      "Xác định đúng vấn đề và đầu ra của: Tài liệu kỹ thuật và sơ đồ kiến trúc.",
+      "Dùng workflow/cú pháp lõi: architecture.md + sequence diagram + API spec.",
+      "Có tối thiểu một kiểm thử, log hoặc ví dụ chạy được.",
+      "Liên hệ với ứng dụng: giải thích phần mềm cho giáo sư và nhóm nghiên cứu.",
+      "Ghi lại README ngắn để lần sau mở lại không mất ngữ cảnh."
+    ],
+    "slides": [
+      {
+        "title": "Mục tiêu bài học",
+        "body": "Sau bài này phải giải thích được Tài liệu kỹ thuật và sơ đồ kiến trúc, biết dùng trong giải thích phần mềm cho giáo sư và nhóm nghiên cứu và tạo artifact kiểm chứng."
+      },
+      {
+        "title": "Workflow lõi",
+        "body": "Cú pháp/quy trình trọng tâm: architecture.md + sequence diagram + API spec. Không học thuộc rời rạc, luôn gắn với input/output và lỗi thường gặp."
+      },
+      {
+        "title": "Ví dụ tối thiểu",
+        "body": "Tạo một ví dụ nhỏ cho giải thích phần mềm cho giáo sư và nhóm nghiên cứu: dữ liệu vào, bước xử lý, kết quả ra và một dòng test/log."
+      },
+      {
+        "title": "Sai lầm cần tránh",
+        "body": "Không copy code mù; không bỏ qua phiên bản thư viện; không nộp kết quả nếu thiếu test, README hoặc dữ liệu mẫu."
+      },
+      {
+        "title": "Ứng dụng Bauman",
+        "body": "Gắn bài học với repo học tập, dữ liệu thí nghiệm, pipeline AI/АСОИУ, НИР hoặc ВКР."
+      }
+    ],
+    "formula": "architecture.md + sequence diagram + API spec",
+    "application": "giải thích phần mềm cho giáo sư và nhóm nghiên cứu",
+    "terminology": {
+      "vi": "Tài liệu kỹ thuật",
+      "ru": "техническая документация",
+      "en": "technical documentation"
+    },
+    "_internalMetaForSearchOnly": {
+      "tags": [
+        "hk2",
+        "technical documentation, diagrams, API spec",
+        "programming",
+        "clean"
+      ]
+    }
+  },
+  {
+    "id": "PR33",
+    "lessonId": "PR33",
+    "stage": "hk3",
+    "moduleId": "mod_hk3",
+    "title": "Dataset card cho telemetry và cảm biến",
+    "ruTitle": "",
+    "summary": "Dataset card cho telemetry và cảm biến: nắm mục tiêu, input/output, workflow cốt lõi, test tối thiểu và ứng dụng vào mô tả dữ liệu НИР đủ rõ để phản biện.",
+    "description": "Bài học tập trung vào Dataset card cho telemetry và cảm biến. Người học phải tạo được artifact nhỏ: code hoặc cấu hình, test/log và ghi chú tái lập.",
+    "object": "mô tả dữ liệu НИР đủ rõ để phản biện",
+    "method": "Đọc yêu cầu → xác định input/output → viết code/pseudocode nhỏ → test/log → lưu artifact → tự vấn đáp.",
+    "keyPoints": [
+      "Xác định đúng vấn đề và đầu ra của: Dataset card cho telemetry và cảm biến.",
+      "Dùng workflow/cú pháp lõi: dataset card = source + schema + limits + ethics.",
+      "Có tối thiểu một kiểm thử, log hoặc ví dụ chạy được.",
+      "Liên hệ với ứng dụng: mô tả dữ liệu НИР đủ rõ để phản biện.",
+      "Ghi lại README ngắn để lần sau mở lại không mất ngữ cảnh."
+    ],
+    "slides": [
+      {
+        "title": "Mục tiêu bài học",
+        "body": "Sau bài này phải giải thích được Dataset card cho telemetry và cảm biến, biết dùng trong mô tả dữ liệu НИР đủ rõ để phản biện và tạo artifact kiểm chứng."
+      },
+      {
+        "title": "Workflow lõi",
+        "body": "Cú pháp/quy trình trọng tâm: dataset card = source + schema + limits + ethics. Không học thuộc rời rạc, luôn gắn với input/output và lỗi thường gặp."
+      },
+      {
+        "title": "Ví dụ tối thiểu",
+        "body": "Tạo một ví dụ nhỏ cho mô tả dữ liệu НИР đủ rõ để phản biện: dữ liệu vào, bước xử lý, kết quả ra và một dòng test/log."
+      },
+      {
+        "title": "Sai lầm cần tránh",
+        "body": "Không copy code mù; không bỏ qua phiên bản thư viện; không nộp kết quả nếu thiếu test, README hoặc dữ liệu mẫu."
+      },
+      {
+        "title": "Ứng dụng Bauman",
+        "body": "Gắn bài học với repo học tập, dữ liệu thí nghiệm, pipeline AI/АСОИУ, НИР hoặc ВКР."
+      }
+    ],
+    "formula": "dataset card = source + schema + limits + ethics",
+    "application": "mô tả dữ liệu НИР đủ rõ để phản biện",
+    "terminology": {
+      "vi": "Thẻ dữ liệu",
+      "ru": "карточка набора данных",
+      "en": "dataset card"
+    },
+    "_internalMetaForSearchOnly": {
+      "tags": [
+        "hk3",
+        "dataset card, telemetry, sensor logs",
+        "programming",
+        "clean"
+      ]
+    }
+  },
+  {
+    "id": "PR34",
+    "lessonId": "PR34",
+    "stage": "hk3",
+    "moduleId": "mod_hk3",
+    "title": "Experiment tracking và bảng metric",
+    "ruTitle": "",
+    "summary": "Experiment tracking và bảng metric: nắm mục tiêu, input/output, workflow cốt lõi, test tối thiểu và ứng dụng vào so sánh mô hình trong НИР có bằng chứng.",
+    "description": "Bài học tập trung vào Experiment tracking và bảng metric. Người học phải tạo được artifact nhỏ: code hoặc cấu hình, test/log và ghi chú tái lập.",
+    "object": "so sánh mô hình trong НИР có bằng chứng",
+    "method": "Đọc yêu cầu → xác định input/output → viết code/pseudocode nhỏ → test/log → lưu artifact → tự vấn đáp.",
+    "keyPoints": [
+      "Xác định đúng vấn đề và đầu ra của: Experiment tracking và bảng metric.",
+      "Dùng workflow/cú pháp lõi: run_id + params + metrics + artifacts.",
+      "Có tối thiểu một kiểm thử, log hoặc ví dụ chạy được.",
+      "Liên hệ với ứng dụng: so sánh mô hình trong НИР có bằng chứng.",
+      "Ghi lại README ngắn để lần sau mở lại không mất ngữ cảnh."
+    ],
+    "slides": [
+      {
+        "title": "Mục tiêu bài học",
+        "body": "Sau bài này phải giải thích được Experiment tracking và bảng metric, biết dùng trong so sánh mô hình trong НИР có bằng chứng và tạo artifact kiểm chứng."
+      },
+      {
+        "title": "Workflow lõi",
+        "body": "Cú pháp/quy trình trọng tâm: run_id + params + metrics + artifacts. Không học thuộc rời rạc, luôn gắn với input/output và lỗi thường gặp."
+      },
+      {
+        "title": "Ví dụ tối thiểu",
+        "body": "Tạo một ví dụ nhỏ cho so sánh mô hình trong НИР có bằng chứng: dữ liệu vào, bước xử lý, kết quả ra và một dòng test/log."
+      },
+      {
+        "title": "Sai lầm cần tránh",
+        "body": "Không copy code mù; không bỏ qua phiên bản thư viện; không nộp kết quả nếu thiếu test, README hoặc dữ liệu mẫu."
+      },
+      {
+        "title": "Ứng dụng Bauman",
+        "body": "Gắn bài học với repo học tập, dữ liệu thí nghiệm, pipeline AI/АСОИУ, НИР hoặc ВКР."
+      }
+    ],
+    "formula": "run_id + params + metrics + artifacts",
+    "application": "so sánh mô hình trong НИР có bằng chứng",
+    "terminology": {
+      "vi": "Theo dõi thí nghiệm",
+      "ru": "отслеживание экспериментов",
+      "en": "experiment tracking"
+    },
+    "_internalMetaForSearchOnly": {
+      "tags": [
+        "hk3",
+        "experiment tracking, metric table, model card",
+        "programming",
+        "clean"
+      ]
+    }
+  },
+  {
+    "id": "PR35",
+    "lessonId": "PR35",
+    "stage": "hk3",
+    "moduleId": "mod_hk3",
+    "title": "Ablation study bằng code có kiểm soát",
+    "ruTitle": "",
+    "summary": "Ablation study bằng code có kiểm soát: nắm mục tiêu, input/output, workflow cốt lõi, test tối thiểu và ứng dụng vào chứng minh yếu tố nào làm mô hình tốt hơn/xấu hơn.",
+    "description": "Bài học tập trung vào Ablation study bằng code có kiểm soát. Người học phải tạo được artifact nhỏ: code hoặc cấu hình, test/log và ghi chú tái lập.",
+    "object": "chứng minh yếu tố nào làm mô hình tốt hơn/xấu hơn",
+    "method": "Đọc yêu cầu → xác định input/output → viết code/pseudocode nhỏ → test/log → lưu artifact → tự vấn đáp.",
+    "keyPoints": [
+      "Xác định đúng vấn đề và đầu ra của: Ablation study bằng code có kiểm soát.",
+      "Dùng workflow/cú pháp lõi: one change per run; compare metric deltas.",
+      "Có tối thiểu một kiểm thử, log hoặc ví dụ chạy được.",
+      "Liên hệ với ứng dụng: chứng minh yếu tố nào làm mô hình tốt hơn/xấu hơn.",
+      "Ghi lại README ngắn để lần sau mở lại không mất ngữ cảnh."
+    ],
+    "slides": [
+      {
+        "title": "Mục tiêu bài học",
+        "body": "Sau bài này phải giải thích được Ablation study bằng code có kiểm soát, biết dùng trong chứng minh yếu tố nào làm mô hình tốt hơn/xấu hơn và tạo artifact kiểm chứng."
+      },
+      {
+        "title": "Workflow lõi",
+        "body": "Cú pháp/quy trình trọng tâm: one change per run; compare metric deltas. Không học thuộc rời rạc, luôn gắn với input/output và lỗi thường gặp."
+      },
+      {
+        "title": "Ví dụ tối thiểu",
+        "body": "Tạo một ví dụ nhỏ cho chứng minh yếu tố nào làm mô hình tốt hơn/xấu hơn: dữ liệu vào, bước xử lý, kết quả ra và một dòng test/log."
+      },
+      {
+        "title": "Sai lầm cần tránh",
+        "body": "Không copy code mù; không bỏ qua phiên bản thư viện; không nộp kết quả nếu thiếu test, README hoặc dữ liệu mẫu."
+      },
+      {
+        "title": "Ứng dụng Bauman",
+        "body": "Gắn bài học với repo học tập, dữ liệu thí nghiệm, pipeline AI/АСОИУ, НИР hoặc ВКР."
+      }
+    ],
+    "formula": "one change per run; compare metric deltas",
+    "application": "chứng minh yếu tố nào làm mô hình tốt hơn/xấu hơn",
+    "terminology": {
+      "vi": "Thí nghiệm loại bỏ",
+      "ru": "абляционное исследование",
+      "en": "ablation study"
+    },
+    "_internalMetaForSearchOnly": {
+      "tags": [
+        "hk3",
+        "ablation, controlled experiment, metrics",
+        "programming",
+        "clean"
+      ]
+    }
+  },
+  {
+    "id": "PR36",
+    "lessonId": "PR36",
+    "stage": "hk3",
+    "moduleId": "mod_hk3",
+    "title": "Xử lý log cảm biến và chuỗi thời gian",
+    "ruTitle": "",
+    "summary": "Xử lý log cảm biến và chuỗi thời gian: nắm mục tiêu, input/output, workflow cốt lõi, test tối thiểu và ứng dụng vào làm sạch log UGV trước khi phân tích tín hiệu/AI.",
+    "description": "Bài học tập trung vào Xử lý log cảm biến và chuỗi thời gian. Người học phải tạo được artifact nhỏ: code hoặc cấu hình, test/log và ghi chú tái lập.",
+    "object": "làm sạch log UGV trước khi phân tích tín hiệu/AI",
+    "method": "Đọc yêu cầu → xác định input/output → viết code/pseudocode nhỏ → test/log → lưu artifact → tự vấn đáp.",
+    "keyPoints": [
+      "Xác định đúng vấn đề và đầu ra của: Xử lý log cảm biến và chuỗi thời gian.",
+      "Dùng workflow/cú pháp lõi: timestamp + value + quality_flag.",
+      "Có tối thiểu một kiểm thử, log hoặc ví dụ chạy được.",
+      "Liên hệ với ứng dụng: làm sạch log UGV trước khi phân tích tín hiệu/AI.",
+      "Ghi lại README ngắn để lần sau mở lại không mất ngữ cảnh."
+    ],
+    "slides": [
+      {
+        "title": "Mục tiêu bài học",
+        "body": "Sau bài này phải giải thích được Xử lý log cảm biến và chuỗi thời gian, biết dùng trong làm sạch log UGV trước khi phân tích tín hiệu/AI và tạo artifact kiểm chứng."
+      },
+      {
+        "title": "Workflow lõi",
+        "body": "Cú pháp/quy trình trọng tâm: timestamp + value + quality_flag. Không học thuộc rời rạc, luôn gắn với input/output và lỗi thường gặp."
+      },
+      {
+        "title": "Ví dụ tối thiểu",
+        "body": "Tạo một ví dụ nhỏ cho làm sạch log UGV trước khi phân tích tín hiệu/AI: dữ liệu vào, bước xử lý, kết quả ra và một dòng test/log."
+      },
+      {
+        "title": "Sai lầm cần tránh",
+        "body": "Không copy code mù; không bỏ qua phiên bản thư viện; không nộp kết quả nếu thiếu test, README hoặc dữ liệu mẫu."
+      },
+      {
+        "title": "Ứng dụng Bauman",
+        "body": "Gắn bài học với repo học tập, dữ liệu thí nghiệm, pipeline AI/АСОИУ, НИР hoặc ВКР."
+      }
+    ],
+    "formula": "timestamp + value + quality_flag",
+    "application": "làm sạch log UGV trước khi phân tích tín hiệu/AI",
+    "terminology": {
+      "vi": "Log telemetry",
+      "ru": "журнал телеметрии",
+      "en": "telemetry log"
+    },
+    "_internalMetaForSearchOnly": {
+      "tags": [
+        "hk3",
+        "telemetry log, time series, resampling",
+        "programming",
+        "clean"
+      ]
+    }
+  },
+  {
+    "id": "PR37",
+    "lessonId": "PR37",
+    "stage": "hk3",
+    "moduleId": "mod_hk3",
+    "title": "Module đánh giá lỗi và phân tích thất bại",
+    "ruTitle": "",
+    "summary": "Module đánh giá lỗi và phân tích thất bại: nắm mục tiêu, input/output, workflow cốt lõi, test tối thiểu và ứng dụng vào biết mô hình sai ở đâu, vì sao, sửa thế nào.",
+    "description": "Bài học tập trung vào Module đánh giá lỗi và phân tích thất bại. Người học phải tạo được artifact nhỏ: code hoặc cấu hình, test/log và ghi chú tái lập.",
+    "object": "biết mô hình sai ở đâu, vì sao, sửa thế nào",
+    "method": "Đọc yêu cầu → xác định input/output → viết code/pseudocode nhỏ → test/log → lưu artifact → tự vấn đáp.",
+    "keyPoints": [
+      "Xác định đúng vấn đề và đầu ra của: Module đánh giá lỗi và phân tích thất bại.",
+      "Dùng workflow/cú pháp lõi: error case → label → root cause → fix.",
+      "Có tối thiểu một kiểm thử, log hoặc ví dụ chạy được.",
+      "Liên hệ với ứng dụng: biết mô hình sai ở đâu, vì sao, sửa thế nào.",
+      "Ghi lại README ngắn để lần sau mở lại không mất ngữ cảnh."
+    ],
+    "slides": [
+      {
+        "title": "Mục tiêu bài học",
+        "body": "Sau bài này phải giải thích được Module đánh giá lỗi và phân tích thất bại, biết dùng trong biết mô hình sai ở đâu, vì sao, sửa thế nào và tạo artifact kiểm chứng."
+      },
+      {
+        "title": "Workflow lõi",
+        "body": "Cú pháp/quy trình trọng tâm: error case → label → root cause → fix. Không học thuộc rời rạc, luôn gắn với input/output và lỗi thường gặp."
+      },
+      {
+        "title": "Ví dụ tối thiểu",
+        "body": "Tạo một ví dụ nhỏ cho biết mô hình sai ở đâu, vì sao, sửa thế nào: dữ liệu vào, bước xử lý, kết quả ra và một dòng test/log."
+      },
+      {
+        "title": "Sai lầm cần tránh",
+        "body": "Không copy code mù; không bỏ qua phiên bản thư viện; không nộp kết quả nếu thiếu test, README hoặc dữ liệu mẫu."
+      },
+      {
+        "title": "Ứng dụng Bauman",
+        "body": "Gắn bài học với repo học tập, dữ liệu thí nghiệm, pipeline AI/АСОИУ, НИР hoặc ВКР."
+      }
+    ],
+    "formula": "error case → label → root cause → fix",
+    "application": "biết mô hình sai ở đâu, vì sao, sửa thế nào",
+    "terminology": {
+      "vi": "Phân tích lỗi",
+      "ru": "анализ ошибок",
+      "en": "error analysis"
+    },
+    "_internalMetaForSearchOnly": {
+      "tags": [
+        "hk3",
+        "error analysis, failure mode, root cause",
+        "programming",
+        "clean"
+      ]
+    }
+  },
+  {
+    "id": "PR38",
+    "lessonId": "PR38",
+    "stage": "hk3",
+    "moduleId": "mod_hk3",
+    "title": "Prototype dashboard kết quả nghiên cứu",
+    "ruTitle": "",
+    "summary": "Prototype dashboard kết quả nghiên cứu: nắm mục tiêu, input/output, workflow cốt lõi, test tối thiểu và ứng dụng vào xem kết quả thí nghiệm, hình minh họa và log.",
+    "description": "Bài học tập trung vào Prototype dashboard kết quả nghiên cứu. Người học phải tạo được artifact nhỏ: code hoặc cấu hình, test/log và ghi chú tái lập.",
+    "object": "xem kết quả thí nghiệm, hình minh họa và log",
+    "method": "Đọc yêu cầu → xác định input/output → viết code/pseudocode nhỏ → test/log → lưu artifact → tự vấn đáp.",
+    "keyPoints": [
+      "Xác định đúng vấn đề và đầu ra của: Prototype dashboard kết quả nghiên cứu.",
+      "Dùng workflow/cú pháp lõi: metrics + plots + filters + notes.",
+      "Có tối thiểu một kiểm thử, log hoặc ví dụ chạy được.",
+      "Liên hệ với ứng dụng: xem kết quả thí nghiệm, hình minh họa và log.",
+      "Ghi lại README ngắn để lần sau mở lại không mất ngữ cảnh."
+    ],
+    "slides": [
+      {
+        "title": "Mục tiêu bài học",
+        "body": "Sau bài này phải giải thích được Prototype dashboard kết quả nghiên cứu, biết dùng trong xem kết quả thí nghiệm, hình minh họa và log và tạo artifact kiểm chứng."
+      },
+      {
+        "title": "Workflow lõi",
+        "body": "Cú pháp/quy trình trọng tâm: metrics + plots + filters + notes. Không học thuộc rời rạc, luôn gắn với input/output và lỗi thường gặp."
+      },
+      {
+        "title": "Ví dụ tối thiểu",
+        "body": "Tạo một ví dụ nhỏ cho xem kết quả thí nghiệm, hình minh họa và log: dữ liệu vào, bước xử lý, kết quả ra và một dòng test/log."
+      },
+      {
+        "title": "Sai lầm cần tránh",
+        "body": "Không copy code mù; không bỏ qua phiên bản thư viện; không nộp kết quả nếu thiếu test, README hoặc dữ liệu mẫu."
+      },
+      {
+        "title": "Ứng dụng Bauman",
+        "body": "Gắn bài học với repo học tập, dữ liệu thí nghiệm, pipeline AI/АСОИУ, НИР hoặc ВКР."
+      }
+    ],
+    "formula": "metrics + plots + filters + notes",
+    "application": "xem kết quả thí nghiệm, hình minh họa và log",
+    "terminology": {
+      "vi": "Bảng điều khiển",
+      "ru": "панель мониторинга",
+      "en": "dashboard"
+    },
+    "_internalMetaForSearchOnly": {
+      "tags": [
+        "hk3",
+        "dashboard, visualization, report UI",
+        "programming",
+        "clean"
+      ]
+    }
+  },
+  {
+    "id": "PR39",
+    "lessonId": "PR39",
+    "stage": "hk3",
+    "moduleId": "mod_hk3",
+    "title": "Đóng gói demo nghiên cứu",
+    "ruTitle": "",
+    "summary": "Đóng gói demo nghiên cứu: nắm mục tiêu, input/output, workflow cốt lõi, test tối thiểu và ứng dụng vào cho giáo viên mở demo nhanh mà không vỡ môi trường.",
+    "description": "Bài học tập trung vào Đóng gói demo nghiên cứu. Người học phải tạo được artifact nhỏ: code hoặc cấu hình, test/log và ghi chú tái lập.",
+    "object": "cho giáo viên mở demo nhanh mà không vỡ môi trường",
+    "method": "Đọc yêu cầu → xác định input/output → viết code/pseudocode nhỏ → test/log → lưu artifact → tự vấn đáp.",
+    "keyPoints": [
+      "Xác định đúng vấn đề và đầu ra của: Đóng gói demo nghiên cứu.",
+      "Dùng workflow/cú pháp lõi: make run-demo; sample data; expected output.",
+      "Có tối thiểu một kiểm thử, log hoặc ví dụ chạy được.",
+      "Liên hệ với ứng dụng: cho giáo viên mở demo nhanh mà không vỡ môi trường.",
+      "Ghi lại README ngắn để lần sau mở lại không mất ngữ cảnh."
+    ],
+    "slides": [
+      {
+        "title": "Mục tiêu bài học",
+        "body": "Sau bài này phải giải thích được Đóng gói demo nghiên cứu, biết dùng trong cho giáo viên mở demo nhanh mà không vỡ môi trường và tạo artifact kiểm chứng."
+      },
+      {
+        "title": "Workflow lõi",
+        "body": "Cú pháp/quy trình trọng tâm: make run-demo; sample data; expected output. Không học thuộc rời rạc, luôn gắn với input/output và lỗi thường gặp."
+      },
+      {
+        "title": "Ví dụ tối thiểu",
+        "body": "Tạo một ví dụ nhỏ cho cho giáo viên mở demo nhanh mà không vỡ môi trường: dữ liệu vào, bước xử lý, kết quả ra và một dòng test/log."
+      },
+      {
+        "title": "Sai lầm cần tránh",
+        "body": "Không copy code mù; không bỏ qua phiên bản thư viện; không nộp kết quả nếu thiếu test, README hoặc dữ liệu mẫu."
+      },
+      {
+        "title": "Ứng dụng Bauman",
+        "body": "Gắn bài học với repo học tập, dữ liệu thí nghiệm, pipeline AI/АСОИУ, НИР hoặc ВКР."
+      }
+    ],
+    "formula": "make run-demo; sample data; expected output",
+    "application": "cho giáo viên mở demo nhanh mà không vỡ môi trường",
+    "terminology": {
+      "vi": "Demo tái lập",
+      "ru": "воспроизводимая демонстрация",
+      "en": "reproducible demo"
+    },
+    "_internalMetaForSearchOnly": {
+      "tags": [
+        "hk3",
+        "demo packaging, scripts, sample data",
+        "programming",
+        "clean"
+      ]
+    }
+  },
+  {
+    "id": "PR40",
+    "lessonId": "PR40",
+    "stage": "hk3",
+    "moduleId": "mod_hk3",
+    "title": "Quản lý rủi ro phần mềm trong НИР",
+    "ruTitle": "",
+    "summary": "Quản lý rủi ro phần mềm trong НИР: nắm mục tiêu, input/output, workflow cốt lõi, test tối thiểu và ứng dụng vào giảm rủi ro hỏng demo, mất dữ liệu, lệch kết quả.",
+    "description": "Bài học tập trung vào Quản lý rủi ro phần mềm trong НИР. Người học phải tạo được artifact nhỏ: code hoặc cấu hình, test/log và ghi chú tái lập.",
+    "object": "giảm rủi ro hỏng demo, mất dữ liệu, lệch kết quả",
+    "method": "Đọc yêu cầu → xác định input/output → viết code/pseudocode nhỏ → test/log → lưu artifact → tự vấn đáp.",
+    "keyPoints": [
+      "Xác định đúng vấn đề và đầu ra của: Quản lý rủi ro phần mềm trong НИР.",
+      "Dùng workflow/cú pháp lõi: risk = probability × impact; mitigation plan.",
+      "Có tối thiểu một kiểm thử, log hoặc ví dụ chạy được.",
+      "Liên hệ với ứng dụng: giảm rủi ro hỏng demo, mất dữ liệu, lệch kết quả.",
+      "Ghi lại README ngắn để lần sau mở lại không mất ngữ cảnh."
+    ],
+    "slides": [
+      {
+        "title": "Mục tiêu bài học",
+        "body": "Sau bài này phải giải thích được Quản lý rủi ro phần mềm trong НИР, biết dùng trong giảm rủi ro hỏng demo, mất dữ liệu, lệch kết quả và tạo artifact kiểm chứng."
+      },
+      {
+        "title": "Workflow lõi",
+        "body": "Cú pháp/quy trình trọng tâm: risk = probability × impact; mitigation plan. Không học thuộc rời rạc, luôn gắn với input/output và lỗi thường gặp."
+      },
+      {
+        "title": "Ví dụ tối thiểu",
+        "body": "Tạo một ví dụ nhỏ cho giảm rủi ro hỏng demo, mất dữ liệu, lệch kết quả: dữ liệu vào, bước xử lý, kết quả ra và một dòng test/log."
+      },
+      {
+        "title": "Sai lầm cần tránh",
+        "body": "Không copy code mù; không bỏ qua phiên bản thư viện; không nộp kết quả nếu thiếu test, README hoặc dữ liệu mẫu."
+      },
+      {
+        "title": "Ứng dụng Bauman",
+        "body": "Gắn bài học với repo học tập, dữ liệu thí nghiệm, pipeline AI/АСОИУ, НИР hoặc ВКР."
+      }
+    ],
+    "formula": "risk = probability × impact; mitigation plan",
+    "application": "giảm rủi ro hỏng demo, mất dữ liệu, lệch kết quả",
+    "terminology": {
+      "vi": "Rủi ro phần mềm",
+      "ru": "программный риск",
+      "en": "software risk"
+    },
+    "_internalMetaForSearchOnly": {
+      "tags": [
+        "hk3",
+        "software risk, reproducibility risk, data risk",
+        "programming",
+        "clean"
+      ]
+    }
+  },
+  {
+    "id": "PR41",
+    "lessonId": "PR41",
+    "stage": "hk4",
+    "moduleId": "mod_hk4",
+    "title": "Đóng băng mã nguồn và tag release",
+    "ruTitle": "",
+    "summary": "Đóng băng mã nguồn và tag release: nắm mục tiêu, input/output, workflow cốt lõi, test tối thiểu và ứng dụng vào khóa phiên bản phục vụ ВКР, tránh đổi sát ngày bảo vệ.",
+    "description": "Bài học tập trung vào Đóng băng mã nguồn và tag release. Người học phải tạo được artifact nhỏ: code hoặc cấu hình, test/log và ghi chú tái lập.",
+    "object": "khóa phiên bản phục vụ ВКР, tránh đổi sát ngày bảo vệ",
+    "method": "Đọc yêu cầu → xác định input/output → viết code/pseudocode nhỏ → test/log → lưu artifact → tự vấn đáp.",
+    "keyPoints": [
+      "Xác định đúng vấn đề và đầu ra của: Đóng băng mã nguồn và tag release.",
+      "Dùng workflow/cú pháp lõi: git tag v1.0-defense; CHANGELOG.md.",
+      "Có tối thiểu một kiểm thử, log hoặc ví dụ chạy được.",
+      "Liên hệ với ứng dụng: khóa phiên bản phục vụ ВКР, tránh đổi sát ngày bảo vệ.",
+      "Ghi lại README ngắn để lần sau mở lại không mất ngữ cảnh."
+    ],
+    "slides": [
+      {
+        "title": "Mục tiêu bài học",
+        "body": "Sau bài này phải giải thích được Đóng băng mã nguồn và tag release, biết dùng trong khóa phiên bản phục vụ ВКР, tránh đổi sát ngày bảo vệ và tạo artifact kiểm chứng."
+      },
+      {
+        "title": "Workflow lõi",
+        "body": "Cú pháp/quy trình trọng tâm: git tag v1.0-defense; CHANGELOG.md. Không học thuộc rời rạc, luôn gắn với input/output và lỗi thường gặp."
+      },
+      {
+        "title": "Ví dụ tối thiểu",
+        "body": "Tạo một ví dụ nhỏ cho khóa phiên bản phục vụ ВКР, tránh đổi sát ngày bảo vệ: dữ liệu vào, bước xử lý, kết quả ra và một dòng test/log."
+      },
+      {
+        "title": "Sai lầm cần tránh",
+        "body": "Không copy code mù; không bỏ qua phiên bản thư viện; không nộp kết quả nếu thiếu test, README hoặc dữ liệu mẫu."
+      },
+      {
+        "title": "Ứng dụng Bauman",
+        "body": "Gắn bài học với repo học tập, dữ liệu thí nghiệm, pipeline AI/АСОИУ, НИР hoặc ВКР."
+      }
+    ],
+    "formula": "git tag v1.0-defense; CHANGELOG.md",
+    "application": "khóa phiên bản phục vụ ВКР, tránh đổi sát ngày bảo vệ",
+    "terminology": {
+      "vi": "Tag phiên bản",
+      "ru": "тег версии",
+      "en": "version tag"
+    },
+    "_internalMetaForSearchOnly": {
+      "tags": [
+        "hk4",
+        "release tag, changelog, freeze",
+        "programming",
+        "clean"
+      ]
+    }
+  },
+  {
+    "id": "PR42",
+    "lessonId": "PR42",
+    "stage": "hk4",
+    "moduleId": "mod_hk4",
+    "title": "Script chạy lại toàn bộ kết quả",
+    "ruTitle": "",
+    "summary": "Script chạy lại toàn bộ kết quả: nắm mục tiêu, input/output, workflow cốt lõi, test tối thiểu và ứng dụng vào tái tạo bảng và hình trong luận văn.",
+    "description": "Bài học tập trung vào Script chạy lại toàn bộ kết quả. Người học phải tạo được artifact nhỏ: code hoặc cấu hình, test/log và ghi chú tái lập.",
+    "object": "tái tạo bảng và hình trong luận văn",
+    "method": "Đọc yêu cầu → xác định input/output → viết code/pseudocode nhỏ → test/log → lưu artifact → tự vấn đáp.",
+    "keyPoints": [
+      "Xác định đúng vấn đề và đầu ra của: Script chạy lại toàn bộ kết quả.",
+      "Dùng workflow/cú pháp lõi: make reproduce → data → model → figures.",
+      "Có tối thiểu một kiểm thử, log hoặc ví dụ chạy được.",
+      "Liên hệ với ứng dụng: tái tạo bảng và hình trong luận văn.",
+      "Ghi lại README ngắn để lần sau mở lại không mất ngữ cảnh."
+    ],
+    "slides": [
+      {
+        "title": "Mục tiêu bài học",
+        "body": "Sau bài này phải giải thích được Script chạy lại toàn bộ kết quả, biết dùng trong tái tạo bảng và hình trong luận văn và tạo artifact kiểm chứng."
+      },
+      {
+        "title": "Workflow lõi",
+        "body": "Cú pháp/quy trình trọng tâm: make reproduce → data → model → figures. Không học thuộc rời rạc, luôn gắn với input/output và lỗi thường gặp."
+      },
+      {
+        "title": "Ví dụ tối thiểu",
+        "body": "Tạo một ví dụ nhỏ cho tái tạo bảng và hình trong luận văn: dữ liệu vào, bước xử lý, kết quả ra và một dòng test/log."
+      },
+      {
+        "title": "Sai lầm cần tránh",
+        "body": "Không copy code mù; không bỏ qua phiên bản thư viện; không nộp kết quả nếu thiếu test, README hoặc dữ liệu mẫu."
+      },
+      {
+        "title": "Ứng dụng Bauman",
+        "body": "Gắn bài học với repo học tập, dữ liệu thí nghiệm, pipeline AI/АСОИУ, НИР hoặc ВКР."
+      }
+    ],
+    "formula": "make reproduce → data → model → figures",
+    "application": "tái tạo bảng và hình trong luận văn",
+    "terminology": {
+      "vi": "Script tái lập",
+      "ru": "скрипт воспроизведения",
+      "en": "reproduction script"
+    },
+    "_internalMetaForSearchOnly": {
+      "tags": [
+        "hk4",
+        "reproduce script, makefile, automation",
+        "programming",
+        "clean"
+      ]
+    }
+  },
+  {
+    "id": "PR43",
+    "lessonId": "PR43",
+    "stage": "hk4",
+    "moduleId": "mod_hk4",
+    "title": "Chuẩn hóa thư mục luận văn và artifact",
+    "ruTitle": "",
+    "summary": "Chuẩn hóa thư mục luận văn và artifact: nắm mục tiêu, input/output, workflow cốt lõi, test tối thiểu và ứng dụng vào không thất lạc hình, bảng, code khi viết ВКР.",
+    "description": "Bài học tập trung vào Chuẩn hóa thư mục luận văn và artifact. Người học phải tạo được artifact nhỏ: code hoặc cấu hình, test/log và ghi chú tái lập.",
+    "object": "không thất lạc hình, bảng, code khi viết ВКР",
+    "method": "Đọc yêu cầu → xác định input/output → viết code/pseudocode nhỏ → test/log → lưu artifact → tự vấn đáp.",
+    "keyPoints": [
+      "Xác định đúng vấn đề và đầu ra của: Chuẩn hóa thư mục luận văn và artifact.",
+      "Dùng workflow/cú pháp lõi: thesis/ figures/ tables/ code/ appendix/.",
+      "Có tối thiểu một kiểm thử, log hoặc ví dụ chạy được.",
+      "Liên hệ với ứng dụng: không thất lạc hình, bảng, code khi viết ВКР.",
+      "Ghi lại README ngắn để lần sau mở lại không mất ngữ cảnh."
+    ],
+    "slides": [
+      {
+        "title": "Mục tiêu bài học",
+        "body": "Sau bài này phải giải thích được Chuẩn hóa thư mục luận văn và artifact, biết dùng trong không thất lạc hình, bảng, code khi viết ВКР và tạo artifact kiểm chứng."
+      },
+      {
+        "title": "Workflow lõi",
+        "body": "Cú pháp/quy trình trọng tâm: thesis/ figures/ tables/ code/ appendix/. Không học thuộc rời rạc, luôn gắn với input/output và lỗi thường gặp."
+      },
+      {
+        "title": "Ví dụ tối thiểu",
+        "body": "Tạo một ví dụ nhỏ cho không thất lạc hình, bảng, code khi viết ВКР: dữ liệu vào, bước xử lý, kết quả ra và một dòng test/log."
+      },
+      {
+        "title": "Sai lầm cần tránh",
+        "body": "Không copy code mù; không bỏ qua phiên bản thư viện; không nộp kết quả nếu thiếu test, README hoặc dữ liệu mẫu."
+      },
+      {
+        "title": "Ứng dụng Bauman",
+        "body": "Gắn bài học với repo học tập, dữ liệu thí nghiệm, pipeline AI/АСОИУ, НИР hoặc ВКР."
+      }
+    ],
+    "formula": "thesis/ figures/ tables/ code/ appendix/",
+    "application": "không thất lạc hình, bảng, code khi viết ВКР",
+    "terminology": {
+      "vi": "Phụ lục kỹ thuật",
+      "ru": "техническое приложение",
+      "en": "technical appendix"
+    },
+    "_internalMetaForSearchOnly": {
+      "tags": [
+        "hk4",
+        "thesis artifacts, folder standard, appendix",
+        "programming",
+        "clean"
+      ]
+    }
+  },
+  {
+    "id": "PR44",
+    "lessonId": "PR44",
+    "stage": "hk4",
+    "moduleId": "mod_hk4",
+    "title": "Demo offline và kế hoạch dự phòng",
+    "ruTitle": "",
+    "summary": "Demo offline và kế hoạch dự phòng: nắm mục tiêu, input/output, workflow cốt lõi, test tối thiểu và ứng dụng vào bảo vệ khi mạng/hardware có vấn đề.",
+    "description": "Bài học tập trung vào Demo offline và kế hoạch dự phòng. Người học phải tạo được artifact nhỏ: code hoặc cấu hình, test/log và ghi chú tái lập.",
+    "object": "bảo vệ khi mạng/hardware có vấn đề",
+    "method": "Đọc yêu cầu → xác định input/output → viết code/pseudocode nhỏ → test/log → lưu artifact → tự vấn đáp.",
+    "keyPoints": [
+      "Xác định đúng vấn đề và đầu ra của: Demo offline và kế hoạch dự phòng.",
+      "Dùng workflow/cú pháp lõi: offline mode + sample data + screenshots.",
+      "Có tối thiểu một kiểm thử, log hoặc ví dụ chạy được.",
+      "Liên hệ với ứng dụng: bảo vệ khi mạng/hardware có vấn đề.",
+      "Ghi lại README ngắn để lần sau mở lại không mất ngữ cảnh."
+    ],
+    "slides": [
+      {
+        "title": "Mục tiêu bài học",
+        "body": "Sau bài này phải giải thích được Demo offline và kế hoạch dự phòng, biết dùng trong bảo vệ khi mạng/hardware có vấn đề và tạo artifact kiểm chứng."
+      },
+      {
+        "title": "Workflow lõi",
+        "body": "Cú pháp/quy trình trọng tâm: offline mode + sample data + screenshots. Không học thuộc rời rạc, luôn gắn với input/output và lỗi thường gặp."
+      },
+      {
+        "title": "Ví dụ tối thiểu",
+        "body": "Tạo một ví dụ nhỏ cho bảo vệ khi mạng/hardware có vấn đề: dữ liệu vào, bước xử lý, kết quả ra và một dòng test/log."
+      },
+      {
+        "title": "Sai lầm cần tránh",
+        "body": "Không copy code mù; không bỏ qua phiên bản thư viện; không nộp kết quả nếu thiếu test, README hoặc dữ liệu mẫu."
+      },
+      {
+        "title": "Ứng dụng Bauman",
+        "body": "Gắn bài học với repo học tập, dữ liệu thí nghiệm, pipeline AI/АСОИУ, НИР hoặc ВКР."
+      }
+    ],
+    "formula": "offline mode + sample data + screenshots",
+    "application": "bảo vệ khi mạng/hardware có vấn đề",
+    "terminology": {
+      "vi": "Kế hoạch dự phòng",
+      "ru": "резервный план",
+      "en": "fallback plan"
+    },
+    "_internalMetaForSearchOnly": {
+      "tags": [
+        "hk4",
+        "offline demo, fallback plan, sample cache",
+        "programming",
+        "clean"
+      ]
+    }
+  },
+  {
+    "id": "PR45",
+    "lessonId": "PR45",
+    "stage": "hk4",
+    "moduleId": "mod_hk4",
+    "title": "Tối ưu nhỏ: runtime, memory và latency",
+    "ruTitle": "",
+    "summary": "Tối ưu nhỏ: runtime, memory và latency: nắm mục tiêu, input/output, workflow cốt lõi, test tối thiểu và ứng dụng vào trả lời phản biện về khả năng chạy trên phần cứng robot.",
+    "description": "Bài học tập trung vào Tối ưu nhỏ: runtime, memory và latency. Người học phải tạo được artifact nhỏ: code hoặc cấu hình, test/log và ghi chú tái lập.",
+    "object": "trả lời phản biện về khả năng chạy trên phần cứng robot",
+    "method": "Đọc yêu cầu → xác định input/output → viết code/pseudocode nhỏ → test/log → lưu artifact → tự vấn đáp.",
+    "keyPoints": [
+      "Xác định đúng vấn đề và đầu ra của: Tối ưu nhỏ: runtime, memory và latency.",
+      "Dùng workflow/cú pháp lõi: latency_ms; memory_mb; throughput.",
+      "Có tối thiểu một kiểm thử, log hoặc ví dụ chạy được.",
+      "Liên hệ với ứng dụng: trả lời phản biện về khả năng chạy trên phần cứng robot.",
+      "Ghi lại README ngắn để lần sau mở lại không mất ngữ cảnh."
+    ],
+    "slides": [
+      {
+        "title": "Mục tiêu bài học",
+        "body": "Sau bài này phải giải thích được Tối ưu nhỏ: runtime, memory và latency, biết dùng trong trả lời phản biện về khả năng chạy trên phần cứng robot và tạo artifact kiểm chứng."
+      },
+      {
+        "title": "Workflow lõi",
+        "body": "Cú pháp/quy trình trọng tâm: latency_ms; memory_mb; throughput. Không học thuộc rời rạc, luôn gắn với input/output và lỗi thường gặp."
+      },
+      {
+        "title": "Ví dụ tối thiểu",
+        "body": "Tạo một ví dụ nhỏ cho trả lời phản biện về khả năng chạy trên phần cứng robot: dữ liệu vào, bước xử lý, kết quả ra và một dòng test/log."
+      },
+      {
+        "title": "Sai lầm cần tránh",
+        "body": "Không copy code mù; không bỏ qua phiên bản thư viện; không nộp kết quả nếu thiếu test, README hoặc dữ liệu mẫu."
+      },
+      {
+        "title": "Ứng dụng Bauman",
+        "body": "Gắn bài học với repo học tập, dữ liệu thí nghiệm, pipeline AI/АСОИУ, НИР hoặc ВКР."
+      }
+    ],
+    "formula": "latency_ms; memory_mb; throughput",
+    "application": "trả lời phản biện về khả năng chạy trên phần cứng robot",
+    "terminology": {
+      "vi": "Độ trễ",
+      "ru": "задержка",
+      "en": "latency"
+    },
+    "_internalMetaForSearchOnly": {
+      "tags": [
+        "hk4",
+        "performance, latency, memory",
+        "programming",
+        "clean"
+      ]
+    }
+  },
+  {
+    "id": "PR46",
+    "lessonId": "PR46",
+    "stage": "hk4",
+    "moduleId": "mod_hk4",
+    "title": "Kiểm tra license, citation và nguồn mở",
+    "ruTitle": "",
+    "summary": "Kiểm tra license, citation và nguồn mở: nắm mục tiêu, input/output, workflow cốt lõi, test tối thiểu và ứng dụng vào tránh lỗi trích dẫn thư viện/dữ liệu khi nộp luận văn.",
+    "description": "Bài học tập trung vào Kiểm tra license, citation và nguồn mở. Người học phải tạo được artifact nhỏ: code hoặc cấu hình, test/log và ghi chú tái lập.",
+    "object": "tránh lỗi trích dẫn thư viện/dữ liệu khi nộp luận văn",
+    "method": "Đọc yêu cầu → xác định input/output → viết code/pseudocode nhỏ → test/log → lưu artifact → tự vấn đáp.",
+    "keyPoints": [
+      "Xác định đúng vấn đề và đầu ra của: Kiểm tra license, citation và nguồn mở.",
+      "Dùng workflow/cú pháp lõi: LICENSE + CITATION + third-party notices.",
+      "Có tối thiểu một kiểm thử, log hoặc ví dụ chạy được.",
+      "Liên hệ với ứng dụng: tránh lỗi trích dẫn thư viện/dữ liệu khi nộp luận văn.",
+      "Ghi lại README ngắn để lần sau mở lại không mất ngữ cảnh."
+    ],
+    "slides": [
+      {
+        "title": "Mục tiêu bài học",
+        "body": "Sau bài này phải giải thích được Kiểm tra license, citation và nguồn mở, biết dùng trong tránh lỗi trích dẫn thư viện/dữ liệu khi nộp luận văn và tạo artifact kiểm chứng."
+      },
+      {
+        "title": "Workflow lõi",
+        "body": "Cú pháp/quy trình trọng tâm: LICENSE + CITATION + third-party notices. Không học thuộc rời rạc, luôn gắn với input/output và lỗi thường gặp."
+      },
+      {
+        "title": "Ví dụ tối thiểu",
+        "body": "Tạo một ví dụ nhỏ cho tránh lỗi trích dẫn thư viện/dữ liệu khi nộp luận văn: dữ liệu vào, bước xử lý, kết quả ra và một dòng test/log."
+      },
+      {
+        "title": "Sai lầm cần tránh",
+        "body": "Không copy code mù; không bỏ qua phiên bản thư viện; không nộp kết quả nếu thiếu test, README hoặc dữ liệu mẫu."
+      },
+      {
+        "title": "Ứng dụng Bauman",
+        "body": "Gắn bài học với repo học tập, dữ liệu thí nghiệm, pipeline AI/АСОИУ, НИР hoặc ВКР."
+      }
+    ],
+    "formula": "LICENSE + CITATION + third-party notices",
+    "application": "tránh lỗi trích dẫn thư viện/dữ liệu khi nộp luận văn",
+    "terminology": {
+      "vi": "Giấy phép phần mềm",
+      "ru": "лицензия ПО",
+      "en": "software license"
+    },
+    "_internalMetaForSearchOnly": {
+      "tags": [
+        "hk4",
+        "license, citation, open-source compliance",
+        "programming",
+        "clean"
+      ]
+    }
+  },
+  {
+    "id": "PR47",
+    "lessonId": "PR47",
+    "stage": "hk4",
+    "moduleId": "mod_hk4",
+    "title": "Slide kỹ thuật: kiến trúc, pipeline, kết quả",
+    "ruTitle": "",
+    "summary": "Slide kỹ thuật: kiến trúc, pipeline, kết quả: nắm mục tiêu, input/output, workflow cốt lõi, test tối thiểu và ứng dụng vào trình bày phần code không loạn trước hội đồng.",
+    "description": "Bài học tập trung vào Slide kỹ thuật: kiến trúc, pipeline, kết quả. Người học phải tạo được artifact nhỏ: code hoặc cấu hình, test/log và ghi chú tái lập.",
+    "object": "trình bày phần code không loạn trước hội đồng",
+    "method": "Đọc yêu cầu → xác định input/output → viết code/pseudocode nhỏ → test/log → lưu artifact → tự vấn đáp.",
+    "keyPoints": [
+      "Xác định đúng vấn đề và đầu ra của: Slide kỹ thuật: kiến trúc, pipeline, kết quả.",
+      "Dùng workflow/cú pháp lõi: problem → architecture → experiment → result → limit.",
+      "Có tối thiểu một kiểm thử, log hoặc ví dụ chạy được.",
+      "Liên hệ với ứng dụng: trình bày phần code không loạn trước hội đồng.",
+      "Ghi lại README ngắn để lần sau mở lại không mất ngữ cảnh."
+    ],
+    "slides": [
+      {
+        "title": "Mục tiêu bài học",
+        "body": "Sau bài này phải giải thích được Slide kỹ thuật: kiến trúc, pipeline, kết quả, biết dùng trong trình bày phần code không loạn trước hội đồng và tạo artifact kiểm chứng."
+      },
+      {
+        "title": "Workflow lõi",
+        "body": "Cú pháp/quy trình trọng tâm: problem → architecture → experiment → result → limit. Không học thuộc rời rạc, luôn gắn với input/output và lỗi thường gặp."
+      },
+      {
+        "title": "Ví dụ tối thiểu",
+        "body": "Tạo một ví dụ nhỏ cho trình bày phần code không loạn trước hội đồng: dữ liệu vào, bước xử lý, kết quả ra và một dòng test/log."
+      },
+      {
+        "title": "Sai lầm cần tránh",
+        "body": "Không copy code mù; không bỏ qua phiên bản thư viện; không nộp kết quả nếu thiếu test, README hoặc dữ liệu mẫu."
+      },
+      {
+        "title": "Ứng dụng Bauman",
+        "body": "Gắn bài học với repo học tập, dữ liệu thí nghiệm, pipeline AI/АСОИУ, НИР hoặc ВКР."
+      }
+    ],
+    "formula": "problem → architecture → experiment → result → limit",
+    "application": "trình bày phần code không loạn trước hội đồng",
+    "terminology": {
+      "vi": "Slide bảo vệ",
+      "ru": "слайды защиты",
+      "en": "defense slides"
+    },
+    "_internalMetaForSearchOnly": {
+      "tags": [
+        "hk4",
+        "defense slides, architecture, result story",
+        "programming",
+        "clean"
+      ]
+    }
+  },
+  {
+    "id": "PR48",
+    "lessonId": "PR48",
+    "stage": "hk4",
+    "moduleId": "mod_hk4",
+    "title": "Trả lời phản biện kỹ thuật phần mềm",
+    "ruTitle": "",
+    "summary": "Trả lời phản biện kỹ thuật phần mềm: nắm mục tiêu, input/output, workflow cốt lõi, test tối thiểu và ứng dụng vào bảo vệ lựa chọn kiến trúc, dữ liệu, metric và demo.",
+    "description": "Bài học tập trung vào Trả lời phản biện kỹ thuật phần mềm. Người học phải tạo được artifact nhỏ: code hoặc cấu hình, test/log và ghi chú tái lập.",
+    "object": "bảo vệ lựa chọn kiến trúc, dữ liệu, metric và demo",
+    "method": "Đọc yêu cầu → xác định input/output → viết code/pseudocode nhỏ → test/log → lưu artifact → tự vấn đáp.",
+    "keyPoints": [
+      "Xác định đúng vấn đề và đầu ra của: Trả lời phản biện kỹ thuật phần mềm.",
+      "Dùng workflow/cú pháp lõi: why design? why metric? why reproducible?.",
+      "Có tối thiểu một kiểm thử, log hoặc ví dụ chạy được.",
+      "Liên hệ với ứng dụng: bảo vệ lựa chọn kiến trúc, dữ liệu, metric và demo.",
+      "Ghi lại README ngắn để lần sau mở lại không mất ngữ cảnh."
+    ],
+    "slides": [
+      {
+        "title": "Mục tiêu bài học",
+        "body": "Sau bài này phải giải thích được Trả lời phản biện kỹ thuật phần mềm, biết dùng trong bảo vệ lựa chọn kiến trúc, dữ liệu, metric và demo và tạo artifact kiểm chứng."
+      },
+      {
+        "title": "Workflow lõi",
+        "body": "Cú pháp/quy trình trọng tâm: why design? why metric? why reproducible?. Không học thuộc rời rạc, luôn gắn với input/output và lỗi thường gặp."
+      },
+      {
+        "title": "Ví dụ tối thiểu",
+        "body": "Tạo một ví dụ nhỏ cho bảo vệ lựa chọn kiến trúc, dữ liệu, metric và demo: dữ liệu vào, bước xử lý, kết quả ra và một dòng test/log."
+      },
+      {
+        "title": "Sai lầm cần tránh",
+        "body": "Không copy code mù; không bỏ qua phiên bản thư viện; không nộp kết quả nếu thiếu test, README hoặc dữ liệu mẫu."
+      },
+      {
+        "title": "Ứng dụng Bauman",
+        "body": "Gắn bài học với repo học tập, dữ liệu thí nghiệm, pipeline AI/АСОИУ, НИР hoặc ВКР."
+      }
+    ],
+    "formula": "why design? why metric? why reproducible?",
+    "application": "bảo vệ lựa chọn kiến trúc, dữ liệu, metric và demo",
+    "terminology": {
+      "vi": "Phản biện kỹ thuật",
+      "ru": "техническая защита",
+      "en": "technical defense"
+    },
+    "_internalMetaForSearchOnly": {
+      "tags": [
+        "hk4",
+        "technical defense, Q&A, justification",
+        "programming",
+        "clean"
+      ]
+    }
+  }
+]

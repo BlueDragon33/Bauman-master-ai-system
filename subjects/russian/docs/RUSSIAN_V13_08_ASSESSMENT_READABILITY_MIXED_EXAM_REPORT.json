@@ -1,0 +1,51 @@
+{
+  "version": "V13.08_Assessment_Readability_Mixed_Exam",
+  "created": "2026-06-11",
+  "focus": [
+    "Ôn tập: đọc đủ nội dung, không cắt chữ",
+    "Kiểm tra: 4 dạng đề 20/40/60/100 theo tỷ lệ 30/30/20/20",
+    "Flag grid: mỗi trang 20 câu, 4 cột x 5 hàng",
+    "Vertical scroll: bỏ khung cố định cắt nội dung"
+  ],
+  "examTypes": {
+    "standard": {
+      "label": "Phổ thông",
+      "total": 20,
+      "easy": 6,
+      "medium": 6,
+      "hard": 4,
+      "expert": 4
+    },
+    "intensive": {
+      "label": "Tăng cường",
+      "total": 40,
+      "easy": 12,
+      "medium": 12,
+      "hard": 8,
+      "expert": 8
+    },
+    "advanced": {
+      "label": "Nâng cao",
+      "total": 60,
+      "easy": 18,
+      "medium": 18,
+      "hard": 12,
+      "expert": 12
+    },
+    "deep": {
+      "label": "Chuyên sâu",
+      "total": 100,
+      "easy": 30,
+      "medium": 30,
+      "hard": 20,
+      "expert": 20
+    }
+  },
+  "flagPaging": "EXAM_PAGE_SIZE=20, REVIEW_PAGE_SIZE=20; flag mỗi trang 4x5, dạng 40/60/100 dùng tab 1-20, 21-40, ...",
+  "validation": {
+    "node_check": "pass",
+    "json_parse": "pass",
+    "css_braces": "pass",
+    "static_exam_ratio": "pass"
+  }
+}

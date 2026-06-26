@@ -1,0 +1,10 @@
+{
+  "version": "V13.37",
+  "topic": "Storage indicator visible summary hotfix",
+  "changes": [
+    "Moved the storage source status indicator inside the visible summary row as an absolutely positioned child under the 3D button.",
+    "Removed dependence on hidden details siblings so the indicator remains visible when the dropdown is closed.",
+    "Added explicit size, color, contrast, and z-index rules to prevent the blank indicator area issue."
+  ],
+  "checks": ["JS syntax", "ZIP integrity"]
+}

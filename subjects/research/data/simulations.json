@@ -1,0 +1,252 @@
+{
+  "meta": {
+    "subjectId": "research",
+    "title": "Phương pháp nghiên cứu, НИР và luận văn ВКР",
+    "version": "simulation-v1",
+    "description": "Tách riêng mô phỏng quan sát và mô phỏng thực hành."
+  },
+  "observation": [
+    {
+      "id": "research_prepare_obs_1",
+      "stage": "prepare",
+      "type": "mô phỏng riêng",
+      "title": "GĐ1 · Hội đồng xét đề tài",
+      "goal": "Quan sát một đề tài bị đánh giá theo tính mới, khả thi, dữ liệu, metric và đóng góp.",
+      "scenario": "Thay đổi câu hỏi nghiên cứu, dataset, metric, phần cứng và xem rủi ro luận văn.",
+      "parameters": [
+        "research question",
+        "dataset",
+        "metric",
+        "hardware",
+        "risk level"
+      ],
+      "outputs": [
+        "điểm khả thi",
+        "điểm mới",
+        "câu hỏi phản biện"
+      ]
+    },
+    {
+      "id": "research_preparatory_obs_1",
+      "stage": "preparatory",
+      "type": "mô phỏng riêng",
+      "title": "GĐ2 · Hội đồng xét đề tài",
+      "goal": "Quan sát một đề tài bị đánh giá theo tính mới, khả thi, dữ liệu, metric và đóng góp.",
+      "scenario": "Thay đổi câu hỏi nghiên cứu, dataset, metric, phần cứng và xem rủi ro luận văn.",
+      "parameters": [
+        "research question",
+        "dataset",
+        "metric",
+        "hardware",
+        "risk level"
+      ],
+      "outputs": [
+        "điểm khả thi",
+        "điểm mới",
+        "câu hỏi phản biện"
+      ]
+    },
+    {
+      "id": "research_m1_obs_1",
+      "stage": "m1",
+      "type": "mô phỏng riêng",
+      "title": "HK1 · Hội đồng xét đề tài",
+      "goal": "Quan sát một đề tài bị đánh giá theo tính mới, khả thi, dữ liệu, metric và đóng góp.",
+      "scenario": "Thay đổi câu hỏi nghiên cứu, dataset, metric, phần cứng và xem rủi ro luận văn.",
+      "parameters": [
+        "research question",
+        "dataset",
+        "metric",
+        "hardware",
+        "risk level"
+      ],
+      "outputs": [
+        "điểm khả thi",
+        "điểm mới",
+        "câu hỏi phản biện"
+      ]
+    },
+    {
+      "id": "research_m2_obs_1",
+      "stage": "m2",
+      "type": "mô phỏng riêng",
+      "title": "HK2 · Hội đồng xét đề tài",
+      "goal": "Quan sát một đề tài bị đánh giá theo tính mới, khả thi, dữ liệu, metric và đóng góp.",
+      "scenario": "Thay đổi câu hỏi nghiên cứu, dataset, metric, phần cứng và xem rủi ro luận văn.",
+      "parameters": [
+        "research question",
+        "dataset",
+        "metric",
+        "hardware",
+        "risk level"
+      ],
+      "outputs": [
+        "điểm khả thi",
+        "điểm mới",
+        "câu hỏi phản biện"
+      ]
+    },
+    {
+      "id": "research_m3_obs_1",
+      "stage": "m3",
+      "type": "mô phỏng riêng",
+      "title": "HK3 · Hội đồng xét đề tài",
+      "goal": "Quan sát một đề tài bị đánh giá theo tính mới, khả thi, dữ liệu, metric và đóng góp.",
+      "scenario": "Thay đổi câu hỏi nghiên cứu, dataset, metric, phần cứng và xem rủi ro luận văn.",
+      "parameters": [
+        "research question",
+        "dataset",
+        "metric",
+        "hardware",
+        "risk level"
+      ],
+      "outputs": [
+        "điểm khả thi",
+        "điểm mới",
+        "câu hỏi phản biện"
+      ]
+    },
+    {
+      "id": "research_m4_obs_1",
+      "stage": "m4",
+      "type": "mô phỏng riêng",
+      "title": "HK4 · Hội đồng xét đề tài",
+      "goal": "Quan sát một đề tài bị đánh giá theo tính mới, khả thi, dữ liệu, metric và đóng góp.",
+      "scenario": "Thay đổi câu hỏi nghiên cứu, dataset, metric, phần cứng và xem rủi ro luận văn.",
+      "parameters": [
+        "research question",
+        "dataset",
+        "metric",
+        "hardware",
+        "risk level"
+      ],
+      "outputs": [
+        "điểm khả thi",
+        "điểm mới",
+        "câu hỏi phản biện"
+      ]
+    }
+  ],
+  "practice": [
+    {
+      "id": "research_prepare_prac_1",
+      "stage": "prepare",
+      "type": "mô phỏng thực hành",
+      "title": "GĐ1 · Trả lời phản biện НИР/ВКР",
+      "mission": "Nhập vai học viên trước hội đồng: trả lời câu hỏi về mục tiêu, phương pháp, dữ liệu, kết quả và giới hạn.",
+      "steps": [
+        "chọn chủ đề",
+        "trả lời câu hỏi phản biện",
+        "đối chiếu rubric",
+        "lập việc cần sửa"
+      ],
+      "rubric": [
+        "mục tiêu rõ",
+        "phương pháp hợp lý",
+        "metric đo được",
+        "biết giới hạn nghiên cứu"
+      ],
+      "feedback": "Nếu yếu, hệ thống gợi ý viết lại proposal hoặc bổ sung thí nghiệm."
+    },
+    {
+      "id": "research_preparatory_prac_1",
+      "stage": "preparatory",
+      "type": "mô phỏng thực hành",
+      "title": "GĐ2 · Trả lời phản biện НИР/ВКР",
+      "mission": "Nhập vai học viên trước hội đồng: trả lời câu hỏi về mục tiêu, phương pháp, dữ liệu, kết quả và giới hạn.",
+      "steps": [
+        "chọn chủ đề",
+        "trả lời câu hỏi phản biện",
+        "đối chiếu rubric",
+        "lập việc cần sửa"
+      ],
+      "rubric": [
+        "mục tiêu rõ",
+        "phương pháp hợp lý",
+        "metric đo được",
+        "biết giới hạn nghiên cứu"
+      ],
+      "feedback": "Nếu yếu, hệ thống gợi ý viết lại proposal hoặc bổ sung thí nghiệm."
+    },
+    {
+      "id": "research_m1_prac_1",
+      "stage": "m1",
+      "type": "mô phỏng thực hành",
+      "title": "HK1 · Trả lời phản biện НИР/ВКР",
+      "mission": "Nhập vai học viên trước hội đồng: trả lời câu hỏi về mục tiêu, phương pháp, dữ liệu, kết quả và giới hạn.",
+      "steps": [
+        "chọn chủ đề",
+        "trả lời câu hỏi phản biện",
+        "đối chiếu rubric",
+        "lập việc cần sửa"
+      ],
+      "rubric": [
+        "mục tiêu rõ",
+        "phương pháp hợp lý",
+        "metric đo được",
+        "biết giới hạn nghiên cứu"
+      ],
+      "feedback": "Nếu yếu, hệ thống gợi ý viết lại proposal hoặc bổ sung thí nghiệm."
+    },
+    {
+      "id": "research_m2_prac_1",
+      "stage": "m2",
+      "type": "mô phỏng thực hành",
+      "title": "HK2 · Trả lời phản biện НИР/ВКР",
+      "mission": "Nhập vai học viên trước hội đồng: trả lời câu hỏi về mục tiêu, phương pháp, dữ liệu, kết quả và giới hạn.",
+      "steps": [
+        "chọn chủ đề",
+        "trả lời câu hỏi phản biện",
+        "đối chiếu rubric",
+        "lập việc cần sửa"
+      ],
+      "rubric": [
+        "mục tiêu rõ",
+        "phương pháp hợp lý",
+        "metric đo được",
+        "biết giới hạn nghiên cứu"
+      ],
+      "feedback": "Nếu yếu, hệ thống gợi ý viết lại proposal hoặc bổ sung thí nghiệm."
+    },
+    {
+      "id": "research_m3_prac_1",
+      "stage": "m3",
+      "type": "mô phỏng thực hành",
+      "title": "HK3 · Trả lời phản biện НИР/ВКР",
+      "mission": "Nhập vai học viên trước hội đồng: trả lời câu hỏi về mục tiêu, phương pháp, dữ liệu, kết quả và giới hạn.",
+      "steps": [
+        "chọn chủ đề",
+        "trả lời câu hỏi phản biện",
+        "đối chiếu rubric",
+        "lập việc cần sửa"
+      ],
+      "rubric": [
+        "mục tiêu rõ",
+        "phương pháp hợp lý",
+        "metric đo được",
+        "biết giới hạn nghiên cứu"
+      ],
+      "feedback": "Nếu yếu, hệ thống gợi ý viết lại proposal hoặc bổ sung thí nghiệm."
+    },
+    {
+      "id": "research_m4_prac_1",
+      "stage": "m4",
+      "type": "mô phỏng thực hành",
+      "title": "HK4 · Trả lời phản biện НИР/ВКР",
+      "mission": "Nhập vai học viên trước hội đồng: trả lời câu hỏi về mục tiêu, phương pháp, dữ liệu, kết quả và giới hạn.",
+      "steps": [
+        "chọn chủ đề",
+        "trả lời câu hỏi phản biện",
+        "đối chiếu rubric",
+        "lập việc cần sửa"
+      ],
+      "rubric": [
+        "mục tiêu rõ",
+        "phương pháp hợp lý",
+        "metric đo được",
+        "biết giới hạn nghiên cứu"
+      ],
+      "feedback": "Nếu yếu, hệ thống gợi ý viết lại proposal hoặc bổ sung thí nghiệm."
+    }
+  ]
+}

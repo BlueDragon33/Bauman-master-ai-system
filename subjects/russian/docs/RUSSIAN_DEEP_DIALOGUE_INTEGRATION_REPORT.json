@@ -1,0 +1,95 @@
+{
+  "name": "Russian_Bauman_DeepDialogue_Integrated",
+  "created_at": "2026-06-08",
+  "timezone": "Asia/Bangkok",
+  "principle": "Nghe/Nói giữ speaking.json cơ bản; Đối thoại dùng dialogue-bauman-az.json; Deep Speaking lazy-load trong tab Đối thoại.",
+  "data_counts": {
+    "speaking.json": {
+      "type": "list",
+      "count": 1220,
+      "bytes": 7343576
+    },
+    "dialogue-bauman-az.json": {
+      "type": "list",
+      "count": 4164,
+      "bytes": 35049608
+    },
+    "deep-speaking-bauman.json": {
+      "type": "list",
+      "count": 1140,
+      "bytes": 28156378
+    },
+    "speaking-link-index.json": {
+      "type": "dict",
+      "count": 1058,
+      "bytes": 385702
+    },
+    "lessons.json": {
+      "type": "list",
+      "count": 26,
+      "bytes": 1418252
+    },
+    "vocab.json": {
+      "type": "list",
+      "count": 8000,
+      "bytes": 11212921
+    },
+    "tests.json": {
+      "type": "dict",
+      "count": 11,
+      "bytes": 7923049
+    }
+  },
+  "syntax_checks": {
+    "assets/core.js": {
+      "ok": true,
+      "stderr": ""
+    },
+    "assets/subject-adapter.js": {
+      "ok": true,
+      "stderr": ""
+    },
+    "subject-manifest.js": {
+      "ok": true,
+      "stderr": ""
+    }
+  },
+  "architecture_checks": {
+    "optional_data_files_declared": true,
+    "optional_not_in_default_dataFiles": true,
+    "core_uses_lazy_load_gate": true,
+    "core_loads_default_DATA_FILES_only": true,
+    "practice_uses_basic_speaking": true,
+    "dialogue_uses_bauman_az": true,
+    "deep_panel_in_dialogue": true,
+    "deep_review_panel": true,
+    "storage_includes_optional_sources": true,
+    "saveDB_excludes_optional_big_files": true
+  },
+  "modified_files": [
+    "assets/core.js",
+    "assets/subject-adapter.js",
+    "assets/russian.css",
+    "subject-manifest.json",
+    "subject-manifest.js",
+    "data/dialogue-bauman-az.json",
+    "data/deep-speaking-bauman.json",
+    "data/speaking-link-index.json"
+  ],
+  "notes": [],
+  "integrity_samples": {
+    "speaking_first_id": "SPK0001_G01_G01_C01_easy_easy_V1",
+    "dialogue_first_id": "SPK0001_G01_G01_C01_easy_easy_V1",
+    "deep_first_id": "DSPK0001",
+    "link_index_first_key": "vn|G62|AZ_VN_0009",
+    "deep_has_required_blocks": true,
+    "speaking_preserved_basic_count_1220": true,
+    "dialogue_full_count_4164": true,
+    "deep_count_1140": true,
+    "link_index_count_1058": true
+  },
+  "warnings": [
+    "Dữ liệu dialogue/deep là nguồn lớn nên được lazy-load; khi mở tab Đối thoại cần bấm tải nguồn lần đầu.",
+    "Không thể đảm bảo 100% mọi trình duyệt không lỗi, nhưng đã tránh tải hơn 60MB JSON khi mở app và đã qua kiểm tra cú pháp JS/JSON."
+  ]
+}

@@ -1,0 +1,578 @@
+[
+  {
+    "id": "AISIM_VN_01",
+    "stage": "vn",
+    "group": "AI trợ lý · Nền tảng",
+    "type": "ai_assistant_live",
+    "title": "Chào hỏi và nói chậm",
+    "purpose": "Trợ lý đóng vai người lạ/lớp học, kiểm tra phản xạ chào hỏi và xin nhắc lại.",
+    "targetScore": 80,
+    "assistantRole": "Виртуальный помощник говорит по-русски, задаёт короткие вопросы и ждёт ответ студента.",
+    "assistant_turns": [
+      "Здравствуйте! Как вас зовут?",
+      "Вы говорите по-русски?",
+      "Повторите: где вы живёте?",
+      "Вы из Вьетнама?",
+      "Хорошо. До свидания!"
+    ],
+    "turns": [
+      "Здравствуйте! Меня зовут Нам.",
+      "Я немного говорю по-русски.",
+      "Повторите, пожалуйста, медленнее.",
+      "Да, я из Вьетнама.",
+      "До свидания! Спасибо."
+    ],
+    "vi_turns": [
+      "Xin chào! Tôi tên là Nam.",
+      "Tôi nói tiếng Nga một chút.",
+      "Vui lòng nhắc lại chậm hơn.",
+      "Vâng, tôi đến từ Việt Nam.",
+      "Tạm biệt! Cảm ơn."
+    ],
+    "checkMode": "speech_recognition_ru_RU",
+    "passRule": "Người học phải phát âm câu trả lời tiếng Nga đạt tối thiểu 80% mới được chuyển câu."
+  },
+  {
+    "id": "AISIM_VN_02",
+    "stage": "vn",
+    "group": "AI trợ lý · Nền tảng",
+    "type": "ai_assistant_live",
+    "title": "Hỏi đường cơ bản",
+    "purpose": "Trợ lý hỏi/đáp đường đi tối thiểu trước khi sang Nga.",
+    "targetScore": 80,
+    "assistantRole": "Виртуальный помощник говорит по-русски, задаёт короткие вопросы и ждёт ответ студента.",
+    "assistant_turns": [
+      "Куда вы хотите идти?",
+      "Вы понимаете карту?",
+      "Идите прямо, потом направо.",
+      "Вам нужен автобус?",
+      "Теперь понятно?"
+    ],
+    "turns": [
+      "Я хочу найти метро.",
+      "Я не понимаю карту. Помогите, пожалуйста.",
+      "Хорошо: прямо, потом направо.",
+      "Нет, я хочу идти пешком.",
+      "Да, теперь понятно. Спасибо."
+    ],
+    "vi_turns": [
+      "Tôi muốn tìm ga metro.",
+      "Tôi không hiểu bản đồ. Vui lòng giúp tôi.",
+      "Được: đi thẳng, rồi rẽ phải.",
+      "Không, tôi muốn đi bộ.",
+      "Vâng, bây giờ tôi hiểu rồi. Cảm ơn."
+    ],
+    "checkMode": "speech_recognition_ru_RU",
+    "passRule": "Người học phải phát âm câu trả lời tiếng Nga đạt tối thiểu 80% mới được chuyển câu."
+  },
+  {
+    "id": "AISIM_VN_03",
+    "stage": "vn",
+    "group": "AI trợ lý · Nền tảng",
+    "type": "ai_assistant_live",
+    "title": "Mua đồ thiết yếu",
+    "purpose": "Trợ lý đóng vai nhân viên cửa hàng, yêu cầu người học nói nhu cầu đơn giản.",
+    "targetScore": 80,
+    "assistantRole": "Виртуальный помощник говорит по-русски, задаёт короткие вопросы и ждёт ответ студента.",
+    "assistant_turns": [
+      "Здравствуйте. Что вы хотите купить?",
+      "Вам пакет нужен?",
+      "Оплата картой или наличными?",
+      "Вот чек."
+    ],
+    "turns": [
+      "Здравствуйте. Я хочу купить хлеб и молоко.",
+      "Да, пакет нужен, пожалуйста.",
+      "Я хочу оплатить картой.",
+      "Спасибо. До свидания!"
+    ],
+    "vi_turns": [
+      "Xin chào. Tôi muốn mua bánh mì và sữa.",
+      "Vâng, tôi cần túi ạ.",
+      "Tôi muốn trả bằng thẻ.",
+      "Cảm ơn. Tạm biệt!"
+    ],
+    "checkMode": "speech_recognition_ru_RU",
+    "passRule": "Người học phải phát âm câu trả lời tiếng Nga đạt tối thiểu 80% mới được chuyển câu."
+  },
+  {
+    "id": "AISIM_PREP_01",
+    "stage": "prep",
+    "group": "AI trợ lý · Dự bị/STANKIN",
+    "type": "ai_assistant_live",
+    "title": "Ký túc xá và phòng ở",
+    "purpose": "Trợ lý đóng vai quản lý ký túc xá, kiểm tra giao tiếp khi nhận phòng.",
+    "targetScore": 80,
+    "assistantRole": "Виртуальный помощник говорит по-русски, задаёт короткие вопросы и ждёт ответ студента.",
+    "assistant_turns": [
+      "Здравствуйте. Ваш паспорт, пожалуйста.",
+      "Вы заселяетесь сегодня?",
+      "Какая у вас комната?",
+      "Вы знаете правила общежития?",
+      "После одиннадцати тихий час."
+    ],
+    "turns": [
+      "Здравствуйте. Вот мой паспорт.",
+      "Да, я заселяюсь сегодня.",
+      "Моя комната номер двести три.",
+      "Нет, объясните, пожалуйста.",
+      "Понял. После одиннадцати будет тихо."
+    ],
+    "vi_turns": [
+      "Xin chào. Đây là hộ chiếu của tôi.",
+      "Vâng, hôm nay tôi nhận phòng.",
+      "Phòng của tôi số 203.",
+      "Không, vui lòng giải thích.",
+      "Tôi hiểu. Sau 11 giờ sẽ giữ yên lặng."
+    ],
+    "checkMode": "speech_recognition_ru_RU",
+    "passRule": "Người học phải phát âm câu trả lời tiếng Nga đạt tối thiểu 80% mới được chuyển câu."
+  },
+  {
+    "id": "AISIM_PREP_02",
+    "stage": "prep",
+    "group": "AI trợ lý · Dự bị/STANKIN",
+    "type": "ai_assistant_live",
+    "title": "Lớp dự bị tiếng Nga",
+    "purpose": "Trợ lý đóng vai giáo viên dự bị, yêu cầu phản hồi trong lớp.",
+    "targetScore": 80,
+    "assistantRole": "Виртуальный помощник говорит по-русски, задаёт короткие вопросы и ждёт ответ студента.",
+    "assistant_turns": [
+      "Сегодня мы читаем текст. Вы готовы?",
+      "Прочитайте первое предложение.",
+      "Что значит это слово?",
+      "Повторите новое слово.",
+      "Домашнее задание понятно?"
+    ],
+    "turns": [
+      "Да, я готов читать текст.",
+      "Я прочитаю первое предложение.",
+      "Я не знаю. Объясните, пожалуйста.",
+      "Я повторю новое слово.",
+      "Да, задание понятно."
+    ],
+    "vi_turns": [
+      "Vâng, tôi sẵn sàng đọc văn bản.",
+      "Tôi sẽ đọc câu đầu tiên.",
+      "Tôi không biết. Vui lòng giải thích.",
+      "Tôi sẽ nhắc lại từ mới.",
+      "Vâng, bài tập đã rõ."
+    ],
+    "checkMode": "speech_recognition_ru_RU",
+    "passRule": "Người học phải phát âm câu trả lời tiếng Nga đạt tối thiểu 80% mới được chuyển câu."
+  },
+  {
+    "id": "AISIM_PREP_03",
+    "stage": "prep",
+    "group": "AI trợ lý · Dự bị/STANKIN",
+    "type": "ai_assistant_live",
+    "title": "Hành chính sinh viên quốc tế",
+    "purpose": "Trợ lý hỏi giấy tờ cơ bản, người học phải trả lời rõ ràng.",
+    "targetScore": 80,
+    "assistantRole": "Виртуальный помощник говорит по-русски, задаёт короткие вопросы и ждёт ответ студента.",
+    "assistant_turns": [
+      "Какие документы у вас есть?",
+      "Вам нужна регистрация?",
+      "Где вы живёте?",
+      "Напишите адрес, пожалуйста.",
+      "Приходите завтра утром."
+    ],
+    "turns": [
+      "У меня есть паспорт и миграционная карта.",
+      "Да, мне нужна регистрация.",
+      "Я живу в общежитии.",
+      "Хорошо, я напишу адрес.",
+      "Понял. Я приду завтра утром."
+    ],
+    "vi_turns": [
+      "Tôi có hộ chiếu và thẻ di trú.",
+      "Vâng, tôi cần đăng ký cư trú.",
+      "Tôi sống ở ký túc xá.",
+      "Được, tôi sẽ viết địa chỉ.",
+      "Tôi hiểu. Tôi sẽ đến sáng mai."
+    ],
+    "checkMode": "speech_recognition_ru_RU",
+    "passRule": "Người học phải phát âm câu trả lời tiếng Nga đạt tối thiểu 80% mới được chuyển câu."
+  },
+  {
+    "id": "AISIM_HK1_01",
+    "stage": "hk1",
+    "group": "AI trợ lý · Bauman HK1",
+    "type": "ai_assistant_live",
+    "title": "Vào lớp thạc sĩ đầu tiên",
+    "purpose": "Trợ lý đóng vai bạn cùng lớp, hỏi lịch học, phòng học và nhóm.",
+    "targetScore": 80,
+    "assistantRole": "Виртуальный помощник говорит по-русски, задаёт короткие вопросы и ждёт ответ студента.",
+    "assistant_turns": [
+      "Вы новый магистрант?",
+      "Какая у вас группа?",
+      "Вы нашли аудиторию?",
+      "Лекция будет в аудитории 305.",
+      "Материалы будут в чате."
+    ],
+    "turns": [
+      "Да, я новый магистрант первого курса.",
+      "Моя группа ИИ-01.",
+      "Пока нет. Подскажите, пожалуйста.",
+      "Понял, лекция будет в аудитории 305.",
+      "Хорошо, добавьте меня в чат, пожалуйста."
+    ],
+    "vi_turns": [
+      "Vâng, tôi là học viên thạc sĩ năm nhất.",
+      "Nhóm của tôi là AI-01.",
+      "Chưa. Vui lòng chỉ giúp tôi.",
+      "Tôi hiểu, bài giảng ở phòng 305.",
+      "Được, vui lòng thêm tôi vào nhóm chat."
+    ],
+    "checkMode": "speech_recognition_ru_RU",
+    "passRule": "Người học phải phát âm câu trả lời tiếng Nga đạt tối thiểu 80% mới được chuyển câu."
+  },
+  {
+    "id": "AISIM_HK1_02",
+    "stage": "hk1",
+    "group": "AI trợ lý · Bauman HK1",
+    "type": "ai_assistant_live",
+    "title": "Phòng thí nghiệm lập trình",
+    "purpose": "Trợ lý kiểm tra phản xạ hỏi lỗi kỹ thuật trong lab.",
+    "targetScore": 80,
+    "assistantRole": "Виртуальный помощник говорит по-русски, задаёт короткие вопросы и ждёт ответ студента.",
+    "assistant_turns": [
+      "Ваш код работает?",
+      "Какая ошибка?",
+      "Покажите файл, пожалуйста.",
+      "Вы пробовали перезапустить программу?",
+      "Запишите результат в отчёт."
+    ],
+    "turns": [
+      "Нет, мой код пока не работает.",
+      "Ошибка в функции загрузки данных.",
+      "Сейчас я покажу файл.",
+      "Да, я перезапустил программу.",
+      "Хорошо, я запишу результат в отчёт."
+    ],
+    "vi_turns": [
+      "Không, mã của tôi chưa chạy.",
+      "Lỗi ở hàm tải dữ liệu.",
+      "Bây giờ tôi sẽ cho xem tệp.",
+      "Vâng, tôi đã khởi động lại chương trình.",
+      "Được, tôi sẽ ghi kết quả vào báo cáo."
+    ],
+    "checkMode": "speech_recognition_ru_RU",
+    "passRule": "Người học phải phát âm câu trả lời tiếng Nga đạt tối thiểu 80% mới được chuyển câu."
+  },
+  {
+    "id": "AISIM_HK1_03",
+    "stage": "hk1",
+    "group": "AI trợ lý · Bauman HK1",
+    "type": "ai_assistant_live",
+    "title": "Hỏi giảng viên sau bài học",
+    "purpose": "Trợ lý đóng vai giảng viên, kiểm tra cách hỏi lịch sự.",
+    "targetScore": 80,
+    "assistantRole": "Виртуальный помощник говорит по-русски, задаёт короткие вопросы и ждёт ответ студента.",
+    "assistant_turns": [
+      "У вас есть вопрос?",
+      "Что именно непонятно?",
+      "Вы прочитали условие?",
+      "Подойдите после лекции."
+    ],
+    "turns": [
+      "Да, у меня есть вопрос по заданию.",
+      "Мне непонятен второй пункт.",
+      "Да, я прочитал условие, но не понял алгоритм.",
+      "Хорошо, я подойду после лекции."
+    ],
+    "vi_turns": [
+      "Vâng, tôi có câu hỏi về bài tập.",
+      "Tôi chưa hiểu mục thứ hai.",
+      "Vâng, tôi đã đọc đề nhưng chưa hiểu thuật toán.",
+      "Được, tôi sẽ gặp sau bài giảng."
+    ],
+    "checkMode": "speech_recognition_ru_RU",
+    "passRule": "Người học phải phát âm câu trả lời tiếng Nga đạt tối thiểu 80% mới được chuyển câu."
+  },
+  {
+    "id": "AISIM_HK2_01",
+    "stage": "hk2",
+    "group": "AI trợ lý · Bauman HK2",
+    "type": "ai_assistant_live",
+    "title": "Thảo luận mô hình ML",
+    "purpose": "Trợ lý đóng vai đồng đội, hỏi về dữ liệu và mô hình.",
+    "targetScore": 80,
+    "assistantRole": "Виртуальный помощник говорит по-русски, задаёт короткие вопросы и ждёт ответ студента.",
+    "assistant_turns": [
+      "Какой датасет мы используем?",
+      "Какая цель модели?",
+      "Есть ли пропущенные данные?",
+      "Какой метод вы предлагаете?",
+      "Когда покажем результат?"
+    ],
+    "turns": [
+      "Мы используем датасет с временными рядами.",
+      "Цель модели — прогнозировать значение сигнала.",
+      "Да, есть несколько пропущенных значений.",
+      "Я предлагаю начать с базовой модели.",
+      "Мы покажем результат на следующей встрече."
+    ],
+    "vi_turns": [
+      "Chúng ta dùng bộ dữ liệu chuỗi thời gian.",
+      "Mục tiêu của mô hình là dự báo giá trị tín hiệu.",
+      "Có, có một số giá trị bị thiếu.",
+      "Tôi đề xuất bắt đầu với mô hình cơ sở.",
+      "Chúng ta sẽ trình bày kết quả ở buổi gặp sau."
+    ],
+    "checkMode": "speech_recognition_ru_RU",
+    "passRule": "Người học phải phát âm câu trả lời tiếng Nga đạt tối thiểu 80% mới được chuyển câu."
+  },
+  {
+    "id": "AISIM_HK2_02",
+    "stage": "hk2",
+    "group": "AI trợ lý · Bauman HK2",
+    "type": "ai_assistant_live",
+    "title": "Báo cáo nhóm dự án",
+    "purpose": "Trợ lý hỏi tiến độ, người học trả lời ngắn và chính xác.",
+    "targetScore": 80,
+    "assistantRole": "Виртуальный помощник говорит по-русски, задаёт короткие вопросы и ждёт ответ студента.",
+    "assistant_turns": [
+      "Какая часть проекта готова?",
+      "Что ещё нужно сделать?",
+      "Кто пишет отчёт?",
+      "У нас есть риск по срокам?",
+      "Что делаем сегодня?"
+    ],
+    "turns": [
+      "Готова часть по подготовке данных.",
+      "Нужно обучить модель и проверить качество.",
+      "Я пишу раздел о методе.",
+      "Да, есть небольшой риск по срокам.",
+      "Сегодня мы проверим результаты эксперимента."
+    ],
+    "vi_turns": [
+      "Phần chuẩn bị dữ liệu đã xong.",
+      "Cần huấn luyện mô hình và kiểm tra chất lượng.",
+      "Tôi viết phần về phương pháp.",
+      "Có, có rủi ro nhỏ về thời hạn.",
+      "Hôm nay chúng ta sẽ kiểm tra kết quả thí nghiệm."
+    ],
+    "checkMode": "speech_recognition_ru_RU",
+    "passRule": "Người học phải phát âm câu trả lời tiếng Nga đạt tối thiểu 80% mới được chuyển câu."
+  },
+  {
+    "id": "AISIM_HK2_03",
+    "stage": "hk2",
+    "group": "AI trợ lý · Bauman HK2",
+    "type": "ai_assistant_live",
+    "title": "Cơ sở dữ liệu và truy vấn",
+    "purpose": "Trợ lý đóng vai giảng viên DB, kiểm tra thuật ngữ cơ bản.",
+    "targetScore": 80,
+    "assistantRole": "Виртуальный помощник говорит по-русски, задаёт короткие вопросы и ждёт ответ студента.",
+    "assistant_turns": [
+      "Что хранится в таблице?",
+      "Какой запрос нужен?",
+      "Есть ли индекс?",
+      "Проверьте результат запроса."
+    ],
+    "turns": [
+      "В таблице хранятся данные эксперимента.",
+      "Нужен запрос для выборки по времени.",
+      "Да, индекс создан для поля даты.",
+      "Я проверю результат запроса."
+    ],
+    "vi_turns": [
+      "Bảng lưu dữ liệu thí nghiệm.",
+      "Cần truy vấn lọc theo thời gian.",
+      "Có, chỉ mục được tạo cho trường ngày.",
+      "Tôi sẽ kiểm tra kết quả truy vấn."
+    ],
+    "checkMode": "speech_recognition_ru_RU",
+    "passRule": "Người học phải phát âm câu trả lời tiếng Nga đạt tối thiểu 80% mới được chuyển câu."
+  },
+  {
+    "id": "AISIM_HK3_01",
+    "stage": "hk3",
+    "group": "AI trợ lý · НИР",
+    "type": "ai_assistant_live",
+    "title": "Trao đổi với giáo viên hướng dẫn НИР",
+    "purpose": "Trợ lý đóng vai научный руководитель, kiểm tra khả năng trình bày đề tài.",
+    "targetScore": 80,
+    "assistantRole": "Виртуальный помощник говорит по-русски, задаёт короткие вопросы и ждёт ответ студента.",
+    "assistant_turns": [
+      "Какова тема вашего исследования?",
+      "Какова цель работы?",
+      "Какие данные вы используете?",
+      "Какая главная трудность?",
+      "Что подготовите к следующей встрече?"
+    ],
+    "turns": [
+      "Тема моего исследования связана с анализом сигналов.",
+      "Цель работы — разработать и проверить модель.",
+      "Я использую экспериментальные данные и открытый датасет.",
+      "Главная трудность — шум в данных.",
+      "Я подготовлю краткий обзор литературы."
+    ],
+    "vi_turns": [
+      "Đề tài nghiên cứu của tôi liên quan đến phân tích tín hiệu.",
+      "Mục tiêu là phát triển và kiểm tra mô hình.",
+      "Tôi dùng dữ liệu thực nghiệm và bộ dữ liệu mở.",
+      "Khó khăn chính là nhiễu trong dữ liệu.",
+      "Tôi sẽ chuẩn bị tổng quan tài liệu ngắn."
+    ],
+    "checkMode": "speech_recognition_ru_RU",
+    "passRule": "Người học phải phát âm câu trả lời tiếng Nga đạt tối thiểu 80% mới được chuyển câu."
+  },
+  {
+    "id": "AISIM_HK3_02",
+    "stage": "hk3",
+    "group": "AI trợ lý · НИР",
+    "type": "ai_assistant_live",
+    "title": "Seminar nghiên cứu",
+    "purpose": "Trợ lý hỏi các câu phản biện ngắn sau phần trình bày.",
+    "targetScore": 80,
+    "assistantRole": "Виртуальный помощник говорит по-русски, задаёт короткие вопросы и ждёт ответ студента.",
+    "assistant_turns": [
+      "В чём новизна вашей работы?",
+      "Почему выбран этот метод?",
+      "Какая метрика качества?",
+      "Какие ограничения есть?",
+      "Что будет дальше?"
+    ],
+    "turns": [
+      "Новизна в сравнении методов на этих данных.",
+      "Этот метод выбран из-за устойчивости к шуму.",
+      "Основная метрика качества — средняя ошибка.",
+      "Ограничение — небольшой объём данных.",
+      "Дальше я расширю эксперимент."
+    ],
+    "vi_turns": [
+      "Điểm mới là so sánh các phương pháp trên dữ liệu này.",
+      "Phương pháp này được chọn vì bền vững với nhiễu.",
+      "Chỉ số chất lượng chính là sai số trung bình.",
+      "Hạn chế là dung lượng dữ liệu nhỏ.",
+      "Tiếp theo tôi sẽ mở rộng thí nghiệm."
+    ],
+    "checkMode": "speech_recognition_ru_RU",
+    "passRule": "Người học phải phát âm câu trả lời tiếng Nga đạt tối thiểu 80% mới được chuyển câu."
+  },
+  {
+    "id": "AISIM_HK3_03",
+    "stage": "hk3",
+    "group": "AI trợ lý · НИР",
+    "type": "ai_assistant_live",
+    "title": "Viết abstract báo cáo",
+    "purpose": "Trợ lý yêu cầu nói mục tiêu, phương pháp, kết quả dự kiến.",
+    "targetScore": 80,
+    "assistantRole": "Виртуальный помощник говорит по-русски, задаёт короткие вопросы и ждёт ответ студента.",
+    "assistant_turns": [
+      "Сформулируйте цель в одном предложении.",
+      "Какой метод используется?",
+      "Какой ожидаемый результат?",
+      "Где применим результат?"
+    ],
+    "turns": [
+      "Цель работы — повысить точность классификации сигналов.",
+      "Используется нейронная сеть и предобработка данных.",
+      "Ожидаемый результат — улучшение качества модели.",
+      "Результат применим в системах мониторинга."
+    ],
+    "vi_turns": [
+      "Mục tiêu là nâng độ chính xác phân loại tín hiệu.",
+      "Sử dụng mạng nơ-ron và tiền xử lý dữ liệu.",
+      "Kết quả kỳ vọng là cải thiện chất lượng mô hình.",
+      "Kết quả áp dụng trong hệ thống giám sát."
+    ],
+    "checkMode": "speech_recognition_ru_RU",
+    "passRule": "Người học phải phát âm câu trả lời tiếng Nga đạt tối thiểu 80% mới được chuyển câu."
+  },
+  {
+    "id": "AISIM_HK4_01",
+    "stage": "hk4",
+    "group": "AI trợ lý · ВКР",
+    "type": "ai_assistant_live",
+    "title": "Bảo vệ luận văn thử",
+    "purpose": "Trợ lý đóng vai hội đồng, kiểm tra câu trả lời bảo vệ.",
+    "targetScore": 80,
+    "assistantRole": "Виртуальный помощник говорит по-русски, задаёт короткие вопросы и ждёт ответ студента.",
+    "assistant_turns": [
+      "Представьте тему вашей диссертации.",
+      "Какова практическая значимость?",
+      "Какие результаты получены?",
+      "Что является вашим вкладом?",
+      "Спасибо. Есть ли вывод?"
+    ],
+    "turns": [
+      "Тема моей диссертации — интеллектуальный анализ сигналов.",
+      "Практическая значимость — улучшение диагностики системы.",
+      "Получены результаты экспериментов и сравнительный анализ.",
+      "Мой вклад — реализация метода и оценка качества.",
+      "Вывод: предложенный подход показал стабильный результат."
+    ],
+    "vi_turns": [
+      "Đề tài luận văn của tôi là phân tích tín hiệu thông minh.",
+      "Ý nghĩa thực tiễn là cải thiện chẩn đoán hệ thống.",
+      "Đã có kết quả thí nghiệm và phân tích so sánh.",
+      "Đóng góp của tôi là triển khai phương pháp và đánh giá chất lượng.",
+      "Kết luận: cách tiếp cận đề xuất cho kết quả ổn định."
+    ],
+    "checkMode": "speech_recognition_ru_RU",
+    "passRule": "Người học phải phát âm câu trả lời tiếng Nga đạt tối thiểu 80% mới được chuyển câu."
+  },
+  {
+    "id": "AISIM_HK4_02",
+    "stage": "hk4",
+    "group": "AI trợ lý · ВКР",
+    "type": "ai_assistant_live",
+    "title": "Trả lời câu hỏi phản biện",
+    "purpose": "Trợ lý hỏi câu khó về giới hạn và độ tin cậy.",
+    "targetScore": 80,
+    "assistantRole": "Виртуальный помощник говорит по-русски, задаёт короткие вопросы и ждёт ответ студента.",
+    "assistant_turns": [
+      "Почему результатам можно доверять?",
+      "Какие ограничения у модели?",
+      "Что можно улучшить дальше?",
+      "Вы готовы внедрять систему?"
+    ],
+    "turns": [
+      "Результатам можно доверять, потому что проведена проверка на разных данных.",
+      "Ограничения связаны с размером и качеством данных.",
+      "Дальше можно расширить датасет и оптимизировать параметры.",
+      "Для внедрения нужна дополнительная проверка в реальных условиях."
+    ],
+    "vi_turns": [
+      "Có thể tin kết quả vì đã kiểm tra trên dữ liệu khác nhau.",
+      "Hạn chế liên quan đến kích thước và chất lượng dữ liệu.",
+      "Tiếp theo có thể mở rộng dữ liệu và tối ưu tham số.",
+      "Để triển khai cần kiểm tra thêm trong điều kiện thực."
+    ],
+    "checkMode": "speech_recognition_ru_RU",
+    "passRule": "Người học phải phát âm câu trả lời tiếng Nga đạt tối thiểu 80% mới được chuyển câu."
+  },
+  {
+    "id": "AISIM_HK4_03",
+    "stage": "hk4",
+    "group": "AI trợ lý · ВКР",
+    "type": "ai_assistant_live",
+    "title": "Kết thúc bảo vệ",
+    "purpose": "Trợ lý luyện lời cảm ơn và phản hồi cuối cùng.",
+    "targetScore": 80,
+    "assistantRole": "Виртуальный помощник говорит по-русски, задаёт короткие вопросы и ждёт ответ студента.",
+    "assistant_turns": [
+      "Закончите выступление.",
+      "Поблагодарите руководителя.",
+      "Ответьте кратко на замечание.",
+      "Попрощайтесь официально."
+    ],
+    "turns": [
+      "Спасибо за внимание. Я готов ответить на вопросы.",
+      "Я благодарю научного руководителя за помощь.",
+      "Спасибо за замечание. Я учту его в дальнейшей работе.",
+      "Спасибо комиссии за вопросы и рекомендации."
+    ],
+    "vi_turns": [
+      "Cảm ơn đã lắng nghe. Tôi sẵn sàng trả lời câu hỏi.",
+      "Tôi cảm ơn giáo viên hướng dẫn đã hỗ trợ.",
+      "Cảm ơn góp ý. Tôi sẽ lưu ý trong công việc tiếp theo.",
+      "Cảm ơn hội đồng vì các câu hỏi và khuyến nghị."
+    ],
+    "checkMode": "speech_recognition_ru_RU",
+    "passRule": "Người học phải phát âm câu trả lời tiếng Nga đạt tối thiểu 80% mới được chuyển câu."
+  }
+]

@@ -1,0 +1,103 @@
+{
+  "name": "Russian_Bauman_UI_Logic_6Pass_FIXED",
+  "created_utc": "2026-06-08T08:06:02Z",
+  "base_package": "Russian_Bauman_DeepDialogue_DataTree_FIXED.zip",
+  "version": "V12.97 Screenshot Stability Fix",
+  "passes": [
+    {
+      "pass": 1,
+      "title": "Khôi phục nút Cài đặt trong Lịch trình hôm nay",
+      "status": "done",
+      "details": [
+        "Gỡ CSS ép nút Cài đặt còn 34px trong side card.",
+        "Khôi phục chữ Cài đặt, min-width và chiều cao ổn định."
+      ]
+    },
+    {
+      "pass": 2,
+      "title": "Giảm kích cỡ thẻ Nghe/Nói theo ảnh",
+      "status": "done",
+      "details": [
+        "Câu tiếng Nga trong thẻ hiện tại giảm về clamp(20px, 2.65vw, 40px).",
+        "Thêm max-height và overflow để câu dài không phá khung."
+      ]
+    },
+    {
+      "pass": 3,
+      "title": "Đồng bộ hàng nút Ôn tập/Kiểm tra",
+      "status": "done",
+      "details": [
+        "Bỏ shell assessment riêng.",
+        "Ôn tập và Kiểm tra dùng chung learn-canva-modebar như Lý thuyết/Bài tập/Nghe-Nói."
+      ]
+    },
+    {
+      "pass": 4,
+      "title": "Sửa logic cây dữ liệu lazy-load",
+      "status": "done",
+      "details": [
+        "Nguồn lazy chưa tải chỉ hiện nút Tải nguồn này và Xuất mô tả nguồn.",
+        "Không cho thao tác Thêm/Dán/Reset lên nguồn chưa tải."
+      ]
+    },
+    {
+      "pass": 5,
+      "title": "Kiểm tra state và chống lỗi vặt",
+      "status": "done",
+      "details": [
+        "Giữ speaking.json cơ bản cho Nghe/Nói.",
+        "Đối thoại và Deep tiếp tục là nguồn tùy chọn lazy.",
+        "Cải thiện sourceStatus cho trạng thái đang tải/lỗi tải."
+      ]
+    },
+    {
+      "pass": 6,
+      "title": "QA và đóng gói",
+      "status": "done",
+      "details": [
+        "Check cú pháp JS.",
+        "Parse JSON.",
+        "Đếm dữ liệu trọng điểm.",
+        "Tạo ZIP final, report, changelog."
+      ]
+    }
+  ],
+  "data_counts": {
+    "speaking": 1220,
+    "dialogue-bauman-az": 4164,
+    "deep-speaking-bauman": 1140,
+    "speaking-link-index": 1058,
+    "lessons": 26,
+    "vocab": 8000,
+    "grammar": 20,
+    "exercises": 312,
+    "tests": 1320
+  },
+  "checks": {
+    "node_check_core_js": true,
+    "node_check_adapter_js": true,
+    "node_check_manifest_js": true,
+    "manifest_json_valid": true,
+    "basic_speaking_kept_for_nghe_noi": true,
+    "bauman_dialogue_full_available_lazy": true,
+    "deep_speaking_available_lazy": true,
+    "link_index_available_lazy": true,
+    "assessment_uses_same_modebar": true,
+    "speaking_font_reduced_css": true,
+    "route_settings_restored_css": true,
+    "storage_lazy_tools_guarded": true
+  },
+  "modified_files": [
+    "assets/core.js",
+    "assets/core.css",
+    "assets/subject-adapter.js",
+    "subject-manifest.json",
+    "subject-manifest.js"
+  ],
+  "notes": [
+    "Không tạo ảnh.",
+    "Không đổi cấu trúc dữ liệu lớn.",
+    "Không đưa Deep vào tab Nghe/Nói.",
+    "File lớn vẫn lazy-load."
+  ]
+}

@@ -1,0 +1,411 @@
+window.SUBJECT_MANIFEST = {
+  "id": "russian",
+  "title": "Tiếng Nga Bauman · Standard Final V13.42",
+  "entry": "subjects/russian/index.html",
+  "editor": "subjects/russian/editor.html",
+  "schema": "SUBJECT_MODULE_V1",
+  "core": {
+    "name": "Bauman Universal Learning Core",
+    "version": "V13.41 Presentation Overlay Fix",
+    "role": "Dedicated Russian learning core with semantic vocabulary cards, polished data tab, light interface theme, adaptive exam/review flags and readable assessment content.",
+    "activeController": "assets/core.js",
+    "adapter": "assets/subject-adapter.js",
+    "theme": "assets/russian.css",
+    "package": "Russian Bauman Survival Master V13.41 Presentation Overlay Fix",
+    "coreJsSha256": "3e53dccbf9695acb2604c7425021a46f0374321363d9a0e1bd5476041eb70970",
+    "rendererClean": "related concepts and keywords hidden in theory/presentation view"
+  },
+  "tabs": [
+    "overview",
+    "learning",
+    "dialogue",
+    "writing",
+    "media",
+    "vocab",
+    "grammar",
+    "mindmap",
+    "storage"
+  ],
+  "data": [
+    "curriculum",
+    "exercises",
+    "grammar",
+    "grammar-path",
+    "mindmap",
+    "handwriting",
+    "knowledge-index",
+    "lessons",
+    "simulations",
+    "speaking",
+    "tests",
+    "videos",
+    "vocab",
+    "writing",
+    "dialogue-bauman-az",
+    "deep-speaking-bauman",
+    "speaking-link-index"
+  ],
+  "release": "V13.42 · Full module · Presentation overlay fix + clean slide renderer",
+  "focus": "Bản chuẩn cuối của module Tiếng Nga: giữ nội dung gốc, giữ vá trình chiếu, ẩn metadata/từ khóa/bài liên quan khỏi vùng slide, giữ metadata cho tìm kiếm/lọc.",
+  "bridge": {
+    "protocol": "BAUMAN_PLANNING_BRIDGE_V3_ROUTE_CARDS",
+    "packageProtocol": "RUSSIAN_PACK_SELF_CONTAINED_V1_FINAL",
+    "incoming": [
+      "BAUMAN_ASSIGN_TASK",
+      "BAUMAN_PLANNING_MISSION",
+      "BAUMAN_TODAY_TASK",
+      "BAUMAN_MAIN_TODAY",
+      "BAUMAN_TODAY_GOAL",
+      "BAUMAN_SCHEDULE_TODAY",
+      "BAUMAN_REQUEST_SUBJECT_MANIFEST",
+      "BAUMAN_PING"
+    ],
+    "outgoing": [
+      "BAUMAN_SUBJECT_READY",
+      "BAUMAN_SUBJECT_MANIFEST",
+      "BAUMAN_SUBJECT_REQUEST_TODAY",
+      "BAUMAN_SUBJECT_SCHEDULE_REQUEST",
+      "BAUMAN_SUBJECT_DATA_SOURCES_READY"
+    ],
+    "targetQuestions": 100,
+    "targetScore": 80,
+    "completionRule": "answered >= targetQuestions && percent >= targetScore plus repair flow when weak",
+    "weekendPolicy": "Main sends only week-end signal; subject decides review or unlocked assessment.",
+    "standaloneFallback": "If window.parent is same window, module runs with local data only."
+  },
+  "version": "Russian Survival Master V13.42 · Standard Final Render Clean",
+  "coreVersion": "SubjectCore V12.94 Honest Frame Repair",
+  "bridgeProtocol": "BAUMAN_PLANNING_BRIDGE_V3_ROUTE_CARDS",
+  "name": "Tiếng Nga Bauman · RussianPack R4",
+  "ui": {
+    "coreLabel": "RUSSIAN SURVIVAL MASTER V13.42 · STANDARD FINAL · RENDER CLEAN",
+    "storageSubtitle": "Kho lưu trữ dạng cây thư mục: tìm nhanh, preview, thêm/sửa/xuất/nhập/khôi phục dữ liệu rõ ràng.",
+    "mediaSubtitle": "Video/Audio lấy khung xem làm trung tâm: chọn nguồn bên trái, xem/nghe bên phải, rồi nói lại.",
+    "overviewSubtitle": "Tổng quan gọn, không khoảng trống chết: mục tiêu, luồng học, hành động nhanh và tiếp tục học ăn khớp.",
+    "learningSubtitle": "Học tập ổn định: Nghe/Nói và Đối thoại tinh gọn; nút nói ổn hòa trong bảng nội dung, chữ canh đều và không tách dòng thô."
+  },
+  "updated": "2026-06-13",
+  "package": "A1 Russian Bauman StandardFinal RenderClean V13.42",
+  "paths": {
+    "assets": "assets/",
+    "data": "data/",
+    "externalData": "external-data/",
+    "docs": "docs/",
+    "coreJs": "assets/core.js",
+    "coreCss": "assets/core.css",
+    "themeCss": "assets/russian.css",
+    "subjectJs": "assets/russian.js",
+    "adapterJs": "assets/subject-adapter.js",
+    "planningBridgeJs": "assets/planning-bridge.js"
+  },
+  "dataFiles": [
+    {
+      "id": "curriculum",
+      "label": "Lộ trình & giai đoạn",
+      "path": "data/curriculum.json",
+      "required": true,
+      "group": "Lõi môn học",
+      "source": "local-core",
+      "plannedCount": 2,
+      "description": "Cây giai đoạn và module học"
+    },
+    {
+      "id": "lessons",
+      "label": "Bài học",
+      "path": "data/lessons.json",
+      "required": true,
+      "group": "Lõi môn học",
+      "source": "local-core",
+      "plannedCount": 26,
+      "description": "Bài học chính của môn Tiếng Nga"
+    },
+    {
+      "id": "grammar",
+      "label": "Ngữ pháp",
+      "path": "data/grammar.json",
+      "required": true,
+      "group": "Lõi môn học",
+      "source": "local-core",
+      "plannedCount": 20,
+      "description": "Mẫu ngữ pháp và ví dụ luyện tập"
+    },
+    {
+      "id": "vocab",
+      "label": "Từ vựng",
+      "path": "data/vocab.json",
+      "required": true,
+      "group": "Từ vựng",
+      "source": "local-core",
+      "plannedCount": 8000,
+      "description": "Bộ từ vựng theo lộ trình Bauman"
+    },
+    {
+      "id": "exercises",
+      "label": "Bài tập",
+      "path": "data/exercises.json",
+      "required": true,
+      "group": "Bài tập",
+      "source": "local-core",
+      "plannedCount": 312,
+      "description": "Bài tập luyện kiến thức"
+    },
+    {
+      "id": "tests",
+      "label": "Kiểm tra",
+      "path": "data/tests.json",
+      "required": true,
+      "group": "Kiểm tra",
+      "source": "local-core",
+      "plannedCount": 1320,
+      "description": "Ngân hàng câu hỏi ôn tập/kiểm tra"
+    },
+    {
+      "id": "simulations",
+      "label": "Mô phỏng / nghe nói",
+      "path": "data/simulations.json",
+      "required": true,
+      "group": "Mô phỏng",
+      "source": "local-core",
+      "plannedCount": 18,
+      "description": "Mô phỏng và lab nhỏ"
+    },
+    {
+      "id": "speaking",
+      "label": "Nghe/Nói cơ bản",
+      "path": "data/speaking.json",
+      "required": true,
+      "group": "Nghe nói cơ bản",
+      "source": "local-core",
+      "plannedCount": 1220,
+      "description": "Bộ luyện nghe chậm và nhại chuẩn, giữ riêng cho tab Nghe/Nói"
+    },
+    {
+      "id": "handwriting",
+      "label": "Mẫu chữ",
+      "path": "data/handwriting.json",
+      "required": true,
+      "group": "Luyện viết",
+      "source": "local-core",
+      "plannedCount": 48,
+      "description": "Mẫu chữ in/viết tay"
+    },
+    {
+      "id": "writing",
+      "label": "Nhiệm vụ viết",
+      "path": "data/writing.json",
+      "required": true,
+      "group": "Luyện viết",
+      "source": "local-core",
+      "plannedCount": 42,
+      "description": "Nhiệm vụ viết câu/đoạn"
+    },
+    {
+      "id": "videos",
+      "label": "Video / Audio",
+      "path": "data/videos.json",
+      "required": true,
+      "group": "Video/Audio",
+      "source": "local-core",
+      "plannedCount": 24,
+      "description": "Nguồn video/audio học tiếng Nga"
+    },
+    {
+      "id": "knowledge-index",
+      "label": "Chỉ mục kiến thức",
+      "path": "data/knowledge-index.json",
+      "required": true,
+      "group": "Lõi môn học",
+      "source": "local-core",
+      "plannedCount": 26,
+      "description": "Chỉ mục tra cứu kiến thức"
+    },
+    {
+      "id": "dialogue-bauman-az",
+      "label": "Đối thoại Bauman A-Z",
+      "path": "data/dialogue-bauman-az.json",
+      "required": false,
+      "group": "Đối thoại & Deep Bauman",
+      "source": "local-lazy",
+      "plannedCount": 4164,
+      "description": "Bộ hội thoại đầy đủ phục vụ tab Đối thoại, tách khỏi Nghe/Nói cơ bản",
+      "lazy": true
+    },
+    {
+      "id": "deep-speaking-bauman",
+      "label": "Luyện nói sâu Bauman",
+      "path": "data/deep-speaking-bauman.json",
+      "required": false,
+      "group": "Đối thoại & Deep Bauman",
+      "source": "local-lazy",
+      "plannedCount": 1140,
+      "description": "Bộ luyện phản xạ, shadowing, monologue và Q&A áp lực",
+      "lazy": true
+    },
+    {
+      "id": "speaking-link-index",
+      "label": "Cầu nối Đối thoại - Deep Speaking",
+      "path": "data/speaking-link-index.json",
+      "required": false,
+      "group": "Đối thoại & Deep Bauman",
+      "source": "local-lazy",
+      "plannedCount": 1058,
+      "description": "Cầu nối từ hội thoại Bauman A-Z sang unit Deep Speaking",
+      "lazy": true
+    }
+  ],
+  "externalDataFiles": [
+    {
+      "id": "bauman_russian_ai_simulation_template_v1",
+      "path": "external-data/bauman_russian_ai_simulation_template_v1.json",
+      "required": false,
+      "source": "local-extended"
+    },
+    {
+      "id": "bauman_russian_speaking_full_1220_by_stage_v3",
+      "path": "external-data/bauman_russian_speaking_full_1220_by_stage_v3.json",
+      "required": false,
+      "source": "local-extended"
+    },
+    {
+      "id": "bauman_russian_speaking_full_by_stage_v1",
+      "path": "external-data/bauman_russian_speaking_full_by_stage_v1.json",
+      "required": false,
+      "source": "local-extended"
+    },
+    {
+      "id": "bauman_russian_test_bank_template_A0_to_graduation_v1",
+      "path": "external-data/bauman_russian_test_bank_template_A0_to_graduation_v1.json",
+      "required": false,
+      "source": "local-extended"
+    },
+    {
+      "id": "bauman_russian_test_bank_template_A0_to_graduation_v2",
+      "path": "external-data/bauman_russian_test_bank_template_A0_to_graduation_v2.json",
+      "required": false,
+      "source": "local-extended"
+    },
+    {
+      "id": "bauman_russian_vocab_5000_full_by_stage_v1",
+      "path": "external-data/bauman_russian_vocab_5000_full_by_stage_v1.json",
+      "required": false,
+      "source": "local-extended"
+    },
+    {
+      "id": "bauman_russian_vocab_8000_full_by_stage_v2",
+      "path": "external-data/bauman_russian_vocab_8000_full_by_stage_v2.json",
+      "required": false,
+      "source": "local-extended"
+    }
+  ],
+  "capabilities": {
+    "overview": true,
+    "learningTheory": true,
+    "learningExercises": true,
+    "learningSpeakingPractice": true,
+    "review": true,
+    "examGateBySchedule": true,
+    "stagePartGate": true,
+    "unlockByPart": true,
+    "dialogueStudio": true,
+    "handwriting": true,
+    "writingPractice": true,
+    "videoAudio": true,
+    "vocabFlashcards": true,
+    "storageTree": true,
+    "jsonImportExport": true,
+    "localDataRestore": true,
+    "mainPlanningBridge": true,
+    "standaloneFallback": true,
+    "dialogueBaumanAZ": true,
+    "deepSpeaking": true,
+    "speakingLinkIndex": true,
+    "lazyDataLoading": true
+  },
+  "routeMapping": {
+    "mainSubjectId": "russian",
+    "stages": {
+      "vn": "Trước dự bị tại Việt Nam",
+      "prep": "Dự bị tiếng Nga tại Nga",
+      "hk1": "Thạc sĩ HK1",
+      "hk2": "Thạc sĩ HK2",
+      "hk3": "Thạc sĩ HK3 / НИР",
+      "hk4": "Thạc sĩ HK4 / ВКР"
+    },
+    "defaultStage": "vn",
+    "prioritySkills": [
+      "listening",
+      "speaking",
+      "video",
+      "vocab",
+      "grammar",
+      "writing",
+      "test"
+    ]
+  },
+  "qa": {
+    "mainPathMap": "subjects/russian/index.html",
+    "mainEditorMap": "subjects/russian/editor.html",
+    "checked": "2026-06-07",
+    "requiredDataFilesChecked": true,
+    "runtimePathScan": "no parent-folder dependency in runtime html/js/css core files",
+    "learningIntegrity": "locked theory/exercises/practice by active lessonId; speaking.json mapped to lessonId; source answers only for exercises"
+  },
+  "notes": "Dedicated vertical scroll for Exercise/Speaking tabs and richer exercise answer guidance.",
+  "storagePlan": {
+    "rule": "Nghe/Nói dùng speaking.json cơ bản; Đối thoại dùng dialogue-bauman-az.json; Deep Speaking chỉ lazy-load trong Đối thoại.",
+    "folders": [
+      {
+        "id": "core",
+        "label": "Lõi môn học",
+        "files": [
+          "curriculum",
+          "lessons",
+          "grammar",
+          "knowledge-index"
+        ]
+      },
+      {
+        "id": "basic-speaking",
+        "label": "Nghe/Nói cơ bản",
+        "files": [
+          "speaking",
+          "simulations"
+        ]
+      },
+      {
+        "id": "deep-dialogue",
+        "label": "Đối thoại & Deep Bauman",
+        "files": [
+          "dialogue-bauman-az",
+          "deep-speaking-bauman",
+          "speaking-link-index"
+        ]
+      },
+      {
+        "id": "vocab-media",
+        "label": "Từ vựng & media",
+        "files": [
+          "vocab",
+          "videos"
+        ]
+      },
+      {
+        "id": "writing",
+        "label": "Luyện viết",
+        "files": [
+          "handwriting",
+          "writing"
+        ]
+      },
+      {
+        "id": "assessment",
+        "label": "Đánh giá",
+        "files": [
+          "exercises",
+          "tests"
+        ]
+      }
+    ]
+  },
+  "metadataPolicy": "metadata kept for search/filter; hidden from lesson/presentation slide body"
+};

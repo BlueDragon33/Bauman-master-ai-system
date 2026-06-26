@@ -1,0 +1,1 @@
+window.SUBJECT_CONFIG={"id": "foundation", "title": "Dự bị STANKIN, khoa học nền và kỹ năng học đại học Nga", "short": "Preparatory · Foundation", "icon": "▦", "tagline": "Các môn nền dự bị: tiếng Nga học thuật, toán/tin/vật lý bằng tiếng Nga, kỹ năng học đại học ở Nga.", "formulaLabel": "Mẫu / Công thức / Checklist"};

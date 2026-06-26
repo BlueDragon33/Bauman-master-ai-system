@@ -1,0 +1,57 @@
+{
+  "name": "Russian_Bauman_LearningRender_ComprehensiveFix_FINAL",
+  "created": "2026-06-08",
+  "scope": [
+    "render từ vựng",
+    "logic kiểm tra",
+    "UX/UI ôn tập/kiểm tra không khuyết nội dung",
+    "bỏ dòng 7/14/21/28 ngày và dễ+trung bình",
+    "render guard chung"
+  ],
+  "passes": [
+    "Lượt 1",
+    "Lượt 2",
+    "Lượt 3",
+    "Lượt 4",
+    "Lượt 5",
+    "Lượt 6",
+    "Lượt 7",
+    "Lượt 8",
+    "Lượt 9",
+    "Lượt 10",
+    "Lượt 11",
+    "Lượt 12"
+  ],
+  "data_stats": {
+    "curriculum.json": 2,
+    "deep-speaking-bauman.json": 1140,
+    "dialogue-bauman-az.json": 4164,
+    "exercises.json": 312,
+    "grammar.json": 20,
+    "handwriting.json": 48,
+    "knowledge-index.json": 26,
+    "lessons.json": 26,
+    "simulations.json": 18,
+    "speaking-link-index.json": 1058,
+    "speaking.json": 1220,
+    "tests.json": 1320,
+    "videos.json": 24,
+    "vocab.json": 8000,
+    "writing.json": 42
+  },
+  "checks": {
+    "node_core_check": true,
+    "node_adapter_check": true,
+    "node_manifest_check": true,
+    "vocab_page_size_defined": true,
+    "render_vocab_guarded": true,
+    "exam_day_labels_removed": true,
+    "answer_list_layout_css": true,
+    "assessment_no_clip_css": true,
+    "vocab_no_clip_css": true,
+    "review_exam_page_size_20": true
+  },
+  "vm_render_test": "PASSED: renderLearning(theory/exercises/review/exam), renderExercises, renderReview, renderExam, renderVocab đều trả HTML, không recovery, không còn nhãn ngày dư thừa.",
+  "browser_gui_note": "Chromium trong sandbox bị chính sách chặn localhost/file, nên không xác nhận được bằng GUI Live Server thật. Đã kiểm bằng Node VM render + parse JSON + node --check.",
+  "known_followup": "Mở bằng Live Server trên máy người dùng để soi thị giác thật: khung từ vựng, Ôn tập, Kiểm tra, font và vùng cuộn."
+}

@@ -1,0 +1,29 @@
+{
+  "version": "Russian Survival Master V13.01 · Learning Tab Deep Fix",
+  "scope": "Fix sâu tab Học tập sau khi xuất hiện lỗi khi chuyển Bài tập / Ôn tập / Kiểm tra.",
+  "root_cause_found": [
+    "core.js sử dụng REVIEW_PAGE_SIZE và EXAM_PAGE_SIZE ở nhiều hàm render/click nhưng hai hằng số này không còn được khai báo trong bản đang kiểm tra.",
+    "Khi bấm Ôn tập hoặc Kiểm tra trong tab Học tập, renderReview()/renderExam() có thể ném ReferenceError, làm tab Học tập vỡ layout hoặc trắng nội dung.",
+    "renderLearning() trước đó không có lớp chặn lỗi cục bộ, nên một lỗi ở một nhánh render có thể làm hỏng toàn bộ vùng học tập."
+  ],
+  "fixes": [
+    "Khai báo lại REVIEW_PAGE_SIZE = 20 và EXAM_PAGE_SIZE = 20 theo yêu cầu mỗi lượt 20 câu.",
+    "Bọc renderLearning() bằng try/catch để nếu một tab con lỗi, hệ thống hiện thẻ khôi phục thay vì làm vỡ toàn bộ tab Học tập.",
+    "Giữ nguyên bố cục đáp án dạng list ở Ôn tập/Kiểm tra và không thay đổi dữ liệu JSON.",
+    "Thêm CSS nhỏ cho learning-recovery-card để báo lỗi nội bộ không làm tràn layout."
+  ],
+  "checks": {
+    "node_check_core_js": "passed",
+    "node_check_subject_adapter_js": "passed",
+    "node_check_subject_manifest_js": "passed",
+    "json_parse_all_data_files": "passed",
+    "render_smoke_theory": "passed",
+    "render_smoke_exercises": "passed",
+    "render_smoke_practice": "passed",
+    "render_smoke_review": "passed",
+    "render_smoke_exam": "passed",
+    "render_smoke_storage": "passed",
+    "render_smoke_dialogue": "passed"
+  },
+  "honesty_note": "Đã kiểm tra cú pháp, parse dữ liệu và render mô phỏng bằng Node VM. Sandbox không mở được Live Server GUI thật, nên cần mở trên máy bằng Live Server để soi giao diện cuối."
+}

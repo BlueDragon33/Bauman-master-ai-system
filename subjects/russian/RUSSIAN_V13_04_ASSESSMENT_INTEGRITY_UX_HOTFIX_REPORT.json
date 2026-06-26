@@ -1,0 +1,154 @@
+{
+  "requiredFiles": {
+    "index.html": true,
+    "assets/core.js": true,
+    "assets/core.css": true,
+    "assets/subject-adapter.js": true,
+    "data/tests.json": true,
+    "data/exercises.json": true,
+    "data/vocab.json": true,
+    "data/lessons.json": true,
+    "data/speaking.json": true
+  },
+  "jsonErrors": [],
+  "jsonCounts": {
+    "data/curriculum.json": {
+      "type": "dict",
+      "count": 2,
+      "bytes": 4229
+    },
+    "data/deep-speaking-bauman.json": {
+      "type": "list",
+      "count": 1140,
+      "bytes": 28156378
+    },
+    "data/dialogue-bauman-az.json": {
+      "type": "list",
+      "count": 4164,
+      "bytes": 35049608
+    },
+    "data/exercises.json": {
+      "type": "list",
+      "count": 312,
+      "bytes": 476196
+    },
+    "data/grammar.json": {
+      "type": "list",
+      "count": 20,
+      "bytes": 19892
+    },
+    "data/handwriting.json": {
+      "type": "list",
+      "count": 48,
+      "bytes": 48141
+    },
+    "data/knowledge-index.json": {
+      "type": "list",
+      "count": 26,
+      "bytes": 28372
+    },
+    "data/lessons.json": {
+      "type": "list",
+      "count": 26,
+      "bytes": 1418252
+    },
+    "data/simulations.json": {
+      "type": "list",
+      "count": 18,
+      "bytes": 29334
+    },
+    "data/speaking-link-index.json": {
+      "type": "dict",
+      "count": 1058,
+      "bytes": 385702
+    },
+    "data/speaking.json": {
+      "type": "list",
+      "count": 1220,
+      "bytes": 7343576
+    },
+    "data/tests.json": {
+      "type": "dict",
+      "count": 11,
+      "bytes": 7923049
+    },
+    "data/videos.json": {
+      "type": "list",
+      "count": 24,
+      "bytes": 19488
+    },
+    "data/vocab.json": {
+      "type": "list",
+      "count": 8000,
+      "bytes": 11212921
+    },
+    "data/writing.json": {
+      "type": "list",
+      "count": 42,
+      "bytes": 79470
+    },
+    "subject-manifest.json": {
+      "type": "dict",
+      "count": 26,
+      "bytes": 13046
+    }
+  },
+  "testsIntegrity": {
+    "questions": 1320,
+    "missingId": 0,
+    "duplicateIdCount": 0,
+    "badAnswerOrChoices": 0,
+    "levels": {
+      "easy": 120,
+      "medium": 240,
+      "hard": 360,
+      "expert": 600
+    }
+  },
+  "eventIntegrity": {
+    "dataActCount": 81,
+    "unhandledDataActs": [],
+    "handledWithoutRenderedDataAct": [
+      "check-test",
+      "exam-review-wrong",
+      "export-db",
+      "media-groups",
+      "media-new",
+      "next-test",
+      "open-speech-map",
+      "prev-test",
+      "reset-db",
+      "retry-line",
+      "toggle-auto-next"
+    ]
+  },
+  "assessmentPatch": {
+    "hasReviewSingle": true,
+    "hasExamSingle": true,
+    "usesReviewFlagTray": true,
+    "usesExamFlagTray": true,
+    "examGridUsesPageSize": true
+  },
+  "cssIntegrity": {
+    "openBraces": 4476,
+    "closeBraces": 4476,
+    "commentOpen": 123,
+    "commentClose": 123,
+    "hasV1304Hotfix": true
+  },
+  "jsSyntax": {
+    "ok": true,
+    "stderr": ""
+  },
+  "mainDataCounts": {
+    "lessons": 26,
+    "exercises": 312,
+    "grammar": 20,
+    "vocab": 8000,
+    "speaking": 1220,
+    "deep-speaking-bauman": 1140,
+    "dialogue-bauman-az": 4164
+  },
+  "status": "PASS_WITH_BROWSER_MANUAL_RECOMMENDED",
+  "note": "Static integrity, JSON integrity, JS syntax and event coverage passed. Browser screenshot automation was not available in this sandbox due environment navigation restriction, so Live Server visual QA is still recommended."
+}

@@ -1,0 +1,68 @@
+{
+  "package": "Russian_Bauman_LayoutIntegrity_9Pass_FINAL",
+  "timestamp": "2026-06-08 09:16:08 UTC",
+  "source_base": "Russian_Bauman_Assessment_Exercise_7Step_FINAL.zip",
+  "principle": "Nghe/Nói giữ speaking.json cơ bản; Đối thoại dùng dialogue-bauman-az; Deep Speaking chỉ chạy trong Đối thoại; file lớn vẫn lazy-load.",
+  "nine_passes": [
+    "Khảo sát render/state/CSS của Bài tập, Kiểm tra, Ôn tập, Dữ liệu, Đối thoại.",
+    "Phục hồi tab Bài tập bằng exercise-nine-shell/card, tránh các lớp cũ gây phóng/tràn bố cục.",
+    "Tạm mở khóa ràng buộc Kiểm tra bằng EXAM_LAYOUT_TEST_UNLOCK để soi bố cục kiểm tra.",
+    "Sửa bố cục Kiểm tra một khung chính, answer-grid tự co, câu hỏi cuộn an toàn.",
+    "Sửa Dữ liệu/Lưu trữ: cây trái cao hơn, cuộn ổn định, nút thao tác không bị khuyết.",
+    "Thêm lớp chống tràn tổng thể cho card, nút, input, Russian line, dữ liệu dài.",
+    "Khôi phục Đối thoại theo bố cục Nghe/Nói sau update, dùng dialogue-nine-room và Deep Speaking dạng accordion.",
+    "Kiểm tra state/lazy-load: Nghe/Nói không kéo Bauman A-Z, Đối thoại/Deep chỉ tải khi cần.",
+    "Kiểm thử cú pháp, JSON, render mô phỏng và đóng gói final."
+  ],
+  "data_counts": {
+    "curriculum.json": 2,
+    "deep-speaking-bauman.json": 1140,
+    "dialogue-bauman-az.json": 4164,
+    "exercises.json": 312,
+    "grammar.json": 20,
+    "handwriting.json": 48,
+    "knowledge-index.json": 26,
+    "lessons.json": 26,
+    "simulations.json": 18,
+    "speaking-link-index.json": 1058,
+    "speaking.json": 1220,
+    "tests.json": 1320,
+    "videos.json": 24,
+    "vocab.json": 8000,
+    "writing.json": 42
+  },
+  "json_errors": [],
+  "js_checks": [
+    {
+      "file": "assets/core.js",
+      "ok": true,
+      "stderr": ""
+    },
+    {
+      "file": "assets/subject-adapter.js",
+      "ok": true,
+      "stderr": ""
+    },
+    {
+      "file": "subject-manifest.js",
+      "ok": true,
+      "stderr": ""
+    }
+  ],
+  "manifest_json_ok": true,
+  "render_vm_check": {
+    "ok": true,
+    "stdout": "renderExercises OK 2348 \nrenderExam OK 3227 \nrenderReview OK 3398 \nrenderStorage-lazy OK 6898 \nrenderDialogue OK 31392 \n{\"exerciseHasNine\":true,\"examUnlocked\":true,\"reviewSingle\":true,\"storageHasLazy\":true,\"dialogueNine\":true,\"deepPanel\":true}\n",
+    "stderr": "",
+    "summary": {
+      "exerciseHasNine": true,
+      "examUnlocked": true,
+      "reviewSingle": true,
+      "storageHasLazy": true,
+      "dialogueNine": true,
+      "deepPanel": true
+    }
+  },
+  "not_claimed": "Sandbox không chạy được Live Server GUI thật trên máy người dùng; đã kiểm thử render bằng Node VM, parse JSON và check JS. Cần mở bằng Live Server để nhìn thực tế trên trình duyệt của bạn.",
+  "temporary_exam_unlock": "EXAM_LAYOUT_TEST_UNLOCK=true đang bật để bạn kiểm tra bố cục Kiểm tra; có thể khóa lại sau khi chốt UI."
+}

@@ -1,0 +1,34 @@
+{
+  "name": "Russian_Bauman_LearningTab_AccessGuard_FINAL",
+  "focus": "Kiểm tra toàn diện lỗi tab Học tập không mở được",
+  "base": "Russian_Bauman_LearningTab_DeepFix_FINAL.zip",
+  "status": "fixed_with_runtime_guard",
+  "findings": [
+    "Không tái hiện lỗi renderLearning trong môi trường VM: theory, exercises, practice, review, exam đều render được.",
+    "Có rủi ro thực tế từ localStorage/db overlay cũ quá lớn hoặc hỏng, đặc biệt các bản trước từng lưu dữ liệu lớn vào localStorage.",
+    "Hàm render() trước đây chưa có lớp bảo vệ toàn cục; nếu sanitize/buildShell/view render lỗi thì toàn tab có thể không mở được."
+  ],
+  "changes": [
+    "Thêm safeLocalJson() để bỏ qua payload localStorage quá lớn hoặc hỏng.",
+    "Thêm cleanDbOverlay() để không nạp optional/lazy data lớn từ overlay cũ.",
+    "Sửa loadState() dùng safeLocalJson với giới hạn dung lượng.",
+    "Sửa loadData() bỏ qua _db overlay quá lớn, tránh treo app khi mở Học tập.",
+    "Bọc render() bằng FULL_RENDER_GUARD; nếu lỗi render, tự đưa về Học tập/Lý thuyết với thẻ khôi phục thay vì trắng màn hình.",
+    "setLearnTab() được làm chặt hơn: ép view='learning', kiểm tra tab hợp lệ, reset state con an toàn.",
+    "setView('learning') tự đảm bảo learnTab hợp lệ."
+  ],
+  "tests": {
+    "node_check_core_js": "pass",
+    "node_check_subject_adapter_js": "pass",
+    "node_check_subject_manifest_js": "pass",
+    "json_parse_data_folder": "pass",
+    "vm_render_learning_theory": "pass",
+    "vm_render_learning_exercises": "pass",
+    "vm_render_learning_practice": "pass",
+    "vm_render_learning_review": "pass",
+    "vm_render_learning_exam": "pass",
+    "vm_corrupt_localStorage_state": "pass",
+    "vm_huge_db_overlay_guard": "pass"
+  },
+  "honesty_note": "Sandbox không mở được GUI Live Server thật như máy người dùng, nên phần nhìn trực tiếp trên trình duyệt cần kiểm lại bằng Live Server. Tuy nhiên lỗi render trắng do JS/state/localStorage đã được bọc bảo vệ và test mô phỏng."
+}

@@ -1,0 +1,472 @@
+{
+  "rules": {
+    "easy": {
+      "questions": 20,
+      "unlockScore": 8
+    },
+    "medium": {
+      "questions": 30,
+      "unlockScore": 8
+    },
+    "hard": {
+      "questions": 40,
+      "unlockScore": 8
+    },
+    "excellent": {
+      "questions": 50,
+      "unlockScore": 8
+    }
+  },
+  "questions": [
+    {
+      "id": "q_r_p01",
+      "moduleId": "r_p01",
+      "stage": "prepare",
+      "difficulty": "easy",
+      "prompt": "Mục tiêu chính của module 'Bản đồ đề tài UGV/USV: phạm vi, linh kiện và dữ liệu' là gì?",
+      "options": [
+        "So sánh UGV, USV, UAV, UUV theo linh kiện, dữ liệu, rủi ro.",
+        "Chỉ đọc tên bài mà không làm sản phẩm",
+        "Bỏ qua kiểm tra lỗi và không ghi kết quả",
+        "Đợi đến cuối khóa mới học"
+      ],
+      "answerIndex": 0,
+      "reviewLesson": "r_p01_l1"
+    },
+    {
+      "id": "q_r_p02",
+      "moduleId": "r_p02",
+      "stage": "prepare",
+      "difficulty": "medium",
+      "prompt": "Mục tiêu chính của module 'Quy trình tìm kiếm và quản lý tài liệu khoa học' là gì?",
+      "options": [
+        "Từ khóa, paper table, citation, summary, gap.",
+        "Chỉ đọc tên bài mà không làm sản phẩm",
+        "Bỏ qua kiểm tra lỗi và không ghi kết quả",
+        "Đợi đến cuối khóa mới học"
+      ],
+      "answerIndex": 0,
+      "reviewLesson": "r_p02_l1"
+    },
+    {
+      "id": "q_r_p03",
+      "moduleId": "r_p03",
+      "stage": "prepare",
+      "difficulty": "medium",
+      "prompt": "Mục tiêu chính của module 'Câu hỏi nghiên cứu, giả thuyết và metric đánh giá' là gì?",
+      "options": [
+        "Câu hỏi nghiên cứu, hypothesis, metric, baseline.",
+        "Chỉ đọc tên bài mà không làm sản phẩm",
+        "Bỏ qua kiểm tra lỗi và không ghi kết quả",
+        "Đợi đến cuối khóa mới học"
+      ],
+      "answerIndex": 0,
+      "reviewLesson": "r_p03_l1"
+    },
+    {
+      "id": "q_r_p04",
+      "moduleId": "r_p04",
+      "stage": "prepare",
+      "difficulty": "medium",
+      "prompt": "Mục tiêu chính của module 'Memo đề tài sơ bộ: vấn đề, dữ liệu, baseline và rủi ro' là gì?",
+      "options": [
+        "Problem, dataset, method, experiment, risk.",
+        "Chỉ đọc tên bài mà không làm sản phẩm",
+        "Bỏ qua kiểm tra lỗi và không ghi kết quả",
+        "Đợi đến cuối khóa mới học"
+      ],
+      "answerIndex": 0,
+      "reviewLesson": "r_p04_l1"
+    },
+    {
+      "id": "q_r_s01",
+      "moduleId": "r_s01",
+      "stage": "preparatory",
+      "difficulty": "medium",
+      "prompt": "Mục tiêu chính của module 'Shortlist НИР bằng tiếng Nga' là gì?",
+      "options": [
+        "Tên đề tài Nga, abstract ngắn, thuật ngữ supervisor.",
+        "Chỉ đọc tên bài mà không làm sản phẩm",
+        "Bỏ qua kiểm tra lỗi và không ghi kết quả",
+        "Đợi đến cuối khóa mới học"
+      ],
+      "answerIndex": 0,
+      "reviewLesson": "r_s01_l1"
+    },
+    {
+      "id": "q_r_s02",
+      "moduleId": "r_s02",
+      "stage": "preparatory",
+      "difficulty": "medium",
+      "prompt": "Mục tiêu chính của module 'Đọc paper và annotation tiếng Nga' là gì?",
+      "options": [
+        "Tóm tắt mục tiêu, phương pháp, kết quả, hạn chế.",
+        "Chỉ đọc tên bài mà không làm sản phẩm",
+        "Bỏ qua kiểm tra lỗi và không ghi kết quả",
+        "Đợi đến cuối khóa mới học"
+      ],
+      "answerIndex": 0,
+      "reviewLesson": "r_s02_l1"
+    },
+    {
+      "id": "q_r_m101",
+      "moduleId": "r_m101",
+      "stage": "m1",
+      "difficulty": "medium",
+      "prompt": "Mục tiêu chính của module 'Phương pháp luận nhận thức khoa học' là gì?",
+      "options": [
+        "Research logic, validity, evidence, scientific style.",
+        "Chỉ đọc tên bài mà không làm sản phẩm",
+        "Bỏ qua kiểm tra lỗi và không ghi kết quả",
+        "Đợi đến cuối khóa mới học"
+      ],
+      "answerIndex": 0,
+      "reviewLesson": "r_m101_l1"
+    },
+    {
+      "id": "q_r_m102",
+      "moduleId": "r_m102",
+      "stage": "m1",
+      "difficulty": "hard",
+      "prompt": "Mục tiêu chính của module 'Chọn đề tài НИР: vấn đề, novelty và khả thi' là gì?",
+      "options": [
+        "Supervisor, topic shortlist, initial plan, literature matrix.",
+        "Chỉ đọc tên bài mà không làm sản phẩm",
+        "Bỏ qua kiểm tra lỗi và không ghi kết quả",
+        "Đợi đến cuối khóa mới học"
+      ],
+      "answerIndex": 0,
+      "reviewLesson": "r_m102_l1"
+    },
+    {
+      "id": "q_r_m201",
+      "moduleId": "r_m201",
+      "stage": "m2",
+      "difficulty": "hard",
+      "prompt": "Mục tiêu chính của module 'Proposal v1 và baseline thực nghiệm' là gì?",
+      "options": [
+        "Problem statement, data, baseline, initial metric.",
+        "Chỉ đọc tên bài mà không làm sản phẩm",
+        "Bỏ qua kiểm tra lỗi và không ghi kết quả",
+        "Đợi đến cuối khóa mới học"
+      ],
+      "answerIndex": 0,
+      "reviewLesson": "r_m201_l1"
+    },
+    {
+      "id": "q_r_m202",
+      "moduleId": "r_m202",
+      "stage": "m2",
+      "difficulty": "medium",
+      "prompt": "Mục tiêu chính của module 'Thực tập dự án, vận hành và sư phạm: sản phẩm và báo cáo' là gì?",
+      "options": [
+        "Practice reports, teaching micro-note, operation log.",
+        "Chỉ đọc tên bài mà không làm sản phẩm",
+        "Bỏ qua kiểm tra lỗi và không ghi kết quả",
+        "Đợi đến cuối khóa mới học"
+      ],
+      "answerIndex": 0,
+      "reviewLesson": "r_m202_l1"
+    },
+    {
+      "id": "q_r_m301",
+      "moduleId": "r_m301",
+      "stage": "m3",
+      "difficulty": "hard",
+      "prompt": "Mục tiêu chính của module 'Sprint thực nghiệm: thiết kế, chạy thử và ghi nhận kết quả' là gì?",
+      "options": [
+        "Run experiments, ablation, error analysis, table results.",
+        "Chỉ đọc tên bài mà không làm sản phẩm",
+        "Bỏ qua kiểm tra lỗi và không ghi kết quả",
+        "Đợi đến cuối khóa mới học"
+      ],
+      "answerIndex": 0,
+      "reviewLesson": "r_m301_l1"
+    },
+    {
+      "id": "q_r_m302",
+      "moduleId": "r_m302",
+      "stage": "m3",
+      "difficulty": "hard",
+      "prompt": "Mục tiêu chính của module 'Báo cáo НИР và chương luận văn' là gì?",
+      "options": [
+        "Methods, results, discussion, limitations.",
+        "Chỉ đọc tên bài mà không làm sản phẩm",
+        "Bỏ qua kiểm tra lỗi và không ghi kết quả",
+        "Đợi đến cuối khóa mới học"
+      ],
+      "answerIndex": 0,
+      "reviewLesson": "r_m302_l1"
+    },
+    {
+      "id": "q_r_m401",
+      "moduleId": "r_m401",
+      "stage": "m4",
+      "difficulty": "hard",
+      "prompt": "Mục tiêu chính của module 'Thực tập tiền tốt nghiệp: hoàn thiện evidence và dữ liệu' là gì?",
+      "options": [
+        "Freeze topic/data/code, final experiment, supervisor feedback.",
+        "Chỉ đọc tên bài mà không làm sản phẩm",
+        "Bỏ qua kiểm tra lỗi và không ghi kết quả",
+        "Đợi đến cuối khóa mới học"
+      ],
+      "answerIndex": 0,
+      "reviewLesson": "r_m401_l1"
+    },
+    {
+      "id": "q_r_m402",
+      "moduleId": "r_m402",
+      "stage": "m4",
+      "difficulty": "hard",
+      "prompt": "Mục tiêu chính của module 'Viết ВКР và chuẩn bị pre-defense' là gì?",
+      "options": [
+        "Thesis format, slides, Q&A, rehearsal.",
+        "Chỉ đọc tên bài mà không làm sản phẩm",
+        "Bỏ qua kiểm tra lỗi và không ghi kết quả",
+        "Đợi đến cuối khóa mới học"
+      ],
+      "answerIndex": 0,
+      "reviewLesson": "r_m402_l1"
+    },
+    {
+      "id": "q_r_m403",
+      "moduleId": "r_m403",
+      "stage": "m4",
+      "difficulty": "hard",
+      "prompt": "Mục tiêu chính của module 'Gói bảo vệ: slide, Q&A, demo và phụ lục' là gì?",
+      "options": [
+        "Final PDF, code archive, data appendix, defense speech.",
+        "Chỉ đọc tên bài mà không làm sản phẩm",
+        "Bỏ qua kiểm tra lỗi và không ghi kết quả",
+        "Đợi đến cuối khóa mới học"
+      ],
+      "answerIndex": 0,
+      "reviewLesson": "r_m403_l1"
+    },
+    {
+      "id": "q_r_p01_v1",
+      "moduleId": "r_p01",
+      "stage": "prepare",
+      "difficulty": "medium",
+      "prompt": "Chọn phát biểu đúng nhất: Mục tiêu chính của module 'Bản đồ đề tài UGV/USV: phạm vi, linh kiện và dữ liệu' là gì?",
+      "options": [
+        "So sánh UGV, USV, UAV, UUV theo linh kiện, dữ liệu, rủi ro.",
+        "Chỉ đọc tên bài mà không làm sản phẩm",
+        "Bỏ qua kiểm tra lỗi và không ghi kết quả",
+        "Đợi đến cuối khóa mới học"
+      ],
+      "answerIndex": 0,
+      "reviewLesson": "r_p01_l1"
+    },
+    {
+      "id": "q_r_p02_v2",
+      "moduleId": "r_p02",
+      "stage": "prepare",
+      "difficulty": "hard",
+      "prompt": "Chọn phát biểu đúng nhất: Mục tiêu chính của module 'Quy trình tìm kiếm và quản lý tài liệu khoa học' là gì?",
+      "options": [
+        "Từ khóa, paper table, citation, summary, gap.",
+        "Chỉ đọc tên bài mà không làm sản phẩm",
+        "Bỏ qua kiểm tra lỗi và không ghi kết quả",
+        "Đợi đến cuối khóa mới học"
+      ],
+      "answerIndex": 0,
+      "reviewLesson": "r_p02_l1"
+    },
+    {
+      "id": "q_r_p03_v3",
+      "moduleId": "r_p03",
+      "stage": "prepare",
+      "difficulty": "easy",
+      "prompt": "Chọn phát biểu đúng nhất: Mục tiêu chính của module 'Câu hỏi nghiên cứu, giả thuyết và metric đánh giá' là gì?",
+      "options": [
+        "Câu hỏi nghiên cứu, hypothesis, metric, baseline.",
+        "Chỉ đọc tên bài mà không làm sản phẩm",
+        "Bỏ qua kiểm tra lỗi và không ghi kết quả",
+        "Đợi đến cuối khóa mới học"
+      ],
+      "answerIndex": 0,
+      "reviewLesson": "r_p03_l1"
+    },
+    {
+      "id": "q_r_p04_v4",
+      "moduleId": "r_p04",
+      "stage": "prepare",
+      "difficulty": "medium",
+      "prompt": "Chọn phát biểu đúng nhất: Mục tiêu chính của module 'Memo đề tài sơ bộ: vấn đề, dữ liệu, baseline và rủi ro' là gì?",
+      "options": [
+        "Problem, dataset, method, experiment, risk.",
+        "Chỉ đọc tên bài mà không làm sản phẩm",
+        "Bỏ qua kiểm tra lỗi và không ghi kết quả",
+        "Đợi đến cuối khóa mới học"
+      ],
+      "answerIndex": 0,
+      "reviewLesson": "r_p04_l1"
+    },
+    {
+      "id": "q_r_s01_v5",
+      "moduleId": "r_s01",
+      "stage": "preparatory",
+      "difficulty": "hard",
+      "prompt": "Chọn phát biểu đúng nhất: Mục tiêu chính của module 'Shortlist НИР bằng tiếng Nga' là gì?",
+      "options": [
+        "Tên đề tài Nga, abstract ngắn, thuật ngữ supervisor.",
+        "Chỉ đọc tên bài mà không làm sản phẩm",
+        "Bỏ qua kiểm tra lỗi và không ghi kết quả",
+        "Đợi đến cuối khóa mới học"
+      ],
+      "answerIndex": 0,
+      "reviewLesson": "r_s01_l1"
+    },
+    {
+      "id": "q_r_s02_v6",
+      "moduleId": "r_s02",
+      "stage": "preparatory",
+      "difficulty": "easy",
+      "prompt": "Chọn phát biểu đúng nhất: Mục tiêu chính của module 'Đọc paper và annotation tiếng Nga' là gì?",
+      "options": [
+        "Tóm tắt mục tiêu, phương pháp, kết quả, hạn chế.",
+        "Chỉ đọc tên bài mà không làm sản phẩm",
+        "Bỏ qua kiểm tra lỗi và không ghi kết quả",
+        "Đợi đến cuối khóa mới học"
+      ],
+      "answerIndex": 0,
+      "reviewLesson": "r_s02_l1"
+    },
+    {
+      "id": "q_r_m101_v7",
+      "moduleId": "r_m101",
+      "stage": "m1",
+      "difficulty": "medium",
+      "prompt": "Chọn phát biểu đúng nhất: Mục tiêu chính của module 'Phương pháp luận nhận thức khoa học' là gì?",
+      "options": [
+        "Research logic, validity, evidence, scientific style.",
+        "Chỉ đọc tên bài mà không làm sản phẩm",
+        "Bỏ qua kiểm tra lỗi và không ghi kết quả",
+        "Đợi đến cuối khóa mới học"
+      ],
+      "answerIndex": 0,
+      "reviewLesson": "r_m101_l1"
+    },
+    {
+      "id": "q_r_m102_v8",
+      "moduleId": "r_m102",
+      "stage": "m1",
+      "difficulty": "hard",
+      "prompt": "Chọn phát biểu đúng nhất: Mục tiêu chính của module 'Chọn đề tài НИР: vấn đề, novelty và khả thi' là gì?",
+      "options": [
+        "Supervisor, topic shortlist, initial plan, literature matrix.",
+        "Chỉ đọc tên bài mà không làm sản phẩm",
+        "Bỏ qua kiểm tra lỗi và không ghi kết quả",
+        "Đợi đến cuối khóa mới học"
+      ],
+      "answerIndex": 0,
+      "reviewLesson": "r_m102_l1"
+    },
+    {
+      "id": "q_r_m201_v9",
+      "moduleId": "r_m201",
+      "stage": "m2",
+      "difficulty": "easy",
+      "prompt": "Chọn phát biểu đúng nhất: Mục tiêu chính của module 'Proposal v1 và baseline thực nghiệm' là gì?",
+      "options": [
+        "Problem statement, data, baseline, initial metric.",
+        "Chỉ đọc tên bài mà không làm sản phẩm",
+        "Bỏ qua kiểm tra lỗi và không ghi kết quả",
+        "Đợi đến cuối khóa mới học"
+      ],
+      "answerIndex": 0,
+      "reviewLesson": "r_m201_l1"
+    },
+    {
+      "id": "q_r_m202_v10",
+      "moduleId": "r_m202",
+      "stage": "m2",
+      "difficulty": "medium",
+      "prompt": "Chọn phát biểu đúng nhất: Mục tiêu chính của module 'Thực tập dự án, vận hành và sư phạm: sản phẩm và báo cáo' là gì?",
+      "options": [
+        "Practice reports, teaching micro-note, operation log.",
+        "Chỉ đọc tên bài mà không làm sản phẩm",
+        "Bỏ qua kiểm tra lỗi và không ghi kết quả",
+        "Đợi đến cuối khóa mới học"
+      ],
+      "answerIndex": 0,
+      "reviewLesson": "r_m202_l1"
+    },
+    {
+      "id": "q_r_m301_v11",
+      "moduleId": "r_m301",
+      "stage": "m3",
+      "difficulty": "hard",
+      "prompt": "Chọn phát biểu đúng nhất: Mục tiêu chính của module 'Sprint thực nghiệm: thiết kế, chạy thử và ghi nhận kết quả' là gì?",
+      "options": [
+        "Run experiments, ablation, error analysis, table results.",
+        "Chỉ đọc tên bài mà không làm sản phẩm",
+        "Bỏ qua kiểm tra lỗi và không ghi kết quả",
+        "Đợi đến cuối khóa mới học"
+      ],
+      "answerIndex": 0,
+      "reviewLesson": "r_m301_l1"
+    },
+    {
+      "id": "q_r_m302_v12",
+      "moduleId": "r_m302",
+      "stage": "m3",
+      "difficulty": "easy",
+      "prompt": "Chọn phát biểu đúng nhất: Mục tiêu chính của module 'Báo cáo НИР và chương luận văn' là gì?",
+      "options": [
+        "Methods, results, discussion, limitations.",
+        "Chỉ đọc tên bài mà không làm sản phẩm",
+        "Bỏ qua kiểm tra lỗi và không ghi kết quả",
+        "Đợi đến cuối khóa mới học"
+      ],
+      "answerIndex": 0,
+      "reviewLesson": "r_m302_l1"
+    },
+    {
+      "id": "q_r_m401_v13",
+      "moduleId": "r_m401",
+      "stage": "m4",
+      "difficulty": "medium",
+      "prompt": "Chọn phát biểu đúng nhất: Mục tiêu chính của module 'Thực tập tiền tốt nghiệp: hoàn thiện evidence và dữ liệu' là gì?",
+      "options": [
+        "Freeze topic/data/code, final experiment, supervisor feedback.",
+        "Chỉ đọc tên bài mà không làm sản phẩm",
+        "Bỏ qua kiểm tra lỗi và không ghi kết quả",
+        "Đợi đến cuối khóa mới học"
+      ],
+      "answerIndex": 0,
+      "reviewLesson": "r_m401_l1"
+    },
+    {
+      "id": "q_r_m402_v14",
+      "moduleId": "r_m402",
+      "stage": "m4",
+      "difficulty": "hard",
+      "prompt": "Chọn phát biểu đúng nhất: Mục tiêu chính của module 'Viết ВКР và chuẩn bị pre-defense' là gì?",
+      "options": [
+        "Thesis format, slides, Q&A, rehearsal.",
+        "Chỉ đọc tên bài mà không làm sản phẩm",
+        "Bỏ qua kiểm tra lỗi và không ghi kết quả",
+        "Đợi đến cuối khóa mới học"
+      ],
+      "answerIndex": 0,
+      "reviewLesson": "r_m402_l1"
+    },
+    {
+      "id": "q_r_m403_v15",
+      "moduleId": "r_m403",
+      "stage": "m4",
+      "difficulty": "easy",
+      "prompt": "Chọn phát biểu đúng nhất: Mục tiêu chính của module 'Gói bảo vệ: slide, Q&A, demo và phụ lục' là gì?",
+      "options": [
+        "Final PDF, code archive, data appendix, defense speech.",
+        "Chỉ đọc tên bài mà không làm sản phẩm",
+        "Bỏ qua kiểm tra lỗi và không ghi kết quả",
+        "Đợi đến cuối khóa mới học"
+      ],
+      "answerIndex": 0,
+      "reviewLesson": "r_m403_l1"
+    }
+  ]
+}

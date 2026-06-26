@@ -1,0 +1,1122 @@
+[
+  {
+    "id": "card_PR01_1",
+    "stage": "vn",
+    "term": "Thiết lập môi trường Python, VS Code và Live Server",
+    "front": "python -m venv .venv; pip install -r requirements.txt; code .",
+    "meaning": "Workflow/ký hiệu cần nhớ để xử lý mở module học, chạy notebook, kiểm thử HTML/JSON cục bộ.",
+    "example": "mở module học, chạy notebook, kiểm thử HTML/JSON cục bộ",
+    "usage": "Dùng trong code, test, README, vấn đáp và báo cáo lab.",
+    "tags": [
+      "programming",
+      "vn",
+      "syntax"
+    ]
+  },
+  {
+    "id": "card_PR02_1",
+    "stage": "vn",
+    "term": "Tư duy thuật toán và độ phức tạp",
+    "front": "T(n)=O(n log n); space=O(n)",
+    "meaning": "Workflow/ký hiệu cần nhớ để xử lý chọn thuật toán đủ nhanh cho xử lý dữ liệu robot.",
+    "example": "chọn thuật toán đủ nhanh cho xử lý dữ liệu robot",
+    "usage": "Dùng trong code, test, README, vấn đáp và báo cáo lab.",
+    "tags": [
+      "programming",
+      "vn",
+      "syntax"
+    ]
+  },
+  {
+    "id": "card_PR03_1",
+    "stage": "vn",
+    "term": "Python căn bản: kiểu dữ liệu, hàm, module",
+    "front": "def f(x): return y; list/dict/set/tuple",
+    "meaning": "Workflow/ký hiệu cần nhớ để xử lý viết script sạch để xử lý bài tập và dữ liệu nhỏ.",
+    "example": "viết script sạch để xử lý bài tập và dữ liệu nhỏ",
+    "usage": "Dùng trong code, test, README, vấn đáp và báo cáo lab.",
+    "tags": [
+      "programming",
+      "vn",
+      "syntax"
+    ]
+  },
+  {
+    "id": "card_PR04_1",
+    "stage": "vn",
+    "term": "NumPy và vector hóa dữ liệu",
+    "front": "X.shape=(n,d); y = X @ w + b",
+    "meaning": "Workflow/ký hiệu cần nhớ để xử lý tính toán ma trận/đặc trưng cho AI nhanh và gọn.",
+    "example": "tính toán ma trận/đặc trưng cho AI nhanh và gọn",
+    "usage": "Dùng trong code, test, README, vấn đáp và báo cáo lab.",
+    "tags": [
+      "programming",
+      "vn",
+      "syntax"
+    ]
+  },
+  {
+    "id": "card_PR05_1",
+    "stage": "vn",
+    "term": "Pandas và làm sạch bảng dữ liệu",
+    "front": "df.dropna(); df.groupby(); df.merge()",
+    "meaning": "Workflow/ký hiệu cần nhớ để xử lý làm sạch log cảm biến, bảng điểm đo, dữ liệu CSV.",
+    "example": "làm sạch log cảm biến, bảng điểm đo, dữ liệu CSV",
+    "usage": "Dùng trong code, test, README, vấn đáp và báo cáo lab.",
+    "tags": [
+      "programming",
+      "vn",
+      "syntax"
+    ]
+  },
+  {
+    "id": "card_PR06_1",
+    "stage": "vn",
+    "term": "SQL căn bản và mô hình quan hệ",
+    "front": "SELECT col FROM table WHERE condition; PK/FK",
+    "meaning": "Workflow/ký hiệu cần nhớ để xử lý lưu kết quả thí nghiệm, metadata và truy vấn nhanh.",
+    "example": "lưu kết quả thí nghiệm, metadata và truy vấn nhanh",
+    "usage": "Dùng trong code, test, README, vấn đáp và báo cáo lab.",
+    "tags": [
+      "programming",
+      "vn",
+      "syntax"
+    ]
+  },
+  {
+    "id": "card_PR07_1",
+    "stage": "vn",
+    "term": "Git, GitHub và nhật ký học tập",
+    "front": "git add .; git commit -m \"message\"; git branch",
+    "meaning": "Workflow/ký hiệu cần nhớ để xử lý quản lý phiên bản bài học, notebook, mã mô phỏng.",
+    "example": "quản lý phiên bản bài học, notebook, mã mô phỏng",
+    "usage": "Dùng trong code, test, README, vấn đáp và báo cáo lab.",
+    "tags": [
+      "programming",
+      "vn",
+      "syntax"
+    ]
+  },
+  {
+    "id": "card_PR08_1",
+    "stage": "vn",
+    "term": "Notebook thực nghiệm và README tái lập",
+    "front": "README + notebook + data/ + src/ + results/",
+    "meaning": "Workflow/ký hiệu cần nhớ để xử lý tạo artifact học tập có thể mở lại, chạy lại, giải thích lại.",
+    "example": "tạo artifact học tập có thể mở lại, chạy lại, giải thích lại",
+    "usage": "Dùng trong code, test, README, vấn đáp và báo cáo lab.",
+    "tags": [
+      "programming",
+      "vn",
+      "syntax"
+    ]
+  },
+  {
+    "id": "card_PR09_1",
+    "stage": "prep",
+    "term": "Thuật ngữ tin học Nga cho lớp dự bị",
+    "front": "алгоритм, переменная, функция, массив, база данных",
+    "meaning": "Workflow/ký hiệu cần nhớ để xử lý nghe/đọc đề bài tin học và hỏi giáo viên bằng tiếng Nga.",
+    "example": "nghe/đọc đề bài tin học và hỏi giáo viên bằng tiếng Nga",
+    "usage": "Dùng trong code, test, README, vấn đáp và báo cáo lab.",
+    "tags": [
+      "programming",
+      "prep",
+      "syntax"
+    ]
+  },
+  {
+    "id": "card_PR10_1",
+    "stage": "prep",
+    "term": "Pseudocode và giải thích thuật toán bằng tiếng Nga",
+    "front": "input → process → output; if/for/while",
+    "meaning": "Workflow/ký hiệu cần nhớ để xử lý trình bày lời giải không kẹt ngôn ngữ.",
+    "example": "trình bày lời giải không kẹt ngôn ngữ",
+    "usage": "Dùng trong code, test, README, vấn đáp và báo cáo lab.",
+    "tags": [
+      "programming",
+      "prep",
+      "syntax"
+    ]
+  },
+  {
+    "id": "card_PR11_1",
+    "stage": "prep",
+    "term": "Cấu trúc dữ liệu nhập môn",
+    "front": "array, stack, queue, dict, graph",
+    "meaning": "Workflow/ký hiệu cần nhớ để xử lý làm bài tin học dự bị và mô tả dữ liệu kỹ thuật.",
+    "example": "làm bài tin học dự bị và mô tả dữ liệu kỹ thuật",
+    "usage": "Dùng trong code, test, README, vấn đáp và báo cáo lab.",
+    "tags": [
+      "programming",
+      "prep",
+      "syntax"
+    ]
+  },
+  {
+    "id": "card_PR12_1",
+    "stage": "prep",
+    "term": "File, JSON, CSV và dữ liệu học tập",
+    "front": "json.load(); csv.DictReader(); pathlib.Path",
+    "meaning": "Workflow/ký hiệu cần nhớ để xử lý đọc/ghi dữ liệu module môn học, kho dữ liệu và bài tập.",
+    "example": "đọc/ghi dữ liệu module môn học, kho dữ liệu và bài tập",
+    "usage": "Dùng trong code, test, README, vấn đáp và báo cáo lab.",
+    "tags": [
+      "programming",
+      "prep",
+      "syntax"
+    ]
+  },
+  {
+    "id": "card_PR13_1",
+    "stage": "prep",
+    "term": "Debug, exception và logging",
+    "front": "try/except; logging.info(); assert condition",
+    "meaning": "Workflow/ký hiệu cần nhớ để xử lý tìm lỗi render, lỗi dữ liệu, lỗi logic khi tự làm module.",
+    "example": "tìm lỗi render, lỗi dữ liệu, lỗi logic khi tự làm module",
+    "usage": "Dùng trong code, test, README, vấn đáp và báo cáo lab.",
+    "tags": [
+      "programming",
+      "prep",
+      "syntax"
+    ]
+  },
+  {
+    "id": "card_PR14_1",
+    "stage": "prep",
+    "term": "Unit test căn bản với pytest",
+    "front": "assert f(x)==expected; pytest -q",
+    "meaning": "Workflow/ký hiệu cần nhớ để xử lý kiểm thử hàm xử lý dữ liệu và logic nút bấm.",
+    "example": "kiểm thử hàm xử lý dữ liệu và logic nút bấm",
+    "usage": "Dùng trong code, test, README, vấn đáp và báo cáo lab.",
+    "tags": [
+      "programming",
+      "prep",
+      "syntax"
+    ]
+  },
+  {
+    "id": "card_PR15_1",
+    "stage": "prep",
+    "term": "SQL nâng nền: JOIN, GROUP BY, index",
+    "front": "JOIN; GROUP BY; CREATE INDEX idx ON table(col)",
+    "meaning": "Workflow/ký hiệu cần nhớ để xử lý truy vấn dữ liệu thí nghiệm có nhiều bảng.",
+    "example": "truy vấn dữ liệu thí nghiệm có nhiều bảng",
+    "usage": "Dùng trong code, test, README, vấn đáp và báo cáo lab.",
+    "tags": [
+      "programming",
+      "prep",
+      "syntax"
+    ]
+  },
+  {
+    "id": "card_PR16_1",
+    "stage": "prep",
+    "term": "Quy tắc đặt tên, comment và tài liệu song ngữ",
+    "front": "name = intent; docstring = input + output + limit",
+    "meaning": "Workflow/ký hiệu cần nhớ để xử lý ghi chú Việt-Nga-Anh để đọc code trong môi trường Bauman.",
+    "example": "ghi chú Việt-Nga-Anh để đọc code trong môi trường Bauman",
+    "usage": "Dùng trong code, test, README, vấn đáp và báo cáo lab.",
+    "tags": [
+      "programming",
+      "prep",
+      "syntax"
+    ]
+  },
+  {
+    "id": "card_PR17_1",
+    "stage": "hk1",
+    "term": "OOP cho АСОИУ: class, interface, responsibility",
+    "front": "class Sensor: read(); class Model: predict()",
+    "meaning": "Workflow/ký hiệu cần nhớ để xử lý tạo skeleton phần mềm UGV gồm sensor/model/control.",
+    "example": "tạo skeleton phần mềm UGV gồm sensor/model/control",
+    "usage": "Dùng trong code, test, README, vấn đáp và báo cáo lab.",
+    "tags": [
+      "programming",
+      "hk1",
+      "syntax"
+    ]
+  },
+  {
+    "id": "card_PR18_1",
+    "stage": "hk1",
+    "term": "Thiết kế module và kiến trúc package Python",
+    "front": "src/, tests/, configs/, data/, scripts/",
+    "meaning": "Workflow/ký hiệu cần nhớ để xử lý chia dự án thành module rõ, dễ bảo trì và mở rộng.",
+    "example": "chia dự án thành module rõ, dễ bảo trì và mở rộng",
+    "usage": "Dùng trong code, test, README, vấn đáp và báo cáo lab.",
+    "tags": [
+      "programming",
+      "hk1",
+      "syntax"
+    ]
+  },
+  {
+    "id": "card_PR19_1",
+    "stage": "hk1",
+    "term": "Mẫu thiết kế ứng dụng: factory, strategy, adapter",
+    "front": "Strategy(model); Adapter(sensor); Factory(config)",
+    "meaning": "Workflow/ký hiệu cần nhớ để xử lý đổi cảm biến/mô hình mà không phá toàn bộ code.",
+    "example": "đổi cảm biến/mô hình mà không phá toàn bộ code",
+    "usage": "Dùng trong code, test, README, vấn đáp và báo cáo lab.",
+    "tags": [
+      "programming",
+      "hk1",
+      "syntax"
+    ]
+  },
+  {
+    "id": "card_PR20_1",
+    "stage": "hk1",
+    "term": "CSDL cho hệ thống học máy: schema và metadata",
+    "front": "experiment(id, params, metrics, artifact_path)",
+    "meaning": "Workflow/ký hiệu cần nhớ để xử lý lưu tham số, metric, dataset và đường dẫn artifact.",
+    "example": "lưu tham số, metric, dataset và đường dẫn artifact",
+    "usage": "Dùng trong code, test, README, vấn đáp và báo cáo lab.",
+    "tags": [
+      "programming",
+      "hk1",
+      "syntax"
+    ]
+  },
+  {
+    "id": "card_PR21_1",
+    "stage": "hk1",
+    "term": "ORM và migration nhập môn",
+    "front": "Model ↔ table; migration = schema version",
+    "meaning": "Workflow/ký hiệu cần nhớ để xử lý quản lý thay đổi CSDL khi project lớn dần.",
+    "example": "quản lý thay đổi CSDL khi project lớn dần",
+    "usage": "Dùng trong code, test, README, vấn đáp và báo cáo lab.",
+    "tags": [
+      "programming",
+      "hk1",
+      "syntax"
+    ]
+  },
+  {
+    "id": "card_PR22_1",
+    "stage": "hk1",
+    "term": "Kỹ nghệ phần mềm: requirement, issue, milestone",
+    "front": "requirement → issue → branch → PR → release",
+    "meaning": "Workflow/ký hiệu cần nhớ để xử lý quản lý tiến độ bài tập và module luận văn.",
+    "example": "quản lý tiến độ bài tập và module luận văn",
+    "usage": "Dùng trong code, test, README, vấn đáp và báo cáo lab.",
+    "tags": [
+      "programming",
+      "hk1",
+      "syntax"
+    ]
+  },
+  {
+    "id": "card_PR23_1",
+    "stage": "hk1",
+    "term": "Kiểm thử tích hợp và test dữ liệu",
+    "front": "test pipeline(input) → expected artifact",
+    "meaning": "Workflow/ký hiệu cần nhớ để xử lý phát hiện dữ liệu hỏng trước khi train mô hình.",
+    "example": "phát hiện dữ liệu hỏng trước khi train mô hình",
+    "usage": "Dùng trong code, test, README, vấn đáp và báo cáo lab.",
+    "tags": [
+      "programming",
+      "hk1",
+      "syntax"
+    ]
+  },
+  {
+    "id": "card_PR24_1",
+    "stage": "hk1",
+    "term": "CI nhẹ và kiểm tra chất lượng code",
+    "front": "lint + tests + type check = green build",
+    "meaning": "Workflow/ký hiệu cần nhớ để xử lý tự động kiểm tra repo trước khi nộp/đẩy code.",
+    "example": "tự động kiểm tra repo trước khi nộp/đẩy code",
+    "usage": "Dùng trong code, test, README, vấn đáp và báo cáo lab.",
+    "tags": [
+      "programming",
+      "hk1",
+      "syntax"
+    ]
+  },
+  {
+    "id": "card_PR25_1",
+    "stage": "hk2",
+    "term": "Pipeline dữ liệu cho ML",
+    "front": "raw → clean → features → train → evaluate",
+    "meaning": "Workflow/ký hiệu cần nhớ để xử lý tạo quy trình lặp lại cho dữ liệu UGV/USV.",
+    "example": "tạo quy trình lặp lại cho dữ liệu UGV/USV",
+    "usage": "Dùng trong code, test, README, vấn đáp và báo cáo lab.",
+    "tags": [
+      "programming",
+      "hk2",
+      "syntax"
+    ]
+  },
+  {
+    "id": "card_PR26_1",
+    "stage": "hk2",
+    "term": "Scikit-learn baseline và metric",
+    "front": "model.fit(X_train,y_train); score=f(metric)",
+    "meaning": "Workflow/ký hiệu cần nhớ để xử lý dựng baseline có metric rõ cho ML trong АСОИУ.",
+    "example": "dựng baseline có metric rõ cho ML trong АСОИУ",
+    "usage": "Dùng trong code, test, README, vấn đáp và báo cáo lab.",
+    "tags": [
+      "programming",
+      "hk2",
+      "syntax"
+    ]
+  },
+  {
+    "id": "card_PR27_1",
+    "stage": "hk2",
+    "term": "API inference với FastAPI",
+    "front": "POST /predict → input schema → prediction",
+    "meaning": "Workflow/ký hiệu cần nhớ để xử lý biến mô hình thành dịch vụ thử nghiệm được.",
+    "example": "biến mô hình thành dịch vụ thử nghiệm được",
+    "usage": "Dùng trong code, test, README, vấn đáp và báo cáo lab.",
+    "tags": [
+      "programming",
+      "hk2",
+      "syntax"
+    ]
+  },
+  {
+    "id": "card_PR28_1",
+    "stage": "hk2",
+    "term": "Serialization model và artifact version",
+    "front": "joblib.dump(model); artifact_v1.pkl",
+    "meaning": "Workflow/ký hiệu cần nhớ để xử lý lưu model/dataset/metric theo phiên bản để chạy lại.",
+    "example": "lưu model/dataset/metric theo phiên bản để chạy lại",
+    "usage": "Dùng trong code, test, README, vấn đáp và báo cáo lab.",
+    "tags": [
+      "programming",
+      "hk2",
+      "syntax"
+    ]
+  },
+  {
+    "id": "card_PR29_1",
+    "stage": "hk2",
+    "term": "Cấu hình thí nghiệm bằng YAML/JSON",
+    "front": "config = params + seed + paths",
+    "meaning": "Workflow/ký hiệu cần nhớ để xử lý khóa tham số thí nghiệm để tránh loạn kết quả.",
+    "example": "khóa tham số thí nghiệm để tránh loạn kết quả",
+    "usage": "Dùng trong code, test, README, vấn đáp và báo cáo lab.",
+    "tags": [
+      "programming",
+      "hk2",
+      "syntax"
+    ]
+  },
+  {
+    "id": "card_PR30_1",
+    "stage": "hk2",
+    "term": "Docker nhập môn cho môi trường tái lập",
+    "front": "Dockerfile + requirements + command",
+    "meaning": "Workflow/ký hiệu cần nhớ để xử lý chạy lại demo trên máy khác ít lỗi hơn.",
+    "example": "chạy lại demo trên máy khác ít lỗi hơn",
+    "usage": "Dùng trong code, test, README, vấn đáp và báo cáo lab.",
+    "tags": [
+      "programming",
+      "hk2",
+      "syntax"
+    ]
+  },
+  {
+    "id": "card_PR31_1",
+    "stage": "hk2",
+    "term": "Bảo mật dữ liệu và quản lý secret",
+    "front": ".env; never commit secrets; access control",
+    "meaning": "Workflow/ký hiệu cần nhớ để xử lý không lộ key, dữ liệu, đường dẫn nhạy cảm.",
+    "example": "không lộ key, dữ liệu, đường dẫn nhạy cảm",
+    "usage": "Dùng trong code, test, README, vấn đáp và báo cáo lab.",
+    "tags": [
+      "programming",
+      "hk2",
+      "syntax"
+    ]
+  },
+  {
+    "id": "card_PR32_1",
+    "stage": "hk2",
+    "term": "Tài liệu kỹ thuật và sơ đồ kiến trúc",
+    "front": "architecture.md + sequence diagram + API spec",
+    "meaning": "Workflow/ký hiệu cần nhớ để xử lý giải thích phần mềm cho giáo sư và nhóm nghiên cứu.",
+    "example": "giải thích phần mềm cho giáo sư và nhóm nghiên cứu",
+    "usage": "Dùng trong code, test, README, vấn đáp và báo cáo lab.",
+    "tags": [
+      "programming",
+      "hk2",
+      "syntax"
+    ]
+  },
+  {
+    "id": "card_PR33_1",
+    "stage": "hk3",
+    "term": "Dataset card cho telemetry và cảm biến",
+    "front": "dataset card = source + schema + limits + ethics",
+    "meaning": "Workflow/ký hiệu cần nhớ để xử lý mô tả dữ liệu НИР đủ rõ để phản biện.",
+    "example": "mô tả dữ liệu НИР đủ rõ để phản biện",
+    "usage": "Dùng trong code, test, README, vấn đáp và báo cáo lab.",
+    "tags": [
+      "programming",
+      "hk3",
+      "syntax"
+    ]
+  },
+  {
+    "id": "card_PR34_1",
+    "stage": "hk3",
+    "term": "Experiment tracking và bảng metric",
+    "front": "run_id + params + metrics + artifacts",
+    "meaning": "Workflow/ký hiệu cần nhớ để xử lý so sánh mô hình trong НИР có bằng chứng.",
+    "example": "so sánh mô hình trong НИР có bằng chứng",
+    "usage": "Dùng trong code, test, README, vấn đáp và báo cáo lab.",
+    "tags": [
+      "programming",
+      "hk3",
+      "syntax"
+    ]
+  },
+  {
+    "id": "card_PR35_1",
+    "stage": "hk3",
+    "term": "Ablation study bằng code có kiểm soát",
+    "front": "one change per run; compare metric deltas",
+    "meaning": "Workflow/ký hiệu cần nhớ để xử lý chứng minh yếu tố nào làm mô hình tốt hơn/xấu hơn.",
+    "example": "chứng minh yếu tố nào làm mô hình tốt hơn/xấu hơn",
+    "usage": "Dùng trong code, test, README, vấn đáp và báo cáo lab.",
+    "tags": [
+      "programming",
+      "hk3",
+      "syntax"
+    ]
+  },
+  {
+    "id": "card_PR36_1",
+    "stage": "hk3",
+    "term": "Xử lý log cảm biến và chuỗi thời gian",
+    "front": "timestamp + value + quality_flag",
+    "meaning": "Workflow/ký hiệu cần nhớ để xử lý làm sạch log UGV trước khi phân tích tín hiệu/AI.",
+    "example": "làm sạch log UGV trước khi phân tích tín hiệu/AI",
+    "usage": "Dùng trong code, test, README, vấn đáp và báo cáo lab.",
+    "tags": [
+      "programming",
+      "hk3",
+      "syntax"
+    ]
+  },
+  {
+    "id": "card_PR37_1",
+    "stage": "hk3",
+    "term": "Module đánh giá lỗi và phân tích thất bại",
+    "front": "error case → label → root cause → fix",
+    "meaning": "Workflow/ký hiệu cần nhớ để xử lý biết mô hình sai ở đâu, vì sao, sửa thế nào.",
+    "example": "biết mô hình sai ở đâu, vì sao, sửa thế nào",
+    "usage": "Dùng trong code, test, README, vấn đáp và báo cáo lab.",
+    "tags": [
+      "programming",
+      "hk3",
+      "syntax"
+    ]
+  },
+  {
+    "id": "card_PR38_1",
+    "stage": "hk3",
+    "term": "Prototype dashboard kết quả nghiên cứu",
+    "front": "metrics + plots + filters + notes",
+    "meaning": "Workflow/ký hiệu cần nhớ để xử lý xem kết quả thí nghiệm, hình minh họa và log.",
+    "example": "xem kết quả thí nghiệm, hình minh họa và log",
+    "usage": "Dùng trong code, test, README, vấn đáp và báo cáo lab.",
+    "tags": [
+      "programming",
+      "hk3",
+      "syntax"
+    ]
+  },
+  {
+    "id": "card_PR39_1",
+    "stage": "hk3",
+    "term": "Đóng gói demo nghiên cứu",
+    "front": "make run-demo; sample data; expected output",
+    "meaning": "Workflow/ký hiệu cần nhớ để xử lý cho giáo viên mở demo nhanh mà không vỡ môi trường.",
+    "example": "cho giáo viên mở demo nhanh mà không vỡ môi trường",
+    "usage": "Dùng trong code, test, README, vấn đáp và báo cáo lab.",
+    "tags": [
+      "programming",
+      "hk3",
+      "syntax"
+    ]
+  },
+  {
+    "id": "card_PR40_1",
+    "stage": "hk3",
+    "term": "Quản lý rủi ro phần mềm trong НИР",
+    "front": "risk = probability × impact; mitigation plan",
+    "meaning": "Workflow/ký hiệu cần nhớ để xử lý giảm rủi ro hỏng demo, mất dữ liệu, lệch kết quả.",
+    "example": "giảm rủi ro hỏng demo, mất dữ liệu, lệch kết quả",
+    "usage": "Dùng trong code, test, README, vấn đáp và báo cáo lab.",
+    "tags": [
+      "programming",
+      "hk3",
+      "syntax"
+    ]
+  },
+  {
+    "id": "card_PR41_1",
+    "stage": "hk4",
+    "term": "Đóng băng mã nguồn và tag release",
+    "front": "git tag v1.0-defense; CHANGELOG.md",
+    "meaning": "Workflow/ký hiệu cần nhớ để xử lý khóa phiên bản phục vụ ВКР, tránh đổi sát ngày bảo vệ.",
+    "example": "khóa phiên bản phục vụ ВКР, tránh đổi sát ngày bảo vệ",
+    "usage": "Dùng trong code, test, README, vấn đáp và báo cáo lab.",
+    "tags": [
+      "programming",
+      "hk4",
+      "syntax"
+    ]
+  },
+  {
+    "id": "card_PR42_1",
+    "stage": "hk4",
+    "term": "Script chạy lại toàn bộ kết quả",
+    "front": "make reproduce → data → model → figures",
+    "meaning": "Workflow/ký hiệu cần nhớ để xử lý tái tạo bảng và hình trong luận văn.",
+    "example": "tái tạo bảng và hình trong luận văn",
+    "usage": "Dùng trong code, test, README, vấn đáp và báo cáo lab.",
+    "tags": [
+      "programming",
+      "hk4",
+      "syntax"
+    ]
+  },
+  {
+    "id": "card_PR43_1",
+    "stage": "hk4",
+    "term": "Chuẩn hóa thư mục luận văn và artifact",
+    "front": "thesis/ figures/ tables/ code/ appendix/",
+    "meaning": "Workflow/ký hiệu cần nhớ để xử lý không thất lạc hình, bảng, code khi viết ВКР.",
+    "example": "không thất lạc hình, bảng, code khi viết ВКР",
+    "usage": "Dùng trong code, test, README, vấn đáp và báo cáo lab.",
+    "tags": [
+      "programming",
+      "hk4",
+      "syntax"
+    ]
+  },
+  {
+    "id": "card_PR44_1",
+    "stage": "hk4",
+    "term": "Demo offline và kế hoạch dự phòng",
+    "front": "offline mode + sample data + screenshots",
+    "meaning": "Workflow/ký hiệu cần nhớ để xử lý bảo vệ khi mạng/hardware có vấn đề.",
+    "example": "bảo vệ khi mạng/hardware có vấn đề",
+    "usage": "Dùng trong code, test, README, vấn đáp và báo cáo lab.",
+    "tags": [
+      "programming",
+      "hk4",
+      "syntax"
+    ]
+  },
+  {
+    "id": "card_PR45_1",
+    "stage": "hk4",
+    "term": "Tối ưu nhỏ: runtime, memory và latency",
+    "front": "latency_ms; memory_mb; throughput",
+    "meaning": "Workflow/ký hiệu cần nhớ để xử lý trả lời phản biện về khả năng chạy trên phần cứng robot.",
+    "example": "trả lời phản biện về khả năng chạy trên phần cứng robot",
+    "usage": "Dùng trong code, test, README, vấn đáp và báo cáo lab.",
+    "tags": [
+      "programming",
+      "hk4",
+      "syntax"
+    ]
+  },
+  {
+    "id": "card_PR46_1",
+    "stage": "hk4",
+    "term": "Kiểm tra license, citation và nguồn mở",
+    "front": "LICENSE + CITATION + third-party notices",
+    "meaning": "Workflow/ký hiệu cần nhớ để xử lý tránh lỗi trích dẫn thư viện/dữ liệu khi nộp luận văn.",
+    "example": "tránh lỗi trích dẫn thư viện/dữ liệu khi nộp luận văn",
+    "usage": "Dùng trong code, test, README, vấn đáp và báo cáo lab.",
+    "tags": [
+      "programming",
+      "hk4",
+      "syntax"
+    ]
+  },
+  {
+    "id": "card_PR47_1",
+    "stage": "hk4",
+    "term": "Slide kỹ thuật: kiến trúc, pipeline, kết quả",
+    "front": "problem → architecture → experiment → result → limit",
+    "meaning": "Workflow/ký hiệu cần nhớ để xử lý trình bày phần code không loạn trước hội đồng.",
+    "example": "trình bày phần code không loạn trước hội đồng",
+    "usage": "Dùng trong code, test, README, vấn đáp và báo cáo lab.",
+    "tags": [
+      "programming",
+      "hk4",
+      "syntax"
+    ]
+  },
+  {
+    "id": "card_PR48_1",
+    "stage": "hk4",
+    "term": "Trả lời phản biện kỹ thuật phần mềm",
+    "front": "why design? why metric? why reproducible?",
+    "meaning": "Workflow/ký hiệu cần nhớ để xử lý bảo vệ lựa chọn kiến trúc, dữ liệu, metric và demo.",
+    "example": "bảo vệ lựa chọn kiến trúc, dữ liệu, metric và demo",
+    "usage": "Dùng trong code, test, README, vấn đáp và báo cáo lab.",
+    "tags": [
+      "programming",
+      "hk4",
+      "syntax"
+    ]
+  },
+  {
+    "id": "symcard_01",
+    "stage": "vn",
+    "term": "độ phức tạp tuyến tính",
+    "front": "O(n)",
+    "meaning": "Workflow/ký hiệu cần nhớ để xử lý Dùng khi đọc code/tài liệu/vấn đáp: O(n)..",
+    "example": "Dùng khi đọc code/tài liệu/vấn đáp: O(n).",
+    "usage": "Dùng trong code, test, README, vấn đáp và báo cáo lab.",
+    "tags": [
+      "programming",
+      "vn",
+      "syntax"
+    ]
+  },
+  {
+    "id": "symcard_02",
+    "stage": "vn",
+    "term": "độ phức tạp gần tuyến tính",
+    "front": "O(n log n)",
+    "meaning": "Workflow/ký hiệu cần nhớ để xử lý Dùng khi đọc code/tài liệu/vấn đáp: O(n log n)..",
+    "example": "Dùng khi đọc code/tài liệu/vấn đáp: O(n log n).",
+    "usage": "Dùng trong code, test, README, vấn đáp và báo cáo lab.",
+    "tags": [
+      "programming",
+      "vn",
+      "syntax"
+    ]
+  },
+  {
+    "id": "symcard_03",
+    "stage": "vn",
+    "term": "khai báo hàm",
+    "front": "def",
+    "meaning": "Workflow/ký hiệu cần nhớ để xử lý Dùng khi đọc code/tài liệu/vấn đáp: def..",
+    "example": "Dùng khi đọc code/tài liệu/vấn đáp: def.",
+    "usage": "Dùng trong code, test, README, vấn đáp và báo cáo lab.",
+    "tags": [
+      "programming",
+      "vn",
+      "syntax"
+    ]
+  },
+  {
+    "id": "symcard_04",
+    "stage": "vn",
+    "term": "trả kết quả",
+    "front": "return",
+    "meaning": "Workflow/ký hiệu cần nhớ để xử lý Dùng khi đọc code/tài liệu/vấn đáp: return..",
+    "example": "Dùng khi đọc code/tài liệu/vấn đáp: return.",
+    "usage": "Dùng trong code, test, README, vấn đáp và báo cáo lab.",
+    "tags": [
+      "programming",
+      "vn",
+      "syntax"
+    ]
+  },
+  {
+    "id": "symcard_05",
+    "stage": "vn",
+    "term": "danh sách/từ điển",
+    "front": "list/dict",
+    "meaning": "Workflow/ký hiệu cần nhớ để xử lý Dùng khi đọc code/tài liệu/vấn đáp: list/dict..",
+    "example": "Dùng khi đọc code/tài liệu/vấn đáp: list/dict.",
+    "usage": "Dùng trong code, test, README, vấn đáp và báo cáo lab.",
+    "tags": [
+      "programming",
+      "vn",
+      "syntax"
+    ]
+  },
+  {
+    "id": "symcard_06",
+    "stage": "vn",
+    "term": "nhân ma trận-vector",
+    "front": "X @ w",
+    "meaning": "Workflow/ký hiệu cần nhớ để xử lý Dùng khi đọc code/tài liệu/vấn đáp: X @ w..",
+    "example": "Dùng khi đọc code/tài liệu/vấn đáp: X @ w.",
+    "usage": "Dùng trong code, test, README, vấn đáp và báo cáo lab.",
+    "tags": [
+      "programming",
+      "vn",
+      "syntax"
+    ]
+  },
+  {
+    "id": "symcard_07",
+    "stage": "prep",
+    "term": "truy vấn chọn",
+    "front": "SELECT",
+    "meaning": "Workflow/ký hiệu cần nhớ để xử lý Dùng khi đọc code/tài liệu/vấn đáp: SELECT..",
+    "example": "Dùng khi đọc code/tài liệu/vấn đáp: SELECT.",
+    "usage": "Dùng trong code, test, README, vấn đáp và báo cáo lab.",
+    "tags": [
+      "programming",
+      "prep",
+      "syntax"
+    ]
+  },
+  {
+    "id": "symcard_08",
+    "stage": "prep",
+    "term": "kết nối bảng",
+    "front": "JOIN",
+    "meaning": "Workflow/ký hiệu cần nhớ để xử lý Dùng khi đọc code/tài liệu/vấn đáp: JOIN..",
+    "example": "Dùng khi đọc code/tài liệu/vấn đáp: JOIN.",
+    "usage": "Dùng trong code, test, README, vấn đáp và báo cáo lab.",
+    "tags": [
+      "programming",
+      "prep",
+      "syntax"
+    ]
+  },
+  {
+    "id": "symcard_09",
+    "stage": "prep",
+    "term": "khóa chính/khóa ngoại",
+    "front": "PK/FK",
+    "meaning": "Workflow/ký hiệu cần nhớ để xử lý Dùng khi đọc code/tài liệu/vấn đáp: PK/FK..",
+    "example": "Dùng khi đọc code/tài liệu/vấn đáp: PK/FK.",
+    "usage": "Dùng trong code, test, README, vấn đáp và báo cáo lab.",
+    "tags": [
+      "programming",
+      "prep",
+      "syntax"
+    ]
+  },
+  {
+    "id": "symcard_10",
+    "stage": "prep",
+    "term": "ghi phiên bản",
+    "front": "git commit",
+    "meaning": "Workflow/ký hiệu cần nhớ để xử lý Dùng khi đọc code/tài liệu/vấn đáp: git commit..",
+    "example": "Dùng khi đọc code/tài liệu/vấn đáp: git commit.",
+    "usage": "Dùng trong code, test, README, vấn đáp và báo cáo lab.",
+    "tags": [
+      "programming",
+      "prep",
+      "syntax"
+    ]
+  },
+  {
+    "id": "symcard_11",
+    "stage": "prep",
+    "term": "nhánh phát triển",
+    "front": "branch",
+    "meaning": "Workflow/ký hiệu cần nhớ để xử lý Dùng khi đọc code/tài liệu/vấn đáp: branch..",
+    "example": "Dùng khi đọc code/tài liệu/vấn đáp: branch.",
+    "usage": "Dùng trong code, test, README, vấn đáp và báo cáo lab.",
+    "tags": [
+      "programming",
+      "prep",
+      "syntax"
+    ]
+  },
+  {
+    "id": "symcard_12",
+    "stage": "prep",
+    "term": "yêu cầu hợp nhất",
+    "front": "pull request",
+    "meaning": "Workflow/ký hiệu cần nhớ để xử lý Dùng khi đọc code/tài liệu/vấn đáp: pull request..",
+    "example": "Dùng khi đọc code/tài liệu/vấn đáp: pull request.",
+    "usage": "Dùng trong code, test, README, vấn đáp và báo cáo lab.",
+    "tags": [
+      "programming",
+      "prep",
+      "syntax"
+    ]
+  },
+  {
+    "id": "symcard_13",
+    "stage": "hk1",
+    "term": "kiểm thử Python",
+    "front": "pytest",
+    "meaning": "Workflow/ký hiệu cần nhớ để xử lý Dùng khi đọc code/tài liệu/vấn đáp: pytest..",
+    "example": "Dùng khi đọc code/tài liệu/vấn đáp: pytest.",
+    "usage": "Dùng trong code, test, README, vấn đáp và báo cáo lab.",
+    "tags": [
+      "programming",
+      "hk1",
+      "syntax"
+    ]
+  },
+  {
+    "id": "symcard_14",
+    "stage": "hk1",
+    "term": "khẳng định kiểm thử",
+    "front": "assert",
+    "meaning": "Workflow/ký hiệu cần nhớ để xử lý Dùng khi đọc code/tài liệu/vấn đáp: assert..",
+    "example": "Dùng khi đọc code/tài liệu/vấn đáp: assert.",
+    "usage": "Dùng trong code, test, README, vấn đáp và báo cáo lab.",
+    "tags": [
+      "programming",
+      "hk1",
+      "syntax"
+    ]
+  },
+  {
+    "id": "symcard_15",
+    "stage": "hk1",
+    "term": "bắt lỗi",
+    "front": "try/except",
+    "meaning": "Workflow/ký hiệu cần nhớ để xử lý Dùng khi đọc code/tài liệu/vấn đáp: try/except..",
+    "example": "Dùng khi đọc code/tài liệu/vấn đáp: try/except.",
+    "usage": "Dùng trong code, test, README, vấn đáp và báo cáo lab.",
+    "tags": [
+      "programming",
+      "hk1",
+      "syntax"
+    ]
+  },
+  {
+    "id": "symcard_16",
+    "stage": "hk1",
+    "term": "ghi log",
+    "front": "logging",
+    "meaning": "Workflow/ký hiệu cần nhớ để xử lý Dùng khi đọc code/tài liệu/vấn đáp: logging..",
+    "example": "Dùng khi đọc code/tài liệu/vấn đáp: logging.",
+    "usage": "Dùng trong code, test, README, vấn đáp và báo cáo lab.",
+    "tags": [
+      "programming",
+      "hk1",
+      "syntax"
+    ]
+  },
+  {
+    "id": "symcard_17",
+    "stage": "hk1",
+    "term": "dữ liệu cấu trúc",
+    "front": "JSON",
+    "meaning": "Workflow/ký hiệu cần nhớ để xử lý Dùng khi đọc code/tài liệu/vấn đáp: JSON..",
+    "example": "Dùng khi đọc code/tài liệu/vấn đáp: JSON.",
+    "usage": "Dùng trong code, test, README, vấn đáp và báo cáo lab.",
+    "tags": [
+      "programming",
+      "hk1",
+      "syntax"
+    ]
+  },
+  {
+    "id": "symcard_18",
+    "stage": "hk1",
+    "term": "bảng dữ liệu phẳng",
+    "front": "CSV",
+    "meaning": "Workflow/ký hiệu cần nhớ để xử lý Dùng khi đọc code/tài liệu/vấn đáp: CSV..",
+    "example": "Dùng khi đọc code/tài liệu/vấn đáp: CSV.",
+    "usage": "Dùng trong code, test, README, vấn đáp và báo cáo lab.",
+    "tags": [
+      "programming",
+      "hk1",
+      "syntax"
+    ]
+  },
+  {
+    "id": "symcard_19",
+    "stage": "hk2",
+    "term": "lược đồ dữ liệu",
+    "front": "schema",
+    "meaning": "Workflow/ký hiệu cần nhớ để xử lý Dùng khi đọc code/tài liệu/vấn đáp: schema..",
+    "example": "Dùng khi đọc code/tài liệu/vấn đáp: schema.",
+    "usage": "Dùng trong code, test, README, vấn đáp và báo cáo lab.",
+    "tags": [
+      "programming",
+      "hk2",
+      "syntax"
+    ]
+  },
+  {
+    "id": "symcard_20",
+    "stage": "hk2",
+    "term": "di trú CSDL",
+    "front": "migration",
+    "meaning": "Workflow/ký hiệu cần nhớ để xử lý Dùng khi đọc code/tài liệu/vấn đáp: migration..",
+    "example": "Dùng khi đọc code/tài liệu/vấn đáp: migration.",
+    "usage": "Dùng trong code, test, README, vấn đáp và báo cáo lab.",
+    "tags": [
+      "programming",
+      "hk2",
+      "syntax"
+    ]
+  },
+  {
+    "id": "symcard_21",
+    "stage": "hk2",
+    "term": "giao diện lập trình",
+    "front": "API",
+    "meaning": "Workflow/ký hiệu cần nhớ để xử lý Dùng khi đọc code/tài liệu/vấn đáp: API..",
+    "example": "Dùng khi đọc code/tài liệu/vấn đáp: API.",
+    "usage": "Dùng trong code, test, README, vấn đáp và báo cáo lab.",
+    "tags": [
+      "programming",
+      "hk2",
+      "syntax"
+    ]
+  },
+  {
+    "id": "symcard_22",
+    "stage": "hk2",
+    "term": "điểm cuối dự đoán",
+    "front": "POST /predict",
+    "meaning": "Workflow/ký hiệu cần nhớ để xử lý Dùng khi đọc code/tài liệu/vấn đáp: POST /predict..",
+    "example": "Dùng khi đọc code/tài liệu/vấn đáp: POST /predict.",
+    "usage": "Dùng trong code, test, README, vấn đáp và báo cáo lab.",
+    "tags": [
+      "programming",
+      "hk2",
+      "syntax"
+    ]
+  },
+  {
+    "id": "symcard_23",
+    "stage": "hk2",
+    "term": "mô tả container",
+    "front": "Dockerfile",
+    "meaning": "Workflow/ký hiệu cần nhớ để xử lý Dùng khi đọc code/tài liệu/vấn đáp: Dockerfile..",
+    "example": "Dùng khi đọc code/tài liệu/vấn đáp: Dockerfile.",
+    "usage": "Dùng trong code, test, README, vấn đáp và báo cáo lab.",
+    "tags": [
+      "programming",
+      "hk2",
+      "syntax"
+    ]
+  },
+  {
+    "id": "symcard_24",
+    "stage": "hk2",
+    "term": "hạt ngẫu nhiên",
+    "front": "seed",
+    "meaning": "Workflow/ký hiệu cần nhớ để xử lý Dùng khi đọc code/tài liệu/vấn đáp: seed..",
+    "example": "Dùng khi đọc code/tài liệu/vấn đáp: seed.",
+    "usage": "Dùng trong code, test, README, vấn đáp và báo cáo lab.",
+    "tags": [
+      "programming",
+      "hk2",
+      "syntax"
+    ]
+  },
+  {
+    "id": "symcard_25",
+    "stage": "hk3",
+    "term": "sản phẩm thí nghiệm",
+    "front": "artifact",
+    "meaning": "Workflow/ký hiệu cần nhớ để xử lý Dùng khi đọc code/tài liệu/vấn đáp: artifact..",
+    "example": "Dùng khi đọc code/tài liệu/vấn đáp: artifact.",
+    "usage": "Dùng trong code, test, README, vấn đáp và báo cáo lab.",
+    "tags": [
+      "programming",
+      "hk3",
+      "syntax"
+    ]
+  },
+  {
+    "id": "symcard_26",
+    "stage": "hk3",
+    "term": "chỉ số đánh giá",
+    "front": "metric",
+    "meaning": "Workflow/ký hiệu cần nhớ để xử lý Dùng khi đọc code/tài liệu/vấn đáp: metric..",
+    "example": "Dùng khi đọc code/tài liệu/vấn đáp: metric.",
+    "usage": "Dùng trong code, test, README, vấn đáp và báo cáo lab.",
+    "tags": [
+      "programming",
+      "hk3",
+      "syntax"
+    ]
+  },
+  {
+    "id": "symcard_27",
+    "stage": "hk3",
+    "term": "mã lần chạy",
+    "front": "run_id",
+    "meaning": "Workflow/ký hiệu cần nhớ để xử lý Dùng khi đọc code/tài liệu/vấn đáp: run_id..",
+    "example": "Dùng khi đọc code/tài liệu/vấn đáp: run_id.",
+    "usage": "Dùng trong code, test, README, vấn đáp và báo cáo lab.",
+    "tags": [
+      "programming",
+      "hk3",
+      "syntax"
+    ]
+  },
+  {
+    "id": "symcard_28",
+    "stage": "hk3",
+    "term": "thẻ mô hình",
+    "front": "model card",
+    "meaning": "Workflow/ký hiệu cần nhớ để xử lý Dùng khi đọc code/tài liệu/vấn đáp: model card..",
+    "example": "Dùng khi đọc code/tài liệu/vấn đáp: model card.",
+    "usage": "Dùng trong code, test, README, vấn đáp và báo cáo lab.",
+    "tags": [
+      "programming",
+      "hk3",
+      "syntax"
+    ]
+  },
+  {
+    "id": "symcard_29",
+    "stage": "hk3",
+    "term": "thẻ dữ liệu",
+    "front": "dataset card",
+    "meaning": "Workflow/ký hiệu cần nhớ để xử lý Dùng khi đọc code/tài liệu/vấn đáp: dataset card..",
+    "example": "Dùng khi đọc code/tài liệu/vấn đáp: dataset card.",
+    "usage": "Dùng trong code, test, README, vấn đáp và báo cáo lab.",
+    "tags": [
+      "programming",
+      "hk3",
+      "syntax"
+    ]
+  },
+  {
+    "id": "symcard_30",
+    "stage": "hk3",
+    "term": "hướng dẫn chạy",
+    "front": "README",
+    "meaning": "Workflow/ký hiệu cần nhớ để xử lý Dùng khi đọc code/tài liệu/vấn đáp: README..",
+    "example": "Dùng khi đọc code/tài liệu/vấn đáp: README.",
+    "usage": "Dùng trong code, test, README, vấn đáp và báo cáo lab.",
+    "tags": [
+      "programming",
+      "hk3",
+      "syntax"
+    ]
+  },
+  {
+    "id": "symcard_31",
+    "stage": "hk4",
+    "term": "nhật ký thay đổi",
+    "front": "CHANGELOG",
+    "meaning": "Workflow/ký hiệu cần nhớ để xử lý Dùng khi đọc code/tài liệu/vấn đáp: CHANGELOG..",
+    "example": "Dùng khi đọc code/tài liệu/vấn đáp: CHANGELOG.",
+    "usage": "Dùng trong code, test, README, vấn đáp và báo cáo lab.",
+    "tags": [
+      "programming",
+      "hk4",
+      "syntax"
+    ]
+  },
+  {
+    "id": "symcard_32",
+    "stage": "hk4",
+    "term": "nhãn phát hành",
+    "front": "release tag",
+    "meaning": "Workflow/ký hiệu cần nhớ để xử lý Dùng khi đọc code/tài liệu/vấn đáp: release tag..",
+    "example": "Dùng khi đọc code/tài liệu/vấn đáp: release tag.",
+    "usage": "Dùng trong code, test, README, vấn đáp và báo cáo lab.",
+    "tags": [
+      "programming",
+      "hk4",
+      "syntax"
+    ]
+  }
+]

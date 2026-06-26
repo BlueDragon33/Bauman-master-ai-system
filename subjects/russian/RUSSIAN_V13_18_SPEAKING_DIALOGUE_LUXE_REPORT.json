@@ -1,0 +1,27 @@
+{
+  "version": "V13.18 Speaking Dialogue Luxe",
+  "date": "2026-06-12",
+  "scope": [
+    "learning/practice Nghe-Nói",
+    "dialogue Bauman A-Z",
+    "deep speaking wrapper visual polish"
+  ],
+  "changed_files": [
+    "assets/core.css",
+    "assets/core.js",
+    "assets/subject-adapter.js",
+    "index.html"
+  ],
+  "preserved": [
+    "data/*.json",
+    "external-data/*.json",
+    "button logic",
+    "speech/roleplay handlers",
+    "lazy-load optional datasets"
+  ],
+  "qa_plan": [
+    "syntax check core.js",
+    "static selector check",
+    "zip package integrity"
+  ]
+}

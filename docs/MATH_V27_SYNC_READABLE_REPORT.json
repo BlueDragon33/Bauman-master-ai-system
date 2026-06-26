@@ -1,0 +1,19 @@
+{
+  "version": "V27 Synced Readable Theory",
+  "lessons": 63,
+  "slides": 1260,
+  "stage_counts": {
+    "vn": 24,
+    "prep": 15,
+    "hk1": 12,
+    "hk3": 9,
+    "hk4": 3
+  },
+  "fixes": [
+    "unique storageKey to avoid old localStorage DB overlay",
+    "canonical stage filtering for vn/prep/hk1/hk2/hk3/hk4 and old aliases",
+    "bundled lessons.json synchronized with standalone lessons_synced_v27.json",
+    "fallback prevents blank theory list if stage alias is stale",
+    "keeps formula and matrix renderer from V23/V26"
+  ]
+}

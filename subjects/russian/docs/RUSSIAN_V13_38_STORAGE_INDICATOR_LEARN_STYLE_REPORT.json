@@ -1,0 +1,14 @@
+{
+  "version": "V13.38",
+  "target": "Storage tab Kho môn học indicator",
+  "changes": [
+    "Indicator moved out of the button as a sibling card like the Learning tab structure indicator",
+    "Kho môn học button label remains fixed",
+    "Dropdown keeps existing storage groups only",
+    "Active source state is always visible in the indicator card"
+  ],
+  "checks": {
+    "js_syntax": "ok",
+    "json": "ok"
+  }
+}

@@ -1,0 +1,1346 @@
+[
+  {
+    "id": "sim_report_PR01",
+    "stage": "vn",
+    "lessonId": "PR01",
+    "mode": "simulation-report",
+    "type": "simulation-reflection",
+    "title": "Báo cáo lab · Thiết lập môi trường Python, VS Code và Live Server",
+    "purpose": "Ghi kết quả ngắn sau khi chạy mô phỏng hoặc thử nghiệm code.",
+    "prompt_vi": "Ghi báo cáo 5 phần: mục tiêu, input/output, workflow python -m venv .venv; pip install -r requirements.txt; code ., kết quả test/log, rủi ro và ứng dụng vào mở module học, chạy notebook, kiểm thử HTML/JSON cục bộ.",
+    "target_words": 130,
+    "time_minutes": 10,
+    "required_patterns": [
+      "Mục tiêu",
+      "Input/output",
+      "Workflow",
+      "Test/log",
+      "Rủi ro",
+      "Ứng dụng"
+    ],
+    "model_vi": "Mục tiêu của thử nghiệm là kiểm chứng Thiết lập môi trường Python, VS Code và Live Server. Dữ liệu vào/ra được xác định trước, workflow dùng python -m venv .venv; pip install -r requirements.txt; code .. Kết quả test/log cho thấy ... Rủi ro chính là ... Ứng dụng gần nhất là mở module học, chạy notebook, kiểm thử HTML/JSON cục bộ.",
+    "rubric": [
+      "Có input/output",
+      "Có test/log",
+      "Có artifact/README",
+      "Có kết luận ứng dụng",
+      "Có giới hạn hoặc lỗi cần tránh"
+    ]
+  },
+  {
+    "id": "sim_report_PR02",
+    "stage": "vn",
+    "lessonId": "PR02",
+    "mode": "simulation-report",
+    "type": "simulation-reflection",
+    "title": "Báo cáo lab · Tư duy thuật toán và độ phức tạp",
+    "purpose": "Ghi kết quả ngắn sau khi chạy mô phỏng hoặc thử nghiệm code.",
+    "prompt_vi": "Ghi báo cáo 5 phần: mục tiêu, input/output, workflow T(n)=O(n log n); space=O(n), kết quả test/log, rủi ro và ứng dụng vào chọn thuật toán đủ nhanh cho xử lý dữ liệu robot.",
+    "target_words": 130,
+    "time_minutes": 10,
+    "required_patterns": [
+      "Mục tiêu",
+      "Input/output",
+      "Workflow",
+      "Test/log",
+      "Rủi ro",
+      "Ứng dụng"
+    ],
+    "model_vi": "Mục tiêu của thử nghiệm là kiểm chứng Tư duy thuật toán và độ phức tạp. Dữ liệu vào/ra được xác định trước, workflow dùng T(n)=O(n log n); space=O(n). Kết quả test/log cho thấy ... Rủi ro chính là ... Ứng dụng gần nhất là chọn thuật toán đủ nhanh cho xử lý dữ liệu robot.",
+    "rubric": [
+      "Có input/output",
+      "Có test/log",
+      "Có artifact/README",
+      "Có kết luận ứng dụng",
+      "Có giới hạn hoặc lỗi cần tránh"
+    ]
+  },
+  {
+    "id": "sim_report_PR03",
+    "stage": "vn",
+    "lessonId": "PR03",
+    "mode": "simulation-report",
+    "type": "simulation-reflection",
+    "title": "Báo cáo lab · Python căn bản: kiểu dữ liệu, hàm, module",
+    "purpose": "Ghi kết quả ngắn sau khi chạy mô phỏng hoặc thử nghiệm code.",
+    "prompt_vi": "Ghi báo cáo 5 phần: mục tiêu, input/output, workflow def f(x): return y; list/dict/set/tuple, kết quả test/log, rủi ro và ứng dụng vào viết script sạch để xử lý bài tập và dữ liệu nhỏ.",
+    "target_words": 130,
+    "time_minutes": 10,
+    "required_patterns": [
+      "Mục tiêu",
+      "Input/output",
+      "Workflow",
+      "Test/log",
+      "Rủi ro",
+      "Ứng dụng"
+    ],
+    "model_vi": "Mục tiêu của thử nghiệm là kiểm chứng Python căn bản: kiểu dữ liệu, hàm, module. Dữ liệu vào/ra được xác định trước, workflow dùng def f(x): return y; list/dict/set/tuple. Kết quả test/log cho thấy ... Rủi ro chính là ... Ứng dụng gần nhất là viết script sạch để xử lý bài tập và dữ liệu nhỏ.",
+    "rubric": [
+      "Có input/output",
+      "Có test/log",
+      "Có artifact/README",
+      "Có kết luận ứng dụng",
+      "Có giới hạn hoặc lỗi cần tránh"
+    ]
+  },
+  {
+    "id": "sim_report_PR04",
+    "stage": "vn",
+    "lessonId": "PR04",
+    "mode": "simulation-report",
+    "type": "simulation-reflection",
+    "title": "Báo cáo lab · NumPy và vector hóa dữ liệu",
+    "purpose": "Ghi kết quả ngắn sau khi chạy mô phỏng hoặc thử nghiệm code.",
+    "prompt_vi": "Ghi báo cáo 5 phần: mục tiêu, input/output, workflow X.shape=(n,d); y = X @ w + b, kết quả test/log, rủi ro và ứng dụng vào tính toán ma trận/đặc trưng cho AI nhanh và gọn.",
+    "target_words": 130,
+    "time_minutes": 10,
+    "required_patterns": [
+      "Mục tiêu",
+      "Input/output",
+      "Workflow",
+      "Test/log",
+      "Rủi ro",
+      "Ứng dụng"
+    ],
+    "model_vi": "Mục tiêu của thử nghiệm là kiểm chứng NumPy và vector hóa dữ liệu. Dữ liệu vào/ra được xác định trước, workflow dùng X.shape=(n,d); y = X @ w + b. Kết quả test/log cho thấy ... Rủi ro chính là ... Ứng dụng gần nhất là tính toán ma trận/đặc trưng cho AI nhanh và gọn.",
+    "rubric": [
+      "Có input/output",
+      "Có test/log",
+      "Có artifact/README",
+      "Có kết luận ứng dụng",
+      "Có giới hạn hoặc lỗi cần tránh"
+    ]
+  },
+  {
+    "id": "sim_report_PR05",
+    "stage": "vn",
+    "lessonId": "PR05",
+    "mode": "simulation-report",
+    "type": "simulation-reflection",
+    "title": "Báo cáo lab · Pandas và làm sạch bảng dữ liệu",
+    "purpose": "Ghi kết quả ngắn sau khi chạy mô phỏng hoặc thử nghiệm code.",
+    "prompt_vi": "Ghi báo cáo 5 phần: mục tiêu, input/output, workflow df.dropna(); df.groupby(); df.merge(), kết quả test/log, rủi ro và ứng dụng vào làm sạch log cảm biến, bảng điểm đo, dữ liệu CSV.",
+    "target_words": 130,
+    "time_minutes": 10,
+    "required_patterns": [
+      "Mục tiêu",
+      "Input/output",
+      "Workflow",
+      "Test/log",
+      "Rủi ro",
+      "Ứng dụng"
+    ],
+    "model_vi": "Mục tiêu của thử nghiệm là kiểm chứng Pandas và làm sạch bảng dữ liệu. Dữ liệu vào/ra được xác định trước, workflow dùng df.dropna(); df.groupby(); df.merge(). Kết quả test/log cho thấy ... Rủi ro chính là ... Ứng dụng gần nhất là làm sạch log cảm biến, bảng điểm đo, dữ liệu CSV.",
+    "rubric": [
+      "Có input/output",
+      "Có test/log",
+      "Có artifact/README",
+      "Có kết luận ứng dụng",
+      "Có giới hạn hoặc lỗi cần tránh"
+    ]
+  },
+  {
+    "id": "sim_report_PR06",
+    "stage": "vn",
+    "lessonId": "PR06",
+    "mode": "simulation-report",
+    "type": "simulation-reflection",
+    "title": "Báo cáo lab · SQL căn bản và mô hình quan hệ",
+    "purpose": "Ghi kết quả ngắn sau khi chạy mô phỏng hoặc thử nghiệm code.",
+    "prompt_vi": "Ghi báo cáo 5 phần: mục tiêu, input/output, workflow SELECT col FROM table WHERE condition; PK/FK, kết quả test/log, rủi ro và ứng dụng vào lưu kết quả thí nghiệm, metadata và truy vấn nhanh.",
+    "target_words": 130,
+    "time_minutes": 10,
+    "required_patterns": [
+      "Mục tiêu",
+      "Input/output",
+      "Workflow",
+      "Test/log",
+      "Rủi ro",
+      "Ứng dụng"
+    ],
+    "model_vi": "Mục tiêu của thử nghiệm là kiểm chứng SQL căn bản và mô hình quan hệ. Dữ liệu vào/ra được xác định trước, workflow dùng SELECT col FROM table WHERE condition; PK/FK. Kết quả test/log cho thấy ... Rủi ro chính là ... Ứng dụng gần nhất là lưu kết quả thí nghiệm, metadata và truy vấn nhanh.",
+    "rubric": [
+      "Có input/output",
+      "Có test/log",
+      "Có artifact/README",
+      "Có kết luận ứng dụng",
+      "Có giới hạn hoặc lỗi cần tránh"
+    ]
+  },
+  {
+    "id": "sim_report_PR07",
+    "stage": "vn",
+    "lessonId": "PR07",
+    "mode": "simulation-report",
+    "type": "simulation-reflection",
+    "title": "Báo cáo lab · Git, GitHub và nhật ký học tập",
+    "purpose": "Ghi kết quả ngắn sau khi chạy mô phỏng hoặc thử nghiệm code.",
+    "prompt_vi": "Ghi báo cáo 5 phần: mục tiêu, input/output, workflow git add .; git commit -m \"message\"; git branch, kết quả test/log, rủi ro và ứng dụng vào quản lý phiên bản bài học, notebook, mã mô phỏng.",
+    "target_words": 130,
+    "time_minutes": 10,
+    "required_patterns": [
+      "Mục tiêu",
+      "Input/output",
+      "Workflow",
+      "Test/log",
+      "Rủi ro",
+      "Ứng dụng"
+    ],
+    "model_vi": "Mục tiêu của thử nghiệm là kiểm chứng Git, GitHub và nhật ký học tập. Dữ liệu vào/ra được xác định trước, workflow dùng git add .; git commit -m \"message\"; git branch. Kết quả test/log cho thấy ... Rủi ro chính là ... Ứng dụng gần nhất là quản lý phiên bản bài học, notebook, mã mô phỏng.",
+    "rubric": [
+      "Có input/output",
+      "Có test/log",
+      "Có artifact/README",
+      "Có kết luận ứng dụng",
+      "Có giới hạn hoặc lỗi cần tránh"
+    ]
+  },
+  {
+    "id": "sim_report_PR08",
+    "stage": "vn",
+    "lessonId": "PR08",
+    "mode": "simulation-report",
+    "type": "simulation-reflection",
+    "title": "Báo cáo lab · Notebook thực nghiệm và README tái lập",
+    "purpose": "Ghi kết quả ngắn sau khi chạy mô phỏng hoặc thử nghiệm code.",
+    "prompt_vi": "Ghi báo cáo 5 phần: mục tiêu, input/output, workflow README + notebook + data/ + src/ + results/, kết quả test/log, rủi ro và ứng dụng vào tạo artifact học tập có thể mở lại, chạy lại, giải thích lại.",
+    "target_words": 130,
+    "time_minutes": 10,
+    "required_patterns": [
+      "Mục tiêu",
+      "Input/output",
+      "Workflow",
+      "Test/log",
+      "Rủi ro",
+      "Ứng dụng"
+    ],
+    "model_vi": "Mục tiêu của thử nghiệm là kiểm chứng Notebook thực nghiệm và README tái lập. Dữ liệu vào/ra được xác định trước, workflow dùng README + notebook + data/ + src/ + results/. Kết quả test/log cho thấy ... Rủi ro chính là ... Ứng dụng gần nhất là tạo artifact học tập có thể mở lại, chạy lại, giải thích lại.",
+    "rubric": [
+      "Có input/output",
+      "Có test/log",
+      "Có artifact/README",
+      "Có kết luận ứng dụng",
+      "Có giới hạn hoặc lỗi cần tránh"
+    ]
+  },
+  {
+    "id": "sim_report_PR09",
+    "stage": "prep",
+    "lessonId": "PR09",
+    "mode": "simulation-report",
+    "type": "simulation-reflection",
+    "title": "Báo cáo lab · Thuật ngữ tin học Nga cho lớp dự bị",
+    "purpose": "Ghi kết quả ngắn sau khi chạy mô phỏng hoặc thử nghiệm code.",
+    "prompt_vi": "Ghi báo cáo 5 phần: mục tiêu, input/output, workflow алгоритм, переменная, функция, массив, база данных, kết quả test/log, rủi ro và ứng dụng vào nghe/đọc đề bài tin học và hỏi giáo viên bằng tiếng Nga.",
+    "target_words": 130,
+    "time_minutes": 10,
+    "required_patterns": [
+      "Mục tiêu",
+      "Input/output",
+      "Workflow",
+      "Test/log",
+      "Rủi ro",
+      "Ứng dụng"
+    ],
+    "model_vi": "Mục tiêu của thử nghiệm là kiểm chứng Thuật ngữ tin học Nga cho lớp dự bị. Dữ liệu vào/ra được xác định trước, workflow dùng алгоритм, переменная, функция, массив, база данных. Kết quả test/log cho thấy ... Rủi ro chính là ... Ứng dụng gần nhất là nghe/đọc đề bài tin học và hỏi giáo viên bằng tiếng Nga.",
+    "rubric": [
+      "Có input/output",
+      "Có test/log",
+      "Có artifact/README",
+      "Có kết luận ứng dụng",
+      "Có giới hạn hoặc lỗi cần tránh"
+    ]
+  },
+  {
+    "id": "sim_report_PR10",
+    "stage": "prep",
+    "lessonId": "PR10",
+    "mode": "simulation-report",
+    "type": "simulation-reflection",
+    "title": "Báo cáo lab · Pseudocode và giải thích thuật toán bằng tiếng Nga",
+    "purpose": "Ghi kết quả ngắn sau khi chạy mô phỏng hoặc thử nghiệm code.",
+    "prompt_vi": "Ghi báo cáo 5 phần: mục tiêu, input/output, workflow input → process → output; if/for/while, kết quả test/log, rủi ro và ứng dụng vào trình bày lời giải không kẹt ngôn ngữ.",
+    "target_words": 130,
+    "time_minutes": 10,
+    "required_patterns": [
+      "Mục tiêu",
+      "Input/output",
+      "Workflow",
+      "Test/log",
+      "Rủi ro",
+      "Ứng dụng"
+    ],
+    "model_vi": "Mục tiêu của thử nghiệm là kiểm chứng Pseudocode và giải thích thuật toán bằng tiếng Nga. Dữ liệu vào/ra được xác định trước, workflow dùng input → process → output; if/for/while. Kết quả test/log cho thấy ... Rủi ro chính là ... Ứng dụng gần nhất là trình bày lời giải không kẹt ngôn ngữ.",
+    "rubric": [
+      "Có input/output",
+      "Có test/log",
+      "Có artifact/README",
+      "Có kết luận ứng dụng",
+      "Có giới hạn hoặc lỗi cần tránh"
+    ]
+  },
+  {
+    "id": "sim_report_PR11",
+    "stage": "prep",
+    "lessonId": "PR11",
+    "mode": "simulation-report",
+    "type": "simulation-reflection",
+    "title": "Báo cáo lab · Cấu trúc dữ liệu nhập môn",
+    "purpose": "Ghi kết quả ngắn sau khi chạy mô phỏng hoặc thử nghiệm code.",
+    "prompt_vi": "Ghi báo cáo 5 phần: mục tiêu, input/output, workflow array, stack, queue, dict, graph, kết quả test/log, rủi ro và ứng dụng vào làm bài tin học dự bị và mô tả dữ liệu kỹ thuật.",
+    "target_words": 130,
+    "time_minutes": 10,
+    "required_patterns": [
+      "Mục tiêu",
+      "Input/output",
+      "Workflow",
+      "Test/log",
+      "Rủi ro",
+      "Ứng dụng"
+    ],
+    "model_vi": "Mục tiêu của thử nghiệm là kiểm chứng Cấu trúc dữ liệu nhập môn. Dữ liệu vào/ra được xác định trước, workflow dùng array, stack, queue, dict, graph. Kết quả test/log cho thấy ... Rủi ro chính là ... Ứng dụng gần nhất là làm bài tin học dự bị và mô tả dữ liệu kỹ thuật.",
+    "rubric": [
+      "Có input/output",
+      "Có test/log",
+      "Có artifact/README",
+      "Có kết luận ứng dụng",
+      "Có giới hạn hoặc lỗi cần tránh"
+    ]
+  },
+  {
+    "id": "sim_report_PR12",
+    "stage": "prep",
+    "lessonId": "PR12",
+    "mode": "simulation-report",
+    "type": "simulation-reflection",
+    "title": "Báo cáo lab · File, JSON, CSV và dữ liệu học tập",
+    "purpose": "Ghi kết quả ngắn sau khi chạy mô phỏng hoặc thử nghiệm code.",
+    "prompt_vi": "Ghi báo cáo 5 phần: mục tiêu, input/output, workflow json.load(); csv.DictReader(); pathlib.Path, kết quả test/log, rủi ro và ứng dụng vào đọc/ghi dữ liệu module môn học, kho dữ liệu và bài tập.",
+    "target_words": 130,
+    "time_minutes": 10,
+    "required_patterns": [
+      "Mục tiêu",
+      "Input/output",
+      "Workflow",
+      "Test/log",
+      "Rủi ro",
+      "Ứng dụng"
+    ],
+    "model_vi": "Mục tiêu của thử nghiệm là kiểm chứng File, JSON, CSV và dữ liệu học tập. Dữ liệu vào/ra được xác định trước, workflow dùng json.load(); csv.DictReader(); pathlib.Path. Kết quả test/log cho thấy ... Rủi ro chính là ... Ứng dụng gần nhất là đọc/ghi dữ liệu module môn học, kho dữ liệu và bài tập.",
+    "rubric": [
+      "Có input/output",
+      "Có test/log",
+      "Có artifact/README",
+      "Có kết luận ứng dụng",
+      "Có giới hạn hoặc lỗi cần tránh"
+    ]
+  },
+  {
+    "id": "sim_report_PR13",
+    "stage": "prep",
+    "lessonId": "PR13",
+    "mode": "simulation-report",
+    "type": "simulation-reflection",
+    "title": "Báo cáo lab · Debug, exception và logging",
+    "purpose": "Ghi kết quả ngắn sau khi chạy mô phỏng hoặc thử nghiệm code.",
+    "prompt_vi": "Ghi báo cáo 5 phần: mục tiêu, input/output, workflow try/except; logging.info(); assert condition, kết quả test/log, rủi ro và ứng dụng vào tìm lỗi render, lỗi dữ liệu, lỗi logic khi tự làm module.",
+    "target_words": 130,
+    "time_minutes": 10,
+    "required_patterns": [
+      "Mục tiêu",
+      "Input/output",
+      "Workflow",
+      "Test/log",
+      "Rủi ro",
+      "Ứng dụng"
+    ],
+    "model_vi": "Mục tiêu của thử nghiệm là kiểm chứng Debug, exception và logging. Dữ liệu vào/ra được xác định trước, workflow dùng try/except; logging.info(); assert condition. Kết quả test/log cho thấy ... Rủi ro chính là ... Ứng dụng gần nhất là tìm lỗi render, lỗi dữ liệu, lỗi logic khi tự làm module.",
+    "rubric": [
+      "Có input/output",
+      "Có test/log",
+      "Có artifact/README",
+      "Có kết luận ứng dụng",
+      "Có giới hạn hoặc lỗi cần tránh"
+    ]
+  },
+  {
+    "id": "sim_report_PR14",
+    "stage": "prep",
+    "lessonId": "PR14",
+    "mode": "simulation-report",
+    "type": "simulation-reflection",
+    "title": "Báo cáo lab · Unit test căn bản với pytest",
+    "purpose": "Ghi kết quả ngắn sau khi chạy mô phỏng hoặc thử nghiệm code.",
+    "prompt_vi": "Ghi báo cáo 5 phần: mục tiêu, input/output, workflow assert f(x)==expected; pytest -q, kết quả test/log, rủi ro và ứng dụng vào kiểm thử hàm xử lý dữ liệu và logic nút bấm.",
+    "target_words": 130,
+    "time_minutes": 10,
+    "required_patterns": [
+      "Mục tiêu",
+      "Input/output",
+      "Workflow",
+      "Test/log",
+      "Rủi ro",
+      "Ứng dụng"
+    ],
+    "model_vi": "Mục tiêu của thử nghiệm là kiểm chứng Unit test căn bản với pytest. Dữ liệu vào/ra được xác định trước, workflow dùng assert f(x)==expected; pytest -q. Kết quả test/log cho thấy ... Rủi ro chính là ... Ứng dụng gần nhất là kiểm thử hàm xử lý dữ liệu và logic nút bấm.",
+    "rubric": [
+      "Có input/output",
+      "Có test/log",
+      "Có artifact/README",
+      "Có kết luận ứng dụng",
+      "Có giới hạn hoặc lỗi cần tránh"
+    ]
+  },
+  {
+    "id": "sim_report_PR15",
+    "stage": "prep",
+    "lessonId": "PR15",
+    "mode": "simulation-report",
+    "type": "simulation-reflection",
+    "title": "Báo cáo lab · SQL nâng nền: JOIN, GROUP BY, index",
+    "purpose": "Ghi kết quả ngắn sau khi chạy mô phỏng hoặc thử nghiệm code.",
+    "prompt_vi": "Ghi báo cáo 5 phần: mục tiêu, input/output, workflow JOIN; GROUP BY; CREATE INDEX idx ON table(col), kết quả test/log, rủi ro và ứng dụng vào truy vấn dữ liệu thí nghiệm có nhiều bảng.",
+    "target_words": 130,
+    "time_minutes": 10,
+    "required_patterns": [
+      "Mục tiêu",
+      "Input/output",
+      "Workflow",
+      "Test/log",
+      "Rủi ro",
+      "Ứng dụng"
+    ],
+    "model_vi": "Mục tiêu của thử nghiệm là kiểm chứng SQL nâng nền: JOIN, GROUP BY, index. Dữ liệu vào/ra được xác định trước, workflow dùng JOIN; GROUP BY; CREATE INDEX idx ON table(col). Kết quả test/log cho thấy ... Rủi ro chính là ... Ứng dụng gần nhất là truy vấn dữ liệu thí nghiệm có nhiều bảng.",
+    "rubric": [
+      "Có input/output",
+      "Có test/log",
+      "Có artifact/README",
+      "Có kết luận ứng dụng",
+      "Có giới hạn hoặc lỗi cần tránh"
+    ]
+  },
+  {
+    "id": "sim_report_PR16",
+    "stage": "prep",
+    "lessonId": "PR16",
+    "mode": "simulation-report",
+    "type": "simulation-reflection",
+    "title": "Báo cáo lab · Quy tắc đặt tên, comment và tài liệu song ngữ",
+    "purpose": "Ghi kết quả ngắn sau khi chạy mô phỏng hoặc thử nghiệm code.",
+    "prompt_vi": "Ghi báo cáo 5 phần: mục tiêu, input/output, workflow name = intent; docstring = input + output + limit, kết quả test/log, rủi ro và ứng dụng vào ghi chú Việt-Nga-Anh để đọc code trong môi trường Bauman.",
+    "target_words": 130,
+    "time_minutes": 10,
+    "required_patterns": [
+      "Mục tiêu",
+      "Input/output",
+      "Workflow",
+      "Test/log",
+      "Rủi ro",
+      "Ứng dụng"
+    ],
+    "model_vi": "Mục tiêu của thử nghiệm là kiểm chứng Quy tắc đặt tên, comment và tài liệu song ngữ. Dữ liệu vào/ra được xác định trước, workflow dùng name = intent; docstring = input + output + limit. Kết quả test/log cho thấy ... Rủi ro chính là ... Ứng dụng gần nhất là ghi chú Việt-Nga-Anh để đọc code trong môi trường Bauman.",
+    "rubric": [
+      "Có input/output",
+      "Có test/log",
+      "Có artifact/README",
+      "Có kết luận ứng dụng",
+      "Có giới hạn hoặc lỗi cần tránh"
+    ]
+  },
+  {
+    "id": "sim_report_PR17",
+    "stage": "hk1",
+    "lessonId": "PR17",
+    "mode": "simulation-report",
+    "type": "simulation-reflection",
+    "title": "Báo cáo lab · OOP cho АСОИУ: class, interface, responsibility",
+    "purpose": "Ghi kết quả ngắn sau khi chạy mô phỏng hoặc thử nghiệm code.",
+    "prompt_vi": "Ghi báo cáo 5 phần: mục tiêu, input/output, workflow class Sensor: read(); class Model: predict(), kết quả test/log, rủi ro và ứng dụng vào tạo skeleton phần mềm UGV gồm sensor/model/control.",
+    "target_words": 130,
+    "time_minutes": 10,
+    "required_patterns": [
+      "Mục tiêu",
+      "Input/output",
+      "Workflow",
+      "Test/log",
+      "Rủi ro",
+      "Ứng dụng"
+    ],
+    "model_vi": "Mục tiêu của thử nghiệm là kiểm chứng OOP cho АСОИУ: class, interface, responsibility. Dữ liệu vào/ra được xác định trước, workflow dùng class Sensor: read(); class Model: predict(). Kết quả test/log cho thấy ... Rủi ro chính là ... Ứng dụng gần nhất là tạo skeleton phần mềm UGV gồm sensor/model/control.",
+    "rubric": [
+      "Có input/output",
+      "Có test/log",
+      "Có artifact/README",
+      "Có kết luận ứng dụng",
+      "Có giới hạn hoặc lỗi cần tránh"
+    ]
+  },
+  {
+    "id": "sim_report_PR18",
+    "stage": "hk1",
+    "lessonId": "PR18",
+    "mode": "simulation-report",
+    "type": "simulation-reflection",
+    "title": "Báo cáo lab · Thiết kế module và kiến trúc package Python",
+    "purpose": "Ghi kết quả ngắn sau khi chạy mô phỏng hoặc thử nghiệm code.",
+    "prompt_vi": "Ghi báo cáo 5 phần: mục tiêu, input/output, workflow src/, tests/, configs/, data/, scripts/, kết quả test/log, rủi ro và ứng dụng vào chia dự án thành module rõ, dễ bảo trì và mở rộng.",
+    "target_words": 130,
+    "time_minutes": 10,
+    "required_patterns": [
+      "Mục tiêu",
+      "Input/output",
+      "Workflow",
+      "Test/log",
+      "Rủi ro",
+      "Ứng dụng"
+    ],
+    "model_vi": "Mục tiêu của thử nghiệm là kiểm chứng Thiết kế module và kiến trúc package Python. Dữ liệu vào/ra được xác định trước, workflow dùng src/, tests/, configs/, data/, scripts/. Kết quả test/log cho thấy ... Rủi ro chính là ... Ứng dụng gần nhất là chia dự án thành module rõ, dễ bảo trì và mở rộng.",
+    "rubric": [
+      "Có input/output",
+      "Có test/log",
+      "Có artifact/README",
+      "Có kết luận ứng dụng",
+      "Có giới hạn hoặc lỗi cần tránh"
+    ]
+  },
+  {
+    "id": "sim_report_PR19",
+    "stage": "hk1",
+    "lessonId": "PR19",
+    "mode": "simulation-report",
+    "type": "simulation-reflection",
+    "title": "Báo cáo lab · Mẫu thiết kế ứng dụng: factory, strategy, adapter",
+    "purpose": "Ghi kết quả ngắn sau khi chạy mô phỏng hoặc thử nghiệm code.",
+    "prompt_vi": "Ghi báo cáo 5 phần: mục tiêu, input/output, workflow Strategy(model); Adapter(sensor); Factory(config), kết quả test/log, rủi ro và ứng dụng vào đổi cảm biến/mô hình mà không phá toàn bộ code.",
+    "target_words": 130,
+    "time_minutes": 10,
+    "required_patterns": [
+      "Mục tiêu",
+      "Input/output",
+      "Workflow",
+      "Test/log",
+      "Rủi ro",
+      "Ứng dụng"
+    ],
+    "model_vi": "Mục tiêu của thử nghiệm là kiểm chứng Mẫu thiết kế ứng dụng: factory, strategy, adapter. Dữ liệu vào/ra được xác định trước, workflow dùng Strategy(model); Adapter(sensor); Factory(config). Kết quả test/log cho thấy ... Rủi ro chính là ... Ứng dụng gần nhất là đổi cảm biến/mô hình mà không phá toàn bộ code.",
+    "rubric": [
+      "Có input/output",
+      "Có test/log",
+      "Có artifact/README",
+      "Có kết luận ứng dụng",
+      "Có giới hạn hoặc lỗi cần tránh"
+    ]
+  },
+  {
+    "id": "sim_report_PR20",
+    "stage": "hk1",
+    "lessonId": "PR20",
+    "mode": "simulation-report",
+    "type": "simulation-reflection",
+    "title": "Báo cáo lab · CSDL cho hệ thống học máy: schema và metadata",
+    "purpose": "Ghi kết quả ngắn sau khi chạy mô phỏng hoặc thử nghiệm code.",
+    "prompt_vi": "Ghi báo cáo 5 phần: mục tiêu, input/output, workflow experiment(id, params, metrics, artifact_path), kết quả test/log, rủi ro và ứng dụng vào lưu tham số, metric, dataset và đường dẫn artifact.",
+    "target_words": 130,
+    "time_minutes": 10,
+    "required_patterns": [
+      "Mục tiêu",
+      "Input/output",
+      "Workflow",
+      "Test/log",
+      "Rủi ro",
+      "Ứng dụng"
+    ],
+    "model_vi": "Mục tiêu của thử nghiệm là kiểm chứng CSDL cho hệ thống học máy: schema và metadata. Dữ liệu vào/ra được xác định trước, workflow dùng experiment(id, params, metrics, artifact_path). Kết quả test/log cho thấy ... Rủi ro chính là ... Ứng dụng gần nhất là lưu tham số, metric, dataset và đường dẫn artifact.",
+    "rubric": [
+      "Có input/output",
+      "Có test/log",
+      "Có artifact/README",
+      "Có kết luận ứng dụng",
+      "Có giới hạn hoặc lỗi cần tránh"
+    ]
+  },
+  {
+    "id": "sim_report_PR21",
+    "stage": "hk1",
+    "lessonId": "PR21",
+    "mode": "simulation-report",
+    "type": "simulation-reflection",
+    "title": "Báo cáo lab · ORM và migration nhập môn",
+    "purpose": "Ghi kết quả ngắn sau khi chạy mô phỏng hoặc thử nghiệm code.",
+    "prompt_vi": "Ghi báo cáo 5 phần: mục tiêu, input/output, workflow Model ↔ table; migration = schema version, kết quả test/log, rủi ro và ứng dụng vào quản lý thay đổi CSDL khi project lớn dần.",
+    "target_words": 130,
+    "time_minutes": 10,
+    "required_patterns": [
+      "Mục tiêu",
+      "Input/output",
+      "Workflow",
+      "Test/log",
+      "Rủi ro",
+      "Ứng dụng"
+    ],
+    "model_vi": "Mục tiêu của thử nghiệm là kiểm chứng ORM và migration nhập môn. Dữ liệu vào/ra được xác định trước, workflow dùng Model ↔ table; migration = schema version. Kết quả test/log cho thấy ... Rủi ro chính là ... Ứng dụng gần nhất là quản lý thay đổi CSDL khi project lớn dần.",
+    "rubric": [
+      "Có input/output",
+      "Có test/log",
+      "Có artifact/README",
+      "Có kết luận ứng dụng",
+      "Có giới hạn hoặc lỗi cần tránh"
+    ]
+  },
+  {
+    "id": "sim_report_PR22",
+    "stage": "hk1",
+    "lessonId": "PR22",
+    "mode": "simulation-report",
+    "type": "simulation-reflection",
+    "title": "Báo cáo lab · Kỹ nghệ phần mềm: requirement, issue, milestone",
+    "purpose": "Ghi kết quả ngắn sau khi chạy mô phỏng hoặc thử nghiệm code.",
+    "prompt_vi": "Ghi báo cáo 5 phần: mục tiêu, input/output, workflow requirement → issue → branch → PR → release, kết quả test/log, rủi ro và ứng dụng vào quản lý tiến độ bài tập và module luận văn.",
+    "target_words": 130,
+    "time_minutes": 10,
+    "required_patterns": [
+      "Mục tiêu",
+      "Input/output",
+      "Workflow",
+      "Test/log",
+      "Rủi ro",
+      "Ứng dụng"
+    ],
+    "model_vi": "Mục tiêu của thử nghiệm là kiểm chứng Kỹ nghệ phần mềm: requirement, issue, milestone. Dữ liệu vào/ra được xác định trước, workflow dùng requirement → issue → branch → PR → release. Kết quả test/log cho thấy ... Rủi ro chính là ... Ứng dụng gần nhất là quản lý tiến độ bài tập và module luận văn.",
+    "rubric": [
+      "Có input/output",
+      "Có test/log",
+      "Có artifact/README",
+      "Có kết luận ứng dụng",
+      "Có giới hạn hoặc lỗi cần tránh"
+    ]
+  },
+  {
+    "id": "sim_report_PR23",
+    "stage": "hk1",
+    "lessonId": "PR23",
+    "mode": "simulation-report",
+    "type": "simulation-reflection",
+    "title": "Báo cáo lab · Kiểm thử tích hợp và test dữ liệu",
+    "purpose": "Ghi kết quả ngắn sau khi chạy mô phỏng hoặc thử nghiệm code.",
+    "prompt_vi": "Ghi báo cáo 5 phần: mục tiêu, input/output, workflow test pipeline(input) → expected artifact, kết quả test/log, rủi ro và ứng dụng vào phát hiện dữ liệu hỏng trước khi train mô hình.",
+    "target_words": 130,
+    "time_minutes": 10,
+    "required_patterns": [
+      "Mục tiêu",
+      "Input/output",
+      "Workflow",
+      "Test/log",
+      "Rủi ro",
+      "Ứng dụng"
+    ],
+    "model_vi": "Mục tiêu của thử nghiệm là kiểm chứng Kiểm thử tích hợp và test dữ liệu. Dữ liệu vào/ra được xác định trước, workflow dùng test pipeline(input) → expected artifact. Kết quả test/log cho thấy ... Rủi ro chính là ... Ứng dụng gần nhất là phát hiện dữ liệu hỏng trước khi train mô hình.",
+    "rubric": [
+      "Có input/output",
+      "Có test/log",
+      "Có artifact/README",
+      "Có kết luận ứng dụng",
+      "Có giới hạn hoặc lỗi cần tránh"
+    ]
+  },
+  {
+    "id": "sim_report_PR24",
+    "stage": "hk1",
+    "lessonId": "PR24",
+    "mode": "simulation-report",
+    "type": "simulation-reflection",
+    "title": "Báo cáo lab · CI nhẹ và kiểm tra chất lượng code",
+    "purpose": "Ghi kết quả ngắn sau khi chạy mô phỏng hoặc thử nghiệm code.",
+    "prompt_vi": "Ghi báo cáo 5 phần: mục tiêu, input/output, workflow lint + tests + type check = green build, kết quả test/log, rủi ro và ứng dụng vào tự động kiểm tra repo trước khi nộp/đẩy code.",
+    "target_words": 130,
+    "time_minutes": 10,
+    "required_patterns": [
+      "Mục tiêu",
+      "Input/output",
+      "Workflow",
+      "Test/log",
+      "Rủi ro",
+      "Ứng dụng"
+    ],
+    "model_vi": "Mục tiêu của thử nghiệm là kiểm chứng CI nhẹ và kiểm tra chất lượng code. Dữ liệu vào/ra được xác định trước, workflow dùng lint + tests + type check = green build. Kết quả test/log cho thấy ... Rủi ro chính là ... Ứng dụng gần nhất là tự động kiểm tra repo trước khi nộp/đẩy code.",
+    "rubric": [
+      "Có input/output",
+      "Có test/log",
+      "Có artifact/README",
+      "Có kết luận ứng dụng",
+      "Có giới hạn hoặc lỗi cần tránh"
+    ]
+  },
+  {
+    "id": "sim_report_PR25",
+    "stage": "hk2",
+    "lessonId": "PR25",
+    "mode": "simulation-report",
+    "type": "simulation-reflection",
+    "title": "Báo cáo lab · Pipeline dữ liệu cho ML",
+    "purpose": "Ghi kết quả ngắn sau khi chạy mô phỏng hoặc thử nghiệm code.",
+    "prompt_vi": "Ghi báo cáo 5 phần: mục tiêu, input/output, workflow raw → clean → features → train → evaluate, kết quả test/log, rủi ro và ứng dụng vào tạo quy trình lặp lại cho dữ liệu UGV/USV.",
+    "target_words": 130,
+    "time_minutes": 10,
+    "required_patterns": [
+      "Mục tiêu",
+      "Input/output",
+      "Workflow",
+      "Test/log",
+      "Rủi ro",
+      "Ứng dụng"
+    ],
+    "model_vi": "Mục tiêu của thử nghiệm là kiểm chứng Pipeline dữ liệu cho ML. Dữ liệu vào/ra được xác định trước, workflow dùng raw → clean → features → train → evaluate. Kết quả test/log cho thấy ... Rủi ro chính là ... Ứng dụng gần nhất là tạo quy trình lặp lại cho dữ liệu UGV/USV.",
+    "rubric": [
+      "Có input/output",
+      "Có test/log",
+      "Có artifact/README",
+      "Có kết luận ứng dụng",
+      "Có giới hạn hoặc lỗi cần tránh"
+    ]
+  },
+  {
+    "id": "sim_report_PR26",
+    "stage": "hk2",
+    "lessonId": "PR26",
+    "mode": "simulation-report",
+    "type": "simulation-reflection",
+    "title": "Báo cáo lab · Scikit-learn baseline và metric",
+    "purpose": "Ghi kết quả ngắn sau khi chạy mô phỏng hoặc thử nghiệm code.",
+    "prompt_vi": "Ghi báo cáo 5 phần: mục tiêu, input/output, workflow model.fit(X_train,y_train); score=f(metric), kết quả test/log, rủi ro và ứng dụng vào dựng baseline có metric rõ cho ML trong АСОИУ.",
+    "target_words": 130,
+    "time_minutes": 10,
+    "required_patterns": [
+      "Mục tiêu",
+      "Input/output",
+      "Workflow",
+      "Test/log",
+      "Rủi ro",
+      "Ứng dụng"
+    ],
+    "model_vi": "Mục tiêu của thử nghiệm là kiểm chứng Scikit-learn baseline và metric. Dữ liệu vào/ra được xác định trước, workflow dùng model.fit(X_train,y_train); score=f(metric). Kết quả test/log cho thấy ... Rủi ro chính là ... Ứng dụng gần nhất là dựng baseline có metric rõ cho ML trong АСОИУ.",
+    "rubric": [
+      "Có input/output",
+      "Có test/log",
+      "Có artifact/README",
+      "Có kết luận ứng dụng",
+      "Có giới hạn hoặc lỗi cần tránh"
+    ]
+  },
+  {
+    "id": "sim_report_PR27",
+    "stage": "hk2",
+    "lessonId": "PR27",
+    "mode": "simulation-report",
+    "type": "simulation-reflection",
+    "title": "Báo cáo lab · API inference với FastAPI",
+    "purpose": "Ghi kết quả ngắn sau khi chạy mô phỏng hoặc thử nghiệm code.",
+    "prompt_vi": "Ghi báo cáo 5 phần: mục tiêu, input/output, workflow POST /predict → input schema → prediction, kết quả test/log, rủi ro và ứng dụng vào biến mô hình thành dịch vụ thử nghiệm được.",
+    "target_words": 130,
+    "time_minutes": 10,
+    "required_patterns": [
+      "Mục tiêu",
+      "Input/output",
+      "Workflow",
+      "Test/log",
+      "Rủi ro",
+      "Ứng dụng"
+    ],
+    "model_vi": "Mục tiêu của thử nghiệm là kiểm chứng API inference với FastAPI. Dữ liệu vào/ra được xác định trước, workflow dùng POST /predict → input schema → prediction. Kết quả test/log cho thấy ... Rủi ro chính là ... Ứng dụng gần nhất là biến mô hình thành dịch vụ thử nghiệm được.",
+    "rubric": [
+      "Có input/output",
+      "Có test/log",
+      "Có artifact/README",
+      "Có kết luận ứng dụng",
+      "Có giới hạn hoặc lỗi cần tránh"
+    ]
+  },
+  {
+    "id": "sim_report_PR28",
+    "stage": "hk2",
+    "lessonId": "PR28",
+    "mode": "simulation-report",
+    "type": "simulation-reflection",
+    "title": "Báo cáo lab · Serialization model và artifact version",
+    "purpose": "Ghi kết quả ngắn sau khi chạy mô phỏng hoặc thử nghiệm code.",
+    "prompt_vi": "Ghi báo cáo 5 phần: mục tiêu, input/output, workflow joblib.dump(model); artifact_v1.pkl, kết quả test/log, rủi ro và ứng dụng vào lưu model/dataset/metric theo phiên bản để chạy lại.",
+    "target_words": 130,
+    "time_minutes": 10,
+    "required_patterns": [
+      "Mục tiêu",
+      "Input/output",
+      "Workflow",
+      "Test/log",
+      "Rủi ro",
+      "Ứng dụng"
+    ],
+    "model_vi": "Mục tiêu của thử nghiệm là kiểm chứng Serialization model và artifact version. Dữ liệu vào/ra được xác định trước, workflow dùng joblib.dump(model); artifact_v1.pkl. Kết quả test/log cho thấy ... Rủi ro chính là ... Ứng dụng gần nhất là lưu model/dataset/metric theo phiên bản để chạy lại.",
+    "rubric": [
+      "Có input/output",
+      "Có test/log",
+      "Có artifact/README",
+      "Có kết luận ứng dụng",
+      "Có giới hạn hoặc lỗi cần tránh"
+    ]
+  },
+  {
+    "id": "sim_report_PR29",
+    "stage": "hk2",
+    "lessonId": "PR29",
+    "mode": "simulation-report",
+    "type": "simulation-reflection",
+    "title": "Báo cáo lab · Cấu hình thí nghiệm bằng YAML/JSON",
+    "purpose": "Ghi kết quả ngắn sau khi chạy mô phỏng hoặc thử nghiệm code.",
+    "prompt_vi": "Ghi báo cáo 5 phần: mục tiêu, input/output, workflow config = params + seed + paths, kết quả test/log, rủi ro và ứng dụng vào khóa tham số thí nghiệm để tránh loạn kết quả.",
+    "target_words": 130,
+    "time_minutes": 10,
+    "required_patterns": [
+      "Mục tiêu",
+      "Input/output",
+      "Workflow",
+      "Test/log",
+      "Rủi ro",
+      "Ứng dụng"
+    ],
+    "model_vi": "Mục tiêu của thử nghiệm là kiểm chứng Cấu hình thí nghiệm bằng YAML/JSON. Dữ liệu vào/ra được xác định trước, workflow dùng config = params + seed + paths. Kết quả test/log cho thấy ... Rủi ro chính là ... Ứng dụng gần nhất là khóa tham số thí nghiệm để tránh loạn kết quả.",
+    "rubric": [
+      "Có input/output",
+      "Có test/log",
+      "Có artifact/README",
+      "Có kết luận ứng dụng",
+      "Có giới hạn hoặc lỗi cần tránh"
+    ]
+  },
+  {
+    "id": "sim_report_PR30",
+    "stage": "hk2",
+    "lessonId": "PR30",
+    "mode": "simulation-report",
+    "type": "simulation-reflection",
+    "title": "Báo cáo lab · Docker nhập môn cho môi trường tái lập",
+    "purpose": "Ghi kết quả ngắn sau khi chạy mô phỏng hoặc thử nghiệm code.",
+    "prompt_vi": "Ghi báo cáo 5 phần: mục tiêu, input/output, workflow Dockerfile + requirements + command, kết quả test/log, rủi ro và ứng dụng vào chạy lại demo trên máy khác ít lỗi hơn.",
+    "target_words": 130,
+    "time_minutes": 10,
+    "required_patterns": [
+      "Mục tiêu",
+      "Input/output",
+      "Workflow",
+      "Test/log",
+      "Rủi ro",
+      "Ứng dụng"
+    ],
+    "model_vi": "Mục tiêu của thử nghiệm là kiểm chứng Docker nhập môn cho môi trường tái lập. Dữ liệu vào/ra được xác định trước, workflow dùng Dockerfile + requirements + command. Kết quả test/log cho thấy ... Rủi ro chính là ... Ứng dụng gần nhất là chạy lại demo trên máy khác ít lỗi hơn.",
+    "rubric": [
+      "Có input/output",
+      "Có test/log",
+      "Có artifact/README",
+      "Có kết luận ứng dụng",
+      "Có giới hạn hoặc lỗi cần tránh"
+    ]
+  },
+  {
+    "id": "sim_report_PR31",
+    "stage": "hk2",
+    "lessonId": "PR31",
+    "mode": "simulation-report",
+    "type": "simulation-reflection",
+    "title": "Báo cáo lab · Bảo mật dữ liệu và quản lý secret",
+    "purpose": "Ghi kết quả ngắn sau khi chạy mô phỏng hoặc thử nghiệm code.",
+    "prompt_vi": "Ghi báo cáo 5 phần: mục tiêu, input/output, workflow .env; never commit secrets; access control, kết quả test/log, rủi ro và ứng dụng vào không lộ key, dữ liệu, đường dẫn nhạy cảm.",
+    "target_words": 130,
+    "time_minutes": 10,
+    "required_patterns": [
+      "Mục tiêu",
+      "Input/output",
+      "Workflow",
+      "Test/log",
+      "Rủi ro",
+      "Ứng dụng"
+    ],
+    "model_vi": "Mục tiêu của thử nghiệm là kiểm chứng Bảo mật dữ liệu và quản lý secret. Dữ liệu vào/ra được xác định trước, workflow dùng .env; never commit secrets; access control. Kết quả test/log cho thấy ... Rủi ro chính là ... Ứng dụng gần nhất là không lộ key, dữ liệu, đường dẫn nhạy cảm.",
+    "rubric": [
+      "Có input/output",
+      "Có test/log",
+      "Có artifact/README",
+      "Có kết luận ứng dụng",
+      "Có giới hạn hoặc lỗi cần tránh"
+    ]
+  },
+  {
+    "id": "sim_report_PR32",
+    "stage": "hk2",
+    "lessonId": "PR32",
+    "mode": "simulation-report",
+    "type": "simulation-reflection",
+    "title": "Báo cáo lab · Tài liệu kỹ thuật và sơ đồ kiến trúc",
+    "purpose": "Ghi kết quả ngắn sau khi chạy mô phỏng hoặc thử nghiệm code.",
+    "prompt_vi": "Ghi báo cáo 5 phần: mục tiêu, input/output, workflow architecture.md + sequence diagram + API spec, kết quả test/log, rủi ro và ứng dụng vào giải thích phần mềm cho giáo sư và nhóm nghiên cứu.",
+    "target_words": 130,
+    "time_minutes": 10,
+    "required_patterns": [
+      "Mục tiêu",
+      "Input/output",
+      "Workflow",
+      "Test/log",
+      "Rủi ro",
+      "Ứng dụng"
+    ],
+    "model_vi": "Mục tiêu của thử nghiệm là kiểm chứng Tài liệu kỹ thuật và sơ đồ kiến trúc. Dữ liệu vào/ra được xác định trước, workflow dùng architecture.md + sequence diagram + API spec. Kết quả test/log cho thấy ... Rủi ro chính là ... Ứng dụng gần nhất là giải thích phần mềm cho giáo sư và nhóm nghiên cứu.",
+    "rubric": [
+      "Có input/output",
+      "Có test/log",
+      "Có artifact/README",
+      "Có kết luận ứng dụng",
+      "Có giới hạn hoặc lỗi cần tránh"
+    ]
+  },
+  {
+    "id": "sim_report_PR33",
+    "stage": "hk3",
+    "lessonId": "PR33",
+    "mode": "simulation-report",
+    "type": "simulation-reflection",
+    "title": "Báo cáo lab · Dataset card cho telemetry và cảm biến",
+    "purpose": "Ghi kết quả ngắn sau khi chạy mô phỏng hoặc thử nghiệm code.",
+    "prompt_vi": "Ghi báo cáo 5 phần: mục tiêu, input/output, workflow dataset card = source + schema + limits + ethics, kết quả test/log, rủi ro và ứng dụng vào mô tả dữ liệu НИР đủ rõ để phản biện.",
+    "target_words": 130,
+    "time_minutes": 10,
+    "required_patterns": [
+      "Mục tiêu",
+      "Input/output",
+      "Workflow",
+      "Test/log",
+      "Rủi ro",
+      "Ứng dụng"
+    ],
+    "model_vi": "Mục tiêu của thử nghiệm là kiểm chứng Dataset card cho telemetry và cảm biến. Dữ liệu vào/ra được xác định trước, workflow dùng dataset card = source + schema + limits + ethics. Kết quả test/log cho thấy ... Rủi ro chính là ... Ứng dụng gần nhất là mô tả dữ liệu НИР đủ rõ để phản biện.",
+    "rubric": [
+      "Có input/output",
+      "Có test/log",
+      "Có artifact/README",
+      "Có kết luận ứng dụng",
+      "Có giới hạn hoặc lỗi cần tránh"
+    ]
+  },
+  {
+    "id": "sim_report_PR34",
+    "stage": "hk3",
+    "lessonId": "PR34",
+    "mode": "simulation-report",
+    "type": "simulation-reflection",
+    "title": "Báo cáo lab · Experiment tracking và bảng metric",
+    "purpose": "Ghi kết quả ngắn sau khi chạy mô phỏng hoặc thử nghiệm code.",
+    "prompt_vi": "Ghi báo cáo 5 phần: mục tiêu, input/output, workflow run_id + params + metrics + artifacts, kết quả test/log, rủi ro và ứng dụng vào so sánh mô hình trong НИР có bằng chứng.",
+    "target_words": 130,
+    "time_minutes": 10,
+    "required_patterns": [
+      "Mục tiêu",
+      "Input/output",
+      "Workflow",
+      "Test/log",
+      "Rủi ro",
+      "Ứng dụng"
+    ],
+    "model_vi": "Mục tiêu của thử nghiệm là kiểm chứng Experiment tracking và bảng metric. Dữ liệu vào/ra được xác định trước, workflow dùng run_id + params + metrics + artifacts. Kết quả test/log cho thấy ... Rủi ro chính là ... Ứng dụng gần nhất là so sánh mô hình trong НИР có bằng chứng.",
+    "rubric": [
+      "Có input/output",
+      "Có test/log",
+      "Có artifact/README",
+      "Có kết luận ứng dụng",
+      "Có giới hạn hoặc lỗi cần tránh"
+    ]
+  },
+  {
+    "id": "sim_report_PR35",
+    "stage": "hk3",
+    "lessonId": "PR35",
+    "mode": "simulation-report",
+    "type": "simulation-reflection",
+    "title": "Báo cáo lab · Ablation study bằng code có kiểm soát",
+    "purpose": "Ghi kết quả ngắn sau khi chạy mô phỏng hoặc thử nghiệm code.",
+    "prompt_vi": "Ghi báo cáo 5 phần: mục tiêu, input/output, workflow one change per run; compare metric deltas, kết quả test/log, rủi ro và ứng dụng vào chứng minh yếu tố nào làm mô hình tốt hơn/xấu hơn.",
+    "target_words": 130,
+    "time_minutes": 10,
+    "required_patterns": [
+      "Mục tiêu",
+      "Input/output",
+      "Workflow",
+      "Test/log",
+      "Rủi ro",
+      "Ứng dụng"
+    ],
+    "model_vi": "Mục tiêu của thử nghiệm là kiểm chứng Ablation study bằng code có kiểm soát. Dữ liệu vào/ra được xác định trước, workflow dùng one change per run; compare metric deltas. Kết quả test/log cho thấy ... Rủi ro chính là ... Ứng dụng gần nhất là chứng minh yếu tố nào làm mô hình tốt hơn/xấu hơn.",
+    "rubric": [
+      "Có input/output",
+      "Có test/log",
+      "Có artifact/README",
+      "Có kết luận ứng dụng",
+      "Có giới hạn hoặc lỗi cần tránh"
+    ]
+  },
+  {
+    "id": "sim_report_PR36",
+    "stage": "hk3",
+    "lessonId": "PR36",
+    "mode": "simulation-report",
+    "type": "simulation-reflection",
+    "title": "Báo cáo lab · Xử lý log cảm biến và chuỗi thời gian",
+    "purpose": "Ghi kết quả ngắn sau khi chạy mô phỏng hoặc thử nghiệm code.",
+    "prompt_vi": "Ghi báo cáo 5 phần: mục tiêu, input/output, workflow timestamp + value + quality_flag, kết quả test/log, rủi ro và ứng dụng vào làm sạch log UGV trước khi phân tích tín hiệu/AI.",
+    "target_words": 130,
+    "time_minutes": 10,
+    "required_patterns": [
+      "Mục tiêu",
+      "Input/output",
+      "Workflow",
+      "Test/log",
+      "Rủi ro",
+      "Ứng dụng"
+    ],
+    "model_vi": "Mục tiêu của thử nghiệm là kiểm chứng Xử lý log cảm biến và chuỗi thời gian. Dữ liệu vào/ra được xác định trước, workflow dùng timestamp + value + quality_flag. Kết quả test/log cho thấy ... Rủi ro chính là ... Ứng dụng gần nhất là làm sạch log UGV trước khi phân tích tín hiệu/AI.",
+    "rubric": [
+      "Có input/output",
+      "Có test/log",
+      "Có artifact/README",
+      "Có kết luận ứng dụng",
+      "Có giới hạn hoặc lỗi cần tránh"
+    ]
+  },
+  {
+    "id": "sim_report_PR37",
+    "stage": "hk3",
+    "lessonId": "PR37",
+    "mode": "simulation-report",
+    "type": "simulation-reflection",
+    "title": "Báo cáo lab · Module đánh giá lỗi và phân tích thất bại",
+    "purpose": "Ghi kết quả ngắn sau khi chạy mô phỏng hoặc thử nghiệm code.",
+    "prompt_vi": "Ghi báo cáo 5 phần: mục tiêu, input/output, workflow error case → label → root cause → fix, kết quả test/log, rủi ro và ứng dụng vào biết mô hình sai ở đâu, vì sao, sửa thế nào.",
+    "target_words": 130,
+    "time_minutes": 10,
+    "required_patterns": [
+      "Mục tiêu",
+      "Input/output",
+      "Workflow",
+      "Test/log",
+      "Rủi ro",
+      "Ứng dụng"
+    ],
+    "model_vi": "Mục tiêu của thử nghiệm là kiểm chứng Module đánh giá lỗi và phân tích thất bại. Dữ liệu vào/ra được xác định trước, workflow dùng error case → label → root cause → fix. Kết quả test/log cho thấy ... Rủi ro chính là ... Ứng dụng gần nhất là biết mô hình sai ở đâu, vì sao, sửa thế nào.",
+    "rubric": [
+      "Có input/output",
+      "Có test/log",
+      "Có artifact/README",
+      "Có kết luận ứng dụng",
+      "Có giới hạn hoặc lỗi cần tránh"
+    ]
+  },
+  {
+    "id": "sim_report_PR38",
+    "stage": "hk3",
+    "lessonId": "PR38",
+    "mode": "simulation-report",
+    "type": "simulation-reflection",
+    "title": "Báo cáo lab · Prototype dashboard kết quả nghiên cứu",
+    "purpose": "Ghi kết quả ngắn sau khi chạy mô phỏng hoặc thử nghiệm code.",
+    "prompt_vi": "Ghi báo cáo 5 phần: mục tiêu, input/output, workflow metrics + plots + filters + notes, kết quả test/log, rủi ro và ứng dụng vào xem kết quả thí nghiệm, hình minh họa và log.",
+    "target_words": 130,
+    "time_minutes": 10,
+    "required_patterns": [
+      "Mục tiêu",
+      "Input/output",
+      "Workflow",
+      "Test/log",
+      "Rủi ro",
+      "Ứng dụng"
+    ],
+    "model_vi": "Mục tiêu của thử nghiệm là kiểm chứng Prototype dashboard kết quả nghiên cứu. Dữ liệu vào/ra được xác định trước, workflow dùng metrics + plots + filters + notes. Kết quả test/log cho thấy ... Rủi ro chính là ... Ứng dụng gần nhất là xem kết quả thí nghiệm, hình minh họa và log.",
+    "rubric": [
+      "Có input/output",
+      "Có test/log",
+      "Có artifact/README",
+      "Có kết luận ứng dụng",
+      "Có giới hạn hoặc lỗi cần tránh"
+    ]
+  },
+  {
+    "id": "sim_report_PR39",
+    "stage": "hk3",
+    "lessonId": "PR39",
+    "mode": "simulation-report",
+    "type": "simulation-reflection",
+    "title": "Báo cáo lab · Đóng gói demo nghiên cứu",
+    "purpose": "Ghi kết quả ngắn sau khi chạy mô phỏng hoặc thử nghiệm code.",
+    "prompt_vi": "Ghi báo cáo 5 phần: mục tiêu, input/output, workflow make run-demo; sample data; expected output, kết quả test/log, rủi ro và ứng dụng vào cho giáo viên mở demo nhanh mà không vỡ môi trường.",
+    "target_words": 130,
+    "time_minutes": 10,
+    "required_patterns": [
+      "Mục tiêu",
+      "Input/output",
+      "Workflow",
+      "Test/log",
+      "Rủi ro",
+      "Ứng dụng"
+    ],
+    "model_vi": "Mục tiêu của thử nghiệm là kiểm chứng Đóng gói demo nghiên cứu. Dữ liệu vào/ra được xác định trước, workflow dùng make run-demo; sample data; expected output. Kết quả test/log cho thấy ... Rủi ro chính là ... Ứng dụng gần nhất là cho giáo viên mở demo nhanh mà không vỡ môi trường.",
+    "rubric": [
+      "Có input/output",
+      "Có test/log",
+      "Có artifact/README",
+      "Có kết luận ứng dụng",
+      "Có giới hạn hoặc lỗi cần tránh"
+    ]
+  },
+  {
+    "id": "sim_report_PR40",
+    "stage": "hk3",
+    "lessonId": "PR40",
+    "mode": "simulation-report",
+    "type": "simulation-reflection",
+    "title": "Báo cáo lab · Quản lý rủi ro phần mềm trong НИР",
+    "purpose": "Ghi kết quả ngắn sau khi chạy mô phỏng hoặc thử nghiệm code.",
+    "prompt_vi": "Ghi báo cáo 5 phần: mục tiêu, input/output, workflow risk = probability × impact; mitigation plan, kết quả test/log, rủi ro và ứng dụng vào giảm rủi ro hỏng demo, mất dữ liệu, lệch kết quả.",
+    "target_words": 130,
+    "time_minutes": 10,
+    "required_patterns": [
+      "Mục tiêu",
+      "Input/output",
+      "Workflow",
+      "Test/log",
+      "Rủi ro",
+      "Ứng dụng"
+    ],
+    "model_vi": "Mục tiêu của thử nghiệm là kiểm chứng Quản lý rủi ro phần mềm trong НИР. Dữ liệu vào/ra được xác định trước, workflow dùng risk = probability × impact; mitigation plan. Kết quả test/log cho thấy ... Rủi ro chính là ... Ứng dụng gần nhất là giảm rủi ro hỏng demo, mất dữ liệu, lệch kết quả.",
+    "rubric": [
+      "Có input/output",
+      "Có test/log",
+      "Có artifact/README",
+      "Có kết luận ứng dụng",
+      "Có giới hạn hoặc lỗi cần tránh"
+    ]
+  },
+  {
+    "id": "sim_report_PR41",
+    "stage": "hk4",
+    "lessonId": "PR41",
+    "mode": "simulation-report",
+    "type": "simulation-reflection",
+    "title": "Báo cáo lab · Đóng băng mã nguồn và tag release",
+    "purpose": "Ghi kết quả ngắn sau khi chạy mô phỏng hoặc thử nghiệm code.",
+    "prompt_vi": "Ghi báo cáo 5 phần: mục tiêu, input/output, workflow git tag v1.0-defense; CHANGELOG.md, kết quả test/log, rủi ro và ứng dụng vào khóa phiên bản phục vụ ВКР, tránh đổi sát ngày bảo vệ.",
+    "target_words": 130,
+    "time_minutes": 10,
+    "required_patterns": [
+      "Mục tiêu",
+      "Input/output",
+      "Workflow",
+      "Test/log",
+      "Rủi ro",
+      "Ứng dụng"
+    ],
+    "model_vi": "Mục tiêu của thử nghiệm là kiểm chứng Đóng băng mã nguồn và tag release. Dữ liệu vào/ra được xác định trước, workflow dùng git tag v1.0-defense; CHANGELOG.md. Kết quả test/log cho thấy ... Rủi ro chính là ... Ứng dụng gần nhất là khóa phiên bản phục vụ ВКР, tránh đổi sát ngày bảo vệ.",
+    "rubric": [
+      "Có input/output",
+      "Có test/log",
+      "Có artifact/README",
+      "Có kết luận ứng dụng",
+      "Có giới hạn hoặc lỗi cần tránh"
+    ]
+  },
+  {
+    "id": "sim_report_PR42",
+    "stage": "hk4",
+    "lessonId": "PR42",
+    "mode": "simulation-report",
+    "type": "simulation-reflection",
+    "title": "Báo cáo lab · Script chạy lại toàn bộ kết quả",
+    "purpose": "Ghi kết quả ngắn sau khi chạy mô phỏng hoặc thử nghiệm code.",
+    "prompt_vi": "Ghi báo cáo 5 phần: mục tiêu, input/output, workflow make reproduce → data → model → figures, kết quả test/log, rủi ro và ứng dụng vào tái tạo bảng và hình trong luận văn.",
+    "target_words": 130,
+    "time_minutes": 10,
+    "required_patterns": [
+      "Mục tiêu",
+      "Input/output",
+      "Workflow",
+      "Test/log",
+      "Rủi ro",
+      "Ứng dụng"
+    ],
+    "model_vi": "Mục tiêu của thử nghiệm là kiểm chứng Script chạy lại toàn bộ kết quả. Dữ liệu vào/ra được xác định trước, workflow dùng make reproduce → data → model → figures. Kết quả test/log cho thấy ... Rủi ro chính là ... Ứng dụng gần nhất là tái tạo bảng và hình trong luận văn.",
+    "rubric": [
+      "Có input/output",
+      "Có test/log",
+      "Có artifact/README",
+      "Có kết luận ứng dụng",
+      "Có giới hạn hoặc lỗi cần tránh"
+    ]
+  },
+  {
+    "id": "sim_report_PR43",
+    "stage": "hk4",
+    "lessonId": "PR43",
+    "mode": "simulation-report",
+    "type": "simulation-reflection",
+    "title": "Báo cáo lab · Chuẩn hóa thư mục luận văn và artifact",
+    "purpose": "Ghi kết quả ngắn sau khi chạy mô phỏng hoặc thử nghiệm code.",
+    "prompt_vi": "Ghi báo cáo 5 phần: mục tiêu, input/output, workflow thesis/ figures/ tables/ code/ appendix/, kết quả test/log, rủi ro và ứng dụng vào không thất lạc hình, bảng, code khi viết ВКР.",
+    "target_words": 130,
+    "time_minutes": 10,
+    "required_patterns": [
+      "Mục tiêu",
+      "Input/output",
+      "Workflow",
+      "Test/log",
+      "Rủi ro",
+      "Ứng dụng"
+    ],
+    "model_vi": "Mục tiêu của thử nghiệm là kiểm chứng Chuẩn hóa thư mục luận văn và artifact. Dữ liệu vào/ra được xác định trước, workflow dùng thesis/ figures/ tables/ code/ appendix/. Kết quả test/log cho thấy ... Rủi ro chính là ... Ứng dụng gần nhất là không thất lạc hình, bảng, code khi viết ВКР.",
+    "rubric": [
+      "Có input/output",
+      "Có test/log",
+      "Có artifact/README",
+      "Có kết luận ứng dụng",
+      "Có giới hạn hoặc lỗi cần tránh"
+    ]
+  },
+  {
+    "id": "sim_report_PR44",
+    "stage": "hk4",
+    "lessonId": "PR44",
+    "mode": "simulation-report",
+    "type": "simulation-reflection",
+    "title": "Báo cáo lab · Demo offline và kế hoạch dự phòng",
+    "purpose": "Ghi kết quả ngắn sau khi chạy mô phỏng hoặc thử nghiệm code.",
+    "prompt_vi": "Ghi báo cáo 5 phần: mục tiêu, input/output, workflow offline mode + sample data + screenshots, kết quả test/log, rủi ro và ứng dụng vào bảo vệ khi mạng/hardware có vấn đề.",
+    "target_words": 130,
+    "time_minutes": 10,
+    "required_patterns": [
+      "Mục tiêu",
+      "Input/output",
+      "Workflow",
+      "Test/log",
+      "Rủi ro",
+      "Ứng dụng"
+    ],
+    "model_vi": "Mục tiêu của thử nghiệm là kiểm chứng Demo offline và kế hoạch dự phòng. Dữ liệu vào/ra được xác định trước, workflow dùng offline mode + sample data + screenshots. Kết quả test/log cho thấy ... Rủi ro chính là ... Ứng dụng gần nhất là bảo vệ khi mạng/hardware có vấn đề.",
+    "rubric": [
+      "Có input/output",
+      "Có test/log",
+      "Có artifact/README",
+      "Có kết luận ứng dụng",
+      "Có giới hạn hoặc lỗi cần tránh"
+    ]
+  },
+  {
+    "id": "sim_report_PR45",
+    "stage": "hk4",
+    "lessonId": "PR45",
+    "mode": "simulation-report",
+    "type": "simulation-reflection",
+    "title": "Báo cáo lab · Tối ưu nhỏ: runtime, memory và latency",
+    "purpose": "Ghi kết quả ngắn sau khi chạy mô phỏng hoặc thử nghiệm code.",
+    "prompt_vi": "Ghi báo cáo 5 phần: mục tiêu, input/output, workflow latency_ms; memory_mb; throughput, kết quả test/log, rủi ro và ứng dụng vào trả lời phản biện về khả năng chạy trên phần cứng robot.",
+    "target_words": 130,
+    "time_minutes": 10,
+    "required_patterns": [
+      "Mục tiêu",
+      "Input/output",
+      "Workflow",
+      "Test/log",
+      "Rủi ro",
+      "Ứng dụng"
+    ],
+    "model_vi": "Mục tiêu của thử nghiệm là kiểm chứng Tối ưu nhỏ: runtime, memory và latency. Dữ liệu vào/ra được xác định trước, workflow dùng latency_ms; memory_mb; throughput. Kết quả test/log cho thấy ... Rủi ro chính là ... Ứng dụng gần nhất là trả lời phản biện về khả năng chạy trên phần cứng robot.",
+    "rubric": [
+      "Có input/output",
+      "Có test/log",
+      "Có artifact/README",
+      "Có kết luận ứng dụng",
+      "Có giới hạn hoặc lỗi cần tránh"
+    ]
+  },
+  {
+    "id": "sim_report_PR46",
+    "stage": "hk4",
+    "lessonId": "PR46",
+    "mode": "simulation-report",
+    "type": "simulation-reflection",
+    "title": "Báo cáo lab · Kiểm tra license, citation và nguồn mở",
+    "purpose": "Ghi kết quả ngắn sau khi chạy mô phỏng hoặc thử nghiệm code.",
+    "prompt_vi": "Ghi báo cáo 5 phần: mục tiêu, input/output, workflow LICENSE + CITATION + third-party notices, kết quả test/log, rủi ro và ứng dụng vào tránh lỗi trích dẫn thư viện/dữ liệu khi nộp luận văn.",
+    "target_words": 130,
+    "time_minutes": 10,
+    "required_patterns": [
+      "Mục tiêu",
+      "Input/output",
+      "Workflow",
+      "Test/log",
+      "Rủi ro",
+      "Ứng dụng"
+    ],
+    "model_vi": "Mục tiêu của thử nghiệm là kiểm chứng Kiểm tra license, citation và nguồn mở. Dữ liệu vào/ra được xác định trước, workflow dùng LICENSE + CITATION + third-party notices. Kết quả test/log cho thấy ... Rủi ro chính là ... Ứng dụng gần nhất là tránh lỗi trích dẫn thư viện/dữ liệu khi nộp luận văn.",
+    "rubric": [
+      "Có input/output",
+      "Có test/log",
+      "Có artifact/README",
+      "Có kết luận ứng dụng",
+      "Có giới hạn hoặc lỗi cần tránh"
+    ]
+  },
+  {
+    "id": "sim_report_PR47",
+    "stage": "hk4",
+    "lessonId": "PR47",
+    "mode": "simulation-report",
+    "type": "simulation-reflection",
+    "title": "Báo cáo lab · Slide kỹ thuật: kiến trúc, pipeline, kết quả",
+    "purpose": "Ghi kết quả ngắn sau khi chạy mô phỏng hoặc thử nghiệm code.",
+    "prompt_vi": "Ghi báo cáo 5 phần: mục tiêu, input/output, workflow problem → architecture → experiment → result → limit, kết quả test/log, rủi ro và ứng dụng vào trình bày phần code không loạn trước hội đồng.",
+    "target_words": 130,
+    "time_minutes": 10,
+    "required_patterns": [
+      "Mục tiêu",
+      "Input/output",
+      "Workflow",
+      "Test/log",
+      "Rủi ro",
+      "Ứng dụng"
+    ],
+    "model_vi": "Mục tiêu của thử nghiệm là kiểm chứng Slide kỹ thuật: kiến trúc, pipeline, kết quả. Dữ liệu vào/ra được xác định trước, workflow dùng problem → architecture → experiment → result → limit. Kết quả test/log cho thấy ... Rủi ro chính là ... Ứng dụng gần nhất là trình bày phần code không loạn trước hội đồng.",
+    "rubric": [
+      "Có input/output",
+      "Có test/log",
+      "Có artifact/README",
+      "Có kết luận ứng dụng",
+      "Có giới hạn hoặc lỗi cần tránh"
+    ]
+  },
+  {
+    "id": "sim_report_PR48",
+    "stage": "hk4",
+    "lessonId": "PR48",
+    "mode": "simulation-report",
+    "type": "simulation-reflection",
+    "title": "Báo cáo lab · Trả lời phản biện kỹ thuật phần mềm",
+    "purpose": "Ghi kết quả ngắn sau khi chạy mô phỏng hoặc thử nghiệm code.",
+    "prompt_vi": "Ghi báo cáo 5 phần: mục tiêu, input/output, workflow why design? why metric? why reproducible?, kết quả test/log, rủi ro và ứng dụng vào bảo vệ lựa chọn kiến trúc, dữ liệu, metric và demo.",
+    "target_words": 130,
+    "time_minutes": 10,
+    "required_patterns": [
+      "Mục tiêu",
+      "Input/output",
+      "Workflow",
+      "Test/log",
+      "Rủi ro",
+      "Ứng dụng"
+    ],
+    "model_vi": "Mục tiêu của thử nghiệm là kiểm chứng Trả lời phản biện kỹ thuật phần mềm. Dữ liệu vào/ra được xác định trước, workflow dùng why design? why metric? why reproducible?. Kết quả test/log cho thấy ... Rủi ro chính là ... Ứng dụng gần nhất là bảo vệ lựa chọn kiến trúc, dữ liệu, metric và demo.",
+    "rubric": [
+      "Có input/output",
+      "Có test/log",
+      "Có artifact/README",
+      "Có kết luận ứng dụng",
+      "Có giới hạn hoặc lỗi cần tránh"
+    ]
+  }
+]

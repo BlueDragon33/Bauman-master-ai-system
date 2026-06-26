@@ -1,0 +1,13 @@
+{
+  "version": "V13.20_SPEAKING_OK_FUSED",
+  "scope": ["Nghe/Nói", "Đối thoại"],
+  "fixed": [
+    "Button OK no longer reserves a detached empty row at the bottom of the content board.",
+    "Button is visually fused into the same content board surface as a compact action badge.",
+    "Russian and Vietnamese content inside the board is justified with safer spacing.",
+    "Desktop body content reserves right padding to avoid overlap with the OK badge.",
+    "Mobile layout keeps button inside the board without breaking actions below."
+  ],
+  "logic_changed": false,
+  "data_changed": false
+}

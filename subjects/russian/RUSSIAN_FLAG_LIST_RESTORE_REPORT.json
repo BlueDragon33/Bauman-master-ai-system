@@ -1,0 +1,28 @@
+{
+  "name": "Russian Bauman Flag List Restore Hotfix",
+  "status": "completed",
+  "base_zip": "Russian_Bauman_DataTab_ScrollCards_HOTFIX.zip",
+  "changes": [
+    "Restored question flag lists for Review (Ôn tập) inside the main content area.",
+    "Restored question flag lists for Exam (Kiểm tra) inside the main content area.",
+    "Kept the previous no-left-board layout: flags are now shown as a scrollable card, not as the old hidden left sidebar.",
+    "Added page-range tabs for Review and Exam flag lists.",
+    "Added overflow-safe CSS for long flag lists, mobile widths, and compact assessment layout."
+  ],
+  "checks": {
+    "core_js_syntax": "passed",
+    "subject_adapter_js_syntax": "passed",
+    "subject_manifest_js_syntax": "passed",
+    "data_json_parse": "passed",
+    "review_flag_tray_present": true,
+    "exam_flag_tray_present": true,
+    "old_left_sidebar_not_restored": true
+  },
+  "manual_live_server_check_needed": [
+    "Open Học tập > Ôn tập and confirm the flag list appears above the question card.",
+    "Click several review flags and confirm the selected question changes.",
+    "Open Học tập > Kiểm tra and confirm the flag list appears above the question card.",
+    "Click several exam flags and confirm the selected question changes.",
+    "Check on a low-height screen that the flag list scrolls horizontally rather than hiding content."
+  ]
+}

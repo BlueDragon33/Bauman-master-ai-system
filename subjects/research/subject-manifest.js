@@ -1,0 +1,1 @@
+window.SUBJECT_CONFIG={"id": "research", "title": "Phương pháp nghiên cứu, НИР và luận văn ВКР", "short": "NIR · ВКР · Thesis", "icon": "✦", "tagline": "Khảo sát đề tài, proposal, thực nghiệm, НИР, pre-defense và bảo vệ ВКР.", "formulaLabel": "Mẫu / Công thức / Checklist"};

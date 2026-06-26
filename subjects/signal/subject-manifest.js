@@ -1,0 +1,1 @@
+window.SUBJECT_CONFIG={"id": "signal", "title": "Xử lý tín hiệu, chuỗi thời gian, telemetry và cảm biến", "short": "Signal · Time Series", "icon": "≈", "tagline": "Dữ liệu cảm biến, telemetry, chuỗi thời gian, anomaly và bảng thực nghiệm.", "formulaLabel": "Mẫu / Công thức / Checklist"};

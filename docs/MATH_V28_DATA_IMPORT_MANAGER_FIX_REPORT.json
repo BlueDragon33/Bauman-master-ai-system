@@ -1,0 +1,20 @@
+{
+  "version": "V28 Data Import Manager Fix",
+  "fixed": [
+    "Import JSON tự nhận diện nguồn theo nội dung và tên file, không phụ thuộc đang chọn file nào trong Tab Dữ liệu",
+    "lessons.json được validate trước khi ghi: phải là mảng, có slide và có stage hợp lệ",
+    "stage alias được chuẩn hóa: prepare->vn, preparatory->prep, m1->hk1, m3->hk3, m4->hk4",
+    "Dữ liệu import lỗi không được commit vào localStorage",
+    "localStorage chỉ lưu các nguồn người dùng đã sửa/import, không lưu lại toàn bộ DB gốc",
+    "Khôi phục nguồn xóa overlay của nguồn đó và tải lại file gốc",
+    "Dán JSON mới dùng cùng bộ validate với nhập file",
+    "Hỗ trợ bundle JSON chứa nhiều nguồn: lessons, exercises, tests, simulations, vocab..."
+  ],
+  "usage": [
+    "Muốn thay lessons: vào Dữ liệu -> chọn hoặc không chọn nguồn đều được -> Nhập/Thay file -> chọn lessons.json. Hệ thống tự đưa vào slot lessons.",
+    "Nếu import sai schema, hệ thống báo lỗi và giữ dữ liệu cũ.",
+    "Muốn quay lại dữ liệu đóng gói: Dữ liệu -> lessons.json -> Khôi phục nguồn.",
+    "Muốn xóa toàn bộ dữ liệu import: dùng Khôi phục toàn bộ dữ liệu nếu UI có nút, hoặc xóa localStorage của module."
+  ],
+  "timestamp": "2026-06-14 16:24:54"
+}

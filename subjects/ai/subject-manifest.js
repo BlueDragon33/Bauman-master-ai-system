@@ -1,0 +1,1 @@
+window.SUBJECT_CONFIG={"id": "ai", "title": "Machine Learning, Neural Systems và đánh giá mô hình", "short": "ML · Neural · AI", "icon": "◎", "tagline": "Từ ML nhập môn đến ML trong АСОИУ, Neural Systems, Business Analytics và AI logic.", "formulaLabel": "Mẫu / Công thức / Checklist"};

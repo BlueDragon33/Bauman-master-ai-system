@@ -1,0 +1,27 @@
+{
+  "version": "V25 StageIdCompatibilityFix",
+  "root": "A2_Math_Bauman_Elearning_INFO_RoadmapReadable_V24",
+  "problem": "lessons.json used stage ids prepare/preparatory/m1/m3/m4 while UI filters stages by vn/prep/hk1/hk2/hk3/hk4, so lesson list looked empty.",
+  "fixes": [
+    "normalized lessons stage ids to vn/prep/hk1/hk3/hk4",
+    "patched subject-adapter stageOf with alias map for future JSON",
+    "patched core stageOf fallback alias map",
+    "kept formula/matrix renderer from V24"
+  ],
+  "lessonCountsByStage": {
+    "subjects/math/data/lessons.json": {
+      "vn": 24,
+      "prep": 15,
+      "hk1": 12,
+      "hk3": 9,
+      "hk4": 3
+    },
+    "subjects/_common_new_russian_ui_math_template/data/lessons.json": {
+      "vn": 24,
+      "prep": 15,
+      "hk1": 12,
+      "hk3": 9,
+      "hk4": 3
+    }
+  }
+}

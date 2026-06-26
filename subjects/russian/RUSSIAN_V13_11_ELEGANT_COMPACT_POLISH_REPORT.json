@@ -1,0 +1,23 @@
+{
+  "version": "V13.11 Elegant Compact Polish",
+  "base": "V13.10 Balanced Polish + V13.09 readable content guard",
+  "changed": [
+    "Assessment header compact luxury surface",
+    "Review/Exam flag rail remains 4x5 per 20 questions",
+    "Question/answer cards compacted without fixed-height clipping",
+    "Vocabulary desk polished with tighter left list, smaller flashcard, cleaner details",
+    "No exam ratio notice reintroduced"
+  ],
+  "protected": [
+    "No overflow:hidden on main assessment content",
+    "No fixed height on question body",
+    "Exam papers 20/40/60/100 kept",
+    "4x5 flag grid kept"
+  ],
+  "static_checks": [
+    "node --check core.js pass",
+    "CSS brace balance pass",
+    "15 data JSON parse pass",
+    "No Tỷ lệ đề text in JS/CSS"
+  ]
+}

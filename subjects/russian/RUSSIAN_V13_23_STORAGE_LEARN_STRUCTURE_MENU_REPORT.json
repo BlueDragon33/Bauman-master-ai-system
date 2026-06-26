@@ -1,0 +1,19 @@
+{
+  "version": "V13.23",
+  "scope": [
+    "storage_data_tab",
+    "learning_tab_modebar"
+  ],
+  "changes": [
+    "Moved the active storage group detail to a second line inside the Kho dữ liệu trigger.",
+    "Removed any all-source detail label from the Kho dữ liệu trigger default state.",
+    "Collapsed the five learning mode buttons into a single 3D Cấu trúc bài học dropdown.",
+    "Added a neon active-mode indicator next to the fixed Cấu trúc bài học trigger."
+  ],
+  "qa": {
+    "javascript_syntax": "passed",
+    "data_files_changed": false,
+    "learning_tab_logic_changed": false,
+    "storage_filter_logic_changed": false
+  }
+}

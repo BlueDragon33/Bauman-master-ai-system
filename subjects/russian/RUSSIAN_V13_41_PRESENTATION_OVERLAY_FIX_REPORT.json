@@ -1,0 +1,19 @@
+{
+  "version": "Russian V13.41 Presentation Overlay Fix",
+  "source_file": "A1_Russian_Bauman_Exam_Stable_Final.zip",
+  "scope": "Exact uploaded Russian module only, no main package",
+  "fixes": [
+    "Close Cấu trúc bài học/details dropdown before opening presentation",
+    "Add body/html overlay lock while presentation is open",
+    "Hide learning structure bar/menu behind presentation modal",
+    "Raise presentation modal z-index above floating menus",
+    "Restore scroll/menu visibility after closing modal"
+  ],
+  "files_changed": [
+    "assets/core.js",
+    "assets/core.css",
+    "subject-manifest.json",
+    "subject-manifest.js"
+  ],
+  "checked": "static js syntax, json validity, zip integrity"
+}

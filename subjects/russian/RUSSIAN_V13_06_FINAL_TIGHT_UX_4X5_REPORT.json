@@ -1,0 +1,31 @@
+{
+  "version": "V13.06_Final_Tight_UX_4x5",
+  "date": "2026-06-11",
+  "scope": "Final export after 4-pass workflow: analysis, deep fixes, full QA, package.",
+  "main_fixes": [
+    "Review and Exam question map fixed to 20 questions per frame, 4 columns × 5 rows, no horizontal scrolling.",
+    "Review and Exam layout compacted with question content as the visual center and a slim right status/map panel.",
+    "Exam submit panel simplified and remains locked until all 20 questions are answered.",
+    "Vocabulary tab redesigned into a tighter two-column learning desk: 20-card list + compact flashcard/detail area.",
+    "Removed repeated active vocabulary term from vocabulary header and suppressed old wide detail cards.",
+    "Added V13.06 changelog/report while keeping core data structure unchanged."
+  ],
+  "qa_summary": {
+    "core_js_syntax": "pass",
+    "core_css_brace_balance": "pass",
+    "json_parse": "pass",
+    "vocab_cards": 8000,
+    "test_questions": 1320,
+    "test_id_duplicates": 0,
+    "button_handler_coverage": "81/81 data-act handlers found",
+    "review_flag_grid": "20 flags, 4 columns × 5 rows, no horizontal scroll",
+    "exam_flag_grid": "20 flags, 4 columns × 5 rows, no horizontal scroll",
+    "vocab_layout": "20 rows, compact 260px flashcard, no duplicate term in header",
+    "horizontal_overflow": "pass at 1440, 1180, 1024, 900 viewport widths",
+    "browser_console_errors": "none in inline harness"
+  },
+  "notes": [
+    "The sandbox blocked direct file:// and localhost navigation, so visual QA used an inline Chromium harness with real CSS/JS and real JSON data mocked through fetch().",
+    "localStorage warnings occurred only inside the inline harness security context and are not expected when opened through Live Server."
+  ]
+}

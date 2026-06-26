@@ -1,0 +1,11 @@
+{
+  "version": "V38",
+  "fixes": [
+    "Rebuilt data tab with simple two-column layout and header/action rows to prevent vertical text compression",
+    "Replaced oversized/buggy picker bar with compact prominent Chọn chương button",
+    "Applied compact picker to theory/exercises/applications/dialogue/simulation via overridden v37PickerBar and renderLearning",
+    "Added robust CSS writing-mode horizontal and min-width rules",
+    "Updated cache query to v=38"
+  ],
+  "note": "Open from the new V38 root folder to avoid browser cache from older V37."
+}

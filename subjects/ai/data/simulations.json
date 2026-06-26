@@ -1,0 +1,252 @@
+{
+  "meta": {
+    "subjectId": "ai",
+    "title": "Machine Learning, Neural Systems và đánh giá mô hình",
+    "version": "simulation-v1",
+    "description": "Tách riêng mô phỏng quan sát và mô phỏng thực hành."
+  },
+  "observation": [
+    {
+      "id": "ai_prepare_obs_1",
+      "stage": "prepare",
+      "type": "mô phỏng riêng",
+      "title": "GĐ1 · Sandbox mô hình ML",
+      "goal": "Quan sát mô hình phản ứng khi thay đổi dữ liệu, đặc trưng, loss, metric và ngưỡng.",
+      "scenario": "Điều chỉnh train/test split, learning rate, số epoch, nhiễu và chọn metric.",
+      "parameters": [
+        "learning rate",
+        "epoch",
+        "train/test split",
+        "metric",
+        "noise"
+      ],
+      "outputs": [
+        "đường học giả lập",
+        "metric",
+        "chẩn đoán underfit/overfit"
+      ]
+    },
+    {
+      "id": "ai_preparatory_obs_1",
+      "stage": "preparatory",
+      "type": "mô phỏng riêng",
+      "title": "GĐ2 · Sandbox mô hình ML",
+      "goal": "Quan sát mô hình phản ứng khi thay đổi dữ liệu, đặc trưng, loss, metric và ngưỡng.",
+      "scenario": "Điều chỉnh train/test split, learning rate, số epoch, nhiễu và chọn metric.",
+      "parameters": [
+        "learning rate",
+        "epoch",
+        "train/test split",
+        "metric",
+        "noise"
+      ],
+      "outputs": [
+        "đường học giả lập",
+        "metric",
+        "chẩn đoán underfit/overfit"
+      ]
+    },
+    {
+      "id": "ai_m1_obs_1",
+      "stage": "m1",
+      "type": "mô phỏng riêng",
+      "title": "HK1 · Sandbox mô hình ML",
+      "goal": "Quan sát mô hình phản ứng khi thay đổi dữ liệu, đặc trưng, loss, metric và ngưỡng.",
+      "scenario": "Điều chỉnh train/test split, learning rate, số epoch, nhiễu và chọn metric.",
+      "parameters": [
+        "learning rate",
+        "epoch",
+        "train/test split",
+        "metric",
+        "noise"
+      ],
+      "outputs": [
+        "đường học giả lập",
+        "metric",
+        "chẩn đoán underfit/overfit"
+      ]
+    },
+    {
+      "id": "ai_m2_obs_1",
+      "stage": "m2",
+      "type": "mô phỏng riêng",
+      "title": "HK2 · Sandbox mô hình ML",
+      "goal": "Quan sát mô hình phản ứng khi thay đổi dữ liệu, đặc trưng, loss, metric và ngưỡng.",
+      "scenario": "Điều chỉnh train/test split, learning rate, số epoch, nhiễu và chọn metric.",
+      "parameters": [
+        "learning rate",
+        "epoch",
+        "train/test split",
+        "metric",
+        "noise"
+      ],
+      "outputs": [
+        "đường học giả lập",
+        "metric",
+        "chẩn đoán underfit/overfit"
+      ]
+    },
+    {
+      "id": "ai_m3_obs_1",
+      "stage": "m3",
+      "type": "mô phỏng riêng",
+      "title": "HK3 · Sandbox mô hình ML",
+      "goal": "Quan sát mô hình phản ứng khi thay đổi dữ liệu, đặc trưng, loss, metric và ngưỡng.",
+      "scenario": "Điều chỉnh train/test split, learning rate, số epoch, nhiễu và chọn metric.",
+      "parameters": [
+        "learning rate",
+        "epoch",
+        "train/test split",
+        "metric",
+        "noise"
+      ],
+      "outputs": [
+        "đường học giả lập",
+        "metric",
+        "chẩn đoán underfit/overfit"
+      ]
+    },
+    {
+      "id": "ai_m4_obs_1",
+      "stage": "m4",
+      "type": "mô phỏng riêng",
+      "title": "HK4 · Sandbox mô hình ML",
+      "goal": "Quan sát mô hình phản ứng khi thay đổi dữ liệu, đặc trưng, loss, metric và ngưỡng.",
+      "scenario": "Điều chỉnh train/test split, learning rate, số epoch, nhiễu và chọn metric.",
+      "parameters": [
+        "learning rate",
+        "epoch",
+        "train/test split",
+        "metric",
+        "noise"
+      ],
+      "outputs": [
+        "đường học giả lập",
+        "metric",
+        "chẩn đoán underfit/overfit"
+      ]
+    }
+  ],
+  "practice": [
+    {
+      "id": "ai_prepare_prac_1",
+      "stage": "prepare",
+      "type": "mô phỏng thực hành",
+      "title": "GĐ1 · Chẩn đoán mô hình AI",
+      "mission": "Nhìn bảng metric, confusion matrix hoặc learning curve rồi đưa ra quyết định cải thiện mô hình.",
+      "steps": [
+        "xác định vấn đề",
+        "chọn metric ưu tiên",
+        "đề xuất chỉnh dữ liệu/mô hình",
+        "ghi kết luận thí nghiệm"
+      ],
+      "rubric": [
+        "chẩn đoán đúng",
+        "không lẫn metric",
+        "đề xuất có căn cứ",
+        "biết lập thí nghiệm tiếp theo"
+      ],
+      "feedback": "Nếu sai, hệ thống trỏ về bài ML/NN/đánh giá mô hình."
+    },
+    {
+      "id": "ai_preparatory_prac_1",
+      "stage": "preparatory",
+      "type": "mô phỏng thực hành",
+      "title": "GĐ2 · Chẩn đoán mô hình AI",
+      "mission": "Nhìn bảng metric, confusion matrix hoặc learning curve rồi đưa ra quyết định cải thiện mô hình.",
+      "steps": [
+        "xác định vấn đề",
+        "chọn metric ưu tiên",
+        "đề xuất chỉnh dữ liệu/mô hình",
+        "ghi kết luận thí nghiệm"
+      ],
+      "rubric": [
+        "chẩn đoán đúng",
+        "không lẫn metric",
+        "đề xuất có căn cứ",
+        "biết lập thí nghiệm tiếp theo"
+      ],
+      "feedback": "Nếu sai, hệ thống trỏ về bài ML/NN/đánh giá mô hình."
+    },
+    {
+      "id": "ai_m1_prac_1",
+      "stage": "m1",
+      "type": "mô phỏng thực hành",
+      "title": "HK1 · Chẩn đoán mô hình AI",
+      "mission": "Nhìn bảng metric, confusion matrix hoặc learning curve rồi đưa ra quyết định cải thiện mô hình.",
+      "steps": [
+        "xác định vấn đề",
+        "chọn metric ưu tiên",
+        "đề xuất chỉnh dữ liệu/mô hình",
+        "ghi kết luận thí nghiệm"
+      ],
+      "rubric": [
+        "chẩn đoán đúng",
+        "không lẫn metric",
+        "đề xuất có căn cứ",
+        "biết lập thí nghiệm tiếp theo"
+      ],
+      "feedback": "Nếu sai, hệ thống trỏ về bài ML/NN/đánh giá mô hình."
+    },
+    {
+      "id": "ai_m2_prac_1",
+      "stage": "m2",
+      "type": "mô phỏng thực hành",
+      "title": "HK2 · Chẩn đoán mô hình AI",
+      "mission": "Nhìn bảng metric, confusion matrix hoặc learning curve rồi đưa ra quyết định cải thiện mô hình.",
+      "steps": [
+        "xác định vấn đề",
+        "chọn metric ưu tiên",
+        "đề xuất chỉnh dữ liệu/mô hình",
+        "ghi kết luận thí nghiệm"
+      ],
+      "rubric": [
+        "chẩn đoán đúng",
+        "không lẫn metric",
+        "đề xuất có căn cứ",
+        "biết lập thí nghiệm tiếp theo"
+      ],
+      "feedback": "Nếu sai, hệ thống trỏ về bài ML/NN/đánh giá mô hình."
+    },
+    {
+      "id": "ai_m3_prac_1",
+      "stage": "m3",
+      "type": "mô phỏng thực hành",
+      "title": "HK3 · Chẩn đoán mô hình AI",
+      "mission": "Nhìn bảng metric, confusion matrix hoặc learning curve rồi đưa ra quyết định cải thiện mô hình.",
+      "steps": [
+        "xác định vấn đề",
+        "chọn metric ưu tiên",
+        "đề xuất chỉnh dữ liệu/mô hình",
+        "ghi kết luận thí nghiệm"
+      ],
+      "rubric": [
+        "chẩn đoán đúng",
+        "không lẫn metric",
+        "đề xuất có căn cứ",
+        "biết lập thí nghiệm tiếp theo"
+      ],
+      "feedback": "Nếu sai, hệ thống trỏ về bài ML/NN/đánh giá mô hình."
+    },
+    {
+      "id": "ai_m4_prac_1",
+      "stage": "m4",
+      "type": "mô phỏng thực hành",
+      "title": "HK4 · Chẩn đoán mô hình AI",
+      "mission": "Nhìn bảng metric, confusion matrix hoặc learning curve rồi đưa ra quyết định cải thiện mô hình.",
+      "steps": [
+        "xác định vấn đề",
+        "chọn metric ưu tiên",
+        "đề xuất chỉnh dữ liệu/mô hình",
+        "ghi kết luận thí nghiệm"
+      ],
+      "rubric": [
+        "chẩn đoán đúng",
+        "không lẫn metric",
+        "đề xuất có căn cứ",
+        "biết lập thí nghiệm tiếp theo"
+      ],
+      "feedback": "Nếu sai, hệ thống trỏ về bài ML/NN/đánh giá mô hình."
+    }
+  ]
+}

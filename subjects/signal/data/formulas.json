@@ -1,0 +1,34 @@
+[
+  {
+    "id": "f1",
+    "group": "mẫu/công thức",
+    "name": "Rolling mean",
+    "formula": "MA_t = mean(x_{t-w:t})",
+    "meaning": "Làm mượt chuỗi.",
+    "example": "Sensor trend."
+  },
+  {
+    "id": "f2",
+    "group": "mẫu/công thức",
+    "name": "Z-score",
+    "formula": "z=(x-μ)/σ",
+    "meaning": "Chuẩn hóa và phát hiện outlier sơ bộ.",
+    "example": "Baseline phát hiện bất thường trong telemetry."
+  },
+  {
+    "id": "f3",
+    "group": "mẫu/công thức",
+    "name": "Lag feature",
+    "formula": "x_{t-k}",
+    "meaning": "Đặc trưng quá khứ.",
+    "example": "Forecasting."
+  },
+  {
+    "id": "f4",
+    "group": "mẫu/công thức",
+    "name": "RMSE",
+    "formula": "sqrt(mean((y-ŷ)^2))",
+    "meaning": "Sai số dự báo nhấn mạnh lỗi lớn.",
+    "example": "Forecast comparison."
+  }
+]

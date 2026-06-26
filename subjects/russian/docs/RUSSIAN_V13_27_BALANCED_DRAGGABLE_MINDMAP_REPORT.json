@@ -1,0 +1,15 @@
+{
+  "version": "V13.27 Balanced Draggable Mind Map",
+  "changes": [
+    "Mind map không còn tạo trượt ngang: stage dùng tọa độ phần trăm và canvas overflow hidden.",
+    "Thu nhỏ, cân lại node chính/node con để tóm gọn trong một khung hình.",
+    "Bố trí nhánh theo ellipse 1200x760-850, child-node phân tầng theo hướng nhánh để tránh chỗ quá dày/quá thưa.",
+    "Node nội dung trong mind map có thể kéo nhẹ để view nhanh khi cần.",
+    "Giữ hoạt ảnh ghi nhớ nhưng giảm biên độ để đỡ rối mắt."
+  ],
+  "qa": [
+    "JS syntax checked",
+    "JSON manifest checked",
+    "zip tested"
+  ]
+}

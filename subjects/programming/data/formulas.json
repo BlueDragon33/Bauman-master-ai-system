@@ -1,0 +1,34 @@
+[
+  {
+    "id": "f1",
+    "group": "mẫu/công thức",
+    "name": "Repo layout",
+    "formula": "data/ notebooks/ src/ tests/ docs/",
+    "meaning": "Cấu trúc repo giúp tái lập.",
+    "example": "Dùng cho mọi project."
+  },
+  {
+    "id": "f2",
+    "group": "mẫu/công thức",
+    "name": "SQL workflow",
+    "formula": "CREATE → COPY → SELECT/JOIN → INDEX → EXPLAIN",
+    "meaning": "Chu trình làm CSDL học thuật.",
+    "example": "Tối ưu CSDL ML."
+  },
+  {
+    "id": "f3",
+    "group": "mẫu/công thức",
+    "name": "Test routine",
+    "formula": "arrange → act → assert",
+    "meaning": "Mẫu kiểm thử tối thiểu.",
+    "example": "Dùng trong Python project."
+  },
+  {
+    "id": "f4",
+    "group": "mẫu/công thức",
+    "name": "Release checklist",
+    "formula": "version, data hash, env, metrics, report",
+    "meaning": "Khóa phiên bản thực nghiệm.",
+    "example": "Dùng trước khi nộp luận văn."
+  }
+]

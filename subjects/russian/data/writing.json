@@ -1,0 +1,1994 @@
+[
+  {
+    "id": "WR001_vn_handwriting",
+    "stage": "vn",
+    "mode": "handwriting",
+    "title": "Luyện chữ & chính tả · giới thiệu bản thân",
+    "purpose": "Chép đúng chữ Cyrillic, dấu mềm, trọng âm và cụm sinh tồn.",
+    "prompt_vi": "Viết bằng tiếng Nga về chủ đề: giới thiệu bản thân. Bám đúng ngữ cảnh Nền Việt Nam A0-A2.",
+    "prompt_ru": "Напишите текст по теме: giới thiệu bản thân. Используйте академически нейтральный стиль.",
+    "target_words": 10,
+    "time_minutes": 8,
+    "required_patterns": [
+      "Запишите аккуратно: тема, дата, задание.",
+      "Подчеркните ударение в новых словах.",
+      "Перепишите фразу три раза без ошибки."
+    ],
+    "vocab_suggestions_ru": [
+      "пожалуйста",
+      "уточнить",
+      "подготовить",
+      "объяснить",
+      "задание",
+      "срок"
+    ],
+    "grammar_focus": [
+      "chữ hoa/chữ thường",
+      "trọng âm",
+      "dấu mềm",
+      "nét nối"
+    ],
+    "model_ru": "Я хотел бы уточнить задание и подготовить ответ к следующему занятию.",
+    "model_vi": "Mẫu chỉ để bám cấu trúc. Người học phải viết lại bằng thông tin của mình.",
+    "rubric": [
+      "Đúng ý nhiệm vụ",
+      "Dùng ít nhất 3 mẫu câu bắt buộc",
+      "Ít lỗi cách/cấu trúc",
+      "Có thể đọc to thành lời nói",
+      "Viết lại sau khi sửa"
+    ],
+    "rewrite_cycle": [
+      "Viết lần 1",
+      "Gạch lỗi",
+      "Xem mẫu chuẩn",
+      "Viết lại",
+      "Lưu lỗi cá nhân"
+    ]
+  },
+  {
+    "id": "WR002_vn_sentence",
+    "stage": "vn",
+    "mode": "sentence",
+    "title": "Viết câu · ghi ngày tháng và nhiệm vụ học",
+    "purpose": "Viết câu ngắn đúng cấu trúc, dùng ngay trong lớp và ký túc.",
+    "prompt_vi": "Viết bằng tiếng Nga về chủ đề: ghi ngày tháng và nhiệm vụ học. Bám đúng ngữ cảnh Nền Việt Nam A0-A2.",
+    "prompt_ru": "Напишите текст по теме: ghi ngày tháng và nhiệm vụ học. Используйте академически нейтральный стиль.",
+    "target_words": 25,
+    "time_minutes": 10,
+    "required_patterns": [
+      "Я хотел бы уточнить...",
+      "Мне нужно подготовить...",
+      "Я не совсем понял(а), как...",
+      "Можно, пожалуйста, повторить...?"
+    ],
+    "vocab_suggestions_ru": [
+      "пожалуйста",
+      "уточнить",
+      "подготовить",
+      "объяснить",
+      "задание",
+      "срок"
+    ],
+    "grammar_focus": [
+      "lịch sự với бы",
+      "cách 2 trong cụm danh từ",
+      "động từ hoàn/thể chưa hoàn",
+      "trật tự câu học thuật"
+    ],
+    "model_ru": "Я хотел бы уточнить задание и подготовить ответ к следующему занятию.",
+    "model_vi": "Mẫu chỉ để bám cấu trúc. Người học phải viết lại bằng thông tin của mình.",
+    "rubric": [
+      "Đúng ý nhiệm vụ",
+      "Dùng ít nhất 3 mẫu câu bắt buộc",
+      "Ít lỗi cách/cấu trúc",
+      "Có thể đọc to thành lời nói",
+      "Viết lại sau khi sửa"
+    ],
+    "rewrite_cycle": [
+      "Viết lần 1",
+      "Gạch lỗi",
+      "Xem mẫu chuẩn",
+      "Viết lại",
+      "Lưu lỗi cá nhân"
+    ]
+  },
+  {
+    "id": "WR003_vn_paragraph",
+    "stage": "vn",
+    "mode": "paragraph",
+    "title": "Viết đoạn · giới thiệu bản thân",
+    "purpose": "Ghép 4-8 câu thành đoạn có ý chính, lý do và kết luận nhỏ.",
+    "prompt_vi": "Viết bằng tiếng Nga về chủ đề: giới thiệu bản thân. Bám đúng ngữ cảnh Nền Việt Nam A0-A2.",
+    "prompt_ru": "Напишите текст по теме: giới thiệu bản thân. Используйте академически нейтральный стиль.",
+    "target_words": 60,
+    "time_minutes": 15,
+    "required_patterns": [
+      "Во-первых, ...",
+      "Кроме того, ...",
+      "Поэтому ...",
+      "Таким образом, ..."
+    ],
+    "vocab_suggestions_ru": [
+      "пожалуйста",
+      "уточнить",
+      "подготовить",
+      "объяснить",
+      "задание",
+      "срок"
+    ],
+    "grammar_focus": [
+      "lịch sự với бы",
+      "cách 2 trong cụm danh từ",
+      "động từ hoàn/thể chưa hoàn",
+      "trật tự câu học thuật"
+    ],
+    "model_ru": "Я хотел бы уточнить задание и подготовить ответ к следующему занятию.",
+    "model_vi": "Mẫu chỉ để bám cấu trúc. Người học phải viết lại bằng thông tin của mình.",
+    "rubric": [
+      "Đúng ý nhiệm vụ",
+      "Dùng ít nhất 3 mẫu câu bắt buộc",
+      "Ít lỗi cách/cấu trúc",
+      "Có thể đọc to thành lời nói",
+      "Viết lại sau khi sửa"
+    ],
+    "rewrite_cycle": [
+      "Viết lần 1",
+      "Gạch lỗi",
+      "Xem mẫu chuẩn",
+      "Viết lại",
+      "Lưu lỗi cá nhân"
+    ]
+  },
+  {
+    "id": "WR004_vn_email",
+    "stage": "vn",
+    "mode": "email",
+    "title": "Email học thuật · hỏi lại khi chưa hiểu",
+    "purpose": "Viết thư cho giáo viên, giáo vụ, thầy hướng dẫn, nhóm lab.",
+    "prompt_vi": "Viết bằng tiếng Nga về chủ đề: hỏi lại khi chưa hiểu. Bám đúng ngữ cảnh Nền Việt Nam A0-A2.",
+    "prompt_ru": "Напишите текст по теме: hỏi lại khi chưa hiểu. Используйте академически нейтральный стиль.",
+    "target_words": 80,
+    "time_minutes": 18,
+    "required_patterns": [
+      "Уважаемый(ая) ...",
+      "Я хотел бы уточнить ...",
+      "Буду благодарен за ответ.",
+      "С уважением, ..."
+    ],
+    "vocab_suggestions_ru": [
+      "пожалуйста",
+      "уточнить",
+      "подготовить",
+      "объяснить",
+      "задание",
+      "срок"
+    ],
+    "grammar_focus": [
+      "lịch sự với бы",
+      "cách 2 trong cụm danh từ",
+      "động từ hoàn/thể chưa hoàn",
+      "trật tự câu học thuật"
+    ],
+    "model_ru": "Уважаемый преподаватель, я хотел бы уточнить срок сдачи задания. Буду благодарен за ответ.",
+    "model_vi": "Mẫu chỉ để bám cấu trúc. Người học phải viết lại bằng thông tin của mình.",
+    "rubric": [
+      "Đúng ý nhiệm vụ",
+      "Dùng ít nhất 3 mẫu câu bắt buộc",
+      "Ít lỗi cách/cấu trúc",
+      "Có thể đọc to thành lời nói",
+      "Viết lại sau khi sửa"
+    ],
+    "rewrite_cycle": [
+      "Viết lần 1",
+      "Gạch lỗi",
+      "Xem mẫu chuẩn",
+      "Viết lại",
+      "Lưu lỗi cá nhân"
+    ]
+  },
+  {
+    "id": "WR005_vn_report",
+    "stage": "vn",
+    "mode": "report",
+    "title": "Báo cáo / lab · mô tả kế hoạch sang Nga",
+    "purpose": "Mô tả nhiệm vụ, phương pháp, dữ liệu, kết quả và lỗi.",
+    "prompt_vi": "Viết bằng tiếng Nga về chủ đề: mô tả kế hoạch sang Nga. Bám đúng ngữ cảnh Nền Việt Nam A0-A2.",
+    "prompt_ru": "Напишите текст по теме: mô tả kế hoạch sang Nga. Используйте академически нейтральный стиль.",
+    "target_words": 120,
+    "time_minutes": 25,
+    "required_patterns": [
+      "Цель работы состоит в ...",
+      "В ходе работы был использован ...",
+      "Полученные результаты показывают ...",
+      "Ошибка возникла из-за ..."
+    ],
+    "vocab_suggestions_ru": [
+      "срок",
+      "задание",
+      "результат",
+      "метод",
+      "ошибка",
+      "исследование",
+      "цель",
+      "данные"
+    ],
+    "grammar_focus": [
+      "lịch sự với бы",
+      "cách 2 trong cụm danh từ",
+      "động từ hoàn/thể chưa hoàn",
+      "trật tự câu học thuật"
+    ],
+    "model_ru": "Я хотел бы уточнить задание и подготовить ответ к следующему занятию.",
+    "model_vi": "Mẫu chỉ để bám cấu trúc. Người học phải viết lại bằng thông tin của mình.",
+    "rubric": [
+      "Đúng ý nhiệm vụ",
+      "Dùng ít nhất 3 mẫu câu bắt buộc",
+      "Ít lỗi cách/cấu trúc",
+      "Có thể đọc to thành lời nói",
+      "Viết lại sau khi sửa"
+    ],
+    "rewrite_cycle": [
+      "Viết lần 1",
+      "Gạch lỗi",
+      "Xem mẫu chuẩn",
+      "Viết lại",
+      "Lưu lỗi cá nhân"
+    ]
+  },
+  {
+    "id": "WR006_vn_thesis",
+    "stage": "vn",
+    "mode": "thesis",
+    "title": "НИР / ВКР / luận văn · giới thiệu bản thân",
+    "purpose": "Viết mục tiêu, nhiệm vụ, phương pháp, kết quả và kết luận nghiên cứu.",
+    "prompt_vi": "Viết bằng tiếng Nga về chủ đề: giới thiệu bản thân. Bám đúng ngữ cảnh Nền Việt Nam A0-A2.",
+    "prompt_ru": "Напишите текст по теме: giới thiệu bản thân. Используйте академически нейтральный стиль.",
+    "target_words": 160,
+    "time_minutes": 30,
+    "required_patterns": [
+      "Целью данной работы является ...",
+      "Для достижения цели необходимо решить следующие задачи ...",
+      "В работе рассматривается метод ...",
+      "Практическая значимость заключается в ..."
+    ],
+    "vocab_suggestions_ru": [
+      "срок",
+      "задание",
+      "результат",
+      "метод",
+      "ошибка",
+      "исследование",
+      "цель",
+      "данные"
+    ],
+    "grammar_focus": [
+      "lịch sự với бы",
+      "cách 2 trong cụm danh từ",
+      "động từ hoàn/thể chưa hoàn",
+      "trật tự câu học thuật"
+    ],
+    "model_ru": "Целью данной работы является анализ данных и описание полученных результатов.",
+    "model_vi": "Mẫu chỉ để bám cấu trúc. Người học phải viết lại bằng thông tin của mình.",
+    "rubric": [
+      "Đúng ý nhiệm vụ",
+      "Dùng ít nhất 3 mẫu câu bắt buộc",
+      "Ít lỗi cách/cấu trúc",
+      "Có thể đọc to thành lời nói",
+      "Viết lại sau khi sửa"
+    ],
+    "rewrite_cycle": [
+      "Viết lần 1",
+      "Gạch lỗi",
+      "Xem mẫu chuẩn",
+      "Viết lại",
+      "Lưu lỗi cá nhân"
+    ]
+  },
+  {
+    "id": "WR007_vn_error_log",
+    "stage": "vn",
+    "mode": "error-log",
+    "title": "Kho lỗi sai của tôi · giới thiệu bản thân",
+    "purpose": "Ghi lỗi cá nhân, viết lại câu đúng và ôn sau vài ngày.",
+    "prompt_vi": "Viết bằng tiếng Nga về chủ đề: giới thiệu bản thân. Bám đúng ngữ cảnh Nền Việt Nam A0-A2.",
+    "prompt_ru": "Напишите текст по теме: giới thiệu bản thân. Используйте академически нейтральный стиль.",
+    "target_words": 50,
+    "time_minutes": 12,
+    "required_patterns": [
+      "Было: ...",
+      "Правильно: ...",
+      "Почему ошибка возникла: ...",
+      "Новая фраза с этим правилом: ..."
+    ],
+    "vocab_suggestions_ru": [
+      "пожалуйста",
+      "уточнить",
+      "подготовить",
+      "объяснить",
+      "задание",
+      "срок"
+    ],
+    "grammar_focus": [
+      "lịch sự với бы",
+      "cách 2 trong cụm danh từ",
+      "động từ hoàn/thể chưa hoàn",
+      "trật tự câu học thuật"
+    ],
+    "model_ru": "Я хотел бы уточнить задание и подготовить ответ к следующему занятию.",
+    "model_vi": "Mẫu chỉ để bám cấu trúc. Người học phải viết lại bằng thông tin của mình.",
+    "rubric": [
+      "Đúng ý nhiệm vụ",
+      "Dùng ít nhất 3 mẫu câu bắt buộc",
+      "Ít lỗi cách/cấu trúc",
+      "Có thể đọc to thành lời nói",
+      "Viết lại sau khi sửa"
+    ],
+    "rewrite_cycle": [
+      "Viết lần 1",
+      "Gạch lỗi",
+      "Xem mẫu chuẩn",
+      "Viết lại",
+      "Lưu lỗi cá nhân"
+    ]
+  },
+  {
+    "id": "WR008_prep_handwriting",
+    "stage": "prep",
+    "mode": "handwriting",
+    "title": "Luyện chữ & chính tả · báo lý do vắng học",
+    "purpose": "Chép đúng chữ Cyrillic, dấu mềm, trọng âm và cụm sinh tồn.",
+    "prompt_vi": "Viết bằng tiếng Nga về chủ đề: báo lý do vắng học. Bám đúng ngữ cảnh Dự bị Nga / STANKIN.",
+    "prompt_ru": "Напишите текст по теме: báo lý do vắng học. Используйте академически нейтральный стиль.",
+    "target_words": 10,
+    "time_minutes": 8,
+    "required_patterns": [
+      "Запишите аккуратно: тема, дата, задание.",
+      "Подчеркните ударение в новых словах.",
+      "Перепишите фразу три раза без ошибки."
+    ],
+    "vocab_suggestions_ru": [
+      "пожалуйста",
+      "уточнить",
+      "подготовить",
+      "объяснить",
+      "задание",
+      "срок"
+    ],
+    "grammar_focus": [
+      "chữ hoa/chữ thường",
+      "trọng âm",
+      "dấu mềm",
+      "nét nối"
+    ],
+    "model_ru": "Я хотел бы уточнить задание и подготовить ответ к следующему занятию.",
+    "model_vi": "Mẫu chỉ để bám cấu trúc. Người học phải viết lại bằng thông tin của mình.",
+    "rubric": [
+      "Đúng ý nhiệm vụ",
+      "Dùng ít nhất 3 mẫu câu bắt buộc",
+      "Ít lỗi cách/cấu trúc",
+      "Có thể đọc to thành lời nói",
+      "Viết lại sau khi sửa"
+    ],
+    "rewrite_cycle": [
+      "Viết lần 1",
+      "Gạch lỗi",
+      "Xem mẫu chuẩn",
+      "Viết lại",
+      "Lưu lỗi cá nhân"
+    ]
+  },
+  {
+    "id": "WR009_prep_sentence",
+    "stage": "prep",
+    "mode": "sentence",
+    "title": "Viết câu · mô tả bài tập dự bị",
+    "purpose": "Viết câu ngắn đúng cấu trúc, dùng ngay trong lớp và ký túc.",
+    "prompt_vi": "Viết bằng tiếng Nga về chủ đề: mô tả bài tập dự bị. Bám đúng ngữ cảnh Dự bị Nga / STANKIN.",
+    "prompt_ru": "Напишите текст по теме: mô tả bài tập dự bị. Используйте академически нейтральный стиль.",
+    "target_words": 25,
+    "time_minutes": 10,
+    "required_patterns": [
+      "Я хотел бы уточнить...",
+      "Мне нужно подготовить...",
+      "Я не совсем понял(а), как...",
+      "Можно, пожалуйста, повторить...?"
+    ],
+    "vocab_suggestions_ru": [
+      "пожалуйста",
+      "уточнить",
+      "подготовить",
+      "объяснить",
+      "задание",
+      "срок"
+    ],
+    "grammar_focus": [
+      "lịch sự với бы",
+      "cách 2 trong cụm danh từ",
+      "động từ hoàn/thể chưa hoàn",
+      "trật tự câu học thuật"
+    ],
+    "model_ru": "Я хотел бы уточнить задание и подготовить ответ к следующему занятию.",
+    "model_vi": "Mẫu chỉ để bám cấu trúc. Người học phải viết lại bằng thông tin của mình.",
+    "rubric": [
+      "Đúng ý nhiệm vụ",
+      "Dùng ít nhất 3 mẫu câu bắt buộc",
+      "Ít lỗi cách/cấu trúc",
+      "Có thể đọc to thành lời nói",
+      "Viết lại sau khi sửa"
+    ],
+    "rewrite_cycle": [
+      "Viết lần 1",
+      "Gạch lỗi",
+      "Xem mẫu chuẩn",
+      "Viết lại",
+      "Lưu lỗi cá nhân"
+    ]
+  },
+  {
+    "id": "WR010_prep_paragraph",
+    "stage": "prep",
+    "mode": "paragraph",
+    "title": "Viết đoạn · báo lý do vắng học",
+    "purpose": "Ghép 4-8 câu thành đoạn có ý chính, lý do và kết luận nhỏ.",
+    "prompt_vi": "Viết bằng tiếng Nga về chủ đề: báo lý do vắng học. Bám đúng ngữ cảnh Dự bị Nga / STANKIN.",
+    "prompt_ru": "Напишите текст по теме: báo lý do vắng học. Используйте академически нейтральный стиль.",
+    "target_words": 60,
+    "time_minutes": 15,
+    "required_patterns": [
+      "Во-первых, ...",
+      "Кроме того, ...",
+      "Поэтому ...",
+      "Таким образом, ..."
+    ],
+    "vocab_suggestions_ru": [
+      "пожалуйста",
+      "уточнить",
+      "подготовить",
+      "объяснить",
+      "задание",
+      "срок"
+    ],
+    "grammar_focus": [
+      "lịch sự với бы",
+      "cách 2 trong cụm danh từ",
+      "động từ hoàn/thể chưa hoàn",
+      "trật tự câu học thuật"
+    ],
+    "model_ru": "Я хотел бы уточнить задание и подготовить ответ к следующему занятию.",
+    "model_vi": "Mẫu chỉ để bám cấu trúc. Người học phải viết lại bằng thông tin của mình.",
+    "rubric": [
+      "Đúng ý nhiệm vụ",
+      "Dùng ít nhất 3 mẫu câu bắt buộc",
+      "Ít lỗi cách/cấu trúc",
+      "Có thể đọc to thành lời nói",
+      "Viết lại sau khi sửa"
+    ],
+    "rewrite_cycle": [
+      "Viết lần 1",
+      "Gạch lỗi",
+      "Xem mẫu chuẩn",
+      "Viết lại",
+      "Lưu lỗi cá nhân"
+    ]
+  },
+  {
+    "id": "WR011_prep_email",
+    "stage": "prep",
+    "mode": "email",
+    "title": "Email học thuật · email hỏi lịch học",
+    "purpose": "Viết thư cho giáo viên, giáo vụ, thầy hướng dẫn, nhóm lab.",
+    "prompt_vi": "Viết bằng tiếng Nga về chủ đề: email hỏi lịch học. Bám đúng ngữ cảnh Dự bị Nga / STANKIN.",
+    "prompt_ru": "Напишите текст по теме: email hỏi lịch học. Используйте академически нейтральный стиль.",
+    "target_words": 80,
+    "time_minutes": 18,
+    "required_patterns": [
+      "Уважаемый(ая) ...",
+      "Я хотел бы уточнить ...",
+      "Буду благодарен за ответ.",
+      "С уважением, ..."
+    ],
+    "vocab_suggestions_ru": [
+      "пожалуйста",
+      "уточнить",
+      "подготовить",
+      "объяснить",
+      "задание",
+      "срок"
+    ],
+    "grammar_focus": [
+      "lịch sự với бы",
+      "cách 2 trong cụm danh từ",
+      "động từ hoàn/thể chưa hoàn",
+      "trật tự câu học thuật"
+    ],
+    "model_ru": "Уважаемый преподаватель, я хотел бы уточнить срок сдачи задания. Буду благодарен за ответ.",
+    "model_vi": "Mẫu chỉ để bám cấu trúc. Người học phải viết lại bằng thông tin của mình.",
+    "rubric": [
+      "Đúng ý nhiệm vụ",
+      "Dùng ít nhất 3 mẫu câu bắt buộc",
+      "Ít lỗi cách/cấu trúc",
+      "Có thể đọc to thành lời nói",
+      "Viết lại sau khi sửa"
+    ],
+    "rewrite_cycle": [
+      "Viết lần 1",
+      "Gạch lỗi",
+      "Xem mẫu chuẩn",
+      "Viết lại",
+      "Lưu lỗi cá nhân"
+    ]
+  },
+  {
+    "id": "WR012_prep_report",
+    "stage": "prep",
+    "mode": "report",
+    "title": "Báo cáo / lab · xin giải thích bài toán",
+    "purpose": "Mô tả nhiệm vụ, phương pháp, dữ liệu, kết quả và lỗi.",
+    "prompt_vi": "Viết bằng tiếng Nga về chủ đề: xin giải thích bài toán. Bám đúng ngữ cảnh Dự bị Nga / STANKIN.",
+    "prompt_ru": "Напишите текст по теме: xin giải thích bài toán. Используйте академически нейтральный стиль.",
+    "target_words": 120,
+    "time_minutes": 25,
+    "required_patterns": [
+      "Цель работы состоит в ...",
+      "В ходе работы был использован ...",
+      "Полученные результаты показывают ...",
+      "Ошибка возникла из-за ..."
+    ],
+    "vocab_suggestions_ru": [
+      "срок",
+      "задание",
+      "результат",
+      "метод",
+      "ошибка",
+      "исследование",
+      "цель",
+      "данные"
+    ],
+    "grammar_focus": [
+      "lịch sự với бы",
+      "cách 2 trong cụm danh từ",
+      "động từ hoàn/thể chưa hoàn",
+      "trật tự câu học thuật"
+    ],
+    "model_ru": "Я хотел бы уточнить задание и подготовить ответ к следующему занятию.",
+    "model_vi": "Mẫu chỉ để bám cấu trúc. Người học phải viết lại bằng thông tin của mình.",
+    "rubric": [
+      "Đúng ý nhiệm vụ",
+      "Dùng ít nhất 3 mẫu câu bắt buộc",
+      "Ít lỗi cách/cấu trúc",
+      "Có thể đọc to thành lời nói",
+      "Viết lại sau khi sửa"
+    ],
+    "rewrite_cycle": [
+      "Viết lần 1",
+      "Gạch lỗi",
+      "Xem mẫu chuẩn",
+      "Viết lại",
+      "Lưu lỗi cá nhân"
+    ]
+  },
+  {
+    "id": "WR013_prep_thesis",
+    "stage": "prep",
+    "mode": "thesis",
+    "title": "НИР / ВКР / luận văn · báo lý do vắng học",
+    "purpose": "Viết mục tiêu, nhiệm vụ, phương pháp, kết quả và kết luận nghiên cứu.",
+    "prompt_vi": "Viết bằng tiếng Nga về chủ đề: báo lý do vắng học. Bám đúng ngữ cảnh Dự bị Nga / STANKIN.",
+    "prompt_ru": "Напишите текст по теме: báo lý do vắng học. Используйте академически нейтральный стиль.",
+    "target_words": 160,
+    "time_minutes": 30,
+    "required_patterns": [
+      "Целью данной работы является ...",
+      "Для достижения цели необходимо решить следующие задачи ...",
+      "В работе рассматривается метод ...",
+      "Практическая значимость заключается в ..."
+    ],
+    "vocab_suggestions_ru": [
+      "срок",
+      "задание",
+      "результат",
+      "метод",
+      "ошибка",
+      "исследование",
+      "цель",
+      "данные"
+    ],
+    "grammar_focus": [
+      "lịch sự với бы",
+      "cách 2 trong cụm danh từ",
+      "động từ hoàn/thể chưa hoàn",
+      "trật tự câu học thuật"
+    ],
+    "model_ru": "Целью данной работы является анализ данных и описание полученных результатов.",
+    "model_vi": "Mẫu chỉ để bám cấu trúc. Người học phải viết lại bằng thông tin của mình.",
+    "rubric": [
+      "Đúng ý nhiệm vụ",
+      "Dùng ít nhất 3 mẫu câu bắt buộc",
+      "Ít lỗi cách/cấu trúc",
+      "Có thể đọc to thành lời nói",
+      "Viết lại sau khi sửa"
+    ],
+    "rewrite_cycle": [
+      "Viết lần 1",
+      "Gạch lỗi",
+      "Xem mẫu chuẩn",
+      "Viết lại",
+      "Lưu lỗi cá nhân"
+    ]
+  },
+  {
+    "id": "WR014_prep_error_log",
+    "stage": "prep",
+    "mode": "error-log",
+    "title": "Kho lỗi sai của tôi · báo lý do vắng học",
+    "purpose": "Ghi lỗi cá nhân, viết lại câu đúng và ôn sau vài ngày.",
+    "prompt_vi": "Viết bằng tiếng Nga về chủ đề: báo lý do vắng học. Bám đúng ngữ cảnh Dự bị Nga / STANKIN.",
+    "prompt_ru": "Напишите текст по теме: báo lý do vắng học. Используйте академически нейтральный стиль.",
+    "target_words": 50,
+    "time_minutes": 12,
+    "required_patterns": [
+      "Было: ...",
+      "Правильно: ...",
+      "Почему ошибка возникла: ...",
+      "Новая фраза с этим правилом: ..."
+    ],
+    "vocab_suggestions_ru": [
+      "пожалуйста",
+      "уточнить",
+      "подготовить",
+      "объяснить",
+      "задание",
+      "срок"
+    ],
+    "grammar_focus": [
+      "lịch sự với бы",
+      "cách 2 trong cụm danh từ",
+      "động từ hoàn/thể chưa hoàn",
+      "trật tự câu học thuật"
+    ],
+    "model_ru": "Я хотел бы уточнить задание и подготовить ответ к следующему занятию.",
+    "model_vi": "Mẫu chỉ để bám cấu trúc. Người học phải viết lại bằng thông tin của mình.",
+    "rubric": [
+      "Đúng ý nhiệm vụ",
+      "Dùng ít nhất 3 mẫu câu bắt buộc",
+      "Ít lỗi cách/cấu trúc",
+      "Có thể đọc to thành lời nói",
+      "Viết lại sau khi sửa"
+    ],
+    "rewrite_cycle": [
+      "Viết lần 1",
+      "Gạch lỗi",
+      "Xem mẫu chuẩn",
+      "Viết lại",
+      "Lưu lỗi cá nhân"
+    ]
+  },
+  {
+    "id": "WR015_hk1_handwriting",
+    "stage": "hk1",
+    "mode": "handwriting",
+    "title": "Luyện chữ & chính tả · ghi chú bài giảng",
+    "purpose": "Chép đúng chữ Cyrillic, dấu mềm, trọng âm và cụm sinh tồn.",
+    "prompt_vi": "Viết bằng tiếng Nga về chủ đề: ghi chú bài giảng. Bám đúng ngữ cảnh Bauman HK1.",
+    "prompt_ru": "Напишите текст по теме: ghi chú bài giảng. Используйте академически нейтральный стиль.",
+    "target_words": 10,
+    "time_minutes": 8,
+    "required_patterns": [
+      "Запишите аккуратно: тема, дата, задание.",
+      "Подчеркните ударение в новых словах.",
+      "Перепишите фразу три раза без ошибки."
+    ],
+    "vocab_suggestions_ru": [
+      "пожалуйста",
+      "уточнить",
+      "подготовить",
+      "объяснить",
+      "задание",
+      "срок"
+    ],
+    "grammar_focus": [
+      "chữ hoa/chữ thường",
+      "trọng âm",
+      "dấu mềm",
+      "nét nối"
+    ],
+    "model_ru": "Я хотел бы уточнить задание и подготовить ответ к следующему занятию.",
+    "model_vi": "Mẫu chỉ để bám cấu trúc. Người học phải viết lại bằng thông tin của mình.",
+    "rubric": [
+      "Đúng ý nhiệm vụ",
+      "Dùng ít nhất 3 mẫu câu bắt buộc",
+      "Ít lỗi cách/cấu trúc",
+      "Có thể đọc to thành lời nói",
+      "Viết lại sau khi sửa"
+    ],
+    "rewrite_cycle": [
+      "Viết lần 1",
+      "Gạch lỗi",
+      "Xem mẫu chuẩn",
+      "Viết lại",
+      "Lưu lỗi cá nhân"
+    ]
+  },
+  {
+    "id": "WR016_hk1_sentence",
+    "stage": "hk1",
+    "mode": "sentence",
+    "title": "Viết câu · mô tả đề cương môn học",
+    "purpose": "Viết câu ngắn đúng cấu trúc, dùng ngay trong lớp và ký túc.",
+    "prompt_vi": "Viết bằng tiếng Nga về chủ đề: mô tả đề cương môn học. Bám đúng ngữ cảnh Bauman HK1.",
+    "prompt_ru": "Напишите текст по теме: mô tả đề cương môn học. Используйте академически нейтральный стиль.",
+    "target_words": 25,
+    "time_minutes": 10,
+    "required_patterns": [
+      "Я хотел бы уточнить...",
+      "Мне нужно подготовить...",
+      "Я не совсем понял(а), как...",
+      "Можно, пожалуйста, повторить...?"
+    ],
+    "vocab_suggestions_ru": [
+      "пожалуйста",
+      "уточнить",
+      "подготовить",
+      "объяснить",
+      "задание",
+      "срок"
+    ],
+    "grammar_focus": [
+      "lịch sự với бы",
+      "cách 2 trong cụm danh từ",
+      "động từ hoàn/thể chưa hoàn",
+      "trật tự câu học thuật"
+    ],
+    "model_ru": "Я хотел бы уточнить задание и подготовить ответ к следующему занятию.",
+    "model_vi": "Mẫu chỉ để bám cấu trúc. Người học phải viết lại bằng thông tin của mình.",
+    "rubric": [
+      "Đúng ý nhiệm vụ",
+      "Dùng ít nhất 3 mẫu câu bắt buộc",
+      "Ít lỗi cách/cấu trúc",
+      "Có thể đọc to thành lời nói",
+      "Viết lại sau khi sửa"
+    ],
+    "rewrite_cycle": [
+      "Viết lần 1",
+      "Gạch lỗi",
+      "Xem mẫu chuẩn",
+      "Viết lại",
+      "Lưu lỗi cá nhân"
+    ]
+  },
+  {
+    "id": "WR017_hk1_paragraph",
+    "stage": "hk1",
+    "mode": "paragraph",
+    "title": "Viết đoạn · ghi chú bài giảng",
+    "purpose": "Ghép 4-8 câu thành đoạn có ý chính, lý do và kết luận nhỏ.",
+    "prompt_vi": "Viết bằng tiếng Nga về chủ đề: ghi chú bài giảng. Bám đúng ngữ cảnh Bauman HK1.",
+    "prompt_ru": "Напишите текст по теме: ghi chú bài giảng. Используйте академически нейтральный стиль.",
+    "target_words": 60,
+    "time_minutes": 15,
+    "required_patterns": [
+      "Во-первых, ...",
+      "Кроме того, ...",
+      "Поэтому ...",
+      "Таким образом, ..."
+    ],
+    "vocab_suggestions_ru": [
+      "пожалуйста",
+      "уточнить",
+      "подготовить",
+      "объяснить",
+      "задание",
+      "срок"
+    ],
+    "grammar_focus": [
+      "lịch sự với бы",
+      "cách 2 trong cụm danh từ",
+      "động từ hoàn/thể chưa hoàn",
+      "trật tự câu học thuật"
+    ],
+    "model_ru": "Я хотел бы уточнить задание и подготовить ответ к следующему занятию.",
+    "model_vi": "Mẫu chỉ để bám cấu trúc. Người học phải viết lại bằng thông tin của mình.",
+    "rubric": [
+      "Đúng ý nhiệm vụ",
+      "Dùng ít nhất 3 mẫu câu bắt buộc",
+      "Ít lỗi cách/cấu trúc",
+      "Có thể đọc to thành lời nói",
+      "Viết lại sau khi sửa"
+    ],
+    "rewrite_cycle": [
+      "Viết lần 1",
+      "Gạch lỗi",
+      "Xem mẫu chuẩn",
+      "Viết lại",
+      "Lưu lỗi cá nhân"
+    ]
+  },
+  {
+    "id": "WR018_hk1_email",
+    "stage": "hk1",
+    "mode": "email",
+    "title": "Email học thuật · đặt câu hỏi về thuật toán",
+    "purpose": "Viết thư cho giáo viên, giáo vụ, thầy hướng dẫn, nhóm lab.",
+    "prompt_vi": "Viết bằng tiếng Nga về chủ đề: đặt câu hỏi về thuật toán. Bám đúng ngữ cảnh Bauman HK1.",
+    "prompt_ru": "Напишите текст по теме: đặt câu hỏi về thuật toán. Используйте академически нейтральный стиль.",
+    "target_words": 80,
+    "time_minutes": 18,
+    "required_patterns": [
+      "Уважаемый(ая) ...",
+      "Я хотел бы уточнить ...",
+      "Буду благодарен за ответ.",
+      "С уважением, ..."
+    ],
+    "vocab_suggestions_ru": [
+      "пожалуйста",
+      "уточнить",
+      "подготовить",
+      "объяснить",
+      "задание",
+      "срок"
+    ],
+    "grammar_focus": [
+      "lịch sự với бы",
+      "cách 2 trong cụm danh từ",
+      "động từ hoàn/thể chưa hoàn",
+      "trật tự câu học thuật"
+    ],
+    "model_ru": "Уважаемый преподаватель, я хотел бы уточнить срок сдачи задания. Буду благодарен за ответ.",
+    "model_vi": "Mẫu chỉ để bám cấu trúc. Người học phải viết lại bằng thông tin của mình.",
+    "rubric": [
+      "Đúng ý nhiệm vụ",
+      "Dùng ít nhất 3 mẫu câu bắt buộc",
+      "Ít lỗi cách/cấu trúc",
+      "Có thể đọc to thành lời nói",
+      "Viết lại sau khi sửa"
+    ],
+    "rewrite_cycle": [
+      "Viết lần 1",
+      "Gạch lỗi",
+      "Xem mẫu chuẩn",
+      "Viết lại",
+      "Lưu lỗi cá nhân"
+    ]
+  },
+  {
+    "id": "WR019_hk1_report",
+    "stage": "hk1",
+    "mode": "report",
+    "title": "Báo cáo / lab · viết định nghĩa kỹ thuật",
+    "purpose": "Mô tả nhiệm vụ, phương pháp, dữ liệu, kết quả và lỗi.",
+    "prompt_vi": "Viết bằng tiếng Nga về chủ đề: viết định nghĩa kỹ thuật. Bám đúng ngữ cảnh Bauman HK1.",
+    "prompt_ru": "Напишите текст по теме: viết định nghĩa kỹ thuật. Используйте академически нейтральный стиль.",
+    "target_words": 120,
+    "time_minutes": 25,
+    "required_patterns": [
+      "Цель работы состоит в ...",
+      "В ходе работы был использован ...",
+      "Полученные результаты показывают ...",
+      "Ошибка возникла из-за ..."
+    ],
+    "vocab_suggestions_ru": [
+      "срок",
+      "задание",
+      "результат",
+      "метод",
+      "ошибка",
+      "исследование",
+      "цель",
+      "данные"
+    ],
+    "grammar_focus": [
+      "lịch sự với бы",
+      "cách 2 trong cụm danh từ",
+      "động từ hoàn/thể chưa hoàn",
+      "trật tự câu học thuật"
+    ],
+    "model_ru": "Я хотел бы уточнить задание и подготовить ответ к следующему занятию.",
+    "model_vi": "Mẫu chỉ để bám cấu trúc. Người học phải viết lại bằng thông tin của mình.",
+    "rubric": [
+      "Đúng ý nhiệm vụ",
+      "Dùng ít nhất 3 mẫu câu bắt buộc",
+      "Ít lỗi cách/cấu trúc",
+      "Có thể đọc to thành lời nói",
+      "Viết lại sau khi sửa"
+    ],
+    "rewrite_cycle": [
+      "Viết lần 1",
+      "Gạch lỗi",
+      "Xem mẫu chuẩn",
+      "Viết lại",
+      "Lưu lỗi cá nhân"
+    ]
+  },
+  {
+    "id": "WR020_hk1_thesis",
+    "stage": "hk1",
+    "mode": "thesis",
+    "title": "НИР / ВКР / luận văn · ghi chú bài giảng",
+    "purpose": "Viết mục tiêu, nhiệm vụ, phương pháp, kết quả và kết luận nghiên cứu.",
+    "prompt_vi": "Viết bằng tiếng Nga về chủ đề: ghi chú bài giảng. Bám đúng ngữ cảnh Bauman HK1.",
+    "prompt_ru": "Напишите текст по теме: ghi chú bài giảng. Используйте академически нейтральный стиль.",
+    "target_words": 160,
+    "time_minutes": 30,
+    "required_patterns": [
+      "Целью данной работы является ...",
+      "Для достижения цели необходимо решить следующие задачи ...",
+      "В работе рассматривается метод ...",
+      "Практическая значимость заключается в ..."
+    ],
+    "vocab_suggestions_ru": [
+      "срок",
+      "задание",
+      "результат",
+      "метод",
+      "ошибка",
+      "исследование",
+      "цель",
+      "данные"
+    ],
+    "grammar_focus": [
+      "lịch sự với бы",
+      "cách 2 trong cụm danh từ",
+      "động từ hoàn/thể chưa hoàn",
+      "trật tự câu học thuật"
+    ],
+    "model_ru": "Целью данной работы является анализ данных и описание полученных результатов.",
+    "model_vi": "Mẫu chỉ để bám cấu trúc. Người học phải viết lại bằng thông tin của mình.",
+    "rubric": [
+      "Đúng ý nhiệm vụ",
+      "Dùng ít nhất 3 mẫu câu bắt buộc",
+      "Ít lỗi cách/cấu trúc",
+      "Có thể đọc to thành lời nói",
+      "Viết lại sau khi sửa"
+    ],
+    "rewrite_cycle": [
+      "Viết lần 1",
+      "Gạch lỗi",
+      "Xem mẫu chuẩn",
+      "Viết lại",
+      "Lưu lỗi cá nhân"
+    ]
+  },
+  {
+    "id": "WR021_hk1_error_log",
+    "stage": "hk1",
+    "mode": "error-log",
+    "title": "Kho lỗi sai của tôi · ghi chú bài giảng",
+    "purpose": "Ghi lỗi cá nhân, viết lại câu đúng và ôn sau vài ngày.",
+    "prompt_vi": "Viết bằng tiếng Nga về chủ đề: ghi chú bài giảng. Bám đúng ngữ cảnh Bauman HK1.",
+    "prompt_ru": "Напишите текст по теме: ghi chú bài giảng. Используйте академически нейтральный стиль.",
+    "target_words": 50,
+    "time_minutes": 12,
+    "required_patterns": [
+      "Было: ...",
+      "Правильно: ...",
+      "Почему ошибка возникла: ...",
+      "Новая фраза с этим правилом: ..."
+    ],
+    "vocab_suggestions_ru": [
+      "пожалуйста",
+      "уточнить",
+      "подготовить",
+      "объяснить",
+      "задание",
+      "срок"
+    ],
+    "grammar_focus": [
+      "lịch sự với бы",
+      "cách 2 trong cụm danh từ",
+      "động từ hoàn/thể chưa hoàn",
+      "trật tự câu học thuật"
+    ],
+    "model_ru": "Я хотел бы уточнить задание и подготовить ответ к следующему занятию.",
+    "model_vi": "Mẫu chỉ để bám cấu trúc. Người học phải viết lại bằng thông tin của mình.",
+    "rubric": [
+      "Đúng ý nhiệm vụ",
+      "Dùng ít nhất 3 mẫu câu bắt buộc",
+      "Ít lỗi cách/cấu trúc",
+      "Có thể đọc to thành lời nói",
+      "Viết lại sau khi sửa"
+    ],
+    "rewrite_cycle": [
+      "Viết lần 1",
+      "Gạch lỗi",
+      "Xem mẫu chuẩn",
+      "Viết lại",
+      "Lưu lỗi cá nhân"
+    ]
+  },
+  {
+    "id": "WR022_hk2_handwriting",
+    "stage": "hk2",
+    "mode": "handwriting",
+    "title": "Luyện chữ & chính tả · viết báo cáo thực nghiệm",
+    "purpose": "Chép đúng chữ Cyrillic, dấu mềm, trọng âm và cụm sinh tồn.",
+    "prompt_vi": "Viết bằng tiếng Nga về chủ đề: viết báo cáo thực nghiệm. Bám đúng ngữ cảnh Bauman HK2.",
+    "prompt_ru": "Напишите текст по теме: viết báo cáo thực nghiệm. Используйте академически нейтральный стиль.",
+    "target_words": 10,
+    "time_minutes": 8,
+    "required_patterns": [
+      "Запишите аккуратно: тема, дата, задание.",
+      "Подчеркните ударение в новых словах.",
+      "Перепишите фразу три раза без ошибки."
+    ],
+    "vocab_suggestions_ru": [
+      "пожалуйста",
+      "уточнить",
+      "подготовить",
+      "объяснить",
+      "задание",
+      "срок"
+    ],
+    "grammar_focus": [
+      "chữ hoa/chữ thường",
+      "trọng âm",
+      "dấu mềm",
+      "nét nối"
+    ],
+    "model_ru": "Я хотел бы уточнить задание и подготовить ответ к следующему занятию.",
+    "model_vi": "Mẫu chỉ để bám cấu trúc. Người học phải viết lại bằng thông tin của mình.",
+    "rubric": [
+      "Đúng ý nhiệm vụ",
+      "Dùng ít nhất 3 mẫu câu bắt buộc",
+      "Ít lỗi cách/cấu trúc",
+      "Có thể đọc to thành lời nói",
+      "Viết lại sau khi sửa"
+    ],
+    "rewrite_cycle": [
+      "Viết lần 1",
+      "Gạch lỗi",
+      "Xem mẫu chuẩn",
+      "Viết lại",
+      "Lưu lỗi cá nhân"
+    ]
+  },
+  {
+    "id": "WR023_hk2_sentence",
+    "stage": "hk2",
+    "mode": "sentence",
+    "title": "Viết câu · mô tả lỗi chương trình",
+    "purpose": "Viết câu ngắn đúng cấu trúc, dùng ngay trong lớp và ký túc.",
+    "prompt_vi": "Viết bằng tiếng Nga về chủ đề: mô tả lỗi chương trình. Bám đúng ngữ cảnh Bauman HK2.",
+    "prompt_ru": "Напишите текст по теме: mô tả lỗi chương trình. Используйте академически нейтральный стиль.",
+    "target_words": 25,
+    "time_minutes": 10,
+    "required_patterns": [
+      "Я хотел бы уточнить...",
+      "Мне нужно подготовить...",
+      "Я не совсем понял(а), как...",
+      "Можно, пожалуйста, повторить...?"
+    ],
+    "vocab_suggestions_ru": [
+      "пожалуйста",
+      "уточнить",
+      "подготовить",
+      "объяснить",
+      "задание",
+      "срок"
+    ],
+    "grammar_focus": [
+      "lịch sự với бы",
+      "cách 2 trong cụm danh từ",
+      "động từ hoàn/thể chưa hoàn",
+      "trật tự câu học thuật"
+    ],
+    "model_ru": "Я хотел бы уточнить задание и подготовить ответ к следующему занятию.",
+    "model_vi": "Mẫu chỉ để bám cấu trúc. Người học phải viết lại bằng thông tin của mình.",
+    "rubric": [
+      "Đúng ý nhiệm vụ",
+      "Dùng ít nhất 3 mẫu câu bắt buộc",
+      "Ít lỗi cách/cấu trúc",
+      "Có thể đọc to thành lời nói",
+      "Viết lại sau khi sửa"
+    ],
+    "rewrite_cycle": [
+      "Viết lần 1",
+      "Gạch lỗi",
+      "Xem mẫu chuẩn",
+      "Viết lại",
+      "Lưu lỗi cá nhân"
+    ]
+  },
+  {
+    "id": "WR024_hk2_paragraph",
+    "stage": "hk2",
+    "mode": "paragraph",
+    "title": "Viết đoạn · viết báo cáo thực nghiệm",
+    "purpose": "Ghép 4-8 câu thành đoạn có ý chính, lý do và kết luận nhỏ.",
+    "prompt_vi": "Viết bằng tiếng Nga về chủ đề: viết báo cáo thực nghiệm. Bám đúng ngữ cảnh Bauman HK2.",
+    "prompt_ru": "Напишите текст по теме: viết báo cáo thực nghiệm. Используйте академически нейтральный стиль.",
+    "target_words": 60,
+    "time_minutes": 15,
+    "required_patterns": [
+      "Во-первых, ...",
+      "Кроме того, ...",
+      "Поэтому ...",
+      "Таким образом, ..."
+    ],
+    "vocab_suggestions_ru": [
+      "пожалуйста",
+      "уточнить",
+      "подготовить",
+      "объяснить",
+      "задание",
+      "срок"
+    ],
+    "grammar_focus": [
+      "lịch sự với бы",
+      "cách 2 trong cụm danh từ",
+      "động từ hoàn/thể chưa hoàn",
+      "trật tự câu học thuật"
+    ],
+    "model_ru": "Я хотел бы уточнить задание и подготовить ответ к следующему занятию.",
+    "model_vi": "Mẫu chỉ để bám cấu trúc. Người học phải viết lại bằng thông tin của mình.",
+    "rubric": [
+      "Đúng ý nhiệm vụ",
+      "Dùng ít nhất 3 mẫu câu bắt buộc",
+      "Ít lỗi cách/cấu trúc",
+      "Có thể đọc to thành lời nói",
+      "Viết lại sau khi sửa"
+    ],
+    "rewrite_cycle": [
+      "Viết lần 1",
+      "Gạch lỗi",
+      "Xem mẫu chuẩn",
+      "Viết lại",
+      "Lưu lỗi cá nhân"
+    ]
+  },
+  {
+    "id": "WR025_hk2_email",
+    "stage": "hk2",
+    "mode": "email",
+    "title": "Email học thuật · so sánh mô hình ML",
+    "purpose": "Viết thư cho giáo viên, giáo vụ, thầy hướng dẫn, nhóm lab.",
+    "prompt_vi": "Viết bằng tiếng Nga về chủ đề: so sánh mô hình ML. Bám đúng ngữ cảnh Bauman HK2.",
+    "prompt_ru": "Напишите текст по теме: so sánh mô hình ML. Используйте академически нейтральный стиль.",
+    "target_words": 80,
+    "time_minutes": 18,
+    "required_patterns": [
+      "Уважаемый(ая) ...",
+      "Я хотел бы уточнить ...",
+      "Буду благодарен за ответ.",
+      "С уважением, ..."
+    ],
+    "vocab_suggestions_ru": [
+      "пожалуйста",
+      "уточнить",
+      "подготовить",
+      "объяснить",
+      "задание",
+      "срок"
+    ],
+    "grammar_focus": [
+      "lịch sự với бы",
+      "cách 2 trong cụm danh từ",
+      "động từ hoàn/thể chưa hoàn",
+      "trật tự câu học thuật"
+    ],
+    "model_ru": "Уважаемый преподаватель, я хотел бы уточнить срок сдачи задания. Буду благодарен за ответ.",
+    "model_vi": "Mẫu chỉ để bám cấu trúc. Người học phải viết lại bằng thông tin của mình.",
+    "rubric": [
+      "Đúng ý nhiệm vụ",
+      "Dùng ít nhất 3 mẫu câu bắt buộc",
+      "Ít lỗi cách/cấu trúc",
+      "Có thể đọc to thành lời nói",
+      "Viết lại sau khi sửa"
+    ],
+    "rewrite_cycle": [
+      "Viết lần 1",
+      "Gạch lỗi",
+      "Xem mẫu chuẩn",
+      "Viết lại",
+      "Lưu lỗi cá nhân"
+    ]
+  },
+  {
+    "id": "WR026_hk2_report",
+    "stage": "hk2",
+    "mode": "report",
+    "title": "Báo cáo / lab · mô tả dữ liệu và pipeline",
+    "purpose": "Mô tả nhiệm vụ, phương pháp, dữ liệu, kết quả và lỗi.",
+    "prompt_vi": "Viết bằng tiếng Nga về chủ đề: mô tả dữ liệu và pipeline. Bám đúng ngữ cảnh Bauman HK2.",
+    "prompt_ru": "Напишите текст по теме: mô tả dữ liệu và pipeline. Используйте академически нейтральный стиль.",
+    "target_words": 120,
+    "time_minutes": 25,
+    "required_patterns": [
+      "Цель работы состоит в ...",
+      "В ходе работы был использован ...",
+      "Полученные результаты показывают ...",
+      "Ошибка возникла из-за ..."
+    ],
+    "vocab_suggestions_ru": [
+      "срок",
+      "задание",
+      "результат",
+      "метод",
+      "ошибка",
+      "исследование",
+      "цель",
+      "данные"
+    ],
+    "grammar_focus": [
+      "lịch sự với бы",
+      "cách 2 trong cụm danh từ",
+      "động từ hoàn/thể chưa hoàn",
+      "trật tự câu học thuật"
+    ],
+    "model_ru": "Я хотел бы уточнить задание и подготовить ответ к следующему занятию.",
+    "model_vi": "Mẫu chỉ để bám cấu trúc. Người học phải viết lại bằng thông tin của mình.",
+    "rubric": [
+      "Đúng ý nhiệm vụ",
+      "Dùng ít nhất 3 mẫu câu bắt buộc",
+      "Ít lỗi cách/cấu trúc",
+      "Có thể đọc to thành lời nói",
+      "Viết lại sau khi sửa"
+    ],
+    "rewrite_cycle": [
+      "Viết lần 1",
+      "Gạch lỗi",
+      "Xem mẫu chuẩn",
+      "Viết lại",
+      "Lưu lỗi cá nhân"
+    ]
+  },
+  {
+    "id": "WR027_hk2_thesis",
+    "stage": "hk2",
+    "mode": "thesis",
+    "title": "НИР / ВКР / luận văn · viết báo cáo thực nghiệm",
+    "purpose": "Viết mục tiêu, nhiệm vụ, phương pháp, kết quả và kết luận nghiên cứu.",
+    "prompt_vi": "Viết bằng tiếng Nga về chủ đề: viết báo cáo thực nghiệm. Bám đúng ngữ cảnh Bauman HK2.",
+    "prompt_ru": "Напишите текст по теме: viết báo cáo thực nghiệm. Используйте академически нейтральный стиль.",
+    "target_words": 160,
+    "time_minutes": 30,
+    "required_patterns": [
+      "Целью данной работы является ...",
+      "Для достижения цели необходимо решить следующие задачи ...",
+      "В работе рассматривается метод ...",
+      "Практическая значимость заключается в ..."
+    ],
+    "vocab_suggestions_ru": [
+      "срок",
+      "задание",
+      "результат",
+      "метод",
+      "ошибка",
+      "исследование",
+      "цель",
+      "данные"
+    ],
+    "grammar_focus": [
+      "lịch sự với бы",
+      "cách 2 trong cụm danh từ",
+      "động từ hoàn/thể chưa hoàn",
+      "trật tự câu học thuật"
+    ],
+    "model_ru": "Целью данной работы является анализ данных и описание полученных результатов.",
+    "model_vi": "Mẫu chỉ để bám cấu trúc. Người học phải viết lại bằng thông tin của mình.",
+    "rubric": [
+      "Đúng ý nhiệm vụ",
+      "Dùng ít nhất 3 mẫu câu bắt buộc",
+      "Ít lỗi cách/cấu trúc",
+      "Có thể đọc to thành lời nói",
+      "Viết lại sau khi sửa"
+    ],
+    "rewrite_cycle": [
+      "Viết lần 1",
+      "Gạch lỗi",
+      "Xem mẫu chuẩn",
+      "Viết lại",
+      "Lưu lỗi cá nhân"
+    ]
+  },
+  {
+    "id": "WR028_hk2_error_log",
+    "stage": "hk2",
+    "mode": "error-log",
+    "title": "Kho lỗi sai của tôi · viết báo cáo thực nghiệm",
+    "purpose": "Ghi lỗi cá nhân, viết lại câu đúng và ôn sau vài ngày.",
+    "prompt_vi": "Viết bằng tiếng Nga về chủ đề: viết báo cáo thực nghiệm. Bám đúng ngữ cảnh Bauman HK2.",
+    "prompt_ru": "Напишите текст по теме: viết báo cáo thực nghiệm. Используйте академически нейтральный стиль.",
+    "target_words": 50,
+    "time_minutes": 12,
+    "required_patterns": [
+      "Было: ...",
+      "Правильно: ...",
+      "Почему ошибка возникла: ...",
+      "Новая фраза с этим правилом: ..."
+    ],
+    "vocab_suggestions_ru": [
+      "пожалуйста",
+      "уточнить",
+      "подготовить",
+      "объяснить",
+      "задание",
+      "срок"
+    ],
+    "grammar_focus": [
+      "lịch sự với бы",
+      "cách 2 trong cụm danh từ",
+      "động từ hoàn/thể chưa hoàn",
+      "trật tự câu học thuật"
+    ],
+    "model_ru": "Я хотел бы уточнить задание и подготовить ответ к следующему занятию.",
+    "model_vi": "Mẫu chỉ để bám cấu trúc. Người học phải viết lại bằng thông tin của mình.",
+    "rubric": [
+      "Đúng ý nhiệm vụ",
+      "Dùng ít nhất 3 mẫu câu bắt buộc",
+      "Ít lỗi cách/cấu trúc",
+      "Có thể đọc to thành lời nói",
+      "Viết lại sau khi sửa"
+    ],
+    "rewrite_cycle": [
+      "Viết lần 1",
+      "Gạch lỗi",
+      "Xem mẫu chuẩn",
+      "Viết lại",
+      "Lưu lỗi cá nhân"
+    ]
+  },
+  {
+    "id": "WR029_hk3_handwriting",
+    "stage": "hk3",
+    "mode": "handwriting",
+    "title": "Luyện chữ & chính tả · viết НИР",
+    "purpose": "Chép đúng chữ Cyrillic, dấu mềm, trọng âm và cụm sinh tồn.",
+    "prompt_vi": "Viết bằng tiếng Nga về chủ đề: viết НИР. Bám đúng ngữ cảnh Bauman HK3.",
+    "prompt_ru": "Напишите текст по теме: viết НИР. Используйте академически нейтральный стиль.",
+    "target_words": 10,
+    "time_minutes": 8,
+    "required_patterns": [
+      "Запишите аккуратно: тема, дата, задание.",
+      "Подчеркните ударение в новых словах.",
+      "Перепишите фразу три раза без ошибки."
+    ],
+    "vocab_suggestions_ru": [
+      "пожалуйста",
+      "уточнить",
+      "подготовить",
+      "объяснить",
+      "задание",
+      "срок"
+    ],
+    "grammar_focus": [
+      "chữ hoa/chữ thường",
+      "trọng âm",
+      "dấu mềm",
+      "nét nối"
+    ],
+    "model_ru": "Я хотел бы уточнить задание и подготовить ответ к следующему занятию.",
+    "model_vi": "Mẫu chỉ để bám cấu trúc. Người học phải viết lại bằng thông tin của mình.",
+    "rubric": [
+      "Đúng ý nhiệm vụ",
+      "Dùng ít nhất 3 mẫu câu bắt buộc",
+      "Ít lỗi cách/cấu trúc",
+      "Có thể đọc to thành lời nói",
+      "Viết lại sau khi sửa"
+    ],
+    "rewrite_cycle": [
+      "Viết lần 1",
+      "Gạch lỗi",
+      "Xem mẫu chuẩn",
+      "Viết lại",
+      "Lưu lỗi cá nhân"
+    ]
+  },
+  {
+    "id": "WR030_hk3_sentence",
+    "stage": "hk3",
+    "mode": "sentence",
+    "title": "Viết câu · phản hồi góp ý seminar",
+    "purpose": "Viết câu ngắn đúng cấu trúc, dùng ngay trong lớp và ký túc.",
+    "prompt_vi": "Viết bằng tiếng Nga về chủ đề: phản hồi góp ý seminar. Bám đúng ngữ cảnh Bauman HK3.",
+    "prompt_ru": "Напишите текст по теме: phản hồi góp ý seminar. Используйте академически нейтральный стиль.",
+    "target_words": 25,
+    "time_minutes": 10,
+    "required_patterns": [
+      "Я хотел бы уточнить...",
+      "Мне нужно подготовить...",
+      "Я не совсем понял(а), как...",
+      "Можно, пожалуйста, повторить...?"
+    ],
+    "vocab_suggestions_ru": [
+      "пожалуйста",
+      "уточнить",
+      "подготовить",
+      "объяснить",
+      "задание",
+      "срок"
+    ],
+    "grammar_focus": [
+      "lịch sự với бы",
+      "cách 2 trong cụm danh từ",
+      "động từ hoàn/thể chưa hoàn",
+      "trật tự câu học thuật"
+    ],
+    "model_ru": "Я хотел бы уточнить задание и подготовить ответ к следующему занятию.",
+    "model_vi": "Mẫu chỉ để bám cấu trúc. Người học phải viết lại bằng thông tin của mình.",
+    "rubric": [
+      "Đúng ý nhiệm vụ",
+      "Dùng ít nhất 3 mẫu câu bắt buộc",
+      "Ít lỗi cách/cấu trúc",
+      "Có thể đọc to thành lời nói",
+      "Viết lại sau khi sửa"
+    ],
+    "rewrite_cycle": [
+      "Viết lần 1",
+      "Gạch lỗi",
+      "Xem mẫu chuẩn",
+      "Viết lại",
+      "Lưu lỗi cá nhân"
+    ]
+  },
+  {
+    "id": "WR031_hk3_paragraph",
+    "stage": "hk3",
+    "mode": "paragraph",
+    "title": "Viết đoạn · viết НИР",
+    "purpose": "Ghép 4-8 câu thành đoạn có ý chính, lý do và kết luận nhỏ.",
+    "prompt_vi": "Viết bằng tiếng Nga về chủ đề: viết НИР. Bám đúng ngữ cảnh Bauman HK3.",
+    "prompt_ru": "Напишите текст по теме: viết НИР. Используйте академически нейтральный стиль.",
+    "target_words": 60,
+    "time_minutes": 15,
+    "required_patterns": [
+      "Во-первых, ...",
+      "Кроме того, ...",
+      "Поэтому ...",
+      "Таким образом, ..."
+    ],
+    "vocab_suggestions_ru": [
+      "пожалуйста",
+      "уточнить",
+      "подготовить",
+      "объяснить",
+      "задание",
+      "срок"
+    ],
+    "grammar_focus": [
+      "lịch sự với бы",
+      "cách 2 trong cụm danh từ",
+      "động từ hoàn/thể chưa hoàn",
+      "trật tự câu học thuật"
+    ],
+    "model_ru": "Я хотел бы уточнить задание и подготовить ответ к следующему занятию.",
+    "model_vi": "Mẫu chỉ để bám cấu trúc. Người học phải viết lại bằng thông tin của mình.",
+    "rubric": [
+      "Đúng ý nhiệm vụ",
+      "Dùng ít nhất 3 mẫu câu bắt buộc",
+      "Ít lỗi cách/cấu trúc",
+      "Có thể đọc to thành lời nói",
+      "Viết lại sau khi sửa"
+    ],
+    "rewrite_cycle": [
+      "Viết lần 1",
+      "Gạch lỗi",
+      "Xem mẫu chuẩn",
+      "Viết lại",
+      "Lưu lỗi cá nhân"
+    ]
+  },
+  {
+    "id": "WR032_hk3_email",
+    "stage": "hk3",
+    "mode": "email",
+    "title": "Email học thuật · tóm tắt bài báo",
+    "purpose": "Viết thư cho giáo viên, giáo vụ, thầy hướng dẫn, nhóm lab.",
+    "prompt_vi": "Viết bằng tiếng Nga về chủ đề: tóm tắt bài báo. Bám đúng ngữ cảnh Bauman HK3.",
+    "prompt_ru": "Напишите текст по теме: tóm tắt bài báo. Используйте академически нейтральный стиль.",
+    "target_words": 80,
+    "time_minutes": 18,
+    "required_patterns": [
+      "Уважаемый(ая) ...",
+      "Я хотел бы уточнить ...",
+      "Буду благодарен за ответ.",
+      "С уважением, ..."
+    ],
+    "vocab_suggestions_ru": [
+      "пожалуйста",
+      "уточнить",
+      "подготовить",
+      "объяснить",
+      "задание",
+      "срок"
+    ],
+    "grammar_focus": [
+      "lịch sự với бы",
+      "cách 2 trong cụm danh từ",
+      "động từ hoàn/thể chưa hoàn",
+      "trật tự câu học thuật"
+    ],
+    "model_ru": "Уважаемый преподаватель, я хотел бы уточнить срок сдачи задания. Буду благодарен за ответ.",
+    "model_vi": "Mẫu chỉ để bám cấu trúc. Người học phải viết lại bằng thông tin của mình.",
+    "rubric": [
+      "Đúng ý nhiệm vụ",
+      "Dùng ít nhất 3 mẫu câu bắt buộc",
+      "Ít lỗi cách/cấu trúc",
+      "Có thể đọc to thành lời nói",
+      "Viết lại sau khi sửa"
+    ],
+    "rewrite_cycle": [
+      "Viết lần 1",
+      "Gạch lỗi",
+      "Xem mẫu chuẩn",
+      "Viết lại",
+      "Lưu lỗi cá nhân"
+    ]
+  },
+  {
+    "id": "WR033_hk3_report",
+    "stage": "hk3",
+    "mode": "report",
+    "title": "Báo cáo / lab · mô tả đóng góp khoa học",
+    "purpose": "Mô tả nhiệm vụ, phương pháp, dữ liệu, kết quả và lỗi.",
+    "prompt_vi": "Viết bằng tiếng Nga về chủ đề: mô tả đóng góp khoa học. Bám đúng ngữ cảnh Bauman HK3.",
+    "prompt_ru": "Напишите текст по теме: mô tả đóng góp khoa học. Используйте академически нейтральный стиль.",
+    "target_words": 120,
+    "time_minutes": 25,
+    "required_patterns": [
+      "Цель работы состоит в ...",
+      "В ходе работы был использован ...",
+      "Полученные результаты показывают ...",
+      "Ошибка возникла из-за ..."
+    ],
+    "vocab_suggestions_ru": [
+      "срок",
+      "задание",
+      "результат",
+      "метод",
+      "ошибка",
+      "исследование",
+      "цель",
+      "данные"
+    ],
+    "grammar_focus": [
+      "lịch sự với бы",
+      "cách 2 trong cụm danh từ",
+      "động từ hoàn/thể chưa hoàn",
+      "trật tự câu học thuật"
+    ],
+    "model_ru": "Я хотел бы уточнить задание и подготовить ответ к следующему занятию.",
+    "model_vi": "Mẫu chỉ để bám cấu trúc. Người học phải viết lại bằng thông tin của mình.",
+    "rubric": [
+      "Đúng ý nhiệm vụ",
+      "Dùng ít nhất 3 mẫu câu bắt buộc",
+      "Ít lỗi cách/cấu trúc",
+      "Có thể đọc to thành lời nói",
+      "Viết lại sau khi sửa"
+    ],
+    "rewrite_cycle": [
+      "Viết lần 1",
+      "Gạch lỗi",
+      "Xem mẫu chuẩn",
+      "Viết lại",
+      "Lưu lỗi cá nhân"
+    ]
+  },
+  {
+    "id": "WR034_hk3_thesis",
+    "stage": "hk3",
+    "mode": "thesis",
+    "title": "НИР / ВКР / luận văn · viết НИР",
+    "purpose": "Viết mục tiêu, nhiệm vụ, phương pháp, kết quả và kết luận nghiên cứu.",
+    "prompt_vi": "Viết bằng tiếng Nga về chủ đề: viết НИР. Bám đúng ngữ cảnh Bauman HK3.",
+    "prompt_ru": "Напишите текст по теме: viết НИР. Используйте академически нейтральный стиль.",
+    "target_words": 160,
+    "time_minutes": 30,
+    "required_patterns": [
+      "Целью данной работы является ...",
+      "Для достижения цели необходимо решить следующие задачи ...",
+      "В работе рассматривается метод ...",
+      "Практическая значимость заключается в ..."
+    ],
+    "vocab_suggestions_ru": [
+      "срок",
+      "задание",
+      "результат",
+      "метод",
+      "ошибка",
+      "исследование",
+      "цель",
+      "данные"
+    ],
+    "grammar_focus": [
+      "lịch sự với бы",
+      "cách 2 trong cụm danh từ",
+      "động từ hoàn/thể chưa hoàn",
+      "trật tự câu học thuật"
+    ],
+    "model_ru": "Целью данной работы является анализ данных и описание полученных результатов.",
+    "model_vi": "Mẫu chỉ để bám cấu trúc. Người học phải viết lại bằng thông tin của mình.",
+    "rubric": [
+      "Đúng ý nhiệm vụ",
+      "Dùng ít nhất 3 mẫu câu bắt buộc",
+      "Ít lỗi cách/cấu trúc",
+      "Có thể đọc to thành lời nói",
+      "Viết lại sau khi sửa"
+    ],
+    "rewrite_cycle": [
+      "Viết lần 1",
+      "Gạch lỗi",
+      "Xem mẫu chuẩn",
+      "Viết lại",
+      "Lưu lỗi cá nhân"
+    ]
+  },
+  {
+    "id": "WR035_hk3_error_log",
+    "stage": "hk3",
+    "mode": "error-log",
+    "title": "Kho lỗi sai của tôi · viết НИР",
+    "purpose": "Ghi lỗi cá nhân, viết lại câu đúng và ôn sau vài ngày.",
+    "prompt_vi": "Viết bằng tiếng Nga về chủ đề: viết НИР. Bám đúng ngữ cảnh Bauman HK3.",
+    "prompt_ru": "Напишите текст по теме: viết НИР. Используйте академически нейтральный стиль.",
+    "target_words": 50,
+    "time_minutes": 12,
+    "required_patterns": [
+      "Было: ...",
+      "Правильно: ...",
+      "Почему ошибка возникла: ...",
+      "Новая фраза с этим правилом: ..."
+    ],
+    "vocab_suggestions_ru": [
+      "пожалуйста",
+      "уточнить",
+      "подготовить",
+      "объяснить",
+      "задание",
+      "срок"
+    ],
+    "grammar_focus": [
+      "lịch sự với бы",
+      "cách 2 trong cụm danh từ",
+      "động từ hoàn/thể chưa hoàn",
+      "trật tự câu học thuật"
+    ],
+    "model_ru": "Я хотел бы уточнить задание и подготовить ответ к следующему занятию.",
+    "model_vi": "Mẫu chỉ để bám cấu trúc. Người học phải viết lại bằng thông tin của mình.",
+    "rubric": [
+      "Đúng ý nhiệm vụ",
+      "Dùng ít nhất 3 mẫu câu bắt buộc",
+      "Ít lỗi cách/cấu trúc",
+      "Có thể đọc to thành lời nói",
+      "Viết lại sau khi sửa"
+    ],
+    "rewrite_cycle": [
+      "Viết lần 1",
+      "Gạch lỗi",
+      "Xem mẫu chuẩn",
+      "Viết lại",
+      "Lưu lỗi cá nhân"
+    ]
+  },
+  {
+    "id": "WR036_hk4_handwriting",
+    "stage": "hk4",
+    "mode": "handwriting",
+    "title": "Luyện chữ & chính tả · trả lời câu hỏi hội đồng",
+    "purpose": "Chép đúng chữ Cyrillic, dấu mềm, trọng âm và cụm sinh tồn.",
+    "prompt_vi": "Viết bằng tiếng Nga về chủ đề: trả lời câu hỏi hội đồng. Bám đúng ngữ cảnh Bauman HK4.",
+    "prompt_ru": "Напишите текст по теме: trả lời câu hỏi hội đồng. Используйте академически нейтральный стиль.",
+    "target_words": 10,
+    "time_minutes": 8,
+    "required_patterns": [
+      "Запишите аккуратно: тема, дата, задание.",
+      "Подчеркните ударение в новых словах.",
+      "Перепишите фразу три раза без ошибки."
+    ],
+    "vocab_suggestions_ru": [
+      "пожалуйста",
+      "уточнить",
+      "подготовить",
+      "объяснить",
+      "задание",
+      "срок"
+    ],
+    "grammar_focus": [
+      "chữ hoa/chữ thường",
+      "trọng âm",
+      "dấu mềm",
+      "nét nối"
+    ],
+    "model_ru": "Я хотел бы уточнить задание и подготовить ответ к следующему занятию.",
+    "model_vi": "Mẫu chỉ để bám cấu trúc. Người học phải viết lại bằng thông tin của mình.",
+    "rubric": [
+      "Đúng ý nhiệm vụ",
+      "Dùng ít nhất 3 mẫu câu bắt buộc",
+      "Ít lỗi cách/cấu trúc",
+      "Có thể đọc to thành lời nói",
+      "Viết lại sau khi sửa"
+    ],
+    "rewrite_cycle": [
+      "Viết lần 1",
+      "Gạch lỗi",
+      "Xem mẫu chuẩn",
+      "Viết lại",
+      "Lưu lỗi cá nhân"
+    ]
+  },
+  {
+    "id": "WR037_hk4_sentence",
+    "stage": "hk4",
+    "mode": "sentence",
+    "title": "Viết câu · viết kết luận luận văn",
+    "purpose": "Viết câu ngắn đúng cấu trúc, dùng ngay trong lớp và ký túc.",
+    "prompt_vi": "Viết bằng tiếng Nga về chủ đề: viết kết luận luận văn. Bám đúng ngữ cảnh Bauman HK4.",
+    "prompt_ru": "Напишите текст по теме: viết kết luận luận văn. Используйте академически нейтральный стиль.",
+    "target_words": 25,
+    "time_minutes": 10,
+    "required_patterns": [
+      "Я хотел бы уточнить...",
+      "Мне нужно подготовить...",
+      "Я не совсем понял(а), как...",
+      "Можно, пожалуйста, повторить...?"
+    ],
+    "vocab_suggestions_ru": [
+      "пожалуйста",
+      "уточнить",
+      "подготовить",
+      "объяснить",
+      "задание",
+      "срок"
+    ],
+    "grammar_focus": [
+      "lịch sự với бы",
+      "cách 2 trong cụm danh từ",
+      "động từ hoàn/thể chưa hoàn",
+      "trật tự câu học thuật"
+    ],
+    "model_ru": "Я хотел бы уточнить задание и подготовить ответ к следующему занятию.",
+    "model_vi": "Mẫu chỉ để bám cấu trúc. Người học phải viết lại bằng thông tin của mình.",
+    "rubric": [
+      "Đúng ý nhiệm vụ",
+      "Dùng ít nhất 3 mẫu câu bắt buộc",
+      "Ít lỗi cách/cấu trúc",
+      "Có thể đọc to thành lời nói",
+      "Viết lại sau khi sửa"
+    ],
+    "rewrite_cycle": [
+      "Viết lần 1",
+      "Gạch lỗi",
+      "Xem mẫu chuẩn",
+      "Viết lại",
+      "Lưu lỗi cá nhân"
+    ]
+  },
+  {
+    "id": "WR038_hk4_paragraph",
+    "stage": "hk4",
+    "mode": "paragraph",
+    "title": "Viết đoạn · trả lời câu hỏi hội đồng",
+    "purpose": "Ghép 4-8 câu thành đoạn có ý chính, lý do và kết luận nhỏ.",
+    "prompt_vi": "Viết bằng tiếng Nga về chủ đề: trả lời câu hỏi hội đồng. Bám đúng ngữ cảnh Bauman HK4.",
+    "prompt_ru": "Напишите текст по теме: trả lời câu hỏi hội đồng. Используйте академически нейтральный стиль.",
+    "target_words": 60,
+    "time_minutes": 15,
+    "required_patterns": [
+      "Во-первых, ...",
+      "Кроме того, ...",
+      "Поэтому ...",
+      "Таким образом, ..."
+    ],
+    "vocab_suggestions_ru": [
+      "пожалуйста",
+      "уточнить",
+      "подготовить",
+      "объяснить",
+      "задание",
+      "срок"
+    ],
+    "grammar_focus": [
+      "lịch sự với бы",
+      "cách 2 trong cụm danh từ",
+      "động từ hoàn/thể chưa hoàn",
+      "trật tự câu học thuật"
+    ],
+    "model_ru": "Я хотел бы уточнить задание и подготовить ответ к следующему занятию.",
+    "model_vi": "Mẫu chỉ để bám cấu trúc. Người học phải viết lại bằng thông tin của mình.",
+    "rubric": [
+      "Đúng ý nhiệm vụ",
+      "Dùng ít nhất 3 mẫu câu bắt buộc",
+      "Ít lỗi cách/cấu trúc",
+      "Có thể đọc to thành lời nói",
+      "Viết lại sau khi sửa"
+    ],
+    "rewrite_cycle": [
+      "Viết lần 1",
+      "Gạch lỗi",
+      "Xem mẫu chuẩn",
+      "Viết lại",
+      "Lưu lỗi cá nhân"
+    ]
+  },
+  {
+    "id": "WR039_hk4_email",
+    "stage": "hk4",
+    "mode": "email",
+    "title": "Email học thuật · viết mục tiêu ВКР",
+    "purpose": "Viết thư cho giáo viên, giáo vụ, thầy hướng dẫn, nhóm lab.",
+    "prompt_vi": "Viết bằng tiếng Nga về chủ đề: viết mục tiêu ВКР. Bám đúng ngữ cảnh Bauman HK4.",
+    "prompt_ru": "Напишите текст по теме: viết mục tiêu ВКР. Используйте академически нейтральный стиль.",
+    "target_words": 80,
+    "time_minutes": 18,
+    "required_patterns": [
+      "Уважаемый(ая) ...",
+      "Я хотел бы уточнить ...",
+      "Буду благодарен за ответ.",
+      "С уважением, ..."
+    ],
+    "vocab_suggestions_ru": [
+      "пожалуйста",
+      "уточнить",
+      "подготовить",
+      "объяснить",
+      "задание",
+      "срок"
+    ],
+    "grammar_focus": [
+      "lịch sự với бы",
+      "cách 2 trong cụm danh từ",
+      "động từ hoàn/thể chưa hoàn",
+      "trật tự câu học thuật"
+    ],
+    "model_ru": "Уважаемый преподаватель, я хотел бы уточнить срок сдачи задания. Буду благодарен за ответ.",
+    "model_vi": "Mẫu chỉ để bám cấu trúc. Người học phải viết lại bằng thông tin của mình.",
+    "rubric": [
+      "Đúng ý nhiệm vụ",
+      "Dùng ít nhất 3 mẫu câu bắt buộc",
+      "Ít lỗi cách/cấu trúc",
+      "Có thể đọc to thành lời nói",
+      "Viết lại sau khi sửa"
+    ],
+    "rewrite_cycle": [
+      "Viết lần 1",
+      "Gạch lỗi",
+      "Xem mẫu chuẩn",
+      "Viết lại",
+      "Lưu lỗi cá nhân"
+    ]
+  },
+  {
+    "id": "WR040_hk4_report",
+    "stage": "hk4",
+    "mode": "report",
+    "title": "Báo cáo / lab · soạn lời bảo vệ",
+    "purpose": "Mô tả nhiệm vụ, phương pháp, dữ liệu, kết quả và lỗi.",
+    "prompt_vi": "Viết bằng tiếng Nga về chủ đề: soạn lời bảo vệ. Bám đúng ngữ cảnh Bauman HK4.",
+    "prompt_ru": "Напишите текст по теме: soạn lời bảo vệ. Используйте академически нейтральный стиль.",
+    "target_words": 120,
+    "time_minutes": 25,
+    "required_patterns": [
+      "Цель работы состоит в ...",
+      "В ходе работы был использован ...",
+      "Полученные результаты показывают ...",
+      "Ошибка возникла из-за ..."
+    ],
+    "vocab_suggestions_ru": [
+      "срок",
+      "задание",
+      "результат",
+      "метод",
+      "ошибка",
+      "исследование",
+      "цель",
+      "данные"
+    ],
+    "grammar_focus": [
+      "lịch sự với бы",
+      "cách 2 trong cụm danh từ",
+      "động từ hoàn/thể chưa hoàn",
+      "trật tự câu học thuật"
+    ],
+    "model_ru": "Я хотел бы уточнить задание и подготовить ответ к следующему занятию.",
+    "model_vi": "Mẫu chỉ để bám cấu trúc. Người học phải viết lại bằng thông tin của mình.",
+    "rubric": [
+      "Đúng ý nhiệm vụ",
+      "Dùng ít nhất 3 mẫu câu bắt buộc",
+      "Ít lỗi cách/cấu trúc",
+      "Có thể đọc to thành lời nói",
+      "Viết lại sau khi sửa"
+    ],
+    "rewrite_cycle": [
+      "Viết lần 1",
+      "Gạch lỗi",
+      "Xem mẫu chuẩn",
+      "Viết lại",
+      "Lưu lỗi cá nhân"
+    ]
+  },
+  {
+    "id": "WR041_hk4_thesis",
+    "stage": "hk4",
+    "mode": "thesis",
+    "title": "НИР / ВКР / luận văn · trả lời câu hỏi hội đồng",
+    "purpose": "Viết mục tiêu, nhiệm vụ, phương pháp, kết quả và kết luận nghiên cứu.",
+    "prompt_vi": "Viết bằng tiếng Nga về chủ đề: trả lời câu hỏi hội đồng. Bám đúng ngữ cảnh Bauman HK4.",
+    "prompt_ru": "Напишите текст по теме: trả lời câu hỏi hội đồng. Используйте академически нейтральный стиль.",
+    "target_words": 160,
+    "time_minutes": 30,
+    "required_patterns": [
+      "Целью данной работы является ...",
+      "Для достижения цели необходимо решить следующие задачи ...",
+      "В работе рассматривается метод ...",
+      "Практическая значимость заключается в ..."
+    ],
+    "vocab_suggestions_ru": [
+      "срок",
+      "задание",
+      "результат",
+      "метод",
+      "ошибка",
+      "исследование",
+      "цель",
+      "данные"
+    ],
+    "grammar_focus": [
+      "lịch sự với бы",
+      "cách 2 trong cụm danh từ",
+      "động từ hoàn/thể chưa hoàn",
+      "trật tự câu học thuật"
+    ],
+    "model_ru": "Целью данной работы является анализ данных и описание полученных результатов.",
+    "model_vi": "Mẫu chỉ để bám cấu trúc. Người học phải viết lại bằng thông tin của mình.",
+    "rubric": [
+      "Đúng ý nhiệm vụ",
+      "Dùng ít nhất 3 mẫu câu bắt buộc",
+      "Ít lỗi cách/cấu trúc",
+      "Có thể đọc to thành lời nói",
+      "Viết lại sau khi sửa"
+    ],
+    "rewrite_cycle": [
+      "Viết lần 1",
+      "Gạch lỗi",
+      "Xem mẫu chuẩn",
+      "Viết lại",
+      "Lưu lỗi cá nhân"
+    ]
+  },
+  {
+    "id": "WR042_hk4_error_log",
+    "stage": "hk4",
+    "mode": "error-log",
+    "title": "Kho lỗi sai của tôi · trả lời câu hỏi hội đồng",
+    "purpose": "Ghi lỗi cá nhân, viết lại câu đúng và ôn sau vài ngày.",
+    "prompt_vi": "Viết bằng tiếng Nga về chủ đề: trả lời câu hỏi hội đồng. Bám đúng ngữ cảnh Bauman HK4.",
+    "prompt_ru": "Напишите текст по теме: trả lời câu hỏi hội đồng. Используйте академически нейтральный стиль.",
+    "target_words": 50,
+    "time_minutes": 12,
+    "required_patterns": [
+      "Было: ...",
+      "Правильно: ...",
+      "Почему ошибка возникла: ...",
+      "Новая фраза с этим правилом: ..."
+    ],
+    "vocab_suggestions_ru": [
+      "пожалуйста",
+      "уточнить",
+      "подготовить",
+      "объяснить",
+      "задание",
+      "срок"
+    ],
+    "grammar_focus": [
+      "lịch sự với бы",
+      "cách 2 trong cụm danh từ",
+      "động từ hoàn/thể chưa hoàn",
+      "trật tự câu học thuật"
+    ],
+    "model_ru": "Я хотел бы уточнить задание и подготовить ответ к следующему занятию.",
+    "model_vi": "Mẫu chỉ để bám cấu trúc. Người học phải viết lại bằng thông tin của mình.",
+    "rubric": [
+      "Đúng ý nhiệm vụ",
+      "Dùng ít nhất 3 mẫu câu bắt buộc",
+      "Ít lỗi cách/cấu trúc",
+      "Có thể đọc to thành lời nói",
+      "Viết lại sau khi sửa"
+    ],
+    "rewrite_cycle": [
+      "Viết lần 1",
+      "Gạch lỗi",
+      "Xem mẫu chuẩn",
+      "Viết lại",
+      "Lưu lỗi cá nhân"
+    ]
+  }
+]

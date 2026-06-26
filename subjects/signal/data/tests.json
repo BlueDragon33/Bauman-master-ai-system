@@ -1,0 +1,472 @@
+{
+  "rules": {
+    "easy": {
+      "questions": 20,
+      "unlockScore": 8
+    },
+    "medium": {
+      "questions": 30,
+      "unlockScore": 8
+    },
+    "hard": {
+      "questions": 40,
+      "unlockScore": 8
+    },
+    "excellent": {
+      "questions": 50,
+      "unlockScore": 8
+    }
+  },
+  "questions": [
+    {
+      "id": "q_t_p01",
+      "moduleId": "t_p01",
+      "stage": "prepare",
+      "difficulty": "easy",
+      "prompt": "Mục tiêu chính của module 'Telemetry căn bản: timestamp, log và trạng thái hệ thống' là gì?",
+      "options": [
+        "Timestamp, sampling, units, log structure.",
+        "Chỉ đọc tên bài mà không làm sản phẩm",
+        "Bỏ qua kiểm tra lỗi và không ghi kết quả",
+        "Đợi đến cuối khóa mới học"
+      ],
+      "answerIndex": 0,
+      "reviewLesson": "t_p01_l1"
+    },
+    {
+      "id": "q_t_p02",
+      "moduleId": "t_p02",
+      "stage": "prepare",
+      "difficulty": "medium",
+      "prompt": "Mục tiêu chính của module 'Chất lượng dữ liệu cảm biến: nhiễu, drift và missing' là gì?",
+      "options": [
+        "Noise, drift, missing, outlier, calibration note.",
+        "Chỉ đọc tên bài mà không làm sản phẩm",
+        "Bỏ qua kiểm tra lỗi và không ghi kết quả",
+        "Đợi đến cuối khóa mới học"
+      ],
+      "answerIndex": 0,
+      "reviewLesson": "t_p02_l1"
+    },
+    {
+      "id": "q_t_p03",
+      "moduleId": "t_p03",
+      "stage": "prepare",
+      "difficulty": "medium",
+      "prompt": "Mục tiêu chính của module 'Trực quan hóa chuỗi thời gian và tín hiệu cảm biến' là gì?",
+      "options": [
+        "Line chart, rolling mean, resampling, event marking.",
+        "Chỉ đọc tên bài mà không làm sản phẩm",
+        "Bỏ qua kiểm tra lỗi và không ghi kết quả",
+        "Đợi đến cuối khóa mới học"
+      ],
+      "answerIndex": 0,
+      "reviewLesson": "t_p03_l1"
+    },
+    {
+      "id": "q_t_p04",
+      "moduleId": "t_p04",
+      "stage": "prepare",
+      "difficulty": "medium",
+      "prompt": "Mục tiêu chính của module 'Trích xuất đặc trưng từ tín hiệu' là gì?",
+      "options": [
+        "Lag, rolling statistics, difference, normalization.",
+        "Chỉ đọc tên bài mà không làm sản phẩm",
+        "Bỏ qua kiểm tra lỗi và không ghi kết quả",
+        "Đợi đến cuối khóa mới học"
+      ],
+      "answerIndex": 0,
+      "reviewLesson": "t_p04_l1"
+    },
+    {
+      "id": "q_t_p05",
+      "moduleId": "t_p05",
+      "stage": "prepare",
+      "difficulty": "medium",
+      "prompt": "Mục tiêu chính của module 'Baseline phát hiện bất thường trong telemetry' là gì?",
+      "options": [
+        "Z-score, threshold, residual, false alarm.",
+        "Chỉ đọc tên bài mà không làm sản phẩm",
+        "Bỏ qua kiểm tra lỗi và không ghi kết quả",
+        "Đợi đến cuối khóa mới học"
+      ],
+      "answerIndex": 0,
+      "reviewLesson": "t_p05_l1"
+    },
+    {
+      "id": "q_t_p06",
+      "moduleId": "t_p06",
+      "stage": "prepare",
+      "difficulty": "medium",
+      "prompt": "Mục tiêu chính của module 'Mini-project telemetry: dataset, dashboard và nhận xét' là gì?",
+      "options": [
+        "Dataset nhỏ, notebook, report và error log.",
+        "Chỉ đọc tên bài mà không làm sản phẩm",
+        "Bỏ qua kiểm tra lỗi và không ghi kết quả",
+        "Đợi đến cuối khóa mới học"
+      ],
+      "answerIndex": 0,
+      "reviewLesson": "t_p06_l1"
+    },
+    {
+      "id": "q_t_m301",
+      "moduleId": "t_m301",
+      "stage": "m3",
+      "difficulty": "hard",
+      "prompt": "Mục tiêu chính của module 'Phân tích chuỗi thời gian cho dữ liệu kỹ thuật' là gì?",
+      "options": [
+        "Stationarity, decomposition, ACF/PACF concept.",
+        "Chỉ đọc tên bài mà không làm sản phẩm",
+        "Bỏ qua kiểm tra lỗi và không ghi kết quả",
+        "Đợi đến cuối khóa mới học"
+      ],
+      "answerIndex": 0,
+      "reviewLesson": "t_m301_l1"
+    },
+    {
+      "id": "q_t_m302",
+      "moduleId": "t_m302",
+      "stage": "m3",
+      "difficulty": "hard",
+      "prompt": "Mục tiêu chính của module 'Kiểm định dự báo và sai số ngoài mẫu' là gì?",
+      "options": [
+        "Rolling validation, metric table, baseline forecast.",
+        "Chỉ đọc tên bài mà không làm sản phẩm",
+        "Bỏ qua kiểm tra lỗi và không ghi kết quả",
+        "Đợi đến cuối khóa mới học"
+      ],
+      "answerIndex": 0,
+      "reviewLesson": "t_m302_l1"
+    },
+    {
+      "id": "q_t_m303",
+      "moduleId": "t_m303",
+      "stage": "m3",
+      "difficulty": "hard",
+      "prompt": "Mục tiêu chính của module 'Quy trình thực nghiệm telemetry' là gì?",
+      "options": [
+        "Experiment ID, sensor setup, repeatability, data sheet.",
+        "Chỉ đọc tên bài mà không làm sản phẩm",
+        "Bỏ qua kiểm tra lỗi và không ghi kết quả",
+        "Đợi đến cuối khóa mới học"
+      ],
+      "answerIndex": 0,
+      "reviewLesson": "t_m303_l1"
+    },
+    {
+      "id": "q_t_m304",
+      "moduleId": "t_m304",
+      "stage": "m3",
+      "difficulty": "hard",
+      "prompt": "Mục tiêu chính của module 'Phát hiện bất thường phục vụ luận văn' là gì?",
+      "options": [
+        "Threshold/model-based anomaly, evaluation and visualization.",
+        "Chỉ đọc tên bài mà không làm sản phẩm",
+        "Bỏ qua kiểm tra lỗi và không ghi kết quả",
+        "Đợi đến cuối khóa mới học"
+      ],
+      "answerIndex": 0,
+      "reviewLesson": "t_m304_l1"
+    },
+    {
+      "id": "q_t_m401",
+      "moduleId": "t_m401",
+      "stage": "m4",
+      "difficulty": "hard",
+      "prompt": "Mục tiêu chính của module 'Khóa dataset cho ВКР: phiên bản, metadata và rủi ro' là gì?",
+      "options": [
+        "Lock data, version, hash, metadata, final plots.",
+        "Chỉ đọc tên bài mà không làm sản phẩm",
+        "Bỏ qua kiểm tra lỗi và không ghi kết quả",
+        "Đợi đến cuối khóa mới học"
+      ],
+      "answerIndex": 0,
+      "reviewLesson": "t_m401_l1"
+    },
+    {
+      "id": "q_t_m402",
+      "moduleId": "t_m402",
+      "stage": "m4",
+      "difficulty": "hard",
+      "prompt": "Mục tiêu chính của module 'Bảng kết quả và hình minh họa bảo vệ' là gì?",
+      "options": [
+        "Make final figures, tables, appendix and reproducibility notes.",
+        "Chỉ đọc tên bài mà không làm sản phẩm",
+        "Bỏ qua kiểm tra lỗi và không ghi kết quả",
+        "Đợi đến cuối khóa mới học"
+      ],
+      "answerIndex": 0,
+      "reviewLesson": "t_m402_l1"
+    },
+    {
+      "id": "q_t_p01_v1",
+      "moduleId": "t_p01",
+      "stage": "prepare",
+      "difficulty": "medium",
+      "prompt": "Chọn phát biểu đúng nhất: Mục tiêu chính của module 'Telemetry căn bản: timestamp, log và trạng thái hệ thống' là gì?",
+      "options": [
+        "Timestamp, sampling, units, log structure.",
+        "Chỉ đọc tên bài mà không làm sản phẩm",
+        "Bỏ qua kiểm tra lỗi và không ghi kết quả",
+        "Đợi đến cuối khóa mới học"
+      ],
+      "answerIndex": 0,
+      "reviewLesson": "t_p01_l1"
+    },
+    {
+      "id": "q_t_p02_v2",
+      "moduleId": "t_p02",
+      "stage": "prepare",
+      "difficulty": "hard",
+      "prompt": "Chọn phát biểu đúng nhất: Mục tiêu chính của module 'Chất lượng dữ liệu cảm biến: nhiễu, drift và missing' là gì?",
+      "options": [
+        "Noise, drift, missing, outlier, calibration note.",
+        "Chỉ đọc tên bài mà không làm sản phẩm",
+        "Bỏ qua kiểm tra lỗi và không ghi kết quả",
+        "Đợi đến cuối khóa mới học"
+      ],
+      "answerIndex": 0,
+      "reviewLesson": "t_p02_l1"
+    },
+    {
+      "id": "q_t_p03_v3",
+      "moduleId": "t_p03",
+      "stage": "prepare",
+      "difficulty": "easy",
+      "prompt": "Chọn phát biểu đúng nhất: Mục tiêu chính của module 'Trực quan hóa chuỗi thời gian và tín hiệu cảm biến' là gì?",
+      "options": [
+        "Line chart, rolling mean, resampling, event marking.",
+        "Chỉ đọc tên bài mà không làm sản phẩm",
+        "Bỏ qua kiểm tra lỗi và không ghi kết quả",
+        "Đợi đến cuối khóa mới học"
+      ],
+      "answerIndex": 0,
+      "reviewLesson": "t_p03_l1"
+    },
+    {
+      "id": "q_t_p04_v4",
+      "moduleId": "t_p04",
+      "stage": "prepare",
+      "difficulty": "medium",
+      "prompt": "Chọn phát biểu đúng nhất: Mục tiêu chính của module 'Trích xuất đặc trưng từ tín hiệu' là gì?",
+      "options": [
+        "Lag, rolling statistics, difference, normalization.",
+        "Chỉ đọc tên bài mà không làm sản phẩm",
+        "Bỏ qua kiểm tra lỗi và không ghi kết quả",
+        "Đợi đến cuối khóa mới học"
+      ],
+      "answerIndex": 0,
+      "reviewLesson": "t_p04_l1"
+    },
+    {
+      "id": "q_t_p05_v5",
+      "moduleId": "t_p05",
+      "stage": "prepare",
+      "difficulty": "hard",
+      "prompt": "Chọn phát biểu đúng nhất: Mục tiêu chính của module 'Baseline phát hiện bất thường trong telemetry' là gì?",
+      "options": [
+        "Z-score, threshold, residual, false alarm.",
+        "Chỉ đọc tên bài mà không làm sản phẩm",
+        "Bỏ qua kiểm tra lỗi và không ghi kết quả",
+        "Đợi đến cuối khóa mới học"
+      ],
+      "answerIndex": 0,
+      "reviewLesson": "t_p05_l1"
+    },
+    {
+      "id": "q_t_p06_v6",
+      "moduleId": "t_p06",
+      "stage": "prepare",
+      "difficulty": "easy",
+      "prompt": "Chọn phát biểu đúng nhất: Mục tiêu chính của module 'Mini-project telemetry: dataset, dashboard và nhận xét' là gì?",
+      "options": [
+        "Dataset nhỏ, notebook, report và error log.",
+        "Chỉ đọc tên bài mà không làm sản phẩm",
+        "Bỏ qua kiểm tra lỗi và không ghi kết quả",
+        "Đợi đến cuối khóa mới học"
+      ],
+      "answerIndex": 0,
+      "reviewLesson": "t_p06_l1"
+    },
+    {
+      "id": "q_t_m301_v7",
+      "moduleId": "t_m301",
+      "stage": "m3",
+      "difficulty": "medium",
+      "prompt": "Chọn phát biểu đúng nhất: Mục tiêu chính của module 'Phân tích chuỗi thời gian cho dữ liệu kỹ thuật' là gì?",
+      "options": [
+        "Stationarity, decomposition, ACF/PACF concept.",
+        "Chỉ đọc tên bài mà không làm sản phẩm",
+        "Bỏ qua kiểm tra lỗi và không ghi kết quả",
+        "Đợi đến cuối khóa mới học"
+      ],
+      "answerIndex": 0,
+      "reviewLesson": "t_m301_l1"
+    },
+    {
+      "id": "q_t_m302_v8",
+      "moduleId": "t_m302",
+      "stage": "m3",
+      "difficulty": "hard",
+      "prompt": "Chọn phát biểu đúng nhất: Mục tiêu chính của module 'Kiểm định dự báo và sai số ngoài mẫu' là gì?",
+      "options": [
+        "Rolling validation, metric table, baseline forecast.",
+        "Chỉ đọc tên bài mà không làm sản phẩm",
+        "Bỏ qua kiểm tra lỗi và không ghi kết quả",
+        "Đợi đến cuối khóa mới học"
+      ],
+      "answerIndex": 0,
+      "reviewLesson": "t_m302_l1"
+    },
+    {
+      "id": "q_t_m303_v9",
+      "moduleId": "t_m303",
+      "stage": "m3",
+      "difficulty": "easy",
+      "prompt": "Chọn phát biểu đúng nhất: Mục tiêu chính của module 'Quy trình thực nghiệm telemetry' là gì?",
+      "options": [
+        "Experiment ID, sensor setup, repeatability, data sheet.",
+        "Chỉ đọc tên bài mà không làm sản phẩm",
+        "Bỏ qua kiểm tra lỗi và không ghi kết quả",
+        "Đợi đến cuối khóa mới học"
+      ],
+      "answerIndex": 0,
+      "reviewLesson": "t_m303_l1"
+    },
+    {
+      "id": "q_t_m304_v10",
+      "moduleId": "t_m304",
+      "stage": "m3",
+      "difficulty": "medium",
+      "prompt": "Chọn phát biểu đúng nhất: Mục tiêu chính của module 'Phát hiện bất thường phục vụ luận văn' là gì?",
+      "options": [
+        "Threshold/model-based anomaly, evaluation and visualization.",
+        "Chỉ đọc tên bài mà không làm sản phẩm",
+        "Bỏ qua kiểm tra lỗi và không ghi kết quả",
+        "Đợi đến cuối khóa mới học"
+      ],
+      "answerIndex": 0,
+      "reviewLesson": "t_m304_l1"
+    },
+    {
+      "id": "q_t_m401_v11",
+      "moduleId": "t_m401",
+      "stage": "m4",
+      "difficulty": "hard",
+      "prompt": "Chọn phát biểu đúng nhất: Mục tiêu chính của module 'Khóa dataset cho ВКР: phiên bản, metadata và rủi ro' là gì?",
+      "options": [
+        "Lock data, version, hash, metadata, final plots.",
+        "Chỉ đọc tên bài mà không làm sản phẩm",
+        "Bỏ qua kiểm tra lỗi và không ghi kết quả",
+        "Đợi đến cuối khóa mới học"
+      ],
+      "answerIndex": 0,
+      "reviewLesson": "t_m401_l1"
+    },
+    {
+      "id": "q_t_m402_v12",
+      "moduleId": "t_m402",
+      "stage": "m4",
+      "difficulty": "easy",
+      "prompt": "Chọn phát biểu đúng nhất: Mục tiêu chính của module 'Bảng kết quả và hình minh họa bảo vệ' là gì?",
+      "options": [
+        "Make final figures, tables, appendix and reproducibility notes.",
+        "Chỉ đọc tên bài mà không làm sản phẩm",
+        "Bỏ qua kiểm tra lỗi và không ghi kết quả",
+        "Đợi đến cuối khóa mới học"
+      ],
+      "answerIndex": 0,
+      "reviewLesson": "t_m402_l1"
+    },
+    {
+      "id": "q_t_p01_v13",
+      "moduleId": "t_p01",
+      "stage": "prepare",
+      "difficulty": "medium",
+      "prompt": "Chọn phát biểu đúng nhất: Mục tiêu chính của module 'Telemetry căn bản: timestamp, log và trạng thái hệ thống' là gì?",
+      "options": [
+        "Timestamp, sampling, units, log structure.",
+        "Chỉ đọc tên bài mà không làm sản phẩm",
+        "Bỏ qua kiểm tra lỗi và không ghi kết quả",
+        "Đợi đến cuối khóa mới học"
+      ],
+      "answerIndex": 0,
+      "reviewLesson": "t_p01_l1"
+    },
+    {
+      "id": "q_t_p02_v14",
+      "moduleId": "t_p02",
+      "stage": "prepare",
+      "difficulty": "hard",
+      "prompt": "Chọn phát biểu đúng nhất: Mục tiêu chính của module 'Chất lượng dữ liệu cảm biến: nhiễu, drift và missing' là gì?",
+      "options": [
+        "Noise, drift, missing, outlier, calibration note.",
+        "Chỉ đọc tên bài mà không làm sản phẩm",
+        "Bỏ qua kiểm tra lỗi và không ghi kết quả",
+        "Đợi đến cuối khóa mới học"
+      ],
+      "answerIndex": 0,
+      "reviewLesson": "t_p02_l1"
+    },
+    {
+      "id": "q_t_p03_v15",
+      "moduleId": "t_p03",
+      "stage": "prepare",
+      "difficulty": "easy",
+      "prompt": "Chọn phát biểu đúng nhất: Mục tiêu chính của module 'Trực quan hóa chuỗi thời gian và tín hiệu cảm biến' là gì?",
+      "options": [
+        "Line chart, rolling mean, resampling, event marking.",
+        "Chỉ đọc tên bài mà không làm sản phẩm",
+        "Bỏ qua kiểm tra lỗi và không ghi kết quả",
+        "Đợi đến cuối khóa mới học"
+      ],
+      "answerIndex": 0,
+      "reviewLesson": "t_p03_l1"
+    },
+    {
+      "id": "q_t_p04_v16",
+      "moduleId": "t_p04",
+      "stage": "prepare",
+      "difficulty": "medium",
+      "prompt": "Chọn phát biểu đúng nhất: Mục tiêu chính của module 'Trích xuất đặc trưng từ tín hiệu' là gì?",
+      "options": [
+        "Lag, rolling statistics, difference, normalization.",
+        "Chỉ đọc tên bài mà không làm sản phẩm",
+        "Bỏ qua kiểm tra lỗi và không ghi kết quả",
+        "Đợi đến cuối khóa mới học"
+      ],
+      "answerIndex": 0,
+      "reviewLesson": "t_p04_l1"
+    },
+    {
+      "id": "q_t_p05_v17",
+      "moduleId": "t_p05",
+      "stage": "prepare",
+      "difficulty": "hard",
+      "prompt": "Chọn phát biểu đúng nhất: Mục tiêu chính của module 'Baseline phát hiện bất thường trong telemetry' là gì?",
+      "options": [
+        "Z-score, threshold, residual, false alarm.",
+        "Chỉ đọc tên bài mà không làm sản phẩm",
+        "Bỏ qua kiểm tra lỗi và không ghi kết quả",
+        "Đợi đến cuối khóa mới học"
+      ],
+      "answerIndex": 0,
+      "reviewLesson": "t_p05_l1"
+    },
+    {
+      "id": "q_t_p06_v18",
+      "moduleId": "t_p06",
+      "stage": "prepare",
+      "difficulty": "easy",
+      "prompt": "Chọn phát biểu đúng nhất: Mục tiêu chính của module 'Mini-project telemetry: dataset, dashboard và nhận xét' là gì?",
+      "options": [
+        "Dataset nhỏ, notebook, report và error log.",
+        "Chỉ đọc tên bài mà không làm sản phẩm",
+        "Bỏ qua kiểm tra lỗi và không ghi kết quả",
+        "Đợi đến cuối khóa mới học"
+      ],
+      "answerIndex": 0,
+      "reviewLesson": "t_p06_l1"
+    }
+  ]
+}

@@ -1,0 +1,22 @@
+{
+  "version": "V13.12 Compact 5x5 Chibi Polish",
+  "base": "V13.11 Elegant Compact Polish",
+  "assessment": {
+    "content_readability": "preserved",
+    "flag_grid": "5x5 visual frame, 20 active questions + ghost cells",
+    "exam_logic": "unchanged: 20/40/60/100 questions by paper type",
+    "ratio_notice": "not shown",
+    "layout": "question main area first, flag rail on right for desktop"
+  },
+  "vocabulary": {
+    "visual_layer": "added icon/chibi/visual label on flashcard",
+    "visual_source": ["image_emoji", "image/image_url if present", "illustration_label_ru", "tags", "content inference"],
+    "list_density": "compact, emoji added per row"
+  },
+  "validation": {
+    "core_js_syntax": "pass",
+    "subject_manifest_js_syntax": "pass",
+    "json_parse": "40 files pass",
+    "css_braces": "pass"
+  }
+}

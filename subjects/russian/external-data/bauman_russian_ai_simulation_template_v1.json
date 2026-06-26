@@ -1,0 +1,1076 @@
+{
+  "contract": "BAUMAN_RUSSIAN_AI_SIMULATION_BANK_V1",
+  "version": "1.0.0",
+  "module": "simulations",
+  "subjectId": "russian",
+  "targetTab": "learning.simulations",
+  "title_vi": "Mẫu JSON ngân hàng Mô phỏng AI tiếng Nga Bauman",
+  "description_vi": "Dùng để tạo file riêng cho tab Học tập → Mô phỏng. Đây là đối thoại trực tiếp với trợ lý ảo bằng tiếng Nga, không phải dữ liệu Nghe nói.",
+  "created_date": "2026-06-03",
+  "import_note_vi": "Có thể nhập bằng nút Dữ liệu → Mô phỏng AI trực tiếp → Thay file AI. Trình nhập nhận mảng trực tiếp hoặc object có trường items / simulations / ai_simulations.",
+  "schema": {
+    "required_item_fields": [
+      "id",
+      "stage",
+      "group",
+      "type",
+      "title",
+      "purpose",
+      "targetScore",
+      "assistant_turns",
+      "turns",
+      "vi_turns",
+      "checkMode",
+      "passRule"
+    ],
+    "recommended_item_fields": [
+      "level",
+      "cefr_band",
+      "stage_title_vi",
+      "assistantRole",
+      "studentRole_vi",
+      "acceptable_variants_ru",
+      "pronunciation_focus",
+      "feedback_rules",
+      "prerequisite",
+      "tags"
+    ],
+    "stage_values": [
+      "vn",
+      "prep",
+      "hk1",
+      "hk2",
+      "hk3",
+      "hk4"
+    ],
+    "type_values": [
+      "ai_assistant_live"
+    ],
+    "checkMode_values": [
+      "speech_recognition_ru_RU"
+    ],
+    "targetScore_default": 80,
+    "turn_alignment_rule_vi": "assistant_turns[i] là câu trợ lý hỏi, turns[i] là câu trả lời mẫu của người học, vi_turns[i] là nghĩa tiếng Việt của câu trả lời mẫu."
+  },
+  "levels": [
+    {
+      "stage": "vn",
+      "level": "Level 1",
+      "cefr_band": "A0/A1",
+      "title_vi": "Việt Nam · nền tảng sống còn"
+    },
+    {
+      "stage": "prep",
+      "level": "Level 2",
+      "cefr_band": "A1/A2",
+      "title_vi": "Dự bị Nga / STANKIN"
+    },
+    {
+      "stage": "hk1",
+      "level": "Level 3",
+      "cefr_band": "A2/B1",
+      "title_vi": "Bauman HK1 · lớp học và nền kỹ thuật"
+    },
+    {
+      "stage": "hk2",
+      "level": "Level 4",
+      "cefr_band": "B1/B2",
+      "title_vi": "Bauman HK2 · môn AI, ML, tín hiệu"
+    },
+    {
+      "stage": "hk3",
+      "level": "Level 5",
+      "cefr_band": "B2",
+      "title_vi": "НИР / HK3 · nghiên cứu và thí nghiệm"
+    },
+    {
+      "stage": "hk4",
+      "level": "Level 6",
+      "cefr_band": "B2+",
+      "title_vi": "ВКР / HK4 · luận văn và bảo vệ"
+    }
+  ],
+  "quality_rules_vi": [
+    "Mỗi tình huống nên có 5–8 lượt, bắt đầu ngắn, tăng dần độ khó.",
+    "Không dùng lại file Nghe nói để làm Mô phỏng AI. Mô phỏng phải có assistant_turns rõ ràng.",
+    "Câu trả lời mẫu phải tự nhiên, ngắn gọn, nói được bằng giọng thật.",
+    "Mỗi stage nên có tình huống sinh hoạt, học thuật, kỹ thuật, xử lý vấn đề và báo cáo.",
+    "Các câu hk3/hk4 cần có ngôn ngữ nghiên cứu: цель, данные, эксперимент, результат, ограничение, вывод."
+  ],
+  "items": [
+    {
+      "id": "AISIM_TPL_VN_01",
+      "stage": "vn",
+      "level": "Level 1",
+      "cefr_band": "A0/A1",
+      "stage_title_vi": "Việt Nam · nền tảng sống còn",
+      "group": "AI trợ lý · Sinh tồn ban đầu",
+      "type": "ai_assistant_live",
+      "title": "Chào hỏi và xin nói chậm",
+      "purpose": "Luyện phản xạ chào hỏi, giới thiệu tên, xin nhắc lại khi chưa nghe rõ.",
+      "difficulty": "adaptive",
+      "targetScore": 80,
+      "minPassScore": 80,
+      "language": {
+        "assistant": "ru-RU",
+        "learner": "ru-RU",
+        "support": "vi-VN"
+      },
+      "assistantRole": "Виртуальный помощник говорит только по-русски, задаёт вопросы по сценарию и ждёт голосовой ответ студента.",
+      "studentRole_vi": "Người học trả lời bằng tiếng Nga. Hệ thống kiểm tra phát âm, đạt chuẩn mới được chuyển lượt.",
+      "assistant_turns": [
+        "Здравствуйте! Как вас зовут?",
+        "Вы говорите по-русски?",
+        "Повторите, пожалуйста: где вы живёте?",
+        "Скажите медленно: вы из Вьетнама?",
+        "Хорошо. До свидания!"
+      ],
+      "turns": [
+        "Здравствуйте! Меня зовут Нам.",
+        "Я немного говорю по-русски.",
+        "Повторите, пожалуйста, медленнее.",
+        "Да, я из Вьетнама.",
+        "До свидания! Спасибо."
+      ],
+      "vi_turns": [
+        "Xin chào! Tôi tên là Nam.",
+        "Tôi nói tiếng Nga một chút.",
+        "Vui lòng nhắc lại chậm hơn.",
+        "Vâng, tôi đến từ Việt Nam.",
+        "Tạm biệt! Cảm ơn."
+      ],
+      "acceptable_variants_ru": [
+        [
+          "Здравствуйте! Меня зовут Нам."
+        ],
+        [
+          "Я немного говорю по-русски."
+        ],
+        [
+          "Повторите, пожалуйста, медленнее."
+        ],
+        [
+          "Да, я из Вьетнама."
+        ],
+        [
+          "До свидания! Спасибо."
+        ]
+      ],
+      "pronunciation_focus": [
+        "ударение",
+        "чёткие окончания",
+        "медленный темп",
+        "ключевые слова сценария"
+      ],
+      "feedback_rules": {
+        "pass_vi": "Đạt từ 80% trở lên: cho qua lượt tiếp theo.",
+        "retry_vi": "Dưới 80%: nghe mẫu chậm, nhấn âm chính, nói lại.",
+        "assistant_hint_vi": "Trợ lý có thể nhắc lại câu hỏi bằng tiếng Nga ngắn hơn."
+      },
+      "checkMode": "speech_recognition_ru_RU",
+      "passRule": "Người học phải phát âm câu trả lời tiếng Nga đạt tối thiểu 80% mới được chuyển lượt tiếp theo.",
+      "prerequisite": [
+        "R01",
+        "R02"
+      ],
+      "tags": [
+        "vn",
+        "survival",
+        "greeting"
+      ]
+    },
+    {
+      "id": "AISIM_TPL_PREP_01",
+      "stage": "prep",
+      "level": "Level 2",
+      "cefr_band": "A1/A2",
+      "stage_title_vi": "Dự bị Nga / STANKIN",
+      "group": "AI trợ lý · Dự bị Nga",
+      "type": "ai_assistant_live",
+      "title": "Hỏi lịch học dự bị",
+      "purpose": "Luyện hỏi lịch, phòng học, giáo viên và tài liệu trong môi trường dự bị.",
+      "difficulty": "adaptive",
+      "targetScore": 80,
+      "minPassScore": 80,
+      "language": {
+        "assistant": "ru-RU",
+        "learner": "ru-RU",
+        "support": "vi-VN"
+      },
+      "assistantRole": "Виртуальный помощник говорит только по-русски, задаёт вопросы по сценарию и ждёт голосовой ответ студента.",
+      "studentRole_vi": "Người học trả lời bằng tiếng Nga. Hệ thống kiểm tra phát âm, đạt chuẩn mới được chuyển lượt.",
+      "assistant_turns": [
+        "Какой у вас сегодня урок?",
+        "В какой аудитории занятие?",
+        "Вы знаете имя преподавателя?",
+        "Где лежат материалы?",
+        "Что вы будете делать после урока?"
+      ],
+      "turns": [
+        "Сегодня у меня русский язык и математика.",
+        "Занятие в аудитории двести пять.",
+        "Преподавателя зовут Анна Сергеевна.",
+        "Материалы лежат в чате группы.",
+        "После урока я буду делать домашнее задание."
+      ],
+      "vi_turns": [
+        "Hôm nay tôi có tiếng Nga và toán.",
+        "Buổi học ở phòng 205.",
+        "Giảng viên tên là Anna Sergeevna.",
+        "Tài liệu nằm trong nhóm chat.",
+        "Sau giờ học tôi sẽ làm bài tập về nhà."
+      ],
+      "acceptable_variants_ru": [
+        [
+          "Сегодня у меня русский язык и математика."
+        ],
+        [
+          "Занятие в аудитории двести пять."
+        ],
+        [
+          "Преподавателя зовут Анна Сергеевна."
+        ],
+        [
+          "Материалы лежат в чате группы."
+        ],
+        [
+          "После урока я буду делать домашнее задание."
+        ]
+      ],
+      "pronunciation_focus": [
+        "ударение",
+        "чёткие окончания",
+        "медленный темп",
+        "ключевые слова сценария"
+      ],
+      "feedback_rules": {
+        "pass_vi": "Đạt từ 80% trở lên: cho qua lượt tiếp theo.",
+        "retry_vi": "Dưới 80%: nghe mẫu chậm, nhấn âm chính, nói lại.",
+        "assistant_hint_vi": "Trợ lý có thể nhắc lại câu hỏi bằng tiếng Nga ngắn hơn."
+      },
+      "checkMode": "speech_recognition_ru_RU",
+      "passRule": "Người học phải phát âm câu trả lời tiếng Nga đạt tối thiểu 80% mới được chuyển lượt tiếp theo.",
+      "prerequisite": [
+        "R07",
+        "R08"
+      ],
+      "tags": [
+        "prep",
+        "schedule",
+        "classroom"
+      ]
+    },
+    {
+      "id": "AISIM_TPL_HK1_01",
+      "stage": "hk1",
+      "level": "Level 3",
+      "cefr_band": "A2/B1",
+      "stage_title_vi": "Bauman HK1 · lớp học và nền kỹ thuật",
+      "group": "AI trợ lý · Bauman HK1",
+      "type": "ai_assistant_live",
+      "title": "Trao đổi bài tập lập trình",
+      "purpose": "Luyện nói ngắn về bài tập Python/SQL, lỗi, deadline và cách xin hỗ trợ.",
+      "difficulty": "adaptive",
+      "targetScore": 80,
+      "minPassScore": 80,
+      "language": {
+        "assistant": "ru-RU",
+        "learner": "ru-RU",
+        "support": "vi-VN"
+      },
+      "assistantRole": "Виртуальный помощник говорит только по-русски, задаёт вопросы по сценарию и ждёт голосовой ответ студента.",
+      "studentRole_vi": "Người học trả lời bằng tiếng Nga. Hệ thống kiểm tra phát âm, đạt chuẩn mới được chuyển lượt.",
+      "assistant_turns": [
+        "Какое у вас домашнее задание?",
+        "Какая ошибка возникает в коде?",
+        "Когда дедлайн?",
+        "Что вы уже проверили?",
+        "Какую помощь вы хотите получить?"
+      ],
+      "turns": [
+        "У меня домашнее задание по Python и SQL.",
+        "В коде возникает ошибка при чтении файла.",
+        "Дедлайн в пятницу вечером.",
+        "Я уже проверил путь к файлу и формат данных.",
+        "Я хочу понять причину ошибки и исправить код."
+      ],
+      "vi_turns": [
+        "Tôi có bài tập về Python và SQL.",
+        "Trong code có lỗi khi đọc file.",
+        "Hạn nộp là tối thứ sáu.",
+        "Tôi đã kiểm tra đường dẫn file và định dạng dữ liệu.",
+        "Tôi muốn hiểu nguyên nhân lỗi và sửa code."
+      ],
+      "acceptable_variants_ru": [
+        [
+          "У меня домашнее задание по Python и SQL."
+        ],
+        [
+          "В коде возникает ошибка при чтении файла."
+        ],
+        [
+          "Дедлайн в пятницу вечером."
+        ],
+        [
+          "Я уже проверил путь к файлу и формат данных."
+        ],
+        [
+          "Я хочу понять причину ошибки и исправить код."
+        ]
+      ],
+      "pronunciation_focus": [
+        "ударение",
+        "чёткие окончания",
+        "медленный темп",
+        "ключевые слова сценария"
+      ],
+      "feedback_rules": {
+        "pass_vi": "Đạt từ 80% trở lên: cho qua lượt tiếp theo.",
+        "retry_vi": "Dưới 80%: nghe mẫu chậm, nhấn âm chính, nói lại.",
+        "assistant_hint_vi": "Trợ lý có thể nhắc lại câu hỏi bằng tiếng Nga ngắn hơn."
+      },
+      "checkMode": "speech_recognition_ru_RU",
+      "passRule": "Người học phải phát âm câu trả lời tiếng Nga đạt tối thiểu 80% mới được chuyển lượt tiếp theo.",
+      "prerequisite": [
+        "R13",
+        "R14"
+      ],
+      "tags": [
+        "hk1",
+        "programming",
+        "homework"
+      ]
+    },
+    {
+      "id": "AISIM_TPL_HK2_01",
+      "stage": "hk2",
+      "level": "Level 4",
+      "cefr_band": "B1/B2",
+      "stage_title_vi": "Bauman HK2 · môn AI, ML, tín hiệu",
+      "group": "AI trợ lý · ML và tín hiệu",
+      "type": "ai_assistant_live",
+      "title": "Giải thích kết quả mô hình",
+      "purpose": "Luyện trình bày kết quả mô hình, metric, lỗi và hướng cải thiện bằng tiếng Nga.",
+      "difficulty": "adaptive",
+      "targetScore": 80,
+      "minPassScore": 80,
+      "language": {
+        "assistant": "ru-RU",
+        "learner": "ru-RU",
+        "support": "vi-VN"
+      },
+      "assistantRole": "Виртуальный помощник говорит только по-русски, задаёт вопросы по сценарию и ждёт голосовой ответ студента.",
+      "studentRole_vi": "Người học trả lời bằng tiếng Nga. Hệ thống kiểm tra phát âm, đạt chuẩn mới được chuyển lượt.",
+      "assistant_turns": [
+        "Какую модель вы обучали?",
+        "Какая метрика главная?",
+        "Почему результат недостаточно хороший?",
+        "Что вы будете улучшать?",
+        "Как вы объясните вывод преподавателю?"
+      ],
+      "turns": [
+        "Я обучал модель классификации.",
+        "Главная метрика — точность и F1-мера.",
+        "Результат недостаточно хороший из-за дисбаланса классов.",
+        "Я буду улучшать признаки и проверять данные.",
+        "Я скажу, что модель требует дополнительной проверки."
+      ],
+      "vi_turns": [
+        "Tôi đã huấn luyện mô hình phân loại.",
+        "Metric chính là accuracy và F1-score.",
+        "Kết quả chưa đủ tốt do mất cân bằng lớp.",
+        "Tôi sẽ cải thiện đặc trưng và kiểm tra dữ liệu.",
+        "Tôi sẽ nói rằng mô hình cần kiểm tra bổ sung."
+      ],
+      "acceptable_variants_ru": [
+        [
+          "Я обучал модель классификации."
+        ],
+        [
+          "Главная метрика — точность и F1-мера."
+        ],
+        [
+          "Результат недостаточно хороший из-за дисбаланса классов."
+        ],
+        [
+          "Я буду улучшать признаки и проверять данные."
+        ],
+        [
+          "Я скажу, что модель требует дополнительной проверки."
+        ]
+      ],
+      "pronunciation_focus": [
+        "ударение",
+        "чёткие окончания",
+        "медленный темп",
+        "ключевые слова сценария"
+      ],
+      "feedback_rules": {
+        "pass_vi": "Đạt từ 80% trở lên: cho qua lượt tiếp theo.",
+        "retry_vi": "Dưới 80%: nghe mẫu chậm, nhấn âm chính, nói lại.",
+        "assistant_hint_vi": "Trợ lý có thể nhắc lại câu hỏi bằng tiếng Nga ngắn hơn."
+      },
+      "checkMode": "speech_recognition_ru_RU",
+      "passRule": "Người học phải phát âm câu trả lời tiếng Nga đạt tối thiểu 80% mới được chuyển lượt tiếp theo.",
+      "prerequisite": [
+        "R17",
+        "R18"
+      ],
+      "tags": [
+        "hk2",
+        "machine-learning",
+        "metrics"
+      ]
+    },
+    {
+      "id": "AISIM_TPL_HK3_01",
+      "stage": "hk3",
+      "level": "Level 5",
+      "cefr_band": "B2",
+      "stage_title_vi": "НИР / HK3 · nghiên cứu và thí nghiệm",
+      "group": "AI trợ lý · НИР",
+      "type": "ai_assistant_live",
+      "title": "Báo cáo tiến độ nghiên cứu",
+      "purpose": "Luyện báo cáo tiến độ НИР: mục tiêu, dữ liệu, thí nghiệm, vấn đề, bước tiếp theo.",
+      "difficulty": "adaptive",
+      "targetScore": 80,
+      "minPassScore": 80,
+      "language": {
+        "assistant": "ru-RU",
+        "learner": "ru-RU",
+        "support": "vi-VN"
+      },
+      "assistantRole": "Виртуальный помощник говорит только по-русски, задаёт вопросы по сценарию и ждёт голосовой ответ студента.",
+      "studentRole_vi": "Người học trả lời bằng tiếng Nga. Hệ thống kiểm tra phát âm, đạt chuẩn mới được chuyển lượt.",
+      "assistant_turns": [
+        "Какова цель вашего исследования?",
+        "Какие данные вы используете?",
+        "Какой эксперимент уже готов?",
+        "Какая проблема остаётся?",
+        "Что вы сделаете на следующей неделе?"
+      ],
+      "turns": [
+        "Цель исследования — улучшить обработку телеметрии.",
+        "Я использую данные датчиков и журнал экспериментов.",
+        "Уже готов базовый эксперимент с фильтрацией сигнала.",
+        "Проблема остаётся в шуме и пропусках данных.",
+        "На следующей неделе я проверю устойчивость алгоритма."
+      ],
+      "vi_turns": [
+        "Mục tiêu nghiên cứu là cải thiện xử lý telemetry.",
+        "Tôi dùng dữ liệu cảm biến và log thí nghiệm.",
+        "Thí nghiệm cơ bản với lọc tín hiệu đã sẵn sàng.",
+        "Vấn đề còn lại là nhiễu và thiếu dữ liệu.",
+        "Tuần sau tôi sẽ kiểm tra độ ổn định của thuật toán."
+      ],
+      "acceptable_variants_ru": [
+        [
+          "Цель исследования — улучшить обработку телеметрии."
+        ],
+        [
+          "Я использую данные датчиков и журнал экспериментов."
+        ],
+        [
+          "Уже готов базовый эксперимент с фильтрацией сигнала."
+        ],
+        [
+          "Проблема остаётся в шуме и пропусках данных."
+        ],
+        [
+          "На следующей неделе я проверю устойчивость алгоритма."
+        ]
+      ],
+      "pronunciation_focus": [
+        "ударение",
+        "чёткие окончания",
+        "медленный темп",
+        "ключевые слова сценария"
+      ],
+      "feedback_rules": {
+        "pass_vi": "Đạt từ 80% trở lên: cho qua lượt tiếp theo.",
+        "retry_vi": "Dưới 80%: nghe mẫu chậm, nhấn âm chính, nói lại.",
+        "assistant_hint_vi": "Trợ lý có thể nhắc lại câu hỏi bằng tiếng Nga ngắn hơn."
+      },
+      "checkMode": "speech_recognition_ru_RU",
+      "passRule": "Người học phải phát âm câu trả lời tiếng Nga đạt tối thiểu 80% mới được chuyển lượt tiếp theo.",
+      "prerequisite": [
+        "R21",
+        "R22"
+      ],
+      "tags": [
+        "hk3",
+        "research",
+        "telemetry"
+      ]
+    },
+    {
+      "id": "AISIM_TPL_HK4_01",
+      "stage": "hk4",
+      "level": "Level 6",
+      "cefr_band": "B2+",
+      "stage_title_vi": "ВКР / HK4 · luận văn và bảo vệ",
+      "group": "AI trợ lý · ВКР",
+      "type": "ai_assistant_live",
+      "title": "Trả lời hội đồng bảo vệ",
+      "purpose": "Luyện trả lời ngắn gọn, có lập luận, về đóng góp, giới hạn và kiểm chứng trong ВКР.",
+      "difficulty": "adaptive",
+      "targetScore": 80,
+      "minPassScore": 80,
+      "language": {
+        "assistant": "ru-RU",
+        "learner": "ru-RU",
+        "support": "vi-VN"
+      },
+      "assistantRole": "Виртуальный помощник говорит только по-русски, задаёт вопросы по сценарию и ждёт голосовой ответ студента.",
+      "studentRole_vi": "Người học trả lời bằng tiếng Nga. Hệ thống kiểm tra phát âm, đạt chuẩn mới được chuyển lượt.",
+      "assistant_turns": [
+        "В чём новизна вашей работы?",
+        "Как вы проверяли результат?",
+        "Какие есть ограничения?",
+        "Почему выбранный метод подходит?",
+        "Какой практический вывод можно сделать?"
+      ],
+      "turns": [
+        "Новизна работы — в адаптации метода к данным автономной системы.",
+        "Результат проверялся на тестовом наборе и в моделируемом сценарии.",
+        "Ограничение связано с объёмом данных и шумом датчиков.",
+        "Метод подходит, потому что он устойчив к неполным измерениям.",
+        "Практический вывод — систему можно использовать для предварительного анализа."
+      ],
+      "vi_turns": [
+        "Điểm mới của luận văn là điều chỉnh phương pháp cho dữ liệu hệ tự hành.",
+        "Kết quả được kiểm chứng trên tập test và trong kịch bản mô phỏng.",
+        "Giới hạn liên quan đến dung lượng dữ liệu và nhiễu cảm biến.",
+        "Phương pháp phù hợp vì nó ổn định với đo lường không đầy đủ.",
+        "Kết luận thực tế là hệ thống có thể dùng cho phân tích sơ bộ."
+      ],
+      "acceptable_variants_ru": [
+        [
+          "Новизна работы — в адаптации метода к данным автономной системы."
+        ],
+        [
+          "Результат проверялся на тестовом наборе и в моделируемом сценарии."
+        ],
+        [
+          "Ограничение связано с объёмом данных и шумом датчиков."
+        ],
+        [
+          "Метод подходит, потому что он устойчив к неполным измерениям."
+        ],
+        [
+          "Практический вывод — систему можно использовать для предварительного анализа."
+        ]
+      ],
+      "pronunciation_focus": [
+        "ударение",
+        "чёткие окончания",
+        "медленный темп",
+        "ключевые слова сценария"
+      ],
+      "feedback_rules": {
+        "pass_vi": "Đạt từ 80% trở lên: cho qua lượt tiếp theo.",
+        "retry_vi": "Dưới 80%: nghe mẫu chậm, nhấn âm chính, nói lại.",
+        "assistant_hint_vi": "Trợ lý có thể nhắc lại câu hỏi bằng tiếng Nga ngắn hơn."
+      },
+      "checkMode": "speech_recognition_ru_RU",
+      "passRule": "Người học phải phát âm câu trả lời tiếng Nga đạt tối thiểu 80% mới được chuyển lượt tiếp theo.",
+      "prerequisite": [
+        "R25",
+        "R26"
+      ],
+      "tags": [
+        "hk4",
+        "vkr",
+        "defense"
+      ]
+    }
+  ],
+  "ai_simulations": [
+    {
+      "id": "AISIM_TPL_VN_01",
+      "stage": "vn",
+      "level": "Level 1",
+      "cefr_band": "A0/A1",
+      "stage_title_vi": "Việt Nam · nền tảng sống còn",
+      "group": "AI trợ lý · Sinh tồn ban đầu",
+      "type": "ai_assistant_live",
+      "title": "Chào hỏi và xin nói chậm",
+      "purpose": "Luyện phản xạ chào hỏi, giới thiệu tên, xin nhắc lại khi chưa nghe rõ.",
+      "difficulty": "adaptive",
+      "targetScore": 80,
+      "minPassScore": 80,
+      "language": {
+        "assistant": "ru-RU",
+        "learner": "ru-RU",
+        "support": "vi-VN"
+      },
+      "assistantRole": "Виртуальный помощник говорит только по-русски, задаёт вопросы по сценарию и ждёт голосовой ответ студента.",
+      "studentRole_vi": "Người học trả lời bằng tiếng Nga. Hệ thống kiểm tra phát âm, đạt chuẩn mới được chuyển lượt.",
+      "assistant_turns": [
+        "Здравствуйте! Как вас зовут?",
+        "Вы говорите по-русски?",
+        "Повторите, пожалуйста: где вы живёте?",
+        "Скажите медленно: вы из Вьетнама?",
+        "Хорошо. До свидания!"
+      ],
+      "turns": [
+        "Здравствуйте! Меня зовут Нам.",
+        "Я немного говорю по-русски.",
+        "Повторите, пожалуйста, медленнее.",
+        "Да, я из Вьетнама.",
+        "До свидания! Спасибо."
+      ],
+      "vi_turns": [
+        "Xin chào! Tôi tên là Nam.",
+        "Tôi nói tiếng Nga một chút.",
+        "Vui lòng nhắc lại chậm hơn.",
+        "Vâng, tôi đến từ Việt Nam.",
+        "Tạm biệt! Cảm ơn."
+      ],
+      "acceptable_variants_ru": [
+        [
+          "Здравствуйте! Меня зовут Нам."
+        ],
+        [
+          "Я немного говорю по-русски."
+        ],
+        [
+          "Повторите, пожалуйста, медленнее."
+        ],
+        [
+          "Да, я из Вьетнама."
+        ],
+        [
+          "До свидания! Спасибо."
+        ]
+      ],
+      "pronunciation_focus": [
+        "ударение",
+        "чёткие окончания",
+        "медленный темп",
+        "ключевые слова сценария"
+      ],
+      "feedback_rules": {
+        "pass_vi": "Đạt từ 80% trở lên: cho qua lượt tiếp theo.",
+        "retry_vi": "Dưới 80%: nghe mẫu chậm, nhấn âm chính, nói lại.",
+        "assistant_hint_vi": "Trợ lý có thể nhắc lại câu hỏi bằng tiếng Nga ngắn hơn."
+      },
+      "checkMode": "speech_recognition_ru_RU",
+      "passRule": "Người học phải phát âm câu trả lời tiếng Nga đạt tối thiểu 80% mới được chuyển lượt tiếp theo.",
+      "prerequisite": [
+        "R01",
+        "R02"
+      ],
+      "tags": [
+        "vn",
+        "survival",
+        "greeting"
+      ]
+    },
+    {
+      "id": "AISIM_TPL_PREP_01",
+      "stage": "prep",
+      "level": "Level 2",
+      "cefr_band": "A1/A2",
+      "stage_title_vi": "Dự bị Nga / STANKIN",
+      "group": "AI trợ lý · Dự bị Nga",
+      "type": "ai_assistant_live",
+      "title": "Hỏi lịch học dự bị",
+      "purpose": "Luyện hỏi lịch, phòng học, giáo viên và tài liệu trong môi trường dự bị.",
+      "difficulty": "adaptive",
+      "targetScore": 80,
+      "minPassScore": 80,
+      "language": {
+        "assistant": "ru-RU",
+        "learner": "ru-RU",
+        "support": "vi-VN"
+      },
+      "assistantRole": "Виртуальный помощник говорит только по-русски, задаёт вопросы по сценарию и ждёт голосовой ответ студента.",
+      "studentRole_vi": "Người học trả lời bằng tiếng Nga. Hệ thống kiểm tra phát âm, đạt chuẩn mới được chuyển lượt.",
+      "assistant_turns": [
+        "Какой у вас сегодня урок?",
+        "В какой аудитории занятие?",
+        "Вы знаете имя преподавателя?",
+        "Где лежат материалы?",
+        "Что вы будете делать после урока?"
+      ],
+      "turns": [
+        "Сегодня у меня русский язык и математика.",
+        "Занятие в аудитории двести пять.",
+        "Преподавателя зовут Анна Сергеевна.",
+        "Материалы лежат в чате группы.",
+        "После урока я буду делать домашнее задание."
+      ],
+      "vi_turns": [
+        "Hôm nay tôi có tiếng Nga và toán.",
+        "Buổi học ở phòng 205.",
+        "Giảng viên tên là Anna Sergeevna.",
+        "Tài liệu nằm trong nhóm chat.",
+        "Sau giờ học tôi sẽ làm bài tập về nhà."
+      ],
+      "acceptable_variants_ru": [
+        [
+          "Сегодня у меня русский язык и математика."
+        ],
+        [
+          "Занятие в аудитории двести пять."
+        ],
+        [
+          "Преподавателя зовут Анна Сергеевна."
+        ],
+        [
+          "Материалы лежат в чате группы."
+        ],
+        [
+          "После урока я буду делать домашнее задание."
+        ]
+      ],
+      "pronunciation_focus": [
+        "ударение",
+        "чёткие окончания",
+        "медленный темп",
+        "ключевые слова сценария"
+      ],
+      "feedback_rules": {
+        "pass_vi": "Đạt từ 80% trở lên: cho qua lượt tiếp theo.",
+        "retry_vi": "Dưới 80%: nghe mẫu chậm, nhấn âm chính, nói lại.",
+        "assistant_hint_vi": "Trợ lý có thể nhắc lại câu hỏi bằng tiếng Nga ngắn hơn."
+      },
+      "checkMode": "speech_recognition_ru_RU",
+      "passRule": "Người học phải phát âm câu trả lời tiếng Nga đạt tối thiểu 80% mới được chuyển lượt tiếp theo.",
+      "prerequisite": [
+        "R07",
+        "R08"
+      ],
+      "tags": [
+        "prep",
+        "schedule",
+        "classroom"
+      ]
+    },
+    {
+      "id": "AISIM_TPL_HK1_01",
+      "stage": "hk1",
+      "level": "Level 3",
+      "cefr_band": "A2/B1",
+      "stage_title_vi": "Bauman HK1 · lớp học và nền kỹ thuật",
+      "group": "AI trợ lý · Bauman HK1",
+      "type": "ai_assistant_live",
+      "title": "Trao đổi bài tập lập trình",
+      "purpose": "Luyện nói ngắn về bài tập Python/SQL, lỗi, deadline và cách xin hỗ trợ.",
+      "difficulty": "adaptive",
+      "targetScore": 80,
+      "minPassScore": 80,
+      "language": {
+        "assistant": "ru-RU",
+        "learner": "ru-RU",
+        "support": "vi-VN"
+      },
+      "assistantRole": "Виртуальный помощник говорит только по-русски, задаёт вопросы по сценарию и ждёт голосовой ответ студента.",
+      "studentRole_vi": "Người học trả lời bằng tiếng Nga. Hệ thống kiểm tra phát âm, đạt chuẩn mới được chuyển lượt.",
+      "assistant_turns": [
+        "Какое у вас домашнее задание?",
+        "Какая ошибка возникает в коде?",
+        "Когда дедлайн?",
+        "Что вы уже проверили?",
+        "Какую помощь вы хотите получить?"
+      ],
+      "turns": [
+        "У меня домашнее задание по Python и SQL.",
+        "В коде возникает ошибка при чтении файла.",
+        "Дедлайн в пятницу вечером.",
+        "Я уже проверил путь к файлу и формат данных.",
+        "Я хочу понять причину ошибки и исправить код."
+      ],
+      "vi_turns": [
+        "Tôi có bài tập về Python và SQL.",
+        "Trong code có lỗi khi đọc file.",
+        "Hạn nộp là tối thứ sáu.",
+        "Tôi đã kiểm tra đường dẫn file và định dạng dữ liệu.",
+        "Tôi muốn hiểu nguyên nhân lỗi và sửa code."
+      ],
+      "acceptable_variants_ru": [
+        [
+          "У меня домашнее задание по Python и SQL."
+        ],
+        [
+          "В коде возникает ошибка при чтении файла."
+        ],
+        [
+          "Дедлайн в пятницу вечером."
+        ],
+        [
+          "Я уже проверил путь к файлу и формат данных."
+        ],
+        [
+          "Я хочу понять причину ошибки и исправить код."
+        ]
+      ],
+      "pronunciation_focus": [
+        "ударение",
+        "чёткие окончания",
+        "медленный темп",
+        "ключевые слова сценария"
+      ],
+      "feedback_rules": {
+        "pass_vi": "Đạt từ 80% trở lên: cho qua lượt tiếp theo.",
+        "retry_vi": "Dưới 80%: nghe mẫu chậm, nhấn âm chính, nói lại.",
+        "assistant_hint_vi": "Trợ lý có thể nhắc lại câu hỏi bằng tiếng Nga ngắn hơn."
+      },
+      "checkMode": "speech_recognition_ru_RU",
+      "passRule": "Người học phải phát âm câu trả lời tiếng Nga đạt tối thiểu 80% mới được chuyển lượt tiếp theo.",
+      "prerequisite": [
+        "R13",
+        "R14"
+      ],
+      "tags": [
+        "hk1",
+        "programming",
+        "homework"
+      ]
+    },
+    {
+      "id": "AISIM_TPL_HK2_01",
+      "stage": "hk2",
+      "level": "Level 4",
+      "cefr_band": "B1/B2",
+      "stage_title_vi": "Bauman HK2 · môn AI, ML, tín hiệu",
+      "group": "AI trợ lý · ML và tín hiệu",
+      "type": "ai_assistant_live",
+      "title": "Giải thích kết quả mô hình",
+      "purpose": "Luyện trình bày kết quả mô hình, metric, lỗi và hướng cải thiện bằng tiếng Nga.",
+      "difficulty": "adaptive",
+      "targetScore": 80,
+      "minPassScore": 80,
+      "language": {
+        "assistant": "ru-RU",
+        "learner": "ru-RU",
+        "support": "vi-VN"
+      },
+      "assistantRole": "Виртуальный помощник говорит только по-русски, задаёт вопросы по сценарию и ждёт голосовой ответ студента.",
+      "studentRole_vi": "Người học trả lời bằng tiếng Nga. Hệ thống kiểm tra phát âm, đạt chuẩn mới được chuyển lượt.",
+      "assistant_turns": [
+        "Какую модель вы обучали?",
+        "Какая метрика главная?",
+        "Почему результат недостаточно хороший?",
+        "Что вы будете улучшать?",
+        "Как вы объясните вывод преподавателю?"
+      ],
+      "turns": [
+        "Я обучал модель классификации.",
+        "Главная метрика — точность и F1-мера.",
+        "Результат недостаточно хороший из-за дисбаланса классов.",
+        "Я буду улучшать признаки и проверять данные.",
+        "Я скажу, что модель требует дополнительной проверки."
+      ],
+      "vi_turns": [
+        "Tôi đã huấn luyện mô hình phân loại.",
+        "Metric chính là accuracy và F1-score.",
+        "Kết quả chưa đủ tốt do mất cân bằng lớp.",
+        "Tôi sẽ cải thiện đặc trưng và kiểm tra dữ liệu.",
+        "Tôi sẽ nói rằng mô hình cần kiểm tra bổ sung."
+      ],
+      "acceptable_variants_ru": [
+        [
+          "Я обучал модель классификации."
+        ],
+        [
+          "Главная метрика — точность и F1-мера."
+        ],
+        [
+          "Результат недостаточно хороший из-за дисбаланса классов."
+        ],
+        [
+          "Я буду улучшать признаки и проверять данные."
+        ],
+        [
+          "Я скажу, что модель требует дополнительной проверки."
+        ]
+      ],
+      "pronunciation_focus": [
+        "ударение",
+        "чёткие окончания",
+        "медленный темп",
+        "ключевые слова сценария"
+      ],
+      "feedback_rules": {
+        "pass_vi": "Đạt từ 80% trở lên: cho qua lượt tiếp theo.",
+        "retry_vi": "Dưới 80%: nghe mẫu chậm, nhấn âm chính, nói lại.",
+        "assistant_hint_vi": "Trợ lý có thể nhắc lại câu hỏi bằng tiếng Nga ngắn hơn."
+      },
+      "checkMode": "speech_recognition_ru_RU",
+      "passRule": "Người học phải phát âm câu trả lời tiếng Nga đạt tối thiểu 80% mới được chuyển lượt tiếp theo.",
+      "prerequisite": [
+        "R17",
+        "R18"
+      ],
+      "tags": [
+        "hk2",
+        "machine-learning",
+        "metrics"
+      ]
+    },
+    {
+      "id": "AISIM_TPL_HK3_01",
+      "stage": "hk3",
+      "level": "Level 5",
+      "cefr_band": "B2",
+      "stage_title_vi": "НИР / HK3 · nghiên cứu và thí nghiệm",
+      "group": "AI trợ lý · НИР",
+      "type": "ai_assistant_live",
+      "title": "Báo cáo tiến độ nghiên cứu",
+      "purpose": "Luyện báo cáo tiến độ НИР: mục tiêu, dữ liệu, thí nghiệm, vấn đề, bước tiếp theo.",
+      "difficulty": "adaptive",
+      "targetScore": 80,
+      "minPassScore": 80,
+      "language": {
+        "assistant": "ru-RU",
+        "learner": "ru-RU",
+        "support": "vi-VN"
+      },
+      "assistantRole": "Виртуальный помощник говорит только по-русски, задаёт вопросы по сценарию и ждёт голосовой ответ студента.",
+      "studentRole_vi": "Người học trả lời bằng tiếng Nga. Hệ thống kiểm tra phát âm, đạt chuẩn mới được chuyển lượt.",
+      "assistant_turns": [
+        "Какова цель вашего исследования?",
+        "Какие данные вы используете?",
+        "Какой эксперимент уже готов?",
+        "Какая проблема остаётся?",
+        "Что вы сделаете на следующей неделе?"
+      ],
+      "turns": [
+        "Цель исследования — улучшить обработку телеметрии.",
+        "Я использую данные датчиков и журнал экспериментов.",
+        "Уже готов базовый эксперимент с фильтрацией сигнала.",
+        "Проблема остаётся в шуме и пропусках данных.",
+        "На следующей неделе я проверю устойчивость алгоритма."
+      ],
+      "vi_turns": [
+        "Mục tiêu nghiên cứu là cải thiện xử lý telemetry.",
+        "Tôi dùng dữ liệu cảm biến và log thí nghiệm.",
+        "Thí nghiệm cơ bản với lọc tín hiệu đã sẵn sàng.",
+        "Vấn đề còn lại là nhiễu và thiếu dữ liệu.",
+        "Tuần sau tôi sẽ kiểm tra độ ổn định của thuật toán."
+      ],
+      "acceptable_variants_ru": [
+        [
+          "Цель исследования — улучшить обработку телеметрии."
+        ],
+        [
+          "Я использую данные датчиков и журнал экспериментов."
+        ],
+        [
+          "Уже готов базовый эксперимент с фильтрацией сигнала."
+        ],
+        [
+          "Проблема остаётся в шуме и пропусках данных."
+        ],
+        [
+          "На следующей неделе я проверю устойчивость алгоритма."
+        ]
+      ],
+      "pronunciation_focus": [
+        "ударение",
+        "чёткие окончания",
+        "медленный темп",
+        "ключевые слова сценария"
+      ],
+      "feedback_rules": {
+        "pass_vi": "Đạt từ 80% trở lên: cho qua lượt tiếp theo.",
+        "retry_vi": "Dưới 80%: nghe mẫu chậm, nhấn âm chính, nói lại.",
+        "assistant_hint_vi": "Trợ lý có thể nhắc lại câu hỏi bằng tiếng Nga ngắn hơn."
+      },
+      "checkMode": "speech_recognition_ru_RU",
+      "passRule": "Người học phải phát âm câu trả lời tiếng Nga đạt tối thiểu 80% mới được chuyển lượt tiếp theo.",
+      "prerequisite": [
+        "R21",
+        "R22"
+      ],
+      "tags": [
+        "hk3",
+        "research",
+        "telemetry"
+      ]
+    },
+    {
+      "id": "AISIM_TPL_HK4_01",
+      "stage": "hk4",
+      "level": "Level 6",
+      "cefr_band": "B2+",
+      "stage_title_vi": "ВКР / HK4 · luận văn và bảo vệ",
+      "group": "AI trợ lý · ВКР",
+      "type": "ai_assistant_live",
+      "title": "Trả lời hội đồng bảo vệ",
+      "purpose": "Luyện trả lời ngắn gọn, có lập luận, về đóng góp, giới hạn và kiểm chứng trong ВКР.",
+      "difficulty": "adaptive",
+      "targetScore": 80,
+      "minPassScore": 80,
+      "language": {
+        "assistant": "ru-RU",
+        "learner": "ru-RU",
+        "support": "vi-VN"
+      },
+      "assistantRole": "Виртуальный помощник говорит только по-русски, задаёт вопросы по сценарию и ждёт голосовой ответ студента.",
+      "studentRole_vi": "Người học trả lời bằng tiếng Nga. Hệ thống kiểm tra phát âm, đạt chuẩn mới được chuyển lượt.",
+      "assistant_turns": [
+        "В чём новизна вашей работы?",
+        "Как вы проверяли результат?",
+        "Какие есть ограничения?",
+        "Почему выбранный метод подходит?",
+        "Какой практический вывод можно сделать?"
+      ],
+      "turns": [
+        "Новизна работы — в адаптации метода к данным автономной системы.",
+        "Результат проверялся на тестовом наборе и в моделируемом сценарии.",
+        "Ограничение связано с объёмом данных и шумом датчиков.",
+        "Метод подходит, потому что он устойчив к неполным измерениям.",
+        "Практический вывод — систему можно использовать для предварительного анализа."
+      ],
+      "vi_turns": [
+        "Điểm mới của luận văn là điều chỉnh phương pháp cho dữ liệu hệ tự hành.",
+        "Kết quả được kiểm chứng trên tập test và trong kịch bản mô phỏng.",
+        "Giới hạn liên quan đến dung lượng dữ liệu và nhiễu cảm biến.",
+        "Phương pháp phù hợp vì nó ổn định với đo lường không đầy đủ.",
+        "Kết luận thực tế là hệ thống có thể dùng cho phân tích sơ bộ."
+      ],
+      "acceptable_variants_ru": [
+        [
+          "Новизна работы — в адаптации метода к данным автономной системы."
+        ],
+        [
+          "Результат проверялся на тестовом наборе и в моделируемом сценарии."
+        ],
+        [
+          "Ограничение связано с объёмом данных и шумом датчиков."
+        ],
+        [
+          "Метод подходит, потому что он устойчив к неполным измерениям."
+        ],
+        [
+          "Практический вывод — систему можно использовать для предварительного анализа."
+        ]
+      ],
+      "pronunciation_focus": [
+        "ударение",
+        "чёткие окончания",
+        "медленный темп",
+        "ключевые слова сценария"
+      ],
+      "feedback_rules": {
+        "pass_vi": "Đạt từ 80% trở lên: cho qua lượt tiếp theo.",
+        "retry_vi": "Dưới 80%: nghe mẫu chậm, nhấn âm chính, nói lại.",
+        "assistant_hint_vi": "Trợ lý có thể nhắc lại câu hỏi bằng tiếng Nga ngắn hơn."
+      },
+      "checkMode": "speech_recognition_ru_RU",
+      "passRule": "Người học phải phát âm câu trả lời tiếng Nga đạt tối thiểu 80% mới được chuyển lượt tiếp theo.",
+      "prerequisite": [
+        "R25",
+        "R26"
+      ],
+      "tags": [
+        "hk4",
+        "vkr",
+        "defense"
+      ]
+    }
+  ]
+}

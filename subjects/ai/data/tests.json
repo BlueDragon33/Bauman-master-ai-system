@@ -1,0 +1,532 @@
+{
+  "rules": {
+    "easy": {
+      "questions": 20,
+      "unlockScore": 8
+    },
+    "medium": {
+      "questions": 30,
+      "unlockScore": 8
+    },
+    "hard": {
+      "questions": 40,
+      "unlockScore": 8
+    },
+    "excellent": {
+      "questions": 50,
+      "unlockScore": 8
+    }
+  },
+  "questions": [
+    {
+      "id": "q_a_p01",
+      "moduleId": "a_p01",
+      "stage": "prepare",
+      "difficulty": "easy",
+      "prompt": "Mục tiêu chính của module 'Quy trình học máy: dữ liệu, đặc trưng, mô hình và metric' là gì?",
+      "options": [
+        "Problem, data, split, model, metric, report.",
+        "Chỉ đọc tên bài mà không làm sản phẩm",
+        "Bỏ qua kiểm tra lỗi và không ghi kết quả",
+        "Đợi đến cuối khóa mới học"
+      ],
+      "answerIndex": 0,
+      "reviewLesson": "a_p01_l1"
+    },
+    {
+      "id": "q_a_p02",
+      "moduleId": "a_p02",
+      "stage": "prepare",
+      "difficulty": "easy",
+      "prompt": "Mục tiêu chính của module 'Baseline hồi quy và phân loại' là gì?",
+      "options": [
+        "Linear/logistic regression, metrics, confusion matrix.",
+        "Chỉ đọc tên bài mà không làm sản phẩm",
+        "Bỏ qua kiểm tra lỗi và không ghi kết quả",
+        "Đợi đến cuối khóa mới học"
+      ],
+      "answerIndex": 0,
+      "reviewLesson": "a_p02_l1"
+    },
+    {
+      "id": "q_a_p03",
+      "moduleId": "a_p03",
+      "stage": "prepare",
+      "difficulty": "medium",
+      "prompt": "Mục tiêu chính của module 'Tiền xử lý dữ liệu và phòng tránh rò rỉ dữ liệu' là gì?",
+      "options": [
+        "Missing, encoding, scaling, train/test leakage.",
+        "Chỉ đọc tên bài mà không làm sản phẩm",
+        "Bỏ qua kiểm tra lỗi và không ghi kết quả",
+        "Đợi đến cuối khóa mới học"
+      ],
+      "answerIndex": 0,
+      "reviewLesson": "a_p03_l1"
+    },
+    {
+      "id": "q_a_p04",
+      "moduleId": "a_p04",
+      "stage": "prepare",
+      "difficulty": "medium",
+      "prompt": "Mục tiêu chính của module 'Mô hình cây, ensemble và kiểm định chéo' là gì?",
+      "options": [
+        "Decision tree, random forest, CV, feature importance.",
+        "Chỉ đọc tên bài mà không làm sản phẩm",
+        "Bỏ qua kiểm tra lỗi và không ghi kết quả",
+        "Đợi đến cuối khóa mới học"
+      ],
+      "answerIndex": 0,
+      "reviewLesson": "a_p04_l1"
+    },
+    {
+      "id": "q_a_p05",
+      "moduleId": "a_p05",
+      "stage": "prepare",
+      "difficulty": "medium",
+      "prompt": "Mục tiêu chính của module 'Clustering và PCA trong khám phá cấu trúc dữ liệu' là gì?",
+      "options": [
+        "KMeans, silhouette, PCA visualization.",
+        "Chỉ đọc tên bài mà không làm sản phẩm",
+        "Bỏ qua kiểm tra lỗi và không ghi kết quả",
+        "Đợi đến cuối khóa mới học"
+      ],
+      "answerIndex": 0,
+      "reviewLesson": "a_p05_l1"
+    },
+    {
+      "id": "q_a_p06",
+      "moduleId": "a_p06",
+      "stage": "prepare",
+      "difficulty": "medium",
+      "prompt": "Mục tiêu chính của module 'Mạng neural nhập môn: kiến trúc, loss và huấn luyện' là gì?",
+      "options": [
+        "MLP, activation, loss, gradient descent concept.",
+        "Chỉ đọc tên bài mà không làm sản phẩm",
+        "Bỏ qua kiểm tra lỗi và không ghi kết quả",
+        "Đợi đến cuối khóa mới học"
+      ],
+      "answerIndex": 0,
+      "reviewLesson": "a_p06_l1"
+    },
+    {
+      "id": "q_a_p07",
+      "moduleId": "a_p07",
+      "stage": "prepare",
+      "difficulty": "medium",
+      "prompt": "Mục tiêu chính của module 'Mini-project AI cho UGV/USV: dữ liệu, model và báo cáo' là gì?",
+      "options": [
+        "Tabular/sensor baseline, report và error analysis.",
+        "Chỉ đọc tên bài mà không làm sản phẩm",
+        "Bỏ qua kiểm tra lỗi và không ghi kết quả",
+        "Đợi đến cuối khóa mới học"
+      ],
+      "answerIndex": 0,
+      "reviewLesson": "a_p07_l1"
+    },
+    {
+      "id": "q_a_s01",
+      "moduleId": "a_s01",
+      "stage": "preparatory",
+      "difficulty": "easy",
+      "prompt": "Mục tiêu chính của module 'Thuật ngữ học máy tiếng Nga cho lớp kỹ thuật' là gì?",
+      "options": [
+        "Модель, обучение, выборка, признаки, ошибка, точность.",
+        "Chỉ đọc tên bài mà không làm sản phẩm",
+        "Bỏ qua kiểm tra lỗi và không ghi kết quả",
+        "Đợi đến cuối khóa mới học"
+      ],
+      "answerIndex": 0,
+      "reviewLesson": "a_s01_l1"
+    },
+    {
+      "id": "q_a_s02",
+      "moduleId": "a_s02",
+      "stage": "preparatory",
+      "difficulty": "medium",
+      "prompt": "Mục tiêu chính của module 'Đọc abstract ML tiếng Nga: mục tiêu, phương pháp và kết quả' là gì?",
+      "options": [
+        "Tóm tắt paper/lecture bằng tiếng Nga kỹ thuật.",
+        "Chỉ đọc tên bài mà không làm sản phẩm",
+        "Bỏ qua kiểm tra lỗi và không ghi kết quả",
+        "Đợi đến cuối khóa mới học"
+      ],
+      "answerIndex": 0,
+      "reviewLesson": "a_s02_l1"
+    },
+    {
+      "id": "q_a_s03",
+      "moduleId": "a_s03",
+      "stage": "preparatory",
+      "difficulty": "medium",
+      "prompt": "Mục tiêu chính của module 'Baseline ML bằng notebook song ngữ Nga-Việt' là gì?",
+      "options": [
+        "Giải thích pipeline ML với thuật ngữ Nga.",
+        "Chỉ đọc tên bài mà không làm sản phẩm",
+        "Bỏ qua kiểm tra lỗi và không ghi kết quả",
+        "Đợi đến cuối khóa mới học"
+      ],
+      "answerIndex": 0,
+      "reviewLesson": "a_s03_l1"
+    },
+    {
+      "id": "q_a_m201",
+      "moduleId": "a_m201",
+      "stage": "m2",
+      "difficulty": "hard",
+      "prompt": "Mục tiêu chính của module 'Phương pháp học máy trong АСОИУ' là gì?",
+      "options": [
+        "Mapping ML task vào hệ thống xử lý thông tin và điều khiển.",
+        "Chỉ đọc tên bài mà không làm sản phẩm",
+        "Bỏ qua kiểm tra lỗi và không ghi kết quả",
+        "Đợi đến cuối khóa mới học"
+      ],
+      "answerIndex": 0,
+      "reviewLesson": "a_m201_l1"
+    },
+    {
+      "id": "q_a_m202",
+      "moduleId": "a_m202",
+      "stage": "m2",
+      "difficulty": "hard",
+      "prompt": "Mục tiêu chính của module 'Phát triển hệ thống neural' là gì?",
+      "options": [
+        "MLP/CNN concept, training loop, experiment design.",
+        "Chỉ đọc tên bài mà không làm sản phẩm",
+        "Bỏ qua kiểm tra lỗi và không ghi kết quả",
+        "Đợi đến cuối khóa mới học"
+      ],
+      "answerIndex": 0,
+      "reviewLesson": "a_m202_l1"
+    },
+    {
+      "id": "q_a_m203",
+      "moduleId": "a_m203",
+      "stage": "m2",
+      "difficulty": "hard",
+      "prompt": "Mục tiêu chính của module 'So sánh mô hình và độ tin cậy dự đoán' là gì?",
+      "options": [
+        "Metric, robustness, failure cases, baseline vs neural.",
+        "Chỉ đọc tên bài mà không làm sản phẩm",
+        "Bỏ qua kiểm tra lỗi và không ghi kết quả",
+        "Đợi đến cuối khóa mới học"
+      ],
+      "answerIndex": 0,
+      "reviewLesson": "a_m203_l1"
+    },
+    {
+      "id": "q_a_m301",
+      "moduleId": "a_m301",
+      "stage": "m3",
+      "difficulty": "hard",
+      "prompt": "Mục tiêu chính của module 'AI cho phân tích kinh doanh và dữ liệu vận hành' là gì?",
+      "options": [
+        "Forecasting/analytics workflow, dashboard metric, decision support.",
+        "Chỉ đọc tên bài mà không làm sản phẩm",
+        "Bỏ qua kiểm tra lỗi và không ghi kết quả",
+        "Đợi đến cuối khóa mới học"
+      ],
+      "answerIndex": 0,
+      "reviewLesson": "a_m301_l1"
+    },
+    {
+      "id": "q_a_m302",
+      "moduleId": "a_m302",
+      "stage": "m3",
+      "difficulty": "hard",
+      "prompt": "Mục tiêu chính của module 'Thực nghiệm AI cho đề tài НИР/ВКР cho luận văn: ablation, metric và báo cáo' là gì?",
+      "options": [
+        "Ablation, protocol, result table, reproducibility.",
+        "Chỉ đọc tên bài mà không làm sản phẩm",
+        "Bỏ qua kiểm tra lỗi và không ghi kết quả",
+        "Đợi đến cuối khóa mới học"
+      ],
+      "answerIndex": 0,
+      "reviewLesson": "a_m302_l1"
+    },
+    {
+      "id": "q_a_m401",
+      "moduleId": "a_m401",
+      "stage": "m4",
+      "difficulty": "hard",
+      "prompt": "Mục tiêu chính của module 'Mivar, logic AI và biểu diễn tri thức' là gì?",
+      "options": [
+        "Rule-based reasoning, logic network, hybrid decision layer.",
+        "Chỉ đọc tên bài mà không làm sản phẩm",
+        "Bỏ qua kiểm tra lỗi và không ghi kết quả",
+        "Đợi đến cuối khóa mới học"
+      ],
+      "answerIndex": 0,
+      "reviewLesson": "a_m401_l1"
+    },
+    {
+      "id": "q_a_m402",
+      "moduleId": "a_m402",
+      "stage": "m4",
+      "difficulty": "hard",
+      "prompt": "Mục tiêu chính của module 'Kiểm toán mô hình AI cuối khóa: dữ liệu, metric và rủi ro' là gì?",
+      "options": [
+        "Model freeze, error analysis, defense-ready explanation.",
+        "Chỉ đọc tên bài mà không làm sản phẩm",
+        "Bỏ qua kiểm tra lỗi và không ghi kết quả",
+        "Đợi đến cuối khóa mới học"
+      ],
+      "answerIndex": 0,
+      "reviewLesson": "a_m402_l1"
+    },
+    {
+      "id": "q_a_p01_v1",
+      "moduleId": "a_p01",
+      "stage": "prepare",
+      "difficulty": "medium",
+      "prompt": "Chọn phát biểu đúng nhất: Mục tiêu chính của module 'Quy trình học máy: dữ liệu, đặc trưng, mô hình và metric' là gì?",
+      "options": [
+        "Problem, data, split, model, metric, report.",
+        "Chỉ đọc tên bài mà không làm sản phẩm",
+        "Bỏ qua kiểm tra lỗi và không ghi kết quả",
+        "Đợi đến cuối khóa mới học"
+      ],
+      "answerIndex": 0,
+      "reviewLesson": "a_p01_l1"
+    },
+    {
+      "id": "q_a_p02_v2",
+      "moduleId": "a_p02",
+      "stage": "prepare",
+      "difficulty": "hard",
+      "prompt": "Chọn phát biểu đúng nhất: Mục tiêu chính của module 'Baseline hồi quy và phân loại' là gì?",
+      "options": [
+        "Linear/logistic regression, metrics, confusion matrix.",
+        "Chỉ đọc tên bài mà không làm sản phẩm",
+        "Bỏ qua kiểm tra lỗi và không ghi kết quả",
+        "Đợi đến cuối khóa mới học"
+      ],
+      "answerIndex": 0,
+      "reviewLesson": "a_p02_l1"
+    },
+    {
+      "id": "q_a_p03_v3",
+      "moduleId": "a_p03",
+      "stage": "prepare",
+      "difficulty": "easy",
+      "prompt": "Chọn phát biểu đúng nhất: Mục tiêu chính của module 'Tiền xử lý dữ liệu và phòng tránh rò rỉ dữ liệu' là gì?",
+      "options": [
+        "Missing, encoding, scaling, train/test leakage.",
+        "Chỉ đọc tên bài mà không làm sản phẩm",
+        "Bỏ qua kiểm tra lỗi và không ghi kết quả",
+        "Đợi đến cuối khóa mới học"
+      ],
+      "answerIndex": 0,
+      "reviewLesson": "a_p03_l1"
+    },
+    {
+      "id": "q_a_p04_v4",
+      "moduleId": "a_p04",
+      "stage": "prepare",
+      "difficulty": "medium",
+      "prompt": "Chọn phát biểu đúng nhất: Mục tiêu chính của module 'Mô hình cây, ensemble và kiểm định chéo' là gì?",
+      "options": [
+        "Decision tree, random forest, CV, feature importance.",
+        "Chỉ đọc tên bài mà không làm sản phẩm",
+        "Bỏ qua kiểm tra lỗi và không ghi kết quả",
+        "Đợi đến cuối khóa mới học"
+      ],
+      "answerIndex": 0,
+      "reviewLesson": "a_p04_l1"
+    },
+    {
+      "id": "q_a_p05_v5",
+      "moduleId": "a_p05",
+      "stage": "prepare",
+      "difficulty": "hard",
+      "prompt": "Chọn phát biểu đúng nhất: Mục tiêu chính của module 'Clustering và PCA trong khám phá cấu trúc dữ liệu' là gì?",
+      "options": [
+        "KMeans, silhouette, PCA visualization.",
+        "Chỉ đọc tên bài mà không làm sản phẩm",
+        "Bỏ qua kiểm tra lỗi và không ghi kết quả",
+        "Đợi đến cuối khóa mới học"
+      ],
+      "answerIndex": 0,
+      "reviewLesson": "a_p05_l1"
+    },
+    {
+      "id": "q_a_p06_v6",
+      "moduleId": "a_p06",
+      "stage": "prepare",
+      "difficulty": "easy",
+      "prompt": "Chọn phát biểu đúng nhất: Mục tiêu chính của module 'Mạng neural nhập môn: kiến trúc, loss và huấn luyện' là gì?",
+      "options": [
+        "MLP, activation, loss, gradient descent concept.",
+        "Chỉ đọc tên bài mà không làm sản phẩm",
+        "Bỏ qua kiểm tra lỗi và không ghi kết quả",
+        "Đợi đến cuối khóa mới học"
+      ],
+      "answerIndex": 0,
+      "reviewLesson": "a_p06_l1"
+    },
+    {
+      "id": "q_a_p07_v7",
+      "moduleId": "a_p07",
+      "stage": "prepare",
+      "difficulty": "medium",
+      "prompt": "Chọn phát biểu đúng nhất: Mục tiêu chính của module 'Mini-project AI cho UGV/USV: dữ liệu, model và báo cáo' là gì?",
+      "options": [
+        "Tabular/sensor baseline, report và error analysis.",
+        "Chỉ đọc tên bài mà không làm sản phẩm",
+        "Bỏ qua kiểm tra lỗi và không ghi kết quả",
+        "Đợi đến cuối khóa mới học"
+      ],
+      "answerIndex": 0,
+      "reviewLesson": "a_p07_l1"
+    },
+    {
+      "id": "q_a_s01_v8",
+      "moduleId": "a_s01",
+      "stage": "preparatory",
+      "difficulty": "hard",
+      "prompt": "Chọn phát biểu đúng nhất: Mục tiêu chính của module 'Thuật ngữ học máy tiếng Nga cho lớp kỹ thuật' là gì?",
+      "options": [
+        "Модель, обучение, выборка, признаки, ошибка, точность.",
+        "Chỉ đọc tên bài mà không làm sản phẩm",
+        "Bỏ qua kiểm tra lỗi và không ghi kết quả",
+        "Đợi đến cuối khóa mới học"
+      ],
+      "answerIndex": 0,
+      "reviewLesson": "a_s01_l1"
+    },
+    {
+      "id": "q_a_s02_v9",
+      "moduleId": "a_s02",
+      "stage": "preparatory",
+      "difficulty": "easy",
+      "prompt": "Chọn phát biểu đúng nhất: Mục tiêu chính của module 'Đọc abstract ML tiếng Nga: mục tiêu, phương pháp và kết quả' là gì?",
+      "options": [
+        "Tóm tắt paper/lecture bằng tiếng Nga kỹ thuật.",
+        "Chỉ đọc tên bài mà không làm sản phẩm",
+        "Bỏ qua kiểm tra lỗi và không ghi kết quả",
+        "Đợi đến cuối khóa mới học"
+      ],
+      "answerIndex": 0,
+      "reviewLesson": "a_s02_l1"
+    },
+    {
+      "id": "q_a_s03_v10",
+      "moduleId": "a_s03",
+      "stage": "preparatory",
+      "difficulty": "medium",
+      "prompt": "Chọn phát biểu đúng nhất: Mục tiêu chính của module 'Baseline ML bằng notebook song ngữ Nga-Việt' là gì?",
+      "options": [
+        "Giải thích pipeline ML với thuật ngữ Nga.",
+        "Chỉ đọc tên bài mà không làm sản phẩm",
+        "Bỏ qua kiểm tra lỗi và không ghi kết quả",
+        "Đợi đến cuối khóa mới học"
+      ],
+      "answerIndex": 0,
+      "reviewLesson": "a_s03_l1"
+    },
+    {
+      "id": "q_a_m201_v11",
+      "moduleId": "a_m201",
+      "stage": "m2",
+      "difficulty": "hard",
+      "prompt": "Chọn phát biểu đúng nhất: Mục tiêu chính của module 'Phương pháp học máy trong АСОИУ' là gì?",
+      "options": [
+        "Mapping ML task vào hệ thống xử lý thông tin và điều khiển.",
+        "Chỉ đọc tên bài mà không làm sản phẩm",
+        "Bỏ qua kiểm tra lỗi và không ghi kết quả",
+        "Đợi đến cuối khóa mới học"
+      ],
+      "answerIndex": 0,
+      "reviewLesson": "a_m201_l1"
+    },
+    {
+      "id": "q_a_m202_v12",
+      "moduleId": "a_m202",
+      "stage": "m2",
+      "difficulty": "easy",
+      "prompt": "Chọn phát biểu đúng nhất: Mục tiêu chính của module 'Phát triển hệ thống neural' là gì?",
+      "options": [
+        "MLP/CNN concept, training loop, experiment design.",
+        "Chỉ đọc tên bài mà không làm sản phẩm",
+        "Bỏ qua kiểm tra lỗi và không ghi kết quả",
+        "Đợi đến cuối khóa mới học"
+      ],
+      "answerIndex": 0,
+      "reviewLesson": "a_m202_l1"
+    },
+    {
+      "id": "q_a_m203_v13",
+      "moduleId": "a_m203",
+      "stage": "m2",
+      "difficulty": "medium",
+      "prompt": "Chọn phát biểu đúng nhất: Mục tiêu chính của module 'So sánh mô hình và độ tin cậy dự đoán' là gì?",
+      "options": [
+        "Metric, robustness, failure cases, baseline vs neural.",
+        "Chỉ đọc tên bài mà không làm sản phẩm",
+        "Bỏ qua kiểm tra lỗi và không ghi kết quả",
+        "Đợi đến cuối khóa mới học"
+      ],
+      "answerIndex": 0,
+      "reviewLesson": "a_m203_l1"
+    },
+    {
+      "id": "q_a_m301_v14",
+      "moduleId": "a_m301",
+      "stage": "m3",
+      "difficulty": "hard",
+      "prompt": "Chọn phát biểu đúng nhất: Mục tiêu chính của module 'AI cho phân tích kinh doanh và dữ liệu vận hành' là gì?",
+      "options": [
+        "Forecasting/analytics workflow, dashboard metric, decision support.",
+        "Chỉ đọc tên bài mà không làm sản phẩm",
+        "Bỏ qua kiểm tra lỗi và không ghi kết quả",
+        "Đợi đến cuối khóa mới học"
+      ],
+      "answerIndex": 0,
+      "reviewLesson": "a_m301_l1"
+    },
+    {
+      "id": "q_a_m302_v15",
+      "moduleId": "a_m302",
+      "stage": "m3",
+      "difficulty": "easy",
+      "prompt": "Chọn phát biểu đúng nhất: Mục tiêu chính của module 'Thực nghiệm AI cho đề tài НИР/ВКР cho luận văn: ablation, metric và báo cáo' là gì?",
+      "options": [
+        "Ablation, protocol, result table, reproducibility.",
+        "Chỉ đọc tên bài mà không làm sản phẩm",
+        "Bỏ qua kiểm tra lỗi và không ghi kết quả",
+        "Đợi đến cuối khóa mới học"
+      ],
+      "answerIndex": 0,
+      "reviewLesson": "a_m302_l1"
+    },
+    {
+      "id": "q_a_m401_v16",
+      "moduleId": "a_m401",
+      "stage": "m4",
+      "difficulty": "medium",
+      "prompt": "Chọn phát biểu đúng nhất: Mục tiêu chính của module 'Mivar, logic AI và biểu diễn tri thức' là gì?",
+      "options": [
+        "Rule-based reasoning, logic network, hybrid decision layer.",
+        "Chỉ đọc tên bài mà không làm sản phẩm",
+        "Bỏ qua kiểm tra lỗi và không ghi kết quả",
+        "Đợi đến cuối khóa mới học"
+      ],
+      "answerIndex": 0,
+      "reviewLesson": "a_m401_l1"
+    },
+    {
+      "id": "q_a_m402_v17",
+      "moduleId": "a_m402",
+      "stage": "m4",
+      "difficulty": "hard",
+      "prompt": "Chọn phát biểu đúng nhất: Mục tiêu chính của module 'Kiểm toán mô hình AI cuối khóa: dữ liệu, metric và rủi ro' là gì?",
+      "options": [
+        "Model freeze, error analysis, defense-ready explanation.",
+        "Chỉ đọc tên bài mà không làm sản phẩm",
+        "Bỏ qua kiểm tra lỗi và không ghi kết quả",
+        "Đợi đến cuối khóa mới học"
+      ],
+      "answerIndex": 0,
+      "reviewLesson": "a_m402_l1"
+    }
+  ]
+}

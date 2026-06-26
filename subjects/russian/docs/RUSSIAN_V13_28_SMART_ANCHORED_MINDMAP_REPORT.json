@@ -1,0 +1,16 @@
+{
+  "version": "V13.28 Smart Anchored Mind Map",
+  "changes": [
+    "Kéo node thì dây kết nối SVG tự bám theo bằng tọa độ mới, không còn đứt ràng buộc hình học.",
+    "Thêm nút Sắp xếp lại để đưa toàn bộ node về bố cục cân, tránh tì đè nội dung sau khi kéo thử.",
+    "Thêm bộ điều chỉnh cỡ chữ A−/A/A+ cho nội dung node trong mind map.",
+    "Hover giữ yên 3 giây sẽ mở bảng phóng to nội dung khoảng gấp đôi để quan sát dễ hơn.",
+    "Double click node mở ngay bảng phóng to, đúng yêu cầu bổ sung.",
+    "Giữ bố cục mind map trong một khung hình, không tạo trượt ngang."
+  ],
+  "qa": [
+    "JS syntax checked",
+    "manifest JSON checked",
+    "zip tested"
+  ]
+}

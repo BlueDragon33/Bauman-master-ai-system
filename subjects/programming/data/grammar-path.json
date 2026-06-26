@@ -1,0 +1,818 @@
+[
+  {
+    "id": "workflow_PR01",
+    "stage": "vn",
+    "lessonId": "PR01",
+    "title": "Thiết lập môi trường Python, VS Code và Live Server",
+    "focus": "workflow/cú pháp/ký hiệu",
+    "rule": "python -m venv .venv; pip install -r requirements.txt; code .\nDùng khi: mở module học, chạy notebook, kiểm thử HTML/JSON cục bộ\nKiểm tra: có input/output, test/log và artifact.",
+    "formula": "python -m venv .venv; pip install -r requirements.txt; code .",
+    "meaning": "Quy trình lõi của bài Thiết lập môi trường Python, VS Code và Live Server",
+    "example": "mở module học, chạy notebook, kiểm thử HTML/JSON cục bộ",
+    "tags": [
+      "workflow",
+      "syntax",
+      "programming",
+      "vn"
+    ]
+  },
+  {
+    "id": "workflow_PR02",
+    "stage": "vn",
+    "lessonId": "PR02",
+    "title": "Tư duy thuật toán và độ phức tạp",
+    "focus": "workflow/cú pháp/ký hiệu",
+    "rule": "T(n)=O(n log n); space=O(n)\nDùng khi: chọn thuật toán đủ nhanh cho xử lý dữ liệu robot\nKiểm tra: có input/output, test/log và artifact.",
+    "formula": "T(n)=O(n log n); space=O(n)",
+    "meaning": "Quy trình lõi của bài Tư duy thuật toán và độ phức tạp",
+    "example": "chọn thuật toán đủ nhanh cho xử lý dữ liệu robot",
+    "tags": [
+      "workflow",
+      "syntax",
+      "programming",
+      "vn"
+    ]
+  },
+  {
+    "id": "workflow_PR03",
+    "stage": "vn",
+    "lessonId": "PR03",
+    "title": "Python căn bản: kiểu dữ liệu, hàm, module",
+    "focus": "workflow/cú pháp/ký hiệu",
+    "rule": "def f(x): return y; list/dict/set/tuple\nDùng khi: viết script sạch để xử lý bài tập và dữ liệu nhỏ\nKiểm tra: có input/output, test/log và artifact.",
+    "formula": "def f(x): return y; list/dict/set/tuple",
+    "meaning": "Quy trình lõi của bài Python căn bản: kiểu dữ liệu, hàm, module",
+    "example": "viết script sạch để xử lý bài tập và dữ liệu nhỏ",
+    "tags": [
+      "workflow",
+      "syntax",
+      "programming",
+      "vn"
+    ]
+  },
+  {
+    "id": "workflow_PR04",
+    "stage": "vn",
+    "lessonId": "PR04",
+    "title": "NumPy và vector hóa dữ liệu",
+    "focus": "workflow/cú pháp/ký hiệu",
+    "rule": "X.shape=(n,d); y = X @ w + b\nDùng khi: tính toán ma trận/đặc trưng cho AI nhanh và gọn\nKiểm tra: có input/output, test/log và artifact.",
+    "formula": "X.shape=(n,d); y = X @ w + b",
+    "meaning": "Quy trình lõi của bài NumPy và vector hóa dữ liệu",
+    "example": "tính toán ma trận/đặc trưng cho AI nhanh và gọn",
+    "tags": [
+      "workflow",
+      "syntax",
+      "programming",
+      "vn"
+    ]
+  },
+  {
+    "id": "workflow_PR05",
+    "stage": "vn",
+    "lessonId": "PR05",
+    "title": "Pandas và làm sạch bảng dữ liệu",
+    "focus": "workflow/cú pháp/ký hiệu",
+    "rule": "df.dropna(); df.groupby(); df.merge()\nDùng khi: làm sạch log cảm biến, bảng điểm đo, dữ liệu CSV\nKiểm tra: có input/output, test/log và artifact.",
+    "formula": "df.dropna(); df.groupby(); df.merge()",
+    "meaning": "Quy trình lõi của bài Pandas và làm sạch bảng dữ liệu",
+    "example": "làm sạch log cảm biến, bảng điểm đo, dữ liệu CSV",
+    "tags": [
+      "workflow",
+      "syntax",
+      "programming",
+      "vn"
+    ]
+  },
+  {
+    "id": "workflow_PR06",
+    "stage": "vn",
+    "lessonId": "PR06",
+    "title": "SQL căn bản và mô hình quan hệ",
+    "focus": "workflow/cú pháp/ký hiệu",
+    "rule": "SELECT col FROM table WHERE condition; PK/FK\nDùng khi: lưu kết quả thí nghiệm, metadata và truy vấn nhanh\nKiểm tra: có input/output, test/log và artifact.",
+    "formula": "SELECT col FROM table WHERE condition; PK/FK",
+    "meaning": "Quy trình lõi của bài SQL căn bản và mô hình quan hệ",
+    "example": "lưu kết quả thí nghiệm, metadata và truy vấn nhanh",
+    "tags": [
+      "workflow",
+      "syntax",
+      "programming",
+      "vn"
+    ]
+  },
+  {
+    "id": "workflow_PR07",
+    "stage": "vn",
+    "lessonId": "PR07",
+    "title": "Git, GitHub và nhật ký học tập",
+    "focus": "workflow/cú pháp/ký hiệu",
+    "rule": "git add .; git commit -m \"message\"; git branch\nDùng khi: quản lý phiên bản bài học, notebook, mã mô phỏng\nKiểm tra: có input/output, test/log và artifact.",
+    "formula": "git add .; git commit -m \"message\"; git branch",
+    "meaning": "Quy trình lõi của bài Git, GitHub và nhật ký học tập",
+    "example": "quản lý phiên bản bài học, notebook, mã mô phỏng",
+    "tags": [
+      "workflow",
+      "syntax",
+      "programming",
+      "vn"
+    ]
+  },
+  {
+    "id": "workflow_PR08",
+    "stage": "vn",
+    "lessonId": "PR08",
+    "title": "Notebook thực nghiệm và README tái lập",
+    "focus": "workflow/cú pháp/ký hiệu",
+    "rule": "README + notebook + data/ + src/ + results/\nDùng khi: tạo artifact học tập có thể mở lại, chạy lại, giải thích lại\nKiểm tra: có input/output, test/log và artifact.",
+    "formula": "README + notebook + data/ + src/ + results/",
+    "meaning": "Quy trình lõi của bài Notebook thực nghiệm và README tái lập",
+    "example": "tạo artifact học tập có thể mở lại, chạy lại, giải thích lại",
+    "tags": [
+      "workflow",
+      "syntax",
+      "programming",
+      "vn"
+    ]
+  },
+  {
+    "id": "workflow_PR09",
+    "stage": "prep",
+    "lessonId": "PR09",
+    "title": "Thuật ngữ tin học Nga cho lớp dự bị",
+    "focus": "workflow/cú pháp/ký hiệu",
+    "rule": "алгоритм, переменная, функция, массив, база данных\nDùng khi: nghe/đọc đề bài tin học và hỏi giáo viên bằng tiếng Nga\nKiểm tra: có input/output, test/log và artifact.",
+    "formula": "алгоритм, переменная, функция, массив, база данных",
+    "meaning": "Quy trình lõi của bài Thuật ngữ tin học Nga cho lớp dự bị",
+    "example": "nghe/đọc đề bài tin học và hỏi giáo viên bằng tiếng Nga",
+    "tags": [
+      "workflow",
+      "syntax",
+      "programming",
+      "prep"
+    ]
+  },
+  {
+    "id": "workflow_PR10",
+    "stage": "prep",
+    "lessonId": "PR10",
+    "title": "Pseudocode và giải thích thuật toán bằng tiếng Nga",
+    "focus": "workflow/cú pháp/ký hiệu",
+    "rule": "input → process → output; if/for/while\nDùng khi: trình bày lời giải không kẹt ngôn ngữ\nKiểm tra: có input/output, test/log và artifact.",
+    "formula": "input → process → output; if/for/while",
+    "meaning": "Quy trình lõi của bài Pseudocode và giải thích thuật toán bằng tiếng Nga",
+    "example": "trình bày lời giải không kẹt ngôn ngữ",
+    "tags": [
+      "workflow",
+      "syntax",
+      "programming",
+      "prep"
+    ]
+  },
+  {
+    "id": "workflow_PR11",
+    "stage": "prep",
+    "lessonId": "PR11",
+    "title": "Cấu trúc dữ liệu nhập môn",
+    "focus": "workflow/cú pháp/ký hiệu",
+    "rule": "array, stack, queue, dict, graph\nDùng khi: làm bài tin học dự bị và mô tả dữ liệu kỹ thuật\nKiểm tra: có input/output, test/log và artifact.",
+    "formula": "array, stack, queue, dict, graph",
+    "meaning": "Quy trình lõi của bài Cấu trúc dữ liệu nhập môn",
+    "example": "làm bài tin học dự bị và mô tả dữ liệu kỹ thuật",
+    "tags": [
+      "workflow",
+      "syntax",
+      "programming",
+      "prep"
+    ]
+  },
+  {
+    "id": "workflow_PR12",
+    "stage": "prep",
+    "lessonId": "PR12",
+    "title": "File, JSON, CSV và dữ liệu học tập",
+    "focus": "workflow/cú pháp/ký hiệu",
+    "rule": "json.load(); csv.DictReader(); pathlib.Path\nDùng khi: đọc/ghi dữ liệu module môn học, kho dữ liệu và bài tập\nKiểm tra: có input/output, test/log và artifact.",
+    "formula": "json.load(); csv.DictReader(); pathlib.Path",
+    "meaning": "Quy trình lõi của bài File, JSON, CSV và dữ liệu học tập",
+    "example": "đọc/ghi dữ liệu module môn học, kho dữ liệu và bài tập",
+    "tags": [
+      "workflow",
+      "syntax",
+      "programming",
+      "prep"
+    ]
+  },
+  {
+    "id": "workflow_PR13",
+    "stage": "prep",
+    "lessonId": "PR13",
+    "title": "Debug, exception và logging",
+    "focus": "workflow/cú pháp/ký hiệu",
+    "rule": "try/except; logging.info(); assert condition\nDùng khi: tìm lỗi render, lỗi dữ liệu, lỗi logic khi tự làm module\nKiểm tra: có input/output, test/log và artifact.",
+    "formula": "try/except; logging.info(); assert condition",
+    "meaning": "Quy trình lõi của bài Debug, exception và logging",
+    "example": "tìm lỗi render, lỗi dữ liệu, lỗi logic khi tự làm module",
+    "tags": [
+      "workflow",
+      "syntax",
+      "programming",
+      "prep"
+    ]
+  },
+  {
+    "id": "workflow_PR14",
+    "stage": "prep",
+    "lessonId": "PR14",
+    "title": "Unit test căn bản với pytest",
+    "focus": "workflow/cú pháp/ký hiệu",
+    "rule": "assert f(x)==expected; pytest -q\nDùng khi: kiểm thử hàm xử lý dữ liệu và logic nút bấm\nKiểm tra: có input/output, test/log và artifact.",
+    "formula": "assert f(x)==expected; pytest -q",
+    "meaning": "Quy trình lõi của bài Unit test căn bản với pytest",
+    "example": "kiểm thử hàm xử lý dữ liệu và logic nút bấm",
+    "tags": [
+      "workflow",
+      "syntax",
+      "programming",
+      "prep"
+    ]
+  },
+  {
+    "id": "workflow_PR15",
+    "stage": "prep",
+    "lessonId": "PR15",
+    "title": "SQL nâng nền: JOIN, GROUP BY, index",
+    "focus": "workflow/cú pháp/ký hiệu",
+    "rule": "JOIN; GROUP BY; CREATE INDEX idx ON table(col)\nDùng khi: truy vấn dữ liệu thí nghiệm có nhiều bảng\nKiểm tra: có input/output, test/log và artifact.",
+    "formula": "JOIN; GROUP BY; CREATE INDEX idx ON table(col)",
+    "meaning": "Quy trình lõi của bài SQL nâng nền: JOIN, GROUP BY, index",
+    "example": "truy vấn dữ liệu thí nghiệm có nhiều bảng",
+    "tags": [
+      "workflow",
+      "syntax",
+      "programming",
+      "prep"
+    ]
+  },
+  {
+    "id": "workflow_PR16",
+    "stage": "prep",
+    "lessonId": "PR16",
+    "title": "Quy tắc đặt tên, comment và tài liệu song ngữ",
+    "focus": "workflow/cú pháp/ký hiệu",
+    "rule": "name = intent; docstring = input + output + limit\nDùng khi: ghi chú Việt-Nga-Anh để đọc code trong môi trường Bauman\nKiểm tra: có input/output, test/log và artifact.",
+    "formula": "name = intent; docstring = input + output + limit",
+    "meaning": "Quy trình lõi của bài Quy tắc đặt tên, comment và tài liệu song ngữ",
+    "example": "ghi chú Việt-Nga-Anh để đọc code trong môi trường Bauman",
+    "tags": [
+      "workflow",
+      "syntax",
+      "programming",
+      "prep"
+    ]
+  },
+  {
+    "id": "workflow_PR17",
+    "stage": "hk1",
+    "lessonId": "PR17",
+    "title": "OOP cho АСОИУ: class, interface, responsibility",
+    "focus": "workflow/cú pháp/ký hiệu",
+    "rule": "class Sensor: read(); class Model: predict()\nDùng khi: tạo skeleton phần mềm UGV gồm sensor/model/control\nKiểm tra: có input/output, test/log và artifact.",
+    "formula": "class Sensor: read(); class Model: predict()",
+    "meaning": "Quy trình lõi của bài OOP cho АСОИУ: class, interface, responsibility",
+    "example": "tạo skeleton phần mềm UGV gồm sensor/model/control",
+    "tags": [
+      "workflow",
+      "syntax",
+      "programming",
+      "hk1"
+    ]
+  },
+  {
+    "id": "workflow_PR18",
+    "stage": "hk1",
+    "lessonId": "PR18",
+    "title": "Thiết kế module và kiến trúc package Python",
+    "focus": "workflow/cú pháp/ký hiệu",
+    "rule": "src/, tests/, configs/, data/, scripts/\nDùng khi: chia dự án thành module rõ, dễ bảo trì và mở rộng\nKiểm tra: có input/output, test/log và artifact.",
+    "formula": "src/, tests/, configs/, data/, scripts/",
+    "meaning": "Quy trình lõi của bài Thiết kế module và kiến trúc package Python",
+    "example": "chia dự án thành module rõ, dễ bảo trì và mở rộng",
+    "tags": [
+      "workflow",
+      "syntax",
+      "programming",
+      "hk1"
+    ]
+  },
+  {
+    "id": "workflow_PR19",
+    "stage": "hk1",
+    "lessonId": "PR19",
+    "title": "Mẫu thiết kế ứng dụng: factory, strategy, adapter",
+    "focus": "workflow/cú pháp/ký hiệu",
+    "rule": "Strategy(model); Adapter(sensor); Factory(config)\nDùng khi: đổi cảm biến/mô hình mà không phá toàn bộ code\nKiểm tra: có input/output, test/log và artifact.",
+    "formula": "Strategy(model); Adapter(sensor); Factory(config)",
+    "meaning": "Quy trình lõi của bài Mẫu thiết kế ứng dụng: factory, strategy, adapter",
+    "example": "đổi cảm biến/mô hình mà không phá toàn bộ code",
+    "tags": [
+      "workflow",
+      "syntax",
+      "programming",
+      "hk1"
+    ]
+  },
+  {
+    "id": "workflow_PR20",
+    "stage": "hk1",
+    "lessonId": "PR20",
+    "title": "CSDL cho hệ thống học máy: schema và metadata",
+    "focus": "workflow/cú pháp/ký hiệu",
+    "rule": "experiment(id, params, metrics, artifact_path)\nDùng khi: lưu tham số, metric, dataset và đường dẫn artifact\nKiểm tra: có input/output, test/log và artifact.",
+    "formula": "experiment(id, params, metrics, artifact_path)",
+    "meaning": "Quy trình lõi của bài CSDL cho hệ thống học máy: schema và metadata",
+    "example": "lưu tham số, metric, dataset và đường dẫn artifact",
+    "tags": [
+      "workflow",
+      "syntax",
+      "programming",
+      "hk1"
+    ]
+  },
+  {
+    "id": "workflow_PR21",
+    "stage": "hk1",
+    "lessonId": "PR21",
+    "title": "ORM và migration nhập môn",
+    "focus": "workflow/cú pháp/ký hiệu",
+    "rule": "Model ↔ table; migration = schema version\nDùng khi: quản lý thay đổi CSDL khi project lớn dần\nKiểm tra: có input/output, test/log và artifact.",
+    "formula": "Model ↔ table; migration = schema version",
+    "meaning": "Quy trình lõi của bài ORM và migration nhập môn",
+    "example": "quản lý thay đổi CSDL khi project lớn dần",
+    "tags": [
+      "workflow",
+      "syntax",
+      "programming",
+      "hk1"
+    ]
+  },
+  {
+    "id": "workflow_PR22",
+    "stage": "hk1",
+    "lessonId": "PR22",
+    "title": "Kỹ nghệ phần mềm: requirement, issue, milestone",
+    "focus": "workflow/cú pháp/ký hiệu",
+    "rule": "requirement → issue → branch → PR → release\nDùng khi: quản lý tiến độ bài tập và module luận văn\nKiểm tra: có input/output, test/log và artifact.",
+    "formula": "requirement → issue → branch → PR → release",
+    "meaning": "Quy trình lõi của bài Kỹ nghệ phần mềm: requirement, issue, milestone",
+    "example": "quản lý tiến độ bài tập và module luận văn",
+    "tags": [
+      "workflow",
+      "syntax",
+      "programming",
+      "hk1"
+    ]
+  },
+  {
+    "id": "workflow_PR23",
+    "stage": "hk1",
+    "lessonId": "PR23",
+    "title": "Kiểm thử tích hợp và test dữ liệu",
+    "focus": "workflow/cú pháp/ký hiệu",
+    "rule": "test pipeline(input) → expected artifact\nDùng khi: phát hiện dữ liệu hỏng trước khi train mô hình\nKiểm tra: có input/output, test/log và artifact.",
+    "formula": "test pipeline(input) → expected artifact",
+    "meaning": "Quy trình lõi của bài Kiểm thử tích hợp và test dữ liệu",
+    "example": "phát hiện dữ liệu hỏng trước khi train mô hình",
+    "tags": [
+      "workflow",
+      "syntax",
+      "programming",
+      "hk1"
+    ]
+  },
+  {
+    "id": "workflow_PR24",
+    "stage": "hk1",
+    "lessonId": "PR24",
+    "title": "CI nhẹ và kiểm tra chất lượng code",
+    "focus": "workflow/cú pháp/ký hiệu",
+    "rule": "lint + tests + type check = green build\nDùng khi: tự động kiểm tra repo trước khi nộp/đẩy code\nKiểm tra: có input/output, test/log và artifact.",
+    "formula": "lint + tests + type check = green build",
+    "meaning": "Quy trình lõi của bài CI nhẹ và kiểm tra chất lượng code",
+    "example": "tự động kiểm tra repo trước khi nộp/đẩy code",
+    "tags": [
+      "workflow",
+      "syntax",
+      "programming",
+      "hk1"
+    ]
+  },
+  {
+    "id": "workflow_PR25",
+    "stage": "hk2",
+    "lessonId": "PR25",
+    "title": "Pipeline dữ liệu cho ML",
+    "focus": "workflow/cú pháp/ký hiệu",
+    "rule": "raw → clean → features → train → evaluate\nDùng khi: tạo quy trình lặp lại cho dữ liệu UGV/USV\nKiểm tra: có input/output, test/log và artifact.",
+    "formula": "raw → clean → features → train → evaluate",
+    "meaning": "Quy trình lõi của bài Pipeline dữ liệu cho ML",
+    "example": "tạo quy trình lặp lại cho dữ liệu UGV/USV",
+    "tags": [
+      "workflow",
+      "syntax",
+      "programming",
+      "hk2"
+    ]
+  },
+  {
+    "id": "workflow_PR26",
+    "stage": "hk2",
+    "lessonId": "PR26",
+    "title": "Scikit-learn baseline và metric",
+    "focus": "workflow/cú pháp/ký hiệu",
+    "rule": "model.fit(X_train,y_train); score=f(metric)\nDùng khi: dựng baseline có metric rõ cho ML trong АСОИУ\nKiểm tra: có input/output, test/log và artifact.",
+    "formula": "model.fit(X_train,y_train); score=f(metric)",
+    "meaning": "Quy trình lõi của bài Scikit-learn baseline và metric",
+    "example": "dựng baseline có metric rõ cho ML trong АСОИУ",
+    "tags": [
+      "workflow",
+      "syntax",
+      "programming",
+      "hk2"
+    ]
+  },
+  {
+    "id": "workflow_PR27",
+    "stage": "hk2",
+    "lessonId": "PR27",
+    "title": "API inference với FastAPI",
+    "focus": "workflow/cú pháp/ký hiệu",
+    "rule": "POST /predict → input schema → prediction\nDùng khi: biến mô hình thành dịch vụ thử nghiệm được\nKiểm tra: có input/output, test/log và artifact.",
+    "formula": "POST /predict → input schema → prediction",
+    "meaning": "Quy trình lõi của bài API inference với FastAPI",
+    "example": "biến mô hình thành dịch vụ thử nghiệm được",
+    "tags": [
+      "workflow",
+      "syntax",
+      "programming",
+      "hk2"
+    ]
+  },
+  {
+    "id": "workflow_PR28",
+    "stage": "hk2",
+    "lessonId": "PR28",
+    "title": "Serialization model và artifact version",
+    "focus": "workflow/cú pháp/ký hiệu",
+    "rule": "joblib.dump(model); artifact_v1.pkl\nDùng khi: lưu model/dataset/metric theo phiên bản để chạy lại\nKiểm tra: có input/output, test/log và artifact.",
+    "formula": "joblib.dump(model); artifact_v1.pkl",
+    "meaning": "Quy trình lõi của bài Serialization model và artifact version",
+    "example": "lưu model/dataset/metric theo phiên bản để chạy lại",
+    "tags": [
+      "workflow",
+      "syntax",
+      "programming",
+      "hk2"
+    ]
+  },
+  {
+    "id": "workflow_PR29",
+    "stage": "hk2",
+    "lessonId": "PR29",
+    "title": "Cấu hình thí nghiệm bằng YAML/JSON",
+    "focus": "workflow/cú pháp/ký hiệu",
+    "rule": "config = params + seed + paths\nDùng khi: khóa tham số thí nghiệm để tránh loạn kết quả\nKiểm tra: có input/output, test/log và artifact.",
+    "formula": "config = params + seed + paths",
+    "meaning": "Quy trình lõi của bài Cấu hình thí nghiệm bằng YAML/JSON",
+    "example": "khóa tham số thí nghiệm để tránh loạn kết quả",
+    "tags": [
+      "workflow",
+      "syntax",
+      "programming",
+      "hk2"
+    ]
+  },
+  {
+    "id": "workflow_PR30",
+    "stage": "hk2",
+    "lessonId": "PR30",
+    "title": "Docker nhập môn cho môi trường tái lập",
+    "focus": "workflow/cú pháp/ký hiệu",
+    "rule": "Dockerfile + requirements + command\nDùng khi: chạy lại demo trên máy khác ít lỗi hơn\nKiểm tra: có input/output, test/log và artifact.",
+    "formula": "Dockerfile + requirements + command",
+    "meaning": "Quy trình lõi của bài Docker nhập môn cho môi trường tái lập",
+    "example": "chạy lại demo trên máy khác ít lỗi hơn",
+    "tags": [
+      "workflow",
+      "syntax",
+      "programming",
+      "hk2"
+    ]
+  },
+  {
+    "id": "workflow_PR31",
+    "stage": "hk2",
+    "lessonId": "PR31",
+    "title": "Bảo mật dữ liệu và quản lý secret",
+    "focus": "workflow/cú pháp/ký hiệu",
+    "rule": ".env; never commit secrets; access control\nDùng khi: không lộ key, dữ liệu, đường dẫn nhạy cảm\nKiểm tra: có input/output, test/log và artifact.",
+    "formula": ".env; never commit secrets; access control",
+    "meaning": "Quy trình lõi của bài Bảo mật dữ liệu và quản lý secret",
+    "example": "không lộ key, dữ liệu, đường dẫn nhạy cảm",
+    "tags": [
+      "workflow",
+      "syntax",
+      "programming",
+      "hk2"
+    ]
+  },
+  {
+    "id": "workflow_PR32",
+    "stage": "hk2",
+    "lessonId": "PR32",
+    "title": "Tài liệu kỹ thuật và sơ đồ kiến trúc",
+    "focus": "workflow/cú pháp/ký hiệu",
+    "rule": "architecture.md + sequence diagram + API spec\nDùng khi: giải thích phần mềm cho giáo sư và nhóm nghiên cứu\nKiểm tra: có input/output, test/log và artifact.",
+    "formula": "architecture.md + sequence diagram + API spec",
+    "meaning": "Quy trình lõi của bài Tài liệu kỹ thuật và sơ đồ kiến trúc",
+    "example": "giải thích phần mềm cho giáo sư và nhóm nghiên cứu",
+    "tags": [
+      "workflow",
+      "syntax",
+      "programming",
+      "hk2"
+    ]
+  },
+  {
+    "id": "workflow_PR33",
+    "stage": "hk3",
+    "lessonId": "PR33",
+    "title": "Dataset card cho telemetry và cảm biến",
+    "focus": "workflow/cú pháp/ký hiệu",
+    "rule": "dataset card = source + schema + limits + ethics\nDùng khi: mô tả dữ liệu НИР đủ rõ để phản biện\nKiểm tra: có input/output, test/log và artifact.",
+    "formula": "dataset card = source + schema + limits + ethics",
+    "meaning": "Quy trình lõi của bài Dataset card cho telemetry và cảm biến",
+    "example": "mô tả dữ liệu НИР đủ rõ để phản biện",
+    "tags": [
+      "workflow",
+      "syntax",
+      "programming",
+      "hk3"
+    ]
+  },
+  {
+    "id": "workflow_PR34",
+    "stage": "hk3",
+    "lessonId": "PR34",
+    "title": "Experiment tracking và bảng metric",
+    "focus": "workflow/cú pháp/ký hiệu",
+    "rule": "run_id + params + metrics + artifacts\nDùng khi: so sánh mô hình trong НИР có bằng chứng\nKiểm tra: có input/output, test/log và artifact.",
+    "formula": "run_id + params + metrics + artifacts",
+    "meaning": "Quy trình lõi của bài Experiment tracking và bảng metric",
+    "example": "so sánh mô hình trong НИР có bằng chứng",
+    "tags": [
+      "workflow",
+      "syntax",
+      "programming",
+      "hk3"
+    ]
+  },
+  {
+    "id": "workflow_PR35",
+    "stage": "hk3",
+    "lessonId": "PR35",
+    "title": "Ablation study bằng code có kiểm soát",
+    "focus": "workflow/cú pháp/ký hiệu",
+    "rule": "one change per run; compare metric deltas\nDùng khi: chứng minh yếu tố nào làm mô hình tốt hơn/xấu hơn\nKiểm tra: có input/output, test/log và artifact.",
+    "formula": "one change per run; compare metric deltas",
+    "meaning": "Quy trình lõi của bài Ablation study bằng code có kiểm soát",
+    "example": "chứng minh yếu tố nào làm mô hình tốt hơn/xấu hơn",
+    "tags": [
+      "workflow",
+      "syntax",
+      "programming",
+      "hk3"
+    ]
+  },
+  {
+    "id": "workflow_PR36",
+    "stage": "hk3",
+    "lessonId": "PR36",
+    "title": "Xử lý log cảm biến và chuỗi thời gian",
+    "focus": "workflow/cú pháp/ký hiệu",
+    "rule": "timestamp + value + quality_flag\nDùng khi: làm sạch log UGV trước khi phân tích tín hiệu/AI\nKiểm tra: có input/output, test/log và artifact.",
+    "formula": "timestamp + value + quality_flag",
+    "meaning": "Quy trình lõi của bài Xử lý log cảm biến và chuỗi thời gian",
+    "example": "làm sạch log UGV trước khi phân tích tín hiệu/AI",
+    "tags": [
+      "workflow",
+      "syntax",
+      "programming",
+      "hk3"
+    ]
+  },
+  {
+    "id": "workflow_PR37",
+    "stage": "hk3",
+    "lessonId": "PR37",
+    "title": "Module đánh giá lỗi và phân tích thất bại",
+    "focus": "workflow/cú pháp/ký hiệu",
+    "rule": "error case → label → root cause → fix\nDùng khi: biết mô hình sai ở đâu, vì sao, sửa thế nào\nKiểm tra: có input/output, test/log và artifact.",
+    "formula": "error case → label → root cause → fix",
+    "meaning": "Quy trình lõi của bài Module đánh giá lỗi và phân tích thất bại",
+    "example": "biết mô hình sai ở đâu, vì sao, sửa thế nào",
+    "tags": [
+      "workflow",
+      "syntax",
+      "programming",
+      "hk3"
+    ]
+  },
+  {
+    "id": "workflow_PR38",
+    "stage": "hk3",
+    "lessonId": "PR38",
+    "title": "Prototype dashboard kết quả nghiên cứu",
+    "focus": "workflow/cú pháp/ký hiệu",
+    "rule": "metrics + plots + filters + notes\nDùng khi: xem kết quả thí nghiệm, hình minh họa và log\nKiểm tra: có input/output, test/log và artifact.",
+    "formula": "metrics + plots + filters + notes",
+    "meaning": "Quy trình lõi của bài Prototype dashboard kết quả nghiên cứu",
+    "example": "xem kết quả thí nghiệm, hình minh họa và log",
+    "tags": [
+      "workflow",
+      "syntax",
+      "programming",
+      "hk3"
+    ]
+  },
+  {
+    "id": "workflow_PR39",
+    "stage": "hk3",
+    "lessonId": "PR39",
+    "title": "Đóng gói demo nghiên cứu",
+    "focus": "workflow/cú pháp/ký hiệu",
+    "rule": "make run-demo; sample data; expected output\nDùng khi: cho giáo viên mở demo nhanh mà không vỡ môi trường\nKiểm tra: có input/output, test/log và artifact.",
+    "formula": "make run-demo; sample data; expected output",
+    "meaning": "Quy trình lõi của bài Đóng gói demo nghiên cứu",
+    "example": "cho giáo viên mở demo nhanh mà không vỡ môi trường",
+    "tags": [
+      "workflow",
+      "syntax",
+      "programming",
+      "hk3"
+    ]
+  },
+  {
+    "id": "workflow_PR40",
+    "stage": "hk3",
+    "lessonId": "PR40",
+    "title": "Quản lý rủi ro phần mềm trong НИР",
+    "focus": "workflow/cú pháp/ký hiệu",
+    "rule": "risk = probability × impact; mitigation plan\nDùng khi: giảm rủi ro hỏng demo, mất dữ liệu, lệch kết quả\nKiểm tra: có input/output, test/log và artifact.",
+    "formula": "risk = probability × impact; mitigation plan",
+    "meaning": "Quy trình lõi của bài Quản lý rủi ro phần mềm trong НИР",
+    "example": "giảm rủi ro hỏng demo, mất dữ liệu, lệch kết quả",
+    "tags": [
+      "workflow",
+      "syntax",
+      "programming",
+      "hk3"
+    ]
+  },
+  {
+    "id": "workflow_PR41",
+    "stage": "hk4",
+    "lessonId": "PR41",
+    "title": "Đóng băng mã nguồn và tag release",
+    "focus": "workflow/cú pháp/ký hiệu",
+    "rule": "git tag v1.0-defense; CHANGELOG.md\nDùng khi: khóa phiên bản phục vụ ВКР, tránh đổi sát ngày bảo vệ\nKiểm tra: có input/output, test/log và artifact.",
+    "formula": "git tag v1.0-defense; CHANGELOG.md",
+    "meaning": "Quy trình lõi của bài Đóng băng mã nguồn và tag release",
+    "example": "khóa phiên bản phục vụ ВКР, tránh đổi sát ngày bảo vệ",
+    "tags": [
+      "workflow",
+      "syntax",
+      "programming",
+      "hk4"
+    ]
+  },
+  {
+    "id": "workflow_PR42",
+    "stage": "hk4",
+    "lessonId": "PR42",
+    "title": "Script chạy lại toàn bộ kết quả",
+    "focus": "workflow/cú pháp/ký hiệu",
+    "rule": "make reproduce → data → model → figures\nDùng khi: tái tạo bảng và hình trong luận văn\nKiểm tra: có input/output, test/log và artifact.",
+    "formula": "make reproduce → data → model → figures",
+    "meaning": "Quy trình lõi của bài Script chạy lại toàn bộ kết quả",
+    "example": "tái tạo bảng và hình trong luận văn",
+    "tags": [
+      "workflow",
+      "syntax",
+      "programming",
+      "hk4"
+    ]
+  },
+  {
+    "id": "workflow_PR43",
+    "stage": "hk4",
+    "lessonId": "PR43",
+    "title": "Chuẩn hóa thư mục luận văn và artifact",
+    "focus": "workflow/cú pháp/ký hiệu",
+    "rule": "thesis/ figures/ tables/ code/ appendix/\nDùng khi: không thất lạc hình, bảng, code khi viết ВКР\nKiểm tra: có input/output, test/log và artifact.",
+    "formula": "thesis/ figures/ tables/ code/ appendix/",
+    "meaning": "Quy trình lõi của bài Chuẩn hóa thư mục luận văn và artifact",
+    "example": "không thất lạc hình, bảng, code khi viết ВКР",
+    "tags": [
+      "workflow",
+      "syntax",
+      "programming",
+      "hk4"
+    ]
+  },
+  {
+    "id": "workflow_PR44",
+    "stage": "hk4",
+    "lessonId": "PR44",
+    "title": "Demo offline và kế hoạch dự phòng",
+    "focus": "workflow/cú pháp/ký hiệu",
+    "rule": "offline mode + sample data + screenshots\nDùng khi: bảo vệ khi mạng/hardware có vấn đề\nKiểm tra: có input/output, test/log và artifact.",
+    "formula": "offline mode + sample data + screenshots",
+    "meaning": "Quy trình lõi của bài Demo offline và kế hoạch dự phòng",
+    "example": "bảo vệ khi mạng/hardware có vấn đề",
+    "tags": [
+      "workflow",
+      "syntax",
+      "programming",
+      "hk4"
+    ]
+  },
+  {
+    "id": "workflow_PR45",
+    "stage": "hk4",
+    "lessonId": "PR45",
+    "title": "Tối ưu nhỏ: runtime, memory và latency",
+    "focus": "workflow/cú pháp/ký hiệu",
+    "rule": "latency_ms; memory_mb; throughput\nDùng khi: trả lời phản biện về khả năng chạy trên phần cứng robot\nKiểm tra: có input/output, test/log và artifact.",
+    "formula": "latency_ms; memory_mb; throughput",
+    "meaning": "Quy trình lõi của bài Tối ưu nhỏ: runtime, memory và latency",
+    "example": "trả lời phản biện về khả năng chạy trên phần cứng robot",
+    "tags": [
+      "workflow",
+      "syntax",
+      "programming",
+      "hk4"
+    ]
+  },
+  {
+    "id": "workflow_PR46",
+    "stage": "hk4",
+    "lessonId": "PR46",
+    "title": "Kiểm tra license, citation và nguồn mở",
+    "focus": "workflow/cú pháp/ký hiệu",
+    "rule": "LICENSE + CITATION + third-party notices\nDùng khi: tránh lỗi trích dẫn thư viện/dữ liệu khi nộp luận văn\nKiểm tra: có input/output, test/log và artifact.",
+    "formula": "LICENSE + CITATION + third-party notices",
+    "meaning": "Quy trình lõi của bài Kiểm tra license, citation và nguồn mở",
+    "example": "tránh lỗi trích dẫn thư viện/dữ liệu khi nộp luận văn",
+    "tags": [
+      "workflow",
+      "syntax",
+      "programming",
+      "hk4"
+    ]
+  },
+  {
+    "id": "workflow_PR47",
+    "stage": "hk4",
+    "lessonId": "PR47",
+    "title": "Slide kỹ thuật: kiến trúc, pipeline, kết quả",
+    "focus": "workflow/cú pháp/ký hiệu",
+    "rule": "problem → architecture → experiment → result → limit\nDùng khi: trình bày phần code không loạn trước hội đồng\nKiểm tra: có input/output, test/log và artifact.",
+    "formula": "problem → architecture → experiment → result → limit",
+    "meaning": "Quy trình lõi của bài Slide kỹ thuật: kiến trúc, pipeline, kết quả",
+    "example": "trình bày phần code không loạn trước hội đồng",
+    "tags": [
+      "workflow",
+      "syntax",
+      "programming",
+      "hk4"
+    ]
+  },
+  {
+    "id": "workflow_PR48",
+    "stage": "hk4",
+    "lessonId": "PR48",
+    "title": "Trả lời phản biện kỹ thuật phần mềm",
+    "focus": "workflow/cú pháp/ký hiệu",
+    "rule": "why design? why metric? why reproducible?\nDùng khi: bảo vệ lựa chọn kiến trúc, dữ liệu, metric và demo\nKiểm tra: có input/output, test/log và artifact.",
+    "formula": "why design? why metric? why reproducible?",
+    "meaning": "Quy trình lõi của bài Trả lời phản biện kỹ thuật phần mềm",
+    "example": "bảo vệ lựa chọn kiến trúc, dữ liệu, metric và demo",
+    "tags": [
+      "workflow",
+      "syntax",
+      "programming",
+      "hk4"
+    ]
+  }
+]

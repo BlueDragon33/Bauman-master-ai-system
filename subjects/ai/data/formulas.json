@@ -1,0 +1,34 @@
+[
+  {
+    "id": "f1",
+    "group": "mẫu/công thức",
+    "name": "MAE/RMSE",
+    "formula": "MAE=mean(|e|), RMSE=sqrt(mean(e²))",
+    "meaning": "Regression metrics.",
+    "example": "Forecast/sensor prediction."
+  },
+  {
+    "id": "f2",
+    "group": "mẫu/công thức",
+    "name": "Precision/Recall/F1",
+    "formula": "P=TP/(TP+FP), R=TP/(TP+FN), F1=2PR/(P+R)",
+    "meaning": "Classification metrics.",
+    "example": "Anomaly detection."
+  },
+  {
+    "id": "f3",
+    "group": "mẫu/công thức",
+    "name": "Cross-validation",
+    "formula": "split train into k folds",
+    "meaning": "Đánh giá ổn định mô hình.",
+    "example": "Không lạm dụng test set."
+  },
+  {
+    "id": "f4",
+    "group": "mẫu/công thức",
+    "name": "Loss minimization",
+    "formula": "min_θ L(y, f_θ(x))",
+    "meaning": "Tư tưởng học tham số.",
+    "example": "Neural network training."
+  }
+]

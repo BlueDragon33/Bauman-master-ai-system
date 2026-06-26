@@ -1,0 +1,11 @@
+{
+  "version": "V13.29",
+  "focus": "Mind map non-overlap layout and persistent manual positions",
+  "changes": [
+    "Rebuilt mind map layout into balanced left/right lanes with minimum gaps between frames",
+    "Added density-aware sizing: fewer nodes are larger, many nodes become compact",
+    "Manual dragged positions are saved per map and preserved through node clicks/re-render",
+    "Refresh clears saved positions and returns to clean automatic layout",
+    "Connectors continue to bind to dragged nodes"
+  ]
+}

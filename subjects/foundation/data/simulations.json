@@ -1,0 +1,246 @@
+{
+  "meta": {
+    "subjectId": "foundation",
+    "title": "Dự bị STANKIN, khoa học nền và kỹ năng học đại học Nga",
+    "version": "simulation-v1",
+    "description": "Tách riêng mô phỏng quan sát và mô phỏng thực hành."
+  },
+  "observation": [
+    {
+      "id": "foundation_prepare_obs_1",
+      "stage": "prepare",
+      "type": "mô phỏng riêng",
+      "title": "GĐ1 · Lớp dự bị STANKIN giả lập",
+      "goal": "Quan sát cách một buổi học dự bị vận hành: nghe đề, ghi chú, trả lời, làm bài.",
+      "scenario": "Thay đổi môn nền, tốc độ giảng, mức tiếng Nga và số câu hỏi kiểm tra.",
+      "parameters": [
+        "tốc độ giảng",
+        "mức tiếng Nga",
+        "môn nền",
+        "số câu hỏi"
+      ],
+      "outputs": [
+        "checklist nghe hiểu",
+        "từ khóa lớp học",
+        "gợi ý ôn"
+      ]
+    },
+    {
+      "id": "foundation_preparatory_obs_1",
+      "stage": "preparatory",
+      "type": "mô phỏng riêng",
+      "title": "GĐ2 · Lớp dự bị STANKIN giả lập",
+      "goal": "Quan sát cách một buổi học dự bị vận hành: nghe đề, ghi chú, trả lời, làm bài.",
+      "scenario": "Thay đổi môn nền, tốc độ giảng, mức tiếng Nga và số câu hỏi kiểm tra.",
+      "parameters": [
+        "tốc độ giảng",
+        "mức tiếng Nga",
+        "môn nền",
+        "số câu hỏi"
+      ],
+      "outputs": [
+        "checklist nghe hiểu",
+        "từ khóa lớp học",
+        "gợi ý ôn"
+      ]
+    },
+    {
+      "id": "foundation_m1_obs_1",
+      "stage": "m1",
+      "type": "mô phỏng riêng",
+      "title": "HK1 · Lớp dự bị STANKIN giả lập",
+      "goal": "Quan sát cách một buổi học dự bị vận hành: nghe đề, ghi chú, trả lời, làm bài.",
+      "scenario": "Thay đổi môn nền, tốc độ giảng, mức tiếng Nga và số câu hỏi kiểm tra.",
+      "parameters": [
+        "tốc độ giảng",
+        "mức tiếng Nga",
+        "môn nền",
+        "số câu hỏi"
+      ],
+      "outputs": [
+        "checklist nghe hiểu",
+        "từ khóa lớp học",
+        "gợi ý ôn"
+      ]
+    },
+    {
+      "id": "foundation_m2_obs_1",
+      "stage": "m2",
+      "type": "mô phỏng riêng",
+      "title": "HK2 · Lớp dự bị STANKIN giả lập",
+      "goal": "Quan sát cách một buổi học dự bị vận hành: nghe đề, ghi chú, trả lời, làm bài.",
+      "scenario": "Thay đổi môn nền, tốc độ giảng, mức tiếng Nga và số câu hỏi kiểm tra.",
+      "parameters": [
+        "tốc độ giảng",
+        "mức tiếng Nga",
+        "môn nền",
+        "số câu hỏi"
+      ],
+      "outputs": [
+        "checklist nghe hiểu",
+        "từ khóa lớp học",
+        "gợi ý ôn"
+      ]
+    },
+    {
+      "id": "foundation_m3_obs_1",
+      "stage": "m3",
+      "type": "mô phỏng riêng",
+      "title": "HK3 · Lớp dự bị STANKIN giả lập",
+      "goal": "Quan sát cách một buổi học dự bị vận hành: nghe đề, ghi chú, trả lời, làm bài.",
+      "scenario": "Thay đổi môn nền, tốc độ giảng, mức tiếng Nga và số câu hỏi kiểm tra.",
+      "parameters": [
+        "tốc độ giảng",
+        "mức tiếng Nga",
+        "môn nền",
+        "số câu hỏi"
+      ],
+      "outputs": [
+        "checklist nghe hiểu",
+        "từ khóa lớp học",
+        "gợi ý ôn"
+      ]
+    },
+    {
+      "id": "foundation_m4_obs_1",
+      "stage": "m4",
+      "type": "mô phỏng riêng",
+      "title": "HK4 · Lớp dự bị STANKIN giả lập",
+      "goal": "Quan sát cách một buổi học dự bị vận hành: nghe đề, ghi chú, trả lời, làm bài.",
+      "scenario": "Thay đổi môn nền, tốc độ giảng, mức tiếng Nga và số câu hỏi kiểm tra.",
+      "parameters": [
+        "tốc độ giảng",
+        "mức tiếng Nga",
+        "môn nền",
+        "số câu hỏi"
+      ],
+      "outputs": [
+        "checklist nghe hiểu",
+        "từ khóa lớp học",
+        "gợi ý ôn"
+      ]
+    }
+  ],
+  "practice": [
+    {
+      "id": "foundation_prepare_prac_1",
+      "stage": "prepare",
+      "type": "mô phỏng thực hành",
+      "title": "GĐ1 · Nhiệm vụ trên lớp dự bị",
+      "mission": "Làm một nhiệm vụ lớp dự bị: đọc đề, tóm tắt yêu cầu, giải phần nền và phản hồi bằng tiếng Nga ngắn.",
+      "steps": [
+        "đọc đề",
+        "gạch từ khóa",
+        "làm bài",
+        "tóm tắt kết quả"
+      ],
+      "rubric": [
+        "hiểu đề",
+        "làm đúng phần nền",
+        "diễn đạt rõ",
+        "biết hỏi lại khi không hiểu"
+      ],
+      "feedback": "Nếu sai, gợi ý ôn tiếng Nga lớp học hoặc khoa học nền."
+    },
+    {
+      "id": "foundation_preparatory_prac_1",
+      "stage": "preparatory",
+      "type": "mô phỏng thực hành",
+      "title": "GĐ2 · Nhiệm vụ trên lớp dự bị",
+      "mission": "Làm một nhiệm vụ lớp dự bị: đọc đề, tóm tắt yêu cầu, giải phần nền và phản hồi bằng tiếng Nga ngắn.",
+      "steps": [
+        "đọc đề",
+        "gạch từ khóa",
+        "làm bài",
+        "tóm tắt kết quả"
+      ],
+      "rubric": [
+        "hiểu đề",
+        "làm đúng phần nền",
+        "diễn đạt rõ",
+        "biết hỏi lại khi không hiểu"
+      ],
+      "feedback": "Nếu sai, gợi ý ôn tiếng Nga lớp học hoặc khoa học nền."
+    },
+    {
+      "id": "foundation_m1_prac_1",
+      "stage": "m1",
+      "type": "mô phỏng thực hành",
+      "title": "HK1 · Nhiệm vụ trên lớp dự bị",
+      "mission": "Làm một nhiệm vụ lớp dự bị: đọc đề, tóm tắt yêu cầu, giải phần nền và phản hồi bằng tiếng Nga ngắn.",
+      "steps": [
+        "đọc đề",
+        "gạch từ khóa",
+        "làm bài",
+        "tóm tắt kết quả"
+      ],
+      "rubric": [
+        "hiểu đề",
+        "làm đúng phần nền",
+        "diễn đạt rõ",
+        "biết hỏi lại khi không hiểu"
+      ],
+      "feedback": "Nếu sai, gợi ý ôn tiếng Nga lớp học hoặc khoa học nền."
+    },
+    {
+      "id": "foundation_m2_prac_1",
+      "stage": "m2",
+      "type": "mô phỏng thực hành",
+      "title": "HK2 · Nhiệm vụ trên lớp dự bị",
+      "mission": "Làm một nhiệm vụ lớp dự bị: đọc đề, tóm tắt yêu cầu, giải phần nền và phản hồi bằng tiếng Nga ngắn.",
+      "steps": [
+        "đọc đề",
+        "gạch từ khóa",
+        "làm bài",
+        "tóm tắt kết quả"
+      ],
+      "rubric": [
+        "hiểu đề",
+        "làm đúng phần nền",
+        "diễn đạt rõ",
+        "biết hỏi lại khi không hiểu"
+      ],
+      "feedback": "Nếu sai, gợi ý ôn tiếng Nga lớp học hoặc khoa học nền."
+    },
+    {
+      "id": "foundation_m3_prac_1",
+      "stage": "m3",
+      "type": "mô phỏng thực hành",
+      "title": "HK3 · Nhiệm vụ trên lớp dự bị",
+      "mission": "Làm một nhiệm vụ lớp dự bị: đọc đề, tóm tắt yêu cầu, giải phần nền và phản hồi bằng tiếng Nga ngắn.",
+      "steps": [
+        "đọc đề",
+        "gạch từ khóa",
+        "làm bài",
+        "tóm tắt kết quả"
+      ],
+      "rubric": [
+        "hiểu đề",
+        "làm đúng phần nền",
+        "diễn đạt rõ",
+        "biết hỏi lại khi không hiểu"
+      ],
+      "feedback": "Nếu sai, gợi ý ôn tiếng Nga lớp học hoặc khoa học nền."
+    },
+    {
+      "id": "foundation_m4_prac_1",
+      "stage": "m4",
+      "type": "mô phỏng thực hành",
+      "title": "HK4 · Nhiệm vụ trên lớp dự bị",
+      "mission": "Làm một nhiệm vụ lớp dự bị: đọc đề, tóm tắt yêu cầu, giải phần nền và phản hồi bằng tiếng Nga ngắn.",
+      "steps": [
+        "đọc đề",
+        "gạch từ khóa",
+        "làm bài",
+        "tóm tắt kết quả"
+      ],
+      "rubric": [
+        "hiểu đề",
+        "làm đúng phần nền",
+        "diễn đạt rõ",
+        "biết hỏi lại khi không hiểu"
+      ],
+      "feedback": "Nếu sai, gợi ý ôn tiếng Nga lớp học hoặc khoa học nền."
+    }
+  ]
+}

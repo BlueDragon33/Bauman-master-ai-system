@@ -1,0 +1,12 @@
+{
+  "version": "V36",
+  "title": "Math Content System UX Repair",
+  "fixed": [
+    "Renamed package root to V36 and added ?v=36 cache-busting to CSS/JS links",
+    "Rebuilt data tab header/group selector into horizontal storage-v36 layout to stop vertical squeezed text",
+    "Kept grouped navigation for Theory, Exercises, Applications, Simulation, and Oral Defense; added stronger CSS so grouped trees do not collapse",
+    "Formula and deep formula tabs keep a large Chọn chương modal instead of cramped inline chapter tree",
+    "Applied same CSS/JS patches to subjects/math and common template"
+  ],
+  "note": "If the old UI still appears, browser/localStorage cache is still serving an older module; use the V36 package root or clear site data."
+}

@@ -1,0 +1,33 @@
+{
+  "version": "Assessment_FontFit_NoClip_HOTFIX",
+  "base": "Russian_Bauman_Assessment_BalancedScroll_HOTFIX.zip",
+  "changes": [
+    "Giảm font câu hỏi trong Ôn tập/Kiểm tra bằng CSS clamp(18px, 1.28vw, 24px).",
+    "Đổi panel nội dung phải thành khung flex cố định, nội dung dài cuộn bên trong .question-scroll-main.",
+    "Giữ khung assessment không dịch khi câu hỏi/đáp án/giải thích dài.",
+    "Đáp án tự xuống dòng, không tràn ngang, có overflow-wrap:anywhere.",
+    "Feedback/giải thích có max-height và cuộn riêng để không đẩy vỡ khung."
+  ],
+  "answer_to_user_question": "Có thể khiến nội dung ôm gọn khi tăng cỡ chữ bằng cách kết hợp clamp font-size, layout flex cố định, vùng cuộn nội bộ, overflow-wrap và max-height. Không nên chỉ tăng font tự do mà không có vùng cuộn.",
+  "checks": {
+    "assets/core.js": {
+      "ok": true,
+      "stderr": ""
+    },
+    "assets/subject-adapter.js": {
+      "ok": true,
+      "stderr": ""
+    },
+    "subject-manifest.js": {
+      "ok": true,
+      "stderr": ""
+    },
+    "json_parse": {
+      "ok": true,
+      "bad": []
+    },
+    "css_patch_present": {
+      "ok": true
+    }
+  }
+}

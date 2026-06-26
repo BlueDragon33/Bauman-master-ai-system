@@ -1,0 +1,626 @@
+[
+  {
+    "id": "deep_PR01",
+    "stage": "vn",
+    "lessonId": "PR01",
+    "applicationId": "app_PR01",
+    "title": "Phản biện sâu · Thiết lập môi trường Python, VS Code và Live Server",
+    "questions": [
+      "Nếu code Thiết lập môi trường Python, VS Code và Live Server chạy được trên máy em nhưng không chạy trên máy khác, em kiểm tra gì trước?",
+      "Input/output, schema và artifact đã đủ để tái lập chưa?",
+      "Vì sao mở module học, chạy notebook, kiểm thử HTML/JSON cục bộ cần workflow phần mềm thay vì notebook rời rạc?"
+    ],
+    "expected": "Trả lời có input/output, môi trường, test/log, version, artifact và kế hoạch sửa lỗi."
+  },
+  {
+    "id": "deep_PR02",
+    "stage": "vn",
+    "lessonId": "PR02",
+    "applicationId": "app_PR02",
+    "title": "Phản biện sâu · Tư duy thuật toán và độ phức tạp",
+    "questions": [
+      "Nếu code Tư duy thuật toán và độ phức tạp chạy được trên máy em nhưng không chạy trên máy khác, em kiểm tra gì trước?",
+      "Input/output, schema và artifact đã đủ để tái lập chưa?",
+      "Vì sao chọn thuật toán đủ nhanh cho xử lý dữ liệu robot cần workflow phần mềm thay vì notebook rời rạc?"
+    ],
+    "expected": "Trả lời có input/output, môi trường, test/log, version, artifact và kế hoạch sửa lỗi."
+  },
+  {
+    "id": "deep_PR03",
+    "stage": "vn",
+    "lessonId": "PR03",
+    "applicationId": "app_PR03",
+    "title": "Phản biện sâu · Python căn bản: kiểu dữ liệu, hàm, module",
+    "questions": [
+      "Nếu code Python căn bản: kiểu dữ liệu, hàm, module chạy được trên máy em nhưng không chạy trên máy khác, em kiểm tra gì trước?",
+      "Input/output, schema và artifact đã đủ để tái lập chưa?",
+      "Vì sao viết script sạch để xử lý bài tập và dữ liệu nhỏ cần workflow phần mềm thay vì notebook rời rạc?"
+    ],
+    "expected": "Trả lời có input/output, môi trường, test/log, version, artifact và kế hoạch sửa lỗi."
+  },
+  {
+    "id": "deep_PR04",
+    "stage": "vn",
+    "lessonId": "PR04",
+    "applicationId": "app_PR04",
+    "title": "Phản biện sâu · NumPy và vector hóa dữ liệu",
+    "questions": [
+      "Nếu code NumPy và vector hóa dữ liệu chạy được trên máy em nhưng không chạy trên máy khác, em kiểm tra gì trước?",
+      "Input/output, schema và artifact đã đủ để tái lập chưa?",
+      "Vì sao tính toán ma trận/đặc trưng cho AI nhanh và gọn cần workflow phần mềm thay vì notebook rời rạc?"
+    ],
+    "expected": "Trả lời có input/output, môi trường, test/log, version, artifact và kế hoạch sửa lỗi."
+  },
+  {
+    "id": "deep_PR05",
+    "stage": "vn",
+    "lessonId": "PR05",
+    "applicationId": "app_PR05",
+    "title": "Phản biện sâu · Pandas và làm sạch bảng dữ liệu",
+    "questions": [
+      "Nếu code Pandas và làm sạch bảng dữ liệu chạy được trên máy em nhưng không chạy trên máy khác, em kiểm tra gì trước?",
+      "Input/output, schema và artifact đã đủ để tái lập chưa?",
+      "Vì sao làm sạch log cảm biến, bảng điểm đo, dữ liệu CSV cần workflow phần mềm thay vì notebook rời rạc?"
+    ],
+    "expected": "Trả lời có input/output, môi trường, test/log, version, artifact và kế hoạch sửa lỗi."
+  },
+  {
+    "id": "deep_PR06",
+    "stage": "vn",
+    "lessonId": "PR06",
+    "applicationId": "app_PR06",
+    "title": "Phản biện sâu · SQL căn bản và mô hình quan hệ",
+    "questions": [
+      "Nếu code SQL căn bản và mô hình quan hệ chạy được trên máy em nhưng không chạy trên máy khác, em kiểm tra gì trước?",
+      "Input/output, schema và artifact đã đủ để tái lập chưa?",
+      "Vì sao lưu kết quả thí nghiệm, metadata và truy vấn nhanh cần workflow phần mềm thay vì notebook rời rạc?"
+    ],
+    "expected": "Trả lời có input/output, môi trường, test/log, version, artifact và kế hoạch sửa lỗi."
+  },
+  {
+    "id": "deep_PR07",
+    "stage": "vn",
+    "lessonId": "PR07",
+    "applicationId": "app_PR07",
+    "title": "Phản biện sâu · Git, GitHub và nhật ký học tập",
+    "questions": [
+      "Nếu code Git, GitHub và nhật ký học tập chạy được trên máy em nhưng không chạy trên máy khác, em kiểm tra gì trước?",
+      "Input/output, schema và artifact đã đủ để tái lập chưa?",
+      "Vì sao quản lý phiên bản bài học, notebook, mã mô phỏng cần workflow phần mềm thay vì notebook rời rạc?"
+    ],
+    "expected": "Trả lời có input/output, môi trường, test/log, version, artifact và kế hoạch sửa lỗi."
+  },
+  {
+    "id": "deep_PR08",
+    "stage": "vn",
+    "lessonId": "PR08",
+    "applicationId": "app_PR08",
+    "title": "Phản biện sâu · Notebook thực nghiệm và README tái lập",
+    "questions": [
+      "Nếu code Notebook thực nghiệm và README tái lập chạy được trên máy em nhưng không chạy trên máy khác, em kiểm tra gì trước?",
+      "Input/output, schema và artifact đã đủ để tái lập chưa?",
+      "Vì sao tạo artifact học tập có thể mở lại, chạy lại, giải thích lại cần workflow phần mềm thay vì notebook rời rạc?"
+    ],
+    "expected": "Trả lời có input/output, môi trường, test/log, version, artifact và kế hoạch sửa lỗi."
+  },
+  {
+    "id": "deep_PR09",
+    "stage": "prep",
+    "lessonId": "PR09",
+    "applicationId": "app_PR09",
+    "title": "Phản biện sâu · Thuật ngữ tin học Nga cho lớp dự bị",
+    "questions": [
+      "Nếu code Thuật ngữ tin học Nga cho lớp dự bị chạy được trên máy em nhưng không chạy trên máy khác, em kiểm tra gì trước?",
+      "Input/output, schema và artifact đã đủ để tái lập chưa?",
+      "Vì sao nghe/đọc đề bài tin học và hỏi giáo viên bằng tiếng Nga cần workflow phần mềm thay vì notebook rời rạc?"
+    ],
+    "expected": "Trả lời có input/output, môi trường, test/log, version, artifact và kế hoạch sửa lỗi."
+  },
+  {
+    "id": "deep_PR10",
+    "stage": "prep",
+    "lessonId": "PR10",
+    "applicationId": "app_PR10",
+    "title": "Phản biện sâu · Pseudocode và giải thích thuật toán bằng tiếng Nga",
+    "questions": [
+      "Nếu code Pseudocode và giải thích thuật toán bằng tiếng Nga chạy được trên máy em nhưng không chạy trên máy khác, em kiểm tra gì trước?",
+      "Input/output, schema và artifact đã đủ để tái lập chưa?",
+      "Vì sao trình bày lời giải không kẹt ngôn ngữ cần workflow phần mềm thay vì notebook rời rạc?"
+    ],
+    "expected": "Trả lời có input/output, môi trường, test/log, version, artifact và kế hoạch sửa lỗi."
+  },
+  {
+    "id": "deep_PR11",
+    "stage": "prep",
+    "lessonId": "PR11",
+    "applicationId": "app_PR11",
+    "title": "Phản biện sâu · Cấu trúc dữ liệu nhập môn",
+    "questions": [
+      "Nếu code Cấu trúc dữ liệu nhập môn chạy được trên máy em nhưng không chạy trên máy khác, em kiểm tra gì trước?",
+      "Input/output, schema và artifact đã đủ để tái lập chưa?",
+      "Vì sao làm bài tin học dự bị và mô tả dữ liệu kỹ thuật cần workflow phần mềm thay vì notebook rời rạc?"
+    ],
+    "expected": "Trả lời có input/output, môi trường, test/log, version, artifact và kế hoạch sửa lỗi."
+  },
+  {
+    "id": "deep_PR12",
+    "stage": "prep",
+    "lessonId": "PR12",
+    "applicationId": "app_PR12",
+    "title": "Phản biện sâu · File, JSON, CSV và dữ liệu học tập",
+    "questions": [
+      "Nếu code File, JSON, CSV và dữ liệu học tập chạy được trên máy em nhưng không chạy trên máy khác, em kiểm tra gì trước?",
+      "Input/output, schema và artifact đã đủ để tái lập chưa?",
+      "Vì sao đọc/ghi dữ liệu module môn học, kho dữ liệu và bài tập cần workflow phần mềm thay vì notebook rời rạc?"
+    ],
+    "expected": "Trả lời có input/output, môi trường, test/log, version, artifact và kế hoạch sửa lỗi."
+  },
+  {
+    "id": "deep_PR13",
+    "stage": "prep",
+    "lessonId": "PR13",
+    "applicationId": "app_PR13",
+    "title": "Phản biện sâu · Debug, exception và logging",
+    "questions": [
+      "Nếu code Debug, exception và logging chạy được trên máy em nhưng không chạy trên máy khác, em kiểm tra gì trước?",
+      "Input/output, schema và artifact đã đủ để tái lập chưa?",
+      "Vì sao tìm lỗi render, lỗi dữ liệu, lỗi logic khi tự làm module cần workflow phần mềm thay vì notebook rời rạc?"
+    ],
+    "expected": "Trả lời có input/output, môi trường, test/log, version, artifact và kế hoạch sửa lỗi."
+  },
+  {
+    "id": "deep_PR14",
+    "stage": "prep",
+    "lessonId": "PR14",
+    "applicationId": "app_PR14",
+    "title": "Phản biện sâu · Unit test căn bản với pytest",
+    "questions": [
+      "Nếu code Unit test căn bản với pytest chạy được trên máy em nhưng không chạy trên máy khác, em kiểm tra gì trước?",
+      "Input/output, schema và artifact đã đủ để tái lập chưa?",
+      "Vì sao kiểm thử hàm xử lý dữ liệu và logic nút bấm cần workflow phần mềm thay vì notebook rời rạc?"
+    ],
+    "expected": "Trả lời có input/output, môi trường, test/log, version, artifact và kế hoạch sửa lỗi."
+  },
+  {
+    "id": "deep_PR15",
+    "stage": "prep",
+    "lessonId": "PR15",
+    "applicationId": "app_PR15",
+    "title": "Phản biện sâu · SQL nâng nền: JOIN, GROUP BY, index",
+    "questions": [
+      "Nếu code SQL nâng nền: JOIN, GROUP BY, index chạy được trên máy em nhưng không chạy trên máy khác, em kiểm tra gì trước?",
+      "Input/output, schema và artifact đã đủ để tái lập chưa?",
+      "Vì sao truy vấn dữ liệu thí nghiệm có nhiều bảng cần workflow phần mềm thay vì notebook rời rạc?"
+    ],
+    "expected": "Trả lời có input/output, môi trường, test/log, version, artifact và kế hoạch sửa lỗi."
+  },
+  {
+    "id": "deep_PR16",
+    "stage": "prep",
+    "lessonId": "PR16",
+    "applicationId": "app_PR16",
+    "title": "Phản biện sâu · Quy tắc đặt tên, comment và tài liệu song ngữ",
+    "questions": [
+      "Nếu code Quy tắc đặt tên, comment và tài liệu song ngữ chạy được trên máy em nhưng không chạy trên máy khác, em kiểm tra gì trước?",
+      "Input/output, schema và artifact đã đủ để tái lập chưa?",
+      "Vì sao ghi chú Việt-Nga-Anh để đọc code trong môi trường Bauman cần workflow phần mềm thay vì notebook rời rạc?"
+    ],
+    "expected": "Trả lời có input/output, môi trường, test/log, version, artifact và kế hoạch sửa lỗi."
+  },
+  {
+    "id": "deep_PR17",
+    "stage": "hk1",
+    "lessonId": "PR17",
+    "applicationId": "app_PR17",
+    "title": "Phản biện sâu · OOP cho АСОИУ: class, interface, responsibility",
+    "questions": [
+      "Nếu code OOP cho АСОИУ: class, interface, responsibility chạy được trên máy em nhưng không chạy trên máy khác, em kiểm tra gì trước?",
+      "Input/output, schema và artifact đã đủ để tái lập chưa?",
+      "Vì sao tạo skeleton phần mềm UGV gồm sensor/model/control cần workflow phần mềm thay vì notebook rời rạc?"
+    ],
+    "expected": "Trả lời có input/output, môi trường, test/log, version, artifact và kế hoạch sửa lỗi."
+  },
+  {
+    "id": "deep_PR18",
+    "stage": "hk1",
+    "lessonId": "PR18",
+    "applicationId": "app_PR18",
+    "title": "Phản biện sâu · Thiết kế module và kiến trúc package Python",
+    "questions": [
+      "Nếu code Thiết kế module và kiến trúc package Python chạy được trên máy em nhưng không chạy trên máy khác, em kiểm tra gì trước?",
+      "Input/output, schema và artifact đã đủ để tái lập chưa?",
+      "Vì sao chia dự án thành module rõ, dễ bảo trì và mở rộng cần workflow phần mềm thay vì notebook rời rạc?"
+    ],
+    "expected": "Trả lời có input/output, môi trường, test/log, version, artifact và kế hoạch sửa lỗi."
+  },
+  {
+    "id": "deep_PR19",
+    "stage": "hk1",
+    "lessonId": "PR19",
+    "applicationId": "app_PR19",
+    "title": "Phản biện sâu · Mẫu thiết kế ứng dụng: factory, strategy, adapter",
+    "questions": [
+      "Nếu code Mẫu thiết kế ứng dụng: factory, strategy, adapter chạy được trên máy em nhưng không chạy trên máy khác, em kiểm tra gì trước?",
+      "Input/output, schema và artifact đã đủ để tái lập chưa?",
+      "Vì sao đổi cảm biến/mô hình mà không phá toàn bộ code cần workflow phần mềm thay vì notebook rời rạc?"
+    ],
+    "expected": "Trả lời có input/output, môi trường, test/log, version, artifact và kế hoạch sửa lỗi."
+  },
+  {
+    "id": "deep_PR20",
+    "stage": "hk1",
+    "lessonId": "PR20",
+    "applicationId": "app_PR20",
+    "title": "Phản biện sâu · CSDL cho hệ thống học máy: schema và metadata",
+    "questions": [
+      "Nếu code CSDL cho hệ thống học máy: schema và metadata chạy được trên máy em nhưng không chạy trên máy khác, em kiểm tra gì trước?",
+      "Input/output, schema và artifact đã đủ để tái lập chưa?",
+      "Vì sao lưu tham số, metric, dataset và đường dẫn artifact cần workflow phần mềm thay vì notebook rời rạc?"
+    ],
+    "expected": "Trả lời có input/output, môi trường, test/log, version, artifact và kế hoạch sửa lỗi."
+  },
+  {
+    "id": "deep_PR21",
+    "stage": "hk1",
+    "lessonId": "PR21",
+    "applicationId": "app_PR21",
+    "title": "Phản biện sâu · ORM và migration nhập môn",
+    "questions": [
+      "Nếu code ORM và migration nhập môn chạy được trên máy em nhưng không chạy trên máy khác, em kiểm tra gì trước?",
+      "Input/output, schema và artifact đã đủ để tái lập chưa?",
+      "Vì sao quản lý thay đổi CSDL khi project lớn dần cần workflow phần mềm thay vì notebook rời rạc?"
+    ],
+    "expected": "Trả lời có input/output, môi trường, test/log, version, artifact và kế hoạch sửa lỗi."
+  },
+  {
+    "id": "deep_PR22",
+    "stage": "hk1",
+    "lessonId": "PR22",
+    "applicationId": "app_PR22",
+    "title": "Phản biện sâu · Kỹ nghệ phần mềm: requirement, issue, milestone",
+    "questions": [
+      "Nếu code Kỹ nghệ phần mềm: requirement, issue, milestone chạy được trên máy em nhưng không chạy trên máy khác, em kiểm tra gì trước?",
+      "Input/output, schema và artifact đã đủ để tái lập chưa?",
+      "Vì sao quản lý tiến độ bài tập và module luận văn cần workflow phần mềm thay vì notebook rời rạc?"
+    ],
+    "expected": "Trả lời có input/output, môi trường, test/log, version, artifact và kế hoạch sửa lỗi."
+  },
+  {
+    "id": "deep_PR23",
+    "stage": "hk1",
+    "lessonId": "PR23",
+    "applicationId": "app_PR23",
+    "title": "Phản biện sâu · Kiểm thử tích hợp và test dữ liệu",
+    "questions": [
+      "Nếu code Kiểm thử tích hợp và test dữ liệu chạy được trên máy em nhưng không chạy trên máy khác, em kiểm tra gì trước?",
+      "Input/output, schema và artifact đã đủ để tái lập chưa?",
+      "Vì sao phát hiện dữ liệu hỏng trước khi train mô hình cần workflow phần mềm thay vì notebook rời rạc?"
+    ],
+    "expected": "Trả lời có input/output, môi trường, test/log, version, artifact và kế hoạch sửa lỗi."
+  },
+  {
+    "id": "deep_PR24",
+    "stage": "hk1",
+    "lessonId": "PR24",
+    "applicationId": "app_PR24",
+    "title": "Phản biện sâu · CI nhẹ và kiểm tra chất lượng code",
+    "questions": [
+      "Nếu code CI nhẹ và kiểm tra chất lượng code chạy được trên máy em nhưng không chạy trên máy khác, em kiểm tra gì trước?",
+      "Input/output, schema và artifact đã đủ để tái lập chưa?",
+      "Vì sao tự động kiểm tra repo trước khi nộp/đẩy code cần workflow phần mềm thay vì notebook rời rạc?"
+    ],
+    "expected": "Trả lời có input/output, môi trường, test/log, version, artifact và kế hoạch sửa lỗi."
+  },
+  {
+    "id": "deep_PR25",
+    "stage": "hk2",
+    "lessonId": "PR25",
+    "applicationId": "app_PR25",
+    "title": "Phản biện sâu · Pipeline dữ liệu cho ML",
+    "questions": [
+      "Nếu code Pipeline dữ liệu cho ML chạy được trên máy em nhưng không chạy trên máy khác, em kiểm tra gì trước?",
+      "Input/output, schema và artifact đã đủ để tái lập chưa?",
+      "Vì sao tạo quy trình lặp lại cho dữ liệu UGV/USV cần workflow phần mềm thay vì notebook rời rạc?"
+    ],
+    "expected": "Trả lời có input/output, môi trường, test/log, version, artifact và kế hoạch sửa lỗi."
+  },
+  {
+    "id": "deep_PR26",
+    "stage": "hk2",
+    "lessonId": "PR26",
+    "applicationId": "app_PR26",
+    "title": "Phản biện sâu · Scikit-learn baseline và metric",
+    "questions": [
+      "Nếu code Scikit-learn baseline và metric chạy được trên máy em nhưng không chạy trên máy khác, em kiểm tra gì trước?",
+      "Input/output, schema và artifact đã đủ để tái lập chưa?",
+      "Vì sao dựng baseline có metric rõ cho ML trong АСОИУ cần workflow phần mềm thay vì notebook rời rạc?"
+    ],
+    "expected": "Trả lời có input/output, môi trường, test/log, version, artifact và kế hoạch sửa lỗi."
+  },
+  {
+    "id": "deep_PR27",
+    "stage": "hk2",
+    "lessonId": "PR27",
+    "applicationId": "app_PR27",
+    "title": "Phản biện sâu · API inference với FastAPI",
+    "questions": [
+      "Nếu code API inference với FastAPI chạy được trên máy em nhưng không chạy trên máy khác, em kiểm tra gì trước?",
+      "Input/output, schema và artifact đã đủ để tái lập chưa?",
+      "Vì sao biến mô hình thành dịch vụ thử nghiệm được cần workflow phần mềm thay vì notebook rời rạc?"
+    ],
+    "expected": "Trả lời có input/output, môi trường, test/log, version, artifact và kế hoạch sửa lỗi."
+  },
+  {
+    "id": "deep_PR28",
+    "stage": "hk2",
+    "lessonId": "PR28",
+    "applicationId": "app_PR28",
+    "title": "Phản biện sâu · Serialization model và artifact version",
+    "questions": [
+      "Nếu code Serialization model và artifact version chạy được trên máy em nhưng không chạy trên máy khác, em kiểm tra gì trước?",
+      "Input/output, schema và artifact đã đủ để tái lập chưa?",
+      "Vì sao lưu model/dataset/metric theo phiên bản để chạy lại cần workflow phần mềm thay vì notebook rời rạc?"
+    ],
+    "expected": "Trả lời có input/output, môi trường, test/log, version, artifact và kế hoạch sửa lỗi."
+  },
+  {
+    "id": "deep_PR29",
+    "stage": "hk2",
+    "lessonId": "PR29",
+    "applicationId": "app_PR29",
+    "title": "Phản biện sâu · Cấu hình thí nghiệm bằng YAML/JSON",
+    "questions": [
+      "Nếu code Cấu hình thí nghiệm bằng YAML/JSON chạy được trên máy em nhưng không chạy trên máy khác, em kiểm tra gì trước?",
+      "Input/output, schema và artifact đã đủ để tái lập chưa?",
+      "Vì sao khóa tham số thí nghiệm để tránh loạn kết quả cần workflow phần mềm thay vì notebook rời rạc?"
+    ],
+    "expected": "Trả lời có input/output, môi trường, test/log, version, artifact và kế hoạch sửa lỗi."
+  },
+  {
+    "id": "deep_PR30",
+    "stage": "hk2",
+    "lessonId": "PR30",
+    "applicationId": "app_PR30",
+    "title": "Phản biện sâu · Docker nhập môn cho môi trường tái lập",
+    "questions": [
+      "Nếu code Docker nhập môn cho môi trường tái lập chạy được trên máy em nhưng không chạy trên máy khác, em kiểm tra gì trước?",
+      "Input/output, schema và artifact đã đủ để tái lập chưa?",
+      "Vì sao chạy lại demo trên máy khác ít lỗi hơn cần workflow phần mềm thay vì notebook rời rạc?"
+    ],
+    "expected": "Trả lời có input/output, môi trường, test/log, version, artifact và kế hoạch sửa lỗi."
+  },
+  {
+    "id": "deep_PR31",
+    "stage": "hk2",
+    "lessonId": "PR31",
+    "applicationId": "app_PR31",
+    "title": "Phản biện sâu · Bảo mật dữ liệu và quản lý secret",
+    "questions": [
+      "Nếu code Bảo mật dữ liệu và quản lý secret chạy được trên máy em nhưng không chạy trên máy khác, em kiểm tra gì trước?",
+      "Input/output, schema và artifact đã đủ để tái lập chưa?",
+      "Vì sao không lộ key, dữ liệu, đường dẫn nhạy cảm cần workflow phần mềm thay vì notebook rời rạc?"
+    ],
+    "expected": "Trả lời có input/output, môi trường, test/log, version, artifact và kế hoạch sửa lỗi."
+  },
+  {
+    "id": "deep_PR32",
+    "stage": "hk2",
+    "lessonId": "PR32",
+    "applicationId": "app_PR32",
+    "title": "Phản biện sâu · Tài liệu kỹ thuật và sơ đồ kiến trúc",
+    "questions": [
+      "Nếu code Tài liệu kỹ thuật và sơ đồ kiến trúc chạy được trên máy em nhưng không chạy trên máy khác, em kiểm tra gì trước?",
+      "Input/output, schema và artifact đã đủ để tái lập chưa?",
+      "Vì sao giải thích phần mềm cho giáo sư và nhóm nghiên cứu cần workflow phần mềm thay vì notebook rời rạc?"
+    ],
+    "expected": "Trả lời có input/output, môi trường, test/log, version, artifact và kế hoạch sửa lỗi."
+  },
+  {
+    "id": "deep_PR33",
+    "stage": "hk3",
+    "lessonId": "PR33",
+    "applicationId": "app_PR33",
+    "title": "Phản biện sâu · Dataset card cho telemetry và cảm biến",
+    "questions": [
+      "Nếu code Dataset card cho telemetry và cảm biến chạy được trên máy em nhưng không chạy trên máy khác, em kiểm tra gì trước?",
+      "Input/output, schema và artifact đã đủ để tái lập chưa?",
+      "Vì sao mô tả dữ liệu НИР đủ rõ để phản biện cần workflow phần mềm thay vì notebook rời rạc?"
+    ],
+    "expected": "Trả lời có input/output, môi trường, test/log, version, artifact và kế hoạch sửa lỗi."
+  },
+  {
+    "id": "deep_PR34",
+    "stage": "hk3",
+    "lessonId": "PR34",
+    "applicationId": "app_PR34",
+    "title": "Phản biện sâu · Experiment tracking và bảng metric",
+    "questions": [
+      "Nếu code Experiment tracking và bảng metric chạy được trên máy em nhưng không chạy trên máy khác, em kiểm tra gì trước?",
+      "Input/output, schema và artifact đã đủ để tái lập chưa?",
+      "Vì sao so sánh mô hình trong НИР có bằng chứng cần workflow phần mềm thay vì notebook rời rạc?"
+    ],
+    "expected": "Trả lời có input/output, môi trường, test/log, version, artifact và kế hoạch sửa lỗi."
+  },
+  {
+    "id": "deep_PR35",
+    "stage": "hk3",
+    "lessonId": "PR35",
+    "applicationId": "app_PR35",
+    "title": "Phản biện sâu · Ablation study bằng code có kiểm soát",
+    "questions": [
+      "Nếu code Ablation study bằng code có kiểm soát chạy được trên máy em nhưng không chạy trên máy khác, em kiểm tra gì trước?",
+      "Input/output, schema và artifact đã đủ để tái lập chưa?",
+      "Vì sao chứng minh yếu tố nào làm mô hình tốt hơn/xấu hơn cần workflow phần mềm thay vì notebook rời rạc?"
+    ],
+    "expected": "Trả lời có input/output, môi trường, test/log, version, artifact và kế hoạch sửa lỗi."
+  },
+  {
+    "id": "deep_PR36",
+    "stage": "hk3",
+    "lessonId": "PR36",
+    "applicationId": "app_PR36",
+    "title": "Phản biện sâu · Xử lý log cảm biến và chuỗi thời gian",
+    "questions": [
+      "Nếu code Xử lý log cảm biến và chuỗi thời gian chạy được trên máy em nhưng không chạy trên máy khác, em kiểm tra gì trước?",
+      "Input/output, schema và artifact đã đủ để tái lập chưa?",
+      "Vì sao làm sạch log UGV trước khi phân tích tín hiệu/AI cần workflow phần mềm thay vì notebook rời rạc?"
+    ],
+    "expected": "Trả lời có input/output, môi trường, test/log, version, artifact và kế hoạch sửa lỗi."
+  },
+  {
+    "id": "deep_PR37",
+    "stage": "hk3",
+    "lessonId": "PR37",
+    "applicationId": "app_PR37",
+    "title": "Phản biện sâu · Module đánh giá lỗi và phân tích thất bại",
+    "questions": [
+      "Nếu code Module đánh giá lỗi và phân tích thất bại chạy được trên máy em nhưng không chạy trên máy khác, em kiểm tra gì trước?",
+      "Input/output, schema và artifact đã đủ để tái lập chưa?",
+      "Vì sao biết mô hình sai ở đâu, vì sao, sửa thế nào cần workflow phần mềm thay vì notebook rời rạc?"
+    ],
+    "expected": "Trả lời có input/output, môi trường, test/log, version, artifact và kế hoạch sửa lỗi."
+  },
+  {
+    "id": "deep_PR38",
+    "stage": "hk3",
+    "lessonId": "PR38",
+    "applicationId": "app_PR38",
+    "title": "Phản biện sâu · Prototype dashboard kết quả nghiên cứu",
+    "questions": [
+      "Nếu code Prototype dashboard kết quả nghiên cứu chạy được trên máy em nhưng không chạy trên máy khác, em kiểm tra gì trước?",
+      "Input/output, schema và artifact đã đủ để tái lập chưa?",
+      "Vì sao xem kết quả thí nghiệm, hình minh họa và log cần workflow phần mềm thay vì notebook rời rạc?"
+    ],
+    "expected": "Trả lời có input/output, môi trường, test/log, version, artifact và kế hoạch sửa lỗi."
+  },
+  {
+    "id": "deep_PR39",
+    "stage": "hk3",
+    "lessonId": "PR39",
+    "applicationId": "app_PR39",
+    "title": "Phản biện sâu · Đóng gói demo nghiên cứu",
+    "questions": [
+      "Nếu code Đóng gói demo nghiên cứu chạy được trên máy em nhưng không chạy trên máy khác, em kiểm tra gì trước?",
+      "Input/output, schema và artifact đã đủ để tái lập chưa?",
+      "Vì sao cho giáo viên mở demo nhanh mà không vỡ môi trường cần workflow phần mềm thay vì notebook rời rạc?"
+    ],
+    "expected": "Trả lời có input/output, môi trường, test/log, version, artifact và kế hoạch sửa lỗi."
+  },
+  {
+    "id": "deep_PR40",
+    "stage": "hk3",
+    "lessonId": "PR40",
+    "applicationId": "app_PR40",
+    "title": "Phản biện sâu · Quản lý rủi ro phần mềm trong НИР",
+    "questions": [
+      "Nếu code Quản lý rủi ro phần mềm trong НИР chạy được trên máy em nhưng không chạy trên máy khác, em kiểm tra gì trước?",
+      "Input/output, schema và artifact đã đủ để tái lập chưa?",
+      "Vì sao giảm rủi ro hỏng demo, mất dữ liệu, lệch kết quả cần workflow phần mềm thay vì notebook rời rạc?"
+    ],
+    "expected": "Trả lời có input/output, môi trường, test/log, version, artifact và kế hoạch sửa lỗi."
+  },
+  {
+    "id": "deep_PR41",
+    "stage": "hk4",
+    "lessonId": "PR41",
+    "applicationId": "app_PR41",
+    "title": "Phản biện sâu · Đóng băng mã nguồn và tag release",
+    "questions": [
+      "Nếu code Đóng băng mã nguồn và tag release chạy được trên máy em nhưng không chạy trên máy khác, em kiểm tra gì trước?",
+      "Input/output, schema và artifact đã đủ để tái lập chưa?",
+      "Vì sao khóa phiên bản phục vụ ВКР, tránh đổi sát ngày bảo vệ cần workflow phần mềm thay vì notebook rời rạc?"
+    ],
+    "expected": "Trả lời có input/output, môi trường, test/log, version, artifact và kế hoạch sửa lỗi."
+  },
+  {
+    "id": "deep_PR42",
+    "stage": "hk4",
+    "lessonId": "PR42",
+    "applicationId": "app_PR42",
+    "title": "Phản biện sâu · Script chạy lại toàn bộ kết quả",
+    "questions": [
+      "Nếu code Script chạy lại toàn bộ kết quả chạy được trên máy em nhưng không chạy trên máy khác, em kiểm tra gì trước?",
+      "Input/output, schema và artifact đã đủ để tái lập chưa?",
+      "Vì sao tái tạo bảng và hình trong luận văn cần workflow phần mềm thay vì notebook rời rạc?"
+    ],
+    "expected": "Trả lời có input/output, môi trường, test/log, version, artifact và kế hoạch sửa lỗi."
+  },
+  {
+    "id": "deep_PR43",
+    "stage": "hk4",
+    "lessonId": "PR43",
+    "applicationId": "app_PR43",
+    "title": "Phản biện sâu · Chuẩn hóa thư mục luận văn và artifact",
+    "questions": [
+      "Nếu code Chuẩn hóa thư mục luận văn và artifact chạy được trên máy em nhưng không chạy trên máy khác, em kiểm tra gì trước?",
+      "Input/output, schema và artifact đã đủ để tái lập chưa?",
+      "Vì sao không thất lạc hình, bảng, code khi viết ВКР cần workflow phần mềm thay vì notebook rời rạc?"
+    ],
+    "expected": "Trả lời có input/output, môi trường, test/log, version, artifact và kế hoạch sửa lỗi."
+  },
+  {
+    "id": "deep_PR44",
+    "stage": "hk4",
+    "lessonId": "PR44",
+    "applicationId": "app_PR44",
+    "title": "Phản biện sâu · Demo offline và kế hoạch dự phòng",
+    "questions": [
+      "Nếu code Demo offline và kế hoạch dự phòng chạy được trên máy em nhưng không chạy trên máy khác, em kiểm tra gì trước?",
+      "Input/output, schema và artifact đã đủ để tái lập chưa?",
+      "Vì sao bảo vệ khi mạng/hardware có vấn đề cần workflow phần mềm thay vì notebook rời rạc?"
+    ],
+    "expected": "Trả lời có input/output, môi trường, test/log, version, artifact và kế hoạch sửa lỗi."
+  },
+  {
+    "id": "deep_PR45",
+    "stage": "hk4",
+    "lessonId": "PR45",
+    "applicationId": "app_PR45",
+    "title": "Phản biện sâu · Tối ưu nhỏ: runtime, memory và latency",
+    "questions": [
+      "Nếu code Tối ưu nhỏ: runtime, memory và latency chạy được trên máy em nhưng không chạy trên máy khác, em kiểm tra gì trước?",
+      "Input/output, schema và artifact đã đủ để tái lập chưa?",
+      "Vì sao trả lời phản biện về khả năng chạy trên phần cứng robot cần workflow phần mềm thay vì notebook rời rạc?"
+    ],
+    "expected": "Trả lời có input/output, môi trường, test/log, version, artifact và kế hoạch sửa lỗi."
+  },
+  {
+    "id": "deep_PR46",
+    "stage": "hk4",
+    "lessonId": "PR46",
+    "applicationId": "app_PR46",
+    "title": "Phản biện sâu · Kiểm tra license, citation và nguồn mở",
+    "questions": [
+      "Nếu code Kiểm tra license, citation và nguồn mở chạy được trên máy em nhưng không chạy trên máy khác, em kiểm tra gì trước?",
+      "Input/output, schema và artifact đã đủ để tái lập chưa?",
+      "Vì sao tránh lỗi trích dẫn thư viện/dữ liệu khi nộp luận văn cần workflow phần mềm thay vì notebook rời rạc?"
+    ],
+    "expected": "Trả lời có input/output, môi trường, test/log, version, artifact và kế hoạch sửa lỗi."
+  },
+  {
+    "id": "deep_PR47",
+    "stage": "hk4",
+    "lessonId": "PR47",
+    "applicationId": "app_PR47",
+    "title": "Phản biện sâu · Slide kỹ thuật: kiến trúc, pipeline, kết quả",
+    "questions": [
+      "Nếu code Slide kỹ thuật: kiến trúc, pipeline, kết quả chạy được trên máy em nhưng không chạy trên máy khác, em kiểm tra gì trước?",
+      "Input/output, schema và artifact đã đủ để tái lập chưa?",
+      "Vì sao trình bày phần code không loạn trước hội đồng cần workflow phần mềm thay vì notebook rời rạc?"
+    ],
+    "expected": "Trả lời có input/output, môi trường, test/log, version, artifact và kế hoạch sửa lỗi."
+  },
+  {
+    "id": "deep_PR48",
+    "stage": "hk4",
+    "lessonId": "PR48",
+    "applicationId": "app_PR48",
+    "title": "Phản biện sâu · Trả lời phản biện kỹ thuật phần mềm",
+    "questions": [
+      "Nếu code Trả lời phản biện kỹ thuật phần mềm chạy được trên máy em nhưng không chạy trên máy khác, em kiểm tra gì trước?",
+      "Input/output, schema và artifact đã đủ để tái lập chưa?",
+      "Vì sao bảo vệ lựa chọn kiến trúc, dữ liệu, metric và demo cần workflow phần mềm thay vì notebook rời rạc?"
+    ],
+    "expected": "Trả lời có input/output, môi trường, test/log, version, artifact và kế hoạch sửa lỗi."
+  }
+]

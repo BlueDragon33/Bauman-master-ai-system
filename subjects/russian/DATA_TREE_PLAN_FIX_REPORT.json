@@ -1,0 +1,36 @@
+{
+  "name": "Russian Bauman Data Tree Plan Fix",
+  "version": "R6 data-tree-plan-fix",
+  "date": "2026-06-08",
+  "goal": "Điều chỉnh tab Lưu trữ/Dữ liệu để cây thư mục hiển thị đủ nguồn theo kế hoạch mới, gồm Nghe/Nói cơ bản, Đối thoại Bauman A-Z, Deep Speaking và speaking-link-index, kể cả khi các nguồn lớn chưa lazy-load.",
+  "changed_files": [
+    "subjects/russian/assets/core.js",
+    "subjects/russian/assets/core.css",
+    "subjects/russian/assets/subject-adapter.js",
+    "subjects/russian/subject-manifest.json",
+    "subjects/russian/subject-manifest.js"
+  ],
+  "data_policy": {
+    "speaking_json": "Giữ riêng cho tab Nghe/Nói cơ bản, luyện nghe chậm và nhại chuẩn.",
+    "dialogue_bauman_az_json": "Dùng cho tab Đối thoại, lazy-load khi cần.",
+    "deep_speaking_bauman_json": "Dùng trong Đối thoại để luyện sâu, lazy-load khi cần.",
+    "speaking_link_index_json": "Cầu nối Đối thoại A-Z và Deep Speaking, lazy-load khi cần."
+  },
+  "planned_counts": {
+    "speaking": 1220,
+    "dialogue-bauman-az": 4164,
+    "deep-speaking-bauman": 1140,
+    "speaking-link-index": 1058,
+    "vocab": 8000,
+    "tests": 1320,
+    "exercises": 312
+  },
+  "checks": {
+    "core_js_syntax": "passed",
+    "subject_adapter_js_syntax": "passed",
+    "subject_manifest_js_syntax": "passed",
+    "subject_manifest_json_valid": "passed",
+    "lazy_load_policy_preserved": true,
+    "basic_speaking_not_mixed_with_deep": true
+  }
+}

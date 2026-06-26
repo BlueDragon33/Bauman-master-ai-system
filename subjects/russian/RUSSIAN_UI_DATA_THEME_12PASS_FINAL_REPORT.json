@@ -1,0 +1,47 @@
+{
+  "package": "Russian_Bauman_UI_DataTheme_12Pass_FINAL",
+  "base": "Russian_Bauman_Flag_LeftPanel_RESTORED_HOTFIX.zip",
+  "passes": 12,
+  "honesty_note": "Đã kiểm tra cú pháp JS và parse JSON trong sandbox. Sandbox không chạy Live Server GUI thật, nên cần mở index.html bằng Live Server trên máy người dùng để soi mắt giao diện cuối.",
+  "fixed": [
+    "Tab Học tập: bỏ ký hiệu/mức độ khỏi thẻ nhỏ bên trái của Bài tập và Nghe/Nói; mức độ chỉ quản lý ở bộ lọc phía trên.",
+    "Tab Dữ liệu: dựng lại dạng kho dữ liệu JSON, có nhóm kho, tab nhỏ chứa file, vùng chính chi tiết file, thao tác nhập/thêm/sửa/xuất/khôi phục.",
+    "Giao diện: thêm 5 lựa chọn màu Bauman Navy, Deep Blue, Emerald Study, Amber Focus, Violet Lab; active/hover/selected nổi rõ hơn.",
+    "Ôn tập/Kiểm tra: giữ flag trái, nội dung chính phải có cuộn riêng, chống tràn/khuyết câu hỏi và đáp án.",
+    "Chống tràn tổng thể: thêm CSS min-width:0, overflow-wrap, vùng cuộn riêng cho câu hỏi, dữ liệu, record JSON."
+  ],
+  "checks": {
+    "node_check_core_js": "passed",
+    "node_check_subject_adapter_js": "passed",
+    "node_check_subject_manifest_js": "passed",
+    "json_parse_all_data": "passed",
+    "data_counts": {
+      "curriculum.json": 2,
+      "deep-speaking-bauman.json": 1140,
+      "dialogue-bauman-az.json": 4164,
+      "exercises.json": 312,
+      "grammar.json": 20,
+      "handwriting.json": 48,
+      "knowledge-index.json": 26,
+      "lessons.json": 26,
+      "simulations.json": 18,
+      "speaking-link-index.json": 1058,
+      "speaking.json": 1220,
+      "tests.json": 1320,
+      "videos.json": 24,
+      "vocab.json": 8000,
+      "writing.json": 42
+    },
+    "storage_has_arsenal_layout": true,
+    "theme_choices_count": 5,
+    "learning_left_level_labels_removed": "passed by source grep"
+  },
+  "manual_live_server_checklist": [
+    "Mở subjects/russian/index.html bằng Live Server.",
+    "Tab Học tập > Bài tập: thẻ trái không còn chữ Dễ/Trung bình/Khá/Giỏi; nội dung chính không tràn.",
+    "Tab Học tập > Nghe/Nói: thẻ trái không còn chip mức độ, vẫn chọn được tình huống.",
+    "Ôn tập và Kiểm tra: flag là cột nhỏ bên trái, nội dung chính bên phải không bị khuyết.",
+    "Dữ liệu: chọn từng nhóm kho, chọn file JSON, bấm tải nguồn lazy, xem preview và các nút thao tác.",
+    "Mở giao diện: thử cả 5 màu, kiểm tra màu active đổi rõ ở sidebar, tab, file dữ liệu, flag."
+  ]
+}

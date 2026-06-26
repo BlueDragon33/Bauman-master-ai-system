@@ -1,0 +1,252 @@
+{
+  "meta": {
+    "subjectId": "signal",
+    "title": "Xử lý tín hiệu, chuỗi thời gian, telemetry và cảm biến",
+    "version": "simulation-v1",
+    "description": "Tách riêng mô phỏng quan sát và mô phỏng thực hành."
+  },
+  "observation": [
+    {
+      "id": "signal_prepare_obs_1",
+      "stage": "prepare",
+      "type": "mô phỏng riêng",
+      "title": "GĐ1 · Tín hiệu, nhiễu và sampling",
+      "goal": "Thấy chuỗi thời gian thay đổi khi đổi tần số lấy mẫu, nhiễu, smoothing và anomaly.",
+      "scenario": "Điều chỉnh noise, window, sampling rate, trend và spike để xem kết quả lọc/phát hiện.",
+      "parameters": [
+        "sampling rate",
+        "noise",
+        "window size",
+        "trend",
+        "spike threshold"
+      ],
+      "outputs": [
+        "chuỗi trước/sau",
+        "điểm anomaly",
+        "gợi ý preprocessing"
+      ]
+    },
+    {
+      "id": "signal_preparatory_obs_1",
+      "stage": "preparatory",
+      "type": "mô phỏng riêng",
+      "title": "GĐ2 · Tín hiệu, nhiễu và sampling",
+      "goal": "Thấy chuỗi thời gian thay đổi khi đổi tần số lấy mẫu, nhiễu, smoothing và anomaly.",
+      "scenario": "Điều chỉnh noise, window, sampling rate, trend và spike để xem kết quả lọc/phát hiện.",
+      "parameters": [
+        "sampling rate",
+        "noise",
+        "window size",
+        "trend",
+        "spike threshold"
+      ],
+      "outputs": [
+        "chuỗi trước/sau",
+        "điểm anomaly",
+        "gợi ý preprocessing"
+      ]
+    },
+    {
+      "id": "signal_m1_obs_1",
+      "stage": "m1",
+      "type": "mô phỏng riêng",
+      "title": "HK1 · Tín hiệu, nhiễu và sampling",
+      "goal": "Thấy chuỗi thời gian thay đổi khi đổi tần số lấy mẫu, nhiễu, smoothing và anomaly.",
+      "scenario": "Điều chỉnh noise, window, sampling rate, trend và spike để xem kết quả lọc/phát hiện.",
+      "parameters": [
+        "sampling rate",
+        "noise",
+        "window size",
+        "trend",
+        "spike threshold"
+      ],
+      "outputs": [
+        "chuỗi trước/sau",
+        "điểm anomaly",
+        "gợi ý preprocessing"
+      ]
+    },
+    {
+      "id": "signal_m2_obs_1",
+      "stage": "m2",
+      "type": "mô phỏng riêng",
+      "title": "HK2 · Tín hiệu, nhiễu và sampling",
+      "goal": "Thấy chuỗi thời gian thay đổi khi đổi tần số lấy mẫu, nhiễu, smoothing và anomaly.",
+      "scenario": "Điều chỉnh noise, window, sampling rate, trend và spike để xem kết quả lọc/phát hiện.",
+      "parameters": [
+        "sampling rate",
+        "noise",
+        "window size",
+        "trend",
+        "spike threshold"
+      ],
+      "outputs": [
+        "chuỗi trước/sau",
+        "điểm anomaly",
+        "gợi ý preprocessing"
+      ]
+    },
+    {
+      "id": "signal_m3_obs_1",
+      "stage": "m3",
+      "type": "mô phỏng riêng",
+      "title": "HK3 · Tín hiệu, nhiễu và sampling",
+      "goal": "Thấy chuỗi thời gian thay đổi khi đổi tần số lấy mẫu, nhiễu, smoothing và anomaly.",
+      "scenario": "Điều chỉnh noise, window, sampling rate, trend và spike để xem kết quả lọc/phát hiện.",
+      "parameters": [
+        "sampling rate",
+        "noise",
+        "window size",
+        "trend",
+        "spike threshold"
+      ],
+      "outputs": [
+        "chuỗi trước/sau",
+        "điểm anomaly",
+        "gợi ý preprocessing"
+      ]
+    },
+    {
+      "id": "signal_m4_obs_1",
+      "stage": "m4",
+      "type": "mô phỏng riêng",
+      "title": "HK4 · Tín hiệu, nhiễu và sampling",
+      "goal": "Thấy chuỗi thời gian thay đổi khi đổi tần số lấy mẫu, nhiễu, smoothing và anomaly.",
+      "scenario": "Điều chỉnh noise, window, sampling rate, trend và spike để xem kết quả lọc/phát hiện.",
+      "parameters": [
+        "sampling rate",
+        "noise",
+        "window size",
+        "trend",
+        "spike threshold"
+      ],
+      "outputs": [
+        "chuỗi trước/sau",
+        "điểm anomaly",
+        "gợi ý preprocessing"
+      ]
+    }
+  ],
+  "practice": [
+    {
+      "id": "signal_prepare_prac_1",
+      "stage": "prepare",
+      "type": "mô phỏng thực hành",
+      "title": "GĐ1 · Ca trực telemetry",
+      "mission": "Phân tích một đoạn telemetry giả lập, phát hiện bất thường và đề xuất bước xử lý.",
+      "steps": [
+        "nhìn pattern",
+        "lọc nhiễu",
+        "xác định anomaly",
+        "viết kết luận"
+      ],
+      "rubric": [
+        "chọn đúng đặc trưng",
+        "không nhầm nhiễu với lỗi",
+        "đề xuất xử lý hợp lý",
+        "liên hệ được sensor thật"
+      ],
+      "feedback": "Nếu chưa đạt, trỏ về bài smoothing, decomposition, anomaly detection."
+    },
+    {
+      "id": "signal_preparatory_prac_1",
+      "stage": "preparatory",
+      "type": "mô phỏng thực hành",
+      "title": "GĐ2 · Ca trực telemetry",
+      "mission": "Phân tích một đoạn telemetry giả lập, phát hiện bất thường và đề xuất bước xử lý.",
+      "steps": [
+        "nhìn pattern",
+        "lọc nhiễu",
+        "xác định anomaly",
+        "viết kết luận"
+      ],
+      "rubric": [
+        "chọn đúng đặc trưng",
+        "không nhầm nhiễu với lỗi",
+        "đề xuất xử lý hợp lý",
+        "liên hệ được sensor thật"
+      ],
+      "feedback": "Nếu chưa đạt, trỏ về bài smoothing, decomposition, anomaly detection."
+    },
+    {
+      "id": "signal_m1_prac_1",
+      "stage": "m1",
+      "type": "mô phỏng thực hành",
+      "title": "HK1 · Ca trực telemetry",
+      "mission": "Phân tích một đoạn telemetry giả lập, phát hiện bất thường và đề xuất bước xử lý.",
+      "steps": [
+        "nhìn pattern",
+        "lọc nhiễu",
+        "xác định anomaly",
+        "viết kết luận"
+      ],
+      "rubric": [
+        "chọn đúng đặc trưng",
+        "không nhầm nhiễu với lỗi",
+        "đề xuất xử lý hợp lý",
+        "liên hệ được sensor thật"
+      ],
+      "feedback": "Nếu chưa đạt, trỏ về bài smoothing, decomposition, anomaly detection."
+    },
+    {
+      "id": "signal_m2_prac_1",
+      "stage": "m2",
+      "type": "mô phỏng thực hành",
+      "title": "HK2 · Ca trực telemetry",
+      "mission": "Phân tích một đoạn telemetry giả lập, phát hiện bất thường và đề xuất bước xử lý.",
+      "steps": [
+        "nhìn pattern",
+        "lọc nhiễu",
+        "xác định anomaly",
+        "viết kết luận"
+      ],
+      "rubric": [
+        "chọn đúng đặc trưng",
+        "không nhầm nhiễu với lỗi",
+        "đề xuất xử lý hợp lý",
+        "liên hệ được sensor thật"
+      ],
+      "feedback": "Nếu chưa đạt, trỏ về bài smoothing, decomposition, anomaly detection."
+    },
+    {
+      "id": "signal_m3_prac_1",
+      "stage": "m3",
+      "type": "mô phỏng thực hành",
+      "title": "HK3 · Ca trực telemetry",
+      "mission": "Phân tích một đoạn telemetry giả lập, phát hiện bất thường và đề xuất bước xử lý.",
+      "steps": [
+        "nhìn pattern",
+        "lọc nhiễu",
+        "xác định anomaly",
+        "viết kết luận"
+      ],
+      "rubric": [
+        "chọn đúng đặc trưng",
+        "không nhầm nhiễu với lỗi",
+        "đề xuất xử lý hợp lý",
+        "liên hệ được sensor thật"
+      ],
+      "feedback": "Nếu chưa đạt, trỏ về bài smoothing, decomposition, anomaly detection."
+    },
+    {
+      "id": "signal_m4_prac_1",
+      "stage": "m4",
+      "type": "mô phỏng thực hành",
+      "title": "HK4 · Ca trực telemetry",
+      "mission": "Phân tích một đoạn telemetry giả lập, phát hiện bất thường và đề xuất bước xử lý.",
+      "steps": [
+        "nhìn pattern",
+        "lọc nhiễu",
+        "xác định anomaly",
+        "viết kết luận"
+      ],
+      "rubric": [
+        "chọn đúng đặc trưng",
+        "không nhầm nhiễu với lỗi",
+        "đề xuất xử lý hợp lý",
+        "liên hệ được sensor thật"
+      ],
+      "feedback": "Nếu chưa đạt, trỏ về bài smoothing, decomposition, anomaly detection."
+    }
+  ]
+}

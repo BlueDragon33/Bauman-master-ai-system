@@ -1,0 +1,3842 @@
+[
+  {
+    "id": "oral_PR01",
+    "stage": "vn",
+    "lessonId": "PR01",
+    "group": "vấn đáp giáo sư",
+    "type": "professor-oral-defense",
+    "difficulty": "academic",
+    "title": "Vấn đáp giáo sư · Thiết lập môi trường Python, VS Code và Live Server",
+    "purpose": "Tập trả lời câu hỏi lý thuyết thực tế: vấn đề, input/output, thiết kế, test, artifact, rủi ro và thuật ngữ Việt-Nga-Anh.",
+    "terminologyMode": "vi-ru-en",
+    "terminologyTerms": [
+      {
+        "vi": "Môi trường phát triển",
+        "ru": "среда разработки",
+        "en": "development environment"
+      },
+      {
+        "vi": "Input/Output",
+        "ru": "вход/выход",
+        "en": "input/output"
+      },
+      {
+        "vi": "Kiểm thử",
+        "ru": "тестирование",
+        "en": "testing"
+      },
+      {
+        "vi": "Tái lập",
+        "ru": "воспроизводимость",
+        "en": "reproducibility"
+      }
+    ],
+    "professorQuestions": [
+      "Bài này giải quyết vấn đề kỹ thuật gì?",
+      "Input/output và artifact là gì?",
+      "Thiết kế này có test/log không?",
+      "Rủi ro lỗi logic hoặc lỗi môi trường ở đâu?",
+      "Hãy nói thuật ngữ chính bằng Việt - Nga - Anh."
+    ],
+    "expectedAnswerStructure": [
+      "Vấn đề kỹ thuật",
+      "Input/output",
+      "Workflow/code lõi",
+      "Test/log/artifact",
+      "Rủi ro và giới hạn",
+      "Thuật ngữ Việt-Nga-Anh"
+    ],
+    "turns": [
+      {
+        "speaker": "GS",
+        "ru": "Hãy nói vấn đề kỹ thuật mà bài này giải quyết.",
+        "vi": "Hãy nói vấn đề kỹ thuật mà bài này giải quyết."
+      },
+      {
+        "speaker": "HV",
+        "ru": "Bài Thiết lập môi trường Python, VS Code và Live Server giúp em xây workflow/code cho mở module học, chạy notebook, kiểm thử HTML/JSON cục bộ.",
+        "vi": "Bài Thiết lập môi trường Python, VS Code và Live Server giúp em xây workflow/code cho mở module học, chạy notebook, kiểm thử HTML/JSON cục bộ."
+      },
+      {
+        "speaker": "GS",
+        "ru": "Input, output và kiểm thử tối thiểu là gì?",
+        "vi": "Input, output và kiểm thử tối thiểu là gì?"
+      },
+      {
+        "speaker": "HV",
+        "ru": "Em cần xác định dữ liệu vào/ra, dùng python -m venv .venv; pip install -r requirements.txt; code ., chạy test/log và ghi artifact.",
+        "vi": "Em cần xác định dữ liệu vào/ra, dùng python -m venv .venv; pip install -r requirements.txt; code ., chạy test/log và ghi artifact."
+      },
+      {
+        "speaker": "GS",
+        "ru": "Thuật ngữ chính bằng Việt - Nga - Anh?",
+        "vi": "Thuật ngữ chính bằng Việt - Nga - Anh?"
+      },
+      {
+        "speaker": "HV",
+        "ru": "Môi trường phát triển · среда разработки · development environment.",
+        "vi": "Môi trường phát triển · среда разработки · development environment."
+      }
+    ]
+  },
+  {
+    "id": "oral_PR02",
+    "stage": "vn",
+    "lessonId": "PR02",
+    "group": "vấn đáp giáo sư",
+    "type": "professor-oral-defense",
+    "difficulty": "academic",
+    "title": "Vấn đáp giáo sư · Tư duy thuật toán và độ phức tạp",
+    "purpose": "Tập trả lời câu hỏi lý thuyết thực tế: vấn đề, input/output, thiết kế, test, artifact, rủi ro và thuật ngữ Việt-Nga-Anh.",
+    "terminologyMode": "vi-ru-en",
+    "terminologyTerms": [
+      {
+        "vi": "Độ phức tạp",
+        "ru": "сложность алгоритма",
+        "en": "algorithmic complexity"
+      },
+      {
+        "vi": "Input/Output",
+        "ru": "вход/выход",
+        "en": "input/output"
+      },
+      {
+        "vi": "Kiểm thử",
+        "ru": "тестирование",
+        "en": "testing"
+      },
+      {
+        "vi": "Tái lập",
+        "ru": "воспроизводимость",
+        "en": "reproducibility"
+      }
+    ],
+    "professorQuestions": [
+      "Bài này giải quyết vấn đề kỹ thuật gì?",
+      "Input/output và artifact là gì?",
+      "Thiết kế này có test/log không?",
+      "Rủi ro lỗi logic hoặc lỗi môi trường ở đâu?",
+      "Hãy nói thuật ngữ chính bằng Việt - Nga - Anh."
+    ],
+    "expectedAnswerStructure": [
+      "Vấn đề kỹ thuật",
+      "Input/output",
+      "Workflow/code lõi",
+      "Test/log/artifact",
+      "Rủi ro và giới hạn",
+      "Thuật ngữ Việt-Nga-Anh"
+    ],
+    "turns": [
+      {
+        "speaker": "GS",
+        "ru": "Hãy nói vấn đề kỹ thuật mà bài này giải quyết.",
+        "vi": "Hãy nói vấn đề kỹ thuật mà bài này giải quyết."
+      },
+      {
+        "speaker": "HV",
+        "ru": "Bài Tư duy thuật toán và độ phức tạp giúp em xây workflow/code cho chọn thuật toán đủ nhanh cho xử lý dữ liệu robot.",
+        "vi": "Bài Tư duy thuật toán và độ phức tạp giúp em xây workflow/code cho chọn thuật toán đủ nhanh cho xử lý dữ liệu robot."
+      },
+      {
+        "speaker": "GS",
+        "ru": "Input, output và kiểm thử tối thiểu là gì?",
+        "vi": "Input, output và kiểm thử tối thiểu là gì?"
+      },
+      {
+        "speaker": "HV",
+        "ru": "Em cần xác định dữ liệu vào/ra, dùng T(n)=O(n log n); space=O(n), chạy test/log và ghi artifact.",
+        "vi": "Em cần xác định dữ liệu vào/ra, dùng T(n)=O(n log n); space=O(n), chạy test/log và ghi artifact."
+      },
+      {
+        "speaker": "GS",
+        "ru": "Thuật ngữ chính bằng Việt - Nga - Anh?",
+        "vi": "Thuật ngữ chính bằng Việt - Nga - Anh?"
+      },
+      {
+        "speaker": "HV",
+        "ru": "Độ phức tạp · сложность алгоритма · algorithmic complexity.",
+        "vi": "Độ phức tạp · сложность алгоритма · algorithmic complexity."
+      }
+    ]
+  },
+  {
+    "id": "oral_PR03",
+    "stage": "vn",
+    "lessonId": "PR03",
+    "group": "vấn đáp giáo sư",
+    "type": "professor-oral-defense",
+    "difficulty": "academic",
+    "title": "Vấn đáp giáo sư · Python căn bản: kiểu dữ liệu, hàm, module",
+    "purpose": "Tập trả lời câu hỏi lý thuyết thực tế: vấn đề, input/output, thiết kế, test, artifact, rủi ro và thuật ngữ Việt-Nga-Anh.",
+    "terminologyMode": "vi-ru-en",
+    "terminologyTerms": [
+      {
+        "vi": "Hàm",
+        "ru": "функция",
+        "en": "function"
+      },
+      {
+        "vi": "Input/Output",
+        "ru": "вход/выход",
+        "en": "input/output"
+      },
+      {
+        "vi": "Kiểm thử",
+        "ru": "тестирование",
+        "en": "testing"
+      },
+      {
+        "vi": "Tái lập",
+        "ru": "воспроизводимость",
+        "en": "reproducibility"
+      }
+    ],
+    "professorQuestions": [
+      "Bài này giải quyết vấn đề kỹ thuật gì?",
+      "Input/output và artifact là gì?",
+      "Thiết kế này có test/log không?",
+      "Rủi ro lỗi logic hoặc lỗi môi trường ở đâu?",
+      "Hãy nói thuật ngữ chính bằng Việt - Nga - Anh."
+    ],
+    "expectedAnswerStructure": [
+      "Vấn đề kỹ thuật",
+      "Input/output",
+      "Workflow/code lõi",
+      "Test/log/artifact",
+      "Rủi ro và giới hạn",
+      "Thuật ngữ Việt-Nga-Anh"
+    ],
+    "turns": [
+      {
+        "speaker": "GS",
+        "ru": "Hãy nói vấn đề kỹ thuật mà bài này giải quyết.",
+        "vi": "Hãy nói vấn đề kỹ thuật mà bài này giải quyết."
+      },
+      {
+        "speaker": "HV",
+        "ru": "Bài Python căn bản: kiểu dữ liệu, hàm, module giúp em xây workflow/code cho viết script sạch để xử lý bài tập và dữ liệu nhỏ.",
+        "vi": "Bài Python căn bản: kiểu dữ liệu, hàm, module giúp em xây workflow/code cho viết script sạch để xử lý bài tập và dữ liệu nhỏ."
+      },
+      {
+        "speaker": "GS",
+        "ru": "Input, output và kiểm thử tối thiểu là gì?",
+        "vi": "Input, output và kiểm thử tối thiểu là gì?"
+      },
+      {
+        "speaker": "HV",
+        "ru": "Em cần xác định dữ liệu vào/ra, dùng def f(x): return y; list/dict/set/tuple, chạy test/log và ghi artifact.",
+        "vi": "Em cần xác định dữ liệu vào/ra, dùng def f(x): return y; list/dict/set/tuple, chạy test/log và ghi artifact."
+      },
+      {
+        "speaker": "GS",
+        "ru": "Thuật ngữ chính bằng Việt - Nga - Anh?",
+        "vi": "Thuật ngữ chính bằng Việt - Nga - Anh?"
+      },
+      {
+        "speaker": "HV",
+        "ru": "Hàm · функция · function.",
+        "vi": "Hàm · функция · function."
+      }
+    ]
+  },
+  {
+    "id": "oral_PR04",
+    "stage": "vn",
+    "lessonId": "PR04",
+    "group": "vấn đáp giáo sư",
+    "type": "professor-oral-defense",
+    "difficulty": "academic",
+    "title": "Vấn đáp giáo sư · NumPy và vector hóa dữ liệu",
+    "purpose": "Tập trả lời câu hỏi lý thuyết thực tế: vấn đề, input/output, thiết kế, test, artifact, rủi ro và thuật ngữ Việt-Nga-Anh.",
+    "terminologyMode": "vi-ru-en",
+    "terminologyTerms": [
+      {
+        "vi": "Vector hóa",
+        "ru": "векторизация",
+        "en": "vectorization"
+      },
+      {
+        "vi": "Input/Output",
+        "ru": "вход/выход",
+        "en": "input/output"
+      },
+      {
+        "vi": "Kiểm thử",
+        "ru": "тестирование",
+        "en": "testing"
+      },
+      {
+        "vi": "Tái lập",
+        "ru": "воспроизводимость",
+        "en": "reproducibility"
+      }
+    ],
+    "professorQuestions": [
+      "Bài này giải quyết vấn đề kỹ thuật gì?",
+      "Input/output và artifact là gì?",
+      "Thiết kế này có test/log không?",
+      "Rủi ro lỗi logic hoặc lỗi môi trường ở đâu?",
+      "Hãy nói thuật ngữ chính bằng Việt - Nga - Anh."
+    ],
+    "expectedAnswerStructure": [
+      "Vấn đề kỹ thuật",
+      "Input/output",
+      "Workflow/code lõi",
+      "Test/log/artifact",
+      "Rủi ro và giới hạn",
+      "Thuật ngữ Việt-Nga-Anh"
+    ],
+    "turns": [
+      {
+        "speaker": "GS",
+        "ru": "Hãy nói vấn đề kỹ thuật mà bài này giải quyết.",
+        "vi": "Hãy nói vấn đề kỹ thuật mà bài này giải quyết."
+      },
+      {
+        "speaker": "HV",
+        "ru": "Bài NumPy và vector hóa dữ liệu giúp em xây workflow/code cho tính toán ma trận/đặc trưng cho AI nhanh và gọn.",
+        "vi": "Bài NumPy và vector hóa dữ liệu giúp em xây workflow/code cho tính toán ma trận/đặc trưng cho AI nhanh và gọn."
+      },
+      {
+        "speaker": "GS",
+        "ru": "Input, output và kiểm thử tối thiểu là gì?",
+        "vi": "Input, output và kiểm thử tối thiểu là gì?"
+      },
+      {
+        "speaker": "HV",
+        "ru": "Em cần xác định dữ liệu vào/ra, dùng X.shape=(n,d); y = X @ w + b, chạy test/log và ghi artifact.",
+        "vi": "Em cần xác định dữ liệu vào/ra, dùng X.shape=(n,d); y = X @ w + b, chạy test/log và ghi artifact."
+      },
+      {
+        "speaker": "GS",
+        "ru": "Thuật ngữ chính bằng Việt - Nga - Anh?",
+        "vi": "Thuật ngữ chính bằng Việt - Nga - Anh?"
+      },
+      {
+        "speaker": "HV",
+        "ru": "Vector hóa · векторизация · vectorization.",
+        "vi": "Vector hóa · векторизация · vectorization."
+      }
+    ]
+  },
+  {
+    "id": "oral_PR05",
+    "stage": "vn",
+    "lessonId": "PR05",
+    "group": "vấn đáp giáo sư",
+    "type": "professor-oral-defense",
+    "difficulty": "academic",
+    "title": "Vấn đáp giáo sư · Pandas và làm sạch bảng dữ liệu",
+    "purpose": "Tập trả lời câu hỏi lý thuyết thực tế: vấn đề, input/output, thiết kế, test, artifact, rủi ro và thuật ngữ Việt-Nga-Anh.",
+    "terminologyMode": "vi-ru-en",
+    "terminologyTerms": [
+      {
+        "vi": "Khung dữ liệu",
+        "ru": "таблица данных",
+        "en": "dataframe"
+      },
+      {
+        "vi": "Input/Output",
+        "ru": "вход/выход",
+        "en": "input/output"
+      },
+      {
+        "vi": "Kiểm thử",
+        "ru": "тестирование",
+        "en": "testing"
+      },
+      {
+        "vi": "Tái lập",
+        "ru": "воспроизводимость",
+        "en": "reproducibility"
+      }
+    ],
+    "professorQuestions": [
+      "Bài này giải quyết vấn đề kỹ thuật gì?",
+      "Input/output và artifact là gì?",
+      "Thiết kế này có test/log không?",
+      "Rủi ro lỗi logic hoặc lỗi môi trường ở đâu?",
+      "Hãy nói thuật ngữ chính bằng Việt - Nga - Anh."
+    ],
+    "expectedAnswerStructure": [
+      "Vấn đề kỹ thuật",
+      "Input/output",
+      "Workflow/code lõi",
+      "Test/log/artifact",
+      "Rủi ro và giới hạn",
+      "Thuật ngữ Việt-Nga-Anh"
+    ],
+    "turns": [
+      {
+        "speaker": "GS",
+        "ru": "Hãy nói vấn đề kỹ thuật mà bài này giải quyết.",
+        "vi": "Hãy nói vấn đề kỹ thuật mà bài này giải quyết."
+      },
+      {
+        "speaker": "HV",
+        "ru": "Bài Pandas và làm sạch bảng dữ liệu giúp em xây workflow/code cho làm sạch log cảm biến, bảng điểm đo, dữ liệu CSV.",
+        "vi": "Bài Pandas và làm sạch bảng dữ liệu giúp em xây workflow/code cho làm sạch log cảm biến, bảng điểm đo, dữ liệu CSV."
+      },
+      {
+        "speaker": "GS",
+        "ru": "Input, output và kiểm thử tối thiểu là gì?",
+        "vi": "Input, output và kiểm thử tối thiểu là gì?"
+      },
+      {
+        "speaker": "HV",
+        "ru": "Em cần xác định dữ liệu vào/ra, dùng df.dropna(); df.groupby(); df.merge(), chạy test/log và ghi artifact.",
+        "vi": "Em cần xác định dữ liệu vào/ra, dùng df.dropna(); df.groupby(); df.merge(), chạy test/log và ghi artifact."
+      },
+      {
+        "speaker": "GS",
+        "ru": "Thuật ngữ chính bằng Việt - Nga - Anh?",
+        "vi": "Thuật ngữ chính bằng Việt - Nga - Anh?"
+      },
+      {
+        "speaker": "HV",
+        "ru": "Khung dữ liệu · таблица данных · dataframe.",
+        "vi": "Khung dữ liệu · таблица данных · dataframe."
+      }
+    ]
+  },
+  {
+    "id": "oral_PR06",
+    "stage": "vn",
+    "lessonId": "PR06",
+    "group": "vấn đáp giáo sư",
+    "type": "professor-oral-defense",
+    "difficulty": "academic",
+    "title": "Vấn đáp giáo sư · SQL căn bản và mô hình quan hệ",
+    "purpose": "Tập trả lời câu hỏi lý thuyết thực tế: vấn đề, input/output, thiết kế, test, artifact, rủi ro và thuật ngữ Việt-Nga-Anh.",
+    "terminologyMode": "vi-ru-en",
+    "terminologyTerms": [
+      {
+        "vi": "Truy vấn SQL",
+        "ru": "SQL-запрос",
+        "en": "SQL query"
+      },
+      {
+        "vi": "Input/Output",
+        "ru": "вход/выход",
+        "en": "input/output"
+      },
+      {
+        "vi": "Kiểm thử",
+        "ru": "тестирование",
+        "en": "testing"
+      },
+      {
+        "vi": "Tái lập",
+        "ru": "воспроизводимость",
+        "en": "reproducibility"
+      }
+    ],
+    "professorQuestions": [
+      "Bài này giải quyết vấn đề kỹ thuật gì?",
+      "Input/output và artifact là gì?",
+      "Thiết kế này có test/log không?",
+      "Rủi ro lỗi logic hoặc lỗi môi trường ở đâu?",
+      "Hãy nói thuật ngữ chính bằng Việt - Nga - Anh."
+    ],
+    "expectedAnswerStructure": [
+      "Vấn đề kỹ thuật",
+      "Input/output",
+      "Workflow/code lõi",
+      "Test/log/artifact",
+      "Rủi ro và giới hạn",
+      "Thuật ngữ Việt-Nga-Anh"
+    ],
+    "turns": [
+      {
+        "speaker": "GS",
+        "ru": "Hãy nói vấn đề kỹ thuật mà bài này giải quyết.",
+        "vi": "Hãy nói vấn đề kỹ thuật mà bài này giải quyết."
+      },
+      {
+        "speaker": "HV",
+        "ru": "Bài SQL căn bản và mô hình quan hệ giúp em xây workflow/code cho lưu kết quả thí nghiệm, metadata và truy vấn nhanh.",
+        "vi": "Bài SQL căn bản và mô hình quan hệ giúp em xây workflow/code cho lưu kết quả thí nghiệm, metadata và truy vấn nhanh."
+      },
+      {
+        "speaker": "GS",
+        "ru": "Input, output và kiểm thử tối thiểu là gì?",
+        "vi": "Input, output và kiểm thử tối thiểu là gì?"
+      },
+      {
+        "speaker": "HV",
+        "ru": "Em cần xác định dữ liệu vào/ra, dùng SELECT col FROM table WHERE condition; PK/FK, chạy test/log và ghi artifact.",
+        "vi": "Em cần xác định dữ liệu vào/ra, dùng SELECT col FROM table WHERE condition; PK/FK, chạy test/log và ghi artifact."
+      },
+      {
+        "speaker": "GS",
+        "ru": "Thuật ngữ chính bằng Việt - Nga - Anh?",
+        "vi": "Thuật ngữ chính bằng Việt - Nga - Anh?"
+      },
+      {
+        "speaker": "HV",
+        "ru": "Truy vấn SQL · SQL-запрос · SQL query.",
+        "vi": "Truy vấn SQL · SQL-запрос · SQL query."
+      }
+    ]
+  },
+  {
+    "id": "oral_PR07",
+    "stage": "vn",
+    "lessonId": "PR07",
+    "group": "vấn đáp giáo sư",
+    "type": "professor-oral-defense",
+    "difficulty": "academic",
+    "title": "Vấn đáp giáo sư · Git, GitHub và nhật ký học tập",
+    "purpose": "Tập trả lời câu hỏi lý thuyết thực tế: vấn đề, input/output, thiết kế, test, artifact, rủi ro và thuật ngữ Việt-Nga-Anh.",
+    "terminologyMode": "vi-ru-en",
+    "terminologyTerms": [
+      {
+        "vi": "Kho mã nguồn",
+        "ru": "репозиторий",
+        "en": "repository"
+      },
+      {
+        "vi": "Input/Output",
+        "ru": "вход/выход",
+        "en": "input/output"
+      },
+      {
+        "vi": "Kiểm thử",
+        "ru": "тестирование",
+        "en": "testing"
+      },
+      {
+        "vi": "Tái lập",
+        "ru": "воспроизводимость",
+        "en": "reproducibility"
+      }
+    ],
+    "professorQuestions": [
+      "Bài này giải quyết vấn đề kỹ thuật gì?",
+      "Input/output và artifact là gì?",
+      "Thiết kế này có test/log không?",
+      "Rủi ro lỗi logic hoặc lỗi môi trường ở đâu?",
+      "Hãy nói thuật ngữ chính bằng Việt - Nga - Anh."
+    ],
+    "expectedAnswerStructure": [
+      "Vấn đề kỹ thuật",
+      "Input/output",
+      "Workflow/code lõi",
+      "Test/log/artifact",
+      "Rủi ro và giới hạn",
+      "Thuật ngữ Việt-Nga-Anh"
+    ],
+    "turns": [
+      {
+        "speaker": "GS",
+        "ru": "Hãy nói vấn đề kỹ thuật mà bài này giải quyết.",
+        "vi": "Hãy nói vấn đề kỹ thuật mà bài này giải quyết."
+      },
+      {
+        "speaker": "HV",
+        "ru": "Bài Git, GitHub và nhật ký học tập giúp em xây workflow/code cho quản lý phiên bản bài học, notebook, mã mô phỏng.",
+        "vi": "Bài Git, GitHub và nhật ký học tập giúp em xây workflow/code cho quản lý phiên bản bài học, notebook, mã mô phỏng."
+      },
+      {
+        "speaker": "GS",
+        "ru": "Input, output và kiểm thử tối thiểu là gì?",
+        "vi": "Input, output và kiểm thử tối thiểu là gì?"
+      },
+      {
+        "speaker": "HV",
+        "ru": "Em cần xác định dữ liệu vào/ra, dùng git add .; git commit -m \"message\"; git branch, chạy test/log và ghi artifact.",
+        "vi": "Em cần xác định dữ liệu vào/ra, dùng git add .; git commit -m \"message\"; git branch, chạy test/log và ghi artifact."
+      },
+      {
+        "speaker": "GS",
+        "ru": "Thuật ngữ chính bằng Việt - Nga - Anh?",
+        "vi": "Thuật ngữ chính bằng Việt - Nga - Anh?"
+      },
+      {
+        "speaker": "HV",
+        "ru": "Kho mã nguồn · репозиторий · repository.",
+        "vi": "Kho mã nguồn · репозиторий · repository."
+      }
+    ]
+  },
+  {
+    "id": "oral_PR08",
+    "stage": "vn",
+    "lessonId": "PR08",
+    "group": "vấn đáp giáo sư",
+    "type": "professor-oral-defense",
+    "difficulty": "academic",
+    "title": "Vấn đáp giáo sư · Notebook thực nghiệm và README tái lập",
+    "purpose": "Tập trả lời câu hỏi lý thuyết thực tế: vấn đề, input/output, thiết kế, test, artifact, rủi ro và thuật ngữ Việt-Nga-Anh.",
+    "terminologyMode": "vi-ru-en",
+    "terminologyTerms": [
+      {
+        "vi": "Tái lập kết quả",
+        "ru": "воспроизводимость",
+        "en": "reproducibility"
+      },
+      {
+        "vi": "Input/Output",
+        "ru": "вход/выход",
+        "en": "input/output"
+      },
+      {
+        "vi": "Kiểm thử",
+        "ru": "тестирование",
+        "en": "testing"
+      },
+      {
+        "vi": "Tái lập",
+        "ru": "воспроизводимость",
+        "en": "reproducibility"
+      }
+    ],
+    "professorQuestions": [
+      "Bài này giải quyết vấn đề kỹ thuật gì?",
+      "Input/output và artifact là gì?",
+      "Thiết kế này có test/log không?",
+      "Rủi ro lỗi logic hoặc lỗi môi trường ở đâu?",
+      "Hãy nói thuật ngữ chính bằng Việt - Nga - Anh."
+    ],
+    "expectedAnswerStructure": [
+      "Vấn đề kỹ thuật",
+      "Input/output",
+      "Workflow/code lõi",
+      "Test/log/artifact",
+      "Rủi ro và giới hạn",
+      "Thuật ngữ Việt-Nga-Anh"
+    ],
+    "turns": [
+      {
+        "speaker": "GS",
+        "ru": "Hãy nói vấn đề kỹ thuật mà bài này giải quyết.",
+        "vi": "Hãy nói vấn đề kỹ thuật mà bài này giải quyết."
+      },
+      {
+        "speaker": "HV",
+        "ru": "Bài Notebook thực nghiệm và README tái lập giúp em xây workflow/code cho tạo artifact học tập có thể mở lại, chạy lại, giải thích lại.",
+        "vi": "Bài Notebook thực nghiệm và README tái lập giúp em xây workflow/code cho tạo artifact học tập có thể mở lại, chạy lại, giải thích lại."
+      },
+      {
+        "speaker": "GS",
+        "ru": "Input, output và kiểm thử tối thiểu là gì?",
+        "vi": "Input, output và kiểm thử tối thiểu là gì?"
+      },
+      {
+        "speaker": "HV",
+        "ru": "Em cần xác định dữ liệu vào/ra, dùng README + notebook + data/ + src/ + results/, chạy test/log và ghi artifact.",
+        "vi": "Em cần xác định dữ liệu vào/ra, dùng README + notebook + data/ + src/ + results/, chạy test/log và ghi artifact."
+      },
+      {
+        "speaker": "GS",
+        "ru": "Thuật ngữ chính bằng Việt - Nga - Anh?",
+        "vi": "Thuật ngữ chính bằng Việt - Nga - Anh?"
+      },
+      {
+        "speaker": "HV",
+        "ru": "Tái lập kết quả · воспроизводимость · reproducibility.",
+        "vi": "Tái lập kết quả · воспроизводимость · reproducibility."
+      }
+    ]
+  },
+  {
+    "id": "oral_PR09",
+    "stage": "prep",
+    "lessonId": "PR09",
+    "group": "vấn đáp giáo sư",
+    "type": "professor-oral-defense",
+    "difficulty": "academic",
+    "title": "Vấn đáp giáo sư · Thuật ngữ tin học Nga cho lớp dự bị",
+    "purpose": "Tập trả lời câu hỏi lý thuyết thực tế: vấn đề, input/output, thiết kế, test, artifact, rủi ro và thuật ngữ Việt-Nga-Anh.",
+    "terminologyMode": "vi-ru-en",
+    "terminologyTerms": [
+      {
+        "vi": "Thuật toán",
+        "ru": "алгоритм",
+        "en": "algorithm"
+      },
+      {
+        "vi": "Input/Output",
+        "ru": "вход/выход",
+        "en": "input/output"
+      },
+      {
+        "vi": "Kiểm thử",
+        "ru": "тестирование",
+        "en": "testing"
+      },
+      {
+        "vi": "Tái lập",
+        "ru": "воспроизводимость",
+        "en": "reproducibility"
+      }
+    ],
+    "professorQuestions": [
+      "Bài này giải quyết vấn đề kỹ thuật gì?",
+      "Input/output và artifact là gì?",
+      "Thiết kế này có test/log không?",
+      "Rủi ro lỗi logic hoặc lỗi môi trường ở đâu?",
+      "Hãy nói thuật ngữ chính bằng Việt - Nga - Anh."
+    ],
+    "expectedAnswerStructure": [
+      "Vấn đề kỹ thuật",
+      "Input/output",
+      "Workflow/code lõi",
+      "Test/log/artifact",
+      "Rủi ro và giới hạn",
+      "Thuật ngữ Việt-Nga-Anh"
+    ],
+    "turns": [
+      {
+        "speaker": "GS",
+        "ru": "Hãy nói vấn đề kỹ thuật mà bài này giải quyết.",
+        "vi": "Hãy nói vấn đề kỹ thuật mà bài này giải quyết."
+      },
+      {
+        "speaker": "HV",
+        "ru": "Bài Thuật ngữ tin học Nga cho lớp dự bị giúp em xây workflow/code cho nghe/đọc đề bài tin học và hỏi giáo viên bằng tiếng Nga.",
+        "vi": "Bài Thuật ngữ tin học Nga cho lớp dự bị giúp em xây workflow/code cho nghe/đọc đề bài tin học và hỏi giáo viên bằng tiếng Nga."
+      },
+      {
+        "speaker": "GS",
+        "ru": "Input, output và kiểm thử tối thiểu là gì?",
+        "vi": "Input, output và kiểm thử tối thiểu là gì?"
+      },
+      {
+        "speaker": "HV",
+        "ru": "Em cần xác định dữ liệu vào/ra, dùng алгоритм, переменная, функция, массив, база данных, chạy test/log và ghi artifact.",
+        "vi": "Em cần xác định dữ liệu vào/ra, dùng алгоритм, переменная, функция, массив, база данных, chạy test/log và ghi artifact."
+      },
+      {
+        "speaker": "GS",
+        "ru": "Thuật ngữ chính bằng Việt - Nga - Anh?",
+        "vi": "Thuật ngữ chính bằng Việt - Nga - Anh?"
+      },
+      {
+        "speaker": "HV",
+        "ru": "Thuật toán · алгоритм · algorithm.",
+        "vi": "Thuật toán · алгоритм · algorithm."
+      }
+    ]
+  },
+  {
+    "id": "oral_PR10",
+    "stage": "prep",
+    "lessonId": "PR10",
+    "group": "vấn đáp giáo sư",
+    "type": "professor-oral-defense",
+    "difficulty": "academic",
+    "title": "Vấn đáp giáo sư · Pseudocode và giải thích thuật toán bằng tiếng Nga",
+    "purpose": "Tập trả lời câu hỏi lý thuyết thực tế: vấn đề, input/output, thiết kế, test, artifact, rủi ro và thuật ngữ Việt-Nga-Anh.",
+    "terminologyMode": "vi-ru-en",
+    "terminologyTerms": [
+      {
+        "vi": "Mã giả",
+        "ru": "псевдокод",
+        "en": "pseudocode"
+      },
+      {
+        "vi": "Input/Output",
+        "ru": "вход/выход",
+        "en": "input/output"
+      },
+      {
+        "vi": "Kiểm thử",
+        "ru": "тестирование",
+        "en": "testing"
+      },
+      {
+        "vi": "Tái lập",
+        "ru": "воспроизводимость",
+        "en": "reproducibility"
+      }
+    ],
+    "professorQuestions": [
+      "Bài này giải quyết vấn đề kỹ thuật gì?",
+      "Input/output và artifact là gì?",
+      "Thiết kế này có test/log không?",
+      "Rủi ro lỗi logic hoặc lỗi môi trường ở đâu?",
+      "Hãy nói thuật ngữ chính bằng Việt - Nga - Anh."
+    ],
+    "expectedAnswerStructure": [
+      "Vấn đề kỹ thuật",
+      "Input/output",
+      "Workflow/code lõi",
+      "Test/log/artifact",
+      "Rủi ro và giới hạn",
+      "Thuật ngữ Việt-Nga-Anh"
+    ],
+    "turns": [
+      {
+        "speaker": "GS",
+        "ru": "Hãy nói vấn đề kỹ thuật mà bài này giải quyết.",
+        "vi": "Hãy nói vấn đề kỹ thuật mà bài này giải quyết."
+      },
+      {
+        "speaker": "HV",
+        "ru": "Bài Pseudocode và giải thích thuật toán bằng tiếng Nga giúp em xây workflow/code cho trình bày lời giải không kẹt ngôn ngữ.",
+        "vi": "Bài Pseudocode và giải thích thuật toán bằng tiếng Nga giúp em xây workflow/code cho trình bày lời giải không kẹt ngôn ngữ."
+      },
+      {
+        "speaker": "GS",
+        "ru": "Input, output và kiểm thử tối thiểu là gì?",
+        "vi": "Input, output và kiểm thử tối thiểu là gì?"
+      },
+      {
+        "speaker": "HV",
+        "ru": "Em cần xác định dữ liệu vào/ra, dùng input → process → output; if/for/while, chạy test/log và ghi artifact.",
+        "vi": "Em cần xác định dữ liệu vào/ra, dùng input → process → output; if/for/while, chạy test/log và ghi artifact."
+      },
+      {
+        "speaker": "GS",
+        "ru": "Thuật ngữ chính bằng Việt - Nga - Anh?",
+        "vi": "Thuật ngữ chính bằng Việt - Nga - Anh?"
+      },
+      {
+        "speaker": "HV",
+        "ru": "Mã giả · псевдокод · pseudocode.",
+        "vi": "Mã giả · псевдокод · pseudocode."
+      }
+    ]
+  },
+  {
+    "id": "oral_PR11",
+    "stage": "prep",
+    "lessonId": "PR11",
+    "group": "vấn đáp giáo sư",
+    "type": "professor-oral-defense",
+    "difficulty": "academic",
+    "title": "Vấn đáp giáo sư · Cấu trúc dữ liệu nhập môn",
+    "purpose": "Tập trả lời câu hỏi lý thuyết thực tế: vấn đề, input/output, thiết kế, test, artifact, rủi ro và thuật ngữ Việt-Nga-Anh.",
+    "terminologyMode": "vi-ru-en",
+    "terminologyTerms": [
+      {
+        "vi": "Cấu trúc dữ liệu",
+        "ru": "структура данных",
+        "en": "data structure"
+      },
+      {
+        "vi": "Input/Output",
+        "ru": "вход/выход",
+        "en": "input/output"
+      },
+      {
+        "vi": "Kiểm thử",
+        "ru": "тестирование",
+        "en": "testing"
+      },
+      {
+        "vi": "Tái lập",
+        "ru": "воспроизводимость",
+        "en": "reproducibility"
+      }
+    ],
+    "professorQuestions": [
+      "Bài này giải quyết vấn đề kỹ thuật gì?",
+      "Input/output và artifact là gì?",
+      "Thiết kế này có test/log không?",
+      "Rủi ro lỗi logic hoặc lỗi môi trường ở đâu?",
+      "Hãy nói thuật ngữ chính bằng Việt - Nga - Anh."
+    ],
+    "expectedAnswerStructure": [
+      "Vấn đề kỹ thuật",
+      "Input/output",
+      "Workflow/code lõi",
+      "Test/log/artifact",
+      "Rủi ro và giới hạn",
+      "Thuật ngữ Việt-Nga-Anh"
+    ],
+    "turns": [
+      {
+        "speaker": "GS",
+        "ru": "Hãy nói vấn đề kỹ thuật mà bài này giải quyết.",
+        "vi": "Hãy nói vấn đề kỹ thuật mà bài này giải quyết."
+      },
+      {
+        "speaker": "HV",
+        "ru": "Bài Cấu trúc dữ liệu nhập môn giúp em xây workflow/code cho làm bài tin học dự bị và mô tả dữ liệu kỹ thuật.",
+        "vi": "Bài Cấu trúc dữ liệu nhập môn giúp em xây workflow/code cho làm bài tin học dự bị và mô tả dữ liệu kỹ thuật."
+      },
+      {
+        "speaker": "GS",
+        "ru": "Input, output và kiểm thử tối thiểu là gì?",
+        "vi": "Input, output và kiểm thử tối thiểu là gì?"
+      },
+      {
+        "speaker": "HV",
+        "ru": "Em cần xác định dữ liệu vào/ra, dùng array, stack, queue, dict, graph, chạy test/log và ghi artifact.",
+        "vi": "Em cần xác định dữ liệu vào/ra, dùng array, stack, queue, dict, graph, chạy test/log và ghi artifact."
+      },
+      {
+        "speaker": "GS",
+        "ru": "Thuật ngữ chính bằng Việt - Nga - Anh?",
+        "vi": "Thuật ngữ chính bằng Việt - Nga - Anh?"
+      },
+      {
+        "speaker": "HV",
+        "ru": "Cấu trúc dữ liệu · структура данных · data structure.",
+        "vi": "Cấu trúc dữ liệu · структура данных · data structure."
+      }
+    ]
+  },
+  {
+    "id": "oral_PR12",
+    "stage": "prep",
+    "lessonId": "PR12",
+    "group": "vấn đáp giáo sư",
+    "type": "professor-oral-defense",
+    "difficulty": "academic",
+    "title": "Vấn đáp giáo sư · File, JSON, CSV và dữ liệu học tập",
+    "purpose": "Tập trả lời câu hỏi lý thuyết thực tế: vấn đề, input/output, thiết kế, test, artifact, rủi ro và thuật ngữ Việt-Nga-Anh.",
+    "terminologyMode": "vi-ru-en",
+    "terminologyTerms": [
+      {
+        "vi": "Tệp JSON",
+        "ru": "JSON-файл",
+        "en": "JSON file"
+      },
+      {
+        "vi": "Input/Output",
+        "ru": "вход/выход",
+        "en": "input/output"
+      },
+      {
+        "vi": "Kiểm thử",
+        "ru": "тестирование",
+        "en": "testing"
+      },
+      {
+        "vi": "Tái lập",
+        "ru": "воспроизводимость",
+        "en": "reproducibility"
+      }
+    ],
+    "professorQuestions": [
+      "Bài này giải quyết vấn đề kỹ thuật gì?",
+      "Input/output và artifact là gì?",
+      "Thiết kế này có test/log không?",
+      "Rủi ro lỗi logic hoặc lỗi môi trường ở đâu?",
+      "Hãy nói thuật ngữ chính bằng Việt - Nga - Anh."
+    ],
+    "expectedAnswerStructure": [
+      "Vấn đề kỹ thuật",
+      "Input/output",
+      "Workflow/code lõi",
+      "Test/log/artifact",
+      "Rủi ro và giới hạn",
+      "Thuật ngữ Việt-Nga-Anh"
+    ],
+    "turns": [
+      {
+        "speaker": "GS",
+        "ru": "Hãy nói vấn đề kỹ thuật mà bài này giải quyết.",
+        "vi": "Hãy nói vấn đề kỹ thuật mà bài này giải quyết."
+      },
+      {
+        "speaker": "HV",
+        "ru": "Bài File, JSON, CSV và dữ liệu học tập giúp em xây workflow/code cho đọc/ghi dữ liệu module môn học, kho dữ liệu và bài tập.",
+        "vi": "Bài File, JSON, CSV và dữ liệu học tập giúp em xây workflow/code cho đọc/ghi dữ liệu module môn học, kho dữ liệu và bài tập."
+      },
+      {
+        "speaker": "GS",
+        "ru": "Input, output và kiểm thử tối thiểu là gì?",
+        "vi": "Input, output và kiểm thử tối thiểu là gì?"
+      },
+      {
+        "speaker": "HV",
+        "ru": "Em cần xác định dữ liệu vào/ra, dùng json.load(); csv.DictReader(); pathlib.Path, chạy test/log và ghi artifact.",
+        "vi": "Em cần xác định dữ liệu vào/ra, dùng json.load(); csv.DictReader(); pathlib.Path, chạy test/log và ghi artifact."
+      },
+      {
+        "speaker": "GS",
+        "ru": "Thuật ngữ chính bằng Việt - Nga - Anh?",
+        "vi": "Thuật ngữ chính bằng Việt - Nga - Anh?"
+      },
+      {
+        "speaker": "HV",
+        "ru": "Tệp JSON · JSON-файл · JSON file.",
+        "vi": "Tệp JSON · JSON-файл · JSON file."
+      }
+    ]
+  },
+  {
+    "id": "oral_PR13",
+    "stage": "prep",
+    "lessonId": "PR13",
+    "group": "vấn đáp giáo sư",
+    "type": "professor-oral-defense",
+    "difficulty": "academic",
+    "title": "Vấn đáp giáo sư · Debug, exception và logging",
+    "purpose": "Tập trả lời câu hỏi lý thuyết thực tế: vấn đề, input/output, thiết kế, test, artifact, rủi ro và thuật ngữ Việt-Nga-Anh.",
+    "terminologyMode": "vi-ru-en",
+    "terminologyTerms": [
+      {
+        "vi": "Gỡ lỗi",
+        "ru": "отладка",
+        "en": "debugging"
+      },
+      {
+        "vi": "Input/Output",
+        "ru": "вход/выход",
+        "en": "input/output"
+      },
+      {
+        "vi": "Kiểm thử",
+        "ru": "тестирование",
+        "en": "testing"
+      },
+      {
+        "vi": "Tái lập",
+        "ru": "воспроизводимость",
+        "en": "reproducibility"
+      }
+    ],
+    "professorQuestions": [
+      "Bài này giải quyết vấn đề kỹ thuật gì?",
+      "Input/output và artifact là gì?",
+      "Thiết kế này có test/log không?",
+      "Rủi ro lỗi logic hoặc lỗi môi trường ở đâu?",
+      "Hãy nói thuật ngữ chính bằng Việt - Nga - Anh."
+    ],
+    "expectedAnswerStructure": [
+      "Vấn đề kỹ thuật",
+      "Input/output",
+      "Workflow/code lõi",
+      "Test/log/artifact",
+      "Rủi ro và giới hạn",
+      "Thuật ngữ Việt-Nga-Anh"
+    ],
+    "turns": [
+      {
+        "speaker": "GS",
+        "ru": "Hãy nói vấn đề kỹ thuật mà bài này giải quyết.",
+        "vi": "Hãy nói vấn đề kỹ thuật mà bài này giải quyết."
+      },
+      {
+        "speaker": "HV",
+        "ru": "Bài Debug, exception và logging giúp em xây workflow/code cho tìm lỗi render, lỗi dữ liệu, lỗi logic khi tự làm module.",
+        "vi": "Bài Debug, exception và logging giúp em xây workflow/code cho tìm lỗi render, lỗi dữ liệu, lỗi logic khi tự làm module."
+      },
+      {
+        "speaker": "GS",
+        "ru": "Input, output và kiểm thử tối thiểu là gì?",
+        "vi": "Input, output và kiểm thử tối thiểu là gì?"
+      },
+      {
+        "speaker": "HV",
+        "ru": "Em cần xác định dữ liệu vào/ra, dùng try/except; logging.info(); assert condition, chạy test/log và ghi artifact.",
+        "vi": "Em cần xác định dữ liệu vào/ra, dùng try/except; logging.info(); assert condition, chạy test/log và ghi artifact."
+      },
+      {
+        "speaker": "GS",
+        "ru": "Thuật ngữ chính bằng Việt - Nga - Anh?",
+        "vi": "Thuật ngữ chính bằng Việt - Nga - Anh?"
+      },
+      {
+        "speaker": "HV",
+        "ru": "Gỡ lỗi · отладка · debugging.",
+        "vi": "Gỡ lỗi · отладка · debugging."
+      }
+    ]
+  },
+  {
+    "id": "oral_PR14",
+    "stage": "prep",
+    "lessonId": "PR14",
+    "group": "vấn đáp giáo sư",
+    "type": "professor-oral-defense",
+    "difficulty": "academic",
+    "title": "Vấn đáp giáo sư · Unit test căn bản với pytest",
+    "purpose": "Tập trả lời câu hỏi lý thuyết thực tế: vấn đề, input/output, thiết kế, test, artifact, rủi ro và thuật ngữ Việt-Nga-Anh.",
+    "terminologyMode": "vi-ru-en",
+    "terminologyTerms": [
+      {
+        "vi": "Kiểm thử đơn vị",
+        "ru": "модульное тестирование",
+        "en": "unit testing"
+      },
+      {
+        "vi": "Input/Output",
+        "ru": "вход/выход",
+        "en": "input/output"
+      },
+      {
+        "vi": "Kiểm thử",
+        "ru": "тестирование",
+        "en": "testing"
+      },
+      {
+        "vi": "Tái lập",
+        "ru": "воспроизводимость",
+        "en": "reproducibility"
+      }
+    ],
+    "professorQuestions": [
+      "Bài này giải quyết vấn đề kỹ thuật gì?",
+      "Input/output và artifact là gì?",
+      "Thiết kế này có test/log không?",
+      "Rủi ro lỗi logic hoặc lỗi môi trường ở đâu?",
+      "Hãy nói thuật ngữ chính bằng Việt - Nga - Anh."
+    ],
+    "expectedAnswerStructure": [
+      "Vấn đề kỹ thuật",
+      "Input/output",
+      "Workflow/code lõi",
+      "Test/log/artifact",
+      "Rủi ro và giới hạn",
+      "Thuật ngữ Việt-Nga-Anh"
+    ],
+    "turns": [
+      {
+        "speaker": "GS",
+        "ru": "Hãy nói vấn đề kỹ thuật mà bài này giải quyết.",
+        "vi": "Hãy nói vấn đề kỹ thuật mà bài này giải quyết."
+      },
+      {
+        "speaker": "HV",
+        "ru": "Bài Unit test căn bản với pytest giúp em xây workflow/code cho kiểm thử hàm xử lý dữ liệu và logic nút bấm.",
+        "vi": "Bài Unit test căn bản với pytest giúp em xây workflow/code cho kiểm thử hàm xử lý dữ liệu và logic nút bấm."
+      },
+      {
+        "speaker": "GS",
+        "ru": "Input, output và kiểm thử tối thiểu là gì?",
+        "vi": "Input, output và kiểm thử tối thiểu là gì?"
+      },
+      {
+        "speaker": "HV",
+        "ru": "Em cần xác định dữ liệu vào/ra, dùng assert f(x)==expected; pytest -q, chạy test/log và ghi artifact.",
+        "vi": "Em cần xác định dữ liệu vào/ra, dùng assert f(x)==expected; pytest -q, chạy test/log và ghi artifact."
+      },
+      {
+        "speaker": "GS",
+        "ru": "Thuật ngữ chính bằng Việt - Nga - Anh?",
+        "vi": "Thuật ngữ chính bằng Việt - Nga - Anh?"
+      },
+      {
+        "speaker": "HV",
+        "ru": "Kiểm thử đơn vị · модульное тестирование · unit testing.",
+        "vi": "Kiểm thử đơn vị · модульное тестирование · unit testing."
+      }
+    ]
+  },
+  {
+    "id": "oral_PR15",
+    "stage": "prep",
+    "lessonId": "PR15",
+    "group": "vấn đáp giáo sư",
+    "type": "professor-oral-defense",
+    "difficulty": "academic",
+    "title": "Vấn đáp giáo sư · SQL nâng nền: JOIN, GROUP BY, index",
+    "purpose": "Tập trả lời câu hỏi lý thuyết thực tế: vấn đề, input/output, thiết kế, test, artifact, rủi ro và thuật ngữ Việt-Nga-Anh.",
+    "terminologyMode": "vi-ru-en",
+    "terminologyTerms": [
+      {
+        "vi": "Chỉ mục",
+        "ru": "индекс",
+        "en": "index"
+      },
+      {
+        "vi": "Input/Output",
+        "ru": "вход/выход",
+        "en": "input/output"
+      },
+      {
+        "vi": "Kiểm thử",
+        "ru": "тестирование",
+        "en": "testing"
+      },
+      {
+        "vi": "Tái lập",
+        "ru": "воспроизводимость",
+        "en": "reproducibility"
+      }
+    ],
+    "professorQuestions": [
+      "Bài này giải quyết vấn đề kỹ thuật gì?",
+      "Input/output và artifact là gì?",
+      "Thiết kế này có test/log không?",
+      "Rủi ro lỗi logic hoặc lỗi môi trường ở đâu?",
+      "Hãy nói thuật ngữ chính bằng Việt - Nga - Anh."
+    ],
+    "expectedAnswerStructure": [
+      "Vấn đề kỹ thuật",
+      "Input/output",
+      "Workflow/code lõi",
+      "Test/log/artifact",
+      "Rủi ro và giới hạn",
+      "Thuật ngữ Việt-Nga-Anh"
+    ],
+    "turns": [
+      {
+        "speaker": "GS",
+        "ru": "Hãy nói vấn đề kỹ thuật mà bài này giải quyết.",
+        "vi": "Hãy nói vấn đề kỹ thuật mà bài này giải quyết."
+      },
+      {
+        "speaker": "HV",
+        "ru": "Bài SQL nâng nền: JOIN, GROUP BY, index giúp em xây workflow/code cho truy vấn dữ liệu thí nghiệm có nhiều bảng.",
+        "vi": "Bài SQL nâng nền: JOIN, GROUP BY, index giúp em xây workflow/code cho truy vấn dữ liệu thí nghiệm có nhiều bảng."
+      },
+      {
+        "speaker": "GS",
+        "ru": "Input, output và kiểm thử tối thiểu là gì?",
+        "vi": "Input, output và kiểm thử tối thiểu là gì?"
+      },
+      {
+        "speaker": "HV",
+        "ru": "Em cần xác định dữ liệu vào/ra, dùng JOIN; GROUP BY; CREATE INDEX idx ON table(col), chạy test/log và ghi artifact.",
+        "vi": "Em cần xác định dữ liệu vào/ra, dùng JOIN; GROUP BY; CREATE INDEX idx ON table(col), chạy test/log và ghi artifact."
+      },
+      {
+        "speaker": "GS",
+        "ru": "Thuật ngữ chính bằng Việt - Nga - Anh?",
+        "vi": "Thuật ngữ chính bằng Việt - Nga - Anh?"
+      },
+      {
+        "speaker": "HV",
+        "ru": "Chỉ mục · индекс · index.",
+        "vi": "Chỉ mục · индекс · index."
+      }
+    ]
+  },
+  {
+    "id": "oral_PR16",
+    "stage": "prep",
+    "lessonId": "PR16",
+    "group": "vấn đáp giáo sư",
+    "type": "professor-oral-defense",
+    "difficulty": "academic",
+    "title": "Vấn đáp giáo sư · Quy tắc đặt tên, comment và tài liệu song ngữ",
+    "purpose": "Tập trả lời câu hỏi lý thuyết thực tế: vấn đề, input/output, thiết kế, test, artifact, rủi ro và thuật ngữ Việt-Nga-Anh.",
+    "terminologyMode": "vi-ru-en",
+    "terminologyTerms": [
+      {
+        "vi": "Chuỗi tài liệu",
+        "ru": "строка документации",
+        "en": "docstring"
+      },
+      {
+        "vi": "Input/Output",
+        "ru": "вход/выход",
+        "en": "input/output"
+      },
+      {
+        "vi": "Kiểm thử",
+        "ru": "тестирование",
+        "en": "testing"
+      },
+      {
+        "vi": "Tái lập",
+        "ru": "воспроизводимость",
+        "en": "reproducibility"
+      }
+    ],
+    "professorQuestions": [
+      "Bài này giải quyết vấn đề kỹ thuật gì?",
+      "Input/output và artifact là gì?",
+      "Thiết kế này có test/log không?",
+      "Rủi ro lỗi logic hoặc lỗi môi trường ở đâu?",
+      "Hãy nói thuật ngữ chính bằng Việt - Nga - Anh."
+    ],
+    "expectedAnswerStructure": [
+      "Vấn đề kỹ thuật",
+      "Input/output",
+      "Workflow/code lõi",
+      "Test/log/artifact",
+      "Rủi ro và giới hạn",
+      "Thuật ngữ Việt-Nga-Anh"
+    ],
+    "turns": [
+      {
+        "speaker": "GS",
+        "ru": "Hãy nói vấn đề kỹ thuật mà bài này giải quyết.",
+        "vi": "Hãy nói vấn đề kỹ thuật mà bài này giải quyết."
+      },
+      {
+        "speaker": "HV",
+        "ru": "Bài Quy tắc đặt tên, comment và tài liệu song ngữ giúp em xây workflow/code cho ghi chú Việt-Nga-Anh để đọc code trong môi trường Bauman.",
+        "vi": "Bài Quy tắc đặt tên, comment và tài liệu song ngữ giúp em xây workflow/code cho ghi chú Việt-Nga-Anh để đọc code trong môi trường Bauman."
+      },
+      {
+        "speaker": "GS",
+        "ru": "Input, output và kiểm thử tối thiểu là gì?",
+        "vi": "Input, output và kiểm thử tối thiểu là gì?"
+      },
+      {
+        "speaker": "HV",
+        "ru": "Em cần xác định dữ liệu vào/ra, dùng name = intent; docstring = input + output + limit, chạy test/log và ghi artifact.",
+        "vi": "Em cần xác định dữ liệu vào/ra, dùng name = intent; docstring = input + output + limit, chạy test/log và ghi artifact."
+      },
+      {
+        "speaker": "GS",
+        "ru": "Thuật ngữ chính bằng Việt - Nga - Anh?",
+        "vi": "Thuật ngữ chính bằng Việt - Nga - Anh?"
+      },
+      {
+        "speaker": "HV",
+        "ru": "Chuỗi tài liệu · строка документации · docstring.",
+        "vi": "Chuỗi tài liệu · строка документации · docstring."
+      }
+    ]
+  },
+  {
+    "id": "oral_PR17",
+    "stage": "hk1",
+    "lessonId": "PR17",
+    "group": "vấn đáp giáo sư",
+    "type": "professor-oral-defense",
+    "difficulty": "academic",
+    "title": "Vấn đáp giáo sư · OOP cho АСОИУ: class, interface, responsibility",
+    "purpose": "Tập trả lời câu hỏi lý thuyết thực tế: vấn đề, input/output, thiết kế, test, artifact, rủi ro và thuật ngữ Việt-Nga-Anh.",
+    "terminologyMode": "vi-ru-en",
+    "terminologyTerms": [
+      {
+        "vi": "Lớp",
+        "ru": "класс",
+        "en": "class"
+      },
+      {
+        "vi": "Input/Output",
+        "ru": "вход/выход",
+        "en": "input/output"
+      },
+      {
+        "vi": "Kiểm thử",
+        "ru": "тестирование",
+        "en": "testing"
+      },
+      {
+        "vi": "Tái lập",
+        "ru": "воспроизводимость",
+        "en": "reproducibility"
+      }
+    ],
+    "professorQuestions": [
+      "Bài này giải quyết vấn đề kỹ thuật gì?",
+      "Input/output và artifact là gì?",
+      "Thiết kế này có test/log không?",
+      "Rủi ro lỗi logic hoặc lỗi môi trường ở đâu?",
+      "Hãy nói thuật ngữ chính bằng Việt - Nga - Anh."
+    ],
+    "expectedAnswerStructure": [
+      "Vấn đề kỹ thuật",
+      "Input/output",
+      "Workflow/code lõi",
+      "Test/log/artifact",
+      "Rủi ro và giới hạn",
+      "Thuật ngữ Việt-Nga-Anh"
+    ],
+    "turns": [
+      {
+        "speaker": "GS",
+        "ru": "Hãy nói vấn đề kỹ thuật mà bài này giải quyết.",
+        "vi": "Hãy nói vấn đề kỹ thuật mà bài này giải quyết."
+      },
+      {
+        "speaker": "HV",
+        "ru": "Bài OOP cho АСОИУ: class, interface, responsibility giúp em xây workflow/code cho tạo skeleton phần mềm UGV gồm sensor/model/control.",
+        "vi": "Bài OOP cho АСОИУ: class, interface, responsibility giúp em xây workflow/code cho tạo skeleton phần mềm UGV gồm sensor/model/control."
+      },
+      {
+        "speaker": "GS",
+        "ru": "Input, output và kiểm thử tối thiểu là gì?",
+        "vi": "Input, output và kiểm thử tối thiểu là gì?"
+      },
+      {
+        "speaker": "HV",
+        "ru": "Em cần xác định dữ liệu vào/ra, dùng class Sensor: read(); class Model: predict(), chạy test/log và ghi artifact.",
+        "vi": "Em cần xác định dữ liệu vào/ra, dùng class Sensor: read(); class Model: predict(), chạy test/log và ghi artifact."
+      },
+      {
+        "speaker": "GS",
+        "ru": "Thuật ngữ chính bằng Việt - Nga - Anh?",
+        "vi": "Thuật ngữ chính bằng Việt - Nga - Anh?"
+      },
+      {
+        "speaker": "HV",
+        "ru": "Lớp · класс · class.",
+        "vi": "Lớp · класс · class."
+      }
+    ]
+  },
+  {
+    "id": "oral_PR18",
+    "stage": "hk1",
+    "lessonId": "PR18",
+    "group": "vấn đáp giáo sư",
+    "type": "professor-oral-defense",
+    "difficulty": "academic",
+    "title": "Vấn đáp giáo sư · Thiết kế module và kiến trúc package Python",
+    "purpose": "Tập trả lời câu hỏi lý thuyết thực tế: vấn đề, input/output, thiết kế, test, artifact, rủi ro và thuật ngữ Việt-Nga-Anh.",
+    "terminologyMode": "vi-ru-en",
+    "terminologyTerms": [
+      {
+        "vi": "Module phần mềm",
+        "ru": "программный модуль",
+        "en": "software module"
+      },
+      {
+        "vi": "Input/Output",
+        "ru": "вход/выход",
+        "en": "input/output"
+      },
+      {
+        "vi": "Kiểm thử",
+        "ru": "тестирование",
+        "en": "testing"
+      },
+      {
+        "vi": "Tái lập",
+        "ru": "воспроизводимость",
+        "en": "reproducibility"
+      }
+    ],
+    "professorQuestions": [
+      "Bài này giải quyết vấn đề kỹ thuật gì?",
+      "Input/output và artifact là gì?",
+      "Thiết kế này có test/log không?",
+      "Rủi ro lỗi logic hoặc lỗi môi trường ở đâu?",
+      "Hãy nói thuật ngữ chính bằng Việt - Nga - Anh."
+    ],
+    "expectedAnswerStructure": [
+      "Vấn đề kỹ thuật",
+      "Input/output",
+      "Workflow/code lõi",
+      "Test/log/artifact",
+      "Rủi ro và giới hạn",
+      "Thuật ngữ Việt-Nga-Anh"
+    ],
+    "turns": [
+      {
+        "speaker": "GS",
+        "ru": "Hãy nói vấn đề kỹ thuật mà bài này giải quyết.",
+        "vi": "Hãy nói vấn đề kỹ thuật mà bài này giải quyết."
+      },
+      {
+        "speaker": "HV",
+        "ru": "Bài Thiết kế module và kiến trúc package Python giúp em xây workflow/code cho chia dự án thành module rõ, dễ bảo trì và mở rộng.",
+        "vi": "Bài Thiết kế module và kiến trúc package Python giúp em xây workflow/code cho chia dự án thành module rõ, dễ bảo trì và mở rộng."
+      },
+      {
+        "speaker": "GS",
+        "ru": "Input, output và kiểm thử tối thiểu là gì?",
+        "vi": "Input, output và kiểm thử tối thiểu là gì?"
+      },
+      {
+        "speaker": "HV",
+        "ru": "Em cần xác định dữ liệu vào/ra, dùng src/, tests/, configs/, data/, scripts/, chạy test/log và ghi artifact.",
+        "vi": "Em cần xác định dữ liệu vào/ra, dùng src/, tests/, configs/, data/, scripts/, chạy test/log và ghi artifact."
+      },
+      {
+        "speaker": "GS",
+        "ru": "Thuật ngữ chính bằng Việt - Nga - Anh?",
+        "vi": "Thuật ngữ chính bằng Việt - Nga - Anh?"
+      },
+      {
+        "speaker": "HV",
+        "ru": "Module phần mềm · программный модуль · software module.",
+        "vi": "Module phần mềm · программный модуль · software module."
+      }
+    ]
+  },
+  {
+    "id": "oral_PR19",
+    "stage": "hk1",
+    "lessonId": "PR19",
+    "group": "vấn đáp giáo sư",
+    "type": "professor-oral-defense",
+    "difficulty": "academic",
+    "title": "Vấn đáp giáo sư · Mẫu thiết kế ứng dụng: factory, strategy, adapter",
+    "purpose": "Tập trả lời câu hỏi lý thuyết thực tế: vấn đề, input/output, thiết kế, test, artifact, rủi ro và thuật ngữ Việt-Nga-Anh.",
+    "terminologyMode": "vi-ru-en",
+    "terminologyTerms": [
+      {
+        "vi": "Mẫu thiết kế",
+        "ru": "шаблон проектирования",
+        "en": "design pattern"
+      },
+      {
+        "vi": "Input/Output",
+        "ru": "вход/выход",
+        "en": "input/output"
+      },
+      {
+        "vi": "Kiểm thử",
+        "ru": "тестирование",
+        "en": "testing"
+      },
+      {
+        "vi": "Tái lập",
+        "ru": "воспроизводимость",
+        "en": "reproducibility"
+      }
+    ],
+    "professorQuestions": [
+      "Bài này giải quyết vấn đề kỹ thuật gì?",
+      "Input/output và artifact là gì?",
+      "Thiết kế này có test/log không?",
+      "Rủi ro lỗi logic hoặc lỗi môi trường ở đâu?",
+      "Hãy nói thuật ngữ chính bằng Việt - Nga - Anh."
+    ],
+    "expectedAnswerStructure": [
+      "Vấn đề kỹ thuật",
+      "Input/output",
+      "Workflow/code lõi",
+      "Test/log/artifact",
+      "Rủi ro và giới hạn",
+      "Thuật ngữ Việt-Nga-Anh"
+    ],
+    "turns": [
+      {
+        "speaker": "GS",
+        "ru": "Hãy nói vấn đề kỹ thuật mà bài này giải quyết.",
+        "vi": "Hãy nói vấn đề kỹ thuật mà bài này giải quyết."
+      },
+      {
+        "speaker": "HV",
+        "ru": "Bài Mẫu thiết kế ứng dụng: factory, strategy, adapter giúp em xây workflow/code cho đổi cảm biến/mô hình mà không phá toàn bộ code.",
+        "vi": "Bài Mẫu thiết kế ứng dụng: factory, strategy, adapter giúp em xây workflow/code cho đổi cảm biến/mô hình mà không phá toàn bộ code."
+      },
+      {
+        "speaker": "GS",
+        "ru": "Input, output và kiểm thử tối thiểu là gì?",
+        "vi": "Input, output và kiểm thử tối thiểu là gì?"
+      },
+      {
+        "speaker": "HV",
+        "ru": "Em cần xác định dữ liệu vào/ra, dùng Strategy(model); Adapter(sensor); Factory(config), chạy test/log và ghi artifact.",
+        "vi": "Em cần xác định dữ liệu vào/ra, dùng Strategy(model); Adapter(sensor); Factory(config), chạy test/log và ghi artifact."
+      },
+      {
+        "speaker": "GS",
+        "ru": "Thuật ngữ chính bằng Việt - Nga - Anh?",
+        "vi": "Thuật ngữ chính bằng Việt - Nga - Anh?"
+      },
+      {
+        "speaker": "HV",
+        "ru": "Mẫu thiết kế · шаблон проектирования · design pattern.",
+        "vi": "Mẫu thiết kế · шаблон проектирования · design pattern."
+      }
+    ]
+  },
+  {
+    "id": "oral_PR20",
+    "stage": "hk1",
+    "lessonId": "PR20",
+    "group": "vấn đáp giáo sư",
+    "type": "professor-oral-defense",
+    "difficulty": "academic",
+    "title": "Vấn đáp giáo sư · CSDL cho hệ thống học máy: schema và metadata",
+    "purpose": "Tập trả lời câu hỏi lý thuyết thực tế: vấn đề, input/output, thiết kế, test, artifact, rủi ro và thuật ngữ Việt-Nga-Anh.",
+    "terminologyMode": "vi-ru-en",
+    "terminologyTerms": [
+      {
+        "vi": "Lược đồ dữ liệu",
+        "ru": "схема данных",
+        "en": "data schema"
+      },
+      {
+        "vi": "Input/Output",
+        "ru": "вход/выход",
+        "en": "input/output"
+      },
+      {
+        "vi": "Kiểm thử",
+        "ru": "тестирование",
+        "en": "testing"
+      },
+      {
+        "vi": "Tái lập",
+        "ru": "воспроизводимость",
+        "en": "reproducibility"
+      }
+    ],
+    "professorQuestions": [
+      "Bài này giải quyết vấn đề kỹ thuật gì?",
+      "Input/output và artifact là gì?",
+      "Thiết kế này có test/log không?",
+      "Rủi ro lỗi logic hoặc lỗi môi trường ở đâu?",
+      "Hãy nói thuật ngữ chính bằng Việt - Nga - Anh."
+    ],
+    "expectedAnswerStructure": [
+      "Vấn đề kỹ thuật",
+      "Input/output",
+      "Workflow/code lõi",
+      "Test/log/artifact",
+      "Rủi ro và giới hạn",
+      "Thuật ngữ Việt-Nga-Anh"
+    ],
+    "turns": [
+      {
+        "speaker": "GS",
+        "ru": "Hãy nói vấn đề kỹ thuật mà bài này giải quyết.",
+        "vi": "Hãy nói vấn đề kỹ thuật mà bài này giải quyết."
+      },
+      {
+        "speaker": "HV",
+        "ru": "Bài CSDL cho hệ thống học máy: schema và metadata giúp em xây workflow/code cho lưu tham số, metric, dataset và đường dẫn artifact.",
+        "vi": "Bài CSDL cho hệ thống học máy: schema và metadata giúp em xây workflow/code cho lưu tham số, metric, dataset và đường dẫn artifact."
+      },
+      {
+        "speaker": "GS",
+        "ru": "Input, output và kiểm thử tối thiểu là gì?",
+        "vi": "Input, output và kiểm thử tối thiểu là gì?"
+      },
+      {
+        "speaker": "HV",
+        "ru": "Em cần xác định dữ liệu vào/ra, dùng experiment(id, params, metrics, artifact_path), chạy test/log và ghi artifact.",
+        "vi": "Em cần xác định dữ liệu vào/ra, dùng experiment(id, params, metrics, artifact_path), chạy test/log và ghi artifact."
+      },
+      {
+        "speaker": "GS",
+        "ru": "Thuật ngữ chính bằng Việt - Nga - Anh?",
+        "vi": "Thuật ngữ chính bằng Việt - Nga - Anh?"
+      },
+      {
+        "speaker": "HV",
+        "ru": "Lược đồ dữ liệu · схема данных · data schema.",
+        "vi": "Lược đồ dữ liệu · схема данных · data schema."
+      }
+    ]
+  },
+  {
+    "id": "oral_PR21",
+    "stage": "hk1",
+    "lessonId": "PR21",
+    "group": "vấn đáp giáo sư",
+    "type": "professor-oral-defense",
+    "difficulty": "academic",
+    "title": "Vấn đáp giáo sư · ORM và migration nhập môn",
+    "purpose": "Tập trả lời câu hỏi lý thuyết thực tế: vấn đề, input/output, thiết kế, test, artifact, rủi ro và thuật ngữ Việt-Nga-Anh.",
+    "terminologyMode": "vi-ru-en",
+    "terminologyTerms": [
+      {
+        "vi": "Di trú CSDL",
+        "ru": "миграция базы данных",
+        "en": "database migration"
+      },
+      {
+        "vi": "Input/Output",
+        "ru": "вход/выход",
+        "en": "input/output"
+      },
+      {
+        "vi": "Kiểm thử",
+        "ru": "тестирование",
+        "en": "testing"
+      },
+      {
+        "vi": "Tái lập",
+        "ru": "воспроизводимость",
+        "en": "reproducibility"
+      }
+    ],
+    "professorQuestions": [
+      "Bài này giải quyết vấn đề kỹ thuật gì?",
+      "Input/output và artifact là gì?",
+      "Thiết kế này có test/log không?",
+      "Rủi ro lỗi logic hoặc lỗi môi trường ở đâu?",
+      "Hãy nói thuật ngữ chính bằng Việt - Nga - Anh."
+    ],
+    "expectedAnswerStructure": [
+      "Vấn đề kỹ thuật",
+      "Input/output",
+      "Workflow/code lõi",
+      "Test/log/artifact",
+      "Rủi ro và giới hạn",
+      "Thuật ngữ Việt-Nga-Anh"
+    ],
+    "turns": [
+      {
+        "speaker": "GS",
+        "ru": "Hãy nói vấn đề kỹ thuật mà bài này giải quyết.",
+        "vi": "Hãy nói vấn đề kỹ thuật mà bài này giải quyết."
+      },
+      {
+        "speaker": "HV",
+        "ru": "Bài ORM và migration nhập môn giúp em xây workflow/code cho quản lý thay đổi CSDL khi project lớn dần.",
+        "vi": "Bài ORM và migration nhập môn giúp em xây workflow/code cho quản lý thay đổi CSDL khi project lớn dần."
+      },
+      {
+        "speaker": "GS",
+        "ru": "Input, output và kiểm thử tối thiểu là gì?",
+        "vi": "Input, output và kiểm thử tối thiểu là gì?"
+      },
+      {
+        "speaker": "HV",
+        "ru": "Em cần xác định dữ liệu vào/ra, dùng Model ↔ table; migration = schema version, chạy test/log và ghi artifact.",
+        "vi": "Em cần xác định dữ liệu vào/ra, dùng Model ↔ table; migration = schema version, chạy test/log và ghi artifact."
+      },
+      {
+        "speaker": "GS",
+        "ru": "Thuật ngữ chính bằng Việt - Nga - Anh?",
+        "vi": "Thuật ngữ chính bằng Việt - Nga - Anh?"
+      },
+      {
+        "speaker": "HV",
+        "ru": "Di trú CSDL · миграция базы данных · database migration.",
+        "vi": "Di trú CSDL · миграция базы данных · database migration."
+      }
+    ]
+  },
+  {
+    "id": "oral_PR22",
+    "stage": "hk1",
+    "lessonId": "PR22",
+    "group": "vấn đáp giáo sư",
+    "type": "professor-oral-defense",
+    "difficulty": "academic",
+    "title": "Vấn đáp giáo sư · Kỹ nghệ phần mềm: requirement, issue, milestone",
+    "purpose": "Tập trả lời câu hỏi lý thuyết thực tế: vấn đề, input/output, thiết kế, test, artifact, rủi ro và thuật ngữ Việt-Nga-Anh.",
+    "terminologyMode": "vi-ru-en",
+    "terminologyTerms": [
+      {
+        "vi": "Yêu cầu phần mềm",
+        "ru": "требование к ПО",
+        "en": "software requirement"
+      },
+      {
+        "vi": "Input/Output",
+        "ru": "вход/выход",
+        "en": "input/output"
+      },
+      {
+        "vi": "Kiểm thử",
+        "ru": "тестирование",
+        "en": "testing"
+      },
+      {
+        "vi": "Tái lập",
+        "ru": "воспроизводимость",
+        "en": "reproducibility"
+      }
+    ],
+    "professorQuestions": [
+      "Bài này giải quyết vấn đề kỹ thuật gì?",
+      "Input/output và artifact là gì?",
+      "Thiết kế này có test/log không?",
+      "Rủi ro lỗi logic hoặc lỗi môi trường ở đâu?",
+      "Hãy nói thuật ngữ chính bằng Việt - Nga - Anh."
+    ],
+    "expectedAnswerStructure": [
+      "Vấn đề kỹ thuật",
+      "Input/output",
+      "Workflow/code lõi",
+      "Test/log/artifact",
+      "Rủi ro và giới hạn",
+      "Thuật ngữ Việt-Nga-Anh"
+    ],
+    "turns": [
+      {
+        "speaker": "GS",
+        "ru": "Hãy nói vấn đề kỹ thuật mà bài này giải quyết.",
+        "vi": "Hãy nói vấn đề kỹ thuật mà bài này giải quyết."
+      },
+      {
+        "speaker": "HV",
+        "ru": "Bài Kỹ nghệ phần mềm: requirement, issue, milestone giúp em xây workflow/code cho quản lý tiến độ bài tập và module luận văn.",
+        "vi": "Bài Kỹ nghệ phần mềm: requirement, issue, milestone giúp em xây workflow/code cho quản lý tiến độ bài tập và module luận văn."
+      },
+      {
+        "speaker": "GS",
+        "ru": "Input, output và kiểm thử tối thiểu là gì?",
+        "vi": "Input, output và kiểm thử tối thiểu là gì?"
+      },
+      {
+        "speaker": "HV",
+        "ru": "Em cần xác định dữ liệu vào/ra, dùng requirement → issue → branch → PR → release, chạy test/log và ghi artifact.",
+        "vi": "Em cần xác định dữ liệu vào/ra, dùng requirement → issue → branch → PR → release, chạy test/log và ghi artifact."
+      },
+      {
+        "speaker": "GS",
+        "ru": "Thuật ngữ chính bằng Việt - Nga - Anh?",
+        "vi": "Thuật ngữ chính bằng Việt - Nga - Anh?"
+      },
+      {
+        "speaker": "HV",
+        "ru": "Yêu cầu phần mềm · требование к ПО · software requirement.",
+        "vi": "Yêu cầu phần mềm · требование к ПО · software requirement."
+      }
+    ]
+  },
+  {
+    "id": "oral_PR23",
+    "stage": "hk1",
+    "lessonId": "PR23",
+    "group": "vấn đáp giáo sư",
+    "type": "professor-oral-defense",
+    "difficulty": "academic",
+    "title": "Vấn đáp giáo sư · Kiểm thử tích hợp và test dữ liệu",
+    "purpose": "Tập trả lời câu hỏi lý thuyết thực tế: vấn đề, input/output, thiết kế, test, artifact, rủi ro và thuật ngữ Việt-Nga-Anh.",
+    "terminologyMode": "vi-ru-en",
+    "terminologyTerms": [
+      {
+        "vi": "Kiểm thử tích hợp",
+        "ru": "интеграционное тестирование",
+        "en": "integration testing"
+      },
+      {
+        "vi": "Input/Output",
+        "ru": "вход/выход",
+        "en": "input/output"
+      },
+      {
+        "vi": "Kiểm thử",
+        "ru": "тестирование",
+        "en": "testing"
+      },
+      {
+        "vi": "Tái lập",
+        "ru": "воспроизводимость",
+        "en": "reproducibility"
+      }
+    ],
+    "professorQuestions": [
+      "Bài này giải quyết vấn đề kỹ thuật gì?",
+      "Input/output và artifact là gì?",
+      "Thiết kế này có test/log không?",
+      "Rủi ro lỗi logic hoặc lỗi môi trường ở đâu?",
+      "Hãy nói thuật ngữ chính bằng Việt - Nga - Anh."
+    ],
+    "expectedAnswerStructure": [
+      "Vấn đề kỹ thuật",
+      "Input/output",
+      "Workflow/code lõi",
+      "Test/log/artifact",
+      "Rủi ro và giới hạn",
+      "Thuật ngữ Việt-Nga-Anh"
+    ],
+    "turns": [
+      {
+        "speaker": "GS",
+        "ru": "Hãy nói vấn đề kỹ thuật mà bài này giải quyết.",
+        "vi": "Hãy nói vấn đề kỹ thuật mà bài này giải quyết."
+      },
+      {
+        "speaker": "HV",
+        "ru": "Bài Kiểm thử tích hợp và test dữ liệu giúp em xây workflow/code cho phát hiện dữ liệu hỏng trước khi train mô hình.",
+        "vi": "Bài Kiểm thử tích hợp và test dữ liệu giúp em xây workflow/code cho phát hiện dữ liệu hỏng trước khi train mô hình."
+      },
+      {
+        "speaker": "GS",
+        "ru": "Input, output và kiểm thử tối thiểu là gì?",
+        "vi": "Input, output và kiểm thử tối thiểu là gì?"
+      },
+      {
+        "speaker": "HV",
+        "ru": "Em cần xác định dữ liệu vào/ra, dùng test pipeline(input) → expected artifact, chạy test/log và ghi artifact.",
+        "vi": "Em cần xác định dữ liệu vào/ra, dùng test pipeline(input) → expected artifact, chạy test/log và ghi artifact."
+      },
+      {
+        "speaker": "GS",
+        "ru": "Thuật ngữ chính bằng Việt - Nga - Anh?",
+        "vi": "Thuật ngữ chính bằng Việt - Nga - Anh?"
+      },
+      {
+        "speaker": "HV",
+        "ru": "Kiểm thử tích hợp · интеграционное тестирование · integration testing.",
+        "vi": "Kiểm thử tích hợp · интеграционное тестирование · integration testing."
+      }
+    ]
+  },
+  {
+    "id": "oral_PR24",
+    "stage": "hk1",
+    "lessonId": "PR24",
+    "group": "vấn đáp giáo sư",
+    "type": "professor-oral-defense",
+    "difficulty": "academic",
+    "title": "Vấn đáp giáo sư · CI nhẹ và kiểm tra chất lượng code",
+    "purpose": "Tập trả lời câu hỏi lý thuyết thực tế: vấn đề, input/output, thiết kế, test, artifact, rủi ro và thuật ngữ Việt-Nga-Anh.",
+    "terminologyMode": "vi-ru-en",
+    "terminologyTerms": [
+      {
+        "vi": "Tích hợp liên tục",
+        "ru": "непрерывная интеграция",
+        "en": "continuous integration"
+      },
+      {
+        "vi": "Input/Output",
+        "ru": "вход/выход",
+        "en": "input/output"
+      },
+      {
+        "vi": "Kiểm thử",
+        "ru": "тестирование",
+        "en": "testing"
+      },
+      {
+        "vi": "Tái lập",
+        "ru": "воспроизводимость",
+        "en": "reproducibility"
+      }
+    ],
+    "professorQuestions": [
+      "Bài này giải quyết vấn đề kỹ thuật gì?",
+      "Input/output và artifact là gì?",
+      "Thiết kế này có test/log không?",
+      "Rủi ro lỗi logic hoặc lỗi môi trường ở đâu?",
+      "Hãy nói thuật ngữ chính bằng Việt - Nga - Anh."
+    ],
+    "expectedAnswerStructure": [
+      "Vấn đề kỹ thuật",
+      "Input/output",
+      "Workflow/code lõi",
+      "Test/log/artifact",
+      "Rủi ro và giới hạn",
+      "Thuật ngữ Việt-Nga-Anh"
+    ],
+    "turns": [
+      {
+        "speaker": "GS",
+        "ru": "Hãy nói vấn đề kỹ thuật mà bài này giải quyết.",
+        "vi": "Hãy nói vấn đề kỹ thuật mà bài này giải quyết."
+      },
+      {
+        "speaker": "HV",
+        "ru": "Bài CI nhẹ và kiểm tra chất lượng code giúp em xây workflow/code cho tự động kiểm tra repo trước khi nộp/đẩy code.",
+        "vi": "Bài CI nhẹ và kiểm tra chất lượng code giúp em xây workflow/code cho tự động kiểm tra repo trước khi nộp/đẩy code."
+      },
+      {
+        "speaker": "GS",
+        "ru": "Input, output và kiểm thử tối thiểu là gì?",
+        "vi": "Input, output và kiểm thử tối thiểu là gì?"
+      },
+      {
+        "speaker": "HV",
+        "ru": "Em cần xác định dữ liệu vào/ra, dùng lint + tests + type check = green build, chạy test/log và ghi artifact.",
+        "vi": "Em cần xác định dữ liệu vào/ra, dùng lint + tests + type check = green build, chạy test/log và ghi artifact."
+      },
+      {
+        "speaker": "GS",
+        "ru": "Thuật ngữ chính bằng Việt - Nga - Anh?",
+        "vi": "Thuật ngữ chính bằng Việt - Nga - Anh?"
+      },
+      {
+        "speaker": "HV",
+        "ru": "Tích hợp liên tục · непрерывная интеграция · continuous integration.",
+        "vi": "Tích hợp liên tục · непрерывная интеграция · continuous integration."
+      }
+    ]
+  },
+  {
+    "id": "oral_PR25",
+    "stage": "hk2",
+    "lessonId": "PR25",
+    "group": "vấn đáp giáo sư",
+    "type": "professor-oral-defense",
+    "difficulty": "academic",
+    "title": "Vấn đáp giáo sư · Pipeline dữ liệu cho ML",
+    "purpose": "Tập trả lời câu hỏi lý thuyết thực tế: vấn đề, input/output, thiết kế, test, artifact, rủi ro và thuật ngữ Việt-Nga-Anh.",
+    "terminologyMode": "vi-ru-en",
+    "terminologyTerms": [
+      {
+        "vi": "Đường ống dữ liệu",
+        "ru": "конвейер данных",
+        "en": "data pipeline"
+      },
+      {
+        "vi": "Input/Output",
+        "ru": "вход/выход",
+        "en": "input/output"
+      },
+      {
+        "vi": "Kiểm thử",
+        "ru": "тестирование",
+        "en": "testing"
+      },
+      {
+        "vi": "Tái lập",
+        "ru": "воспроизводимость",
+        "en": "reproducibility"
+      }
+    ],
+    "professorQuestions": [
+      "Bài này giải quyết vấn đề kỹ thuật gì?",
+      "Input/output và artifact là gì?",
+      "Thiết kế này có test/log không?",
+      "Rủi ro lỗi logic hoặc lỗi môi trường ở đâu?",
+      "Hãy nói thuật ngữ chính bằng Việt - Nga - Anh."
+    ],
+    "expectedAnswerStructure": [
+      "Vấn đề kỹ thuật",
+      "Input/output",
+      "Workflow/code lõi",
+      "Test/log/artifact",
+      "Rủi ro và giới hạn",
+      "Thuật ngữ Việt-Nga-Anh"
+    ],
+    "turns": [
+      {
+        "speaker": "GS",
+        "ru": "Hãy nói vấn đề kỹ thuật mà bài này giải quyết.",
+        "vi": "Hãy nói vấn đề kỹ thuật mà bài này giải quyết."
+      },
+      {
+        "speaker": "HV",
+        "ru": "Bài Pipeline dữ liệu cho ML giúp em xây workflow/code cho tạo quy trình lặp lại cho dữ liệu UGV/USV.",
+        "vi": "Bài Pipeline dữ liệu cho ML giúp em xây workflow/code cho tạo quy trình lặp lại cho dữ liệu UGV/USV."
+      },
+      {
+        "speaker": "GS",
+        "ru": "Input, output và kiểm thử tối thiểu là gì?",
+        "vi": "Input, output và kiểm thử tối thiểu là gì?"
+      },
+      {
+        "speaker": "HV",
+        "ru": "Em cần xác định dữ liệu vào/ra, dùng raw → clean → features → train → evaluate, chạy test/log và ghi artifact.",
+        "vi": "Em cần xác định dữ liệu vào/ra, dùng raw → clean → features → train → evaluate, chạy test/log và ghi artifact."
+      },
+      {
+        "speaker": "GS",
+        "ru": "Thuật ngữ chính bằng Việt - Nga - Anh?",
+        "vi": "Thuật ngữ chính bằng Việt - Nga - Anh?"
+      },
+      {
+        "speaker": "HV",
+        "ru": "Đường ống dữ liệu · конвейер данных · data pipeline.",
+        "vi": "Đường ống dữ liệu · конвейер данных · data pipeline."
+      }
+    ]
+  },
+  {
+    "id": "oral_PR26",
+    "stage": "hk2",
+    "lessonId": "PR26",
+    "group": "vấn đáp giáo sư",
+    "type": "professor-oral-defense",
+    "difficulty": "academic",
+    "title": "Vấn đáp giáo sư · Scikit-learn baseline và metric",
+    "purpose": "Tập trả lời câu hỏi lý thuyết thực tế: vấn đề, input/output, thiết kế, test, artifact, rủi ro và thuật ngữ Việt-Nga-Anh.",
+    "terminologyMode": "vi-ru-en",
+    "terminologyTerms": [
+      {
+        "vi": "Mô hình cơ sở",
+        "ru": "базовая модель",
+        "en": "baseline model"
+      },
+      {
+        "vi": "Input/Output",
+        "ru": "вход/выход",
+        "en": "input/output"
+      },
+      {
+        "vi": "Kiểm thử",
+        "ru": "тестирование",
+        "en": "testing"
+      },
+      {
+        "vi": "Tái lập",
+        "ru": "воспроизводимость",
+        "en": "reproducibility"
+      }
+    ],
+    "professorQuestions": [
+      "Bài này giải quyết vấn đề kỹ thuật gì?",
+      "Input/output và artifact là gì?",
+      "Thiết kế này có test/log không?",
+      "Rủi ro lỗi logic hoặc lỗi môi trường ở đâu?",
+      "Hãy nói thuật ngữ chính bằng Việt - Nga - Anh."
+    ],
+    "expectedAnswerStructure": [
+      "Vấn đề kỹ thuật",
+      "Input/output",
+      "Workflow/code lõi",
+      "Test/log/artifact",
+      "Rủi ro và giới hạn",
+      "Thuật ngữ Việt-Nga-Anh"
+    ],
+    "turns": [
+      {
+        "speaker": "GS",
+        "ru": "Hãy nói vấn đề kỹ thuật mà bài này giải quyết.",
+        "vi": "Hãy nói vấn đề kỹ thuật mà bài này giải quyết."
+      },
+      {
+        "speaker": "HV",
+        "ru": "Bài Scikit-learn baseline và metric giúp em xây workflow/code cho dựng baseline có metric rõ cho ML trong АСОИУ.",
+        "vi": "Bài Scikit-learn baseline và metric giúp em xây workflow/code cho dựng baseline có metric rõ cho ML trong АСОИУ."
+      },
+      {
+        "speaker": "GS",
+        "ru": "Input, output và kiểm thử tối thiểu là gì?",
+        "vi": "Input, output và kiểm thử tối thiểu là gì?"
+      },
+      {
+        "speaker": "HV",
+        "ru": "Em cần xác định dữ liệu vào/ra, dùng model.fit(X_train,y_train); score=f(metric), chạy test/log và ghi artifact.",
+        "vi": "Em cần xác định dữ liệu vào/ra, dùng model.fit(X_train,y_train); score=f(metric), chạy test/log và ghi artifact."
+      },
+      {
+        "speaker": "GS",
+        "ru": "Thuật ngữ chính bằng Việt - Nga - Anh?",
+        "vi": "Thuật ngữ chính bằng Việt - Nga - Anh?"
+      },
+      {
+        "speaker": "HV",
+        "ru": "Mô hình cơ sở · базовая модель · baseline model.",
+        "vi": "Mô hình cơ sở · базовая модель · baseline model."
+      }
+    ]
+  },
+  {
+    "id": "oral_PR27",
+    "stage": "hk2",
+    "lessonId": "PR27",
+    "group": "vấn đáp giáo sư",
+    "type": "professor-oral-defense",
+    "difficulty": "academic",
+    "title": "Vấn đáp giáo sư · API inference với FastAPI",
+    "purpose": "Tập trả lời câu hỏi lý thuyết thực tế: vấn đề, input/output, thiết kế, test, artifact, rủi ro và thuật ngữ Việt-Nga-Anh.",
+    "terminologyMode": "vi-ru-en",
+    "terminologyTerms": [
+      {
+        "vi": "API dự đoán",
+        "ru": "API предсказания",
+        "en": "prediction API"
+      },
+      {
+        "vi": "Input/Output",
+        "ru": "вход/выход",
+        "en": "input/output"
+      },
+      {
+        "vi": "Kiểm thử",
+        "ru": "тестирование",
+        "en": "testing"
+      },
+      {
+        "vi": "Tái lập",
+        "ru": "воспроизводимость",
+        "en": "reproducibility"
+      }
+    ],
+    "professorQuestions": [
+      "Bài này giải quyết vấn đề kỹ thuật gì?",
+      "Input/output và artifact là gì?",
+      "Thiết kế này có test/log không?",
+      "Rủi ro lỗi logic hoặc lỗi môi trường ở đâu?",
+      "Hãy nói thuật ngữ chính bằng Việt - Nga - Anh."
+    ],
+    "expectedAnswerStructure": [
+      "Vấn đề kỹ thuật",
+      "Input/output",
+      "Workflow/code lõi",
+      "Test/log/artifact",
+      "Rủi ro và giới hạn",
+      "Thuật ngữ Việt-Nga-Anh"
+    ],
+    "turns": [
+      {
+        "speaker": "GS",
+        "ru": "Hãy nói vấn đề kỹ thuật mà bài này giải quyết.",
+        "vi": "Hãy nói vấn đề kỹ thuật mà bài này giải quyết."
+      },
+      {
+        "speaker": "HV",
+        "ru": "Bài API inference với FastAPI giúp em xây workflow/code cho biến mô hình thành dịch vụ thử nghiệm được.",
+        "vi": "Bài API inference với FastAPI giúp em xây workflow/code cho biến mô hình thành dịch vụ thử nghiệm được."
+      },
+      {
+        "speaker": "GS",
+        "ru": "Input, output và kiểm thử tối thiểu là gì?",
+        "vi": "Input, output và kiểm thử tối thiểu là gì?"
+      },
+      {
+        "speaker": "HV",
+        "ru": "Em cần xác định dữ liệu vào/ra, dùng POST /predict → input schema → prediction, chạy test/log và ghi artifact.",
+        "vi": "Em cần xác định dữ liệu vào/ra, dùng POST /predict → input schema → prediction, chạy test/log và ghi artifact."
+      },
+      {
+        "speaker": "GS",
+        "ru": "Thuật ngữ chính bằng Việt - Nga - Anh?",
+        "vi": "Thuật ngữ chính bằng Việt - Nga - Anh?"
+      },
+      {
+        "speaker": "HV",
+        "ru": "API dự đoán · API предсказания · prediction API.",
+        "vi": "API dự đoán · API предсказания · prediction API."
+      }
+    ]
+  },
+  {
+    "id": "oral_PR28",
+    "stage": "hk2",
+    "lessonId": "PR28",
+    "group": "vấn đáp giáo sư",
+    "type": "professor-oral-defense",
+    "difficulty": "academic",
+    "title": "Vấn đáp giáo sư · Serialization model và artifact version",
+    "purpose": "Tập trả lời câu hỏi lý thuyết thực tế: vấn đề, input/output, thiết kế, test, artifact, rủi ro và thuật ngữ Việt-Nga-Anh.",
+    "terminologyMode": "vi-ru-en",
+    "terminologyTerms": [
+      {
+        "vi": "Artifact",
+        "ru": "артефакт",
+        "en": "artifact"
+      },
+      {
+        "vi": "Input/Output",
+        "ru": "вход/выход",
+        "en": "input/output"
+      },
+      {
+        "vi": "Kiểm thử",
+        "ru": "тестирование",
+        "en": "testing"
+      },
+      {
+        "vi": "Tái lập",
+        "ru": "воспроизводимость",
+        "en": "reproducibility"
+      }
+    ],
+    "professorQuestions": [
+      "Bài này giải quyết vấn đề kỹ thuật gì?",
+      "Input/output và artifact là gì?",
+      "Thiết kế này có test/log không?",
+      "Rủi ro lỗi logic hoặc lỗi môi trường ở đâu?",
+      "Hãy nói thuật ngữ chính bằng Việt - Nga - Anh."
+    ],
+    "expectedAnswerStructure": [
+      "Vấn đề kỹ thuật",
+      "Input/output",
+      "Workflow/code lõi",
+      "Test/log/artifact",
+      "Rủi ro và giới hạn",
+      "Thuật ngữ Việt-Nga-Anh"
+    ],
+    "turns": [
+      {
+        "speaker": "GS",
+        "ru": "Hãy nói vấn đề kỹ thuật mà bài này giải quyết.",
+        "vi": "Hãy nói vấn đề kỹ thuật mà bài này giải quyết."
+      },
+      {
+        "speaker": "HV",
+        "ru": "Bài Serialization model và artifact version giúp em xây workflow/code cho lưu model/dataset/metric theo phiên bản để chạy lại.",
+        "vi": "Bài Serialization model và artifact version giúp em xây workflow/code cho lưu model/dataset/metric theo phiên bản để chạy lại."
+      },
+      {
+        "speaker": "GS",
+        "ru": "Input, output và kiểm thử tối thiểu là gì?",
+        "vi": "Input, output và kiểm thử tối thiểu là gì?"
+      },
+      {
+        "speaker": "HV",
+        "ru": "Em cần xác định dữ liệu vào/ra, dùng joblib.dump(model); artifact_v1.pkl, chạy test/log và ghi artifact.",
+        "vi": "Em cần xác định dữ liệu vào/ra, dùng joblib.dump(model); artifact_v1.pkl, chạy test/log và ghi artifact."
+      },
+      {
+        "speaker": "GS",
+        "ru": "Thuật ngữ chính bằng Việt - Nga - Anh?",
+        "vi": "Thuật ngữ chính bằng Việt - Nga - Anh?"
+      },
+      {
+        "speaker": "HV",
+        "ru": "Artifact · артефакт · artifact.",
+        "vi": "Artifact · артефакт · artifact."
+      }
+    ]
+  },
+  {
+    "id": "oral_PR29",
+    "stage": "hk2",
+    "lessonId": "PR29",
+    "group": "vấn đáp giáo sư",
+    "type": "professor-oral-defense",
+    "difficulty": "academic",
+    "title": "Vấn đáp giáo sư · Cấu hình thí nghiệm bằng YAML/JSON",
+    "purpose": "Tập trả lời câu hỏi lý thuyết thực tế: vấn đề, input/output, thiết kế, test, artifact, rủi ro và thuật ngữ Việt-Nga-Anh.",
+    "terminologyMode": "vi-ru-en",
+    "terminologyTerms": [
+      {
+        "vi": "Cấu hình",
+        "ru": "конфигурация",
+        "en": "configuration"
+      },
+      {
+        "vi": "Input/Output",
+        "ru": "вход/выход",
+        "en": "input/output"
+      },
+      {
+        "vi": "Kiểm thử",
+        "ru": "тестирование",
+        "en": "testing"
+      },
+      {
+        "vi": "Tái lập",
+        "ru": "воспроизводимость",
+        "en": "reproducibility"
+      }
+    ],
+    "professorQuestions": [
+      "Bài này giải quyết vấn đề kỹ thuật gì?",
+      "Input/output và artifact là gì?",
+      "Thiết kế này có test/log không?",
+      "Rủi ro lỗi logic hoặc lỗi môi trường ở đâu?",
+      "Hãy nói thuật ngữ chính bằng Việt - Nga - Anh."
+    ],
+    "expectedAnswerStructure": [
+      "Vấn đề kỹ thuật",
+      "Input/output",
+      "Workflow/code lõi",
+      "Test/log/artifact",
+      "Rủi ro và giới hạn",
+      "Thuật ngữ Việt-Nga-Anh"
+    ],
+    "turns": [
+      {
+        "speaker": "GS",
+        "ru": "Hãy nói vấn đề kỹ thuật mà bài này giải quyết.",
+        "vi": "Hãy nói vấn đề kỹ thuật mà bài này giải quyết."
+      },
+      {
+        "speaker": "HV",
+        "ru": "Bài Cấu hình thí nghiệm bằng YAML/JSON giúp em xây workflow/code cho khóa tham số thí nghiệm để tránh loạn kết quả.",
+        "vi": "Bài Cấu hình thí nghiệm bằng YAML/JSON giúp em xây workflow/code cho khóa tham số thí nghiệm để tránh loạn kết quả."
+      },
+      {
+        "speaker": "GS",
+        "ru": "Input, output và kiểm thử tối thiểu là gì?",
+        "vi": "Input, output và kiểm thử tối thiểu là gì?"
+      },
+      {
+        "speaker": "HV",
+        "ru": "Em cần xác định dữ liệu vào/ra, dùng config = params + seed + paths, chạy test/log và ghi artifact.",
+        "vi": "Em cần xác định dữ liệu vào/ra, dùng config = params + seed + paths, chạy test/log và ghi artifact."
+      },
+      {
+        "speaker": "GS",
+        "ru": "Thuật ngữ chính bằng Việt - Nga - Anh?",
+        "vi": "Thuật ngữ chính bằng Việt - Nga - Anh?"
+      },
+      {
+        "speaker": "HV",
+        "ru": "Cấu hình · конфигурация · configuration.",
+        "vi": "Cấu hình · конфигурация · configuration."
+      }
+    ]
+  },
+  {
+    "id": "oral_PR30",
+    "stage": "hk2",
+    "lessonId": "PR30",
+    "group": "vấn đáp giáo sư",
+    "type": "professor-oral-defense",
+    "difficulty": "academic",
+    "title": "Vấn đáp giáo sư · Docker nhập môn cho môi trường tái lập",
+    "purpose": "Tập trả lời câu hỏi lý thuyết thực tế: vấn đề, input/output, thiết kế, test, artifact, rủi ro và thuật ngữ Việt-Nga-Anh.",
+    "terminologyMode": "vi-ru-en",
+    "terminologyTerms": [
+      {
+        "vi": "Container",
+        "ru": "контейнер",
+        "en": "container"
+      },
+      {
+        "vi": "Input/Output",
+        "ru": "вход/выход",
+        "en": "input/output"
+      },
+      {
+        "vi": "Kiểm thử",
+        "ru": "тестирование",
+        "en": "testing"
+      },
+      {
+        "vi": "Tái lập",
+        "ru": "воспроизводимость",
+        "en": "reproducibility"
+      }
+    ],
+    "professorQuestions": [
+      "Bài này giải quyết vấn đề kỹ thuật gì?",
+      "Input/output và artifact là gì?",
+      "Thiết kế này có test/log không?",
+      "Rủi ro lỗi logic hoặc lỗi môi trường ở đâu?",
+      "Hãy nói thuật ngữ chính bằng Việt - Nga - Anh."
+    ],
+    "expectedAnswerStructure": [
+      "Vấn đề kỹ thuật",
+      "Input/output",
+      "Workflow/code lõi",
+      "Test/log/artifact",
+      "Rủi ro và giới hạn",
+      "Thuật ngữ Việt-Nga-Anh"
+    ],
+    "turns": [
+      {
+        "speaker": "GS",
+        "ru": "Hãy nói vấn đề kỹ thuật mà bài này giải quyết.",
+        "vi": "Hãy nói vấn đề kỹ thuật mà bài này giải quyết."
+      },
+      {
+        "speaker": "HV",
+        "ru": "Bài Docker nhập môn cho môi trường tái lập giúp em xây workflow/code cho chạy lại demo trên máy khác ít lỗi hơn.",
+        "vi": "Bài Docker nhập môn cho môi trường tái lập giúp em xây workflow/code cho chạy lại demo trên máy khác ít lỗi hơn."
+      },
+      {
+        "speaker": "GS",
+        "ru": "Input, output và kiểm thử tối thiểu là gì?",
+        "vi": "Input, output và kiểm thử tối thiểu là gì?"
+      },
+      {
+        "speaker": "HV",
+        "ru": "Em cần xác định dữ liệu vào/ra, dùng Dockerfile + requirements + command, chạy test/log và ghi artifact.",
+        "vi": "Em cần xác định dữ liệu vào/ra, dùng Dockerfile + requirements + command, chạy test/log và ghi artifact."
+      },
+      {
+        "speaker": "GS",
+        "ru": "Thuật ngữ chính bằng Việt - Nga - Anh?",
+        "vi": "Thuật ngữ chính bằng Việt - Nga - Anh?"
+      },
+      {
+        "speaker": "HV",
+        "ru": "Container · контейнер · container.",
+        "vi": "Container · контейнер · container."
+      }
+    ]
+  },
+  {
+    "id": "oral_PR31",
+    "stage": "hk2",
+    "lessonId": "PR31",
+    "group": "vấn đáp giáo sư",
+    "type": "professor-oral-defense",
+    "difficulty": "academic",
+    "title": "Vấn đáp giáo sư · Bảo mật dữ liệu và quản lý secret",
+    "purpose": "Tập trả lời câu hỏi lý thuyết thực tế: vấn đề, input/output, thiết kế, test, artifact, rủi ro và thuật ngữ Việt-Nga-Anh.",
+    "terminologyMode": "vi-ru-en",
+    "terminologyTerms": [
+      {
+        "vi": "Bí mật hệ thống",
+        "ru": "секрет",
+        "en": "secret"
+      },
+      {
+        "vi": "Input/Output",
+        "ru": "вход/выход",
+        "en": "input/output"
+      },
+      {
+        "vi": "Kiểm thử",
+        "ru": "тестирование",
+        "en": "testing"
+      },
+      {
+        "vi": "Tái lập",
+        "ru": "воспроизводимость",
+        "en": "reproducibility"
+      }
+    ],
+    "professorQuestions": [
+      "Bài này giải quyết vấn đề kỹ thuật gì?",
+      "Input/output và artifact là gì?",
+      "Thiết kế này có test/log không?",
+      "Rủi ro lỗi logic hoặc lỗi môi trường ở đâu?",
+      "Hãy nói thuật ngữ chính bằng Việt - Nga - Anh."
+    ],
+    "expectedAnswerStructure": [
+      "Vấn đề kỹ thuật",
+      "Input/output",
+      "Workflow/code lõi",
+      "Test/log/artifact",
+      "Rủi ro và giới hạn",
+      "Thuật ngữ Việt-Nga-Anh"
+    ],
+    "turns": [
+      {
+        "speaker": "GS",
+        "ru": "Hãy nói vấn đề kỹ thuật mà bài này giải quyết.",
+        "vi": "Hãy nói vấn đề kỹ thuật mà bài này giải quyết."
+      },
+      {
+        "speaker": "HV",
+        "ru": "Bài Bảo mật dữ liệu và quản lý secret giúp em xây workflow/code cho không lộ key, dữ liệu, đường dẫn nhạy cảm.",
+        "vi": "Bài Bảo mật dữ liệu và quản lý secret giúp em xây workflow/code cho không lộ key, dữ liệu, đường dẫn nhạy cảm."
+      },
+      {
+        "speaker": "GS",
+        "ru": "Input, output và kiểm thử tối thiểu là gì?",
+        "vi": "Input, output và kiểm thử tối thiểu là gì?"
+      },
+      {
+        "speaker": "HV",
+        "ru": "Em cần xác định dữ liệu vào/ra, dùng .env; never commit secrets; access control, chạy test/log và ghi artifact.",
+        "vi": "Em cần xác định dữ liệu vào/ra, dùng .env; never commit secrets; access control, chạy test/log và ghi artifact."
+      },
+      {
+        "speaker": "GS",
+        "ru": "Thuật ngữ chính bằng Việt - Nga - Anh?",
+        "vi": "Thuật ngữ chính bằng Việt - Nga - Anh?"
+      },
+      {
+        "speaker": "HV",
+        "ru": "Bí mật hệ thống · секрет · secret.",
+        "vi": "Bí mật hệ thống · секрет · secret."
+      }
+    ]
+  },
+  {
+    "id": "oral_PR32",
+    "stage": "hk2",
+    "lessonId": "PR32",
+    "group": "vấn đáp giáo sư",
+    "type": "professor-oral-defense",
+    "difficulty": "academic",
+    "title": "Vấn đáp giáo sư · Tài liệu kỹ thuật và sơ đồ kiến trúc",
+    "purpose": "Tập trả lời câu hỏi lý thuyết thực tế: vấn đề, input/output, thiết kế, test, artifact, rủi ro và thuật ngữ Việt-Nga-Anh.",
+    "terminologyMode": "vi-ru-en",
+    "terminologyTerms": [
+      {
+        "vi": "Tài liệu kỹ thuật",
+        "ru": "техническая документация",
+        "en": "technical documentation"
+      },
+      {
+        "vi": "Input/Output",
+        "ru": "вход/выход",
+        "en": "input/output"
+      },
+      {
+        "vi": "Kiểm thử",
+        "ru": "тестирование",
+        "en": "testing"
+      },
+      {
+        "vi": "Tái lập",
+        "ru": "воспроизводимость",
+        "en": "reproducibility"
+      }
+    ],
+    "professorQuestions": [
+      "Bài này giải quyết vấn đề kỹ thuật gì?",
+      "Input/output và artifact là gì?",
+      "Thiết kế này có test/log không?",
+      "Rủi ro lỗi logic hoặc lỗi môi trường ở đâu?",
+      "Hãy nói thuật ngữ chính bằng Việt - Nga - Anh."
+    ],
+    "expectedAnswerStructure": [
+      "Vấn đề kỹ thuật",
+      "Input/output",
+      "Workflow/code lõi",
+      "Test/log/artifact",
+      "Rủi ro và giới hạn",
+      "Thuật ngữ Việt-Nga-Anh"
+    ],
+    "turns": [
+      {
+        "speaker": "GS",
+        "ru": "Hãy nói vấn đề kỹ thuật mà bài này giải quyết.",
+        "vi": "Hãy nói vấn đề kỹ thuật mà bài này giải quyết."
+      },
+      {
+        "speaker": "HV",
+        "ru": "Bài Tài liệu kỹ thuật và sơ đồ kiến trúc giúp em xây workflow/code cho giải thích phần mềm cho giáo sư và nhóm nghiên cứu.",
+        "vi": "Bài Tài liệu kỹ thuật và sơ đồ kiến trúc giúp em xây workflow/code cho giải thích phần mềm cho giáo sư và nhóm nghiên cứu."
+      },
+      {
+        "speaker": "GS",
+        "ru": "Input, output và kiểm thử tối thiểu là gì?",
+        "vi": "Input, output và kiểm thử tối thiểu là gì?"
+      },
+      {
+        "speaker": "HV",
+        "ru": "Em cần xác định dữ liệu vào/ra, dùng architecture.md + sequence diagram + API spec, chạy test/log và ghi artifact.",
+        "vi": "Em cần xác định dữ liệu vào/ra, dùng architecture.md + sequence diagram + API spec, chạy test/log và ghi artifact."
+      },
+      {
+        "speaker": "GS",
+        "ru": "Thuật ngữ chính bằng Việt - Nga - Anh?",
+        "vi": "Thuật ngữ chính bằng Việt - Nga - Anh?"
+      },
+      {
+        "speaker": "HV",
+        "ru": "Tài liệu kỹ thuật · техническая документация · technical documentation.",
+        "vi": "Tài liệu kỹ thuật · техническая документация · technical documentation."
+      }
+    ]
+  },
+  {
+    "id": "oral_PR33",
+    "stage": "hk3",
+    "lessonId": "PR33",
+    "group": "vấn đáp giáo sư",
+    "type": "professor-oral-defense",
+    "difficulty": "academic",
+    "title": "Vấn đáp giáo sư · Dataset card cho telemetry và cảm biến",
+    "purpose": "Tập trả lời câu hỏi lý thuyết thực tế: vấn đề, input/output, thiết kế, test, artifact, rủi ro và thuật ngữ Việt-Nga-Anh.",
+    "terminologyMode": "vi-ru-en",
+    "terminologyTerms": [
+      {
+        "vi": "Thẻ dữ liệu",
+        "ru": "карточка набора данных",
+        "en": "dataset card"
+      },
+      {
+        "vi": "Input/Output",
+        "ru": "вход/выход",
+        "en": "input/output"
+      },
+      {
+        "vi": "Kiểm thử",
+        "ru": "тестирование",
+        "en": "testing"
+      },
+      {
+        "vi": "Tái lập",
+        "ru": "воспроизводимость",
+        "en": "reproducibility"
+      }
+    ],
+    "professorQuestions": [
+      "Bài này giải quyết vấn đề kỹ thuật gì?",
+      "Input/output và artifact là gì?",
+      "Thiết kế này có test/log không?",
+      "Rủi ro lỗi logic hoặc lỗi môi trường ở đâu?",
+      "Hãy nói thuật ngữ chính bằng Việt - Nga - Anh."
+    ],
+    "expectedAnswerStructure": [
+      "Vấn đề kỹ thuật",
+      "Input/output",
+      "Workflow/code lõi",
+      "Test/log/artifact",
+      "Rủi ro và giới hạn",
+      "Thuật ngữ Việt-Nga-Anh"
+    ],
+    "turns": [
+      {
+        "speaker": "GS",
+        "ru": "Hãy nói vấn đề kỹ thuật mà bài này giải quyết.",
+        "vi": "Hãy nói vấn đề kỹ thuật mà bài này giải quyết."
+      },
+      {
+        "speaker": "HV",
+        "ru": "Bài Dataset card cho telemetry và cảm biến giúp em xây workflow/code cho mô tả dữ liệu НИР đủ rõ để phản biện.",
+        "vi": "Bài Dataset card cho telemetry và cảm biến giúp em xây workflow/code cho mô tả dữ liệu НИР đủ rõ để phản biện."
+      },
+      {
+        "speaker": "GS",
+        "ru": "Input, output và kiểm thử tối thiểu là gì?",
+        "vi": "Input, output và kiểm thử tối thiểu là gì?"
+      },
+      {
+        "speaker": "HV",
+        "ru": "Em cần xác định dữ liệu vào/ra, dùng dataset card = source + schema + limits + ethics, chạy test/log và ghi artifact.",
+        "vi": "Em cần xác định dữ liệu vào/ra, dùng dataset card = source + schema + limits + ethics, chạy test/log và ghi artifact."
+      },
+      {
+        "speaker": "GS",
+        "ru": "Thuật ngữ chính bằng Việt - Nga - Anh?",
+        "vi": "Thuật ngữ chính bằng Việt - Nga - Anh?"
+      },
+      {
+        "speaker": "HV",
+        "ru": "Thẻ dữ liệu · карточка набора данных · dataset card.",
+        "vi": "Thẻ dữ liệu · карточка набора данных · dataset card."
+      }
+    ]
+  },
+  {
+    "id": "oral_PR34",
+    "stage": "hk3",
+    "lessonId": "PR34",
+    "group": "vấn đáp giáo sư",
+    "type": "professor-oral-defense",
+    "difficulty": "academic",
+    "title": "Vấn đáp giáo sư · Experiment tracking và bảng metric",
+    "purpose": "Tập trả lời câu hỏi lý thuyết thực tế: vấn đề, input/output, thiết kế, test, artifact, rủi ro và thuật ngữ Việt-Nga-Anh.",
+    "terminologyMode": "vi-ru-en",
+    "terminologyTerms": [
+      {
+        "vi": "Theo dõi thí nghiệm",
+        "ru": "отслеживание экспериментов",
+        "en": "experiment tracking"
+      },
+      {
+        "vi": "Input/Output",
+        "ru": "вход/выход",
+        "en": "input/output"
+      },
+      {
+        "vi": "Kiểm thử",
+        "ru": "тестирование",
+        "en": "testing"
+      },
+      {
+        "vi": "Tái lập",
+        "ru": "воспроизводимость",
+        "en": "reproducibility"
+      }
+    ],
+    "professorQuestions": [
+      "Bài này giải quyết vấn đề kỹ thuật gì?",
+      "Input/output và artifact là gì?",
+      "Thiết kế này có test/log không?",
+      "Rủi ro lỗi logic hoặc lỗi môi trường ở đâu?",
+      "Hãy nói thuật ngữ chính bằng Việt - Nga - Anh."
+    ],
+    "expectedAnswerStructure": [
+      "Vấn đề kỹ thuật",
+      "Input/output",
+      "Workflow/code lõi",
+      "Test/log/artifact",
+      "Rủi ro và giới hạn",
+      "Thuật ngữ Việt-Nga-Anh"
+    ],
+    "turns": [
+      {
+        "speaker": "GS",
+        "ru": "Hãy nói vấn đề kỹ thuật mà bài này giải quyết.",
+        "vi": "Hãy nói vấn đề kỹ thuật mà bài này giải quyết."
+      },
+      {
+        "speaker": "HV",
+        "ru": "Bài Experiment tracking và bảng metric giúp em xây workflow/code cho so sánh mô hình trong НИР có bằng chứng.",
+        "vi": "Bài Experiment tracking và bảng metric giúp em xây workflow/code cho so sánh mô hình trong НИР có bằng chứng."
+      },
+      {
+        "speaker": "GS",
+        "ru": "Input, output và kiểm thử tối thiểu là gì?",
+        "vi": "Input, output và kiểm thử tối thiểu là gì?"
+      },
+      {
+        "speaker": "HV",
+        "ru": "Em cần xác định dữ liệu vào/ra, dùng run_id + params + metrics + artifacts, chạy test/log và ghi artifact.",
+        "vi": "Em cần xác định dữ liệu vào/ra, dùng run_id + params + metrics + artifacts, chạy test/log và ghi artifact."
+      },
+      {
+        "speaker": "GS",
+        "ru": "Thuật ngữ chính bằng Việt - Nga - Anh?",
+        "vi": "Thuật ngữ chính bằng Việt - Nga - Anh?"
+      },
+      {
+        "speaker": "HV",
+        "ru": "Theo dõi thí nghiệm · отслеживание экспериментов · experiment tracking.",
+        "vi": "Theo dõi thí nghiệm · отслеживание экспериментов · experiment tracking."
+      }
+    ]
+  },
+  {
+    "id": "oral_PR35",
+    "stage": "hk3",
+    "lessonId": "PR35",
+    "group": "vấn đáp giáo sư",
+    "type": "professor-oral-defense",
+    "difficulty": "academic",
+    "title": "Vấn đáp giáo sư · Ablation study bằng code có kiểm soát",
+    "purpose": "Tập trả lời câu hỏi lý thuyết thực tế: vấn đề, input/output, thiết kế, test, artifact, rủi ro và thuật ngữ Việt-Nga-Anh.",
+    "terminologyMode": "vi-ru-en",
+    "terminologyTerms": [
+      {
+        "vi": "Thí nghiệm loại bỏ",
+        "ru": "абляционное исследование",
+        "en": "ablation study"
+      },
+      {
+        "vi": "Input/Output",
+        "ru": "вход/выход",
+        "en": "input/output"
+      },
+      {
+        "vi": "Kiểm thử",
+        "ru": "тестирование",
+        "en": "testing"
+      },
+      {
+        "vi": "Tái lập",
+        "ru": "воспроизводимость",
+        "en": "reproducibility"
+      }
+    ],
+    "professorQuestions": [
+      "Bài này giải quyết vấn đề kỹ thuật gì?",
+      "Input/output và artifact là gì?",
+      "Thiết kế này có test/log không?",
+      "Rủi ro lỗi logic hoặc lỗi môi trường ở đâu?",
+      "Hãy nói thuật ngữ chính bằng Việt - Nga - Anh."
+    ],
+    "expectedAnswerStructure": [
+      "Vấn đề kỹ thuật",
+      "Input/output",
+      "Workflow/code lõi",
+      "Test/log/artifact",
+      "Rủi ro và giới hạn",
+      "Thuật ngữ Việt-Nga-Anh"
+    ],
+    "turns": [
+      {
+        "speaker": "GS",
+        "ru": "Hãy nói vấn đề kỹ thuật mà bài này giải quyết.",
+        "vi": "Hãy nói vấn đề kỹ thuật mà bài này giải quyết."
+      },
+      {
+        "speaker": "HV",
+        "ru": "Bài Ablation study bằng code có kiểm soát giúp em xây workflow/code cho chứng minh yếu tố nào làm mô hình tốt hơn/xấu hơn.",
+        "vi": "Bài Ablation study bằng code có kiểm soát giúp em xây workflow/code cho chứng minh yếu tố nào làm mô hình tốt hơn/xấu hơn."
+      },
+      {
+        "speaker": "GS",
+        "ru": "Input, output và kiểm thử tối thiểu là gì?",
+        "vi": "Input, output và kiểm thử tối thiểu là gì?"
+      },
+      {
+        "speaker": "HV",
+        "ru": "Em cần xác định dữ liệu vào/ra, dùng one change per run; compare metric deltas, chạy test/log và ghi artifact.",
+        "vi": "Em cần xác định dữ liệu vào/ra, dùng one change per run; compare metric deltas, chạy test/log và ghi artifact."
+      },
+      {
+        "speaker": "GS",
+        "ru": "Thuật ngữ chính bằng Việt - Nga - Anh?",
+        "vi": "Thuật ngữ chính bằng Việt - Nga - Anh?"
+      },
+      {
+        "speaker": "HV",
+        "ru": "Thí nghiệm loại bỏ · абляционное исследование · ablation study.",
+        "vi": "Thí nghiệm loại bỏ · абляционное исследование · ablation study."
+      }
+    ]
+  },
+  {
+    "id": "oral_PR36",
+    "stage": "hk3",
+    "lessonId": "PR36",
+    "group": "vấn đáp giáo sư",
+    "type": "professor-oral-defense",
+    "difficulty": "academic",
+    "title": "Vấn đáp giáo sư · Xử lý log cảm biến và chuỗi thời gian",
+    "purpose": "Tập trả lời câu hỏi lý thuyết thực tế: vấn đề, input/output, thiết kế, test, artifact, rủi ro và thuật ngữ Việt-Nga-Anh.",
+    "terminologyMode": "vi-ru-en",
+    "terminologyTerms": [
+      {
+        "vi": "Log telemetry",
+        "ru": "журнал телеметрии",
+        "en": "telemetry log"
+      },
+      {
+        "vi": "Input/Output",
+        "ru": "вход/выход",
+        "en": "input/output"
+      },
+      {
+        "vi": "Kiểm thử",
+        "ru": "тестирование",
+        "en": "testing"
+      },
+      {
+        "vi": "Tái lập",
+        "ru": "воспроизводимость",
+        "en": "reproducibility"
+      }
+    ],
+    "professorQuestions": [
+      "Bài này giải quyết vấn đề kỹ thuật gì?",
+      "Input/output và artifact là gì?",
+      "Thiết kế này có test/log không?",
+      "Rủi ro lỗi logic hoặc lỗi môi trường ở đâu?",
+      "Hãy nói thuật ngữ chính bằng Việt - Nga - Anh."
+    ],
+    "expectedAnswerStructure": [
+      "Vấn đề kỹ thuật",
+      "Input/output",
+      "Workflow/code lõi",
+      "Test/log/artifact",
+      "Rủi ro và giới hạn",
+      "Thuật ngữ Việt-Nga-Anh"
+    ],
+    "turns": [
+      {
+        "speaker": "GS",
+        "ru": "Hãy nói vấn đề kỹ thuật mà bài này giải quyết.",
+        "vi": "Hãy nói vấn đề kỹ thuật mà bài này giải quyết."
+      },
+      {
+        "speaker": "HV",
+        "ru": "Bài Xử lý log cảm biến và chuỗi thời gian giúp em xây workflow/code cho làm sạch log UGV trước khi phân tích tín hiệu/AI.",
+        "vi": "Bài Xử lý log cảm biến và chuỗi thời gian giúp em xây workflow/code cho làm sạch log UGV trước khi phân tích tín hiệu/AI."
+      },
+      {
+        "speaker": "GS",
+        "ru": "Input, output và kiểm thử tối thiểu là gì?",
+        "vi": "Input, output và kiểm thử tối thiểu là gì?"
+      },
+      {
+        "speaker": "HV",
+        "ru": "Em cần xác định dữ liệu vào/ra, dùng timestamp + value + quality_flag, chạy test/log và ghi artifact.",
+        "vi": "Em cần xác định dữ liệu vào/ra, dùng timestamp + value + quality_flag, chạy test/log và ghi artifact."
+      },
+      {
+        "speaker": "GS",
+        "ru": "Thuật ngữ chính bằng Việt - Nga - Anh?",
+        "vi": "Thuật ngữ chính bằng Việt - Nga - Anh?"
+      },
+      {
+        "speaker": "HV",
+        "ru": "Log telemetry · журнал телеметрии · telemetry log.",
+        "vi": "Log telemetry · журнал телеметрии · telemetry log."
+      }
+    ]
+  },
+  {
+    "id": "oral_PR37",
+    "stage": "hk3",
+    "lessonId": "PR37",
+    "group": "vấn đáp giáo sư",
+    "type": "professor-oral-defense",
+    "difficulty": "academic",
+    "title": "Vấn đáp giáo sư · Module đánh giá lỗi và phân tích thất bại",
+    "purpose": "Tập trả lời câu hỏi lý thuyết thực tế: vấn đề, input/output, thiết kế, test, artifact, rủi ro và thuật ngữ Việt-Nga-Anh.",
+    "terminologyMode": "vi-ru-en",
+    "terminologyTerms": [
+      {
+        "vi": "Phân tích lỗi",
+        "ru": "анализ ошибок",
+        "en": "error analysis"
+      },
+      {
+        "vi": "Input/Output",
+        "ru": "вход/выход",
+        "en": "input/output"
+      },
+      {
+        "vi": "Kiểm thử",
+        "ru": "тестирование",
+        "en": "testing"
+      },
+      {
+        "vi": "Tái lập",
+        "ru": "воспроизводимость",
+        "en": "reproducibility"
+      }
+    ],
+    "professorQuestions": [
+      "Bài này giải quyết vấn đề kỹ thuật gì?",
+      "Input/output và artifact là gì?",
+      "Thiết kế này có test/log không?",
+      "Rủi ro lỗi logic hoặc lỗi môi trường ở đâu?",
+      "Hãy nói thuật ngữ chính bằng Việt - Nga - Anh."
+    ],
+    "expectedAnswerStructure": [
+      "Vấn đề kỹ thuật",
+      "Input/output",
+      "Workflow/code lõi",
+      "Test/log/artifact",
+      "Rủi ro và giới hạn",
+      "Thuật ngữ Việt-Nga-Anh"
+    ],
+    "turns": [
+      {
+        "speaker": "GS",
+        "ru": "Hãy nói vấn đề kỹ thuật mà bài này giải quyết.",
+        "vi": "Hãy nói vấn đề kỹ thuật mà bài này giải quyết."
+      },
+      {
+        "speaker": "HV",
+        "ru": "Bài Module đánh giá lỗi và phân tích thất bại giúp em xây workflow/code cho biết mô hình sai ở đâu, vì sao, sửa thế nào.",
+        "vi": "Bài Module đánh giá lỗi và phân tích thất bại giúp em xây workflow/code cho biết mô hình sai ở đâu, vì sao, sửa thế nào."
+      },
+      {
+        "speaker": "GS",
+        "ru": "Input, output và kiểm thử tối thiểu là gì?",
+        "vi": "Input, output và kiểm thử tối thiểu là gì?"
+      },
+      {
+        "speaker": "HV",
+        "ru": "Em cần xác định dữ liệu vào/ra, dùng error case → label → root cause → fix, chạy test/log và ghi artifact.",
+        "vi": "Em cần xác định dữ liệu vào/ra, dùng error case → label → root cause → fix, chạy test/log và ghi artifact."
+      },
+      {
+        "speaker": "GS",
+        "ru": "Thuật ngữ chính bằng Việt - Nga - Anh?",
+        "vi": "Thuật ngữ chính bằng Việt - Nga - Anh?"
+      },
+      {
+        "speaker": "HV",
+        "ru": "Phân tích lỗi · анализ ошибок · error analysis.",
+        "vi": "Phân tích lỗi · анализ ошибок · error analysis."
+      }
+    ]
+  },
+  {
+    "id": "oral_PR38",
+    "stage": "hk3",
+    "lessonId": "PR38",
+    "group": "vấn đáp giáo sư",
+    "type": "professor-oral-defense",
+    "difficulty": "academic",
+    "title": "Vấn đáp giáo sư · Prototype dashboard kết quả nghiên cứu",
+    "purpose": "Tập trả lời câu hỏi lý thuyết thực tế: vấn đề, input/output, thiết kế, test, artifact, rủi ro và thuật ngữ Việt-Nga-Anh.",
+    "terminologyMode": "vi-ru-en",
+    "terminologyTerms": [
+      {
+        "vi": "Bảng điều khiển",
+        "ru": "панель мониторинга",
+        "en": "dashboard"
+      },
+      {
+        "vi": "Input/Output",
+        "ru": "вход/выход",
+        "en": "input/output"
+      },
+      {
+        "vi": "Kiểm thử",
+        "ru": "тестирование",
+        "en": "testing"
+      },
+      {
+        "vi": "Tái lập",
+        "ru": "воспроизводимость",
+        "en": "reproducibility"
+      }
+    ],
+    "professorQuestions": [
+      "Bài này giải quyết vấn đề kỹ thuật gì?",
+      "Input/output và artifact là gì?",
+      "Thiết kế này có test/log không?",
+      "Rủi ro lỗi logic hoặc lỗi môi trường ở đâu?",
+      "Hãy nói thuật ngữ chính bằng Việt - Nga - Anh."
+    ],
+    "expectedAnswerStructure": [
+      "Vấn đề kỹ thuật",
+      "Input/output",
+      "Workflow/code lõi",
+      "Test/log/artifact",
+      "Rủi ro và giới hạn",
+      "Thuật ngữ Việt-Nga-Anh"
+    ],
+    "turns": [
+      {
+        "speaker": "GS",
+        "ru": "Hãy nói vấn đề kỹ thuật mà bài này giải quyết.",
+        "vi": "Hãy nói vấn đề kỹ thuật mà bài này giải quyết."
+      },
+      {
+        "speaker": "HV",
+        "ru": "Bài Prototype dashboard kết quả nghiên cứu giúp em xây workflow/code cho xem kết quả thí nghiệm, hình minh họa và log.",
+        "vi": "Bài Prototype dashboard kết quả nghiên cứu giúp em xây workflow/code cho xem kết quả thí nghiệm, hình minh họa và log."
+      },
+      {
+        "speaker": "GS",
+        "ru": "Input, output và kiểm thử tối thiểu là gì?",
+        "vi": "Input, output và kiểm thử tối thiểu là gì?"
+      },
+      {
+        "speaker": "HV",
+        "ru": "Em cần xác định dữ liệu vào/ra, dùng metrics + plots + filters + notes, chạy test/log và ghi artifact.",
+        "vi": "Em cần xác định dữ liệu vào/ra, dùng metrics + plots + filters + notes, chạy test/log và ghi artifact."
+      },
+      {
+        "speaker": "GS",
+        "ru": "Thuật ngữ chính bằng Việt - Nga - Anh?",
+        "vi": "Thuật ngữ chính bằng Việt - Nga - Anh?"
+      },
+      {
+        "speaker": "HV",
+        "ru": "Bảng điều khiển · панель мониторинга · dashboard.",
+        "vi": "Bảng điều khiển · панель мониторинга · dashboard."
+      }
+    ]
+  },
+  {
+    "id": "oral_PR39",
+    "stage": "hk3",
+    "lessonId": "PR39",
+    "group": "vấn đáp giáo sư",
+    "type": "professor-oral-defense",
+    "difficulty": "academic",
+    "title": "Vấn đáp giáo sư · Đóng gói demo nghiên cứu",
+    "purpose": "Tập trả lời câu hỏi lý thuyết thực tế: vấn đề, input/output, thiết kế, test, artifact, rủi ro và thuật ngữ Việt-Nga-Anh.",
+    "terminologyMode": "vi-ru-en",
+    "terminologyTerms": [
+      {
+        "vi": "Demo tái lập",
+        "ru": "воспроизводимая демонстрация",
+        "en": "reproducible demo"
+      },
+      {
+        "vi": "Input/Output",
+        "ru": "вход/выход",
+        "en": "input/output"
+      },
+      {
+        "vi": "Kiểm thử",
+        "ru": "тестирование",
+        "en": "testing"
+      },
+      {
+        "vi": "Tái lập",
+        "ru": "воспроизводимость",
+        "en": "reproducibility"
+      }
+    ],
+    "professorQuestions": [
+      "Bài này giải quyết vấn đề kỹ thuật gì?",
+      "Input/output và artifact là gì?",
+      "Thiết kế này có test/log không?",
+      "Rủi ro lỗi logic hoặc lỗi môi trường ở đâu?",
+      "Hãy nói thuật ngữ chính bằng Việt - Nga - Anh."
+    ],
+    "expectedAnswerStructure": [
+      "Vấn đề kỹ thuật",
+      "Input/output",
+      "Workflow/code lõi",
+      "Test/log/artifact",
+      "Rủi ro và giới hạn",
+      "Thuật ngữ Việt-Nga-Anh"
+    ],
+    "turns": [
+      {
+        "speaker": "GS",
+        "ru": "Hãy nói vấn đề kỹ thuật mà bài này giải quyết.",
+        "vi": "Hãy nói vấn đề kỹ thuật mà bài này giải quyết."
+      },
+      {
+        "speaker": "HV",
+        "ru": "Bài Đóng gói demo nghiên cứu giúp em xây workflow/code cho cho giáo viên mở demo nhanh mà không vỡ môi trường.",
+        "vi": "Bài Đóng gói demo nghiên cứu giúp em xây workflow/code cho cho giáo viên mở demo nhanh mà không vỡ môi trường."
+      },
+      {
+        "speaker": "GS",
+        "ru": "Input, output và kiểm thử tối thiểu là gì?",
+        "vi": "Input, output và kiểm thử tối thiểu là gì?"
+      },
+      {
+        "speaker": "HV",
+        "ru": "Em cần xác định dữ liệu vào/ra, dùng make run-demo; sample data; expected output, chạy test/log và ghi artifact.",
+        "vi": "Em cần xác định dữ liệu vào/ra, dùng make run-demo; sample data; expected output, chạy test/log và ghi artifact."
+      },
+      {
+        "speaker": "GS",
+        "ru": "Thuật ngữ chính bằng Việt - Nga - Anh?",
+        "vi": "Thuật ngữ chính bằng Việt - Nga - Anh?"
+      },
+      {
+        "speaker": "HV",
+        "ru": "Demo tái lập · воспроизводимая демонстрация · reproducible demo.",
+        "vi": "Demo tái lập · воспроизводимая демонстрация · reproducible demo."
+      }
+    ]
+  },
+  {
+    "id": "oral_PR40",
+    "stage": "hk3",
+    "lessonId": "PR40",
+    "group": "vấn đáp giáo sư",
+    "type": "professor-oral-defense",
+    "difficulty": "academic",
+    "title": "Vấn đáp giáo sư · Quản lý rủi ro phần mềm trong НИР",
+    "purpose": "Tập trả lời câu hỏi lý thuyết thực tế: vấn đề, input/output, thiết kế, test, artifact, rủi ro và thuật ngữ Việt-Nga-Anh.",
+    "terminologyMode": "vi-ru-en",
+    "terminologyTerms": [
+      {
+        "vi": "Rủi ro phần mềm",
+        "ru": "программный риск",
+        "en": "software risk"
+      },
+      {
+        "vi": "Input/Output",
+        "ru": "вход/выход",
+        "en": "input/output"
+      },
+      {
+        "vi": "Kiểm thử",
+        "ru": "тестирование",
+        "en": "testing"
+      },
+      {
+        "vi": "Tái lập",
+        "ru": "воспроизводимость",
+        "en": "reproducibility"
+      }
+    ],
+    "professorQuestions": [
+      "Bài này giải quyết vấn đề kỹ thuật gì?",
+      "Input/output và artifact là gì?",
+      "Thiết kế này có test/log không?",
+      "Rủi ro lỗi logic hoặc lỗi môi trường ở đâu?",
+      "Hãy nói thuật ngữ chính bằng Việt - Nga - Anh."
+    ],
+    "expectedAnswerStructure": [
+      "Vấn đề kỹ thuật",
+      "Input/output",
+      "Workflow/code lõi",
+      "Test/log/artifact",
+      "Rủi ro và giới hạn",
+      "Thuật ngữ Việt-Nga-Anh"
+    ],
+    "turns": [
+      {
+        "speaker": "GS",
+        "ru": "Hãy nói vấn đề kỹ thuật mà bài này giải quyết.",
+        "vi": "Hãy nói vấn đề kỹ thuật mà bài này giải quyết."
+      },
+      {
+        "speaker": "HV",
+        "ru": "Bài Quản lý rủi ro phần mềm trong НИР giúp em xây workflow/code cho giảm rủi ro hỏng demo, mất dữ liệu, lệch kết quả.",
+        "vi": "Bài Quản lý rủi ro phần mềm trong НИР giúp em xây workflow/code cho giảm rủi ro hỏng demo, mất dữ liệu, lệch kết quả."
+      },
+      {
+        "speaker": "GS",
+        "ru": "Input, output và kiểm thử tối thiểu là gì?",
+        "vi": "Input, output và kiểm thử tối thiểu là gì?"
+      },
+      {
+        "speaker": "HV",
+        "ru": "Em cần xác định dữ liệu vào/ra, dùng risk = probability × impact; mitigation plan, chạy test/log và ghi artifact.",
+        "vi": "Em cần xác định dữ liệu vào/ra, dùng risk = probability × impact; mitigation plan, chạy test/log và ghi artifact."
+      },
+      {
+        "speaker": "GS",
+        "ru": "Thuật ngữ chính bằng Việt - Nga - Anh?",
+        "vi": "Thuật ngữ chính bằng Việt - Nga - Anh?"
+      },
+      {
+        "speaker": "HV",
+        "ru": "Rủi ro phần mềm · программный риск · software risk.",
+        "vi": "Rủi ro phần mềm · программный риск · software risk."
+      }
+    ]
+  },
+  {
+    "id": "oral_PR41",
+    "stage": "hk4",
+    "lessonId": "PR41",
+    "group": "vấn đáp giáo sư",
+    "type": "professor-oral-defense",
+    "difficulty": "academic",
+    "title": "Vấn đáp giáo sư · Đóng băng mã nguồn và tag release",
+    "purpose": "Tập trả lời câu hỏi lý thuyết thực tế: vấn đề, input/output, thiết kế, test, artifact, rủi ro và thuật ngữ Việt-Nga-Anh.",
+    "terminologyMode": "vi-ru-en",
+    "terminologyTerms": [
+      {
+        "vi": "Tag phiên bản",
+        "ru": "тег версии",
+        "en": "version tag"
+      },
+      {
+        "vi": "Input/Output",
+        "ru": "вход/выход",
+        "en": "input/output"
+      },
+      {
+        "vi": "Kiểm thử",
+        "ru": "тестирование",
+        "en": "testing"
+      },
+      {
+        "vi": "Tái lập",
+        "ru": "воспроизводимость",
+        "en": "reproducibility"
+      }
+    ],
+    "professorQuestions": [
+      "Bài này giải quyết vấn đề kỹ thuật gì?",
+      "Input/output và artifact là gì?",
+      "Thiết kế này có test/log không?",
+      "Rủi ro lỗi logic hoặc lỗi môi trường ở đâu?",
+      "Hãy nói thuật ngữ chính bằng Việt - Nga - Anh."
+    ],
+    "expectedAnswerStructure": [
+      "Vấn đề kỹ thuật",
+      "Input/output",
+      "Workflow/code lõi",
+      "Test/log/artifact",
+      "Rủi ro và giới hạn",
+      "Thuật ngữ Việt-Nga-Anh"
+    ],
+    "turns": [
+      {
+        "speaker": "GS",
+        "ru": "Hãy nói vấn đề kỹ thuật mà bài này giải quyết.",
+        "vi": "Hãy nói vấn đề kỹ thuật mà bài này giải quyết."
+      },
+      {
+        "speaker": "HV",
+        "ru": "Bài Đóng băng mã nguồn và tag release giúp em xây workflow/code cho khóa phiên bản phục vụ ВКР, tránh đổi sát ngày bảo vệ.",
+        "vi": "Bài Đóng băng mã nguồn và tag release giúp em xây workflow/code cho khóa phiên bản phục vụ ВКР, tránh đổi sát ngày bảo vệ."
+      },
+      {
+        "speaker": "GS",
+        "ru": "Input, output và kiểm thử tối thiểu là gì?",
+        "vi": "Input, output và kiểm thử tối thiểu là gì?"
+      },
+      {
+        "speaker": "HV",
+        "ru": "Em cần xác định dữ liệu vào/ra, dùng git tag v1.0-defense; CHANGELOG.md, chạy test/log và ghi artifact.",
+        "vi": "Em cần xác định dữ liệu vào/ra, dùng git tag v1.0-defense; CHANGELOG.md, chạy test/log và ghi artifact."
+      },
+      {
+        "speaker": "GS",
+        "ru": "Thuật ngữ chính bằng Việt - Nga - Anh?",
+        "vi": "Thuật ngữ chính bằng Việt - Nga - Anh?"
+      },
+      {
+        "speaker": "HV",
+        "ru": "Tag phiên bản · тег версии · version tag.",
+        "vi": "Tag phiên bản · тег версии · version tag."
+      }
+    ]
+  },
+  {
+    "id": "oral_PR42",
+    "stage": "hk4",
+    "lessonId": "PR42",
+    "group": "vấn đáp giáo sư",
+    "type": "professor-oral-defense",
+    "difficulty": "academic",
+    "title": "Vấn đáp giáo sư · Script chạy lại toàn bộ kết quả",
+    "purpose": "Tập trả lời câu hỏi lý thuyết thực tế: vấn đề, input/output, thiết kế, test, artifact, rủi ro và thuật ngữ Việt-Nga-Anh.",
+    "terminologyMode": "vi-ru-en",
+    "terminologyTerms": [
+      {
+        "vi": "Script tái lập",
+        "ru": "скрипт воспроизведения",
+        "en": "reproduction script"
+      },
+      {
+        "vi": "Input/Output",
+        "ru": "вход/выход",
+        "en": "input/output"
+      },
+      {
+        "vi": "Kiểm thử",
+        "ru": "тестирование",
+        "en": "testing"
+      },
+      {
+        "vi": "Tái lập",
+        "ru": "воспроизводимость",
+        "en": "reproducibility"
+      }
+    ],
+    "professorQuestions": [
+      "Bài này giải quyết vấn đề kỹ thuật gì?",
+      "Input/output và artifact là gì?",
+      "Thiết kế này có test/log không?",
+      "Rủi ro lỗi logic hoặc lỗi môi trường ở đâu?",
+      "Hãy nói thuật ngữ chính bằng Việt - Nga - Anh."
+    ],
+    "expectedAnswerStructure": [
+      "Vấn đề kỹ thuật",
+      "Input/output",
+      "Workflow/code lõi",
+      "Test/log/artifact",
+      "Rủi ro và giới hạn",
+      "Thuật ngữ Việt-Nga-Anh"
+    ],
+    "turns": [
+      {
+        "speaker": "GS",
+        "ru": "Hãy nói vấn đề kỹ thuật mà bài này giải quyết.",
+        "vi": "Hãy nói vấn đề kỹ thuật mà bài này giải quyết."
+      },
+      {
+        "speaker": "HV",
+        "ru": "Bài Script chạy lại toàn bộ kết quả giúp em xây workflow/code cho tái tạo bảng và hình trong luận văn.",
+        "vi": "Bài Script chạy lại toàn bộ kết quả giúp em xây workflow/code cho tái tạo bảng và hình trong luận văn."
+      },
+      {
+        "speaker": "GS",
+        "ru": "Input, output và kiểm thử tối thiểu là gì?",
+        "vi": "Input, output và kiểm thử tối thiểu là gì?"
+      },
+      {
+        "speaker": "HV",
+        "ru": "Em cần xác định dữ liệu vào/ra, dùng make reproduce → data → model → figures, chạy test/log và ghi artifact.",
+        "vi": "Em cần xác định dữ liệu vào/ra, dùng make reproduce → data → model → figures, chạy test/log và ghi artifact."
+      },
+      {
+        "speaker": "GS",
+        "ru": "Thuật ngữ chính bằng Việt - Nga - Anh?",
+        "vi": "Thuật ngữ chính bằng Việt - Nga - Anh?"
+      },
+      {
+        "speaker": "HV",
+        "ru": "Script tái lập · скрипт воспроизведения · reproduction script.",
+        "vi": "Script tái lập · скрипт воспроизведения · reproduction script."
+      }
+    ]
+  },
+  {
+    "id": "oral_PR43",
+    "stage": "hk4",
+    "lessonId": "PR43",
+    "group": "vấn đáp giáo sư",
+    "type": "professor-oral-defense",
+    "difficulty": "academic",
+    "title": "Vấn đáp giáo sư · Chuẩn hóa thư mục luận văn và artifact",
+    "purpose": "Tập trả lời câu hỏi lý thuyết thực tế: vấn đề, input/output, thiết kế, test, artifact, rủi ro và thuật ngữ Việt-Nga-Anh.",
+    "terminologyMode": "vi-ru-en",
+    "terminologyTerms": [
+      {
+        "vi": "Phụ lục kỹ thuật",
+        "ru": "техническое приложение",
+        "en": "technical appendix"
+      },
+      {
+        "vi": "Input/Output",
+        "ru": "вход/выход",
+        "en": "input/output"
+      },
+      {
+        "vi": "Kiểm thử",
+        "ru": "тестирование",
+        "en": "testing"
+      },
+      {
+        "vi": "Tái lập",
+        "ru": "воспроизводимость",
+        "en": "reproducibility"
+      }
+    ],
+    "professorQuestions": [
+      "Bài này giải quyết vấn đề kỹ thuật gì?",
+      "Input/output và artifact là gì?",
+      "Thiết kế này có test/log không?",
+      "Rủi ro lỗi logic hoặc lỗi môi trường ở đâu?",
+      "Hãy nói thuật ngữ chính bằng Việt - Nga - Anh."
+    ],
+    "expectedAnswerStructure": [
+      "Vấn đề kỹ thuật",
+      "Input/output",
+      "Workflow/code lõi",
+      "Test/log/artifact",
+      "Rủi ro và giới hạn",
+      "Thuật ngữ Việt-Nga-Anh"
+    ],
+    "turns": [
+      {
+        "speaker": "GS",
+        "ru": "Hãy nói vấn đề kỹ thuật mà bài này giải quyết.",
+        "vi": "Hãy nói vấn đề kỹ thuật mà bài này giải quyết."
+      },
+      {
+        "speaker": "HV",
+        "ru": "Bài Chuẩn hóa thư mục luận văn và artifact giúp em xây workflow/code cho không thất lạc hình, bảng, code khi viết ВКР.",
+        "vi": "Bài Chuẩn hóa thư mục luận văn và artifact giúp em xây workflow/code cho không thất lạc hình, bảng, code khi viết ВКР."
+      },
+      {
+        "speaker": "GS",
+        "ru": "Input, output và kiểm thử tối thiểu là gì?",
+        "vi": "Input, output và kiểm thử tối thiểu là gì?"
+      },
+      {
+        "speaker": "HV",
+        "ru": "Em cần xác định dữ liệu vào/ra, dùng thesis/ figures/ tables/ code/ appendix/, chạy test/log và ghi artifact.",
+        "vi": "Em cần xác định dữ liệu vào/ra, dùng thesis/ figures/ tables/ code/ appendix/, chạy test/log và ghi artifact."
+      },
+      {
+        "speaker": "GS",
+        "ru": "Thuật ngữ chính bằng Việt - Nga - Anh?",
+        "vi": "Thuật ngữ chính bằng Việt - Nga - Anh?"
+      },
+      {
+        "speaker": "HV",
+        "ru": "Phụ lục kỹ thuật · техническое приложение · technical appendix.",
+        "vi": "Phụ lục kỹ thuật · техническое приложение · technical appendix."
+      }
+    ]
+  },
+  {
+    "id": "oral_PR44",
+    "stage": "hk4",
+    "lessonId": "PR44",
+    "group": "vấn đáp giáo sư",
+    "type": "professor-oral-defense",
+    "difficulty": "academic",
+    "title": "Vấn đáp giáo sư · Demo offline và kế hoạch dự phòng",
+    "purpose": "Tập trả lời câu hỏi lý thuyết thực tế: vấn đề, input/output, thiết kế, test, artifact, rủi ro và thuật ngữ Việt-Nga-Anh.",
+    "terminologyMode": "vi-ru-en",
+    "terminologyTerms": [
+      {
+        "vi": "Kế hoạch dự phòng",
+        "ru": "резервный план",
+        "en": "fallback plan"
+      },
+      {
+        "vi": "Input/Output",
+        "ru": "вход/выход",
+        "en": "input/output"
+      },
+      {
+        "vi": "Kiểm thử",
+        "ru": "тестирование",
+        "en": "testing"
+      },
+      {
+        "vi": "Tái lập",
+        "ru": "воспроизводимость",
+        "en": "reproducibility"
+      }
+    ],
+    "professorQuestions": [
+      "Bài này giải quyết vấn đề kỹ thuật gì?",
+      "Input/output và artifact là gì?",
+      "Thiết kế này có test/log không?",
+      "Rủi ro lỗi logic hoặc lỗi môi trường ở đâu?",
+      "Hãy nói thuật ngữ chính bằng Việt - Nga - Anh."
+    ],
+    "expectedAnswerStructure": [
+      "Vấn đề kỹ thuật",
+      "Input/output",
+      "Workflow/code lõi",
+      "Test/log/artifact",
+      "Rủi ro và giới hạn",
+      "Thuật ngữ Việt-Nga-Anh"
+    ],
+    "turns": [
+      {
+        "speaker": "GS",
+        "ru": "Hãy nói vấn đề kỹ thuật mà bài này giải quyết.",
+        "vi": "Hãy nói vấn đề kỹ thuật mà bài này giải quyết."
+      },
+      {
+        "speaker": "HV",
+        "ru": "Bài Demo offline và kế hoạch dự phòng giúp em xây workflow/code cho bảo vệ khi mạng/hardware có vấn đề.",
+        "vi": "Bài Demo offline và kế hoạch dự phòng giúp em xây workflow/code cho bảo vệ khi mạng/hardware có vấn đề."
+      },
+      {
+        "speaker": "GS",
+        "ru": "Input, output và kiểm thử tối thiểu là gì?",
+        "vi": "Input, output và kiểm thử tối thiểu là gì?"
+      },
+      {
+        "speaker": "HV",
+        "ru": "Em cần xác định dữ liệu vào/ra, dùng offline mode + sample data + screenshots, chạy test/log và ghi artifact.",
+        "vi": "Em cần xác định dữ liệu vào/ra, dùng offline mode + sample data + screenshots, chạy test/log và ghi artifact."
+      },
+      {
+        "speaker": "GS",
+        "ru": "Thuật ngữ chính bằng Việt - Nga - Anh?",
+        "vi": "Thuật ngữ chính bằng Việt - Nga - Anh?"
+      },
+      {
+        "speaker": "HV",
+        "ru": "Kế hoạch dự phòng · резервный план · fallback plan.",
+        "vi": "Kế hoạch dự phòng · резервный план · fallback plan."
+      }
+    ]
+  },
+  {
+    "id": "oral_PR45",
+    "stage": "hk4",
+    "lessonId": "PR45",
+    "group": "vấn đáp giáo sư",
+    "type": "professor-oral-defense",
+    "difficulty": "academic",
+    "title": "Vấn đáp giáo sư · Tối ưu nhỏ: runtime, memory và latency",
+    "purpose": "Tập trả lời câu hỏi lý thuyết thực tế: vấn đề, input/output, thiết kế, test, artifact, rủi ro và thuật ngữ Việt-Nga-Anh.",
+    "terminologyMode": "vi-ru-en",
+    "terminologyTerms": [
+      {
+        "vi": "Độ trễ",
+        "ru": "задержка",
+        "en": "latency"
+      },
+      {
+        "vi": "Input/Output",
+        "ru": "вход/выход",
+        "en": "input/output"
+      },
+      {
+        "vi": "Kiểm thử",
+        "ru": "тестирование",
+        "en": "testing"
+      },
+      {
+        "vi": "Tái lập",
+        "ru": "воспроизводимость",
+        "en": "reproducibility"
+      }
+    ],
+    "professorQuestions": [
+      "Bài này giải quyết vấn đề kỹ thuật gì?",
+      "Input/output và artifact là gì?",
+      "Thiết kế này có test/log không?",
+      "Rủi ro lỗi logic hoặc lỗi môi trường ở đâu?",
+      "Hãy nói thuật ngữ chính bằng Việt - Nga - Anh."
+    ],
+    "expectedAnswerStructure": [
+      "Vấn đề kỹ thuật",
+      "Input/output",
+      "Workflow/code lõi",
+      "Test/log/artifact",
+      "Rủi ro và giới hạn",
+      "Thuật ngữ Việt-Nga-Anh"
+    ],
+    "turns": [
+      {
+        "speaker": "GS",
+        "ru": "Hãy nói vấn đề kỹ thuật mà bài này giải quyết.",
+        "vi": "Hãy nói vấn đề kỹ thuật mà bài này giải quyết."
+      },
+      {
+        "speaker": "HV",
+        "ru": "Bài Tối ưu nhỏ: runtime, memory và latency giúp em xây workflow/code cho trả lời phản biện về khả năng chạy trên phần cứng robot.",
+        "vi": "Bài Tối ưu nhỏ: runtime, memory và latency giúp em xây workflow/code cho trả lời phản biện về khả năng chạy trên phần cứng robot."
+      },
+      {
+        "speaker": "GS",
+        "ru": "Input, output và kiểm thử tối thiểu là gì?",
+        "vi": "Input, output và kiểm thử tối thiểu là gì?"
+      },
+      {
+        "speaker": "HV",
+        "ru": "Em cần xác định dữ liệu vào/ra, dùng latency_ms; memory_mb; throughput, chạy test/log và ghi artifact.",
+        "vi": "Em cần xác định dữ liệu vào/ra, dùng latency_ms; memory_mb; throughput, chạy test/log và ghi artifact."
+      },
+      {
+        "speaker": "GS",
+        "ru": "Thuật ngữ chính bằng Việt - Nga - Anh?",
+        "vi": "Thuật ngữ chính bằng Việt - Nga - Anh?"
+      },
+      {
+        "speaker": "HV",
+        "ru": "Độ trễ · задержка · latency.",
+        "vi": "Độ trễ · задержка · latency."
+      }
+    ]
+  },
+  {
+    "id": "oral_PR46",
+    "stage": "hk4",
+    "lessonId": "PR46",
+    "group": "vấn đáp giáo sư",
+    "type": "professor-oral-defense",
+    "difficulty": "academic",
+    "title": "Vấn đáp giáo sư · Kiểm tra license, citation và nguồn mở",
+    "purpose": "Tập trả lời câu hỏi lý thuyết thực tế: vấn đề, input/output, thiết kế, test, artifact, rủi ro và thuật ngữ Việt-Nga-Anh.",
+    "terminologyMode": "vi-ru-en",
+    "terminologyTerms": [
+      {
+        "vi": "Giấy phép phần mềm",
+        "ru": "лицензия ПО",
+        "en": "software license"
+      },
+      {
+        "vi": "Input/Output",
+        "ru": "вход/выход",
+        "en": "input/output"
+      },
+      {
+        "vi": "Kiểm thử",
+        "ru": "тестирование",
+        "en": "testing"
+      },
+      {
+        "vi": "Tái lập",
+        "ru": "воспроизводимость",
+        "en": "reproducibility"
+      }
+    ],
+    "professorQuestions": [
+      "Bài này giải quyết vấn đề kỹ thuật gì?",
+      "Input/output và artifact là gì?",
+      "Thiết kế này có test/log không?",
+      "Rủi ro lỗi logic hoặc lỗi môi trường ở đâu?",
+      "Hãy nói thuật ngữ chính bằng Việt - Nga - Anh."
+    ],
+    "expectedAnswerStructure": [
+      "Vấn đề kỹ thuật",
+      "Input/output",
+      "Workflow/code lõi",
+      "Test/log/artifact",
+      "Rủi ro và giới hạn",
+      "Thuật ngữ Việt-Nga-Anh"
+    ],
+    "turns": [
+      {
+        "speaker": "GS",
+        "ru": "Hãy nói vấn đề kỹ thuật mà bài này giải quyết.",
+        "vi": "Hãy nói vấn đề kỹ thuật mà bài này giải quyết."
+      },
+      {
+        "speaker": "HV",
+        "ru": "Bài Kiểm tra license, citation và nguồn mở giúp em xây workflow/code cho tránh lỗi trích dẫn thư viện/dữ liệu khi nộp luận văn.",
+        "vi": "Bài Kiểm tra license, citation và nguồn mở giúp em xây workflow/code cho tránh lỗi trích dẫn thư viện/dữ liệu khi nộp luận văn."
+      },
+      {
+        "speaker": "GS",
+        "ru": "Input, output và kiểm thử tối thiểu là gì?",
+        "vi": "Input, output và kiểm thử tối thiểu là gì?"
+      },
+      {
+        "speaker": "HV",
+        "ru": "Em cần xác định dữ liệu vào/ra, dùng LICENSE + CITATION + third-party notices, chạy test/log và ghi artifact.",
+        "vi": "Em cần xác định dữ liệu vào/ra, dùng LICENSE + CITATION + third-party notices, chạy test/log và ghi artifact."
+      },
+      {
+        "speaker": "GS",
+        "ru": "Thuật ngữ chính bằng Việt - Nga - Anh?",
+        "vi": "Thuật ngữ chính bằng Việt - Nga - Anh?"
+      },
+      {
+        "speaker": "HV",
+        "ru": "Giấy phép phần mềm · лицензия ПО · software license.",
+        "vi": "Giấy phép phần mềm · лицензия ПО · software license."
+      }
+    ]
+  },
+  {
+    "id": "oral_PR47",
+    "stage": "hk4",
+    "lessonId": "PR47",
+    "group": "vấn đáp giáo sư",
+    "type": "professor-oral-defense",
+    "difficulty": "academic",
+    "title": "Vấn đáp giáo sư · Slide kỹ thuật: kiến trúc, pipeline, kết quả",
+    "purpose": "Tập trả lời câu hỏi lý thuyết thực tế: vấn đề, input/output, thiết kế, test, artifact, rủi ro và thuật ngữ Việt-Nga-Anh.",
+    "terminologyMode": "vi-ru-en",
+    "terminologyTerms": [
+      {
+        "vi": "Slide bảo vệ",
+        "ru": "слайды защиты",
+        "en": "defense slides"
+      },
+      {
+        "vi": "Input/Output",
+        "ru": "вход/выход",
+        "en": "input/output"
+      },
+      {
+        "vi": "Kiểm thử",
+        "ru": "тестирование",
+        "en": "testing"
+      },
+      {
+        "vi": "Tái lập",
+        "ru": "воспроизводимость",
+        "en": "reproducibility"
+      }
+    ],
+    "professorQuestions": [
+      "Bài này giải quyết vấn đề kỹ thuật gì?",
+      "Input/output và artifact là gì?",
+      "Thiết kế này có test/log không?",
+      "Rủi ro lỗi logic hoặc lỗi môi trường ở đâu?",
+      "Hãy nói thuật ngữ chính bằng Việt - Nga - Anh."
+    ],
+    "expectedAnswerStructure": [
+      "Vấn đề kỹ thuật",
+      "Input/output",
+      "Workflow/code lõi",
+      "Test/log/artifact",
+      "Rủi ro và giới hạn",
+      "Thuật ngữ Việt-Nga-Anh"
+    ],
+    "turns": [
+      {
+        "speaker": "GS",
+        "ru": "Hãy nói vấn đề kỹ thuật mà bài này giải quyết.",
+        "vi": "Hãy nói vấn đề kỹ thuật mà bài này giải quyết."
+      },
+      {
+        "speaker": "HV",
+        "ru": "Bài Slide kỹ thuật: kiến trúc, pipeline, kết quả giúp em xây workflow/code cho trình bày phần code không loạn trước hội đồng.",
+        "vi": "Bài Slide kỹ thuật: kiến trúc, pipeline, kết quả giúp em xây workflow/code cho trình bày phần code không loạn trước hội đồng."
+      },
+      {
+        "speaker": "GS",
+        "ru": "Input, output và kiểm thử tối thiểu là gì?",
+        "vi": "Input, output và kiểm thử tối thiểu là gì?"
+      },
+      {
+        "speaker": "HV",
+        "ru": "Em cần xác định dữ liệu vào/ra, dùng problem → architecture → experiment → result → limit, chạy test/log và ghi artifact.",
+        "vi": "Em cần xác định dữ liệu vào/ra, dùng problem → architecture → experiment → result → limit, chạy test/log và ghi artifact."
+      },
+      {
+        "speaker": "GS",
+        "ru": "Thuật ngữ chính bằng Việt - Nga - Anh?",
+        "vi": "Thuật ngữ chính bằng Việt - Nga - Anh?"
+      },
+      {
+        "speaker": "HV",
+        "ru": "Slide bảo vệ · слайды защиты · defense slides.",
+        "vi": "Slide bảo vệ · слайды защиты · defense slides."
+      }
+    ]
+  },
+  {
+    "id": "oral_PR48",
+    "stage": "hk4",
+    "lessonId": "PR48",
+    "group": "vấn đáp giáo sư",
+    "type": "professor-oral-defense",
+    "difficulty": "academic",
+    "title": "Vấn đáp giáo sư · Trả lời phản biện kỹ thuật phần mềm",
+    "purpose": "Tập trả lời câu hỏi lý thuyết thực tế: vấn đề, input/output, thiết kế, test, artifact, rủi ro và thuật ngữ Việt-Nga-Anh.",
+    "terminologyMode": "vi-ru-en",
+    "terminologyTerms": [
+      {
+        "vi": "Phản biện kỹ thuật",
+        "ru": "техническая защита",
+        "en": "technical defense"
+      },
+      {
+        "vi": "Input/Output",
+        "ru": "вход/выход",
+        "en": "input/output"
+      },
+      {
+        "vi": "Kiểm thử",
+        "ru": "тестирование",
+        "en": "testing"
+      },
+      {
+        "vi": "Tái lập",
+        "ru": "воспроизводимость",
+        "en": "reproducibility"
+      }
+    ],
+    "professorQuestions": [
+      "Bài này giải quyết vấn đề kỹ thuật gì?",
+      "Input/output và artifact là gì?",
+      "Thiết kế này có test/log không?",
+      "Rủi ro lỗi logic hoặc lỗi môi trường ở đâu?",
+      "Hãy nói thuật ngữ chính bằng Việt - Nga - Anh."
+    ],
+    "expectedAnswerStructure": [
+      "Vấn đề kỹ thuật",
+      "Input/output",
+      "Workflow/code lõi",
+      "Test/log/artifact",
+      "Rủi ro và giới hạn",
+      "Thuật ngữ Việt-Nga-Anh"
+    ],
+    "turns": [
+      {
+        "speaker": "GS",
+        "ru": "Hãy nói vấn đề kỹ thuật mà bài này giải quyết.",
+        "vi": "Hãy nói vấn đề kỹ thuật mà bài này giải quyết."
+      },
+      {
+        "speaker": "HV",
+        "ru": "Bài Trả lời phản biện kỹ thuật phần mềm giúp em xây workflow/code cho bảo vệ lựa chọn kiến trúc, dữ liệu, metric và demo.",
+        "vi": "Bài Trả lời phản biện kỹ thuật phần mềm giúp em xây workflow/code cho bảo vệ lựa chọn kiến trúc, dữ liệu, metric và demo."
+      },
+      {
+        "speaker": "GS",
+        "ru": "Input, output và kiểm thử tối thiểu là gì?",
+        "vi": "Input, output và kiểm thử tối thiểu là gì?"
+      },
+      {
+        "speaker": "HV",
+        "ru": "Em cần xác định dữ liệu vào/ra, dùng why design? why metric? why reproducible?, chạy test/log và ghi artifact.",
+        "vi": "Em cần xác định dữ liệu vào/ra, dùng why design? why metric? why reproducible?, chạy test/log và ghi artifact."
+      },
+      {
+        "speaker": "GS",
+        "ru": "Thuật ngữ chính bằng Việt - Nga - Anh?",
+        "vi": "Thuật ngữ chính bằng Việt - Nga - Anh?"
+      },
+      {
+        "speaker": "HV",
+        "ru": "Phản biện kỹ thuật · техническая защита · technical defense.",
+        "vi": "Phản biện kỹ thuật · техническая защита · technical defense."
+      }
+    ]
+  }
+]

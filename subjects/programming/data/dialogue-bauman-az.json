@@ -1,0 +1,2738 @@
+[
+  {
+    "id": "app_PR01",
+    "stage": "vn",
+    "lessonId": "PR01",
+    "group": "ứng dụng AI/Bauman",
+    "type": "application-case",
+    "difficulty": "applied",
+    "title": "Ứng dụng · Thiết lập môi trường Python, VS Code và Live Server",
+    "purpose": "mở module học, chạy notebook, kiểm thử HTML/JSON cục bộ",
+    "applicationDomain": "mở module học, chạy notebook, kiểm thử HTML/JSON cục bộ",
+    "formulaUsed": "python -m venv .venv; pip install -r requirements.txt; code .",
+    "aiGraduationNeed": "Cần cho repo học tập, lab, seminar, НИР/ВКР và bảo vệ quyết định kỹ thuật.",
+    "terminologyTerms": [
+      {
+        "vi": "Môi trường phát triển",
+        "ru": "среда разработки",
+        "en": "development environment"
+      },
+      {
+        "vi": "Input/Output",
+        "ru": "вход/выход",
+        "en": "input/output"
+      },
+      {
+        "vi": "Kiểm thử",
+        "ru": "тестирование",
+        "en": "testing"
+      },
+      {
+        "vi": "Tái lập",
+        "ru": "воспроизводимость",
+        "en": "reproducibility"
+      }
+    ],
+    "turns": [
+      {
+        "speaker": "Case",
+        "ru": "Bối cảnh ứng dụng: mở module học, chạy notebook, kiểm thử HTML/JSON cục bộ.",
+        "vi": "Bối cảnh ứng dụng: mở module học, chạy notebook, kiểm thử HTML/JSON cục bộ."
+      },
+      {
+        "speaker": "Workflow",
+        "ru": "Quy trình/cú pháp dùng: python -m venv .venv; pip install -r requirements.txt; code .",
+        "vi": "Quy trình/cú pháp dùng: python -m venv .venv; pip install -r requirements.txt; code ."
+      },
+      {
+        "speaker": "Check",
+        "ru": "Cần kiểm tra input/output, test/log, version, seed và README.",
+        "vi": "Cần kiểm tra input/output, test/log, version, seed và README."
+      },
+      {
+        "speaker": "Report",
+        "ru": "Kết luận tốt phải có artifact, dữ liệu mẫu, cách chạy lại và giới hạn kỹ thuật.",
+        "vi": "Kết luận tốt phải có artifact, dữ liệu mẫu, cách chạy lại và giới hạn kỹ thuật."
+      }
+    ]
+  },
+  {
+    "id": "app_PR02",
+    "stage": "vn",
+    "lessonId": "PR02",
+    "group": "ứng dụng AI/Bauman",
+    "type": "application-case",
+    "difficulty": "applied",
+    "title": "Ứng dụng · Tư duy thuật toán và độ phức tạp",
+    "purpose": "chọn thuật toán đủ nhanh cho xử lý dữ liệu robot",
+    "applicationDomain": "chọn thuật toán đủ nhanh cho xử lý dữ liệu robot",
+    "formulaUsed": "T(n)=O(n log n); space=O(n)",
+    "aiGraduationNeed": "Cần cho repo học tập, lab, seminar, НИР/ВКР và bảo vệ quyết định kỹ thuật.",
+    "terminologyTerms": [
+      {
+        "vi": "Độ phức tạp",
+        "ru": "сложность алгоритма",
+        "en": "algorithmic complexity"
+      },
+      {
+        "vi": "Input/Output",
+        "ru": "вход/выход",
+        "en": "input/output"
+      },
+      {
+        "vi": "Kiểm thử",
+        "ru": "тестирование",
+        "en": "testing"
+      },
+      {
+        "vi": "Tái lập",
+        "ru": "воспроизводимость",
+        "en": "reproducibility"
+      }
+    ],
+    "turns": [
+      {
+        "speaker": "Case",
+        "ru": "Bối cảnh ứng dụng: chọn thuật toán đủ nhanh cho xử lý dữ liệu robot.",
+        "vi": "Bối cảnh ứng dụng: chọn thuật toán đủ nhanh cho xử lý dữ liệu robot."
+      },
+      {
+        "speaker": "Workflow",
+        "ru": "Quy trình/cú pháp dùng: T(n)=O(n log n); space=O(n)",
+        "vi": "Quy trình/cú pháp dùng: T(n)=O(n log n); space=O(n)"
+      },
+      {
+        "speaker": "Check",
+        "ru": "Cần kiểm tra input/output, test/log, version, seed và README.",
+        "vi": "Cần kiểm tra input/output, test/log, version, seed và README."
+      },
+      {
+        "speaker": "Report",
+        "ru": "Kết luận tốt phải có artifact, dữ liệu mẫu, cách chạy lại và giới hạn kỹ thuật.",
+        "vi": "Kết luận tốt phải có artifact, dữ liệu mẫu, cách chạy lại và giới hạn kỹ thuật."
+      }
+    ]
+  },
+  {
+    "id": "app_PR03",
+    "stage": "vn",
+    "lessonId": "PR03",
+    "group": "ứng dụng AI/Bauman",
+    "type": "application-case",
+    "difficulty": "applied",
+    "title": "Ứng dụng · Python căn bản: kiểu dữ liệu, hàm, module",
+    "purpose": "viết script sạch để xử lý bài tập và dữ liệu nhỏ",
+    "applicationDomain": "viết script sạch để xử lý bài tập và dữ liệu nhỏ",
+    "formulaUsed": "def f(x): return y; list/dict/set/tuple",
+    "aiGraduationNeed": "Cần cho repo học tập, lab, seminar, НИР/ВКР và bảo vệ quyết định kỹ thuật.",
+    "terminologyTerms": [
+      {
+        "vi": "Hàm",
+        "ru": "функция",
+        "en": "function"
+      },
+      {
+        "vi": "Input/Output",
+        "ru": "вход/выход",
+        "en": "input/output"
+      },
+      {
+        "vi": "Kiểm thử",
+        "ru": "тестирование",
+        "en": "testing"
+      },
+      {
+        "vi": "Tái lập",
+        "ru": "воспроизводимость",
+        "en": "reproducibility"
+      }
+    ],
+    "turns": [
+      {
+        "speaker": "Case",
+        "ru": "Bối cảnh ứng dụng: viết script sạch để xử lý bài tập và dữ liệu nhỏ.",
+        "vi": "Bối cảnh ứng dụng: viết script sạch để xử lý bài tập và dữ liệu nhỏ."
+      },
+      {
+        "speaker": "Workflow",
+        "ru": "Quy trình/cú pháp dùng: def f(x): return y; list/dict/set/tuple",
+        "vi": "Quy trình/cú pháp dùng: def f(x): return y; list/dict/set/tuple"
+      },
+      {
+        "speaker": "Check",
+        "ru": "Cần kiểm tra input/output, test/log, version, seed và README.",
+        "vi": "Cần kiểm tra input/output, test/log, version, seed và README."
+      },
+      {
+        "speaker": "Report",
+        "ru": "Kết luận tốt phải có artifact, dữ liệu mẫu, cách chạy lại và giới hạn kỹ thuật.",
+        "vi": "Kết luận tốt phải có artifact, dữ liệu mẫu, cách chạy lại và giới hạn kỹ thuật."
+      }
+    ]
+  },
+  {
+    "id": "app_PR04",
+    "stage": "vn",
+    "lessonId": "PR04",
+    "group": "ứng dụng AI/Bauman",
+    "type": "application-case",
+    "difficulty": "applied",
+    "title": "Ứng dụng · NumPy và vector hóa dữ liệu",
+    "purpose": "tính toán ma trận/đặc trưng cho AI nhanh và gọn",
+    "applicationDomain": "tính toán ma trận/đặc trưng cho AI nhanh và gọn",
+    "formulaUsed": "X.shape=(n,d); y = X @ w + b",
+    "aiGraduationNeed": "Cần cho repo học tập, lab, seminar, НИР/ВКР và bảo vệ quyết định kỹ thuật.",
+    "terminologyTerms": [
+      {
+        "vi": "Vector hóa",
+        "ru": "векторизация",
+        "en": "vectorization"
+      },
+      {
+        "vi": "Input/Output",
+        "ru": "вход/выход",
+        "en": "input/output"
+      },
+      {
+        "vi": "Kiểm thử",
+        "ru": "тестирование",
+        "en": "testing"
+      },
+      {
+        "vi": "Tái lập",
+        "ru": "воспроизводимость",
+        "en": "reproducibility"
+      }
+    ],
+    "turns": [
+      {
+        "speaker": "Case",
+        "ru": "Bối cảnh ứng dụng: tính toán ma trận/đặc trưng cho AI nhanh và gọn.",
+        "vi": "Bối cảnh ứng dụng: tính toán ma trận/đặc trưng cho AI nhanh và gọn."
+      },
+      {
+        "speaker": "Workflow",
+        "ru": "Quy trình/cú pháp dùng: X.shape=(n,d); y = X @ w + b",
+        "vi": "Quy trình/cú pháp dùng: X.shape=(n,d); y = X @ w + b"
+      },
+      {
+        "speaker": "Check",
+        "ru": "Cần kiểm tra input/output, test/log, version, seed và README.",
+        "vi": "Cần kiểm tra input/output, test/log, version, seed và README."
+      },
+      {
+        "speaker": "Report",
+        "ru": "Kết luận tốt phải có artifact, dữ liệu mẫu, cách chạy lại và giới hạn kỹ thuật.",
+        "vi": "Kết luận tốt phải có artifact, dữ liệu mẫu, cách chạy lại và giới hạn kỹ thuật."
+      }
+    ]
+  },
+  {
+    "id": "app_PR05",
+    "stage": "vn",
+    "lessonId": "PR05",
+    "group": "ứng dụng AI/Bauman",
+    "type": "application-case",
+    "difficulty": "applied",
+    "title": "Ứng dụng · Pandas và làm sạch bảng dữ liệu",
+    "purpose": "làm sạch log cảm biến, bảng điểm đo, dữ liệu CSV",
+    "applicationDomain": "làm sạch log cảm biến, bảng điểm đo, dữ liệu CSV",
+    "formulaUsed": "df.dropna(); df.groupby(); df.merge()",
+    "aiGraduationNeed": "Cần cho repo học tập, lab, seminar, НИР/ВКР và bảo vệ quyết định kỹ thuật.",
+    "terminologyTerms": [
+      {
+        "vi": "Khung dữ liệu",
+        "ru": "таблица данных",
+        "en": "dataframe"
+      },
+      {
+        "vi": "Input/Output",
+        "ru": "вход/выход",
+        "en": "input/output"
+      },
+      {
+        "vi": "Kiểm thử",
+        "ru": "тестирование",
+        "en": "testing"
+      },
+      {
+        "vi": "Tái lập",
+        "ru": "воспроизводимость",
+        "en": "reproducibility"
+      }
+    ],
+    "turns": [
+      {
+        "speaker": "Case",
+        "ru": "Bối cảnh ứng dụng: làm sạch log cảm biến, bảng điểm đo, dữ liệu CSV.",
+        "vi": "Bối cảnh ứng dụng: làm sạch log cảm biến, bảng điểm đo, dữ liệu CSV."
+      },
+      {
+        "speaker": "Workflow",
+        "ru": "Quy trình/cú pháp dùng: df.dropna(); df.groupby(); df.merge()",
+        "vi": "Quy trình/cú pháp dùng: df.dropna(); df.groupby(); df.merge()"
+      },
+      {
+        "speaker": "Check",
+        "ru": "Cần kiểm tra input/output, test/log, version, seed và README.",
+        "vi": "Cần kiểm tra input/output, test/log, version, seed và README."
+      },
+      {
+        "speaker": "Report",
+        "ru": "Kết luận tốt phải có artifact, dữ liệu mẫu, cách chạy lại và giới hạn kỹ thuật.",
+        "vi": "Kết luận tốt phải có artifact, dữ liệu mẫu, cách chạy lại và giới hạn kỹ thuật."
+      }
+    ]
+  },
+  {
+    "id": "app_PR06",
+    "stage": "vn",
+    "lessonId": "PR06",
+    "group": "ứng dụng AI/Bauman",
+    "type": "application-case",
+    "difficulty": "applied",
+    "title": "Ứng dụng · SQL căn bản và mô hình quan hệ",
+    "purpose": "lưu kết quả thí nghiệm, metadata và truy vấn nhanh",
+    "applicationDomain": "lưu kết quả thí nghiệm, metadata và truy vấn nhanh",
+    "formulaUsed": "SELECT col FROM table WHERE condition; PK/FK",
+    "aiGraduationNeed": "Cần cho repo học tập, lab, seminar, НИР/ВКР và bảo vệ quyết định kỹ thuật.",
+    "terminologyTerms": [
+      {
+        "vi": "Truy vấn SQL",
+        "ru": "SQL-запрос",
+        "en": "SQL query"
+      },
+      {
+        "vi": "Input/Output",
+        "ru": "вход/выход",
+        "en": "input/output"
+      },
+      {
+        "vi": "Kiểm thử",
+        "ru": "тестирование",
+        "en": "testing"
+      },
+      {
+        "vi": "Tái lập",
+        "ru": "воспроизводимость",
+        "en": "reproducibility"
+      }
+    ],
+    "turns": [
+      {
+        "speaker": "Case",
+        "ru": "Bối cảnh ứng dụng: lưu kết quả thí nghiệm, metadata và truy vấn nhanh.",
+        "vi": "Bối cảnh ứng dụng: lưu kết quả thí nghiệm, metadata và truy vấn nhanh."
+      },
+      {
+        "speaker": "Workflow",
+        "ru": "Quy trình/cú pháp dùng: SELECT col FROM table WHERE condition; PK/FK",
+        "vi": "Quy trình/cú pháp dùng: SELECT col FROM table WHERE condition; PK/FK"
+      },
+      {
+        "speaker": "Check",
+        "ru": "Cần kiểm tra input/output, test/log, version, seed và README.",
+        "vi": "Cần kiểm tra input/output, test/log, version, seed và README."
+      },
+      {
+        "speaker": "Report",
+        "ru": "Kết luận tốt phải có artifact, dữ liệu mẫu, cách chạy lại và giới hạn kỹ thuật.",
+        "vi": "Kết luận tốt phải có artifact, dữ liệu mẫu, cách chạy lại và giới hạn kỹ thuật."
+      }
+    ]
+  },
+  {
+    "id": "app_PR07",
+    "stage": "vn",
+    "lessonId": "PR07",
+    "group": "ứng dụng AI/Bauman",
+    "type": "application-case",
+    "difficulty": "applied",
+    "title": "Ứng dụng · Git, GitHub và nhật ký học tập",
+    "purpose": "quản lý phiên bản bài học, notebook, mã mô phỏng",
+    "applicationDomain": "quản lý phiên bản bài học, notebook, mã mô phỏng",
+    "formulaUsed": "git add .; git commit -m \"message\"; git branch",
+    "aiGraduationNeed": "Cần cho repo học tập, lab, seminar, НИР/ВКР và bảo vệ quyết định kỹ thuật.",
+    "terminologyTerms": [
+      {
+        "vi": "Kho mã nguồn",
+        "ru": "репозиторий",
+        "en": "repository"
+      },
+      {
+        "vi": "Input/Output",
+        "ru": "вход/выход",
+        "en": "input/output"
+      },
+      {
+        "vi": "Kiểm thử",
+        "ru": "тестирование",
+        "en": "testing"
+      },
+      {
+        "vi": "Tái lập",
+        "ru": "воспроизводимость",
+        "en": "reproducibility"
+      }
+    ],
+    "turns": [
+      {
+        "speaker": "Case",
+        "ru": "Bối cảnh ứng dụng: quản lý phiên bản bài học, notebook, mã mô phỏng.",
+        "vi": "Bối cảnh ứng dụng: quản lý phiên bản bài học, notebook, mã mô phỏng."
+      },
+      {
+        "speaker": "Workflow",
+        "ru": "Quy trình/cú pháp dùng: git add .; git commit -m \"message\"; git branch",
+        "vi": "Quy trình/cú pháp dùng: git add .; git commit -m \"message\"; git branch"
+      },
+      {
+        "speaker": "Check",
+        "ru": "Cần kiểm tra input/output, test/log, version, seed và README.",
+        "vi": "Cần kiểm tra input/output, test/log, version, seed và README."
+      },
+      {
+        "speaker": "Report",
+        "ru": "Kết luận tốt phải có artifact, dữ liệu mẫu, cách chạy lại và giới hạn kỹ thuật.",
+        "vi": "Kết luận tốt phải có artifact, dữ liệu mẫu, cách chạy lại và giới hạn kỹ thuật."
+      }
+    ]
+  },
+  {
+    "id": "app_PR08",
+    "stage": "vn",
+    "lessonId": "PR08",
+    "group": "ứng dụng AI/Bauman",
+    "type": "application-case",
+    "difficulty": "applied",
+    "title": "Ứng dụng · Notebook thực nghiệm và README tái lập",
+    "purpose": "tạo artifact học tập có thể mở lại, chạy lại, giải thích lại",
+    "applicationDomain": "tạo artifact học tập có thể mở lại, chạy lại, giải thích lại",
+    "formulaUsed": "README + notebook + data/ + src/ + results/",
+    "aiGraduationNeed": "Cần cho repo học tập, lab, seminar, НИР/ВКР và bảo vệ quyết định kỹ thuật.",
+    "terminologyTerms": [
+      {
+        "vi": "Tái lập kết quả",
+        "ru": "воспроизводимость",
+        "en": "reproducibility"
+      },
+      {
+        "vi": "Input/Output",
+        "ru": "вход/выход",
+        "en": "input/output"
+      },
+      {
+        "vi": "Kiểm thử",
+        "ru": "тестирование",
+        "en": "testing"
+      },
+      {
+        "vi": "Tái lập",
+        "ru": "воспроизводимость",
+        "en": "reproducibility"
+      }
+    ],
+    "turns": [
+      {
+        "speaker": "Case",
+        "ru": "Bối cảnh ứng dụng: tạo artifact học tập có thể mở lại, chạy lại, giải thích lại.",
+        "vi": "Bối cảnh ứng dụng: tạo artifact học tập có thể mở lại, chạy lại, giải thích lại."
+      },
+      {
+        "speaker": "Workflow",
+        "ru": "Quy trình/cú pháp dùng: README + notebook + data/ + src/ + results/",
+        "vi": "Quy trình/cú pháp dùng: README + notebook + data/ + src/ + results/"
+      },
+      {
+        "speaker": "Check",
+        "ru": "Cần kiểm tra input/output, test/log, version, seed và README.",
+        "vi": "Cần kiểm tra input/output, test/log, version, seed và README."
+      },
+      {
+        "speaker": "Report",
+        "ru": "Kết luận tốt phải có artifact, dữ liệu mẫu, cách chạy lại và giới hạn kỹ thuật.",
+        "vi": "Kết luận tốt phải có artifact, dữ liệu mẫu, cách chạy lại và giới hạn kỹ thuật."
+      }
+    ]
+  },
+  {
+    "id": "app_PR09",
+    "stage": "prep",
+    "lessonId": "PR09",
+    "group": "ứng dụng AI/Bauman",
+    "type": "application-case",
+    "difficulty": "applied",
+    "title": "Ứng dụng · Thuật ngữ tin học Nga cho lớp dự bị",
+    "purpose": "nghe/đọc đề bài tin học và hỏi giáo viên bằng tiếng Nga",
+    "applicationDomain": "nghe/đọc đề bài tin học và hỏi giáo viên bằng tiếng Nga",
+    "formulaUsed": "алгоритм, переменная, функция, массив, база данных",
+    "aiGraduationNeed": "Cần cho repo học tập, lab, seminar, НИР/ВКР và bảo vệ quyết định kỹ thuật.",
+    "terminologyTerms": [
+      {
+        "vi": "Thuật toán",
+        "ru": "алгоритм",
+        "en": "algorithm"
+      },
+      {
+        "vi": "Input/Output",
+        "ru": "вход/выход",
+        "en": "input/output"
+      },
+      {
+        "vi": "Kiểm thử",
+        "ru": "тестирование",
+        "en": "testing"
+      },
+      {
+        "vi": "Tái lập",
+        "ru": "воспроизводимость",
+        "en": "reproducibility"
+      }
+    ],
+    "turns": [
+      {
+        "speaker": "Case",
+        "ru": "Bối cảnh ứng dụng: nghe/đọc đề bài tin học và hỏi giáo viên bằng tiếng Nga.",
+        "vi": "Bối cảnh ứng dụng: nghe/đọc đề bài tin học và hỏi giáo viên bằng tiếng Nga."
+      },
+      {
+        "speaker": "Workflow",
+        "ru": "Quy trình/cú pháp dùng: алгоритм, переменная, функция, массив, база данных",
+        "vi": "Quy trình/cú pháp dùng: алгоритм, переменная, функция, массив, база данных"
+      },
+      {
+        "speaker": "Check",
+        "ru": "Cần kiểm tra input/output, test/log, version, seed và README.",
+        "vi": "Cần kiểm tra input/output, test/log, version, seed và README."
+      },
+      {
+        "speaker": "Report",
+        "ru": "Kết luận tốt phải có artifact, dữ liệu mẫu, cách chạy lại và giới hạn kỹ thuật.",
+        "vi": "Kết luận tốt phải có artifact, dữ liệu mẫu, cách chạy lại và giới hạn kỹ thuật."
+      }
+    ]
+  },
+  {
+    "id": "app_PR10",
+    "stage": "prep",
+    "lessonId": "PR10",
+    "group": "ứng dụng AI/Bauman",
+    "type": "application-case",
+    "difficulty": "applied",
+    "title": "Ứng dụng · Pseudocode và giải thích thuật toán bằng tiếng Nga",
+    "purpose": "trình bày lời giải không kẹt ngôn ngữ",
+    "applicationDomain": "trình bày lời giải không kẹt ngôn ngữ",
+    "formulaUsed": "input → process → output; if/for/while",
+    "aiGraduationNeed": "Cần cho repo học tập, lab, seminar, НИР/ВКР và bảo vệ quyết định kỹ thuật.",
+    "terminologyTerms": [
+      {
+        "vi": "Mã giả",
+        "ru": "псевдокод",
+        "en": "pseudocode"
+      },
+      {
+        "vi": "Input/Output",
+        "ru": "вход/выход",
+        "en": "input/output"
+      },
+      {
+        "vi": "Kiểm thử",
+        "ru": "тестирование",
+        "en": "testing"
+      },
+      {
+        "vi": "Tái lập",
+        "ru": "воспроизводимость",
+        "en": "reproducibility"
+      }
+    ],
+    "turns": [
+      {
+        "speaker": "Case",
+        "ru": "Bối cảnh ứng dụng: trình bày lời giải không kẹt ngôn ngữ.",
+        "vi": "Bối cảnh ứng dụng: trình bày lời giải không kẹt ngôn ngữ."
+      },
+      {
+        "speaker": "Workflow",
+        "ru": "Quy trình/cú pháp dùng: input → process → output; if/for/while",
+        "vi": "Quy trình/cú pháp dùng: input → process → output; if/for/while"
+      },
+      {
+        "speaker": "Check",
+        "ru": "Cần kiểm tra input/output, test/log, version, seed và README.",
+        "vi": "Cần kiểm tra input/output, test/log, version, seed và README."
+      },
+      {
+        "speaker": "Report",
+        "ru": "Kết luận tốt phải có artifact, dữ liệu mẫu, cách chạy lại và giới hạn kỹ thuật.",
+        "vi": "Kết luận tốt phải có artifact, dữ liệu mẫu, cách chạy lại và giới hạn kỹ thuật."
+      }
+    ]
+  },
+  {
+    "id": "app_PR11",
+    "stage": "prep",
+    "lessonId": "PR11",
+    "group": "ứng dụng AI/Bauman",
+    "type": "application-case",
+    "difficulty": "applied",
+    "title": "Ứng dụng · Cấu trúc dữ liệu nhập môn",
+    "purpose": "làm bài tin học dự bị và mô tả dữ liệu kỹ thuật",
+    "applicationDomain": "làm bài tin học dự bị và mô tả dữ liệu kỹ thuật",
+    "formulaUsed": "array, stack, queue, dict, graph",
+    "aiGraduationNeed": "Cần cho repo học tập, lab, seminar, НИР/ВКР và bảo vệ quyết định kỹ thuật.",
+    "terminologyTerms": [
+      {
+        "vi": "Cấu trúc dữ liệu",
+        "ru": "структура данных",
+        "en": "data structure"
+      },
+      {
+        "vi": "Input/Output",
+        "ru": "вход/выход",
+        "en": "input/output"
+      },
+      {
+        "vi": "Kiểm thử",
+        "ru": "тестирование",
+        "en": "testing"
+      },
+      {
+        "vi": "Tái lập",
+        "ru": "воспроизводимость",
+        "en": "reproducibility"
+      }
+    ],
+    "turns": [
+      {
+        "speaker": "Case",
+        "ru": "Bối cảnh ứng dụng: làm bài tin học dự bị và mô tả dữ liệu kỹ thuật.",
+        "vi": "Bối cảnh ứng dụng: làm bài tin học dự bị và mô tả dữ liệu kỹ thuật."
+      },
+      {
+        "speaker": "Workflow",
+        "ru": "Quy trình/cú pháp dùng: array, stack, queue, dict, graph",
+        "vi": "Quy trình/cú pháp dùng: array, stack, queue, dict, graph"
+      },
+      {
+        "speaker": "Check",
+        "ru": "Cần kiểm tra input/output, test/log, version, seed và README.",
+        "vi": "Cần kiểm tra input/output, test/log, version, seed và README."
+      },
+      {
+        "speaker": "Report",
+        "ru": "Kết luận tốt phải có artifact, dữ liệu mẫu, cách chạy lại và giới hạn kỹ thuật.",
+        "vi": "Kết luận tốt phải có artifact, dữ liệu mẫu, cách chạy lại và giới hạn kỹ thuật."
+      }
+    ]
+  },
+  {
+    "id": "app_PR12",
+    "stage": "prep",
+    "lessonId": "PR12",
+    "group": "ứng dụng AI/Bauman",
+    "type": "application-case",
+    "difficulty": "applied",
+    "title": "Ứng dụng · File, JSON, CSV và dữ liệu học tập",
+    "purpose": "đọc/ghi dữ liệu module môn học, kho dữ liệu và bài tập",
+    "applicationDomain": "đọc/ghi dữ liệu module môn học, kho dữ liệu và bài tập",
+    "formulaUsed": "json.load(); csv.DictReader(); pathlib.Path",
+    "aiGraduationNeed": "Cần cho repo học tập, lab, seminar, НИР/ВКР và bảo vệ quyết định kỹ thuật.",
+    "terminologyTerms": [
+      {
+        "vi": "Tệp JSON",
+        "ru": "JSON-файл",
+        "en": "JSON file"
+      },
+      {
+        "vi": "Input/Output",
+        "ru": "вход/выход",
+        "en": "input/output"
+      },
+      {
+        "vi": "Kiểm thử",
+        "ru": "тестирование",
+        "en": "testing"
+      },
+      {
+        "vi": "Tái lập",
+        "ru": "воспроизводимость",
+        "en": "reproducibility"
+      }
+    ],
+    "turns": [
+      {
+        "speaker": "Case",
+        "ru": "Bối cảnh ứng dụng: đọc/ghi dữ liệu module môn học, kho dữ liệu và bài tập.",
+        "vi": "Bối cảnh ứng dụng: đọc/ghi dữ liệu module môn học, kho dữ liệu và bài tập."
+      },
+      {
+        "speaker": "Workflow",
+        "ru": "Quy trình/cú pháp dùng: json.load(); csv.DictReader(); pathlib.Path",
+        "vi": "Quy trình/cú pháp dùng: json.load(); csv.DictReader(); pathlib.Path"
+      },
+      {
+        "speaker": "Check",
+        "ru": "Cần kiểm tra input/output, test/log, version, seed và README.",
+        "vi": "Cần kiểm tra input/output, test/log, version, seed và README."
+      },
+      {
+        "speaker": "Report",
+        "ru": "Kết luận tốt phải có artifact, dữ liệu mẫu, cách chạy lại và giới hạn kỹ thuật.",
+        "vi": "Kết luận tốt phải có artifact, dữ liệu mẫu, cách chạy lại và giới hạn kỹ thuật."
+      }
+    ]
+  },
+  {
+    "id": "app_PR13",
+    "stage": "prep",
+    "lessonId": "PR13",
+    "group": "ứng dụng AI/Bauman",
+    "type": "application-case",
+    "difficulty": "applied",
+    "title": "Ứng dụng · Debug, exception và logging",
+    "purpose": "tìm lỗi render, lỗi dữ liệu, lỗi logic khi tự làm module",
+    "applicationDomain": "tìm lỗi render, lỗi dữ liệu, lỗi logic khi tự làm module",
+    "formulaUsed": "try/except; logging.info(); assert condition",
+    "aiGraduationNeed": "Cần cho repo học tập, lab, seminar, НИР/ВКР và bảo vệ quyết định kỹ thuật.",
+    "terminologyTerms": [
+      {
+        "vi": "Gỡ lỗi",
+        "ru": "отладка",
+        "en": "debugging"
+      },
+      {
+        "vi": "Input/Output",
+        "ru": "вход/выход",
+        "en": "input/output"
+      },
+      {
+        "vi": "Kiểm thử",
+        "ru": "тестирование",
+        "en": "testing"
+      },
+      {
+        "vi": "Tái lập",
+        "ru": "воспроизводимость",
+        "en": "reproducibility"
+      }
+    ],
+    "turns": [
+      {
+        "speaker": "Case",
+        "ru": "Bối cảnh ứng dụng: tìm lỗi render, lỗi dữ liệu, lỗi logic khi tự làm module.",
+        "vi": "Bối cảnh ứng dụng: tìm lỗi render, lỗi dữ liệu, lỗi logic khi tự làm module."
+      },
+      {
+        "speaker": "Workflow",
+        "ru": "Quy trình/cú pháp dùng: try/except; logging.info(); assert condition",
+        "vi": "Quy trình/cú pháp dùng: try/except; logging.info(); assert condition"
+      },
+      {
+        "speaker": "Check",
+        "ru": "Cần kiểm tra input/output, test/log, version, seed và README.",
+        "vi": "Cần kiểm tra input/output, test/log, version, seed và README."
+      },
+      {
+        "speaker": "Report",
+        "ru": "Kết luận tốt phải có artifact, dữ liệu mẫu, cách chạy lại và giới hạn kỹ thuật.",
+        "vi": "Kết luận tốt phải có artifact, dữ liệu mẫu, cách chạy lại và giới hạn kỹ thuật."
+      }
+    ]
+  },
+  {
+    "id": "app_PR14",
+    "stage": "prep",
+    "lessonId": "PR14",
+    "group": "ứng dụng AI/Bauman",
+    "type": "application-case",
+    "difficulty": "applied",
+    "title": "Ứng dụng · Unit test căn bản với pytest",
+    "purpose": "kiểm thử hàm xử lý dữ liệu và logic nút bấm",
+    "applicationDomain": "kiểm thử hàm xử lý dữ liệu và logic nút bấm",
+    "formulaUsed": "assert f(x)==expected; pytest -q",
+    "aiGraduationNeed": "Cần cho repo học tập, lab, seminar, НИР/ВКР và bảo vệ quyết định kỹ thuật.",
+    "terminologyTerms": [
+      {
+        "vi": "Kiểm thử đơn vị",
+        "ru": "модульное тестирование",
+        "en": "unit testing"
+      },
+      {
+        "vi": "Input/Output",
+        "ru": "вход/выход",
+        "en": "input/output"
+      },
+      {
+        "vi": "Kiểm thử",
+        "ru": "тестирование",
+        "en": "testing"
+      },
+      {
+        "vi": "Tái lập",
+        "ru": "воспроизводимость",
+        "en": "reproducibility"
+      }
+    ],
+    "turns": [
+      {
+        "speaker": "Case",
+        "ru": "Bối cảnh ứng dụng: kiểm thử hàm xử lý dữ liệu và logic nút bấm.",
+        "vi": "Bối cảnh ứng dụng: kiểm thử hàm xử lý dữ liệu và logic nút bấm."
+      },
+      {
+        "speaker": "Workflow",
+        "ru": "Quy trình/cú pháp dùng: assert f(x)==expected; pytest -q",
+        "vi": "Quy trình/cú pháp dùng: assert f(x)==expected; pytest -q"
+      },
+      {
+        "speaker": "Check",
+        "ru": "Cần kiểm tra input/output, test/log, version, seed và README.",
+        "vi": "Cần kiểm tra input/output, test/log, version, seed và README."
+      },
+      {
+        "speaker": "Report",
+        "ru": "Kết luận tốt phải có artifact, dữ liệu mẫu, cách chạy lại và giới hạn kỹ thuật.",
+        "vi": "Kết luận tốt phải có artifact, dữ liệu mẫu, cách chạy lại và giới hạn kỹ thuật."
+      }
+    ]
+  },
+  {
+    "id": "app_PR15",
+    "stage": "prep",
+    "lessonId": "PR15",
+    "group": "ứng dụng AI/Bauman",
+    "type": "application-case",
+    "difficulty": "applied",
+    "title": "Ứng dụng · SQL nâng nền: JOIN, GROUP BY, index",
+    "purpose": "truy vấn dữ liệu thí nghiệm có nhiều bảng",
+    "applicationDomain": "truy vấn dữ liệu thí nghiệm có nhiều bảng",
+    "formulaUsed": "JOIN; GROUP BY; CREATE INDEX idx ON table(col)",
+    "aiGraduationNeed": "Cần cho repo học tập, lab, seminar, НИР/ВКР và bảo vệ quyết định kỹ thuật.",
+    "terminologyTerms": [
+      {
+        "vi": "Chỉ mục",
+        "ru": "индекс",
+        "en": "index"
+      },
+      {
+        "vi": "Input/Output",
+        "ru": "вход/выход",
+        "en": "input/output"
+      },
+      {
+        "vi": "Kiểm thử",
+        "ru": "тестирование",
+        "en": "testing"
+      },
+      {
+        "vi": "Tái lập",
+        "ru": "воспроизводимость",
+        "en": "reproducibility"
+      }
+    ],
+    "turns": [
+      {
+        "speaker": "Case",
+        "ru": "Bối cảnh ứng dụng: truy vấn dữ liệu thí nghiệm có nhiều bảng.",
+        "vi": "Bối cảnh ứng dụng: truy vấn dữ liệu thí nghiệm có nhiều bảng."
+      },
+      {
+        "speaker": "Workflow",
+        "ru": "Quy trình/cú pháp dùng: JOIN; GROUP BY; CREATE INDEX idx ON table(col)",
+        "vi": "Quy trình/cú pháp dùng: JOIN; GROUP BY; CREATE INDEX idx ON table(col)"
+      },
+      {
+        "speaker": "Check",
+        "ru": "Cần kiểm tra input/output, test/log, version, seed và README.",
+        "vi": "Cần kiểm tra input/output, test/log, version, seed và README."
+      },
+      {
+        "speaker": "Report",
+        "ru": "Kết luận tốt phải có artifact, dữ liệu mẫu, cách chạy lại và giới hạn kỹ thuật.",
+        "vi": "Kết luận tốt phải có artifact, dữ liệu mẫu, cách chạy lại và giới hạn kỹ thuật."
+      }
+    ]
+  },
+  {
+    "id": "app_PR16",
+    "stage": "prep",
+    "lessonId": "PR16",
+    "group": "ứng dụng AI/Bauman",
+    "type": "application-case",
+    "difficulty": "applied",
+    "title": "Ứng dụng · Quy tắc đặt tên, comment và tài liệu song ngữ",
+    "purpose": "ghi chú Việt-Nga-Anh để đọc code trong môi trường Bauman",
+    "applicationDomain": "ghi chú Việt-Nga-Anh để đọc code trong môi trường Bauman",
+    "formulaUsed": "name = intent; docstring = input + output + limit",
+    "aiGraduationNeed": "Cần cho repo học tập, lab, seminar, НИР/ВКР và bảo vệ quyết định kỹ thuật.",
+    "terminologyTerms": [
+      {
+        "vi": "Chuỗi tài liệu",
+        "ru": "строка документации",
+        "en": "docstring"
+      },
+      {
+        "vi": "Input/Output",
+        "ru": "вход/выход",
+        "en": "input/output"
+      },
+      {
+        "vi": "Kiểm thử",
+        "ru": "тестирование",
+        "en": "testing"
+      },
+      {
+        "vi": "Tái lập",
+        "ru": "воспроизводимость",
+        "en": "reproducibility"
+      }
+    ],
+    "turns": [
+      {
+        "speaker": "Case",
+        "ru": "Bối cảnh ứng dụng: ghi chú Việt-Nga-Anh để đọc code trong môi trường Bauman.",
+        "vi": "Bối cảnh ứng dụng: ghi chú Việt-Nga-Anh để đọc code trong môi trường Bauman."
+      },
+      {
+        "speaker": "Workflow",
+        "ru": "Quy trình/cú pháp dùng: name = intent; docstring = input + output + limit",
+        "vi": "Quy trình/cú pháp dùng: name = intent; docstring = input + output + limit"
+      },
+      {
+        "speaker": "Check",
+        "ru": "Cần kiểm tra input/output, test/log, version, seed và README.",
+        "vi": "Cần kiểm tra input/output, test/log, version, seed và README."
+      },
+      {
+        "speaker": "Report",
+        "ru": "Kết luận tốt phải có artifact, dữ liệu mẫu, cách chạy lại và giới hạn kỹ thuật.",
+        "vi": "Kết luận tốt phải có artifact, dữ liệu mẫu, cách chạy lại và giới hạn kỹ thuật."
+      }
+    ]
+  },
+  {
+    "id": "app_PR17",
+    "stage": "hk1",
+    "lessonId": "PR17",
+    "group": "ứng dụng AI/Bauman",
+    "type": "application-case",
+    "difficulty": "applied",
+    "title": "Ứng dụng · OOP cho АСОИУ: class, interface, responsibility",
+    "purpose": "tạo skeleton phần mềm UGV gồm sensor/model/control",
+    "applicationDomain": "tạo skeleton phần mềm UGV gồm sensor/model/control",
+    "formulaUsed": "class Sensor: read(); class Model: predict()",
+    "aiGraduationNeed": "Cần cho repo học tập, lab, seminar, НИР/ВКР và bảo vệ quyết định kỹ thuật.",
+    "terminologyTerms": [
+      {
+        "vi": "Lớp",
+        "ru": "класс",
+        "en": "class"
+      },
+      {
+        "vi": "Input/Output",
+        "ru": "вход/выход",
+        "en": "input/output"
+      },
+      {
+        "vi": "Kiểm thử",
+        "ru": "тестирование",
+        "en": "testing"
+      },
+      {
+        "vi": "Tái lập",
+        "ru": "воспроизводимость",
+        "en": "reproducibility"
+      }
+    ],
+    "turns": [
+      {
+        "speaker": "Case",
+        "ru": "Bối cảnh ứng dụng: tạo skeleton phần mềm UGV gồm sensor/model/control.",
+        "vi": "Bối cảnh ứng dụng: tạo skeleton phần mềm UGV gồm sensor/model/control."
+      },
+      {
+        "speaker": "Workflow",
+        "ru": "Quy trình/cú pháp dùng: class Sensor: read(); class Model: predict()",
+        "vi": "Quy trình/cú pháp dùng: class Sensor: read(); class Model: predict()"
+      },
+      {
+        "speaker": "Check",
+        "ru": "Cần kiểm tra input/output, test/log, version, seed và README.",
+        "vi": "Cần kiểm tra input/output, test/log, version, seed và README."
+      },
+      {
+        "speaker": "Report",
+        "ru": "Kết luận tốt phải có artifact, dữ liệu mẫu, cách chạy lại và giới hạn kỹ thuật.",
+        "vi": "Kết luận tốt phải có artifact, dữ liệu mẫu, cách chạy lại và giới hạn kỹ thuật."
+      }
+    ]
+  },
+  {
+    "id": "app_PR18",
+    "stage": "hk1",
+    "lessonId": "PR18",
+    "group": "ứng dụng AI/Bauman",
+    "type": "application-case",
+    "difficulty": "applied",
+    "title": "Ứng dụng · Thiết kế module và kiến trúc package Python",
+    "purpose": "chia dự án thành module rõ, dễ bảo trì và mở rộng",
+    "applicationDomain": "chia dự án thành module rõ, dễ bảo trì và mở rộng",
+    "formulaUsed": "src/, tests/, configs/, data/, scripts/",
+    "aiGraduationNeed": "Cần cho repo học tập, lab, seminar, НИР/ВКР và bảo vệ quyết định kỹ thuật.",
+    "terminologyTerms": [
+      {
+        "vi": "Module phần mềm",
+        "ru": "программный модуль",
+        "en": "software module"
+      },
+      {
+        "vi": "Input/Output",
+        "ru": "вход/выход",
+        "en": "input/output"
+      },
+      {
+        "vi": "Kiểm thử",
+        "ru": "тестирование",
+        "en": "testing"
+      },
+      {
+        "vi": "Tái lập",
+        "ru": "воспроизводимость",
+        "en": "reproducibility"
+      }
+    ],
+    "turns": [
+      {
+        "speaker": "Case",
+        "ru": "Bối cảnh ứng dụng: chia dự án thành module rõ, dễ bảo trì và mở rộng.",
+        "vi": "Bối cảnh ứng dụng: chia dự án thành module rõ, dễ bảo trì và mở rộng."
+      },
+      {
+        "speaker": "Workflow",
+        "ru": "Quy trình/cú pháp dùng: src/, tests/, configs/, data/, scripts/",
+        "vi": "Quy trình/cú pháp dùng: src/, tests/, configs/, data/, scripts/"
+      },
+      {
+        "speaker": "Check",
+        "ru": "Cần kiểm tra input/output, test/log, version, seed và README.",
+        "vi": "Cần kiểm tra input/output, test/log, version, seed và README."
+      },
+      {
+        "speaker": "Report",
+        "ru": "Kết luận tốt phải có artifact, dữ liệu mẫu, cách chạy lại và giới hạn kỹ thuật.",
+        "vi": "Kết luận tốt phải có artifact, dữ liệu mẫu, cách chạy lại và giới hạn kỹ thuật."
+      }
+    ]
+  },
+  {
+    "id": "app_PR19",
+    "stage": "hk1",
+    "lessonId": "PR19",
+    "group": "ứng dụng AI/Bauman",
+    "type": "application-case",
+    "difficulty": "applied",
+    "title": "Ứng dụng · Mẫu thiết kế ứng dụng: factory, strategy, adapter",
+    "purpose": "đổi cảm biến/mô hình mà không phá toàn bộ code",
+    "applicationDomain": "đổi cảm biến/mô hình mà không phá toàn bộ code",
+    "formulaUsed": "Strategy(model); Adapter(sensor); Factory(config)",
+    "aiGraduationNeed": "Cần cho repo học tập, lab, seminar, НИР/ВКР và bảo vệ quyết định kỹ thuật.",
+    "terminologyTerms": [
+      {
+        "vi": "Mẫu thiết kế",
+        "ru": "шаблон проектирования",
+        "en": "design pattern"
+      },
+      {
+        "vi": "Input/Output",
+        "ru": "вход/выход",
+        "en": "input/output"
+      },
+      {
+        "vi": "Kiểm thử",
+        "ru": "тестирование",
+        "en": "testing"
+      },
+      {
+        "vi": "Tái lập",
+        "ru": "воспроизводимость",
+        "en": "reproducibility"
+      }
+    ],
+    "turns": [
+      {
+        "speaker": "Case",
+        "ru": "Bối cảnh ứng dụng: đổi cảm biến/mô hình mà không phá toàn bộ code.",
+        "vi": "Bối cảnh ứng dụng: đổi cảm biến/mô hình mà không phá toàn bộ code."
+      },
+      {
+        "speaker": "Workflow",
+        "ru": "Quy trình/cú pháp dùng: Strategy(model); Adapter(sensor); Factory(config)",
+        "vi": "Quy trình/cú pháp dùng: Strategy(model); Adapter(sensor); Factory(config)"
+      },
+      {
+        "speaker": "Check",
+        "ru": "Cần kiểm tra input/output, test/log, version, seed và README.",
+        "vi": "Cần kiểm tra input/output, test/log, version, seed và README."
+      },
+      {
+        "speaker": "Report",
+        "ru": "Kết luận tốt phải có artifact, dữ liệu mẫu, cách chạy lại và giới hạn kỹ thuật.",
+        "vi": "Kết luận tốt phải có artifact, dữ liệu mẫu, cách chạy lại và giới hạn kỹ thuật."
+      }
+    ]
+  },
+  {
+    "id": "app_PR20",
+    "stage": "hk1",
+    "lessonId": "PR20",
+    "group": "ứng dụng AI/Bauman",
+    "type": "application-case",
+    "difficulty": "applied",
+    "title": "Ứng dụng · CSDL cho hệ thống học máy: schema và metadata",
+    "purpose": "lưu tham số, metric, dataset và đường dẫn artifact",
+    "applicationDomain": "lưu tham số, metric, dataset và đường dẫn artifact",
+    "formulaUsed": "experiment(id, params, metrics, artifact_path)",
+    "aiGraduationNeed": "Cần cho repo học tập, lab, seminar, НИР/ВКР và bảo vệ quyết định kỹ thuật.",
+    "terminologyTerms": [
+      {
+        "vi": "Lược đồ dữ liệu",
+        "ru": "схема данных",
+        "en": "data schema"
+      },
+      {
+        "vi": "Input/Output",
+        "ru": "вход/выход",
+        "en": "input/output"
+      },
+      {
+        "vi": "Kiểm thử",
+        "ru": "тестирование",
+        "en": "testing"
+      },
+      {
+        "vi": "Tái lập",
+        "ru": "воспроизводимость",
+        "en": "reproducibility"
+      }
+    ],
+    "turns": [
+      {
+        "speaker": "Case",
+        "ru": "Bối cảnh ứng dụng: lưu tham số, metric, dataset và đường dẫn artifact.",
+        "vi": "Bối cảnh ứng dụng: lưu tham số, metric, dataset và đường dẫn artifact."
+      },
+      {
+        "speaker": "Workflow",
+        "ru": "Quy trình/cú pháp dùng: experiment(id, params, metrics, artifact_path)",
+        "vi": "Quy trình/cú pháp dùng: experiment(id, params, metrics, artifact_path)"
+      },
+      {
+        "speaker": "Check",
+        "ru": "Cần kiểm tra input/output, test/log, version, seed và README.",
+        "vi": "Cần kiểm tra input/output, test/log, version, seed và README."
+      },
+      {
+        "speaker": "Report",
+        "ru": "Kết luận tốt phải có artifact, dữ liệu mẫu, cách chạy lại và giới hạn kỹ thuật.",
+        "vi": "Kết luận tốt phải có artifact, dữ liệu mẫu, cách chạy lại và giới hạn kỹ thuật."
+      }
+    ]
+  },
+  {
+    "id": "app_PR21",
+    "stage": "hk1",
+    "lessonId": "PR21",
+    "group": "ứng dụng AI/Bauman",
+    "type": "application-case",
+    "difficulty": "applied",
+    "title": "Ứng dụng · ORM và migration nhập môn",
+    "purpose": "quản lý thay đổi CSDL khi project lớn dần",
+    "applicationDomain": "quản lý thay đổi CSDL khi project lớn dần",
+    "formulaUsed": "Model ↔ table; migration = schema version",
+    "aiGraduationNeed": "Cần cho repo học tập, lab, seminar, НИР/ВКР và bảo vệ quyết định kỹ thuật.",
+    "terminologyTerms": [
+      {
+        "vi": "Di trú CSDL",
+        "ru": "миграция базы данных",
+        "en": "database migration"
+      },
+      {
+        "vi": "Input/Output",
+        "ru": "вход/выход",
+        "en": "input/output"
+      },
+      {
+        "vi": "Kiểm thử",
+        "ru": "тестирование",
+        "en": "testing"
+      },
+      {
+        "vi": "Tái lập",
+        "ru": "воспроизводимость",
+        "en": "reproducibility"
+      }
+    ],
+    "turns": [
+      {
+        "speaker": "Case",
+        "ru": "Bối cảnh ứng dụng: quản lý thay đổi CSDL khi project lớn dần.",
+        "vi": "Bối cảnh ứng dụng: quản lý thay đổi CSDL khi project lớn dần."
+      },
+      {
+        "speaker": "Workflow",
+        "ru": "Quy trình/cú pháp dùng: Model ↔ table; migration = schema version",
+        "vi": "Quy trình/cú pháp dùng: Model ↔ table; migration = schema version"
+      },
+      {
+        "speaker": "Check",
+        "ru": "Cần kiểm tra input/output, test/log, version, seed và README.",
+        "vi": "Cần kiểm tra input/output, test/log, version, seed và README."
+      },
+      {
+        "speaker": "Report",
+        "ru": "Kết luận tốt phải có artifact, dữ liệu mẫu, cách chạy lại và giới hạn kỹ thuật.",
+        "vi": "Kết luận tốt phải có artifact, dữ liệu mẫu, cách chạy lại và giới hạn kỹ thuật."
+      }
+    ]
+  },
+  {
+    "id": "app_PR22",
+    "stage": "hk1",
+    "lessonId": "PR22",
+    "group": "ứng dụng AI/Bauman",
+    "type": "application-case",
+    "difficulty": "applied",
+    "title": "Ứng dụng · Kỹ nghệ phần mềm: requirement, issue, milestone",
+    "purpose": "quản lý tiến độ bài tập và module luận văn",
+    "applicationDomain": "quản lý tiến độ bài tập và module luận văn",
+    "formulaUsed": "requirement → issue → branch → PR → release",
+    "aiGraduationNeed": "Cần cho repo học tập, lab, seminar, НИР/ВКР và bảo vệ quyết định kỹ thuật.",
+    "terminologyTerms": [
+      {
+        "vi": "Yêu cầu phần mềm",
+        "ru": "требование к ПО",
+        "en": "software requirement"
+      },
+      {
+        "vi": "Input/Output",
+        "ru": "вход/выход",
+        "en": "input/output"
+      },
+      {
+        "vi": "Kiểm thử",
+        "ru": "тестирование",
+        "en": "testing"
+      },
+      {
+        "vi": "Tái lập",
+        "ru": "воспроизводимость",
+        "en": "reproducibility"
+      }
+    ],
+    "turns": [
+      {
+        "speaker": "Case",
+        "ru": "Bối cảnh ứng dụng: quản lý tiến độ bài tập và module luận văn.",
+        "vi": "Bối cảnh ứng dụng: quản lý tiến độ bài tập và module luận văn."
+      },
+      {
+        "speaker": "Workflow",
+        "ru": "Quy trình/cú pháp dùng: requirement → issue → branch → PR → release",
+        "vi": "Quy trình/cú pháp dùng: requirement → issue → branch → PR → release"
+      },
+      {
+        "speaker": "Check",
+        "ru": "Cần kiểm tra input/output, test/log, version, seed và README.",
+        "vi": "Cần kiểm tra input/output, test/log, version, seed và README."
+      },
+      {
+        "speaker": "Report",
+        "ru": "Kết luận tốt phải có artifact, dữ liệu mẫu, cách chạy lại và giới hạn kỹ thuật.",
+        "vi": "Kết luận tốt phải có artifact, dữ liệu mẫu, cách chạy lại và giới hạn kỹ thuật."
+      }
+    ]
+  },
+  {
+    "id": "app_PR23",
+    "stage": "hk1",
+    "lessonId": "PR23",
+    "group": "ứng dụng AI/Bauman",
+    "type": "application-case",
+    "difficulty": "applied",
+    "title": "Ứng dụng · Kiểm thử tích hợp và test dữ liệu",
+    "purpose": "phát hiện dữ liệu hỏng trước khi train mô hình",
+    "applicationDomain": "phát hiện dữ liệu hỏng trước khi train mô hình",
+    "formulaUsed": "test pipeline(input) → expected artifact",
+    "aiGraduationNeed": "Cần cho repo học tập, lab, seminar, НИР/ВКР và bảo vệ quyết định kỹ thuật.",
+    "terminologyTerms": [
+      {
+        "vi": "Kiểm thử tích hợp",
+        "ru": "интеграционное тестирование",
+        "en": "integration testing"
+      },
+      {
+        "vi": "Input/Output",
+        "ru": "вход/выход",
+        "en": "input/output"
+      },
+      {
+        "vi": "Kiểm thử",
+        "ru": "тестирование",
+        "en": "testing"
+      },
+      {
+        "vi": "Tái lập",
+        "ru": "воспроизводимость",
+        "en": "reproducibility"
+      }
+    ],
+    "turns": [
+      {
+        "speaker": "Case",
+        "ru": "Bối cảnh ứng dụng: phát hiện dữ liệu hỏng trước khi train mô hình.",
+        "vi": "Bối cảnh ứng dụng: phát hiện dữ liệu hỏng trước khi train mô hình."
+      },
+      {
+        "speaker": "Workflow",
+        "ru": "Quy trình/cú pháp dùng: test pipeline(input) → expected artifact",
+        "vi": "Quy trình/cú pháp dùng: test pipeline(input) → expected artifact"
+      },
+      {
+        "speaker": "Check",
+        "ru": "Cần kiểm tra input/output, test/log, version, seed và README.",
+        "vi": "Cần kiểm tra input/output, test/log, version, seed và README."
+      },
+      {
+        "speaker": "Report",
+        "ru": "Kết luận tốt phải có artifact, dữ liệu mẫu, cách chạy lại và giới hạn kỹ thuật.",
+        "vi": "Kết luận tốt phải có artifact, dữ liệu mẫu, cách chạy lại và giới hạn kỹ thuật."
+      }
+    ]
+  },
+  {
+    "id": "app_PR24",
+    "stage": "hk1",
+    "lessonId": "PR24",
+    "group": "ứng dụng AI/Bauman",
+    "type": "application-case",
+    "difficulty": "applied",
+    "title": "Ứng dụng · CI nhẹ và kiểm tra chất lượng code",
+    "purpose": "tự động kiểm tra repo trước khi nộp/đẩy code",
+    "applicationDomain": "tự động kiểm tra repo trước khi nộp/đẩy code",
+    "formulaUsed": "lint + tests + type check = green build",
+    "aiGraduationNeed": "Cần cho repo học tập, lab, seminar, НИР/ВКР và bảo vệ quyết định kỹ thuật.",
+    "terminologyTerms": [
+      {
+        "vi": "Tích hợp liên tục",
+        "ru": "непрерывная интеграция",
+        "en": "continuous integration"
+      },
+      {
+        "vi": "Input/Output",
+        "ru": "вход/выход",
+        "en": "input/output"
+      },
+      {
+        "vi": "Kiểm thử",
+        "ru": "тестирование",
+        "en": "testing"
+      },
+      {
+        "vi": "Tái lập",
+        "ru": "воспроизводимость",
+        "en": "reproducibility"
+      }
+    ],
+    "turns": [
+      {
+        "speaker": "Case",
+        "ru": "Bối cảnh ứng dụng: tự động kiểm tra repo trước khi nộp/đẩy code.",
+        "vi": "Bối cảnh ứng dụng: tự động kiểm tra repo trước khi nộp/đẩy code."
+      },
+      {
+        "speaker": "Workflow",
+        "ru": "Quy trình/cú pháp dùng: lint + tests + type check = green build",
+        "vi": "Quy trình/cú pháp dùng: lint + tests + type check = green build"
+      },
+      {
+        "speaker": "Check",
+        "ru": "Cần kiểm tra input/output, test/log, version, seed và README.",
+        "vi": "Cần kiểm tra input/output, test/log, version, seed và README."
+      },
+      {
+        "speaker": "Report",
+        "ru": "Kết luận tốt phải có artifact, dữ liệu mẫu, cách chạy lại và giới hạn kỹ thuật.",
+        "vi": "Kết luận tốt phải có artifact, dữ liệu mẫu, cách chạy lại và giới hạn kỹ thuật."
+      }
+    ]
+  },
+  {
+    "id": "app_PR25",
+    "stage": "hk2",
+    "lessonId": "PR25",
+    "group": "ứng dụng AI/Bauman",
+    "type": "application-case",
+    "difficulty": "applied",
+    "title": "Ứng dụng · Pipeline dữ liệu cho ML",
+    "purpose": "tạo quy trình lặp lại cho dữ liệu UGV/USV",
+    "applicationDomain": "tạo quy trình lặp lại cho dữ liệu UGV/USV",
+    "formulaUsed": "raw → clean → features → train → evaluate",
+    "aiGraduationNeed": "Cần cho repo học tập, lab, seminar, НИР/ВКР và bảo vệ quyết định kỹ thuật.",
+    "terminologyTerms": [
+      {
+        "vi": "Đường ống dữ liệu",
+        "ru": "конвейер данных",
+        "en": "data pipeline"
+      },
+      {
+        "vi": "Input/Output",
+        "ru": "вход/выход",
+        "en": "input/output"
+      },
+      {
+        "vi": "Kiểm thử",
+        "ru": "тестирование",
+        "en": "testing"
+      },
+      {
+        "vi": "Tái lập",
+        "ru": "воспроизводимость",
+        "en": "reproducibility"
+      }
+    ],
+    "turns": [
+      {
+        "speaker": "Case",
+        "ru": "Bối cảnh ứng dụng: tạo quy trình lặp lại cho dữ liệu UGV/USV.",
+        "vi": "Bối cảnh ứng dụng: tạo quy trình lặp lại cho dữ liệu UGV/USV."
+      },
+      {
+        "speaker": "Workflow",
+        "ru": "Quy trình/cú pháp dùng: raw → clean → features → train → evaluate",
+        "vi": "Quy trình/cú pháp dùng: raw → clean → features → train → evaluate"
+      },
+      {
+        "speaker": "Check",
+        "ru": "Cần kiểm tra input/output, test/log, version, seed và README.",
+        "vi": "Cần kiểm tra input/output, test/log, version, seed và README."
+      },
+      {
+        "speaker": "Report",
+        "ru": "Kết luận tốt phải có artifact, dữ liệu mẫu, cách chạy lại và giới hạn kỹ thuật.",
+        "vi": "Kết luận tốt phải có artifact, dữ liệu mẫu, cách chạy lại và giới hạn kỹ thuật."
+      }
+    ]
+  },
+  {
+    "id": "app_PR26",
+    "stage": "hk2",
+    "lessonId": "PR26",
+    "group": "ứng dụng AI/Bauman",
+    "type": "application-case",
+    "difficulty": "applied",
+    "title": "Ứng dụng · Scikit-learn baseline và metric",
+    "purpose": "dựng baseline có metric rõ cho ML trong АСОИУ",
+    "applicationDomain": "dựng baseline có metric rõ cho ML trong АСОИУ",
+    "formulaUsed": "model.fit(X_train,y_train); score=f(metric)",
+    "aiGraduationNeed": "Cần cho repo học tập, lab, seminar, НИР/ВКР và bảo vệ quyết định kỹ thuật.",
+    "terminologyTerms": [
+      {
+        "vi": "Mô hình cơ sở",
+        "ru": "базовая модель",
+        "en": "baseline model"
+      },
+      {
+        "vi": "Input/Output",
+        "ru": "вход/выход",
+        "en": "input/output"
+      },
+      {
+        "vi": "Kiểm thử",
+        "ru": "тестирование",
+        "en": "testing"
+      },
+      {
+        "vi": "Tái lập",
+        "ru": "воспроизводимость",
+        "en": "reproducibility"
+      }
+    ],
+    "turns": [
+      {
+        "speaker": "Case",
+        "ru": "Bối cảnh ứng dụng: dựng baseline có metric rõ cho ML trong АСОИУ.",
+        "vi": "Bối cảnh ứng dụng: dựng baseline có metric rõ cho ML trong АСОИУ."
+      },
+      {
+        "speaker": "Workflow",
+        "ru": "Quy trình/cú pháp dùng: model.fit(X_train,y_train); score=f(metric)",
+        "vi": "Quy trình/cú pháp dùng: model.fit(X_train,y_train); score=f(metric)"
+      },
+      {
+        "speaker": "Check",
+        "ru": "Cần kiểm tra input/output, test/log, version, seed và README.",
+        "vi": "Cần kiểm tra input/output, test/log, version, seed và README."
+      },
+      {
+        "speaker": "Report",
+        "ru": "Kết luận tốt phải có artifact, dữ liệu mẫu, cách chạy lại và giới hạn kỹ thuật.",
+        "vi": "Kết luận tốt phải có artifact, dữ liệu mẫu, cách chạy lại và giới hạn kỹ thuật."
+      }
+    ]
+  },
+  {
+    "id": "app_PR27",
+    "stage": "hk2",
+    "lessonId": "PR27",
+    "group": "ứng dụng AI/Bauman",
+    "type": "application-case",
+    "difficulty": "applied",
+    "title": "Ứng dụng · API inference với FastAPI",
+    "purpose": "biến mô hình thành dịch vụ thử nghiệm được",
+    "applicationDomain": "biến mô hình thành dịch vụ thử nghiệm được",
+    "formulaUsed": "POST /predict → input schema → prediction",
+    "aiGraduationNeed": "Cần cho repo học tập, lab, seminar, НИР/ВКР và bảo vệ quyết định kỹ thuật.",
+    "terminologyTerms": [
+      {
+        "vi": "API dự đoán",
+        "ru": "API предсказания",
+        "en": "prediction API"
+      },
+      {
+        "vi": "Input/Output",
+        "ru": "вход/выход",
+        "en": "input/output"
+      },
+      {
+        "vi": "Kiểm thử",
+        "ru": "тестирование",
+        "en": "testing"
+      },
+      {
+        "vi": "Tái lập",
+        "ru": "воспроизводимость",
+        "en": "reproducibility"
+      }
+    ],
+    "turns": [
+      {
+        "speaker": "Case",
+        "ru": "Bối cảnh ứng dụng: biến mô hình thành dịch vụ thử nghiệm được.",
+        "vi": "Bối cảnh ứng dụng: biến mô hình thành dịch vụ thử nghiệm được."
+      },
+      {
+        "speaker": "Workflow",
+        "ru": "Quy trình/cú pháp dùng: POST /predict → input schema → prediction",
+        "vi": "Quy trình/cú pháp dùng: POST /predict → input schema → prediction"
+      },
+      {
+        "speaker": "Check",
+        "ru": "Cần kiểm tra input/output, test/log, version, seed và README.",
+        "vi": "Cần kiểm tra input/output, test/log, version, seed và README."
+      },
+      {
+        "speaker": "Report",
+        "ru": "Kết luận tốt phải có artifact, dữ liệu mẫu, cách chạy lại và giới hạn kỹ thuật.",
+        "vi": "Kết luận tốt phải có artifact, dữ liệu mẫu, cách chạy lại và giới hạn kỹ thuật."
+      }
+    ]
+  },
+  {
+    "id": "app_PR28",
+    "stage": "hk2",
+    "lessonId": "PR28",
+    "group": "ứng dụng AI/Bauman",
+    "type": "application-case",
+    "difficulty": "applied",
+    "title": "Ứng dụng · Serialization model và artifact version",
+    "purpose": "lưu model/dataset/metric theo phiên bản để chạy lại",
+    "applicationDomain": "lưu model/dataset/metric theo phiên bản để chạy lại",
+    "formulaUsed": "joblib.dump(model); artifact_v1.pkl",
+    "aiGraduationNeed": "Cần cho repo học tập, lab, seminar, НИР/ВКР và bảo vệ quyết định kỹ thuật.",
+    "terminologyTerms": [
+      {
+        "vi": "Artifact",
+        "ru": "артефакт",
+        "en": "artifact"
+      },
+      {
+        "vi": "Input/Output",
+        "ru": "вход/выход",
+        "en": "input/output"
+      },
+      {
+        "vi": "Kiểm thử",
+        "ru": "тестирование",
+        "en": "testing"
+      },
+      {
+        "vi": "Tái lập",
+        "ru": "воспроизводимость",
+        "en": "reproducibility"
+      }
+    ],
+    "turns": [
+      {
+        "speaker": "Case",
+        "ru": "Bối cảnh ứng dụng: lưu model/dataset/metric theo phiên bản để chạy lại.",
+        "vi": "Bối cảnh ứng dụng: lưu model/dataset/metric theo phiên bản để chạy lại."
+      },
+      {
+        "speaker": "Workflow",
+        "ru": "Quy trình/cú pháp dùng: joblib.dump(model); artifact_v1.pkl",
+        "vi": "Quy trình/cú pháp dùng: joblib.dump(model); artifact_v1.pkl"
+      },
+      {
+        "speaker": "Check",
+        "ru": "Cần kiểm tra input/output, test/log, version, seed và README.",
+        "vi": "Cần kiểm tra input/output, test/log, version, seed và README."
+      },
+      {
+        "speaker": "Report",
+        "ru": "Kết luận tốt phải có artifact, dữ liệu mẫu, cách chạy lại và giới hạn kỹ thuật.",
+        "vi": "Kết luận tốt phải có artifact, dữ liệu mẫu, cách chạy lại và giới hạn kỹ thuật."
+      }
+    ]
+  },
+  {
+    "id": "app_PR29",
+    "stage": "hk2",
+    "lessonId": "PR29",
+    "group": "ứng dụng AI/Bauman",
+    "type": "application-case",
+    "difficulty": "applied",
+    "title": "Ứng dụng · Cấu hình thí nghiệm bằng YAML/JSON",
+    "purpose": "khóa tham số thí nghiệm để tránh loạn kết quả",
+    "applicationDomain": "khóa tham số thí nghiệm để tránh loạn kết quả",
+    "formulaUsed": "config = params + seed + paths",
+    "aiGraduationNeed": "Cần cho repo học tập, lab, seminar, НИР/ВКР và bảo vệ quyết định kỹ thuật.",
+    "terminologyTerms": [
+      {
+        "vi": "Cấu hình",
+        "ru": "конфигурация",
+        "en": "configuration"
+      },
+      {
+        "vi": "Input/Output",
+        "ru": "вход/выход",
+        "en": "input/output"
+      },
+      {
+        "vi": "Kiểm thử",
+        "ru": "тестирование",
+        "en": "testing"
+      },
+      {
+        "vi": "Tái lập",
+        "ru": "воспроизводимость",
+        "en": "reproducibility"
+      }
+    ],
+    "turns": [
+      {
+        "speaker": "Case",
+        "ru": "Bối cảnh ứng dụng: khóa tham số thí nghiệm để tránh loạn kết quả.",
+        "vi": "Bối cảnh ứng dụng: khóa tham số thí nghiệm để tránh loạn kết quả."
+      },
+      {
+        "speaker": "Workflow",
+        "ru": "Quy trình/cú pháp dùng: config = params + seed + paths",
+        "vi": "Quy trình/cú pháp dùng: config = params + seed + paths"
+      },
+      {
+        "speaker": "Check",
+        "ru": "Cần kiểm tra input/output, test/log, version, seed và README.",
+        "vi": "Cần kiểm tra input/output, test/log, version, seed và README."
+      },
+      {
+        "speaker": "Report",
+        "ru": "Kết luận tốt phải có artifact, dữ liệu mẫu, cách chạy lại và giới hạn kỹ thuật.",
+        "vi": "Kết luận tốt phải có artifact, dữ liệu mẫu, cách chạy lại và giới hạn kỹ thuật."
+      }
+    ]
+  },
+  {
+    "id": "app_PR30",
+    "stage": "hk2",
+    "lessonId": "PR30",
+    "group": "ứng dụng AI/Bauman",
+    "type": "application-case",
+    "difficulty": "applied",
+    "title": "Ứng dụng · Docker nhập môn cho môi trường tái lập",
+    "purpose": "chạy lại demo trên máy khác ít lỗi hơn",
+    "applicationDomain": "chạy lại demo trên máy khác ít lỗi hơn",
+    "formulaUsed": "Dockerfile + requirements + command",
+    "aiGraduationNeed": "Cần cho repo học tập, lab, seminar, НИР/ВКР và bảo vệ quyết định kỹ thuật.",
+    "terminologyTerms": [
+      {
+        "vi": "Container",
+        "ru": "контейнер",
+        "en": "container"
+      },
+      {
+        "vi": "Input/Output",
+        "ru": "вход/выход",
+        "en": "input/output"
+      },
+      {
+        "vi": "Kiểm thử",
+        "ru": "тестирование",
+        "en": "testing"
+      },
+      {
+        "vi": "Tái lập",
+        "ru": "воспроизводимость",
+        "en": "reproducibility"
+      }
+    ],
+    "turns": [
+      {
+        "speaker": "Case",
+        "ru": "Bối cảnh ứng dụng: chạy lại demo trên máy khác ít lỗi hơn.",
+        "vi": "Bối cảnh ứng dụng: chạy lại demo trên máy khác ít lỗi hơn."
+      },
+      {
+        "speaker": "Workflow",
+        "ru": "Quy trình/cú pháp dùng: Dockerfile + requirements + command",
+        "vi": "Quy trình/cú pháp dùng: Dockerfile + requirements + command"
+      },
+      {
+        "speaker": "Check",
+        "ru": "Cần kiểm tra input/output, test/log, version, seed và README.",
+        "vi": "Cần kiểm tra input/output, test/log, version, seed và README."
+      },
+      {
+        "speaker": "Report",
+        "ru": "Kết luận tốt phải có artifact, dữ liệu mẫu, cách chạy lại và giới hạn kỹ thuật.",
+        "vi": "Kết luận tốt phải có artifact, dữ liệu mẫu, cách chạy lại và giới hạn kỹ thuật."
+      }
+    ]
+  },
+  {
+    "id": "app_PR31",
+    "stage": "hk2",
+    "lessonId": "PR31",
+    "group": "ứng dụng AI/Bauman",
+    "type": "application-case",
+    "difficulty": "applied",
+    "title": "Ứng dụng · Bảo mật dữ liệu và quản lý secret",
+    "purpose": "không lộ key, dữ liệu, đường dẫn nhạy cảm",
+    "applicationDomain": "không lộ key, dữ liệu, đường dẫn nhạy cảm",
+    "formulaUsed": ".env; never commit secrets; access control",
+    "aiGraduationNeed": "Cần cho repo học tập, lab, seminar, НИР/ВКР và bảo vệ quyết định kỹ thuật.",
+    "terminologyTerms": [
+      {
+        "vi": "Bí mật hệ thống",
+        "ru": "секрет",
+        "en": "secret"
+      },
+      {
+        "vi": "Input/Output",
+        "ru": "вход/выход",
+        "en": "input/output"
+      },
+      {
+        "vi": "Kiểm thử",
+        "ru": "тестирование",
+        "en": "testing"
+      },
+      {
+        "vi": "Tái lập",
+        "ru": "воспроизводимость",
+        "en": "reproducibility"
+      }
+    ],
+    "turns": [
+      {
+        "speaker": "Case",
+        "ru": "Bối cảnh ứng dụng: không lộ key, dữ liệu, đường dẫn nhạy cảm.",
+        "vi": "Bối cảnh ứng dụng: không lộ key, dữ liệu, đường dẫn nhạy cảm."
+      },
+      {
+        "speaker": "Workflow",
+        "ru": "Quy trình/cú pháp dùng: .env; never commit secrets; access control",
+        "vi": "Quy trình/cú pháp dùng: .env; never commit secrets; access control"
+      },
+      {
+        "speaker": "Check",
+        "ru": "Cần kiểm tra input/output, test/log, version, seed và README.",
+        "vi": "Cần kiểm tra input/output, test/log, version, seed và README."
+      },
+      {
+        "speaker": "Report",
+        "ru": "Kết luận tốt phải có artifact, dữ liệu mẫu, cách chạy lại và giới hạn kỹ thuật.",
+        "vi": "Kết luận tốt phải có artifact, dữ liệu mẫu, cách chạy lại và giới hạn kỹ thuật."
+      }
+    ]
+  },
+  {
+    "id": "app_PR32",
+    "stage": "hk2",
+    "lessonId": "PR32",
+    "group": "ứng dụng AI/Bauman",
+    "type": "application-case",
+    "difficulty": "applied",
+    "title": "Ứng dụng · Tài liệu kỹ thuật và sơ đồ kiến trúc",
+    "purpose": "giải thích phần mềm cho giáo sư và nhóm nghiên cứu",
+    "applicationDomain": "giải thích phần mềm cho giáo sư và nhóm nghiên cứu",
+    "formulaUsed": "architecture.md + sequence diagram + API spec",
+    "aiGraduationNeed": "Cần cho repo học tập, lab, seminar, НИР/ВКР và bảo vệ quyết định kỹ thuật.",
+    "terminologyTerms": [
+      {
+        "vi": "Tài liệu kỹ thuật",
+        "ru": "техническая документация",
+        "en": "technical documentation"
+      },
+      {
+        "vi": "Input/Output",
+        "ru": "вход/выход",
+        "en": "input/output"
+      },
+      {
+        "vi": "Kiểm thử",
+        "ru": "тестирование",
+        "en": "testing"
+      },
+      {
+        "vi": "Tái lập",
+        "ru": "воспроизводимость",
+        "en": "reproducibility"
+      }
+    ],
+    "turns": [
+      {
+        "speaker": "Case",
+        "ru": "Bối cảnh ứng dụng: giải thích phần mềm cho giáo sư và nhóm nghiên cứu.",
+        "vi": "Bối cảnh ứng dụng: giải thích phần mềm cho giáo sư và nhóm nghiên cứu."
+      },
+      {
+        "speaker": "Workflow",
+        "ru": "Quy trình/cú pháp dùng: architecture.md + sequence diagram + API spec",
+        "vi": "Quy trình/cú pháp dùng: architecture.md + sequence diagram + API spec"
+      },
+      {
+        "speaker": "Check",
+        "ru": "Cần kiểm tra input/output, test/log, version, seed và README.",
+        "vi": "Cần kiểm tra input/output, test/log, version, seed và README."
+      },
+      {
+        "speaker": "Report",
+        "ru": "Kết luận tốt phải có artifact, dữ liệu mẫu, cách chạy lại và giới hạn kỹ thuật.",
+        "vi": "Kết luận tốt phải có artifact, dữ liệu mẫu, cách chạy lại và giới hạn kỹ thuật."
+      }
+    ]
+  },
+  {
+    "id": "app_PR33",
+    "stage": "hk3",
+    "lessonId": "PR33",
+    "group": "ứng dụng AI/Bauman",
+    "type": "application-case",
+    "difficulty": "applied",
+    "title": "Ứng dụng · Dataset card cho telemetry và cảm biến",
+    "purpose": "mô tả dữ liệu НИР đủ rõ để phản biện",
+    "applicationDomain": "mô tả dữ liệu НИР đủ rõ để phản biện",
+    "formulaUsed": "dataset card = source + schema + limits + ethics",
+    "aiGraduationNeed": "Cần cho repo học tập, lab, seminar, НИР/ВКР và bảo vệ quyết định kỹ thuật.",
+    "terminologyTerms": [
+      {
+        "vi": "Thẻ dữ liệu",
+        "ru": "карточка набора данных",
+        "en": "dataset card"
+      },
+      {
+        "vi": "Input/Output",
+        "ru": "вход/выход",
+        "en": "input/output"
+      },
+      {
+        "vi": "Kiểm thử",
+        "ru": "тестирование",
+        "en": "testing"
+      },
+      {
+        "vi": "Tái lập",
+        "ru": "воспроизводимость",
+        "en": "reproducibility"
+      }
+    ],
+    "turns": [
+      {
+        "speaker": "Case",
+        "ru": "Bối cảnh ứng dụng: mô tả dữ liệu НИР đủ rõ để phản biện.",
+        "vi": "Bối cảnh ứng dụng: mô tả dữ liệu НИР đủ rõ để phản biện."
+      },
+      {
+        "speaker": "Workflow",
+        "ru": "Quy trình/cú pháp dùng: dataset card = source + schema + limits + ethics",
+        "vi": "Quy trình/cú pháp dùng: dataset card = source + schema + limits + ethics"
+      },
+      {
+        "speaker": "Check",
+        "ru": "Cần kiểm tra input/output, test/log, version, seed và README.",
+        "vi": "Cần kiểm tra input/output, test/log, version, seed và README."
+      },
+      {
+        "speaker": "Report",
+        "ru": "Kết luận tốt phải có artifact, dữ liệu mẫu, cách chạy lại và giới hạn kỹ thuật.",
+        "vi": "Kết luận tốt phải có artifact, dữ liệu mẫu, cách chạy lại và giới hạn kỹ thuật."
+      }
+    ]
+  },
+  {
+    "id": "app_PR34",
+    "stage": "hk3",
+    "lessonId": "PR34",
+    "group": "ứng dụng AI/Bauman",
+    "type": "application-case",
+    "difficulty": "applied",
+    "title": "Ứng dụng · Experiment tracking và bảng metric",
+    "purpose": "so sánh mô hình trong НИР có bằng chứng",
+    "applicationDomain": "so sánh mô hình trong НИР có bằng chứng",
+    "formulaUsed": "run_id + params + metrics + artifacts",
+    "aiGraduationNeed": "Cần cho repo học tập, lab, seminar, НИР/ВКР và bảo vệ quyết định kỹ thuật.",
+    "terminologyTerms": [
+      {
+        "vi": "Theo dõi thí nghiệm",
+        "ru": "отслеживание экспериментов",
+        "en": "experiment tracking"
+      },
+      {
+        "vi": "Input/Output",
+        "ru": "вход/выход",
+        "en": "input/output"
+      },
+      {
+        "vi": "Kiểm thử",
+        "ru": "тестирование",
+        "en": "testing"
+      },
+      {
+        "vi": "Tái lập",
+        "ru": "воспроизводимость",
+        "en": "reproducibility"
+      }
+    ],
+    "turns": [
+      {
+        "speaker": "Case",
+        "ru": "Bối cảnh ứng dụng: so sánh mô hình trong НИР có bằng chứng.",
+        "vi": "Bối cảnh ứng dụng: so sánh mô hình trong НИР có bằng chứng."
+      },
+      {
+        "speaker": "Workflow",
+        "ru": "Quy trình/cú pháp dùng: run_id + params + metrics + artifacts",
+        "vi": "Quy trình/cú pháp dùng: run_id + params + metrics + artifacts"
+      },
+      {
+        "speaker": "Check",
+        "ru": "Cần kiểm tra input/output, test/log, version, seed và README.",
+        "vi": "Cần kiểm tra input/output, test/log, version, seed và README."
+      },
+      {
+        "speaker": "Report",
+        "ru": "Kết luận tốt phải có artifact, dữ liệu mẫu, cách chạy lại và giới hạn kỹ thuật.",
+        "vi": "Kết luận tốt phải có artifact, dữ liệu mẫu, cách chạy lại và giới hạn kỹ thuật."
+      }
+    ]
+  },
+  {
+    "id": "app_PR35",
+    "stage": "hk3",
+    "lessonId": "PR35",
+    "group": "ứng dụng AI/Bauman",
+    "type": "application-case",
+    "difficulty": "applied",
+    "title": "Ứng dụng · Ablation study bằng code có kiểm soát",
+    "purpose": "chứng minh yếu tố nào làm mô hình tốt hơn/xấu hơn",
+    "applicationDomain": "chứng minh yếu tố nào làm mô hình tốt hơn/xấu hơn",
+    "formulaUsed": "one change per run; compare metric deltas",
+    "aiGraduationNeed": "Cần cho repo học tập, lab, seminar, НИР/ВКР và bảo vệ quyết định kỹ thuật.",
+    "terminologyTerms": [
+      {
+        "vi": "Thí nghiệm loại bỏ",
+        "ru": "абляционное исследование",
+        "en": "ablation study"
+      },
+      {
+        "vi": "Input/Output",
+        "ru": "вход/выход",
+        "en": "input/output"
+      },
+      {
+        "vi": "Kiểm thử",
+        "ru": "тестирование",
+        "en": "testing"
+      },
+      {
+        "vi": "Tái lập",
+        "ru": "воспроизводимость",
+        "en": "reproducibility"
+      }
+    ],
+    "turns": [
+      {
+        "speaker": "Case",
+        "ru": "Bối cảnh ứng dụng: chứng minh yếu tố nào làm mô hình tốt hơn/xấu hơn.",
+        "vi": "Bối cảnh ứng dụng: chứng minh yếu tố nào làm mô hình tốt hơn/xấu hơn."
+      },
+      {
+        "speaker": "Workflow",
+        "ru": "Quy trình/cú pháp dùng: one change per run; compare metric deltas",
+        "vi": "Quy trình/cú pháp dùng: one change per run; compare metric deltas"
+      },
+      {
+        "speaker": "Check",
+        "ru": "Cần kiểm tra input/output, test/log, version, seed và README.",
+        "vi": "Cần kiểm tra input/output, test/log, version, seed và README."
+      },
+      {
+        "speaker": "Report",
+        "ru": "Kết luận tốt phải có artifact, dữ liệu mẫu, cách chạy lại và giới hạn kỹ thuật.",
+        "vi": "Kết luận tốt phải có artifact, dữ liệu mẫu, cách chạy lại và giới hạn kỹ thuật."
+      }
+    ]
+  },
+  {
+    "id": "app_PR36",
+    "stage": "hk3",
+    "lessonId": "PR36",
+    "group": "ứng dụng AI/Bauman",
+    "type": "application-case",
+    "difficulty": "applied",
+    "title": "Ứng dụng · Xử lý log cảm biến và chuỗi thời gian",
+    "purpose": "làm sạch log UGV trước khi phân tích tín hiệu/AI",
+    "applicationDomain": "làm sạch log UGV trước khi phân tích tín hiệu/AI",
+    "formulaUsed": "timestamp + value + quality_flag",
+    "aiGraduationNeed": "Cần cho repo học tập, lab, seminar, НИР/ВКР và bảo vệ quyết định kỹ thuật.",
+    "terminologyTerms": [
+      {
+        "vi": "Log telemetry",
+        "ru": "журнал телеметрии",
+        "en": "telemetry log"
+      },
+      {
+        "vi": "Input/Output",
+        "ru": "вход/выход",
+        "en": "input/output"
+      },
+      {
+        "vi": "Kiểm thử",
+        "ru": "тестирование",
+        "en": "testing"
+      },
+      {
+        "vi": "Tái lập",
+        "ru": "воспроизводимость",
+        "en": "reproducibility"
+      }
+    ],
+    "turns": [
+      {
+        "speaker": "Case",
+        "ru": "Bối cảnh ứng dụng: làm sạch log UGV trước khi phân tích tín hiệu/AI.",
+        "vi": "Bối cảnh ứng dụng: làm sạch log UGV trước khi phân tích tín hiệu/AI."
+      },
+      {
+        "speaker": "Workflow",
+        "ru": "Quy trình/cú pháp dùng: timestamp + value + quality_flag",
+        "vi": "Quy trình/cú pháp dùng: timestamp + value + quality_flag"
+      },
+      {
+        "speaker": "Check",
+        "ru": "Cần kiểm tra input/output, test/log, version, seed và README.",
+        "vi": "Cần kiểm tra input/output, test/log, version, seed và README."
+      },
+      {
+        "speaker": "Report",
+        "ru": "Kết luận tốt phải có artifact, dữ liệu mẫu, cách chạy lại và giới hạn kỹ thuật.",
+        "vi": "Kết luận tốt phải có artifact, dữ liệu mẫu, cách chạy lại và giới hạn kỹ thuật."
+      }
+    ]
+  },
+  {
+    "id": "app_PR37",
+    "stage": "hk3",
+    "lessonId": "PR37",
+    "group": "ứng dụng AI/Bauman",
+    "type": "application-case",
+    "difficulty": "applied",
+    "title": "Ứng dụng · Module đánh giá lỗi và phân tích thất bại",
+    "purpose": "biết mô hình sai ở đâu, vì sao, sửa thế nào",
+    "applicationDomain": "biết mô hình sai ở đâu, vì sao, sửa thế nào",
+    "formulaUsed": "error case → label → root cause → fix",
+    "aiGraduationNeed": "Cần cho repo học tập, lab, seminar, НИР/ВКР và bảo vệ quyết định kỹ thuật.",
+    "terminologyTerms": [
+      {
+        "vi": "Phân tích lỗi",
+        "ru": "анализ ошибок",
+        "en": "error analysis"
+      },
+      {
+        "vi": "Input/Output",
+        "ru": "вход/выход",
+        "en": "input/output"
+      },
+      {
+        "vi": "Kiểm thử",
+        "ru": "тестирование",
+        "en": "testing"
+      },
+      {
+        "vi": "Tái lập",
+        "ru": "воспроизводимость",
+        "en": "reproducibility"
+      }
+    ],
+    "turns": [
+      {
+        "speaker": "Case",
+        "ru": "Bối cảnh ứng dụng: biết mô hình sai ở đâu, vì sao, sửa thế nào.",
+        "vi": "Bối cảnh ứng dụng: biết mô hình sai ở đâu, vì sao, sửa thế nào."
+      },
+      {
+        "speaker": "Workflow",
+        "ru": "Quy trình/cú pháp dùng: error case → label → root cause → fix",
+        "vi": "Quy trình/cú pháp dùng: error case → label → root cause → fix"
+      },
+      {
+        "speaker": "Check",
+        "ru": "Cần kiểm tra input/output, test/log, version, seed và README.",
+        "vi": "Cần kiểm tra input/output, test/log, version, seed và README."
+      },
+      {
+        "speaker": "Report",
+        "ru": "Kết luận tốt phải có artifact, dữ liệu mẫu, cách chạy lại và giới hạn kỹ thuật.",
+        "vi": "Kết luận tốt phải có artifact, dữ liệu mẫu, cách chạy lại và giới hạn kỹ thuật."
+      }
+    ]
+  },
+  {
+    "id": "app_PR38",
+    "stage": "hk3",
+    "lessonId": "PR38",
+    "group": "ứng dụng AI/Bauman",
+    "type": "application-case",
+    "difficulty": "applied",
+    "title": "Ứng dụng · Prototype dashboard kết quả nghiên cứu",
+    "purpose": "xem kết quả thí nghiệm, hình minh họa và log",
+    "applicationDomain": "xem kết quả thí nghiệm, hình minh họa và log",
+    "formulaUsed": "metrics + plots + filters + notes",
+    "aiGraduationNeed": "Cần cho repo học tập, lab, seminar, НИР/ВКР và bảo vệ quyết định kỹ thuật.",
+    "terminologyTerms": [
+      {
+        "vi": "Bảng điều khiển",
+        "ru": "панель мониторинга",
+        "en": "dashboard"
+      },
+      {
+        "vi": "Input/Output",
+        "ru": "вход/выход",
+        "en": "input/output"
+      },
+      {
+        "vi": "Kiểm thử",
+        "ru": "тестирование",
+        "en": "testing"
+      },
+      {
+        "vi": "Tái lập",
+        "ru": "воспроизводимость",
+        "en": "reproducibility"
+      }
+    ],
+    "turns": [
+      {
+        "speaker": "Case",
+        "ru": "Bối cảnh ứng dụng: xem kết quả thí nghiệm, hình minh họa và log.",
+        "vi": "Bối cảnh ứng dụng: xem kết quả thí nghiệm, hình minh họa và log."
+      },
+      {
+        "speaker": "Workflow",
+        "ru": "Quy trình/cú pháp dùng: metrics + plots + filters + notes",
+        "vi": "Quy trình/cú pháp dùng: metrics + plots + filters + notes"
+      },
+      {
+        "speaker": "Check",
+        "ru": "Cần kiểm tra input/output, test/log, version, seed và README.",
+        "vi": "Cần kiểm tra input/output, test/log, version, seed và README."
+      },
+      {
+        "speaker": "Report",
+        "ru": "Kết luận tốt phải có artifact, dữ liệu mẫu, cách chạy lại và giới hạn kỹ thuật.",
+        "vi": "Kết luận tốt phải có artifact, dữ liệu mẫu, cách chạy lại và giới hạn kỹ thuật."
+      }
+    ]
+  },
+  {
+    "id": "app_PR39",
+    "stage": "hk3",
+    "lessonId": "PR39",
+    "group": "ứng dụng AI/Bauman",
+    "type": "application-case",
+    "difficulty": "applied",
+    "title": "Ứng dụng · Đóng gói demo nghiên cứu",
+    "purpose": "cho giáo viên mở demo nhanh mà không vỡ môi trường",
+    "applicationDomain": "cho giáo viên mở demo nhanh mà không vỡ môi trường",
+    "formulaUsed": "make run-demo; sample data; expected output",
+    "aiGraduationNeed": "Cần cho repo học tập, lab, seminar, НИР/ВКР và bảo vệ quyết định kỹ thuật.",
+    "terminologyTerms": [
+      {
+        "vi": "Demo tái lập",
+        "ru": "воспроизводимая демонстрация",
+        "en": "reproducible demo"
+      },
+      {
+        "vi": "Input/Output",
+        "ru": "вход/выход",
+        "en": "input/output"
+      },
+      {
+        "vi": "Kiểm thử",
+        "ru": "тестирование",
+        "en": "testing"
+      },
+      {
+        "vi": "Tái lập",
+        "ru": "воспроизводимость",
+        "en": "reproducibility"
+      }
+    ],
+    "turns": [
+      {
+        "speaker": "Case",
+        "ru": "Bối cảnh ứng dụng: cho giáo viên mở demo nhanh mà không vỡ môi trường.",
+        "vi": "Bối cảnh ứng dụng: cho giáo viên mở demo nhanh mà không vỡ môi trường."
+      },
+      {
+        "speaker": "Workflow",
+        "ru": "Quy trình/cú pháp dùng: make run-demo; sample data; expected output",
+        "vi": "Quy trình/cú pháp dùng: make run-demo; sample data; expected output"
+      },
+      {
+        "speaker": "Check",
+        "ru": "Cần kiểm tra input/output, test/log, version, seed và README.",
+        "vi": "Cần kiểm tra input/output, test/log, version, seed và README."
+      },
+      {
+        "speaker": "Report",
+        "ru": "Kết luận tốt phải có artifact, dữ liệu mẫu, cách chạy lại và giới hạn kỹ thuật.",
+        "vi": "Kết luận tốt phải có artifact, dữ liệu mẫu, cách chạy lại và giới hạn kỹ thuật."
+      }
+    ]
+  },
+  {
+    "id": "app_PR40",
+    "stage": "hk3",
+    "lessonId": "PR40",
+    "group": "ứng dụng AI/Bauman",
+    "type": "application-case",
+    "difficulty": "applied",
+    "title": "Ứng dụng · Quản lý rủi ro phần mềm trong НИР",
+    "purpose": "giảm rủi ro hỏng demo, mất dữ liệu, lệch kết quả",
+    "applicationDomain": "giảm rủi ro hỏng demo, mất dữ liệu, lệch kết quả",
+    "formulaUsed": "risk = probability × impact; mitigation plan",
+    "aiGraduationNeed": "Cần cho repo học tập, lab, seminar, НИР/ВКР và bảo vệ quyết định kỹ thuật.",
+    "terminologyTerms": [
+      {
+        "vi": "Rủi ro phần mềm",
+        "ru": "программный риск",
+        "en": "software risk"
+      },
+      {
+        "vi": "Input/Output",
+        "ru": "вход/выход",
+        "en": "input/output"
+      },
+      {
+        "vi": "Kiểm thử",
+        "ru": "тестирование",
+        "en": "testing"
+      },
+      {
+        "vi": "Tái lập",
+        "ru": "воспроизводимость",
+        "en": "reproducibility"
+      }
+    ],
+    "turns": [
+      {
+        "speaker": "Case",
+        "ru": "Bối cảnh ứng dụng: giảm rủi ro hỏng demo, mất dữ liệu, lệch kết quả.",
+        "vi": "Bối cảnh ứng dụng: giảm rủi ro hỏng demo, mất dữ liệu, lệch kết quả."
+      },
+      {
+        "speaker": "Workflow",
+        "ru": "Quy trình/cú pháp dùng: risk = probability × impact; mitigation plan",
+        "vi": "Quy trình/cú pháp dùng: risk = probability × impact; mitigation plan"
+      },
+      {
+        "speaker": "Check",
+        "ru": "Cần kiểm tra input/output, test/log, version, seed và README.",
+        "vi": "Cần kiểm tra input/output, test/log, version, seed và README."
+      },
+      {
+        "speaker": "Report",
+        "ru": "Kết luận tốt phải có artifact, dữ liệu mẫu, cách chạy lại và giới hạn kỹ thuật.",
+        "vi": "Kết luận tốt phải có artifact, dữ liệu mẫu, cách chạy lại và giới hạn kỹ thuật."
+      }
+    ]
+  },
+  {
+    "id": "app_PR41",
+    "stage": "hk4",
+    "lessonId": "PR41",
+    "group": "ứng dụng AI/Bauman",
+    "type": "application-case",
+    "difficulty": "applied",
+    "title": "Ứng dụng · Đóng băng mã nguồn và tag release",
+    "purpose": "khóa phiên bản phục vụ ВКР, tránh đổi sát ngày bảo vệ",
+    "applicationDomain": "khóa phiên bản phục vụ ВКР, tránh đổi sát ngày bảo vệ",
+    "formulaUsed": "git tag v1.0-defense; CHANGELOG.md",
+    "aiGraduationNeed": "Cần cho repo học tập, lab, seminar, НИР/ВКР và bảo vệ quyết định kỹ thuật.",
+    "terminologyTerms": [
+      {
+        "vi": "Tag phiên bản",
+        "ru": "тег версии",
+        "en": "version tag"
+      },
+      {
+        "vi": "Input/Output",
+        "ru": "вход/выход",
+        "en": "input/output"
+      },
+      {
+        "vi": "Kiểm thử",
+        "ru": "тестирование",
+        "en": "testing"
+      },
+      {
+        "vi": "Tái lập",
+        "ru": "воспроизводимость",
+        "en": "reproducibility"
+      }
+    ],
+    "turns": [
+      {
+        "speaker": "Case",
+        "ru": "Bối cảnh ứng dụng: khóa phiên bản phục vụ ВКР, tránh đổi sát ngày bảo vệ.",
+        "vi": "Bối cảnh ứng dụng: khóa phiên bản phục vụ ВКР, tránh đổi sát ngày bảo vệ."
+      },
+      {
+        "speaker": "Workflow",
+        "ru": "Quy trình/cú pháp dùng: git tag v1.0-defense; CHANGELOG.md",
+        "vi": "Quy trình/cú pháp dùng: git tag v1.0-defense; CHANGELOG.md"
+      },
+      {
+        "speaker": "Check",
+        "ru": "Cần kiểm tra input/output, test/log, version, seed và README.",
+        "vi": "Cần kiểm tra input/output, test/log, version, seed và README."
+      },
+      {
+        "speaker": "Report",
+        "ru": "Kết luận tốt phải có artifact, dữ liệu mẫu, cách chạy lại và giới hạn kỹ thuật.",
+        "vi": "Kết luận tốt phải có artifact, dữ liệu mẫu, cách chạy lại và giới hạn kỹ thuật."
+      }
+    ]
+  },
+  {
+    "id": "app_PR42",
+    "stage": "hk4",
+    "lessonId": "PR42",
+    "group": "ứng dụng AI/Bauman",
+    "type": "application-case",
+    "difficulty": "applied",
+    "title": "Ứng dụng · Script chạy lại toàn bộ kết quả",
+    "purpose": "tái tạo bảng và hình trong luận văn",
+    "applicationDomain": "tái tạo bảng và hình trong luận văn",
+    "formulaUsed": "make reproduce → data → model → figures",
+    "aiGraduationNeed": "Cần cho repo học tập, lab, seminar, НИР/ВКР và bảo vệ quyết định kỹ thuật.",
+    "terminologyTerms": [
+      {
+        "vi": "Script tái lập",
+        "ru": "скрипт воспроизведения",
+        "en": "reproduction script"
+      },
+      {
+        "vi": "Input/Output",
+        "ru": "вход/выход",
+        "en": "input/output"
+      },
+      {
+        "vi": "Kiểm thử",
+        "ru": "тестирование",
+        "en": "testing"
+      },
+      {
+        "vi": "Tái lập",
+        "ru": "воспроизводимость",
+        "en": "reproducibility"
+      }
+    ],
+    "turns": [
+      {
+        "speaker": "Case",
+        "ru": "Bối cảnh ứng dụng: tái tạo bảng và hình trong luận văn.",
+        "vi": "Bối cảnh ứng dụng: tái tạo bảng và hình trong luận văn."
+      },
+      {
+        "speaker": "Workflow",
+        "ru": "Quy trình/cú pháp dùng: make reproduce → data → model → figures",
+        "vi": "Quy trình/cú pháp dùng: make reproduce → data → model → figures"
+      },
+      {
+        "speaker": "Check",
+        "ru": "Cần kiểm tra input/output, test/log, version, seed và README.",
+        "vi": "Cần kiểm tra input/output, test/log, version, seed và README."
+      },
+      {
+        "speaker": "Report",
+        "ru": "Kết luận tốt phải có artifact, dữ liệu mẫu, cách chạy lại và giới hạn kỹ thuật.",
+        "vi": "Kết luận tốt phải có artifact, dữ liệu mẫu, cách chạy lại và giới hạn kỹ thuật."
+      }
+    ]
+  },
+  {
+    "id": "app_PR43",
+    "stage": "hk4",
+    "lessonId": "PR43",
+    "group": "ứng dụng AI/Bauman",
+    "type": "application-case",
+    "difficulty": "applied",
+    "title": "Ứng dụng · Chuẩn hóa thư mục luận văn và artifact",
+    "purpose": "không thất lạc hình, bảng, code khi viết ВКР",
+    "applicationDomain": "không thất lạc hình, bảng, code khi viết ВКР",
+    "formulaUsed": "thesis/ figures/ tables/ code/ appendix/",
+    "aiGraduationNeed": "Cần cho repo học tập, lab, seminar, НИР/ВКР và bảo vệ quyết định kỹ thuật.",
+    "terminologyTerms": [
+      {
+        "vi": "Phụ lục kỹ thuật",
+        "ru": "техническое приложение",
+        "en": "technical appendix"
+      },
+      {
+        "vi": "Input/Output",
+        "ru": "вход/выход",
+        "en": "input/output"
+      },
+      {
+        "vi": "Kiểm thử",
+        "ru": "тестирование",
+        "en": "testing"
+      },
+      {
+        "vi": "Tái lập",
+        "ru": "воспроизводимость",
+        "en": "reproducibility"
+      }
+    ],
+    "turns": [
+      {
+        "speaker": "Case",
+        "ru": "Bối cảnh ứng dụng: không thất lạc hình, bảng, code khi viết ВКР.",
+        "vi": "Bối cảnh ứng dụng: không thất lạc hình, bảng, code khi viết ВКР."
+      },
+      {
+        "speaker": "Workflow",
+        "ru": "Quy trình/cú pháp dùng: thesis/ figures/ tables/ code/ appendix/",
+        "vi": "Quy trình/cú pháp dùng: thesis/ figures/ tables/ code/ appendix/"
+      },
+      {
+        "speaker": "Check",
+        "ru": "Cần kiểm tra input/output, test/log, version, seed và README.",
+        "vi": "Cần kiểm tra input/output, test/log, version, seed và README."
+      },
+      {
+        "speaker": "Report",
+        "ru": "Kết luận tốt phải có artifact, dữ liệu mẫu, cách chạy lại và giới hạn kỹ thuật.",
+        "vi": "Kết luận tốt phải có artifact, dữ liệu mẫu, cách chạy lại và giới hạn kỹ thuật."
+      }
+    ]
+  },
+  {
+    "id": "app_PR44",
+    "stage": "hk4",
+    "lessonId": "PR44",
+    "group": "ứng dụng AI/Bauman",
+    "type": "application-case",
+    "difficulty": "applied",
+    "title": "Ứng dụng · Demo offline và kế hoạch dự phòng",
+    "purpose": "bảo vệ khi mạng/hardware có vấn đề",
+    "applicationDomain": "bảo vệ khi mạng/hardware có vấn đề",
+    "formulaUsed": "offline mode + sample data + screenshots",
+    "aiGraduationNeed": "Cần cho repo học tập, lab, seminar, НИР/ВКР và bảo vệ quyết định kỹ thuật.",
+    "terminologyTerms": [
+      {
+        "vi": "Kế hoạch dự phòng",
+        "ru": "резервный план",
+        "en": "fallback plan"
+      },
+      {
+        "vi": "Input/Output",
+        "ru": "вход/выход",
+        "en": "input/output"
+      },
+      {
+        "vi": "Kiểm thử",
+        "ru": "тестирование",
+        "en": "testing"
+      },
+      {
+        "vi": "Tái lập",
+        "ru": "воспроизводимость",
+        "en": "reproducibility"
+      }
+    ],
+    "turns": [
+      {
+        "speaker": "Case",
+        "ru": "Bối cảnh ứng dụng: bảo vệ khi mạng/hardware có vấn đề.",
+        "vi": "Bối cảnh ứng dụng: bảo vệ khi mạng/hardware có vấn đề."
+      },
+      {
+        "speaker": "Workflow",
+        "ru": "Quy trình/cú pháp dùng: offline mode + sample data + screenshots",
+        "vi": "Quy trình/cú pháp dùng: offline mode + sample data + screenshots"
+      },
+      {
+        "speaker": "Check",
+        "ru": "Cần kiểm tra input/output, test/log, version, seed và README.",
+        "vi": "Cần kiểm tra input/output, test/log, version, seed và README."
+      },
+      {
+        "speaker": "Report",
+        "ru": "Kết luận tốt phải có artifact, dữ liệu mẫu, cách chạy lại và giới hạn kỹ thuật.",
+        "vi": "Kết luận tốt phải có artifact, dữ liệu mẫu, cách chạy lại và giới hạn kỹ thuật."
+      }
+    ]
+  },
+  {
+    "id": "app_PR45",
+    "stage": "hk4",
+    "lessonId": "PR45",
+    "group": "ứng dụng AI/Bauman",
+    "type": "application-case",
+    "difficulty": "applied",
+    "title": "Ứng dụng · Tối ưu nhỏ: runtime, memory và latency",
+    "purpose": "trả lời phản biện về khả năng chạy trên phần cứng robot",
+    "applicationDomain": "trả lời phản biện về khả năng chạy trên phần cứng robot",
+    "formulaUsed": "latency_ms; memory_mb; throughput",
+    "aiGraduationNeed": "Cần cho repo học tập, lab, seminar, НИР/ВКР và bảo vệ quyết định kỹ thuật.",
+    "terminologyTerms": [
+      {
+        "vi": "Độ trễ",
+        "ru": "задержка",
+        "en": "latency"
+      },
+      {
+        "vi": "Input/Output",
+        "ru": "вход/выход",
+        "en": "input/output"
+      },
+      {
+        "vi": "Kiểm thử",
+        "ru": "тестирование",
+        "en": "testing"
+      },
+      {
+        "vi": "Tái lập",
+        "ru": "воспроизводимость",
+        "en": "reproducibility"
+      }
+    ],
+    "turns": [
+      {
+        "speaker": "Case",
+        "ru": "Bối cảnh ứng dụng: trả lời phản biện về khả năng chạy trên phần cứng robot.",
+        "vi": "Bối cảnh ứng dụng: trả lời phản biện về khả năng chạy trên phần cứng robot."
+      },
+      {
+        "speaker": "Workflow",
+        "ru": "Quy trình/cú pháp dùng: latency_ms; memory_mb; throughput",
+        "vi": "Quy trình/cú pháp dùng: latency_ms; memory_mb; throughput"
+      },
+      {
+        "speaker": "Check",
+        "ru": "Cần kiểm tra input/output, test/log, version, seed và README.",
+        "vi": "Cần kiểm tra input/output, test/log, version, seed và README."
+      },
+      {
+        "speaker": "Report",
+        "ru": "Kết luận tốt phải có artifact, dữ liệu mẫu, cách chạy lại và giới hạn kỹ thuật.",
+        "vi": "Kết luận tốt phải có artifact, dữ liệu mẫu, cách chạy lại và giới hạn kỹ thuật."
+      }
+    ]
+  },
+  {
+    "id": "app_PR46",
+    "stage": "hk4",
+    "lessonId": "PR46",
+    "group": "ứng dụng AI/Bauman",
+    "type": "application-case",
+    "difficulty": "applied",
+    "title": "Ứng dụng · Kiểm tra license, citation và nguồn mở",
+    "purpose": "tránh lỗi trích dẫn thư viện/dữ liệu khi nộp luận văn",
+    "applicationDomain": "tránh lỗi trích dẫn thư viện/dữ liệu khi nộp luận văn",
+    "formulaUsed": "LICENSE + CITATION + third-party notices",
+    "aiGraduationNeed": "Cần cho repo học tập, lab, seminar, НИР/ВКР và bảo vệ quyết định kỹ thuật.",
+    "terminologyTerms": [
+      {
+        "vi": "Giấy phép phần mềm",
+        "ru": "лицензия ПО",
+        "en": "software license"
+      },
+      {
+        "vi": "Input/Output",
+        "ru": "вход/выход",
+        "en": "input/output"
+      },
+      {
+        "vi": "Kiểm thử",
+        "ru": "тестирование",
+        "en": "testing"
+      },
+      {
+        "vi": "Tái lập",
+        "ru": "воспроизводимость",
+        "en": "reproducibility"
+      }
+    ],
+    "turns": [
+      {
+        "speaker": "Case",
+        "ru": "Bối cảnh ứng dụng: tránh lỗi trích dẫn thư viện/dữ liệu khi nộp luận văn.",
+        "vi": "Bối cảnh ứng dụng: tránh lỗi trích dẫn thư viện/dữ liệu khi nộp luận văn."
+      },
+      {
+        "speaker": "Workflow",
+        "ru": "Quy trình/cú pháp dùng: LICENSE + CITATION + third-party notices",
+        "vi": "Quy trình/cú pháp dùng: LICENSE + CITATION + third-party notices"
+      },
+      {
+        "speaker": "Check",
+        "ru": "Cần kiểm tra input/output, test/log, version, seed và README.",
+        "vi": "Cần kiểm tra input/output, test/log, version, seed và README."
+      },
+      {
+        "speaker": "Report",
+        "ru": "Kết luận tốt phải có artifact, dữ liệu mẫu, cách chạy lại và giới hạn kỹ thuật.",
+        "vi": "Kết luận tốt phải có artifact, dữ liệu mẫu, cách chạy lại và giới hạn kỹ thuật."
+      }
+    ]
+  },
+  {
+    "id": "app_PR47",
+    "stage": "hk4",
+    "lessonId": "PR47",
+    "group": "ứng dụng AI/Bauman",
+    "type": "application-case",
+    "difficulty": "applied",
+    "title": "Ứng dụng · Slide kỹ thuật: kiến trúc, pipeline, kết quả",
+    "purpose": "trình bày phần code không loạn trước hội đồng",
+    "applicationDomain": "trình bày phần code không loạn trước hội đồng",
+    "formulaUsed": "problem → architecture → experiment → result → limit",
+    "aiGraduationNeed": "Cần cho repo học tập, lab, seminar, НИР/ВКР và bảo vệ quyết định kỹ thuật.",
+    "terminologyTerms": [
+      {
+        "vi": "Slide bảo vệ",
+        "ru": "слайды защиты",
+        "en": "defense slides"
+      },
+      {
+        "vi": "Input/Output",
+        "ru": "вход/выход",
+        "en": "input/output"
+      },
+      {
+        "vi": "Kiểm thử",
+        "ru": "тестирование",
+        "en": "testing"
+      },
+      {
+        "vi": "Tái lập",
+        "ru": "воспроизводимость",
+        "en": "reproducibility"
+      }
+    ],
+    "turns": [
+      {
+        "speaker": "Case",
+        "ru": "Bối cảnh ứng dụng: trình bày phần code không loạn trước hội đồng.",
+        "vi": "Bối cảnh ứng dụng: trình bày phần code không loạn trước hội đồng."
+      },
+      {
+        "speaker": "Workflow",
+        "ru": "Quy trình/cú pháp dùng: problem → architecture → experiment → result → limit",
+        "vi": "Quy trình/cú pháp dùng: problem → architecture → experiment → result → limit"
+      },
+      {
+        "speaker": "Check",
+        "ru": "Cần kiểm tra input/output, test/log, version, seed và README.",
+        "vi": "Cần kiểm tra input/output, test/log, version, seed và README."
+      },
+      {
+        "speaker": "Report",
+        "ru": "Kết luận tốt phải có artifact, dữ liệu mẫu, cách chạy lại và giới hạn kỹ thuật.",
+        "vi": "Kết luận tốt phải có artifact, dữ liệu mẫu, cách chạy lại và giới hạn kỹ thuật."
+      }
+    ]
+  },
+  {
+    "id": "app_PR48",
+    "stage": "hk4",
+    "lessonId": "PR48",
+    "group": "ứng dụng AI/Bauman",
+    "type": "application-case",
+    "difficulty": "applied",
+    "title": "Ứng dụng · Trả lời phản biện kỹ thuật phần mềm",
+    "purpose": "bảo vệ lựa chọn kiến trúc, dữ liệu, metric và demo",
+    "applicationDomain": "bảo vệ lựa chọn kiến trúc, dữ liệu, metric và demo",
+    "formulaUsed": "why design? why metric? why reproducible?",
+    "aiGraduationNeed": "Cần cho repo học tập, lab, seminar, НИР/ВКР và bảo vệ quyết định kỹ thuật.",
+    "terminologyTerms": [
+      {
+        "vi": "Phản biện kỹ thuật",
+        "ru": "техническая защита",
+        "en": "technical defense"
+      },
+      {
+        "vi": "Input/Output",
+        "ru": "вход/выход",
+        "en": "input/output"
+      },
+      {
+        "vi": "Kiểm thử",
+        "ru": "тестирование",
+        "en": "testing"
+      },
+      {
+        "vi": "Tái lập",
+        "ru": "воспроизводимость",
+        "en": "reproducibility"
+      }
+    ],
+    "turns": [
+      {
+        "speaker": "Case",
+        "ru": "Bối cảnh ứng dụng: bảo vệ lựa chọn kiến trúc, dữ liệu, metric và demo.",
+        "vi": "Bối cảnh ứng dụng: bảo vệ lựa chọn kiến trúc, dữ liệu, metric và demo."
+      },
+      {
+        "speaker": "Workflow",
+        "ru": "Quy trình/cú pháp dùng: why design? why metric? why reproducible?",
+        "vi": "Quy trình/cú pháp dùng: why design? why metric? why reproducible?"
+      },
+      {
+        "speaker": "Check",
+        "ru": "Cần kiểm tra input/output, test/log, version, seed và README.",
+        "vi": "Cần kiểm tra input/output, test/log, version, seed và README."
+      },
+      {
+        "speaker": "Report",
+        "ru": "Kết luận tốt phải có artifact, dữ liệu mẫu, cách chạy lại và giới hạn kỹ thuật.",
+        "vi": "Kết luận tốt phải có artifact, dữ liệu mẫu, cách chạy lại và giới hạn kỹ thuật."
+      }
+    ]
+  }
+]

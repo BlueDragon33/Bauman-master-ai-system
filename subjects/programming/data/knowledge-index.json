@@ -1,0 +1,722 @@
+[
+  {
+    "id": "ki_PR01",
+    "title": "Thiết lập môi trường Python, VS Code và Live Server",
+    "stage": "vn",
+    "summary": "Thiết lập môi trường Python, VS Code và Live Server: quy trình/cú pháp python -m venv .venv; pip install -r requirements.txt; code ., test/artifact và ứng dụng mở module học, chạy notebook, kiểm thử HTML/JSON cục bộ.",
+    "_internalMetaForSearchOnly": {
+      "keywords": [
+        "environment, venv, VS Code, Live Server",
+        "Môi trường phát triển",
+        "среда разработки",
+        "development environment",
+        "mở module học, chạy notebook, kiểm thử HTML/JSON cục bộ"
+      ]
+    }
+  },
+  {
+    "id": "ki_PR02",
+    "title": "Tư duy thuật toán và độ phức tạp",
+    "stage": "vn",
+    "summary": "Tư duy thuật toán và độ phức tạp: quy trình/cú pháp T(n)=O(n log n); space=O(n), test/artifact và ứng dụng chọn thuật toán đủ nhanh cho xử lý dữ liệu robot.",
+    "_internalMetaForSearchOnly": {
+      "keywords": [
+        "algorithmic thinking, complexity, data structures",
+        "Độ phức tạp",
+        "сложность алгоритма",
+        "algorithmic complexity",
+        "chọn thuật toán đủ nhanh cho xử lý dữ liệu robot"
+      ]
+    }
+  },
+  {
+    "id": "ki_PR03",
+    "title": "Python căn bản: kiểu dữ liệu, hàm, module",
+    "stage": "vn",
+    "summary": "Python căn bản: kiểu dữ liệu, hàm, module: quy trình/cú pháp def f(x): return y; list/dict/set/tuple, test/artifact và ứng dụng viết script sạch để xử lý bài tập và dữ liệu nhỏ.",
+    "_internalMetaForSearchOnly": {
+      "keywords": [
+        "Python basics, functions, modules",
+        "Hàm",
+        "функция",
+        "function",
+        "viết script sạch để xử lý bài tập và dữ liệu nhỏ"
+      ]
+    }
+  },
+  {
+    "id": "ki_PR04",
+    "title": "NumPy và vector hóa dữ liệu",
+    "stage": "vn",
+    "summary": "NumPy và vector hóa dữ liệu: quy trình/cú pháp X.shape=(n,d); y = X @ w + b, test/artifact và ứng dụng tính toán ma trận/đặc trưng cho AI nhanh và gọn.",
+    "_internalMetaForSearchOnly": {
+      "keywords": [
+        "NumPy, arrays, vectorization",
+        "Vector hóa",
+        "векторизация",
+        "vectorization",
+        "tính toán ma trận/đặc trưng cho AI nhanh và gọn"
+      ]
+    }
+  },
+  {
+    "id": "ki_PR05",
+    "title": "Pandas và làm sạch bảng dữ liệu",
+    "stage": "vn",
+    "summary": "Pandas và làm sạch bảng dữ liệu: quy trình/cú pháp df.dropna(); df.groupby(); df.merge(), test/artifact và ứng dụng làm sạch log cảm biến, bảng điểm đo, dữ liệu CSV.",
+    "_internalMetaForSearchOnly": {
+      "keywords": [
+        "pandas, dataframe, cleaning",
+        "Khung dữ liệu",
+        "таблица данных",
+        "dataframe",
+        "làm sạch log cảm biến, bảng điểm đo, dữ liệu CSV"
+      ]
+    }
+  },
+  {
+    "id": "ki_PR06",
+    "title": "SQL căn bản và mô hình quan hệ",
+    "stage": "vn",
+    "summary": "SQL căn bản và mô hình quan hệ: quy trình/cú pháp SELECT col FROM table WHERE condition; PK/FK, test/artifact và ứng dụng lưu kết quả thí nghiệm, metadata và truy vấn nhanh.",
+    "_internalMetaForSearchOnly": {
+      "keywords": [
+        "SQL, relational model, query",
+        "Truy vấn SQL",
+        "SQL-запрос",
+        "SQL query",
+        "lưu kết quả thí nghiệm, metadata và truy vấn nhanh"
+      ]
+    }
+  },
+  {
+    "id": "ki_PR07",
+    "title": "Git, GitHub và nhật ký học tập",
+    "stage": "vn",
+    "summary": "Git, GitHub và nhật ký học tập: quy trình/cú pháp git add .; git commit -m \"message\"; git branch, test/artifact và ứng dụng quản lý phiên bản bài học, notebook, mã mô phỏng.",
+    "_internalMetaForSearchOnly": {
+      "keywords": [
+        "Git, commit, branch, repository",
+        "Kho mã nguồn",
+        "репозиторий",
+        "repository",
+        "quản lý phiên bản bài học, notebook, mã mô phỏng"
+      ]
+    }
+  },
+  {
+    "id": "ki_PR08",
+    "title": "Notebook thực nghiệm và README tái lập",
+    "stage": "vn",
+    "summary": "Notebook thực nghiệm và README tái lập: quy trình/cú pháp README + notebook + data/ + src/ + results/, test/artifact và ứng dụng tạo artifact học tập có thể mở lại, chạy lại, giải thích lại.",
+    "_internalMetaForSearchOnly": {
+      "keywords": [
+        "notebook, reproducibility, README",
+        "Tái lập kết quả",
+        "воспроизводимость",
+        "reproducibility",
+        "tạo artifact học tập có thể mở lại, chạy lại, giải thích lại"
+      ]
+    }
+  },
+  {
+    "id": "ki_PR09",
+    "title": "Thuật ngữ tin học Nga cho lớp dự bị",
+    "stage": "prep",
+    "summary": "Thuật ngữ tin học Nga cho lớp dự bị: quy trình/cú pháp алгоритм, переменная, функция, массив, база данных, test/artifact và ứng dụng nghe/đọc đề bài tin học và hỏi giáo viên bằng tiếng Nga.",
+    "_internalMetaForSearchOnly": {
+      "keywords": [
+        "Russian CS terminology, class commands",
+        "Thuật toán",
+        "алгоритм",
+        "algorithm",
+        "nghe/đọc đề bài tin học và hỏi giáo viên bằng tiếng Nga"
+      ]
+    }
+  },
+  {
+    "id": "ki_PR10",
+    "title": "Pseudocode và giải thích thuật toán bằng tiếng Nga",
+    "stage": "prep",
+    "summary": "Pseudocode và giải thích thuật toán bằng tiếng Nga: quy trình/cú pháp input → process → output; if/for/while, test/artifact và ứng dụng trình bày lời giải không kẹt ngôn ngữ.",
+    "_internalMetaForSearchOnly": {
+      "keywords": [
+        "pseudocode, control flow, Russian explanation",
+        "Mã giả",
+        "псевдокод",
+        "pseudocode",
+        "trình bày lời giải không kẹt ngôn ngữ"
+      ]
+    }
+  },
+  {
+    "id": "ki_PR11",
+    "title": "Cấu trúc dữ liệu nhập môn",
+    "stage": "prep",
+    "summary": "Cấu trúc dữ liệu nhập môn: quy trình/cú pháp array, stack, queue, dict, graph, test/artifact và ứng dụng làm bài tin học dự bị và mô tả dữ liệu kỹ thuật.",
+    "_internalMetaForSearchOnly": {
+      "keywords": [
+        "data structures, arrays, maps, graph",
+        "Cấu trúc dữ liệu",
+        "структура данных",
+        "data structure",
+        "làm bài tin học dự bị và mô tả dữ liệu kỹ thuật"
+      ]
+    }
+  },
+  {
+    "id": "ki_PR12",
+    "title": "File, JSON, CSV và dữ liệu học tập",
+    "stage": "prep",
+    "summary": "File, JSON, CSV và dữ liệu học tập: quy trình/cú pháp json.load(); csv.DictReader(); pathlib.Path, test/artifact và ứng dụng đọc/ghi dữ liệu module môn học, kho dữ liệu và bài tập.",
+    "_internalMetaForSearchOnly": {
+      "keywords": [
+        "JSON, CSV, file IO",
+        "Tệp JSON",
+        "JSON-файл",
+        "JSON file",
+        "đọc/ghi dữ liệu module môn học, kho dữ liệu và bài tập"
+      ]
+    }
+  },
+  {
+    "id": "ki_PR13",
+    "title": "Debug, exception và logging",
+    "stage": "prep",
+    "summary": "Debug, exception và logging: quy trình/cú pháp try/except; logging.info(); assert condition, test/artifact và ứng dụng tìm lỗi render, lỗi dữ liệu, lỗi logic khi tự làm module.",
+    "_internalMetaForSearchOnly": {
+      "keywords": [
+        "debugging, exceptions, logging",
+        "Gỡ lỗi",
+        "отладка",
+        "debugging",
+        "tìm lỗi render, lỗi dữ liệu, lỗi logic khi tự làm module"
+      ]
+    }
+  },
+  {
+    "id": "ki_PR14",
+    "title": "Unit test căn bản với pytest",
+    "stage": "prep",
+    "summary": "Unit test căn bản với pytest: quy trình/cú pháp assert f(x)==expected; pytest -q, test/artifact và ứng dụng kiểm thử hàm xử lý dữ liệu và logic nút bấm.",
+    "_internalMetaForSearchOnly": {
+      "keywords": [
+        "unit test, pytest, assertions",
+        "Kiểm thử đơn vị",
+        "модульное тестирование",
+        "unit testing",
+        "kiểm thử hàm xử lý dữ liệu và logic nút bấm"
+      ]
+    }
+  },
+  {
+    "id": "ki_PR15",
+    "title": "SQL nâng nền: JOIN, GROUP BY, index",
+    "stage": "prep",
+    "summary": "SQL nâng nền: JOIN, GROUP BY, index: quy trình/cú pháp JOIN; GROUP BY; CREATE INDEX idx ON table(col), test/artifact và ứng dụng truy vấn dữ liệu thí nghiệm có nhiều bảng.",
+    "_internalMetaForSearchOnly": {
+      "keywords": [
+        "join, aggregate, index",
+        "Chỉ mục",
+        "индекс",
+        "index",
+        "truy vấn dữ liệu thí nghiệm có nhiều bảng"
+      ]
+    }
+  },
+  {
+    "id": "ki_PR16",
+    "title": "Quy tắc đặt tên, comment và tài liệu song ngữ",
+    "stage": "prep",
+    "summary": "Quy tắc đặt tên, comment và tài liệu song ngữ: quy trình/cú pháp name = intent; docstring = input + output + limit, test/artifact và ứng dụng ghi chú Việt-Nga-Anh để đọc code trong môi trường Bauman.",
+    "_internalMetaForSearchOnly": {
+      "keywords": [
+        "naming, docstring, bilingual docs",
+        "Chuỗi tài liệu",
+        "строка документации",
+        "docstring",
+        "ghi chú Việt-Nga-Anh để đọc code trong môi trường Bauman"
+      ]
+    }
+  },
+  {
+    "id": "ki_PR17",
+    "title": "OOP cho АСОИУ: class, interface, responsibility",
+    "stage": "hk1",
+    "summary": "OOP cho АСОИУ: class, interface, responsibility: quy trình/cú pháp class Sensor: read(); class Model: predict(), test/artifact và ứng dụng tạo skeleton phần mềm UGV gồm sensor/model/control.",
+    "_internalMetaForSearchOnly": {
+      "keywords": [
+        "OOP, class, interface, responsibility",
+        "Lớp",
+        "класс",
+        "class",
+        "tạo skeleton phần mềm UGV gồm sensor/model/control"
+      ]
+    }
+  },
+  {
+    "id": "ki_PR18",
+    "title": "Thiết kế module và kiến trúc package Python",
+    "stage": "hk1",
+    "summary": "Thiết kế module và kiến trúc package Python: quy trình/cú pháp src/, tests/, configs/, data/, scripts/, test/artifact và ứng dụng chia dự án thành module rõ, dễ bảo trì và mở rộng.",
+    "_internalMetaForSearchOnly": {
+      "keywords": [
+        "package architecture, modularity, imports",
+        "Module phần mềm",
+        "программный модуль",
+        "software module",
+        "chia dự án thành module rõ, dễ bảo trì và mở rộng"
+      ]
+    }
+  },
+  {
+    "id": "ki_PR19",
+    "title": "Mẫu thiết kế ứng dụng: factory, strategy, adapter",
+    "stage": "hk1",
+    "summary": "Mẫu thiết kế ứng dụng: factory, strategy, adapter: quy trình/cú pháp Strategy(model); Adapter(sensor); Factory(config), test/artifact và ứng dụng đổi cảm biến/mô hình mà không phá toàn bộ code.",
+    "_internalMetaForSearchOnly": {
+      "keywords": [
+        "design patterns, adapter, strategy",
+        "Mẫu thiết kế",
+        "шаблон проектирования",
+        "design pattern",
+        "đổi cảm biến/mô hình mà không phá toàn bộ code"
+      ]
+    }
+  },
+  {
+    "id": "ki_PR20",
+    "title": "CSDL cho hệ thống học máy: schema và metadata",
+    "stage": "hk1",
+    "summary": "CSDL cho hệ thống học máy: schema và metadata: quy trình/cú pháp experiment(id, params, metrics, artifact_path), test/artifact và ứng dụng lưu tham số, metric, dataset và đường dẫn artifact.",
+    "_internalMetaForSearchOnly": {
+      "keywords": [
+        "database schema, metadata, experiment log",
+        "Lược đồ dữ liệu",
+        "схема данных",
+        "data schema",
+        "lưu tham số, metric, dataset và đường dẫn artifact"
+      ]
+    }
+  },
+  {
+    "id": "ki_PR21",
+    "title": "ORM và migration nhập môn",
+    "stage": "hk1",
+    "summary": "ORM và migration nhập môn: quy trình/cú pháp Model ↔ table; migration = schema version, test/artifact và ứng dụng quản lý thay đổi CSDL khi project lớn dần.",
+    "_internalMetaForSearchOnly": {
+      "keywords": [
+        "ORM, migration, schema version",
+        "Di trú CSDL",
+        "миграция базы данных",
+        "database migration",
+        "quản lý thay đổi CSDL khi project lớn dần"
+      ]
+    }
+  },
+  {
+    "id": "ki_PR22",
+    "title": "Kỹ nghệ phần mềm: requirement, issue, milestone",
+    "stage": "hk1",
+    "summary": "Kỹ nghệ phần mềm: requirement, issue, milestone: quy trình/cú pháp requirement → issue → branch → PR → release, test/artifact và ứng dụng quản lý tiến độ bài tập và module luận văn.",
+    "_internalMetaForSearchOnly": {
+      "keywords": [
+        "software engineering, workflow, release",
+        "Yêu cầu phần mềm",
+        "требование к ПО",
+        "software requirement",
+        "quản lý tiến độ bài tập và module luận văn"
+      ]
+    }
+  },
+  {
+    "id": "ki_PR23",
+    "title": "Kiểm thử tích hợp và test dữ liệu",
+    "stage": "hk1",
+    "summary": "Kiểm thử tích hợp và test dữ liệu: quy trình/cú pháp test pipeline(input) → expected artifact, test/artifact và ứng dụng phát hiện dữ liệu hỏng trước khi train mô hình.",
+    "_internalMetaForSearchOnly": {
+      "keywords": [
+        "integration testing, data tests, pipeline tests",
+        "Kiểm thử tích hợp",
+        "интеграционное тестирование",
+        "integration testing",
+        "phát hiện dữ liệu hỏng trước khi train mô hình"
+      ]
+    }
+  },
+  {
+    "id": "ki_PR24",
+    "title": "CI nhẹ và kiểm tra chất lượng code",
+    "stage": "hk1",
+    "summary": "CI nhẹ và kiểm tra chất lượng code: quy trình/cú pháp lint + tests + type check = green build, test/artifact và ứng dụng tự động kiểm tra repo trước khi nộp/đẩy code.",
+    "_internalMetaForSearchOnly": {
+      "keywords": [
+        "CI, lint, type check",
+        "Tích hợp liên tục",
+        "непрерывная интеграция",
+        "continuous integration",
+        "tự động kiểm tra repo trước khi nộp/đẩy code"
+      ]
+    }
+  },
+  {
+    "id": "ki_PR25",
+    "title": "Pipeline dữ liệu cho ML",
+    "stage": "hk2",
+    "summary": "Pipeline dữ liệu cho ML: quy trình/cú pháp raw → clean → features → train → evaluate, test/artifact và ứng dụng tạo quy trình lặp lại cho dữ liệu UGV/USV.",
+    "_internalMetaForSearchOnly": {
+      "keywords": [
+        "ML pipeline, ETL, feature engineering",
+        "Đường ống dữ liệu",
+        "конвейер данных",
+        "data pipeline",
+        "tạo quy trình lặp lại cho dữ liệu UGV/USV"
+      ]
+    }
+  },
+  {
+    "id": "ki_PR26",
+    "title": "Scikit-learn baseline và metric",
+    "stage": "hk2",
+    "summary": "Scikit-learn baseline và metric: quy trình/cú pháp model.fit(X_train,y_train); score=f(metric), test/artifact và ứng dụng dựng baseline có metric rõ cho ML trong АСОИУ.",
+    "_internalMetaForSearchOnly": {
+      "keywords": [
+        "baseline, metrics, train test split",
+        "Mô hình cơ sở",
+        "базовая модель",
+        "baseline model",
+        "dựng baseline có metric rõ cho ML trong АСОИУ"
+      ]
+    }
+  },
+  {
+    "id": "ki_PR27",
+    "title": "API inference với FastAPI",
+    "stage": "hk2",
+    "summary": "API inference với FastAPI: quy trình/cú pháp POST /predict → input schema → prediction, test/artifact và ứng dụng biến mô hình thành dịch vụ thử nghiệm được.",
+    "_internalMetaForSearchOnly": {
+      "keywords": [
+        "API, FastAPI, inference service",
+        "API dự đoán",
+        "API предсказания",
+        "prediction API",
+        "biến mô hình thành dịch vụ thử nghiệm được"
+      ]
+    }
+  },
+  {
+    "id": "ki_PR28",
+    "title": "Serialization model và artifact version",
+    "stage": "hk2",
+    "summary": "Serialization model và artifact version: quy trình/cú pháp joblib.dump(model); artifact_v1.pkl, test/artifact và ứng dụng lưu model/dataset/metric theo phiên bản để chạy lại.",
+    "_internalMetaForSearchOnly": {
+      "keywords": [
+        "serialization, artifacts, versioning",
+        "Artifact",
+        "артефакт",
+        "artifact",
+        "lưu model/dataset/metric theo phiên bản để chạy lại"
+      ]
+    }
+  },
+  {
+    "id": "ki_PR29",
+    "title": "Cấu hình thí nghiệm bằng YAML/JSON",
+    "stage": "hk2",
+    "summary": "Cấu hình thí nghiệm bằng YAML/JSON: quy trình/cú pháp config = params + seed + paths, test/artifact và ứng dụng khóa tham số thí nghiệm để tránh loạn kết quả.",
+    "_internalMetaForSearchOnly": {
+      "keywords": [
+        "configuration, seed, experiment settings",
+        "Cấu hình",
+        "конфигурация",
+        "configuration",
+        "khóa tham số thí nghiệm để tránh loạn kết quả"
+      ]
+    }
+  },
+  {
+    "id": "ki_PR30",
+    "title": "Docker nhập môn cho môi trường tái lập",
+    "stage": "hk2",
+    "summary": "Docker nhập môn cho môi trường tái lập: quy trình/cú pháp Dockerfile + requirements + command, test/artifact và ứng dụng chạy lại demo trên máy khác ít lỗi hơn.",
+    "_internalMetaForSearchOnly": {
+      "keywords": [
+        "Docker, container, environment lock",
+        "Container",
+        "контейнер",
+        "container",
+        "chạy lại demo trên máy khác ít lỗi hơn"
+      ]
+    }
+  },
+  {
+    "id": "ki_PR31",
+    "title": "Bảo mật dữ liệu và quản lý secret",
+    "stage": "hk2",
+    "summary": "Bảo mật dữ liệu và quản lý secret: quy trình/cú pháp .env; never commit secrets; access control, test/artifact và ứng dụng không lộ key, dữ liệu, đường dẫn nhạy cảm.",
+    "_internalMetaForSearchOnly": {
+      "keywords": [
+        "security, secrets, access control",
+        "Bí mật hệ thống",
+        "секрет",
+        "secret",
+        "không lộ key, dữ liệu, đường dẫn nhạy cảm"
+      ]
+    }
+  },
+  {
+    "id": "ki_PR32",
+    "title": "Tài liệu kỹ thuật và sơ đồ kiến trúc",
+    "stage": "hk2",
+    "summary": "Tài liệu kỹ thuật và sơ đồ kiến trúc: quy trình/cú pháp architecture.md + sequence diagram + API spec, test/artifact và ứng dụng giải thích phần mềm cho giáo sư và nhóm nghiên cứu.",
+    "_internalMetaForSearchOnly": {
+      "keywords": [
+        "technical documentation, diagrams, API spec",
+        "Tài liệu kỹ thuật",
+        "техническая документация",
+        "technical documentation",
+        "giải thích phần mềm cho giáo sư và nhóm nghiên cứu"
+      ]
+    }
+  },
+  {
+    "id": "ki_PR33",
+    "title": "Dataset card cho telemetry và cảm biến",
+    "stage": "hk3",
+    "summary": "Dataset card cho telemetry và cảm biến: quy trình/cú pháp dataset card = source + schema + limits + ethics, test/artifact và ứng dụng mô tả dữ liệu НИР đủ rõ để phản biện.",
+    "_internalMetaForSearchOnly": {
+      "keywords": [
+        "dataset card, telemetry, sensor logs",
+        "Thẻ dữ liệu",
+        "карточка набора данных",
+        "dataset card",
+        "mô tả dữ liệu НИР đủ rõ để phản biện"
+      ]
+    }
+  },
+  {
+    "id": "ki_PR34",
+    "title": "Experiment tracking và bảng metric",
+    "stage": "hk3",
+    "summary": "Experiment tracking và bảng metric: quy trình/cú pháp run_id + params + metrics + artifacts, test/artifact và ứng dụng so sánh mô hình trong НИР có bằng chứng.",
+    "_internalMetaForSearchOnly": {
+      "keywords": [
+        "experiment tracking, metric table, model card",
+        "Theo dõi thí nghiệm",
+        "отслеживание экспериментов",
+        "experiment tracking",
+        "so sánh mô hình trong НИР có bằng chứng"
+      ]
+    }
+  },
+  {
+    "id": "ki_PR35",
+    "title": "Ablation study bằng code có kiểm soát",
+    "stage": "hk3",
+    "summary": "Ablation study bằng code có kiểm soát: quy trình/cú pháp one change per run; compare metric deltas, test/artifact và ứng dụng chứng minh yếu tố nào làm mô hình tốt hơn/xấu hơn.",
+    "_internalMetaForSearchOnly": {
+      "keywords": [
+        "ablation, controlled experiment, metrics",
+        "Thí nghiệm loại bỏ",
+        "абляционное исследование",
+        "ablation study",
+        "chứng minh yếu tố nào làm mô hình tốt hơn/xấu hơn"
+      ]
+    }
+  },
+  {
+    "id": "ki_PR36",
+    "title": "Xử lý log cảm biến và chuỗi thời gian",
+    "stage": "hk3",
+    "summary": "Xử lý log cảm biến và chuỗi thời gian: quy trình/cú pháp timestamp + value + quality_flag, test/artifact và ứng dụng làm sạch log UGV trước khi phân tích tín hiệu/AI.",
+    "_internalMetaForSearchOnly": {
+      "keywords": [
+        "telemetry log, time series, resampling",
+        "Log telemetry",
+        "журнал телеметрии",
+        "telemetry log",
+        "làm sạch log UGV trước khi phân tích tín hiệu/AI"
+      ]
+    }
+  },
+  {
+    "id": "ki_PR37",
+    "title": "Module đánh giá lỗi và phân tích thất bại",
+    "stage": "hk3",
+    "summary": "Module đánh giá lỗi và phân tích thất bại: quy trình/cú pháp error case → label → root cause → fix, test/artifact và ứng dụng biết mô hình sai ở đâu, vì sao, sửa thế nào.",
+    "_internalMetaForSearchOnly": {
+      "keywords": [
+        "error analysis, failure mode, root cause",
+        "Phân tích lỗi",
+        "анализ ошибок",
+        "error analysis",
+        "biết mô hình sai ở đâu, vì sao, sửa thế nào"
+      ]
+    }
+  },
+  {
+    "id": "ki_PR38",
+    "title": "Prototype dashboard kết quả nghiên cứu",
+    "stage": "hk3",
+    "summary": "Prototype dashboard kết quả nghiên cứu: quy trình/cú pháp metrics + plots + filters + notes, test/artifact và ứng dụng xem kết quả thí nghiệm, hình minh họa và log.",
+    "_internalMetaForSearchOnly": {
+      "keywords": [
+        "dashboard, visualization, report UI",
+        "Bảng điều khiển",
+        "панель мониторинга",
+        "dashboard",
+        "xem kết quả thí nghiệm, hình minh họa và log"
+      ]
+    }
+  },
+  {
+    "id": "ki_PR39",
+    "title": "Đóng gói demo nghiên cứu",
+    "stage": "hk3",
+    "summary": "Đóng gói demo nghiên cứu: quy trình/cú pháp make run-demo; sample data; expected output, test/artifact và ứng dụng cho giáo viên mở demo nhanh mà không vỡ môi trường.",
+    "_internalMetaForSearchOnly": {
+      "keywords": [
+        "demo packaging, scripts, sample data",
+        "Demo tái lập",
+        "воспроизводимая демонстрация",
+        "reproducible demo",
+        "cho giáo viên mở demo nhanh mà không vỡ môi trường"
+      ]
+    }
+  },
+  {
+    "id": "ki_PR40",
+    "title": "Quản lý rủi ro phần mềm trong НИР",
+    "stage": "hk3",
+    "summary": "Quản lý rủi ro phần mềm trong НИР: quy trình/cú pháp risk = probability × impact; mitigation plan, test/artifact và ứng dụng giảm rủi ro hỏng demo, mất dữ liệu, lệch kết quả.",
+    "_internalMetaForSearchOnly": {
+      "keywords": [
+        "software risk, reproducibility risk, data risk",
+        "Rủi ro phần mềm",
+        "программный риск",
+        "software risk",
+        "giảm rủi ro hỏng demo, mất dữ liệu, lệch kết quả"
+      ]
+    }
+  },
+  {
+    "id": "ki_PR41",
+    "title": "Đóng băng mã nguồn và tag release",
+    "stage": "hk4",
+    "summary": "Đóng băng mã nguồn và tag release: quy trình/cú pháp git tag v1.0-defense; CHANGELOG.md, test/artifact và ứng dụng khóa phiên bản phục vụ ВКР, tránh đổi sát ngày bảo vệ.",
+    "_internalMetaForSearchOnly": {
+      "keywords": [
+        "release tag, changelog, freeze",
+        "Tag phiên bản",
+        "тег версии",
+        "version tag",
+        "khóa phiên bản phục vụ ВКР, tránh đổi sát ngày bảo vệ"
+      ]
+    }
+  },
+  {
+    "id": "ki_PR42",
+    "title": "Script chạy lại toàn bộ kết quả",
+    "stage": "hk4",
+    "summary": "Script chạy lại toàn bộ kết quả: quy trình/cú pháp make reproduce → data → model → figures, test/artifact và ứng dụng tái tạo bảng và hình trong luận văn.",
+    "_internalMetaForSearchOnly": {
+      "keywords": [
+        "reproduce script, makefile, automation",
+        "Script tái lập",
+        "скрипт воспроизведения",
+        "reproduction script",
+        "tái tạo bảng và hình trong luận văn"
+      ]
+    }
+  },
+  {
+    "id": "ki_PR43",
+    "title": "Chuẩn hóa thư mục luận văn và artifact",
+    "stage": "hk4",
+    "summary": "Chuẩn hóa thư mục luận văn và artifact: quy trình/cú pháp thesis/ figures/ tables/ code/ appendix/, test/artifact và ứng dụng không thất lạc hình, bảng, code khi viết ВКР.",
+    "_internalMetaForSearchOnly": {
+      "keywords": [
+        "thesis artifacts, folder standard, appendix",
+        "Phụ lục kỹ thuật",
+        "техническое приложение",
+        "technical appendix",
+        "không thất lạc hình, bảng, code khi viết ВКР"
+      ]
+    }
+  },
+  {
+    "id": "ki_PR44",
+    "title": "Demo offline và kế hoạch dự phòng",
+    "stage": "hk4",
+    "summary": "Demo offline và kế hoạch dự phòng: quy trình/cú pháp offline mode + sample data + screenshots, test/artifact và ứng dụng bảo vệ khi mạng/hardware có vấn đề.",
+    "_internalMetaForSearchOnly": {
+      "keywords": [
+        "offline demo, fallback plan, sample cache",
+        "Kế hoạch dự phòng",
+        "резервный план",
+        "fallback plan",
+        "bảo vệ khi mạng/hardware có vấn đề"
+      ]
+    }
+  },
+  {
+    "id": "ki_PR45",
+    "title": "Tối ưu nhỏ: runtime, memory và latency",
+    "stage": "hk4",
+    "summary": "Tối ưu nhỏ: runtime, memory và latency: quy trình/cú pháp latency_ms; memory_mb; throughput, test/artifact và ứng dụng trả lời phản biện về khả năng chạy trên phần cứng robot.",
+    "_internalMetaForSearchOnly": {
+      "keywords": [
+        "performance, latency, memory",
+        "Độ trễ",
+        "задержка",
+        "latency",
+        "trả lời phản biện về khả năng chạy trên phần cứng robot"
+      ]
+    }
+  },
+  {
+    "id": "ki_PR46",
+    "title": "Kiểm tra license, citation và nguồn mở",
+    "stage": "hk4",
+    "summary": "Kiểm tra license, citation và nguồn mở: quy trình/cú pháp LICENSE + CITATION + third-party notices, test/artifact và ứng dụng tránh lỗi trích dẫn thư viện/dữ liệu khi nộp luận văn.",
+    "_internalMetaForSearchOnly": {
+      "keywords": [
+        "license, citation, open-source compliance",
+        "Giấy phép phần mềm",
+        "лицензия ПО",
+        "software license",
+        "tránh lỗi trích dẫn thư viện/dữ liệu khi nộp luận văn"
+      ]
+    }
+  },
+  {
+    "id": "ki_PR47",
+    "title": "Slide kỹ thuật: kiến trúc, pipeline, kết quả",
+    "stage": "hk4",
+    "summary": "Slide kỹ thuật: kiến trúc, pipeline, kết quả: quy trình/cú pháp problem → architecture → experiment → result → limit, test/artifact và ứng dụng trình bày phần code không loạn trước hội đồng.",
+    "_internalMetaForSearchOnly": {
+      "keywords": [
+        "defense slides, architecture, result story",
+        "Slide bảo vệ",
+        "слайды защиты",
+        "defense slides",
+        "trình bày phần code không loạn trước hội đồng"
+      ]
+    }
+  },
+  {
+    "id": "ki_PR48",
+    "title": "Trả lời phản biện kỹ thuật phần mềm",
+    "stage": "hk4",
+    "summary": "Trả lời phản biện kỹ thuật phần mềm: quy trình/cú pháp why design? why metric? why reproducible?, test/artifact và ứng dụng bảo vệ lựa chọn kiến trúc, dữ liệu, metric và demo.",
+    "_internalMetaForSearchOnly": {
+      "keywords": [
+        "technical defense, Q&A, justification",
+        "Phản biện kỹ thuật",
+        "техническая защита",
+        "technical defense",
+        "bảo vệ lựa chọn kiến trúc, dữ liệu, metric và demo"
+      ]
+    }
+  }
+]

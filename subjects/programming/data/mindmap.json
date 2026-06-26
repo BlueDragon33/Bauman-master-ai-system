@@ -1,0 +1,962 @@
+[
+  {
+    "id": "map_vn",
+    "title": "Mind map Lập trình · GĐ1",
+    "subtitle": "GĐ1 · Việt Nam: Python, SQL, Git và notebook thực nghiệm",
+    "type": "roadmap",
+    "branches": [
+      {
+        "id": "node_PR01",
+        "title": "Thiết lập môi trường Python, VS Code và Live Server",
+        "note": "Thiết lập môi trường Python, VS Code và Live Server: khái niệm, quy trình, code/test và ứng dụng mở module học, chạy notebook, kiểm thử HTML/JSON cục bộ.",
+        "children": [
+          {
+            "title": "Quy trình/cú pháp",
+            "note": "python -m venv .venv; pip install -r requirements.txt; code ."
+          },
+          {
+            "title": "Ứng dụng",
+            "note": "mở module học, chạy notebook, kiểm thử HTML/JSON cục bộ"
+          },
+          {
+            "title": "Lỗi cần tránh",
+            "note": "Code chạy một lần nhưng không tái lập, thiếu test, thiếu README hoặc schema không rõ."
+          }
+        ]
+      },
+      {
+        "id": "node_PR02",
+        "title": "Tư duy thuật toán và độ phức tạp",
+        "note": "Tư duy thuật toán và độ phức tạp: khái niệm, quy trình, code/test và ứng dụng chọn thuật toán đủ nhanh cho xử lý dữ liệu robot.",
+        "children": [
+          {
+            "title": "Quy trình/cú pháp",
+            "note": "T(n)=O(n log n); space=O(n)"
+          },
+          {
+            "title": "Ứng dụng",
+            "note": "chọn thuật toán đủ nhanh cho xử lý dữ liệu robot"
+          },
+          {
+            "title": "Lỗi cần tránh",
+            "note": "Code chạy một lần nhưng không tái lập, thiếu test, thiếu README hoặc schema không rõ."
+          }
+        ]
+      },
+      {
+        "id": "node_PR03",
+        "title": "Python căn bản: kiểu dữ liệu, hàm, module",
+        "note": "Python căn bản: kiểu dữ liệu, hàm, module: khái niệm, quy trình, code/test và ứng dụng viết script sạch để xử lý bài tập và dữ liệu nhỏ.",
+        "children": [
+          {
+            "title": "Quy trình/cú pháp",
+            "note": "def f(x): return y; list/dict/set/tuple"
+          },
+          {
+            "title": "Ứng dụng",
+            "note": "viết script sạch để xử lý bài tập và dữ liệu nhỏ"
+          },
+          {
+            "title": "Lỗi cần tránh",
+            "note": "Code chạy một lần nhưng không tái lập, thiếu test, thiếu README hoặc schema không rõ."
+          }
+        ]
+      },
+      {
+        "id": "node_PR04",
+        "title": "NumPy và vector hóa dữ liệu",
+        "note": "NumPy và vector hóa dữ liệu: khái niệm, quy trình, code/test và ứng dụng tính toán ma trận/đặc trưng cho AI nhanh và gọn.",
+        "children": [
+          {
+            "title": "Quy trình/cú pháp",
+            "note": "X.shape=(n,d); y = X @ w + b"
+          },
+          {
+            "title": "Ứng dụng",
+            "note": "tính toán ma trận/đặc trưng cho AI nhanh và gọn"
+          },
+          {
+            "title": "Lỗi cần tránh",
+            "note": "Code chạy một lần nhưng không tái lập, thiếu test, thiếu README hoặc schema không rõ."
+          }
+        ]
+      },
+      {
+        "id": "node_PR05",
+        "title": "Pandas và làm sạch bảng dữ liệu",
+        "note": "Pandas và làm sạch bảng dữ liệu: khái niệm, quy trình, code/test và ứng dụng làm sạch log cảm biến, bảng điểm đo, dữ liệu CSV.",
+        "children": [
+          {
+            "title": "Quy trình/cú pháp",
+            "note": "df.dropna(); df.groupby(); df.merge()"
+          },
+          {
+            "title": "Ứng dụng",
+            "note": "làm sạch log cảm biến, bảng điểm đo, dữ liệu CSV"
+          },
+          {
+            "title": "Lỗi cần tránh",
+            "note": "Code chạy một lần nhưng không tái lập, thiếu test, thiếu README hoặc schema không rõ."
+          }
+        ]
+      },
+      {
+        "id": "node_PR06",
+        "title": "SQL căn bản và mô hình quan hệ",
+        "note": "SQL căn bản và mô hình quan hệ: khái niệm, quy trình, code/test và ứng dụng lưu kết quả thí nghiệm, metadata và truy vấn nhanh.",
+        "children": [
+          {
+            "title": "Quy trình/cú pháp",
+            "note": "SELECT col FROM table WHERE condition; PK/FK"
+          },
+          {
+            "title": "Ứng dụng",
+            "note": "lưu kết quả thí nghiệm, metadata và truy vấn nhanh"
+          },
+          {
+            "title": "Lỗi cần tránh",
+            "note": "Code chạy một lần nhưng không tái lập, thiếu test, thiếu README hoặc schema không rõ."
+          }
+        ]
+      },
+      {
+        "id": "node_PR07",
+        "title": "Git, GitHub và nhật ký học tập",
+        "note": "Git, GitHub và nhật ký học tập: khái niệm, quy trình, code/test và ứng dụng quản lý phiên bản bài học, notebook, mã mô phỏng.",
+        "children": [
+          {
+            "title": "Quy trình/cú pháp",
+            "note": "git add .; git commit -m \"message\"; git branch"
+          },
+          {
+            "title": "Ứng dụng",
+            "note": "quản lý phiên bản bài học, notebook, mã mô phỏng"
+          },
+          {
+            "title": "Lỗi cần tránh",
+            "note": "Code chạy một lần nhưng không tái lập, thiếu test, thiếu README hoặc schema không rõ."
+          }
+        ]
+      },
+      {
+        "id": "node_PR08",
+        "title": "Notebook thực nghiệm và README tái lập",
+        "note": "Notebook thực nghiệm và README tái lập: khái niệm, quy trình, code/test và ứng dụng tạo artifact học tập có thể mở lại, chạy lại, giải thích lại.",
+        "children": [
+          {
+            "title": "Quy trình/cú pháp",
+            "note": "README + notebook + data/ + src/ + results/"
+          },
+          {
+            "title": "Ứng dụng",
+            "note": "tạo artifact học tập có thể mở lại, chạy lại, giải thích lại"
+          },
+          {
+            "title": "Lỗi cần tránh",
+            "note": "Code chạy một lần nhưng không tái lập, thiếu test, thiếu README hoặc schema không rõ."
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "map_prep",
+    "title": "Mind map Lập trình · GĐ2",
+    "subtitle": "GĐ2 · Dự bị Nga/STANKIN: tin học, thuật ngữ và repo song ngữ",
+    "type": "roadmap",
+    "branches": [
+      {
+        "id": "node_PR09",
+        "title": "Thuật ngữ tin học Nga cho lớp dự bị",
+        "note": "Thuật ngữ tin học Nga cho lớp dự bị: khái niệm, quy trình, code/test và ứng dụng nghe/đọc đề bài tin học và hỏi giáo viên bằng tiếng Nga.",
+        "children": [
+          {
+            "title": "Quy trình/cú pháp",
+            "note": "алгоритм, переменная, функция, массив, база данных"
+          },
+          {
+            "title": "Ứng dụng",
+            "note": "nghe/đọc đề bài tin học và hỏi giáo viên bằng tiếng Nga"
+          },
+          {
+            "title": "Lỗi cần tránh",
+            "note": "Code chạy một lần nhưng không tái lập, thiếu test, thiếu README hoặc schema không rõ."
+          }
+        ]
+      },
+      {
+        "id": "node_PR10",
+        "title": "Pseudocode và giải thích thuật toán bằng tiếng Nga",
+        "note": "Pseudocode và giải thích thuật toán bằng tiếng Nga: khái niệm, quy trình, code/test và ứng dụng trình bày lời giải không kẹt ngôn ngữ.",
+        "children": [
+          {
+            "title": "Quy trình/cú pháp",
+            "note": "input → process → output; if/for/while"
+          },
+          {
+            "title": "Ứng dụng",
+            "note": "trình bày lời giải không kẹt ngôn ngữ"
+          },
+          {
+            "title": "Lỗi cần tránh",
+            "note": "Code chạy một lần nhưng không tái lập, thiếu test, thiếu README hoặc schema không rõ."
+          }
+        ]
+      },
+      {
+        "id": "node_PR11",
+        "title": "Cấu trúc dữ liệu nhập môn",
+        "note": "Cấu trúc dữ liệu nhập môn: khái niệm, quy trình, code/test và ứng dụng làm bài tin học dự bị và mô tả dữ liệu kỹ thuật.",
+        "children": [
+          {
+            "title": "Quy trình/cú pháp",
+            "note": "array, stack, queue, dict, graph"
+          },
+          {
+            "title": "Ứng dụng",
+            "note": "làm bài tin học dự bị và mô tả dữ liệu kỹ thuật"
+          },
+          {
+            "title": "Lỗi cần tránh",
+            "note": "Code chạy một lần nhưng không tái lập, thiếu test, thiếu README hoặc schema không rõ."
+          }
+        ]
+      },
+      {
+        "id": "node_PR12",
+        "title": "File, JSON, CSV và dữ liệu học tập",
+        "note": "File, JSON, CSV và dữ liệu học tập: khái niệm, quy trình, code/test và ứng dụng đọc/ghi dữ liệu module môn học, kho dữ liệu và bài tập.",
+        "children": [
+          {
+            "title": "Quy trình/cú pháp",
+            "note": "json.load(); csv.DictReader(); pathlib.Path"
+          },
+          {
+            "title": "Ứng dụng",
+            "note": "đọc/ghi dữ liệu module môn học, kho dữ liệu và bài tập"
+          },
+          {
+            "title": "Lỗi cần tránh",
+            "note": "Code chạy một lần nhưng không tái lập, thiếu test, thiếu README hoặc schema không rõ."
+          }
+        ]
+      },
+      {
+        "id": "node_PR13",
+        "title": "Debug, exception và logging",
+        "note": "Debug, exception và logging: khái niệm, quy trình, code/test và ứng dụng tìm lỗi render, lỗi dữ liệu, lỗi logic khi tự làm module.",
+        "children": [
+          {
+            "title": "Quy trình/cú pháp",
+            "note": "try/except; logging.info(); assert condition"
+          },
+          {
+            "title": "Ứng dụng",
+            "note": "tìm lỗi render, lỗi dữ liệu, lỗi logic khi tự làm module"
+          },
+          {
+            "title": "Lỗi cần tránh",
+            "note": "Code chạy một lần nhưng không tái lập, thiếu test, thiếu README hoặc schema không rõ."
+          }
+        ]
+      },
+      {
+        "id": "node_PR14",
+        "title": "Unit test căn bản với pytest",
+        "note": "Unit test căn bản với pytest: khái niệm, quy trình, code/test và ứng dụng kiểm thử hàm xử lý dữ liệu và logic nút bấm.",
+        "children": [
+          {
+            "title": "Quy trình/cú pháp",
+            "note": "assert f(x)==expected; pytest -q"
+          },
+          {
+            "title": "Ứng dụng",
+            "note": "kiểm thử hàm xử lý dữ liệu và logic nút bấm"
+          },
+          {
+            "title": "Lỗi cần tránh",
+            "note": "Code chạy một lần nhưng không tái lập, thiếu test, thiếu README hoặc schema không rõ."
+          }
+        ]
+      },
+      {
+        "id": "node_PR15",
+        "title": "SQL nâng nền: JOIN, GROUP BY, index",
+        "note": "SQL nâng nền: JOIN, GROUP BY, index: khái niệm, quy trình, code/test và ứng dụng truy vấn dữ liệu thí nghiệm có nhiều bảng.",
+        "children": [
+          {
+            "title": "Quy trình/cú pháp",
+            "note": "JOIN; GROUP BY; CREATE INDEX idx ON table(col)"
+          },
+          {
+            "title": "Ứng dụng",
+            "note": "truy vấn dữ liệu thí nghiệm có nhiều bảng"
+          },
+          {
+            "title": "Lỗi cần tránh",
+            "note": "Code chạy một lần nhưng không tái lập, thiếu test, thiếu README hoặc schema không rõ."
+          }
+        ]
+      },
+      {
+        "id": "node_PR16",
+        "title": "Quy tắc đặt tên, comment và tài liệu song ngữ",
+        "note": "Quy tắc đặt tên, comment và tài liệu song ngữ: khái niệm, quy trình, code/test và ứng dụng ghi chú Việt-Nga-Anh để đọc code trong môi trường Bauman.",
+        "children": [
+          {
+            "title": "Quy trình/cú pháp",
+            "note": "name = intent; docstring = input + output + limit"
+          },
+          {
+            "title": "Ứng dụng",
+            "note": "ghi chú Việt-Nga-Anh để đọc code trong môi trường Bauman"
+          },
+          {
+            "title": "Lỗi cần tránh",
+            "note": "Code chạy một lần nhưng không tái lập, thiếu test, thiếu README hoặc schema không rõ."
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "map_hk1",
+    "title": "Mind map Lập trình · HK1",
+    "subtitle": "HK1 · Bauman: OOP cho АСОИУ, CSDL ML và kỹ nghệ phần mềm",
+    "type": "roadmap",
+    "branches": [
+      {
+        "id": "node_PR17",
+        "title": "OOP cho АСОИУ: class, interface, responsibility",
+        "note": "OOP cho АСОИУ: class, interface, responsibility: khái niệm, quy trình, code/test và ứng dụng tạo skeleton phần mềm UGV gồm sensor/model/control.",
+        "children": [
+          {
+            "title": "Quy trình/cú pháp",
+            "note": "class Sensor: read(); class Model: predict()"
+          },
+          {
+            "title": "Ứng dụng",
+            "note": "tạo skeleton phần mềm UGV gồm sensor/model/control"
+          },
+          {
+            "title": "Lỗi cần tránh",
+            "note": "Code chạy một lần nhưng không tái lập, thiếu test, thiếu README hoặc schema không rõ."
+          }
+        ]
+      },
+      {
+        "id": "node_PR18",
+        "title": "Thiết kế module và kiến trúc package Python",
+        "note": "Thiết kế module và kiến trúc package Python: khái niệm, quy trình, code/test và ứng dụng chia dự án thành module rõ, dễ bảo trì và mở rộng.",
+        "children": [
+          {
+            "title": "Quy trình/cú pháp",
+            "note": "src/, tests/, configs/, data/, scripts/"
+          },
+          {
+            "title": "Ứng dụng",
+            "note": "chia dự án thành module rõ, dễ bảo trì và mở rộng"
+          },
+          {
+            "title": "Lỗi cần tránh",
+            "note": "Code chạy một lần nhưng không tái lập, thiếu test, thiếu README hoặc schema không rõ."
+          }
+        ]
+      },
+      {
+        "id": "node_PR19",
+        "title": "Mẫu thiết kế ứng dụng: factory, strategy, adapter",
+        "note": "Mẫu thiết kế ứng dụng: factory, strategy, adapter: khái niệm, quy trình, code/test và ứng dụng đổi cảm biến/mô hình mà không phá toàn bộ code.",
+        "children": [
+          {
+            "title": "Quy trình/cú pháp",
+            "note": "Strategy(model); Adapter(sensor); Factory(config)"
+          },
+          {
+            "title": "Ứng dụng",
+            "note": "đổi cảm biến/mô hình mà không phá toàn bộ code"
+          },
+          {
+            "title": "Lỗi cần tránh",
+            "note": "Code chạy một lần nhưng không tái lập, thiếu test, thiếu README hoặc schema không rõ."
+          }
+        ]
+      },
+      {
+        "id": "node_PR20",
+        "title": "CSDL cho hệ thống học máy: schema và metadata",
+        "note": "CSDL cho hệ thống học máy: schema và metadata: khái niệm, quy trình, code/test và ứng dụng lưu tham số, metric, dataset và đường dẫn artifact.",
+        "children": [
+          {
+            "title": "Quy trình/cú pháp",
+            "note": "experiment(id, params, metrics, artifact_path)"
+          },
+          {
+            "title": "Ứng dụng",
+            "note": "lưu tham số, metric, dataset và đường dẫn artifact"
+          },
+          {
+            "title": "Lỗi cần tránh",
+            "note": "Code chạy một lần nhưng không tái lập, thiếu test, thiếu README hoặc schema không rõ."
+          }
+        ]
+      },
+      {
+        "id": "node_PR21",
+        "title": "ORM và migration nhập môn",
+        "note": "ORM và migration nhập môn: khái niệm, quy trình, code/test và ứng dụng quản lý thay đổi CSDL khi project lớn dần.",
+        "children": [
+          {
+            "title": "Quy trình/cú pháp",
+            "note": "Model ↔ table; migration = schema version"
+          },
+          {
+            "title": "Ứng dụng",
+            "note": "quản lý thay đổi CSDL khi project lớn dần"
+          },
+          {
+            "title": "Lỗi cần tránh",
+            "note": "Code chạy một lần nhưng không tái lập, thiếu test, thiếu README hoặc schema không rõ."
+          }
+        ]
+      },
+      {
+        "id": "node_PR22",
+        "title": "Kỹ nghệ phần mềm: requirement, issue, milestone",
+        "note": "Kỹ nghệ phần mềm: requirement, issue, milestone: khái niệm, quy trình, code/test và ứng dụng quản lý tiến độ bài tập và module luận văn.",
+        "children": [
+          {
+            "title": "Quy trình/cú pháp",
+            "note": "requirement → issue → branch → PR → release"
+          },
+          {
+            "title": "Ứng dụng",
+            "note": "quản lý tiến độ bài tập và module luận văn"
+          },
+          {
+            "title": "Lỗi cần tránh",
+            "note": "Code chạy một lần nhưng không tái lập, thiếu test, thiếu README hoặc schema không rõ."
+          }
+        ]
+      },
+      {
+        "id": "node_PR23",
+        "title": "Kiểm thử tích hợp và test dữ liệu",
+        "note": "Kiểm thử tích hợp và test dữ liệu: khái niệm, quy trình, code/test và ứng dụng phát hiện dữ liệu hỏng trước khi train mô hình.",
+        "children": [
+          {
+            "title": "Quy trình/cú pháp",
+            "note": "test pipeline(input) → expected artifact"
+          },
+          {
+            "title": "Ứng dụng",
+            "note": "phát hiện dữ liệu hỏng trước khi train mô hình"
+          },
+          {
+            "title": "Lỗi cần tránh",
+            "note": "Code chạy một lần nhưng không tái lập, thiếu test, thiếu README hoặc schema không rõ."
+          }
+        ]
+      },
+      {
+        "id": "node_PR24",
+        "title": "CI nhẹ và kiểm tra chất lượng code",
+        "note": "CI nhẹ và kiểm tra chất lượng code: khái niệm, quy trình, code/test và ứng dụng tự động kiểm tra repo trước khi nộp/đẩy code.",
+        "children": [
+          {
+            "title": "Quy trình/cú pháp",
+            "note": "lint + tests + type check = green build"
+          },
+          {
+            "title": "Ứng dụng",
+            "note": "tự động kiểm tra repo trước khi nộp/đẩy code"
+          },
+          {
+            "title": "Lỗi cần tránh",
+            "note": "Code chạy một lần nhưng không tái lập, thiếu test, thiếu README hoặc schema không rõ."
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "map_hk2",
+    "title": "Mind map Lập trình · HK2",
+    "subtitle": "HK2 · Bauman: pipeline ML, API, kiểm thử và tái lập thí nghiệm",
+    "type": "roadmap",
+    "branches": [
+      {
+        "id": "node_PR25",
+        "title": "Pipeline dữ liệu cho ML",
+        "note": "Pipeline dữ liệu cho ML: khái niệm, quy trình, code/test và ứng dụng tạo quy trình lặp lại cho dữ liệu UGV/USV.",
+        "children": [
+          {
+            "title": "Quy trình/cú pháp",
+            "note": "raw → clean → features → train → evaluate"
+          },
+          {
+            "title": "Ứng dụng",
+            "note": "tạo quy trình lặp lại cho dữ liệu UGV/USV"
+          },
+          {
+            "title": "Lỗi cần tránh",
+            "note": "Code chạy một lần nhưng không tái lập, thiếu test, thiếu README hoặc schema không rõ."
+          }
+        ]
+      },
+      {
+        "id": "node_PR26",
+        "title": "Scikit-learn baseline và metric",
+        "note": "Scikit-learn baseline và metric: khái niệm, quy trình, code/test và ứng dụng dựng baseline có metric rõ cho ML trong АСОИУ.",
+        "children": [
+          {
+            "title": "Quy trình/cú pháp",
+            "note": "model.fit(X_train,y_train); score=f(metric)"
+          },
+          {
+            "title": "Ứng dụng",
+            "note": "dựng baseline có metric rõ cho ML trong АСОИУ"
+          },
+          {
+            "title": "Lỗi cần tránh",
+            "note": "Code chạy một lần nhưng không tái lập, thiếu test, thiếu README hoặc schema không rõ."
+          }
+        ]
+      },
+      {
+        "id": "node_PR27",
+        "title": "API inference với FastAPI",
+        "note": "API inference với FastAPI: khái niệm, quy trình, code/test và ứng dụng biến mô hình thành dịch vụ thử nghiệm được.",
+        "children": [
+          {
+            "title": "Quy trình/cú pháp",
+            "note": "POST /predict → input schema → prediction"
+          },
+          {
+            "title": "Ứng dụng",
+            "note": "biến mô hình thành dịch vụ thử nghiệm được"
+          },
+          {
+            "title": "Lỗi cần tránh",
+            "note": "Code chạy một lần nhưng không tái lập, thiếu test, thiếu README hoặc schema không rõ."
+          }
+        ]
+      },
+      {
+        "id": "node_PR28",
+        "title": "Serialization model và artifact version",
+        "note": "Serialization model và artifact version: khái niệm, quy trình, code/test và ứng dụng lưu model/dataset/metric theo phiên bản để chạy lại.",
+        "children": [
+          {
+            "title": "Quy trình/cú pháp",
+            "note": "joblib.dump(model); artifact_v1.pkl"
+          },
+          {
+            "title": "Ứng dụng",
+            "note": "lưu model/dataset/metric theo phiên bản để chạy lại"
+          },
+          {
+            "title": "Lỗi cần tránh",
+            "note": "Code chạy một lần nhưng không tái lập, thiếu test, thiếu README hoặc schema không rõ."
+          }
+        ]
+      },
+      {
+        "id": "node_PR29",
+        "title": "Cấu hình thí nghiệm bằng YAML/JSON",
+        "note": "Cấu hình thí nghiệm bằng YAML/JSON: khái niệm, quy trình, code/test và ứng dụng khóa tham số thí nghiệm để tránh loạn kết quả.",
+        "children": [
+          {
+            "title": "Quy trình/cú pháp",
+            "note": "config = params + seed + paths"
+          },
+          {
+            "title": "Ứng dụng",
+            "note": "khóa tham số thí nghiệm để tránh loạn kết quả"
+          },
+          {
+            "title": "Lỗi cần tránh",
+            "note": "Code chạy một lần nhưng không tái lập, thiếu test, thiếu README hoặc schema không rõ."
+          }
+        ]
+      },
+      {
+        "id": "node_PR30",
+        "title": "Docker nhập môn cho môi trường tái lập",
+        "note": "Docker nhập môn cho môi trường tái lập: khái niệm, quy trình, code/test và ứng dụng chạy lại demo trên máy khác ít lỗi hơn.",
+        "children": [
+          {
+            "title": "Quy trình/cú pháp",
+            "note": "Dockerfile + requirements + command"
+          },
+          {
+            "title": "Ứng dụng",
+            "note": "chạy lại demo trên máy khác ít lỗi hơn"
+          },
+          {
+            "title": "Lỗi cần tránh",
+            "note": "Code chạy một lần nhưng không tái lập, thiếu test, thiếu README hoặc schema không rõ."
+          }
+        ]
+      },
+      {
+        "id": "node_PR31",
+        "title": "Bảo mật dữ liệu và quản lý secret",
+        "note": "Bảo mật dữ liệu và quản lý secret: khái niệm, quy trình, code/test và ứng dụng không lộ key, dữ liệu, đường dẫn nhạy cảm.",
+        "children": [
+          {
+            "title": "Quy trình/cú pháp",
+            "note": ".env; never commit secrets; access control"
+          },
+          {
+            "title": "Ứng dụng",
+            "note": "không lộ key, dữ liệu, đường dẫn nhạy cảm"
+          },
+          {
+            "title": "Lỗi cần tránh",
+            "note": "Code chạy một lần nhưng không tái lập, thiếu test, thiếu README hoặc schema không rõ."
+          }
+        ]
+      },
+      {
+        "id": "node_PR32",
+        "title": "Tài liệu kỹ thuật và sơ đồ kiến trúc",
+        "note": "Tài liệu kỹ thuật và sơ đồ kiến trúc: khái niệm, quy trình, code/test và ứng dụng giải thích phần mềm cho giáo sư và nhóm nghiên cứu.",
+        "children": [
+          {
+            "title": "Quy trình/cú pháp",
+            "note": "architecture.md + sequence diagram + API spec"
+          },
+          {
+            "title": "Ứng dụng",
+            "note": "giải thích phần mềm cho giáo sư và nhóm nghiên cứu"
+          },
+          {
+            "title": "Lỗi cần tránh",
+            "note": "Code chạy một lần nhưng không tái lập, thiếu test, thiếu README hoặc schema không rõ."
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "map_hk3",
+    "title": "Mind map Lập trình · HK3",
+    "subtitle": "HK3 · НИР: phần mềm dữ liệu, telemetry và experiment tracking",
+    "type": "roadmap",
+    "branches": [
+      {
+        "id": "node_PR33",
+        "title": "Dataset card cho telemetry và cảm biến",
+        "note": "Dataset card cho telemetry và cảm biến: khái niệm, quy trình, code/test và ứng dụng mô tả dữ liệu НИР đủ rõ để phản biện.",
+        "children": [
+          {
+            "title": "Quy trình/cú pháp",
+            "note": "dataset card = source + schema + limits + ethics"
+          },
+          {
+            "title": "Ứng dụng",
+            "note": "mô tả dữ liệu НИР đủ rõ để phản biện"
+          },
+          {
+            "title": "Lỗi cần tránh",
+            "note": "Code chạy một lần nhưng không tái lập, thiếu test, thiếu README hoặc schema không rõ."
+          }
+        ]
+      },
+      {
+        "id": "node_PR34",
+        "title": "Experiment tracking và bảng metric",
+        "note": "Experiment tracking và bảng metric: khái niệm, quy trình, code/test và ứng dụng so sánh mô hình trong НИР có bằng chứng.",
+        "children": [
+          {
+            "title": "Quy trình/cú pháp",
+            "note": "run_id + params + metrics + artifacts"
+          },
+          {
+            "title": "Ứng dụng",
+            "note": "so sánh mô hình trong НИР có bằng chứng"
+          },
+          {
+            "title": "Lỗi cần tránh",
+            "note": "Code chạy một lần nhưng không tái lập, thiếu test, thiếu README hoặc schema không rõ."
+          }
+        ]
+      },
+      {
+        "id": "node_PR35",
+        "title": "Ablation study bằng code có kiểm soát",
+        "note": "Ablation study bằng code có kiểm soát: khái niệm, quy trình, code/test và ứng dụng chứng minh yếu tố nào làm mô hình tốt hơn/xấu hơn.",
+        "children": [
+          {
+            "title": "Quy trình/cú pháp",
+            "note": "one change per run; compare metric deltas"
+          },
+          {
+            "title": "Ứng dụng",
+            "note": "chứng minh yếu tố nào làm mô hình tốt hơn/xấu hơn"
+          },
+          {
+            "title": "Lỗi cần tránh",
+            "note": "Code chạy một lần nhưng không tái lập, thiếu test, thiếu README hoặc schema không rõ."
+          }
+        ]
+      },
+      {
+        "id": "node_PR36",
+        "title": "Xử lý log cảm biến và chuỗi thời gian",
+        "note": "Xử lý log cảm biến và chuỗi thời gian: khái niệm, quy trình, code/test và ứng dụng làm sạch log UGV trước khi phân tích tín hiệu/AI.",
+        "children": [
+          {
+            "title": "Quy trình/cú pháp",
+            "note": "timestamp + value + quality_flag"
+          },
+          {
+            "title": "Ứng dụng",
+            "note": "làm sạch log UGV trước khi phân tích tín hiệu/AI"
+          },
+          {
+            "title": "Lỗi cần tránh",
+            "note": "Code chạy một lần nhưng không tái lập, thiếu test, thiếu README hoặc schema không rõ."
+          }
+        ]
+      },
+      {
+        "id": "node_PR37",
+        "title": "Module đánh giá lỗi và phân tích thất bại",
+        "note": "Module đánh giá lỗi và phân tích thất bại: khái niệm, quy trình, code/test và ứng dụng biết mô hình sai ở đâu, vì sao, sửa thế nào.",
+        "children": [
+          {
+            "title": "Quy trình/cú pháp",
+            "note": "error case → label → root cause → fix"
+          },
+          {
+            "title": "Ứng dụng",
+            "note": "biết mô hình sai ở đâu, vì sao, sửa thế nào"
+          },
+          {
+            "title": "Lỗi cần tránh",
+            "note": "Code chạy một lần nhưng không tái lập, thiếu test, thiếu README hoặc schema không rõ."
+          }
+        ]
+      },
+      {
+        "id": "node_PR38",
+        "title": "Prototype dashboard kết quả nghiên cứu",
+        "note": "Prototype dashboard kết quả nghiên cứu: khái niệm, quy trình, code/test và ứng dụng xem kết quả thí nghiệm, hình minh họa và log.",
+        "children": [
+          {
+            "title": "Quy trình/cú pháp",
+            "note": "metrics + plots + filters + notes"
+          },
+          {
+            "title": "Ứng dụng",
+            "note": "xem kết quả thí nghiệm, hình minh họa và log"
+          },
+          {
+            "title": "Lỗi cần tránh",
+            "note": "Code chạy một lần nhưng không tái lập, thiếu test, thiếu README hoặc schema không rõ."
+          }
+        ]
+      },
+      {
+        "id": "node_PR39",
+        "title": "Đóng gói demo nghiên cứu",
+        "note": "Đóng gói demo nghiên cứu: khái niệm, quy trình, code/test và ứng dụng cho giáo viên mở demo nhanh mà không vỡ môi trường.",
+        "children": [
+          {
+            "title": "Quy trình/cú pháp",
+            "note": "make run-demo; sample data; expected output"
+          },
+          {
+            "title": "Ứng dụng",
+            "note": "cho giáo viên mở demo nhanh mà không vỡ môi trường"
+          },
+          {
+            "title": "Lỗi cần tránh",
+            "note": "Code chạy một lần nhưng không tái lập, thiếu test, thiếu README hoặc schema không rõ."
+          }
+        ]
+      },
+      {
+        "id": "node_PR40",
+        "title": "Quản lý rủi ro phần mềm trong НИР",
+        "note": "Quản lý rủi ro phần mềm trong НИР: khái niệm, quy trình, code/test và ứng dụng giảm rủi ro hỏng demo, mất dữ liệu, lệch kết quả.",
+        "children": [
+          {
+            "title": "Quy trình/cú pháp",
+            "note": "risk = probability × impact; mitigation plan"
+          },
+          {
+            "title": "Ứng dụng",
+            "note": "giảm rủi ro hỏng demo, mất dữ liệu, lệch kết quả"
+          },
+          {
+            "title": "Lỗi cần tránh",
+            "note": "Code chạy một lần nhưng không tái lập, thiếu test, thiếu README hoặc schema không rõ."
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "map_hk4",
+    "title": "Mind map Lập trình · HK4",
+    "subtitle": "HK4 · ВКР: khóa mã nguồn, demo, tài liệu và bảo vệ",
+    "type": "roadmap",
+    "branches": [
+      {
+        "id": "node_PR41",
+        "title": "Đóng băng mã nguồn và tag release",
+        "note": "Đóng băng mã nguồn và tag release: khái niệm, quy trình, code/test và ứng dụng khóa phiên bản phục vụ ВКР, tránh đổi sát ngày bảo vệ.",
+        "children": [
+          {
+            "title": "Quy trình/cú pháp",
+            "note": "git tag v1.0-defense; CHANGELOG.md"
+          },
+          {
+            "title": "Ứng dụng",
+            "note": "khóa phiên bản phục vụ ВКР, tránh đổi sát ngày bảo vệ"
+          },
+          {
+            "title": "Lỗi cần tránh",
+            "note": "Code chạy một lần nhưng không tái lập, thiếu test, thiếu README hoặc schema không rõ."
+          }
+        ]
+      },
+      {
+        "id": "node_PR42",
+        "title": "Script chạy lại toàn bộ kết quả",
+        "note": "Script chạy lại toàn bộ kết quả: khái niệm, quy trình, code/test và ứng dụng tái tạo bảng và hình trong luận văn.",
+        "children": [
+          {
+            "title": "Quy trình/cú pháp",
+            "note": "make reproduce → data → model → figures"
+          },
+          {
+            "title": "Ứng dụng",
+            "note": "tái tạo bảng và hình trong luận văn"
+          },
+          {
+            "title": "Lỗi cần tránh",
+            "note": "Code chạy một lần nhưng không tái lập, thiếu test, thiếu README hoặc schema không rõ."
+          }
+        ]
+      },
+      {
+        "id": "node_PR43",
+        "title": "Chuẩn hóa thư mục luận văn và artifact",
+        "note": "Chuẩn hóa thư mục luận văn và artifact: khái niệm, quy trình, code/test và ứng dụng không thất lạc hình, bảng, code khi viết ВКР.",
+        "children": [
+          {
+            "title": "Quy trình/cú pháp",
+            "note": "thesis/ figures/ tables/ code/ appendix/"
+          },
+          {
+            "title": "Ứng dụng",
+            "note": "không thất lạc hình, bảng, code khi viết ВКР"
+          },
+          {
+            "title": "Lỗi cần tránh",
+            "note": "Code chạy một lần nhưng không tái lập, thiếu test, thiếu README hoặc schema không rõ."
+          }
+        ]
+      },
+      {
+        "id": "node_PR44",
+        "title": "Demo offline và kế hoạch dự phòng",
+        "note": "Demo offline và kế hoạch dự phòng: khái niệm, quy trình, code/test và ứng dụng bảo vệ khi mạng/hardware có vấn đề.",
+        "children": [
+          {
+            "title": "Quy trình/cú pháp",
+            "note": "offline mode + sample data + screenshots"
+          },
+          {
+            "title": "Ứng dụng",
+            "note": "bảo vệ khi mạng/hardware có vấn đề"
+          },
+          {
+            "title": "Lỗi cần tránh",
+            "note": "Code chạy một lần nhưng không tái lập, thiếu test, thiếu README hoặc schema không rõ."
+          }
+        ]
+      },
+      {
+        "id": "node_PR45",
+        "title": "Tối ưu nhỏ: runtime, memory và latency",
+        "note": "Tối ưu nhỏ: runtime, memory và latency: khái niệm, quy trình, code/test và ứng dụng trả lời phản biện về khả năng chạy trên phần cứng robot.",
+        "children": [
+          {
+            "title": "Quy trình/cú pháp",
+            "note": "latency_ms; memory_mb; throughput"
+          },
+          {
+            "title": "Ứng dụng",
+            "note": "trả lời phản biện về khả năng chạy trên phần cứng robot"
+          },
+          {
+            "title": "Lỗi cần tránh",
+            "note": "Code chạy một lần nhưng không tái lập, thiếu test, thiếu README hoặc schema không rõ."
+          }
+        ]
+      },
+      {
+        "id": "node_PR46",
+        "title": "Kiểm tra license, citation và nguồn mở",
+        "note": "Kiểm tra license, citation và nguồn mở: khái niệm, quy trình, code/test và ứng dụng tránh lỗi trích dẫn thư viện/dữ liệu khi nộp luận văn.",
+        "children": [
+          {
+            "title": "Quy trình/cú pháp",
+            "note": "LICENSE + CITATION + third-party notices"
+          },
+          {
+            "title": "Ứng dụng",
+            "note": "tránh lỗi trích dẫn thư viện/dữ liệu khi nộp luận văn"
+          },
+          {
+            "title": "Lỗi cần tránh",
+            "note": "Code chạy một lần nhưng không tái lập, thiếu test, thiếu README hoặc schema không rõ."
+          }
+        ]
+      },
+      {
+        "id": "node_PR47",
+        "title": "Slide kỹ thuật: kiến trúc, pipeline, kết quả",
+        "note": "Slide kỹ thuật: kiến trúc, pipeline, kết quả: khái niệm, quy trình, code/test và ứng dụng trình bày phần code không loạn trước hội đồng.",
+        "children": [
+          {
+            "title": "Quy trình/cú pháp",
+            "note": "problem → architecture → experiment → result → limit"
+          },
+          {
+            "title": "Ứng dụng",
+            "note": "trình bày phần code không loạn trước hội đồng"
+          },
+          {
+            "title": "Lỗi cần tránh",
+            "note": "Code chạy một lần nhưng không tái lập, thiếu test, thiếu README hoặc schema không rõ."
+          }
+        ]
+      },
+      {
+        "id": "node_PR48",
+        "title": "Trả lời phản biện kỹ thuật phần mềm",
+        "note": "Trả lời phản biện kỹ thuật phần mềm: khái niệm, quy trình, code/test và ứng dụng bảo vệ lựa chọn kiến trúc, dữ liệu, metric và demo.",
+        "children": [
+          {
+            "title": "Quy trình/cú pháp",
+            "note": "why design? why metric? why reproducible?"
+          },
+          {
+            "title": "Ứng dụng",
+            "note": "bảo vệ lựa chọn kiến trúc, dữ liệu, metric và demo"
+          },
+          {
+            "title": "Lỗi cần tránh",
+            "note": "Code chạy một lần nhưng không tái lập, thiếu test, thiếu README hoặc schema không rõ."
+          }
+        ]
+      }
+    ]
+  }
+]
