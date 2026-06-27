@@ -1782,3 +1782,27 @@ body.main-focus #modal .v1267-interface-panel{max-width:940px!important;}
   body.main-balanced #modal .v1267-interface-panel,
   body.main-focus #modal .v1267-interface-panel{max-width:100%!important;}
 }
+
+/* ===== E114 - high contrast text on dark boards/tables ===== */
+:is(.e121-hero,.e121-schedule-studio,.e112-overview-hero,.e111-hero,.e110-vault-hero,.e109-theory-shell,.e66-shell,.e65-shell,.e54-formula-topbar,.e54-deep-top,.e54-sim-head,.e54-formula-main,.e54-deep-main,.e54-sim-main,.e53-qa-shell,.e53-qa-question,.e53-qa-map,.oral-defense-wrap,.oral-defense-hero,.oral-current-card,.oral-v26-studio,.v39-oral-main,.v39-oral-question,.v39-oral-grid>article,.v39-oral-map,.v39-oral-prof,.mathlab-canva-board,.mathlab-shell,.mathlab-command,.v39-sim-mode-panel,.v39-sim-main,.v39-sim-search,.storage-v37-hero,.storage-v37-left,.storage-v37-main,.storage-v37-card,.v37-picker-topbar,.v38-data-hero,.v38-data-left,.v38-data-main,.v38-data-source-card,.v38-data-groupbar,.v38-picker-strip,.v39-picker-bar,.v39-resource-head,.e51-sim-shell,.e51-compare,.learning-recovery-card){
+  color:#f8fbff!important;
+}
+:is(.e121-hero,.e121-schedule-studio,.e112-overview-hero,.e111-hero,.e110-vault-hero,.e109-theory-shell,.e66-shell,.e65-shell,.e54-formula-topbar,.e54-deep-top,.e54-sim-head,.e54-formula-main,.e54-deep-main,.e54-sim-main,.e53-qa-shell,.e53-qa-question,.e53-qa-map,.oral-defense-wrap,.oral-defense-hero,.oral-current-card,.oral-v26-studio,.v39-oral-main,.v39-oral-question,.v39-oral-grid>article,.v39-oral-map,.v39-oral-prof,.mathlab-canva-board,.mathlab-shell,.mathlab-command,.v39-sim-mode-panel,.v39-sim-main,.v39-sim-search,.storage-v37-hero,.storage-v37-left,.storage-v37-main,.storage-v37-card,.v37-picker-topbar,.v38-data-hero,.v38-data-left,.v38-data-main,.v38-data-source-card,.v38-data-groupbar,.v38-picker-strip,.v39-picker-bar,.v39-resource-head,.e51-sim-shell,.e51-compare,.learning-recovery-card) :is(h1,h2,h3,h4,h5,h6,b,strong,summary){
+  color:#f8fbff!important;
+  opacity:1!important;
+}
+:is(.e121-hero,.e121-schedule-studio,.e112-overview-hero,.e111-hero,.e110-vault-hero,.e109-theory-shell,.e66-shell,.e65-shell,.e54-formula-topbar,.e54-deep-top,.e54-sim-head,.e54-formula-main,.e54-deep-main,.e54-sim-main,.e53-qa-shell,.e53-qa-question,.e53-qa-map,.oral-defense-wrap,.oral-defense-hero,.oral-current-card,.oral-v26-studio,.v39-oral-main,.v39-oral-question,.v39-oral-grid>article,.v39-oral-map,.v39-oral-prof,.mathlab-canva-board,.mathlab-shell,.mathlab-command,.v39-sim-mode-panel,.v39-sim-main,.v39-sim-search,.storage-v37-hero,.storage-v37-left,.storage-v37-main,.storage-v37-card,.v37-picker-topbar,.v38-data-hero,.v38-data-left,.v38-data-main,.v38-data-source-card,.v38-data-groupbar,.v38-picker-strip,.v39-picker-bar,.v39-resource-head,.e51-sim-shell,.e51-compare,.learning-recovery-card) :is(p,li,small,em,dd,td){
+  color:#dbeafe!important;
+  opacity:1!important;
+}
+:is(.e121-hero,.e121-schedule-studio,.e112-overview-hero,.e111-hero,.e110-vault-hero,.e109-theory-shell,.e66-shell,.e65-shell,.e54-formula-topbar,.e54-deep-top,.e54-sim-head,.e54-formula-main,.e54-deep-main,.e54-sim-main,.e53-qa-shell,.e53-qa-question,.e53-qa-map,.oral-defense-wrap,.oral-defense-hero,.oral-current-card,.oral-v26-studio,.v39-oral-main,.v39-oral-question,.v39-oral-grid>article,.v39-oral-map,.v39-oral-prof,.mathlab-canva-board,.mathlab-shell,.mathlab-command,.v39-sim-mode-panel,.v39-sim-main,.v39-sim-search,.storage-v37-hero,.storage-v37-left,.storage-v37-main,.storage-v37-card,.v37-picker-topbar,.v38-data-hero,.v38-data-left,.v38-data-main,.v38-data-source-card,.v38-data-groupbar,.v38-picker-strip,.v39-picker-bar,.v39-resource-head,.e51-sim-shell,.e51-compare,.learning-recovery-card) th{
+  color:#bfdbfe!important;
+  opacity:1!important;
+}
+:is(.e121-hero,.e121-schedule-studio,.e112-overview-hero,.e111-hero,.e110-vault-hero,.e109-theory-shell,.e66-shell,.e65-shell,.e54-formula-main,.e54-deep-main,.e54-sim-main,.e51-sim-shell,.e51-compare) td{
+  background:rgba(15,23,42,.68)!important;
+  border-color:rgba(191,219,254,.18)!important;
+}
+:is(.e121-hero,.e121-schedule-studio,.e112-overview-hero,.e111-hero,.e110-vault-hero,.e109-theory-shell,.e66-shell,.e65-shell,.e54-formula-main,.e54-deep-main,.e54-sim-main,.e51-sim-shell,.e51-compare) td:first-child{
+  color:#f8d77a!important;
+}
