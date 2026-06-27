@@ -117,3 +117,41 @@ Tất cả render app/body/title hợp lệ, không 404, không console `error` 
 - Bộ lọc trang Môn học hiển thị subject theo giai đoạn, nên `prepare` không hiện đủ 8 môn. Khi đổi sang các giai đoạn khác, đủ 8 môn đều xuất hiện và mở được.
 - `foundation` và `signal` có thể mở với mission chung nếu lịch auto hiện tại chưa có ca học tương ứng; đây không phải lỗi đường dẫn, và module vẫn chạy độc lập đúng.
 
+## Kiểm Tra Bổ Sung 2026-06-27 · Toán / Tab Học Tập
+
+Phạm vi: chỉ kiểm tra logic sâu môn Toán, tập trung tab `Học tập` và 4 phần chính `Lý thuyết`, `Bài tập`, `Ôn tập`, `Kiểm tra`.
+
+### Lỗi Phát Hiện
+
+- Skin lý thuyết `subjects/math/assets/theory_skin/theory-main-adapter-E126.js` thay toàn bộ màn `Học tập > Lý thuyết`, nhưng không có rail/nút chuyển trực tiếp sang `Bài tập`, `Ôn tập`, `Kiểm tra`.
+- MutationObserver trong E126 tự render lại ngay sau khi E126 gán `view.innerHTML`, làm phần tử có thể bị detach trong lúc click và khiến thao tác chuyển phần không ổn định.
+
+### Sửa Tối Thiểu
+
+- Thêm rail 4 phần ngay trong E126: `Lý thuyết`, `Bài tập`, `Ôn tập`, `Kiểm tra`.
+- Nút rail mới chỉ cập nhật state `view='learning'`, `learnTab`, `e122Focus` rồi gọi renderer sẵn có; không rewrite `core.js` / `main.js`.
+- Khóa vòng tự-render của MutationObserver bằng cách giữ cờ `applying` tới tick kế tiếp sau `innerHTML`.
+- Thêm CSS scoped `.e126-learn-rail` để nút có tương phản cao trên nền tối E126.
+
+### Kết Quả Browser Test
+
+PASS.
+
+- Mở trực tiếp: `subjects/math/index.html` qua local static HTTP.
+- Bấm nav `Học tập`: E126 Lý thuyết render, rail 4 phần xuất hiện đủ 4 nút.
+- Bấm E126 `Bài tập`: render màn Bài tập đúng bài hiện tại.
+- Từ Bài tập bấm `← Lý thuyết`: quay lại E126 Lý thuyết.
+- Bấm E126 `Ôn tập`: render màn Ôn tập.
+- Mở menu `Cấu trúc bài học` trong Ôn tập rồi chọn `Lý thuyết`: quay lại E126 Lý thuyết.
+- Bấm E126 `Kiểm tra`: render đúng cổng khóa kiểm tra, có hướng dẫn mở từ `Lịch trình hôm nay` và nút `Về Lý thuyết`.
+- Trong layout học tập hiện tại, mở menu `Cấu trúc bài học` từ Bài tập và chọn `Ôn tập`, sau đó chọn `Kiểm tra`: đều render đúng phần.
+- Browser console: không có `error` / `warning`.
+
+### Kiểm Tra Kỹ Thuật
+
+```bash
+node --check subjects/math/assets/theory_skin/theory-main-adapter-E126.js
+git diff --check
+```
+
+Kết quả: PASS. Chỉ còn cảnh báo line-ending CRLF/LF từ Git trên Windows.
