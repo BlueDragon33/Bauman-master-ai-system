@@ -37,6 +37,16 @@
   function buildPlanningMission(subjectId,context={}){
     ensurePlanningState();
     const base=window.buildLearningTask?window.buildLearningTask(subjectId,context):{};
+    const requestedCourseId=context.courseId||context.itemId||'';
+    const requestedCourse=requestedCourseId?courseById(requestedCourseId):null;
+    if(requestedCourse){
+      base.courseId=requestedCourseId;
+      base.itemId=requestedCourseId;
+      base.courseName=requestedCourse.name||base.courseName||'';
+      base.learningItem=requestedCourse.name||base.learningItem||'';
+      base.stage=requestedCourse.stage||base.stage||'';
+      base.taskId=[subjectId,requestedCourseId,base.date||iso(new Date()),base.slotId||'morning1'].join('::');
+    }
     const subject=window.state.subjects?.[subjectId]||{};
     const course=courseById(base.courseId||base.itemId);
     const startDate=base.date||iso(new Date());

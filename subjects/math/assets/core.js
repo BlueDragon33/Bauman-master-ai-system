@@ -2900,7 +2900,9 @@ function applyInterface(){
  const theme=state.interfaceTheme||'navy'; const density=state.interfaceDensity||'normal'; const main=state.interfaceMain||'balanced';
  document.body.classList.remove('theme-clean','theme-warm','theme-focus','theme-navy','theme-deep','theme-emerald','theme-amber','theme-violet','density-normal','density-compact','density-wide','main-balanced','main-compact','main-focus','warm');
  const safeTheme=['navy','deep','emerald','amber','violet','clean','warm','focus'].includes(theme)?theme:'navy';
- document.body.classList.add('theme-'+safeTheme,'density-'+density,'main-'+main);
+ const safeDensity=['normal','compact','wide'].includes(density)?density:'normal';
+ const safeMain=['balanced','compact','focus'].includes(main)?main:'balanced';
+ document.body.classList.add('theme-'+safeTheme,'density-'+safeDensity,'main-'+safeMain);
  if(safeTheme==='warm')document.body.classList.add('warm');
 }
 function renderInterfaceModal(){
