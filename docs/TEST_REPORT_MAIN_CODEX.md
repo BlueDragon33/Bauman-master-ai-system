@@ -119,31 +119,32 @@ Tất cả render app/body/title hợp lệ, không 404, không console `error` 
 
 ## Kiểm Tra Bổ Sung 2026-06-27 · Toán / Tab Học Tập
 
-Phạm vi: chỉ kiểm tra logic sâu môn Toán, tập trung tab `Học tập` và 4 phần chính `Lý thuyết`, `Bài tập`, `Ôn tập`, `Kiểm tra`.
+Phạm vi: chỉ kiểm tra logic sâu môn Toán, tập trung tab `Học tập` và menu `Cấu trúc bài học`: `Lý thuyết`, `Bài tập`, `Ứng dụng`, `Ôn tập`, `Kiểm tra`.
 
 ### Lỗi Phát Hiện
 
-- Skin lý thuyết `subjects/math/assets/theory_skin/theory-main-adapter-E126.js` thay toàn bộ màn `Học tập > Lý thuyết`, nhưng không có rail/nút chuyển trực tiếp sang `Bài tập`, `Ôn tập`, `Kiểm tra`.
+- Skin lý thuyết `subjects/math/assets/theory_skin/theory-main-adapter-E126.js` thay toàn bộ màn `Học tập > Lý thuyết`, nhưng chưa đi chung mô hình menu `Cấu trúc bài học` với các màn `Bài tập`, `Ứng dụng`, `Ôn tập`, `Kiểm tra`.
 - MutationObserver trong E126 tự render lại ngay sau khi E126 gán `view.innerHTML`, làm phần tử có thể bị detach trong lúc click và khiến thao tác chuyển phần không ổn định.
 
 ### Sửa Tối Thiểu
 
-- Thêm rail 4 phần ngay trong E126: `Lý thuyết`, `Bài tập`, `Ôn tập`, `Kiểm tra`.
-- Nút rail mới chỉ cập nhật state `view='learning'`, `learnTab`, `e122Focus` rồi gọi renderer sẵn có; không rewrite `core.js` / `main.js`.
+- Đưa `Lý thuyết`, `Bài tập`, `Ứng dụng`, `Ôn tập`, `Kiểm tra` vào cùng nút `Cấu trúc bài học` trong E126.
+- Nút menu mới chỉ cập nhật state `view='learning'`, `learnTab`, `e122Focus` rồi gọi renderer sẵn có; không rewrite `core.js` / `main.js`.
 - Khóa vòng tự-render của MutationObserver bằng cách giữ cờ `applying` tới tick kế tiếp sau `innerHTML`.
-- Thêm CSS scoped `.e126-learn-rail` để nút có tương phản cao trên nền tối E126.
+- Bỏ rail riêng `.e126-learn-rail`; thêm CSS scoped `.e126-learn-menu` để menu `Cấu trúc bài học` gọn và tương phản cao trên nền tối E126.
 
 ### Kết Quả Browser Test
 
 PASS.
 
 - Mở trực tiếp: `subjects/math/index.html` qua local static HTTP.
-- Bấm nav `Học tập`: E126 Lý thuyết render, rail 4 phần xuất hiện đủ 4 nút.
-- Bấm E126 `Bài tập`: render màn Bài tập đúng bài hiện tại.
-- Từ Bài tập bấm `← Lý thuyết`: quay lại E126 Lý thuyết.
-- Bấm E126 `Ôn tập`: render màn Ôn tập.
+- Bấm nav `Học tập`: E126 Lý thuyết render, chỉ còn một nút `Cấu trúc bài học`, không còn rail riêng.
+- Mở `Cấu trúc bài học` trong E126 rồi chọn `Bài tập`: render màn Bài tập đúng bài hiện tại.
+- Từ Bài tập mở `Cấu trúc bài học` rồi chọn `Lý thuyết`: quay lại E126 Lý thuyết.
+- Mở `Cấu trúc bài học` trong E126 rồi chọn `Ứng dụng`: render màn Ứng dụng đúng luồng học tập.
+- Mở `Cấu trúc bài học` trong E126 rồi chọn `Ôn tập`: render màn Ôn tập.
 - Mở menu `Cấu trúc bài học` trong Ôn tập rồi chọn `Lý thuyết`: quay lại E126 Lý thuyết.
-- Bấm E126 `Kiểm tra`: render đúng cổng khóa kiểm tra, có hướng dẫn mở từ `Lịch trình hôm nay` và nút `Về Lý thuyết`.
+- Mở `Cấu trúc bài học` trong E126 rồi chọn `Kiểm tra`: render đúng cổng khóa kiểm tra, có hướng dẫn mở từ `Lịch trình hôm nay` và nút `Về Lý thuyết`.
 - Trong layout học tập hiện tại, mở menu `Cấu trúc bài học` từ Bài tập và chọn `Ôn tập`, sau đó chọn `Kiểm tra`: đều render đúng phần.
 - Browser console: không có `error` / `warning`.
 
