@@ -124,3 +124,39 @@
 #view>.learn-canva-shell .v39-lesson-chip{justify-self:end!important}
 #view>.learn-canva-shell .v39-lesson-chip .chip{min-height:36px!important;display:inline-flex!important;align-items:center!important;border:1px solid #d9e4f2!important;border-radius:999px!important;background:#f8fafc!important;color:#1f3b57!important;font-size:12px!important;font-weight:900!important}
 @media(max-width:760px){#view>.learn-canva-shell .v39-learn-top{grid-template-columns:1fr!important;align-items:stretch!important}#view>.learn-canva-shell .v39-learn-left{display:grid!important;gap:10px!important}#view>.learn-canva-shell .learn-structure-menu{width:100%!important;min-width:0!important;max-width:none!important;flex-basis:auto!important}#view>.learn-canva-shell .learn-structure-indicator{max-width:none!important}#view>.learn-canva-shell .v39-lesson-chip{justify-self:start!important}}
+
+/* E131 - Theory read/presentation modes and real search result snippets. */
+.e126-theory-integrated .e126-view-mode{display:inline-flex!important;gap:4px!important;padding:4px!important;border:1px solid #d9e4f2!important;border-radius:10px!important;background:#f8fafc!important}
+.e126-theory-integrated .e126-mode-btn{min-height:30px!important;border:0!important;border-radius:8px!important;background:transparent!important;color:#475569!important;padding:0 10px!important;font-weight:850!important;cursor:pointer!important}
+.e126-theory-integrated .e126-mode-btn.active{background:#1d4ed8!important;color:#fff!important;box-shadow:0 8px 18px rgba(29,78,216,.16)!important}
+.e126-theory-integrated .e126-match{display:block!important;margin-top:5px!important;color:#53657c!important;font-size:11px!important;line-height:1.35!important;font-style:normal!important}
+.e126-theory-integrated .e126-read-content{align-items:start!important}
+.e126-theory-integrated .e126-reading{border:1px solid #d9e4f2!important;border-radius:12px!important;background:#fff!important;padding:18px!important;display:grid!important;gap:14px!important}
+.e126-theory-integrated .e126-reading-head{border-bottom:1px solid #e5edf7!important;padding-bottom:14px!important}
+.e126-theory-integrated .e126-reading-head h3{margin:6px 0!important;font-size:24px!important;line-height:1.2!important;color:#0f172a!important}
+.e126-theory-integrated .e126-reading-head p{margin:0!important;color:#53657c!important;line-height:1.55!important}
+.e126-theory-integrated .e126-read-section{scroll-margin-top:18px;border:1px solid #e5edf7!important;border-radius:12px!important;background:#fbfdff!important;padding:16px!important}
+.e126-theory-integrated .e126-read-section>header{display:grid!important;grid-template-columns:38px minmax(0,1fr)!important;gap:12px!important;align-items:start!important;border:0!important;margin:0 0 10px!important;padding:0!important}
+.e126-theory-integrated .e126-read-section>header>span{width:34px!important;height:34px!important;display:grid!important;place-items:center!important;border-radius:10px!important;background:#eff6ff!important;color:#1d4ed8!important;font-weight:900!important}
+.e126-theory-integrated .e126-read-section>header b{display:block!important;color:#2563eb!important;font-size:11px!important;line-height:1.1!important}
+.e126-theory-integrated .e126-read-section>header h3{margin:3px 0 0!important;font-size:20px!important;color:#0f172a!important}
+.e126-theory-integrated .e126-read-toc{position:sticky!important;top:12px!important}
+.e126-theory-integrated .e126-mini-toc{display:grid!important;gap:6px!important}
+.e126-theory-integrated .e126-mini-toc button{display:grid!important;grid-template-columns:30px minmax(0,1fr)!important;gap:8px!important;align-items:center!important;border:1px solid #e5edf7!important;border-radius:9px!important;background:#fff!important;color:#334155!important;padding:7px!important;text-align:left!important;cursor:pointer!important}
+.e126-theory-integrated .e126-mini-toc button span{width:26px!important;height:26px!important;border-radius:8px!important;display:grid!important;place-items:center!important;background:#eff6ff!important;color:#1d4ed8!important;font-weight:900!important;font-size:11px!important}
+.e126-theory-integrated .e126-mini-toc button b{font-size:12px!important;line-height:1.25!important;color:#334155!important}
+.e126-theory-integrated .e126-mini-toc button.active,.e126-theory-integrated .e126-mini-toc button:hover{background:#eef6ff!important;border-color:#93c5fd!important}
+.e126-mode-present{grid-template-columns:1fr!important}
+.e126-mode-present .e126-side,.e126-mode-present .e126-hero .e126-meta{display:none!important}
+.e126-mode-present .e126-hero{padding:14px 18px!important}
+.e126-mode-present .e126-hero h2{font-size:22px!important;margin:5px 0 0!important}
+.e126-mode-present .e126-present-content{display:block!important;background:#f8fafc!important;padding:16px!important}
+.e126-present-card{max-width:1040px!important;margin:0 auto!important;border:1px solid #d9e4f2!important;border-radius:14px!important;background:#fff!important;padding:22px!important;box-shadow:0 18px 48px rgba(15,23,42,.08)!important}
+.e126-present-card>header{display:flex!important;justify-content:space-between!important;gap:16px!important;align-items:flex-start!important;border-bottom:1px solid #e5edf7!important;padding-bottom:14px!important;margin-bottom:16px!important}
+.e126-present-card>header h3{font-size:30px!important;line-height:1.16!important;margin:4px 0 0!important;color:#0f172a!important}
+.e126-present-card>header>b{border:1px solid #d9e4f2!important;border-radius:999px!important;padding:7px 11px!important;color:#1d4ed8!important;background:#eff6ff!important}
+.e126-present-body{display:grid!important;gap:12px!important;min-height:360px!important}
+.e126-present-card>footer{display:flex!important;justify-content:flex-end!important;gap:8px!important;flex-wrap:wrap!important;border-top:1px solid #e5edf7!important;margin-top:16px!important;padding-top:14px!important}
+.e126-present-card .e126-btn.primary{background:#1d4ed8!important;color:#fff!important;border-color:#1d4ed8!important}
+@media(max-width:1100px){.e126-theory-integrated .e126-read-content{grid-template-columns:1fr!important}.e126-theory-integrated .e126-read-toc{position:relative!important;top:auto!important;grid-template-columns:1fr!important}.e126-theory-integrated .e126-mini-toc{grid-template-columns:repeat(2,minmax(0,1fr))!important}}
+@media(max-width:760px){.e126-theory-integrated .e126-toolbar nav{display:grid!important;grid-template-columns:1fr 1fr!important}.e126-theory-integrated .e126-view-mode{grid-column:1/-1!important}.e126-theory-integrated .e126-mini-toc{grid-template-columns:1fr!important}.e126-present-card{padding:16px!important}.e126-present-card>header{display:grid!important}.e126-present-card>header h3{font-size:24px!important}.e126-present-body{min-height:auto!important}.e126-present-card>footer .e126-btn{flex:1 1 120px!important}}
