@@ -1,5 +1,31 @@
 # TEST_REPORT_MAIN_CODEX
 
+## Kiem Tra Bo Sung 2026-06-30 - Math / E129 Theory Elearning Polish
+
+Pham vi: chi tap trung mon Toan, tab `Hoc tap > Ly thuyet`.
+
+### Sua Toi Thieu
+
+- Giu renderer E126 va logic `lessons.json`, khong rewrite `core.js`.
+- Doi skin Ly thuyet tu dark visual dashboard sang reader/workbench e-learning nen sang, card nhe, chu tuong phan cao.
+- Responsive fix: o viewport hep, `.e126-main` hien truoc `.e126-side`, tranh viec nguoi hoc bi day qua mot danh sach bai qua dai truoc khi thay noi dung ly thuyet.
+- Nen card, slide, toolbar, top panel chuyen sang palette sang sach; bo glow/blur nang va giam radius/box-shadow.
+- Doi label sidebar thanh `Thu vien bai hoc` va `e-learning`.
+
+### Ket Qua Headless Browser/CDP Test
+
+PASS o viewport 900x900.
+
+- `pageTitle`: `Hoc tap`.
+- `.e126-learning-shell .e126-learn-top`: co.
+- `.e126-toolbar .e126-learn-menu`: 0.
+- Recovery/error card: 0.
+- `.e126-main` hien truoc `.e126-side`: true.
+- `.e126-main` background: `rgb(255, 255, 255)`.
+- `.e126-slide` background: `rgb(255, 255, 255)`.
+- Hero title color: `rgb(15, 23, 42)`.
+- Toolbar buttons khong stacked.
+
 ## Kiem Tra Bo Sung 2026-06-30 - Math / E126 Layout
 
 Pham vi: chi tap trung mon Toan, tab `Hoc tap`, phan `Ly thuyet` visual skin E126 va khoi chung `Cau truc bai hoc`.
