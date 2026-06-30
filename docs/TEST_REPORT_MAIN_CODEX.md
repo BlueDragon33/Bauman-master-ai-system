@@ -1,5 +1,27 @@
 # TEST_REPORT_MAIN_CODEX
 
+## Kiem Tra Bo Sung 2026-06-30 - Math / E130 Structure Menu Standard
+
+Pham vi: mon Toan, nut `Cau truc bai hoc` trong `Hoc tap`.
+
+### Sua Toi Thieu
+
+- Lay style cua nut/menu `Cau truc bai hoc` o tab `Ly thuyet` lam chuan.
+- Ap dung cung top panel, trigger, dropdown, menu item, mode indicator va lesson chip cho 4 tab con lai: `Bai tap`, `Ung dung`, `On tap`, `Kiem tra`.
+- Chi sua CSS scoped trong `#view > .learn-canva-shell`; khong doi logic route/render cua cac tab.
+
+### Ket Qua Headless Browser/CDP Test
+
+PASS o viewport 900x900 cho 5 mode: `theory`, `exercises`, `practice`, `review`, `exam`.
+
+- Moi mode co dung 1 `.learn-structure-menu`.
+- Moi mode co 5 `.learn-structure-choice`.
+- `topBg`: `rgb(255, 255, 255)`.
+- `triggerBg`: `linear-gradient(rgb(248, 251, 255), rgb(234, 244, 255))`.
+- `indicatorBg`: `rgb(248, 250, 252)`.
+- `chipColor`: `rgb(31, 59, 87)`.
+- Recovery/error card: 0.
+
 ## Kiem Tra Bo Sung 2026-06-30 - Math / E129 Theory Elearning Polish
 
 Pham vi: chi tap trung mon Toan, tab `Hoc tap > Ly thuyet`.
