@@ -1,5 +1,34 @@
 # TEST_REPORT_MAIN_CODEX
 
+## Kiem Tra Bo Sung 2026-06-30 - Math / E126 Layout
+
+Pham vi: chi tap trung mon Toan, tab `Hoc tap`, phan `Ly thuyet` visual skin E126 va khoi chung `Cau truc bai hoc`.
+
+### Sua Toi Thieu
+
+- Dua `Ly thuyet` E126 vao cung top panel `learn-canva-shell` / `v39-learn-top` / `e52-learn-top` nhu cac tab `Bai tap`, `Ung dung`, `On tap`, `Kiem tra`.
+- Bo menu `Cau truc bai hoc` ra khoi `.e126-toolbar`; toolbar E126 chi con dieu huong slide/bai va progress.
+- Giam khoang trong tren dau vung hoc tap bang CSS scoped cho `#view > .learn-canva-shell`.
+- Ep toolbar E126 hien cac nut `Bai truoc`, `Bai sau`, `Kho du lieu` theo hang ngang, khong bi xep doc nhu anh feedback.
+
+### Ket Qua Headless Browser/CDP Test
+
+PASS.
+
+- Mo `subjects/math/index.html` qua local static HTTP.
+- Click nav `Hoc tap`: page title la `Hoc tap`.
+- `#view > .learn-canva-shell`: co.
+- `#view > .learn-canva-shell > .v39-learn-top`: co.
+- `.e126-learning-shell .e126-learn-top`: co.
+- `.e126-learning-shell .e126-learn-top .e126-learn-menu`: 1.
+- `.e126-toolbar .e126-learn-menu`: 0.
+- Mode text E126: `Ly thuyet`.
+- Lesson chip E126: `MATH-VN-LA-C01-L01`.
+- 3 nut E126 toolbar khong stacked: `Bai truoc`, `Bai sau`, `Kho du lieu`.
+- Gap `#view` -> shell: `-2px`; gap top panel -> content: `12px`.
+- Chuyen tu `Ly thuyet` sang `Bai tap`: van dung top panel chung, mode text `Bai tap`, lesson chip khop.
+- Recovery/error card: khong co.
+
 Ngày kiểm tra: 2026-06-26  
 Repo/branch: `BlueDragon33/bauman-master-ai-system` / `codex/main-system-audit`
 
