@@ -118,7 +118,7 @@
   }
   function structureMenu(active){
     return '<details class="learn-structure-menu e134-learn-menu"><summary class="learn-structure-trigger"><span>🧭</span><b>Cấu trúc bài học</b><u>▾</u></summary><div class="learn-structure-dropdown" role="menu">'+
-      LEARN_MODES.map(function(m){return '<button class="learn-structure-choice '+(active===m[0]?'active':'')+'" data-learn="'+esc(m[0])+'"><span>'+esc(m[1])+'</span><b>'+esc(m[2])+'</b></button>';}).join('')+
+      LEARN_MODES.map(function(m){return '<button class="learn-structure-choice '+(active===m[0]?'active':'')+'" data-learn="'+esc(m[0])+'" data-e122-learn="'+esc(m[0])+'" data-e122-focus="'+esc(m[0])+'"><span>'+esc(m[1])+'</span><b>'+esc(m[2])+'</b></button>';}).join('')+
       '</div></details>';
   }
   function topBar(lesson,mode){

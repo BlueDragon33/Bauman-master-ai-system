@@ -1,5 +1,82 @@
 # CODEX_STATE
 
+## E135 Follow-up Runtime Fix
+
+TASK_ID: `E135_MATH_THEORY_LOGIC_FIX_KEEP_LESSON_STRUCTURE`
+
+DATE: `2026-07-02`
+
+BRANCH: `codex/main-system-audit`
+
+ROLE_USED: `Debugging & Runtime Stability Engineer`
+
+SCOPE:
+- Math Theory tab navigation only.
+- Preserved the protected `Cấu trúc bài học` component.
+- No other subjects touched.
+- No `core.js` rewrite.
+
+USER_GOAL:
+- Fix the remaining logic error in the Theory tab while keeping `Cấu trúc bài học` stable and functional.
+
+FILES_READ:
+- `docs/CODEX_STATE.md`
+- `subjects/math/assets/core.js`
+- `subjects/math/assets/math.css`
+- `subjects/math/assets/theory_skin/theory-pro-rebuild-E134.js`
+- `subjects/math/assets/theory_skin/theory-pro-rebuild-E134.css`
+
+FILES_CHANGED:
+- `subjects/math/assets/theory_skin/theory-pro-rebuild-E134.js`
+- `docs/CODEX_STATE.md`
+
+ROOT_CAUSE:
+- E134 restored the visible protected menu, but its option buttons only used the older `data-learn` contract.
+- Older `button[data-learn]` handlers could catch those clicks before the later E122 learning-state sync received a matching `e122Focus`.
+- When `e122Focus` was still `theory`, the next learning render could normalize the route back to Theory instead of preserving the selected tab.
+
+PROTECTED_COMPONENT_STATUS:
+- Present: yes, E134 still renders `<details class="learn-structure-menu e134-learn-menu">`.
+- Changed: only added compatibility attributes to the existing option buttons.
+- Restored: not replaced; the same visible labels/options remain.
+- Verified: static diff confirms `data-learn` remains and each option now also has `data-e122-learn` plus `data-e122-focus`.
+
+CHANGES_MADE:
+- Added `data-e122-learn` and `data-e122-focus` to E134 `learn-structure-choice` buttons.
+- Kept `data-learn`, labels, placement, dropdown markup, and trigger behavior unchanged.
+- This lets the stable E122 capture handler set both `learnTab` and `e122Focus` before older `data-learn` handlers can desync the route.
+
+TESTS_RUN:
+- `git status --short`
+- `git diff --stat`
+- `rg` targeted search for learning structure hooks.
+- `node --check subjects/math/assets/theory_skin/theory-pro-rebuild-E134.js`
+- `git diff --check`
+- Static DOM-contract check by diff/grep for `data-learn`, `data-e122-learn`, and `data-e122-focus`.
+- Browser automation note: the in-app browser blocked localhost with `ERR_BLOCKED_BY_CLIENT`; file URL fallback was blocked by Browser security policy, so no browser workaround was attempted.
+
+PASS_CRITERIA_RESULT:
+- PASS for targeted code/syntax/static contract checks.
+- Manual Live Server check still recommended because browser automation was blocked in this Codex environment.
+
+OUT_OF_SCOPE_NOT_TOUCHED:
+- `subjects/ai`
+- `subjects/foundation`
+- Math JSON data/schema
+- `subjects/math/assets/core.js`
+- Other Math tab redesigns
+
+REMAINING_RISKS:
+- Automated browser verification could not be completed inside Codex due browser blocking local URLs.
+- User should verify in Live Server: open Math, Lý thuyết, click `Cấu trúc bài học`, select Bài tập/Ứng dụng/Ôn tập/Kiểm tra, then return to Lý thuyết.
+
+NEXT_RECOMMENDED_TASK:
+- If Live Server still shows a tab-specific issue, capture the exact option clicked and console error so the next patch can target that path only.
+
+GIT_SUMMARY:
+- `git status --short`: pending local changes in this handoff and E134 JS until commit.
+- `git diff --stat`: `subjects/math/assets/theory_skin/theory-pro-rebuild-E134.js` and `docs/CODEX_STATE.md`.
+
 ## E135 Runtime Stability Handoff
 
 TASK_ID: `E135_MATH_THEORY_LOGIC_FIX_KEEP_LESSON_STRUCTURE`
