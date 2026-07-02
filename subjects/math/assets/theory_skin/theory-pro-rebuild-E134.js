@@ -256,7 +256,6 @@
   function leftNav(xs,filtered,current,q,stage){
     return '<aside class="e134-left" aria-label="Danh sách bài lý thuyết">'+
       '<div class="e134-search-wrap"><label for="e134Search">Tìm bài học</label><input id="e134Search" data-e134-search value="'+esc(q)+'" placeholder="Tên bài, chương, khái niệm..."></div>'+
-      '<div class="e134-result-count"><b>'+filtered.length+'</b><span>kết quả trong '+xs.length+' bài</span></div>'+
       taxonomyStageTree(filtered,current,q)+
       taxonomyPopover(xs,current,q)+
       '</aside>';
@@ -417,16 +416,23 @@
     restoreSearchFocus=true;
     save(); render();
   },true);
+  function ownLectureKey(e){
+    e.preventDefault();
+    e.stopImmediatePropagation();
+  }
   document.addEventListener('keydown',function(e){
     var state=st();
     if(s(state.view) !== 'learning' || s(state.learnTab || 'theory') !== 'theory' || s(state.e134Mode) !== 'lecture')return;
-    if(e.key !== 'ArrowLeft' && e.key !== 'ArrowRight' && e.key !== 'Escape')return;
-    if(e.key === 'Escape'){state.e134Mode='read'; save(); render(); e.preventDefault(); return;}
     var l=currentLesson(lessons());
     var total=slides(l).length;
     var idx=Number(state.e134SlideIndex || 0);
-    state.e134SlideIndex=e.key === 'ArrowLeft' ? Math.max(0,idx-1) : Math.min(Math.max(0,total-1),idx+1);
-    save(); render(); e.preventDefault();
+    var max=Math.max(0,total-1);
+    var key=e.key;
+    if(key === 'Escape'){state.e134Mode='read'; save(); render(); ownLectureKey(e); return;}
+    if(key === 'ArrowLeft' || key === 'PageUp'){state.e134SlideIndex=Math.max(0,idx-1); save(); render(); ownLectureKey(e); return;}
+    if(key === 'ArrowRight' || key === 'PageDown' || key === ' '){state.e134SlideIndex=Math.min(max,idx+1); save(); render(); ownLectureKey(e); return;}
+    if(key === 'Home'){state.e134SlideIndex=0; save(); render(); ownLectureKey(e); return;}
+    if(key === 'End'){state.e134SlideIndex=max; save(); render(); ownLectureKey(e); return;}
   },true);
   var mo = new MutationObserver(function(){if(applying)return; setTimeout(render,0);});
   function boot(){
