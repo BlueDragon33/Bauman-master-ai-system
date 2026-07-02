@@ -17,11 +17,15 @@ Purpose: persistent handoff log for GitHub/Codex/ChatGPT work on `BlueDragon33/B
 
 Subject: `subjects/math`
 
-Task: Add E130 integrated Math Program Frame while preserving E129 Theory and the Bauman route.
+Task status: E130 integrated Math Program Frame is complete as a 10-round overlay implementation.
 
 Current target version:
 
 `E130_MATH_PROGRAM_FRAME_INTEGRATED`
+
+Final handoff:
+
+- `subjects/math/E130_PROGRAM_FRAME_FINAL_HANDOFF.md`
 
 Active contracts:
 
@@ -269,9 +273,10 @@ Changed:
 - Created `subjects/math/content_bundles/theory/e130_c01_vector_as_engineering_data_bundle.json`.
 - Updated this `CODEX_STATE.md` file.
 
-Commit:
+Commits:
 
 - `8652b5034ac8e27cea13233ea7bc7e3c7578a64d`
+- `e427b2b451a1e9f4e963d3e467c3911030105a54`
 
 Purpose:
 
@@ -288,28 +293,46 @@ Verification performed:
 - Confirmed bundle contains Lab Work for Python/NumPy and C++.
 - Confirmed bundle includes 16 slide roles ending with `takeaway`.
 
+### E130 Round 10 · Final handoff and manifest cleanup decision
+
+Status: complete.
+
+Changed:
+
+- Created `subjects/math/E130_PROGRAM_FRAME_FINAL_HANDOFF.md`.
+- Updated this `CODEX_STATE.md` file.
+
+Commit:
+
+- `a408fc298223015b69f29db3d9b07bd17dd3d914`
+
+Purpose:
+
+- Lock final E130 source-of-truth, runtime, test, import, rollback, and next-production guidance.
+- Confirm that E130 is complete as an overlay, not a replacement.
+- Confirm manifest cleanup should not be part of E130 Round 10.
+- Recommend future `E131 · Math manifest cleanup and version normalization` as a separate inspect/patch/verify cycle.
+
+Verification performed:
+
+- Confirmed final handoff lists E129 core runtime files, E130 sources/assets, authoring guide, sample bundle, and contract.
+- Confirmed final handoff preserves Theory source-of-truth: `theory_lecture_content` for content, `theory_lecture_frame` for frame, `lessons` legacy only.
+- Confirmed final handoff includes self-check commands, manual smoke checklist, rollback instructions, manifest cleanup decision, and next production path.
+
 ## Current runtime notes
 
+- E130 10-round implementation is complete.
 - E129 owns the Theory shell and Theory storage route.
 - E126 is suppressed when E129 ownership flag is active.
 - E128 importer remains available outside E129 Theory storage but should not be used for new Theory content.
-- E130 is source-visible and UI-route-visible, but browser runtime needs user-side Live Server verification.
-- Round 9 adds a sample import-testing bundle only. It does not import production content into `data/theory_lecture_content.json`.
-- `subject-manifest.json` still contains older historical labels/counts. Do not rewrite it casually. Clean it only in a dedicated manifest cleanup round.
+- E130 is source-visible and UI-route-visible, but browser runtime still needs user-side Live Server verification.
+- E130 sample bundle is not auto-imported into `data/theory_lecture_content.json`.
+- `subject-manifest.json` still contains older historical labels/counts. Do not rewrite it casually. Clean it only in future E131 if needed.
 
-## Remaining E130 rounds
+## Recommended next work
 
-After Round 9, 1 round remains in the 10-round plan:
-
-10. Final handoff and manifest cleanup decision.
-
-## Recommended next round
-
-E130 Round 10: Final handoff and manifest cleanup decision.
-
-Tasks:
-
-- Create final E130 handoff document.
-- Document files, source-of-truth rules, self-check commands, import path, rollback, and next production path.
-- Decide whether manifest cleanup should be a separate future round rather than part of E130.
-- Do not rewrite `subject-manifest.json` unless explicitly approved.
+1. User pulls origin and browser-tests E130.
+2. If runtime bug appears, run a narrow bugfix round against E130 assets only.
+3. If runtime is stable, review/import the C01 sample bundle via E129 Kho Lý thuyết.
+4. Export approved overlay and commit to `data/theory_lecture_content.json` only after explicit approval.
+5. Future E131 can clean `subject-manifest.json` separately.
