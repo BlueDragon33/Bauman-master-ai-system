@@ -195,6 +195,7 @@ Commits:
 - `6a5c4d03db48a020c7251f7f89d6b1456637465d`
 - `b6f99ccee18e3ba26298a7ef99474ca10781580d`
 - `6f14ed252fb340c8bc67d83b4c15ec78954b7ab6`
+- `32afffb3dd0f63e53c0d9857e4b15fc2bc227a25`
 
 Purpose:
 
@@ -212,32 +213,60 @@ Verification performed:
 - Confirmed `program-view-E130.js` fetches `data/math_program_frame.json` and `data/math_program_map.json`.
 - Confirmed it exposes `window.BAUMAN_MATH_E130_PROGRAM_VIEW.selfCheck()`.
 
+### E130 Round 7 · Verify/regression
+
+Status: complete by repository inspection. Browser runtime still needs user-side Live Server confirmation.
+
+Changed:
+
+- Updated `subjects/math/assets/program_frame/program-view-E130.js`.
+- Updated this `CODEX_STATE.md` file.
+
+Commit:
+
+- `d860060b824e4b7ee95aa2d91c8ae05a266faa46`
+
+Purpose:
+
+- Verify E130 program route, E129 Bauman route, E129 import target, and E126 compatibility suppression by static repository inspection.
+- Fix one small regression risk: E130 chapter pills previously set only `chapterId`, while E129 route selection uses `e129ChapterId` and `e129Stage`.
+
+Fix:
+
+- E130 chapter buttons now store `data-e130-chapter` and `data-e130-stage`.
+- Clicking a mapped chapter now sets `chapterId`, `e129ChapterId`, `stage`, and `e129Stage` before returning to the E129 Bauman route.
+- E130 self-check now reports `e129SelectionSync: e129ChapterId/e129Stage`.
+
+Verification performed:
+
+- Confirmed `index.html` script order still loads E130 metadata bridge before E129 and E130 view after E129.
+- Confirmed E130 view fetches `math_program_frame.json` and `math_program_map.json`.
+- Confirmed E130 route toggle remains optional and default route remains Bauman.
+- Confirmed E129 still validates Theory imports against `theory_lecture_content`, not `lessons`.
+- Confirmed the E129 selection state names are `e129ChapterId` and `e129Stage`, and E130 now syncs them.
+
 ## Current runtime notes
 
 - E129 owns the Theory shell and Theory storage route.
 - E126 is suppressed when E129 ownership flag is active.
 - E128 importer remains available outside E129 Theory storage but should not be used for new Theory content.
-- E130 is now source-visible and UI-route-visible, but browser runtime needs user-side Live Server verification.
+- E130 is source-visible and UI-route-visible, but browser runtime needs user-side Live Server verification.
 - `subject-manifest.json` still contains older historical labels/counts. Do not rewrite it casually. Clean it only in a dedicated manifest cleanup round.
 
 ## Remaining E130 rounds
 
-After Round 6, 4 rounds remain in the 10-round plan:
+After Round 7, 3 rounds remain in the 10-round plan:
 
-7. Verify program-frame view and Bauman route regression.
 8. Add content-authoring/import guidance for program-linked lessons and Lab Work.
 9. Add one real sample content bundle through `theory_lecture_content`, mapped to a program lecture anchor.
 10. Final handoff and manifest cleanup decision.
 
 ## Recommended next round
 
-E130 Round 7: Verify program-frame view and Bauman route regression.
+E130 Round 8: Add content-authoring/import guidance for program-linked lessons and Lab Work.
 
 Tasks:
 
-- Pull origin and test in browser/Live Server.
-- Check `BAUMAN_MATH_E130_PROGRAM_FRAME.selfCheck()`.
-- Check `BAUMAN_MATH_E130_PROGRAM_VIEW.selfCheck()`.
-- Check E129 self-check still passes.
-- Open `Khung bài giảng E130` and then return to `Lộ trình Bauman`.
-- Confirm `Kho Lý thuyết` and import target `theory_lecture_content` still work.
+- Add a guide/template explaining how a real Theory content record should reference a `programLectureId` while still importing into `theory_lecture_content`.
+- Include Lab Work guidance for Python/NumPy/SciPy and C++.
+- Do not import real content yet. Round 9 will create one sample bundle.
