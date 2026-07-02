@@ -21,24 +21,42 @@ C01 · Vector trong không gian dữ liệu now contains 6 learner-facing theory
 5. `§1.5 · Không gian con và biểu diễn dữ liệu`
 6. `§1.6 · Từ vector sang ma trận dữ liệu`
 
-Each lesson keeps the 16-role slide structure:
+## Slide count policy
 
-1. problem_framing
-2. deep_essence
-3. counter_intuition
-4. real_bridge
-5. notation
-6. core_formula
-7. assumption_gate
-8. mini_case
-9. interpretation
-10. simulation
-11. common_mistakes
-12. application
-13. practice
-14. professor_qa
-15. bridge
-16. takeaway
+Theory lessons must not be locked to a fixed slide count.
+
+Use flexible slide length based on the actual academic depth:
+
+- short focused lesson: about 8–10 slides;
+- standard lesson: about 10–14 slides;
+- deep foundational lesson: about 14–18 slides;
+- longer only when the topic truly requires it.
+
+Do not add filler slides just to hit a number.
+Do not remove necessary content just to fit a number.
+
+## Recommended slide roles
+
+The following roles are useful as a teaching skeleton, not a mandatory checklist:
+
+- problem_framing
+- deep_essence
+- counter_intuition
+- real_bridge
+- notation
+- core_formula
+- assumption_gate
+- mini_case
+- interpretation
+- simulation
+- common_mistakes
+- application
+- practice
+- professor_qa
+- bridge
+- takeaway
+
+A lesson may skip, merge, split or reorder roles when the content requires it.
 
 ## Content boundaries
 
@@ -52,10 +70,10 @@ Each lesson keeps the 16-role slide structure:
 E141 should be verification-only:
 
 - validate JSON parse;
-- count 6 records;
-- verify each record has 16 slides;
-- verify role order consistency;
+- count 6 C01 records;
+- check every lesson has a reasonable non-empty slide set;
+- check role/title/body quality without enforcing a fixed count;
 - confirm C01 appears in learner UI after pull;
-- then create C01 final lock/handoff.
+- then create C01 final handoff.
 
 End of E140 content completion.
