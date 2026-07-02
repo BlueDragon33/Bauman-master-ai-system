@@ -124,30 +124,12 @@ Commit:
 
 - `2a6ccd48acc3904d678cf987fc7e35ec4fff76dd`
 
-Files inspected:
-
-- `subjects/math/assets/theory_skin/theory-tab-E129.js`
-- `subjects/math/assets/theory_skin/theory-tab-E129.css`
-- `CODEX_STATE.md`
-
 Findings:
 
 - E129 already normalizes slides and preserves 16 preferred slide roles.
 - E129 already supports import/export for `theory_lecture_content`.
 - Current CSS has a basic presenting mode that hides sidebar/topbar, but slides still render as a vertical article list rather than a real deck.
 - E132 should add an enhancer layer rather than rewrite E129.
-
-Design contract decisions:
-
-- Add E132 as an enhancer layer, not a replacement.
-- Canva is used for moodboard/design reference only.
-- Future assets should prefer:
-  - `subjects/math/assets/theory_skin/theory-slideshow-E132.js`
-  - `subjects/math/assets/theory_skin/theory-slideshow-E132.css`
-  - optional `subjects/math/assets/theory_skin/theory-ui-tokens-E132.css`
-- E132 must expose `BAUMAN_MATH_THEORY_E132.selfCheck()`.
-- E132 must preserve E129 import target: `theory_lecture_content`.
-- E132 must not break E130 program route.
 
 ### E132 Round 2 · Design tokens + Canva style guide
 
@@ -170,13 +152,6 @@ Purpose:
 - Add E132 design tokens without activating runtime yet.
 - Define Canva-inspired academic-tech style language for Theory UI and slideshow.
 - Keep Canva as design reference, not runtime source.
-
-Verification performed:
-
-- Confirmed token CSS defines deep navy backgrounds, glass panels, cyan/violet/emerald/amber/red semantic accents, formula/code cards, radius, shadows, typography, and responsive rules.
-- Confirmed style guide maps Canva visual ideas to repo implementation.
-- Confirmed no `index.html` patch was made in Round 2.
-- Confirmed no E129/E130 JS was modified.
 
 ### E132 Round 3 · Slideshow enhancer shell
 
@@ -204,13 +179,6 @@ Purpose:
 - Add semantic role classes for formula, lab, warning, and Q&A slides based on slide text.
 - Expose `window.BAUMAN_MATH_THEORY_E132.selfCheck()`.
 
-Verification performed:
-
-- Confirmed `index.html` loads `theory-ui-tokens-E132.css`, `theory-slideshow-E132.css`, and `theory-slideshow-E132.js`.
-- Confirmed E132 JS detects E129 presenting mode and does not change import/storage routes.
-- Confirmed E132 self-check reports `importTargetUnchanged: theory_lecture_content`.
-- Confirmed no `theory-tab-E129.js`, `chapter_spine.json`, `subject-manifest.json`, or E130 source file was modified.
-
 ### E132 Round 4 · Theory reader polish
 
 Status: complete by repository inspection. Browser runtime still needs user-side Live Server confirmation.
@@ -234,13 +202,6 @@ Purpose:
 - Keep presentation mode isolated by using `body:not(.e129-presenting)` selectors.
 - Keep E129 JS/importer untouched.
 
-Verification performed:
-
-- Confirmed `theory-reader-E132.css` only targets non-presenting reader state.
-- Confirmed the file styles `.e129-reader`, `.e129-reader-head`, `.e129-grid`, `.e129-card`, `.e129-slide-list`, `.e129-slide`, `.e129-action`, and stats without changing data logic.
-- Confirmed `index.html` load order: E129 CSS -> E132 tokens -> E132 reader polish -> E132 slideshow -> E130 CSS.
-- Confirmed no DataVault source, E129 JS, E130 JS, `chapter_spine.json`, or `subject-manifest.json` was modified.
-
 ### E132 Round 5 · Canva mapping + self-check refinement
 
 Status: complete by repository inspection. Browser runtime still needs user-side Live Server confirmation.
@@ -255,6 +216,7 @@ Commits:
 
 - `0f94c1d78540fe6846b307eb1706a88519539fb2`
 - `039ffb266f69bd5fd29483fc50f4bac0e0b9a890`
+- `4f5e21d4ab966eb1f46f9590309bcc27fd416812`
 
 Purpose:
 
@@ -262,13 +224,30 @@ Purpose:
 - Map Theory slide roles to Canva layout names and runtime treatments.
 - Improve `BAUMAN_MATH_THEORY_E132.selfCheck()` so it reports tokens CSS, reader CSS, and slideshow CSS load status.
 
+### E132 Round 6 · Regression verification
+
+Status: complete by repository inspection. Browser runtime still needs user-side Live Server confirmation.
+
+Changed:
+
+- Updated this `CODEX_STATE.md` file only.
+
+Purpose:
+
+- Verify E132 load order, E132 self-check shape, E129 import/storage route, E130 Program Frame route, and E126 suppression.
+- Patch only if a concrete regression is found.
+
 Verification performed:
 
-- Confirmed `E132_CANVA_TO_RUNTIME_MAPPING.md` says Canva is design reference and repo is runtime source.
-- Confirmed mapping file preserves runtime truth: `theory_lecture_frame`, `theory_lecture_content`, E130 frame/map, and E132 CSS/JS.
-- Confirmed mapping file includes role-to-layout mapping and runtime acceptance checklist.
-- Confirmed E132 self-check now reports `tokensCssLoaded`, `readerCssLoaded`, `slideshowCssLoaded`, `canvaRuntimeMapping`, `keyboard`, and `escapeToExit`.
-- Confirmed no DataVault source, content bundle, E129 importer logic, E130 source, `chapter_spine.json`, or `subject-manifest.json` was modified.
+- Confirmed `index.html` load order: E129 CSS -> E132 tokens -> E132 reader CSS -> E132 slideshow CSS -> E130 CSS -> E128 CSS.
+- Confirmed script load order: `subject-adapter.js` -> E130 metadata -> E129 -> E130 Program View -> E132 slideshow enhancer -> core -> E126 -> E128.
+- Confirmed E132 self-check reports `tokensCssLoaded`, `readerCssLoaded`, `slideshowCssLoaded`, `importTargetUnchanged: theory_lecture_content`, `keyboard`, and `escapeToExit`.
+- Confirmed E129 storage/importer still targets `theory_lecture_content` and still exports `theory_lecture_content`.
+- Confirmed E129 self-check still reports `importerTarget: theory_lecture_content` and `legacyImporterSuppressedOnTheoryStorage: true`.
+- Confirmed E130 Program View still fetches `math_program_frame.json` and `math_program_map.json` and still reports `importTargetUnchanged: theory_lecture_content`.
+- Confirmed E130 chapter pills still sync `e129ChapterId/e129Stage` before returning to E129 Bauman route.
+- Confirmed E126 adapter returns early when E129 owns Theory and its self-check reports `suppressedBy: E129`.
+- No code patch was needed in Round 6.
 
 ## Current runtime notes
 
@@ -276,17 +255,15 @@ Verification performed:
 - E132 only enhances E129 UI.
 - E129 still owns Theory reading/importing.
 - Canva is visual reference only; no runtime content is stored in Canva.
-- E130 program route should remain intact, but browser regression test is required.
+- E130 program route should remain intact, but browser regression test is still required on the user's Live Server.
 - No durable Theory content was changed.
 
 ## Recommended next round
 
-E132 Round 6: Verify regression and patch narrow issues.
+E132 Round 7: Final E132 handoff.
 
 Tasks:
 
-- Verify `index.html` load order.
-- Verify `BAUMAN_MATH_THEORY_E132.selfCheck()` expected fields.
-- Verify E129 importer target remains `theory_lecture_content`.
-- Verify E130 Program Frame route still opens.
-- Patch only narrow issues found by repository inspection or user-side Live Server logs/screenshots.
+- Create final E132 handoff document.
+- Document files, runtime behavior, self-check commands, manual smoke test, rollback, and next production path.
+- Do not add more UI in Round 7.
