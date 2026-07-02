@@ -25,7 +25,6 @@ Styles currently loaded:
 - `assets/theory_skin/theory-tab-E129.css?v=136`
 - `assets/theory_skin/theory-ui-tokens-E132.css?v=136`
 - `assets/theory_skin/theory-slideshow-E132.css?v=136`
-- `assets/program_frame/program-frame-E130.css?v=130`
 
 ## Removed from boot/runtime
 
@@ -38,6 +37,7 @@ Removed from `index.html`:
 - `learning-clean-E134.js`
 - `planning-bridge.js`
 - `program-view-E130.js`
+- `program-frame-E130.css`
 
 Deleted from repo:
 
@@ -56,6 +56,8 @@ E134 added a second learner UI layer, which contradicted the goal of restoring t
 E132 reader polish conflicted with the header-only view.
 
 E130 Program View injected a redundant learner-facing `Khung bài giảng E130` route.
+
+E130 Program CSS only styles that removed E130 view, so it is not needed in the learner boot path.
 
 Planning Bridge is not needed to boot the Math subject and should only be loaded by the main system if needed.
 
@@ -92,6 +94,7 @@ Do not restore these into `index.html` unless a separate no-loop replacement is 
 - E128 importer;
 - E134 learning-clean runtime;
 - E130 Program View learner injection;
+- E130 Program CSS in the learner boot path;
 - E132 reader polish.
 
 End of E136 stabilization.
