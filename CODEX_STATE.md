@@ -23,6 +23,10 @@ Current target version:
 
 `E129_THEORY_CONTENT_IMPORTER`
 
+Final handoff file:
+
+`subjects/math/THEORY_E129_FINAL_HANDOFF.md`
+
 ## Contract
 
 Primary contract file:
@@ -193,9 +197,10 @@ Changed:
 - Updated `subjects/math/index.html`.
 - Updated this `CODEX_STATE.md` file.
 
-Commit:
+Commits:
 
 - `3130036f04247b7f9be4d08782aa9f7b65809dfb`
+- `193cbc3f5dc2b1f9c2052389a6ce74e43eeaf310`
 
 Purpose:
 
@@ -210,6 +215,29 @@ Verification performed:
 - Confirmed E129 storage route renders `theory_lecture_content` importer and labels `lessons.json` as legacy.
 - Confirmed E126 has suppression guard when E129 owns Theory.
 
+### Round 8 · Final cleanup/handoff
+
+Status: complete.
+
+Changed:
+
+- Created `subjects/math/THEORY_E129_FINAL_HANDOFF.md`.
+- Updated this `CODEX_STATE.md` file.
+
+Commit:
+
+- `660d5b58f07a8f22af8354312dcf73779dc4752e`
+
+Purpose:
+
+- Provide final handoff for the 8-round Theory cleanup.
+- Document current source-of-truth files, compatibility files, test commands, import package shape, smoke-test checklist, known limitations, rollback note, and next production path.
+
+Verification performed:
+
+- Final handoff recorded without changing runtime behavior.
+- No additional runtime patch was made in Round 8.
+
 ## Current runtime notes
 
 - `subjects/math/index.html` still loads E126 and E128 after E129 for compatibility.
@@ -217,10 +245,9 @@ Verification performed:
 - E126 is suppressed when E129 ownership flag is active.
 - E128 importer remains available outside E129 Theory storage but should not be used for new Theory content.
 - E129 importer overlay is local/browser runtime storage, not a durable GitHub file write. Export JSON and commit to `data/theory_lecture_content.json` when content is approved.
+- `subject-manifest.json` still contains older historical labels/counts. Do not rewrite it casually. Clean it only in a dedicated manifest cleanup round.
 
-## Next recommended round
-
-Round 8: Final cleanup/handoff and user-side test response.
+## User-side final test
 
 Checklist:
 
@@ -238,3 +265,13 @@ Checklist:
 - Re-import the sample JSON.
 - Confirm content appears in Theory shell and is labeled `theory_lecture_content`.
 - Confirm legacy `lessons` remains fallback only.
+
+## Recommended next production path
+
+Next work should be content-focused, not another UI rewrite:
+
+1. Create real Chapter 1 Theory content bundle for `theory_lecture_content`.
+2. Import it through E129.
+3. Export and commit the approved content file.
+4. Repeat for Formula, Exercise, Simulation, Application, Professor QA, and Test banks using their own frame/content contracts.
+5. Only after stable content exists, perform a dedicated manifest cleanup round.
