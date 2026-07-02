@@ -24,7 +24,7 @@ Current task:
 
 Task status:
 
-Complete, 7/7 rounds.
+Complete, 7/7 rounds, plus visible C01 seed content applied after user reported slides did not visibly change.
 
 Current target version:
 
@@ -37,13 +37,6 @@ Final handoff:
 E132 contract:
 
 - `subjects/math/THEORY_UI_SLIDESHOW_CONTRACT_E132.md`
-
-E132 design direction:
-
-- Dedicated Theory UI polish.
-- True slideshow/deck experience for Theory lessons.
-- Canva used as visual reference and style-guide companion, not as runtime source-of-truth.
-- Runtime implementation stays in repo assets so the module works locally/offline.
 
 E132 design/runtime assets:
 
@@ -110,7 +103,7 @@ Meaning:
 - The 21 anchors are organizing containers, not a 21-lesson limit.
 - Active chapters 1-40 are mapped in `math_program_map.json`.
 - E130 UI route exists as `Lộ trình Bauman` / `Khung bài giảng Bauman`.
-- E130 sample content bundle exists but is not auto-imported into `data/theory_lecture_content.json`.
+- E130 sample content bundle exists as source material.
 
 E130 sample bundle:
 
@@ -136,7 +129,7 @@ Findings:
 
 - E129 already normalizes slides and preserves 16 preferred slide roles.
 - E129 already supports import/export for `theory_lecture_content`.
-- Current CSS has a basic presenting mode that hides sidebar/topbar, but slides still render as a vertical article list rather than a real deck.
+- Current CSS had a basic presenting mode that hides sidebar/topbar, but slides still rendered as a vertical article list rather than a real deck.
 - E132 should add an enhancer layer rather than rewrite E129.
 
 ### E132 Round 2 · Design tokens + Canva style guide
@@ -157,7 +150,7 @@ Commits:
 
 Purpose:
 
-- Add E132 design tokens without activating runtime yet.
+- Add E132 design tokens.
 - Define Canva-inspired academic-tech style language for Theory UI and slideshow.
 - Keep Canva as design reference, not runtime source.
 
@@ -270,34 +263,58 @@ Changed:
 - Created `subjects/math/E132_THEORY_UI_FINAL_HANDOFF.md`.
 - Updated this `CODEX_STATE.md` file.
 
-Commit:
+Commits:
 
 - `2357bdaffc402900c4b6c70ca59a28eb4f0b32d9`
+- `81d532ca691baa6d1fd6773f6b4ca0fe024a6293`
 
 Purpose:
 
 - Lock final E132 source-of-truth, runtime behavior, self-check commands, manual smoke test, rollback, Canva boundary, and next production path.
 - Confirm no more UI should be added before browser testing.
 
-Verification performed:
+### E132 Visible Seed Content · C01
 
-- Confirmed final handoff states E132 is a visual/runtime enhancer, not data migration and not replacement for E129.
-- Confirmed final handoff lists E132 files, runtime load order, visual changes, keyboard controls, self-check commands, manual smoke test, rollback, Canva boundary, and next production path.
+Status: complete after user reported slides did not visibly change.
+
+Changed:
+
+- Updated `subjects/math/data/theory_lecture_content.json` from empty to one real C01 lesson record with 16 slides.
+
+Commit:
+
+- `7edcb4d895bee99a008c375a52eb0c41d68e0433`
+
+Reason:
+
+- E132 reader/slideshow UI had been implemented, but `theory_lecture_content.json` was empty.
+- Without a record in the E129 content source, there are no slides for E132 to display.
+- The C01 seed keeps the correct source-of-truth: `theory_lecture_content.json`.
+- This does not use `lessons.json`.
+
+Visible test target:
+
+- Stage: `vn`
+- Chapter: `MATH-VN-C01-vector_trong_khong_gian_`
+- Lesson: `§1.1 · Vector như dữ liệu kỹ thuật`
+- Slide count: 16
+- Roles include: problem framing, essence, counter intuition, bridge, notation, formula, assumption gate, mini case, interpretation, simulation, mistakes, application, practice, professor QA, bridge, takeaway.
 
 ## Current runtime notes
 
 - E132 implementation is complete, 7/7 rounds.
-- E132 runtime is now loaded for both reader and slideshow presentation mode.
+- E132 runtime is loaded for both reader and slideshow presentation mode.
+- `theory_lecture_content.json` now contains one visible C01 lesson record, so slide changes should appear after pulling and hard-refreshing.
 - E132 only enhances E129 UI.
 - E129 still owns Theory reading/importing.
 - Canva is visual reference only; no runtime content is stored in Canva.
-- E130 program route should remain intact, but browser regression test is still required on the user's Live Server.
-- No durable Theory content was changed.
+- No content was moved to `lessons.json`.
 
 ## Recommended next work
 
-1. Pull origin and browser-test E132.
-2. Run self-check commands from `subjects/math/E132_THEORY_UI_FINAL_HANDOFF.md`.
-3. Import the C01 sample bundle through E129 Kho Lý thuyết only if testing content rendering.
-4. If browser screenshots/logs reveal a real bug, run a narrow E133 bugfix round.
-5. Do not add another UI layer before browser testing.
+1. Pull origin and hard-refresh browser cache.
+2. Open `subjects/math/index.html` with Live Server.
+3. Open Lý thuyết, stage `vn`, chapter C01.
+4. Confirm `§1.1 · Vector như dữ liệu kỹ thuật` appears.
+5. Click `Trình chiếu` and confirm 16 slides are navigable.
+6. If still not visible, check browser console and whether localStorage overlay is overriding `theory_lecture_content.json`.
