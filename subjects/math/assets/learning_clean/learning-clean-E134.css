@@ -1,0 +1,15 @@
+/* E134 · Clean Learning UI
+ * Removes technical notes from the learner-facing interface and restores a compact learning tab bar.
+ */
+.brand p{display:none!important}.brand{min-height:66px}.brand h1{font-size:18px!important;letter-spacing:-.035em}
+.topbar .kicker,.topbar p,#pageSub{display:none!important}.topbar{align-items:center!important}.topbar h2{font-size:24px!important}
+#saveState{display:none!important}
+.e129-side-head p,.e129-status,.e129-kicker,.e129-reader-head p.e129-muted{display:none!important}.e129-stage-tabs{display:none!important}.e129-side-head{padding-bottom:8px!important}.e129-side-head h2{margin-bottom:0!important}.e129-search{margin-top:10px!important}
+.e129-card p:first-child:last-child:empty{display:none!important}.e129-card h3{margin-bottom:8px!important}.e129-card p{font-size:13px!important;line-height:1.45!important}
+.e134-learning-tabs{display:flex;gap:8px;align-items:center;flex-wrap:wrap;margin:0 auto 14px;max-width:1500px;padding:10px;border:1px solid rgba(226,232,240,.92);border-radius:18px;background:rgba(255,255,255,.86);box-shadow:0 8px 24px rgba(15,23,42,.05);backdrop-filter:blur(14px)}
+.e134-learning-tabs button{border:1px solid #e2e8f0;background:#fff;color:#263447;border-radius:13px;padding:10px 14px;font-size:13px;font-weight:950;box-shadow:0 4px 12px rgba(15,23,42,.035)}
+.e134-learning-tabs button:hover{transform:translateY(-1px);box-shadow:0 8px 18px rgba(15,23,42,.07)}
+.e134-learning-tabs button.active{background:#111827;color:#fff;border-color:#111827}
+.e134-tab-shell{display:grid;gap:14px}.e134-tab-head{display:flex;justify-content:space-between;gap:12px;align-items:flex-end;padding:18px 20px;border:1px solid #e2e8f0;border-radius:22px;background:#fff;box-shadow:0 12px 32px rgba(15,23,42,.06)}
+.e134-tab-head h1{margin:0;font-size:28px;letter-spacing:-.045em}.e134-tab-head span{color:#64748b;font-size:12px;font-weight:850}.e134-tab-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:12px}.e134-study-card{border:1px solid #e2e8f0;background:#fff;border-radius:18px;padding:15px;box-shadow:0 8px 22px rgba(15,23,42,.045);display:grid;gap:8px}.e134-study-card b{font-size:15px;line-height:1.25}.e134-study-card p{margin:0;color:#475569;font-size:13px;line-height:1.48;font-weight:720}.e134-study-card code{font-size:11px;color:#64748b}.e134-empty{border:1px dashed #cbd5e1;border-radius:18px;padding:20px;background:#f8fafc;color:#64748b;font-weight:850}
+@media(max-width:900px){.e134-learning-tabs{position:sticky;top:0;z-index:35;border-radius:0;margin-left:-14px;margin-right:-14px}.e134-learning-tabs button{flex:1}.e134-tab-head{display:grid}.e134-tab-grid{grid-template-columns:1fr}}
