@@ -1,0 +1,171 @@
+{
+  "id": "bauman_math_program_map_e130",
+  "schema": "bauman_math_program_map_v1",
+  "version": "E130_MATH_PROGRAM_FRAME_INTEGRATED",
+  "subject": "math",
+  "title": "Math Program Map · E130 draft",
+  "purpose": "Map existing Bauman math chapters and content records into the integrated 21-anchor program frame without renaming chapterId, stageId, disciplineId, or lessonId.",
+  "mapPolicy": {
+    "chapterIdStable": true,
+    "allowMultipleProgramAnchors": true,
+    "primaryProgramLectureRequired": true,
+    "secondaryProgramLecturesAllowed": true,
+    "mustEventuallyCoverAllActiveChapters": true,
+    "contentAggregationByIdOnly": true,
+    "noLargeContentCopyIntoMap": true
+  },
+  "coverageTargets": {
+    "activeChapters": "1-40",
+    "frameworkOnlyChapters": "41-56 optional display with framework-only label",
+    "round3Scope": "draft seed mappings for early active chapters only",
+    "round4Target": "expand mapping to all active chapters 1-40"
+  },
+  "programLectureIndex": [
+    "MATH-PROG-L01-linear-algebra-basic",
+    "MATH-PROG-L02-vector-spaces-linear-maps",
+    "MATH-PROG-L03-abstract-structures",
+    "MATH-PROG-L04-single-variable-analysis",
+    "MATH-PROG-L05-multivariable-analysis-differential-geometry",
+    "MATH-PROG-L06-differential-equations-dynamical-systems",
+    "MATH-PROG-L07-complex-functions-functional-analysis",
+    "MATH-PROG-L08-euclidean-computational-geometry",
+    "MATH-PROG-L09-topology-metric-spaces",
+    "MATH-PROG-L10-logic-set-theory-boolean",
+    "MATH-PROG-L11-number-theory-cryptography-basics",
+    "MATH-PROG-L12-probability-random-variables",
+    "MATH-PROG-L13-mathematical-statistics",
+    "MATH-PROG-L14-stochastic-processes-time-series",
+    "MATH-PROG-L15-discrete-math-graph-theory",
+    "MATH-PROG-L16-numerical-methods-computing",
+    "MATH-PROG-L17-ai-machine-learning-math-foundations",
+    "MATH-PROG-L18-linear-programming-operations-research",
+    "MATH-PROG-L19-game-theory-decision-math",
+    "MATH-PROG-L20-quantitative-finance-econometrics",
+    "MATH-PROG-L21-mathematical-physics-system-modeling"
+  ],
+  "chapterMappings": [
+    {
+      "chapterId": "MATH-VN-C01-vector_trong_khong_gian_",
+      "chapterTitle": "Chương 1 · Vector trong không gian dữ liệu",
+      "stageId": "vn",
+      "disciplineId": "linear_algebra_data_space",
+      "primaryProgramLectureId": "MATH-PROG-L02-vector-spaces-linear-maps",
+      "secondaryProgramLectureIds": [
+        "MATH-PROG-L01-linear-algebra-basic",
+        "MATH-PROG-L09-topology-metric-spaces",
+        "MATH-PROG-L17-ai-machine-learning-math-foundations"
+      ],
+      "mappedContentDomains": [
+        "theory",
+        "formula",
+        "exercise",
+        "simulation",
+        "application",
+        "professor_qa"
+      ],
+      "roadmapRole": "foundation_before_prep",
+      "mappingReason": "Vectors are the basis of vector spaces, linear maps, data representation, metric similarity, PCA, and AI feature spaces.",
+      "mappingStatus": "draft_verified_against_known_chapter_id"
+    },
+    {
+      "chapterId": "MATH-VN-C02-ma_tran_va_phep_bien_oi_",
+      "chapterTitle": "Chương 2 · Ma trận và phép biến đổi tuyến tính",
+      "stageId": "vn",
+      "disciplineId": "linear_algebra_data_space",
+      "primaryProgramLectureId": "MATH-PROG-L01-linear-algebra-basic",
+      "secondaryProgramLectureIds": [
+        "MATH-PROG-L02-vector-spaces-linear-maps",
+        "MATH-PROG-L16-numerical-methods-computing",
+        "MATH-PROG-L17-ai-machine-learning-math-foundations",
+        "MATH-PROG-L18-linear-programming-operations-research"
+      ],
+      "mappedContentDomains": [
+        "theory",
+        "formula",
+        "exercise",
+        "simulation",
+        "application",
+        "professor_qa"
+      ],
+      "roadmapRole": "foundation_matrix_methods_for_data_and_systems",
+      "mappingReason": "Matrices support Gaussian elimination, dense matrix computing, transformations, PCA pipelines, state matrices, and ML weights.",
+      "mappingStatus": "draft_verified_against_known_chapter_id"
+    },
+    {
+      "chapterId": "MATH-VN-C03-ham_so_ao_ham_va_gradien",
+      "chapterTitle": "Chương 3 · Hàm số, đạo hàm và gradient cơ bản",
+      "stageId": "vn",
+      "disciplineId": "calculus_multivariable",
+      "primaryProgramLectureId": "MATH-PROG-L05-multivariable-analysis-differential-geometry",
+      "secondaryProgramLectureIds": [
+        "MATH-PROG-L04-single-variable-analysis",
+        "MATH-PROG-L17-ai-machine-learning-math-foundations",
+        "MATH-PROG-L18-linear-programming-operations-research"
+      ],
+      "mappedContentDomains": [
+        "theory",
+        "formula",
+        "exercise",
+        "simulation",
+        "application",
+        "professor_qa"
+      ],
+      "roadmapRole": "gradient_foundation_for_optimization_and_ai",
+      "mappingReason": "Derivative and gradient concepts feed numerical error, optimization, Hessian intuition, neural-network training, and loss-surface analysis.",
+      "mappingStatus": "draft_verified_against_known_chapter_id"
+    },
+    {
+      "chapterId": "MATH-VN-C04-xac_suat_co_ban_va_bien_",
+      "chapterTitle": "Chương 4 · Xác suất cơ bản và biến ngẫu nhiên",
+      "stageId": "vn",
+      "disciplineId": "probability_statistics_inference",
+      "primaryProgramLectureId": "MATH-PROG-L12-probability-random-variables",
+      "secondaryProgramLectureIds": [
+        "MATH-PROG-L13-mathematical-statistics",
+        "MATH-PROG-L14-stochastic-processes-time-series",
+        "MATH-PROG-L17-ai-machine-learning-math-foundations",
+        "MATH-PROG-L20-quantitative-finance-econometrics"
+      ],
+      "mappedContentDomains": [
+        "theory",
+        "formula",
+        "exercise",
+        "simulation",
+        "application",
+        "professor_qa"
+      ],
+      "roadmapRole": "probability_foundation_for_data_networks_and_ai",
+      "mappingReason": "Random variables and distributions support network traffic modeling, statistical inference, ML uncertainty, time-series/reliability, and risk modeling.",
+      "mappingStatus": "draft_verified_against_theory_frame_sample"
+    }
+  ],
+  "contentRecordLinkingTemplate": {
+    "programLectureId": "MATH-PROG-L02-vector-spaces-linear-maps",
+    "chapterId": "MATH-VN-C01-vector_trong_khong_gian_",
+    "theoryLessonIds": [],
+    "formulaIds": [],
+    "exerciseIds": [],
+    "simulationIds": [],
+    "applicationIds": [],
+    "professorQaIds": [],
+    "questionIds": [],
+    "reviewPackIds": []
+  },
+  "verification": {
+    "round3": {
+      "status": "draft_seed_only",
+      "knownExistingChapterIdsUsed": [
+        "MATH-VN-C01-vector_trong_khong_gian_",
+        "MATH-VN-C02-ma_tran_va_phep_bien_oi_",
+        "MATH-VN-C03-ham_so_ao_ham_va_gradien",
+        "MATH-VN-C04-xac_suat_co_ban_va_bien_"
+      ],
+      "notYetComplete": [
+        "full active chapter coverage 1-40",
+        "content record id linking",
+        "adapter registration",
+        "UI program-frame route"
+      ]
+    }
+  }
+}
