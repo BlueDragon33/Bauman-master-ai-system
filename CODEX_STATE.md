@@ -2,16 +2,16 @@
 
 Purpose: persistent handoff log for GitHub/Codex/ChatGPT work on `BlueDragon33/Bauman-master-ai-system`.
 
-Rules for future work:
+## Rules for future work
 
 - Do not scan the whole repo.
 - Use Inspect-only, Patch-only, Verify-only phases.
 - Do not rewrite large files when a local patch is enough.
-- Do not hard-code the academic tree into UI.
+- Do not hard-code the academic/program tree into UI.
 - Do not make `lessons.json` primary for new Math Theory content.
 - Keep `theory_lecture_frame.json` as the Theory frame source and `theory_lecture_content.json` as the Theory content source.
 - Treat `lessons.json` as legacy compatibility only.
-- Record every file read/changed/tested here.
+- Record files read/changed/tested here.
 
 ## Current focus
 
@@ -23,182 +23,54 @@ Current target version:
 
 `E130_MATH_PROGRAM_FRAME_INTEGRATED`
 
-Latest contract file:
+Active contracts:
 
-`subjects/math/MATH_TAXONOMY_CONTRACT_E130.md`
-
-Note: the filename keeps the earlier taxonomy label for continuity, but the contract now defines an integrated 21-anchor Bauman lecture-program frame, not a generic taxonomy and not a 21-lesson limit.
+- Theory: `subjects/math/THEORY_TAB_CONTRACT_E129.md`
+- E130 program frame: `subjects/math/MATH_TAXONOMY_CONTRACT_E130.md`
 
 Program-frame sources:
 
 - `subjects/math/data/math_program_frame.json`
 - `subjects/math/data/math_program_map.json`
 
-Previous final handoff file:
-
-`subjects/math/THEORY_E129_FINAL_HANDOFF.md`
-
-## Active contracts
-
-Theory contract:
-
-`subjects/math/THEORY_TAB_CONTRACT_E129.md`
-
-E130 program-frame contract:
-
-`subjects/math/MATH_TAXONOMY_CONTRACT_E130.md`
-
 Key source rule:
 
 1. `data/theory_lecture_frame.json` = Theory frame/navigation shell.
 2. `data/theory_lecture_content.json` = real Theory lecture records/slides.
 3. `data/lessons.json` = legacy compatibility fallback only.
-4. E130 program frame must be an overlay: `block -> section -> program lecture anchor -> mapped existing chapters/lessons/content`.
+4. E130 program frame is an overlay: `block -> section -> program lecture anchor -> mapped existing chapters/lessons/content`.
 5. The 21 anchors are organizing containers, not the full content limit.
 6. Existing `stageId`, `disciplineId`, `chapterId`, and `lessonId` values must remain stable.
 
-## Completed E129 rounds
+## E129 completed summary
 
-### E129 Round 1 · Inspect-only
+E129 cleaned and unified the Math Theory tab.
 
-Status: complete.
+Key files:
 
-Findings:
-
-- `theory-main-adapter-E126.js` rendered from `DB.lessons`.
-- `content_vault_manifest.json` already defined the split frame/content architecture.
-- `theory_lecture_content.json` and `lessons.json` were effectively empty/currently not usable as full content sources.
-- E126 self-check expected old 347+ lessons, conflicting with the newer clean-empty DataVault architecture.
-
-Files inspected:
-
-- `subjects/math/index.html`
-- `subjects/math/subject-manifest.json`
-- `subjects/math/assets/subject-adapter.js`
-- `subjects/math/assets/core.js`
-- `subjects/math/assets/math.js`
-- `subjects/math/assets/planning-bridge.js`
+- `subjects/math/assets/theory_skin/theory-tab-E129.js`
+- `subjects/math/assets/theory_skin/theory-tab-E129.css`
 - `subjects/math/assets/theory_skin/theory-main-adapter-E126.js`
-- `subjects/math/assets/datavault_importer/datavault-importer-E128.js`
-- `subjects/math/data/content_vault_manifest.json`
-- `subjects/math/data/content-manifest.json`
-- `subjects/math/data/theory_lecture_frame.json`
-- `subjects/math/data/theory_lecture_content.json`
-- `subjects/math/data/lessons.json`
-- `subjects/math/data/chapter_spine.json`
-- `subjects/math/data/discipline_spine.json`
-- `subjects/math/data/curriculum.json`
+- `subjects/math/THEORY_TAB_CONTRACT_E129.md`
+- `subjects/math/THEORY_E129_FINAL_HANDOFF.md`
 
-### E129 Round 2 · Contract-only
+Key commits:
 
-Status: complete.
+- Contract: `f679f1b73ad6746bd0e718e7c9383f3976d84a6f`
+- E129 bridge/shell/importer work: `266f0a4ff98441b88c3368c2a561e15b557cc748`, `d77a13367b7cf0865289416a08b0c8c0a1d90845`, `0fa6d8530314737c31b8e6c564be93918f1fa420`
+- E126 override guard: `b744ff020da9032806e0d63817879a85fad2186d`
+- Final handoff: `660d5b58f07a8f22af8354312dcf73779dc4752e`
 
-Changed:
+Current E129 status:
 
-- Created `subjects/math/THEORY_TAB_CONTRACT_E129.md`
-
-Commit:
-
-- `f679f1b73ad6746bd0e718e7c9383f3976d84a6f`
-
-### E129 Round 3 · Version cleanup + route decision
-
-Status: complete.
-
-Changed:
-
-- Created `subjects/math/assets/theory_skin/theory-tab-E129.js` as a lightweight contract bridge.
-- Updated `subjects/math/index.html` to load the E129 bridge after `subject-adapter.js`.
-
-Commits:
-
-- `266f0a4ff98441b88c3368c2a561e15b557cc748`
-- `1c6c475953172b572d5925c7cb58470f2ea86dd4`
-
-### E129 Round 4 · E129 Theory shell
-
-Status: complete.
-
-Changed:
-
-- Created `subjects/math/assets/theory_skin/theory-tab-E129.css`.
-- Replaced the lightweight E129 bridge with a frame/content shell renderer.
-- Updated `subjects/math/index.html` to load E129 CSS.
-- Renamed entry title/header to `E129 Theory Shell`.
-
-Commits:
-
-- `5f737fbc4ee08fa93d836f5e51be9b5213945ff5`
-- `d77a13367b7cf0865289416a08b0c8c0a1d90845`
-- `f25cbe06653476dcc6d3247eaeca464c31d162d2`
-- `9d24d566c69fccabbdd30eb3476a644fc8190ab8`
-
-### E129 Round 5 · E129 content importer route
-
-Status: complete.
-
-Changed:
-
-- Updated `subjects/math/assets/theory_skin/theory-tab-E129.js`.
-- Updated `subjects/math/assets/theory_skin/theory-tab-E129.css`.
-- Created this `CODEX_STATE.md` file.
-
-Commits:
-
-- `0fa6d8530314737c31b8e6c564be93918f1fa420`
-- `82d41a7ceef3df5c39e744bffb49b11c5461c218`
-- `228ebb159c255b5f6cc429b76d0e6965b9a14233`
-
-### E129 Round 6 · Verify/regression + E126 override guard
-
-Status: complete.
-
-Changed:
-
-- Updated `subjects/math/assets/theory_skin/theory-main-adapter-E126.js`.
-- Updated this `CODEX_STATE.md` file.
-
-Commits:
-
-- `b744ff020da9032806e0d63817879a85fad2186d`
-- `c88a92f670bc7d39461128c7899d663724acafad`
-
-Finding/fix:
-
-- E126 could override `#view` through MutationObserver when `DB.lessons` existed.
-- Added guard so E126 is suppressed when `window.BAUMAN_MATH_E129_OWNS_THEORY` is true.
-
-### E129 Round 7 · Smoke verify + label polish
-
-Status: complete by repository inspection. Browser runtime still needs user-side Live Server confirmation.
-
-Changed:
-
-- Updated `subjects/math/index.html`.
-- Updated this `CODEX_STATE.md` file.
-
-Commits:
-
-- `3130036f04247b7f9be4d08782aa9f7b65809dfb`
-- `193cbc3f5dc2b1f9c2052389a6ce74e43eeaf310`
-
-### E129 Round 8 · Final cleanup/handoff
-
-Status: complete.
-
-Changed:
-
-- Created `subjects/math/THEORY_E129_FINAL_HANDOFF.md`.
-- Updated this `CODEX_STATE.md` file.
-
-Commits:
-
-- `660d5b58f07a8f22af8354312dcf73779dc4752e`
-- `c3973ed56e58cffc7674869443ccd18e355a7e7a`
+- E129 owns the Theory shell and Theory storage route.
+- E126 is suppressed when `window.BAUMAN_MATH_E129_OWNS_THEORY` is true.
+- E128 remains legacy and should not be used for new Theory content.
+- E129 imports Theory content into `theory_lecture_content`, not `lessons`.
 
 ## Completed E130 rounds
 
-### E130 Round 1 · Inspect-only taxonomy impact
+### E130 Round 1 · Inspect-only taxonomy/program impact
 
 Status: complete.
 
@@ -206,11 +78,10 @@ No runtime changes. No commit.
 
 Findings:
 
-- `discipline_spine.json` already contains `pureLayer` and `appliedLayer`, but they are attributes inside disciplines, not a top-level Pure/Applied taxonomy.
+- `discipline_spine.json` already contains `pureLayer` and `appliedLayer`, but they are not a top-level program frame.
 - `chapter_spine.json` contains stable anchors: `chapterId`, `stageId`, `disciplineId`, `pureLayer`, `appliedLayer`, `timelineRole`, `contentImportMode`.
 - `theory-tab-E129.js` currently renders by `stage -> discipline -> chapter`.
 - `content_vault_manifest.json` supports frame/content separation and reinforces that new organization layers should be metadata/navigation, not content.
-- `math_taxonomy_frame.json` did not exist before E130.
 
 Files inspected:
 
@@ -219,7 +90,6 @@ Files inspected:
 - `subjects/math/assets/theory_skin/theory-tab-E129.js`
 - `subjects/math/data/content_vault_manifest.json`
 - `subjects/math/assets/subject-adapter.js`
-- `subjects/math/data/math_taxonomy_frame.json` checked as missing.
 
 ### E130 Round 2 · Contract-only
 
@@ -228,8 +98,7 @@ Status: complete, then corrected after user clarification.
 Changed:
 
 - Created `subjects/math/MATH_TAXONOMY_CONTRACT_E130.md`.
-- Later revised the same contract from generic Pure/Applied taxonomy into an integrated Bauman-oriented program frame.
-- Updated this `CODEX_STATE.md` file.
+- Revised it from generic Pure/Applied taxonomy into an integrated Bauman-oriented program frame.
 
 Commits:
 
@@ -237,13 +106,12 @@ Commits:
 - `fac7a3181904115b42e92eddfe13cdc30cc36704`
 - `b1b61fb58d01f86b1c169c8e4c5b7b3ad21eace6`
 
-Current Round 2 meaning:
+Meaning:
 
-- E130 is an integrated program frame, not just a 21-lesson list.
-- The 21 lecture anchors are containers that aggregate existing chapters, lessons, theory records, formulas, exercises, simulations, applications, professor QA, question banks, review packs, and future bundles.
+- E130 is an integrated program frame, not a 21-lesson limit.
+- The 21 lecture anchors aggregate existing chapters, lessons, theory records, formulas, exercises, simulations, applications, professor QA, question banks, review packs, and future bundles.
 - Future sources should be `data/math_program_frame.json` and `data/math_program_map.json`.
 - Do not create `math_taxonomy_frame.json` / `math_taxonomy_map.json` unless a later compatibility reason requires them.
-- Do not change existing `chapterId`, delete the Bauman route, hard-code the program frame into JS, or make `lessons.json` primary again.
 
 ### E130 Round 3 · Create draft program-frame sources
 
@@ -253,24 +121,49 @@ Changed:
 
 - Created `subjects/math/data/math_program_frame.json`.
 - Created `subjects/math/data/math_program_map.json`.
-- Updated this `CODEX_STATE.md` file.
 
 Commits:
 
 - `69b1bc6c6b69a89d2b1931d78e073f928ff8a220`
 - `1ef63cee8eb311366de30cb2718e1c48eb0a12db`
+- `04aa481b24e29e693757f804045d57771e352c7c`
 
 Purpose:
 
-- Add the E130 source files without changing runtime UI.
+- Add E130 source files without changing runtime UI.
 - `math_program_frame.json` contains the full 2-block, A-G, 21-anchor program frame, Bauman focus, Lab Work requirements, and aggregation policy.
-- `math_program_map.json` contains a draft mapping schema and seed mappings for C01-C04.
-- Round 3 intentionally does not modify `chapter_spine.json`, `theory_lecture_frame.json`, `subject-adapter.js`, or runtime UI.
+- `math_program_map.json` initially contained draft seed mappings for C01-C04.
+
+### E130 Round 4 · Expand program map coverage
+
+Status: complete.
+
+Changed:
+
+- Updated `subjects/math/data/math_program_map.json`.
+- Updated this `CODEX_STATE.md` file.
+
+Commit:
+
+- `ff7e5c3387680aa599ce8749d008d32209cab05d`
+
+Purpose:
+
+- Expand `math_program_map.json` from seed mapping to draft full active coverage for chapters 1-40.
+- Keep every existing `chapterId` stable.
+- Keep mapping by ID only, no large content copied into the map.
+- Keep runtime untouched: no UI patch, no adapter registration, no `chapter_spine` modification.
+
+Files inspected for Round 4:
+
+- `subjects/math/data/chapter_spine.json`
+- `subjects/math/data/math_program_map.json`
 
 Verification performed:
 
-- Fetched `math_program_frame.json` after creation and confirmed version `E130_MATH_PROGRAM_FRAME_INTEGRATED`, route policy, content policy, Lab Work default, and first anchors.
-- Fetched `math_program_map.json` after creation and confirmed map policy, coverage target 1-40, programLectureIndex, and seed mappings.
+- Confirmed `math_program_map.json` now declares `coverageStatus: active_chapters_1_40_mapped_draft`.
+- Confirmed `chapterMappings` contains active chapter numbers 1-40.
+- Confirmed verification block records `activeChapterCountMapped: 40` and `noChapterIdRenamed: true`.
 
 ## Current runtime notes
 
@@ -280,13 +173,12 @@ Verification performed:
 - E128 importer remains available outside E129 Theory storage but should not be used for new Theory content.
 - E129 importer overlay is local/browser runtime storage, not a durable GitHub file write. Export JSON and commit to `data/theory_lecture_content.json` when content is approved.
 - `subject-manifest.json` still contains older historical labels/counts. Do not rewrite it casually. Clean it only in a dedicated manifest cleanup round.
-- E130 program frame is not yet runtime-active. It now has draft source files, but no UI route yet.
+- E130 program frame is not yet runtime-active. It now has source files and full active chapter draft mapping, but no UI route yet.
 
 ## Remaining E130 rounds
 
-After Round 3, 7 rounds remain in the 10-round plan:
+After Round 4, 6 rounds remain in the 10-round plan:
 
-4. Expand `math_program_map.json` to cover active chapters 1-40.
 5. Add adapter/source metadata if needed for JSON visibility, without rewriting the large manifest.
 6. Add E130 program-frame view to E129 Theory UI behind a route toggle.
 7. Verify program-frame view and Bauman route regression.
@@ -296,13 +188,12 @@ After Round 3, 7 rounds remain in the 10-round plan:
 
 ## Recommended next round
 
-E130 Round 4: Expand program map coverage.
+E130 Round 5: Add source metadata bridge.
 
 Tasks:
 
-- Inspect enough of `chapter_spine.json` / `theory_lecture_frame.json` to identify active chapters 1-40.
-- Expand `subjects/math/data/math_program_map.json` from C01-C04 seed mappings toward full active chapter coverage.
-- Keep chapter IDs stable.
-- Do not patch UI yet.
-- Do not modify `chapter_spine.json`.
-- Do not register in `subject-adapter.js` yet unless a strict need appears.
+- Add lightweight source metadata for `math_program_frame` and `math_program_map` so runtime/dev tools can discover them.
+- Prefer patching `subject-adapter.js` locally if needed.
+- Do not rewrite the large `subject-manifest.json`.
+- Do not patch UI yet unless necessary for source visibility only.
+- Confirm E129 self-check remains valid.
