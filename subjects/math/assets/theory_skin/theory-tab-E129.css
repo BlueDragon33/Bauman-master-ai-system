@@ -73,4 +73,14 @@ body.e129-presenting .main{margin:0;width:100%}
 body.e129-presenting .view{padding:18px}
 .e129-theory-shell.presenting{display:block;min-height:100vh}
 .e129-theory-shell.presenting .e129-reader{min-height:calc(100vh - 36px)}
+/* E135 · Header-only learner view: keep the old lesson structure bar, remove redundant body panels. */
+body:not(.e129-presenting) .e129-theory-shell{display:block;min-height:auto}
+body:not(.e129-presenting) .e129-theory-shell .e129-sidebar{display:none!important}
+body:not(.e129-presenting) .e129-theory-shell .e129-reader{padding:0!important;background:transparent!important;border:0!important;box-shadow:none!important;min-height:0!important}
+body:not(.e129-presenting) .e129-theory-shell .e129-reader-head{margin:0!important;padding:0!important;border:0!important}
+body:not(.e129-presenting) .e129-theory-shell .e129-kicker,
+body:not(.e129-presenting) .e129-theory-shell .e129-reader-head .e129-muted,
+body:not(.e129-presenting) .e129-theory-shell .e129-grid,
+body:not(.e129-presenting) .e129-theory-shell .e129-placeholder,
+body:not(.e129-presenting) .e129-theory-shell .e129-status{display:none!important}
 @media(max-width:980px){.e129-theory-shell{grid-template-columns:1fr}.e129-grid{grid-template-columns:1fr}.e129-reader-head{display:block}.e129-actions{justify-content:flex-start;margin-top:14px}}
