@@ -139,6 +139,7 @@ Commits:
 
 - `0fa6d8530314737c31b8e6c564be93918f1fa420`
 - `82d41a7ceef3df5c39e744bffb49b11c5461c218`
+- `228ebb159c255b5f6cc429b76d0e6965b9a14233`
 
 Purpose:
 
@@ -150,19 +151,49 @@ Purpose:
 
 Verification performed:
 
-- Local syntax check of the updated E129 JS with `node --check` before GitHub update.
 - GitHub fetch verification of updated E129 JS and CSS snippets after commit.
+
+### Round 6 · Verify/regression + E126 override guard
+
+Status: complete.
+
+Changed:
+
+- Updated `subjects/math/assets/theory_skin/theory-main-adapter-E126.js`.
+- Updated this `CODEX_STATE.md` file.
+
+Commit:
+
+- `b744ff020da9032806e0d63817879a85fad2186d`
+
+Finding:
+
+- During verification, E126 still had a MutationObserver and could override `#view` if `DB.lessons` contained legacy theory lessons.
+- This conflicted with the E129 ownership rule.
+
+Fix:
+
+- Added `e129OwnsTheory()` guard in E126.
+- E126 now returns without rendering, click handling, input handling, or observer rendering when `window.BAUMAN_MATH_E129_OWNS_THEORY` is true.
+- E126 self-check now returns compatibility/suppressed status when E129 owns Theory.
+
+Verification performed:
+
+- Confirmed `index.html` loads E129 before E126/E128.
+- Confirmed E126 previously rendered from `DB.lessons` and observed `#view`.
+- Confirmed E126 now has guard points for render, click, input, observer, and self-check.
 
 ## Current runtime notes
 
 - `subjects/math/index.html` still loads E126 and E128 after E129 for compatibility.
 - E129 owns the Theory shell and Theory storage route.
+- E126 is suppressed when E129 ownership flag is active.
 - E128 importer remains available outside E129 Theory storage but should not be used for new Theory content.
 - E129 importer overlay is local/browser runtime storage, not a durable GitHub file write. Export JSON and commit to `data/theory_lecture_content.json` when content is approved.
 
 ## Next recommended round
 
-Round 6: Verify-only/regression.
+Round 7: Browser/runtime smoke test and UI polish patch.
 
 Checklist:
 
@@ -172,6 +203,7 @@ Checklist:
   - `importerTarget: "theory_lecture_content"`
   - `legacyImporterSuppressedOnTheoryStorage: true`
   - `renderReplacement: true`
+- Confirm `BAUMAN_MATH_E126_SELF_CHECK()` returns suppressed compatibility when E129 owns Theory.
 - Open `Lý thuyết E129`.
 - Open `Kho Lý thuyết`.
 - Confirm no E128 lessons importer panel appears inside E129 Theory storage.
