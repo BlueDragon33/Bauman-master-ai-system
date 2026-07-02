@@ -14,6 +14,20 @@
     ['review','🔁','Ôn tập'],
     ['exam','🧪','Kiểm tra']
   ];
+  var TAXONOMY = [
+    {key:'pure',title:'TOÁN HỌC THUẦN TÚY',subtitle:'PURE MATHEMATICS',majors:[
+      {key:'algebra',title:'Đại số và Cấu trúc',subtitle:'Algebra & Structures',subs:['Đại số đại cương & Trừu tượng','Đại số tuyến tính thuần túy'],match:['đại số','linear','tuyến tính','vector','ma trận','không gian vector','eigen','trị riêng','cấu trúc','nhóm','vành','trường']},
+      {key:'analysis',title:'Giải tích toán học',subtitle:'Mathematical Analysis',subs:['Giải tích thực & Giải tích phức','Giải tích hàm & Phương trình vi phân'],match:['giải tích','calculus','đạo hàm','gradient','tích phân','hàm số','chuỗi','giới hạn','vi phân','phương trình vi phân','fourier','laplace']},
+      {key:'geometry',title:'Hình học và Tôpô học',subtitle:'Geometry & Topology',subs:['Hình học vi phân & Hình học đại số','Tôpô học không gian'],match:['hình học','geometry','topo','tôpô','không gian metric','đa tạp','đường cong','mặt cong']},
+      {key:'number_logic',title:'Lý thuyết số và Logic toán',subtitle:'Number Theory & Logic',subs:['Lý thuyết số đại số & Giải tích số','Cơ sở toán học & Lý thuyết tập hợp'],match:['lý thuyết số','số học','logic','tập hợp','mệnh đề','chứng minh','ngôn ngữ toán','rời rạc','đồ thị']}
+    ]},
+    {key:'applied',title:'TOÁN HỌC ỨNG DỤNG',subtitle:'APPLIED MATHEMATICS',majors:[
+      {key:'probability_stats',title:'Xác suất và Thống kê toán học',subtitle:'Probability & Statistics',subs:['Lý thuyết xác suất & Quá trình ngẫu nhiên','Thống kê lý thuyết & Phân tích dữ liệu'],match:['xác suất','thống kê','ngẫu nhiên','stochastic','random','phân phối','bayes','ước lượng','kiểm định','dữ liệu']},
+      {key:'computational',title:'Toán học tính toán',subtitle:'Computational Mathematics',subs:['Giải tích số & Phương pháp tính','Mô phỏng toán học & Rời rạc hóa'],match:['phương pháp số','giải tích số','numerical','tính toán','computational','mô phỏng','rời rạc hóa','sai số','thuật toán']},
+      {key:'optimization',title:'Tối ưu hóa và Vận trù học',subtitle:'Optimization & Operations Research',subs:['Quy hoạch toán học & Lý thuyết trò chơi','Lý thuyết điều khiển tối ưu'],match:['tối ưu','optimization','quy hoạch','vận trù','game theory','trò chơi','điều khiển tối ưu','gradient descent','cực trị']},
+      {key:'modeling',title:'Các mô hình toán học chuyên ngành',subtitle:'Mathematical Modeling',subs:['Toán kinh tế & Tài chính định lượng','Vật lý toán & Cơ học lý thuyết','Sinh học toán học'],match:['mô hình','model','kinh tế','tài chính','vật lý','cơ học','sinh học','robot','điều khiển','tín hiệu','ai','kỹ thuật']}
+    ]}
+  ];
 
   function api(){return window.__BAUMAN_CORE_API || {};}
   function st(){try{return api().state || window.__MATH_STATE || {};}catch(_){return window.__MATH_STATE || {};}}
@@ -68,6 +82,66 @@
     if(idx < 0)return '';
     var raw = hay.slice(Math.max(0,idx-54),Math.min(hay.length,idx+150));
     return clip((idx>54?'… ':'') + raw,190);
+  }
+  function taxonomyText(l){
+    return norm([
+      lessonTitle(l),chapterTitle(l),l && l.departmentTitle,l && l.disciplineTitle,
+      l && l.sourceAnchors && l.sourceAnchors.primaryDiscipline,
+      arr(l && l.sourceAnchors && l.sourceAnchors.secondaryDisciplines).join(' '),
+      arr(l && l.sourceAnchors && l.sourceAnchors.pureLayer).join(' '),
+      arr(l && l.sourceAnchors && l.sourceAnchors.appliedLayer).join(' '),
+      arr(l && l.conceptIds).join(' ')
+    ].join(' '));
+  }
+  function matchScore(text,words){
+    return arr(words).reduce(function(sum,w){
+      var k=norm(w);
+      return sum + (k && text.indexOf(k)>=0 ? Math.max(1,k.split(/\s+/).length) : 0);
+    },0);
+  }
+  function majorByKey(key){
+    var found=null;
+    TAXONOMY.forEach(function(domain){
+      domain.majors.forEach(function(major){if(major.key===key)found={domain:domain,major:major};});
+    });
+    return found;
+  }
+  function lessonTaxonomy(l){
+    var text=taxonomyText(l), best=null, score=-1;
+    TAXONOMY.forEach(function(domain){
+      domain.majors.forEach(function(major){
+        var s=matchScore(text,major.match);
+        if(s>score){score=s; best={domain:domain,major:major};}
+      });
+    });
+    return score>0 && best ? best : {domain:TAXONOMY[1],major:TAXONOMY[1].majors[3]};
+  }
+  function stageGroups(xs){
+    var map={};
+    xs.forEach(function(l){
+      var n=stageNo(l);
+      if(!map[n])map[n]=[];
+      map[n].push(l);
+    });
+    return Object.keys(map).map(Number).sort(function(a,b){return a-b;}).map(function(n){
+      return {no:n,label:stageLabel(xs,n),lessons:map[n]};
+    });
+  }
+  function lessonsForMajor(xs,key){
+    return xs.filter(function(l){return lessonTaxonomy(l).major.key===key;});
+  }
+  function chapterGroups(xs){
+    var map={}, out=[];
+    xs.forEach(function(l){
+      var key=chapterNo(l)+'|'+chapterTitle(l);
+      if(!map[key]){map[key]={chapterNo:chapterNo(l),title:chapterTitle(l),lessons:[]}; out.push(map[key]);}
+      map[key].lessons.push(l);
+    });
+    return out.sort(function(a,b){return a.chapterNo-b.chapterNo || a.title.localeCompare(b.title,'vi');});
+  }
+  function majorPopupState(){
+    var parts=s(st().e134MajorPopup || '').split('|');
+    return parts.length===2 && parts[1] ? {stage:Number(parts[0]),key:parts[1]} : null;
   }
   function currentLesson(xs){
     var state=st();
@@ -134,20 +208,57 @@
       opts.map(function(n){var count=xs.filter(function(l){return stageNo(l)===n;}).length; return '<button class="'+(!allActive && Number(active)===n?'active':'')+'" data-e134-stage="'+n+'">GĐ '+n+' <small>'+count+'</small></button>';}).join('')+
       '</div>';
   }
-  function lessonList(xs,current,q){
-    if(!xs.length)return '<div class="e134-empty-list"><b>Không có kết quả</b><span>Thử bỏ lọc giai đoạn hoặc đổi từ khóa tìm kiếm.</span></div>';
+  function lessonButtons(xs,current,q){
+    if(!xs.length)return '<div class="e134-empty-list"><b>Không có kết quả</b><span>Thử đổi từ khóa tìm kiếm.</span></div>';
     return xs.map(function(l){
       var on = lessonId(l) === lessonId(current);
       var snip = q ? searchSnippet(l,q) : '';
       return '<button class="e134-lesson-item '+(on?'active':'')+'" data-e134-lesson="'+esc(lessonId(l))+'"><span>Ch '+esc(chapterNo(l) || '')+'</span><b>'+esc(clip(lessonTitle(l),86))+'</b><small>'+esc(clip(chapterTitle(l),70))+'</small>'+(snip?'<em>'+esc(snip)+'</em>':'')+'</button>';
     }).join('');
   }
+  function taxonomyStageTree(xs,current,q){
+    var groups=stageGroups(xs);
+    if(!groups.length)return '<div class="e134-empty-list"><b>Không có bài phù hợp</b><span>Từ khóa hiện tại chưa khớp lesson nào.</span></div>';
+    var currentStage=stageNo(current);
+    return '<div class="e134-stage-tree">'+groups.map(function(group,idx){
+      var open=group.no===currentStage || (!!q && idx===0);
+      return '<details class="e134-stage-node" '+(open?'open':'')+'><summary><span>GĐ '+esc(group.no)+'</span><b>'+esc(group.label)+'</b><small>'+group.lessons.length+' bài</small></summary>'+domainTree(group.lessons,group.no,current)+'</details>';
+    }).join('')+'</div>';
+  }
+  function domainTree(stageLessons,stage,current){
+    return '<div class="e134-domain-list">'+TAXONOMY.map(function(domain){
+      var count=domain.majors.reduce(function(sum,major){return sum+lessonsForMajor(stageLessons,major.key).length;},0);
+      if(!count)return '';
+      var currentMajor=lessonTaxonomy(current).major.key;
+      return '<details class="e134-domain-node" '+(domain.key==='pure'?'open':'')+'><summary><b>'+esc(domain.title)+'</b><small>'+esc(domain.subtitle)+' · '+count+' bài</small></summary><div class="e134-major-list">'+
+        domain.majors.map(function(major){
+          var ys=lessonsForMajor(stageLessons,major.key);
+          if(!ys.length)return '';
+          return '<button class="e134-major-button '+(currentMajor===major.key?'active':'')+'" data-e134-major="'+esc(major.key)+'" data-e134-major-stage="'+esc(stage)+'"><b>'+esc(major.title)+'</b><span>'+esc(major.subtitle)+'</span><small>'+ys.length+' bài</small></button>';
+        }).join('')+'</div></details>';
+    }).join('')+'</div>';
+  }
+  function taxonomyPopover(xs,current,q){
+    var pop=majorPopupState();
+    if(!pop)return '';
+    var found=majorByKey(pop.key);
+    if(!found)return '';
+    var pool=xs.filter(function(l){return stageNo(l)===pop.stage && lessonTaxonomy(l).major.key===pop.key;});
+    if(q)pool=pool.filter(function(l){return searchText(l).indexOf(norm(q))>=0;});
+    var groups=chapterGroups(pool);
+    return '<section class="e134-taxonomy-popover" role="dialog" aria-label="Chọn bài trong nhóm môn"><header><div><span>'+esc(stageLabel(xs,pop.stage))+'</span><h3>'+esc(found.major.title)+'</h3><p>'+esc(found.major.subtitle)+'</p></div><button data-e134-close-taxonomy>Đóng</button></header><div class="e134-subtracks">'+
+      found.major.subs.map(function(x){return '<span>'+esc(x)+'</span>';}).join('')+
+      '</div><div class="e134-popover-list">'+(groups.length?groups.map(function(group,i){
+        var on=group.lessons.some(function(l){return lessonId(l)===lessonId(current);});
+        return '<details class="e134-chapter-group" '+(on||i===0?'open':'')+'><summary><b>Ch '+esc(group.chapterNo)+' · '+esc(group.title)+'</b><small>'+group.lessons.length+' bài</small></summary><div>'+lessonButtons(group.lessons,current,q)+'</div></details>';
+      }).join(''):'<div class="e134-empty-list"><b>Chưa có bài trong nhóm này</b><span>Nhóm sẽ hiện khi dữ liệu lesson khớp taxonomy.</span></div>')+'</div></section>';
+  }
   function leftNav(xs,filtered,current,q,stage){
     return '<aside class="e134-left" aria-label="Danh sách bài lý thuyết">'+
       '<div class="e134-search-wrap"><label for="e134Search">Tìm bài học</label><input id="e134Search" data-e134-search value="'+esc(q)+'" placeholder="Tên bài, chương, khái niệm..."></div>'+
-      stageFilters(xs,stage)+
       '<div class="e134-result-count"><b>'+filtered.length+'</b><span>kết quả trong '+xs.length+' bài</span></div>'+
-      '<div class="e134-lesson-list">'+lessonList(filtered,current,q)+'</div>'+
+      taxonomyStageTree(filtered,current,q)+
+      taxonomyPopover(xs,current,q)+
       '</aside>';
   }
   function outline(slides,idx){
@@ -166,14 +277,12 @@
   }
   function readerHtml(lesson,idx){
     var sl=slides(lesson);
-    var sections = sl.map(function(item,i){
-      return '<section class="e134-read-section" id="e134-section-'+i+'"><header><span>'+pad(i)+'</span><div><small>'+esc(item.role || 'lesson section')+'</small><h3>'+esc(item.title || ('Mục '+(i+1)))+'</h3></div></header>'+slideBlocks(item)+'</section>';
-    }).join('');
-    if(!sections)sections = '<section class="e134-empty-state"><b>Chưa có slide lý thuyết</b><p>Hệ thống đã mở được bài, nhưng dữ liệu slide đang trống.</p></section>';
+    var active=sl[idx] || null;
+    var section = active ? '<section class="e134-read-section" id="e134-section-'+idx+'"><header><span>'+pad(idx)+'</span><div><small>'+esc(active.role || 'lesson section')+'</small><h3>'+esc(active.title || ('Mục '+(idx+1)))+'</h3></div></header>'+slideBlocks(active)+'</section>' : '<section class="e134-empty-state"><b>Chưa có slide lý thuyết</b><p>Hệ thống đã mở được bài, nhưng dữ liệu slide đang trống.</p></section>';
     return '<main class="e134-reader">'+
       '<section class="e134-lesson-head"><div><span class="e134-kicker">'+esc(stageLabel(lessons(),stageNo(lesson)))+' · Chương '+esc(chapterNo(lesson))+'</span><h1>'+esc(lessonTitle(lesson))+'</h1><p>'+esc(chapterTitle(lesson))+'</p></div><div class="e134-head-actions"><button data-e134-mode="lecture">Trình chiếu</button><button data-e134-open-storage>Kho dữ liệu</button></div></section>'+
       objectivePanel(lesson)+
-      '<section class="e134-read-body">'+sections+'</section>'+
+      '<section class="e134-study-frame"><aside class="e134-inline-outline"><h3>Mục lục bài</h3>'+outline(sl,idx)+'</aside><div class="e134-read-body">'+section+'</div></section>'+
       '</main>';
   }
   function rightPanel(lesson,idx,total){
@@ -188,7 +297,7 @@
   }
   function normalShell(xs,filtered,lesson,q,stage,idx){
     return '<section class="e134-shell" data-e134="1" data-e134-mode="read">'+topBar(lesson,'read')+
-      '<div class="e134-layout">'+leftNav(xs,filtered,lesson,q,stage)+readerHtml(lesson,idx)+rightPanel(lesson,idx,slides(lesson).length)+'</div>'+
+      '<div class="e134-layout">'+leftNav(xs,filtered,lesson,q,stage)+readerHtml(lesson,idx)+'</div>'+
       '</section>';
   }
   function lectureShell(lesson,idx){
@@ -259,6 +368,7 @@
     var state=st();
     state.view='learning'; state.learnTab='theory'; state.e122Focus='theory';
     state.e134LessonId=lessonId(l); state.lessonId=lessonId(l); state.e134SlideIndex=0;
+    state.e134MajorPopup='';
     state.stage=STAGE_TO_MAIN[stageNo(l)] || state.stage;
     save(); render();
   }
@@ -270,10 +380,11 @@
       if(first){state.e134LessonId=lessonId(first); state.lessonId=lessonId(first); state.stage=STAGE_TO_MAIN[stageNo(first)] || state.stage; state.e134SlideIndex=0;}
     }
     state.view='learning'; state.learnTab='theory'; state.e122Focus='theory';
+    state.e134MajorPopup='';
     save(); render();
   }
   document.addEventListener('click',function(e){
-    var t=e.target.closest && e.target.closest('.e134-shell .learn-structure-trigger,[data-e134-lesson],[data-e134-stage],[data-e134-slide],[data-e134-mode],[data-e134-prev-slide],[data-e134-next-slide],[data-e134-open-storage]');
+    var t=e.target.closest && e.target.closest('.e134-shell .learn-structure-trigger,[data-e134-lesson],[data-e134-major],[data-e134-close-taxonomy],[data-e134-stage],[data-e134-slide],[data-e134-mode],[data-e134-prev-slide],[data-e134-next-slide],[data-e134-open-storage]');
     if(!t)return;
     var state=st();
     if(t.matches && t.matches('.e134-shell .learn-structure-trigger')){
@@ -282,6 +393,8 @@
       e.preventDefault(); e.stopImmediatePropagation(); return;
     }
     if(t.hasAttribute('data-e134-lesson')){setLesson(t.getAttribute('data-e134-lesson')); e.preventDefault(); e.stopImmediatePropagation(); return;}
+    if(t.hasAttribute('data-e134-major')){state.e134MajorPopup=s(t.getAttribute('data-e134-major-stage'))+'|'+s(t.getAttribute('data-e134-major')); save(); render(); e.preventDefault(); e.stopImmediatePropagation(); return;}
+    if(t.hasAttribute('data-e134-close-taxonomy')){state.e134MajorPopup=''; save(); render(); e.preventDefault(); e.stopImmediatePropagation(); return;}
     if(t.hasAttribute('data-e134-stage')){setStage(t.getAttribute('data-e134-stage')); e.preventDefault(); e.stopImmediatePropagation(); return;}
     if(t.hasAttribute('data-e134-slide')){state.e134SlideIndex=Number(t.getAttribute('data-e134-slide')) || 0; save(); render(); e.preventDefault(); e.stopImmediatePropagation(); return;}
     if(t.hasAttribute('data-e134-mode')){state.view='learning'; state.learnTab='theory'; state.e122Focus='theory'; state.e134Mode=t.getAttribute('data-e134-mode') === 'lecture' ? 'lecture' : 'read'; save(); render(); e.preventDefault(); e.stopImmediatePropagation(); return;}

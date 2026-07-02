@@ -102,7 +102,7 @@
 }
 .e134-layout{
   display:grid;
-  grid-template-columns:minmax(250px,300px) minmax(0,1fr) minmax(230px,270px);
+  grid-template-columns:minmax(280px,340px) minmax(0,1fr);
   gap:12px;
   min-height:calc(100dvh - 190px);
 }
@@ -121,6 +121,7 @@
   max-height:calc(100dvh - 190px);
   position:sticky;
   top:12px;
+  overflow:visible;
 }
 .e134-search-wrap{
   display:grid;
@@ -191,6 +192,173 @@
   overflow:auto;
   padding-right:2px;
 }
+.e134-stage-tree{
+  flex:1 1 auto;
+  min-height:0;
+  display:grid;
+  align-content:start;
+  gap:8px;
+  overflow:auto;
+  padding-right:2px;
+}
+.e134-stage-node,.e134-domain-node,.e134-chapter-group{
+  border:1px solid #d8e0ea;
+  border-radius:8px;
+  background:#ffffff;
+  overflow:hidden;
+}
+.e134-stage-node>summary,.e134-domain-node>summary,.e134-chapter-group>summary{
+  display:grid;
+  grid-template-columns:auto minmax(0,1fr) auto;
+  gap:8px;
+  align-items:center;
+  padding:9px 10px;
+  list-style:none;
+  cursor:pointer;
+}
+.e134-stage-node>summary::-webkit-details-marker,
+.e134-domain-node>summary::-webkit-details-marker,
+.e134-chapter-group>summary::-webkit-details-marker{display:none}
+.e134-stage-node>summary span{
+  padding:5px 7px;
+  border-radius:6px;
+  background:#eff6ff;
+  color:#1d4ed8;
+  font-size:11px;
+  font-weight:950;
+}
+.e134-stage-node>summary b,.e134-domain-node>summary b,.e134-chapter-group>summary b{
+  min-width:0;
+  color:#0f172a;
+  font-size:12px;
+  line-height:1.28;
+}
+.e134-stage-node>summary small,.e134-domain-node>summary small,.e134-chapter-group>summary small{
+  color:#64748b;
+  font-size:11px;
+  font-weight:850;
+  white-space:nowrap;
+}
+.e134-domain-list{
+  display:grid;
+  gap:7px;
+  padding:8px;
+  background:#f8fafc;
+}
+.e134-domain-node>summary{
+  grid-template-columns:minmax(0,1fr);
+  background:#ffffff;
+}
+.e134-major-list{
+  display:grid;
+  gap:6px;
+  padding:8px;
+  background:#f8fafc;
+}
+.e134-major-button{
+  display:grid;
+  grid-template-columns:minmax(0,1fr) auto;
+  gap:3px 8px;
+  width:100%;
+  padding:9px;
+  border:1px solid #d8e0ea;
+  border-radius:7px;
+  background:#ffffff;
+  text-align:left;
+}
+.e134-major-button:hover,.e134-major-button.active{
+  border-color:#2563eb;
+  background:#eff6ff;
+}
+.e134-major-button b{
+  color:#0f172a;
+  font-size:12px;
+  line-height:1.25;
+}
+.e134-major-button span{
+  grid-column:1 / -1;
+  color:#475569;
+  font-size:11px;
+  font-weight:750;
+}
+.e134-major-button small{
+  color:#0f766e;
+  font-size:11px;
+  font-weight:900;
+  white-space:nowrap;
+}
+.e134-taxonomy-popover{
+  position:absolute;
+  left:12px;
+  right:12px;
+  top:116px;
+  bottom:12px;
+  z-index:120;
+  display:grid;
+  grid-template-rows:auto auto minmax(0,1fr);
+  gap:10px;
+  padding:12px;
+  border:1px solid #bfdbfe;
+  border-radius:8px;
+  background:#ffffff;
+  box-shadow:0 22px 55px rgba(15,23,42,.22);
+}
+.e134-taxonomy-popover header{
+  display:flex;
+  justify-content:space-between;
+  gap:10px;
+  align-items:flex-start;
+}
+.e134-taxonomy-popover h3{
+  margin:3px 0 2px;
+  color:#0f172a;
+  font-size:16px;
+  line-height:1.25;
+}
+.e134-taxonomy-popover p,.e134-taxonomy-popover header span{
+  margin:0;
+  color:#475569;
+  font-size:12px;
+  font-weight:800;
+}
+.e134-taxonomy-popover header button{
+  min-height:32px;
+  padding:0 10px;
+  border:1px solid #cbd5e1;
+  border-radius:6px;
+  background:#f8fafc;
+  color:#0f172a;
+  font-weight:900;
+}
+.e134-subtracks{
+  display:flex;
+  flex-wrap:wrap;
+  gap:6px;
+}
+.e134-subtracks span{
+  padding:6px 8px;
+  border-radius:6px;
+  background:#ecfdf5;
+  color:#064e3b;
+  font-size:11px;
+  font-weight:850;
+}
+.e134-popover-list{
+  min-height:0;
+  overflow:auto;
+  display:grid;
+  align-content:start;
+  gap:8px;
+}
+.e134-chapter-group>summary{
+  grid-template-columns:minmax(0,1fr) auto;
+  background:#f8fafc;
+}
+.e134-chapter-group>div{
+  display:grid;
+  gap:7px;
+  padding:8px;
+}
 .e134-lesson-item{
   display:grid;
   grid-template-columns:44px minmax(0,1fr);
@@ -242,8 +410,8 @@
   overflow:hidden;
 }
 .e134-lesson-head{
-  display:flex;
-  justify-content:space-between;
+  display:grid;
+  grid-template-columns:minmax(0,1fr) auto;
   gap:16px;
   align-items:flex-start;
   padding:22px 24px;
@@ -253,9 +421,11 @@
 .e134-lesson-head h1{
   margin:7px 0 8px;
   color:#0f172a;
-  font-size:clamp(26px,3vw,44px);
-  line-height:1.08;
+  font-size:clamp(26px,2.5vw,38px);
+  line-height:1.12;
   letter-spacing:0;
+  overflow-wrap:anywhere;
+  word-break:normal;
 }
 .e134-lesson-head p{
   margin:0;
@@ -296,6 +466,28 @@
   padding:18px;
   background:#f5f7fb;
 }
+.e134-study-frame{
+  display:grid;
+  grid-template-columns:minmax(210px,250px) minmax(0,1fr);
+  min-height:0;
+  background:#f5f7fb;
+}
+.e134-inline-outline{
+  display:grid;
+  align-content:start;
+  gap:10px;
+  padding:14px;
+  border-right:1px solid #d8e0ea;
+  background:#ffffff;
+}
+.e134-inline-outline h3{
+  margin:0;
+  color:#0f766e;
+  font-size:12px;
+  font-weight:950;
+  letter-spacing:.08em;
+  text-transform:uppercase;
+}
 .e134-read-section{
   display:grid;
   gap:12px;
@@ -333,6 +525,7 @@
   color:#0f172a;
   font-size:22px;
   line-height:1.22;
+  overflow-wrap:anywhere;
 }
 .e134-block{
   padding:14px;
@@ -554,16 +747,20 @@
   opacity:.45;
 }
 @media(max-width:1240px){
-  .e134-layout{grid-template-columns:minmax(230px,280px) minmax(0,1fr)}
+  .e134-layout{grid-template-columns:minmax(250px,300px) minmax(0,1fr)}
   .e134-right{grid-column:1 / -1;position:static;max-height:none;display:grid;grid-template-columns:repeat(2,minmax(0,1fr))}
 }
 @media(max-width:860px){
   .e134-topbar,.e134-lesson-head,.e134-lecture header,.e134-lecture footer{align-items:stretch;flex-direction:column}
+  .e134-lesson-head,.e134-study-frame{grid-template-columns:1fr}
   .e134-top-left,.e134-top-actions,.e134-head-actions{width:100%;justify-content:space-between}
   .e134-layout{grid-template-columns:1fr;min-height:0}
   .e134-left,.e134-right{position:static;max-height:none}
+  .e134-left{overflow:visible}
+  .e134-inline-outline{border-right:0;border-bottom:1px solid #d8e0ea}
   .e134-objectives,.e134-right{grid-template-columns:1fr}
   .e134-shell .e134-learn-menu .learn-structure-dropdown{width:min(88vw,260px)!important}
+  .e134-taxonomy-popover{position:fixed;inset:80px 16px 16px}
 }
 @media(max-width:560px){
   .e134-top-left,.e134-top-actions,.e134-switch,.e134-stage-filter{flex-wrap:wrap}
