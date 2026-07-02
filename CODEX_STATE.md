@@ -1,11 +1,12 @@
 # CODEX_STATE
 
-Current task: E137 Clean Theory Lock.
+Current task: E138 Theory Content Quality Pass.
 
-Status: user confirmed Math module no longer loops. E137 clean learner lock applied. Final browser check after pull is still recommended.
+Status: user confirmed Math module no longer loops. E137 clean learner lock applied. E138 cleaned the C01 theory lecture content. Browser check after pull is recommended.
 
 Read next:
 
+- subjects/math/E138_THEORY_CONTENT_QUALITY.md
 - subjects/math/E137_CLEAN_THEORY_LOCK.md
 - subjects/math/E136_RUNTIME_STABILIZATION.md
 - subjects/math/E135_HEADER_ONLY_CLEANUP.md
@@ -25,6 +26,7 @@ Core rules:
 - Theory content stays in subjects/math/data/theory_lecture_content.json.
 - Do not use lessons.json for new Theory content.
 - Do not rewrite subject-manifest.json casually.
+- Content-only work must not change boot runtime.
 
 Current boot runtime in subjects/math/index.html:
 
@@ -87,6 +89,13 @@ E137 clean learner lock:
 - Storage/importer view remains visible when body has e129-theory-storage.
 - Presentation mode remains controlled by E132/E133 slideshow.
 
+E138 content pass:
+
+- subjects/math/data/theory_lecture_content.json now uses version E138_CLEAN_THEORY_CONTENT_C01.
+- C01 §1.1 Vector như dữ liệu kỹ thuật keeps exactly 16 slide roles.
+- Seed/debug notes were removed from learner-facing content.
+- Slide text is now focused on concepts, formulas, conditions, engineering examples, coding application, practice and professor QA.
+
 Expected visual/runtime result:
 
 - Opening môn Toán should stop looping and become interactive.
@@ -94,11 +103,11 @@ Expected visual/runtime result:
 - Redundant cards/body panels below that header are hidden.
 - Kho Lý thuyết opens E129 storage/importer and does not freeze.
 - Khung bài giảng E130 no longer appears as a learner UI tab/button.
-- Trình chiếu should still open presentation mode.
+- Trình chiếu should still open presentation mode and show cleaned C01 content.
 
 If user reports failure:
 
 - Ask for screenshot after hard refresh.
 - Ask for console errors.
 - Check whether browser is still caching old index.html or E129 CSS older than v=137.
-- Patch only the concrete issue shown by evidence.
+- For content display errors, patch only subjects/math/data/theory_lecture_content.json or the concrete slide renderer issue.
