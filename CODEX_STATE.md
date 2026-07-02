@@ -33,6 +33,10 @@ Program-frame sources:
 - `subjects/math/data/math_program_frame.json`
 - `subjects/math/data/math_program_map.json`
 
+Program-frame metadata bridge:
+
+- `subjects/math/assets/program_frame/program-frame-E130.js`
+
 Key source rule:
 
 1. `data/theory_lecture_frame.json` = Theory frame/navigation shell.
@@ -143,9 +147,10 @@ Changed:
 - Updated `subjects/math/data/math_program_map.json`.
 - Updated this `CODEX_STATE.md` file.
 
-Commit:
+Commits:
 
 - `ff7e5c3387680aa599ce8749d008d32209cab05d`
+- `fd16c6520778abdcd8156c3f8c1004b4f596fe6d`
 
 Purpose:
 
@@ -154,16 +159,38 @@ Purpose:
 - Keep mapping by ID only, no large content copied into the map.
 - Keep runtime untouched: no UI patch, no adapter registration, no `chapter_spine` modification.
 
-Files inspected for Round 4:
+Verification performed:
 
-- `subjects/math/data/chapter_spine.json`
-- `subjects/math/data/math_program_map.json`
+- Confirmed `math_program_map.json` declares `coverageStatus: active_chapters_1_40_mapped_draft`.
+- Confirmed `chapterMappings` contains active chapter numbers 1-40.
+- Confirmed verification block records `activeChapterCountMapped: 40` and `noChapterIdRenamed: true`.
+
+### E130 Round 5 · Add source metadata bridge
+
+Status: complete.
+
+Changed:
+
+- Created `subjects/math/assets/program_frame/program-frame-E130.js`.
+- Updated `subjects/math/index.html` to load the E130 bridge after `subject-adapter.js` and before `theory-tab-E129.js`.
+- Updated this `CODEX_STATE.md` file.
+
+Commits:
+
+- `1a142f85c548a05b2fec3ebfc6009d2fccec3f42`
+- `4388c71ffe68e3d6e5b71c5ec6df60be2876065e`
+
+Purpose:
+
+- Expose `math_program_frame` and `math_program_map` as discoverable adapter data sources.
+- Avoid rewriting the large `subject-adapter.js` and avoid touching `subject-manifest.json`.
+- Keep E130 metadata-only: no renderer, no route toggle, no content import, no chapterId migration.
 
 Verification performed:
 
-- Confirmed `math_program_map.json` now declares `coverageStatus: active_chapters_1_40_mapped_draft`.
-- Confirmed `chapterMappings` contains active chapter numbers 1-40.
-- Confirmed verification block records `activeChapterCountMapped: 40` and `noChapterIdRenamed: true`.
+- Confirmed `program-frame-E130.js` registers `math_program_frame` and `math_program_map` in `A.dataFiles`, `A.initialDataFiles`, and `A.dataSourceMeta`.
+- Confirmed `program-frame-E130.js` exposes `window.BAUMAN_MATH_E130_PROGRAM_FRAME.selfCheck()`.
+- Confirmed `index.html` script order: `subject-adapter.js` -> `program-frame-E130.js` -> `theory-tab-E129.js` -> core/E126/E128.
 
 ## Current runtime notes
 
@@ -171,15 +198,13 @@ Verification performed:
 - E129 owns the Theory shell and Theory storage route.
 - E126 is suppressed when E129 ownership flag is active.
 - E128 importer remains available outside E129 Theory storage but should not be used for new Theory content.
-- E129 importer overlay is local/browser runtime storage, not a durable GitHub file write. Export JSON and commit to `data/theory_lecture_content.json` when content is approved.
+- E130 is now metadata-visible but not runtime-route-active.
 - `subject-manifest.json` still contains older historical labels/counts. Do not rewrite it casually. Clean it only in a dedicated manifest cleanup round.
-- E130 program frame is not yet runtime-active. It now has source files and full active chapter draft mapping, but no UI route yet.
 
 ## Remaining E130 rounds
 
-After Round 4, 6 rounds remain in the 10-round plan:
+After Round 5, 5 rounds remain in the 10-round plan:
 
-5. Add adapter/source metadata if needed for JSON visibility, without rewriting the large manifest.
 6. Add E130 program-frame view to E129 Theory UI behind a route toggle.
 7. Verify program-frame view and Bauman route regression.
 8. Add content-authoring/import guidance for program-linked lessons and Lab Work.
@@ -188,12 +213,13 @@ After Round 4, 6 rounds remain in the 10-round plan:
 
 ## Recommended next round
 
-E130 Round 5: Add source metadata bridge.
+E130 Round 6: Add E130 program-frame view to E129 Theory UI.
 
 Tasks:
 
-- Add lightweight source metadata for `math_program_frame` and `math_program_map` so runtime/dev tools can discover them.
-- Prefer patching `subject-adapter.js` locally if needed.
-- Do not rewrite the large `subject-manifest.json`.
-- Do not patch UI yet unless necessary for source visibility only.
-- Confirm E129 self-check remains valid.
+- Patch `subjects/math/assets/theory_skin/theory-tab-E129.js` and CSS if needed.
+- Add a route toggle: `Lộ trình Bauman` / `Khung bài giảng Bauman`.
+- Program view reads `math_program_frame` and `math_program_map`.
+- Keep Bauman route default.
+- Do not change import target; Theory imports still go to `theory_lecture_content`.
+- Confirm E129 and E130 self-checks remain valid.
