@@ -162,9 +162,10 @@ Changed:
 - Updated `subjects/math/assets/theory_skin/theory-main-adapter-E126.js`.
 - Updated this `CODEX_STATE.md` file.
 
-Commit:
+Commits:
 
 - `b744ff020da9032806e0d63817879a85fad2186d`
+- `c88a92f670bc7d39461128c7899d663724acafad`
 
 Finding:
 
@@ -183,6 +184,32 @@ Verification performed:
 - Confirmed E126 previously rendered from `DB.lessons` and observed `#view`.
 - Confirmed E126 now has guard points for render, click, input, observer, and self-check.
 
+### Round 7 · Smoke verify + label polish
+
+Status: complete by repository inspection. Browser runtime still needs user-side Live Server confirmation.
+
+Changed:
+
+- Updated `subjects/math/index.html`.
+- Updated this `CODEX_STATE.md` file.
+
+Commit:
+
+- `3130036f04247b7f9be4d08782aa9f7b65809dfb`
+
+Purpose:
+
+- Align the visible entry title/header with the current runtime target `E129_THEORY_CONTENT_IMPORTER`.
+- Keep the load order unchanged: E129 first, then core/E126/E128 compatibility.
+
+Verification performed:
+
+- Confirmed `theory_lecture_frame.json` uses the expected `stages -> disciplines -> chapters` structure required by the E129 renderer.
+- Confirmed `index.html` loads E129 JS/CSS and keeps E126/E128 after it as compatibility.
+- Confirmed E129 exposes `commitContent`, `exportContent`, `clearContentOverlay`, and `selfCheck`.
+- Confirmed E129 storage route renders `theory_lecture_content` importer and labels `lessons.json` as legacy.
+- Confirmed E126 has suppression guard when E129 owns Theory.
+
 ## Current runtime notes
 
 - `subjects/math/index.html` still loads E126 and E128 after E129 for compatibility.
@@ -193,7 +220,7 @@ Verification performed:
 
 ## Next recommended round
 
-Round 7: Browser/runtime smoke test and UI polish patch.
+Round 8: Final cleanup/handoff and user-side test response.
 
 Checklist:
 
