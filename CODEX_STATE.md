@@ -1,11 +1,12 @@
 # CODEX_STATE
 
-Current task: E140 C01 Complete Content with controlled flexible slide policy.
+Current task: E141 C01 Final Verification Lock.
 
-Status: user confirmed Math module no longer loops. E137 clean learner lock applied. E140 completed all six C01 theory lessons. Slide count is flexible but has a quality floor. Next pass must be verification-only.
+Status: PASS. User confirmed Math module no longer loops. E137 clean learner lock applied. E140 completed all six C01 theory lessons. E141 verified C01 and locked it as the first completed theory chapter.
 
 Read next:
 
+- subjects/math/E141_C01_FINAL_VERIFICATION_LOCK.md
 - subjects/math/E140_C01_COMPLETE_CONTENT.md
 - subjects/math/E139_C01_THEORY_EXPANSION.md
 - subjects/math/E138_THEORY_CONTENT_QUALITY.md
@@ -118,12 +119,19 @@ Required learner-facing coverage:
 - professor-style checking question;
 - bridge to the next concept.
 
-E140 content completion:
+E141 C01 verification result:
 
-- subjects/math/data/theory_lecture_content.json now uses version E140_C01_FULL_SIX_LESSONS.
+- PASS.
+- subjects/math/data/theory_lecture_content.json uses version E140_C01_FULL_SIX_LESSONS.
 - C01 contains six lessons: §1.1 Vector như dữ liệu kỹ thuật; §1.2 Chuẩn vector và khoảng cách; §1.3 Tích vô hướng, góc và phép chiếu; §1.4 Cơ sở, span và tọa độ; §1.5 Không gian con và biểu diễn dữ liệu; §1.6 Từ vector sang ma trận dữ liệu.
-- Next required pass: E141 verification-only, no new content unless a concrete JSON/content issue is found.
-- E141 must validate parse, count 6 C01 records, flag any normal theory lesson below 14 slides unless justified, and check learner-facing quality without enforcing one exact fixed count.
+- Current C01 lessons each have 16 slides, satisfying the 14-slide quality floor for normal Math theory lessons.
+- Academic coverage checked: framing, concept, notation, formulas, conditions, interpretation, application, mistakes, practice, professor QA and bridge.
+- No boot/runtime/UI file changed during E141.
+
+Next recommended task:
+
+- User browser smoke test after pull.
+- Then start C02 · Ma trận và phép biến đổi tuyến tính as the next content-only expansion.
 
 Expected visual/runtime result:
 
