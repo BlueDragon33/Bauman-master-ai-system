@@ -33,9 +33,11 @@ Program-frame sources:
 - `subjects/math/data/math_program_frame.json`
 - `subjects/math/data/math_program_map.json`
 
-Program-frame metadata bridge:
+Program-frame assets:
 
 - `subjects/math/assets/program_frame/program-frame-E130.js`
+- `subjects/math/assets/program_frame/program-view-E130.js`
+- `subjects/math/assets/program_frame/program-frame-E130.css`
 
 Key source rule:
 
@@ -57,13 +59,6 @@ Key files:
 - `subjects/math/assets/theory_skin/theory-main-adapter-E126.js`
 - `subjects/math/THEORY_TAB_CONTRACT_E129.md`
 - `subjects/math/THEORY_E129_FINAL_HANDOFF.md`
-
-Key commits:
-
-- Contract: `f679f1b73ad6746bd0e718e7c9383f3976d84a6f`
-- E129 bridge/shell/importer work: `266f0a4ff98441b88c3368c2a561e15b557cc748`, `d77a13367b7cf0865289416a08b0c8c0a1d90845`, `0fa6d8530314737c31b8e6c564be93918f1fa420`
-- E126 override guard: `b744ff020da9032806e0d63817879a85fad2186d`
-- Final handoff: `660d5b58f07a8f22af8354312dcf73779dc4752e`
 
 Current E129 status:
 
@@ -87,14 +82,6 @@ Findings:
 - `theory-tab-E129.js` currently renders by `stage -> discipline -> chapter`.
 - `content_vault_manifest.json` supports frame/content separation and reinforces that new organization layers should be metadata/navigation, not content.
 
-Files inspected:
-
-- `subjects/math/data/discipline_spine.json`
-- `subjects/math/data/chapter_spine.json`
-- `subjects/math/assets/theory_skin/theory-tab-E129.js`
-- `subjects/math/data/content_vault_manifest.json`
-- `subjects/math/assets/subject-adapter.js`
-
 ### E130 Round 2 · Contract-only
 
 Status: complete, then corrected after user clarification.
@@ -115,7 +102,6 @@ Meaning:
 - E130 is an integrated program frame, not a 21-lesson limit.
 - The 21 lecture anchors aggregate existing chapters, lessons, theory records, formulas, exercises, simulations, applications, professor QA, question banks, review packs, and future bundles.
 - Future sources should be `data/math_program_frame.json` and `data/math_program_map.json`.
-- Do not create `math_taxonomy_frame.json` / `math_taxonomy_map.json` unless a later compatibility reason requires them.
 
 ### E130 Round 3 · Create draft program-frame sources
 
@@ -179,6 +165,7 @@ Commits:
 
 - `1a142f85c548a05b2fec3ebfc6009d2fccec3f42`
 - `4388c71ffe68e3d6e5b71c5ec6df60be2876065e`
+- `bdf2151b05bfd3f6b66fa7f466ce449bd89294ac`
 
 Purpose:
 
@@ -188,24 +175,55 @@ Purpose:
 
 Verification performed:
 
-- Confirmed `program-frame-E130.js` registers `math_program_frame` and `math_program_map` in `A.dataFiles`, `A.initialDataFiles`, and `A.dataSourceMeta`.
+- Confirmed `program-frame-E130.js` registers `math_program_frame` and `math_program_map` in adapter metadata.
 - Confirmed `program-frame-E130.js` exposes `window.BAUMAN_MATH_E130_PROGRAM_FRAME.selfCheck()`.
 - Confirmed `index.html` script order: `subject-adapter.js` -> `program-frame-E130.js` -> `theory-tab-E129.js` -> core/E126/E128.
 
+### E130 Round 6 · Add program-frame UI route
+
+Status: complete by repository inspection. Browser runtime still needs user-side Live Server confirmation.
+
+Changed:
+
+- Created `subjects/math/assets/program_frame/program-view-E130.js`.
+- Created `subjects/math/assets/program_frame/program-frame-E130.css`.
+- Updated `subjects/math/index.html` to load E130 CSS and program-view script.
+- Updated this `CODEX_STATE.md` file.
+
+Commits:
+
+- `6a5c4d03db48a020c7251f7f89d6b1456637465d`
+- `b6f99ccee18e3ba26298a7ef99474ca10781580d`
+- `6f14ed252fb340c8bc67d83b4c15ec78954b7ab6`
+
+Purpose:
+
+- Add a UI route behind toggle: `Lộ trình Bauman` / `Khung bài giảng Bauman`.
+- Keep Bauman route as default.
+- Render E130 program frame by reading `data/math_program_frame.json` and `data/math_program_map.json`.
+- Show 21 lecture anchors, Bauman focus, Lab Work tasks, and mapped chapter pills.
+- Preserve import target: Theory content still goes to `theory_lecture_content`.
+- Avoid editing the large E129 renderer directly by adding an independent E130 UI bridge.
+
+Verification performed:
+
+- Confirmed `index.html` loads E130 CSS.
+- Confirmed script order: `subject-adapter.js` -> `program-frame-E130.js` -> `theory-tab-E129.js` -> `program-view-E130.js` -> core/E126/E128.
+- Confirmed `program-view-E130.js` fetches `data/math_program_frame.json` and `data/math_program_map.json`.
+- Confirmed it exposes `window.BAUMAN_MATH_E130_PROGRAM_VIEW.selfCheck()`.
+
 ## Current runtime notes
 
-- `subjects/math/index.html` still loads E126 and E128 after E129 for compatibility.
 - E129 owns the Theory shell and Theory storage route.
 - E126 is suppressed when E129 ownership flag is active.
 - E128 importer remains available outside E129 Theory storage but should not be used for new Theory content.
-- E130 is now metadata-visible but not runtime-route-active.
+- E130 is now source-visible and UI-route-visible, but browser runtime needs user-side Live Server verification.
 - `subject-manifest.json` still contains older historical labels/counts. Do not rewrite it casually. Clean it only in a dedicated manifest cleanup round.
 
 ## Remaining E130 rounds
 
-After Round 5, 5 rounds remain in the 10-round plan:
+After Round 6, 4 rounds remain in the 10-round plan:
 
-6. Add E130 program-frame view to E129 Theory UI behind a route toggle.
 7. Verify program-frame view and Bauman route regression.
 8. Add content-authoring/import guidance for program-linked lessons and Lab Work.
 9. Add one real sample content bundle through `theory_lecture_content`, mapped to a program lecture anchor.
@@ -213,13 +231,13 @@ After Round 5, 5 rounds remain in the 10-round plan:
 
 ## Recommended next round
 
-E130 Round 6: Add E130 program-frame view to E129 Theory UI.
+E130 Round 7: Verify program-frame view and Bauman route regression.
 
 Tasks:
 
-- Patch `subjects/math/assets/theory_skin/theory-tab-E129.js` and CSS if needed.
-- Add a route toggle: `Lộ trình Bauman` / `Khung bài giảng Bauman`.
-- Program view reads `math_program_frame` and `math_program_map`.
-- Keep Bauman route default.
-- Do not change import target; Theory imports still go to `theory_lecture_content`.
-- Confirm E129 and E130 self-checks remain valid.
+- Pull origin and test in browser/Live Server.
+- Check `BAUMAN_MATH_E130_PROGRAM_FRAME.selfCheck()`.
+- Check `BAUMAN_MATH_E130_PROGRAM_VIEW.selfCheck()`.
+- Check E129 self-check still passes.
+- Open `Khung bài giảng E130` and then return to `Lộ trình Bauman`.
+- Confirm `Kho Lý thuyết` and import target `theory_lecture_content` still work.
