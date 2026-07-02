@@ -1,11 +1,12 @@
 # CODEX_STATE
 
-Current task: E139 C01 Theory Expansion.
+Current task: E140 C01 Complete Content.
 
-Status: user confirmed Math module no longer loops. E137 clean learner lock applied. E138 cleaned C01 L01. E139 added C01 L02 and L03. Browser check after pull is recommended.
+Status: user confirmed Math module no longer loops. E137 clean learner lock applied. E140 completed all six C01 theory lessons. Next pass must be verification-only.
 
 Read next:
 
+- subjects/math/E140_C01_COMPLETE_CONTENT.md
 - subjects/math/E139_C01_THEORY_EXPANSION.md
 - subjects/math/E138_THEORY_CONTENT_QUALITY.md
 - subjects/math/E137_CLEAN_THEORY_LOCK.md
@@ -90,18 +91,12 @@ E137 clean learner lock:
 - Storage/importer view remains visible when body has e129-theory-storage.
 - Presentation mode remains controlled by E132/E133 slideshow.
 
-E138 content pass:
+E140 content completion:
 
-- C01 L01 §1.1 Vector như dữ liệu kỹ thuật keeps exactly 16 slide roles.
-- Seed/debug notes were removed from learner-facing content.
-- Slide text is focused on concepts, formulas, conditions, engineering examples, coding application, practice and professor QA.
-
-E139 content expansion:
-
-- subjects/math/data/theory_lecture_content.json now uses version E139_C01_L01_L03_THEORY_CONTENT.
-- C01 now contains three lessons: §1.1 Vector như dữ liệu kỹ thuật, §1.2 Chuẩn vector và khoảng cách, §1.3 Tích vô hướng, góc và phép chiếu.
-- Each lesson keeps 16 slide roles and follows the E138 clean learner-facing content style.
-- Next recommended content-only expansion: §1.4 Cơ sở, span và tọa độ; §1.5 Không gian con và biểu diễn dữ liệu; §1.6 Từ vector sang ma trận dữ liệu.
+- subjects/math/data/theory_lecture_content.json now uses version E140_C01_FULL_SIX_LESSONS.
+- C01 contains six lessons: §1.1 Vector như dữ liệu kỹ thuật; §1.2 Chuẩn vector và khoảng cách; §1.3 Tích vô hướng, góc và phép chiếu; §1.4 Cơ sở, span và tọa độ; §1.5 Không gian con và biểu diễn dữ liệu; §1.6 Từ vector sang ma trận dữ liệu.
+- Each lesson keeps 16 slide roles and follows the clean learner-facing content style.
+- Next required pass: E141 verification-only, no new content unless a concrete JSON/content issue is found.
 
 Expected visual/runtime result:
 
@@ -110,7 +105,7 @@ Expected visual/runtime result:
 - Redundant cards/body panels below that header are hidden.
 - Kho Lý thuyết opens E129 storage/importer and does not freeze.
 - Khung bài giảng E130 no longer appears as a learner UI tab/button.
-- Trình chiếu should still open presentation mode and show cleaned C01 content.
+- Trình chiếu should still open presentation mode and show all six C01 lessons.
 
 If user reports failure:
 
