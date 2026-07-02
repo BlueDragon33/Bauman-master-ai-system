@@ -46,19 +46,37 @@ The role list below is a teaching skeleton, not a fixed-count requirement:
 - bridge
 - takeaway
 
-A lesson may skip, merge, split or reorder these roles when the content requires it.
+A lesson may merge, split or reorder these roles when the content requires it, but should not drop core academic coverage.
 
-## Slide count policy
+## Slide count and depth policy
 
-Future theory lessons should use flexible slide length:
+Future Math theory lessons should be flexible, but not thin:
 
-- short focused lesson: about 8–10 slides;
-- standard lesson: about 10–14 slides;
-- deep foundational lesson: about 14–18 slides;
-- longer only when the topic truly requires it.
+- normal theory lesson: 14–18 slides;
+- deep foundational lesson: 16–22 slides when the topic requires depth;
+- below 14 slides only for a clearly secondary/review/micro lesson, and the reason must be documented.
 
 Do not add filler slides just to hit a number.
 Do not remove necessary content just to fit a number.
+The governing rule is: enough, accurate, necessary.
+
+## Required learner-facing coverage
+
+A theory lesson should normally cover:
+
+- problem framing;
+- core concept and intuition;
+- notation;
+- core formulas;
+- assumptions and conditions;
+- technical interpretation;
+- engineering or AI application;
+- common mistakes;
+- practice task;
+- professor-style checking question;
+- bridge to the next concept.
+
+These can be merged or split, but the intellectual coverage must remain complete.
 
 ## Content rule going forward
 
