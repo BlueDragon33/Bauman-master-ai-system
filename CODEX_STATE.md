@@ -1,33 +1,42 @@
 # CODEX_STATE
 
-Current task: E133 Theory Slideshow Rebuild.
+Current task: E135 Header-only Theory Cleanup.
 
-Status: repo-side E133 rebuild is complete with a conditional handoff. Browser-side proof is still required.
+Status: E135 runtime cleanup is applied. Browser-side visual check is required.
 
 Read next:
 
+- subjects/math/E135_HEADER_ONLY_CLEANUP.md
 - subjects/math/E133_FINAL_HANDOFF.md
-- subjects/math/E133_BROWSER_REGRESSION_CHECKLIST.md
-- subjects/math/E133_SLIDESHOW_REBUILD_PLAN.md
 
 Core rules:
 
+- Keep only the old compact Theory header/table in the learner view.
+- Do not restore E134 learning-clean runtime.
+- Do not add another UI overlay for the normal Theory learner view.
 - Theory content stays in subjects/math/data/theory_lecture_content.json.
 - Do not use lessons.json for new Theory content.
 - Do not rewrite subject-manifest.json casually.
-- Do not add another broad UI layer before browser evidence exists.
 
 Current runtime notes:
 
-- subjects/math/index.html loads theory-slideshow-E132.css?v=136.
-- subjects/math/index.html loads theory-slideshow-E132.js?v=136.
-- Current expected release in console: E133_ISOLATED_OVERLAY_DECK_COMPACT.
-- Expected selfCheck fields: isolatedOverlay=true, keyboardCaptured=true, compactContent=true.
-- C01 visible seed content exists for stage vn, chapter C01, lesson §1.1 · Vector như dữ liệu kỹ thuật.
+- E134 CSS/JS files were deleted.
+- E134 handoff was deleted.
+- subjects/math/index.html no longer loads E134.
+- subjects/math/index.html no longer loads theory-reader-E132.css.
+- subjects/math/index.html loads theory-tab-E129.css?v=135.
+- E129 CSS contains E135 header-only rules for the normal learner view.
+- E132/E133 slideshow runtime is still loaded for Trình chiếu.
+
+Expected visual result:
+
+- Normal Lý thuyết view keeps the old compact header/table only.
+- Redundant cards/body panels below that header are hidden.
+- E129 sidebar/tree inside Theory is hidden in the learner view.
+- Trình chiếu should still open presentation mode.
 
 If user reports failure:
 
-- Ask for screenshot after clicking Trình chiếu.
-- Ask for screenshot after pressing ArrowRight.
-- Ask for console output of BAUMAN_MATH_THEORY_E132.selfCheck().
+- Ask for screenshot after hard refresh.
+- Check whether browser is still caching E129 CSS older than v=135.
 - Patch only the concrete issue shown by evidence.
