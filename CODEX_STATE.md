@@ -29,6 +29,11 @@ Latest contract file:
 
 Note: the filename keeps the earlier taxonomy label for continuity, but the contract now defines an integrated 21-anchor Bauman lecture-program frame, not a generic taxonomy and not a 21-lesson limit.
 
+Program-frame sources:
+
+- `subjects/math/data/math_program_frame.json`
+- `subjects/math/data/math_program_map.json`
+
 Previous final handoff file:
 
 `subjects/math/THEORY_E129_FINAL_HANDOFF.md`
@@ -230,6 +235,7 @@ Commits:
 
 - `f1fa9f24394a588c9c7e149c115a5b5ba0ea0cce`
 - `fac7a3181904115b42e92eddfe13cdc30cc36704`
+- `b1b61fb58d01f86b1c169c8e4c5b7b3ad21eace6`
 
 Current Round 2 meaning:
 
@@ -239,6 +245,33 @@ Current Round 2 meaning:
 - Do not create `math_taxonomy_frame.json` / `math_taxonomy_map.json` unless a later compatibility reason requires them.
 - Do not change existing `chapterId`, delete the Bauman route, hard-code the program frame into JS, or make `lessons.json` primary again.
 
+### E130 Round 3 · Create draft program-frame sources
+
+Status: complete.
+
+Changed:
+
+- Created `subjects/math/data/math_program_frame.json`.
+- Created `subjects/math/data/math_program_map.json`.
+- Updated this `CODEX_STATE.md` file.
+
+Commits:
+
+- `69b1bc6c6b69a89d2b1931d78e073f928ff8a220`
+- `1ef63cee8eb311366de30cb2718e1c48eb0a12db`
+
+Purpose:
+
+- Add the E130 source files without changing runtime UI.
+- `math_program_frame.json` contains the full 2-block, A-G, 21-anchor program frame, Bauman focus, Lab Work requirements, and aggregation policy.
+- `math_program_map.json` contains a draft mapping schema and seed mappings for C01-C04.
+- Round 3 intentionally does not modify `chapter_spine.json`, `theory_lecture_frame.json`, `subject-adapter.js`, or runtime UI.
+
+Verification performed:
+
+- Fetched `math_program_frame.json` after creation and confirmed version `E130_MATH_PROGRAM_FRAME_INTEGRATED`, route policy, content policy, Lab Work default, and first anchors.
+- Fetched `math_program_map.json` after creation and confirmed map policy, coverage target 1-40, programLectureIndex, and seed mappings.
+
 ## Current runtime notes
 
 - `subjects/math/index.html` still loads E126 and E128 after E129 for compatibility.
@@ -247,19 +280,29 @@ Current Round 2 meaning:
 - E128 importer remains available outside E129 Theory storage but should not be used for new Theory content.
 - E129 importer overlay is local/browser runtime storage, not a durable GitHub file write. Export JSON and commit to `data/theory_lecture_content.json` when content is approved.
 - `subject-manifest.json` still contains older historical labels/counts. Do not rewrite it casually. Clean it only in a dedicated manifest cleanup round.
-- E130 program frame is not yet runtime-active. It is currently contract-only.
+- E130 program frame is not yet runtime-active. It now has draft source files, but no UI route yet.
+
+## Remaining E130 rounds
+
+After Round 3, 7 rounds remain in the 10-round plan:
+
+4. Expand `math_program_map.json` to cover active chapters 1-40.
+5. Add adapter/source metadata if needed for JSON visibility, without rewriting the large manifest.
+6. Add E130 program-frame view to E129 Theory UI behind a route toggle.
+7. Verify program-frame view and Bauman route regression.
+8. Add content-authoring/import guidance for program-linked lessons and Lab Work.
+9. Add one real sample content bundle through `theory_lecture_content`, mapped to a program lecture anchor.
+10. Final handoff and manifest cleanup decision.
 
 ## Recommended next round
 
-E130 Round 3: Create draft program-frame sources.
+E130 Round 4: Expand program map coverage.
 
 Tasks:
 
-- Create `subjects/math/data/math_program_frame.json`.
-- Create `subjects/math/data/math_program_map.json`.
-- Include the full 2-block, A-G section, 21-anchor program frame from the revised E130 contract.
-- Map a meaningful first sample set of existing active chapters, especially C01-C04, into the relevant program lecture anchors.
-- Preserve the idea that each anchor aggregates existing content, not replaces it.
+- Inspect enough of `chapter_spine.json` / `theory_lecture_frame.json` to identify active chapters 1-40.
+- Expand `subjects/math/data/math_program_map.json` from C01-C04 seed mappings toward full active chapter coverage.
+- Keep chapter IDs stable.
 - Do not patch UI yet.
 - Do not modify `chapter_spine.json`.
-- Do not register in `subject-adapter.js` yet unless needed for JSON visibility only.
+- Do not register in `subject-adapter.js` yet unless a strict need appears.
