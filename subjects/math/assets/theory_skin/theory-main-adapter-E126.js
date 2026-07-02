@@ -1,9 +1,12 @@
 
-/* E126 · Integrates E124/E125 lessons.json visual skin into the existing E122 main module. */
+/* E126 · Integrates E124/E125 lessons.json visual skin into the existing E122 main module.
+ * Compatibility note: from E129 onward this adapter must not override the E129 Theory shell.
+ */
 (function(){
   'use strict';
   var PATCH='E126_THEORY_VISUAL_INTEGRATED';
   var applying=false;
+  function e129OwnsTheory(){return !!window.BAUMAN_MATH_E129_OWNS_THEORY;}
   function api(){return window.__BAUMAN_CORE_API||{};}
   function st(){try{return api().state||window.__MATH_STATE||{};}catch(_){return window.__MATH_STATE||{};}}
   function db(){return window.DB||{};}
@@ -22,6 +25,7 @@
   function blockHtml(b){var title=b&&String(b.title||b.type||'Nội dung')||'Nội dung'; var body=safeBlockBody(b); var type=String((b&&b.type)||'').toLowerCase(); var isFormula=type==='formula'||/công thức|formula|ký hiệu/.test(title.toLowerCase()); if(isFormula){return '<article class="e126-block formula"><b>'+esc(title)+'</b><pre>'+esc(body)+'</pre></article>';} return '<article class="e126-block"><b>'+esc(title)+'</b><p>'+esc(body)+'</p></article>';}
   function searchText(l){return [l.title,l.chapterTitle,l.departmentTitle,l.stageName,arr(l.conceptIds).join(' '),JSON.stringify(l.sourceAnchors||{})].join(' ').toLowerCase();}
   function render(){
+    if(e129OwnsTheory())return false;
     var xs=lessons();
     var view=document.getElementById('view');
     if(!view||!xs.length)return false;
@@ -54,6 +58,7 @@
   }
   function rerender(){try{api().save&&api().save(); api().render&&api().render();}catch(_){setTimeout(render,0);}}
   document.addEventListener('click',function(e){
+    if(e129OwnsTheory())return;
     var t=e.target.closest&&e.target.closest('[data-e126-lesson],[data-e126-stage],[data-e126-slide],[data-e126-prev],[data-e126-next],[data-e126-open-storage]'); if(!t)return;
     var xs=lessons(), s=st();
     if(t.hasAttribute('data-e126-lesson')){s.e126LessonId=t.getAttribute('data-e126-lesson'); s.lessonId=s.e126LessonId; s.e126SlideIndex=0; var l=xs.find(function(x){return lessonId(x)===s.e126LessonId;}); if(l){s.e126StageNo=stageNoOf(l); s.stage=stageToMain[s.e126StageNo]||s.stage;} s.view='learning'; s.learnTab='theory'; s.e122Focus='theory'; rerender(); e.preventDefault(); e.stopPropagation(); return;}
@@ -62,9 +67,9 @@
     if(t.hasAttribute('data-e126-prev')||t.hasAttribute('data-e126-next')){var cur=currentLesson(xs); var i=xs.findIndex(function(x){return lessonId(x)===lessonId(cur);}); var ni=t.hasAttribute('data-e126-prev')?Math.max(0,i-1):Math.min(xs.length-1,i+1); var nl=xs[ni]; if(nl){s.e126LessonId=lessonId(nl); s.lessonId=s.e126LessonId; s.e126StageNo=stageNoOf(nl); s.stage=stageToMain[s.e126StageNo]||s.stage; s.e126SlideIndex=0;} s.view='learning'; s.learnTab='theory'; s.e122Focus='theory'; rerender(); e.preventDefault(); e.stopPropagation(); return;}
     if(t.hasAttribute('data-e126-open-storage')){s.view='storage'; s.storageFile='lessons'; rerender(); e.preventDefault(); e.stopPropagation(); return;}
   },true);
-  document.addEventListener('input',function(e){var inp=e.target&&e.target.matches&&e.target.matches('[data-e126-search]')?e.target:null; if(!inp)return; st().e126Search=inp.value||''; render();},true);
-  var mo=new MutationObserver(function(){if(applying)return; setTimeout(render,0);});
+  document.addEventListener('input',function(e){if(e129OwnsTheory())return; var inp=e.target&&e.target.matches&&e.target.matches('[data-e126-search]')?e.target:null; if(!inp)return; st().e126Search=inp.value||''; render();},true);
+  var mo=new MutationObserver(function(){if(applying||e129OwnsTheory())return; setTimeout(render,0);});
   function boot(){var view=document.getElementById('view'); if(view){mo.observe(view,{childList:true,subtree:false}); render();} else setTimeout(boot,50);}
   if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',boot); else boot();
-  window.BAUMAN_MATH_E126_SELF_CHECK=function(){try{var xs=lessons(); var ok=xs.length>=347 && xs.every(function(l){return arr(l.slides).length===16;}); var htmlOk=render(); return {ok:!!(ok&&htmlOk),patch:PATCH,lessons:xs.length,slides:xs.reduce(function(a,l){return a+arr(l.slides).length;},0),activeChapters:(new Set(xs.map(function(l){return l.sourceChapterNo;}))).size,visualIntegrated:true,final:true};}catch(e){return {ok:false,patch:PATCH,error:String(e&&e.message||e)};}};
+  window.BAUMAN_MATH_E126_SELF_CHECK=function(){try{if(e129OwnsTheory())return {ok:true,patch:PATCH,compatibility:true,suppressedBy:'E129'}; var xs=lessons(); var ok=xs.length>=347 && xs.every(function(l){return arr(l.slides).length===16;}); var htmlOk=render(); return {ok:!!(ok&&htmlOk),patch:PATCH,lessons:xs.length,slides:xs.reduce(function(a,l){return a+arr(l.slides).length;},0),activeChapters:(new Set(xs.map(function(l){return l.sourceChapterNo;}))).size,visualIntegrated:true,final:true};}catch(e){return {ok:false,patch:PATCH,error:String(e&&e.message||e)};}};
 })();
