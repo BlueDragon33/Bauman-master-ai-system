@@ -39,10 +39,11 @@ Program-frame assets:
 - `subjects/math/assets/program_frame/program-view-E130.js`
 - `subjects/math/assets/program_frame/program-frame-E130.css`
 
-Authoring guidance:
+Authoring guidance and sample content:
 
 - `subjects/math/E130_PROGRAM_CONTENT_AUTHORING_GUIDE.md`
 - `subjects/math/templates/theory_content/e130_program_linked_theory_template.json`
+- `subjects/math/content_bundles/theory/e130_c01_vector_as_engineering_data_bundle.json`
 
 Key source rule:
 
@@ -57,20 +58,20 @@ Key source rule:
 
 E129 cleaned and unified the Math Theory tab.
 
-Key files:
-
-- `subjects/math/assets/theory_skin/theory-tab-E129.js`
-- `subjects/math/assets/theory_skin/theory-tab-E129.css`
-- `subjects/math/assets/theory_skin/theory-main-adapter-E126.js`
-- `subjects/math/THEORY_TAB_CONTRACT_E129.md`
-- `subjects/math/THEORY_E129_FINAL_HANDOFF.md`
-
 Current E129 status:
 
 - E129 owns the Theory shell and Theory storage route.
 - E126 is suppressed when `window.BAUMAN_MATH_E129_OWNS_THEORY` is true.
 - E128 remains legacy and should not be used for new Theory content.
 - E129 imports Theory content into `theory_lecture_content`, not `lessons`.
+
+Key E129 files:
+
+- `subjects/math/assets/theory_skin/theory-tab-E129.js`
+- `subjects/math/assets/theory_skin/theory-tab-E129.css`
+- `subjects/math/assets/theory_skin/theory-main-adapter-E126.js`
+- `subjects/math/THEORY_TAB_CONTRACT_E129.md`
+- `subjects/math/THEORY_E129_FINAL_HANDOFF.md`
 
 ## Completed E130 rounds
 
@@ -84,7 +85,7 @@ Findings:
 
 - `discipline_spine.json` already contains `pureLayer` and `appliedLayer`, but they are not a top-level program frame.
 - `chapter_spine.json` contains stable anchors: `chapterId`, `stageId`, `disciplineId`, `pureLayer`, `appliedLayer`, `timelineRole`, `contentImportMode`.
-- `theory-tab-E129.js` currently renders by `stage -> discipline -> chapter`.
+- `theory-tab-E129.js` rendered by `stage -> discipline -> chapter` before E130 route work.
 - `content_vault_manifest.json` supports frame/content separation and reinforces that new organization layers should be metadata/navigation, not content.
 
 ### E130 Round 2 · Contract-only
@@ -178,12 +179,6 @@ Purpose:
 - Avoid rewriting the large `subject-adapter.js` and avoid touching `subject-manifest.json`.
 - Keep E130 metadata-only: no renderer, no route toggle, no content import, no chapterId migration.
 
-Verification performed:
-
-- Confirmed `program-frame-E130.js` registers `math_program_frame` and `math_program_map` in adapter metadata.
-- Confirmed `program-frame-E130.js` exposes `window.BAUMAN_MATH_E130_PROGRAM_FRAME.selfCheck()`.
-- Confirmed `index.html` script order: `subject-adapter.js` -> `program-frame-E130.js` -> `theory-tab-E129.js` -> core/E126/E128.
-
 ### E130 Round 6 · Add program-frame UI route
 
 Status: complete by repository inspection. Browser runtime still needs user-side Live Server confirmation.
@@ -211,13 +206,6 @@ Purpose:
 - Preserve import target: Theory content still goes to `theory_lecture_content`.
 - Avoid editing the large E129 renderer directly by adding an independent E130 UI bridge.
 
-Verification performed:
-
-- Confirmed `index.html` loads E130 CSS.
-- Confirmed script order: `subject-adapter.js` -> `program-frame-E130.js` -> `theory-tab-E129.js` -> `program-view-E130.js` -> core/E126/E128.
-- Confirmed `program-view-E130.js` fetches `data/math_program_frame.json` and `data/math_program_map.json`.
-- Confirmed it exposes `window.BAUMAN_MATH_E130_PROGRAM_VIEW.selfCheck()`.
-
 ### E130 Round 7 · Verify/regression
 
 Status: complete by repository inspection. Browser runtime still needs user-side Live Server confirmation.
@@ -243,14 +231,6 @@ Fix:
 - Clicking a mapped chapter now sets `chapterId`, `e129ChapterId`, `stage`, and `e129Stage` before returning to the E129 Bauman route.
 - E130 self-check now reports `e129SelectionSync: e129ChapterId/e129Stage`.
 
-Verification performed:
-
-- Confirmed `index.html` script order still loads E130 metadata bridge before E129 and E130 view after E129.
-- Confirmed E130 view fetches `math_program_frame.json` and `math_program_map.json`.
-- Confirmed E130 route toggle remains optional and default route remains Bauman.
-- Confirmed E129 still validates Theory imports against `theory_lecture_content`, not `lessons`.
-- Confirmed the E129 selection state names are `e129ChapterId` and `e129Stage`, and E130 now syncs them.
-
 ### E130 Round 8 · Content authoring/import guidance
 
 Status: complete.
@@ -265,6 +245,7 @@ Commits:
 
 - `2baf9ac906bc7d90737b00cec9e536ec3c4c0dc2`
 - `521e1500f372878c3792a24c712df07c21aaf4b8`
+- `d21b2835b3548bd4eccc9631791173f5b780d6f8`
 
 Purpose:
 
@@ -279,29 +260,56 @@ Verification performed:
 - Confirmed the guide recommends E130 fields `programLectureId`, `programLectureIds`, `programAnchorTitle`, `roadmapRole`, `labWork`, and `sourceAnchors`.
 - Confirmed the template package uses `target: theory_lecture_content`, `mode: merge`, a stable C01 `chapterId`, and `programLectureId: MATH-PROG-L02-vector-spaces-linear-maps`.
 
+### E130 Round 9 · Real sample content bundle
+
+Status: complete.
+
+Changed:
+
+- Created `subjects/math/content_bundles/theory/e130_c01_vector_as_engineering_data_bundle.json`.
+- Updated this `CODEX_STATE.md` file.
+
+Commit:
+
+- `8652b5034ac8e27cea13233ea7bc7e3c7578a64d`
+
+Purpose:
+
+- Add one production-like sample content bundle for Chapter 1 / `MATH-PROG-L02-vector-spaces-linear-maps`.
+- Keep it as a review/import-testing bundle, not auto-imported durable content.
+- Preserve target `theory_lecture_content` and mode `merge`.
+- Do not overwrite `subjects/math/data/theory_lecture_content.json` without explicit approval.
+
+Verification performed:
+
+- Confirmed bundle header uses `target: theory_lecture_content`, `mode: merge`, and `bundleStatus: sample_for_review_not_auto_imported`.
+- Confirmed record uses stable `chapterId: MATH-VN-C01-vector_trong_khong_gian_`.
+- Confirmed record maps to `programLectureId: MATH-PROG-L02-vector-spaces-linear-maps` and related secondary program lecture IDs.
+- Confirmed bundle contains Lab Work for Python/NumPy and C++.
+- Confirmed bundle includes 16 slide roles ending with `takeaway`.
+
 ## Current runtime notes
 
 - E129 owns the Theory shell and Theory storage route.
 - E126 is suppressed when E129 ownership flag is active.
 - E128 importer remains available outside E129 Theory storage but should not be used for new Theory content.
 - E130 is source-visible and UI-route-visible, but browser runtime needs user-side Live Server verification.
-- Round 8 adds guidance/templates only. It does not import production content.
+- Round 9 adds a sample import-testing bundle only. It does not import production content into `data/theory_lecture_content.json`.
 - `subject-manifest.json` still contains older historical labels/counts. Do not rewrite it casually. Clean it only in a dedicated manifest cleanup round.
 
 ## Remaining E130 rounds
 
-After Round 8, 2 rounds remain in the 10-round plan:
+After Round 9, 1 round remains in the 10-round plan:
 
-9. Add one real sample content bundle through `theory_lecture_content`, mapped to a program lecture anchor.
 10. Final handoff and manifest cleanup decision.
 
 ## Recommended next round
 
-E130 Round 9: Add one real sample content bundle.
+E130 Round 10: Final handoff and manifest cleanup decision.
 
 Tasks:
 
-- Create one production-like sample bundle for Chapter 1 / `MATH-PROG-L02-vector-spaces-linear-maps`.
-- Import path remains `theory_lecture_content`.
-- Keep it as a template/sample file unless the user explicitly wants it committed into `data/theory_lecture_content.json`.
-- Do not alter `math_program_frame.json` or `math_program_map.json` unless validation shows a mismatch.
+- Create final E130 handoff document.
+- Document files, source-of-truth rules, self-check commands, import path, rollback, and next production path.
+- Decide whether manifest cleanup should be a separate future round rather than part of E130.
+- Do not rewrite `subject-manifest.json` unless explicitly approved.
