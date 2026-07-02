@@ -37,9 +37,11 @@ E132 design direction:
 - Canva used as visual reference and style-guide companion, not as runtime source-of-truth.
 - Runtime implementation stays in repo assets so the module works locally/offline.
 
-E132 design assets:
+E132 design/runtime assets:
 
 - `subjects/math/assets/theory_skin/theory-ui-tokens-E132.css`
+- `subjects/math/assets/theory_skin/theory-slideshow-E132.css`
+- `subjects/math/assets/theory_skin/theory-slideshow-E132.js`
 - `subjects/math/E132_CANVA_THEORY_STYLE_GUIDE.md`
 
 ## Stable source rules
@@ -159,6 +161,7 @@ Commits:
 
 - `f80f138b421e2f8b5030325985a4c607486a1e93`
 - `adb29b485e7814e4c7c015363762965be3e9da31`
+- `f9417fba00e96667e30dd5a0d68a470a4557f43a`
 
 Purpose:
 
@@ -173,22 +176,54 @@ Verification performed:
 - Confirmed no `index.html` patch was made in Round 2.
 - Confirmed no E129/E130 JS was modified.
 
+### E132 Round 3 · Slideshow enhancer shell
+
+Status: complete by repository inspection. Browser runtime still needs user-side Live Server confirmation.
+
+Changed:
+
+- Created `subjects/math/assets/theory_skin/theory-slideshow-E132.css`.
+- Created `subjects/math/assets/theory_skin/theory-slideshow-E132.js`.
+- Updated `subjects/math/index.html` to load E132 tokens, slideshow CSS, and slideshow JS after E129.
+- Updated this `CODEX_STATE.md` file.
+
+Commits:
+
+- `2dccf9e2ef9df511e33df03b574c7a55eded14d2`
+- `f168a7f4bfd6ec9d486faf654430eb330a26776e`
+- `a8ddad17aa4cd5b0a585e23d0b9db546ac2f5e61`
+
+Purpose:
+
+- Convert E129 presenting mode from a vertical article list into a deck shell with one active slide.
+- Add previous/next/exit controls and a progress bar.
+- Add keyboard navigation with ArrowLeft, ArrowRight, PageUp, PageDown, and Escape.
+- Add semantic role classes for formula, lab, warning, and Q&A slides based on slide text.
+- Expose `window.BAUMAN_MATH_THEORY_E132.selfCheck()`.
+
+Verification performed:
+
+- Confirmed `index.html` loads `theory-ui-tokens-E132.css`, `theory-slideshow-E132.css`, and `theory-slideshow-E132.js`.
+- Confirmed E132 JS detects E129 presenting mode and does not change import/storage routes.
+- Confirmed E132 self-check reports `importTargetUnchanged: theory_lecture_content`.
+- Confirmed no `theory-tab-E129.js`, `chapter_spine.json`, `subject-manifest.json`, or E130 source file was modified.
+
 ## Current runtime notes
 
-- E132 has not patched runtime yet.
-- `index.html` is not changed in E132 Round 2.
-- Browser runtime still reflects E129/E130 as before.
-- The E132 token CSS exists but is not loaded until a later round.
+- E132 runtime is now loaded.
+- E132 only enhances E129 presenting mode.
+- E129 still owns Theory reading/importing.
+- E130 program route should remain intact, but browser regression test is required.
+- No durable Theory content was changed.
 
 ## Recommended next round
 
-E132 Round 3: Add slideshow enhancer shell.
+E132 Round 4: Polish Theory reader layout.
 
 Tasks:
 
-- Create `subjects/math/assets/theory_skin/theory-slideshow-E132.css`.
-- Create `subjects/math/assets/theory_skin/theory-slideshow-E132.js`.
-- Patch `subjects/math/index.html` to load E132 tokens + slideshow assets after E129.
-- Add `BAUMAN_MATH_THEORY_E132.selfCheck()`.
-- Keep E129 importer target unchanged.
-- Keep E130 program route working.
+- Polish non-presentation reader view.
+- Make lesson chips, slide preview, formula/code/lab cards clearer.
+- Add a stronger visual entry point for `Trình chiếu`.
+- Keep the patch CSS-first if possible.
+- Do not modify DataVault import logic.
