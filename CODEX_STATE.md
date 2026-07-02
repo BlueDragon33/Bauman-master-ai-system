@@ -37,6 +37,11 @@ E132 design direction:
 - Canva used as visual reference and style-guide companion, not as runtime source-of-truth.
 - Runtime implementation stays in repo assets so the module works locally/offline.
 
+E132 design assets:
+
+- `subjects/math/assets/theory_skin/theory-ui-tokens-E132.css`
+- `subjects/math/E132_CANVA_THEORY_STYLE_GUIDE.md`
+
 ## Stable source rules
 
 Theory content source-of-truth:
@@ -140,20 +145,50 @@ Design contract decisions:
 - E132 must preserve E129 import target: `theory_lecture_content`.
 - E132 must not break E130 program route.
 
+### E132 Round 2 · Design tokens + Canva style guide
+
+Status: complete.
+
+Changed:
+
+- Created `subjects/math/assets/theory_skin/theory-ui-tokens-E132.css`.
+- Created `subjects/math/E132_CANVA_THEORY_STYLE_GUIDE.md`.
+- Updated this `CODEX_STATE.md` file.
+
+Commits:
+
+- `f80f138b421e2f8b5030325985a4c607486a1e93`
+- `adb29b485e7814e4c7c015363762965be3e9da31`
+
+Purpose:
+
+- Add E132 design tokens without activating runtime yet.
+- Define Canva-inspired academic-tech style language for Theory UI and slideshow.
+- Keep Canva as design reference, not runtime source.
+
+Verification performed:
+
+- Confirmed token CSS defines deep navy backgrounds, glass panels, cyan/violet/emerald/amber/red semantic accents, formula/code cards, radius, shadows, typography, and responsive rules.
+- Confirmed style guide maps Canva visual ideas to repo implementation.
+- Confirmed no `index.html` patch was made in Round 2.
+- Confirmed no E129/E130 JS was modified.
+
 ## Current runtime notes
 
 - E132 has not patched runtime yet.
-- `index.html` is not changed in E132 Round 1.
+- `index.html` is not changed in E132 Round 2.
 - Browser runtime still reflects E129/E130 as before.
-- Do not start E132 UI patch until the contract is pulled/reviewed.
+- The E132 token CSS exists but is not loaded until a later round.
 
 ## Recommended next round
 
-E132 Round 2: Create design tokens and slideshow style assets.
+E132 Round 3: Add slideshow enhancer shell.
 
 Tasks:
 
-- Create E132 CSS tokens/theme file.
-- Add Canva-style design system notes if needed.
-- Do not patch E129 JS yet unless strictly needed.
-- Do not change import target or DataVault sources.
+- Create `subjects/math/assets/theory_skin/theory-slideshow-E132.css`.
+- Create `subjects/math/assets/theory_skin/theory-slideshow-E132.js`.
+- Patch `subjects/math/index.html` to load E132 tokens + slideshow assets after E129.
+- Add `BAUMAN_MATH_THEORY_E132.selfCheck()`.
+- Keep E129 importer target unchanged.
+- Keep E130 program route working.
