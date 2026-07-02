@@ -17,6 +17,8 @@ Core rules:
 - Do not restore E134 learning-clean runtime.
 - Do not restore E130 Program View learner injection.
 - Do not restore E130 Program CSS into the learner boot path.
+- Do not restore E126 legacy theory adapter.
+- Do not restore empty core.js.
 - Do not restore E132 reader polish into normal learner view.
 - Do not add another UI overlay for the normal Theory learner view.
 - Theory content stays in subjects/math/data/theory_lecture_content.json.
@@ -29,7 +31,6 @@ Styles:
 
 - core.css?v=123
 - math.css?v=123
-- theory-main-adapter-E126.css?v=126
 - theory-tab-E129.css?v=136
 - theory-ui-tokens-E132.css?v=136
 - theory-slideshow-E132.css?v=136
@@ -40,8 +41,6 @@ Scripts:
 - program-frame-E130.js?v=130
 - theory-tab-E129.js?v=129
 - theory-slideshow-E132.js?v=136
-- core.js?v=123
-- theory-main-adapter-E126.js?v=126
 
 Removed from boot/runtime:
 
@@ -53,6 +52,9 @@ Removed from boot/runtime:
 - planning-bridge.js
 - program-view-E130.js
 - program-frame-E130.css
+- core.js
+- theory-main-adapter-E126.css
+- theory-main-adapter-E126.js
 
 Deleted from repo:
 
@@ -61,12 +63,21 @@ Deleted from repo:
 - subjects/math/assets/learning_clean/learning-clean-E134.css
 - subjects/math/assets/learning_clean/learning-clean-E134.js
 - subjects/math/E134_LEARNING_UI_CLEANUP_HANDOFF.md
+- subjects/math/assets/core.js
+- subjects/math/assets/theory_skin/theory-main-adapter-E126.js
+- subjects/math/assets/theory_skin/theory-main-adapter-E126.css
 
 Why E128 was removed:
 
 - E128 injected a legacy E127 panel with MutationObserver.
 - E129 storage suppressed that legacy panel.
 - The inject/suppress loop made the Math module keep loading and become unresponsive.
+
+Why E126 was removed:
+
+- E126 was a legacy lessons.json visual adapter with its own MutationObserver.
+- E129 now owns Theory.
+- Keeping E126 in boot was unnecessary loop risk.
 
 Expected visual/runtime result:
 
