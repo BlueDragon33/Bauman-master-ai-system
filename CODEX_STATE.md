@@ -1,8 +1,8 @@
 # CODEX_STATE
 
-Current task: E140 C01 Complete Content.
+Current task: E140 C01 Complete Content with flexible slide policy.
 
-Status: user confirmed Math module no longer loops. E137 clean learner lock applied. E140 completed all six C01 theory lessons. Next pass must be verification-only.
+Status: user confirmed Math module no longer loops. E137 clean learner lock applied. E140 completed all six C01 theory lessons. Slide count is now flexible. Next pass must be verification-only.
 
 Read next:
 
@@ -29,6 +29,7 @@ Core rules:
 - Do not use lessons.json for new Theory content.
 - Do not rewrite subject-manifest.json casually.
 - Content-only work must not change boot runtime.
+- Do not enforce a fixed slide count per lesson or per chapter.
 
 Current boot runtime in subjects/math/index.html:
 
@@ -91,12 +92,22 @@ E137 clean learner lock:
 - Storage/importer view remains visible when body has e129-theory-storage.
 - Presentation mode remains controlled by E132/E133 slideshow.
 
+Flexible slide policy:
+
+- Short focused lesson: about 8–10 slides.
+- Standard lesson: about 10–14 slides.
+- Deep foundational lesson: about 14–18 slides.
+- Longer only if the topic truly requires it.
+- Do not add filler slides just to hit a number.
+- Do not remove necessary content just to fit a number.
+- Slide roles are a teaching skeleton, not a mandatory checklist.
+
 E140 content completion:
 
 - subjects/math/data/theory_lecture_content.json now uses version E140_C01_FULL_SIX_LESSONS.
 - C01 contains six lessons: §1.1 Vector như dữ liệu kỹ thuật; §1.2 Chuẩn vector và khoảng cách; §1.3 Tích vô hướng, góc và phép chiếu; §1.4 Cơ sở, span và tọa độ; §1.5 Không gian con và biểu diễn dữ liệu; §1.6 Từ vector sang ma trận dữ liệu.
-- Each lesson keeps 16 slide roles and follows the clean learner-facing content style.
 - Next required pass: E141 verification-only, no new content unless a concrete JSON/content issue is found.
+- E141 must validate parse, count 6 C01 records, check each lesson has a reasonable non-empty slide set, and check learner-facing quality without enforcing a fixed slide count.
 
 Expected visual/runtime result:
 
