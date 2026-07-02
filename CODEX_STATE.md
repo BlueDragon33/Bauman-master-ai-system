@@ -2,7 +2,7 @@
 
 Current task: E136 Math Runtime Stabilization.
 
-Status: runtime stabilization applied. User-side browser smoke test is required.
+Status: runtime stabilization and boot minimization applied. User-side browser smoke test is required.
 
 Read next:
 
@@ -16,6 +16,7 @@ Core rules:
 - Do not restore E128 legacy importer runtime.
 - Do not restore E134 learning-clean runtime.
 - Do not restore E130 Program View learner injection.
+- Do not restore E130 Program CSS into the learner boot path.
 - Do not restore E132 reader polish into normal learner view.
 - Do not add another UI overlay for the normal Theory learner view.
 - Theory content stays in subjects/math/data/theory_lecture_content.json.
@@ -32,7 +33,6 @@ Styles:
 - theory-tab-E129.css?v=136
 - theory-ui-tokens-E132.css?v=136
 - theory-slideshow-E132.css?v=136
-- program-frame-E130.css?v=130
 
 Scripts:
 
@@ -52,6 +52,7 @@ Removed from boot/runtime:
 - learning-clean-E134.js
 - planning-bridge.js
 - program-view-E130.js
+- program-frame-E130.css
 
 Deleted from repo:
 
