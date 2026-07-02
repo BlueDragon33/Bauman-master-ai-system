@@ -15,6 +15,7 @@
   function text(n){return (n&&n.textContent||'').toLowerCase();}
   function clamp(n,min,max){return Math.max(min,Math.min(max,n));}
   function save(){try{api().save&&api().save();}catch(_){} }
+  function hasCss(name){return !!document.querySelector('link[href*="'+name+'"]');}
 
   function classify(slide){
     var t=text(slide);
@@ -107,7 +108,10 @@
     enhance:enhance,
     selfCheck:function(){
       var e129=!!window.BAUMAN_MATH_THEORY_E129;
-      return {ok:e129&&!!document.querySelector('link[href*="theory-ui-tokens-E132.css"]')&&!!document.querySelector('link[href*="theory-slideshow-E132.css"]'),release:RELEASE,e129Detected:e129,importTargetUnchanged:'theory_lecture_content',slideshowEnhancer:true,canvaReference:true,slidesDetected:slides().length,keyboard:true,escapeToExit:true};
+      var tokens=hasCss('theory-ui-tokens-E132.css');
+      var reader=hasCss('theory-reader-E132.css');
+      var deck=hasCss('theory-slideshow-E132.css');
+      return {ok:e129&&tokens&&reader&&deck,release:RELEASE,e129Detected:e129,importTargetUnchanged:'theory_lecture_content',tokensCssLoaded:tokens,readerCssLoaded:reader,slideshowCssLoaded:deck,slideshowEnhancer:true,canvaReference:true,canvaRuntimeMapping:'subjects/math/E132_CANVA_TO_RUNTIME_MAPPING.md',slidesDetected:slides().length,keyboard:true,escapeToExit:true};
     }
   };
 })();
