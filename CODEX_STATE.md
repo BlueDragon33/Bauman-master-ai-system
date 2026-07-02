@@ -40,6 +40,7 @@ E132 design direction:
 E132 design/runtime assets:
 
 - `subjects/math/assets/theory_skin/theory-ui-tokens-E132.css`
+- `subjects/math/assets/theory_skin/theory-reader-E132.css`
 - `subjects/math/assets/theory_skin/theory-slideshow-E132.css`
 - `subjects/math/assets/theory_skin/theory-slideshow-E132.js`
 - `subjects/math/E132_CANVA_THEORY_STYLE_GUIDE.md`
@@ -192,6 +193,7 @@ Commits:
 - `2dccf9e2ef9df511e33df03b574c7a55eded14d2`
 - `f168a7f4bfd6ec9d486faf654430eb330a26776e`
 - `a8ddad17aa4cd5b0a585e23d0b9db546ac2f5e61`
+- `b3b200f8fb0b5088e8bae550b52fef5b81d63c2d`
 
 Purpose:
 
@@ -208,22 +210,50 @@ Verification performed:
 - Confirmed E132 self-check reports `importTargetUnchanged: theory_lecture_content`.
 - Confirmed no `theory-tab-E129.js`, `chapter_spine.json`, `subject-manifest.json`, or E130 source file was modified.
 
+### E132 Round 4 · Theory reader polish
+
+Status: complete by repository inspection. Browser runtime still needs user-side Live Server confirmation.
+
+Changed:
+
+- Created `subjects/math/assets/theory_skin/theory-reader-E132.css`.
+- Updated `subjects/math/index.html` to load `theory-reader-E132.css` after E132 tokens and before E132 slideshow CSS.
+- Updated this `CODEX_STATE.md` file.
+
+Commits:
+
+- `b50dfa757f836b3273a93e7f22ad1e9e0fa03d72`
+- `abaec5436630d05da9201feda2c7674627aa3772`
+
+Purpose:
+
+- Polish the non-presentation Theory reader with a CSS-only enhancer.
+- Make the Theory reader header, cards, slide preview grid, stats, and presentation entry button clearer.
+- Keep presentation mode isolated by using `body:not(.e129-presenting)` selectors.
+- Keep E129 JS/importer untouched.
+
+Verification performed:
+
+- Confirmed `theory-reader-E132.css` only targets non-presenting reader state.
+- Confirmed the file styles `.e129-reader`, `.e129-reader-head`, `.e129-grid`, `.e129-card`, `.e129-slide-list`, `.e129-slide`, `.e129-action`, and stats without changing data logic.
+- Confirmed `index.html` load order: E129 CSS -> E132 tokens -> E132 reader polish -> E132 slideshow -> E130 CSS.
+- Confirmed no DataVault source, E129 JS, E130 JS, `chapter_spine.json`, or `subject-manifest.json` was modified.
+
 ## Current runtime notes
 
-- E132 runtime is now loaded.
-- E132 only enhances E129 presenting mode.
+- E132 runtime is now loaded for both reader and slideshow presentation mode.
+- E132 only enhances E129 UI.
 - E129 still owns Theory reading/importing.
 - E130 program route should remain intact, but browser regression test is required.
 - No durable Theory content was changed.
 
 ## Recommended next round
 
-E132 Round 4: Polish Theory reader layout.
+E132 Round 5: Add Canva-ready template notes and refinement hooks.
 
 Tasks:
 
-- Polish non-presentation reader view.
-- Make lesson chips, slide preview, formula/code/lab cards clearer.
-- Add a stronger visual entry point for `Trình chiếu`.
-- Keep the patch CSS-first if possible.
+- Add final Canva-to-runtime mapping notes if needed.
+- Add optional small metadata/self-check improvement so E132 can report reader CSS loaded.
+- Do not create new content.
 - Do not modify DataVault import logic.
