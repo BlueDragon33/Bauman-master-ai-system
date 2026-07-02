@@ -1,11 +1,12 @@
 # CODEX_STATE
 
-Current task: E136 Math Runtime Stabilization.
+Current task: E137 Clean Theory Lock.
 
-Status: runtime stabilization and boot minimization applied. User-side browser smoke test is required.
+Status: user confirmed Math module no longer loops. E137 clean learner lock applied. Final browser check after pull is still recommended.
 
 Read next:
 
+- subjects/math/E137_CLEAN_THEORY_LOCK.md
 - subjects/math/E136_RUNTIME_STABILIZATION.md
 - subjects/math/E135_HEADER_ONLY_CLEANUP.md
 - subjects/math/E133_FINAL_HANDOFF.md
@@ -31,7 +32,7 @@ Styles:
 
 - core.css?v=123
 - math.css?v=123
-- theory-tab-E129.css?v=136
+- theory-tab-E129.css?v=137
 - theory-ui-tokens-E132.css?v=136
 - theory-slideshow-E132.css?v=136
 
@@ -79,6 +80,13 @@ Why E126 was removed:
 - E129 now owns Theory.
 - Keeping E126 in boot was unnecessary loop risk.
 
+E137 clean learner lock:
+
+- Normal learner view hides technical captions: subjectSubtitle, coreLabel, pageSub, saveState.
+- E129 header-only view is lightly polished.
+- Storage/importer view remains visible when body has e129-theory-storage.
+- Presentation mode remains controlled by E132/E133 slideshow.
+
 Expected visual/runtime result:
 
 - Opening môn Toán should stop looping and become interactive.
@@ -92,5 +100,5 @@ If user reports failure:
 
 - Ask for screenshot after hard refresh.
 - Ask for console errors.
-- Check whether browser is still caching old index.html or E129 CSS older than v=136.
+- Check whether browser is still caching old index.html or E129 CSS older than v=137.
 - Patch only the concrete issue shown by evidence.
