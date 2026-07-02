@@ -44,6 +44,7 @@ E132 design/runtime assets:
 - `subjects/math/assets/theory_skin/theory-slideshow-E132.css`
 - `subjects/math/assets/theory_skin/theory-slideshow-E132.js`
 - `subjects/math/E132_CANVA_THEORY_STYLE_GUIDE.md`
+- `subjects/math/E132_CANVA_TO_RUNTIME_MAPPING.md`
 
 ## Stable source rules
 
@@ -224,6 +225,7 @@ Commits:
 
 - `b50dfa757f836b3273a93e7f22ad1e9e0fa03d72`
 - `abaec5436630d05da9201feda2c7674627aa3772`
+- `e73994a333d87292c21d184f8d2d74c6b2cca0ef`
 
 Purpose:
 
@@ -239,21 +241,52 @@ Verification performed:
 - Confirmed `index.html` load order: E129 CSS -> E132 tokens -> E132 reader polish -> E132 slideshow -> E130 CSS.
 - Confirmed no DataVault source, E129 JS, E130 JS, `chapter_spine.json`, or `subject-manifest.json` was modified.
 
+### E132 Round 5 · Canva mapping + self-check refinement
+
+Status: complete by repository inspection. Browser runtime still needs user-side Live Server confirmation.
+
+Changed:
+
+- Created `subjects/math/E132_CANVA_TO_RUNTIME_MAPPING.md`.
+- Updated `subjects/math/assets/theory_skin/theory-slideshow-E132.js` self-check.
+- Updated this `CODEX_STATE.md` file.
+
+Commits:
+
+- `0f94c1d78540fe6846b307eb1706a88519539fb2`
+- `039ffb266f69bd5fd29483fc50f4bac0e0b9a890`
+
+Purpose:
+
+- Lock the boundary between Canva visual reference and repo runtime implementation.
+- Map Theory slide roles to Canva layout names and runtime treatments.
+- Improve `BAUMAN_MATH_THEORY_E132.selfCheck()` so it reports tokens CSS, reader CSS, and slideshow CSS load status.
+
+Verification performed:
+
+- Confirmed `E132_CANVA_TO_RUNTIME_MAPPING.md` says Canva is design reference and repo is runtime source.
+- Confirmed mapping file preserves runtime truth: `theory_lecture_frame`, `theory_lecture_content`, E130 frame/map, and E132 CSS/JS.
+- Confirmed mapping file includes role-to-layout mapping and runtime acceptance checklist.
+- Confirmed E132 self-check now reports `tokensCssLoaded`, `readerCssLoaded`, `slideshowCssLoaded`, `canvaRuntimeMapping`, `keyboard`, and `escapeToExit`.
+- Confirmed no DataVault source, content bundle, E129 importer logic, E130 source, `chapter_spine.json`, or `subject-manifest.json` was modified.
+
 ## Current runtime notes
 
 - E132 runtime is now loaded for both reader and slideshow presentation mode.
 - E132 only enhances E129 UI.
 - E129 still owns Theory reading/importing.
+- Canva is visual reference only; no runtime content is stored in Canva.
 - E130 program route should remain intact, but browser regression test is required.
 - No durable Theory content was changed.
 
 ## Recommended next round
 
-E132 Round 5: Add Canva-ready template notes and refinement hooks.
+E132 Round 6: Verify regression and patch narrow issues.
 
 Tasks:
 
-- Add final Canva-to-runtime mapping notes if needed.
-- Add optional small metadata/self-check improvement so E132 can report reader CSS loaded.
-- Do not create new content.
-- Do not modify DataVault import logic.
+- Verify `index.html` load order.
+- Verify `BAUMAN_MATH_THEORY_E132.selfCheck()` expected fields.
+- Verify E129 importer target remains `theory_lecture_content`.
+- Verify E130 Program Frame route still opens.
+- Patch only narrow issues found by repository inspection or user-side Live Server logs/screenshots.
