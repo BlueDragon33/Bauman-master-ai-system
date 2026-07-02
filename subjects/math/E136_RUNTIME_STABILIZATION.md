@@ -14,14 +14,11 @@ Scripts currently loaded:
 - `assets/program_frame/program-frame-E130.js?v=130`
 - `assets/theory_skin/theory-tab-E129.js?v=129`
 - `assets/theory_skin/theory-slideshow-E132.js?v=136`
-- `assets/core.js?v=123`
-- `assets/theory_skin/theory-main-adapter-E126.js?v=126`
 
 Styles currently loaded:
 
 - `assets/core.css?v=123`
 - `assets/math.css?v=123`
-- `assets/theory_skin/theory-main-adapter-E126.css?v=126`
 - `assets/theory_skin/theory-tab-E129.css?v=136`
 - `assets/theory_skin/theory-ui-tokens-E132.css?v=136`
 - `assets/theory_skin/theory-slideshow-E132.css?v=136`
@@ -38,6 +35,9 @@ Removed from `index.html`:
 - `planning-bridge.js`
 - `program-view-E130.js`
 - `program-frame-E130.css`
+- `core.js`
+- `theory-main-adapter-E126.css`
+- `theory-main-adapter-E126.js`
 
 Deleted from repo:
 
@@ -46,6 +46,9 @@ Deleted from repo:
 - `subjects/math/assets/learning_clean/learning-clean-E134.css`
 - `subjects/math/assets/learning_clean/learning-clean-E134.js`
 - `subjects/math/E134_LEARNING_UI_CLEANUP_HANDOFF.md`
+- `subjects/math/assets/core.js`
+- `subjects/math/assets/theory_skin/theory-main-adapter-E126.js`
+- `subjects/math/assets/theory_skin/theory-main-adapter-E126.css`
 
 ## Why these were removed
 
@@ -60,6 +63,10 @@ E130 Program View injected a redundant learner-facing `Khung bài giảng E130` 
 E130 Program CSS only styles that removed E130 view, so it is not needed in the learner boot path.
 
 Planning Bridge is not needed to boot the Math subject and should only be loaded by the main system if needed.
+
+E126 was a legacy `lessons.json` visual compatibility adapter with its own MutationObserver. E129 owns Theory now, so E126 must not boot.
+
+`core.js` was empty and has been deleted.
 
 ## Required smoke test
 
@@ -85,7 +92,7 @@ BAUMAN_MATH_E130_PROGRAM_FRAME.selfCheck()
 BAUMAN_MATH_THEORY_E132.selfCheck()
 ```
 
-Do not run E128 checks because E128 is intentionally deleted.
+Do not run E128/E126/core checks because those files are intentionally removed from boot.
 
 ## Do not restore
 
@@ -95,6 +102,8 @@ Do not restore these into `index.html` unless a separate no-loop replacement is 
 - E134 learning-clean runtime;
 - E130 Program View learner injection;
 - E130 Program CSS in the learner boot path;
+- E126 legacy theory adapter;
+- empty core.js;
 - E132 reader polish.
 
 End of E136 stabilization.
