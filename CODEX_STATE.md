@@ -1,11 +1,12 @@
 # CODEX_STATE
 
-Current task: E138 Theory Content Quality Pass.
+Current task: E139 C01 Theory Expansion.
 
-Status: user confirmed Math module no longer loops. E137 clean learner lock applied. E138 cleaned the C01 theory lecture content. Browser check after pull is recommended.
+Status: user confirmed Math module no longer loops. E137 clean learner lock applied. E138 cleaned C01 L01. E139 added C01 L02 and L03. Browser check after pull is recommended.
 
 Read next:
 
+- subjects/math/E139_C01_THEORY_EXPANSION.md
 - subjects/math/E138_THEORY_CONTENT_QUALITY.md
 - subjects/math/E137_CLEAN_THEORY_LOCK.md
 - subjects/math/E136_RUNTIME_STABILIZATION.md
@@ -91,10 +92,16 @@ E137 clean learner lock:
 
 E138 content pass:
 
-- subjects/math/data/theory_lecture_content.json now uses version E138_CLEAN_THEORY_CONTENT_C01.
-- C01 §1.1 Vector như dữ liệu kỹ thuật keeps exactly 16 slide roles.
+- C01 L01 §1.1 Vector như dữ liệu kỹ thuật keeps exactly 16 slide roles.
 - Seed/debug notes were removed from learner-facing content.
-- Slide text is now focused on concepts, formulas, conditions, engineering examples, coding application, practice and professor QA.
+- Slide text is focused on concepts, formulas, conditions, engineering examples, coding application, practice and professor QA.
+
+E139 content expansion:
+
+- subjects/math/data/theory_lecture_content.json now uses version E139_C01_L01_L03_THEORY_CONTENT.
+- C01 now contains three lessons: §1.1 Vector như dữ liệu kỹ thuật, §1.2 Chuẩn vector và khoảng cách, §1.3 Tích vô hướng, góc và phép chiếu.
+- Each lesson keeps 16 slide roles and follows the E138 clean learner-facing content style.
+- Next recommended content-only expansion: §1.4 Cơ sở, span và tọa độ; §1.5 Không gian con và biểu diễn dữ liệu; §1.6 Từ vector sang ma trận dữ liệu.
 
 Expected visual/runtime result:
 
