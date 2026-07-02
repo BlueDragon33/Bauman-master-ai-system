@@ -1,8 +1,8 @@
 # CODEX_STATE
 
-Current task: E140 C01 Complete Content with flexible slide policy.
+Current task: E140 C01 Complete Content with controlled flexible slide policy.
 
-Status: user confirmed Math module no longer loops. E137 clean learner lock applied. E140 completed all six C01 theory lessons. Slide count is now flexible. Next pass must be verification-only.
+Status: user confirmed Math module no longer loops. E137 clean learner lock applied. E140 completed all six C01 theory lessons. Slide count is flexible but has a quality floor. Next pass must be verification-only.
 
 Read next:
 
@@ -29,7 +29,8 @@ Core rules:
 - Do not use lessons.json for new Theory content.
 - Do not rewrite subject-manifest.json casually.
 - Content-only work must not change boot runtime.
-- Do not enforce a fixed slide count per lesson or per chapter.
+- Do not enforce one exact slide count per lesson or per chapter.
+- Do enforce a quality floor: normal Math theory lessons should not be under 14 slides unless they are clearly secondary/review/micro lessons and the reason is documented.
 
 Current boot runtime in subjects/math/index.html:
 
@@ -92,22 +93,37 @@ E137 clean learner lock:
 - Storage/importer view remains visible when body has e129-theory-storage.
 - Presentation mode remains controlled by E132/E133 slideshow.
 
-Flexible slide policy:
+Controlled flexible slide policy:
 
-- Short focused lesson: about 8–10 slides.
-- Standard lesson: about 10–14 slides.
-- Deep foundational lesson: about 14–18 slides.
-- Longer only if the topic truly requires it.
+- Normal Math theory lesson: 14–18 slides.
+- Deep foundational lesson: 16–22 slides when the topic requires depth.
+- Below 14 slides only for clearly secondary/review/micro lessons, and the reason must be documented.
+- Longer than 22 only if the topic truly requires it and should be split if it becomes hard to learn.
 - Do not add filler slides just to hit a number.
 - Do not remove necessary content just to fit a number.
 - Slide roles are a teaching skeleton, not a mandatory checklist.
+- Governing rule: enough, accurate, necessary.
+
+Required learner-facing coverage:
+
+- problem framing;
+- core concept and intuition;
+- notation;
+- core formulas;
+- assumptions and conditions;
+- technical interpretation;
+- engineering or AI application;
+- common mistakes;
+- practice task;
+- professor-style checking question;
+- bridge to the next concept.
 
 E140 content completion:
 
 - subjects/math/data/theory_lecture_content.json now uses version E140_C01_FULL_SIX_LESSONS.
 - C01 contains six lessons: §1.1 Vector như dữ liệu kỹ thuật; §1.2 Chuẩn vector và khoảng cách; §1.3 Tích vô hướng, góc và phép chiếu; §1.4 Cơ sở, span và tọa độ; §1.5 Không gian con và biểu diễn dữ liệu; §1.6 Từ vector sang ma trận dữ liệu.
 - Next required pass: E141 verification-only, no new content unless a concrete JSON/content issue is found.
-- E141 must validate parse, count 6 C01 records, check each lesson has a reasonable non-empty slide set, and check learner-facing quality without enforcing a fixed slide count.
+- E141 must validate parse, count 6 C01 records, flag any normal theory lesson below 14 slides unless justified, and check learner-facing quality without enforcing one exact fixed count.
 
 Expected visual/runtime result:
 
