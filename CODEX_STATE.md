@@ -17,15 +17,17 @@ Rules for future work:
 
 Subject: `subjects/math`
 
-Task: Add E130 Math Taxonomy layer while preserving E129 Theory and the Bauman route.
+Task: Add E130 integrated Math Program Frame while preserving E129 Theory and the Bauman route.
 
 Current target version:
 
-`E130_MATH_TAXONOMY_LAYER`
+`E130_MATH_PROGRAM_FRAME_INTEGRATED`
 
 Latest contract file:
 
 `subjects/math/MATH_TAXONOMY_CONTRACT_E130.md`
+
+Note: the filename keeps the earlier taxonomy label for continuity, but the contract now defines an integrated 21-anchor Bauman lecture-program frame, not a generic taxonomy and not a 21-lesson limit.
 
 Previous final handoff file:
 
@@ -37,7 +39,7 @@ Theory contract:
 
 `subjects/math/THEORY_TAB_CONTRACT_E129.md`
 
-Taxonomy contract:
+E130 program-frame contract:
 
 `subjects/math/MATH_TAXONOMY_CONTRACT_E130.md`
 
@@ -46,8 +48,9 @@ Key source rule:
 1. `data/theory_lecture_frame.json` = Theory frame/navigation shell.
 2. `data/theory_lecture_content.json` = real Theory lecture records/slides.
 3. `data/lessons.json` = legacy compatibility fallback only.
-4. E130 taxonomy must be an overlay: `domain -> branch -> topic -> linked chapters`.
-5. Existing `stageId`, `disciplineId`, `chapterId`, and `lessonId` values must remain stable.
+4. E130 program frame must be an overlay: `block -> section -> program lecture anchor -> mapped existing chapters/lessons/content`.
+5. The 21 anchors are organizing containers, not the full content limit.
+6. Existing `stageId`, `disciplineId`, `chapterId`, and `lessonId` values must remain stable.
 
 ## Completed E129 rounds
 
@@ -201,7 +204,7 @@ Findings:
 - `discipline_spine.json` already contains `pureLayer` and `appliedLayer`, but they are attributes inside disciplines, not a top-level Pure/Applied taxonomy.
 - `chapter_spine.json` contains stable anchors: `chapterId`, `stageId`, `disciplineId`, `pureLayer`, `appliedLayer`, `timelineRole`, `contentImportMode`.
 - `theory-tab-E129.js` currently renders by `stage -> discipline -> chapter`.
-- `content_vault_manifest.json` supports frame/content separation and reinforces that taxonomy should be metadata/navigation, not content.
+- `content_vault_manifest.json` supports frame/content separation and reinforces that new organization layers should be metadata/navigation, not content.
 - `math_taxonomy_frame.json` did not exist before E130.
 
 Files inspected:
@@ -215,23 +218,26 @@ Files inspected:
 
 ### E130 Round 2 · Contract-only
 
-Status: complete.
+Status: complete, then corrected after user clarification.
 
 Changed:
 
 - Created `subjects/math/MATH_TAXONOMY_CONTRACT_E130.md`.
+- Later revised the same contract from generic Pure/Applied taxonomy into an integrated Bauman-oriented program frame.
 - Updated this `CODEX_STATE.md` file.
 
-Commit:
+Commits:
 
 - `f1fa9f24394a588c9c7e149c115a5b5ba0ea0cce`
+- `fac7a3181904115b42e92eddfe13cdc30cc36704`
 
-Purpose:
+Current Round 2 meaning:
 
-- Lock the E130 taxonomy rules before creating taxonomy JSON files or changing UI.
-- Define Pure/Applied taxonomy as an overlay, not a replacement for the Bauman route.
-- Define future sources: `data/math_taxonomy_frame.json` and `data/math_taxonomy_map.json`.
-- Forbid changing existing `chapterId`, deleting Bauman route, hard-coding taxonomy into JS, or making `lessons.json` primary again.
+- E130 is an integrated program frame, not just a 21-lesson list.
+- The 21 lecture anchors are containers that aggregate existing chapters, lessons, theory records, formulas, exercises, simulations, applications, professor QA, question banks, review packs, and future bundles.
+- Future sources should be `data/math_program_frame.json` and `data/math_program_map.json`.
+- Do not create `math_taxonomy_frame.json` / `math_taxonomy_map.json` unless a later compatibility reason requires them.
+- Do not change existing `chapterId`, delete the Bauman route, hard-code the program frame into JS, or make `lessons.json` primary again.
 
 ## Current runtime notes
 
@@ -241,17 +247,19 @@ Purpose:
 - E128 importer remains available outside E129 Theory storage but should not be used for new Theory content.
 - E129 importer overlay is local/browser runtime storage, not a durable GitHub file write. Export JSON and commit to `data/theory_lecture_content.json` when content is approved.
 - `subject-manifest.json` still contains older historical labels/counts. Do not rewrite it casually. Clean it only in a dedicated manifest cleanup round.
-- E130 taxonomy is not yet runtime-active. It is currently contract-only.
+- E130 program frame is not yet runtime-active. It is currently contract-only.
 
 ## Recommended next round
 
-E130 Round 3: Create draft taxonomy sources.
+E130 Round 3: Create draft program-frame sources.
 
 Tasks:
 
-- Create `subjects/math/data/math_taxonomy_frame.json`.
-- Create `subjects/math/data/math_taxonomy_map.json`.
-- Include full Pure/Applied tree from the E130 contract.
-- Add a small draft mapping sample for active chapters, especially C01/C02/C03/C04, without modifying `chapter_spine.json`.
+- Create `subjects/math/data/math_program_frame.json`.
+- Create `subjects/math/data/math_program_map.json`.
+- Include the full 2-block, A-G section, 21-anchor program frame from the revised E130 contract.
+- Map a meaningful first sample set of existing active chapters, especially C01-C04, into the relevant program lecture anchors.
+- Preserve the idea that each anchor aggregates existing content, not replaces it.
 - Do not patch UI yet.
+- Do not modify `chapter_spine.json`.
 - Do not register in `subject-adapter.js` yet unless needed for JSON visibility only.
