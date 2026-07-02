@@ -13,7 +13,7 @@
   function arr(x){return Array.isArray(x)?x:[];}
   function el(tag,cls,text){var n=document.createElement(tag); if(cls)n.className=cls; if(text!=null)n.textContent=String(text); return n;}
   function clear(n){while(n&&n.firstChild)n.removeChild(n.firstChild);}
-  function save(){try{api().save&&api().save();}catch(_){}}
+  function save(){try{api().save&&api().save();}catch(_){} }
   function setHeader(title,sub){
     var p=document.getElementById('pageTitle'); if(p)p.textContent=title||'Lý thuyết';
     var s=document.getElementById('pageSub'); if(s)s.textContent=sub||'';
@@ -45,7 +45,7 @@
     if(!items.length){wrap.appendChild(el('div','e130-empty','Chưa map chương nào vào anchor này.')); parent.appendChild(wrap); return;}
     items.forEach(function(m){
       var b=el('button',m.primaryProgramLectureId===anchorId?'primary':'secondary');
-      b.type='button'; b.setAttribute('data-e130-chapter',m.chapterId||'');
+      b.type='button'; b.setAttribute('data-e130-chapter',m.chapterId||''); b.setAttribute('data-e130-stage',m.stageId||'');
       b.appendChild(el('b','',m.chapterNo?'C'+m.chapterNo:'C?'));
       b.appendChild(el('span','',m.stageId||''));
       b.appendChild(el('em','',m.roadmapRole||m.disciplineId||'mapped'));
@@ -98,10 +98,10 @@
     var t=e.target&&e.target.closest&&e.target.closest('[data-e130-route],[data-e130-open-program],[data-e130-chapter]'); if(!t)return;
     if(t.hasAttribute('data-e130-route')){t.getAttribute('data-e130-route')==='program'?openProgram():openBauman(); e.preventDefault(); e.stopPropagation();}
     else if(t.hasAttribute('data-e130-open-program')){openProgram(); e.preventDefault(); e.stopPropagation();}
-    else if(t.hasAttribute('data-e130-chapter')){st().chapterId=t.getAttribute('data-e130-chapter'); openBauman(); e.preventDefault(); e.stopPropagation();}
+    else if(t.hasAttribute('data-e130-chapter')){var s=st(); var chapterId=t.getAttribute('data-e130-chapter'); var stageId=t.getAttribute('data-e130-stage'); s.chapterId=chapterId; s.e129ChapterId=chapterId; if(stageId){s.stage=stageId; s.e129Stage=stageId;} openBauman(); e.preventDefault(); e.stopPropagation();}
   },true);
   var mo=new MutationObserver(function(){setTimeout(function(){buildNav(); injectToggle();},0);});
   function boot(){buildNav(); injectToggle(); var app=document.getElementById('app')||document.body; if(app)mo.observe(app,{childList:true,subtree:true}); if(st().e130Route==='program')openProgram();}
   if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',boot); else boot();
-  window.BAUMAN_MATH_E130_PROGRAM_VIEW={release:RELEASE,open:openProgram,back:openBauman,selfCheck:function(){var meta=(window.SUBJECT_ADAPTER&&window.SUBJECT_ADAPTER.dataSourceMeta)||{};return {ok:!!(window.BAUMAN_MATH_E130_PROGRAM_FRAME&&meta.math_program_frame&&meta.math_program_map),release:RELEASE,routeToggle:true,defaultRoute:'bauman',programFramePath:meta.math_program_frame&&meta.math_program_frame.path,programMapPath:meta.math_program_map&&meta.math_program_map.path,importTargetUnchanged:'theory_lecture_content'};}};
+  window.BAUMAN_MATH_E130_PROGRAM_VIEW={release:RELEASE,open:openProgram,back:openBauman,selfCheck:function(){var meta=(window.SUBJECT_ADAPTER&&window.SUBJECT_ADAPTER.dataSourceMeta)||{};return {ok:!!(window.BAUMAN_MATH_E130_PROGRAM_FRAME&&meta.math_program_frame&&meta.math_program_map),release:RELEASE,routeToggle:true,defaultRoute:'bauman',programFramePath:meta.math_program_frame&&meta.math_program_frame.path,programMapPath:meta.math_program_map&&meta.math_program_map.path,importTargetUnchanged:'theory_lecture_content',e129SelectionSync:'e129ChapterId/e129Stage'};}};
 })();
