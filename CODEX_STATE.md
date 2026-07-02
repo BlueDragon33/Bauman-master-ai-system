@@ -22,9 +22,17 @@ Current task:
 
 `E132 · Theory UI + Slideshow Standardization`
 
+Task status:
+
+Complete, 7/7 rounds.
+
 Current target version:
 
 `E132_THEORY_UI_SLIDESHOW`
+
+Final handoff:
+
+- `subjects/math/E132_THEORY_UI_FINAL_HANDOFF.md`
 
 E132 contract:
 
@@ -232,6 +240,10 @@ Changed:
 
 - Updated this `CODEX_STATE.md` file only.
 
+Commit:
+
+- `61f06565bf1fd5d5520e9b5cd30c4101ec1f7440`
+
 Purpose:
 
 - Verify E132 load order, E132 self-check shape, E129 import/storage route, E130 Program Frame route, and E126 suppression.
@@ -249,8 +261,32 @@ Verification performed:
 - Confirmed E126 adapter returns early when E129 owns Theory and its self-check reports `suppressedBy: E129`.
 - No code patch was needed in Round 6.
 
+### E132 Round 7 · Final handoff
+
+Status: complete.
+
+Changed:
+
+- Created `subjects/math/E132_THEORY_UI_FINAL_HANDOFF.md`.
+- Updated this `CODEX_STATE.md` file.
+
+Commit:
+
+- `2357bdaffc402900c4b6c70ca59a28eb4f0b32d9`
+
+Purpose:
+
+- Lock final E132 source-of-truth, runtime behavior, self-check commands, manual smoke test, rollback, Canva boundary, and next production path.
+- Confirm no more UI should be added before browser testing.
+
+Verification performed:
+
+- Confirmed final handoff states E132 is a visual/runtime enhancer, not data migration and not replacement for E129.
+- Confirmed final handoff lists E132 files, runtime load order, visual changes, keyboard controls, self-check commands, manual smoke test, rollback, Canva boundary, and next production path.
+
 ## Current runtime notes
 
+- E132 implementation is complete, 7/7 rounds.
 - E132 runtime is now loaded for both reader and slideshow presentation mode.
 - E132 only enhances E129 UI.
 - E129 still owns Theory reading/importing.
@@ -258,12 +294,10 @@ Verification performed:
 - E130 program route should remain intact, but browser regression test is still required on the user's Live Server.
 - No durable Theory content was changed.
 
-## Recommended next round
+## Recommended next work
 
-E132 Round 7: Final E132 handoff.
-
-Tasks:
-
-- Create final E132 handoff document.
-- Document files, runtime behavior, self-check commands, manual smoke test, rollback, and next production path.
-- Do not add more UI in Round 7.
+1. Pull origin and browser-test E132.
+2. Run self-check commands from `subjects/math/E132_THEORY_UI_FINAL_HANDOFF.md`.
+3. Import the C01 sample bundle through E129 Kho Lý thuyết only if testing content rendering.
+4. If browser screenshots/logs reveal a real bug, run a narrow E133 bugfix round.
+5. Do not add another UI layer before browser testing.
