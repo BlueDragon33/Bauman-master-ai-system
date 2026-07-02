@@ -20,30 +20,45 @@ The C01 lesson `§1.1 · Vector như dữ liệu kỹ thuật` was rewritten int
 
 - removed seed/debug notes from the content package;
 - kept the E129 source of truth: `theory_lecture_content.json`;
-- kept exactly 16 slide roles;
 - removed note-like labels such as seed/gợi ý/câu hỏi dẫn đường;
 - made slides more direct and academic;
 - kept formulas as formula/code/text blocks compatible with the current renderer;
 - kept engineering applications: server state, network state, robot state, vector metrics, Python/C++ implementation.
 
-## Current lesson roles
+## Slide role policy
 
-1. problem_framing
-2. deep_essence
-3. counter_intuition
-4. real_bridge
-5. notation
-6. core_formula
-7. assumption_gate
-8. mini_case
-9. interpretation
-10. simulation
-11. common_mistakes
-12. application
-13. practice
-14. professor_qa
-15. bridge
-16. takeaway
+The role list below is a teaching skeleton, not a fixed-count requirement:
+
+- problem_framing
+- deep_essence
+- counter_intuition
+- real_bridge
+- notation
+- core_formula
+- assumption_gate
+- mini_case
+- interpretation
+- simulation
+- common_mistakes
+- application
+- practice
+- professor_qa
+- bridge
+- takeaway
+
+A lesson may skip, merge, split or reorder these roles when the content requires it.
+
+## Slide count policy
+
+Future theory lessons should use flexible slide length:
+
+- short focused lesson: about 8–10 slides;
+- standard lesson: about 10–14 slides;
+- deep foundational lesson: about 14–18 slides;
+- longer only when the topic truly requires it.
+
+Do not add filler slides just to hit a number.
+Do not remove necessary content just to fit a number.
 
 ## Content rule going forward
 
