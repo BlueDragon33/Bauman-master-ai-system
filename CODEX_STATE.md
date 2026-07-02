@@ -39,6 +39,11 @@ Program-frame assets:
 - `subjects/math/assets/program_frame/program-view-E130.js`
 - `subjects/math/assets/program_frame/program-frame-E130.css`
 
+Authoring guidance:
+
+- `subjects/math/E130_PROGRAM_CONTENT_AUTHORING_GUIDE.md`
+- `subjects/math/templates/theory_content/e130_program_linked_theory_template.json`
+
 Key source rule:
 
 1. `data/theory_lecture_frame.json` = Theory frame/navigation shell.
@@ -222,9 +227,10 @@ Changed:
 - Updated `subjects/math/assets/program_frame/program-view-E130.js`.
 - Updated this `CODEX_STATE.md` file.
 
-Commit:
+Commits:
 
 - `d860060b824e4b7ee95aa2d91c8ae05a266faa46`
+- `b72b15ad66c9a6e69a6a14daabc9373ddfc85e2a`
 
 Purpose:
 
@@ -245,28 +251,57 @@ Verification performed:
 - Confirmed E129 still validates Theory imports against `theory_lecture_content`, not `lessons`.
 - Confirmed the E129 selection state names are `e129ChapterId` and `e129Stage`, and E130 now syncs them.
 
+### E130 Round 8 · Content authoring/import guidance
+
+Status: complete.
+
+Changed:
+
+- Created `subjects/math/E130_PROGRAM_CONTENT_AUTHORING_GUIDE.md`.
+- Created `subjects/math/templates/theory_content/e130_program_linked_theory_template.json`.
+- Updated this `CODEX_STATE.md` file.
+
+Commits:
+
+- `2baf9ac906bc7d90737b00cec9e536ec3c4c0dc2`
+- `521e1500f372878c3792a24c712df07c21aaf4b8`
+
+Purpose:
+
+- Document how future Theory lessons should reference E130 `programLectureId` while still importing through E129 into `theory_lecture_content`.
+- Provide a reusable JSON template package with `target: theory_lecture_content`, `mode: merge`, E130 metadata, Lab Work, and 16 slide roles.
+- Keep Round 8 guidance/template only: no production content import yet.
+
+Verification performed:
+
+- Confirmed the authoring guide states that Theory lesson content must still import into `theory_lecture_content`, not `lessons.json`.
+- Confirmed the guide requires E129 fields `lessonId`, `chapterId`, `lessonTitle/title`, and `slides`.
+- Confirmed the guide recommends E130 fields `programLectureId`, `programLectureIds`, `programAnchorTitle`, `roadmapRole`, `labWork`, and `sourceAnchors`.
+- Confirmed the template package uses `target: theory_lecture_content`, `mode: merge`, a stable C01 `chapterId`, and `programLectureId: MATH-PROG-L02-vector-spaces-linear-maps`.
+
 ## Current runtime notes
 
 - E129 owns the Theory shell and Theory storage route.
 - E126 is suppressed when E129 ownership flag is active.
 - E128 importer remains available outside E129 Theory storage but should not be used for new Theory content.
 - E130 is source-visible and UI-route-visible, but browser runtime needs user-side Live Server verification.
+- Round 8 adds guidance/templates only. It does not import production content.
 - `subject-manifest.json` still contains older historical labels/counts. Do not rewrite it casually. Clean it only in a dedicated manifest cleanup round.
 
 ## Remaining E130 rounds
 
-After Round 7, 3 rounds remain in the 10-round plan:
+After Round 8, 2 rounds remain in the 10-round plan:
 
-8. Add content-authoring/import guidance for program-linked lessons and Lab Work.
 9. Add one real sample content bundle through `theory_lecture_content`, mapped to a program lecture anchor.
 10. Final handoff and manifest cleanup decision.
 
 ## Recommended next round
 
-E130 Round 8: Add content-authoring/import guidance for program-linked lessons and Lab Work.
+E130 Round 9: Add one real sample content bundle.
 
 Tasks:
 
-- Add a guide/template explaining how a real Theory content record should reference a `programLectureId` while still importing into `theory_lecture_content`.
-- Include Lab Work guidance for Python/NumPy/SciPy and C++.
-- Do not import real content yet. Round 9 will create one sample bundle.
+- Create one production-like sample bundle for Chapter 1 / `MATH-PROG-L02-vector-spaces-linear-maps`.
+- Import path remains `theory_lecture_content`.
+- Keep it as a template/sample file unless the user explicitly wants it committed into `data/theory_lecture_content.json`.
+- Do not alter `math_program_frame.json` or `math_program_map.json` unless validation shows a mismatch.
