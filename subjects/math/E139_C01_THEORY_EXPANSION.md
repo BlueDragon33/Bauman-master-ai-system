@@ -12,30 +12,25 @@ No boot/runtime/UI files were changed.
 
 ## Added lessons
 
-C01 now contains 3 learner-facing theory records:
+C01 was expanded with learner-facing theory records:
 
 1. `§1.1 · Vector như dữ liệu kỹ thuật`
 2. `§1.2 · Chuẩn vector và khoảng cách`
 3. `§1.3 · Tích vô hướng, góc và phép chiếu`
 
-Each record keeps 16 slide roles:
+## Slide count policy
 
-1. problem_framing
-2. deep_essence
-3. counter_intuition
-4. real_bridge
-5. notation
-6. core_formula
-7. assumption_gate
-8. mini_case
-9. interpretation
-10. simulation
-11. common_mistakes
-12. application
-13. practice
-14. professor_qa
-15. bridge
-16. takeaway
+The 16-role structure used in this pass is a teaching skeleton, not a hard requirement.
+
+Going forward, lesson length should be flexible:
+
+- short focused lesson: about 8–10 slides;
+- standard lesson: about 10–14 slides;
+- deep foundational lesson: about 14–18 slides;
+- longer only if the topic truly requires it.
+
+Do not add filler slides to reach a fixed count.
+Do not remove necessary content to fit a fixed count.
 
 ## Content rules preserved
 
