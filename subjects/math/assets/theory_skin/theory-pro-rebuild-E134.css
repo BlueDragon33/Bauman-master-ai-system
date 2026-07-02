@@ -141,32 +141,6 @@
   border-color:#2563eb;
   box-shadow:0 0 0 3px rgba(37,99,235,.14);
 }
-.e134-stage-filter{
-  display:flex;
-  gap:6px;
-  overflow:auto;
-  padding-bottom:2px;
-}
-.e134-stage-filter button{
-  flex:0 0 auto;
-  min-height:34px;
-  padding:0 9px;
-  border:1px solid #cbd5e1;
-  border-radius:6px;
-  background:#f8fafc;
-  color:#0f172a;
-  font-size:12px;
-  font-weight:850;
-}
-.e134-stage-filter button.active{
-  border-color:#0f766e;
-  background:#ecfdf5;
-  color:#064e3b;
-}
-.e134-stage-filter small{
-  color:#475569;
-  margin-left:3px;
-}
 .e134-lesson-list{
   display:flex;
   flex-direction:column;
@@ -528,6 +502,16 @@
   line-height:1.68;
 }
 .e134-block p:last-child{margin-bottom:0}
+.e134-list{
+  margin:0;
+  padding-left:20px;
+  color:#1f2937;
+}
+.e134-list li{
+  margin:6px 0;
+  line-height:1.62;
+  font-size:15px;
+}
 .e134-block.is-formula{
   background:#0f172a;
   border-color:#1e293b;
@@ -745,7 +729,7 @@
   .e134-taxonomy-popover{position:fixed;inset:80px 16px 16px}
 }
 @media(max-width:560px){
-  .e134-top-left,.e134-top-actions,.e134-switch,.e134-stage-filter{flex-wrap:wrap}
+  .e134-top-left,.e134-top-actions,.e134-switch{flex-wrap:wrap}
   .e134-now{display:none}
   .e134-lesson-head,.e134-read-body,.e134-lecture,.e134-lecture-card{padding:14px}
   .e134-read-section header{grid-template-columns:1fr}

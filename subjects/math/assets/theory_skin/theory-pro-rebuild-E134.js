@@ -5,8 +5,8 @@
   var PATCH = 'E134_MATH_THEORY_PRO_REBUILD';
   var applying = false;
   var restoreSearchFocus = false;
-  var STAGE_TO_MAIN = {0:'vn',1:'prep',2:'hk1',3:'hk2',4:'hk3',5:'hk4'};
-  var MAIN_TO_STAGE = {vn:0,prep:1,hk1:2,hk2:3,hk3:4,hk4:5};
+  var STAGE_ID_ALIAS = {hk1:'master_y1_s1',hk2:'master_y1_s2',hk3:'nir',hk4:'vkr',m1:'master_y1_s1',m2:'master_y1_s2',m3:'nir',m4:'vkr',prepare:'vn',preparatory:'prep',vietnam:'vn'};
+  var MAIN_TO_STAGE = {vn:0,prep:1,master_y1_s1:2,master_y1_s2:3,nir:4,vkr:5,hk1:2,hk2:3,hk3:4,hk4:5,phd_bridge:6,phd_y1:7,phd_y2:8,phd_thesis:9};
   var LEARN_MODES = [
     ['theory','📘','Lý thuyết'],
     ['exercises','📝','Bài tập'],
@@ -39,8 +39,10 @@
   function norm(x){try{return plain(x).normalize('NFD').replace(/[\u0300-\u036f]/g,'').toLowerCase();}catch(_){return plain(x).toLowerCase();}}
   function clip(x,n){x=plain(x); n=n || 120; return x.length > n ? x.slice(0,n-1) + '…' : x;}
   function pad(n){return String(Number(n || 0) + 1).padStart(2,'0');}
+  function stageKey(x){var key=s(x).trim(); return STAGE_ID_ALIAS[key] || key;}
+  function currentStageKey(){return stageKey(st().stage) || 'vn';}
   function lessonId(l){return s(l && (l.lessonId || l.id));}
-  function stageNo(l){var n = Number(l && (l.sourceStageNo != null ? l.sourceStageNo : l.stageNo)); if(isFinite(n))return n; return MAIN_TO_STAGE[s(l && l.stage)] || 0;}
+  function stageNo(l){var n = Number(l && (l.sourceStageNo != null ? l.sourceStageNo : l.stageNo)); if(isFinite(n))return n; var key=stageKey(l && l.stage); return MAIN_TO_STAGE[key] == null ? 0 : MAIN_TO_STAGE[key];}
   function chapterNo(l){var n = Number(l && (l.sourceChapterNo != null ? l.sourceChapterNo : l.chapterNo)); return isFinite(n) ? n : 0;}
   function lessonTitle(l){return s(l && (l.displayTitle || l.shortTitle || l.title || lessonId(l) || 'Bài lý thuyết'));}
   function chapterTitle(l){return s(l && (l.chapterTitle || (l.sourceAnchors && l.sourceAnchors.chapterTitle) || 'Chương học'));}
@@ -66,10 +68,25 @@
     });
   }
   function slides(l){return arr(l && l.slides);}
-  function safeBody(b){return s(b && (b.body || b.content || b.text || b.value));}
+  function currentStageNo(){
+    var key=currentStageKey();
+    var hit=lessons().find(function(l){return stageKey(l && l.stage) === key;});
+    if(hit)return stageNo(hit);
+    var n=MAIN_TO_STAGE[key];
+    return n == null ? null : n;
+  }
+  function blockText(b){
+    if(!b)return '';
+    var direct=s(b.body || b.content || b.text || b.value).trim();
+    if(direct)return direct;
+    return arr(b.items || b.bullets || b.formulas || b.examples).map(function(item){
+      if(item && typeof item === 'object')return s(item.text || item.body || item.content || item.q || item.a || JSON.stringify(item));
+      return s(item);
+    }).filter(Boolean).join('\n');
+  }
   function slideText(l){
     return slides(l).map(function(sl){
-      return [sl.title,sl.role,arr(sl.blocks).map(function(b){return [b && b.title,safeBody(b)].join(' ');}).join(' '),sl.body,sl.content].join(' ');
+      return [sl.title,sl.role,arr(sl.blocks).map(function(b){return [b && b.title,blockText(b)].join(' ');}).join(' '),sl.body,sl.content].join(' ');
     }).join(' ');
   }
   function searchText(l){
@@ -141,25 +158,22 @@
   }
   function majorPopupState(){
     var parts=s(st().e134MajorPopup || '').split('|');
-    return parts.length===2 && parts[1] ? {stage:Number(parts[0]),key:parts[1]} : null;
+    var stage=Number(parts[0]);
+    return parts.length===2 && parts[1] && stage===currentStageNo() ? {stage:stage,key:parts[1]} : null;
   }
   function currentLesson(xs){
     var state=st();
     var id=s(state.e134LessonId || state.lessonId);
-    var hit=xs.find(function(l){return lessonId(l) === id;});
+    var stage=currentStageNo();
+    if(stage == null)return null;
+    var hit=xs.find(function(l){return lessonId(l) === id && stageNo(l) === stage;});
     if(hit)return hit;
-    var stage = state.e134Stage && state.e134Stage !== 'all' ? Number(state.e134Stage) : MAIN_TO_STAGE[s(state.stage)] || 0;
-    return xs.find(function(l){return stageNo(l) === stage;}) || xs[0] || null;
+    return xs.find(function(l){return stageNo(l) === stage;}) || null;
   }
   function currentSlide(l){
     var max = Math.max(0,slides(l).length - 1);
     var n = Number(st().e134SlideIndex || 0);
     return Math.max(0,Math.min(max,isFinite(n) ? n : 0));
-  }
-  function stageOptions(xs){
-    var seen = {};
-    xs.forEach(function(l){seen[stageNo(l)] = true;});
-    return Object.keys(seen).map(Number).sort(function(a,b){return a-b;});
   }
   function stageLabel(xs,n){
     var hit = xs.find(function(l){return stageNo(l) === n;});
@@ -176,19 +190,31 @@
   }
   function paragraphHtml(text){
     var body=s(text).trim();
-    if(!body)return '<p class="e134-muted">Chưa có nội dung chi tiết cho khối này.</p>';
+    if(!body)return '';
     return body.split(/\n{2,}/).map(function(p){return '<p>'+esc(p.trim())+'</p>';}).join('');
+  }
+  function listHtml(items,formula){
+    items=arr(items).map(function(item){
+      if(item && typeof item === 'object')return s(item.text || item.body || item.content || item.q || item.a || JSON.stringify(item));
+      return s(item);
+    }).filter(function(x){return x.trim();});
+    if(!items.length)return '';
+    if(formula)return '<pre>'+items.map(esc).join('\n')+'</pre>';
+    return '<ul class="e134-list">'+items.map(function(x){return '<li>'+esc(x)+'</li>';}).join('')+'</ul>';
   }
   function blockHtml(b){
     var title=s(b && (b.title || b.type || 'Nội dung'));
     var type=norm(b && b.type);
     var formula = /formula|matrix|equation|cong thuc|ky hieu/.test(type + ' ' + norm(title));
-    return '<article class="e134-block '+(formula?'is-formula':'')+'"><h4>'+esc(title)+'</h4>'+(formula?'<pre>'+esc(safeBody(b))+'</pre>':paragraphHtml(safeBody(b)))+'</article>';
+    var body=blockText(b);
+    var html=formula ? (body ? '<pre>'+esc(body)+'</pre>' : listHtml(b && b.items, true)) : (paragraphHtml(body) || listHtml(b && (b.items || b.bullets || b.examples), false));
+    return html ? '<article class="e134-block '+(formula?'is-formula':'')+'"><h4>'+esc(title)+'</h4>'+html+'</article>' : '';
   }
   function slideBlocks(slide){
-    var blocks=arr(slide && slide.blocks);
-    if(blocks.length)return blocks.map(blockHtml).join('');
-    return '<article class="e134-block">'+paragraphHtml((slide && (slide.body || slide.content)) || '')+'</article>';
+    var blocks=arr(slide && slide.blocks).map(blockHtml).filter(Boolean).join('');
+    if(blocks)return blocks;
+    var fallback=paragraphHtml((slide && (slide.body || slide.content || slide.summary)) || '');
+    return fallback ? '<article class="e134-block">'+fallback+'</article>' : '<article class="e134-block"><h4>'+esc(slide && slide.title || 'Nội dung bài học')+'</h4><p>'+esc(s(slide && slide.role || 'Mục học này dùng metadata của bài, không có khối body riêng.'))+'</p></article>';
   }
   function structureMenu(active){
     return '<details class="learn-structure-menu e134-learn-menu"><summary class="learn-structure-trigger"><span>🧭</span><b>Cấu trúc bài học</b><u>▾</u></summary><div class="learn-structure-dropdown" role="menu">'+
@@ -200,13 +226,6 @@
       '<div class="e134-top-left">'+structureMenu('theory')+'<div class="e134-now"><span>Đang học</span><b>'+esc(clip(lessonTitle(lesson),72))+'</b></div></div>'+
       '<div class="e134-top-actions"><div class="e134-switch" role="group" aria-label="Chế độ lý thuyết"><button class="'+(mode==='read'?'active':'')+'" data-e134-mode="read">Đọc</button><button class="'+(mode==='lecture'?'active':'')+'" data-e134-mode="lecture">Trình chiếu</button></div><span class="e134-id">'+esc(lessonId(lesson) || 'lessonId')+'</span></div>'+
       '</header>';
-  }
-  function stageFilters(xs,active){
-    var opts = stageOptions(xs);
-    var allActive = active === 'all';
-    return '<div class="e134-stage-filter"><button class="'+(allActive?'active':'')+'" data-e134-stage="all">Tất cả <small>'+xs.length+'</small></button>'+
-      opts.map(function(n){var count=xs.filter(function(l){return stageNo(l)===n;}).length; return '<button class="'+(!allActive && Number(active)===n?'active':'')+'" data-e134-stage="'+n+'">GĐ '+n+' <small>'+count+'</small></button>';}).join('')+
-      '</div>';
   }
   function lessonButtons(xs,current,q){
     if(!xs.length)return '<div class="e134-empty-list"><b>Không có kết quả</b><span>Thử đổi từ khóa tìm kiếm.</span></div>';
@@ -333,12 +352,16 @@
       setTimeout(function(){applying=false; if(pending)render();},250);
       return true;
     }
-    var activeStage = state.e134Stage == null ? 'all' : s(state.e134Stage || 'all');
+    var activeStage = currentStageNo();
     var q=s(state.e134Query || '').trim();
     var lesson=currentLesson(xs);
-    if(!lesson)lesson=xs[0];
+    if(!lesson){
+      applying=true; view.innerHTML=emptyShell('Không có bài lý thuyết cho giai đoạn đang chọn.');
+      setTimeout(function(){applying=false;},0);
+      return true;
+    }
     var filtered = xs.filter(function(l){
-      var stageOk = activeStage === 'all' || stageNo(l) === Number(activeStage);
+      var stageOk = stageNo(l) === activeStage;
       var searchOk = !q || searchText(l).indexOf(norm(q)) >= 0;
       return stageOk && searchOk;
     });
@@ -346,7 +369,6 @@
     var mode=s(state.e134Mode || 'read') === 'lecture' ? 'lecture' : 'read';
     state.e134LessonId = lessonId(lesson);
     state.lessonId = lessonId(lesson);
-    state.stage = STAGE_TO_MAIN[stageNo(lesson)] || state.stage;
     var html = mode === 'lecture' ? lectureShell(lesson,idx) : normalShell(xs,filtered,lesson,q,activeStage,idx);
     applying=true;
     view.innerHTML=html;
@@ -368,22 +390,10 @@
     state.view='learning'; state.learnTab='theory'; state.e122Focus='theory';
     state.e134LessonId=lessonId(l); state.lessonId=lessonId(l); state.e134SlideIndex=0;
     state.e134MajorPopup='';
-    state.stage=STAGE_TO_MAIN[stageNo(l)] || state.stage;
-    save(); render();
-  }
-  function setStage(value){
-    var state=st();
-    state.e134Stage=value || 'all';
-    if(value && value !== 'all'){
-      var first=lessons().find(function(l){return stageNo(l) === Number(value);});
-      if(first){state.e134LessonId=lessonId(first); state.lessonId=lessonId(first); state.stage=STAGE_TO_MAIN[stageNo(first)] || state.stage; state.e134SlideIndex=0;}
-    }
-    state.view='learning'; state.learnTab='theory'; state.e122Focus='theory';
-    state.e134MajorPopup='';
     save(); render();
   }
   document.addEventListener('click',function(e){
-    var t=e.target.closest && e.target.closest('.e134-shell .learn-structure-trigger,[data-e134-lesson],[data-e134-major],[data-e134-close-taxonomy],[data-e134-stage],[data-e134-slide],[data-e134-mode],[data-e134-prev-slide],[data-e134-next-slide],[data-e134-open-storage]');
+    var t=e.target.closest && e.target.closest('.e134-shell .learn-structure-trigger,[data-e134-lesson],[data-e134-major],[data-e134-close-taxonomy],[data-e134-slide],[data-e134-mode],[data-e134-prev-slide],[data-e134-next-slide],[data-e134-open-storage]');
     if(!t)return;
     var state=st();
     if(t.matches && t.matches('.e134-shell .learn-structure-trigger')){
@@ -394,7 +404,6 @@
     if(t.hasAttribute('data-e134-lesson')){setLesson(t.getAttribute('data-e134-lesson')); e.preventDefault(); e.stopImmediatePropagation(); return;}
     if(t.hasAttribute('data-e134-major')){state.e134MajorPopup=s(t.getAttribute('data-e134-major-stage'))+'|'+s(t.getAttribute('data-e134-major')); save(); render(); e.preventDefault(); e.stopImmediatePropagation(); return;}
     if(t.hasAttribute('data-e134-close-taxonomy')){state.e134MajorPopup=''; save(); render(); e.preventDefault(); e.stopImmediatePropagation(); return;}
-    if(t.hasAttribute('data-e134-stage')){setStage(t.getAttribute('data-e134-stage')); e.preventDefault(); e.stopImmediatePropagation(); return;}
     if(t.hasAttribute('data-e134-slide')){state.e134SlideIndex=Number(t.getAttribute('data-e134-slide')) || 0; save(); render(); e.preventDefault(); e.stopImmediatePropagation(); return;}
     if(t.hasAttribute('data-e134-mode')){state.view='learning'; state.learnTab='theory'; state.e122Focus='theory'; state.e134Mode=t.getAttribute('data-e134-mode') === 'lecture' ? 'lecture' : 'read'; save(); render(); e.preventDefault(); e.stopImmediatePropagation(); return;}
     if(t.hasAttribute('data-e134-prev-slide') || t.hasAttribute('data-e134-next-slide')){
@@ -420,19 +429,24 @@
     e.preventDefault();
     e.stopImmediatePropagation();
   }
+  function isTypingTarget(el){
+    var tag=s(el && el.tagName).toLowerCase();
+    return !!(el && (el.isContentEditable || tag === 'input' || tag === 'textarea' || tag === 'select'));
+  }
   document.addEventListener('keydown',function(e){
     var state=st();
     if(s(state.view) !== 'learning' || s(state.learnTab || 'theory') !== 'theory' || s(state.e134Mode) !== 'lecture')return;
+    if(isTypingTarget(e.target))return;
     var l=currentLesson(lessons());
     var total=slides(l).length;
     var idx=Number(state.e134SlideIndex || 0);
     var max=Math.max(0,total-1);
     var key=e.key;
-    if(key === 'Escape'){state.e134Mode='read'; save(); render(); ownLectureKey(e); return;}
-    if(key === 'ArrowLeft' || key === 'PageUp'){state.e134SlideIndex=Math.max(0,idx-1); save(); render(); ownLectureKey(e); return;}
-    if(key === 'ArrowRight' || key === 'PageDown' || key === ' '){state.e134SlideIndex=Math.min(max,idx+1); save(); render(); ownLectureKey(e); return;}
-    if(key === 'Home'){state.e134SlideIndex=0; save(); render(); ownLectureKey(e); return;}
-    if(key === 'End'){state.e134SlideIndex=max; save(); render(); ownLectureKey(e); return;}
+    if(key === 'Escape'){ownLectureKey(e); state.e134Mode='read'; save(); render(); return;}
+    if(key === 'ArrowLeft' || key === 'PageUp'){ownLectureKey(e); state.e134SlideIndex=Math.max(0,idx-1); save(); render(); return;}
+    if(key === 'ArrowRight' || key === 'PageDown' || key === ' '){ownLectureKey(e); state.e134SlideIndex=Math.min(max,idx+1); save(); render(); return;}
+    if(key === 'Home'){ownLectureKey(e); state.e134SlideIndex=0; save(); render(); return;}
+    if(key === 'End'){ownLectureKey(e); state.e134SlideIndex=max; save(); render(); return;}
   },true);
   var mo = new MutationObserver(function(){if(applying)return; setTimeout(render,0);});
   function boot(){
