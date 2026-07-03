@@ -39,8 +39,8 @@ C01 compact deck coverage:
 - §1.5 · Không gian con và biểu diễn dữ liệu
 - §1.6 · Độc lập tuyến tính, chiều và hạng dữ liệu
 
-Latest ledger commit:
-- `846d0c6d8147aded8cf9025ba5091c00fc4373d4`
+Latest ledger commit before this update:
+- `2debce672a5e89edaa007882187225ec6645da69`
 
 Verification:
 - GitHub update succeeded for E132 JS.
