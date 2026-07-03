@@ -24,6 +24,12 @@ Files changed in direct patch:
 - `subjects/math/E165C_CHATGPT_DIRECT_COMPACT_ONLY_PATCH_REPORT.md`
 - `CODEX_STATE.md`
 
+Commits created from ChatGPT direct patch:
+- `62eeadcefed086011220887b222e9e737c2846a0` · initial E165C compact-only E132 runtime replacement.
+- `e3a2ef1999eedb914bc5a9b5fc459f3f283a6beb` · E165C direct patch report file.
+- `97652c24b5db817ee2c2fff003f6688ddbc3767a` · CODEX_STATE updated after direct patch.
+- `b8989fd6304fb6ab23c9930fc21d33053ed3254a` · hardened C01 lesson detection for compact deck routing.
+
 Runtime result:
 - E132 release marker: `E165C_COMPACT_ONLY_C01_CURATED_DECK`.
 - E132 Slideshow is now compact-only for C01 curated decks.
@@ -31,6 +37,7 @@ Runtime result:
 - Full/Compact toggle removed from E132 overlay header.
 - Reader auto-slicing fallback disabled.
 - If a lesson has no curated compact deck, E132 shows an explicit empty state instead of slicing Reader content.
+- Lesson detection hardened with C01 aliases for §1.1 through §1.6.
 - `setMode()` always returns `compact`.
 - `selfCheck()` reports `compactOnly:true`, `fullLecture:false`, `autoSlice:false`.
 
