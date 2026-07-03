@@ -1,5 +1,57 @@
 # CODEX_STATE
 
+Current task: E164 C01 content-flow layout audit PASS on main.
+
+Status: C01_FLOW_LAYOUT_PASS_IN_MAIN
+
+Branch: `main`
+Base branch: `main`
+Main sync status: `in_main`
+
+Main sync / pull instruction:
+- Verified E164 result is in `main`.
+- User should pull directly from `main` after push:
+  - `git checkout main`
+  - `git pull origin main`
+
+Files changed:
+- `CODEX_STATE.md`
+- `subjects/math/E164_C01_FLOW_LAYOUT_PATCH_PASS_REPORT.md`
+
+Browser evidence:
+- E129 reader C01 audit: PASS
+- C01 lessons checked in reader: 6/6
+- Reader slides per lesson: 16
+- Reader minimum block gap: 8px
+- E132 slideshow C01 audit: PASS
+- C01 slides checked in slideshow: 96
+- Slideshow minimum card gap: 13px
+- Compact/Full toggle: PASS
+- Console errors: 0
+
+Verification:
+- `node --check subjects/math/assets/theory_skin/theory-tab-E129.js`: PASS
+- `node --check subjects/math/assets/theory_skin/theory-slideshow-E132.js`: PASS
+- JSON parse: PASS
+- C01 record count: 6
+- C02 record count: 6
+- C03 record count: 6
+- No duplicate lessonId: PASS
+- No mojibake: PASS
+- Runtime/UI/content files changed: no
+
+Decision:
+- No CSS/runtime/content patch was applied because the reported C01 layout issue was not reproducible on current `main` after pulling `origin/main`.
+- The passing browser audit is recorded in `subjects/math/E164_C01_FLOW_LAYOUT_PATCH_PASS_REPORT.md`.
+
+Next recommended task:
+- User pulls `main` and retests locally.
+
+Next actor:
+- User
+
+---
+
 Current task: E163 UI runtime PASS and synced to main.
 
 Status: RUNTIME_SMOKE_PASS_C01_BASELINE_READY_IN_MAIN
