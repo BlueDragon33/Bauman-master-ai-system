@@ -30,6 +30,11 @@ What changed:
 Verification:
 - <check>: PASS/FAIL
 
+Main sync / pull instruction:
+- <exactly where the files currently are>
+- <what branch local user must pull>
+- <whether main already contains this task>
+
 Next recommended task:
 - <exact next step>
 
@@ -47,7 +52,29 @@ Codex prompt file:
 - <path if created>
 ```
 
-## 3. Branch stack rule
+## 3. Main sync rule for user pull
+
+User's preferred workflow is to pull from `main` locally whenever possible.
+
+Therefore, after a task reaches a real PASS state, Codex must either:
+
+1. Put the verified result into `main`, then update `CODEX_STATE.md` with `Main sync status: in_main`; or
+2. Clearly state `Main sync status: branch_only` / `needs_merge` / `needs_fast_forward`, and give the exact branch the user must pull.
+
+Do not tell the user to pull `main` unless `main` actually contains the completed files.
+
+Do not leave completed work only on a feature branch without reporting the pull target.
+
+For risky tasks, especially runtime/UI/browser tasks, do not merge to `main` until the required verification passes.
+
+For the current Math Theory repair stack:
+
+- Do not merge known-bad E149.
+- Treat branch `codex/e150-c01-l01-clean-replacement` as the active clean repair branch unless `CODEX_STATE.md` says otherwise.
+- If browser/runtime smoke fails, do not push that failure as a PASS baseline to `main`.
+- If browser/runtime smoke passes, Codex may prepare a controlled merge/fast-forward plan to put the verified branch into `main`.
+
+## 4. Branch stack rule
 
 If a branch is based on another feature branch instead of `main`, `CODEX_STATE.md` must say so clearly:
 
@@ -64,7 +91,7 @@ Safe merge order:
 
 Never let ChatGPT infer branch order from memory.
 
-## 4. Actor boundary
+## 5. Actor boundary
 
 ChatGPT can handle:
 
@@ -81,6 +108,7 @@ Codex is required for:
 - verification scripts over large JSON files;
 - runtime/UI testing;
 - branch merge/rebase/fast-forward when stacked branches exist;
+- putting verified branch results into `main` safely;
 - any change that needs local repo diff checks;
 - any patch that could affect boot/runtime/UI.
 
@@ -90,7 +118,7 @@ User is required for:
 - providing screenshots/console errors for browser-only bugs;
 - deciding content direction when multiple roadmap options exist.
 
-## 5. File naming standard
+## 6. File naming standard
 
 For every episode:
 
@@ -106,54 +134,16 @@ Example:
 - `subjects/math/E147_MERGE_C04_L01_L03_STAGED.md`
 - `subjects/math/E147_CODEX_MERGE_PROMPT.md`
 
-## 6. End-of-task requirement
+## 7. End-of-task requirement
 
 Every Codex task must end by updating `CODEX_STATE.md` and must include:
 
 - branch name;
 - base branch;
 - whether result is in main or branch only;
+- exact branch the user should pull;
 - exact files changed;
 - exact verification results;
 - next actor;
 - whether Codex is required next;
 - ready-to-copy prompt path for the next Codex step if needed.
-
-Every ChatGPT task that creates staged content must also create a Codex prompt when the next step needs local execution.
-
-## 7. Forbidden behavior
-
-- Do not scan the whole repo unless explicitly required.
-- Do not silently switch branches.
-- Do not update main while a stacked branch is waiting unless branch order is documented.
-- Do not merge staged content into `theory_lecture_content.json` manually through GitHub API.
-- Do not edit runtime/UI/boot files during content-only tasks.
-- Do not rewrite locked C01/C02/C03 records unless the task explicitly targets them and verification is planned.
-
-## 8. Current project-specific locked rules
-
-- Keep only the old compact Theory header/table in the normal learner view.
-- Do not restore E128 legacy importer runtime.
-- Do not restore E134 learning-clean runtime.
-- Do not restore E130 Program View learner injection.
-- Do not restore E130 Program CSS into the learner boot path.
-- Do not restore E126 legacy theory adapter.
-- Do not restore empty core.js.
-- Do not restore E132 reader polish into normal learner view.
-- Do not add another UI overlay for the normal Theory learner view.
-- Theory content stays in `subjects/math/data/theory_lecture_content.json`.
-- Do not use `lessons.json` for new Theory content.
-- Do not rewrite `subject-manifest.json` casually.
-- Content-only work must not change boot runtime.
-- Do not enforce one exact slide count per lesson or per chapter.
-- Do enforce a quality floor: normal Math theory lessons should not be under 14 slides unless they are clearly secondary/review/micro lessons and the reason is documented.
-
-## 9. Short handoff phrase for the user
-
-When Codex finishes, the user can return to ChatGPT with:
-
-```text
-Codex finished <episode>. Continue from CODEX_STATE on branch <branch-name>.
-```
-
-ChatGPT must then read `CODEX_STATE.md` from that branch first.
