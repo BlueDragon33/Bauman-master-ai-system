@@ -1,11 +1,12 @@
 # CODEX_STATE
 
-Current task: E142 C02 Theory Start.
+Current task: E143 C02 Complete Content.
 
-Status: C01 remains locked after E141. E142 added the first three C02 theory lessons. Content-only work; boot/runtime untouched.
+Status: C01 remains locked after E141. E143 completed all six C02 theory lessons. Content-only work; boot/runtime untouched. Next pass must be verification-only.
 
 Read next:
 
+- subjects/math/E143_C02_COMPLETE_CONTENT.md
 - subjects/math/E142_C02_THEORY_START.md
 - subjects/math/E141_C01_FINAL_VERIFICATION_LOCK.md
 - subjects/math/E140_C01_COMPLETE_CONTENT.md
@@ -58,16 +59,19 @@ E141 C01 verification result:
 - Academic coverage checked: framing, concept, notation, formulas, conditions, interpretation, application, mistakes, practice, professor QA and bridge.
 - No boot/runtime/UI file changed during E141.
 
-E142 C02 content start:
+E143 C02 content completion:
 
-- subjects/math/data/theory_lecture_content.json now uses version E142_C01_COMPLETE_C02_L01_L03.
-- C02 now contains three learner-facing lessons:
+- subjects/math/data/theory_lecture_content.json now uses version E143_C01_C02_COMPLETE.
+- C02 contains six lessons:
   - §2.1 Ma trận như dữ liệu và phép biến đổi;
   - §2.2 Phép nhân ma trận và pipeline tuyến tính;
-  - §2.3 Hạng ma trận, không gian cột và thông tin độc lập.
-- Each new C02 lesson uses 16 slides, satisfying the 14-slide quality floor.
-- New C02 content covers matrix as data/operator, matrix-vector multiplication, shape rules, matrix multiplication as composition, non-commutativity, rank, column space, feature redundancy, Python checks and professor QA.
-- No boot/runtime/UI file changed during E142.
+  - §2.3 Hạng ma trận, không gian cột và thông tin độc lập;
+  - §2.4 Nghịch đảo, giải hệ và điều kiện tồn tại nghiệm;
+  - §2.5 Phép biến đổi tuyến tính trong hình học và dữ liệu;
+  - §2.6 Từ ma trận sang PCA và mô hình tuyến tính.
+- Each C02 lesson uses 16 slides, satisfying the 14-slide quality floor.
+- C02 covers matrix as data/operator, matrix-vector multiplication, matrix multiplication/composition, rank, column space, inverse/system solving, condition number, geometric transforms, projection, basis change, PCA/SVD and linear models.
+- No boot/runtime/UI file changed during E143.
 
 Controlled flexible slide policy:
 
@@ -82,11 +86,8 @@ Controlled flexible slide policy:
 
 Next recommended task:
 
-- Browser smoke test after pull: C01 still visible, C02 shows §2.1–§2.3, slideshow opens.
-- Then continue C02 content-only with:
-  - §2.4 Nghịch đảo, giải hệ và điều kiện tồn tại nghiệm;
-  - §2.5 Phép biến đổi tuyến tính trong hình học và dữ liệu;
-  - §2.6 Từ ma trận sang PCA và mô hình tuyến tính.
+- Browser smoke test after pull: C01 and C02 visible, slideshow opens.
+- Then E144 verification-only: validate JSON, count C01/C02 records, check C02 quality floor, check academic coverage, create C02 final verification lock.
 
 If user reports failure:
 
