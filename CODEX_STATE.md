@@ -1,47 +1,51 @@
 # CODEX_STATE
 
-Current task: E157 C01 academic QA completed.
+Current task: E157R C01 QA criteria correction completed.
 
-Status: PASS_WITH_VISUAL_QA_PENDING
+Status: STRUCTURAL_PASS_SEMANTIC_QA_REQUIRED
 
 Branch: `codex/e150-c01-l01-clean-replacement`
 Base branch: `codex/e146-merge-c03-l04-l06`
 Main sync status: `stacked_branch`
 
 Files changed:
-- `subjects/math/E157_C01_ACADEMIC_QA_REPORT.md`
+- `subjects/math/E157R_C01_QA_CRITERIA_CORRECTION.md`
 - `CODEX_STATE.md`
 
-C01 runtime status:
-- §1.1-§1.6 content-depth runtime complete on this branch.
-- E156 verified JSON parse, exactly three records changed, no mojibake, no duplicate lessonId, C01=6, C02=6, C03=6, and runtime/UI/boot unchanged.
+Correction:
+- `16 slides` is a minimum structural floor, not an exact target.
+- Do not compress a lesson down to exactly 16 slides if the concept needs more.
+- Do not stretch thin content just to reach 16 slides.
+- Academic QA must check semantic necessity, not slide count alone.
 
-Academic QA verdict:
-- C01 content is academically acceptable as a controlled teaching draft.
-- Do not use it as a broad template for C02+ until visual QA confirms E129/E132 can display the richer blocks properly.
+C01 runtime status:
+- §1.1-§1.6 content-depth runtime exists on this branch.
+- E156 verified JSON parse, no mojibake, no duplicate lessonId, C01=6, C02=6, C03=6, runtime/UI/boot unchanged.
+
+Revised verdict:
+- C01 is structurally complete.
+- C01 is not yet approved as a broad academic template.
+- Semantic QA is required before visual QA and before C02 rollout.
 
 Next recommended task:
-- E158 visual QA only for E129 reader and E132 slideshow.
-- Do not edit content during E158.
-- Check whether C01 §1.1-§1.6 display all rich blocks or whether slideshow compresses/truncates content.
+- E158 semantic QA only for C01 §1.1-§1.6.
+- Do not edit content.
+- Do not edit UI.
+- Check whether each lesson has enough slides for the concept, whether any lesson is compressed, whether any slide is filler, and whether some lessons need more than 16 slides.
 
 Next actor:
-- ChatGPT or Codex for visual/runtime test.
+- ChatGPT.
 
 Codex required:
-- no for academic QA.
-- yes only if local browser/runtime visual test is needed.
+- no for semantic QA.
 
 Protocol reference:
 - `CODEX_CHATGPT_SYNC_PROTOCOL.md`
 
 ---
 
-Previous task: E156 batch apply clean UTF-8 replacements for C01 §1.4-§1.6.
+Previous task: E157 C01 academic QA completed.
 
-Status: PASS
+Status was: PASS_WITH_VISUAL_QA_PENDING
 
-Files changed:
-- `subjects/math/data/theory_lecture_content.json`
-- `subjects/math/E156_C01_L04_L06_BATCH_APPLY_REPORT.md`
-- `CODEX_STATE.md`
+This has been corrected by E157R.
