@@ -1,0 +1,150 @@
+{
+  "id": "bauman_math_theory_lecture_content_c04_l01_l03_e147_staged",
+  "schema": "bauman_math_content_records_v1",
+  "version": "E147_C04_L01_L03_STAGED",
+  "title": "C04 · Xác suất cơ bản và biến ngẫu nhiên · Nội dung staged §4.1–§4.3",
+  "role": "content_staged_for_merge",
+  "targetFile": "subjects/math/data/theory_lecture_content.json",
+  "recordKey": "lessonId",
+  "mergePolicy": "append_records_without_touching_locked_C01_C02_or_completed_C03_records",
+  "records": [
+    {
+      "lessonId": "MATH-VN-C04-xac_suat_co_ban_va_bien_-L01-uncertainty-sample-space-event-e147",
+      "chapterId": "MATH-VN-C04-xac_suat_co_ban_va_bien_",
+      "lessonTitle": "§4.1 · Bất định, không gian mẫu và biến cố",
+      "title": "§4.1 · Bất định, không gian mẫu và biến cố",
+      "programLectureId": "MATH-PROG-L04-probability-statistics-inference",
+      "programLectureIds": [
+        "MATH-PROG-L04-probability-statistics-inference",
+        "MATH-PROG-L17-ai-machine-learning-math-foundations",
+        "MATH-PROG-L12-state-estimation-sensor-fusion"
+      ],
+      "programAnchorTitle": "Xác suất, thống kê và suy luận dữ liệu",
+      "roadmapRole": "foundation_before_prep",
+      "baumanFocus": "Hiểu xác suất như ngôn ngữ mô tả bất định trong dữ liệu đo, cảm biến, mô hình AI và đánh giá rủi ro kỹ thuật.",
+      "sourceAnchors": {
+        "stageId": "vn",
+        "disciplineId": "probability_statistics_inference",
+        "chapterId": "MATH-VN-C04-xac_suat_co_ban_va_bien_",
+        "programLectureId": "MATH-PROG-L04-probability-statistics-inference"
+      },
+      "tags": [
+        "probability",
+        "uncertainty",
+        "sample space",
+        "event",
+        "sensor noise"
+      ],
+      "slides": [
+        {"role":"problem_framing","title":"Xác suất bắt đầu từ việc thừa nhận hệ thống có bất định","blocks":[{"type":"text","title":"Ý chính","body":"Trong kỹ thuật, cùng một phép đo có thể cho kết quả hơi khác nhau vì nhiễu, sai số môi trường, giới hạn cảm biến hoặc hành vi hệ thống chưa biết hết. Xác suất không làm dữ liệu bớt khó chịu, nhưng biến sự khó chịu đó thành thứ đo được."}]},
+        {"role":"deep_essence","title":"Bất định không phải thiếu hiểu biết đơn giản","blocks":[{"type":"text","title":"Bản chất","body":"Có bất định do thiếu dữ liệu, do nhiễu đo, do mô hình chưa đủ chi tiết và do bản thân quá trình có tính ngẫu nhiên. Khi xây hệ AI hoặc điều khiển, cần phân biệt nguồn bất định trước khi chọn mô hình xác suất."}]},
+        {"role":"counter_intuition","title":"Xác suất không chỉ dùng cho tung đồng xu","blocks":[{"type":"text","title":"Điểm dễ nhầm","body":"Ví dụ đồng xu chỉ là cửa vào. Trong Bauman-style engineering, xác suất xuất hiện ở lỗi cảm biến, độ tin cậy thiết bị, dự báo trạng thái, kiểm định mô hình, phân loại AI và ra quyết định khi dữ liệu không hoàn hảo."}]},
+        {"role":"real_bridge","title":"Từ phép đo cảm biến đến biến cố","blocks":[{"type":"text","title":"Ví dụ","body":"Một cảm biến nhiệt đo quanh 80°C. Biến cố A có thể là 'nhiệt độ thật vượt 85°C'. Thay vì hỏi chắc chắn có quá nhiệt không, ta hỏi xác suất A là bao nhiêu dựa trên dữ liệu và mô hình nhiễu."}]},
+        {"role":"notation","title":"Không gian mẫu, kết quả và biến cố","blocks":[{"type":"formula","title":"Không gian mẫu","body":"Omega = set of all possible outcomes"},{"type":"formula","title":"Biến cố","body":"A subset Omega"},{"type":"formula","title":"Xác suất","body":"0 <= P(A) <= 1, P(Omega)=1"}]},
+        {"role":"core_formula","title":"Các quy tắc xác suất tối thiểu","blocks":[{"type":"formula","title":"Bù","body":"P(A^c) = 1 - P(A)"},{"type":"formula","title":"Hợp","body":"P(A union B) = P(A)+P(B)-P(A intersection B)"},{"type":"formula","title":"Nếu rời nhau","body":"A intersection B = empty => P(A union B)=P(A)+P(B)"}]},
+        {"role":"assumption_gate","title":"Điều kiện trước khi gán xác suất","blocks":[{"type":"text","title":"Điều kiện","body":"Phải xác định rõ không gian mẫu, đơn vị đo, điều kiện thí nghiệm, nguồn dữ liệu và cách lặp lại hoặc mô phỏng quá trình. Nếu không gian mẫu mơ hồ, xác suất sẽ là lớp sơn bóng trên một bức tường nứt."}]},
+        {"role":"mini_case","title":"Mini case: cảnh báo quá nhiệt động cơ","blocks":[{"type":"text","title":"Case","body":"Hệ thống đo nhiệt độ mỗi giây. Biến cố A: nhiệt độ vượt ngưỡng an toàn trong 10 giây tới. Xác suất của A giúp quyết định cảnh báo mềm, giảm tải hoặc dừng khẩn cấp."}]},
+        {"role":"interpretation","title":"Xác suất là mức tin định lượng dưới điều kiện đã nêu","blocks":[{"type":"text","title":"Diễn giải","body":"P(A)=0.8 không có nghĩa A chắc chắn xảy ra. Nó nói rằng trong điều kiện và mô hình đang dùng, A có mức khả tín cao. Nếu điều kiện thay đổi, xác suất cũng phải được cập nhật."}]},
+        {"role":"simulation","title":"Thí nghiệm Monte Carlo nhập môn","blocks":[{"type":"code","title":"Công cụ","body":"count = 0\nfor k in range(N):\n    sample = simulate_system()\n    if event_A(sample):\n        count += 1\np_hat = count / N"},{"type":"text","title":"Mục tiêu","body":"Mô phỏng nhiều lần để ước lượng xác suất một biến cố khi công thức đóng khó viết hoặc hệ thống có nhiều nguồn nhiễu."}]},
+        {"role":"common_mistakes","title":"Lỗi thường gặp khi học xác suất ban đầu","blocks":[{"type":"text","title":"Lỗi","body":"Không định nghĩa Omega; nhầm biến cố với kết quả đơn lẻ; cộng xác suất của hai biến cố không rời nhau; coi xác suất là cảm giác chủ quan mà không ghi điều kiện và dữ liệu đi kèm."}]},
+        {"role":"application","title":"Ứng dụng lập trình: mô tả biến cố bằng hàm kiểm tra","blocks":[{"type":"text","title":"Nhiệm vụ","body":"Viết hàm event_overheat(sample) trả về true/false. Sau đó chạy mô phỏng nhiều mẫu để ước lượng P(overheat). Tách rõ hàm sinh dữ liệu, hàm kiểm tra biến cố và hàm thống kê kết quả."}]},
+        {"role":"practice","title":"Bài luyện tập","blocks":[{"type":"text","title":"Bài tập","body":"Một robot có ba trạng thái sau 1 giây: an toàn, gần vật cản, va chạm. Hãy lập Omega, định nghĩa biến cố nguy hiểm, biến cố không nguy hiểm và viết công thức xác suất bù."}]},
+        {"role":"professor_qa","title":"Vấn đáp kiểm tra hiểu sâu","blocks":[{"type":"qa","title":"Câu hỏi","body":"Vì sao không thể nói xác suất nếu chưa định nghĩa không gian mẫu? Trong hệ cảm biến, biến cố khác gì giá trị đo? Khi nào nên ước lượng xác suất bằng mô phỏng thay vì công thức?"}]},
+        {"role":"bridge","title":"Cầu sang biến ngẫu nhiên","blocks":[{"type":"text","title":"Liên kết","body":"Biến cố chỉ trả lời xảy ra hay không. Nhưng dữ liệu kỹ thuật thường cần một giá trị số: nhiệt độ, sai số, tốc độ, độ lệch. Bài sau biến kết quả ngẫu nhiên thành biến ngẫu nhiên có thể tính toán."}]},
+        {"role":"takeaway","title":"Kết luận cần nhớ","blocks":[{"type":"text","title":"Cốt lõi","body":"Xác suất là ngôn ngữ đo bất định. Muốn dùng đúng phải có không gian mẫu, biến cố, điều kiện và cách gán xác suất rõ ràng."}]}
+      ]
+    },
+    {
+      "lessonId": "MATH-VN-C04-xac_suat_co_ban_va_bien_-L02-random-variable-distribution-e147",
+      "chapterId": "MATH-VN-C04-xac_suat_co_ban_va_bien_",
+      "lessonTitle": "§4.2 · Biến ngẫu nhiên và phân phối xác suất",
+      "title": "§4.2 · Biến ngẫu nhiên và phân phối xác suất",
+      "programLectureId": "MATH-PROG-L04-probability-statistics-inference",
+      "programLectureIds": [
+        "MATH-PROG-L04-probability-statistics-inference",
+        "MATH-PROG-L17-ai-machine-learning-math-foundations",
+        "MATH-PROG-L12-state-estimation-sensor-fusion"
+      ],
+      "programAnchorTitle": "Xác suất, thống kê và suy luận dữ liệu",
+      "roadmapRole": "foundation_before_prep",
+      "baumanFocus": "Hiểu biến ngẫu nhiên như cầu nối giữa kết quả bất định và dữ liệu số, phân biệt rời rạc/liên tục, PMF/PDF/CDF và ý nghĩa phân phối trong mô hình nhiễu.",
+      "sourceAnchors": {
+        "stageId": "vn",
+        "disciplineId": "probability_statistics_inference",
+        "chapterId": "MATH-VN-C04-xac_suat_co_ban_va_bien_",
+        "programLectureId": "MATH-PROG-L04-probability-statistics-inference"
+      },
+      "tags": [
+        "random variable",
+        "distribution",
+        "PMF",
+        "PDF",
+        "CDF"
+      ],
+      "slides": [
+        {"role":"problem_framing","title":"Biến ngẫu nhiên biến kết quả bất định thành con số dùng được","blocks":[{"type":"text","title":"Ý chính","body":"Thuật toán cần số để tính toán. Biến ngẫu nhiên X gán mỗi kết quả trong không gian mẫu thành một giá trị số như nhiệt độ, sai số vị trí, thời gian hỏng hoặc số gói tin mất."}]},
+        {"role":"deep_essence","title":"Biến ngẫu nhiên là hàm trên không gian mẫu","blocks":[{"type":"formula","title":"Bản chất","body":"X: Omega -> R"},{"type":"text","title":"Diễn giải","body":"Kết quả thật có thể phức tạp, nhưng X rút ra đại lượng ta quan tâm. Vì vậy cùng một thí nghiệm có thể sinh nhiều biến ngẫu nhiên khác nhau."}]},
+        {"role":"counter_intuition","title":"Biến ngẫu nhiên không phải một số cố định","blocks":[{"type":"text","title":"Điểm dễ nhầm","body":"Trước khi quan sát, X là một đại lượng chưa biết với phân phối xác suất. Sau khi đo, ta có một giá trị cụ thể x. Nhầm X với x sẽ làm hỏng cách đọc mô hình thống kê."}]},
+        {"role":"real_bridge","title":"Biến ngẫu nhiên trong dữ liệu đo và AI","blocks":[{"type":"text","title":"Ví dụ","body":"X có thể là sai số cảm biến GPS, Y là thời gian đáp ứng của server, Z là số lỗi trong một ca vận hành. Mỗi biến có phân phối riêng và yêu cầu cách đánh giá riêng."}]},
+        {"role":"notation","title":"Rời rạc, liên tục và hàm phân phối","blocks":[{"type":"formula","title":"Rời rạc","body":"p_X(x)=P(X=x)"},{"type":"formula","title":"Liên tục","body":"P(a <= X <= b)=integral_a^b f_X(x) dx"},{"type":"formula","title":"CDF","body":"F_X(x)=P(X <= x)"}]},
+        {"role":"core_formula","title":"PMF, PDF, CDF nói ba kiểu thông tin khác nhau","blocks":[{"type":"text","title":"PMF","body":"Cho xác suất tại từng giá trị rời rạc."},{"type":"text","title":"PDF","body":"Mật độ xác suất cho biến liên tục; bản thân f(x) không phải xác suất của đúng một điểm."},{"type":"text","title":"CDF","body":"Cho xác suất tích lũy đến ngưỡng x, rất hữu ích khi hỏi rủi ro vượt ngưỡng."}]},
+        {"role":"assumption_gate","title":"Điều kiện chọn phân phối","blocks":[{"type":"text","title":"Điều kiện","body":"Cần hiểu đại lượng là rời rạc hay liên tục, có bị chặn không, có lệch không, có outlier không, dữ liệu có độc lập không và phân phối có được kiểm tra bằng dữ liệu thực nghiệm không."}]},
+        {"role":"mini_case","title":"Mini case: sai số cảm biến khoảng cách","blocks":[{"type":"text","title":"Case","body":"Nếu sai số khoảng cách quanh 0 và nhiễu do nhiều nguồn nhỏ cộng lại, phân phối chuẩn có thể là giả định ban đầu. Nếu có nhiễu đột biến do vật cản hoặc phản xạ, phân phối đuôi dày có thể phù hợp hơn."}]},
+        {"role":"interpretation","title":"Phân phối là hình dạng của bất định","blocks":[{"type":"text","title":"Diễn giải","body":"Hai cảm biến có cùng sai số trung bình nhưng phân phối khác nhau có thể tạo rủi ro rất khác nhau. Đuôi phân phối quyết định xác suất gặp tình huống hiếm nhưng nguy hiểm."}]},
+        {"role":"simulation","title":"Thí nghiệm lấy mẫu từ phân phối","blocks":[{"type":"code","title":"Công cụ","body":"samples = rng.normal(loc=0, scale=sigma, size=N)\nprob = (abs(samples) > threshold).mean()"},{"type":"text","title":"Mục tiêu","body":"Ước lượng xác suất sai số vượt ngưỡng và quan sát histogram để so sánh với giả định phân phối."}]},
+        {"role":"common_mistakes","title":"Lỗi thường gặp với biến ngẫu nhiên","blocks":[{"type":"text","title":"Lỗi","body":"Gọi PDF là xác suất tại một điểm; quên đơn vị của mật độ; dùng phân phối chuẩn cho mọi thứ; không phân biệt biến rời rạc và liên tục; chỉ nhìn trung bình mà bỏ qua đuôi phân phối."}]},
+        {"role":"application","title":"Ứng dụng lập trình: biểu diễn phân phối từ dữ liệu","blocks":[{"type":"text","title":"Nhiệm vụ","body":"Từ một danh sách sai số cảm biến, vẽ histogram, ước lượng CDF thực nghiệm, tính xác suất vượt ngưỡng và so sánh với mô hình normal giả định."}]},
+        {"role":"practice","title":"Bài luyện tập","blocks":[{"type":"text","title":"Bài tập","body":"Với X là số gói tin mất trong 1 phút và Y là độ trễ mạng, hãy xác định biến nào rời rạc, biến nào liên tục, rồi nêu PMF/PDF/CDF tương ứng dùng để trả lời câu hỏi kỹ thuật nào."}]},
+        {"role":"professor_qa","title":"Vấn đáp kiểm tra hiểu sâu","blocks":[{"type":"qa","title":"Câu hỏi","body":"Tại sao X là hàm chứ không chỉ là giá trị? Vì sao với biến liên tục P(X=x)=0 nhưng khoảng a<=X<=b vẫn có xác suất dương? Khi đánh giá an toàn, vì sao CDF/đuôi phân phối quan trọng?"}]},
+        {"role":"bridge","title":"Cầu sang kỳ vọng và phương sai","blocks":[{"type":"text","title":"Liên kết","body":"Biết phân phối là biết hình dạng bất định. Nhưng để tóm tắt nhanh và đưa vào thuật toán, ta cần các đại lượng đặc trưng như kỳ vọng, phương sai và độ lệch chuẩn."}]},
+        {"role":"takeaway","title":"Kết luận cần nhớ","blocks":[{"type":"text","title":"Cốt lõi","body":"Biến ngẫu nhiên là hàm biến kết quả bất định thành số. Phân phối mô tả cách xác suất trải trên các giá trị có thể xảy ra."}]}
+      ]
+    },
+    {
+      "lessonId": "MATH-VN-C04-xac_suat_co_ban_va_bien_-L03-expectation-variance-standard-deviation-e147",
+      "chapterId": "MATH-VN-C04-xac_suat_co_ban_va_bien_",
+      "lessonTitle": "§4.3 · Kỳ vọng, phương sai và độ lệch chuẩn",
+      "title": "§4.3 · Kỳ vọng, phương sai và độ lệch chuẩn",
+      "programLectureId": "MATH-PROG-L04-probability-statistics-inference",
+      "programLectureIds": [
+        "MATH-PROG-L04-probability-statistics-inference",
+        "MATH-PROG-L17-ai-machine-learning-math-foundations",
+        "MATH-PROG-L12-state-estimation-sensor-fusion"
+      ],
+      "programAnchorTitle": "Xác suất, thống kê và suy luận dữ liệu",
+      "roadmapRole": "foundation_before_prep",
+      "baumanFocus": "Nắm kỳ vọng, phương sai và độ lệch chuẩn như bộ đo trung tâm và độ phân tán của bất định, dùng cho nhiễu cảm biến, đánh giá mô hình và rủi ro vận hành.",
+      "sourceAnchors": {
+        "stageId": "vn",
+        "disciplineId": "probability_statistics_inference",
+        "chapterId": "MATH-VN-C04-xac_suat_co_ban_va_bien_",
+        "programLectureId": "MATH-PROG-L04-probability-statistics-inference"
+      },
+      "tags": [
+        "expectation",
+        "variance",
+        "standard deviation",
+        "risk",
+        "sensor noise"
+      ],
+      "slides": [
+        {"role":"problem_framing","title":"Kỳ vọng và phương sai tóm tắt một phân phối thành tín hiệu đọc nhanh","blocks":[{"type":"text","title":"Ý chính","body":"Dữ liệu bất định thường có quá nhiều giá trị có thể xảy ra. Kỳ vọng cho biết trung tâm dài hạn; phương sai và độ lệch chuẩn cho biết mức dao động quanh trung tâm đó."}]},
+        {"role":"deep_essence","title":"Kỳ vọng là trung bình có trọng số xác suất","blocks":[{"type":"text","title":"Bản chất","body":"Giá trị có xác suất cao đóng góp nhiều hơn vào kỳ vọng. Vì vậy kỳ vọng không nhất thiết là giá trị xảy ra nhiều nhất, cũng không chắc là giá trị sẽ xuất hiện trong một lần đo cụ thể."}]},
+        {"role":"counter_intuition","title":"Trung bình đẹp có thể che rủi ro xấu","blocks":[{"type":"text","title":"Điểm dễ nhầm","body":"Hai hệ có cùng kỳ vọng sai số nhưng phương sai khác nhau sẽ có độ ổn định khác nhau. Một hệ có trung bình tốt nhưng dao động lớn có thể nguy hiểm hơn hệ trung bình kém nhẹ nhưng ổn định."}]},
+        {"role":"real_bridge","title":"Từ nhiễu cảm biến đến độ tin cậy mô hình","blocks":[{"type":"text","title":"Ví dụ","body":"Nếu cảm biến có sai số kỳ vọng gần 0 nhưng độ lệch chuẩn lớn, đo trung bình không lệch nhưng từng lần đo vẫn có thể sai mạnh. Bộ lọc và fusion phải quan tâm cả bias lẫn variance."}]},
+        {"role":"notation","title":"Công thức kỳ vọng và phương sai","blocks":[{"type":"formula","title":"Rời rạc","body":"E[X] = sum_x x p_X(x)"},{"type":"formula","title":"Liên tục","body":"E[X] = integral x f_X(x) dx"},{"type":"formula","title":"Phương sai","body":"Var(X)=E[(X-E[X])^2]"},{"type":"formula","title":"Độ lệch chuẩn","body":"sigma_X = sqrt(Var(X))"}]},
+        {"role":"core_formula","title":"Dạng tính nhanh của phương sai","blocks":[{"type":"formula","title":"Công thức biến đổi","body":"Var(X) = E[X^2] - (E[X])^2"},{"type":"text","title":"Ý nghĩa","body":"Công thức này hữu ích khi tính bằng dữ liệu hoặc mô phỏng, nhưng cần chú ý sai số số học nếu hai số lớn gần nhau bị trừ."}]},
+        {"role":"assumption_gate","title":"Điều kiện để diễn giải trung bình và phương sai đúng","blocks":[{"type":"text","title":"Điều kiện","body":"Cần biết mẫu có đại diện không, dữ liệu có outlier không, phân phối có đuôi dày không, quá trình có ổn định theo thời gian không và đơn vị đo có được chuẩn hóa đúng không."}]},
+        {"role":"mini_case","title":"Mini case: so sánh hai cảm biến khoảng cách","blocks":[{"type":"text","title":"Case","body":"Cảm biến A có sai số trung bình 0.1m, sigma 0.05m. Cảm biến B có sai số trung bình 0.0m, sigma 0.4m. B không bias nhưng dao động mạnh; A lệch nhẹ nhưng ổn định hơn. Chọn cảm biến phụ thuộc ngưỡng an toàn."}]},
+        {"role":"interpretation","title":"Bias, variance và độ ổn định kỹ thuật","blocks":[{"type":"text","title":"Bias","body":"Sai lệch hệ thống của trung tâm đo so với giá trị thật."},{"type":"text","title":"Variance","body":"Mức phân tán của kết quả quanh trung tâm."},{"type":"text","title":"Risk","body":"Rủi ro thường nằm ở xác suất vượt ngưỡng, không chỉ ở kỳ vọng."}]},
+        {"role":"simulation","title":"Thí nghiệm tính thống kê từ mẫu","blocks":[{"type":"code","title":"Công cụ","body":"mu = samples.mean()\nvar = samples.var(ddof=0)\nsigma = samples.std(ddof=0)\nprob_tail = (abs(samples-mu) > 3*sigma).mean()"},{"type":"text","title":"Mục tiêu","body":"So sánh mean, variance, standard deviation và xác suất vượt ngưỡng trên dữ liệu nhiễu thường và dữ liệu có outlier."}]},
+        {"role":"common_mistakes","title":"Lỗi thường gặp với kỳ vọng và phương sai","blocks":[{"type":"text","title":"Lỗi","body":"Coi kỳ vọng là kết quả chắc chắn; bỏ qua đơn vị của phương sai; chỉ báo trung bình mà không báo độ lệch chuẩn; dùng mean cho dữ liệu lệch mạnh mà không kiểm median/quantile."}]},
+        {"role":"application","title":"Ứng dụng lập trình: dashboard thống kê cho dữ liệu đo","blocks":[{"type":"text","title":"Nhiệm vụ","body":"Tạo hàm summarize_sensor(samples) trả về mean, std, min, max, quantile 5/50/95 và xác suất vượt ngưỡng. Không chỉ in mean, vì mean một mình là con đom đóm trong nhà kho tối."}]},
+        {"role":"practice","title":"Bài luyện tập","blocks":[{"type":"text","title":"Bài tập","body":"Một cảm biến có sai số mẫu: [-0.1, 0.0, 0.1, 0.2, 2.0]. Tính mean, variance xấp xỉ và giải thích vì sao outlier làm diễn giải trung bình trở nên nguy hiểm."}]},
+        {"role":"professor_qa","title":"Vấn đáp kiểm tra hiểu sâu","blocks":[{"type":"qa","title":"Câu hỏi","body":"Vì sao hai hệ có cùng kỳ vọng nhưng phương sai khác nhau không tương đương? Khi nào độ lệch chuẩn không đủ để mô tả rủi ro? Vì sao cần quantile hoặc xác suất vượt ngưỡng trong hệ an toàn?"}]},
+        {"role":"bridge","title":"Cầu sang hiệp phương sai và tương quan","blocks":[{"type":"text","title":"Liên kết","body":"Một biến ngẫu nhiên mô tả một đại lượng. Nhưng dữ liệu kỹ thuật thường có nhiều đại lượng thay đổi cùng nhau. Bài tiếp theo cần hiệp phương sai và tương quan để đo quan hệ giữa các biến."}]},
+        {"role":"takeaway","title":"Kết luận cần nhớ","blocks":[{"type":"text","title":"Cốt lõi","body":"Kỳ vọng đo trung tâm, phương sai đo độ phân tán, độ lệch chuẩn đưa độ phân tán về cùng đơn vị với dữ liệu. Đánh giá rủi ro cần nhìn cả trung tâm, dao động và đuôi phân phối."}]}
+      ]
+    }
+  ]
+}
