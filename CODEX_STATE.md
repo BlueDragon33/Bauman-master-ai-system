@@ -1,5 +1,52 @@
 # CODEX_STATE
 
+Current task: E149 quality gate for C01 L01 content depth.
+
+Status: BLOCKED
+
+Branch: `codex/e149-c01-l01-content-depth`
+Base branch: `codex/e146-merge-c03-l04-l06`
+Main sync status: `stacked_branch`
+
+Files changed:
+- `CODEX_STATE.md`
+- `subjects/math/E149_QUALITY_GATE_REPORT.md`
+
+What changed:
+- Ran a content/runtime quality gate only; did not patch lesson content.
+- Confirmed upgraded §1.1 content contains mojibake/encoding corruption with literal `?` replacements such as `V?n ??`, `k? thu?t`, and `hi?n t??ng`.
+- Confirmed E129 reads `block.body`, `block.content`, and `block.text`.
+- Confirmed E132 slideshow compresses blocks and sentences, so rich content can appear shortened in slideshow mode.
+
+Verification:
+- JSON parse: PASS
+- Mojibake check for §1.1: FAIL, 62 suspicious blocks found
+- E129 block text/body/content render support: PASS
+- E132 compression behavior confirmed: PASS
+- Runtime/UI/boot files changed: none
+
+Next recommended task:
+- ChatGPT must prepare clean UTF-8 replacement content for §1.1 first. Do not merge `codex/e149-c01-l01-content-depth` into `main` while mojibake exists.
+
+Next actor:
+- ChatGPT
+
+Codex required:
+- no for content drafting
+- yes only for later replacement/verification
+- Reason: ChatGPT must prepare clean UTF-8 replacement content first; Codex should later apply it locally and rerun JSON/target-lesson verification.
+
+ChatGPT can do:
+- Produce a clean UTF-8 §1.1 replacement bundle or prompt without editing runtime/UI files.
+
+Codex prompt file:
+- none
+
+Protocol reference:
+- `CODEX_CHATGPT_SYNC_PROTOCOL.md`
+
+---
+
 Current task: E149 C01 L01 content depth upgrade.
 
 Status: PASS
