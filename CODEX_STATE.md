@@ -1,5 +1,53 @@
 # CODEX_STATE
 
+Current task: E165C package availability check.
+
+Status: BLOCKED_E165C_CONTENT_PACKAGE_MISSING
+
+Branch: `main`
+Base branch: `main`
+
+Scope:
+- Checked only the current ledger and targeted `subjects/math` paths/keywords.
+- Focus: E129 Reader, E132 Slideshow, C01 content-flow safety.
+
+User goal:
+- Prepare for a compact-only E132/C01 task without breaking schema, Reader full content, formulas, or long-block rendering.
+
+Result:
+- No `E165C` prompt/package or `E165C_CONTENT_PACKAGE` file was found under `subjects/math`.
+- No academic content was generated.
+- No UI/runtime/content patch was applied.
+
+Files changed:
+- `CODEX_STATE.md`
+- `subjects/math/E165C_CONTENT_PACKAGE_MISSING_REPORT.md`
+
+Files not touched:
+- `subjects/math/data/theory_lecture_content.json`
+- `subjects/math/assets/theory_skin/theory-tab-E129.js`
+- `subjects/math/assets/theory_skin/theory-tab-E129.css`
+- `subjects/math/assets/theory_skin/theory-slideshow-E132.js`
+- `subjects/math/assets/theory_skin/theory-slideshow-E132.css`
+- Other subjects
+
+Verification:
+- `git status --short`: working tree was clean before this report.
+- Targeted search for `*E165C*`: no files.
+- Targeted search for `*E165*`: no files.
+- Targeted `rg` inside `subjects/math`: only existing E160-E164 Full lecture references found.
+
+Decision:
+- STOPPED as required by the user rule: if E165C content package is missing, inspect/report only and do not invent content.
+
+Next required input:
+- Provide or commit the E165C content package/prompt file under `subjects/math`.
+
+Next actor:
+- User / ChatGPT content package provider
+
+---
+
 Current task: E164 C01 content-flow layout audit PASS on main.
 
 Status: C01_FLOW_LAYOUT_PASS_IN_MAIN
