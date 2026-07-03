@@ -1,5 +1,60 @@
 # CODEX_STATE
 
+Current task: E163 UI-only runtime patch after E162 failure.
+
+Status: RUNTIME_SMOKE_PASS_READY_FOR_MAIN_SYNC
+
+Branch: `codex/e150-c01-l01-clean-replacement`
+Base branch: `codex/e146-merge-c03-l04-l06`
+Main sync status: `pending_controlled_sync`
+
+Main sync / pull instruction:
+- Do not pull `main` until controlled sync is completed.
+- E163 browser smoke now passes on `codex/e150-c01-l01-clean-replacement`.
+- Next step is merge/sync verified result into `main`, then push `main`.
+
+Files changed:
+- `subjects/math/assets/theory_skin/theory-tab-E129.css`
+- `subjects/math/assets/theory_skin/theory-slideshow-E132.js`
+- `subjects/math/E163_UI_RUNTIME_PATCH_AND_SMOKE_PASS_REPORT.md`
+- `CODEX_STATE.md`
+
+Root cause:
+- E129 learner CSS hid `.e129-placeholder`, which contains the C01 lesson chips and `.e129-slide-list`.
+- E132 MutationObserver re-opened the deck after render and reset Compact mode to Full.
+
+Verification:
+- E129/E132 JS syntax: PASS
+- Browser opened Math page: PASS
+- Console errors: 0
+- C01 lesson chips visible: 6/6
+- Tested lessons: `§1.1`, `§1.4`, `§1.5`, `§1.6`
+- Each tested lesson opens E160 overlay: PASS
+- Full lecture default: PASS
+- 4 blocks / 4 cards in Full mode: PASS
+- No ellipsis clamp in Full mode: PASS
+- Compact/Full toggle: PASS
+- Keyboard Right/Left/Space/F/C/Esc: PASS
+- Esc returns to E129 reader: PASS
+- Content JSON edited: no
+- Main sync: pending
+
+Next recommended task:
+- Controlled merge into `main`, verify JSON counts/runtime markers, push `main`.
+- Final pull target should be `main` only after sync.
+
+Next actor:
+- Codex
+
+Codex required:
+- yes
+- Reason: controlled main sync and push are required so the user can pull directly from `main`.
+
+Protocol reference:
+- `CODEX_CHATGPT_SYNC_PROTOCOL.md`
+
+---
+
 Current task: E162 runtime browser smoke test.
 
 Status: FAIL

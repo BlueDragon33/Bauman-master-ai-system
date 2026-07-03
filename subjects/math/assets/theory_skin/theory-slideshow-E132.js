@@ -169,7 +169,10 @@
   function move(delta){idx=clamp(idx+delta); render();}
   function toggleMode(){mode=mode==='compact'?'full':'compact'; render();}
   function enhance(){
-    if(isPresenting()) return openDeck();
+    if(isPresenting()){
+      if(deck&&deck.classList.contains('open')&&document.body.classList.contains('e132-overlay-open')) return true;
+      return openDeck();
+    }
     if(deck) deck.classList.remove('open');
     document.body.classList.remove('e132-overlay-open');
     return false;
