@@ -1,35 +1,44 @@
 # CODEX_STATE
 
-Current task: E159 C01 visual/render QA completed.
+Current task: E160 E132 full lecture mode UI-only patch applied.
 
-Status: VISUAL_QA_FAIL_E132_COMPRESSION
+Status: PATCH_APPLIED_CODE_INSPECTION_PASS_RUNTIME_SMOKE_PENDING
 
 Branch: `codex/e150-c01-l01-clean-replacement`
 Base branch: `codex/e146-merge-c03-l04-l06`
 Main sync status: `stacked_branch`
 
 Files changed:
-- `subjects/math/E159_C01_VISUAL_RENDER_QA_REPORT.md`
+- `subjects/math/assets/theory_skin/theory-slideshow-E132.js`
+- `subjects/math/assets/theory_skin/theory-slideshow-E132.css`
+- `subjects/math/E160_E132_FULL_LECTURE_MODE_PATCH_REPORT.md`
 - `CODEX_STATE.md`
 
-Visual/render QA verdict:
-- E129 normal reader appears capable of rendering all slide blocks by code inspection.
-- E132 slideshow intentionally compresses content and can drop blocks/sentences before display.
-- Therefore C01 rich content may look thin in slideshow even though JSON is deep.
+Scope lock:
+- UI-only patch.
+- Content JSON was not edited.
+- E129 reader was not edited.
+- subject-manifest, lessons, frame/content data and boot/runtime files were not edited.
 
-Evidence summary:
-- E129 uses `blocks.map(blockHtml).join('')` and no block limit was found in normal reader render path.
-- E132 defines `LIMIT`, uses `blocks.slice(0,max)`, `sentenceBits`, and `compact`, and self-check reports `compactContent:true`.
+What changed:
+- E132 slideshow now opens in full lecture mode by default.
+- Full lecture mode renders all raw blocks from each E129 slide.
+- Full mode does not use block limits, sentenceBits or text truncation.
+- Compact mode remains optional through a deck button and keyboard shortcuts.
+- CSS now supports full lecture stacked cards with scrollable content area.
+
+Verification:
+- Code inspection: PASS.
+- Runtime/browser smoke test: PENDING.
 
 Next recommended task:
-- E160 UI-only patch for E132 full lecture mode.
+- E161 runtime visual smoke test.
 - Do not edit content.
-- Do not edit `theory_lecture_content.json`.
-- Patch only E132 slideshow JS/CSS unless a tiny E129 hook is required.
-- Render all blocks in full lecture mode; keep compact mode optional only if useful.
+- Verify C01 §1.1, §1.4, §1.5 and §1.6 in slideshow.
+- Confirm deck label shows Full lecture, 4-block slides show 4 cards, body text is not truncated, Compact/Full toggle works, keyboard navigation works, and Esc exits.
 
 Next actor:
-- Codex or ChatGPT with strict UI-only patch scope.
+- Codex/local browser or user visual test.
 
 Codex required:
 - recommended for local runtime/browser smoke test.
@@ -39,6 +48,6 @@ Protocol reference:
 
 ---
 
-Previous task: E158 C01 semantic QA completed.
+Previous task: E159 C01 visual/render QA completed.
 
-Status: SEMANTIC_QA_PASS_VISUAL_QA_REQUIRED
+Status: VISUAL_QA_FAIL_E132_COMPRESSION
