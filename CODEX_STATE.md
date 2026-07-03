@@ -14,11 +14,6 @@ Scope:
 - E129 Reader was not edited and must remain the full lecture reader.
 - `subjects/math/data/theory_lecture_content.json` was not edited in this direct patch.
 
-Reason:
-- Previous E165C Codex run was blocked because `E165C_CONTENT_PACKAGE` was missing.
-- Codex stopped without patching runtime, UI, or content.
-- Repo inspection confirmed the report-only result.
-
 Files changed in direct patch:
 - `subjects/math/assets/theory_skin/theory-slideshow-E132.js`
 - `subjects/math/E165C_CHATGPT_DIRECT_COMPACT_ONLY_PATCH_REPORT.md`
@@ -43,13 +38,6 @@ C01 compact deck coverage:
 - §1.4 · Cơ sở, span và tọa độ
 - §1.5 · Không gian con và biểu diễn dữ liệu
 - §1.6 · Độc lập tuyến tính, chiều và hạng dữ liệu
-
-Commits created:
-- `62eeadcefed086011220887b222e9e737c2846a0` · initial E132 compact-only patch.
-- `e3a2ef1999eedb914bc5a9b5fc459f3f283a6beb` · report file.
-- `b8989fd6304fb6ab23c9930fc21d33053ed3254a` · hardened lesson detection.
-- `375cf91d66b07467914f13d2fde2293102444a17` · verify-only prompt file.
-- `109cd6bd7567b3277acb19c9b47e2de34c7f28dc` · CODEX_STATE compact patch ledger.
 
 Verification:
 - GitHub update succeeded for E132 JS.
