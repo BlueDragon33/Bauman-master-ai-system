@@ -1,5 +1,61 @@
 # CODEX_STATE
 
+Current task: E148 ChatGPT + Codex sync protocol established.
+
+Status: PASS
+
+Branch: `codex/e146-merge-c03-l04-l06`
+Base branch: `main`
+Main sync status: `needs_fast_forward`
+
+Branch stack:
+1. `main`
+2. `codex/e146-merge-c03-l04-l06`
+3. `codex/e147-c04-staged-content`
+
+Safe merge order:
+1. Merge/fast-forward `codex/e146-merge-c03-l04-l06` into `main`.
+2. Then merge `codex/e147-c04-staged-content` into `main`.
+
+Files changed:
+- `CODEX_CHATGPT_SYNC_PROTOCOL.md`
+- `CODEX_STATE.md`
+- `subjects/math/E148_SYNC_PROTOCOL_REPORT.md`
+- `subjects/math/E148_CODEX_BRANCH_SYNC_PROMPT.md`
+
+What changed:
+- Added a permanent repo-level ChatGPT + Codex sync protocol, a report, and a ready-to-copy Codex prompt for the next branch sync step.
+
+Verification:
+- `CODEX_CHATGPT_SYNC_PROTOCOL.md` exists: PASS
+- `CODEX_STATE.md` top block references `CODEX_CHATGPT_SYNC_PROTOCOL.md`: PASS
+- `CODEX_STATE.md` includes branch, base branch, main sync status, next actor, and Codex required: PASS
+- `main` is ancestor of current branch: PASS
+- Current branch is not yet in `main`: PASS, fast-forward is still needed
+- `codex/e146-merge-c03-l04-l06` is ancestor of `origin/codex/e147-c04-staged-content`: PASS
+- Runtime/UI/boot files changed: none
+
+Next recommended task:
+- Use `subjects/math/E148_CODEX_BRANCH_SYNC_PROMPT.md` to fast-forward `main` with E146 first, then merge `codex/e147-c04-staged-content` into `main`.
+
+Next actor:
+- Codex
+
+Codex required:
+- yes
+- Reason: branch merge/fast-forward with stacked branches and local verification.
+
+ChatGPT can do:
+- Read `CODEX_STATE.md` and `CODEX_CHATGPT_SYNC_PROTOCOL.md`, create staged content/report/prompt files, and prepare documentation-only handoffs.
+
+Codex prompt file:
+- `subjects/math/E148_CODEX_BRANCH_SYNC_PROMPT.md`
+
+Protocol reference:
+- `CODEX_CHATGPT_SYNC_PROTOCOL.md`
+
+---
+
 Current task: E146 C03 L04-L06 staged merge completed.
 
 Status: PASS. Staged C03 §3.4-§3.6 theory records were JSON-safe appended into the primary Math Theory runtime content file on branch `codex/e146-merge-c03-l04-l06`. Boot/runtime/UI files were not changed.
