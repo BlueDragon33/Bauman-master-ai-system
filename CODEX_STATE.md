@@ -1,5 +1,93 @@
 # CODEX_STATE
 
+Current task: E163 UI runtime PASS and synced to main.
+
+Status: RUNTIME_SMOKE_PASS_C01_BASELINE_READY_IN_MAIN
+
+Branch: `main`
+Base branch: `main`
+Main sync status: `in_main`
+
+Main sync / pull instruction:
+- Verified E163 result is now in `main`.
+- User should pull directly from `main`:
+  - `git checkout main`
+  - `git pull origin main`
+
+Files changed:
+- `CODEX_CHATGPT_SYNC_PROTOCOL.md`
+- `CODEX_STATE.md`
+- `subjects/math/data/theory_lecture_content.json`
+- `subjects/math/data/theory_lecture_content_c01_l01_e150_clean_replacement.json`
+- `subjects/math/data/theory_lecture_content_c01_l02_e151_clean_replacement.json`
+- `subjects/math/data/theory_lecture_content_c01_l03_e152_clean_replacement.json`
+- `subjects/math/data/theory_lecture_content_c01_l04_e153_clean_replacement.json`
+- `subjects/math/data/theory_lecture_content_c01_l05_e154_clean_replacement.json`
+- `subjects/math/data/theory_lecture_content_c01_l06_e155_clean_replacement.json`
+- `subjects/math/assets/theory_skin/theory-slideshow-E132.css`
+- `subjects/math/assets/theory_skin/theory-slideshow-E132.js`
+- `subjects/math/assets/theory_skin/theory-tab-E129.css`
+- `subjects/math/E146_CODEX_MERGE_PROMPT.md`
+- `subjects/math/E146_MERGE_C03_L04_L06_STAGED.md`
+- `subjects/math/E148_CODEX_BRANCH_SYNC_PROMPT.md`
+- `subjects/math/E148_SYNC_PROTOCOL_REPORT.md`
+- `subjects/math/E150_C01_L01_CLEAN_REPLACEMENT_REPORT.md`
+- `subjects/math/E150_CODEX_APPLY_C01_L01_CLEAN_REPLACEMENT_PROMPT.md`
+- `subjects/math/E151_C01_L02_CLEAN_REPLACEMENT_REPORT.md`
+- `subjects/math/E151_CODEX_APPLY_C01_L02_CLEAN_REPLACEMENT_PROMPT.md`
+- `subjects/math/E152_C01_L03_CLEAN_REPLACEMENT_REPORT.md`
+- `subjects/math/E152_CODEX_APPLY_C01_L03_CLEAN_REPLACEMENT_PROMPT.md`
+- `subjects/math/E153_C01_L04_CHATGPT_ONLY_PACKAGE_REPORT.md`
+- `subjects/math/E154_C01_L05_CHATGPT_ONLY_PACKAGE_REPORT.md`
+- `subjects/math/E155_C01_L06_CHATGPT_ONLY_PACKAGE_REPORT.md`
+- `subjects/math/E156_C01_L04_L06_BATCH_APPLY_REPORT.md`
+- `subjects/math/E156_CODEX_BATCH_APPLY_C01_L04_L06_PROMPT.md`
+- `subjects/math/E157R_C01_QA_CRITERIA_CORRECTION.md`
+- `subjects/math/E157_C01_ACADEMIC_QA_REPORT.md`
+- `subjects/math/E158_C01_SEMANTIC_QA_REPORT.md`
+- `subjects/math/E159_C01_VISUAL_RENDER_QA_REPORT.md`
+- `subjects/math/E160_E132_FULL_LECTURE_MODE_PATCH_REPORT.md`
+- `subjects/math/E161_E132_STATIC_SMOKE_AND_BROWSER_CHECKLIST.md`
+- `subjects/math/E162_RUNTIME_SMOKE_FAIL_REPORT.md`
+- `subjects/math/E163_UI_RUNTIME_PATCH_AND_SMOKE_PASS_REPORT.md`
+
+Verification:
+- Browser smoke: PASS
+- C01 lesson chips visible: 6/6
+- Tested lessons: `§1.1`, `§1.4`, `§1.5`, `§1.6`
+- E132 overlay header: `E160 THEORY DECK`
+- Full lecture default: PASS
+- 4 blocks / 4 cards in Full mode: PASS
+- No ellipsis clamp in Full mode: PASS
+- Compact/Full toggle: PASS
+- Keyboard Right/Left/Space/F/C/Esc: PASS
+- Esc exits to E129 reader: PASS
+- Console errors: 0
+- JSON parse: PASS
+- C01 record count: 6
+- C02 record count: 6
+- C03 record count: 6
+- No duplicate lessonId: PASS
+- No mojibake in C01: PASS
+- E132 release marker present: `E160_ISOLATED_OVERLAY_DECK_FULL_LECTURE`
+- Main sync: PASS
+
+Next recommended task:
+- User pulls `main` and retests locally once.
+- Then continue C02 content-depth or open a separate UI polish task.
+
+Next actor:
+- User
+
+Codex required:
+- no
+- Reason: verified E163 result has been merged into `main`; Codex is only needed for the next task.
+
+Protocol reference:
+- `CODEX_CHATGPT_SYNC_PROTOCOL.md`
+
+---
+
 Current task: E163 UI-only runtime patch after E162 failure.
 
 Status: RUNTIME_SMOKE_PASS_READY_FOR_MAIN_SYNC
