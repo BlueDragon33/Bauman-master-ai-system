@@ -81,8 +81,14 @@ body:not(.e129-presenting):not(.e129-theory-storage) .e129-theory-shell .e129-re
 body:not(.e129-presenting):not(.e129-theory-storage) .e129-theory-shell .e129-kicker,
 body:not(.e129-presenting):not(.e129-theory-storage) .e129-theory-shell .e129-reader-head .e129-muted,
 body:not(.e129-presenting):not(.e129-theory-storage) .e129-theory-shell .e129-grid,
-body:not(.e129-presenting):not(.e129-theory-storage) .e129-theory-shell .e129-placeholder,
 body:not(.e129-presenting):not(.e129-theory-storage) .e129-theory-shell .e129-status{display:none!important}
+body:not(.e129-presenting):not(.e129-theory-storage) .e129-theory-shell .e129-placeholder{display:block!important;margin-top:14px!important;padding:18px!important;border-style:solid!important;background:linear-gradient(145deg,rgba(9,18,34,.84),rgba(18,30,55,.78))!important}
+body:not(.e129-presenting):not(.e129-theory-storage) .e129-theory-shell .e129-placeholder>.e129-badge,
+body:not(.e129-presenting):not(.e129-theory-storage) .e129-theory-shell .e129-placeholder>.e129-muted{display:none!important}
+body:not(.e129-presenting):not(.e129-theory-storage) .e129-theory-shell .e129-placeholder h2{margin:0 0 12px!important;font-size:22px!important;line-height:1.18!important;color:#fff!important}
+body:not(.e129-presenting):not(.e129-theory-storage) .e129-theory-shell .e129-placeholder .e129-pill-row{display:flex!important;gap:8px!important;flex-wrap:wrap!important;margin:0 0 14px!important}
+body:not(.e129-presenting):not(.e129-theory-storage) .e129-theory-shell .e129-placeholder .e129-chip-btn{max-width:100%;white-space:normal;text-align:left;line-height:1.25}
+body:not(.e129-presenting):not(.e129-theory-storage) .e129-theory-shell .e129-slide-list{display:grid!important;grid-template-columns:1fr!important;gap:12px!important;margin-top:12px!important;max-height:min(68vh,720px);overflow:auto!important;padding-right:4px!important}
 /* E137 · Clean learner chrome lock: no technical captions in normal learner view. */
 body:not(.e129-presenting) #subjectSubtitle,
 body:not(.e129-presenting) #coreLabel,

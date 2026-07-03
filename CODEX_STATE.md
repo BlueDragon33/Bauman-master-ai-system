@@ -1,178 +1,148 @@
 # CODEX_STATE
 
-Current task: E146 C03 staged content §3.4–§3.6 completed.
+Current task: E163 UI-only runtime patch after E162 failure.
 
-Status: PASS. Created a content-only staged bundle for the remaining three C03 theory lessons. Boot/runtime/UI files were not changed.
+Status: RUNTIME_SMOKE_PASS_READY_FOR_MAIN_SYNC
 
-Date: 2026-07-03
+Branch: `codex/e150-c01-l01-clean-replacement`
+Base branch: `codex/e146-merge-c03-l04-l06`
+Main sync status: `pending_controlled_sync`
+
+Main sync / pull instruction:
+- Do not pull `main` until controlled sync is completed.
+- E163 browser smoke now passes on `codex/e150-c01-l01-clean-replacement`.
+- Next step is merge/sync verified result into `main`, then push `main`.
 
 Files changed:
-
-- `subjects/math/data/theory_lecture_content_c03_l04_l06_e146_staged.json`
-- `subjects/math/E146_C03_L04_L06_STAGED_CONTENT.md`
+- `subjects/math/assets/theory_skin/theory-tab-E129.css`
+- `subjects/math/assets/theory_skin/theory-slideshow-E132.js`
+- `subjects/math/E163_UI_RUNTIME_PATCH_AND_SMOKE_PASS_REPORT.md`
 - `CODEX_STATE.md`
 
-Staged result:
-
-- Target file for next merge: `subjects/math/data/theory_lecture_content.json`
-- Source staged file: `subjects/math/data/theory_lecture_content_c03_l04_l06_e146_staged.json`
-- Staged records: 3
-- Lessons staged:
-  - §3.4 Gradient descent và learning rate
-  - §3.5 Hàm mất mát, cực trị và điều kiện tối ưu
-  - §3.6 Từ gradient sang backpropagation và tối ưu ML
-- Staged `id`: `bauman_math_theory_lecture_content_c03_l04_l06_e146_staged`
-- Staged `version`: `E146_C03_L04_L06_STAGED`
+Root cause:
+- E129 learner CSS hid `.e129-placeholder`, which contains the C01 lesson chips and `.e129-slide-list`.
+- E132 MutationObserver re-opened the deck after render and reset Compact mode to Full.
 
 Verification:
-
-- JSON parse: PASS
-- Staged record count: 3
-- Duplicate `lessonId` inside staged bundle: none
-- C03 slide floor: PASS, every staged lesson has 16 slides
-- Runtime files changed: none
+- E129/E132 JS syntax: PASS
+- Browser opened Math page: PASS
+- Console errors: 0
+- C01 lesson chips visible: 6/6
+- Tested lessons: `§1.1`, `§1.4`, `§1.5`, `§1.6`
+- Each tested lesson opens E160 overlay: PASS
+- Full lecture default: PASS
+- 4 blocks / 4 cards in Full mode: PASS
+- No ellipsis clamp in Full mode: PASS
+- Compact/Full toggle: PASS
+- Keyboard Right/Left/Space/F/C/Esc: PASS
+- Esc returns to E129 reader: PASS
+- Content JSON edited: no
+- Main sync: pending
 
 Next recommended task:
+- Controlled merge into `main`, verify JSON counts/runtime markers, push `main`.
+- Final pull target should be `main` only after sync.
 
-- Merge E146 staged C03 §3.4–§3.6 records into `subjects/math/data/theory_lecture_content.json` with a JSON-safe append script.
-- Do not manually rewrite locked C01/C02 records.
-- Do not rewrite already merged C03 §3.1–§3.3 records.
-- After merge, verify JSON parse, C01=6, C02=6, C03=6, every C03 lesson >=14 slides, no duplicate `lessonId`, no runtime changes.
+Next actor:
+- Codex
 
-Read next:
+Codex required:
+- yes
+- Reason: controlled main sync and push are required so the user can pull directly from `main`.
 
-- `subjects/math/E146_C03_L04_L06_STAGED_CONTENT.md`
-- `subjects/math/data/theory_lecture_content_c03_l04_l06_e146_staged.json`
-- `subjects/math/E145_MERGE_C03_STAGED.md`
-- `subjects/math/E145_C03_STAGED_CONTENT.md`
-- `subjects/math/E144_C02_FINAL_VERIFICATION_LOCK.md`
-- `subjects/math/E141_C01_FINAL_VERIFICATION_LOCK.md`
-- `subjects/math/E138_THEORY_CONTENT_QUALITY.md`
-- `subjects/math/E137_CLEAN_THEORY_LOCK.md`
-
-Core rules:
-
-- Keep only the old compact Theory header/table in the normal learner view.
-- Do not restore E128 legacy importer runtime.
-- Do not restore E134 learning-clean runtime.
-- Do not restore E130 Program View learner injection.
-- Do not restore E130 Program CSS into the learner boot path.
-- Do not restore E126 legacy theory adapter.
-- Do not restore empty core.js.
-- Do not restore E132 reader polish into normal learner view.
-- Do not add another UI overlay for the normal Theory learner view.
-- Theory content stays in `subjects/math/data/theory_lecture_content.json`.
-- Do not use `lessons.json` for new Theory content.
-- Do not rewrite `subject-manifest.json` casually.
-- Content-only work must not change boot runtime.
-- Do not enforce one exact slide count per lesson or per chapter.
-- Do enforce a quality floor: normal Math theory lessons should not be under 14 slides unless they are clearly secondary/review/micro lessons and the reason is documented.
+Protocol reference:
+- `CODEX_CHATGPT_SYNC_PROTOCOL.md`
 
 ---
 
-Current task: E145 C03 staged merge completed.
+Current task: E162 runtime browser smoke test.
 
-Status: PASS. Staged C03 theory records were JSON-safe appended into the primary runtime content file on branch `main`. Boot/runtime/UI files were not changed.
+Status: FAIL
 
-Date: 2026-07-03
+Branch: `codex/e150-c01-l01-clean-replacement`
+Base branch: `codex/e146-merge-c03-l04-l06`
+Main sync status: `stacked_branch`
+
+Main sync / pull instruction:
+- Do not pull `main` for this result.
+- Main was not synced because E162 browser/runtime smoke failed.
+- Pull `codex/e150-c01-l01-clean-replacement` only for diagnosis:
+  - `git checkout codex/e150-c01-l01-clean-replacement`
+  - `git pull origin codex/e150-c01-l01-clean-replacement`
 
 Files changed:
-
-- `subjects/math/data/theory_lecture_content.json`
+- `subjects/math/E162_RUNTIME_SMOKE_FAIL_REPORT.md`
 - `CODEX_STATE.md`
-- `subjects/math/E145_MERGE_C03_STAGED.md`
-
-Merge result:
-
-- Source staged file: `subjects/math/data/theory_lecture_content_c03_e145_staged.json`
-- Target file: `subjects/math/data/theory_lecture_content.json`
-- Appended records: 3
-- Skipped duplicates: 0
-- Target `id`: `bauman_math_theory_lecture_content_e145_c03_started`
-- Target `version`: `E145_C01_C02_COMPLETE_C03_L01_L03`
 
 Verification:
+- Local branch synced with origin before test: PASS
+- Required E160/E161 files exist: PASS
+- Browser opened Math page: PASS
+- Console boot errors: 0
+- E132 current-lesson overlay opens: PASS
+- E132 overlay header shows `E160 THEORY DECK`: PASS
+- Full lecture default for current lesson: PASS
+- Current slide shows 4 cards / 4 blocks: PASS
+- Browser global release/selfCheck probe: FAIL/UNAVAILABLE (`window.BAUMAN_MATH_THEORY_E132` read as `undefined` through automation)
+- Required C01 lesson selection for `§1.4`, `§1.5`, `§1.6`: FAIL, lesson chips exist but are hidden/clipped at `0x0`
+- Browser smoke overall: FAIL
+- Main sync: NOT RUN
 
-- JSON parse: PASS
-- C01 record count: 6
-- C02 record count: 6
-- C03 record count: 3
-- C03 slide floor: PASS, all merged C03 lessons have 16 slides
-- Duplicate `lessonId`: none
-- Runtime files changed: none
+Root cause / exact failure:
+- E129 lesson selection UI exists in the DOM but is not usable in the visible reader layout.
+- `.e129-sidebar` is `display:none`.
+- `.e129-reader` is clipped to about `94px` height with `overflow:hidden`.
+- `.e129-placeholder`, `.e129-slide-list`, and `.e129-chip-btn` lesson controls are hidden or `0x0`.
+- This blocks multi-lesson E162 smoke and prevents marking C01 baseline ready.
+
+Next recommended task:
+- E163 UI-only patch based on `subjects/math/E162_RUNTIME_SMOKE_FAIL_REPORT.md`.
+- Do not edit content JSON.
+- Restore visible lesson selection and then re-run browser smoke.
+
+Next actor:
+- Codex
+
+Codex required:
+- yes
+- Reason: UI/runtime patch and browser smoke verification are required before any safe main sync.
+
+Protocol reference:
+- `CODEX_CHATGPT_SYNC_PROTOCOL.md`
 
 ---
 
-Current task: E145 C03 Staged Content.
+Current task: E161 E132 static smoke completed; browser runtime still pending.
 
-Status: C01 and C02 are locked. E145 staged the first three C03 theory lessons in a separate JSON bundle to avoid unsafe whole-file replacement of the locked primary content file. Boot/runtime untouched.
+Status: STATIC_SMOKE_PASS_BROWSER_RUNTIME_PENDING
 
-Read next:
+Branch: `codex/e150-c01-l01-clean-replacement`
+Base branch: `codex/e146-merge-c03-l04-l06`
+Main sync status: `stacked_branch`
 
-- subjects/math/E145_C03_STAGED_CONTENT.md
-- subjects/math/data/theory_lecture_content_c03_e145_staged.json
-- subjects/math/E144_C02_FINAL_VERIFICATION_LOCK.md
-- subjects/math/E143_C02_COMPLETE_CONTENT.md
-- subjects/math/E141_C01_FINAL_VERIFICATION_LOCK.md
-- subjects/math/E138_THEORY_CONTENT_QUALITY.md
-- subjects/math/E137_CLEAN_THEORY_LOCK.md
-- subjects/math/E136_RUNTIME_STABILIZATION.md
-- subjects/math/E135_HEADER_ONLY_CLEANUP.md
-- subjects/math/E133_FINAL_HANDOFF.md
+Main sync / pull instruction:
+- Current work is on `codex/e150-c01-l01-clean-replacement`.
+- Do not tell the user to pull `main` until verified work is merged or fast-forwarded into `main`.
+- User preference: after future PASS tasks, Codex should sync verified results into `main` when safe, then report `Main sync status: in_main`.
 
-Core rules:
+Files changed:
+- `subjects/math/E161_E132_STATIC_SMOKE_AND_BROWSER_CHECKLIST.md`
+- `CODEX_STATE.md`
 
-- Keep only the old compact Theory header/table in the normal learner view.
-- Do not restore E128 legacy importer runtime.
-- Do not restore E134 learning-clean runtime.
-- Do not restore E130 Program View learner injection.
-- Do not restore E130 Program CSS into the learner boot path.
-- Do not restore E126 legacy theory adapter.
-- Do not restore empty core.js.
-- Do not restore E132 reader polish into normal learner view.
-- Do not add another UI overlay for the normal Theory learner view.
-- Theory content stays in subjects/math/data/theory_lecture_content.json.
-- Do not use lessons.json for new Theory content.
-- Do not rewrite subject-manifest.json casually.
-- Content-only work must not change boot runtime.
-- Do not enforce one exact slide count per lesson or per chapter.
-- Do enforce a quality floor: normal Math theory lessons should not be under 14 slides unless they are clearly secondary/review/micro lessons and the reason is documented.
+Verification:
+- Static smoke: PASS.
+- Browser/runtime visual smoke: PENDING.
 
-Current boot runtime in subjects/math/index.html:
+Next recommended task:
+- Run browser smoke test using `subjects/math/E161_E132_STATIC_SMOKE_AND_BROWSER_CHECKLIST.md`.
+- If browser smoke passes, prepare controlled main sync.
+- If browser smoke fails, patch only E132 UI files again.
 
-Styles:
+Next actor:
+- Codex/local browser or user visual test.
 
-- core.css?v=123
-- math.css?v=123
-- theory-tab-E129.css?v=137
-- theory-ui-tokens-E132.css?v=136
-- theory-slideshow-E132.css?v=136
+Codex required:
+- yes for browser/runtime smoke test and controlled main sync after PASS.
 
-Scripts:
-
-- subject-adapter.js?v=123
-- program-frame-E130.js?v=130
-- theory-tab-E129.js?v=129
-- theory-slideshow-E132.js?v=136
-
-Locked chapters:
-
-- C01 · Vector trong không gian dữ liệu: PASS after E141, six lessons.
-- C02 · Ma trận và phép biến đổi tuyến tính: PASS after E144, six lessons.
-
-E145 staged C03 content:
-
-- Created subjects/math/data/theory_lecture_content_c03_e145_staged.json.
-- Contains three staged C03 lessons:
-  - §3.1 Hàm số như mô hình đầu vào–đầu ra;
-  - §3.2 Đạo hàm và độ nhạy của hệ thống;
-  - §3.3 Gradient như hướng thay đổi nhanh nhất.
-- Each staged lesson has 16 slides and satisfies the 14-slide quality floor.
-- The staged file was later merged into subjects/math/data/theory_lecture_content.json by E145 staged merge.
-
-If user reports failure:
-
-- Ask for screenshot after hard refresh.
-- Ask for console errors.
-- Check whether browser is still caching old index.html or E129 CSS older than v=137.
-- For content display errors, patch only subjects/math/data/theory_lecture_content.json or the concrete slide renderer issue.
+Protocol reference:
+- `CODEX_CHATGPT_SYNC_PROTOCOL.md`

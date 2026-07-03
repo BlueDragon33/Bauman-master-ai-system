@@ -1,7 +1,7 @@
 {
-  "id": "bauman_math_theory_lecture_content_e145_c03_started",
+  "id": "bauman_math_theory_lecture_content_e146_c03_complete",
   "schema": "bauman_math_content_records_v1",
-  "version": "E145_C01_C02_COMPLETE_C03_L01_L03",
+  "version": "E146_C01_C02_COMPLETE_C03_L01_L06",
   "title": "Bài giảng lý thuyết Toán · Nội dung học tập",
   "role": "content",
   "frameSource": "theory_lecture_frame.json",
@@ -42,8 +42,23 @@
           "blocks": [
             {
               "type": "text",
-              "title": "Ý chính",
-              "body": "Ảnh, tín hiệu, log hệ thống, trạng thái robot hoặc dữ liệu cảm biến chỉ xử lý được bằng thuật toán khi được mã hóa thành các số có cấu trúc. Vector gom các số đó thành một đối tượng tính toán."
+              "title": "Vấn đề học tập",
+              "body": "Thuật toán không xử lý trực tiếp một chiếc robot, một tín hiệu âm thanh hay một ảnh camera. Nó xử lý các số đã được đặt vào cấu trúc rõ ràng. Vector là cách đóng gói tối thiểu: mỗi thành phần là một đại lượng đo, còn thứ tự các thành phần giữ ý nghĩa của phép đo."
+            },
+            {
+              "type": "text",
+              "title": "Diễn giải kỹ thuật",
+              "body": "Khi viết x = [nhiệt độ, áp suất, vận tốc], ta không chỉ ghi ba con số. Ta đang tuyên bố hệ thống được quan sát qua ba kênh đo cố định. Nếu đổi thứ tự hoặc đổi đơn vị mà không khai báo, cùng một hiện tượng sẽ thành dữ liệu khác."
+            },
+            {
+              "type": "text",
+              "title": "Ví dụ gần Bauman",
+              "body": "Trong điều khiển, vector trạng thái có thể chứa vị trí, vận tốc và góc quay. Trong AI, vector đặc trưng có thể chứa pixel, embedding hoặc thống kê tín hiệu. Trong xử lý tín hiệu, một cửa sổ mẫu âm thanh cũng là vector."
+            },
+            {
+              "type": "qa",
+              "title": "Câu hỏi tự kiểm",
+              "body": "Nếu thuật toán nhận vector nhưng ta chưa xác định ý nghĩa từng chiều, lỗi kết quả đến từ toán học hay từ cách mã hóa dữ liệu? Thường là từ mã hóa. Toán chỉ xử lý cấu trúc được đưa vào."
             }
           ]
         },
@@ -53,8 +68,23 @@
           "blocks": [
             {
               "type": "text",
-              "title": "Bản chất",
-              "body": "Trong hình học, vector có hướng và độ lớn. Trong kỹ thuật, vector là dãy đặc trưng có thứ tự, mỗi thành phần mang một đại lượng đo lường cụ thể."
+              "title": "Hai cách nhìn phải đi cùng nhau",
+              "body": "Vector vừa là đối tượng hình học, vừa là bản ghi dữ liệu có thứ tự. Cách nhìn hình học giúp hiểu hướng, độ lớn, khoảng cách và góc. Cách nhìn dữ liệu giúp triển khai bằng code, kiểm soát đơn vị đo và kết nối với AI, cảm biến, điều khiển."
+            },
+            {
+              "type": "text",
+              "title": "Khi nhìn bằng hình học",
+              "body": "Ta hỏi hai trạng thái có gần nhau không, có cùng hướng không, độ lớn khác bao nhiêu. Đây là trực giác đứng sau norm, distance, dot product và cosine similarity, kể cả khi vector có hàng trăm chiều."
+            },
+            {
+              "type": "text",
+              "title": "Khi nhìn như dữ liệu",
+              "body": "Ta hỏi từng chiều đo cái gì, đơn vị ra sao, có nhiễu không, có cần chuẩn hóa không. Một vector kỹ thuật không phải mũi tên trừu tượng bay trong không gian rỗng; nó là bản ghi đo lường."
+            },
+            {
+              "type": "formula",
+              "title": "Ký hiệu gọn",
+              "body": "x = (x_1, x_2, ..., x_n)\nTrong đó x_i là giá trị của đặc trưng thứ i, n là số chiều. Hai vector chỉ so sánh trực tiếp được khi cùng n và cùng quy ước ý nghĩa từng chiều."
             }
           ]
         },
@@ -64,8 +94,23 @@
           "blocks": [
             {
               "type": "text",
-              "title": "Mở rộng",
-              "body": "Trong AI và xử lý tín hiệu, vector có thể có hàng trăm hoặc hàng nghìn chiều. Không cần vẽ được vector mới dùng được vector; điều quan trọng là phép toán trên các thành phần."
+              "title": "Phá trực giác 2D/3D",
+              "body": "Sai lầm phổ biến là nghĩ vector phải vẽ được trên giấy. Trong AI, ảnh 28 x 28 có thể thành vector 784 chiều; một câu văn có thể thành embedding 768 chiều; một đoạn tín hiệu có thể thành vector hàng nghìn mẫu. Không vẽ được không có nghĩa là không hiểu được."
+            },
+            {
+              "type": "text",
+              "title": "Điều cần giữ nguyên",
+              "body": "Các phép toán vẫn dựa trên thành phần: cộng từng chiều, nhân vô hướng từng chiều, tính norm bằng tổng bình phương, tính dot product bằng tổng tích từng chiều. Chỉ số chiều tăng, không phải bản chất đại số thay đổi."
+            },
+            {
+              "type": "text",
+              "title": "Hậu quả kỹ thuật",
+              "body": "Ở số chiều cao, khoảng cách Euclidean có thể kém phân biệt nếu mọi điểm đều gần như xa nhau. Vì vậy embedding search thường dùng cosine, PCA dùng phương sai theo hướng, clustering cần chuẩn hóa hoặc giảm chiều."
+            },
+            {
+              "type": "qa",
+              "title": "Câu hỏi tự kiểm",
+              "body": "Nếu hai vector 1000 chiều không thể vẽ, làm sao biết chúng giống nhau? Ta dùng đại lượng đại số như cosine, distance, projection hoặc correlation. Trực giác hình học được tính bằng công thức thay vì nhìn bằng mắt."
             }
           ]
         },
@@ -75,8 +120,23 @@
           "blocks": [
             {
               "type": "text",
-              "title": "Ví dụ",
-              "body": "Máy chủ: x = [CPU load, RAM usage, network latency, error rate]. Robot: x = [position, velocity, acceleration, heading]. Hai ví dụ này đều biến trạng thái thành dữ liệu tính toán được."
+              "title": "Từ vật lý sang dữ liệu",
+              "body": "Một hệ thật có rất nhiều chi tiết, nhưng mô hình chỉ chọn một số đại lượng đủ quan trọng. Robot di chuyển có thể được mô tả bằng vị trí, vận tốc, gia tốc, hướng quay. Máy chủ có thể được mô tả bằng CPU load, RAM usage, latency và error rate."
+            },
+            {
+              "type": "formula",
+              "title": "Vector trạng thái ví dụ",
+              "body": "x_robot = [p_x, p_y, v_x, v_y, theta, omega]\nx_server = [cpu, ram, latency, error_rate]\nMỗi ký hiệu phải có đơn vị, khoảng giá trị hợp lý và tần suất cập nhật."
+            },
+            {
+              "type": "text",
+              "title": "Cái mất đi khi vector hóa",
+              "body": "Vector hóa luôn là lựa chọn có mất mát. Nếu bỏ qua đại lượng quan trọng, mô hình sẽ mù trước phần đó của hệ thống. Nếu thêm quá nhiều chiều nhiễu, thuật toán có thể học tín hiệu giả."
+            },
+            {
+              "type": "qa",
+              "title": "Câu hỏi kỹ thuật",
+              "body": "Với một UAV nhỏ, nên đưa những đại lượng nào vào vector trạng thái ban đầu? Tối thiểu cần vị trí, vận tốc, góc hướng và tốc độ quay. Nếu bài toán có gió hoặc pin yếu, cần thêm biến mô tả môi trường và năng lượng."
             }
           ]
         },
@@ -87,12 +147,22 @@
             {
               "type": "formula",
               "title": "Vector n chiều",
-              "body": "x = (x_1, x_2, ..., x_n)"
+              "body": "x = (x_1, x_2, ..., x_n) hoặc x in R^n\nx_i là thành phần thứ i. R^n nghĩa là không gian tất cả vector thực có n thành phần."
             },
             {
               "type": "formula",
-              "title": "Nhân vô hướng",
-              "body": "alpha x = (alpha x_1, alpha x_2, ..., alpha x_n)"
+              "title": "Cộng vector và nhân vô hướng",
+              "body": "x + y = (x_1 + y_1, ..., x_n + y_n)\nalpha x = (alpha x_1, ..., alpha x_n)\nĐiều kiện: x và y phải cùng số chiều."
+            },
+            {
+              "type": "text",
+              "title": "Ký hiệu trong code",
+              "body": "Trong Python/NumPy, vector thường là mảng một chiều shape (n,). Trong dữ liệu batch, nhiều vector được xếp thành ma trận shape (m, n), với m là số mẫu và n là số đặc trưng."
+            },
+            {
+              "type": "code",
+              "title": "Kiểm tra shape tối thiểu",
+              "body": "import numpy as np\nx = np.array([1.0, 2.0, 3.0])\ny = np.array([4.0, 5.0, 6.0])\nassert x.shape == y.shape\nz = x + y"
             }
           ]
         },
@@ -102,8 +172,23 @@
           "blocks": [
             {
               "type": "formula",
-              "title": "Công thức",
+              "title": "Công thức lõi",
               "body": "||x||_2 = sqrt(sum_i x_i^2)\nx · y = sum_i x_i y_i\nd(x,y) = ||x-y||_2\ncos(x,y) = (x · y)/(||x||_2 ||y||_2)"
+            },
+            {
+              "type": "text",
+              "title": "Ý nghĩa từng đại lượng",
+              "body": "Norm đo độ lớn tổng thể của vector. Dot product đo mức cùng hướng có tính đến độ lớn. Distance đo độ lệch tuyệt đối giữa hai trạng thái. Cosine đo độ giống về hướng và giảm ảnh hưởng của độ lớn."
+            },
+            {
+              "type": "text",
+              "title": "Khi dùng cái nào",
+              "body": "Dùng distance khi chênh lệch tuyệt đối quan trọng, ví dụ sai số vị trí robot. Dùng cosine khi pattern quan trọng hơn cường độ, ví dụ so văn bản embedding hoặc so dạng phổ tín hiệu."
+            },
+            {
+              "type": "qa",
+              "title": "Câu hỏi tự kiểm",
+              "body": "Nếu nhân một vector với 10, cosine với vector gốc có đổi nhiều không? Không, hướng giữ nguyên nên cosine gần 1. Nhưng distance tăng mạnh, vì độ lớn đã khác."
             }
           ]
         },
@@ -113,8 +198,23 @@
           "blocks": [
             {
               "type": "text",
-              "title": "Điều kiện",
-              "body": "Hai vector phải cùng số chiều. Cosine không xác định với vector zero. Khi thang đo các chiều khác nhau, cần chuẩn hóa trước khi so sánh."
+              "title": "Điều kiện cùng không gian",
+              "body": "Hai vector phải cùng số chiều và cùng ý nghĩa từng chiều. Không được so [nhiệt độ, áp suất] với [áp suất, nhiệt độ] như thể giống nhau. Thứ tự thành phần là một phần của dữ liệu."
+            },
+            {
+              "type": "text",
+              "title": "Điều kiện chuẩn hóa",
+              "body": "Nếu một chiều có thang đo lớn hơn nhiều, nó có thể thống trị distance và dot product. Ví dụ latency tính bằng ms có thể lấn át packet loss tính bằng tỷ lệ. Khi đó cần chuẩn hóa hoặc chọn metric phù hợp."
+            },
+            {
+              "type": "formula",
+              "title": "Cosine không xác định với vector zero",
+              "body": "cos(x,y) = (x · y)/(||x|| ||y||)\nNếu ||x|| = 0 hoặc ||y|| = 0 thì mẫu số bằng 0, cosine không dùng được."
+            },
+            {
+              "type": "qa",
+              "title": "Cổng kiểm tra trước khi tính",
+              "body": "Trước khi so vector, hãy hỏi: cùng chiều chưa, cùng đơn vị chưa, có vector zero không, có outlier không, có chiều nào cần chuẩn hóa không?"
             }
           ]
         },
@@ -124,8 +224,23 @@
           "blocks": [
             {
               "type": "text",
-              "title": "Case",
-              "body": "Mỗi trạng thái mạng là [throughput, latency, packet_loss]. Distance đo độ lệch tuyệt đối; cosine đo pattern tương đối. Trong bài toán thật thường cần xét cả hai."
+              "title": "Bối cảnh",
+              "body": "Giả sử mỗi phút hệ thống lưu một vector mạng: x = [throughput, latency, packet_loss]. Mục tiêu là phát hiện thời điểm hệ thống chuyển từ bình thường sang bất thường."
+            },
+            {
+              "type": "formula",
+              "title": "Ba trạng thái mẫu",
+              "body": "A = [100, 40, 0.01]\nB = [110, 44, 0.012]\nC = [20, 300, 0.20]\nA và B có pattern gần nhau; C khác mạnh về cả độ lớn lẫn hướng."
+            },
+            {
+              "type": "text",
+              "title": "Diễn giải metric",
+              "body": "Distance giúp phát hiện C rất xa A. Cosine giúp xem B có cùng pattern với A không dù throughput khác. Nếu packet_loss là chiều quan trọng nhất, ta có thể gán trọng số hoặc chuẩn hóa riêng."
+            },
+            {
+              "type": "code",
+              "title": "Thử nghiệm ngắn",
+              "body": "def cosine(x, y):\n    return (x @ y) / (np.linalg.norm(x) * np.linalg.norm(y))\n# so sánh A-B, A-C bằng distance và cosine"
             }
           ]
         },
@@ -135,8 +250,23 @@
           "blocks": [
             {
               "type": "text",
-              "title": "Diễn giải",
-              "body": "Norm đo mức tổng thể; dot product đo mức cùng hướng có tính đến độ lớn; cosine tập trung vào hướng và hữu ích khi độ lớn không phải điều quan trọng nhất."
+              "title": "Norm là mức tổng thể",
+              "body": "Norm lớn không tự động tốt hay xấu. Với vector tải hệ thống, norm lớn có thể báo hệ đang chịu tải cao. Với vector sai số, norm lớn thường là dấu hiệu cần sửa mô hình hoặc điều khiển."
+            },
+            {
+              "type": "text",
+              "title": "Dot product là mức cùng hướng",
+              "body": "Dot product lớn khi hai vector cùng hướng và có độ lớn đáng kể. Trong học máy, nó xuất hiện trong linear model, attention, projection và nhiều lớp neural network."
+            },
+            {
+              "type": "text",
+              "title": "Cosine là độ giống pattern",
+              "body": "Cosine bỏ bớt tác động của độ lớn nên hữu ích khi quan tâm hướng. Hai văn bản có embedding cùng hướng có thể cùng chủ đề dù độ dài văn bản khác nhau."
+            },
+            {
+              "type": "qa",
+              "title": "Câu hỏi diễn giải",
+              "body": "Nếu cosine cao nhưng distance lớn, hai vector giống pattern nhưng khác scale. Đây là tình huống phổ biến khi tín hiệu có cùng dạng nhưng biên độ khác."
             }
           ]
         },
@@ -146,13 +276,23 @@
           "blocks": [
             {
               "type": "code",
-              "title": "Công cụ",
-              "body": "numpy.array\nnumpy.linalg.norm\nnumpy.dot"
+              "title": "Công cụ NumPy",
+              "body": "import numpy as np\nA = np.array([100.0, 40.0, 0.01])\nB = np.array([110.0, 44.0, 0.012])\nC = np.array([20.0, 300.0, 0.20])\ndef dist(x, y): return np.linalg.norm(x-y)\ndef cos(x, y): return np.dot(x,y)/(np.linalg.norm(x)*np.linalg.norm(y))"
             },
             {
               "type": "text",
-              "title": "Mục tiêu",
-              "body": "Tính norm, distance và cosine cho các vector trạng thái mạng; sau đó scale một vector để thấy distance và cosine phản ứng khác nhau."
+              "title": "Mục tiêu thí nghiệm",
+              "body": "Tính distance và cosine cho A-B, A-C. Sau đó chuẩn hóa từng chiều theo mean/std của dữ liệu và tính lại. Sự thay đổi kết quả cho thấy metric phụ thuộc mạnh vào thang đo."
+            },
+            {
+              "type": "text",
+              "title": "Điều cần quan sát",
+              "body": "Trước chuẩn hóa, latency có thể lấn át packet loss. Sau chuẩn hóa, packet loss có tiếng nói hơn. Đây là lý do pipeline dữ liệu thường đặt chuẩn hóa trước PCA, clustering hoặc mô hình ML."
+            },
+            {
+              "type": "qa",
+              "title": "Câu hỏi phòng lab",
+              "body": "Nếu kết quả phân cụm thay đổi mạnh sau chuẩn hóa, lỗi nằm ở thuật toán hay ở cách biểu diễn dữ liệu? Thường là ở biểu diễn và thang đo đặc trưng."
             }
           ]
         },
@@ -162,8 +302,23 @@
           "blocks": [
             {
               "type": "text",
-              "title": "Ba lỗi chính",
-              "body": "Tính khi khác số chiều; so sánh dữ liệu chưa chuẩn hóa; dùng cosine khi cần đo độ lệch tuyệt đối hoặc dùng distance khi chỉ cần so sánh hướng."
+              "title": "Lỗi 1: khác chiều vẫn cố tính",
+              "body": "Không thể cộng hoặc dot product hai vector khác số chiều. Nếu code tự broadcast im lặng, kết quả có thể sai mà không báo lỗi rõ. Luôn kiểm tra shape trước khi tính."
+            },
+            {
+              "type": "text",
+              "title": "Lỗi 2: quên đơn vị và thang đo",
+              "body": "So sánh nhiệt độ, áp suất, vận tốc bằng distance thô có thể vô nghĩa nếu chưa chuẩn hóa. Chiều có số lớn sẽ áp đảo, còn chiều nhỏ nhưng quan trọng bị nuốt mất."
+            },
+            {
+              "type": "text",
+              "title": "Lỗi 3: dùng sai metric",
+              "body": "Cosine tốt cho pattern nhưng kém khi độ lớn là tín hiệu chính. Distance tốt cho chênh lệch tuyệt đối nhưng nhạy với scale. Chọn metric là quyết định mô hình hóa, không phải thao tác trang trí."
+            },
+            {
+              "type": "qa",
+              "title": "Câu hỏi sửa lỗi",
+              "body": "Khi model phân loại sai, đừng hỏi ngay neural network có đủ sâu chưa. Hãy hỏi vector đầu vào có đúng chiều, đúng đơn vị, đúng chuẩn hóa và đúng metric chưa."
             }
           ]
         },
@@ -173,8 +328,23 @@
           "blocks": [
             {
               "type": "text",
-              "title": "Python/C++",
-              "body": "Viết hàm norm, dot, distance và cosine. Mọi hàm phải kiểm tra cùng số chiều; hàm cosine phải kiểm tra vector zero."
+              "title": "Nhiệm vụ cốt lõi",
+              "body": "Viết các hàm norm, dot, distance, cosine có kiểm tra shape và kiểm tra vector zero. Đây là bài nhỏ nhưng ép người học hiểu điều kiện dùng công thức trước khi dùng thư viện."
+            },
+            {
+              "type": "code",
+              "title": "Hàm an toàn tối thiểu",
+              "body": "def safe_cosine(x, y, eps=1e-12):\n    x = np.asarray(x, dtype=float)\n    y = np.asarray(y, dtype=float)\n    if x.shape != y.shape:\n        raise ValueError('same shape required')\n    nx, ny = np.linalg.norm(x), np.linalg.norm(y)\n    if nx < eps or ny < eps:\n        raise ValueError('zero vector')\n    return float(np.dot(x, y)/(nx*ny))"
+            },
+            {
+              "type": "text",
+              "title": "Mở rộng kỹ thuật",
+              "body": "Thêm bước normalize dữ liệu theo từng đặc trưng, log lại shape và thống kê min/max. Trong dự án thật, hàm vector không chỉ trả kết quả; nó còn bảo vệ pipeline khỏi dữ liệu bẩn."
+            },
+            {
+              "type": "qa",
+              "title": "Câu hỏi triển khai",
+              "body": "Tại sao không nên để hàm cosine tự trả 0 khi gặp vector zero? Vì 0 có nghĩa là vuông góc, còn vector zero là trường hợp không xác định."
             }
           ]
         },
@@ -184,8 +354,23 @@
           "blocks": [
             {
               "type": "text",
-              "title": "Bài tập",
-              "body": "Cho A = [10,40,0.01], B = [12,45,0.02], C = [100,400,0.10]. Tính norm, distance, cosine từng cặp và giải thích metric nào phù hợp cho từng mục tiêu."
+              "title": "Bài 1: tính tay có diễn giải",
+              "body": "Cho A = [10, 40, 0.01], B = [12, 45, 0.02], C = [100, 400, 0.10]. Tính distance và cosine từng cặp, rồi giải thích cặp nào giống pattern, cặp nào gần theo độ lệch tuyệt đối."
+            },
+            {
+              "type": "text",
+              "title": "Bài 2: chuẩn hóa",
+              "body": "Chuẩn hóa từng chiều bằng cách trừ mean và chia standard deviation trên ba vector A, B, C. Tính lại distance. So sánh trước và sau chuẩn hóa để thấy chiều nào đã áp đảo kết quả ban đầu."
+            },
+            {
+              "type": "text",
+              "title": "Bài 3: thiết kế vector",
+              "body": "Tự chọn một hệ kỹ thuật: UAV, server, cảm biến nhiệt hoặc robot mặt đất. Thiết kế vector trạng thái 5–8 chiều, ghi rõ đơn vị từng chiều, thang đo dự kiến và metric phù hợp."
+            },
+            {
+              "type": "qa",
+              "title": "Tiêu chí tự chấm",
+              "body": "Bài đạt yêu cầu nếu không chỉ ra kết quả số, mà còn giải thích vì sao metric đó phù hợp hoặc không phù hợp với mục tiêu kỹ thuật."
             }
           ]
         },
@@ -195,8 +380,23 @@
           "blocks": [
             {
               "type": "qa",
-              "title": "Câu hỏi",
-              "body": "Nếu cosine cao nhưng Euclidean distance lớn, hai vector giống nhau ở điểm nào và khác nhau ở điểm nào? Vì sao PCA và clustering cần xem dữ liệu như vector nhiều chiều?"
+              "title": "Câu 1",
+              "body": "Nếu cosine cao nhưng Euclidean distance lớn, hai vector giống nhau ở điểm nào và khác nhau ở điểm nào? Trả lời: giống hướng hoặc pattern, khác độ lớn hoặc scale."
+            },
+            {
+              "type": "qa",
+              "title": "Câu 2",
+              "body": "Vì sao PCA và clustering cần xem dữ liệu như vector nhiều chiều? Vì chúng thao tác trên phương sai, khoảng cách, hướng và cấu trúc hình học của tập điểm trong không gian đặc trưng."
+            },
+            {
+              "type": "qa",
+              "title": "Câu 3",
+              "body": "Khi nào vector hóa gây hại? Khi chọn thiếu chiều quan trọng, trộn đơn vị, để dữ liệu nhiễu áp đảo, hoặc biến hiện tượng động thành ảnh chụp tĩnh quá nghèo thông tin."
+            },
+            {
+              "type": "qa",
+              "title": "Câu 4",
+              "body": "Nếu một đặc trưng có giá trị lớn hơn các đặc trưng khác 1000 lần, điều gì xảy ra với distance? Đặc trưng đó có thể thống trị kết quả, dù về kỹ thuật nó không quan trọng nhất."
             }
           ]
         },
@@ -206,8 +406,23 @@
           "blocks": [
             {
               "type": "text",
-              "title": "Liên kết",
-              "body": "Khi gom nhiều vector cùng số chiều thành các hàng hoặc cột, ta có ma trận dữ liệu. Bài sau chuyển từ đo vector sang biến đổi vector bằng ma trận."
+              "title": "Từ một vector đến nhiều vector",
+              "body": "Một vector mô tả một mẫu hoặc một trạng thái. Khi gom nhiều mẫu cùng số chiều, ta có ma trận dữ liệu. Mỗi hàng có thể là một trạng thái, mỗi cột là một đặc trưng."
+            },
+            {
+              "type": "formula",
+              "title": "Ma trận dữ liệu",
+              "body": "X = [x_1^T; x_2^T; ...; x_m^T]\nX có shape (m, n), với m là số mẫu và n là số đặc trưng. Đây là dạng quen thuộc trong ML, thống kê và xử lý tín hiệu."
+            },
+            {
+              "type": "text",
+              "title": "Ánh xạ tuyến tính",
+              "body": "Ma trận không chỉ lưu dữ liệu; nó còn biến đổi vector. Phép y = A x có thể quay, co giãn, chiếu hoặc trộn các đặc trưng. Vì vậy chương sau chuyển tự nhiên từ vector sang ma trận."
+            },
+            {
+              "type": "qa",
+              "title": "Câu hỏi mở đường",
+              "body": "Nếu vector là một trạng thái, ma trận A trong y = A x đóng vai trò gì? Nó là quy tắc biến trạng thái cũ thành trạng thái mới hoặc biến dữ liệu thô thành biểu diễn khác."
             }
           ]
         },
@@ -217,8 +432,23 @@
           "blocks": [
             {
               "type": "text",
-              "title": "Cốt lõi",
-              "body": "Vector là cách biến đối tượng kỹ thuật thành dữ liệu có thể đo, so sánh, biến đổi và tối ưu."
+              "title": "Cốt lõi 1",
+              "body": "Vector là cách biến hiện tượng kỹ thuật thành dữ liệu có cấu trúc. Không có vector hóa rõ ràng, thuật toán không biết đang xử lý đại lượng nào, theo thứ tự nào, với đơn vị nào."
+            },
+            {
+              "type": "text",
+              "title": "Cốt lõi 2",
+              "body": "Vector phải được hiểu đồng thời bằng hình học và dữ liệu. Hình học cho trực giác về norm, distance, angle, projection; dữ liệu nhắc ta kiểm tra ý nghĩa từng chiều, đơn vị, nhiễu và chuẩn hóa."
+            },
+            {
+              "type": "text",
+              "title": "Cốt lõi 3",
+              "body": "Chọn metric là một quyết định kỹ thuật. Distance, dot product và cosine không trả lời cùng một câu hỏi. Trước khi tính, hãy xác định mục tiêu: đo độ lệch tuyệt đối, đo hướng, hay đo pattern."
+            },
+            {
+              "type": "qa",
+              "title": "Một câu nhớ lâu",
+              "body": "Vector không phải mũi tên để vẽ cho đẹp; nó là hợp đồng đo lường giữa hệ thống thật và thuật toán."
             }
           ]
         }
@@ -237,7 +467,7 @@
       ],
       "programAnchorTitle": "Không gian vectơ và ánh xạ tuyến tính",
       "roadmapRole": "foundation_before_prep",
-      "baumanFocus": "Hiểu độ lớn vector, khoảng cách giữa trạng thái dữ liệu và cách chọn metric phù hợp cho dữ liệu kỹ thuật.",
+      "baumanFocus": "Hiểu độ lớn vector, khoảng cách giữa trạng thái dữ liệu và cách chọn metric phù hợp cho dữ liệu kỹ thuật, AI, điều khiển và xử lý tín hiệu.",
       "sourceAnchors": {
         "stageId": "vn",
         "disciplineId": "linear_algebra_data_space",
@@ -258,101 +488,231 @@
           "blocks": [
             {
               "type": "text",
-              "title": "Ý chính",
-              "body": "Sau khi dữ liệu được biểu diễn bằng vector, câu hỏi tiếp theo là hai trạng thái gần hay xa nhau. Chuẩn đo độ lớn của một vector; khoảng cách đo mức khác biệt giữa hai vector."
+              "title": "Vấn đề học tập",
+              "body": "Sau khi dữ liệu đã thành vector, câu hỏi quan trọng không còn là 'vector có bao nhiêu số' mà là 'hai vector khác nhau bao nhiêu'. Chuẩn đo độ lớn của một vector; khoảng cách đo độ khác biệt giữa hai vector. Đây là nền của tìm kiếm gần nhất, clustering, phát hiện bất thường và đánh giá sai số."
+            },
+            {
+              "type": "text",
+              "title": "Góc nhìn kỹ thuật",
+              "body": "Trong robot, khoảng cách giữa vector trạng thái mong muốn và vector trạng thái thực tế là sai số điều khiển. Trong AI, khoảng cách giữa embedding giúp tìm mẫu tương tự. Trong xử lý tín hiệu, khoảng cách giữa hai đoạn tín hiệu giúp nhận biết biến dạng hoặc nhiễu."
+            },
+            {
+              "type": "text",
+              "title": "Câu hỏi đúng cần đặt",
+              "body": "Không chỉ hỏi 'khoảng cách là bao nhiêu', mà phải hỏi 'khoảng cách này có đúng nghĩa kỹ thuật không'. Cùng một công thức có thể hợp lý trong bài này nhưng sai trong bài khác nếu thang đo, đơn vị và mục tiêu so sánh khác nhau."
+            },
+            {
+              "type": "qa",
+              "title": "Câu hỏi tự kiểm",
+              "body": "Nếu hai vector gần nhau theo Euclidean nhưng khác mạnh ở một chiều an toàn quan trọng, ta có nên coi chúng giống nhau không? Không nhất thiết. Metric phải phản ánh mục tiêu kỹ thuật, không chỉ thuận tiện tính toán."
             }
           ]
         },
         {
           "role": "deep_essence",
-          "title": "Chuẩn là cách đo độ lớn trong không gian vector",
+          "title": "Chuẩn vector là cách đo độ lớn có quy tắc",
           "blocks": [
             {
+              "type": "text",
+              "title": "Bản chất",
+              "body": "Chuẩn vector gán cho mỗi vector một số không âm biểu thị độ lớn. Nhưng chuẩn không chỉ là công thức; nó là quy tắc đo. Một quy tắc được gọi là chuẩn khi thỏa các tính chất cơ bản: không âm, chỉ bằng 0 với vector zero, co giãn theo trị tuyệt đối của hệ số và thỏa bất đẳng thức tam giác."
+            },
+            {
               "type": "formula",
-              "title": "Tính đồng nhất",
-              "body": "||alpha x|| = |alpha| ||x||"
+              "title": "Ba tính chất cốt lõi",
+              "body": "||x|| >= 0\n||x|| = 0 iff x = 0\n||alpha x|| = |alpha| ||x||\n||x + y|| <= ||x|| + ||y||"
             },
             {
               "type": "text",
-              "title": "Diễn giải",
-              "body": "Chuẩn gán cho mỗi vector một số không âm, phản ánh độ lớn của vector trong hệ đo đã chọn."
+              "title": "Vì sao cần tính chất",
+              "body": "Nếu một công thức đo độ lớn không thỏa các tính chất này, trực giác hình học sẽ vỡ. Ví dụ nếu độ lớn có thể âm, ta không thể dùng nó để so lỗi; nếu không thỏa tam giác, đường đi gián tiếp có thể ngắn hơn một cách vô lý."
+            },
+            {
+              "type": "qa",
+              "title": "Câu hỏi tự kiểm",
+              "body": "Tại sao ||x|| = 0 phải kéo theo x = 0? Vì nếu một vector khác zero có độ lớn bằng 0, hệ thống sẽ coi một trạng thái có tín hiệu thật như không tồn tại."
             }
           ]
         },
         {
           "role": "counter_intuition",
-          "title": "Không chỉ có một cách đo khoảng cách",
+          "title": "Khoảng cách nhỏ không luôn có nghĩa là giống nhau",
           "blocks": [
             {
               "type": "text",
-              "title": "Điểm chính",
-              "body": "Euclidean quen thuộc nhưng không phải luôn đúng. Dữ liệu khác nhau có thể cần L1, L2, cosine distance hoặc metric có trọng số."
+              "title": "Điểm phản trực giác",
+              "body": "Khoảng cách phụ thuộc vào cách đo. Hai mẫu có thể gần nhau theo L2 nhưng xa theo L1; giống nhau theo cosine nhưng xa theo Euclidean. Vì vậy khoảng cách không phải sự thật tuyệt đối, mà là câu trả lời dưới một quy ước metric cụ thể."
+            },
+            {
+              "type": "text",
+              "title": "Ví dụ dễ nhầm",
+              "body": "Hai tín hiệu cùng hình dạng nhưng một tín hiệu có biên độ lớn gấp 10 lần. Cosine có thể nói chúng rất giống nhau vì cùng hướng, còn Euclidean nói chúng xa vì độ lớn khác. Cả hai đều đúng, nhưng trả lời hai câu hỏi khác nhau."
+            },
+            {
+              "type": "text",
+              "title": "Hậu quả trong AI",
+              "body": "Trong tìm kiếm embedding văn bản, cosine thường phù hợp vì hướng biểu diễn chủ đề. Trong đo sai số vị trí robot, Euclidean phù hợp hơn vì độ lệch tuyệt đối mới là rủi ro vật lý."
+            },
+            {
+              "type": "qa",
+              "title": "Câu hỏi tự kiểm",
+              "body": "Khi kết quả nearest neighbor kỳ lạ, nên đổi model ngay hay kiểm tra metric trước? Hãy kiểm tra metric, chuẩn hóa và thang đo trước. Nhiều lỗi nằm ở hình học dữ liệu, không phải ở thuật toán tìm kiếm."
             }
           ]
         },
         {
           "role": "real_bridge",
-          "title": "Khoảng cách trong dữ liệu vận hành",
+          "title": "Từ độ lớn vector đến sai số hệ thống",
           "blocks": [
             {
               "type": "text",
-              "title": "Ví dụ",
-              "body": "Hai trạng thái server có thể gần nhau về CPU/RAM nhưng xa nhau về độ trễ. Nếu độ trễ quan trọng hơn, metric cần phản ánh trọng số đó."
+              "title": "Cầu nối thực tế",
+              "body": "Trong điều khiển, vector sai số e = x_target - x_actual mô tả hệ đang lệch khỏi trạng thái mong muốn. Chuẩn của e biến nhiều thành phần sai số thành một số dễ theo dõi, ví dụ sai số vị trí tổng hợp hoặc mức lệch trạng thái."
+            },
+            {
+              "type": "formula",
+              "title": "Sai số trạng thái",
+              "body": "e = x_ref - x\n||e||_2 = sqrt(sum_i e_i^2)\nNếu ||e||_2 nhỏ, trạng thái hiện tại gần trạng thái tham chiếu theo nghĩa Euclidean."
+            },
+            {
+              "type": "text",
+              "title": "Điều kiện diễn giải",
+              "body": "Không nên gom mọi sai số vào một chuẩn nếu các thành phần có đơn vị khác nhau mà chưa chuẩn hóa. Sai số 1 mét, 1 radian và 1 m/s không nên bị cộng bình phương một cách ngây thơ."
+            },
+            {
+              "type": "qa",
+              "title": "Câu hỏi kỹ thuật",
+              "body": "Nếu hệ có sai số vị trí nhỏ nhưng sai số góc lớn, một chuẩn tổng hợp có thể che điều gì? Nó có thể che chiều nguy hiểm nếu trọng số hoặc chuẩn hóa không phản ánh mức rủi ro của từng thành phần."
             }
           ]
         },
         {
           "role": "notation",
-          "title": "Ký hiệu chuẩn và khoảng cách",
+          "title": "Ký hiệu L1, L2, L∞ cần dùng ngay",
           "blocks": [
             {
               "type": "formula",
-              "title": "Công thức",
-              "body": "||x||_1 = sum_i |x_i|\n||x||_2 = sqrt(sum_i x_i^2)\nd(x,y) = ||x-y||"
+              "title": "Ba chuẩn phổ biến",
+              "body": "||x||_1 = sum_i |x_i|\n||x||_2 = sqrt(sum_i x_i^2)\n||x||_infty = max_i |x_i|"
+            },
+            {
+              "type": "text",
+              "title": "Diễn giải nhanh",
+              "body": "L1 cộng tổng độ lệch tuyệt đối nên ít khuếch đại ngoại lệ hơn L2. L2 nhấn mạnh sai số lớn vì bình phương từng thành phần. L∞ chỉ nhìn thành phần lệch lớn nhất, phù hợp khi giới hạn an toàn theo ngưỡng từng chiều."
+            },
+            {
+              "type": "text",
+              "title": "Ký hiệu khoảng cách",
+              "body": "Khoảng cách thường được xây từ chuẩn: d(x,y) = ||x-y||. Khi dùng L1, L2 hoặc L∞, ta có các cách đo khác nhau trên cùng cặp vector."
+            },
+            {
+              "type": "code",
+              "title": "NumPy ngắn gọn",
+              "body": "import numpy as np\nx = np.array([3.0, -4.0, 12.0])\nl1 = np.linalg.norm(x, ord=1)\nl2 = np.linalg.norm(x, ord=2)\nlinf = np.linalg.norm(x, ord=np.inf)"
             }
           ]
         },
         {
           "role": "core_formula",
-          "title": "Ba metric thường dùng",
+          "title": "Metric là khoảng cách thỏa luật chơi hình học",
           "blocks": [
             {
               "type": "formula",
-              "title": "Metric",
-              "body": "d_1(x,y)=sum_i |x_i-y_i|\nd_2(x,y)=sqrt(sum_i (x_i-y_i)^2)\nd_w(x,y)=sqrt(sum_i w_i(x_i-y_i)^2), w_i >= 0"
+              "title": "Điều kiện metric",
+              "body": "d(x,y) >= 0\nd(x,y) = 0 iff x = y\nd(x,y) = d(y,x)\nd(x,z) <= d(x,y) + d(y,z)"
+            },
+            {
+              "type": "text",
+              "title": "Ý nghĩa từng điều kiện",
+              "body": "Không âm giúp khoảng cách có nghĩa đo lường. Bằng 0 chỉ khi hai điểm trùng nhau. Đối xứng nói đi từ x đến y xa như từ y đến x. Bất đẳng thức tam giác giữ trực giác đường thẳng không dài hơn đường vòng."
+            },
+            {
+              "type": "text",
+              "title": "Không phải mọi độ khác biệt là metric",
+              "body": "Một số hàm loss hoặc độ bất đồng có thể hữu ích nhưng không phải metric. Điều này không làm chúng vô dụng, nhưng cần biết chúng không giữ đầy đủ trực giác hình học."
+            },
+            {
+              "type": "qa",
+              "title": "Câu hỏi tự kiểm",
+              "body": "Cosine similarity có phải khoảng cách không? Không trực tiếp. Nó là độ giống. Có thể biến đổi thành cosine distance, nhưng phải kiểm tra bối cảnh và tính chất cần dùng."
             }
           ]
         },
         {
           "role": "assumption_gate",
-          "title": "Điều kiện chọn metric",
+          "title": "Điều kiện trước khi tin vào khoảng cách",
           "blocks": [
             {
               "type": "text",
-              "title": "Điều kiện",
-              "body": "Không tính khoảng cách trực tiếp trên các chiều khác đơn vị nếu chưa chuẩn hóa. Nếu đặc trưng có mức ưu tiên khác nhau, cần metric có trọng số."
+              "title": "Cùng đơn vị và cùng thang đo",
+              "body": "Khoảng cách giữa vector chỉ có nghĩa khi các chiều được hiểu đúng. Nếu một chiều là độ C, một chiều là Pascal, một chiều là m/s, thì tổng bình phương thô không tự động có ý nghĩa vật lý."
+            },
+            {
+              "type": "text",
+              "title": "Cần chuẩn hóa khi nào",
+              "body": "Nếu các chiều có thang đo rất khác nhau hoặc được đo bằng đơn vị khác nhau, cần chuẩn hóa, chuẩn hóa robust hoặc gán trọng số. Nếu không, chiều có số lớn sẽ điều khiển toàn bộ metric."
+            },
+            {
+              "type": "formula",
+              "title": "Chuẩn hóa z-score",
+              "body": "z_i = (x_i - mu_i) / sigma_i\nmu_i là trung bình đặc trưng i, sigma_i là độ lệch chuẩn. Sau chuẩn hóa, các chiều có thang đo so sánh được hơn."
+            },
+            {
+              "type": "qa",
+              "title": "Cổng kiểm tra",
+              "body": "Trước khi dùng distance, hãy hỏi: cùng feature chưa, cùng đơn vị chưa, có outlier không, có cần trọng số an toàn không, metric có trả lời đúng câu hỏi kỹ thuật không?"
             }
           ]
         },
         {
           "role": "mini_case",
-          "title": "Mini case: phát hiện server bất thường",
+          "title": "Mini case: phát hiện trạng thái bất thường của robot",
           "blocks": [
             {
               "type": "text",
-              "title": "Case",
-              "body": "Với x = [CPU, RAM, latency, error_rate], lỗi có thể nằm ở latency/error_rate dù CPU/RAM bình thường. Metric có trọng số giúp không bỏ qua tín hiệu nguy hiểm."
+              "title": "Bối cảnh",
+              "body": "Robot mặt đất có vector trạng thái x = [vận tốc, dòng motor, nhiệt độ, độ rung]. Ta muốn phát hiện khi trạng thái hiện tại khác đáng kể so với trạng thái bình thường trung bình."
+            },
+            {
+              "type": "formula",
+              "title": "Khoảng cách tới trạng thái chuẩn",
+              "body": "x_normal = [1.2, 3.0, 45, 0.05]\nx_now = [1.1, 4.8, 70, 0.20]\nd = ||normalize(x_now) - normalize(x_normal)||_2"
+            },
+            {
+              "type": "text",
+              "title": "Diễn giải kỹ thuật",
+              "body": "Nếu không chuẩn hóa, nhiệt độ có thể áp đảo vì số 70 lớn hơn 0.20 rất nhiều. Sau chuẩn hóa, dòng motor và độ rung có thể hiện rõ hơn vai trò cảnh báo."
+            },
+            {
+              "type": "qa",
+              "title": "Câu hỏi case",
+              "body": "Nếu chỉ dùng Euclidean thô, hệ thống có thể bỏ lỡ tín hiệu nào? Nó có thể bỏ lỡ chiều nhỏ về số học nhưng nguy hiểm về kỹ thuật, như độ rung hoặc tỷ lệ lỗi."
             }
           ]
         },
         {
           "role": "interpretation",
-          "title": "Diễn giải L1, L2 và weighted distance",
+          "title": "Diễn giải L1, L2, L∞ trong dữ liệu kỹ thuật",
           "blocks": [
             {
               "type": "text",
-              "title": "Diễn giải",
-              "body": "L1 cộng sai lệch từng chiều; L2 phạt mạnh sai lệch lớn; weighted distance đưa ưu tiên kỹ thuật vào phép đo."
+              "title": "L1: tổng chi phí lệch",
+              "body": "L1 phù hợp khi ta muốn tổng mức lệch tuyệt đối và không muốn phạt quá mạnh một ngoại lệ. Trong tối ưu, L1 còn liên quan đến sparse solution, vì nó khuyến khích nhiều thành phần về 0 trong một số bài toán."
+            },
+            {
+              "type": "text",
+              "title": "L2: năng lượng sai số",
+              "body": "L2 phù hợp khi sai số lớn cần bị phạt mạnh. Trong bình phương tối thiểu, tín hiệu, điều khiển và ML, L2 xuất hiện vì dễ đạo hàm và liên quan đến năng lượng hoặc công suất sai số."
+            },
+            {
+              "type": "text",
+              "title": "L∞: ngưỡng xấu nhất",
+              "body": "L∞ nhìn thành phần lệch lớn nhất. Nó phù hợp khi chỉ cần một chiều vượt ngưỡng là hệ nguy hiểm, ví dụ nhiệt độ, dòng điện, góc nghiêng hoặc sai số vị trí tối đa."
+            },
+            {
+              "type": "qa",
+              "title": "Câu hỏi diễn giải",
+              "body": "Nếu hệ an toàn yêu cầu không chiều nào vượt ngưỡng, chuẩn nào nên xem đầu tiên? L∞, vì nó tập trung vào sai số lớn nhất theo từng chiều."
             }
           ]
         },
@@ -362,30 +722,75 @@
           "blocks": [
             {
               "type": "code",
-              "title": "Công cụ",
-              "body": "numpy.abs\nnumpy.linalg.norm\nweighted_distance = sqrt(sum(w * (x-y)**2))"
+              "title": "So sánh ba chuẩn",
+              "body": "import numpy as np\na = np.array([1.0, 1.0, 1.0])\nb = np.array([2.0, 2.0, 2.0])\nc = np.array([1.0, 1.0, 10.0])\ndef norms(x, y):\n    e = x - y\n    return np.linalg.norm(e,1), np.linalg.norm(e,2), np.linalg.norm(e,np.inf)\nprint(norms(a,b))\nprint(norms(a,c))"
+            },
+            {
+              "type": "text",
+              "title": "Mục tiêu thí nghiệm",
+              "body": "So sánh a-b với a-c. Cặp a-c có một chiều lệch cực lớn, nên L∞ phơi bày rủi ro rõ hơn. L2 cũng tăng mạnh, còn L1 cho tổng lệch tuyệt đối."
+            },
+            {
+              "type": "text",
+              "title": "Mở rộng",
+              "body": "Thử chuẩn hóa dữ liệu trước khi tính. Sau đó thêm trọng số cho chiều an toàn quan trọng. Người học sẽ thấy metric không chỉ là công thức, mà là cách nhúng ưu tiên kỹ thuật vào phép đo."
+            },
+            {
+              "type": "qa",
+              "title": "Câu hỏi phòng lab",
+              "body": "Nếu thay đổi chuẩn hóa làm thứ tự nearest neighbor đảo ngược, điều đó nói gì? Dữ liệu đang nhạy với thang đo, cần kiểm tra lại feature engineering và metric."
             }
           ]
         },
         {
           "role": "common_mistakes",
-          "title": "Lỗi thường gặp khi dùng khoảng cách",
+          "title": "Lỗi thường gặp khi dùng norm và distance",
           "blocks": [
             {
               "type": "text",
-              "title": "Lỗi",
-              "body": "Dùng L2 trên dữ liệu chưa chuẩn hóa; chọn metric theo thói quen; quên xử lý missing value hoặc outlier trước khi tính khoảng cách."
+              "title": "Lỗi 1: dùng Euclidean cho mọi việc",
+              "body": "Euclidean dễ tính và quen mắt, nhưng không phải chìa khóa vạn năng. Dữ liệu văn bản embedding, dữ liệu có outlier, dữ liệu an toàn theo ngưỡng và dữ liệu khác đơn vị có thể cần metric khác."
+            },
+            {
+              "type": "text",
+              "title": "Lỗi 2: quên chuẩn hóa",
+              "body": "Nếu một đặc trưng đo bằng nghìn còn đặc trưng khác đo bằng phần trăm, distance thô sẽ thiên vị đặc trưng lớn. Đây là lỗi âm thầm, vì code vẫn chạy và kết quả vẫn có vẻ hợp lý."
+            },
+            {
+              "type": "text",
+              "title": "Lỗi 3: nhầm similarity với distance",
+              "body": "Similarity càng lớn càng giống, distance càng nhỏ càng giống. Nhầm chiều tối ưu có thể làm hệ thống chọn mẫu xa nhất thay vì gần nhất, như lái xe theo bản đồ lộn ngược."
+            },
+            {
+              "type": "qa",
+              "title": "Câu hỏi sửa lỗi",
+              "body": "Khi nearest neighbor trả kết quả vô lý, hãy kiểm tra ba thứ: vector có cùng schema không, dữ liệu có được chuẩn hóa không, và metric có đúng mục tiêu không."
             }
           ]
         },
         {
           "role": "application",
-          "title": "Ứng dụng lập trình",
+          "title": "Ứng dụng: chọn metric cho bài toán thật",
           "blocks": [
             {
               "type": "text",
-              "title": "Nhiệm vụ",
-              "body": "Viết l1_distance, l2_distance và weighted_l2_distance. Mỗi hàm kiểm tra cùng số chiều; trọng số phải không âm."
+              "title": "Bài toán embedding",
+              "body": "Với embedding văn bản hoặc hình ảnh, cosine thường là điểm khởi đầu tốt vì hướng vector chứa pattern ngữ nghĩa. Tuy nhiên nếu độ lớn embedding mang thông tin tin cậy, bỏ qua norm có thể mất tín hiệu."
+            },
+            {
+              "type": "text",
+              "title": "Bài toán điều khiển",
+              "body": "Với sai số vị trí hoặc vận tốc, L2 hoặc weighted L2 thường phù hợp vì sai số lớn cần bị phạt mạnh. Với ràng buộc an toàn từng chiều, L∞ hoặc kiểm ngưỡng riêng từng chiều có thể quan trọng hơn."
+            },
+            {
+              "type": "formula",
+              "title": "Weighted distance",
+              "body": "d_W(x,y) = sqrt(sum_i w_i (x_i-y_i)^2)\nw_i càng lớn thì chiều i càng được xem là quan trọng. Trọng số phải đến từ hiểu biết kỹ thuật, không chọn tùy hứng."
+            },
+            {
+              "type": "qa",
+              "title": "Câu hỏi triển khai",
+              "body": "Nếu chiều nhiệt độ nguy hiểm hơn chiều tốc độ quạt, có nên để chúng có trọng số bằng nhau không? Không nhất thiết. Metric phải phản ánh rủi ro thực tế."
             }
           ]
         },
@@ -395,8 +800,23 @@
           "blocks": [
             {
               "type": "text",
-              "title": "Bài tập",
-              "body": "Tính L1 và L2 giữa x=[2,5,10], y=[3,1,14]. Sau đó dùng w=[1,1,4] để tính weighted L2 và giải thích tác dụng của trọng số."
+              "title": "Bài 1: tính và so sánh",
+              "body": "Cho x = [3, 4], y = [0, 0]. Tính L1, L2 và L∞ của x-y. Sau đó giải thích vì sao ba con số khác nhau nhưng đều mô tả cùng một vector sai số."
+            },
+            {
+              "type": "text",
+              "title": "Bài 2: chọn metric",
+              "body": "Cho dữ liệu server [CPU, RAM, latency, error_rate]. Hãy đề xuất metric để phát hiện bất thường. Ghi rõ có chuẩn hóa không, có trọng số không và vì sao."
+            },
+            {
+              "type": "text",
+              "title": "Bài 3: phản ví dụ",
+              "body": "Tạo hai cặp vector sao cho cặp A gần hơn theo L1 nhưng xa hơn theo L∞ so với cặp B. Mục tiêu là thấy mỗi metric sắp xếp độ gần theo logic riêng."
+            },
+            {
+              "type": "qa",
+              "title": "Tiêu chí tự chấm",
+              "body": "Bài đạt nếu người học không chỉ tính số, mà giải thích metric đang ưu tiên điều gì và điều gì bị che đi."
             }
           ]
         },
@@ -406,19 +826,49 @@
           "blocks": [
             {
               "type": "qa",
-              "title": "Câu hỏi",
-              "body": "Vì sao metric không chỉ là công thức toán mà còn là giả định kỹ thuật? Khi nào L2 nguy hiểm hơn L1? Tại sao chuẩn hóa có thể đổi kết luận clustering?"
+              "title": "Câu 1",
+              "body": "Vì sao norm không chỉ là công thức tính độ dài? Vì norm định nghĩa cách đo độ lớn và kéo theo trực giác hình học của toàn bộ không gian dữ liệu."
+            },
+            {
+              "type": "qa",
+              "title": "Câu 2",
+              "body": "Khi nào L2 không phù hợp? Khi dữ liệu có outlier mạnh, khác đơn vị chưa chuẩn hóa, hoặc mục tiêu an toàn phụ thuộc vào sai số lớn nhất từng chiều."
+            },
+            {
+              "type": "qa",
+              "title": "Câu 3",
+              "body": "Vì sao chuẩn hóa có thể thay đổi kết quả clustering? Vì nó thay đổi hình học của không gian dữ liệu: chiều nào được xem là gần, xa, quan trọng hoặc nhiễu."
+            },
+            {
+              "type": "qa",
+              "title": "Câu 4",
+              "body": "Weighted distance có nguy hiểm gì? Nếu trọng số chọn sai, metric sẽ khuếch đại chiều không quan trọng và làm yếu tín hiệu thật."
             }
           ]
         },
         {
           "role": "bridge",
-          "title": "Cầu sang tích vô hướng và góc",
+          "title": "Cầu sang tích vô hướng và góc giữa vector",
           "blocks": [
             {
               "type": "text",
-              "title": "Liên kết",
-              "body": "Khoảng cách đo độ lệch vị trí trong không gian dữ liệu. Bài tiếp theo xét góc và phép chiếu, tức cách hai vector cùng hoặc khác hướng."
+              "title": "Từ độ lớn đến hướng",
+              "body": "Norm và distance cho biết độ lớn và độ lệch. Nhưng nhiều bài toán cần biết hai vector có cùng hướng hay không. Đó là lúc tích vô hướng và cosine trở thành nhân vật chính."
+            },
+            {
+              "type": "formula",
+              "title": "Liên hệ norm và dot product",
+              "body": "||x||_2^2 = x · x\ncos(theta) = (x · y)/(||x|| ||y||)\nTừ norm, ta đi tự nhiên sang góc và độ tương đồng hướng."
+            },
+            {
+              "type": "text",
+              "title": "Ý nghĩa bài sau",
+              "body": "Nếu khoảng cách đo 'xa bao nhiêu', thì dot product và cosine đo 'cùng hướng bao nhiêu'. Trong AI, đây là nền cho similarity search, attention, projection và linear models."
+            },
+            {
+              "type": "qa",
+              "title": "Câu hỏi mở đường",
+              "body": "Hai vector có distance lớn nhưng cosine cao nói gì? Chúng cùng hướng nhưng khác độ lớn. Đây là cầu nối trực tiếp sang bài tích vô hướng."
             }
           ]
         },
@@ -428,8 +878,23 @@
           "blocks": [
             {
               "type": "text",
-              "title": "Cốt lõi",
-              "body": "Khoảng cách không trung lập; metric là cách ta định nghĩa thế nào là giống và khác trong dữ liệu kỹ thuật."
+              "title": "Cốt lõi 1",
+              "body": "Chuẩn đo độ lớn vector; khoảng cách đo độ khác biệt giữa hai vector. Hai khái niệm này biến tập dữ liệu thành không gian có thể đo và so sánh."
+            },
+            {
+              "type": "text",
+              "title": "Cốt lõi 2",
+              "body": "Không có metric đúng cho mọi bài toán. L1, L2, L∞, cosine distance và weighted distance trả lời các câu hỏi khác nhau. Chọn metric là chọn cách nhìn dữ liệu."
+            },
+            {
+              "type": "text",
+              "title": "Cốt lõi 3",
+              "body": "Trước khi tin vào khoảng cách, hãy kiểm tra schema vector, đơn vị, chuẩn hóa, outlier và mục tiêu kỹ thuật. Một khoảng cách đẹp trên màn hình có thể là chiếc la bàn bị nhiễu từ."
+            },
+            {
+              "type": "qa",
+              "title": "Một câu nhớ lâu",
+              "body": "Metric không chỉ đo dữ liệu; metric quyết định dữ liệu được xem là gần hay xa trong mắt thuật toán."
             }
           ]
         }
@@ -448,7 +913,7 @@
       ],
       "programAnchorTitle": "Không gian vectơ và ánh xạ tuyến tính",
       "roadmapRole": "foundation_before_prep",
-      "baumanFocus": "Hiểu tích vô hướng như phép đo tương quan hướng, nền của projection, similarity, attention score, PCA và mô hình tuyến tính.",
+      "baumanFocus": "Hiểu tích vô hướng như phép đo tương quan hướng, nền của projection, similarity, attention score, PCA, mô hình tuyến tính và xử lý tín hiệu.",
       "sourceAnchors": {
         "stageId": "vn",
         "disciplineId": "linear_algebra_data_space",
@@ -469,8 +934,23 @@
           "blocks": [
             {
               "type": "text",
-              "title": "Ý chính",
-              "body": "Khoảng cách cho biết hai vector xa nhau bao nhiêu; tích vô hướng và góc cho biết chúng cùng hướng đến mức nào. Đây là nền của similarity, projection và mô hình tuyến tính."
+              "title": "Vấn đề học tập",
+              "body": "Khoảng cách cho biết hai vector xa nhau bao nhiêu, nhưng nhiều bài toán cần biết chúng cùng hướng đến mức nào. Tích vô hướng, góc và cosine trả lời câu hỏi đó. Đây là ngôn ngữ lõi của similarity search, projection, attention score, mô hình tuyến tính và xử lý tín hiệu."
+            },
+            {
+              "type": "text",
+              "title": "Khác với khoảng cách",
+              "body": "Hai vector có thể xa về độ lớn nhưng vẫn rất cùng hướng. Ngược lại, hai vector có độ lớn gần nhau nhưng hướng đối lập. Vì vậy chỉ nhìn distance sẽ thiếu một nửa câu chuyện hình học của dữ liệu."
+            },
+            {
+              "type": "text",
+              "title": "Ví dụ kỹ thuật",
+              "body": "Trong phát hiện tín hiệu, ta hỏi tín hiệu đo được có giống mẫu chuẩn không. Trong phân loại tuyến tính, ta hỏi vector đặc trưng x có cùng hướng với vector trọng số w không. Trong embedding, ta hỏi hai vector có cùng hướng ngữ nghĩa không."
+            },
+            {
+              "type": "qa",
+              "title": "Câu hỏi tự kiểm",
+              "body": "Nếu hai văn bản dài ngắn khác nhau nhưng nói cùng chủ đề, distance hay cosine thường hữu ích hơn? Cosine thường hữu ích hơn vì nó tập trung vào hướng biểu diễn, không bị độ lớn chi phối quá mạnh."
             }
           ]
         },
@@ -480,8 +960,23 @@
           "blocks": [
             {
               "type": "text",
-              "title": "Bản chất",
-              "body": "x · y nhân từng cặp thành phần rồi cộng lại. Trong mô hình tuyến tính, score = w · x dùng w như vector trọng số để gom đặc trưng x thành một điểm số."
+              "title": "Bản chất đại số",
+              "body": "Tích vô hướng x · y nhân từng cặp thành phần rồi cộng lại. Mỗi thành phần x_i đóng góp theo mức y_i. Vì vậy dot product có thể được hiểu như phép đo xem hai vector cùng nhấn mạnh các chiều giống nhau đến đâu."
+            },
+            {
+              "type": "formula",
+              "title": "Định nghĩa thành phần",
+              "body": "x · y = sum_i x_i y_i\nĐiều kiện: x và y phải cùng số chiều. Mỗi tích x_i y_i là đóng góp của chiều i."
+            },
+            {
+              "type": "text",
+              "title": "Mô hình tuyến tính",
+              "body": "Trong score = w · x, vector w là bộ trọng số. Thành phần nào của w lớn sẽ làm đặc trưng tương ứng trong x ảnh hưởng mạnh hơn. Đây là xương sống của hồi quy tuyến tính, logistic regression và nhiều lớp neural network."
+            },
+            {
+              "type": "qa",
+              "title": "Câu hỏi tự kiểm",
+              "body": "Nếu w_i dương lớn, x_i tăng thì score thay đổi thế nào? Score tăng mạnh. Nếu w_i âm, x_i tăng có thể làm score giảm. Dấu của trọng số mang nghĩa hướng tác động."
             }
           ]
         },
@@ -491,8 +986,23 @@
           "blocks": [
             {
               "type": "text",
-              "title": "Điểm chính",
-              "body": "Dot product phụ thuộc cả hướng lẫn độ lớn. Nếu muốn tập trung vào hướng, dùng cosine similarity thay vì dot product thô."
+              "title": "Điểm dễ nhầm",
+              "body": "Dot product phụ thuộc cả hướng lẫn độ lớn. Một vector rất dài có thể tạo dot product lớn với nhiều vector khác, dù góc không thật sự nhỏ. Vì vậy dot product thô dễ bị độ lớn kéo lệch."
+            },
+            {
+              "type": "formula",
+              "title": "Tách hướng và độ lớn",
+              "body": "x · y = ||x|| ||y|| cos(theta)\nNếu ||x|| hoặc ||y|| rất lớn, dot product có thể lớn dù cos(theta) không quá cao."
+            },
+            {
+              "type": "text",
+              "title": "Khi nào cần cosine",
+              "body": "Nếu mục tiêu là so pattern hoặc hướng, hãy chuẩn hóa bằng norm để dùng cosine. Nếu mục tiêu là đo cả hướng và cường độ, dot product thô có thể vẫn phù hợp."
+            },
+            {
+              "type": "qa",
+              "title": "Câu hỏi phản trực giác",
+              "body": "Một tín hiệu có biên độ rất lớn nhưng hình dạng không giống mẫu chuẩn có thể dot lớn không? Có. Vì vậy trong matching tín hiệu, cần xem cả dot lẫn cosine hoặc chuẩn hóa trước khi so."
             }
           ]
         },
@@ -502,8 +1012,23 @@
           "blocks": [
             {
               "type": "text",
-              "title": "Ứng dụng",
-              "body": "Classifier tuyến tính dùng w · x. Attention dùng điểm số giữa query và key. Trong tín hiệu, tích vô hướng với mẫu chuẩn giúp phát hiện pattern."
+              "title": "Trong classifier tuyến tính",
+              "body": "Mô hình tuyến tính tính score = w · x + b. Nếu score cao, mẫu x nằm gần hướng mà mô hình xem là lớp dương. Học mô hình là học vector w sao cho dot product tách được các lớp."
+            },
+            {
+              "type": "text",
+              "title": "Trong attention",
+              "body": "Attention dùng dot product giữa query và key để tạo điểm chú ý. Query và key càng cùng hướng, điểm càng cao, mô hình càng ưu tiên thông tin đó."
+            },
+            {
+              "type": "text",
+              "title": "Trong xử lý tín hiệu",
+              "body": "Khi nhân tín hiệu với một mẫu chuẩn rồi cộng lại, ta đang đo tín hiệu có thành phần giống mẫu đó bao nhiêu. Đây là trực giác của matched filter, correlation và projection lên basis."
+            },
+            {
+              "type": "qa",
+              "title": "Câu hỏi kỹ thuật",
+              "body": "Vì sao dot product xuất hiện ở nhiều nơi như vậy? Vì nó là phép đo tuyến tính đơn giản nhất để gom nhiều đặc trưng thành một score có ý nghĩa hướng."
             }
           ]
         },
@@ -513,8 +1038,23 @@
           "blocks": [
             {
               "type": "formula",
-              "title": "Hai dạng",
-              "body": "x · y = sum_i x_i y_i\nx · y = ||x|| ||y|| cos(theta)"
+              "title": "Hai dạng tương đương",
+              "body": "x · y = sum_i x_i y_i\nx · y = ||x|| ||y|| cos(theta)\ncos(theta) = (x · y)/(||x|| ||y||)"
+            },
+            {
+              "type": "text",
+              "title": "Ý nghĩa ký hiệu",
+              "body": "theta là góc giữa hai vector khác zero. Khi theta nhỏ, cos(theta) gần 1. Khi theta bằng 90 độ, cos(theta) bằng 0. Khi theta gần 180 độ, cos(theta) gần -1."
+            },
+            {
+              "type": "text",
+              "title": "Điều kiện dùng",
+              "body": "Công thức cosine chỉ dùng khi cả hai vector có norm khác 0. Với vector zero, hướng không xác định nên góc và cosine cũng không xác định."
+            },
+            {
+              "type": "code",
+              "title": "Tính cosine an toàn",
+              "body": "import numpy as np\ndef cosine(x, y, eps=1e-12):\n    x = np.asarray(x, dtype=float)\n    y = np.asarray(y, dtype=float)\n    nx, ny = np.linalg.norm(x), np.linalg.norm(y)\n    if nx < eps or ny < eps:\n        raise ValueError('zero vector has no direction')\n    return float(np.dot(x, y)/(nx*ny))"
             }
           ]
         },
@@ -524,8 +1064,23 @@
           "blocks": [
             {
               "type": "formula",
-              "title": "Công thức",
+              "title": "Công thức lõi",
               "body": "cos(theta) = (x · y)/(||x|| ||y||)\nproj_y(x) = ((x · y)/(y · y)) y, y != 0\nx_perp = x - proj_y(x)"
+            },
+            {
+              "type": "text",
+              "title": "Ý nghĩa projection",
+              "body": "Projection của x lên y là phần của x nằm theo hướng y. Phần còn lại x_perp vuông góc với y. Đây là cách tách một vector thành thành phần theo hướng quan tâm và phần dư."
+            },
+            {
+              "type": "text",
+              "title": "Vì sao mẫu số là y · y",
+              "body": "Hệ số (x · y)/(y · y) cho biết cần nhân y bao nhiêu lần để được phần gần nhất của x trên đường thẳng theo hướng y. Nếu y dài hơn, cùng dot product sẽ tạo hệ số nhỏ hơn."
+            },
+            {
+              "type": "qa",
+              "title": "Câu hỏi công thức",
+              "body": "Projection có dùng được khi y = 0 không? Không. Vì không có hướng để chiếu và mẫu số y · y bằng 0."
             }
           ]
         },
@@ -535,8 +1090,23 @@
           "blocks": [
             {
               "type": "text",
-              "title": "Điều kiện",
-              "body": "Dot yêu cầu cùng số chiều. Projection lên y yêu cầu y không phải vector zero. Cosine yêu cầu cả hai vector có norm khác 0."
+              "title": "Điều kiện cùng schema",
+              "body": "Dot product yêu cầu hai vector cùng số chiều và cùng ý nghĩa từng chiều. Dot giữa embedding văn bản và vector cảm biến nhiệt là vô nghĩa nếu chúng không sống trong cùng không gian đặc trưng."
+            },
+            {
+              "type": "text",
+              "title": "Điều kiện không zero",
+              "body": "Cosine và projection cần vector hướng khác zero. Vector zero có độ lớn bằng 0, không mang hướng, nên mọi phép đo góc với nó đều không xác định."
+            },
+            {
+              "type": "text",
+              "title": "Điều kiện scale",
+              "body": "Nếu dùng dot product thô, scale rất quan trọng. Một vector có norm lớn có thể thắng chỉ vì lớn, không phải vì cùng hướng. Khi muốn đo hướng, cần normalize hoặc dùng cosine."
+            },
+            {
+              "type": "qa",
+              "title": "Checklist trước khi tính",
+              "body": "Trước khi dùng dot/cosine/projection, hãy hỏi: cùng chiều chưa, cùng schema chưa, có vector zero không, scale có làm lệch kết quả không, mục tiêu là hướng hay cường độ?"
             }
           ]
         },
@@ -546,8 +1116,23 @@
           "blocks": [
             {
               "type": "text",
-              "title": "Case",
-              "body": "Dot lớn cho biết tín hiệu có năng lượng lớn theo mẫu; cosine cao cho biết hình dạng gần mẫu. Dot lớn nhưng cosine thấp nghĩa là mạnh nhưng không giống mẫu."
+              "title": "Bối cảnh",
+              "body": "Ta có một mẫu chuẩn p biểu diễn dạng sóng cần phát hiện và một tín hiệu đo x. Muốn biết trong x có thành phần giống p hay không, ta tính dot product hoặc cosine giữa x và p."
+            },
+            {
+              "type": "formula",
+              "title": "Score matching",
+              "body": "score_dot = x · p\nscore_cos = (x · p)/(||x|| ||p||)\nDot đo cả độ giống và năng lượng; cosine đo độ giống hình dạng sau khi bỏ bớt biên độ."
+            },
+            {
+              "type": "text",
+              "title": "Diễn giải kỹ thuật",
+              "body": "Nếu dot lớn nhưng cosine thấp, tín hiệu có năng lượng lớn nhưng không thật sự giống mẫu. Nếu cosine cao nhưng dot nhỏ, hình dạng giống nhưng biên độ yếu. Hai trường hợp dẫn đến quyết định khác nhau."
+            },
+            {
+              "type": "qa",
+              "title": "Câu hỏi case",
+              "body": "Trong radar hoặc âm thanh, khi nào dot thô hữu ích hơn cosine? Khi cường độ tín hiệu cũng là thông tin quan trọng, không chỉ hình dạng."
             }
           ]
         },
@@ -557,41 +1142,101 @@
           "blocks": [
             {
               "type": "text",
-              "title": "Diễn giải",
-              "body": "Dot dương: xu hướng cùng hướng. Dot bằng 0: trực giao. Dot âm: xu hướng ngược hướng hoặc tác động đối lập trong mô hình tuyến tính."
+              "title": "Dot dương",
+              "body": "Dot dương cho biết hai vector có xu hướng cùng hướng. Trong mô hình tuyến tính, đặc trưng đang đẩy score theo cùng chiều với trọng số. Trong tín hiệu, mẫu và tín hiệu có thành phần tương đồng."
+            },
+            {
+              "type": "text",
+              "title": "Dot bằng 0",
+              "body": "Dot bằng 0 nghĩa là trực giao theo nghĩa đại số. Hai vector không đóng góp lên hướng của nhau. Trong dữ liệu, điều này có thể hiểu là không tương quan tuyến tính theo metric đang dùng, nhưng không đảm bảo độc lập thống kê."
+            },
+            {
+              "type": "text",
+              "title": "Dot âm",
+              "body": "Dot âm cho biết xu hướng ngược hướng. Trong mô hình tuyến tính, đặc trưng có thể kéo score xuống. Trong tín hiệu, mẫu có thể xuất hiện ngược pha hoặc trái dấu."
+            },
+            {
+              "type": "qa",
+              "title": "Câu hỏi diễn giải",
+              "body": "Dot bằng 0 có nghĩa hai đại lượng hoàn toàn không liên quan không? Không. Nó chỉ nói trực giao tuyến tính theo biểu diễn hiện tại, không loại trừ quan hệ phi tuyến hoặc quan hệ do biến khác gây ra."
             }
           ]
         },
         {
           "role": "simulation",
-          "title": "Thí nghiệm dot và cosine bằng Python",
+          "title": "Thí nghiệm dot, cosine và projection bằng Python",
           "blocks": [
             {
               "type": "code",
-              "title": "Công cụ",
-              "body": "dot = numpy.dot(x, y)\ncos = dot / (norm(x) * norm(y))\nprojection = (dot / numpy.dot(y, y)) * y"
+              "title": "Thí nghiệm nhỏ",
+              "body": "import numpy as np\nx = np.array([3.0, 4.0])\ny = np.array([1.0, 0.0])\ndot = np.dot(x, y)\ncos = dot/(np.linalg.norm(x)*np.linalg.norm(y))\nproj = (dot/np.dot(y,y))*y\nperp = x - proj\nprint(dot, cos, proj, perp)"
+            },
+            {
+              "type": "text",
+              "title": "Điều cần quan sát",
+              "body": "Với y là trục ngang, projection của x lên y giữ phần ngang của x. Phần perp là phần còn lại theo hướng vuông góc. Tổng proj + perp khôi phục lại x."
+            },
+            {
+              "type": "text",
+              "title": "Mở rộng",
+              "body": "Thay y bằng [1,1] rồi tính lại. Người học sẽ thấy projection phụ thuộc vào hướng chiếu, không chỉ vào vector x. Đây là bước chuẩn bị cho basis, PCA và least squares."
+            },
+            {
+              "type": "qa",
+              "title": "Câu hỏi phòng lab",
+              "body": "Nếu dot(x,y) lớn nhưng cosine không quá cao, điều gì có thể xảy ra? Có thể x hoặc y có norm lớn, khiến dot phình ra dù góc chưa thật sự nhỏ."
             }
           ]
         },
         {
           "role": "common_mistakes",
-          "title": "Lỗi thường gặp",
+          "title": "Lỗi thường gặp với dot, cosine và projection",
           "blocks": [
             {
               "type": "text",
-              "title": "Lỗi",
-              "body": "Dùng dot product để đo similarity nhưng quên ảnh hưởng độ lớn; tính projection lên vector zero; hiểu trực giao như không liên quan tuyệt đối trong mọi biểu diễn dữ liệu."
+              "title": "Lỗi 1: quên normalize",
+              "body": "Dùng dot product để đo similarity nhưng không kiểm soát norm có thể làm vector dài luôn thắng. Đây là lỗi phổ biến trong tìm kiếm embedding và matching tín hiệu."
+            },
+            {
+              "type": "text",
+              "title": "Lỗi 2: chiếu lên vector zero",
+              "body": "Projection lên vector zero là vô nghĩa vì không có hướng chiếu. Code phải kiểm tra y · y khác 0 trước khi chia."
+            },
+            {
+              "type": "text",
+              "title": "Lỗi 3: nhầm trực giao với độc lập",
+              "body": "Hai vector trực giao không đồng nghĩa hai biến ngẫu nhiên độc lập. Trực giao là khái niệm hình học hoặc đại số, còn độc lập là khái niệm xác suất."
+            },
+            {
+              "type": "qa",
+              "title": "Câu hỏi sửa lỗi",
+              "body": "Nếu cosine trả NaN trong code, hãy kiểm tra điều gì đầu tiên? Kiểm tra xem một trong hai vector có norm bằng 0 hoặc gần 0 không."
             }
           ]
         },
         {
           "role": "application",
-          "title": "Ứng dụng lập trình",
+          "title": "Ứng dụng: similarity, attention và linear score",
           "blocks": [
             {
               "type": "text",
-              "title": "Nhiệm vụ",
-              "body": "Cài đặt score = w · x cho mô hình tuyến tính và cosine search cho vector đã chuẩn hóa. Giải thích từng trọng số w_i ảnh hưởng đến score."
+              "title": "Similarity search",
+              "body": "Trong tìm kiếm vector, cosine giúp xếp hạng mẫu theo hướng gần nhau. Đây là nền cho tìm kiếm văn bản, hình ảnh, embedding câu hỏi và truy xuất tài liệu."
+            },
+            {
+              "type": "text",
+              "title": "Attention score",
+              "body": "Trong transformer, query và key tạo score bằng dot product đã scale. Score này quyết định token nào được chú ý nhiều hơn. Ý tưởng lõi vẫn là đo mức cùng hướng trong không gian biểu diễn."
+            },
+            {
+              "type": "formula",
+              "title": "Linear score",
+              "body": "score = w · x + b\nNếu score lớn, x phù hợp với hướng w. Biên quyết định tuyến tính xuất hiện khi score = 0."
+            },
+            {
+              "type": "qa",
+              "title": "Câu hỏi ứng dụng",
+              "body": "Vì sao cùng là dot product nhưng lúc cần normalize, lúc không? Vì mục tiêu khác nhau: đo hướng thì normalize; đo score có trọng số và cường độ thì dot thô có thể phù hợp."
             }
           ]
         },
@@ -601,8 +1246,23 @@
           "blocks": [
             {
               "type": "text",
-              "title": "Bài tập",
-              "body": "Cho x=[1,2,2], y=[2,0,1]. Tính dot, norm, cosine, projection của x lên y và kiểm tra phần dư có trực giao với y không."
+              "title": "Bài 1: tính tay",
+              "body": "Cho x = [3,4], y = [4,3]. Tính x · y, ||x||, ||y|| và cosine. Diễn giải xem hai vector có gần hướng nhau không."
+            },
+            {
+              "type": "text",
+              "title": "Bài 2: projection",
+              "body": "Cho x = [2,3], y = [1,1]. Tính projection của x lên y và phần vuông góc x_perp. Kiểm tra x = proj_y(x) + x_perp."
+            },
+            {
+              "type": "text",
+              "title": "Bài 3: lựa chọn metric",
+              "body": "Bạn có embedding văn bản và vector sai số robot. Trường hợp nào dùng cosine, trường hợp nào dùng Euclidean hoặc weighted L2? Giải thích theo mục tiêu kỹ thuật."
+            },
+            {
+              "type": "qa",
+              "title": "Tiêu chí tự chấm",
+              "body": "Bài đạt nếu người học không chỉ tính ra số, mà còn diễn giải được dot, cosine và projection đang trả lời câu hỏi kỹ thuật nào."
             }
           ]
         },
@@ -612,19 +1272,49 @@
           "blocks": [
             {
               "type": "qa",
-              "title": "Câu hỏi",
-              "body": "Dot khác cosine ở điểm nào? Tại sao projection là nền của PCA? Khi nào trực giao là dấu hiệu tốt trong biểu diễn đặc trưng?"
+              "title": "Câu 1",
+              "body": "Vì sao dot product có thể xem là phép đo tương thích giữa trọng số và dữ liệu? Vì nó cộng đóng góp từng đặc trưng theo trọng số tương ứng, tạo thành một score tuyến tính."
+            },
+            {
+              "type": "qa",
+              "title": "Câu 2",
+              "body": "Khi nào cosine tốt hơn dot product? Khi ta muốn so hướng hoặc pattern và không muốn norm lớn tự động chiếm ưu thế."
+            },
+            {
+              "type": "qa",
+              "title": "Câu 3",
+              "body": "Projection giúp hiểu dữ liệu như thế nào? Nó tách vector thành phần theo một hướng quan tâm và phần dư, giúp phân tích đóng góp theo basis hoặc theo tín hiệu mẫu."
+            },
+            {
+              "type": "qa",
+              "title": "Câu 4",
+              "body": "Dot bằng 0 có phải luôn tốt không? Không. Trong orthogonal basis thì tốt vì tách thông tin; trong mô hình tuyến tính, dot bằng 0 có thể nghĩa là mẫu không được mô hình nhận diện theo hướng đó."
             }
           ]
         },
         {
           "role": "bridge",
-          "title": "Cầu sang cơ sở và hệ tọa độ",
+          "title": "Cầu sang cơ sở và tọa độ trong không gian vector",
           "blocks": [
             {
               "type": "text",
-              "title": "Liên kết",
-              "body": "Khi chiếu vector lên nhiều hướng độc lập, ta biểu diễn vector theo một hệ tọa độ. Bài tiếp theo dùng ý tưởng này để hiểu cơ sở, span và tọa độ."
+              "title": "Từ projection sang tọa độ",
+              "body": "Nếu projection lên một hướng cho biết thành phần của vector theo hướng đó, thì projection lên nhiều hướng độc lập sẽ cho ta tọa độ của vector trong một hệ cơ sở."
+            },
+            {
+              "type": "formula",
+              "title": "Ý tưởng phân rã",
+              "body": "x = c_1 b_1 + c_2 b_2 + ... + c_k b_k\nNếu b_i trực chuẩn, c_i = x · b_i. Dot product trở thành công cụ đọc tọa độ."
+            },
+            {
+              "type": "text",
+              "title": "Liên hệ PCA",
+              "body": "PCA tìm các hướng mà dữ liệu có phương sai lớn. Sau đó dữ liệu được chiếu lên các hướng đó để có tọa độ mới ít chiều hơn nhưng giữ nhiều thông tin."
+            },
+            {
+              "type": "qa",
+              "title": "Câu hỏi mở đường",
+              "body": "Nếu chọn basis kém, tọa độ của cùng một vector có khó diễn giải không? Có. Basis là ngôn ngữ tọa độ, chọn sai ngôn ngữ làm dữ liệu khó đọc."
             }
           ]
         },
@@ -634,8 +1324,23 @@
           "blocks": [
             {
               "type": "text",
-              "title": "Cốt lõi",
-              "body": "Tích vô hướng đo mức đóng góp của một vector theo hướng của vector khác."
+              "title": "Cốt lõi 1",
+              "body": "Dot product đo mức cùng hướng có tính cả độ lớn. Cosine chuẩn hóa dot product để tập trung vào hướng. Projection tách vector thành phần theo một hướng cụ thể."
+            },
+            {
+              "type": "text",
+              "title": "Cốt lõi 2",
+              "body": "Trong AI và kỹ thuật, dot product không phải công thức phụ. Nó là nền của linear score, attention, similarity, matching tín hiệu, PCA và nhiều phép chiếu dữ liệu."
+            },
+            {
+              "type": "text",
+              "title": "Cốt lõi 3",
+              "body": "Trước khi dùng dot hoặc cosine, hãy kiểm tra cùng schema, cùng số chiều, norm khác zero và mục tiêu là đo hướng hay đo cả cường độ."
+            },
+            {
+              "type": "qa",
+              "title": "Một câu nhớ lâu",
+              "body": "Dot product là chiếc cân hướng: nó đo dữ liệu nghiêng về phía vector tham chiếu mạnh đến đâu."
             }
           ]
         }
@@ -675,8 +1380,23 @@
           "blocks": [
             {
               "type": "text",
-              "title": "Ý chính",
-              "body": "Một vector chỉ có ý nghĩa tính toán đầy đủ khi biết nó được biểu diễn theo hệ trục nào. Cơ sở cung cấp các hướng nền; tọa độ cho biết vector được ghép từ các hướng nền đó ra sao."
+              "title": "Vấn đề học tập",
+              "body": "Một vector không tự nói nó được mô tả theo hệ trục nào. Cùng một đối tượng hình học có thể có nhiều bộ tọa độ khác nhau nếu ta đổi cơ sở. Vì vậy học cơ sở, span và tọa độ là học cách đặt ngôn ngữ biểu diễn cho dữ liệu."
+            },
+            {
+              "type": "text",
+              "title": "Góc nhìn dữ liệu",
+              "body": "Trong dữ liệu kỹ thuật, mỗi đặc trưng thường đóng vai trò như một trục. Nếu chọn trục kém, dữ liệu có thể dài dòng, dư thừa hoặc khó học. Nếu chọn trục tốt, cùng thông tin được biểu diễn gọn và dễ xử lý hơn."
+            },
+            {
+              "type": "text",
+              "title": "Ví dụ gần Bauman",
+              "body": "Trạng thái robot có thể mô tả bằng [x, y, vx, vy] hoặc bằng tọa độ theo trục thân robot. Cùng chuyển động, nhưng hệ tọa độ khác nhau làm bài toán điều khiển và cảm biến dễ hoặc khó hơn."
+            },
+            {
+              "type": "qa",
+              "title": "Câu hỏi tự kiểm",
+              "body": "Tọa độ [2,3] có đủ để biết vector thật không? Chưa đủ. Ta cần biết [2,3] là tọa độ theo cơ sở nào, vì đổi cơ sở thì cùng tọa độ có thể chỉ đến vector khác."
             }
           ]
         },
@@ -687,7 +1407,22 @@
             {
               "type": "text",
               "title": "Bản chất",
-              "body": "Một cơ sở gồm các vector độc lập tuyến tính và đủ để biểu diễn mọi vector trong không gian đang xét. Không thiếu hướng, không thừa hướng."
+              "body": "Một cơ sở là bộ vector vừa đủ: không thiếu hướng để sinh toàn bộ không gian đang xét, và không thừa vector phụ thuộc tuyến tính. Nó giống bộ trục tối thiểu cho phép mô tả mọi vector trong không gian đó."
+            },
+            {
+              "type": "formula",
+              "title": "Hai điều kiện",
+              "body": "B = {b_1, ..., b_n} là cơ sở của V nếu:\n1) span(B) = V\n2) b_1, ..., b_n độc lập tuyến tính"
+            },
+            {
+              "type": "text",
+              "title": "Không thiếu, không thừa",
+              "body": "Nếu thiếu hướng, có vector trong không gian không biểu diễn được. Nếu thừa hướng, có nhiều cách biểu diễn cùng một vector, gây nhập nhằng và làm mô hình khó diễn giải."
+            },
+            {
+              "type": "qa",
+              "title": "Câu hỏi tự kiểm",
+              "body": "Vì sao cơ sở cần độc lập tuyến tính? Vì nếu một vector cơ sở được tạo từ các vector khác, nó không thêm hướng mới mà chỉ thêm thông tin trùng lặp."
             }
           ]
         },
@@ -698,7 +1433,22 @@
             {
               "type": "text",
               "title": "Điểm dễ nhầm",
-              "body": "Cùng một vector hình học có thể có tọa độ khác nhau trong các cơ sở khác nhau. Tọa độ là mô tả phụ thuộc hệ trục, không phải bản thể duy nhất của vector."
+              "body": "Tọa độ là mô tả của vector trong một cơ sở cụ thể. Bản thân vector là đối tượng hình học hoặc dữ liệu trừu tượng; tọa độ là cách ghi nó bằng các trục đã chọn."
+            },
+            {
+              "type": "text",
+              "title": "Ví dụ trực giác",
+              "body": "Trong bản đồ, cùng một vị trí có thể ghi theo kinh độ/vĩ độ hoặc theo khoảng cách từ một mốc địa phương. Con số thay đổi, vị trí thật không đổi. Vector cũng vậy: đổi cơ sở thì tọa độ đổi."
+            },
+            {
+              "type": "text",
+              "title": "Hậu quả kỹ thuật",
+              "body": "Khi đưa dữ liệu vào mô hình, thay đổi cơ sở tương đương thay đổi cách mô hình nhìn dữ liệu. PCA, Fourier transform, wavelet transform đều là các cách đổi hệ biểu diễn để làm cấu trúc dữ liệu hiện rõ hơn."
+            },
+            {
+              "type": "qa",
+              "title": "Câu hỏi phản trực giác",
+              "body": "Nếu tọa độ thay đổi khi đổi cơ sở, kết quả mô hình có thể thay đổi không? Có, nhất là khi mô hình hoặc metric không bất biến với phép đổi cơ sở."
             }
           ]
         },
@@ -708,8 +1458,23 @@
           "blocks": [
             {
               "type": "text",
-              "title": "Ví dụ",
-              "body": "Trong dữ liệu kỹ thuật, mỗi đặc trưng có thể xem như một trục. Chọn đặc trưng tốt giống như chọn cơ sở tốt: biểu diễn dữ liệu gọn, rõ và hữu ích cho mô hình."
+              "title": "Feature như hệ trục",
+              "body": "Trong bảng dữ liệu, mỗi feature có thể xem như một trục tọa độ. Một mẫu dữ liệu là vector tọa độ theo các feature đó. Chọn feature tốt giống như chọn hệ trục tốt cho bài toán."
+            },
+            {
+              "type": "text",
+              "title": "Feature thừa",
+              "body": "Nếu feature mới chỉ là tổ hợp của các feature cũ, nó không thêm thông tin độc lập. Ví dụ speed được tính từ velocity_x và velocity_y, nên thêm cả ba có thể tạo phụ thuộc hoặc làm model đếm thông tin hai lần."
+            },
+            {
+              "type": "text",
+              "title": "Feature thiếu",
+              "body": "Nếu không có feature mô tả nhiệt độ motor, mô hình bảo trì dự đoán lỗi có thể mù trước quá nhiệt. Khi đó span của hệ feature chưa bao phủ hướng biến thiên quan trọng của dữ liệu."
+            },
+            {
+              "type": "qa",
+              "title": "Câu hỏi kỹ thuật",
+              "body": "Chọn nhiều feature hơn có luôn tốt hơn không? Không. Feature thừa tăng nhiễu, chi phí tính toán và nguy cơ overfit; feature thiếu làm mô hình không thấy tín hiệu cần thiết."
             }
           ]
         },
@@ -720,12 +1485,22 @@
             {
               "type": "formula",
               "title": "Tổ hợp tuyến tính",
-              "body": "v = a_1 b_1 + a_2 b_2 + ... + a_k b_k"
+              "body": "v = a_1 b_1 + a_2 b_2 + ... + a_k b_k\nCác hệ số a_i là tọa độ hoặc trọng số của v theo các hướng b_i nếu bộ b_i phù hợp."
             },
             {
               "type": "formula",
               "title": "Span",
-              "body": "span(b_1,...,b_k) = {a_1 b_1 + ... + a_k b_k | a_i thuộc R}"
+              "body": "span(b_1,...,b_k) = {a_1 b_1 + ... + a_k b_k | a_i thuộc R}\nSpan là tập mọi vector có thể tạo được từ bộ hướng đã cho."
+            },
+            {
+              "type": "text",
+              "title": "Diễn giải dữ liệu",
+              "body": "Nếu bộ feature hoặc basis chỉ sinh được một vùng hẹp, dữ liệu thật nằm ngoài vùng đó sẽ không được biểu diễn tốt. Đây là lý do ta kiểm tra rank, residual và reconstruction error."
+            },
+            {
+              "type": "code",
+              "title": "Ý tưởng bằng NumPy",
+              "body": "import numpy as np\nB = np.array([[1,0],[0,1],[1,1]], dtype=float).T\nv = np.array([2,3], dtype=float)\ncoef, *_ = np.linalg.lstsq(B, v, rcond=None)\nrecon = B @ coef"
             }
           ]
         },
@@ -736,12 +1511,22 @@
             {
               "type": "formula",
               "title": "Độc lập tuyến tính",
-              "body": "a_1 b_1 + ... + a_k b_k = 0 chỉ có nghiệm a_1=...=a_k=0"
+              "body": "a_1 b_1 + ... + a_k b_k = 0\nchỉ có nghiệm a_1 = ... = a_k = 0\nNếu có nghiệm khác 0, bộ vector phụ thuộc tuyến tính."
+            },
+            {
+              "type": "formula",
+              "title": "Đủ sinh",
+              "body": "span(b_1,...,b_k) = V\nMọi vector v thuộc V đều viết được dưới dạng tổ hợp tuyến tính của các b_i."
             },
             {
               "type": "text",
-              "title": "Đủ sinh",
-              "body": "Mọi vector trong không gian đều viết được dưới dạng tổ hợp tuyến tính của các vector cơ sở."
+              "title": "Kiểm tra bằng rank",
+              "body": "Gom các vector b_i thành ma trận B. Số hướng độc lập bằng rank(B). Trong R^n, một bộ n vector là cơ sở nếu rank(B) = n."
+            },
+            {
+              "type": "qa",
+              "title": "Câu hỏi công thức",
+              "body": "Trong R^3, hai vector độc lập có là cơ sở của R^3 không? Không. Chúng chỉ sinh một mặt phẳng qua gốc, thiếu một hướng để bao phủ toàn bộ R^3."
             }
           ]
         },
@@ -751,8 +1536,23 @@
           "blocks": [
             {
               "type": "text",
-              "title": "Thiếu hoặc thừa",
-              "body": "Nếu không sinh được toàn bộ không gian, bộ vector bị thiếu hướng. Nếu có vector phụ thuộc tuyến tính, bộ vector bị thừa thông tin."
+              "title": "Thiếu hướng",
+              "body": "Nếu bộ vector không sinh được toàn bộ không gian cần mô tả, nó thiếu hướng. Khi đó có vector hoặc trạng thái thật không thể biểu diễn chính xác bằng bộ hướng hiện có."
+            },
+            {
+              "type": "text",
+              "title": "Thừa hướng",
+              "body": "Nếu có vector phụ thuộc tuyến tính, bộ vector bị thừa. Thừa không chỉ làm dài danh sách; nó có thể gây nghiệm không duy nhất, ma trận suy biến và mô hình khó ổn định."
+            },
+            {
+              "type": "text",
+              "title": "Sai không gian",
+              "body": "Một bộ vector có thể là cơ sở tốt cho không gian con này nhưng không đủ cho không gian lớn hơn. Vì vậy phải xác định rõ đang xét R^2, R^3, không gian feature, hay không gian con của dữ liệu."
+            },
+            {
+              "type": "qa",
+              "title": "Cổng kiểm tra",
+              "body": "Trước khi gọi một bộ vector là cơ sở, hãy hỏi: nó độc lập chưa, sinh đủ không gian nào, có đúng không gian bài toán không, và tọa độ có duy nhất không?"
             }
           ]
         },
@@ -762,8 +1562,23 @@
           "blocks": [
             {
               "type": "text",
-              "title": "Case",
-              "body": "Nếu dùng [x, y, speed, velocity_x, velocity_y], speed có thể phụ thuộc vào velocity_x và velocity_y. Bộ đặc trưng có thể thừa và gây khó cho mô hình."
+              "title": "Bối cảnh",
+              "body": "Ta muốn mô tả robot mặt đất bằng các feature [x, y, velocity_x, velocity_y, speed]. Trong đó speed = sqrt(velocity_x^2 + velocity_y^2), nên speed không phải thông tin tuyến tính từ hai vận tốc, nhưng nó vẫn phụ thuộc phi tuyến vào chúng."
+            },
+            {
+              "type": "text",
+              "title": "Vấn đề biểu diễn",
+              "body": "Thêm speed có thể giúp một số mô hình đơn giản học dễ hơn, nhưng cũng có thể tạo dư thừa và làm diễn giải feature khó hơn. Không phải feature phụ thuộc nào cũng vô dụng, nhưng cần biết nó thêm tín hiệu hay chỉ thêm tiếng vang."
+            },
+            {
+              "type": "formula",
+              "title": "Hai lựa chọn vector",
+              "body": "x_1 = [p_x, p_y, v_x, v_y]\nx_2 = [p_x, p_y, v_x, v_y, speed]\nSo sánh hiệu quả mô hình và khả năng diễn giải trước khi chọn."
+            },
+            {
+              "type": "qa",
+              "title": "Câu hỏi case",
+              "body": "Nếu dùng mô hình tuyến tính, thêm speed có thể hữu ích không? Có thể, vì speed đưa một quan hệ phi tuyến vào dưới dạng feature mới. Nhưng cần kiểm soát overfit và tương quan feature."
             }
           ]
         },
@@ -773,8 +1588,23 @@
           "blocks": [
             {
               "type": "text",
-              "title": "Ý nghĩa",
-              "body": "Span cho biết những trạng thái nào có thể tạo ra từ bộ hướng hoặc bộ đặc trưng hiện có. Nếu dữ liệu thật nằm ngoài span đó, mô hình biểu diễn chưa đủ."
+              "title": "Span là vùng tạo được",
+              "body": "Span cho biết tất cả vector có thể tạo bằng các hướng hiện có. Nếu dữ liệu thật nằm gần span đó, bộ hướng biểu diễn tốt. Nếu dữ liệu nằm xa, cần thêm hướng, đổi cơ sở hoặc dùng mô hình biểu diễn khác."
+            },
+            {
+              "type": "text",
+              "title": "Residual nói gì",
+              "body": "Khi biểu diễn v bằng Bc, residual r = v - Bc cho biết phần không giải thích được bởi span(B). Residual nhỏ nghĩa là v gần không gian do B sinh ra."
+            },
+            {
+              "type": "formula",
+              "title": "Biểu diễn xấp xỉ",
+              "body": "v ≈ Bc\nr = v - Bc\n||r|| nhỏ nghĩa là bộ hướng B mô tả v tốt."
+            },
+            {
+              "type": "qa",
+              "title": "Câu hỏi diễn giải",
+              "body": "Nếu residual luôn lớn với nhiều mẫu, nên nghi ngờ điều gì? Bộ hướng hoặc feature hiện tại chưa bao phủ cấu trúc chính của dữ liệu."
             }
           ]
         },
@@ -784,13 +1614,23 @@
           "blocks": [
             {
               "type": "code",
-              "title": "Công cụ",
-              "body": "numpy.linalg.matrix_rank\nnumpy.linalg.solve\nnumpy.linalg.lstsq"
+              "title": "Rank và biểu diễn",
+              "body": "import numpy as np\nB = np.array([[1,0,1],[0,1,1],[1,1,2]], dtype=float).T\nrank = np.linalg.matrix_rank(B)\nv = np.array([2,3,5], dtype=float)\ncoef, residuals, *_ = np.linalg.lstsq(B, v, rcond=None)\nrecon = B @ coef\nerr = np.linalg.norm(v - recon)"
             },
             {
               "type": "text",
-              "title": "Quan sát",
-              "body": "Gom các vector cơ sở thành ma trận B. Rank của B cho biết số hướng độc lập thật sự."
+              "title": "Điều cần quan sát",
+              "body": "Nếu rank nhỏ hơn số vector, có phụ thuộc tuyến tính. Nếu err gần 0, v nằm trong span của các cột B. Nếu err lớn, v chỉ được xấp xỉ chứ không biểu diễn chính xác."
+            },
+            {
+              "type": "text",
+              "title": "Mở rộng",
+              "body": "Thử bỏ b3 rồi tính lại rank và error. Người học sẽ thấy một vector phụ thuộc có thể không tăng rank, nhưng đôi khi vẫn ảnh hưởng tới least squares nếu dữ liệu nhiễu hoặc mô hình không tuyến tính."
+            },
+            {
+              "type": "qa",
+              "title": "Câu hỏi phòng lab",
+              "body": "Tại sao matrix_rank quan trọng trước khi solve hệ tuyến tính? Vì rank cho biết hệ có đủ hướng độc lập để nghiệm duy nhất hay không."
             }
           ]
         },
@@ -800,8 +1640,23 @@
           "blocks": [
             {
               "type": "text",
-              "title": "Lỗi",
-              "body": "Nhầm số vector nhiều với biểu diễn tốt; bỏ qua phụ thuộc tuyến tính; không phân biệt vector và tọa độ của vector trong cơ sở cụ thể."
+              "title": "Lỗi 1: nhầm nhiều vector với nhiều thông tin",
+              "body": "Có nhiều vector không có nghĩa có nhiều hướng độc lập. Nếu các vector phụ thuộc tuyến tính, chúng chỉ lặp lại thông tin cũ dưới hình thức khác."
+            },
+            {
+              "type": "text",
+              "title": "Lỗi 2: quên cơ sở khi đọc tọa độ",
+              "body": "Tọa độ chỉ có nghĩa khi biết cơ sở. Nói vector có tọa độ [1,2] mà không nói theo cơ sở nào giống như đưa địa chỉ không có tên thành phố."
+            },
+            {
+              "type": "text",
+              "title": "Lỗi 3: gọi mọi feature set là cơ sở",
+              "body": "Feature set trong dữ liệu thật có thể nhiễu, phụ thuộc, phi tuyến hoặc không đủ sinh. Không nên gọi nó là cơ sở theo nghĩa toán học nếu chưa kiểm tra điều kiện."
+            },
+            {
+              "type": "qa",
+              "title": "Câu hỏi sửa lỗi",
+              "body": "Nếu ma trận feature có rank thấp, lỗi có thể đến từ đâu? Có thể do feature trùng lặp, phụ thuộc tuyến tính, đo cùng một nguồn, hoặc tiền xử lý tạo cột dư."
             }
           ]
         },
@@ -811,8 +1666,23 @@
           "blocks": [
             {
               "type": "text",
-              "title": "Nhiệm vụ",
-              "body": "Viết hàm kiểm tra rank của ma trận đặc trưng và dùng least squares để biểu diễn một vector theo các vector nền."
+              "title": "Nhiệm vụ chính",
+              "body": "Viết hàm kiểm tra rank của ma trận feature, phát hiện cột phụ thuộc và thử biểu diễn một vector mới bằng least squares. Đây là bài nền cho PCA, regression và kiểm tra dữ liệu trước khi học máy."
+            },
+            {
+              "type": "code",
+              "title": "Hàm kiểm rank",
+              "body": "def rank_report(X):\n    X = np.asarray(X, dtype=float)\n    r = np.linalg.matrix_rank(X)\n    return {'shape': X.shape, 'rank': int(r), 'full_column_rank': r == X.shape[1]}"
+            },
+            {
+              "type": "text",
+              "title": "Ứng dụng vào pipeline",
+              "body": "Trước khi train model, kiểm tra rank và tương quan feature giúp phát hiện dữ liệu dư thừa. Với hệ thống kỹ thuật, điều này giảm nhiễu và giúp mô hình ổn định hơn."
+            },
+            {
+              "type": "qa",
+              "title": "Câu hỏi triển khai",
+              "body": "Nếu full_column_rank là False, có nên xóa cột ngay không? Chưa chắc. Cần xem cột đó có ý nghĩa phi tuyến, ý nghĩa kỹ thuật hoặc hữu ích cho mô hình cụ thể không."
             }
           ]
         },
@@ -822,8 +1692,23 @@
           "blocks": [
             {
               "type": "text",
-              "title": "Bài tập",
-              "body": "Cho b1=[1,0,1], b2=[0,1,1], b3=[1,1,2]. Kiểm tra ba vector có độc lập tuyến tính không. Vector v=[2,3,5] có nằm trong span của b1,b2 không?"
+              "title": "Bài 1: kiểm độc lập",
+              "body": "Cho b1=[1,0,1], b2=[0,1,1], b3=[1,1,2]. Kiểm tra ba vector có độc lập tuyến tính không bằng cách xét b3 có bằng b1+b2 không."
+            },
+            {
+              "type": "text",
+              "title": "Bài 2: kiểm span",
+              "body": "Với b1=[1,0,1], b2=[0,1,1], hỏi v=[2,3,5] có nằm trong span(b1,b2) không. Tìm a,b sao cho a b1 + b b2 = v hoặc chứng minh không có."
+            },
+            {
+              "type": "text",
+              "title": "Bài 3: thiết kế feature",
+              "body": "Thiết kế feature vector cho một robot mặt đất. Chỉ ra feature nào có thể phụ thuộc vào feature khác, feature nào thật sự cần vì ý nghĩa kỹ thuật, feature nào có thể bỏ."
+            },
+            {
+              "type": "qa",
+              "title": "Tiêu chí tự chấm",
+              "body": "Bài đạt nếu người học phân biệt được độc lập tuyến tính, đủ sinh, tọa độ và ý nghĩa feature trong bài toán kỹ thuật."
             }
           ]
         },
@@ -833,8 +1718,23 @@
           "blocks": [
             {
               "type": "qa",
-              "title": "Câu hỏi",
-              "body": "Tại sao chọn đặc trưng thừa có thể gây hại cho mô hình? Vì sao PCA có thể xem như tìm cơ sở mới cho dữ liệu?"
+              "title": "Câu 1",
+              "body": "Vì sao cơ sở cần vừa độc lập vừa đủ sinh? Vì độc lập loại bỏ thừa hướng, còn đủ sinh đảm bảo không thiếu hướng để biểu diễn mọi vector trong không gian."
+            },
+            {
+              "type": "qa",
+              "title": "Câu 2",
+              "body": "Tọa độ của vector có thay đổi khi đổi cơ sở không? Có. Vector có thể giữ nguyên nhưng tọa độ thay đổi vì hệ trục mô tả đã đổi."
+            },
+            {
+              "type": "qa",
+              "title": "Câu 3",
+              "body": "PCA liên quan gì đến cơ sở? PCA tìm các hướng mới, trực giao, giữ nhiều phương sai nhất của dữ liệu; có thể xem như đổi cơ sở để biểu diễn dữ liệu gọn hơn."
+            },
+            {
+              "type": "qa",
+              "title": "Câu 4",
+              "body": "Feature thừa luôn xấu không? Không luôn, nhưng nó có thể gây dư thừa, multicollinearity, overfit hoặc khó diễn giải nếu không kiểm soát."
             }
           ]
         },
@@ -844,8 +1744,23 @@
           "blocks": [
             {
               "type": "text",
-              "title": "Liên kết",
-              "body": "Span của một bộ vector là một không gian con. Bài tiếp theo học cách nhìn dữ liệu như nằm trong hoặc gần một không gian con có chiều thấp hơn."
+              "title": "Từ span sang subspace",
+              "body": "Span của một bộ vector là một không gian con. Khi dữ liệu nằm trong hoặc gần một span chiều thấp, ta có thể mô tả nó bằng ít tọa độ hơn."
+            },
+            {
+              "type": "text",
+              "title": "Ý nghĩa cho dữ liệu",
+              "body": "Nhiều hệ kỹ thuật có dữ liệu bề ngoài nhiều chiều nhưng thực chất biến thiên theo vài hướng chính. Nhận ra không gian con giúp nén, lọc nhiễu và tăng tốc mô hình."
+            },
+            {
+              "type": "formula",
+              "title": "Không gian con do B sinh",
+              "body": "S = span(b_1,...,b_k)\nNếu v gần S, ta tìm projection của v lên S để lấy phần giải thích được."
+            },
+            {
+              "type": "qa",
+              "title": "Câu hỏi mở đường",
+              "body": "Nếu dữ liệu 100 chiều nhưng gần một mặt phẳng 2 chiều, điều đó gợi ý gì? Có thể tồn tại cấu trúc thấp chiều, nên PCA hoặc subspace method đáng thử."
             }
           ]
         },
@@ -855,8 +1770,23 @@
           "blocks": [
             {
               "type": "text",
-              "title": "Cốt lõi",
-              "body": "Cơ sở là bộ hướng độc lập đủ sinh không gian; tọa độ là mã hóa vector theo cơ sở đó."
+              "title": "Cốt lõi 1",
+              "body": "Cơ sở là bộ hướng độc lập đủ sinh không gian. Nó cho phép mỗi vector có tọa độ duy nhất trong không gian đang xét."
+            },
+            {
+              "type": "text",
+              "title": "Cốt lõi 2",
+              "body": "Span là tất cả những gì tạo được từ một bộ vector. Nếu dữ liệu nằm ngoài span, biểu diễn hiện tại thiếu hướng hoặc thiếu feature quan trọng."
+            },
+            {
+              "type": "text",
+              "title": "Cốt lõi 3",
+              "body": "Tọa độ phụ thuộc cơ sở. Đổi cơ sở có thể làm cùng dữ liệu trở nên dễ học, dễ nén hoặc dễ diễn giải hơn."
+            },
+            {
+              "type": "qa",
+              "title": "Một câu nhớ lâu",
+              "body": "Cơ sở là ngôn ngữ tọa độ; chọn sai ngôn ngữ thì dữ liệu vẫn nói, nhưng mô hình nghe lùng bùng."
             }
           ]
         }
@@ -896,8 +1826,23 @@
           "blocks": [
             {
               "type": "text",
-              "title": "Ý chính",
-              "body": "Dữ liệu nhiều chiều không phải lúc nào cũng trải đều trong toàn bộ không gian. Nhiều bộ dữ liệu thật nằm gần một mặt phẳng, một đường, hoặc một không gian con có chiều thấp hơn."
+              "title": "Vấn đề học tập",
+              "body": "Dữ liệu kỹ thuật có thể có rất nhiều chiều, nhưng điều đó không có nghĩa nó thật sự tự do trong toàn bộ không gian. Nhiều hệ có ràng buộc vật lý, quan hệ cảm biến hoặc quy luật vận hành khiến dữ liệu nằm gần một đường, một mặt phẳng hoặc một không gian con chiều thấp."
+            },
+            {
+              "type": "text",
+              "title": "Góc nhìn kỹ thuật",
+              "body": "Nếu 20 cảm biến cùng đo một hiện tượng nhiệt, dữ liệu có thể chỉ có vài hướng biến thiên chính. Nếu robot di chuyển trên mặt phẳng, trạng thái 3D đầy đủ có thể vẫn nằm gần một cấu trúc thấp chiều. Nhận ra điều này giúp nén dữ liệu và lọc nhiễu."
+            },
+            {
+              "type": "text",
+              "title": "Tại sao quan trọng",
+              "body": "Không gian con là cách biến câu hỏi 'dữ liệu có cấu trúc gì' thành hình học tuyến tính. Nó là cầu nối tới PCA, SVD, rank, anomaly detection, sensor fusion và giảm chiều trước khi học máy."
+            },
+            {
+              "type": "qa",
+              "title": "Câu hỏi tự kiểm",
+              "body": "Nếu dữ liệu có 100 cột nhưng rank hiệu dụng chỉ khoảng 5, điều đó gợi ý gì? Có thể phần lớn thông tin nằm trong vài hướng chính, còn các chiều còn lại là nhiễu, dư thừa hoặc biến đổi phụ."
             }
           ]
         },
@@ -907,8 +1852,23 @@
           "blocks": [
             {
               "type": "text",
-              "title": "Bản chất",
-              "body": "Một tập vector là không gian con nếu cộng hai vector trong tập vẫn nằm trong tập và nhân một vector trong tập với số bất kỳ vẫn nằm trong tập."
+              "title": "Bản chất toán học",
+              "body": "Một tập vector U là không gian con nếu nó nằm trong một không gian vector lớn hơn và vẫn giữ được hai phép toán cơ bản: cộng hai vector trong U vẫn ở U, nhân một vector trong U với số thực bất kỳ vẫn ở U. Ngoài ra U phải chứa vector zero."
+            },
+            {
+              "type": "formula",
+              "title": "Ba điều kiện kiểm tra",
+              "body": "0 thuộc U\nNếu u, v thuộc U thì u + v thuộc U\nNếu u thuộc U và alpha thuộc R thì alpha u thuộc U"
+            },
+            {
+              "type": "text",
+              "title": "Ý nghĩa hình học",
+              "body": "Trong R2, đường thẳng đi qua gốc là không gian con. Trong R3, mặt phẳng đi qua gốc là không gian con. Điều kiện đi qua gốc không phải chi tiết nhỏ; nó bảo đảm phép nhân với 0 giữ điểm trong tập."
+            },
+            {
+              "type": "qa",
+              "title": "Câu hỏi tự kiểm",
+              "body": "Vì sao một đường không đi qua gốc không phải không gian con? Vì nhân một điểm trên đường với 0 sẽ ra vector zero, nhưng zero không nằm trên đường đó."
             }
           ]
         },
@@ -918,8 +1878,23 @@
           "blocks": [
             {
               "type": "text",
-              "title": "Điểm dễ nhầm",
-              "body": "Một đường đi qua gốc trong R2 là không gian con. Một mặt phẳng đi qua gốc trong R3 là không gian con. Nhưng đường hoặc mặt phẳng không qua gốc thì không phải không gian con tuyến tính."
+              "title": "Điểm phản trực giác",
+              "body": "Người mới học thường nghĩ không gian là thứ 'rộng nhất'. Nhưng một đường qua gốc trong R3 cũng là không gian con. Nó có ít bậc tự do hơn, nhưng vẫn đủ tính chất tuyến tính để làm việc như một không gian riêng."
+            },
+            {
+              "type": "text",
+              "title": "Chiều thấp không có nghĩa nghèo thông tin",
+              "body": "Một không gian con 2 chiều trong dữ liệu 100 chiều có thể chứa hầu hết thông tin quan trọng nếu hệ thật bị chi phối bởi hai yếu tố chính. Chiều thấp đôi khi là cấu trúc, không phải thiếu sót."
+            },
+            {
+              "type": "text",
+              "title": "Hậu quả cho mô hình",
+              "body": "Nếu dữ liệu thật nằm gần một không gian con, mô hình học trên toàn bộ chiều thô có thể tốn tài nguyên và dễ học nhiễu. Giảm chiều đúng cách giúp mô hình tập trung vào hướng thông tin chính."
+            },
+            {
+              "type": "qa",
+              "title": "Câu hỏi phản trực giác",
+              "body": "Dữ liệu nhiều chiều có luôn cần mô hình rất phức tạp không? Không. Nếu dữ liệu có cấu trúc thấp chiều, mô hình tuyến tính hoặc PCA có thể đã giải thích được phần lớn biến thiên."
             }
           ]
         },
@@ -929,8 +1904,23 @@
           "blocks": [
             {
               "type": "text",
-              "title": "Ví dụ",
-              "body": "Nếu nhiều cảm biến đo cùng một hiện tượng vật lý, tín hiệu của chúng có thể phụ thuộc nhau. Dữ liệu khi đó nằm gần không gian con có chiều thấp hơn số cảm biến."
+              "title": "Cảm biến không độc lập tuyệt đối",
+              "body": "Trong hệ kỹ thuật, nhiều cảm biến có thể cùng bị chi phối bởi một nguyên nhân vật lý. Ví dụ nhiệt độ, dòng điện và độ rung của motor có thể cùng thay đổi theo tải. Khi đó dữ liệu cảm biến nằm gần một không gian con thay vì trải đều."
+            },
+            {
+              "type": "text",
+              "title": "Sensor fusion",
+              "body": "Khi kết hợp nhiều cảm biến, ta cần biết có bao nhiêu hướng thông tin độc lập. Nếu hai cảm biến gần như lặp lại nhau, thêm cả hai không làm mô hình hiểu hệ thống nhiều hơn mà chỉ tăng nhiễu và chi phí."
+            },
+            {
+              "type": "text",
+              "title": "Phát hiện lỗi",
+              "body": "Trạng thái bình thường thường tạo thành một vùng hoặc không gian con ổn định. Khi cảm biến hỏng hoặc hệ vận hành bất thường, điểm dữ liệu có thể lệch xa khỏi cấu trúc này."
+            },
+            {
+              "type": "qa",
+              "title": "Câu hỏi kỹ thuật",
+              "body": "Nếu một cảm biến mới làm tăng số cột nhưng không tăng rank đáng kể, nó có thể đang làm gì? Có thể nó đang đo lại thông tin đã có, hoặc tín hiệu của nó phụ thuộc mạnh vào cảm biến khác."
             }
           ]
         },
@@ -940,13 +1930,23 @@
           "blocks": [
             {
               "type": "formula",
-              "title": "Không gian con sinh bởi các vector",
-              "body": "U = span(b_1, b_2, ..., b_k)"
+              "title": "Không gian con sinh bởi vector",
+              "body": "U = span(b_1, b_2, ..., b_k)\n= {a_1 b_1 + ... + a_k b_k | a_i thuộc R}"
             },
             {
               "type": "text",
-              "title": "Chiều",
-              "body": "Dimension của U bằng số vector độc lập tuyến tính trong một cơ sở của U."
+              "title": "Chiều của không gian con",
+              "body": "Dimension của U bằng số vector độc lập tuyến tính trong một cơ sở của U. Nếu có 10 vector sinh nhưng chỉ 3 vector độc lập, không gian con có chiều 3, không phải 10."
+            },
+            {
+              "type": "text",
+              "title": "Diễn giải dữ liệu",
+              "body": "Nếu các cột của ma trận B là hướng nền, span(B) là tất cả dữ liệu có thể tạo từ các hướng đó. Một điểm dữ liệu mới nằm ngoài span(B) nghĩa là bộ hướng hiện tại chưa giải thích hết nó."
+            },
+            {
+              "type": "code",
+              "title": "Rank cho biết chiều",
+              "body": "import numpy as np\nB = np.array([[1,0,1],[0,1,1],[1,1,2]], dtype=float)\nrank = np.linalg.matrix_rank(B)\nprint(rank)"
             }
           ]
         },
@@ -957,12 +1957,22 @@
             {
               "type": "formula",
               "title": "Rank",
-              "body": "rank(B) = số cột độc lập tuyến tính của B"
+              "body": "rank(B) = số cột độc lập tuyến tính của B\ndim(col(B)) = rank(B)\ndim(row(B)) = rank(B)"
             },
             {
               "type": "text",
               "title": "Ý nghĩa",
-              "body": "Nếu các cột của B là vector nền, rank(B) là số hướng thông tin độc lập thật sự."
+              "body": "Rank là số hướng thông tin độc lập thật sự trong ma trận. Nếu dữ liệu có nhiều cột nhưng rank thấp, các cột đang phụ thuộc tuyến tính hoặc gần phụ thuộc."
+            },
+            {
+              "type": "text",
+              "title": "Rank trong dữ liệu nhiễu",
+              "body": "Dữ liệu thật thường có nhiễu, nên rank số học có thể cao dù cấu trúc chính thấp chiều. Khi đó ta dùng singular values để nói về rank hiệu dụng thay vì rank tuyệt đối."
+            },
+            {
+              "type": "qa",
+              "title": "Câu hỏi công thức",
+              "body": "Nếu ma trận dữ liệu có 100 cột nhưng rank 4, ta có thể biểu diễn các cột bằng bao nhiêu hướng độc lập? Về tuyến tính lý tưởng, chỉ cần 4 hướng."
             }
           ]
         },
@@ -972,8 +1982,23 @@
           "blocks": [
             {
               "type": "text",
-              "title": "Điều kiện",
-              "body": "Dữ liệu phải được chuẩn hóa hợp lý, cùng hệ đơn vị, và nhiễu không được lấn át cấu trúc chính. Nếu không, rank hoặc PCA có thể đánh lừa."
+              "title": "Cần center dữ liệu",
+              "body": "PCA và phân tích phương sai thường cần center dữ liệu bằng cách trừ trung bình. Nếu không center, ta có thể nhầm vị trí trung bình với hướng biến thiên chính."
+            },
+            {
+              "type": "text",
+              "title": "Cần cùng thang đo",
+              "body": "Nếu một cảm biến có đơn vị lớn hơn rất nhiều, hướng chính có thể phản ánh scale chứ không phản ánh cấu trúc vật lý. Chuẩn hóa hoặc whitening có thể cần thiết."
+            },
+            {
+              "type": "text",
+              "title": "Cần kiểm nhiễu",
+              "body": "Nhiễu mạnh có thể làm dữ liệu trông như có nhiều chiều hơn thực tế. Vì vậy cần xem singular values, reconstruction error và ý nghĩa kỹ thuật, không chỉ nhìn số cột."
+            },
+            {
+              "type": "qa",
+              "title": "Checklist",
+              "body": "Trước khi kết luận dữ liệu nằm gần subspace, hãy hỏi: đã center chưa, chuẩn hóa chưa, nhiễu có lớn không, outlier có kéo hướng chính không, subspace tìm được có ý nghĩa vật lý không?"
             }
           ]
         },
@@ -983,8 +2008,23 @@
           "blocks": [
             {
               "type": "text",
-              "title": "Case",
-              "body": "Một máy có nhiều cảm biến rung. Khi vận hành bình thường, dữ liệu nằm gần một không gian con ổn định. Khi lỗi xuất hiện, điểm dữ liệu có thể lệch xa khỏi không gian con này."
+              "title": "Bối cảnh",
+              "body": "Một máy quay có nhiều cảm biến rung đặt ở các vị trí khác nhau. Khi máy bình thường, các cảm biến phản ứng theo vài chế độ rung chính. Dữ liệu nhiều chiều nhưng phần lớn biến thiên nằm gần không gian con do các chế độ rung tạo ra."
+            },
+            {
+              "type": "text",
+              "title": "Dấu hiệu bất thường",
+              "body": "Nếu vòng bi hỏng hoặc trục lệch, tín hiệu mới có thể xuất hiện theo hướng không nằm trong subspace bình thường. Khoảng cách đến subspace tăng lên và trở thành chỉ báo bất thường."
+            },
+            {
+              "type": "formula",
+              "title": "Sai số chiếu",
+              "body": "error(x) = ||x - proj_U(x)||\nNếu error(x) lớn hơn ngưỡng, x có thể là trạng thái bất thường hoặc cảm biến bị lỗi."
+            },
+            {
+              "type": "qa",
+              "title": "Câu hỏi case",
+              "body": "Tại sao không chỉ dùng norm của x để phát hiện lỗi? Vì norm lớn có thể do tải bình thường tăng; còn khoảng cách đến subspace đo phần không giải thích được bởi hành vi bình thường."
             }
           ]
         },
@@ -994,8 +2034,23 @@
           "blocks": [
             {
               "type": "text",
-              "title": "Ý nghĩa",
-              "body": "Khoảng cách từ vector dữ liệu đến không gian con mô hình hóa phần không giải thích được. Khoảng cách lớn có thể biểu thị nhiễu, lỗi cảm biến hoặc trạng thái bất thường."
+              "title": "Phần giải thích được",
+              "body": "Projection lên subspace là phần của dữ liệu mà mô hình tuyến tính hiện tại giải thích được. Phần dư là thành phần nằm ngoài cấu trúc đã học."
+            },
+            {
+              "type": "text",
+              "title": "Residual có nghĩa gì",
+              "body": "Residual lớn có thể báo nhiễu, outlier, cảm biến hỏng, trạng thái mới hoặc thiếu hướng trong mô hình. Nó không tự nói nguyên nhân, nhưng chỉ ra dữ liệu không còn đi theo cấu trúc bình thường."
+            },
+            {
+              "type": "formula",
+              "title": "Tách dữ liệu",
+              "body": "x = proj_U(x) + r\nr = x - proj_U(x)\n||r|| là khoảng cách từ x đến U nếu projection trực giao."
+            },
+            {
+              "type": "qa",
+              "title": "Câu hỏi diễn giải",
+              "body": "Nếu projection tốt nhưng mô hình dự đoán vẫn sai, có thể lỗi ở đâu? Có thể subspace giữ hình học dữ liệu nhưng thiếu biến mục tiêu, thiếu phi tuyến hoặc dùng sai mô hình sau bước giảm chiều."
             }
           ]
         },
@@ -1005,8 +2060,23 @@
           "blocks": [
             {
               "type": "code",
-              "title": "Công cụ",
-              "body": "numpy.linalg.svd\nnumpy.linalg.matrix_rank\nprojection_error = norm(x - projection)"
+              "title": "SVD cho subspace chính",
+              "body": "import numpy as np\nX = np.random.randn(200, 3)\nX[:,2] = X[:,0] + X[:,1] + 0.05*np.random.randn(200)\nXc = X - X.mean(axis=0)\nU, S, Vt = np.linalg.svd(Xc, full_matrices=False)\nprint(S)\nB = Vt[:2].T\nproj = Xc @ B @ B.T\nerr = np.linalg.norm(Xc - proj, axis=1)"
+            },
+            {
+              "type": "text",
+              "title": "Điều cần quan sát",
+              "body": "Nếu singular value thứ ba nhỏ hơn nhiều hai giá trị đầu, dữ liệu gần một mặt phẳng 2 chiều trong R3. Error chiếu cho biết điểm nào lệch xa khỏi mặt phẳng đó."
+            },
+            {
+              "type": "text",
+              "title": "Mở rộng",
+              "body": "Thêm vài outlier rồi chạy lại SVD. Người học sẽ thấy hướng chính có thể bị kéo lệch, từ đó hiểu vì sao robust PCA hoặc lọc outlier quan trọng trong dữ liệu thật."
+            },
+            {
+              "type": "qa",
+              "title": "Câu hỏi phòng lab",
+              "body": "Vì sao phải trừ mean trước SVD trong thí nghiệm này? Vì ta muốn tìm hướng biến thiên quanh tâm dữ liệu, không phải hướng từ gốc tọa độ đến trung bình."
             }
           ]
         },
@@ -1016,8 +2086,23 @@
           "blocks": [
             {
               "type": "text",
-              "title": "Lỗi",
-              "body": "Quên điều kiện đi qua gốc; dùng dữ liệu chưa center khi phân tích PCA; kết luận chiều dữ liệu chỉ từ số cột mà không kiểm rank."
+              "title": "Lỗi 1: quên điều kiện đi qua gốc",
+              "body": "Không gian con tuyến tính phải chứa gốc. Một mặt phẳng z = x + y + 5 không đi qua gốc nên không phải subspace tuyến tính, dù vẫn là một mặt phẳng affine."
+            },
+            {
+              "type": "text",
+              "title": "Lỗi 2: dùng PCA trên dữ liệu chưa center",
+              "body": "Nếu không trừ mean, hướng chính có thể bị ảnh hưởng bởi vị trí trung bình. Kết quả giảm chiều khi đó có thể khó diễn giải và không phản ánh đúng phương sai."
+            },
+            {
+              "type": "text",
+              "title": "Lỗi 3: nhầm số cột với số chiều thật",
+              "body": "Dữ liệu có nhiều cột không nghĩa là có nhiều hướng độc lập. Rank, singular values và kiến thức kỹ thuật mới cho biết chiều thông tin thật sự."
+            },
+            {
+              "type": "qa",
+              "title": "Câu hỏi sửa lỗi",
+              "body": "Nếu PCA cho kết quả lạ, kiểm gì trước? Kiểm center, scale, outlier, thiếu dữ liệu, và xem các singular values có giảm rõ không."
             }
           ]
         },
@@ -1027,8 +2112,23 @@
           "blocks": [
             {
               "type": "text",
-              "title": "Nhiệm vụ",
-              "body": "Dùng SVD để ước lượng không gian con chính của dữ liệu. Tính sai số chiếu để phát hiện điểm bất thường."
+              "title": "Nhiệm vụ chính",
+              "body": "Dùng SVD để học subspace bình thường từ dữ liệu huấn luyện, sau đó tính reconstruction error cho dữ liệu mới. Đây là khung đơn giản cho anomaly detection tuyến tính."
+            },
+            {
+              "type": "code",
+              "title": "Anomaly score bằng subspace",
+              "body": "def fit_subspace(X, k):\n    X = np.asarray(X, dtype=float)\n    mu = X.mean(axis=0)\n    Xc = X - mu\n    _, _, Vt = np.linalg.svd(Xc, full_matrices=False)\n    B = Vt[:k].T\n    return mu, B\ndef score(x, mu, B):\n    z = x - mu\n    r = z - B @ (B.T @ z)\n    return float(np.linalg.norm(r))"
+            },
+            {
+              "type": "text",
+              "title": "Kết nối hệ thống",
+              "body": "Trong bảo trì dự đoán, score cao có thể kích hoạt cảnh báo. Trong sensor fusion, score cao có thể báo một cảm biến đang lệch khỏi quan hệ bình thường với các cảm biến khác."
+            },
+            {
+              "type": "qa",
+              "title": "Câu hỏi triển khai",
+              "body": "Chọn k như thế nào? Có thể dựa trên tỷ lệ phương sai giữ lại, elbow của singular values, hoặc yêu cầu kỹ thuật về mức sai số tái tạo."
             }
           ]
         },
@@ -1038,8 +2138,23 @@
           "blocks": [
             {
               "type": "text",
-              "title": "Bài tập",
-              "body": "Cho các vector dữ liệu trong R3 gần mặt phẳng z = x + y. Viết ma trận dữ liệu, kiểm rank sau khi bỏ nhiễu và giải thích không gian con xấp xỉ."
+              "title": "Bài 1: kiểm subspace",
+              "body": "Xét tập U = {(x,y,z) trong R3 | z = x + y}. Kiểm tra U có phải không gian con không bằng ba điều kiện: chứa zero, đóng với cộng, đóng với nhân vô hướng."
+            },
+            {
+              "type": "text",
+              "title": "Bài 2: affine không phải subspace",
+              "body": "Xét V = {(x,y,z) | z = x + y + 1}. Chứng minh V không phải không gian con. Gợi ý: kiểm tra vector zero có thuộc V không."
+            },
+            {
+              "type": "text",
+              "title": "Bài 3: dữ liệu gần mặt phẳng",
+              "body": "Tạo 20 điểm trong R3 gần z = x + y, thêm nhiễu nhỏ. Dùng SVD để tìm hai hướng chính và tính reconstruction error trung bình."
+            },
+            {
+              "type": "qa",
+              "title": "Tiêu chí tự chấm",
+              "body": "Bài đạt nếu người học giải thích được khác nhau giữa subspace tuyến tính, mặt phẳng affine, rank và không gian con xấp xỉ của dữ liệu nhiễu."
             }
           ]
         },
@@ -1049,8 +2164,23 @@
           "blocks": [
             {
               "type": "qa",
-              "title": "Câu hỏi",
-              "body": "Vì sao mặt phẳng không qua gốc không phải không gian con tuyến tính? Vì sao center dữ liệu quan trọng trước PCA?"
+              "title": "Câu 1",
+              "body": "Vì sao mặt phẳng không qua gốc không phải không gian con tuyến tính? Vì nó không chứa vector zero và không đóng dưới phép nhân vô hướng với 0."
+            },
+            {
+              "type": "qa",
+              "title": "Câu 2",
+              "body": "Vì sao center dữ liệu quan trọng trước PCA? Vì PCA cần phân tích phương sai quanh trung bình, không phải vị trí tuyệt đối của đám mây điểm so với gốc tọa độ."
+            },
+            {
+              "type": "qa",
+              "title": "Câu 3",
+              "body": "Rank hiệu dụng khác rank đại số thế nào? Rank đại số đếm số singular value khác 0, còn rank hiệu dụng xét mức năng lượng đáng kể trong dữ liệu nhiễu."
+            },
+            {
+              "type": "qa",
+              "title": "Câu 4",
+              "body": "Khoảng cách đến subspace có thể dùng để phát hiện bất thường vì sao? Vì nó đo phần dữ liệu không được cấu trúc bình thường giải thích."
             }
           ]
         },
@@ -1060,8 +2190,23 @@
           "blocks": [
             {
               "type": "text",
-              "title": "Liên kết",
-              "body": "Để phân tích nhiều vector cùng lúc, ta xếp chúng thành ma trận dữ liệu. Rank, không gian cột và không gian hàng của ma trận sẽ nói dữ liệu thật có bao nhiêu hướng thông tin."
+              "title": "Từ nhiều vector đến ma trận",
+              "body": "Để phân tích subspace của nhiều điểm dữ liệu, ta xếp các vector thành ma trận. Khi đó rank, column space, row space và SVD trở thành công cụ đọc cấu trúc thông tin."
+            },
+            {
+              "type": "text",
+              "title": "Ma trận như kho dữ liệu hình học",
+              "body": "Mỗi hàng có thể là một mẫu, mỗi cột là một feature. Hình học của tập hàng cho biết mẫu phân bố thế nào; hình học của tập cột cho biết feature phụ thuộc ra sao."
+            },
+            {
+              "type": "formula",
+              "title": "Dạng ma trận dữ liệu",
+              "body": "X = [x_1^T; x_2^T; ...; x_m^T]\nX có m mẫu và n feature. Rank(X) cho biết số hướng tuyến tính độc lập trong dữ liệu đã biểu diễn."
+            },
+            {
+              "type": "qa",
+              "title": "Câu hỏi mở đường",
+              "body": "Nếu rank của X nhỏ hơn nhiều số feature, bài sau nên chú ý điều gì? Cần hiểu ma trận dữ liệu, rank và cách dùng chúng để nén hoặc phân tích feature."
             }
           ]
         },
@@ -1071,8 +2216,23 @@
           "blocks": [
             {
               "type": "text",
-              "title": "Cốt lõi",
-              "body": "Không gian con mô tả cấu trúc tuyến tính ẩn của dữ liệu; khoảng cách đến không gian con giúp đo phần dữ liệu chưa được mô hình giải thích."
+              "title": "Cốt lõi 1",
+              "body": "Không gian con là tập vector chứa zero và đóng với cộng, nhân vô hướng. Nó mô tả một cấu trúc tuyến tính bên trong không gian lớn hơn."
+            },
+            {
+              "type": "text",
+              "title": "Cốt lõi 2",
+              "body": "Dữ liệu nhiều chiều thường nằm gần subspace thấp chiều vì ràng buộc vật lý, phụ thuộc cảm biến hoặc cấu trúc ẩn. Đây là nền cho PCA, SVD và giảm chiều."
+            },
+            {
+              "type": "text",
+              "title": "Cốt lõi 3",
+              "body": "Khoảng cách đến subspace đo phần không giải thích được bởi mô hình tuyến tính hiện tại. Nó hữu ích cho lọc nhiễu, phát hiện bất thường và kiểm tra chất lượng biểu diễn."
+            },
+            {
+              "type": "qa",
+              "title": "Một câu nhớ lâu",
+              "body": "Không gian con là đường ray hình học của dữ liệu; điểm lệch khỏi đường ray thường đang kể một chuyện đáng kiểm tra."
             }
           ]
         }
@@ -1112,8 +2272,23 @@
           "blocks": [
             {
               "type": "text",
-              "title": "Ý chính",
-              "body": "Khi có nhiều đối tượng cùng loại, mỗi đối tượng là một vector đặc trưng. Xếp các vector này thành bảng số cho ta ma trận dữ liệu, nền của hầu hết pipeline AI và phân tích kỹ thuật."
+              "title": "Vấn đề học tập",
+              "body": "Một vector mô tả một đối tượng, một trạng thái hoặc một thời điểm đo. Khi ta có nhiều đối tượng cùng loại, các vector cần được xếp thành ma trận dữ liệu để tính toán đồng loạt, kiểm tra cấu trúc và đưa vào pipeline AI."
+            },
+            {
+              "type": "text",
+              "title": "Góc nhìn dữ liệu",
+              "body": "Nếu mỗi hàng là một mẫu và mỗi cột là một đặc trưng, ma trận X không còn là bảng số thô. Nó là hình học của toàn bộ tập quan sát: hàng mô tả các trạng thái, cột mô tả các kênh đo hoặc feature."
+            },
+            {
+              "type": "text",
+              "title": "Tại sao là bài chốt C01",
+              "body": "Các bài trước học vector, norm, dot, basis và subspace. Bài này ghép chúng lại thành ma trận dữ liệu, chuẩn bị cho chương ma trận và các phép biến đổi tuyến tính."
+            },
+            {
+              "type": "qa",
+              "title": "Câu hỏi tự kiểm",
+              "body": "Nếu một mẫu là vector 8 chiều và có 1000 mẫu, ma trận dữ liệu có thể có shape nào? Với quy ước hàng là mẫu, X có shape 1000 x 8."
             }
           ]
         },
@@ -1124,7 +2299,22 @@
             {
               "type": "text",
               "title": "Bản chất",
-              "body": "Nếu mỗi hàng là một mẫu và mỗi cột là một đặc trưng, ma trận dữ liệu X chứa toàn bộ quan sát trong cùng một hệ đặc trưng. Điều này cho phép tính toán hàng loạt thay vì từng vector rời rạc."
+              "body": "Ma trận dữ liệu chỉ có nghĩa khi các vector được xếp vào cùng hệ đặc trưng. Hàng thứ i và hàng thứ j phải có cùng thứ tự feature, cùng đơn vị và cùng quy ước đo. Nếu không, phép tính giữa các hàng sẽ giống so sánh bản đồ với nhiệt kế."
+            },
+            {
+              "type": "formula",
+              "title": "Quy ước hàng là mẫu",
+              "body": "X in R^{m x n}\nX = [x_1^T; x_2^T; ...; x_m^T]\nm = số mẫu, n = số đặc trưng"
+            },
+            {
+              "type": "text",
+              "title": "Tính toán hàng loạt",
+              "body": "Khi dữ liệu nằm trong ma trận, ta có thể tính mean, covariance, normalization, projection và mô hình tuyến tính cho toàn bộ tập dữ liệu bằng phép toán ma trận thay vì vòng lặp từng vector."
+            },
+            {
+              "type": "qa",
+              "title": "Câu hỏi tự kiểm",
+              "body": "Tại sao không nên trộn feature order giữa các hàng? Vì cột thứ k phải mang cùng ý nghĩa cho mọi mẫu. Nếu không, distance, dot product và mô hình học máy đều bị nhiễu nghĩa."
             }
           ]
         },
@@ -1135,7 +2325,22 @@
             {
               "type": "text",
               "title": "Điểm dễ nhầm",
-              "body": "Trong một số tài liệu, mẫu nằm trên hàng; trong tài liệu khác, mẫu nằm trên cột. Công thức phải đi theo quy ước đã chọn, nếu không nhân ma trận sẽ sai chiều."
+              "body": "Một số tài liệu để mẫu trên hàng, tài liệu khác để mẫu trên cột. Không có quy ước duy nhất cho mọi sách, nhưng trong một pipeline phải nhất quán. Sai quy ước làm phép nhân ma trận sai chiều hoặc sai nghĩa."
+            },
+            {
+              "type": "text",
+              "title": "Hai cách đọc",
+              "body": "Nếu hàng là mẫu, X @ w cho score từng mẫu. Nếu cột là mẫu, w^T @ X mới tương ứng với score từng mẫu. Công thức thay đổi theo cách đặt dữ liệu."
+            },
+            {
+              "type": "text",
+              "title": "Hậu quả lập trình",
+              "body": "Nhiều lỗi NumPy hoặc PyTorch không đến từ toán khó, mà từ shape sai: (m,n), (n,), (n,1), (1,n). Code có thể chạy nhờ broadcasting nhưng nghĩa toán đã lệch."
+            },
+            {
+              "type": "qa",
+              "title": "Câu hỏi tự kiểm",
+              "body": "Khi thấy lỗi shape mismatch, nên làm gì trước? In shape của mọi biến, viết lại quy ước hàng/cột, rồi kiểm xem phép nhân có đúng nghĩa mẫu-feature không."
             }
           ]
         },
@@ -1145,8 +2350,23 @@
           "blocks": [
             {
               "type": "text",
-              "title": "Ví dụ",
-              "body": "Với 1000 thời điểm đo và 8 cảm biến, X có thể là ma trận 1000 x 8. Mỗi hàng là trạng thái tại một thời điểm; mỗi cột là chuỗi đo của một cảm biến."
+              "title": "Ví dụ cảm biến",
+              "body": "Một robot ghi 8 cảm biến mỗi giây trong 1000 giây. Ma trận X có thể là 1000 x 8. Mỗi hàng là trạng thái tại một thời điểm, mỗi cột là chuỗi đo của một cảm biến."
+            },
+            {
+              "type": "text",
+              "title": "Ví dụ AI",
+              "body": "Trong nhận dạng ảnh, mỗi ảnh có thể được vector hóa thành hàng của X. Trong embedding văn bản, mỗi câu là một vector embedding, nhiều câu tạo thành ma trận embedding."
+            },
+            {
+              "type": "text",
+              "title": "Ý nghĩa vận hành",
+              "body": "Ma trận dữ liệu giúp kiểm tra cảm biến nào lệch scale, feature nào dư thừa, mẫu nào bất thường, và rank hiệu dụng của hệ đang là bao nhiêu."
+            },
+            {
+              "type": "qa",
+              "title": "Câu hỏi kỹ thuật",
+              "body": "Nếu một cột cảm biến gần như bằng tổng của hai cột khác, điều gì xảy ra với rank? Rank có thể không tăng tương ứng số cột, vì thông tin cột đó phụ thuộc tuyến tính vào các cột khác."
             }
           ]
         },
@@ -1156,8 +2376,23 @@
           "blocks": [
             {
               "type": "formula",
-              "title": "Quy ước hàng là mẫu",
-              "body": "X in R^{m x n}\nm = số mẫu, n = số đặc trưng\nx_i = hàng thứ i của X"
+              "title": "Ký hiệu cơ bản",
+              "body": "X = [x_1^T; x_2^T; ...; x_m^T] in R^{m x n}\nx_i in R^n là vector đặc trưng của mẫu i\nX_{ij} là giá trị feature j của mẫu i"
+            },
+            {
+              "type": "text",
+              "title": "Hàng và cột",
+              "body": "Hàng nói về từng mẫu. Cột nói về từng feature qua nhiều mẫu. Hình học của hàng liên quan đến khoảng cách giữa mẫu; hình học của cột liên quan đến phụ thuộc giữa đặc trưng."
+            },
+            {
+              "type": "formula",
+              "title": "Vector trung bình",
+              "body": "mu = (1/m) sum_{i=1}^m x_i\nmu in R^n, mỗi thành phần là trung bình của một feature."
+            },
+            {
+              "type": "code",
+              "title": "Shape trong Python",
+              "body": "import numpy as np\nX = np.array([[1,2,3],[4,5,6]], dtype=float)\nprint(X.shape)  # (2, 3): 2 mẫu, 3 feature\nmu = X.mean(axis=0)"
             }
           ]
         },
@@ -1167,18 +2402,23 @@
           "blocks": [
             {
               "type": "formula",
-              "title": "Vector trung bình",
-              "body": "mu = (1/m) sum_{i=1}^m x_i"
-            },
-            {
-              "type": "formula",
               "title": "Center dữ liệu",
-              "body": "X_c = X - 1 mu^T"
+              "body": "X_c = X - 1 mu^T\nTrong NumPy: Xc = X - X.mean(axis=0)\nSau centering, mỗi cột có trung bình xấp xỉ 0."
             },
             {
               "type": "formula",
               "title": "Rank",
-              "body": "rank(X) = số hướng thông tin độc lập trong dữ liệu"
+              "body": "rank(X) = số hướng tuyến tính độc lập trong dữ liệu\nrank(X_c) cho biết số hướng biến thiên độc lập sau khi bỏ trung bình."
+            },
+            {
+              "type": "text",
+              "title": "Vì sao center quan trọng",
+              "body": "Center chuyển gốc tọa độ về trung tâm đám mây dữ liệu. PCA, covariance và nhiều phép phân tích phương sai cần dữ liệu đã center để đo hướng biến thiên thay vì vị trí tuyệt đối."
+            },
+            {
+              "type": "qa",
+              "title": "Câu hỏi công thức",
+              "body": "Rank của X và rank của X_c có thể khác nhau không? Có. Centering là phép biến đổi dữ liệu, có thể làm thay đổi quan hệ tuyến tính giữa các hàng/cột."
             }
           ]
         },
@@ -1188,8 +2428,23 @@
           "blocks": [
             {
               "type": "text",
-              "title": "Điều kiện",
-              "body": "Các hàng phải cùng hệ đặc trưng, dữ liệu thiếu cần xử lý, thang đo phải được chuẩn hóa khi cần, và quy ước hàng/cột phải nhất quán trong toàn bộ pipeline."
+              "title": "Cùng schema",
+              "body": "Mọi hàng phải cùng danh sách feature, cùng thứ tự và cùng đơn vị. Nếu một file log đổi thứ tự cột mà không báo, ma trận sẽ trở thành món trộn lẫn âm thầm."
+            },
+            {
+              "type": "text",
+              "title": "Missing và outlier",
+              "body": "Giá trị thiếu, sensor glitch hoặc outlier có thể làm mean, rank và PCA bị lệch. Trước khi phân tích, cần chính sách xử lý missing value và kiểm outlier."
+            },
+            {
+              "type": "text",
+              "title": "Scale và chuẩn hóa",
+              "body": "Feature có thang đo lớn có thể thống trị norm, distance, covariance và PCA. Cần chuẩn hóa khi các đơn vị khác nhau hoặc khi scale không mang ý nghĩa kỹ thuật cần giữ."
+            },
+            {
+              "type": "qa",
+              "title": "Checklist",
+              "body": "Trước khi chạy PCA hoặc model, hãy hỏi: schema thống nhất chưa, missing đã xử lý chưa, outlier đã kiểm chưa, feature có cần scale không, quy ước hàng/cột đã ghi rõ chưa?"
             }
           ]
         },
@@ -1199,8 +2454,23 @@
           "blocks": [
             {
               "type": "text",
-              "title": "Case",
-              "body": "Một robot ghi [vibration, temperature, current, speed] mỗi giây. Sau một giờ, dữ liệu là ma trận. Rank thấp gợi ý các cảm biến phụ thuộc nhau hoặc hệ chỉ vận hành trong một vài chế độ chính."
+              "title": "Bối cảnh",
+              "body": "Robot ghi [vibration, temperature, current, speed] mỗi giây. Sau một giờ có 3600 mẫu và 4 feature. Ma trận X có shape 3600 x 4 nếu hàng là thời điểm đo."
+            },
+            {
+              "type": "text",
+              "title": "Phân tích ban đầu",
+              "body": "Mean cho biết mức hoạt động trung bình. Standard deviation cho biết feature nào dao động mạnh. Correlation và rank gợi ý cảm biến nào phụ thuộc nhau hoặc hệ chỉ vận hành trong vài chế độ."
+            },
+            {
+              "type": "formula",
+              "title": "Dạng dữ liệu",
+              "body": "X = [vibration, temperature, current, speed]\nshape(X) = (3600, 4)\nX_c = X - mean(X, axis=0)"
+            },
+            {
+              "type": "qa",
+              "title": "Câu hỏi case",
+              "body": "Nếu speed gần như không đổi trong toàn bộ dữ liệu, cột này có đóng góp nhiều cho PCA không? Thường không, vì phương sai thấp nên nó ít góp vào hướng biến thiên chính."
             }
           ]
         },
@@ -1210,8 +2480,23 @@
           "blocks": [
             {
               "type": "text",
-              "title": "Diễn giải",
-              "body": "Không gian cột mô tả quan hệ giữa các đặc trưng; không gian hàng mô tả các trạng thái/mẫu có thể xuất hiện. Rank nối hai góc nhìn này bằng số hướng độc lập chung."
+              "title": "Không gian hàng",
+              "body": "Không gian hàng mô tả các mẫu như điểm trong không gian feature. Khi so mẫu, phân cụm, tìm nearest neighbor hoặc phát hiện outlier, ta thường nhìn hình học của các hàng."
+            },
+            {
+              "type": "text",
+              "title": "Không gian cột",
+              "body": "Không gian cột mô tả quan hệ giữa feature qua các mẫu. Nếu cột dòng điện và cột nhiệt độ phụ thuộc mạnh, không gian cột tiết lộ cấu trúc vật lý hoặc dư thừa cảm biến."
+            },
+            {
+              "type": "text",
+              "title": "Rank nối hai góc nhìn",
+              "body": "Rank của ma trận bằng số hướng độc lập trong không gian hàng và cũng bằng số hướng độc lập trong không gian cột. Đây là một trong những cây cầu đẹp nhất giữa dữ liệu và đại số tuyến tính."
+            },
+            {
+              "type": "qa",
+              "title": "Câu hỏi diễn giải",
+              "body": "Khi muốn giảm số feature, nên nhìn hàng hay cột? Thường nhìn cột, vì mỗi cột là một feature. Nhưng phải kiểm tác động lên hình học hàng vì hàng là mẫu mà model dùng."
             }
           ]
         },
@@ -1221,8 +2506,23 @@
           "blocks": [
             {
               "type": "code",
-              "title": "Công cụ",
-              "body": "X.shape\nX.mean(axis=0)\nXc = X - X.mean(axis=0)\nnumpy.linalg.matrix_rank(Xc)"
+              "title": "Kiểm tra dữ liệu",
+              "body": "import numpy as np\nX = np.array([[1,10,11],[2,20,22],[3,30,33],[4,40,44]], dtype=float)\nprint('shape:', X.shape)\nprint('mean:', X.mean(axis=0))\nXc = X - X.mean(axis=0)\nprint('rank X:', np.linalg.matrix_rank(X))\nprint('rank Xc:', np.linalg.matrix_rank(Xc))"
+            },
+            {
+              "type": "text",
+              "title": "Điều cần quan sát",
+              "body": "Cột thứ ba bằng tổng hai cột đầu, nên dữ liệu có phụ thuộc tuyến tính. Rank không bằng số cột nếu một cột không thêm hướng thông tin mới."
+            },
+            {
+              "type": "text",
+              "title": "Mở rộng",
+              "body": "Thêm nhiễu nhỏ vào cột thứ ba rồi tính singular values. Rank đại số có thể tăng, nhưng singular value nhỏ sẽ cho biết phụ thuộc gần đúng vẫn tồn tại."
+            },
+            {
+              "type": "qa",
+              "title": "Câu hỏi phòng lab",
+              "body": "Vì sao singular values hữu ích hơn chỉ nhìn rank trong dữ liệu thật? Vì dữ liệu thật có nhiễu, rank tuyệt đối dễ tăng giả, còn singular values cho biết mức năng lượng từng hướng."
             }
           ]
         },
@@ -1232,8 +2532,23 @@
           "blocks": [
             {
               "type": "text",
-              "title": "Lỗi",
-              "body": "Nhầm chiều samples/features; quên center trước PCA; ghép dữ liệu khác đơn vị mà không scale; hiểu rank cao luôn là tốt dù có thể chỉ là nhiễu."
+              "title": "Lỗi 1: nhầm sample và feature",
+              "body": "Nhầm hàng/cột làm mọi công thức sau đó lệch. Mean(axis=0) và mean(axis=1) trả hai ý nghĩa khác nhau. Không ghi quy ước là cách nhanh nhất để tự đặt bẫy."
+            },
+            {
+              "type": "text",
+              "title": "Lỗi 2: quên center trước PCA",
+              "body": "PCA trên dữ liệu chưa center có thể học hướng liên quan đến vị trí trung bình thay vì hướng biến thiên. Đây là lỗi nhỏ trong code nhưng lớn trong diễn giải."
+            },
+            {
+              "type": "text",
+              "title": "Lỗi 3: scale bừa",
+              "body": "Không scale khi cần sẽ để feature lớn áp đảo. Scale khi không nên cũng có thể xóa ý nghĩa vật lý của độ lớn. Scale là quyết định mô hình hóa, không phải thói quen máy móc."
+            },
+            {
+              "type": "qa",
+              "title": "Câu hỏi sửa lỗi",
+              "body": "Nếu PCA cho kết quả toàn bị một feature chi phối, nên kiểm gì trước? Kiểm đơn vị, thang đo, outlier và bước chuẩn hóa của feature đó."
             }
           ]
         },
@@ -1243,8 +2558,23 @@
           "blocks": [
             {
               "type": "text",
-              "title": "Nhiệm vụ",
-              "body": "Viết hàm kiểm tra shape, missing value, mean, standard deviation và rank của X. In cảnh báo nếu số đặc trưng có thang đo quá lệch."
+              "title": "Nhiệm vụ chính",
+              "body": "Viết hàm kiểm tra chất lượng ma trận dữ liệu: shape, missing value, mean, std, rank, scale ratio và cột gần hằng. Đây là lớp kiểm trước khi đưa dữ liệu vào PCA hoặc mô hình học máy."
+            },
+            {
+              "type": "code",
+              "title": "Data audit tối thiểu",
+              "body": "def audit_matrix(X):\n    X = np.asarray(X, dtype=float)\n    return {\n        'shape': X.shape,\n        'missing': int(np.isnan(X).sum()),\n        'mean': X.mean(axis=0).tolist(),\n        'std': X.std(axis=0).tolist(),\n        'rank': int(np.linalg.matrix_rank(X - X.mean(axis=0)))\n    }"
+            },
+            {
+              "type": "text",
+              "title": "Ứng dụng thực tế",
+              "body": "Trong hệ thống kỹ thuật, audit giúp phát hiện sensor chết, cột hằng, dữ liệu thiếu, scale bất thường và feature phụ thuộc trước khi model học những tín hiệu méo."
+            },
+            {
+              "type": "qa",
+              "title": "Câu hỏi triển khai",
+              "body": "Nếu std của một cột gần 0, cột đó có nguy cơ gì? Nó gần như không biến thiên, có thể không hữu ích cho phân biệt trạng thái và có thể gây chia cho số rất nhỏ khi chuẩn hóa."
             }
           ]
         },
@@ -1254,8 +2584,23 @@
           "blocks": [
             {
               "type": "text",
-              "title": "Bài tập",
-              "body": "Tạo ma trận X gồm 5 mẫu, 3 đặc trưng. Center X, tính rank trước/sau center và giải thích ý nghĩa nếu một cột là tổng tuyến tính của hai cột còn lại."
+              "title": "Bài 1: tạo và center",
+              "body": "Tạo ma trận X gồm 5 mẫu, 3 đặc trưng. Tính mean từng cột, tạo X_c = X - mean, rồi kiểm mean của X_c có gần 0 không."
+            },
+            {
+              "type": "text",
+              "title": "Bài 2: kiểm rank",
+              "body": "Tạo cột thứ ba bằng tổng hai cột đầu. Tính rank của X và giải thích vì sao số feature là 3 nhưng số hướng độc lập có thể nhỏ hơn 3."
+            },
+            {
+              "type": "text",
+              "title": "Bài 3: audit dữ liệu",
+              "body": "Viết hàm báo shape, số missing, std từng cột, rank sau center. Chạy trên một ma trận có một cột hằng và một cột scale lớn hơn các cột khác 1000 lần."
+            },
+            {
+              "type": "qa",
+              "title": "Tiêu chí tự chấm",
+              "body": "Bài đạt nếu người học giải thích được ý nghĩa của hàng, cột, centering, rank và scale trong một pipeline dữ liệu thật."
             }
           ]
         },
@@ -1265,8 +2610,23 @@
           "blocks": [
             {
               "type": "qa",
-              "title": "Câu hỏi",
-              "body": "Vì sao center dữ liệu thay đổi trực giác hình học? Rank thấp có thể là tín hiệu tốt hay xấu trong dữ liệu kỹ thuật?"
+              "title": "Câu 1",
+              "body": "Vì sao center dữ liệu thay đổi trực giác hình học? Vì nó đặt gốc tại trung tâm đám mây điểm, khiến phân tích tập trung vào hướng biến thiên quanh mean."
+            },
+            {
+              "type": "qa",
+              "title": "Câu 2",
+              "body": "Rank thấp là tốt hay xấu? Tùy bài toán. Nó có thể tốt nếu cho thấy dữ liệu có cấu trúc thấp chiều, nhưng xấu nếu do cảm biến hỏng hoặc feature trùng lặp ngoài ý muốn."
+            },
+            {
+              "type": "qa",
+              "title": "Câu 3",
+              "body": "Không gian hàng và không gian cột khác nhau thế nào? Không gian hàng nói về quan hệ giữa mẫu trong không gian feature; không gian cột nói về quan hệ giữa feature qua các mẫu."
+            },
+            {
+              "type": "qa",
+              "title": "Câu 4",
+              "body": "Vì sao cần audit dữ liệu trước model? Vì model chỉ học từ hình học của X. Nếu X sai schema, thiếu dữ liệu hoặc lệch scale, model sẽ học từ nền đất lún."
             }
           ]
         },
@@ -1276,8 +2636,23 @@
           "blocks": [
             {
               "type": "text",
-              "title": "Liên kết",
-              "body": "Chương 1 dùng vector để biểu diễn dữ liệu. Chương 2 dùng ma trận để biến đổi dữ liệu, giải hệ, phân tích rank và chuẩn bị cho PCA một cách có hệ thống."
+              "title": "Tổng kết Chương 1",
+              "body": "Chương 1 bắt đầu từ vector đơn lẻ, đi qua norm, dot product, basis, subspace và kết thúc ở ma trận dữ liệu. Đây là hành trình từ một điểm dữ liệu đến toàn bộ đám mây dữ liệu."
+            },
+            {
+              "type": "text",
+              "title": "Vì sao sang ma trận",
+              "body": "Khi dữ liệu đã là ma trận, bước tiếp theo là hiểu ma trận không chỉ lưu dữ liệu mà còn biến đổi dữ liệu. Phép Ax sẽ trở thành ngôn ngữ cho quay, chiếu, trộn feature, giải hệ và PCA."
+            },
+            {
+              "type": "formula",
+              "title": "Cầu nối",
+              "body": "vector x → dataset X\nlinear transform y = A x\ndata transform Y = X A\nMa trận vừa là bảng dữ liệu, vừa là toán tử."
+            },
+            {
+              "type": "qa",
+              "title": "Câu hỏi mở đường",
+              "body": "Nếu X là dữ liệu và A là phép biến đổi feature, X A có thể hiểu là gì? Đó là dữ liệu được biểu diễn trong hệ feature mới hoặc sau một phép trộn tuyến tính."
             }
           ]
         },
@@ -1287,8 +2662,23 @@
           "blocks": [
             {
               "type": "text",
-              "title": "Cốt lõi",
-              "body": "Ma trận dữ liệu là cách tổ chức nhiều vector cùng hệ đặc trưng; rank và centering cho biết dữ liệu có bao nhiêu hướng thông tin độc lập và chuẩn bị cho phân tích sâu hơn."
+              "title": "Cốt lõi 1",
+              "body": "Ma trận dữ liệu là cách tổ chức nhiều vector cùng hệ đặc trưng. Hàng thường là mẫu, cột thường là feature, và quy ước này phải được giữ nhất quán."
+            },
+            {
+              "type": "text",
+              "title": "Cốt lõi 2",
+              "body": "Centering, scale và missing value không phải bước phụ. Chúng quyết định hình học dữ liệu mà mọi metric, PCA và model sẽ nhìn thấy."
+            },
+            {
+              "type": "text",
+              "title": "Cốt lõi 3",
+              "body": "Rank và singular values cho biết dữ liệu có bao nhiêu hướng thông tin độc lập. Đây là chìa khóa để phát hiện dư thừa, nén dữ liệu và chuẩn bị cho ma trận ở chương sau."
+            },
+            {
+              "type": "qa",
+              "title": "Một câu nhớ lâu",
+              "body": "Vector là một viên gạch dữ liệu; ma trận là bức tường mà từ đó mô hình nhìn thấy cả công trình."
             }
           ]
         }
@@ -3312,6 +4702,714 @@
               "type": "text",
               "title": "Cốt lõi",
               "body": "Gradient là vector độ nhạy nhiều chiều; âm gradient là hướng giảm nhanh nhất của hàm mục tiêu trong mô hình trơn."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "lessonId": "MATH-VN-C03-giai_tich_dao_ham_gradient-L04-gradient-descent-learning-rate-e146",
+      "chapterId": "MATH-VN-C03-giai_tich_dao_ham_gradient",
+      "lessonTitle": "§3.4 · Gradient descent và learning rate",
+      "title": "§3.4 · Gradient descent và learning rate",
+      "programLectureId": "MATH-PROG-L03-calculus-gradient-optimization",
+      "programLectureIds": [
+        "MATH-PROG-L03-calculus-gradient-optimization",
+        "MATH-PROG-L17-ai-machine-learning-math-foundations",
+        "MATH-PROG-L02-vector-spaces-linear-maps"
+      ],
+      "programAnchorTitle": "Giải tích, gradient và tối ưu",
+      "roadmapRole": "foundation_before_prep",
+      "baumanFocus": "Nắm gradient descent như quy trình cập nhật tham số để giảm sai số, hiểu vai trò learning rate, hội tụ, dao động và lỗi triển khai thường gặp trong mô hình AI/kỹ thuật.",
+      "sourceAnchors": {
+        "stageId": "vn",
+        "disciplineId": "calculus_optimization",
+        "chapterId": "MATH-VN-C03-giai_tich_dao_ham_gradient",
+        "programLectureId": "MATH-PROG-L03-calculus-gradient-optimization"
+      },
+      "tags": [
+        "gradient descent",
+        "learning rate",
+        "optimization",
+        "loss",
+        "convergence"
+      ],
+      "slides": [
+        {
+          "role": "problem_framing",
+          "title": "Gradient descent biến đạo hàm thành cách tự cải thiện mô hình",
+          "blocks": [
+            {
+              "type": "text",
+              "title": "Ý chính",
+              "body": "Sau khi biết gradient chỉ hướng tăng nhanh nhất, ta đi ngược hướng đó để giảm sai số. Gradient descent là vòng lặp: đo sai số, tính hướng sửa, bước một bước nhỏ, rồi kiểm tra lại."
+            }
+          ]
+        },
+        {
+          "role": "deep_essence",
+          "title": "Tối ưu là điều khiển chuyển động trong không gian tham số",
+          "blocks": [
+            {
+              "type": "text",
+              "title": "Bản chất",
+              "body": "Tham số theta của mô hình tạo thành một điểm trong không gian nhiều chiều. Mỗi lần cập nhật theta là một bước di chuyển trên bề mặt hàm mất mát để tìm vùng có lỗi nhỏ hơn."
+            }
+          ]
+        },
+        {
+          "role": "counter_intuition",
+          "title": "Bước nhanh chưa chắc học nhanh",
+          "blocks": [
+            {
+              "type": "text",
+              "title": "Điểm dễ nhầm",
+              "body": "Learning rate lớn có thể nhảy qua nghiệm tốt hoặc làm loss dao động. Learning rate quá nhỏ thì quá trình học lê bước, giống một robot đi dò đường nhưng mỗi lần chỉ dịch một hạt bụi."
+            }
+          ]
+        },
+        {
+          "role": "real_bridge",
+          "title": "Gradient descent trong AI, điều khiển và nhận dạng hệ thống",
+          "blocks": [
+            {
+              "type": "text",
+              "title": "Ví dụ",
+              "body": "Huấn luyện mạng neural, fitting đường cong cảm biến, hiệu chỉnh tham số bộ điều khiển và nhận dạng mô hình động lực đều dùng cùng ý tưởng: giảm sai số bằng các bước cập nhật có hướng."
+            }
+          ]
+        },
+        {
+          "role": "notation",
+          "title": "Ký hiệu cập nhật tham số",
+          "blocks": [
+            {
+              "type": "formula",
+              "title": "Cập nhật một chiều",
+              "body": "theta_{k+1} = theta_k - alpha dJ/dtheta"
+            },
+            {
+              "type": "formula",
+              "title": "Cập nhật nhiều chiều",
+              "body": "theta_{k+1} = theta_k - alpha grad J(theta_k)"
+            },
+            {
+              "type": "text",
+              "title": "Tên gọi",
+              "body": "alpha là learning rate; J(theta) là hàm mất mát; grad J là vector đạo hàm riêng theo các tham số."
+            }
+          ]
+        },
+        {
+          "role": "core_formula",
+          "title": "Vòng lặp gradient descent tối thiểu",
+          "blocks": [
+            {
+              "type": "formula",
+              "title": "Thuật toán",
+              "body": "1. y_hat = f(x; theta)\n2. J = loss(y_hat, y)\n3. g = grad J(theta)\n4. theta = theta - alpha g"
+            },
+            {
+              "type": "text",
+              "title": "Ý nghĩa",
+              "body": "Bước 1 dự đoán, bước 2 đo sai, bước 3 tìm hướng làm sai số tăng, bước 4 đi ngược hướng đó."
+            }
+          ]
+        },
+        {
+          "role": "assumption_gate",
+          "title": "Điều kiện để bước gradient đáng tin",
+          "blocks": [
+            {
+              "type": "text",
+              "title": "Điều kiện",
+              "body": "Hàm mất mát cần đủ trơn ở vùng đang học, gradient phải tính đúng hoặc xấp xỉ đủ ổn, dữ liệu không quá nhiễu, và learning rate phải phù hợp với độ cong của bề mặt loss."
+            }
+          ]
+        },
+        {
+          "role": "mini_case",
+          "title": "Mini case: fitting đường thẳng cho dữ liệu cảm biến",
+          "blocks": [
+            {
+              "type": "text",
+              "title": "Case",
+              "body": "Mô hình y_hat = ax + b dự đoán nhiệt độ từ dòng điện. Gradient descent chỉnh a và b để giảm sai số giữa y_hat và y đo được. Nếu alpha hợp lý, đường thẳng dần ôm dữ liệu tốt hơn."
+            }
+          ]
+        },
+        {
+          "role": "interpretation",
+          "title": "Learning rate là tay ga của thuật toán",
+          "blocks": [
+            {
+              "type": "text",
+              "title": "Quá nhỏ",
+              "body": "Loss giảm đều nhưng rất chậm, tốn nhiều vòng lặp."
+            },
+            {
+              "type": "text",
+              "title": "Vừa đủ",
+              "body": "Loss giảm ổn định và nhanh."
+            },
+            {
+              "type": "text",
+              "title": "Quá lớn",
+              "body": "Loss nhảy loạn, tăng trở lại hoặc không hội tụ."
+            }
+          ]
+        },
+        {
+          "role": "simulation",
+          "title": "Thí nghiệm gradient descent bằng Python",
+          "blocks": [
+            {
+              "type": "code",
+              "title": "Công cụ",
+              "body": "theta = theta - alpha * grad\nloss_history.append(loss)\n\n# kiểm tra hội tụ\nif abs(loss_history[-1]-loss_history[-2]) < eps:\n    stop = True"
+            },
+            {
+              "type": "text",
+              "title": "Mục tiêu",
+              "body": "Vẽ loss theo vòng lặp với alpha nhỏ, vừa, lớn để thấy ba kiểu: chậm, hội tụ tốt, dao động."
+            }
+          ]
+        },
+        {
+          "role": "common_mistakes",
+          "title": "Lỗi thường gặp khi dùng gradient descent",
+          "blocks": [
+            {
+              "type": "text",
+              "title": "Lỗi",
+              "body": "Không chuẩn hóa đặc trưng; chọn alpha theo cảm tính; không theo dõi loss; nhầm dấu cộng/trừ trong cập nhật; kết luận mô hình sai trong khi chỉ là learning rate sai."
+            }
+          ]
+        },
+        {
+          "role": "application",
+          "title": "Ứng dụng lập trình cho mô hình nhỏ",
+          "blocks": [
+            {
+              "type": "text",
+              "title": "Nhiệm vụ",
+              "body": "Viết vòng lặp train tuyến tính y_hat = ax+b. In loss mỗi 10 epoch, lưu best theta, dừng sớm khi loss không giảm, và kiểm tra dữ liệu đầu vào đã normalize chưa."
+            }
+          ]
+        },
+        {
+          "role": "practice",
+          "title": "Bài luyện tập",
+          "blocks": [
+            {
+              "type": "text",
+              "title": "Bài tập",
+              "body": "Cho J(theta)=theta^2. Bắt đầu theta=10. Tính 5 bước cập nhật với alpha=0.1 và alpha=1.1. So sánh quỹ đạo theta và giải thích vì sao một trường hợp ổn định hơn."
+            }
+          ]
+        },
+        {
+          "role": "professor_qa",
+          "title": "Vấn đáp kiểm tra hiểu sâu",
+          "blocks": [
+            {
+              "type": "qa",
+              "title": "Câu hỏi",
+              "body": "Vì sao gradient descent đi theo -grad J chứ không phải grad J? Learning rate liên quan thế nào đến độ cong của hàm mất mát? Khi loss không giảm, cần kiểm tra những gì trước khi đổi mô hình?"
+            }
+          ]
+        },
+        {
+          "role": "bridge",
+          "title": "Cầu sang hàm mất mát và cực trị",
+          "blocks": [
+            {
+              "type": "text",
+              "title": "Liên kết",
+              "body": "Gradient descent cần một bề mặt để đi trên đó. Bề mặt ấy chính là hàm mất mát. Bài sau làm rõ loss, cực tiểu, cực đại, điểm yên ngựa và điều kiện tối ưu."
+            }
+          ]
+        },
+        {
+          "role": "takeaway",
+          "title": "Kết luận cần nhớ",
+          "blocks": [
+            {
+              "type": "text",
+              "title": "Cốt lõi",
+              "body": "Gradient descent là cơ chế cập nhật tham số theo hướng giảm loss. Learning rate quyết định bước đi, và bước đi đúng quan trọng không kém hướng đi đúng."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "lessonId": "MATH-VN-C03-giai_tich_dao_ham_gradient-L05-loss-extrema-optimality-e146",
+      "chapterId": "MATH-VN-C03-giai_tich_dao_ham_gradient",
+      "lessonTitle": "§3.5 · Hàm mất mát, cực trị và điều kiện tối ưu",
+      "title": "§3.5 · Hàm mất mát, cực trị và điều kiện tối ưu",
+      "programLectureId": "MATH-PROG-L03-calculus-gradient-optimization",
+      "programLectureIds": [
+        "MATH-PROG-L03-calculus-gradient-optimization",
+        "MATH-PROG-L17-ai-machine-learning-math-foundations",
+        "MATH-PROG-L02-vector-spaces-linear-maps"
+      ],
+      "programAnchorTitle": "Giải tích, gradient và tối ưu",
+      "roadmapRole": "foundation_before_prep",
+      "baumanFocus": "Hiểu hàm mất mát như mục tiêu tối ưu, phân biệt cực tiểu/cực đại/điểm yên ngựa, điều kiện tối ưu và rủi ro khi loss không phản ánh đúng yêu cầu kỹ thuật.",
+      "sourceAnchors": {
+        "stageId": "vn",
+        "disciplineId": "calculus_optimization",
+        "chapterId": "MATH-VN-C03-giai_tich_dao_ham_gradient",
+        "programLectureId": "MATH-PROG-L03-calculus-gradient-optimization"
+      },
+      "tags": [
+        "loss function",
+        "extrema",
+        "optimality",
+        "Hessian",
+        "validation"
+      ],
+      "slides": [
+        {
+          "role": "problem_framing",
+          "title": "Hàm mất mát biến mục tiêu học thành một con số cần giảm",
+          "blocks": [
+            {
+              "type": "text",
+              "title": "Ý chính",
+              "body": "Mô hình không tự biết mình tốt hay kém. Hàm mất mát J đo độ sai giữa dự đoán và thực tế, rồi biến mục tiêu kỹ thuật thành bài toán tìm cực trị."
+            }
+          ]
+        },
+        {
+          "role": "deep_essence",
+          "title": "Loss là la bàn, nhưng cũng có thể là mê cung",
+          "blocks": [
+            {
+              "type": "text",
+              "title": "Bản chất",
+              "body": "Một loss tốt phải phản ánh đúng điều ta cần tối ưu. Nếu loss lệch mục tiêu thật, thuật toán vẫn tối ưu rất chăm chỉ, chỉ là chăm chỉ đi nhầm hành lang."
+            }
+          ]
+        },
+        {
+          "role": "counter_intuition",
+          "title": "Loss nhỏ không luôn đồng nghĩa hệ thống tốt trong đời thật",
+          "blocks": [
+            {
+              "type": "text",
+              "title": "Điểm dễ nhầm",
+              "body": "Mô hình có thể loss thấp trên dữ liệu huấn luyện nhưng kém trên dữ liệu mới. Có thể tối ưu đúng con số nhưng sai yêu cầu kỹ thuật như an toàn, độ trễ, năng lượng hoặc độ bền."
+            }
+          ]
+        },
+        {
+          "role": "real_bridge",
+          "title": "Loss trong dự đoán, phân loại và điều khiển",
+          "blocks": [
+            {
+              "type": "text",
+              "title": "Ví dụ",
+              "body": "Hồi quy thường dùng MSE hoặc MAE. Phân loại dùng cross-entropy. Điều khiển có thể cộng sai lệch vị trí, năng lượng điều khiển và mức vi phạm ràng buộc vào cùng một cost."
+            }
+          ]
+        },
+        {
+          "role": "notation",
+          "title": "Ký hiệu loss, risk và cực trị",
+          "blocks": [
+            {
+              "type": "formula",
+              "title": "MSE",
+              "body": "J(theta) = (1/m) sum_{i=1}^m (f(x_i;theta)-y_i)^2"
+            },
+            {
+              "type": "formula",
+              "title": "Điểm cực tiểu cục bộ",
+              "body": "theta* is local minimum if J(theta*) <= J(theta) near theta*"
+            },
+            {
+              "type": "formula",
+              "title": "Điểm dừng",
+              "body": "grad J(theta*) = 0"
+            }
+          ]
+        },
+        {
+          "role": "core_formula",
+          "title": "Điều kiện tối ưu bậc một và bậc hai",
+          "blocks": [
+            {
+              "type": "formula",
+              "title": "Bậc một",
+              "body": "grad J(theta*) = 0"
+            },
+            {
+              "type": "formula",
+              "title": "Bậc hai một biến",
+              "body": "f''(x*) > 0: local minimum\nf''(x*) < 0: local maximum"
+            },
+            {
+              "type": "formula",
+              "title": "Nhiều biến",
+              "body": "Hessian H positive definite suggests local minimum"
+            }
+          ]
+        },
+        {
+          "role": "assumption_gate",
+          "title": "Điều kiện dùng điều kiện tối ưu",
+          "blocks": [
+            {
+              "type": "text",
+              "title": "Điều kiện",
+              "body": "Hàm cần khả vi quanh điểm xét. Điều kiện grad J=0 chỉ cho điểm dừng, không tự đảm bảo cực tiểu. Với hàm không lồi, có thể gặp cực tiểu cục bộ, điểm yên ngựa hoặc vùng phẳng."
+            }
+          ]
+        },
+        {
+          "role": "mini_case",
+          "title": "Mini case: chọn loss cho cảm biến nhiễu",
+          "blocks": [
+            {
+              "type": "text",
+              "title": "Case",
+              "body": "Nếu dữ liệu có vài outlier rất lớn, MSE phạt outlier mạnh và có thể kéo mô hình lệch. MAE ít nhạy outlier hơn. Chọn loss phụ thuộc bản chất nhiễu và mục tiêu sử dụng."
+            }
+          ]
+        },
+        {
+          "role": "interpretation",
+          "title": "Cực trị dưới góc nhìn bề mặt loss",
+          "blocks": [
+            {
+              "type": "text",
+              "title": "Cực tiểu",
+              "body": "Vùng xung quanh đều có loss cao hơn."
+            },
+            {
+              "type": "text",
+              "title": "Cực đại",
+              "body": "Vùng xung quanh đều có loss thấp hơn, thường không phải mục tiêu khi train."
+            },
+            {
+              "type": "text",
+              "title": "Điểm yên ngựa",
+              "body": "Một hướng giống cực tiểu, hướng khác giống cực đại; mạng neural lớn gặp điểm yên ngựa thường xuyên."
+            }
+          ]
+        },
+        {
+          "role": "simulation",
+          "title": "Thí nghiệm so sánh loss bằng Python",
+          "blocks": [
+            {
+              "type": "code",
+              "title": "Công cụ",
+              "body": "mse = ((y_pred - y_true)**2).mean()\nmae = abs(y_pred - y_true).mean()\n\n# quét theta để xem bề mặt loss\nloss_grid = [loss(theta) for theta in theta_values]"
+            },
+            {
+              "type": "text",
+              "title": "Mục tiêu",
+              "body": "Tạo một bộ dữ liệu có outlier, so sánh nghiệm khi tối ưu MSE và MAE để thấy loss ảnh hưởng trực tiếp đến tham số học được."
+            }
+          ]
+        },
+        {
+          "role": "common_mistakes",
+          "title": "Lỗi thường gặp với hàm mất mát",
+          "blocks": [
+            {
+              "type": "text",
+              "title": "Lỗi",
+              "body": "Chọn loss vì quen tay; chỉ xem train loss mà bỏ validation loss; quên đơn vị vật lý của sai số; nhầm cực tiểu cục bộ với nghiệm toàn cục; bỏ qua ràng buộc an toàn."
+            }
+          ]
+        },
+        {
+          "role": "application",
+          "title": "Ứng dụng lập trình: log đúng thứ cần tối ưu",
+          "blocks": [
+            {
+              "type": "text",
+              "title": "Nhiệm vụ",
+              "body": "Khi train, lưu train loss, validation loss, metric kỹ thuật và tham số tốt nhất. Với bài toán điều khiển, tách từng thành phần cost để biết hệ đang sai do vị trí, năng lượng hay ràng buộc."
+            }
+          ]
+        },
+        {
+          "role": "practice",
+          "title": "Bài luyện tập",
+          "blocks": [
+            {
+              "type": "text",
+              "title": "Bài tập",
+              "body": "Cho dữ liệu dự đoán nhiệt có một điểm đo lỗi rất lớn. Giải thích khi nào nên dùng MSE, khi nào nên dùng MAE, và khi nào cần Huber loss. Liên hệ với yêu cầu cảnh báo quá nhiệt."
+            }
+          ]
+        },
+        {
+          "role": "professor_qa",
+          "title": "Vấn đáp kiểm tra hiểu sâu",
+          "blocks": [
+            {
+              "type": "qa",
+              "title": "Câu hỏi",
+              "body": "Vì sao grad J=0 chưa đủ để kết luận cực tiểu? Một loss tối ưu trên dữ liệu huấn luyện có thể thất bại ngoài thực tế vì những nguyên nhân nào? Chọn loss có phải là quyết định kỹ thuật không?"
+            }
+          ]
+        },
+        {
+          "role": "bridge",
+          "title": "Cầu sang backpropagation",
+          "blocks": [
+            {
+              "type": "text",
+              "title": "Liên kết",
+              "body": "Khi loss phụ thuộc vào hàng nghìn hoặc hàng triệu tham số trong mạng neural, ta cần cách tính gradient hiệu quả. Backpropagation chính là kỹ thuật truyền đạo hàm qua chuỗi phép toán."
+            }
+          ]
+        },
+        {
+          "role": "takeaway",
+          "title": "Kết luận cần nhớ",
+          "blocks": [
+            {
+              "type": "text",
+              "title": "Cốt lõi",
+              "body": "Hàm mất mát định nghĩa điều mô hình đang cố giảm. Cực trị và điều kiện tối ưu giúp hiểu nơi thuật toán dừng, nhưng chất lượng thật còn phụ thuộc dữ liệu, ràng buộc và metric kỹ thuật."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "lessonId": "MATH-VN-C03-giai_tich_dao_ham_gradient-L06-gradient-backprop-ml-optimization-e146",
+      "chapterId": "MATH-VN-C03-giai_tich_dao_ham_gradient",
+      "lessonTitle": "§3.6 · Từ gradient sang backpropagation và tối ưu ML",
+      "title": "§3.6 · Từ gradient sang backpropagation và tối ưu ML",
+      "programLectureId": "MATH-PROG-L03-calculus-gradient-optimization",
+      "programLectureIds": [
+        "MATH-PROG-L03-calculus-gradient-optimization",
+        "MATH-PROG-L17-ai-machine-learning-math-foundations",
+        "MATH-PROG-L02-vector-spaces-linear-maps"
+      ],
+      "programAnchorTitle": "Giải tích, gradient và tối ưu",
+      "roadmapRole": "foundation_before_prep",
+      "baumanFocus": "Liên kết gradient, chain rule, backpropagation và training loop ML để hiểu cách mô hình nhiều tầng tính gradient, cập nhật trọng số và kiểm soát lỗi train thực tế.",
+      "sourceAnchors": {
+        "stageId": "vn",
+        "disciplineId": "calculus_optimization",
+        "chapterId": "MATH-VN-C03-giai_tich_dao_ham_gradient",
+        "programLectureId": "MATH-PROG-L03-calculus-gradient-optimization"
+      },
+      "tags": [
+        "backpropagation",
+        "chain rule",
+        "autograd",
+        "optimizer",
+        "machine learning"
+      ],
+      "slides": [
+        {
+          "role": "problem_framing",
+          "title": "Backpropagation là cách tính gradient cho mô hình nhiều tầng",
+          "blocks": [
+            {
+              "type": "text",
+              "title": "Ý chính",
+              "body": "Khi mô hình là chuỗi nhiều phép biến đổi, gradient của loss theo tham số sâu bên trong không thể tính thủ công từng cái. Backpropagation dùng quy tắc dây chuyền để truyền sai số từ đầu ra ngược về các lớp trước."
+            }
+          ]
+        },
+        {
+          "role": "deep_essence",
+          "title": "Backprop không phải phép màu, chỉ là chain rule có tổ chức",
+          "blocks": [
+            {
+              "type": "text",
+              "title": "Bản chất",
+              "body": "Mạng neural là hàm hợp: đầu vào đi xuôi để tạo dự đoán, loss đo sai số, đạo hàm đi ngược để biết mỗi trọng số chịu trách nhiệm bao nhiêu trong sai số đó."
+            }
+          ]
+        },
+        {
+          "role": "counter_intuition",
+          "title": "Sai số đi ngược, dữ liệu không đi ngược",
+          "blocks": [
+            {
+              "type": "text",
+              "title": "Điểm dễ nhầm",
+              "body": "Backprop không đảo ngược quá trình dự đoán. Nó truyền gradient của loss qua các phép toán đã lưu từ forward pass. Cái quay về là thông tin đạo hàm, không phải mẫu dữ liệu."
+            }
+          ]
+        },
+        {
+          "role": "real_bridge",
+          "title": "Từ perceptron nhỏ đến mạng sâu",
+          "blocks": [
+            {
+              "type": "text",
+              "title": "Ví dụ",
+              "body": "Một mạng nhận vector cảm biến, qua nhiều lớp tạo dự đoán lỗi thiết bị. Loss ở đầu ra được truyền ngược để cập nhật từng trọng số, từ lớp cuối đến lớp đầu."
+            }
+          ]
+        },
+        {
+          "role": "notation",
+          "title": "Ký hiệu hàm hợp và chain rule",
+          "blocks": [
+            {
+              "type": "formula",
+              "title": "Hàm hợp",
+              "body": "y = f_3(f_2(f_1(x)))"
+            },
+            {
+              "type": "formula",
+              "title": "Quy tắc dây chuyền",
+              "body": "dJ/dw = dJ/da · da/dz · dz/dw"
+            },
+            {
+              "type": "formula",
+              "title": "Cập nhật",
+              "body": "w = w - alpha dJ/dw"
+            }
+          ]
+        },
+        {
+          "role": "core_formula",
+          "title": "Quy trình forward, backward, update",
+          "blocks": [
+            {
+              "type": "formula",
+              "title": "Forward",
+              "body": "x -> z1 -> a1 -> z2 -> y_hat -> J"
+            },
+            {
+              "type": "formula",
+              "title": "Backward",
+              "body": "dJ/dy_hat -> dJ/dz2 -> dJ/dw2 -> dJ/da1 -> dJ/dw1"
+            },
+            {
+              "type": "text",
+              "title": "Update",
+              "body": "Optimizer dùng gradient để cập nhật trọng số. SGD, Momentum, RMSProp và Adam khác nhau ở cách dùng lịch sử gradient."
+            }
+          ]
+        },
+        {
+          "role": "assumption_gate",
+          "title": "Điều kiện để gradient truyền được",
+          "blocks": [
+            {
+              "type": "text",
+              "title": "Điều kiện",
+              "body": "Các phép toán cần khả vi hoặc có đạo hàm gần đúng/subgradient. Cần lưu giá trị trung gian của forward pass. Hàm kích hoạt, chuẩn hóa dữ liệu và khởi tạo trọng số ảnh hưởng mạnh đến gradient."
+            }
+          ]
+        },
+        {
+          "role": "mini_case",
+          "title": "Mini case: một mạng hai lớp dự đoán lỗi cảm biến",
+          "blocks": [
+            {
+              "type": "text",
+              "title": "Case",
+              "body": "Input x là vector đặc trưng. Lớp ẩn tạo biểu diễn a1. Đầu ra y_hat dự đoán xác suất lỗi. Cross-entropy tạo loss, backprop tính gradient cho W2 rồi W1 để cả bộ trích đặc trưng và bộ phân loại cùng được sửa."
+            }
+          ]
+        },
+        {
+          "role": "interpretation",
+          "title": "Gradient nói tham số nào cần chịu trách nhiệm",
+          "blocks": [
+            {
+              "type": "text",
+              "title": "Diễn giải",
+              "body": "Nếu dJ/dw lớn, thay đổi nhỏ ở w ảnh hưởng mạnh đến loss. Nếu gradient gần 0, w ít được cập nhật, có thể vì mô hình đã ổn, vùng bão hòa, learning rate/activation không phù hợp hoặc gradient bị biến mất."
+            }
+          ]
+        },
+        {
+          "role": "simulation",
+          "title": "Thí nghiệm autograd tối giản",
+          "blocks": [
+            {
+              "type": "code",
+              "title": "Công cụ",
+              "body": "loss.backward()\noptimizer.step()\noptimizer.zero_grad()\n\n# kiểm tra gradient\nfor name, p in model.named_parameters():\n    print(name, p.grad.norm())"
+            },
+            {
+              "type": "text",
+              "title": "Mục tiêu",
+              "body": "Theo dõi norm gradient từng lớp để phát hiện lớp học quá chậm, gradient nổ hoặc gradient biến mất."
+            }
+          ]
+        },
+        {
+          "role": "common_mistakes",
+          "title": "Lỗi thường gặp khi train mạng",
+          "blocks": [
+            {
+              "type": "text",
+              "title": "Lỗi",
+              "body": "Quên zero_grad; cập nhật trước khi backward; learning rate quá lớn; activation bão hòa; dữ liệu chưa normalize; chỉ nhìn accuracy mà không nhìn loss và gradient norm."
+            }
+          ]
+        },
+        {
+          "role": "application",
+          "title": "Ứng dụng lập trình cho tối ưu ML",
+          "blocks": [
+            {
+              "type": "text",
+              "title": "Nhiệm vụ",
+              "body": "Tạo training loop có forward, loss, backward, step, zero_grad. Log loss, validation metric, gradient norm và learning rate. Thêm gradient clipping nếu gradient nổ."
+            }
+          ]
+        },
+        {
+          "role": "practice",
+          "title": "Bài luyện tập",
+          "blocks": [
+            {
+              "type": "text",
+              "title": "Bài tập",
+              "body": "Vẽ sơ đồ forward/backward cho mô hình y_hat = sigmoid(w2 * relu(w1*x + b1) + b2). Ghi rõ gradient cần đi qua những phép toán nào trước khi cập nhật w1."
+            }
+          ]
+        },
+        {
+          "role": "professor_qa",
+          "title": "Vấn đáp kiểm tra hiểu sâu",
+          "blocks": [
+            {
+              "type": "qa",
+              "title": "Câu hỏi",
+              "body": "Backprop khác gradient descent ở điểm nào? Vì sao cần lưu intermediate values từ forward pass? Khi gradient của lớp đầu gần 0 liên tục, em sẽ kiểm tra những nguyên nhân nào?"
+            }
+          ]
+        },
+        {
+          "role": "bridge",
+          "title": "Cầu sang tối ưu nâng cao và mô hình lớn",
+          "blocks": [
+            {
+              "type": "text",
+              "title": "Liên kết",
+              "body": "Sau backprop, câu hỏi thực tế là làm sao train ổn định hơn: mini-batch, momentum, Adam, scheduler, regularization, batch normalization và kiểm soát overfitting."
+            }
+          ]
+        },
+        {
+          "role": "takeaway",
+          "title": "Kết luận cần nhớ",
+          "blocks": [
+            {
+              "type": "text",
+              "title": "Cốt lõi",
+              "body": "Backpropagation tính gradient hiệu quả cho mô hình nhiều tầng. Gradient descent dùng các gradient đó để cập nhật tham số; optimizer quyết định cách bước đi trên bề mặt loss."
             }
           ]
         }
