@@ -6,38 +6,79 @@ Date: 2026-07-03
 
 Branch: `codex/e150-c01-l01-clean-replacement`
 
-Scope: Browser/runtime smoke test using `subjects/math/E161_E132_STATIC_SMOKE_AND_BROWSER_CHECKLIST.md`.
+Scope: Runtime/browser smoke test using `subjects/math/E161_E132_STATIC_SMOKE_AND_BROWSER_CHECKLIST.md`.
 
 Files changed:
 - `subjects/math/E162_RUNTIME_SMOKE_FAIL_REPORT.md`
+- `CODEX_STATE.md`
 
 Content/UI edit status:
 - Content JSON was not edited.
 - UI/runtime files were not patched.
-- `CODEX_STATE.md` was not updated because the user instruction for FAIL was to create a failure report only.
+- No main sync was performed.
 
-## Test setup
+## Git state
 
-- Opened Math page through a local static server:
-  - `http://127.0.0.1:8765/subjects/math/index.html`
+Current branch:
+- `codex/e150-c01-l01-clean-replacement`
+
+`git log --oneline -8`:
+- `df38ae7 Short update CODEX_STATE with main pull rule`
+- `371d602 Update protocol with main sync pull rule`
+- `b5f0348 test(math): report E162 runtime smoke failure`
+- `4d8068b E161 update CODEX_STATE static smoke browser pending`
+- `0db7c79 E161 add static smoke browser checklist`
+- `c3efa34 E160 update CODEX_STATE after UI-only patch`
+- `a06c0bc E160 add E132 full lecture mode patch report`
+- `5055bca E160 patch E132 full lecture mode CSS`
+
+## E132 release check
+
+Browser automation global probe:
+- `window.BAUMAN_MATH_THEORY_E132`: `undefined`
+- `window.BAUMAN_MATH_THEORY_E132?.release`: `undefined`
+- `window.BAUMAN_MATH_THEORY_E132?.selfCheck?.()`: unavailable
+
+Important context:
+- Browser automation also could not see `window.BAUMAN_MATH_THEORY_E129`, `window.__MATH_STATE`, or `window.__BAUMAN_CORE_API`, even though the E129 DOM was rendered.
+- The page script tag for `assets/theory_skin/theory-slideshow-E132.js?v=136` exists.
+- The local server returned that script with HTTP `200`.
+- The served script contains both `E160_ISOLATED_OVERLAY_DECK_FULL_LECTURE` and `BAUMAN_MATH_THEORY_E132`.
+- `node --check` passed for:
+  - `subjects/math/assets/theory_skin/theory-slideshow-E132.js`
+  - `subjects/math/assets/theory_skin/theory-tab-E129.js`
+
+Because the checklist explicitly requires the browser console/global release check, this is not a PASS.
+
+## Runtime UI smoke
+
+Opened:
+- `http://127.0.0.1:8765/subjects/math/index.html`
+
+Initial boot:
 - Browser title: `Toán Bauman`
-- Initial boot console errors: `0`
-- Math Theory tab opened on C01 / `GĐ0 · Việt Nam`.
+- Console errors: `0`
 
-## Partial pass
+Current visible lesson:
+- `§1.1 · Vector như dữ liệu kỹ thuật`
 
-The current visible lesson, `§1.1 · Vector như dữ liệu kỹ thuật`, can open the E132 slideshow.
+`Trình chiếu` result for current lesson:
+- The `Trình chiếu` button was visible and clickable.
+- Overlay opened.
+- Header showed `E160 THEORY DECK`.
+- Header showed `01 / 16 · 4 blocks`.
+- Mode label showed `Full lecture`.
+- Full mode rendered 4 `.e132-clean-card` cards.
+- Full mode rendered 4 `.e132-full-body` bodies.
+- Body text style had no ellipsis clamp:
+  - `textOverflow: clip`
+  - `webkitLineClamp: none`
+  - `whiteSpace: pre-wrap`
+- Console errors after opening overlay: `0`
 
-Observed:
-- Deck header shows `E160 THEORY DECK`.
-- Default header shows `Full lecture`.
-- First slide shows `01 / 16 · 4 blocks`.
-- Full mode rendered 4 `.e132-clean-card` cards and 4 `.e132-full-body` bodies.
-- Console errors after opening deck: `0`.
+## Exact failure
 
-## Runtime failure
-
-The required E161 browser checklist cannot pass because the UI cannot reliably select the required C01 lessons from the reader.
+The required multi-lesson smoke could not be completed because the E129 lesson selector is hidden/clipped in the runtime layout.
 
 Required lessons:
 - `§1.1 · Vector như dữ liệu kỹ thuật`
@@ -45,54 +86,64 @@ Required lessons:
 - `§1.5 · Không gian con và biểu diễn dữ liệu`
 - `§1.6 · Từ vector sang ma trận dữ liệu`
 
-Actual issue:
-- The E129 lesson/chapter selection UI exists in the DOM, but it is hidden or clipped in the visible runtime layout.
-- `.e129-sidebar` is `display: none`.
-- `.e129-placeholder` is initially `display: none`.
-- `.e129-chip-btn` lesson buttons exist, but initially have `0x0` rects and are not clickable.
-- `.e129-reader` is visible but clipped to about `94px` height with `overflow: hidden`, so the reader mainly exposes only:
-  - `Kho Lý thuyết`
-  - `Trình chiếu`
-  - `Tải lại JSON`
-- Because `§1.4`, `§1.5`, and `§1.6` cannot be selected through the visible UI, the multi-lesson browser smoke test is blocked.
+Observed before opening slideshow:
+- `.e129-sidebar`
+  - `display: none`
+  - rect: `0x0`
+- `.e129-reader`
+  - visible, but rect height about `94px`
+  - `overflow: hidden`
+  - visible controls are mainly `Kho Lý thuyết`, `Trình chiếu`, `Tải lại JSON`
+- `.e129-placeholder`
+  - `display: none`
+  - rect: `0x0`
+- `.e129-slide-list`
+  - rect: `0x0`
+- `.e129-chip-btn` lesson buttons for `§1.1` through `§1.6`
+  - exist in the DOM
+  - rect: `0x0`
+  - not visible/clickable through the UI
 
-Additional runtime conflict observed during slideshow keyboard smoke:
-- After slideshow key testing reached the `F/C` path, the page remained in presenting mode and the background E129 layout was distorted.
-- Observed while presenting:
-  - `.e129-reader` rect height was about `13756px`, with a large negative Y position.
-  - `.e129-placeholder` rect height was about `12795px`.
-  - Lesson chips became visible inside the presenting/background layer.
-- This points to a class/layout conflict between E132 presenting/fullscreen behavior and E129 reader/placeholder layout, not to missing lecture JSON.
-
-## Console result
-
-- Browser console error count observed during the failure state: `0`.
+Consequence:
+- `§1.4`, `§1.5`, and `§1.6` cannot be selected through the visible UI.
+- The checklist items for those lessons cannot be executed.
+- C01 baseline cannot be marked ready.
+- Main must not be synced.
 
 ## Suspected files
 
-Primary suspects:
+Primary suspects for the next UI-only patch:
 - `subjects/math/assets/theory_skin/theory-tab-E129.css`
 - `subjects/math/assets/theory_skin/theory-tab-E129.js`
 - `subjects/math/assets/theory_skin/theory-slideshow-E132.css`
 - `subjects/math/assets/theory_skin/theory-slideshow-E132.js`
 
 Likely root area:
-- E129 reader/sidebar visibility and clipping rules.
-- E132 presenting/fullscreen/compact keyboard class handling.
-- The bridge between the visible lesson selector and the E132 slideshow source.
+- E129 reader/sidebar/placeholder visibility and clipping.
+- Lesson selection UI is present but not exposed in the usable reader layout.
+- E132 overlay itself can render the current lesson, but the source lesson cannot be changed through the visible UI.
 
 ## Pass criteria result
 
 FAIL.
 
 Reason:
-- Full lecture mode works for the currently selected lesson, but the visible UI cannot select all required C01 lessons.
-- Keyboard smoke exposed a layout conflict in presenting mode.
-- The test does not show a content JSON problem.
+- E132 current-lesson overlay partially works.
+- Browser global release/selfCheck check is not available through the runtime probe.
+- Required lesson selection for `§1.4` through `§1.6` is blocked by hidden/clipped UI.
+- No console errors were observed, so this appears to be a layout/visibility/runtime integration issue rather than a lecture JSON issue.
+
+## Main sync / pull instruction
+
+- Do not pull `main` for this result.
+- This FAIL result exists only on `codex/e150-c01-l01-clean-replacement`.
+- Pull this branch only for diagnosis:
+  - `git checkout codex/e150-c01-l01-clean-replacement`
+  - `git pull origin codex/e150-c01-l01-clean-replacement`
 
 ## Next recommended task
 
-Patch UI only, with no content changes:
-- Restore a visible, stable lesson selector for C01 inside E129 reader or the protected learning-structure flow.
-- Ensure selecting `§1.4`, `§1.5`, and `§1.6` updates the E132 source lesson before opening slideshow.
-- Re-scope E132 presenting/fullscreen/compact classes so they do not distort `.e129-reader`, `.e129-placeholder`, or lesson chips behind the overlay.
+E163 UI-only patch, with no content changes:
+- Restore a visible, stable lesson selector for C01 in the E129 Theory reader flow.
+- Ensure selecting `§1.4`, `§1.5`, and `§1.6` updates the E132 slideshow source.
+- Re-run E162 browser smoke after the UI-only patch.
