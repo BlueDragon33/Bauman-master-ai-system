@@ -1,46 +1,44 @@
 # CODEX_STATE
 
-Current task: E158 C01 semantic QA completed.
+Current task: E159 C01 visual/render QA completed.
 
-Status: SEMANTIC_QA_PASS_VISUAL_QA_REQUIRED
+Status: VISUAL_QA_FAIL_E132_COMPRESSION
 
 Branch: `codex/e150-c01-l01-clean-replacement`
 Base branch: `codex/e146-merge-c03-l04-l06`
 Main sync status: `stacked_branch`
 
 Files changed:
-- `subjects/math/E158_C01_SEMANTIC_QA_REPORT.md`
+- `subjects/math/E159_C01_VISUAL_RENDER_QA_REPORT.md`
 - `CODEX_STATE.md`
 
-Semantic QA correction preserved:
-- 16 slides is only the minimum structural floor.
-- Do not compress lessons to exactly 16 slides if the concept needs more.
-- Do not stretch thin content just to reach 16 slides.
-- Semantic QA must judge teaching necessity, not slide count alone.
+Visual/render QA verdict:
+- E129 normal reader appears capable of rendering all slide blocks by code inspection.
+- E132 slideshow intentionally compresses content and can drop blocks/sentences before display.
+- Therefore C01 rich content may look thin in slideshow even though JSON is deep.
 
-C01 semantic verdict:
-- C01 passes semantic QA as a controlled foundation chapter.
-- §1.1, §1.2, §1.3 and §1.6 pass at 16 slides for their current foundation scope.
-- §1.4 and §1.5 are conditional pass at 16 slides for C01 foundation scope, with expansion guards for later change-of-basis, PCA/SVD and affine-subspace topics.
-- C01 can be used as a controlled content-depth template only if future lessons expand beyond 16 slides whenever conceptually necessary.
+Evidence summary:
+- E129 uses `blocks.map(blockHtml).join('')` and no block limit was found in normal reader render path.
+- E132 defines `LIMIT`, uses `blocks.slice(0,max)`, `sentenceBits`, and `compact`, and self-check reports `compactContent:true`.
 
 Next recommended task:
-- E159 visual QA only for E129 reader and E132 slideshow.
+- E160 UI-only patch for E132 full lecture mode.
 - Do not edit content.
-- Check whether C01 §1.1-§1.6 display all rich blocks or whether slideshow compresses/truncates content.
+- Do not edit `theory_lecture_content.json`.
+- Patch only E132 slideshow JS/CSS unless a tiny E129 hook is required.
+- Render all blocks in full lecture mode; keep compact mode optional only if useful.
 
 Next actor:
-- ChatGPT or Codex for visual/runtime inspection.
+- Codex or ChatGPT with strict UI-only patch scope.
 
 Codex required:
-- no for semantic QA.
-- yes only if a local browser/runtime visual test is needed.
+- recommended for local runtime/browser smoke test.
 
 Protocol reference:
 - `CODEX_CHATGPT_SYNC_PROTOCOL.md`
 
 ---
 
-Previous task: E157R C01 QA criteria correction completed.
+Previous task: E158 C01 semantic QA completed.
 
-Status: STRUCTURAL_PASS_SEMANTIC_QA_REQUIRED
+Status: SEMANTIC_QA_PASS_VISUAL_QA_REQUIRED
