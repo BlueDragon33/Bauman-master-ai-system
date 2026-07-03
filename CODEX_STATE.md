@@ -1,5 +1,44 @@
 # CODEX_STATE
 
+Current task: E146 C03 L04-L06 staged merge completed.
+
+Status: PASS. Staged C03 §3.4-§3.6 theory records were JSON-safe appended into the primary Math Theory runtime content file on branch `codex/e146-merge-c03-l04-l06`. Boot/runtime/UI files were not changed.
+
+Date: 2026-07-03
+
+Files changed:
+
+- `subjects/math/data/theory_lecture_content.json`
+- `subjects/math/E146_MERGE_C03_L04_L06_STAGED.md`
+- `CODEX_STATE.md`
+
+Merge result:
+
+- Source staged file: `subjects/math/data/theory_lecture_content_c03_l04_l06_e146_staged.json`
+- Target file: `subjects/math/data/theory_lecture_content.json`
+- Appended records: 3
+- Skipped duplicates: 0
+- Target `id`: `bauman_math_theory_lecture_content_e146_c03_complete`
+- Target `version`: `E146_C01_C02_COMPLETE_C03_L01_L06`
+
+Verification:
+
+- JSON parse: PASS
+- C01 record count: 6
+- C02 record count: 6
+- C03 record count: 6
+- C03 slide floor: PASS, all C03 lessons have 16 slides
+- Duplicate `lessonId`: none
+- C01/C02 records unchanged: PASS
+- C03 §3.1-§3.3 records unchanged: PASS
+- Runtime/UI/boot files changed: none
+
+Next recommended task:
+
+- Continue with the next staged content batch after C03, keeping the same JSON-safe append workflow and preserving locked records.
+
+---
+
 Current task: E146 C03 staged content §3.4–§3.6 completed.
 
 Status: PASS. Created a content-only staged bundle for the remaining three C03 theory lessons. Boot/runtime/UI files were not changed.
