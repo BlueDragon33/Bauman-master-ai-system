@@ -1,14 +1,15 @@
 # CODEX_STATE
 
-Current task: E144 C02 Final Verification Lock.
+Current task: E145 C03 Staged Content.
 
-Status: PASS. C01 remains locked after E141. C02 is now verified and locked after E144. Boot/runtime untouched.
+Status: C01 and C02 are locked. E145 staged the first three C03 theory lessons in a separate JSON bundle to avoid unsafe whole-file replacement of the locked primary content file. Boot/runtime untouched.
 
 Read next:
 
+- subjects/math/E145_C03_STAGED_CONTENT.md
+- subjects/math/data/theory_lecture_content_c03_e145_staged.json
 - subjects/math/E144_C02_FINAL_VERIFICATION_LOCK.md
 - subjects/math/E143_C02_COMPLETE_CONTENT.md
-- subjects/math/E142_C02_THEORY_START.md
 - subjects/math/E141_C01_FINAL_VERIFICATION_LOCK.md
 - subjects/math/E138_THEORY_CONTENT_QUALITY.md
 - subjects/math/E137_CLEAN_THEORY_LOCK.md
@@ -51,44 +52,49 @@ Scripts:
 - theory-tab-E129.js?v=129
 - theory-slideshow-E132.js?v=136
 
-E141 C01 verification result:
+Locked chapters:
 
-- PASS.
-- C01 contains six lessons: §1.1 Vector như dữ liệu kỹ thuật; §1.2 Chuẩn vector và khoảng cách; §1.3 Tích vô hướng, góc và phép chiếu; §1.4 Cơ sở, span và tọa độ; §1.5 Không gian con và biểu diễn dữ liệu; §1.6 Từ vector sang ma trận dữ liệu.
-- Current C01 lessons each have 16 slides, satisfying the 14-slide quality floor for normal Math theory lessons.
-- Academic coverage checked: framing, concept, notation, formulas, conditions, interpretation, application, mistakes, practice, professor QA and bridge.
-- No boot/runtime/UI file changed during E141.
+- C01 · Vector trong không gian dữ liệu: PASS after E141, six lessons.
+- C02 · Ma trận và phép biến đổi tuyến tính: PASS after E144, six lessons.
 
-E144 C02 verification result:
+E145 staged C03 content:
 
-- PASS.
-- subjects/math/data/theory_lecture_content.json uses version E143_C01_C02_COMPLETE.
-- C02 contains six lessons:
-  - §2.1 Ma trận như dữ liệu và phép biến đổi;
-  - §2.2 Phép nhân ma trận và pipeline tuyến tính;
-  - §2.3 Hạng ma trận, không gian cột và thông tin độc lập;
-  - §2.4 Nghịch đảo, giải hệ và điều kiện tồn tại nghiệm;
-  - §2.5 Phép biến đổi tuyến tính trong hình học và dữ liệu;
-  - §2.6 Từ ma trận sang PCA và mô hình tuyến tính.
-- Each C02 lesson uses 16 slides, satisfying the 14-slide quality floor.
-- Academic coverage checked: data/operator, matrix-vector multiplication, composition, shape/order rules, rank/column space, inverse/solve, condition number, geometry/data transforms, projection, basis change, PCA/SVD, linear model bridge, Python checks, practice and professor QA.
-- No boot/runtime/UI file changed during E144.
+- Created subjects/math/data/theory_lecture_content_c03_e145_staged.json.
+- Contains three staged C03 lessons:
+  - §3.1 Hàm số như mô hình đầu vào–đầu ra;
+  - §3.2 Đạo hàm và độ nhạy của hệ thống;
+  - §3.3 Gradient như hướng thay đổi nhanh nhất.
+- Each staged lesson has 16 slides and satisfies the 14-slide quality floor.
+- The staged file is not yet part of runtime unless merged into subjects/math/data/theory_lecture_content.json.
 
-Controlled flexible slide policy:
+Required next step:
 
-- Normal Math theory lesson: 14–18 slides.
-- Deep foundational lesson: 16–22 slides when the topic requires depth.
-- Below 14 slides only for clearly secondary/review/micro lessons, and the reason must be documented.
-- Longer than 22 only if the topic truly requires it and should be split if it becomes hard to learn.
-- Do not add filler slides just to hit a number.
-- Do not remove necessary content just to fit a number.
-- Slide roles are a teaching skeleton, not a mandatory checklist.
-- Governing rule: enough, accurate, necessary.
+- Merge staged C03 records into subjects/math/data/theory_lecture_content.json with a JSON-safe append script.
+- Do not manually rewrite locked C01/C02 records.
+- After merge, verify JSON parse, C01=6, C02=6, C03=3, every new C03 lesson >=14 slides, no runtime changes.
 
-Next recommended task:
+Recommended local/Codex merge script:
 
-- Browser smoke test after pull: C01 and C02 visible, slideshow opens.
-- Then start C03 as content-only expansion.
+```js
+const fs = require('fs');
+const mainPath = 'subjects/math/data/theory_lecture_content.json';
+const stagedPath = 'subjects/math/data/theory_lecture_content_c03_e145_staged.json';
+const main = JSON.parse(fs.readFileSync(mainPath, 'utf8'));
+const staged = JSON.parse(fs.readFileSync(stagedPath, 'utf8'));
+const existing = new Set(main.records.map(r => r.lessonId));
+for (const rec of staged.records) {
+  if (!existing.has(rec.lessonId)) main.records.push(rec);
+}
+main.id = 'bauman_math_theory_lecture_content_e145_c03_started';
+main.version = 'E145_C01_C02_COMPLETE_C03_L01_L03';
+fs.writeFileSync(mainPath, JSON.stringify(main, null, 2) + '\n');
+```
+
+After safe merge, continue C03 with:
+
+- §3.4 Gradient descent và learning rate;
+- §3.5 Hàm mất mát, cực trị và điều kiện tối ưu;
+- §3.6 Từ gradient sang backpropagation và tối ưu ML.
 
 If user reports failure:
 
