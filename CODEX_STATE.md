@@ -1,53 +1,51 @@
 # CODEX_STATE
 
-Current task: E160 E132 full lecture mode UI-only patch applied.
+Current task: E161 E132 static smoke completed; browser runtime still pending.
 
-Status: PATCH_APPLIED_CODE_INSPECTION_PASS_RUNTIME_SMOKE_PENDING
+Status: STATIC_SMOKE_PASS_BROWSER_RUNTIME_PENDING
 
 Branch: `codex/e150-c01-l01-clean-replacement`
 Base branch: `codex/e146-merge-c03-l04-l06`
 Main sync status: `stacked_branch`
 
 Files changed:
-- `subjects/math/assets/theory_skin/theory-slideshow-E132.js`
-- `subjects/math/assets/theory_skin/theory-slideshow-E132.css`
-- `subjects/math/E160_E132_FULL_LECTURE_MODE_PATCH_REPORT.md`
+- `subjects/math/E161_E132_STATIC_SMOKE_AND_BROWSER_CHECKLIST.md`
 - `CODEX_STATE.md`
 
 Scope lock:
-- UI-only patch.
+- Verification/report-only task.
 - Content JSON was not edited.
-- E129 reader was not edited.
-- subject-manifest, lessons, frame/content data and boot/runtime files were not edited.
+- UI JS/CSS was not patched during E161.
 
-What changed:
-- E132 slideshow now opens in full lecture mode by default.
-- Full lecture mode renders all raw blocks from each E129 slide.
-- Full mode does not use block limits, sentenceBits or text truncation.
-- Compact mode remains optional through a deck button and keyboard shortcuts.
-- CSS now supports full lecture stacked cards with scrollable content area.
+Static smoke verdict:
+- E132 release is `E160_ISOLATED_OVERLAY_DECK_FULL_LECTURE`.
+- Default mode is `full`.
+- `openDeck()` resets mode to full.
+- Full render path uses `s.fullBlocks`.
+- Compact/truncation helpers remain only for optional compact mode.
+- Self-check exposes full lecture fields.
+- CSS supports full lecture stacked cards and scrollable grid area.
 
-Verification:
-- Code inspection: PASS.
-- Runtime/browser smoke test: PENDING.
+Important limitation:
+- This is not a browser/runtime visual PASS.
+- Browser smoke test is still required to confirm actual DOM, readability, scrolling, keyboard navigation and console status.
 
 Next recommended task:
-- E161 runtime visual smoke test.
-- Do not edit content.
-- Verify C01 §1.1, §1.4, §1.5 and §1.6 in slideshow.
-- Confirm deck label shows Full lecture, 4-block slides show 4 cards, body text is not truncated, Compact/Full toggle works, keyboard navigation works, and Esc exits.
+- Run browser smoke test using `subjects/math/E161_E132_STATIC_SMOKE_AND_BROWSER_CHECKLIST.md`.
+- If browser smoke passes, mark C01 baseline ready.
+- If it fails, patch only E132 UI files again.
 
 Next actor:
 - Codex/local browser or user visual test.
 
 Codex required:
-- recommended for local runtime/browser smoke test.
+- recommended for browser/runtime smoke test.
 
 Protocol reference:
 - `CODEX_CHATGPT_SYNC_PROTOCOL.md`
 
 ---
 
-Previous task: E159 C01 visual/render QA completed.
+Previous task: E160 E132 full lecture mode UI-only patch applied.
 
-Status: VISUAL_QA_FAIL_E132_COMPRESSION
+Status: PATCH_APPLIED_CODE_INSPECTION_PASS_RUNTIME_SMOKE_PENDING
