@@ -1,51 +1,46 @@
 # CODEX_STATE
 
-Current task: E157R C01 QA criteria correction completed.
+Current task: E158 C01 semantic QA completed.
 
-Status: STRUCTURAL_PASS_SEMANTIC_QA_REQUIRED
+Status: SEMANTIC_QA_PASS_VISUAL_QA_REQUIRED
 
 Branch: `codex/e150-c01-l01-clean-replacement`
 Base branch: `codex/e146-merge-c03-l04-l06`
 Main sync status: `stacked_branch`
 
 Files changed:
-- `subjects/math/E157R_C01_QA_CRITERIA_CORRECTION.md`
+- `subjects/math/E158_C01_SEMANTIC_QA_REPORT.md`
 - `CODEX_STATE.md`
 
-Correction:
-- `16 slides` is a minimum structural floor, not an exact target.
-- Do not compress a lesson down to exactly 16 slides if the concept needs more.
+Semantic QA correction preserved:
+- 16 slides is only the minimum structural floor.
+- Do not compress lessons to exactly 16 slides if the concept needs more.
 - Do not stretch thin content just to reach 16 slides.
-- Academic QA must check semantic necessity, not slide count alone.
+- Semantic QA must judge teaching necessity, not slide count alone.
 
-C01 runtime status:
-- §1.1-§1.6 content-depth runtime exists on this branch.
-- E156 verified JSON parse, no mojibake, no duplicate lessonId, C01=6, C02=6, C03=6, runtime/UI/boot unchanged.
-
-Revised verdict:
-- C01 is structurally complete.
-- C01 is not yet approved as a broad academic template.
-- Semantic QA is required before visual QA and before C02 rollout.
+C01 semantic verdict:
+- C01 passes semantic QA as a controlled foundation chapter.
+- §1.1, §1.2, §1.3 and §1.6 pass at 16 slides for their current foundation scope.
+- §1.4 and §1.5 are conditional pass at 16 slides for C01 foundation scope, with expansion guards for later change-of-basis, PCA/SVD and affine-subspace topics.
+- C01 can be used as a controlled content-depth template only if future lessons expand beyond 16 slides whenever conceptually necessary.
 
 Next recommended task:
-- E158 semantic QA only for C01 §1.1-§1.6.
+- E159 visual QA only for E129 reader and E132 slideshow.
 - Do not edit content.
-- Do not edit UI.
-- Check whether each lesson has enough slides for the concept, whether any lesson is compressed, whether any slide is filler, and whether some lessons need more than 16 slides.
+- Check whether C01 §1.1-§1.6 display all rich blocks or whether slideshow compresses/truncates content.
 
 Next actor:
-- ChatGPT.
+- ChatGPT or Codex for visual/runtime inspection.
 
 Codex required:
 - no for semantic QA.
+- yes only if a local browser/runtime visual test is needed.
 
 Protocol reference:
 - `CODEX_CHATGPT_SYNC_PROTOCOL.md`
 
 ---
 
-Previous task: E157 C01 academic QA completed.
+Previous task: E157R C01 QA criteria correction completed.
 
-Status was: PASS_WITH_VISUAL_QA_PENDING
-
-This has been corrected by E157R.
+Status: STRUCTURAL_PASS_SEMANTIC_QA_REQUIRED
