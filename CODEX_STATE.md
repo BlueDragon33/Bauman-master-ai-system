@@ -1,5 +1,60 @@
 # CODEX_STATE
 
+Current task: E149 C01 L01 content depth upgrade.
+
+Status: PASS
+
+Branch: `codex/e149-c01-l01-content-depth`
+Base branch: `codex/e146-merge-c03-l04-l06`
+Main sync status: `stacked_branch`
+
+Branch stack:
+1. `main`
+2. `codex/e146-merge-c03-l04-l06`
+3. `codex/e149-c01-l01-content-depth`
+
+Related stacked branch:
+- `codex/e147-c04-staged-content` is based on E146 and must still be merged only after E146 reaches `main`.
+
+Files changed:
+- `subjects/math/data/theory_lecture_content.json`
+- `subjects/math/E149_C01_L01_CONTENT_DEPTH_REPORT.md`
+- `CODEX_STATE.md`
+
+What changed:
+- Upgraded only lesson `MATH-VN-C01-vector_trong_khong_gian_-L01-vector-as-engineering-data-e130` from outline-style slides to lecture-grade content.
+- Kept 16 slides, preserved slide roles/titles, and expanded each slide to 4 supported-schema blocks using `text`, `formula`, `code`, and `qa`.
+
+Verification:
+- JSON parse: PASS
+- Only target lesson changed: PASS
+- Slide count remains >=14: PASS, 16 slides
+- Minimum block count per slide: PASS, 4
+- Minimum inspected slide word count: PASS, 185
+- Duplicate `lessonId`: none
+- Runtime/UI/boot files changed: none
+
+Next recommended task:
+- Upgrade C01 §1.2 content depth with the same content-only workflow, or perform branch sync after E146/E147/E149 order is explicitly chosen.
+
+Next actor:
+- Codex
+
+Codex required:
+- yes
+- Reason: local JSON patch and verification scripts over the large runtime content file.
+
+ChatGPT can do:
+- Prepare staged content drafts, reports, and prompt files without editing runtime/UI files.
+
+Codex prompt file:
+- none created for this task
+
+Protocol reference:
+- `CODEX_CHATGPT_SYNC_PROTOCOL.md`
+
+---
+
 Current task: E148 ChatGPT + Codex sync protocol established.
 
 Status: PASS
