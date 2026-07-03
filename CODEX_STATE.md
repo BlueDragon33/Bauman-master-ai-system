@@ -1,15 +1,15 @@
 # CODEX_STATE
 
-Current task: E143 C02 Complete Content.
+Current task: E144 C02 Final Verification Lock.
 
-Status: C01 remains locked after E141. E143 completed all six C02 theory lessons. Content-only work; boot/runtime untouched. Next pass must be verification-only.
+Status: PASS. C01 remains locked after E141. C02 is now verified and locked after E144. Boot/runtime untouched.
 
 Read next:
 
+- subjects/math/E144_C02_FINAL_VERIFICATION_LOCK.md
 - subjects/math/E143_C02_COMPLETE_CONTENT.md
 - subjects/math/E142_C02_THEORY_START.md
 - subjects/math/E141_C01_FINAL_VERIFICATION_LOCK.md
-- subjects/math/E140_C01_COMPLETE_CONTENT.md
 - subjects/math/E138_THEORY_CONTENT_QUALITY.md
 - subjects/math/E137_CLEAN_THEORY_LOCK.md
 - subjects/math/E136_RUNTIME_STABILIZATION.md
@@ -59,9 +59,10 @@ E141 C01 verification result:
 - Academic coverage checked: framing, concept, notation, formulas, conditions, interpretation, application, mistakes, practice, professor QA and bridge.
 - No boot/runtime/UI file changed during E141.
 
-E143 C02 content completion:
+E144 C02 verification result:
 
-- subjects/math/data/theory_lecture_content.json now uses version E143_C01_C02_COMPLETE.
+- PASS.
+- subjects/math/data/theory_lecture_content.json uses version E143_C01_C02_COMPLETE.
 - C02 contains six lessons:
   - §2.1 Ma trận như dữ liệu và phép biến đổi;
   - §2.2 Phép nhân ma trận và pipeline tuyến tính;
@@ -70,8 +71,8 @@ E143 C02 content completion:
   - §2.5 Phép biến đổi tuyến tính trong hình học và dữ liệu;
   - §2.6 Từ ma trận sang PCA và mô hình tuyến tính.
 - Each C02 lesson uses 16 slides, satisfying the 14-slide quality floor.
-- C02 covers matrix as data/operator, matrix-vector multiplication, matrix multiplication/composition, rank, column space, inverse/system solving, condition number, geometric transforms, projection, basis change, PCA/SVD and linear models.
-- No boot/runtime/UI file changed during E143.
+- Academic coverage checked: data/operator, matrix-vector multiplication, composition, shape/order rules, rank/column space, inverse/solve, condition number, geometry/data transforms, projection, basis change, PCA/SVD, linear model bridge, Python checks, practice and professor QA.
+- No boot/runtime/UI file changed during E144.
 
 Controlled flexible slide policy:
 
@@ -87,7 +88,7 @@ Controlled flexible slide policy:
 Next recommended task:
 
 - Browser smoke test after pull: C01 and C02 visible, slideshow opens.
-- Then E144 verification-only: validate JSON, count C01/C02 records, check C02 quality floor, check academic coverage, create C02 final verification lock.
+- Then start C03 as content-only expansion.
 
 If user reports failure:
 
