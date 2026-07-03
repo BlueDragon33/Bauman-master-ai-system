@@ -1,14 +1,14 @@
 # CODEX_STATE
 
-Current task: E141 C01 Final Verification Lock.
+Current task: E142 C02 Theory Start.
 
-Status: PASS. User confirmed Math module no longer loops. E137 clean learner lock applied. E140 completed all six C01 theory lessons. E141 verified C01 and locked it as the first completed theory chapter.
+Status: C01 remains locked after E141. E142 added the first three C02 theory lessons. Content-only work; boot/runtime untouched.
 
 Read next:
 
+- subjects/math/E142_C02_THEORY_START.md
 - subjects/math/E141_C01_FINAL_VERIFICATION_LOCK.md
 - subjects/math/E140_C01_COMPLETE_CONTENT.md
-- subjects/math/E139_C01_THEORY_EXPANSION.md
 - subjects/math/E138_THEORY_CONTENT_QUALITY.md
 - subjects/math/E137_CLEAN_THEORY_LOCK.md
 - subjects/math/E136_RUNTIME_STABILIZATION.md
@@ -50,49 +50,24 @@ Scripts:
 - theory-tab-E129.js?v=129
 - theory-slideshow-E132.js?v=136
 
-Removed from boot/runtime:
+E141 C01 verification result:
 
-- datavault-importer-E128.css
-- datavault-importer-E128.js
-- theory-reader-E132.css
-- learning-clean-E134.css
-- learning-clean-E134.js
-- planning-bridge.js
-- program-view-E130.js
-- program-frame-E130.css
-- core.js
-- theory-main-adapter-E126.css
-- theory-main-adapter-E126.js
+- PASS.
+- C01 contains six lessons: §1.1 Vector như dữ liệu kỹ thuật; §1.2 Chuẩn vector và khoảng cách; §1.3 Tích vô hướng, góc và phép chiếu; §1.4 Cơ sở, span và tọa độ; §1.5 Không gian con và biểu diễn dữ liệu; §1.6 Từ vector sang ma trận dữ liệu.
+- Current C01 lessons each have 16 slides, satisfying the 14-slide quality floor for normal Math theory lessons.
+- Academic coverage checked: framing, concept, notation, formulas, conditions, interpretation, application, mistakes, practice, professor QA and bridge.
+- No boot/runtime/UI file changed during E141.
 
-Deleted from repo:
+E142 C02 content start:
 
-- subjects/math/assets/datavault_importer/datavault-importer-E128.js
-- subjects/math/assets/datavault_importer/datavault-importer-E128.css
-- subjects/math/assets/learning_clean/learning-clean-E134.css
-- subjects/math/assets/learning_clean/learning-clean-E134.js
-- subjects/math/E134_LEARNING_UI_CLEANUP_HANDOFF.md
-- subjects/math/assets/core.js
-- subjects/math/assets/theory_skin/theory-main-adapter-E126.js
-- subjects/math/assets/theory_skin/theory-main-adapter-E126.css
-
-Why E128 was removed:
-
-- E128 injected a legacy E127 panel with MutationObserver.
-- E129 storage suppressed that legacy panel.
-- The inject/suppress loop made the Math module keep loading and become unresponsive.
-
-Why E126 was removed:
-
-- E126 was a legacy lessons.json visual adapter with its own MutationObserver.
-- E129 now owns Theory.
-- Keeping E126 in boot was unnecessary loop risk.
-
-E137 clean learner lock:
-
-- Normal learner view hides technical captions: subjectSubtitle, coreLabel, pageSub, saveState.
-- E129 header-only view is lightly polished.
-- Storage/importer view remains visible when body has e129-theory-storage.
-- Presentation mode remains controlled by E132/E133 slideshow.
+- subjects/math/data/theory_lecture_content.json now uses version E142_C01_COMPLETE_C02_L01_L03.
+- C02 now contains three learner-facing lessons:
+  - §2.1 Ma trận như dữ liệu và phép biến đổi;
+  - §2.2 Phép nhân ma trận và pipeline tuyến tính;
+  - §2.3 Hạng ma trận, không gian cột và thông tin độc lập.
+- Each new C02 lesson uses 16 slides, satisfying the 14-slide quality floor.
+- New C02 content covers matrix as data/operator, matrix-vector multiplication, shape rules, matrix multiplication as composition, non-commutativity, rank, column space, feature redundancy, Python checks and professor QA.
+- No boot/runtime/UI file changed during E142.
 
 Controlled flexible slide policy:
 
@@ -105,42 +80,13 @@ Controlled flexible slide policy:
 - Slide roles are a teaching skeleton, not a mandatory checklist.
 - Governing rule: enough, accurate, necessary.
 
-Required learner-facing coverage:
-
-- problem framing;
-- core concept and intuition;
-- notation;
-- core formulas;
-- assumptions and conditions;
-- technical interpretation;
-- engineering or AI application;
-- common mistakes;
-- practice task;
-- professor-style checking question;
-- bridge to the next concept.
-
-E141 C01 verification result:
-
-- PASS.
-- subjects/math/data/theory_lecture_content.json uses version E140_C01_FULL_SIX_LESSONS.
-- C01 contains six lessons: §1.1 Vector như dữ liệu kỹ thuật; §1.2 Chuẩn vector và khoảng cách; §1.3 Tích vô hướng, góc và phép chiếu; §1.4 Cơ sở, span và tọa độ; §1.5 Không gian con và biểu diễn dữ liệu; §1.6 Từ vector sang ma trận dữ liệu.
-- Current C01 lessons each have 16 slides, satisfying the 14-slide quality floor for normal Math theory lessons.
-- Academic coverage checked: framing, concept, notation, formulas, conditions, interpretation, application, mistakes, practice, professor QA and bridge.
-- No boot/runtime/UI file changed during E141.
-
 Next recommended task:
 
-- User browser smoke test after pull.
-- Then start C02 · Ma trận và phép biến đổi tuyến tính as the next content-only expansion.
-
-Expected visual/runtime result:
-
-- Opening môn Toán should stop looping and become interactive.
-- Normal Lý thuyết view keeps the old compact header/table only.
-- Redundant cards/body panels below that header are hidden.
-- Kho Lý thuyết opens E129 storage/importer and does not freeze.
-- Khung bài giảng E130 no longer appears as a learner UI tab/button.
-- Trình chiếu should still open presentation mode and show all six C01 lessons.
+- Browser smoke test after pull: C01 still visible, C02 shows §2.1–§2.3, slideshow opens.
+- Then continue C02 content-only with:
+  - §2.4 Nghịch đảo, giải hệ và điều kiện tồn tại nghiệm;
+  - §2.5 Phép biến đổi tuyến tính trong hình học và dữ liệu;
+  - §2.6 Từ ma trận sang PCA và mô hình tuyến tính.
 
 If user reports failure:
 
