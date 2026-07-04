@@ -5,7 +5,7 @@
  */
 (function(){
   'use strict';
-  var RELEASE='E189_C02_LESSON_PICKER_LABEL_FIX';
+  var RELEASE='E195_C03_LESSON_PICKER_FIX';
   var C01_CHAPTER_ID='MATH-VN-C01-vector_trong_khong_gian_';
   var HIERARCHY=[
     {id:'pure',code:'I',title:'Toán học Thuần túy',en:'Pure Mathematics Module',courses:[
@@ -72,13 +72,21 @@
     {id:'MATH-VN-C02-ma_tran_va_phep_bien_oi_-L05-linear-transform-geometry-data-e143',label:'Bài 2.5 · Phép biến đổi tuyến tính trong hình học và dữ liệu'},
     {id:'MATH-VN-C02-ma_tran_va_phep_bien_oi_-L06-matrix-to-pca-linear-model-e143',label:'Bài 2.6 · Từ ma trận sang PCA và mô hình tuyến tính'}
   ];
+  var C03_LESSONS=[
+    {id:'MATH-VN-C03-giai_tich_dao_ham_gradient-L01-function-as-input-output-model-e145',label:'Bài 3.1 · Hàm số như mô hình đầu vào–đầu ra'},
+    {id:'MATH-VN-C03-giai_tich_dao_ham_gradient-L02-derivative-system-sensitivity-e145',label:'Bài 3.2 · Đạo hàm và độ nhạy của hệ thống'},
+    {id:'MATH-VN-C03-giai_tich_dao_ham_gradient-L03-gradient-direction-fastest-change-e145',label:'Bài 3.3 · Gradient như hướng thay đổi nhanh nhất'},
+    {id:'MATH-VN-C03-giai_tich_dao_ham_gradient-L04-gradient-descent-learning-rate-e146',label:'Bài 3.4 · Gradient descent và learning rate'},
+    {id:'MATH-VN-C03-giai_tich_dao_ham_gradient-L05-loss-extrema-optimality-e146',label:'Bài 3.5 · Hàm mất mát, cực trị và điều kiện tối ưu'},
+    {id:'MATH-VN-C03-giai_tich_dao_ham_gradient-L06-gradient-backprop-ml-optimization-e146',label:'Bài 3.6 · Từ gradient sang backpropagation và tối ưu ML'}
+  ];
   var ROUTES={theory:'theory',exercises:'exercises',practice:'practice',application:'application',review:'review',exam:'exam'};
   var scheduled=false;
   function S(v){return String(v==null?'':v);}
   function H(v){return S(v).replace(/[&<>"']/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c];});}
   function api(){return window.__BAUMAN_CORE_API||{};}
   function state(){var st=api().state||window.__MATH_STATE;if(!st){st={view:'learning',learnTab:'theory'};window.__MATH_STATE=st;}return st;}
-  function save(){try{api().save&&api().save();}catch(_){}}
+  function save(){try{api().save&&api().save();}catch(_){} }
   function path(){var st=state();st.e186Path=st.e186Path||{};var p=st.e186Path;if(!p.moduleId)p.moduleId='pure';if(!p.courseId)p.courseId='pure-algebra';if(!p.chapterId)p.chapterId='c01';if(!p.lessonId)p.lessonId=C01_LESSONS[0].id;if(!p.activityId)p.activityId='theory';return p;}
   function mod(id){return HIERARCHY.find(function(x){return x.id===id;})||HIERARCHY[0];}
   function course(mid,cid){var m=mod(mid);return (m.courses||[]).find(function(x){return x.id===cid;})||(m.courses||[])[0];}
@@ -89,7 +97,7 @@
   function frames(){var db=window.DB||{}, raw=db.theory_lecture_frame||{}, out=[];(raw.stages||[]).forEach(function(st){(st.disciplines||[]).forEach(function(d){(d.chapters||[]).forEach(function(ch){out.push(ch);});});});(raw.chapters||[]).forEach(function(ch){out.push(ch);});return out;}
   function frameByNo(no){return frames().find(function(ch){return Number(ch.chapterNo||ch.localChapterNo||ch.globalChapterNo||0)===Number(no);})||null;}
   function currentFrame(){var p=path(), ch=chapter(p.moduleId,p.courseId,p.chapterId);return frameByNo(ch&&ch.no);}
-  function staticLessons(chapterId){if(chapterId==='c01')return C01_LESSONS;if(chapterId==='c02')return C02_LESSONS;return [];}
+  function staticLessons(chapterId){if(chapterId==='c01')return C01_LESSONS;if(chapterId==='c02')return C02_LESSONS;if(chapterId==='c03')return C03_LESSONS;return [];}
   function lessonOptions(){var p=path(), fr=currentFrame();
     if(fr){var recs=records().filter(function(r){return r.chapterId===(fr.chapterId||fr.id);});if(recs.length){return recs.map(function(r){return {id:S(r.lessonId||r.id),label:cleanLessonTitle(r.title||r.lessonTitle||r.lessonId),sub:'Chọn bài trước, rồi chọn phân mục học tập.'};});}}
     var stat=staticLessons(p.chapterId);if(stat.length)return stat.map(function(x){return {id:x.id,label:x.label,sub:'Chọn bài trước, rồi chọn phân mục học tập.'};});
