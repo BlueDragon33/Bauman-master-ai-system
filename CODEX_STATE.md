@@ -1,5 +1,51 @@
 # CODEX_STATE
 
+Current task: E170 C01 L06 E132 compact deck title/content alignment.
+
+Status: E170_PASS
+
+Branch: `main`
+Base branch: `main`
+Main sync status: `rebased_ready_to_push`
+
+Files read:
+- `CODEX_STATE.md`
+- `subjects/math/assets/theory_skin/theory-slideshow-E132.js`
+- `subjects/math/data/theory_lecture_content.json`
+
+Files changed:
+- `CODEX_STATE.md`
+- `subjects/math/assets/theory_skin/theory-slideshow-E132.js`
+
+Patch summary:
+- Fixed E132 C01 §1.6 alias/deck key from old `§1.6 · Độc lập tuyến tính, chiều và hạng dữ liệu` to `§1.6 · Từ vector sang ma trận dữ liệu`.
+- Replaced the §1.6 compact deck with 14 curated compact slides focused on vector-to-data-matrix flow.
+- Preserved E129 Reader full content and did not edit content JSON, CSS, index, boot, or other UI runtime files.
+
+Verification:
+- `node --check subjects/math/assets/theory_skin/theory-slideshow-E132.js`: PASS
+- Static deck check: C01 §1.1-§1.6 all have compact deck keys.
+- Static §1.6 deck check: 14 slides, 14 distinct formula rail values, first slide `Một vector là một mẫu`, last slide `Cầu sang Chương 2`, no old title inside deck.
+- Browser smoke on local server `http://127.0.0.1:8772/subjects/math/index.html` after rebase over remote E177: PASS
+- Selected C01 §1.6 through E169/E129 route: PASS
+- E132 slideshow first slide renders `Một vector là một mẫu` with formula `x_i ∈ R^n`: PASS
+- E132 slideshow last slide renders `Cầu sang Chương 2` with formula `vector x → dataset X; y = A x; Y = X A`: PASS
+- Fallback `Chưa có compact deck curated`: not triggered for C01 §1.6.
+- Full lecture/Reader text in E132 slideshow: not present.
+- Browser console errors: 0.
+
+Remaining risks:
+- None found in scoped E132 §1.6 smoke. Broader C02/C03 slideshow audit was out of scope.
+
+Next recommended task:
+- Push `main`, then user pulls and retests C01 §1.6 slideshow locally.
+
+Next actor:
+- Codex push, then User
+
+
+---
+
 Current task: E177 restore original app shell with new learning tab content.
 
 Status: PATCHED_NEEDS_LOCAL_BROWSER_SMOKE
