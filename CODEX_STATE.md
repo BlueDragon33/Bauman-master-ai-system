@@ -1,8 +1,8 @@
 # CODEX_STATE
 
-Current task: E204 C03 Level C deck data completed, not wired.
+Current task: E205 slideshow stability gate added.
 
-Status: C02_RUNTIME_PATCHED_NEEDS_SMOKE__C03_DATA_READY_NOT_WIRED
+Status: C02_RUNTIME_PATCHED_NEEDS_SMOKE__C03_DATA_READY_NOT_WIRED__GATE_ACTIVE
 
 Branch: `main`
 Base branch: `main`
@@ -10,6 +10,12 @@ Main sync status: `in_main_direct_patch_from_chatgpt`
 
 Active slideshow stack:
 - `subjects/math/assets/theory_skin/theory-slideshow-E202.js?v=202`
+
+Stability gate:
+- Added `subjects/math/docs/slideshow_stability_gate_E205.md`.
+- Do not wire any new chapter data into E202 until current E202 C02 browser smoke passes.
+- The next chapter data waiting to be wired is C03.
+- C03 data is ready but must stay unwired until smoke PASS.
 
 Index load decision:
 - `index.html` now loads one slideshow renderer only: E202.
@@ -54,6 +60,9 @@ Files added for C02 Level C data:
 Files added for C03 Level C data:
 - `subjects/math/data/theory_slideshow_c03_level_c.json`
 - `subjects/math/data/theory_slideshow_c03_level_c_part_3_4_6.json`
+
+Files added for stability governance:
+- `subjects/math/docs/slideshow_stability_gate_E205.md`
 
 C03 Level C coverage includes:
 - Function as input-output model, domain/range, parameterized functions, composition, invertibility, continuity.
