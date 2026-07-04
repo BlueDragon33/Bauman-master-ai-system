@@ -5,7 +5,7 @@
  */
 (function(){
   'use strict';
-  var RELEASE='E186_LESSON_FIRST_PATH';
+  var RELEASE='E189_C02_LESSON_PICKER_LABEL_FIX';
   var C01_CHAPTER_ID='MATH-VN-C01-vector_trong_khong_gian_';
   var HIERARCHY=[
     {id:'pure',code:'I',title:'Toán học Thuần túy',en:'Pure Mathematics Module',courses:[
@@ -64,6 +64,14 @@
     {id:'MATH-VN-C01-vector_trong_khong_gian_-L05-subspace-data-representation-e140',label:'Bài 1.5 · Không gian con và biểu diễn dữ liệu'},
     {id:'MATH-VN-C01-vector_trong_khong_gian_-L06-vector-to-data-matrix-e140',label:'Bài 1.6 · Từ vector sang ma trận dữ liệu'}
   ];
+  var C02_LESSONS=[
+    {id:'MATH-VN-C02-ma_tran_va_phep_bien_oi_-L01-matrix-as-data-and-transform-e142',label:'Bài 2.1 · Ma trận như dữ liệu và phép biến đổi'},
+    {id:'MATH-VN-C02-ma_tran_va_phep_bien_oi_-L02-matrix-multiplication-pipeline-e142',label:'Bài 2.2 · Phép nhân ma trận và pipeline tuyến tính'},
+    {id:'MATH-VN-C02-ma_tran_va_phep_bien_oi_-L03-rank-column-space-independent-information-e142',label:'Bài 2.3 · Hạng ma trận, không gian cột và thông tin độc lập'},
+    {id:'MATH-VN-C02-ma_tran_va_phep_bien_oi_-L04-inverse-linear-system-solution-e143',label:'Bài 2.4 · Nghịch đảo, giải hệ và điều kiện tồn tại nghiệm'},
+    {id:'MATH-VN-C02-ma_tran_va_phep_bien_oi_-L05-linear-transform-geometry-data-e143',label:'Bài 2.5 · Phép biến đổi tuyến tính trong hình học và dữ liệu'},
+    {id:'MATH-VN-C02-ma_tran_va_phep_bien_oi_-L06-matrix-to-pca-linear-model-e143',label:'Bài 2.6 · Từ ma trận sang PCA và mô hình tuyến tính'}
+  ];
   var ROUTES={theory:'theory',exercises:'exercises',practice:'practice',application:'application',review:'review',exam:'exam'};
   var scheduled=false;
   function S(v){return String(v==null?'':v);}
@@ -81,12 +89,14 @@
   function frames(){var db=window.DB||{}, raw=db.theory_lecture_frame||{}, out=[];(raw.stages||[]).forEach(function(st){(st.disciplines||[]).forEach(function(d){(d.chapters||[]).forEach(function(ch){out.push(ch);});});});(raw.chapters||[]).forEach(function(ch){out.push(ch);});return out;}
   function frameByNo(no){return frames().find(function(ch){return Number(ch.chapterNo||ch.localChapterNo||ch.globalChapterNo||0)===Number(no);})||null;}
   function currentFrame(){var p=path(), ch=chapter(p.moduleId,p.courseId,p.chapterId);return frameByNo(ch&&ch.no);}
+  function staticLessons(chapterId){if(chapterId==='c01')return C01_LESSONS;if(chapterId==='c02')return C02_LESSONS;return [];}
   function lessonOptions(){var p=path(), fr=currentFrame();
     if(fr){var recs=records().filter(function(r){return r.chapterId===(fr.chapterId||fr.id);});if(recs.length){return recs.map(function(r){return {id:S(r.lessonId||r.id),label:cleanLessonTitle(r.title||r.lessonTitle||r.lessonId),sub:'Chọn bài trước, rồi chọn phân mục học tập.'};});}}
-    if(p.chapterId==='c01')return C01_LESSONS.map(function(x){return {id:x.id,label:x.label,sub:'Chọn bài trước, rồi chọn phân mục học tập.'};});
+    var stat=staticLessons(p.chapterId);if(stat.length)return stat.map(function(x){return {id:x.id,label:x.label,sub:'Chọn bài trước, rồi chọn phân mục học tập.'};});
     var ch=chapter(p.moduleId,p.courseId,p.chapterId);return [{id:p.chapterId+'-overview',label:'Bài '+(ch&&ch.no||'')+'.1 · Bài giảng tổng quan',sub:'Khung bài tạm cho chương này.'}];
   }
-  function lessonLabel(){var p=path(), opts=lessonOptions(), hit=opts.find(function(x){return x.id===p.lessonId;})||opts[0];return hit?hit.label:'Chọn bài';}
+  function ensureLesson(){var p=path(), opts=lessonOptions();if(!opts.length)return p;var ok=opts.some(function(x){return x.id===p.lessonId;});if(!p.lessonId||!ok||/-overview$/.test(S(p.lessonId))){p.lessonId=opts[0].id;}return p;}
+  function lessonLabel(){ensureLesson();var p=path(), opts=lessonOptions(), hit=opts.find(function(x){return x.id===p.lessonId;})||opts[0];return hit?hit.label:'Chọn bài';}
   function activityLabel(){return activity(path().activityId).label;}
   function displayChapterTitle(ch){
     if(!ch)return 'Chưa chọn chương';
@@ -104,14 +114,13 @@
     {level:'activity',label:activityLabel()}
   ];}
   function pathSummary(){return crumbs().map(function(x){return x.label;}).join(' → ');}
-  function syncLegacy(){var p=path(), st=state();st.e169Path=st.e169Path||{};st.e169Path.moduleId=p.moduleId;st.e169Path.courseId=p.courseId;st.e169Path.chapterId=p.chapterId;st.e169Path.activityId=p.activityId;st.e169Path.lessonId=p.lessonId;st.e169Path.contentId=p.lessonId;}
+  function syncLegacy(){var p=ensureLesson(), st=state();st.e169Path=st.e169Path||{};st.e169Path.moduleId=p.moduleId;st.e169Path.courseId=p.courseId;st.e169Path.chapterId=p.chapterId;st.e169Path.activityId=p.activityId;st.e169Path.lessonId=p.lessonId;st.e169Path.contentId=p.lessonId;}
   function setPath(kind,id){var p=path();if(kind==='module'){p.moduleId=id;var m=mod(id);p.courseId=(m.courses[0]||{}).id;p.chapterId=(((m.courses[0]||{}).chapters||[])[0]||{}).id;p.lessonId='';p.activityId='theory';}
     if(kind==='course'){p.courseId=id;var c=course(p.moduleId,id);p.chapterId=((c.chapters||[])[0]||{}).id;p.lessonId='';p.activityId='theory';}
     if(kind==='chapter'){p.chapterId=id;p.lessonId='';p.activityId='theory';}
     if(kind==='lesson'){p.lessonId=id;p.activityId='theory';}
     if(kind==='activity'){p.activityId=id;}
-    if(!p.lessonId)p.lessonId=(lessonOptions()[0]||{}).id||'';
-    syncLegacy();save();return p;}
+    ensureLesson();syncLegacy();save();return p;}
   function close(){var old=document.querySelector('.e129-modal-backdrop');if(old)old.remove();}
   function modal(html){close();var n=document.createElement('div');n.className='e129-modal-backdrop e186-modal-backdrop';n.innerHTML='<div class="e129-modal e186-modal">'+html+'</div>';document.body.appendChild(n);}
   function option(label,sub,attrs,active){var at=Object.keys(attrs||{}).map(function(k){return ' '+k+'="'+H(attrs[k])+'"';}).join('');return '<button class="e169-choice e186-choice '+(active?'active':'')+'"'+at+'><b>'+H(label)+'</b>'+(sub?'<span>'+H(sub)+'</span>':'')+'</button>';}
@@ -119,11 +128,11 @@
     if(level==='module'){title='Chọn Khối kiến thức';html=HIERARCHY.map(function(x){return option('Khối kiến thức '+x.code+' · '+x.title,x.en,{'data-e186-pick':'module','data-e186-id':x.id},x.id===p.moduleId);}).join('');}
     else if(level==='course'){title='Chọn Học phần';html=(m.courses||[]).map(function(x){return option('Học phần '+x.no+' · '+x.title,x.en,{'data-e186-pick':'course','data-e186-id':x.id},x.id===p.courseId);}).join('');}
     else if(level==='chapter'){title='Chọn Chương';html=((c&&c.chapters)||[]).map(function(x){return option('Chương '+x.no,x.title,{'data-e186-pick':'chapter','data-e186-id':x.id},x.id===p.chapterId);}).join('');}
-    else if(level==='lesson'){title='Chọn Bài';html=lessonOptions().map(function(x){return option(x.label,x.sub,{'data-e186-pick':'lesson','data-e186-id':x.id},x.id===p.lessonId);}).join('');}
+    else if(level==='lesson'){ensureLesson();title='Chọn Bài';html=lessonOptions().map(function(x){return option(x.label,x.sub,{'data-e186-pick':'lesson','data-e186-id':x.id},x.id===path().lessonId);}).join('');}
     else {title='Chọn phân mục';html=ACTIVITIES.map(function(x){return option(x.label,x.summary,{'data-e186-pick':'activity','data-e186-id':x.id},x.id===p.activityId);}).join('');}
     modal('<header><div><span class="e129-badge">E186 · Lesson First</span><h3>'+H(title)+'</h3><p>Thứ tự: Khối → Học phần → Chương → Bài → Phân mục.</p></div><button class="e129-close" data-e186-close>×</button></header><div class="e169-choice-grid e186-choice-grid">'+html+'</div>');
   }
-  function renderRoute(){var p=path(), st=state(), fr=currentFrame();syncLegacy();st.view='learning';st.learnTab=ROUTES[p.activityId]||p.activityId;if(fr)st.e129ChapterId=fr.chapterId||fr.id||'';if(p.chapterId==='c01')st.e129ChapterId=C01_CHAPTER_ID;st.e129LessonId=p.lessonId;save();close();try{window.BAUMAN_MATH_THEORY_E129&&window.BAUMAN_MATH_THEORY_E129.render&&window.BAUMAN_MATH_THEORY_E129.render();}catch(_){location.reload();}}
+  function renderRoute(){var p=ensureLesson(), st=state(), fr=currentFrame();syncLegacy();st.view='learning';st.learnTab=ROUTES[p.activityId]||p.activityId;if(fr)st.e129ChapterId=fr.chapterId||fr.id||'';if(p.chapterId==='c01')st.e129ChapterId=C01_CHAPTER_ID;st.e129LessonId=p.lessonId;save();close();try{window.BAUMAN_MATH_THEORY_E129&&window.BAUMAN_MATH_THEORY_E129.render&&window.BAUMAN_MATH_THEORY_E129.render();}catch(_){location.reload();}}
   function patchSurface(){
     syncLegacy();
     var summary=pathSummary();
