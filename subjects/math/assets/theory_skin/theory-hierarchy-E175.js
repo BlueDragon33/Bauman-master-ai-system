@@ -1,10 +1,10 @@
-/* E178 · Math Learning hierarchy override
- * Final flow: Module → Course → Chapter → Activity → Content.
- * Keeps the original app shell. Only Học tập inner content is routed.
+/* E179 · Math Learning hierarchy override
+ * Fixes: short Khối kiến thức subtitle + dedicated interactive 5-level breadcrumb.
+ * Flow: Module → Course → Chapter → Activity → Content.
  */
 (function(){
   'use strict';
-  var RELEASE='E178_FIVE_LEVEL_LEARNING_PATH';
+  var RELEASE='E179_INTERACTIVE_FIVE_LEVEL_PATH';
   var HIERARCHY=[
     {id:'pure',code:'I',title:'Toán học Thuần túy',en:'Pure Mathematics Module',courses:[
       {id:'pure-algebra',no:1,title:'Đại số và Cấu trúc số',en:'Algebra & Structures',chapters:[
@@ -89,6 +89,7 @@
     return [{id:p.activityId+'-main',label:act.label+' · '+act.name,sub:act.summary}];
   }
   function currentContentLabel(){var p=path(), opts=contentOptions(), id=p.activityId==='theory'?(p.lessonId||p.contentId):p.contentId, hit=opts.find(function(x){return S(x.id)===S(id);})||opts[0];return hit?hit.label:'Nội dung cụ thể';}
+  function moduleSubtitle(){var p=path(), m=mod(p.moduleId);return 'Đang chọn: Khối '+(m&&m.code||'I')+' · '+(m&&m.title||'Toán học');}
   function pathSummary(){var p=path(), m=mod(p.moduleId), c=course(p.moduleId,p.courseId), ch=chapter(p.moduleId,p.courseId,p.chapterId), act=activity(p.activityId);return ['Khối '+(m&&m.code||'I')+' · '+(m&&m.title||''),'Học phần '+(c&&c.no||'')+' · '+(c&&c.title||''),'Chương '+(ch&&ch.no||''),act&&act.label,currentContentLabel()].filter(Boolean).join(' → ');}
   function crumbs(){var p=path(), m=mod(p.moduleId), c=course(p.moduleId,p.courseId), ch=chapter(p.moduleId,p.courseId,p.chapterId), act=activity(p.activityId);return [
     {level:'module',label:'Khối '+(m&&m.code||'I')},
@@ -108,20 +109,26 @@
   function titleFor(level){return {module:'Chọn Khối kiến thức',course:'Chọn Học phần',chapter:'Chọn Chương',activity:'Chọn Hoạt động học tập',content:'Chọn Nội dung cụ thể'}[level]||'Chọn lộ trình';}
   function option(label,sub,attrs,active){var at=Object.keys(attrs||{}).map(function(k){return ' '+k+'="'+H(attrs[k])+'"';}).join('');return '<button class="e169-choice e175-choice '+(active?'active':'')+'"'+at+'><b>'+H(label)+'</b>'+(sub?'<span>'+H(sub)+'</span>':'')+'</button>';}
   function open(level){var p=path(), html='', m=mod(p.moduleId), c=course(p.moduleId,p.courseId), ch=chapter(p.moduleId,p.courseId,p.chapterId);
-    if(level==='module') html=HIERARCHY.map(function(x){return option('Khối kiến thức '+x.code+' · '+x.title,x.en,{'data-e175-pick':'module','data-e175-id':x.id},x.id===p.moduleId);}).join('');
-    else if(level==='course') html=(m.courses||[]).map(function(x){return option('Học phần '+x.no+' · '+x.title,x.en,{'data-e175-pick':'course','data-e175-id':x.id},x.id===p.courseId);}).join('');
-    else if(level==='chapter') html=((c&&c.chapters)||[]).map(function(x){return option('Chương '+x.no,x.title,{'data-e175-pick':'chapter','data-e175-id':x.id},x.id===p.chapterId);}).join('');
-    else if(level==='activity') html=ACTIVITIES.map(function(x){return option(x.label+' · '+x.name,x.summary,{'data-e175-pick':'activity','data-e175-id':x.id},x.id===p.activityId);}).join('');
-    else html=contentOptions().map(function(x){return option(x.label,x.sub,{'data-e175-pick':'content','data-e175-id':x.id},x.id===(p.lessonId||p.contentId));}).join('');
-    modal('<header><div><span class="e129-badge">E178 · Learning Path</span><h3>'+H(titleFor(level))+'</h3><p>Thứ tự mới: Khối → Học phần → Chương → Hoạt động học tập → Nội dung cụ thể.</p></div><button class="e129-close" data-e175-close>×</button></header><div class="e169-choice-grid e175-choice-grid">'+html+'</div>');
+    if(level==='module') html=HIERARCHY.map(function(x){return option('Khối kiến thức '+x.code+' · '+x.title,x.en,{'data-e178-pick':'module','data-e178-id':x.id},x.id===p.moduleId);}).join('');
+    else if(level==='course') html=(m.courses||[]).map(function(x){return option('Học phần '+x.no+' · '+x.title,x.en,{'data-e178-pick':'course','data-e178-id':x.id},x.id===p.courseId);}).join('');
+    else if(level==='chapter') html=((c&&c.chapters)||[]).map(function(x){return option('Chương '+x.no,x.title,{'data-e178-pick':'chapter','data-e178-id':x.id},x.id===p.chapterId);}).join('');
+    else if(level==='activity') html=ACTIVITIES.map(function(x){return option(x.label+' · '+x.name,x.summary,{'data-e178-pick':'activity','data-e178-id':x.id},x.id===p.activityId);}).join('');
+    else html=contentOptions().map(function(x){return option(x.label,x.sub,{'data-e178-pick':'content','data-e178-id':x.id},x.id===(p.lessonId||p.contentId));}).join('');
+    modal('<header><div><span class="e129-badge">E179 · Learning Path</span><h3>'+H(titleFor(level))+'</h3><p>Chọn theo thứ tự: Khối → Học phần → Chương → Hoạt động → Nội dung.</p></div><button class="e129-close" data-e178-close>×</button></header><div class="e169-choice-grid e175-choice-grid">'+html+'</div>');
   }
   function renderRoute(){var p=path(), st=state(), fr=currentFrame(); if(fr)st.e129ChapterId=fr.chapterId||fr.id||''; st.view='learning'; st.learnTab=ROUTES[p.activityId]||p.activityId; if(p.activityId==='theory'){var recs=lessonRecords();var hit=recs.find(function(r){return S(r.lessonId||r.id)===S(p.lessonId||p.contentId);})||recs[0];if(hit){p.lessonId=hit.lessonId||hit.id;st.e129LessonId=p.lessonId;}else st.e129LessonId='';} save(); close(); try{window.BAUMAN_MATH_THEORY_E129&&window.BAUMAN_MATH_THEORY_E129.render&&window.BAUMAN_MATH_THEORY_E129.render();}catch(_){location.reload();}}
-  function patchBreadcrumb(){var bc=document.querySelector('.e169-breadcrumb'); if(!bc)return;bc.innerHTML=crumbs().map(function(x){return '<button data-e169-open="'+H(x.level)+'">'+H(x.label)+'</button>';}).join('');var mb=document.querySelector('.e169-module-button small');if(mb)mb.textContent=pathSummary();}
-  function click(e){var t=e.target.closest&&e.target.closest('[data-e169-open],[data-e169-pick-module],[data-e169-pick-course],[data-e169-pick-chapter],[data-e169-pick-activity],[data-e175-pick],[data-e175-close]'); if(!t)return;
+  function patchSurface(){
+    var mb=document.querySelector('.e169-module-button');
+    if(mb){mb.removeAttribute('data-e169-open');mb.setAttribute('data-e178-open','module');mb.setAttribute('title',pathSummary());var small=mb.querySelector('small');if(small)small.textContent=moduleSubtitle();}
+    var bc=document.querySelector('.e169-breadcrumb');
+    if(bc){bc.innerHTML=crumbs().map(function(x){return '<button type="button" data-e178-open="'+H(x.level)+'" title="'+H(pathSummary())+'">'+H(x.label)+'</button>';}).join('');bc.setAttribute('data-e178-ready','1');}
+  }
+  function click(e){var t=e.target.closest&&e.target.closest('[data-e178-open],[data-e178-pick],[data-e178-close],[data-e169-open],[data-e169-pick-module],[data-e169-pick-course],[data-e169-pick-chapter],[data-e169-pick-activity],[data-e175-pick],[data-e175-close]'); if(!t)return;
     e.preventDefault(); e.stopPropagation(); e.stopImmediatePropagation();
-    if(t.hasAttribute('data-e175-close')){close();return;}
+    if(t.hasAttribute('data-e178-close')||t.hasAttribute('data-e175-close')){close();return;}
+    if(t.hasAttribute('data-e178-open')){open(t.getAttribute('data-e178-open')||'module');return;}
     if(t.hasAttribute('data-e169-open')){open(t.getAttribute('data-e169-open')||'module');return;}
-    var kind=t.getAttribute('data-e175-pick'), id=t.getAttribute('data-e175-id');
+    var kind=t.getAttribute('data-e178-pick')||t.getAttribute('data-e175-pick'), id=t.getAttribute('data-e178-id')||t.getAttribute('data-e175-id');
     if(!kind){ if(t.hasAttribute('data-e169-pick-module')){kind='module';id=t.getAttribute('data-e169-pick-module');}
       else if(t.hasAttribute('data-e169-pick-course')){kind='course';id=t.getAttribute('data-e169-pick-course');}
       else if(t.hasAttribute('data-e169-pick-chapter')){kind='chapter';id=t.getAttribute('data-e169-pick-chapter');}
@@ -135,13 +142,14 @@
   function patchLabels(){
     var pageTitle=document.getElementById('pageTitle'); if(pageTitle&&/Lý thuyết/.test(pageTitle.textContent||'')) pageTitle.textContent='Học tập';
     document.querySelectorAll('button,.nav-item,.tab,.learn-tab,[data-tab],.e129-badge,h2').forEach(function(n){var s=(n.textContent||'').trim(); if(s==='Lý thuyết'||s==='📘 Lý thuyết E129') n.textContent=s.indexOf('📘')>=0?'📚 Học tập':'Học tập';});
-    document.querySelectorAll('.e169-choice b,.e169-reader-title h2,.e169-breadcrumb button').forEach(function(n){n.textContent=cleanLessonTitle(n.textContent||'');});
-    patchBreadcrumb();
+    document.querySelectorAll('.e169-choice b,.e169-reader-title h2').forEach(function(n){n.textContent=cleanLessonTitle(n.textContent||'');});
+    patchSurface();
   }
   window.addEventListener('click',click,true);
+  document.addEventListener('click',click,true);
   document.addEventListener('keydown',function(e){if(e.key==='Escape'&&document.querySelector('.e175-modal-backdrop'))close();},true);
   var mo=new MutationObserver(function(){setTimeout(patchLabels,0);});
-  function boot(){try{mo.observe(document.body,{childList:true,subtree:true,characterData:true});}catch(_){} patchLabels();}
+  function boot(){try{mo.observe(document.body,{childList:true,subtree:true,characterData:true,attributes:true});}catch(_){} patchLabels();}
   if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',boot);else boot();
-  window.BAUMAN_MATH_E175_HIERARCHY={release:RELEASE,open:open,path:path,contentOptions:contentOptions,crumbs:crumbs,selfCheck:function(){return{release:RELEASE,flow:'module-course-chapter-activity-content',path:path(),crumbs:crumbs().map(function(x){return x.label;}),contentOptions:contentOptions().length};}};
+  window.BAUMAN_MATH_E175_HIERARCHY={release:RELEASE,open:open,path:path,contentOptions:contentOptions,crumbs:crumbs,selfCheck:function(){return{release:RELEASE,flow:'module-course-chapter-activity-content',moduleSubtitle:moduleSubtitle(),pathSummary:pathSummary(),crumbs:crumbs().map(function(x){return x.label;}),contentOptions:contentOptions().length};}};
 })();
