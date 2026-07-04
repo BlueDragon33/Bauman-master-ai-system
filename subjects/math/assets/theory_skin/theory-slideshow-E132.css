@@ -1,5 +1,6 @@
-/* E166 · E132 Compact Deck Visual Repair
- * Compact-only slideshow layout: dense, readable, no huge empty cards.
+/* E167 · E132 Compact Deck Visual + Academic Structure Repair
+ * Compact-only slideshow layout: dense, readable, formula-visible.
+ * Adds Module → Course → Chapter → Lecture breadcrumb for C01.
  * E129 Reader remains untouched.
  */
 body.e132-overlay-open{overflow:hidden!important}
@@ -17,37 +18,39 @@ body.e132-overlay-open .e129-theory-shell.presenting{visibility:hidden!important
 .e132-cleanbar button:hover{background:rgba(56,215,255,.14);border-color:rgba(56,215,255,.38)}
 .e132-clean-progress{position:relative;z-index:2;margin:0 26px;background:rgba(255,255,255,.09);border-radius:999px;overflow:hidden}
 .e132-clean-progress span{display:block;height:100%;width:0;background:linear-gradient(90deg,#38d7ff,#8b7cff);transition:width .22s ease}
-.e132-clean-stage{position:relative;z-index:2;display:grid;place-items:center;padding:14px 24px 10px;min-height:0}
-.e132-clean-slide{width:min(1280px,100%);height:min(704px,calc(100vh - 112px));display:grid;grid-template-columns:118px 1fr;gap:16px;border:1px solid rgba(148,196,255,.18);border-radius:26px;background:linear-gradient(145deg,rgba(11,24,45,.95),rgba(3,8,20,.96));box-shadow:0 24px 80px rgba(0,0,0,.42);padding:16px;overflow:hidden}
+.e132-clean-stage{position:relative;z-index:2;display:grid;place-items:center;padding:12px 24px 10px;min-height:0}
+.e132-clean-slide{position:relative;width:min(1280px,100%);height:min(704px,calc(100vh - 112px));display:grid;grid-template-columns:118px 1fr;gap:16px;border:1px solid rgba(148,196,255,.18);border-radius:26px;background:linear-gradient(145deg,rgba(11,24,45,.95),rgba(3,8,20,.96));box-shadow:0 24px 80px rgba(0,0,0,.42);padding:16px 16px 78px;overflow:hidden}
+.e132-clean-slide::after{content:"CÔNG THỨC NỀN C01:  x=(x₁,…,xₙ)  ·  ||x||₂=√Σxᵢ²  ·  d(x,y)=||x-y||  ·  x·y=Σxᵢyᵢ=||x||||y||cosθ  ·  projᵤ(x)=((x·u)/(u·u))u  ·  span(vᵢ)={Σcᵢvᵢ}  ·  rank(A)=số pivot";position:absolute;left:150px;right:16px;bottom:16px;border:1px solid rgba(139,124,255,.26);background:linear-gradient(90deg,rgba(5,9,24,.92),rgba(16,26,56,.88));border-radius:18px;padding:12px 16px;color:#f7f3ff;font-family:"SFMono-Regular",Consolas,"Liberation Mono",monospace;font-size:clamp(14px,1.05vw,18px);line-height:1.42;box-shadow:inset 0 1px 0 rgba(255,255,255,.08)}
 .e132-clean-side{border-radius:20px;background:linear-gradient(180deg,rgba(56,215,255,.11),rgba(255,255,255,.045));border:1px solid rgba(255,255,255,.11);padding:13px;display:flex;flex-direction:column;justify-content:space-between;min-width:0}
 .e132-clean-role{display:inline-flex;align-self:flex-start;border-radius:999px;padding:7px 9px;background:#38d7ff;color:#04111d;font-size:10px;font-weight:950;letter-spacing:.095em;text-transform:uppercase}
 .e132-clean-side strong{font-size:50px;line-height:.9;letter-spacing:-.08em;color:#f8fbff}
 .e132-clean-side small{color:#a8bdd7;font-size:12px;line-height:1.35;word-break:break-word}
-.e132-clean-main{min-width:0;min-height:0;display:grid;grid-template-rows:auto 1fr;gap:13px}
-.e132-clean-main h1{margin:0;max-width:1080px;font-size:clamp(30px,3.2vw,46px);line-height:1.04;letter-spacing:-.035em;color:#f8fbff}
+.e132-clean-main{min-width:0;min-height:0;display:grid;grid-template-rows:auto 1fr;gap:12px}
+.e132-clean-main h1{margin:0;max-width:1080px;font-size:clamp(28px,3vw,42px);line-height:1.04;letter-spacing:-.035em;color:#f8fbff}
+.e132-clean-main h1::before{content:"Khối kiến thức I · Toán học Thuần túy  →  Học phần 1 · Đại số và Cấu trúc số  →  Chương 1 · Vector trong không gian dữ liệu  →  Bài giảng";display:block;margin:0 0 8px;color:#9feaff;font-size:clamp(13px,1.05vw,16px);line-height:1.35;letter-spacing:.01em;font-weight:850;text-transform:none;text-shadow:none}
 .e132-clean-grid{min-height:0;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));grid-auto-rows:1fr;gap:14px;overflow:hidden;padding:0}
-.e132-clean-card{min-height:0;border-radius:20px;border:1px solid rgba(148,196,255,.18);background:linear-gradient(180deg,rgba(255,255,255,.075),rgba(255,255,255,.045));padding:18px 18px 16px;overflow:hidden;display:flex;flex-direction:column;gap:10px;box-shadow:inset 0 1px 0 rgba(255,255,255,.06)}
+.e132-clean-card{min-height:0;border-radius:20px;border:1px solid rgba(148,196,255,.18);background:linear-gradient(180deg,rgba(255,255,255,.075),rgba(255,255,255,.045));padding:17px 18px 15px;overflow:hidden;display:flex;flex-direction:column;gap:9px;box-shadow:inset 0 1px 0 rgba(255,255,255,.06)}
 .e132-clean-card .e132-card-kicker{display:inline-flex;align-self:flex-start;border-radius:999px;padding:6px 10px;background:rgba(56,215,255,.13);border:1px solid rgba(56,215,255,.26);color:#9eeaff;font-size:13px;font-weight:900;letter-spacing:.01em;text-transform:none}
-.e132-clean-card h3{margin:0;color:#ffffff;font-size:clamp(20px,1.65vw,28px);font-weight:950;line-height:1.12;letter-spacing:-.025em;text-transform:none}
-.e132-clean-card p.e132-full-body{margin:0;color:#dbe9fb;font-size:clamp(17px,1.2vw,21px);line-height:1.52;white-space:pre-wrap}
-.e132-clean-card pre{margin:0;white-space:pre-wrap;font-family:"SFMono-Regular",Consolas,"Liberation Mono",monospace;color:#f5f3ff;font-size:clamp(17px,1.15vw,21px);line-height:1.5;background:rgba(2,6,18,.46);border:1px solid rgba(139,124,255,.22);border-radius:14px;padding:10px 12px}
-.e132-clean-card::after{display:block;margin-top:auto;padding-top:10px;border-top:1px solid rgba(255,255,255,.095);color:#b8c9e4;font-size:clamp(14px,1vw,17px);line-height:1.42}
-.e132-clean-card[data-card-type="concept"]::after{content:"Cách học: xác định đối tượng, điều kiện đúng và ví dụ phản ví dụ. Đừng học định nghĩa như khẩu hiệu."}
-.e132-clean-card[data-card-type="formula"]::after{content:"Cách dùng: đọc rõ từng biến, điều kiện áp dụng và ý nghĩa đơn vị trước khi thay số."}
-.e132-clean-card[data-card-type="meaning"]::after{content:"Cách hiểu: nối công thức với hình học, dữ liệu và sai số đo. Ý nghĩa phải dẫn được tới quyết định."}
-.e132-clean-card[data-card-type="application"]::after{content:"Khi dùng: đưa ý này vào AI, cảm biến, điều khiển hoặc xử lý tín hiệu để thấy vai trò thật."}
-.e132-clean-card[data-card-type="warning"]::after{content:"Bẫy cần né: kiểm giả định trước. Công thức đúng nhưng giả định sai thì kết quả vẫn hỏng."}
-.e132-clean-card[data-card-type="question"]::after{content:"Cách tự hỏi: đổi dữ kiện, đổi metric hoặc đổi cơ sở rồi xem kết luận có còn đúng không."}
-.e132-clean-card[data-card-type="check"]::after{content:"Tự kiểm: trả lời bằng một phép tính hoặc một phản ví dụ, không trả lời cảm tính."}
-.e132-clean-card[data-card-type="decision"]::after{content:"Luồng quyết định: chọn tiêu chí trước, tính sau. Mục tiêu sai làm mọi phép tính phía sau lệch hướng."}
-.e132-clean-card[data-card-type="lab"]::after{content:"Lab: biến ý tưởng thành vector, array, shape, đơn vị và kiểm thử nhỏ trước khi dùng cho dữ liệu lớn."}
-.e132-clean-card[data-card-type="bridge"]::after{content:"Cầu nối: ghi lại khái niệm nào sẽ được dùng tiếp. Đây là mối nối giữa bài hiện tại và bài sau."}
-.e132-clean-card[data-card-type="takeaway"]::after{content:"Chốt nhớ: giữ một câu cứng, một ví dụ thật và một lỗi hay gặp. Ba điểm này đủ để ôn nhanh."}
-.e132-clean-card[data-card-type="memory"]::after{content:"Mẹo nhớ: nén ý chính thành quy tắc thao tác, không nén thành câu mơ hồ."}
-.e132-clean-card[data-card-type="example"]::after{content:"Ví dụ tốt phải chỉ ra dữ liệu vào, phép toán, kết quả và ý nghĩa kỹ thuật của kết quả."}
+.e132-clean-card h3{margin:0;color:#ffffff;font-size:clamp(20px,1.55vw,26px);font-weight:950;line-height:1.12;letter-spacing:-.025em;text-transform:none}
+.e132-clean-card p.e132-full-body{margin:0;color:#dbe9fb;font-size:clamp(17px,1.16vw,20px);line-height:1.5;white-space:pre-wrap}
+.e132-clean-card pre{margin:0;white-space:pre-wrap;font-family:"SFMono-Regular",Consolas,"Liberation Mono",monospace;color:#f5f3ff;font-size:clamp(17px,1.12vw,20px);line-height:1.46;background:rgba(2,6,18,.46);border:1px solid rgba(139,124,255,.22);border-radius:14px;padding:10px 12px}
+.e132-clean-card::after{display:block;margin-top:auto;padding-top:9px;border-top:1px solid rgba(255,255,255,.095);color:#b8c9e4;font-size:clamp(14px,1vw,16px);line-height:1.38}
+.e132-clean-card[data-card-type="concept"]::after{content:"Cách học: nêu định nghĩa, điều kiện đúng, ví dụ và phản ví dụ. Không học như khẩu hiệu."}
+.e132-clean-card[data-card-type="formula"]::after{content:"Cách dùng: đọc từng biến, miền áp dụng, đơn vị và ý nghĩa hình học trước khi thay số."}
+.e132-clean-card[data-card-type="meaning"]::after{content:"Cách hiểu: nối công thức với hình học, dữ liệu, sai số đo và quyết định kỹ thuật."}
+.e132-clean-card[data-card-type="application"]::after{content:"Ứng dụng: AI, cảm biến, điều khiển, xử lý tín hiệu. Luôn hỏi đại lượng này giúp quyết định gì."}
+.e132-clean-card[data-card-type="warning"]::after{content:"Bẫy cần né: công thức đúng nhưng giả định sai thì kết quả vẫn hỏng. Kiểm điều kiện trước."}
+.e132-clean-card[data-card-type="question"]::after{content:"Tự hỏi: đổi dữ kiện, đổi metric hoặc đổi cơ sở rồi xem kết luận có còn đúng không."}
+.e132-clean-card[data-card-type="check"]::after{content:"Tự kiểm: trả lời bằng phép tính, phản ví dụ hoặc điều kiện cần. Không trả lời cảm tính."}
+.e132-clean-card[data-card-type="decision"]::after{content:"Luồng quyết định: chọn tiêu chí trước, tính sau. Mục tiêu sai làm mọi phép tính lệch hướng."}
+.e132-clean-card[data-card-type="lab"]::after{content:"Lab: biến ý tưởng thành vector, array, shape, đơn vị và kiểm thử nhỏ trước khi chạy dữ liệu lớn."}
+.e132-clean-card[data-card-type="bridge"]::after{content:"Cầu nối: ghi khái niệm nào sẽ dùng tiếp. Đây là bản lề giữa bài hiện tại và bài sau."}
+.e132-clean-card[data-card-type="takeaway"]::after{content:"Chốt nhớ: giữ một câu cứng, một ví dụ thật và một lỗi hay gặp để ôn nhanh."}
+.e132-clean-card[data-card-type="memory"]::after{content:"Mẹo nhớ: nén thành quy tắc thao tác, không nén thành câu mơ hồ."}
+.e132-clean-card[data-card-type="example"]::after{content:"Ví dụ tốt có dữ liệu vào, phép toán, kết quả và ý nghĩa kỹ thuật của kết quả."}
 .e132-clean-card[data-card-type="fix"]::after{content:"Cách sửa: tìm nguyên nhân toán học trước, rồi mới chỉnh code, scale, metric hoặc dữ liệu."}
-.e132-clean-card[data-card-type="useWhen"]::after{content:"Dùng khi: điều kiện dữ liệu phù hợp với ý nghĩa phép toán. Không dùng theo thói quen."}
-.e132-clean-card[data-card-type="avoid"]::after{content:"Tránh: áp dụng máy móc, quên điều kiện, hoặc dùng một thước đo cho mọi bài toán."}
+.e132-clean-card[data-card-type="useWhen"]::after{content:"Dùng khi: điều kiện dữ liệu khớp ý nghĩa phép toán. Không dùng theo thói quen."}
+.e132-clean-card[data-card-type="avoid"]::after{content:"Tránh: áp dụng máy móc, quên điều kiện hoặc dùng một thước đo cho mọi bài toán."}
 .e132-clean-card.formula{grid-column:auto;background:linear-gradient(180deg,rgba(20,16,48,.72),rgba(5,9,24,.66));border-color:rgba(139,124,255,.32)}
 .e132-clean-card.warning{background:linear-gradient(180deg,rgba(66,44,10,.42),rgba(255,255,255,.045));border-color:rgba(251,191,36,.28)}
 .e132-clean-card.application,.e132-clean-card.lab{background:linear-gradient(180deg,rgba(9,56,45,.38),rgba(255,255,255,.045));border-color:rgba(52,211,153,.25)}
@@ -58,5 +61,5 @@ body.e132-overlay-open .e129-theory-shell.presenting{visibility:hidden!important
 .e132-overlay-deck[data-mode="compact"] .e132-clean-card.formula{grid-column:auto}
 .e132-overlay-deck[data-tone="compact"] .e132-clean-role{background:linear-gradient(135deg,#34d399,#38d7ff);color:#04111d}
 @media(min-width:1180px){.e132-clean-grid:has(.e132-clean-card:nth-child(4)){grid-template-columns:repeat(2,minmax(0,1fr));grid-template-rows:repeat(2,minmax(0,1fr))}}
-@media(max-width:1100px){.e132-clean-grid,.e132-overlay-deck[data-mode="compact"] .e132-clean-grid{grid-template-columns:repeat(2,minmax(0,1fr));overflow:auto}.e132-clean-card{min-height:210px}}
-@media(max-width:900px){.e132-cleanbar{padding:12px 16px 8px}.e132-clean-progress{margin:0 16px}.e132-clean-stage{padding:12px 14px}.e132-clean-slide{height:calc(100vh - 106px);grid-template-columns:1fr;grid-template-rows:auto 1fr;padding:14px;border-radius:22px}.e132-clean-side{display:grid;grid-template-columns:1fr auto auto;gap:12px;align-items:center;padding:11px}.e132-clean-side strong{font-size:34px}.e132-clean-main h1{font-size:clamp(26px,7vw,38px)}.e132-clean-grid,.e132-overlay-deck[data-mode="compact"] .e132-clean-grid{grid-template-columns:1fr;overflow:auto}.e132-clean-card{min-height:auto}.e132-clean-hint{padding:0 16px 11px}}
+@media(max-width:1100px){.e132-clean-grid,.e132-overlay-deck[data-mode="compact"] .e132-clean-grid{grid-template-columns:repeat(2,minmax(0,1fr));overflow:auto}.e132-clean-card{min-height:210px}.e132-clean-slide::after{left:16px}}
+@media(max-width:900px){.e132-cleanbar{padding:12px 16px 8px}.e132-clean-progress{margin:0 16px}.e132-clean-stage{padding:12px 14px}.e132-clean-slide{height:calc(100vh - 106px);grid-template-columns:1fr;grid-template-rows:auto 1fr;padding:14px 14px 92px;border-radius:22px}.e132-clean-slide::after{left:14px;right:14px;bottom:12px;font-size:12px;max-height:72px;overflow:auto}.e132-clean-side{display:grid;grid-template-columns:1fr auto auto;gap:12px;align-items:center;padding:11px}.e132-clean-side strong{font-size:34px}.e132-clean-main h1{font-size:clamp(25px,7vw,36px)}.e132-clean-main h1::before{font-size:12px}.e132-clean-grid,.e132-overlay-deck[data-mode="compact"] .e132-clean-grid{grid-template-columns:1fr;overflow:auto}.e132-clean-card{min-height:auto}.e132-clean-hint{padding:0 16px 11px}}
