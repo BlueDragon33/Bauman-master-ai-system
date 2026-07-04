@@ -1,8 +1,8 @@
 # CODEX_STATE
 
-Current task: E202 stable single renderer wired to C02 Level C data.
+Current task: E204 C03 Level C deck data completed, not wired.
 
-Status: PATCHED_NEEDS_LOCAL_BROWSER_SMOKE
+Status: C02_RUNTIME_PATCHED_NEEDS_SMOKE__C03_DATA_READY_NOT_WIRED
 
 Branch: `main`
 Base branch: `main`
@@ -35,15 +35,38 @@ Deck length policy:
   - §2.4: 18 slides.
   - §2.5: 18 slides.
   - §2.6: 18 slides.
+- C03 Level C data currently has:
+  - §3.1: 18 slides.
+  - §3.2: 18 slides.
+  - §3.3: 18 slides.
+  - §3.4: 18 slides.
+  - §3.5: 18 slides.
+  - §3.6: 18 slides.
 
-Files changed:
+Files changed in E202 runtime pass:
 - `subjects/math/assets/theory_skin/theory-slideshow-E202.js`
 - `subjects/math/index.html`
-- `CODEX_STATE.md`
 
-Files already added earlier for C02 Level C data:
+Files added for C02 Level C data:
 - `subjects/math/data/theory_slideshow_c02_level_c.json`
 - `subjects/math/data/theory_slideshow_c02_level_c_part_2_3_6.json`
+
+Files added for C03 Level C data:
+- `subjects/math/data/theory_slideshow_c03_level_c.json`
+- `subjects/math/data/theory_slideshow_c03_level_c_part_3_4_6.json`
+
+C03 Level C coverage includes:
+- Function as input-output model, domain/range, parameterized functions, composition, invertibility, continuity.
+- Derivative as local sensitivity, tangent line, finite difference, Taylor approximation, Jacobian.
+- Gradient as vector sensitivity, direction of fastest change, contour geometry, gradient norm, Hessian preview.
+- Gradient descent, learning rate, loss history, batch/SGD/mini-batch, momentum, clipping, stopping criteria.
+- Loss functions: MSE, MAE, cross entropy, regularization, extrema, saddle, convexity, validation loss.
+- Backpropagation: chain rule, forward/backward pass, layer gradients, vanishing/exploding gradient, autograd, training loop.
+
+Important implementation decision:
+- C03 data was intentionally not wired into E202 yet.
+- Do not wire C03 runtime until E202 C02 browser smoke is confirmed stable.
+- Avoid stacked runtime wrappers, post-render DOM mutation, and chapter-specific override engines.
 
 Risk note:
 - Browser smoke has not been run from this chat environment.
@@ -62,10 +85,14 @@ Required local smoke:
    - §2.3-§2.6 should show 18 slides.
    - Matrix visuals should appear in the visual block.
 5. Open C03 → Lý thuyết → Trình chiếu.
-   - It should open with `Reader fallback` mode.
+   - It should still open with `Reader fallback` mode because C03 data is not wired yet.
    - No repeated movement.
 6. Test next, previous, Escape, and close.
 7. Browser console: 0 errors.
+
+Next safe task after smoke passes:
+- Wire C03 JSON into E202 by adding C03 data URLs and detection to the same single renderer.
+- Do not create a new runtime wrapper.
 
 Next actor:
 - User local smoke test.
