@@ -1,5 +1,61 @@
 # CODEX_STATE
 
+Current task: E172 C02 L01 E132 compact deck.
+
+Status: E172_PASS
+
+Branch: `main`
+Base branch: `main`
+Main sync status: `rebased_ready_to_push`
+
+Scope:
+- Add a compact curated E132 slideshow deck for C02 §2.1 only.
+- No UI shell changes.
+- No E186/E187 learning path changes.
+- No E129 Reader changes.
+- No `theory_lecture_content.json` changes.
+- No `index.html` load order changes.
+- E171 is present from remote and was not modified by E172; its load order/file are preserved.
+
+Files read:
+- `CODEX_STATE.md`
+- `subjects/math/assets/theory_skin/theory-slideshow-E132.js`
+- `subjects/math/index.html`
+- `subjects/math/data/theory_lecture_content.json`
+
+Files changed:
+- `CODEX_STATE.md`
+- `subjects/math/assets/theory_skin/theory-slideshow-E132.js`
+
+Patch summary:
+- Added §2.1 aliases in `LESSON_ALIAS`: `2.1`, `l21`, `c02l01`, `ma trận`, `matrix`, `ma trận như dữ liệu`, `dữ liệu và phép biến đổi`, `data and transform`, `linear transform`.
+- Added a 16-slide curated compact deck for `§2.1 · Ma trận như dữ liệu và phép biến đổi`.
+- Kept the existing compact-only E132 behavior and did not rename/refactor `C01_DECKS`.
+
+Verification:
+- `node --check subjects/math/assets/theory_skin/theory-slideshow-E132.js`: PASS
+- Static deck check: §2.1 key exists, 16 slides, first slide `Ma trận có hai đời sống`, last slide `Chốt §2.1`, no fallback text inside deck.
+- Browser smoke on local server `http://127.0.0.1:8781/subjects/math/index.html` after rebase over remote E171: PASS
+- Flow tested: Học tập → Chương 2 → Bài 2.1 → Lý thuyết → Trình chiếu.
+- Reader loaded C02 L01 full content from `MATH-VN-C02-ma_tran_va_phep_bien_oi_-L01-matrix-as-data-and-transform-e142`: PASS
+- E132 first slide rendered `Ma trận có hai đời sống`: PASS
+- E132 last slide rendered `Chốt §2.1`: PASS
+- Fallback `Chưa có compact deck curated`: not triggered.
+- E171 loaded after E132 and did not break C02 deck selection/rendering: PASS
+- Browser console errors: 0.
+
+Remaining risks:
+- E186 currently labels the C02 lesson picker as `Bài 2.1 · Bài giảng tổng quan`, but after selecting it E129 Reader loads the correct C02 L01 full content. This task did not modify E186 by scope.
+
+Next recommended task:
+- Push `main`, then user pulls and retests C02 §2.1 slideshow locally.
+
+Next actor:
+- Codex push, then User
+
+
+---
+
 Current task: E171 E132 C01 compact deck microfix after academic review.
 
 Status: PATCHED_NEEDS_LOCAL_BROWSER_SMOKE
