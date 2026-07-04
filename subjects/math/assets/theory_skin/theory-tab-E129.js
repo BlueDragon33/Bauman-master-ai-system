@@ -541,7 +541,7 @@
     setHeader(act.label, 'E169 · Learning path router · '+(known?'route nội bộ đã map':'placeholder an toàn'));
     var detail=e169SpecialDetail(localChapter,act)||act.summary;
     var routeLabel=known?('learnTab = '+E169_TAB_ROUTES[p.activityId]):'Chưa có tab route riêng, hiển thị placeholder trong khu Học tập';
-    view.innerHTML='<main class="e129-theory-shell e169-activity-shell" data-e129-release="'+RELEASE+'"><section class="e129-panel e129-reader"><header class="e129-reader-head e169-reader-head"><div>'+e169SelectorHtml()+'</div><div class="e129-actions"><button class="e129-action ghost" data-e169-open="activity">Đổi hoạt động</button><button class="e129-action" data-e169-go-theory>Về Lý thuyết</button></div></header><section class="e169-activity-card"><span class="e129-badge">'+H(routeLabel)+'</span><h2>'+H(act.label+' · '+act.name)+'</h2><p>'+H(detail)+'</p><div class="e169-activity-meta"><span>'+H(localChapter?('Chương '+localChapter.no):'Chưa chọn chương')+'</span><span>'+H(frame?frame.chapterId:'Chưa có frame/content tương ứng')+'</span></div><div class="e169-placeholder-grid"><article><b>Trạng thái</b><p>Khung hoạt động đã route an toàn, chưa sinh nội dung học thuật dài.</p></article><article><b>Reader</b><p>E129 Reader vẫn giữ full content ở tab Lý thuyết.</p></article><article><b>Đi tiếp</b><p>Dùng breadcrumb hoặc nút Khối kiến thức để đổi cấp chọn.</p></article></div></section></section></main>';
+    view.innerHTML='<main class="e129-theory-shell e169-activity-shell" data-e129-release="'+RELEASE+'"><section class="e129-panel e129-reader"><header class="e129-reader-head e169-reader-head"><div>'+e169SelectorHtml()+'</div></header><section class="e169-activity-card"><span class="e129-badge">'+H(routeLabel)+'</span><h2>'+H(act.label+' · '+act.name)+'</h2><p>'+H(detail)+'</p><div class="e169-activity-meta"><span>'+H(localChapter?('Chương '+localChapter.no):'Chưa chọn chương')+'</span><span>'+H(frame?frame.chapterId:'Chưa có frame/content tương ứng')+'</span></div><div class="e169-placeholder-grid"><article><b>Trạng thái</b><p>Khung hoạt động đã route an toàn, chưa sinh nội dung học thuật dài.</p></article><article><b>Reader</b><p>E129 Reader vẫn giữ full content ở tab Lý thuyết.</p></article><article><b>Đi tiếp</b><p>Dùng breadcrumb hoặc nút Khối kiến thức để đổi cấp chọn.</p></article></div></section></section></main>';
     document.body.classList.remove('e129-presenting','e129-theory-storage');
     return true;
   }
@@ -585,14 +585,13 @@
     if(e.target&&e.target.id==='stageSelect'&&e.target.querySelector('option[data-e129-stage]')){ state().e129Stage=e.target.value; state().stage=e.target.value; state().e129ChapterId=''; renderTheory(); }
   },true);
   document.addEventListener('click',function(e){
-    var t=e.target.closest&&e.target.closest('[data-e169-open],[data-e169-pick-module],[data-e169-pick-course],[data-e169-pick-chapter],[data-e169-pick-activity],[data-e169-go-theory],[data-e129-stage],[data-e129-chapter],[data-e129-lesson],[data-e129-open-vault],[data-e129-present],[data-e129-refresh],[data-e129-back-theory],[data-e129-nav],[data-e129-import-act]'); if(!t) return;
+    var t=e.target.closest&&e.target.closest('[data-e169-open],[data-e169-pick-module],[data-e169-pick-course],[data-e169-pick-chapter],[data-e169-pick-activity],[data-e129-stage],[data-e129-chapter],[data-e129-lesson],[data-e129-open-vault],[data-e129-present],[data-e129-refresh],[data-e129-back-theory],[data-e129-nav],[data-e129-import-act]'); if(!t) return;
     var st=state();
     if(t.hasAttribute('data-e169-open')){ openE169Modal(t.getAttribute('data-e169-open')||'module'); e.preventDefault(); e.stopImmediatePropagation(); return; }
     if(t.hasAttribute('data-e169-pick-module')){ e169Select(t.getAttribute('data-e169-pick-module')); openE169Modal('course'); e.preventDefault(); e.stopImmediatePropagation(); return; }
     if(t.hasAttribute('data-e169-pick-course')){ e169Select(null,t.getAttribute('data-e169-pick-course')); openE169Modal('chapter'); e.preventDefault(); e.stopImmediatePropagation(); return; }
     if(t.hasAttribute('data-e169-pick-chapter')){ e169Select(null,null,t.getAttribute('data-e169-pick-chapter')); openE169Modal('activity'); e.preventDefault(); e.stopImmediatePropagation(); return; }
     if(t.hasAttribute('data-e169-pick-activity')){ e169Select(null,null,null,t.getAttribute('data-e169-pick-activity'),t.getAttribute('data-e169-pick-lesson')||''); closeModal(); render(); e.preventDefault(); e.stopImmediatePropagation(); return; }
-    if(t.hasAttribute('data-e169-go-theory')){ e169Select(null,null,null,'theory',e169Path().lessonId); renderTheory(); e.preventDefault(); return; }
     if(t.hasAttribute('data-e129-import-act')){
       var act=t.getAttribute('data-e129-import-act'); e.preventDefault(); e.stopImmediatePropagation();
       if(act==='paste') pasteModal();

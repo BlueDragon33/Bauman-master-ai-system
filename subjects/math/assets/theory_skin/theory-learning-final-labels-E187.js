@@ -20,9 +20,17 @@
     'applied-discrete':{no:6,title:'Toán rời rạc và Tin học tính toán'},
     'applied-optimization':{no:7,title:'Tối ưu hóa và Mô hình hóa kỹ thuật'}
   };
+  var CHAPTER_FALLBACKS={
+    c01:'Đại số tuyến tính nâng cao'
+  };
   function e186(){return window.BAUMAN_MATH_E186_LESSON_FIRST||null;}
   function path(){try{return e186()&&e186().path&&e186().path();}catch(_){return null;}}
   function cleanText(s){return String(s||'').replace(/\s+/g,' ').trim();}
+  function moduleSubtitle(p,m,c){
+    var api=e186();
+    try{if(api&&api.moduleSubtitle)return api.moduleSubtitle();}catch(_){}
+    return [m.title,c.title,CHAPTER_FALLBACKS[p.chapterId]||'Chương học'].join(' > ');
+  }
   function isLearningView(){return !!document.querySelector('.e169-learning-router,.e169-breadcrumb,.e129-theory-shell');}
   function learningMainLabel(s){
     s=cleanText(s);
@@ -46,7 +54,7 @@
     var c=COURSES[p.courseId]||COURSES['pure-algebra'];
     var small=document.querySelector('.e169-module-button small');
     if(!small)return;
-    var label='Đang chọn: Khối '+m.code+' · '+m.title+' · Học phần '+c.no+' · '+c.title;
+    var label=moduleSubtitle(p,m,c);
     if(cleanText(small.textContent)!==label)small.textContent=label;
   }
   function patchTopbarOnlyWhenTechnical(){

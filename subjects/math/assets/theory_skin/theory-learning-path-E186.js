@@ -88,7 +88,14 @@
   }
   function lessonLabel(){var p=path(), opts=lessonOptions(), hit=opts.find(function(x){return x.id===p.lessonId;})||opts[0];return hit?hit.label:'Chọn bài';}
   function activityLabel(){return activity(path().activityId).label;}
-  function moduleSubtitle(){var p=path(), m=mod(p.moduleId);return 'Đang chọn: Khối '+(m&&m.code||'I')+' · '+(m&&m.title||'Toán học');}
+  function displayChapterTitle(ch){
+    if(!ch)return 'Chưa chọn chương';
+    if(ch.id==='c01')return 'Đại số tuyến tính nâng cao';
+    var title=S(ch.title||'').replace(/^\s*Chương\s*\d+\s*[·:.-]\s*/i,'').replace(/[.。]\s*$/,'').trim();
+    if(title.length>72)title=title.slice(0,72).replace(/\s+\S*$/,'').trim();
+    return title||('Chương '+(ch.no||''));
+  }
+  function moduleSubtitle(){var p=path(), m=mod(p.moduleId), c=course(p.moduleId,p.courseId), ch=chapter(p.moduleId,p.courseId,p.chapterId);return [(m&&m.title)||'Toán học',(c&&c.title)||'Học phần',displayChapterTitle(ch)].join(' > ');}
   function crumbs(){var p=path(), m=mod(p.moduleId), c=course(p.moduleId,p.courseId), ch=chapter(p.moduleId,p.courseId,p.chapterId);return [
     {level:'module',label:'Khối '+(m&&m.code||'I')},
     {level:'course',label:'Học phần '+(c&&c.no||'')},
@@ -144,5 +151,5 @@
   var mo=new MutationObserver(schedulePatch);
   function boot(){try{mo.observe(document.body,{childList:true,subtree:true});}catch(_){}patchLabels();}
   if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',boot);else boot();
-  window.BAUMAN_MATH_E186_LESSON_FIRST={release:RELEASE,open:open,path:path,lessonOptions:lessonOptions,crumbs:crumbs,selfCheck:function(){return{release:RELEASE,flow:'module-course-chapter-lesson-activity',crumbs:crumbs().map(function(x){return x.label;}),lessons:lessonOptions().length,activity:activityLabel()};}};
+  window.BAUMAN_MATH_E186_LESSON_FIRST={release:RELEASE,open:open,path:path,lessonOptions:lessonOptions,crumbs:crumbs,moduleSubtitle:moduleSubtitle,displayChapterTitle:displayChapterTitle,selfCheck:function(){return{release:RELEASE,flow:'module-course-chapter-lesson-activity',crumbs:crumbs().map(function(x){return x.label;}),lessons:lessonOptions().length,activity:activityLabel(),moduleSubtitle:moduleSubtitle()};}};
 })();

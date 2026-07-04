@@ -1,5 +1,62 @@
 # CODEX_STATE
 
+Current task: E188 Math Học tập subtitle/activity placeholder logic fix.
+
+Status: E188_PASS
+
+Branch: `main`
+Base branch: `main`
+Main sync status: `local_patch_not_pushed`
+
+Scope:
+- Patch only the Math Học tập learning-path UI logic.
+- No academic content changes.
+- No E132 slideshow changes.
+- No `index.html` changes.
+- Did not enable E175/E176/E180/E184/E185.
+
+Files read:
+- `CODEX_STATE.md`
+- `subjects/math/assets/theory_skin/theory-learning-path-E186.js`
+- `subjects/math/assets/theory_skin/theory-learning-final-labels-E187.js`
+- `subjects/math/assets/theory_skin/theory-tab-E129.js`
+
+Files changed:
+- `CODEX_STATE.md`
+- `subjects/math/assets/theory_skin/theory-learning-path-E186.js`
+- `subjects/math/assets/theory_skin/theory-learning-final-labels-E187.js`
+- `subjects/math/assets/theory_skin/theory-tab-E129.js`
+
+Patch summary:
+- Changed the subtitle under `Khối kiến thức` to exactly 3 content levels: module title, course title, readable chapter title, joined by ` > `.
+- For C01, the chapter subtitle is normalized to `Đại số tuyến tính nâng cao`.
+- E187 now delegates subtitle formatting to E186 when available, preventing the old `Đang chọn: Khối...` format from being written back.
+- Removed the placeholder activity header buttons `Đổi hoạt động` and `Về Lý thuyết`.
+- Removed the dead `data-e169-go-theory` click handler path.
+- Preserved the `Trình chiếu` button in the Lý thuyết Reader.
+
+Verification:
+- `node --check subjects/math/assets/theory_skin/theory-learning-path-E186.js`: PASS
+- `node --check subjects/math/assets/theory_skin/theory-learning-final-labels-E187.js`: PASS
+- `node --check subjects/math/assets/theory_skin/theory-tab-E129.js`: PASS
+- Browser smoke on local server `http://127.0.0.1:8780/subjects/math/index.html`: PASS
+- Default subtitle: `Toán học Thuần túy > Đại số và Cấu trúc số > Đại số tuyến tính nâng cao`: PASS
+- Changed to C02 and subtitle updated to 3 levels without `Đang chọn:`, `Khối I`, `Học phần 1`, `Chương 1`, `Bài`, `Phân mục`, or activity labels: PASS
+- Checked `Bài tập`, `Thực hành`, `Ứng dụng thực tế`, `Ôn tập`, `Kiểm tra`: no `Đổi hoạt động`, no `Về Lý thuyết`, no empty `.e129-actions`, no placeholder `Trình chiếu`: PASS
+- Returned to `Lý thuyết`: Reader full content and `Trình chiếu` still present: PASS
+- Browser console errors: 0.
+
+Remaining risks:
+- None found in scoped smoke. Broader visual redesign remains out of scope.
+
+Next recommended task:
+- Commit/push `main`, then user pulls and retests tab Học tập.
+
+Next actor:
+- Codex push, then User
+
+---
+
 Current task: E170 C01 L06 E132 compact deck title/content alignment.
 
 Status: E170_PASS
