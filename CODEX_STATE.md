@@ -1,5 +1,64 @@
 # CODEX_STATE
 
+Current task: E171 E132 C01 compact deck microfix after academic review.
+
+Status: PATCHED_NEEDS_LOCAL_BROWSER_SMOKE
+
+Branch: `main`
+Base branch: `main`
+Main sync status: `in_main_direct_patch`
+
+Scope:
+- Patch only two C01 slideshow wording/formula issues found during academic review.
+- Did not rewrite `theory-slideshow-E132.js` because GitHub connector only supports full-file replace, and the file is long.
+- Added a non-invasive E171 runtime text cleanup loaded after E132.
+- No Reader/content JSON changes.
+- No UI shell redesign.
+
+Files read:
+- `CODEX_STATE.md`
+- `subjects/math/index.html`
+- `subjects/math/assets/theory_skin/theory-slideshow-E132.js`
+
+Files changed:
+- `CODEX_STATE.md`
+- `subjects/math/index.html`
+- `subjects/math/assets/theory_skin/theory-slideshow-E132-content-fix-E171.js`
+
+Patch summary:
+- Added `theory-slideshow-E132-content-fix-E171.js`, loaded immediately after `theory-slideshow-E132.js`.
+- E171 replaces the §1.2 min-max formula text from `x_i=(x_i-min_i)/(max_i-min_i)` to `x_i^{scaled} = (x_i - min_i)/(max_i - min_i)`.
+- E171 replaces the stale §1.5 bridge sentence that pointed to the old rank-focused §1.6 with a vector-to-data-matrix bridge.
+- E171 also replaces the §1.5 self-check sentence so it asks about matrix `X`, rank, row/column space instead of only subspace dimension.
+- E132 engine and curated deck source remain untouched.
+
+Verification:
+- Local syntax check before commit: `node --check /tmp/theory-slideshow-E132-content-fix-E171.js`: PASS
+- GitHub create/update succeeded for the new E171 file and `index.html` load order.
+- Browser smoke test was not run from this chat environment after the GitHub patch.
+
+Required local smoke test:
+1. `git checkout main`
+2. `git pull origin main`
+3. Hard refresh browser.
+4. Open Math module → Học tập → C01 → §1.2 → Trình chiếu.
+5. Confirm Min-max slide formula shows `x_i^{scaled} = (x_i - min_i)/(max_i - min_i)`.
+6. Open C01 → §1.5 → Trình chiếu → last slide.
+7. Confirm bridge mentions xếp nhiều vector/điểm thành ma trận dữ liệu, rank, hàng, cột, hướng thông tin.
+8. Browser console: 0 errors.
+
+Remaining risks:
+- This is a runtime microfix, not a direct source-deck rewrite inside `theory-slideshow-E132.js`.
+- Later, when doing a larger E132 cleanup, merge these two text changes directly into the deck and remove E171.
+
+Next recommended task:
+- User local smoke test, then continue C01 review or move to C02 planning.
+
+Next actor:
+- User
+
+---
+
 Current task: E188 Math Học tập subtitle/activity placeholder logic fix.
 
 Status: E188_PASS
@@ -99,7 +158,6 @@ Next recommended task:
 
 Next actor:
 - Codex push, then User
-
 
 ---
 
