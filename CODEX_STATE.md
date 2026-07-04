@@ -1,5 +1,82 @@
 # CODEX_STATE
 
+Current task: E194 Fix E193 C03 Level C slideshow runtime.
+
+Status: PATCHED_NEEDS_LOCAL_BROWSER_SMOKE
+
+Branch: `main`
+Base branch: `main`
+Main sync status: `main_direct_patch_from_codex`
+
+Scope:
+- Fix runtime instability in `theory-slideshow-C03-level-c-E193.js`.
+- Re-enable E193 after E192 in `subjects/math/index.html`.
+- Do not modify E132, E129, E186/E187, content JSON, C01/C02 decks, or other subjects.
+
+Files read:
+- `CODEX_STATE.md`
+- `subjects/math/index.html`
+- `subjects/math/assets/theory_skin/theory-slideshow-C03-level-c-E193.js`
+- `subjects/math/assets/theory_skin/theory-slideshow-C02-level-c-E192.js`
+- `subjects/math/assets/theory_skin/theory-slideshow-C03-deck-pack-E191.js`
+
+Files changed:
+- `CODEX_STATE.md`
+- `subjects/math/index.html`
+- `subjects/math/assets/theory_skin/theory-slideshow-C03-level-c-E193.js`
+
+Root cause found:
+- E193 `MutationObserver` could call `enhance()` after each `render()` because `render()` replaces `innerHTML`; without a render guard/signature, this can re-enter `openDeck()` and keep re-rendering.
+- C03 lesson detection checked broad aliases such as `gradient` before a dedicated exact-alias pass; this risked matching C03 3.4/3.5/3.6 as 3.3 when active path text contained `gradient`.
+
+Patch summary:
+- Added `isRendering` and `lastRenderSignature` guard in E193.
+- `openDeck()` now renders only when lesson/slide signature changes or stage HTML is empty.
+- `enhance()` now returns early while rendering and avoids re-opening an already-open deck with the same signature.
+- `closeDeck()` clears the render signature.
+- Added exact C03 aliases (`c03l01/l31/3.1` ... `c03l06/l36/3.6`) and checks them before broad aliases.
+- Re-enabled E193 in `index.html` after E192:
+  - `assets/theory_skin/theory-slideshow-C03-level-c-E193.js?v=193`
+
+Verification:
+- `node --check subjects/math/assets/theory_skin/theory-slideshow-C03-level-c-E193.js`: PASS
+- Pre-enable browser smoke before index change: C03 3.1 opened with E191 fallback, no fallback warning, browser `dev.logs()` empty: PASS
+- Post-enable browser page-load smoke: E193 script present in `index.html` script list, browser `dev.logs()` empty: PASS
+- Full post-enable click smoke was attempted but not completed: Browser plugin modal/coordinate click calls repeatedly timed out and reset the Node REPL kernel while clicking slideshow controls.
+- E186 C03 picker observation during smoke: current UI exposes only one C03 lesson option, `data-e186-id="c03-overview"` / `Bai 3.1 - Bai giang tong quan`; C03 3.2-3.6 cannot be selected through the visible E186 lesson picker without changing E186/E187, which is out of scope for E194.
+
+Pass criteria result:
+- Syntax: PASS
+- E193 re-enabled: YES
+- Page load console/logs: PASS
+- Full C03 3.1-3.6 browser click smoke: NOT VERIFIED in this environment
+- C02 E192 / C01 E132 click regression smoke: NOT VERIFIED in this environment
+- Overall status is not PASS until a local browser click smoke confirms slideshow open/next/prev/exit for C03, plus C02/C01 regression.
+
+Required local smoke test:
+1. Open `subjects/math/index.html` via Live Server.
+2. Open Math module -> Hoc tap -> Chuong 3.
+3. Click `Trinh chieu`.
+4. Confirm header shows `E193 C03 Calculus Lab · Level C`.
+5. Confirm no fallback `Chua co compact deck curated`.
+6. Confirm next/prev and Esc/Thoat work.
+7. Confirm browser console has 0 errors.
+8. If UI exposes C03 3.2-3.6, repeat for each lesson.
+9. Confirm C02 still opens E192 for at least 2.1 and 2.2.
+10. Confirm C01 still opens E132/E171 for 1.1.
+
+Remaining risks:
+- Full click-smoke still needs a local browser because the Codex browser automation click path was unstable.
+- Separate UI routing issue remains: E186 currently exposes only `c03-overview` for C03 in the lesson picker, so selecting C03 3.2-3.6 through the current UI was not possible inside this scoped task.
+
+Next recommended task:
+- Run local browser smoke for E193. If C03 3.2-3.6 are still not selectable, open a separate E195 routing task scoped to E186/E187 lesson picker mapping.
+
+Next actor:
+- User/Codex local browser smoke, then E195 routing task only if picker selection is still incomplete.
+
+---
+
 Current task: E193 C03 Level C Calculus / Gradient Visual Lab.
 
 Status: PATCHED_NEEDS_LOCAL_BROWSER_SMOKE
