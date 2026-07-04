@@ -54,6 +54,64 @@
 
   var cache = { frame:null, content:null, legacy:null, chapters:[], records:[], legacyLessons:[], loaded:false, loading:false, error:null, overlay:false };
   var stageLabels = {vn:'GĐ0 · Việt Nam',prep:'GĐ1 · Dự bị Nga',hk1:'GĐ2 · ThS năm 1 HK1',hk2:'GĐ3 · ThS năm 1 HK2',hk3:'GĐ4 · ThS năm 2 HK3',hk4:'GĐ5 · VKR',phd_bridge:'GĐ6 · Cầu nối TS',phd_y1:'GĐ7 · TS năm 1',phd_y2:'GĐ8 · TS năm 2',phd_thesis:'GĐ9 · Luận án'};
+  var E169_ACTIVITIES = [
+    {id:'theory',tab:'theory',label:'Lý thuyết',name:'Kiến thức cốt lõi',summary:'Đọc bài giảng lý thuyết đầy đủ trong E129 Reader.'},
+    {id:'exercises',tab:'exercises',label:'Bài tập',name:'Củng cố tư duy',summary:'Trắc nghiệm, tự luận, bài tập tính tay và kiểm tra tư duy.'},
+    {id:'practice',tab:'practice',label:'Thực hành',name:'Lập trình & Hiện thực hóa',summary:'Bài tập code, Python/NumPy hoặc C++ và test case nếu khung dữ liệu có.'},
+    {id:'application',tab:'application',label:'Ứng dụng thực tế',name:'Tình huống kỹ thuật',summary:'Tình huống kỹ thuật liên hệ AI, tín hiệu, mạng, hệ thống tự hành.'},
+    {id:'review',tab:'review',label:'Ôn tập',name:'Hệ thống hóa kiến thức',summary:'Mindmap, cheat sheet, flashcard và thuật ngữ song ngữ.'},
+    {id:'exam',tab:'exam',label:'Kiểm tra',name:'Đánh giá năng lực',summary:'Bài thi tổng hợp, trắc nghiệm + tự luận, time-box; giữ logic đề hiện có.'}
+  ];
+  var E169_TAB_ROUTES = {theory:'theory',exercises:'exercises',practice:'practice',review:'review',exam:'exam'};
+  var E169_HIERARCHY = [
+    {id:'pure',code:'I',title:'Toán học Thuần túy',en:'Pure Mathematics Module',courses:[
+      {id:'pure-algebra',no:1,title:'Đại số và Cấu trúc số',en:'Algebra & Structures',chapters:[
+        {id:'c01',no:1,title:'Đại số tuyến tính nâng cao cho tính toán hiệu năng cao.'},
+        {id:'c02',no:2,title:'Không gian vectơ, cấu trúc hình học và ánh xạ tuyến tính.'},
+        {id:'c03',no:3,title:'Đại số trừu tượng và ứng dụng mã hóa.'}
+      ]},
+      {id:'pure-analysis',no:2,title:'Giải tích toán học',en:'Mathematical Analysis',chapters:[
+        {id:'c04',no:4,title:'Giải tích hàm một biến và các phương pháp xấp xỉ số.'},
+        {id:'c05',no:5,title:'Giải tích hàm nhiều biến và tối ưu hóa dựa trên Gradient.'},
+        {id:'c06',no:6,title:'Phương trình vi phân và ứng dụng mô hình hóa hệ động lực.'},
+        {id:'c07',no:7,title:'Lý thuyết hàm phức và phép biến đổi tích phân.'}
+      ]},
+      {id:'pure-geometry',no:3,title:'Hình học và Không gian số',en:'Geometry & Space',chapters:[
+        {id:'c08',no:8,title:'Hình học tính toán trong xử lý ảnh và đồ họa máy tính.'},
+        {id:'c09',no:9,title:'Cơ sở Tôpô học và các hàm khoảng cách trong khai phá dữ liệu.'}
+      ]},
+      {id:'pure-logic',no:4,title:'Logic toán và Cơ sở lý thuyết',en:'Mathematical Logic',chapters:[
+        {id:'c10',no:10,title:'Logic toán, đại số Boolean và tối ưu mạch số.'},
+        {id:'c11',no:11,title:'Lý thuyết số, đồng dư thức và thuật toán mật mã công khai.'}
+      ]}
+    ]},
+    {id:'applied',code:'II',title:'Toán học Ứng dụng',en:'Applied Mathematics Module',courses:[
+      {id:'applied-probability',no:5,title:'Xác suất và Thống kê toán học',en:'Probability & Statistics',chapters:[
+        {id:'c12',no:12,title:'Lý thuyết xác suất nâng cao và mô hình hóa luồng dữ liệu.'},
+        {id:'c13',no:13,title:'Thống kê toán học ứng dụng trong đánh giá hiệu năng hệ thống.'},
+        {id:'c14',no:14,title:'Các quá trình ngẫu nhiên và chuỗi Markov trong kỹ thuật độ tin cậy.'}
+      ]},
+      {id:'applied-discrete',no:6,title:'Toán rời rạc và Tin học tính toán',en:'Discrete & Computational Math',chapters:[
+        {id:'c15',no:15,title:'Toán rời rạc và thuật toán đồ thị luồng mạng.',special:'graph_network_flow'},
+        {id:'c16',no:16,title:'Phương pháp tính, giải tích số và biến đổi Fourier nhanh.'},
+        {id:'c17',no:17,title:'Cơ sở toán học nền tảng cho Trí tuệ nhân tạo và Học sâu.'}
+      ]},
+      {id:'applied-optimization',no:7,title:'Tối ưu hóa và Mô hình hóa kỹ thuật',en:'Optimization & Modeling',chapters:[
+        {id:'c18',no:18,title:'Quy hoạch toán học và bài toán phân bổ tài nguyên hệ thống phức tạp.'},
+        {id:'c19',no:19,title:'Lý thuyết trò chơi và các thuật toán ra quyết định cho hệ thống tự hành.'},
+        {id:'c20',no:20,title:'Toán tài chính định lượng và phân tích rủi ro dự án CNTT.'},
+        {id:'c21',no:21,title:'Phương pháp mô phỏng số Monte Carlo cho hệ thống chịu lỗi.'}
+      ]}
+    ]}
+  ];
+  var E169_C15_DETAILS = {
+    theory:'Video bài học 15.1: Cấu trúc đồ thị phức tạp và thuật toán tìm đường đi ngắn nhất Dijkstra, Bellman-Ford. Video bài học 15.2: Lý thuyết luồng cực đại trong mạng, thuật toán Ford-Fulkerson. Tài liệu số: Sách điện tử về lý thuyết đồ thị ứng dụng trong cấu trúc mạng.',
+    exercises:'Bài tập tương tác: kéo thả, mô phỏng các bước duyệt đỉnh đồ thị theo thuật toán Dijkstra trực tiếp trên màn hình.',
+    practice:'Bài tập Code: Cài đặt giải thuật Ford-Fulkerson bằng C++ để tìm luồng cực đại trên đồ thị trọng số.',
+    application:'Chuyên đề phân tích: Cách định tuyến gói tin của giao thức OSPF trong mạng máy tính dựa trên thuật toán Dijkstra.',
+    review:'Bảng tra cứu nhanh: so sánh độ phức tạp thuật toán đồ thị O(V²) và O(E log V).',
+    exam:'Bài thi tổng hợp: bài kiểm tra thực hành giải toán tối ưu luồng mạng bằng code trực tuyến, time-box 45 phút.'
+  };
 
   function arr(v){ return Array.isArray(v) ? v : []; }
   function S(v){ return String(v == null ? '' : v); }
@@ -76,7 +134,64 @@
   function localSet(k,v){ try{ localStorage.setItem(k,JSON.stringify(v)); return true; }catch(_){ return false; } }
   function localDel(k){ try{ localStorage.removeItem(k); }catch(_){ } }
   function isTheoryState(){ var st=state(); return S(st.view)==='learning' && S(st.learnTab||'theory')==='theory'; }
-  function shouldRenderE129(){ return isTheoryState() || !window.__BAUMAN_CORE_API; }
+  function e169Path(){ var st=state(); st.e169Path=st.e169Path||{}; var p=st.e169Path; if(!p.moduleId)p.moduleId='pure'; if(!p.courseId)p.courseId='pure-algebra'; if(!p.chapterId)p.chapterId='c01'; if(!p.activityId)p.activityId='theory'; return p; }
+  function e169Module(id){ return E169_HIERARCHY.find(function(m){return m.id===id;})||E169_HIERARCHY[0]; }
+  function e169Course(moduleId,courseId){ var m=e169Module(moduleId); return arr(m&&m.courses).find(function(c){return c.id===courseId;})||arr(m&&m.courses)[0]||null; }
+  function e169Chapter(moduleId,courseId,chapterId){ var c=e169Course(moduleId,courseId); return arr(c&&c.chapters).find(function(ch){return ch.id===chapterId;})||arr(c&&c.chapters)[0]||null; }
+  function e169Activity(id){ return E169_ACTIVITIES.find(function(a){return a.id===id;})||E169_ACTIVITIES[0]; }
+  function chapterByNo(no){ return cache.chapters.find(function(ch){return Number(ch.chapterNo)===Number(no);})||null; }
+  function e169FrameChapter(){ var p=e169Path(); var ch=e169Chapter(p.moduleId,p.courseId,p.chapterId); return chapterByNo(ch&&ch.no); }
+  function e169Records(){ var f=e169FrameChapter(); return f?recordsForChapter(f):[]; }
+  function e169LessonLabel(rec){ return rec?S(rec.title||rec.lessonTitle||rec.lessonId).replace(/^§/,'Bài '):'Bài giảng'; }
+  function isE169ActivityState(){ var st=state(); return S(st.view)==='learning' && !!st.e169Path && S(st.learnTab||'theory')!=='theory'; }
+  function shouldRenderE129(){ return isTheoryState() || isE169ActivityState() || !window.__BAUMAN_CORE_API; }
+  function e169Select(moduleId,courseId,chapterId,activityId,lessonId){
+    var p=e169Path();
+    if(moduleId){ p.moduleId=moduleId; var m=e169Module(moduleId); p.courseId=arr(m.courses)[0]&&arr(m.courses)[0].id; var c=e169Course(p.moduleId,p.courseId); p.chapterId=arr(c.chapters)[0]&&arr(c.chapters)[0].id; p.lessonId=''; }
+    if(courseId){ p.courseId=courseId; var cc=e169Course(p.moduleId,p.courseId); p.chapterId=arr(cc.chapters)[0]&&arr(cc.chapters)[0].id; p.lessonId=''; }
+    if(chapterId){ p.chapterId=chapterId; p.lessonId=''; }
+    if(activityId) p.activityId=activityId;
+    if(lessonId) p.lessonId=lessonId;
+    var frame=e169FrameChapter(); var act=e169Activity(p.activityId);
+    if(frame) state().e129ChapterId=frame.chapterId;
+    if(p.activityId==='theory'){
+      state().learnTab='theory'; state().view='learning';
+      var recs=e169Records();
+      state().e129LessonId=p.lessonId || (recs[0]&&recs[0].lessonId) || '';
+      p.lessonId=state().e129LessonId;
+    }else{
+      state().learnTab=E169_TAB_ROUTES[p.activityId]||p.activityId; state().view='learning';
+      state().e129LessonId=p.lessonId||'';
+    }
+    save();
+    return {path:p,frame:frame,activity:act};
+  }
+  function e169Crumbs(){
+    var p=e169Path(), m=e169Module(p.moduleId), c=e169Course(p.moduleId,p.courseId), ch=e169Chapter(p.moduleId,p.courseId,p.chapterId), act=e169Activity(p.activityId);
+    var rec=e169Records().find(function(r){return r.lessonId===p.lessonId;})||null;
+    return [
+      {level:'module',label:'Khối kiến thức '+(m&&m.code||'I')},
+      {level:'course',label:(c?'Học phần '+c.no:'Học phần')},
+      {level:'chapter',label:(ch?'Chương '+ch.no:'Chương')},
+      {level:'activity',label:(act?act.label:'Lý thuyết')+(rec?' · '+e169LessonLabel(rec).replace(/^Bài /,''):'')}
+    ];
+  }
+  function e169SelectorHtml(){
+    var p=e169Path(), m=e169Module(p.moduleId), c=e169Course(p.moduleId,p.courseId), ch=e169Chapter(p.moduleId,p.courseId,p.chapterId), act=e169Activity(p.activityId);
+    var selected=[m&&('Khối '+m.code+' · '+m.title),c&&('Học phần '+c.no+' · '+c.title),ch&&('Chương '+ch.no),act&&act.label].filter(Boolean).join(' → ');
+    return '<section class="e169-learning-router"><button class="e169-module-button" data-e169-open="module"><span class="e169-module-icon">◉</span><span><b>Khối kiến thức</b><small>'+H(selected||'Chọn lộ trình học tập')+'</small></span></button><div class="e169-breadcrumb">'+e169Crumbs().map(function(x){return '<button data-e169-open="'+H(x.level)+'">'+H(x.label)+'</button>';}).join('<span>→</span>')+'</div></section>';
+  }
+  function e169SpecialDetail(ch,act){ return ch&&ch.special==='graph_network_flow' ? E169_C15_DETAILS[act.id] : ''; }
+  function e169ActivityOptions(){
+    var p=e169Path(), ch=e169Chapter(p.moduleId,p.courseId,p.chapterId), recs=e169Records(), out=[];
+    if(recs.length){
+      recs.forEach(function(r){ out.push({kind:'lesson',activityId:'theory',lessonId:r.lessonId,label:'Lý thuyết · '+H(r.title||r.lessonTitle||'Bài giảng'),summary:'Mở đúng bài trong E129 Reader full content.'}); });
+    }else{
+      out.push({kind:'activity',activityId:'theory',label:'Lý thuyết · Kiến thức cốt lõi',summary:e169SpecialDetail(ch,E169_ACTIVITIES[0])||E169_ACTIVITIES[0].summary});
+    }
+    E169_ACTIVITIES.slice(1).forEach(function(a){ out.push({kind:'activity',activityId:a.id,label:a.label+' · '+a.name,summary:e169SpecialDetail(ch,a)||a.summary}); });
+    return out;
+  }
   function setHeader(title,sub){
     try{
       var pageTitle=document.getElementById('pageTitle'); if(pageTitle) pageTitle.textContent=title||'Lý thuyết';
@@ -273,8 +388,9 @@
   function renderContent(ch,records,legacy){
     if(records.length){
       var chosenId=S(state().e129LessonId||records[0].lessonId); var rec=records.find(function(r){return r.lessonId===chosenId;})||records[0]; state().e129LessonId=rec.lessonId;
+      e169Path().lessonId=rec.lessonId;
       var slides=arr(rec.slides);
-      return '<section class="e129-placeholder"><span class="e129-badge">Dữ liệu môn học · theory_lecture_content'+(cache.overlay?' · overlay':'')+'</span><h2>'+H(rec.title)+'</h2><p class="e129-muted">lessonId: <code>'+H(rec.lessonId)+'</code> · chapterId: <code>'+H(rec.chapterId)+'</code></p><div class="e129-pill-row">'+records.map(function(r){return '<button class="e129-chip-btn '+(r.lessonId===rec.lessonId?'active':'')+'" data-e129-lesson="'+H(r.lessonId)+'">'+H(clip(r.title,44))+'</button>';}).join('')+'</div><div class="e129-slide-list">'+(slides.length?slides.map(slideHtml).join(''):'<article class="e129-slide"><h3>Chưa có slide</h3><p>Record đã tồn tại nhưng chưa có mảng slides hợp lệ.</p></article>')+'</div></section>';
+      return '<section class="e129-placeholder"><span class="e129-badge">Dữ liệu môn học · theory_lecture_content'+(cache.overlay?' · overlay':'')+'</span><div class="e169-reader-title"><h2>'+H(rec.title)+'</h2><p class="e129-muted">Reader giữ full content · '+slides.length+' slide · lessonId: <code>'+H(rec.lessonId)+'</code></p></div><div class="e129-slide-list">'+(slides.length?slides.map(slideHtml).join(''):'<article class="e129-slide"><h3>Chưa có slide</h3><p>Record đã tồn tại nhưng chưa có mảng slides hợp lệ.</p></article>')+'</div></section>';
     }
     if(legacy.length){
       var l=legacy[0];
@@ -377,6 +493,26 @@
   }
   function modal(html){ var old=document.querySelector('.e129-modal-backdrop'); if(old) old.remove(); var m=document.createElement('div'); m.className='e129-modal-backdrop'; m.innerHTML='<div class="e129-modal">'+html+'</div>'; document.body.appendChild(m); }
   function closeModal(){ var old=document.querySelector('.e129-modal-backdrop'); if(old) old.remove(); }
+  function e169ModalTitle(level){ return {module:'Chọn Khối kiến thức',course:'Chọn Học phần',chapter:'Chọn Chương',activity:'Chọn Bài giảng / Hoạt động'}[level]||'Chọn lộ trình'; }
+  function e169Option(label,sub,attrs,kind){
+    var at=Object.keys(attrs||{}).map(function(k){return ' '+k+'="'+H(attrs[k])+'"';}).join('');
+    return '<button class="e169-choice '+H(kind||'')+'"'+at+'><b>'+H(label)+'</b>'+(sub?'<span>'+H(sub)+'</span>':'')+'</button>';
+  }
+  function openE169Modal(level){
+    var p=e169Path(), html='', title=e169ModalTitle(level);
+    if(level==='module'){
+      html=E169_HIERARCHY.map(function(m){ return e169Option('Khối kiến thức '+m.code+' · '+m.title,m.en,{'data-e169-pick-module':m.id},m.id===p.moduleId?'active':''); }).join('');
+    }else if(level==='course'){
+      var m=e169Module(p.moduleId);
+      html=arr(m.courses).map(function(c){ return e169Option('Học phần '+c.no+' · '+c.title,c.en,{'data-e169-pick-course':c.id},c.id===p.courseId?'active':''); }).join('');
+    }else if(level==='chapter'){
+      var c=e169Course(p.moduleId,p.courseId);
+      html=arr(c&&c.chapters).map(function(ch){ return e169Option('Chương '+ch.no,ch.title,{'data-e169-pick-chapter':ch.id},ch.id===p.chapterId?'active':''); }).join('');
+    }else{
+      html=e169ActivityOptions().map(function(o){ return e169Option(o.label,o.summary,{'data-e169-pick-activity':o.activityId,'data-e169-pick-lesson':o.lessonId||''},(o.activityId===p.activityId&&(!o.lessonId||o.lessonId===p.lessonId))?'active':''); }).join('');
+    }
+    modal('<header><div><span class="e129-badge">E169 · Learning Path</span><h3>'+H(title)+'</h3><p>Chọn theo thứ tự Khối → Học phần → Chương → Bài giảng / Hoạt động.</p></div><button class="e129-close" data-e129-import-act="close">×</button></header><div class="e169-choice-grid">'+html+'</div>');
+  }
   function suppressLegacyImporter(){
     var st=state();
     var onTheoryStorage = st.view==='storage' && st.storageDomain==='theory';
@@ -388,12 +524,25 @@
     var view=document.getElementById('view'); if(!view) return false;
     rebuildFromDb();
     if(!cache.chapters.length){ view.innerHTML='<section class="e129-panel e129-reader"><span class="e129-badge">E129</span><h1>Chưa tải được khung Lý thuyết</h1><p class="e129-muted">Kiểm tra <code>data/theory_lecture_frame.json</code> hoặc chạy bằng Live Server.</p></section>'; return false; }
-    state().view='learning'; state().learnTab='theory'; document.body.classList.remove('e129-theory-storage');
-    var list=stageChapters(); var ch=pickChapter(list); var records=recordsForChapter(ch); var legacy=legacyForChapter(ch); var status=sourceStatus();
+    state().view='learning'; state().learnTab='theory'; e169Path().activityId='theory'; document.body.classList.remove('e129-theory-storage');
+    var routed=e169Select(null,null,null,'theory',e169Path().lessonId);
+    var list=stageChapters(); var ch=routed.frame||pickChapter(list); var records=recordsForChapter(ch); var legacy=legacyForChapter(ch); var status=sourceStatus();
     setHeader('Lý thuyết','E129 · Frame/content importer · '+status.frame+' chương khung · '+status.content+' record nội dung · '+status.legacy+' legacy'+(status.overlay?' · overlay':''));
     var stages=CONTRACT.activeStages.concat(CONTRACT.frameworkOnlyStages);
-    view.innerHTML='<main class="e129-theory-shell '+(state().e129Present?'presenting':'')+'" data-e129-release="'+RELEASE+'"><aside class="e129-panel e129-sidebar"><div class="e129-side-head"><span class="e129-badge">E129 · Theory Shell</span><h2>Khung Lý thuyết</h2><p>Đọc khung từ <code>theory_lecture_frame</code>, nội dung từ <code>theory_lecture_content</code>.</p><input class="e129-search" data-e129-query placeholder="Tìm chương, phân môn, bridge..." value="'+H(state().e129Query||'')+'"><div class="e129-status"><div class="e129-stat"><b>'+status.frame+'</b><span>khung</span></div><div class="e129-stat"><b>'+status.content+'</b><span>content</span></div><div class="e129-stat"><b>'+status.legacy+'</b><span>legacy</span></div></div></div><div class="e129-stage-tabs">'+stages.map(function(st){return '<button class="'+(currentStage()===st?'active':'')+'" data-e129-stage="'+H(st)+'">'+H(stageLabels[st]||st)+'</button>';}).join('')+'</div><div class="e129-tree">'+renderTree(list,ch)+'</div></aside><section class="e129-panel e129-reader"><header class="e129-reader-head"><div><div class="e129-kicker">'+H(ch&&ch.stageTitle)+' · '+H(ch&&ch.disciplineTitle)+'</div><h1>'+H(ch&&ch.chapterTitle||'Chọn chương')+'</h1><p class="e129-muted">'+H(ch&& (ch.targetOutcome||ch.bridgeQuestion) || 'Khung đã sẵn sàng. Nội dung sẽ đi vào DataVault.')+'</p></div><div class="e129-actions"><button class="e129-action primary" data-e129-open-vault>Kho Lý thuyết</button><button class="e129-action ghost" data-e129-present>'+(state().e129Present?'Thoát trình chiếu':'Trình chiếu')+'</button><button class="e129-action ghost" data-e129-refresh>Tải lại JSON</button></div></header><div class="e129-grid"><article class="e129-card"><h3>Câu hỏi cầu nối</h3><p>'+H(ch&&ch.bridgeQuestion||'Chưa có bridgeQuestion trong khung.')+'</p></article><article class="e129-card"><h3>Lớp thuần túy</h3>'+pillList(ch&&ch.pureLayer)+'</article><article class="e129-card"><h3>Lớp ứng dụng</h3>'+pillList(ch&&ch.appliedLayer)+'</article></div>'+renderContent(ch,records,legacy)+'</section></main>';
+    view.innerHTML='<main class="e129-theory-shell '+(state().e129Present?'presenting':'')+'" data-e129-release="'+RELEASE+'"><aside class="e129-panel e129-sidebar"><div class="e129-side-head"><span class="e129-badge">E129 · Theory Shell</span><h2>Khung Lý thuyết</h2><p>Đọc khung từ <code>theory_lecture_frame</code>, nội dung từ <code>theory_lecture_content</code>.</p><input class="e129-search" data-e129-query placeholder="Tìm chương, phân môn, bridge..." value="'+H(state().e129Query||'')+'"><div class="e129-status"><div class="e129-stat"><b>'+status.frame+'</b><span>khung</span></div><div class="e129-stat"><b>'+status.content+'</b><span>content</span></div><div class="e129-stat"><b>'+status.legacy+'</b><span>legacy</span></div></div></div><div class="e129-stage-tabs">'+stages.map(function(st){return '<button class="'+(currentStage()===st?'active':'')+'" data-e129-stage="'+H(st)+'">'+H(stageLabels[st]||st)+'</button>';}).join('')+'</div><div class="e129-tree">'+renderTree(list,ch)+'</div></aside><section class="e129-panel e129-reader"><header class="e129-reader-head e169-reader-head"><div>'+e169SelectorHtml()+'</div><div class="e129-actions"><button class="e129-action primary" data-e129-open-vault>Kho Lý thuyết</button><button class="e129-action ghost" data-e129-present>'+(state().e129Present?'Thoát trình chiếu':'Trình chiếu')+'</button><button class="e129-action ghost" data-e129-refresh>Tải lại JSON</button></div></header>'+renderContent(ch,records,legacy)+'</section></main>';
     document.body.classList.toggle('e129-presenting',!!state().e129Present);
+    return true;
+  }
+  function renderE169Activity(){
+    var view=document.getElementById('view'); if(!view) return false;
+    rebuildFromDb();
+    var p=e169Path(), frame=e169FrameChapter(), localChapter=e169Chapter(p.moduleId,p.courseId,p.chapterId), act=e169Activity(p.activityId);
+    var known=!!E169_TAB_ROUTES[p.activityId];
+    setHeader(act.label, 'E169 · Learning path router · '+(known?'route nội bộ đã map':'placeholder an toàn'));
+    var detail=e169SpecialDetail(localChapter,act)||act.summary;
+    var routeLabel=known?('learnTab = '+E169_TAB_ROUTES[p.activityId]):'Chưa có tab route riêng, hiển thị placeholder trong khu Học tập';
+    view.innerHTML='<main class="e129-theory-shell e169-activity-shell" data-e129-release="'+RELEASE+'"><section class="e129-panel e129-reader"><header class="e129-reader-head e169-reader-head"><div>'+e169SelectorHtml()+'</div><div class="e129-actions"><button class="e129-action ghost" data-e169-open="activity">Đổi hoạt động</button><button class="e129-action" data-e169-go-theory>Về Lý thuyết</button></div></header><section class="e169-activity-card"><span class="e129-badge">'+H(routeLabel)+'</span><h2>'+H(act.label+' · '+act.name)+'</h2><p>'+H(detail)+'</p><div class="e169-activity-meta"><span>'+H(localChapter?('Chương '+localChapter.no):'Chưa chọn chương')+'</span><span>'+H(frame?frame.chapterId:'Chưa có frame/content tương ứng')+'</span></div><div class="e169-placeholder-grid"><article><b>Trạng thái</b><p>Khung hoạt động đã route an toàn, chưa sinh nội dung học thuật dài.</p></article><article><b>Reader</b><p>E129 Reader vẫn giữ full content ở tab Lý thuyết.</p></article><article><b>Đi tiếp</b><p>Dùng breadcrumb hoặc nút Khối kiến thức để đổi cấp chọn.</p></article></div></section></section></main>';
+    document.body.classList.remove('e129-presenting','e129-theory-storage');
     return true;
   }
   function renderStorage(){
@@ -421,6 +570,7 @@
   function render(){
     applyAdapterMetadata(); buildHostNav(); suppressLegacyImporter();
     if(state().view==='storage' && state().storageDomain==='theory') return renderStorage();
+    if(isE169ActivityState()) return renderE169Activity();
     if(shouldRenderE129()) return renderTheory();
     return false;
   }
@@ -435,8 +585,14 @@
     if(e.target&&e.target.id==='stageSelect'&&e.target.querySelector('option[data-e129-stage]')){ state().e129Stage=e.target.value; state().stage=e.target.value; state().e129ChapterId=''; renderTheory(); }
   },true);
   document.addEventListener('click',function(e){
-    var t=e.target.closest&&e.target.closest('[data-e129-stage],[data-e129-chapter],[data-e129-lesson],[data-e129-open-vault],[data-e129-present],[data-e129-refresh],[data-e129-back-theory],[data-e129-nav],[data-e129-import-act]'); if(!t) return;
+    var t=e.target.closest&&e.target.closest('[data-e169-open],[data-e169-pick-module],[data-e169-pick-course],[data-e169-pick-chapter],[data-e169-pick-activity],[data-e169-go-theory],[data-e129-stage],[data-e129-chapter],[data-e129-lesson],[data-e129-open-vault],[data-e129-present],[data-e129-refresh],[data-e129-back-theory],[data-e129-nav],[data-e129-import-act]'); if(!t) return;
     var st=state();
+    if(t.hasAttribute('data-e169-open')){ openE169Modal(t.getAttribute('data-e169-open')||'module'); e.preventDefault(); e.stopImmediatePropagation(); return; }
+    if(t.hasAttribute('data-e169-pick-module')){ e169Select(t.getAttribute('data-e169-pick-module')); openE169Modal('course'); e.preventDefault(); e.stopImmediatePropagation(); return; }
+    if(t.hasAttribute('data-e169-pick-course')){ e169Select(null,t.getAttribute('data-e169-pick-course')); openE169Modal('chapter'); e.preventDefault(); e.stopImmediatePropagation(); return; }
+    if(t.hasAttribute('data-e169-pick-chapter')){ e169Select(null,null,t.getAttribute('data-e169-pick-chapter')); openE169Modal('activity'); e.preventDefault(); e.stopImmediatePropagation(); return; }
+    if(t.hasAttribute('data-e169-pick-activity')){ e169Select(null,null,null,t.getAttribute('data-e169-pick-activity'),t.getAttribute('data-e169-pick-lesson')||''); closeModal(); render(); e.preventDefault(); e.stopImmediatePropagation(); return; }
+    if(t.hasAttribute('data-e169-go-theory')){ e169Select(null,null,null,'theory',e169Path().lessonId); renderTheory(); e.preventDefault(); return; }
     if(t.hasAttribute('data-e129-import-act')){
       var act=t.getAttribute('data-e129-import-act'); e.preventDefault(); e.stopImmediatePropagation();
       if(act==='paste') pasteModal();
@@ -457,6 +613,7 @@
     if(t.hasAttribute('data-e129-back-theory')){ st.view='learning'; st.learnTab='theory'; renderTheory(); e.preventDefault(); return; }
   },true);
   document.addEventListener('input',function(e){ if(e.target&&e.target.matches&&e.target.matches('[data-e129-query]')){ state().e129Query=e.target.value||''; renderTheory(); } },true);
+  document.addEventListener('keydown',function(e){ if(e.key==='Escape' && document.querySelector('.e129-modal-backdrop')) closeModal(); },true);
 
   var obs=null;
   function startSuppressor(){ if(obs) return; try{ obs=new MutationObserver(suppressLegacyImporter); obs.observe(document.body,{childList:true,subtree:true}); }catch(_){ } }

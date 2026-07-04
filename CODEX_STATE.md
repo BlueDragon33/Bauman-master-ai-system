@@ -1,5 +1,81 @@
 # CODEX_STATE
 
+Current task: E169 Math hierarchy selector and learning route.
+
+Status: E169_PASS
+
+Branch: `main`
+Base branch: `main`
+Main sync status: `in_main`
+
+Commit:
+- Final E169 commit hash is reported in the final response after rebase/push.
+
+Files read:
+- `CODEX_STATE.md`
+- `subjects/math/assets/theory_skin/theory-tab-E129.js`
+- `subjects/math/assets/theory_skin/theory-tab-E129.css`
+- `subjects/math/assets/theory_skin/theory-slideshow-E132.js`
+- `subjects/math/assets/theory_skin/theory-slideshow-E132.css`
+- `subjects/math/data/theory_lecture_frame.json`
+- `subjects/math/data/theory_lecture_content.json`
+- `subjects/math/index.html`
+- `subjects/math/assets/subject-adapter.js`
+- `subjects/math/assets/core-subject.js`
+
+Files changed:
+- `CODEX_STATE.md`
+- `subjects/math/assets/theory_skin/theory-tab-E129.js`
+- `subjects/math/assets/theory_skin/theory-tab-E129.css`
+- `subjects/math/E169_HIERARCHY_SELECTOR_ROUTE_REPORT.md`
+- `subjects/math/E165C_CONTENT_PACKAGE_MISSING_REPORT.md` (preserved/updated from prior local report)
+
+Route tab map:
+- `theory`: found and mapped.
+- `exercises`: found and mapped.
+- `practice`: found and mapped.
+- `review`: found and mapped.
+- `exam`: found and mapped.
+- `application`: no distinct route found; safe placeholder used.
+
+E129/E132 impact:
+- E129 changed: added hierarchy selector, cascade modal, breadcrumb router, and safe activity placeholders.
+- E129 Reader full content remains from `theory_lecture_content.json` / `slides[]`.
+- E132 changed: no.
+- E132 slideshow still opens and renders formula cards in the pre-rebase browser smoke.
+
+Tests run:
+- `node --check subjects/math/assets/theory_skin/theory-tab-E129.js`: PASS
+- `node --check subjects/math/assets/theory_skin/theory-slideshow-E132.js`: PASS
+- JSON parse for `theory_lecture_frame.json`: PASS
+- JSON parse for `theory_lecture_content.json`: PASS
+- Browser smoke on local server before rebase: PASS
+- Popup cascade module/course/chapter/activity: PASS
+- Breadcrumb level reopen: PASS
+- C01 §1.2 route to E129 lesson: PASS
+- E129 Reader full 16 slides: PASS
+- E132 slideshow opens: PASS
+- E132 formula slide renders: PASS
+- Mobile 375px breadcrumb/button wrap: PASS
+- Console errors: 0
+- Horizontal overflow: no
+
+Rebase note:
+- Integrated remote E168 `CODEX_STATE.md` block below.
+- E169 does not edit E132, so remote E168 slideshow patch remains intact.
+- Post-rebase combined smoke: PASS. E169 router still works and E168 slideshow opens as `E168 COMPACT MATH DECK` with `Per-slide formula`, 4 cards, no Full lecture text, console errors 0.
+
+Remaining risks:
+- `Ứng dụng thực tế` does not have a confirmed separate tab renderer, so E169 uses a clean placeholder.
+
+Next recommended task:
+- User pulls `main` and retests locally, especially combined E168/E169 slideshow behavior.
+
+Next actor:
+- User
+
+---
+
 Current task: E168 per-slide formula rail for Math Theory E132.
 
 Status: PATCHED_NEEDS_LOCAL_BROWSER_SMOKE
