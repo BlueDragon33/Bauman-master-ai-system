@@ -1,6 +1,6 @@
 # CODEX_STATE
 
-Current task: E172 wine selector and nested segmented breadcrumb rail.
+Current task: E173 breadcrumb arrow removal and section mark cleanup.
 
 Status: PATCHED_NEEDS_LOCAL_BROWSER_SMOKE
 
@@ -18,13 +18,14 @@ Files changed:
 - `subjects/math/assets/theory_skin/theory-tab-E129.css`
 - `CODEX_STATE.md`
 
-E172 result:
-- Replaced the cyan/green `Khối kiến thức` style with a warm dark wine/burgundy gradient.
-- Increased contrast with cream/gold text and stronger shadow.
-- Redesigned breadcrumb as nested segmented path rail, with tightly overlapped chevron-shaped segments instead of separate floating pills.
-- Final selected activity segment uses burgundy/gold highlight.
+E173 result:
+- Removed visible arrow separators from the hierarchy breadcrumb.
+- Removed chevron/notched button shape; breadcrumb now uses close segmented rounded tabs with tiny gaps.
+- Breadcrumb still sits in one dark rail container, but buttons no longer have arrow tips.
+- Kept the wine/burgundy `Khối kiến thức` button.
 - Kept `Kho Lý thuyết/Kho dữ liệu` and `Tải lại JSON` hidden in learner view.
 - Kept `Trình chiếu` as a separate blue neon button aligned right.
+- Added visual cleanup for lesson titles that start with `§`: leading section mark is hidden and title is prefixed visually with `Bài`.
 - Preserved E169 popup cascade and routing logic.
 
 Verification:
@@ -36,14 +37,16 @@ Required local smoke test:
 1. `git checkout main`
 2. `git pull origin main`
 3. Open Math module → Học tập → Lý thuyết.
-4. Confirm `Khối kiến thức` uses warm dark burgundy/wine tone, not green/cyan.
-5. Confirm breadcrumb looks like one connected nested rail with close chevron segments.
-6. Confirm `Kho Lý thuyết/Kho dữ liệu` and `Tải lại JSON` stay hidden in learner view.
-7. Confirm `Trình chiếu` remains aligned right and visible.
-8. Confirm popup cascade still works.
-9. Confirm E129 Reader still opens full content.
-10. Confirm E132 slideshow still opens.
-11. Browser console: 0 errors.
+4. Confirm `Khối kiến thức` uses warm dark burgundy/wine tone.
+5. Confirm breadcrumb has no visible arrow marks and no chevron tips.
+6. Confirm breadcrumb buttons are close together with only tiny gaps.
+7. Confirm visible lesson title no longer starts with `§`; it should look like `Bài 2.1 · ...`.
+8. Confirm `Kho Lý thuyết/Kho dữ liệu` and `Tải lại JSON` stay hidden in learner view.
+9. Confirm `Trình chiếu` remains aligned right and visible.
+10. Confirm popup cascade still works.
+11. Confirm E129 Reader still opens full content.
+12. Confirm E132 slideshow still opens.
+13. Browser console: 0 errors.
 
 Previous integrated state:
 - E169 Math hierarchy selector and learning route: PASS in main.
