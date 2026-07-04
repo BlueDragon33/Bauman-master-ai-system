@@ -1,6 +1,6 @@
 # CODEX_STATE
 
-Current task: E166 visual repair for Math Theory E132 compact slideshow.
+Current task: E167 hierarchy breadcrumb and formula rail for Math Theory E132.
 
 Status: PATCHED_NEEDS_LOCAL_BROWSER_SMOKE
 
@@ -9,7 +9,7 @@ Base branch: `main`
 Main sync status: `in_main_direct_patch`
 
 Scope:
-- Repaired E132 Slideshow visual layout for module Toán, tab Lý thuyết, chương C01.
+- Repaired E132 Slideshow visual and academic structure for module Toán, tab Lý thuyết, chương C01.
 - C01 lessons covered: §1.1 through §1.6.
 - E129 Reader was not edited and must remain the full lecture reader.
 - `subjects/math/data/theory_lecture_content.json` was not edited.
@@ -35,9 +35,14 @@ E166 visual repair:
 - Grid changed to dense compact 3-column layout for 3-card slides.
 - Typography increased: headline/body/formula/kicker are larger.
 - Card padding, border, contrast, and hierarchy rebuilt.
-- Added card-type visual styling for concept, formula, warning, application, lab, decision, check, bridge, takeaway, memory.
-- Added card-type support note via CSS after-content to reduce empty-card feeling and make each card more useful.
-- Reduced stage padding and sidebar width to give content more room.
+- Added card-type visual styling and card-type support notes.
+
+E167 academic structure repair:
+- Added visible breadcrumb on each E132 slide:
+  `Khối kiến thức I · Toán học Thuần túy → Học phần 1 · Đại số và Cấu trúc số → Chương 1 · Vector trong không gian dữ liệu → Bài giảng`.
+- Added fixed formula rail for C01 on each slide:
+  `x=(x₁,…,xₙ)`, `||x||₂=√Σxᵢ²`, `d(x,y)=||x-y||`, `x·y=Σxᵢyᵢ=||x||||y||cosθ`, `projᵤ(x)=((x·u)/(u·u))u`, `span(vᵢ)={Σcᵢvᵢ}`, `rank(A)=số pivot`.
+- Adjusted slide bottom padding so the formula rail does not overlap cards.
 
 C01 compact deck coverage:
 - §1.1 · Vector như dữ liệu kỹ thuật
@@ -60,10 +65,10 @@ Required local smoke test:
 4. Open tab Lý thuyết.
 5. Open C01 §1.1 through §1.6.
 6. Open E132 Slideshow in each lesson.
-7. Confirm header says `E165C Compact Deck`.
-8. Confirm no Full lecture label/button exists.
-9. Confirm cards are dense, readable, not huge empty boxes.
-10. Confirm formula cards no longer span a whole empty row by default.
+7. Confirm breadcrumb follows Module → Course → Chapter → Lecture.
+8. Confirm formula rail appears at the bottom of each slide.
+9. Confirm no Full lecture label/button exists.
+10. Confirm cards are dense, readable, not huge empty boxes.
 11. Confirm E129 Reader still shows full content.
 12. Browser console: 0 errors.
 
