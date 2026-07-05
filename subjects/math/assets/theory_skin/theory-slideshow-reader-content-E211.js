@@ -1,7 +1,7 @@
-/* E212 Reader Pro content bridge · structured content + pro summary panel. */
+/* E214 Reader Pro content bridge · non-duplicated summary panel. */
 (function(){
   'use strict';
-  var RELEASE='E212_READER_PRO_CONTENT_AND_LAYOUT';
+  var RELEASE='E214_READER_PRO_NON_DUPLICATED_SUMMARY';
   var records=[], byId={}, byTitle={}, ready=false, loading=false, last='';
   function text(n){return (n&&n.textContent||'').replace(/\s+/g,' ').trim();}
   function esc(s){return String(s==null?'':s).replace(/[&<>"']/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c];});}
@@ -19,7 +19,7 @@
         if(r.title)byTitle[norm(r.title)]=r;
       });
       ready=true; return true;
-    }).catch(function(e){console.warn('[E212] theory content unavailable',e); return false;}).finally(function(){loading=false;});
+    }).catch(function(e){console.warn('[E214] theory content unavailable',e); return false;}).finally(function(){loading=false;});
   }
   function deck(){return document.querySelector('.e132-overlay-deck.open');}
   function mode(){var d=deck(); return d?text(d.querySelector('[data-e202-mode], .e132-clean-role')):'';}
@@ -55,27 +55,29 @@
   function application(slide){var t=blockOf(slide,'text'); return t[1]||t[2]||blockOf(slide,'code')[0]||blockOf(slide,'formula')[0]||t[0]||null;}
   function qa(slide){return blockOf(slide,'qa')[0]||null;}
   function setText(el,val){if(el)el.textContent=val||'';}
-  function cardHtml(label,head,body,cls){return '<article class="e132-clean-card '+esc(cls||'concept')+'"><span class="e132-card-kicker">'+esc(label)+'</span><h3>'+esc(head||'')+'</h3><p class="e132-full-body">'+esc(body||'')+'</p></article>';}
+  function cardHtml(label,head,body,cls){return '<article class="e132-clean-card '+esc(cls||'concept')+'"><span class="e132-card-kicker">'+esc(label||'')+'</span><h3>'+esc(head||'')+'</h3><p class="e132-full-body">'+esc(body||'')+'</p></article>';}
   function ensureStyle(){
-    if(document.getElementById('e212-reader-pro-style'))return;
-    var css='.e211-reader-pro .e202-hero{grid-template-columns:minmax(0,1.85fr) minmax(300px,.85fr)!important;min-height:330px!important}.e211-reader-pro .e202-hero-copy{justify-content:flex-start!important;padding-top:18px!important}.e211-reader-pro .e202-insight{font-size:clamp(16px,1.15vw,19px)!important;line-height:1.55!important;max-width:900px!important}.e211-reader-pro .e132-clean-main h1{font-size:clamp(32px,3.2vw,48px)!important;line-height:1.03!important}.e211-reader-pro .e202-card-grid{max-height:230px!important;min-height:160px!important;grid-auto-rows:minmax(138px,1fr)!important}.e211-reader-pro .e132-clean-card{padding:12px 14px!important;min-height:138px!important}.e211-reader-pro .e132-clean-card h3{font-size:clamp(17px,1.15vw,21px)!important;line-height:1.16!important}.e211-reader-pro .e132-clean-card p{font-size:clamp(13px,.95vw,16px)!important;line-height:1.42!important}.e211-reader-pro .e202-visual{min-height:310px!important}.e211-summary-panel{border:1px solid rgba(125,211,252,.22);background:rgba(255,255,255,.055);border-radius:18px;padding:15px;text-align:left}.e211-summary-panel h3{margin:0 0 8px;color:#f8fbff;font-size:18px;line-height:1.2}.e211-summary-panel .e211-slide-name{margin:0 0 10px;color:#a7dfff;font-weight:900;font-size:13px}.e211-summary-list{margin:0;padding-left:18px;color:#d7e7f8;font-size:14px;line-height:1.42}.e211-summary-list li{margin:6px 0}.e211-keyline{margin-top:10px;border-top:1px solid rgba(125,211,252,.18);padding-top:8px;color:#c8d7eb;font-size:12px;font-weight:800}.e211-reader-pro .e202-formula-strip{max-width:920px!important}';
-    var st=document.createElement('style'); st.id='e212-reader-pro-style'; st.textContent=css; document.head.appendChild(st);
+    if(document.getElementById('e214-reader-pro-style'))return;
+    var css='.e211-reader-pro .e202-hero{grid-template-columns:minmax(0,1.85fr) minmax(300px,.85fr)!important;min-height:330px!important}.e211-reader-pro .e202-hero-copy{justify-content:flex-start!important;padding-top:18px!important}.e211-reader-pro .e202-insight{font-size:clamp(16px,1.15vw,19px)!important;line-height:1.55!important;max-width:900px!important}.e211-reader-pro .e132-clean-main h1{font-size:clamp(32px,3.2vw,48px)!important;line-height:1.03!important}.e211-reader-pro .e202-card-grid{max-height:230px!important;min-height:160px!important;grid-auto-rows:minmax(138px,1fr)!important}.e211-reader-pro .e132-clean-card{padding:12px 14px!important;min-height:138px!important}.e211-reader-pro .e132-clean-card h3{font-size:clamp(17px,1.15vw,21px)!important;line-height:1.16!important}.e211-reader-pro .e132-clean-card p{font-size:clamp(13px,.95vw,16px)!important;line-height:1.42!important}.e211-reader-pro .e202-visual{min-height:310px!important}.e211-summary-panel{border:1px solid rgba(125,211,252,.22);background:rgba(255,255,255,.055);border-radius:18px;padding:16px;text-align:left}.e211-summary-panel h3{margin:0 0 8px;color:#f8fbff;font-size:18px;line-height:1.2}.e211-summary-panel .e211-slide-name{margin:0 0 10px;color:#a7dfff;font-weight:900;font-size:13px}.e211-summary-lead{margin:0;color:#e6f4ff;font-size:clamp(15px,1.05vw,18px);line-height:1.45}.e211-summary-panel.e211-summary-light h3{font-size:clamp(19px,1.35vw,24px)}.e211-summary-panel.e211-summary-light .e211-slide-name{font-size:clamp(14px,1vw,17px)}.e211-summary-panel.e211-summary-light .e211-summary-lead{font-size:clamp(18px,1.45vw,25px);line-height:1.45}.e211-summary-panel.e211-summary-dense .e211-summary-lead{font-size:clamp(13px,.9vw,15px);line-height:1.34}.e211-keyline{margin-top:12px;border-top:1px solid rgba(125,211,252,.18);padding-top:9px;color:#c8d7eb;font-size:clamp(12px,.85vw,14px);font-weight:800;line-height:1.32}.e211-summary-panel.e211-summary-light .e211-keyline{font-size:clamp(13px,1vw,16px)}.e211-reader-pro .e202-formula-strip{max-width:920px!important}';
+    var st=document.createElement('style'); st.id='e214-reader-pro-style'; st.textContent=css; document.head.appendChild(st);
   }
-  function summaryItems(slide){
-    var items=[];
-    (slide.blocks||[]).forEach(function(b){
-      if(items.length>=4)return;
-      if(b&&b.body&&(b.type==='text'||b.type==='formula'||b.type==='qa'||b.type==='code'))items.push({title:b.title||'Ý chính',body:b.body});
-    });
-    return items;
+  function isRepeatedBlock(b){
+    var t=norm((b&&b.title)||'');
+    return /dien giai ky thuat|cau hoi tu kiem|cau hoi tu kiem|cau hoi dung can dat|tu kiem/.test(t);
   }
-  function summaryPanel(record,slide,mainBlock,appBlock,formulaText){
-    var items=summaryItems(slide);
-    if(!items.length && mainBlock)items.push(mainBlock);
-    if(items.length<2 && appBlock)items.push(appBlock);
-    var lis=items.slice(0,4).map(function(x){return '<li><b>'+esc(x.title||'Ý')+':</b> '+esc(short(x.body||'',135))+'</li>';}).join('');
-    var key=formulaText?'<div class="e211-keyline">Công thức/ký hiệu: '+esc(short(formulaText,130))+'</div>':'';
-    return '<div class="e202-tag">Reader Pro</div><div class="e211-summary-panel"><h3>'+esc(record.lessonTitle||record.title||'Bài học')+'</h3><p class="e211-slide-name">Slide: '+esc(slide.title||'Nội dung chính')+'</p><ul class="e211-summary-list">'+lis+'</ul>'+key+'</div><div class="e202-note">Tóm tắt ý chính từ dữ liệu bài giảng gốc</div>';
+  function summaryCore(slide,mainBlock){
+    var body=(mainBlock&&mainBlock.body)||'';
+    if(!body){
+      var texts=blockOf(slide,'text').filter(function(b){return !isRepeatedBlock(b);});
+      body=(texts[0]&&texts[0].body)||slide.title||'Nội dung chính của slide.';
+    }
+    return short(body,210);
+  }
+  function summaryPanel(record,slide,mainBlock,formulaText){
+    var lead=summaryCore(slide,mainBlock);
+    var density=(lead.length+(formulaText||'').length<180)?'e211-summary-light':((lead.length+(formulaText||'').length>330)?'e211-summary-dense':'e211-summary-normal');
+    var key=formulaText?'<div class="e211-keyline">Công thức/ký hiệu: '+esc(short(formulaText,120))+'</div>':'';
+    return '<div class="e202-tag">Reader Pro</div><div class="e211-summary-panel '+density+'"><h3>'+esc(record.lessonTitle||record.title||'Bài học')+'</h3><p class="e211-slide-name">Slide: '+esc(slide.title||'Nội dung chính')+'</p><p class="e211-summary-lead">'+esc(lead)+'</p>'+key+'</div><div class="e202-note">Tóm tắt ngắn, không lặp phần diễn giải/tự kiểm ở dưới</div>';
   }
   function apply(){
     var d=deck(); if(!d)return;
@@ -125,7 +127,7 @@
     }
 
     var visualBox=d.querySelector('.e202-visual');
-    if(visualBox){visualBox.innerHTML=summaryPanel(r,s,b1,b2,f);}
+    if(visualBox){visualBox.innerHTML=summaryPanel(r,s,b1,f);}
   }
   var scheduled=false;
   function schedule(){if(scheduled)return; scheduled=true; requestAnimationFrame(function(){scheduled=false; apply();});}
