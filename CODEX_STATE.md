@@ -1,6 +1,6 @@
 # CODEX_STATE
 
-Current task: E212 Reader Pro content summary panel and layout balance.
+Current task: E213 Reader Pro balance guard after failed oversized layout.
 
 Status: PATCHED_NEEDS_BROWSER_SMOKE
 
@@ -17,56 +17,49 @@ Active slideshow stack:
 Design rule:
 - E202 remains the only slideshow renderer/engine.
 - E210 only adds lesson identity labels.
-- E211 now supplies canonical Reader Pro content plus Reader Pro layout overrides.
-- E212 reader-fit still adjusts Reader Pro card typography.
+- E211 supplies canonical Reader Pro content plus Reader Pro summary panel.
+- E212 now includes the E213 Reader Pro balance guard.
 - E210/E211/E212 do not control next/previous/open/close.
 - Do not re-enable E190/E191/E192/E193/E195.
 - 16 slides is the minimum, not the maximum.
 
-User request:
-- Increase the width/priority of the upper content area because it contains the main lesson content.
-- The lower card area often has little content and should not dominate the slide.
-- The right Reader Pro panel must show real slide summary/key ideas, not just a generic notice.
+User finding:
+- The previous Reader Pro layout was not acceptable.
+- The title could be clipped at the top.
+- The hero/top section was too large and pushed the bottom cards out of view.
+- The right summary panel could become too tall.
+- This means the UI was not properly smoke-tested before reporting.
 
-Files changed:
-- Updated `subjects/math/assets/theory_skin/theory-slideshow-reader-content-E211.js` to release `E212_READER_PRO_CONTENT_AND_LAYOUT`.
-- Updated `subjects/math/index.html` so E211 is loaded with `?v=212`.
-- Updated `CODEX_STATE.md`.
+Files changed in E213:
+- Updated `subjects/math/assets/theory_skin/theory-slideshow-reader-fit-E212.js`.
+- `index.html` was not changed because it already loads E212 with `?v=212`.
+- `CODEX_STATE.md` updated.
 
 Patch summary:
-- E211/E212 still fetches canonical data from `data/theory_lecture_content.json`.
-- Reader Pro now adds a class `e211-reader-pro` to the active deck.
-- Reader Pro layout is rebalanced:
-  - hero/top area is wider and taller.
-  - left content column is prioritized.
-  - right Reader Pro panel is narrower but more informative.
-  - bottom card grid is constrained so it no longer dominates the slide.
-- Reader Pro right panel now displays a real summary panel:
-  - lesson title
-  - current slide title
-  - 2-4 key bullets from canonical slide blocks
-  - formula/keyline when available
-- Reader Pro cards still use canonical block titles and bodies.
-- E212 reader-fit remains loaded after E211 to adapt typography in cards.
-- C02/C03 Level C should not be overridden by this Reader Pro bridge.
+- E213 balance guard is merged into the already-loaded E212 file.
+- It applies only in `Reader Pro` mode and only when the active deck has `e211-reader-pro`.
+- Title is capped to two lines and smaller clamp values.
+- Hero/top area is constrained to about 54-57% of the slide height.
+- Bottom card area is guaranteed a minimum height.
+- Right summary panel uses internal scrolling if its bullet list is long.
+- Main insight and cards use internal scrolling instead of being lost outside the slide.
+- Bottom cards stay visible and readable; content is not hard-clipped away.
+- C02/C03 Level C should not be affected.
 
 Required local smoke:
 1. `git pull origin main`
 2. Hard refresh browser.
-3. Open Reader Pro example such as §1.1 or §1.2.
-   - Upper content area should be wider/taller.
-   - Lower cards should take less visual priority.
-   - Right Reader Pro panel should show real summary bullets, not a generic message.
-   - The lesson title and current slide title should be visible.
-   - Content must come from canonical JSON blocks, not raw DOM text.
-4. Test short and long Reader Pro slides.
-   - Short content should not look tiny in a huge empty card.
-   - Long content should not overflow badly.
+3. Open the exact Reader Pro slide from the screenshot.
+   - The title must not be cut at the top.
+   - Bottom cards must remain visible.
+   - Right summary panel must not push the layout downward.
+   - If text is long, scroll should appear inside the relevant panel/card instead of losing content.
+4. Open another Reader Pro slide with shorter content.
+   - It should not look empty or tiny.
 5. Open C02/C03 Level C.
-   - Expected: Level C mode and content remain unchanged.
+   - Expected: unaffected.
 6. Test next, previous, Escape, and close.
 7. Browser console: 0 errors.
 
-Next safe task after smoke passes:
-- Continue creating Level C JSON for the next chapter.
-- Long-term: fold E210/E211/E212 into E202 in a controlled patch when tooling allows, then remove bridge scripts.
+Next safe task:
+- Only continue content wiring after Reader Pro layout is confirmed stable by local browser smoke.
