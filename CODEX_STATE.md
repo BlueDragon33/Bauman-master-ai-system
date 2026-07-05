@@ -2,7 +2,7 @@
 
 Current task: E215_READER_PRO_EXTENSION_PANEL_AND_FIT_RULES
 
-Status: PATCHED_NEEDS_BROWSER_SMOKE
+Status: PATCHED_NEEDS_LOCAL_BROWSER_SMOKE
 
 Date: 2026-07-06
 Branch: `main`
@@ -63,10 +63,10 @@ Cache-busters changed:
 Verification status from ChatGPT direct GitHub patch:
 - Repository files were patched directly through GitHub connector.
 - No browser smoke was run from this chat environment.
-- No local DOM/layout measurement was run after E216.
-- Required state is therefore `PATCHED_NEEDS_BROWSER_SMOKE`, not PASS.
+- No DOM/layout measurement was run after E216.
+- Required state is therefore `PATCHED_NEEDS_LOCAL_BROWSER_SMOKE`, not PASS.
 
-Required browser smoke:
+Required local browser smoke:
 1. `git pull origin main`
 2. Hard refresh browser.
 3. Open the same Reader Pro slide shown in the screenshot.
@@ -90,7 +90,7 @@ Known remaining blocker/risk:
   `slideshow data unavailable SyntaxError: Bad escaped character in JSON at position 9749`.
 - Because E216 was patched from ChatGPT without browser smoke, C02/C03 Level C still must be verified locally after the baseline JSON issue is fixed or bypassed.
 
-Next safe task if browser smoke still fails:
+Next safe task if local browser smoke still fails:
 - Patch-only E211/E212.
 - Do not touch E202.
 - Do not create a new slideshow engine.
