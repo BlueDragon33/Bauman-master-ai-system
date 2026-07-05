@@ -1,5 +1,65 @@
 # CODEX_STATE
 
+Current task: E215_READER_PRO_EXTENSION_PANEL_AND_FIT_RULES
+
+Status: PATCHED_NEEDS_C02_C03_BASELINE_FIX
+
+Date: 2026-07-05
+Branch: `main`
+
+Files changed:
+- `subjects/math/assets/theory_skin/theory-slideshow-reader-content-E211.js`
+- `subjects/math/assets/theory_skin/theory-slideshow-reader-fit-E212.js`
+- `subjects/math/index.html`
+- `CODEX_STATE.md`
+
+Reader Pro right panel change:
+- Replaced the generic summary behavior with an explicit `Mở rộng` / `Nội dung mở rộng cho slide` panel.
+- The panel now shows lesson title, slide title, and one extension paragraph selected from canonical `theory_lecture_content.json`.
+- The panel excludes self-check/question/technical-explanation blocks when they are already used in lower cards.
+- The panel does not duplicate lower-card bodies; measured overlap stayed below the high-duplication threshold on the 16-slide Reader Pro smoke path.
+- Formula text remains in the main formula strip, not duplicated into the right panel.
+
+Density/fit behavior:
+- Added `is-light`, `is-normal`, `is-dense`, `is-overflow` hooks in E211 output.
+- E212 now measures and applies density to:
+  - right extension panel
+  - main insight
+  - each lower card
+- Light content gets larger typography/weight.
+- Dense or overflowing content gets tighter typography with internal scroll.
+- Content regions use internal scroll where needed; no measured text escaped its box in Reader Pro smoke.
+
+Verification run:
+- `node --check subjects/math/assets/theory_skin/theory-slideshow-reader-content-E211.js`: PASS
+- `node --check subjects/math/assets/theory_skin/theory-slideshow-reader-fit-E212.js`: PASS
+- Browser load: E202/E210/E211/E212 scripts present with E211/E212 cache `v=215`.
+- Reader Pro C01 §1.1 browser smoke:
+  - 16/16 slides opened and navigated.
+  - Right panel role is `Nội dung mở rộng cho slide`.
+  - No right-panel `Diễn giải kỹ thuật`, `Câu hỏi tự kiểm`, or `Câu hỏi đúng cần đặt`.
+  - No high panel/card duplication detected.
+  - Light/normal/overflow density classes applied across panel, insight, and cards.
+  - Formula slides show the formula strip without duplicating formula in the right panel.
+  - Lower cards remained visible; title fit check PASS; overflow used internal scroll.
+
+Smoke blocker:
+- C02/C03 Level C smoke could not pass on the current baseline.
+- Browser console shows existing E209 warning: `slideshow data unavailable SyntaxError: Bad escaped character in JSON at position 9749`.
+- C02 §2.1 selected successfully, but clicking `Trình chiếu` did not open a deck.
+- This blocker appears upstream of E211/E212 because Reader Pro E211/E212 only run after a `Reader Pro` deck is open and do not load slideshow data JSON.
+
+Cache-busters changed:
+- E211: `?v=214` -> `?v=215`
+- E212: `?v=213` -> `?v=215`
+- E202 unchanged.
+
+Remaining risks:
+- Full task PASS is blocked until the E209 slideshow data JSON parse issue is fixed and C02/C03 Level C smoke can run.
+- Screenshot capture from the in-app browser timed out, so visual verification used live DOM/layout measurements instead of an image artifact.
+
+---
+
 Current task: E214 Reader Pro non-duplicated summary panel.
 
 Status: PATCHED_NEEDS_BROWSER_SMOKE
