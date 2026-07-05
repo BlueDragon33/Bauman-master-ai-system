@@ -62,6 +62,7 @@ Cache-busters changed:
 
 Verification status from ChatGPT direct GitHub patch:
 - Repository files were patched directly through GitHub connector.
+- Only repository file fetch/readback can be verified from this chat environment.
 - No browser smoke was run from this chat environment.
 - No DOM/layout measurement was run after E216.
 - Required state is therefore `PATCHED_NEEDS_LOCAL_BROWSER_SMOKE`, not PASS.
