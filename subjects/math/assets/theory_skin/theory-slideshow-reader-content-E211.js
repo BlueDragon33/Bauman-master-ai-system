@@ -1,7 +1,7 @@
-/* E215 Reader Pro content bridge: extension panel + density hooks. */
+/* E216 Reader Pro content bridge: reference panel + stronger density hooks. */
 (function(){
   'use strict';
-  var RELEASE='E215_READER_PRO_EXTENSION_PANEL';
+  var RELEASE='E216_READER_PRO_REFERENCE_PANEL';
   var records=[], byId={}, byTitle={}, ready=false, loading=false, last='';
 
   function text(n){return (n&&n.textContent||'').replace(/\s+/g,' ').trim();}
@@ -26,7 +26,7 @@
       ready=true;
       return true;
     }).catch(function(e){
-      console.warn('[E215] theory content unavailable',e);
+      console.warn('[E216] theory content unavailable',e);
       return false;
     }).finally(function(){loading=false;});
   }
@@ -72,7 +72,7 @@
   function blockBody(b){return String((b&&b.body)||'').replace(/\s+/g,' ').trim();}
   function densityClass(s){
     var n=String(s||'').replace(/\s+/g,' ').trim().length;
-    return n<170?'is-light':(n<360?'is-normal':(n<560?'is-dense':'is-overflow'));
+    return n<150?'is-light':(n<330?'is-normal':(n<520?'is-dense':'is-overflow'));
   }
   function setDensity(el,body){
     if(!el)return;
@@ -87,45 +87,49 @@
   }
 
   function ensureStyle(){
-    if(document.getElementById('e215-reader-pro-style'))return;
+    if(document.getElementById('e216-reader-pro-style'))return;
+    var old=document.getElementById('e215-reader-pro-style');
+    if(old&&old.parentNode)old.parentNode.removeChild(old);
     var css=''
       +'.e211-reader-pro .e202-hero{grid-template-columns:minmax(0,1.85fr) minmax(300px,.85fr)!important;min-height:330px!important}'
-      +'.e211-reader-pro .e202-hero-copy{justify-content:flex-start!important;padding-top:18px!important}'
-      +'.e211-reader-pro .e202-insight{font-size:clamp(16px,1.15vw,19px)!important;line-height:1.55!important;max-width:900px!important}'
-      +'.e211-reader-pro .e132-clean-main h1{font-size:clamp(32px,3.2vw,48px)!important;line-height:1.03!important}'
-      +'.e211-reader-pro .e202-card-grid{max-height:230px!important;min-height:160px!important;grid-auto-rows:minmax(138px,1fr)!important}'
-      +'.e211-reader-pro .e132-clean-card{padding:12px 14px!important;min-height:138px!important}'
-      +'.e211-reader-pro .e132-clean-card h3{font-size:clamp(17px,1.15vw,21px)!important;line-height:1.16!important}'
-      +'.e211-reader-pro .e132-clean-card p{font-size:clamp(13px,.95vw,16px)!important;line-height:1.42!important}'
-      +'.e211-reader-pro .e202-visual{min-height:310px!important}'
-      +'.e211-summary-panel{border:1px solid rgba(125,211,252,.22);background:rgba(255,255,255,.055);border-radius:18px;padding:16px;text-align:left}'
-      +'.e211-extension-panel{display:flex;min-height:0;max-height:100%;flex-direction:column;gap:8px;overflow:auto}'
-      +'.e211-extension-panel .e211-panel-role{margin:0;color:#8edfff;font-size:11px;font-weight:950;letter-spacing:.09em;text-transform:uppercase}'
-      +'.e211-extension-panel h3{font-size:clamp(13px,.95vw,16px)!important;line-height:1.22!important;margin:0!important;color:#dbeafe!important}'
-      +'.e211-extension-panel .e211-slide-name{font-size:clamp(15px,1.05vw,19px)!important;line-height:1.24!important;margin:0!important;color:#f8fbff!important;font-weight:950}'
-      +'.e211-extension-panel .e211-summary-lead{margin:0;color:#e6f4ff;font-size:clamp(15px,1.04vw,18px);line-height:1.46}'
-      +'.e211-extension-panel.is-light{justify-content:center;padding:18px}'
-      +'.e211-extension-panel.is-light .e211-summary-lead{font-size:clamp(19px,1.55vw,25px);line-height:1.44;font-weight:750}'
-      +'.e211-extension-panel.is-light .e211-slide-name{font-size:clamp(17px,1.25vw,22px)!important}'
-      +'.e211-extension-panel.is-dense .e211-summary-lead{font-size:clamp(13px,.9vw,15px);line-height:1.34}'
-      +'.e211-extension-panel.is-overflow .e211-summary-lead{font-size:clamp(12.5px,.84vw,14px);line-height:1.3}'
-      +'.e211-reader-pro .e202-insight.is-light{font-size:clamp(18px,1.35vw,22px)!important;line-height:1.5!important;font-weight:730}'
-      +'.e211-reader-pro .e202-insight.is-dense{font-size:clamp(13px,.92vw,15px)!important;line-height:1.34!important}'
-      +'.e211-reader-pro .e202-insight.is-overflow{font-size:clamp(12px,.82vw,14px)!important;line-height:1.28!important}'
-      +'.e211-reader-pro .e132-clean-card.is-light p.e132-full-body{font-size:clamp(15px,1.08vw,18px)!important;line-height:1.45!important}'
-      +'.e211-reader-pro .e132-clean-card.is-light h3{font-size:clamp(19px,1.35vw,23px)!important}'
-      +'.e211-reader-pro .e132-clean-card.is-dense p.e132-full-body{font-size:clamp(12px,.84vw,14px)!important;line-height:1.3!important}'
-      +'.e211-reader-pro .e132-clean-card.is-overflow p.e132-full-body{font-size:clamp(11.5px,.78vw,13px)!important;line-height:1.25!important}'
+      +'.e211-reader-pro .e202-hero-copy{justify-content:flex-start!important;padding-top:18px!important;min-height:0!important;overflow:auto!important;scrollbar-width:thin}'
+      +'.e211-reader-pro .e202-insight{font-size:clamp(19px,1.45vw,26px)!important;line-height:1.42!important;max-width:900px!important;overflow:auto!important;scrollbar-width:thin}'
+      +'.e211-reader-pro .e132-clean-main h1{font-size:clamp(36px,3.65vw,58px)!important;line-height:1.02!important}'
+      +'.e211-reader-pro .e202-card-grid{max-height:260px!important;min-height:190px!important;grid-auto-rows:minmax(170px,1fr)!important}'
+      +'.e211-reader-pro .e132-clean-card{padding:18px 20px!important;min-height:170px!important;overflow:auto!important;scrollbar-width:thin}'
+      +'.e211-reader-pro .e132-clean-card h3{font-size:clamp(23px,1.85vw,34px)!important;line-height:1.08!important}'
+      +'.e211-reader-pro .e132-clean-card p{font-size:clamp(18px,1.35vw,25px)!important;line-height:1.35!important}'
+      +'.e211-reader-pro .e202-visual{min-height:310px!important;overflow:hidden!important}'
+      +'.e211-summary-panel{border:1px solid rgba(125,211,252,.22);background:rgba(255,255,255,.055);border-radius:18px;padding:20px;text-align:left}'
+      +'.e211-extension-panel{display:flex;min-height:0;max-height:100%;height:100%;flex-direction:column;gap:14px;overflow:auto;scrollbar-width:thin}'
+      +'.e211-extension-panel .e211-panel-title{margin:0;color:#f8fbff!important;font-size:clamp(26px,2vw,38px)!important;line-height:1.05!important;font-weight:950;letter-spacing:.01em}'
+      +'.e211-extension-panel .e211-summary-lead{margin:0;color:#e6f4ff;font-size:clamp(19px,1.42vw,27px);line-height:1.34;overflow-wrap:anywhere}'
+      +'.e211-extension-panel.is-light{justify-content:center;padding:24px}'
+      +'.e211-extension-panel.is-light .e211-panel-title{font-size:clamp(30px,2.3vw,44px)!important}'
+      +'.e211-extension-panel.is-light .e211-summary-lead{font-size:clamp(25px,2.05vw,38px);line-height:1.28;font-weight:760}'
+      +'.e211-extension-panel.is-normal .e211-summary-lead{font-size:clamp(20px,1.55vw,29px);line-height:1.32}'
+      +'.e211-extension-panel.is-dense .e211-summary-lead{font-size:clamp(15px,1.08vw,20px);line-height:1.27}'
+      +'.e211-extension-panel.is-overflow .e211-summary-lead{font-size:clamp(12px,.86vw,16px);line-height:1.22}'
+      +'.e211-reader-pro .e202-insight.is-light{font-size:clamp(24px,1.9vw,34px)!important;line-height:1.32!important;font-weight:760}'
+      +'.e211-reader-pro .e202-insight.is-normal{font-size:clamp(19px,1.45vw,26px)!important;line-height:1.36!important}'
+      +'.e211-reader-pro .e202-insight.is-dense{font-size:clamp(14px,1vw,18px)!important;line-height:1.26!important}'
+      +'.e211-reader-pro .e202-insight.is-overflow{font-size:clamp(11.8px,.82vw,15px)!important;line-height:1.2!important}'
+      +'.e211-reader-pro .e132-clean-card.is-light p.e132-full-body{font-size:clamp(22px,1.75vw,32px)!important;line-height:1.26!important;font-weight:720}'
+      +'.e211-reader-pro .e132-clean-card.is-light h3{font-size:clamp(26px,2vw,38px)!important}'
+      +'.e211-reader-pro .e132-clean-card.is-normal p.e132-full-body{font-size:clamp(18px,1.35vw,25px)!important;line-height:1.34!important}'
+      +'.e211-reader-pro .e132-clean-card.is-dense p.e132-full-body{font-size:clamp(13px,.92vw,17px)!important;line-height:1.25!important}'
+      +'.e211-reader-pro .e132-clean-card.is-overflow p.e132-full-body{font-size:clamp(11.3px,.76vw,14px)!important;line-height:1.18!important}'
+      +'.e211-reader-pro .e132-clean-card.is-dense h3,.e211-reader-pro .e132-clean-card.is-overflow h3{font-size:clamp(16px,1.08vw,21px)!important}'
       +'.e211-reader-pro .e202-formula-strip{max-width:920px!important}';
     var st=document.createElement('style');
-    st.id='e215-reader-pro-style';
+    st.id='e216-reader-pro-style';
     st.textContent=css;
     document.head.appendChild(st);
   }
 
   function isPanelExcludedBlock(b,mainBlock){
     var t=norm((b&&b.title)||'');
-    if(/cau hoi|tu kiem|dien giai ky thuat/.test(t))return true;
+    if(/cau hoi|tu kiem|dien giai ky thuat|cau hoi dung can dat/.test(t))return true;
     if(b===mainBlock&&/van de hoc tap/.test(t))return true;
     return false;
   }
@@ -146,20 +150,20 @@
       var b=blocks[i], body=blockBody(b);
       if(!body||used.indexOf(b)>=0||isPanelExcludedBlock(b,mainBlock))continue;
       if(lower.some(function(x){return tooSimilar(body,x);}))continue;
-      return {title:b.title||'Mở rộng',body:short(body,260),synthetic:false};
+      return {title:'Tham khảo thêm',body:short(body,320),synthetic:false};
     }
     var mainTitle=(mainBlock&&mainBlock.title)||slide.title||'ý chính';
     var appTitle=(applicationBlock&&applicationBlock.title)||'ngữ cảnh áp dụng';
     var seed=blockBody(applicationBlock)||blockBody(mainBlock)||slide.title||'';
     var lead='Đọc '+mainTitle+' như phần nối với '+appTitle+'. ';
-    lead+=seed?('Gợi ý mở rộng: '+short(seed,150)):'Phần này giúp đặt ý chính vào mạch học của bài trước khi đọc các card bên dưới.';
-    if(lower.some(function(x){return tooSimilar(lead,x);}))lead='Mở rộng: slide này nối khái niệm trung tâm với ngữ cảnh sử dụng trong bài, giúp phần diễn giải và tự kiểm bên dưới có điểm tựa rõ hơn.';
-    return {title:'Mở rộng',body:short(lead,260),synthetic:true};
+    lead+=seed?('Gợi ý mở rộng: '+short(seed,190)):'Phần này giúp đặt ý chính vào mạch học của bài trước khi đọc các card bên dưới.';
+    if(lower.some(function(x){return tooSimilar(lead,x);}))lead='Slide này nối khái niệm trung tâm với ngữ cảnh sử dụng trong bài, giúp phần diễn giải và tự kiểm bên dưới có điểm tựa rõ hơn.';
+    return {title:'Tham khảo thêm',body:short(lead,320),synthetic:true};
   }
   function summaryPanel(record,slide,mainBlock,applicationBlock,qaBlock){
     var ext=selectExtensionBlock(slide,mainBlock,applicationBlock,qaBlock);
     var density=densityClass((ext.title||'')+' '+(ext.body||''));
-    return '<div class="e202-tag">Mở rộng</div><div class="e211-summary-panel e211-extension-panel '+density+'" data-e211-density="'+esc(density.replace('is-',''))+'"><p class="e211-panel-role">Nội dung mở rộng cho slide</p><h3>'+esc(record.lessonTitle||record.title||'Bài học')+'</h3><p class="e211-slide-name">'+esc(slide.title||'Nội dung chính')+'</p><p class="e211-summary-lead">'+esc(ext.body)+'</p></div><div class="e202-note">Không lặp diễn giải hoặc tự kiểm ở các card dưới</div>';
+    return '<div class="e211-summary-panel e211-extension-panel '+density+'" data-e211-density="'+esc(density.replace('is-',''))+'"><h3 class="e211-panel-title">Tham khảo thêm</h3><p class="e211-summary-lead">'+esc(ext.body)+'</p></div>';
   }
 
   function apply(){
