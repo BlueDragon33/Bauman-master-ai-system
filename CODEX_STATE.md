@@ -1,15 +1,15 @@
 # CODEX_STATE
 
-Current task: E208 C03 Level C content wired into professional single renderer.
+Current task: E209 global slideshow routing fix.
 
-Status: C02_BROWSER_SMOKE_PREVIOUSLY_PASS__C03_RUNTIME_PATCHED_NEEDS_BROWSER_SMOKE
+Status: PATCHED_NEEDS_BROWSER_SMOKE
 
 Date: 2026-07-05
 Branch: `main`
 Main sync status: `in_main_direct_patch_from_chatgpt`
 
 Active slideshow stack:
-- `subjects/math/assets/theory_skin/theory-slideshow-E202.js?v=208`
+- `subjects/math/assets/theory_skin/theory-slideshow-E202.js?v=209`
 
 Design rule:
 - Keep one slideshow runtime path only.
@@ -18,38 +18,31 @@ Design rule:
 - Do not use post-render DOM decorators.
 - 16 slides is the minimum, not the maximum.
 
-Files changed in E208:
+User finding:
+- The issue is not limited to C02.
+- It can appear across chapters and lessons when the renderer exposes technical fallback state instead of presenting a proper lesson deck.
+- Showing `C02 DATA FALLBACK`, `C03 DATA FALLBACK`, or `Reader fallback` as a user-facing learning mode is not acceptable for normal study flow.
+
+Files changed in E209:
 - `subjects/math/assets/theory_skin/theory-slideshow-E202.js`
 - `subjects/math/index.html`
 - `CODEX_STATE.md`
 
 Patch summary:
-- Kept the E207 professional compact UI:
-  - hero area
-  - compact formula strip
-  - 3 cards only: `Ý chính`, `Ứng dụng / Ý nghĩa`, `Tự kiểm`
-  - no duplicated bottom formula rail
-- Wired C03 Level C JSON into the same E202 renderer.
-- Added data URLs:
-  - `data/theory_slideshow_c03_level_c.json`
-  - `data/theory_slideshow_c03_level_c_part_3_4_6.json`
-- Generalized lesson aliasing for C02 and C03:
-  - `2.1` to `2.6`
-  - `3.1` to `3.6`
-  - `bài 2.x`, `bài 3.x`
-  - `§2.x`, `§3.x`
-  - `c02l0x`, `c03l0x`
-- Added mode detection:
-  - C02 lessons render as `C02 Level C`.
-  - C03 lessons render as `C03 Level C`.
-  - Other lessons remain `Reader fallback`.
-- Added C03 visual handling for common calculus/gradient keys:
-  - function input-output, domain, range, graph, linear/nonlinear function
-  - derivative sensitivity, tangent, finite difference, Taylor, Jacobian
-  - gradient vector, contour, norm, Hessian
-  - gradient descent, learning rate, loss history, SGD, mini-batch, momentum, clipping
-  - loss functions, regularization, extrema, saddle, validation loss
-  - chain rule, forward/backward pass, autograd, training loop
+- Updated renderer release to `E209_GLOBAL_READER_PRO_AND_LEVEL_C_ROUTING`.
+- Updated `index.html` cache buster to `?v=209`.
+- Replaced user-facing `Reader fallback` with `Reader Pro`.
+- Removed user-facing `C02 DATA FALLBACK` / `C03 DATA FALLBACK` modes.
+- For C02/C03, if exact lesson ID matching fails, E209 now tries keyword-based chapter routing:
+  - C02 keyword groups choose 2.1-2.6 decks.
+  - C03 keyword groups choose 3.1-3.6 decks.
+- If C02/C03 is detected but a precise lesson cannot be inferred, E209 falls back to the first Level C deck of that chapter instead of showing Reader fallback.
+- Chapters without Level C data now use `Reader Pro`, a clean presentation mode sourced from Reader, not a technical error/fallback mode.
+
+Content routing policy:
+- C02 and C03 should render Level C decks when recognized.
+- Other chapters should render Reader Pro until their Level C JSON is created and wired.
+- The UI should never expose debug-style fallback labels to the learner.
 
 Deck length policy:
 - C02 Level C data:
@@ -59,23 +52,23 @@ Deck length policy:
 - C03 Level C data:
   - §3.1-§3.6: 18 slides each
 
-Important note:
-- Browser smoke has not been run from this chat environment for E208.
-- C02 had prior browser smoke PASS under E207 before C03 wiring.
-- C03 now needs browser smoke.
-
 Required local smoke:
 1. `git pull origin main`
 2. Hard refresh browser.
-3. Open C02 §2.1 and confirm it still shows `C02 Level C`, 20 slides, no jump.
-4. Open C02 §2.3 and confirm it still shows `C02 Level C`, 18 slides, no jump.
-5. Open C03 §3.1 and confirm it shows `C03 Level C`, 18 slides.
-6. Open C03 §3.4 and confirm it shows `C03 Level C`, 18 slides, gradient descent visual.
-7. Open C03 §3.6 and confirm it shows `C03 Level C`, 18 slides, backprop/training-loop visual.
-8. Open C01 and confirm it still uses `Reader fallback`.
-9. Test next, previous, Escape, and close.
-10. Browser console: 0 errors.
+3. Open C02 current example from the screenshot.
+   - It should no longer show `C02 DATA FALLBACK`.
+   - It should show `C02 Level C` if recognized by keyword/deck routing.
+   - If exact lesson cannot be detected, it should use the closest C02 deck, not Reader fallback.
+4. Open C02 §2.1, §2.3, §2.6.
+   - Expected: `C02 Level C`, correct slide counts, no jump.
+5. Open C03 §3.1, §3.4, §3.6.
+   - Expected: `C03 Level C`, 18 slides, no jump.
+6. Open C01 or any chapter without Level C JSON.
+   - Expected: `Reader Pro`, not `Reader fallback`.
+7. Test next, previous, Escape, and close.
+8. Browser console: 0 errors.
 
-Next safe task after E208 browser smoke passes:
-- Continue content wiring to the next chapter using the same data+single-renderer pattern.
+Next safe task after E209 browser smoke passes:
+- Continue creating Level C JSON for the next chapter.
+- Wire it into the same E202 renderer by data URL and keyword routing only.
 - Do not add another slideshow engine.
