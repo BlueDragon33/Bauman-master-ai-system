@@ -157,7 +157,7 @@
     if(kind==='module'){setPath('module',id);open('course');return;}
     if(kind==='course'){setPath('course',id);open('chapter');return;}
     if(kind==='chapter'){setPath('chapter',id);open('lesson');return;}
-    if(kind==='lesson'){setPath('lesson',id);open('activity');return;}
+    if(kind==='lesson'){setPath('lesson',id);renderRoute();open('activity');return;}
     if(kind==='activity'){setPath('activity',id);renderRoute();return;}
   }
   function patchLabels(){document.querySelectorAll('.e169-reader-title h2,.e169-choice b,.e129-slide h3').forEach(function(n){var c=cleanLessonTitle(n.textContent||'');if(c&&c!==n.textContent)n.textContent=c;});patchSurface();}

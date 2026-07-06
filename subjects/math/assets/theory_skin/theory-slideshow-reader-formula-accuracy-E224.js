@@ -108,8 +108,8 @@
   }
   function isDefinitionNote(s){
     var n=norm(s);
-    if(/^(?:[a-z]|mu|μ)(?:_\{?i\}?|_\{?j\}?|_i|_j)?\s+in\s+R/i.test(s))return true;
-    return /^[a-z](?:_\{?i\}?|_\{?j\}?|_i|_j)?\s*(?:=|in\s+r)/i.test(s) &&
+    if(/^(?:[a-z]|mu|μ)(?:_\{?i\}?|_\{?j\}?|_i|_j)?\s+in\s+R/.test(s))return true;
+    return /^[a-z](?:_\{?i\}?|_\{?j\}?|_i|_j)?\s*(?:=|in\s+r)/.test(s) &&
       /(la|so|mau|dac trung|feature|thanh phan|trung binh|don vi)/.test(n);
   }
   function formulaLabel(line,i){

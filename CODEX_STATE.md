@@ -1,5 +1,50 @@
 # CODEX_STATE
 
+Current task: E230_TESTER_FIX_LESSON_PICKER_RENDER_MISMATCH
+
+Status: PASS_BROWSER_SMOKE
+
+Date: 2026-07-06
+Branch: `main`
+
+Files changed:
+- `subjects/math/assets/theory_skin/theory-learning-path-E186.js`
+- `subjects/math/assets/theory_skin/theory-slideshow-reader-formula-accuracy-E224.js`
+- `subjects/math/index.html`
+- `CODEX_STATE.md`
+
+Root cause:
+- Selecting a lesson in the E186 lesson picker updated `e186Path/e169Path` and breadcrumb, then opened the activity picker, but it did not call the E129 render path.
+- Result: breadcrumb could show `Bài 1.6` while E129 Reader body and slideshow still used the previous lesson, usually `Bài 1.1`.
+
+Patch summary:
+- E186 lesson selection now calls `renderRoute()` immediately before opening the activity picker.
+- `index.html` bumps E186 cache from `?v=195` to `?v=230`.
+- E224 parser now treats uppercase matrix declarations like `X in R^{m x n}` as formula cards, while lowercase symbol explanations like `m = số mẫu` remain notes.
+
+Verification:
+- `node --check subjects/math/assets/theory_skin/theory-learning-path-E186.js`: PASS.
+- `node --check subjects/math/assets/theory_skin/theory-slideshow-reader-formula-accuracy-E224.js`: PASS.
+- Browser smoke on local static server: PASS.
+  - Opened Math page with E186 `?v=230`.
+  - Opened lesson picker from breadcrumb.
+  - Selected `Bài 1.6 · Từ vector sang ma trận dữ liệu`.
+  - Confirmed breadcrumb, Reader title, and Reader lessonId all changed to Bài 1.6 immediately.
+  - Confirmed activity picker still opens after lesson selection.
+  - Selected Lý thuyết, opened Trình chiếu, moved to slide 2.
+  - Confirmed slideshow header uses `§1.6 · Từ vector sang ma trận dữ liệu`.
+  - Clicked `Xem đầy đủ`.
+  - Confirmed E224 patched modal: `X in R^{m x n}` and `X = [x_1^T; ...; x_m^T]` render as matrix formula cards, while `m = số mẫu, n = số đặc trưng` renders as note.
+  - Confirmed no modal overflow in checked cards.
+- Console result:
+  - No new E186/E224 errors.
+  - Existing E209 warning remains: `slideshow data unavailable SyntaxError: Bad escaped character in JSON at position 9749`.
+
+Remaining risks:
+- Existing E209 slideshow data warning is outside this fix.
+
+---
+
 Current task: E229_READER_PRO_FORMULA_SPLIT_AUDIT_AND_FIX
 
 Status: PATCHED_NEEDS_LOCAL_BROWSER_SMOKE
