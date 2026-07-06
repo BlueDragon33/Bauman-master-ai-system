@@ -1,5 +1,54 @@
 # CODEX_STATE
 
+Current task: E218_READER_PRO_ADVANCED_PANEL_AND_FORMULA_POPUP
+
+Status: PASS
+
+Date: 2026-07-06
+Branch: `main`
+
+Files changed:
+- `subjects/math/assets/theory_skin/theory-slideshow-reader-content-E211.js`
+- `subjects/math/assets/theory_skin/theory-slideshow-reader-fit-E212.js`
+- `subjects/math/index.html`
+- `CODEX_STATE.md`
+
+Patch summary:
+- Removed the redundant Reader Pro source line `Bài đang được trình chiếu: ...` by clearing and hiding the E210/E202 source-line surface.
+- Changed the right panel into `Tham khảo thêm` / advanced-extension content, excluding self-check/basic repeat blocks and excluding formula blocks because formulas now have their own strip + popup.
+- Added `Xem công thức đầy đủ` in the formula strip and a modal using existing `#modal` / `#modalBody` with full formula, formula analysis, application, and Python usage.
+- Added a window-capture Escape guard so Escape closes the formula modal before E202 closes the deck; Escape still closes the deck when no formula modal is open.
+- Reduced box/panel title sizing in E212 while keeping body text readable; formula strip now wraps/scrolls internally instead of truncating with ellipsis.
+- Bumped E211/E212 cache busters to `v=218`.
+- Rebased over remote E216/E217 updates and kept E218 as the active Reader Pro layer; E211/E212 now remove old E215/E216/E217 injected style tags before applying E218 styles.
+
+Verification:
+- `node --check subjects/math/assets/theory_skin/theory-slideshow-reader-content-E211.js`: PASS
+- `node --check subjects/math/assets/theory_skin/theory-slideshow-reader-fit-E212.js`: PASS
+- Browser smoke: PASS on local static server.
+  - Opened Math page and Reader Pro slideshow.
+  - Confirmed source line is hidden/empty.
+  - Confirmed right panel does not contain self-check content and no longer repeats the formula strip on formula slides.
+  - Confirmed formula strip has `Xem công thức đầy đủ`.
+  - Confirmed modal opens with all four sections and Python fallback no longer misclassifies `chiều` as projection.
+  - Confirmed title sizes are compact while card body text remains readable.
+  - Confirmed no measured overflow escapes cards/panel/formula strip.
+  - Confirmed next/previous work.
+  - Confirmed Escape closes formula modal first, then closes deck when modal is closed.
+- Post-rebase browser smoke: PASS after resolving origin/main conflicts in E211/E212/index.
+
+Console result:
+- No new E218 console error observed.
+- Existing baseline warning still appears from E202/E209: `slideshow data unavailable SyntaxError: Bad escaped character in JSON at position 9749`. This was already present before E218 and was not edited in this task.
+
+Remaining risks:
+- C02/C03 Level C full smoke remains limited by the existing E209 JSON parse warning outside E218 scope.
+
+Next recommended task:
+- Fix the E209 slideshow data JSON parse warning before claiming clean C02/C03 Level C smoke.
+
+---
+
 Current task: E215_READER_PRO_EXTENSION_PANEL_AND_FIT_RULES
 
 Status: PATCHED_NEEDS_LOCAL_BROWSER_SMOKE
