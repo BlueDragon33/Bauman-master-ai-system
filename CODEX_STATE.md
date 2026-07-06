@@ -1,5 +1,58 @@
 # CODEX_STATE
 
+Current task: E223_READER_PRO_FORMULA_MODAL_AMBER_LESSON_LAYOUT
+
+Status: PASS
+
+Date: 2026-07-06
+Branch: `main`
+
+Files changed:
+- `subjects/math/assets/theory_skin/theory-slideshow-reader-content-E211.js`
+- `subjects/math/index.html`
+- `CODEX_STATE.md`
+
+Patch summary:
+- E211 release updated to `E223_READER_PRO_FORMULA_MODAL_AMBER_LESSON_LAYOUT`.
+- Formula popup theme shifted from cyan/teal neon to a darker amber/yellow-orange lesson popup:
+  - darker overlay and card gradient
+  - amber border/glow/accent buttons
+  - warm heading/context text with stronger contrast
+- Preserved the E222 compact centered popup frame and vertical right code panel.
+- Changed `formulaModalHtml` so the left content renders like a lesson:
+  - `Công thức đầy đủ` uses formula sub-boxes.
+  - `Phân tích công thức` uses stacked lesson boxes such as meaning/conditions/mistake guard.
+  - `Ứng dụng` uses stacked lesson boxes when content is long enough.
+  - Left column now scrolls as one lesson stack instead of forcing each section into a cramped mini-scroll.
+- Right code panel remains vertical and now includes:
+  - `Python snippet`
+  - `Ghi chú khi chạy`
+- E211 cache-buster changed from `?v=222` to `?v=223`.
+- E202 was not touched and no slideshow engine was added.
+
+Verification:
+- `git pull origin main`: PASS, fast-forwarded to remote before patch.
+- `node --check subjects/math/assets/theory_skin/theory-slideshow-reader-content-E211.js`: PASS.
+- Browser smoke on local static server: PASS.
+  - Opened Math page, Reader Pro slideshow, formula slide.
+  - Clicked `Xem đầy đủ`.
+  - Confirmed popup opens above slideshow.
+  - Confirmed amber/darker theme via live computed styles.
+  - Confirmed 3 left lesson sections and 6 `.e211-lesson-box` sub-boxes.
+  - Confirmed right code panel remains vertical and narrower than the left column.
+  - Confirmed sections no longer self-overflow; left lesson stack scrolls internally when needed.
+  - Confirmed Escape closes modal first, next/previous still work, second Escape closes deck.
+- Screenshot capture timed out in the in-app browser, so visual verification used live DOM/computed-style/layout measurements.
+
+Console result:
+- No new E211 errors observed.
+- Existing E202/E209 warning still appears: `slideshow data unavailable SyntaxError: Bad escaped character in JSON at position 9749`.
+
+Remaining risks:
+- C02/C03 Level C smoke is still affected by the existing E209 JSON parse warning outside E223 scope.
+
+---
+
 Current task: E222_READER_PRO_FORMULA_MODAL_COMPACT_NEON_FRAME
 
 Status: PATCHED_NEEDS_LOCAL_BROWSER_SMOKE

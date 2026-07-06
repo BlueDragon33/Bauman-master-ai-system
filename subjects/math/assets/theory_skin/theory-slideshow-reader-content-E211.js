@@ -1,7 +1,7 @@
-/* E222 Reader Pro content bridge: compact neon formula popup frame. */
+/* E223 Reader Pro content bridge: amber lesson formula popup. */
 (function(){
   'use strict';
-  var RELEASE='E222_READER_PRO_FORMULA_MODAL_COMPACT_NEON_FRAME';
+  var RELEASE='E223_READER_PRO_FORMULA_MODAL_AMBER_LESSON_LAYOUT';
   var records=[], byId={}, byTitle={}, ready=false, loading=false, last='', formulaPopupState=null, fallbackModal=null;
 
   function text(n){return (n&&n.textContent||'').replace(/\s+/g,' ').trim();}
@@ -90,8 +90,8 @@
   }
 
   function ensureStyle(){
-    if(document.getElementById('e222-reader-pro-style'))return;
-    ['e215-reader-pro-style','e216-reader-pro-style','e218-reader-pro-style','e219-reader-pro-style','e220-reader-pro-style','e221-reader-pro-style'].forEach(function(id){
+    if(document.getElementById('e223-reader-pro-style'))return;
+    ['e215-reader-pro-style','e216-reader-pro-style','e218-reader-pro-style','e219-reader-pro-style','e220-reader-pro-style','e221-reader-pro-style','e222-reader-pro-style'].forEach(function(id){
       var old=document.getElementById(id);
       if(old&&old.parentNode)old.parentNode.removeChild(old);
     });
@@ -121,9 +121,40 @@
       +'.e211-formula-modal pre{margin:0;white-space:pre-wrap;overflow:auto;color:#effffb;font-size:13.5px;line-height:1.43}'
       +'.e211-formula-code-panel{height:100%;background:linear-gradient(180deg,rgba(25,45,93,.88),rgba(7,19,42,.86))!important;border-color:rgba(196,181,253,.42)!important;box-shadow:inset 0 1px 0 rgba(255,255,255,.1),0 0 20px rgba(167,139,250,.18)!important}'
       +'.e211-formula-code-panel pre{max-height:none;min-height:0;font-size:12.8px;line-height:1.42}'
+      +'.e211-formula-full-btn{border-color:rgba(251,191,36,.48)!important;background:linear-gradient(180deg,rgba(92,56,12,.88),rgba(45,25,6,.9))!important;color:#fff7d6!important;box-shadow:0 0 14px rgba(245,158,11,.2)!important}'
+      +'.e211-formula-full-btn:hover{background:linear-gradient(180deg,rgba(146,83,10,.92),rgba(69,39,7,.95))!important;border-color:rgba(253,224,71,.76)!important}'
+      +'#modal.e211-formula-modal-host{background:radial-gradient(circle at 50% 40%,rgba(245,158,11,.16),rgba(10,8,5,.88) 54%,rgba(3,3,5,.96))!important}'
+      +'#modal.e211-formula-modal-host .modal-card{border-color:rgba(245,158,11,.64)!important;outline-color:rgba(251,191,36,.24)!important;background:linear-gradient(135deg,rgba(18,14,9,.99),rgba(47,28,8,.98) 47%,rgba(18,22,30,.99))!important;box-shadow:0 0 0 1px rgba(251,191,36,.18),0 0 34px rgba(245,158,11,.28),0 30px 90px rgba(0,0,0,.76),inset 0 1px 0 rgba(255,244,214,.12)!important}'
+      +'#modal.e211-formula-modal-host .modal-close{background:rgba(12,9,6,.82)!important;border-color:rgba(251,191,36,.42)!important;color:#fff7d6!important}'
+      +'.e211-formula-fallback{background:radial-gradient(circle at 50% 40%,rgba(245,158,11,.16),rgba(10,8,5,.88) 54%,rgba(3,3,5,.96))}'
+      +'.e211-formula-fallback-card{border-color:rgba(245,158,11,.64);outline-color:rgba(251,191,36,.24);background:linear-gradient(135deg,rgba(18,14,9,.99),rgba(47,28,8,.98) 47%,rgba(18,22,30,.99));box-shadow:0 0 0 1px rgba(251,191,36,.18),0 0 34px rgba(245,158,11,.28),0 30px 90px rgba(0,0,0,.76),inset 0 1px 0 rgba(255,244,214,.12)}'
+      +'.e211-formula-fallback-close{background:rgba(12,9,6,.82);border-color:rgba(251,191,36,.42);color:#fff7d6}'
+      +'.e211-formula-modal{color:#fff4dc}'
+      +'.e211-formula-modal header{border-bottom-color:rgba(251,191,36,.25);padding-bottom:11px}'
+      +'.e211-formula-modal h2{color:#fff7d6!important;text-shadow:0 0 18px rgba(245,158,11,.38)!important}'
+      +'.e211-formula-modal .e211-formula-context{color:#fed7aa!important;letter-spacing:.01em}'
+      +'.e211-formula-topgrid{display:block!important;overflow:auto!important;padding-right:4px;scrollbar-width:thin}'
+      +'.e211-formula-topgrid>section{margin-bottom:13px;overflow:visible!important}'
+      +'.e211-formula-topgrid>section:last-child{margin-bottom:0}'
+      +'.e211-formula-modal section{border-color:rgba(251,191,36,.28);background:linear-gradient(180deg,rgba(56,35,12,.78),rgba(17,19,24,.82));box-shadow:inset 0 1px 0 rgba(255,247,214,.08),0 0 18px rgba(245,158,11,.1);padding:13px}'
+      +'.e211-formula-modal h3{color:#fbbf24;margin-bottom:12px;letter-spacing:.11em}'
+      +'.e211-formula-modal p{color:#fff1d6;line-height:1.62}'
+      +'.e211-formula-modal pre{color:#fff8e7;line-height:1.52}'
+      +'.e211-lesson-stack{display:grid;gap:10px}'
+      +'.e211-lesson-stack.is-compact{gap:0}'
+      +'.e211-lesson-box{border:1px solid rgba(251,191,36,.2);border-radius:13px;background:linear-gradient(180deg,rgba(3,7,18,.42),rgba(26,18,9,.48));padding:12px 13px;box-shadow:inset 0 1px 0 rgba(255,255,255,.05)}'
+      +'.e211-lesson-stack.is-compact .e211-lesson-box{border-color:rgba(251,191,36,.16);background:rgba(3,7,18,.28)}'
+      +'.e211-lesson-box h4{margin:0 0 7px;color:#fde68a;font-size:11.5px;line-height:1.2;letter-spacing:.08em;text-transform:uppercase}'
+      +'.e211-lesson-box p{font-size:14.5px;line-height:1.62;margin:0}'
+      +'.e211-lesson-box pre{font-size:13.5px;line-height:1.5;margin:0;white-space:pre-wrap;overflow-wrap:anywhere}'
+      +'.e211-formula-code-panel{background:linear-gradient(180deg,rgba(39,25,10,.9),rgba(8,10,16,.9))!important;border-color:rgba(251,191,36,.34)!important;box-shadow:inset 0 1px 0 rgba(255,255,255,.08),0 0 20px rgba(245,158,11,.14)!important}'
+      +'.e211-code-stack{display:grid;grid-template-rows:minmax(0,1fr) auto;gap:10px;height:calc(100% - 28px);min-height:0}'
+      +'.e211-code-stack .e211-lesson-box{min-height:0;overflow:auto}'
+      +'.e211-code-stack pre{font-size:12.6px;line-height:1.45}'
+      +'.e211-code-note{font-size:12.5px!important;color:#fed7aa!important;line-height:1.5!important}'
       +'@media(max-width:980px){#modal.e211-formula-modal-host .modal-card,.e211-formula-fallback-card{width:min(94vw,calc(100vw - 28px));height:min(86vh,calc(100vh - 28px));outline-offset:4px}.e211-formula-bodygrid{grid-template-columns:1fr;grid-template-rows:minmax(0,1fr) minmax(160px,.35fr);overflow:auto}.e211-formula-topgrid{grid-template-rows:repeat(3,minmax(145px,1fr));overflow:visible}.e211-formula-code-panel{height:auto}}';
     var st=document.createElement('style');
-    st.id='e222-reader-pro-style';
+    st.id='e223-reader-pro-style';
     st.textContent=css;
     document.head.appendChild(st);
   }
@@ -226,13 +257,68 @@
     if(String(f||'').indexOf('||')>=0)return 'Trong AI và xử lý tín hiệu, các phép đo vector thường dùng để so sánh mẫu, phát hiện sai lệch, đo độ tương đồng và chọn láng giềng gần nhất. Với robot hoặc cảm biến, cùng một công thức có thể đổi ý nghĩa nếu vector trạng thái dùng đơn vị khác nhau.';
     return 'Ứng dụng công thức như một phép kiểm tra giữa mô hình toán và dữ liệu: kết quả phải đúng về đơn vị, chiều dữ liệu và ý nghĩa kỹ thuật.';
   }
+  function splitFormulaLines(f){
+    return String(f||'').split(/\n+/).map(function(x){return x.replace(/\s+/g,' ').trim();}).filter(Boolean);
+  }
+  function splitSentences(s){
+    var clean=String(s||'').replace(/\s+/g,' ').trim(), out=[], m, re=/[^.!?]+[.!?]?/g;
+    while((m=re.exec(clean))){var v=m[0].trim(); if(v)out.push(v);}
+    return out.length?out:(clean?[clean]:[]);
+  }
+  function chunkLessonText(text,labels,maxLen){
+    var clean=String(text||'').replace(/\s+/g,' ').trim();
+    if(!clean)return [];
+    var sentences=splitSentences(clean);
+    if(clean.length<230&&sentences.length<3)return [{title:labels[0]||'Ghi chú',body:clean}];
+    var items=[], current='', labelIndex=0;
+    sentences.forEach(function(sentence){
+      if(current&&(current+' '+sentence).length>maxLen&&items.length<labels.length-1){
+        items.push({title:labels[labelIndex]||('Ý '+(labelIndex+1)),body:current});
+        labelIndex+=1;
+        current=sentence;
+      }else{
+        current=current?(current+' '+sentence):sentence;
+      }
+    });
+    if(current)items.push({title:labels[labelIndex]||('Ý '+(labelIndex+1)),body:current});
+    return items.slice(0,labels.length);
+  }
+  function formulaLessonItems(f){
+    var lines=splitFormulaLines(f);
+    if(lines.length<=1)return [{title:'Công thức chính',body:String(f||'').trim(),code:true}];
+    return lines.map(function(line,i){return {title:'Công thức '+(i+1),body:line,code:true};});
+  }
+  function analysisLessonItems(f){
+    var items=chunkLessonText(formulaAnalysis(f),['Ý nghĩa đại lượng','Điều kiện áp dụng','Sai lầm thường gặp'],155);
+    if(items.length<3){
+      items.push({title:'Sai lầm thường gặp',body:'Không thay số khi chưa kiểm tra cùng chiều dữ liệu, cùng đơn vị và cùng quy ước chuẩn hóa; nếu không, kết quả có thể đúng công thức nhưng sai ngữ cảnh.'});
+    }
+    return items.slice(0,3);
+  }
+  function applicationLessonItems(f,appBody){
+    return chunkLessonText(formulaApplication(f,appBody),['Ứng dụng 1','Ứng dụng 2','Ứng dụng 3'],165);
+  }
+  function lessonStackHtml(items,cls){
+    items=(items||[]).filter(function(item){return item&&item.body;});
+    var compact=items.length<=1?' is-compact':'';
+    return '<div class="e211-lesson-stack '+esc(cls||'')+compact+'">'+items.map(function(item){
+      var body=item.code?('<pre>'+esc(item.body)+'</pre>'):('<p>'+esc(item.body)+'</p>');
+      return '<article class="e211-lesson-box"><h4>'+esc(item.title||'Ghi chú')+'</h4>'+body+'</article>';
+    }).join('')+'</div>';
+  }
+  function codePanelHtml(code){
+    return '<section class="e211-formula-code-panel"><h3>Cách dùng trong code Python</h3><div class="e211-code-stack">'+
+      '<article class="e211-lesson-box"><h4>Python snippet</h4><pre>'+esc(code)+'</pre></article>'+
+      '<article class="e211-lesson-box"><h4>Ghi chú khi chạy</h4><p class="e211-code-note">Thay dấu `...` bằng dữ liệu thật, kiểm tra shape/unit trước khi tính, rồi so kết quả với ý nghĩa của bài học.</p></article>'+
+      '</div></section>';
+  }
   function formulaModalHtml(ctx){
     var f=ctx.formula||'', slide=ctx.slide||{}, appBody=blockBody(ctx.applicationBlock), code=pythonUsageForFormula(f);
     return '<div class="e211-formula-modal"><header><h2>Công thức đầy đủ</h2><p class="e211-formula-context">'+esc(slide.title||'')+'</p></header><div class="e211-formula-bodygrid"><div class="e211-formula-topgrid">'+
-      '<section><h3>Công thức đầy đủ</h3><pre>'+esc(f)+'</pre></section>'+
-      '<section><h3>Phân tích công thức</h3><p>'+esc(formulaAnalysis(f))+'</p></section>'+
-      '<section><h3>Ứng dụng</h3><p>'+esc(formulaApplication(f,appBody))+'</p></section>'+
-      '</div><section class="e211-formula-code-panel"><h3>Cách dùng trong code Python</h3><pre>'+esc(code)+'</pre></section></div></div>';
+      '<section><h3>Công thức đầy đủ</h3>'+lessonStackHtml(formulaLessonItems(f),'is-formula')+'</section>'+
+      '<section><h3>Phân tích công thức</h3>'+lessonStackHtml(analysisLessonItems(f),'is-analysis')+'</section>'+
+      '<section><h3>Ứng dụng</h3>'+lessonStackHtml(applicationLessonItems(f,appBody),'is-application')+'</section>'+
+      '</div>'+codePanelHtml(code)+'</div></div>';
   }
   function ensureFallbackModal(){
     if(fallbackModal)return fallbackModal;
