@@ -4,16 +4,21 @@
   var RELEASE='E229_READER_PRO_FORMULA_SPLIT_AUDIT_AND_FIX';
   var patching=false;
   var NOTE_STARTERS=[
-    'neu','hoac','voi','trong do','khi','day la','moi','dieu kien',
+    'neu','hoac','voi','trong do','khi','day la','moi','dieu kien','co nghiem',
     'a va','b va','c va','nhan xet','luu y'
   ];
 
   function esc(s){return String(s==null?'':s).replace(/[&<>"']/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c];});}
-  function norm(s){return String(s||'').toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g,'');}
+  function norm(s){return String(s||'').toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g,'').replace(/đ/g,'d');}
   function compact(s){return String(s||'').replace(/\s+/g,' ').trim();}
   function clean(s){return String(s||'').replace(/\r/g,'\n').replace(/[ \t]+/g,' ').replace(/\n{2,}/g,'\n').trim();}
   function isBoundaryBefore(text,i){return i<=0 || /[\s([{;:]/.test(text.charAt(i-1));}
   function prevNonSpace(text,i){for(var j=i-1;j>=0;j--)if(!/\s/.test(text.charAt(j)))return text.charAt(j);return '';}
+  function prevWord(text,i){
+    var left=text.slice(0,i).replace(/\s+$/,'');
+    var m=left.match(/([A-Za-zÀ-ỹ]+)$/);
+    return m?norm(m[1]):'';
+  }
   function noteStarterAt(text,i){
     if(!isBoundaryBefore(text,i))return '';
     var t=norm(text.slice(i,i+28));
@@ -54,6 +59,7 @@
   function formulaStartAt(text,i){
     if(!isBoundaryBefore(text,i) || depthAt(text,i)>0)return false;
     if(/[·⋅]/.test(prevNonSpace(text,i)))return false;
+    if(prevWord(text,i)==='dim')return false;
     var tail=text.slice(i), eq=topLevelEqualsIndex(tail,120), head=eq>=0?tail.slice(0,eq+1):'';
     return (eq>=0 && (
       /^\|\|.{1,80}\|\|[^\s=]{0,16}\s*=$/.test(head) ||
@@ -92,7 +98,7 @@
       }
     }
     var noteIdx=-1;
-    [' trong đó ',' nếu ',' khi ',' với ',' đây là ',' mỗi ',' điều kiện '].forEach(function(mark){
+    [' trong do ',' neu ',' khi ',' voi ',' day la ',' moi ',' dieu kien', ' co nghiem ', ' la '].forEach(function(mark){
       if(noteIdx>=0)return;
       var idx=norm(' '+s).indexOf(mark);
       if(idx>0)noteIdx=idx-1;
@@ -102,6 +108,7 @@
   function noteTitle(s){
     var n=norm(s);
     if(/neu|khi|dieu kien|mau so|khong dung/.test(n))return 'Điều kiện sử dụng';
+    if(/co nghiem/.test(n))return 'Điều kiện sử dụng';
     if(/pattern|gan nhau|nhan xet|a va|b va|c va/.test(n))return 'Nhận xét';
     if(/in\s+r|trong do|moi|la|so|dac trung|feature|thanh phan/.test(n))return 'Ý nghĩa ký hiệu';
     return 'Ghi chú';
@@ -121,6 +128,8 @@
     if(/^mu\s*=|^μ\s*=/.test(n))return 'Vector trung bình';
     if(/^cos/.test(n))return 'Cosine similarity';
     if(/^d\s*\(/i.test(raw)||/distance|khoang cach|x-y/.test(n))return 'Khoảng cách Euclid';
+    if(/^proj/.test(raw)||/projection|phep chieu/.test(n))return 'Phép chiếu';
+    if(/perp/.test(n))return 'Thành phần vuông góc';
     if(/[·⋅]/.test(raw)||/dot|tich vo huong/.test(n))return 'Tích vô hướng';
     if(/^\|\|/.test(raw)||/norm|chuan/.test(n))return 'Chuẩn vector';
     if(/rank|dim|col\(/.test(n))return 'Hạng và không gian con';

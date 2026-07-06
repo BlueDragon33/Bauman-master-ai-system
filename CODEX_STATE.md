@@ -1,5 +1,56 @@
 # CODEX_STATE
 
+Current task: E231_READER_PRO_FORMULA_BATCH2_SMOKE
+
+Status: PASS_BROWSER_SMOKE
+
+Date: 2026-07-06
+Branch: `main`
+
+Files changed:
+- `subjects/math/assets/theory_skin/theory-slideshow-reader-formula-accuracy-E224.js`
+- `subjects/math/index.html`
+- `CODEX_STATE.md`
+
+Root cause:
+- Browser smoke found a real E224 parser bug: `norm()` removed combining Vietnamese accents but did not normalize `đ/Đ` to `d`.
+- Because of that, note starters such as `Điều kiện:` normalized to `đieu kien:` and did not match the parser starter `dieu kien`.
+- Result: `Điều kiện: x và y phải cùng số chiều` stayed inside the formula card for §1.3 slide 2.
+
+Patch summary:
+- E224 `norm()` now converts `đ` to `d` after NFD accent stripping.
+- Kept the E229 top-level parser rules intact:
+  - no split inside `()`, `[]`, `{}`, or `||...||`;
+  - matrix/vector stacks stay one formula card;
+  - Vietnamese notes become note cards;
+  - `rank(A)=dim Col(A)=dim Row(A)` is not split at `Col(A)`;
+  - `proj_y(x)` and `x_perp` keep semantic labels.
+- `index.html` keeps E224 cache at `?v=231`.
+
+Browser smoke:
+- Local no-cache browser smoke was run against `http://127.0.0.1:8774/index.html`.
+- Loaded `subjects/math/index.html` with E224 `?v=231`.
+- Tested:
+  - §1.1 slide 6: norm/dot/distance/cosine render as four formula cards.
+  - §1.1 slide 8: Vector A/B/C split into A, B, C formula cards plus `Nhận xét` note.
+  - §1.3 slide 2: `x · y = sum_i x_i y_i` stays formula; `Điều kiện...` becomes note card.
+  - §1.3 slide 5: dot/cosine formulas stay whole.
+  - §1.3 slide 6: `cos`, `proj_y(x)`, and `x_perp` render as separate semantic formula cards.
+  - §1.6 slide 2: `X ∈ R^{m x n}` and `X = [x_1^T; ...; x_m^T]` stay formula cards; `m/n` explanation is a note.
+  - §2.3 slide 5: `Col(A)=span(...)` and `rank(A)=dim Col(A)=dim Row(A)` render as two formula cards.
+  - §2.3 slide 6: `Ax=b` is formula; `có nghiệm khi b thuộc Col(A)` is a condition note.
+
+Verification:
+- `node --check subjects/math/assets/theory_skin/theory-slideshow-reader-formula-accuracy-E224.js`: PASS.
+- Browser console: no new E224 errors.
+- Existing E209 warning remains and is outside this parser task: `slideshow data unavailable SyntaxError: Bad escaped character in JSON at position 9749`.
+
+Remaining risks:
+- E224 formula popup enhancement can appear after a short E211/E224 post-render delay; verified after waiting for the visible `Xem đầy đủ` button.
+- Existing E209 slideshow data warning still needs a separate task if it matters.
+
+---
+
 Current task: E230_TESTER_FIX_LESSON_PICKER_RENDER_MISMATCH
 
 Status: PASS_BROWSER_SMOKE
