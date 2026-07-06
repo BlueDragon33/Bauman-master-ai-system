@@ -1,7 +1,7 @@
-/* E226 Reader Pro formula modal accuracy bridge. Formula typography patch, not a slideshow engine. */
+/* E227 Reader Pro formula modal accuracy bridge. Inline example split + formula typography, not a slideshow engine. */
 (function(){
   'use strict';
-  var RELEASE='E226_READER_PRO_FORMULA_TYPOGRAPHY';
+  var RELEASE='E227_READER_PRO_FORMULA_EXAMPLE_SPLIT';
 
   function esc(s){return String(s==null?'':s).replace(/[&<>"']/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c];});}
   function norm(s){return String(s||'').toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g,'').replace(/§/g,'').replace(/[^a-z0-9.]+/g,' ').trim();}
@@ -13,11 +13,39 @@
     var txt=holders.map(function(p){return compact(p.getAttribute('data-e226-raw-formula')||p.textContent);}).filter(Boolean).join('\n');
     return txt||compact(formulaSection&&formulaSection.textContent||'');
   }
-  function formulaLines(f){
+  function baseFormulaLines(f){
     var raw=String(f||'').replace(/\r/g,'\n');
     var lines=raw.split(/\n+/).map(compact).filter(Boolean);
     if(lines.length<=1&&/[;，]/.test(raw))lines=raw.split(/[;，]/).map(compact).filter(Boolean);
     return lines.length?lines:[compact(raw)].filter(Boolean);
+  }
+  function splitKnownFormulaLine(line){
+    var s=compact(line);
+    if(!s)return [];
+    s=s.replace(/\s+(?=(?:\|\|[^=]{1,28}\|\|_?\d*\s*=|[A-Za-z]\s*[·⋅]\s*[A-Za-z]\s*=|d\s*\([^)]*\)\s*=|cos\s*\([^)]*\)\s*=|∇\s*[A-Za-z0-9_{}]*\s*=))/g,'\n');
+    return s.split(/\n+/).map(compact).filter(Boolean);
+  }
+  function vectorExampleItems(line){
+    var s=compact(line), re=/(^|\s)([A-Z][A-Za-z0-9]*)\s*=\s*(\[[^\]]+\])/g, m, out=[], lastEnd=0;
+    while((m=re.exec(s))){
+      out.push({title:'Vector '+m[2],body:m[2]+' = '+m[3],math:true});
+      lastEnd=re.lastIndex;
+    }
+    if(out.length<2)return null;
+    var note=compact(s.slice(lastEnd));
+    if(note)out.push({title:'Nhận xét',body:note,math:false});
+    return out;
+  }
+  function formulaItems(f){
+    var items=[];
+    baseFormulaLines(f).forEach(function(line){
+      var vectorItems=vectorExampleItems(line);
+      if(vectorItems){items=items.concat(vectorItems);return;}
+      splitKnownFormulaLine(line).forEach(function(part,i){
+        items.push({title:formulaLabel(part,i),body:part,math:true});
+      });
+    });
+    return items.length?items:[{title:'Công thức chính',body:compact(f),math:true}];
   }
   function kind(f){
     var raw=String(f||''), n=norm(raw);
@@ -27,11 +55,13 @@
       distance:/distance|khoang cach|d x y|x-y/.test(n)||raw.indexOf('x-y')>=0||raw.indexOf('x - y')>=0,
       cosine:/cos|cosine/.test(n),
       gradient:/gradient|grad|nabla/.test(n)||raw.indexOf('∇')>=0,
-      matrix:/matrix|ma tran|ax|linear|tuyen tinh/.test(n)
+      matrix:/matrix|ma tran|ax|linear|tuyen tinh/.test(n),
+      vectorExample:/\b[A-Z][A-Za-z0-9]*\s*=\s*\[[^\]]+\]\s+\b[A-Z][A-Za-z0-9]*\s*=\s*\[[^\]]+\]/.test(raw)
     };
   }
   function formulaLabel(line,i){
     var raw=String(line||''), n=norm(raw);
+    if(/^vector\s+/i.test(raw))return raw;
     if(/cos|cosine/.test(n))return 'Cosine similarity';
     if(/distance|khoang cach|d x y|x-y/.test(n)||raw.indexOf('x-y')>=0||raw.indexOf('x - y')>=0)return 'Khoảng cách Euclid';
     if(/dot|sum_i x_i y_i|tich vo huong/.test(n)||raw.indexOf('·')>=0||raw.indexOf('⋅')>=0)return 'Tích vô hướng';
@@ -65,12 +95,13 @@
   function stack(html,extraClass){return '<div class="e211-lesson-stack '+esc(extraClass||'')+'">'+html.join('')+'</div>';}
 
   function formulaBoxes(f){
-    return stack(formulaLines(f).map(function(line,i){
-      return box(formulaLabel(line,i),line,true,'e225-formula-box e226-formula-box');
-    }),'e225-formula-stack e226-formula-stack');
+    return stack(formulaItems(f).map(function(item){
+      return box(item.title,item.body,item.math!==false,'e225-formula-box e226-formula-box '+(item.math===false?'e227-note-box':''));
+    }),'e225-formula-stack e226-formula-stack e227-formula-stack');
   }
   function analysisBoxes(f){
     var k=kind(f), out=[];
+    if(k.vectorExample)out.push(box('Ví dụ vector','Các vector A, B, C là các mẫu dữ liệu nhiều chiều. Mỗi tọa độ biểu diễn một đặc trưng; hai vector gần nhau khi các thành phần tương ứng có xu hướng gần nhau sau cùng thang đo.',false));
     if(k.norm)out.push(box('Chuẩn vector','‖x‖₂ là độ dài Euclid của vector x. Nó gom toàn bộ các thành phần xᵢ thành một độ lớn duy nhất, dùng để đo biên độ hoặc chuẩn hóa vector.',false));
     if(k.dot)out.push(box('Tích vô hướng','x · y = ∑ xᵢyᵢ. Nó đo mức hai vector cùng hướng có xét độ lớn; kết quả bằng 0 khi hai vector trực giao trong không gian Euclid.',false));
     if(k.distance)out.push(box('Khoảng cách','d(x,y) = ‖x-y‖₂ đo độ lệch giữa hai vector cùng chiều. Không dùng được nếu hai vector khác thứ tự thành phần, khác đơn vị hoặc chưa chuẩn hóa cùng kiểu.',false));
@@ -82,6 +113,7 @@
   }
   function applicationBoxes(f){
     var k=kind(f), out=[];
+    if(k.vectorExample)out.push(box('Nhận dạng pattern','Ví dụ vector dùng để minh họa so sánh mẫu: A và B có các tọa độ gần nhau hơn C nên có thể cùng nhóm hoặc cùng pattern sau khi chuẩn hóa.',false));
     if(k.distance)out.push(box('So sánh mẫu','Distance dùng để tìm mẫu gần nhất, phát hiện sai lệch cảm biến hoặc đo độ khác nhau giữa hai trạng thái kỹ thuật.',false));
     if(k.cosine||k.dot)out.push(box('Tìm tương đồng','Dot product và cosine dùng trong embedding, tìm kiếm vector, phân loại tín hiệu và kiểm tra hai mẫu có cùng xu hướng hay không.',false));
     if(k.norm)out.push(box('Chuẩn hóa dữ liệu','Norm dùng để đưa vector về cùng thang đo, kiểm soát biên độ và phát hiện vector bất thường.',false));
@@ -92,6 +124,9 @@
   }
   function pythonCode(f){
     var k=kind(f);
+    if(k.vectorExample){
+      return 'import numpy as np\n\nA = np.array([100, 40, 0.01], dtype=float)\nB = np.array([110, 44, 0.012], dtype=float)\nC = np.array([20, 300, 0.20], dtype=float)\n\ndef dist(u, v):\n    return np.linalg.norm(u - v)\n\nprint(dist(A, B), dist(A, C))';
+    }
     if((k.norm&&k.dot)||k.cosine||k.distance){
       return 'import numpy as np\n\nx = np.array([1.0, 2.0, 3.0])\ny = np.array([2.0, 0.0, 4.0])\n\nnorm_x = np.linalg.norm(x)\nnorm_y = np.linalg.norm(y)\ndot_xy = float(x @ y)\ndistance_xy = np.linalg.norm(x - y)\ncos_xy = dot_xy / (norm_x * norm_y)';
     }
@@ -110,7 +145,7 @@
     return 'import sympy as sp\n\nx = sp.symbols("x")\nexpr = x**2 + 2*x + 1\nresult = sp.simplify(expr)';
   }
   function ensureStyle(){
-    if(document.getElementById('e226-formula-typography-style'))return;
+    if(document.getElementById('e227-formula-example-style'))return;
     var css=''
       +'.e211-formula-modal .e225-formula-stack{display:grid!important;gap:14px!important}'
       +'.e211-formula-modal .e225-formula-box{display:block!important;padding:12px 14px 14px!important;border-left:3px solid rgba(251,191,36,.55)!important}'
@@ -119,11 +154,12 @@
       +'.e211-formula-modal .e226-math{display:block!important;margin:0!important;padding:11px 12px!important;border-radius:10px!important;background:rgba(3,7,18,.42)!important;white-space:normal!important;word-break:normal!important;overflow-wrap:anywhere!important;line-height:1.62!important;color:#fffaf0!important;font-family:Cambria Math,STIX Two Math,Times New Roman,serif!important;font-size:clamp(17px,1.25vw,22px)!important;letter-spacing:.01em!important}'
       +'.e211-formula-modal .e226-math sup{font-size:.7em!important;vertical-align:super!important;line-height:0!important;margin-left:1px!important}'
       +'.e211-formula-modal .e226-math sub{font-size:.7em!important;vertical-align:sub!important;line-height:0!important;margin-left:1px!important}'
+      +'.e211-formula-modal .e227-note-box p{display:block!important;margin:0!important;padding:10px 11px!important;border-radius:10px!important;background:rgba(251,191,36,.08)!important;color:#fff7ed!important;line-height:1.55!important}'
       +'.e211-formula-modal .e226-math .frac{display:inline-grid!important;grid-template-rows:auto auto!important;text-align:center!important;vertical-align:middle!important;margin:0 4px!important}'
       +'.e211-formula-modal .e226-math .frac>span:first-child{border-bottom:1px solid currentColor!important;padding:0 4px 2px!important}'
       +'.e211-formula-modal .e226-math .frac>span:last-child{padding:2px 4px 0!important}';
     var s=document.createElement('style');
-    s.id='e226-formula-typography-style';
+    s.id='e227-formula-example-style';
     s.textContent=css;
     document.head.appendChild(s);
   }
@@ -132,7 +168,7 @@
     var prev=modal.getAttribute('data-e224-source-formula')||'';
     var f=formulaText(modal);
     if(!f)return;
-    if(modal.getAttribute('data-e226-typography')==='1'&&prev===f)return;
+    if(modal.getAttribute('data-e227-example-split')==='1'&&prev===f)return;
     ensureStyle();
     var sections=Array.prototype.slice.call(modal.querySelectorAll('section'));
     sections.forEach(function(sec){
@@ -146,6 +182,7 @@
     modal.setAttribute('data-e224-accuracy','1');
     modal.setAttribute('data-e225-stack','1');
     modal.setAttribute('data-e226-typography','1');
+    modal.setAttribute('data-e227-example-split','1');
   }
   function scan(){
     Array.prototype.slice.call(document.querySelectorAll('.e211-formula-modal')).forEach(patchModal);
