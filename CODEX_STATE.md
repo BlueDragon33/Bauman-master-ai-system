@@ -1,6 +1,6 @@
 # CODEX_STATE
 
-Current task: E221_READER_PRO_FORMULA_MODAL_VERTICAL_CODE_LAYOUT
+Current task: E222_READER_PRO_FORMULA_MODAL_COMPACT_NEON_FRAME
 
 Status: PATCHED_NEEDS_LOCAL_BROWSER_SMOKE
 
@@ -12,30 +12,37 @@ Files changed:
 - `subjects/math/index.html`
 - `CODEX_STATE.md`
 
-Why E221 was made:
-- User screenshot showed the Python code panel was still horizontal at the bottom of the formula popup.
-- User clarified that the code panel must be a vertical panel, not a horizontal bottom band.
+Why E222 was made:
+- User requested the formula popup frame to look more polished: add an outer border, reduce the full formula frame size by roughly 1/10, keep it centered, and make the neon background slightly brighter.
 
-E221 patch summary:
-- E211 release: `E221_READER_PRO_FORMULA_MODAL_VERTICAL_CODE`.
-- Formula popup layout changed from bottom-code layout to a two-column body layout:
-  - left wide column: three horizontal information panels stacked vertically:
-    1. `Công thức đầy đủ`
-    2. `Phân tích công thức`
-    3. `Ứng dụng`
-  - right narrow column: one vertical Python code panel.
-- The code panel is narrower than the left content column and spans the popup body height.
-- The popup still stays above the slideshow layer with top-layer z-index.
-- Existing formula content, analysis, application, and Python code generation logic are preserved.
+E222 patch summary:
+- E211 release: `E222_READER_PRO_FORMULA_MODAL_COMPACT_NEON_FRAME`.
+- Formula popup card size reduced by roughly 10%:
+  - width changed from about `1180px` to about `1062px`.
+  - height changed from about `720px` to about `648px`.
+  - responsive sizing now uses a tighter 90vw/90vh ceiling.
+- Popup remains centered with `margin:auto` and grid centering on the overlay.
+- Added a stronger outside frame:
+  - 2px teal border.
+  - subtle external outline with offset.
+  - extra cyan/teal glow layer.
+- Background made slightly brighter and more neon:
+  - radial teal overlay behind the card.
+  - brighter blue/teal gradient inside the card.
+  - brighter panel borders and mild inner glow.
+- Existing vertical code layout from E221 was preserved:
+  - left wide column: three stacked panels.
+  - right narrow column: vertical Python code panel.
+- Existing top-layer z-index behavior was preserved, so the popup should remain above the slideshow.
 - No new slideshow engine was created.
 - E202 remains the slideshow engine.
 - E210 remains identity-only.
 - E211 remains Reader Pro content bridge only.
-- E212 was not changed in E221.
+- E212 was not changed in E222.
 - E190/E191/E192/E193/E195 were not re-enabled.
 
 Cache-busters changed:
-- E211: `?v=220` -> `?v=221`
+- E211: `?v=221` -> `?v=222`
 - E212 unchanged: `?v=219`
 - E202 unchanged.
 - E210 unchanged.
@@ -50,32 +57,29 @@ Required local browser smoke:
 2. Hard refresh browser.
 3. Open Reader Pro formula slide.
 4. Click `Xem đầy đủ`.
-5. Confirm formula popup appears above slideshow.
-6. Confirm layout:
-   - left side has three horizontal panels stacked vertically.
-   - right side has one vertical code panel.
-   - code panel is narrower than the left column and spans the popup body height.
-7. Confirm content is visible/scrollable and no panel is hidden behind the slideshow.
-8. Confirm close button and Escape close the formula popup before closing the deck.
-9. Browser console should not show new E211 errors.
+5. Confirm popup is smaller by roughly 10%, centered, and still above slideshow.
+6. Confirm the outside border/outline is visible and looks clean, not cramped.
+7. Confirm neon background is slightly brighter but still readable.
+8. Confirm vertical code panel layout remains correct.
+9. Confirm content is visible/scrollable and close/Escape still work.
+10. Browser console should not show new E211 errors.
 
 Known remaining blocker/risk:
 - Earlier smoke found C02/C03 Level C blocked by upstream slideshow data parse issue:
   `slideshow data unavailable SyntaxError: Bad escaped character in JSON at position 9749`.
-- Because E221 was patched from ChatGPT without browser smoke, it must be verified locally before claiming PASS.
+- Because E222 was patched from ChatGPT without browser smoke, it must be verified locally before claiming PASS.
 
 Next safe task if local smoke still fails:
 - Patch-only E211.
 - Do not touch E202.
 - Do not create a new slideshow engine.
 - Do not scan the whole repo.
-- Use screenshot + selector evidence to adjust only formula modal layout.
+- Use screenshot + selector evidence to adjust only formula modal frame/background.
 
 ---
 
-Previous task: E220_READER_PRO_FORMULA_MODAL_TOP_LAYER_LAYOUT
+Previous task: E221_READER_PRO_FORMULA_MODAL_VERTICAL_CODE_LAYOUT
 
-Previous E220 summary:
-- Raised formula popup above slideshow.
-- Restyled popup as mini-presentation.
-- E220 still placed Python code as a horizontal bottom panel; E221 corrects it into a vertical side panel.
+Previous E221 summary:
+- Changed the formula popup from bottom horizontal code panel to a vertical side code panel.
+- E222 preserves that structure and only improves the frame size, outer border, centering, and neon background.
