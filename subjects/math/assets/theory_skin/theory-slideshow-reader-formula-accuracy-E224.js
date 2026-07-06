@@ -1,7 +1,7 @@
-/* E224 Reader Pro formula modal accuracy bridge. Content-only patch, not a slideshow engine. */
+/* E225 Reader Pro formula modal accuracy bridge. Formula readability patch, not a slideshow engine. */
 (function(){
   'use strict';
-  var RELEASE='E224_READER_PRO_FORMULA_MODAL_ACCURACY_BRIDGE';
+  var RELEASE='E225_READER_PRO_FORMULA_STACK_READABILITY';
 
   function esc(s){return String(s==null?'':s).replace(/[&<>"']/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c];});}
   function norm(s){return String(s||'').toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g,'').replace(/§/g,'').replace(/[^a-z0-9.]+/g,' ').trim();}
@@ -40,13 +40,16 @@
     if(/matrix|ma tran|ax/.test(n))return 'Công thức ma trận';
     return 'Công thức '+(i+1);
   }
-  function box(title,body,pre){
-    return '<article class="e211-lesson-box"><h4>'+esc(title)+'</h4>'+(pre?'<pre>'+esc(body)+'</pre>':'<p>'+esc(body)+'</p>')+'</article>';
+  function box(title,body,pre,extraClass){
+    var cls='e211-lesson-box '+(extraClass||'');
+    return '<article class="'+esc(cls)+'"><h4>'+esc(title)+'</h4>'+(pre?'<pre>'+esc(body)+'</pre>':'<p>'+esc(body)+'</p>')+'</article>';
   }
-  function stack(html){return '<div class="e211-lesson-stack">'+html.join('')+'</div>';}
+  function stack(html,extraClass){return '<div class="e211-lesson-stack '+esc(extraClass||'')+'">'+html.join('')+'</div>';}
 
   function formulaBoxes(f){
-    return stack(formulaLines(f).map(function(line,i){return box(formulaLabel(line,i),line,true);}));
+    return stack(formulaLines(f).map(function(line,i){
+      return box(formulaLabel(line,i),line,true,'e225-formula-box');
+    }),'e225-formula-stack');
   }
   function analysisBoxes(f){
     var k=kind(f), out=[];
@@ -88,10 +91,26 @@
     }
     return 'import sympy as sp\n\nx = sp.symbols("x")\nexpr = x**2 + 2*x + 1\nresult = sp.simplify(expr)';
   }
+  function ensureStyle(){
+    if(document.getElementById('e225-formula-stack-style'))return;
+    var css=''
+      +'.e211-formula-modal .e225-formula-stack{display:grid!important;gap:14px!important}'
+      +'.e211-formula-modal .e225-formula-box{display:block!important;padding:12px 14px 14px!important;border-left:3px solid rgba(251,191,36,.55)!important}'
+      +'.e211-formula-modal .e225-formula-box h4{display:block!important;margin:0 0 9px!important;padding-bottom:7px!important;border-bottom:1px solid rgba(251,191,36,.2)!important;color:#fde68a!important;line-height:1.25!important}'
+      +'.e211-formula-modal .e225-formula-box pre{display:block!important;margin:0!important;padding:10px 11px!important;border-radius:10px!important;background:rgba(3,7,18,.38)!important;white-space:pre-wrap!important;word-break:break-word!important;line-height:1.55!important;color:#fffaf0!important}'
+      +'.e211-formula-modal .e225-formula-box + .e225-formula-box{margin-top:2px!important}';
+    var s=document.createElement('style');
+    s.id='e225-formula-stack-style';
+    s.textContent=css;
+    document.head.appendChild(s);
+  }
   function patchModal(modal){
-    if(!modal||modal.getAttribute('data-e224-accuracy')==='1')return;
+    if(!modal)return;
+    var prev=modal.getAttribute('data-e224-source-formula')||'';
     var f=formulaText(modal);
     if(!f)return;
+    if(modal.getAttribute('data-e225-stack')==='1'&&prev===f)return;
+    ensureStyle();
     var sections=Array.prototype.slice.call(modal.querySelectorAll('section'));
     sections.forEach(function(sec){
       var h=compact(sec.querySelector('h3')&&sec.querySelector('h3').textContent);
@@ -100,7 +119,9 @@
       else if(/ứng dụng/i.test(h))sec.innerHTML='<h3>Ứng dụng</h3>'+applicationBoxes(f);
       else if(/python/i.test(h))sec.innerHTML='<h3>Cách dùng trong code Python</h3><pre>'+esc(pythonCode(f))+'</pre>';
     });
+    modal.setAttribute('data-e224-source-formula',f);
     modal.setAttribute('data-e224-accuracy','1');
+    modal.setAttribute('data-e225-stack','1');
   }
   function scan(){
     Array.prototype.slice.call(document.querySelectorAll('.e211-formula-modal')).forEach(patchModal);
