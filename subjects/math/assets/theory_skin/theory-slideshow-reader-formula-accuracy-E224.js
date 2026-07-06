@@ -4,7 +4,7 @@
   var RELEASE='E229_READER_PRO_FORMULA_SPLIT_AUDIT_AND_FIX';
   var patching=false;
   var NOTE_STARTERS=[
-    'neu','hoac','voi','trong do','khi','day la','moi','dieu kien','co nghiem',
+    'neu','hoac','voi','trong do','khi','day la','moi','dieu kien','chi co nghiem','co nghiem',
     'a va','b va','c va','nhan xet','luu y'
   ];
 
@@ -56,22 +56,56 @@
     }
     return -1;
   }
+  function topLevelRelation(text,limit){
+    var round=0, square=0, brace=0, normOpen=false, max=Math.min(text.length,limit||120);
+    for(var i=0;i<max;i++){
+      var c=text.charAt(i), two=text.slice(i,i+2);
+      if(two==='||'){normOpen=!normOpen;i++;continue;}
+      if(normOpen)continue;
+      if(round===0 && square===0 && brace===0){
+        if(two==='>='||two==='<=')return {idx:i,op:two};
+        if(c==='=')return {idx:i,op:'='};
+        if(c==='>'||c==='<')return {idx:i,op:c};
+      }
+      if(c==='(')round++;
+      else if(c===')'&&round>0)round--;
+      else if(c==='[')square++;
+      else if(c===']'&&square>0)square--;
+      else if(c==='{')brace++;
+      else if(c==='}'&&brace>0)brace--;
+    }
+    return {idx:-1,op:''};
+  }
+  function formulaHeadLike(head){
+    return /^\|\|.{1,80}\|\|[^\s=<>]{0,16}\s*(?:=|>=|<=|>|<)$/.test(head) ||
+      /^[A-Za-z](?:[\w{}_^'*-]|\s*[·⋅]\s*|\([^)]{0,80}\)|\[[^\]]{0,80}\]){0,90}\s*(?:=|>=|<=|>|<)$/.test(head) ||
+      /^(?:D_[A-Za-z0-9]+\s+f\([^)]{0,80}\)|grad\s+[A-Za-z]\([^)]{0,80}\)|d[A-Za-z0-9]+\/d[A-Za-z0-9]+)\s*(?:=|>=|<=|>|<)$/.test(head) ||
+      (/^[A-Za-z][A-Za-z0-9_{}^'()\s+\-*.]{0,120}\s*(?:=|>=|<=|>|<)$/.test(head) && /[+]|\.\.\./.test(head)) ||
+      /^\([A-Za-z0-9_{}+\-*/\s]+\)(?:_\{?[A-Za-z0-9]+\}?)?\s*(?:=|>=|<=|>|<)$/.test(head);
+  }
   function formulaStartAt(text,i){
     if(!isBoundaryBefore(text,i) || depthAt(text,i)>0)return false;
     if(/[·⋅]/.test(prevNonSpace(text,i)))return false;
     if(prevWord(text,i)==='dim')return false;
-    var tail=text.slice(i), eq=topLevelEqualsIndex(tail,120), head=eq>=0?tail.slice(0,eq+1):'';
-    return (eq>=0 && (
-      /^\|\|.{1,80}\|\|[^\s=]{0,16}\s*=$/.test(head) ||
-      /^[A-Za-z](?:[\w{}_^'*-]|\s*[·⋅]\s*|\([^)]{0,80}\)|\[[^\]]{0,80}\]){0,90}\s*=$/.test(head) ||
-      /^\([A-Za-z0-9_{}+\-*/\s]+\)(?:_\{?[A-Za-z0-9]+\}?)?\s*=$/.test(head)
-    )) || /^[A-Za-z][\w{}_^']*\s+in\s+R(?:\^\{[^}]+\}|\^[A-Za-z0-9]+)?/.test(tail);
+    if(prevWord(text,i)==='iff')return false;
+    if(prevWord(text,i)==='nghiem')return false;
+    if(prevNonSpace(text,i)==='=')return false;
+    if(prevNonSpace(text,i)==='>'||prevNonSpace(text,i)==='<')return false;
+    var tail=text.slice(i), rel=topLevelRelation(tail,120), head=rel.idx>=0?tail.slice(0,rel.idx+rel.op.length):'';
+    return (rel.idx>=0 && formulaHeadLike(head)) || /^[A-Za-z][\w{}_^']*\s+in\s+R(?:\^\{[^}]+\}|\^[A-Za-z0-9]+)?/.test(tail);
+  }
+  function nextFormulaStart(text,start){
+    for(var i=start;i<text.length;i++)if(formulaStartAt(text,i))return i;
+    return -1;
   }
   function nextBoundary(text,start){
     for(var i=start+1;i<text.length;i++){
       if(depthAt(text,i)>0)continue;
       if(noteStarterAt(text,i))return i;
-      if(formulaStartAt(text,i))return i;
+      if(formulaStartAt(text,i)){
+        if(formulaStartAt(text,start) && topLevelRelation(text.slice(start,i),200).idx<0)continue;
+        return i;
+      }
     }
     return text.length;
   }
@@ -98,12 +132,24 @@
       }
     }
     var noteIdx=-1;
-    [' trong do ',' neu ',' khi ',' voi ',' day la ',' moi ',' dieu kien', ' co nghiem ', ' la '].forEach(function(mark){
+    var originalStrong=s.search(/\s+ch\u1ec9\s+c\u00f3\s+nghi\u1ec7m\b/i);
+    if(originalStrong>0)noteIdx=originalStrong;
+    var strongNote=norm(' '+s).search(/\schi\s+co\s+nghiem\b/);
+    if(noteIdx<0 && strongNote>0)noteIdx=strongNote-1;
+    [' trong do ',' neu ',' khi ',' voi ',' day la ',' moi ',' dieu kien', ' chi co nghiem ', ' co nghiem ', ' la '].forEach(function(mark){
       if(noteIdx>=0)return;
       var idx=norm(' '+s).indexOf(mark);
       if(idx>0)noteIdx=idx-1;
     });
-    return noteIdx>0?{formula:s.slice(0,noteIdx).trim(),note:s.slice(noteIdx).trim()}:{formula:s,note:''};
+    if(noteIdx>0){
+      var formula=s.slice(0,noteIdx).trim(), note=s.slice(noteIdx).trim();
+      if(/chi\s*$/.test(norm(formula))){
+        var last=formula.match(/\s+(\S+)$/);
+        if(last){formula=formula.replace(/\s+\S+\s*$/,'').trim();note=last[1]+' '+note;}
+      }
+      return {formula:formula,note:note};
+    }
+    return {formula:s,note:''};
   }
   function noteTitle(s){
     var n=norm(s);
@@ -121,9 +167,9 @@
   }
   function formulaLabel(line,i){
     var raw=String(line||''), n=norm(raw);
-    if(/^A\s*=/.test(raw))return 'Vector A';
-    if(/^B\s*=/.test(raw))return 'Vector B';
-    if(/^C\s*=/.test(raw))return 'Vector C';
+    if(/^A\s*=\s*\[/.test(raw))return 'Vector A';
+    if(/^B\s*=\s*\[/.test(raw))return 'Vector B';
+    if(/^C\s*=\s*\[/.test(raw))return 'Vector C';
     if(/^X\s*=/.test(raw)||/^X\s+in\s+R/i.test(raw))return 'Ma trận dữ liệu X';
     if(/^mu\s*=|^μ\s*=/.test(n))return 'Vector trung bình';
     if(/^cos/.test(n))return 'Cosine similarity';
@@ -134,7 +180,7 @@
     if(/^\|\|/.test(raw)||/norm|chuan/.test(n))return 'Chuẩn vector';
     if(/rank|dim|col\(/.test(n))return 'Hạng và không gian con';
     if(/a\^\{-1\}|inverse|nghich dao/.test(n))return 'Nghịch đảo / giải hệ';
-    if(/grad|gradient|theta|dj\/d|hessian/.test(n))return 'Gradient / tối ưu';
+    if(/grad|gradient|dj\/d|hessian/.test(n))return 'Gradient / tối ưu';
     if(/sqrt|sum|max|min/.test(n))return 'Biểu thức tính toán';
     if(/matrix|ma tran|ax/.test(n))return 'Công thức ma trận';
     return 'Công thức '+(i+1);
@@ -144,6 +190,7 @@
     if(!s)return;
     var parts=splitTrailing(s);
     if(parts.formula){
+      parts.formula=stripDanglingFormulaTail(parts.formula);
       if(isDefinitionNote(parts.formula))items.push({title:noteTitle(parts.formula),body:parts.formula,math:false});
       else items.push({title:formulaLabel(parts.formula,i),body:parts.formula,math:true});
     }
@@ -153,12 +200,21 @@
     s=clean(s);
     if(s)items.push({title:noteTitle(s),body:s,math:false});
   }
+  function stripDanglingFormulaTail(s){
+    s=String(s||'').trim();
+    return /\b(?:va|chi)\s*$/.test(norm(s))?s.replace(/\s+\S+\s*$/,'').trim():s;
+  }
   function formulaItems(f){
     var text=clean(f).replace(/\n/g,' '), items=[], i=0;
     while(i<text.length){
       while(/\s/.test(text.charAt(i)))i++;
       if(i>=text.length)break;
-      if(noteStarterAt(text,i)){pushNote(items,text.slice(i));break;}
+      if(noteStarterAt(text,i)){
+        var fs=nextFormulaStart(text,i+1);
+        if(fs>i && fs-i<54){i=fs;continue;}
+        if(fs>i){pushNote(items,text.slice(i,fs));i=fs;continue;}
+        pushNote(items,text.slice(i));break;
+      }
       if(formulaStartAt(text,i)){
         var end=nextBoundary(text,i);
         pushFormula(items,text.slice(i,end),items.length);
@@ -195,10 +251,10 @@
   }
   function formatMath(raw){
     var s=esc(String(raw||'').trim());
-    s=s.replace(/\\cdot/g,'·').replace(/\\times/g,'×').replace(/\\nabla/g,'∇').replace(/\*/g,'×');
+    s=s.replace(/\\cdot/g,'·').replace(/\\times/g,'×').replace(/\\nabla/g,'∇').replace(/\s\*\s/g,' × ');
     s=s.replace(/sqrt\s*\(([^()]+)\)/g,'√($1)');
     s=s.replace(/\bsum\b/g,'∑').replace(/-&gt;/g,'→').replace(/&gt;=/g,'≥').replace(/&lt;=/g,'≤').replace(/!=/g,'≠').replace(/\biff\b/g,'⇔').replace(/\bin\b/g,'∈');
-    s=s.replace(/alpha/g,'α').replace(/theta/g,'θ').replace(/Delta/g,'Δ').replace(/eta/g,'η').replace(/mu/g,'μ').replace(/grad/g,'∇');
+    s=s.replace(/alpha(?![A-Za-z])/g,'α').replace(/theta(?![A-Za-z])/g,'θ').replace(/Delta(?![A-Za-z])/g,'Δ').replace(/eta(?![A-Za-z])/g,'η').replace(/mu(?![A-Za-z])/g,'μ').replace(/grad(?![A-Za-z])/g,'∇');
     s=s.replace(/\^\{([^}]+)\}/g,'<sup>$1</sup>').replace(/_\{([^}]+)\}/g,'<sub>$1</sub>');
     s=s.replace(/\^([A-Za-z0-9+\-]+)/g,'<sup>$1</sup>').replace(/_([A-Za-z0-9]+)/g,'<sub>$1</sub>');
     return s;

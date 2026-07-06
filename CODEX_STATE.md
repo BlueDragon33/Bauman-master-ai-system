@@ -1,5 +1,69 @@
 # CODEX_STATE
 
+Current task: E232_READER_PRO_FORMULA_FULL_COVERAGE_AUDIT
+
+Status: PASS_BROWSER_SMOKE
+
+Date: 2026-07-07
+Branch: `main`
+
+Files read:
+- `CODEX_STATE.md`
+- `subjects/math/index.html`
+- `subjects/math/assets/theory_skin/theory-slideshow-reader-formula-accuracy-E224.js`
+- `subjects/math/data/theory_lecture_content.json`
+
+Files changed:
+- `subjects/math/assets/theory_skin/theory-slideshow-reader-formula-accuracy-E224.js`
+- `subjects/math/index.html`
+- `CODEX_STATE.md`
+
+Formula inventory:
+- 64 slides contain `type: formula`, across C01-C03.
+- By lesson: C01 §1.1 S2/S4/S5/S6/S7/S8/S15; §1.2 S2/S4/S5/S6/S7/S8/S12/S15; §1.3 S2/S3/S5/S6/S8/S12/S15; §1.4 S2/S5/S6/S8/S9/S15; §1.5 S2/S5/S6/S8/S9/S15; §1.6 S2/S5/S6/S8/S15.
+- C02: §2.1 S5/S6; §2.2 S5; §2.3 S5/S6; §2.4 S5; §2.5 S2/S5/S6; §2.6 S5/S6.
+- C03: §3.1 S5/S6; §3.2 S2/S5/S6; §3.3 S2/S5/S6; §3.4 S5/S6; §3.5 S5/S6; §3.6 S5/S6.
+- Taxonomy coverage: vector/norm/distance/cosine, dot/projection, matrix/shape/multiplication, rank/column/row space, linear system/inverse/Ax=b, subspace/span/dimension, sum/sqrt/sup/sub, and formula with Vietnamese explanatory notes.
+
+Bugs found:
+- Metric formulas with `>=`, `<=`, and `iff` split incorrectly; `d(x,y) >= 0` became a note and `d(x,y)=0 iff x=y` split into bogus cards.
+- Linear-combination basis formula split inside the left-hand side and note phrase `chỉ có nghiệm...`.
+- Parser consumed later formulas after a Vietnamese note instead of resuming at the next formula.
+- Matrix multiplication split after `=>`.
+- PCA formula `Z = X_c W_k` split at `W_k`.
+- Covariance `C = ...` was mislabeled as `Vector C`.
+- Rotation matrix containing `theta` was mislabeled as Gradient.
+- Formatter changed `minimum` to `miniμm` and `theta*`/`x*` to multiplication-style `θ×`/`x×`.
+
+Patch summary:
+- E224 now recognizes top-level relation operators `>=`, `<=`, `>`, `<`, not just `=`.
+- E224 avoids splitting after `iff`, after `=>`, after `=`, and inside a left-hand side before the first relation.
+- Added handling for `chi co nghiem` note starts and note continuation so later formulas still render.
+- Added formula-head support for `D_u f(x)`, `grad J(...)`, and `dJ/dw`.
+- Tightened A/B/C vector labels to bracketed vector examples only.
+- Removed `theta` from the gradient label heuristic.
+- Formatter now avoids replacing `mu` inside words and only converts spaced `*` to multiplication.
+- `index.html` bumps E224 cache from `?v=231` to `?v=232`.
+
+Browser smoke:
+- Local no-cache browser smoke was run against `http://127.0.0.1:8775/index.html`.
+- Tested representative slides:
+  - C01 §1.2 S5/S6; §1.4 S6; §1.6 S5.
+  - C02 §2.1 S5; §2.2 S5; §2.4 S5; §2.5 S2/S5; §2.6 S5/S6.
+  - C03 §3.1 S5; §3.2 S2; §3.3 S6; §3.4 S5; §3.5 S6; §3.6 S5.
+- Verified formula cards, note cards, matrix/vector stack handling, Vietnamese note separation, relation operators, sup/sub/sqrt/sum formatting, and no bogus note-as-formula cards in the checked cases.
+
+Verification:
+- `node --check subjects/math/assets/theory_skin/theory-slideshow-reader-formula-accuracy-E224.js`: PASS.
+- Browser console: no new E224 errors.
+- Existing E209 warning remains outside this parser task: `slideshow data unavailable SyntaxError: Bad escaped character in JSON at position 9749`.
+
+Remaining risks:
+- This was representative full-coverage audit, not manual click-through of all 64 formula slides.
+- Existing E209 data warning remains a separate runtime/data cleanup task.
+
+---
+
 Current task: E231_READER_PRO_FORMULA_BATCH2_SMOKE
 
 Status: PASS_BROWSER_SMOKE
