@@ -1,7 +1,7 @@
-/* E219 Reader Pro content bridge: title/body separation + durable formula popup. */
+/* E220 Reader Pro content bridge: top-layer formula popup with slideshow-style layout. */
 (function(){
   'use strict';
-  var RELEASE='E219_READER_PRO_FORMULA_MODAL_REPAIR';
+  var RELEASE='E220_READER_PRO_FORMULA_MODAL_TOP_LAYER';
   var records=[], byId={}, byTitle={}, ready=false, loading=false, last='', formulaPopupState=null, fallbackModal=null;
 
   function text(n){return (n&&n.textContent||'').replace(/\s+/g,' ').trim();}
@@ -26,7 +26,7 @@
       ready=true;
       return true;
     }).catch(function(e){
-      console.warn('[E219] theory content unavailable',e);
+      console.warn('[E220] theory content unavailable',e);
       return false;
     }).finally(function(){loading=false;});
   }
@@ -90,8 +90,8 @@
   }
 
   function ensureStyle(){
-    if(document.getElementById('e219-reader-pro-style'))return;
-    ['e215-reader-pro-style','e216-reader-pro-style','e218-reader-pro-style'].forEach(function(id){
+    if(document.getElementById('e220-reader-pro-style'))return;
+    ['e215-reader-pro-style','e216-reader-pro-style','e218-reader-pro-style','e219-reader-pro-style'].forEach(function(id){
       var old=document.getElementById(id);
       if(old&&old.parentNode)old.parentNode.removeChild(old);
     });
@@ -100,18 +100,29 @@
       +'.e211-reader-pro .e202-formula-strip code{white-space:pre-wrap!important;overflow-wrap:anywhere!important;word-break:break-word!important}'
       +'.e211-formula-full-btn{border:1px solid rgba(125,211,252,.42);border-radius:999px;background:rgba(8,47,73,.78);color:#e0f7ff;font-weight:850;font-size:12px;line-height:1;padding:8px 10px;cursor:pointer;white-space:nowrap}'
       +'.e211-formula-full-btn:hover{background:rgba(14,116,144,.9);border-color:rgba(165,243,252,.7)}'
-      +'.e211-formula-fallback{position:fixed;inset:24px;z-index:99999;display:grid;place-items:center;background:rgba(2,6,23,.72);backdrop-filter:blur(10px)}'
-      +'.e211-formula-fallback-card{width:min(980px,calc(100vw - 48px));max-height:calc(100vh - 64px);overflow:auto;border:1px solid rgba(125,211,252,.28);border-radius:22px;background:#07111f;padding:22px;box-shadow:0 24px 80px rgba(0,0,0,.55)}'
-      +'.e211-formula-fallback-close{float:right;border:1px solid rgba(148,163,184,.35);border-radius:999px;background:rgba(15,23,42,.8);color:#fff;padding:8px 12px;cursor:pointer}'
-      +'.e211-formula-modal{display:grid;gap:14px;color:#eaf6ff;text-align:left}'
-      +'.e211-formula-modal h2{margin:0;color:#f8fbff;font-size:clamp(22px,2vw,32px);line-height:1.15}'
-      +'.e211-formula-modal section{border:1px solid rgba(148,163,184,.22);border-radius:14px;background:rgba(15,23,42,.72);padding:14px}'
-      +'.e211-formula-modal h3{margin:0 0 8px;color:#93e8ff;font-size:13px;letter-spacing:.08em;text-transform:uppercase}'
-      +'.e211-formula-modal p{margin:0;color:#d8ecff;line-height:1.55}'
+      +'#modal.e211-formula-modal-host{position:fixed!important;inset:0!important;z-index:2147483600!important;display:grid!important;place-items:center!important;background:rgba(1,9,18,.82)!important;backdrop-filter:blur(12px)!important;padding:24px!important;overflow:auto!important}'
+      +'#modal.e211-formula-modal-host.hidden{display:none!important}'
+      +'#modal.e211-formula-modal-host .modal-card{position:relative!important;width:min(1180px,calc(100vw - 48px))!important;height:min(720px,calc(100vh - 48px))!important;max-width:none!important;max-height:none!important;margin:0!important;border:1px solid rgba(20,184,166,.34)!important;border-radius:26px!important;background:linear-gradient(135deg,rgba(6,18,35,.98),rgba(14,44,52,.96))!important;box-shadow:0 32px 100px rgba(0,0,0,.66), inset 0 1px 0 rgba(255,255,255,.08)!important;overflow:hidden!important;padding:0!important}'
+      +'#modal.e211-formula-modal-host .modal-close{z-index:2!important;right:18px!important;top:16px!important;background:rgba(3,7,18,.72)!important;color:#fff!important;border:1px solid rgba(125,211,252,.25)!important;border-radius:999px!important}'
+      +'#modal.e211-formula-modal-host #modalBody{height:100%!important;overflow:hidden!important}'
+      +'.e211-formula-fallback{position:fixed;inset:0;z-index:2147483600;display:grid;place-items:center;background:rgba(1,9,18,.82);backdrop-filter:blur(12px);padding:24px;overflow:auto}'
+      +'.e211-formula-fallback.hidden{display:none!important}'
+      +'.e211-formula-fallback-card{width:min(1180px,calc(100vw - 48px));height:min(720px,calc(100vh - 48px));overflow:hidden;border:1px solid rgba(20,184,166,.34);border-radius:26px;background:linear-gradient(135deg,rgba(6,18,35,.98),rgba(14,44,52,.96));box-shadow:0 32px 100px rgba(0,0,0,.66), inset 0 1px 0 rgba(255,255,255,.08);padding:0;position:relative}'
+      +'.e211-formula-fallback-close{position:absolute;right:18px;top:16px;z-index:2;border:1px solid rgba(125,211,252,.25);border-radius:999px;background:rgba(3,7,18,.72);color:#fff;padding:8px 12px;cursor:pointer}'
+      +'.e211-formula-modal{height:100%;box-sizing:border-box;padding:22px;display:grid;grid-template-rows:auto minmax(0,1fr) minmax(112px,.46fr);gap:14px;color:#eaf6ff;text-align:left;overflow:hidden}'
+      +'.e211-formula-modal header{padding-right:60px;border-bottom:1px solid rgba(45,212,191,.18);padding-bottom:10px}'
+      +'.e211-formula-modal h2{margin:0;color:#f8fbff;font-size:clamp(24px,2.1vw,34px);line-height:1.08;letter-spacing:-.02em}'
+      +'.e211-formula-modal .e211-formula-context{margin:6px 0 0;color:#9ee7f5;font-size:12px;opacity:.8}'
+      +'.e211-formula-topgrid{min-height:0;display:grid;grid-template-columns:1fr 1fr 1fr;gap:14px;overflow:hidden}'
+      +'.e211-formula-modal section{min-height:0;border:1px solid rgba(45,212,191,.2);border-radius:18px;background:linear-gradient(180deg,rgba(13,43,53,.76),rgba(6,21,37,.76));padding:15px;overflow:auto;scrollbar-width:thin}'
+      +'.e211-formula-modal h3{margin:0 0 10px;color:#7dd3fc;font-size:12px;letter-spacing:.1em;text-transform:uppercase}'
+      +'.e211-formula-modal p{margin:0;color:#d8ecff;font-size:15px;line-height:1.52}'
       +'.e211-formula-modal pre{margin:0;white-space:pre-wrap;overflow:auto;color:#e8fff7;font-size:14px;line-height:1.45}'
-      +'.e211-formula-context{opacity:.75;font-size:12px}';
+      +'.e211-formula-code-panel{width:100%;max-height:170px;background:linear-gradient(180deg,rgba(18,30,53,.86),rgba(8,14,28,.86))!important;border-color:rgba(167,139,250,.32)!important}'
+      +'.e211-formula-code-panel pre{max-height:112px}'
+      +'@media(max-width:980px){.e211-formula-modal{grid-template-rows:auto minmax(0,1fr) minmax(120px,.42fr)}.e211-formula-topgrid{grid-template-columns:1fr;overflow:auto}.e211-formula-code-panel{max-height:190px}}';
     var st=document.createElement('style');
-    st.id='e219-reader-pro-style';
+    st.id='e220-reader-pro-style';
     st.textContent=css;
     document.head.appendChild(st);
   }
@@ -216,12 +227,11 @@
   }
   function formulaModalHtml(ctx){
     var f=ctx.formula||'', slide=ctx.slide||{}, appBody=blockBody(ctx.applicationBlock), code=pythonUsageForFormula(f);
-    return '<div class="e211-formula-modal"><h2>Công thức đầy đủ</h2>'+
+    return '<div class="e211-formula-modal"><header><h2>Công thức đầy đủ</h2><p class="e211-formula-context">'+esc(slide.title||'')+'</p></header><div class="e211-formula-topgrid">'+
       '<section><h3>Công thức đầy đủ</h3><pre>'+esc(f)+'</pre></section>'+
       '<section><h3>Phân tích công thức</h3><p>'+esc(formulaAnalysis(f))+'</p></section>'+
       '<section><h3>Ứng dụng</h3><p>'+esc(formulaApplication(f,appBody))+'</p></section>'+
-      '<section><h3>Cách dùng trong code Python</h3><pre>'+esc(code)+'</pre></section>'+
-      '<p class="e211-formula-context">'+esc(slide.title||'')+'</p></div>';
+      '</div><section class="e211-formula-code-panel"><h3>Cách dùng trong code Python</h3><pre>'+esc(code)+'</pre></section></div>';
   }
   function ensureFallbackModal(){
     if(fallbackModal)return fallbackModal;
@@ -237,7 +247,9 @@
     var html=formulaModalHtml(formulaPopupState), modal=document.getElementById('modal'), body=document.getElementById('modalBody');
     if(modal&&body){
       body.innerHTML=html;
+      modal.classList.add('e211-formula-modal-host');
       modal.classList.remove('hidden');
+      modal.style.zIndex='2147483600';
       modal.setAttribute('aria-hidden','false');
       var close=document.getElementById('modalClose');
       if(close&&close.focus)close.focus();
@@ -252,6 +264,8 @@
     var modal=document.getElementById('modal'), body=document.getElementById('modalBody');
     if(modal&&body&&body.querySelector('.e211-formula-modal')){
       modal.classList.add('hidden');
+      modal.classList.remove('e211-formula-modal-host');
+      modal.style.zIndex='';
       modal.setAttribute('aria-hidden','true');
       body.innerHTML='';
       return true;
