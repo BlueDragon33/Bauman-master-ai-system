@@ -1,6 +1,6 @@
 # CODEX_STATE
 
-Current task: E237A_C01_FORMULA_ACADEMIC_STANDARDIZATION
+Current task: E237B_C02_FORMULA_ACADEMIC_STANDARDIZATION
 
 Status: PATCHED_NEEDS_LOCAL_BROWSER_SMOKE
 
@@ -8,95 +8,90 @@ Date: 2026-07-07
 Branch: `main`
 
 Files changed:
-- `subjects/math/data/theory_formula_academic_c01.json`
+- `subjects/math/data/theory_formula_academic_c02.json`
 - `subjects/math/assets/theory_skin/theory-formula-academic-E237.js`
 - `subjects/math/index.html`
 - `CODEX_STATE.md`
 
 Architecture:
-- The canonical `theory_lecture_content.json` and its schema were not rewritten.
-- E237A introduces a sidecar academic registry for Chapter 1 formula families.
-- E237A is a content-only bridge loaded after E236.
+- Canonical `theory_lecture_content.json` was not rewritten.
+- Chapter 1 and Chapter 2 academic content are stored in separate sidecar registries.
+- E237 is now a multi-registry content bridge.
+- Each registry is fetched independently; if one registry fails, the other can still load.
 - E202 remains the only slideshow engine.
-- E224 remains the formula parser/content fallback.
+- E224 remains the parser/content fallback.
 - E234/E235 remain the math typography layer.
 - E236 remains the mini-lesson layout layer.
 
-Why a registry was used:
-- Avoid rewriting a 5,000+ line canonical JSON file for popup-only enrichment.
-- Keep formula-specific academic content independent from parser and layout code.
-- Allow Chapter 2 and Chapter 3 to be added as separate reviewable registries.
-- Make each formula family easy to audit, replace, and test.
+Registries loaded:
+1. `data/theory_formula_academic_c01.json`
+2. `data/theory_formula_academic_c02.json`
 
-Chapter 1 profiles added:
-1. Core norm / dot / distance / cosine metrics
-2. Cosine zero-vector guard
-3. Vector schema and `R^n`
-4. Robot/server state vectors
-5. Vector addition and scalar multiplication
-6. A/B/C engineering-data example
-7. L1 / L2 / Linf norm family
-8. Weighted distance
-9. Dot product / cosine / projection / perpendicular residual
-10. Basis and span
-11. Linear independence
-12. Subspace closure conditions
-13. Rank and dimension
-14. Data matrix and shape `(m,n)`
+Chapter 2 profiles added:
+1. Matrix shape and element notation `A in R^{m x n}`, `a_ij`
+2. Matrix-vector map `y = A x`
+3. Row-dot interpretation `y_i = a_i · x`
+4. Matrix product shape `A(m x n) B(n x p) -> AB(m x p)`
+5. Matrix product element `(AB)_{ij}`
+6. Column space and rank
+7. System consistency `Ax=b`, `b in Col(A)`
+8. Inverse identities and solution `A^{-1}`, `x=A^{-1}b`
+9. Linearity axioms
+10. Scale matrix
+11. Rotation matrix
+12. Projection matrix
+13. Basis change `x=Bc`
+14. PCA projection `Z=X_c W_k`
+15. Linear model `y=Xw+b`
+16. State transition `x_{t+1}=Ax_t`
 
-Each profile contains:
-- two focused mathematical analysis cards where appropriate
-- one or two concrete engineering/application cards
-- a concise executable Python snippet
-- explicit assumptions or failure conditions
+Academic content rules:
+- Each matched profile provides formula-specific analysis, assumptions/failure conditions, engineering application, and concise Python.
+- Inverse/system profiles explicitly prefer `np.linalg.solve` or `lstsq` over manual inverse.
+- Rank profiles distinguish algebraic rank from effective numerical rank.
+- PCA profiles require centering and discuss scaling and explained variance.
+- Projection and scale profiles explicitly describe information loss and rank change.
+- Rotation profile checks orthogonality.
+- Matrix multiplication profiles preserve order and shape semantics.
 
-Bridge behavior:
-- Reads the raw formula from the active Reader Pro formula strip or formula modal.
-- Normalizes accents, Greek symbols, Unicode superscripts/subscripts, and spacing for matching.
-- Selects the highest-priority matching Chapter 1 profile.
-- Replaces only:
-  - `Phân tích công thức`
-  - `Ứng dụng`
-  - `Cách dùng trong code Python`
-- Does not modify the rendered formula section.
-- Does not modify E236 section classes or layout.
-- Falls back to E224 content when no Chapter 1 profile matches.
+Bridge changes:
+- Release: `E237B_C01_C02_FORMULA_ACADEMIC_BRIDGE`.
+- Uses `REGISTRY_URLS` and loads both registries with independent error handling.
+- Merges and sorts all profiles by priority.
+- Adds `data-e237-registry` to the modal for auditability.
+- Replaces only Analysis, Application, and Python sections.
+- Formula rendering and E236 layout remain untouched.
+- Falls back to E224 whenever no profile matches.
 
-Index load order:
-- E224 formula parser/content fallback
-- E234 balanced fraction/radical typesetter
-- E235 fraction alignment
-- E212 fit bridge
-- E236 mini-lesson layout
-- E237 Chapter 1 academic content bridge
+Cache:
+- `subjects/math/index.html` loads `theory-formula-academic-E237.js?v=238`.
 
 Required local smoke:
 1. `git pull origin main`
 2. Hard refresh or disable browser cache.
-3. Open `Xem đầy đủ` for representative Chapter 1 formulas:
-   - §1.1 core norm/dot/distance/cosine
-   - §1.1 zero-vector cosine condition
-   - §1.2 L1/L2/Linf or weighted distance
-   - §1.3 projection and perpendicular residual
-   - basis/span/linear-independence formula
-   - subspace closure formula
-   - rank/dimension formula
-   - data matrix `X` and shape `(m,n)`
+3. Test representative Chapter 2 formulas:
+   - §2.1 `A in R^{m x n}` and `y=Ax`
+   - §2.2 matrix multiplication shape and `(AB)_{ij}`
+   - §2.3 `Col(A)`, rank, and `Ax=b`
+   - §2.4 inverse and system solution
+   - §2.5 scale, rotation, projection, and `x=Bc`
+   - §2.6 `Z=X_c W_k` and `y=Xw+b`
 4. Confirm:
-   - analysis is formula-specific and not generic
+   - analysis is formula-specific
    - assumptions are mathematically correct
-   - application is concrete
-   - Python snippet matches the current formula family
-   - formula typography and E236 layout remain unchanged
+   - Python matches the current formula family
+   - Chapter 1 profiles still work
+   - E234/E235 typography and E236 layout remain unchanged
    - no new console errors
-5. Optional DOM check:
-   - modal has `data-e237-academic="1"`
-   - modal `data-e237-profile` matches the expected profile id
+5. Optional DOM checks:
+   - `data-e237-academic="1"`
+   - `data-e237-profile="c02_..."`
+   - `data-e237-registry="data/theory_formula_academic_c02.json"`
 
 Remaining risks:
-- This is profile matching, not a complete symbolic classifier.
-- A formula whose source wording changes substantially may fall back to E224 until its registry match keys are extended.
+- Matching is profile-based, not a complete symbolic parser.
+- A substantially changed source formula may fall back to E224 until match keys are extended.
 - Browser smoke was not available from this chat environment, so status is not PASS.
 
 Next planned batch:
-- E237B: Chapter 2 matrix, rank, inverse, linear systems, transformations, PCA/SVD/covariance.
+- E237C: Chapter 3 functions, derivatives, partial derivatives, gradient, Jacobian, Hessian, optimization, and loss functions.
