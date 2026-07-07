@@ -1,6 +1,6 @@
 # CODEX_STATE
 
-Current task: E237C_C03_FORMULA_ACADEMIC_STANDARDIZATION
+Current task: E238_FORMULA_REGISTRY_COVERAGE_AUDIT
 
 Status: PATCHED_NEEDS_LOCAL_BROWSER_SMOKE
 
@@ -8,92 +8,91 @@ Date: 2026-07-07
 Branch: `main`
 
 Files changed:
-- `subjects/math/data/theory_formula_academic_c03.json`
 - `subjects/math/assets/theory_skin/theory-formula-academic-E237.js`
+- `subjects/math/assets/theory_skin/theory-formula-coverage-audit-E238.js`
 - `subjects/math/index.html`
 - `CODEX_STATE.md`
 
-Architecture:
-- Canonical `theory_lecture_content.json` was not rewritten.
-- Formula academic content is split into three sidecar registries: C01, C02, C03.
-- E237 is a content-only multi-registry bridge loaded after E236.
-- E202 remains the only slideshow engine.
-- E224 remains the parser/content fallback.
-- E234/E235 remain the math typography layer.
-- E236 remains the mini-lesson layout layer.
+Scope:
+- Audit and instrumentation only.
+- No canonical theory JSON rewrite.
+- No formula-content registry rewrite in this pass.
+- No change to E202 slideshow logic.
+- No change to E224 parser/content fallback.
+- No change to E234/E235 typography.
+- No change to E236 layout.
 
-Registries loaded:
-1. `data/theory_formula_academic_c01.json`
-2. `data/theory_formula_academic_c02.json`
-3. `data/theory_formula_academic_c03.json`
+E237 instrumentation changes:
+- Release changed to `E238_C01_C02_C03_ACADEMIC_AUDIT_INSTRUMENTED`.
+- Matching now returns every candidate profile, not only the first match.
+- Candidate ordering is deterministic:
+  1. higher priority
+  2. more specific/longer match keys
+  3. profile id
+- Registry chapter id and specificity are attached to every loaded profile.
+- Formula modal now records:
+  - `data-e237-match-count`
+  - `data-e237-candidates`
+  - `data-e237-profile`
+  - `data-e237-registry`
+- Unmatched formulas keep the E224 fallback content and receive:
+  - `data-e237-academic="0"`
+  - `data-e237-match-count="0"`
+- Public diagnostic API now exposes:
+  - `normalize(raw)`
+  - `match(raw)`
+  - `profiles()`
+  - `registries()`
+  - `isReady()`
 
-Chapter 3 profiles added:
-1. Scalar function `y=f(x)`
-2. Multivariable function `y=f(x_1,...,x_n)`
-3. Vector function `f: R^n -> R^m`
-4. Parameterized model `y=f(x;theta)`
-5. Derivative limit definition
-6. Derivative notation and physical units
-7. Local linearization
-8. Gradient vector
-9. Partial derivative
-10. Directional derivative
-11. Gradient descent state update
-12. Parameter update with learning rate
-13. MSE loss
-14. Stationary-point condition
-15. Second-order/Hessian test
-16. Composite functions
-17. Chain rule
-18. Forward/backward flow
-19. Weight update
+E238 hidden audit tool:
+- File: `theory-formula-coverage-audit-E238.js`.
+- It does not render any audit panel into the learning UI.
+- It loads the canonical theory JSON and the C01/C02/C03 registries only when run.
+- It groups formula blocks by slide, matching the Reader Pro formula-modal behavior.
+- It reports:
+  - total lessons
+  - total formula slides and formula blocks
+  - matched, single-match, ambiguous, and unmatched slides
+  - cross-chapter selected profiles
+  - unused profiles
+  - duplicate profile ids
+  - duplicate match signatures
+  - profile usage
+  - per-chapter coverage
+- Report is available at:
+  - `window.BAUMAN_MATH_E238_AUDIT_REPORT`
+- Audit API:
+  - `window.BAUMAN_MATH_E238_AUDIT.run()`
+  - `window.BAUMAN_MATH_E238_AUDIT.save()`
 
-Academic content rules:
-- Each matched profile supplies formula-specific analysis, assumptions/failure conditions, engineering application, and concise Python.
-- Numerical differentiation uses central difference and explains truncation versus roundoff error.
-- Gradient profiles distinguish direction, scale sensitivity, and zero/vanishing/exploding gradients.
-- Gradient-descent profiles explain learning-rate stability and monitored training loops.
-- MSE profile explains outlier sensitivity and validation requirements.
-- Stationary/Hessian profiles distinguish local minimum, maximum, saddle, and inconclusive curvature.
-- Chain-rule/backprop profiles separate gradient computation from optimizer updates.
-
-Bridge changes:
-- Release: `E237C_C01_C02_C03_FORMULA_ACADEMIC_BRIDGE`.
-- Adds `data/theory_formula_academic_c03.json` to `REGISTRY_URLS`.
-- All registries load independently and are merged by priority.
-- Replaces only Analysis, Application, and Python sections.
-- Formula rendering, E234/E235 typography, and E236 layout remain untouched.
-- Falls back to E224 whenever no profile matches.
+How to run locally:
+1. `git pull origin main`
+2. Open the math page with `?formulaAudit=1` appended to the URL.
+3. Hard refresh or disable cache.
+4. Open DevTools Console.
+5. Read the `[E238] Formula academic coverage audit` tables.
+6. Or run manually:
+   `await BAUMAN_MATH_E238_AUDIT.run()`
+7. Inspect:
+   `BAUMAN_MATH_E238_AUDIT_REPORT.summary`
+   `BAUMAN_MATH_E238_AUDIT_REPORT.unmatched`
+   `BAUMAN_MATH_E238_AUDIT_REPORT.ambiguous`
+   `BAUMAN_MATH_E238_AUDIT_REPORT.crossChapter`
 
 Cache:
-- `subjects/math/index.html` loads `theory-formula-academic-E237.js?v=239`.
+- `theory-formula-academic-E237.js?v=240`
+- `theory-formula-coverage-audit-E238.js?v=238`
 
-Required local smoke:
-1. `git pull origin main`
-2. Hard refresh or disable browser cache.
-3. Test representative Chapter 3 formulas:
-   - §3.1 `y=f(x)`, vector function, and `y=f(x;theta)`
-   - §3.2 derivative limit, `dy/dx`, and local linearization
-   - §3.3 gradient, partial derivative, directional derivative
-   - §3.4 gradient-descent updates and learning rate
-   - §3.5 MSE, `grad J=0`, and Hessian test
-   - §3.6 composite function, chain rule, backward flow, and weight update
-4. Confirm:
-   - analysis is formula-specific
-   - assumptions and failure cases are correct
-   - Python matches the current formula family
-   - C01 and C02 profiles still work
-   - formula typography and E236 layout remain unchanged
-   - no new console errors
-5. Optional DOM checks:
-   - `data-e237-academic="1"`
-   - `data-e237-profile="c03_..."`
-   - `data-e237-registry="data/theory_formula_academic_c03.json"`
+Pass criteria for the next focused-fix pass:
+- zero duplicate profile ids
+- zero duplicate match signatures unless explicitly documented
+- zero cross-chapter selected profiles
+- every important formula slide has a registry match
+- ambiguous matches are intentional and highest-priority selection is correct
+- unmatched low-value notation may remain on E224 fallback only if documented
 
-Remaining risks:
-- Matching is profile-based, not a full symbolic parser.
-- A substantially changed formula source may fall back to E224 until match keys are extended.
-- Browser smoke was not available from this chat environment, so status is not PASS.
+Status remains `PATCHED_NEEDS_LOCAL_BROWSER_SMOKE` because the audit requires the local browser to fetch the canonical JSON and registries. No PASS is claimed yet.
 
 Next planned batch:
-- E238: coverage audit across C01-C03, unmatched-formula inventory, duplicate-profile detection, and focused registry-key fixes only.
+- E238B: use the generated report to patch only unmatched, ambiguous, cross-chapter, or unused registry keys.
