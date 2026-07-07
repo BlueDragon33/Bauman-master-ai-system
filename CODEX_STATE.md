@@ -1,6 +1,6 @@
 # CODEX_STATE
 
-Current task: E238_FORMULA_REGISTRY_COVERAGE_AUDIT
+Current task: E238B_CHAPTER_SCOPED_FORMULA_MATCH_FIXES
 
 Status: PATCHED_NEEDS_LOCAL_BROWSER_SMOKE
 
@@ -8,91 +8,85 @@ Date: 2026-07-07
 Branch: `main`
 
 Files changed:
+- `subjects/math/data/theory_formula_match_aliases_e238b.json`
 - `subjects/math/assets/theory_skin/theory-formula-academic-E237.js`
 - `subjects/math/assets/theory_skin/theory-formula-coverage-audit-E238.js`
 - `subjects/math/index.html`
 - `CODEX_STATE.md`
 
 Scope:
-- Audit and instrumentation only.
+- Focused registry-key and matching fixes only.
 - No canonical theory JSON rewrite.
-- No formula-content registry rewrite in this pass.
-- No change to E202 slideshow logic.
-- No change to E224 parser/content fallback.
-- No change to E234/E235 typography.
-- No change to E236 layout.
+- No changes to E202, E224, E234, E235, or E236.
+- No visual debug panel was added.
 
-E237 instrumentation changes:
-- Release changed to `E238_C01_C02_C03_ACADEMIC_AUDIT_INSTRUMENTED`.
-- Matching now returns every candidate profile, not only the first match.
-- Candidate ordering is deterministic:
-  1. higher priority
-  2. more specific/longer match keys
-  3. profile id
-- Registry chapter id and specificity are attached to every loaded profile.
-- Formula modal now records:
-  - `data-e237-match-count`
-  - `data-e237-candidates`
-  - `data-e237-profile`
-  - `data-e237-registry`
-- Unmatched formulas keep the E224 fallback content and receive:
-  - `data-e237-academic="0"`
-  - `data-e237-match-count="0"`
-- Public diagnostic API now exposes:
-  - `normalize(raw)`
-  - `match(raw)`
-  - `profiles()`
-  - `registries()`
-  - `isReady()`
+Root problems fixed:
+1. Cross-chapter candidates polluted matching because common notation such as `x in R^n` appears in multiple chapters.
+2. Equivalent formulas with different whitespace around operators, brackets, matrix entries, and relations failed exact substring matching.
+3. Several important Chapter 1 formula slides had no direct registry key even though an existing profile already contained suitable academic content.
 
-E238 hidden audit tool:
-- File: `theory-formula-coverage-audit-E238.js`.
-- It does not render any audit panel into the learning UI.
-- It loads the canonical theory JSON and the C01/C02/C03 registries only when run.
-- It groups formula blocks by slide, matching the Reader Pro formula-modal behavior.
-- It reports:
-  - total lessons
-  - total formula slides and formula blocks
-  - matched, single-match, ambiguous, and unmatched slides
-  - cross-chapter selected profiles
-  - unused profiles
-  - duplicate profile ids
-  - duplicate match signatures
-  - profile usage
-  - per-chapter coverage
-- Report is available at:
-  - `window.BAUMAN_MATH_E238_AUDIT_REPORT`
-- Audit API:
-  - `window.BAUMAN_MATH_E238_AUDIT.run()`
-  - `window.BAUMAN_MATH_E238_AUDIT.save()`
+E238B runtime changes:
+- Academic profile selection is now chapter-scoped when the active lesson chapter can be resolved.
+- Chapter is resolved from state, lesson ids, the active E129 shell, E210 lesson identity, and modal context.
+- Foreign-chapter candidates are recorded but cannot replace the same-chapter profile.
+- Formula/key normalization now canonicalizes:
+  - accents and common Greek symbols
+  - Unicode membership, gradient, partial derivative, relations, arrows, and minus signs
+  - superscript/subscript Unicode digits used by the project
+  - spaces around arithmetic and relation operators
+  - spaces inside brackets/parentheses
+  - common dimension forms such as `m x n`
+- Candidate ordering remains deterministic: priority, specificity, then id.
 
-How to run locally:
-1. `git pull origin main`
-2. Open the math page with `?formulaAudit=1` appended to the URL.
-3. Hard refresh or disable cache.
-4. Open DevTools Console.
-5. Read the `[E238] Formula academic coverage audit` tables.
-6. Or run manually:
-   `await BAUMAN_MATH_E238_AUDIT.run()`
-7. Inspect:
-   `BAUMAN_MATH_E238_AUDIT_REPORT.summary`
-   `BAUMAN_MATH_E238_AUDIT_REPORT.unmatched`
-   `BAUMAN_MATH_E238_AUDIT_REPORT.ambiguous`
-   `BAUMAN_MATH_E238_AUDIT_REPORT.crossChapter`
+Focused alias file:
+- Added `data/theory_formula_match_aliases_e238b.json`.
+- It maps alternate source forms to existing profiles without duplicating academic content.
+- Covered aliases include:
+  - Chapter 1 feature-vector choices
+  - linear score and orthonormal coordinate notation
+  - basis decomposition and residual `r=v-Bc`
+  - Chapter 2 scale/projection matrices and state transition
+  - Chapter 3 differential approximation, parameter update, and forward-flow notation
+
+Modal diagnostics:
+- `data-e237-chapter`
+- `data-e237-match-count`
+- `data-e237-candidates`
+- `data-e237-foreign-candidates`
+- `data-e237-profile`
+- `data-e237-registry`
+
+Audit changes:
+- E238B audit uses the same canonical normalization, aliases, priority ordering, and chapter scope as runtime.
+- Ambiguity is now measured only inside the correct chapter.
+- Foreign candidates are reported separately as ignored noise.
+- Report remains available through:
+  - `BAUMAN_MATH_E238_AUDIT.run()`
+  - `BAUMAN_MATH_E238_AUDIT_REPORT`
 
 Cache:
-- `theory-formula-academic-E237.js?v=240`
-- `theory-formula-coverage-audit-E238.js?v=238`
+- `theory-formula-academic-E237.js?v=241`
+- `theory-formula-coverage-audit-E238.js?v=239`
 
-Pass criteria for the next focused-fix pass:
-- zero duplicate profile ids
-- zero duplicate match signatures unless explicitly documented
-- zero cross-chapter selected profiles
-- every important formula slide has a registry match
-- ambiguous matches are intentional and highest-priority selection is correct
-- unmatched low-value notation may remain on E224 fallback only if documented
+Required local smoke:
+1. `git pull origin main`
+2. Hard refresh or disable cache.
+3. Open representative formulas from Chapters 1, 2, and 3.
+4. Confirm selected profile id begins with the active chapter prefix:
+   - Chapter 1 -> `c01_`
+   - Chapter 2 -> `c02_`
+   - Chapter 3 -> `c03_`
+5. Confirm no formula from another chapter replaces the current content.
+6. Run:
+   `await BAUMAN_MATH_E238_AUDIT.run()`
+7. Inspect:
+   - `.summary`
+   - `.unmatched`
+   - `.ambiguous`
+   - `.foreignCandidates`
+8. Confirm no new console errors.
 
-Status remains `PATCHED_NEEDS_LOCAL_BROWSER_SMOKE` because the audit requires the local browser to fetch the canonical JSON and registries. No PASS is claimed yet.
+Status is not PASS because the final audit still requires a local browser fetch of the canonical JSON and registries.
 
 Next planned batch:
-- E238B: use the generated report to patch only unmatched, ambiguous, cross-chapter, or unused registry keys.
+- E238C: use the E238B report to patch only the remaining unmatched formulas and intentional ambiguities, then freeze the C01-C03 academic registry layer.
