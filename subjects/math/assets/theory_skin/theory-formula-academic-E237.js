@@ -1,7 +1,7 @@
-/* E237C formula academic multi-registry bridge. Content-only, no slideshow engine. */
+/* E238 academic multi-registry bridge with coverage instrumentation. Content-only, no slideshow engine. */
 (function(){
   'use strict';
-  var RELEASE='E237C_C01_C02_C03_FORMULA_ACADEMIC_BRIDGE';
+  var RELEASE='E238_C01_C02_C03_ACADEMIC_AUDIT_INSTRUMENTED';
   var REGISTRY_URLS=[
     'data/theory_formula_academic_c01.json',
     'data/theory_formula_academic_c02.json',
@@ -37,17 +37,32 @@
       .trim();
   }
 
+  function specificity(profile){
+    var keys=(profile.matchAll||[]).concat(profile.matchAny||[]);
+    return keys.reduce(function(total,key){return total+norm(key).length;},0)+keys.length*20;
+  }
+
+  function profileSort(a,b){
+    var byPriority=(b.priority||0)-(a.priority||0);
+    if(byPriority)return byPriority;
+    var bySpecificity=specificity(b)-specificity(a);
+    if(bySpecificity)return bySpecificity;
+    return String(a.id||'').localeCompare(String(b.id||''));
+  }
+
   function loadOne(url){
     return fetch(url,{cache:'no-store'})
       .then(function(r){if(!r.ok)throw new Error(url+' HTTP '+r.status);return r.json();})
       .then(function(data){
         return ((data&&data.profiles)||[]).map(function(profile){
           profile.__registry=url;
+          profile.__chapterId=(data&&data.chapterId)||'';
+          profile.__specificity=specificity(profile);
           return profile;
         });
       })
       .catch(function(err){
-        console.warn('[E237C] academic registry unavailable',err);
+        console.warn('[E238] academic registry unavailable',err);
         return [];
       });
   }
@@ -59,7 +74,7 @@
       .then(function(groups){
         profiles=[];
         groups.forEach(function(group){profiles=profiles.concat(group);});
-        profiles.sort(function(a,b){return (b.priority||0)-(a.priority||0);});
+        profiles.sort(profileSort);
         ready=true;
         schedule();
       })
@@ -82,9 +97,8 @@
     return all.length>0||any.length>0;
   }
 
-  function findProfile(raw){
-    for(var i=0;i<profiles.length;i++)if(matches(profiles[i],raw))return profiles[i];
-    return null;
+  function findProfiles(raw){
+    return profiles.filter(function(profile){return matches(profile,raw);}).sort(profileSort);
   }
 
   function card(item){
@@ -122,12 +136,29 @@
     document.head.appendChild(style);
   }
 
+  function clearAuditAttributes(modal){
+    modal.removeAttribute('data-e237-profile');
+    modal.removeAttribute('data-e237-registry');
+    modal.removeAttribute('data-e237-candidates');
+    modal.removeAttribute('data-e237-signature');
+  }
+
   function patch(modal){
     if(!ready||!modal)return;
     var raw=rawFormula(modal);
     if(!raw)return;
-    var profile=findProfile(raw);
-    if(!profile)return;
+    var candidates=findProfiles(raw);
+    modal.setAttribute('data-e237-match-count',String(candidates.length));
+    modal.setAttribute('data-e237-candidates',candidates.map(function(p){return p.id;}).join(','));
+
+    if(!candidates.length){
+      clearAuditAttributes(modal);
+      modal.setAttribute('data-e237-match-count','0');
+      modal.setAttribute('data-e237-academic','0');
+      return;
+    }
+
+    var profile=candidates[0];
     var signature=profile.id+'|'+norm(raw);
     if(modal.getAttribute('data-e237-signature')===signature)return;
 
@@ -177,7 +208,10 @@
   window.BAUMAN_MATH_E237_ACADEMIC={
     release:RELEASE,
     apply:scan,
+    normalize:norm,
+    match:function(raw){return findProfiles(raw).slice();},
     profiles:function(){return profiles.slice();},
-    registries:function(){return REGISTRY_URLS.slice();}
+    registries:function(){return REGISTRY_URLS.slice();},
+    isReady:function(){return ready;}
   };
 })();
