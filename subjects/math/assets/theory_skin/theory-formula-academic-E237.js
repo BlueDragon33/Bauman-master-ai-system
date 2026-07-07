@@ -1,10 +1,11 @@
-/* E237B formula academic multi-registry bridge. Content-only, no slideshow engine. */
+/* E237C formula academic multi-registry bridge. Content-only, no slideshow engine. */
 (function(){
   'use strict';
-  var RELEASE='E237B_C01_C02_FORMULA_ACADEMIC_BRIDGE';
+  var RELEASE='E237C_C01_C02_C03_FORMULA_ACADEMIC_BRIDGE';
   var REGISTRY_URLS=[
     'data/theory_formula_academic_c01.json',
-    'data/theory_formula_academic_c02.json'
+    'data/theory_formula_academic_c02.json',
+    'data/theory_formula_academic_c03.json'
   ];
   var profiles=[];
   var ready=false;
@@ -46,7 +47,7 @@
         });
       })
       .catch(function(err){
-        console.warn('[E237B] academic registry unavailable',err);
+        console.warn('[E237C] academic registry unavailable',err);
         return [];
       });
   }
