@@ -1,8 +1,11 @@
-/* E237A formula academic registry bridge. Content-only, no slideshow engine. */
+/* E237B formula academic multi-registry bridge. Content-only, no slideshow engine. */
 (function(){
   'use strict';
-  var RELEASE='E237A_C01_FORMULA_ACADEMIC_BRIDGE';
-  var REGISTRY_URL='data/theory_formula_academic_c01.json';
+  var RELEASE='E237B_C01_C02_FORMULA_ACADEMIC_BRIDGE';
+  var REGISTRY_URLS=[
+    'data/theory_formula_academic_c01.json',
+    'data/theory_formula_academic_c02.json'
+  ];
   var profiles=[];
   var ready=false;
   var loading=false;
@@ -33,17 +36,32 @@
       .trim();
   }
 
+  function loadOne(url){
+    return fetch(url,{cache:'no-store'})
+      .then(function(r){if(!r.ok)throw new Error(url+' HTTP '+r.status);return r.json();})
+      .then(function(data){
+        return ((data&&data.profiles)||[]).map(function(profile){
+          profile.__registry=url;
+          return profile;
+        });
+      })
+      .catch(function(err){
+        console.warn('[E237B] academic registry unavailable',err);
+        return [];
+      });
+  }
+
   function load(){
     if(ready||loading)return;
     loading=true;
-    fetch(REGISTRY_URL,{cache:'no-store'})
-      .then(function(r){if(!r.ok)throw new Error(REGISTRY_URL+' HTTP '+r.status);return r.json();})
-      .then(function(data){
-        profiles=((data&&data.profiles)||[]).slice().sort(function(a,b){return (b.priority||0)-(a.priority||0);});
+    Promise.all(REGISTRY_URLS.map(loadOne))
+      .then(function(groups){
+        profiles=[];
+        groups.forEach(function(group){profiles=profiles.concat(group);});
+        profiles.sort(function(a,b){return (b.priority||0)-(a.priority||0);});
         ready=true;
         schedule();
       })
-      .catch(function(err){console.warn('[E237A] academic registry unavailable',err);})
       .finally(function(){loading=false;});
   }
 
@@ -132,6 +150,7 @@
 
     modal.setAttribute('data-e237-signature',signature);
     modal.setAttribute('data-e237-profile',profile.id);
+    modal.setAttribute('data-e237-registry',profile.__registry||'');
     modal.setAttribute('data-e237-academic','1');
   }
 
@@ -154,5 +173,10 @@
   }
 
   if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',boot);else boot();
-  window.BAUMAN_MATH_E237_ACADEMIC={release:RELEASE,apply:scan,profiles:function(){return profiles.slice();}};
+  window.BAUMAN_MATH_E237_ACADEMIC={
+    release:RELEASE,
+    apply:scan,
+    profiles:function(){return profiles.slice();},
+    registries:function(){return REGISTRY_URLS.slice();}
+  };
 })();
