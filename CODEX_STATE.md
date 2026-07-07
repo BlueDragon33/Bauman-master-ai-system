@@ -1,6 +1,6 @@
 # CODEX_STATE
 
-Current task: E235_FRACTION_AXIS_ALIGNMENT
+Current task: E236_FORMULA_MODAL_MINI_LESSON_LAYOUT
 
 Status: PATCHED_NEEDS_LOCAL_BROWSER_SMOKE
 
@@ -8,40 +8,56 @@ Date: 2026-07-07
 Branch: `main`
 
 Files changed:
-- `subjects/math/assets/theory_skin/theory-formula-fraction-align-E235.js`
+- `subjects/math/assets/theory_skin/theory-formula-mini-lesson-E236.js`
 - `subjects/math/index.html`
 - `CODEX_STATE.md`
 
-Root cause:
-- E234B correctly created stacked fractions, but `.e234-fraction` used `vertical-align:-.55em`.
-- That pulled every fraction too low relative to the surrounding equation baseline.
-- Numerator and denominator also used full outer font size, making the fraction block feel heavy and visually unbalanced.
+Scope:
+- Layout-only improvement for the Reader Pro formula popup.
+- No change to E202 slideshow logic.
+- No change to E224 parser/content logic.
+- No change to E234 fraction/radical parsing.
+- No change to E235 fraction alignment.
+- No change to theory JSON.
 
 Patch summary:
-- Added a small CSS-only bridge loaded after E234B.
-- Fraction blocks now use `vertical-align: middle` with a tiny upward correction.
-- Numerator and denominator use 90% font size.
-- Numerator/denominator padding is symmetric around the fraction bar.
-- Both rows stretch to the same width and remain centered.
-- Nested fractions receive a small scale reduction.
-- Parser, raw formula data, radical rendering, Python code, and content were not modified.
+- Added a mini-lesson visual hierarchy with four steps:
+  01 Formula
+  02 Analysis
+  03 Application
+  04 Python
+- Formula section now spans the full content width and acts as the visual anchor.
+- Analysis and application are placed side by side on desktop.
+- Python remains in a dedicated right-side panel with improved code readability.
+- Formula cards use responsive auto-fit columns; note cards remain full width.
+- Added distinct but restrained visual treatment for formula, analysis, application, and code sections.
+- Improved modal dimensions for desktop while preserving responsive single-column layout.
+- Added compact mobile layout under 720px.
+- Added section numbering and a small MINI LESSON badge without changing content.
+- E236 is loaded after E212 so its modal-specific layout is the final visual override.
 
 Index load order:
 - E224 formula parser/content bridge
 - E234 balanced fraction/radical typesetter
 - E235 fraction alignment override
 - E212 fit bridge
+- E236 mini-lesson modal layout
 
 Required local smoke:
 1. `git pull origin main`
 2. Hard refresh or disable cache.
-3. Open cosine, covariance, inverse-matrix, and finite-difference formulas.
+3. Open `Xem đầy đủ` for:
+   - cosine
+   - projection
+   - matrix X
+   - rank/Col(A)
 4. Confirm:
-   - the equation lhs and fraction are vertically centered
-   - numerator and denominator are balanced
-   - the fraction bar spans the wider row
-   - nested fractions remain readable
-   - radical rendering remains unchanged
+   - formula is the main visual focus
+   - analysis and application are easy to compare
+   - Python code is readable and scrolls correctly
+   - fractions and radicals remain unchanged
+   - layout does not overflow at desktop width
+   - responsive layout works below 1000px and 720px
    - no new console errors
 
 Status remains `PATCHED_NEEDS_LOCAL_BROWSER_SMOKE` because browser smoke was not run from this chat environment.
