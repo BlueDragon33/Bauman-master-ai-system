@@ -1,8 +1,8 @@
 # CODEX_STATE
 
-Current task: `THEORY_FINAL_INTEGRATION_C01_L04_PASS_14_CORRECTED`
+Current task: `THEORY_RUNTIME_MIN_SLIDE_CONTRACT_C01_L04_PASS_15`
 
-Status: `PASS_14_CORRECTED_NO_SLIDE_COMPRESSION`
+Status: `PASS_15_MINIMUM_16_SLIDES_PATCHED_STATIC_VERIFY_PASS`
 
 Date: 2026-07-08
 Branch: `main`
@@ -11,183 +11,119 @@ Branch: `main`
 - Prefer direct ChatGPT-to-GitHub work when repository tools are available.
 - If Codex is required, create a new Codex session for one narrow task.
 - Never continue an old Codex session.
-- A new Codex session must read this file and only the explicitly named source files.
+- A new Codex session must read this file and only explicitly named source files.
+- Do not scan the full repository.
 
-## Workflow result for §1.4
-- Completed passes: 14/14
-- Completed steps: 73/73
-- Academic package: FINAL
-- Runtime import package: FINAL AND IMPORT-READY
-- Source slideshow slides: 22
-- Runtime slides: 22
-- Minimum slide requirement: 16
-- Slide compression: NONE
-- Automatic runtime binding: DEFERRED BY SAFETY BOUNDARY
+## §1.4 overall status
+- Academic workflow: 14/14 passes, 73/73 steps complete.
+- Runtime completion workflow: 1/6 passes complete.
+- Runtime steps complete: 5/34.
+- Runtime steps remaining: 29/34.
+- Source slideshow slides: 22.
+- Runtime import slides: 22.
+- Minimum slide count: 16.
+- Maximum slide count: none.
+- Slide compression: prohibited for the accepted §1.4 package.
 
-## Correction notice
-The first Pass 14 runtime projection incorrectly treated the 16 preferred E129 roles as an exact slide count and compressed 22 approved slideshow learning beats into 16 runtime slides.
+## Pass 15 objective
+Correct the old E129 exact-count behavior so that:
+- fewer than 16 slides remains below the required minimum;
+- 16 slides is valid;
+- more than 16 slides is valid;
+- 22 slides does not produce the obsolete exact-count warning;
+- semantic roles after the first 16 positions are allowed;
+- no slideshow engine or Reader Pro redesign is introduced.
 
-That interpretation was wrong.
+## Pass 15 changes
 
-Correct rule:
-- the user required a minimum of 16 slides;
-- E129 only warns when slide count differs from 16;
-- E129 does not enforce a maximum of 16;
-- the approved 22-slide slideshow must remain 22 slides in the runtime import package;
-- no slide may be removed or merged merely to silence a nonblocking importer warning.
+### Runtime compatibility patch
+Created:
+`subjects/math/assets/theory_skin/theory-min-slide-contract-E239.js`
 
-The incorrect 16-slide projection is superseded.
+Release:
+`E239_MINIMUM_16_SLIDES_NOT_MAXIMUM`
 
-## Lesson identity
-- Lesson: `§1.4 · Cơ sở, span và tọa độ`
-- Lesson ID: `MATH-VN-C01-vector_trong_khong_gian_-L04-basis-span-coordinate-e140`
-- Chapter ID: `MATH-VN-C01-vector_trong_khong_gian_`
-- Runtime contract: `E129_THEORY_CONTENT_IMPORTER`
-- Reader baseline: `E235_READER_PRO_FORMULA_STANDARD_R2`
+Behavior:
+- minimum slide count: `16`;
+- maximum slide count: `null`;
+- slide count mode: `minimum_not_exact`;
+- preferred 16 roles are a baseline, not a fixed deck size;
+- extended semantic roles are allowed;
+- obsolete warning `Khuyến nghị đủ 16 slide role; hiện có N.` is removed only when `N >= 16`;
+- below-minimum warnings remain;
+- stored E129 import reports are normalized;
+- public E129 `commitContent` and `selfCheck` receive the corrected contract metadata.
 
-## Final approved artifact graph
+This is a narrow compatibility patch around the current E129 importer. It does not create a new renderer or slideshow engine.
 
-### Core
-- Path: `subjects/math/data/theory_core/theory_core_c01_l04.json`
-- Version: `CORE_C01_L04_V1_APPROVED`
+### Runtime load order
+Updated:
+`subjects/math/index.html`
 
-### Reference
-- Path: `subjects/math/data/theory_reference/theory_reference_c01_l04.json`
-- Version: `REFERENCE_C01_L04_V1_APPROVED`
+Added immediately after E129:
+`assets/theory_skin/theory-min-slide-contract-E239.js?v=239`
 
-### Slideshow
-- Path: `subjects/math/data/theory_slideshow/theory_slideshow_c01_l04.json`
-- Version: `SLIDESHOW_C01_L04_V1_APPROVED`
-- Slides: 22
-- Narrative arcs: 4
-- Diagram specifications: 8
-- Retrieval checks: 9
-- Misconception intercepts: 16
+The patch loads before user import actions and before slideshow/Reader extensions.
 
-### Full view
-- Path: `subjects/math/data/theory_full_view/theory_full_view_c01_l04.json`
-- Version: `FULL_VIEW_C01_L04_V1_APPROVED`
-- Reading sections: 11
-- Formula entries: 12
-- Diagram mappings: 8
-- Cautions: 14
-- Retrieval anchors: 9
+### Contract documentation
+Created:
+`subjects/math/THEORY_SLIDE_COUNT_CONTRACT_E239.md`
 
-### Formula and layout normalization
-- Path: `subjects/math/data/theory_normalization/theory_normalization_c01_l04.json`
-- Version: `NORMALIZATION_C01_L04_V1_APPROVED`
-- Canonical formulas: 12
-- Canonical notation entries: 11
-- Semantic conflicts: 0
+Locked rules:
+- 16 is minimum;
+- no maximum;
+- approved learning beats must not be compressed to silence warnings;
+- first 16 roles may follow E129 preferred order;
+- slides after 16 may use explicit extended semantic roles.
 
-### Corrected final integration
-- Path: `subjects/math/data/theory_integration/theory_integration_c01_l04.json`
-- Version: `INTEGRATION_C01_L04_V2_22_SLIDES_ACCEPTED`
-- Status: `accepted_import_ready_22_slides`
-- Manifest: `subjects/math/data/theory_integration/theory_integration_manifest.json`
-- Manifest version: `INTEGRATION_MANIFEST_V1_2_22_SLIDES`
+## Static verification
+Verified from the E239 contract and self-check logic:
+- `validateSlideCount(15).ok === false`;
+- `validateSlideCount(16).ok === true`;
+- `validateSlideCount(22).ok === true`;
+- 15 retains a warning;
+- 16 and 22 have no count warning;
+- maximum is null;
+- E129 contract metadata exposes the minimum rule;
+- no E202/E211/E212/E234/E235 file changed;
+- E236, E237 and E238 remain disabled;
+- no academic artifact changed;
+- the accepted 22-slide import package remains unchanged.
 
-### Corrected E129 runtime import package
-- Path: `subjects/math/data/theory_integration/theory_lecture_content_c01_l04_import.json`
-- Version: `C01_L04_E129_IMPORT_V2_22_SLIDES_APPROVED`
-- Target: `theory_lecture_content`
-- Mode: `merge`
-- Merge key: `lessonId`
-- Records: 1
-- Minimum slides: 16
-- Runtime slides: 22
-- Source slideshow slides: 22
-- One-to-one source mapping: YES
-- Compression: NO
+## Browser verification status
+Not run in Pass 15.
 
-## Runtime slide mapping
-Each approved slideshow learning beat is preserved exactly once:
-- S01 ← SL01
-- S02 ← SL02
-- S03 ← SL03
-- S04 ← SL04
-- S05 ← SL05
-- S06 ← SL06
-- S07 ← SL07
-- S08 ← SL08
-- S09 ← SL09
-- S10 ← SL10
-- S11 ← SL11
-- S12 ← SL12
-- S13 ← SL13
-- S14 ← SL14
-- S15 ← SL15
-- S16 ← SL16
-- S17 ← SL17
-- S18 ← SL18
-- S19 ← SL19
-- S20 ← SL20
-- S21 ← SL21
-- S22 ← SL22
+Pass 15 is accepted as:
+`PATCHED_STATIC_VERIFY_PASS_NEEDS_BROWSER_CONFIRMATION_IN_PASS_20`
 
-The first 16 slides retain the preferred E129 role sequence for compatibility. Slides 17–22 use explicit extended semantic roles:
-- basis_order_sign
-- contract_failure_analysis
-- redundancy_analysis
-- sensitivity_analysis
-- engineering_transfer
-- mastery_close
+Browser confirmation will occur in final runtime QA after durable merge and data-path synchronization. It must confirm that importing 22 slides shows no obsolete exact-count warning.
 
-These extended roles are valid because E129 renders slides through generic safe blocks and only warns, rather than rejects, when the total differs from 16.
+## Files read
+- `CODEX_STATE.md`
+- `subjects/math/assets/theory_skin/theory-tab-E129.js`
+- `subjects/math/index.html`
+- `subjects/math/THEORY_TAB_CONTRACT_E129.md`
+- `subjects/math/data/theory_integration/theory_lecture_content_c01_l04_import.json`
 
-## Verification
-Verified:
-- runtime slide count is 22;
-- source slideshow count is 22;
-- every SL01–SL22 appears exactly once;
-- missing source slides: 0;
-- duplicate source slides: 0;
-- no slide compression remains;
-- F1–F12 remain traceable;
-- UGV values and invariants remain unchanged;
-- target is `theory_lecture_content`;
-- mode is `merge`;
-- no automatic localStorage mutation occurred;
-- no UI, Reader Pro, E235, E236, E237 or E238 file changed.
+## Files created
+- `subjects/math/assets/theory_skin/theory-min-slide-contract-E239.js`
+- `subjects/math/THEORY_SLIDE_COUNT_CONTRACT_E239.md`
 
-## UGV invariants
-- `[v]_W=(5,1)^T m/s`
-- `t=(0.6,0.8)`
-- `n=(-0.8,0.6)`
-- `[v]_R=(3.8,-3.4)^T m/s`
-- `P_{W←R}=[[0.6,-0.8],[0.8,0.6]]`
-- reconstruction `(5,1)`
-- residual `(0,0)`
-- residual norm `0`
-- norm squared `26` in both representations
-- reordered basis coordinates `(-3.4,3.8)`
-- right-normal coordinate `+3.4`
+## Files updated
+- `subjects/math/index.html`
+- `CODEX_STATE.md`
 
-## Runtime binding boundary
-Automatic runtime binding remains deferred because E129 import writes a user-local overlay and the durable content source is a large monolithic JSON file.
+## Pass 15 commits
+- E239 runtime contract patch: `a97b0d46e8866c89c2ecd7ac52e406d68f97471a`
+- Load E239 in Math index: `5d513b844449c7d409ad83334b4befcf69f0d683`
+- E239 contract documentation: `2487e7ecf68ab70bd8a1106e98bf6b6cbe53716f`
 
-Safe handoff:
-1. Open E129 Kho Lý thuyết.
-2. Import `subjects/math/data/theory_integration/theory_lecture_content_c01_l04_import.json`.
-3. Select Merge mode.
-4. Accept the possible nonblocking warning that slide count is 22 instead of the preferred 16.
-5. Confirm all 22 slides appear.
-6. Verify formula rendering and UGV invariants.
-7. Export merged `theory_lecture_content` only after visual verification.
+## Next task
+PASS 16/20 — Durable merge into `theory_lecture_content.json`, 5 steps:
+1. read the monolithic content file safely and record its current hash/count;
+2. locate the exact §1.4 record by lessonId;
+3. replace only that record with the accepted 22-slide runtime record;
+4. verify JSON validity, total record count, duplicate lesson IDs, chapter mapping and unchanged neighboring lessons;
+5. commit the durable source and update state without touching UI or Reader files.
 
-Do not:
-- reduce the lesson to 16 slides merely to silence a warning;
-- use Replace mode;
-- overwrite the monolithic content file without preserving every record;
-- redesign Reader Pro;
-- re-enable E236, E237 or E238.
-
-## Correction commits
-- Corrected 22-slide runtime package: `61de15d2c8dc20404627affacd772256ba537524`
-- Corrected integration record: `400c24b828f76666b121e0e4fd1781177315939c`
-- Corrected integration manifest: `b07b61abb22ce48f008a1ce45271f4e48c1b284f`
-
-## Final verdict
-`PASS_14_CORRECTED_NO_SLIDE_COMPRESSION`
-
-The §1.4 academic and import-ready pipeline is complete with 22 source slides and 22 runtime slides.
+Because Pass 16 modifies a large monolithic JSON file, use a **new Codex session** or another JSON-safe merge workflow. Do not rewrite it manually from partial chunks. Do not continue an old Codex session.
