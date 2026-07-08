@@ -1,0 +1,883 @@
+{
+  "id": "bauman_math_theory_core_c01_l04_v1",
+  "schema": "bauman_math_theory_core_v1",
+  "version": "CORE_C01_L04_V1_DRAFT",
+  "status": "math_review_required",
+  "lessonId": "MATH-VN-C01-vector_trong_khong_gian_-L04-basis-span-coordinate-e140",
+  "chapterId": "MATH-VN-C01-vector_trong_khong_gian_",
+  "lessonTitle": "§1.4 · Cơ sở, span và tọa độ",
+  "language": "vi",
+  "purpose": "Nguồn nội dung lõi độc lập với trình bày cho bài 1.4. Bản nháp này khóa phần học thuật của tổ hợp tuyến tính, span, độc lập tuyến tính, cơ sở, tọa độ và đổi biểu diễn; còn phải qua review toán, review mô hình kỹ thuật, worked case, misconception, assessment và implementation contract.",
+  "contentContract": {
+    "sourceOfTruth": true,
+    "presentationIndependent": true,
+    "noUiCopy": true,
+    "noSlideNumbering": true,
+    "notationMustBeSemantic": true,
+    "approvalBlockedUntilPass09": true,
+    "downstreamOrder": [
+      "reference_table",
+      "slideshow",
+      "full_view",
+      "formula_and_layout_finalization",
+      "final_integration"
+    ]
+  },
+  "lessonThesis": "Cơ sở là một hợp đồng biểu diễn có thứ tự: nó chọn đủ các hướng độc lập để mọi vector trong không gian đang xét có đúng một bộ tọa độ. Span cho biết biểu diễn tạo được những gì; tọa độ cho biết cần bao nhiêu ở mỗi hướng; đổi cơ sở làm thay đổi các con số mô tả nhưng không làm thay đổi vector vật lý hoặc đối tượng trừu tượng đang được mô tả.",
+  "prerequisites": [
+    "Từ §1.1: vector là đối tượng đại số đồng thời là dữ liệu có thứ tự, schema, đơn vị và timestamp",
+    "Từ §1.1: cộng vector và nhân vector với vô hướng",
+    "Từ §1.2: norm, distance và reconstruction error",
+    "Từ §1.3: dot product, orthogonality, projection và residual",
+    "Giải được hệ hai phương trình tuyến tính nhỏ bằng thế hoặc khử ở mức thao tác",
+    "Phân biệt vector zero với vector có hướng"
+  ],
+  "learningOutcomes": [
+    {
+      "id": "LO1",
+      "outcome": "Tính và diễn giải được một tổ hợp tuyến tính.",
+      "evidence": "Từ các vector b_i và hệ số c_i, tính đúng vector kết quả, nêu ý nghĩa và đơn vị của từng hệ số."
+    },
+    {
+      "id": "LO2",
+      "outcome": "Quyết định được một vector có thuộc span của một họ vector đơn giản hay không.",
+      "evidence": "Tìm được hệ số và kiểm reconstruction, hoặc chỉ ra hệ phương trình tọa độ không nhất quán."
+    },
+    {
+      "id": "LO3",
+      "outcome": "Phân biệt được họ sinh, họ độc lập tuyến tính và cơ sở của một không gian đã nêu.",
+      "evidence": "Kết luận riêng từng điều kiện spanning và independence trước khi kết luận basis."
+    },
+    {
+      "id": "LO4",
+      "outcome": "Giải thích được vì sao spanning tạo sự tồn tại và independence tạo tính duy nhất của tọa độ.",
+      "evidence": "Phân tích đúng một ví dụ thiếu hướng và một ví dụ dư thừa."
+    },
+    {
+      "id": "LO5",
+      "outcome": "Tính được tọa độ [v]_B trong một cơ sở có thứ tự không chuẩn ở R^2.",
+      "evidence": "Giải đúng phương trình tọa độ, ghi đúng thứ tự hệ số và tái tạo lại v."
+    },
+    {
+      "id": "LO6",
+      "outcome": "Phân biệt được vector trừu tượng hoặc vật lý với cột tọa độ của nó.",
+      "evidence": "Mô tả cùng một vector trong hai basis hoặc coordinate frame mà không làm thay đổi đối tượng."
+    },
+    {
+      "id": "LO7",
+      "outcome": "Dùng đúng shortcut lấy hệ số bằng dot product cho cơ sở trực chuẩn.",
+      "evidence": "Kiểm tra trực giao và unit norm trước khi dùng c_i = v · b_i, đồng thời từ chối shortcut với basis tổng quát."
+    },
+    {
+      "id": "LO8",
+      "outcome": "Phân biệt được biểu diễn chính xác, biểu diễn dư thừa và biểu diễn xấp xỉ.",
+      "evidence": "Dùng reconstruction, uniqueness và residual để phân loại."
+    },
+    {
+      "id": "LO9",
+      "outcome": "Nhận diện được rủi ro từ basis gần phụ thuộc, sai thứ tự, sai đơn vị và trộn coordinate frame.",
+      "evidence": "Dự đoán hậu quả và nêu hành động sửa tương ứng."
+    },
+    {
+      "id": "LO10",
+      "outcome": "Lựa chọn và bảo vệ được một hệ biểu diễn cho bài toán robot, tín hiệu hoặc dữ liệu.",
+      "evidence": "So sánh ít nhất hai phương án theo tính hợp lệ, reconstruction, sensitivity, interpretability và downstream use."
+    }
+  ],
+  "notationRules": [
+    {
+      "raw": "V",
+      "meaning": "Không gian vector đang xét; phải được nêu rõ trước khi gọi một họ vector là cơ sở."
+    },
+    {
+      "raw": "b_i",
+      "meaning": "Vector thứ i trong họ sinh hoặc basis; i là chỉ số dưới."
+    },
+    {
+      "raw": "B = (b_1, b_2, ..., b_k)",
+      "meaning": "Họ vector có thứ tự. Dấu ngoặc tròn nhấn mạnh thứ tự khi B được dùng như basis hoặc coordinate contract."
+    },
+    {
+      "raw": "c = (c_1, c_2, ..., c_k)^T",
+      "meaning": "Cột hệ số; T là chuyển vị và i trong c_i là chỉ số dưới."
+    },
+    {
+      "raw": "v = sum_i c_i b_i",
+      "meaning": "v là tổ hợp tuyến tính của các vector b_i với hệ số c_i."
+    },
+    {
+      "raw": "span(b_1, ..., b_k)",
+      "meaning": "Tập tất cả tổ hợp tuyến tính của b_1, ..., b_k."
+    },
+    {
+      "raw": "v in span(B)",
+      "meaning": "Tồn tại ít nhất một c sao cho v = sum_i c_i b_i."
+    },
+    {
+      "raw": "sum_i z_i b_i = 0",
+      "meaning": "Quan hệ tuyến tính giữa các vector b_i; họ độc lập khi chỉ có nghiệm z_i = 0 cho mọi i."
+    },
+    {
+      "raw": "[v]_B",
+      "meaning": "Cột tọa độ của vector v theo ordered basis B; không phải bản thân vector v."
+    },
+    {
+      "raw": "B_mat = [b_1 b_2 ... b_k]",
+      "meaning": "Ma trận có các cột là b_i, dùng để viết gọn quan hệ B_mat c = v. B_mat khác ordered family B về vai trò ký hiệu nhưng chứa cùng các vector."
+    },
+    {
+      "raw": "B_mat c = v",
+      "meaning": "Phương trình reconstruction trong hệ tọa độ ambient đã chọn."
+    },
+    {
+      "raw": "r = v - B_mat c",
+      "meaning": "Residual của biểu diễn; r = 0 trong exact arithmetic khi c tái tạo đúng v."
+    },
+    {
+      "raw": "E = (e_1, ..., e_n)",
+      "meaning": "Standard basis của R^n khi e_i có 1 ở vị trí i và 0 ở các vị trí khác."
+    },
+    {
+      "raw": "P_{E<-B}",
+      "meaning": "Ma trận đổi tọa độ từ basis B sang standard basis E; cột i là [b_i]_E."
+    },
+    {
+      "raw": "[v]_E = P_{E<-B}[v]_B",
+      "meaning": "Cùng vector v được tái tạo trong standard coordinates từ coordinate vector theo B."
+    },
+    {
+      "raw": "c_i = v · b_i",
+      "meaning": "Shortcut lấy tọa độ chỉ khi B là một orthonormal basis trong cùng inner-product space."
+    }
+  ],
+  "coreConcepts": [
+    {
+      "id": "C1",
+      "name": "Tọa độ là mã của vector theo một basis",
+      "definition": "Một vector có thể được mô tả bằng nhiều cột tọa độ khác nhau, mỗi cột chỉ có nghĩa khi đi cùng một ordered basis.",
+      "deepMeaning": "Vector là đối tượng; tọa độ là dữ liệu mô tả đối tượng trong một ngôn ngữ biểu diễn.",
+      "engineeringConsequence": "Một mảng số không kèm frame, basis order và unit contract có thể hợp lệ về shape nhưng vô nghĩa về vật lý.",
+      "counterexample": "Cột [1,0]^T trong standard basis chỉ hướng trục x, nhưng trong basis hoán đổi (e_2,e_1) nó chỉ hướng trục y."
+    },
+    {
+      "id": "C2",
+      "name": "Tổ hợp tuyến tính là cơ chế tạo vector",
+      "definition": "Tổ hợp tuyến tính lấy các hướng b_i, co giãn chúng bằng c_i rồi cộng lại.",
+      "deepMeaning": "Các hệ số c_i là mức đóng góp theo từng hướng, nhưng ý nghĩa đơn vị phụ thuộc cách basis được định nghĩa.",
+      "engineeringConsequence": "Trong robot, hệ số có thể là vận tốc dọc/ngang; trong tín hiệu, chúng có thể là biên độ mode; trong dữ liệu, chúng có thể là latent coordinates."
+    },
+    {
+      "id": "C3",
+      "name": "Span là miền biểu diễn chính xác",
+      "definition": "Span của một họ vector là tập mọi vector tạo được bằng tổ hợp tuyến tính của họ đó.",
+      "deepMeaning": "Span trả lời câu hỏi về khả năng biểu diễn, chưa trả lời tính duy nhất của hệ số.",
+      "engineeringConsequence": "Nếu trạng thái thật nằm ngoài span của actuator directions hoặc signal modes đã chọn, mô hình không thể tái tạo chính xác dù thuật toán giải tốt."
+    },
+    {
+      "id": "C4",
+      "name": "Độc lập tuyến tính loại bỏ hướng thừa",
+      "definition": "Một họ vector độc lập khi không vector nào có thể được tạo bởi tổ hợp tuyến tính của các vector còn lại.",
+      "deepMeaning": "Mỗi hướng thêm một bậc tự do tuyến tính mới; quan hệ tạo zero không tầm thường là bằng chứng dư thừa.",
+      "engineeringConsequence": "Dư thừa có thể gây coefficients không duy nhất, hệ suy biến và diễn giải sai contribution."
+    },
+    {
+      "id": "C5",
+      "name": "Basis kết hợp đủ sinh và không dư",
+      "definition": "Basis của V là một ordered family vừa sinh V vừa độc lập tuyến tính.",
+      "deepMeaning": "Spanning cho tồn tại; independence cho uniqueness; basis biến mọi vector trong V thành đúng một coordinate vector.",
+      "engineeringConsequence": "Basis là representation contract tối thiểu cho exact coordinates trong không gian đã nêu."
+    },
+    {
+      "id": "C6",
+      "name": "Thứ tự basis là một phần của dữ liệu",
+      "definition": "Đổi thứ tự các basis vectors làm đổi thứ tự các coordinates dù abstract vector không đổi.",
+      "deepMeaning": "Basis không chỉ là set mà là ordered family khi dùng để mã hóa.",
+      "engineeringConsequence": "Sai feature order hoặc axis order có thể tạo reconstruction khác dù cùng các con số."
+    },
+    {
+      "id": "C7",
+      "name": "Orthonormal basis làm coefficient recovery đơn giản",
+      "definition": "Nếu basis vectors trực giao đôi một và có norm 1, coordinate coefficient bằng dot product với từng basis vector.",
+      "deepMeaning": "Orthonormality làm các hướng không trộn contribution của nhau.",
+      "engineeringConsequence": "Fourier-like coefficients, projection coordinates và nhiều transform ổn định dựa vào cấu trúc này."
+    },
+    {
+      "id": "C8",
+      "name": "Basis hợp lệ chưa chắc là basis tốt về số",
+      "definition": "Một họ có thể độc lập chính xác nhưng gần phụ thuộc, khiến coefficients rất nhạy với nhiễu và rounding.",
+      "deepMeaning": "Algebraic uniqueness không đảm bảo numerical robustness.",
+      "engineeringConsequence": "Khi directions gần song song, thay đổi đo nhỏ có thể làm coordinate coefficients thay đổi lớn dù reconstruction vẫn gần đúng."
+    },
+    {
+      "id": "C9",
+      "name": "Feature set và dictionary không đồng nghĩa với basis",
+      "definition": "Feature axes là schema dữ liệu; dictionary có thể dư thừa; chỉ ordered family độc lập và đủ sinh cho không gian đã nêu mới là basis.",
+      "deepMeaning": "Các thuật ngữ giống nhau ở trực giác 'hướng biểu diễn' nhưng khác điều kiện toán học.",
+      "engineeringConsequence": "Gọi nhầm dictionary hoặc feature set là basis che giấu non-uniqueness, leakage hoặc mismatch giữa representation space và physical state space."
+    }
+  ],
+  "mainMechanisms": [
+    {
+      "id": "MECH1",
+      "name": "Tạo vector bằng tổ hợp tuyến tính",
+      "steps": [
+        "Nêu rõ ambient space, ordered family B và ý nghĩa từng b_i",
+        "Kiểm tra các b_i thuộc cùng vector space và có units/frame tương thích",
+        "Nhân từng b_i với c_i",
+        "Cộng các thành phần để thu v",
+        "Diễn giải c_i theo basis semantics"
+      ],
+      "qualityCheck": "Thay coefficients trở lại công thức và kiểm vector kết quả theo từng component."
+    },
+    {
+      "id": "MECH2",
+      "name": "Kiểm membership trong span",
+      "steps": [
+        "Viết v = sum_i c_i b_i",
+        "Tách thành các phương trình theo component",
+        "Tìm một nghiệm c hoặc chứng minh hệ không nhất quán",
+        "Nếu có nghiệm, tái tạo v và kiểm residual",
+        "Không suy ra uniqueness chỉ từ việc tìm được một nghiệm"
+      ],
+      "qualityCheck": "Exact membership yêu cầu residual bằng zero trong exact arithmetic hoặc gần zero theo tolerance trong floating point."
+    },
+    {
+      "id": "MECH3",
+      "name": "Kiểm độc lập tuyến tính",
+      "steps": [
+        "Đặt sum_i z_i b_i = 0",
+        "Giải quan hệ homogeneous ở mức phù hợp",
+        "Nếu chỉ có z = 0, họ độc lập",
+        "Nếu có z != 0, họ phụ thuộc và z mô tả một quan hệ dư thừa",
+        "Với dữ liệu số, phân biệt exact dependence và near dependence"
+      ],
+      "qualityCheck": "Không dùng số lượng vector hoặc hình vẽ alone để kết luận independence."
+    },
+    {
+      "id": "MECH4",
+      "name": "Xác nhận một ordered family là basis",
+      "steps": [
+        "Nêu rõ space V cần làm basis",
+        "Kiểm B sinh V",
+        "Kiểm B độc lập tuyến tính",
+        "Chỉ kết luận basis khi cả hai điều kiện đúng",
+        "Ghi rõ order của B trước khi dùng coordinates"
+      ],
+      "qualityCheck": "Một họ có thể là basis của span(B) nhưng không phải basis của ambient space lớn hơn."
+    },
+    {
+      "id": "MECH5",
+      "name": "Tìm tọa độ trong basis tổng quát",
+      "steps": [
+        "Viết ordered basis B = (b_1, ..., b_n)",
+        "Viết v = sum_i c_i b_i hoặc B_mat c = v",
+        "Giải coefficients bằng phương pháp phù hợp đã biết",
+        "Ghi [v]_B theo đúng order",
+        "Tái tạo v và kiểm residual"
+      ],
+      "qualityCheck": "Không dùng c_i = v · b_i nếu chưa xác nhận orthonormality."
+    },
+    {
+      "id": "MECH6",
+      "name": "Tìm tọa độ trong orthonormal basis",
+      "steps": [
+        "Kiểm b_i · b_j = 0 với i != j",
+        "Kiểm ||b_i||_2 = 1",
+        "Tính c_i = v · b_i",
+        "Tái tạo sum_i c_i b_i",
+        "Kiểm residual"
+      ],
+      "qualityCheck": "Một họ orthogonal nhưng chưa normalized cần chia cho b_i · b_i."
+    },
+    {
+      "id": "MECH7",
+      "name": "Đổi representation mà giữ nguyên vector",
+      "steps": [
+        "Xác định source basis và target basis",
+        "Giữ abstract vector v cố định",
+        "Tái tạo v từ source coordinates",
+        "Tìm target coordinates theo target basis",
+        "Kiểm hai coordinate vectors tái tạo cùng v"
+      ],
+      "qualityCheck": "Không so component-by-component hai coordinate vectors thuộc basis khác nhau như thể cùng schema."
+    },
+    {
+      "id": "MECH8",
+      "name": "Chẩn đoán redundancy và non-uniqueness",
+      "steps": [
+        "Tìm quan hệ sum_i z_i b_i = 0 với z != 0",
+        "Nếu c tái tạo v thì c + t z cũng tái tạo v với mọi scalar t",
+        "Kết luận coefficients không duy nhất",
+        "Không gọi c là basis coordinates",
+        "Chuyển sang chọn một basis con hoặc áp dụng tiêu chí bổ sung ở bài sau"
+      ],
+      "qualityCheck": "Non-uniqueness là thuộc tính của generating family, không phải lỗi của riêng solver."
+    },
+    {
+      "id": "MECH9",
+      "name": "Phân biệt exact và approximate representation",
+      "steps": [
+        "Tính hoặc đánh giá residual r = v - B_mat c",
+        "Nếu r = 0 trong exact arithmetic, v thuộc span(B)",
+        "Nếu r khác zero, representation là approximate hoặc contract đang sai",
+        "Kiểm units, frame và basis order trước khi quy residual cho thiếu hướng",
+        "Để tiêu chí tối ưu c cho bài least squares sau"
+      ],
+      "qualityCheck": "Residual nhỏ không chứng minh physical model đúng."
+    }
+  ],
+  "mainFormulas": [
+    {
+      "id": "F1",
+      "name": "Tổ hợp tuyến tính",
+      "formula": "v = sum_{i=1}^k c_i b_i",
+      "questionAnswered": "Vector nào được tạo khi ghép các hướng b_i với weights c_i?",
+      "meaning": "Mỗi c_i b_i là contribution theo hướng b_i; tổng tạo vector v.",
+      "conditions": [
+        "b_i thuộc cùng vector space",
+        "c_i thuộc scalar field đang dùng, ở đây là R",
+        "units và frame semantics cho phép cộng các contribution"
+      ],
+      "undefinedCase": "Không có nghĩa mô hình nếu các b_i thuộc quantities hoặc frames không tương thích, dù phép cộng mảng có thể chạy.",
+      "sensitivity": "Nhạy với scale của basis vectors; rescale b_i làm coordinate c_i thay đổi ngược lại.",
+      "failureMode": "Trộn units hoặc frame; hiểu c_i như invariant physical quantity dù basis đã đổi.",
+      "engineeringUse": "State reconstruction, modal decomposition, signal synthesis, actuator mixing và latent representation."
+    },
+    {
+      "id": "F2",
+      "name": "Span",
+      "formula": "span(b_1,...,b_k) = {sum_{i=1}^k c_i b_i | c_i in R}",
+      "questionAnswered": "Toàn bộ tập vector nào có thể được biểu diễn chính xác từ họ hướng đã cho?",
+      "meaning": "Span là representable set tạo bởi mọi lựa chọn hệ số.",
+      "conditions": [
+        "Các b_i thuộc cùng vector space",
+        "Span luôn chứa zero vector"
+      ],
+      "undefinedCase": "Không nên gán ý nghĩa physical coverage nếu basis semantics, units hoặc constraints chưa được khai báo.",
+      "sensitivity": "Span không đổi khi thêm một vector đã nằm trong span hiện có, nhưng numerical estimate của span có thể nhạy với noise.",
+      "failureMode": "Nhầm số vector sinh với số hướng độc lập; nhầm nonlinear derived feature với linear span.",
+      "engineeringUse": "Reachable linear directions, representable signals, column space và model subspace."
+    },
+    {
+      "id": "F3",
+      "name": "Điều kiện thuộc span",
+      "formula": "v in span(B) iff exists c such that B_mat c = v",
+      "questionAnswered": "Có tồn tại một coefficient vector tái tạo chính xác v không?",
+      "meaning": "Membership là bài toán existence, không tự bảo đảm uniqueness.",
+      "conditions": [
+        "B_mat columns là b_i theo đúng order",
+        "v và b_i dùng cùng ambient coordinates"
+      ],
+      "undefinedCase": "Không có ý nghĩa nếu v và columns của B_mat thuộc frames hoặc schemas khác nhau.",
+      "sensitivity": "Trong floating point, cần tolerance cho residual thay vì equality tuyệt đối.",
+      "failureMode": "Tìm được một nghiệm rồi kết luận B là basis; bỏ qua non-uniqueness.",
+      "engineeringUse": "Exact reconstruction, actuator capability check, signal dictionary membership và feature-space coverage."
+    },
+    {
+      "id": "F4",
+      "name": "Độc lập tuyến tính",
+      "formula": "sum_{i=1}^k z_i b_i = 0 implies z_i = 0 for all i",
+      "questionAnswered": "Mỗi vector b_i có thật sự thêm một hướng tuyến tính mới không?",
+      "meaning": "Không tồn tại quan hệ tạo zero không tầm thường giữa các b_i.",
+      "conditions": [
+        "Các b_i thuộc cùng vector space",
+        "Zero là zero vector của space đó"
+      ],
+      "undefinedCase": "Không nên quyết định bằng tolerance tùy tiện khi scale của columns chưa được kiểm soát.",
+      "sensitivity": "Near dependence có thể không vi phạm exact criterion nhưng làm coefficient estimation rất nhạy.",
+      "failureMode": "Dựa vào pairwise non-collinearity cho hơn hai vectors; dùng correlation thay cho independence algebraic.",
+      "engineeringUse": "Unique coordinates, identifiable linear directions và tránh singular representations."
+    },
+    {
+      "id": "F5",
+      "name": "Cơ sở",
+      "formula": "B is a basis of V iff span(B) = V and B is linearly independent",
+      "questionAnswered": "Họ vector có đủ để biểu diễn mọi vector của V và đồng thời không dư không?",
+      "meaning": "Basis là generating family tối thiểu theo nghĩa không có redundancy tuyến tính.",
+      "conditions": [
+        "Phải nêu rõ target space V",
+        "B phải là ordered family khi dùng coordinates"
+      ],
+      "undefinedCase": "Câu 'B là basis' thiếu target space là phát biểu chưa đầy đủ.",
+      "sensitivity": "Một basis exact có thể poorly conditioned nếu vectors gần phụ thuộc.",
+      "failureMode": "Gọi một họ độc lập trong R^3 gồm hai vectors là basis của R^3; hoặc gọi họ sinh dư thừa là basis.",
+      "engineeringUse": "Coordinate systems, state representation, signal bases và matrix representations."
+    },
+    {
+      "id": "F6",
+      "name": "Tọa độ theo basis",
+      "formula": "[v]_B = (c_1,...,c_n)^T where v = sum_{i=1}^n c_i b_i",
+      "questionAnswered": "Vector v được mã hóa bằng bao nhiêu đơn vị của từng basis direction?",
+      "meaning": "Coordinate vector lưu coefficients theo đúng order của B.",
+      "conditions": [
+        "B là ordered basis của space chứa v",
+        "v thuộc target space"
+      ],
+      "undefinedCase": "Nếu B không spanning thì một số v không có coordinates; nếu B dependent thì coefficients không duy nhất và không phải basis coordinates.",
+      "sensitivity": "Coordinates thay đổi khi rescale, reorder hoặc đổi basis; near dependence làm coordinates nhạy.",
+      "failureMode": "So [v]_B với [w]_C component-wise khi B != C; bỏ basis label.",
+      "engineeringUse": "Robot frames, modal coordinates, state transforms và latent features."
+    },
+    {
+      "id": "F7",
+      "name": "Reconstruction",
+      "formula": "v = B_mat [v]_B",
+      "questionAnswered": "Coordinate vector theo B có tái tạo đúng abstract vector v không?",
+      "meaning": "B_mat biến coefficients thành ambient coordinate representation của v.",
+      "conditions": [
+        "Columns của B_mat theo đúng order của B",
+        "[v]_B dùng cùng order và basis version"
+      ],
+      "undefinedCase": "Không hợp lệ nếu matrix columns và coordinate metadata không cùng basis version.",
+      "sensitivity": "Sai order tạo vector khác; basis scale lớn có thể khuếch đại coefficient error.",
+      "failureMode": "Không kiểm reconstruction; reorder columns nhưng giữ nguyên coordinate vector.",
+      "engineeringUse": "Decode state, synthesize signal, restore world-frame vectors và verify serialization."
+    },
+    {
+      "id": "F8",
+      "name": "Tính duy nhất của tọa độ",
+      "formula": "B_mat c = B_mat d and B independent imply c = d",
+      "questionAnswered": "Vì sao một vector chỉ có một coordinate vector trong basis?",
+      "meaning": "B_mat(c-d)=0; independence buộc c-d=0.",
+      "conditions": [
+        "B linearly independent",
+        "c và d theo cùng ordered family"
+      ],
+      "undefinedCase": "Không áp dụng cho redundant dictionary.",
+      "sensitivity": "Exact uniqueness có thể kèm poor numerical stability khi B gần dependent.",
+      "failureMode": "Nhầm solver trả một nghiệm với mathematical uniqueness.",
+      "engineeringUse": "Unambiguous state encoding, coefficient attribution và reproducible transforms."
+    },
+    {
+      "id": "F9",
+      "name": "Orthonormal coordinate shortcut",
+      "formula": "c_i = v · b_i when b_i · b_j = delta_ij",
+      "questionAnswered": "Khi nào có thể lấy từng coordinate bằng một dot product?",
+      "meaning": "Dot với b_i loại mọi component trực giao khác và giữ đúng coefficient theo b_i.",
+      "conditions": [
+        "B là orthonormal basis của relevant space",
+        "Dùng cùng inner product cho orthonormality và coefficient recovery"
+      ],
+      "undefinedCase": "Không dùng nguyên dạng cho basis không orthonormal; với orthogonal non-unit basis cần c_i = (v · b_i)/(b_i · b_i).",
+      "sensitivity": "Orthonormal basis thường giảm trộn coefficient; floating point vẫn cần tolerance.",
+      "failureMode": "Dùng c_i = v · b_i cho arbitrary basis.",
+      "engineeringUse": "Projection coordinates, orthogonal signal modes, Fourier-like expansion và PCA coordinates sau này."
+    },
+    {
+      "id": "F10",
+      "name": "Đổi từ basis B sang standard coordinates",
+      "formula": "[v]_E = P_{E<-B}[v]_B, P_{E<-B} = [[b_1]_E ... [b_n]_E]",
+      "questionAnswered": "Làm thế nào tái biểu diễn cùng vector từ basis B trong standard basis E?",
+      "meaning": "Columns của P là basis vectors B viết trong E; matrix multiplication thực hiện reconstruction.",
+      "conditions": [
+        "B là ordered basis của relevant n-dimensional space",
+        "Columns được xếp đúng order",
+        "Source coordinate vector gắn đúng B version"
+      ],
+      "undefinedCase": "Không thể suy ngược coordinates duy nhất nếu columns không độc lập; phép biến đổi ngược được để chương ma trận.",
+      "sensitivity": "Near-dependent columns làm phép chuyển ngược nhạy; forward reconstruction vẫn có thể trông ổn.",
+      "failureMode": "Dùng transpose như inverse cho basis không orthonormal; bỏ qua handedness hoặc frame convention.",
+      "engineeringUse": "Body-to-world coordinate reconstruction, sensor-axis decoding và state serialization."
+    },
+    {
+      "id": "F11",
+      "name": "Residual của biểu diễn",
+      "formula": "r = v - B_mat c",
+      "questionAnswered": "Phần nào của v chưa được representation hiện tại tái tạo?",
+      "meaning": "r đo reconstruction mismatch trong ambient coordinates.",
+      "conditions": [
+        "v và B_mat c cùng schema, units và frame",
+        "Metric cho ||r|| đã được chọn phù hợp"
+      ],
+      "undefinedCase": "Residual không diễn giải được nếu operands khác frame hoặc unit.",
+      "sensitivity": "Scale của dimensions ảnh hưởng residual norm; noise làm exact membership trở thành tolerance question.",
+      "failureMode": "Residual nhỏ được diễn giải thành physical model đúng; không kiểm contract trước khi quy lỗi cho span thiếu.",
+      "engineeringUse": "Representation quality, anomaly direction, model mismatch và bridge to least squares."
+    },
+    {
+      "id": "F12",
+      "name": "Non-uniqueness trong họ dư thừa",
+      "formula": "if B_mat z = 0 with z != 0 and B_mat c = v, then B_mat(c + t z) = v for every t in R",
+      "questionAnswered": "Vì sao redundant generating family có thể cho vô số coefficient vectors?",
+      "meaning": "Null relation z cho phép dịch coefficients mà không đổi reconstructed vector.",
+      "conditions": [
+        "Tồn tại nonzero linear dependence z",
+        "c là một representation của v"
+      ],
+      "undefinedCase": "Không áp dụng khi B độc lập.",
+      "sensitivity": "Solver hoặc regularizer khác nhau có thể chọn coefficient vectors khác nhau.",
+      "failureMode": "Diễn giải một coefficient solution như duy nhất hoặc physical contribution bắt buộc.",
+      "engineeringUse": "Overcomplete dictionaries, redundant actuators và correlated feature representations."
+    }
+  ],
+  "comparisonLogic": {
+    "familyTypes": [
+      {
+        "type": "spanning_family",
+        "spansTarget": true,
+        "independent": "not_required",
+        "coordinateExistence": "yes_for_target_space",
+        "coordinateUniqueness": "not_guaranteed",
+        "use": "Exact representability without uniqueness guarantee"
+      },
+      {
+        "type": "independent_family",
+        "spansTarget": "not_guaranteed",
+        "independent": true,
+        "coordinateExistence": "only_for_vectors_in_its_span",
+        "coordinateUniqueness": "yes_within_its_span",
+        "use": "Non-redundant directions, possibly incomplete for ambient space"
+      },
+      {
+        "type": "basis",
+        "spansTarget": true,
+        "independent": true,
+        "coordinateExistence": "yes",
+        "coordinateUniqueness": "yes",
+        "use": "Canonical coordinate contract for the stated space"
+      },
+      {
+        "type": "orthonormal_basis",
+        "spansTarget": true,
+        "independent": true,
+        "coordinateExistence": "yes",
+        "coordinateUniqueness": "yes",
+        "use": "Basis with dot-product coefficient recovery and favorable geometric interpretation"
+      },
+      {
+        "type": "overcomplete_dictionary",
+        "spansTarget": "possibly",
+        "independent": false,
+        "coordinateExistence": "possibly",
+        "coordinateUniqueness": "no_without_extra_constraints",
+        "use": "Flexible or sparse representation, not basis coordinates"
+      },
+      {
+        "type": "feature_set",
+        "spansTarget": "model_dependent",
+        "independent": "must_be_checked",
+        "coordinateExistence": "schema_defined_not_physical_space_guaranteed",
+        "coordinateUniqueness": "schema_values_may_be_unique_but_not_basis_theorem",
+        "use": "Data record axes; do not automatically call a mathematical basis"
+      }
+    ],
+    "methodSelection": [
+      {
+        "situation": "B is a small general basis",
+        "method": "Solve B_mat c = v using the taught coordinate equations",
+        "doNotUse": "Raw dot products as coordinates"
+      },
+      {
+        "situation": "B is orthonormal",
+        "method": "Use c_i = v · b_i and verify reconstruction",
+        "doNotUse": "Assume orthonormality from appearance"
+      },
+      {
+        "situation": "B is redundant",
+        "method": "Report non-uniqueness and defer selection criteria to sparse/least-squares lessons",
+        "doNotUse": "Label one solution as basis coordinates"
+      },
+      {
+        "situation": "v is outside span(B)",
+        "method": "Report exact-membership failure and residual; defer optimal approximation",
+        "doNotUse": "Silently call an approximate solution exact"
+      },
+      {
+        "situation": "Coordinates come from different frames or model versions",
+        "method": "Transform or align into a common representation first",
+        "doNotUse": "Compare components directly"
+      }
+    ],
+    "invariantVsCoordinateDependent": [
+      {
+        "quantity": "abstract physical vector",
+        "underBasisChange": "unchanged"
+      },
+      {
+        "quantity": "coordinate tuple",
+        "underBasisChange": "generally changes"
+      },
+      {
+        "quantity": "basis order",
+        "underBasisChange": "part of representation contract"
+      },
+      {
+        "quantity": "Euclidean norm under orthonormal basis change",
+        "underBasisChange": "unchanged"
+      },
+      {
+        "quantity": "raw component values under general basis change",
+        "underBasisChange": "change and may have different units/scales"
+      }
+    ]
+  },
+  "assumptionGate": [
+    {
+      "check": "declaredTargetSpace",
+      "question": "Basis được tuyên bố cho không gian V nào?",
+      "actionOnFail": "Không kết luận basis khi target space chưa rõ."
+    },
+    {
+      "check": "sameAmbientSpace",
+      "question": "v và tất cả b_i có thuộc cùng ambient vector space không?",
+      "actionOnFail": "Biến đổi hoặc từ chối phép biểu diễn."
+    },
+    {
+      "check": "orderedFamily",
+      "question": "Order và version của B đã được cố định chưa?",
+      "actionOnFail": "Khóa order trước khi đọc hoặc ghi coordinates."
+    },
+    {
+      "check": "schemaUnitsFrame",
+      "question": "Các vector có cùng schema, units, coordinate frame và timestamp semantics không?",
+      "actionOnFail": "Align representation trước khi cộng, so sánh hoặc reconstruction."
+    },
+    {
+      "check": "spanningTarget",
+      "question": "B có sinh target space hoặc ít nhất chứa target vector trong span không?",
+      "actionOnFail": "Không gán exact coordinates; báo missing direction hoặc out-of-span."
+    },
+    {
+      "check": "linearIndependence",
+      "question": "B có độc lập để bảo đảm uniqueness không?",
+      "actionOnFail": "Gọi là generating family/dictionary và báo non-unique coefficients."
+    },
+    {
+      "check": "orthonormality",
+      "question": "Đã kiểm pairwise orthogonality và unit norm trước khi dùng dot shortcut chưa?",
+      "actionOnFail": "Giải coordinate equations bằng phương pháp tổng quát."
+    },
+    {
+      "check": "basisScaling",
+      "question": "Scale của basis vectors có làm coefficients khó diễn giải hoặc nhạy số không?",
+      "actionOnFail": "Xem lại normalization và units; không thay đổi semantics âm thầm."
+    },
+    {
+      "check": "nearDependence",
+      "question": "Các directions có gần song song hoặc làm coefficients nhạy với perturbation không?",
+      "actionOnFail": "Báo numerical-risk status và dành review sâu cho pass 5/6."
+    },
+    {
+      "check": "exactVsApproximate",
+      "question": "Mục tiêu là exact membership hay approximation?",
+      "actionOnFail": "Không trộn residual khác zero với exact coordinates."
+    },
+    {
+      "check": "reconstruction",
+      "question": "B_mat c có tái tạo v theo tolerance hợp lý không?",
+      "actionOnFail": "Không chấp nhận coordinate result."
+    },
+    {
+      "check": "representationCompatibility",
+      "question": "Hai coordinate vectors được so sánh có cùng basis/frame/model version không?",
+      "actionOnFail": "Transform hoặc align trước khi so sánh."
+    }
+  ],
+  "workedCase": {
+    "status": "provisional_for_pass_07",
+    "candidateId": "CASE_UGV_WORLD_ROUTE_BASIS",
+    "candidateTitle": "Biểu diễn cùng vận tốc UGV trong world basis và route-aligned basis",
+    "requiredElements": [
+      "same physical vector with two coordinate tuples",
+      "ordered orthonormal route basis",
+      "units m/s",
+      "frame and orientation convention",
+      "coordinate calculation",
+      "reconstruction in world coordinates",
+      "basis-order swap check",
+      "mixed-frame failure scenario",
+      "near-dependent contrast kept separate from the main orthonormal case"
+    ],
+    "note": "Chưa được xem là worked case hoàn chỉnh cho tới PASS 07."
+  },
+  "engineeringExamples": [
+    {
+      "domain": "UGV route tracking",
+      "representation": "World velocity coordinates versus route-aligned longitudinal/lateral coordinates",
+      "coreQuestion": "Basis nào làm control error dễ diễn giải hơn?",
+      "contract": "Cùng physical velocity, explicit frame, units, orientation and timestamp."
+    },
+    {
+      "domain": "IMU sensor frame",
+      "representation": "Acceleration components along calibrated sensor axes",
+      "coreQuestion": "Sensor coordinates phải đổi sang body/world frame trước phép so sánh nào?",
+      "contract": "Axis order, handedness, calibration version and timestamp are mandatory."
+    },
+    {
+      "domain": "Signal basis",
+      "representation": "Signal window reconstructed from orthonormal modes",
+      "coreQuestion": "Khi nào inner products là coefficients?",
+      "contract": "Basis functions share sampling grid and inner product; orthonormality must be verified."
+    },
+    {
+      "domain": "Feature engineering",
+      "representation": "Original features plus a duplicated or linearly derived feature",
+      "coreQuestion": "Information content and coordinate uniqueness change how?",
+      "contract": "Distinguish schema convenience from mathematical basis validity."
+    },
+    {
+      "domain": "Sparse dictionary",
+      "representation": "More atoms than ambient dimension",
+      "coreQuestion": "Why can multiple coefficient vectors reconstruct the same sample?",
+      "contract": "Report non-uniqueness; do not call coefficients basis coordinates."
+    },
+    {
+      "domain": "Embedding systems",
+      "representation": "Learned coordinates from different model versions",
+      "coreQuestion": "Can components or cosine values be compared directly?",
+      "contract": "Model and preprocessing versions must match or an explicit alignment must exist."
+    }
+  ],
+  "commonMisconceptions": [
+    {
+      "status": "provisional_for_pass_08",
+      "wrong": "Tọa độ là bản thân vector.",
+      "correct": "Tọa độ là mã của vector theo một ordered basis cụ thể."
+    },
+    {
+      "status": "provisional_for_pass_08",
+      "wrong": "Mọi họ sinh đều là basis.",
+      "correct": "Basis phải vừa spanning vừa independent."
+    },
+    {
+      "status": "provisional_for_pass_08",
+      "wrong": "Thuộc span thì coefficients luôn duy nhất.",
+      "correct": "Uniqueness cần independence."
+    },
+    {
+      "status": "provisional_for_pass_08",
+      "wrong": "Dot product luôn cho basis coordinates.",
+      "correct": "Shortcut này cần orthonormal basis."
+    },
+    {
+      "status": "provisional_for_pass_08",
+      "wrong": "Feature set hoặc dictionary tự động là basis.",
+      "correct": "Phải kiểm target space, spanning và independence."
+    }
+  ],
+  "masteryChecks": [
+    {
+      "status": "provisional_for_pass_09",
+      "level": "understand",
+      "question": "Điều gì giữ nguyên và điều gì thay đổi khi đổi basis?",
+      "expected": "Abstract vector giữ nguyên; coordinate tuple và component meanings thay đổi theo basis."
+    },
+    {
+      "status": "provisional_for_pass_09",
+      "level": "apply",
+      "question": "Tìm [v]_B và kiểm reconstruction cho một basis 2-D không chuẩn.",
+      "expected": "Coefficients đúng order và B_mat[v]_B = v."
+    },
+    {
+      "status": "provisional_for_pass_09",
+      "level": "analyze",
+      "question": "Một redundant family gây non-uniqueness như thế nào?",
+      "expected": "Có nonzero z với B_mat z=0 nên c và c+t z cùng reconstruct v."
+    },
+    {
+      "status": "provisional_for_pass_09",
+      "level": "evaluate",
+      "question": "Có được dùng c_i=v·b_i với basis tổng quát không?",
+      "expected": "Không, chỉ trực tiếp đúng cho orthonormal basis; orthogonal non-unit cần chia norm bình phương."
+    },
+    {
+      "status": "provisional_for_pass_09",
+      "level": "create",
+      "question": "Thiết kế representation contract cho vận tốc UGV.",
+      "expected": "Nêu ordered basis, units, frame, timestamp, coordinate method, reconstruction and risk."
+    }
+  ],
+  "implementationContract": {
+    "status": "provisional_for_pass_09",
+    "requiredCapabilities": [
+      "validate 2-D numeric arrays without silent flattening",
+      "validate finite values",
+      "preserve column order and basis version",
+      "distinguish exact solve, least-squares approximation and non-unique representation",
+      "verify reconstruction residual",
+      "check orthonormality before dot-product coefficient recovery",
+      "report numerical rank or sensitivity only with explicit tolerance policy"
+    ],
+    "doNotDo": [
+      "Không dùng inverse tường minh làm mặc định.",
+      "Không flatten batch hoặc matrix thành một vector.",
+      "Không gọi least-squares coefficients là exact basis coordinates.",
+      "Không so coordinate vectors khác basis như cùng schema.",
+      "Không dùng dot shortcut nếu chưa kiểm orthonormality."
+    ],
+    "note": "Reference implementation, telemetry và numerical policy sẽ được khóa ở PASS 09."
+  },
+  "bridgeToNextLessons": [
+    {
+      "target": "§1.5 · Không gian con và biểu diễn dữ liệu",
+      "bridge": "Span trở thành subspace; basis xác định dimension; residual mở ra dữ liệu nằm gần nhưng không nằm đúng trong subspace."
+    },
+    {
+      "target": "Chương 2 · Ma trận và ánh xạ tuyến tính",
+      "bridge": "Gom basis vectors thành columns tạo B_mat; coordinate relation B_mat c = v dẫn tới matrix representations và change-of-basis operators."
+    },
+    {
+      "target": "Least squares và ước lượng",
+      "bridge": "Khi v nằm ngoài span(B), exact coordinates không tồn tại và cần tìm approximation tối ưu."
+    },
+    {
+      "target": "PCA và SVD",
+      "bridge": "Chọn orthonormal directions và coordinates giúp biểu diễn dữ liệu trong subspace thấp chiều; singular values và variance được học sau."
+    },
+    {
+      "target": "Xử lý tín hiệu",
+      "bridge": "Basis functions và coefficients dẫn tới Fourier, wavelet và modal representations."
+    },
+    {
+      "target": "Robot, điều khiển và estimation",
+      "bridge": "World/body/sensor coordinates dẫn tới rotation matrices, rigid transforms, state-space coordinates, Jacobians và observability."
+    }
+  ],
+  "downstreamMapping": {
+    "referenceTable": [
+      "notationRules",
+      "coreConcepts",
+      "mainFormulas",
+      "comparisonLogic",
+      "assumptionGate"
+    ],
+    "slideshow": [
+      "lessonThesis",
+      "learningOutcomes",
+      "coreConcepts",
+      "mainMechanisms",
+      "mainFormulas",
+      "workedCase",
+      "masteryChecks"
+    ],
+    "fullView": [
+      "notationRules",
+      "mainFormulas",
+      "comparisonLogic",
+      "assumptionGate",
+      "workedCase",
+      "implementationContract"
+    ],
+    "formulaFinalization": [
+      "notationRules.raw",
+      "mainFormulas.formula",
+      "workedCase"
+    ]
+  },
+  "qualityGate": {
+    "mustPassForPass04": [
+      "Mọi ký hiệu chính được định nghĩa và phân biệt vector với coordinate vector.",
+      "Ordered basis và basis order được xem là một phần của representation contract.",
+      "Span, independence, basis, coordinates, uniqueness và reconstruction tạo thành một chuỗi logic.",
+      "Mỗi main formula có câu hỏi, meaning, conditions, undefined case, sensitivity, failure mode và engineering use.",
+      "Orthonormal shortcut được giới hạn đúng điều kiện.",
+      "Basis, spanning family, independent family, dictionary và feature set được phân biệt.",
+      "Assumption gate bao phủ target space, order, units, frame, spanning, independence, orthonormality, residual và compatibility.",
+      "Không dạy sâu determinant, inverse, elimination, rank-nullity, least squares, PCA hoặc SVD.",
+      "Worked case, misconception, assessment và implementation contract được đánh dấu provisional cho passes 7–9.",
+      "Không chứa UI/runtime, slide numbering, CSS, animation hoặc layout instructions."
+    ],
+    "reviewStatus": "math_review_required",
+    "nextPass": "PASS_05_INDEPENDENT_MATHEMATICS_REVIEW"
+  }
+}
