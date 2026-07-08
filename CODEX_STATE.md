@@ -1,8 +1,8 @@
 # CODEX_STATE
 
-Current task: `THEORY_FINAL_INTEGRATION_C01_L04_PASS_14`
+Current task: `THEORY_FINAL_INTEGRATION_C01_L04_PASS_14_CORRECTED`
 
-Status: `PASS_14_FINAL_INTEGRATION_ACCEPTED_IMPORT_READY`
+Status: `PASS_14_CORRECTED_NO_SLIDE_COMPRESSION`
 
 Date: 2026-07-08
 Branch: `main`
@@ -15,12 +15,28 @@ Branch: `main`
 
 ## Workflow result for §1.4
 - Completed passes: 14/14
-- Remaining passes: 0/14
 - Completed steps: 73/73
-- Remaining steps: 0/73
 - Academic package: FINAL
 - Runtime import package: FINAL AND IMPORT-READY
+- Source slideshow slides: 22
+- Runtime slides: 22
+- Minimum slide requirement: 16
+- Slide compression: NONE
 - Automatic runtime binding: DEFERRED BY SAFETY BOUNDARY
+
+## Correction notice
+The first Pass 14 runtime projection incorrectly treated the 16 preferred E129 roles as an exact slide count and compressed 22 approved slideshow learning beats into 16 runtime slides.
+
+That interpretation was wrong.
+
+Correct rule:
+- the user required a minimum of 16 slides;
+- E129 only warns when slide count differs from 16;
+- E129 does not enforce a maximum of 16;
+- the approved 22-slide slideshow must remain 22 slides in the runtime import package;
+- no slide may be removed or merged merely to silence a nonblocking importer warning.
+
+The incorrect 16-slide projection is superseded.
 
 ## Lesson identity
 - Lesson: `§1.4 · Cơ sở, span và tọa độ`
@@ -34,14 +50,10 @@ Branch: `main`
 ### Core
 - Path: `subjects/math/data/theory_core/theory_core_c01_l04.json`
 - Version: `CORE_C01_L04_V1_APPROVED`
-- Status: `approved_against_gold_standard`
-- Quality gate: `content_review_approved`
 
 ### Reference
 - Path: `subjects/math/data/theory_reference/theory_reference_c01_l04.json`
 - Version: `REFERENCE_C01_L04_V1_APPROVED`
-- Status: `approved_against_core`
-- Quality gate: `reference_review_approved`
 
 ### Slideshow
 - Path: `subjects/math/data/theory_slideshow/theory_slideshow_c01_l04.json`
@@ -55,7 +67,7 @@ Branch: `main`
 ### Full view
 - Path: `subjects/math/data/theory_full_view/theory_full_view_c01_l04.json`
 - Version: `FULL_VIEW_C01_L04_V1_APPROVED`
-- Sections: 11
+- Reading sections: 11
 - Formula entries: 12
 - Diagram mappings: 8
 - Cautions: 14
@@ -66,195 +78,116 @@ Branch: `main`
 - Version: `NORMALIZATION_C01_L04_V1_APPROVED`
 - Canonical formulas: 12
 - Canonical notation entries: 11
-- Resolved display variants: 11
-- Unit rules: 5
 - Semantic conflicts: 0
 
-### Final integration
+### Corrected final integration
 - Path: `subjects/math/data/theory_integration/theory_integration_c01_l04.json`
-- Version: `INTEGRATION_C01_L04_V1_ACCEPTED`
-- Status: `final_acceptance_import_ready`
+- Version: `INTEGRATION_C01_L04_V2_22_SLIDES_ACCEPTED`
+- Status: `accepted_import_ready_22_slides`
 - Manifest: `subjects/math/data/theory_integration/theory_integration_manifest.json`
-- Manifest version: `INTEGRATION_MANIFEST_V1_1`
+- Manifest version: `INTEGRATION_MANIFEST_V1_2_22_SLIDES`
 
-### E129 runtime import package
+### Corrected E129 runtime import package
 - Path: `subjects/math/data/theory_integration/theory_lecture_content_c01_l04_import.json`
-- Version: `C01_L04_E129_IMPORT_V1_APPROVED`
+- Version: `C01_L04_E129_IMPORT_V2_22_SLIDES_APPROVED`
 - Target: `theory_lecture_content`
 - Mode: `merge`
 - Merge key: `lessonId`
 - Records: 1
-- Runtime slides: 16
+- Minimum slides: 16
+- Runtime slides: 22
 - Source slideshow slides: 22
-- Preferred E129 role order: matched
-- Security scan: pass
+- One-to-one source mapping: YES
+- Compression: NO
 
-## Pass 14 execution
+## Runtime slide mapping
+Each approved slideshow learning beat is preserved exactly once:
+- S01 ← SL01
+- S02 ← SL02
+- S03 ← SL03
+- S04 ← SL04
+- S05 ← SL05
+- S06 ← SL06
+- S07 ← SL07
+- S08 ← SL08
+- S09 ← SL09
+- S10 ← SL10
+- S11 ← SL11
+- S12 ← SL12
+- S13 ← SL13
+- S14 ← SL14
+- S15 ← SL15
+- S16 ← SL16
+- S17 ← SL17
+- S18 ← SL18
+- S19 ← SL19
+- S20 ← SL20
+- S21 ← SL21
+- S22 ← SL22
 
-### Step 1 — Artifact graph and precedence
-Verified the complete chain:
-`core → reference → slideshow → full view → normalization → runtime projection`.
+The first 16 slides retain the preferred E129 role sequence for compatibility. Slides 17–22 use explicit extended semantic roles:
+- basis_order_sign
+- contract_failure_analysis
+- redundancy_analysis
+- sensitivity_analysis
+- engineering_transfer
+- mastery_close
 
-Core remains the mathematical source of truth. No downstream layer may override core meaning.
+These extended roles are valid because E129 renders slides through generic safe blocks and only warns, rather than rejects, when the total differs from 16.
 
-### Step 2 — Lesson integration record
-Created one integration record binding:
-- core;
-- reference;
-- slideshow;
-- full view;
-- normalization;
-- E129 runtime projection.
-
-The integration record includes IDs, versions, source precedence, mappings, acceptance checks, UGV invariants, runtime boundaries and handoff instructions.
-
-### Step 3 — IDs, versions, counts and invariants
+## Verification
 Verified:
-- lesson ID matches all layers;
-- chapter ID matches the theory frame;
-- all source versions match;
-- C1–C9 are covered;
-- F1–F12 are covered;
-- MECH1–MECH9 are covered;
-- LO1–LO10 are covered;
-- all four slideshow arcs are represented;
-- all 11 full-view sections are represented;
-- canonical formula count is 12;
-- canonical notation count is 11;
-- semantic conflicts are zero.
-
-UGV invariants remain:
-- `[v]_W=(5,1)^T m/s`;
-- `t=(0.6,0.8)`;
-- `n=(-0.8,0.6)`;
-- `[v]_R=(3.8,-3.4)^T m/s`;
-- `P_{W←R}=[[0.6,-0.8],[0.8,0.6]]`;
-- reconstruction `(5,1)`;
-- residual `(0,0)`;
-- residual norm `0`;
-- norm squared `26` in both representations;
-- route heading `53.1301°`;
-- robot yaw `50°`;
-- max transform age `20 ms`;
-- reordered basis coordinates `(-3.4,3.8)`;
-- right-normal coordinate `+3.4`.
-
-### Step 4 — Runtime convention inspection
-Inspected narrowly:
-- `subjects/math/data/theory_lecture_frame.json`;
-- `subjects/math/data/theory_lecture_content.json`;
-- `subjects/math/subject-manifest.json`;
-- `subjects/math/assets/subject-adapter.js`;
-- `subjects/math/index.html`;
-- `subjects/math/assets/theory_skin/theory-tab-E129.js`.
-
-Confirmed:
-- E129 reads frame and content separately;
-- primary content file is `data/theory_lecture_content.json`;
-- record key is `lessonId`;
-- required record fields are `lessonId`, `chapterId`, `lessonTitle|title`, `slides`;
-- importer supports `merge`, `patch`, `replace`;
-- merge replaces only the matching `lessonId`;
-- the existing L04 runtime record is present in the monolithic content file;
-- E129 recommends 16 preferred slide roles.
-
-### Step 5 — Safe binding decision
-Created a merge-import package with one L04 record and exactly 16 preferred E129 roles:
-1. problem_framing
-2. deep_essence
-3. counter_intuition
-4. real_bridge
-5. notation
-6. core_formula
-7. assumption_gate
-8. mini_case
-9. interpretation
-10. simulation
-11. common_mistakes
-12. application
-13. practice
-14. professor_qa
-15. bridge
-16. takeaway
-
-The approved 22-slide narrative is projected into these 16 runtime roles without changing mathematical meaning.
-
-Automatic binding was not performed because:
-- E129 import writes a user-local overlay to localStorage;
-- invoking it automatically would mutate user-local state;
-- the durable source is a large monolithic JSON file;
-- rewriting that file without preserving every record would be unsafe.
-
-No fetch monkeypatch, loader hack or implicit localStorage write was introduced.
-
-### Step 6 — Verification
-Static verification passed:
-- package target is `theory_lecture_content`;
+- runtime slide count is 22;
+- source slideshow count is 22;
+- every SL01–SL22 appears exactly once;
+- missing source slides: 0;
+- duplicate source slides: 0;
+- no slide compression remains;
+- F1–F12 remain traceable;
+- UGV values and invariants remain unchanged;
+- target is `theory_lecture_content`;
 - mode is `merge`;
-- one valid record exists;
-- lesson ID and chapter ID are present;
-- 16 slides exist;
-- preferred role order matches E129;
-- no duplicate lesson IDs exist;
-- no forbidden script, javascript URL, inline handler, object-string, TODO, FIXME, lorem or dirty text pattern exists;
-- formula IDs F1–F12 remain traceable;
-- UGV values are unchanged;
-- no UI/runtime source was changed.
+- no automatic localStorage mutation occurred;
+- no UI, Reader Pro, E235, E236, E237 or E238 file changed.
 
-Browser smoke test was not run because runtime binding was not performed. Browser acceptance is required after explicit E129 merge import or a durable monolithic-file merge.
+## UGV invariants
+- `[v]_W=(5,1)^T m/s`
+- `t=(0.6,0.8)`
+- `n=(-0.8,0.6)`
+- `[v]_R=(3.8,-3.4)^T m/s`
+- `P_{W←R}=[[0.6,-0.8],[0.8,0.6]]`
+- reconstruction `(5,1)`
+- residual `(0,0)`
+- residual norm `0`
+- norm squared `26` in both representations
+- reordered basis coordinates `(-3.4,3.8)`
+- right-normal coordinate `+3.4`
 
-### Step 7 — Final acceptance and handoff
-Final verdict:
-`PASS_14_ACCEPTED_WITH_RUNTIME_BINDING_DEFERRED`
+## Runtime binding boundary
+Automatic runtime binding remains deferred because E129 import writes a user-local overlay and the durable content source is a large monolithic JSON file.
 
-Accepted:
-- academic package;
-- reference layer;
-- 22-slide slideshow;
-- 11-section full view;
-- formula/layout normalization;
-- final integration record;
-- E129 merge-import package.
-
-Handoff action:
-1. Open `Kho Lý thuyết` in E129.
+Safe handoff:
+1. Open E129 Kho Lý thuyết.
 2. Import `subjects/math/data/theory_integration/theory_lecture_content_c01_l04_import.json`.
-3. Select `Merge` mode.
-4. Open lesson §1.4 by its exact lesson ID.
-5. Verify all 16 runtime slides and E234/E235 formula rendering.
-6. Verify UGV values, direction, reconstruction and invariants.
-7. Export the merged `theory_lecture_content` and commit it only after visual verification if durable repo binding is required.
+3. Select Merge mode.
+4. Accept the possible nonblocking warning that slide count is 22 instead of the preferred 16.
+5. Confirm all 22 slides appear.
+6. Verify formula rendering and UGV invariants.
+7. Export merged `theory_lecture_content` only after visual verification.
 
 Do not:
-- use Replace mode for the whole content store;
-- overwrite the monolithic file without preserving all records;
-- re-enable E236, E237 or E238;
-- redesign Reader Pro during the durable merge.
+- reduce the lesson to 16 slides merely to silence a warning;
+- use Replace mode;
+- overwrite the monolithic content file without preserving every record;
+- redesign Reader Pro;
+- re-enable E236, E237 or E238.
 
-## Runtime and UI boundary
-Unchanged:
-- `subjects/math/data/theory_lecture_content.json`;
-- `subjects/math/data/theory_lecture_frame.json`;
-- `subjects/math/index.html`;
-- `subjects/math/subject-manifest.json`;
-- `subjects/math/assets/subject-adapter.js`;
-- E129 loader;
-- Reader Pro;
-- E235;
-- E236, E237 and E238 remain disabled.
+## Correction commits
+- Corrected 22-slide runtime package: `61de15d2c8dc20404627affacd772256ba537524`
+- Corrected integration record: `400c24b828f76666b121e0e4fd1781177315939c`
+- Corrected integration manifest: `b07b61abb22ce48f008a1ce45271f4e48c1b284f`
 
-## Files created in Pass 14
-- `subjects/math/data/theory_integration/theory_lecture_content_c01_l04_import.json`
-- `subjects/math/data/theory_integration/theory_integration_c01_l04.json`
-- `subjects/math/data/theory_integration/theory_integration_manifest.json`
+## Final verdict
+`PASS_14_CORRECTED_NO_SLIDE_COMPRESSION`
 
-## Files updated in Pass 14
-- `CODEX_STATE.md`
-
-## Relevant commits
-- Runtime import package: `937603e48c4049034153756f1d47ced2d6c5f5d2`
-- Final integration record: `62c5fcb0b239b9717587f27be392dd1f9a6d3f91`
-- Integration manifest: `bd04ef1948cd829f8355d014d0185e4ab81c9c62`
-
-## Project continuation
-The §1.4 pipeline is complete. A new lesson must start again from Pass 1 unless the task is an explicit post-import runtime verification or durable merge of this accepted package.
+The §1.4 academic and import-ready pipeline is complete with 22 source slides and 22 runtime slides.
