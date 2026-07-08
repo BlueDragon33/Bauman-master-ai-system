@@ -1,60 +1,77 @@
 # CODEX_STATE
 
-Current task: E235_REFERENCE_PANEL_THEORY_GUARD
+Current task: THEORY_CORE_C01_L01_GOLD_STANDARD
 
-Status: PATCHED_NEEDS_LOCAL_BROWSER_SMOKE
+Status: CORE_AUTHORED_NEEDS_CONTENT_REVIEW
 
-Date: 2026-07-07
+Date: 2026-07-08
 Branch: `main`
 
-Files changed:
-- `subjects/math/assets/theory_skin/theory-formula-fraction-align-E235.js`
-- `CODEX_STATE.md`
-- `HANDOFF_E328C.md`
+Mandatory development order:
+1. Core content
+2. `Tham khảo thêm` reference table
+3. Slideshow
+4. `Xem đầy đủ`
+5. Final formula and layout normalization
 
-Approved baseline:
-- E235 remains the approved visual and interaction standard for `Xem đầy đủ`.
+Do not skip ahead.
+
+Files added:
+- `subjects/math/data/theory_core/theory_core_c01_l01.json`
+- `subjects/math/data/theory_core/theory_core_manifest.json`
+- `HANDOFF_THEORY_CORE.md`
+
+Gold-standard decision:
+- `§1.1 · Vector như dữ liệu kỹ thuật` is the gold-standard candidate for all later theory-core lessons.
+- Core content is now separated from slide/popup/UI decisions.
+- Existing `theory_lecture_content.json` remains unchanged in this phase.
+- The new core file is the future source of truth for reference tables, slideshow content, full-view content, and final formula/layout work.
+
+Lesson 1.1 core coverage:
+- lesson thesis and prerequisites
+- six measurable learning outcomes
+- semantic notation rules
+- vector as ordered engineering data
+- geometry/data duality
+- dimension versus schema
+- vectorization as lossy modeling
+- vector addition and scalar multiplication
+- L2 norm, dot product, Euclidean distance, and cosine similarity
+- metric-selection logic
+- data-quality and assumption gates
+- complete network-state worked case
+- raw and standardized numerical results
+- UGV/UAV, server, signal, and embedding applications
+- common misconceptions
+- mastery checks from recall to creation
+- implementation contract
+- bridges to §1.2, §1.3, and Chapter 2
+- downstream mapping and quality gate
+
+Notation contract:
+- `x_i` means the i-th element and must render with a subscript.
+- `x_i^2` means the square of element i: i below, 2 above.
+- `x^2`, `A^{-1}`, and `A^k` remain legitimate superscripts when raw notation uses `^`.
+- `x_i^T` keeps i below and T above.
+
+Presentation/runtime status:
+- No UI, slideshow, popup, or renderer file was changed for this core task.
+- E235 remains the approved `Xem đầy đủ` visual baseline, but UI work is paused.
 - E236, E237, and E238 remain disabled from runtime.
-- Runtime order remains E211 -> E224 -> E234 -> E235 -> E212.
-
-Root cause fixed:
-- E211 can select a slide `code` block as `Tham khảo thêm`.
-- E211 normalizes block text with whitespace collapse and renders the extension as `<p>`.
-- A Python function therefore appeared as one long paragraph with lost indentation.
-
-E235 R2 patch:
-- Release: `E235_READER_PRO_FORMULA_STANDARD_R2`.
-- Keeps all approved fraction and notation behavior.
-- Adds a reference-panel guard inside the already-loaded E235 file, so no new runtime layer is required.
-- Detects code-like content using Python/code signatures such as `def`, `return`, `raise`, `np.`, exceptions, and assignments.
-- Replaces leaked code in `.e211-extension-panel` with a concise advanced-theory note selected from the active formula family.
-- `Tham khảo thêm` remains theory-only.
-- Python remains in the `Xem đầy đủ` code panel, where `<pre>` preserves line breaks and indentation.
-- Existing semantic notation rule remains:
-  - raw `_i` -> `<sub>i</sub>`
-  - legitimate `^i`, `x^2`, `A^{-1}`, and `A^k` remain superscripts
 
 Commits:
-- E235 R2: `df10a7610d9e3f9c7b04338922c46d248b159f59`
-- Removed unused standalone guard: `1639b98136bca6832882e87965ec4e02dd5dd2b5`
-- E328C handoff: `411fe72440b28d2bbaf4b1ab6470aec70642befb`
+- Lesson 1.1 core: `24b75580f841d4da3e2ed8867c72e4796b4fe2bb`
+- Core manifest: `f7682618b11f3543ad1d1304b2fb2abd26eafdda`
+- Core handoff: `450018e626052c64159df2db2f7d638ae603c14c`
 
-Cache note:
-- `index.html` still references `theory-formula-fraction-align-E235.js?v=236` because the cache-query write was blocked.
-- Use hard refresh or disable browser cache after pulling.
-
-Required local smoke:
-1. `git pull origin main`
-2. Hard refresh or disable cache.
-3. Reopen the slide shown in the screenshot.
-4. Confirm `Tham khảo thêm` contains advanced theory, not Python.
-5. Open `Xem đầy đủ` and confirm Python still preserves line breaks and indentation.
-6. Confirm fractions, radicals, `X_i`, `x_j^T`, `A^{-1}`, and `x^2` remain correct.
-7. Confirm no new console errors.
+Review required before gold-standard approval:
+- verify academic depth and progression
+- verify terminology and notation consistency
+- verify numerical worked-case values
+- confirm the lesson is neither too broad nor missing a required foundation
+- confirm downstream mapping is sufficient for reference table, slideshow, and full view
 
 Next task:
-- `E328C_E235_STANDARD_EXPANSION`
-- Persistent new-session prompt: `HANDOFF_E328C.md`
-- E328C must replicate the approved E235 behavior across C01-C03 without creating a new layout system or re-enabling E236/E237/E238.
-
-Status is not PASS because browser smoke was not run from this chat environment.
+- Create `subjects/math/data/theory_core/theory_core_c01_l02.json`
+- Lesson: `§1.2 · Chuẩn vector và khoảng cách`
+- Use `HANDOFF_THEORY_CORE.md` and lesson 1.1 as the template.
