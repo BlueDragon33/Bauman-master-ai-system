@@ -1,8 +1,8 @@
 # CODEX_STATE
 
-Current task: `THEORY_CORE_C01_L04_PASS_06_ENGINEERING_MODEL_REVIEW`
+Current task: `THEORY_CORE_C01_L04_PASS_07_COMPLETE_WORKED_CASE`
 
-Status: `PASS_06_ENGINEERING_REVIEW_APPROVED_WITH_BINDING_CONSTRAINTS`
+Status: `PASS_07_WORKED_CASE_VERIFIED`
 
 Date: 2026-07-08
 Branch: `main`
@@ -39,15 +39,17 @@ Presentation and integration passes:
 14. Final integration and acceptance — 7 steps
 
 ## Progress for §1.4
-- Completed: 6/14 passes
-- Remaining: 8/14 passes
-- Completed steps: 30/73
-- Remaining steps: 43/73
+- Completed: 7/14 passes
+- Remaining: 7/14 passes
+- Completed steps: 36/73
+- Remaining steps: 37/73
 
 ## Core architecture
 - Current draft: `subjects/math/data/theory_core/theory_core_c01_l04.json`.
-- Draft version remains `CORE_C01_L04_V1_DRAFT`.
-- Draft remains unapproved until passes 7–9 are complete.
+- Draft version: `CORE_C01_L04_V1_DRAFT`.
+- Draft status remains `math_review_required`.
+- Worked case status: `verified_pass_07`.
+- Draft remains unapproved until passes 8–9 are complete.
 - `subjects/math/data/theory_lecture_content.json` remains unchanged during the core phase.
 - C01-L04 is not registered in the manifest until passes 1–9 are complete.
 - No UI/runtime or presentation file is modified during passes 1–9.
@@ -62,278 +64,241 @@ Presentation and integration passes:
 # PASS 01 — SCOPE LOCK
 Status: PASS.
 
+Locked scope, prerequisites, lesson boundaries and deferred mathematics.
+
 # PASS 02 — BAUMAN ACADEMIC MAP
 Status: PASS.
+
+Locked mathematical chain, master-level depth, robotics/control, signal/data/AI and downstream dependencies.
 
 # PASS 03 — PEDAGOGICAL SPINE
 Status: PASS.
 
-# PASS 04 — CORE ACADEMIC CONTENT
-Status: PASS FOR DRAFT CREATION, NOT FINAL APPROVAL.
+Locked thesis, 10 measurable outcomes, 9 learning phases, misconception interception plan and mastery narrative.
 
-Created:
-`subjects/math/data/theory_core/theory_core_c01_l04.json`
+# PASS 04 — CORE ACADEMIC CONTENT
+Status: PASS FOR DRAFT CREATION.
+
+Created the C01-L04 core draft with:
+- notation and semantic contracts;
+- core concepts and mechanisms;
+- 12 formula contracts;
+- comparison logic and assumption gates;
+- bridges and downstream mapping;
+- provisional worked case, misconceptions, assessment and implementation sections.
 
 # PASS 05 — INDEPENDENT MATHEMATICS REVIEW
 Status: PASS.
 
 Verified:
-- definitions and logical implications;
-- notation and formula domains;
-- zero-vector, redundant-family, swapped-order and non-orthogonal counterexamples;
-- near-dependence and numerical-sensitivity claims;
+- definitions, logical equivalences and formula domains;
+- basis order and coordinate uniqueness;
+- zero-vector, redundant-family, non-orthogonal and near-dependent edge cases;
 - vector-versus-affine-point boundary;
-- no scope leakage into later matrix, least-squares or spectral topics.
+- no scope leakage into later matrix or spectral topics.
 
-# C01-L04 PASS 06 — ENGINEERING-MODEL REVIEW
+# PASS 06 — ENGINEERING-MODEL REVIEW
+Status: PASS WITH BINDING CONSTRAINTS.
 
-## Step 1 — Schema, units and coefficient meanings
+Locked:
+- schema, units and coefficient meanings;
+- frame direction, route-frame construction and timestamps;
+- UGV, control and IMU interpretation boundaries;
+- signal, feature, dictionary and embedding compatibility;
+- 18 operational failure modes and required telemetry.
 
-### Vector-schema contract
-Every engineering vector must declare:
-- component names and order;
-- physical quantity represented;
-- units for each component;
-- coordinate frame or representation space;
-- timestamp or sampling interval;
-- schema and preprocessing version.
+# C01-L04 PASS 07 — COMPLETE WORKED CASE
 
-A matching numeric shape is not sufficient evidence of compatibility.
+## Step 1 — Engineering scenario and representation contract
 
-### Coefficient-unit contract
-The units of coordinates depend on the basis definition:
-- if basis vectors are dimensionless unit directions and `v` is a velocity vector, coefficients inherit velocity units such as m/s;
-- if basis vectors carry the same physical units as `v`, coefficients may be dimensionless;
-- if basis vectors are arbitrarily scaled, coefficient magnitudes and units must be derived and documented;
-- coefficients are not automatically invariant physical quantities.
+Scenario:
+- planar UGV velocity vector at one timestamp;
+- matched route location `s = 42 m`;
+- world frame `W_ENU_2D`;
+- route frame `R_ROUTE_LEFT_NORMAL_S42`;
+- robot body frame explicitly not used as route basis;
+- same free velocity vector is expressed in two ordered bases;
+- no position-point translation and no relative moving-frame velocity are claimed.
 
-The later worked case must use dimensionless unit direction vectors so route coordinates have units m/s and remain easy to interpret.
+Metadata:
+- event time `2026-07-08T08:30:00+07:00`;
+- units `m/s`;
+- world order `[v_x_W, v_y_W]`;
+- route order `[v_parallel, v_left]`;
+- route heading `53.13010235415598°`;
+- robot yaw separately recorded as `50°`.
 
-### Mixed-unit state vectors
-A state array may contain position, velocity, angle and other quantities with different units as a model schema. However:
-- an arbitrary linear combination that mixes incompatible units is not automatically physically meaningful;
-- norms, dot products and basis rotations across mixed-unit blocks require nondimensionalization, scaling or a declared metric;
-- §1.4 must not imply that every algebraically valid basis of a mixed-unit numeric array is a physically useful state basis.
+## Step 2 — Exact numerical data and ordered bases
 
-### Coefficient interpretation
-Before interpreting a coefficient as longitudinal speed, mode amplitude, feature contribution or actuator command, verify:
-- the basis semantics;
-- basis normalization;
-- sign convention;
-- units;
-- the target space;
-- whether the representation is unique.
+World basis:
+- `W = (e_x,e_y)`;
+- `e_x=(1,0)`;
+- `e_y=(0,1)`.
 
-Verdict: the core concepts are valid; the above constraints are binding for passes 7 and 9.
+Route basis:
+- `t=(3/5,4/5)=(0.6,0.8)`;
+- left normal `n=(-4/5,3/5)=(-0.8,0.6)`;
+- ordered basis `R=(t,n)`;
+- `t·t=1`, `n·n=1`, `t·n=0`, determinant `1`.
 
-## Step 2 — Coordinate-frame and timestamp contracts
+Transform:
+- `P_{W<-R}=[[0.6,-0.8],[0.8,0.6]]`;
+- columns are `t` and `n` written in W;
+- source coordinates R, target coordinates W.
 
-### Transform-direction contract
-For `P_{W<-R}`:
-- source coordinates are in route basis `R`;
-- target coordinates are in world basis `W`;
-- column i is the i-th route basis vector expressed in world coordinates;
-- `[v]_W = P_{W<-R}[v]_R`.
+Given velocity:
+- `[v]_W=(5,1)^T m/s`.
 
-The arrow direction must never be inferred from variable names alone; it must be documented.
+## Step 3 — Coordinate calculation
 
-### Route-frame construction
-For a planar route basis at matched path location `s`:
-- tangent `t(s)` must be nonzero and normalized;
-- a left-normal convention may use `n(s)=(-t_y,t_x)`;
-- `R(s)=(t(s),n(s))` is ordered and right-handed in the declared 2-D convention;
-- changing normal sign changes lateral-coordinate sign;
-- at cusps, discontinuities or zero route derivative, the route basis is undefined and the sample must be rejected or handled by a separate policy.
+Because R is orthonormal:
+- `v_parallel=v·t=5(0.6)+1(0.8)=3.8 m/s`;
+- `v_left=v·n=5(-0.8)+1(0.6)=-3.4 m/s`.
 
-### Timestamp contract
-A vector and its basis/transform must refer to the same event time or an explicitly interpolated common time:
-- store vector timestamp;
-- store transform or basis timestamp;
-- store transform age;
-- reject or flag stale transforms beyond the allowed latency budget;
-- do not compare world, body, sensor or route coordinates from unmatched times.
+Therefore:
+- `[v]_R=(3.8,-3.4)^T m/s`.
 
-### Free vector versus point
-Pure basis change applies directly to free vectors such as force, velocity and displacement.
-A point coordinate in frames with different origins requires translation as well.
-The main worked case must therefore use a velocity vector, not a position point.
+Interpretation under left-normal convention:
+- longitudinal component is `3.8 m/s` forward along the route;
+- lateral component is `3.4 m/s` toward the right because the left coordinate is negative.
 
-### Moving-frame nuance
-The worked case may express the same geometric velocity vector in two instantaneous orientations using a pure orthonormal basis change. It must not claim that this alone converts between absolute and relative velocities of moving frames; relative frame motion would require additional kinematic terms and remains deferred.
+## Step 4 — Reconstruction, invariants and basis order
 
-Verdict: frame logic is physically sound when these constraints are stated explicitly.
+Reconstruction:
+- `3.8t=(2.28,3.04)`;
+- `-3.4n=(2.72,-2.04)`;
+- sum `(5,1)`;
+- residual `(0,0)`;
+- residual norm `0`.
 
-## Step 3 — Robotics and control review
+Norm invariant:
+- world norm squared `25+1=26`;
+- route-coordinate norm squared `3.8^2+(-3.4)^2=26`;
+- speed in both representations `sqrt(26)=5.0990195135927845 m/s`.
 
-### UGV route-tracking example
-Approved model:
-- one planar physical velocity vector at one timestamp;
-- world basis `W=(e_x,e_y)`;
-- route basis `R=(t,n)` evaluated at the matched route location;
-- `t` and `n` dimensionless and orthonormal;
-- longitudinal and lateral coordinates measured in m/s;
-- reconstruction back to world coordinates is mandatory.
+Basis-order test:
+- swapped basis `R_swap=(n,t)`;
+- correct swapped coordinates `(-3.4,3.8)^T`;
+- reconstruction remains `(5,1)`;
+- keeping the old tuple after swapping columns would change the physical vector.
 
-Required cautions:
-- route basis is not automatically the robot body basis;
-- route heading, robot yaw and sensor orientation are different quantities;
-- a body-frame velocity and a route-frame velocity may have different coordinates even at the same timestamp;
-- lateral sign depends on the declared normal convention;
-- route projection must use a valid matched route point and nonzero tangent.
+Normal-convention test:
+- right normal `n_right=(0.8,-0.6)`;
+- coordinates become `(3.8,3.4)^T`;
+- reconstructed vector remains `(5,1)`;
+- only the lateral sign convention changes.
 
-### Control interpretation
-Longitudinal and lateral coordinates can simplify route-following logic, but:
-- a convenient coordinate system does not by itself prove controller stability;
-- small lateral velocity does not imply small lateral position error;
-- basis change alone is not a control law;
-- actuator directions spanning instantaneous motion must not be confused with controllability over time.
+## Step 5 — Failure tests
 
-### IMU example
-The phrase “acceleration components along sensor axes” is acceptable only with processing state declared:
-- a raw accelerometer primarily measures specific force, not inertial acceleration directly;
-- gravity compensation, bias calibration and sensor-to-body rotation affect interpretation;
-- calibration version, handedness, axis order and timestamp are mandatory;
-- missing this metadata can produce a plausible array with the wrong physical meaning.
+### Mixed frame
+Mistake:
+- read route tuple `(3.8,-3.4)` as world coordinates.
 
-Verdict: robotics/control examples are approved under the above interpretation boundaries.
+Result:
+- wrong world vector `(3.8,-3.4)`;
+- error vector `(-1.2,-4.4)`;
+- error norm `4.560701700396552`.
 
-## Step 4 — Signal, data and AI review
+Lesson:
+- same shape and units do not compensate for missing basis metadata.
 
-### Signal basis
-Coefficient recovery by inner products requires:
-- the same sampling grid;
-- the same window length;
-- a declared discrete or continuous inner product;
-- declared weighting and normalization;
-- orthonormality under that exact inner product;
-- compatible boundary and preprocessing conventions.
+### Reversed transform
+Mistake:
+- use `P_{R<-W}=P_{W<-R}^T` in the wrong direction to reconstruct route coordinates.
 
-Changing sample rate, windowing or normalization changes the representation contract even if array length remains equal.
+Result:
+- wrong vector `(-0.44,-5.08)`;
+- error norm `8.158431221748456`.
 
-### Feature engineering
-Required distinctions:
-- duplicate or exact linear-combination features create linear dependence in the feature representation;
-- a nonlinear derived feature may be redundant in an information sense but does not establish linear dependence;
-- empirical correlation is not the same as exact algebraic dependence;
-- feature coordinates are schema values, not automatically coordinates of an underlying physical-state basis;
-- scaling and centering change geometry and must be versioned, though deeper analysis remains for §1.5.
+Lesson:
+- transpose being the inverse of an orthonormal transform does not remove the need to track source and target direction.
 
-### Overcomplete dictionaries
-Approved interpretation:
-- more atoms than ambient dimension generally creates dependence;
-- exact representations may be non-unique;
-- a sparse or regularized solver selects a solution according to an extra criterion;
-- the selected coefficients are not converted into basis coordinates merely because the solver returns one vector.
+### Non-unit directions
+Mistake:
+- use `q=(3,4)` and `m=(-4,3)` as if they were unit directions;
+- take raw dot products `(19,-17)` as coordinates.
 
-### Embedding systems
-Direct comparison requires compatibility of:
-- model identifier and weights version;
-- embedding dimension;
-- tokenizer or input encoder;
-- pooling rule;
-- preprocessing;
-- normalization policy;
-- representation-space alignment.
+Result:
+- wrong reconstruction `(125,25)`.
 
-Even with equal dimension, embeddings from incompatible models are different coordinate systems. Cosine similarity across them is not automatically meaningful.
+Correct treatment:
+- divide by squared norm `25`;
+- coefficients `(0.76,-0.68)`;
+- reconstruction `(5,1)`.
 
-Verdict: signal/data/AI examples are conceptually correct and now have explicit modeling boundaries.
+### Stale basis
+Mistake:
+- use route basis from another timestamp or matched route point.
 
-## Step 5 — Operational failure modes and required telemetry
+Lesson:
+- arithmetic may remain valid while the geometric event is wrong;
+- vector timestamp, basis timestamp, transform age and route location must be checked.
 
-### Failure modes to test later
-1. swapped basis-column order;
-2. source/target transform direction reversed;
-3. stale transform or unmatched timestamps;
-4. left/right normal sign convention changed;
-5. non-unit route tangent used as a unit direction;
-6. route derivative zero or undefined;
-7. body frame confused with route frame;
-8. velocity vector confused with position point;
-9. mixed units combined without scaling contract;
-10. dot shortcut used on non-orthonormal directions;
-11. near-dependent basis produces large canceling coefficients;
-12. reconstruction residual accepted without checking units/frame;
-13. raw IMU specific force labeled inertial acceleration;
-14. signal basis reused with a different sample grid or normalization;
-15. nonlinear feature called linearly dependent;
-16. dictionary coefficients labeled unique basis coordinates;
-17. embeddings compared across incompatible model pipelines;
-18. NaN, infinity or silent broadcasting accepted.
+### Near-dependence contrast
+Separate basis:
+- `b_1=(1,0)`;
+- `b_2=(1,0.001)`.
 
-### Mandatory telemetry for the final implementation contract
-General:
-- vector shape and finite-value status;
-- schema ID and version;
-- component order;
-- units;
-- vector timestamp;
-- source and target frame IDs;
-- basis ID, version and ordered-column hash;
-- transform direction and timestamp;
-- transform age;
-- tolerance policy;
-- reconstruction residual norm;
-- coefficient norm and maximum absolute coefficient;
-- solver mode: exact, orthonormal shortcut, approximate or redundant;
-- warning flags for near dependence and incompatible representation.
+For target `(5,1)`:
+- coordinates `(-995,1000)`.
 
-Robotics:
-- route location or matched arc-length;
-- route tangent norm;
-- normal-sign convention;
-- robot yaw and route heading kept as separate fields;
-- calibration version for sensor/body transforms;
-- gravity-compensation state for IMU-derived acceleration.
+For perturbed target `(5,1.001)`:
+- coordinates `(-996,1001)`.
 
-Signal:
-- sample rate;
-- window length;
-- sample grid or time interval;
-- inner-product definition;
-- weighting/window function;
-- normalization convention.
+A `0.001` change in input produces coefficient change `(-1,1)` while both residuals remain zero.
 
-Data and AI:
-- feature-schema version;
-- centering/scaling statistics version;
-- model and weights version;
-- tokenizer/encoder and pooling version;
-- embedding normalization state;
-- alignment version when comparing spaces.
+Lesson:
+- exact reconstruction and uniqueness do not guarantee stable coefficients;
+- large canceling coefficients warn of near dependence.
 
-## Core-file patch decision
-No patch was made to `theory_core_c01_l04.json` in PASS 06 because:
-- the mathematical core and high-level engineering examples contain no direct contradiction;
-- `workedCase`, misconceptions and implementation contract are still explicitly provisional;
-- the newly locked engineering constraints belong in the detailed worked case of PASS 07 and the operational contract of PASS 09;
-- duplicating unfinished requirements into multiple draft sections now would create drift.
+## Step 6 — Interpretation and reusable outputs
 
-This is not a waiver. The constraints above are binding acceptance criteria for passes 7 and 9. Failure to encode them there blocks approval.
+Decision logic:
+- use route coordinates only when tangent is valid, basis is orthonormal, frames match and timestamps are aligned;
+- interpret the sign only after declaring the normal convention;
+- do not infer lateral position error or controller stability from lateral velocity alone;
+- when reconstruction fails, check order, frame, units, transform direction and timestamps before declaring out-of-span;
+- flag large canceling coefficients even when residual is small.
 
-## PASS 06 verification verdict
-PASS WITH BINDING CONSTRAINTS.
+Reusable verified outputs:
+- world vector `(5,1)^T m/s`;
+- route coordinates `(3.8,-3.4)^T m/s`;
+- transform `[[0.6,-0.8],[0.8,0.6]]`;
+- exact reconstruction `(5,1)^T`;
+- residual norm `0`;
+- invariant speed `sqrt(26)`;
+- mandatory metadata includes timestamps, frame IDs, basis order, normal convention, units, route location and transform direction.
 
-Reasons:
-- schema, units and coefficient meanings are now explicit;
-- frame direction, timestamp and route-basis construction are physically bounded;
-- robot, IMU and control claims avoid common category errors;
-- signal, feature, dictionary and embedding examples have correct modeling conditions;
-- 18 operational failure modes and the required telemetry set are locked;
-- no complete worked case or implementation contract was prematurely authored;
+## PASS 07 verification verdict
+PASS.
+
+Verified:
+- same physical vector is maintained;
+- basis and order are explicit;
+- coefficient units are correct;
+- world/route/body distinctions are explicit;
+- timestamps are matched;
+- orthonormality and transform direction are verified;
+- coordinate arithmetic and reconstruction are exact;
+- norm invariant is verified;
+- basis-order and sign-convention behavior are verified;
+- mixed-frame, reversed-transform, non-unit and stale-basis failures are included;
+- near dependence is isolated from the main orthonormal case;
+- no affine-point or moving-frame velocity claim leaked into the case;
+- JSON opens and closes correctly;
+- misconceptions and implementation contract remain reserved for passes 8–9;
 - no UI/runtime or presentation file was modified;
-- no browser smoke test is claimed because this is a content and modeling review.
+- no browser smoke test is claimed because this is a content-only worked-case pass.
 
 ## Next task
-PASS 07/14 — Complete worked case, consisting of 6 steps:
-1. define the engineering scenario and representation contract;
-2. choose exact numerical data and ordered bases;
-3. compute coordinates in world and route bases;
-4. verify reconstruction, invariants and basis-order behavior;
-5. test mixed-frame, sign-convention and near-dependence failures;
-6. write interpretation, decision logic and reusable case outputs.
+PASS 08/14 — Misconceptions and failure modes, consisting of 5 steps:
+1. expand and classify conceptual misconceptions;
+2. add mathematical counterexamples and repair explanations;
+3. map engineering failure modes to symptoms and root causes;
+4. define diagnostic questions and corrective actions;
+5. verify coverage against passes 3, 5, 6 and the worked case.
 
-PASS 07 must patch `theory_core_c01_l04.json` by replacing the provisional worked case with a complete verified case. The file remains unapproved until passes 8–9 are complete.
+PASS 08 must patch `theory_core_c01_l04.json` by replacing provisional misconceptions with a complete reviewed section. The file remains unapproved until PASS 09 is complete.
 
 ## Presentation/runtime status
 - No UI/runtime file was changed.
@@ -347,6 +312,8 @@ PASS 07 must patch `theory_core_c01_l04.json` by replacing the provisional worke
 - C01-L04 core draft: `6952d0904c073ea8ffb6376a0422784b38ce0881`
 - C01-L04 pass 04 state: `52f9783ce20804e8beac5d7a00dfe6cf1bfd4da9`
 - C01-L04 pass 05 mathematics review: `b96273479921523d71d365da5b68547ede356059`
+- C01-L04 pass 06 engineering review: `7069861896b06ada6675a7892100b20235917f3f`
+- C01-L04 pass 07 worked case: `61b726d486b2bc5060b8422351eb8239c8e02eb3`
 
 ## Persistent handoff
 - `HANDOFF_THEORY_CORE.md`
