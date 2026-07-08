@@ -1,8 +1,8 @@
 # CODEX_STATE
 
-Current task: `THEORY_CORE_C01_L04_PASS_05_INDEPENDENT_MATHEMATICS_REVIEW`
+Current task: `THEORY_CORE_C01_L04_PASS_06_ENGINEERING_MODEL_REVIEW`
 
-Status: `PASS_05_MATHEMATICS_REVIEW_APPROVED`
+Status: `PASS_06_ENGINEERING_REVIEW_APPROVED_WITH_BINDING_CONSTRAINTS`
 
 Date: 2026-07-08
 Branch: `main`
@@ -39,15 +39,15 @@ Presentation and integration passes:
 14. Final integration and acceptance — 7 steps
 
 ## Progress for §1.4
-- Completed: 5/14 passes
-- Remaining: 9/14 passes
-- Completed steps: 25/73
-- Remaining steps: 48/73
+- Completed: 6/14 passes
+- Remaining: 8/14 passes
+- Completed steps: 30/73
+- Remaining steps: 43/73
 
 ## Core architecture
 - Current draft: `subjects/math/data/theory_core/theory_core_c01_l04.json`.
 - Draft version remains `CORE_C01_L04_V1_DRAFT`.
-- Draft remains unapproved until passes 6–9 are complete.
+- Draft remains unapproved until passes 7–9 are complete.
 - `subjects/math/data/theory_lecture_content.json` remains unchanged during the core phase.
 - C01-L04 is not registered in the manifest until passes 1–9 are complete.
 - No UI/runtime or presentation file is modified during passes 1–9.
@@ -60,247 +60,280 @@ Presentation and integration passes:
 - Position: after §1.3 dot/angle/projection and before §1.5 subspace/data representation.
 
 # PASS 01 — SCOPE LOCK
-
 Status: PASS.
-
-Locked:
-- exact lesson identity and prerequisites;
-- required content and deferred content;
-- basis, span, coordinates, uniqueness and change-of-representation boundaries;
-- no determinant, inverse, Gaussian elimination, rank-nullity, PCA, SVD or full least squares in §1.4;
-- nonlinear derived features do not prove linear dependence.
 
 # PASS 02 — BAUMAN ACADEMIC MAP
-
 Status: PASS.
-
-Locked chain:
-`linear combination → span → linear independence → basis → coordinates → uniqueness → change of basis → exact/approximate representation`.
-
-Locked application map:
-- robotics coordinate frames and state representations;
-- signal bases and coefficient recovery;
-- feature sets versus bases;
-- overcomplete dictionaries;
-- learned embedding-space compatibility.
 
 # PASS 03 — PEDAGOGICAL SPINE
-
 Status: PASS.
 
-Locked:
-- central lesson thesis;
-- 10 measurable outcomes;
-- 9 learning phases;
-- 10 planned misconception intercepts;
-- retrieval checkpoints and cognitive-load controls;
-- mastery requires calculation, reconstruction, interpretation, condition checks and engineering transfer.
-
 # PASS 04 — CORE ACADEMIC CONTENT
-
 Status: PASS FOR DRAFT CREATION, NOT FINAL APPROVAL.
 
 Created:
 `subjects/math/data/theory_core/theory_core_c01_l04.json`
 
-Draft contents:
-- 10 learning outcomes;
-- 16 notation rules;
-- 9 core concepts;
-- 9 main mechanisms;
-- 12 main formulas;
-- comparison logic;
-- 12 assumption gates;
-- provisional worked case, misconceptions, mastery checks and implementation contract;
-- bridges and provisional downstream mapping.
+# PASS 05 — INDEPENDENT MATHEMATICS REVIEW
+Status: PASS.
 
-# C01-L04 PASS 05 — INDEPENDENT MATHEMATICS REVIEW
+Verified:
+- definitions and logical implications;
+- notation and formula domains;
+- zero-vector, redundant-family, swapped-order and non-orthogonal counterexamples;
+- near-dependence and numerical-sensitivity claims;
+- vector-versus-affine-point boundary;
+- no scope leakage into later matrix, least-squares or spectral topics.
 
-## Step 1 — Definitions and logical equivalences
+# C01-L04 PASS 06 — ENGINEERING-MODEL REVIEW
 
-### Verified as correct
-- For the finite families used in this lesson, linear independence is equivalent to the homogeneous relation `sum_i z_i b_i = 0` having only the zero solution.
-- `v in span(B)` is an existence statement: at least one coefficient vector reconstructs `v`.
-- Spanning the stated target space gives coordinate existence for every vector in that space.
-- Linear independence gives coefficient uniqueness for every vector in the span.
-- A basis of `V` combines `span(B)=V` and linear independence.
-- If `B_mat c = B_mat d` and the columns of `B_mat` are independent, then `c=d`.
-- If a nonzero `z` satisfies `B_mat z=0`, then `c+t z` reconstructs the same vector as `c` for every real `t`.
+## Step 1 — Schema, units and coefficient meanings
 
-### Ordered-basis nuance
-- The spanning and independence properties do not depend on order.
-- Coordinates do depend on order.
-- Throughout this lesson, `B=(b_1,...,b_n)` means an ordered basis whenever `[v]_B` is used.
-- Calling `B` an ordered representation contract is therefore mathematically sound and pedagogically intentional.
+### Vector-schema contract
+Every engineering vector must declare:
+- component names and order;
+- physical quantity represented;
+- units for each component;
+- coordinate frame or representation space;
+- timestamp or sampling interval;
+- schema and preprocessing version.
 
-### Target-space nuance
-- A nonzero vector is a basis of its one-dimensional span, but not automatically a basis of a larger ambient space.
-- Every statement “B is a basis” must name the target space.
-- A redundant family may span the target space without being a basis.
+A matching numeric shape is not sufficient evidence of compatibility.
 
-Result: no blocking definition error found.
+### Coefficient-unit contract
+The units of coordinates depend on the basis definition:
+- if basis vectors are dimensionless unit directions and `v` is a velocity vector, coefficients inherit velocity units such as m/s;
+- if basis vectors carry the same physical units as `v`, coefficients may be dimensionless;
+- if basis vectors are arbitrarily scaled, coefficient magnitudes and units must be derived and documented;
+- coefficients are not automatically invariant physical quantities.
 
-## Step 2 — Formula conditions and notation consistency
+The later worked case must use dimensionless unit direction vectors so route coordinates have units m/s and remain easy to interpret.
 
-### Dimension contract
-For `B_mat c = v`:
-- `B_mat` has shape `n × k`;
-- `c` belongs to `R^k`;
-- `v` belongs to `R^n` in the declared ambient coordinates;
-- column order in `B_mat` must equal the order in `B`.
+### Mixed-unit state vectors
+A state array may contain position, velocity, angle and other quantities with different units as a model schema. However:
+- an arbitrary linear combination that mixes incompatible units is not automatically physically meaningful;
+- norms, dot products and basis rotations across mixed-unit blocks require nondimensionalization, scaling or a declared metric;
+- §1.4 must not imply that every algebraically valid basis of a mixed-unit numeric array is a physically useful state basis.
 
-### Coordinate formula
-`[v]_B=(c_1,...,c_n)^T` is valid only when:
-- `B` is an ordered basis of the space containing `v`;
-- coefficients are listed in basis order;
-- reconstruction yields `v`.
+### Coefficient interpretation
+Before interpreting a coefficient as longitudinal speed, mode amplitude, feature contribution or actuator command, verify:
+- the basis semantics;
+- basis normalization;
+- sign convention;
+- units;
+- the target space;
+- whether the representation is unique.
 
-### Orthonormal shortcut
-`c_i=v·b_i` is valid only when:
-- the `b_i` form an orthonormal basis of the relevant space;
-- `v` lies in that space;
-- the same inner product defines orthonormality and coefficient recovery.
+Verdict: the core concepts are valid; the above constraints are binding for passes 7 and 9.
 
-For an orthogonal but non-unit family:
-`c_i=(v·b_i)/(b_i·b_i)`.
+## Step 2 — Coordinate-frame and timestamp contracts
 
-For a general non-orthogonal basis, dot products alone are not coordinates.
+### Transform-direction contract
+For `P_{W<-R}`:
+- source coordinates are in route basis `R`;
+- target coordinates are in world basis `W`;
+- column i is the i-th route basis vector expressed in world coordinates;
+- `[v]_W = P_{W<-R}[v]_R`.
 
-### Change-of-basis notation
-`[v]_E=P_{E<-B}[v]_B` is valid for finite-dimensional `R^n` when:
-- `E` and `B` are ordered bases of the same vector space;
-- columns of `P_{E<-B}` are `[b_i]_E` in order;
-- the formula is the forward reconstruction from B-coordinates to E-coordinates.
+The arrow direction must never be inferred from variable names alone; it must be documented.
 
-The inverse transformation is intentionally deferred to the matrix chapter.
+### Route-frame construction
+For a planar route basis at matched path location `s`:
+- tangent `t(s)` must be nonzero and normalized;
+- a left-normal convention may use `n(s)=(-t_y,t_x)`;
+- `R(s)=(t(s),n(s))` is ordered and right-handed in the declared 2-D convention;
+- changing normal sign changes lateral-coordinate sign;
+- at cusps, discontinuities or zero route derivative, the route basis is undefined and the sample must be rejected or handled by a separate policy.
 
-Result: formula conditions and notation are internally consistent.
+### Timestamp contract
+A vector and its basis/transform must refer to the same event time or an explicitly interpolated common time:
+- store vector timestamp;
+- store transform or basis timestamp;
+- store transform age;
+- reject or flag stale transforms beyond the allowed latency budget;
+- do not compare world, body, sensor or route coordinates from unmatched times.
 
-## Step 3 — Edge cases and counterexamples
+### Free vector versus point
+Pure basis change applies directly to free vectors such as force, velocity and displacement.
+A point coordinate in frames with different origins requires translation as well.
+The main worked case must therefore use a velocity vector, not a position point.
 
-### Edge case A — Zero vector
-- The zero vector belongs to every span.
-- The zero vector has unique zero coordinates in a basis.
-- Any family containing the zero vector is linearly dependent.
-- Therefore the zero vector cannot be a member of a nonempty basis.
+### Moving-frame nuance
+The worked case may express the same geometric velocity vector in two instantaneous orientations using a pure orthonormal basis change. It must not claim that this alone converts between absolute and relative velocities of moving frames; relative frame motion would require additional kinematic terms and remains deferred.
 
-### Edge case B — Empty and zero-dimensional space
-- The empty family is conventionally a basis of the zero vector space.
-- This edge convention is mathematically valid but intentionally excluded from the instructional examples because it does not support the engineering goals of §1.4.
+Verdict: frame logic is physically sound when these constraints are stated explicitly.
 
-### Edge case C — Swapped basis order
-For standard basis `E=(e_1,e_2)` and `B=(e_2,e_1)`:
-- the abstract vector `v=e_1` has `[v]_E=(1,0)^T`;
-- the same vector has `[v]_B=(0,1)^T`;
-- reconstruction returns the same vector.
+## Step 3 — Robotics and control review
 
-This confirms that basis order changes coordinates, not the vector.
+### UGV route-tracking example
+Approved model:
+- one planar physical velocity vector at one timestamp;
+- world basis `W=(e_x,e_y)`;
+- route basis `R=(t,n)` evaluated at the matched route location;
+- `t` and `n` dimensionless and orthonormal;
+- longitudinal and lateral coordinates measured in m/s;
+- reconstruction back to world coordinates is mandatory.
 
-### Edge case D — Redundant family
-For columns `e_1`, `e_2`, `e_1+e_2`:
-- `z=(1,1,-1)^T` satisfies `B_mat z=0`;
-- if `c` represents `v`, then `c+t z` also represents `v`;
-- coefficients are not unique.
+Required cautions:
+- route basis is not automatically the robot body basis;
+- route heading, robot yaw and sensor orientation are different quantities;
+- a body-frame velocity and a route-frame velocity may have different coordinates even at the same timestamp;
+- lateral sign depends on the declared normal convention;
+- route projection must use a valid matched route point and nonzero tangent.
 
-This confirms that span membership does not imply basis coordinates.
+### Control interpretation
+Longitudinal and lateral coordinates can simplify route-following logic, but:
+- a convenient coordinate system does not by itself prove controller stability;
+- small lateral velocity does not imply small lateral position error;
+- basis change alone is not a control law;
+- actuator directions spanning instantaneous motion must not be confused with controllability over time.
 
-### Edge case E — Non-orthogonal basis
-For `b_1=(1,0)^T`, `b_2=(1,1)^T`, `v=(3,2)^T`:
-- solving coordinates gives `(1,2)^T`;
-- raw dot products give `(3,5)^T`;
-- raw dot coefficients reconstruct `(8,5)^T`, not `v`.
+### IMU example
+The phrase “acceleration components along sensor axes” is acceptable only with processing state declared:
+- a raw accelerometer primarily measures specific force, not inertial acceleration directly;
+- gravity compensation, bias calibration and sensor-to-body rotation affect interpretation;
+- calibration version, handedness, axis order and timestamp are mandatory;
+- missing this metadata can produce a plausible array with the wrong physical meaning.
 
-This provides a decisive counterexample to the invalid universal dot-product shortcut.
+Verdict: robotics/control examples are approved under the above interpretation boundaries.
 
-### Edge case F — Vector versus affine point
-- Pure change-of-basis formulas apply directly to vectors such as velocity, force and displacement.
-- Coordinates of points in frames with different origins require translation in addition to the linear basis change.
-- §1.4 must therefore use velocity or displacement in its main robotics case, not silently treat world-position points as free vectors.
-- Full affine and rigid transforms remain deferred.
+## Step 4 — Signal, data and AI review
 
-Result: edge cases support the draft logic; no contradiction found.
+### Signal basis
+Coefficient recovery by inner products requires:
+- the same sampling grid;
+- the same window length;
+- a declared discrete or continuous inner product;
+- declared weighting and normalization;
+- orthonormality under that exact inner product;
+- compatible boundary and preprocessing conventions.
 
-## Step 4 — Numerical-sensitivity review
+Changing sample rate, windowing or normalization changes the representation contract even if array length remains equal.
 
-### Verified near-dependence claim
-Test family:
-- `b_1=(1,0)^T`;
-- `b_2=(1,10^{-6})^T`.
+### Feature engineering
+Required distinctions:
+- duplicate or exact linear-combination features create linear dependence in the feature representation;
+- a nonlinear derived feature may be redundant in an information sense but does not establish linear dependence;
+- empirical correlation is not the same as exact algebraic dependence;
+- feature coordinates are schema values, not automatically coordinates of an underlying physical-state basis;
+- scaling and centering change geometry and must be versioned, though deeper analysis remains for §1.5.
 
-This family is exactly independent but nearly parallel.
+### Overcomplete dictionaries
+Approved interpretation:
+- more atoms than ambient dimension generally creates dependence;
+- exact representations may be non-unique;
+- a sparse or regularized solver selects a solution according to an extra criterion;
+- the selected coefficients are not converted into basis coordinates merely because the solver returns one vector.
 
-For `v=(1,10^{-3})^T`:
-- exact coefficients are approximately `(-999,1000)^T`;
-- the matrix condition number is approximately `2×10^6`;
-- changing the second component of `v` by `10^{-9}` changes the coefficients by approximately `(-0.001,0.001)^T`;
-- reconstruction residual remains zero in exact calculation.
+### Embedding systems
+Direct comparison requires compatibility of:
+- model identifier and weights version;
+- embedding dimension;
+- tokenizer or input encoder;
+- pooling rule;
+- preprocessing;
+- normalization policy;
+- representation-space alignment.
 
-Conclusion:
-- exact uniqueness does not imply numerically stable coordinates;
-- small residual does not prove stable coefficients;
-- large canceling coefficients are a warning signal;
-- no full condition-number theory is taught here, but sensitivity awareness is justified.
+Even with equal dimension, embeddings from incompatible models are different coordinate systems. Cosine similarity across them is not automatically meaningful.
 
-### Tolerance policy
-- Exact statements use exact arithmetic language.
-- Floating-point membership and orthonormality require explicit tolerance.
-- Tolerance must scale with data magnitude and numerical method; it must not be an unexplained universal constant.
-- Numerical rank, QR and SVD policy remain deferred to later lessons and PASS 09 implementation design.
+Verdict: signal/data/AI examples are conceptually correct and now have explicit modeling boundaries.
 
-Result: sensitivity statements are accurate and appropriately bounded.
+## Step 5 — Operational failure modes and required telemetry
 
-## Step 5 — Scope leakage, overstatement and hidden assumptions
+### Failure modes to test later
+1. swapped basis-column order;
+2. source/target transform direction reversed;
+3. stale transform or unmatched timestamps;
+4. left/right normal sign convention changed;
+5. non-unit route tangent used as a unit direction;
+6. route derivative zero or undefined;
+7. body frame confused with route frame;
+8. velocity vector confused with position point;
+9. mixed units combined without scaling contract;
+10. dot shortcut used on non-orthonormal directions;
+11. near-dependent basis produces large canceling coefficients;
+12. reconstruction residual accepted without checking units/frame;
+13. raw IMU specific force labeled inertial acceleration;
+14. signal basis reused with a different sample grid or normalization;
+15. nonlinear feature called linearly dependent;
+16. dictionary coefficients labeled unique basis coordinates;
+17. embeddings compared across incompatible model pipelines;
+18. NaN, infinity or silent broadcasting accepted.
 
-### No scope leakage found
-The draft does not teach:
-- determinant tests;
-- explicit matrix inversion as a coordinate method;
-- Gaussian elimination as a chapter topic;
-- rank-nullity theorem;
-- least-squares derivation;
-- QR or SVD algorithms;
-- PCA construction;
-- eigen-analysis;
-- affine or rigid-body transforms.
+### Mandatory telemetry for the final implementation contract
+General:
+- vector shape and finite-value status;
+- schema ID and version;
+- component order;
+- units;
+- vector timestamp;
+- source and target frame IDs;
+- basis ID, version and ordered-column hash;
+- transform direction and timestamp;
+- transform age;
+- tolerance policy;
+- reconstruction residual norm;
+- coefficient norm and maximum absolute coefficient;
+- solver mode: exact, orthonormal shortcut, approximate or redundant;
+- warning flags for near dependence and incompatible representation.
 
-### Statements explicitly bounded
-- `P_{E<-B}` is a finite-dimensional coordinate map, not a full treatment of linear transformations.
-- Residual measures reconstruction mismatch, not physical truth.
-- Feature sets are not automatically bases of physical state spaces.
-- Embedding compatibility requires a shared representation contract.
-- A basis can be mathematically valid yet numerically poor.
-- Coordinate comparisons require the same basis, frame and version.
+Robotics:
+- route location or matched arc-length;
+- route tangent norm;
+- normal-sign convention;
+- robot yaw and route heading kept as separate fields;
+- calibration version for sensor/body transforms;
+- gravity-compensation state for IMU-derived acceleration.
 
-### Main robotics-case restriction
-The later worked case must use a vector quantity such as velocity or displacement.
-If position points are introduced, origin translation must be stated explicitly and cannot be hidden inside a pure basis-change formula.
+Signal:
+- sample rate;
+- window length;
+- sample grid or time interval;
+- inner-product definition;
+- weighting/window function;
+- normalization convention.
 
-Result: no blocking overstatement or hidden assumption remains.
+Data and AI:
+- feature-schema version;
+- centering/scaling statistics version;
+- model and weights version;
+- tokenizer/encoder and pooling version;
+- embedding normalization state;
+- alignment version when comparing spaces.
 
-## PASS 05 verification verdict
+## Core-file patch decision
+No patch was made to `theory_core_c01_l04.json` in PASS 06 because:
+- the mathematical core and high-level engineering examples contain no direct contradiction;
+- `workedCase`, misconceptions and implementation contract are still explicitly provisional;
+- the newly locked engineering constraints belong in the detailed worked case of PASS 07 and the operational contract of PASS 09;
+- duplicating unfinished requirements into multiple draft sections now would create drift.
 
-PASS.
+This is not a waiver. The constraints above are binding acceptance criteria for passes 7 and 9. Failure to encode them there blocks approval.
+
+## PASS 06 verification verdict
+PASS WITH BINDING CONSTRAINTS.
 
 Reasons:
-- all core definitions and logical implications are correct for the finite-dimensional real-vector setting used;
-- formula domains and basis-order semantics are consistent;
-- zero-vector, redundant-family, swapped-order, non-orthogonal and near-dependent cases were tested;
-- sensitivity claims were numerically verified;
-- vector-versus-affine-point boundary was made explicit;
-- no later theorem or algorithm leaked into §1.4;
-- no patch to `theory_core_c01_l04.json` was required in this pass because no blocking mathematical defect was found;
-- the core remains unapproved pending engineering, worked-case, misconception and implementation reviews;
-- no browser smoke test is claimed because this is a content-only mathematics review.
+- schema, units and coefficient meanings are now explicit;
+- frame direction, timestamp and route-basis construction are physically bounded;
+- robot, IMU and control claims avoid common category errors;
+- signal, feature, dictionary and embedding examples have correct modeling conditions;
+- 18 operational failure modes and the required telemetry set are locked;
+- no complete worked case or implementation contract was prematurely authored;
+- no UI/runtime or presentation file was modified;
+- no browser smoke test is claimed because this is a content and modeling review.
 
 ## Next task
-PASS 06/14 — Engineering-model review, consisting of 5 steps:
-1. validate schemas, units and coefficient meanings;
-2. validate coordinate-frame and timestamp contracts;
-3. review robotics/control examples for physical correctness;
-4. review signal/data/AI examples for modeling correctness;
-5. identify operational failure modes and required telemetry.
+PASS 07/14 — Complete worked case, consisting of 6 steps:
+1. define the engineering scenario and representation contract;
+2. choose exact numerical data and ordered bases;
+3. compute coordinates in world and route bases;
+4. verify reconstruction, invariants and basis-order behavior;
+5. test mixed-frame, sign-convention and near-dependence failures;
+6. write interpretation, decision logic and reusable case outputs.
 
-PASS 06 may patch the core draft but must keep it unapproved until passes 7–9 are complete.
+PASS 07 must patch `theory_core_c01_l04.json` by replacing the provisional worked case with a complete verified case. The file remains unapproved until passes 8–9 are complete.
 
 ## Presentation/runtime status
 - No UI/runtime file was changed.
@@ -313,6 +346,7 @@ PASS 06 may patch the core draft but must keep it unapproved until passes 7–9 
 - C01-L04 pass 03 pedagogical spine: `a1a3a3a82014be9bde16c426e4fd4b45fec776c0`
 - C01-L04 core draft: `6952d0904c073ea8ffb6376a0422784b38ce0881`
 - C01-L04 pass 04 state: `52f9783ce20804e8beac5d7a00dfe6cf1bfd4da9`
+- C01-L04 pass 05 mathematics review: `b96273479921523d71d365da5b68547ede356059`
 
 ## Persistent handoff
 - `HANDOFF_THEORY_CORE.md`
