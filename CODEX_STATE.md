@@ -1,8 +1,8 @@
 # CODEX_STATE
 
-Current task: `THEORY_RUNTIME_MIN_SLIDE_CONTRACT_C01_L04_PASS_15`
+Current task: `THEORY_DURABLE_CONTENT_MERGE_C01_L04_PASS_16`
 
-Status: `PASS_15_MINIMUM_16_SLIDES_PATCHED_STATIC_VERIFY_PASS`
+Status: `PASS_16_DURABLE_MERGE_STATIC_VERIFY_PASS`
 
 Date: 2026-07-08
 Branch: `main`
@@ -16,9 +16,9 @@ Branch: `main`
 
 ## §1.4 overall status
 - Academic workflow: 14/14 passes, 73/73 steps complete.
-- Runtime completion workflow: 1/6 passes complete.
-- Runtime steps complete: 5/34.
-- Runtime steps remaining: 29/34.
+- Runtime completion workflow: 2/6 passes complete.
+- Runtime steps complete: 10/34.
+- Runtime steps remaining: 24/34.
 - Source slideshow slides: 22.
 - Runtime import slides: 22.
 - Minimum slide count: 16.
@@ -127,3 +127,29 @@ PASS 16/20 — Durable merge into `theory_lecture_content.json`, 5 steps:
 5. commit the durable source and update state without touching UI or Reader files.
 
 Because Pass 16 modifies a large monolithic JSON file, use a **new Codex session** or another JSON-safe merge workflow. Do not rewrite it manually from partial chunks. Do not continue an old Codex session.
+
+## Pass 16 durable merge report
+- Result: `PASS_16_DURABLE_MERGE_STATIC_VERIFY_PASS`
+- Target file: `subjects/math/data/theory_lecture_content.json`
+- Import source: `subjects/math/data/theory_integration/theory_lecture_content_c01_l04_import.json`
+- Target lessonId: `MATH-VN-C01-vector_trong_khong_gian_-L04-basis-span-coordinate-e140`
+- File SHA-256 before: `81d807aa17e770ffc4481b447583ce98c31510afa8eb41ea725be35419ee655f`
+- File SHA-256 after: `dc5462df37227b49ab1759f8631f0dc682816cb59733ef2193688366d23dfb1e`
+- Record count before/after: `18/18`
+- Target occurrence before/after: `1/1`
+- Target index: `3`
+- Previous lessonId: `MATH-VN-C01-vector_trong_khong_gian_-L03-dot-angle-projection-e139`
+- Next lessonId: `MATH-VN-C01-vector_trong_khong_gian_-L05-subspace-data-representation-e140`
+- Previous record hash unchanged: `true`
+- Next record hash unchanged: `true`
+- All other record hashes unchanged: `true`
+- Runtime slides: `22`
+- Source slide mapping: `22/22`
+- Formula trace: `F1-F12 complete`
+- Duplicate lesson IDs: `0`
+- JSON validation: `pass`
+- Security scan: `pass`
+- UGV invariants: `pass`
+- Browser smoke test: `not run`
+- Files modified in this pass: `theory_lecture_content.json`, `CODEX_STATE.md`
+- Next task: `PASS 17/20 — synchronize E129, E202 and E211 data paths`
