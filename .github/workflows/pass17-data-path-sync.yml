@@ -1,0 +1,217 @@
+name: Pass 17 theory data path synchronization
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - .github/workflows/pass17-data-path-sync.yml
+
+permissions:
+  contents: write
+
+jobs:
+  synchronize:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 1
+
+      - name: Patch E129 and E211 narrowly
+        shell: bash
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          import re
+
+          e129_path=Path('subjects/math/assets/theory_skin/theory-tab-E129.js')
+          e211_path=Path('subjects/math/assets/theory_skin/theory-slideshow-reader-content-E211.js')
+          state_path=Path('CODEX_STATE.md')
+
+          e129=e129_path.read_text(encoding='utf-8')
+          e211=e211_path.read_text(encoding='utf-8')
+
+          old_e129="""    localSet(CONTENT_OVERLAY_KEY,payload);
+    return {payload:payload,stats:{before:before.length,after:current.length,inserted:inserted,updated:updated,patched:patched,sample:sample.slice(0,10)}};
+"""
+          new_e129="""    localSet(CONTENT_OVERLAY_KEY,payload);
+    try{ window.dispatchEvent(new CustomEvent('bauman:theory-content-updated',{detail:{source:RELEASE,payload:payload,records:current.length}})); }catch(_){ }
+    return {payload:payload,stats:{before:before.length,after:current.length,inserted:inserted,updated:updated,patched:patched,sample:sample.slice(0,10)}};
+"""
+          assert e129.count(old_e129)==1, 'E129 patch anchor mismatch'
+          e129=e129.replace(old_e129,new_e129,1)
+
+          old_header="""/* E223 Reader Pro content bridge: amber lesson formula popup. */
+(function(){
+  'use strict';
+  var RELEASE='E223_READER_PRO_FORMULA_MODAL_AMBER_LESSON_LAYOUT';
+  var records=[], byId={}, byTitle={}, ready=false, loading=false, last='', formulaPopupState=null, fallbackModal=null;
+"""
+          new_header="""/* E240 Reader Pro shared theory content bridge: DB-first, durable JSON fallback. */
+(function(){
+  'use strict';
+  var RELEASE='E240_SHARED_THEORY_CONTENT_SOURCE';
+  var records=[], byId={}, byTitle={}, ready=false, loading=false, last='', formulaPopupState=null, fallbackModal=null;
+  var lastPayloadRef=null, dataSource='unloaded';
+"""
+          assert e211.count(old_header)==1, 'E211 header anchor mismatch'
+          e211=e211.replace(old_header,new_header,1)
+
+          old_load="""  function load(){
+    if(ready||loading)return Promise.resolve(ready);
+    loading=true;
+    return fetch('data/theory_lecture_content.json',{cache:'no-store'}).then(function(r){
+      if(!r.ok)throw new Error('theory content HTTP '+r.status);
+      return r.json();
+    }).then(function(j){
+      records=(j&&j.records)||[];
+      records.forEach(function(r){
+        if(r.lessonId)byId[norm(r.lessonId)]=r;
+        if(r.lessonTitle)byTitle[norm(r.lessonTitle)]=r;
+        if(r.title)byTitle[norm(r.title)]=r;
+      });
+      ready=true;
+      return true;
+    }).catch(function(e){
+      console.warn('[E222] theory content unavailable',e);
+      return false;
+    }).finally(function(){loading=false;});
+  }
+"""
+          new_load="""  function runtimePayload(){
+    var payload=window.DB&&window.DB.theory_lecture_content;
+    return payload&&Array.isArray(payload.records)?payload:null;
+  }
+  function indexPayload(j,source){
+    records=(j&&j.records)||[];
+    byId={}; byTitle={};
+    records.forEach(function(r){
+      if(r.lessonId)byId[norm(r.lessonId)]=r;
+      if(r.lessonTitle)byTitle[norm(r.lessonTitle)]=r;
+      if(r.title)byTitle[norm(r.title)]=r;
+    });
+    lastPayloadRef=j||null;
+    dataSource=source||'unknown';
+    ready=true;
+    return true;
+  }
+  function load(force){
+    if(force){ready=false;records=[];byId={};byTitle={};last='';}
+    if(ready||loading)return Promise.resolve(ready);
+    loading=true;
+    var live=runtimePayload();
+    var request=live?Promise.resolve({payload:live,source:'window.DB.theory_lecture_content'}):fetch('data/theory_lecture_content.json',{cache:'no-store'}).then(function(r){
+      if(!r.ok)throw new Error('theory content HTTP '+r.status);
+      return r.json().then(function(j){return {payload:j,source:'data/theory_lecture_content.json'};});
+    });
+    return request.then(function(result){
+      return indexPayload(result.payload,result.source);
+    }).catch(function(e){
+      console.warn('[E240] theory content unavailable',e);
+      return false;
+    }).finally(function(){loading=false;});
+  }
+"""
+          assert e211.count(old_load)==1, 'E211 load anchor mismatch'
+          e211=e211.replace(old_load,new_load,1)
+
+          old_apply="""  function apply(){
+    var d=deck(); if(!d)return;
+    var m=mode();
+    if(!/Reader Pro/i.test(m)){d.classList.remove('e211-reader-pro');return;}
+    if(!ready){load().then(schedule); return;}
+"""
+          new_apply="""  function apply(){
+    var d=deck(); if(!d)return;
+    var m=mode();
+    if(!/Reader Pro/i.test(m)){d.classList.remove('e211-reader-pro');return;}
+    var live=runtimePayload();
+    if(ready&&live&&live!==lastPayloadRef){load(true).then(schedule);return;}
+    if(!ready){load().then(schedule); return;}
+"""
+          assert e211.count(old_apply)==1, 'E211 apply anchor mismatch'
+          e211=e211.replace(old_apply,new_apply,1)
+
+          old_boot="""  function boot(){
+    load().then(schedule);
+    try{new MutationObserver(schedule).observe(document.body,{childList:true,subtree:true,attributes:true,attributeFilter:['class']});}catch(_){}
+    window.addEventListener('keydown',guardFormulaModalKey,true);
+"""
+          new_boot="""  function boot(){
+    load().then(schedule);
+    try{new MutationObserver(schedule).observe(document.body,{childList:true,subtree:true,attributes:true,attributeFilter:['class']});}catch(_){}
+    window.addEventListener('bauman:theory-content-updated',function(){load(true).then(schedule);});
+    window.addEventListener('storage',function(e){if(e&&e.key==='bauman_math_e129_theory_content_overlay_v1')load(true).then(schedule);});
+    window.addEventListener('keydown',guardFormulaModalKey,true);
+"""
+          assert e211.count(old_boot)==1, 'E211 boot anchor mismatch'
+          e211=e211.replace(old_boot,new_boot,1)
+
+          old_export="""  window.BAUMAN_MATH_E211_READER_CONTENT={release:RELEASE,apply:apply,selfCheck:function(){var r=findRecord();return {ok:true,release:RELEASE,ready:ready,record:r&&(r.lessonTitle||r.lessonId)||'',mode:mode(),slideIndex:currentIndex(),formulaPopup:!!formulaPopupState};}};
+"""
+          new_export="""  window.BAUMAN_MATH_E211_READER_CONTENT={release:RELEASE,apply:apply,reload:function(){return load(true).then(schedule);},selfCheck:function(){var r=findRecord();return {ok:true,release:RELEASE,ready:ready,record:r&&(r.lessonTitle||r.lessonId)||'',mode:mode(),slideIndex:currentIndex(),formulaPopup:!!formulaPopupState,dataSource:dataSource,recordCount:records.length,dbPreferred:true,durableFallback:true};}};
+"""
+          assert e211.count(old_export)==1, 'E211 export anchor mismatch'
+          e211=e211.replace(old_export,new_export,1)
+
+          # Static verification of the intended synchronization contract.
+          checks={
+            'e129_event':"bauman:theory-content-updated" in e129,
+            'e211_db_first':"window.DB&&window.DB.theory_lecture_content" in e211,
+            'e211_file_fallback':"fetch('data/theory_lecture_content.json'" in e211,
+            'e211_event_reload':"addEventListener('bauman:theory-content-updated'" in e211,
+            'e211_storage_reload':"bauman_math_e129_theory_content_overlay_v1" in e211,
+            'e211_reference_change_reload':"live!==lastPayloadRef" in e211,
+            'e211_public_reload':"reload:function(){return load(true).then(schedule);}" in e211,
+            'e211_diagnostics':"dataSource:dataSource,recordCount:records.length,dbPreferred:true,durableFallback:true" in e211,
+          }
+          assert all(checks.values()), checks
+          assert "var RELEASE='E240_SHARED_THEORY_CONTENT_SOURCE';" in e211
+          assert e211.count("function load(force)")==1
+          assert e129.count("bauman:theory-content-updated")==1
+
+          e129_path.write_text(e129,encoding='utf-8')
+          e211_path.write_text(e211,encoding='utf-8')
+
+          state=state_path.read_text(encoding='utf-8')
+          state=re.sub(r'Current task: `[^`]+`','Current task: `THEORY_DATA_PATH_SYNCHRONIZATION_C01_L04_PASS_17`',state,count=1)
+          state=re.sub(r'Status: `[^`]+`','Status: `PASS_17_DATA_PATH_SYNC_STATIC_VERIFY_PASS`',state,count=1)
+          state=re.sub(r'- Runtime completion workflow: \d+/6 passes complete\.','- Runtime completion workflow: 3/6 passes complete.',state,count=1)
+          state=re.sub(r'- Runtime steps complete: \d+/34\.','- Runtime steps complete: 16/34.',state,count=1)
+          state=re.sub(r'- Runtime steps remaining: \d+/34\.','- Runtime steps remaining: 18/34.',state,count=1)
+          report='''
+
+## Pass 17 data-path synchronization report
+- Result: `PASS_17_DATA_PATH_SYNC_STATIC_VERIFY_PASS`
+- E129 primary source: `window.DB.theory_lecture_content` after durable load or overlay import.
+- E129 now dispatches: `bauman:theory-content-updated` after a successful content merge/patch/replace.
+- E211 source priority: `window.DB.theory_lecture_content` first, `data/theory_lecture_content.json` fallback.
+- E211 reload triggers: E129 content event, cross-tab localStorage event, and DB payload reference change.
+- E211 lesson matching remains keyed by lessonId/title.
+- E211 slide synchronization remains keyed by the E202 visible slide count/index.
+- E202 changed: `no`; it already derives C01 decks from E129 rendered source slides and observes DOM changes.
+- Overlay path consistency: `static pass`.
+- Durable file path consistency: `static pass`.
+- Existing lesson fallback: `preserved`.
+- Browser verification: `not run`.
+- Files modified: `theory-tab-E129.js`, `theory-slideshow-reader-content-E211.js`, `CODEX_STATE.md`.
+- Next task: `PASS 18/20 — integrate approved Reference and Full View artifacts into runtime controls`.
+'''
+          if '## Pass 17 data-path synchronization report' in state:
+            state=state.split('## Pass 17 data-path synchronization report')[0].rstrip()+report
+          else:
+            state=state.rstrip()+report
+          state_path.write_text(state,encoding='utf-8')
+
+          print(checks)
+          PY
+
+      - name: Commit synchronized data paths
+        shell: bash
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add subjects/math/assets/theory_skin/theory-tab-E129.js subjects/math/assets/theory_skin/theory-slideshow-reader-content-E211.js CODEX_STATE.md
+          git diff --cached --quiet && exit 0
+          git commit -m "fix(math): synchronize theory runtime data paths"
+          git push origin HEAD:main
