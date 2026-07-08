@@ -1,0 +1,279 @@
+{
+  "packageType": "bauman.math.theory_lecture_content.merge",
+  "target": "theory_lecture_content",
+  "mode": "merge",
+  "version": "C01_L04_E129_IMPORT_V1_APPROVED",
+  "createdAt": "2026-07-08",
+  "sourceIntegrationVersion": "INTEGRATION_C01_L04_V1_ACCEPTED",
+  "records": [
+    {
+      "lessonId": "MATH-VN-C01-vector_trong_khong_gian_-L04-basis-span-coordinate-e140",
+      "chapterId": "MATH-VN-C01-vector_trong_khong_gian_",
+      "lessonTitle": "§1.4 · Cơ sở, span và tọa độ",
+      "title": "§1.4 · Cơ sở, span và tọa độ",
+      "programLectureId": "MATH-PROG-L02-vector-spaces-linear-maps",
+      "programLectureIds": [
+        "MATH-PROG-L02-vector-spaces-linear-maps",
+        "MATH-PROG-L01-linear-algebra-basic",
+        "MATH-PROG-L17-ai-machine-learning-math-foundations"
+      ],
+      "programAnchorTitle": "Không gian vectơ và ánh xạ tuyến tính",
+      "roadmapRole": "foundation_before_prep",
+      "baumanFocus": "Cơ sở như hợp đồng biểu diễn có thứ tự; span, independence, coordinates, reconstruction, change of basis và độ ổn định số trong robot, tín hiệu và AI.",
+      "sourceAnchors": {
+        "stageId": "vn",
+        "disciplineId": "linear_algebra_data_space",
+        "chapterId": "MATH-VN-C01-vector_trong_khong_gian_",
+        "programLectureId": "MATH-PROG-L02-vector-spaces-linear-maps"
+      },
+      "tags": [
+        "basis",
+        "span",
+        "coordinates",
+        "linear independence",
+        "change of basis",
+        "UGV",
+        "representation contract",
+        "numerical stability"
+      ],
+      "integrationMeta": {
+        "coreVersion": "CORE_C01_L04_V1_APPROVED",
+        "referenceVersion": "REFERENCE_C01_L04_V1_APPROVED",
+        "slideshowVersion": "SLIDESHOW_C01_L04_V1_APPROVED",
+        "fullViewVersion": "FULL_VIEW_C01_L04_V1_APPROVED",
+        "normalizationVersion": "NORMALIZATION_C01_L04_V1_APPROVED",
+        "runtimeContract": "E129_THEORY_CONTENT_IMPORTER",
+        "canonicalFormulaIds": ["F1","F2","F3","F4","F5","F6","F7","F8","F9","F10","F11","F12"],
+        "sourceSlideCount": 22,
+        "runtimeSlideCount": 16,
+        "projectionPolicy": "The approved 22-slide narrative is compressed into the 16 preferred E129 roles without changing mathematical meaning."
+      },
+      "slides": [
+        {
+          "id": "MATH-VN-C01-L04-S01",
+          "role": "problem_framing",
+          "title": "Một vector, nhiều cách biểu diễn",
+          "sourceSlideIds": ["SL01"],
+          "formulaRefs": ["F6","F10"],
+          "blocks": [
+            {"type":"text","title":"Vấn đề học tập","body":"Một vector là đối tượng; coordinate column chỉ là mã của vector theo một ordered basis. Đổi basis làm đổi các con số mô tả nhưng không đổi vector nếu hai representations reconstruct cùng đối tượng."},
+            {"type":"text","title":"Hợp đồng tối thiểu","body":"Mỗi coordinate tuple phải đi cùng target space, ordered basis, units, frame, timestamp và version. Cùng shape hoặc cùng đơn vị chưa đủ để hai arrays có thể so trực tiếp."},
+            {"type":"qa","title":"Câu hỏi mở bài","body":"Tọa độ (1,0) có xác định duy nhất một vector không? Không. Trong basis (e_1,e_2) và basis (e_2,e_1), cùng tuple này biểu diễn hai hướng khác nhau."}
+          ],
+          "renderPolicy": "safe_text_formula_blocks_only"
+        },
+        {
+          "id": "MATH-VN-C01-L04-S02",
+          "role": "deep_essence",
+          "title": "Từ linear combination đến basis",
+          "sourceSlideIds": ["SL02","SL03","SL04","SL05"],
+          "formulaRefs": ["F1","F2","F3","F4","F5","F8"],
+          "blocks": [
+            {"type":"formula","title":"Tổ hợp tuyến tính và span","body":"v = Σ_{i=1}^k c_i b_i\nspan(b_1,…,b_k) = {Σ_i c_i b_i | c_i ∈ R}"},
+            {"type":"text","title":"Ba câu hỏi khác nhau","body":"Span hỏi representation tạo được những gì. Independence hỏi có direction nào dư thừa không. Basis yêu cầu vừa spans target space vừa independent."},
+            {"type":"formula","title":"Điều kiện basis","body":"B là basis của V ⇔ span(B)=V và B độc lập tuyến tính."},
+            {"type":"text","title":"Existence và uniqueness","body":"Spanning bảo đảm vector trong target space có ít nhất một representation. Independence loại nontrivial zero relation, nên representation đó là duy nhất."}
+          ],
+          "renderPolicy": "safe_text_formula_blocks_only"
+        },
+        {
+          "id": "MATH-VN-C01-L04-S03",
+          "role": "counter_intuition",
+          "title": "Coordinates không phải bản thân vector",
+          "sourceSlideIds": ["SL06","SL07","SL08","SL09"],
+          "formulaRefs": ["F6","F7","F8","F11"],
+          "blocks": [
+            {"type":"text","title":"Điểm phản trực giác","body":"Basis dùng cho coordinates là ordered family. Đổi order làm đổi vị trí và ý nghĩa từng coefficient, ngay cả khi tập vectors không đổi."},
+            {"type":"formula","title":"Coordinate và reconstruction","body":"[v]_B = (c_1,…,c_n)^T\nv = B_mat [v]_B\nr = v − B_mat c"},
+            {"type":"text","title":"Điều cần kiểm","body":"Một coordinate answer chưa đủ tin cậy nếu chưa reconstruct. Residual nhỏ chỉ đo mismatch theo contract hiện tại; nó không tự chứng minh metadata hoặc physical model đúng."},
+            {"type":"qa","title":"Câu hỏi phản trực giác","body":"Residual bằng zero có bảo đảm coordinates ổn định trước nhiễu không? Không. Exact reconstruction, uniqueness và numerical stability là ba vấn đề khác nhau."}
+          ],
+          "renderPolicy": "safe_text_formula_blocks_only"
+        },
+        {
+          "id": "MATH-VN-C01-L04-S04",
+          "role": "real_bridge",
+          "title": "Basis là ngôn ngữ của robot, tín hiệu và AI",
+          "sourceSlideIds": ["SL21"],
+          "formulaRefs": ["F3","F6","F11","F12"],
+          "blocks": [
+            {"type":"text","title":"Robot","body":"World, route, body và sensor frames là các coordinate contracts khác nhau. Transform direction, timestamp, object type và sign convention phải được khai báo."},
+            {"type":"text","title":"Tín hiệu","body":"Coefficient meaning phụ thuộc sampling grid, window, weighting, inner product và normalization. Hai coefficient arrays cùng chiều vẫn có thể không tương thích."},
+            {"type":"text","title":"Features và embeddings","body":"Feature set hoặc dictionary không tự động là basis. Embeddings chỉ nên so trực tiếp trong cùng model pipeline hoặc sau explicit alignment."},
+            {"type":"qa","title":"Câu hỏi kỹ thuật","body":"Cùng dimension có đủ để hai embeddings nằm trong cùng coordinate space không? Không. Cần cùng model, preprocessing, version hoặc một phép alignment đã kiểm."}
+          ],
+          "renderPolicy": "safe_text_formula_blocks_only"
+        },
+        {
+          "id": "MATH-VN-C01-L04-S05",
+          "role": "notation",
+          "title": "Ký hiệu chuẩn cần khóa",
+          "sourceSlideIds": ["SL06","SL07","SL13"],
+          "formulaRefs": ["F6","F7","F10","F11"],
+          "blocks": [
+            {"type":"formula","title":"Ordered family và matrix","body":"B=(b_1,…,b_k)\nB_mat=[b_1 … b_k]\nc=(c_1,…,c_k)^T"},
+            {"type":"formula","title":"Coordinates và residual","body":"[v]_B=(c_1,…,c_n)^T\nv=B_mat[v]_B\nr=v−B_mat c"},
+            {"type":"formula","title":"Chiều transform","body":"[v]_E=P_{E←B}[v]_B\nP_{target←source} luôn ghi target ở bên trái mũi tên."},
+            {"type":"text","title":"Quy tắc đọc","body":"B là ordered family; B_mat là column matrix; [v]_B là coordinate column; v là vector. Không dùng bốn đối tượng này như từ đồng nghĩa."}
+          ],
+          "renderPolicy": "safe_text_formula_blocks_only"
+        },
+        {
+          "id": "MATH-VN-C01-L04-S06",
+          "role": "core_formula",
+          "title": "Bộ công thức lõi F1–F12",
+          "sourceSlideIds": ["SL02","SL03","SL04","SL05","SL08","SL09","SL11","SL13","SL19"],
+          "formulaRefs": ["F1","F2","F3","F4","F5","F6","F7","F8","F9","F10","F11","F12"],
+          "blocks": [
+            {"type":"formula","title":"Tạo và bao phủ","body":"F1: v=Σ_i c_i b_i\nF2: span(B)={Σ_i c_i b_i}\nF3: v∈span(B) ⇔ ∃c: B_mat c=v"},
+            {"type":"formula","title":"Không dư và duy nhất","body":"F4: Σ_i z_i b_i=0 ⇒ z=0\nF5: B basis of V ⇔ span(B)=V và B independent\nF8: B_mat c=B_mat d và B independent ⇒ c=d"},
+            {"type":"formula","title":"Mã hóa và chuyển đổi","body":"F6: [v]_B=(c_1,…,c_n)^T\nF7: v=B_mat[v]_B\nF10: [v]_E=P_{E←B}[v]_B\nF11: r=v−B_mat c"},
+            {"type":"formula","title":"Shortcut và redundancy","body":"F9: c_i=v·b_i khi b_i·b_j=δ_ij\nF12: B_mat z=0, z≠0, B_mat c=v ⇒ B_mat(c+t z)=v"}
+          ],
+          "renderPolicy": "safe_text_formula_blocks_only"
+        },
+        {
+          "id": "MATH-VN-C01-L04-S07",
+          "role": "assumption_gate",
+          "title": "Cổng điều kiện trước khi tính",
+          "sourceSlideIds": ["SL07","SL08","SL11","SL12","SL13","SL14"],
+          "formulaRefs": ["F3","F7","F9","F10","F11"],
+          "blocks": [
+            {"type":"text","title":"Cổng representation","body":"Kiểm object type, target space, ordered basis, basis version, units, frame, timestamp và preprocessing."},
+            {"type":"text","title":"Cổng phương pháp","body":"Basis tổng quát cần solve B_mat c=v. Chỉ dùng c_i=v·b_i sau khi đã kiểm pairwise orthogonality và unit norm."},
+            {"type":"formula","title":"Orthogonal nhưng non-unit","body":"Nếu các b_i trực giao nhưng không unit thì c_i=(v·b_i)/(b_i·b_i)."},
+            {"type":"qa","title":"Cổng quyết định","body":"Một solver trả nghiệm có đủ để gọi đó là basis coordinates không? Không. Cần kiểm spanning, independence, order và reconstruction."}
+          ],
+          "renderPolicy": "safe_text_formula_blocks_only"
+        },
+        {
+          "id": "MATH-VN-C01-L04-S08",
+          "role": "mini_case",
+          "title": "Mini case UGV: world sang route coordinates",
+          "sourceSlideIds": ["SL14","SL15"],
+          "formulaRefs": ["F6","F9","F10"],
+          "blocks": [
+            {"type":"text","title":"Dữ liệu và contract","body":"[v]_W=(5,1)^T m/s. Route basis R=(t,n_left) với t=(0.6,0.8), n=(-0.8,0.6), order=(parallel,left). Route heading 53.1301° khác robot yaw 50°. Vector và basis cùng timestamp; max transform age 20 ms."},
+            {"type":"formula","title":"Kiểm trực chuẩn","body":"t·t=1, n·n=1, t·n=0"},
+            {"type":"formula","title":"Tính coordinates","body":"v_parallel=v·t=3.8 m/s\nv_left=v·n=−3.4 m/s\n[v]_R=(3.8,−3.4)^T m/s"},
+            {"type":"text","title":"Diễn giải","body":"3.8 m/s dọc tuyến. Coordinate theo left normal là −3.4 m/s, nghĩa vật lý là 3.4 m/s về phía phải tuyến."}
+          ],
+          "renderPolicy": "safe_text_formula_blocks_only"
+        },
+        {
+          "id": "MATH-VN-C01-L04-S09",
+          "role": "interpretation",
+          "title": "Reconstruction, invariant và dấu lateral",
+          "sourceSlideIds": ["SL16","SL17"],
+          "formulaRefs": ["F7","F10","F11"],
+          "blocks": [
+            {"type":"formula","title":"Reconstruct về world","body":"P_{W←R}=[[0.6,−0.8],[0.8,0.6]]\nP_{W←R}(3.8,−3.4)^T=(5,1)^T"},
+            {"type":"text","title":"Contributions","body":"3.8t=(2.28,3.04), −3.4n=(2.72,−2.04), tổng bằng (5,1)."},
+            {"type":"formula","title":"Kiểm invariant","body":"Residual=(0,0), residual norm=0\n||[v]_W||^2=||[v]_R||^2=26"},
+            {"type":"text","title":"Order và convention","body":"Trong basis (n,t), tuple là (−3.4,3.8). Nếu dùng right normal=−n_left, lateral coordinate đổi thành +3.4 nhưng physical velocity không đổi."}
+          ],
+          "renderPolicy": "safe_text_formula_blocks_only"
+        },
+        {
+          "id": "MATH-VN-C01-L04-S10",
+          "role": "simulation",
+          "title": "Thí nghiệm kiểm chứng bằng reconstruction",
+          "sourceSlideIds": ["SL08","SL16","SL18","SL20"],
+          "formulaRefs": ["F7","F10","F11"],
+          "blocks": [
+            {"type":"text","title":"Thí nghiệm 1 · Reorder","body":"Giữ vector v cố định, đổi basis order từ (t,n) sang (n,t), rồi hoán đổi tuple thành (−3.4,3.8). Reconstruction phải vẫn cho (5,1)."},
+            {"type":"text","title":"Thí nghiệm 2 · Sai chiều transform","body":"Cố ý dùng transform ngược. Kết quả world sai là (−0.44,−5.08), error norm xấp xỉ 8.1584."},
+            {"type":"text","title":"Thí nghiệm 3 · Mixed frame","body":"Đọc (3.8,−3.4) như world coordinates cho error norm xấp xỉ 4.5607 dù shape và units vẫn đúng."},
+            {"type":"text","title":"Thí nghiệm 4 · Near dependence","body":"Với basis ((1,0),(1,0.001)), v=(5,1) có coefficients (−995,1000). Nhiễu nhỏ thành v'=(5,1.001) làm coefficients đổi thành (−996,1001)."}
+          ],
+          "renderPolicy": "safe_text_formula_blocks_only"
+        },
+        {
+          "id": "MATH-VN-C01-L04-S11",
+          "role": "common_mistakes",
+          "title": "Các lỗi phải chặn ngay",
+          "sourceSlideIds": ["SL03","SL04","SL06","SL08","SL11","SL12","SL14","SL17","SL18","SL19","SL20","SL21"],
+          "formulaRefs": ["F3","F4","F7","F9","F10","F11","F12"],
+          "blocks": [
+            {"type":"text","title":"Lỗi về khái niệm","body":"Nhầm coordinate tuple với vector; nhầm spanning với uniqueness; nghĩ càng nhiều vectors càng tốt; gọi dictionary hoặc feature set là basis mà không kiểm."},
+            {"type":"text","title":"Lỗi về phương pháp","body":"Dùng raw dot products cho arbitrary basis; nhầm orthogonal với orthonormal; không reconstruct sau khi tính."},
+            {"type":"text","title":"Lỗi về contract","body":"Bỏ basis order, normal convention, frame, timestamp, transform direction hoặc object type."},
+            {"type":"text","title":"Lỗi về độ ổn định","body":"Dùng residual zero làm bằng chứng robustness; bỏ qua coefficients lớn, cancellation và perturbation sensitivity."}
+          ],
+          "renderPolicy": "safe_text_formula_blocks_only"
+        },
+        {
+          "id": "MATH-VN-C01-L04-S12",
+          "role": "application",
+          "title": "Ứng dụng trong robot, tín hiệu và dữ liệu",
+          "sourceSlideIds": ["SL21"],
+          "formulaRefs": ["F3","F6","F11","F12"],
+          "blocks": [
+            {"type":"text","title":"Điều khiển robot","body":"Tách vận tốc dọc tuyến và ngang tuyến giúp path tracking, nhưng route coordinates không được dùng như body commands nếu chưa transform đúng."},
+            {"type":"text","title":"Xử lý tín hiệu","body":"Một basis hoặc transform tốt làm các mode dễ tách, nén hoặc lọc. Coefficients chỉ có nghĩa cùng sampling và normalization contract."},
+            {"type":"text","title":"Sparse dictionary","body":"Overcomplete dictionary có thể reconstruct tốt nhưng coefficients không unique. Solver hoặc regularizer là tiêu chí chọn nghiệm bổ sung."},
+            {"type":"text","title":"Embeddings","body":"Equal dimension không bảo đảm equal coordinate space. Cần cùng model pipeline hoặc explicit alignment trước khi so sánh."}
+          ],
+          "renderPolicy": "safe_text_formula_blocks_only"
+        },
+        {
+          "id": "MATH-VN-C01-L04-S13",
+          "role": "practice",
+          "title": "Bài luyện truy hồi ngắn",
+          "sourceSlideIds": ["SL02","SL03","SL05","SL10","SL11","SL17","SL19","SL20","SL22"],
+          "formulaRefs": ["F1","F3","F5","F6","F7","F9","F12"],
+          "blocks": [
+            {"type":"qa","title":"Câu 1","body":"Tính 2(1,0)−3(0,1), rồi nêu units assumption nếu target là velocity."},
+            {"type":"qa","title":"Câu 2","body":"Quyết định (2,3,1) có thuộc span((1,0,0),(0,1,0)) không và giải thích bằng reconstruction."},
+            {"type":"qa","title":"Câu 3","body":"Với B=((1,0),(1,1)), tìm [(3,2)]_B và reconstruct."},
+            {"type":"qa","title":"Câu 4","body":"Phân loại (e_1,e_2,e_1+e_2), rồi giải thích vì sao coefficients không phải unique basis coordinates."},
+            {"type":"qa","title":"Câu 5","body":"Residual zero nhưng coefficients (−995,1000) cảnh báo điều gì?"}
+          ],
+          "renderPolicy": "safe_text_formula_blocks_only"
+        },
+        {
+          "id": "MATH-VN-C01-L04-S14",
+          "role": "professor_qa",
+          "title": "Vấn đáp giáo sư",
+          "sourceSlideIds": ["SL05","SL09","SL11","SL18","SL19","SL20","SL22"],
+          "formulaRefs": ["F5","F8","F9","F10","F11","F12"],
+          "blocks": [
+            {"type":"qa","title":"Vì sao basis coordinates duy nhất?","body":"Nếu B_mat c=B_mat d thì B_mat(c−d)=0. Independence buộc c−d=0, nên c=d."},
+            {"type":"qa","title":"Khi nào dot product cho coordinate?","body":"Khi basis đã được kiểm orthonormal trong cùng inner-product space. Orthogonal non-unit phải chia cho norm bình phương."},
+            {"type":"qa","title":"Residual zero chứng minh được gì?","body":"Nó chứng minh exact reconstruction theo contract hiện tại, không chứng minh physical validity hoặc numerical robustness."},
+            {"type":"qa","title":"Dictionary coefficients khác basis coordinates thế nào?","body":"Dictionary có thể dependent và cho nhiều coefficient vectors; basis bảo đảm existence và uniqueness trong target space."}
+          ],
+          "renderPolicy": "safe_text_formula_blocks_only"
+        },
+        {
+          "id": "MATH-VN-C01-L04-S15",
+          "role": "bridge",
+          "title": "Cầu nối sang ma trận và ánh xạ tuyến tính",
+          "sourceSlideIds": ["SL13","SL22"],
+          "formulaRefs": ["F7","F10"],
+          "blocks": [
+            {"type":"text","title":"Từ basis sang matrix","body":"B_mat gom ordered basis vectors thành columns. Reconstruction v=B_mat[v]_B biến coordinate encoding thành phép nhân ma trận."},
+            {"type":"text","title":"Từ đổi basis sang linear map","body":"P_{E←B} là một matrix representation của phép chuyển coordinate description. Bài tiếp theo sẽ mở rộng từ đổi coordinates sang các linear transformations tổng quát."},
+            {"type":"text","title":"Điều giữ nguyên","body":"Vector hoặc linear object giữ nguyên ý nghĩa khi representation changes được khai báo và kiểm đúng. Matrix không chỉ là bảng số; nó mang source-target contract."},
+            {"type":"qa","title":"Câu hỏi nối bài","body":"Khi matrix nhân coordinate column, điều gì quyết định ý nghĩa của output? Source basis, target basis, column order và phép biến đổi mà matrix đại diện."}
+          ],
+          "renderPolicy": "safe_text_formula_blocks_only"
+        },
+        {
+          "id": "MATH-VN-C01-L04-S16",
+          "role": "takeaway",
+          "title": "Kết luận và checklist quyết định",
+          "sourceSlideIds": ["SL22"],
+          "formulaRefs": ["F3","F5","F6","F7","F9","F10","F11","F12"],
+          "blocks": [
+            {"type":"text","title":"Cốt lõi toán học","body":"Span cho existence. Independence cho uniqueness. Basis cho cả hai. Ordered basis làm coordinate positions có nghĩa."},
+            {"type":"text","title":"Cốt lõi kiểm định","body":"Tính xong phải reconstruct. Residual đo fit, còn sensitivity đo robustness. Hai kiểm tra này không thay thế nhau."},
+            {"type":"text","title":"Cốt lõi kỹ thuật","body":"Object type, target space, units, frame, timestamp, basis order, convention và version là một phần của dữ liệu toán học ứng dụng."},
+            {"type":"qa","title":"Checklist cuối","body":"Vector hay point? Target space nào? Basis nào và order gì? Contract có tương thích? Method có đủ điều kiện? Reconstruction đúng? Coefficients unique và stable? Output nên gắn nhãn exact, approximate hay dictionary-selected?"}
+          ],
+          "renderPolicy": "safe_text_formula_blocks_only"
+        }
+      ]
+    }
+  ]
+}
