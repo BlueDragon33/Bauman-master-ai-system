@@ -1,7 +1,7 @@
 {
   "id": "bauman_math_theory_core_manifest_v1",
   "schema": "bauman_math_theory_core_manifest_v1",
-  "version": "CORE_MANIFEST_V1",
+  "version": "CORE_MANIFEST_V1_1",
   "sourcePolicy": "Core content is authored before reference tables, slides, full-view content, formulas, and layout.",
   "goldStandard": {
     "lessonId": "MATH-VN-C01-vector_trong_khong_gian_-L01-vector-as-engineering-data-e130",
@@ -50,6 +50,12 @@
       "lesson": "L01",
       "path": "theory_core_c01_l01.json",
       "status": "gold_standard_candidate"
+    },
+    {
+      "chapter": "C01",
+      "lesson": "L02",
+      "path": "theory_core_c01_l02.json",
+      "status": "draft_against_gold_standard"
     }
   ]
 }
