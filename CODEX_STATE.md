@@ -1,6 +1,6 @@
 # CODEX_STATE
 
-Current task: THEORY_CORE_C01_L02
+Current task: THEORY_CORE_C01_L03
 
 Status: CORE_AUTHORED_NEEDS_CONTENT_REVIEW
 
@@ -43,19 +43,38 @@ Core records completed:
    - z-score, robust and min-max scaling
    - assumption and weight-provenance gates
    - complete UGV anomaly-distance worked case
-   - raw, standardized, and weighted numerical results
-   - engineering applications and failure modes
+3. `theory_core_c01_l03.json`
+   - dot product by coordinates and norm-angle relation
+   - sign of dot product, angle domain and orthogonality
+   - cosine similarity and zero-vector gate
+   - projection onto a vector and parallel-orthogonal decomposition
+   - projection onto an orthonormal subspace at introductory level
+   - residual orthogonality and least-squares bridge
+   - matched filter, linear score, signal matching, robot and AI applications
+   - complete UGV route-projection worked case with numerical invariants
+   - safe Python/NumPy implementation contract
 
 Manifest:
 - `subjects/math/data/theory_core/theory_core_manifest.json`
-- Version: `CORE_MANIFEST_V1_1`
-- Registered records: C01-L01 and C01-L02
+- Version: `CORE_MANIFEST_V1_2`
+- Registered records: C01-L01, C01-L02 and C01-L03
 
 Notation contract:
 - `x_i` is the i-th element and must use a subscript.
 - `x_i^2` has i below and 2 above.
+- `x_i^T` keeps i as a subscript and T as a superscript.
 - `x^2`, `A^{-1}`, and `A^k` remain superscripts when raw notation uses `^`.
 - Formula source must remain semantically explicit before any renderer is applied.
+
+C01-L03 verification:
+- JSON structure was fetched after commit and closes correctly.
+- Required core sections are present, using `mainMechanisms`, `mainFormulas` and `assumptionGate` as the lesson-specific schema branches.
+- Every main formula includes meaning, question answered, conditions, undefined case, sensitivity, failure mode and engineering use.
+- Worked case values were independently recalculated: dot=10, cosine=0.8944271909999159, angle=26.565051177077994 degrees, projection=[4,2], residual=[-1,2], residual dot direction=0.
+- Reconstruction, orthogonality and Pythagorean invariants are explicit.
+- Raw notation preserves `x_i`, `x_i^2`, `x_i^T` and `A^{-1}` semantics.
+- No UI/runtime file was changed.
+- No browser smoke test was claimed because this task is content-only.
 
 Presentation/runtime status:
 - No UI/runtime file was changed in the core-content phase.
@@ -67,19 +86,22 @@ Commits:
 - Initial manifest: `f7682618b11f3543ad1d1304b2fb2abd26eafdda`
 - Core handoff: `450018e626052c64159df2db2f7d638ae603c14c`
 - C01-L02 core: `6152fee25201bde2b0e9b30d8b00087d44b71604`
-- Manifest update: `7b4dc5b3d643aa568129af0b3fc5bb94ed64f341`
+- Manifest update for C01-L02: `7b4dc5b3d643aa568129af0b3fc5bb94ed64f341`
+- C01-L03 core: `a87a368a82d151060c0e1f9a358f668ccd445517`
+- Manifest update for C01-L03: `ac5fadd6022d8f649e77069a89d3becd74baed28`
 
 Review required:
-- verify academic progression from §1.1 to §1.2
-- verify terminology: norm, metric, distance, similarity
-- verify numerical values in both worked cases
-- confirm weighted norm conditions are stated correctly
+- verify academic progression from §1.2 to §1.3
+- verify distinction among dot product, cosine, angle and projection
+- verify zero-vector and near-zero-vector policy
+- verify projection-on-subspace scope is appropriate before the matrix chapter
+- verify least-squares bridge is introductory rather than premature
+- verify UGV worked-case interpretation and numerical values
 - confirm the core remains presentation-independent
 
 Next task:
-- Create `subjects/math/data/theory_core/theory_core_c01_l03.json`
-- Lesson: `§1.3 · Tích vô hướng, góc và phép chiếu`
-- Use lesson 1.1 as structural gold standard and lesson 1.2 as continuity reference.
+- Content review and approval of `subjects/math/data/theory_core/theory_core_c01_l03.json`.
+- Do not start the reference table, slideshow, full-view, renderer or UI phase before approval.
 
 Persistent handoff:
 - `HANDOFF_THEORY_CORE.md`
