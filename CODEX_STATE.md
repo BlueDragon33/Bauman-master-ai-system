@@ -1,8 +1,8 @@
 # CODEX_STATE
 
-Current task: `THEORY_CORE_C01_L04_PASS_07_COMPLETE_WORKED_CASE`
+Current task: `THEORY_CORE_C01_L04_PASS_08_MISCONCEPTIONS_AND_FAILURE_MODES`
 
-Status: `PASS_07_WORKED_CASE_VERIFIED`
+Status: `PASS_08_DIAGNOSTIC_SYSTEM_VERIFIED`
 
 Date: 2026-07-08
 Branch: `main`
@@ -39,271 +39,222 @@ Presentation and integration passes:
 14. Final integration and acceptance — 7 steps
 
 ## Progress for §1.4
-- Completed: 7/14 passes
-- Remaining: 7/14 passes
-- Completed steps: 36/73
-- Remaining steps: 37/73
+- Completed: 8/14 passes
+- Remaining: 6/14 passes
+- Completed steps: 41/73
+- Remaining steps: 32/73
 
 ## Core architecture
-- Current draft: `subjects/math/data/theory_core/theory_core_c01_l04.json`.
+- Current core draft: `subjects/math/data/theory_core/theory_core_c01_l04.json`.
 - Draft version: `CORE_C01_L04_V1_DRAFT`.
 - Draft status remains `math_review_required`.
 - Worked case status: `verified_pass_07`.
-- Draft remains unapproved until passes 8–9 are complete.
+- Misconception system status: `verified_pass_08`.
+- Failure-mode atlas status: `verified_pass_08`.
+- Draft remains unapproved until PASS 09 is complete.
 - `subjects/math/data/theory_lecture_content.json` remains unchanged during the core phase.
 - C01-L04 is not registered in the manifest until passes 1–9 are complete.
 - No UI/runtime or presentation file is modified during passes 1–9.
 
-## Gold standard and continuity
-- Structural gold standard: `subjects/math/data/theory_core/theory_core_c01_l01.json`.
-- Continuity references: C01-L02 and approved C01-L03.
+## Lesson identity
 - Lesson: `§1.4 · Cơ sở, span và tọa độ`.
 - Lesson ID: `MATH-VN-C01-vector_trong_khong_gian_-L04-basis-span-coordinate-e140`.
-- Position: after §1.3 dot/angle/projection and before §1.5 subspace/data representation.
+- Position: after §1.3 and before §1.5.
+- Structural gold standard: `subjects/math/data/theory_core/theory_core_c01_l01.json`.
 
 # PASS 01 — SCOPE LOCK
 Status: PASS.
 
-Locked scope, prerequisites, lesson boundaries and deferred mathematics.
+Locked prerequisites, required concepts, deferred matrix/spectral topics and the distinction between linear and nonlinear dependence.
 
 # PASS 02 — BAUMAN ACADEMIC MAP
 Status: PASS.
 
-Locked mathematical chain, master-level depth, robotics/control, signal/data/AI and downstream dependencies.
+Locked the chain:
+`linear combination → span → independence → basis → coordinates → uniqueness → change of basis → exact/approximate representation`.
 
 # PASS 03 — PEDAGOGICAL SPINE
 Status: PASS.
 
-Locked thesis, 10 measurable outcomes, 9 learning phases, misconception interception plan and mastery narrative.
+Locked:
+- central thesis;
+- 10 measurable outcomes;
+- 9 learning phases;
+- misconception-interception sequence;
+- mastery narrative and retrieval plan.
 
 # PASS 04 — CORE ACADEMIC CONTENT
 Status: PASS FOR DRAFT CREATION.
 
-Created the C01-L04 core draft with:
-- notation and semantic contracts;
-- core concepts and mechanisms;
+Core draft contains:
+- 10 learning outcomes;
+- 16 notation rules;
+- 9 core concepts;
+- 9 mechanisms;
 - 12 formula contracts;
-- comparison logic and assumption gates;
-- bridges and downstream mapping;
-- provisional worked case, misconceptions, assessment and implementation sections.
+- comparison logic;
+- 12 assumption gates;
+- bridges and downstream mapping.
 
 # PASS 05 — INDEPENDENT MATHEMATICS REVIEW
 Status: PASS.
 
-Verified:
-- definitions, logical equivalences and formula domains;
-- basis order and coordinate uniqueness;
-- zero-vector, redundant-family, non-orthogonal and near-dependent edge cases;
-- vector-versus-affine-point boundary;
-- no scope leakage into later matrix or spectral topics.
+Verified definitions, implications, formula domains, zero/redundant/non-orthogonal/near-dependent cases and the vector-versus-affine-point boundary.
 
 # PASS 06 — ENGINEERING-MODEL REVIEW
 Status: PASS WITH BINDING CONSTRAINTS.
 
-Locked:
-- schema, units and coefficient meanings;
-- frame direction, route-frame construction and timestamps;
-- UGV, control and IMU interpretation boundaries;
-- signal, feature, dictionary and embedding compatibility;
-- 18 operational failure modes and required telemetry.
+Locked schema, units, frame direction, timestamps, route-frame construction, UGV/control/IMU boundaries, signal/data/AI compatibility, operational failures and required telemetry.
 
-# C01-L04 PASS 07 — COMPLETE WORKED CASE
+# PASS 07 — COMPLETE WORKED CASE
+Status: PASS.
 
-## Step 1 — Engineering scenario and representation contract
+Verified UGV case:
+- `t=(0.6,0.8)`, `n=(-0.8,0.6)`;
+- `[v]_W=(5,1)^T m/s`;
+- `[v]_R=(3.8,-3.4)^T m/s`;
+- exact reconstruction and residual zero;
+- norm preservation;
+- order and normal-convention tests;
+- mixed-frame, reversed-transform, non-unit and stale-basis failures;
+- near-dependence contrast.
 
-Scenario:
-- planar UGV velocity vector at one timestamp;
-- matched route location `s = 42 m`;
-- world frame `W_ENU_2D`;
-- route frame `R_ROUTE_LEFT_NORMAL_S42`;
-- robot body frame explicitly not used as route basis;
-- same free velocity vector is expressed in two ordered bases;
-- no position-point translation and no relative moving-frame velocity are claimed.
+# C01-L04 PASS 08 — MISCONCEPTIONS AND FAILURE MODES
 
-Metadata:
-- event time `2026-07-08T08:30:00+07:00`;
-- units `m/s`;
-- world order `[v_x_W, v_y_W]`;
-- route order `[v_parallel, v_left]`;
-- route heading `53.13010235415598°`;
-- robot yaw separately recorded as `50°`.
+## Step 1 — Classification and expansion
 
-## Step 2 — Exact numerical data and ordered bases
+The provisional misconception list was replaced with 20 reviewed misconceptions in four classes:
+1. `object_vs_representation`;
+2. `span_basis_uniqueness`;
+3. `method_and_numerics`;
+4. `engineering_and_ai_contracts`.
 
-World basis:
-- `W = (e_x,e_y)`;
-- `e_x=(1,0)`;
-- `e_y=(0,1)`.
+Each misconception includes:
+- severity;
+- incorrect belief;
+- mathematical or modeling explanation;
+- counterexample;
+- observable symptom;
+- root cause;
+- diagnostic questions;
+- corrective action;
+- links to the relevant core content.
 
-Route basis:
-- `t=(3/5,4/5)=(0.6,0.8)`;
-- left normal `n=(-4/5,3/5)=(-0.8,0.6)`;
-- ordered basis `R=(t,n)`;
-- `t·t=1`, `n·n=1`, `t·n=0`, determinant `1`.
+Critical themes covered:
+- coordinate tuple versus vector;
+- equal tuples under different bases;
+- basis order;
+- basis validity and target space;
+- span membership versus uniqueness;
+- redundant families;
+- zero vector in a basis;
+- dot-product misuse;
+- orthogonal versus orthonormal;
+- near dependence and coefficient instability;
+- residual versus physical truth;
+- route versus body frame;
+- vector versus affine point;
+- normal-sign convention;
+- raw IMU specific force;
+- nonlinear feature dependence;
+- feature/dictionary versus basis;
+- embedding-space compatibility;
+- shape/units versus full representation compatibility.
 
-Transform:
-- `P_{W<-R}=[[0.6,-0.8],[0.8,0.6]]`;
-- columns are `t` and `n` written in W;
-- source coordinates R, target coordinates W.
+## Step 2 — Counterexamples and repairs
 
-Given velocity:
-- `[v]_W=(5,1)^T m/s`.
+Counterexamples are bound to exact calculations or explicit contracts:
+- `[1,0]^T` under swapped bases;
+- redundant family `e_1,e_2,e_1+e_2`;
+- non-orthogonal basis with true coordinates `(1,2)` versus raw dots `(3,5)`;
+- non-unit orthogonal directions producing incorrect `(19,-17)` coefficients;
+- near-dependent basis producing `(-995,1000)`;
+- left/right normal sign flip;
+- world/route arrays with equal shape and units but different meanings;
+- same-dimension embeddings from incompatible pipelines.
 
-## Step 3 — Coordinate calculation
+Repairs require the learner or implementation to:
+- name the target space and ordered basis;
+- validate spanning, independence and orthonormality separately;
+- reconstruct the vector;
+- inspect metadata and compatibility;
+- test sensitivity where necessary.
 
-Because R is orthonormal:
-- `v_parallel=v·t=5(0.6)+1(0.8)=3.8 m/s`;
-- `v_left=v·n=5(-0.8)+1(0.6)=-3.4 m/s`.
+## Step 3 — Engineering failure-mode atlas
 
-Therefore:
-- `[v]_R=(3.8,-3.4)^T m/s`.
+A verified atlas of 18 operational failures was added:
+1. swapped basis-column order;
+2. reversed transform direction;
+3. stale or unmatched timestamps;
+4. changed normal convention;
+5. non-unit direction used with dot shortcut;
+6. zero/undefined route tangent;
+7. body frame confused with route frame;
+8. point treated as free vector;
+9. mixed units/scaling;
+10. dot shortcut on non-orthogonal basis;
+11. near-dependent basis;
+12. residual interpreted before contract validation;
+13. raw IMU specific force mislabeled;
+14. signal basis reused under a changed sampling contract;
+15. nonlinear feature called linearly dependent;
+16. dictionary coefficients labeled unique;
+17. embeddings compared across incompatible pipelines;
+18. NaN, infinity or silent broadcasting accepted.
 
-Interpretation under left-normal convention:
-- longitudinal component is `3.8 m/s` forward along the route;
-- lateral component is `3.4 m/s` toward the right because the left coordinate is negative.
+Every failure includes:
+- observable symptom;
+- root cause;
+- diagnostic test;
+- corrective action;
+- required telemetry fields.
 
-## Step 4 — Reconstruction, invariants and basis order
+## Step 4 — Diagnostic protocol
 
-Reconstruction:
-- `3.8t=(2.28,3.04)`;
-- `-3.4n=(2.72,-2.04)`;
-- sum `(5,1)`;
-- residual `(0,0)`;
-- residual norm `0`.
+The locked triage order is:
+1. exact shape and finite values;
+2. schema, units, frame and timestamp;
+3. basis order and transform direction;
+4. spanning, independence and orthonormality;
+5. reconstruction and invariants;
+6. numerical sensitivity;
+7. domain-specific physical or AI semantics.
 
-Norm invariant:
-- world norm squared `25+1=26`;
-- route-coordinate norm squared `3.8^2+(-3.4)^2=26`;
-- speed in both representations `sqrt(26)=5.0990195135927845 m/s`.
+The learner must not use solver success, equal shape or small residual as sufficient evidence.
 
-Basis-order test:
-- swapped basis `R_swap=(n,t)`;
-- correct swapped coordinates `(-3.4,3.8)^T`;
-- reconstruction remains `(5,1)`;
-- keeping the old tuple after swapping columns would change the physical vector.
+## Step 5 — Coverage verification
 
-Normal-convention test:
-- right normal `n_right=(0.8,-0.6)`;
-- coordinates become `(3.8,3.4)^T`;
-- reconstructed vector remains `(5,1)`;
-- only the lateral sign convention changes.
+Coverage is complete against:
+- all 10 misconception targets from PASS 03;
+- mathematical edge cases from PASS 05;
+- 18 engineering failures from PASS 06;
+- all worked-case failures from PASS 07.
 
-## Step 5 — Failure tests
+Core verification after patch:
+- JSON opens and closes correctly;
+- lesson ID, draft status and content contract are preserved;
+- 10 learning outcomes, 16 notation rules, 9 concepts, 9 mechanisms and 12 formulas remain present;
+- worked case remains `verified_pass_07`;
+- `commonMisconceptions.status = verified_pass_08`;
+- `failureModeAtlas.status = verified_pass_08`;
+- 20 misconceptions and 18 failure modes are present;
+- mastery checks and implementation contract remain provisional for PASS 09;
+- `qualityGate.nextPass = PASS_09_ASSESSMENT_AND_IMPLEMENTATION_CONTRACT`;
+- no manifest, lecture-content, UI or runtime file was changed;
+- no browser smoke test is claimed because this is a content-only diagnostic pass.
 
-### Mixed frame
-Mistake:
-- read route tuple `(3.8,-3.4)` as world coordinates.
-
-Result:
-- wrong world vector `(3.8,-3.4)`;
-- error vector `(-1.2,-4.4)`;
-- error norm `4.560701700396552`.
-
-Lesson:
-- same shape and units do not compensate for missing basis metadata.
-
-### Reversed transform
-Mistake:
-- use `P_{R<-W}=P_{W<-R}^T` in the wrong direction to reconstruct route coordinates.
-
-Result:
-- wrong vector `(-0.44,-5.08)`;
-- error norm `8.158431221748456`.
-
-Lesson:
-- transpose being the inverse of an orthonormal transform does not remove the need to track source and target direction.
-
-### Non-unit directions
-Mistake:
-- use `q=(3,4)` and `m=(-4,3)` as if they were unit directions;
-- take raw dot products `(19,-17)` as coordinates.
-
-Result:
-- wrong reconstruction `(125,25)`.
-
-Correct treatment:
-- divide by squared norm `25`;
-- coefficients `(0.76,-0.68)`;
-- reconstruction `(5,1)`.
-
-### Stale basis
-Mistake:
-- use route basis from another timestamp or matched route point.
-
-Lesson:
-- arithmetic may remain valid while the geometric event is wrong;
-- vector timestamp, basis timestamp, transform age and route location must be checked.
-
-### Near-dependence contrast
-Separate basis:
-- `b_1=(1,0)`;
-- `b_2=(1,0.001)`.
-
-For target `(5,1)`:
-- coordinates `(-995,1000)`.
-
-For perturbed target `(5,1.001)`:
-- coordinates `(-996,1001)`.
-
-A `0.001` change in input produces coefficient change `(-1,1)` while both residuals remain zero.
-
-Lesson:
-- exact reconstruction and uniqueness do not guarantee stable coefficients;
-- large canceling coefficients warn of near dependence.
-
-## Step 6 — Interpretation and reusable outputs
-
-Decision logic:
-- use route coordinates only when tangent is valid, basis is orthonormal, frames match and timestamps are aligned;
-- interpret the sign only after declaring the normal convention;
-- do not infer lateral position error or controller stability from lateral velocity alone;
-- when reconstruction fails, check order, frame, units, transform direction and timestamps before declaring out-of-span;
-- flag large canceling coefficients even when residual is small.
-
-Reusable verified outputs:
-- world vector `(5,1)^T m/s`;
-- route coordinates `(3.8,-3.4)^T m/s`;
-- transform `[[0.6,-0.8],[0.8,0.6]]`;
-- exact reconstruction `(5,1)^T`;
-- residual norm `0`;
-- invariant speed `sqrt(26)`;
-- mandatory metadata includes timestamps, frame IDs, basis order, normal convention, units, route location and transform direction.
-
-## PASS 07 verification verdict
+## PASS 08 verdict
 PASS.
 
-Verified:
-- same physical vector is maintained;
-- basis and order are explicit;
-- coefficient units are correct;
-- world/route/body distinctions are explicit;
-- timestamps are matched;
-- orthonormality and transform direction are verified;
-- coordinate arithmetic and reconstruction are exact;
-- norm invariant is verified;
-- basis-order and sign-convention behavior are verified;
-- mixed-frame, reversed-transform, non-unit and stale-basis failures are included;
-- near dependence is isolated from the main orthonormal case;
-- no affine-point or moving-frame velocity claim leaked into the case;
-- JSON opens and closes correctly;
-- misconceptions and implementation contract remain reserved for passes 8–9;
-- no UI/runtime or presentation file was modified;
-- no browser smoke test is claimed because this is a content-only worked-case pass.
-
 ## Next task
-PASS 08/14 — Misconceptions and failure modes, consisting of 5 steps:
-1. expand and classify conceptual misconceptions;
-2. add mathematical counterexamples and repair explanations;
-3. map engineering failure modes to symptoms and root causes;
-4. define diagnostic questions and corrective actions;
-5. verify coverage against passes 3, 5, 6 and the worked case.
+PASS 09/14 — Assessment and implementation contract, consisting of 5 steps:
+1. build the complete assessment blueprint and map it to all learning outcomes;
+2. write diagnostic, formative and summative mastery checks with answer evidence;
+3. define scoring, critical-failure and progression rules;
+4. finalize implementation capabilities, telemetry, tolerance and solver-mode contracts;
+5. perform final core acceptance, change status from draft to approved if all gates pass, then register C01-L04 in the core manifest.
 
-PASS 08 must patch `theory_core_c01_l04.json` by replacing provisional misconceptions with a complete reviewed section. The file remains unapproved until PASS 09 is complete.
-
-## Presentation/runtime status
-- No UI/runtime file was changed.
-- E235 remains the approved `Xem đầy đủ` baseline but UI work is paused.
-- E236, E237 and E238 remain disabled from runtime.
+PASS 09 is the final core-content pass. It may approve the core and update the manifest only after all acceptance gates are verified.
 
 ## Relevant commits
 - C01-L04 pass 01 scope lock: `5e88b37255f10af7dfbd4ec604598811d8b17409`
@@ -314,6 +265,8 @@ PASS 08 must patch `theory_core_c01_l04.json` by replacing provisional misconcep
 - C01-L04 pass 05 mathematics review: `b96273479921523d71d365da5b68547ede356059`
 - C01-L04 pass 06 engineering review: `7069861896b06ada6675a7892100b20235917f3f`
 - C01-L04 pass 07 worked case: `61b726d486b2bc5060b8422351eb8239c8e02eb3`
+- C01-L04 pass 07 state: `d521433f544443554d125ca50cca7b91cfde79fa`
+- C01-L04 pass 08 diagnostics: `810c393d8263135f4c9e342b6bde91ff21008ac5`
 
 ## Persistent handoff
 - `HANDOFF_THEORY_CORE.md`
