@@ -492,12 +492,13 @@ The draft must remain `core_draft` or `math_review_required`; it must not be reg
 - C01-L02 core: `6152fee25201bde2b0e9b30d8b00087d44b71604`
 - Manifest update for C01-L02: `7b4dc5b3d643aa568129af0b3fc5bb94ed64f341`
 - C01-L03 core: `a87a368a82d151060c0e1f9a358f668ccd445517`
-- Manifest registration for C01-L03: `ac5fadd6022d8f7e84dc78729ba530747d7cbf0c`
+- Manifest registration for C01-L03: `ac5fadd6022d8f649e77069a89d3becd74baed28`
 - C01-L03 review correction and approval: `586b9bea397625ebf5c300a8bbb6c7b7b948c67a`
 - Manifest approval for C01-L03: `04724ed3b10085383f3599b11f2df58de41a4160`
 - C01-L03 state handoff: `2485e680b5a5c977476df67312433e664fa56c9a`
 - C01-L04 pass 01 scope lock: `5e88b37255f10af7dfbd4ec604598811d8b17409`
 - C01-L04 pass 02 academic map: `156aba3b67d58d93ea127fca011b9f905fc7d3e1`
+- C01-L04 pass 03 pedagogical spine: `a1a3a3a82014be9bde16c426e4fd4b45fec776c0`
 
 ## Persistent handoff
 - `HANDOFF_THEORY_CORE.md`
