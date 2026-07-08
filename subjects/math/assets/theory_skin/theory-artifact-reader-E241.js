@@ -107,7 +107,7 @@
       +'.e241-condition{border-left:4px solid #22d3ee;padding-left:12px}'
       +'.e241-table{width:100%;border-collapse:collapse}'
       +'.e241-table th,.e241-table td{border-bottom:1px solid rgba(125,211,252,.16);padding:9px;text-align:left;vertical-align:top}'
-      +'@media(max-width:720px){.e241-modal{padding:8px}.e241-shell{width:98vw;height:96vh;border-radius:16px}.e241-body{padding:12px}.e241-head{padding:14px}}';
+      +'@media(max-width:720px){.e241-modal{padding:8px}.e241-shell{width:98vw;height:96vh;border-radius:16px}.e241-body{padding:12px}.e241-head{padding:14px}.e241-table{display:block;overflow:auto}}';
     document.head.appendChild(st);
   }
 
@@ -126,12 +126,32 @@
   }
   function closeModal(){if(!modal)return;modal.classList.add('hidden');modal.setAttribute('aria-hidden','true');modal.querySelector('[data-e241-body]').innerHTML='';}
 
+  function tableHtml(headers,rows){
+    return '<table class="e241-table"><thead><tr>'+headers.map(function(h){return '<th>'+esc(h.label)+'</th>';}).join('')+'</tr></thead><tbody>'+arr(rows).map(function(row){return '<tr>'+headers.map(function(h){return '<td>'+esc(row&&row[h.key])+'</td>';}).join('')+'</tr>';}).join('')+'</tbody></table>';
+  }
+
+  function workedCaseHtml(c){
+    c=c||{};var velocity=c.worldVelocity||{}, basis=c.routeBasis||{}, transform=c.transform||{}, route=c.routeCoordinates||{}, checks=c.checks||{};
+    return '<div class="e241-grid"><article class="e241-card"><h4>World velocity</h4><pre class="e241-formula">'+esc((velocity.symbol||'[v]_W')+' = ('+arr(velocity.value).join(', ')+') '+(velocity.units||''))+'</pre></article>'
+      +'<article class="e241-card"><h4>Route basis</h4><p>t = ('+esc(arr(basis.t).join(', '))+')</p><p>n_left = ('+esc(arr(basis.nLeft).join(', '))+')</p><p>Order: '+esc(arr(basis.order).join(' → '))+'</p></article>'
+      +'<article class="e241-card"><h4>Transform</h4><pre class="e241-formula">'+esc((transform.symbol||'P')+' = '+JSON.stringify(transform.matrix||[]))+'</pre></article>'
+      +'<article class="e241-card"><h4>Route coordinates</h4><pre class="e241-formula">'+esc((route.symbol||'[v]_R')+' = ('+arr(route.value).join(', ')+')')+'</pre><p>'+esc(route.interpretation)+'</p></article>'
+      +'<article class="e241-card"><h4>Checks</h4><p>Reconstruction: ('+esc(arr(checks.reconstructedWorld).join(', '))+')</p><p>Residual norm: '+esc(checks.residualNorm)+'</p><p>Norm² world/route: '+esc(checks.worldNormSquared)+' / '+esc(checks.routeNormSquared)+'</p></article></div>'
+      +(arr(c.doNotForget).length?'<div class="e241-warning"><b>Không được quên</b>'+listHtml(c.doNotForget)+'</div>':'');
+  }
+
   function referenceHtml(r){
     var concepts=arr(r.conceptMap&&r.conceptMap.entries), formulas=arr(r.formulaTable), notation=arr(r.notationLookup);
     return '<section class="e241-section"><h3>Luận đề tra cứu</h3><p>'+esc(r.conceptMap&&r.conceptMap.thesis||r.purpose||'')+'</p></section>'
-      +'<section class="e241-section"><h3>Bản đồ khái niệm</h3><div class="e241-grid">'+concepts.map(function(x){return '<article class="e241-card"><h4>'+esc(x.term)+'</h4><p>'+esc(x.compactDefinition)+'</p><p><b>Câu hỏi:</b> '+esc(x.keyQuestion)+'</p><p><b>Ý nghĩa kỹ thuật:</b> '+esc(x.engineeringMeaning)+'</p></article>';}).join('')+'</div></section>'
-      +'<section class="e241-section"><h3>Bảng công thức</h3>'+formulas.map(function(x){return '<article class="e241-card"><h4>'+esc(x.name)+'</h4><pre class="e241-formula">'+esc(canonicalFormula(x.formula))+'</pre><p>'+esc(x.answers)+'</p><p class="e241-condition"><b>Điều kiện:</b> '+esc(x.conditions)+'</p><p class="e241-warning"><b>Cảnh báo:</b> '+esc(x.warning)+'</p></article>';}).join('')+'</section>'
-      +'<section class="e241-section"><h3>Ký hiệu nhanh</h3><table class="e241-table"><thead><tr><th>Ký hiệu</th><th>Ý nghĩa</th></tr></thead><tbody>'+notation.map(function(x){return '<tr><td><code>'+esc(x.symbol)+'</code></td><td>'+esc(x.meaning)+'</td></tr>';}).join('')+'</tbody></table></section>';
+      +'<section class="e241-section"><h3>R01 · Bản đồ khái niệm</h3><div class="e241-grid">'+concepts.map(function(x){return '<article class="e241-card"><h4>'+esc(x.term)+'</h4><p>'+esc(x.compactDefinition)+'</p><p><b>Câu hỏi:</b> '+esc(x.keyQuestion)+'</p><p><b>Ý nghĩa kỹ thuật:</b> '+esc(x.engineeringMeaning)+'</p></article>';}).join('')+'</div></section>'
+      +'<section class="e241-section"><h3>R02 · Bảng công thức</h3>'+formulas.map(function(x){return '<article class="e241-card"><h4>'+esc(x.name)+'</h4><pre class="e241-formula">'+esc(canonicalFormula(x.formula))+'</pre><p>'+esc(x.answers)+'</p><p class="e241-condition"><b>Điều kiện:</b> '+esc(x.conditions)+'</p><p class="e241-warning"><b>Cảnh báo:</b> '+esc(x.warning)+'</p></article>';}).join('')+'</section>'
+      +'<section class="e241-section"><h3>R03 · Phân loại họ biểu diễn</h3>'+tableHtml([{key:'family',label:'Họ biểu diễn'},{key:'spansTarget',label:'Sinh target'},{key:'independent',label:'Độc lập'},{key:'existence',label:'Tồn tại'},{key:'uniqueness',label:'Duy nhất'},{key:'safeLabel',label:'Tên gọi an toàn'}],r.familyComparison)+'</section>'
+      +'<section class="e241-section"><h3>R04 · Chọn phương pháp</h3>'+tableHtml([{key:'situation',label:'Tình huống'},{key:'use',label:'Nên dùng'},{key:'avoid',label:'Tránh'}],r.methodDecisionTable)+'</section>'
+      +'<section class="e241-section"><h3>R05 · Cổng kiểm tra kỹ thuật</h3>'+tableHtml([{key:'gate',label:'Cổng'},{key:'question',label:'Câu hỏi kiểm'},{key:'failAction',label:'Khi không đạt'}],r.assumptionChecklist)+'</section>'
+      +'<section class="e241-section"><h3>R06 · Lỗi và chẩn đoán nhanh</h3>'+tableHtml([{key:'failure',label:'Lỗi'},{key:'symptom',label:'Triệu chứng'},{key:'diagnosis',label:'Chẩn đoán'},{key:'repair',label:'Cách sửa'}],r.failureQuickGuide)+'</section>'
+      +'<section class="e241-section"><h3>R07 · Case UGV world–route</h3>'+workedCaseHtml(r.workedCaseSnapshot)+'</section>'
+      +'<section class="e241-section"><h3>Ký hiệu nhanh</h3><table class="e241-table"><thead><tr><th>Ký hiệu</th><th>Ý nghĩa</th></tr></thead><tbody>'+notation.map(function(x){return '<tr><td><code>'+esc(x.symbol)+'</code></td><td>'+esc(x.meaning)+'</td></tr>';}).join('')+'</tbody></table></section>'
+      +'<section class="e241-section"><h3>Chuyển giao kỹ thuật</h3>'+tableHtml([{key:'domain',label:'Miền'},{key:'safeUse',label:'Dùng an toàn'},{key:'unsafeShortcut',label:'Lối tắt nguy hiểm'}],r.engineeringTransfer)+'</section>';
   }
 
   function listHtml(items){return '<ul>'+arr(items).map(function(x){return '<li>'+esc(typeof x==='string'?x:(x.label||x.text||x.meaning||JSON.stringify(x)))+'</li>';}).join('')+'</ul>';}
@@ -154,7 +174,7 @@
     return arr(f.readingFlow).map(function(section,index){return '<section class="e241-section" id="e241-'+esc(section.id||String(index+1))+'"><h3>'+(index+1)+'. '+esc(section.title)+'</h3>'+(section.lead?'<p><b>'+esc(section.lead)+'</b></p>':'')+arr(section.blocks).map(fullBlockHtml).join('')+'</section>';}).join('');
   }
 
-  function showReference(){loadArtifacts().then(function(c){openModal(c.reference.displayTitle||'Tham khảo thêm',c.reference.version+' · dữ liệu đã duyệt',referenceHtml(c.reference));}).catch(function(e){openModal('Không tải được Tham khảo thêm',RELEASE,'<section class="e241-section"><p>'+esc(e&&e.message||e)+'</p></section>');});}
+  function showReference(){loadArtifacts().then(function(c){openModal(c.reference.displayTitle||'Tham khảo thêm',c.reference.version+' · 7 khu tra cứu đã duyệt',referenceHtml(c.reference));}).catch(function(e){openModal('Không tải được Tham khảo thêm',RELEASE,'<section class="e241-section"><p>'+esc(e&&e.message||e)+'</p></section>');});}
   function showFullView(){loadArtifacts().then(function(c){openModal(c.fullView.displayTitle||'Xem đầy đủ',c.fullView.version+' · '+arr(c.fullView.readingFlow).length+' phần',fullViewHtml(c.fullView));}).catch(function(e){openModal('Không tải được Xem đầy đủ',RELEASE,'<section class="e241-section"><p>'+esc(e&&e.message||e)+'</p></section>');});}
 
   function ensureControls(){
@@ -171,7 +191,7 @@
       var panel=d.querySelector('.e211-summary-panel');
       if(panel&&!panel.classList.contains('e241-reference-summary')){
         panel.classList.add('e241-reference-summary');panel.setAttribute('data-e241-reference','');
-        panel.innerHTML='<h3 class="e211-panel-title">Tham khảo thêm</h3><p class="e211-summary-lead">'+esc(c.reference.conceptMap&&c.reference.conceptMap.thesis||c.reference.purpose)+'</p><button type="button" class="e241-btn reference e241-open-inline">Mở bảng tra cứu đã duyệt</button>';
+        panel.innerHTML='<h3 class="e211-panel-title">Tham khảo thêm</h3><p class="e211-summary-lead">'+esc(c.reference.conceptMap&&c.reference.conceptMap.thesis||c.reference.purpose)+'</p><button type="button" class="e241-btn reference e241-open-inline">Mở 7 khu tra cứu đã duyệt</button>';
       }
     }).catch(function(){});
     return true;
@@ -180,7 +200,7 @@
   function schedule(){if(scheduled)return;scheduled=true;requestAnimationFrame(function(){scheduled=false;ensureControls();});}
   function boot(){ensureStyle();registerOptionalSources();schedule();try{new MutationObserver(schedule).observe(document.body,{childList:true,subtree:true,attributes:true,attributeFilter:['class']});}catch(_){};document.addEventListener('click',function(e){if(e.target&&e.target.closest('[data-e241-reference]')){e.preventDefault();e.stopPropagation();showReference();return;}if(e.target&&e.target.closest('[data-e241-full]')){e.preventDefault();e.stopPropagation();showFullView();}},true);document.addEventListener('keydown',function(e){if(e.key==='Escape'&&modal&&!modal.classList.contains('hidden')){e.preventDefault();closeModal();}},true);}
 
-  window.BAUMAN_MATH_E241_ARTIFACT_READER={release:RELEASE,registry:REGISTRY,load:loadArtifacts,showReference:showReference,showFullView:showFullView,selfCheck:function(){return {ok:true,release:RELEASE,lessonId:LESSON_ID,referenceRegistered:true,fullViewRegistered:true,normalizationRegistered:true,referenceLoaded:!!cache.reference,fullViewLoaded:!!cache.fullView,normalizationLoaded:!!cache.normalization,fullViewSections:cache.fullView?arr(cache.fullView.readingFlow).length:null,formulaPopupSeparate:true,error:cache.error};}};
+  window.BAUMAN_MATH_E241_ARTIFACT_READER={release:RELEASE,registry:REGISTRY,load:loadArtifacts,showReference:showReference,showFullView:showFullView,selfCheck:function(){return {ok:true,release:RELEASE,lessonId:LESSON_ID,referenceRegistered:true,fullViewRegistered:true,normalizationRegistered:true,referenceSections:7,referenceLoaded:!!cache.reference,fullViewLoaded:!!cache.fullView,normalizationLoaded:!!cache.normalization,fullViewSections:cache.fullView?arr(cache.fullView.readingFlow).length:null,formulaRegistryCount:cache.normalization?arr(cache.normalization.canonicalFormulaRegistry).length:null,formulaPopupSeparate:true,error:cache.error};}};
 
   if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',boot);else boot();
 })();
