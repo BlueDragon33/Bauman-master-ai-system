@@ -1,6 +1,6 @@
 # CODEX_STATE
 
-Current task: THEORY_CORE_C01_L01_GOLD_STANDARD
+Current task: THEORY_CORE_C01_L02
 
 Status: CORE_AUTHORED_NEEDS_CONTENT_REVIEW
 
@@ -16,62 +16,70 @@ Mandatory development order:
 
 Do not skip ahead.
 
-Files added:
+Core architecture:
+- Core content is presentation-independent.
+- Core files contain no slide numbering, popup labels, CSS, animation, or layout instructions.
+- Existing `theory_lecture_content.json` remains unchanged during the core phase.
+- Downstream reference, slideshow, full-view, and formula/layout content must derive from the core and may not contradict it.
+
+Gold standard:
 - `subjects/math/data/theory_core/theory_core_c01_l01.json`
+- Lesson: `§1.1 · Vector như dữ liệu kỹ thuật`
+- Status: `gold_standard_candidate`
+
+Core records completed:
+1. `theory_core_c01_l01.json`
+   - vector as engineering data
+   - semantic notation
+   - operations, norm, dot, distance, cosine
+   - data-quality gates
+   - complete network-state worked case
+2. `theory_core_c01_l02.json`
+   - norm axioms
+   - L1, L2, Linf, weighted L2
+   - metric axioms
+   - Manhattan, Euclidean, Chebyshev, weighted distance
+   - similarity versus distance
+   - z-score, robust and min-max scaling
+   - assumption and weight-provenance gates
+   - complete UGV anomaly-distance worked case
+   - raw, standardized, and weighted numerical results
+   - engineering applications and failure modes
+
+Manifest:
 - `subjects/math/data/theory_core/theory_core_manifest.json`
-- `HANDOFF_THEORY_CORE.md`
-
-Gold-standard decision:
-- `§1.1 · Vector như dữ liệu kỹ thuật` is the gold-standard candidate for all later theory-core lessons.
-- Core content is now separated from slide/popup/UI decisions.
-- Existing `theory_lecture_content.json` remains unchanged in this phase.
-- The new core file is the future source of truth for reference tables, slideshow content, full-view content, and final formula/layout work.
-
-Lesson 1.1 core coverage:
-- lesson thesis and prerequisites
-- six measurable learning outcomes
-- semantic notation rules
-- vector as ordered engineering data
-- geometry/data duality
-- dimension versus schema
-- vectorization as lossy modeling
-- vector addition and scalar multiplication
-- L2 norm, dot product, Euclidean distance, and cosine similarity
-- metric-selection logic
-- data-quality and assumption gates
-- complete network-state worked case
-- raw and standardized numerical results
-- UGV/UAV, server, signal, and embedding applications
-- common misconceptions
-- mastery checks from recall to creation
-- implementation contract
-- bridges to §1.2, §1.3, and Chapter 2
-- downstream mapping and quality gate
+- Version: `CORE_MANIFEST_V1_1`
+- Registered records: C01-L01 and C01-L02
 
 Notation contract:
-- `x_i` means the i-th element and must render with a subscript.
-- `x_i^2` means the square of element i: i below, 2 above.
-- `x^2`, `A^{-1}`, and `A^k` remain legitimate superscripts when raw notation uses `^`.
-- `x_i^T` keeps i below and T above.
+- `x_i` is the i-th element and must use a subscript.
+- `x_i^2` has i below and 2 above.
+- `x^2`, `A^{-1}`, and `A^k` remain superscripts when raw notation uses `^`.
+- Formula source must remain semantically explicit before any renderer is applied.
 
 Presentation/runtime status:
-- No UI, slideshow, popup, or renderer file was changed for this core task.
-- E235 remains the approved `Xem đầy đủ` visual baseline, but UI work is paused.
+- No UI/runtime file was changed in the core-content phase.
+- E235 remains the approved `Xem đầy đủ` baseline but UI work is paused.
 - E236, E237, and E238 remain disabled from runtime.
 
 Commits:
-- Lesson 1.1 core: `24b75580f841d4da3e2ed8867c72e4796b4fe2bb`
-- Core manifest: `f7682618b11f3543ad1d1304b2fb2abd26eafdda`
+- C01-L01 core: `24b75580f841d4da3e2ed8867c72e4796b4fe2bb`
+- Initial manifest: `f7682618b11f3543ad1d1304b2fb2abd26eafdda`
 - Core handoff: `450018e626052c64159df2db2f7d638ae603c14c`
+- C01-L02 core: `6152fee25201bde2b0e9b30d8b00087d44b71604`
+- Manifest update: `7b4dc5b3d643aa568129af0b3fc5bb94ed64f341`
 
-Review required before gold-standard approval:
-- verify academic depth and progression
-- verify terminology and notation consistency
-- verify numerical worked-case values
-- confirm the lesson is neither too broad nor missing a required foundation
-- confirm downstream mapping is sufficient for reference table, slideshow, and full view
+Review required:
+- verify academic progression from §1.1 to §1.2
+- verify terminology: norm, metric, distance, similarity
+- verify numerical values in both worked cases
+- confirm weighted norm conditions are stated correctly
+- confirm the core remains presentation-independent
 
 Next task:
-- Create `subjects/math/data/theory_core/theory_core_c01_l02.json`
-- Lesson: `§1.2 · Chuẩn vector và khoảng cách`
-- Use `HANDOFF_THEORY_CORE.md` and lesson 1.1 as the template.
+- Create `subjects/math/data/theory_core/theory_core_c01_l03.json`
+- Lesson: `§1.3 · Tích vô hướng, góc và phép chiếu`
+- Use lesson 1.1 as structural gold standard and lesson 1.2 as continuity reference.
+
+Persistent handoff:
+- `HANDOFF_THEORY_CORE.md`
