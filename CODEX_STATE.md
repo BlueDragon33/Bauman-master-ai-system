@@ -1,8 +1,8 @@
 # CODEX_STATE
 
-Current task: `THEORY_CORE_C01_L04_PASS_08_MISCONCEPTIONS_AND_FAILURE_MODES`
+Current task: `THEORY_CORE_C01_L04_PASS_09_ASSESSMENT_AND_IMPLEMENTATION_CONTRACT`
 
-Status: `PASS_08_DIAGNOSTIC_SYSTEM_VERIFIED`
+Status: `PASS_09_CORE_APPROVED_AND_MANIFEST_REGISTERED`
 
 Date: 2026-07-08
 Branch: `main`
@@ -39,22 +39,22 @@ Presentation and integration passes:
 14. Final integration and acceptance — 7 steps
 
 ## Progress for §1.4
-- Completed: 8/14 passes
-- Remaining: 6/14 passes
-- Completed steps: 41/73
-- Remaining steps: 32/73
+- Completed: 9/14 passes
+- Remaining: 5/14 passes
+- Completed steps: 46/73
+- Remaining steps: 27/73
 
 ## Core architecture
-- Current core draft: `subjects/math/data/theory_core/theory_core_c01_l04.json`.
-- Draft version: `CORE_C01_L04_V1_DRAFT`.
-- Draft status remains `math_review_required`.
-- Worked case status: `verified_pass_07`.
-- Misconception system status: `verified_pass_08`.
-- Failure-mode atlas status: `verified_pass_08`.
-- Draft remains unapproved until PASS 09 is complete.
-- `subjects/math/data/theory_lecture_content.json` remains unchanged during the core phase.
-- C01-L04 is not registered in the manifest until passes 1–9 are complete.
-- No UI/runtime or presentation file is modified during passes 1–9.
+- Approved core: `subjects/math/data/theory_core/theory_core_c01_l04.json`.
+- Core version: `CORE_C01_L04_V1_APPROVED`.
+- Core status: `approved_against_gold_standard`.
+- Core quality gate: `content_review_approved`.
+- Completed core passes: 1–9.
+- Manifest: `subjects/math/data/theory_core/theory_core_manifest.json`.
+- Manifest version: `CORE_MANIFEST_V1_4`.
+- L04 manifest status: `approved_against_gold_standard`.
+- `subjects/math/data/theory_lecture_content.json` remains unchanged.
+- No UI/runtime or presentation file was modified during passes 1–9.
 
 ## Lesson identity
 - Lesson: `§1.4 · Cơ sở, span và tọa độ`.
@@ -70,26 +70,21 @@ Locked prerequisites, required concepts, deferred matrix/spectral topics and the
 # PASS 02 — BAUMAN ACADEMIC MAP
 Status: PASS.
 
-Locked the chain:
+Locked:
 `linear combination → span → independence → basis → coordinates → uniqueness → change of basis → exact/approximate representation`.
 
 # PASS 03 — PEDAGOGICAL SPINE
 Status: PASS.
 
-Locked:
-- central thesis;
-- 10 measurable outcomes;
-- 9 learning phases;
-- misconception-interception sequence;
-- mastery narrative and retrieval plan.
+Locked central thesis, 10 measurable outcomes, 9 learning phases, misconception interception, retrieval and mastery narrative.
 
 # PASS 04 — CORE ACADEMIC CONTENT
-Status: PASS FOR DRAFT CREATION.
+Status: PASS.
 
-Core draft contains:
+Created the complete academic draft with:
 - 10 learning outcomes;
 - 16 notation rules;
-- 9 core concepts;
+- 9 concepts;
 - 9 mechanisms;
 - 12 formula contracts;
 - comparison logic;
@@ -99,12 +94,12 @@ Core draft contains:
 # PASS 05 — INDEPENDENT MATHEMATICS REVIEW
 Status: PASS.
 
-Verified definitions, implications, formula domains, zero/redundant/non-orthogonal/near-dependent cases and the vector-versus-affine-point boundary.
+Verified definitions, formula domains, logical equivalences, edge cases, counterexamples, near dependence and scope boundaries.
 
 # PASS 06 — ENGINEERING-MODEL REVIEW
 Status: PASS WITH BINDING CONSTRAINTS.
 
-Locked schema, units, frame direction, timestamps, route-frame construction, UGV/control/IMU boundaries, signal/data/AI compatibility, operational failures and required telemetry.
+Locked schema, units, coefficient meanings, frame direction, timestamps, route construction, UGV/control/IMU boundaries, signal/data/AI compatibility and telemetry.
 
 # PASS 07 — COMPLETE WORKED CASE
 Status: PASS.
@@ -113,148 +108,173 @@ Verified UGV case:
 - `t=(0.6,0.8)`, `n=(-0.8,0.6)`;
 - `[v]_W=(5,1)^T m/s`;
 - `[v]_R=(3.8,-3.4)^T m/s`;
-- exact reconstruction and residual zero;
-- norm preservation;
-- order and normal-convention tests;
-- mixed-frame, reversed-transform, non-unit and stale-basis failures;
+- exact reconstruction and norm preservation;
+- order, sign, mixed-frame, transform-direction, non-unit and stale-basis tests;
 - near-dependence contrast.
 
-# C01-L04 PASS 08 — MISCONCEPTIONS AND FAILURE MODES
+# PASS 08 — MISCONCEPTIONS AND FAILURE MODES
+Status: PASS.
 
-## Step 1 — Classification and expansion
+Added:
+- 20 reviewed misconceptions in four classes;
+- 18 operational failure modes;
+- symptoms, root causes, diagnostics, corrections and telemetry;
+- a seven-stage diagnostic protocol.
 
-The provisional misconception list was replaced with 20 reviewed misconceptions in four classes:
-1. `object_vs_representation`;
-2. `span_basis_uniqueness`;
-3. `method_and_numerics`;
-4. `engineering_and_ai_contracts`.
+# C01-L04 PASS 09 — ASSESSMENT AND IMPLEMENTATION CONTRACT
 
-Each misconception includes:
-- severity;
-- incorrect belief;
-- mathematical or modeling explanation;
-- counterexample;
-- observable symptom;
-- root cause;
-- diagnostic questions;
-- corrective action;
-- links to the relevant core content.
+## Step 1 — Assessment blueprint and outcome mapping
 
-Critical themes covered:
-- coordinate tuple versus vector;
-- equal tuples under different bases;
-- basis order;
-- basis validity and target space;
-- span membership versus uniqueness;
-- redundant families;
-- zero vector in a basis;
-- dot-product misuse;
-- orthogonal versus orthonormal;
-- near dependence and coefficient instability;
-- residual versus physical truth;
-- route versus body frame;
-- vector versus affine point;
-- normal-sign convention;
-- raw IMU specific force;
-- nonlinear feature dependence;
-- feature/dictionary versus basis;
-- embedding-space compatibility;
-- shape/units versus full representation compatibility.
+Completed a three-phase assessment system:
+- diagnostic: 4 unscored prerequisite checks;
+- formative: 8 items worth 40 points;
+- summative: 6 items worth 60 points.
 
-## Step 2 — Counterexamples and repairs
+All LO1–LO10 have at least two evidence points through the assessment map.
 
-Counterexamples are bound to exact calculations or explicit contracts:
-- `[1,0]^T` under swapped bases;
-- redundant family `e_1,e_2,e_1+e_2`;
-- non-orthogonal basis with true coordinates `(1,2)` versus raw dots `(3,5)`;
-- non-unit orthogonal directions producing incorrect `(19,-17)` coefficients;
-- near-dependent basis producing `(-995,1000)`;
-- left/right normal sign flip;
-- world/route arrays with equal shape and units but different meanings;
-- same-dimension embeddings from incompatible pipelines.
+The blueprint requires:
+- calculation;
+- condition checking;
+- reconstruction;
+- interpretation;
+- engineering metadata;
+- numerical-sensitivity reasoning;
+- representation design and transfer.
 
-Repairs require the learner or implementation to:
-- name the target space and ordered basis;
-- validate spanning, independence and orthonormality separately;
-- reconstruct the vector;
-- inspect metadata and compatibility;
-- test sensitivity where necessary.
+## Step 2 — Diagnostic, formative and summative mastery checks
 
-## Step 3 — Engineering failure-mode atlas
+Diagnostic checks cover:
+- vector versus coordinate tuple;
+- linear-combination units;
+- basis classification;
+- orthonormal shortcut conditions.
 
-A verified atlas of 18 operational failures was added:
-1. swapped basis-column order;
-2. reversed transform direction;
-3. stale or unmatched timestamps;
-4. changed normal convention;
-5. non-unit direction used with dot shortcut;
-6. zero/undefined route tangent;
-7. body frame confused with route frame;
-8. point treated as free vector;
-9. mixed units/scaling;
-10. dot shortcut on non-orthogonal basis;
-11. near-dependent basis;
-12. residual interpreted before contract validation;
-13. raw IMU specific force mislabeled;
-14. signal basis reused under a changed sampling contract;
-15. nonlinear feature called linearly dependent;
-16. dictionary coefficients labeled unique;
-17. embeddings compared across incompatible pipelines;
-18. NaN, infinity or silent broadcasting accepted.
+Formative checks cover:
+- linear combination and contribution meaning;
+- span membership and missing direction;
+- redundant-family classification;
+- existence versus uniqueness;
+- nonstandard basis coordinates;
+- frame mismatch;
+- orthogonal versus orthonormal methods;
+- near-dependence reasoning.
 
-Every failure includes:
-- observable symptom;
-- root cause;
-- diagnostic test;
-- corrective action;
-- required telemetry fields.
+Summative checks cover:
+- the verified UGV worked case;
+- basis/spanning family/dictionary comparison;
+- world/route/body representation contract;
+- stale-transform and order-mismatch diagnosis;
+- signal and embedding compatibility;
+- task-specific representation design.
 
-## Step 4 — Diagnostic protocol
+Ten reusable mastery checks are also present from recall through create.
 
-The locked triage order is:
-1. exact shape and finite values;
-2. schema, units, frame and timestamp;
-3. basis order and transform direction;
-4. spanning, independence and orthonormality;
-5. reconstruction and invariants;
-6. numerical sensitivity;
-7. domain-specific physical or AI semantics.
+## Step 3 — Scoring, critical failures and progression
 
-The learner must not use solver success, equal shape or small residual as sufficient evidence.
+Scoring:
+- formative: 40 points;
+- summative: 60 points;
+- total pass threshold: 80/100;
+- minimum summative performance: 75%;
+- minimum evidence coverage for each learning outcome: 70%.
 
-## Step 5 — Coverage verification
+Critical-failure override blocks mastery for:
+- coordinates without a named basis or target space;
+- redundant family called a basis or nonunique coefficients called unique;
+- dot shortcut used without orthonormality;
+- coordinate result without reconstruction;
+- cross-frame/time comparison without transformation;
+- reversed transform direction;
+- point/vector confusion;
+- nonlinear dependence mislabeled linear;
+- incompatible embedding comparison;
+- invalid numeric arrays or silent broadcasting.
 
-Coverage is complete against:
-- all 10 misconception targets from PASS 03;
-- mathematical edge cases from PASS 05;
-- 18 engineering failures from PASS 06;
-- all worked-case failures from PASS 07.
+Partial-credit ceilings and targeted remediation rules are explicit.
 
-Core verification after patch:
-- JSON opens and closes correctly;
-- lesson ID, draft status and content contract are preserved;
-- 10 learning outcomes, 16 notation rules, 9 concepts, 9 mechanisms and 12 formulas remain present;
-- worked case remains `verified_pass_07`;
-- `commonMisconceptions.status = verified_pass_08`;
-- `failureModeAtlas.status = verified_pass_08`;
-- 20 misconceptions and 18 failure modes are present;
-- mastery checks and implementation contract remain provisional for PASS 09;
-- `qualityGate.nextPass = PASS_09_ASSESSMENT_AND_IMPLEMENTATION_CONTRACT`;
-- no manifest, lecture-content, UI or runtime file was changed;
-- no browser smoke test is claimed because this is a content-only diagnostic pass.
+## Step 4 — Implementation contract
 
-## PASS 08 verdict
-PASS.
+Approved API:
+`analyze_linear_representation(B, v, mode, metadata, atol, rtol, rank_tol, condition_warning)`.
+
+Approved modes:
+- `orthonormal`;
+- `basis_exact`;
+- `analyze_family`;
+- `approximate`;
+- `auto`.
+
+Core behavior:
+- no silent flattening or broadcasting;
+- exact shape and finite-value validation;
+- metadata validation before physical interpretation;
+- scale-aware numerical-rank tolerance;
+- Gram-matrix orthonormality check;
+- exact solve only for square full-rank basis;
+- least-squares/family analysis explicitly labeled non-basis or approximate when applicable;
+- reconstruction and residual checks;
+- uniqueness derived from rank and column count, not solver success;
+- condition estimate and sensitivity warning;
+- explicit statuses and telemetry.
+
+Metadata contracts exist for:
+- general vectors and bases;
+- robotics and coordinate frames;
+- signals;
+- AI embeddings.
+
+Tolerance policy:
+- floating-point equality is never exact;
+- rank tolerance scales with matrix dimensions and norm;
+- reconstruction uses logged `atol` and `rtol`;
+- orthonormality uses the same tolerance contract;
+- condition threshold is a sensitivity warning, not a definition of exact dependence.
+
+## Step 5 — Final core acceptance and manifest registration
+
+Reference implementation was executed against:
+1. standard basis;
+2. route orthonormal basis;
+3. general non-orthogonal basis;
+4. redundant family;
+5. near-dependent basis;
+6. NaN rejection.
+
+Verified results:
+- standard coefficients `(5,1)`;
+- route coefficients `(3.8,-3.4)`;
+- general-basis coefficients `(1,2)`;
+- redundant family reports `unique=false`;
+- near-dependent basis reports a sensitivity warning;
+- NaN input is rejected;
+- approximate/family output is never labeled exact basis coordinates.
+
+Core acceptance:
+- version changed to `CORE_C01_L04_V1_APPROVED`;
+- status changed to `approved_against_gold_standard`;
+- `approvalBlockedUntilPass09=false`;
+- `qualityGate.reviewStatus=content_review_approved`;
+- `qualityGate.nextPass=PASS_10_REFERENCE_TABLE`;
+- acceptance record lists passes 1–9 complete.
+
+Manifest acceptance:
+- manifest version changed to `CORE_MANIFEST_V1_4`;
+- C01-L04 record added;
+- L04 status set to `approved_against_gold_standard`.
+
+## PASS 09 verdict
+PASS. CORE CONTENT PHASE COMPLETE.
+
+No browser smoke test is claimed because passes 1–9 are content and contract work only.
 
 ## Next task
-PASS 09/14 — Assessment and implementation contract, consisting of 5 steps:
-1. build the complete assessment blueprint and map it to all learning outcomes;
-2. write diagnostic, formative and summative mastery checks with answer evidence;
-3. define scoring, critical-failure and progression rules;
-4. finalize implementation capabilities, telemetry, tolerance and solver-mode contracts;
-5. perform final core acceptance, change status from draft to approved if all gates pass, then register C01-L04 in the core manifest.
+PASS 10/14 — `Tham khảo thêm` reference table, consisting of 4 steps:
+1. derive the reference-table information architecture from the approved core;
+2. select compact entries for concepts, formulas, conditions, failure modes and engineering use;
+3. write source-traceable reference content without duplicating the full lesson;
+4. verify completeness, consistency and downstream mapping against the approved core.
 
-PASS 09 is the final core-content pass. It may approve the core and update the manifest only after all acceptance gates are verified.
+PASS 10 must derive only from the approved core. It may not change core meaning or add new mathematics.
 
 ## Relevant commits
 - C01-L04 pass 01 scope lock: `5e88b37255f10af7dfbd4ec604598811d8b17409`
@@ -267,6 +287,9 @@ PASS 09 is the final core-content pass. It may approve the core and update the m
 - C01-L04 pass 07 worked case: `61b726d486b2bc5060b8422351eb8239c8e02eb3`
 - C01-L04 pass 07 state: `d521433f544443554d125ca50cca7b91cfde79fa`
 - C01-L04 pass 08 diagnostics: `810c393d8263135f4c9e342b6bde91ff21008ac5`
+- C01-L04 pass 08 state: `42ce4713ee97783dd3cb277aba1ebf05bc14d404`
+- C01-L04 pass 09 core approval: `ba57f4c302200d30506cd586892dfb0deb170f51`
+- C01-L04 manifest registration: `4bdb2e580557e0f712bceba389b2ec4facf4aadb`
 
 ## Persistent handoff
 - `HANDOFF_THEORY_CORE.md`
