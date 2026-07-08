@@ -1,8 +1,8 @@
 # CODEX_STATE
 
-Current task: THEORY_CORE_C01_L04_PASS_02_ACADEMIC_MAP
+Current task: THEORY_CORE_C01_L04_PASS_03_PEDAGOGICAL_SPINE
 
-Status: PASS_02_ACADEMIC_MAP_LOCKED
+Status: PASS_03_PEDAGOGICAL_SPINE_LOCKED
 
 Date: 2026-07-08
 Branch: `main`
@@ -17,8 +17,8 @@ Branch: `main`
 
 Do not skip ahead.
 
-## Per-lesson quality workflow
-Each lesson is completed through 14 passes and 73 controlled steps.
+## Per-lesson workflow
+Each complete lesson passes through 14 passes and 73 controlled steps.
 
 Core-content passes:
 1. Scope lock — 4 steps
@@ -38,416 +38,447 @@ Presentation and integration passes:
 13. Formula and layout normalization — 5 steps
 14. Final integration and acceptance — 7 steps
 
-Progress for §1.4:
-- Completed: 2/14 passes
-- Remaining: 12/14 passes
-- Completed steps: 9/73
-- Remaining steps: 64/73
+## Progress for §1.4
+- Completed: 3/14 passes
+- Remaining: 11/14 passes
+- Completed steps: 14/73
+- Remaining steps: 59/73
 
 ## Core architecture
 - Core content is presentation-independent.
-- Core files contain no slide numbering, popup labels, CSS, animation, or layout instructions.
-- Existing `theory_lecture_content.json` remains unchanged during the core phase.
-- Downstream reference, slideshow, full-view, and formula/layout content must derive from the core and may not contradict it.
-- ChatGPT authors and reviews academic content; Codex is reserved for narrow application, UI/JS/CSS work, and smoke testing when those phases are reached.
+- Core files contain no slide numbering, popup labels, CSS, animation or layout instructions.
+- `subjects/math/data/theory_lecture_content.json` remains unchanged during the core phase.
+- Downstream reference, slideshow, full-view and formula/layout content must derive from the approved core and may not contradict it.
+- C01-L04 is not registered in the manifest until passes 1–9 are complete.
 
-## Gold standard
-- `subjects/math/data/theory_core/theory_core_c01_l01.json`
-- Lesson: `§1.1 · Vector như dữ liệu kỹ thuật`
-- Status: `gold_standard_candidate`
-
-## Completed core records
-1. `theory_core_c01_l01.json`
-   - vector as engineering data
-   - semantic notation
-   - operations, norm, dot, distance, cosine
-   - data-quality gates
-   - complete network-state worked case
-2. `theory_core_c01_l02.json`
-   - norm axioms
-   - L1, L2, Linf, weighted L2
-   - metric axioms
-   - Manhattan, Euclidean, Chebyshev, weighted distance
-   - similarity versus distance
-   - z-score, robust and min-max scaling
-   - assumption and weight-provenance gates
-   - complete UGV anomaly-distance worked case
-3. `theory_core_c01_l03.json`
-   - status: `approved_against_gold_standard`
-   - dot product by coordinates and norm-angle relation
-   - sign of dot product, angle domain and orthogonality
-   - cosine similarity and zero-vector gate
-   - projection onto a vector and parallel-orthogonal decomposition
-   - projection onto an orthonormal subspace at introductory level
-   - residual orthogonality and least-squares bridge
-   - complete UGV route-projection worked case
-   - safe Python/NumPy implementation contract
-
-## Manifest
-- `subjects/math/data/theory_core/theory_core_manifest.json`
-- Version: `CORE_MANIFEST_V1_3`
-- Registered records: C01-L01, C01-L02 and C01-L03
-- C01-L03 status: `approved_against_gold_standard`
-- C01-L04 is not registered until its complete core record passes passes 1–9.
+## Gold standard and continuity
+- Structural gold standard: `subjects/math/data/theory_core/theory_core_c01_l01.json`.
+- Continuity references: C01-L02 and approved C01-L03.
+- Target file after the core passes: `subjects/math/data/theory_core/theory_core_c01_l04.json`.
+- Lesson: `§1.4 · Cơ sở, span và tọa độ`.
+- Lesson ID: `MATH-VN-C01-vector_trong_khong_gian_-L04-basis-span-coordinate-e140`.
+- Position: after §1.3 dot/angle/projection and before §1.5 subspace/data representation.
 
 ## Notation contract
-- `x_i` is the i-th element and must use a subscript.
-- `x_i^2` has i below and 2 above.
-- `x_i^T` keeps i as a subscript and T as a superscript.
-- `x^2`, `A^{-1}`, and `A^k` remain superscripts when raw notation uses `^`.
-- Coordinate-vector notation must distinguish the abstract vector `v` from its coordinates `[v]_B` in basis `B`.
-- An ordered basis must be written with order explicit, for example `B = (b_1, ..., b_n)`; a coordinate tuple depends on that order.
-- Formula source must remain semantically explicit before any renderer is applied.
+- Distinguish the abstract vector `v` from its coordinate vector `[v]_B`.
+- An ordered basis is written `B = (b_1, ..., b_n)`; changing order changes the coordinate tuple.
+- `v = sum_i c_i b_i` reconstructs the abstract vector from basis coordinates.
+- `x_i` uses a subscript; `x_i^2` has i below and 2 above; `x_i^T` retains i below and T above.
+- Raw notation must remain semantic before renderer processing.
 
-# C01-L04 PASS 01 — SCOPE LOCK
+# PASS 01 SUMMARY — SCOPE LOCK
 
-## Step 1 — Identity and position
-- Target file after core passes are complete: `subjects/math/data/theory_core/theory_core_c01_l04.json`
-- Lesson ID: `MATH-VN-C01-vector_trong_khong_gian_-L04-basis-span-coordinate-e140`
-- Lesson title: `§1.4 · Cơ sở, span và tọa độ`
-- Chapter: `C01 · Vector trong không gian`
-- Program anchor: `Không gian vectơ và ánh xạ tuyến tính`
-- Roadmap role: foundation before preparatory and master-level linear algebra.
-- Position: follows §1.3 dot, angle and projection; precedes §1.5 subspace and data representation.
+Locked prerequisites:
+- vector meaning, schema, units and vector operations from §1.1;
+- norm, distance and reconstruction error from §1.2;
+- dot product, orthogonality, projection and residual from §1.3;
+- elementary solution of a small two-equation system.
 
-## Step 2 — Locked prerequisites
-From §1.1:
-- vector as an ordered engineering-data object;
-- dimension, schema and units;
-- vector addition and scalar multiplication;
-- distinction between a vector and its numeric representation.
+Required scope:
+- linear combination and span;
+- exact span membership;
+- spanning family versus basis;
+- linear independence sufficient to define a basis;
+- standard and non-standard ordered bases;
+- coordinates, uniqueness and reconstruction;
+- introductory relation `Bc = v`;
+- orthonormal shortcut `c_i = v · b_i` with explicit conditions;
+- exact versus approximate representation;
+- introductory change of basis;
+- near-dependence warning;
+- distinction among basis, feature set and dictionary.
 
-From §1.2:
-- norm and distance;
-- reconstruction error as a quantitative mismatch;
-- scaling and metric assumptions.
+Deferred scope:
+- full subspace theory, dimension/rank theorems and rank-nullity;
+- Gaussian elimination, determinant, inverse and factorization;
+- full least squares, PCA, SVD, Fourier, wavelets and eigen-analysis;
+- UI/runtime and presentation decisions.
 
-From §1.3:
-- dot product and orthogonality;
-- projection onto one direction;
-- introductory projection onto an orthonormal span;
-- residual as the unexplained component.
+Locked corrections:
+- `speed = sqrt(v_x^2 + v_y^2)` is nonlinear dependence, not linear dependence;
+- a vector may lie in the span of a redundant family without that family being a basis;
+- coordinates are unique only for a basis;
+- dot products recover coordinates directly only for an orthonormal basis;
+- an arbitrary feature set is not automatically a mathematical basis.
 
-Minimal external prerequisites:
-- solving a small two-equation linear system by substitution or elimination;
-- real-number arithmetic and ordered tuples.
+Pass 01 status: PASS.
 
-## Step 3 — Downstream preparation
-The lesson must prepare directly for:
-- §1.5 subspaces and data representation;
-- dimension and rank as measures of independent directions;
-- matrix columns as a generating family;
-- coordinate transformations and linear maps;
-- least squares and residual analysis;
-- PCA, SVD, Fourier-like representations and model-state coordinates at later stages.
+# PASS 02 SUMMARY — BAUMAN ACADEMIC MAP
 
-The lesson must establish these durable bridges:
-- projection coefficients become coordinates only under the correct basis conditions;
-- a basis gives existence and uniqueness of coordinates;
-- span defines what can be represented exactly;
-- residual identifies what lies outside the chosen span;
-- changing basis changes coordinates, not the underlying abstract vector.
+Mathematical chain:
+`linear combination → span → linear independence → basis → coordinates → uniqueness → change of basis → exact/approximate representation`.
 
-## Step 4 — Allowed scope and hard boundaries
+Master-level preparation:
+- basis is an ordered encoding contract;
+- basis choice affects interpretability, sparsity, numerical conditioning and model convenience;
+- exact independence may still be numerically fragile when vectors are nearly dependent;
+- physical vectors and coordinate arrays must not be conflated;
+- learners must justify the basis selected for a task.
 
-### Required in §1.4
+Robotics/control map:
+- world, body and sensor frames provide different coordinates for the same physical vector;
+- mixed-frame arithmetic is invalid;
+- route-aligned coordinates can simplify control;
+- axes, units, orientation convention, timestamp and frame metadata are mandatory.
+
+Signal/data/AI map:
+- orthonormal signal bases permit coefficient recovery by inner products;
+- feature axes are not automatically a basis of physical state space;
+- overcomplete dictionaries may represent vectors non-uniquely;
+- embedding coordinates from incompatible models are not directly comparable.
+
+Downstream dependencies:
+- §1.5 consumes span, basis, uniqueness and residual, then adds subspace, dimension and rank;
+- Chapter 2 consumes `Bc = v`, ordered columns and coordinate changes, then adds matrix machinery;
+- later least squares, PCA/SVD, signal transforms, robotics and estimation consume the representation contract established here.
+
+Pass 02 status: PASS.
+
+# C01-L04 PASS 03 — PEDAGOGICAL SPINE
+
+## Step 1 — Central lesson thesis
+
+Canonical thesis:
+
+> Cơ sở là một hợp đồng biểu diễn có thứ tự: nó chọn đủ các hướng độc lập để mọi vector trong không gian đang xét có đúng một bộ tọa độ. Span cho biết biểu diễn đó tạo được những gì; tọa độ cho biết cần bao nhiêu ở mỗi hướng; đổi cơ sở làm thay đổi các con số mô tả nhưng không làm thay đổi vector vật lý hoặc đối tượng trừu tượng đang được mô tả.
+
+Supporting ideas:
+- coordinates are answers to a representation question, not the vector itself;
+- spanning provides representability;
+- independence removes ambiguity;
+- basis combines representability and uniqueness;
+- a useful engineering basis should be mathematically valid and operationally meaningful;
+- reconstruction is the primary evidence that coordinates match the intended vector;
+- residual reveals what the chosen span cannot represent exactly.
+
+Memory anchor for later presentation, not UI copy:
+- `Span = vùng tạo được`.
+- `Basis = đủ hướng, không hướng thừa`.
+- `Coordinates = mã của vector trong basis có thứ tự`.
+- `Reconstruction = phép kiểm tra mã đó có đúng hay không`.
+
+## Step 2 — Measurable learning outcomes with evidence
+
+The complete core must include at least these ten outcomes.
+
+### LO1 — Interpret a linear combination
+Outcome:
+- Explain a linear combination as assembling a vector from weighted directions.
+Evidence:
+- Given `b_1`, `b_2` and coefficients, compute the resulting vector and explain the meaning and units of each coefficient.
+
+### LO2 — Determine simple span membership
+Outcome:
+- Decide whether a 2-D or simple 3-D vector lies in a stated span.
+Evidence:
+- Produce valid coefficients and verify reconstruction, or show why the coordinate equations are inconsistent.
+
+### LO3 — Distinguish generating family, independent family and basis
+Outcome:
+- Classify a vector family relative to a stated space.
+Evidence:
+- State separately whether it spans, whether it is independent and whether it is therefore a basis.
+
+### LO4 — Explain existence and uniqueness of coordinates
+Outcome:
+- Explain why spanning creates existence and independence creates uniqueness.
+Evidence:
+- Diagnose a missing-direction example and a redundant-direction example without relying only on memorized definitions.
+
+### LO5 — Compute coordinates in a non-standard ordered basis
+Outcome:
+- Find `[v]_B` for a valid 2-D non-standard basis.
+Evidence:
+- Solve the coordinate equations, report the ordered coefficient vector and reconstruct `v`.
+
+### LO6 — Distinguish vector from coordinate representation
+Outcome:
+- Describe one abstract or physical vector using two coordinate systems.
+Evidence:
+- Keep the underlying vector fixed while correctly changing its coordinate tuple and naming both bases or frames.
+
+### LO7 — Use the orthonormal-basis shortcut correctly
+Outcome:
+- Recover coefficients by dot products only when the basis is orthonormal.
+Evidence:
+- Check orthogonality and unit norm before using `c_i = v · b_i`; reject the shortcut for a general basis.
+
+### LO8 — Evaluate representation quality
+Outcome:
+- Distinguish exact, redundant and approximate representation.
+Evidence:
+- Use reconstruction and residual to explain whether a vector is represented exactly, ambiguously or only approximately.
+
+### LO9 — Identify numerical and engineering risks
+Outcome:
+- Recognize near dependence, mixed coordinate frames, unit mismatch and basis-order errors.
+Evidence:
+- Predict the failure produced by each contract violation and propose the required corrective action.
+
+### LO10 — Select a task-appropriate representation
+Outcome:
+- Justify a basis or coordinate system for a robotics, signal or data task.
+Evidence:
+- Compare at least two representations using interpretability, numerical sensitivity, reconstruction and downstream use rather than personal preference.
+
+Outcome policy:
+- no outcome may use only vague verbs such as “understand” or “know”;
+- each outcome must map to at least one mastery check and one observable artifact;
+- computation without interpretation is insufficient;
+- interpretation without a reconstruction or condition check is insufficient.
+
+## Step 3 — Learning sequence from intuition to transfer
+
+The core and later presentation must follow this cognitive sequence.
+
+### Phase A — Productive dissonance: one vector, two coordinate tuples
+Learner sees:
+- one physical 2-D velocity vector;
+- its coordinates in the world frame;
+- different coordinates in a route-aligned or body frame.
+
+Purpose:
+- break the misconception that the coordinate tuple is the vector itself;
+- create a genuine need for a named ordered basis.
+
+Checkpoint A:
+- identify what stayed fixed and what changed.
+
+### Phase B — Build vectors from directions
+Introduce:
 - linear combination;
-- span and exact membership in a span;
-- generating set versus basis;
-- linear independence at the level needed to define and validate a basis;
-- basis as an independent spanning set;
-- standard and non-standard bases;
-- coordinate vector `[v]_B` and uniqueness of coordinates;
-- reconstruction `v = sum_i c_i b_i`;
-- column-form relation `B c = v` as an introductory bridge, without relying on undeveloped matrix machinery;
-- orthonormal-basis shortcut `c_i = v · b_i` with explicit conditions;
-- exact representation versus approximate representation;
-- simple 2-D and 3-D engineering examples with schema, units and coordinate frames;
-- an introductory change-of-basis concept and one small exact example;
-- warnings about nearly dependent directions and numerical sensitivity;
-- distinction between mathematical basis vectors and ordinary data features.
+- coefficient meaning;
+- reconstruction from chosen directions.
 
-### Introduce only, do not develop deeply
-- rank as a diagnostic count of independent directions;
-- subspace as a span;
-- least squares when `v` is outside the span;
-- conditioning of a basis;
-- coordinate transformation matrices.
+Purpose:
+- make span emerge from an operational question: “What can these directions produce?”
 
-### Reserved for §1.5 or later
-- full subspace axioms and proofs;
-- dimension/rank theorems and rank-nullity;
-- detailed PCA, SVD, Fourier or wavelet algorithms;
-- Gaussian elimination, determinant, inverse and matrix factorization;
-- full least-squares derivation and numerical solvers;
-- eigenvalues and eigenvectors;
-- nonlinear manifolds or nonlinear feature maps;
-- production UI, slideshow, reader, CSS, animation and runtime decisions.
+Checkpoint B:
+- calculate one combination and interpret coefficients with units.
 
-## Academic corrections locked before drafting
-- A derived feature such as `speed = sqrt(v_x^2 + v_y^2)` is nonlinear dependence, not linear dependence and not evidence that one feature lies in the linear span of the others.
-- A collection of many vectors is not automatically a basis; it must be both linearly independent and spanning for the stated space.
-- Coordinates have no complete meaning without naming the basis and ordering its vectors.
-- The same coordinate tuple in two different bases generally represents two different vectors.
-- A vector can lie in `span(B)` even when `B` is redundant; membership does not imply that `B` is a basis.
-- Coordinates are unique only when the generating family is a basis.
-- The shortcut `c_i = v · b_i` is valid for an orthonormal basis, not for an arbitrary basis.
-- A feature set must not be called a mathematical basis unless the vector-space assumptions and independence/spanning conditions are actually satisfied.
+### Phase C — Discover span and missing directions
+Introduce:
+- span as all reachable combinations;
+- exact membership;
+- inconsistent coordinate equations as evidence of a missing direction.
 
-## Pass-01 quality gate
+Purpose:
+- link span to representability before introducing basis terminology.
+
+Checkpoint C:
+- decide whether a target vector lies in a 1-D span inside R^2.
+
+### Phase D — Discover redundancy and ambiguity
+Introduce:
+- a redundant generating family;
+- two different coefficient vectors producing the same vector;
+- linear dependence as the source of ambiguity.
+
+Purpose:
+- make uniqueness a problem the learner wants to solve.
+
+Checkpoint D:
+- exhibit two coordinate descriptions using a redundant family and explain why they are not basis coordinates.
+
+### Phase E — Define basis as the solution
+Introduce:
+- basis = spanning + linearly independent;
+- existence from spanning;
+- uniqueness from independence;
+- order dependence of coordinates.
+
+Purpose:
+- present the definition as a resolution to missing-direction and redundancy problems.
+
+Checkpoint E:
+- classify candidate families and justify both conditions.
+
+### Phase F — Compute coordinates and verify reconstruction
+Introduce:
+- `[v]_B`;
+- coordinate equations;
+- reconstruction invariant;
+- standard versus non-standard basis.
+
+Purpose:
+- turn the definition into a reliable procedure.
+
+Checkpoint F:
+- compute coordinates in a non-standard 2-D basis and reconstruct the vector exactly.
+
+### Phase G — Connect projection to orthonormal coordinates
+Introduce:
+- orthonormal basis;
+- coefficient shortcut by dot products;
+- why the shortcut fails for a non-orthonormal basis.
+
+Purpose:
+- connect directly to §1.3 without confusing projection coefficients with general-basis coordinates.
+
+Checkpoint G:
+- choose the valid coefficient method for two different bases.
+
+### Phase H — Change representation without changing the object
+Introduce:
+- same vector, two ordered bases;
+- coordinate conversion at conceptual and small exact-computation level;
+- invariants versus coordinate-dependent quantities.
+
+Purpose:
+- prepare linear maps, frame transforms and matrix representations.
+
+Checkpoint H:
+- explain why equal coordinate tuples in different bases need not represent equal vectors.
+
+### Phase I — Transfer to Bauman engineering contexts
+Use controlled transfer:
+- robot world/body/route frames;
+- signal coefficients in an orthonormal basis;
+- redundant features and overcomplete dictionaries;
+- incompatible embedding spaces.
+
+Purpose:
+- show one mathematical contract appearing in multiple disciplines without pretending the applications are identical.
+
+Final transfer task:
+- select and justify a representation for one UGV state or signal window, including basis order, units, frame, reconstruction check and expected downstream use.
+
+## Step 4 — Misconception and cognitive-load plan
+
+### Misconception sequence to intercept
+
+M1. “A coordinate tuple is the vector.”
+- Intercept in Phase A using one vector with two coordinate tuples.
+
+M2. “Any collection of directions is a basis.”
+- Intercept before the basis definition using separate missing-direction and redundant-direction cases.
+
+M3. “Belonging to span means coordinates are unique.”
+- Intercept with an overcomplete generating family that gives multiple coefficient vectors.
+
+M4. “More vectors always mean more information.”
+- Intercept with a dependent direction that does not enlarge the span.
+
+M5. “Dot products always give basis coordinates.”
+- Intercept when transitioning from §1.3; contrast orthonormal and non-orthonormal bases.
+
+M6. “Basis order is cosmetic.”
+- Intercept by swapping `B = (b_1,b_2)` to `B' = (b_2,b_1)` and showing the coordinate tuple swaps.
+
+M7. “A feature set is automatically a basis.”
+- Intercept in the data transfer phase; distinguish axes chosen by a table schema from a basis of an underlying vector space.
+
+M8. “Exact algebraic independence guarantees safe computation.”
+- Intercept with a nearly parallel pair; introduce sensitivity without full conditioning theory.
+
+M9. “Changing coordinates changes the physical state.”
+- Intercept with a frame example and explicit invariant physical velocity.
+
+M10. “A small residual proves the model is physically correct.”
+- Intercept by separating representational fit from model validity.
+
+### Cognitive-load controls
+- introduce at most one new representational distinction per phase;
+- use 2-D examples before 3-D or abstract spaces;
+- keep the same main vector across several early phases so only the representation changes;
+- avoid determinant, inverse and elimination notation in this lesson;
+- use a visual/geometric interpretation and an algebraic reconstruction side by side, but never introduce both with new symbols simultaneously;
+- separate exact arithmetic examples from floating-point sensitivity examples;
+- delay basis/dictionary/feature-set comparison until basis uniqueness is secure;
+- repeat the invariant “same vector, different coordinates” at three planned retrieval points;
+- require short checkpoints before adding the next conceptual layer;
+- use counterexamples as diagnosis, not as decorative trivia.
+
+### Retrieval and spacing plan
+Retrieval 1:
+- after Phase C, ask what span answers.
+
+Retrieval 2:
+- after Phase E, ask which condition gives existence and which gives uniqueness.
+
+Retrieval 3:
+- after Phase G, ask when dot products recover coordinates.
+
+Retrieval 4:
+- during transfer, ask what metadata must accompany robot coordinates.
+
+Retrieval 5:
+- at the end, reconstruct the vector and explain what the residual means.
+
+## Step 5 — Essential questions and mastery narrative
+
+### Essential questions
+Q1. What vectors can be built from a chosen set of directions?
+Q2. When does a direction add genuinely new linear freedom?
+Q3. Why does a basis provide exactly one coordinate vector?
+Q4. What is the difference between an abstract vector and its coordinates?
+Q5. Why does basis order matter?
+Q6. When may coordinates be recovered by dot products?
+Q7. What does a reconstruction residual reveal, and what does it not prove?
+Q8. How can basis choice simplify or destabilize an engineering problem?
+Q9. Why are a feature set, a mathematical basis and an overcomplete dictionary not interchangeable terms?
+Q10. What information must accompany coordinates before they are safe to use in robotics or data pipelines?
+
+### Mastery narrative
+A learner has mastered §1.4 only when they can complete the following chain without hidden assumptions:
+
+1. Name the vector space or engineering quantity being represented.
+2. State the ordered generating family and its units/frame semantics.
+3. Determine what its span can represent.
+4. Check whether the family is independent enough for unique coordinates.
+5. Decide whether it is a basis of the stated space or only a generating family/dictionary.
+6. Compute `[v]_B` using a method valid for that basis.
+7. Reconstruct `v` and inspect the residual.
+8. Explain how coordinates change under a different basis while the underlying vector remains fixed.
+9. Identify numerical sensitivity or contract violations.
+10. Justify why the chosen representation is appropriate for the downstream task.
+
+### Minimum mastery evidence
+The later core assessment must contain:
+- one exact linear-combination calculation;
+- one span-membership decision;
+- one missing-direction diagnosis;
+- one redundant-family diagnosis with non-unique coefficients;
+- one non-standard basis-coordinate calculation;
+- one orthonormal shortcut check;
+- one ordered-basis swap question;
+- one two-frame robotics interpretation;
+- one basis-versus-dictionary-versus-feature-set classification;
+- one representation-design task.
+
+### Mastery threshold policy
+- arithmetic correctness alone cannot pass;
+- every coordinate answer must name the basis and verify reconstruction;
+- every engineering answer must name units and frame/representation version;
+- a learner who uses dot products on a non-orthonormal basis has not mastered the lesson even if a special example accidentally gives the correct number;
+- a learner who calls a redundant family a basis has not mastered uniqueness;
+- transfer mastery requires explaining both a benefit and a risk of the selected basis.
+
+## Pass-03 quality gate
 PASS because:
-- the lesson identity and exact repository target are fixed;
-- prerequisites are traced to §§1.1–1.3;
-- downstream responsibilities are explicit;
-- required content and deferred content are separated;
-- known conceptual traps in the legacy lecture are corrected before authorship;
-- no UI/runtime or presentation file was modified;
-- no browser smoke test is claimed because this is an academic planning pass.
-
-# C01-L04 PASS 02 — BAUMAN ACADEMIC MAP
-
-## Step 1 — Mathematical core map
-The lesson must organize the mathematics as one coherent chain rather than disconnected definitions:
-
-1. `linear combination`
-   - question: what vectors can be produced from the available directions?
-   - form: `v = c_1 b_1 + ... + c_k b_k`.
-
-2. `span`
-   - question: what is the complete representable set generated by those directions?
-   - membership means exact existence of at least one coefficient vector `c` satisfying `Bc = v`.
-
-3. `linear independence`
-   - question: does every direction add genuinely new linear freedom?
-   - criterion: `c_1 b_1 + ... + c_k b_k = 0` has only the zero coefficient solution.
-
-4. `basis`
-   - question: does the ordered family provide enough directions without redundancy?
-   - basis combines spanning and linear independence for the stated space.
-
-5. `coordinates`
-   - question: how is the same abstract vector encoded in a chosen ordered basis?
-   - `[v]_B = (c_1, ..., c_n)^T` when `v = sum_i c_i b_i`.
-
-6. `existence and uniqueness`
-   - spanning gives existence of coordinates;
-   - independence gives uniqueness;
-   - a basis gives both.
-
-7. `change of basis`
-   - the abstract vector remains fixed while its coordinate tuple changes;
-   - only quantities invariant under the relevant change of basis may be compared without additional care.
-
-8. `exact versus approximate representation`
-   - exact: `v in span(B)` and reconstruction residual is zero in exact arithmetic;
-   - approximate: `v` lies outside or noisy relative to the selected span, requiring projection or least squares later.
-
-9. `orthonormal shortcut`
-   - if `B = (b_1, ..., b_n)` is orthonormal, then `c_i = v · b_i`;
-   - for a general basis, coordinates must be obtained by solving the coordinate equations, not by dot products alone.
-
-## Step 2 — Master-level depth map
-The lesson is foundational, but its reasoning quality must already support later master-level work.
-
-Required depth:
-- distinguish an abstract vector from a coordinate column;
-- treat an ordered basis as an encoding contract, not merely a set of arrows;
-- explain why basis coordinates are unique, not only state that they are;
-- distinguish a spanning family, a basis, an orthonormal basis and an overcomplete dictionary;
-- explain that basis choice affects numerical conditioning, interpretability, sparsity and model convenience;
-- introduce near linear dependence as a numerical problem even when exact algebra says the vectors are independent;
-- distinguish exact rank from effective numerical dimension without teaching SVD yet;
-- identify what changes under coordinate transformation and what physical object should remain unchanged;
-- require the learner to justify the chosen basis for a task rather than automatically use the standard basis.
-
-Depth boundaries:
-- no determinant-based basis test;
-- no explicit matrix inverse as the default coordinate solver;
-- no rank-nullity theorem;
-- no full conditioning theory;
-- no proof-heavy abstract vector-space treatment beyond what supports correct engineering use.
-
-Expected master-preparation habit:
-- state the space, ordered basis, units, frame and coefficient meaning before manipulating coordinate arrays;
-- validate representation assumptions before trusting a numerical result;
-- report reconstruction error and sensitivity when the basis is measured or nearly dependent.
-
-## Step 3 — Robotics and control map
-The lesson must connect basis and coordinates to physical systems through controlled examples.
-
-### Coordinate frames
-- world frame, robot-body frame and sensor frame are different ordered bases or coordinate systems for the same physical quantity;
-- the same velocity vector has different coordinates in different frames;
-- adding or comparing coordinate arrays from different frames is invalid until transformed to a common frame.
-
-### State representation
-- a robot state vector is a coordinate representation chosen for a model;
-- changing state coordinates may simplify dynamics, estimation or control while the physical state remains the same;
-- every state coordinate must retain units and semantic meaning.
-
-### Motion decomposition
-- route-aligned and cross-track directions form a task-oriented basis when they are independent and properly defined;
-- longitudinal and lateral velocity coordinates can be more useful for control than world-axis coordinates;
-- the §1.3 projection result becomes a coordinate only when the selected directions satisfy the required basis conditions.
-
-### Sensors and actuators
-- sensor axes define measurement coordinates;
-- calibration errors, axis misordering or unrecorded rotations corrupt the coordinate contract;
-- actuator direction vectors may span all, part or a redundant set of achievable instantaneous motions, but controllability theory is deferred.
-
-### Required robotics evidence in the later core
-- one exact 2-D frame-coordinate example;
-- one warning involving mixed coordinate frames;
-- one basis-choice comparison for route tracking or sensor interpretation;
-- explicit units, orientation convention and timestamp/frame metadata.
-
-## Step 4 — Signal, data and AI map
-The lesson must distinguish four related but non-identical uses of generating directions.
-
-### Signal representation
-- basis functions encode a signal through coefficients;
-- orthonormal bases allow coefficients to be recovered by inner products;
-- Fourier and wavelet details are deferred, but the basis-coefficient principle is established.
-
-### Feature spaces
-- data features define coordinate axes by construction, but a feature set is not automatically a mathematical basis for the underlying physical state space;
-- duplicated or linearly dependent features create redundant coordinates;
-- nonlinear derived features may still be useful but do not establish linear dependence.
-
-### Dictionaries and sparse representation
-- an overcomplete dictionary may contain more atoms than the dimension and can represent vectors non-uniquely;
-- a dictionary is useful in sparse coding but must not be mislabeled as a basis;
-- uniqueness then needs extra assumptions beyond linear independence of the whole dictionary.
-
-### AI and latent representation
-- embeddings are coordinates in a learned representation space whose basis is usually implicit;
-- coordinate values from different model versions are not directly comparable unless an alignment contract exists;
-- a change of representation may improve separability or compression without changing the source object;
-- PCA, SVD and learned latent spaces are later applications of selecting informative directions.
-
-### Required data/AI evidence in the later core
-- one example where redundant features preserve information but destroy coordinate uniqueness;
-- one example where an orthonormal representation simplifies coefficient recovery;
-- one warning about comparing embeddings from incompatible models;
-- one clear distinction among basis, feature set and dictionary.
-
-## Step 5 — Downstream curriculum dependency map
-
-### Dependency A — §1.5 · Không gian con và biểu diễn dữ liệu
-Consumes from §1.4:
-- span as a generated set;
-- basis as a minimal non-redundant generator;
-- coordinate uniqueness;
-- exact versus approximate membership;
-- reconstruction residual.
-
-§1.5 must add, not repeat:
-- subspace closure conditions;
-- dimension;
-- rank and effective rank;
-- low-dimensional structure;
-- PCA/subspace interpretation at deeper level.
-
-### Dependency B — Chapter 2 · Matrices and linear maps
-Consumes from §1.4:
-- ordered basis columns;
-- coordinate relation `Bc = v`;
-- change of coordinates;
-- basis-dependent matrix representation of a linear map.
-
-Chapter 2 must add:
-- matrix operations;
-- elimination and solving systems;
-- inverse where justified;
-- rank machinery;
-- matrix representation of transformations.
-
-### Dependency C — Least squares and estimation
-Consumes from §1.4:
-- span membership;
-- failure of exact representation;
-- reconstruction residual;
-- uniqueness versus redundant generating families.
-
-Later lessons must add:
-- optimality criteria;
-- normal equations, QR and SVD;
-- noise models and weighting;
-- parameter-identifiability analysis.
-
-### Dependency D — PCA, SVD and dimensionality reduction
-Consumes from §1.4:
-- coordinates in a chosen basis;
-- orthonormal coefficient recovery;
-- subspace representation;
-- basis choice as an information-design decision.
-
-Later lessons must add:
-- centering and scaling;
-- singular values and variance;
-- truncation;
-- reconstruction and explained-variance trade-offs.
-
-### Dependency E — Signal transforms
-Consumes from §1.4:
-- basis functions;
-- coefficients;
-- orthonormality;
-- reconstruction from coordinates.
-
-Later lessons must add:
-- Fourier, wavelet or modal bases;
-- sampling and discrete transforms;
-- energy interpretation;
-- frequency-domain engineering decisions.
-
-### Dependency F — Robotics, control and estimation
-Consumes from §1.4:
-- coordinate frames;
-- ordered bases;
-- state coordinates;
-- representation changes;
-- redundant versus sufficient directions.
-
-Later lessons must add:
-- rotation matrices and rigid transforms;
-- state-space models;
-- Jacobians;
-- observability, controllability and sensor fusion.
-
-## Pass-02 competency matrix
-The later lesson core must enable the learner to:
-- compute a linear combination and test a simple span-membership case;
-- explain why a given family is or is not a basis of a stated space;
-- compute coordinates in a non-standard 2-D basis;
-- reconstruct the abstract vector from its basis coordinates;
-- explain why basis order matters;
-- distinguish exact, redundant and approximate representation;
-- recover coordinates by dot products only for an orthonormal basis;
-- describe one robot vector in two coordinate frames without confusing the vector with either coordinate tuple;
-- distinguish a basis, feature set and overcomplete dictionary;
-- identify the next numerical risk when basis vectors are nearly dependent.
-
-## Pass-02 quality gate
-PASS because:
-- every central mathematical concept is mapped to a question it answers;
-- master-level depth is expressed through representation contracts, uniqueness, conditioning awareness and invariant reasoning;
-- robotics examples are tied to frames, units and physical semantics rather than decorative storytelling;
-- signal, data and AI links distinguish basis, feature axes, dictionaries and latent coordinates;
-- each downstream subject declares exactly what it consumes from §1.4 and what must remain deferred;
-- no theorem or algorithm reserved for later lessons is taught prematurely;
-- no UI/runtime or presentation file was modified;
+- the thesis unifies span, independence, basis, coordinates and representation change;
+- ten measurable outcomes have explicit observable evidence;
+- the learning sequence creates a need for each definition before presenting it;
+- misconceptions are intercepted at planned points rather than collected only at the end;
+- cognitive load is controlled through stable examples, staged notation and retrieval checkpoints;
+- mastery requires calculation, reconstruction, interpretation, condition checking and engineering transfer;
+- no complete lesson core was drafted before the pedagogical spine was accepted;
+- no manifest, UI/runtime or presentation file was modified;
 - no browser smoke test is claimed because this is an academic-planning pass.
 
 ## Next task
-PASS 03/14 — Pedagogical spine for §1.4, consisting of 5 steps:
-1. central lesson thesis;
-2. measurable learning outcomes with evidence;
-3. learning sequence from intuition to transfer;
-4. misconception and cognitive-load plan;
-5. essential questions and mastery narrative.
+PASS 04/14 — Core academic content for §1.4, consisting of 6 steps:
+1. define all notation and semantic contracts;
+2. write core concepts;
+3. write main mechanisms;
+4. write main formulas with conditions and failure modes;
+5. write comparison logic and assumption gates;
+6. write bridges to later lessons and provisional downstream mapping.
 
-Do not draft the complete lesson core before PASS 03 is accepted.
+PASS 04 may create the first complete draft of:
+`subjects/math/data/theory_core/theory_core_c01_l04.json`
+
+The draft must remain `core_draft` or `math_review_required`; it must not be registered as approved before passes 5–9.
 
 ## Presentation/runtime status
 - No UI/runtime file was changed in the core-content phase.
@@ -461,11 +492,12 @@ Do not draft the complete lesson core before PASS 03 is accepted.
 - C01-L02 core: `6152fee25201bde2b0e9b30d8b00087d44b71604`
 - Manifest update for C01-L02: `7b4dc5b3d643aa568129af0b3fc5bb94ed64f341`
 - C01-L03 core: `a87a368a82d151060c0e1f9a358f668ccd445517`
-- Manifest registration for C01-L03: `ac5fadd6022d8f649e77069a89d3becd74baed28`
+- Manifest registration for C01-L03: `ac5fadd6022d8f7e84dc78729ba530747d7cbf0c`
 - C01-L03 review correction and approval: `586b9bea397625ebf5c300a8bbb6c7b7b948c67a`
 - Manifest approval for C01-L03: `04724ed3b10085383f3599b11f2df58de41a4160`
 - C01-L03 state handoff: `2485e680b5a5c977476df67312433e664fa56c9a`
 - C01-L04 pass 01 scope lock: `5e88b37255f10af7dfbd4ec604598811d8b17409`
+- C01-L04 pass 02 academic map: `156aba3b67d58d93ea127fca011b9f905fc7d3e1`
 
 ## Persistent handoff
 - `HANDOFF_THEORY_CORE.md`
