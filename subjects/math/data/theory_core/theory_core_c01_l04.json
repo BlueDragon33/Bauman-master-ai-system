@@ -7,7 +7,7 @@
   "chapterId": "MATH-VN-C01-vector_trong_khong_gian_",
   "lessonTitle": "§1.4 · Cơ sở, span và tọa độ",
   "language": "vi",
-  "purpose": "Nguồn nội dung lõi độc lập với trình bày cho bài 1.4. Bản nháp này khóa phần học thuật của tổ hợp tuyến tính, span, độc lập tuyến tính, cơ sở, tọa độ và đổi biểu diễn; còn phải qua review toán, review mô hình kỹ thuật, worked case, misconception, assessment và implementation contract.",
+  "purpose": "Nguồn nội dung lõi độc lập với trình bày cho bài 1.4. Bản nháp này khóa phần học thuật của tổ hợp tuyến tính, span, độc lập tuyến tính, cơ sở, tọa độ, đổi biểu diễn và worked case UGV đã kiểm số; còn phải qua misconception review, assessment và implementation contract.",
   "contentContract": {
     "sourceOfTruth": true,
     "presentationIndependent": true,
@@ -674,21 +674,202 @@
     }
   ],
   "workedCase": {
-    "status": "provisional_for_pass_07",
-    "candidateId": "CASE_UGV_WORLD_ROUTE_BASIS",
-    "candidateTitle": "Biểu diễn cùng vận tốc UGV trong world basis và route-aligned basis",
-    "requiredElements": [
-      "same physical vector with two coordinate tuples",
-      "ordered orthonormal route basis",
-      "units m/s",
-      "frame and orientation convention",
-      "coordinate calculation",
-      "reconstruction in world coordinates",
-      "basis-order swap check",
-      "mixed-frame failure scenario",
-      "near-dependent contrast kept separate from the main orthonormal case"
+    "status": "verified_pass_07",
+    "caseId": "CASE_UGV_WORLD_ROUTE_BASIS",
+    "title": "Biểu diễn cùng vận tốc UGV trong world basis và route-aligned basis",
+    "scenario": {
+      "task": "Tách vận tốc UGV thành thành phần dọc tuyến và lệch ngang tại một điểm đã ghép với quỹ đạo.",
+      "vectorType": "planar free velocity vector",
+      "eventTime": "2026-07-08T08:30:00+07:00",
+      "matchedRouteArcLengthM": 42.0,
+      "worldFrameId": "W_ENU_2D",
+      "routeFrameId": "R_ROUTE_LEFT_NORMAL_S42",
+      "bodyFrameId": "B_ROBOT_NOT_USED_AS_ROUTE_BASIS",
+      "routeHeadingDeg": 53.13010235415598,
+      "robotYawDeg": 50.0,
+      "units": "m/s",
+      "worldComponentOrder": ["v_x_W", "v_y_W"],
+      "routeComponentOrder": ["v_parallel", "v_left"],
+      "scopeBoundary": "Case chỉ đổi tọa độ của cùng một vector vận tốc tại cùng sự kiện. Nó không tính relative velocity giữa moving frames và không dùng position point cần translation."
+    },
+    "representationContract": {
+      "worldBasis": {
+        "symbol": "W = (e_x, e_y)",
+        "orderedVectorsInWorld": [[1.0, 0.0], [0.0, 1.0]],
+        "dimensionlessDirections": true
+      },
+      "routeBasis": {
+        "symbol": "R = (t, n)",
+        "construction": "t=(3/5,4/5); n=(-t_y,t_x)=(-4/5,3/5)",
+        "orderedVectorsInWorld": [[0.6, 0.8], [-0.8, 0.6]],
+        "normalConvention": "left normal",
+        "dimensionlessDirections": true,
+        "orthonormalChecks": {
+          "tDotT": 1.0,
+          "nDotN": 1.0,
+          "tDotN": 0.0,
+          "determinant": 1.0
+        }
+      },
+      "transform": {
+        "symbol": "P_{W<-R}",
+        "matrix": [[0.6, -0.8], [0.8, 0.6]],
+        "sourceCoordinates": "R",
+        "targetCoordinates": "W",
+        "columnMeaning": "Cột 1 là t viết trong W; cột 2 là n viết trong W."
+      },
+      "timestampPolicy": {
+        "vectorTimestamp": "2026-07-08T08:30:00+07:00",
+        "basisTimestamp": "2026-07-08T08:30:00+07:00",
+        "transformAgeMs": 0,
+        "maxAcceptedTransformAgeMs": 20,
+        "status": "matched"
+      }
+    },
+    "given": {
+      "velocityWorld": [5.0, 1.0],
+      "velocityWorldSymbol": "[v]_W",
+      "units": "m/s"
+    },
+    "coordinateCalculation": {
+      "method": "R là orthonormal basis nên dùng dot products.",
+      "longitudinal": {
+        "formula": "v_parallel = v · t",
+        "calculation": "5(0.6) + 1(0.8)",
+        "value": 3.8,
+        "units": "m/s"
+      },
+      "lateralLeft": {
+        "formula": "v_left = v · n",
+        "calculation": "5(-0.8) + 1(0.6)",
+        "value": -3.4,
+        "units": "m/s"
+      },
+      "velocityRoute": [3.8, -3.4],
+      "velocityRouteSymbol": "[v]_R",
+      "interpretation": "UGV có thành phần 3.8 m/s theo chiều tiến của route tangent và 3.4 m/s về phía phải tuyến vì left-normal coordinate mang dấu âm."
+    },
+    "reconstruction": {
+      "formula": "[v]_W = P_{W<-R}[v]_R = 3.8t - 3.4n",
+      "longitudinalContributionWorld": [2.28, 3.04],
+      "lateralContributionWorld": [2.72, -2.04],
+      "reconstructedVelocityWorld": [5.0, 1.0],
+      "residualWorld": [0.0, 0.0],
+      "residualNorm": 0.0,
+      "units": "m/s",
+      "status": "exact_pass"
+    },
+    "invariantChecks": {
+      "worldNormSquared": 26.0,
+      "routeNormSquared": 26.0,
+      "worldSpeed": 5.0990195135927845,
+      "routeCoordinateNorm": 5.0990195135927845,
+      "normPreserved": true,
+      "reason": "P_{W<-R} là orthonormal transform."
+    },
+    "basisOrderTest": {
+      "swappedBasis": "R_swap = (n, t)",
+      "swappedCoordinates": [-3.4, 3.8],
+      "reconstructedVelocityWorld": [5.0, 1.0],
+      "lesson": "Cùng vector và cùng hai hướng nhưng đổi order thì coordinate tuple phải đổi order tương ứng. Giữ tuple cũ sau khi đảo cột sẽ tạo vector sai."
+    },
+    "normalConventionTest": {
+      "rightNormal": [0.8, -0.6],
+      "rightNormalBasis": "R_right = (t, n_right)",
+      "rightNormalCoordinates": [3.8, 3.4],
+      "reconstructedVelocityWorld": [5.0, 1.0],
+      "lesson": "Đổi left-normal sang right-normal làm đổi dấu lateral coordinate nhưng không đổi vector vật lý."
+    },
+    "failureTests": [
+      {
+        "id": "FAIL_MIXED_FRAME",
+        "mistake": "Đọc [3.8,-3.4]^T như world coordinates thay vì route coordinates.",
+        "wrongWorldVector": [3.8, -3.4],
+        "errorVector": [-1.2, -4.4],
+        "errorNorm": 4.560701700396552,
+        "diagnosis": "Shape và units vẫn giống, nhưng basis metadata sai nên vector vật lý bị thay đổi.",
+        "requiredAction": "Gắn frame ID và transform về cùng basis trước khi so sánh hoặc điều khiển."
+      },
+      {
+        "id": "FAIL_REVERSED_TRANSFORM",
+        "mistake": "Dùng P_{R<-W}=P_{W<-R}^T theo chiều ngược để reconstruct route coordinates thành world coordinates.",
+        "wrongWorldVector": [-0.44, -5.08],
+        "errorNorm": 8.158431221748456,
+        "diagnosis": "Một orthonormal matrix có transpose là inverse, nhưng source và target direction vẫn phải đúng.",
+        "requiredAction": "Log transform direction và kiểm source/target frame IDs."
+      },
+      {
+        "id": "FAIL_NON_UNIT_DIRECTIONS",
+        "mistake": "Dùng q=(3,4), m=(-4,3) như unit basis rồi lấy raw dot products làm coordinates.",
+        "rawDotCoefficients": [19.0, -17.0],
+        "wrongReconstruction": [125.0, 25.0],
+        "correctOrthogonalNonUnitCoefficients": [0.76, -0.68],
+        "correctReconstruction": [5.0, 1.0],
+        "diagnosis": "Orthogonal chưa đủ; khi norm không bằng 1 phải chia cho b_i · b_i.",
+        "requiredAction": "Kiểm norm trước shortcut hoặc normalize basis có kiểm soát."
+      },
+      {
+        "id": "FAIL_STALE_BASIS",
+        "mistake": "Dùng route basis từ thời điểm hoặc matched route point khác.",
+        "diagnosis": "Kết quả có thể số học hợp lệ nhưng không còn mô tả cùng sự kiện hình học.",
+        "requiredAction": "Kiểm vector timestamp, basis timestamp, transform age và matched arc-length."
+      }
     ],
-    "note": "Chưa được xem là worked case hoàn chỉnh cho tới PASS 07."
+    "nearDependenceContrast": {
+      "purpose": "Tách riêng khỏi route basis trực chuẩn để minh họa algebraically valid nhưng numerically fragile.",
+      "basis": [[1.0, 0.0], [1.0, 0.001]],
+      "targetVector": [5.0, 1.0],
+      "exactCoordinates": [-995.0, 1000.0],
+      "perturbedTargetVector": [5.0, 1.001],
+      "perturbedCoordinates": [-996.0, 1001.0],
+      "inputPerturbation": [0.0, 0.001],
+      "coordinateChange": [-1.0, 1.0],
+      "reconstructionResidualBefore": 0.0,
+      "reconstructionResidualAfter": 0.0,
+      "lesson": "Residual zero và uniqueness không bảo đảm coefficients ổn định; large canceling coefficients là cảnh báo near dependence."
+    },
+    "decisionLogic": [
+      "Chỉ dùng route coordinates khi tangent hợp lệ, basis trực chuẩn, frame IDs đúng và timestamps khớp.",
+      "Dấu âm của v_left chỉ được diễn giải sau khi normal convention đã được khai báo.",
+      "Route coordinates giúp tách chuyển động dọc và ngang, nhưng không tự suy ra lateral position error hoặc controller stability.",
+      "Nếu reconstruction không đạt tolerance, kiểm order, frame, units, transform direction và timestamps trước khi kết luận vector nằm ngoài span.",
+      "Nếu coefficients rất lớn và triệt tiêu nhau, báo near-dependence risk dù residual nhỏ."
+    ],
+    "reusableOutputs": {
+      "vectorWorld": [5.0, 1.0],
+      "coordinateRoute": [3.8, -3.4],
+      "transformWFromR": [[0.6, -0.8], [0.8, 0.6]],
+      "reconstructedWorld": [5.0, 1.0],
+      "residualNorm": 0.0,
+      "speedInvariant": 5.0990195135927845,
+      "metadataRequired": [
+        "vector timestamp",
+        "basis timestamp",
+        "source and target frame IDs",
+        "basis order",
+        "normal convention",
+        "units",
+        "matched route location",
+        "transform direction"
+      ]
+    },
+    "qualityGate": {
+      "samePhysicalVector": true,
+      "orderedBasisDeclared": true,
+      "unitsDeclared": true,
+      "framesDeclared": true,
+      "timestampsMatched": true,
+      "orthonormalityVerified": true,
+      "coordinateCalculationVerified": true,
+      "reconstructionVerified": true,
+      "normInvariantVerified": true,
+      "basisOrderTestVerified": true,
+      "signConventionTestVerified": true,
+      "mixedFrameFailureVerified": true,
+      "nearDependenceKeptSeparate": true,
+      "affinePointConfusionAvoided": true,
+      "status": "pass_07_verified"
+    }
   },
   "engineeringExamples": [
     {
@@ -874,10 +1055,10 @@
       "Basis, spanning family, independent family, dictionary và feature set được phân biệt.",
       "Assumption gate bao phủ target space, order, units, frame, spanning, independence, orthonormality, residual và compatibility.",
       "Không dạy sâu determinant, inverse, elimination, rank-nullity, least squares, PCA hoặc SVD.",
-      "Worked case, misconception, assessment và implementation contract được đánh dấu provisional cho passes 7–9.",
+      "Worked case hoàn chỉnh ở PASS 07; misconception, assessment và implementation contract vẫn được dành cho passes 8–9.",
       "Không chứa UI/runtime, slide numbering, CSS, animation hoặc layout instructions."
     ],
-    "reviewStatus": "math_review_required",
-    "nextPass": "PASS_05_INDEPENDENT_MATHEMATICS_REVIEW"
+    "reviewStatus": "passes_05_07_complete_pass_08_required",
+    "nextPass": "PASS_08_MISCONCEPTIONS_AND_FAILURE_MODES"
   }
 }
