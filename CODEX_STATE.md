@@ -1,8 +1,8 @@
 # CODEX_STATE
 
-Current task: `THEORY_FULL_VIEW_C01_L04_PASS_12`
+Current task: `THEORY_FORMULA_LAYOUT_NORMALIZATION_C01_L04_PASS_13`
 
-Status: `PASS_12_FULL_VIEW_APPROVED`
+Status: `PASS_13_FORMULA_LAYOUT_NORMALIZATION_APPROVED`
 
 Date: 2026-07-08
 Branch: `main`
@@ -25,7 +25,7 @@ Do not skip ahead.
 - One Codex session should handle one Pass or one tightly scoped objective.
 
 ## Per-lesson workflow
-Each complete lesson passes through 14 passes and 73 controlled steps.
+Each lesson passes through 14 passes and 73 controlled steps.
 
 Core-content passes:
 1. Scope lock — 4 steps
@@ -46,10 +46,15 @@ Presentation and integration passes:
 14. Final integration and acceptance — 7 steps
 
 ## Progress for §1.4
-- Completed: 12/14 passes
-- Remaining: 2/14 passes
-- Completed steps: 61/73
-- Remaining steps: 12/73
+- Completed: 13/14 passes
+- Remaining: 1/14 pass
+- Completed steps: 66/73
+- Remaining steps: 7/73
+
+## Lesson identity
+- Lesson: `§1.4 · Cơ sở, span và tọa độ`.
+- Lesson ID: `MATH-VN-C01-vector_trong_khong_gian_-L04-basis-span-coordinate-e140`.
+- Structural gold standard: `subjects/math/data/theory_core/theory_core_c01_l01.json`.
 
 ## Approved artifacts
 
@@ -94,275 +99,249 @@ Presentation and integration passes:
 - Diagram mappings: 8
 - Cautions: 14
 - Retrieval anchors: 9
+
+### Formula and layout normalization
+- Path: `subjects/math/data/theory_normalization/theory_normalization_c01_l04.json`
+- Version: `NORMALIZATION_C01_L04_V1_APPROVED`
+- Status: `approved_across_core_reference_slideshow_full_view`
+- Quality gate: `formula_layout_normalization_approved`
+- Manifest: `subjects/math/data/theory_normalization/theory_normalization_manifest.json`
+- Manifest version: `NORMALIZATION_MANIFEST_V1_1`
+- Canonical formulas: 12
+- Canonical notation entries: 11
+- Resolved display variants: 11
+- Unit and quantity rules: 5
+- Semantic conflicts: 0
+- Source artifacts rewritten: 0
 - Reader baseline: `E235_READER_PRO_FORMULA_STANDARD_R2`
 
 ## Runtime and presentation boundary
 - `subjects/math/data/theory_lecture_content.json` remains unchanged.
 - No HTML, CSS, JavaScript, runtime loader or Reader Pro file was changed.
-- E235 remains unchanged and is recorded only as a semantic compatibility baseline.
+- E235 remains unchanged and is referenced only as a semantic compatibility baseline.
 - E236, E237 and E238 remain disabled.
-- PASS 12 created full-view data only.
-
-## Lesson identity
-- Lesson: `§1.4 · Cơ sở, span và tọa độ`.
-- Lesson ID: `MATH-VN-C01-vector_trong_khong_gian_-L04-basis-span-coordinate-e140`.
-- Structural gold standard: `subjects/math/data/theory_core/theory_core_c01_l01.json`.
-- Approved core source: `subjects/math/data/theory_core/theory_core_c01_l04.json`.
-- Approved reference source: `subjects/math/data/theory_reference/theory_reference_c01_l04.json`.
-- Approved slideshow source: `subjects/math/data/theory_slideshow/theory_slideshow_c01_l04.json`.
+- PASS 13 created a canonical normalization overlay and manifest only.
 
 # PASSES 01–09 — CORE PHASE
 Status: COMPLETE AND APPROVED.
 
 Delivered:
-- scope and academic map;
-- pedagogical spine;
+- scope, academic map and pedagogical spine;
 - 10 learning outcomes;
 - 16 notation rules;
 - 9 concepts and 9 mechanisms;
 - 12 formula contracts and 12 assumption gates;
-- mathematics and engineering-model reviews;
+- mathematics and engineering reviews;
 - verified UGV worked case;
 - 20 misconceptions and 18 failure modes;
-- assessment blueprint, scoring policy and implementation contract;
-- approved core and core manifest registration.
+- assessment and implementation contract.
 
 # PASS 10 — `THAM KHẢO THÊM`
 Status: COMPLETE AND APPROVED.
 
-Delivered:
-- concept map and notation lookup;
-- 12-row formula table;
-- family comparison and method selection;
-- assumption checklist and quick failure guide;
-- verified UGV snapshot;
-- engineering transfer and mastery compass;
-- reference manifest registration.
+Delivered compact concept, formula, comparison, method, assumption, failure, UGV and transfer reference layers.
 
 # PASS 11 — SLIDESHOW
 Status: COMPLETE AND APPROVED.
 
-Delivered:
-- 22 slides in four narrative arcs;
-- F1–F12 distributed by learning beat;
-- 8 semantic diagram specifications;
-- 9 retrieval checks;
-- 16 misconception intercepts;
-- verified UGV slide sequence;
-- slideshow manifest registration.
+Delivered 22 slides, four arcs, 8 diagram specs, 9 retrieval checks and 16 misconception intercepts.
 
-# C01-L04 PASS 12 — `XEM ĐẦY ĐỦ`
+# PASS 12 — `XEM ĐẦY ĐỦ`
+Status: COMPLETE AND APPROVED.
 
-## Step 1 — Full-view information architecture
+Delivered 11 reading sections, 12 formula mappings, 8 diagrams, 14 cautions and 9 retrieval anchors.
 
-Created 11 reading sections:
-1. thesis and reading map;
-2. linear combination and span;
-3. independence and basis;
-4. ordered basis, coordinates and reconstruction;
-5. general-basis coordinate solve;
-6. orthonormal and orthogonal non-unit methods;
-7. change of basis;
-8. complete UGV world-route worked case;
-9. failure modes, redundancy and near dependence;
-10. robot, signal, feature and embedding transfer;
-11. decision checklist and mastery close.
+# C01-L04 PASS 13 — FORMULA AND LAYOUT NORMALIZATION
 
-The full view is a complete reading flow, not a concatenation of the core, reference and slideshow files.
+## Step 1 — Cross-layer formula and notation inventory
 
-Source precedence is locked:
-1. approved core;
-2. approved reference;
-3. approved slideshow.
+Inspected:
+- core `notationRules` and `mainFormulas`;
+- reference `notationLookup` and `formulaTable`;
+- slideshow formula references and formula-bearing content blocks;
+- full-view `formulaRegistry`, reading-flow formulas and Reader compatibility contract.
 
-Core remains the source of truth.
+Audit result:
+- semantic conflicts: 0;
+- worked-case conflicts: 0;
+- formula-ID conflicts: 0;
+- notation-meaning conflicts: 0;
+- display variants: 11.
 
-## Step 2 — Complete reading flow
+The differences were lexical or display-level:
+- spaces around operators;
+- `such that` versus colon notation;
+- `z_i=0 for all i` versus vector statement `z=0`;
+- ASCII `<-` versus semantic target-source arrow;
+- ordered family `B` versus column matrix `B_mat`;
+- text `delta_ij` versus δ notation;
+- dot-product spacing;
+- residual norm versus squared norm wording;
+- units and degree/time formatting;
+- artifact-specific density.
 
-Created a continuous reading structure with:
-- section leads;
-- definitions;
-- explanations;
-- formulas with meaning and conditions;
-- derivations;
-- examples;
-- comparisons;
-- warnings;
-- worked steps;
-- checks;
-- engineering transfer;
-- closing summaries.
+No approved source needed rewriting.
 
-The full view does not copy:
-- the complete assessment blueprint;
-- Python reference implementation;
-- telemetry contract;
-- CSS or runtime behavior;
-- every source paragraph verbatim.
-
-## Step 3 — Formula, diagram, worked-case, caution and retrieval mapping
-
-Created a 12-entry formula registry covering F1–F12.
-
-Every formula records:
-- formula text;
-- target section;
-- mathematical meaning;
-- application condition.
-
-Mapped all 8 semantic slideshow diagrams:
-1. same vector in two coordinate grids;
-2. linear-combination contributions;
-3. one-direction versus two-direction span;
-4. redundant third vector;
-5. ordered-basis swap;
-6. UGV world-route basis;
-7. left/right normal convention;
-8. near-parallel basis sensitivity.
-
-Created 14 caution entries covering:
-- tuple versus vector;
-- basis-change invariance;
-- span versus uniqueness;
-- vector count versus independent directions;
-- solver output versus uniqueness;
-- basis order and sign convention;
-- residual versus model truth;
-- arbitrary-basis dot-product misuse;
-- orthogonal versus orthonormal;
-- transform direction and version;
-- route frame versus body frame;
-- free vector versus affine point;
-- exactness versus stability;
-- equal shape/dimension versus compatibility.
-
-Mapped 9 retrieval anchors into the reading flow.
-
-### Verified UGV worked case
-- Object: free velocity vector.
-- World coordinates: `[v]_W=(5,1)^T m/s`.
-- Route tangent: `t=(0.6,0.8)`.
-- Left normal: `n=(-0.8,0.6)`.
-- Basis order: `(parallel,left)`.
-- Route heading: `53.1301°`.
-- Robot yaw: `50°`.
-- Transform age limit: `20 ms`.
-- Route coordinates: `[v]_R=(3.8,-3.4)^T m/s`.
-- Interpretation: `3.8 m/s` along route and `3.4 m/s` to the right.
-- Transform: `P_{W<-R}=[[0.6,-0.8],[0.8,0.6]]`.
-- Reconstruction: `(5,1)`.
-- Residual norm: `0`.
-- Norm squared: `26` in both representations.
-- Reordered basis `(n,t)`: `(-3.4,3.8)`.
-- Right-normal lateral coordinate: `+3.4`.
-
-## Step 4 — Full-view data contract
-
-Created schema:
-`bauman_math_theory_full_view_v1`.
-
-Contract requires:
-- complete reading flow;
-- presentation data only;
-- runtime independence;
-- approved source precedence;
-- no new mathematics;
-- no contradiction with sources;
-- no full assessment duplication;
-- no implementation code;
-- formula meaning, conditions and warnings;
-- worked-case reconstruction;
-- source traceability;
-- no CSS, JavaScript, runtime wiring or Reader Pro patch.
-
-### E235 compatibility
-
-Recorded baseline:
-`E235_READER_PRO_FORMULA_STANDARD_R2`.
-
-Compatibility is semantic only:
-- symbols and indices remain semantic;
-- transform directions remain explicit;
-- formulas remain separate from prose that could alter meaning;
-- theoretical blocks contain no implementation code;
-- block vocabulary is limited to stable content types.
-
-No E235 source file was opened for modification or changed.
-
-## Step 5 — Verification
-
-Verified:
-- source paths and versions match approved core, reference and slideshow;
-- lesson ID and title match;
-- information architecture and reading flow both contain FV01–FV11;
-- C1–C9 are covered;
-- F1–F12 are covered;
-- MECH1–MECH9 are covered;
-- LO1–LO10 are covered;
-- all four slideshow arcs are represented;
-- formula registry count is 12;
-- diagram mapping count is 8;
-- caution count is 14;
-- retrieval anchor count is 9;
-- UGV numbers, signs, direction and invariants match approved sources;
-- vector/coordinate, existence/uniqueness, exactness/stability and compatibility/dimension distinctions remain visible;
-- no UI/runtime source was modified;
-- quality gate is `full_view_review_approved`;
-- next pass is `PASS_13_FORMULA_LAYOUT_NORMALIZATION`.
-
-## Full-view manifest
+## Step 2 — Canonical semantic notation and formula contract
 
 Created:
-`subjects/math/data/theory_full_view/theory_full_view_manifest.json`.
+`subjects/math/data/theory_normalization/theory_normalization_c01_l04.json`.
 
-Manifest record contains:
-- C01/L04 identity;
-- all three approved source versions;
-- E235 semantic baseline;
-- 11 sections;
-- 12 formulas;
-- 8 diagrams;
-- 14 cautions;
-- 9 retrieval anchors;
-- approved status.
+Canonical notation contains 11 semantic entries:
+- target space;
+- basis vector;
+- ordered family;
+- coefficient column;
+- coordinate column;
+- basis matrix;
+- residual;
+- standard basis;
+- coordinate transform;
+- Kronecker delta;
+- Euclidean norm.
 
-## PASS 12 verdict
-PASS. FULL-VIEW DATA APPROVED AND REGISTERED.
+Each entry records:
+- source aliases;
+- canonical plain text;
+- display LaTeX;
+- semantic meaning.
 
-No browser smoke test is claimed because PASS 12 created presentation-independent JSON only.
+Created one canonical entry for each F1–F12 with:
+- stable formula ID;
+- canonical text;
+- display LaTeX;
+- accepted source aliases;
+- meaning;
+- application condition.
+
+Core meaning remains authoritative.
+
+## Step 3 — Normalize arrows, indices, matrices, vectors, units and tolerance wording
+
+Canonical decisions:
+- display vectors in bold when renderer support exists;
+- keep ordered family `B` distinct from its column matrix `B_mat` or bold matrix B;
+- use vector zero in vector equations;
+- use `∈`, `∃`, `⇔` and `⇒` for display mathematics;
+- use `P_{target←source}` and never infer direction from prose;
+- keep `[v]_B` intact as one semantic token;
+- keep transpose on the complete coordinate tuple;
+- use centered dot for inner product;
+- distinguish residual norm from squared vector norm;
+- do not invent a fixed tolerance without scale and source.
+
+Unit rules:
+- velocity: `m/s`, display equivalent `m s^{-1}`;
+- angle: degrees with route heading and robot yaw kept distinct;
+- time: `ms`, kept in metadata/prose rather than coordinate formulas;
+- squared velocity norm: label as squared quantity;
+- dimensionless directions: only when the physical model declares them dimensionless.
+
+F9 policy:
+- orthonormal shortcut remains F9;
+- orthogonal non-unit quotient stays a method condition;
+- no F13 was introduced.
+
+UGV values remain unchanged:
+- transform direction `W←R`;
+- coordinate order `(parallel,left)`;
+- residual norm `0`;
+- norm squared `26`.
+
+## Step 4 — Layout-density and block-integrity contract
+
+Recorded E235 baseline:
+`E235_READER_PRO_FORMULA_STANDARD_R2`.
+
+Global semantic layout rules:
+- one primary mathematical claim per formula block;
+- meaning and conditions remain adjacent to their formula;
+- warnings remain attached to the constrained formula/example;
+- do not split coordinate tokens, matrix rows or transform subscripts across blocks;
+- examples separate setup, calculation, result and interpretation;
+- ordinary sections do not imitate slide numbering;
+- repeat a formula only when the new block performs a new derivation or check.
+
+Layer profiles:
+- core: complete semantic contract;
+- reference: one compact formula per row;
+- slideshow: one learning beat and normally one main formula per slide;
+- full view: continuous reading with three to six semantic blocks per ordinary section.
+
+FV08 is the explicit worked-case exception and may use numbered steps.
+
+No pixel, CSS, JavaScript or animation rule was introduced.
+
+## Step 5 — Cross-layer verification
+
+Verified:
+- all four source versions match;
+- F1–F12 are present exactly once in the canonical registry;
+- 11 canonical notation keys are unique;
+- 11 display variants have explicit resolutions;
+- five unit rules are present;
+- ordered family, matrix and coordinates remain distinct;
+- transform direction is explicit;
+- vector zero is not conflated with scalar zero;
+- no new formula ID exists;
+- no source artifact was rewritten;
+- no Reader Pro or runtime file changed;
+- quality gate is `formula_layout_normalization_approved`;
+- next pass is `PASS_14_FINAL_INTEGRATION_ACCEPTANCE`.
+
+## Normalization manifest
+
+Created:
+`subjects/math/data/theory_normalization/theory_normalization_manifest.json`.
+
+Manifest registers:
+- all four approved source versions;
+- 12 canonical formulas;
+- 11 notation entries;
+- 11 display variants;
+- 5 unit rules;
+- zero semantic conflicts;
+- zero source rewrites;
+- E235 semantic baseline.
+
+## PASS 13 verdict
+PASS. FORMULA AND LAYOUT NORMALIZATION APPROVED AND REGISTERED.
+
+No browser smoke test is claimed because PASS 13 changed presentation-independent JSON only.
 
 ## Files read
 - `CODEX_STATE.md`
 - `subjects/math/data/theory_core/theory_core_c01_l04.json`
 - `subjects/math/data/theory_reference/theory_reference_c01_l04.json`
 - `subjects/math/data/theory_slideshow/theory_slideshow_c01_l04.json`
-
-Repository searches confirmed that no prior standardized `theory_full_view` schema existed.
+- `subjects/math/data/theory_full_view/theory_full_view_c01_l04.json`
 
 ## Files created
-- `subjects/math/data/theory_full_view/theory_full_view_c01_l04.json`
-- `subjects/math/data/theory_full_view/theory_full_view_manifest.json`
+- `subjects/math/data/theory_normalization/theory_normalization_c01_l04.json`
+- `subjects/math/data/theory_normalization/theory_normalization_manifest.json`
 
 ## Files updated
 - `CODEX_STATE.md`
 
 ## Next task
-PASS 13/14 — Formula and layout normalization, consisting of 5 steps:
-1. inventory formulas and notation across core, reference, slideshow and full view;
-2. create a canonical semantic notation and formula-display contract;
-3. normalize source/target arrows, subscripts, superscripts, matrices, vectors, units and tolerance wording in data artifacts;
-4. define layout-density and content-block constraints compatible with E235 without changing runtime;
-5. verify consistency across all four approved artifact layers.
+PASS 14/14 — Final integration and acceptance, consisting of 7 steps:
+1. verify the complete artifact graph and source precedence;
+2. define one lesson integration record for core, reference, slideshow, full view and normalization;
+3. validate IDs, versions, counts, traceability and UGV invariants;
+4. inspect existing integration/loader conventions narrowly;
+5. bind data only when a safe existing convention is confirmed, without redesigning Reader Pro;
+6. perform appropriate static or browser verification if runtime binding occurs;
+7. record final acceptance, unresolved limitations and handoff state.
 
-PASS 13 may modify the four C01-L04 data artifacts and their manifests only when normalization is required. It must not modify `theory_lecture_content.json`, Reader Pro, HTML, CSS, JavaScript, E235, E236, E237 or E238.
+PASS 14 must not redesign UI. E235 remains the visual baseline. E236, E237 and E238 remain disabled.
 
 ## Relevant commits
 - C01-L04 core approval: `ba57f4c302200d30506cd586892dfb0deb170f51`
 - C01-L04 reference table: `565e3b1bc04d47527c390e1e6c67784c46e30d72`
 - C01-L04 slideshow verified: `982d7535f30d314361aaa541fb0bf8c9a8945bcb`
-- C01-L04 slideshow manifest: `ef70fc7a116686d1a2652fef810476e0bd5a5ea4`
 - C01-L04 full view: `ddc561ce4d98b7f02d24a00c6e4ac4fede97d382`
-- C01-L04 full-view manifest: `47fcfa672a6446aea695261da6aeb5abc737ad15`
+- C01-L04 normalization overlay: `6595960f5c893ad2e5372d6860cfb66aa4d678a1`
+- C01-L04 normalization manifest: `96391421572ad0610588271148ff435dea992311`
 
 ## Persistent handoff
 - `HANDOFF_THEORY_CORE.md`
