@@ -1,8 +1,8 @@
 # CODEX_STATE
 
-Current task: `THEORY_C01_L06_MISCONCEPTION_MAP_PASS_06`
+Current task: `THEORY_C01_L06_CORE_CONTENT_PASS_07`
 
-Status: `PASS_05_ENGINEERING_CASE_VERIFIED`
+Status: `PASS_06_MISCONCEPTION_MAP_COMPLETE`
 
 Date: 2026-07-09
 Branch: `main`
@@ -80,8 +80,8 @@ Lesson title:
 `§1.6 · Từ vector sang ma trận dữ liệu`
 
 Progress:
-- academic passes complete: `5/14`;
-- academic passes remaining: `9/14`;
+- academic passes complete: `6/14`;
+- academic passes remaining: `8/14`;
 - runtime integration: not started;
 - durable runtime content: unchanged baseline;
 - browser QA: not applicable before runtime integration.
@@ -159,15 +159,28 @@ Progress:
 - Scale vector, fault threshold, PCA result and physical mode count remain unlocked/prohibited.
 - Runtime content, readers, manifest and E235 unchanged.
 
+### Pass 6 · Misconception map
+- Status: `PASS_06_MISCONCEPTION_MAP_COMPLETE`.
+- File: `subjects/math/THEORY_C01_L06_MISCONCEPTION_MAP.md`.
+- Misconceptions: `M01–M18`.
+- Failure classes: conceptual, notation, API, metadata, engineering inference and scope.
+- All four invalid case variants are mapped to explicit misconceptions and expected detections.
+- Orientation, one-dimensional transpose, stacking, schema, units, slicing and preprocessing failures are locked.
+- Covariance, rank, PCA and physical-fault overclaims are explicitly blocked.
+- Retrieval distribution and code-audit requirements are locked.
+- Runtime content, readers, manifest and E235 unchanged.
+
 ## Current task requirements
 
-`THEORY_C01_L06_MISCONCEPTION_MAP_PASS_06`
+`THEORY_C01_L06_CORE_CONTENT_PASS_07`
 
-Pass 6 must:
-- convert M1–M8 and the four invalid case variants into a structured misconception map;
-- define trigger, wrong inference, correction, evidence and retrieval prompt for each misconception;
-- include shape-correct but schema-wrong examples;
-- block covariance, rank, PCA and fault-diagnosis overclaims;
-- map every misconception to LO1–LO9, C01–C24, F01–F18 and case invariants;
-- distinguish conceptual, notation, API, metadata and engineering failure classes;
+Pass 7 must:
+- create the canonical theory core artifact for §1.6;
+- map every section to LO1–LO9, C01–C24, F01–F18, M01–M18 and CASE_C01_L06_V1_LOCKED;
+- teach the governing question, canonical orientation, compatibility gate, assembly, indexing, slicing, transpose, mean and centering;
+- use the locked UGV case without changing any numeric value, feature order, unit, observation ID or timestamp;
+- distinguish core, API-equivalent and preview content;
+- include retrieval checks and misconception intercepts throughout the core;
+- defer missing/outlier policy, scaling choice, rank interpretation, SVD and PCA;
+- produce source sections that can later expand to at least 16 slides without compression;
 - avoid runtime modification.
