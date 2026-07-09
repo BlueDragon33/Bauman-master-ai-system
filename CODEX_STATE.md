@@ -1,8 +1,8 @@
 # CODEX_STATE
 
-Current task: `THEORY_C01_L06_FORMULA_REGISTRY_PASS_04`
+Current task: `THEORY_C01_L06_ENGINEERING_CASE_PASS_05`
 
-Status: `PASS_03_SOURCE_MAP_TERMINOLOGY_COMPLETE`
+Status: `PASS_04_FORMULA_REGISTRY_COMPLETE`
 
 Date: 2026-07-09
 Branch: `main`
@@ -80,8 +80,8 @@ Lesson title:
 `§1.6 · Từ vector sang ma trận dữ liệu`
 
 Progress:
-- academic passes complete: `3/14`;
-- academic passes remaining: `11/14`;
+- academic passes complete: `4/14`;
+- academic passes remaining: `10/14`;
 - runtime integration: not started;
 - durable runtime content: unchanged baseline;
 - browser QA: not applicable before runtime integration.
@@ -131,18 +131,33 @@ Progress:
 - Rank, singular-value, PCA, missing/outlier policy and physical-mode claims are deferred or rewritten.
 - Runtime content, readers, manifest and E235 unchanged.
 
+### Pass 4 · Formula registry
+- Status: `PASS_04_FORMULA_REGISTRY_COMPLETE`.
+- File: `subjects/math/THEORY_C01_L06_FORMULA_REGISTRY.md`.
+- Formula IDs: `F01–F18`.
+- Core coverage: matrix assembly, entry/row/column/block access, transpose conversion, linear score, mean and centering.
+- API equivalents: row-wise and column-wise NumPy stacking.
+- One-dimensional transpose trap and valid reshape forms are locked.
+- Feature and observation Gram matrices are preview-only.
+- Scaling, covariance, feature transformation and rank are preview-only and assumption-scoped.
+- SVD and PCA formulas remain deferred.
+- Dimensional failures `D01–D05` and forbidden shortcuts are locked.
+- Numeric case values remain unlocked until Pass 5.
+- Runtime content, readers, manifest and E235 unchanged.
+
 ## Current task requirements
 
-`THEORY_C01_L06_FORMULA_REGISTRY_PASS_04`
+`THEORY_C01_L06_ENGINEERING_CASE_PASS_05`
 
-Pass 4 must:
-- create a canonical formula registry with stable formula IDs;
-- state shape, assumptions, convention owner and claim references beside every formula;
-- cover matrix assembly, entry/row/column extraction, transpose conversion, centering and derived Gram shapes;
-- distinguish mathematical identities from NumPy expressions;
-- include the one-dimensional transpose trap and valid reshape forms;
-- keep covariance, rank, SVD and PCA formulas preview-only or deferred unless explicitly assumption-scoped;
-- define forbidden formula shortcuts and dimensional failure examples;
-- map every formula to LO1–LO9 and C01–C24;
-- avoid numeric case values before Pass 5;
+Pass 5 must:
+- create one deterministic `UGV_TELEMETRY_8X6` case artifact;
+- lock all eight observation IDs, timestamps and six-feature values;
+- preserve the fixed feature order and units from Pass 2;
+- include one valid reference matrix and explicit invalid variants for swapped columns, wrong units, wrong orientation and schema mismatch;
+- compute and verify row, column, block, transpose, mean and centering invariants;
+- keep missing values absent in the canonical case;
+- define any scale vector only if justified and mark it as case-specific;
+- avoid claiming physical modes, faults, PCA components or universal thresholds;
+- include deterministic code-verification outputs and tolerances;
+- map case invariants to F01–F18, C01–C24 and LO1–LO9;
 - avoid runtime modification.
