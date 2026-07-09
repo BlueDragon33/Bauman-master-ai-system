@@ -16,10 +16,14 @@
   function registry(){return window.BAUMAN_MATH_THEORY_ARTIFACT_REGISTRY_E244||null;}
 
   function candidates(){
-    var s=state(),values=[];
-    ['lessonId','currentLessonId','selectedLessonId','e129LessonId','theoryLessonId','activeLessonId','lessonTitle','currentLessonTitle','selectedTheoryTitle'].forEach(function(k){if(s&&s[k])values.push(String(s[k]));});
-    var d=deck();
-    if(d){['[data-e210-lesson-id]','.e132-clean-side small','.e132-clean-main h1','.e210-source-line'].forEach(function(sel){var n=d.querySelector(sel);if(n)values.push(text(n));});}
+    var s=state(),values=[],d=deck(),shell=document.querySelector('.e129-theory-shell.presenting')||document.querySelector('.e129-theory-shell');
+    if(d){
+      ['data-e243-lesson-id','data-e210-active-lesson-id','data-lesson-id'].forEach(function(k){var v=d.getAttribute(k);if(v)values.push(String(v));});
+      var chip=d.querySelector('[data-e210-lesson-id]');if(chip){var chipId=chip.getAttribute('data-e210-lesson-id');if(chipId)values.push(String(chipId));}
+    }
+    if(shell){var current=shell.querySelector('[data-current-lesson]');if(current){var visible=current.getAttribute('data-current-lesson');if(visible)values.push(String(visible));}}
+    ['e129LessonId','theoryLessonId','currentLessonId','selectedLessonId','activeLessonId','lessonId','lessonTitle','currentLessonTitle','selectedTheoryTitle'].forEach(function(k){if(s&&s[k])values.push(String(s[k]));});
+    if(d){['.e132-clean-side small','.e132-clean-main h1','.e210-source-line'].forEach(function(sel){var n=d.querySelector(sel);if(n)values.push(text(n));});}
     return values;
   }
 
@@ -120,6 +124,14 @@
     Array.prototype.slice.call(d.querySelectorAll('.e242-evidence')).forEach(function(n){n.remove();});
   }
 
+  function richnessPresent(d,slide){
+    if(!d||!slide)return false;
+    if(slide.diagramSpec&&!d.querySelector('[data-e242-diagram="'+slide.id+'"]'))return false;
+    if(slide.misconceptionIntercept&&!d.querySelector('[data-e242-misconception="'+slide.id+'"]'))return false;
+    if(slide.retrievalCheck&&!d.querySelector('[data-e242-retrieval="'+slide.id+'"]'))return false;
+    return true;
+  }
+
   function clearOutsideTarget(d){
     if(!d)return;
     clearStale(d);d.removeAttribute('data-e242-richness');d.removeAttribute('data-e242-lesson-id');
@@ -135,7 +147,7 @@
     if(!cache.artifact){load(entry).then(schedule).catch(function(){});return false;}
     var index=currentIndex(d),slide=arr(cache.artifact.slides)[index];if(!slide)return false;
     var key=entry.lessonId+'|'+slide.id+'|'+text(d.querySelector('.e132-clean-main h1'));
-    if(lastKey===key&&d.querySelector('[data-e242-slide="'+slide.id+'"]'))return true;
+    if(lastKey===key&&d.querySelector('[data-e242-slide="'+slide.id+'"]')&&richnessPresent(d,slide))return true;
     lastKey=key;clearStale(d);
     var main=d.querySelector('.e132-clean-main');if(main)main.setAttribute('data-e242-slide',slide.id);
     applyDiagram(d,slide);applyMisconception(d,slide);applyRetrieval(d,slide);
@@ -144,7 +156,7 @@
   }
 
   function schedule(){if(scheduled)return;scheduled=true;requestAnimationFrame(function(){scheduled=false;apply();});}
-  function boot(){ensureStyle();registerOptionalSources();schedule();try{new MutationObserver(schedule).observe(document.body,{childList:true,subtree:true,characterData:true,attributes:true,attributeFilter:['class']});}catch(_){}}
+  function boot(){ensureStyle();registerOptionalSources();schedule();try{new MutationObserver(schedule).observe(document.body,{childList:true,subtree:true,characterData:true,attributes:true,attributeFilter:['class']});}catch(_){} }
 
   window.BAUMAN_MATH_E242_SLIDESHOW_RICHNESS={
     release:RELEASE,
@@ -153,8 +165,9 @@
     load:function(lessonId){var r=registry(),entry=lessonId&&r&&r.get?r.get(lessonId):activeEntry();return load(entry);},
     apply:apply,
     selfCheck:function(){
-      var entry=activeEntry(),cache=entry&&cacheFor(entry),counts=cache&&cache.artifact?countFeatures(arr(cache.artifact.slides)):null;
-      return {ok:!!registry()&&!(cache&&cache.error),release:RELEASE,multiLesson:true,activeLessonId:entry&&entry.lessonId||'',loaded:!!(cache&&cache.artifact),counts:counts,expected:entry&&entry.slideshow&&entry.slideshow.expected||null,currentSlide:deck()&&deck().querySelector('.e132-clean-main')&&deck().querySelector('.e132-clean-main').getAttribute('data-e242-slide'),newSlideshowEngineCreated:false,e235Modified:false,error:cache&&cache.error||null};
+      var entry=activeEntry(),cache=entry&&cacheFor(entry),counts=cache&&cache.artifact?countFeatures(arr(cache.artifact.slides)):null,slide=null,d=deck();
+      if(entry&&cache&&cache.artifact&&d)slide=arr(cache.artifact.slides)[currentIndex(d)]||null;
+      return {ok:!!registry()&&!(cache&&cache.error),release:RELEASE,multiLesson:true,activeLessonId:entry&&entry.lessonId||'',loaded:!!(cache&&cache.artifact),counts:counts,expected:entry&&entry.slideshow&&entry.slideshow.expected||null,currentSlide:d&&d.querySelector('.e132-clean-main')&&d.querySelector('.e132-clean-main').getAttribute('data-e242-slide'),richnessPresent:slide?richnessPresent(d,slide):null,newSlideshowEngineCreated:false,e235Modified:false,error:cache&&cache.error||null};
     }
   };
 
