@@ -1,0 +1,172 @@
+{
+  "id": "bauman_math_c01_l05_pass17_diagnostic_v1",
+  "status": "DIAGNOSTIC",
+  "date": "2026-07-09",
+  "node": {
+    "e244": {
+      "returnCode": 0,
+      "output": ""
+    },
+    "e241": {
+      "returnCode": 0,
+      "output": ""
+    },
+    "e242": {
+      "returnCode": 0,
+      "output": ""
+    }
+  },
+  "python": {
+    "status": "FAIL",
+    "error": "JSONDecodeError('Invalid \\\\escape: line 54 column 122 (char 2452)')",
+    "traceback": "Traceback (most recent call last):\n  File \"<stdin>\", line 31, in <module>\n  File \"/usr/lib/python3.10/json/__init__.py\", line 346, in loads\n    return _default_decoder.decode(s)\n  File \"/usr/lib/python3.10/json/decoder.py\", line 337, in decode\n    obj, end = self.raw_decode(s, idx=_w(s, 0).end())\n  File \"/usr/lib/python3.10/json/decoder.py\", line 353, in raw_decode\n    obj, end = self.scan_once(s, idx)\njson.decoder.JSONDecodeError: Invalid \\escape: line 54 column 122 (char 2452)\n",
+    "assertions": [
+      {
+        "name": "registry L04",
+        "pass": true,
+        "detail": null
+      },
+      {
+        "name": "registry L05",
+        "pass": true,
+        "detail": null
+      },
+      {
+        "name": "eight IDs",
+        "pass": true,
+        "detail": [
+          "theory_reference_c01_l04",
+          "theory_full_view_c01_l04",
+          "theory_normalization_c01_l04",
+          "theory_slideshow_c01_l04",
+          "theory_reference_c01_l05",
+          "theory_full_view_c01_l05",
+          "theory_normalization_c01_l05",
+          "theory_slideshow_c01_l05"
+        ]
+      },
+      {
+        "name": "reader registry",
+        "pass": true,
+        "detail": null
+      },
+      {
+        "name": "richness registry",
+        "pass": true,
+        "detail": null
+      },
+      {
+        "name": "index order",
+        "pass": true,
+        "detail": null
+      },
+      {
+        "name": "reference lesson",
+        "pass": true,
+        "detail": [
+          "MATH-VN-C01-vector_trong_khong_gian_-L04-basis-span-coordinate-e140",
+          "MATH-VN-C01-vector_trong_khong_gian_-L04-basis-span-coordinate-e140"
+        ]
+      },
+      {
+        "name": "reference version",
+        "pass": true,
+        "detail": [
+          "REFERENCE_C01_L04_V1_APPROVED",
+          "REFERENCE_C01_L04_V1_APPROVED"
+        ]
+      },
+      {
+        "name": "fullView lesson",
+        "pass": true,
+        "detail": [
+          "MATH-VN-C01-vector_trong_khong_gian_-L04-basis-span-coordinate-e140",
+          "MATH-VN-C01-vector_trong_khong_gian_-L04-basis-span-coordinate-e140"
+        ]
+      },
+      {
+        "name": "fullView version",
+        "pass": true,
+        "detail": [
+          "FULL_VIEW_C01_L04_V1_APPROVED",
+          "FULL_VIEW_C01_L04_V1_APPROVED"
+        ]
+      },
+      {
+        "name": "normalization lesson",
+        "pass": true,
+        "detail": [
+          "MATH-VN-C01-vector_trong_khong_gian_-L04-basis-span-coordinate-e140",
+          "MATH-VN-C01-vector_trong_khong_gian_-L04-basis-span-coordinate-e140"
+        ]
+      },
+      {
+        "name": "normalization version",
+        "pass": true,
+        "detail": [
+          "NORMALIZATION_C01_L04_V1_APPROVED",
+          "NORMALIZATION_C01_L04_V1_APPROVED"
+        ]
+      },
+      {
+        "name": "slideshow lesson",
+        "pass": true,
+        "detail": [
+          "MATH-VN-C01-vector_trong_khong_gian_-L04-basis-span-coordinate-e140",
+          "MATH-VN-C01-vector_trong_khong_gian_-L04-basis-span-coordinate-e140"
+        ]
+      },
+      {
+        "name": "slideshow version",
+        "pass": true,
+        "detail": [
+          "SLIDESHOW_C01_L04_V1_APPROVED",
+          "SLIDESHOW_C01_L04_V1_APPROVED"
+        ]
+      },
+      {
+        "name": "slideshow counts",
+        "pass": true,
+        "detail": [
+          22,
+          8,
+          9,
+          16
+        ]
+      },
+      {
+        "name": "reference lesson",
+        "pass": true,
+        "detail": [
+          "MATH-VN-C01-vector_trong_khong_gian_-L05-subspace-data-representation-e140",
+          "MATH-VN-C01-vector_trong_khong_gian_-L05-subspace-data-representation-e140"
+        ]
+      },
+      {
+        "name": "reference version",
+        "pass": true,
+        "detail": [
+          "REFERENCE_C01_L05_V1_PASS11",
+          "REFERENCE_C01_L05_V1_PASS11"
+        ]
+      },
+      {
+        "name": "fullView lesson",
+        "pass": true,
+        "detail": [
+          "MATH-VN-C01-vector_trong_khong_gian_-L05-subspace-data-representation-e140",
+          "MATH-VN-C01-vector_trong_khong_gian_-L05-subspace-data-representation-e140"
+        ]
+      },
+      {
+        "name": "fullView version",
+        "pass": true,
+        "detail": [
+          "FULL_VIEW_C01_L05_V1_PASS12",
+          "FULL_VIEW_C01_L05_V1_PASS12"
+        ]
+      }
+    ]
+  },
+  "overallPass": false
+}
