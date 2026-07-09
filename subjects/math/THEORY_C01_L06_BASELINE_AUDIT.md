@@ -10,13 +10,45 @@
 
 ## Current runtime inventory
 
+- Slide IDs: absent on all `16` baseline slides.
 - Roles: `{'problem_framing': 1, 'deep_essence': 1, 'counter_intuition': 1, 'real_bridge': 1, 'notation': 1, 'core_formula': 1, 'assumption_gate': 1, 'mini_case': 1, 'interpretation': 1, 'simulation': 1, 'common_mistakes': 1, 'application': 1, 'practice': 1, 'professor_qa': 1, 'bridge': 1, 'takeaway': 1}`
 - Block types: `{'text': 36, 'qa': 18, 'formula': 7, 'code': 3}`
-- Formula references: `0`
-- Formula blocks: `7`
+- Canonical formula references: `0`
+- Raw formula blocks: `7`
 - Code blocks: `3`
 - Q&A blocks: `18`
-- Integration metadata present: `False`
+- Integration metadata present: `false`
+- Academic approval present: `false`
+
+## Source matching
+
+### Exact canonical lesson ID
+
+The recursive exact-ID scan found the canonical §1.6 ID only at:
+
+- `theory_lecture_content.json → $.records[5]`
+
+No canonical lesson-ID match was found in:
+
+- `theory_lecture_frame.json`
+- `lessons.json`
+- `curriculum.json`
+- `chapter_spine.json`
+- `content-manifest.json`
+
+### Semantic anchors
+
+The source-map pass must search and map program-level material using all of these anchors rather than treating exact-ID absence as content absence:
+
+- canonical title: `Từ vector sang ma trận dữ liệu`
+- canonical slug: `vector-to-data-matrix`
+- `MATH-PROG-L02-vector-spaces-linear-maps`
+- `MATH-PROG-L01-linear-algebra-basic`
+- `MATH-PROG-L17-ai-machine-learning-math-foundations`
+- program anchor: `Không gian vectơ và ánh xạ tuyến tính`
+- concepts: `data matrix`, `samples`, `features`, `rank`, `column space`, `row space`, `PCA pipeline`
+
+GitHub code search returned no indexed result for the exact Vietnamese title or canonical slug. This is an indexing limitation, not evidence that the parsed durable record is absent. Program-level candidates may later become mapped sources, but they are not approved lesson truth until an explicit source-map pass records the relationship.
 
 ## Specialist artifact inventory
 
@@ -37,13 +69,14 @@
 - **F01 · INFO**: Durable lesson exists once at record index 5 of 18.
 - **F02 · INFO**: Current runtime deck contains 16 slides. The project contract treats 16 as a minimum, not a target maximum.
 - **F03 · WARNING**: The current deck is a legacy/general baseline and has not passed the lesson-scoped 14-pass academic workflow.
-- **F04 · WARNING**: 11 of 11 specialist lesson artifacts are absent: case, core, workedExamples, lab, assessment, reference, fullView, normalization, slideshow, integrationImport, integrationApproval.
+- **F04 · WARNING**: All 11 specialist lesson artifacts are absent.
 - **F05 · WARNING**: Canonical formula references on runtime slides: 0; raw formula blocks: 7.
 - **F06 · INFO**: Code blocks: 3; Q&A blocks: 18.
 - **F07 · INFO**: Empty/incomplete slide positions: none.
 - **F08 · INFO**: Duplicate slide titles: none.
-- **F09 · INFO**: §1.6 is the bridge from individual vectors to a data matrix; Pass 2 must lock orientation, shape semantics, sample/feature contracts and the boundary with later rank/SVD content before expansion.
-- **F10 · WARNING**: No §1.6 academic acceptance or browser acceptance exists yet. Existing runtime content must not be promoted as approved source of truth.
+- **F09 · INFO**: §1.6 is the bridge from individual vectors to a data matrix. Pass 2 must lock orientation, shape semantics, sample/feature contracts and the boundary with later rank/SVD content before expansion.
+- **F10 · WARNING**: No §1.6 academic or browser acceptance exists. Existing runtime content must not be promoted as approved source of truth.
+- **F11 · WARNING**: No named source outside `theory_lecture_content` exposes the canonical §1.6 lesson ID. Program-level anchors require explicit mapping before supporting academic claims.
 
 ## Scope hazards to lock before expansion
 
@@ -52,14 +85,14 @@
 - A data matrix is not automatically centred, standardized, full-rank or covariance-ready.
 - Stacking vectors requires compatible dimension, schema, units and acquisition contract.
 - Matrix shape alone does not prove semantic compatibility.
-- PCA/SVD/rank should be previewed only as downstream bridges, not allowed to swallow the core lesson.
+- PCA/SVD/rank may be previewed only as downstream bridges, not allowed to swallow the core lesson.
 - Batch, time-window, channel and trajectory matrices are distinct orientations and must not be conflated.
 - Code examples must assert shapes and metadata rather than only produce numeric output.
 
 ## Pass 2 requirements
 
 - Lock prerequisite gates inherited from §1.1–§1.5.
-- Define the canonical data contract: observations, features, shape m×n, row/column semantics, units and ordering.
+- Define the canonical data contract: observations, features, shape `m×n`, row/column semantics, units and ordering.
 - Separate vector stacking, matrix notation, indexing, slicing, transpose and batch interpretation.
 - Define learning outcomes and mastery evidence before formulas or slides are expanded.
 - Choose one deterministic engineering dataset for later passes without importing PCA/SVD conclusions prematurely.
