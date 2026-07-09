@@ -1,0 +1,114 @@
+{
+  "id": "bauman_math_c01_l05_runtime_pass17_v1",
+  "schema": "bauman_math_multi_lesson_reader_report_v1",
+  "version": "RUNTIME_PASS17_C01_L05_V1",
+  "status": "PASS_17_MULTI_LESSON_READER_RICHNESS_STATIC_VERIFY_PASS",
+  "date": "2026-07-09",
+  "lessonId": "MATH-VN-C01-vector_trong_khong_gian_-L05-subspace-data-representation-e140",
+  "lessonTitle": "§1.5 · Không gian con và biểu diễn dữ liệu",
+  "verification": {
+    "mode": "node_syntax_pass_plus_direct_connector_schema_and_diff_cross_check",
+    "browserRun": false,
+    "nodeSyntax": {
+      "status": "PASS",
+      "files": [
+        "subjects/math/assets/theory_skin/theory-artifact-registry-E244.js",
+        "subjects/math/assets/theory_skin/theory-artifact-reader-E241.js",
+        "subjects/math/assets/theory_skin/theory-slideshow-richness-E242.js"
+      ],
+      "evidence": "GitHub Actions runs 1–3 completed the JavaScript syntax step successfully before the later harness assertion failed."
+    },
+    "schemaCrossCheck": "PASS",
+    "diffCrossCheck": "PASS",
+    "abandonedDiagnosticPr": {
+      "number": 3,
+      "merged": false,
+      "reason": "The revised diagnostic runs remained queued. The PR contained only a temporary workflow; runtime patches were already on main."
+    }
+  },
+  "runtimeCommits": {
+    "registry": "67610c6f49b84cd0d2cef1a21ba98eb635b60267",
+    "artifactReader": "0e1abf8fc2a43a81689ba3973ef05cd32c5676ac",
+    "slideshowRichness": "153cce335777c5fc86db8957421033ba7c687521"
+  },
+  "registry": {
+    "release": "E244_MULTI_LESSON_THEORY_ARTIFACT_REGISTRY",
+    "lessonCount": 2,
+    "sourceCount": 8,
+    "sourceKinds": ["reference", "fullView", "normalization", "slideshow"],
+    "sharedResolver": true
+  },
+  "artifactReader": {
+    "release": "E241_MULTI_LESSON_REFERENCE_FULL_VIEW_READER",
+    "lessonScopedCache": true,
+    "supportedLessons": ["§1.4", "§1.5"],
+    "l05ReferenceSchemaSupported": true,
+    "l05FullViewSchemaSupported": true,
+    "l05NormalizationUsedForCanonicalFormulaText": true
+  },
+  "slideshowRichness": {
+    "release": "E242_MULTI_LESSON_SLIDESHOW_RICHNESS",
+    "lessonScopedCache": true,
+    "usesExistingE202Deck": true,
+    "newSlideshowEngineCreated": false,
+    "l04": {
+      "slides": 22,
+      "diagrams": 8,
+      "retrievalChecks": 9,
+      "misconceptionIntercepts": 16
+    },
+    "l05": {
+      "slides": 22,
+      "diagrams": 9,
+      "retrievalChecks": 10,
+      "misconceptionIntercepts": 17
+    }
+  },
+  "artifactContracts": {
+    "l04": {
+      "reference": "REFERENCE_C01_L04_V1_APPROVED",
+      "fullView": "FULL_VIEW_C01_L04_V1_APPROVED",
+      "normalization": "NORMALIZATION_C01_L04_V1_APPROVED",
+      "slideshow": "SLIDESHOW_C01_L04_V1_APPROVED"
+    },
+    "l05": {
+      "reference": "REFERENCE_C01_L05_V1_PASS11",
+      "fullView": "FULL_VIEW_C01_L05_V1_PASS12",
+      "normalization": "NORMALIZATION_C01_L05_V1_PASS12",
+      "slideshow": "SLIDESHOW_C01_L05_V1_PASS13",
+      "referenceSections": 8,
+      "fullViewSections": 12,
+      "normalizationFormulaCount": 16
+    }
+  },
+  "protectedFiles": {
+    "modified": [],
+    "verifiedUnchanged": [
+      "subjects/math/assets/theory_skin/theory-slideshow-E202.js",
+      "subjects/math/assets/theory_skin/theory-slideshow-reader-content-E211.js",
+      "subjects/math/assets/theory_skin/theory-formula-fraction-align-E235.js"
+    ],
+    "comparisonBase": "87e37f314d46abe8a7e14c15a892266ded6cd378",
+    "comparisonHead": "153cce335777c5fc86db8957421033ba7c687521"
+  },
+  "checks": [
+    {"id":"P17-01","status":"PASS","check":"E244 contains L04 and L05 with four optional source kinds per lesson."},
+    {"id":"P17-02","status":"PASS","check":"E244 exposes one shared resolver and eight unique source registrations."},
+    {"id":"P17-03","status":"PASS","check":"E241 resolves the active lesson through E244 instead of one hard-coded lesson."},
+    {"id":"P17-04","status":"PASS","check":"E241 maintains separate artifact caches by lesson ID."},
+    {"id":"P17-05","status":"PASS","check":"E241 renders the L05 projector, rank, preprocessing, case, troubleshooting and terminology schema."},
+    {"id":"P17-06","status":"PASS","check":"E241 uses the active lesson normalization artifact for canonical formula text."},
+    {"id":"P17-07","status":"PASS","check":"E242 maintains separate slideshow caches by lesson ID."},
+    {"id":"P17-08","status":"PASS","check":"L04 richness remains 22/8/9/16."},
+    {"id":"P17-09","status":"PASS","check":"L05 richness is 22/9/10/17."},
+    {"id":"P17-10","status":"PASS","check":"Both slideshow artifacts retain ordered IDs SL01–SL22."},
+    {"id":"P17-11","status":"PASS","check":"E202, E211 and E235 were not modified."},
+    {"id":"P17-12","status":"PASS","check":"No new slideshow engine was created."}
+  ],
+  "runtimeProgress": {
+    "completedPasses": 3,
+    "totalPasses": 5,
+    "remainingPasses": 2
+  },
+  "nextTask": "THEORY_C01_L05_SELECTION_ROUTE_SYNC_PASS_18"
+}
