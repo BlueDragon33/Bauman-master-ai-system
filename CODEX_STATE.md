@@ -1,8 +1,8 @@
 # CODEX_STATE
 
-Current task: `THEORY_C01_L05_CHROMIUM_REVALIDATION_AFTER_E242_FIX`
+Current task: `THEORY_C01_L06_BASELINE_AUDIT_PASS_01`
 
-Status: `PASS_19_REVALIDATION_PENDING_AFTER_E242_REPAIR`
+Status: `ACADEMIC_14_OF_14_PASS_RUNTIME_5_OF_5_BROWSER_ACCEPTED`
 
 Date: 2026-07-09
 Branch: `main`
@@ -75,9 +75,9 @@ Academic artifacts:
 
 ## §1.5 runtime progress
 
-Runtime passes complete: `4/5`.
-Runtime passes remaining: `1/5`.
-Browser QA: `PENDING_REVALIDATION`.
+Runtime passes complete: `5/5`.
+Runtime passes remaining: `0/5`.
+Browser QA: `PASS_CURRENT_HEAD`.
 
 ### Runtime Pass 15 · Durable merge
 - Status: `PASS_15_DURABLE_MERGE_STATIC_VERIFY_PASS`.
@@ -143,3 +143,17 @@ The revalidation must:
 - verify zero console errors, page errors, failed local requests and routing-ghost leftovers;
 - update the Pass 19 report with the new tested commit and evidence artifact;
 - restore `5/5` only after the current head passes.
+
+
+## Runtime Pass 19 current-head revalidation
+- Status: `PASS_CURRENT_HEAD_AFTER_E242_REPAIR`.
+- Tested runtime commit: `3acd90894051e86df6c93fadd1e84b54f283b021`.
+- E242 repair commit: `58bab8bd2e131b8250f01a83eb6b611afa0fd2f0`.
+- Evidence artifact: `lesson-1-5-pass19-revalidation-v4`.
+- L04 and L05: all 22 slides verified against source richness requirements.
+- Missing required richness markers: 0. Stale richness markers: 0.
+- Reference, Full View, formula modal and E235: PASS.
+- Cross-lesson identity leaks: 0. L06 stale registered controls: 0.
+- Console errors: 0. Page errors: 0. Local HTTP errors: 0. Route ghosts: 0.
+- Final state: `ACADEMIC_14_OF_14_PASS_RUNTIME_5_OF_5_BROWSER_ACCEPTED`.
+- Next: `THEORY_C01_L06_BASELINE_AUDIT_PASS_01`.
