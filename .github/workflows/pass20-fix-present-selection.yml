@@ -1,0 +1,36 @@
+name: Pass 20 presenter lesson lock
+on:
+  push:
+    branches: [main]
+    paths:
+      - .github/workflows/pass20-fix-present-selection.yml
+permissions:
+  contents: write
+jobs:
+  patch:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Lock visible lesson before presentation rerender
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          path=Path('subjects/math/assets/theory_skin/theory-tab-E129.js')
+          text=path.read_text(encoding='utf-8')
+          old_reader="return '<section class=\"e129-placeholder\"><span class=\"e129-badge\">Dữ liệu môn học · theory_lecture_content'"
+          new_reader="return '<section class=\"e129-placeholder\" data-current-lesson=\"'+H(rec.lessonId)+'\"><span class=\"e129-badge\">Dữ liệu môn học · theory_lecture_content'"
+          assert text.count(old_reader)==1,('reader anchor',text.count(old_reader))
+          text=text.replace(old_reader,new_reader,1)
+          old_click="if(t.hasAttribute('data-e129-present')){ st.e129Present=!st.e129Present; renderTheory(); e.preventDefault(); return; }"
+          new_click="if(t.hasAttribute('data-e129-present')){ var visible=document.querySelector('[data-current-lesson]'); var visibleId=S(visible&&visible.getAttribute('data-current-lesson')||st.e129LessonId||e169Path().lessonId||''); if(visibleId){st.e129LessonId=visibleId;e169Path().lessonId=visibleId;} st.e129Present=!st.e129Present; renderTheory(); e.preventDefault(); return; }"
+          assert text.count(old_click)==1,('click anchor',text.count(old_click))
+          text=text.replace(old_click,new_click,1)
+          path.write_text(text,encoding='utf-8')
+          PY
+      - name: Commit
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add subjects/math/assets/theory_skin/theory-tab-E129.js
+          git commit -m "fix(math): preserve visible lesson when opening slideshow"
+          git push origin HEAD:main
