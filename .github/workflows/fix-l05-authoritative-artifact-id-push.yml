@@ -1,0 +1,60 @@
+name: Fix authoritative theory artifact identity push
+on:
+  push:
+    branches:
+      - runtime/l05-pass19-revalidate-v4
+    paths:
+      - .github/workflows/fix-l05-authoritative-artifact-id-push.yml
+permissions:
+  contents: write
+jobs:
+  patch:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: runtime/l05-pass19-revalidate-v4
+          fetch-depth: 1
+          show-progress: false
+      - name: Patch E241 and E242
+        run: |
+          python3 - <<'PY'
+          from pathlib import Path
+          files=[
+            Path('subjects/math/assets/theory_skin/theory-artifact-reader-E241.js'),
+            Path('subjects/math/assets/theory_skin/theory-slideshow-richness-E242.js')
+          ]
+          old="function activeEntry(){var r=registry();return r&&r.resolve?r.resolve(candidates()):null;}"
+          new="""function authoritativeLessonId(){
+    var d=deck(),attrs=['data-e243-lesson-id','data-e210-active-lesson-id','data-lesson-id'],i,v;
+    if(d){
+      for(i=0;i<attrs.length;i++){v=String(d.getAttribute(attrs[i])||'').trim();if(v)return v;}
+      var chip=d.querySelector('[data-e210-lesson-id]');
+      v=String(chip&&chip.getAttribute('data-e210-lesson-id')||'').trim();if(v)return v;
+    }
+    var shell=document.querySelector('.e129-theory-shell.presenting')||document.querySelector('.e129-theory-shell');
+    var current=shell&&shell.querySelector('[data-current-lesson]');
+    v=String(current&&current.getAttribute('data-current-lesson')||'').trim();if(v)return v;
+    var s=state();
+    return String(s&&s.e129LessonId||s&&s.e169Path&&s.e169Path.lessonId||'').trim();
+  }
+  function activeEntry(){
+    var r=registry();if(!r)return null;
+    var id=authoritativeLessonId();
+    if(id)return r.get?r.get(id):null;
+    return r.resolve?r.resolve(candidates()):null;
+  }"""
+          for p in files:
+            text=p.read_text(encoding='utf-8')
+            if text.count(old)!=1:
+              raise SystemExit(f'{p}: expected one activeEntry target, found {text.count(old)}')
+            p.write_text(text.replace(old,new,1),encoding='utf-8')
+          PY
+          node --check subjects/math/assets/theory_skin/theory-artifact-reader-E241.js
+          node --check subjects/math/assets/theory_skin/theory-slideshow-richness-E242.js
+          git rm --ignore-unmatch .github/workflows/fix-l05-authoritative-artifact-id.yml .github/workflows/fix-l05-authoritative-artifact-id-push.yml
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add subjects/math/assets/theory_skin/theory-artifact-reader-E241.js subjects/math/assets/theory_skin/theory-slideshow-richness-E242.js
+          git commit -m "fix(math): stop artifact fallback across unregistered lessons"
+          git push origin HEAD:runtime/l05-pass19-revalidate-v4
