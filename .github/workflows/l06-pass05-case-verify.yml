@@ -1,0 +1,147 @@
+name: Lesson 1.6 engineering case verification
+on:
+  pull_request:
+    branches: [main]
+    types: [opened, reopened, synchronize, ready_for_review]
+    paths:
+      - .github/workflows/l06-pass05-case-verify.yml
+permissions:
+  contents: write
+jobs:
+  verify:
+    if: github.event.pull_request.head.repo.full_name == github.repository
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.pull_request.head.ref }}
+          fetch-depth: 1
+          show-progress: false
+      - name: Recompute and verify case invariants
+        run: |
+          python3 - <<'PY'
+          import hashlib
+          import json
+          import math
+          from datetime import datetime
+          from pathlib import Path
+
+          path=Path('subjects/math/data/theory_case/theory_case_c01_l06.json')
+          case=json.loads(path.read_text(encoding='utf-8'))
+          checks=[]
+          def require(name,condition,detail=None):
+              if not condition:
+                  raise AssertionError(f'{name}: {detail!r}')
+              checks.append({'name':name,'status':'PASS','detail':detail})
+
+          X=case['rawMatrix']['rows']
+          m=len(X); n=len(X[0])
+          require('shape 8 x 6',m==8 and all(len(row)==6 for row in X),(m,[len(r) for r in X]))
+          require('all finite',all(math.isfinite(float(v)) for row in X for v in row))
+          require('missing count zero',case['rawMatrix']['missingValueCount']==0)
+          require('metadata counts',len(case['observationMetadata'])==m and len(case['featureSchema'])==n)
+          require('feature indices contiguous',[f['index'] for f in case['featureSchema']]==list(range(n)))
+
+          times=[datetime.fromisoformat(x['timestamp'].replace('Z','+00:00')) for x in case['observationMetadata']]
+          require('timestamps strictly increasing',all(a<b for a,b in zip(times,times[1:])))
+          require('observation ids locked',[x['observationId'] for x in case['observationMetadata']]==[f'UGV-W{i:02d}' for i in range(1,9)])
+
+          schema_payload={
+            'schema':[{'id':f['id'],'unit':f['unit']} for f in case['featureSchema']],
+            'version':case['physicalContract']['schemaVersion']
+          }
+          checksum=hashlib.sha256(json.dumps(schema_payload,sort_keys=True,separators=(',',':')).encode()).hexdigest()
+          require('schema checksum',checksum==case['physicalContract']['schemaChecksumSha256'],checksum)
+
+          mu=[sum(row[j] for row in X)/m for j in range(n)]
+          locked_mu=case['meanVector']['value']
+          mean_atol=case['verificationTolerances']['meanAtol']
+          require('mean vector',all(abs(a-b)<=mean_atol for a,b in zip(mu,locked_mu)),{'computed':mu,'locked':locked_mu})
+
+          Xc=[[X[i][j]-mu[j] for j in range(n)] for i in range(m)]
+          locked_Xc=case['centeredMatrix']['rows']
+          center_atol=case['verificationTolerances']['centeringAtol']
+          require('centered matrix',all(abs(Xc[i][j]-locked_Xc[i][j])<=center_atol for i in range(m) for j in range(n)))
+          sums=[sum(row[j] for row in Xc) for j in range(n)]
+          require('centered column sums',max(abs(x) for x in sums)<=center_atol,sums)
+          reconstructed=[[Xc[i][j]+mu[j] for j in range(n)] for i in range(m)]
+          reconstruction_atol=case['verificationTolerances']['reconstructionAtol']
+          require('reconstruction',max(abs(reconstructed[i][j]-X[i][j]) for i in range(m) for j in range(n))<=reconstruction_atol)
+
+          XT=[list(col) for col in zip(*X)]
+          require('transpose shape',len(XT)==6 and all(len(row)==8 for row in XT))
+          require('transpose payload',XT==case['transposeRepresentation']['rows'])
+          require('entry extraction',X[2][4]==case['lockedExtractions']['entry']['value'])
+          require('row extraction',X[2]==case['lockedExtractions']['observationRow']['value'])
+          require('column extraction',[row[4] for row in X]==case['lockedExtractions']['featureColumn']['value'])
+          block=[[X[i][j] for j in range(2,5)] for i in range(2,5)]
+          require('block extraction',block==case['lockedExtractions']['dataBlock']['value'])
+
+          cov=[[sum(Xc[i][j]*Xc[i][k] for i in range(m))/(m-1) for k in range(n)] for j in range(n)]
+          locked_cov=case['previewOnlyDerivedObjects']['sampleCovariance']['value']
+          require('covariance preview',all(abs(cov[j][k]-locked_cov[j][k])<=1e-12 for j in range(n) for k in range(n)))
+          require('no scale vector locked',case['previewOnlyDerivedObjects']['scalePolicy']['status']=='not_locked_in_pass_5')
+          require('rank not interpreted',case['previewOnlyDerivedObjects']['rankPolicy']['status']=='not_interpreted')
+
+          invalid={x['id']:x for x in case['invalidVariants']}
+          require('four invalid variants',len(invalid)==4)
+          require('swapped-column negative test',invalid['INVALID_SWAP_WHEEL_COLUMNS_STALE_SCHEMA']['columnPermutation']==[1,0,2,3,4,5])
+          require('unit negative test',invalid['INVALID_OMEGA_LEFT_VALUES_IN_RPM_STALE_UNIT']['actualUnit']=='rpm' and invalid['INVALID_OMEGA_LEFT_VALUES_IN_RPM_STALE_UNIT']['staleDeclaredUnit']=='rad/s')
+          require('orientation negative test',invalid['INVALID_TRANSPOSED_WITH_ROW_OBSERVATION_LABEL']['shape']==[6,8])
+          require('version negative test',invalid['INVALID_SCHEMA_VERSION_V2_WITH_V1_PAYLOAD']['declaredSchemaVersion']!='UGV_TELEMETRY_SCHEMA_V1')
+
+          require('trace coverage formulas',case['traceCoverage']['formulaIds']==[f'F{i:02d}' for i in range(1,19)])
+          require('trace coverage claims',case['traceCoverage']['claimIds']==[f'C{i:02d}' for i in range(1,25)])
+          require('trace coverage outcomes',case['traceCoverage']['learningOutcomes']==[f'LO{i}' for i in range(1,10)])
+          require('runtime integration forbidden','Runtime integration is forbidden until academic acceptance.' in case['downstreamRules'])
+
+          validation={
+            'id':'bauman_math_c01_l06_case_validation_v1',
+            'schema':'bauman_math_case_validation_v1',
+            'version':'CASE_VALIDATION_C01_L06_V1',
+            'status':'PASS_05_ENGINEERING_CASE_VERIFIED',
+            'date':'2026-07-09',
+            'lessonId':case['lessonId'],
+            'caseVersion':case['version'],
+            'shape':[m,n],
+            'mean':mu,
+            'maxAbsCenteredColumnSum':max(abs(x) for x in sums),
+            'maxReconstructionError':max(abs(reconstructed[i][j]-X[i][j]) for i in range(m) for j in range(n)),
+            'schemaChecksumSha256':checksum,
+            'invalidVariantCount':len(invalid),
+            'checks':checks,
+            'protectedRuntimeDecision':{
+              'durableContentModified':False,
+              'runtimeReaderModified':False,
+              'manifestModified':False,
+              'e235Modified':False,
+              'newSlideshowEngineCreated':False
+            },
+            'nextTask':'THEORY_C01_L06_MISCONCEPTION_MAP_PASS_06'
+          }
+          Path('subjects/math/THEORY_C01_L06_CASE_VALIDATION.json').write_text(json.dumps(validation,ensure_ascii=False,indent=2)+'\n',encoding='utf-8')
+
+          state_path=Path('CODEX_STATE.md')
+          state=state_path.read_text(encoding='utf-8')
+          state=state.replace('Current task: `THEORY_C01_L06_ENGINEERING_CASE_PASS_05`','Current task: `THEORY_C01_L06_MISCONCEPTION_MAP_PASS_06`',1)
+          state=state.replace('Status: `PASS_04_FORMULA_REGISTRY_COMPLETE`','Status: `PASS_05_ENGINEERING_CASE_VERIFIED`',1)
+          state=state.replace('academic passes complete: `4/14`;','academic passes complete: `5/14`;',1)
+          state=state.replace('academic passes remaining: `10/14`;','academic passes remaining: `9/14`;',1)
+          insert='''\n### Pass 5 · Engineering case\n- Status: `PASS_05_ENGINEERING_CASE_VERIFIED`.\n- Case: `subjects/math/data/theory_case/theory_case_c01_l06.json`.\n- Validation: `subjects/math/THEORY_C01_L06_CASE_VALIDATION.json`.\n- Case version: `CASE_C01_L06_V1_LOCKED`.\n- Shape: `8 x 6`, observations as rows.\n- Observation IDs: `UGV-W01–UGV-W08`; timestamps strictly increasing by 250 ms.\n- Feature schema, order, units, version and checksum locked.\n- Mean: `(8.5, 8.55, 0.03125, 0.02375, 0.01, 12.1625)`.\n- Centered column sums and reconstruction pass at `1e-12`.\n- Four negative variants locked: swapped columns, wrong units, wrong orientation and schema-version mismatch.\n- Scale vector, fault threshold, PCA result and physical mode count remain unlocked/prohibited.\n- Runtime content, readers, manifest and E235 unchanged.\n'''
+          marker='\n## Current task requirements\n'
+          state=state.replace(marker,insert+marker,1)
+          section=state.split('## Current task requirements',1)[0]
+          tail='''## Current task requirements\n\n`THEORY_C01_L06_MISCONCEPTION_MAP_PASS_06`\n\nPass 6 must:\n- convert M1–M8 and the four invalid case variants into a structured misconception map;\n- define trigger, wrong inference, correction, evidence and retrieval prompt for each misconception;\n- include shape-correct but schema-wrong examples;\n- block covariance, rank, PCA and fault-diagnosis overclaims;\n- map every misconception to LO1–LO9, C01–C24, F01–F18 and case invariants;\n- distinguish conceptual, notation, API, metadata and engineering failure classes;\n- avoid runtime modification.\n'''
+          state=section+tail
+          state_path.write_text(state,encoding='utf-8')
+          print(json.dumps(validation,ensure_ascii=False,indent=2))
+          PY
+      - name: Commit verified case and remove workflow
+        run: |
+          git rm .github/workflows/l06-pass05-case-verify.yml
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add CODEX_STATE.md subjects/math/data/theory_case/theory_case_c01_l06.json subjects/math/THEORY_C01_L06_CASE_VALIDATION.json
+          git commit -m "test(math): verify lesson 1.6 engineering case"
+          git push origin HEAD:${{ github.event.pull_request.head.ref }}
