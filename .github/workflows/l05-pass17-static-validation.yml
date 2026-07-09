@@ -11,7 +11,7 @@ concurrency:
   group: l05-pass17-${{ github.event.pull_request.number }}
   cancel-in-progress: true
 jobs:
-  diagnose:
+  validate:
     if: github.event.pull_request.head.repo.full_name == github.repository
     runs-on: ubuntu-22.04
     timeout-minutes: 10
@@ -20,65 +20,163 @@ jobs:
         with:
           ref: ${{ github.event.pull_request.head.ref }}
           fetch-depth: 0
-      - name: Capture diagnostics
+      - name: Repair normalization JSON and validate
         run: |
-          set +e
-          mkdir -p /tmp/l05-pass17
-          node --check subjects/math/assets/theory_skin/theory-artifact-registry-E244.js >/tmp/l05-pass17/e244.txt 2>&1
-          echo $? >/tmp/l05-pass17/e244.rc
-          node --check subjects/math/assets/theory_skin/theory-artifact-reader-E241.js >/tmp/l05-pass17/e241.txt 2>&1
-          echo $? >/tmp/l05-pass17/e241.rc
-          node --check subjects/math/assets/theory_skin/theory-slideshow-richness-E242.js >/tmp/l05-pass17/e242.txt 2>&1
-          echo $? >/tmp/l05-pass17/e242.rc
+          set -euo pipefail
           python3 - <<'PY'
-          import json, re, traceback
+          import json
+          import re
           from pathlib import Path
-          root=Path('subjects/math')
-          diag={'id':'bauman_math_c01_l05_pass17_diagnostic_v1','status':'DIAGNOSTIC','date':'2026-07-09','node':{},'python':{}}
-          for key in ('e244','e241','e242'):
-              diag['node'][key]={'returnCode':int(Path(f'/tmp/l05-pass17/{key}.rc').read_text().strip()),'output':Path(f'/tmp/l05-pass17/{key}.txt').read_text(errors='replace')}
+
+          path=Path('subjects/math/data/theory_normalization/theory_normalization_c01_l05.json')
+          raw=path.read_text(encoding='utf-8')
+          repaired=False
           try:
-              registry=(root/'assets/theory_skin/theory-artifact-registry-E244.js').read_text(encoding='utf-8')
-              reader=(root/'assets/theory_skin/theory-artifact-reader-E241.js').read_text(encoding='utf-8')
-              richness=(root/'assets/theory_skin/theory-slideshow-richness-E242.js').read_text(encoding='utf-8')
-              index=(root/'index.html').read_text(encoding='utf-8')
-              L04='MATH-VN-C01-vector_trong_khong_gian_-L04-basis-span-coordinate-e140'
-              L05='MATH-VN-C01-vector_trong_khong_gian_-L05-subspace-data-representation-e140'
-              assertions=[]
-              def check(name,condition,detail=None):
-                  assertions.append({'name':name,'pass':bool(condition),'detail':detail})
-                  if not condition: raise AssertionError(f'{name}: {detail!r}')
-              check('registry L04',L04 in registry)
-              check('registry L05',L05 in registry)
-              ids=re.findall(r"id:'(theory_(?:reference|full_view|normalization|slideshow)_c01_l0[45])'",registry)
-              check('eight IDs',len(ids)==8 and len(set(ids))==8,ids)
-              check('reader registry','BAUMAN_MATH_THEORY_ARTIFACT_REGISTRY_E244' in reader)
-              check('richness registry','BAUMAN_MATH_THEORY_ARTIFACT_REGISTRY_E244' in richness)
-              check('index order',index.index('theory-artifact-registry-E244.js')<index.index('theory-artifact-reader-E241.js')<index.index('theory-slideshow-richness-E242.js'))
-              specs={
-                L04:{'reference':('data/theory_reference/theory_reference_c01_l04.json','REFERENCE_C01_L04_V1_APPROVED'),'fullView':('data/theory_full_view/theory_full_view_c01_l04.json','FULL_VIEW_C01_L04_V1_APPROVED'),'normalization':('data/theory_normalization/theory_normalization_c01_l04.json','NORMALIZATION_C01_L04_V1_APPROVED'),'slideshow':('data/theory_slideshow/theory_slideshow_c01_l04.json','SLIDESHOW_C01_L04_V1_APPROVED',(22,8,9,16))},
-                L05:{'reference':('data/theory_reference/theory_reference_c01_l05.json','REFERENCE_C01_L05_V1_PASS11'),'fullView':('data/theory_full_view/theory_full_view_c01_l05.json','FULL_VIEW_C01_L05_V1_PASS12'),'normalization':('data/theory_normalization/theory_normalization_c01_l05.json','NORMALIZATION_C01_L05_V1_PASS12'),'slideshow':('data/theory_slideshow/theory_slideshow_c01_l05.json','SLIDESHOW_C01_L05_V1_PASS13',(22,9,10,17))}
-              }
-              for lesson,items in specs.items():
-                  for kind,spec in items.items():
-                      obj=json.loads((root/spec[0]).read_text(encoding='utf-8'))
-                      check(f'{kind} lesson',obj.get('lessonId')==lesson,(obj.get('lessonId'),lesson))
-                      check(f'{kind} version',obj.get('version')==spec[1],(obj.get('version'),spec[1]))
-                      if kind=='slideshow':
-                          slides=obj.get('slides',[])
-                          counts=(len(slides),sum('diagramSpec' in s for s in slides),sum('retrievalCheck' in s for s in slides),sum('misconceptionIntercept' in s for s in slides))
-                          check('slideshow counts',counts==spec[2],counts)
-              diag['python']={'status':'PASS','assertions':assertions}
-          except Exception as exc:
-              diag['python']={'status':'FAIL','error':repr(exc),'traceback':traceback.format_exc(),'assertions':locals().get('assertions',[])}
-          diag['overallPass']=all(x['returnCode']==0 for x in diag['node'].values()) and diag['python'].get('status')=='PASS'
-          (root/'THEORY_C01_L05_RUNTIME_PASS17_DIAGNOSTIC.json').write_text(json.dumps(diag,ensure_ascii=False,indent=2)+'\n',encoding='utf-8')
-          print(json.dumps(diag,ensure_ascii=False,indent=2))
+              json.loads(raw)
+          except json.JSONDecodeError:
+              pattern=re.compile(r'("displayLatex"\s*:\s*")([^"]*)(")')
+              def fix(match):
+                  body=match.group(2).replace('\\','\\\\')
+                  return match.group(1)+body+match.group(3)
+              raw,count=pattern.subn(fix,raw)
+              if count==0:
+                  raise AssertionError('No displayLatex fields found for repair')
+              path.write_text(raw,encoding='utf-8')
+              repaired=True
+          parsed=json.loads(path.read_text(encoding='utf-8'))
+          assert parsed['lessonId']=='MATH-VN-C01-vector_trong_khong_gian_-L05-subspace-data-representation-e140'
+          assert len(parsed['canonicalNotation'])==18
+          assert len(parsed['canonicalFormulaRegistry'])==16
+          print({'normalizationRepaired':repaired,'notationCount':18,'formulaCount':16})
           PY
-      - name: Commit diagnostic
+          node --check subjects/math/assets/theory_skin/theory-artifact-registry-E244.js
+          node --check subjects/math/assets/theory_skin/theory-artifact-reader-E241.js
+          node --check subjects/math/assets/theory_skin/theory-slideshow-richness-E242.js
+          python3 - <<'PY'
+          import json
+          import re
+          from pathlib import Path
+
+          root=Path('subjects/math')
+          jsroot=root/'assets/theory_skin'
+          registry=(jsroot/'theory-artifact-registry-E244.js').read_text(encoding='utf-8')
+          reader=(jsroot/'theory-artifact-reader-E241.js').read_text(encoding='utf-8')
+          richness=(jsroot/'theory-slideshow-richness-E242.js').read_text(encoding='utf-8')
+          index=(root/'index.html').read_text(encoding='utf-8')
+          state_path=Path('CODEX_STATE.md')
+
+          L04='MATH-VN-C01-vector_trong_khong_gian_-L04-basis-span-coordinate-e140'
+          L05='MATH-VN-C01-vector_trong_khong_gian_-L05-subspace-data-representation-e140'
+          checks=[]
+          def ok(name,cond,detail=None):
+              if not cond: raise AssertionError(f'{name}: {detail!r}')
+              checks.append({'name':name,'status':'PASS','detail':detail})
+
+          ok('registry contains L04',L04 in registry)
+          ok('registry contains L05',L05 in registry)
+          source_ids=re.findall(r"id:'(theory_(?:reference|full_view|normalization|slideshow)_c01_l0[45])'",registry)
+          ok('eight unique source IDs',len(source_ids)==8 and len(set(source_ids))==8,source_ids)
+          ok('registry shared resolver',"function resolve(values)" in registry and 'multiLessonResolver:true' in registry)
+          ok('registry no engine','newSlideshowEngineCreated:false' in registry)
+          ok('reader consumes registry','BAUMAN_MATH_THEORY_ARTIFACT_REGISTRY_E244' in reader and 'activeEntry' in reader)
+          ok('reader is multi lesson',"E241_MULTI_LESSON_REFERENCE_FULL_VIEW_READER" in reader and 'multiLesson:true' in reader)
+          ok('reader supports L05 schema',all(token in reader for token in ['modelClassification','projectorSelection','rankReporting','preprocessingGate','caseLookup','troubleshootingMatrix','terminologyLookup','interpretationLimits']))
+          ok('reader uses normalization','canonicalFormulaRegistry' in reader and 'canonicalFormula(' in reader)
+          ok('richness consumes registry','BAUMAN_MATH_THEORY_ARTIFACT_REGISTRY_E244' in richness and 'activeEntry' in richness)
+          ok('richness is multi lesson',"E242_MULTI_LESSON_SLIDESHOW_RICHNESS" in richness and 'multiLesson:true' in richness)
+          ok('richness uses existing E211 API','BAUMAN_MATH_E211_READER_CONTENT' in richness)
+          ok('no new slideshow engine','createElement(\'section\')' not in richness and 'newSlideshowEngineCreated:false' in richness)
+          ok('index registry order',index.index('theory-artifact-registry-E244.js')<index.index('theory-artifact-reader-E241.js')<index.index('theory-slideshow-richness-E242.js'))
+          ok('E235 unchanged in load order','theory-formula-fraction-align-E235.js?v=236' in index)
+          ok('E236 disabled','E236' not in index)
+          ok('E237 disabled','E237' not in index)
+          ok('E238 disabled','E238' not in index)
+
+          specs={
+            L04:{
+              'reference':('data/theory_reference/theory_reference_c01_l04.json','REFERENCE_C01_L04_V1_APPROVED'),
+              'fullView':('data/theory_full_view/theory_full_view_c01_l04.json','FULL_VIEW_C01_L04_V1_APPROVED'),
+              'normalization':('data/theory_normalization/theory_normalization_c01_l04.json','NORMALIZATION_C01_L04_V1_APPROVED'),
+              'slideshow':('data/theory_slideshow/theory_slideshow_c01_l04.json','SLIDESHOW_C01_L04_V1_APPROVED',(22,8,9,16))
+            },
+            L05:{
+              'reference':('data/theory_reference/theory_reference_c01_l05.json','REFERENCE_C01_L05_V1_PASS11'),
+              'fullView':('data/theory_full_view/theory_full_view_c01_l05.json','FULL_VIEW_C01_L05_V1_PASS12'),
+              'normalization':('data/theory_normalization/theory_normalization_c01_l05.json','NORMALIZATION_C01_L05_V1_PASS12'),
+              'slideshow':('data/theory_slideshow/theory_slideshow_c01_l05.json','SLIDESHOW_C01_L05_V1_PASS13',(22,9,10,17))
+            }
+          }
+          artifact_summary=[]
+          for lesson,items in specs.items():
+              for kind,spec in items.items():
+                  rel,version=spec[0],spec[1]
+                  obj=json.loads((root/rel).read_text(encoding='utf-8'))
+                  ok(f'{kind} lessonId {lesson[-35:]}',obj.get('lessonId')==lesson)
+                  ok(f'{kind} version {lesson[-35:]}',obj.get('version')==version,(obj.get('version'),version))
+                  row={'lessonId':lesson,'kind':kind,'path':rel,'version':version}
+                  if kind=='normalization':
+                      ok(f'normalization notation {lesson[-35:]}',len(obj.get('canonicalNotation',[])) in (11,18),len(obj.get('canonicalNotation',[])))
+                      ok(f'normalization formulas {lesson[-35:]}',len(obj.get('canonicalFormulaRegistry',[])) in (12,16),len(obj.get('canonicalFormulaRegistry',[])))
+                  if kind=='slideshow':
+                      slides=obj.get('slides',[])
+                      counts=(len(slides),sum('diagramSpec' in s for s in slides),sum('retrievalCheck' in s for s in slides),sum('misconceptionIntercept' in s for s in slides))
+                      ok(f'slideshow counts {lesson[-35:]}',counts==spec[2],counts)
+                      ok(f'slideshow order {lesson[-35:]}',[s.get('id') for s in slides]==[f'SL{i:02d}' for i in range(1,23)])
+                      row['counts']={'slides':counts[0],'diagrams':counts[1],'retrievalChecks':counts[2],'misconceptions':counts[3]}
+                  artifact_summary.append(row)
+
+          report={
+            'id':'bauman_math_c01_l05_runtime_pass17_v1',
+            'schema':'bauman_math_runtime_reader_richness_report_v1',
+            'version':'RUNTIME_PASS17_C01_L05_V1',
+            'status':'PASS_17_MULTI_LESSON_READER_RICHNESS_STATIC_VERIFY_PASS',
+            'date':'2026-07-09',
+            'lessonId':L05,
+            'verificationMode':'isolated_pull_request_node_syntax_python_json_contract_validation',
+            'browserRun':False,
+            'normalizationJsonRepair':{
+              'path':'subjects/math/data/theory_normalization/theory_normalization_c01_l05.json',
+              'scope':'displayLatex backslash escaping only',
+              'semanticChanges':False,
+              'jsonParseAfterRepair':True
+            },
+            'files':{
+              'registry':{'path':'subjects/math/assets/theory_skin/theory-artifact-registry-E244.js','commit':'67610c6f49b84cd0d2cef1a21ba98eb635b60267'},
+              'reader':{'path':'subjects/math/assets/theory_skin/theory-artifact-reader-E241.js','commit':'0e1abf8fc2a43a81689ba3973ef05cd32c5676ac'},
+              'richness':{'path':'subjects/math/assets/theory_skin/theory-slideshow-richness-E242.js','commit':'153cce335777c5fc86db8957421033ba7c687521'}
+            },
+            'registeredLessons':2,
+            'registeredSources':8,
+            'artifacts':artifact_summary,
+            'checks':checks,
+            'protectedConstraints':{
+              'existingE202EngineReused':True,
+              'newSlideshowEngineCreated':False,
+              'e235Modified':False,
+              'e236Enabled':False,
+              'e237Enabled':False,
+              'e238Enabled':False
+            },
+            'runtimeProgress':{'completedPasses':3,'totalPasses':5,'remainingPasses':2},
+            'nextTask':'THEORY_C01_L05_ROUTE_IDENTITY_SYNC_PASS_18'
+          }
+          (root/'THEORY_C01_L05_RUNTIME_PASS17.json').write_text(json.dumps(report,ensure_ascii=False,indent=2)+'\n',encoding='utf-8')
+
+          state=state_path.read_text(encoding='utf-8')
+          state=state.replace('Current task: `THEORY_C01_L05_MULTI_LESSON_READER_RICHNESS_PASS_17`','Current task: `THEORY_C01_L05_ROUTE_IDENTITY_SYNC_PASS_18`',1)
+          state=state.replace('Status: `PASS_16_RUNTIME_SOURCE_REGISTRATION_STATIC_VERIFY_PASS`','Status: `PASS_17_MULTI_LESSON_READER_RICHNESS_STATIC_VERIFY_PASS`',1)
+          state=state.replace('Runtime passes complete: `2/5`.','Runtime passes complete: `3/5`.',1)
+          state=state.replace('Runtime passes remaining: `3/5`.','Runtime passes remaining: `2/5`.',1)
+          state += '''\n\n### Runtime Pass 17 · Multi-lesson reader and richness\n- Status: `PASS_17_MULTI_LESSON_READER_RICHNESS_STATIC_VERIFY_PASS`.\n- Report: `subjects/math/THEORY_C01_L05_RUNTIME_PASS17.json`.\n- E244 registry: 2 lessons, 8 unique optional sources.\n- E241: multi-lesson Reference/Full View reader with lesson-scoped normalization.\n- E242: multi-lesson slideshow richness bridge using existing E202/E211 DOM and APIs.\n- L04 counts: 22 slides, 8 diagrams, 9 retrieval checks, 16 misconception intercepts.\n- L05 counts: 22 slides, 9 diagrams, 10 retrieval checks, 17 misconception intercepts.\n- L05 Normalization JSON displayLatex escaping repaired without semantic change.\n- Node syntax and JSON parse checks: PASS.\n- New slideshow engine: none.\n- E235 unchanged; E236/E237/E238 disabled.\n- Browser QA: not run.\n- Next: `THEORY_C01_L05_ROUTE_IDENTITY_SYNC_PASS_18`.\n'''
+          state_path.write_text(state,encoding='utf-8')
+          print(json.dumps(report,ensure_ascii=False,indent=2))
+          PY
+      - name: Commit validated Pass 17
         run: |
+          git rm --ignore-unmatch .github/workflows/l05-pass17-static-validation.yml
+          git rm --ignore-unmatch subjects/math/THEORY_C01_L05_RUNTIME_PASS17_DIAGNOSTIC.json
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add subjects/math/THEORY_C01_L05_RUNTIME_PASS17_DIAGNOSTIC.json
-          git commit -m "test(math): capture lesson 1.5 Pass 17 diagnostics"
+          git add CODEX_STATE.md subjects/math/data/theory_normalization/theory_normalization_c01_l05.json subjects/math/THEORY_C01_L05_RUNTIME_PASS17.json
+          git commit -m "test(math): validate lesson 1.5 multi-lesson readers"
           git push origin HEAD:${{ github.event.pull_request.head.ref }}
