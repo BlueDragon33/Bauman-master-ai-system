@@ -147,8 +147,11 @@ The revalidation must:
 
 ## Runtime Pass 19 current-head revalidation
 - Status: `PASS_CURRENT_HEAD_AFTER_E242_REPAIR`.
-- Tested runtime commit: `3acd90894051e86df6c93fadd1e84b54f283b021`.
+- Tested runtime commit: `cb328018e2221d5a5d3650d8ef753e0ca173016e`.
 - E242 repair commit: `58bab8bd2e131b8250f01a83eb6b611afa0fd2f0`.
+- E245 authoritative artifact route commit: `8792f6350247a6cbb08b23e13ee4c4dcb248c5d1`.
+- E245 index load-order commit: `3f9a0af0fd0af7e81330cae7b18649daa7348f34`.
+- Unregistered §1.6 returned zero E241 controls and zero E242 richness markers.
 - Evidence artifact: `lesson-1-5-pass19-revalidation-v4`.
 - L04 and L05: all 22 slides verified against source richness requirements.
 - Missing required richness markers: 0. Stale richness markers: 0.

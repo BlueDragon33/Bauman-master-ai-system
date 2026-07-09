@@ -4,7 +4,7 @@
   "version": "RUNTIME_PASS19_C01_L05_V2_AFTER_E242_REPAIR",
   "status": "PASS",
   "executedAt": "2026-07-09",
-  "testedRuntimeCommit": "3acd90894051e86df6c93fadd1e84b54f283b021",
+  "testedRuntimeCommit": "cb328018e2221d5a5d3650d8ef753e0ca173016e",
   "e242RepairCommit": "58bab8bd2e131b8250f01a83eb6b611afa0fd2f0",
   "browserRun": true,
   "browser": "system Chromium via playwright-core",
@@ -319,12 +319,29 @@
     "newSlideshowEngineCreated": false,
     "e236Enabled": false,
     "e237Enabled": false,
-    "e238Enabled": false
+    "e238Enabled": false,
+    "authoritativeUnregisteredLessonFallbackBlocked": true
   },
   "historicalReport": {
     "status": "PASS",
     "executedAt": "2026-07-09T10:48:19.059Z",
     "note": "Superseded for current-head acceptance after E242 repair."
   },
-  "finalRuntimeState": "ACADEMIC_14_OF_14_PASS_RUNTIME_5_OF_5_BROWSER_ACCEPTED"
+  "finalRuntimeState": "ACADEMIC_14_OF_14_PASS_RUNTIME_5_OF_5_BROWSER_ACCEPTED",
+  "runtimeRepairs": {
+    "E242": {
+      "commit": "58bab8bd2e131b8250f01a83eb6b611afa0fd2f0",
+      "purpose": "Reapply required richness after Reader/artifact rerenders and reject stale richness markers."
+    },
+    "E245": {
+      "commit": "8792f6350247a6cbb08b23e13ee4c4dcb248c5d1",
+      "path": "subjects/math/assets/theory_skin/theory-artifact-authoritative-route-E245.js",
+      "purpose": "Treat the deck/Reader lesson ID as authoritative and block fallback into a stale registered lesson."
+    },
+    "indexLoadOrder": {
+      "commit": "3f9a0af0fd0af7e81330cae7b18649daa7348f34",
+      "path": "subjects/math/index.html",
+      "order": "E244 → E245 → E241 → E242"
+    }
+  }
 }
