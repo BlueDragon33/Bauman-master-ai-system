@@ -32,11 +32,11 @@ jobs:
           root=Path('subjects/math')
           l04='MATH-VN-C01-vector_trong_khong_gian_-L04-basis-span-coordinate-e140'
           l05='MATH-VN-C01-vector_trong_khong_gian_-L05-subspace-data-representation-e140'
-          checks=[]
+          checks=[]; failures=[]
           def ok(name,cond,detail=None):
-              print(('PASS ' if cond else 'FAIL ')+name, detail if detail is not None else '', flush=True)
-              if not cond: raise AssertionError(f'{name}: {detail!r}')
-              checks.append({'name':name,'status':'PASS','detail':detail})
+              row={'name':name,'status':'PASS' if cond else 'FAIL','detail':detail}
+              checks.append(row)
+              if not cond: failures.append(row)
 
           registry=(root/'assets/theory_skin/theory-artifact-registry-E244.js').read_text(encoding='utf-8')
           reader=(root/'assets/theory_skin/theory-artifact-reader-E241.js').read_text(encoding='utf-8')
@@ -78,40 +78,52 @@ jobs:
           ok('L05 counts',c05=={'slides':22,'diagrams':9,'retrievalChecks':10,'misconceptions':17},c05)
           ok('L04 order',[s.get('id') for s in docs['l04show']['slides']]==[f'SL{i:02d}' for i in range(1,23)])
           ok('L05 order',[s.get('id') for s in docs['l05show']['slides']]==[f'SL{i:02d}' for i in range(1,23)])
-          ok('L05 sections',len(docs['l05full'].get('readingFlow',[]))==12 and len(docs['l05ref'].get('informationArchitecture',[]))==8)
-          ok('L05 formula normalization',len(docs['l05norm'].get('canonicalFormulaRegistry',[]))==16)
+          ok('L05 sections',len(docs['l05full'].get('readingFlow',[]))==12 and len(docs['l05ref'].get('informationArchitecture',[]))==8,{'full':len(docs['l05full'].get('readingFlow',[])),'reference':len(docs['l05ref'].get('informationArchitecture',[]))})
+          ok('L05 formula normalization',len(docs['l05norm'].get('canonicalFormulaRegistry',[]))==16,len(docs['l05norm'].get('canonicalFormulaRegistry',[])))
+
+          diagnostic={
+            'id':'bauman_math_c01_l05_runtime_pass17_diagnostic_v1',
+            'status':'FAIL' if failures else 'PASS',
+            'lessonId':l05,
+            'checks':checks,
+            'failures':failures,
+            'l04Richness':c04,
+            'l05Richness':c05
+          }
+          diag_path=root/'THEORY_C01_L05_RUNTIME_PASS17_DIAGNOSTIC.json'
+          diag_path.write_text(json.dumps(diagnostic,ensure_ascii=False,indent=2)+'\n',encoding='utf-8')
+          if failures:
+              print(json.dumps(diagnostic,ensure_ascii=False,indent=2))
+              raise SystemExit(1)
 
           report={
-            'id':'bauman_math_c01_l05_runtime_pass17_v1',
-            'schema':'bauman_math_multi_lesson_reader_report_v1',
-            'version':'RUNTIME_PASS17_C01_L05_V1',
-            'status':'PASS_17_MULTI_LESSON_READER_RICHNESS_STATIC_VERIFY_PASS',
-            'date':'2026-07-09','lessonId':l05,
-            'verificationMode':'isolated_pull_request_node_syntax_python_schema_and_connector_diff_validation',
-            'browserRun':False,'registryLessons':2,'registeredSources':8,
-            'l04Richness':c04,'l05Richness':c05,
-            'fullViewSectionsL05':12,'referenceSectionsL05':8,'normalizationFormulaCountL05':16,
-            'protectedFilesModified':[],
-            'protectedDiffVerification':{'base':'87e37f314d46abe8a7e14c15a892266ded6cd378','headBeforeReport':'901ccfc9a73be3234eeed04cdb4253faa34d4087','changedRuntimeFiles':['theory-artifact-registry-E244.js','theory-artifact-reader-E241.js','theory-slideshow-richness-E242.js']},
-            'newSlideshowEngineCreated':False,'checks':checks,
-            'nextTask':'THEORY_C01_L05_SELECTION_ROUTE_SYNC_PASS_18'
+            'id':'bauman_math_c01_l05_runtime_pass17_v1','schema':'bauman_math_multi_lesson_reader_report_v1','version':'RUNTIME_PASS17_C01_L05_V1',
+            'status':'PASS_17_MULTI_LESSON_READER_RICHNESS_STATIC_VERIFY_PASS','date':'2026-07-09','lessonId':l05,
+            'verificationMode':'isolated_pull_request_node_syntax_python_schema_and_connector_diff_validation','browserRun':False,
+            'registryLessons':2,'registeredSources':8,'l04Richness':c04,'l05Richness':c05,'fullViewSectionsL05':12,'referenceSectionsL05':8,'normalizationFormulaCountL05':16,
+            'protectedFilesModified':[],'newSlideshowEngineCreated':False,'checks':checks,'nextTask':'THEORY_C01_L05_SELECTION_ROUTE_SYNC_PASS_18'
           }
           (root/'THEORY_C01_L05_RUNTIME_PASS17.json').write_text(json.dumps(report,ensure_ascii=False,indent=2)+'\n',encoding='utf-8')
-
           state=Path('CODEX_STATE.md'); text=state.read_text(encoding='utf-8')
           text=text.replace('Current task: `THEORY_C01_L05_MULTI_LESSON_READER_RICHNESS_PASS_17`','Current task: `THEORY_C01_L05_SELECTION_ROUTE_SYNC_PASS_18`',1)
           text=text.replace('Status: `PASS_16_RUNTIME_SOURCE_REGISTRATION_STATIC_VERIFY_PASS`','Status: `PASS_17_MULTI_LESSON_READER_RICHNESS_STATIC_VERIFY_PASS`',1)
           text=text.replace('Runtime passes complete: `2/5`.','Runtime passes complete: `3/5`.',1)
           text=text.replace('Runtime passes remaining: `3/5`.','Runtime passes remaining: `2/5`.',1)
-          text += '\n\n### Runtime Pass 17 · Multi-lesson reader and richness\n- Status: `PASS_17_MULTI_LESSON_READER_RICHNESS_STATIC_VERIFY_PASS`.\n- Report: `subjects/math/THEORY_C01_L05_RUNTIME_PASS17.json`.\n- E244 registry: 2 lessons, 8 optional sources, shared resolver.\n- E241: lesson-scoped Reference/Full View/Normalization reader for L04 and L05.\n- E242: lesson-scoped slideshow richness for L04 and L05.\n- L04 counts: 22 slides, 8 diagrams, 9 retrieval checks, 16 misconception intercepts.\n- L05 counts: 22 slides, 9 diagrams, 10 retrieval checks, 17 misconception intercepts.\n- E202, E211 and E235 unchanged.\n- New slideshow engine: none.\n- Browser QA: not run.\n- Next: `THEORY_C01_L05_SELECTION_ROUTE_SYNC_PASS_18`.\n'
+          text += '\n\n### Runtime Pass 17 · Multi-lesson reader and richness\n- Status: `PASS_17_MULTI_LESSON_READER_RICHNESS_STATIC_VERIFY_PASS`.\n- Report: `subjects/math/THEORY_C01_L05_RUNTIME_PASS17.json`.\n- E244 registry: 2 lessons, 8 optional sources, shared resolver.\n- E241 and E242 support L04/L05 without a new slideshow engine.\n- L04 richness: 22/8/9/16. L05 richness: 22/9/10/17.\n- E202, E211 and E235 unchanged.\n- Browser QA: not run.\n- Next: `THEORY_C01_L05_SELECTION_ROUTE_SYNC_PASS_18`.\n'
           state.write_text(text,encoding='utf-8')
-          print(json.dumps(report,ensure_ascii=False,indent=2))
           PY
-      - name: Commit verified report
+      - name: Persist result
+        if: always()
         run: |
-          git rm .github/workflows/l05-pass17-static-verify.yml
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add CODEX_STATE.md subjects/math/THEORY_C01_L05_RUNTIME_PASS17.json
-          git commit -m "test(math): verify lesson 1.5 multi-lesson readers"
+          if [ -f subjects/math/THEORY_C01_L05_RUNTIME_PASS17.json ]; then
+            git rm .github/workflows/l05-pass17-static-verify.yml
+            git rm --ignore-unmatch subjects/math/THEORY_C01_L05_RUNTIME_PASS17_DIAGNOSTIC.json
+            git add CODEX_STATE.md subjects/math/THEORY_C01_L05_RUNTIME_PASS17.json
+            git commit -m "test(math): verify lesson 1.5 multi-lesson readers"
+          else
+            git add subjects/math/THEORY_C01_L05_RUNTIME_PASS17_DIAGNOSTIC.json
+            git commit -m "test(math): record lesson 1.5 pass 17 diagnostics" || true
+          fi
           git push origin HEAD:${{ github.event.pull_request.head.ref }}
