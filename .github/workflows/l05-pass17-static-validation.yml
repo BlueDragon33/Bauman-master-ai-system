@@ -85,7 +85,7 @@ jobs:
           for lesson,items in specs.items():
               for kind,spec in items.items():
                   rel,version=spec[0],spec[1]
-                  obj=json.loads((root/rel.removeprefix('data/')).read_text(encoding='utf-8'))
+                  obj=json.loads((root/rel).read_text(encoding='utf-8'))
                   ok(f'{kind} lessonId {lesson[-35:]}',obj.get('lessonId')==lesson)
                   ok(f'{kind} version {lesson[-35:]}',obj.get('version')==version,(obj.get('version'),version))
                   row={'lessonId':lesson,'kind':kind,'path':rel,'version':version}
