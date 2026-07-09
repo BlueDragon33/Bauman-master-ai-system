@@ -1,0 +1,70 @@
+{
+  "id": "bauman_math_c01_l05_runtime_pass16_v1",
+  "schema": "bauman_math_runtime_source_registration_report_v1",
+  "version": "RUNTIME_PASS16_C01_L05_V1",
+  "status": "PASS_16_RUNTIME_SOURCE_REGISTRATION_STATIC_VERIFY_PASS",
+  "date": "2026-07-09",
+  "lessonId": "MATH-VN-C01-vector_trong_khong_gian_-L05-subspace-data-representation-e140",
+  "lessonTitle": "§1.5 · Không gian con và biểu diễn dữ liệu",
+  "verificationMode": "direct_connector_static_registration_check",
+  "browserRun": false,
+  "readerLogicModified": false,
+  "manifestModified": false,
+  "e235Modified": false,
+  "newSlideshowEngineCreated": false,
+  "registry": {
+    "path": "subjects/math/assets/theory_skin/theory-artifact-registry-E244.js",
+    "release": "E244_LESSON_SCOPED_THEORY_ARTIFACT_REGISTRY",
+    "commit": "389050ee24c92def637d0c4e1c1bebf638c0e4d5",
+    "lessonCount": 2,
+    "sourceCount": 6,
+    "sourceKindsPerLesson": ["reference", "fullView", "normalization"]
+  },
+  "loadOrder": {
+    "indexPath": "subjects/math/index.html",
+    "commit": "81174ffadc0e7801c12a389e32656efda598f5fa",
+    "after": "assets/theory_skin/theory-slideshow-reader-content-E211.js?v=223",
+    "registry": "assets/theory_skin/theory-artifact-registry-E244.js?v=244",
+    "before": "assets/theory_skin/theory-artifact-reader-E241.js?v=241",
+    "reason": "SUBJECT_ADAPTER already exists when E244 registers metadata, while E241 can consume the shared registry in Pass 17."
+  },
+  "registeredLessons": [
+    {
+      "lessonId": "MATH-VN-C01-vector_trong_khong_gian_-L04-basis-span-coordinate-e140",
+      "lessonTitle": "§1.4 · Cơ sở, span và tọa độ",
+      "sources": [
+        {"id":"theory_reference_c01_l04","path":"data/theory_reference/theory_reference_c01_l04.json","version":"REFERENCE_C01_L04_V1_APPROVED"},
+        {"id":"theory_full_view_c01_l04","path":"data/theory_full_view/theory_full_view_c01_l04.json","version":"FULL_VIEW_C01_L04_V1_APPROVED"},
+        {"id":"theory_normalization_c01_l04","path":"data/theory_normalization/theory_normalization_c01_l04.json","version":"NORMALIZATION_C01_L04_V1_APPROVED"}
+      ]
+    },
+    {
+      "lessonId": "MATH-VN-C01-vector_trong_khong_gian_-L05-subspace-data-representation-e140",
+      "lessonTitle": "§1.5 · Không gian con và biểu diễn dữ liệu",
+      "academicStatus": "ACADEMIC_14_OF_14_PASS",
+      "sources": [
+        {"id":"theory_reference_c01_l05","path":"data/theory_reference/theory_reference_c01_l05.json","version":"REFERENCE_C01_L05_V1_PASS11","blobSha":"3aad79ec5a037328b65f4bfd296a923e58670df6"},
+        {"id":"theory_full_view_c01_l05","path":"data/theory_full_view/theory_full_view_c01_l05.json","version":"FULL_VIEW_C01_L05_V1_PASS12","blobSha":"bd82706068bf8f155b5b6999337c06012397bd37"},
+        {"id":"theory_normalization_c01_l05","path":"data/theory_normalization/theory_normalization_c01_l05.json","version":"NORMALIZATION_C01_L05_V1_PASS12","blobSha":"fb9da54ca8abeb9433d83590fc19a8d32782f06d"}
+      ]
+    }
+  ],
+  "checks": [
+    {"id":"R01","status":"PASS","check":"The registry contains exactly two lesson entries and six unique source IDs."},
+    {"id":"R02","status":"PASS","check":"Every source is optional and lazy; no required startup dependency is introduced."},
+    {"id":"R03","status":"PASS","check":"The L05 Reference path exists and its lessonId/version match the registry."},
+    {"id":"R04","status":"PASS","check":"The L05 Full View path exists and its lessonId/version match the registry."},
+    {"id":"R05","status":"PASS","check":"The L05 Normalization path exists and its lessonId/version match the registry."},
+    {"id":"R06","status":"PASS","check":"L04 source IDs and approved versions remain represented for backward compatibility."},
+    {"id":"R07","status":"PASS","check":"E244 loads after SUBJECT_ADAPTER and before E241."},
+    {"id":"R08","status":"PASS","check":"No E241 reader behavior is changed in Pass 16."},
+    {"id":"R09","status":"PASS","check":"No subject-manifest entry, E235 code or slideshow engine is changed."},
+    {"id":"R10","status":"PASS","check":"Pass 17 remains responsible for multi-lesson reader behavior and artifact rendering."}
+  ],
+  "runtimeProgress": {
+    "completedPasses": 2,
+    "totalPasses": 5,
+    "remainingPasses": 3
+  },
+  "nextTask": "THEORY_C01_L05_MULTI_LESSON_READER_RICHNESS_PASS_17"
+}
