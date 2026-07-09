@@ -30,24 +30,7 @@
   ],
   "runtimeBaseline": {
     "slideCount": 16,
-    "slideIds": [
-      null,
-      null,
-      null,
-      null,
-      null,
-      null,
-      null,
-      null,
-      null,
-      null,
-      null,
-      null,
-      null,
-      null,
-      null,
-      null
-    ],
+    "slideIds": [null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null],
     "roleCounts": {
       "problem_framing": 1,
       "deep_essence": 1,
@@ -66,12 +49,7 @@
       "bridge": 1,
       "takeaway": 1
     },
-    "blockCounts": {
-      "text": 36,
-      "qa": 18,
-      "formula": 7,
-      "code": 3
-    },
+    "blockCounts": {"text":36,"qa":18,"formula":7,"code":3},
     "formulaReferenceCount": 0,
     "formulaBlockCount": 7,
     "codeBlockCount": 3,
@@ -82,144 +60,65 @@
     "integrationMetaPresent": false,
     "academicApprovalPresent": false
   },
-  "sourceMatches": {
-    "durable": [
-      {
-        "path": "$.records[5]",
-        "keys": [
-          "baumanFocus",
-          "chapterId",
-          "lessonId",
-          "lessonTitle",
-          "programAnchorTitle",
-          "programLectureId",
-          "programLectureIds",
-          "roadmapRole",
-          "slides",
-          "sourceAnchors",
-          "tags",
-          "title"
-        ],
-        "title": "§1.6 · Từ vector sang ma trận dữ liệu"
-      }
-    ],
-    "frame": [],
-    "lessons": [],
-    "curriculum": [],
-    "chapterSpine": [],
-    "contentManifest": []
+  "sourceMatching": {
+    "methodology": {
+      "exactMatch": "Recursive scan for lessonId/id/lesson_id equal to the canonical lesson ID.",
+      "semanticMatch": "Repository search and targeted source review using the lesson title, slug vector-to-data-matrix, program lecture IDs, program anchor, and the paired concepts data matrix / samples / features.",
+      "interpretationRule": "No exact match does not mean a source is irrelevant; it means the source does not expose the canonical lesson ID. Semantic candidates must be treated as anchors only, never as approved lesson content."
+    },
+    "exactByCanonicalLessonId": {
+      "durable": [{"path":"$.records[5]","title":"§1.6 · Từ vector sang ma trận dữ liệu"}],
+      "frame": [],
+      "lessons": [],
+      "curriculum": [],
+      "chapterSpine": [],
+      "contentManifest": []
+    },
+    "semanticAnchorSignals": {
+      "canonicalTitle": "Từ vector sang ma trận dữ liệu",
+      "canonicalSlug": "vector-to-data-matrix",
+      "programLectureIds": [
+        "MATH-PROG-L02-vector-spaces-linear-maps",
+        "MATH-PROG-L01-linear-algebra-basic",
+        "MATH-PROG-L17-ai-machine-learning-math-foundations"
+      ],
+      "programAnchorTitle": "Không gian vectơ và ánh xạ tuyến tính",
+      "conceptSignals": ["data matrix","samples","features","rank","column space","row space","PCA pipeline"]
+    },
+    "repositoryCodeSearch": {
+      "canonicalTitleResults": 0,
+      "canonicalSlugResults": 0,
+      "note": "GitHub code search returned no indexed result for the exact Vietnamese title or canonical slug. The durable JSON record was verified directly through parsed content, so code-search absence is not evidence of content absence."
+    },
+    "conclusion": "The canonical §1.6 record exists only in theory_lecture_content by exact lesson ID. Other named sources expose no canonical lesson ID and therefore cannot be treated as lesson-specific truth. Their program-level material may be used later only through explicit source mapping."
   },
   "artifactInventory": {
-    "case": {
-      "path": "subjects/math/data/theory_case/theory_case_c01_l06.json",
-      "exists": false
-    },
-    "core": {
-      "path": "subjects/math/data/theory_core/theory_core_c01_l06.json",
-      "exists": false
-    },
-    "workedExamples": {
-      "path": "subjects/math/data/theory_worked_examples/theory_worked_examples_c01_l06.json",
-      "exists": false
-    },
-    "lab": {
-      "path": "subjects/math/data/theory_lab/theory_lab_c01_l06.json",
-      "exists": false
-    },
-    "assessment": {
-      "path": "subjects/math/data/theory_assessment/theory_assessment_c01_l06.json",
-      "exists": false
-    },
-    "reference": {
-      "path": "subjects/math/data/theory_reference/theory_reference_c01_l06.json",
-      "exists": false
-    },
-    "fullView": {
-      "path": "subjects/math/data/theory_full_view/theory_full_view_c01_l06.json",
-      "exists": false
-    },
-    "normalization": {
-      "path": "subjects/math/data/theory_normalization/theory_normalization_c01_l06.json",
-      "exists": false
-    },
-    "slideshow": {
-      "path": "subjects/math/data/theory_slideshow/theory_slideshow_c01_l06.json",
-      "exists": false
-    },
-    "integrationImport": {
-      "path": "subjects/math/data/theory_integration/theory_lecture_content_c01_l06_import.json",
-      "exists": false
-    },
-    "integrationApproval": {
-      "path": "subjects/math/data/theory_integration/theory_lecture_content_c01_l06_approval.json",
-      "exists": false
-    }
+    "case": {"path":"subjects/math/data/theory_case/theory_case_c01_l06.json","exists":false},
+    "core": {"path":"subjects/math/data/theory_core/theory_core_c01_l06.json","exists":false},
+    "workedExamples": {"path":"subjects/math/data/theory_worked_examples/theory_worked_examples_c01_l06.json","exists":false},
+    "lab": {"path":"subjects/math/data/theory_lab/theory_lab_c01_l06.json","exists":false},
+    "assessment": {"path":"subjects/math/data/theory_assessment/theory_assessment_c01_l06.json","exists":false},
+    "reference": {"path":"subjects/math/data/theory_reference/theory_reference_c01_l06.json","exists":false},
+    "fullView": {"path":"subjects/math/data/theory_full_view/theory_full_view_c01_l06.json","exists":false},
+    "normalization": {"path":"subjects/math/data/theory_normalization/theory_normalization_c01_l06.json","exists":false},
+    "slideshow": {"path":"subjects/math/data/theory_slideshow/theory_slideshow_c01_l06.json","exists":false},
+    "integrationImport": {"path":"subjects/math/data/theory_integration/theory_lecture_content_c01_l06_import.json","exists":false},
+    "integrationApproval": {"path":"subjects/math/data/theory_integration/theory_lecture_content_c01_l06_approval.json","exists":false}
   },
   "existingSpecialistArtifacts": [],
-  "missingSpecialistArtifacts": [
-    "case",
-    "core",
-    "workedExamples",
-    "lab",
-    "assessment",
-    "reference",
-    "fullView",
-    "normalization",
-    "slideshow",
-    "integrationImport",
-    "integrationApproval"
-  ],
+  "missingSpecialistArtifacts": ["case","core","workedExamples","lab","assessment","reference","fullView","normalization","slideshow","integrationImport","integrationApproval"],
   "findings": [
-    {
-      "id": "F01",
-      "severity": "info",
-      "finding": "Durable lesson exists once at record index 5 of 18."
-    },
-    {
-      "id": "F02",
-      "severity": "info",
-      "finding": "Current runtime deck contains 16 slides. The project contract treats 16 as a minimum, not a target maximum."
-    },
-    {
-      "id": "F03",
-      "severity": "warning",
-      "finding": "The current deck is a legacy/general baseline and has not passed the lesson-scoped 14-pass academic workflow."
-    },
-    {
-      "id": "F04",
-      "severity": "warning",
-      "finding": "11 of 11 specialist lesson artifacts are absent: case, core, workedExamples, lab, assessment, reference, fullView, normalization, slideshow, integrationImport, integrationApproval."
-    },
-    {
-      "id": "F05",
-      "severity": "warning",
-      "finding": "Canonical formula references on runtime slides: 0; raw formula blocks: 7."
-    },
-    {
-      "id": "F06",
-      "severity": "info",
-      "finding": "Code blocks: 3; Q&A blocks: 18."
-    },
-    {
-      "id": "F07",
-      "severity": "info",
-      "finding": "Empty/incomplete slide positions: none."
-    },
-    {
-      "id": "F08",
-      "severity": "info",
-      "finding": "Duplicate slide titles: none."
-    },
-    {
-      "id": "F09",
-      "severity": "info",
-      "finding": "§1.6 is the bridge from individual vectors to a data matrix; Pass 2 must lock orientation, shape semantics, sample/feature contracts and the boundary with later rank/SVD content before expansion."
-    },
-    {
-      "id": "F10",
-      "severity": "warning",
-      "finding": "No §1.6 academic acceptance or browser acceptance exists yet. Existing runtime content must not be promoted as approved source of truth."
-    }
+    {"id":"F01","severity":"info","finding":"Durable lesson exists once at record index 5 of 18."},
+    {"id":"F02","severity":"info","finding":"Current runtime deck contains 16 slides. The project contract treats 16 as a minimum, not a target maximum."},
+    {"id":"F03","severity":"warning","finding":"The current deck is a legacy/general baseline and has not passed the lesson-scoped 14-pass academic workflow."},
+    {"id":"F04","severity":"warning","finding":"11 of 11 specialist lesson artifacts are absent: case, core, workedExamples, lab, assessment, reference, fullView, normalization, slideshow, integrationImport, integrationApproval."},
+    {"id":"F05","severity":"warning","finding":"Canonical formula references on runtime slides: 0; raw formula blocks: 7."},
+    {"id":"F06","severity":"info","finding":"Code blocks: 3; Q&A blocks: 18."},
+    {"id":"F07","severity":"info","finding":"Empty/incomplete slide positions: none."},
+    {"id":"F08","severity":"info","finding":"Duplicate slide titles: none."},
+    {"id":"F09","severity":"info","finding":"§1.6 is the bridge from individual vectors to a data matrix; Pass 2 must lock orientation, shape semantics, sample/feature contracts and the boundary with later rank/SVD content before expansion."},
+    {"id":"F10","severity":"warning","finding":"No §1.6 academic acceptance or browser acceptance exists yet. Existing runtime content must not be promoted as approved source of truth."},
+    {"id":"F11","severity":"warning","finding":"No named source outside theory_lecture_content exposes the canonical §1.6 lesson ID. Program-level anchors require explicit mapping in a later source-map pass before they can support academic claims."}
   ],
   "scopeHazards": [
     "Rows-as-samples versus columns-as-samples can silently transpose every later formula.",
@@ -247,23 +146,11 @@
     "newSlideshowEngineCreated": false
   },
   "checks": [
-    {
-      "name": "target occurs once in durable content",
-      "status": "PASS",
-      "detail": [
-        5
-      ]
-    },
-    {
-      "name": "target has title",
-      "status": "PASS",
-      "detail": null
-    },
-    {
-      "name": "target has slides",
-      "status": "PASS",
-      "detail": 16
-    }
+    {"name":"target occurs once in durable content","status":"PASS","detail":[5]},
+    {"name":"target has title","status":"PASS","detail":null},
+    {"name":"target has slides","status":"PASS","detail":16},
+    {"name":"specialist artifact inventory completed","status":"PASS","detail":{"present":0,"missing":11}},
+    {"name":"exact source-match scope documented","status":"PASS","detail":"canonical ID only in durable content"}
   ],
   "nextTask": "THEORY_C01_L06_LEARNING_CONTRACT_PASS_02"
 }
