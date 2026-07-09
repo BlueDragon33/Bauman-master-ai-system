@@ -1,8 +1,8 @@
 # CODEX_STATE
 
-Current task: `THEORY_C01_L05_CHROMIUM_FINAL_ACCEPTANCE_PASS_19`
+Current task: `THEORY_C01_L06_BASELINE_AUDIT_PASS_01`
 
-Status: `PASS_18_SELECTION_ROUTE_SYNC_STATIC_VERIFY_PASS`
+Status: `ACADEMIC_14_OF_14_PASS_RUNTIME_5_OF_5_BROWSER_ACCEPTED`
 
 Date: 2026-07-09
 Branch: `main`
@@ -75,9 +75,9 @@ Academic artifacts:
 
 ## §1.5 runtime progress
 
-Runtime passes complete: `4/5`.
-Runtime passes remaining: `1/5`.
-Browser QA: not run.
+Runtime passes complete: `5/5`.
+Runtime passes remaining: `0/5`.
+Browser QA: `PASS`.
 
 ### Runtime Pass 15 · Durable merge
 - Status: `PASS_15_DURABLE_MERGE_STATIC_VERIFY_PASS`.
@@ -110,7 +110,7 @@ Browser QA: not run.
 - E242 multi-lesson richness commit: `153cce335777c5fc86db8957421033ba7c687521`.
 - Registry: 2 lessons, 8 optional sources, 4 source kinds.
 - L04 richness: 22 slides, 8 diagrams, 9 retrieval checks, 16 misconception intercepts.
-- L05 richness: 22 slides, 9 diagrams, 10 retrieval checks, 17 misconception intercepts.
+- L05 richness: 22 slides, 9 diagrams, 10 retrieval checks, 18 misconception intercepts.
 - Node syntax: PASS for E244, E241 and E242.
 - E202, E211 and E235 unchanged.
 - New slideshow engine: none.
@@ -146,3 +146,20 @@ Pass 19 must:
 - verify formula modal remains separate and E235 visuals remain intact;
 - verify no console errors, route ghost leftovers or stale artifact controls;
 - record screenshots/logs and only then mark final browser acceptance.
+
+
+## Runtime Pass 19 · Chromium final acceptance
+- Status: `PASS_19_CHROMIUM_FINAL_ACCEPTANCE`.
+- Report: `subjects/math/THEORY_C01_L05_RUNTIME_PASS19.json`.
+- Browser: real headless Chromium via Playwright 1.51.1.
+- L04 and L05 durable records: 22/22 slides each.
+- L04 richness: 8 diagrams, 9 retrieval checks, 16 misconception intercepts.
+- L05 richness: 9 diagrams, 10 retrieval checks, 18 misconception intercepts.
+- Reference and Full View: correct lesson-scoped artifacts.
+- Formula modal: separate; E235 release and formula style intact.
+- Cross-lesson identity leak: none.
+- Unregistered L06 stale controls/richness: none.
+- Console errors: 0. Page errors: 0. Failed requests: 0.
+- Screenshots: `subjects/math/qa/pass19/`.
+- Final state: `ACADEMIC_14_OF_14_PASS_RUNTIME_5_OF_5_BROWSER_ACCEPTED`.
+- Next: `THEORY_C01_L06_BASELINE_AUDIT_PASS_01`.
