@@ -607,7 +607,7 @@
     if(t.hasAttribute('data-e129-chapter')){ st.e129ChapterId=t.getAttribute('data-e129-chapter'); st.e129LessonId=''; st.view='learning'; st.learnTab='theory'; renderTheory(); e.preventDefault(); return; }
     if(t.hasAttribute('data-e129-lesson')){ st.e129LessonId=t.getAttribute('data-e129-lesson'); renderTheory(); e.preventDefault(); return; }
     if(t.hasAttribute('data-e129-open-vault')){ openTheoryVault(); e.preventDefault(); return; }
-    if(t.hasAttribute('data-e129-present')){ var visible=document.querySelector('[data-current-lesson]'); var visibleId=S(visible&&visible.getAttribute('data-current-lesson')||st.e129LessonId||e169Path().lessonId||''); if(visibleId){st.e129LessonId=visibleId;e169Path().lessonId=visibleId;} st.e129Present=!st.e129Present; renderTheory(); e.preventDefault(); return; }
+    if(t.hasAttribute('data-e129-present')){ var visible=document.querySelector('[data-current-lesson]'); var visibleId=S(visible&&visible.getAttribute('data-current-lesson')||st.e129LessonId||e169Path().lessonId||''); if(visibleId){st.e129LessonId=visibleId;e169Path().lessonId=visibleId;} st.e129Present=!st.e129Present; renderTheory(); e.preventDefault(); e.stopPropagation(); if(e.stopImmediatePropagation)e.stopImmediatePropagation(); return; }
     if(t.hasAttribute('data-e129-refresh')){ cache.loaded=false; cache.loading=false; loadData().then(renderTheory); e.preventDefault(); return; }
     if(t.hasAttribute('data-e129-back-theory')){ st.view='learning'; st.learnTab='theory'; renderTheory(); e.preventDefault(); return; }
   },true);
