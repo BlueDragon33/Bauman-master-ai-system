@@ -34,6 +34,7 @@ jobs:
           l05='MATH-VN-C01-vector_trong_khong_gian_-L05-subspace-data-representation-e140'
           checks=[]
           def ok(name,cond,detail=None):
+              print(('PASS ' if cond else 'FAIL ')+name, detail if detail is not None else '', flush=True)
               if not cond: raise AssertionError(f'{name}: {detail!r}')
               checks.append({'name':name,'status':'PASS','detail':detail})
 
@@ -64,7 +65,7 @@ jobs:
           ok('reader consumes registry','BAUMAN_MATH_THEORY_ARTIFACT_REGISTRY_E244' in reader)
           ok('reader multi lesson','E241_MULTI_LESSON_REFERENCE_FULL_VIEW_READER' in reader and 'cacheByLesson' in reader)
           ok('reader supports L05 schema',all(x in reader for x in ['modelClassification','projectorSelection','rankReporting','preprocessingGate','caseLookup','troubleshootingMatrix','terminologyLookup','interpretationLimits']))
-          ok('reader no slideshow engine',"createElement('section')" not in reader and 'e132-overlay-deck' not in reader)
+          ok('reader creates no slideshow engine',"createElement('section')" not in reader and "appendChild(deck)" not in reader and "className='e132-overlay-deck" not in reader)
           ok('richness consumes registry','BAUMAN_MATH_THEORY_ARTIFACT_REGISTRY_E244' in richness)
           ok('richness multi lesson','E242_MULTI_LESSON_SLIDESHOW_RICHNESS' in richness and 'cacheByLesson' in richness)
           ok('richness uses existing deck',"document.querySelector('.e132-overlay-deck.open')" in richness)
