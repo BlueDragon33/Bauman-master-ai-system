@@ -1,8 +1,8 @@
 # CODEX_STATE
 
-Current task: `THEORY_C01_L06_BASELINE_AUDIT_PASS_01`
+Current task: `THEORY_C01_L05_CHROMIUM_REVALIDATION_AFTER_E242_FIX`
 
-Status: `ACADEMIC_14_OF_14_PASS_RUNTIME_5_OF_5_BROWSER_ACCEPTED`
+Status: `PASS_19_REVALIDATION_PENDING_AFTER_E242_REPAIR`
 
 Date: 2026-07-09
 Branch: `main`
@@ -75,9 +75,9 @@ Academic artifacts:
 
 ## §1.5 runtime progress
 
-Runtime passes complete: `5/5`.
-Runtime passes remaining: `0/5`.
-Browser QA: `PASS`.
+Runtime passes complete: `4/5`.
+Runtime passes remaining: `1/5`.
+Browser QA: `PENDING_REVALIDATION`.
 
 ### Runtime Pass 15 · Durable merge
 - Status: `PASS_15_DURABLE_MERGE_STATIC_VERIFY_PASS`.
@@ -104,62 +104,42 @@ Browser QA: `PASS`.
 ### Runtime Pass 17 · Multi-lesson reader and richness
 - Status: `PASS_17_MULTI_LESSON_READER_RICHNESS_STATIC_VERIFY_PASS`.
 - Report: `subjects/math/THEORY_C01_L05_RUNTIME_PASS17.json`.
-- Report commit: `aae7b3735d27fad5ec5c68d54397d843f2ae08e9`.
 - E244 multi-lesson registry commit: `67610c6f49b84cd0d2cef1a21ba98eb635b60267`.
 - E241 multi-lesson artifact reader commit: `0e1abf8fc2a43a81689ba3973ef05cd32c5676ac`.
-- E242 multi-lesson richness commit: `153cce335777c5fc86db8957421033ba7c687521`.
+- Initial E242 multi-lesson richness commit: `153cce335777c5fc86db8957421033ba7c687521`.
 - Registry: 2 lessons, 8 optional sources, 4 source kinds.
 - L04 richness: 22 slides, 8 diagrams, 9 retrieval checks, 16 misconception intercepts.
 - L05 richness: 22 slides, 9 diagrams, 10 retrieval checks, 18 misconception intercepts.
-- Node syntax: PASS for E244, E241 and E242.
 - E202, E211 and E235 unchanged.
 - New slideshow engine: none.
-- Temporary diagnostic PR #3 closed without merge because revised runs remained queued; it contained only workflow scaffolding.
 
-## Runtime Pass 18 · Selection and route identity sync
+### Runtime Pass 18 · Selection and route identity sync
+- Status: `PASS_18_SELECTION_ROUTE_SYNC_STATIC_VERIFY_PASS`.
 - E210 canonical identity commit: `d39706c75ce9b9f4d4b720880da1a72f9898b92f`.
 - E243 route and identity lock commit: `d4ba315649d8873345eff5beb862ddd370050224`.
-- E210 now prefers canonical lesson ID/title from E244 or E240 before stale title fields.
-- E243 stamps `data-e243-lesson-id`, `data-e243-lesson-title` and `data-lesson-id` on the existing deck.
-- E243 re-applies E210, E241 and E242 through their public APIs during stabilization.
-- E129, E202, E211 and E235 were not modified.
-- Static verification: PASS.
 - Report: `subjects/math/THEORY_C01_L05_RUNTIME_PASS18.json`.
-- Browser QA: not run.
-- Next: `THEORY_C01_L05_CHROMIUM_FINAL_ACCEPTANCE_PASS_19`.
+- E129, E202, E211 and E235 were not modified.
 
-## Remaining runtime roadmap
-
-5. Pass 19: Chromium browser QA, cross-lesson leak checks and final runtime acceptance.
+## Chromium acceptance history and revalidation reason
+- Historical Pass 19 report: `subjects/math/THEORY_C01_L05_RUNTIME_PASS19.json`.
+- Historical acceptance commit: `b28d460f7e584e333f36dd9068bfe2f2aead34c6`.
+- A stricter later Chromium sequence exposed that E211/E241 could replace the visual after E242 applied, while E242 returned early from a stale `lastKey` marker.
+- Runtime repair commit: `58bab8bd2e131b8250f01a83eb6b611afa0fd2f0`.
+- The repair prioritizes deck-locked lesson identity and verifies required richness markers still exist before treating a slide as already applied.
+- Because this repair was committed after the historical browser report, that report is retained as history but is not sufficient for the current head.
 
 ## Current task requirements
 
-`THEORY_C01_L05_CHROMIUM_FINAL_ACCEPTANCE_PASS_19`
+`THEORY_C01_L05_CHROMIUM_REVALIDATION_AFTER_E242_FIX`
 
-Pass 19 must:
-- run a real Chromium browser session against the current main-equivalent branch;
-- open §1.4 and §1.5 separately;
-- verify 22/22 slides for both lessons;
-- verify canonical lesson identity does not leak between lessons;
-- verify Reference and Full View open from the correct lesson artifacts;
-- verify L05 richness counts and representative diagram/retrieval/misconception behavior;
-- verify formula modal remains separate and E235 visuals remain intact;
-- verify no console errors, route ghost leftovers or stale artifact controls;
-- record screenshots/logs and only then mark final browser acceptance.
-
-
-## Runtime Pass 19 · Chromium final acceptance
-- Status: `PASS_19_CHROMIUM_FINAL_ACCEPTANCE`.
-- Report: `subjects/math/THEORY_C01_L05_RUNTIME_PASS19.json`.
-- Browser: real headless Chromium via Playwright 1.51.1.
-- L04 and L05 durable records: 22/22 slides each.
-- L04 richness: 8 diagrams, 9 retrieval checks, 16 misconception intercepts.
-- L05 richness: 9 diagrams, 10 retrieval checks, 18 misconception intercepts.
-- Reference and Full View: correct lesson-scoped artifacts.
-- Formula modal: separate; E235 release and formula style intact.
-- Cross-lesson identity leak: none.
-- Unregistered L06 stale controls/richness: none.
-- Console errors: 0. Page errors: 0. Failed requests: 0.
-- Screenshots: `subjects/math/qa/pass19/`.
-- Final state: `ACADEMIC_14_OF_14_PASS_RUNTIME_5_OF_5_BROWSER_ACCEPTED`.
-- Next: `THEORY_C01_L06_BASELINE_AUDIT_PASS_01`.
+The revalidation must:
+- run real Chromium against the current `main` head including commit `58bab8bd2e131b8250f01a83eb6b611afa0fd2f0`;
+- open §1.4 and §1.5 through the real E129 presenter action;
+- navigate all 22 slides in each lesson;
+- for every source slide, verify each required diagram, retrieval and misconception marker remains present after reader/artifact rerenders;
+- verify canonical identity and artifact controls never leak between §1.4 and §1.5;
+- open lesson-scoped Reference and Full View;
+- verify the formula modal remains separate and E235 remains active;
+- verify zero console errors, page errors, failed local requests and routing-ghost leftovers;
+- update the Pass 19 report with the new tested commit and evidence artifact;
+- restore `5/5` only after the current head passes.
