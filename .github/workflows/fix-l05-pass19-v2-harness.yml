@@ -23,14 +23,11 @@ jobs:
           from pathlib import Path
           p=Path('.github/workflows/l05-pass19-chromium-qa-v2.yml')
           text=p.read_text(encoding='utf-8')
-          old="""            await moveTo(page,22);
-            const end=await page.evaluate"""
-          new="""            await moveTo(page,22);
-            await page.waitForFunction(id=>document.querySelector('.e132-overlay-deck.open .e241-actions')?.getAttribute('data-e241-lesson-id')===id,L.id,{timeout:10000});
-            const end=await page.evaluate"""
-          if old not in text:
-              raise SystemExit('Target harness fragment not found')
-          p.write_text(text.replace(old,new,1),encoding='utf-8')
+          old='await moveTo(page,22);'
+          wait="await page.waitForFunction(id=>document.querySelector('.e132-overlay-deck.open .e241-actions')?.getAttribute('data-e241-lesson-id')===id,L.id,{timeout:10000});"
+          if text.count(old)!=1:
+              raise SystemExit(f'Expected exactly one target, found {text.count(old)}')
+          p.write_text(text.replace(old,old+wait,1),encoding='utf-8')
           PY
           git rm .github/workflows/fix-l05-pass19-v2-harness.yml
           git config user.name "github-actions[bot]"
