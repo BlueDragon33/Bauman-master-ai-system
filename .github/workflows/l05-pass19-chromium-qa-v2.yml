@@ -57,7 +57,6 @@ jobs:
             must(reader.slides===22,L.key+' Reader slide count',reader);
             must(reader.title.includes(L.short)&&reader.title.includes(L.number),L.key+' Reader display title',reader);
             must(reader.present,L.key+' presenter button',reader);
-
             await page.locator('[data-e129-present]').click();
             await page.waitForSelector('.e132-overlay-deck.open');
             await waitCount(page,1);
@@ -67,26 +66,22 @@ jobs:
             must([identity.routeId,identity.activeId,identity.chipId,identity.actionsId,identity.e210.lessonId,identity.e241.activeLessonId,identity.e242.activeLessonId,identity.e243.deckLessonId].every(x=>x===L.id),L.key+' canonical IDs',identity);
             must(identity.routeTitle===L.title&&identity.chip.includes(L.title),L.key+' canonical title',identity);
             must(!identity.oldTitleVisible&&identity.ghosts===0,L.key+' identity leak/ghost',identity);
-
             await moveTo(page,L.rich);
             await page.waitForFunction(x=>document.querySelector('.e132-clean-main')?.getAttribute('data-e242-slide')===x,L.richId,{timeout:10000});
             const richness=await page.evaluate(()=>{const d=document.querySelector('.e132-overlay-deck.open');return {lesson:d?.getAttribute('data-e242-lesson-id'),slide:d?.querySelector('.e132-clean-main')?.getAttribute('data-e242-slide'),diagram:!!d?.querySelector('[data-e242-diagram]'),retrieval:!!d?.querySelector('[data-e242-retrieval]'),misconception:!!d?.querySelector('[data-e242-misconception]')};});
             must(richness.lesson===L.id&&richness.slide===L.richId&&richness.diagram&&richness.retrieval&&richness.misconception,L.key+' richness',richness);
             const shot1=path.join(OUT,L.key+'-richness.png');await page.screenshot({path:shot1,fullPage:true});result.screenshots.push(path.basename(shot1));
-
             const fbtn=page.locator('.e132-overlay-deck.open [data-e211-formula-full]');must(await fbtn.count()===1,L.key+' formula button');await fbtn.click();await page.waitForSelector('#modal.e211-formula-modal-host:not(.hidden) .e211-formula-modal');
             const formula=await page.evaluate(()=>({modal:!!document.querySelector('#modal.e211-formula-modal-host:not(.hidden) .e211-formula-modal'),artifact:!!document.querySelector('.e241-modal:not(.hidden)'),release:window.BAUMAN_MATH_E235_FORMULA_STANDARD?.release,style:!!document.getElementById('e235-formula-standard-style')}));
             must(formula.modal&&!formula.artifact&&formula.release==='E235_READER_PRO_FORMULA_STANDARD_R2'&&formula.style,L.key+' formula/E235',formula);await page.locator('#modalClose').click();await page.waitForFunction(()=>!document.querySelector('#modal.e211-formula-modal-host:not(.hidden)'));
-
             await page.locator('.e132-overlay-deck.open .e241-actions [data-e241-reference]').click();await page.waitForSelector('.e241-modal:not(.hidden)');
             const ref=await page.evaluate(()=>({title:document.querySelector('[data-e241-title]').textContent.trim(),body:document.querySelector('[data-e241-body]').textContent,sections:document.querySelectorAll('.e241-modal:not(.hidden) .e241-section').length}));
             must(ref.title.includes(L.short)&&ref.body.includes(L.token)&&ref.sections>=7,L.key+' Reference',ref);await closeE241(page);
-
             await page.locator('.e132-overlay-deck.open .e241-actions [data-e241-full]').click();await page.waitForSelector('.e241-modal:not(.hidden)');
             const full=await page.evaluate(()=>({title:document.querySelector('[data-e241-title]').textContent.trim(),sections:document.querySelectorAll('.e241-modal:not(.hidden) .e241-section').length}));
             must(full.title.includes(L.short)&&full.sections>=L.fullMin,L.key+' Full View',full);await closeE241(page);
-
             await moveTo(page,22);
+            await page.waitForFunction(id=>document.querySelector('.e132-overlay-deck.open .e241-actions')?.getAttribute('data-e241-lesson-id')===id,L.id,{timeout:10000});
             const end=await page.evaluate(()=>{const d=document.querySelector('.e132-overlay-deck.open');return {count:d?.querySelector('[data-e202-count]')?.textContent.trim(),route:d?.getAttribute('data-e243-lesson-id'),active:d?.getAttribute('data-e210-active-lesson-id'),actions:d?.querySelector('.e241-actions')?.getAttribute('data-e241-lesson-id'),rich:d?.getAttribute('data-e242-lesson-id'),ghosts:document.querySelectorAll('[data-e243-routing-ghost]').length};});
             must(end.count.startsWith('22 / 22')&&[end.route,end.active,end.actions,end.rich].every(x=>x===L.id)&&end.ghosts===0,L.key+' slide22 identity',end);
             const shot2=path.join(OUT,L.key+'-slide22.png');await page.screenshot({path:shot2,fullPage:true});result.screenshots.push(path.basename(shot2));
