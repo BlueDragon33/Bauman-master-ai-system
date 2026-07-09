@@ -29,7 +29,7 @@
       ['[data-e210-lesson-id]','.e132-clean-side small','.e132-clean-main h1'].forEach(function(sel){var n=d.querySelector(sel);if(n)values.push(text(n));});
     }
     var wanted=norm(LESSON_TITLE);
-    return values.some(function(v){var n=norm(v);return n===norm(LESSON_ID)||n.indexOf(wanted)>=0||wanted.indexOf(n)>=0;});
+    return values.some(function(v){var n=norm(v);return !!n&&(n===norm(LESSON_ID)||n.indexOf(wanted)>=0||wanted.indexOf(n)>=0);});
   }
 
   function countFeatures(slides){
