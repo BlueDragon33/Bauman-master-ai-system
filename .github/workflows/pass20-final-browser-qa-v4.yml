@@ -1,0 +1,49 @@
+name: Pass 20 final Math browser QA v4
+on:
+  push:
+    branches: [main]
+    paths:
+      - .github/workflows/pass20-final-browser-qa-v4.yml
+permissions:
+  contents: write
+jobs:
+  browser-qa:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 1
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+      - name: Install Chromium
+        run: |
+          mkdir -p /tmp/pass20v4
+          cd /tmp/pass20v4
+          npm init -y >/dev/null 2>&1
+          npm install playwright@1.51.1 >/dev/null 2>&1
+          npx playwright install --with-deps chromium >/dev/null
+      - name: Run corrected acceptance
+        run: |
+          python3 -m http.server 4173 --directory "$GITHUB_WORKSPACE" >/tmp/pass20-v4-http.log 2>&1 &
+          cp "$GITHUB_WORKSPACE/subjects/math/tests/pass20-browser-qa-v2.mjs" /tmp/pass20v4/run.mjs
+          python3 - <<'PY'
+          from pathlib import Path
+          p=Path('/tmp/pass20v4/run.mjs')
+          s=p.read_text(encoding='utf-8')
+          old="await page.waitForSelector('.e241-modal.hidden',{timeout:10000});"
+          new="await page.waitForFunction(()=>document.querySelector('.e241-modal')?.classList.contains('hidden'),{timeout:10000});"
+          if s.count(old)!=2: raise SystemExit('expected 2 hidden-modal waits, found '+str(s.count(old)))
+          p.write_text(s.replace(old,new),encoding='utf-8')
+          PY
+          cd /tmp/pass20v4
+          node run.mjs
+      - name: Commit report
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add subjects/math/PASS20_BROWSER_QA_REPORT.json
+          git commit -m "test(math): record final pass20 browser QA v4"
+          git pull --rebase origin main
+          git push origin HEAD:main
