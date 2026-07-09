@@ -26,7 +26,7 @@
       reference:{id:'theory_reference_c01_l05',label:'Tham khảo thêm · §1.5',path:'data/theory_reference/theory_reference_c01_l05.json',version:'REFERENCE_C01_L05_V1_PASS11'},
       fullView:{id:'theory_full_view_c01_l05',label:'Xem đầy đủ · §1.5',path:'data/theory_full_view/theory_full_view_c01_l05.json',version:'FULL_VIEW_C01_L05_V1_PASS12'},
       normalization:{id:'theory_normalization_c01_l05',label:'Chuẩn hóa ký hiệu · §1.5',path:'data/theory_normalization/theory_normalization_c01_l05.json',version:'NORMALIZATION_C01_L05_V1_PASS12'},
-      slideshow:{id:'theory_slideshow_c01_l05',label:'Slideshow richness · §1.5',path:'data/theory_slideshow/theory_slideshow_c01_l05.json',version:'SLIDESHOW_C01_L05_V1_PASS13',expected:{slides:22,diagrams:9,retrievalChecks:10,misconceptions:17}}
+      slideshow:{id:'theory_slideshow_c01_l05',label:'Slideshow richness · §1.5',path:'data/theory_slideshow/theory_slideshow_c01_l05.json',version:'SLIDESHOW_C01_L05_V1_PASS13',expected:{slides:22,diagrams:9,retrievalChecks:10,misconceptions:18}}
     }
   };
 

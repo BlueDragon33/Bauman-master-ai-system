@@ -1,0 +1,1593 @@
+{
+  "id": "bauman_math_c01_l05_runtime_pass19_v1",
+  "schema": "bauman_math_chromium_acceptance_v1",
+  "version": "RUNTIME_PASS19_C01_L05_V1",
+  "status": "PASS",
+  "executedAt": "2026-07-09T10:48:19.059Z",
+  "scope": "current branch static site via real Chromium",
+  "lessons": [
+    "MATH-VN-C01-vector_trong_khong_gian_-L04-basis-span-coordinate-e140",
+    "MATH-VN-C01-vector_trong_khong_gian_-L05-subspace-data-representation-e140"
+  ],
+  "checks": [
+    {
+      "name": "runtime APIs and E129 source count",
+      "status": "PASS",
+      "startup": {
+        "e129": {
+          "ok": true,
+          "release": "E129_THEORY_CONTENT_IMPORTER",
+          "contractDoc": "subjects/math/THEORY_TAB_CONTRACT_E129.md",
+          "adapterMarked": true,
+          "sources": {
+            "frame": 112,
+            "content": 18,
+            "legacy": 347,
+            "overlay": false,
+            "frameSource": "theory_lecture_frame",
+            "contentSource": "theory_lecture_content",
+            "legacySource": "lessons"
+          },
+          "primaryFrameSource": "theory_lecture_frame",
+          "primaryContentSource": "theory_lecture_content",
+          "legacySource": "lessons",
+          "renderReplacement": true,
+          "importerTarget": "theory_lecture_content",
+          "legacyImporterSuppressedOnTheoryStorage": true,
+          "frameOnlyRenderable": true,
+          "note": "E129 shell/importer is active. E126/E128 remain compatibility layers outside E129 Theory storage.",
+          "minSlideContract": true,
+          "minimumSlideCount": 16,
+          "maximumSlideCount": null,
+          "countTests": {
+            "fifteen": {
+              "ok": false,
+              "count": 15,
+              "minimum": 16,
+              "maximum": null,
+              "warning": "Bài giảng cần tối thiểu 16 slide; hiện có 15."
+            },
+            "sixteen": {
+              "ok": true,
+              "count": 16,
+              "minimum": 16,
+              "maximum": null,
+              "warning": ""
+            },
+            "twentyTwo": {
+              "ok": true,
+              "count": 22,
+              "minimum": 16,
+              "maximum": null,
+              "warning": ""
+            }
+          },
+          "releasePatch": "E239_MINIMUM_16_SLIDES_NOT_MAXIMUM"
+        },
+        "minimum": {
+          "ok": true,
+          "tests": {
+            "fifteen": {
+              "ok": false,
+              "count": 15,
+              "minimum": 16,
+              "maximum": null,
+              "warning": "Bài giảng cần tối thiểu 16 slide; hiện có 15."
+            },
+            "sixteen": {
+              "ok": true,
+              "count": 16,
+              "minimum": 16,
+              "maximum": null,
+              "warning": ""
+            },
+            "twentyTwo": {
+              "ok": true,
+              "count": 22,
+              "minimum": 16,
+              "maximum": null,
+              "warning": ""
+            }
+          },
+          "apiPatched": true
+        },
+        "registry": {
+          "ok": true,
+          "release": "E244_MULTI_LESSON_THEORY_ARTIFACT_REGISTRY",
+          "lessonCount": 2,
+          "sourceCount": 8,
+          "kinds": [
+            "reference",
+            "fullView",
+            "normalization",
+            "slideshow"
+          ],
+          "duplicateSourceIds": [],
+          "registered": true,
+          "multiLessonResolver": true,
+          "entries": [
+            {
+              "lessonId": "MATH-VN-C01-vector_trong_khong_gian_-L04-basis-span-coordinate-e140",
+              "lessonTitle": "§1.4 · Cơ sở, span và tọa độ",
+              "academicStatus": "accepted",
+              "reference": {
+                "id": "theory_reference_c01_l04",
+                "label": "Tham khảo thêm · §1.4",
+                "path": "data/theory_reference/theory_reference_c01_l04.json",
+                "version": "REFERENCE_C01_L04_V1_APPROVED"
+              },
+              "fullView": {
+                "id": "theory_full_view_c01_l04",
+                "label": "Xem đầy đủ · §1.4",
+                "path": "data/theory_full_view/theory_full_view_c01_l04.json",
+                "version": "FULL_VIEW_C01_L04_V1_APPROVED"
+              },
+              "normalization": {
+                "id": "theory_normalization_c01_l04",
+                "label": "Chuẩn hóa ký hiệu · §1.4",
+                "path": "data/theory_normalization/theory_normalization_c01_l04.json",
+                "version": "NORMALIZATION_C01_L04_V1_APPROVED"
+              },
+              "slideshow": {
+                "id": "theory_slideshow_c01_l04",
+                "label": "Slideshow richness · §1.4",
+                "path": "data/theory_slideshow/theory_slideshow_c01_l04.json",
+                "version": "SLIDESHOW_C01_L04_V1_APPROVED",
+                "expected": {
+                  "slides": 22,
+                  "diagrams": 8,
+                  "retrievalChecks": 9,
+                  "misconceptions": 16
+                }
+              }
+            },
+            {
+              "lessonId": "MATH-VN-C01-vector_trong_khong_gian_-L05-subspace-data-representation-e140",
+              "lessonTitle": "§1.5 · Không gian con và biểu diễn dữ liệu",
+              "academicStatus": "ACADEMIC_14_OF_14_PASS",
+              "academicAcceptance": "THEORY_C01_L05_ACADEMIC_ACCEPTANCE.json",
+              "reference": {
+                "id": "theory_reference_c01_l05",
+                "label": "Tham khảo thêm · §1.5",
+                "path": "data/theory_reference/theory_reference_c01_l05.json",
+                "version": "REFERENCE_C01_L05_V1_PASS11"
+              },
+              "fullView": {
+                "id": "theory_full_view_c01_l05",
+                "label": "Xem đầy đủ · §1.5",
+                "path": "data/theory_full_view/theory_full_view_c01_l05.json",
+                "version": "FULL_VIEW_C01_L05_V1_PASS12"
+              },
+              "normalization": {
+                "id": "theory_normalization_c01_l05",
+                "label": "Chuẩn hóa ký hiệu · §1.5",
+                "path": "data/theory_normalization/theory_normalization_c01_l05.json",
+                "version": "NORMALIZATION_C01_L05_V1_PASS12"
+              },
+              "slideshow": {
+                "id": "theory_slideshow_c01_l05",
+                "label": "Slideshow richness · §1.5",
+                "path": "data/theory_slideshow/theory_slideshow_c01_l05.json",
+                "version": "SLIDESHOW_C01_L05_V1_PASS13",
+                "expected": {
+                  "slides": 22,
+                  "diagrams": 9,
+                  "retrievalChecks": 10,
+                  "misconceptions": 18
+                }
+              }
+            }
+          ],
+          "sources": [
+            {
+              "lessonId": "MATH-VN-C01-vector_trong_khong_gian_-L04-basis-span-coordinate-e140",
+              "kind": "reference",
+              "id": "theory_reference_c01_l04",
+              "path": "data/theory_reference/theory_reference_c01_l04.json",
+              "version": "REFERENCE_C01_L04_V1_APPROVED",
+              "expected": null
+            },
+            {
+              "lessonId": "MATH-VN-C01-vector_trong_khong_gian_-L04-basis-span-coordinate-e140",
+              "kind": "fullView",
+              "id": "theory_full_view_c01_l04",
+              "path": "data/theory_full_view/theory_full_view_c01_l04.json",
+              "version": "FULL_VIEW_C01_L04_V1_APPROVED",
+              "expected": null
+            },
+            {
+              "lessonId": "MATH-VN-C01-vector_trong_khong_gian_-L04-basis-span-coordinate-e140",
+              "kind": "normalization",
+              "id": "theory_normalization_c01_l04",
+              "path": "data/theory_normalization/theory_normalization_c01_l04.json",
+              "version": "NORMALIZATION_C01_L04_V1_APPROVED",
+              "expected": null
+            },
+            {
+              "lessonId": "MATH-VN-C01-vector_trong_khong_gian_-L04-basis-span-coordinate-e140",
+              "kind": "slideshow",
+              "id": "theory_slideshow_c01_l04",
+              "path": "data/theory_slideshow/theory_slideshow_c01_l04.json",
+              "version": "SLIDESHOW_C01_L04_V1_APPROVED",
+              "expected": {
+                "slides": 22,
+                "diagrams": 8,
+                "retrievalChecks": 9,
+                "misconceptions": 16
+              }
+            },
+            {
+              "lessonId": "MATH-VN-C01-vector_trong_khong_gian_-L05-subspace-data-representation-e140",
+              "kind": "reference",
+              "id": "theory_reference_c01_l05",
+              "path": "data/theory_reference/theory_reference_c01_l05.json",
+              "version": "REFERENCE_C01_L05_V1_PASS11",
+              "expected": null
+            },
+            {
+              "lessonId": "MATH-VN-C01-vector_trong_khong_gian_-L05-subspace-data-representation-e140",
+              "kind": "fullView",
+              "id": "theory_full_view_c01_l05",
+              "path": "data/theory_full_view/theory_full_view_c01_l05.json",
+              "version": "FULL_VIEW_C01_L05_V1_PASS12",
+              "expected": null
+            },
+            {
+              "lessonId": "MATH-VN-C01-vector_trong_khong_gian_-L05-subspace-data-representation-e140",
+              "kind": "normalization",
+              "id": "theory_normalization_c01_l05",
+              "path": "data/theory_normalization/theory_normalization_c01_l05.json",
+              "version": "NORMALIZATION_C01_L05_V1_PASS12",
+              "expected": null
+            },
+            {
+              "lessonId": "MATH-VN-C01-vector_trong_khong_gian_-L05-subspace-data-representation-e140",
+              "kind": "slideshow",
+              "id": "theory_slideshow_c01_l05",
+              "path": "data/theory_slideshow/theory_slideshow_c01_l05.json",
+              "version": "SLIDESHOW_C01_L05_V1_PASS13",
+              "expected": {
+                "slides": 22,
+                "diagrams": 9,
+                "retrievalChecks": 10,
+                "misconceptions": 18
+              }
+            }
+          ],
+          "newSlideshowEngineCreated": false,
+          "e235Modified": false
+        },
+        "recordCount": 18,
+        "targets": [
+          {
+            "id": "MATH-VN-C01-vector_trong_khong_gian_-L04-basis-span-coordinate-e140",
+            "count": 1,
+            "slides": 22
+          },
+          {
+            "id": "MATH-VN-C01-vector_trong_khong_gian_-L05-subspace-data-representation-e140",
+            "count": 1,
+            "slides": 22
+          }
+        ],
+        "normalization": {
+          "lessonId": "MATH-VN-C01-vector_trong_khong_gian_-L05-subspace-data-representation-e140",
+          "notation": 18,
+          "formulas": 16
+        },
+        "source": "durable_json_fallback",
+        "e235": "E235_READER_PRO_FORMULA_STANDARD_R2"
+      }
+    },
+    {
+      "name": "minimum 16 slide contract",
+      "status": "PASS",
+      "minimum": {
+        "ok": true,
+        "tests": {
+          "fifteen": {
+            "ok": false,
+            "count": 15,
+            "minimum": 16,
+            "maximum": null,
+            "warning": "Bài giảng cần tối thiểu 16 slide; hiện có 15."
+          },
+          "sixteen": {
+            "ok": true,
+            "count": 16,
+            "minimum": 16,
+            "maximum": null,
+            "warning": ""
+          },
+          "twentyTwo": {
+            "ok": true,
+            "count": 22,
+            "minimum": 16,
+            "maximum": null,
+            "warning": ""
+          }
+        },
+        "apiPatched": true
+      }
+    },
+    {
+      "name": "E244 registry has two lessons and eight sources",
+      "status": "PASS",
+      "registry": {
+        "ok": true,
+        "release": "E244_MULTI_LESSON_THEORY_ARTIFACT_REGISTRY",
+        "lessonCount": 2,
+        "sourceCount": 8,
+        "kinds": [
+          "reference",
+          "fullView",
+          "normalization",
+          "slideshow"
+        ],
+        "duplicateSourceIds": [],
+        "registered": true,
+        "multiLessonResolver": true,
+        "entries": [
+          {
+            "lessonId": "MATH-VN-C01-vector_trong_khong_gian_-L04-basis-span-coordinate-e140",
+            "lessonTitle": "§1.4 · Cơ sở, span và tọa độ",
+            "academicStatus": "accepted",
+            "reference": {
+              "id": "theory_reference_c01_l04",
+              "label": "Tham khảo thêm · §1.4",
+              "path": "data/theory_reference/theory_reference_c01_l04.json",
+              "version": "REFERENCE_C01_L04_V1_APPROVED"
+            },
+            "fullView": {
+              "id": "theory_full_view_c01_l04",
+              "label": "Xem đầy đủ · §1.4",
+              "path": "data/theory_full_view/theory_full_view_c01_l04.json",
+              "version": "FULL_VIEW_C01_L04_V1_APPROVED"
+            },
+            "normalization": {
+              "id": "theory_normalization_c01_l04",
+              "label": "Chuẩn hóa ký hiệu · §1.4",
+              "path": "data/theory_normalization/theory_normalization_c01_l04.json",
+              "version": "NORMALIZATION_C01_L04_V1_APPROVED"
+            },
+            "slideshow": {
+              "id": "theory_slideshow_c01_l04",
+              "label": "Slideshow richness · §1.4",
+              "path": "data/theory_slideshow/theory_slideshow_c01_l04.json",
+              "version": "SLIDESHOW_C01_L04_V1_APPROVED",
+              "expected": {
+                "slides": 22,
+                "diagrams": 8,
+                "retrievalChecks": 9,
+                "misconceptions": 16
+              }
+            }
+          },
+          {
+            "lessonId": "MATH-VN-C01-vector_trong_khong_gian_-L05-subspace-data-representation-e140",
+            "lessonTitle": "§1.5 · Không gian con và biểu diễn dữ liệu",
+            "academicStatus": "ACADEMIC_14_OF_14_PASS",
+            "academicAcceptance": "THEORY_C01_L05_ACADEMIC_ACCEPTANCE.json",
+            "reference": {
+              "id": "theory_reference_c01_l05",
+              "label": "Tham khảo thêm · §1.5",
+              "path": "data/theory_reference/theory_reference_c01_l05.json",
+              "version": "REFERENCE_C01_L05_V1_PASS11"
+            },
+            "fullView": {
+              "id": "theory_full_view_c01_l05",
+              "label": "Xem đầy đủ · §1.5",
+              "path": "data/theory_full_view/theory_full_view_c01_l05.json",
+              "version": "FULL_VIEW_C01_L05_V1_PASS12"
+            },
+            "normalization": {
+              "id": "theory_normalization_c01_l05",
+              "label": "Chuẩn hóa ký hiệu · §1.5",
+              "path": "data/theory_normalization/theory_normalization_c01_l05.json",
+              "version": "NORMALIZATION_C01_L05_V1_PASS12"
+            },
+            "slideshow": {
+              "id": "theory_slideshow_c01_l05",
+              "label": "Slideshow richness · §1.5",
+              "path": "data/theory_slideshow/theory_slideshow_c01_l05.json",
+              "version": "SLIDESHOW_C01_L05_V1_PASS13",
+              "expected": {
+                "slides": 22,
+                "diagrams": 9,
+                "retrievalChecks": 10,
+                "misconceptions": 18
+              }
+            }
+          }
+        ],
+        "sources": [
+          {
+            "lessonId": "MATH-VN-C01-vector_trong_khong_gian_-L04-basis-span-coordinate-e140",
+            "kind": "reference",
+            "id": "theory_reference_c01_l04",
+            "path": "data/theory_reference/theory_reference_c01_l04.json",
+            "version": "REFERENCE_C01_L04_V1_APPROVED",
+            "expected": null
+          },
+          {
+            "lessonId": "MATH-VN-C01-vector_trong_khong_gian_-L04-basis-span-coordinate-e140",
+            "kind": "fullView",
+            "id": "theory_full_view_c01_l04",
+            "path": "data/theory_full_view/theory_full_view_c01_l04.json",
+            "version": "FULL_VIEW_C01_L04_V1_APPROVED",
+            "expected": null
+          },
+          {
+            "lessonId": "MATH-VN-C01-vector_trong_khong_gian_-L04-basis-span-coordinate-e140",
+            "kind": "normalization",
+            "id": "theory_normalization_c01_l04",
+            "path": "data/theory_normalization/theory_normalization_c01_l04.json",
+            "version": "NORMALIZATION_C01_L04_V1_APPROVED",
+            "expected": null
+          },
+          {
+            "lessonId": "MATH-VN-C01-vector_trong_khong_gian_-L04-basis-span-coordinate-e140",
+            "kind": "slideshow",
+            "id": "theory_slideshow_c01_l04",
+            "path": "data/theory_slideshow/theory_slideshow_c01_l04.json",
+            "version": "SLIDESHOW_C01_L04_V1_APPROVED",
+            "expected": {
+              "slides": 22,
+              "diagrams": 8,
+              "retrievalChecks": 9,
+              "misconceptions": 16
+            }
+          },
+          {
+            "lessonId": "MATH-VN-C01-vector_trong_khong_gian_-L05-subspace-data-representation-e140",
+            "kind": "reference",
+            "id": "theory_reference_c01_l05",
+            "path": "data/theory_reference/theory_reference_c01_l05.json",
+            "version": "REFERENCE_C01_L05_V1_PASS11",
+            "expected": null
+          },
+          {
+            "lessonId": "MATH-VN-C01-vector_trong_khong_gian_-L05-subspace-data-representation-e140",
+            "kind": "fullView",
+            "id": "theory_full_view_c01_l05",
+            "path": "data/theory_full_view/theory_full_view_c01_l05.json",
+            "version": "FULL_VIEW_C01_L05_V1_PASS12",
+            "expected": null
+          },
+          {
+            "lessonId": "MATH-VN-C01-vector_trong_khong_gian_-L05-subspace-data-representation-e140",
+            "kind": "normalization",
+            "id": "theory_normalization_c01_l05",
+            "path": "data/theory_normalization/theory_normalization_c01_l05.json",
+            "version": "NORMALIZATION_C01_L05_V1_PASS12",
+            "expected": null
+          },
+          {
+            "lessonId": "MATH-VN-C01-vector_trong_khong_gian_-L05-subspace-data-representation-e140",
+            "kind": "slideshow",
+            "id": "theory_slideshow_c01_l05",
+            "path": "data/theory_slideshow/theory_slideshow_c01_l05.json",
+            "version": "SLIDESHOW_C01_L05_V1_PASS13",
+            "expected": {
+              "slides": 22,
+              "diagrams": 9,
+              "retrievalChecks": 10,
+              "misconceptions": 18
+            }
+          }
+        ],
+        "newSlideshowEngineCreated": false,
+        "e235Modified": false
+      }
+    },
+    {
+      "name": "durable L04 and L05 are unique 22-slide records",
+      "status": "PASS",
+      "targets": [
+        {
+          "id": "MATH-VN-C01-vector_trong_khong_gian_-L04-basis-span-coordinate-e140",
+          "count": 1,
+          "slides": 22
+        },
+        {
+          "id": "MATH-VN-C01-vector_trong_khong_gian_-L05-subspace-data-representation-e140",
+          "count": 1,
+          "slides": 22
+        }
+      ],
+      "recordCount": 18
+    },
+    {
+      "name": "L05 normalization JSON parses and has complete registries",
+      "status": "PASS",
+      "normalization": {
+        "lessonId": "MATH-VN-C01-vector_trong_khong_gian_-L05-subspace-data-representation-e140",
+        "notation": 18,
+        "formulas": 16
+      }
+    },
+    {
+      "name": "E235 formula standard release unchanged",
+      "status": "PASS",
+      "release": "E235_READER_PRO_FORMULA_STANDARD_R2"
+    },
+    {
+      "name": "E129 reader renders §1.4 · Cơ sở, span và tọa độ with 22 slides",
+      "status": "PASS",
+      "reader": {
+        "slides": 22,
+        "current": "MATH-VN-C01-vector_trong_khong_gian_-L04-basis-span-coordinate-e140"
+      }
+    },
+    {
+      "name": "canonical identity locks §1.4 · Cơ sở, span và tọa độ",
+      "status": "PASS",
+      "identity": {
+        "e243Id": "MATH-VN-C01-vector_trong_khong_gian_-L04-basis-span-coordinate-e140",
+        "e243Title": "§1.4 · Cơ sở, span và tọa độ",
+        "e210Id": "MATH-VN-C01-vector_trong_khong_gian_-L04-basis-span-coordinate-e140",
+        "genericId": "MATH-VN-C01-vector_trong_khong_gian_-L04-basis-span-coordinate-e140",
+        "richnessId": "MATH-VN-C01-vector_trong_khong_gian_-L04-basis-span-coordinate-e140",
+        "actionId": "MATH-VN-C01-vector_trong_khong_gian_-L04-basis-span-coordinate-e140",
+        "chip": "Đang trình chiếu: §1.4 · Cơ sở, span và tọa độ",
+        "sourceLine": "",
+        "record": "§1.4 · Cơ sở, span và tọa độ",
+        "e210": {
+          "ok": true,
+          "release": "E210_CANONICAL_LESSON_IDENTITY_LABEL",
+          "lessonId": "MATH-VN-C01-vector_trong_khong_gian_-L04-basis-span-coordinate-e140",
+          "lessonTitle": "§1.4 · Cơ sở, span và tọa độ",
+          "identitySource": "E244",
+          "active": true,
+          "canonicalIdPreferred": true
+        },
+        "e241": {
+          "ok": true,
+          "release": "E241_MULTI_LESSON_REFERENCE_FULL_VIEW_READER",
+          "multiLesson": true,
+          "activeLessonId": "MATH-VN-C01-vector_trong_khong_gian_-L04-basis-span-coordinate-e140",
+          "registeredLessons": 2,
+          "referenceLoaded": true,
+          "fullViewLoaded": true,
+          "normalizationLoaded": true,
+          "formulaPopupSeparate": true,
+          "newSlideshowEngineCreated": false,
+          "e235Modified": false,
+          "error": null
+        },
+        "e242": {
+          "ok": true,
+          "release": "E242_MULTI_LESSON_SLIDESHOW_RICHNESS",
+          "multiLesson": true,
+          "activeLessonId": "MATH-VN-C01-vector_trong_khong_gian_-L04-basis-span-coordinate-e140",
+          "loaded": true,
+          "counts": {
+            "slides": 22,
+            "diagrams": 8,
+            "retrievalChecks": 9,
+            "misconceptions": 16
+          },
+          "expected": {
+            "slides": 22,
+            "diagrams": 8,
+            "retrievalChecks": 9,
+            "misconceptions": 16
+          },
+          "currentSlide": "SL01",
+          "newSlideshowEngineCreated": false,
+          "e235Modified": false,
+          "error": null
+        },
+        "e243": {
+          "ok": true,
+          "release": "E243_PRESENTER_ROUTE_IDENTITY_LOCK_R3",
+          "handled": 1,
+          "lastLessonId": "MATH-VN-C01-vector_trong_khong_gian_-L04-basis-span-coordinate-e140",
+          "lastLessonTitle": "§1.4 · Cơ sở, span và tọa độ",
+          "stabilizationRuns": 2,
+          "deckLessonId": "MATH-VN-C01-vector_trong_khong_gian_-L04-basis-span-coordinate-e140",
+          "deckLessonTitle": "§1.4 · Cơ sở, span và tọa độ",
+          "canonicalIdentityLocked": true,
+          "noNewRenderer": true,
+          "routingGhostPresent": false
+        },
+        "text": "E209 STABLE MATH DECK\n01 / 22 · 3 cards\nReader Pro\nĐang trình chiếu: §1.4 · Cơ sở, span và tọa độ\n‹\n›\nThoát\nREADER PRO\n01\n§1.4 · Cơ sở, span và tọa độ\nREADER PRO\nMột vector, nhiều cách biểu diễn\n\nMột vector có thể có nhiều coordinate columns nhưng vẫn là cùng một đối tượng.\n\nTham khảo thêm\nXem đầy đủ\nSAME VECTOR TWO COORDINATE GRIDS\nCùng một arrow trong hai ordered grids.\nv\n→\n[v]_E\n→\n[v]_B\n→\ncoordinates_v_E\n→\ncoordinates_v_B\nBoth tuples reconstruct the same v\nBasis order is explicit\nTóm tắt ý chính của slide\nMột vector, nhiều cách biểu diễn\n\nMột vector có thể có nhiều coordinate columns nhưng vẫn là cùng một đối tượng.\n\nChặn nhầm lẫn\nCoordinate tuple chính là vector.\n\nTuple chỉ là mã theo ordered basis; phải reconstruct.\n\nChặn nhầm lẫn\nChặn nhầm lẫn\n\nCoordinate tuple không phải bản thân vector. Không so tuples khi basis, frame hoặc version chưa tương thích.\n\n←/→ đổi slide · Esc thoát"
+      }
+    },
+    {
+      "name": "no routing ghost for §1.4 · Cơ sở, span và tọa độ",
+      "status": "PASS",
+      "e243": {
+        "ok": true,
+        "release": "E243_PRESENTER_ROUTE_IDENTITY_LOCK_R3",
+        "handled": 1,
+        "lastLessonId": "MATH-VN-C01-vector_trong_khong_gian_-L04-basis-span-coordinate-e140",
+        "lastLessonTitle": "§1.4 · Cơ sở, span và tọa độ",
+        "stabilizationRuns": 2,
+        "deckLessonId": "MATH-VN-C01-vector_trong_khong_gian_-L04-basis-span-coordinate-e140",
+        "deckLessonTitle": "§1.4 · Cơ sở, span và tọa độ",
+        "canonicalIdentityLocked": true,
+        "noNewRenderer": true,
+        "routingGhostPresent": false
+      }
+    },
+    {
+      "name": "§1.4 · Cơ sở, span và tọa độ all 22 slides and richness mappings",
+      "status": "PASS",
+      "positions": [
+        {
+          "i": 1,
+          "count": "01 / 22 · 3 cards",
+          "cards": 3,
+          "diagram": true,
+          "retrieval": false,
+          "misconception": true,
+          "evidenceOpen": null,
+          "lessonId": "MATH-VN-C01-vector_trong_khong_gian_-L04-basis-span-coordinate-e140"
+        },
+        {
+          "i": 2,
+          "count": "02 / 22 · 3 cards",
+          "cards": 3,
+          "diagram": true,
+          "retrieval": true,
+          "misconception": false,
+          "evidenceOpen": false,
+          "lessonId": "MATH-VN-C01-vector_trong_khong_gian_-L04-basis-span-coordinate-e140"
+        },
+        {
+          "i": 3,
+          "count": "03 / 22 · 3 cards",
+          "cards": 3,
+          "diagram": true,
+          "retrieval": true,
+          "misconception": true,
+          "evidenceOpen": false,
+          "lessonId": "MATH-VN-C01-vector_trong_khong_gian_-L04-basis-span-coordinate-e140"
+        },
+        {
+          "i": 4,
+          "count": "04 / 22 · 3 cards",
+          "cards": 3,
+          "diagram": true,
+          "retrieval": false,
+          "misconception": true,
+          "evidenceOpen": null,
+          "lessonId": "MATH-VN-C01-vector_trong_khong_gian_-L04-basis-span-coordinate-e140"
+        },
+        {
+          "i": 5,
+          "count": "05 / 22 · 3 cards",
+          "cards": 3,
+          "diagram": false,
+          "retrieval": true,
+          "misconception": true,
+          "evidenceOpen": false,
+          "lessonId": "MATH-VN-C01-vector_trong_khong_gian_-L04-basis-span-coordinate-e140"
+        },
+        {
+          "i": 6,
+          "count": "06 / 22 · 3 cards",
+          "cards": 3,
+          "diagram": true,
+          "retrieval": false,
+          "misconception": true,
+          "evidenceOpen": null,
+          "lessonId": "MATH-VN-C01-vector_trong_khong_gian_-L04-basis-span-coordinate-e140"
+        },
+        {
+          "i": 7,
+          "count": "07 / 22 · 3 cards",
+          "cards": 3,
+          "diagram": false,
+          "retrieval": false,
+          "misconception": true,
+          "evidenceOpen": null,
+          "lessonId": "MATH-VN-C01-vector_trong_khong_gian_-L04-basis-span-coordinate-e140"
+        },
+        {
+          "i": 8,
+          "count": "08 / 22 · 3 cards",
+          "cards": 3,
+          "diagram": false,
+          "retrieval": false,
+          "misconception": true,
+          "evidenceOpen": null,
+          "lessonId": "MATH-VN-C01-vector_trong_khong_gian_-L04-basis-span-coordinate-e140"
+        },
+        {
+          "i": 9,
+          "count": "09 / 22 · 3 cards",
+          "cards": 3,
+          "diagram": false,
+          "retrieval": false,
+          "misconception": false,
+          "evidenceOpen": null,
+          "lessonId": "MATH-VN-C01-vector_trong_khong_gian_-L04-basis-span-coordinate-e140"
+        },
+        {
+          "i": 10,
+          "count": "10 / 22 · 3 cards",
+          "cards": 3,
+          "diagram": false,
+          "retrieval": true,
+          "misconception": false,
+          "evidenceOpen": false,
+          "lessonId": "MATH-VN-C01-vector_trong_khong_gian_-L04-basis-span-coordinate-e140"
+        },
+        {
+          "i": 11,
+          "count": "11 / 22 · 3 cards",
+          "cards": 3,
+          "diagram": false,
+          "retrieval": true,
+          "misconception": true,
+          "evidenceOpen": false,
+          "lessonId": "MATH-VN-C01-vector_trong_khong_gian_-L04-basis-span-coordinate-e140"
+        },
+        {
+          "i": 12,
+          "count": "12 / 22 · 3 cards",
+          "cards": 3,
+          "diagram": false,
+          "retrieval": false,
+          "misconception": true,
+          "evidenceOpen": null,
+          "lessonId": "MATH-VN-C01-vector_trong_khong_gian_-L04-basis-span-coordinate-e140"
+        },
+        {
+          "i": 13,
+          "count": "13 / 22 · 3 cards",
+          "cards": 3,
+          "diagram": false,
+          "retrieval": false,
+          "misconception": true,
+          "evidenceOpen": null,
+          "lessonId": "MATH-VN-C01-vector_trong_khong_gian_-L04-basis-span-coordinate-e140"
+        },
+        {
+          "i": 14,
+          "count": "14 / 22 · 3 cards",
+          "cards": 3,
+          "diagram": true,
+          "retrieval": false,
+          "misconception": true,
+          "evidenceOpen": null,
+          "lessonId": "MATH-VN-C01-vector_trong_khong_gian_-L04-basis-span-coordinate-e140"
+        },
+        {
+          "i": 15,
+          "count": "15 / 22 · 3 cards",
+          "cards": 3,
+          "diagram": false,
+          "retrieval": false,
+          "misconception": false,
+          "evidenceOpen": null,
+          "lessonId": "MATH-VN-C01-vector_trong_khong_gian_-L04-basis-span-coordinate-e140"
+        },
+        {
+          "i": 16,
+          "count": "16 / 22 · 3 cards",
+          "cards": 3,
+          "diagram": false,
+          "retrieval": false,
+          "misconception": false,
+          "evidenceOpen": null,
+          "lessonId": "MATH-VN-C01-vector_trong_khong_gian_-L04-basis-span-coordinate-e140"
+        },
+        {
+          "i": 17,
+          "count": "17 / 22 · 3 cards",
+          "cards": 3,
+          "diagram": true,
+          "retrieval": true,
+          "misconception": true,
+          "evidenceOpen": false,
+          "lessonId": "MATH-VN-C01-vector_trong_khong_gian_-L04-basis-span-coordinate-e140"
+        },
+        {
+          "i": 18,
+          "count": "18 / 22 · 3 cards",
+          "cards": 3,
+          "diagram": false,
+          "retrieval": false,
+          "misconception": true,
+          "evidenceOpen": null,
+          "lessonId": "MATH-VN-C01-vector_trong_khong_gian_-L04-basis-span-coordinate-e140"
+        },
+        {
+          "i": 19,
+          "count": "19 / 22 · 3 cards",
+          "cards": 3,
+          "diagram": false,
+          "retrieval": true,
+          "misconception": true,
+          "evidenceOpen": false,
+          "lessonId": "MATH-VN-C01-vector_trong_khong_gian_-L04-basis-span-coordinate-e140"
+        },
+        {
+          "i": 20,
+          "count": "20 / 22 · 3 cards",
+          "cards": 3,
+          "diagram": true,
+          "retrieval": true,
+          "misconception": true,
+          "evidenceOpen": false,
+          "lessonId": "MATH-VN-C01-vector_trong_khong_gian_-L04-basis-span-coordinate-e140"
+        },
+        {
+          "i": 21,
+          "count": "21 / 22 · 3 cards",
+          "cards": 3,
+          "diagram": false,
+          "retrieval": false,
+          "misconception": true,
+          "evidenceOpen": null,
+          "lessonId": "MATH-VN-C01-vector_trong_khong_gian_-L04-basis-span-coordinate-e140"
+        },
+        {
+          "i": 22,
+          "count": "22 / 22 · 3 cards",
+          "cards": 3,
+          "diagram": false,
+          "retrieval": true,
+          "misconception": false,
+          "evidenceOpen": false,
+          "lessonId": "MATH-VN-C01-vector_trong_khong_gian_-L04-basis-span-coordinate-e140"
+        }
+      ]
+    },
+    {
+      "name": "artifact controls are distinct and lesson scoped for §1.4 · Cơ sở, span và tọa độ",
+      "status": "PASS",
+      "controls": {
+        "reference": 1,
+        "full": 1,
+        "lessonId": "MATH-VN-C01-vector_trong_khong_gian_-L04-basis-span-coordinate-e140"
+      }
+    },
+    {
+      "name": "Reference opens correct artifact for §1.4 · Cơ sở, span và tọa độ",
+      "status": "PASS",
+      "reference": {
+        "title": "Tham khảo thêm · Cơ sở, span và tọa độ",
+        "heads": [
+          "Luận đề tra cứu",
+          "R01 · Bản đồ khái niệm",
+          "R02 · Bảng công thức",
+          "R03 · Phân loại họ biểu diễn",
+          "R04 · Chọn phương pháp",
+          "R05 · Cổng kiểm tra kỹ thuật",
+          "R06 · Lỗi và chẩn đoán nhanh",
+          "R07 · Case UGV",
+          "Ký hiệu nhanh"
+        ]
+      }
+    },
+    {
+      "name": "Reference Escape keeps deck open for §1.4 · Cơ sở, span và tọa độ",
+      "status": "PASS"
+    },
+    {
+      "name": "Full View opens correct artifact for §1.4 · Cơ sở, span và tọa độ",
+      "status": "PASS",
+      "full": {
+        "title": "Xem đầy đủ · Cơ sở, span và tọa độ",
+        "sections": 11
+      }
+    },
+    {
+      "name": "formula control remains separate for §1.4 · Cơ sở, span và tọa độ",
+      "status": "PASS",
+      "formulaButton": {
+        "count": 1,
+        "label": "Công thức đầy đủ"
+      }
+    },
+    {
+      "name": "formula modal and E235 visuals remain intact for §1.4 · Cơ sở, span và tọa độ",
+      "status": "PASS",
+      "formula": {
+        "title": "Công thức đầy đủ",
+        "e235Release": "E235_READER_PRO_FORMULA_STANDARD_R2",
+        "stylePresent": true,
+        "styleText": ".e211-formula-modal .e226-math[data-e226-raw-formula] .e234-fraction{display:inline-grid!important;grid-template-rows:auto auto!important;align-items:center!important;justify-items:stretch!important;vertical-align:middle!important;transform:translateY(-.04em)!important;line-height:1!important;margin:0 .24em!important;min-width:max-content!important;}.e211-formula-modal .e226-math[data-e226-raw-formula] .e234-fraction-num,.e211-formula-modal .e226-math[data-e226-raw-formula] .e234-fraction-den{display:block!important;box-sizing:border-box!important;width:100%!important;text-align:center!important;font-size:.90em!important;line-height:1.18!important;white-space:nowrap!important;}.e211-formula-modal .e226-math[data-e226-raw-formula] .e234-fraction-num{padding:0 .30em .13em!important;border-bottom:1.55px solid currentColor!important;}.e211-formula-modal .e226-math[data-e226-raw-formula] .e234-fraction-den{padding:.13em .30em 0!important;}.e211-formula-modal .e226-math[data-e226-raw-formula] .e234-fraction .e234-fraction{font-size:.92em!important;margin:0 .12em!important;}.e211-formula-modal .e226-math[data-e226-raw-formula] .e234-op{vertical-align:middle!important;transform:translateY(-.01em)!important;}.e211-formula-modal .e226-math[data-e226-raw-formula] sub{font-size:.72em!important;line-height:0!important;vertical-align:-.34em!important;position:relative!important;bottom:auto!important;top:auto!important;}.e211-formula-modal .e226-math[data-e226-raw-formula] sup{font-size:.72em!important;line-height:0!important;vertical-align:.58em!important;position:relative!important;bottom:auto!important;top:auto!important;}",
+        "artifactModalVisible": false
+      }
+    },
+    {
+      "name": "E129 reader renders §1.5 · Không gian con và biểu diễn dữ liệu with 22 slides",
+      "status": "PASS",
+      "reader": {
+        "slides": 22,
+        "current": "MATH-VN-C01-vector_trong_khong_gian_-L05-subspace-data-representation-e140"
+      }
+    },
+    {
+      "name": "canonical identity locks §1.5 · Không gian con và biểu diễn dữ liệu",
+      "status": "PASS",
+      "identity": {
+        "e243Id": "MATH-VN-C01-vector_trong_khong_gian_-L05-subspace-data-representation-e140",
+        "e243Title": "§1.5 · Không gian con và biểu diễn dữ liệu",
+        "e210Id": "MATH-VN-C01-vector_trong_khong_gian_-L05-subspace-data-representation-e140",
+        "genericId": "MATH-VN-C01-vector_trong_khong_gian_-L05-subspace-data-representation-e140",
+        "richnessId": "MATH-VN-C01-vector_trong_khong_gian_-L05-subspace-data-representation-e140",
+        "actionId": "MATH-VN-C01-vector_trong_khong_gian_-L05-subspace-data-representation-e140",
+        "chip": "Đang trình chiếu: §1.5 · Không gian con và biểu diễn dữ liệu",
+        "sourceLine": "",
+        "record": "§1.5 · Không gian con và biểu diễn dữ liệu",
+        "e210": {
+          "ok": true,
+          "release": "E210_CANONICAL_LESSON_IDENTITY_LABEL",
+          "lessonId": "MATH-VN-C01-vector_trong_khong_gian_-L05-subspace-data-representation-e140",
+          "lessonTitle": "§1.5 · Không gian con và biểu diễn dữ liệu",
+          "identitySource": "E244",
+          "active": true,
+          "canonicalIdPreferred": true
+        },
+        "e241": {
+          "ok": true,
+          "release": "E241_MULTI_LESSON_REFERENCE_FULL_VIEW_READER",
+          "multiLesson": true,
+          "activeLessonId": "MATH-VN-C01-vector_trong_khong_gian_-L05-subspace-data-representation-e140",
+          "registeredLessons": 2,
+          "referenceLoaded": true,
+          "fullViewLoaded": true,
+          "normalizationLoaded": true,
+          "formulaPopupSeparate": true,
+          "newSlideshowEngineCreated": false,
+          "e235Modified": false,
+          "error": null
+        },
+        "e242": {
+          "ok": true,
+          "release": "E242_MULTI_LESSON_SLIDESHOW_RICHNESS",
+          "multiLesson": true,
+          "activeLessonId": "MATH-VN-C01-vector_trong_khong_gian_-L05-subspace-data-representation-e140",
+          "loaded": true,
+          "counts": {
+            "slides": 22,
+            "diagrams": 9,
+            "retrievalChecks": 10,
+            "misconceptions": 18
+          },
+          "expected": {
+            "slides": 22,
+            "diagrams": 9,
+            "retrievalChecks": 10,
+            "misconceptions": 18
+          },
+          "currentSlide": "SL01",
+          "newSlideshowEngineCreated": false,
+          "e235Modified": false,
+          "error": null
+        },
+        "e243": {
+          "ok": true,
+          "release": "E243_PRESENTER_ROUTE_IDENTITY_LOCK_R3",
+          "handled": 2,
+          "lastLessonId": "MATH-VN-C01-vector_trong_khong_gian_-L05-subspace-data-representation-e140",
+          "lastLessonTitle": "§1.5 · Không gian con và biểu diễn dữ liệu",
+          "stabilizationRuns": 5,
+          "deckLessonId": "MATH-VN-C01-vector_trong_khong_gian_-L05-subspace-data-representation-e140",
+          "deckLessonTitle": "§1.5 · Không gian con và biểu diễn dữ liệu",
+          "canonicalIdentityLocked": true,
+          "noNewRenderer": true,
+          "routingGhostPresent": false
+        },
+        "text": "E209 STABLE MATH DECK\n01 / 22 · 3 cards\nReader Pro\nĐang trình chiếu: §1.5 · Không gian con và biểu diễn dữ liệu\n‹\n›\nThoát\nREADER PRO\n01\n§1.5 · Không gian con và biểu diễn dữ liệu\nREADER PRO\nDữ liệu 4 chiều, mô hình 2 hướng\n\nBốn feature không đồng nghĩa bốn hướng thông tin độc lập.\n\nTham khảo thêm\nXem đầy đủ\nFOUR SENSOR SPACE TWO MODE PLANE\nBốn sensor axes được giải thích bởi hai mode directions.\nR^4\n→\nq1\n→\nq2\n→\nU\n→\nq1\n→\nq2\n→\nmodel_plane\nQ has shape 4x2\ndim(U)=2\nTóm tắt ý chính của slide\nDữ liệu 4 chiều, mô hình 2 hướng\n\nBốn feature không đồng nghĩa bốn hướng thông tin độc lập.\n\nChặn nhầm lẫn\nCó 4 sensors nên cấu trúc thật chắc chắn 4 chiều.\n\nDimension của model phụ thuộc independent directions, không chỉ feature count.\n\nChặn nhầm lẫn\nChặn nhầm lẫn\n\nFeature count mô tả số components; model dimension mô tả số independent directions theo criterion đã khai báo.\n\n←/→ đổi slide · Esc thoát"
+      }
+    },
+    {
+      "name": "no previous lesson identity leaks into §1.5 · Không gian con và biểu diễn dữ liệu",
+      "status": "PASS",
+      "previousLesson": "MATH-VN-C01-vector_trong_khong_gian_-L04-basis-span-coordinate-e140",
+      "identity": {
+        "e243Id": "MATH-VN-C01-vector_trong_khong_gian_-L05-subspace-data-representation-e140",
+        "e243Title": "§1.5 · Không gian con và biểu diễn dữ liệu",
+        "e210Id": "MATH-VN-C01-vector_trong_khong_gian_-L05-subspace-data-representation-e140",
+        "genericId": "MATH-VN-C01-vector_trong_khong_gian_-L05-subspace-data-representation-e140",
+        "richnessId": "MATH-VN-C01-vector_trong_khong_gian_-L05-subspace-data-representation-e140",
+        "actionId": "MATH-VN-C01-vector_trong_khong_gian_-L05-subspace-data-representation-e140",
+        "chip": "Đang trình chiếu: §1.5 · Không gian con và biểu diễn dữ liệu",
+        "sourceLine": "",
+        "record": "§1.5 · Không gian con và biểu diễn dữ liệu",
+        "e210": {
+          "ok": true,
+          "release": "E210_CANONICAL_LESSON_IDENTITY_LABEL",
+          "lessonId": "MATH-VN-C01-vector_trong_khong_gian_-L05-subspace-data-representation-e140",
+          "lessonTitle": "§1.5 · Không gian con và biểu diễn dữ liệu",
+          "identitySource": "E244",
+          "active": true,
+          "canonicalIdPreferred": true
+        },
+        "e241": {
+          "ok": true,
+          "release": "E241_MULTI_LESSON_REFERENCE_FULL_VIEW_READER",
+          "multiLesson": true,
+          "activeLessonId": "MATH-VN-C01-vector_trong_khong_gian_-L05-subspace-data-representation-e140",
+          "registeredLessons": 2,
+          "referenceLoaded": true,
+          "fullViewLoaded": true,
+          "normalizationLoaded": true,
+          "formulaPopupSeparate": true,
+          "newSlideshowEngineCreated": false,
+          "e235Modified": false,
+          "error": null
+        },
+        "e242": {
+          "ok": true,
+          "release": "E242_MULTI_LESSON_SLIDESHOW_RICHNESS",
+          "multiLesson": true,
+          "activeLessonId": "MATH-VN-C01-vector_trong_khong_gian_-L05-subspace-data-representation-e140",
+          "loaded": true,
+          "counts": {
+            "slides": 22,
+            "diagrams": 9,
+            "retrievalChecks": 10,
+            "misconceptions": 18
+          },
+          "expected": {
+            "slides": 22,
+            "diagrams": 9,
+            "retrievalChecks": 10,
+            "misconceptions": 18
+          },
+          "currentSlide": "SL01",
+          "newSlideshowEngineCreated": false,
+          "e235Modified": false,
+          "error": null
+        },
+        "e243": {
+          "ok": true,
+          "release": "E243_PRESENTER_ROUTE_IDENTITY_LOCK_R3",
+          "handled": 2,
+          "lastLessonId": "MATH-VN-C01-vector_trong_khong_gian_-L05-subspace-data-representation-e140",
+          "lastLessonTitle": "§1.5 · Không gian con và biểu diễn dữ liệu",
+          "stabilizationRuns": 5,
+          "deckLessonId": "MATH-VN-C01-vector_trong_khong_gian_-L05-subspace-data-representation-e140",
+          "deckLessonTitle": "§1.5 · Không gian con và biểu diễn dữ liệu",
+          "canonicalIdentityLocked": true,
+          "noNewRenderer": true,
+          "routingGhostPresent": false
+        },
+        "text": "E209 STABLE MATH DECK\n01 / 22 · 3 cards\nReader Pro\nĐang trình chiếu: §1.5 · Không gian con và biểu diễn dữ liệu\n‹\n›\nThoát\nREADER PRO\n01\n§1.5 · Không gian con và biểu diễn dữ liệu\nREADER PRO\nDữ liệu 4 chiều, mô hình 2 hướng\n\nBốn feature không đồng nghĩa bốn hướng thông tin độc lập.\n\nTham khảo thêm\nXem đầy đủ\nFOUR SENSOR SPACE TWO MODE PLANE\nBốn sensor axes được giải thích bởi hai mode directions.\nR^4\n→\nq1\n→\nq2\n→\nU\n→\nq1\n→\nq2\n→\nmodel_plane\nQ has shape 4x2\ndim(U)=2\nTóm tắt ý chính của slide\nDữ liệu 4 chiều, mô hình 2 hướng\n\nBốn feature không đồng nghĩa bốn hướng thông tin độc lập.\n\nChặn nhầm lẫn\nCó 4 sensors nên cấu trúc thật chắc chắn 4 chiều.\n\nDimension của model phụ thuộc independent directions, không chỉ feature count.\n\nChặn nhầm lẫn\nChặn nhầm lẫn\n\nFeature count mô tả số components; model dimension mô tả số independent directions theo criterion đã khai báo.\n\n←/→ đổi slide · Esc thoát"
+      }
+    },
+    {
+      "name": "no routing ghost for §1.5 · Không gian con và biểu diễn dữ liệu",
+      "status": "PASS",
+      "e243": {
+        "ok": true,
+        "release": "E243_PRESENTER_ROUTE_IDENTITY_LOCK_R3",
+        "handled": 2,
+        "lastLessonId": "MATH-VN-C01-vector_trong_khong_gian_-L05-subspace-data-representation-e140",
+        "lastLessonTitle": "§1.5 · Không gian con và biểu diễn dữ liệu",
+        "stabilizationRuns": 5,
+        "deckLessonId": "MATH-VN-C01-vector_trong_khong_gian_-L05-subspace-data-representation-e140",
+        "deckLessonTitle": "§1.5 · Không gian con và biểu diễn dữ liệu",
+        "canonicalIdentityLocked": true,
+        "noNewRenderer": true,
+        "routingGhostPresent": false
+      }
+    },
+    {
+      "name": "§1.5 · Không gian con và biểu diễn dữ liệu all 22 slides and richness mappings",
+      "status": "PASS",
+      "positions": [
+        {
+          "i": 1,
+          "count": "01 / 22 · 3 cards",
+          "cards": 3,
+          "diagram": true,
+          "retrieval": false,
+          "misconception": true,
+          "evidenceOpen": null,
+          "lessonId": "MATH-VN-C01-vector_trong_khong_gian_-L05-subspace-data-representation-e140"
+        },
+        {
+          "i": 2,
+          "count": "02 / 22 · 3 cards",
+          "cards": 3,
+          "diagram": true,
+          "retrieval": true,
+          "misconception": true,
+          "evidenceOpen": false,
+          "lessonId": "MATH-VN-C01-vector_trong_khong_gian_-L05-subspace-data-representation-e140"
+        },
+        {
+          "i": 3,
+          "count": "03 / 22 · 3 cards",
+          "cards": 3,
+          "diagram": true,
+          "retrieval": false,
+          "misconception": true,
+          "evidenceOpen": null,
+          "lessonId": "MATH-VN-C01-vector_trong_khong_gian_-L05-subspace-data-representation-e140"
+        },
+        {
+          "i": 4,
+          "count": "04 / 22 · 3 cards",
+          "cards": 3,
+          "diagram": false,
+          "retrieval": true,
+          "misconception": true,
+          "evidenceOpen": false,
+          "lessonId": "MATH-VN-C01-vector_trong_khong_gian_-L05-subspace-data-representation-e140"
+        },
+        {
+          "i": 5,
+          "count": "05 / 22 · 3 cards",
+          "cards": 3,
+          "diagram": true,
+          "retrieval": false,
+          "misconception": true,
+          "evidenceOpen": null,
+          "lessonId": "MATH-VN-C01-vector_trong_khong_gian_-L05-subspace-data-representation-e140"
+        },
+        {
+          "i": 6,
+          "count": "06 / 22 · 3 cards",
+          "cards": 3,
+          "diagram": false,
+          "retrieval": true,
+          "misconception": true,
+          "evidenceOpen": false,
+          "lessonId": "MATH-VN-C01-vector_trong_khong_gian_-L05-subspace-data-representation-e140"
+        },
+        {
+          "i": 7,
+          "count": "07 / 22 · 3 cards",
+          "cards": 3,
+          "diagram": true,
+          "retrieval": false,
+          "misconception": false,
+          "evidenceOpen": null,
+          "lessonId": "MATH-VN-C01-vector_trong_khong_gian_-L05-subspace-data-representation-e140"
+        },
+        {
+          "i": 8,
+          "count": "08 / 22 · 3 cards",
+          "cards": 3,
+          "diagram": false,
+          "retrieval": true,
+          "misconception": true,
+          "evidenceOpen": false,
+          "lessonId": "MATH-VN-C01-vector_trong_khong_gian_-L05-subspace-data-representation-e140"
+        },
+        {
+          "i": 9,
+          "count": "09 / 22 · 3 cards",
+          "cards": 3,
+          "diagram": false,
+          "retrieval": false,
+          "misconception": true,
+          "evidenceOpen": null,
+          "lessonId": "MATH-VN-C01-vector_trong_khong_gian_-L05-subspace-data-representation-e140"
+        },
+        {
+          "i": 10,
+          "count": "10 / 22 · 3 cards",
+          "cards": 3,
+          "diagram": true,
+          "retrieval": false,
+          "misconception": true,
+          "evidenceOpen": null,
+          "lessonId": "MATH-VN-C01-vector_trong_khong_gian_-L05-subspace-data-representation-e140"
+        },
+        {
+          "i": 11,
+          "count": "11 / 22 · 3 cards",
+          "cards": 3,
+          "diagram": false,
+          "retrieval": true,
+          "misconception": true,
+          "evidenceOpen": false,
+          "lessonId": "MATH-VN-C01-vector_trong_khong_gian_-L05-subspace-data-representation-e140"
+        },
+        {
+          "i": 12,
+          "count": "12 / 22 · 3 cards",
+          "cards": 3,
+          "diagram": false,
+          "retrieval": false,
+          "misconception": true,
+          "evidenceOpen": null,
+          "lessonId": "MATH-VN-C01-vector_trong_khong_gian_-L05-subspace-data-representation-e140"
+        },
+        {
+          "i": 13,
+          "count": "13 / 22 · 3 cards",
+          "cards": 3,
+          "diagram": true,
+          "retrieval": false,
+          "misconception": false,
+          "evidenceOpen": null,
+          "lessonId": "MATH-VN-C01-vector_trong_khong_gian_-L05-subspace-data-representation-e140"
+        },
+        {
+          "i": 14,
+          "count": "14 / 22 · 3 cards",
+          "cards": 3,
+          "diagram": false,
+          "retrieval": true,
+          "misconception": true,
+          "evidenceOpen": false,
+          "lessonId": "MATH-VN-C01-vector_trong_khong_gian_-L05-subspace-data-representation-e140"
+        },
+        {
+          "i": 15,
+          "count": "15 / 22 · 3 cards",
+          "cards": 3,
+          "diagram": false,
+          "retrieval": false,
+          "misconception": true,
+          "evidenceOpen": null,
+          "lessonId": "MATH-VN-C01-vector_trong_khong_gian_-L05-subspace-data-representation-e140"
+        },
+        {
+          "i": 16,
+          "count": "16 / 22 · 3 cards",
+          "cards": 3,
+          "diagram": false,
+          "retrieval": true,
+          "misconception": true,
+          "evidenceOpen": false,
+          "lessonId": "MATH-VN-C01-vector_trong_khong_gian_-L05-subspace-data-representation-e140"
+        },
+        {
+          "i": 17,
+          "count": "17 / 22 · 3 cards",
+          "cards": 3,
+          "diagram": true,
+          "retrieval": false,
+          "misconception": false,
+          "evidenceOpen": null,
+          "lessonId": "MATH-VN-C01-vector_trong_khong_gian_-L05-subspace-data-representation-e140"
+        },
+        {
+          "i": 18,
+          "count": "18 / 22 · 3 cards",
+          "cards": 3,
+          "diagram": false,
+          "retrieval": true,
+          "misconception": true,
+          "evidenceOpen": false,
+          "lessonId": "MATH-VN-C01-vector_trong_khong_gian_-L05-subspace-data-representation-e140"
+        },
+        {
+          "i": 19,
+          "count": "19 / 22 · 3 cards",
+          "cards": 3,
+          "diagram": false,
+          "retrieval": false,
+          "misconception": true,
+          "evidenceOpen": null,
+          "lessonId": "MATH-VN-C01-vector_trong_khong_gian_-L05-subspace-data-representation-e140"
+        },
+        {
+          "i": 20,
+          "count": "20 / 22 · 3 cards",
+          "cards": 3,
+          "diagram": true,
+          "retrieval": true,
+          "misconception": true,
+          "evidenceOpen": false,
+          "lessonId": "MATH-VN-C01-vector_trong_khong_gian_-L05-subspace-data-representation-e140"
+        },
+        {
+          "i": 21,
+          "count": "21 / 22 · 3 cards",
+          "cards": 3,
+          "diagram": false,
+          "retrieval": false,
+          "misconception": true,
+          "evidenceOpen": null,
+          "lessonId": "MATH-VN-C01-vector_trong_khong_gian_-L05-subspace-data-representation-e140"
+        },
+        {
+          "i": 22,
+          "count": "22 / 22 · 3 cards",
+          "cards": 3,
+          "diagram": false,
+          "retrieval": true,
+          "misconception": false,
+          "evidenceOpen": false,
+          "lessonId": "MATH-VN-C01-vector_trong_khong_gian_-L05-subspace-data-representation-e140"
+        }
+      ]
+    },
+    {
+      "name": "artifact controls are distinct and lesson scoped for §1.5 · Không gian con và biểu diễn dữ liệu",
+      "status": "PASS",
+      "controls": {
+        "reference": 1,
+        "full": 1,
+        "lessonId": "MATH-VN-C01-vector_trong_khong_gian_-L05-subspace-data-representation-e140"
+      }
+    },
+    {
+      "name": "Reference opens correct artifact for §1.5 · Không gian con và biểu diễn dữ liệu",
+      "status": "PASS",
+      "reference": {
+        "title": "Tham khảo thêm · Không gian con và biểu diễn dữ liệu",
+        "heads": [
+          "Luận đề tra cứu",
+          "R01 · Phân loại mô hình",
+          "R02 · Bảng công thức F01–F16",
+          "R03 · Chọn projector",
+          "R04 · Báo cáo rank",
+          "R05 · Preprocessing gate",
+          "R06 · Case bốn cảm biến",
+          "R07 · Troubleshooting M01–M25",
+          "R08 · Thuật ngữ Việt–Anh–Nga",
+          "Giới hạn kết luận"
+        ]
+      }
+    },
+    {
+      "name": "Reference Escape keeps deck open for §1.5 · Không gian con và biểu diễn dữ liệu",
+      "status": "PASS"
+    },
+    {
+      "name": "Full View opens correct artifact for §1.5 · Không gian con và biểu diễn dữ liệu",
+      "status": "PASS",
+      "full": {
+        "title": "Xem đầy đủ · Không gian con và biểu diễn dữ liệu",
+        "sections": 12
+      }
+    },
+    {
+      "name": "formula control remains separate for §1.5 · Không gian con và biểu diễn dữ liệu",
+      "status": "PASS",
+      "formulaButton": {
+        "count": 1,
+        "label": "Công thức đầy đủ"
+      }
+    },
+    {
+      "name": "formula modal and E235 visuals remain intact for §1.5 · Không gian con và biểu diễn dữ liệu",
+      "status": "PASS",
+      "formula": {
+        "title": "Công thức đầy đủ",
+        "e235Release": "E235_READER_PRO_FORMULA_STANDARD_R2",
+        "stylePresent": true,
+        "styleText": ".e211-formula-modal .e226-math[data-e226-raw-formula] .e234-fraction{display:inline-grid!important;grid-template-rows:auto auto!important;align-items:center!important;justify-items:stretch!important;vertical-align:middle!important;transform:translateY(-.04em)!important;line-height:1!important;margin:0 .24em!important;min-width:max-content!important;}.e211-formula-modal .e226-math[data-e226-raw-formula] .e234-fraction-num,.e211-formula-modal .e226-math[data-e226-raw-formula] .e234-fraction-den{display:block!important;box-sizing:border-box!important;width:100%!important;text-align:center!important;font-size:.90em!important;line-height:1.18!important;white-space:nowrap!important;}.e211-formula-modal .e226-math[data-e226-raw-formula] .e234-fraction-num{padding:0 .30em .13em!important;border-bottom:1.55px solid currentColor!important;}.e211-formula-modal .e226-math[data-e226-raw-formula] .e234-fraction-den{padding:.13em .30em 0!important;}.e211-formula-modal .e226-math[data-e226-raw-formula] .e234-fraction .e234-fraction{font-size:.92em!important;margin:0 .12em!important;}.e211-formula-modal .e226-math[data-e226-raw-formula] .e234-op{vertical-align:middle!important;transform:translateY(-.01em)!important;}.e211-formula-modal .e226-math[data-e226-raw-formula] sub{font-size:.72em!important;line-height:0!important;vertical-align:-.34em!important;position:relative!important;bottom:auto!important;top:auto!important;}.e211-formula-modal .e226-math[data-e226-raw-formula] sup{font-size:.72em!important;line-height:0!important;vertical-align:.58em!important;position:relative!important;bottom:auto!important;top:auto!important;}",
+        "artifactModalVisible": false
+      }
+    },
+    {
+      "name": "E129 reader renders §1.4 · Cơ sở, span và tọa độ with 22 slides",
+      "status": "PASS",
+      "reader": {
+        "slides": 22,
+        "current": "MATH-VN-C01-vector_trong_khong_gian_-L04-basis-span-coordinate-e140"
+      }
+    },
+    {
+      "name": "canonical identity locks §1.4 · Cơ sở, span và tọa độ",
+      "status": "PASS",
+      "identity": {
+        "e243Id": "MATH-VN-C01-vector_trong_khong_gian_-L04-basis-span-coordinate-e140",
+        "e243Title": "§1.4 · Cơ sở, span và tọa độ",
+        "e210Id": "MATH-VN-C01-vector_trong_khong_gian_-L04-basis-span-coordinate-e140",
+        "genericId": "MATH-VN-C01-vector_trong_khong_gian_-L04-basis-span-coordinate-e140",
+        "richnessId": "MATH-VN-C01-vector_trong_khong_gian_-L04-basis-span-coordinate-e140",
+        "actionId": "MATH-VN-C01-vector_trong_khong_gian_-L04-basis-span-coordinate-e140",
+        "chip": "Đang trình chiếu: §1.4 · Cơ sở, span và tọa độ",
+        "sourceLine": "",
+        "record": "§1.4 · Cơ sở, span và tọa độ",
+        "e210": {
+          "ok": true,
+          "release": "E210_CANONICAL_LESSON_IDENTITY_LABEL",
+          "lessonId": "MATH-VN-C01-vector_trong_khong_gian_-L04-basis-span-coordinate-e140",
+          "lessonTitle": "§1.4 · Cơ sở, span và tọa độ",
+          "identitySource": "E244",
+          "active": true,
+          "canonicalIdPreferred": true
+        },
+        "e241": {
+          "ok": true,
+          "release": "E241_MULTI_LESSON_REFERENCE_FULL_VIEW_READER",
+          "multiLesson": true,
+          "activeLessonId": "MATH-VN-C01-vector_trong_khong_gian_-L04-basis-span-coordinate-e140",
+          "registeredLessons": 2,
+          "referenceLoaded": true,
+          "fullViewLoaded": true,
+          "normalizationLoaded": true,
+          "formulaPopupSeparate": true,
+          "newSlideshowEngineCreated": false,
+          "e235Modified": false,
+          "error": null
+        },
+        "e242": {
+          "ok": true,
+          "release": "E242_MULTI_LESSON_SLIDESHOW_RICHNESS",
+          "multiLesson": true,
+          "activeLessonId": "MATH-VN-C01-vector_trong_khong_gian_-L04-basis-span-coordinate-e140",
+          "loaded": true,
+          "counts": {
+            "slides": 22,
+            "diagrams": 8,
+            "retrievalChecks": 9,
+            "misconceptions": 16
+          },
+          "expected": {
+            "slides": 22,
+            "diagrams": 8,
+            "retrievalChecks": 9,
+            "misconceptions": 16
+          },
+          "currentSlide": "SL01",
+          "newSlideshowEngineCreated": false,
+          "e235Modified": false,
+          "error": null
+        },
+        "e243": {
+          "ok": true,
+          "release": "E243_PRESENTER_ROUTE_IDENTITY_LOCK_R3",
+          "handled": 3,
+          "lastLessonId": "MATH-VN-C01-vector_trong_khong_gian_-L04-basis-span-coordinate-e140",
+          "lastLessonTitle": "§1.4 · Cơ sở, span và tọa độ",
+          "stabilizationRuns": 8,
+          "deckLessonId": "MATH-VN-C01-vector_trong_khong_gian_-L04-basis-span-coordinate-e140",
+          "deckLessonTitle": "§1.4 · Cơ sở, span và tọa độ",
+          "canonicalIdentityLocked": true,
+          "noNewRenderer": true,
+          "routingGhostPresent": false
+        },
+        "text": "E209 STABLE MATH DECK\n01 / 22 · 3 cards\nReader Pro\nĐang trình chiếu: §1.4 · Cơ sở, span và tọa độ\n‹\n›\nThoát\nREADER PRO\n01\n§1.4 · Cơ sở, span và tọa độ\nREADER PRO\nMột vector, nhiều cách biểu diễn\n\nMột vector có thể có nhiều coordinate columns nhưng vẫn là cùng một đối tượng.\n\nTham khảo thêm\nXem đầy đủ\nSAME VECTOR TWO COORDINATE GRIDS\nCùng một arrow trong hai ordered grids.\nv\n→\n[v]_E\n→\n[v]_B\n→\ncoordinates_v_E\n→\ncoordinates_v_B\nBoth tuples reconstruct the same v\nBasis order is explicit\nTóm tắt ý chính của slide\nMột vector, nhiều cách biểu diễn\n\nMột vector có thể có nhiều coordinate columns nhưng vẫn là cùng một đối tượng.\n\nChặn nhầm lẫn\nCoordinate tuple chính là vector.\n\nTuple chỉ là mã theo ordered basis; phải reconstruct.\n\nChặn nhầm lẫn\nChặn nhầm lẫn\n\nCoordinate tuple không phải bản thân vector. Không so tuples khi basis, frame hoặc version chưa tương thích.\n\n←/→ đổi slide · Esc thoát"
+      }
+    },
+    {
+      "name": "no previous lesson identity leaks into §1.4 · Cơ sở, span và tọa độ",
+      "status": "PASS",
+      "previousLesson": "MATH-VN-C01-vector_trong_khong_gian_-L05-subspace-data-representation-e140",
+      "identity": {
+        "e243Id": "MATH-VN-C01-vector_trong_khong_gian_-L04-basis-span-coordinate-e140",
+        "e243Title": "§1.4 · Cơ sở, span và tọa độ",
+        "e210Id": "MATH-VN-C01-vector_trong_khong_gian_-L04-basis-span-coordinate-e140",
+        "genericId": "MATH-VN-C01-vector_trong_khong_gian_-L04-basis-span-coordinate-e140",
+        "richnessId": "MATH-VN-C01-vector_trong_khong_gian_-L04-basis-span-coordinate-e140",
+        "actionId": "MATH-VN-C01-vector_trong_khong_gian_-L04-basis-span-coordinate-e140",
+        "chip": "Đang trình chiếu: §1.4 · Cơ sở, span và tọa độ",
+        "sourceLine": "",
+        "record": "§1.4 · Cơ sở, span và tọa độ",
+        "e210": {
+          "ok": true,
+          "release": "E210_CANONICAL_LESSON_IDENTITY_LABEL",
+          "lessonId": "MATH-VN-C01-vector_trong_khong_gian_-L04-basis-span-coordinate-e140",
+          "lessonTitle": "§1.4 · Cơ sở, span và tọa độ",
+          "identitySource": "E244",
+          "active": true,
+          "canonicalIdPreferred": true
+        },
+        "e241": {
+          "ok": true,
+          "release": "E241_MULTI_LESSON_REFERENCE_FULL_VIEW_READER",
+          "multiLesson": true,
+          "activeLessonId": "MATH-VN-C01-vector_trong_khong_gian_-L04-basis-span-coordinate-e140",
+          "registeredLessons": 2,
+          "referenceLoaded": true,
+          "fullViewLoaded": true,
+          "normalizationLoaded": true,
+          "formulaPopupSeparate": true,
+          "newSlideshowEngineCreated": false,
+          "e235Modified": false,
+          "error": null
+        },
+        "e242": {
+          "ok": true,
+          "release": "E242_MULTI_LESSON_SLIDESHOW_RICHNESS",
+          "multiLesson": true,
+          "activeLessonId": "MATH-VN-C01-vector_trong_khong_gian_-L04-basis-span-coordinate-e140",
+          "loaded": true,
+          "counts": {
+            "slides": 22,
+            "diagrams": 8,
+            "retrievalChecks": 9,
+            "misconceptions": 16
+          },
+          "expected": {
+            "slides": 22,
+            "diagrams": 8,
+            "retrievalChecks": 9,
+            "misconceptions": 16
+          },
+          "currentSlide": "SL01",
+          "newSlideshowEngineCreated": false,
+          "e235Modified": false,
+          "error": null
+        },
+        "e243": {
+          "ok": true,
+          "release": "E243_PRESENTER_ROUTE_IDENTITY_LOCK_R3",
+          "handled": 3,
+          "lastLessonId": "MATH-VN-C01-vector_trong_khong_gian_-L04-basis-span-coordinate-e140",
+          "lastLessonTitle": "§1.4 · Cơ sở, span và tọa độ",
+          "stabilizationRuns": 8,
+          "deckLessonId": "MATH-VN-C01-vector_trong_khong_gian_-L04-basis-span-coordinate-e140",
+          "deckLessonTitle": "§1.4 · Cơ sở, span và tọa độ",
+          "canonicalIdentityLocked": true,
+          "noNewRenderer": true,
+          "routingGhostPresent": false
+        },
+        "text": "E209 STABLE MATH DECK\n01 / 22 · 3 cards\nReader Pro\nĐang trình chiếu: §1.4 · Cơ sở, span và tọa độ\n‹\n›\nThoát\nREADER PRO\n01\n§1.4 · Cơ sở, span và tọa độ\nREADER PRO\nMột vector, nhiều cách biểu diễn\n\nMột vector có thể có nhiều coordinate columns nhưng vẫn là cùng một đối tượng.\n\nTham khảo thêm\nXem đầy đủ\nSAME VECTOR TWO COORDINATE GRIDS\nCùng một arrow trong hai ordered grids.\nv\n→\n[v]_E\n→\n[v]_B\n→\ncoordinates_v_E\n→\ncoordinates_v_B\nBoth tuples reconstruct the same v\nBasis order is explicit\nTóm tắt ý chính của slide\nMột vector, nhiều cách biểu diễn\n\nMột vector có thể có nhiều coordinate columns nhưng vẫn là cùng một đối tượng.\n\nChặn nhầm lẫn\nCoordinate tuple chính là vector.\n\nTuple chỉ là mã theo ordered basis; phải reconstruct.\n\nChặn nhầm lẫn\nChặn nhầm lẫn\n\nCoordinate tuple không phải bản thân vector. Không so tuples khi basis, frame hoặc version chưa tương thích.\n\n←/→ đổi slide · Esc thoát"
+      }
+    },
+    {
+      "name": "no routing ghost for §1.4 · Cơ sở, span và tọa độ",
+      "status": "PASS",
+      "e243": {
+        "ok": true,
+        "release": "E243_PRESENTER_ROUTE_IDENTITY_LOCK_R3",
+        "handled": 3,
+        "lastLessonId": "MATH-VN-C01-vector_trong_khong_gian_-L04-basis-span-coordinate-e140",
+        "lastLessonTitle": "§1.4 · Cơ sở, span và tọa độ",
+        "stabilizationRuns": 8,
+        "deckLessonId": "MATH-VN-C01-vector_trong_khong_gian_-L04-basis-span-coordinate-e140",
+        "deckLessonTitle": "§1.4 · Cơ sở, span và tọa độ",
+        "canonicalIdentityLocked": true,
+        "noNewRenderer": true,
+        "routingGhostPresent": false
+      }
+    },
+    {
+      "name": "L05 to L04 round trip clears stale identity and controls",
+      "status": "PASS",
+      "roundTrip": {
+        "id": "MATH-VN-C01-vector_trong_khong_gian_-L04-basis-span-coordinate-e140",
+        "title": "§1.4 · Cơ sở, span và tọa độ",
+        "actionId": "MATH-VN-C01-vector_trong_khong_gian_-L04-basis-span-coordinate-e140",
+        "richnessId": "MATH-VN-C01-vector_trong_khong_gian_-L04-basis-span-coordinate-e140"
+      }
+    },
+    {
+      "name": "E129 reader selects §1.6",
+      "status": "PASS",
+      "reader": {
+        "slides": 16,
+        "current": "MATH-VN-C01-vector_trong_khong_gian_-L06-vector-to-data-matrix-e140"
+      }
+    },
+    {
+      "name": "unregistered lesson has no stale L04/L05 artifact controls or richness",
+      "status": "PASS",
+      "leak": {
+        "current": "MATH-VN-C01-vector_trong_khong_gian_-L06-vector-to-data-matrix-e140",
+        "actions": 0,
+        "referencePanel": 0,
+        "richness": 0,
+        "richnessLesson": ""
+      }
+    },
+    {
+      "name": "no uncaught page errors",
+      "status": "PASS",
+      "pageErrors": []
+    },
+    {
+      "name": "no console errors",
+      "status": "PASS",
+      "consoleErrors": []
+    },
+    {
+      "name": "no failed network requests",
+      "status": "PASS",
+      "failedRequests": []
+    }
+  ],
+  "pageErrors": [],
+  "consoleErrors": [],
+  "failedRequests": [],
+  "navigationCount": 1,
+  "screenshots": [
+    "subjects/math/qa/pass19/l04-deck-slide01.png",
+    "subjects/math/qa/pass19/l05-deck-slide01.png",
+    "subjects/math/qa/pass19/l05-reference.png",
+    "subjects/math/qa/pass19/l05-full-view.png",
+    "subjects/math/qa/pass19/l05-formula-modal.png",
+    "subjects/math/qa/pass19/l04-deck-slide01.png"
+  ],
+  "finalState": "ACADEMIC_14_OF_14_PASS_RUNTIME_5_OF_5_BROWSER_ACCEPTED"
+}
