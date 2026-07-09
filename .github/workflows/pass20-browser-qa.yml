@@ -67,18 +67,18 @@ jobs:
 
             await page.goto(base,{waitUntil:'domcontentloaded',timeout:60000});
             await page.waitForFunction(()=>window.BAUMAN_MATH_THEORY_E129&&window.BAUMAN_MATH_THEORY_E132&&window.BAUMAN_MATH_E239_MIN_SLIDE_CONTRACT&&window.BAUMAN_MATH_E240_THEORY_CONTENT_SOURCE&&window.BAUMAN_MATH_E241_ARTIFACT_READER&&window.BAUMAN_MATH_E242_SLIDESHOW_RICHNESS,{timeout:60000});
-            await page.waitForFunction(id=>window.DB&&window.DB.theory_lecture_content&&Array.isArray(window.DB.theory_lecture_content.records)&&window.DB.theory_lecture_content.records.some(r=>r.lessonId===id),target,{timeout:60000});
-            pass('runtime APIs loaded');
+            await page.waitForFunction(()=>{const x=window.BAUMAN_MATH_THEORY_E129.selfCheck();return x&&x.sources&&x.sources.content>0;},{timeout:60000});
+            pass('runtime APIs and standalone E129 sources loaded',{e129:await page.evaluate(()=>window.BAUMAN_MATH_THEORY_E129.selfCheck())});
 
             const minContract=await page.evaluate(()=>window.BAUMAN_MATH_E239_MIN_SLIDE_CONTRACT.selfCheck());
             requireTrue(minContract.ok&&minContract.tests.fifteen.ok===false&&minContract.tests.sixteen.ok===true&&minContract.tests.twentyTwo.ok===true,'minimum slide contract 15/16/22',{minContract});
 
-            const durable=await page.evaluate(id=>{const records=window.DB.theory_lecture_content.records||[];const r=records.find(x=>x.lessonId===id);return {recordCount:records.length,targetCount:records.filter(x=>x.lessonId===id).length,slides:r&&r.slides&&r.slides.length,title:r&&(r.lessonTitle||r.title)};},target);
+            const durable=await page.evaluate(async id=>{const payload=await fetch('data/theory_lecture_content.json',{cache:'no-store'}).then(r=>r.json());const records=payload.records||[];const r=records.find(x=>x.lessonId===id);return {recordCount:records.length,targetCount:records.filter(x=>x.lessonId===id).length,slides:r&&r.slides&&r.slides.length,title:r&&(r.lessonTitle||r.title),source:window.BAUMAN_MATH_E240_THEORY_CONTENT_SOURCE.source()};},target);
             requireTrue(durable.targetCount===1&&durable.slides===22,'durable target record',{durable});
 
             async function openLesson(lessonId){
               await page.evaluate(({lessonId,chapter})=>{
-                const st=(window.__BAUMAN_CORE_API&&window.__BAUMAN_CORE_API.state)||window.__MATH_STATE;
+                const st=(window.__BAUMAN_CORE_API&&window.__BAUMAN_CORE_API.state)||window.__MATH_STATE||(window.__MATH_STATE={});
                 st.view='learning';st.learnTab='theory';st.stage='vn';st.e129Stage='vn';st.e129ChapterId=chapter;st.e129LessonId=lessonId;st.e129Present=false;
                 st.e169Path={moduleId:'pure',courseId:'pure-algebra',chapterId:'c01',activityId:'theory',lessonId};
                 window.BAUMAN_MATH_THEORY_E129.render();
@@ -154,7 +154,7 @@ jobs:
 
             await page.click('[data-e202-exit]');
             await page.waitForFunction(()=>!document.querySelector('.e132-overlay-deck.open'),{timeout:10000});
-            const alternate=await page.evaluate(id=>{const records=window.DB.theory_lecture_content.records||[];return records.find(r=>r.lessonId!==id&&r.chapterId==='MATH-VN-C01-vector_trong_khong_gian_')?.lessonId||records.find(r=>r.lessonId!==id)?.lessonId||'';},target);
+            const alternate=await page.evaluate(async id=>{const payload=await fetch('data/theory_lecture_content.json',{cache:'no-store'}).then(r=>r.json());const records=payload.records||[];return records.find(r=>r.lessonId!==id&&r.chapterId==='MATH-VN-C01-vector_trong_khong_gian_')?.lessonId||records.find(r=>r.lessonId!==id)?.lessonId||'';},target);
             if(alternate){
               await openLesson(alternate);
               await page.click('[data-e129-present]');
@@ -174,8 +174,9 @@ jobs:
               page.evaluate(pkg=>window.BAUMAN_MATH_THEORY_E129.commitContent(pkg,'theory_lecture_content_c01_l04_import.json','merge'),pkg)
             ]);
             await page.waitForFunction(()=>window.BAUMAN_MATH_THEORY_E129&&window.BAUMAN_MATH_E240_THEORY_CONTENT_SOURCE,{timeout:30000});
-            const overlayState=await page.evaluate(id=>({overlay:!!localStorage.getItem('bauman_math_e129_theory_content_overlay_v1'),report:JSON.parse(localStorage.getItem('bauman_math_e129_theory_content_report_v1')||'null'),target:(window.DB?.theory_lecture_content?.records||[]).find(r=>r.lessonId===id)?.slides?.length||0}),target);
-            requireTrue(overlayState.overlay&&overlayState.target===22,'overlay import survives controlled reload',{overlayState,navigations:report.navigationCount-navBefore});
+            await page.waitForFunction(()=>window.BAUMAN_MATH_THEORY_E129.selfCheck().sources.content>0,{timeout:30000});
+            const overlayState=await page.evaluate(async id=>{const payload=await fetch('data/theory_lecture_content.json',{cache:'no-store'}).then(r=>r.json());const records=payload.records||[];return {overlay:!!localStorage.getItem('bauman_math_e129_theory_content_overlay_v1'),report:JSON.parse(localStorage.getItem('bauman_math_e129_theory_content_report_v1')||'null'),target:records.find(r=>r.lessonId===id)?.slides?.length||0,source:window.BAUMAN_MATH_E240_THEORY_CONTENT_SOURCE.source(),e129:window.BAUMAN_MATH_THEORY_E129.selfCheck().sources};},target);
+            requireTrue(overlayState.overlay&&overlayState.target===22&&overlayState.e129.overlay===true,'overlay import survives controlled reload',{overlayState,navigations:report.navigationCount-navBefore});
             const obsolete=(overlayState.report?.warnings||[]).some(w=>/Khuyến nghị đủ 16 slide role; hiện có 22/.test(String(w.message||w)));
             requireTrue(!obsolete,'22-slide import has no obsolete exact-count warning',{warnings:overlayState.report?.warnings||[]});
             await page.waitForTimeout(700);
@@ -187,9 +188,10 @@ jobs:
               page.evaluate(()=>window.BAUMAN_MATH_THEORY_E129.clearContentOverlay())
             ]);
             await page.waitForFunction(()=>window.BAUMAN_MATH_THEORY_E129&&window.BAUMAN_MATH_E240_THEORY_CONTENT_SOURCE,{timeout:30000});
+            await page.waitForFunction(()=>window.BAUMAN_MATH_THEORY_E129.selfCheck().sources.content>0,{timeout:30000});
             await page.waitForTimeout(700);
-            const cleared=await page.evaluate(()=>({overlay:!!localStorage.getItem('bauman_math_e129_theory_content_overlay_v1'),source:window.BAUMAN_MATH_E240_THEORY_CONTENT_SOURCE.source()}));
-            requireTrue(!cleared.overlay&&report.navigationCount-clearBefore===1,'clear overlay restores durable source with one reload',{cleared,navigations:report.navigationCount-clearBefore});
+            const cleared=await page.evaluate(async id=>{const payload=await fetch('data/theory_lecture_content.json',{cache:'no-store'}).then(r=>r.json());const records=payload.records||[];return {overlay:!!localStorage.getItem('bauman_math_e129_theory_content_overlay_v1'),source:window.BAUMAN_MATH_E240_THEORY_CONTENT_SOURCE.source(),target:records.find(r=>r.lessonId===id)?.slides?.length||0,e129:window.BAUMAN_MATH_THEORY_E129.selfCheck().sources};},target);
+            requireTrue(!cleared.overlay&&cleared.target===22&&cleared.e129.overlay===false&&report.navigationCount-clearBefore===1,'clear overlay restores durable source with one reload',{cleared,navigations:report.navigationCount-clearBefore});
 
             requireTrue(report.pageErrors.length===0,'no uncaught page errors',{pageErrors:report.pageErrors});
             report.status='PASS';
