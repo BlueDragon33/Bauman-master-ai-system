@@ -1,0 +1,232 @@
+{
+  "id": "bauman_math_c01_l05_runtime_pass15_v1",
+  "schema": "bauman_math_runtime_merge_report_v1",
+  "version": "RUNTIME_PASS15_C01_L05_V1",
+  "status": "PASS_15_DURABLE_MERGE_STATIC_VERIFY_PASS",
+  "date": "2026-07-09",
+  "lessonId": "MATH-VN-C01-vector_trong_khong_gian_-L05-subspace-data-representation-e140",
+  "verificationMode": "isolated_pull_request_python_json_hash_validation",
+  "browserRun": false,
+  "runtimeReadersModified": false,
+  "manifestModified": false,
+  "targetIndex": 4,
+  "previousLessonId": "MATH-VN-C01-vector_trong_khong_gian_-L04-basis-span-coordinate-e140",
+  "nextLessonId": "MATH-VN-C01-vector_trong_khong_gian_-L06-vector-to-data-matrix-e140",
+  "recordsBefore": 18,
+  "recordsAfter": 18,
+  "durableFileBlobShaBefore": "5e767c5f65115a1dbddd34e53831fd3dc0ac8c72",
+  "durableFileSha256Before": "dc5462df37227b49ab1759f8631f0dc682816cb59733ef2193688366d23dfb1e",
+  "durableFileSha256After": "d0cd18601b1ede84f58072b3c47cfcc176b4d21d3fa71b23762b908485391447",
+  "originalTargetCanonicalHash": "28a524cd0c82cb5c4bce42ebe61b3d7af9b38bbe87ccdb7ba78aecaf26345e88",
+  "importedTargetCanonicalHash": "75328620fd089946c39a04dd2e225ac9ffc572af800500743cd78fe946a625a0",
+  "nonTargetRecordCount": 17,
+  "changedNonTargetRecords": [],
+  "duplicateLessonIds": [],
+  "sourceSlideCount": 22,
+  "runtimeSlideCount": 22,
+  "formulaCoverage": [
+    "F01",
+    "F02",
+    "F03",
+    "F04",
+    "F05",
+    "F06",
+    "F07",
+    "F08",
+    "F09",
+    "F10",
+    "F11",
+    "F12",
+    "F13",
+    "F14",
+    "F15",
+    "F16"
+  ],
+  "checks": [
+    {
+      "name": "academic acceptance PASS",
+      "status": "PASS",
+      "detail": null
+    },
+    {
+      "name": "academic workflow 14/14",
+      "status": "PASS",
+      "detail": null
+    },
+    {
+      "name": "approval status",
+      "status": "PASS",
+      "detail": null
+    },
+    {
+      "name": "approved import commit",
+      "status": "PASS",
+      "detail": null
+    },
+    {
+      "name": "approved import version",
+      "status": "PASS",
+      "detail": null
+    },
+    {
+      "name": "approved package type",
+      "status": "PASS",
+      "detail": null
+    },
+    {
+      "name": "approved target",
+      "status": "PASS",
+      "detail": null
+    },
+    {
+      "name": "approved mode",
+      "status": "PASS",
+      "detail": null
+    },
+    {
+      "name": "immutable import bytes match approved commit",
+      "status": "PASS",
+      "detail": null
+    },
+    {
+      "name": "durable records is list",
+      "status": "PASS",
+      "detail": null
+    },
+    {
+      "name": "one imported record",
+      "status": "PASS",
+      "detail": null
+    },
+    {
+      "name": "import target lesson",
+      "status": "PASS",
+      "detail": null
+    },
+    {
+      "name": "target occurs exactly once before",
+      "status": "PASS",
+      "detail": [
+        4
+      ]
+    },
+    {
+      "name": "target content changes",
+      "status": "PASS",
+      "detail": null
+    },
+    {
+      "name": "source slide count 22",
+      "status": "PASS",
+      "detail": null
+    },
+    {
+      "name": "runtime slide count 22",
+      "status": "PASS",
+      "detail": null
+    },
+    {
+      "name": "runtime IDs S01-S22",
+      "status": "PASS",
+      "detail": null
+    },
+    {
+      "name": "source mapping SL01-SL22",
+      "status": "PASS",
+      "detail": null
+    },
+    {
+      "name": "formula coverage F01-F16",
+      "status": "PASS",
+      "detail": [
+        "F01",
+        "F02",
+        "F03",
+        "F04",
+        "F05",
+        "F06",
+        "F07",
+        "F08",
+        "F09",
+        "F10",
+        "F11",
+        "F12",
+        "F13",
+        "F14",
+        "F15",
+        "F16"
+      ]
+    },
+    {
+      "name": "no compression",
+      "status": "PASS",
+      "detail": null
+    },
+    {
+      "name": "minimum 16 no maximum",
+      "status": "PASS",
+      "detail": null
+    },
+    {
+      "name": "locked case strings retained",
+      "status": "PASS",
+      "detail": []
+    },
+    {
+      "name": "prohibited positive claims absent",
+      "status": "PASS",
+      "detail": null
+    },
+    {
+      "name": "record count unchanged",
+      "status": "PASS",
+      "detail": {
+        "before": 18,
+        "after": 18
+      }
+    },
+    {
+      "name": "target occurs exactly once after",
+      "status": "PASS",
+      "detail": [
+        4
+      ]
+    },
+    {
+      "name": "previous neighbor unchanged",
+      "status": "PASS",
+      "detail": "MATH-VN-C01-vector_trong_khong_gian_-L04-basis-span-coordinate-e140"
+    },
+    {
+      "name": "next neighbor unchanged",
+      "status": "PASS",
+      "detail": "MATH-VN-C01-vector_trong_khong_gian_-L06-vector-to-data-matrix-e140"
+    },
+    {
+      "name": "duplicate lesson IDs zero",
+      "status": "PASS",
+      "detail": []
+    },
+    {
+      "name": "non-target key set unchanged",
+      "status": "PASS",
+      "detail": null
+    },
+    {
+      "name": "all non-target canonical hashes unchanged",
+      "status": "PASS",
+      "detail": []
+    },
+    {
+      "name": "written JSON reparses",
+      "status": "PASS",
+      "detail": null
+    },
+    {
+      "name": "file hash changed",
+      "status": "PASS",
+      "detail": null
+    }
+  ],
+  "nextTask": "THEORY_C01_L05_RUNTIME_SOURCE_REGISTRATION_PASS_16"
+}

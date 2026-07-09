@@ -2082,7 +2082,7 @@
       ],
       "programAnchorTitle": "Không gian vectơ và ánh xạ tuyến tính",
       "roadmapRole": "foundation_before_prep",
-      "baumanFocus": "Hiểu không gian con như mô hình hình học của cấu trúc dữ liệu, nền cho giảm chiều, lọc nhiễu, PCA và phân tích trạng thái hệ thống.",
+      "baumanFocus": "Không gian con như mô hình hình học của dữ liệu: phân biệt linear, affine và near-subspace; chọn orthogonal projector đúng điều kiện; dùng residual, numerical rank và retained energy với hợp đồng dữ liệu và giới hạn diễn giải rõ.",
       "sourceAnchors": {
         "stageId": "vn",
         "disciplineId": "linear_algebra_data_space",
@@ -2091,427 +2091,717 @@
       },
       "tags": [
         "subspace",
-        "dimension",
+        "affine model",
+        "orthogonal projection",
+        "residual",
         "rank",
-        "PCA",
-        "data representation"
+        "SVD",
+        "data representation",
+        "sensor monitoring"
       ],
+      "integrationMeta": {
+        "coreVersion": "CORE_C01_L05_V1_PASS07_ARCHITECTURE",
+        "referenceVersion": "REFERENCE_C01_L05_V1_PASS11",
+        "slideshowVersion": "SLIDESHOW_C01_L05_V1_PASS13",
+        "fullViewVersion": "FULL_VIEW_C01_L05_V1_PASS12",
+        "normalizationVersion": "NORMALIZATION_C01_L05_V1_PASS12",
+        "caseVersion": "CASE_C01_L05_V1_LOCKED",
+        "assessmentVersion": "ASSESSMENT_C01_L05_V1_PASS10",
+        "runtimeContract": "E129_THEORY_CONTENT_IMPORTER",
+        "canonicalFormulaIds": [
+          "F01",
+          "F02",
+          "F03",
+          "F04",
+          "F05",
+          "F06",
+          "F07",
+          "F08",
+          "F09",
+          "F10",
+          "F11",
+          "F12",
+          "F13",
+          "F14",
+          "F15",
+          "F16"
+        ],
+        "sourceSlideCount": 22,
+        "runtimeSlideCount": 22,
+        "projectionPolicy": "No compression. Every SL01-SL22 learning beat is retained as one runtime slide.",
+        "mergeBlockedUntil": "PASS_14_ACADEMIC_ACCEPTANCE"
+      },
       "slides": [
         {
+          "id": "MATH-VN-C01-L05-S01",
           "role": "problem_framing",
-          "title": "Dữ liệu thường nằm gần một cấu trúc chiều thấp",
+          "sourceSlideIds": [
+            "SL01"
+          ],
+          "title": "Dữ liệu 4 chiều, mô hình 2 hướng",
+          "formulaRefs": [
+            "F04"
+          ],
           "blocks": [
             {
               "type": "text",
-              "title": "Vấn đề học tập",
-              "body": "Dữ liệu kỹ thuật có thể có rất nhiều chiều, nhưng điều đó không có nghĩa nó thật sự tự do trong toàn bộ không gian. Nhiều hệ có ràng buộc vật lý, quan hệ cảm biến hoặc quy luật vận hành khiến dữ liệu nằm gần một đường, một mặt phẳng hoặc một không gian con chiều thấp."
+              "title": "Learning beat",
+              "body": "Bốn feature không đồng nghĩa bốn hướng thông tin độc lập."
             },
             {
               "type": "text",
-              "title": "Góc nhìn kỹ thuật",
-              "body": "Nếu 20 cảm biến cùng đo một hiện tượng nhiệt, dữ liệu có thể chỉ có vài hướng biến thiên chính. Nếu robot di chuyển trên mặt phẳng, trạng thái 3D đầy đủ có thể vẫn nằm gần một cấu trúc thấp chiều. Nhận ra điều này giúp nén dữ liệu và lọc nhiễu."
-            },
-            {
-              "type": "text",
-              "title": "Tại sao quan trọng",
-              "body": "Không gian con là cách biến câu hỏi 'dữ liệu có cấu trúc gì' thành hình học tuyến tính. Nó là cầu nối tới PCA, SVD, rank, anomaly detection, sensor fusion và giảm chiều trước khi học máy."
+              "title": "Cốt lõi",
+              "body": "Observation sống trong R^4 nhưng variation bình thường có thể tập trung gần một model subspace dimension 2."
             },
             {
               "type": "qa",
-              "title": "Câu hỏi tự kiểm",
-              "body": "Nếu dữ liệu có 100 cột nhưng rank hiệu dụng chỉ khoảng 5, điều đó gợi ý gì? Có thể phần lớn thông tin nằm trong vài hướng chính, còn các chiều còn lại là nhiễu, dư thừa hoặc biến đổi phụ."
+              "title": "Chặn nhầm lẫn",
+              "body": "Feature count mô tả số components; model dimension mô tả số independent directions theo criterion đã khai báo."
             }
-          ]
+          ],
+          "renderPolicy": "safe_text_formula_blocks_only"
         },
         {
+          "id": "MATH-VN-C01-L05-S02",
           "role": "deep_essence",
-          "title": "Không gian con là tập vector đóng với cộng và nhân vô hướng",
-          "blocks": [
-            {
-              "type": "text",
-              "title": "Bản chất toán học",
-              "body": "Một tập vector U là không gian con nếu nó nằm trong một không gian vector lớn hơn và vẫn giữ được hai phép toán cơ bản: cộng hai vector trong U vẫn ở U, nhân một vector trong U với số thực bất kỳ vẫn ở U. Ngoài ra U phải chứa vector zero."
-            },
-            {
-              "type": "formula",
-              "title": "Ba điều kiện kiểm tra",
-              "body": "0 thuộc U\nNếu u, v thuộc U thì u + v thuộc U\nNếu u thuộc U và alpha thuộc R thì alpha u thuộc U"
-            },
-            {
-              "type": "text",
-              "title": "Ý nghĩa hình học",
-              "body": "Trong R2, đường thẳng đi qua gốc là không gian con. Trong R3, mặt phẳng đi qua gốc là không gian con. Điều kiện đi qua gốc không phải chi tiết nhỏ; nó bảo đảm phép nhân với 0 giữ điểm trong tập."
-            },
-            {
-              "type": "qa",
-              "title": "Câu hỏi tự kiểm",
-              "body": "Vì sao một đường không đi qua gốc không phải không gian con? Vì nhân một điểm trên đường với 0 sẽ ra vector zero, nhưng zero không nằm trên đường đó."
-            }
-          ]
-        },
-        {
-          "role": "counter_intuition",
-          "title": "Không gian con không nhất thiết là toàn bộ không gian",
-          "blocks": [
-            {
-              "type": "text",
-              "title": "Điểm phản trực giác",
-              "body": "Người mới học thường nghĩ không gian là thứ 'rộng nhất'. Nhưng một đường qua gốc trong R3 cũng là không gian con. Nó có ít bậc tự do hơn, nhưng vẫn đủ tính chất tuyến tính để làm việc như một không gian riêng."
-            },
-            {
-              "type": "text",
-              "title": "Chiều thấp không có nghĩa nghèo thông tin",
-              "body": "Một không gian con 2 chiều trong dữ liệu 100 chiều có thể chứa hầu hết thông tin quan trọng nếu hệ thật bị chi phối bởi hai yếu tố chính. Chiều thấp đôi khi là cấu trúc, không phải thiếu sót."
-            },
-            {
-              "type": "text",
-              "title": "Hậu quả cho mô hình",
-              "body": "Nếu dữ liệu thật nằm gần một không gian con, mô hình học trên toàn bộ chiều thô có thể tốn tài nguyên và dễ học nhiễu. Giảm chiều đúng cách giúp mô hình tập trung vào hướng thông tin chính."
-            },
-            {
-              "type": "qa",
-              "title": "Câu hỏi phản trực giác",
-              "body": "Dữ liệu nhiều chiều có luôn cần mô hình rất phức tạp không? Không. Nếu dữ liệu có cấu trúc thấp chiều, mô hình tuyến tính hoặc PCA có thể đã giải thích được phần lớn biến thiên."
-            }
-          ]
-        },
-        {
-          "role": "real_bridge",
-          "title": "Không gian con trong dữ liệu cảm biến",
-          "blocks": [
-            {
-              "type": "text",
-              "title": "Cảm biến không độc lập tuyệt đối",
-              "body": "Trong hệ kỹ thuật, nhiều cảm biến có thể cùng bị chi phối bởi một nguyên nhân vật lý. Ví dụ nhiệt độ, dòng điện và độ rung của motor có thể cùng thay đổi theo tải. Khi đó dữ liệu cảm biến nằm gần một không gian con thay vì trải đều."
-            },
-            {
-              "type": "text",
-              "title": "Sensor fusion",
-              "body": "Khi kết hợp nhiều cảm biến, ta cần biết có bao nhiêu hướng thông tin độc lập. Nếu hai cảm biến gần như lặp lại nhau, thêm cả hai không làm mô hình hiểu hệ thống nhiều hơn mà chỉ tăng nhiễu và chi phí."
-            },
-            {
-              "type": "text",
-              "title": "Phát hiện lỗi",
-              "body": "Trạng thái bình thường thường tạo thành một vùng hoặc không gian con ổn định. Khi cảm biến hỏng hoặc hệ vận hành bất thường, điểm dữ liệu có thể lệch xa khỏi cấu trúc này."
-            },
-            {
-              "type": "qa",
-              "title": "Câu hỏi kỹ thuật",
-              "body": "Nếu một cảm biến mới làm tăng số cột nhưng không tăng rank đáng kể, nó có thể đang làm gì? Có thể nó đang đo lại thông tin đã có, hoặc tín hiệu của nó phụ thuộc mạnh vào cảm biến khác."
-            }
-          ]
-        },
-        {
-          "role": "notation",
-          "title": "Span tạo ra không gian con",
+          "sourceSlideIds": [
+            "SL02"
+          ],
+          "title": "Ba cổng để là linear subspace",
+          "formulaRefs": [
+            "F01"
+          ],
           "blocks": [
             {
               "type": "formula",
-              "title": "Không gian con sinh bởi vector",
-              "body": "U = span(b_1, b_2, ..., b_k)\n= {a_1 b_1 + ... + a_k b_k | a_i thuộc R}"
-            },
-            {
-              "type": "text",
-              "title": "Chiều của không gian con",
-              "body": "Dimension của U bằng số vector độc lập tuyến tính trong một cơ sở của U. Nếu có 10 vector sinh nhưng chỉ 3 vector độc lập, không gian con có chiều 3, không phải 10."
-            },
-            {
-              "type": "text",
-              "title": "Diễn giải dữ liệu",
-              "body": "Nếu các cột của ma trận B là hướng nền, span(B) là tất cả dữ liệu có thể tạo từ các hướng đó. Một điểm dữ liệu mới nằm ngoài span(B) nghĩa là bộ hướng hiện tại chưa giải thích hết nó."
-            },
-            {
-              "type": "code",
-              "title": "Rank cho biết chiều",
-              "body": "import numpy as np\nB = np.array([[1,0,1],[0,1,1],[1,1,2]], dtype=float)\nrank = np.linalg.matrix_rank(B)\nprint(rank)"
-            }
-          ]
-        },
-        {
-          "role": "core_formula",
-          "title": "Rank và chiều của không gian con",
-          "blocks": [
-            {
-              "type": "formula",
-              "title": "Rank",
-              "body": "rank(B) = số cột độc lập tuyến tính của B\ndim(col(B)) = rank(B)\ndim(row(B)) = rank(B)"
+              "title": "Subspace contract",
+              "body": "0∈U\nu,v∈U ⇒ u+v∈U\nα∈R,u∈U ⇒ αu∈U"
             },
             {
               "type": "text",
               "title": "Ý nghĩa",
-              "body": "Rank là số hướng thông tin độc lập thật sự trong ma trận. Nếu dữ liệu có nhiều cột nhưng rank thấp, các cột đang phụ thuộc tuyến tính hoặc gần phụ thuộc."
-            },
-            {
-              "type": "text",
-              "title": "Rank trong dữ liệu nhiễu",
-              "body": "Dữ liệu thật thường có nhiễu, nên rank số học có thể cao dù cấu trúc chính thấp chiều. Khi đó ta dùng singular values để nói về rank hiệu dụng thay vì rank tuyệt đối."
+              "body": "Linear subspace là closure contract trong ambient vector space, không chỉ là một hình dạng."
             },
             {
               "type": "qa",
-              "title": "Câu hỏi công thức",
-              "body": "Nếu ma trận dữ liệu có 100 cột nhưng rank 4, ta có thể biểu diễn các cột bằng bao nhiêu hướng độc lập? Về tuyến tính lý tưởng, chỉ cần 4 hướng."
+              "title": "Kiểm nhanh",
+              "body": "Plane z=x+y+5 không chứa origin nên là affine plane, không phải linear subspace."
             }
-          ]
+          ],
+          "renderPolicy": "safe_text_formula_blocks_only"
         },
         {
+          "id": "MATH-VN-C01-L05-S03",
+          "role": "counter_intuition",
+          "sourceSlideIds": [
+            "SL03"
+          ],
+          "title": "Đừng gọi mọi data cloud là subspace",
+          "formulaRefs": [
+            "F02"
+          ],
+          "blocks": [
+            {
+              "type": "formula",
+              "title": "Affine near-subspace model",
+              "body": "x=μ+Qz+ε\ny=x−μ"
+            },
+            {
+              "type": "text",
+              "title": "Bốn object khác nhau",
+              "body": "Linear subspace U, affine set μ+U, noisy near-subspace model và finite dataset không phải một khái niệm."
+            },
+            {
+              "type": "qa",
+              "title": "Chặn nhầm lẫn",
+              "body": "Finite recorded samples thường không đóng dưới mọi linear combinations; chúng chỉ có thể nằm trong hoặc gần model set."
+            }
+          ],
+          "renderPolicy": "safe_text_formula_blocks_only"
+        },
+        {
+          "id": "MATH-VN-C01-L05-S04",
+          "role": "real_bridge",
+          "sourceSlideIds": [
+            "SL04"
+          ],
+          "title": "Span và rank trả lời hai câu hỏi khác nhau",
+          "formulaRefs": [
+            "F03",
+            "F04"
+          ],
+          "blocks": [
+            {
+              "type": "formula",
+              "title": "Representable set",
+              "body": "U=span(b₁,…,b_k)=col(B)"
+            },
+            {
+              "type": "formula",
+              "title": "Independent dimension",
+              "body": "dim(col(B))=rank(B)"
+            },
+            {
+              "type": "qa",
+              "title": "Redundancy",
+              "body": "B có 5 columns và rank 3 thì model dimension là 3; hai columns không tạo thêm independent directions."
+            }
+          ],
+          "renderPolicy": "safe_text_formula_blocks_only"
+        },
+        {
+          "id": "MATH-VN-C01-L05-S05",
+          "role": "notation",
+          "sourceSlideIds": [
+            "SL05"
+          ],
+          "title": "Q không chỉ là một mảng 4×2",
+          "formulaRefs": [
+            "F02",
+            "F05"
+          ],
+          "blocks": [
+            {
+              "type": "formula",
+              "title": "Shape contract",
+              "body": "Q∈R^(4×2)"
+            },
+            {
+              "type": "text",
+              "title": "Semantic axes",
+              "body": "Rows map to sensor features A,B,C,D; columns map to two model directions."
+            },
+            {
+              "type": "qa",
+              "title": "Chặn lỗi shape-correct",
+              "body": "Feature order, units, mean, preprocessing, regime và model version phải khớp, không chỉ shape."
+            }
+          ],
+          "renderPolicy": "safe_text_formula_blocks_only"
+        },
+        {
+          "id": "MATH-VN-C01-L05-S06",
+          "role": "core_formula",
+          "sourceSlideIds": [
+            "SL06"
+          ],
+          "title": "Gate trực chuẩn trước dot-product coordinates",
+          "formulaRefs": [
+            "F05",
+            "F06"
+          ],
+          "blocks": [
+            {
+              "type": "formula",
+              "title": "Orthonormality",
+              "body": "Q^TQ=I_k"
+            },
+            {
+              "type": "formula",
+              "title": "Coordinates",
+              "body": "z=Q^Ty"
+            },
+            {
+              "type": "qa",
+              "title": "Điều kiện",
+              "body": "Chỉ dùng shortcut sau khi kiểm Q trực chuẩn và y, Q cùng inner product, feature order và model version."
+            }
+          ],
+          "renderPolicy": "safe_text_formula_blocks_only"
+        },
+        {
+          "id": "MATH-VN-C01-L05-S07",
+          "role": "derivation",
+          "sourceSlideIds": [
+            "SL07"
+          ],
+          "title": "Dẫn xuất orthonormal projector",
+          "formulaRefs": [
+            "F06",
+            "F07",
+            "F12"
+          ],
+          "blocks": [
+            {
+              "type": "formula",
+              "title": "Residual orthogonality",
+              "body": "Q^T(y−Qz)=0"
+            },
+            {
+              "type": "formula",
+              "title": "Derivation",
+              "body": "Q^Ty−Q^TQz=0\nQ^TQ=I ⇒ z=Q^Ty"
+            },
+            {
+              "type": "formula",
+              "title": "Projector",
+              "body": "ŷ=Qz=QQ^Ty\nP_U=QQ^T"
+            }
+          ],
+          "renderPolicy": "safe_text_formula_blocks_only"
+        },
+        {
+          "id": "MATH-VN-C01-L05-S08",
           "role": "assumption_gate",
-          "title": "Điều kiện xem dữ liệu nằm trong không gian con",
+          "sourceSlideIds": [
+            "SL08"
+          ],
+          "title": "Khi B không trực chuẩn",
+          "formulaRefs": [
+            "F08",
+            "F09"
+          ],
           "blocks": [
             {
-              "type": "text",
-              "title": "Cần center dữ liệu",
-              "body": "PCA và phân tích phương sai thường cần center dữ liệu bằng cách trừ trung bình. Nếu không center, ta có thể nhầm vị trí trung bình với hướng biến thiên chính."
-            },
-            {
-              "type": "text",
-              "title": "Cần cùng thang đo",
-              "body": "Nếu một cảm biến có đơn vị lớn hơn rất nhiều, hướng chính có thể phản ánh scale chứ không phản ánh cấu trúc vật lý. Chuẩn hóa hoặc whitening có thể cần thiết."
-            },
-            {
-              "type": "text",
-              "title": "Cần kiểm nhiễu",
-              "body": "Nhiễu mạnh có thể làm dữ liệu trông như có nhiều chiều hơn thực tế. Vì vậy cần xem singular values, reconstruction error và ý nghĩa kỹ thuật, không chỉ nhìn số cột."
-            },
-            {
-              "type": "qa",
-              "title": "Checklist",
-              "body": "Trước khi kết luận dữ liệu nằm gần subspace, hãy hỏi: đã center chưa, chuẩn hóa chưa, nhiễu có lớn không, outlier có kéo hướng chính không, subspace tìm được có ý nghĩa vật lý không?"
-            }
-          ]
-        },
-        {
-          "role": "mini_case",
-          "title": "Mini case: dữ liệu rung động của máy",
-          "blocks": [
-            {
-              "type": "text",
-              "title": "Bối cảnh",
-              "body": "Một máy quay có nhiều cảm biến rung đặt ở các vị trí khác nhau. Khi máy bình thường, các cảm biến phản ứng theo vài chế độ rung chính. Dữ liệu nhiều chiều nhưng phần lớn biến thiên nằm gần không gian con do các chế độ rung tạo ra."
-            },
-            {
-              "type": "text",
-              "title": "Dấu hiệu bất thường",
-              "body": "Nếu vòng bi hỏng hoặc trục lệch, tín hiệu mới có thể xuất hiện theo hướng không nằm trong subspace bình thường. Khoảng cách đến subspace tăng lên và trở thành chỉ báo bất thường."
+              "type": "formula",
+              "title": "General coordinates",
+              "body": "B^TBc=B^Ty\nc=(B^TB)^(−1)B^Ty"
             },
             {
               "type": "formula",
-              "title": "Sai số chiếu",
-              "body": "error(x) = ||x - proj_U(x)||\nNếu error(x) lớn hơn ngưỡng, x có thể là trạng thái bất thường hoặc cảm biến bị lỗi."
+              "title": "General projector",
+              "body": "P_U=B(B^TB)^(−1)B^T"
             },
             {
               "type": "qa",
-              "title": "Câu hỏi case",
-              "body": "Tại sao không chỉ dùng norm của x để phát hiện lỗi? Vì norm lớn có thể do tải bình thường tăng; còn khoảng cách đến subspace đo phần không giải thích được bởi hành vi bình thường."
+              "title": "Chặn shortcut sai",
+              "body": "B phải full column rank; BB^T không phải general projector. Code nên solve, QR hoặc lstsq thay vì mặc định tạo inverse."
             }
-          ]
+          ],
+          "renderPolicy": "safe_text_formula_blocks_only"
         },
         {
+          "id": "MATH-VN-C01-L05-S09",
+          "role": "verification",
+          "sourceSlideIds": [
+            "SL09"
+          ],
+          "title": "Projector phải qua hai invariant",
+          "formulaRefs": [
+            "F10"
+          ],
+          "blocks": [
+            {
+              "type": "formula",
+              "title": "Symmetry",
+              "body": "P_U^T=P_U"
+            },
+            {
+              "type": "formula",
+              "title": "Idempotence",
+              "body": "P_U^2=P_U"
+            },
+            {
+              "type": "qa",
+              "title": "Diễn giải",
+              "body": "Idempotence cho projection nói chung; symmetry mới khóa orthogonal projection trong Euclidean setting."
+            }
+          ],
+          "renderPolicy": "safe_text_formula_blocks_only"
+        },
+        {
+          "id": "MATH-VN-C01-L05-S10",
           "role": "interpretation",
-          "title": "Diễn giải khoảng cách đến không gian con",
+          "sourceSlideIds": [
+            "SL10"
+          ],
+          "title": "Một observation, hai thành phần",
+          "formulaRefs": [
+            "F11",
+            "F12"
+          ],
           "blocks": [
             {
-              "type": "text",
-              "title": "Phần giải thích được",
-              "body": "Projection lên subspace là phần của dữ liệu mà mô hình tuyến tính hiện tại giải thích được. Phần dư là thành phần nằm ngoài cấu trúc đã học."
-            },
-            {
-              "type": "text",
-              "title": "Residual có nghĩa gì",
-              "body": "Residual lớn có thể báo nhiễu, outlier, cảm biến hỏng, trạng thái mới hoặc thiếu hướng trong mô hình. Nó không tự nói nguyên nhân, nhưng chỉ ra dữ liệu không còn đi theo cấu trúc bình thường."
+              "type": "formula",
+              "title": "Decomposition",
+              "body": "ŷ=P_Uy\nr=(I−P_U)y\ny=ŷ+r"
             },
             {
               "type": "formula",
-              "title": "Tách dữ liệu",
-              "body": "x = proj_U(x) + r\nr = x - proj_U(x)\n||r|| là khoảng cách từ x đến U nếu projection trực giao."
+              "title": "Orthogonality",
+              "body": "Q^Tr=0"
             },
             {
               "type": "qa",
-              "title": "Câu hỏi diễn giải",
-              "body": "Nếu projection tốt nhưng mô hình dự đoán vẫn sai, có thể lỗi ở đâu? Có thể subspace giữ hình học dữ liệu nhưng thiếu biến mục tiêu, thiếu phi tuyến hoặc dùng sai mô hình sau bước giảm chiều."
+              "title": "Giới hạn",
+              "body": "Residual là phần current model chưa giải thích; không tự động là sensor noise hoặc một fault type."
             }
-          ]
+          ],
+          "renderPolicy": "safe_text_formula_blocks_only"
         },
         {
-          "role": "simulation",
-          "title": "Thí nghiệm fit không gian con",
-          "blocks": [
-            {
-              "type": "code",
-              "title": "SVD cho subspace chính",
-              "body": "import numpy as np\nX = np.random.randn(200, 3)\nX[:,2] = X[:,0] + X[:,1] + 0.05*np.random.randn(200)\nXc = X - X.mean(axis=0)\nU, S, Vt = np.linalg.svd(Xc, full_matrices=False)\nprint(S)\nB = Vt[:2].T\nproj = Xc @ B @ B.T\nerr = np.linalg.norm(Xc - proj, axis=1)"
-            },
-            {
-              "type": "text",
-              "title": "Điều cần quan sát",
-              "body": "Nếu singular value thứ ba nhỏ hơn nhiều hai giá trị đầu, dữ liệu gần một mặt phẳng 2 chiều trong R3. Error chiếu cho biết điểm nào lệch xa khỏi mặt phẳng đó."
-            },
-            {
-              "type": "text",
-              "title": "Mở rộng",
-              "body": "Thêm vài outlier rồi chạy lại SVD. Người học sẽ thấy hướng chính có thể bị kéo lệch, từ đó hiểu vì sao robust PCA hoặc lọc outlier quan trọng trong dữ liệu thật."
-            },
-            {
-              "type": "qa",
-              "title": "Câu hỏi phòng lab",
-              "body": "Vì sao phải trừ mean trước SVD trong thí nghiệm này? Vì ta muốn tìm hướng biến thiên quanh tâm dữ liệu, không phải hướng từ gốc tọa độ đến trung bình."
-            }
-          ]
-        },
-        {
+          "id": "MATH-VN-C01-L05-S11",
           "role": "common_mistakes",
-          "title": "Lỗi thường gặp",
+          "sourceSlideIds": [
+            "SL11"
+          ],
+          "title": "Đừng trộn ba preprocessing operations",
+          "formulaRefs": [
+            "F02",
+            "F11",
+            "F16"
+          ],
           "blocks": [
             {
               "type": "text",
-              "title": "Lỗi 1: quên điều kiện đi qua gốc",
-              "body": "Không gian con tuyến tính phải chứa gốc. Một mặt phẳng z = x + y + 5 không đi qua gốc nên không phải subspace tuyến tính, dù vẫn là một mặt phẳng affine."
+              "title": "Centering",
+              "body": "Subtract μ: y=x−μ."
             },
             {
               "type": "text",
-              "title": "Lỗi 2: dùng PCA trên dữ liệu chưa center",
-              "body": "Nếu không trừ mean, hướng chính có thể bị ảnh hưởng bởi vị trí trung bình. Kết quả giảm chiều khi đó có thể khó diễn giải và không phản ánh đúng phương sai."
-            },
-            {
-              "type": "text",
-              "title": "Lỗi 3: nhầm số cột với số chiều thật",
-              "body": "Dữ liệu có nhiều cột không nghĩa là có nhiều hướng độc lập. Rank, singular values và kiến thức kỹ thuật mới cho biết chiều thông tin thật sự."
+              "title": "Scaling và normalization",
+              "body": "Scaling changes per-feature scale; vector normalization changes individual vector norm."
             },
             {
               "type": "qa",
-              "title": "Câu hỏi sửa lỗi",
-              "body": "Nếu PCA cho kết quả lạ, kiểm gì trước? Kiểm center, scale, outlier, thiếu dữ liệu, và xem các singular values có giảm rõ không."
+              "title": "Affine gate",
+              "body": "Với model μ+U, dùng QQ^T(x−μ), không dùng QQ^Tx."
             }
-          ]
+          ],
+          "renderPolicy": "safe_text_formula_blocks_only"
         },
         {
-          "role": "application",
-          "title": "Ứng dụng lập trình",
-          "blocks": [
-            {
-              "type": "text",
-              "title": "Nhiệm vụ chính",
-              "body": "Dùng SVD để học subspace bình thường từ dữ liệu huấn luyện, sau đó tính reconstruction error cho dữ liệu mới. Đây là khung đơn giản cho anomaly detection tuyến tính."
-            },
-            {
-              "type": "code",
-              "title": "Anomaly score bằng subspace",
-              "body": "def fit_subspace(X, k):\n    X = np.asarray(X, dtype=float)\n    mu = X.mean(axis=0)\n    Xc = X - mu\n    _, _, Vt = np.linalg.svd(Xc, full_matrices=False)\n    B = Vt[:k].T\n    return mu, B\ndef score(x, mu, B):\n    z = x - mu\n    r = z - B @ (B.T @ z)\n    return float(np.linalg.norm(r))"
-            },
-            {
-              "type": "text",
-              "title": "Kết nối hệ thống",
-              "body": "Trong bảo trì dự đoán, score cao có thể kích hoạt cảnh báo. Trong sensor fusion, score cao có thể báo một cảm biến đang lệch khỏi quan hệ bình thường với các cảm biến khác."
-            },
-            {
-              "type": "qa",
-              "title": "Câu hỏi triển khai",
-              "body": "Chọn k như thế nào? Có thể dựa trên tỷ lệ phương sai giữ lại, elbow của singular values, hoặc yêu cầu kỹ thuật về mức sai số tái tạo."
-            }
-          ]
-        },
-        {
-          "role": "practice",
-          "title": "Bài luyện tập",
-          "blocks": [
-            {
-              "type": "text",
-              "title": "Bài 1: kiểm subspace",
-              "body": "Xét tập U = {(x,y,z) trong R3 | z = x + y}. Kiểm tra U có phải không gian con không bằng ba điều kiện: chứa zero, đóng với cộng, đóng với nhân vô hướng."
-            },
-            {
-              "type": "text",
-              "title": "Bài 2: affine không phải subspace",
-              "body": "Xét V = {(x,y,z) | z = x + y + 1}. Chứng minh V không phải không gian con. Gợi ý: kiểm tra vector zero có thuộc V không."
-            },
-            {
-              "type": "text",
-              "title": "Bài 3: dữ liệu gần mặt phẳng",
-              "body": "Tạo 20 điểm trong R3 gần z = x + y, thêm nhiễu nhỏ. Dùng SVD để tìm hai hướng chính và tính reconstruction error trung bình."
-            },
-            {
-              "type": "qa",
-              "title": "Tiêu chí tự chấm",
-              "body": "Bài đạt nếu người học giải thích được khác nhau giữa subspace tuyến tính, mặt phẳng affine, rank và không gian con xấp xỉ của dữ liệu nhiễu."
-            }
-          ]
-        },
-        {
+          "id": "MATH-VN-C01-L05-S12",
           "role": "professor_qa",
-          "title": "Vấn đáp kiểm tra hiểu sâu",
-          "blocks": [
-            {
-              "type": "qa",
-              "title": "Câu 1",
-              "body": "Vì sao mặt phẳng không qua gốc không phải không gian con tuyến tính? Vì nó không chứa vector zero và không đóng dưới phép nhân vô hướng với 0."
-            },
-            {
-              "type": "qa",
-              "title": "Câu 2",
-              "body": "Vì sao center dữ liệu quan trọng trước PCA? Vì PCA cần phân tích phương sai quanh trung bình, không phải vị trí tuyệt đối của đám mây điểm so với gốc tọa độ."
-            },
-            {
-              "type": "qa",
-              "title": "Câu 3",
-              "body": "Rank hiệu dụng khác rank đại số thế nào? Rank đại số đếm số singular value khác 0, còn rank hiệu dụng xét mức năng lượng đáng kể trong dữ liệu nhiễu."
-            },
-            {
-              "type": "qa",
-              "title": "Câu 4",
-              "body": "Khoảng cách đến subspace có thể dùng để phát hiện bất thường vì sao? Vì nó đo phần dữ liệu không được cấu trúc bình thường giải thích."
-            }
-          ]
-        },
-        {
-          "role": "bridge",
-          "title": "Cầu sang ma trận dữ liệu",
+          "sourceSlideIds": [
+            "SL12"
+          ],
+          "title": "Case ROTATING_MACHINE_4CH_2MODE",
+          "formulaRefs": [
+            "F02",
+            "F05"
+          ],
           "blocks": [
             {
               "type": "text",
-              "title": "Từ nhiều vector đến ma trận",
-              "body": "Để phân tích subspace của nhiều điểm dữ liệu, ta xếp các vector thành ma trận. Khi đó rank, column space, row space và SVD trở thành công cụ đọc cấu trúc thông tin."
-            },
-            {
-              "type": "text",
-              "title": "Ma trận như kho dữ liệu hình học",
-              "body": "Mỗi hàng có thể là một mẫu, mỗi cột là một feature. Hình học của tập hàng cho biết mẫu phân bố thế nào; hình học của tập cột cho biết feature phụ thuộc ra sao."
+              "title": "Observation contract",
+              "body": "x has four calibrated fixed-window RMS acceleration features in order A,B,C,D; units m/s² RMS; one normal operating regime."
             },
             {
               "type": "formula",
-              "title": "Dạng ma trận dữ liệu",
-              "body": "X = [x_1^T; x_2^T; ...; x_m^T]\nX có m mẫu và n feature. Rank(X) cho biết số hướng tuyến tính độc lập trong dữ liệu đã biểu diễn."
+              "title": "Mean",
+              "body": "μ=(0.4,0.35,0.45,0.3)^T"
+            },
+            {
+              "type": "formula",
+              "title": "Basis",
+              "body": "Q=[[0.5,0.5],[0.5,−0.5],[0.5,0.5],[0.5,−0.5]]\nQ^TQ=I_2"
+            }
+          ],
+          "renderPolicy": "safe_text_formula_blocks_only"
+        },
+        {
+          "id": "MATH-VN-C01-L05-S13",
+          "role": "mini_case",
+          "sourceSlideIds": [
+            "SL13"
+          ],
+          "title": "Normal sample: từ x đến z",
+          "formulaRefs": [
+            "F02",
+            "F06"
+          ],
+          "blocks": [
+            {
+              "type": "formula",
+              "title": "Raw sample",
+              "body": "x=(0.62,0.74,0.63,0.71)^T"
+            },
+            {
+              "type": "formula",
+              "title": "Centering",
+              "body": "y=x−μ=(0.22,0.39,0.18,0.41)^T"
+            },
+            {
+              "type": "formula",
+              "title": "Coordinates",
+              "body": "z=Q^Ty=(0.6,−0.2)^T"
+            }
+          ],
+          "renderPolicy": "safe_text_formula_blocks_only"
+        },
+        {
+          "id": "MATH-VN-C01-L05-S14",
+          "role": "application",
+          "sourceSlideIds": [
+            "SL14"
+          ],
+          "title": "Normal sample: projection và residual",
+          "formulaRefs": [
+            "F07",
+            "F11",
+            "F12",
+            "F16"
+          ],
+          "blocks": [
+            {
+              "type": "formula",
+              "title": "Projection",
+              "body": "ŷ=(0.2,0.4,0.2,0.4)^T"
+            },
+            {
+              "type": "formula",
+              "title": "Residual và score",
+              "body": "r=(0.02,−0.01,−0.02,0.01)^T\n‖r‖₂=0.0316227766016838 m/s² RMS"
             },
             {
               "type": "qa",
-              "title": "Câu hỏi mở đường",
-              "body": "Nếu rank của X nhỏ hơn nhiều số feature, bài sau nên chú ý điều gì? Cần hiểu ma trận dữ liệu, rank và cách dùng chúng để nén hoặc phân tích feature."
+              "title": "Bounded interpretation",
+              "body": "Score<γ_demo=0.1 nên sample được current teaching model giải thích tốt; không chứng minh machine hoặc sensors healthy."
             }
-          ]
+          ],
+          "renderPolicy": "safe_text_formula_blocks_only"
         },
         {
-          "role": "takeaway",
-          "title": "Kết luận cần nhớ",
+          "id": "MATH-VN-C01-L05-S15",
+          "role": "practice",
+          "sourceSlideIds": [
+            "SL15"
+          ],
+          "title": "Mismatch sample: tính đầy đủ",
+          "formulaRefs": [
+            "F06",
+            "F07",
+            "F11",
+            "F12",
+            "F16"
+          ],
+          "blocks": [
+            {
+              "type": "formula",
+              "title": "Centering và coordinates",
+              "body": "y=(0.5,0.25,0.1,0.55)^T\nz=(0.7,−0.1)^T"
+            },
+            {
+              "type": "formula",
+              "title": "Projection và residual",
+              "body": "ŷ=(0.3,0.4,0.3,0.4)^T\nr=(0.2,−0.15,−0.2,0.15)^T"
+            },
+            {
+              "type": "qa",
+              "title": "Score",
+              "body": "‖r‖₂=0.3535533905932738>0.1. Sample poorly represented by current model; cause remains undetermined."
+            }
+          ],
+          "renderPolicy": "safe_text_formula_blocks_only"
+        },
+        {
+          "id": "MATH-VN-C01-L05-S16",
+          "role": "diagnostic_limits",
+          "sourceSlideIds": [
+            "SL16"
+          ],
+          "title": "Residual vector quan trọng hơn một con số",
+          "formulaRefs": [
+            "F12",
+            "F16"
+          ],
+          "blocks": [
+            {
+              "type": "formula",
+              "title": "Residual A",
+              "body": "r_a=(0.05,0.05,−0.05,−0.05)^T"
+            },
+            {
+              "type": "formula",
+              "title": "Residual B",
+              "body": "r_b=(0.05,−0.05,−0.05,0.05)^T"
+            },
+            {
+              "type": "qa",
+              "title": "Cùng score, khác pattern",
+              "body": "‖r_a‖₂=‖r_b‖₂=0.1 nhưng residual directions và channel patterns khác; equal score không xác định equal cause."
+            }
+          ],
+          "renderPolicy": "safe_text_formula_blocks_only"
+        },
+        {
+          "id": "MATH-VN-C01-L05-S17",
+          "role": "numerical_rank",
+          "sourceSlideIds": [
+            "SL17"
+          ],
+          "title": "Physical two-mode story, matrix rank 4",
+          "formulaRefs": [
+            "F13",
+            "F14"
+          ],
           "blocks": [
             {
               "type": "text",
-              "title": "Cốt lõi 1",
-              "body": "Không gian con là tập vector chứa zero và đóng với cộng, nhân vô hướng. Nó mô tả một cấu trúc tuyến tính bên trong không gian lớn hơn."
+              "title": "Matrix contract",
+              "body": "X_c∈R^(8×4), samples as rows, features as columns, zero column mean."
             },
             {
-              "type": "text",
-              "title": "Cốt lõi 2",
-              "body": "Dữ liệu nhiều chiều thường nằm gần subspace thấp chiều vì ràng buộc vật lý, phụ thuộc cảm biến hoặc cấu trúc ẩn. Đây là nền cho PCA, SVD và giảm chiều."
-            },
-            {
-              "type": "text",
-              "title": "Cốt lõi 3",
-              "body": "Khoảng cách đến subspace đo phần không giải thích được bởi mô hình tuyến tính hiện tại. Nó hữu ích cho lọc nhiễu, phát hiện bất thường và kiểm tra chất lượng biểu diễn."
+              "type": "formula",
+              "title": "Singular values",
+              "body": "σ=(1.44955817,0.77504298,0.03505112,0.00330126)"
             },
             {
               "type": "qa",
-              "title": "Một câu nhớ lâu",
-              "body": "Không gian con là đường ray hình học của dữ liệu; điểm lệch khỏi đường ray thường đang kể một chuyện đáng kiểm tra."
+              "title": "Exact stored result",
+              "body": "All four stored singular values are nonzero, so the floating-point matrix rank is 4."
             }
-          ]
+          ],
+          "renderPolicy": "safe_text_formula_blocks_only"
+        },
+        {
+          "id": "MATH-VN-C01-L05-S18",
+          "role": "rank_tolerance",
+          "sourceSlideIds": [
+            "SL18"
+          ],
+          "title": "Rank 2 chỉ đúng dưới τ=0.05",
+          "formulaRefs": [
+            "F13"
+          ],
+          "blocks": [
+            {
+              "type": "formula",
+              "title": "Numerical rank",
+              "body": "rank_τ(A)=#{i:σ_i(A)>τ}"
+            },
+            {
+              "type": "formula",
+              "title": "Locked result",
+              "body": "rank_0.05(X_c)=2"
+            },
+            {
+              "type": "qa",
+              "title": "Report đầy đủ",
+              "body": "Floating-point rank 4 và numerical rank 2 under τ=0.05 không mâu thuẫn. τ là teaching-case-specific, không phải universal threshold."
+            }
+          ],
+          "renderPolicy": "safe_text_formula_blocks_only"
+        },
+        {
+          "id": "MATH-VN-C01-L05-S19",
+          "role": "simulation",
+          "sourceSlideIds": [
+            "SL19"
+          ],
+          "title": "SVD preview với samples-as-rows",
+          "formulaRefs": [
+            "F14"
+          ],
+          "blocks": [
+            {
+              "type": "formula",
+              "title": "Reduced SVD",
+              "body": "X_c=U diag(σ)V^T"
+            },
+            {
+              "type": "text",
+              "title": "Shapes",
+              "body": "X_c:8×4, U:8×4, σ:length 4, V^T:4×4."
+            },
+            {
+              "type": "qa",
+              "title": "Orientation warning",
+              "body": "Transposing X_c swaps sample and feature spaces; factor roles and interpretation must change accordingly."
+            }
+          ],
+          "renderPolicy": "safe_text_formula_blocks_only"
+        },
+        {
+          "id": "MATH-VN-C01-L05-S20",
+          "role": "engineering_transfer",
+          "sourceSlideIds": [
+            "SL20"
+          ],
+          "title": "99.9541% không phải chứng nhận mọi nhiệm vụ",
+          "formulaRefs": [
+            "F15"
+          ],
+          "blocks": [
+            {
+              "type": "formula",
+              "title": "Retained energy",
+              "body": "ρ_k=(Σ_{i≤k}σ_i²)/(Σ_iσ_i²)"
+            },
+            {
+              "type": "formula",
+              "title": "Locked k=2 result",
+              "body": "ρ_2=0.9995414686511285≈99.9541468651%"
+            },
+            {
+              "type": "qa",
+              "title": "Giới hạn",
+              "body": "Kết quả nói về reconstruction energy của locked centred matrix, không bảo đảm prediction accuracy, rare-fault coverage hoặc causal physical modes."
+            }
+          ],
+          "renderPolicy": "safe_text_formula_blocks_only"
+        },
+        {
+          "id": "MATH-VN-C01-L05-S21",
+          "role": "code_audit",
+          "sourceSlideIds": [
+            "SL21"
+          ],
+          "title": "Audit pipeline trước khi deploy",
+          "formulaRefs": [
+            "F05",
+            "F10",
+            "F11",
+            "F12",
+            "F13",
+            "F16"
+          ],
+          "blocks": [
+            {
+              "type": "text",
+              "title": "Assertions",
+              "body": "Check shapes, feature order/version, centering, Q^TQ, projector invariants, reconstruction and Q^Tr."
+            },
+            {
+              "type": "text",
+              "title": "Numerical contract",
+              "body": "Expose τ, γ_demo, matrix orientation and model version; retain residual vector with scalar score."
+            },
+            {
+              "type": "qa",
+              "title": "Chặn output-only validation",
+              "body": "Một expected scalar đúng chưa đủ nếu code permutes channels, skips centering hoặc converts score thành fault class."
+            }
+          ],
+          "renderPolicy": "safe_text_formula_blocks_only"
+        },
+        {
+          "id": "MATH-VN-C01-L05-S22",
+          "role": "mastery_close",
+          "sourceSlideIds": [
+            "SL22"
+          ],
+          "title": "Mastery close: từ model subspace sang data matrix",
+          "formulaRefs": [
+            "F01",
+            "F02",
+            "F07",
+            "F09",
+            "F11",
+            "F13",
+            "F14",
+            "F15",
+            "F16"
+          ],
+          "blocks": [
+            {
+              "type": "text",
+              "title": "Decision path",
+              "body": "Classify object → lock contract → center → verify basis → choose projector → check invariants → inspect residual → report rank criterion → bound interpretation."
+            },
+            {
+              "type": "text",
+              "title": "Bridge",
+              "body": "§1.6 tổ chức compatible observations thành X_c, rồi nghiên cứu matrix transformations, row/column roles, rank và SVD structure."
+            },
+            {
+              "type": "qa",
+              "title": "Mastery evidence",
+              "body": "Phải giải thích được điều residual score và retained energy không chứng minh, không chỉ tính ra con số."
+            }
+          ],
+          "renderPolicy": "safe_text_formula_blocks_only"
         }
       ]
     },
