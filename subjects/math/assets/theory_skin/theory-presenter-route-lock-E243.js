@@ -5,9 +5,10 @@
 (function(){
   'use strict';
 
-  var RELEASE='E243_PRESENTER_ROUTE_LOCK';
+  var RELEASE='E243_PRESENTER_ROUTE_LOCK_R2';
   var handled=0;
   var lastLessonId='';
+  var stabilizationRuns=0;
 
   function state(){
     try{return (window.__BAUMAN_CORE_API&&window.__BAUMAN_CORE_API.state)||window.__MATH_STATE||(window.__MATH_STATE={});}
@@ -57,6 +58,18 @@
     }
   }
 
+  function stabilizeReader(id,e129){
+    [0,120,720].forEach(function(delay){
+      setTimeout(function(){
+        var deck=document.querySelector('.e132-overlay-deck.open');
+        if(!deck||!id)return;
+        lockState(id,true);
+        e129.render();
+        stabilizationRuns+=1;
+      },delay);
+    });
+  }
+
   function handle(e){
     var button=e.target&&e.target.closest&&e.target.closest('[data-e129-present]');
     if(!button)return;
@@ -71,6 +84,7 @@
 
     if(next){
       openDeckFromLockedReader();
+      stabilizeReader(id,e129);
     }else{
       var deckApi=window.BAUMAN_MATH_THEORY_E132;
       if(deckApi&&typeof deckApi.closeDeck==='function')deckApi.closeDeck();
@@ -92,6 +106,7 @@
         release:RELEASE,
         handled:handled,
         lastLessonId:lastLessonId,
+        stabilizationRuns:stabilizationRuns,
         noNewRenderer:true,
         routingGhostPresent:!!document.querySelector('[data-e243-routing-ghost]')
       };
