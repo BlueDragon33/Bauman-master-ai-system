@@ -1,4 +1,4 @@
-name: Pass 20 slideshow deck diagnostic
+name: Pass 20 slideshow deck diagnostic rerun
 on:
   push:
     branches: [main]
@@ -52,6 +52,7 @@ jobs:
             out.readerBefore=await page.evaluate(()=>({
               sourceSlides:document.querySelectorAll('.e129-slide-list .e129-slide').length,
               shellClass:document.querySelector('.e129-theory-shell')?.className||'',
+              currentLesson:document.querySelector('[data-current-lesson]')?.getAttribute('data-current-lesson')||'',
               lessonText:document.querySelector('.e129-reader')?.textContent.slice(0,300)||''
             }));
             await page.click('[data-e129-present]');
@@ -65,6 +66,7 @@ jobs:
               side:document.querySelector('.e132-clean-side small')?.textContent||'',
               sourceSlidesPresenting:document.querySelectorAll('.e129-theory-shell.presenting .e129-slide-list .e129-slide').length,
               sourceSlidesAny:document.querySelectorAll('.e129-slide-list .e129-slide').length,
+              currentLesson:document.querySelector('[data-current-lesson]')?.getAttribute('data-current-lesson')||'',
               e202:window.BAUMAN_MATH_THEORY_E132.selfCheck(),
               e211:window.BAUMAN_MATH_E211_READER_CONTENT&&window.BAUMAN_MATH_E211_READER_CONTENT.selfCheck(),
               e242:window.BAUMAN_MATH_E242_SLIDESHOW_RICHNESS&&window.BAUMAN_MATH_E242_SLIDESHOW_RICHNESS.selfCheck(),
