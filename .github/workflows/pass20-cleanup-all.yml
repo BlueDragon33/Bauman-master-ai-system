@@ -1,0 +1,45 @@
+name: Pass 20 final cleanup
+on:
+  push:
+    branches: [main]
+    paths:
+      - .github/workflows/pass20-cleanup-all.yml
+permissions:
+  contents: write
+jobs:
+  cleanup:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - name: Remove one-shot QA scaffolding
+        run: |
+          git rm --ignore-unmatch \
+            .github/workflows/pass20-lesson-scope-guard.yml \
+            .github/workflows/pass20-browser-qa.yml \
+            .github/workflows/pass20-deck-diagnostic.yml \
+            .github/workflows/pass20-fix-present-selection.yml \
+            .github/workflows/pass20-fix-present-routing.yml \
+            .github/workflows/pass20-patch-e129-window-owner.yml \
+            .github/workflows/pass20-deck-diagnostic-e243.yml \
+            .github/workflows/pass20-deck-diagnostic-e243-r2.yml \
+            .github/workflows/pass20-final-browser-qa.yml \
+            .github/workflows/pass20-final-browser-qa-v2.yml \
+            .github/workflows/pass20-final-browser-qa-v3.yml \
+            .github/workflows/pass20-final-browser-qa-v4.yml \
+            .github/workflows/pass20-final-browser-qa-v5.yml \
+            .github/workflows/pass20-final-browser-qa-v6.yml \
+            .github/workflows/pass20-fix-e242-cleanup.yml \
+            .github/workflows/pass20-fix-manifest-count.yml \
+            .github/workflows/pass20-cleanup-all.yml \
+            subjects/math/PASS20_DECK_DIAGNOSTIC.json \
+            subjects/math/PASS20_BROWSER_QA_REPORT.json \
+            subjects/math/tests/pass20-browser-qa-v2.mjs
+      - name: Commit cleanup
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git commit -m "chore(math): remove pass20 QA scaffolding"
+          git pull --rebase origin main
+          git push origin HEAD:main
