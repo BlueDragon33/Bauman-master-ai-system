@@ -1,0 +1,112 @@
+name: Lesson 1.5 Pass 18 static verification
+on:
+  pull_request:
+    branches: [main]
+    types: [opened, reopened, synchronize, ready_for_review]
+    paths:
+      - .github/workflows/l05-pass18-static-verify.yml
+permissions:
+  contents: write
+jobs:
+  verify:
+    if: github.event.pull_request.head.repo.full_name == github.repository
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.pull_request.head.ref }}
+          fetch-depth: 1
+          show-progress: false
+      - name: Check JavaScript syntax
+        run: |
+          node --check subjects/math/assets/theory_skin/theory-slideshow-identity-E210.js
+          node --check subjects/math/assets/theory_skin/theory-presenter-route-lock-E243.js
+      - name: Verify identity and route contracts
+        run: |
+          python3 - <<'PY'
+          import json
+          from pathlib import Path
+
+          root=Path('subjects/math')
+          e210=(root/'assets/theory_skin/theory-slideshow-identity-E210.js').read_text(encoding='utf-8')
+          e243=(root/'assets/theory_skin/theory-presenter-route-lock-E243.js').read_text(encoding='utf-8')
+          e244=(root/'assets/theory_skin/theory-artifact-registry-E244.js').read_text(encoding='utf-8')
+          content=json.loads((root/'data/theory_lecture_content.json').read_text(encoding='utf-8'))
+          l04='MATH-VN-C01-vector_trong_khong_gian_-L04-basis-span-coordinate-e140'
+          l05='MATH-VN-C01-vector_trong_khong_gian_-L05-subspace-data-representation-e140'
+          titles={r.get('lessonId'):r.get('lessonTitle') or r.get('title') for r in content.get('records',[])}
+          checks=[]
+          def ok(name,condition,detail=None):
+              if not condition: raise AssertionError(f'{name}: {detail!r}')
+              checks.append({'name':name,'status':'PASS','detail':detail})
+
+          ok('L04 canonical title',titles.get(l04)=='§1.4 · Cơ sở, span và tọa độ',titles.get(l04))
+          ok('L05 canonical title',titles.get(l05)=='§1.5 · Không gian con và biểu diễn dữ liệu',titles.get(l05))
+          ok('E244 contains both identities',all(x in e244 for x in [l04,l05,titles[l04],titles[l05]]))
+          ok('E210 canonical release','E210_CANONICAL_LESSON_IDENTITY_LABEL' in e210)
+          ok('E210 prefers ID fields',e210.index("['e129LessonId','theoryLessonId','currentLessonId'") < e210.index("['lessonTitle','currentLessonTitle','selectedTheoryTitle'") )
+          ok('E210 uses E244','BAUMAN_MATH_THEORY_ARTIFACT_REGISTRY_E244' in e210 and "source:'E244'" in e210)
+          ok('E210 uses E240','BAUMAN_MATH_E240_THEORY_CONTENT_SOURCE' in e210 and "source:'E240'" in e210)
+          ok('E210 writes actual lesson ID',all(x in e210 for x in ["data-e210-active-lesson-id","data-lesson-id","data-e210-source-lesson-id","data-e210-check-lesson-id"]))
+          ok('E243 canonical release','E243_PRESENTER_ROUTE_IDENTITY_LOCK_R3' in e243)
+          ok('E243 uses E244 and E240','BAUMAN_MATH_THEORY_ARTIFACT_REGISTRY_E244' in e243 and 'BAUMAN_MATH_E240_THEORY_CONTENT_SOURCE' in e243)
+          ok('E243 stamps deck identity',all(x in e243 for x in ['data-e243-lesson-id','data-e243-lesson-title','data-lesson-id']))
+          ok('E243 retains routing ghost',all(x in e243 for x in ['data-e243-routing-ghost','sanitizeRoutingText','replace(/([23])\\.([1-6])/g']))
+          ok('E243 calls existing public APIs',all(x in e243 for x in ['BAUMAN_MATH_E210_LESSON_IDENTITY','BAUMAN_MATH_E241_ARTIFACT_READER','BAUMAN_MATH_E242_SLIDESHOW_RICHNESS']))
+          ok('no new renderer',"createElement('section')" not in e210 and "createElement('section')" not in e243 and "appendChild(deck)" not in e210 and "appendChild(deck)" not in e243)
+          ok('no new data source',"fetch(" not in e210 and "fetch(" not in e243)
+          ok('no new state store','localStorage' not in e210 and 'localStorage' not in e243)
+
+          report={
+            'id':'bauman_math_c01_l05_runtime_pass18_v1',
+            'schema':'bauman_math_route_identity_report_v1',
+            'version':'RUNTIME_PASS18_C01_L05_V1',
+            'status':'PASS_18_SELECTION_ROUTE_SYNC_STATIC_VERIFY_PASS',
+            'date':'2026-07-09',
+            'lessonId':l05,
+            'verificationMode':'isolated_pull_request_node_syntax_and_source_contract_validation',
+            'browserRun':False,
+            'identityContracts':{
+              'l04':{'lessonId':l04,'lessonTitle':titles[l04]},
+              'l05':{'lessonId':l05,'lessonTitle':titles[l05]}
+            },
+            'commits':{
+              'E210':'d39706c75ce9b9f4d4b720880da1a72f9898b92f',
+              'E243':'d4ba315649d8873345eff5beb862ddd370050224'
+            },
+            'protectedDiff':{
+              'base':'153cce335777c5fc86db8957421033ba7c687521',
+              'head':'d4ba315649d8873345eff5beb862ddd370050224',
+              'expectedChangedFiles':['subjects/math/assets/theory_skin/theory-slideshow-identity-E210.js','subjects/math/assets/theory_skin/theory-presenter-route-lock-E243.js']
+            },
+            'newRendererCreated':False,
+            'newDataSourceCreated':False,
+            'newStateStoreCreated':False,
+            'checks':checks,
+            'nextTask':'THEORY_C01_L05_CHROMIUM_FINAL_ACCEPTANCE_PASS_19'
+          }
+          (root/'THEORY_C01_L05_RUNTIME_PASS18.json').write_text(json.dumps(report,ensure_ascii=False,indent=2)+'\n',encoding='utf-8')
+
+          state=Path('CODEX_STATE.md'); text=state.read_text(encoding='utf-8')
+          text=text.replace('Current task: `THEORY_C01_L05_SELECTION_ROUTE_SYNC_PASS_18`','Current task: `THEORY_C01_L05_CHROMIUM_FINAL_ACCEPTANCE_PASS_19`',1)
+          text=text.replace('Status: `PASS_17_MULTI_LESSON_READER_RICHNESS_STATIC_VERIFY_PASS`','Status: `PASS_18_SELECTION_ROUTE_SYNC_STATIC_VERIFY_PASS`',1)
+          text=text.replace('Runtime passes complete: `3/5`.','Runtime passes complete: `4/5`.',1)
+          text=text.replace('Runtime passes remaining: `2/5`.','Runtime passes remaining: `1/5`.',1)
+          text=text.replace('## Pass 18 patches already applied, verification pending','## Runtime Pass 18 · Selection and route identity sync',1)
+          text=text.replace('- Pass 18 is not accepted until static verification is complete.','- Static verification: PASS.\n- Report: `subjects/math/THEORY_C01_L05_RUNTIME_PASS18.json`.\n- Browser QA: not run.\n- Next: `THEORY_C01_L05_CHROMIUM_FINAL_ACCEPTANCE_PASS_19`.',1)
+          text=text.replace('4. Pass 18: verify lesson selection, canonical presenter identity and route locking for L05 while preserving L04.\n5. Pass 19: Chromium browser QA, cross-lesson leak checks and final runtime acceptance.','5. Pass 19: Chromium browser QA, cross-lesson leak checks and final runtime acceptance.',1)
+          text=text.replace('`THEORY_C01_L05_SELECTION_ROUTE_SYNC_PASS_18`','`THEORY_C01_L05_CHROMIUM_FINAL_ACCEPTANCE_PASS_19`',1)
+          marker='Pass 18 must:'
+          if marker in text:
+              text=text.split(marker,1)[0]+'Pass 19 must:\n- run a real Chromium browser session against the current main-equivalent branch;\n- open §1.4 and §1.5 separately;\n- verify 22/22 slides for both lessons;\n- verify canonical lesson identity does not leak between lessons;\n- verify Reference and Full View open from the correct lesson artifacts;\n- verify L05 richness counts and representative diagram/retrieval/misconception behavior;\n- verify formula modal remains separate and E235 visuals remain intact;\n- verify no console errors, route ghost leftovers or stale artifact controls;\n- record screenshots/logs and only then mark final browser acceptance.\n'
+          state.write_text(text,encoding='utf-8')
+          PY
+      - name: Persist verified result
+        run: |
+          git rm .github/workflows/l05-pass18-static-verify.yml
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add CODEX_STATE.md subjects/math/THEORY_C01_L05_RUNTIME_PASS18.json
+          git commit -m "test(math): verify lesson 1.5 route identity lock"
+          git push origin HEAD:${{ github.event.pull_request.head.ref }}
