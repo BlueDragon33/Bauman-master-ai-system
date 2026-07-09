@@ -1,0 +1,269 @@
+{
+  "id": "bauman_math_c01_l06_baseline_audit_v1",
+  "schema": "bauman_math_theory_baseline_audit_v1",
+  "version": "BASELINE_AUDIT_C01_L06_V1",
+  "status": "PASS_01_BASELINE_AUDIT_COMPLETE",
+  "date": "2026-07-09",
+  "lessonId": "MATH-VN-C01-vector_trong_khong_gian_-L06-vector-to-data-matrix-e140",
+  "lessonTitle": "§1.6 · Từ vector sang ma trận dữ liệu",
+  "chapterId": "MATH-VN-C01-vector_trong_khong_gian_",
+  "recordIndex": 5,
+  "recordCount": 18,
+  "previousLessonId": "MATH-VN-C01-vector_trong_khong_gian_-L05-subspace-data-representation-e140",
+  "nextLessonId": "MATH-VN-C02-ma_tran_va_phep_bien_oi_-L01-matrix-as-data-and-transform-e142",
+  "canonicalRecordHash": "f8156ac9c4c0bde6657f802cc035fc3daff1a9c2142fba94e3e70118c33b5f6c",
+  "programLectureId": "MATH-PROG-L02-vector-spaces-linear-maps",
+  "programLectureIds": [
+    "MATH-PROG-L02-vector-spaces-linear-maps",
+    "MATH-PROG-L01-linear-algebra-basic",
+    "MATH-PROG-L17-ai-machine-learning-math-foundations"
+  ],
+  "programAnchorTitle": "Không gian vectơ và ánh xạ tuyến tính",
+  "roadmapRole": "foundation_before_prep",
+  "baumanFocus": "Kết nối vector đơn lẻ với ma trận dữ liệu, rank, không gian cột/hàng và pipeline chuẩn bị cho ma trận, PCA, mô hình tuyến tính.",
+  "tags": [
+    "data matrix",
+    "rank",
+    "features",
+    "samples",
+    "PCA pipeline"
+  ],
+  "runtimeBaseline": {
+    "slideCount": 16,
+    "slideIds": [
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null
+    ],
+    "roleCounts": {
+      "problem_framing": 1,
+      "deep_essence": 1,
+      "counter_intuition": 1,
+      "real_bridge": 1,
+      "notation": 1,
+      "core_formula": 1,
+      "assumption_gate": 1,
+      "mini_case": 1,
+      "interpretation": 1,
+      "simulation": 1,
+      "common_mistakes": 1,
+      "application": 1,
+      "practice": 1,
+      "professor_qa": 1,
+      "bridge": 1,
+      "takeaway": 1
+    },
+    "blockCounts": {
+      "text": 36,
+      "qa": 18,
+      "formula": 7,
+      "code": 3
+    },
+    "formulaReferenceCount": 0,
+    "formulaBlockCount": 7,
+    "codeBlockCount": 3,
+    "qaBlockCount": 18,
+    "emptyOrIncompleteSlides": [],
+    "duplicateSlideTitles": [],
+    "longBodies": [],
+    "integrationMetaPresent": false,
+    "academicApprovalPresent": false
+  },
+  "sourceMatches": {
+    "durable": [
+      {
+        "path": "$.records[5]",
+        "keys": [
+          "baumanFocus",
+          "chapterId",
+          "lessonId",
+          "lessonTitle",
+          "programAnchorTitle",
+          "programLectureId",
+          "programLectureIds",
+          "roadmapRole",
+          "slides",
+          "sourceAnchors",
+          "tags",
+          "title"
+        ],
+        "title": "§1.6 · Từ vector sang ma trận dữ liệu"
+      }
+    ],
+    "frame": [],
+    "lessons": [],
+    "curriculum": [],
+    "chapterSpine": [],
+    "contentManifest": []
+  },
+  "artifactInventory": {
+    "case": {
+      "path": "subjects/math/data/theory_case/theory_case_c01_l06.json",
+      "exists": false
+    },
+    "core": {
+      "path": "subjects/math/data/theory_core/theory_core_c01_l06.json",
+      "exists": false
+    },
+    "workedExamples": {
+      "path": "subjects/math/data/theory_worked_examples/theory_worked_examples_c01_l06.json",
+      "exists": false
+    },
+    "lab": {
+      "path": "subjects/math/data/theory_lab/theory_lab_c01_l06.json",
+      "exists": false
+    },
+    "assessment": {
+      "path": "subjects/math/data/theory_assessment/theory_assessment_c01_l06.json",
+      "exists": false
+    },
+    "reference": {
+      "path": "subjects/math/data/theory_reference/theory_reference_c01_l06.json",
+      "exists": false
+    },
+    "fullView": {
+      "path": "subjects/math/data/theory_full_view/theory_full_view_c01_l06.json",
+      "exists": false
+    },
+    "normalization": {
+      "path": "subjects/math/data/theory_normalization/theory_normalization_c01_l06.json",
+      "exists": false
+    },
+    "slideshow": {
+      "path": "subjects/math/data/theory_slideshow/theory_slideshow_c01_l06.json",
+      "exists": false
+    },
+    "integrationImport": {
+      "path": "subjects/math/data/theory_integration/theory_lecture_content_c01_l06_import.json",
+      "exists": false
+    },
+    "integrationApproval": {
+      "path": "subjects/math/data/theory_integration/theory_lecture_content_c01_l06_approval.json",
+      "exists": false
+    }
+  },
+  "existingSpecialistArtifacts": [],
+  "missingSpecialistArtifacts": [
+    "case",
+    "core",
+    "workedExamples",
+    "lab",
+    "assessment",
+    "reference",
+    "fullView",
+    "normalization",
+    "slideshow",
+    "integrationImport",
+    "integrationApproval"
+  ],
+  "findings": [
+    {
+      "id": "F01",
+      "severity": "info",
+      "finding": "Durable lesson exists once at record index 5 of 18."
+    },
+    {
+      "id": "F02",
+      "severity": "info",
+      "finding": "Current runtime deck contains 16 slides. The project contract treats 16 as a minimum, not a target maximum."
+    },
+    {
+      "id": "F03",
+      "severity": "warning",
+      "finding": "The current deck is a legacy/general baseline and has not passed the lesson-scoped 14-pass academic workflow."
+    },
+    {
+      "id": "F04",
+      "severity": "warning",
+      "finding": "11 of 11 specialist lesson artifacts are absent: case, core, workedExamples, lab, assessment, reference, fullView, normalization, slideshow, integrationImport, integrationApproval."
+    },
+    {
+      "id": "F05",
+      "severity": "warning",
+      "finding": "Canonical formula references on runtime slides: 0; raw formula blocks: 7."
+    },
+    {
+      "id": "F06",
+      "severity": "info",
+      "finding": "Code blocks: 3; Q&A blocks: 18."
+    },
+    {
+      "id": "F07",
+      "severity": "info",
+      "finding": "Empty/incomplete slide positions: none."
+    },
+    {
+      "id": "F08",
+      "severity": "info",
+      "finding": "Duplicate slide titles: none."
+    },
+    {
+      "id": "F09",
+      "severity": "info",
+      "finding": "§1.6 is the bridge from individual vectors to a data matrix; Pass 2 must lock orientation, shape semantics, sample/feature contracts and the boundary with later rank/SVD content before expansion."
+    },
+    {
+      "id": "F10",
+      "severity": "warning",
+      "finding": "No §1.6 academic acceptance or browser acceptance exists yet. Existing runtime content must not be promoted as approved source of truth."
+    }
+  ],
+  "scopeHazards": [
+    "Rows-as-samples versus columns-as-samples can silently transpose every later formula.",
+    "Sample count, feature count, channel order and units must be explicit before matrix operations.",
+    "A data matrix is not automatically centred, standardized, full-rank or covariance-ready.",
+    "Stacking vectors requires compatible dimension, schema, units and acquisition contract.",
+    "Matrix shape alone does not prove semantic compatibility.",
+    "PCA/SVD/rank should be previewed only as downstream bridges, not allowed to swallow the core lesson.",
+    "Batch, time-window, channel and trajectory matrices are distinct orientations and must not be conflated.",
+    "Code examples must assert shapes and metadata rather than only produce numeric output."
+  ],
+  "recommendedPass2Actions": [
+    "Lock prerequisite gates inherited from §1.1–§1.5.",
+    "Define the canonical data contract: observations, features, shape m×n, row/column semantics, units and ordering.",
+    "Separate vector stacking, matrix notation, indexing, slicing, transpose and batch interpretation.",
+    "Define learning outcomes and mastery evidence before formulas or slides are expanded.",
+    "Choose one deterministic engineering dataset for later passes without importing PCA/SVD conclusions prematurely.",
+    "Lock explicit misconceptions around transpose, shape compatibility, centering and sample/feature orientation."
+  ],
+  "protectedRuntimeDecision": {
+    "durableContentModified": false,
+    "runtimeReaderModified": false,
+    "manifestModified": false,
+    "e235Modified": false,
+    "newSlideshowEngineCreated": false
+  },
+  "checks": [
+    {
+      "name": "target occurs once in durable content",
+      "status": "PASS",
+      "detail": [
+        5
+      ]
+    },
+    {
+      "name": "target has title",
+      "status": "PASS",
+      "detail": null
+    },
+    {
+      "name": "target has slides",
+      "status": "PASS",
+      "detail": 16
+    }
+  ],
+  "nextTask": "THEORY_C01_L06_LEARNING_CONTRACT_PASS_02"
+}

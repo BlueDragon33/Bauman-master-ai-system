@@ -1,8 +1,8 @@
 # CODEX_STATE
 
-Current task: `THEORY_C01_L06_BASELINE_AUDIT_PASS_01`
+Current task: `THEORY_C01_L06_LEARNING_CONTRACT_PASS_02`
 
-Status: `ACADEMIC_14_OF_14_PASS_RUNTIME_5_OF_5_BROWSER_ACCEPTED`
+Status: `PASS_01_BASELINE_AUDIT_COMPLETE`
 
 Date: 2026-07-09
 Branch: `main`
@@ -128,35 +128,41 @@ Browser QA: `PASS_CURRENT_HEAD`.
 - The repair prioritizes deck-locked lesson identity and verifies required richness markers still exist before treating a slide as already applied.
 - Because this repair was committed after the historical browser report, that report is retained as history but is not sufficient for the current head.
 
+## §1.6 academic workflow
+
+Lesson ID:
+`MATH-VN-C01-vector_trong_khong_gian_-L06-vector-to-data-matrix-e140`
+
+Lesson title:
+`§1.6 · Từ vector sang ma trận dữ liệu`
+
+Progress:
+- academic passes complete: `1/14`;
+- academic passes remaining: `13/14`;
+- runtime integration: not started;
+- durable runtime content: unchanged baseline;
+- browser QA: not applicable before runtime integration.
+
+### Pass 1 · Baseline audit
+- Status: `PASS_01_BASELINE_AUDIT_COMPLETE`.
+- Files:
+  - `subjects/math/THEORY_C01_L06_BASELINE_AUDIT.md`;
+  - `subjects/math/THEORY_C01_L06_BASELINE_AUDIT.json`.
+- Current runtime slides: `16`.
+- Current record index: `5`.
+- Existing specialist artifacts: `0`; missing: `11`.
+- Durable content, runtime readers, manifest and E235 unchanged.
+
 ## Current task requirements
 
-`THEORY_C01_L05_CHROMIUM_REVALIDATION_AFTER_E242_FIX`
+`THEORY_C01_L06_LEARNING_CONTRACT_PASS_02`
 
-The revalidation must:
-- run real Chromium against the current `main` head including commit `58bab8bd2e131b8250f01a83eb6b611afa0fd2f0`;
-- open §1.4 and §1.5 through the real E129 presenter action;
-- navigate all 22 slides in each lesson;
-- for every source slide, verify each required diagram, retrieval and misconception marker remains present after reader/artifact rerenders;
-- verify canonical identity and artifact controls never leak between §1.4 and §1.5;
-- open lesson-scoped Reference and Full View;
-- verify the formula modal remains separate and E235 remains active;
-- verify zero console errors, page errors, failed local requests and routing-ghost leftovers;
-- update the Pass 19 report with the new tested commit and evidence artifact;
-- restore `5/5` only after the current head passes.
-
-
-## Runtime Pass 19 current-head revalidation
-- Status: `PASS_CURRENT_HEAD_AFTER_E242_REPAIR`.
-- Tested runtime commit: `cb328018e2221d5a5d3650d8ef753e0ca173016e`.
-- E242 repair commit: `58bab8bd2e131b8250f01a83eb6b611afa0fd2f0`.
-- E245 authoritative artifact route commit: `8792f6350247a6cbb08b23e13ee4c4dcb248c5d1`.
-- E245 index load-order commit: `3f9a0af0fd0af7e81330cae7b18649daa7348f34`.
-- Unregistered §1.6 returned zero E241 controls and zero E242 richness markers.
-- Evidence artifact: `lesson-1-5-pass19-revalidation-v4`.
-- L04 and L05: all 22 slides verified against source richness requirements.
-- Missing required richness markers: 0. Stale richness markers: 0.
-- Reference, Full View, formula modal and E235: PASS.
-- Cross-lesson identity leaks: 0. L06 stale registered controls: 0.
-- Console errors: 0. Page errors: 0. Local HTTP errors: 0. Route ghosts: 0.
-- Final state: `ACADEMIC_14_OF_14_PASS_RUNTIME_5_OF_5_BROWSER_ACCEPTED`.
-- Next: `THEORY_C01_L06_BASELINE_AUDIT_PASS_01`.
+Pass 2 must:
+- lock prerequisite gates from §1.1–§1.5;
+- define learning outcomes before slide expansion;
+- lock canonical data-matrix orientation and shape semantics;
+- separate observations, features, channels, time windows and batches;
+- define mastery evidence and prohibited shortcuts;
+- select one deterministic engineering context for later case development;
+- keep PCA/SVD/rank as downstream bridges rather than replacing the §1.6 core;
+- avoid runtime modification.
