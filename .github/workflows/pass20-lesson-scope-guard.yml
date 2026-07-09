@@ -11,14 +11,14 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - name: Remove stale reference panel outside lesson 1.4
+      - name: Move artifact modal Escape guard before deck handler
         run: |
           python - <<'PY'
           from pathlib import Path
           path=Path('subjects/math/assets/theory_skin/theory-artifact-reader-E241.js')
           text=path.read_text(encoding='utf-8')
-          old="var existing=d.querySelector('.e241-actions');\n    if(!currentLessonMatches()){if(existing)existing.remove();return false;}"
-          new="var existing=d.querySelector('.e241-actions');\n    if(!currentLessonMatches()){\n      if(existing)existing.remove();\n      var stalePanel=d.querySelector('.e211-summary-panel.e241-reference-summary');\n      if(stalePanel)stalePanel.remove();\n      return false;\n    }"
+          old="document.addEventListener('keydown',function(e){if(e.key==='Escape'&&modal&&!modal.classList.contains('hidden')){e.preventDefault();closeModal();}},true);"
+          new="window.addEventListener('keydown',function(e){if(e.key==='Escape'&&modal&&!modal.classList.contains('hidden')){e.preventDefault();e.stopPropagation();if(e.stopImmediatePropagation)e.stopImmediatePropagation();closeModal();}},true);"
           assert text.count(old)==1,text.count(old)
           path.write_text(text.replace(old,new,1),encoding='utf-8')
           PY
@@ -27,5 +27,5 @@ jobs:
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git add subjects/math/assets/theory_skin/theory-artifact-reader-E241.js
-          git commit -m "fix(math): clear stale reference panel on lesson change"
+          git commit -m "fix(math): prioritize artifact modal Escape handling"
           git push origin HEAD:main
