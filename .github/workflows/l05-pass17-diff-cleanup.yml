@@ -1,0 +1,69 @@
+name: Lesson 1.5 Pass 17 diff cleanup
+on:
+  pull_request:
+    branches: [main]
+    types: [opened, reopened, synchronize]
+    paths:
+      - .github/workflows/l05-pass17-diff-cleanup.yml
+permissions:
+  contents: write
+concurrency:
+  group: l05-pass17-cleanup-${{ github.event.pull_request.number }}
+  cancel-in-progress: true
+jobs:
+  cleanup:
+    if: github.event.pull_request.head.repo.full_name == github.repository
+    runs-on: ubuntu-22.04
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.pull_request.head.ref }}
+          fetch-depth: 0
+      - name: Restore original formatting and apply minimal patches
+        run: |
+          set -euo pipefail
+          git checkout origin/main -- \
+            subjects/math/THEORY_C01_L05_ACADEMIC_ACCEPTANCE.json \
+            subjects/math/data/theory_slideshow/theory_slideshow_c01_l05.json
+          python3 - <<'PY'
+          import json
+          from pathlib import Path
+
+          root=Path('subjects/math')
+          acceptance=root/'THEORY_C01_L05_ACADEMIC_ACCEPTANCE.json'
+          slideshow=root/'data/theory_slideshow/theory_slideshow_c01_l05.json'
+
+          a=acceptance.read_text(encoding='utf-8')
+          old='"misconceptionSlides": 17'
+          new='"misconceptionSlides": 18'
+          if a.count(old)!=1:
+              raise AssertionError(('acceptance count patch occurrences',a.count(old)))
+          acceptance.write_text(a.replace(old,new,1),encoding='utf-8')
+
+          s=slideshow.read_text(encoding='utf-8')
+          old_list='"misconceptionSlides": ["SL01","SL02","SL03","SL04","SL05","SL06","SL08","SL09","SL10","SL11","SL12","SL14","SL15","SL16","SL18","SL19","SL21"]'
+          new_list='"misconceptionSlides": ["SL01","SL02","SL03","SL04","SL05","SL06","SL08","SL09","SL10","SL11","SL12","SL14","SL15","SL16","SL18","SL19","SL20","SL21"]'
+          if s.count(old_list)!=1:
+              raise AssertionError(('slideshow coverage patch occurrences',s.count(old_list)))
+          slideshow.write_text(s.replace(old_list,new_list,1),encoding='utf-8')
+
+          a_obj=json.loads(acceptance.read_text(encoding='utf-8'))
+          s_obj=json.loads(slideshow.read_text(encoding='utf-8'))
+          actual=[slide['id'] for slide in s_obj['slides'] if slide.get('misconceptionIntercept')]
+          assert len(actual)==18,actual
+          assert s_obj['coverage']['misconceptionSlides']==actual
+          assert a_obj['artifactCounts']['misconceptionSlides']==18
+          print({'actualMisconceptionSlides':actual,'acceptanceCount':18})
+          PY
+          node --check subjects/math/assets/theory_skin/theory-artifact-registry-E244.js
+          node --check subjects/math/assets/theory_skin/theory-artifact-reader-E241.js
+          node --check subjects/math/assets/theory_skin/theory-slideshow-richness-E242.js
+      - name: Commit clean diff
+        run: |
+          git rm .github/workflows/l05-pass17-diff-cleanup.yml
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add subjects/math/THEORY_C01_L05_ACADEMIC_ACCEPTANCE.json subjects/math/data/theory_slideshow/theory_slideshow_c01_l05.json
+          git commit -m "chore(math): minimize lesson 1.5 Pass 17 diff"
+          git push origin HEAD:${{ github.event.pull_request.head.ref }}
