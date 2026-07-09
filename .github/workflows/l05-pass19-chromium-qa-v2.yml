@@ -1,0 +1,132 @@
+name: Lesson 1.5 Pass 19 Chromium acceptance v2
+on:
+  pull_request:
+    branches: [main]
+    types: [opened, reopened, synchronize, ready_for_review]
+    paths:
+      - .github/workflows/l05-pass19-chromium-qa-v2.yml
+permissions:
+  contents: write
+jobs:
+  chromium-qa:
+    if: github.event.pull_request.head.repo.full_name == github.repository
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.pull_request.head.ref }}
+          fetch-depth: 1
+          show-progress: false
+      - name: Prepare browser
+        run: |
+          CHROME_BIN="$(command -v google-chrome || command -v google-chrome-stable || command -v chromium || command -v chromium-browser || true)"
+          test -n "$CHROME_BIN"
+          echo "CHROME_BIN=$CHROME_BIN" >> "$GITHUB_ENV"
+          mkdir -p /tmp/bauman-pw /tmp/bauman-qa
+          cd /tmp/bauman-pw
+          npm init -y >/dev/null 2>&1
+          npm install --no-save --no-package-lock playwright-core >/dev/null 2>&1
+          cd "$GITHUB_WORKSPACE"
+          : > favicon.ico
+          python3 -m http.server 4173 --bind 127.0.0.1 >/tmp/bauman-qa/server.log 2>&1 &
+          for i in $(seq 1 30); do curl -fsS http://127.0.0.1:4173/subjects/math/index.html >/dev/null && exit 0; sleep 1; done
+          cat /tmp/bauman-qa/server.log
+          exit 1
+      - name: Run Chromium flow
+        env:
+          NODE_PATH: /tmp/bauman-pw/node_modules
+        run: |
+          cat >/tmp/bauman-qa/run.js <<'JS'
+          const fs=require('fs'), path=require('path');
+          const {chromium}=require('playwright-core');
+          const OUT='/tmp/bauman-qa';
+          const lessons=[
+            {key:'l04',id:'MATH-VN-C01-vector_trong_khong_gian_-L04-basis-span-coordinate-e140',title:'§1.4 · Cơ sở, span và tọa độ',short:'Cơ sở, span và tọa độ',number:'1.4',rich:3,richId:'SL03',token:'Case UGV',fullMin:8},
+            {key:'l05',id:'MATH-VN-C01-vector_trong_khong_gian_-L05-subspace-data-representation-e140',title:'§1.5 · Không gian con và biểu diễn dữ liệu',short:'Không gian con và biểu diễn dữ liệu',number:'1.5',rich:2,richId:'SL02',token:'ROTATING_MACHINE_4CH_2MODE',fullMin:12}
+          ];
+          const result={status:'RUNNING',browser:'Chromium system channel via playwright-core',url:'http://127.0.0.1:4173/subjects/math/index.html',lessons:{},consoleErrors:[],pageErrors:[],localHttpErrors:[],screenshots:[]};
+          function must(v,msg,detail){if(!v){const e=new Error(msg+' :: '+JSON.stringify(detail||null));e.detail=detail;throw e;}}
+          async function waitCount(page,n){const p=String(n).padStart(2,'0')+' / 22';await page.waitForFunction(x=>{const e=document.querySelector('.e132-overlay-deck.open [data-e202-count]');return e&&e.textContent.trim().startsWith(x);},p,{timeout:10000});}
+          async function moveTo(page,n){let cur=await page.evaluate(()=>{const m=String(document.querySelector('[data-e202-count]')?.textContent||'').match(/(\d+)\s*\//);return m?+m[1]:0;});for(let i=cur+1;i<=n;i++){await page.locator('.e132-overlay-deck.open [data-e202-next]').click();await waitCount(page,i);}}
+          async function closeE241(page){if(await page.locator('.e241-modal:not(.hidden)').count()){await page.locator('.e241-modal:not(.hidden) [data-e241-close]').click();await page.waitForFunction(()=>!document.querySelector('.e241-modal:not(.hidden)'));}}
+          async function openLesson(page,L,oldTitle){
+            await page.evaluate(id=>{const a=window.__BAUMAN_CORE_API||{},s=a.state||window.__MATH_STATE||(window.__MATH_STATE={});Object.assign(s,{view:'learning',learnTab:'theory',stage:'vn',e129Stage:'vn',e129ChapterId:'MATH-VN-C01-vector_trong_khong_gian_',e129LessonId:id,e129Present:false});s.e169Path=Object.assign({},s.e169Path||{},{moduleId:'pure',courseId:'pure-algebra',chapterId:'c01',activityId:'theory',lessonId:id});window.BAUMAN_MATH_THEORY_E129.render();},L.id);
+            await page.waitForSelector(`[data-current-lesson="${L.id}"]`);
+            const reader=await page.evaluate(id=>{const r=document.querySelector(`[data-current-lesson="${id}"]`);return {slides:r?.querySelectorAll('.e129-slide').length||0,title:r?.querySelector('h2')?.textContent.trim()||'',present:!!document.querySelector('[data-e129-present]')};},L.id);
+            must(reader.slides===22,L.key+' Reader slide count',reader);
+            must(reader.title.includes(L.short)&&reader.title.includes(L.number),L.key+' Reader display title',reader);
+            must(reader.present,L.key+' presenter button',reader);
+
+            await page.locator('[data-e129-present]').click();
+            await page.waitForSelector('.e132-overlay-deck.open');
+            await waitCount(page,1);
+            await page.waitForFunction(id=>{const d=document.querySelector('.e132-overlay-deck.open'),a=d?.querySelector('.e241-actions');return d?.getAttribute('data-e243-lesson-id')===id&&d?.getAttribute('data-e210-active-lesson-id')===id&&a?.getAttribute('data-e241-lesson-id')===id;},L.id,{timeout:10000});
+            await page.waitForFunction(()=>!!document.querySelector('.e132-overlay-deck.open [data-e242-diagram="SL01"]'),null,{timeout:10000});
+            const identity=await page.evaluate(({id,oldTitle})=>{const d=document.querySelector('.e132-overlay-deck.open'),c=d?.querySelector('[data-e210-lesson-id]');return {routeId:d?.getAttribute('data-e243-lesson-id'),routeTitle:d?.getAttribute('data-e243-lesson-title'),activeId:d?.getAttribute('data-e210-active-lesson-id'),chipId:c?.getAttribute('data-e210-lesson-id'),chip:c?.textContent.trim(),actionsId:d?.querySelector('.e241-actions')?.getAttribute('data-e241-lesson-id'),oldTitleVisible:oldTitle?d.textContent.includes(oldTitle):false,ghosts:document.querySelectorAll('[data-e243-routing-ghost]').length,e210:window.BAUMAN_MATH_E210_LESSON_IDENTITY.selfCheck(),e241:window.BAUMAN_MATH_E241_ARTIFACT_READER.selfCheck(),e242:window.BAUMAN_MATH_E242_SLIDESHOW_RICHNESS.selfCheck(),e243:window.BAUMAN_MATH_E243_PRESENTER_ROUTE_LOCK.selfCheck()};},{id:L.id,oldTitle});
+            must([identity.routeId,identity.activeId,identity.chipId,identity.actionsId,identity.e210.lessonId,identity.e241.activeLessonId,identity.e242.activeLessonId,identity.e243.deckLessonId].every(x=>x===L.id),L.key+' canonical IDs',identity);
+            must(identity.routeTitle===L.title&&identity.chip.includes(L.title),L.key+' canonical title',identity);
+            must(!identity.oldTitleVisible&&identity.ghosts===0,L.key+' identity leak/ghost',identity);
+
+            await moveTo(page,L.rich);
+            await page.waitForFunction(x=>document.querySelector('.e132-clean-main')?.getAttribute('data-e242-slide')===x,L.richId,{timeout:10000});
+            const richness=await page.evaluate(()=>{const d=document.querySelector('.e132-overlay-deck.open');return {lesson:d?.getAttribute('data-e242-lesson-id'),slide:d?.querySelector('.e132-clean-main')?.getAttribute('data-e242-slide'),diagram:!!d?.querySelector('[data-e242-diagram]'),retrieval:!!d?.querySelector('[data-e242-retrieval]'),misconception:!!d?.querySelector('[data-e242-misconception]')};});
+            must(richness.lesson===L.id&&richness.slide===L.richId&&richness.diagram&&richness.retrieval&&richness.misconception,L.key+' richness',richness);
+            const shot1=path.join(OUT,L.key+'-richness.png');await page.screenshot({path:shot1,fullPage:true});result.screenshots.push(path.basename(shot1));
+
+            const fbtn=page.locator('.e132-overlay-deck.open [data-e211-formula-full]');must(await fbtn.count()===1,L.key+' formula button');await fbtn.click();await page.waitForSelector('#modal.e211-formula-modal-host:not(.hidden) .e211-formula-modal');
+            const formula=await page.evaluate(()=>({modal:!!document.querySelector('#modal.e211-formula-modal-host:not(.hidden) .e211-formula-modal'),artifact:!!document.querySelector('.e241-modal:not(.hidden)'),release:window.BAUMAN_MATH_E235_FORMULA_STANDARD?.release,style:!!document.getElementById('e235-formula-standard-style')}));
+            must(formula.modal&&!formula.artifact&&formula.release==='E235_READER_PRO_FORMULA_STANDARD_R2'&&formula.style,L.key+' formula/E235',formula);await page.locator('#modalClose').click();await page.waitForFunction(()=>!document.querySelector('#modal.e211-formula-modal-host:not(.hidden)'));
+
+            await page.locator('.e132-overlay-deck.open .e241-actions [data-e241-reference]').click();await page.waitForSelector('.e241-modal:not(.hidden)');
+            const ref=await page.evaluate(()=>({title:document.querySelector('[data-e241-title]').textContent.trim(),body:document.querySelector('[data-e241-body]').textContent,sections:document.querySelectorAll('.e241-modal:not(.hidden) .e241-section').length}));
+            must(ref.title.includes(L.short)&&ref.body.includes(L.token)&&ref.sections>=7,L.key+' Reference',ref);await closeE241(page);
+
+            await page.locator('.e132-overlay-deck.open .e241-actions [data-e241-full]').click();await page.waitForSelector('.e241-modal:not(.hidden)');
+            const full=await page.evaluate(()=>({title:document.querySelector('[data-e241-title]').textContent.trim(),sections:document.querySelectorAll('.e241-modal:not(.hidden) .e241-section').length}));
+            must(full.title.includes(L.short)&&full.sections>=L.fullMin,L.key+' Full View',full);await closeE241(page);
+
+            await moveTo(page,22);
+            const end=await page.evaluate(()=>{const d=document.querySelector('.e132-overlay-deck.open');return {count:d?.querySelector('[data-e202-count]')?.textContent.trim(),route:d?.getAttribute('data-e243-lesson-id'),active:d?.getAttribute('data-e210-active-lesson-id'),actions:d?.querySelector('.e241-actions')?.getAttribute('data-e241-lesson-id'),rich:d?.getAttribute('data-e242-lesson-id'),ghosts:document.querySelectorAll('[data-e243-routing-ghost]').length};});
+            must(end.count.startsWith('22 / 22')&&[end.route,end.active,end.actions,end.rich].every(x=>x===L.id)&&end.ghosts===0,L.key+' slide22 identity',end);
+            const shot2=path.join(OUT,L.key+'-slide22.png');await page.screenshot({path:shot2,fullPage:true});result.screenshots.push(path.basename(shot2));
+            await page.locator('.e132-overlay-deck.open [data-e202-exit]').click();await page.waitForFunction(()=>!document.querySelector('.e132-overlay-deck.open'));
+            await page.evaluate(()=>{const a=window.__BAUMAN_CORE_API||{},s=a.state||window.__MATH_STATE||{};s.e129Present=false;window.BAUMAN_MATH_THEORY_E129.render();});
+            return {reader,identity,richness,formula,reference:{title:ref.title,sections:ref.sections},fullView:full,end};
+          }
+          (async()=>{const browser=await chromium.launch({executablePath:process.env.CHROME_BIN,headless:true,args:['--no-sandbox','--disable-dev-shm-usage']});const page=await browser.newPage({viewport:{width:1440,height:1000}});page.on('console',m=>{if(m.type()==='error')result.consoleErrors.push(m.text());});page.on('pageerror',e=>result.pageErrors.push(String(e.stack||e)));page.on('response',r=>{if(r.url().startsWith('http://127.0.0.1:4173/')&&r.status()>=400)result.localHttpErrors.push({url:r.url(),status:r.status()});});try{await page.goto(result.url,{waitUntil:'networkidle'});await page.waitForFunction(()=>window.BAUMAN_MATH_THEORY_E129?.sourceStatus().content===18,null,{timeout:20000});result.lessons.l04=await openLesson(page,lessons[0],'');result.lessons.l05=await openLesson(page,lessons[1],lessons[0].title);await page.waitForTimeout(900);must(!result.consoleErrors.length,'console errors',result.consoleErrors);must(!result.pageErrors.length,'page errors',result.pageErrors);must(!result.localHttpErrors.length,'local HTTP errors',result.localHttpErrors);const final=await page.evaluate(()=>({ghosts:document.querySelectorAll('[data-e243-routing-ghost]').length,e235:window.BAUMAN_MATH_E235_FORMULA_STANDARD?.release,e236:!!window.BAUMAN_MATH_E236,e237:!!window.BAUMAN_MATH_E237,e238:!!window.BAUMAN_MATH_E238}));must(final.ghosts===0&&final.e235==='E235_READER_PRO_FORMULA_STANDARD_R2'&&!final.e236&&!final.e237&&!final.e238,'final protected state',final);result.finalState=final;result.status='PASS';}catch(e){result.status='FAIL';result.failure={message:e.message,stack:e.stack,detail:e.detail};try{await page.screenshot({path:path.join(OUT,'failure.png'),fullPage:true});result.screenshots.push('failure.png');}catch(_){} }finally{fs.writeFileSync(path.join(OUT,'chromium-result.json'),JSON.stringify(result,null,2));await browser.close();}if(result.status!=='PASS')process.exit(1);})();
+          JS
+          node /tmp/bauman-qa/run.js
+      - name: Upload evidence
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: lesson-1-5-pass19-chromium-evidence-v2
+          path: |
+            /tmp/bauman-qa/chromium-result.json
+            /tmp/bauman-qa/*.png
+            /tmp/bauman-qa/server.log
+          retention-days: 30
+      - name: Record final acceptance
+        run: |
+          python3 - <<'PY'
+          import json
+          from pathlib import Path
+          r=json.loads(Path('/tmp/bauman-qa/chromium-result.json').read_text(encoding='utf-8'))
+          if r.get('status')!='PASS': raise SystemExit('Chromium result is not PASS')
+          root=Path('subjects/math')
+          report={'id':'bauman_math_c01_l05_runtime_pass19_v1','schema':'bauman_math_chromium_acceptance_report_v1','version':'RUNTIME_PASS19_C01_L05_V1','status':'PASS_19_CHROMIUM_FINAL_ACCEPTANCE','date':'2026-07-09','lessonId':'MATH-VN-C01-vector_trong_khong_gian_-L05-subspace-data-representation-e140','browserRun':True,'browser':r['browser'],'url':r['url'],'evidenceArtifact':'lesson-1-5-pass19-chromium-evidence-v2','screenshots':r['screenshots'],'consoleErrors':r['consoleErrors'],'pageErrors':r['pageErrors'],'localHttpErrors':r['localHttpErrors'],'lessons':r['lessons'],'finalState':r['finalState'],'acceptance':{'l04Slides':'22/22','l05Slides':'22/22','crossLessonIdentityLeak':False,'referenceLessonScoped':True,'fullViewLessonScoped':True,'formulaModalSeparate':True,'e235Preserved':True,'routingGhostLeaks':0,'newSlideshowEngineCreated':False,'e236Enabled':False,'e237Enabled':False,'e238Enabled':False},'finalRuntimeState':'ACADEMIC_14_OF_14_PASS_RUNTIME_5_OF_5_BROWSER_ACCEPTED'}
+          (root/'THEORY_C01_L05_RUNTIME_PASS19.json').write_text(json.dumps(report,ensure_ascii=False,indent=2)+'\n',encoding='utf-8')
+          state=Path('CODEX_STATE.md');t=state.read_text(encoding='utf-8');t=t.replace('Current task: `THEORY_C01_L05_CHROMIUM_FINAL_ACCEPTANCE_PASS_19`','Current task: `THEORY_C01_L06_ACADEMIC_BASELINE_AUDIT_PASS_01`',1).replace('Status: `PASS_18_SELECTION_ROUTE_SYNC_STATIC_VERIFY_PASS`','Status: `PASS_19_CHROMIUM_FINAL_ACCEPTANCE`',1).replace('Runtime passes complete: `4/5`.','Runtime passes complete: `5/5`.',1).replace('Runtime passes remaining: `1/5`.','Runtime passes remaining: `0/5`.',1).replace('Browser QA: not run.','Browser QA: `PASS`.',1)
+          t+='\n\n### Runtime Pass 19 · Chromium final acceptance\n- Status: `PASS_19_CHROMIUM_FINAL_ACCEPTANCE`.\n- Report: `subjects/math/THEORY_C01_L05_RUNTIME_PASS19.json`.\n- Evidence artifact: `lesson-1-5-pass19-chromium-evidence-v2`.\n- L04 and L05 each passed 22/22 navigation, canonical identity, lesson-scoped Reference/Full View and formula modal checks.\n- L05 representative diagram/retrieval/misconception behavior passed.\n- E235 preserved; E236/E237/E238 disabled.\n- Console errors: 0; page errors: 0; local HTTP errors: 0; route ghost leaks: 0.\n- Final state: `ACADEMIC_14_OF_14_PASS_RUNTIME_5_OF_5_BROWSER_ACCEPTED`.\n\n## Next lesson\n- Next task: `THEORY_C01_L06_ACADEMIC_BASELINE_AUDIT_PASS_01`.\n- Do not begin L06 changes inside the L05 acceptance commit.\n'
+          if 'Pass 19 must:' in t:t=t.split('Pass 19 must:',1)[0]+'Pass 19 completed with real Chromium evidence.\n'
+          state.write_text(t,encoding='utf-8')
+          PY
+      - name: Commit accepted result
+        run: |
+          git rm .github/workflows/l05-pass19-chromium-qa-v2.yml
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add CODEX_STATE.md subjects/math/THEORY_C01_L05_RUNTIME_PASS19.json
+          git commit -m "test(math): accept lesson 1.5 in Chromium"
+          git push origin HEAD:${{ github.event.pull_request.head.ref }}
