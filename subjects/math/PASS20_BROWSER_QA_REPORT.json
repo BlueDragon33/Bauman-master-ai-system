@@ -1,6 +1,6 @@
 {
   "status": "FAIL",
-  "executedAt": "2026-07-09T02:12:48.954Z",
+  "executedAt": "2026-07-09T02:19:15.258Z",
   "targetLessonId": "MATH-VN-C01-vector_trong_khong_gian_-L04-basis-span-coordinate-e140",
   "scope": "full checked-out static site via Chromium",
   "checks": [
@@ -332,23 +332,45 @@
       ]
     },
     {
-      "name": "three distinct non-duplicated controls",
-      "status": "FAIL",
-      "message": "assertion failed",
-      "controlCount": {
+      "name": "Reference and Full View controls are distinct and non-duplicated",
+      "status": "PASS",
+      "referenceControls": {
         "reference": 1,
         "full": 1,
-        "formula": 0,
         "labels": {
           "reference": "Tham khảo thêm",
           "full": "Xem đầy đủ"
         }
       }
+    },
+    {
+      "name": "formula control appears on formula-bearing slide",
+      "status": "PASS",
+      "formulaControl": {
+        "count": 1,
+        "label": "Công thức đầy đủ"
+      }
+    },
+    {
+      "name": "Reference renders R01-R07",
+      "status": "PASS",
+      "refHeads": [
+        "Luận đề tra cứu",
+        "R01 · Bản đồ khái niệm",
+        "R02 · Bảng công thức",
+        "R03 · Phân loại họ biểu diễn",
+        "R04 · Chọn phương pháp",
+        "R05 · Cổng kiểm tra kỹ thuật",
+        "R06 · Lỗi và chẩn đoán nhanh",
+        "R07 · Case UGV world–route",
+        "Ký hiệu nhanh",
+        "Chuyển giao kỹ thuật"
+      ]
     }
   ],
   "pageErrors": [],
   "consoleErrors": [],
   "failedRequests": [],
   "navigationCount": 1,
-  "error": "Error: three distinct non-duplicated controls: assertion failed\n    at fail (file:///tmp/pass20final/run.mjs:24:100)\n    at assert (file:///tmp/pass20final/run.mjs:25:47)\n    at file:///tmp/pass20final/run.mjs:106:3"
+  "error": "page.waitForSelector: Timeout 10000ms exceeded.\nCall log:\n  - waiting for locator('.e241-modal.hidden') to be visible\n    25 × locator resolved to hidden <div aria-hidden=\"true\" class=\"e241-modal hidden\">…</div>\n\n    at /tmp/pass20v2/run.mjs:104:14"
 }
