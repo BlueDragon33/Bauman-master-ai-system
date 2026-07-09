@@ -1,29 +1,21 @@
 {
-  "executedAt": "2026-07-09T01:59:00.536Z",
-  "status": "PASS",
+  "status": "FAIL",
+  "executedAt": "2026-07-09T02:07:11.135Z",
   "pageErrors": [],
   "consoleErrors": [],
-  "failedRequests": [],
-  "readerBefore": {
-    "sourceSlides": 22,
-    "shellClass": "e129-theory-shell ",
-    "currentLesson": "MATH-VN-C01-vector_trong_khong_gian_-L04-basis-span-coordinate-e140",
-    "lessonText": "◉Khối kiến thứcKhối I · Toán học Thuần túy → Học phần 1 · Đại số và Cấu trúc số → Chương 1 → Lý thuyếtKhối kiến thức I→Học phần 1→Chương 1→Lý thuyết · 1.4 · Cơ sở, span và tọa độKho Lý thuyếtTrình chiếuTải lại JSONDữ liệu môn học · theory_lecture_content§1.4 · Cơ sở, span và tọa độReader giữ full co"
-  },
   "deck": {
-    "count": "01 / 20 · 3 cards",
-    "mode": "C02 Level C",
-    "role": "C02 Level C",
-    "title": "Nhân ma trận là hàng nhân cột",
-    "side": "Bài 2.2 · Phép nhân ma trận và pipeline tuyến tính",
-    "sourceSlidesPresenting": 16,
-    "sourceSlidesAny": 16,
+    "count": "01 / 16 · 3 cards",
+    "mode": "Reader Pro",
+    "title": "Vector là dạng chuẩn để biến hiện tượng kỹ thuật thành dữ liệu",
+    "side": "§1.1 · Vector như dữ liệu kỹ thuật",
     "currentLesson": "MATH-VN-C01-vector_trong_khong_gian_-L01-vector-as-engineering-data-e130",
+    "sourceSlides": 16,
+    "ghost": 0,
     "e202": {
       "ok": true,
       "release": "E209_GLOBAL_READER_PRO_AND_LEVEL_C_ROUTING",
-      "mode": "C02 Level C",
-      "slides": 20,
+      "mode": "Reader Pro",
+      "slides": 16,
       "open": true,
       "currentIndex": 0,
       "ready": true,
@@ -35,7 +27,7 @@
       "release": "E223_READER_PRO_FORMULA_MODAL_AMBER_LESSON_LAYOUT",
       "ready": true,
       "record": "§1.1 · Vector như dữ liệu kỹ thuật",
-      "mode": "C02 Level C",
+      "mode": "Reader Pro",
       "slideIndex": 0,
       "formulaPopup": false
     },
@@ -56,16 +48,16 @@
         "retrievalChecks": 9,
         "misconceptions": 16
       },
-      "currentSlide": "SL01",
+      "currentSlide": null,
       "error": null
     },
-    "bodyClasses": "e129-presenting e132-overlay-open",
-    "shellClass": "e129-theory-shell presenting",
-    "activeTextCandidates": [
-      "Đang trình chiếu: MATH-VN-C01-vector_trong_khong_gian_-L01-vector-as-engineering-data-e130",
-      "Bài 2.2 · Phép nhân ma trận và pipeline tuyến tính",
-      "Nhân ma trận là hàng nhân cột",
-      "Bài đang được trình chiếu: MATH-VN-C01-vector_trong_khong_gian_-L01-vector-as-engineering-data-e130"
-    ]
+    "e243": {
+      "ok": true,
+      "release": "E243_PRESENTER_ROUTE_LOCK",
+      "handled": 1,
+      "lastLessonId": "MATH-VN-C01-vector_trong_khong_gian_-L01-vector-as-engineering-data-e130",
+      "noNewRenderer": true,
+      "routingGhostPresent": false
+    }
   }
 }
