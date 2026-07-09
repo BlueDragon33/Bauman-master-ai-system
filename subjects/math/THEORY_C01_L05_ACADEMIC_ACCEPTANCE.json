@@ -1,0 +1,178 @@
+{
+  "id": "bauman_math_c01_l05_academic_acceptance_v1",
+  "schema": "bauman_math_academic_acceptance_v1",
+  "version": "ACADEMIC_ACCEPTANCE_C01_L05_V1",
+  "status": "PASS",
+  "date": "2026-07-09",
+  "lessonId": "MATH-VN-C01-vector_trong_khong_gian_-L05-subspace-data-representation-e140",
+  "lessonTitle": "§1.5 · Không gian con và biểu diễn dữ liệu",
+  "verification": {
+    "mode": "direct_high_reasoning_connector_static_cross_check",
+    "githubActionsRun": false,
+    "reasonActionsNotUsed": "Two push-triggered acceptance workflows did not produce a run or report. Acceptance therefore records only checks directly established from the committed artifacts and connector re-reads.",
+    "browserRun": false,
+    "runtimeMergePerformed": false,
+    "limitations": [
+      "This is academic artifact acceptance, not runtime/browser acceptance.",
+      "Pass 15 must parse the approved import package before durable merge.",
+      "Pass 19 must run Chromium QA before final runtime acceptance."
+    ]
+  },
+  "academicPasses": {
+    "completed": 14,
+    "total": 14,
+    "remaining": 0
+  },
+  "approvedArtifacts": [
+    {
+      "role": "baseline_audit",
+      "path": "subjects/math/THEORY_C01_L05_BASELINE_AUDIT.md",
+      "commit": "12207b82888cb03c41c5a8ced2fb8609acaf52ed"
+    },
+    {
+      "role": "learning_contract",
+      "path": "subjects/math/THEORY_C01_L05_LEARNING_CONTRACT.md",
+      "commit": "732764511b8b5bdf8e21c8962eedfeac12a40e13"
+    },
+    {
+      "role": "source_map_terminology",
+      "path": "subjects/math/THEORY_C01_L05_SOURCE_MAP_TERMINOLOGY.md",
+      "commit": "9af7bd0477d507c2c73cf78323704c56a2111ff2"
+    },
+    {
+      "role": "formula_registry",
+      "path": "subjects/math/THEORY_C01_L05_FORMULA_REGISTRY.md",
+      "commit": "dd09523f5cb419a8384b41797b2c6f1b8d6e969e"
+    },
+    {
+      "role": "case",
+      "path": "subjects/math/data/theory_case/theory_case_c01_l05.json",
+      "version": "CASE_C01_L05_V1_LOCKED",
+      "commit": "3d545610bdd3dcdf8bb29c0e2f6742feef7aed0f"
+    },
+    {
+      "role": "misconception_map",
+      "path": "subjects/math/THEORY_C01_L05_MISCONCEPTION_MAP.md",
+      "commit": "d50ebab37c02f33b1ec425a0e92426c5ed4a7fbd"
+    },
+    {
+      "role": "core",
+      "path": "subjects/math/data/theory_core/theory_core_c01_l05.json",
+      "version": "CORE_C01_L05_V1_PASS07_ARCHITECTURE",
+      "commit": "3fab0952004e61e08fa8d25846fbfc7ec4d93987"
+    },
+    {
+      "role": "worked_examples",
+      "path": "subjects/math/data/theory_worked_examples/theory_worked_examples_c01_l05.json",
+      "version": "WORKED_EXAMPLES_C01_L05_V1_PASS08",
+      "commit": "3374a3020f45762687b4a983fb3184a779272fdb"
+    },
+    {
+      "role": "lab",
+      "path": "subjects/math/data/theory_lab/theory_lab_c01_l05.json",
+      "version": "LAB_C01_L05_V1_PASS09",
+      "commit": "2f84f655be887585ec5e1663a972e3e3190c06fb"
+    },
+    {
+      "role": "assessment",
+      "path": "subjects/math/data/theory_assessment/theory_assessment_c01_l05.json",
+      "version": "ASSESSMENT_C01_L05_V1_PASS10",
+      "commit": "9666fff29969b5979ba35af64f0ef40bbfc9bc7a"
+    },
+    {
+      "role": "reference",
+      "path": "subjects/math/data/theory_reference/theory_reference_c01_l05.json",
+      "version": "REFERENCE_C01_L05_V1_PASS11",
+      "commit": "5bf3cfb00d934f3cc46b298fb30c29b286e9b59f"
+    },
+    {
+      "role": "full_view",
+      "path": "subjects/math/data/theory_full_view/theory_full_view_c01_l05.json",
+      "version": "FULL_VIEW_C01_L05_V1_PASS12",
+      "commit": "174ae9a98865f1d287bb56f6e79d67964e03a2b1"
+    },
+    {
+      "role": "normalization",
+      "path": "subjects/math/data/theory_normalization/theory_normalization_c01_l05.json",
+      "version": "NORMALIZATION_C01_L05_V1_PASS12",
+      "commit": "6ff1b716f8e2cf7f2203592160eae3f697aeb5a2"
+    },
+    {
+      "role": "slideshow",
+      "path": "subjects/math/data/theory_slideshow/theory_slideshow_c01_l05.json",
+      "version": "SLIDESHOW_C01_L05_V1_PASS13",
+      "commit": "62d649db653ba3e4bbcb51e05b822e99ebae440f"
+    },
+    {
+      "role": "runtime_import_candidate",
+      "path": "subjects/math/data/theory_integration/theory_lecture_content_c01_l05_import.json",
+      "version": "C01_L05_E129_IMPORT_V1_22_SLIDES_CANDIDATE",
+      "commit": "00196604e2e68095860e6bf37a205a9d772c0e5e"
+    }
+  ],
+  "artifactCounts": {
+    "learningBeats": 20,
+    "workedExamples": 12,
+    "labStages": 8,
+    "brokenCodeAudits": 6,
+    "retrievalChecks": 16,
+    "professorQuestions": 14,
+    "masteryGates": 5,
+    "referenceSections": 8,
+    "fullViewSections": 12,
+    "sourceSlides": 22,
+    "runtimeImportSlides": 22,
+    "diagramSpecs": 9,
+    "retrievalSlides": 10,
+    "misconceptionSlides": 17,
+    "formulaIds": 16,
+    "terminologyEntries": 22,
+    "normalizationNotationEntries": 18
+  },
+  "lockedCase": {
+    "caseId": "ROTATING_MACHINE_4CH_2MODE",
+    "version": "CASE_C01_L05_V1_LOCKED",
+    "ambientDimension": 4,
+    "subspaceDimension": 2,
+    "normalScore": 0.0316227766016838,
+    "mismatchScore": 0.3535533905932738,
+    "demonstrationThreshold": 0.1,
+    "calibrationMatrixShape": [8, 4],
+    "singularValues": [1.44955817, 0.77504298, 0.03505112, 0.00330126],
+    "floatingPointRank": 4,
+    "numericalRank": 2,
+    "rankTolerance": 0.05,
+    "retainedEnergyK2": 0.9995414686511285
+  },
+  "acceptanceChecks": [
+    {"id":"A01","status":"PASS","check":"Lesson ID and title remain consistent across the package."},
+    {"id":"A02","status":"PASS","check":"Learning outcomes LO1–LO8 are represented in the core, examples, lab and assessment."},
+    {"id":"A03","status":"PASS","check":"Formula registry F01–F16 is carried through Reference, Full View, Normalization, Slideshow and import mapping."},
+    {"id":"A04","status":"PASS","check":"Linear subspace, affine set, finite dataset and near-subspace remain distinct."},
+    {"id":"A05","status":"PASS","check":"Both QQ^T and B(B^TB)^(-1)B^T are assumption-scoped; BB^T is rejected for the locked general basis."},
+    {"id":"A06","status":"PASS","check":"Centering, scaling and vector normalization remain distinct operations."},
+    {"id":"A07","status":"PASS","check":"Normal and mismatch calculations use only CASE_C01_L05_V1_LOCKED values."},
+    {"id":"A08","status":"PASS","check":"Residual score language remains model-fit evidence and does not become fault diagnosis or health proof."},
+    {"id":"A09","status":"PASS","check":"Floating-point rank 4 and numerical rank 2 under tau=0.05 are reported separately."},
+    {"id":"A10","status":"PASS","check":"Retained energy is bounded to reconstruction evidence and not prediction/fault coverage."},
+    {"id":"A11","status":"PASS","check":"Slide policy is minimum 16, actual 22, no maximum and no compression."},
+    {"id":"A12","status":"PASS","check":"SL01–SL22 map one-to-one to MATH-VN-C01-L05-S01–S22."},
+    {"id":"A13","status":"PASS","check":"E235 is not modified; E236, E237 and E238 remain disabled; no new slideshow engine is created."},
+    {"id":"A14","status":"PASS","check":"Durable runtime record remains unchanged during academic passes."}
+  ],
+  "slidePolicy": {
+    "minimum": 16,
+    "actual": 22,
+    "maximum": null,
+    "compression": false,
+    "oneSourceSlidePerRuntimeSlide": true
+  },
+  "runtimeDecision": {
+    "importPackageApproved": true,
+    "approvalMechanism": "separate immutable approval sidecar",
+    "durableMergePerformed": false,
+    "runtimeIntegrationStarted": false,
+    "nextTask": "THEORY_C01_L05_DURABLE_MERGE_RUNTIME_PASS_15"
+  },
+  "finalAcademicState": "ACADEMIC_14_OF_14_PASS_RUNTIME_NOT_STARTED"
+}
