@@ -124,7 +124,7 @@
     "runtimeImportSlides": 22,
     "diagramSpecs": 9,
     "retrievalSlides": 10,
-    "misconceptionSlides": 17,
+    "misconceptionSlides": 18,
     "formulaIds": 16,
     "terminologyEntries": 22,
     "normalizationNotationEntries": 18
@@ -137,28 +137,92 @@
     "normalScore": 0.0316227766016838,
     "mismatchScore": 0.3535533905932738,
     "demonstrationThreshold": 0.1,
-    "calibrationMatrixShape": [8, 4],
-    "singularValues": [1.44955817, 0.77504298, 0.03505112, 0.00330126],
+    "calibrationMatrixShape": [
+      8,
+      4
+    ],
+    "singularValues": [
+      1.44955817,
+      0.77504298,
+      0.03505112,
+      0.00330126
+    ],
     "floatingPointRank": 4,
     "numericalRank": 2,
     "rankTolerance": 0.05,
     "retainedEnergyK2": 0.9995414686511285
   },
   "acceptanceChecks": [
-    {"id":"A01","status":"PASS","check":"Lesson ID and title remain consistent across the package."},
-    {"id":"A02","status":"PASS","check":"Learning outcomes LO1–LO8 are represented in the core, examples, lab and assessment."},
-    {"id":"A03","status":"PASS","check":"Formula registry F01–F16 is carried through Reference, Full View, Normalization, Slideshow and import mapping."},
-    {"id":"A04","status":"PASS","check":"Linear subspace, affine set, finite dataset and near-subspace remain distinct."},
-    {"id":"A05","status":"PASS","check":"Both QQ^T and B(B^TB)^(-1)B^T are assumption-scoped; BB^T is rejected for the locked general basis."},
-    {"id":"A06","status":"PASS","check":"Centering, scaling and vector normalization remain distinct operations."},
-    {"id":"A07","status":"PASS","check":"Normal and mismatch calculations use only CASE_C01_L05_V1_LOCKED values."},
-    {"id":"A08","status":"PASS","check":"Residual score language remains model-fit evidence and does not become fault diagnosis or health proof."},
-    {"id":"A09","status":"PASS","check":"Floating-point rank 4 and numerical rank 2 under tau=0.05 are reported separately."},
-    {"id":"A10","status":"PASS","check":"Retained energy is bounded to reconstruction evidence and not prediction/fault coverage."},
-    {"id":"A11","status":"PASS","check":"Slide policy is minimum 16, actual 22, no maximum and no compression."},
-    {"id":"A12","status":"PASS","check":"SL01–SL22 map one-to-one to MATH-VN-C01-L05-S01–S22."},
-    {"id":"A13","status":"PASS","check":"E235 is not modified; E236, E237 and E238 remain disabled; no new slideshow engine is created."},
-    {"id":"A14","status":"PASS","check":"Durable runtime record remains unchanged during academic passes."}
+    {
+      "id": "A01",
+      "status": "PASS",
+      "check": "Lesson ID and title remain consistent across the package."
+    },
+    {
+      "id": "A02",
+      "status": "PASS",
+      "check": "Learning outcomes LO1–LO8 are represented in the core, examples, lab and assessment."
+    },
+    {
+      "id": "A03",
+      "status": "PASS",
+      "check": "Formula registry F01–F16 is carried through Reference, Full View, Normalization, Slideshow and import mapping."
+    },
+    {
+      "id": "A04",
+      "status": "PASS",
+      "check": "Linear subspace, affine set, finite dataset and near-subspace remain distinct."
+    },
+    {
+      "id": "A05",
+      "status": "PASS",
+      "check": "Both QQ^T and B(B^TB)^(-1)B^T are assumption-scoped; BB^T is rejected for the locked general basis."
+    },
+    {
+      "id": "A06",
+      "status": "PASS",
+      "check": "Centering, scaling and vector normalization remain distinct operations."
+    },
+    {
+      "id": "A07",
+      "status": "PASS",
+      "check": "Normal and mismatch calculations use only CASE_C01_L05_V1_LOCKED values."
+    },
+    {
+      "id": "A08",
+      "status": "PASS",
+      "check": "Residual score language remains model-fit evidence and does not become fault diagnosis or health proof."
+    },
+    {
+      "id": "A09",
+      "status": "PASS",
+      "check": "Floating-point rank 4 and numerical rank 2 under tau=0.05 are reported separately."
+    },
+    {
+      "id": "A10",
+      "status": "PASS",
+      "check": "Retained energy is bounded to reconstruction evidence and not prediction/fault coverage."
+    },
+    {
+      "id": "A11",
+      "status": "PASS",
+      "check": "Slide policy is minimum 16, actual 22, no maximum and no compression."
+    },
+    {
+      "id": "A12",
+      "status": "PASS",
+      "check": "SL01–SL22 map one-to-one to MATH-VN-C01-L05-S01–S22."
+    },
+    {
+      "id": "A13",
+      "status": "PASS",
+      "check": "E235 is not modified; E236, E237 and E238 remain disabled; no new slideshow engine is created."
+    },
+    {
+      "id": "A14",
+      "status": "PASS",
+      "check": "Durable runtime record remains unchanged during academic passes."
+    }
   ],
   "slidePolicy": {
     "minimum": 16,

@@ -1,8 +1,8 @@
 # CODEX_STATE
 
-Current task: `THEORY_C01_L05_MULTI_LESSON_READER_RICHNESS_PASS_17`
+Current task: `THEORY_C01_L05_ROUTE_IDENTITY_SYNC_PASS_18`
 
-Status: `PASS_16_RUNTIME_SOURCE_REGISTRATION_STATIC_VERIFY_PASS`
+Status: `PASS_17_MULTI_LESSON_READER_RICHNESS_STATIC_VERIFY_PASS`
 
 Date: 2026-07-09
 Branch: `main`
@@ -116,7 +116,7 @@ Academic status:
     - `subjects/math/data/theory_slideshow/theory_slideshow_c01_l05.json`;
     - `subjects/math/data/theory_integration/theory_lecture_content_c01_l05_import.json`;
     - commits `62d649db653ba3e4bbcb51e05b822e99ebae440f`, `00196604e2e68095860e6bf37a205a9d772c0e5e`;
-    - 22 slides, 9 diagrams, 10 retrieval slides, 17 misconception slides.
+    - 22 slides, 9 diagrams, 10 retrieval slides, 18 misconception slides.
 
 14. Academic acceptance
     - `subjects/math/THEORY_C01_L05_ACADEMIC_ACCEPTANCE.json`;
@@ -125,8 +125,8 @@ Academic status:
 
 ## §1.5 runtime progress
 
-Runtime passes complete: `2/5`.
-Runtime passes remaining: `3/5`.
+Runtime passes complete: `3/5`.
+Runtime passes remaining: `2/5`.
 Browser QA: not run.
 
 ### Runtime Pass 15 · Durable merge
@@ -180,3 +180,17 @@ Pass 17 must:
 - keep E236, E237 and E238 disabled;
 - run static syntax/self-checks and record browser QA as not run;
 - leave route-lock synchronization to Pass 18.
+
+
+### Runtime Pass 17 · Multi-lesson reader and richness
+- Status: `PASS_17_MULTI_LESSON_READER_RICHNESS_STATIC_VERIFY_PASS`.
+- Report: `subjects/math/THEORY_C01_L05_RUNTIME_PASS17.json`.
+- E244 registry: 2 lessons, 8 optional sources.
+- E241/E242: multi-lesson and reuse E202/E211.
+- L04: 22 slides, 8 diagrams, 9 retrieval checks, 16 misconception intercepts.
+- L05: 22 slides, 9 diagrams, 10 retrieval checks, 18 misconception intercepts.
+- Normalization JSON escaping repaired without semantic change.
+- Node syntax and JSON contract checks: PASS.
+- E235 unchanged; E236/E237/E238 disabled.
+- Browser QA: not run.
+- Next: `THEORY_C01_L05_ROUTE_IDENTITY_SYNC_PASS_18`.

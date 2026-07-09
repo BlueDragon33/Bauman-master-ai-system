@@ -1,0 +1,380 @@
+{
+  "id": "bauman_math_c01_l05_runtime_pass17_v1",
+  "schema": "bauman_math_runtime_reader_richness_report_v1",
+  "version": "RUNTIME_PASS17_C01_L05_V1",
+  "status": "PASS_17_MULTI_LESSON_READER_RICHNESS_STATIC_VERIFY_PASS",
+  "date": "2026-07-09",
+  "lessonId": "MATH-VN-C01-vector_trong_khong_gian_-L05-subspace-data-representation-e140",
+  "verificationMode": "isolated_pull_request_node_syntax_python_json_contract_validation",
+  "browserRun": false,
+  "normalizationJsonRepair": {
+    "path": "subjects/math/data/theory_normalization/theory_normalization_c01_l05.json",
+    "scope": "39 displayLatex backslash escapes only",
+    "semanticChanges": false,
+    "jsonParseAfterRepair": true
+  },
+  "richnessCountCorrection": {
+    "oldMetadata": 17,
+    "actualAndAccepted": 18,
+    "contentRemoved": false,
+    "coverageRegeneratedFromSlides": true
+  },
+  "registeredLessons": 2,
+  "registeredSources": 8,
+  "artifacts": [
+    {
+      "lessonId": "MATH-VN-C01-vector_trong_khong_gian_-L04-basis-span-coordinate-e140",
+      "kind": "reference",
+      "path": "data/theory_reference/theory_reference_c01_l04.json",
+      "version": "REFERENCE_C01_L04_V1_APPROVED"
+    },
+    {
+      "lessonId": "MATH-VN-C01-vector_trong_khong_gian_-L04-basis-span-coordinate-e140",
+      "kind": "fullView",
+      "path": "data/theory_full_view/theory_full_view_c01_l04.json",
+      "version": "FULL_VIEW_C01_L04_V1_APPROVED"
+    },
+    {
+      "lessonId": "MATH-VN-C01-vector_trong_khong_gian_-L04-basis-span-coordinate-e140",
+      "kind": "normalization",
+      "path": "data/theory_normalization/theory_normalization_c01_l04.json",
+      "version": "NORMALIZATION_C01_L04_V1_APPROVED"
+    },
+    {
+      "lessonId": "MATH-VN-C01-vector_trong_khong_gian_-L04-basis-span-coordinate-e140",
+      "kind": "slideshow",
+      "path": "data/theory_slideshow/theory_slideshow_c01_l04.json",
+      "version": "SLIDESHOW_C01_L04_V1_APPROVED",
+      "counts": {
+        "slides": 22,
+        "diagrams": 8,
+        "retrievalChecks": 9,
+        "misconceptions": 16
+      }
+    },
+    {
+      "lessonId": "MATH-VN-C01-vector_trong_khong_gian_-L05-subspace-data-representation-e140",
+      "kind": "reference",
+      "path": "data/theory_reference/theory_reference_c01_l05.json",
+      "version": "REFERENCE_C01_L05_V1_PASS11"
+    },
+    {
+      "lessonId": "MATH-VN-C01-vector_trong_khong_gian_-L05-subspace-data-representation-e140",
+      "kind": "fullView",
+      "path": "data/theory_full_view/theory_full_view_c01_l05.json",
+      "version": "FULL_VIEW_C01_L05_V1_PASS12"
+    },
+    {
+      "lessonId": "MATH-VN-C01-vector_trong_khong_gian_-L05-subspace-data-representation-e140",
+      "kind": "normalization",
+      "path": "data/theory_normalization/theory_normalization_c01_l05.json",
+      "version": "NORMALIZATION_C01_L05_V1_PASS12"
+    },
+    {
+      "lessonId": "MATH-VN-C01-vector_trong_khong_gian_-L05-subspace-data-representation-e140",
+      "kind": "slideshow",
+      "path": "data/theory_slideshow/theory_slideshow_c01_l05.json",
+      "version": "SLIDESHOW_C01_L05_V1_PASS13",
+      "counts": {
+        "slides": 22,
+        "diagrams": 9,
+        "retrievalChecks": 10,
+        "misconceptions": 18
+      }
+    }
+  ],
+  "checks": [
+    {
+      "name": "two lesson IDs",
+      "status": "PASS",
+      "detail": null
+    },
+    {
+      "name": "eight unique sources",
+      "status": "PASS",
+      "detail": [
+        "theory_reference_c01_l04",
+        "theory_full_view_c01_l04",
+        "theory_normalization_c01_l04",
+        "theory_slideshow_c01_l04",
+        "theory_reference_c01_l05",
+        "theory_full_view_c01_l05",
+        "theory_normalization_c01_l05",
+        "theory_slideshow_c01_l05"
+      ]
+    },
+    {
+      "name": "shared resolver",
+      "status": "PASS",
+      "detail": null
+    },
+    {
+      "name": "L05 count contract",
+      "status": "PASS",
+      "detail": null
+    },
+    {
+      "name": "reader registry",
+      "status": "PASS",
+      "detail": null
+    },
+    {
+      "name": "reader L05 schema",
+      "status": "PASS",
+      "detail": null
+    },
+    {
+      "name": "richness registry",
+      "status": "PASS",
+      "detail": null
+    },
+    {
+      "name": "no new engine",
+      "status": "PASS",
+      "detail": null
+    },
+    {
+      "name": "load order",
+      "status": "PASS",
+      "detail": null
+    },
+    {
+      "name": "protected scripts",
+      "status": "PASS",
+      "detail": null
+    },
+    {
+      "name": "reference lesson",
+      "status": "PASS",
+      "detail": [
+        "MATH-VN-C01-vector_trong_khong_gian_-L04-basis-span-coordinate-e140",
+        "data/theory_reference/theory_reference_c01_l04.json"
+      ]
+    },
+    {
+      "name": "reference version",
+      "status": "PASS",
+      "detail": [
+        "REFERENCE_C01_L04_V1_APPROVED",
+        "REFERENCE_C01_L04_V1_APPROVED"
+      ]
+    },
+    {
+      "name": "fullView lesson",
+      "status": "PASS",
+      "detail": [
+        "MATH-VN-C01-vector_trong_khong_gian_-L04-basis-span-coordinate-e140",
+        "data/theory_full_view/theory_full_view_c01_l04.json"
+      ]
+    },
+    {
+      "name": "fullView version",
+      "status": "PASS",
+      "detail": [
+        "FULL_VIEW_C01_L04_V1_APPROVED",
+        "FULL_VIEW_C01_L04_V1_APPROVED"
+      ]
+    },
+    {
+      "name": "normalization lesson",
+      "status": "PASS",
+      "detail": [
+        "MATH-VN-C01-vector_trong_khong_gian_-L04-basis-span-coordinate-e140",
+        "data/theory_normalization/theory_normalization_c01_l04.json"
+      ]
+    },
+    {
+      "name": "normalization version",
+      "status": "PASS",
+      "detail": [
+        "NORMALIZATION_C01_L04_V1_APPROVED",
+        "NORMALIZATION_C01_L04_V1_APPROVED"
+      ]
+    },
+    {
+      "name": "normalization counts",
+      "status": "PASS",
+      "detail": [
+        [
+          11,
+          12
+        ],
+        [
+          11,
+          12
+        ]
+      ]
+    },
+    {
+      "name": "slideshow lesson",
+      "status": "PASS",
+      "detail": [
+        "MATH-VN-C01-vector_trong_khong_gian_-L04-basis-span-coordinate-e140",
+        "data/theory_slideshow/theory_slideshow_c01_l04.json"
+      ]
+    },
+    {
+      "name": "slideshow version",
+      "status": "PASS",
+      "detail": [
+        "SLIDESHOW_C01_L04_V1_APPROVED",
+        "SLIDESHOW_C01_L04_V1_APPROVED"
+      ]
+    },
+    {
+      "name": "slideshow counts",
+      "status": "PASS",
+      "detail": [
+        "MATH-VN-C01-vector_trong_khong_gian_-L04-basis-span-coordinate-e140",
+        [
+          22,
+          8,
+          9,
+          16
+        ],
+        [
+          22,
+          8,
+          9,
+          16
+        ]
+      ]
+    },
+    {
+      "name": "slide order",
+      "status": "PASS",
+      "detail": "MATH-VN-C01-vector_trong_khong_gian_-L04-basis-span-coordinate-e140"
+    },
+    {
+      "name": "L04 historical count",
+      "status": "PASS",
+      "detail": null
+    },
+    {
+      "name": "reference lesson",
+      "status": "PASS",
+      "detail": [
+        "MATH-VN-C01-vector_trong_khong_gian_-L05-subspace-data-representation-e140",
+        "data/theory_reference/theory_reference_c01_l05.json"
+      ]
+    },
+    {
+      "name": "reference version",
+      "status": "PASS",
+      "detail": [
+        "REFERENCE_C01_L05_V1_PASS11",
+        "REFERENCE_C01_L05_V1_PASS11"
+      ]
+    },
+    {
+      "name": "fullView lesson",
+      "status": "PASS",
+      "detail": [
+        "MATH-VN-C01-vector_trong_khong_gian_-L05-subspace-data-representation-e140",
+        "data/theory_full_view/theory_full_view_c01_l05.json"
+      ]
+    },
+    {
+      "name": "fullView version",
+      "status": "PASS",
+      "detail": [
+        "FULL_VIEW_C01_L05_V1_PASS12",
+        "FULL_VIEW_C01_L05_V1_PASS12"
+      ]
+    },
+    {
+      "name": "normalization lesson",
+      "status": "PASS",
+      "detail": [
+        "MATH-VN-C01-vector_trong_khong_gian_-L05-subspace-data-representation-e140",
+        "data/theory_normalization/theory_normalization_c01_l05.json"
+      ]
+    },
+    {
+      "name": "normalization version",
+      "status": "PASS",
+      "detail": [
+        "NORMALIZATION_C01_L05_V1_PASS12",
+        "NORMALIZATION_C01_L05_V1_PASS12"
+      ]
+    },
+    {
+      "name": "normalization counts",
+      "status": "PASS",
+      "detail": [
+        [
+          18,
+          16
+        ],
+        [
+          18,
+          16
+        ]
+      ]
+    },
+    {
+      "name": "slideshow lesson",
+      "status": "PASS",
+      "detail": [
+        "MATH-VN-C01-vector_trong_khong_gian_-L05-subspace-data-representation-e140",
+        "data/theory_slideshow/theory_slideshow_c01_l05.json"
+      ]
+    },
+    {
+      "name": "slideshow version",
+      "status": "PASS",
+      "detail": [
+        "SLIDESHOW_C01_L05_V1_PASS13",
+        "SLIDESHOW_C01_L05_V1_PASS13"
+      ]
+    },
+    {
+      "name": "slideshow counts",
+      "status": "PASS",
+      "detail": [
+        "MATH-VN-C01-vector_trong_khong_gian_-L05-subspace-data-representation-e140",
+        [
+          22,
+          9,
+          10,
+          18
+        ],
+        [
+          22,
+          9,
+          10,
+          18
+        ]
+      ]
+    },
+    {
+      "name": "slide order",
+      "status": "PASS",
+      "detail": "MATH-VN-C01-vector_trong_khong_gian_-L05-subspace-data-representation-e140"
+    },
+    {
+      "name": "L05 coverage IDs",
+      "status": "PASS",
+      "detail": null
+    },
+    {
+      "name": "acceptance count",
+      "status": "PASS",
+      "detail": null
+    }
+  ],
+  "protectedConstraints": {
+    "existingE202EngineReused": true,
+    "newSlideshowEngineCreated": false,
+    "e235Modified": false,
+    "e236Enabled": false,
+    "e237Enabled": false,
+    "e238Enabled": false
+  },
+  "runtimeProgress": {
+    "completedPasses": 3,
+    "totalPasses": 5,
+    "remainingPasses": 2
+  },
+  "nextTask": "THEORY_C01_L05_ROUTE_IDENTITY_SYNC_PASS_18"
+}
