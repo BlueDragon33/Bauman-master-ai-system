@@ -390,7 +390,7 @@
       var chosenId=S(state().e129LessonId||records[0].lessonId); var rec=records.find(function(r){return r.lessonId===chosenId;})||records[0]; state().e129LessonId=rec.lessonId;
       e169Path().lessonId=rec.lessonId;
       var slides=arr(rec.slides);
-      return '<section class="e129-placeholder"><span class="e129-badge">Dữ liệu môn học · theory_lecture_content'+(cache.overlay?' · overlay':'')+'</span><div class="e169-reader-title"><h2>'+H(rec.title)+'</h2><p class="e129-muted">Reader giữ full content · '+slides.length+' slide · lessonId: <code>'+H(rec.lessonId)+'</code></p></div><div class="e129-slide-list">'+(slides.length?slides.map(slideHtml).join(''):'<article class="e129-slide"><h3>Chưa có slide</h3><p>Record đã tồn tại nhưng chưa có mảng slides hợp lệ.</p></article>')+'</div></section>';
+      return '<section class="e129-placeholder" data-current-lesson="'+H(rec.lessonId)+'"><span class="e129-badge">Dữ liệu môn học · theory_lecture_content'+(cache.overlay?' · overlay':'')+'</span><div class="e169-reader-title"><h2>'+H(rec.title)+'</h2><p class="e129-muted">Reader giữ full content · '+slides.length+' slide · lessonId: <code>'+H(rec.lessonId)+'</code></p></div><div class="e129-slide-list">'+(slides.length?slides.map(slideHtml).join(''):'<article class="e129-slide"><h3>Chưa có slide</h3><p>Record đã tồn tại nhưng chưa có mảng slides hợp lệ.</p></article>')+'</div></section>';
     }
     if(legacy.length){
       var l=legacy[0];
@@ -607,7 +607,7 @@
     if(t.hasAttribute('data-e129-chapter')){ st.e129ChapterId=t.getAttribute('data-e129-chapter'); st.e129LessonId=''; st.view='learning'; st.learnTab='theory'; renderTheory(); e.preventDefault(); return; }
     if(t.hasAttribute('data-e129-lesson')){ st.e129LessonId=t.getAttribute('data-e129-lesson'); renderTheory(); e.preventDefault(); return; }
     if(t.hasAttribute('data-e129-open-vault')){ openTheoryVault(); e.preventDefault(); return; }
-    if(t.hasAttribute('data-e129-present')){ st.e129Present=!st.e129Present; renderTheory(); e.preventDefault(); return; }
+    if(t.hasAttribute('data-e129-present')){ var visible=document.querySelector('[data-current-lesson]'); var visibleId=S(visible&&visible.getAttribute('data-current-lesson')||st.e129LessonId||e169Path().lessonId||''); if(visibleId){st.e129LessonId=visibleId;e169Path().lessonId=visibleId;} st.e129Present=!st.e129Present; renderTheory(); e.preventDefault(); return; }
     if(t.hasAttribute('data-e129-refresh')){ cache.loaded=false; cache.loading=false; loadData().then(renderTheory); e.preventDefault(); return; }
     if(t.hasAttribute('data-e129-back-theory')){ st.view='learning'; st.learnTab='theory'; renderTheory(); e.preventDefault(); return; }
   },true);
