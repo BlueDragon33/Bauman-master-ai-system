@@ -1,0 +1,118 @@
+{
+  "id": "bauman_math_c01_l05_runtime_pass18_v1",
+  "schema": "bauman_math_route_identity_report_v1",
+  "version": "RUNTIME_PASS18_C01_L05_V1",
+  "status": "PASS_18_SELECTION_ROUTE_SYNC_STATIC_VERIFY_PASS",
+  "date": "2026-07-09",
+  "lessonId": "MATH-VN-C01-vector_trong_khong_gian_-L05-subspace-data-representation-e140",
+  "verificationMode": "isolated_pull_request_node_syntax_and_source_contract_validation",
+  "browserRun": false,
+  "identityContracts": {
+    "l04": {
+      "lessonId": "MATH-VN-C01-vector_trong_khong_gian_-L04-basis-span-coordinate-e140",
+      "lessonTitle": "§1.4 · Cơ sở, span và tọa độ"
+    },
+    "l05": {
+      "lessonId": "MATH-VN-C01-vector_trong_khong_gian_-L05-subspace-data-representation-e140",
+      "lessonTitle": "§1.5 · Không gian con và biểu diễn dữ liệu"
+    }
+  },
+  "commits": {
+    "E210": "d39706c75ce9b9f4d4b720880da1a72f9898b92f",
+    "E243": "d4ba315649d8873345eff5beb862ddd370050224"
+  },
+  "protectedDiff": {
+    "base": "153cce335777c5fc86db8957421033ba7c687521",
+    "head": "d4ba315649d8873345eff5beb862ddd370050224",
+    "expectedChangedFiles": [
+      "subjects/math/assets/theory_skin/theory-slideshow-identity-E210.js",
+      "subjects/math/assets/theory_skin/theory-presenter-route-lock-E243.js"
+    ]
+  },
+  "newRendererCreated": false,
+  "newDataSourceCreated": false,
+  "newStateStoreCreated": false,
+  "checks": [
+    {
+      "name": "L04 canonical title",
+      "status": "PASS",
+      "detail": "§1.4 · Cơ sở, span và tọa độ"
+    },
+    {
+      "name": "L05 canonical title",
+      "status": "PASS",
+      "detail": "§1.5 · Không gian con và biểu diễn dữ liệu"
+    },
+    {
+      "name": "E244 contains both identities",
+      "status": "PASS",
+      "detail": null
+    },
+    {
+      "name": "E210 canonical release",
+      "status": "PASS",
+      "detail": null
+    },
+    {
+      "name": "E210 prefers ID fields",
+      "status": "PASS",
+      "detail": null
+    },
+    {
+      "name": "E210 uses E244",
+      "status": "PASS",
+      "detail": null
+    },
+    {
+      "name": "E210 uses E240",
+      "status": "PASS",
+      "detail": null
+    },
+    {
+      "name": "E210 writes actual lesson ID",
+      "status": "PASS",
+      "detail": null
+    },
+    {
+      "name": "E243 canonical release",
+      "status": "PASS",
+      "detail": null
+    },
+    {
+      "name": "E243 uses E244 and E240",
+      "status": "PASS",
+      "detail": null
+    },
+    {
+      "name": "E243 stamps deck identity",
+      "status": "PASS",
+      "detail": null
+    },
+    {
+      "name": "E243 retains routing ghost",
+      "status": "PASS",
+      "detail": null
+    },
+    {
+      "name": "E243 calls existing public APIs",
+      "status": "PASS",
+      "detail": null
+    },
+    {
+      "name": "no new renderer",
+      "status": "PASS",
+      "detail": null
+    },
+    {
+      "name": "no new data source",
+      "status": "PASS",
+      "detail": null
+    },
+    {
+      "name": "no new state store",
+      "status": "PASS",
+      "detail": null
+    }
+  ],
+  "nextTask": "THEORY_C01_L05_CHROMIUM_FINAL_ACCEPTANCE_PASS_19"
+}
