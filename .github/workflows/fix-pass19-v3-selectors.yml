@@ -1,0 +1,41 @@
+name: Fix Pass 19 v3 artifact selectors
+on:
+  pull_request:
+    branches: [main]
+    types: [opened, reopened, synchronize, ready_for_review]
+    paths:
+      - .github/workflows/fix-pass19-v3-selectors.yml
+permissions:
+  contents: write
+jobs:
+  fix:
+    if: github.event.pull_request.head.repo.full_name == github.repository
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.pull_request.head.ref }}
+          fetch-depth: 1
+          show-progress: false
+      - name: Patch selectors and remove fixer
+        run: |
+          python3 - <<'PY'
+          from pathlib import Path
+          p=Path('.github/workflows/l05-pass19-revalidate-v3.yml')
+          text=p.read_text(encoding='utf-8')
+          replacements={
+            ".e132-overlay-deck.open [data-e241-reference]":".e132-overlay-deck.open .e241-actions button[data-e241-reference]",
+            ".e132-overlay-deck.open [data-e241-full]":".e132-overlay-deck.open .e241-actions button[data-e241-full]"
+          }
+          for old,new in replacements.items():
+              count=text.count(old)
+              if count!=1: raise SystemExit(f'{old}: expected 1 occurrence, found {count}')
+              text=text.replace(old,new,1)
+          p.write_text(text,encoding='utf-8')
+          PY
+          git rm .github/workflows/fix-pass19-v3-selectors.yml
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add .github/workflows/l05-pass19-revalidate-v3.yml
+          git commit -m "test(math): select artifact action buttons precisely"
+          git push origin HEAD:${{ github.event.pull_request.head.ref }}
