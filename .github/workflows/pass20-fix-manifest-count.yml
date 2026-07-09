@@ -1,0 +1,38 @@
+name: Pass 20 manifest count correction
+on:
+  push:
+    branches: [main]
+    paths:
+      - .github/workflows/pass20-fix-manifest-count.yml
+permissions:
+  contents: write
+jobs:
+  patch:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - name: Correct runtime theory count
+        run: |
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          p=Path('subjects/math/subject-manifest.json')
+          data=json.loads(p.read_text(encoding='utf-8'))
+          assert data['data']['theory_lecture_content']==347
+          data['data']['theory_lecture_content']=18
+          hits=[x for x in data['externalDataFiles'] if x.get('id')=='theory_lecture_content']
+          assert len(hits)==1
+          hits[0]['plannedCount']=18
+          data['updated']='2026-07-09'
+          p.write_text(json.dumps(data,ensure_ascii=False,indent=2)+'\n',encoding='utf-8')
+          PY
+      - name: Commit
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add subjects/math/subject-manifest.json
+          git commit -m "fix(math): align manifest with runtime theory records"
+          git pull --rebase origin main
+          git push origin HEAD:main
