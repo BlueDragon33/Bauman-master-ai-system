@@ -1,4 +1,4 @@
-name: Pass 20 presenter routing ownership
+name: Pass 20 presenter routing ownership rerun
 on:
   push:
     branches: [main]
@@ -35,6 +35,7 @@ jobs:
   },true);
 
 """
+          assert 'window.addEventListener(\'click\',function(e){\n    var t=e.target&&e.target.closest&&e.target.closest(\'[data-e129-present]\');' not in text
           assert text.count(anchor)==1,text.count(anchor)
           text=text.replace(anchor,early+anchor,1)
           p129.write_text(text,encoding='utf-8')
@@ -47,10 +48,11 @@ jobs:
           text=text.replace(old,new,1)
           p202.write_text(text,encoding='utf-8')
           PY
-      - name: Commit
+      - name: Rebase and commit
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git add subjects/math/assets/theory_skin/theory-tab-E129.js subjects/math/assets/theory_skin/theory-slideshow-E202.js
           git commit -m "fix(math): lock C01 lesson and slideshow routing"
+          git pull --rebase origin main
           git push origin HEAD:main
