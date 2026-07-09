@@ -182,7 +182,12 @@
     var d=deck();if(!d||!d.classList.contains('e211-reader-pro'))return false;
     var formulaBtn=d.querySelector('[data-e211-formula-full]');if(formulaBtn&&formulaBtn.textContent!=='Công thức đầy đủ')formulaBtn.textContent='Công thức đầy đủ';
     var existing=d.querySelector('.e241-actions');
-    if(!currentLessonMatches()){if(existing)existing.remove();return false;}
+    if(!currentLessonMatches()){
+      if(existing)existing.remove();
+      var stalePanel=d.querySelector('.e211-summary-panel.e241-reference-summary');
+      if(stalePanel)stalePanel.remove();
+      return false;
+    }
     var host=d.querySelector('.e202-hero-copy')||d.querySelector('.e132-clean-main');if(!host)return false;
     if(!existing){
       existing=document.createElement('div');existing.className='e241-actions';existing.innerHTML='<button type="button" class="e241-btn reference" data-e241-reference>Tham khảo thêm</button><button type="button" class="e241-btn full" data-e241-full>Xem đầy đủ</button>';host.appendChild(existing);
