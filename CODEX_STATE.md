@@ -1,8 +1,8 @@
 # CODEX_STATE
 
-Current task: `THEORY_BROWSER_QA_FINAL_ACCEPTANCE_C01_L04_PASS_20`
+Current task: `THEORY_C01_L05_LEARNING_CONTRACT_PASS_02`
 
-Status: `PASS_20_BROWSER_QA_FINAL_ACCEPTANCE_PASS`
+Status: `PASS_01_BASELINE_AUDIT_COMPLETE`
 
 Date: 2026-07-09
 Branch: `main`
@@ -248,3 +248,44 @@ No pending step remains in the §1.4 workflow.
 
 ## Next recommended unit of work
 Apply the same artifact pipeline and browser acceptance discipline to the next lesson as a new, isolated task. Do not reopen or continue old Codex sessions.
+
+
+## §1.5 active workflow
+
+Lesson ID:
+`MATH-VN-C01-vector_trong_khong_gian_-L05-subspace-data-representation-e140`
+
+Lesson title:
+`§1.5 · Không gian con và biểu diễn dữ liệu`
+
+Academic workflow:
+- completed: `1/14 passes`;
+- remaining: `13/14 passes`;
+- runtime integration: not started;
+- current durable record: one 16-slide baseline record;
+- accepted specialist artifacts: none.
+
+### Pass 1 result
+Status:
+`PASS_01_BASELINE_AUDIT_COMPLETE`
+
+Created:
+`subjects/math/THEORY_C01_L05_BASELINE_AUDIT.md`
+
+Baseline decisions:
+- keep the existing 16-slide record unchanged as input only;
+- separate exact subspace, affine model and noisy near-subspace;
+- require both orthonormal and general full-column-rank projection contracts;
+- declare rank object, orientation and tolerance;
+- use one fixed engineering case throughout;
+- defer full PCA/SVD derivations and rank-nullity treatment;
+- create source trace, slide IDs and formula registry before runtime merge;
+- keep E235 unchanged and E236/E237/E238 disabled.
+
+Pass 1 commit:
+`12207b82888cb03c41c5a8ced2fb8609acaf52ed`
+
+### Next task
+`THEORY_C01_L05_LEARNING_CONTRACT_PASS_02`
+
+Pass 2 must define measurable learning outcomes, prerequisite gates, explicit deferrals, mastery evidence and the fixed engineering-case boundary. Runtime files must remain unchanged.
