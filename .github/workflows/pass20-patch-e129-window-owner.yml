@@ -1,0 +1,54 @@
+name: Pass 20 patch E129 window owner
+on:
+  push:
+    branches: [main]
+    paths:
+      - .github/workflows/pass20-patch-e129-window-owner.yml
+permissions:
+  contents: write
+jobs:
+  patch:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - name: Insert early presenter owner
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          p=Path('subjects/math/assets/theory_skin/theory-tab-E129.js')
+          s=p.read_text(encoding='utf-8')
+          marker="var t=e.target&&e.target.closest&&e.target.closest('[data-e129-present]');"
+          if marker not in s:
+            anchor="  document.addEventListener('change',function(e){"
+            block="""  window.addEventListener('click',function(e){
+    var t=e.target&&e.target.closest&&e.target.closest('[data-e129-present]');
+    if(!t)return;
+    var st=state();
+    var shell=t.closest&&t.closest('.e129-theory-shell');
+    var visible=(shell&&shell.querySelector('[data-current-lesson]'))||document.querySelector('[data-current-lesson]');
+    var visibleId=S(visible&&visible.getAttribute('data-current-lesson')||st.e129LessonId||e169Path().lessonId||'');
+    if(visibleId){st.e129LessonId=visibleId;e169Path().lessonId=visibleId;}
+    st.e129Present=!st.e129Present;
+    renderTheory();
+    e.preventDefault();
+    e.stopPropagation();
+    if(e.stopImmediatePropagation)e.stopImmediatePropagation();
+  },true);
+
+"""
+            if s.count(anchor)!=1: raise SystemExit('anchor mismatch: '+str(s.count(anchor)))
+            s=s.replace(anchor,block+anchor,1)
+            p.write_text(s,encoding='utf-8')
+          print('E129_OWNER_PRESENT',marker in p.read_text(encoding='utf-8'))
+          PY
+      - name: Commit with current main
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add subjects/math/assets/theory_skin/theory-tab-E129.js
+          git diff --cached --quiet && exit 0
+          git commit -m "fix(math): capture slideshow toggle before extensions"
+          for i in 1 2 3; do git pull --rebase origin main && git push origin HEAD:main && exit 0; sleep 2; done
+          exit 1
