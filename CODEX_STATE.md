@@ -1,8 +1,8 @@
 # CODEX_STATE
 
-Current task: `THEORY_C01_L05_SELECTION_ROUTE_SYNC_PASS_18`
+Current task: `THEORY_C01_L05_CHROMIUM_FINAL_ACCEPTANCE_PASS_19`
 
-Status: `PASS_17_MULTI_LESSON_READER_RICHNESS_STATIC_VERIFY_PASS`
+Status: `PASS_18_SELECTION_ROUTE_SYNC_STATIC_VERIFY_PASS`
 
 Date: 2026-07-09
 Branch: `main`
@@ -75,8 +75,8 @@ Academic artifacts:
 
 ## §1.5 runtime progress
 
-Runtime passes complete: `3/5`.
-Runtime passes remaining: `2/5`.
+Runtime passes complete: `4/5`.
+Runtime passes remaining: `1/5`.
 Browser QA: not run.
 
 ### Runtime Pass 15 · Durable merge
@@ -116,31 +116,33 @@ Browser QA: not run.
 - New slideshow engine: none.
 - Temporary diagnostic PR #3 closed without merge because revised runs remained queued; it contained only workflow scaffolding.
 
-## Pass 18 patches already applied, verification pending
+## Runtime Pass 18 · Selection and route identity sync
 - E210 canonical identity commit: `d39706c75ce9b9f4d4b720880da1a72f9898b92f`.
 - E243 route and identity lock commit: `d4ba315649d8873345eff5beb862ddd370050224`.
 - E210 now prefers canonical lesson ID/title from E244 or E240 before stale title fields.
 - E243 stamps `data-e243-lesson-id`, `data-e243-lesson-title` and `data-lesson-id` on the existing deck.
 - E243 re-applies E210, E241 and E242 through their public APIs during stabilization.
 - E129, E202, E211 and E235 were not modified.
-- Pass 18 is not accepted until static verification is complete.
+- Static verification: PASS.
+- Report: `subjects/math/THEORY_C01_L05_RUNTIME_PASS18.json`.
+- Browser QA: not run.
+- Next: `THEORY_C01_L05_CHROMIUM_FINAL_ACCEPTANCE_PASS_19`.
 
 ## Remaining runtime roadmap
 
-4. Pass 18: verify lesson selection, canonical presenter identity and route locking for L05 while preserving L04.
 5. Pass 19: Chromium browser QA, cross-lesson leak checks and final runtime acceptance.
 
 ## Current task requirements
 
-`THEORY_C01_L05_SELECTION_ROUTE_SYNC_PASS_18`
+`THEORY_C01_L05_CHROMIUM_FINAL_ACCEPTANCE_PASS_19`
 
-Pass 18 must:
-- syntax-check E210 and E243;
-- verify canonical identity resolution prioritizes lesson ID over stale lesson titles;
-- verify E243 uses E244/E240 and stamps the existing E202 deck;
-- verify L04 and L05 IDs/titles both resolve correctly;
-- preserve E243 routing-ghost protection against C01 decimal alias leakage;
-- preserve E129, E202, E211 and E235 unchanged;
-- avoid creating a new state store, data source or slideshow engine;
-- record browser QA as not run;
-- advance to Pass 19 only after static verification passes.
+Pass 19 must:
+- run a real Chromium browser session against the current main-equivalent branch;
+- open §1.4 and §1.5 separately;
+- verify 22/22 slides for both lessons;
+- verify canonical lesson identity does not leak between lessons;
+- verify Reference and Full View open from the correct lesson artifacts;
+- verify L05 richness counts and representative diagram/retrieval/misconception behavior;
+- verify formula modal remains separate and E235 visuals remain intact;
+- verify no console errors, route ghost leftovers or stale artifact controls;
+- record screenshots/logs and only then mark final browser acceptance.
