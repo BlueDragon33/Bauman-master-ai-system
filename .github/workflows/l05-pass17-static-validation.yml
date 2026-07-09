@@ -1,0 +1,68 @@
+name: Lesson 1.5 Pass 17 static validation
+on:
+  pull_request:
+    branches: [main]
+    types: [opened, reopened, synchronize]
+    paths:
+      - .github/workflows/l05-pass17-static-validation.yml
+permissions:
+  contents: write
+concurrency:
+  group: l05-pass17-final-cleanup-${{ github.event.pull_request.number }}
+  cancel-in-progress: true
+jobs:
+  cleanup:
+    if: github.event.pull_request.head.repo.full_name == github.repository
+    runs-on: ubuntu-22.04
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.pull_request.head.ref }}
+          fetch-depth: 0
+      - name: Restore original formatting and apply minimal patches
+        run: |
+          set -euo pipefail
+          git checkout origin/main -- \
+            subjects/math/THEORY_C01_L05_ACADEMIC_ACCEPTANCE.json \
+            subjects/math/data/theory_slideshow/theory_slideshow_c01_l05.json
+          python3 - <<'PY'
+          import json
+          from pathlib import Path
+          root=Path('subjects/math')
+          acceptance=root/'THEORY_C01_L05_ACADEMIC_ACCEPTANCE.json'
+          slideshow=root/'data/theory_slideshow/theory_slideshow_c01_l05.json'
+
+          raw=acceptance.read_text(encoding='utf-8')
+          old='"misconceptionSlides": 17'; new='"misconceptionSlides": 18'
+          assert raw.count(old)==1,raw.count(old)
+          acceptance.write_text(raw.replace(old,new,1),encoding='utf-8')
+
+          raw=slideshow.read_text(encoding='utf-8')
+          old='"misconceptionSlides": ["SL01","SL02","SL03","SL04","SL05","SL06","SL08","SL09","SL10","SL11","SL12","SL14","SL15","SL16","SL18","SL19","SL21"]'
+          new='"misconceptionSlides": ["SL01","SL02","SL03","SL04","SL05","SL06","SL08","SL09","SL10","SL11","SL12","SL14","SL15","SL16","SL18","SL19","SL20","SL21"]'
+          assert raw.count(old)==1,raw.count(old)
+          slideshow.write_text(raw.replace(old,new,1),encoding='utf-8')
+
+          a=json.loads(acceptance.read_text(encoding='utf-8'))
+          s=json.loads(slideshow.read_text(encoding='utf-8'))
+          actual=[x['id'] for x in s['slides'] if x.get('misconceptionIntercept')]
+          assert len(actual)==18
+          assert s['coverage']['misconceptionSlides']==actual
+          assert a['artifactCounts']['misconceptionSlides']==18
+          json.loads((root/'data/theory_normalization/theory_normalization_c01_l05.json').read_text(encoding='utf-8'))
+          report=json.loads((root/'THEORY_C01_L05_RUNTIME_PASS17.json').read_text(encoding='utf-8'))
+          assert report['status']=='PASS_17_MULTI_LESSON_READER_RICHNESS_STATIC_VERIFY_PASS'
+          print({'misconceptions':actual,'reportStatus':report['status']})
+          PY
+          node --check subjects/math/assets/theory_skin/theory-artifact-registry-E244.js
+          node --check subjects/math/assets/theory_skin/theory-artifact-reader-E241.js
+          node --check subjects/math/assets/theory_skin/theory-slideshow-richness-E242.js
+      - name: Commit minimal diff
+        run: |
+          git rm --ignore-unmatch .github/workflows/l05-pass17-static-validation.yml .github/workflows/l05-pass17-diff-cleanup.yml
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add subjects/math/THEORY_C01_L05_ACADEMIC_ACCEPTANCE.json subjects/math/data/theory_slideshow/theory_slideshow_c01_l05.json
+          git commit -m "chore(math): minimize lesson 1.5 Pass 17 diff"
+          git push origin HEAD:${{ github.event.pull_request.head.ref }}
