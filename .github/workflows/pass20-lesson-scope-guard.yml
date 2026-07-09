@@ -11,25 +11,21 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - name: Patch empty normalized values
+      - name: Remove stale reference panel outside lesson 1.4
         run: |
           python - <<'PY'
           from pathlib import Path
-          files=[
-            Path('subjects/math/assets/theory_skin/theory-artifact-reader-E241.js'),
-            Path('subjects/math/assets/theory_skin/theory-slideshow-richness-E242.js')
-          ]
-          old="return values.some(function(v){var n=norm(v);return n===norm(LESSON_ID)||n.indexOf(wanted)>=0||wanted.indexOf(n)>=0;});"
-          new="return values.some(function(v){var n=norm(v);return !!n&&(n===norm(LESSON_ID)||n.indexOf(wanted)>=0||wanted.indexOf(n)>=0);});"
-          for path in files:
-            text=path.read_text(encoding='utf-8')
-            assert text.count(old)==1,(path,text.count(old))
-            path.write_text(text.replace(old,new,1),encoding='utf-8')
+          path=Path('subjects/math/assets/theory_skin/theory-artifact-reader-E241.js')
+          text=path.read_text(encoding='utf-8')
+          old="var existing=d.querySelector('.e241-actions');\n    if(!currentLessonMatches()){if(existing)existing.remove();return false;}"
+          new="var existing=d.querySelector('.e241-actions');\n    if(!currentLessonMatches()){\n      if(existing)existing.remove();\n      var stalePanel=d.querySelector('.e211-summary-panel.e241-reference-summary');\n      if(stalePanel)stalePanel.remove();\n      return false;\n    }"
+          assert text.count(old)==1,text.count(old)
+          path.write_text(text.replace(old,new,1),encoding='utf-8')
           PY
       - name: Commit
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add subjects/math/assets/theory_skin/theory-artifact-reader-E241.js subjects/math/assets/theory_skin/theory-slideshow-richness-E242.js
-          git commit -m "fix(math): guard lesson-scoped theory enhancements"
+          git add subjects/math/assets/theory_skin/theory-artifact-reader-E241.js
+          git commit -m "fix(math): clear stale reference panel on lesson change"
           git push origin HEAD:main
