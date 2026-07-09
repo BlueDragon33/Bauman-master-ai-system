@@ -1,0 +1,221 @@
+{
+  "id": "bauman_math_c01_l06_case_validation_v1",
+  "schema": "bauman_math_case_validation_v1",
+  "version": "CASE_VALIDATION_C01_L06_V1",
+  "status": "PASS_05_ENGINEERING_CASE_VERIFIED",
+  "date": "2026-07-09",
+  "lessonId": "MATH-VN-C01-vector_trong_khong_gian_-L06-vector-to-data-matrix-e140",
+  "caseVersion": "CASE_C01_L06_V1_LOCKED",
+  "shape": [
+    8,
+    6
+  ],
+  "mean": [
+    8.5,
+    8.55,
+    0.03125,
+    0.023750000000000004,
+    0.009999999999999998,
+    12.1625
+  ],
+  "maxAbsCenteredColumnSum": 5.329070518200751e-15,
+  "maxReconstructionError": 2.7755575615628914e-17,
+  "schemaChecksumSha256": "c3c21cda2c9f802300b11e86ff6c08ea2a9b16f99b7b8ad8f9b26a22f112c544",
+  "invalidVariantCount": 4,
+  "checks": [
+    {
+      "name": "shape 8 x 6",
+      "status": "PASS",
+      "detail": [
+        8,
+        [
+          6,
+          6,
+          6,
+          6,
+          6,
+          6,
+          6,
+          6
+        ]
+      ]
+    },
+    {
+      "name": "all finite",
+      "status": "PASS",
+      "detail": null
+    },
+    {
+      "name": "missing count zero",
+      "status": "PASS",
+      "detail": null
+    },
+    {
+      "name": "metadata counts",
+      "status": "PASS",
+      "detail": null
+    },
+    {
+      "name": "feature indices contiguous",
+      "status": "PASS",
+      "detail": null
+    },
+    {
+      "name": "timestamps strictly increasing",
+      "status": "PASS",
+      "detail": null
+    },
+    {
+      "name": "observation ids locked",
+      "status": "PASS",
+      "detail": null
+    },
+    {
+      "name": "schema checksum",
+      "status": "PASS",
+      "detail": "c3c21cda2c9f802300b11e86ff6c08ea2a9b16f99b7b8ad8f9b26a22f112c544"
+    },
+    {
+      "name": "mean vector",
+      "status": "PASS",
+      "detail": {
+        "computed": [
+          8.5,
+          8.55,
+          0.03125,
+          0.023750000000000004,
+          0.009999999999999998,
+          12.1625
+        ],
+        "locked": [
+          8.5,
+          8.55,
+          0.03125,
+          0.02375,
+          0.01,
+          12.1625
+        ]
+      }
+    },
+    {
+      "name": "centered matrix",
+      "status": "PASS",
+      "detail": null
+    },
+    {
+      "name": "centered column sums",
+      "status": "PASS",
+      "detail": [
+        8.881784197001252e-16,
+        -5.329070518200751e-15,
+        2.7755575615628914e-17,
+        -6.938893903907228e-18,
+        1.734723475976807e-17,
+        3.552713678800501e-15
+      ]
+    },
+    {
+      "name": "reconstruction",
+      "status": "PASS",
+      "detail": null
+    },
+    {
+      "name": "transpose shape",
+      "status": "PASS",
+      "detail": null
+    },
+    {
+      "name": "transpose payload",
+      "status": "PASS",
+      "detail": null
+    },
+    {
+      "name": "entry extraction",
+      "status": "PASS",
+      "detail": null
+    },
+    {
+      "name": "row extraction",
+      "status": "PASS",
+      "detail": null
+    },
+    {
+      "name": "column extraction",
+      "status": "PASS",
+      "detail": null
+    },
+    {
+      "name": "block extraction",
+      "status": "PASS",
+      "detail": null
+    },
+    {
+      "name": "covariance preview",
+      "status": "PASS",
+      "detail": null
+    },
+    {
+      "name": "no scale vector locked",
+      "status": "PASS",
+      "detail": null
+    },
+    {
+      "name": "rank not interpreted",
+      "status": "PASS",
+      "detail": null
+    },
+    {
+      "name": "four invalid variants",
+      "status": "PASS",
+      "detail": null
+    },
+    {
+      "name": "swapped-column negative test",
+      "status": "PASS",
+      "detail": null
+    },
+    {
+      "name": "unit negative test",
+      "status": "PASS",
+      "detail": null
+    },
+    {
+      "name": "orientation negative test",
+      "status": "PASS",
+      "detail": null
+    },
+    {
+      "name": "version negative test",
+      "status": "PASS",
+      "detail": null
+    },
+    {
+      "name": "trace coverage formulas",
+      "status": "PASS",
+      "detail": null
+    },
+    {
+      "name": "trace coverage claims",
+      "status": "PASS",
+      "detail": null
+    },
+    {
+      "name": "trace coverage outcomes",
+      "status": "PASS",
+      "detail": null
+    },
+    {
+      "name": "runtime integration forbidden",
+      "status": "PASS",
+      "detail": null
+    }
+  ],
+  "protectedRuntimeDecision": {
+    "durableContentModified": false,
+    "runtimeReaderModified": false,
+    "manifestModified": false,
+    "e235Modified": false,
+    "newSlideshowEngineCreated": false
+  },
+  "nextTask": "THEORY_C01_L06_MISCONCEPTION_MAP_PASS_06"
+}
