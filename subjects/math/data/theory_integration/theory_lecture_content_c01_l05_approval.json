@@ -39,6 +39,20 @@
     "Verify locked case values and prohibited claims remain intact.",
     "Do not modify Reference, Full View, Normalization or runtime reader code in Pass 15."
   ],
-  "runtimeMergePerformed": false,
-  "nextTask": "THEORY_C01_L05_DURABLE_MERGE_RUNTIME_PASS_15"
+  "runtimeMergePerformed": true,
+  "nextTask": "THEORY_C01_L05_RUNTIME_SOURCE_REGISTRATION_PASS_16",
+  "runtimeMergeResult": {
+    "status": "PASS_15_DURABLE_MERGE_STATIC_VERIFY_PASS",
+    "targetIndex": 4,
+    "previousLessonId": "MATH-VN-C01-vector_trong_khong_gian_-L04-basis-span-coordinate-e140",
+    "nextLessonId": "MATH-VN-C01-vector_trong_khong_gian_-L06-vector-to-data-matrix-e140",
+    "recordsBefore": 18,
+    "recordsAfter": 18,
+    "sourceSlides": 22,
+    "runtimeSlides": 22,
+    "changedNonTargetRecords": 0,
+    "duplicateLessonIds": 0,
+    "durableFileSha256Before": "dc5462df37227b49ab1759f8631f0dc682816cb59733ef2193688366d23dfb1e",
+    "durableFileSha256After": "d0cd18601b1ede84f58072b3c47cfcc176b4d21d3fa71b23762b908485391447"
+  }
 }

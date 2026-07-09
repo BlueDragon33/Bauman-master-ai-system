@@ -1,8 +1,8 @@
 # CODEX_STATE
 
-Current task: `THEORY_C01_L05_DURABLE_MERGE_RUNTIME_PASS_15`
+Current task: `THEORY_C01_L05_RUNTIME_SOURCE_REGISTRATION_PASS_16`
 
-Status: `PASS_14_ACADEMIC_ACCEPTANCE_COMPLETE`
+Status: `PASS_15_DURABLE_MERGE_STATIC_VERIFY_PASS`
 
 Date: 2026-07-09
 Branch: `main`
@@ -45,11 +45,11 @@ Final academic state:
 Progress:
 - academic passes complete: `14/14`;
 - academic passes remaining: `0/14`;
-- runtime integration: not started;
-- durable runtime record: unchanged 16-slide baseline record;
+- runtime integration: 1/5 passes complete;
+- durable runtime record: merged 22-slide approved record;
 - accepted source slideshow: 22 slides;
 - approved import candidate: 22 runtime slides;
-- durable merge: not performed.
+- durable merge: PASS with all non-target canonical hashes unchanged.
 
 ### Pass 1 · Baseline audit
 - File: `subjects/math/THEORY_C01_L05_BASELINE_AUDIT.md`
@@ -172,3 +172,17 @@ Pass 15 must:
 - verify formula coverage F01–F16;
 - preserve locked case values and prohibited-claim boundaries;
 - avoid any runtime reader, UI or manifest modification in this pass.
+
+
+## §1.5 Runtime Pass 15 · Durable merge
+- Status: `PASS_15_DURABLE_MERGE_STATIC_VERIFY_PASS`.
+- Report: `subjects/math/THEORY_C01_L05_RUNTIME_PASS15.json`.
+- Target index: `4`.
+- Previous lesson: `MATH-VN-C01-vector_trong_khong_gian_-L04-basis-span-coordinate-e140`.
+- Next lesson: `MATH-VN-C01-vector_trong_khong_gian_-L06-vector-to-data-matrix-e140`.
+- Record count: `18` before and after.
+- Runtime slides: `22/22`.
+- Changed non-target records: `0`.
+- Duplicate lesson IDs: `0`.
+- Browser QA: not run.
+- Next: `THEORY_C01_L05_RUNTIME_SOURCE_REGISTRATION_PASS_16`.
