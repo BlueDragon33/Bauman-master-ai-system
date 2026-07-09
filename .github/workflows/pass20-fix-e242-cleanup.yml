@@ -1,0 +1,57 @@
+name: Pass 20 E242 lesson cleanup
+on:
+  push:
+    branches: [main]
+    paths:
+      - .github/workflows/pass20-fix-e242-cleanup.yml
+permissions:
+  contents: write
+jobs:
+  patch:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - name: Patch non-target cleanup
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          p=Path('subjects/math/assets/theory_skin/theory-slideshow-richness-E242.js')
+          s=p.read_text(encoding='utf-8')
+          old="""  function apply(){
+    var d=deck();
+    if(!d||!d.classList.contains('open')||!currentLessonMatches())return false;
+"""
+          new="""  function clearOutsideTarget(d){
+    if(!d)return;
+    d.removeAttribute('data-e242-richness');
+    var main=d.querySelector('.e132-clean-main');
+    if(main)main.removeAttribute('data-e242-slide');
+    Array.prototype.slice.call(d.querySelectorAll('[data-e242-diagram],[data-e242-retrieval],[data-e242-misconception]')).forEach(function(n){
+      n.removeAttribute('data-e242-diagram');
+      n.removeAttribute('data-e242-retrieval');
+      n.removeAttribute('data-e242-misconception');
+    });
+    Array.prototype.slice.call(d.querySelectorAll('.e242-wrong,.e242-correction')).forEach(function(n){n.classList.remove('e242-wrong','e242-correction');});
+    Array.prototype.slice.call(d.querySelectorAll('.e242-evidence')).forEach(function(n){n.remove();});
+    lastKey='';
+    try{window.BAUMAN_MATH_E211_READER_CONTENT&&window.BAUMAN_MATH_E211_READER_CONTENT.apply&&window.BAUMAN_MATH_E211_READER_CONTENT.apply();}catch(_){ }
+  }
+
+  function apply(){
+    var d=deck();
+    if(!d||!d.classList.contains('open'))return false;
+    if(!currentLessonMatches()){clearOutsideTarget(d);return false;}
+"""
+          if s.count(old)!=1: raise SystemExit('apply anchor mismatch '+str(s.count(old)))
+          p.write_text(s.replace(old,new,1),encoding='utf-8')
+          PY
+      - name: Commit patch
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add subjects/math/assets/theory_skin/theory-slideshow-richness-E242.js
+          git commit -m "fix(math): clear lesson-scoped richness on navigation"
+          git pull --rebase origin main
+          git push origin HEAD:main
