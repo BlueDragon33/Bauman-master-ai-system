@@ -1,6 +1,6 @@
 {
-  "status": "FAIL",
-  "executedAt": "2026-07-09T02:23:42.958Z",
+  "status": "PASS",
+  "executedAt": "2026-07-09T02:27:25.539Z",
   "targetLessonId": "MATH-VN-C01-vector_trong_khong_gian_-L04-basis-span-coordinate-e140",
   "scope": "full checked-out static site via Chromium",
   "checks": [
@@ -392,20 +392,54 @@
     },
     {
       "name": "other lesson has no §1.4 enhancements",
-      "status": "FAIL",
-      "message": "assertion failed",
+      "status": "PASS",
       "leak": {
         "actions": 0,
         "referencePanel": 0,
-        "richness": 1,
+        "richness": 0,
         "current": "MATH-VN-C01-vector_trong_khong_gian_-L01-vector-as-engineering-data-e130"
       },
       "alternate": "MATH-VN-C01-vector_trong_khong_gian_-L01-vector-as-engineering-data-e130"
+    },
+    {
+      "name": "overlay import and single controlled reload",
+      "status": "PASS",
+      "imported": {
+        "overlay": true,
+        "slides": 22,
+        "source": "localStorage E129 overlay",
+        "warnings": []
+      },
+      "navigations": 1
+    },
+    {
+      "name": "clear overlay restores durable source with one reload",
+      "status": "PASS",
+      "cleared": {
+        "overlay": false,
+        "slides": 22,
+        "source": "durable_json_fallback"
+      },
+      "navigations": 1
+    },
+    {
+      "name": "no uncaught page errors",
+      "status": "PASS",
+      "pageErrors": []
+    },
+    {
+      "name": "no console errors",
+      "status": "PASS",
+      "consoleErrors": []
+    },
+    {
+      "name": "no failed network requests",
+      "status": "PASS",
+      "failedRequests": []
     }
   ],
   "pageErrors": [],
   "consoleErrors": [],
   "failedRequests": [],
-  "navigationCount": 1,
-  "error": "Error: other lesson has no §1.4 enhancements: assertion failed\n    at fail (file:///tmp/pass20v5/run.mjs:14:100)\n    at assert (file:///tmp/pass20v5/run.mjs:15:47)\n    at file:///tmp/pass20v5/run.mjs:132:3"
+  "navigationCount": 3
 }
