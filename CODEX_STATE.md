@@ -1,8 +1,8 @@
 # CODEX_STATE
 
-Current task: `THEORY_C01_L06_SOURCE_MAP_TERMINOLOGY_PASS_03`
+Current task: `THEORY_C01_L06_FORMULA_REGISTRY_PASS_04`
 
-Status: `PASS_02_LEARNING_CONTRACT_COMPLETE`
+Status: `PASS_03_SOURCE_MAP_TERMINOLOGY_COMPLETE`
 
 Date: 2026-07-09
 Branch: `main`
@@ -80,8 +80,8 @@ Lesson title:
 `§1.6 · Từ vector sang ma trận dữ liệu`
 
 Progress:
-- academic passes complete: `2/14`;
-- academic passes remaining: `12/14`;
+- academic passes complete: `3/14`;
+- academic passes remaining: `11/14`;
 - runtime integration: not started;
 - durable runtime content: unchanged baseline;
 - browser QA: not applicable before runtime integration.
@@ -117,17 +117,32 @@ Progress:
 - Numeric values, centering mean, scale vector and thresholds remain unlocked until Pass 5.
 - Runtime content, readers, manifest and E235 unchanged.
 
+### Pass 3 · Source map and terminology
+- Status: `PASS_03_SOURCE_MAP_TERMINOLOGY_COMPLETE`.
+- File: `subjects/math/THEORY_C01_L06_SOURCE_MAP_TERMINOLOGY.md`.
+- Convention ownership layers: project, mathematics, array/API and engineering.
+- Source anchors: `S1–S12`.
+- Claim trace set: `C01–C24`.
+- Trilingual terminology: `T01–T40`.
+- Symbol contract covers observations, rows, columns, slices, transpose, raw/centred/scaled matrices and Gram objects.
+- Usage rules: `U1–U12`.
+- NumPy operation map is locked to the row-observation project convention.
+- Legacy 16-slide disposition is locked role by role.
+- Rank, singular-value, PCA, missing/outlier policy and physical-mode claims are deferred or rewritten.
+- Runtime content, readers, manifest and E235 unchanged.
+
 ## Current task requirements
 
-`THEORY_C01_L06_SOURCE_MAP_TERMINOLOGY_PASS_03`
+`THEORY_C01_L06_FORMULA_REGISTRY_PASS_04`
 
-Pass 3 must:
-- map every learning-contract claim cluster to authoritative algebra, array and preprocessing sources;
-- distinguish project conventions from external mathematical or software conventions;
-- define a canonical Vietnamese-English-Russian terminology table where needed for Bauman study;
-- lock notation for observation vectors, data matrices, rows, columns, entries, slices, transpose and derived matrices;
-- document how NumPy stacking axes map to the project row-observation convention;
-- map feature-order and preprocessing consistency requirements to official software documentation;
-- identify unsupported legacy claims that must not survive into the core artifact;
-- preserve the fixed case and scope boundaries;
+Pass 4 must:
+- create a canonical formula registry with stable formula IDs;
+- state shape, assumptions, convention owner and claim references beside every formula;
+- cover matrix assembly, entry/row/column extraction, transpose conversion, centering and derived Gram shapes;
+- distinguish mathematical identities from NumPy expressions;
+- include the one-dimensional transpose trap and valid reshape forms;
+- keep covariance, rank, SVD and PCA formulas preview-only or deferred unless explicitly assumption-scoped;
+- define forbidden formula shortcuts and dimensional failure examples;
+- map every formula to LO1–LO9 and C01–C24;
+- avoid numeric case values before Pass 5;
 - avoid runtime modification.
