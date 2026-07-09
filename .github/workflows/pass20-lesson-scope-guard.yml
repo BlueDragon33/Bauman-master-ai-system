@@ -11,14 +11,33 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - name: Move artifact modal Escape guard before deck handler
+      - name: Add deck diagnostics to browser QA
         run: |
           python - <<'PY'
           from pathlib import Path
-          path=Path('subjects/math/assets/theory_skin/theory-artifact-reader-E241.js')
+          path=Path('.github/workflows/pass20-browser-qa.yml')
           text=path.read_text(encoding='utf-8')
-          old="document.addEventListener('keydown',function(e){if(e.key==='Escape'&&modal&&!modal.classList.contains('hidden')){e.preventDefault();closeModal();}},true);"
-          new="window.addEventListener('keydown',function(e){if(e.key==='Escape'&&modal&&!modal.classList.contains('hidden')){e.preventDefault();e.stopPropagation();if(e.stopImmediatePropagation)e.stopImmediatePropagation();closeModal();}},true);"
+          old="""            await page.waitForSelector('.e132-overlay-deck.open',{timeout:30000});
+            await page.waitForFunction(()=>/01\\s*\\/\\s*22/.test(document.querySelector('[data-e202-count]')?.textContent||''),{timeout:30000});
+            await page.waitForFunction(()=>document.querySelector('.e132-overlay-deck.open')?.classList.contains('e211-reader-pro'),{timeout:30000});
+            await page.waitForFunction(()=>document.querySelector('.e132-clean-main')?.getAttribute('data-e242-slide')==='SL01',{timeout:30000});
+            pass('slideshow opens at 01/22 in Reader Pro');
+"""
+          new="""            await page.waitForSelector('.e132-overlay-deck.open',{timeout:30000});
+            await page.waitForTimeout(1200);
+            const deckDiag=await page.evaluate(()=>({
+              count:document.querySelector('[data-e202-count]')?.textContent||'',
+              mode:document.querySelector('[data-e202-mode]')?.textContent||'',
+              title:document.querySelector('.e132-clean-main h1')?.textContent||'',
+              sourceSlides:document.querySelectorAll('.e129-theory-shell.presenting .e129-slide-list .e129-slide').length,
+              e202:window.BAUMAN_MATH_THEORY_E132&&window.BAUMAN_MATH_THEORY_E132.selfCheck(),
+              bodyClasses:document.body.className
+            }));
+            requireTrue(/01\\s*\\/\\s*22/.test(deckDiag.count),'slideshow opens at 01/22',{deckDiag});
+            await page.waitForFunction(()=>document.querySelector('.e132-overlay-deck.open')?.classList.contains('e211-reader-pro'),{timeout:30000});
+            await page.waitForFunction(()=>document.querySelector('.e132-clean-main')?.getAttribute('data-e242-slide')==='SL01',{timeout:30000});
+            pass('slideshow opens in Reader Pro',{deckDiag});
+"""
           assert text.count(old)==1,text.count(old)
           path.write_text(text.replace(old,new,1),encoding='utf-8')
           PY
@@ -26,6 +45,6 @@ jobs:
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add subjects/math/assets/theory_skin/theory-artifact-reader-E241.js
-          git commit -m "fix(math): prioritize artifact modal Escape handling"
+          git add .github/workflows/pass20-browser-qa.yml
+          git commit -m "test(math): add slideshow deck diagnostics"
           git push origin HEAD:main
