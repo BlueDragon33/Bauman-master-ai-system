@@ -1,24 +1,24 @@
 # CODEX_STATE
 
-Current task: `THEORY_REFERENCE_FULL_VIEW_RUNTIME_INTEGRATION_C01_L04_PASS_18`
+Current task: `THEORY_SLIDESHOW_RICHNESS_RUNTIME_INTEGRATION_C01_L04_PASS_19`
 
-Status: `PASS_18_REFERENCE_FULL_VIEW_STATIC_VERIFY_PASS`
+Status: `PASS_19_SLIDESHOW_RICHNESS_STATIC_VERIFY_PASS`
 
-Date: 2026-07-08
+Date: 2026-07-09
 Branch: `main`
 
-## Codex session rule
-- Prefer direct ChatGPT-to-GitHub work when repository tools are available.
-- If Codex is required, create a new Codex session for one narrow task.
+## Execution policy
+- Prefer direct ChatGPT high-reasoning work with narrow GitHub reads and patches.
+- Use Codex only for work where it adds material value, such as deep multi-file refactors, repository-wide dependency analysis, complex browser automation or large-file transformations that cannot be safely performed through the available connector.
+- If Codex is required, create a new session for one narrow task.
 - Never continue an old Codex session.
-- A new Codex session must read this file and only explicitly named source files.
-- Do not scan the full repository.
+- Do not scan the full repository without a concrete need.
 
 ## §1.4 overall status
 - Academic workflow: 14/14 passes, 73/73 steps complete.
-- Runtime completion workflow: 4/6 passes complete.
-- Runtime steps complete: 22/34.
-- Runtime steps remaining: 12/34.
+- Runtime completion workflow: 5/6 passes complete.
+- Runtime steps complete: 28/34.
+- Runtime steps remaining: 6/34.
 - Source slideshow slides: 22.
 - Runtime slides: 22.
 - Minimum slide count: 16.
@@ -29,7 +29,6 @@ Branch: `main`
 - Status: `PASS_15_MINIMUM_16_SLIDES_PATCHED_STATIC_VERIFY_PASS`
 - E239 defines 16 as the minimum, not an exact count or maximum.
 - 15 slides fails the minimum check; 16 and 22 pass.
-- Extended semantic roles are allowed.
 
 ## Pass 16 result
 - Status: `PASS_16_DURABLE_MERGE_STATIC_VERIFY_PASS`
@@ -37,7 +36,6 @@ Branch: `main`
 - Target lessonId: `MATH-VN-C01-vector_trong_khong_gian_-L04-basis-span-coordinate-e140`
 - Record count before/after: `18/18`
 - Target occurrence before/after: `1/1`
-- Target index: `3`
 - Runtime slides: `22`
 - Source mapping: `22/22`
 - Duplicate lesson IDs: `0`
@@ -46,203 +44,207 @@ Branch: `main`
 
 ## Pass 17 result
 - Status: `PASS_17_DATA_PATH_SYNC_STATIC_VERIFY_PASS`
-- Created: `subjects/math/assets/theory_skin/theory-content-source-E240.js`
-- Source priority:
+- E240 source priority:
   1. `window.DB.theory_lecture_content`
   2. E129 localStorage overlay
   3. durable `data/theory_lecture_content.json`
-- E240 loads before E211.
-- Same-tab import/clear uses a controlled reload so E129, E202 and E211 reconstruct from one payload.
-- Browser verification remains deferred to Pass 20.
+- Same-tab import/clear uses controlled reload for E129/E202/E211 consistency.
 
-## Pass 18 objective
-Integrate the approved lesson-scoped artifacts into runtime controls without redesigning Reader Pro:
-- `Tham khảo thêm` must use the approved Reference artifact;
-- `Xem đầy đủ` must use the approved Full View artifact;
-- canonical formula display must use the approved Normalization artifact;
-- the existing formula-detail popup must remain a separate control;
-- unrelated lessons must not require these optional files.
+## Pass 18 result
+- Status: `PASS_18_REFERENCE_FULL_VIEW_STATIC_VERIFY_PASS`
+- E241 integrates approved Reference, Full View and Normalization artifacts for §1.4 only.
+- `Tham khảo thêm`: seven approved lookup sections.
+- `Xem đầy đủ`: FV01–FV11.
+- `Công thức đầy đủ`: existing E211 formula modal remains separate.
 
-## Pass 18 inspection
+## Pass 19 objective
+Restore the approved slideshow richness into the existing 22-slide runtime deck without changing mathematics, slide count or the E202/E211 visual architecture:
+- expose all 8 approved diagram specifications;
+- expose all 9 approved retrieval checks;
+- expose all 16 approved misconception intercepts;
+- keep one source slide mapped to one runtime slide;
+- avoid adding extra panels that would overload the fixed slide viewport.
 
-### Approved Reference artifact
-Path:
-`subjects/math/data/theory_reference/theory_reference_c01_l04.json`
+## Pass 19 inspection
 
-Version:
-`REFERENCE_C01_L04_V1_APPROVED`
-
-Verified reference information architecture:
-1. R01 concept map
-2. R02 formula table
-3. R03 representation-family classification
-4. R04 method selection
-5. R05 engineering assumption gates
-6. R06 failure diagnosis guide
-7. R07 verified UGV case
-
-Additional approved sections rendered:
-- notation lookup;
-- engineering transfer table.
-
-### Approved Full View artifact
-Path:
-`subjects/math/data/theory_full_view/theory_full_view_c01_l04.json`
+Approved source:
+`subjects/math/data/theory_slideshow/theory_slideshow_c01_l04.json`
 
 Version:
-`FULL_VIEW_C01_L04_V1_APPROVED`
+`SLIDESHOW_C01_L04_V1_APPROVED`
 
-Verified:
-- `readingFlow` has 11 sections, FV01–FV11;
-- content is presentation data only;
-- no runtime instructions are embedded in the artifact;
-- formulas include meaning, conditions and warnings where required.
+Verified source contract:
+- presentation data only;
+- runtime independent;
+- no CSS or JavaScript embedded in the artifact;
+- one primary learning beat per slide;
+- diagrams are semantic specifications only;
+- no new mathematics;
+- source trace required.
 
-### Approved Normalization artifact
-Path:
-`subjects/math/data/theory_normalization/theory_normalization_c01_l04.json`
+Verified counts:
+- slides: `22`;
+- diagram specifications: `8`;
+- retrieval checks: `9`;
+- misconception intercepts: `16`.
 
-Version:
-`NORMALIZATION_C01_L04_V1_APPROVED`
+### Diagram mapping
+- SL01: same vector in two coordinate grids
+- SL02: linear-combination contributions
+- SL03: one-direction span versus two-direction span
+- SL04: redundant third vector in an existing span
+- SL06: ordered-basis swap
+- SL14: UGV world/route basis setup
+- SL17: left/right normal sign convention
+- SL20: near-parallel basis sensitivity
 
-Verified:
-- semantic conflicts: `0`;
-- worked-case conflicts: `0`;
-- canonical formula registry: `F1–F12`;
-- source rewrites are not required;
-- canonical rendering can be applied downstream.
+### Retrieval mapping
+- SL02: RCHECK01
+- SL03: RCHECK02
+- SL05: RCHECK03
+- SL10: RCHECK04
+- SL11: RCHECK05
+- SL17: RCHECK06
+- SL19: RCHECK07
+- SL20: RCHECK08
+- SL22: RCHECK09
 
-## Pass 18 implementation
+### Misconception mapping
+- SL01, SL03, SL04, SL05, SL06, SL07, SL08, SL11
+- SL12, SL13, SL14, SL17, SL18, SL19, SL20, SL21
 
-### Artifact reader
+## Pass 19 implementation
+
 Created:
-`subjects/math/assets/theory_skin/theory-artifact-reader-E241.js`
+`subjects/math/assets/theory_skin/theory-slideshow-richness-E242.js`
 
 Release:
-`E241_APPROVED_REFERENCE_FULL_VIEW_READER`
+`E242_APPROVED_SLIDESHOW_RICHNESS`
 
-Registry:
-- Reference: `data/theory_reference/theory_reference_c01_l04.json`
-- Full View: `data/theory_full_view/theory_full_view_c01_l04.json`
-- Normalization: `data/theory_normalization/theory_normalization_c01_l04.json`
+### Data validation
+E242 rejects the artifact unless all conditions pass:
+- lessonId exactly matches §1.4;
+- version exactly matches `SLIDESHOW_C01_L04_V1_APPROVED`;
+- slide count is 22;
+- diagram count is 8;
+- retrieval-check count is 9;
+- misconception count is 16;
+- source slide IDs remain ordered exactly SL01–SL22.
 
-All three sources are registered at runtime in `SUBJECT_ADAPTER.dataSourceMeta` as:
-- `required: false`
-- `lazy: true`
-- scoped to the exact §1.4 lessonId
+The source is registered in `SUBJECT_ADAPTER.dataSourceMeta` as:
+- optional;
+- lazy;
+- lesson-scoped;
+- not a global required dependency.
 
-The global `subject-manifest.json` was deliberately not changed because these artifacts are optional and lesson-scoped, not required sources for unrelated lessons.
+### Density-preserving runtime mapping
+No new fourth or fifth card is added to E202.
 
-### Runtime controls
-For the exact §1.4 lesson only, E241 adds:
-- `Tham khảo thêm`
-- `Xem đầy đủ`
+For each visible slide:
+- `diagramSpec`, when present, replaces the existing generic visual panel;
+- `misconceptionIntercept`, when present, replaces the existing Application/Meaning card;
+- `retrievalCheck`, when present, replaces the existing Self-check card;
+- absent features leave the corresponding E202 card or visual untouched.
 
-The old E211 formula button is relabeled:
-- old label: `Xem đầy đủ`
-- new label: `Công thức đầy đủ`
+This preserves the current fixed slide layout and avoids content overflow caused by stacking extra panels.
 
-This keeps three distinct functions:
-1. `Tham khảo thêm`: approved seven-section lookup layer.
-2. `Xem đầy đủ`: approved eleven-section complete reading flow.
-3. `Công thức đầy đủ`: existing E211 formula analysis popup.
+### Semantic diagram behavior
+E242 does not invent geometric drawings.
 
-### Reference behavior
-`Tham khảo thêm` now renders actual approved artifact data:
-- R01 concept entries;
-- R02 formulas with answers, conditions and warnings;
-- R03 family comparison;
-- R04 method decision table;
-- R05 assumption checklist;
-- R06 failure/symptom/diagnosis/repair table;
-- R07 UGV world-route snapshot with reconstruction, residual and norm checks;
-- notation lookup;
-- engineering-transfer guidance.
+It renders only approved source fields:
+- diagram type;
+- purpose;
+- entities/labels as a semantic flow;
+- mathematical constraints.
 
-The old synthetic E211 summary panel is replaced for §1.4 by the approved Reference thesis and an action opening the complete lookup modal.
+No pixels, animation instructions or unsupported geometric claims are taken from the artifact.
 
-### Full View behavior
-`Xem đầy đủ` renders every item in `readingFlow` in source order.
+### Misconception behavior
+The misconception card shows:
+- the approved wrong belief as the headline;
+- the approved correction as the body.
 
-Supported semantic blocks include:
-- lead;
-- definition;
-- formula;
-- comparison;
-- derivation;
-- example;
-- condition;
-- warning;
-- check;
-- generic list/summary blocks.
+Wrong beliefs and corrections are visually distinguished without rewriting their content.
 
-The modal reports the actual section count from the artifact.
+### Retrieval behavior
+The retrieval card shows:
+- approved check ID;
+- approved prompt;
+- misconception target;
+- collapsible expected evidence.
 
-### Normalization behavior
-E241 loads the approved normalization artifact together with Reference and Full View.
+Expected evidence is hidden by default so retrieval remains an active recall step rather than an answer dump.
 
-Formula strings matching a registered alias are rendered using `canonicalText` from the F1–F12 registry.
+### Runtime synchronization
+E242 reads the visible E202 counter to map runtime index 1–22 to source SL01–SL22.
 
-No source artifact is rewritten.
+It observes deck rerenders and reapplies only when the visible slide changes or E202/E211 rebuilds the slide DOM.
 
-### Runtime load order
+The bridge is lesson-scoped and requires the exact §1.4 lesson identity/title context before modifying the deck.
+
+## Runtime load order
 Updated:
 `subjects/math/index.html`
 
-E241 loads immediately after E211, before E224/E234/E235, so:
-- it can distinguish and relabel the E211 formula button;
-- existing formula accuracy and typesetting layers remain available;
-- it does not replace Reader Pro or the formula renderer.
+Relevant order:
+1. E202 renderer
+2. E210 identity
+3. E211 Reader Pro content
+4. E241 Reference/Full View
+5. E242 slideshow richness
+6. E224 formula accuracy
+7. E234 typesetting
+8. E235 fraction alignment
+9. E212 fit
 
-## Pass 18 static verification
+E242 therefore works on the stable Reader Pro DOM while leaving formula-specific layers available afterward.
+
+## Pass 19 static verification
 Verified:
-- exact lessonId and approved versions are checked before artifact use;
-- all three artifact fetches are lazy and cached;
-- missing or mismatched artifacts show an explicit error modal;
-- controls are removed or not created for unrelated lessons;
-- Reference exposes seven approved lookup sections;
-- Full View uses all 11 `readingFlow` sections;
-- Normalization exposes F1–F12 canonical formulas;
-- formula popup remains separate;
+- E242 source path and version are exact;
+- count validation covers 22/8/9/16;
+- SL01–SL22 order is explicitly validated;
+- diagrams use only artifact labels/entities/constraints;
+- retrieval expected evidence is collapsed by default;
+- misconception text comes directly from the approved artifact;
+- no slide is added, removed, merged or reordered;
+- E202 source file is unchanged;
 - E211 source file is unchanged;
 - E234 and E235 are unchanged;
 - E236, E237 and E238 remain disabled;
 - no academic artifact was modified;
-- no global required data source was added.
+- no global required source was added;
+- Codex was not used because the task was a narrow, controlled runtime bridge.
 
 Browser verification:
 `not run`
 
-Pass 18 status:
-`PASS_18_REFERENCE_FULL_VIEW_STATIC_VERIFY_PASS`
+Pass 19 status:
+`PASS_19_SLIDESHOW_RICHNESS_STATIC_VERIFY_PASS`
 
-## Files created in Pass 18
-- `subjects/math/assets/theory_skin/theory-artifact-reader-E241.js`
+## Files created in Pass 19
+- `subjects/math/assets/theory_skin/theory-slideshow-richness-E242.js`
 
-## Files updated in Pass 18
+## Files updated in Pass 19
 - `subjects/math/index.html`
 - `CODEX_STATE.md`
 
-## Pass 18 commits
-- Initial artifact reader: `6526b6430f8b3ed30b207a479224276f8538aeda`
-- Load E241 in Math index: `8012e6c9a190635bdab4312b14aafd2ac357e04b`
-- Expand Reference to all approved sections: `bcaede45a9c69e6a53d656d83b2619de5b9164c8`
+## Pass 19 commits
+- Create E242 richness bridge: `039e802077d64d54c1fa11c1ecc3d1e70f96888a`
+- Load E242 in Math index: `a6f2434a95322d75e0019f514c0f99a645c319b4`
 
-## Browser QA required in Pass 20
-- controls appear only on §1.4;
-- `Tham khảo thêm` opens all seven lookup sections;
-- `Xem đầy đủ` opens FV01–FV11 in order;
-- `Công thức đầy đủ` still opens the existing E211 formula modal;
-- Escape, close button, backdrop and scrolling work;
-- formulas remain compatible with E234/E235;
-- no duplicate controls appear after slide navigation;
-- other lessons retain their previous behavior.
+## Final browser QA required in Pass 20
+1. validate JSON and runtime source availability;
+2. open §1.4 and navigate all 22 slides with buttons and keyboard;
+3. verify the 8 diagram slides, 9 retrieval slides and 16 misconception slides at their exact positions;
+4. verify Reference, Full View and Formula controls independently;
+5. verify overlay import, controlled reload, durable fallback, clear-overlay behavior and other-lesson regression;
+6. correct any browser-only defect, remove temporary test scaffolding, update manifest/state and issue final acceptance only for checks actually run.
 
 ## Next task
-PASS 19/20 — Restore full approved slideshow richness, 6 steps:
-1. inspect the approved slideshow diagram, retrieval and misconception structures;
-2. define safe runtime block mappings without changing mathematics;
-3. expose the 8 diagram specifications at their mapped slides;
-4. expose the 9 retrieval checks at their mapped slides;
-5. expose the 16 misconception intercepts at their mapped slides;
-6. run static navigation/density regression checks and update state without claiming browser acceptance.
+PASS 20/20 — Browser QA and final runtime acceptance, 6 steps.
+
+Codex decision for Pass 20:
+- start with direct high-reasoning inspection and available repository/browser tooling;
+- use Codex only if a real browser automation or multi-file defect requires capabilities not safely available through the current connector;
+- do not call Codex merely to repeat static checks already completed.
