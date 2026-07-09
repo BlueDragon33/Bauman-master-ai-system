@@ -1,0 +1,81 @@
+name: Pass 20 E243 deck verification
+on:
+  push:
+    branches: [main]
+    paths:
+      - .github/workflows/pass20-deck-diagnostic-e243.yml
+permissions:
+  contents: write
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+      - name: Install Chromium
+        run: |
+          mkdir -p /tmp/e243qa && cd /tmp/e243qa
+          npm init -y >/dev/null 2>&1
+          npm install playwright@1.51.1 >/dev/null 2>&1
+          npx playwright install --with-deps chromium >/dev/null
+      - name: Verify deck
+        env:
+          NODE_PATH: /tmp/e243qa/node_modules
+        run: |
+          python3 -m http.server 4173 --directory "$GITHUB_WORKSPACE" >/tmp/e243-http.log 2>&1 &
+          cat > /tmp/e243qa/run.mjs <<'JS'
+          import fs from 'node:fs';
+          import {chromium} from 'playwright';
+          const id='MATH-VN-C01-vector_trong_khong_gian_-L04-basis-span-coordinate-e140';
+          const chapter='MATH-VN-C01-vector_trong_khong_gian_';
+          const out={status:'FAIL',executedAt:new Date().toISOString(),pageErrors:[],consoleErrors:[]};
+          let browser;
+          try{
+            browser=await chromium.launch({headless:true});
+            const page=await browser.newPage({viewport:{width:1440,height:900}});
+            page.on('pageerror',e=>out.pageErrors.push(String(e)));
+            page.on('console',m=>{if(m.type()==='error')out.consoleErrors.push(m.text())});
+            await page.goto('http://127.0.0.1:4173/subjects/math/index.html',{waitUntil:'domcontentloaded',timeout:60000});
+            await page.waitForFunction(()=>window.BAUMAN_MATH_THEORY_E129&&window.BAUMAN_MATH_THEORY_E132&&window.BAUMAN_MATH_E243_PRESENTER_ROUTE_LOCK,{timeout:60000});
+            await page.waitForFunction(()=>window.BAUMAN_MATH_THEORY_E129.selfCheck().sources.content>0,{timeout:60000});
+            await page.evaluate(({id,chapter})=>{
+              const st=(window.__BAUMAN_CORE_API&&window.__BAUMAN_CORE_API.state)||window.__MATH_STATE||(window.__MATH_STATE={});
+              st.view='learning';st.learnTab='theory';st.stage='vn';st.e129Stage='vn';st.e129ChapterId=chapter;st.e129LessonId=id;st.e129Present=false;
+              st.e169Path={moduleId:'pure',courseId:'pure-algebra',chapterId:'c01',activityId:'theory',lessonId:id};
+              window.BAUMAN_MATH_THEORY_E129.render();
+            },{id,chapter});
+            await page.waitForFunction(id=>document.querySelector('[data-current-lesson]')?.getAttribute('data-current-lesson')===id,id,{timeout:30000});
+            await page.click('[data-e129-present]');
+            await page.waitForSelector('.e132-overlay-deck.open',{timeout:30000});
+            await page.waitForTimeout(1500);
+            out.deck=await page.evaluate(()=>({
+              count:document.querySelector('[data-e202-count]')?.textContent||'',
+              mode:document.querySelector('[data-e202-mode]')?.textContent||'',
+              title:document.querySelector('.e132-clean-main h1')?.textContent||'',
+              side:document.querySelector('.e132-clean-side small')?.textContent||'',
+              currentLesson:document.querySelector('[data-current-lesson]')?.getAttribute('data-current-lesson')||'',
+              sourceSlides:document.querySelectorAll('.e129-theory-shell.presenting .e129-slide').length,
+              ghost:document.querySelectorAll('[data-e243-routing-ghost]').length,
+              e202:window.BAUMAN_MATH_THEORY_E132.selfCheck(),
+              e211:window.BAUMAN_MATH_E211_READER_CONTENT&&window.BAUMAN_MATH_E211_READER_CONTENT.selfCheck(),
+              e242:window.BAUMAN_MATH_E242_SLIDESHOW_RICHNESS&&window.BAUMAN_MATH_E242_SLIDESHOW_RICHNESS.selfCheck(),
+              e243:window.BAUMAN_MATH_E243_PRESENTER_ROUTE_LOCK.selfCheck()
+            }));
+            out.status=/01\s*\/\s*22/.test(out.deck.count)&&out.deck.mode==='Reader Pro'&&out.deck.currentLesson===id&&out.deck.ghost===0?'PASS':'FAIL';
+          }catch(e){out.error=String(e&&e.stack||e)}finally{
+            if(browser)await browser.close();
+            fs.writeFileSync(process.env.GITHUB_WORKSPACE+'/subjects/math/PASS20_DECK_DIAGNOSTIC.json',JSON.stringify(out,null,2)+'\n');
+          }
+          JS
+          node /tmp/e243qa/run.mjs
+      - name: Commit result
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add subjects/math/PASS20_DECK_DIAGNOSTIC.json
+          git commit -m "test(math): record E243 deck verification"
+          git pull --rebase origin main
+          git push origin HEAD:main
