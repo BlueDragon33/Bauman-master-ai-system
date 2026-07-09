@@ -1,11 +1,11 @@
 {
   "status": "FAIL",
-  "executedAt": "2026-07-09T01:49:21.798Z",
+  "executedAt": "2026-07-09T02:12:48.954Z",
   "targetLessonId": "MATH-VN-C01-vector_trong_khong_gian_-L04-basis-span-coordinate-e140",
-  "scope": "full static site served from checked-out repository",
+  "scope": "full checked-out static site via Chromium",
   "checks": [
     {
-      "name": "runtime APIs and standalone E129 sources loaded",
+      "name": "runtime APIs and E129 sources",
       "status": "PASS",
       "e129": {
         "ok": true,
@@ -59,9 +59,9 @@
       }
     },
     {
-      "name": "minimum slide contract 15/16/22",
+      "name": "minimum slide contract",
       "status": "PASS",
-      "minContract": {
+      "min": {
         "ok": true,
         "tests": {
           "fifteen": {
@@ -90,25 +90,265 @@
       }
     },
     {
-      "name": "durable target record",
+      "name": "durable source contains one 22-slide target",
       "status": "PASS",
       "durable": {
         "recordCount": 18,
         "targetCount": 1,
         "slides": 22,
-        "title": "§1.4 · Cơ sở, span và tọa độ",
         "source": "durable_json_fallback"
       }
     },
     {
-      "name": "E129 Reader renders 22 slides",
+      "name": "E129 Reader renders target 22 slides",
       "status": "PASS",
-      "slideNodes": 22
+      "reader": {
+        "slides": 22,
+        "current": "MATH-VN-C01-vector_trong_khong_gian_-L04-basis-span-coordinate-e140"
+      }
+    },
+    {
+      "name": "slideshow opens locked to §1.4",
+      "status": "PASS",
+      "opened": {
+        "count": "01 / 22 · 3 cards",
+        "mode": "Reader Pro",
+        "side": "§1.4 · Cơ sở, span và tọa độ",
+        "record": "§1.4 · Cơ sở, span và tọa độ",
+        "current": "MATH-VN-C01-vector_trong_khong_gian_-L04-basis-span-coordinate-e140",
+        "e243": {
+          "ok": true,
+          "release": "E243_PRESENTER_ROUTE_LOCK_R2",
+          "handled": 1,
+          "lastLessonId": "MATH-VN-C01-vector_trong_khong_gian_-L04-basis-span-coordinate-e140",
+          "stabilizationRuns": 3,
+          "noNewRenderer": true,
+          "routingGhostPresent": false
+        }
+      }
+    },
+    {
+      "name": "all 22 slides via buttons and keyboard",
+      "status": "PASS",
+      "positions": [
+        {
+          "i": 1,
+          "count": "01 / 22 · 3 cards",
+          "cards": 3,
+          "diagram": true,
+          "retrieval": false,
+          "misconception": true,
+          "evidenceOpen": null
+        },
+        {
+          "i": 2,
+          "count": "02 / 22 · 3 cards",
+          "cards": 3,
+          "diagram": true,
+          "retrieval": true,
+          "misconception": false,
+          "evidenceOpen": false
+        },
+        {
+          "i": 3,
+          "count": "03 / 22 · 3 cards",
+          "cards": 3,
+          "diagram": true,
+          "retrieval": true,
+          "misconception": true,
+          "evidenceOpen": false
+        },
+        {
+          "i": 4,
+          "count": "04 / 22 · 3 cards",
+          "cards": 3,
+          "diagram": true,
+          "retrieval": false,
+          "misconception": true,
+          "evidenceOpen": null
+        },
+        {
+          "i": 5,
+          "count": "05 / 22 · 3 cards",
+          "cards": 3,
+          "diagram": false,
+          "retrieval": true,
+          "misconception": true,
+          "evidenceOpen": false
+        },
+        {
+          "i": 6,
+          "count": "06 / 22 · 3 cards",
+          "cards": 3,
+          "diagram": true,
+          "retrieval": false,
+          "misconception": true,
+          "evidenceOpen": null
+        },
+        {
+          "i": 7,
+          "count": "07 / 22 · 3 cards",
+          "cards": 3,
+          "diagram": false,
+          "retrieval": false,
+          "misconception": true,
+          "evidenceOpen": null
+        },
+        {
+          "i": 8,
+          "count": "08 / 22 · 3 cards",
+          "cards": 3,
+          "diagram": false,
+          "retrieval": false,
+          "misconception": true,
+          "evidenceOpen": null
+        },
+        {
+          "i": 9,
+          "count": "09 / 22 · 3 cards",
+          "cards": 3,
+          "diagram": false,
+          "retrieval": false,
+          "misconception": false,
+          "evidenceOpen": null
+        },
+        {
+          "i": 10,
+          "count": "10 / 22 · 3 cards",
+          "cards": 3,
+          "diagram": false,
+          "retrieval": true,
+          "misconception": false,
+          "evidenceOpen": false
+        },
+        {
+          "i": 11,
+          "count": "11 / 22 · 3 cards",
+          "cards": 3,
+          "diagram": false,
+          "retrieval": true,
+          "misconception": true,
+          "evidenceOpen": false
+        },
+        {
+          "i": 12,
+          "count": "12 / 22 · 3 cards",
+          "cards": 3,
+          "diagram": false,
+          "retrieval": false,
+          "misconception": true,
+          "evidenceOpen": null
+        },
+        {
+          "i": 13,
+          "count": "13 / 22 · 3 cards",
+          "cards": 3,
+          "diagram": false,
+          "retrieval": false,
+          "misconception": true,
+          "evidenceOpen": null
+        },
+        {
+          "i": 14,
+          "count": "14 / 22 · 3 cards",
+          "cards": 3,
+          "diagram": true,
+          "retrieval": false,
+          "misconception": true,
+          "evidenceOpen": null
+        },
+        {
+          "i": 15,
+          "count": "15 / 22 · 3 cards",
+          "cards": 3,
+          "diagram": false,
+          "retrieval": false,
+          "misconception": false,
+          "evidenceOpen": null
+        },
+        {
+          "i": 16,
+          "count": "16 / 22 · 3 cards",
+          "cards": 3,
+          "diagram": false,
+          "retrieval": false,
+          "misconception": false,
+          "evidenceOpen": null
+        },
+        {
+          "i": 17,
+          "count": "17 / 22 · 3 cards",
+          "cards": 3,
+          "diagram": true,
+          "retrieval": true,
+          "misconception": true,
+          "evidenceOpen": false
+        },
+        {
+          "i": 18,
+          "count": "18 / 22 · 3 cards",
+          "cards": 3,
+          "diagram": false,
+          "retrieval": false,
+          "misconception": true,
+          "evidenceOpen": null
+        },
+        {
+          "i": 19,
+          "count": "19 / 22 · 3 cards",
+          "cards": 3,
+          "diagram": false,
+          "retrieval": true,
+          "misconception": true,
+          "evidenceOpen": false
+        },
+        {
+          "i": 20,
+          "count": "20 / 22 · 3 cards",
+          "cards": 3,
+          "diagram": true,
+          "retrieval": true,
+          "misconception": true,
+          "evidenceOpen": false
+        },
+        {
+          "i": 21,
+          "count": "21 / 22 · 3 cards",
+          "cards": 3,
+          "diagram": false,
+          "retrieval": false,
+          "misconception": true,
+          "evidenceOpen": null
+        },
+        {
+          "i": 22,
+          "count": "22 / 22 · 3 cards",
+          "cards": 3,
+          "diagram": false,
+          "retrieval": true,
+          "misconception": false,
+          "evidenceOpen": false
+        }
+      ]
+    },
+    {
+      "name": "three distinct non-duplicated controls",
+      "status": "FAIL",
+      "message": "assertion failed",
+      "controlCount": {
+        "reference": 1,
+        "full": 1,
+        "formula": 0,
+        "labels": {
+          "reference": "Tham khảo thêm",
+          "full": "Xem đầy đủ"
+        }
+      }
     }
   ],
   "pageErrors": [],
   "consoleErrors": [],
   "failedRequests": [],
   "navigationCount": 1,
-  "error": "page.waitForFunction: Timeout 30000ms exceeded.\n    at /tmp/pass20qa/run.mjs:64:14"
+  "error": "Error: three distinct non-duplicated controls: assertion failed\n    at fail (file:///tmp/pass20final/run.mjs:24:100)\n    at assert (file:///tmp/pass20final/run.mjs:25:47)\n    at file:///tmp/pass20final/run.mjs:106:3"
 }
