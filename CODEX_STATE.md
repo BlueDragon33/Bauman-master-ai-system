@@ -1,8 +1,8 @@
 # CODEX_STATE
 
-Current task: `THEORY_C01_L06_ENGINEERING_CASE_PASS_05`
+Current task: `THEORY_C01_L06_MISCONCEPTION_MAP_PASS_06`
 
-Status: `PASS_04_FORMULA_REGISTRY_COMPLETE`
+Status: `PASS_05_ENGINEERING_CASE_VERIFIED`
 
 Date: 2026-07-09
 Branch: `main`
@@ -80,8 +80,8 @@ Lesson title:
 `§1.6 · Từ vector sang ma trận dữ liệu`
 
 Progress:
-- academic passes complete: `4/14`;
-- academic passes remaining: `10/14`;
+- academic passes complete: `5/14`;
+- academic passes remaining: `9/14`;
 - runtime integration: not started;
 - durable runtime content: unchanged baseline;
 - browser QA: not applicable before runtime integration.
@@ -145,19 +145,29 @@ Progress:
 - Numeric case values remain unlocked until Pass 5.
 - Runtime content, readers, manifest and E235 unchanged.
 
+### Pass 5 · Engineering case
+- Status: `PASS_05_ENGINEERING_CASE_VERIFIED`.
+- Case: `subjects/math/data/theory_case/theory_case_c01_l06.json`.
+- Validation: `subjects/math/THEORY_C01_L06_CASE_VALIDATION.json`.
+- Case version: `CASE_C01_L06_V1_LOCKED`.
+- Shape: `8 x 6`, observations as rows.
+- Observation IDs: `UGV-W01–UGV-W08`; timestamps strictly increasing by 250 ms.
+- Feature schema, order, units, version and checksum locked.
+- Mean: `(8.5, 8.55, 0.03125, 0.02375, 0.01, 12.1625)`.
+- Centered column sums and reconstruction pass at `1e-12`.
+- Four negative variants locked: swapped columns, wrong units, wrong orientation and schema-version mismatch.
+- Scale vector, fault threshold, PCA result and physical mode count remain unlocked/prohibited.
+- Runtime content, readers, manifest and E235 unchanged.
+
 ## Current task requirements
 
-`THEORY_C01_L06_ENGINEERING_CASE_PASS_05`
+`THEORY_C01_L06_MISCONCEPTION_MAP_PASS_06`
 
-Pass 5 must:
-- create one deterministic `UGV_TELEMETRY_8X6` case artifact;
-- lock all eight observation IDs, timestamps and six-feature values;
-- preserve the fixed feature order and units from Pass 2;
-- include one valid reference matrix and explicit invalid variants for swapped columns, wrong units, wrong orientation and schema mismatch;
-- compute and verify row, column, block, transpose, mean and centering invariants;
-- keep missing values absent in the canonical case;
-- define any scale vector only if justified and mark it as case-specific;
-- avoid claiming physical modes, faults, PCA components or universal thresholds;
-- include deterministic code-verification outputs and tolerances;
-- map case invariants to F01–F18, C01–C24 and LO1–LO9;
+Pass 6 must:
+- convert M1–M8 and the four invalid case variants into a structured misconception map;
+- define trigger, wrong inference, correction, evidence and retrieval prompt for each misconception;
+- include shape-correct but schema-wrong examples;
+- block covariance, rank, PCA and fault-diagnosis overclaims;
+- map every misconception to LO1–LO9, C01–C24, F01–F18 and case invariants;
+- distinguish conceptual, notation, API, metadata and engineering failure classes;
 - avoid runtime modification.
