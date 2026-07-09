@@ -1,0 +1,35 @@
+name: Pass 20 lesson scope guard
+on:
+  push:
+    branches: [main]
+    paths:
+      - .github/workflows/pass20-lesson-scope-guard.yml
+permissions:
+  contents: write
+jobs:
+  patch:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Patch empty normalized values
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          files=[
+            Path('subjects/math/assets/theory_skin/theory-artifact-reader-E241.js'),
+            Path('subjects/math/assets/theory_skin/theory-slideshow-richness-E242.js')
+          ]
+          old="return values.some(function(v){var n=norm(v);return n===norm(LESSON_ID)||n.indexOf(wanted)>=0||wanted.indexOf(n)>=0;});"
+          new="return values.some(function(v){var n=norm(v);return !!n&&(n===norm(LESSON_ID)||n.indexOf(wanted)>=0||wanted.indexOf(n)>=0);});"
+          for path in files:
+            text=path.read_text(encoding='utf-8')
+            assert text.count(old)==1,(path,text.count(old))
+            path.write_text(text.replace(old,new,1),encoding='utf-8')
+          PY
+      - name: Commit
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add subjects/math/assets/theory_skin/theory-artifact-reader-E241.js subjects/math/assets/theory_skin/theory-slideshow-richness-E242.js
+          git commit -m "fix(math): guard lesson-scoped theory enhancements"
+          git push origin HEAD:main
