@@ -1,8 +1,8 @@
 # CODEX_STATE
 
-Current task: `THEORY_C01_L06_LEARNING_CONTRACT_PASS_02`
+Current task: `THEORY_C01_L06_SOURCE_MAP_TERMINOLOGY_PASS_03`
 
-Status: `PASS_01_BASELINE_AUDIT_COMPLETE`
+Status: `PASS_02_LEARNING_CONTRACT_COMPLETE`
 
 Date: 2026-07-09
 Branch: `main`
@@ -80,8 +80,8 @@ Lesson title:
 `§1.6 · Từ vector sang ma trận dữ liệu`
 
 Progress:
-- academic passes complete: `1/14`;
-- academic passes remaining: `13/14`;
+- academic passes complete: `2/14`;
+- academic passes remaining: `12/14`;
 - runtime integration: not started;
 - durable runtime content: unchanged baseline;
 - browser QA: not applicable before runtime integration.
@@ -100,25 +100,34 @@ Progress:
 - Exact target-ID matches outside durable content: none.
 - Durable content, runtime readers, manifest and E235 unchanged.
 
-Baseline risks locked for Pass 2:
-- rows-as-samples versus columns-as-samples can transpose every downstream formula;
-- shape does not prove semantic compatibility;
-- stacking requires compatible dimensions, schema, units and acquisition order;
-- data matrices are not automatically centred, standardized, full-rank or covariance-ready;
-- batch, time-window, channel and trajectory orientations must remain distinct;
-- PCA, SVD and rank are downstream bridges, not substitutes for the §1.6 core.
+### Pass 2 · Learning contract
+- Status: `PASS_02_LEARNING_CONTRACT_COMPLETE`.
+- File: `subjects/math/THEORY_C01_L06_LEARNING_CONTRACT.md`.
+- Prerequisite gates: `P1–P4` locked.
+- Learning outcomes: `LO1–LO9` locked.
+- Mastery evidence groups: `E1–E8` locked.
+- Misconception intercepts: `M1–M8` locked.
+- Canonical convention: `X in R^(m x n)`, rows are observations, columns are features.
+- Alternative column-observation convention is allowed only when declared and translated explicitly.
+- Fixed case: `UGV_TELEMETRY_8X6`.
+- Fixed raw shape: `X_raw in R^(8 x 6)`.
+- Locked feature order: left wheel speed, right wheel speed, longitudinal acceleration, lateral acceleration, yaw rate, battery current.
+- Raw, centred and scaled matrices must use distinct notation.
+- Gram, covariance, rank, SVD and PCA claims remain assumption-gated or deferred.
+- Numeric values, centering mean, scale vector and thresholds remain unlocked until Pass 5.
+- Runtime content, readers, manifest and E235 unchanged.
 
 ## Current task requirements
 
-`THEORY_C01_L06_LEARNING_CONTRACT_PASS_02`
+`THEORY_C01_L06_SOURCE_MAP_TERMINOLOGY_PASS_03`
 
-Pass 2 must:
-- lock prerequisite gates from §1.1–§1.5;
-- define measurable learning outcomes before slide expansion;
-- lock one canonical data contract for observations, features, channels, units and ordering;
-- distinguish row-sample and column-sample conventions and state the project convention explicitly;
-- separate vector stacking, indexing, slicing, transpose, batch and time-window interpretations;
-- define mastery evidence and prohibited shortcuts;
-- select one deterministic engineering context for later case development;
-- keep PCA/SVD/rank as downstream bridges rather than replacing the §1.6 core;
+Pass 3 must:
+- map every learning-contract claim cluster to authoritative algebra, array and preprocessing sources;
+- distinguish project conventions from external mathematical or software conventions;
+- define a canonical Vietnamese-English-Russian terminology table where needed for Bauman study;
+- lock notation for observation vectors, data matrices, rows, columns, entries, slices, transpose and derived matrices;
+- document how NumPy stacking axes map to the project row-observation convention;
+- map feature-order and preprocessing consistency requirements to official software documentation;
+- identify unsupported legacy claims that must not survive into the core artifact;
+- preserve the fixed case and scope boundaries;
 - avoid runtime modification.
