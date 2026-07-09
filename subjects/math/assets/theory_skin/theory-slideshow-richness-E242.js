@@ -151,9 +151,26 @@
     if(ret)ret.removeAttribute('data-e242-retrieval');
   }
 
+  function clearOutsideTarget(d){
+    if(!d)return;
+    d.removeAttribute('data-e242-richness');
+    var main=d.querySelector('.e132-clean-main');
+    if(main)main.removeAttribute('data-e242-slide');
+    Array.prototype.slice.call(d.querySelectorAll('[data-e242-diagram],[data-e242-retrieval],[data-e242-misconception]')).forEach(function(n){
+      n.removeAttribute('data-e242-diagram');
+      n.removeAttribute('data-e242-retrieval');
+      n.removeAttribute('data-e242-misconception');
+    });
+    Array.prototype.slice.call(d.querySelectorAll('.e242-wrong,.e242-correction')).forEach(function(n){n.classList.remove('e242-wrong','e242-correction');});
+    Array.prototype.slice.call(d.querySelectorAll('.e242-evidence')).forEach(function(n){n.remove();});
+    lastKey='';
+    try{window.BAUMAN_MATH_E211_READER_CONTENT&&window.BAUMAN_MATH_E211_READER_CONTENT.apply&&window.BAUMAN_MATH_E211_READER_CONTENT.apply();}catch(_){ }
+  }
+
   function apply(){
     var d=deck();
-    if(!d||!d.classList.contains('open')||!currentLessonMatches())return false;
+    if(!d||!d.classList.contains('open'))return false;
+    if(!currentLessonMatches()){clearOutsideTarget(d);return false;}
     if(!artifact){load().then(schedule).catch(function(){});return false;}
     var index=currentIndex(d), slide=arr(artifact.slides)[index];
     if(!slide)return false;
