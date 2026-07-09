@@ -1,12 +1,114 @@
 {
   "status": "FAIL",
-  "executedAt": "2026-07-09T01:46:13.824Z",
+  "executedAt": "2026-07-09T01:49:21.798Z",
   "targetLessonId": "MATH-VN-C01-vector_trong_khong_gian_-L04-basis-span-coordinate-e140",
   "scope": "full static site served from checked-out repository",
-  "checks": [],
+  "checks": [
+    {
+      "name": "runtime APIs and standalone E129 sources loaded",
+      "status": "PASS",
+      "e129": {
+        "ok": true,
+        "release": "E129_THEORY_CONTENT_IMPORTER",
+        "contractDoc": "subjects/math/THEORY_TAB_CONTRACT_E129.md",
+        "adapterMarked": true,
+        "sources": {
+          "frame": 112,
+          "content": 18,
+          "legacy": 347,
+          "overlay": false,
+          "frameSource": "theory_lecture_frame",
+          "contentSource": "theory_lecture_content",
+          "legacySource": "lessons"
+        },
+        "primaryFrameSource": "theory_lecture_frame",
+        "primaryContentSource": "theory_lecture_content",
+        "legacySource": "lessons",
+        "renderReplacement": true,
+        "importerTarget": "theory_lecture_content",
+        "legacyImporterSuppressedOnTheoryStorage": true,
+        "frameOnlyRenderable": true,
+        "note": "E129 shell/importer is active. E126/E128 remain compatibility layers outside E129 Theory storage.",
+        "minSlideContract": true,
+        "minimumSlideCount": 16,
+        "maximumSlideCount": null,
+        "countTests": {
+          "fifteen": {
+            "ok": false,
+            "count": 15,
+            "minimum": 16,
+            "maximum": null,
+            "warning": "Bài giảng cần tối thiểu 16 slide; hiện có 15."
+          },
+          "sixteen": {
+            "ok": true,
+            "count": 16,
+            "minimum": 16,
+            "maximum": null,
+            "warning": ""
+          },
+          "twentyTwo": {
+            "ok": true,
+            "count": 22,
+            "minimum": 16,
+            "maximum": null,
+            "warning": ""
+          }
+        },
+        "releasePatch": "E239_MINIMUM_16_SLIDES_NOT_MAXIMUM"
+      }
+    },
+    {
+      "name": "minimum slide contract 15/16/22",
+      "status": "PASS",
+      "minContract": {
+        "ok": true,
+        "tests": {
+          "fifteen": {
+            "ok": false,
+            "count": 15,
+            "minimum": 16,
+            "maximum": null,
+            "warning": "Bài giảng cần tối thiểu 16 slide; hiện có 15."
+          },
+          "sixteen": {
+            "ok": true,
+            "count": 16,
+            "minimum": 16,
+            "maximum": null,
+            "warning": ""
+          },
+          "twentyTwo": {
+            "ok": true,
+            "count": 22,
+            "minimum": 16,
+            "maximum": null,
+            "warning": ""
+          }
+        },
+        "apiPatched": true
+      }
+    },
+    {
+      "name": "durable target record",
+      "status": "PASS",
+      "durable": {
+        "recordCount": 18,
+        "targetCount": 1,
+        "slides": 22,
+        "title": "§1.4 · Cơ sở, span và tọa độ",
+        "source": "durable_json_fallback"
+      }
+    },
+    {
+      "name": "E129 Reader renders 22 slides",
+      "status": "PASS",
+      "slideNodes": 22
+    }
+  ],
   "pageErrors": [],
   "consoleErrors": [],
   "failedRequests": [],
   "navigationCount": 1,
-  "error": "page.waitForFunction: Timeout 60000ms exceeded.\n    at /tmp/pass20qa/run.mjs:38:14"
+  "error": "page.waitForFunction: Timeout 30000ms exceeded.\n    at /tmp/pass20qa/run.mjs:64:14"
 }
