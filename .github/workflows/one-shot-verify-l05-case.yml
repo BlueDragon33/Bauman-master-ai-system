@@ -1,0 +1,181 @@
+name: One-shot §1.5 case verification
+on:
+  push:
+    branches: [main]
+    paths:
+      - .github/workflows/one-shot-verify-l05-case.yml
+permissions:
+  contents: write
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Install NumPy
+        run: python -m pip install --quiet numpy
+      - name: Verify locked case and update state
+        run: |
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          import numpy as np
+
+          case_path=Path('subjects/math/data/theory_case/theory_case_c01_l05.json')
+          case=json.loads(case_path.read_text(encoding='utf-8'))
+          assert case['version']=='CASE_C01_L05_V1_LOCKED'
+          Q=np.array(case['orthonormalBasis']['matrixByRows'],dtype=float)
+          P=np.array(case['orthogonalProjector']['value'],dtype=float)
+          Pc=np.array(case['orthogonalProjector']['complementProjector'],dtype=float)
+          B=np.array(case['generalBasisEquivalent']['matrixByRows'],dtype=float)
+          atol=case['verificationTolerances']['projectorAtol']
+          assert Q.shape==(4,2)
+          assert np.allclose(Q.T@Q,np.eye(2),atol=atol)
+          assert np.allclose(P,Q@Q.T,atol=atol)
+          assert np.allclose(P.T,P,atol=atol)
+          assert np.allclose(P@P,P,atol=atol)
+          assert np.allclose(Pc,np.eye(4)-P,atol=atol)
+          P_general=B@np.linalg.inv(B.T@B)@B.T
+          assert np.allclose(P_general,P,atol=atol)
+
+          mu=np.array(case['mean']['value'],dtype=float)
+          for key in ['normalSample','mismatchSample']:
+            item=case[key]
+            x=np.array(item['raw'],dtype=float)
+            y=np.array(item['centered'],dtype=float)
+            z=np.array(item['orthonormalCoordinates'],dtype=float)
+            yhat=np.array(item['projected'],dtype=float)
+            r=np.array(item['residual'],dtype=float)
+            assert np.allclose(x-mu,y,atol=1e-12)
+            assert np.allclose(Q.T@y,z,atol=1e-12)
+            assert np.allclose(P@y,yhat,atol=1e-12)
+            assert np.allclose(y-yhat,r,atol=1e-12)
+            assert np.allclose(Q.T@r,np.zeros(2),atol=1e-12)
+            assert np.isclose(np.linalg.norm(r),item['score'],atol=1e-12)
+
+          normal=case['normalSample']
+          c=np.linalg.solve(B.T@B,B.T@np.array(normal['centered'],dtype=float))
+          assert np.allclose(c,np.array(normal['generalBasisCoordinates'],dtype=float),atol=1e-12)
+
+          cal=case['calibrationMatrix']
+          X=np.array(cal['rows'],dtype=float)
+          assert X.shape==(8,4)
+          assert np.allclose(X.mean(axis=0),np.zeros(4),atol=1e-12)
+          s=np.linalg.svd(X,full_matrices=False,compute_uv=False)
+          assert np.allclose(s,np.array(cal['singularValues'],dtype=float),atol=5e-9)
+          tau=cal['numericalRankContract']['tolerance']
+          assert int(np.sum(s>tau))==cal['numericalRankContract']['rank']==2
+          assert np.linalg.matrix_rank(X)==cal['exactFloatingPointRank']==4
+          rho=float(np.sum(s[:2]**2)/np.sum(s**2))
+          assert np.isclose(rho,cal['retainedEnergyK2'],atol=5e-10)
+
+          state_path=Path('CODEX_STATE.md')
+          state=state_path.read_text(encoding='utf-8')
+          state=state.replace('Current task: `THEORY_C01_L05_LEARNING_CONTRACT_PASS_02`','Current task: `THEORY_C01_L05_MISCONCEPTION_MAP_PASS_06`',1)
+          state=state.replace('Status: `PASS_01_BASELINE_AUDIT_COMPLETE`','Status: `PASS_05_ENGINEERING_CASE_CONTRACT_COMPLETE`',1)
+          state=state.replace('- completed: `1/14 passes`;','- completed: `5/14 passes`;',1)
+          state=state.replace('- remaining: `13/14 passes`;','- remaining: `9/14 passes`;',1)
+          old='''### Next task
+`THEORY_C01_L05_LEARNING_CONTRACT_PASS_02`
+
+Pass 2 must define measurable learning outcomes, prerequisite gates, explicit deferrals, mastery evidence and the fixed engineering-case boundary. Runtime files must remain unchanged.
+'''
+          new='''### Pass 2 result
+Status:
+`PASS_02_LEARNING_CONTRACT_COMPLETE`
+
+Created:
+`subjects/math/THEORY_C01_L05_LEARNING_CONTRACT.md`
+
+Locked:
+- prerequisite gates P1–P4;
+- learning outcomes LO1–LO8;
+- mastery evidence E1–E6;
+- fixed case boundary `ROTATING_MACHINE_4CH_2MODE`;
+- explicit required, preview and deferred scope.
+
+Commit:
+`732764511b8b5bdf8e21c8962eedfeac12a40e13`
+
+### Pass 3 result
+Status:
+`PASS_03_SOURCE_MAP_TERMINOLOGY_COMPLETE`
+
+Created:
+`subjects/math/THEORY_C01_L05_SOURCE_MAP_TERMINOLOGY.md`
+
+Locked:
+- source anchors S1–S5;
+- claim map C01–C12;
+- terminology T01–T22;
+- symbol contract and usage rules U1–U8;
+- Vietnamese–English–Russian glossary.
+
+Commit:
+`9af7bd0477d507c2c73cf78323704c56a2111ff2`
+
+### Pass 4 result
+Status:
+`PASS_04_FORMULA_REGISTRY_COMPLETE`
+
+Created:
+`subjects/math/THEORY_C01_L05_FORMULA_REGISTRY.md`
+
+Locked:
+- canonical formulas F01–F16;
+- shape, assumption and failure-mode contracts;
+- projector rules for orthonormal and general bases;
+- numerical-rank tolerance language;
+- SVD and retained-energy preview boundaries.
+
+Commit:
+`dd09523f5cb419a8384b41797b2c6f1b8d6e969e`
+
+### Pass 5 result
+Status:
+`PASS_05_ENGINEERING_CASE_CONTRACT_COMPLETE`
+
+Created:
+`subjects/math/data/theory_case/theory_case_c01_l05.json`
+
+Locked and machine-verified:
+- four-channel mean and feature order;
+- orthonormal basis Q and complement basis R;
+- projector P and complement projector;
+- equivalent non-orthonormal basis B;
+- normal and mismatch samples;
+- scores `0.0316227766016838` and `0.3535533905932738`;
+- demonstration threshold `0.1`, teaching-case only;
+- centred calibration matrix `8 x 4`;
+- singular values `[1.44955817, 0.77504298, 0.03505112, 0.00330126]`;
+- exact floating-point rank `4`;
+- numerical rank `2` under `tau=0.05`;
+- retained energy for k=2 approximately `99.9541%`;
+- all orthogonality, projection, reconstruction and SVD checks pass.
+
+Commit:
+`3d545610bdd3dcdf8bb29c0e2f6742feef7aed0f`
+
+### Next task
+`THEORY_C01_L05_MISCONCEPTION_MAP_PASS_06`
+
+Pass 6 must map conceptual, algebraic, numerical, data-contract and engineering interpretation failures before the core lesson architecture is written. Runtime files remain unchanged.
+'''
+          if old not in state:
+            raise SystemExit('CODEX_STATE next-task block not found')
+          state_path.write_text(state.replace(old,new,1),encoding='utf-8')
+          print('CASE_VERIFY_PASS')
+          PY
+          git rm .github/workflows/one-shot-verify-l05-case.yml
+      - name: Commit and push
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add CODEX_STATE.md
+          git commit -m "docs(math): verify lesson 1.5 case and advance state"
+          git pull --rebase origin main
+          git push origin HEAD:main
