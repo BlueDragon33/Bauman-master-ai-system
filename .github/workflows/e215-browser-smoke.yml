@@ -1,0 +1,62 @@
+name: E215 Reader Pro browser smoke
+
+on:
+  pull_request:
+    branches: [main]
+    paths:
+      - 'subjects/math/**'
+      - '.github/scripts/e215-browser-smoke-v2.mjs'
+      - '.github/workflows/e215-browser-smoke.yml'
+  workflow_dispatch:
+
+jobs:
+  smoke:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - name: Checkout narrow runtime scope
+        uses: actions/checkout@v4
+        with:
+          sparse-checkout: |
+            subjects/math
+            .github/scripts/e215-browser-smoke-v2.mjs
+          sparse-checkout-cone-mode: false
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Install Playwright Chromium
+        run: |
+          npm init -y
+          npm install --no-save playwright@1.53.2
+          npx playwright install --with-deps chromium
+
+      - name: Serve math module
+        run: |
+          python3 -m http.server 4173 --bind 127.0.0.1 > /tmp/e215-http.log 2>&1 &
+          echo $! > /tmp/e215-http.pid
+          for i in {1..30}; do
+            curl -fsS http://127.0.0.1:4173/subjects/math/index.html >/dev/null && exit 0
+            sleep 1
+          done
+          cat /tmp/e215-http.log
+          exit 1
+
+      - name: Run browser smoke
+        run: node .github/scripts/e215-browser-smoke-v2.mjs
+
+      - name: Upload evidence
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: e215-browser-smoke-evidence
+          path: |
+            e215-browser-smoke-report.json
+            e215-reader-pro-1280.png
+            e215-reader-pro-900.png
+            e215-reader-pro-1280.html
+            e215-reader-pro-900.html
+            /tmp/e215-http.log
+          if-no-files-found: warn
