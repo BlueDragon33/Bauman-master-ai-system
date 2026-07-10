@@ -184,3 +184,32 @@ Pass 7 must:
 - defer missing/outlier policy, scaling choice, rank interpretation, SVD and PCA;
 - produce source sections that can later expand to at least 16 slides without compression;
 - avoid runtime modification.
+
+## Maintenance patch · E215 Reader Pro extension panel and fit rules
+
+Date: 2026-07-10
+Status: `PATCHED_NEEDS_LOCAL_BROWSER_SMOKE`
+
+Scope:
+- inspected only `CODEX_STATE.md`, `subjects/math/index.html`, E211 reader content and E212 reader fit, plus the already-loaded formula layers needed to trace the duplicated relation sign;
+- preserved the active §1.6 Pass 07 task and all accepted §1.4/§1.5 records;
+- did not create a slideshow engine and did not enable E190, E191, E192, E193 or E195.
+
+Patched files:
+- `subjects/math/assets/theory_skin/theory-slideshow-reader-fit-E212.js`;
+- `subjects/math/index.html` cache version for E212.
+
+Behavior locked by the patch:
+- right-side Reader Pro panel title is forced to `Nội dung mở rộng`;
+- panel content is checked against the three lower cards and replaced with a non-summary extension note when it duplicates them or contains `Diễn giải kỹ thuật`, `Câu hỏi tự kiểm` or `Câu hỏi đúng cần đặt`;
+- light content receives larger type and stronger weight;
+- dense content receives controlled smaller type and an internal body scrollbar;
+- the panel keeps a fixed title row and scrollable content row, preventing overflow without removing other boxes;
+- responsive layout keeps the extension panel present instead of hiding it below 1100 px;
+- duplicated relation operators are sanitized after formula typesetting, including `≥=`, `≤=`, `≠=`, `>==`, `<==` and analogous repeated-equals forms;
+- E235 was not modified.
+
+Verification completed:
+- JavaScript syntax check: PASS using `node --check` on the patched E212 file;
+- cache-bust reference updated to `theory-slideshow-reader-fit-E212.js?v=220`;
+- browser smoke test: not run in this connector session.
