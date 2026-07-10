@@ -90,13 +90,15 @@ for (const width of [1280, 900]) {
 
     const layout = await page.evaluate(() => {
       const deck = document.querySelector('.e132-overlay-deck.open.e211-reader-pro');
+      const visual = deck.querySelector('.e202-visual');
       const panel = deck.querySelector('.e211-extension-panel');
       const body = panel.querySelector('.e211-summary-lead, p');
       const title = panel.querySelector('.e211-panel-title, h3');
       body.textContent = ('Nội dung mở rộng dài để kiểm tra cuộn nội bộ, trường hợp biên, đơn vị, quy ước và đường lan truyền sai số. ').repeat(90);
       window.BAUMAN_MATH_E212_READER_FIT.apply();
-      const ps = getComputedStyle(panel), bs = getComputedStyle(body), tr = title.getBoundingClientRect(), pr = panel.getBoundingClientRect();
-      return { density: panel.getAttribute('data-e212-density'), panelOverflow: ps.overflow, bodyOverflowY: bs.overflowY, bodyScrollable: body.scrollHeight > body.clientHeight, titleVisible: tr.height > 0 && tr.top >= pr.top - 1, panelInsideVisual: panel.scrollHeight <= panel.clientHeight + 1, visualDisplay: getComputedStyle(deck.querySelector('.e202-visual')).display };
+      const ps = getComputedStyle(panel), bs = getComputedStyle(body), tr = title.getBoundingClientRect(), pr = panel.getBoundingClientRect(), vr = visual.getBoundingClientRect();
+      const contained = pr.top >= vr.top - 1 && pr.left >= vr.left - 1 && pr.right <= vr.right + 1 && pr.bottom <= vr.bottom + 1;
+      return { density: panel.getAttribute('data-e212-density'), panelOverflow: ps.overflow, bodyOverflowY: bs.overflowY, bodyScrollable: body.scrollHeight > body.clientHeight, titleVisible: tr.height > 0 && tr.top >= pr.top - 1, panelInsideVisual: contained, panelRect: {top:pr.top,left:pr.left,right:pr.right,bottom:pr.bottom}, visualRect: {top:vr.top,left:vr.left,right:vr.right,bottom:vr.bottom}, visualDisplay: getComputedStyle(visual).display };
     });
 
     const relBlob = `${relation.raw} ${relation.text} ${relation.self}`;
@@ -113,6 +115,7 @@ for (const width of [1280, 900]) {
       overflowDensity: layout.density === 'overflow',
       panelOverflowHidden: layout.panelOverflow === 'hidden',
       bodyScrollEnabled: ['auto', 'scroll'].includes(layout.bodyOverflowY),
+      bodyActuallyScrollable: layout.bodyScrollable,
       titleVisible: layout.titleVisible,
       panelInsideVisual: layout.panelInsideVisual,
       responsivePanelVisible: layout.visualDisplay !== 'none'
