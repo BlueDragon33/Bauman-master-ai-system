@@ -188,28 +188,39 @@ Pass 7 must:
 ## Maintenance patch · E215 Reader Pro extension panel and fit rules
 
 Date: 2026-07-10
-Status: `PATCHED_NEEDS_LOCAL_BROWSER_SMOKE`
+Status: `BROWSER_SMOKE_PASS_CURRENT_HEAD`
 
 Scope:
-- inspected only `CODEX_STATE.md`, `subjects/math/index.html`, E211 reader content and E212 reader fit, plus the already-loaded formula layers needed to trace the duplicated relation sign;
+- inspected only `CODEX_STATE.md`, `subjects/math/index.html`, E211 reader content, E212 reader fit and E242 slideshow richness, plus the loaded formula layers needed to trace duplicated relation signs;
 - preserved the active §1.6 Pass 07 task and all accepted §1.4/§1.5 records;
 - did not create a slideshow engine and did not enable E190, E191, E192, E193 or E195.
 
 Patched files:
 - `subjects/math/assets/theory_skin/theory-slideshow-reader-fit-E212.js`;
-- `subjects/math/index.html` cache version for E212.
+- `subjects/math/assets/theory_skin/theory-slideshow-richness-E242.js`;
+- `subjects/math/index.html` cache versions for E212 and E242.
 
 Behavior locked by the patch:
 - right-side Reader Pro panel title is forced to `Nội dung mở rộng`;
 - panel content is checked against the three lower cards and replaced with a non-summary extension note when it duplicates them or contains `Diễn giải kỹ thuật`, `Câu hỏi tự kiểm` or `Câu hỏi đúng cần đặt`;
 - light content receives larger type and stronger weight;
 - dense content receives controlled smaller type and an internal body scrollbar;
-- the panel keeps a fixed title row and scrollable content row, preventing overflow without removing other boxes;
+- the panel keeps a fixed title row and scrollable content row, preventing visual overflow without removing other boxes;
 - responsive layout keeps the extension panel present instead of hiding it below 1100 px;
 - duplicated relation operators are sanitized after formula typesetting, including `≥=`, `≤=`, `≠=`, `>==`, `<==` and analogous repeated-equals forms;
+- E242 semantic diagrams are embedded inside the extension panel's scrollable body instead of replacing the entire `.e202-visual` panel;
+- E242 diagram, misconception and retrieval richness remains registered and verifiable;
 - E235 was not modified.
 
-Verification completed:
-- JavaScript syntax check: PASS using `node --check` on the patched E212 file;
-- cache-bust reference updated to `theory-slideshow-reader-fit-E212.js?v=220`;
-- browser smoke test: not run in this connector session.
+Browser verification:
+- JavaScript syntax check: PASS for the patched E212 file;
+- Playwright Chromium workflow: `E215 Reader Pro browser smoke`, run `29082358198`, conclusion `success`;
+- tested runtime URL: `http://127.0.0.1:4173/subjects/math/index.html`;
+- tested viewports: `1280 x 720` and `900 x 720`;
+- both viewports: panel title PASS, duplicate guard PASS, forbidden-label guard PASS, density rules PASS, internal scrolling PASS, geometric containment PASS and responsive visibility PASS;
+- relation repair PASS: `>==`, `<==`, `≥=`, `≤=` and `≠=` no longer remain in rendered/raw probes;
+- E242 richness PASS with `22` slides, `8` diagrams, `9` retrieval checks and `16` misconception intercepts for the tested §1.4 package;
+- console errors: `0`; page errors: `0`; local HTTP errors: `0`;
+- tested runtime fix commits: E242 `2f4b3d761b5446a4d348a642a005177954a157d6`, index cache `d3fb88643183520520df70f22e3745b861a5e268`;
+- evidence artifact: `e215-browser-smoke-evidence`, artifact ID `8223302254`, digest `sha256:424d069d4fb391c153fa011c887013dd29fc564730794f3cbf72070ed4aff656`;
+- final state: `E215_BROWSER_SMOKE_ACCEPTED_CURRENT_HEAD`.
