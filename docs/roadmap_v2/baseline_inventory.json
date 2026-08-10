@@ -1,0 +1,62 @@
+{
+  "schema": "BAUMAN_ROADMAP_V2_BASELINE_INVENTORY_V1",
+  "status": "PASS",
+  "repository": "BlueDragon33/Bauman-master-ai-system",
+  "ref": "main",
+  "commit": "e383912354673bdce7a0059d6b9a23799d74e689",
+  "historicalLabels": {
+    "E15": {
+      "kind": "handoff_label_only",
+      "physicalSourceFound": false,
+      "mustNotBeUsedAsGitRef": true
+    }
+  },
+  "physicalCounts": {
+    "chapterFrameRecords": 56,
+    "lessonRecords": 347,
+    "uniqueLessonIds": 347,
+    "lessonChapterIds": 41,
+    "baseSlides": 5552,
+    "durableTheoryOverlayRecords": 18,
+    "standaloneFormulaRecords": 0,
+    "standaloneExerciseRecords": 0,
+    "standaloneSimulationRecords": 0
+  },
+  "roadmapLogicalMappings": {
+    "MATH-L2-C07": {
+      "title": "Covariance, correlation and PCA",
+      "mappingType": "composite",
+      "legacyRefs": [
+        "MATH-VN-PS-C05-L05",
+        "MATH-PREP-LA2-C10-L05",
+        "MATH-PREP-LA2-C10-L06",
+        "MATH-PREP-LA2-C10-L07",
+        "MATH-PREP-PS2-C15-L06"
+      ],
+      "legacyPhysicalChapterNumber": null
+    }
+  },
+  "fingerprints": {
+    "subjects/math/index.html": "f3f98f53459d4ce46080ffdf7eebb6c32fcda3ef",
+    "subjects/math/subject-manifest.json": "776827795cb3dbc7f81dfb6cf4f869d9c1dd0029",
+    "subjects/math/data/discipline_spine.json": "2de04bb0c29085254a44d611b6e4ea03223879c6",
+    "subjects/math/data/chapter_spine.json": "db067682cce0389939048d5aabcaef38c6bad0e6",
+    "subjects/math/data/curriculum.json": "02965e126b1b0661032dcb6a9c91428f6148c24b",
+    "subjects/math/data/lessons.json": "caacdf2b0813c1300af215608c4222ca61669184",
+    "subjects/math/data/theory_lecture_content.json": "0a7c49c25c0546411717dc5c39308c0c71d2a2e1",
+    "subjects/math/data/formulas.json": "0637a088a01e8ddab3bf3fa98dbe804cbde1a0dc",
+    "subjects/math/data/exercises.json": "0637a088a01e8ddab3bf3fa98dbe804cbde1a0dc",
+    "subjects/math/data/simulations.json": "0637a088a01e8ddab3bf3fa98dbe804cbde1a0dc",
+    "subjects/math/data/tests.json": "9d048963479d0ea6e77d6b13c5fb555f68eaf2ca",
+    "subjects/math/assets/theory_skin/theory-formula-fraction-align-E235.js": "0a041b808473309f2bf58091ae690a7298b7c9eb",
+    "subjects/math/assets/theory_skin/theory-artifact-authoritative-route-E245.js": "1a357ca7c5477b4b9d0b2e6e78c45f2febdac062",
+    "subjects/math/assets/theory_skin/theory-slideshow-richness-E242.js": "8d07a9d15db08236ed1db39cc644ec02e5f3c281",
+    "subjects/math/assets/theory_skin/theory-slideshow-reader-fit-E212.js": "5b04e0bc978b0c90a86e2739301f6e895396e84f"
+  },
+  "protectedPolicy": {
+    "rewriteLegacyIds": false,
+    "roadmapNamespace": "roadmap_v2",
+    "requireBlobComparisonBeforeProtectedWrite": true,
+    "manifestCountIsContentEvidence": false
+  }
+}
