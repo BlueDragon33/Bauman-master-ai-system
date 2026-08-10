@@ -1,0 +1,3994 @@
+{
+  "schema": "BAUMAN_ROADMAP_V2_REGISTRY_V1",
+  "version": "2.0.0-l19-b74",
+  "status": "PASS_B74",
+  "source": {
+    "path": "Bauman_Roadmap_V2_Syllabus_Luot18.md",
+    "sha256": "804aca93163159dc28525c770c602f94284d3591b2d8d6ae7446955685a5ecd9",
+    "correctedBy": "L19_B73_BASELINE_INVENTORY"
+  },
+  "baselineRef": "main@e383912354673bdce7a0059d6b9a23799d74e689",
+  "namespace": "roadmap_v2",
+  "priorityWeights": {
+    "masterRelevance": 0.35,
+    "knowledgeGap": 0.3,
+    "prerequisiteUrgency": 0.2,
+    "forgettingRisk": 0.15
+  },
+  "masteryStates": [
+    "Chưa học",
+    "Đang học",
+    "Đạt prerequisite",
+    "Master-ready",
+    "Cần ôn",
+    "Gap"
+  ],
+  "subjects": [
+    {
+      "id": "01",
+      "title": "TIẾNG NGA",
+      "order": 1
+    },
+    {
+      "id": "02",
+      "title": "TOÁN AI & DATA",
+      "order": 2
+    },
+    {
+      "id": "03",
+      "title": "PYTHON & OOP",
+      "order": 3
+    },
+    {
+      "id": "04",
+      "title": "ALGORITHMS & DATA STRUCTURES",
+      "order": 4
+    },
+    {
+      "id": "05",
+      "title": "DATABASE & INFORMATION SYSTEMS",
+      "order": 5
+    },
+    {
+      "id": "06",
+      "title": "LINUX, OS & COMPUTER NETWORKS",
+      "order": 6
+    },
+    {
+      "id": "07",
+      "title": "OPERATIONS RESEARCH & SYSTEM MODELING",
+      "order": 7
+    },
+    {
+      "id": "08",
+      "title": "MACHINE LEARNING & RESEARCH",
+      "order": 8
+    },
+    {
+      "id": "09",
+      "title": "CURRENT BAUMAN SUBJECTS — MODULE ĐỘNG",
+      "order": 9
+    },
+    {
+      "id": "10",
+      "title": "NIR/THESIS",
+      "order": 10
+    }
+  ],
+  "nodes": [
+    {
+      "id": "RU-R0-C01",
+      "subjectId": "01",
+      "level": "R0",
+      "order": 1,
+      "title": "Chữ, âm và nhịp tiếng Nga",
+      "annotations": [],
+      "lessonMode": "numbered",
+      "lessons": [
+        {
+          "id": "RU-R0-C01-L01",
+          "code": "L01",
+          "order": 1,
+          "title": "bảng chữ cái và chữ viết"
+        },
+        {
+          "id": "RU-R0-C01-L02",
+          "code": "L02",
+          "order": 2,
+          "title": "trọng âm, nguyên âm giảm âm"
+        },
+        {
+          "id": "RU-R0-C01-L03",
+          "code": "L03",
+          "order": 3,
+          "title": "phụ âm cứng/mềm, hữu thanh/vô thanh"
+        },
+        {
+          "id": "RU-R0-C01-L04",
+          "code": "L04",
+          "order": 4,
+          "title": "số, ký hiệu toán và cách đọc công thức đơn giản."
+        }
+      ],
+      "dynamicTemplates": [],
+      "prerequisiteText": "không.",
+      "learningContract": {
+        "theory": "quan hệ chữ–âm; trọng âm từ; quy tắc đọc trọng yếu; ký hiệu khoa học.",
+        "exercises": "nhận diện âm, chép chính tả ngắn, ghép chữ–âm, đọc 20 cụm kỹ thuật.",
+        "applications": "đọc tên phòng, thiết bị, biến số, đơn vị đo và nhãn trong giáo trình.",
+        "simulationLab": "ghi âm–phát lại–so sánh; shadowing theo tốc độ 0.75×/1×; đánh dấu phổ lỗi.",
+        "assessment": "đọc 30 từ mới; ≥90% chữ đúng, ≥75% phát âm/rhythm theo rubric.",
+        "project": "video 2 phút tự giới thiệu và đọc một đoạn công thức/ký hiệu.",
+        "masterReady": "đọc được một đoạn chưa gặp, không sai làm đổi nghĩa; tự nhận ra lỗi trọng âm chính."
+      },
+      "sourceDisposition": "adapt_legacy_module",
+      "legacyRefs": []
+    },
+    {
+      "id": "RU-R0-C02",
+      "subjectId": "01",
+      "level": "R0",
+      "order": 2,
+      "title": "Giao tiếp sinh hoạt và ngôn ngữ lớp học",
+      "annotations": [],
+      "lessonMode": "numbered",
+      "lessons": [
+        {
+          "id": "RU-R0-C02-L01",
+          "code": "L01",
+          "order": 1,
+          "title": "chào hỏi–thông tin cá nhân"
+        },
+        {
+          "id": "RU-R0-C02-L02",
+          "code": "L02",
+          "order": 2,
+          "title": "thời gian–địa điểm–mua sắm"
+        },
+        {
+          "id": "RU-R0-C02-L03",
+          "code": "L03",
+          "order": 3,
+          "title": "yêu cầu giảng viên nhắc lại/giải thích"
+        },
+        {
+          "id": "RU-R0-C02-L04",
+          "code": "L04",
+          "order": 4,
+          "title": "chỉ dẫn, lịch học và thủ tục cơ bản."
+        }
+      ],
+      "dynamicTemplates": [],
+      "prerequisiteText": "RU-R0-C01-L01–L03.",
+      "learningContract": {
+        "theory": "mẫu câu hỏi–đáp; giống/số cơ bản; đại từ; hiện tại; phủ định.",
+        "exercises": "12 tình huống chọn phản hồi, 8 bài đổi vai, 4 bài nghe điền thông tin.",
+        "applications": "hỏi lịch, phòng học, deadline, tài liệu và yêu cầu hỗ trợ.",
+        "simulationLab": "hội thoại phân nhánh với trợ lý ảo; chỉ qua lượt khi phát âm đạt ngưỡng.",
+        "assessment": "hội thoại 5 phút, nghe hiểu thông tin chính ≥80%.",
+        "project": "“Một ngày học tại Nga” gồm audio, transcript và từ mới.",
+        "masterReady": "xử lý độc lập các tình huống học tập cơ bản, biết hỏi lại khi chưa hiểu."
+      },
+      "sourceDisposition": "adapt_legacy_module",
+      "legacyRefs": []
+    },
+    {
+      "id": "RU-R1-C03",
+      "subjectId": "01",
+      "level": "R1",
+      "order": 3,
+      "title": "Danh từ, tính từ và sáu cách",
+      "annotations": [],
+      "lessonMode": "numbered",
+      "lessons": [
+        {
+          "id": "RU-R1-C03-L01",
+          "code": "L01",
+          "order": 1,
+          "title": "cách 1–4"
+        },
+        {
+          "id": "RU-R1-C03-L02",
+          "code": "L02",
+          "order": 2,
+          "title": "cách 5–6"
+        },
+        {
+          "id": "RU-R1-C03-L03",
+          "code": "L03",
+          "order": 3,
+          "title": "tính từ–đại từ hòa hợp"
+        },
+        {
+          "id": "RU-R1-C03-L04",
+          "code": "L04",
+          "order": 4,
+          "title": "giới từ và mẫu câu khoa học cơ bản."
+        }
+      ],
+      "dynamicTemplates": [],
+      "prerequisiteText": "RU-R0-C02.",
+      "learningContract": {
+        "theory": "chức năng nghĩa của sáu cách, không học bảng đuôi rời ngữ cảnh.",
+        "exercises": "biến đổi câu, điền đuôi, sửa lỗi và mô tả quan hệ giữa các đại lượng.",
+        "applications": "đọc câu định nghĩa, điều kiện, phương tiện, vị trí và nguyên nhân.",
+        "simulationLab": "mind map trường hợp–ý nghĩa–giới từ–ví dụ; bộ sinh câu theo chuyên môn.",
+        "assessment": "40 câu hỗn hợp + nói 3 phút; tổng ≥80%, không nhầm chủ thể/đối tượng.",
+        "project": "glossary 60 thuật ngữ có câu ví dụ đúng cách.",
+        "masterReady": "dùng sáu cách để hiểu và tạo câu kỹ thuật ngắn mà không dịch từng từ."
+      },
+      "sourceDisposition": "adapt_legacy_module",
+      "legacyRefs": []
+    },
+    {
+      "id": "RU-R1-C04",
+      "subjectId": "01",
+      "level": "R1",
+      "order": 4,
+      "title": "Động từ, thể và chuyển động",
+      "annotations": [],
+      "lessonMode": "numbered",
+      "lessons": [
+        {
+          "id": "RU-R1-C04-L01",
+          "code": "L01",
+          "order": 1,
+          "title": "chia động từ và quá khứ/tương lai"
+        },
+        {
+          "id": "RU-R1-C04-L02",
+          "code": "L02",
+          "order": 2,
+          "title": "thể hoàn thành/chưa hoàn thành"
+        },
+        {
+          "id": "RU-R1-C04-L03",
+          "code": "L03",
+          "order": 3,
+          "title": "động từ chuyển động"
+        },
+        {
+          "id": "RU-R1-C04-L04",
+          "code": "L04",
+          "order": 4,
+          "title": "mệnh lệnh, điều kiện và mục đích."
+        }
+      ],
+      "dynamicTemplates": [],
+      "prerequisiteText": "RU-R1-C03-L01–L03.",
+      "learningContract": {
+        "theory": "thời–thể–ý định; tiền tố chuyển động; cấu trúc hướng dẫn thao tác.",
+        "exercises": "chọn thể, kể quy trình, mô tả chuỗi sự kiện, sửa lỗi nghĩa.",
+        "applications": "mô tả thuật toán, thí nghiệm, tín hiệu đi qua hệ thống và robot di chuyển.",
+        "simulationLab": "timeline tương tác; thay đổi thể động từ để quan sát thay đổi ý nghĩa.",
+        "assessment": "nghe/đọc quy trình rồi tái tạo ≥80% bước đúng.",
+        "project": "thuyết minh video 3–4 phút về một quy trình kỹ thuật.",
+        "masterReady": "kể và viết được quy trình có thứ tự, kết quả và điều kiện rõ ràng."
+      },
+      "sourceDisposition": "adapt_legacy_module",
+      "legacyRefs": []
+    },
+    {
+      "id": "RU-R2-C05",
+      "subjectId": "01",
+      "level": "R2",
+      "order": 5,
+      "title": "Nghe bài giảng và ghi chú",
+      "annotations": [],
+      "lessonMode": "numbered",
+      "lessons": [
+        {
+          "id": "RU-R2-C05-L01",
+          "code": "L01",
+          "order": 1,
+          "title": "signposting của bài giảng"
+        },
+        {
+          "id": "RU-R2-C05-L02",
+          "code": "L02",
+          "order": 2,
+          "title": "viết tắt và ghi chú công thức"
+        },
+        {
+          "id": "RU-R2-C05-L03",
+          "code": "L03",
+          "order": 3,
+          "title": "nhận diện định nghĩa–ví dụ–kết luận"
+        },
+        {
+          "id": "RU-R2-C05-L04",
+          "code": "L04",
+          "order": 4,
+          "title": "hỏi đáp sau bài giảng."
+        }
+      ],
+      "dynamicTemplates": [],
+      "prerequisiteText": "RU-R1-C03–C04.",
+      "learningContract": {
+        "theory": "cấu trúc diễn ngôn học thuật, từ nối, câu vô nhân xưng và bị động phổ biến.",
+        "exercises": "nghe nhiều tốc độ, hoàn thành outline, đối chiếu transcript, phục dựng kết luận.",
+        "applications": "bài giảng Toán, Python, Database và ML đang học trong tuần.",
+        "simulationLab": "trình phát chia đoạn; ẩn/hiện transcript; heatmap phần nghe sai.",
+        "assessment": "ghi chú đúng ≥75% ý chính và ≥90% công thức/ký hiệu.",
+        "project": "bộ note song ngữ cho một bài giảng 10–15 phút.",
+        "masterReady": "nghe được mạch lập luận và đặt ít nhất hai câu hỏi đúng ngữ cảnh."
+      },
+      "sourceDisposition": "adapt_legacy_module",
+      "legacyRefs": []
+    },
+    {
+      "id": "RU-R2-C06",
+      "subjectId": "01",
+      "level": "R2",
+      "order": 6,
+      "title": "Thuật ngữ Toán, dữ liệu và hệ thống",
+      "annotations": [],
+      "lessonMode": "numbered",
+      "lessons": [
+        {
+          "id": "RU-R2-C06-L01",
+          "code": "L01",
+          "order": 1,
+          "title": "Toán–xác suất–thống kê"
+        },
+        {
+          "id": "RU-R2-C06-L02",
+          "code": "L02",
+          "order": 2,
+          "title": "Python–thuật toán–database"
+        },
+        {
+          "id": "RU-R2-C06-L03",
+          "code": "L03",
+          "order": 3,
+          "title": "Linux–network–OS"
+        },
+        {
+          "id": "RU-R2-C06-L04",
+          "code": "L04",
+          "order": 4,
+          "title": "OR–ML–mô hình hóa."
+        }
+      ],
+      "dynamicTemplates": [],
+      "prerequisiteText": "RU-R2-C05; chapter chuyên môn tương ứng đang học.",
+      "learningContract": {
+        "theory": "word family, kết hợp từ, định nghĩa, so sánh, nguyên nhân–kết quả.",
+        "exercises": "flashcard hai chiều, cloze trong câu giảng, chuyển định nghĩa Việt↔Nga.",
+        "applications": "glossary tự sinh từ lesson chuyên môn đang được Priority Engine chọn.",
+        "simulationLab": "concept map liên kết thuật ngữ Nga ↔ node chuyên môn ↔ ví dụ/code/công thức.",
+        "assessment": "dùng đúng ≥85% thuật ngữ trong đoạn giải thích 5 phút.",
+        "project": "ngân hàng thuật ngữ cá nhân có audio, ví dụ và nguồn bài học.",
+        "masterReady": "đọc/giải thích được thuật ngữ trong ngữ cảnh, không chỉ nhớ bản dịch."
+      },
+      "sourceDisposition": "adapt_legacy_module",
+      "legacyRefs": []
+    },
+    {
+      "id": "RU-R3-C07",
+      "subjectId": "01",
+      "level": "R3",
+      "order": 7,
+      "title": "Đọc và viết học thuật",
+      "annotations": [],
+      "lessonMode": "numbered",
+      "lessons": [
+        {
+          "id": "RU-R3-C07-L01",
+          "code": "L01",
+          "order": 1,
+          "title": "đọc lướt–tìm thông tin"
+        },
+        {
+          "id": "RU-R3-C07-L02",
+          "code": "L02",
+          "order": 2,
+          "title": "cấu trúc abstract/paper"
+        },
+        {
+          "id": "RU-R3-C07-L03",
+          "code": "L03",
+          "order": 3,
+          "title": "paraphrase và trích dẫn"
+        },
+        {
+          "id": "RU-R3-C07-L04",
+          "code": "L04",
+          "order": 4,
+          "title": "viết tóm tắt kỹ thuật."
+        }
+      ],
+      "dynamicTemplates": [],
+      "prerequisiteText": "RU-R2-C05–C06.",
+      "learningContract": {
+        "theory": "cấu trúc IMRaD, hedging, cohesion, khác biệt giữa dịch sát và diễn đạt khoa học.",
+        "exercises": "annotation, xác định claim/evidence, sửa paraphrase, viết 150–300 từ.",
+        "applications": "tài liệu môn Bauman và paper gần đề tài UGV/USV.",
+        "simulationLab": "reader song song với glossary, highlight claim–method–result–limitation.",
+        "assessment": "tóm tắt paper giữ đúng claim và số liệu; rubric ≥80%.",
+        "project": "literature card tiếng Nga cho 5 tài liệu.",
+        "masterReady": "đọc paper có chiến lược, viết tóm tắt không bóp méo nội dung và trích dẫn đúng."
+      },
+      "sourceDisposition": "adapt_legacy_module",
+      "legacyRefs": []
+    },
+    {
+      "id": "RU-R3-C08",
+      "subjectId": "01",
+      "level": "R3",
+      "order": 8,
+      "title": "Seminar, phản biện và bảo vệ",
+      "annotations": [],
+      "lessonMode": "numbered",
+      "lessons": [
+        {
+          "id": "RU-R3-C08-L01",
+          "code": "L01",
+          "order": 1,
+          "title": "trình bày 5–10 phút"
+        },
+        {
+          "id": "RU-R3-C08-L02",
+          "code": "L02",
+          "order": 2,
+          "title": "mô tả biểu đồ/công thức"
+        },
+        {
+          "id": "RU-R3-C08-L03",
+          "code": "L03",
+          "order": 3,
+          "title": "trả lời câu hỏi"
+        },
+        {
+          "id": "RU-R3-C08-L04",
+          "code": "L04",
+          "order": 4,
+          "title": "phản biện lịch sự và thừa nhận giới hạn."
+        }
+      ],
+      "dynamicTemplates": [],
+      "prerequisiteText": "RU-R3-C07; một project kỹ thuật hoàn chỉnh.",
+      "learningContract": {
+        "theory": "cấu trúc mở–thân–kết, ngôn ngữ chuyển ý, câu xử lý câu hỏi khó.",
+        "exercises": "nói theo slide, giải thích cùng nội dung ở 30 giây/2 phút/8 phút.",
+        "applications": "bảo vệ project Python/DB/OR/ML.",
+        "simulationLab": "mock defense ghi hình, câu hỏi ngẫu nhiên, tự chấm và AI rubric.",
+        "assessment": "trình bày 8–10 phút + Q&A 5 phút, rubric ≥80%.",
+        "project": "mini-seminar kỹ thuật hoàn chỉnh bằng tiếng Nga.",
+        "masterReady": "truyền đạt được vấn đề–phương pháp–kết quả–giới hạn và xử lý câu hỏi không chuẩn bị trước."
+      },
+      "sourceDisposition": "adapt_legacy_module",
+      "legacyRefs": []
+    },
+    {
+      "id": "RU-R4-C09",
+      "subjectId": "01",
+      "level": "R4",
+      "order": 9,
+      "title": "Language pack theo môn Bauman hiện tại",
+      "annotations": [],
+      "lessonMode": "dynamic",
+      "lessons": [],
+      "dynamicTemplates": [
+        "thuật ngữ tuần",
+        "câu giảng",
+        "reading",
+        "speaking",
+        "viết bài tập/email cho từng môn thật."
+      ],
+      "prerequisiteText": "syllabus môn đã nhập vào Kho 09.",
+      "learningContract": {
+        "theory": "sinh từ learning outcomes, bài đọc, deadline và lecture notes thật.",
+        "exercises": "cloze, paraphrase, nghe–ghi chú và nói lại nội dung tuần.",
+        "applications": "xử lý đúng yêu cầu giao tiếp/đọc/viết của môn Bauman đang học.",
+        "simulationLab": "lecture shadowing, oral rehearsal và glossary graph.",
+        "assessment": "weekly oral/readiness check theo nội dung thật.",
+        "project": "readiness pack trước lớp 2–4 tuần.",
+        "masterReady": "hiểu yêu cầu môn, theo được bài giảng và giao tiếp học thuật đủ để hoàn thành nhiệm vụ."
+      },
+      "sourceDisposition": "create_dynamic",
+      "legacyRefs": []
+    },
+    {
+      "id": "RU-R4-C10",
+      "subjectId": "01",
+      "level": "R4",
+      "order": 10,
+      "title": "Ngôn ngữ NIR/Thesis",
+      "annotations": [],
+      "lessonMode": "dynamic",
+      "lessons": [],
+      "dynamicTemplates": [
+        "email giảng viên",
+        "proposal",
+        "progress report",
+        "paper",
+        "defense."
+      ],
+      "prerequisiteText": "Kho 10 đã có topic và research plan.",
+      "learningContract": {
+        "theory": "mẫu diễn đạt khoa học, claim có mức độ, mô tả method/result/limitation.",
+        "exercises": "viết lại email/đoạn báo cáo, nói progress update và trả lời câu hỏi phản biện.",
+        "applications": "dùng trực tiếp trong họp NIR, seminar, paper và defense.",
+        "simulationLab": "rehearsal họp NIR, seminar và defense; kiểm tra nhất quán giữa lời nói–slide–bản viết.",
+        "assessment": "oral/writing check theo rubric của artifact hiện tại.",
+        "project": "proposal/paper/defense artifacts bằng tiếng Nga theo yêu cầu thực tế.",
+        "masterReady": "trao đổi được với giảng viên, viết tài liệu và bảo vệ mà không phụ thuộc dịch máy toàn phần."
+      },
+      "sourceDisposition": "create_dynamic",
+      "legacyRefs": []
+    },
+    {
+      "id": "MATH-L0-C01",
+      "subjectId": "02",
+      "level": "L0",
+      "order": 11,
+      "title": "Đại số, hàm, lượng giác và số phức",
+      "annotations": [],
+      "lessonMode": "numbered",
+      "lessons": [
+        {
+          "id": "MATH-L0-C01-L01",
+          "code": "L01",
+          "order": 1,
+          "title": "biến đổi đại số/hàm"
+        },
+        {
+          "id": "MATH-L0-C01-L02",
+          "code": "L02",
+          "order": 2,
+          "title": "lượng giác và vector phẳng"
+        },
+        {
+          "id": "MATH-L0-C01-L03",
+          "code": "L03",
+          "order": 3,
+          "title": "số phức/Euler"
+        },
+        {
+          "id": "MATH-L0-C01-L04",
+          "code": "L04",
+          "order": 4,
+          "title": "đơn vị, sai số và ước lượng bậc lớn."
+        }
+      ],
+      "dynamicTemplates": [],
+      "prerequisiteText": "diagnostic đầu vào.",
+      "learningContract": {
+        "theory": "các công cụ nền cần cho tín hiệu, điều khiển, xác suất và ML.",
+        "exercises": "bài tính ngắn + bài phát hiện sai biến đổi.",
+        "applications": "tín hiệu điều hòa, pha, chuẩn hóa dữ liệu cảm biến.",
+        "simulationLab": "đồ thị hàm/phức, thay tham số và dự đoán trước kết quả.",
+        "assessment": "diagnostic thích ứng; node ≥80% được skip.",
+        "project": "notebook “math refresher” cá nhân chỉ chứa các Gap.",
+        "masterReady": "xử lý chính xác các biến đổi cần cho chapter đang bị chặn."
+      },
+      "sourceDisposition": "map_legacy_before_reuse",
+      "legacyRefs": []
+    },
+    {
+      "id": "MATH-L0-C02",
+      "subjectId": "02",
+      "level": "L0",
+      "order": 12,
+      "title": "Giải tích, ODE và toán điều khiển cần gọi lại",
+      "annotations": [],
+      "lessonMode": "numbered",
+      "lessons": [
+        {
+          "id": "MATH-L0-C02-L01",
+          "code": "L01",
+          "order": 1,
+          "title": "giới hạn/đạo hàm/tích phân"
+        },
+        {
+          "id": "MATH-L0-C02-L02",
+          "code": "L02",
+          "order": 2,
+          "title": "chuỗi và xấp xỉ"
+        },
+        {
+          "id": "MATH-L0-C02-L03",
+          "code": "L03",
+          "order": 3,
+          "title": "ODE cơ bản"
+        },
+        {
+          "id": "MATH-L0-C02-L04",
+          "code": "L04",
+          "order": 4,
+          "title": "Laplace/state-space review theo nhu cầu."
+        }
+      ],
+      "dynamicTemplates": [],
+      "prerequisiteText": "MATH-L0-C01 hoặc Existing Competency xác nhận.",
+      "learningContract": {
+        "theory": "ôn có điều kiện các định nghĩa, công thức và liên hệ cần cho node đang bị chặn.",
+        "exercises": "bài cầu nối chọn lọc, không học lại toàn bộ chương trình Control.",
+        "applications": "đáp ứng hệ, gradient, mô hình động.",
+        "simulationLab": "nghiệm số so với nghiệm giải tích; thay tham số hệ.",
+        "assessment": "bài cầu nối gắn trực tiếp với môn đang chặn.",
+        "project": "một mô hình động nhỏ có giải thích giả định.",
+        "masterReady": "tái hiện và dùng được công cụ toán mà không cần mở lại toàn khóa Control."
+      },
+      "sourceDisposition": "map_legacy_before_reuse",
+      "legacyRefs": []
+    },
+    {
+      "id": "MATH-L1-C03",
+      "subjectId": "02",
+      "level": "L1",
+      "order": 13,
+      "title": "Đại số tuyến tính",
+      "annotations": [],
+      "lessonMode": "numbered",
+      "lessons": [
+        {
+          "id": "MATH-L1-C03-L01",
+          "code": "L01",
+          "order": 1,
+          "title": "vector/không gian con/cơ sở"
+        },
+        {
+          "id": "MATH-L1-C03-L02",
+          "code": "L02",
+          "order": 2,
+          "title": "ma trận/hạng/nghịch đảo"
+        },
+        {
+          "id": "MATH-L1-C03-L03",
+          "code": "L03",
+          "order": 3,
+          "title": "trị riêng–vector riêng"
+        },
+        {
+          "id": "MATH-L1-C03-L04",
+          "code": "L04",
+          "order": 4,
+          "title": "SVD và least squares."
+        }
+      ],
+      "dynamicTemplates": [],
+      "prerequisiteText": "MATH-L0-C01.",
+      "learningContract": {
+        "theory": "hình học và đại số của biểu diễn dữ liệu.",
+        "exercises": "tính tay nhỏ, chứng minh ngắn, bài ma trận bằng Python.",
+        "applications": "fit mô hình, giảm chiều, biến đổi tọa độ tín hiệu.",
+        "simulationLab": "vector–projection–eigen–SVD tương tác.",
+        "assessment": "20 câu + 3 bài tự luận; ≥80%.",
+        "project": "least-squares estimator có so sánh nghiệm đóng và nghiệm số.",
+        "masterReady": "chọn và giải thích được công cụ tuyến tính cho bài toán mới."
+      },
+      "sourceDisposition": "map_legacy_before_reuse",
+      "legacyRefs": []
+    },
+    {
+      "id": "MATH-L1-C04",
+      "subjectId": "02",
+      "level": "L1",
+      "order": 14,
+      "title": "Giải tích nhiều biến và matrix calculus",
+      "annotations": [],
+      "lessonMode": "numbered",
+      "lessons": [
+        {
+          "id": "MATH-L1-C04-L01",
+          "code": "L01",
+          "order": 1,
+          "title": "đạo hàm riêng/gradient"
+        },
+        {
+          "id": "MATH-L1-C04-L02",
+          "code": "L02",
+          "order": 2,
+          "title": "Jacobian/Hessian"
+        },
+        {
+          "id": "MATH-L1-C04-L03",
+          "code": "L03",
+          "order": 3,
+          "title": "chain rule cho mô hình"
+        },
+        {
+          "id": "MATH-L1-C04-L04",
+          "code": "L04",
+          "order": 4,
+          "title": "Taylor và tối ưu cục bộ."
+        }
+      ],
+      "dynamicTemplates": [],
+      "prerequisiteText": "MATH-L0-C02; MATH-L1-C03-L01–L02.",
+      "learningContract": {
+        "theory": "đạo hàm như ánh xạ tuyến tính, không chỉ học công thức.",
+        "exercises": "đạo hàm tay, kiểm tra bằng finite differences/autodiff.",
+        "applications": "loss function, backpropagation, sensitivity.",
+        "simulationLab": "mặt loss, contour, gradient field và bước học.",
+        "assessment": "gradient check sai số tương đối trong ngưỡng + bài giải thích.",
+        "project": "visual optimizer lab.",
+        "masterReady": "tự suy ra gradient và phát hiện gradient sai bằng kiểm chứng số."
+      },
+      "sourceDisposition": "map_legacy_before_reuse",
+      "legacyRefs": []
+    },
+    {
+      "id": "MATH-L2-C05",
+      "subjectId": "02",
+      "level": "L2",
+      "order": 15,
+      "title": "Xác suất và biến ngẫu nhiên",
+      "annotations": [],
+      "lessonMode": "numbered",
+      "lessons": [
+        {
+          "id": "MATH-L2-C05-L01",
+          "code": "L01",
+          "order": 1,
+          "title": "không gian mẫu/xác suất có điều kiện/Bayes"
+        },
+        {
+          "id": "MATH-L2-C05-L02",
+          "code": "L02",
+          "order": 2,
+          "title": "biến ngẫu nhiên và phân phối"
+        },
+        {
+          "id": "MATH-L2-C05-L03",
+          "code": "L03",
+          "order": 3,
+          "title": "kỳ vọng/phương sai"
+        },
+        {
+          "id": "MATH-L2-C05-L04",
+          "code": "L04",
+          "order": 4,
+          "title": "luật số lớn/CLT."
+        }
+      ],
+      "dynamicTemplates": [],
+      "prerequisiteText": "MATH-L1-C03; giải tích cơ bản.",
+      "learningContract": {
+        "theory": "mô hình bất định, điều kiện độc lập và giả định phân phối.",
+        "exercises": "bài tính, mô phỏng kiểm chứng, nhận diện dùng Bayes sai.",
+        "applications": "cảm biến nhiễu, phân loại, độ tin cậy hệ.",
+        "simulationLab": "Monte Carlo cho LLN/CLT và posterior.",
+        "assessment": "20 câu + notebook; ≥80%.",
+        "project": "mô hình nhiễu cho một cảm biến.",
+        "masterReady": "lập được mô hình xác suất, nêu rõ giả định và kiểm tra bằng dữ liệu."
+      },
+      "sourceDisposition": "map_legacy_before_reuse",
+      "legacyRefs": []
+    },
+    {
+      "id": "MATH-L2-C06",
+      "subjectId": "02",
+      "level": "L2",
+      "order": 16,
+      "title": "Thống kê suy luận",
+      "annotations": [],
+      "lessonMode": "numbered",
+      "lessons": [
+        {
+          "id": "MATH-L2-C06-L01",
+          "code": "L01",
+          "order": 1,
+          "title": "sampling/estimator/bias–variance"
+        },
+        {
+          "id": "MATH-L2-C06-L02",
+          "code": "L02",
+          "order": 2,
+          "title": "confidence interval"
+        },
+        {
+          "id": "MATH-L2-C06-L03",
+          "code": "L03",
+          "order": 3,
+          "title": "hypothesis testing/effect size"
+        },
+        {
+          "id": "MATH-L2-C06-L04",
+          "code": "L04",
+          "order": 4,
+          "title": "regression diagnostics và bootstrap."
+        }
+      ],
+      "dynamicTemplates": [],
+      "prerequisiteText": "MATH-L2-C05; Python NumPy/Pandas.",
+      "learningContract": {
+        "theory": "suy luận từ mẫu, sai lầm loại I/II, statistical vs practical significance.",
+        "exercises": "tính và diễn giải CI/test; phát hiện p-hacking/leakage.",
+        "applications": "so sánh thuật toán, thí nghiệm cảm biến và ML.",
+        "simulationLab": "sampling distribution, power và bootstrap.",
+        "assessment": "phân tích một dataset chưa gặp + oral explanation.",
+        "project": "báo cáo A/B hoặc so sánh hai phương pháp có uncertainty.",
+        "masterReady": "chọn phép kiểm định đúng và diễn giải không vượt quá bằng chứng."
+      },
+      "sourceDisposition": "map_legacy_before_reuse",
+      "legacyRefs": []
+    },
+    {
+      "id": "MATH-L2-C07",
+      "subjectId": "02",
+      "level": "L2",
+      "order": 17,
+      "title": "Covariance, correlation và PCA",
+      "annotations": [
+        "legacy_composite"
+      ],
+      "lessonMode": "legacy_composite",
+      "lessons": [],
+      "dynamicTemplates": [],
+      "prerequisiteText": "MATH-L1-C03; MATH-L2-C05–C06.",
+      "learningContract": {
+        "theory": "phân biệt liên hệ tuyến tính với nhân quả; centered data; covariance matrix; PCA như phép chiếu tối ưu.",
+        "exercises": "tính tay dataset nhỏ; đọc ma trận; chọn số thành phần; giải thích sign/scale.",
+        "applications": "giảm chiều dữ liệu cảm biến, feature decorrelation và trực quan dữ liệu.",
+        "simulationLab": "tạo simulation sidecar mới; thay scale/outlier/correlation và quan sát trục chính, không ghi đè legacy.",
+        "assessment": "tạo test sidecar mới, có prerequisite audit và oral check; không tuyên bố tái sử dụng test khi nguồn thật chưa có.",
+        "project": "PCA report trên telemetry dataset.",
+        "masterReady": "giải thích được variance retained, giới hạn PCA và tránh dùng PCA gây leakage."
+      },
+      "sourceDisposition": "reuse_composite_verified",
+      "legacyRefs": [
+        "MATH-VN-PS-C05-L05",
+        "MATH-PREP-LA2-C10-L05",
+        "MATH-PREP-LA2-C10-L06",
+        "MATH-PREP-LA2-C10-L07",
+        "MATH-PREP-PS2-C15-L06"
+      ]
+    },
+    {
+      "id": "MATH-L3-C08",
+      "subjectId": "02",
+      "level": "L3",
+      "order": 18,
+      "title": "Phương pháp số và độ ổn định",
+      "annotations": [],
+      "lessonMode": "numbered",
+      "lessons": [
+        {
+          "id": "MATH-L3-C08-L01",
+          "code": "L01",
+          "order": 1,
+          "title": "floating point/conditioning"
+        },
+        {
+          "id": "MATH-L3-C08-L02",
+          "code": "L02",
+          "order": 2,
+          "title": "numerical linear algebra"
+        },
+        {
+          "id": "MATH-L3-C08-L03",
+          "code": "L03",
+          "order": 3,
+          "title": "root finding/integration/ODE numeric"
+        },
+        {
+          "id": "MATH-L3-C08-L04",
+          "code": "L04",
+          "order": 4,
+          "title": "reproducibility và error bounds."
+        }
+      ],
+      "dynamicTemplates": [],
+      "prerequisiteText": "MATH-L1-C03–C04; Python L2.",
+      "learningContract": {
+        "theory": "sai số làm tròn, điều kiện bài toán, hội tụ và ổn định.",
+        "exercises": "so sánh thuật toán và đánh giá sai số.",
+        "applications": "solver cho mô hình hệ, PCA và optimization.",
+        "simulationLab": "thay precision/step size/condition number.",
+        "assessment": "chọn solver và bảo vệ lựa chọn trên bài mới.",
+        "project": "benchmark solver có error analysis.",
+        "masterReady": "không chỉ tạo kết quả số mà còn đánh giá độ tin cậy của kết quả."
+      },
+      "sourceDisposition": "map_legacy_before_reuse",
+      "legacyRefs": []
+    },
+    {
+      "id": "MATH-L3-C09",
+      "subjectId": "02",
+      "level": "L3",
+      "order": 19,
+      "title": "Nền toán cho tối ưu và information theory",
+      "annotations": [],
+      "lessonMode": "numbered",
+      "lessons": [
+        {
+          "id": "MATH-L3-C09-L01",
+          "code": "L01",
+          "order": 1,
+          "title": "convexity/constraint/KKT intuition"
+        },
+        {
+          "id": "MATH-L3-C09-L02",
+          "code": "L02",
+          "order": 2,
+          "title": "entropy/cross-entropy/KL"
+        },
+        {
+          "id": "MATH-L3-C09-L03",
+          "code": "L03",
+          "order": 3,
+          "title": "regularization"
+        },
+        {
+          "id": "MATH-L3-C09-L04",
+          "code": "L04",
+          "order": 4,
+          "title": "bias–variance–capacity."
+        }
+      ],
+      "dynamicTemplates": [],
+      "prerequisiteText": "MATH-L1-C04; MATH-L2-C05.",
+      "learningContract": {
+        "theory": "cầu nối sang OR và ML; phần thuật toán tối ưu chi tiết thuộc Kho 07.",
+        "exercises": "kiểm tra convexity, tính entropy/KL, phân tích regularization.",
+        "applications": "loss ML, model selection và resource allocation.",
+        "simulationLab": "loss landscape, regularization path, distribution divergence.",
+        "assessment": "concept + computation + case analysis.",
+        "project": "so sánh ba objective trên cùng dataset.",
+        "masterReady": "hiểu ý nghĩa toán của objective và hậu quả của lựa chọn loss/constraint."
+      },
+      "sourceDisposition": "map_legacy_before_reuse",
+      "legacyRefs": []
+    },
+    {
+      "id": "MATH-L3-C10",
+      "subjectId": "02",
+      "level": "L3",
+      "order": 20,
+      "title": "Chuỗi thời gian và quá trình ngẫu nhiên nền",
+      "annotations": [],
+      "lessonMode": "numbered",
+      "lessons": [
+        {
+          "id": "MATH-L3-C10-L01",
+          "code": "L01",
+          "order": 1,
+          "title": "stationarity/autocorrelation"
+        },
+        {
+          "id": "MATH-L3-C10-L02",
+          "code": "L02",
+          "order": 2,
+          "title": "random process/spectral view"
+        },
+        {
+          "id": "MATH-L3-C10-L03",
+          "code": "L03",
+          "order": 3,
+          "title": "estimation/filtering foundation"
+        },
+        {
+          "id": "MATH-L3-C10-L04",
+          "code": "L04",
+          "order": 4,
+          "title": "uncertainty propagation."
+        }
+      ],
+      "dynamicTemplates": [],
+      "prerequisiteText": "MATH-L2-C05–C07; Existing Competency tín hiệu được chẩn đoán.",
+      "learningContract": {
+        "theory": "khái niệm cần cho telemetry, signal ML, Markov và simulation.",
+        "exercises": "ACF, stationarity check, mô phỏng process.",
+        "applications": "dữ liệu cảm biến/UGV/USV theo thời gian.",
+        "simulationLab": "white noise, random walk, AR process và propagation.",
+        "assessment": "phân tích series mới, nêu giới hạn.",
+        "project": "signal dataset card + baseline stochastic model.",
+        "masterReady": "phân biệt được cấu trúc thời gian với mẫu IID và chọn cách đánh giá phù hợp."
+      },
+      "sourceDisposition": "map_legacy_before_reuse",
+      "legacyRefs": []
+    },
+    {
+      "id": "PY-L0-C01",
+      "subjectId": "03",
+      "level": "L0–L1",
+      "order": 21,
+      "title": "Python căn bản có chẩn đoán",
+      "annotations": [],
+      "lessonMode": "numbered",
+      "lessons": [
+        {
+          "id": "PY-L0-C01-L01",
+          "code": "L01",
+          "order": 1,
+          "title": "môi trường/REPL/types"
+        },
+        {
+          "id": "PY-L0-C01-L02",
+          "code": "L02",
+          "order": 2,
+          "title": "control flow"
+        },
+        {
+          "id": "PY-L0-C01-L03",
+          "code": "L03",
+          "order": 3,
+          "title": "function/scope"
+        },
+        {
+          "id": "PY-L0-C01-L04",
+          "code": "L04",
+          "order": 4,
+          "title": "collections và comprehension."
+        }
+      ],
+      "dynamicTemplates": [],
+      "prerequisiteText": "không.",
+      "learningContract": {
+        "theory": "data model cơ bản, mutability, function contract.",
+        "exercises": "30 bài nhỏ có hidden tests.",
+        "applications": "làm sạch telemetry và tính chỉ số cảm biến.",
+        "simulationLab": "trace execution, memory/reference visualizer.",
+        "assessment": "coding test 60 phút; node ≥80% được skip.",
+        "project": "CLI đọc file cảm biến và xuất summary.",
+        "masterReady": "viết được hàm đúng, rõ và xử lý edge case cơ bản."
+      },
+      "sourceDisposition": "create_new_academic_content",
+      "legacyRefs": []
+    },
+    {
+      "id": "PY-L1-C02",
+      "subjectId": "03",
+      "level": "L0–L1",
+      "order": 22,
+      "title": "File, lỗi, module và môi trường",
+      "annotations": [],
+      "lessonMode": "numbered",
+      "lessons": [
+        {
+          "id": "PY-L1-C02-L01",
+          "code": "L01",
+          "order": 1,
+          "title": "text/CSV/JSON/path"
+        },
+        {
+          "id": "PY-L1-C02-L02",
+          "code": "L02",
+          "order": 2,
+          "title": "exception"
+        },
+        {
+          "id": "PY-L1-C02-L03",
+          "code": "L03",
+          "order": 3,
+          "title": "module/package/import"
+        },
+        {
+          "id": "PY-L1-C02-L04",
+          "code": "L04",
+          "order": 4,
+          "title": "venv/dependency/config."
+        }
+      ],
+      "dynamicTemplates": [],
+      "prerequisiteText": "PY-L0-C01.",
+      "learningContract": {
+        "theory": "resource lifecycle, error boundary, reproducible environment.",
+        "exercises": "parser, validation, exception design, import debugging.",
+        "applications": "ingest log thiết bị và cấu hình thí nghiệm.",
+        "simulationLab": "fault injection trên file hỏng/thiếu trường/encoding.",
+        "assessment": "test tự động + giải thích failure modes.",
+        "project": "package ingest dữ liệu có logging và validation.",
+        "masterReady": "chương trình không chỉ chạy “happy path”, mà báo lỗi có kiểm soát và tái lập môi trường được."
+      },
+      "sourceDisposition": "create_new_academic_content",
+      "legacyRefs": []
+    },
+    {
+      "id": "PY-L1-C03",
+      "subjectId": "03",
+      "level": "L0–L1",
+      "order": 23,
+      "title": "OOP và thiết kế có kiểm thử",
+      "annotations": [],
+      "lessonMode": "numbered",
+      "lessons": [
+        {
+          "id": "PY-L1-C03-L01",
+          "code": "L01",
+          "order": 1,
+          "title": "class/object/dataclass"
+        },
+        {
+          "id": "PY-L1-C03-L02",
+          "code": "L02",
+          "order": 2,
+          "title": "encapsulation/composition/inheritance"
+        },
+        {
+          "id": "PY-L1-C03-L03",
+          "code": "L03",
+          "order": 3,
+          "title": "protocol/ABC/dependency injection"
+        },
+        {
+          "id": "PY-L1-C03-L04",
+          "code": "L04",
+          "order": 4,
+          "title": "unit test/type hints/refactor."
+        }
+      ],
+      "dynamicTemplates": [],
+      "prerequisiteText": "PY-L1-C02.",
+      "learningContract": {
+        "theory": "responsibility, interface, composition over inheritance, testability.",
+        "exercises": "refactor code thủ tục; thiết kế class; test doubles.",
+        "applications": "mô hình Sensor–Vehicle–Controller–Experiment.",
+        "simulationLab": "object interaction trace và mutation testing nhỏ.",
+        "assessment": "code review theo rubric + coverage có ý nghĩa.",
+        "project": "thư viện OOP mô phỏng hệ cảm biến/robot tối giản.",
+        "masterReady": "bảo vệ được thiết kế, test hành vi chính và thay implementation mà không phá interface."
+      },
+      "sourceDisposition": "create_new_academic_content",
+      "legacyRefs": []
+    },
+    {
+      "id": "PY-L2-C04",
+      "subjectId": "03",
+      "level": "L2",
+      "order": 24,
+      "title": "NumPy, vectorization và tính toán số",
+      "annotations": [],
+      "lessonMode": "numbered",
+      "lessons": [
+        {
+          "id": "PY-L2-C04-L01",
+          "code": "L01",
+          "order": 1,
+          "title": "ndarray/shape/dtype"
+        },
+        {
+          "id": "PY-L2-C04-L02",
+          "code": "L02",
+          "order": 2,
+          "title": "indexing/broadcasting"
+        },
+        {
+          "id": "PY-L2-C04-L03",
+          "code": "L03",
+          "order": 3,
+          "title": "linear algebra/random"
+        },
+        {
+          "id": "PY-L2-C04-L04",
+          "code": "L04",
+          "order": 4,
+          "title": "vectorization/performance."
+        }
+      ],
+      "dynamicTemplates": [],
+      "prerequisiteText": "PY-L1-C02; MATH-L1-C03.",
+      "learningContract": {
+        "theory": "array programming và khác biệt với list.",
+        "exercises": "chuyển loop sang vectorization, shape debugging.",
+        "applications": "signal windows, covariance/PCA, simulation.",
+        "simulationLab": "benchmark memory/time và numerical error.",
+        "assessment": "notebook ẩn test shape/value/performance.",
+        "project": "pipeline xử lý batch telemetry.",
+        "masterReady": "viết phép tính đúng shape, đủ ổn định và giải thích trade-off."
+      },
+      "sourceDisposition": "create_new_academic_content",
+      "legacyRefs": []
+    },
+    {
+      "id": "PY-L2-C05",
+      "subjectId": "03",
+      "level": "L2",
+      "order": 25,
+      "title": "Pandas, visualization và data quality",
+      "annotations": [],
+      "lessonMode": "numbered",
+      "lessons": [
+        {
+          "id": "PY-L2-C05-L01",
+          "code": "L01",
+          "order": 1,
+          "title": "DataFrame/index"
+        },
+        {
+          "id": "PY-L2-C05-L02",
+          "code": "L02",
+          "order": 2,
+          "title": "join/group/window/time series"
+        },
+        {
+          "id": "PY-L2-C05-L03",
+          "code": "L03",
+          "order": 3,
+          "title": "missing/outlier/schema"
+        },
+        {
+          "id": "PY-L2-C05-L04",
+          "code": "L04",
+          "order": 4,
+          "title": "Matplotlib/Seaborn và biểu đồ trung thực."
+        }
+      ],
+      "dynamicTemplates": [],
+      "prerequisiteText": "PY-L2-C04; DB-L1-C02 được khuyến nghị.",
+      "learningContract": {
+        "theory": "tidy data, provenance, visualization grammar.",
+        "exercises": "cleaning, merge, aggregation, plot critique.",
+        "applications": "EDA log robot và thí nghiệm.",
+        "simulationLab": "data-quality dashboard, thay quy tắc xử lý và quan sát hậu quả.",
+        "assessment": "EDA dataset lạ, không leakage.",
+        "project": "report dữ liệu tái lập từ raw → clean → figure.",
+        "masterReady": "tạo được dataset sạch, giải thích mọi biến đổi và không che giấu uncertainty."
+      },
+      "sourceDisposition": "create_new_academic_content",
+      "legacyRefs": []
+    },
+    {
+      "id": "PY-L2-C06",
+      "subjectId": "03",
+      "level": "L2",
+      "order": 26,
+      "title": "Kết nối Database, API và pipeline",
+      "annotations": [],
+      "lessonMode": "numbered",
+      "lessons": [
+        {
+          "id": "PY-L2-C06-L01",
+          "code": "L01",
+          "order": 1,
+          "title": "DB-API/ORM boundary"
+        },
+        {
+          "id": "PY-L2-C06-L02",
+          "code": "L02",
+          "order": 2,
+          "title": "HTTP/REST/serialization"
+        },
+        {
+          "id": "PY-L2-C06-L03",
+          "code": "L03",
+          "order": 3,
+          "title": "ETL orchestration"
+        },
+        {
+          "id": "PY-L2-C06-L04",
+          "code": "L04",
+          "order": 4,
+          "title": "logging/config/secret hygiene."
+        }
+      ],
+      "dynamicTemplates": [],
+      "prerequisiteText": "PY-L1-C03; DB-L0-C01; DB-L1-C02–C03; SYS-L0-C01.",
+      "learningContract": {
+        "theory": "separation of concerns, idempotency và data contract.",
+        "exercises": "query parameterized, retry, pagination, pipeline tests.",
+        "applications": "thu telemetry → lưu DB → truy vấn → báo cáo.",
+        "simulationLab": "lỗi mạng, duplicate event và partial failure.",
+        "assessment": "integration tests + failure explanation.",
+        "project": "mini information system cho dữ liệu thí nghiệm.",
+        "masterReady": "pipeline chạy lặp không nhân đôi dữ liệu, trace được lỗi và bảo vệ thông tin nhạy cảm."
+      },
+      "sourceDisposition": "create_new_academic_content",
+      "legacyRefs": []
+    },
+    {
+      "id": "PY-L3-C07",
+      "subjectId": "03",
+      "level": "L3",
+      "order": 27,
+      "title": "Hiệu năng, concurrency và maintainability",
+      "annotations": [],
+      "lessonMode": "numbered",
+      "lessons": [
+        {
+          "id": "PY-L3-C07-L01",
+          "code": "L01",
+          "order": 1,
+          "title": "profiling/complexity"
+        },
+        {
+          "id": "PY-L3-C07-L02",
+          "code": "L02",
+          "order": 2,
+          "title": "iterator/generator"
+        },
+        {
+          "id": "PY-L3-C07-L03",
+          "code": "L03",
+          "order": 3,
+          "title": "threading/process/async"
+        },
+        {
+          "id": "PY-L3-C07-L04",
+          "code": "L04",
+          "order": 4,
+          "title": "lint/type/test/CI concepts."
+        }
+      ],
+      "dynamicTemplates": [],
+      "prerequisiteText": "PY-L2-C04–C06; ADS-L0-C01.",
+      "learningContract": {
+        "theory": "bottleneck, I/O-bound vs CPU-bound, race condition.",
+        "exercises": "profiling, optimize with evidence, concurrency bug lab.",
+        "applications": "stream cảm biến và batch ML.",
+        "simulationLab": "load test và fault injection.",
+        "assessment": "cải thiện có benchmark, không tối ưu cảm tính.",
+        "project": "telemetry service chịu tải nhỏ.",
+        "masterReady": "tìm đúng bottleneck, chọn concurrency model phù hợp và giữ code kiểm thử được."
+      },
+      "sourceDisposition": "create_new_academic_content",
+      "legacyRefs": []
+    },
+    {
+      "id": "PY-L3-C08",
+      "subjectId": "03",
+      "level": "L3",
+      "order": 28,
+      "title": "Packaging và capstone tái lập",
+      "annotations": [],
+      "lessonMode": "numbered",
+      "lessons": [
+        {
+          "id": "PY-L3-C08-L01",
+          "code": "L01",
+          "order": 1,
+          "title": "project layout/pyproject"
+        },
+        {
+          "id": "PY-L3-C08-L02",
+          "code": "L02",
+          "order": 2,
+          "title": "CLI/config/docs"
+        },
+        {
+          "id": "PY-L3-C08-L03",
+          "code": "L03",
+          "order": 3,
+          "title": "reproducible experiment"
+        },
+        {
+          "id": "PY-L3-C08-L04",
+          "code": "L04",
+          "order": 4,
+          "title": "release/versioning/artifact."
+        }
+      ],
+      "dynamicTemplates": [],
+      "prerequisiteText": "PY-L3-C07; SYS-L0-C01; SYS-L1-C02.",
+      "learningContract": {
+        "theory": "package lifecycle và experiment provenance.",
+        "exercises": "đóng gói, fresh-install test, rebuild result.",
+        "applications": "công cụ dùng lại cho Kho 07/08/10.",
+        "simulationLab": "chạy trên clean environment/container.",
+        "assessment": "người khác cài và tái tạo output theo README.",
+        "project": "capstone Python package hoàn chỉnh.",
+        "masterReady": "code có thể bàn giao, tái lập và mở rộng; không phụ thuộc máy cá nhân."
+      },
+      "sourceDisposition": "create_new_academic_content",
+      "legacyRefs": []
+    },
+    {
+      "id": "ADS-L0-C01",
+      "subjectId": "04",
+      "level": "L0–L1",
+      "order": 29,
+      "title": "Complexity, recursion và correctness",
+      "annotations": [],
+      "lessonMode": "numbered",
+      "lessons": [
+        {
+          "id": "ADS-L0-C01-L01",
+          "code": "L01",
+          "order": 1,
+          "title": "problem decomposition/invariant"
+        },
+        {
+          "id": "ADS-L0-C01-L02",
+          "code": "L02",
+          "order": 2,
+          "title": "Big-O/Ω/Θ"
+        },
+        {
+          "id": "ADS-L0-C01-L03",
+          "code": "L03",
+          "order": 3,
+          "title": "recursion/stack"
+        },
+        {
+          "id": "ADS-L0-C01-L04",
+          "code": "L04",
+          "order": 4,
+          "title": "correctness và edge cases."
+        }
+      ],
+      "dynamicTemplates": [],
+      "prerequisiteText": "PY-L0-C01.",
+      "learningContract": {
+        "theory": "cost model, invariant và proof intuition.",
+        "exercises": "trace, recurrence nhỏ, phân tích code.",
+        "applications": "ước lượng pipeline với dữ liệu lớn.",
+        "simulationLab": "growth-rate visualizer và call tree.",
+        "assessment": "phân tích unseen code ≥80%.",
+        "project": "benchmark báo cáo complexity thực nghiệm.",
+        "masterReady": "phân biệt được độ phức tạp lý thuyết với bottleneck thực tế."
+      },
+      "sourceDisposition": "create_new_academic_content",
+      "legacyRefs": []
+    },
+    {
+      "id": "ADS-L1-C02",
+      "subjectId": "04",
+      "level": "L0–L1",
+      "order": 30,
+      "title": "Sequence, stack, queue và linked structure",
+      "annotations": [],
+      "lessonMode": "numbered",
+      "lessons": [
+        {
+          "id": "ADS-L1-C02-L01",
+          "code": "L01",
+          "order": 1,
+          "title": "array/dynamic array"
+        },
+        {
+          "id": "ADS-L1-C02-L02",
+          "code": "L02",
+          "order": 2,
+          "title": "linked list"
+        },
+        {
+          "id": "ADS-L1-C02-L03",
+          "code": "L03",
+          "order": 3,
+          "title": "stack/deque/queue"
+        },
+        {
+          "id": "ADS-L1-C02-L04",
+          "code": "L04",
+          "order": 4,
+          "title": "ring buffer."
+        }
+      ],
+      "dynamicTemplates": [],
+      "prerequisiteText": "ADS-L0-C01.",
+      "learningContract": {
+        "theory": "memory layout và operation trade-off.",
+        "exercises": "tự cài đặt, hidden tests, chọn cấu trúc.",
+        "applications": "buffer sensor, undo, BFS frontier.",
+        "simulationLab": "operation animation và memory access comparison.",
+        "assessment": "implement + justify selection.",
+        "project": "bounded telemetry buffer.",
+        "masterReady": "chọn cấu trúc theo access/update/memory, không theo thói quen."
+      },
+      "sourceDisposition": "create_new_academic_content",
+      "legacyRefs": []
+    },
+    {
+      "id": "ADS-L1-C03",
+      "subjectId": "04",
+      "level": "L0–L1",
+      "order": 31,
+      "title": "Hashing, set, map và heap",
+      "annotations": [],
+      "lessonMode": "numbered",
+      "lessons": [
+        {
+          "id": "ADS-L1-C03-L01",
+          "code": "L01",
+          "order": 1,
+          "title": "hash table/collision"
+        },
+        {
+          "id": "ADS-L1-C03-L02",
+          "code": "L02",
+          "order": 2,
+          "title": "set/map patterns"
+        },
+        {
+          "id": "ADS-L1-C03-L03",
+          "code": "L03",
+          "order": 3,
+          "title": "heap/priority queue"
+        },
+        {
+          "id": "ADS-L1-C03-L04",
+          "code": "L04",
+          "order": 4,
+          "title": "cache và top-k."
+        }
+      ],
+      "dynamicTemplates": [],
+      "prerequisiteText": "ADS-L1-C02.",
+      "learningContract": {
+        "theory": "expected vs worst-case, load factor, priority semantics.",
+        "exercises": "implement simplified table/heap; solve top-k/dedup.",
+        "applications": "event indexing, scheduler và anomaly queue.",
+        "simulationLab": "collision/load-factor simulator.",
+        "assessment": "coding + complexity defense.",
+        "project": "priority event dispatcher.",
+        "masterReady": "đánh giá được collision, memory và ordering requirements."
+      },
+      "sourceDisposition": "create_new_academic_content",
+      "legacyRefs": []
+    },
+    {
+      "id": "ADS-L2-C04",
+      "subjectId": "04",
+      "level": "L2",
+      "order": 32,
+      "title": "Tree và indexing structures",
+      "annotations": [],
+      "lessonMode": "numbered",
+      "lessons": [
+        {
+          "id": "ADS-L2-C04-L01",
+          "code": "L01",
+          "order": 1,
+          "title": "binary tree traversal"
+        },
+        {
+          "id": "ADS-L2-C04-L02",
+          "code": "L02",
+          "order": 2,
+          "title": "BST/balancing intuition"
+        },
+        {
+          "id": "ADS-L2-C04-L03",
+          "code": "L03",
+          "order": 3,
+          "title": "trie"
+        },
+        {
+          "id": "ADS-L2-C04-L04",
+          "code": "L04",
+          "order": 4,
+          "title": "B-tree/index concept."
+        }
+      ],
+      "dynamicTemplates": [],
+      "prerequisiteText": "ADS-L1-C02–C03.",
+      "learningContract": {
+        "theory": "hierarchy, ordering và search cost.",
+        "exercises": "traversal/insert/search; compare structures.",
+        "applications": "filesystem, routing, autocomplete, DB index.",
+        "simulationLab": "tree shape theo insertion order.",
+        "assessment": "chọn/cài structure cho case mới.",
+        "project": "searchable technical glossary index.",
+        "masterReady": "nối được cấu trúc dữ liệu với hành vi index thực tế."
+      },
+      "sourceDisposition": "create_new_academic_content",
+      "legacyRefs": []
+    },
+    {
+      "id": "ADS-L2-C05",
+      "subjectId": "04",
+      "level": "L2",
+      "order": 33,
+      "title": "Graph algorithms",
+      "annotations": [],
+      "lessonMode": "numbered",
+      "lessons": [
+        {
+          "id": "ADS-L2-C05-L01",
+          "code": "L01",
+          "order": 1,
+          "title": "representation/BFS/DFS"
+        },
+        {
+          "id": "ADS-L2-C05-L02",
+          "code": "L02",
+          "order": 2,
+          "title": "shortest path"
+        },
+        {
+          "id": "ADS-L2-C05-L03",
+          "code": "L03",
+          "order": 3,
+          "title": "MST/topological order"
+        },
+        {
+          "id": "ADS-L2-C05-L04",
+          "code": "L04",
+          "order": 4,
+          "title": "state-space/search."
+        }
+      ],
+      "dynamicTemplates": [],
+      "prerequisiteText": "ADS-L1-C03.",
+      "learningContract": {
+        "theory": "graph model, invariant và complexity.",
+        "exercises": "cài BFS/DFS/Dijkstra/toposort; test disconnected graph.",
+        "applications": "UGV path planning, network, prerequisite graph.",
+        "simulationLab": "graph editor và algorithm trace.",
+        "assessment": "model + algorithm + proof sketch.",
+        "project": "route planner có obstacle/cost.",
+        "masterReady": "biến bài toán thành graph đúng và chọn thuật toán theo giả định trọng số/cấu trúc."
+      },
+      "sourceDisposition": "create_new_academic_content",
+      "legacyRefs": []
+    },
+    {
+      "id": "ADS-L2-C06",
+      "subjectId": "04",
+      "level": "L2",
+      "order": 34,
+      "title": "Sorting, searching, divide-and-conquer và greedy",
+      "annotations": [],
+      "lessonMode": "numbered",
+      "lessons": [
+        {
+          "id": "ADS-L2-C06-L01",
+          "code": "L01",
+          "order": 1,
+          "title": "binary search"
+        },
+        {
+          "id": "ADS-L2-C06-L02",
+          "code": "L02",
+          "order": 2,
+          "title": "sorting families"
+        },
+        {
+          "id": "ADS-L2-C06-L03",
+          "code": "L03",
+          "order": 3,
+          "title": "divide-and-conquer"
+        },
+        {
+          "id": "ADS-L2-C06-L04",
+          "code": "L04",
+          "order": 4,
+          "title": "greedy và counterexample."
+        }
+      ],
+      "dynamicTemplates": [],
+      "prerequisiteText": "ADS-L0-C01; ADS-L1-C02.",
+      "learningContract": {
+        "theory": "invariant, stability, lower-bound intuition.",
+        "exercises": "implement, benchmark, prove/counterexample.",
+        "applications": "log processing, scheduling và selection.",
+        "simulationLab": "comparison/swap trace và adversarial input.",
+        "assessment": "chọn strategy cho unseen case.",
+        "project": "benchmark suite nhiều phân phối dữ liệu.",
+        "masterReady": "lựa chọn dựa trên dữ liệu, stability, memory và worst-case."
+      },
+      "sourceDisposition": "create_new_academic_content",
+      "legacyRefs": []
+    },
+    {
+      "id": "ADS-L3-C07",
+      "subjectId": "04",
+      "level": "L3",
+      "order": 35,
+      "title": "Dynamic programming, backtracking và approximation",
+      "annotations": [],
+      "lessonMode": "numbered",
+      "lessons": [
+        {
+          "id": "ADS-L3-C07-L01",
+          "code": "L01",
+          "order": 1,
+          "title": "state/transition"
+        },
+        {
+          "id": "ADS-L3-C07-L02",
+          "code": "L02",
+          "order": 2,
+          "title": "memoization/tabulation"
+        },
+        {
+          "id": "ADS-L3-C07-L03",
+          "code": "L03",
+          "order": 3,
+          "title": "backtracking/pruning"
+        },
+        {
+          "id": "ADS-L3-C07-L04",
+          "code": "L04",
+          "order": 4,
+          "title": "approximation/heuristic boundary."
+        }
+      ],
+      "dynamicTemplates": [],
+      "prerequisiteText": "ADS-L2-C05–C06.",
+      "learningContract": {
+        "theory": "optimal substructure, overlapping subproblems, search space.",
+        "exercises": "classic problems + one novel formulation.",
+        "applications": "route/resource planning và sequence alignment.",
+        "simulationLab": "state-table/search-tree visualizer.",
+        "assessment": "tự xây recurrence và test.",
+        "project": "constrained route/resource planner.",
+        "masterReady": "nhận ra khi DP phù hợp, khi state explosion khiến cần OR/heuristic."
+      },
+      "sourceDisposition": "create_new_academic_content",
+      "legacyRefs": []
+    },
+    {
+      "id": "ADS-L3-C08",
+      "subjectId": "04",
+      "level": "L3",
+      "order": 36,
+      "title": "Applied algorithm engineering",
+      "annotations": [],
+      "lessonMode": "numbered",
+      "lessons": [
+        {
+          "id": "ADS-L3-C08-L01",
+          "code": "L01",
+          "order": 1,
+          "title": "streaming/sliding window"
+        },
+        {
+          "id": "ADS-L3-C08-L02",
+          "code": "L02",
+          "order": 2,
+          "title": "approximate data structures"
+        },
+        {
+          "id": "ADS-L3-C08-L03",
+          "code": "L03",
+          "order": 3,
+          "title": "algorithm selection"
+        },
+        {
+          "id": "ADS-L3-C08-L04",
+          "code": "L04",
+          "order": 4,
+          "title": "profiling and trade-off report."
+        }
+      ],
+      "dynamicTemplates": [],
+      "prerequisiteText": "ADS-L3-C07; PY-L3-C07.",
+      "learningContract": {
+        "theory": "latency, throughput, memory, accuracy trade-off.",
+        "exercises": "streaming telemetry challenges.",
+        "applications": "online sensor analytics.",
+        "simulationLab": "load generator và memory/latency plots.",
+        "assessment": "design review + benchmark reproducible.",
+        "project": "streaming analytics component.",
+        "masterReady": "đưa ra quyết định thuật toán có số liệu và nêu giới hạn triển khai."
+      },
+      "sourceDisposition": "create_new_academic_content",
+      "legacyRefs": []
+    },
+    {
+      "id": "DB-L0-C01",
+      "subjectId": "05",
+      "level": "L0–L1",
+      "order": 37,
+      "title": "Mô hình quan hệ và SQL cơ bản",
+      "annotations": [],
+      "lessonMode": "numbered",
+      "lessons": [
+        {
+          "id": "DB-L0-C01-L01",
+          "code": "L01",
+          "order": 1,
+          "title": "table/key/relationship"
+        },
+        {
+          "id": "DB-L0-C01-L02",
+          "code": "L02",
+          "order": 2,
+          "title": "SELECT/filter/sort"
+        },
+        {
+          "id": "DB-L0-C01-L03",
+          "code": "L03",
+          "order": 3,
+          "title": "NULL/type/constraint"
+        },
+        {
+          "id": "DB-L0-C01-L04",
+          "code": "L04",
+          "order": 4,
+          "title": "CRUD có kiểm soát."
+        }
+      ],
+      "dynamicTemplates": [],
+      "prerequisiteText": "không; Python cơ bản được khuyến nghị.",
+      "learningContract": {
+        "theory": "relational model, set/bag semantics, integrity.",
+        "exercises": "40 query nhỏ trên telemetry schema.",
+        "applications": "thiết bị–sensor–mission–measurement.",
+        "simulationLab": "SQLite/PostgreSQL sandbox; quan sát constraint failure.",
+        "assessment": "SQL practical ≥80%.",
+        "project": "database log thí nghiệm phiên bản 1.",
+        "masterReady": "truy vấn đúng và không làm hỏng integrity khi ghi dữ liệu."
+      },
+      "sourceDisposition": "create_new_academic_content",
+      "legacyRefs": []
+    },
+    {
+      "id": "DB-L1-C02",
+      "subjectId": "05",
+      "level": "L0–L1",
+      "order": 38,
+      "title": "Join, aggregate, subquery và window",
+      "annotations": [],
+      "lessonMode": "numbered",
+      "lessons": [
+        {
+          "id": "DB-L1-C02-L01",
+          "code": "L01",
+          "order": 1,
+          "title": "joins"
+        },
+        {
+          "id": "DB-L1-C02-L02",
+          "code": "L02",
+          "order": 2,
+          "title": "group/aggregate"
+        },
+        {
+          "id": "DB-L1-C02-L03",
+          "code": "L03",
+          "order": 3,
+          "title": "subquery/CTE/set operations"
+        },
+        {
+          "id": "DB-L1-C02-L04",
+          "code": "L04",
+          "order": 4,
+          "title": "window functions."
+        }
+      ],
+      "dynamicTemplates": [],
+      "prerequisiteText": "DB-L0-C01.",
+      "learningContract": {
+        "theory": "row cardinality, join semantics, aggregation grain.",
+        "exercises": "query từ đơn đến nhiều tầng; sửa duplicate sai.",
+        "applications": "KPI mission, rolling statistics và event sequence.",
+        "simulationLab": "visual query result theo từng stage.",
+        "assessment": "dataset lạ + explain expected row count.",
+        "project": "analytical SQL report.",
+        "masterReady": "viết query đúng grain và phát hiện join làm nhân bản dữ liệu."
+      },
+      "sourceDisposition": "create_new_academic_content",
+      "legacyRefs": []
+    },
+    {
+      "id": "DB-L1-C03",
+      "subjectId": "05",
+      "level": "L0–L1",
+      "order": 39,
+      "title": "Thiết kế schema và normalization",
+      "annotations": [],
+      "lessonMode": "numbered",
+      "lessons": [
+        {
+          "id": "DB-L1-C03-L01",
+          "code": "L01",
+          "order": 1,
+          "title": "ER modeling"
+        },
+        {
+          "id": "DB-L1-C03-L02",
+          "code": "L02",
+          "order": 2,
+          "title": "functional dependency"
+        },
+        {
+          "id": "DB-L1-C03-L03",
+          "code": "L03",
+          "order": 3,
+          "title": "1NF–3NF/BCNF intuition"
+        },
+        {
+          "id": "DB-L1-C03-L04",
+          "code": "L04",
+          "order": 4,
+          "title": "denormalization có lý do."
+        }
+      ],
+      "dynamicTemplates": [],
+      "prerequisiteText": "DB-L0-C01; DB-L1-C02.",
+      "learningContract": {
+        "theory": "anomaly, dependency và domain rule.",
+        "exercises": "chuyển yêu cầu → ERD → schema; normalize/decompose.",
+        "applications": "information system quản lý thí nghiệm/NIR.",
+        "simulationLab": "schema sandbox với anomaly scenarios.",
+        "assessment": "design defense và integrity tests.",
+        "project": "schema version 2 + data dictionary.",
+        "masterReady": "mô hình hóa đúng nghiệp vụ, nêu trade-off normalization/performance."
+      },
+      "sourceDisposition": "create_new_academic_content",
+      "legacyRefs": []
+    },
+    {
+      "id": "DB-L2-C04",
+      "subjectId": "05",
+      "level": "L2",
+      "order": 40,
+      "title": "Transaction và concurrency",
+      "annotations": [],
+      "lessonMode": "numbered",
+      "lessons": [
+        {
+          "id": "DB-L2-C04-L01",
+          "code": "L01",
+          "order": 1,
+          "title": "ACID"
+        },
+        {
+          "id": "DB-L2-C04-L02",
+          "code": "L02",
+          "order": 2,
+          "title": "isolation/anomaly"
+        },
+        {
+          "id": "DB-L2-C04-L03",
+          "code": "L03",
+          "order": 3,
+          "title": "locking/MVCC/deadlock"
+        },
+        {
+          "id": "DB-L2-C04-L04",
+          "code": "L04",
+          "order": 4,
+          "title": "recovery/idempotency."
+        }
+      ],
+      "dynamicTemplates": [],
+      "prerequisiteText": "DB-L1-C03.",
+      "learningContract": {
+        "theory": "consistency boundary và concurrent histories.",
+        "exercises": "predict anomaly, design transaction, retry safely.",
+        "applications": "concurrent sensor ingest và experiment metadata update.",
+        "simulationLab": "hai session tạo dirty/non-repeatable/phantom/deadlock.",
+        "assessment": "scenario diagnosis ≥80%.",
+        "project": "transactional ingest service.",
+        "masterReady": "chọn isolation theo invariant và xử lý retry không duplicate."
+      },
+      "sourceDisposition": "create_new_academic_content",
+      "legacyRefs": []
+    },
+    {
+      "id": "DB-L2-C05",
+      "subjectId": "05",
+      "level": "L2",
+      "order": 41,
+      "title": "Index và query optimization",
+      "annotations": [],
+      "lessonMode": "numbered",
+      "lessons": [
+        {
+          "id": "DB-L2-C05-L01",
+          "code": "L01",
+          "order": 1,
+          "title": "B-tree/hash index"
+        },
+        {
+          "id": "DB-L2-C05-L02",
+          "code": "L02",
+          "order": 2,
+          "title": "composite/covering index"
+        },
+        {
+          "id": "DB-L2-C05-L03",
+          "code": "L03",
+          "order": 3,
+          "title": "execution plan"
+        },
+        {
+          "id": "DB-L2-C05-L04",
+          "code": "L04",
+          "order": 4,
+          "title": "statistics/cost và anti-pattern."
+        }
+      ],
+      "dynamicTemplates": [],
+      "prerequisiteText": "DB-L1-C02; ADS-L2-C04.",
+      "learningContract": {
+        "theory": "access path, selectivity và cost.",
+        "exercises": "đọc plan, đề xuất index, đo before/after.",
+        "applications": "truy vấn telemetry lớn theo device/time/mission.",
+        "simulationLab": "scale dataset và quan sát plan đổi.",
+        "assessment": "optimization report có benchmark.",
+        "project": "performance tuning dossier.",
+        "masterReady": "tối ưu dựa trên plan/số liệu, không tạo index tùy tiện."
+      },
+      "sourceDisposition": "create_new_academic_content",
+      "legacyRefs": []
+    },
+    {
+      "id": "DB-L2-C06",
+      "subjectId": "05",
+      "level": "L2",
+      "order": 42,
+      "title": "ETL, data quality và provenance",
+      "annotations": [],
+      "lessonMode": "numbered",
+      "lessons": [
+        {
+          "id": "DB-L2-C06-L01",
+          "code": "L01",
+          "order": 1,
+          "title": "ETL/ELT"
+        },
+        {
+          "id": "DB-L2-C06-L02",
+          "code": "L02",
+          "order": 2,
+          "title": "schema evolution"
+        },
+        {
+          "id": "DB-L2-C06-L03",
+          "code": "L03",
+          "order": 3,
+          "title": "quality rules/dedup"
+        },
+        {
+          "id": "DB-L2-C06-L04",
+          "code": "L04",
+          "order": 4,
+          "title": "lineage/metadata."
+        }
+      ],
+      "dynamicTemplates": [],
+      "prerequisiteText": "DB-L1-C03; PY-L2-C05–C06.",
+      "learningContract": {
+        "theory": "data contract, idempotency, provenance.",
+        "exercises": "bad-data cases, migrations, reconciliation.",
+        "applications": "raw telemetry → curated dataset cho ML.",
+        "simulationLab": "pipeline fault injection và replay.",
+        "assessment": "data quality audit.",
+        "project": "versioned dataset build.",
+        "masterReady": "tái tạo được dataset và giải thích nguồn gốc từng trường quan trọng."
+      },
+      "sourceDisposition": "create_new_academic_content",
+      "legacyRefs": []
+    },
+    {
+      "id": "DB-L3-C07",
+      "subjectId": "05",
+      "level": "L3",
+      "order": 43,
+      "title": "Kiến trúc hệ thống thông tin, API và bảo mật",
+      "annotations": [],
+      "lessonMode": "numbered",
+      "lessons": [
+        {
+          "id": "DB-L3-C07-L01",
+          "code": "L01",
+          "order": 1,
+          "title": "service/repository boundary"
+        },
+        {
+          "id": "DB-L3-C07-L02",
+          "code": "L02",
+          "order": 2,
+          "title": "API/data contract"
+        },
+        {
+          "id": "DB-L3-C07-L03",
+          "code": "L03",
+          "order": 3,
+          "title": "access control/secret/audit"
+        },
+        {
+          "id": "DB-L3-C07-L04",
+          "code": "L04",
+          "order": 4,
+          "title": "backup/restore/migration."
+        }
+      ],
+      "dynamicTemplates": [],
+      "prerequisiteText": "DB-L2-C04–C06; PY-L2-C06; Linux L1.",
+      "learningContract": {
+        "theory": "availability, consistency, least privilege và recoverability.",
+        "exercises": "threat cases, API schema, restore drill.",
+        "applications": "research information system.",
+        "simulationLab": "service+DB sandbox, role permissions và failure recovery.",
+        "assessment": "architecture review + restore evidence.",
+        "project": "capstone information system cho telemetry/thí nghiệm.",
+        "masterReady": "hệ thống đúng dữ liệu, truy vết được, phục hồi được và có quyền truy cập hợp lý."
+      },
+      "sourceDisposition": "create_new_academic_content",
+      "legacyRefs": []
+    },
+    {
+      "id": "DB-L3-C08",
+      "subjectId": "05",
+      "level": "L3",
+      "order": 44,
+      "title": "Dữ liệu thời gian và analytical serving",
+      "annotations": [],
+      "lessonMode": "numbered",
+      "lessons": [
+        {
+          "id": "DB-L3-C08-L01",
+          "code": "L01",
+          "order": 1,
+          "title": "time-series modeling"
+        },
+        {
+          "id": "DB-L3-C08-L02",
+          "code": "L02",
+          "order": 2,
+          "title": "partition/retention"
+        },
+        {
+          "id": "DB-L3-C08-L03",
+          "code": "L03",
+          "order": 3,
+          "title": "materialized view/aggregation"
+        },
+        {
+          "id": "DB-L3-C08-L04",
+          "code": "L04",
+          "order": 4,
+          "title": "serving features/report."
+        }
+      ],
+      "dynamicTemplates": [],
+      "prerequisiteText": "DB-L2-C05–C06; MATH-L3-C10.",
+      "learningContract": {
+        "theory": "event time, sampling, partition và aggregation correctness.",
+        "exercises": "query/time-window/late event scenarios.",
+        "applications": "sensor platform và feature store nhỏ.",
+        "simulationLab": "ingest/query under scale.",
+        "assessment": "correctness + performance benchmark.",
+        "project": "telemetry analytical store.",
+        "masterReady": "phục vụ được dữ liệu time-series có định nghĩa thời gian và chất lượng rõ ràng."
+      },
+      "sourceDisposition": "create_new_academic_content",
+      "legacyRefs": []
+    },
+    {
+      "id": "SYS-L0-C01",
+      "subjectId": "06",
+      "level": "L0–L1",
+      "order": 45,
+      "title": "Shell, file, text và Git workflow",
+      "annotations": [],
+      "lessonMode": "numbered",
+      "lessons": [
+        {
+          "id": "SYS-L0-C01-L01",
+          "code": "L01",
+          "order": 1,
+          "title": "filesystem/path/command"
+        },
+        {
+          "id": "SYS-L0-C01-L02",
+          "code": "L02",
+          "order": 2,
+          "title": "pipe/redirection/text tools"
+        },
+        {
+          "id": "SYS-L0-C01-L03",
+          "code": "L03",
+          "order": 3,
+          "title": "shell script"
+        },
+        {
+          "id": "SYS-L0-C01-L04",
+          "code": "L04",
+          "order": 4,
+          "title": "Git branch/commit/diff."
+        }
+      ],
+      "dynamicTemplates": [],
+      "prerequisiteText": "không.",
+      "learningContract": {
+        "theory": "process model của command, stream và version history.",
+        "exercises": "terminal challenges, script nhỏ, sửa conflict giả lập.",
+        "applications": "tự động hóa chạy thí nghiệm và quản lý code.",
+        "simulationLab": "Linux sandbox; broken-command recovery.",
+        "assessment": "terminal practical không dùng GUI.",
+        "project": "script dựng workspace và chạy pipeline.",
+        "masterReady": "tái tạo workflow bằng command/script và quản lý thay đổi an toàn."
+      },
+      "sourceDisposition": "create_new_academic_content",
+      "legacyRefs": []
+    },
+    {
+      "id": "SYS-L1-C02",
+      "subjectId": "06",
+      "level": "L0–L1",
+      "order": 46,
+      "title": "User, permission, process và service",
+      "annotations": [],
+      "lessonMode": "numbered",
+      "lessons": [
+        {
+          "id": "SYS-L1-C02-L01",
+          "code": "L01",
+          "order": 1,
+          "title": "user/group/permission"
+        },
+        {
+          "id": "SYS-L1-C02-L02",
+          "code": "L02",
+          "order": 2,
+          "title": "process/signal/job"
+        },
+        {
+          "id": "SYS-L1-C02-L03",
+          "code": "L03",
+          "order": 3,
+          "title": "service/log"
+        },
+        {
+          "id": "SYS-L1-C02-L04",
+          "code": "L04",
+          "order": 4,
+          "title": "SSH/key và remote workflow."
+        }
+      ],
+      "dynamicTemplates": [],
+      "prerequisiteText": "SYS-L0-C01.",
+      "learningContract": {
+        "theory": "ownership, privilege, process lifecycle.",
+        "exercises": "permission debugging, terminate safely, inspect logs.",
+        "applications": "chạy service/data job trên máy từ xa.",
+        "simulationLab": "least-privilege sandbox và failed-service cases.",
+        "assessment": "diagnose 6 incident scenarios.",
+        "project": "deploy một service dưới user riêng.",
+        "masterReady": "vận hành và khắc phục lỗi mà không dùng quyền cao quá mức."
+      },
+      "sourceDisposition": "create_new_academic_content",
+      "legacyRefs": []
+    },
+    {
+      "id": "SYS-L1-C03",
+      "subjectId": "06",
+      "level": "L0–L1",
+      "order": 47,
+      "title": "OS: CPU, memory, concurrency và filesystem",
+      "annotations": [],
+      "lessonMode": "numbered",
+      "lessons": [
+        {
+          "id": "SYS-L1-C03-L01",
+          "code": "L01",
+          "order": 1,
+          "title": "system call/process/thread"
+        },
+        {
+          "id": "SYS-L1-C03-L02",
+          "code": "L02",
+          "order": 2,
+          "title": "scheduling/concurrency"
+        },
+        {
+          "id": "SYS-L1-C03-L03",
+          "code": "L03",
+          "order": 3,
+          "title": "virtual memory"
+        },
+        {
+          "id": "SYS-L1-C03-L04",
+          "code": "L04",
+          "order": 4,
+          "title": "filesystem/I/O."
+        }
+      ],
+      "dynamicTemplates": [],
+      "prerequisiteText": "SYS-L1-C02; ADS-L0-C01.",
+      "learningContract": {
+        "theory": "abstraction và resource trade-off.",
+        "exercises": "trace process, race/deadlock, memory/I/O cases.",
+        "applications": "Python multiprocessing, database và ML workload.",
+        "simulationLab": "process/memory/I/O monitor.",
+        "assessment": "concept mapping + incident diagnosis.",
+        "project": "resource profile của một pipeline.",
+        "masterReady": "giải thích được hành vi performance/failure bằng mô hình OS, không chỉ thử lệnh ngẫu nhiên."
+      },
+      "sourceDisposition": "create_new_academic_content",
+      "legacyRefs": []
+    },
+    {
+      "id": "SYS-L2-C04",
+      "subjectId": "06",
+      "level": "L2",
+      "order": 48,
+      "title": "Network fundamentals",
+      "annotations": [],
+      "lessonMode": "numbered",
+      "lessons": [
+        {
+          "id": "SYS-L2-C04-L01",
+          "code": "L01",
+          "order": 1,
+          "title": "layer/IP/subnet/routing"
+        },
+        {
+          "id": "SYS-L2-C04-L02",
+          "code": "L02",
+          "order": 2,
+          "title": "TCP/UDP"
+        },
+        {
+          "id": "SYS-L2-C04-L03",
+          "code": "L03",
+          "order": 3,
+          "title": "DNS/DHCP"
+        },
+        {
+          "id": "SYS-L2-C04-L04",
+          "code": "L04",
+          "order": 4,
+          "title": "HTTP/TLS."
+        }
+      ],
+      "dynamicTemplates": [],
+      "prerequisiteText": "SYS-L0-C01.",
+      "learningContract": {
+        "theory": "packet path, reliability, latency và naming.",
+        "exercises": "subnet, handshake, protocol selection.",
+        "applications": "sensor/robot–server communication.",
+        "simulationLab": "packet capture và network emulator nhỏ.",
+        "assessment": "trace request end-to-end.",
+        "project": "network map của hệ telemetry.",
+        "masterReady": "xác định được lớp phát sinh lỗi và chọn protocol phù hợp yêu cầu."
+      },
+      "sourceDisposition": "create_new_academic_content",
+      "legacyRefs": []
+    },
+    {
+      "id": "SYS-L2-C05",
+      "subjectId": "06",
+      "level": "L2",
+      "order": 49,
+      "title": "Socket, API và distributed failure",
+      "annotations": [],
+      "lessonMode": "numbered",
+      "lessons": [
+        {
+          "id": "SYS-L2-C05-L01",
+          "code": "L01",
+          "order": 1,
+          "title": "socket client/server"
+        },
+        {
+          "id": "SYS-L2-C05-L02",
+          "code": "L02",
+          "order": 2,
+          "title": "timeout/retry/idempotency"
+        },
+        {
+          "id": "SYS-L2-C05-L03",
+          "code": "L03",
+          "order": 3,
+          "title": "serialization/framing"
+        },
+        {
+          "id": "SYS-L2-C05-L04",
+          "code": "L04",
+          "order": 4,
+          "title": "clock/order/partial failure."
+        }
+      ],
+      "dynamicTemplates": [],
+      "prerequisiteText": "SYS-L2-C04; PY-L2-C06.",
+      "learningContract": {
+        "theory": "message boundary và failure model.",
+        "exercises": "implement protocol nhỏ; fault handling.",
+        "applications": "stream telemetry qua mạng.",
+        "simulationLab": "delay/loss/disconnect/duplicate injection.",
+        "assessment": "integration test dưới lỗi mạng.",
+        "project": "resilient telemetry link.",
+        "masterReady": "hệ vẫn hành xử có kiểm soát khi mạng chậm, mất hoặc lặp gói."
+      },
+      "sourceDisposition": "create_new_academic_content",
+      "legacyRefs": []
+    },
+    {
+      "id": "SYS-L2-C06",
+      "subjectId": "06",
+      "level": "L2",
+      "order": 50,
+      "title": "Chẩn đoán hệ thống và mạng",
+      "annotations": [],
+      "lessonMode": "numbered",
+      "lessons": [
+        {
+          "id": "SYS-L2-C06-L01",
+          "code": "L01",
+          "order": 1,
+          "title": "logs/metrics/traces"
+        },
+        {
+          "id": "SYS-L2-C06-L02",
+          "code": "L02",
+          "order": 2,
+          "title": "CPU/memory/disk diagnosis"
+        },
+        {
+          "id": "SYS-L2-C06-L03",
+          "code": "L03",
+          "order": 3,
+          "title": "network tools"
+        },
+        {
+          "id": "SYS-L2-C06-L04",
+          "code": "L04",
+          "order": 4,
+          "title": "incident hypothesis/testing."
+        }
+      ],
+      "dynamicTemplates": [],
+      "prerequisiteText": "SYS-L1-C03; SYS-L2-C04–C05.",
+      "learningContract": {
+        "theory": "observability và evidence-driven debugging.",
+        "exercises": "incident labs có tín hiệu nhiễu.",
+        "applications": "dịch vụ DB/ML/data pipeline.",
+        "simulationLab": "injected incidents và timeline reconstruction.",
+        "assessment": "time-boxed diagnosis report.",
+        "project": "runbook và dashboard cơ bản.",
+        "masterReady": "đưa ra nguyên nhân có bằng chứng, không đồng nhất triệu chứng với nguyên nhân."
+      },
+      "sourceDisposition": "create_new_academic_content",
+      "legacyRefs": []
+    },
+    {
+      "id": "SYS-L3-C07",
+      "subjectId": "06",
+      "level": "L3",
+      "order": 51,
+      "title": "Environment, container và build",
+      "annotations": [],
+      "lessonMode": "numbered",
+      "lessons": [
+        {
+          "id": "SYS-L3-C07-L01",
+          "code": "L01",
+          "order": 1,
+          "title": "package/env"
+        },
+        {
+          "id": "SYS-L3-C07-L02",
+          "code": "L02",
+          "order": 2,
+          "title": "container/image/volume/network"
+        },
+        {
+          "id": "SYS-L3-C07-L03",
+          "code": "L03",
+          "order": 3,
+          "title": "compose multi-service"
+        },
+        {
+          "id": "SYS-L3-C07-L04",
+          "code": "L04",
+          "order": 4,
+          "title": "reproducible build."
+        }
+      ],
+      "dynamicTemplates": [],
+      "prerequisiteText": "SYS-L1-C02–C03; PY-L3-C08; DB-L2-C04.",
+      "learningContract": {
+        "theory": "isolation, dependency pinning và artifact.",
+        "exercises": "Dockerfile/compose/debug build.",
+        "applications": "Python+DB+ML experiment stack.",
+        "simulationLab": "clean-machine rebuild.",
+        "assessment": "fresh build/run test.",
+        "project": "containerized research stack.",
+        "masterReady": "người khác dựng được cùng hệ từ repo và tài liệu."
+      },
+      "sourceDisposition": "create_new_academic_content",
+      "legacyRefs": []
+    },
+    {
+      "id": "SYS-L3-C08",
+      "subjectId": "06",
+      "level": "L3",
+      "order": 52,
+      "title": "Monitoring, security và recovery",
+      "annotations": [],
+      "lessonMode": "numbered",
+      "lessons": [
+        {
+          "id": "SYS-L3-C08-L01",
+          "code": "L01",
+          "order": 1,
+          "title": "health/log/metric"
+        },
+        {
+          "id": "SYS-L3-C08-L02",
+          "code": "L02",
+          "order": 2,
+          "title": "secret/firewall/update"
+        },
+        {
+          "id": "SYS-L3-C08-L03",
+          "code": "L03",
+          "order": 3,
+          "title": "backup/restore"
+        },
+        {
+          "id": "SYS-L3-C08-L04",
+          "code": "L04",
+          "order": 4,
+          "title": "deployment/rollback/runbook."
+        }
+      ],
+      "dynamicTemplates": [],
+      "prerequisiteText": "SYS-L3-C07; DB-L3-C07.",
+      "learningContract": {
+        "theory": "defense in depth, SLO intuition và recoverability.",
+        "exercises": "threat/failure drills.",
+        "applications": "bảo vệ dữ liệu NIR và demo thesis.",
+        "simulationLab": "outage/restore/rollback rehearsal.",
+        "assessment": "operational review.",
+        "project": "production-like demo environment.",
+        "masterReady": "phát hiện, giới hạn, phục hồi sự cố và chứng minh được quy trình."
+      },
+      "sourceDisposition": "create_new_academic_content",
+      "legacyRefs": []
+    },
+    {
+      "id": "OR-L1-C01",
+      "subjectId": "07",
+      "level": "L1",
+      "order": 53,
+      "title": "Từ bài toán thực đến mô hình",
+      "annotations": [],
+      "lessonMode": "numbered",
+      "lessons": [
+        {
+          "id": "OR-L1-C01-L01",
+          "code": "L01",
+          "order": 1,
+          "title": "decision variable/objective/constraint"
+        },
+        {
+          "id": "OR-L1-C01-L02",
+          "code": "L02",
+          "order": 2,
+          "title": "assumptions/units/boundary"
+        },
+        {
+          "id": "OR-L1-C01-L03",
+          "code": "L03",
+          "order": 3,
+          "title": "feasible region"
+        },
+        {
+          "id": "OR-L1-C01-L04",
+          "code": "L04",
+          "order": 4,
+          "title": "validation và sensitivity question."
+        }
+      ],
+      "dynamicTemplates": [],
+      "prerequisiteText": "MATH-L0-C01; Python L1.",
+      "learningContract": {
+        "theory": "modeling cycle và lỗi mô hình hóa phổ biến.",
+        "exercises": "chuyển 12 tình huống thành mô hình.",
+        "applications": "phân bổ pin, lịch nhiệm vụ, đường đi và tài nguyên.",
+        "simulationLab": "thay constraint và quan sát feasible set.",
+        "assessment": "model formulation defense.",
+        "project": "model card cho bài toán UGV/USV.",
+        "masterReady": "mô hình phản ánh đúng quyết định, đơn vị, phạm vi và giả định."
+      },
+      "sourceDisposition": "create_new_academic_content",
+      "legacyRefs": []
+    },
+    {
+      "id": "OR-L1-C02",
+      "subjectId": "07",
+      "level": "L1",
+      "order": 54,
+      "title": "Linear programming, duality và sensitivity",
+      "annotations": [],
+      "lessonMode": "numbered",
+      "lessons": [
+        {
+          "id": "OR-L1-C02-L01",
+          "code": "L01",
+          "order": 1,
+          "title": "LP geometry/simplex intuition"
+        },
+        {
+          "id": "OR-L1-C02-L02",
+          "code": "L02",
+          "order": 2,
+          "title": "solver modeling"
+        },
+        {
+          "id": "OR-L1-C02-L03",
+          "code": "L03",
+          "order": 3,
+          "title": "dual/shadow price"
+        },
+        {
+          "id": "OR-L1-C02-L04",
+          "code": "L04",
+          "order": 4,
+          "title": "sensitivity/infeasible/unbounded."
+        }
+      ],
+      "dynamicTemplates": [],
+      "prerequisiteText": "OR-L1-C01; MATH-L1-C03.",
+      "learningContract": {
+        "theory": "optimality và ý nghĩa kinh tế/kỹ thuật của dual.",
+        "exercises": "giải nhỏ bằng tay, lớn bằng solver, diagnose model.",
+        "applications": "resource allocation và mission planning.",
+        "simulationLab": "LP geometry + parameter sweep.",
+        "assessment": "unseen model + interpretation.",
+        "project": "optimized mission allocation.",
+        "masterReady": "không chỉ lấy nghiệm solver; giải thích được nghiệm, dual và độ nhạy."
+      },
+      "sourceDisposition": "create_new_academic_content",
+      "legacyRefs": []
+    },
+    {
+      "id": "OR-L2-C03",
+      "subjectId": "07",
+      "level": "L2",
+      "order": 55,
+      "title": "Integer/combinatorial optimization",
+      "annotations": [],
+      "lessonMode": "numbered",
+      "lessons": [
+        {
+          "id": "OR-L2-C03-L01",
+          "code": "L01",
+          "order": 1,
+          "title": "binary/integer variable"
+        },
+        {
+          "id": "OR-L2-C03-L02",
+          "code": "L02",
+          "order": 2,
+          "title": "assignment/scheduling"
+        },
+        {
+          "id": "OR-L2-C03-L03",
+          "code": "L03",
+          "order": 3,
+          "title": "routing formulation"
+        },
+        {
+          "id": "OR-L2-C03-L04",
+          "code": "L04",
+          "order": 4,
+          "title": "relaxation/bounds/heuristics."
+        }
+      ],
+      "dynamicTemplates": [],
+      "prerequisiteText": "OR-L1-C02; ADS-L2-C05; ADS-L3-C07.",
+      "learningContract": {
+        "theory": "integrality và complexity trade-off.",
+        "exercises": "MIP formulations và solver logs.",
+        "applications": "nhiệm vụ nhiều robot và lịch tài nguyên.",
+        "simulationLab": "gap/time-limit/heuristic comparison.",
+        "assessment": "formulation + bound interpretation.",
+        "project": "constrained planner.",
+        "masterReady": "chọn formulation/solver/heuristic theo quy mô và yêu cầu optimality."
+      },
+      "sourceDisposition": "create_new_academic_content",
+      "legacyRefs": []
+    },
+    {
+      "id": "OR-L2-C04",
+      "subjectId": "07",
+      "level": "L2",
+      "order": 56,
+      "title": "Dynamic programming và sequential decision",
+      "annotations": [],
+      "lessonMode": "numbered",
+      "lessons": [
+        {
+          "id": "OR-L2-C04-L01",
+          "code": "L01",
+          "order": 1,
+          "title": "Bellman principle"
+        },
+        {
+          "id": "OR-L2-C04-L02",
+          "code": "L02",
+          "order": 2,
+          "title": "finite-horizon DP"
+        },
+        {
+          "id": "OR-L2-C04-L03",
+          "code": "L03",
+          "order": 3,
+          "title": "state/action/reward"
+        },
+        {
+          "id": "OR-L2-C04-L04",
+          "code": "L04",
+          "order": 4,
+          "title": "curse of dimensionality."
+        }
+      ],
+      "dynamicTemplates": [],
+      "prerequisiteText": "ADS-L3-C07; MATH-L2-C05.",
+      "learningContract": {
+        "theory": "quyết định theo thời gian và state sufficiency.",
+        "exercises": "derive recursion, implement value table.",
+        "applications": "energy-aware navigation và maintenance policy.",
+        "simulationLab": "state-transition simulator.",
+        "assessment": "model a novel sequential problem.",
+        "project": "finite-horizon mission policy.",
+        "masterReady": "xác định đúng state và biết khi DP không còn khả thi."
+      },
+      "sourceDisposition": "create_new_academic_content",
+      "legacyRefs": []
+    },
+    {
+      "id": "OR-L2-C05",
+      "subjectId": "07",
+      "level": "L2",
+      "order": 57,
+      "title": "Markov chains và MDP foundation",
+      "annotations": [],
+      "lessonMode": "numbered",
+      "lessons": [
+        {
+          "id": "OR-L2-C05-L01",
+          "code": "L01",
+          "order": 1,
+          "title": "transition matrix/state classification"
+        },
+        {
+          "id": "OR-L2-C05-L02",
+          "code": "L02",
+          "order": 2,
+          "title": "stationary/absorbing"
+        },
+        {
+          "id": "OR-L2-C05-L03",
+          "code": "L03",
+          "order": 3,
+          "title": "reward and MDP"
+        },
+        {
+          "id": "OR-L2-C05-L04",
+          "code": "L04",
+          "order": 4,
+          "title": "policy evaluation/improvement intuition."
+        }
+      ],
+      "dynamicTemplates": [],
+      "prerequisiteText": "MATH-L2-C05; OR-L2-C04.",
+      "learningContract": {
+        "theory": "Markov assumption, long-run behavior và uncertainty.",
+        "exercises": "matrix analysis + simulation.",
+        "applications": "reliability, robot mode và task policy.",
+        "simulationLab": "chain/MDP visualizer.",
+        "assessment": "validate Markov model against data.",
+        "project": "maintenance or navigation MDP.",
+        "masterReady": "kiểm tra được Markov assumption và giải thích policy/long-run metric."
+      },
+      "sourceDisposition": "create_new_academic_content",
+      "legacyRefs": []
+    },
+    {
+      "id": "OR-L2-C06",
+      "subjectId": "07",
+      "level": "L2",
+      "order": 58,
+      "title": "Queueing systems",
+      "annotations": [],
+      "lessonMode": "numbered",
+      "lessons": [
+        {
+          "id": "OR-L2-C06-L01",
+          "code": "L01",
+          "order": 1,
+          "title": "arrival/service/Little’s law"
+        },
+        {
+          "id": "OR-L2-C06-L02",
+          "code": "L02",
+          "order": 2,
+          "title": "M/M/1 và variants"
+        },
+        {
+          "id": "OR-L2-C06-L03",
+          "code": "L03",
+          "order": 3,
+          "title": "networks/capacity"
+        },
+        {
+          "id": "OR-L2-C06-L04",
+          "code": "L04",
+          "order": 4,
+          "title": "empirical fitting và limitation."
+        }
+      ],
+      "dynamicTemplates": [],
+      "prerequisiteText": "MATH-L2-C05–C06.",
+      "learningContract": {
+        "theory": "stochastic flow, utilization và waiting trade-off.",
+        "exercises": "analytic calculation + scenario design.",
+        "applications": "processing sensor jobs, communication/service station.",
+        "simulationLab": "queue simulator theo arrival/service distributions.",
+        "assessment": "compare analytic vs simulation.",
+        "project": "capacity planning report.",
+        "masterReady": "không áp công thức M/M/1 khi giả định dữ liệu không phù hợp."
+      },
+      "sourceDisposition": "create_new_academic_content",
+      "legacyRefs": []
+    },
+    {
+      "id": "OR-L3-C07",
+      "subjectId": "07",
+      "level": "L3",
+      "order": 59,
+      "title": "Discrete-event và Monte Carlo simulation",
+      "annotations": [],
+      "lessonMode": "numbered",
+      "lessons": [
+        {
+          "id": "OR-L3-C07-L01",
+          "code": "L01",
+          "order": 1,
+          "title": "event/state/clock"
+        },
+        {
+          "id": "OR-L3-C07-L02",
+          "code": "L02",
+          "order": 2,
+          "title": "random input/seed"
+        },
+        {
+          "id": "OR-L3-C07-L03",
+          "code": "L03",
+          "order": 3,
+          "title": "warm-up/replication/CI"
+        },
+        {
+          "id": "OR-L3-C07-L04",
+          "code": "L04",
+          "order": 4,
+          "title": "verification/validation."
+        }
+      ],
+      "dynamicTemplates": [],
+      "prerequisiteText": "OR-L2-C05–C06; PY-L2; MATH-L2-C06.",
+      "learningContract": {
+        "theory": "simulation study lifecycle.",
+        "exercises": "build/verify small simulator.",
+        "applications": "fleet/queue/reliability experiments.",
+        "simulationLab": "full simulation lab, scenario manager.",
+        "assessment": "reproducibility + statistical analysis.",
+        "project": "validated discrete-event model.",
+        "masterReady": "tách được verification khỏi validation và lượng hóa uncertainty."
+      },
+      "sourceDisposition": "create_new_academic_content",
+      "legacyRefs": []
+    },
+    {
+      "id": "OR-L3-C08",
+      "subjectId": "07",
+      "level": "L3",
+      "order": 60,
+      "title": "Nonlinear, multi-objective và heuristic optimization",
+      "annotations": [],
+      "lessonMode": "numbered",
+      "lessons": [
+        {
+          "id": "OR-L3-C08-L01",
+          "code": "L01",
+          "order": 1,
+          "title": "nonlinear/local optimum"
+        },
+        {
+          "id": "OR-L3-C08-L02",
+          "code": "L02",
+          "order": 2,
+          "title": "constrained methods"
+        },
+        {
+          "id": "OR-L3-C08-L03",
+          "code": "L03",
+          "order": 3,
+          "title": "Pareto/multi-objective"
+        },
+        {
+          "id": "OR-L3-C08-L04",
+          "code": "L04",
+          "order": 4,
+          "title": "metaheuristic và experiment discipline."
+        }
+      ],
+      "dynamicTemplates": [],
+      "prerequisiteText": "MATH-L1-C04; MATH-L3-C09; OR-L1-C02.",
+      "learningContract": {
+        "theory": "convergence, constraint và Pareto trade-off.",
+        "exercises": "optimize benchmark, compare starts/methods.",
+        "applications": "energy–time–risk mission design.",
+        "simulationLab": "landscape/Pareto frontier.",
+        "assessment": "method selection + robustness evidence.",
+        "project": "multi-objective planner.",
+        "masterReady": "không tuyên bố “tối ưu” khi chỉ có một nghiệm heuristic chưa kiểm chứng."
+      },
+      "sourceDisposition": "create_new_academic_content",
+      "legacyRefs": []
+    },
+    {
+      "id": "OR-L3-C09",
+      "subjectId": "07",
+      "level": "L3",
+      "order": 61,
+      "title": "System modeling capstone",
+      "annotations": [],
+      "lessonMode": "numbered",
+      "lessons": [
+        {
+          "id": "OR-L3-C09-L01",
+          "code": "L01",
+          "order": 1,
+          "title": "system boundary/causal map"
+        },
+        {
+          "id": "OR-L3-C09-L02",
+          "code": "L02",
+          "order": 2,
+          "title": "hybrid model"
+        },
+        {
+          "id": "OR-L3-C09-L03",
+          "code": "L03",
+          "order": 3,
+          "title": "calibration/validation"
+        },
+        {
+          "id": "OR-L3-C09-L04",
+          "code": "L04",
+          "order": 4,
+          "title": "scenario/decision report."
+        }
+      ],
+      "dynamicTemplates": [],
+      "prerequisiteText": "OR-L3-C07–C08; Existing Competency Control/automation.",
+      "learningContract": {
+        "theory": "mô hình phục vụ quyết định, không phải mô hình càng phức tạp càng tốt.",
+        "exercises": "model critique và calibration tasks.",
+        "applications": "UGV ưu tiên; có thể mở rộng USV.",
+        "simulationLab": "end-to-end scenario simulator.",
+        "assessment": "independent review + sensitivity/uncertainty.",
+        "project": "OR/System Modeling capstone.",
+        "masterReady": "mô hình, dữ liệu, solver và kết luận nhất quán; giới hạn được công khai."
+      },
+      "sourceDisposition": "create_new_academic_content",
+      "legacyRefs": []
+    },
+    {
+      "id": "ML-L1-C01",
+      "subjectId": "08",
+      "level": "L1",
+      "order": 62,
+      "title": "Problem framing, split, leakage và metrics",
+      "annotations": [],
+      "lessonMode": "numbered",
+      "lessons": [
+        {
+          "id": "ML-L1-C01-L01",
+          "code": "L01",
+          "order": 1,
+          "title": "task/target/baseline"
+        },
+        {
+          "id": "ML-L1-C01-L02",
+          "code": "L02",
+          "order": 2,
+          "title": "train/validation/test"
+        },
+        {
+          "id": "ML-L1-C01-L03",
+          "code": "L03",
+          "order": 3,
+          "title": "leakage"
+        },
+        {
+          "id": "ML-L1-C01-L04",
+          "code": "L04",
+          "order": 4,
+          "title": "metrics/cost/calibration."
+        }
+      ],
+      "dynamicTemplates": [],
+      "prerequisiteText": "PY-L2-C05; MATH-L2-C05–C06.",
+      "learningContract": {
+        "theory": "generalization và measurement of success.",
+        "exercises": "identify bad splits/metrics, build baseline.",
+        "applications": "sensor classification/regression/anomaly.",
+        "simulationLab": "thay split/preprocessing và quan sát optimistic bias.",
+        "assessment": "audit một ML plan có lỗi.",
+        "project": "problem statement + baseline protocol.",
+        "masterReady": "định nghĩa được bài toán và đánh giá không leakage trước khi chọn model."
+      },
+      "sourceDisposition": "create_new_academic_content",
+      "legacyRefs": []
+    },
+    {
+      "id": "ML-L1-C02",
+      "subjectId": "08",
+      "level": "L1",
+      "order": 63,
+      "title": "Linear và logistic models",
+      "annotations": [],
+      "lessonMode": "numbered",
+      "lessons": [
+        {
+          "id": "ML-L1-C02-L01",
+          "code": "L01",
+          "order": 1,
+          "title": "linear regression"
+        },
+        {
+          "id": "ML-L1-C02-L02",
+          "code": "L02",
+          "order": 2,
+          "title": "regularization"
+        },
+        {
+          "id": "ML-L1-C02-L03",
+          "code": "L03",
+          "order": 3,
+          "title": "logistic/classification"
+        },
+        {
+          "id": "ML-L1-C02-L04",
+          "code": "L04",
+          "order": 4,
+          "title": "diagnostics/interpretation."
+        }
+      ],
+      "dynamicTemplates": [],
+      "prerequisiteText": "ML-L1-C01; MATH-L1-C03–C04; MATH-L3-C09-L02–L03 học just-in-time.",
+      "learningContract": {
+        "theory": "objective, assumption và decision boundary.",
+        "exercises": "implement simplified model + library model.",
+        "applications": "calibration và sensor prediction.",
+        "simulationLab": "coefficient/regularization/decision surface.",
+        "assessment": "fit + diagnose unseen dataset.",
+        "project": "interpretable baseline report.",
+        "masterReady": "giải thích được hệ số, assumption, error và khi model không phù hợp."
+      },
+      "sourceDisposition": "create_new_academic_content",
+      "legacyRefs": []
+    },
+    {
+      "id": "ML-L1-C03",
+      "subjectId": "08",
+      "level": "L1",
+      "order": 64,
+      "title": "Trees và ensembles",
+      "annotations": [],
+      "lessonMode": "numbered",
+      "lessons": [
+        {
+          "id": "ML-L1-C03-L01",
+          "code": "L01",
+          "order": 1,
+          "title": "decision tree"
+        },
+        {
+          "id": "ML-L1-C03-L02",
+          "code": "L02",
+          "order": 2,
+          "title": "random forest/bagging"
+        },
+        {
+          "id": "ML-L1-C03-L03",
+          "code": "L03",
+          "order": 3,
+          "title": "boosting"
+        },
+        {
+          "id": "ML-L1-C03-L04",
+          "code": "L04",
+          "order": 4,
+          "title": "feature importance/overfit."
+        }
+      ],
+      "dynamicTemplates": [],
+      "prerequisiteText": "ML-L1-C01; ADS-L2-C04.",
+      "learningContract": {
+        "theory": "recursive partition, bias–variance và ensemble logic.",
+        "exercises": "tune depth, compare models, inspect errors.",
+        "applications": "fault classification và tabular telemetry.",
+        "simulationLab": "tree growth và ensemble variance.",
+        "assessment": "model comparison with proper CV.",
+        "project": "robust tabular classifier.",
+        "masterReady": "chọn ensemble có căn cứ và không nhầm feature importance với causality."
+      },
+      "sourceDisposition": "create_new_academic_content",
+      "legacyRefs": []
+    },
+    {
+      "id": "ML-L2-C04",
+      "subjectId": "08",
+      "level": "L2",
+      "order": 65,
+      "title": "Clustering, PCA và anomaly detection",
+      "annotations": [],
+      "lessonMode": "numbered",
+      "lessons": [
+        {
+          "id": "ML-L2-C04-L01",
+          "code": "L01",
+          "order": 1,
+          "title": "distance/scaling"
+        },
+        {
+          "id": "ML-L2-C04-L02",
+          "code": "L02",
+          "order": 2,
+          "title": "k-means/hierarchical"
+        },
+        {
+          "id": "ML-L2-C04-L03",
+          "code": "L03",
+          "order": 3,
+          "title": "PCA pipeline"
+        },
+        {
+          "id": "ML-L2-C04-L04",
+          "code": "L04",
+          "order": 4,
+          "title": "anomaly methods/evaluation."
+        }
+      ],
+      "dynamicTemplates": [],
+      "prerequisiteText": "MATH-L2-C07; PY-L2-C04–C05.",
+      "learningContract": {
+        "theory": "geometry, cluster assumption và unsupervised evaluation.",
+        "exercises": "scale/cluster/project/anomaly cases.",
+        "applications": "operating regimes và fault detection.",
+        "simulationLab": "dùng mapping lesson PCA legacy làm nguồn lý thuyết; tạo simulation cluster/anomaly sidecar mới.",
+        "assessment": "justify preprocessing, k/components/threshold.",
+        "project": "unsupervised telemetry analysis.",
+        "masterReady": "kết luận thận trọng khi không có ground truth và kiểm soát leakage."
+      },
+      "sourceDisposition": "create_new_academic_content",
+      "legacyRefs": []
+    },
+    {
+      "id": "ML-L2-C05",
+      "subjectId": "08",
+      "level": "L2",
+      "order": 66,
+      "title": "Time-series và signal ML",
+      "annotations": [],
+      "lessonMode": "numbered",
+      "lessons": [
+        {
+          "id": "ML-L2-C05-L01",
+          "code": "L01",
+          "order": 1,
+          "title": "temporal split/window"
+        },
+        {
+          "id": "ML-L2-C05-L02",
+          "code": "L02",
+          "order": 2,
+          "title": "feature extraction"
+        },
+        {
+          "id": "ML-L2-C05-L03",
+          "code": "L03",
+          "order": 3,
+          "title": "classical forecast/classification baseline"
+        },
+        {
+          "id": "ML-L2-C05-L04",
+          "code": "L04",
+          "order": 4,
+          "title": "drift và online evaluation."
+        }
+      ],
+      "dynamicTemplates": [],
+      "prerequisiteText": "MATH-L3-C10; Existing Competency signal; PY-L2.",
+      "learningContract": {
+        "theory": "autocorrelation, nonstationarity và temporal leakage.",
+        "exercises": "windowing/features/backtest.",
+        "applications": "UGV/USV sensor and condition monitoring.",
+        "simulationLab": "stream replay và drift injection.",
+        "assessment": "time-aware experiment.",
+        "project": "temporal baseline pipeline.",
+        "masterReady": "đánh giá theo thời gian thật và phân biệt drift với random error."
+      },
+      "sourceDisposition": "create_new_academic_content",
+      "legacyRefs": []
+    },
+    {
+      "id": "ML-L2-C06",
+      "subjectId": "08",
+      "level": "L2",
+      "order": 67,
+      "title": "Neural network foundation",
+      "annotations": [],
+      "lessonMode": "numbered",
+      "lessons": [
+        {
+          "id": "ML-L2-C06-L01",
+          "code": "L01",
+          "order": 1,
+          "title": "perceptron/MLP"
+        },
+        {
+          "id": "ML-L2-C06-L02",
+          "code": "L02",
+          "order": 2,
+          "title": "backprop/optimization"
+        },
+        {
+          "id": "ML-L2-C06-L03",
+          "code": "L03",
+          "order": 3,
+          "title": "regularization/normalization"
+        },
+        {
+          "id": "ML-L2-C06-L04",
+          "code": "L04",
+          "order": 4,
+          "title": "CNN/RNN/Transformer orientation."
+        }
+      ],
+      "dynamicTemplates": [],
+      "prerequisiteText": "MATH-L1-C04; ML-L1-C02; PY-L2-C04.",
+      "learningContract": {
+        "theory": "representation, gradient training và capacity.",
+        "exercises": "implement small network, gradient check, train/debug.",
+        "applications": "tín hiệu/ảnh/sequence tùy đề tài.",
+        "simulationLab": "network playground và training diagnostics.",
+        "assessment": "reproduce a small experiment.",
+        "project": "neural baseline with ablation.",
+        "masterReady": "debug được training và không dùng deep learning chỉ vì model phức tạp hơn."
+      },
+      "sourceDisposition": "create_new_academic_content",
+      "legacyRefs": []
+    },
+    {
+      "id": "ML-L3-C07",
+      "subjectId": "08",
+      "level": "L3",
+      "order": 68,
+      "title": "Tuning, explainability, robustness và deployment boundary",
+      "annotations": [],
+      "lessonMode": "numbered",
+      "lessons": [
+        {
+          "id": "ML-L3-C07-L01",
+          "code": "L01",
+          "order": 1,
+          "title": "CV/hyperparameter search"
+        },
+        {
+          "id": "ML-L3-C07-L02",
+          "code": "L02",
+          "order": 2,
+          "title": "calibration/uncertainty"
+        },
+        {
+          "id": "ML-L3-C07-L03",
+          "code": "L03",
+          "order": 3,
+          "title": "explainability/fairness/robustness"
+        },
+        {
+          "id": "ML-L3-C07-L04",
+          "code": "L04",
+          "order": 4,
+          "title": "inference cost/monitoring."
+        }
+      ],
+      "dynamicTemplates": [],
+      "prerequisiteText": "ML-L1-C02–C03; ML-L2-C04–C06.",
+      "learningContract": {
+        "theory": "selection bias, post-hoc explanation limits và distribution shift.",
+        "exercises": "nested evaluation, calibration, stress test.",
+        "applications": "model trên robot/edge or research service.",
+        "simulationLab": "corrupted/noisy/OOD data.",
+        "assessment": "model card review.",
+        "project": "selected model + model card.",
+        "masterReady": "quyết định model dựa trên metric, uncertainty, robustness và resource constraint."
+      },
+      "sourceDisposition": "create_new_academic_content",
+      "legacyRefs": []
+    },
+    {
+      "id": "ML-L3-C08",
+      "subjectId": "08",
+      "level": "L3",
+      "order": 69,
+      "title": "Research question, literature và experimental design",
+      "annotations": [],
+      "lessonMode": "numbered",
+      "lessons": [
+        {
+          "id": "ML-L3-C08-L01",
+          "code": "L01",
+          "order": 1,
+          "title": "research question/contribution"
+        },
+        {
+          "id": "ML-L3-C08-L02",
+          "code": "L02",
+          "order": 2,
+          "title": "search/read/synthesize literature"
+        },
+        {
+          "id": "ML-L3-C08-L03",
+          "code": "L03",
+          "order": 3,
+          "title": "hypothesis/variables/control"
+        },
+        {
+          "id": "ML-L3-C08-L04",
+          "code": "L04",
+          "order": 4,
+          "title": "validity/ethics/data plan."
+        }
+      ],
+      "dynamicTemplates": [],
+      "prerequisiteText": "ML-L1-C01; RU-R3-C07 đang song hành.",
+      "learningContract": {
+        "theory": "research gap, falsifiability, internal/external validity.",
+        "exercises": "critique papers, build evidence matrix, rewrite vague question.",
+        "applications": "định hướng UGV AI, mở rộng USV khi dữ liệu/phạm vi cho phép.",
+        "simulationLab": "simulated experiment design review.",
+        "assessment": "proposal defense.",
+        "project": "mini research proposal.",
+        "masterReady": "câu hỏi có thể kiểm chứng, đóng góp không phóng đại và thiết kế trả lời đúng câu hỏi."
+      },
+      "sourceDisposition": "create_new_academic_content",
+      "legacyRefs": []
+    },
+    {
+      "id": "ML-L3-C09",
+      "subjectId": "08",
+      "level": "L3",
+      "order": 70,
+      "title": "Reproducible research và technical reporting",
+      "annotations": [],
+      "lessonMode": "numbered",
+      "lessons": [
+        {
+          "id": "ML-L3-C09-L01",
+          "code": "L01",
+          "order": 1,
+          "title": "experiment tracking/version"
+        },
+        {
+          "id": "ML-L3-C09-L02",
+          "code": "L02",
+          "order": 2,
+          "title": "baseline/ablation/error analysis"
+        },
+        {
+          "id": "ML-L3-C09-L03",
+          "code": "L03",
+          "order": 3,
+          "title": "statistical reporting"
+        },
+        {
+          "id": "ML-L3-C09-L04",
+          "code": "L04",
+          "order": 4,
+          "title": "paper/poster/presentation."
+        }
+      ],
+      "dynamicTemplates": [],
+      "prerequisiteText": "ML-L3-C07–C08; PY-L3-C08; MATH-L2-C06.",
+      "learningContract": {
+        "theory": "provenance, comparison fairness và claim–evidence alignment.",
+        "exercises": "reproduce, ablate, write result/limitation.",
+        "applications": "chuẩn bị NIR/Thesis.",
+        "simulationLab": "clean-run reproduction và seeded rerun.",
+        "assessment": "independent reproduction + oral defense.",
+        "project": "reproducible ML research package.",
+        "masterReady": "người khác tái tạo được kết quả chính và mọi claim đều có bằng chứng phù hợp."
+      },
+      "sourceDisposition": "create_new_academic_content",
+      "legacyRefs": []
+    },
+    {
+      "id": "CUR-L4-C01",
+      "subjectId": "09",
+      "level": "L4",
+      "order": 71,
+      "title": "Syllabus intake",
+      "annotations": [],
+      "lessonMode": "dynamic",
+      "lessons": [],
+      "dynamicTemplates": [
+        "learning outcomes",
+        "topics",
+        "assessment",
+        "readings",
+        "deadlines."
+      ],
+      "prerequisiteText": "syllabus/tài liệu chính thức của môn.",
+      "learningContract": {
+        "theory": "cách đọc learning outcomes, rubric, assessment và lịch học.",
+        "exercises": "phân tích yêu cầu và chuyển thành competency nodes.",
+        "applications": "tạo kế hoạch học từ syllabus thật.",
+        "simulationLab": "timeline và workload simulation.",
+        "assessment": "audit đối chiếu toàn bộ syllabus nguồn.",
+        "project": "syllabus digest một trang.",
+        "masterReady": "không bỏ sót outcome, bài đánh giá hoặc deadline trọng yếu."
+      },
+      "sourceDisposition": "create_dynamic",
+      "legacyRefs": []
+    },
+    {
+      "id": "CUR-L4-C02",
+      "subjectId": "09",
+      "level": "L4",
+      "order": 72,
+      "title": "Prerequisite map và diagnostic",
+      "annotations": [],
+      "lessonMode": "dynamic",
+      "lessons": [],
+      "dynamicTemplates": [
+        "map tới Kho 01–08",
+        "diagnostic",
+        "gap bridge",
+        "Russian glossary."
+      ],
+      "prerequisiteText": "CUR-L4-C01.",
+      "learningContract": {
+        "theory": "dependency reasoning và quy tắc mastery/prerequisite.",
+        "exercises": "targeted diagnostic và phân loại lỗi.",
+        "applications": "chọn đúng bridge lesson từ Kho 01–08.",
+        "simulationLab": "graph các node bị chặn và thử kịch bản deadline.",
+        "assessment": "audit không bỏ sót prerequisite Critical.",
+        "project": "readiness report đỏ–vàng–xanh.",
+        "masterReady": "mọi prerequisite Critical có chủ sở hữu, deadline và đường xử lý."
+      },
+      "sourceDisposition": "create_dynamic",
+      "legacyRefs": []
+    },
+    {
+      "id": "CUR-L4-C03",
+      "subjectId": "09",
+      "level": "L4",
+      "order": 73,
+      "title": "Preview 2–4 tuần",
+      "annotations": [],
+      "lessonMode": "dynamic",
+      "lessons": [],
+      "dynamicTemplates": [
+        "pre-read",
+        "concept preview",
+        "worked example",
+        "mini-lab",
+        "Russian twin lesson."
+      ],
+      "prerequisiteText": "CUR-L4-C02.",
+      "learningContract": {
+        "theory": "concept và thuật ngữ lấy đúng từ tuần học sắp tới.",
+        "exercises": "worked examples và bài tự giải cùng dạng nhưng khác dữ liệu.",
+        "applications": "liên hệ với assignment/lab dự kiến của môn.",
+        "simulationLab": "mini-lab hoặc simulation của concept sắp học.",
+        "assessment": "preview quiz.",
+        "project": "one-page concept map + Russian twin lesson.",
+        "masterReady": "vào lớp đã nhận diện được thuật ngữ, câu hỏi và bài toán lõi."
+      },
+      "sourceDisposition": "create_dynamic",
+      "legacyRefs": []
+    },
+    {
+      "id": "CUR-L4-C04",
+      "subjectId": "09",
+      "level": "L4",
+      "order": 74,
+      "title": "Weekly co-pilot",
+      "annotations": [],
+      "lessonMode": "dynamic",
+      "lessons": [],
+      "dynamicTemplates": [
+        "lecture consolidation",
+        "assignment decomposition",
+        "misconception repair",
+        "office-hour questions."
+      ],
+      "prerequisiteText": "tài liệu tuần thật.",
+      "learningContract": {
+        "theory": "giải thích lại concept và nối với prerequisite, không làm hộ bài đánh giá.",
+        "exercises": "retrieval practice và bài tương tự độc lập.",
+        "applications": "áp dụng vào nhiệm vụ tuần với ranh giới hỗ trợ rõ ràng.",
+        "simulationLab": "lab tương ứng môn.",
+        "assessment": "weekly mastery check.",
+        "project": "evidence log và artifact tuần.",
+        "masterReady": "hiểu, tự làm và giải thích được sản phẩm tuần."
+      },
+      "sourceDisposition": "create_dynamic",
+      "legacyRefs": []
+    },
+    {
+      "id": "CUR-L4-C05",
+      "subjectId": "09",
+      "level": "L4",
+      "order": 75,
+      "title": "Assessment readiness",
+      "annotations": [],
+      "lessonMode": "dynamic",
+      "lessons": [],
+      "dynamicTemplates": [
+        "exam blueprint",
+        "oral drill",
+        "project rubric",
+        "timed practice."
+      ],
+      "prerequisiteText": "các tuần liên quan đã học.",
+      "learningContract": {
+        "theory": "tổng hợp concept theo blueprint đánh giá thật.",
+        "exercises": "timed practice và oral drill.",
+        "applications": "giải một tình huống tích hợp gần dạng đánh giá nhưng không sao chép đề thật.",
+        "simulationLab": "rehearsal lab/project under time limit.",
+        "assessment": "mock exam/defense.",
+        "project": "error log và final readiness dossier.",
+        "masterReady": "≥80% mock, không còn prerequisite Gap, giải thích được lỗi."
+      },
+      "sourceDisposition": "create_dynamic",
+      "legacyRefs": []
+    },
+    {
+      "id": "CUR-L4-C06",
+      "subjectId": "09",
+      "level": "L4",
+      "order": 76,
+      "title": "Archive và chuyển giao sang NIR",
+      "annotations": [],
+      "lessonMode": "dynamic",
+      "lessons": [],
+      "dynamicTemplates": [
+        "concept map",
+        "reusable code/data",
+        "open questions",
+        "thesis relevance."
+      ],
+      "prerequisiteText": "hoàn thành môn.",
+      "learningContract": {
+        "theory": "synthesis các khái niệm và quan hệ với Roadmap/NIR.",
+        "exercises": "retrieval practice sau giãn cách.",
+        "applications": "chuyển kiến thức sang bài toán khác.",
+        "simulationLab": "transfer test bằng lab/simulation mới.",
+        "assessment": "retention và transfer check.",
+        "project": "course portfolio.",
+        "masterReady": "tài sản học tập có thể tìm lại, tái dùng và liên kết Kho 10."
+      },
+      "sourceDisposition": "create_dynamic",
+      "legacyRefs": []
+    },
+    {
+      "id": "NIR-L1-C01",
+      "subjectId": "10",
+      "level": "L1",
+      "order": 77,
+      "title": "Problem landscape và hướng đề tài",
+      "annotations": [],
+      "lessonMode": "numbered",
+      "lessons": [
+        {
+          "id": "NIR-L1-C01-L01",
+          "code": "L01",
+          "order": 1,
+          "title": "domain map"
+        },
+        {
+          "id": "NIR-L1-C01-L02",
+          "code": "L02",
+          "order": 2,
+          "title": "stakeholder/problem"
+        },
+        {
+          "id": "NIR-L1-C01-L03",
+          "code": "L03",
+          "order": 3,
+          "title": "data/resource constraint"
+        },
+        {
+          "id": "NIR-L1-C01-L04",
+          "code": "L04",
+          "order": 4,
+          "title": "UGV-first, USV-extension decision."
+        }
+      ],
+      "dynamicTemplates": [],
+      "prerequisiteText": "Existing Competency automation/control; ML-L1-C01.",
+      "learningContract": {
+        "theory": "problem framing, scope và feasibility.",
+        "exercises": "scope critique, constraint inventory.",
+        "applications": "chọn nhánh UGV AI ưu tiên; USV là mở rộng, không ép đồng thời.",
+        "simulationLab": "scenario comparison theo data/time/compute/risk.",
+        "assessment": "concept note defense.",
+        "project": "one-page research landscape.",
+        "masterReady": "vấn đề có giá trị, vừa phạm vi và có dữ liệu/khả năng thực hiện."
+      },
+      "sourceDisposition": "create_new_academic_content",
+      "legacyRefs": []
+    },
+    {
+      "id": "NIR-L1-C02",
+      "subjectId": "10",
+      "level": "L1",
+      "order": 78,
+      "title": "Literature review và research gap",
+      "annotations": [],
+      "lessonMode": "numbered",
+      "lessons": [
+        {
+          "id": "NIR-L1-C02-L01",
+          "code": "L01",
+          "order": 1,
+          "title": "search strategy"
+        },
+        {
+          "id": "NIR-L1-C02-L02",
+          "code": "L02",
+          "order": 2,
+          "title": "screening/quality"
+        },
+        {
+          "id": "NIR-L1-C02-L03",
+          "code": "L03",
+          "order": 3,
+          "title": "evidence matrix"
+        },
+        {
+          "id": "NIR-L1-C02-L04",
+          "code": "L04",
+          "order": 4,
+          "title": "synthesis/gap."
+        }
+      ],
+      "dynamicTemplates": [],
+      "prerequisiteText": "ML-L3-C08; RU-R3-C07.",
+      "learningContract": {
+        "theory": "systematic search vừa đủ, gap thật vs “chưa ai làm”.",
+        "exercises": "inclusion/exclusion, claim extraction, synthesis.",
+        "applications": "literature UGV/USV/signal/automation/ML theo topic.",
+        "simulationLab": "citation network và evidence map.",
+        "assessment": "review protocol + spot audit.",
+        "project": "annotated bibliography và literature matrix.",
+        "masterReady": "gap được suy ra từ bằng chứng, nguồn có chất lượng và tìm kiếm có thể lặp."
+      },
+      "sourceDisposition": "create_new_academic_content",
+      "legacyRefs": []
+    },
+    {
+      "id": "NIR-L1-C03",
+      "subjectId": "10",
+      "level": "L1",
+      "order": 79,
+      "title": "Research question, hypothesis và contribution",
+      "annotations": [],
+      "lessonMode": "numbered",
+      "lessons": [
+        {
+          "id": "NIR-L1-C03-L01",
+          "code": "L01",
+          "order": 1,
+          "title": "RQ"
+        },
+        {
+          "id": "NIR-L1-C03-L02",
+          "code": "L02",
+          "order": 2,
+          "title": "hypothesis/metric"
+        },
+        {
+          "id": "NIR-L1-C03-L03",
+          "code": "L03",
+          "order": 3,
+          "title": "novelty/contribution"
+        },
+        {
+          "id": "NIR-L1-C03-L04",
+          "code": "L04",
+          "order": 4,
+          "title": "limitation/scope lock."
+        }
+      ],
+      "dynamicTemplates": [],
+      "prerequisiteText": "NIR-L1-C01–C02.",
+      "learningContract": {
+        "theory": "falsifiability và claim ladder.",
+        "exercises": "rewrite question, map evidence needed.",
+        "applications": "topic thật.",
+        "simulationLab": "adversarial reviewer questions.",
+        "assessment": "proposal gate 1.",
+        "project": "RQ–hypothesis–contribution sheet.",
+        "masterReady": "mỗi claim có phép đo và thí nghiệm có thể bác bỏ nó."
+      },
+      "sourceDisposition": "create_new_academic_content",
+      "legacyRefs": []
+    },
+    {
+      "id": "NIR-L2-C04",
+      "subjectId": "10",
+      "level": "L2",
+      "order": 80,
+      "title": "Methodology và experimental design",
+      "annotations": [],
+      "lessonMode": "numbered",
+      "lessons": [
+        {
+          "id": "NIR-L2-C04-L01",
+          "code": "L01",
+          "order": 1,
+          "title": "variables/control"
+        },
+        {
+          "id": "NIR-L2-C04-L02",
+          "code": "L02",
+          "order": 2,
+          "title": "baseline"
+        },
+        {
+          "id": "NIR-L2-C04-L03",
+          "code": "L03",
+          "order": 3,
+          "title": "sampling/split/power"
+        },
+        {
+          "id": "NIR-L2-C04-L04",
+          "code": "L04",
+          "order": 4,
+          "title": "protocol và validity threats."
+        }
+      ],
+      "dynamicTemplates": [],
+      "prerequisiteText": "NIR-L1-C03; MATH-L2-C06; ML-L3-C08.",
+      "learningContract": {
+        "theory": "causal caution, fairness of comparison và validity.",
+        "exercises": "experiment critique/design.",
+        "applications": "thí nghiệm mô phỏng hoặc thực tùy nguồn lực.",
+        "simulationLab": "pilot experiment.",
+        "assessment": "method review.",
+        "project": "preregistered-like experiment protocol.",
+        "masterReady": "protocol trả lời đúng RQ, baseline công bằng và metric phù hợp."
+      },
+      "sourceDisposition": "create_new_academic_content",
+      "legacyRefs": []
+    },
+    {
+      "id": "NIR-L2-C05",
+      "subjectId": "10",
+      "level": "L2",
+      "order": 81,
+      "title": "Data, ethics, provenance và reproducibility",
+      "annotations": [],
+      "lessonMode": "numbered",
+      "lessons": [
+        {
+          "id": "NIR-L2-C05-L01",
+          "code": "L01",
+          "order": 1,
+          "title": "acquisition/consent/permission"
+        },
+        {
+          "id": "NIR-L2-C05-L02",
+          "code": "L02",
+          "order": 2,
+          "title": "schema/quality"
+        },
+        {
+          "id": "NIR-L2-C05-L03",
+          "code": "L03",
+          "order": 3,
+          "title": "version/lineage"
+        },
+        {
+          "id": "NIR-L2-C05-L04",
+          "code": "L04",
+          "order": 4,
+          "title": "backup/security/release."
+        }
+      ],
+      "dynamicTemplates": [],
+      "prerequisiteText": "DB-L2-C06; SYS-L3-C08.",
+      "learningContract": {
+        "theory": "data governance cho nghiên cứu.",
+        "exercises": "data risk/audit cases.",
+        "applications": "dataset thesis.",
+        "simulationLab": "rebuild dataset from raw.",
+        "assessment": "data audit.",
+        "project": "data management plan + dataset card.",
+        "masterReady": "dữ liệu hợp lệ, truy vết, bảo vệ và tái tạo được."
+      },
+      "sourceDisposition": "create_new_academic_content",
+      "legacyRefs": []
+    },
+    {
+      "id": "NIR-L2-C06",
+      "subjectId": "10",
+      "level": "L2",
+      "order": 82,
+      "title": "Baseline, implementation và verification",
+      "annotations": [],
+      "lessonMode": "numbered",
+      "lessons": [
+        {
+          "id": "NIR-L2-C06-L01",
+          "code": "L01",
+          "order": 1,
+          "title": "reference baseline"
+        },
+        {
+          "id": "NIR-L2-C06-L02",
+          "code": "L02",
+          "order": 2,
+          "title": "modular implementation"
+        },
+        {
+          "id": "NIR-L2-C06-L03",
+          "code": "L03",
+          "order": 3,
+          "title": "unit/integration test"
+        },
+        {
+          "id": "NIR-L2-C06-L04",
+          "code": "L04",
+          "order": 4,
+          "title": "simulation-to-real boundary."
+        }
+      ],
+      "dynamicTemplates": [],
+      "prerequisiteText": "PY-L3-C08; module kỹ thuật liên quan.",
+      "learningContract": {
+        "theory": "correctness before novelty.",
+        "exercises": "reproduce baseline, failure test.",
+        "applications": "prototype thesis.",
+        "simulationLab": "controlled simulation and regression suite.",
+        "assessment": "baseline reproduction gate.",
+        "project": "verified baseline package.",
+        "masterReady": "baseline chạy đúng và sai khác với nguồn được giải thích."
+      },
+      "sourceDisposition": "create_new_academic_content",
+      "legacyRefs": []
+    },
+    {
+      "id": "NIR-L3-C07",
+      "subjectId": "10",
+      "level": "L3–L4",
+      "order": 83,
+      "title": "Analysis, ablation và error investigation",
+      "annotations": [],
+      "lessonMode": "numbered",
+      "lessons": [
+        {
+          "id": "NIR-L3-C07-L01",
+          "code": "L01",
+          "order": 1,
+          "title": "result table/uncertainty"
+        },
+        {
+          "id": "NIR-L3-C07-L02",
+          "code": "L02",
+          "order": 2,
+          "title": "ablation"
+        },
+        {
+          "id": "NIR-L3-C07-L03",
+          "code": "L03",
+          "order": 3,
+          "title": "error taxonomy"
+        },
+        {
+          "id": "NIR-L3-C07-L04",
+          "code": "L04",
+          "order": 4,
+          "title": "sensitivity/robustness."
+        }
+      ],
+      "dynamicTemplates": [],
+      "prerequisiteText": "NIR-L2-C04–C06; MATH-L2-C06.",
+      "learningContract": {
+        "theory": "evidence strength và alternative explanations.",
+        "exercises": "analysis audit và claim correction.",
+        "applications": "kết quả thật.",
+        "simulationLab": "rerun across seeds/scenarios.",
+        "assessment": "internal replication.",
+        "project": "results dossier.",
+        "masterReady": "claim không vượt dữ liệu, có uncertainty, ablation và failure cases."
+      },
+      "sourceDisposition": "create_new_academic_content",
+      "legacyRefs": []
+    },
+    {
+      "id": "NIR-L3-C08",
+      "subjectId": "10",
+      "level": "L3–L4",
+      "order": 84,
+      "title": "Viết báo cáo/paper và quản lý trích dẫn",
+      "annotations": [],
+      "lessonMode": "numbered",
+      "lessons": [
+        {
+          "id": "NIR-L3-C08-L01",
+          "code": "L01",
+          "order": 1,
+          "title": "outline/argument"
+        },
+        {
+          "id": "NIR-L3-C08-L02",
+          "code": "L02",
+          "order": 2,
+          "title": "method/result"
+        },
+        {
+          "id": "NIR-L3-C08-L03",
+          "code": "L03",
+          "order": 3,
+          "title": "discussion/limitation"
+        },
+        {
+          "id": "NIR-L3-C08-L04",
+          "code": "L04",
+          "order": 4,
+          "title": "citation/figure/table/appendix."
+        }
+      ],
+      "dynamicTemplates": [],
+      "prerequisiteText": "NIR-L3-C07; RU-R3-C07.",
+      "learningContract": {
+        "theory": "claim–evidence flow và academic integrity.",
+        "exercises": "rewrite, figure critique, citation audit.",
+        "applications": "NIR report/thesis/paper.",
+        "simulationLab": "consistency checker giữa text–table–code output.",
+        "assessment": "supervisor/reviewer rubric.",
+        "project": "complete draft.",
+        "masterReady": "bản viết rõ, kiểm chứng được, trích dẫn đúng và không che giới hạn."
+      },
+      "sourceDisposition": "create_new_academic_content",
+      "legacyRefs": []
+    },
+    {
+      "id": "NIR-L4-C09",
+      "subjectId": "10",
+      "level": "L3–L4",
+      "order": 85,
+      "title": "Seminar, defense và artifact handoff",
+      "annotations": [],
+      "lessonMode": "numbered",
+      "lessons": [
+        {
+          "id": "NIR-L4-C09-L01",
+          "code": "L01",
+          "order": 1,
+          "title": "slide/story"
+        },
+        {
+          "id": "NIR-L4-C09-L02",
+          "code": "L02",
+          "order": 2,
+          "title": "demo"
+        },
+        {
+          "id": "NIR-L4-C09-L03",
+          "code": "L03",
+          "order": 3,
+          "title": "Q&A/adversarial review"
+        },
+        {
+          "id": "NIR-L4-C09-L04",
+          "code": "L04",
+          "order": 4,
+          "title": "archive/release/future work."
+        }
+      ],
+      "dynamicTemplates": [],
+      "prerequisiteText": "NIR-L3-C08; RU-R3-C08/R4-C10.",
+      "learningContract": {
+        "theory": "defense logic và reproducible handoff.",
+        "exercises": "1/3/10-minute explanation, mock Q&A.",
+        "applications": "seminar/NIR/thesis defense.",
+        "simulationLab": "recorded defense and failure rehearsal.",
+        "assessment": "mock committee.",
+        "project": "final thesis package: report, slides, code, data instructions, demo và archive.",
+        "masterReady": "bảo vệ được contribution/limitation và người khác tiếp tục công việc từ artifact bàn giao."
+      },
+      "sourceDisposition": "create_new_academic_content",
+      "legacyRefs": []
+    }
+  ],
+  "counts": {
+    "subjects": 10,
+    "nodes": 85,
+    "numberedLessons": 304,
+    "dynamicNodes": 8,
+    "legacyCompositeNodes": 1
+  }
+}
