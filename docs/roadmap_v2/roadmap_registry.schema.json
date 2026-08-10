@@ -1,0 +1,83 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "BAUMAN_ROADMAP_V2_REGISTRY_V1",
+  "title": "Bauman Roadmap V2 Registry",
+  "type": "object",
+  "required": [
+    "schema",
+    "version",
+    "status",
+    "source",
+    "baselineRef",
+    "namespace",
+    "priorityWeights",
+    "masteryStates",
+    "subjects",
+    "nodes",
+    "counts"
+  ],
+  "properties": {
+    "schema": { "const": "BAUMAN_ROADMAP_V2_REGISTRY_V1" },
+    "namespace": { "const": "roadmap_v2" },
+    "subjects": {
+      "type": "array",
+      "minItems": 10,
+      "maxItems": 10,
+      "items": {
+        "type": "object",
+        "required": ["id", "title", "order"],
+        "properties": {
+          "id": { "type": "string", "pattern": "^[0-9]{2}$" },
+          "title": { "type": "string", "minLength": 1 },
+          "order": { "type": "integer", "minimum": 1 }
+        },
+        "additionalProperties": false
+      }
+    },
+    "nodes": {
+      "type": "array",
+      "minItems": 85,
+      "maxItems": 85,
+      "items": {
+        "type": "object",
+        "required": [
+          "id",
+          "subjectId",
+          "level",
+          "order",
+          "title",
+          "lessonMode",
+          "lessons",
+          "dynamicTemplates",
+          "prerequisiteText",
+          "learningContract",
+          "sourceDisposition",
+          "legacyRefs"
+        ],
+        "properties": {
+          "id": { "type": "string", "pattern": "^[A-Z0-9]+-[A-Z0-9–-]+-C[0-9]{2}$" },
+          "subjectId": { "type": "string", "pattern": "^[0-9]{2}$" },
+          "level": { "type": "string", "minLength": 1 },
+          "order": { "type": "integer", "minimum": 1 },
+          "title": { "type": "string", "minLength": 1 },
+          "annotations": { "type": "array", "items": { "type": "string" } },
+          "lessonMode": { "enum": ["numbered", "dynamic", "legacy_composite"] },
+          "lessons": { "type": "array" },
+          "dynamicTemplates": { "type": "array", "items": { "type": "string" } },
+          "prerequisiteText": { "type": "string", "minLength": 1 },
+          "learningContract": {
+            "type": "object",
+            "required": ["theory", "exercises", "applications", "simulationLab", "assessment", "project", "masterReady"],
+            "additionalProperties": false
+          },
+          "sourceDisposition": {
+            "enum": ["adapt_legacy_module", "create_dynamic", "map_legacy_before_reuse", "reuse_composite_verified", "create_new_academic_content"]
+          },
+          "legacyRefs": { "type": "array", "items": { "type": "string", "minLength": 1 } }
+        },
+        "additionalProperties": false
+      }
+    }
+  }
+}
+
