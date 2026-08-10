@@ -1,0 +1,67 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://bauman.local/schemas/migration-contract.schema.json",
+  "title": "Bauman Roadmap V2 Migration Contract",
+  "type": "object",
+  "required": [
+    "schema",
+    "version",
+    "scope",
+    "immutableBaseline",
+    "targetArtifacts",
+    "invariants",
+    "transactionProtocol",
+    "gates",
+    "acceptance"
+  ],
+  "properties": {
+    "schema": { "const": "BAUMAN_ROADMAP_V2_MIGRATION_CONTRACT_V2" },
+    "version": { "const": 2 },
+    "scope": { "type": "string" },
+    "immutableBaseline": {
+      "type": "object",
+      "required": ["repository", "branch", "commit", "inventories"],
+      "properties": {
+        "inventories": {
+          "type": "object",
+          "required": ["canonical", "physical", "legacyLessons", "theoryFramework"]
+        }
+      }
+    },
+    "targetArtifacts": {
+      "type": "object",
+      "required": ["registrySha256", "graphSha256", "mappingSha256"]
+    },
+    "invariants": { "type": "array", "minItems": 9 },
+    "transactionProtocol": { "type": "object" },
+    "gates": {
+      "type": "object",
+      "required": ["contractGate", "runtimeActivationGate"]
+    },
+    "acceptance": {
+      "type": "object",
+      "required": [
+        "step",
+        "baselinePinned",
+        "mappingCompleteAsInventory",
+        "semanticMappingComplete",
+        "ambiguityQuarantined",
+        "sourceMutations",
+        "priorityEngineActivated",
+        "runtimeModified",
+        "result"
+      ],
+      "properties": {
+        "step": { "const": 76 },
+        "baselinePinned": { "const": true },
+        "mappingCompleteAsInventory": { "const": true },
+        "semanticMappingComplete": { "const": false },
+        "ambiguityQuarantined": { "const": true },
+        "sourceMutations": { "const": 0 },
+        "priorityEngineActivated": { "const": false },
+        "runtimeModified": { "const": false },
+        "result": { "const": "PASS_CONTRACT_ONLY" }
+      }
+    }
+  }
+}

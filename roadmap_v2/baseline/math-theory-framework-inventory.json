@@ -1,0 +1,49 @@
+{
+  "schema": "BAUMAN_MATH_THEORY_FRAMEWORK_INVENTORY_V1",
+  "auditedAt": "2026-08-10",
+  "repository": {
+    "fullName": "BlueDragon33/Bauman-master-ai-system",
+    "ref": "e383912354673bdce7a0059d6b9a23799d74e689",
+    "path": "subjects/math/data/theory-framework.json",
+    "gitBlobSha": "fb3a9a052e6c467c03bea5204dae10303ba73766",
+    "chars": 397661
+  },
+  "counts": {
+    "chapters": 21,
+    "subLessons": 172,
+    "uniqueChapterIds": 21,
+    "uniqueSubLessonIds": 172
+  },
+  "role": "secondary_outline_candidates_not_authoritative_physical_lessons",
+  "chapters": [
+    { "id": "m_p01", "chapterNumber": 1, "title": "Chương 1 · Vector trong không gian dữ liệu", "subLessonIds": ["m_p01_t01", "m_p01_t02", "m_p01_t03", "m_p01_t04", "m_p01_t05", "m_p01_t06", "m_p01_t07", "m_p01_t08"], "contentStatuses": ["outline_only_waiting_for_full_content"] },
+    { "id": "m_p02", "chapterNumber": 2, "title": "Chương 2 · Ma trận, hệ tuyến tính và biến đổi dữ liệu", "subLessonIds": ["m_p02_t01", "m_p02_t02", "m_p02_t03", "m_p02_t04", "m_p02_t05", "m_p02_t06", "m_p02_t07", "m_p02_t08", "m_p02_t09"], "contentStatuses": ["outline_only_waiting_for_full_content"] },
+    { "id": "m_p07", "chapterNumber": 7, "title": "Chương 3 · Hiệp phương sai, tương quan và PCA nhập môn", "subLessonIds": ["m_p07_t01", "m_p07_t02", "m_p07_t03", "m_p07_t04", "m_p07_t05", "m_p07_t06", "m_p07_t07", "m_p07_t08"], "contentStatuses": ["outline_only_waiting_for_full_content"] },
+    { "id": "m_p03", "chapterNumber": 3, "title": "Chương 1 · Đạo hàm, gradient và tối ưu hóa mô hình", "subLessonIds": ["m_p03_t01", "m_p03_t02", "m_p03_t03", "m_p03_t04", "m_p03_t05", "m_p03_t06", "m_p03_t07", "m_p03_t08", "m_p03_t09"], "contentStatuses": ["outline_only_waiting_for_full_content"] },
+    { "id": "m_p04", "chapterNumber": 4, "title": "Chương 1 · Xác suất cơ bản, Bayes và suy luận bất định", "subLessonIds": ["m_p04_t01", "m_p04_t02", "m_p04_t03", "m_p04_t04", "m_p04_t05", "m_p04_t06", "m_p04_t07", "m_p04_t08"], "contentStatuses": ["outline_only_waiting_for_full_content"] },
+    { "id": "m_p05", "chapterNumber": 5, "title": "Chương 2 · Biến ngẫu nhiên, kỳ vọng và phương sai", "subLessonIds": ["m_p05_t01", "m_p05_t02", "m_p05_t03", "m_p05_t04", "m_p05_t05", "m_p05_t06", "m_p05_t07", "m_p05_t08", "m_p05_t09"], "contentStatuses": ["outline_only_waiting_for_full_content"] },
+    { "id": "m_p06", "chapterNumber": 6, "title": "Chương 3 · Thống kê mô tả, khoảng tin cậy và đánh giá mẫu", "subLessonIds": ["m_p06_t01", "m_p06_t02", "m_p06_t03", "m_p06_t04", "m_p06_t05", "m_p06_t06", "m_p06_t07", "m_p06_t08"], "contentStatuses": ["outline_only_waiting_for_full_content"] },
+    { "id": "m_p08", "chapterNumber": 8, "title": "Chương 1 · Chuỗi thời gian nhập môn", "subLessonIds": ["m_p08_t01", "m_p08_t02", "m_p08_t03", "m_p08_t04", "m_p08_t05", "m_p08_t06", "m_p08_t07", "m_p08_t08"], "contentStatuses": ["outline_only_waiting_for_full_content"] },
+    { "id": "m_s01", "chapterNumber": 9, "title": "Chương 1 · Thuật ngữ toán tiếng Nga cho lớp dự bị kỹ thuật", "subLessonIds": ["m_p09_t01", "m_p09_t02", "m_p09_t03", "m_p09_t04", "m_p09_t05", "m_p09_t06", "m_p09_t07", "m_p09_t08"], "contentStatuses": [] },
+    { "id": "m_s04", "chapterNumber": 12, "title": "Chương 1 · Toán cho dữ liệu đa chiều trong hệ thống AI", "subLessonIds": ["m_s04_t01", "m_s04_t02", "m_s04_t03", "m_s04_t04", "m_s04_t05", "m_s04_t06", "m_s04_t07", "m_s04_t08"], "contentStatuses": ["E21_checkpoint_seeded"] },
+    { "id": "m_s02", "chapterNumber": 10, "title": "Chương 1 · Đại số tuyến tính bằng tiếng Nga", "subLessonIds": ["m_p10_t01", "m_p10_t02", "m_p10_t03", "m_p10_t04", "m_p10_t05", "m_p10_t06", "m_p10_t07", "m_p10_t08"], "contentStatuses": [] },
+    { "id": "m_s03", "chapterNumber": 11, "title": "Chương 1 · Xác suất - thống kê bằng tiếng Nga", "subLessonIds": ["m_s03_t01", "m_s03_t02", "m_s03_t03", "m_s03_t04", "m_s03_t05", "m_s03_t06", "m_s03_t07", "m_s03_t08"], "contentStatuses": [] },
+    { "id": "m_s05", "chapterNumber": 13, "title": "Chương 2 · Tổng hợp dự bị: đại số, xác suất và thống kê", "subLessonIds": ["m_s05_t01", "m_s05_t02", "m_s05_t03", "m_s05_t04", "m_s05_t05", "m_s05_t06", "m_s05_t07", "m_s05_t08"], "contentStatuses": ["E22_checkpoint_seeded"] },
+    { "id": "m_m101", "chapterNumber": 14, "title": "Chương 1 · Nền tảng phân tích dữ liệu đa chiều", "subLessonIds": ["m_m101_t01", "m_m101_t02", "m_m101_t03", "m_m101_t04", "m_m101_t05", "m_m101_t06", "m_m101_t07", "m_m101_t08"], "contentStatuses": ["E23_fast_batch_checkpoint_seeded"] },
+    { "id": "m_m103", "chapterNumber": 16, "title": "Chương 1 · Clustering, similarity và cấu trúc không gian dữ liệu", "subLessonIds": ["m_m103_t01", "m_m103_t02", "m_m103_t03", "m_m103_t04", "m_m103_t05", "m_m103_t06", "m_m103_t07", "m_m103_t08"], "contentStatuses": ["E24_fast_batch_checkpoint_seeded"] },
+    { "id": "m_m104", "chapterNumber": 17, "title": "Chương 1 · Bài toán kỳ thi phân tích dữ liệu đa chiều", "subLessonIds": ["m_m104_t01", "m_m104_t02", "m_m104_t03", "m_m104_t04", "m_m104_t05", "m_m104_t06", "m_m104_t07", "m_m104_t08"], "contentStatuses": ["E24_fast_batch_checkpoint_seeded"] },
+    { "id": "m_m102", "chapterNumber": 15, "title": "Chương 1 · PCA, SVD và trực quan hóa không gian đặc trưng", "subLessonIds": ["m_m102_t01", "m_m102_t02", "m_m102_t03", "m_m102_t04", "m_m102_t05", "m_m102_t06", "m_m102_t07", "m_m102_t08"], "contentStatuses": ["E23_fast_batch_checkpoint_seeded"] },
+    { "id": "m_m301", "chapterNumber": 18, "title": "Chương 1 · Lý thuyết chuỗi thời gian cho dữ liệu cảm biến", "subLessonIds": ["m_m301_t01", "m_m301_t02", "m_m301_t03", "m_m301_t04", "m_m301_t05", "m_m301_t06", "m_m301_t07", "m_m301_t08"], "contentStatuses": ["E25_fast_batch_checkpoint_seeded"] },
+    { "id": "m_m302", "chapterNumber": 19, "title": "Chương 1 · Sai số dự báo, đánh giá mô hình và cross-validation theo thời gian", "subLessonIds": ["m_m302_t01", "m_m302_t02", "m_m302_t03", "m_m302_t04", "m_m302_t05", "m_m302_t06", "m_m302_t07", "m_m302_t08"], "contentStatuses": ["E25_fast_batch_checkpoint_seeded"] },
+    { "id": "m_m303", "chapterNumber": 20, "title": "Chương 1 · AR, MA, ARIMA và dự báo chuỗi thời gian", "subLessonIds": ["m_m303_t01", "m_m303_t02", "m_m303_t03", "m_m303_t04", "m_m303_t05", "m_m303_t06", "m_m303_t07", "m_m303_t08", "m_m303_t09"], "contentStatuses": ["E26_fast_batch_checkpoint_seeded"] },
+    { "id": "m_m304", "chapterNumber": 21, "title": "Chương 1 · Fourier, lọc số và phân tích phổ tín hiệu cảm biến", "subLessonIds": ["m_m304_t01", "m_m304_t02", "m_m304_t03", "m_m304_t04", "m_m304_t05", "m_m304_t06", "m_m304_t07", "m_m304_t08"], "contentStatuses": ["E26_fast_batch_checkpoint_seeded"] }
+  ],
+  "acceptance": {
+    "blobDecoded": true,
+    "jsonParsed": true,
+    "allChapterIdsUnique": true,
+    "allSubLessonIdsUnique": true,
+    "authoritativeLessonSource": false,
+    "result": "PASS"
+  }
+}

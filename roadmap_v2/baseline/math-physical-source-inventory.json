@@ -1,0 +1,102 @@
+{
+  "schema": "BAUMAN_MATH_PHYSICAL_SOURCE_INVENTORY_V2",
+  "auditedAt": "2026-08-10",
+  "repository": {
+    "fullName": "BlueDragon33/Bauman-master-ai-system",
+    "ref": "e383912354673bdce7a0059d6b9a23799d74e689"
+  },
+  "sourceRoles": {
+    "legacyLessons": {
+      "path": "subjects/math/data/lessons.json",
+      "gitBlobSha": "caacdf2b0813c1300af215608c4222ca61669184",
+      "role": "authoritative_existing_lesson_content",
+      "counts": {
+        "lessons": 347,
+        "uniqueLessonIds": 347,
+        "sourceChapters": 40,
+        "physicalContentGroups": 41,
+        "slides": 5552
+      },
+      "details": "roadmap_v2/baseline/math-legacy-lessons-inventory.json"
+    },
+    "theoryOverlay": {
+      "path": "subjects/math/data/theory_lecture_content.json",
+      "gitBlobSha": "0a7c49c25c0546411717dc5c39308c0c71d2a2e1",
+      "role": "authoritative_runtime_overlay_c01_c03",
+      "counts": {
+        "records": 18,
+        "slides": 300,
+        "chapters": 3
+      }
+    },
+    "theoryFramework": {
+      "path": "subjects/math/data/theory-framework.json",
+      "gitBlobSha": "fb3a9a052e6c467c03bea5204dae10303ba73766",
+      "role": "secondary_outline_candidate_not_physical_lesson_source",
+      "counts": {
+        "frameworkChapters": 21,
+        "frameworkSubLessons": 172
+      },
+      "details": "roadmap_v2/baseline/math-theory-framework-inventory.json",
+      "covariancePcaCandidate": {
+        "id": "m_p07",
+        "subLessons": 8,
+        "contentStatus": "outline_only_waiting_for_full_content"
+      }
+    },
+    "chapterSpine": {
+      "path": "subjects/math/data/chapter_spine.json",
+      "gitBlobSha": "db067682cce0389939048d5aabcaef38c6bad0e6",
+      "role": "navigation_and_curriculum_spine",
+      "counts": {
+        "records": 56,
+        "mastersChapters": 40,
+        "phdExtensionChapters": 16
+      }
+    }
+  },
+  "resolvedArchitecture": {
+    "rule": "The 347 legacy lessons and 18 theory overlay records coexist and must both be preserved.",
+    "sourceChapterVsContentGroup": "The legacy file has 40 source chapters but 41 physical content groups because source chapter 4 is split into §1 and §2 groups.",
+    "logicalComposite": "MATH-L2-C07 is a Roadmap V2 logical composite, not physical chapter number 7.",
+    "runtimeChange": "none"
+  },
+  "roadmapV2Composite": {
+    "logicalChapterId": "MATH-L2-C07",
+    "verifiedLegacyRefs": [
+      "MATH-VN-PS-C05-L05",
+      "MATH-PREP-LA2-C10-L05",
+      "MATH-PREP-LA2-C10-L06",
+      "MATH-PREP-LA2-C10-L07",
+      "MATH-PREP-PS2-C15-L06"
+    ],
+    "frameworkCandidateRefs": ["m_p07"],
+    "mappingRule": "Preserve every physical legacy ID; attach Roadmap V2 metadata by reference only."
+  },
+  "standaloneSidecarAudit": {
+    "emptyArrayBlobSha": "0637a088a01e8ddab3bf3fa98dbe804cbde1a0dc",
+    "emptyArrays": [
+      "subjects/math/data/formulas.json",
+      "subjects/math/data/exercises.json",
+      "subjects/math/data/applications.json",
+      "subjects/math/data/simulations.json",
+      "subjects/math/data/professor_qa.json"
+    ],
+    "testShell": {
+      "path": "subjects/math/data/tests.json",
+      "gitBlobSha": "9d048963479d0ea6e77d6b13c5fb555f68eaf2ca",
+      "levels": 4,
+      "questions": 0
+    },
+    "decision": "Create additive Roadmap V2 formula/exercise/application/simulation/test sidecars; do not claim reuse of nonexistent records."
+  },
+  "acceptance": {
+    "legacyBlobDecoded": true,
+    "legacyCountsReconciled": true,
+    "overlayCountVerified": true,
+    "frameworkRoleDemotedToSecondary": true,
+    "sidecarGapsVerified": true,
+    "physicalIdsModified": false,
+    "result": "PASS"
+  }
+}
