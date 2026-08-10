@@ -2,9 +2,9 @@
 
 ## Trạng thái triển khai tuần tự
 
-- Mốc hoàn thành gần nhất: **Lượt 20 / Bước 80**.
-- Mốc tiếp theo: **Lượt 21 / Bước 81**.
-- Trạng thái: **PASS — migration chưa thực thi**.
+- Mốc hoàn thành gần nhất: **Lượt 21 / Bước 84**.
+- Mốc tiếp theo: **Lượt 22 / Bước 85 — BLOCKED do chưa có đặc tả bước**.
+- Trạng thái: **PASS — read-only sidecar; migration/runtime activation chưa thực thi**.
 - Ngày kiểm kê: **2026-08-10 (Asia/Bangkok)**.
 - Repository: `BlueDragon33/Bauman-master-ai-system`.
 - Baseline vật lý: `main@e383912354673bdce7a0059d6b9a23799d74e689`.
@@ -19,13 +19,14 @@ tiếp repository, toàn bộ branch hiện có và Library chứng minh mô t�
 
 Trạng thái vật lý đã được khóa lại:
 
-- `lessons.json`: 347 lesson ID duy nhất, 41 chapter ID, 5.552 base slide.
+- `lessons.json`: 347 lesson ID duy nhất, 40 source chapter / 41 physical content group, 5.552 base slide.
 - Covariance/correlation/PCA tồn tại dưới các legacy lesson C05/C10/C15.
 - `MATH-L2-C07` là node logic composite, không phải số Chương 7 vật lý.
 - `theory_lecture_content.json`: 18 overlay bền vững cho C01–C03.
-- `formulas.json`, `exercises.json`, `simulations.json`: mảng rỗng tại baseline.
-- `tests.json`: contract shell, chưa phải ngân hàng test đồng bộ.
-- 15 đường dẫn runtime/data quan trọng đã được fingerprint bằng Git blob SHA.
+- `theory-framework.json`: 21 chapter / 172 sublesson; `m_p07` và 8 mục con chỉ là outline phụ, chưa runtime-ready.
+- `formulas.json`, `exercises.json`, `applications.json`, `simulations.json`, `professor_qa.json`: mảng rỗng tại baseline.
+- `tests.json`: 4 level, 0 question.
+- Các đường dẫn runtime/data quan trọng đã được fingerprint bằng Git blob SHA.
 
 Không có dữ liệu học thuật nào bị xóa. Sai ở đây là naming/mapping của bàn giao,
 không phải nội dung covariance/PCA bị mất.
@@ -36,8 +37,8 @@ không phải nội dung covariance/PCA bị mất.
 |---|---|---|
 | 73 | PASS | Baseline inventory, fingerprint và mapping composite C07 |
 | 74 | PASS | Registry: 10 kho, 85 node, 304 lesson đánh số, 8 node động |
-| 75 | PASS | Graph: 170 edge bắt buộc, 2 khuyến nghị, 13 gate, 0 missing, 0 cycle |
-| 76 | PASS | Mapping report 85/85 + migration contract sidecar-only |
+| 75 | PASS | Graph: 450 node, 425 hierarchy edge, 185 prerequisite edge, 0 missing/self/cycle |
+| 76 | PASS_CONTRACT_ONLY | Inventory 347 lesson + 18 overlay + 21/172 framework; 5 exact mapping, 342 preserved/unmapped, 0 record eligible |
 
 Validation đã chạy hai lần liên tiếp; JSON sinh ra có hash không đổi. Sáu script
 Node đã qua syntax check. Runtime/UI và 15 protected path không thay đổi.
@@ -48,7 +49,7 @@ Node đã qua syntax check. Runtime/UI và 15 protected path không thay đổi.
 - Migration dry-run: PASS, chỉ tạo 4 sidecar trong thư mục tạm ngoài worktree.
 - Rollback test: PASS; 15 fingerprint và academic baseline giống hệt trước–sau.
 - Deterministic regeneration: PASS, không phát sinh Git diff.
-- GitHub Actions run: `31403531123`, conclusion `success`.
+- GitHub Actions được tái kiểm tra trên canonical source tại run `31405787576`, conclusion `success`.
 - Lỗi planned count `tests: 5` bị hiểu nhầm thành level count đã được sửa: dữ liệu
   thật là 4 level và 0 question.
 
@@ -62,8 +63,21 @@ Node đã qua syntax check. Runtime/UI và 15 protected path không thay đổi.
 5. Không rewrite legacy ID hoặc patch runtime/UI lõi khi migration dry-run và
    protected-fingerprint gate chưa đạt.
 
-## Điểm bắt đầu Lượt 21
+## Kết quả Lượt 21 — Bước 81–84
 
-**Bước 81:** xây canonical read-only sidecar package và loader trong Node harness cô
-lập. Chưa nối loader vào production HTML/runtime trước khi schema, immutability và
-failure-mode test đạt.
+| Bước | Trạng thái | Kết quả |
+|---|---|---|
+| 81 | PASS | Sidecar canonical read-only gồm registry, graph, mapping, contract; 4 hash SHA-256 khóa trong manifest |
+| 82 | PASS | Loader kiểm tra schema/hash/count, lập index tra cứu và deep-freeze toàn bộ dữ liệu công khai |
+| 83 | PASS | 5/5 test đạt; sửa file hoặc thiếu file đều fail closed; mapping `m_p07` vẫn quarantine |
+| 84 | PASS | CI checkout thật xác nhận production HTML/manifest không nối loader; runtime/UI thay đổi 0 |
+
+- Commit kiểm định: `e9b15165ee0b7762eab97d23feb73a25230381dd`.
+- GitHub Actions: `31405787576`, 15 gate thực thi đều success.
+- PR: `https://github.com/BlueDragon33/Bauman-master-ai-system/pull/18` vẫn là draft.
+
+## Điểm dừng trước Lượt 22
+
+Không tìm thấy đặc tả chính xác cho **Lượt 22 / Bước 85–88** trong repository,
+Library hoặc Personal Context. Theo quy tắc không tự đoán thứ tự, hệ thống dừng tại
+Bước 84 và chờ kế hoạch Bước 85–88 được cung cấp hoặc phê duyệt.

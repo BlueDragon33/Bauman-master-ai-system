@@ -3,7 +3,7 @@
 Status: `PASS`
 
 GitHub Actions workflow: `Roadmap V2 contract gate`  
-Run: `31403531123`  
+Superseded/revalidated by run: `31405787576`  
 Conclusion: `success`
 
 ## Step evidence
@@ -13,7 +13,7 @@ Conclusion: `success`
 | 77 | PASS | Checkout contained all 15 protected paths; Git blob fingerprints, 347 lessons, 41 lesson chapters, 5,552 slides, 18 overlays and the verified C07 composite refs matched baseline |
 | 78 | PASS | Temporary sidecar dry-run wrote four contract files outside the worktree; 85 mapping entries, 0 graph cycles, 0 legacy/runtime mutations |
 | 79 | PASS | Temporary sidecar removed; protected fingerprints and academic baseline were identical before and after rollback |
-| 80 | PASS | All 12 CI steps succeeded; regenerated JSON produced no Git diff |
+| 80 | PASS | Canonical source reconciliation was revalidated on the real checkout; deterministic generation produced no Git diff |
 
 ## Defect handled before CI
 
@@ -32,7 +32,4 @@ validated that exact contract.
 
 ## Next sequential point
 
-`Lượt 21 · Bước 81`: build the canonical read-only sidecar package and loader in an
-isolated Node harness. Production HTML/runtime must remain disconnected until the
-loader schema, immutability and failure-mode tests pass.
-
+Completed at `Lượt 21 / Bước 84`; see `docs/roadmap_v2/L21_ACCEPTANCE.md`.

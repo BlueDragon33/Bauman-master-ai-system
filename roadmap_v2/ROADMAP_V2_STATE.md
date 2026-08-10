@@ -5,7 +5,7 @@ Repository baseline: `BlueDragon33/Bauman-master-ai-system@e383912354673bdce7a00
 
 ## Current gate
 
-Lượt 19 / Bước 73–76: **PASS (CONTRACT ONLY)**
+Lượt 21 / Bước 81–84: **PASS (READ-ONLY SIDECAR; PRODUCTION DISCONNECTED)**
 
 | Bước | Gate | Kết quả | Bằng chứng chính |
 |---|---|---|---|
@@ -44,9 +44,16 @@ The GitHub connector suppressed inline content for large blobs. The immutable `l
 - Runtime/UI modifications: 0.
 - Priority Engine activation: false; eligible legacy records: 0.
 
+## Lượt 21 evidence
+
+- Bước 81: canonical four-file sidecar package and SHA-256 manifest — PASS.
+- Bước 82: schema/count/hash checks, immutable indexes and lookup API — PASS.
+- Bước 83: 5/5 loader tests, including tamper/missing-file fail-closed behavior — PASS.
+- Bước 84: GitHub Actions run `31405787576` validates the real checkout and confirms no production entrypoint references the sidecar — PASS.
+
 ## Next permitted action
 
-Lượt 20 begins at Bước 77. It may validate schema contracts, versioning, additive overlay storage and baseline-drift detection. It may not activate runtime mappings or modify protected Math runtime/UI.
+Stop at Bước 84. The exact Lượt 22 / Bước 85–88 specification is absent from the repository, Library and Personal Context. Do not infer it or activate runtime mappings.
 
 Re-run the complete Lượt 19 gate with:
 

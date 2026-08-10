@@ -1,12 +1,12 @@
 # Bauman Roadmap V2 — Execution State
 
-- Last completed: `Lượt 20 / Bước 80`.
-- Status: `PASS`.
+- Last completed: `Lượt 21 / Bước 84`.
+- Status: `PASS_READ_ONLY_SIDECAR_PRODUCTION_DISCONNECTED`.
 - Baseline: `main@e383912354673bdce7a0059d6b9a23799d74e689`.
 - Migration: not executed.
 - Runtime/UI changes: none.
-- Contract gate: GitHub Actions run `31403531123`, conclusion `success`.
-- Next: `Lượt 21 / Bước 81`.
+- Contract/sidecar gate: GitHub Actions run `31405787576`, conclusion `success`.
+- Next: `Lượt 22 / Bước 85`, blocked until the exact Bước 85–88 specification is available.
 
 ## Sequential policy
 
