@@ -42,7 +42,7 @@ Git blob SHAs are used as immutable fingerprints for the physical baseline.
 | `subjects/math/data/formulas.json` | `0637a088a01e8ddab3bf3fa98dbe804cbde1a0dc` | Empty array at baseline |
 | `subjects/math/data/exercises.json` | `0637a088a01e8ddab3bf3fa98dbe804cbde1a0dc` | Empty array at baseline |
 | `subjects/math/data/simulations.json` | `0637a088a01e8ddab3bf3fa98dbe804cbde1a0dc` | Empty array at baseline |
-| `subjects/math/data/tests.json` | `9d048963479d0ea6e77d6b13c5fb555f68eaf2ca` | Assessment contract shell; 5 declared levels |
+| `subjects/math/data/tests.json` | `9d048963479d0ea6e77d6b13c5fb555f68eaf2ca` | Assessment contract shell; 4 declared levels; 0 questions |
 | `subjects/math/assets/theory_skin/theory-formula-fraction-align-E235.js` | `0a041b808473309f2bf58091ae690a7298b7c9eb` | Protected E235 layer |
 | `subjects/math/assets/theory_skin/theory-artifact-authoritative-route-E245.js` | `1a357ca7c5477b4b9d0b2e6e78c45f2febdac062` | Authoritative lesson-artifact route |
 | `subjects/math/assets/theory_skin/theory-slideshow-richness-E242.js` | `8d07a9d15db08236ed1db39cc644ec02e5f3c281` | Accepted richness layer |
@@ -79,4 +79,3 @@ Git blob SHAs are used as immutable fingerprints for the physical baseline.
 - Covariance/correlation/PCA legacy IDs resolved: PASS.
 - `E15 / C07` naming conflict corrected without deleting academic content: PASS.
 - Runtime and data source changed: NO.
-
