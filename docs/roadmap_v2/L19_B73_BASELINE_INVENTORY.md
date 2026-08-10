@@ -23,8 +23,11 @@ IDs in `subjects/math/data/lessons.json`:
 - `MATH-PREP-PS2-C15-L06` — covariance, correlation and multidimensional sensor noise.
 
 Roadmap node `MATH-L2-C07` is a new logical node. It maps to the legacy IDs above;
-it is not legacy chapter number 7. Physical chapter 7 remains Russian mathematical
-language in the current `chapter_spine`.
+it is not a physical chapter number. In the navigation/curriculum `chapter_spine`,
+record 7 is Russian mathematical language. A separate secondary source,
+`theory-framework.json`, does contain outline ID `m_p07` with 8 sub-lesson IDs for
+covariance/correlation/PCA; all eight are `outline_only_waiting_for_full_content` and
+must not be treated as authoritative physical lessons or runtime-ready content.
 
 ## Immutable source fingerprints
 
@@ -37,8 +40,9 @@ Git blob SHAs are used as immutable fingerprints for the physical baseline.
 | `subjects/math/data/discipline_spine.json` | `2de04bb0c29085254a44d611b6e4ea03223879c6` | 12-discipline frame |
 | `subjects/math/data/chapter_spine.json` | `db067682cce0389939048d5aabcaef38c6bad0e6` | 56 chapter-frame records |
 | `subjects/math/data/curriculum.json` | `02965e126b1b0661032dcb6a9c91428f6148c24b` | Legacy stage/module curriculum |
-| `subjects/math/data/lessons.json` | `caacdf2b0813c1300af215608c4222ca61669184` | 347 unique lessons, 41 chapter IDs, 5,552 base slides |
+| `subjects/math/data/lessons.json` | `caacdf2b0813c1300af215608c4222ca61669184` | 347 unique lessons, 40 source chapters / 41 physical content groups, 5,552 base slides |
 | `subjects/math/data/theory_lecture_content.json` | `0a7c49c25c0546411717dc5c39308c0c71d2a2e1` | 18 durable overlay records: C01–C03 |
+| `subjects/math/data/theory-framework.json` | `fb3a9a052e6c467c03bea5204dae10303ba73766` | Secondary outline: 21 chapters/172 sub-lessons; `m_p07` has 8 outline-only items |
 | `subjects/math/data/formulas.json` | `0637a088a01e8ddab3bf3fa98dbe804cbde1a0dc` | Empty array at baseline |
 | `subjects/math/data/exercises.json` | `0637a088a01e8ddab3bf3fa98dbe804cbde1a0dc` | Empty array at baseline |
 | `subjects/math/data/simulations.json` | `0637a088a01e8ddab3bf3fa98dbe804cbde1a0dc` | Empty array at baseline |
@@ -53,7 +57,7 @@ Git blob SHAs are used as immutable fingerprints for the physical baseline.
 | Claim | Physical truth at baseline | Migration decision |
 |---|---|---|
 | “E15 is the current source version” | No such source version found | Keep only as historical label; never use as ref |
-| “Chapter 7 is covariance/correlation/PCA” | Physical chapter 7 is Russian math language | Use Roadmap logical ID `MATH-L2-C07`; do not renumber legacy chapters |
+| “Chapter 7 is covariance/correlation/PCA” | Layer-dependent: `chapter_spine` record 7 is Russian math language; `theory-framework` has secondary outline `m_p07`; authoritative lesson content is in C05/C10/C15 | Use Roadmap logical ID `MATH-L2-C07`, reference the 5 authoritative lesson IDs, quarantine `m_p07` as outline-only |
 | “Math has 347 lessons” | True in `lessons.json` | Preserve all IDs and the file blob until an explicit content migration |
 | “Formula/exercise/simulation/test sets are synchronized” | False for standalone legacy files: first three are empty; tests is a shell | Mark as `gap`; create new sidecar data, never pretend it is reusable content |
 | “C01–C07 durable overlay is complete” | False: durable overlay has 18 records only for C01–C03 | Preserve completed records; do not advertise later chapters as completed |

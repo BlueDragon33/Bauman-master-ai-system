@@ -4,10 +4,12 @@ on:
   pull_request:
     paths:
       - 'Bauman_Roadmap_V2_Syllabus_Luot18.md'
+      - 'Bauman_Roadmap_V2_Execution_State.md'
       - 'docs/roadmap_v2/**'
-      - 'scripts/*roadmap*.mjs'
-      - 'scripts/*migration*.mjs'
-      - 'scripts/*prerequisite*.mjs'
+      - 'roadmap_v2/**'
+      - 'scripts/build-roadmap-sidecar.mjs'
+      - 'scripts/validate-roadmap-production-boundary.mjs'
+      - 'tests/roadmap-v2-loader.test.mjs'
       - '.github/workflows/roadmap-v2-contract.yml'
   workflow_dispatch:
 
@@ -27,30 +29,47 @@ jobs:
         with:
           node-version: '22'
 
-      - name: Validate physical baseline
+      - name: Validate immutable Math baseline
+        run: node roadmap_v2/tools/validate-baseline-inventory.mjs
+
+      - name: Regenerate canonical registry
+        run: node roadmap_v2/tools/build-registry.mjs
+
+      - name: Validate canonical registry
+        run: node roadmap_v2/tools/validate-registry.mjs
+
+      - name: Regenerate canonical prerequisite graph
+        run: node roadmap_v2/tools/build-prerequisite-graph.mjs
+
+      - name: Validate canonical prerequisite graph
+        run: node roadmap_v2/tools/validate-prerequisite-graph.mjs
+
+      - name: Regenerate canonical migration contract
+        run: node roadmap_v2/tools/build-migration-contract.mjs
+
+      - name: Validate canonical migration contract
+        run: node roadmap_v2/tools/validate-migration-contract.mjs
+
+      - name: Aggregate Lượt 19 validation evidence
+        run: node roadmap_v2/tools/validate-roadmap-v2.mjs
+
+      - name: Assert deterministic canonical artifacts
+        run: git diff --exit-code -- roadmap_v2/registry roadmap_v2/graph roadmap_v2/migration roadmap_v2/reports
+
+      - name: Validate repository baseline fingerprints
         run: node scripts/validate-repository-baseline.mjs
 
-      - name: Regenerate Roadmap registry
-        run: node scripts/generate-roadmap-registry.mjs
-
-      - name: Validate Roadmap registry
-        run: node scripts/validate-roadmap-v2.mjs
-
-      - name: Regenerate prerequisite graph
-        run: node scripts/generate-prerequisite-graph.mjs
-
-      - name: Validate prerequisite graph
-        run: node scripts/validate-prerequisite-graph.mjs
-
-      - name: Regenerate migration contract
-        run: node scripts/generate-migration-contract.mjs
-
-      - name: Validate migration contract
-        run: node scripts/validate-migration-contract.mjs
-
-      - name: Assert deterministic generated files
-        run: git diff --exit-code -- docs/roadmap_v2 Bauman_Roadmap_V2_Syllabus_Luot18.md
-
-      - name: Dry-run and rollback
+      - name: Dry-run migration and verify rollback
         run: node scripts/test-roadmap-rollback.mjs
 
+      - name: Build canonical read-only sidecar
+        run: node scripts/build-roadmap-sidecar.mjs
+
+      - name: Assert deterministic sidecar package
+        run: git diff --exit-code -- roadmap_v2/data roadmap_v2/manifest.json
+
+      - name: Test sidecar loader and failure modes
+        run: node --test tests/roadmap-v2-loader.test.mjs
+
+      - name: Validate production boundary
+        run: node scripts/validate-roadmap-production-boundary.mjs

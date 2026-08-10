@@ -1,0 +1,62 @@
+{
+  "schema": "BAUMAN_ROADMAP_V2_SIDECAR_MANIFEST_V1",
+  "version": "2.1.0-l21-b81",
+  "status": "PASS_B81_PACKAGE",
+  "namespace": "roadmap_v2",
+  "mode": "read_only_sidecar",
+  "productionIntegration": "disconnected",
+  "baselineCommit": "e383912354673bdce7a0059d6b9a23799d74e689",
+  "registryVersion": 2,
+  "graphVersion": 1,
+  "mappingVersion": 2,
+  "contractVersion": 2,
+  "canonicalSourcesOnly": true,
+  "files": {
+    "registry": {
+      "path": "data/registry.json",
+      "source": "roadmap_v2/registry/roadmap-v2.registry.json",
+      "bytes": 1110716,
+      "sha256": "b504b89f7e473fca4a521665a5f32cc4d7831f4e92edfda5127eb68aa72e53c7"
+    },
+    "prerequisiteGraph": {
+      "path": "data/prerequisiteGraph.json",
+      "source": "roadmap_v2/graph/prerequisite-graph.json",
+      "bytes": 220409,
+      "sha256": "1b14eb6ef099dcf3dcd16ed53b4e28d43b24e071702ba5dcde8de683eb22ffd4"
+    },
+    "mappingReport": {
+      "path": "data/mappingReport.json",
+      "source": "roadmap_v2/migration/legacy-to-roadmap-v2.mapping.json",
+      "bytes": 293140,
+      "sha256": "bbf2d4d70c78a43c21970d465a666b7e82564d3f5eec77205417f1be6378354c"
+    },
+    "migrationContract": {
+      "path": "data/migrationContract.json",
+      "source": "roadmap_v2/migration/migration-contract.json",
+      "bytes": 5133,
+      "sha256": "d052fbcf0402a01581cdd1705f754cf866c0a4d0bfdeef3379752de811be902e"
+    }
+  },
+  "counts": {
+    "courses": 10,
+    "chapters": 85,
+    "numberedLessons": 304,
+    "dynamicChapters": 8,
+    "legacyPreserveChapters": 1,
+    "hierarchyEdges": 425,
+    "prerequisiteEdges": 185,
+    "externalGateNodes": 15,
+    "legacyLessonsInventoried": 347,
+    "exactLegacyLessonMappingsVerified": 5,
+    "preservedLegacyLessonsUnmapped": 342,
+    "frameworkOutlineCandidates": 21,
+    "priorityEngineEligibleLegacyRecords": 0
+  },
+  "immutability": {
+    "sourceFilesAreCopiedByteForByte": true,
+    "loaderReturnsDeepFrozenData": true,
+    "loaderWritesToLegacyRuntime": false,
+    "failClosedOnMissingOrHashMismatch": true,
+    "runtimeEntrypointsModified": false
+  }
+}
