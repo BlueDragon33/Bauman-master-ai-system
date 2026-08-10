@@ -1,0 +1,56 @@
+name: Roadmap V2 contract gate
+
+on:
+  pull_request:
+    paths:
+      - 'Bauman_Roadmap_V2_Syllabus_Luot18.md'
+      - 'docs/roadmap_v2/**'
+      - 'scripts/*roadmap*.mjs'
+      - 'scripts/*migration*.mjs'
+      - 'scripts/*prerequisite*.mjs'
+      - '.github/workflows/roadmap-v2-contract.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  contract:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+
+      - name: Validate physical baseline
+        run: node scripts/validate-repository-baseline.mjs
+
+      - name: Regenerate Roadmap registry
+        run: node scripts/generate-roadmap-registry.mjs
+
+      - name: Validate Roadmap registry
+        run: node scripts/validate-roadmap-v2.mjs
+
+      - name: Regenerate prerequisite graph
+        run: node scripts/generate-prerequisite-graph.mjs
+
+      - name: Validate prerequisite graph
+        run: node scripts/validate-prerequisite-graph.mjs
+
+      - name: Regenerate migration contract
+        run: node scripts/generate-migration-contract.mjs
+
+      - name: Validate migration contract
+        run: node scripts/validate-migration-contract.mjs
+
+      - name: Assert deterministic generated files
+        run: git diff --exit-code -- docs/roadmap_v2 Bauman_Roadmap_V2_Syllabus_Luot18.md
+
+      - name: Dry-run and rollback
+        run: node scripts/test-roadmap-rollback.mjs
+
