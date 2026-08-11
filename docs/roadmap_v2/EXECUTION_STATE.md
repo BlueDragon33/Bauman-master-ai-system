@@ -1,15 +1,16 @@
 # Bauman Roadmap V2 — Execution State
 
-- Last completed: `Lượt 23 / Bước 91`.
-- Current gate: `Lượt 23 / Bước 92 — PENDING_FULL_CHECKOUT_CI`.
-- Status: `PASS_B89_B91_DIAGNOSTIC_HARNESS_PRODUCTION_DISCONNECTED`.
+- Last completed: `Lượt 24 / Bước 95`.
+- Current gate: `Lượt 24 / Bước 96 — PENDING_FULL_CHECKOUT_CI`.
+- Status: `PASS_B93_B95_MASTERY_HARNESS_PRODUCTION_DISCONNECTED`.
 - Baseline: `main@e383912354673bdce7a0059d6b9a23799d74e689`.
 - Migration: not executed.
 - Runtime/UI changes: none.
 - L21 contract/sidecar gate: GitHub Actions run `31405787576`, conclusion `success`.
 - L22 gate: GitHub Actions run `31445626922`, conclusion `success`.
-- L23 local gate: 13/13 diagnostic tests, 11/11 consumer tests, 5/5 loader tests and deterministic rebuild pass.
-- Next: publish the L23 snapshot and require GitHub Actions full-checkout production-boundary success before Lượt 24.
+- L23 gate: GitHub Actions run `31446413526`, conclusion `success`.
+- L24 local gate: 17/17 mastery tests plus all earlier suites and deterministic rebuild pass.
+- Next: publish the L24 snapshot and require GitHub Actions full-checkout production-boundary success before Lượt 25.
 
 ## Sequential policy
 
