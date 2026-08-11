@@ -22,11 +22,16 @@ on:
       - 'scripts/validate-roadmap-mastery-reducer.mjs'
       - 'scripts/validate-roadmap-mastery-gates.mjs'
       - 'scripts/validate-roadmap-l24.mjs'
+      - 'scripts/validate-roadmap-priority-contract.mjs'
+      - 'scripts/build-roadmap-priority-harness.mjs'
+      - 'scripts/validate-roadmap-priority-engine.mjs'
+      - 'scripts/validate-roadmap-l25.mjs'
       - 'scripts/validate-roadmap-production-boundary.mjs'
       - 'tests/roadmap-v2-loader.test.mjs'
       - 'tests/roadmap-v2-consumer.test.mjs'
       - 'tests/roadmap-v2-diagnostic.test.mjs'
       - 'tests/roadmap-v2-mastery.test.mjs'
+      - 'tests/roadmap-v2-priority.test.mjs'
       - '.github/workflows/roadmap-v2-contract.yml'
   workflow_dispatch:
 
@@ -147,6 +152,24 @@ jobs:
 
       - name: Aggregate L24 mastery evidence
         run: node scripts/validate-roadmap-l24.mjs
+
+      - name: Validate B97 Priority contract and exact weights
+        run: node scripts/validate-roadmap-priority-contract.mjs
+
+      - name: Build B98-B99 Priority harness
+        run: node scripts/build-roadmap-priority-harness.mjs
+
+      - name: Validate B98-B99 scoring and ranking
+        run: node scripts/validate-roadmap-priority-engine.mjs
+
+      - name: Assert deterministic Priority manifest
+        run: git diff --exit-code -- roadmap_v2/priority/manifest.json
+
+      - name: Test B98-B99 Priority failure modes
+        run: node --test tests/roadmap-v2-priority.test.mjs
+
+      - name: Aggregate L25 Priority evidence
+        run: node scripts/validate-roadmap-l25.mjs
 
       - name: Validate production boundary
         run: node scripts/validate-roadmap-production-boundary.mjs
