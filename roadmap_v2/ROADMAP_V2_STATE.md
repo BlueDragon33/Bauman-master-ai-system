@@ -5,8 +5,8 @@ Repository baseline: `BlueDragon33/Bauman-master-ai-system@e383912354673bdce7a00
 
 ## Current gate
 
-Lượt 25 / Bước 97–99: **PASS (IN-MEMORY PRIORITY HARNESS; PRODUCTION DISCONNECTED)**  
-Bước 100: **PENDING FULL-CHECKOUT CI**
+Lượt 26 / Bước 101–103: **PASS (IN-MEMORY SCHEDULER PROJECTION; PRODUCTION DISCONNECTED)**  
+Bước 104: **PENDING FULL-CHECKOUT CI**
 
 | Bước | Gate | Kết quả | Bằng chứng chính |
 |---|---|---|---|
@@ -86,13 +86,22 @@ The GitHub connector suppressed inline content for large blobs. The immutable `l
 - Bước 98: deterministic in-memory scoring and reviewed Existing Competency retention route to `review_on_demand`, never Master-ready — PASS.
 - Bước 99: critical-first stable ranking and 14/14 validation/failure-mode tests — PASS.
 - Priority result persistence, scheduler writes and runtime writes: 0/0/0.
-- Bước 100 requires full-checkout CI and production-boundary success before Lượt 26.
+- Bước 100: GitHub Actions run `31447866159` passed full-checkout deterministic and production-boundary gates.
+
+## Lượt 26 evidence
+
+- Bước 101: Scheduler/Master Mode contract pins the four Registry phase modes, GD1 2–3 technical sessions, verified Current Bauman override and the 2–4 week preview window — PASS.
+- Bước 102: deterministic in-memory weekly projection recomputes Priority, preserves atomic technical/Russian-twin bundles and never exceeds caller-supplied capacity — PASS.
+- Bước 103: 16/16 tests cover provenance, preview bounds, Critical-first, GD1 rotation, review-on-demand, capacity and tamper/missing-file failure modes — PASS.
+- Production calendar connections, persistent schedules, calendar writes and runtime writes: 0/0/0/0.
+- Generated dynamic syllabus/lesson content: 0.
+- Bước 104 requires full-checkout CI and production-boundary success before Lượt 27.
 
 ## Next permitted action
 
-Publish the L25 snapshot to draft PR #18 and require full-checkout CI, deterministic
-artifact checks and the production-boundary gate to pass. Do not start Lượt 26 or
-activate scheduler/runtime writes before Bước 100 is `PASS`.
+Publish the L26 snapshot to draft PR #18 and require full-checkout deterministic and
+production-boundary gates to pass. Do not start Lượt 27, connect production calendar
+data, persist schedule results or activate runtime/UI mappings before Bước 104 is `PASS`.
 
 Re-run the complete Lượt 19 gate with:
 
