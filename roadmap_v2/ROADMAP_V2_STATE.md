@@ -5,8 +5,8 @@ Repository baseline: `BlueDragon33/Bauman-master-ai-system@e383912354673bdce7a00
 
 ## Current gate
 
-Lượt 22 / Bước 85–87: **PASS (READ-ONLY CONSUMER BRIDGE; PRODUCTION DISCONNECTED)**  
-Bước 88: **PENDING FULL-CHECKOUT CI**
+Lượt 23 / Bước 89–91: **PASS (READ-ONLY DIAGNOSTIC HARNESS; PRODUCTION DISCONNECTED)**  
+Bước 92: **PENDING FULL-CHECKOUT CI**
 
 | Bước | Gate | Kết quả | Bằng chứng chính |
 |---|---|---|---|
@@ -60,13 +60,22 @@ The GitHub connector suppressed inline content for large blobs. The immutable `l
 - Diagnostic blueprints: 381 metadata records; executable diagnostics: 0.
 - Legacy eligibility: 5 verified reference-only; 342 quarantined/unmapped; Priority Engine eligible: 0.
 - Overlay/framework eligibility: 18 reference-only overlays; 21 quarantined outlines.
-- Bước 88 requires GitHub Actions on a full repository checkout because local workspace pruning removed production entrypoint files.
+- Bước 88: GitHub Actions run `31445626922` passed the full repository checkout and production boundary.
+
+## Lượt 23 evidence
+
+- Bước 89: diagnostic contract/schema locks 20 items, 8/6/4/2 difficulty, 80% pass and 70% critical floor — PASS.
+- Bước 90: 381 catalog plans, 8 blocked dynamic targets, 0 verified banks, 0 executable plans and 0 generated catalog items — PASS.
+- Bước 91: proposed-bank harness and 13/13 tests validate answer-key stripping, scoring and failure modes — PASS.
+- Diagnostic pass emits `existing_competency_verified`, never `master_ready`.
+- Diagnostic result persistence, Priority Engine writes, scheduler writes and runtime writes: 0.
+- Bước 92 requires full-checkout CI and production-boundary success before Lượt 24.
 
 ## Next permitted action
 
-Publish the L22 atomic snapshot to draft PR #18 and require the full-checkout CI,
-deterministic-diff and production-boundary gates to pass. Do not start Lượt 23 or
-activate runtime mappings before Bước 88 is `PASS`.
+Publish the L23 snapshot to draft PR #18 and require full-checkout CI, deterministic
+artifact checks and the production-boundary gate to pass. Do not start Lượt 24 or
+activate runtime mappings before Bước 92 is `PASS`.
 
 Re-run the complete Lượt 19 gate with:
 
