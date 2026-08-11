@@ -8,8 +8,13 @@ on:
       - 'docs/roadmap_v2/**'
       - 'roadmap_v2/**'
       - 'scripts/build-roadmap-sidecar.mjs'
+      - 'scripts/build-roadmap-consumer-bridge.mjs'
+      - 'scripts/validate-roadmap-consumer-contract.mjs'
+      - 'scripts/validate-roadmap-consumer-api.mjs'
+      - 'scripts/validate-roadmap-l22.mjs'
       - 'scripts/validate-roadmap-production-boundary.mjs'
       - 'tests/roadmap-v2-loader.test.mjs'
+      - 'tests/roadmap-v2-consumer.test.mjs'
       - '.github/workflows/roadmap-v2-contract.yml'
   workflow_dispatch:
 
@@ -70,6 +75,24 @@ jobs:
 
       - name: Test sidecar loader and failure modes
         run: node --test tests/roadmap-v2-loader.test.mjs
+
+      - name: Build L22 read-only consumer bridge
+        run: node scripts/build-roadmap-consumer-bridge.mjs
+
+      - name: Validate B85 consumer contract and eligibility boundary
+        run: node scripts/validate-roadmap-consumer-contract.mjs
+
+      - name: Assert deterministic L22 consumer manifest
+        run: git diff --exit-code -- roadmap_v2/consumer/manifest.json
+
+      - name: Validate B86 consumer API and cross-source audit
+        run: node scripts/validate-roadmap-consumer-api.mjs
+
+      - name: Test B87 consumer failure modes and invariants
+        run: node --test tests/roadmap-v2-consumer.test.mjs
+
+      - name: Aggregate L22 contract evidence
+        run: node scripts/validate-roadmap-l22.mjs
 
       - name: Validate production boundary
         run: node scripts/validate-roadmap-production-boundary.mjs
