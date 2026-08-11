@@ -5,8 +5,8 @@ Repository baseline: `BlueDragon33/Bauman-master-ai-system@e383912354673bdce7a00
 
 ## Current gate
 
-Lượt 24 / Bước 93–95: **PASS (IN-MEMORY MASTERY HARNESS; PRODUCTION DISCONNECTED)**  
-Bước 96: **PENDING FULL-CHECKOUT CI**
+Lượt 25 / Bước 97–99: **PASS (IN-MEMORY PRIORITY HARNESS; PRODUCTION DISCONNECTED)**  
+Bước 100: **PENDING FULL-CHECKOUT CI**
 
 | Bước | Gate | Kết quả | Bằng chứng chính |
 |---|---|---|---|
@@ -78,13 +78,21 @@ The GitHub connector suppressed inline content for large blobs. The immutable `l
 - Bước 95: Master-ready, Russian-term, retention and prerequisite propagation gates; 17/17 tests — PASS.
 - Persistent stores/events/snapshots: 0/0/0.
 - Priority Engine, scheduler and runtime writes: 0.
-- Bước 96 requires full-checkout CI and production-boundary success before Lượt 25.
+- Bước 96: GitHub Actions run `31447183959` passed full-checkout deterministic and production-boundary gates.
+
+## Lượt 25 evidence
+
+- Bước 97: Priority contract locks the Registry formula, exact 35/30/20/15 weights, normalization, bands and critical override — PASS.
+- Bước 98: deterministic in-memory scoring and reviewed Existing Competency retention route to `review_on_demand`, never Master-ready — PASS.
+- Bước 99: critical-first stable ranking and 14/14 validation/failure-mode tests — PASS.
+- Priority result persistence, scheduler writes and runtime writes: 0/0/0.
+- Bước 100 requires full-checkout CI and production-boundary success before Lượt 26.
 
 ## Next permitted action
 
-Publish the L24 snapshot to draft PR #18 and require full-checkout CI, deterministic
-artifact checks and the production-boundary gate to pass. Do not start Lượt 25 or
-activate Priority Engine/runtime mappings before Bước 96 is `PASS`.
+Publish the L25 snapshot to draft PR #18 and require full-checkout CI, deterministic
+artifact checks and the production-boundary gate to pass. Do not start Lượt 26 or
+activate scheduler/runtime writes before Bước 100 is `PASS`.
 
 Re-run the complete Lượt 19 gate with:
 
