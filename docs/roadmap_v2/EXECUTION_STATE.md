@@ -1,12 +1,14 @@
 # Bauman Roadmap V2 — Execution State
 
-- Last completed: `Lượt 21 / Bước 84`.
-- Status: `PASS_READ_ONLY_SIDECAR_PRODUCTION_DISCONNECTED`.
+- Last completed: `Lượt 22 / Bước 87`.
+- Current gate: `Lượt 22 / Bước 88 — PENDING_FULL_CHECKOUT_CI`.
+- Status: `PASS_B85_B87_READ_ONLY_CONSUMER_PRODUCTION_DISCONNECTED`.
 - Baseline: `main@e383912354673bdce7a0059d6b9a23799d74e689`.
 - Migration: not executed.
 - Runtime/UI changes: none.
-- Contract/sidecar gate: GitHub Actions run `31405787576`, conclusion `success`.
-- Next: `Lượt 22 / Bước 85`, blocked until the exact Bước 85–88 specification is available.
+- L21 contract/sidecar gate: GitHub Actions run `31405787576`, conclusion `success`.
+- L22 local gate: 11/11 consumer tests, 5/5 loader tests and deterministic rebuild pass.
+- Next: publish the L22 atomic snapshot and require GitHub Actions full-checkout production-boundary success before Lượt 23.
 
 ## Sequential policy
 
