@@ -26,6 +26,14 @@ if (priorityManifest.mode !== 'in_memory_priority_scoring_harness') throw new Er
 if (priorityManifest.counts.schedulerWrites !== 0 || priorityManifest.counts.runtimeWrites !== 0) throw new Error('Roadmap Priority permits scheduler or runtime writes');
 if (priorityManifest.safety.existingCompetencyGrantsMasterReady !== false) throw new Error('Roadmap Priority grants Master-ready from Existing Competency');
 
+const schedulerManifest = JSON.parse(fs.readFileSync('roadmap_v2/scheduler/manifest.json', 'utf8'));
+if (schedulerManifest.productionIntegration !== 'disconnected') throw new Error('Roadmap Scheduler must remain disconnected in Lượt 26');
+if (schedulerManifest.mode !== 'in_memory_weekly_projection_harness') throw new Error('Roadmap Scheduler is not an in-memory projection harness');
+if (schedulerManifest.counts.productionCalendarConnections !== 0) throw new Error('Roadmap Scheduler has a production calendar connection');
+if (schedulerManifest.counts.persistentStores !== 0 || schedulerManifest.counts.calendarWrites !== 0 || schedulerManifest.counts.runtimeWrites !== 0) throw new Error('Roadmap Scheduler permits persistence, calendar or runtime writes');
+if (schedulerManifest.counts.generatedDynamicContent !== 0) throw new Error('Roadmap Scheduler contains generated dynamic content');
+if (schedulerManifest.safety.reviewOnDemandGrantsMasterReady !== false) throw new Error('Roadmap Scheduler grants Master-ready from review-on-demand');
+
 const productionEntrypoints = [
   'subjects/math/index.html',
   'subjects/math/subject-manifest.json',
@@ -37,7 +45,7 @@ for (const file of productionEntrypoints) {
 }
 
 console.log(JSON.stringify({
-  status: 'PASS_B100_PRODUCTION_DISCONNECTED',
+  status: 'PASS_B104_PRODUCTION_DISCONNECTED',
   checkedEntrypoints: productionEntrypoints.length,
   sidecarMode: manifest.mode,
   consumerMode: consumerManifest.mode,
@@ -47,5 +55,8 @@ console.log(JSON.stringify({
   masteryPersistentStores: masteryManifest.counts.persistentStores,
   priorityMode: priorityManifest.mode,
   prioritySchedulerWrites: priorityManifest.counts.schedulerWrites,
+  schedulerMode: schedulerManifest.mode,
+  schedulerCalendarConnections: schedulerManifest.counts.productionCalendarConnections,
+  schedulerCalendarWrites: schedulerManifest.counts.calendarWrites,
   productionIntegration: manifest.productionIntegration
 }));
