@@ -1,0 +1,74 @@
+{
+  "schema": "BAUMAN_ROADMAP_V2_PRIORITY_MANIFEST_V1",
+  "version": "2.5.0-l25-b99",
+  "status": "PASS_B99_EXPLAINABLE_PRIORITY_RANKING_HARNESS",
+  "mode": "in_memory_priority_scoring_harness",
+  "productionIntegration": "disconnected",
+  "baselineCommit": "e383912354673bdce7a0059d6b9a23799d74e689",
+  "upstream": {
+    "consumerManifest": {
+      "path": "consumer/manifest.json",
+      "bytes": 1445,
+      "sha256": "19448bca6ff10a046cd1a14e95b99de40800fbf86515777e531899310bf1c1e4"
+    },
+    "masteryManifest": {
+      "path": "mastery/manifest.json",
+      "bytes": 2358,
+      "sha256": "5b2241ba89d5f4db2a17c709b4a9cae340b719b3951643e741599263cc3f35ef"
+    }
+  },
+  "files": {
+    "priorityContract": {
+      "path": "priority/priority-contract.json",
+      "bytes": 4053,
+      "sha256": "50da5ea0b04bd0cb5e713d42c095182bb555ed3083e43464ec4b94252110a514"
+    },
+    "priorityContractSchema": {
+      "path": "priority/priority-contract.schema.json",
+      "bytes": 1626,
+      "sha256": "58f9c71d02a5a5c64922ed3d024943f8b145bfb79ae20c1b0ffc8a8c723483bd"
+    },
+    "priorityCandidateSchema": {
+      "path": "priority/priority-candidate.schema.json",
+      "bytes": 1033,
+      "sha256": "346ca23ea2e6b1cf434e933271515de91a6cf254af692969844ee8e876abf743"
+    },
+    "priorityResultSchema": {
+      "path": "priority/priority-result.schema.json",
+      "bytes": 1442,
+      "sha256": "c28969719af8b5a56d0bc6d415896f9bb724b8141ebaac22a13539e079b48e47"
+    },
+    "priorityEngine": {
+      "path": "priority.mjs",
+      "bytes": 12671,
+      "sha256": "ef9f5741b7bc87a98227b3fef82ade9dd56b577b4801eae44a9792f659b27410"
+    }
+  },
+  "counts": {
+    "weights": 4,
+    "knowledgeStates": 6,
+    "weightedBands": 3,
+    "persistentStores": 0,
+    "schedulerWrites": 0,
+    "runtimeWrites": 0
+  },
+  "safety": {
+    "derivedFeaturesCannotBeOverridden": true,
+    "explainableContributions": true,
+    "stableRanking": true,
+    "criticalOverrideEnabled": true,
+    "existingCompetencyGrantsMasterReady": false,
+    "persistentStoreWrites": 0,
+    "schedulerWrites": 0,
+    "runtimeWrites": 0
+  },
+  "acceptance": {
+    "step": 99,
+    "formulaPinned": true,
+    "scoringEnginePinned": true,
+    "rankingEnginePinned": true,
+    "schedulerEnabled": false,
+    "productionIntegration": "disconnected",
+    "result": "PASS_EXPLAINABLE_PRIORITY_RANKING_HARNESS"
+  }
+}
