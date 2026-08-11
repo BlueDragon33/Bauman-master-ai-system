@@ -14,6 +14,12 @@ if (diagnosticManifest.mode !== 'read_only_diagnostic_harness') throw new Error(
 if (diagnosticManifest.counts.executablePlans !== 0) throw new Error('Roadmap diagnostic contains executable production plans');
 if (diagnosticManifest.safety.runtimeWrites !== 0) throw new Error('Roadmap diagnostic permits runtime writes');
 
+const masteryManifest = JSON.parse(fs.readFileSync('roadmap_v2/mastery/manifest.json', 'utf8'));
+if (masteryManifest.productionIntegration !== 'disconnected') throw new Error('Roadmap mastery must remain disconnected in Lượt 24');
+if (masteryManifest.mode !== 'in_memory_append_only_evidence_harness') throw new Error('Roadmap mastery is not an in-memory harness');
+if (masteryManifest.counts.persistentStores !== 0) throw new Error('Roadmap mastery contains a production store');
+if (masteryManifest.safety.persistentStoreWrites !== 0 || masteryManifest.safety.runtimeWrites !== 0) throw new Error('Roadmap mastery permits persistent or runtime writes');
+
 const productionEntrypoints = [
   'subjects/math/index.html',
   'subjects/math/subject-manifest.json',
@@ -25,11 +31,13 @@ for (const file of productionEntrypoints) {
 }
 
 console.log(JSON.stringify({
-  status: 'PASS_B92_PRODUCTION_DISCONNECTED',
+  status: 'PASS_B96_PRODUCTION_DISCONNECTED',
   checkedEntrypoints: productionEntrypoints.length,
   sidecarMode: manifest.mode,
   consumerMode: consumerManifest.mode,
   diagnosticMode: diagnosticManifest.mode,
   diagnosticExecutablePlans: diagnosticManifest.counts.executablePlans,
+  masteryMode: masteryManifest.mode,
+  masteryPersistentStores: masteryManifest.counts.persistentStores,
   productionIntegration: manifest.productionIntegration
 }));
