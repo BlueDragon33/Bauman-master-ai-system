@@ -1,11 +1,12 @@
 # Bauman Roadmap V2 — Execution State
 
-Updated: 2026-08-10  
+Updated: 2026-08-11  
 Repository baseline: `BlueDragon33/Bauman-master-ai-system@e383912354673bdce7a0059d6b9a23799d74e689`
 
 ## Current gate
 
-Lượt 21 / Bước 81–84: **PASS (READ-ONLY SIDECAR; PRODUCTION DISCONNECTED)**
+Lượt 22 / Bước 85–87: **PASS (READ-ONLY CONSUMER BRIDGE; PRODUCTION DISCONNECTED)**  
+Bước 88: **PENDING FULL-CHECKOUT CI**
 
 | Bước | Gate | Kết quả | Bằng chứng chính |
 |---|---|---|---|
@@ -51,9 +52,21 @@ The GitHub connector suppressed inline content for large blobs. The immutable `l
 - Bước 83: 5/5 loader tests, including tamper/missing-file fail-closed behavior — PASS.
 - Bước 84: GitHub Actions run `31405787576` validates the real checkout and confirms no production entrypoint references the sidecar — PASS.
 
+## Lượt 22 evidence
+
+- Bước 85: consumer contract/schema pins provenance, eligibility and least-privilege capabilities — PASS.
+- Bước 86: read-only/fail-closed consumer API exposes chapter bundles and diagnostic blueprint metadata — PASS.
+- Bước 87: 11/11 consumer tests, 5/5 loader tests, cross-source graph audit and deterministic rebuild — PASS.
+- Diagnostic blueprints: 381 metadata records; executable diagnostics: 0.
+- Legacy eligibility: 5 verified reference-only; 342 quarantined/unmapped; Priority Engine eligible: 0.
+- Overlay/framework eligibility: 18 reference-only overlays; 21 quarantined outlines.
+- Bước 88 requires GitHub Actions on a full repository checkout because local workspace pruning removed production entrypoint files.
+
 ## Next permitted action
 
-Stop at Bước 84. The exact Lượt 22 / Bước 85–88 specification is absent from the repository, Library and Personal Context. Do not infer it or activate runtime mappings.
+Publish the L22 atomic snapshot to draft PR #18 and require the full-checkout CI,
+deterministic-diff and production-boundary gates to pass. Do not start Lượt 23 or
+activate runtime mappings before Bước 88 is `PASS`.
 
 Re-run the complete Lượt 19 gate with:
 
