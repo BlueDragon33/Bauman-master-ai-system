@@ -20,6 +20,12 @@ if (masteryManifest.mode !== 'in_memory_append_only_evidence_harness') throw new
 if (masteryManifest.counts.persistentStores !== 0) throw new Error('Roadmap mastery contains a production store');
 if (masteryManifest.safety.persistentStoreWrites !== 0 || masteryManifest.safety.runtimeWrites !== 0) throw new Error('Roadmap mastery permits persistent or runtime writes');
 
+const priorityManifest = JSON.parse(fs.readFileSync('roadmap_v2/priority/manifest.json', 'utf8'));
+if (priorityManifest.productionIntegration !== 'disconnected') throw new Error('Roadmap Priority must remain disconnected in Lượt 25');
+if (priorityManifest.mode !== 'in_memory_priority_scoring_harness') throw new Error('Roadmap Priority is not an in-memory scoring harness');
+if (priorityManifest.counts.schedulerWrites !== 0 || priorityManifest.counts.runtimeWrites !== 0) throw new Error('Roadmap Priority permits scheduler or runtime writes');
+if (priorityManifest.safety.existingCompetencyGrantsMasterReady !== false) throw new Error('Roadmap Priority grants Master-ready from Existing Competency');
+
 const productionEntrypoints = [
   'subjects/math/index.html',
   'subjects/math/subject-manifest.json',
@@ -31,7 +37,7 @@ for (const file of productionEntrypoints) {
 }
 
 console.log(JSON.stringify({
-  status: 'PASS_B96_PRODUCTION_DISCONNECTED',
+  status: 'PASS_B100_PRODUCTION_DISCONNECTED',
   checkedEntrypoints: productionEntrypoints.length,
   sidecarMode: manifest.mode,
   consumerMode: consumerManifest.mode,
@@ -39,5 +45,7 @@ console.log(JSON.stringify({
   diagnosticExecutablePlans: diagnosticManifest.counts.executablePlans,
   masteryMode: masteryManifest.mode,
   masteryPersistentStores: masteryManifest.counts.persistentStores,
+  priorityMode: priorityManifest.mode,
+  prioritySchedulerWrites: priorityManifest.counts.schedulerWrites,
   productionIntegration: manifest.productionIntegration
 }));
