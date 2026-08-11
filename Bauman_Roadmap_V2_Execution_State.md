@@ -2,10 +2,10 @@
 
 ## Trạng thái triển khai tuần tự
 
-- Mốc hoàn thành gần nhất: **Lượt 21 / Bước 84**.
-- Mốc tiếp theo: **Lượt 22 / Bước 85 — BLOCKED do chưa có đặc tả bước**.
-- Trạng thái: **PASS — read-only sidecar; migration/runtime activation chưa thực thi**.
-- Ngày kiểm kê: **2026-08-10 (Asia/Bangkok)**.
+- Mốc hoàn thành gần nhất: **Lượt 22 / Bước 87**.
+- Mốc đang xử lý: **Lượt 22 / Bước 88 — chờ full-checkout CI**.
+- Trạng thái: **PASS B85–B87 — read-only consumer bridge; migration/runtime activation chưa thực thi**.
+- Ngày cập nhật: **2026-08-11 (Asia/Bangkok)**.
 - Repository: `BlueDragon33/Bauman-master-ai-system`.
 - Baseline vật lý: `main@e383912354673bdce7a0059d6b9a23799d74e689`.
 - Branch triển khai: `agent/roadmap-v2-l19-contract`.
@@ -76,8 +76,22 @@ Node đã qua syntax check. Runtime/UI và 15 protected path không thay đổi.
 - GitHub Actions: `31405787576`, 15 gate thực thi đều success.
 - PR: `https://github.com/BlueDragon33/Bauman-master-ai-system/pull/18` vẫn là draft.
 
-## Điểm dừng trước Lượt 22
+## Kết quả Lượt 22 — Bước 85–88
 
-Không tìm thấy đặc tả chính xác cho **Lượt 22 / Bước 85–88** trong repository,
-Library hoặc Personal Context. Theo quy tắc không tự đoán thứ tự, hệ thống dừng tại
-Bước 84 và chờ kế hoạch Bước 85–88 được cung cấp hoặc phê duyệt.
+Người dùng đã cho phép tự thiết kế Bước 85–88 ngày 2026-08-11. Phạm vi được khóa
+là cầu nối consumer read-only trước Diagnostic/Mastery/Priority Engine:
+
+| Bước | Trạng thái | Kết quả |
+|---|---|---|
+| 85 | PASS | Consumer contract/schema khóa provenance, eligibility và capability tối thiểu |
+| 86 | PASS | API read-only/fail-closed cho chapter bundle, eligibility và diagnostic blueprint |
+| 87 | PASS | 11/11 consumer test, 5/5 loader test, cross-source audit và deterministic rebuild |
+| 88 | PENDING | Chờ GitHub Actions trên checkout đầy đủ xác nhận production boundary và toàn bộ gate L19–L22 |
+
+- 381 diagnostic blueprint metadata: 77 chapter + 304 lesson; executable: 0.
+- 5 legacy reference được xác minh; 342 legacy chưa gán vẫn quarantine.
+- 18 overlay chỉ reference; 21 framework outline vẫn quarantine.
+- Priority Engine eligible legacy records: 0; runtime activation eligible records: 0.
+- Runtime/UI/legacy source mutations: 0.
+
+Không được mở Lượt 23 cho đến khi Bước 88 đạt `PASS` trên checkout GitHub đầy đủ.
