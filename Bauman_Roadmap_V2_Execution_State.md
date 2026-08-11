@@ -2,9 +2,9 @@
 
 ## Trạng thái triển khai tuần tự
 
-- Mốc hoàn thành gần nhất: **Lượt 27 / Bước 107**.
-- Mốc đang xử lý: **Lượt 27 / Bước 108 — chờ full-checkout CI**.
-- Trạng thái: **PASS B105–B107 — Readiness deterministic read-only projection; dashboard/runtime activation chưa thực thi**.
+- Mốc hoàn thành gần nhất: **Lượt 27 / Bước 108**.
+- Mốc tiếp theo: **Lượt 28 / Bước 109 — chưa mở**.
+- Trạng thái: **PASS B105–B108 — Readiness deterministic read-only projection; dashboard/runtime activation chưa thực thi**.
 - Ngày cập nhật: **2026-08-11 (Asia/Bangkok)**.
 - Repository: `BlueDragon33/Bauman-master-ai-system`.
 - Baseline vật lý: `main@e383912354673bdce7a0059d6b9a23799d74e689`.
@@ -151,7 +151,7 @@ mở Lượt 24 trước khi Bước 92 `PASS`.
 | 105 | PASS | Contract khóa RAG fail-closed, green cần Master-ready gate thật và external gate có provenance |
 | 106 | PASS | Read-only projector tự chạy Scheduler và Mastery prerequisite evaluator; không nhận màu/result thủ công |
 | 107 | PASS | 16/16 test; forged Master-ready, missing evidence, advisory edge, Critical coverage và aggregation đạt |
-| 108 | PENDING | Chờ full-checkout CI xác nhận deterministic manifest và production boundary L19–L27 |
+| 108 | PASS | GitHub Actions run `31449398548` xác nhận deterministic manifest và production boundary L19–L27 |
 
 - Persisted readiness snapshots/dashboard UI renders/runtime writes/notification writes: 0/0/0/0.
-- Không được mở Lượt 28 trước khi Bước 108 `PASS`.
+- Commit kiểm định: `5184655b541bb0b35548a39e9d88a30dce36db1b`.
