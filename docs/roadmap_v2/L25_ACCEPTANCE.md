@@ -1,16 +1,16 @@
 # Lượt 25 · Bước 97–100 — Acceptance
 
-Status: `PENDING_B100_FULL_CHECKOUT_CI`
+Status: `PASS_B97_B100`
 
-GitHub Actions run: `PENDING`  
-Commit: `PENDING`
+GitHub Actions run: `31447866159`  
+Commit: `cdd20abee1fc5f615cbc7b1f214fef539b1d1ad2`
 
 | Bước | Kết quả | Bằng chứng |
 |---|---|---|
 | 97 | PASS | Priority contract khóa công thức Registry, trọng số 35/30/20/15, normalization, band và critical override |
 | 98 | PASS | Deterministic in-memory scoring; Existing Competency đủ retention chuyển `review_on_demand`, không thành Master-ready |
 | 99 | PASS | Critical-first stable ranking, strict input validation và 14/14 test |
-| 100 | PENDING | Chờ full-checkout CI xác nhận deterministic manifest, toàn bộ gate L19–L25 và production boundary |
+| 100 | PASS | Full-checkout CI xác nhận deterministic manifest, toàn bộ gate L19–L25 và production boundary |
 
 ## Safety evidence
 
