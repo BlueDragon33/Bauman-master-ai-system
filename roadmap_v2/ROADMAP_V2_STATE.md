@@ -5,8 +5,8 @@ Repository baseline: `BlueDragon33/Bauman-master-ai-system@e383912354673bdce7a00
 
 ## Current gate
 
-Lượt 23 / Bước 89–91: **PASS (READ-ONLY DIAGNOSTIC HARNESS; PRODUCTION DISCONNECTED)**  
-Bước 92: **PENDING FULL-CHECKOUT CI**
+Lượt 24 / Bước 93–95: **PASS (IN-MEMORY MASTERY HARNESS; PRODUCTION DISCONNECTED)**  
+Bước 96: **PENDING FULL-CHECKOUT CI**
 
 | Bước | Gate | Kết quả | Bằng chứng chính |
 |---|---|---|---|
@@ -69,13 +69,22 @@ The GitHub connector suppressed inline content for large blobs. The immutable `l
 - Bước 91: proposed-bank harness and 13/13 tests validate answer-key stripping, scoring and failure modes — PASS.
 - Diagnostic pass emits `existing_competency_verified`, never `master_ready`.
 - Diagnostic result persistence, Priority Engine writes, scheduler writes and runtime writes: 0.
-- Bước 92 requires full-checkout CI and production-boundary success before Lượt 24.
+- Bước 92: GitHub Actions run `31446413526` passed full-checkout deterministic and production-boundary gates.
+
+## Lượt 24 evidence
+
+- Bước 93: mastery/evidence contract is aligned with Registry gates; Diagnostic pass remains prerequisite-only — PASS.
+- Bước 94: append-only event validation and deterministic in-memory reduction — PASS.
+- Bước 95: Master-ready, Russian-term, retention and prerequisite propagation gates; 17/17 tests — PASS.
+- Persistent stores/events/snapshots: 0/0/0.
+- Priority Engine, scheduler and runtime writes: 0.
+- Bước 96 requires full-checkout CI and production-boundary success before Lượt 25.
 
 ## Next permitted action
 
-Publish the L23 snapshot to draft PR #18 and require full-checkout CI, deterministic
-artifact checks and the production-boundary gate to pass. Do not start Lượt 24 or
-activate runtime mappings before Bước 92 is `PASS`.
+Publish the L24 snapshot to draft PR #18 and require full-checkout CI, deterministic
+artifact checks and the production-boundary gate to pass. Do not start Lượt 25 or
+activate Priority Engine/runtime mappings before Bước 96 is `PASS`.
 
 Re-run the complete Lượt 19 gate with:
 
