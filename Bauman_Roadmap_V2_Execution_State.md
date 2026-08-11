@@ -2,9 +2,9 @@
 
 ## Trạng thái triển khai tuần tự
 
-- Mốc hoàn thành gần nhất: **Lượt 25 / Bước 99**.
-- Mốc đang xử lý: **Lượt 25 / Bước 100 — chờ full-checkout CI**.
-- Trạng thái: **PASS B97–B99 — Priority Engine deterministic in-memory harness; scheduler/runtime activation chưa thực thi**.
+- Mốc hoàn thành gần nhất: **Lượt 26 / Bước 103**.
+- Mốc đang xử lý: **Lượt 26 / Bước 104 — chờ full-checkout CI**.
+- Trạng thái: **PASS B101–B103 — Scheduler/Master Mode deterministic in-memory projection; calendar/runtime activation chưa thực thi**.
 - Ngày cập nhật: **2026-08-11 (Asia/Bangkok)**.
 - Repository: `BlueDragon33/Bauman-master-ai-system`.
 - Baseline vật lý: `main@e383912354673bdce7a0059d6b9a23799d74e689`.
@@ -126,7 +126,20 @@ mở Lượt 24 trước khi Bước 92 `PASS`.
 | 97 | PASS | Contract khóa công thức Registry 35/30/20/15, normalization, band và critical override |
 | 98 | PASS | Deterministic in-memory scoring; Existing Competency đủ retention chuyển `review_on_demand`, không thành Master-ready |
 | 99 | PASS | Stable ranking, critical-first và 14/14 test cho validation/failure mode |
-| 100 | PENDING | Chờ full-checkout CI xác nhận deterministic manifest và production boundary L19–L25 |
+| 100 | PASS | GitHub Actions run `31447866159` xác nhận deterministic manifest và production boundary L19–L25 |
 
 - Priority result persistence/scheduler/runtime writes: 0/0/0.
-- Không được mở Lượt 26 trước khi Bước 100 `PASS`.
+- Commit kiểm định: `cdd20abee1fc5f615cbc7b1f214fef539b1d1ad2`.
+
+## Kết quả Lượt 26 — Bước 101–104
+
+| Bước | Trạng thái | Kết quả |
+|---|---|---|
+| 101 | PASS | Contract khóa phase policy, preview 2–4 tuần, Current Bauman override và toàn bộ write capability=false |
+| 102 | PASS | Deterministic weekly projector tính lại Priority, Critical-first, capacity atomic và Russian twin placeholder |
+| 103 | PASS | 16/16 test; nguồn động fail-closed, GĐ1 2–3 track, review-on-demand và Master Mode đúng boundary |
+| 104 | PENDING | Chờ full-checkout CI xác nhận deterministic manifest và production boundary L19–L26 |
+
+- Production calendar connections/persisted schedules/calendar writes/runtime writes: 0/0/0/0.
+- Dynamic lesson/syllabus content generated: 0.
+- Không được mở Lượt 27 trước khi Bước 104 `PASS`.
