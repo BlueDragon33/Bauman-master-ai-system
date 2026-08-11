@@ -1,16 +1,16 @@
 # Lượt 26 · Bước 101–104 — Acceptance
 
-Status: `PENDING_B104_FULL_CHECKOUT_CI`
+Status: `PASS_B101_B104`
 
-GitHub Actions run: `PENDING`  
-Commit: `PENDING`
+GitHub Actions run: `31448603795`  
+Commit: `c92427845b79ff0b3ea3cde73ae381850188edf0`
 
 | Bước | Kết quả | Bằng chứng |
 |---|---|---|
 | 101 | PASS | Scheduler/Master Mode contract khóa bốn phase, GĐ1 2–3 phiên kỹ thuật, preview 2–4 tuần và write capability=false |
 | 102 | PASS | Weekly projector tính lại Priority, Critical-first, Current Bauman override, capacity atomic và Russian twin placeholder |
 | 103 | PASS | 16/16 test cho provenance, preview bound, GĐ1 rotation, review-on-demand, capacity và fail-closed pinning |
-| 104 | PENDING | Chờ full-checkout CI xác nhận deterministic manifest, toàn bộ gate L19–L26 và production boundary |
+| 104 | PASS | Full-checkout CI xác nhận deterministic manifest, toàn bộ gate L19–L26 và production boundary |
 
 ## Safety evidence
 
