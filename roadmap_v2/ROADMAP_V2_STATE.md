@@ -5,8 +5,8 @@ Repository baseline: `BlueDragon33/Bauman-master-ai-system@e383912354673bdce7a00
 
 ## Current gate
 
-Lượt 27 / Bước 105–107: **PASS (READ-ONLY READINESS PROJECTION; PRODUCTION DISCONNECTED)**  
-Bước 108: **PENDING FULL-CHECKOUT CI**
+Lượt 27 / Bước 105–108: **PASS (READ-ONLY READINESS PROJECTION; PRODUCTION DISCONNECTED)**  
+Next: **Lượt 28 / Bước 109 — NOT STARTED**
 
 | Bước | Gate | Kết quả | Bằng chứng chính |
 |---|---|---|---|
@@ -103,13 +103,13 @@ The GitHub connector suppressed inline content for large blobs. The immutable `l
 - Bước 106: read-only projector recomputes Scheduler coverage and uses the Mastery prerequisite evaluator with verified external-gate records — PASS.
 - Bước 107: 16/16 tests cover forged Master-ready claims, missing evidence, external gates, advisory edges, Critical scheduling and RAG aggregation — PASS.
 - Persisted readiness snapshots, dashboard UI renders, runtime writes and notification writes: 0/0/0/0.
-- Bước 108 requires full-checkout CI and production-boundary success before Lượt 28.
+- Bước 108: GitHub Actions run `31449398548` passed full-checkout deterministic and production-boundary gates.
 
 ## Next permitted action
 
-Publish the L27 snapshot to draft PR #18 and require full-checkout deterministic and
-production-boundary gates to pass. Do not start Lượt 28, connect production UI,
-persist readiness snapshots or activate runtime mappings before Bước 108 is `PASS`.
+Design L28/B109 while preserving the disconnected production boundary. Do not connect
+production UI, persist readiness snapshots or activate runtime mappings without a new
+four-step contract/validation round.
 
 Re-run the complete Lượt 19 gate with:
 
