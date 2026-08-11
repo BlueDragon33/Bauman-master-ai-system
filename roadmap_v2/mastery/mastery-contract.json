@@ -1,0 +1,144 @@
+{
+  "schema": "BAUMAN_ROADMAP_V2_MASTERY_CONTRACT_V1",
+  "version": 1,
+  "scope": "Lượt 24 / Bước 93–96 — append-only in-memory evidence reduction and Master-ready gates; no production persistence or Priority Engine activation",
+  "mode": {
+    "access": "read_only_harness",
+    "productionIntegration": "disconnected",
+    "failClosed": true,
+    "appendOnlyEvents": true,
+    "persistentStoreEnabled": false,
+    "legacyMutationAllowed": false
+  },
+  "upstreamSchemas": {
+    "consumerManifest": "BAUMAN_ROADMAP_V2_CONSUMER_MANIFEST_V1",
+    "diagnosticManifest": "BAUMAN_ROADMAP_V2_DIAGNOSTIC_MANIFEST_V1",
+    "diagnosticResult": "BAUMAN_ROADMAP_V2_DIAGNOSTIC_RESULT_V1"
+  },
+  "knowledgeStates": [
+    "chua_hoc",
+    "dang_hoc",
+    "dat_prerequisite",
+    "master_ready",
+    "can_on",
+    "gap"
+  ],
+  "evidenceTypes": [
+    "diagnostic_result",
+    "chapter_assessment",
+    "exercise_set",
+    "lab_or_simulation",
+    "project_rubric",
+    "retention_check",
+    "russian_technical_terms",
+    "gap_override"
+  ],
+  "thresholds": {
+    "chapterAssessmentPercent": 80,
+    "criticalPrerequisiteFloorPercent": 70,
+    "exercisePercent": 80,
+    "labExplanationRequired": true,
+    "projectRubricMinimumPerDimension": 3,
+    "projectRubricDimensions": [
+      "correctness",
+      "clarity",
+      "verification",
+      "reproducibility"
+    ],
+    "retentionWindowDays": {
+      "minimum": 14,
+      "maximum": 21
+    },
+    "retentionPercent": 75,
+    "russianTechnicalTermsInGD2GD3": {
+      "minimum": 5,
+      "maximum": 10,
+      "appliesToNonRussianTargets": true
+    }
+  },
+  "diagnosticBoundary": {
+    "passingStatus": "existing_competency_verified",
+    "gapStatuses": [
+      "gap",
+      "critical_gap"
+    ],
+    "passingKnowledgeState": "dat_prerequisite",
+    "passingDiagnosticSatisfiesChapterAssessment": false,
+    "passingDiagnosticGrantsMasterReady": false,
+    "retentionStillRequiredForReviewOnDemand": true
+  },
+  "masterReadyGate": {
+    "requiredDimensions": [
+      "chapterAssessment",
+      "exercise",
+      "labOrSimulation",
+      "projectRubric",
+      "retention"
+    ],
+    "russianTermsConditionalInGD2GD3": true,
+    "gapOverrideBlocks": true,
+    "allRequiredDimensionsMustPass": true
+  },
+  "prerequisiteGate": {
+    "satisfyingStates": [
+      "dat_prerequisite",
+      "master_ready"
+    ],
+    "blockingStates": [
+      "chua_hoc",
+      "dang_hoc",
+      "can_on",
+      "gap"
+    ],
+    "recommendedEdgesDoNotBlock": true,
+    "externalGatesRemainExplicit": true
+  },
+  "edgeTypePolicy": {
+    "blocking": "all_of_satisfied_state",
+    "just_in_time": "all_of_satisfied_state",
+    "alternative": "any_of_group",
+    "concurrent": "source_at_least_in_progress",
+    "recommended": "advisory_non_blocking",
+    "contextual": "advisory_explicit_non_blocking"
+  },
+  "transitionPriority": [
+    "gap_override",
+    "master_ready",
+    "retention_due",
+    "dat_prerequisite",
+    "dang_hoc",
+    "chua_hoc"
+  ],
+  "capabilities": {
+    "eventValidate": true,
+    "streamReduce": true,
+    "snapshotRead": true,
+    "masterReadyEvaluate": true,
+    "prerequisiteGateEvaluate": true,
+    "persistentStoreWrite": false,
+    "priorityEngineWrite": false,
+    "schedulerWrite": false,
+    "runtimeActivation": false
+  },
+  "abortConditions": [
+    "upstream manifest hash drift",
+    "unknown target, phase, evidence type or knowledge state",
+    "duplicate event ID or non-monotonic sequence",
+    "event target or phase changes inside one stream",
+    "diagnostic result marked persistable or Master-ready",
+    "invalid score, rubric, retention window or term count",
+    "Master-ready emitted without every applicable gate",
+    "recommended prerequisite treated as blocking",
+    "external prerequisite gate silently treated as satisfied",
+    "production persistence, Priority Engine, scheduler or runtime write attempted"
+  ],
+  "acceptance": {
+    "step": 93,
+    "existingCompetencyDistinctFromMasterReady": true,
+    "eventsAppendOnly": true,
+    "persistentStoreEnabled": false,
+    "priorityEngineEnabled": false,
+    "runtimeActivationAllowed": false,
+    "result": "PASS_CONTRACT_ONLY"
+  }
+}
