@@ -2,9 +2,9 @@
 
 ## Trạng thái triển khai tuần tự
 
-- Mốc hoàn thành gần nhất: **Lượt 23 / Bước 91**.
-- Mốc đang xử lý: **Lượt 23 / Bước 92 — chờ full-checkout CI**.
-- Trạng thái: **PASS B89–B91 — diagnostic harness read-only; migration/runtime activation chưa thực thi**.
+- Mốc hoàn thành gần nhất: **Lượt 24 / Bước 95**.
+- Mốc đang xử lý: **Lượt 24 / Bước 96 — chờ full-checkout CI**.
+- Trạng thái: **PASS B93–B95 — mastery/evidence in-memory harness; migration/runtime activation chưa thực thi**.
 - Ngày cập nhật: **2026-08-11 (Asia/Bangkok)**.
 - Repository: `BlueDragon33/Bauman-master-ai-system`.
 - Baseline vật lý: `main@e383912354673bdce7a0059d6b9a23799d74e689`.
@@ -101,8 +101,21 @@ là cầu nối consumer read-only trước Diagnostic/Mastery/Priority Engine:
 | 89 | PASS | Contract/schema: 20 câu, 8/6/4/2, pass 80%, critical floor 70%, cấm `master_ready` |
 | 90 | PASS | 381 plan, 8 dynamic target bị chặn, 0 verified bank, 0 executable plan, 0 generated item |
 | 91 | PASS | 13/13 test; session không lộ đáp án; ba nhánh kết quả đúng; không persist evidence |
-| 92 | PENDING | Chờ full-checkout CI xác nhận deterministic artifacts và production boundary L19–L23 |
+| 92 | PASS | GitHub Actions run `31446413526` xác nhận deterministic artifacts và production boundary L19–L23 |
 
 Diagnostic pass chỉ tạo trạng thái `existing_competency_verified`; Master-ready vẫn
 đòi đủ exercise/lab/project/assessment/retention evidence ở các lượt sau. Không được
 mở Lượt 24 trước khi Bước 92 `PASS`.
+
+## Kết quả Lượt 24 — Bước 93–96
+
+| Bước | Trạng thái | Kết quả |
+|---|---|---|
+| 93 | PASS | Contract đồng bộ sáu knowledge state và Master-ready gate; Diagnostic pass chỉ đạt prerequisite |
+| 94 | PASS | Append-only event validation và deterministic in-memory reducer |
+| 95 | PASS | Master-ready, retention, Russian terms và prerequisite propagation đạt; 17/17 test |
+| 96 | PENDING | Chờ full-checkout CI xác nhận deterministic manifest và production boundary L19–L24 |
+
+- Persistent stores/events/snapshots: 0/0/0.
+- Priority Engine/scheduler/runtime writes: 0.
+- Không được mở Lượt 25 trước khi Bước 96 `PASS`.
