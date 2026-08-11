@@ -30,6 +30,10 @@ on:
       - 'scripts/build-roadmap-scheduler-harness.mjs'
       - 'scripts/validate-roadmap-scheduler-engine.mjs'
       - 'scripts/validate-roadmap-l26.mjs'
+      - 'scripts/validate-roadmap-readiness-contract.mjs'
+      - 'scripts/build-roadmap-readiness-harness.mjs'
+      - 'scripts/validate-roadmap-readiness-engine.mjs'
+      - 'scripts/validate-roadmap-l27.mjs'
       - 'scripts/validate-roadmap-production-boundary.mjs'
       - 'tests/roadmap-v2-loader.test.mjs'
       - 'tests/roadmap-v2-consumer.test.mjs'
@@ -37,6 +41,7 @@ on:
       - 'tests/roadmap-v2-mastery.test.mjs'
       - 'tests/roadmap-v2-priority.test.mjs'
       - 'tests/roadmap-v2-scheduler.test.mjs'
+      - 'tests/roadmap-v2-readiness.test.mjs'
       - '.github/workflows/roadmap-v2-contract.yml'
   workflow_dispatch:
 
@@ -193,6 +198,24 @@ jobs:
 
       - name: Aggregate L26 Scheduler evidence
         run: node scripts/validate-roadmap-l26.mjs
+
+      - name: Validate B105 Readiness model contract
+        run: node scripts/validate-roadmap-readiness-contract.mjs
+
+      - name: Build B106-B107 Readiness projection harness
+        run: node scripts/build-roadmap-readiness-harness.mjs
+
+      - name: Validate B106 read-only Readiness projector
+        run: node scripts/validate-roadmap-readiness-engine.mjs
+
+      - name: Assert deterministic Readiness manifest
+        run: git diff --exit-code -- roadmap_v2/readiness/manifest.json
+
+      - name: Test B107 Readiness semantics and failure modes
+        run: node --test tests/roadmap-v2-readiness.test.mjs
+
+      - name: Aggregate L27 Readiness evidence
+        run: node scripts/validate-roadmap-l27.mjs
 
       - name: Validate production boundary
         run: node scripts/validate-roadmap-production-boundary.mjs
