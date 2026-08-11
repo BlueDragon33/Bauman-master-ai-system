@@ -1,0 +1,130 @@
+{
+  "schema": "BAUMAN_ROADMAP_V2_CONSUMER_CONTRACT_V1",
+  "version": 1,
+  "scope": "Lượt 22 / Bước 85–88 — read-only consumer bridge for Diagnostic; no mastery, Priority Engine or runtime activation",
+  "upstreamSchemas": {
+    "sidecarManifest": "BAUMAN_ROADMAP_V2_SIDECAR_MANIFEST_V1",
+    "registry": "BAUMAN_ROADMAP_V2_SYLLABUS_REGISTRY_V1",
+    "prerequisiteGraph": "BAUMAN_ROADMAP_V2_PREREQUISITE_GRAPH_V1",
+    "legacyMapping": "BAUMAN_ROADMAP_V2_LEGACY_MAPPING_V2",
+    "migrationContract": "BAUMAN_ROADMAP_V2_MIGRATION_CONTRACT_V2"
+  },
+  "mode": {
+    "access": "read_only",
+    "productionIntegration": "disconnected",
+    "failClosed": true,
+    "legacyMutationAllowed": false,
+    "runtimeWriteAllowed": false
+  },
+  "capabilities": {
+    "registryRead": true,
+    "prerequisiteRead": true,
+    "provenanceRead": true,
+    "eligibilityRead": true,
+    "diagnosticBlueprintRead": true,
+    "diagnosticExecution": false,
+    "masteryEvidenceRead": false,
+    "masteryEvidenceWrite": false,
+    "priorityEngineRead": false,
+    "priorityEngineWrite": false,
+    "schedulerWrite": false,
+    "runtimeActivation": false
+  },
+  "states": {
+    "roadmapChapter": {
+      "static": "CONTRACT_BLUEPRINT_ONLY",
+      "legacy_preserve": "LEGACY_COMPOSITE_BLUEPRINT_ONLY",
+      "dynamic": "DYNAMIC_TEMPLATE_UNINSTANTIATED"
+    },
+    "roadmapLesson": {
+      "static": "CONTRACT_BLUEPRINT_ONLY"
+    },
+    "legacyLesson": {
+      "verified_exact_lesson_to_logical_chapter": "VERIFIED_REFERENCE_ONLY",
+      "preserved_unmapped_requires_semantic_review": "QUARANTINED_UNMAPPED"
+    },
+    "overlay": {
+      "chapter_verified_lesson_granularity_pending": "VERIFIED_OVERLAY_REFERENCE_ONLY"
+    },
+    "framework": {
+      "secondary_outline_quarantined_candidate": "QUARANTINED_OUTLINE"
+    }
+  },
+  "reasonCodes": {
+    "BLUEPRINT_NOT_EXECUTABLE": "Syllabus metadata may seed a later diagnostic but is not an executable question bank.",
+    "DYNAMIC_INSTANCE_REQUIRED": "A dynamic Bauman subject must be instantiated from its real syllabus before diagnostic use.",
+    "LEGACY_SIDECARS_MISSING": "Required additive formula, exercise, simulation and test sidecars are incomplete.",
+    "LEGACY_MAPPING_UNVERIFIED": "The legacy lesson has no verified semantic Roadmap target.",
+    "FRAMEWORK_OUTLINE_ONLY": "The theory-framework item is a secondary outline and is not physical lesson content.",
+    "MASTERY_STORE_ABSENT": "No versioned mastery/evidence store exists before Lượt 24.",
+    "PRIORITY_ENGINE_NOT_IMPLEMENTED": "Priority Engine implementation begins only after Diagnostic and mastery contracts pass.",
+    "PRODUCTION_DISCONNECTED": "The Roadmap V2 package is intentionally disconnected from production entrypoints."
+  },
+  "provenance": {
+    "precedence": [
+      "subjects/math/data/lessons.json",
+      "subjects/math/data/theory_lecture_content.json",
+      "subjects/math/theory-framework.json",
+      "subjects/math/data/chapter_spine.json"
+    ],
+    "rules": [
+      "Physical legacy identity remains authoritative and immutable.",
+      "A verified exact mapping grants reference visibility only; it never grants diagnostic, mastery, Priority Engine or runtime eligibility.",
+      "Unmapped legacy lessons and all framework outline candidates remain quarantined.",
+      "Roadmap chapter and lesson contracts are blueprints, not claims that learning content or assessments already exist.",
+      "Every consumer result carries explicit eligibility and reason codes."
+    ]
+  },
+  "eligibilityRules": {
+    "chapterBlueprint": {
+      "allowedDeliveryModes": [
+        "static",
+        "legacy_preserve"
+      ],
+      "requiresLearningContract": true,
+      "executionEligible": false
+    },
+    "lessonBlueprint": {
+      "allowedDeliveryModes": [
+        "static"
+      ],
+      "requiresAssessmentContract": true,
+      "executionEligible": false
+    },
+    "legacyReference": {
+      "allowedMappingStatuses": [
+        "verified_exact_lesson_to_logical_chapter"
+      ],
+      "requiresPreservedLegacyId": true,
+      "diagnosticContentEligible": false,
+      "masteryEvidenceEligible": false,
+      "priorityEngineEligible": false,
+      "runtimeActivationEligible": false
+    },
+    "dynamicChapter": {
+      "requiresRealSyllabusInstance": true,
+      "diagnosticBlueprintEligibleBeforeInstantiation": false
+    }
+  },
+  "abortConditions": [
+    "upstream schema mismatch",
+    "consumer or upstream manifest hash mismatch",
+    "baseline fingerprint drift",
+    "missing prerequisite target",
+    "prerequisite cycle",
+    "unknown eligibility state or mapping status",
+    "unquarantined ambiguous or outline mapping",
+    "any Priority Engine eligible legacy record before the dedicated integration gate",
+    "any production entrypoint reference to roadmap_v2 before runtime integration"
+  ],
+  "acceptance": {
+    "step": 85,
+    "mappingBoundaryExplicit": true,
+    "contentBoundaryExplicit": true,
+    "schemaBoundaryExplicit": true,
+    "crossChapterAuditRequired": true,
+    "diagnosticInputIsBlueprintOnly": true,
+    "runtimeActivationAllowed": false,
+    "result": "PASS_CONTRACT_ONLY"
+  }
+}
