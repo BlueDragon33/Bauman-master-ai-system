@@ -1,0 +1,84 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "BAUMAN_ROADMAP_V2_PRIORITY_CONTRACT_V1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema",
+    "version",
+    "scope",
+    "mode",
+    "upstreamSchemas",
+    "formula",
+    "normalization",
+    "criticalOverride",
+    "existingCompetencyRule",
+    "weightedBands",
+    "ranking",
+    "capabilities",
+    "abortConditions",
+    "acceptance"
+  ],
+  "properties": {
+    "schema": {
+      "const": "BAUMAN_ROADMAP_V2_PRIORITY_CONTRACT_V1"
+    },
+    "version": {
+      "const": 1
+    },
+    "scope": {
+      "type": "string"
+    },
+    "mode": {
+      "type": "object"
+    },
+    "upstreamSchemas": {
+      "type": "object"
+    },
+    "formula": {
+      "type": "object",
+      "required": [
+        "expression",
+        "weights",
+        "inputRange",
+        "outputRange"
+      ]
+    },
+    "normalization": {
+      "type": "object",
+      "required": [
+        "knowledgeGapByState",
+        "prerequisiteUrgencyByWeeks",
+        "missingNeededDateUrgency",
+        "forgettingRiskRules"
+      ]
+    },
+    "criticalOverride": {
+      "type": "object"
+    },
+    "existingCompetencyRule": {
+      "type": "object"
+    },
+    "weightedBands": {
+      "type": "array",
+      "minItems": 3
+    },
+    "ranking": {
+      "type": "object"
+    },
+    "capabilities": {
+      "type": "object",
+      "additionalProperties": {
+        "type": "boolean"
+      }
+    },
+    "abortConditions": {
+      "type": "array",
+      "minItems": 10,
+      "uniqueItems": true
+    },
+    "acceptance": {
+      "type": "object"
+    }
+  }
+}
