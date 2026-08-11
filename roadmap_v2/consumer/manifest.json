@@ -1,0 +1,45 @@
+{
+  "schema": "BAUMAN_ROADMAP_V2_CONSUMER_MANIFEST_V1",
+  "version": "2.2.0-l22-b85",
+  "status": "PASS_B85_CONSUMER_CONTRACT",
+  "mode": "read_only_consumer_bridge",
+  "productionIntegration": "disconnected",
+  "baselineCommit": "e383912354673bdce7a0059d6b9a23799d74e689",
+  "upstream": {
+    "sidecarManifestPath": "roadmap_v2/manifest.json",
+    "sidecarManifestSha256": "0bef90ea6d1d47f6776bdfdbdec13a0bd750035d75909fb76a8b4e6c7f597607",
+    "sidecarSchema": "BAUMAN_ROADMAP_V2_SIDECAR_MANIFEST_V1",
+    "sidecarVersion": "2.1.0-l21-b81"
+  },
+  "files": {
+    "consumerContract": {
+      "path": "consumer/consumer-contract.json",
+      "bytes": 5150,
+      "sha256": "9e982e5ab20209e207b59af2e5287e2130507ff59ea2c8a3c7c586b113d9a2dc"
+    },
+    "consumerContractSchema": {
+      "path": "consumer/consumer-contract.schema.json",
+      "bytes": 2964,
+      "sha256": "c40f926decc0a1858c058121a1b4403181b83fa2cd1e966d0fd4b14d1f60150e"
+    }
+  },
+  "counts": {
+    "courses": 10,
+    "chapters": 85,
+    "numberedLessons": 304,
+    "dynamicChapters": 8,
+    "legacyLessonsInventoried": 347,
+    "exactLegacyLessonMappingsVerified": 5,
+    "preservedLegacyLessonsUnmapped": 342,
+    "priorityEngineEligibleLegacyRecords": 0
+  },
+  "acceptance": {
+    "step": 85,
+    "consumerContractPinned": true,
+    "upstreamManifestPinned": true,
+    "readOnly": true,
+    "failClosed": true,
+    "productionDisconnected": true,
+    "result": "PASS"
+  }
+}
