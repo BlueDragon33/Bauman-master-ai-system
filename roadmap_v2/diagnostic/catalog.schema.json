@@ -1,0 +1,80 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "BAUMAN_ROADMAP_V2_DIAGNOSTIC_CATALOG_V1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema",
+    "version",
+    "generatedAt",
+    "source",
+    "policy",
+    "counts",
+    "plans",
+    "blockedDynamicTargets",
+    "validation"
+  ],
+  "properties": {
+    "schema": {
+      "const": "BAUMAN_ROADMAP_V2_DIAGNOSTIC_CATALOG_V1"
+    },
+    "version": {
+      "const": 1
+    },
+    "generatedAt": {
+      "type": "string",
+      "minLength": 1
+    },
+    "source": {
+      "type": "object",
+      "required": [
+        "consumerManifest",
+        "consumerManifestSha256",
+        "consumerContractSchema"
+      ]
+    },
+    "policy": {
+      "type": "object",
+      "required": [
+        "id",
+        "requiredItemCount",
+        "difficultyDistribution",
+        "passPercent",
+        "criticalItemFloorPercent"
+      ]
+    },
+    "counts": {
+      "type": "object",
+      "required": [
+        "plans",
+        "chapterPlans",
+        "lessonPlans",
+        "blockedDynamicTargets",
+        "verifiedItemBanks",
+        "executablePlans"
+      ]
+    },
+    "plans": {
+      "type": "array",
+      "minItems": 381,
+      "maxItems": 381
+    },
+    "blockedDynamicTargets": {
+      "type": "array",
+      "minItems": 8,
+      "maxItems": 8
+    },
+    "validation": {
+      "type": "object",
+      "required": [
+        "uniquePlanIds",
+        "uniqueTargetIds",
+        "missingTargets",
+        "missingPrerequisiteRefs",
+        "masterReadyOutcomes",
+        "executablePlansWithoutVerifiedBank",
+        "result"
+      ]
+    }
+  }
+}
