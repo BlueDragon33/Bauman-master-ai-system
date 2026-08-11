@@ -1,0 +1,79 @@
+{
+  "schema": "BAUMAN_ROADMAP_V2_READINESS_MANIFEST_V1",
+  "version": "2.7.0-l27-b107",
+  "status": "PASS_B107_FAIL_CLOSED_READINESS_PROJECTION_HARNESS",
+  "mode": "read_only_readiness_projection_harness",
+  "productionIntegration": "disconnected",
+  "baselineCommit": "e383912354673bdce7a0059d6b9a23799d74e689",
+  "upstream": {
+    "consumerManifest": {
+      "path": "consumer/manifest.json",
+      "bytes": 1445,
+      "sha256": "19448bca6ff10a046cd1a14e95b99de40800fbf86515777e531899310bf1c1e4"
+    },
+    "masteryManifest": {
+      "path": "mastery/manifest.json",
+      "bytes": 2358,
+      "sha256": "5b2241ba89d5f4db2a17c709b4a9cae340b719b3951643e741599263cc3f35ef"
+    },
+    "schedulerManifest": {
+      "path": "scheduler/manifest.json",
+      "bytes": 2297,
+      "sha256": "fb349bebcc3f4313c469450cfc394a6fa6a8da8f41a3e1f4c844b1cee111f16c"
+    }
+  },
+  "files": {
+    "readinessContract": {
+      "path": "readiness/readiness-contract.json",
+      "bytes": 4382,
+      "sha256": "848a50907650a6ffa6afef083c5fb2a86af38e9597f3e3ae7de11370b6234ef4"
+    },
+    "readinessContractSchema": {
+      "path": "readiness/readiness-contract.schema.json",
+      "bytes": 1483,
+      "sha256": "edb634f533d4b3e71948c8593d351f08b5f6bda8eda626ed5a66bdab2039622b"
+    },
+    "readinessRequestSchema": {
+      "path": "readiness/readiness-request.schema.json",
+      "bytes": 1152,
+      "sha256": "5067c4f71c8d193641adf717b733fded0a031e872bac609cf016439c67c959f5"
+    },
+    "readinessResultSchema": {
+      "path": "readiness/readiness-result.schema.json",
+      "bytes": 1045,
+      "sha256": "11cf14e1244b86b7b7fc41cb6f841006c65f7562d69dcb01151a65e8ff62300d"
+    },
+    "readinessEngine": {
+      "path": "readiness.mjs",
+      "bytes": 12320,
+      "sha256": "e0921ef37cf94d0aa27c08f5206c416482d9149bc3177e334a05126f88921e27"
+    }
+  },
+  "counts": {
+    "readinessDimensions": 5,
+    "colors": 3,
+    "persistentStores": 0,
+    "dashboardUiRenders": 0,
+    "runtimeWrites": 0,
+    "notificationWrites": 0
+  },
+  "safety": {
+    "missingEvidenceFailsClosed": true,
+    "masterReadyRequiredForGreen": true,
+    "verifiedExternalGateSourcesRequired": true,
+    "schedulerResultRecomputed": true,
+    "manualColorOverrideAllowed": false,
+    "persistentStoreWrites": 0,
+    "dashboardUiRenders": 0,
+    "runtimeWrites": 0,
+    "notificationWrites": 0
+  },
+  "acceptance": {
+    "step": 107,
+    "contractPinned": true,
+    "projectorPinned": true,
+    "deterministicManifest": true,
+    "productionIntegration": "disconnected",
+    "result": "PASS_FAIL_CLOSED_READINESS_PROJECTION_HARNESS"
+  }
+}
