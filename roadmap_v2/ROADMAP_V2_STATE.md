@@ -5,8 +5,8 @@ Repository baseline: `BlueDragon33/Bauman-master-ai-system@e383912354673bdce7a00
 
 ## Current gate
 
-Lượt 26 / Bước 101–103: **PASS (IN-MEMORY SCHEDULER PROJECTION; PRODUCTION DISCONNECTED)**  
-Bước 104: **PENDING FULL-CHECKOUT CI**
+Lượt 27 / Bước 105–107: **PASS (READ-ONLY READINESS PROJECTION; PRODUCTION DISCONNECTED)**  
+Bước 108: **PENDING FULL-CHECKOUT CI**
 
 | Bước | Gate | Kết quả | Bằng chứng chính |
 |---|---|---|---|
@@ -95,13 +95,21 @@ The GitHub connector suppressed inline content for large blobs. The immutable `l
 - Bước 103: 16/16 tests cover provenance, preview bounds, Critical-first, GD1 rotation, review-on-demand, capacity and tamper/missing-file failure modes — PASS.
 - Production calendar connections, persistent schedules, calendar writes and runtime writes: 0/0/0/0.
 - Generated dynamic syllabus/lesson content: 0.
-- Bước 104 requires full-checkout CI and production-boundary success before Lượt 27.
+- Bước 104: GitHub Actions run `31448603795` passed full-checkout deterministic and production-boundary gates.
+
+## Lượt 27 evidence
+
+- Bước 105: RAG readiness contract fails closed on missing evidence and requires a passed Master-ready evidence gate for green — PASS.
+- Bước 106: read-only projector recomputes Scheduler coverage and uses the Mastery prerequisite evaluator with verified external-gate records — PASS.
+- Bước 107: 16/16 tests cover forged Master-ready claims, missing evidence, external gates, advisory edges, Critical scheduling and RAG aggregation — PASS.
+- Persisted readiness snapshots, dashboard UI renders, runtime writes and notification writes: 0/0/0/0.
+- Bước 108 requires full-checkout CI and production-boundary success before Lượt 28.
 
 ## Next permitted action
 
-Publish the L26 snapshot to draft PR #18 and require full-checkout deterministic and
-production-boundary gates to pass. Do not start Lượt 27, connect production calendar
-data, persist schedule results or activate runtime/UI mappings before Bước 104 is `PASS`.
+Publish the L27 snapshot to draft PR #18 and require full-checkout deterministic and
+production-boundary gates to pass. Do not start Lượt 28, connect production UI,
+persist readiness snapshots or activate runtime mappings before Bước 108 is `PASS`.
 
 Re-run the complete Lượt 19 gate with:
 
