@@ -34,6 +34,13 @@ if (schedulerManifest.counts.persistentStores !== 0 || schedulerManifest.counts.
 if (schedulerManifest.counts.generatedDynamicContent !== 0) throw new Error('Roadmap Scheduler contains generated dynamic content');
 if (schedulerManifest.safety.reviewOnDemandGrantsMasterReady !== false) throw new Error('Roadmap Scheduler grants Master-ready from review-on-demand');
 
+const readinessManifest = JSON.parse(fs.readFileSync('roadmap_v2/readiness/manifest.json', 'utf8'));
+if (readinessManifest.productionIntegration !== 'disconnected') throw new Error('Roadmap Readiness must remain disconnected in Lượt 27');
+if (readinessManifest.mode !== 'read_only_readiness_projection_harness') throw new Error('Roadmap Readiness is not a read-only projection harness');
+if (readinessManifest.counts.persistentStores !== 0 || readinessManifest.counts.dashboardUiRenders !== 0 || readinessManifest.counts.runtimeWrites !== 0 || readinessManifest.counts.notificationWrites !== 0) throw new Error('Roadmap Readiness permits persistence, UI, runtime or notification writes');
+if (readinessManifest.safety.missingEvidenceFailsClosed !== true || readinessManifest.safety.masterReadyRequiredForGreen !== true) throw new Error('Roadmap Readiness safety semantics drift');
+if (readinessManifest.safety.manualColorOverrideAllowed !== false) throw new Error('Roadmap Readiness accepts manual color override');
+
 const productionEntrypoints = [
   'subjects/math/index.html',
   'subjects/math/subject-manifest.json',
@@ -45,7 +52,7 @@ for (const file of productionEntrypoints) {
 }
 
 console.log(JSON.stringify({
-  status: 'PASS_B104_PRODUCTION_DISCONNECTED',
+  status: 'PASS_B108_PRODUCTION_DISCONNECTED',
   checkedEntrypoints: productionEntrypoints.length,
   sidecarMode: manifest.mode,
   consumerMode: consumerManifest.mode,
@@ -58,5 +65,8 @@ console.log(JSON.stringify({
   schedulerMode: schedulerManifest.mode,
   schedulerCalendarConnections: schedulerManifest.counts.productionCalendarConnections,
   schedulerCalendarWrites: schedulerManifest.counts.calendarWrites,
+  readinessMode: readinessManifest.mode,
+  readinessPersistentStores: readinessManifest.counts.persistentStores,
+  readinessDashboardUiRenders: readinessManifest.counts.dashboardUiRenders,
   productionIntegration: manifest.productionIntegration
 }));
