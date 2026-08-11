@@ -2,9 +2,9 @@
 
 ## Trạng thái triển khai tuần tự
 
-- Mốc hoàn thành gần nhất: **Lượt 26 / Bước 103**.
-- Mốc đang xử lý: **Lượt 26 / Bước 104 — chờ full-checkout CI**.
-- Trạng thái: **PASS B101–B103 — Scheduler/Master Mode deterministic in-memory projection; calendar/runtime activation chưa thực thi**.
+- Mốc hoàn thành gần nhất: **Lượt 27 / Bước 107**.
+- Mốc đang xử lý: **Lượt 27 / Bước 108 — chờ full-checkout CI**.
+- Trạng thái: **PASS B105–B107 — Readiness deterministic read-only projection; dashboard/runtime activation chưa thực thi**.
 - Ngày cập nhật: **2026-08-11 (Asia/Bangkok)**.
 - Repository: `BlueDragon33/Bauman-master-ai-system`.
 - Baseline vật lý: `main@e383912354673bdce7a0059d6b9a23799d74e689`.
@@ -138,8 +138,20 @@ mở Lượt 24 trước khi Bước 92 `PASS`.
 | 101 | PASS | Contract khóa phase policy, preview 2–4 tuần, Current Bauman override và toàn bộ write capability=false |
 | 102 | PASS | Deterministic weekly projector tính lại Priority, Critical-first, capacity atomic và Russian twin placeholder |
 | 103 | PASS | 16/16 test; nguồn động fail-closed, GĐ1 2–3 track, review-on-demand và Master Mode đúng boundary |
-| 104 | PENDING | Chờ full-checkout CI xác nhận deterministic manifest và production boundary L19–L26 |
+| 104 | PASS | GitHub Actions run `31448603795` xác nhận deterministic manifest và production boundary L19–L26 |
 
 - Production calendar connections/persisted schedules/calendar writes/runtime writes: 0/0/0/0.
 - Dynamic lesson/syllabus content generated: 0.
-- Không được mở Lượt 27 trước khi Bước 104 `PASS`.
+- Commit kiểm định: `c92427845b79ff0b3ea3cde73ae381850188edf0`.
+
+## Kết quả Lượt 27 — Bước 105–108
+
+| Bước | Trạng thái | Kết quả |
+|---|---|---|
+| 105 | PASS | Contract khóa RAG fail-closed, green cần Master-ready gate thật và external gate có provenance |
+| 106 | PASS | Read-only projector tự chạy Scheduler và Mastery prerequisite evaluator; không nhận màu/result thủ công |
+| 107 | PASS | 16/16 test; forged Master-ready, missing evidence, advisory edge, Critical coverage và aggregation đạt |
+| 108 | PENDING | Chờ full-checkout CI xác nhận deterministic manifest và production boundary L19–L27 |
+
+- Persisted readiness snapshots/dashboard UI renders/runtime writes/notification writes: 0/0/0/0.
+- Không được mở Lượt 28 trước khi Bước 108 `PASS`.
