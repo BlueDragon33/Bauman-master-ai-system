@@ -26,12 +26,17 @@ on:
       - 'scripts/build-roadmap-priority-harness.mjs'
       - 'scripts/validate-roadmap-priority-engine.mjs'
       - 'scripts/validate-roadmap-l25.mjs'
+      - 'scripts/validate-roadmap-scheduler-contract.mjs'
+      - 'scripts/build-roadmap-scheduler-harness.mjs'
+      - 'scripts/validate-roadmap-scheduler-engine.mjs'
+      - 'scripts/validate-roadmap-l26.mjs'
       - 'scripts/validate-roadmap-production-boundary.mjs'
       - 'tests/roadmap-v2-loader.test.mjs'
       - 'tests/roadmap-v2-consumer.test.mjs'
       - 'tests/roadmap-v2-diagnostic.test.mjs'
       - 'tests/roadmap-v2-mastery.test.mjs'
       - 'tests/roadmap-v2-priority.test.mjs'
+      - 'tests/roadmap-v2-scheduler.test.mjs'
       - '.github/workflows/roadmap-v2-contract.yml'
   workflow_dispatch:
 
@@ -170,6 +175,24 @@ jobs:
 
       - name: Aggregate L25 Priority evidence
         run: node scripts/validate-roadmap-l25.mjs
+
+      - name: Validate B101 Scheduler and Master Mode contract
+        run: node scripts/validate-roadmap-scheduler-contract.mjs
+
+      - name: Build B102-B103 Scheduler projection harness
+        run: node scripts/build-roadmap-scheduler-harness.mjs
+
+      - name: Validate B102 in-memory Scheduler projector
+        run: node scripts/validate-roadmap-scheduler-engine.mjs
+
+      - name: Assert deterministic Scheduler manifest
+        run: git diff --exit-code -- roadmap_v2/scheduler/manifest.json
+
+      - name: Test B103 Scheduler policies and failure modes
+        run: node --test tests/roadmap-v2-scheduler.test.mjs
+
+      - name: Aggregate L26 Scheduler evidence
+        run: node scripts/validate-roadmap-l26.mjs
 
       - name: Validate production boundary
         run: node scripts/validate-roadmap-production-boundary.mjs
