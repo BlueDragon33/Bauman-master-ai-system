@@ -17,10 +17,16 @@ on:
       - 'scripts/validate-roadmap-diagnostic-catalog.mjs'
       - 'scripts/validate-roadmap-diagnostic-engine.mjs'
       - 'scripts/validate-roadmap-l23.mjs'
+      - 'scripts/validate-roadmap-mastery-contract.mjs'
+      - 'scripts/build-roadmap-mastery-harness.mjs'
+      - 'scripts/validate-roadmap-mastery-reducer.mjs'
+      - 'scripts/validate-roadmap-mastery-gates.mjs'
+      - 'scripts/validate-roadmap-l24.mjs'
       - 'scripts/validate-roadmap-production-boundary.mjs'
       - 'tests/roadmap-v2-loader.test.mjs'
       - 'tests/roadmap-v2-consumer.test.mjs'
       - 'tests/roadmap-v2-diagnostic.test.mjs'
+      - 'tests/roadmap-v2-mastery.test.mjs'
       - '.github/workflows/roadmap-v2-contract.yml'
   workflow_dispatch:
 
@@ -120,6 +126,27 @@ jobs:
 
       - name: Aggregate L23 diagnostic evidence
         run: node scripts/validate-roadmap-l23.mjs
+
+      - name: Validate B93 mastery and evidence contract
+        run: node scripts/validate-roadmap-mastery-contract.mjs
+
+      - name: Build B94-B95 mastery harness
+        run: node scripts/build-roadmap-mastery-harness.mjs
+
+      - name: Validate B94 append-only reducer
+        run: node scripts/validate-roadmap-mastery-reducer.mjs
+
+      - name: Validate B95 Master-ready and prerequisite gates
+        run: node scripts/validate-roadmap-mastery-gates.mjs
+
+      - name: Assert deterministic mastery manifest
+        run: git diff --exit-code -- roadmap_v2/mastery/manifest.json
+
+      - name: Test B94-B95 mastery failure modes
+        run: node --test tests/roadmap-v2-mastery.test.mjs
+
+      - name: Aggregate L24 mastery evidence
+        run: node scripts/validate-roadmap-l24.mjs
 
       - name: Validate production boundary
         run: node scripts/validate-roadmap-production-boundary.mjs
