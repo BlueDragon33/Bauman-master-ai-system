@@ -1,0 +1,70 @@
+{
+  "schema": "BAUMAN_ROADMAP_V2_SCHEDULER_MANIFEST_V1",
+  "version": "2.6.0-l26-b103",
+  "status": "PASS_B103_DETERMINISTIC_WEEKLY_PROJECTION_HARNESS",
+  "mode": "in_memory_weekly_projection_harness",
+  "productionIntegration": "disconnected",
+  "baselineCommit": "e383912354673bdce7a0059d6b9a23799d74e689",
+  "upstream": {
+    "priorityManifest": {
+      "path": "priority/manifest.json",
+      "bytes": 2367,
+      "sha256": "54bbe6170626e03dfaa0df0dfd1e2969cbad555dea87e1a56b38cd84af44112e"
+    }
+  },
+  "files": {
+    "schedulerContract": {
+      "path": "scheduler/scheduler-contract.json",
+      "bytes": 4384,
+      "sha256": "692653b3f16f9e7ede48f881239b5772b7ba2e11c97737ab20baa0c31b6926f3"
+    },
+    "schedulerContractSchema": {
+      "path": "scheduler/scheduler-contract.schema.json",
+      "bytes": 1472,
+      "sha256": "f9c55044792dc4bb6d6a3f0deea695a74da9400bbe18119c9c4bc6d9fcf77ca0"
+    },
+    "schedulerRequestSchema": {
+      "path": "scheduler/scheduler-request.schema.json",
+      "bytes": 2746,
+      "sha256": "5e1d04b7b758796c59965e09c97faaf49c66205b4cdbd775e29748335c4a2ce5"
+    },
+    "schedulerResultSchema": {
+      "path": "scheduler/scheduler-result.schema.json",
+      "bytes": 1102,
+      "sha256": "699f85780b7233a641ebef5869248f6624932dfcefb051877ce3c3bc09cd2e4b"
+    },
+    "schedulerEngine": {
+      "path": "scheduler.mjs",
+      "bytes": 16573,
+      "sha256": "9b5a3a858c801c8898531c6fe2edb6e7283271e32c9cf7a7d5de06e490b58630"
+    }
+  },
+  "counts": {
+    "phasePolicies": 4,
+    "productionCalendarConnections": 0,
+    "persistentStores": 0,
+    "calendarWrites": 0,
+    "runtimeWrites": 0,
+    "generatedDynamicContent": 0
+  },
+  "safety": {
+    "priorityRecomputedFromCandidates": true,
+    "currentBaumanRequiresVerifiedSource": true,
+    "russianTwinIsPlaceholderOnly": true,
+    "atomicBundles": true,
+    "capacityOverrunAllowed": false,
+    "reviewOnDemandGrantsMasterReady": false,
+    "productionCalendarConnections": 0,
+    "persistentStoreWrites": 0,
+    "calendarWrites": 0,
+    "runtimeWrites": 0
+  },
+  "acceptance": {
+    "step": 103,
+    "contractPinned": true,
+    "projectorPinned": true,
+    "deterministicManifest": true,
+    "productionIntegration": "disconnected",
+    "result": "PASS_DETERMINISTIC_WEEKLY_PROJECTION_HARNESS"
+  }
+}
