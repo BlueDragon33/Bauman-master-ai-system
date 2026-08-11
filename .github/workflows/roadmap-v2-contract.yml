@@ -12,9 +12,15 @@ on:
       - 'scripts/validate-roadmap-consumer-contract.mjs'
       - 'scripts/validate-roadmap-consumer-api.mjs'
       - 'scripts/validate-roadmap-l22.mjs'
+      - 'scripts/validate-roadmap-diagnostic-contract.mjs'
+      - 'scripts/build-roadmap-diagnostic-catalog.mjs'
+      - 'scripts/validate-roadmap-diagnostic-catalog.mjs'
+      - 'scripts/validate-roadmap-diagnostic-engine.mjs'
+      - 'scripts/validate-roadmap-l23.mjs'
       - 'scripts/validate-roadmap-production-boundary.mjs'
       - 'tests/roadmap-v2-loader.test.mjs'
       - 'tests/roadmap-v2-consumer.test.mjs'
+      - 'tests/roadmap-v2-diagnostic.test.mjs'
       - '.github/workflows/roadmap-v2-contract.yml'
   workflow_dispatch:
 
@@ -93,6 +99,27 @@ jobs:
 
       - name: Aggregate L22 contract evidence
         run: node scripts/validate-roadmap-l22.mjs
+
+      - name: Validate B89 diagnostic contract and status semantics
+        run: node scripts/validate-roadmap-diagnostic-contract.mjs
+
+      - name: Build B90 diagnostic catalog and B91 pinned harness
+        run: node scripts/build-roadmap-diagnostic-catalog.mjs
+
+      - name: Validate B90 catalog coverage and blockers
+        run: node scripts/validate-roadmap-diagnostic-catalog.mjs
+
+      - name: Assert deterministic diagnostic catalog and manifest
+        run: git diff --exit-code -- roadmap_v2/diagnostic/catalog.json roadmap_v2/diagnostic/manifest.json
+
+      - name: Validate B91 diagnostic scoring harness
+        run: node scripts/validate-roadmap-diagnostic-engine.mjs
+
+      - name: Test B91 diagnostic gates and failure modes
+        run: node --test tests/roadmap-v2-diagnostic.test.mjs
+
+      - name: Aggregate L23 diagnostic evidence
+        run: node scripts/validate-roadmap-l23.mjs
 
       - name: Validate production boundary
         run: node scripts/validate-roadmap-production-boundary.mjs
