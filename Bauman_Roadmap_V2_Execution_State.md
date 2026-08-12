@@ -2,10 +2,10 @@
 
 ## Trạng thái triển khai tuần tự
 
-- Mốc hoàn thành gần nhất: **Lượt 27 / Bước 108**.
-- Mốc tiếp theo: **Lượt 28 / Bước 109 — chưa mở**.
-- Trạng thái: **PASS B105–B108 — Readiness deterministic read-only projection; dashboard/runtime activation chưa thực thi**.
-- Ngày cập nhật: **2026-08-11 (Asia/Bangkok)**.
+- Mốc hoàn thành gần nhất: **Lượt 28 / Bước 112**.
+- Mốc tiếp theo: **Lượt 29 / Bước 113 — chưa mở**.
+- Trạng thái: **PASS B109–B112 — Integration contract và activation/rollback planner read-only; production/runtime activation chưa thực thi**.
+- Ngày cập nhật: **2026-08-12 (Asia/Bangkok)**.
 - Repository: `BlueDragon33/Bauman-master-ai-system`.
 - Baseline vật lý: `main@e383912354673bdce7a0059d6b9a23799d74e689`.
 - Branch triển khai: `agent/roadmap-v2-l19-contract`.
@@ -155,3 +155,17 @@ mở Lượt 24 trước khi Bước 92 `PASS`.
 
 - Persisted readiness snapshots/dashboard UI renders/runtime writes/notification writes: 0/0/0/0.
 - Commit kiểm định: `5184655b541bb0b35548a39e9d88a30dce36db1b`.
+
+## Kết quả Lượt 28 — Bước 109–112
+
+| Bước | Trạng thái | Kết quả |
+|---|---|---|
+| 109 | PASS | Integration contract khóa 5 feature flag mặc định OFF, exact baseline, protected fingerprints và atomic rollback |
+| 110 | PASS | Read-only activation planner: all-OFF → safe no-op; bất kỳ flag ON → blocked; effective flags luôn OFF |
+| 111 | PASS | 15/15 test cho provenance, baseline, fingerprint, rollback, flag tamper, dependency, deterministic và missing file |
+| 112 | PASS | GitHub Actions run `31558067799` xác nhận deterministic manifest, toàn bộ gate L19–L28 và production boundary |
+
+- Feature flags mặc định OFF/effective enabled flags: 5/0.
+- Production imports/persisted activation plans/runtime writes/legacy mutations: 0/0/0/0.
+- Legacy entrypoints vẫn là đường chạy có thẩm quyền; mọi yêu cầu activation trong L28 fail-closed.
+- Commit kiểm định: `fb5674b79e3693d283c82f97fa1e13ee8994dea2`.

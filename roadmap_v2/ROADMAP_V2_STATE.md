@@ -1,12 +1,12 @@
 # Bauman Roadmap V2 — Execution State
 
-Updated: 2026-08-11  
+Updated: 2026-08-12  
 Repository baseline: `BlueDragon33/Bauman-master-ai-system@e383912354673bdce7a0059d6b9a23799d74e689`
 
 ## Current gate
 
-Lượt 27 / Bước 105–108: **PASS (READ-ONLY READINESS PROJECTION; PRODUCTION DISCONNECTED)**  
-Next: **Lượt 28 / Bước 109 — NOT STARTED**
+Lượt 28 / Bước 109–112: **PASS (FAIL-CLOSED INTEGRATION PLANNING; PRODUCTION DISCONNECTED)**  
+Next: **Lượt 29 / Bước 113 — NOT STARTED**
 
 | Bước | Gate | Kết quả | Bằng chứng chính |
 |---|---|---|---|
@@ -105,11 +105,20 @@ The GitHub connector suppressed inline content for large blobs. The immutable `l
 - Persisted readiness snapshots, dashboard UI renders, runtime writes and notification writes: 0/0/0/0.
 - Bước 108: GitHub Actions run `31449398548` passed full-checkout deterministic and production-boundary gates.
 
+## Lượt 28 evidence
+
+- Bước 109: integration contract locks five default-OFF feature flags, exact baseline, protected fingerprints and atomic rollback — PASS.
+- Bước 110: read-only activation planner returns `safe_noop` only for all-OFF; any requested ON flag is blocked and effective flags remain OFF — PASS.
+- Bước 111: 15/15 tests cover provenance, baseline, fingerprint, rollback, dependencies, tamper/missing-file and deterministic deep-freeze — PASS.
+- Feature flags default OFF/effective enabled: 5/0.
+- Production imports, persisted activation plans, runtime writes and legacy mutations: 0/0/0/0.
+- Bước 112: GitHub Actions run `31558067799` passed all 62 job steps, including deterministic Integration manifest and production boundary.
+
 ## Next permitted action
 
-Design L28/B109 while preserving the disconnected production boundary. Do not connect
-production UI, persist readiness snapshots or activate runtime mappings without a new
-four-step contract/validation round.
+Open L29/B113 for a production runtime bridge behind the default-OFF core feature flag.
+The bridge must preserve legacy entrypoints, have an immediate kill-switch rollback and
+remain fail-closed until its dedicated validator and browser smoke pass.
 
 Re-run the complete Lượt 19 gate with:
 
