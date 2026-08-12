@@ -1,8 +1,8 @@
 # Bauman Roadmap V2 — Execution State
 
-- Last completed: `Lượt 28 / Bước 112`.
-- Next gate: `Lượt 29 / Bước 113 — NOT_STARTED`.
-- Status: `PASS_B109_B112_INTEGRATION_PLANNING_PRODUCTION_DISCONNECTED`.
+- Last completed: `Lượt 29 / Bước 116`.
+- Next gate: `Lượt 30 / Bước 117 — NOT_STARTED`.
+- Status: `PASS_B113_B116_RUNTIME_BRIDGE_CONNECTED_DEFAULT_OFF`.
 - Baseline: `main@e383912354673bdce7a0059d6b9a23799d74e689`.
 - Migration: not executed.
 - Runtime/UI changes: none.
@@ -14,7 +14,8 @@
 - L26 gate: GitHub Actions run `31448603795`, conclusion `success`; 16/16 Scheduler tests.
 - L27 gate: GitHub Actions run `31449398548`, conclusion `success`; 16/16 Readiness tests.
 - L28 gate: GitHub Actions run `31558067799`, conclusion `success`; 15/15 Integration tests.
-- Next: open L29/B113 for the default-OFF runtime bridge with verified rollback.
+- L29 gate: GitHub Actions run `31559510927`, conclusion `success`; 15/15 Runtime tests and real Chromium smoke.
+- Next: open L30/B117 for versioned evidence persistence, backup and restore.
 
 ## Sequential policy
 

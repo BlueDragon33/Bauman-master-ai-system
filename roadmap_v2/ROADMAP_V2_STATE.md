@@ -5,8 +5,8 @@ Repository baseline: `BlueDragon33/Bauman-master-ai-system@e383912354673bdce7a00
 
 ## Current gate
 
-Lượt 28 / Bước 109–112: **PASS (FAIL-CLOSED INTEGRATION PLANNING; PRODUCTION DISCONNECTED)**  
-Next: **Lượt 29 / Bước 113 — NOT STARTED**
+Lượt 29 / Bước 113–116: **PASS (RUNTIME BRIDGE CONNECTED DEFAULT-OFF; READ-ONLY CORE PROJECTION)**  
+Next: **Lượt 30 / Bước 117 — NOT STARTED**
 
 | Bước | Gate | Kết quả | Bằng chứng chính |
 |---|---|---|---|
@@ -114,11 +114,20 @@ The GitHub connector suppressed inline content for large blobs. The immutable `l
 - Production imports, persisted activation plans, runtime writes and legacy mutations: 0/0/0/0.
 - Bước 112: GitHub Actions run `31558067799` passed all 62 job steps, including deterministic Integration manifest and production boundary.
 
+## Lượt 29 evidence
+
+- Bước 113: Runtime Bridge contract locks five default-OFF flags, exact mutation scope and byte-exact legacy-index rollback — PASS.
+- Bước 114: production loads one bridge module; explicitly enabled core loads hash-pinned Registry/Graph as a deep-frozen read-only projection — PASS.
+- Bước 115: 15/15 unit/failure-mode tests and real Chromium default-OFF/core-ON/unsupported/kill-switch smoke — PASS.
+- Default-OFF Roadmap data requests: 0; enabled projection: 10 courses / 85 chapters / 304 lessons / 450 graph nodes / 185 prerequisite edges.
+- Persistent stores, DOM mutations, runtime writes and legacy mutations: 0/0/0/0.
+- Bước 116: GitHub Actions run `31559510927` passed all 71 principal steps and the connected-default-OFF production boundary.
+
 ## Next permitted action
 
-Open L29/B113 for a production runtime bridge behind the default-OFF core feature flag.
-The bridge must preserve legacy entrypoints, have an immediate kill-switch rollback and
-remain fail-closed until its dedicated validator and browser smoke pass.
+Open L30/B117 for a versioned append-only evidence store with backup/restore. Persistence
+must remain behind its own default-OFF flag until migration, corruption recovery and
+rollback tests pass; Diagnostic/Priority/Scheduler/dashboard flags remain OFF.
 
 Re-run the complete Lượt 19 gate with:
 

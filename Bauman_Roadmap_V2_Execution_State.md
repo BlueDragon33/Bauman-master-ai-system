@@ -2,9 +2,9 @@
 
 ## Trạng thái triển khai tuần tự
 
-- Mốc hoàn thành gần nhất: **Lượt 28 / Bước 112**.
-- Mốc tiếp theo: **Lượt 29 / Bước 113 — chưa mở**.
-- Trạng thái: **PASS B109–B112 — Integration contract và activation/rollback planner read-only; production/runtime activation chưa thực thi**.
+- Mốc hoàn thành gần nhất: **Lượt 29 / Bước 116**.
+- Mốc tiếp theo: **Lượt 30 / Bước 117 — chưa mở**.
+- Trạng thái: **PASS B113–B116 — Runtime Bridge connected-default-OFF; browser core projection read-only, persistence chưa thực thi**.
 - Ngày cập nhật: **2026-08-12 (Asia/Bangkok)**.
 - Repository: `BlueDragon33/Bauman-master-ai-system`.
 - Baseline vật lý: `main@e383912354673bdce7a0059d6b9a23799d74e689`.
@@ -169,3 +169,18 @@ mở Lượt 24 trước khi Bước 92 `PASS`.
 - Production imports/persisted activation plans/runtime writes/legacy mutations: 0/0/0/0.
 - Legacy entrypoints vẫn là đường chạy có thẩm quyền; mọi yêu cầu activation trong L28 fail-closed.
 - Commit kiểm định: `fb5674b79e3693d283c82f97fa1e13ee8994dea2`.
+
+## Kết quả Lượt 29 — Bước 113–116
+
+| Bước | Trạng thái | Kết quả |
+|---|---|---|
+| 113 | PASS | Runtime Bridge contract khóa 5 flag mặc định OFF, mutation scope và rollback index byte-exact |
+| 114 | PASS | Browser runtime hash-pinned nạp Registry/Graph read-only; entrypoint chỉ thêm một module bridge được phép |
+| 115 | PASS | 15/15 test và Chromium thật cho OFF/ON/flag sai/kill-switch; legacy DOM không đổi |
+| 116 | PASS | GitHub Actions run `31559510927` xác nhận toàn bộ gate L19–L29 và production connected-default-OFF boundary |
+
+- Runtime mặc định: bridge loaded, core projection disabled, Roadmap data requests 0.
+- Khi bật core: nạp 10 kho/85 chương/304 bài và Graph 450 node/185 cạnh dưới dạng deep-frozen read-only.
+- Persistent stores/DOM mutations/runtime writes/legacy mutations: 0/0/0/0.
+- Subject manifest JSON/JS và toàn bộ academic/legacy data giữ nguyên fingerprint.
+- Commit kiểm định: `0e34da680d1f0fccccdc99a6cff0be9abbf6ab34`.
