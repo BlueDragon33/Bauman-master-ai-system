@@ -1,0 +1,65 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "BAUMAN_ROADMAP_V2_INTEGRATION_CONTRACT_V1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema",
+    "version",
+    "purpose",
+    "baselineCommit",
+    "mode",
+    "upstreamSchemas",
+    "featureFlags",
+    "activationPolicy",
+    "rollbackPolicy",
+    "capabilities",
+    "reasonCodes",
+    "abortConditions",
+    "acceptance"
+  ],
+  "properties": {
+    "schema": { "const": "BAUMAN_ROADMAP_V2_INTEGRATION_CONTRACT_V1" },
+    "version": { "const": "2.8.0-l28-b109" },
+    "purpose": { "type": "string", "minLength": 1 },
+    "baselineCommit": { "const": "e383912354673bdce7a0059d6b9a23799d74e689" },
+    "mode": { "type": "object" },
+    "upstreamSchemas": { "type": "object" },
+    "featureFlags": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "roadmapCoreProjection",
+        "diagnosticRuntime",
+        "evidencePersistence",
+        "priorityScheduler",
+        "readinessDashboard"
+      ],
+      "properties": {
+        "roadmapCoreProjection": { "$ref": "#/$defs/featureFlag" },
+        "diagnosticRuntime": { "$ref": "#/$defs/featureFlag" },
+        "evidencePersistence": { "$ref": "#/$defs/featureFlag" },
+        "priorityScheduler": { "$ref": "#/$defs/featureFlag" },
+        "readinessDashboard": { "$ref": "#/$defs/featureFlag" }
+      }
+    },
+    "activationPolicy": { "type": "object" },
+    "rollbackPolicy": { "type": "object" },
+    "capabilities": { "type": "object" },
+    "reasonCodes": { "type": "object" },
+    "abortConditions": { "type": "array", "minItems": 1, "items": { "type": "string" } },
+    "acceptance": { "type": "object" }
+  },
+  "$defs": {
+    "featureFlag": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["default", "activationStep", "requires"],
+      "properties": {
+        "default": { "const": false },
+        "activationStep": { "type": "integer", "minimum": 113 },
+        "requires": { "type": "array", "uniqueItems": true, "items": { "type": "string", "minLength": 1 } }
+      }
+    }
+  }
+}

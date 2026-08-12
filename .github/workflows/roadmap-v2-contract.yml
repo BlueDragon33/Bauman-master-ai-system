@@ -34,7 +34,12 @@ on:
       - 'scripts/build-roadmap-readiness-harness.mjs'
       - 'scripts/validate-roadmap-readiness-engine.mjs'
       - 'scripts/validate-roadmap-l27.mjs'
+      - 'scripts/validate-roadmap-integration-contract.mjs'
+      - 'scripts/build-roadmap-integration-harness.mjs'
+      - 'scripts/validate-roadmap-integration-engine.mjs'
+      - 'scripts/validate-roadmap-l28.mjs'
       - 'scripts/validate-roadmap-production-boundary.mjs'
+      - 'tests/roadmap-v2-integration.test.mjs'
       - 'tests/roadmap-v2-loader.test.mjs'
       - 'tests/roadmap-v2-consumer.test.mjs'
       - 'tests/roadmap-v2-diagnostic.test.mjs'
@@ -216,6 +221,24 @@ jobs:
 
       - name: Aggregate L27 Readiness evidence
         run: node scripts/validate-roadmap-l27.mjs
+
+      - name: Validate B109 Integration contract and default-OFF flags
+        run: node scripts/validate-roadmap-integration-contract.mjs
+
+      - name: Build B110 fail-closed Integration planning harness
+        run: node scripts/build-roadmap-integration-harness.mjs
+
+      - name: Validate B110 activation and rollback planner
+        run: node scripts/validate-roadmap-integration-engine.mjs
+
+      - name: Assert deterministic Integration manifest
+        run: git diff --exit-code -- roadmap_v2/integration/manifest.json
+
+      - name: Test B111 Integration provenance and failure modes
+        run: node --test tests/roadmap-v2-integration.test.mjs
+
+      - name: Aggregate L28 Integration evidence
+        run: node scripts/validate-roadmap-l28.mjs
 
       - name: Validate production boundary
         run: node scripts/validate-roadmap-production-boundary.mjs

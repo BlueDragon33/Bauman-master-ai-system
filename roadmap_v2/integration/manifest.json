@@ -1,0 +1,75 @@
+{
+  "schema": "BAUMAN_ROADMAP_V2_INTEGRATION_MANIFEST_V1",
+  "version": "2.8.0-l28-b110",
+  "status": "PASS_B110_FAIL_CLOSED_ACTIVATION_PLANNING_HARNESS",
+  "mode": "read_only_activation_planning_harness",
+  "productionIntegration": "disconnected",
+  "baselineCommit": "e383912354673bdce7a0059d6b9a23799d74e689",
+  "upstream": {
+    "diagnosticManifest": {
+      "path": "diagnostic/manifest.json",
+      "bytes": 2494,
+      "sha256": "5985fca8af87c35c1f4a38d1a1ffd265f0e5cdd877ec7cda347f7ae3f3969a58"
+    },
+    "readinessManifest": {
+      "path": "readiness/manifest.json",
+      "bytes": 2594,
+      "sha256": "87d0f56d1762a9b4458531b521d01e32ea685eb2cc74737a94bfa8498a7e7070"
+    }
+  },
+  "files": {
+    "integrationContract": {
+      "path": "integration/integration-contract.json",
+      "bytes": 4392,
+      "sha256": "f0d41ed4b0d7f8bf2a5c3abf548107e187f4656edd25773cdb40128629e76af5"
+    },
+    "integrationContractSchema": {
+      "path": "integration/integration-contract.schema.json",
+      "bytes": 2127,
+      "sha256": "52fe541702e7974d0e6a66b2fb6c311185161fd4b2dd75794e134c51e08bab19"
+    },
+    "activationRequestSchema": {
+      "path": "integration/activation-request.schema.json",
+      "bytes": 1480,
+      "sha256": "b212cf353beaeee194a0fc6a8ffbdbf946a0c7de35c39ef3923af93a8ed58fdd"
+    },
+    "activationPlanSchema": {
+      "path": "integration/activation-plan.schema.json",
+      "bytes": 971,
+      "sha256": "c85c94658f3276fcfa67adc5cd6557becdc2ad3c1cef75686cce35d6430d8a07"
+    },
+    "integrationEngine": {
+      "path": "integration.mjs",
+      "bytes": 8288,
+      "sha256": "3d23cccdf537dedc24c61667c46a485a2a834e4ca7fd0d0752824d87f21256a0"
+    }
+  },
+  "counts": {
+    "featureFlags": 5,
+    "defaultOffFlags": 5,
+    "verifiedDiagnosticItemBanks": 0,
+    "executableDiagnosticPlans": 0,
+    "productionImports": 0,
+    "persistentStores": 0,
+    "runtimeWrites": 0,
+    "legacyMutations": 0
+  },
+  "safety": {
+    "allFlagsDefaultOff": true,
+    "anyEnabledFlagBlockedInL28": true,
+    "exactBaselineRequired": true,
+    "protectedFingerprintPassRequired": true,
+    "rollbackVerificationRequired": true,
+    "atomicKillSwitch": true,
+    "legacyEntrypointsPreserved": true,
+    "productionWrites": 0
+  },
+  "acceptance": {
+    "step": 110,
+    "contractPinned": true,
+    "enginePinned": true,
+    "upstreamManifestsPinned": true,
+    "productionIntegration": "disconnected",
+    "result": "PASS_FAIL_CLOSED_ACTIVATION_PLANNING_HARNESS"
+  }
+}
