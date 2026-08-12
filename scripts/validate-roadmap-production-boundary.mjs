@@ -49,19 +49,34 @@ if (integrationManifest.counts.productionImports !== 0 || integrationManifest.co
 if (integrationManifest.safety.anyEnabledFlagBlockedInL28 !== true || integrationManifest.safety.atomicKillSwitch !== true) throw new Error('Roadmap Integration fail-closed or rollback semantics drift');
 if (integrationManifest.safety.legacyEntrypointsPreserved !== true || integrationManifest.safety.productionWrites !== 0) throw new Error('Roadmap Integration mutates production or legacy entrypoints');
 
-const productionEntrypoints = [
-  'subjects/math/index.html',
+const runtimeManifest = JSON.parse(fs.readFileSync('roadmap_v2/runtime/manifest.json', 'utf8'));
+if (runtimeManifest.productionIntegration !== 'connected_default_off') throw new Error('Roadmap Runtime is not connected-default-OFF in Lượt 29');
+if (runtimeManifest.mode !== 'browser_read_only_core_projection_bridge') throw new Error('Roadmap Runtime is not a browser read-only bridge');
+if (runtimeManifest.defaultActivation !== 'disabled') throw new Error('Roadmap Runtime default activation is not disabled');
+if (runtimeManifest.counts.defaultOffFlags !== runtimeManifest.counts.featureFlags) throw new Error('Roadmap Runtime has a feature flag enabled by default');
+if (runtimeManifest.counts.availableL29Capabilities !== 1) throw new Error('Roadmap Runtime L29 capability boundary drift');
+if (runtimeManifest.counts.persistentStores !== 0 || runtimeManifest.counts.domMutations !== 0 || runtimeManifest.counts.runtimeWrites !== 0 || runtimeManifest.counts.legacyMutations !== 0) throw new Error('Roadmap Runtime crossed the L29 read-only boundary');
+if (runtimeManifest.safety.defaultOffMakesZeroRoadmapRequests !== true || runtimeManifest.safety.unsupportedFlagsFailClosed !== true) throw new Error('Roadmap Runtime default-OFF/fail-closed semantics drift');
+if (runtimeManifest.safety.legacyIndexByteExactRollback !== true || runtimeManifest.safety.subjectManifestsUnchanged !== true) throw new Error('Roadmap Runtime rollback boundary drift');
+
+const contract = JSON.parse(fs.readFileSync('roadmap_v2/runtime/runtime-bridge-contract.json', 'utf8'));
+const tag = contract.mutationScope.indexMutation.allowedInsertion;
+const index = fs.readFileSync('subjects/math/index.html', 'utf8');
+if (index.split(tag).length !== 2 || !index.includes(`${tag}\n</body>`)) throw new Error('Math entrypoint does not contain exactly one authorized default-OFF Runtime Bridge');
+if (!fs.existsSync('subjects/math/assets/roadmap-v2-bridge.mjs') || !fs.existsSync('roadmap_v2/browser-runtime.mjs')) throw new Error('Roadmap Runtime Bridge file is missing');
+
+const protectedUnchangedEntrypoints = [
   'subjects/math/subject-manifest.json',
   'subjects/math/subject-manifest.js'
 ];
-for (const file of productionEntrypoints) {
+for (const file of protectedUnchangedEntrypoints) {
   const text = fs.readFileSync(file, 'utf8');
-  if (/roadmap_v2|roadmap-v2|loader\.mjs|integration\.mjs/i.test(text)) throw new Error(`Premature Roadmap production integration: ${file}`);
+  if (/roadmap_v2|roadmap-v2|browser-runtime|runtime-bridge/i.test(text)) throw new Error(`Unauthorized Roadmap reference in protected entrypoint: ${file}`);
 }
 
 console.log(JSON.stringify({
-  status: 'PASS_B112_PRODUCTION_DISCONNECTED',
-  checkedEntrypoints: productionEntrypoints.length,
+  status: 'PASS_B116_PRODUCTION_CONNECTED_DEFAULT_OFF',
+  checkedEntrypoints: 1 + protectedUnchangedEntrypoints.length,
   sidecarMode: manifest.mode,
   consumerMode: consumerManifest.mode,
   diagnosticMode: diagnosticManifest.mode,
@@ -79,5 +94,10 @@ console.log(JSON.stringify({
   integrationMode: integrationManifest.mode,
   integrationDefaultOffFlags: integrationManifest.counts.defaultOffFlags,
   integrationRuntimeWrites: integrationManifest.counts.runtimeWrites,
-  productionIntegration: manifest.productionIntegration
+  runtimeMode: runtimeManifest.mode,
+  runtimeDefaultActivation: runtimeManifest.defaultActivation,
+  runtimeDefaultOffFlags: runtimeManifest.counts.defaultOffFlags,
+  runtimeWrites: runtimeManifest.counts.runtimeWrites,
+  authorizedProductionBridgeTags: 1,
+  productionIntegration: runtimeManifest.productionIntegration
 }));

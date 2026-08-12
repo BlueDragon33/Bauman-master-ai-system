@@ -38,8 +38,15 @@ on:
       - 'scripts/build-roadmap-integration-harness.mjs'
       - 'scripts/validate-roadmap-integration-engine.mjs'
       - 'scripts/validate-roadmap-l28.mjs'
+      - 'scripts/validate-roadmap-runtime-contract.mjs'
+      - 'scripts/build-roadmap-runtime-bridge.mjs'
+      - 'scripts/validate-roadmap-runtime-bridge.mjs'
+      - 'scripts/validate-roadmap-runtime-entrypoint.mjs'
+      - 'scripts/validate-roadmap-l29.mjs'
+      - 'scripts/browser-smoke-roadmap-runtime.mjs'
       - 'scripts/validate-roadmap-production-boundary.mjs'
       - 'tests/roadmap-v2-integration.test.mjs'
+      - 'tests/roadmap-v2-runtime.test.mjs'
       - 'tests/roadmap-v2-loader.test.mjs'
       - 'tests/roadmap-v2-consumer.test.mjs'
       - 'tests/roadmap-v2-diagnostic.test.mjs'
@@ -56,7 +63,7 @@ permissions:
 jobs:
   contract:
     runs-on: ubuntu-latest
-    timeout-minutes: 10
+    timeout-minutes: 20
     steps:
       - name: Checkout
         uses: actions/checkout@v4
@@ -239,6 +246,35 @@ jobs:
 
       - name: Aggregate L28 Integration evidence
         run: node scripts/validate-roadmap-l28.mjs
+
+      - name: Validate B113 Runtime Bridge contract and rollback authorization
+        run: node scripts/validate-roadmap-runtime-contract.mjs
+
+      - name: Build B114 browser read-only Runtime Bridge
+        run: node scripts/build-roadmap-runtime-bridge.mjs
+
+      - name: Validate B114 hash-pinned browser projection
+        run: node scripts/validate-roadmap-runtime-bridge.mjs
+
+      - name: Validate B114 authorized entrypoint and byte-exact rollback
+        run: node scripts/validate-roadmap-runtime-entrypoint.mjs
+
+      - name: Assert deterministic Runtime manifest
+        run: git diff --exit-code -- roadmap_v2/runtime/manifest.json
+
+      - name: Test B115 Runtime flags and failure modes
+        run: node --test tests/roadmap-v2-runtime.test.mjs
+
+      - name: Aggregate L29 Runtime evidence
+        run: node scripts/validate-roadmap-l29.mjs
+
+      - name: Install Chromium for B115 browser smoke
+        run: |
+          npm install --no-save --no-package-lock playwright@1.55.0
+          npx playwright install --with-deps chromium
+
+      - name: Run B115 real Chromium OFF-ON-rollback smoke
+        run: node scripts/browser-smoke-roadmap-runtime.mjs
 
       - name: Validate production boundary
         run: node scripts/validate-roadmap-production-boundary.mjs

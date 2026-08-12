@@ -26,13 +26,32 @@ function expectedFingerprints() {
   return Object.fromEntries(entries.map((item) => [item.path, item.gitBlobSha]));
 }
 
+function authorizedRuntimeIndex(buffer, expectedSha) {
+  const contractFile = "roadmap_v2/runtime/runtime-bridge-contract.json";
+  if (!fs.existsSync(contractFile)) return false;
+  const contract = JSON.parse(fs.readFileSync(contractFile, "utf8"));
+  const rule = contract?.mutationScope?.indexMutation;
+  if (contract.schema !== "BAUMAN_ROADMAP_V2_RUNTIME_BRIDGE_CONTRACT_V1" || contract.baselineCommit !== baseline.repository.headCommit) return false;
+  if (rule?.legacyGitBlobSha !== expectedSha || rule?.allowedInsertionCount !== 1 || rule?.insertionPoint !== "immediately_before_closing_body") return false;
+  if (Object.values(contract.featureFlags || {}).some((flag) => flag?.default !== false)) return false;
+  const tag = rule.allowedInsertion;
+  const text = buffer.toString("utf8");
+  if (text.split(tag).length !== 2 || !text.includes(`${tag}\n</body>`)) return false;
+  let restored = Buffer.from(text.replace(`${tag}\n`, ""), "utf8");
+  if (rule.legacySnapshotStorageTrailingLfExcluded === true && restored.at(-1) === 0x0a) restored = restored.subarray(0, -1);
+  return gitBlobSha(restored) === expectedSha;
+}
+
 export function collectProtectedFingerprints() {
   const expected = expectedFingerprints();
   const actual = {};
   for (const [file, expectedSha] of Object.entries(expected)) {
     if (!fs.existsSync(file)) fail(`Protected baseline file is missing: ${file}`);
-    const sha = gitBlobSha(fs.readFileSync(file));
-    if (sha !== expectedSha) fail(`Protected fingerprint drift: ${file}; expected ${expectedSha}; received ${sha}`);
+    const bytes = fs.readFileSync(file);
+    const sha = gitBlobSha(bytes);
+    if (sha !== expectedSha && !(file === "subjects/math/index.html" && authorizedRuntimeIndex(bytes, expectedSha))) {
+      fail(`Protected fingerprint drift: ${file}; expected ${expectedSha}; received ${sha}`);
+    }
     actual[file] = sha;
   }
   return actual;
@@ -95,9 +114,10 @@ if (process.argv[1] && process.argv[1].endsWith("validate-repository-baseline.mj
   const fingerprints = collectProtectedFingerprints();
   const academic = validateAcademicBaseline();
   console.log(JSON.stringify({
-    status: "PASS_B77",
+    status: "PASS_B77_WITH_AUTHORIZED_L29_DEFAULT_OFF_BRIDGE",
     baselineCommit: baseline.repository.headCommit,
     protectedFingerprints: Object.keys(fingerprints).length,
+    authorizedRuntimeEntrypointMutations: 1,
     academic
   }));
 }
