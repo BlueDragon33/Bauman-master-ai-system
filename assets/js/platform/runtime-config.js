@@ -12,7 +12,9 @@
       cloudSync: false,
       backendAuth: false,
       aiServiceProxy: false,
-      personalLearningShadow: false
+      personalLearningShadow: false,
+      siteRuntime: true,
+      serviceWorkerCache: false
     },
     storage: {
       mode: 'local-compatible',
