@@ -3,7 +3,7 @@
 Baseline: `main`
 Working branch đầu tiên: `migration/webapp-l1-audit-storage`
 
-Kế hoạch sau khi hoàn tất Lượt 2: **14 lượt · 91 bước**. Ban đầu là 88 bước; Lượt 2 phát sinh thêm 3 bước để sửa lỗi HTML và bổ sung kiểm định tự động. Số lượt/bước được phép tăng tiếp khi audit/test phát hiện rủi ro mới. Không giảm bước chỉ để rút ngắn tiến độ.
+Kế hoạch hiện tại sau khi hoàn tất Lượt 3: **14 lượt · 100 bước**. Ban đầu là 88 bước; Lượt 2 phát sinh thêm 3 bước và Lượt 3 phát sinh thêm 9 bước do audit/test tìm thấy rủi ro thật. Số lượt/bước được phép tăng tiếp khi audit/test phát hiện vấn đề mới. Không giảm bước chỉ để rút ngắn tiến độ.
 
 ## Lượt 1 · Audit toàn hệ thống · 15 bước
 
@@ -22,14 +22,25 @@ Trạng thái: **PASS**. Báo cáo chi tiết ở `L2_SAFETY_PLATFORM_REPORT.md`
 7. Bước phát sinh: deterministic regression harness.
 8. Bước phát sinh: GitHub Actions safety regression và xác nhận run SUCCESS.
 
-## Lượt 3 · Storage abstraction toàn hệ · 6 bước
+## Lượt 3 · Storage abstraction toàn hệ · 15 bước
 
-1. Chuyển main state read/write qua adapter.
-2. Chuyển current user/session cache qua adapter.
-3. Chuyển schedule/progress/report writes qua repository layer.
-4. Kiểm kê và bọc storage namespace của Math.
-5. Kiểm kê và bọc storage namespace của Russian/các môn còn lại.
-6. Kiểm migration dữ liệu cũ, không xóa legacy key.
+Trạng thái: **PASS**. Báo cáo chi tiết ở `L3_STORAGE_ABSTRACTION_REPORT.md`.
+
+1. Tạo main state repository trên platform storage.
+2. Chuyển main state read/write qua repository, giữ nguyên legacy key.
+3. Chuyển users/current-user/session cache qua repository, giữ nguyên legacy keys.
+4. Chuyển schedule/progress/report writes qua đường `save()` của repository.
+5. Tạo L3 regression workflow và scope protection.
+6. Tạo full-repo storage inventory tự động.
+7. Bước phát sinh: sửa workflow inventory không nhận generated file untracked.
+8. Tạo shared subject storage abstraction.
+9. Bổ sung allowlist migration để chặn sửa runtime ngoài phạm vi storage.
+10. Wire storage layer vào entry của đủ 8 môn.
+11. Chuyển AI/Foundation/Research/Signal/Systems qua subject storage.
+12. Chuyển Russian/Programming và đổi oversized-data behavior từ xóa sang preserve.
+13. Chuyển active Math storage E129/E239/E240 qua subject storage.
+14. Bước phát sinh: chuyển Math core-subject/DataVault E127 còn direct browser storage.
+15. Bước phát sinh: final direct-API inventory + byte-for-byte legacy preservation; sửa helper contract được gate phát hiện và chạy lại PASS.
 
 ## Lượt 4 · Chuẩn hóa Personal Learning State · 5 bước
 
