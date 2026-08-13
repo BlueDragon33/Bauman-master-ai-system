@@ -1,0 +1,29 @@
+{
+  "schema": "BAUMAN_ROADMAP_V2_EXISTING_COMPETENCY_MATRIX_V1",
+  "sourceAuthority": "prior_curriculum_reconciliation",
+  "claimStatus": "declared_existing_not_yet_diagnostic_verified",
+  "equivalenceClaim": false,
+  "defaultDisposition": "diagnostic_review_only",
+  "diagnosticRequiredBeforePrerequisiteCredit": true,
+  "masterReadyEligibleFromThisMatrix": false,
+  "existingCompetencies": [
+    { "id": "EC-CONTROL", "title": "Control và Digital Control", "targetCourseIds": ["02", "07", "09", "10"] },
+    { "id": "EC-ELECTRICAL", "title": "Điện và điện tử", "targetCourseIds": ["06", "09", "10"] },
+    { "id": "EC-MEASUREMENT", "title": "Đo lường, cảm biến và instrumentation", "targetCourseIds": ["02", "05", "08", "10"] },
+    { "id": "EC-MCU", "title": "Vi điều khiển và hệ nhúng", "targetCourseIds": ["03", "06", "09", "10"] },
+    { "id": "EC-PLC-SCADA", "title": "PLC, SCADA và mạng công nghiệp", "targetCourseIds": ["05", "06", "07", "09", "10"] },
+    { "id": "EC-AUTOMATION", "title": "Tự động hóa công nghiệp", "targetCourseIds": ["07", "09", "10"] },
+    { "id": "EC-ENGINEERING-MATH", "title": "Toán kỹ thuật cơ bản", "targetCourseIds": ["02", "07", "08"] },
+    { "id": "EC-SIGNALS", "title": "Tín hiệu và hệ thống", "targetCourseIds": ["02", "08", "09", "10"] }
+  ],
+  "gapClusters": [
+    { "id": "GAP-PYTHON-OOP", "title": "Python và OOP", "targetCourseIds": ["03"], "disposition": "build_new" },
+    { "id": "GAP-ADS", "title": "Algorithms và Data Structures", "targetCourseIds": ["04"], "disposition": "build_new" },
+    { "id": "GAP-DATABASE", "title": "Database, SQL và Information Systems", "targetCourseIds": ["05"], "disposition": "build_new" },
+    { "id": "GAP-LINUX-SYSTEMS", "title": "Linux, OS và Computer Networks", "targetCourseIds": ["06"], "disposition": "build_new" },
+    { "id": "GAP-PROBABILITY", "title": "Probability và Statistics cho AI/Data", "targetCourseIds": ["02", "08"], "disposition": "build_new" },
+    { "id": "GAP-OR-MODELING", "title": "Operations Research, Optimization, Markov, Queueing và Simulation", "targetCourseIds": ["07"], "disposition": "build_new" }
+  ],
+  "allowedPostDiagnosticStates": ["existing_competency_verified", "review_on_demand", "gap", "needs_review"],
+  "forbiddenDirectState": "master_ready"
+}

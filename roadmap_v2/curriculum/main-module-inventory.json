@@ -1,0 +1,73 @@
+{
+  "schema": "BAUMAN_ROADMAP_V2_MAIN_MODULE_INVENTORY_V1",
+  "baselineRef": "main@e383912354673bdce7a0059d6b9a23799d74e689",
+  "sourceAuthority": "physical_repository_baseline",
+  "moduleCount": 8,
+  "noDeletionAuthorized": true,
+  "modules": [
+    {
+      "id": "russian",
+      "path": "subjects/russian/index.html",
+      "gitBlobSha": "3406719857608c6036fd0f1bb3945baef28e7db6",
+      "physicalTitle": "Tiếng Nga Bauman",
+      "disposition": "retain_and_adapt",
+      "targetCourseIds": ["01"]
+    },
+    {
+      "id": "math",
+      "path": "subjects/math/index.html",
+      "gitBlobSha": "f3f98f53459d4ce46080ffdf7eebb6c32fcda3ef",
+      "physicalTitle": "Toán Bauman",
+      "disposition": "retain_and_adapt",
+      "targetCourseIds": ["02"]
+    },
+    {
+      "id": "programming",
+      "path": "subjects/programming/index.html",
+      "gitBlobSha": "988fcf664407f0b42c0bbd45209e4940a79e8b4f",
+      "physicalTitle": "Programming Bauman",
+      "disposition": "redistribute_as_support",
+      "targetCourseIds": ["03", "04", "05", "06"]
+    },
+    {
+      "id": "ai",
+      "path": "subjects/ai/index.html",
+      "gitBlobSha": "98d0e38190d248b782d1630417583983deedc0f6",
+      "physicalTitle": "Machine Learning, Neural Systems và đánh giá mô hình",
+      "disposition": "retain_and_adapt",
+      "targetCourseIds": ["08"]
+    },
+    {
+      "id": "research",
+      "path": "subjects/research/index.html",
+      "gitBlobSha": "765f5496d5caac8f1f5cc495672bc86a8aea55ed",
+      "physicalTitle": "Phương pháp nghiên cứu, НИР và luận văn ВКР",
+      "disposition": "retain_and_adapt",
+      "targetCourseIds": ["10"]
+    },
+    {
+      "id": "foundation",
+      "path": "subjects/foundation/index.html",
+      "gitBlobSha": "3faf6efef1f46da39b573c964e24efc1f4328d1f",
+      "physicalTitle": "Dự bị STANKIN, khoa học nền và kỹ năng học đại học Nga",
+      "disposition": "redistribute_as_support",
+      "targetCourseIds": ["01", "02", "06", "09"]
+    },
+    {
+      "id": "signal",
+      "path": "subjects/signal/index.html",
+      "gitBlobSha": "67e76f48bc6cfd744f23ff50ab523c04c338b5db",
+      "physicalTitle": "Xử lý tín hiệu, chuỗi thời gian, telemetry và cảm biến",
+      "disposition": "redistribute_as_support",
+      "targetCourseIds": ["02", "07", "08", "09", "10"]
+    },
+    {
+      "id": "systems",
+      "path": "subjects/systems/index.html",
+      "gitBlobSha": "5bbc590af635d6e0cb0978adfc68c1ac08c595b1",
+      "physicalTitle": "АСОИУ, hệ tự hành và độ tin cậy hệ thống",
+      "disposition": "redistribute_as_support",
+      "targetCourseIds": ["05", "06", "07", "09", "10"]
+    }
+  ]
+}

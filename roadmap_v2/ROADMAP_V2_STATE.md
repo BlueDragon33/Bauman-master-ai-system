@@ -1,12 +1,12 @@
 # Bauman Roadmap V2 — Execution State
 
-Updated: 2026-08-12  
+Updated: 2026-08-13  
 Repository baseline: `BlueDragon33/Bauman-master-ai-system@e383912354673bdce7a0059d6b9a23799d74e689`
 
 ## Current gate
 
-Lượt 29 / Bước 113–116: **PASS (RUNTIME BRIDGE CONNECTED DEFAULT-OFF; READ-ONLY CORE PROJECTION)**  
-Next: **Lượt 30 / Bước 117 — NOT STARTED**
+Lượt 30 / Bước 117–119: **PASS (CURRICULUM RECONCILIATION V2.1; READ-ONLY)**  
+Next: **Lượt 30 / Bước 120 — PENDING FULL-CHECKOUT CI**
 
 | Bước | Gate | Kết quả | Bằng chứng chính |
 |---|---|---|---|
@@ -42,7 +42,7 @@ The GitHub connector suppressed inline content for large blobs. The immutable `l
 - Do not claim reuse of empty standalone formula/exercise/application/simulation sources or the zero-question test shell; create additive sidecars later.
 - E235 unchanged; E236/E237/E238 disabled.
 - Source mutations: 0.
-- Runtime/UI modifications: 0.
+- Legacy runtime/UI mutations: 0; one authorized default-OFF Runtime Bridge tag remains from L29.
 - Priority Engine activation: false; eligible legacy records: 0.
 
 ## Lượt 21 evidence
@@ -123,14 +123,26 @@ The GitHub connector suppressed inline content for large blobs. The immutable `l
 - Persistent stores, DOM mutations, runtime writes and legacy mutations: 0/0/0/0.
 - Bước 116: GitHub Actions run `31559510927` passed all 71 principal steps and the connected-default-OFF production boundary.
 
+## Lượt 30 evidence (B120 pending)
+
+- Bước 117: reconciliation contract locks the approved 58-lượt/232-bước plan amendment, four evidence classes, six dispositions and prohibited inferences — PASS.
+- Bước 118: deterministic matrix reconciles 8 physical main modules, 8 declared Existing Competency groups, 6 Gap clusters and 10 target courses — PASS.
+- Target totals remain 85 chapters / 304 numbered lessons / 8 dynamic chapters.
+- Current Bauman Subjects remains dynamic-import-only, with 0 static numbered lessons and verified syllabus import required.
+- Bước 119: 20/20 tests cover equivalence overclaim, Diagnostic/Master-ready bypass, destructive legacy action, count drift, static Bauman content, tamper and missing source — PASS.
+- Legacy deletions, runtime writes, UI changes and persistence writes: 0/0/0/0.
+- Bước 120: full-checkout GitHub Actions regression and production boundary — PENDING.
+
 ## Next permitted action
 
-Open L30/B117 for a versioned append-only evidence store with backup/restore. Persistence
-must remain behind its own default-OFF flag until migration, corruption recovery and
-rollback tests pass; Diagnostic/Priority/Scheduler/dashboard flags remain OFF.
+Complete L30/B120 on a full GitHub checkout. Do not open L31/B121 until the L19–L30
+aggregate, deterministic curriculum artifacts, real Chromium regression and production
+boundary all pass. Persistence remains deferred to L34/B133 and all related feature flags
+remain default-OFF.
 
 Re-run the complete Lượt 19 gate with:
 
 ```bash
 node roadmap_v2/tools/validate-roadmap-v2.mjs
 ```
+

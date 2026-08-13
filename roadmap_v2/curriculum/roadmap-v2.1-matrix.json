@@ -1,0 +1,229 @@
+{
+  "schema": "BAUMAN_ROADMAP_V2_CURRICULUM_MATRIX_V1",
+  "version": "2.1.0-l30-b118",
+  "baselineCommit": "e383912354673bdce7a0059d6b9a23799d74e689",
+  "safety": {
+    "declaredExistingRequiresDiagnostic": true,
+    "diagnosticCannotGrantMasterReady": true,
+    "baumanSubjectsRequireVerifiedImport": true,
+    "legacyModulesDeleted": 0,
+    "runtimeWrites": 0,
+    "uiChanges": 0,
+    "persistenceWrites": 0
+  },
+  "counts": {
+    "mainModules": 8,
+    "existingCompetencyGroups": 8,
+    "gapClusters": 6,
+    "targetCourses": 10,
+    "chapters": 85,
+    "numberedLessons": 304,
+    "dynamicChapters": 8
+  },
+  "courses": [
+    {
+      "id": "01",
+      "title": "TIẾNG NGA",
+      "strategy": "adapt_and_extend",
+      "activation": "static_registry_allowed",
+      "legacyModuleIds": [
+        "russian",
+        "foundation"
+      ],
+      "existingCompetencyIds": [],
+      "gapClusterIds": [],
+      "chapters": 10,
+      "numberedLessons": 32,
+      "dynamicChapters": 2
+    },
+    {
+      "id": "02",
+      "title": "TOÁN AI & DATA",
+      "strategy": "adapt_and_extend",
+      "activation": "static_registry_allowed",
+      "legacyModuleIds": [
+        "math",
+        "foundation",
+        "signal"
+      ],
+      "existingCompetencyIds": [
+        "EC-CONTROL",
+        "EC-MEASUREMENT",
+        "EC-ENGINEERING-MATH",
+        "EC-SIGNALS"
+      ],
+      "gapClusterIds": [
+        "GAP-PROBABILITY"
+      ],
+      "chapters": 10,
+      "numberedLessons": 36,
+      "dynamicChapters": 0
+    },
+    {
+      "id": "03",
+      "title": "PYTHON & OOP",
+      "strategy": "rebuild_from_legacy_shell",
+      "activation": "content_requires_academic_validation",
+      "legacyModuleIds": [
+        "programming"
+      ],
+      "existingCompetencyIds": [
+        "EC-MCU"
+      ],
+      "gapClusterIds": [
+        "GAP-PYTHON-OOP"
+      ],
+      "chapters": 8,
+      "numberedLessons": 32,
+      "dynamicChapters": 0
+    },
+    {
+      "id": "04",
+      "title": "ALGORITHMS & DATA STRUCTURES",
+      "strategy": "build_new_with_legacy_support",
+      "activation": "content_requires_academic_validation",
+      "legacyModuleIds": [
+        "programming"
+      ],
+      "existingCompetencyIds": [],
+      "gapClusterIds": [
+        "GAP-ADS"
+      ],
+      "chapters": 8,
+      "numberedLessons": 32,
+      "dynamicChapters": 0
+    },
+    {
+      "id": "05",
+      "title": "DATABASE & INFORMATION SYSTEMS",
+      "strategy": "build_new_with_legacy_support",
+      "activation": "content_requires_academic_validation",
+      "legacyModuleIds": [
+        "programming",
+        "systems"
+      ],
+      "existingCompetencyIds": [
+        "EC-MEASUREMENT",
+        "EC-PLC-SCADA"
+      ],
+      "gapClusterIds": [
+        "GAP-DATABASE"
+      ],
+      "chapters": 8,
+      "numberedLessons": 32,
+      "dynamicChapters": 0
+    },
+    {
+      "id": "06",
+      "title": "LINUX, OS & COMPUTER NETWORKS",
+      "strategy": "build_new_with_legacy_support",
+      "activation": "content_requires_academic_validation",
+      "legacyModuleIds": [
+        "programming",
+        "foundation",
+        "systems"
+      ],
+      "existingCompetencyIds": [
+        "EC-ELECTRICAL",
+        "EC-MCU",
+        "EC-PLC-SCADA"
+      ],
+      "gapClusterIds": [
+        "GAP-LINUX-SYSTEMS"
+      ],
+      "chapters": 8,
+      "numberedLessons": 32,
+      "dynamicChapters": 0
+    },
+    {
+      "id": "07",
+      "title": "OPERATIONS RESEARCH & SYSTEM MODELING",
+      "strategy": "build_new_with_legacy_support",
+      "activation": "content_requires_academic_validation",
+      "legacyModuleIds": [
+        "signal",
+        "systems"
+      ],
+      "existingCompetencyIds": [
+        "EC-CONTROL",
+        "EC-PLC-SCADA",
+        "EC-AUTOMATION",
+        "EC-ENGINEERING-MATH"
+      ],
+      "gapClusterIds": [
+        "GAP-OR-MODELING"
+      ],
+      "chapters": 9,
+      "numberedLessons": 36,
+      "dynamicChapters": 0
+    },
+    {
+      "id": "08",
+      "title": "MACHINE LEARNING & RESEARCH",
+      "strategy": "rebuild_from_legacy_shell",
+      "activation": "content_requires_academic_validation",
+      "legacyModuleIds": [
+        "ai",
+        "signal"
+      ],
+      "existingCompetencyIds": [
+        "EC-MEASUREMENT",
+        "EC-ENGINEERING-MATH",
+        "EC-SIGNALS"
+      ],
+      "gapClusterIds": [
+        "GAP-PROBABILITY"
+      ],
+      "chapters": 9,
+      "numberedLessons": 36,
+      "dynamicChapters": 0
+    },
+    {
+      "id": "09",
+      "title": "CURRENT BAUMAN SUBJECTS — MODULE ĐỘNG",
+      "strategy": "dynamic_import_only",
+      "activation": "blocked_pending_verified_syllabus",
+      "legacyModuleIds": [
+        "foundation",
+        "signal",
+        "systems"
+      ],
+      "existingCompetencyIds": [
+        "EC-CONTROL",
+        "EC-ELECTRICAL",
+        "EC-MCU",
+        "EC-PLC-SCADA",
+        "EC-AUTOMATION",
+        "EC-SIGNALS"
+      ],
+      "gapClusterIds": [],
+      "chapters": 6,
+      "numberedLessons": 0,
+      "dynamicChapters": 6
+    },
+    {
+      "id": "10",
+      "title": "NIR/THESIS",
+      "strategy": "rebuild_from_legacy_shell",
+      "activation": "content_requires_academic_validation",
+      "legacyModuleIds": [
+        "research",
+        "signal",
+        "systems"
+      ],
+      "existingCompetencyIds": [
+        "EC-CONTROL",
+        "EC-ELECTRICAL",
+        "EC-MEASUREMENT",
+        "EC-MCU",
+        "EC-PLC-SCADA",
+        "EC-AUTOMATION",
+        "EC-SIGNALS"
+      ],
+      "gapClusterIds": [],
+      "chapters": 9,
+      "numberedLessons": 36,
+      "dynamicChapters": 0
+    }
+  ]
+}

@@ -2,10 +2,10 @@
 
 ## Trạng thái triển khai tuần tự
 
-- Mốc hoàn thành gần nhất: **Lượt 29 / Bước 116**.
-- Mốc tiếp theo: **Lượt 30 / Bước 117 — chưa mở**.
-- Trạng thái: **PASS B113–B116 — Runtime Bridge connected-default-OFF; browser core projection read-only, persistence chưa thực thi**.
-- Ngày cập nhật: **2026-08-12 (Asia/Bangkok)**.
+- Mốc hoàn thành gần nhất: **Lượt 30 / Bước 119**.
+- Mốc tiếp theo: **Lượt 30 / Bước 120 — chờ full-checkout CI**.
+- Trạng thái: **PASS B117–B119 — Roadmap V2.1 curriculum reconciliation read-only; B120 PENDING_FULL_CHECKOUT_CI**.
+- Ngày cập nhật: **2026-08-13 (Asia/Bangkok)**.
 - Repository: `BlueDragon33/Bauman-master-ai-system`.
 - Baseline vật lý: `main@e383912354673bdce7a0059d6b9a23799d74e689`.
 - Branch triển khai: `agent/roadmap-v2-l19-contract`.
@@ -55,7 +55,7 @@ Node đã qua syntax check. Runtime/UI và 15 protected path không thay đổi.
 
 ## Quy trình bắt buộc tiếp tục
 
-1. Thực hiện tuần tự từ Lượt 20 đến Lượt 50, mỗi lượt 4 bước.
+1. Thực hiện tuần tự đến Lượt 58 / Bước 232 theo kế hoạch mở rộng; mỗi lượt 4 bước.
 2. Chỉ chuyển bước khi validator của bước hiện tại `PASS`.
 3. Gặp thiếu nguồn, mapping mơ hồ, ID collision, cycle, fingerprint drift hoặc
    regression thì dừng và giải quyết dứt điểm trước khi đi tiếp.
@@ -184,3 +184,18 @@ mở Lượt 24 trước khi Bước 92 `PASS`.
 - Persistent stores/DOM mutations/runtime writes/legacy mutations: 0/0/0/0.
 - Subject manifest JSON/JS và toàn bộ academic/legacy data giữ nguyên fingerprint.
 - Commit kiểm định: `0e34da680d1f0fccccdc99a6cff0be9abbf6ab34`.
+
+
+## Kết quả Lượt 30 — Bước 117–120 (đang kiểm định)
+
+| Bước | Trạng thái | Kết quả |
+|---|---|---|
+| 117 | PASS | Contract khóa plan amendment V2.1, 4 tầng bằng chứng, 6 disposition và mọi write capability=false |
+| 118 | PASS | Ma trận tất định 8 module main → 8 Existing Competency → 6 Gap → 10 kho/85 chương/304 bài/8 chương động |
+| 119 | PASS | 20/20 test fail-closed cho equivalence, Diagnostic/Master-ready bypass, static Bauman content, destructive disposition và tamper/missing source |
+| 120 | PENDING_FULL_CHECKOUT_CI | Chờ regression L19–L30, deterministic artifacts và production boundary trên checkout GitHub thật |
+
+- Persistence được dời có truy vết sang L34/B133 theo kế hoạch mở rộng, chưa thực thi.
+- Kho 09 Current Bauman Subjects giữ 0 bài tĩnh và chỉ mở qua verified syllabus import.
+- Legacy deletions/runtime writes/UI changes/persistence writes: 0/0/0/0.
+

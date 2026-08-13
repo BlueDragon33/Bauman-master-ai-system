@@ -1,0 +1,29 @@
+{
+  "schema": "BAUMAN_ROADMAP_V2_TARGET_COURSE_DISPOSITION_V1",
+  "version": "2.1.0-l30-b118",
+  "targetTotals": { "courses": 10, "chapters": 85, "numberedLessons": 304, "dynamicChapters": 8 },
+  "courses": [
+    { "id": "01", "title": "TIẾNG NGA", "chapters": 10, "numberedLessons": 32, "dynamicChapters": 2, "strategy": "adapt_and_extend", "legacyModuleIds": ["russian", "foundation"], "activation": "static_registry_allowed" },
+    { "id": "02", "title": "TOÁN AI & DATA", "chapters": 10, "numberedLessons": 36, "dynamicChapters": 0, "strategy": "adapt_and_extend", "legacyModuleIds": ["math", "foundation", "signal"], "activation": "static_registry_allowed" },
+    { "id": "03", "title": "PYTHON & OOP", "chapters": 8, "numberedLessons": 32, "dynamicChapters": 0, "strategy": "rebuild_from_legacy_shell", "legacyModuleIds": ["programming"], "activation": "content_requires_academic_validation" },
+    { "id": "04", "title": "ALGORITHMS & DATA STRUCTURES", "chapters": 8, "numberedLessons": 32, "dynamicChapters": 0, "strategy": "build_new_with_legacy_support", "legacyModuleIds": ["programming"], "activation": "content_requires_academic_validation" },
+    { "id": "05", "title": "DATABASE & INFORMATION SYSTEMS", "chapters": 8, "numberedLessons": 32, "dynamicChapters": 0, "strategy": "build_new_with_legacy_support", "legacyModuleIds": ["programming", "systems"], "activation": "content_requires_academic_validation" },
+    { "id": "06", "title": "LINUX, OS & COMPUTER NETWORKS", "chapters": 8, "numberedLessons": 32, "dynamicChapters": 0, "strategy": "build_new_with_legacy_support", "legacyModuleIds": ["programming", "foundation", "systems"], "activation": "content_requires_academic_validation" },
+    { "id": "07", "title": "OPERATIONS RESEARCH & SYSTEM MODELING", "chapters": 9, "numberedLessons": 36, "dynamicChapters": 0, "strategy": "build_new_with_legacy_support", "legacyModuleIds": ["signal", "systems"], "activation": "content_requires_academic_validation" },
+    { "id": "08", "title": "MACHINE LEARNING & RESEARCH", "chapters": 9, "numberedLessons": 36, "dynamicChapters": 0, "strategy": "rebuild_from_legacy_shell", "legacyModuleIds": ["ai", "signal"], "activation": "content_requires_academic_validation" },
+    { "id": "09", "title": "CURRENT BAUMAN SUBJECTS — MODULE ĐỘNG", "chapters": 6, "numberedLessons": 0, "dynamicChapters": 6, "strategy": "dynamic_import_only", "legacyModuleIds": ["foundation", "signal", "systems"], "activation": "blocked_pending_verified_syllabus", "requiredAuthority": "verified_bauman_syllabus_import" },
+    { "id": "10", "title": "NIR/THESIS", "chapters": 9, "numberedLessons": 36, "dynamicChapters": 0, "strategy": "rebuild_from_legacy_shell", "legacyModuleIds": ["research", "signal", "systems"], "activation": "content_requires_academic_validation" }
+  ],
+  "strategyTotals": {
+    "adapt_and_extend": 2,
+    "rebuild_from_legacy_shell": 3,
+    "build_new_with_legacy_support": 4,
+    "dynamic_import_only": 1
+  },
+  "legacyPolicy": {
+    "deleteModules": 0,
+    "renameLegacyIds": 0,
+    "runtimeWrites": 0,
+    "uiChanges": 0
+  }
+}

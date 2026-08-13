@@ -43,6 +43,13 @@ on:
       - 'scripts/validate-roadmap-runtime-bridge.mjs'
       - 'scripts/validate-roadmap-runtime-entrypoint.mjs'
       - 'scripts/validate-roadmap-l29.mjs'
+      - 'roadmap_v2/curriculum.mjs'
+      - 'roadmap_v2/curriculum/**'
+      - 'scripts/validate-roadmap-curriculum-contract.mjs'
+      - 'scripts/build-roadmap-curriculum-matrix.mjs'
+      - 'scripts/validate-roadmap-curriculum-matrix.mjs'
+      - 'scripts/validate-roadmap-l30.mjs'
+      - 'tests/roadmap-v2-curriculum.test.mjs'
       - 'scripts/browser-smoke-roadmap-runtime.mjs'
       - 'scripts/validate-roadmap-production-boundary.mjs'
       - 'tests/roadmap-v2-integration.test.mjs'
@@ -268,6 +275,24 @@ jobs:
       - name: Aggregate L29 Runtime evidence
         run: node scripts/validate-roadmap-l29.mjs
 
+      - name: Validate B117 curriculum reconciliation contract
+        run: node scripts/validate-roadmap-curriculum-contract.mjs
+
+      - name: Build B118 deterministic Roadmap V2.1 curriculum matrix
+        run: node scripts/build-roadmap-curriculum-matrix.mjs
+
+      - name: Validate B118 curriculum matrix and evidence fingerprints
+        run: node scripts/validate-roadmap-curriculum-matrix.mjs
+
+      - name: Assert deterministic L30 curriculum artifacts
+        run: git diff --exit-code -- roadmap_v2/curriculum/roadmap-v2.1-matrix.json roadmap_v2/curriculum/manifest.json
+
+      - name: Test B119 curriculum failure modes
+        run: node --test tests/roadmap-v2-curriculum.test.mjs
+
+      - name: Aggregate L30 curriculum evidence
+        run: node scripts/validate-roadmap-l30.mjs
+
       - name: Install Chromium for B115 browser smoke
         run: |
           npm install --no-save --no-package-lock playwright@1.55.0
@@ -278,3 +303,4 @@ jobs:
 
       - name: Validate production boundary
         run: node scripts/validate-roadmap-production-boundary.mjs
+

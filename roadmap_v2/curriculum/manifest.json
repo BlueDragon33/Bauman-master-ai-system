@@ -1,0 +1,62 @@
+{
+  "schema": "BAUMAN_ROADMAP_V2_CURRICULUM_MANIFEST_V1",
+  "version": "2.10.0-l30-b118",
+  "status": "PASS_B118_DETERMINISTIC_CURRICULUM_MATRIX",
+  "mode": "read_only_curriculum_reconciliation",
+  "productionIntegration": "disconnected",
+  "baselineCommit": "e383912354673bdce7a0059d6b9a23799d74e689",
+  "sources": {
+    "curriculum-reconciliation-contract": {
+      "path": "curriculum-reconciliation-contract.json",
+      "bytes": 1531,
+      "sha256": "9a3ac6e72313f03a9ac792c2afccc947b064cc69f37c23cde628414e6b8b9bee"
+    },
+    "curriculum-reconciliation-contract.schema": {
+      "path": "curriculum-reconciliation-contract.schema.json",
+      "bytes": 2444,
+      "sha256": "8a7d0b9efb34a4ff5e676fecd2a2836f96cc0a91db2c56cb355d9cca9381f3c1"
+    },
+    "main-module-inventory": {
+      "path": "main-module-inventory.json",
+      "bytes": 2688,
+      "sha256": "2b4ec921c25b69ade8506a607f1ce3e07a83736a5daec27bd16ab2b12e6986f3"
+    },
+    "existing-competency-matrix": {
+      "path": "existing-competency-matrix.json",
+      "bytes": 2340,
+      "sha256": "f4a153ea9aff9d593c3b3ca4643cbc1a64b6ca3ebd3e4dc4c2d77afbfcb204a4"
+    },
+    "target-course-disposition": {
+      "path": "target-course-disposition.json",
+      "bytes": 3100,
+      "sha256": "cae24e8d8e2478ffb6da26a634b8128bf99b483cc08b4fb9c5171322ce40b433"
+    }
+  },
+  "generatedMatrix": {
+    "path": "roadmap-v2.1-matrix.json",
+    "bytes": 5564,
+    "sha256": "b747be25c3780c9d3fcc84d9de060b8a7b69a4cac5a03089c5c71dd92cd6bcf7"
+  },
+  "counts": {
+    "mainModules": 8,
+    "existingCompetencyGroups": 8,
+    "gapClusters": 6,
+    "targetCourses": 10,
+    "chapters": 85,
+    "numberedLessons": 304,
+    "dynamicChapters": 8
+  },
+  "safety": {
+    "declaredExistingRequiresDiagnostic": true,
+    "diagnosticCannotGrantMasterReady": true,
+    "baumanSubjectsRequireVerifiedImport": true,
+    "legacyModulesDeleted": 0,
+    "runtimeWrites": 0,
+    "uiChanges": 0,
+    "persistenceWrites": 0
+  },
+  "acceptance": {
+    "step": 118,
+    "result": "PASS_DETERMINISTIC_READ_ONLY_MATRIX"
+  }
+}
