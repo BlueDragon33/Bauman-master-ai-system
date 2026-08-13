@@ -52,4 +52,4 @@ Every L31 finding appears exactly once and remains `OPEN`. L32 resolves none.
 - B125 contract: PASS
 - B126 deterministic transition plan and SHA-256 manifest: PASS
 - B127: 28/28 failure-mode tests PASS
-- B128: awaiting full-checkout L19–L32 regression and production boundary
+- B128: PASS on run `31680296650`; full L19–L32 regression, deterministic artifacts, Chromium regressions and production boundary passed

@@ -2,9 +2,9 @@
 
 ## Trạng thái triển khai tuần tự
 
-- Mốc hoàn thành gần nhất: **Lượt 31 / Bước 124**.
-- Mốc tiếp theo: **Lượt 32 / Bước 125 — chưa mở**.
-- Trạng thái: **PASS B121–B124 — Main + 8 module UI audit read-only; 16 finding giữ OPEN; full-checkout CI và production boundary success**.
+- Mốc hoàn thành gần nhất: **Lượt 32 / Bước 128**.
+- Mốc tiếp theo: **Lượt 33 / Bước 129 — chưa mở**.
+- Trạng thái: **PASS B125–B128 — thiết kế additive 8→10; 8 legacy route giữ nguyên; 10 canonical route mới chỉ planned**.
 - Ngày cập nhật: **2026-08-13 (Asia/Bangkok)**.
 - Repository: `BlueDragon33/Bauman-master-ai-system`.
 - Baseline vật lý: `main@e383912354673bdce7a0059d6b9a23799d74e689`.
@@ -213,3 +213,18 @@ mở Lượt 24 trước khi Bước 92 `PASS`.
 - Chromium xác nhận 17 control hữu hình chưa có programmatic name trên cả 9 route; hidden control và control nằm trong `label` đã được loại khỏi phép đo.
 - Production HTML/CSS/JavaScript writes, runtime activations, persistence writes, finding auto-resolutions: 0/0/0/0.
 - Commit kiểm định: `06dac5c13f50df493e9bdee713b6dee545bdf768`.
+
+## Kết quả Lượt 32 — Bước 125–128
+
+| Bước | Trạng thái | Kết quả |
+|---|---|---|
+| 125 | PASS | Contract design-only khóa 10 canonical course, giữ 8 legacy route và mọi mutation capability=false |
+| 126 | PASS | Plan tất định cho route, reverse compatibility và backlog 4 pha; 16 finding vẫn OPEN |
+| 127 | PASS | 28/28 test fail-closed cho route overclaim, deletion/redirect, source drift, course 09 bypass và assignment drift |
+| 128 | PASS | GitHub Actions run `31680296650` xác nhận regression L19–L32, deterministic artifacts, Chromium và production boundary |
+
+- Canonical routes planned/created: 10/0.
+- Legacy routes preserved/deleted/renamed/redirected: 8/0/0/0.
+- L31 findings assigned/open/resolved: 16/16/0.
+- Production UI/runtime/persistence writes: 0/0/0.
+- Commit kiểm định: `289afdcbe12a2bd614143d700edc44840f256161`.

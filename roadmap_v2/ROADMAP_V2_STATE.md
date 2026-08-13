@@ -5,8 +5,8 @@ Repository baseline: `BlueDragon33/Bauman-master-ai-system@e383912354673bdce7a00
 
 ## Current gate
 
-Lượt 31 / Bước 121–124: **PASS (MAIN + EIGHT-SUBJECT UI AUDIT; READ-ONLY)**  
-Next: **Lượt 32 / Bước 125 — NOT STARTED**
+Lượt 32 / Bước 125–128: **PASS (ADDITIVE 8-TO-10 UI TRANSITION DESIGN)**  
+Next: **Lượt 33 / Bước 129 — NOT STARTED**
 
 | Bước | Gate | Kết quả | Bằng chứng chính |
 |---|---|---|---|
@@ -145,12 +145,22 @@ The GitHub connector suppressed inline content for large blobs. The immutable `l
 - Production HTML/CSS/JavaScript writes, runtime activations, persistence writes and finding auto-resolutions: 0/0/0/0.
 - Validated commit: `06dac5c13f50df493e9bdee713b6dee545bdf768`.
 
+## Lượt 32 evidence
+
+- Bước 125: design-only contract locks ten canonical destinations, eight preserved legacy routes and zero mutation capability — PASS.
+- Bước 126: deterministic course-route plan, complete reverse compatibility map and four-phase remediation backlog — PASS.
+- Bước 127: 28/28 tests cover physical-route overclaim, deletion, rename/redirect, mapping/source drift, Current Bauman bypass and finding assignment — PASS.
+- Planned/created canonical routes: 10/0; legacy preserved/deleted/renamed/redirected: 8/0/0/0.
+- All 16 L31 findings are assigned exactly once and remain OPEN.
+- Bước 128: GitHub Actions run `31680296650` passed full L19–L32 regression, deterministic artifacts, B115/B123 Chromium and production boundary.
+- Production UI/runtime/persistence writes: 0/0/0.
+- Validated commit: `289afdcbe12a2bd614143d700edc44840f256161`.
+
 ## Next permitted action
 
-Open L32/B125 for an additive 8-to-10 information-architecture transition design. It must
-map every legacy module and all ten target courses, keep Current Bauman Subjects dynamic
-and fail-closed, and specify the security/accessibility/progress-contract remediation order.
-Do not mutate production UI until the L32 design and failure-mode gates pass. Persistence
+Resolve and open the approved L33/B129 scope from the expanded plan. Any production
+mutation must follow the P0→P3 remediation order, preserve all eight legacy routes, keep
+course 09 verified-import-only, and carry a byte-exact rollback boundary. Persistence
 remains deferred to L34/B133 and all related feature flags remain default-OFF.
 
 Re-run the complete Lượt 19 gate with:

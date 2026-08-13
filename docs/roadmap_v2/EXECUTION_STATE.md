@@ -1,8 +1,8 @@
 # Bauman Roadmap V2 — Execution State
 
-- Last completed: `Lượt 31 / Bước 124`.
-- Next gate: `Lượt 32 / Bước 125 — NOT_STARTED`.
-- Status: `PASS_B121_B124_MAIN_EIGHT_SUBJECT_UI_AUDIT_READ_ONLY`.
+- Last completed: `Lượt 32 / Bước 128`.
+- Next gate: `Lượt 33 / Bước 129 — NOT_STARTED`.
+- Status: `PASS_B125_B128_ADDITIVE_EIGHT_TO_TEN_UI_TRANSITION_DESIGN`.
 - Baseline: `main@e383912354673bdce7a0059d6b9a23799d74e689`.
 - Migration/persistence: not executed; persistence deferred to `L34/B133`.
 - Legacy runtime/UI mutations: none; L29's single authorized bridge remains default-OFF.
@@ -17,7 +17,8 @@
 - L29 gate: GitHub Actions run `31559510927`, conclusion `success`; 15/15 Runtime tests and real Chromium smoke.
 - L30 gate: GitHub Actions run `31677380625`, conclusion `success`; 20/20 Curriculum tests and 77 principal steps.
 - L31 gate: GitHub Actions run `31679453304`, conclusion `success`; 25/25 UI audit tests, 18/18 real Chromium observations and 16 findings kept OPEN.
-- Next: open L32/B125 for the additive 8-to-10 information-architecture transition design; do not implement production UI until its design gates pass.
+- L32 gate: GitHub Actions run `31680296650`, conclusion `success`; 28/28 UI transition tests, 10 planned/0 created canonical routes and all 8 legacy routes preserved.
+- Next: resolve the approved L33/B129 scope before any production mutation; persistence remains deferred to L34/B133.
 
 ## Sequential policy
 
