@@ -14,14 +14,14 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout repository
-        uses: actions/checkout@v4
+        uses: actions/checkout@v5
         with:
           fetch-depth: 0
 
-      - name: Use Node.js 20
-        uses: actions/setup-node@v4
+      - name: Use Node.js 24
+        uses: actions/setup-node@v5
         with:
-          node-version: '20'
+          node-version: '24'
 
       - name: Syntax check L5 modules
         run: |
@@ -46,7 +46,17 @@ jobs:
           sleep 1
           node scripts/migration/l5-browser-network-regression.cjs
 
+      - name: Upload browser network report
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: l5-browser-network-report
+          path: docs/migration/L5_BROWSER_NETWORK_REGRESSION.generated.json
+          if-no-files-found: warn
+          retention-days: 7
+
       - name: Ensure generated audit is committed/current when present
+        if: always()
         shell: bash
         run: |
           if [ -f docs/migration/L5_DATA_LOADING_AUDIT.generated.md ]; then
