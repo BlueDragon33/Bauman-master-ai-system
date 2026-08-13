@@ -34,6 +34,6 @@ The future atomic batch carries opaque user/device IDs, an idempotency key, a ba
 - B130 API and Sync contracts: PASS
 - B131 disconnected deterministic harness: PASS
 - B131 failure modes: 28/28 PASS
-- B132: awaiting full-checkout L19–L33 regression and production boundary
+- B132: PASS on run `31681105339`; full L19–L33 regression, deterministic artifacts, Chromium regressions and production boundary passed
 
 Production servers/routes, database connections/migrations, user/session/token records, event writes, and sync writes: all `0`.

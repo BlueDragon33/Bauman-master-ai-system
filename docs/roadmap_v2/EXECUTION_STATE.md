@@ -1,8 +1,8 @@
 # Bauman Roadmap V2 — Execution State
 
-- Last completed: `Lượt 32 / Bước 128`.
-- Next gate: `Lượt 33 / Bước 129 — NOT_STARTED`.
-- Status: `PASS_B125_B128_ADDITIVE_EIGHT_TO_TEN_UI_TRANSITION_DESIGN`.
+- Last completed: `Lượt 33 / Bước 132`.
+- Next gate: `Lượt 34 / Bước 133 — PERSISTENCE_BOUNDARY`.
+- Status: `PASS_B129_B132_PROVIDER_NEUTRAL_DISCONNECTED_BACKEND_API`.
 - Baseline: `main@e383912354673bdce7a0059d6b9a23799d74e689`.
 - Migration/persistence: not executed; persistence deferred to `L34/B133`.
 - Legacy runtime/UI mutations: none; L29's single authorized bridge remains default-OFF.
@@ -18,7 +18,8 @@
 - L30 gate: GitHub Actions run `31677380625`, conclusion `success`; 20/20 Curriculum tests and 77 principal steps.
 - L31 gate: GitHub Actions run `31679453304`, conclusion `success`; 25/25 UI audit tests, 18/18 real Chromium observations and 16 findings kept OPEN.
 - L32 gate: GitHub Actions run `31680296650`, conclusion `success`; 28/28 UI transition tests, 10 planned/0 created canonical routes and all 8 legacy routes preserved.
-- Next: resolve the approved L33/B129 scope before any production mutation; persistence remains deferred to L34/B133.
+- L33 gate: GitHub Actions run `31681105339`, conclusion `success`; 28/28 Backend API tests, 7 endpoints, 2 in-memory reads, 5 persistence-blocked operations and zero production/database writes.
+- Next: L34/B133 persistence contract; keep it provider-neutral unless the user selects/authorizes a real database provider and connection.
 
 ## Sequential policy
 
