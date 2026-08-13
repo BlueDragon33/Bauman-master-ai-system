@@ -3,19 +3,24 @@
 Baseline: `main`
 Working branch đầu tiên: `migration/webapp-l1-audit-storage`
 
-Kế hoạch ban đầu: **14 lượt · 88 bước**. Số lượt/bước được phép tăng khi audit/test phát hiện rủi ro mới. Không giảm bước chỉ để rút ngắn tiến độ.
+Kế hoạch sau khi hoàn tất Lượt 2: **14 lượt · 91 bước**. Ban đầu là 88 bước; Lượt 2 phát sinh thêm 3 bước để sửa lỗi HTML và bổ sung kiểm định tự động. Số lượt/bước được phép tăng tiếp khi audit/test phát hiện rủi ro mới. Không giảm bước chỉ để rút ngắn tiến độ.
 
 ## Lượt 1 · Audit toàn hệ thống · 15 bước
 
-Trạng thái: hoàn thành audit kiến trúc nền. Bản đồ chi tiết ở `L1_SYSTEM_AUDIT.md`.
+Trạng thái: **PASS**. Bản đồ chi tiết ở `L1_SYSTEM_AUDIT.md`.
 
-## Lượt 2 · Safety Platform Layer · 5 bước
+## Lượt 2 · Safety Platform Layer · 8 bước
+
+Trạng thái: **PASS**. Báo cáo chi tiết ở `L2_SAFETY_PLATFORM_REPORT.md`.
 
 1. Tạo runtime feature config, mặc định cloud/auth backend/AI proxy OFF.
 2. Tạo storage adapter tương thích localStorage và legacy keys.
 3. Bổ sung schema/version metadata cho state migration.
-4. Wire adapter vào main theo chế độ pass-through, không đổi hành vi.
-5. Regression main state/login/schedule trước khi chuyển caller đầu tiên.
+4. Bước phát sinh: sửa ký tự rác HTML tại topbar.
+5. Wire adapter/platform layer vào main theo chế độ pass-through, không đổi hành vi runtime cũ.
+6. Tạo platform bootstrap/audit không phá dữ liệu.
+7. Bước phát sinh: deterministic regression harness.
+8. Bước phát sinh: GitHub Actions safety regression và xác nhận run SUCCESS.
 
 ## Lượt 3 · Storage abstraction toàn hệ · 6 bước
 
