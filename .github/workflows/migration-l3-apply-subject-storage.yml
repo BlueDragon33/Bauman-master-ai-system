@@ -1,0 +1,74 @@
+name: Migration L3 Apply Subject Storage
+
+on:
+  push:
+    branches:
+      - migration/webapp-l1-audit-storage
+    paths:
+      - scripts/migration/apply-l3-subject-storage.cjs
+      - .github/workflows/migration-l3-apply-subject-storage.yml
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  apply-subject-storage:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Use Node.js 20
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Fetch main baseline
+        run: git fetch origin main --depth=1
+
+      - name: Apply guarded subject storage codemod
+        run: node scripts/migration/apply-l3-subject-storage.cjs
+
+      - name: Syntax check migrated subject runtimes
+        shell: bash
+        run: |
+          node --check subjects/russian/assets/core.js
+          node --check subjects/programming/assets/core.js
+          node --check subjects/ai/assets/ai.js
+          node --check subjects/foundation/assets/foundation.js
+          node --check subjects/research/assets/research.js
+          node --check subjects/signal/assets/signal.js
+          node --check subjects/systems/assets/systems.js
+          node --check subjects/math/assets/theory_skin/theory-tab-E129.js
+          node --check subjects/math/assets/theory_skin/theory-content-source-E240.js
+          node --check subjects/math/assets/theory_skin/theory-min-slide-contract-E239.js
+
+      - name: Run L3 regression before commit
+        run: node scripts/migration/l3-storage-regression.cjs
+
+      - name: Verify only expected subject files changed
+        shell: bash
+        run: |
+          allowed='^(subjects/(math/index.html|russian/index.html|programming/index.html|ai/index.html|foundation/index.html|research/index.html|signal/index.html|systems/index.html|russian/assets/core.js|programming/assets/core.js|ai/assets/ai.js|foundation/assets/foundation.js|research/assets/research.js|signal/assets/signal.js|systems/assets/systems.js|math/assets/theory_skin/theory-tab-E129.js|math/assets/theory_skin/theory-content-source-E240.js|math/assets/theory_skin/theory-min-slide-contract-E239.js))$'
+          unexpected="$(git diff --name-only | grep -Ev "$allowed" || true)"
+          if [ -n "$unexpected" ]; then
+            echo "Unexpected files changed:"
+            echo "$unexpected"
+            exit 1
+          fi
+
+      - name: Commit migrated subject storage runtime
+        shell: bash
+        run: |
+          if git diff --quiet; then
+            echo "No subject storage changes to commit."
+            exit 0
+          fi
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add subjects
+          git commit -m "migration L3: route active subject storage through adapter"
+          git push origin HEAD:migration/webapp-l1-audit-storage
