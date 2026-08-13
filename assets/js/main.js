@@ -7,6 +7,8 @@ const ADMIN_PASS = '123456789';
 const KEY = 'bauman_main_all_phases_subjects_v1';
 const USERS_KEY = 'bauman_main_users_fullcode_v1';
 const CURRENT_USER_KEY = 'bauman_current_user_fullcode_v1';
+const STATE_REPOSITORY = window.BaumanMainStateRepository;
+if(!STATE_REPOSITORY)throw new Error('BaumanMainStateRepository is required before main.js');
 const DAYS = ['Thứ 2','Thứ 3','Thứ 4','Thứ 5','Thứ 6','Thứ 7','Chủ nhật'];
 const MAIN_SLOTS = [
   {id:'morning1', label:'Sáng 1', time:'06:30–08:00', type:'memorize'},
@@ -42,10 +44,10 @@ function chipsHTML(items,cls='tag'){return Array.isArray(items)&&items.length?it
 function isMemorizeSubject(id){return ['russian','research','foundation'].includes(id)}
 function isTechnicalSubject(id){return ['math','programming','ai','systems','signal'].includes(id)}
 function defaultUsers(){return [{email:ADMIN_EMAIL,password:ADMIN_PASS,name:'Quản trị viên',role:'admin'}]}
-function readUsers(){try{return JSON.parse(localStorage.getItem(USERS_KEY))||defaultUsers()}catch{return defaultUsers()}}
-function saveUsers(users){localStorage.setItem(USERS_KEY,JSON.stringify(users))}
-function getCurrentUser(){try{return JSON.parse(localStorage.getItem(CURRENT_USER_KEY)||'null')}catch{return null}}
-function setCurrentUser(user){localStorage.setItem(CURRENT_USER_KEY,JSON.stringify(user))}
+function readUsers(){try{return STATE_REPOSITORY.readUsers(defaultUsers())||defaultUsers()}catch{return defaultUsers()}}
+function saveUsers(users){STATE_REPOSITORY.writeUsers(users,{source:'main-legacy-auth'})}
+function getCurrentUser(){try{return STATE_REPOSITORY.readCurrentUser(null)}catch{return null}}
+function setCurrentUser(user){STATE_REPOSITORY.writeCurrentUser(user,{source:'main-login'})}
 function defaultState(){
   const pathMap={russian:'subjects/russian/index.html',math:'subjects/math/index.html',programming:'subjects/programming/index.html',ai:'subjects/ai/index.html',systems:'subjects/systems/index.html',signal:'subjects/signal/index.html',research:'subjects/research/index.html',foundation:'subjects/foundation/index.html'}; const editorMap={russian:'subjects/russian/editor.html',math:'subjects/math/editor.html',programming:'subjects/programming/editor.html',ai:'subjects/ai/editor.html',systems:'subjects/systems/editor.html',signal:'subjects/signal/editor.html',research:'subjects/research/editor.html',foundation:'subjects/foundation/editor.html'}; const subjects=Object.fromEntries(DATA.subjects.map(s=>[s.id,{...s,mainPath:pathMap[s.id]||'',editorPath:editorMap[s.id]||'',priority:['russian','math','programming','ai'].includes(s.id)?'q1':(['systems','signal','research'].includes(s.id)?'q2':'q4')}]))
   return {page:'home',homePanel:'matrix',roadmapStage:'prepare',subject:'russian',subjectStage:'prepare',schedule:{view:'main',weekStart:'2026-06-08',edit:false,entries:{},timezone:'utc7',autoStage:'prepare',autoFrom:'2026-06-08',autoTo:'2026-10-31',targetQuestions:FINAL_TARGET_QUESTIONS,targetScore:DEFAULT_TARGET_SCORE},progress:{},subjectReports:{},reviewQueue:[],activeTask:null,activity:[],theme:'academic',font:'system',fontSize:'normal',lastStudy:{subjectId:'russian',path:'subjects/russian/index.html'},researchTopic:'ugv',researchChecks:{},researchFiles:{},subjects};
@@ -77,8 +79,8 @@ function normalizeState(raw){
   out.researchFiles = (src.researchFiles && typeof src.researchFiles==='object') ? src.researchFiles : {};
   return out;
 }
-function readState(){try{return normalizeState(JSON.parse(localStorage.getItem(KEY)||'{}'))}catch{return defaultState()}}
-function save(){localStorage.setItem(KEY,JSON.stringify(state))}
+function readState(){try{return normalizeState(STATE_REPOSITORY.readMainState({})||{})}catch{return defaultState()}}
+function save(){STATE_REPOSITORY.writeMainState(state,{source:'main-save'})}
 let state=readState();
 function applyAppearance(){document.body.dataset.theme=state.theme||'academic';document.body.dataset.font=state.font||'system';document.body.dataset.size=state.fontSize||'normal'}
 
@@ -86,7 +88,7 @@ const auth={
   current:null,
   init(){let users=readUsers(); if(!users.some(u=>u.email===ADMIN_EMAIL)){users.unshift(defaultUsers()[0]);saveUsers(users)} this.current=getCurrentUser(); if(this.current){$('authScreen').classList.add('hidden');$('appRoot').classList.remove('hidden');this.render()}else{$('authScreen').classList.remove('hidden');$('appRoot').classList.add('hidden')}} ,
   login(){const email=$('loginEmail').value.trim();const pass=$('loginPass').value;const user=readUsers().find(u=>u.email===email&&u.password===pass);if(!user)return toast('Email hoặc mật khẩu chưa đúng');this.current={email:user.email,name:user.name,role:user.role};setCurrentUser(this.current);$('authScreen').classList.add('hidden');$('appRoot').classList.remove('hidden');this.render();app.renderAll();app.page(state.page||'home',false);toast('Đã đăng nhập')},
-  logout(){localStorage.removeItem(CURRENT_USER_KEY);location.reload()},
+  logout(){STATE_REPOSITORY.clearCurrentUser({source:'main-logout'});location.reload()},
   render(){const u=this.current||{email:'--',name:'Người học',role:'user'};$('currentUserName').textContent=u.name||'Người học';$('currentUserEmail').textContent=u.email||'--';$('currentUserRole').textContent=(u.role||'user').toUpperCase();$('userAvatar').textContent=initials(u);$('userAvatarBig').textContent=initials(u);$$('.admin-only').forEach(x=>x.classList.toggle('hidden',u.role!=='admin'))},
   isAdmin(){return this.current?.role==='admin'}
 };
@@ -337,7 +339,7 @@ const app={
   admin(){if(!auth.isAdmin())return;const users=readUsers();$('page-admin').innerHTML=`<div class="section-head"><div><h2>Quản trị</h2><p>Thêm người học và chỉnh đường dẫn môn học.</p></div></div><div class="admin-grid"><div class="panel"><h3>Tạo tài khoản người học</h3><input id="newUserName" class="field" placeholder="Tên" style="width:100%;margin-bottom:8px"><input id="newUserEmail" class="field" placeholder="Email" style="width:100%;margin-bottom:8px"><input id="newUserPass" class="field" placeholder="Mật khẩu" style="width:100%;margin-bottom:8px"><button class="btn primary" data-action="save-user">Thêm người học</button><div class="course-list" style="margin-top:12px">${users.map(u=>`<div class="course"><b>${esc(u.name)}</b><p>${esc(u.email)} · ${esc(u.role)}</p></div>`).join('')}</div></div><div class="panel"><h3>Đường dẫn môn học</h3>${Object.values(state.subjects).map(s=>`<div class="course"><b>${esc(s.name)}</b><input class="field" value="${esc(s.mainPath||'')}" onchange="state.subjects['${s.id}'].mainPath=this.value;save()" style="width:100%;margin-top:7px" placeholder="subjects/.../index.html"><input class="field" value="${esc(s.editorPath||'')}" onchange="state.subjects['${s.id}'].editorPath=this.value;save()" style="width:100%;margin-top:7px" placeholder="subjects/.../editor.html"></div>`).join('')}</div></div>`},
   saveUser(){const name=$('newUserName').value.trim(),email=$('newUserEmail').value.trim(),password=$('newUserPass').value.trim();if(!email||!password)return toast('Cần email và mật khẩu');const users=readUsers();if(users.some(u=>u.email===email))return toast('Email đã tồn tại');users.push({name:name||email,email,password,role:'user'});saveUsers(users);this.admin();toast('Đã thêm người học')},
   exportBackup(){const blob=new Blob([JSON.stringify({state,users:readUsers()},null,2)],{type:'application/json'});const a=document.createElement('a');a.href=URL.createObjectURL(blob);a.download='bauman_main_backup.json';a.click();URL.revokeObjectURL(a.href);closeProfileMenu()},
-  importBackup(file){if(!file)return;const r=new FileReader();r.onload=()=>{try{const data=JSON.parse(r.result);if(data.state){state=normalizeState(data.state);localStorage.setItem(KEY,JSON.stringify(state))}if(data.users)saveUsers(data.users);toast('Đã khôi phục');location.reload()}catch{toast('File sao lưu không hợp lệ')}};r.readAsText(file)}
+  importBackup(file){if(!file)return;const r=new FileReader();r.onload=()=>{try{const data=JSON.parse(r.result);if(data.state){state=normalizeState(data.state);STATE_REPOSITORY.writeMainState(state,{source:'backup-restore'})}if(data.users)saveUsers(data.users);toast('Đã khôi phục');location.reload()}catch{toast('File sao lưu không hợp lệ')}};r.readAsText(file)}
 };
 const RESEARCH_LABELS={questions:'Câu hỏi nghiên cứu',data:'Dữ liệu cần thu',hardware:'Linh kiện / phần cứng',outputs:'Đầu ra mong muốn',risks:'Rủi ro cần kiểm soát',tasks:'Việc nên làm ngay'};
 const RESEARCH_TOPICS={
