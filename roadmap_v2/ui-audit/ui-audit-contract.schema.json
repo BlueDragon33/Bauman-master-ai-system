@@ -1,0 +1,28 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://bauman.local/schemas/roadmap-v2-ui-audit-contract-v1.json",
+  "title": "Bauman Roadmap V2 L31 read-only UI audit contract",
+  "type": "object",
+  "required": ["schema", "version", "status", "baselineCommit", "headBeforeL31", "auditMode", "targets", "viewports", "capabilities", "acceptance"],
+  "properties": {
+    "schema": { "const": "BAUMAN_ROADMAP_V2_UI_AUDIT_CONTRACT_V1" },
+    "version": { "const": "2.11.0-l31-b121" },
+    "status": { "const": "PASS_B121_CONTRACT_ONLY" },
+    "auditMode": { "const": "READ_ONLY" },
+    "baselineCommit": { "pattern": "^[0-9a-f]{40}$" },
+    "headBeforeL31": { "pattern": "^[0-9a-f]{40}$" },
+    "capabilities": {
+      "type": "object",
+      "additionalProperties": { "const": false }
+    },
+    "acceptance": {
+      "type": "object",
+      "properties": {
+        "step": { "const": 121 },
+        "result": { "const": "PASS_CONTRACT_ONLY" }
+      },
+      "required": ["step", "result"]
+    }
+  },
+  "additionalProperties": true
+}

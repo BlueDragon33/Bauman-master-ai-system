@@ -1,0 +1,110 @@
+{
+  "schema": "BAUMAN_ROADMAP_V2_UI_SOURCE_INVENTORY_V1",
+  "version": "2.11.0-l31-b121",
+  "status": "PASS_B121_PINNED_SOURCE_INVENTORY",
+  "repository": "BlueDragon33/Bauman-master-ai-system",
+  "ref": "agent/roadmap-v2-l19-contract@a1eece596c198f48cdd84f77c59986f59eb2eb3d",
+  "main": {
+    "route": "/index.html",
+    "entrypoint": { "path": "index.html", "gitBlobSha": "5bebf7a438af9feab3f4e8e116ce6ca8cb238206", "bytes": 6003 },
+    "sources": [
+      { "path": "assets/css/main.css", "gitBlobSha": "b98e3ac037393929ec690d4ddec7e9f8e9c3aa2a", "bytes": 88924, "role": "style" },
+      { "path": "assets/js/data.js", "gitBlobSha": "8fa55c6e19cd407bd604be55c3667ddb12445a76", "bytes": 31651, "role": "curriculum_data" },
+      { "path": "assets/js/main.js", "gitBlobSha": "1f2976b0a5d7956c5a6edeceb69ef2c6c7b4913d", "bytes": 72778, "role": "main_runtime" },
+      { "path": "assets/js/planning-main.js", "gitBlobSha": "ec1ee1422a0ce1f7fa08f8fdaed8627d2b44bf6b", "bytes": 20714, "role": "subject_bridge_receiver" }
+    ],
+    "acceptedProgressMessageTypes": ["BAUMAN_SUBJECT_PROGRESS", "BAUMAN_PROGRESS_REPORT"],
+    "declaredStages": ["GĐ1", "GĐ2", "GĐ3"]
+  },
+  "sharedRuntimeFamily": {
+    "moduleIds": ["ai", "foundation", "research", "signal", "systems"],
+    "javaScriptGitBlobSha": "e2d69b707ac60fa46c554cbc0b124fda6fcae29d",
+    "cssGitBlobSha": "d4a25a4a8fe84149edaf2627e8c926c38c440cf4",
+    "javaScriptBytes": 49878,
+    "cssBytes": 15819,
+    "emittedProgressMessageType": "SUBJECT_FEEDBACK",
+    "quizCopyQuestionCounts": [20, 30, 40, 50],
+    "quizImplementationMaximum": 10,
+    "directCompletionEvidenceGate": false
+  },
+  "modules": [
+    {
+      "id": "ai",
+      "route": "/subjects/ai/index.html",
+      "entrypoint": { "path": "subjects/ai/index.html", "gitBlobSha": "98d0e38190d248b782d1630417583983deedc0f6" },
+      "runtimeFamily": "shared_subject_module_v2",
+      "directScripts": ["subjects/ai/subject-manifest.js", "subjects/ai/assets/ai.js"],
+      "runtimeGitBlobSha": "e2d69b707ac60fa46c554cbc0b124fda6fcae29d",
+      "styleGitBlobSha": "d4a25a4a8fe84149edaf2627e8c926c38c440cf4"
+    },
+    {
+      "id": "foundation",
+      "route": "/subjects/foundation/index.html",
+      "entrypoint": { "path": "subjects/foundation/index.html", "gitBlobSha": "3faf6efef1f46da39b573c964e24efc1f4328d1f" },
+      "runtimeFamily": "shared_subject_module_v2",
+      "directScripts": ["subjects/foundation/subject-manifest.js", "subjects/foundation/assets/foundation.js"],
+      "runtimeGitBlobSha": "e2d69b707ac60fa46c554cbc0b124fda6fcae29d",
+      "styleGitBlobSha": "d4a25a4a8fe84149edaf2627e8c926c38c440cf4"
+    },
+    {
+      "id": "math",
+      "route": "/subjects/math/index.html",
+      "entrypoint": { "path": "subjects/math/index.html", "gitBlobSha": "ceed4bd9154635b9c6835687101a36e72d44d51e" },
+      "runtimeFamily": "math_patch_stack",
+      "directScripts": ["subjects/math/assets/subject-adapter.js", "subjects/math/assets/roadmap-v2-bridge.mjs"],
+      "adapterGitBlobSha": "6f80e4a70b0a2ab6911e2caf88e91856eb0dcd53",
+      "planningBridge": { "path": "subjects/math/assets/planning-bridge.js", "gitBlobSha": "d0222161137bc63d941d5f4cd4c9f4f96b12cd71", "entrypointLoad": "not_directly_loaded_by_entrypoint" },
+      "stageDefinitions": ["GĐ1-GĐ3", "GĐ0-GĐ9"],
+      "roadmapBridgeDefault": "OFF"
+    },
+    {
+      "id": "programming",
+      "route": "/subjects/programming/index.html",
+      "entrypoint": { "path": "subjects/programming/index.html", "gitBlobSha": "988fcf664407f0b42c0bbd45209e4940a79e8b4f" },
+      "runtimeFamily": "large_core_with_planning_bridge",
+      "directScripts": ["subjects/programming/assets/subject-adapter.js", "subjects/programming/assets/planning-bridge.js", "subjects/programming/assets/core.js"],
+      "coreGitBlobSha": "c2f6cf50de556c8208f880fa9ec0bbb3ad0f3c95",
+      "planningBridgeGitBlobSha": "7dd877eb61ca13cf9b392c00c1e307f5e2c9e321",
+      "emittedProgressMessageType": "BAUMAN_SUBJECT_PROGRESS"
+    },
+    {
+      "id": "research",
+      "route": "/subjects/research/index.html",
+      "entrypoint": { "path": "subjects/research/index.html", "gitBlobSha": "765f5496d5caac8f1f5cc495672bc86a8aea55ed" },
+      "runtimeFamily": "shared_subject_module_v2",
+      "directScripts": ["subjects/research/subject-manifest.js", "subjects/research/assets/research.js"],
+      "runtimeGitBlobSha": "e2d69b707ac60fa46c554cbc0b124fda6fcae29d",
+      "styleGitBlobSha": "d4a25a4a8fe84149edaf2627e8c926c38c440cf4"
+    },
+    {
+      "id": "russian",
+      "route": "/subjects/russian/index.html",
+      "entrypoint": { "path": "subjects/russian/index.html", "gitBlobSha": "3406719857608c6036fd0f1bb3945baef28e7db6" },
+      "runtimeFamily": "large_core_with_planning_bridge",
+      "directScripts": ["subjects/russian/assets/subject-adapter.js", "subjects/russian/assets/planning-bridge.js", "subjects/russian/assets/core.js"],
+      "coreGitBlobSha": "6b2f3a67587d092a9c53c616014086d8f7e07a8e",
+      "planningBridgeGitBlobSha": "2ca75b798b04c24869a39cf7cb701c373e5747e6",
+      "emittedProgressMessageType": "BAUMAN_SUBJECT_PROGRESS"
+    },
+    {
+      "id": "signal",
+      "route": "/subjects/signal/index.html",
+      "entrypoint": { "path": "subjects/signal/index.html", "gitBlobSha": "67e76f48bc6cfd744f23ff50ab523c04c338b5db" },
+      "runtimeFamily": "shared_subject_module_v2",
+      "directScripts": ["subjects/signal/subject-manifest.js", "subjects/signal/assets/signal.js"],
+      "runtimeGitBlobSha": "e2d69b707ac60fa46c554cbc0b124fda6fcae29d",
+      "styleGitBlobSha": "d4a25a4a8fe84149edaf2627e8c926c38c440cf4"
+    },
+    {
+      "id": "systems",
+      "route": "/subjects/systems/index.html",
+      "entrypoint": { "path": "subjects/systems/index.html", "gitBlobSha": "5bbc590af635d6e0cb0978adfc68c1ac08c595b1" },
+      "runtimeFamily": "shared_subject_module_v2",
+      "directScripts": ["subjects/systems/subject-manifest.js", "subjects/systems/assets/systems.js"],
+      "runtimeGitBlobSha": "e2d69b707ac60fa46c554cbc0b124fda6fcae29d",
+      "styleGitBlobSha": "d4a25a4a8fe84149edaf2627e8c926c38c440cf4"
+    }
+  ],
+  "counts": { "mainRoutes": 1, "physicalSubjectRoutes": 8, "targetRoadmapCourses": 10 },
+  "acceptance": { "step": 121, "result": "PASS_PINNED_INVENTORY" }
+}

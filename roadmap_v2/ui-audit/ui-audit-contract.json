@@ -1,0 +1,52 @@
+{
+  "schema": "BAUMAN_ROADMAP_V2_UI_AUDIT_CONTRACT_V1",
+  "version": "2.11.0-l31-b121",
+  "status": "PASS_B121_CONTRACT_ONLY",
+  "baselineCommit": "e383912354673bdce7a0059d6b9a23799d74e689",
+  "headBeforeL31": "a1eece596c198f48cdd84f77c59986f59eb2eb3d",
+  "auditMode": "READ_ONLY",
+  "scope": "Main plus all eight physical legacy subject entrypoints at the pinned pre-L31 head",
+  "targets": {
+    "main": "/index.html",
+    "subjects": ["ai", "foundation", "math", "programming", "research", "russian", "signal", "systems"]
+  },
+  "viewports": [
+    { "id": "desktop", "width": 1440, "height": 900 },
+    { "id": "mobile", "width": 390, "height": 844 }
+  ],
+  "evidenceClasses": [
+    "git_blob_pinned_source_inventory",
+    "deterministic_static_audit",
+    "failure_mode_tests",
+    "real_chromium_observation"
+  ],
+  "behaviorChecks": [
+    "entrypoint_http_status",
+    "page_error_and_request_failure_capture",
+    "horizontal_overflow",
+    "landmarks_headings_and_form_labels",
+    "keyboard_focus_progression",
+    "progress_message_type_observation",
+    "login_prefill_observation"
+  ],
+  "riskTaxonomy": ["security", "integration", "information_architecture", "curriculum_semantics", "assessment", "mastery", "accessibility", "maintainability", "data_portability"],
+  "findingPolicy": {
+    "allowedStatuses": ["OPEN"],
+    "requiredSourceReferences": true,
+    "productionFixAuthorized": false,
+    "resolutionDeferredTo": "L32+ explicit design and implementation passes"
+  },
+  "capabilities": {
+    "productionHtmlWrite": false,
+    "productionCssWrite": false,
+    "productionJavaScriptWrite": false,
+    "runtimeActivation": false,
+    "persistenceWrite": false,
+    "userDataWrite": false,
+    "findingAutoResolution": false
+  },
+  "acceptance": {
+    "step": 121,
+    "result": "PASS_CONTRACT_ONLY"
+  }
+}

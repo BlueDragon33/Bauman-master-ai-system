@@ -50,6 +50,14 @@ on:
       - 'scripts/validate-roadmap-curriculum-matrix.mjs'
       - 'scripts/validate-roadmap-l30.mjs'
       - 'tests/roadmap-v2-curriculum.test.mjs'
+      - 'roadmap_v2/ui-audit.mjs'
+      - 'roadmap_v2/ui-audit/**'
+      - 'scripts/validate-roadmap-ui-audit-contract.mjs'
+      - 'scripts/build-roadmap-ui-audit.mjs'
+      - 'scripts/validate-roadmap-ui-audit.mjs'
+      - 'scripts/browser-audit-roadmap-ui.mjs'
+      - 'scripts/validate-roadmap-l31.mjs'
+      - 'tests/roadmap-v2-ui-audit.test.mjs'
       - 'scripts/browser-smoke-roadmap-runtime.mjs'
       - 'scripts/validate-roadmap-production-boundary.mjs'
       - 'tests/roadmap-v2-integration.test.mjs'
@@ -293,7 +301,22 @@ jobs:
       - name: Aggregate L30 curriculum evidence
         run: node scripts/validate-roadmap-l30.mjs
 
-      - name: Install Chromium for B115 browser smoke
+      - name: Validate B121 read-only UI audit contract and pinned source inventory
+        run: node scripts/validate-roadmap-ui-audit-contract.mjs
+
+      - name: Build B122 deterministic static UI audit package
+        run: node scripts/build-roadmap-ui-audit.mjs
+
+      - name: Validate B122 static findings and evidence fingerprints
+        run: node scripts/validate-roadmap-ui-audit.mjs
+
+      - name: Assert deterministic L31 static UI audit artifacts
+        run: git diff --exit-code -- roadmap_v2/ui-audit/static-summary.json roadmap_v2/ui-audit/manifest.json
+
+      - name: Test B123 UI audit failure modes
+        run: node --test tests/roadmap-v2-ui-audit.test.mjs
+
+      - name: Install Chromium for B115 smoke and B123 audit
         run: |
           npm install --no-save --no-package-lock playwright@1.55.0
           npx playwright install --with-deps chromium
@@ -301,6 +324,13 @@ jobs:
       - name: Run B115 real Chromium OFF-ON-rollback smoke
         run: node scripts/browser-smoke-roadmap-runtime.mjs
 
+      - name: Run B123 real Chromium Main and subject UI audit
+        run: node scripts/browser-audit-roadmap-ui.mjs
+
+      - name: Aggregate B124 L31 full-checkout acceptance evidence
+        env:
+          ROADMAP_L31_REQUIRE_BROWSER: '1'
+        run: node scripts/validate-roadmap-l31.mjs
+
       - name: Validate production boundary
         run: node scripts/validate-roadmap-production-boundary.mjs
-
