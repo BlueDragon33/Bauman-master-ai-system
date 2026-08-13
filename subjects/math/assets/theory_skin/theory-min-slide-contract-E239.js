@@ -9,6 +9,7 @@
   var RELEASE='E239_MINIMUM_16_SLIDES_NOT_MAXIMUM';
   var MIN_SLIDES=16;
   var REPORT_KEY='bauman_math_e129_theory_content_report_v1';
+  var SUBJECT_STORAGE=window.BaumanSubjectStorage.forSubject('math');
   var COUNT_WARNING=/Khuyến nghị đủ 16 slide role; hiện có\s+(\d+)\./i;
   var originalStorageSet=Storage.prototype.setItem;
   var wrappedApi=false;
@@ -76,7 +77,7 @@
       api.commitContent=function(){
         var report=originalCommit.apply(api,arguments);
         var normalized=normalizeReport(report);
-        try{localStorage.setItem(REPORT_KEY,JSON.stringify(normalized));}catch(_){ }
+        try{SUBJECT_STORAGE.setJSON(REPORT_KEY,normalized,{kind:'math-e129-report'});}catch(_){ }
         return normalized;
       };
     }
@@ -102,10 +103,10 @@
 
   function sanitizeStoredReport(){
     try{
-      var raw=localStorage.getItem(REPORT_KEY);
+      var raw=SUBJECT_STORAGE.getItem(REPORT_KEY);
       if(!raw)return;
       var parsed=JSON.parse(raw);
-      originalStorageSet.call(localStorage,REPORT_KEY,JSON.stringify(normalizeReport(parsed)));
+      SUBJECT_STORAGE.setJSON(REPORT_KEY,normalizeReport(parsed),{kind:'math-e129-report-sanitize'});
     }catch(_){ }
   }
 

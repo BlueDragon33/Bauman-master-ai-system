@@ -7,6 +7,7 @@
 
   var RELEASE='E240_SHARED_THEORY_CONTENT_SOURCE_BRIDGE';
   var OVERLAY_KEY='bauman_math_e129_theory_content_overlay_v1';
+  var SUBJECT_STORAGE=window.BaumanSubjectStorage.forSubject('math');
   var nativeFetch=window.fetch.bind(window);
   var wrappedE129=false;
   var servedFrom='durable_json_fallback';
@@ -17,7 +18,7 @@
 
   function overlayPayload(){
     try{
-      var raw=localStorage.getItem(OVERLAY_KEY);
+      var raw=SUBJECT_STORAGE.getItem(OVERLAY_KEY);
       if(!raw)return null;
       var parsed=JSON.parse(raw);
       return validPayload(parsed)?parsed:null;
