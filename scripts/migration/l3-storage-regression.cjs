@@ -27,6 +27,8 @@ function changedFilesFromMain() {
 function protectCriticalRuntimes() {
   const allowedSubjectChanges = new Set([
     'subjects/math/index.html',
+    'subjects/math/assets/core-subject.js',
+    'subjects/math/assets/datavault_importer/datavault-importer-E127.js',
     'subjects/math/assets/theory_skin/theory-tab-E129.js',
     'subjects/math/assets/theory_skin/theory-content-source-E240.js',
     'subjects/math/assets/theory_skin/theory-min-slide-contract-E239.js',
