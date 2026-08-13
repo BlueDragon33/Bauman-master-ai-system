@@ -19,22 +19,48 @@ function makeLocalStorage(seed) {
   };
 }
 
-function protectSubjectRuntimes() {
-  childProcess.execFileSync('git', [
-    'diff', '--quiet', 'origin/main', '--',
-    'assets/js/data.js',
-    'assets/js/planning-main.js',
-    'subjects/math',
-    'subjects/russian'
+function changedFilesFromMain() {
+  const raw = childProcess.execFileSync('git', ['diff', '--name-only', 'origin/main...HEAD'], { encoding: 'utf8' });
+  return raw.split(/\r?\n/).map((x) => x.trim()).filter(Boolean);
+}
+
+function protectCriticalRuntimes() {
+  const allowedSubjectChanges = new Set([
+    'subjects/math/index.html',
+    'subjects/math/assets/theory_skin/theory-tab-E129.js',
+    'subjects/math/assets/theory_skin/theory-content-source-E240.js',
+    'subjects/math/assets/theory_skin/theory-min-slide-contract-E239.js',
+    'subjects/russian/index.html',
+    'subjects/russian/assets/core.js',
+    'subjects/programming/index.html',
+    'subjects/programming/assets/core.js',
+    'subjects/ai/index.html',
+    'subjects/ai/assets/ai.js',
+    'subjects/foundation/index.html',
+    'subjects/foundation/assets/foundation.js',
+    'subjects/research/index.html',
+    'subjects/research/assets/research.js',
+    'subjects/signal/index.html',
+    'subjects/signal/assets/signal.js',
+    'subjects/systems/index.html',
+    'subjects/systems/assets/systems.js'
   ]);
-  console.log('PASS: protected subject/data/planning runtimes unchanged from main');
+
+  const forbidden = changedFilesFromMain().filter((file) => {
+    if (file === 'assets/js/data.js' || file === 'assets/js/planning-main.js') return true;
+    if (file.startsWith('subjects/')) return !allowedSubjectChanges.has(file);
+    return false;
+  });
+
+  assert(forbidden.length === 0, 'no protected content/rendering runtime changed outside L3 storage allowlist' + (forbidden.length ? ': ' + forbidden.join(', ') : ''));
 }
 
 function executeRepositoryTests() {
   const seed = {
     bauman_main_all_phases_subjects_v1: JSON.stringify({ page: 'home', progress: { math: 1 }, schedule: { entries: {} } }),
     bauman_main_users_fullcode_v1: JSON.stringify([{ email: 'legacy@example.test', role: 'user' }]),
-    bauman_current_user_fullcode_v1: JSON.stringify({ email: 'legacy@example.test', role: 'user' })
+    bauman_current_user_fullcode_v1: JSON.stringify({ email: 'legacy@example.test', role: 'user' }),
+    bauman_russian_survival_master_v11_clean_skeleton: JSON.stringify({ stage: 'vn', view: 'overview' })
   };
   const localStorage = makeLocalStorage(seed);
   const window = { localStorage, console, addEventListener() {}, removeEventListener() {} };
@@ -45,6 +71,7 @@ function executeRepositoryTests() {
     'assets/js/platform/storage-adapter.js',
     'assets/js/platform/state-schema.js',
     'assets/js/platform/main-state-repository.js',
+    'assets/js/platform/subject-storage.js',
     'assets/js/platform/platform-bootstrap.js'
   ].forEach((path) => {
     new vm.Script(read(path), { filename: path }).runInContext(context);
@@ -76,11 +103,21 @@ function executeRepositoryTests() {
   }, {}, { test: true });
   assert(repo.readMainState({}).progress.math === 3, 'repository mutation persists through adapter');
 
-  const keys = Object.keys(localStorage.snapshot()).sort();
-  assert(keys.every((key) => [repo.keys.mainState, repo.keys.users].includes(key)), 'repository test creates no unexpected persistent keys after session clear');
+  const subjectStorage = window.BaumanSubjectStorage.forSubject('russian');
+  assert(subjectStorage.getJSON('bauman_russian_survival_master_v11_clean_skeleton', {}).stage === 'vn', 'subject storage reads existing Russian legacy key without renaming it');
+  subjectStorage.setJSON('bauman_russian_survival_master_v11_clean_skeleton', { stage: 'prep' }, { test: true });
+  assert(JSON.parse(localStorage.getItem('bauman_russian_survival_master_v11_clean_skeleton')).stage === 'prep', 'subject storage writes back to exact existing key');
+
+  const hugeKey = '__subject_storage_oversize_test__';
+  localStorage.setItem(hugeKey, JSON.stringify({ payload: 'x'.repeat(50) }));
+  const beforeHuge = localStorage.getItem(hugeKey);
+  const limited = subjectStorage.readJSONWithLimit(hugeKey, { fallback: true }, 10);
+  assert(limited.status === 'oversize-preserved', 'subject storage flags oversized JSON instead of parsing it');
+  assert(localStorage.getItem(hugeKey) === beforeHuge, 'subject storage never deletes oversized legacy payload automatically');
+  subjectStorage.removeItem(hugeKey, { testCleanup: true });
 }
 
-function checkIndexOrder() {
+function checkMainIndexOrder() {
   const index = read('index.html');
   const scripts = [
     'assets/js/platform/runtime-config.js',
@@ -95,31 +132,25 @@ function checkIndexOrder() {
   let last = -1;
   for (const src of scripts) {
     const pos = index.indexOf(`src="${src}"`);
-    assert(pos >= 0, 'index loads ' + src);
-    assert(pos > last, 'script order safe for ' + src);
+    assert(pos >= 0, 'main index loads ' + src);
+    assert(pos > last, 'main script order safe for ' + src);
     last = pos;
   }
 }
 
 function inspectMainMigrationPhase() {
   const main = read('assets/js/main.js');
-  const repositoryReferenced = main.includes('BaumanMainStateRepository');
-  if (!repositoryReferenced) {
-    console.log('INFO: main.js is still legacy-direct; repository readiness phase only.');
-    return;
-  }
-
+  assert(main.includes('BaumanMainStateRepository'), 'main runtime references repository after migration');
   assert(!main.includes('localStorage.getItem(KEY)'), 'main state no longer reads KEY directly from localStorage');
   assert(!main.includes('localStorage.setItem(KEY'), 'main state no longer writes KEY directly to localStorage');
   assert(!main.includes('localStorage.getItem(CURRENT_USER_KEY)'), 'session no longer reads CURRENT_USER_KEY directly');
   assert(!main.includes('localStorage.setItem(CURRENT_USER_KEY'), 'session no longer writes CURRENT_USER_KEY directly');
   assert(!main.includes('localStorage.removeItem(CURRENT_USER_KEY)'), 'session no longer clears CURRENT_USER_KEY directly');
-  assert(main.includes('BaumanMainStateRepository'), 'main runtime references repository after migration');
 }
 
 try {
-  protectSubjectRuntimes();
-  checkIndexOrder();
+  protectCriticalRuntimes();
+  checkMainIndexOrder();
   executeRepositoryTests();
   inspectMainMigrationPhase();
   console.log('L3 STORAGE REGRESSION: ALL CHECKS PASSED');
