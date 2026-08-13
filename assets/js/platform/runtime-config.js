@@ -11,7 +11,8 @@
     features: {
       cloudSync: false,
       backendAuth: false,
-      aiServiceProxy: false
+      aiServiceProxy: false,
+      personalLearningShadow: false
     },
     storage: {
       mode: 'local-compatible',
