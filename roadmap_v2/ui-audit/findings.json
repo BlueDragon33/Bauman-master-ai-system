@@ -152,11 +152,11 @@
       "id": "L31-F014",
       "severity": "medium",
       "area": "accessibility",
-      "title": "Main login controls rely on placeholders instead of associated visible labels",
+      "title": "Visible form controls across all legacy routes lack programmatically associated names",
       "status": "OPEN",
-      "affectedTargets": ["main"],
-      "evidence": "The pinned login form presents input placeholders but no explicit associated label elements.",
-      "sourceRefs": ["index.html:16", "index.html:17"],
+      "affectedTargets": ["main", "ai", "foundation", "math", "programming", "research", "russian", "signal", "systems"],
+      "evidence": "Real Chromium observed 17 visible unlabeled controls across two viewports: Main 4; AI, Foundation, Research, Signal, and Systems 2 each; Math, Programming, and Russian 1 each. Hidden controls and controls nested in label elements are excluded.",
+      "sourceRefs": ["index.html:16", "index.html:17", "scripts/browser-audit-roadmap-ui.mjs:1"],
       "recommendedDisposition": "Add visible labels, programmatic names, errors, and a verified keyboard focus order in the authorized UI pass."
     },
     {

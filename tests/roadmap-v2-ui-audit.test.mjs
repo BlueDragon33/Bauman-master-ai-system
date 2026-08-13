@@ -141,6 +141,13 @@ test("unknown affected target fails closed", () => {
   assert.throws(() => validateUiAuditFindings(findings, inventory), /Unknown finding target/);
 });
 
+test("browser-confirmed accessibility finding covers every audited route", () => {
+  const { findings, inventory } = fresh();
+  const accessibility = findings.findings.find((finding) => finding.id === "L31-F014");
+  assert.deepEqual([...accessibility.affectedTargets].sort(), ["main", ...inventory.modules.map((module) => module.id)].sort());
+  assert.match(accessibility.evidence, /17 visible unlabeled controls/);
+});
+
 test("manifest source tamper fails closed", () => {
   const manifest = json("manifest.json");
   assert.throws(() => validateUiAuditManifest(manifest, (name) => {

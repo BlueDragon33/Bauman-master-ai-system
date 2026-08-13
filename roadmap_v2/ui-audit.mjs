@@ -123,6 +123,9 @@ export function validateUiAuditFindings(findings, inventory) {
   for (const requiredArea of ["security", "integration", "information_architecture", "curriculum_semantics", "assessment", "mastery", "accessibility", "maintainability", "data_portability"]) {
     assert(findings.findings.some((finding) => finding.area === requiredArea), `Audit area missing: ${requiredArea}`);
   }
+  const accessibility = findings.findings.find((finding) => finding.id === "L31-F014");
+  sameMembers(accessibility?.affectedTargets || [], ["main", ...MODULE_IDS], "browser-confirmed accessibility targets");
+  assert(accessibility?.evidence?.includes("17 visible unlabeled controls"), "Browser-confirmed accessibility evidence drift");
   assert(findings.acceptance?.step === 122 && findings.acceptance?.result === "PASS_STATIC_AUDIT_WITH_OPEN_FINDINGS", "B122 findings acceptance drift");
   return true;
 }

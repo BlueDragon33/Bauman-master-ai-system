@@ -244,9 +244,17 @@
       "id": "L31-F014",
       "severity": "medium",
       "area": "accessibility",
-      "title": "Main login controls rely on placeholders instead of associated visible labels",
+      "title": "Visible form controls across all legacy routes lack programmatically associated names",
       "affectedTargets": [
-        "main"
+        "main",
+        "ai",
+        "foundation",
+        "math",
+        "programming",
+        "research",
+        "russian",
+        "signal",
+        "systems"
       ]
     },
     {
