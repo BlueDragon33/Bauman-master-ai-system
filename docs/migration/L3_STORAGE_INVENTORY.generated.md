@@ -5,6 +5,12 @@ Do not hand-edit this file.
 
 Scanned files: **126**
 Files with storage/key signals: **22**
+Direct browser-storage API calls: **5** in **1** file(s)**.
+Unexpected direct browser-storage files outside platform adapter: **0**.
+
+## Direct browser-storage API gate
+
+- PASS: only `assets/js/platform/storage-adapter.js` directly touches browser storage APIs.
 
 ## main/platform
 
@@ -49,21 +55,22 @@ Files with storage/key signals: **22**
 
 ### `assets/js/platform/storage-adapter.js`
 
+Direct API calls in file: **5**
 - L7: `localStorage`
   - `function localStorageAvailable() {`
 - L9: `bauman_storage_probe__`
   - `const key = '__bauman_storage_probe__';`
-- L10: `localStorage`
+- L10: `localStorage` · DIRECT: `localStorage.setItem(`
   - `global.localStorage.setItem(key, '1');`
-- L11: `localStorage`
+- L11: `localStorage` · DIRECT: `localStorage.removeItem(`
   - `global.localStorage.removeItem(key);`
 - L18: `localStorage`
   - `const hasLocalStorage = localStorageAvailable();`
-- L22: `localStorage`
+- L22: `localStorage` · DIRECT: `localStorage.getItem(`
   - `if (hasLocalStorage) return global.localStorage.getItem(key);`
-- L27: `localStorage`
+- L27: `localStorage` · DIRECT: `localStorage.setItem(`
   - `if (hasLocalStorage) global.localStorage.setItem(key, serialized);`
-- L31: `localStorage`
+- L31: `localStorage` · DIRECT: `localStorage.removeItem(`
   - `if (hasLocalStorage) global.localStorage.removeItem(key);`
 - L105: `localStorage`
   - `mode: hasLocalStorage ? 'localStorage' : 'memory-fallback',`
@@ -88,10 +95,8 @@ Files with storage/key signals: **22**
 
 ### `subjects/math/assets/core-subject.js`
 
-- L13: `bauman_subject_state_`, `localStorage`
-  - `function loadState(){try{return JSON.parse(localStorage.getItem('bauman_subject_state_'+(manifest.id||'_template'))||'{}')}catch(e){return {}}}`
-- L14: `bauman_subject_state_`, `localStorage`
-  - `function save(){try{localStorage.setItem('bauman_subject_state_'+(manifest.id||'_template'), JSON.stringify(state));}catch(e){}}`
+- L13: `bauman_subject_state_`
+  - `const SUBJECT_STATE_KEY='bauman_subject_state_'+(manifest.id||'_template');`
 
 ### `subjects/math/assets/datavault_importer/datavault-importer-E127.js`
 
@@ -101,13 +106,7 @@ Files with storage/key signals: **22**
   - `var BACKUP_KEY='bauman_math_e127_backup_lessons_v1';`
 - L7: `bauman_math_e127_last_report_v1`
   - `var REPORT_KEY='bauman_math_e127_last_report_v1';`
-- L18: `localStorage`
-  - `function localGet(k,fallback){try{return safeJson(localStorage.getItem(k)||'',fallback)}catch(_){return fallback}}`
-- L19: `localStorage`
-  - `function localSet(k,v){try{localStorage.setItem(k,JSON.stringify(v));return true}catch(e){return false}}`
-- L20: `localStorage`
-  - `function localDel(k){try{localStorage.removeItem(k)}catch(_){}}`
-- L174: `bauman_math_theory_patch_template_E127`
+- L175: `bauman_math_theory_patch_template_E127`
   - `downloadJson('bauman_math_theory_patch_template_E127.json',sample);`
 
 ### `subjects/math/assets/subject-adapter.js`
