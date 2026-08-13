@@ -1,0 +1,46 @@
+name: Migration L4 Personal Learning Regression
+
+on:
+  push:
+    branches:
+      - migration/webapp-l1-audit-storage
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  l4-personal-learning-regression:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Use Node.js 20
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Fetch main baseline
+        run: git fetch origin main --depth=1
+
+      - name: Syntax check L4 platform modules
+        run: |
+          node --check assets/js/platform/personal-learning-schema.js
+          node --check assets/js/platform/personal-learning-migrator.js
+          node --check assets/js/platform/personal-learning-repository.js
+          node --check scripts/migration/l4-personal-learning-regression.cjs
+
+      - name: Run Personal Learning regression
+        run: node scripts/migration/l4-personal-learning-regression.cjs
+
+      - name: Guard academic runtimes during L4 normalization
+        shell: bash
+        run: |
+          if ! git diff --quiet origin/main -- assets/js/data.js assets/js/planning-main.js subjects; then
+            echo "L4 must not change academic/data/planning runtimes."
+            git diff --name-only origin/main -- assets/js/data.js assets/js/planning-main.js subjects
+            exit 1
+          fi
