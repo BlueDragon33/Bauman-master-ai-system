@@ -89,7 +89,11 @@ try {
         const controls = [...document.querySelectorAll("input, select, textarea")];
         const unlabeled = controls.filter((control) => {
           const id = control.getAttribute("id");
-          return !control.getAttribute("aria-label") && !control.getAttribute("aria-labelledby") && !control.getAttribute("title") && !(id && document.querySelector(`label[for="${CSS.escape(id)}"]`));
+          return !control.getAttribute("aria-label")
+            && !control.getAttribute("aria-labelledby")
+            && !control.getAttribute("title")
+            && !control.closest("label")
+            && !(id && document.querySelector(`label[for="${CSS.escape(id)}"]`));
         });
         return {
           title: document.title,
