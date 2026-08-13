@@ -28,3 +28,12 @@ jobs:
 
       - name: Run L3 storage regression
         run: node scripts/migration/l3-storage-regression.cjs
+
+      - name: Verify legacy key preservation
+        run: node scripts/migration/l3-legacy-preservation.cjs
+
+      - name: Verify storage inventory gate is current
+        shell: bash
+        run: |
+          node scripts/migration/generate-storage-inventory.cjs
+          git diff --exit-code -- docs/migration/L3_STORAGE_INVENTORY.generated.md
