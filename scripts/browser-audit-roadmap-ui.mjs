@@ -86,7 +86,8 @@ try {
       await page.keyboard.press("Tab");
       await page.keyboard.press("Tab");
       const dom = await page.evaluate((targetId) => {
-        const controls = [...document.querySelectorAll("input, select, textarea")];
+        const controls = [...document.querySelectorAll("input:not([type='hidden']), select, textarea")]
+          .filter((control) => control.getClientRects().length > 0 && getComputedStyle(control).visibility !== "hidden");
         const unlabeled = controls.filter((control) => {
           const id = control.getAttribute("id");
           return !control.getAttribute("aria-label")
