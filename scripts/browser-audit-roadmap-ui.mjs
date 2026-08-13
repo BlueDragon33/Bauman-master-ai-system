@@ -137,7 +137,11 @@ try {
       pageErrors: observations.reduce((sum, item) => sum + item.pageErrors.length, 0),
       requestFailures: observations.reduce((sum, item) => sum + item.requestFailures.length, 0),
       horizontalOverflowObservations: observations.filter((item) => item.horizontalOverflow).length,
-      unlabeledControlsObserved: observations.reduce((sum, item) => sum + item.unlabeledControlCount, 0)
+      unlabeledControlsObserved: observations.reduce((sum, item) => sum + item.unlabeledControlCount, 0),
+      unlabeledControlsByTarget: Object.fromEntries(targets.map((target) => [
+        target.id,
+        observations.filter((item) => item.target === target.id).reduce((sum, item) => sum + item.unlabeledControlCount, 0)
+      ]))
     },
     safety: { domMutationsPersisted: 0, storageWritesByAudit: 0, productionFilesChanged: 0 },
     acceptance: { step: 123, result: "PASS_REAL_BROWSER_AUDIT_WITH_FINDINGS" }
