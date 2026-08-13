@@ -5,13 +5,18 @@ const path = require('path');
 
 const ROOTS = ['assets/js', 'subjects'];
 const EXTENSIONS = new Set(['.js', '.html', '.htm']);
-const PATTERNS = [
-  /localStorage/g,
-  /sessionStorage/g,
-  /indexedDB/g,
-  /storageKey/g,
-  /oldStorageKeys/g,
-  /bauman_[a-zA-Z0-9_:-]+/g
+const SIGNAL_PATTERNS = [
+  { name: 'localStorage', regex: /localStorage/g },
+  { name: 'sessionStorage', regex: /sessionStorage/g },
+  { name: 'indexedDB', regex: /indexedDB/g },
+  { name: 'storageKey', regex: /storageKey/g },
+  { name: 'oldStorageKeys', regex: /oldStorageKeys/g },
+  { name: 'bauman-key', regex: /bauman_[a-zA-Z0-9_:-]+/g }
+];
+const DIRECT_API_PATTERNS = [
+  /\blocalStorage\s*\.\s*(?:getItem|setItem|removeItem|clear|key)\s*\(/g,
+  /\bsessionStorage\s*\.\s*(?:getItem|setItem|removeItem|clear|key)\s*\(/g,
+  /\bindexedDB\s*\.\s*(?:open|deleteDatabase|databases|cmp)\s*\(/g
 ];
 
 function walk(dir, out = []) {
@@ -24,33 +29,51 @@ function walk(dir, out = []) {
   return out;
 }
 
+function directApiHits(line) {
+  const hits = [];
+  for (const regex of DIRECT_API_PATTERNS) {
+    regex.lastIndex = 0;
+    let match;
+    while ((match = regex.exec(line))) hits.push(match[0].replace(/\s+/g, ''));
+  }
+  return [...new Set(hits)].sort();
+}
+
 function scanFile(file) {
   const text = fs.readFileSync(file, 'utf8');
   const lines = text.split(/\r?\n/);
   const hits = [];
+  let directApiCount = 0;
   lines.forEach((line, index) => {
     const matched = new Set();
-    for (const regex of PATTERNS) {
-      regex.lastIndex = 0;
+    for (const pattern of SIGNAL_PATTERNS) {
+      pattern.regex.lastIndex = 0;
       let match;
-      while ((match = regex.exec(line))) matched.add(match[0]);
+      while ((match = pattern.regex.exec(line))) matched.add(match[0]);
     }
-    if (matched.size) {
+    const directApis = directApiHits(line);
+    directApiCount += directApis.length;
+    if (matched.size || directApis.length) {
       hits.push({
         line: index + 1,
         tokens: [...matched].sort(),
+        directApis,
         text: line.trim().slice(0, 500)
       });
     }
   });
-  return hits;
+  return { hits, directApiCount };
 }
 
 const files = ROOTS.flatMap((root) => walk(root)).sort();
 const records = [];
+let totalDirectApiCount = 0;
 for (const file of files) {
-  const hits = scanFile(file);
-  if (hits.length) records.push({ file, hits });
+  const scanned = scanFile(file);
+  if (scanned.hits.length) {
+    records.push({ file, hits: scanned.hits, directApiCount: scanned.directApiCount });
+    totalDirectApiCount += scanned.directApiCount;
+  }
 }
 
 function scope(file) {
@@ -66,6 +89,10 @@ for (const record of records) {
   byScope.get(key).push(record);
 }
 
+const directFiles = records.filter((r) => r.directApiCount > 0);
+const expectedDirectFiles = new Set(['assets/js/platform/storage-adapter.js']);
+const unexpectedDirectFiles = directFiles.filter((r) => !expectedDirectFiles.has(r.file));
+
 const lines = [];
 lines.push('# Lượt 3 · Storage Inventory · Generated');
 lines.push('');
@@ -74,6 +101,16 @@ lines.push('Do not hand-edit this file.');
 lines.push('');
 lines.push(`Scanned files: **${files.length}**`);
 lines.push(`Files with storage/key signals: **${records.length}**`);
+lines.push(`Direct browser-storage API calls: **${totalDirectApiCount}** in **${directFiles.length}** file(s)**.`);
+lines.push(`Unexpected direct browser-storage files outside platform adapter: **${unexpectedDirectFiles.length}**.`);
+lines.push('');
+lines.push('## Direct browser-storage API gate');
+lines.push('');
+if (!unexpectedDirectFiles.length) {
+  lines.push('- PASS: only `assets/js/platform/storage-adapter.js` directly touches browser storage APIs.');
+} else {
+  unexpectedDirectFiles.forEach((r) => lines.push(`- FAIL: \`${r.file}\` has ${r.directApiCount} direct API call(s).`));
+}
 lines.push('');
 
 for (const key of [...byScope.keys()].sort()) {
@@ -82,9 +119,11 @@ for (const key of [...byScope.keys()].sort()) {
   for (const record of byScope.get(key)) {
     lines.push(`### \`${record.file}\``);
     lines.push('');
+    if (record.directApiCount) lines.push(`Direct API calls in file: **${record.directApiCount}**`);
     for (const hit of record.hits) {
       const tokenText = hit.tokens.map((x) => `\`${x}\``).join(', ');
-      lines.push(`- L${hit.line}: ${tokenText}`);
+      const directText = hit.directApis.length ? ` · DIRECT: ${hit.directApis.map((x) => `\`${x}\``).join(', ')}` : '';
+      lines.push(`- L${hit.line}: ${tokenText || '(direct API)'}${directText}`);
       lines.push(`  - \`${hit.text.replace(/`/g, '\\`')}\``);
     }
     lines.push('');
@@ -94,4 +133,5 @@ for (const key of [...byScope.keys()].sort()) {
 const output = 'docs/migration/L3_STORAGE_INVENTORY.generated.md';
 fs.mkdirSync(path.dirname(output), { recursive: true });
 fs.writeFileSync(output, lines.join('\n') + '\n');
-console.log(`Wrote ${output}: ${records.length} files with signals.`);
+console.log(`Wrote ${output}: ${records.length} signal files, ${totalDirectApiCount} direct API call(s), ${unexpectedDirectFiles.length} unexpected direct file(s).`);
+if (unexpectedDirectFiles.length) process.exitCode = 2;
