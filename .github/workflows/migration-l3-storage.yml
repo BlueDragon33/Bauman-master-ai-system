@@ -1,0 +1,30 @@
+name: Migration L3 Storage Regression
+
+on:
+  push:
+    branches:
+      - migration/webapp-l1-audit-storage
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  l3-storage-regression:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Use Node.js 20
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Fetch main baseline
+        run: git fetch origin main --depth=1
+
+      - name: Run L3 storage regression
+        run: node scripts/migration/l3-storage-regression.cjs
