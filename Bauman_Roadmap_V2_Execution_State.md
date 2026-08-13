@@ -2,9 +2,9 @@
 
 ## Trạng thái triển khai tuần tự
 
-- Mốc hoàn thành gần nhất: **Lượt 33 / Bước 132**.
-- Mốc tiếp theo: **Lượt 34 / Bước 133 — persistence boundary**.
-- Trạng thái: **PASS B129–B132 — Backend/API provider-neutral, disconnected và fail-closed; chưa có database/server production**.
+- Mốc hoàn thành gần nhất: **Lượt 34 / Bước 136**.
+- Mốc tiếp theo: **Lượt 35 / Bước 137 — chọn provider và database adapter**.
+- Trạng thái: **PASS B133–B136 — persistence provider-neutral; schema/migration/rollback/backup và transaction harness đạt; chưa kết nối database production**.
 - Ngày cập nhật: **2026-08-13 (Asia/Bangkok)**.
 - Repository: `BlueDragon33/Bauman-master-ai-system`.
 - Baseline vật lý: `main@e383912354673bdce7a0059d6b9a23799d74e689`.
@@ -242,3 +242,24 @@ mở Lượt 24 trước khi Bước 92 `PASS`.
 - Production servers/routes, database connections/migrations, persistent stores: 0/0/0/0/0.
 - User/session/token records, event/sync writes: 0/0/0/0/0.
 - Commit kiểm định: `4eef30d63b2352b159b2b4f9367107f5355c9bf1`.
+
+## Kết quả Lượt 34 — Bước 133–136
+
+| Bước | Trạng thái | Kết quả |
+|---|---|---|
+| 133 | PASS | Contract persistence provider-neutral; giữ `localStorage` làm cache/fallback tương thích; mọi production capability OFF |
+| 134 | PASS | Mô hình 12 bảng/11 bảng user-owned, 4 migration transaction có checksum, rollback đảo chính xác và restore cô lập |
+| 135 | PASS | Harness copy-on-write cho ownership/idempotency/cursor/atomic batch/backup; 49/49 test bảo mật và failure mode |
+| 136 | PASS | GitHub Actions run `31684234897` xác nhận regression L19–L34, deterministic artifacts, Chromium và production boundary |
+
+- Tables/user-owned tables/migrations/indexes/event types: 12/11/4/4/11.
+- Provider/production DB connections, migrations/rollbacks, user/event/sync writes, backups/restores: tất cả 0.
+- Password columns/runtime activations/legacy mutations: 0/0/0.
+- Commit kiểm định: `9ba38ec821be64e5b1855d03a404214a28f274a7`.
+
+## Cổng tiếp theo
+
+L35/B137 chỉ được mở khi người dùng chọn và cho phép provider/kết nối database thật.
+Adapter phải tuân thủ contract L34, triển khai trước trên target development/canary mới,
+đạt migration + restore drill rồi mới xét staging. Giữ nguyên 8 legacy route, course 09
+verified-import-only, ownership/idempotency/cursor conflict của L33 và production default-OFF.

@@ -5,8 +5,8 @@ Repository baseline: `BlueDragon33/Bauman-master-ai-system@e383912354673bdce7a00
 
 ## Current gate
 
-Lượt 33 / Bước 129–132: **PASS (PROVIDER-NEUTRAL DISCONNECTED BACKEND/API)**  
-Next: **Lượt 34 / Bước 133 — PERSISTENCE BOUNDARY**
+Lượt 34 / Bước 133–136: **PASS (PROVIDER-NEUTRAL PERSISTENCE BOUNDARY)**  
+Next: **Lượt 35 / Bước 137 — PROVIDER SELECTION AND DATABASE ADAPTER**
 
 | Bước | Gate | Kết quả | Bằng chứng chính |
 |---|---|---|---|
@@ -166,12 +166,23 @@ The GitHub connector suppressed inline content for large blobs. The immutable `l
 - Production servers/routes, database connections/migrations, persistent stores, user/session/token records and event/sync writes: all 0.
 - Validated commit: `4eef30d63b2352b159b2b4f9367107f5355c9bf1`.
 
+## Lượt 34 evidence
+
+- Bước 133: provider-neutral persistence contract keeps legacy `localStorage` as temporary cache/offline fallback, static curriculum outside the DB and every production capability disabled — PASS.
+- Bước 134: declarative 12-table model has 11 explicitly user-owned tables, one append-only event authority, zero password columns, four checksum-pinned transactional migrations and exact isolated rollback — PASS.
+- Bước 135: copy-on-write in-memory harness enforces actor/device ownership, 100-event atomic batches, idempotent replay, stale-base conflict, cursor pagination, canonical backup and isolated atomic restore — PASS.
+- Bước 135 failure modes: 49/49 PASS, including checksum/dependency drift, cross-user access, duplicate/unknown events, injected transaction failure, tamper, orphan ownership, device mismatch and cursor mismatch.
+- Bước 136: GitHub Actions run `31684234897` passed full L19–L34 regression, deterministic artifacts, Chromium regressions and production boundary.
+- Provider/production database connections, migrations/rollbacks, user/event/sync writes, backups/restores, password columns, runtime activations and legacy mutations: all 0.
+- Validated commit: `9ba38ec821be64e5b1855d03a404214a28f274a7`.
+
 ## Next permitted action
 
-Open L34/B133 with a provider-neutral persistence contract and migration/rollback design.
-Do not connect or create a real database until the user selects and authorizes the provider
-and connection. Preserve the L33 API ownership/idempotency/conflict boundaries, all eight
-legacy routes, course 09 verified-import-only behavior and the default-OFF production path.
+Open L35/B137 only after the user explicitly selects and authorizes a real database provider
+and connection. Then implement the provider adapter against the L34 contract on a fresh
+development/canary target, run migration and restore drills, and preserve the L33 ownership,
+idempotency and cursor-conflict boundaries. Keep all eight legacy routes, course 09
+verified-import-only behavior and the default-OFF production path unchanged.
 
 Re-run the complete Lượt 19 gate with:
 

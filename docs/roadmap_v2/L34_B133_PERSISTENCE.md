@@ -54,4 +54,4 @@ The backup is canonical JSON with SHA-256, schema version, migration set, record
 - Failure/security/atomicity tests: 49/49 PASS
 - Provider connections, production migrations, production writes, backups, restores, runtime activations, and legacy mutations: all `0`
 
-B136 full-checkout acceptance is executed by GitHub Actions before L34 is marked complete.
+B136 full-checkout acceptance: PASS on GitHub Actions run `31684234897`, validating implementation commit `9ba38ec821be64e5b1855d03a404214a28f274a7` across the complete L19–L34 regression, deterministic artifacts, Chromium regressions, and production boundary.

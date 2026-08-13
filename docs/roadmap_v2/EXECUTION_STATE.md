@@ -1,10 +1,10 @@
 # Bauman Roadmap V2 — Execution State
 
-- Last completed: `Lượt 33 / Bước 132`.
-- Next gate: `Lượt 34 / Bước 133 — PERSISTENCE_BOUNDARY`.
-- Status: `PASS_B129_B132_PROVIDER_NEUTRAL_DISCONNECTED_BACKEND_API`.
+- Last completed: `Lượt 34 / Bước 136`.
+- Next gate: `Lượt 35 / Bước 137 — PROVIDER_SELECTION_AND_DATABASE_ADAPTER`.
+- Status: `PASS_B133_B136_PROVIDER_NEUTRAL_PERSISTENCE_BOUNDARY`.
 - Baseline: `main@e383912354673bdce7a0059d6b9a23799d74e689`.
-- Migration/persistence: not executed; persistence deferred to `L34/B133`.
+- Migration/persistence: declarative and in-memory simulation passed; no provider connection or production migration executed.
 - Legacy runtime/UI mutations: none; L29's single authorized bridge remains default-OFF.
 - L21 gate: GitHub Actions run `31405787576`, conclusion `success`.
 - L22 gate: GitHub Actions run `31445626922`, conclusion `success`.
@@ -19,7 +19,8 @@
 - L31 gate: GitHub Actions run `31679453304`, conclusion `success`; 25/25 UI audit tests, 18/18 real Chromium observations and 16 findings kept OPEN.
 - L32 gate: GitHub Actions run `31680296650`, conclusion `success`; 28/28 UI transition tests, 10 planned/0 created canonical routes and all 8 legacy routes preserved.
 - L33 gate: GitHub Actions run `31681105339`, conclusion `success`; 28/28 Backend API tests, 7 endpoints, 2 in-memory reads, 5 persistence-blocked operations and zero production/database writes.
-- Next: L34/B133 persistence contract; keep it provider-neutral unless the user selects/authorizes a real database provider and connection.
+- L34 gate: GitHub Actions run `31684234897`, conclusion `success`; 49/49 Persistence tests, 12 tables, 4 migrations, exact isolated rollback/restore and zero provider/production writes.
+- Next: L35/B137 provider selection and database adapter; explicit user authorization is required before any real connection or migration.
 
 ## Sequential policy
 
