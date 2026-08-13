@@ -2,9 +2,9 @@
 
 ## Trạng thái triển khai tuần tự
 
-- Mốc hoàn thành gần nhất: **Lượt 30 / Bước 120**.
-- Mốc tiếp theo: **Lượt 31 / Bước 121 — chưa mở**.
-- Trạng thái: **PASS B117–B120 — Roadmap V2.1 curriculum reconciliation read-only; full-checkout CI và production boundary success**.
+- Mốc hoàn thành gần nhất: **Lượt 31 / Bước 124**.
+- Mốc tiếp theo: **Lượt 32 / Bước 125 — chưa mở**.
+- Trạng thái: **PASS B121–B124 — Main + 8 module UI audit read-only; 16 finding giữ OPEN; full-checkout CI và production boundary success**.
 - Ngày cập nhật: **2026-08-13 (Asia/Bangkok)**.
 - Repository: `BlueDragon33/Bauman-master-ai-system`.
 - Baseline vật lý: `main@e383912354673bdce7a0059d6b9a23799d74e689`.
@@ -199,3 +199,17 @@ mở Lượt 24 trước khi Bước 92 `PASS`.
 - Kho 09 Current Bauman Subjects giữ 0 bài tĩnh và chỉ mở qua verified syllabus import.
 - Legacy deletions/runtime writes/UI changes/persistence writes: 0/0/0/0.
 - Commit kiểm định: `966f57fed274edf70dc0ee17693102f6ef923733`.
+
+## Kết quả Lượt 31 — Bước 121–124
+
+| Bước | Trạng thái | Kết quả |
+|---|---|---|
+| 121 | PASS | Contract read-only và inventory ghim SHA cho Main + 8 entrypoint, 3 họ runtime, 2 viewport |
+| 122 | PASS | Audit tất định ghi 16 finding OPEN: 1 critical, 8 high, 7 medium; không tự sửa production |
+| 123 | PASS | 25/25 test fail-closed và Chromium thật 18/18 quan sát; 0 page error, 0 request failure, 0 overflow |
+| 124 | PASS | GitHub Actions run `31679453304` xác nhận regression L19–L31, deterministic artifacts, B115/B123 Chromium và production boundary |
+
+- Credential mặc định phía client, contract progress lệch, stage lệch, quiz copy lệch, completion không có evidence gate và wildcard `postMessage` đều được giữ OPEN.
+- Chromium xác nhận 17 control hữu hình chưa có programmatic name trên cả 9 route; hidden control và control nằm trong `label` đã được loại khỏi phép đo.
+- Production HTML/CSS/JavaScript writes, runtime activations, persistence writes, finding auto-resolutions: 0/0/0/0.
+- Commit kiểm định: `06dac5c13f50df493e9bdee713b6dee545bdf768`.

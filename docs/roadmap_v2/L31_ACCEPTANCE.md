@@ -1,6 +1,9 @@
 # L31 acceptance — Main and eight-subject UI audit
 
-Status: `PENDING_B124_FULL_CHECKOUT_CI`
+Status: `PASS_B121_B124`
+
+GitHub Actions run: `31679453304`  
+Validated implementation commit: `06dac5c13f50df493e9bdee713b6dee545bdf768`
 
 ## Step results
 
@@ -8,8 +11,8 @@ Status: `PENDING_B124_FULL_CHECKOUT_CI`
 |---|---|---|
 | B121 | PASS | Read-only contract; nine pinned routes; eight physical subject entrypoints; zero production/write capability |
 | B122 | PASS | Deterministic inventory, 16 open findings, static summary, and SHA-256 manifest |
-| B123 | PARTIAL PASS | 24/24 failure-mode tests pass; real Chromium 18-observation audit awaits full checkout |
-| B124 | PENDING | Full L19–L31 CI regression, deterministic artifacts, B115 smoke, B123 browser audit, and production boundary |
+| B123 | PASS | 25/25 failure-mode tests; real Chromium 18/18 observations, 0 page errors, 0 request failures, 0 horizontal-overflow observations |
+| B124 | PASS | Full L19–L31 CI regression, deterministic artifacts, B115 smoke, B123 browser audit, and production boundary |
 
 ## Invariants
 
@@ -20,4 +23,6 @@ Status: `PENDING_B124_FULL_CHECKOUT_CI`
 - Legacy module deletions: `0`
 - Current Bauman Subjects static invention: `0`
 
-L32 must not open until B124 succeeds on the published implementation commit.
+All 16 findings remain `OPEN`: 1 critical, 8 high and 7 medium. Chromium confirmed 17 visible controls without programmatically associated names across all nine routes after the audit excluded hidden controls and controls correctly nested in labels.
+
+L32/B125 may now open for the additive 8-to-10 information-architecture transition design. L31 does not authorize production fixes.

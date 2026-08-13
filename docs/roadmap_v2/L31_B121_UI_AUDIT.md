@@ -17,7 +17,7 @@ The physical UI currently has eight subject routes. The accepted L30 curriculum 
 
 ## Static findings
 
-The deterministic audit records 16 findings, all `OPEN`: one critical, nine high, and six medium.
+The deterministic audit records 16 findings, all `OPEN`: one critical, eight high, and seven medium.
 
 | Priority | Finding |
 |---|---|
@@ -45,4 +45,4 @@ The browser audit may pass **with findings**; it fails closed if coverage, entry
 - B122: `PASS_B122_DETERMINISTIC_STATIC_AUDIT_WITH_FINDINGS`
 - B123 unit failure modes: 25/25 pass after one validator-order defect was fixed and the full set rerun
 - B123 real Chromium: PASS on run `31679230862` with 18/18 observations, 0 page errors, 0 request failures, and 0 horizontal-overflow observations
-- B124: implementation run PASS; awaiting deterministic revalidation of the browser-informed F014 package
+- B124: PASS on run `31679453304`; the browser-informed F014 package, full L19–L31 regression and production boundary all passed

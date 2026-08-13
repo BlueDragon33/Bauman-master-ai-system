@@ -5,8 +5,8 @@ Repository baseline: `BlueDragon33/Bauman-master-ai-system@e383912354673bdce7a00
 
 ## Current gate
 
-Lượt 30 / Bước 117–120: **PASS (CURRICULUM RECONCILIATION V2.1; READ-ONLY)**  
-Next: **Lượt 31 / Bước 121 — NOT STARTED**
+Lượt 31 / Bước 121–124: **PASS (MAIN + EIGHT-SUBJECT UI AUDIT; READ-ONLY)**  
+Next: **Lượt 32 / Bước 125 — NOT STARTED**
 
 | Bước | Gate | Kết quả | Bằng chứng chính |
 |---|---|---|---|
@@ -134,13 +134,24 @@ The GitHub connector suppressed inline content for large blobs. The immutable `l
 - Bước 120: GitHub Actions run `31677380625` passed all 77 principal steps, including L19–L30 regression, deterministic artifacts, real Chromium and production boundary.
 - Validated commit: `966f57fed274edf70dc0ee17693102f6ef923733`.
 
+## Lượt 31 evidence
+
+- Bước 121: read-only contract and Git-blob-pinned inventory cover Main, eight physical subject entrypoints, three runtime families, desktop and mobile — PASS.
+- Bước 122: deterministic package records 16 unresolved findings: 1 critical, 8 high and 7 medium — PASS.
+- Bước 123: 25/25 failure-mode tests and 18/18 real Chromium route/viewport observations — PASS.
+- Chromium results: 0 page errors, 0 request failures, 0 horizontal-overflow observations; 17 visible unlabeled controls distributed across all nine routes.
+- Audit measurement defects were resolved before acceptance: specific fail-closed reason ordering, nested-label recognition, hidden-control exclusion and per-route accessibility breakdown.
+- Bước 124: GitHub Actions run `31679453304` passed full L19–L31 regression, deterministic artifacts, B115/B123 Chromium gates and production boundary.
+- Production HTML/CSS/JavaScript writes, runtime activations, persistence writes and finding auto-resolutions: 0/0/0/0.
+- Validated commit: `06dac5c13f50df493e9bdee713b6dee545bdf768`.
+
 ## Next permitted action
 
-Open L31/B121 for a read-only audit of Main and all eight physical subject modules. The
-audit must inventory information architecture, data/rendering paths, progress messaging,
-quiz behavior, accessibility, responsive behavior and security boundaries before any UI
-rewrite is authorized. Persistence remains deferred to L34/B133 and all related feature
-flags remain default-OFF.
+Open L32/B125 for an additive 8-to-10 information-architecture transition design. It must
+map every legacy module and all ten target courses, keep Current Bauman Subjects dynamic
+and fail-closed, and specify the security/accessibility/progress-contract remediation order.
+Do not mutate production UI until the L32 design and failure-mode gates pass. Persistence
+remains deferred to L34/B133 and all related feature flags remain default-OFF.
 
 Re-run the complete Lượt 19 gate with:
 
