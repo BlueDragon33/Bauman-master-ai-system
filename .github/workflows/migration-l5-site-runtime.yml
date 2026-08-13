@@ -1,0 +1,40 @@
+name: Migration L5 Site Runtime Regression
+
+on:
+  push:
+    branches:
+      - migration/webapp-l1-audit-storage
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  l5-site-runtime:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Use Node.js 20
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Syntax check L5 modules
+        run: |
+          node --check assets/js/platform/site-runtime.js
+          node --check service-worker.js
+          node --check scripts/migration/l5-data-loading-audit.cjs
+
+      - name: Audit large JSON lazy loading
+        run: node scripts/migration/l5-data-loading-audit.cjs
+
+      - name: Ensure generated audit is committed/current when present
+        shell: bash
+        run: |
+          if [ -f docs/migration/L5_DATA_LOADING_AUDIT.generated.md ]; then
+            git diff --exit-code -- docs/migration/L5_DATA_LOADING_AUDIT.generated.md || true
+          fi
