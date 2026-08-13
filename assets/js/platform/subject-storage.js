@@ -58,11 +58,22 @@
           return { value: fallback, status: 'invalid-json-preserved', chars: raw.length, error: String(error?.message || error) };
         }
       },
-      readFirstJSON(keys, fallback) {
-        return base.readFirstJSON((keys || []).map(String), fallback);
+      readFirstJSON(primaryKey, legacyKeys, fallback) {
+        return base.readFirstJSON(
+          String(primaryKey),
+          (legacyKeys || []).map(String),
+          fallback
+        );
       },
       copyLegacyJSON(targetKey, legacyKeys, extra) {
-        return base.copyLegacyJSON(String(targetKey), (legacyKeys || []).map(String), metadata(id, 'copy-legacy', extra));
+        const result = base.copyLegacyJSON(
+          String(targetKey),
+          (legacyKeys || []).map(String),
+          metadata(id, 'copy-legacy', extra)
+        );
+        return result && result.copied
+          ? { ...result, sourceKey: result.from }
+          : result;
       }
     });
 
