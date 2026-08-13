@@ -1,0 +1,62 @@
+name: Migration L3 Apply Main Storage
+
+on:
+  push:
+    branches:
+      - migration/webapp-l1-audit-storage
+    paths:
+      - scripts/migration/apply-l3-main-storage.cjs
+      - .github/workflows/migration-l3-apply-main.yml
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  apply-main-storage:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Use Node.js 20
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Fetch main baseline
+        run: git fetch origin main --depth=1
+
+      - name: Apply guarded codemod
+        run: node scripts/migration/apply-l3-main-storage.cjs
+
+      - name: Syntax check main runtime
+        run: node --check assets/js/main.js
+
+      - name: Run L3 regression before commit
+        run: node scripts/migration/l3-storage-regression.cjs
+
+      - name: Verify only expected runtime file changed
+        shell: bash
+        run: |
+          unexpected="$(git diff --name-only | grep -v '^assets/js/main.js$' || true)"
+          if [ -n "$unexpected" ]; then
+            echo "Unexpected files changed:"
+            echo "$unexpected"
+            exit 1
+          fi
+
+      - name: Commit migrated main runtime
+        shell: bash
+        run: |
+          if git diff --quiet -- assets/js/main.js; then
+            echo "No main.js change to commit."
+            exit 0
+          fi
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add assets/js/main.js
+          git commit -m "migration L3: route main state and session through repository"
+          git push origin HEAD:migration/webapp-l1-audit-storage
