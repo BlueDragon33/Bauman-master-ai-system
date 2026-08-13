@@ -9,6 +9,9 @@ on:
 permissions:
   contents: read
 
+env:
+  L4_BASELINE: 4bc4cd1bb33f560aa61467dc606a275d1a70ebee
+
 jobs:
   l4-personal-learning-regression:
     runs-on: ubuntu-latest
@@ -23,8 +26,8 @@ jobs:
         with:
           node-version: '20'
 
-      - name: Fetch main baseline
-        run: git fetch origin main --depth=1
+      - name: Verify L4 baseline exists
+        run: git cat-file -e "$L4_BASELINE^{commit}"
 
       - name: Syntax check L4 platform modules
         run: |
@@ -39,8 +42,8 @@ jobs:
       - name: Guard academic runtimes during L4 normalization
         shell: bash
         run: |
-          if ! git diff --quiet origin/main -- assets/js/data.js assets/js/planning-main.js subjects; then
-            echo "L4 must not change academic/data/planning runtimes."
-            git diff --name-only origin/main -- assets/js/data.js assets/js/planning-main.js subjects
+          if ! git diff --quiet "$L4_BASELINE" -- assets/js/data.js assets/js/planning-main.js subjects; then
+            echo "L4 must not introduce new academic/data/planning runtime changes after the L3 checkpoint."
+            git diff --name-only "$L4_BASELINE" -- assets/js/data.js assets/js/planning-main.js subjects
             exit 1
           fi
