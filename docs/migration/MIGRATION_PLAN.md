@@ -3,7 +3,7 @@
 Baseline: `main`
 Working branch đầu tiên: `migration/webapp-l1-audit-storage`
 
-Kế hoạch hiện tại sau khi hoàn tất Lượt 3: **14 lượt · 100 bước**. Ban đầu là 88 bước; Lượt 2 phát sinh thêm 3 bước và Lượt 3 phát sinh thêm 9 bước do audit/test tìm thấy rủi ro thật. Số lượt/bước được phép tăng tiếp khi audit/test phát hiện vấn đề mới. Không giảm bước chỉ để rút ngắn tiến độ.
+Kế hoạch hiện tại sau khi hoàn tất Lượt 4: **14 lượt · 103 bước**. Ban đầu là 88 bước; Lượt 2 phát sinh thêm 3 bước, Lượt 3 thêm 9 bước và Lượt 4 thêm 3 bước do audit/test tìm thấy rủi ro thật. Số lượt/bước được phép tăng tiếp khi audit/test phát hiện vấn đề mới. Không giảm bước chỉ để rút ngắn tiến độ.
 
 ## Lượt 1 · Audit toàn hệ thống · 15 bước
 
@@ -42,13 +42,18 @@ Trạng thái: **PASS**. Báo cáo chi tiết ở `L3_STORAGE_ABSTRACTION_REPORT
 14. Bước phát sinh: chuyển Math core-subject/DataVault E127 còn direct browser storage.
 15. Bước phát sinh: final direct-API inventory + byte-for-byte legacy preservation; sửa helper contract được gate phát hiện và chạy lại PASS.
 
-## Lượt 4 · Chuẩn hóa Personal Learning State · 5 bước
+## Lượt 4 · Chuẩn hóa Personal Learning State · 8 bước
 
-1. Tách state tĩnh và state người dùng.
-2. Định nghĩa schema progress.
-3. Định nghĩa schema test/review history.
-4. Định nghĩa schema schedule/study activity/settings.
-5. Viết versioned migration + integrity checks.
+Trạng thái: **PASS**. Báo cáo chi tiết ở `L4_PERSONAL_LEARNING_STATE_REPORT.md`.
+
+1. Tách static/content state khỏi Personal Learning State bằng schema riêng.
+2. Định nghĩa progress schema với monotonic-completion policy.
+3. Định nghĩa assessment/test append-only và review record revision.
+4. Định nghĩa schedule/activity/preferences/planning/research/configuration schema.
+5. Viết deterministic versioned migration + integrity checks.
+6. Bước phát sinh: shadow repository chỉ ghi khi integrity PASS, kiểm legacy state byte-for-byte.
+7. Bước phát sinh: bootstrap OFF-by-default và wire vào main entry mà không tự tạo shadow.
+8. Bước phát sinh: sửa CI guard dùng sai baseline, thêm bootstrap/index regression và checkpoint L3 guard.
 
 ## Lượt 5 · Site runtime và data loading · 5 bước
 
