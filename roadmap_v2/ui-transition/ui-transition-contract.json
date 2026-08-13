@@ -1,0 +1,56 @@
+{
+  "schema": "BAUMAN_ROADMAP_V2_UI_TRANSITION_CONTRACT_V1",
+  "version": "2.12.0-l32-b125",
+  "status": "PASS_B125_CONTRACT_ONLY",
+  "baselineCommit": "e383912354673bdce7a0059d6b9a23799d74e689",
+  "headBeforeL32": "649d98ccfcf06ec8c558e79a80bac9a3560916c7",
+  "mode": "DESIGN_ONLY",
+  "goal": "Define an additive transition from eight physical legacy subject modules to ten canonical Roadmap V2.1 course destinations without changing production UI.",
+  "sourceAuthorities": [
+    "roadmap_v2/curriculum/target-course-disposition.json",
+    "roadmap_v2/ui-audit/source-inventory.json",
+    "roadmap_v2/ui-audit/findings.json"
+  ],
+  "invariants": {
+    "canonicalCourseCount": 10,
+    "physicalLegacyModuleCount": 8,
+    "legacyRoutesPreserved": 8,
+    "legacyModulesDeleted": 0,
+    "legacyIdsRenamed": 0,
+    "automaticRedirects": 0,
+    "physicalCanonicalRoutesCreated": 0,
+    "currentBaumanStaticLessons": 0,
+    "currentBaumanActivation": "blocked_pending_verified_syllabus",
+    "findingsRequiredOpen": 16
+  },
+  "transitionStages": [
+    {
+      "id": "T0_DESIGN",
+      "description": "Deterministic route, compatibility, and remediation design only.",
+      "productionMutationAllowed": false
+    },
+    {
+      "id": "T1_ADDITIVE_DISCOVERY",
+      "description": "Future authorized shell may present ten canonical destinations while retaining eight direct legacy routes.",
+      "productionMutationAllowed": false
+    },
+    {
+      "id": "T2_CANONICAL_PRIMARY",
+      "description": "Future canonical-first navigation requires explicit implementation and rollback acceptance; legacy routes remain compatibility surfaces.",
+      "productionMutationAllowed": false
+    }
+  ],
+  "remediationOrder": ["P0_SECURITY_BOUNDARY", "P1_CANONICAL_SEMANTICS", "P2_EVIDENCE_UX", "P3_ACCESSIBILITY_AND_MAINTAINABILITY"],
+  "capabilities": {
+    "productionHtmlWrite": false,
+    "productionCssWrite": false,
+    "productionJavaScriptWrite": false,
+    "routeCreation": false,
+    "routeRedirect": false,
+    "legacyDeletion": false,
+    "runtimeActivation": false,
+    "persistenceWrite": false,
+    "findingResolution": false
+  },
+  "acceptance": { "step": 125, "result": "PASS_CONTRACT_ONLY" }
+}

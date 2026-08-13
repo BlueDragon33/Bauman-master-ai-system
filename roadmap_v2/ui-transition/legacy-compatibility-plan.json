@@ -1,0 +1,19 @@
+{
+  "schema": "BAUMAN_ROADMAP_V2_LEGACY_ROUTE_COMPATIBILITY_PLAN_V1",
+  "version": "2.12.0-l32-b126",
+  "status": "PASS_B126_ALL_LEGACY_ROUTES_PRESERVED",
+  "defaultDisposition": "preserve_as_compatibility_surface",
+  "redirectPolicy": "no_automatic_redirect",
+  "modules": [
+    { "id": "ai", "route": "/subjects/ai/index.html", "canonicalCourseIds": ["08"], "deleted": false, "renamed": false },
+    { "id": "foundation", "route": "/subjects/foundation/index.html", "canonicalCourseIds": ["01", "02", "06", "09"], "deleted": false, "renamed": false },
+    { "id": "math", "route": "/subjects/math/index.html", "canonicalCourseIds": ["02"], "deleted": false, "renamed": false },
+    { "id": "programming", "route": "/subjects/programming/index.html", "canonicalCourseIds": ["03", "04", "05", "06"], "deleted": false, "renamed": false },
+    { "id": "research", "route": "/subjects/research/index.html", "canonicalCourseIds": ["10"], "deleted": false, "renamed": false },
+    { "id": "russian", "route": "/subjects/russian/index.html", "canonicalCourseIds": ["01"], "deleted": false, "renamed": false },
+    { "id": "signal", "route": "/subjects/signal/index.html", "canonicalCourseIds": ["02", "07", "08", "09", "10"], "deleted": false, "renamed": false },
+    { "id": "systems", "route": "/subjects/systems/index.html", "canonicalCourseIds": ["05", "06", "07", "09", "10"], "deleted": false, "renamed": false }
+  ],
+  "counts": { "legacyRoutes": 8, "preserved": 8, "deleted": 0, "renamed": 0, "automaticRedirects": 0 },
+  "acceptance": { "step": 126, "result": "PASS_ADDITIVE_COMPATIBILITY_DESIGN" }
+}

@@ -1,0 +1,34 @@
+{
+  "schema": "BAUMAN_ROADMAP_V2_UI_REMEDIATION_BACKLOG_V1",
+  "version": "2.12.0-l32-b126",
+  "status": "PASS_B126_ORDERED_OPEN_BACKLOG",
+  "findingResolutionAuthorized": false,
+  "phases": [
+    {
+      "id": "P0_SECURITY_BOUNDARY",
+      "order": 0,
+      "findingIds": ["L31-F001", "L31-F012", "L31-F015"],
+      "exitCriteria": ["No static/default credentials", "Versioned origin/source-checked message envelope", "Trusted-data-flow review for HTML sinks"]
+    },
+    {
+      "id": "P1_CANONICAL_SEMANTICS",
+      "order": 1,
+      "findingIds": ["L31-F002", "L31-F003", "L31-F004", "L31-F016"],
+      "exitCriteria": ["One progress contract", "One GĐ0-GĐ3 registry", "Ten canonical destinations with eight compatibility routes", "Course 09 verified-import gate"]
+    },
+    {
+      "id": "P2_EVIDENCE_UX",
+      "order": 2,
+      "findingIds": ["L31-F005", "L31-F006", "L31-F009", "L31-F011"],
+      "exitCriteria": ["Assessment copy matches blueprint", "Completion requires evidence", "Six mastery states and readiness are projections", "Legacy percent is compatibility-only"]
+    },
+    {
+      "id": "P3_ACCESSIBILITY_AND_MAINTAINABILITY",
+      "order": 3,
+      "findingIds": ["L31-F007", "L31-F008", "L31-F010", "L31-F013", "L31-F014"],
+      "exitCriteria": ["Validated import contract", "Shared shell separated from subject adapters", "Assistant grounding contract", "Math load order documented", "Visible controls have accessible names"]
+    }
+  ],
+  "counts": { "findings": 16, "open": 16, "resolved": 0, "phases": 4 },
+  "acceptance": { "step": 126, "result": "PASS_ORDERED_BACKLOG_DESIGN_ONLY" }
+}

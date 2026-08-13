@@ -58,6 +58,13 @@ on:
       - 'scripts/browser-audit-roadmap-ui.mjs'
       - 'scripts/validate-roadmap-l31.mjs'
       - 'tests/roadmap-v2-ui-audit.test.mjs'
+      - 'roadmap_v2/ui-transition.mjs'
+      - 'roadmap_v2/ui-transition/**'
+      - 'scripts/validate-roadmap-ui-transition-contract.mjs'
+      - 'scripts/build-roadmap-ui-transition.mjs'
+      - 'scripts/validate-roadmap-ui-transition.mjs'
+      - 'scripts/validate-roadmap-l32.mjs'
+      - 'tests/roadmap-v2-ui-transition.test.mjs'
       - 'scripts/browser-smoke-roadmap-runtime.mjs'
       - 'scripts/validate-roadmap-production-boundary.mjs'
       - 'tests/roadmap-v2-integration.test.mjs'
@@ -316,6 +323,21 @@ jobs:
       - name: Test B123 UI audit failure modes
         run: node --test tests/roadmap-v2-ui-audit.test.mjs
 
+      - name: Validate B125 additive UI transition contract
+        run: node scripts/validate-roadmap-ui-transition-contract.mjs
+
+      - name: Build B126 deterministic 8-to-10 transition design
+        run: node scripts/build-roadmap-ui-transition.mjs
+
+      - name: Validate B126 routes, compatibility and remediation backlog
+        run: node scripts/validate-roadmap-ui-transition.mjs
+
+      - name: Assert deterministic L32 UI transition artifacts
+        run: git diff --exit-code -- roadmap_v2/ui-transition/transition-plan.json roadmap_v2/ui-transition/manifest.json
+
+      - name: Test B127 UI transition failure modes
+        run: node --test tests/roadmap-v2-ui-transition.test.mjs
+
       - name: Install Chromium for B115 smoke and B123 audit
         run: |
           npm install --no-save --no-package-lock playwright@1.55.0
@@ -334,3 +356,8 @@ jobs:
 
       - name: Validate production boundary
         run: node scripts/validate-roadmap-production-boundary.mjs
+
+      - name: Aggregate B128 L32 full-checkout acceptance evidence
+        env:
+          ROADMAP_L32_FULL_CHECKOUT: '1'
+        run: node scripts/validate-roadmap-l32.mjs
