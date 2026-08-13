@@ -5,8 +5,8 @@ Repository baseline: `BlueDragon33/Bauman-master-ai-system@e383912354673bdce7a00
 
 ## Current gate
 
-Lượt 30 / Bước 117–119: **PASS (CURRICULUM RECONCILIATION V2.1; READ-ONLY)**  
-Next: **Lượt 30 / Bước 120 — PENDING FULL-CHECKOUT CI**
+Lượt 30 / Bước 117–120: **PASS (CURRICULUM RECONCILIATION V2.1; READ-ONLY)**  
+Next: **Lượt 31 / Bước 121 — NOT STARTED**
 
 | Bước | Gate | Kết quả | Bằng chứng chính |
 |---|---|---|---|
@@ -123,7 +123,7 @@ The GitHub connector suppressed inline content for large blobs. The immutable `l
 - Persistent stores, DOM mutations, runtime writes and legacy mutations: 0/0/0/0.
 - Bước 116: GitHub Actions run `31559510927` passed all 71 principal steps and the connected-default-OFF production boundary.
 
-## Lượt 30 evidence (B120 pending)
+## Lượt 30 evidence
 
 - Bước 117: reconciliation contract locks the approved 58-lượt/232-bước plan amendment, four evidence classes, six dispositions and prohibited inferences — PASS.
 - Bước 118: deterministic matrix reconciles 8 physical main modules, 8 declared Existing Competency groups, 6 Gap clusters and 10 target courses — PASS.
@@ -131,18 +131,19 @@ The GitHub connector suppressed inline content for large blobs. The immutable `l
 - Current Bauman Subjects remains dynamic-import-only, with 0 static numbered lessons and verified syllabus import required.
 - Bước 119: 20/20 tests cover equivalence overclaim, Diagnostic/Master-ready bypass, destructive legacy action, count drift, static Bauman content, tamper and missing source — PASS.
 - Legacy deletions, runtime writes, UI changes and persistence writes: 0/0/0/0.
-- Bước 120: full-checkout GitHub Actions regression and production boundary — PENDING.
+- Bước 120: GitHub Actions run `31677380625` passed all 77 principal steps, including L19–L30 regression, deterministic artifacts, real Chromium and production boundary.
+- Validated commit: `966f57fed274edf70dc0ee17693102f6ef923733`.
 
 ## Next permitted action
 
-Complete L30/B120 on a full GitHub checkout. Do not open L31/B121 until the L19–L30
-aggregate, deterministic curriculum artifacts, real Chromium regression and production
-boundary all pass. Persistence remains deferred to L34/B133 and all related feature flags
-remain default-OFF.
+Open L31/B121 for a read-only audit of Main and all eight physical subject modules. The
+audit must inventory information architecture, data/rendering paths, progress messaging,
+quiz behavior, accessibility, responsive behavior and security boundaries before any UI
+rewrite is authorized. Persistence remains deferred to L34/B133 and all related feature
+flags remain default-OFF.
 
 Re-run the complete Lượt 19 gate with:
 
 ```bash
 node roadmap_v2/tools/validate-roadmap-v2.mjs
 ```
-

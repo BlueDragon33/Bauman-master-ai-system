@@ -2,9 +2,9 @@
 
 ## Trạng thái triển khai tuần tự
 
-- Mốc hoàn thành gần nhất: **Lượt 30 / Bước 119**.
-- Mốc tiếp theo: **Lượt 30 / Bước 120 — chờ full-checkout CI**.
-- Trạng thái: **PASS B117–B119 — Roadmap V2.1 curriculum reconciliation read-only; B120 PENDING_FULL_CHECKOUT_CI**.
+- Mốc hoàn thành gần nhất: **Lượt 30 / Bước 120**.
+- Mốc tiếp theo: **Lượt 31 / Bước 121 — chưa mở**.
+- Trạng thái: **PASS B117–B120 — Roadmap V2.1 curriculum reconciliation read-only; full-checkout CI và production boundary success**.
 - Ngày cập nhật: **2026-08-13 (Asia/Bangkok)**.
 - Repository: `BlueDragon33/Bauman-master-ai-system`.
 - Baseline vật lý: `main@e383912354673bdce7a0059d6b9a23799d74e689`.
@@ -186,16 +186,16 @@ mở Lượt 24 trước khi Bước 92 `PASS`.
 - Commit kiểm định: `0e34da680d1f0fccccdc99a6cff0be9abbf6ab34`.
 
 
-## Kết quả Lượt 30 — Bước 117–120 (đang kiểm định)
+## Kết quả Lượt 30 — Bước 117–120
 
 | Bước | Trạng thái | Kết quả |
 |---|---|---|
 | 117 | PASS | Contract khóa plan amendment V2.1, 4 tầng bằng chứng, 6 disposition và mọi write capability=false |
 | 118 | PASS | Ma trận tất định 8 module main → 8 Existing Competency → 6 Gap → 10 kho/85 chương/304 bài/8 chương động |
 | 119 | PASS | 20/20 test fail-closed cho equivalence, Diagnostic/Master-ready bypass, static Bauman content, destructive disposition và tamper/missing source |
-| 120 | PENDING_FULL_CHECKOUT_CI | Chờ regression L19–L30, deterministic artifacts và production boundary trên checkout GitHub thật |
+| 120 | PASS | GitHub Actions run `31677380625` xác nhận regression L19–L30, deterministic artifacts, Chromium thật và production boundary |
 
 - Persistence được dời có truy vết sang L34/B133 theo kế hoạch mở rộng, chưa thực thi.
 - Kho 09 Current Bauman Subjects giữ 0 bài tĩnh và chỉ mở qua verified syllabus import.
 - Legacy deletions/runtime writes/UI changes/persistence writes: 0/0/0/0.
-
+- Commit kiểm định: `966f57fed274edf70dc0ee17693102f6ef923733`.
