@@ -53,11 +53,11 @@ Unexpected direct browser-storage files outside platform adapter: **0**.
 
 ### `assets/js/platform/runtime-config.js`
 
-- L23: `bauman_main_all_phases_subjects_v1`
+- L25: `bauman_main_all_phases_subjects_v1`
   - `legacyMainStateKey: 'bauman_main_all_phases_subjects_v1',`
-- L24: `bauman_main_users_fullcode_v1`
+- L26: `bauman_main_users_fullcode_v1`
   - `legacyUsersKey: 'bauman_main_users_fullcode_v1',`
-- L25: `bauman_current_user_fullcode_v1`
+- L27: `bauman_current_user_fullcode_v1`
   - `legacyCurrentUserKey: 'bauman_current_user_fullcode_v1',`
 
 ### `assets/js/platform/state-schema.js`
