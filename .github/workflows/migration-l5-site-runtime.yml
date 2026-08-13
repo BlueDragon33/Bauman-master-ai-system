@@ -28,9 +28,23 @@ jobs:
           node --check assets/js/platform/site-runtime.js
           node --check service-worker.js
           node --check scripts/migration/l5-data-loading-audit.cjs
+          node --check scripts/migration/l5-browser-network-regression.cjs
 
-      - name: Audit large JSON lazy loading
+      - name: Audit large JSON loading policy
         run: node scripts/migration/l5-data-loading-audit.cjs
+
+      - name: Install browser test dependency
+        run: |
+          npm install --no-save --package-lock=false playwright@1.54.2
+          npx playwright install --with-deps chromium
+
+      - name: Start local static server
+        run: python3 -m http.server 4173 --bind 127.0.0.1 > /tmp/bauman-l5-http.log 2>&1 &
+
+      - name: Browser startup network regression
+        run: |
+          sleep 1
+          node scripts/migration/l5-browser-network-regression.cjs
 
       - name: Ensure generated audit is committed/current when present
         shell: bash
