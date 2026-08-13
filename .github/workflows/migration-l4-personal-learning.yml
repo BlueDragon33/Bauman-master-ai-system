@@ -34,10 +34,15 @@ jobs:
           node --check assets/js/platform/personal-learning-schema.js
           node --check assets/js/platform/personal-learning-migrator.js
           node --check assets/js/platform/personal-learning-repository.js
+          node --check assets/js/platform/personal-learning-bootstrap.js
           node --check scripts/migration/l4-personal-learning-regression.cjs
+          node --check scripts/migration/l4-bootstrap-regression.cjs
 
       - name: Run Personal Learning regression
         run: node scripts/migration/l4-personal-learning-regression.cjs
+
+      - name: Verify disabled shadow bootstrap
+        run: node scripts/migration/l4-bootstrap-regression.cjs
 
       - name: Guard academic runtimes during L4 normalization
         shell: bash
