@@ -72,6 +72,13 @@ on:
       - 'scripts/validate-roadmap-backend-api.mjs'
       - 'scripts/validate-roadmap-l33.mjs'
       - 'tests/roadmap-v2-backend-api.test.mjs'
+      - 'roadmap_v2/persistence.mjs'
+      - 'roadmap_v2/persistence/**'
+      - 'scripts/validate-roadmap-persistence-contract.mjs'
+      - 'scripts/build-roadmap-persistence-harness.mjs'
+      - 'scripts/validate-roadmap-persistence-harness.mjs'
+      - 'scripts/validate-roadmap-l34.mjs'
+      - 'tests/roadmap-v2-persistence.test.mjs'
       - 'scripts/browser-smoke-roadmap-runtime.mjs'
       - 'scripts/validate-roadmap-production-boundary.mjs'
       - 'tests/roadmap-v2-integration.test.mjs'
@@ -360,6 +367,21 @@ jobs:
       - name: Test B131 Backend API security and failure modes
         run: node --test tests/roadmap-v2-backend-api.test.mjs
 
+      - name: Validate B133-B134 provider-neutral Persistence contracts
+        run: node scripts/validate-roadmap-persistence-contract.mjs
+
+      - name: Build B135 deterministic transactional Persistence harness
+        run: node scripts/build-roadmap-persistence-harness.mjs
+
+      - name: Validate B134-B135 migration, transaction and restore harness
+        run: node scripts/validate-roadmap-persistence-harness.mjs
+
+      - name: Assert deterministic L34 Persistence artifacts
+        run: git diff --exit-code -- roadmap_v2/persistence/projection.json roadmap_v2/persistence/manifest.json
+
+      - name: Test B135 Persistence security, atomicity and failure modes
+        run: node --test tests/roadmap-v2-persistence.test.mjs
+
       - name: Install Chromium for B115 smoke and B123 audit
         run: |
           npm install --no-save --no-package-lock playwright@1.55.0
@@ -388,3 +410,9 @@ jobs:
         env:
           ROADMAP_L33_FULL_CHECKOUT: '1'
         run: node scripts/validate-roadmap-l33.mjs
+
+
+      - name: Aggregate B136 L34 full-checkout acceptance evidence
+        env:
+          ROADMAP_L34_FULL_CHECKOUT: '1'
+        run: node scripts/validate-roadmap-l34.mjs

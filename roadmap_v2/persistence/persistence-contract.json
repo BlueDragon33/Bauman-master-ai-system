@@ -1,0 +1,94 @@
+{
+  "schema": "BAUMAN_ROADMAP_V2_PERSISTENCE_CONTRACT_V1",
+  "version": "2.14.0-l34-b133",
+  "status": "PASS_B133_PROVIDER_NEUTRAL_CONTRACT",
+  "baselineCommit": "e383912354673bdce7a0059d6b9a23799d74e689",
+  "headBeforeL34": "cf88194bfa66b37856b6e477a94449158b99833d",
+  "mode": "PROVIDER_NEUTRAL_TRANSACTIONAL_IN_MEMORY_HARNESS",
+  "provider": "unselected",
+  "storageSchemaVersion": "bauman.persistence.v1",
+  "scopeDecision": {
+    "sequence": ["inventory", "normalize", "separate_layers", "site", "backend_api", "database_persistence", "multi_device_sync", "personal_ai"],
+    "thisTurnLayer": "database_persistence_contract",
+    "realProviderSelectionRequiredBeforeConnection": true,
+    "authDeferredUntilStableSiteBackendDatabase": true
+  },
+  "compatibility": {
+    "legacyLocalStorageRetained": true,
+    "legacyLocalStorageRole": "temporary_cache_and_offline_fallback",
+    "migrationPath": ["local_storage_inventory", "compatibility_adapter", "api_shadow_read", "database_canary_write", "multi_device_sync", "local_storage_fallback_only"],
+    "destructiveClientRewriteAllowed": false,
+    "staticContentRemainsHashPinnedFiles": true
+  },
+  "identity": {
+    "userIdPrefix": "usr_",
+    "deviceIdPrefix": "dev_",
+    "eventIdPrefix": "evt_",
+    "cursorPrefix": "cur_",
+    "idempotencyKeyPrefix": "idem_",
+    "emailAsResourceId": false
+  },
+  "eventPolicy": {
+    "appendOnly": true,
+    "maxEventsPerBatch": 100,
+    "allowedTypes": [
+      "diagnostic_result_recorded",
+      "chapter_assessment_recorded",
+      "exercise_set_recorded",
+      "lab_or_simulation_recorded",
+      "project_rubric_recorded",
+      "retention_check_recorded",
+      "russian_technical_terms_recorded",
+      "gap_override_recorded",
+      "schedule_replaced",
+      "bookmark_changed",
+      "preference_changed"
+    ],
+    "staleBasePolicy": "reject_with_conflict_and_server_cursor",
+    "idempotencyPolicy": "same_key_same_request_returns_original_result",
+    "partialWritePolicy": "forbidden_atomic_batch",
+    "crossUserPolicy": "reject_before_lookup_or_write"
+  },
+  "securityBoundary": {
+    "trustedServerActorRequired": true,
+    "exactUserOwnershipRequired": true,
+    "defaultCredentialsAllowed": false,
+    "plaintextPasswordsAllowed": false,
+    "passwordColumnsAllowed": false,
+    "frontendSecretsAllowed": false,
+    "callerSuppliedRolesTrusted": false,
+    "rowLevelOwnershipPolicyRequiredBeforeProduction": true
+  },
+  "productionBoundary": {
+    "databaseConnections": 0,
+    "executedMigrations": 0,
+    "persistentStores": 0,
+    "productionUsers": 0,
+    "productionDevices": 0,
+    "productionEvents": 0,
+    "productionBackups": 0,
+    "productionRestores": 0,
+    "productionSyncWrites": 0
+  },
+  "capabilities": {
+    "productionDatabaseConnect": false,
+    "productionMigrationExecute": false,
+    "productionRollbackExecute": false,
+    "productionUserWrite": false,
+    "productionEventWrite": false,
+    "productionSyncWrite": false,
+    "productionBackupCreate": false,
+    "productionRestoreExecute": false,
+    "productionAuthProvision": false,
+    "runtimeActivation": false
+  },
+  "harness": {
+    "inMemoryOnly": true,
+    "transactionalBatchSimulation": true,
+    "migrationSimulationOnEmptySchema": true,
+    "backupRestoreSimulationOnIsolatedState": true,
+    "filesystemWrites": 0,
+    "networkConnections": 0
+  },
+  "acceptance": { "step": 133, "result": "PASS_PROVIDER_NEUTRAL_CONTRACT" }
+}

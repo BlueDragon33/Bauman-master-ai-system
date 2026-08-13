@@ -1,0 +1,26 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://bauman.local/schemas/roadmap-v2-persistence-contract-v1.json",
+  "title": "Bauman Roadmap V2 L34 provider-neutral persistence contract",
+  "type": "object",
+  "required": ["schema", "version", "status", "baselineCommit", "headBeforeL34", "mode", "provider", "compatibility", "securityBoundary", "productionBoundary", "capabilities", "acceptance"],
+  "properties": {
+    "schema": { "const": "BAUMAN_ROADMAP_V2_PERSISTENCE_CONTRACT_V1" },
+    "version": { "const": "2.14.0-l34-b133" },
+    "status": { "const": "PASS_B133_PROVIDER_NEUTRAL_CONTRACT" },
+    "mode": { "const": "PROVIDER_NEUTRAL_TRANSACTIONAL_IN_MEMORY_HARNESS" },
+    "provider": { "const": "unselected" },
+    "baselineCommit": { "pattern": "^[0-9a-f]{40}$" },
+    "headBeforeL34": { "pattern": "^[0-9a-f]{40}$" },
+    "capabilities": { "type": "object", "additionalProperties": { "const": false } },
+    "acceptance": {
+      "type": "object",
+      "required": ["step", "result"],
+      "properties": {
+        "step": { "const": 133 },
+        "result": { "const": "PASS_PROVIDER_NEUTRAL_CONTRACT" }
+      }
+    }
+  },
+  "additionalProperties": true
+}

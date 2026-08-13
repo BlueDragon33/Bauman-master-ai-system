@@ -1,0 +1,64 @@
+{
+  "schema": "BAUMAN_ROADMAP_V2_PERSISTENCE_MANIFEST_V1",
+  "version": "2.14.0-l34-b135",
+  "status": "PASS_B135_DETERMINISTIC_PERSISTENCE_PACKAGE",
+  "headBeforeL34": "cf88194bfa66b37856b6e477a94449158b99833d",
+  "sources": {
+    "contractSchema": {
+      "path": "roadmap_v2/persistence/persistence-contract.schema.json",
+      "bytes": 1201,
+      "sha256": "7e42e35f8332439ca744585035eab67b48cda8a54580f631b0555949eb578d2d"
+    },
+    "contract": {
+      "path": "roadmap_v2/persistence/persistence-contract.json",
+      "bytes": 3430,
+      "sha256": "2bbc419cde14ae44de0905234da4e5a8b12aa46e3fdb88388a8c1811dfdd84c0"
+    },
+    "relationalModel": {
+      "path": "roadmap_v2/persistence/relational-model.json",
+      "bytes": 9066,
+      "sha256": "c45a6524ac91fed09831a8679e453559a428e8a793a98d0b48bef1167399495a"
+    },
+    "migrationPlan": {
+      "path": "roadmap_v2/persistence/migration-plan.json",
+      "bytes": 4716,
+      "sha256": "fed7954f6e1db403dae0c32dad4d80097e06cde77b9cede597010ab611324f60"
+    },
+    "backupRestoreContract": {
+      "path": "roadmap_v2/persistence/backup-restore-contract.json",
+      "bytes": 1704,
+      "sha256": "f508326deb68bba372ff0c04762448a978f198743ea29af41883b36e6e0ab37c"
+    }
+  },
+  "generatedProjection": {
+    "path": "roadmap_v2/persistence/projection.json",
+    "bytes": 1523,
+    "sha256": "6a99585c454a6dac3e64ec19eb97c9f0b99a206b8456c1b15a7cd238b5528b33"
+  },
+  "counts": {
+    "tables": 12,
+    "userOwnedTables": 11,
+    "migrations": 4,
+    "indexes": 4,
+    "eventTypes": 11,
+    "productionConnections": 0,
+    "productionMigrations": 0,
+    "productionWrites": 0
+  },
+  "safety": {
+    "providerConnections": 0,
+    "productionMigrations": 0,
+    "productionRollbacks": 0,
+    "productionUserWrites": 0,
+    "productionEventWrites": 0,
+    "productionSyncWrites": 0,
+    "productionBackups": 0,
+    "productionRestores": 0,
+    "runtimeActivations": 0,
+    "legacyMutations": 0
+  },
+  "acceptance": {
+    "step": 135,
+    "result": "PASS_PERSISTENCE_PACKAGE"
+  }
+}

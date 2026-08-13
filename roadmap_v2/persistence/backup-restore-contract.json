@@ -1,0 +1,38 @@
+{
+  "schema": "BAUMAN_ROADMAP_V2_BACKUP_RESTORE_CONTRACT_V1",
+  "version": "2.14.0-l34-b134",
+  "status": "PASS_B134_BACKUP_RESTORE_DESIGN",
+  "provider": "unselected",
+  "format": {
+    "schema": "BAUMAN_ROADMAP_V2_PERSISTENCE_BACKUP_V1",
+    "canonicalEncoding": "canonical_json_utf8",
+    "digest": "sha256",
+    "storageSchemaVersionRequired": true,
+    "migrationIdsRequired": true,
+    "recordCountsRequired": true,
+    "userOwnershipVerificationRequired": true
+  },
+  "backupPolicy": {
+    "applicationConsistentSnapshot": true,
+    "pointInTimeRecoveryRequiredBeforeProduction": true,
+    "encryptionRequiredBeforeProduction": true,
+    "crossRegionCopyDecisionDeferredToProviderSelection": true,
+    "retentionDecisionDeferredToDataPolicy": true,
+    "secretMaterialExcluded": true
+  },
+  "restorePolicy": {
+    "target": "fresh_isolated_schema_or_store",
+    "verificationOrder": ["format", "schema_version", "migration_set", "sha256", "record_counts", "referential_integrity", "user_ownership", "cursor_monotonicity"],
+    "atomicSwapAfterAllChecks": true,
+    "inPlaceOverwriteAllowed": false,
+    "tamperedBackupPolicy": "reject_without_mutating_current_state",
+    "crossUserRecordPolicy": "reject_without_mutating_current_state"
+  },
+  "drill": {
+    "requiredBeforeProviderActivation": true,
+    "requiredBeforeProductionMigration": true,
+    "successEvidence": ["restore_to_isolated_target", "digest_match", "count_match", "ownership_match", "sync_cursor_match", "application_read_smoke"]
+  },
+  "productionBoundary": { "backupsCreated": 0, "restoresExecuted": 0, "schemasSwapped": 0, "providerConnections": 0 },
+  "acceptance": { "step": 134, "result": "PASS_BACKUP_RESTORE_DESIGN" }
+}
