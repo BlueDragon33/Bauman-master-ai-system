@@ -1,0 +1,22 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://bauman.local/schemas/roadmap-v2-backend-api-contract-v1.json",
+  "title": "Bauman Roadmap V2 L33 provider-neutral Backend API contract",
+  "type": "object",
+  "required": ["schema", "version", "status", "baselineCommit", "headBeforeL33", "mode", "dataClasses", "securityBoundary", "persistenceBoundary", "capabilities", "acceptance"],
+  "properties": {
+    "schema": { "const": "BAUMAN_ROADMAP_V2_BACKEND_API_CONTRACT_V1" },
+    "version": { "const": "2.13.0-l33-b129" },
+    "status": { "const": "PASS_B129_CONTRACT_ONLY" },
+    "mode": { "const": "PROVIDER_NEUTRAL_DISCONNECTED_HARNESS" },
+    "baselineCommit": { "pattern": "^[0-9a-f]{40}$" },
+    "headBeforeL33": { "pattern": "^[0-9a-f]{40}$" },
+    "capabilities": { "type": "object", "additionalProperties": { "const": false } },
+    "acceptance": {
+      "type": "object",
+      "properties": { "step": { "const": 129 }, "result": { "const": "PASS_CONTRACT_ONLY" } },
+      "required": ["step", "result"]
+    }
+  },
+  "additionalProperties": true
+}

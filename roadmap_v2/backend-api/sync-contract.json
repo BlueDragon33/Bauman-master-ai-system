@@ -1,0 +1,20 @@
+{
+  "schema": "BAUMAN_ROADMAP_V2_SYNC_CONTRACT_V1",
+  "version": "2.13.0-l33-b130",
+  "status": "PASS_B130_CONTRACT_ONLY_PERSISTENCE_BLOCKED",
+  "identity": { "userIdPrefix": "usr_", "deviceIdPrefix": "dev_", "sessionIdPrefix": "ses_", "emailAsResourceId": false },
+  "writeEnvelope": {
+    "required": ["userId", "deviceId", "idempotencyKey", "baseCursor", "events"],
+    "maxEventsPerBatch": 100,
+    "eventOrder": "caller_order_preserved_after_validation",
+    "duplicatePolicy": "idempotency_key_returns_original_result",
+    "staleBasePolicy": "reject_with_conflict_and_server_cursor",
+    "crossUserPolicy": "reject_forbidden",
+    "unknownEventPolicy": "reject_entire_batch",
+    "partialWritePolicy": "forbidden_atomic_batch"
+  },
+  "conflictCodes": ["STALE_BASE_CURSOR", "DUPLICATE_EVENT_ID", "CROSS_USER_ACCESS", "UNKNOWN_EVENT_TYPE", "PERSISTENCE_UNAVAILABLE"],
+  "harness": { "writesAllowed": false, "persistedEvents": 0, "syncCursors": 0, "conflictsResolved": 0 },
+  "activationPrerequisites": ["L34 persistence contract PASS", "database migrations PASS", "transaction/idempotency tests PASS", "backup/restore PASS", "multi-device conflict tests PASS"],
+  "acceptance": { "step": 130, "result": "PASS_SYNC_CONTRACT_ONLY" }
+}

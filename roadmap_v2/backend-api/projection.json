@@ -1,0 +1,49 @@
+{
+  "schema": "BAUMAN_ROADMAP_V2_BACKEND_API_PROJECTION_V1",
+  "version": "2.13.0-l33-b131",
+  "status": "PASS_B131_DISCONNECTED_FAIL_CLOSED_HARNESS",
+  "provider": "unselected",
+  "counts": {
+    "endpoints": 7,
+    "inMemoryReadOnly": 2,
+    "persistenceBlocked": 5,
+    "productionRoutes": 0,
+    "databaseConnections": 0,
+    "persistentStores": 0
+  },
+  "catalogSummary": {
+    "courses": 10,
+    "chapters": 85,
+    "numberedLessons": 304,
+    "dynamicChapters": 8
+  },
+  "security": {
+    "defaultCredentialsAllowed": false,
+    "plaintextPasswordsAllowed": false,
+    "frontendSecretsAllowed": false,
+    "ownerChecksRequired": true,
+    "corsMode": "explicit_allowlist_only"
+  },
+  "sync": {
+    "maxEventsPerBatch": 100,
+    "staleBasePolicy": "reject_with_conflict_and_server_cursor",
+    "crossUserPolicy": "reject_forbidden",
+    "partialWritePolicy": "forbidden_atomic_batch",
+    "writesAllowed": false
+  },
+  "safety": {
+    "productionServerStarts": 0,
+    "productionRoutesCreated": 0,
+    "databaseConnections": 0,
+    "databaseMigrations": 0,
+    "userRecords": 0,
+    "sessions": 0,
+    "tokens": 0,
+    "eventWrites": 0,
+    "syncWrites": 0
+  },
+  "acceptance": {
+    "step": 131,
+    "result": "PASS_DISCONNECTED_FAIL_CLOSED_REFERENCE_HARNESS"
+  }
+}

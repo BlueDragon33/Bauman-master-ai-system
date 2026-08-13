@@ -65,6 +65,13 @@ on:
       - 'scripts/validate-roadmap-ui-transition.mjs'
       - 'scripts/validate-roadmap-l32.mjs'
       - 'tests/roadmap-v2-ui-transition.test.mjs'
+      - 'roadmap_v2/backend-api.mjs'
+      - 'roadmap_v2/backend-api/**'
+      - 'scripts/validate-roadmap-backend-api-contract.mjs'
+      - 'scripts/build-roadmap-backend-api.mjs'
+      - 'scripts/validate-roadmap-backend-api.mjs'
+      - 'scripts/validate-roadmap-l33.mjs'
+      - 'tests/roadmap-v2-backend-api.test.mjs'
       - 'scripts/browser-smoke-roadmap-runtime.mjs'
       - 'scripts/validate-roadmap-production-boundary.mjs'
       - 'tests/roadmap-v2-integration.test.mjs'
@@ -338,6 +345,21 @@ jobs:
       - name: Test B127 UI transition failure modes
         run: node --test tests/roadmap-v2-ui-transition.test.mjs
 
+      - name: Validate B129-B130 Backend API and Sync contracts
+        run: node scripts/validate-roadmap-backend-api-contract.mjs
+
+      - name: Build B131 deterministic disconnected Backend API harness
+        run: node scripts/build-roadmap-backend-api.mjs
+
+      - name: Validate B131 fail-closed Backend API projection
+        run: node scripts/validate-roadmap-backend-api.mjs
+
+      - name: Assert deterministic L33 Backend API artifacts
+        run: git diff --exit-code -- roadmap_v2/backend-api/projection.json roadmap_v2/backend-api/manifest.json
+
+      - name: Test B131 Backend API security and failure modes
+        run: node --test tests/roadmap-v2-backend-api.test.mjs
+
       - name: Install Chromium for B115 smoke and B123 audit
         run: |
           npm install --no-save --no-package-lock playwright@1.55.0
@@ -361,3 +383,8 @@ jobs:
         env:
           ROADMAP_L32_FULL_CHECKOUT: '1'
         run: node scripts/validate-roadmap-l32.mjs
+
+      - name: Aggregate B132 L33 full-checkout acceptance evidence
+        env:
+          ROADMAP_L33_FULL_CHECKOUT: '1'
+        run: node scripts/validate-roadmap-l33.mjs
