@@ -32,7 +32,7 @@ jobs:
       - name: Commit generated inventory
         shell: bash
         run: |
-          if git diff --quiet -- docs/migration/L3_STORAGE_INVENTORY.generated.md; then
+          if [ -z "$(git status --porcelain -- docs/migration/L3_STORAGE_INVENTORY.generated.md)" ]; then
             echo "Inventory already current."
             exit 0
           fi
