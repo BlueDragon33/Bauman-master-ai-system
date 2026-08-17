@@ -1,0 +1,196 @@
+{
+  "version": "ABR-1.0.0",
+  "baseline": {
+    "technicalProfile": "HUTECH 2014-2018 Control & Automation, dormant academic foundation; active LabVIEW/IoT/image-processing practice",
+    "russianAssumption": "ZERO",
+    "learningPrinciple": "diagnostic -> reactivate -> bridge -> Bauman-ready",
+    "masteryStates": ["ZERO", "DORMANT", "REACTIVATING", "FUNCTIONAL", "MASTERED", "BAUMAN_READY", "ARCHIVE_ON_DEMAND"]
+  },
+  "dates": {
+    "selfStudyStart": "2026-09-01",
+    "preparatoryStart": "2026-11-01",
+    "preparatoryStartStatus": "tentative",
+    "baumanStart": null,
+    "editable": true,
+    "reflowPolicy": "shift-dependent-phases-preserve-completed-work"
+  },
+  "phaseModel": [
+    {
+      "id": "P0",
+      "name": "Khởi động lại",
+      "anchor": "selfStudyStart",
+      "durationWeeks": 6,
+      "weights": {"russian": 0.48, "reactivation": 0.24, "python": 0.28},
+      "outputs": ["A0 survival Russian", "math diagnostic map", "Python technical bridge", "personal knowledge graph seed"]
+    },
+    {
+      "id": "P1",
+      "name": "Phục hồi và chuyển hệ",
+      "durationWeeks": 10,
+      "weights": {"russian": 0.40, "csBridge": 0.35, "mathCore": 0.15, "controlCore": 0.10},
+      "outputs": ["A1 general Russian", "Python/OOP/SQL foundations", "linear algebra and probability functional", "control core functional"]
+    },
+    {
+      "id": "P2",
+      "name": "Bauman Bridge",
+      "durationWeeks": 16,
+      "weights": {"russian": 0.35, "dataAi": 0.30, "systems": 0.20, "research": 0.15},
+      "outputs": ["data analysis", "ML foundation", "Markov/queueing/simulation", "academic reading and mini NIR"]
+    },
+    {
+      "id": "P3",
+      "name": "Dự bị STANKIN",
+      "anchor": "preparatoryStart",
+      "durationPolicy": "editable-until-real-schedule-known",
+      "outputs": ["Russian-first learning", "engineering Russian", "lecture listening", "written summaries", "oral defense drills"]
+    },
+    {
+      "id": "P4",
+      "name": "Mini Bauman Semester",
+      "durationWeeks": 8,
+      "outputs": ["Russian lecture simulation", "weekly DZ/KR", "Python/SQL/ML assignment", "paper reading", "oral defense"]
+    },
+    {
+      "id": "P5",
+      "name": "Bauman chính thức",
+      "anchor": "baumanStart",
+      "durationPolicy": "semester-driven",
+      "outputs": ["adaptive Russian immersion", "НИР", "coursework", "master thesis readiness"]
+    }
+  ],
+  "competencies": {
+    "active": [
+      "labview-system-programming",
+      "iot-system-integration",
+      "image-processing-practice",
+      "engineering-system-thinking"
+    ],
+    "dormant": [
+      "calculus",
+      "linear-algebra",
+      "probability-statistics",
+      "ode",
+      "fourier-laplace-z",
+      "classical-control",
+      "digital-control",
+      "modern-control",
+      "electrical-electronics-foundation"
+    ],
+    "gap": [
+      "russian-general",
+      "russian-academic-engineering",
+      "python",
+      "oop",
+      "algorithms-data-structures",
+      "sql-databases",
+      "linux-os-networks",
+      "operations-research",
+      "markov-chains",
+      "queueing-theory",
+      "simulation",
+      "modern-ml-workflow",
+      "academic-research-russian"
+    ],
+    "archiveOnDemand": [
+      "plc-refresh",
+      "scada-refresh",
+      "electrical-machines-refresh",
+      "advanced-pde-hand-calculation"
+    ]
+  },
+  "diagnosticPolicy": {
+    "appliesTo": "all-non-russian-competencies",
+    "russianAlwaysStartsAt": "A0/ZERO",
+    "bands": [
+      {"min": 80, "action": "skip-basic-and-apply"},
+      {"min": 60, "action": "rapid-reactivation"},
+      {"min": 40, "action": "structured-reactivation"},
+      {"min": 0, "action": "relearn-module"}
+    ],
+    "masteryEvidence": ["independent-retrieval", "problem-solving", "application", "explanation", "retention"]
+  },
+  "languageProgression": {
+    "mode": "calendar-plus-proficiency",
+    "stages": [
+      {
+        "id": "L0",
+        "name": "Vietnamese + Russian micro exposure",
+        "recommendedWindow": "before-preparatory",
+        "contentRatio": {"vi": 0.95, "ru": 0.05},
+        "support": ["russian-term-tooltip", "IPA", "temporary-vietnamese-phonetic-hint", "audio"]
+      },
+      {
+        "id": "L1",
+        "name": "Progressive bilingual",
+        "recommendedWindow": "preparatory-first-half",
+        "contentRatioRange": {"vi": [0.90, 0.50], "ru": [0.10, 0.50]},
+        "support": ["parallel-sentence", "audio", "term-tooltip"]
+      },
+      {
+        "id": "L2",
+        "name": "Russian first with Vietnamese rescue",
+        "recommendedWindow": "preparatory-second-half",
+        "contentRatioRange": {"vi": [0.40, 0.20], "ru": [0.60, 0.80]},
+        "support": ["hover-to-translate", "explain-in-vietnamese-on-demand", "no-default-phonetic-hint"]
+      },
+      {
+        "id": "L3",
+        "name": "Russian immersion",
+        "recommendedWindow": "bauman-semester-1",
+        "contentRatio": {"vi": 0.10, "ru": 0.90},
+        "support": ["term-hint", "difficult-passage-rescue", "russian-ai-mentor"]
+      },
+      {
+        "id": "L4",
+        "name": "Language freedom",
+        "recommendedWindow": "bauman-semester-2-plus",
+        "modes": ["VI_ONLY", "RU_ONLY", "ADAPTIVE"],
+        "default": "ADAPTIVE"
+      }
+    ],
+    "fadeRules": {
+      "termStages": ["vi+ru+ipa+phonetic+audio", "ru+vi+audio", "ru+hover-vi", "ru-only", "active-production"],
+      "advanceBy": ["retrieval-accuracy", "reading-speed", "listening-comprehension", "active-use"],
+      "neverAdvanceByCalendarAlone": true
+    },
+    "skillTracking": ["general", "technical-reading", "lecture-listening", "technical-writing", "technical-speaking"]
+  },
+  "deepLearningLoop": [
+    "prerequisite-gate",
+    "intuition",
+    "theory",
+    "worked-example",
+    "independent-practice",
+    "lab-simulation",
+    "feynman-recall",
+    "russian-transfer",
+    "project-application",
+    "oral-defense",
+    "spaced-retrieval"
+  ],
+  "aiFaculty": [
+    "lead-lecturer",
+    "exercise-tutor",
+    "lab-instructor",
+    "russian-for-engineers-teacher",
+    "bauman-style-instructor",
+    "socratic-critic",
+    "academic-board"
+  ],
+  "antiIllusionPolicy": {
+    "lessonCompletionRequires": ["content", "understanding", "independent-problems", "application", "explanation", "retention"],
+    "viewedIsNotMastered": true,
+    "closedAiAssessments": true,
+    "hintPenalty": true
+  },
+  "projectSpine": {
+    "name": "Intelligent IoT Vision System",
+    "seed": "existing LabVIEW + IoT + image-processing experience",
+    "evolution": ["Python/OpenCV", "OOP architecture", "MQTT", "SQL", "statistics", "ML", "neural networks", "optimization", "Russian documentation", "mini research report", "oral defense"]
+  },
+  "automaticExpansion": {
+    "enabled": true,
+    "conditions": ["missing-prerequisite", "repeated-misconception", "retention-collapse", "russian-bottleneck", "project-integration-failure", "Bauman-curriculum-gap"],
+    "action": "insert-remediation-or-new-step-without-deleting-accepted-work"
+  }
+}
