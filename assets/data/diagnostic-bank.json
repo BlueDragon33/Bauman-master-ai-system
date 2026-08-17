@@ -1,0 +1,45 @@
+{
+  "version":"DIAG-1.0",
+  "banks":{
+    "linear-algebra":[
+      {"q":"Ma trận vuông A khả nghịch khi điều kiện nào đúng?","choices":["det(A)=0","det(A)≠0","trace(A)=0","A đối xứng"],"answer":1},
+      {"q":"Nếu Av=λv với v≠0 thì λ được gọi là gì?","choices":["định thức","hạng","trị riêng","chuẩn"],"answer":2},
+      {"q":"Hệ Ax=b có nghiệm duy nhất với A vuông khi nào?","choices":["rank(A)<n","A singular","det(A)≠0","b=0"],"answer":2}
+    ],
+    "probability-statistics":[
+      {"q":"Với hai biến cố độc lập A,B, P(A∩B) bằng gì?","choices":["P(A)+P(B)","P(A)P(B)","P(A|B)","1-P(A)"],"answer":1},
+      {"q":"Phương sai Var(X) đo đại lượng nào?","choices":["vị trí trung tâm","độ phân tán quanh kỳ vọng","xác suất cực đại","độ lệch của mẫu khỏi median"],"answer":1},
+      {"q":"E[aX+b] bằng gì?","choices":["aE[X]+b","E[X]+ab","a²E[X]+b","E[X]"],"answer":0}
+    ],
+    "python":[
+      {"q":"Trong Python, cấu trúc nào phù hợp nhất cho ánh xạ key→value?","choices":["list","tuple","dict","set"],"answer":2},
+      {"q":"Kết quả của len([1,2,3]) là gì?","choices":["2","3","4","error"],"answer":1},
+      {"q":"NumPy array chủ yếu hữu ích vì gì?","choices":["chỉ lưu chuỗi","tính toán vector hóa trên mảng","thay SQL","chạy browser"],"answer":1}
+    ],
+    "oop":[
+      {"q":"Encapsulation trong OOP nhằm mục tiêu chính nào?","choices":["xóa mọi class","đóng gói trạng thái và hành vi, kiểm soát truy cập","thay database","tăng số global variable"],"answer":1},
+      {"q":"Inheritance cho phép gì?","choices":["class con tái sử dụng/mở rộng class cha","hàm không có tham số","database join","xóa object"],"answer":0},
+      {"q":"Polymorphism gần nhất với ý nào?","choices":["một interface, nhiều cách triển khai","một biến duy nhất","chỉ dùng static method","không dùng class"],"answer":0}
+    ],
+    "algorithms-data-structures":[
+      {"q":"Binary search trên mảng đã sắp xếp có độ phức tạp thời gian trung bình nào?","choices":["O(1)","O(log n)","O(n)","O(n²)"],"answer":1},
+      {"q":"Stack tuân theo nguyên tắc nào?","choices":["FIFO","LIFO","random","priority only"],"answer":1},
+      {"q":"Queue tuân theo nguyên tắc nào?","choices":["FIFO","LIFO","binary","recursive only"],"answer":0}
+    ],
+    "sql-databases":[
+      {"q":"Lệnh SQL nào dùng để lấy dữ liệu?","choices":["SELECT","DROP","COMMIT","ALTER only"],"answer":0},
+      {"q":"PRIMARY KEY có mục đích chính nào?","choices":["cho phép mọi dòng trùng nhau","định danh duy nhất bản ghi","chỉ để sắp xếp giao diện","xóa foreign key"],"answer":1},
+      {"q":"JOIN dùng để làm gì?","choices":["kết hợp dữ liệu từ các bảng theo quan hệ","nén file","vẽ biểu đồ","tạo vòng lặp"],"answer":0}
+    ],
+    "markov-chains":[
+      {"q":"Tính Markov phát biểu gần nhất với điều nào?","choices":["tương lai phụ thuộc toàn bộ lịch sử","trạng thái kế tiếp phụ thuộc trạng thái hiện tại theo mô hình","mọi trạng thái có xác suất bằng nhau","không có xác suất"],"answer":1},
+      {"q":"Mỗi hàng của ma trận chuyển xác suất chuẩn thường có tổng bằng?","choices":["0","1","n","không cố định"],"answer":1},
+      {"q":"Phân phối dừng π thỏa quan hệ nào với ma trận chuyển P?","choices":["πP=π","π+P=0","P=0","πP=I"],"answer":0}
+    ],
+    "queueing-theory":[
+      {"q":"Trong ký hiệu M/M/1, số 1 thường chỉ gì?","choices":["một khách hàng","một server","một hàng đợi hữu hạn","một phút"],"answer":1},
+      {"q":"Nếu tốc độ đến λ lớn hơn tốc độ phục vụ μ trong M/M/1 lâu dài thì điều gì xảy ra?","choices":["hệ ổn định","hàng đợi có xu hướng tăng không giới hạn","không có khách","μ tự tăng"],"answer":1},
+      {"q":"Little's Law có dạng nào?","choices":["L=λW","L=W/λ","λ=L+W","L=μW²"],"answer":0}
+    ]
+  }
+}
