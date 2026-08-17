@@ -1,0 +1,67 @@
+'use strict';
+(function(){
+  const d=window.BAUMAN_DATA;if(!d)return;
+  const stage=id=>(d.stages||[]).find(x=>x.id===id);
+  const course=id=>(d.courses||[]).find(x=>x.id===id);
+  const prepare=stage('prepare');
+  if(prepare){
+    prepare.period='Từ 09/2026 · đến khi vào dự bị (mốc chỉnh được)';
+    prepare.load='Khởi động thích nghi · ưu tiên tiếng Nga, phục hồi nền và Python bridge';
+    prepare.goal='Bắt đầu tiếng Nga từ ZERO; diagnostic kiến thức HUTECH đã ngủ; dùng nền LabVIEW/IoT/xử lý ảnh làm cầu sang Python, Data và AI.';
+  }
+  const prep=stage('preparatory');
+  if(prep){
+    prep.period='Dự kiến từ 11/2026 · ngày thực tế sẽ cập nhật';
+    prep.goal='Ưu tiên tiếng Nga dự bị; chuyển dần từ hỗ trợ tiếng Việt sang Russian-first theo năng lực thật, đồng thời duy trì kỹ thuật theo nhịp nhẹ.';
+  }
+  const bauman=stage('bauman');
+  if(bauman){
+    bauman.period='Theo lịch nhập học chính thức · chưa khóa cứng';
+    bauman.goal='Học ИУ-5 bằng Russian immersion thích nghi; tập trung CS/Data/AI/Systems/НИР, chỉ phục hồi Control/điện khi thật sự cần.';
+  }
+  const p1=course('p1');
+  if(p1){
+    p1.name='Tiếng Nga ZERO → A0/A1: nghe, nói, phát âm và lớp học';
+    p1.ru='Самоподготовка: русский язык с нуля';
+    p1.hours='hằng ngày · ưu tiên cao nhất';
+    p1.assessment='nghe-nói + retrieval hằng tuần';
+    p1.deliverable='Nhật ký nghe-nói + cụm dùng thật + thuật ngữ kỹ thuật theo môn đang học';
+    p1.note='Không ép A2 trước dự bị. 6–8 tuần đầu ưu tiên 60–70% nghe, nói, video; bảng chữ cái, âm và câu sinh tồn đi từ ZERO.';
+    p1.competencies=['Nhận diện 33 chữ Cyrillic và âm chính','Nghe câu lệnh lớp học cơ bản','Phản xạ hỏi/đáp sinh tồn','Đọc thuật ngữ kỹ thuật quen thuộc'];
+  }
+  const p2=course('p2');
+  if(p2){
+    p2.name='Phục hồi Toán cho AI theo diagnostic';
+    p2.ru='Реактивация математики по диагностике';
+    p2.hours='3–5h/tuần, thay đổi theo diagnostic';
+    p2.assessment='diagnostic + bài tập phục hồi';
+    p2.deliverable='Bản đồ ZERO/DORMANT/FUNCTIONAL + sổ lỗi + bài ứng dụng Python';
+    p2.note='Không học lại Toán cao cấp tuần tự. Ưu tiên Linear Algebra, Calculus thiết yếu, ODE và Probability/Statistics; Fourier/Laplace/Z chỉ kích hoạt khi cần.';
+  }
+  const p3=course('p3');
+  if(p3){
+    p3.name='Python technical bridge: từ LabVIEW/IoT/xử lý ảnh sang Python, OOP, SQL';
+    p3.ru='Технический мост: Python, ООП, SQL';
+    p3.hours='5–7h/tuần';
+    p3.assessment='mini project theo module hệ thống hiện có';
+    p3.deliverable='Viết lại một pipeline quen thuộc bằng Python/OpenCV + cấu trúc OOP + lưu SQL';
+    p3.note='Tránh bài nhập môn xa thực tế. Mỗi kỹ năng mới phải nối với bài toán camera, IoT, acquisition hoặc xử lý ảnh đã quen.';
+  }
+  const p4=course('p4');
+  if(p4){
+    p4.name='Data/ML bridge sau khi đủ Python + Toán lõi';
+    p4.hours='2–4h/tuần sau prerequisite gate';
+    p4.note='Không học ML sớm nếu Python/OOP, Linear Algebra hoặc Probability chưa Functional.';
+  }
+  const russian=(d.subjects||[]).find(x=>x.id==='russian');
+  if(russian){
+    russian.name='Tiếng Nga ZERO → học thuật & chuyên ngành';
+    russian.desc='Bắt đầu từ chữ cái/âm/nghe-nói sinh tồn, sau đó chuyển dần sang Russian for Engineering, lecture, seminar, báo cáo và bảo vệ.';
+    russian.main='Môn sống còn và là lớp ngôn ngữ bao phủ mọi môn khác; hỗ trợ tiếng Việt/phiên âm phải tự rút dần theo năng lực.';
+  }
+  const math=(d.subjects||[]).find(x=>x.id==='math');
+  if(math)math.main='Kiến thức HUTECH cũ được coi là Dormant: diagnostic trước, phục hồi đúng lỗ hổng, sau đó nối sang AI/Data/Systems.';
+  const programming=(d.subjects||[]).find(x=>x.id==='programming');
+  if(programming)programming.main='Ưu tiên khoảng trống thực tế: Python/OOP/Algorithms/SQL/Linux; tận dụng LabVIEW/IoT/xử lý ảnh để giảm thời gian học lại từ số 0.';
+  window.BAUMAN_BASELINE_OVERRIDE_VERSION='1.0.0';
+})();
