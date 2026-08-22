@@ -16,6 +16,15 @@
     A.dataSourceMeta[name]=Object.assign({},A.dataSourceMeta[name]||{},{required:false,lazy:true,lazyPolicy:'load-on-feature-entry'});
   });
 
+  function sourceForState(state){
+    state=state&&typeof state==='object'?state:{};
+    if(state.view==='vocab')return 'vocab';
+    if(state.view==='learning'&&state.learnTab==='practice')return 'speaking';
+    if(state.view==='learning'&&(state.learnTab==='review'||state.learnTab==='exam'||state.learnTab==='tests'))return 'tests';
+    if(state.view==='storage'&&heavy.indexOf(state.storageFile)>=0)return state.storageFile;
+    return '';
+  }
+
   function requestedSource(target){
     if(!target||!target.dataset)return '';
     if(target.dataset.view==='vocab')return 'vocab';
@@ -46,14 +55,34 @@
     },0);
   }
 
+  function restoreSavedActiveSource(){
+    try{
+      var storage=window.BaumanSubjectStorage&&window.BaumanSubjectStorage.forSubject(A.id||'russian');
+      var saved=storage&&storage.getJSON?storage.getJSON(A.storageKey||'bauman_russian_survival_master_v11_clean_skeleton',{}):{};
+      askCoreToLoad(sourceForState(saved));
+    }catch(_){ }
+  }
+
   document.addEventListener('click',function(event){
     var target=event.target&&event.target.closest&&event.target.closest('[data-view],[data-learn],[data-storage],[data-route]');
     askCoreToLoad(requestedSource(target));
   },true);
 
+  if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',function(){setTimeout(restoreSavedActiveSource,0);});
+  else setTimeout(restoreSavedActiveSource,0);
+
   window.BAUMAN_RUSSIAN_V1341_LAZY={
     release:RELEASE,
     heavySources:heavy.slice(),
-    selfCheck:function(){return {ok:true,release:RELEASE,dataFiles:A.dataFiles.slice(),optionalDataFiles:A.optionalDataFiles.slice(),heavy:heavy.slice()};}
+    sourceForState:sourceForState,
+    selfCheck:function(){
+      return {
+        ok:heavy.every(function(name){return A.dataFiles.indexOf(name)<0&&A.optionalDataFiles.indexOf(name)>=0&&A.dataSourceMeta[name]&&A.dataSourceMeta[name].lazy===true;}),
+        release:RELEASE,
+        dataFiles:A.dataFiles.slice(),
+        optionalDataFiles:A.optionalDataFiles.slice(),
+        heavy:heavy.slice()
+      };
+    }
   };
 })();
