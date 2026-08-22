@@ -1,12 +1,13 @@
 'use strict';
 
-const VERSION='2026.08.13-l5.1';
+const VERSION='2026.08.22-l5.2';
 const CACHE_NAME=`bauman-shell-${VERSION}`;
 const SHELL=[
   './',
   './index.html',
   './assets/css/main.css',
   './assets/js/platform/runtime-config.js',
+  './assets/js/platform/site-runtime.js',
   './assets/js/platform/storage-adapter.js',
   './assets/js/platform/state-schema.js',
   './assets/js/platform/main-state-repository.js',
@@ -14,8 +15,8 @@ const SHELL=[
   './assets/js/platform/personal-learning-migrator.js',
   './assets/js/platform/personal-learning-repository.js',
   './assets/js/platform/personal-learning-bootstrap.js',
-  './assets/js/platform/site-runtime.js',
   './assets/js/platform/platform-bootstrap.js',
+  './assets/js/platform/site-routing-bridge.js',
   './assets/js/data.js',
   './assets/js/main.js',
   './assets/js/planning-main.js'
@@ -38,6 +39,7 @@ self.addEventListener('install',(event)=>{
         if(response.ok)await cache.put(path,response.clone());
       }catch(_){ }
     }));
+    await self.skipWaiting();
   })());
 });
 
