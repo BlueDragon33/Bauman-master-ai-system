@@ -26,11 +26,17 @@ jobs:
       - name: Syntax check L5 modules
         run: |
           node --check assets/js/platform/site-runtime.js
+          node --check assets/js/platform/site-routing-bridge.js
           node --check service-worker.js
           node --check subjects/math/assets/theory_skin/theory-legacy-route-E246.js
           node --check subjects/russian/assets/lazy-heavy-data-v1341.js
           node --check scripts/migration/l5-data-loading-audit.cjs
+          node --check scripts/migration/l5-static-routing-audit.cjs
           node --check scripts/migration/l5-browser-network-regression.cjs
+          node --check scripts/migration/l5-responsive-regression.cjs
+
+      - name: Audit static paths cache and routing
+        run: node scripts/migration/l5-static-routing-audit.cjs
 
       - name: Audit large JSON loading policy
         run: node scripts/migration/l5-data-loading-audit.cjs
@@ -48,12 +54,18 @@ jobs:
           sleep 1
           node scripts/migration/l5-browser-network-regression.cjs
 
-      - name: Upload browser network report
+      - name: Responsive and runtime routing regression
+        run: node scripts/migration/l5-responsive-regression.cjs
+
+      - name: Upload L5 generated reports
         if: always()
         uses: actions/upload-artifact@v4
         with:
-          name: l5-browser-network-report
-          path: docs/migration/L5_BROWSER_NETWORK_REGRESSION.generated.json
+          name: l5-runtime-regression-reports
+          path: |
+            docs/migration/L5_STATIC_ROUTING_AUDIT.generated.json
+            docs/migration/L5_BROWSER_NETWORK_REGRESSION.generated.json
+            docs/migration/L5_RESPONSIVE_REGRESSION.generated.json
           if-no-files-found: warn
           retention-days: 7
 
