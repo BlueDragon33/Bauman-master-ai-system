@@ -4,13 +4,16 @@ on:
   push:
     branches:
       - migration/webapp-l1-audit-storage
+  pull_request:
+    branches:
+      - main
   workflow_dispatch:
 
 permissions:
   contents: write
 
 concurrency:
-  group: migration-l5-site-runtime-${{ github.ref }}
+  group: migration-l5-site-runtime-${{ github.event_name }}-${{ github.ref }}
   cancel-in-progress: true
 
 jobs:
@@ -63,13 +66,21 @@ jobs:
       - name: Responsive and runtime routing regression
         run: node scripts/migration/l5-responsive-regression.cjs
 
+      - name: Record durable L5 CI result
+        if: always()
+        env:
+          L5_JOB_STATUS: ${{ job.status }}
+        run: node scripts/migration/l5-record-ci-result.cjs
+
       - name: Upload L5 generated reports
         if: always()
         uses: actions/upload-artifact@v4
         with:
           name: l5-runtime-regression-reports
           path: |
+            docs/migration/L5_CI_RESULT.generated.json
             docs/migration/L5_STATIC_ROUTING_AUDIT.generated.json
+            docs/migration/L5_DATA_LOADING_AUDIT.generated.md
             docs/migration/L5_BROWSER_NETWORK_REGRESSION.generated.json
             docs/migration/L5_RESPONSIVE_REGRESSION.generated.json
           if-no-files-found: warn
@@ -83,14 +94,8 @@ jobs:
             git diff --exit-code -- docs/migration/L5_DATA_LOADING_AUDIT.generated.md || true
           fi
 
-      - name: Record durable L5 CI result
-        if: always()
-        env:
-          L5_JOB_STATUS: ${{ job.status }}
-        run: node scripts/migration/l5-record-ci-result.cjs
-
       - name: Commit durable L5 CI checkpoint
-        if: always()
+        if: ${{ always() && github.event_name == 'push' }}
         shell: bash
         run: |
           git config user.name "github-actions[bot]"
