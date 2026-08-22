@@ -27,6 +27,8 @@ jobs:
         run: |
           node --check assets/js/platform/site-runtime.js
           node --check service-worker.js
+          node --check subjects/math/assets/theory_skin/theory-legacy-route-E246.js
+          node --check subjects/russian/assets/lazy-heavy-data-v1341.js
           node --check scripts/migration/l5-data-loading-audit.cjs
           node --check scripts/migration/l5-browser-network-regression.cjs
 
@@ -41,7 +43,7 @@ jobs:
       - name: Start local static server
         run: python3 -m http.server 4173 --bind 127.0.0.1 > /tmp/bauman-l5-http.log 2>&1 &
 
-      - name: Browser startup network regression
+      - name: Browser startup and deferred interaction regression
         run: |
           sleep 1
           node scripts/migration/l5-browser-network-regression.cjs
