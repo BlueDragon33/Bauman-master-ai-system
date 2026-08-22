@@ -3,7 +3,7 @@
 Baseline: `main`
 Working branch đầu tiên: `migration/webapp-l1-audit-storage`
 
-Kế hoạch hiện tại trong Lượt 5: **14 lượt · 107 bước**. Ban đầu là 88 bước; Lượt 2 phát sinh thêm 3 bước, Lượt 3 thêm 9 bước, Lượt 4 thêm 3 bước và Lượt 5 thêm 4 bước do audit/test tìm thấy rủi ro thật. Số lượt/bước được phép tăng tiếp khi audit/test phát hiện vấn đề mới. Không giảm bước chỉ để rút ngắn tiến độ.
+Kế hoạch hiện tại trong Lượt 5: **14 lượt · 110 bước**. Ban đầu là 88 bước; Lượt 2 phát sinh thêm 3 bước, Lượt 3 thêm 9 bước, Lượt 4 thêm 3 bước và Lượt 5 hiện thêm 7 bước do audit/test tìm thấy rủi ro thật. Số lượt/bước được phép tăng tiếp khi audit/test phát hiện vấn đề mới. Không giảm bước chỉ để rút ngắn tiến độ.
 
 ## Lượt 1 · Audit toàn hệ thống · 15 bước
 
@@ -55,9 +55,9 @@ Trạng thái: **PASS**. Báo cáo chi tiết ở `L4_PERSONAL_LEARNING_STATE_RE
 7. Bước phát sinh: bootstrap OFF-by-default và wire vào main entry mà không tự tạo shadow.
 8. Bước phát sinh: sửa CI guard dùng sai baseline, thêm bootstrap/index regression và checkpoint L3 guard.
 
-## Lượt 5 · Site runtime và data loading · 9 bước
+## Lượt 5 · Site runtime và data loading · 12 bước
 
-Trạng thái: **IN PROGRESS**. L5 CI đã phát hiện false positive trong công cụ audit lazy-load; không được chuyển sang L6 trước khi toàn bộ gate L5 PASS.
+Trạng thái: **IN PROGRESS**. Static audit đã được sửa false positive; browser gate sau đó phát hiện eager-load thật ở Math/Russian. Không được chuyển sang L6 trước khi toàn bộ gate L5 PASS.
 
 1. Chuẩn hóa static serving paths.
 2. Lazy-load data lớn theo môn/tab.
@@ -67,7 +67,10 @@ Trạng thái: **IN PROGRESS**. L5 CI đã phát hiện false positive trong cô
 6. Bước phát sinh L5-A1: phân biệt catalog metadata, declared-initial metadata và request thật của browser; không coi `adapter.dataFiles` là startup network load.
 7. Bước phát sinh L5-A2: dựng static entry-graph audit từ `subjects/*/index.html` và các script được nạp trực tiếp; giữ nguyên dữ liệu học thuật.
 8. Bước phát sinh L5-A3: bổ sung browser/network regression làm nguồn authoritative cho startup payload và lazy-load behavior.
-9. Bước phát sinh L5-A4: chạy lại L5 CI, sửa toàn bộ lỗi thật còn lại, ghi báo cáo root cause/rollback trước khi đóng lượt.
+9. Bước phát sinh L5-A4: browser gate phát hiện eager-load thật; tách Math `lessons.json` legacy và Russian `vocab/tests/speaking` khỏi startup mà không sửa byte học liệu.
+10. Bước phát sinh L5-A5: nâng GitHub Actions runtime lên Node 24 và gate syntax cho các module deferred-loader mới.
+11. Bước phát sinh L5-A6: regression hai chiều, vừa cấm JSON lớn lúc startup vừa bắt buộc nguồn deferred phải tải khi người học mở đúng chức năng/Refresh.
+12. Bước phát sinh L5-A7: khôi phục deferred source theo Personal Learning State đã lưu khi reload trực tiếp vào Vocab/Practice/Review/Exam/Storage; chạy lại toàn bộ L5 CI, ghi root cause/rollback report rồi mới đóng lượt.
 
 ## Lượt 6 · Backend/API shell · 6 bước
 
