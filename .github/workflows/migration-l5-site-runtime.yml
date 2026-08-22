@@ -7,10 +7,15 @@ on:
   workflow_dispatch:
 
 permissions:
-  contents: read
+  contents: write
+
+concurrency:
+  group: migration-l5-site-runtime-${{ github.ref }}
+  cancel-in-progress: true
 
 jobs:
   l5-site-runtime:
+    if: ${{ github.event_name != 'push' || !startsWith(github.event.head_commit.message, 'ci(migration): record L5 result') }}
     runs-on: ubuntu-latest
     steps:
       - name: Checkout repository
@@ -34,6 +39,7 @@ jobs:
           node --check scripts/migration/l5-static-routing-audit.cjs
           node --check scripts/migration/l5-browser-network-regression.cjs
           node --check scripts/migration/l5-responsive-regression.cjs
+          node --check scripts/migration/l5-record-ci-result.cjs
 
       - name: Audit static paths cache and routing
         run: node scripts/migration/l5-static-routing-audit.cjs
@@ -76,3 +82,26 @@ jobs:
           if [ -f docs/migration/L5_DATA_LOADING_AUDIT.generated.md ]; then
             git diff --exit-code -- docs/migration/L5_DATA_LOADING_AUDIT.generated.md || true
           fi
+
+      - name: Record durable L5 CI result
+        if: always()
+        env:
+          L5_JOB_STATUS: ${{ job.status }}
+        run: node scripts/migration/l5-record-ci-result.cjs
+
+      - name: Commit durable L5 CI checkpoint
+        if: always()
+        shell: bash
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add docs/migration/L5_CI_RESULT.generated.json
+          git add docs/migration/L5_STATIC_ROUTING_AUDIT.generated.json 2>/dev/null || true
+          git add docs/migration/L5_BROWSER_NETWORK_REGRESSION.generated.json 2>/dev/null || true
+          git add docs/migration/L5_RESPONSIVE_REGRESSION.generated.json 2>/dev/null || true
+          git add docs/migration/L5_DATA_LOADING_AUDIT.generated.md 2>/dev/null || true
+          if git diff --cached --quiet; then
+            exit 0
+          fi
+          git commit -m "ci(migration): record L5 result for ${GITHUB_SHA::12}"
+          git push
