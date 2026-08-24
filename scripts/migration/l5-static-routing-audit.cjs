@@ -66,7 +66,11 @@ const requiredMainScripts=[
   'assets/js/main.js',
   'assets/js/platform/academic-runtime-v3-bridge.js',
   'assets/js/platform/academic-roadmap-v3-bridge.js',
-  'assets/js/platform/site-routing-bridge.js'
+  'assets/js/platform/site-routing-bridge.js',
+  'assets/js/platform/offline-direct-file-reader.js',
+  'assets/js/platform/offline-subject-pack-manager.js',
+  'assets/js/platform/runtime-self-diagnostics.js',
+  'assets/js/planning-main.js'
 ];
 let previous=-1;
 for(const script of requiredMainScripts){
@@ -75,6 +79,7 @@ for(const script of requiredMainScripts){
   if(index>=0&&index<=previous)failures.push(`index.html: runtime script order invalid around ${script}`);
   if(index>=0)previous=index;
 }
+if(!rootHtml.includes('href="assets/css/runtime-diagnostics.css"'))failures.push('index.html: runtime diagnostics stylesheet not wired.');
 
 const runtime=fs.readFileSync('assets/js/platform/site-runtime.js','utf8');
 const worker=fs.readFileSync('service-worker.js','utf8');
@@ -83,10 +88,13 @@ const workerVersion=(worker.match(/const VERSION='([^']+)'/)||[])[1]||'';
 if(!runtimeVersion||!workerVersion)failures.push('Cannot read L5 runtime/cache version markers.');
 if(runtimeVersion!==workerVersion)failures.push(`Runtime/service-worker version mismatch: ${runtimeVersion} vs ${workerVersion}`);
 for(const asset of [
+  './assets/css/runtime-diagnostics.css',
   './assets/js/academic-data-v3.js',
   './assets/js/platform/academic-runtime-v3-bridge.js',
   './assets/js/platform/academic-roadmap-v3-bridge.js',
-  './assets/js/platform/site-routing-bridge.js'
+  './assets/js/platform/site-routing-bridge.js',
+  './assets/js/platform/offline-direct-file-reader.js',
+  './assets/js/platform/runtime-self-diagnostics.js'
 ]){
   if(!worker.includes(`'${asset}'`))failures.push(`service-worker.js: shell asset missing ${asset}`);
 }
@@ -99,6 +107,9 @@ if(!/serviceWorkerCache:\s*false/.test(config))warnings.push('serviceWorkerCache
 const academicData=fs.readFileSync('assets/js/academic-data-v3.js','utf8');
 if(!/09\.04\.01\/11/.test(academicData)||!/ИУ-5/.test(academicData))failures.push('academic-data-v3.js: expected ИУ-5 · 09.04.01/11 identity missing.');
 if(/hutech/i.test(academicData))failures.push('academic-data-v3.js: comparison-school label is forbidden in Bauman-only runtime.');
+
+const diagnostics=fs.readFileSync('assets/js/platform/runtime-self-diagnostics.js','utf8');
+if(!/BaumanRuntimeSelfDiagnostics/.test(diagnostics)||!/DOM_FAIL=6000/.test(diagnostics))failures.push('runtime-self-diagnostics.js: expected diagnostic contract or DOM budget missing.');
 
 const main=fs.readFileSync('assets/js/main.js','utf8');
 for(const id of ['russian','math','programming','ai','systems','signal','research','foundation']){
