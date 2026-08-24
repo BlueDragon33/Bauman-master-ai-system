@@ -1,6 +1,6 @@
 'use strict';
 
-const VERSION='2026.08.24-l5.5';
+const VERSION='2026.08.24-l5.6';
 const CACHE_NAME=`bauman-shell-${VERSION}`;
 const OFFLINE_CONTENT_CACHE='bauman-offline-content-v1';
 const ROADMAP_MANIFEST='./assets/data/roadmap/iu5-090401-11-v3.json';
@@ -46,17 +46,28 @@ function cacheEligible(url){
   return /\.(?:html?|css|js|svg|png|jpg|jpeg|webp|ico)$/.test(path)||path.endsWith('/');
 }
 
+function canonicalRequestUrl(urlLike){
+  const url=new URL(urlLike,self.location.href);
+  url.hash='';
+  url.search='';
+  return url.href;
+}
+
 async function explicitOfflineMatch(request){
   const url=new URL(request.url);
   if(url.origin!==self.location.origin)return null;
   const cache=await caches.open(OFFLINE_CONTENT_CACHE);
-  let cached=await cache.match(request,{ignoreSearch:false});
-  if(cached)return cached;
-  if(url.search){
-    url.search='';
-    cached=await cache.match(url.href,{ignoreSearch:false});
-  }
-  return cached||null;
+  return (await cache.match(request,{ignoreSearch:false}))||(await cache.match(canonicalRequestUrl(url.href),{ignoreSearch:false}))||null;
+}
+
+async function revalidateExplicit(request){
+  try{
+    const response=await fetch(request,{cache:'no-cache'});
+    if(!response||!response.ok)return false;
+    const cache=await caches.open(OFFLINE_CONTENT_CACHE);
+    await cache.put(canonicalRequestUrl(request.url),response.clone());
+    return true;
+  }catch(_){return false;}
 }
 
 self.addEventListener('install',(event)=>{
@@ -92,7 +103,10 @@ self.addEventListener('fetch',(event)=>{
 
   event.respondWith((async()=>{
     const explicit=await explicitOfflineMatch(request);
-    if(explicit)return explicit;
+    if(explicit){
+      event.waitUntil(revalidateExplicit(request));
+      return explicit;
+    }
 
     if(!cacheEligible(url)){
       try{return await fetch(request);}catch(_){return Response.error();}
