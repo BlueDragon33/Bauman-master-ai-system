@@ -11,31 +11,27 @@ Main sync status: `branch_only`
 
 Files changed:
 - `.github/workflows/migration-l6-academic.yml`
-- `assets/data/lesson/visual-teaching-contract-v1.json`
-- `docs/migration/L6_B6_VISUAL_TEACHING_CONTRACT.md`
-- `docs/migration/L6_B6_VISUAL_TEACHING_REGRESSION.generated.json`
-- `scripts/academic/l6-b6-visual-teaching-regression.cjs`
+- `assets/data/lesson/language-layer-hooks-v1.json`
+- `docs/migration/L6_B7_LANGUAGE_LAYER_HOOKS.md`
+- `docs/migration/L6_B7_LANGUAGE_LAYER_REGRESSION.generated.json`
+- `scripts/academic/l6-b7-language-layer-regression.cjs`
 - `docs/migration/MIGRATION_PLAN.md`
 - `CODEX_STATE.md`
 
 What changed:
-- Locked L6-B5 after GitHub Actions run `32715744137` reported B1-B5 contexts
-  successful at commit `73f70e99…`.
-- Defined 11 shared learning roles, ten representation families and exact
-  visual profiles for all eight lesson types without fixed tabs or a generic
-  specialist replacement.
-- Defined step-state transitions, non-binary outcomes, deterministic
-  interactions, one-primary-error feedback and separate practice/formal
-  disclosure boundaries.
-- Required responsive, keyboard, non-color, reduced-motion, structured
-  fallback, offline, provenance and resource metadata behavior.
-- Kept Bơi pedagogy at the flow/checkpoint/repair level and preserved Russian
-  and Mathematics as read-only unprojected reference engines.
-- Manual audit added conditional-null rules for generic family renderers,
-  correct outcomes and repair feedback.
-- Added the deterministic B6 gate and B6 commit-status context.
 - Locked L6-B6 after GitHub Actions run `32717062541` reported B1-B6 contexts
   successful at commit `39dc6f08…`.
+- Defined latent source-aligned Russian Twin and English Research hooks without
+  translated navigation, duplicate lesson progress or automatic activation.
+- Defined explicit language roles, alignment/glossary/protected-token
+  provenance, progressive rescue, assessment and Master-ready boundaries.
+- Added eight Russian and eight English modes plus exact hook profiles for all
+  eight lesson types using only registered B4 evidence outputs.
+- Bounded review authority: AI can create only unreviewed drafts; source,
+  curator, instructor and integrity actors have distinct status permissions.
+- Preserved Russian 26/26 titles, Research 45 eLearning lessons and Roadmap V3
+  Russian/research priority hooks as read-only references.
+- Added the deterministic B7 gate and B7 commit-status context.
 - Did not change learner content, subject runtime, storage, offline policy,
   service worker or `main`.
 
@@ -50,9 +46,10 @@ Verification:
 - L6-B5 GitHub Actions run `32715744137`: PASS
 - L6-B6 deterministic visual-teaching regression, 75/75 checks: PASS
 - L6-B6 GitHub Actions run `32717062541`: PASS
-- B1-B6 report hashes stable over consecutive runs: PASS
-- B6 mutation tests (type coverage, focused feedback, assessment disclosure,
-  accessibility), 4/4 expected failures observed: PASS
+- L6-B7 deterministic language-layer regression, 96/96 checks: PASS
+- B1-B7 report hashes stable over consecutive runs: PASS
+- B7 mutation tests (activation, review authority, English coverage,
+  rescue evidence, assessment leakage), 5/5 expected failures observed: PASS
 - Workflow YAML parse: PASS
 - Russian/Mathematics runtime and content diff: NONE
 - L5 static routing, 9/9: PASS
@@ -62,8 +59,8 @@ Verification:
 - L5 data-loading audit, 8 subjects and 0 failures: PASS
 - L5 runtime diagnostics, 14/14: PASS
 - L5 offline-report integrity, 5/5 with one expected sandbox block: PASS
-- Bơi reference URL + three B1 hashes: MATCH
-- GitHub Actions L6-B6 gate: PASS
+- Russian 26/26, Research 45/45 eLearning v1.1, Roadmap hook signals: PASS
+- GitHub Actions L6-B7 gate: PENDING
 
 Main sync / pull instruction:
 - The work is branch-only on `migration/webapp-l1-audit-storage`.
@@ -71,16 +68,16 @@ Main sync / pull instruction:
 - Do not merge to `main` until the corresponding L6 gates pass.
 
 Next recommended task:
-- Audit and implement latent Russian Twin + English Research Layer hooks in
-  `L6-B7_RUSSIAN_TWIN_ENGLISH_RESEARCH_HOOKS` without forcing translated UI.
+- Wait for the L6-B7 GitHub Actions gate; after PASS, start
+  `L6-B8_LESSON_SCHEMA_VALIDATOR_MIGRATION`.
 
 Next actor:
 - Codex
 
 Codex required:
 - yes
-- Reason: remote CI verification, multilingual hook contract design,
-  schema/validator implementation, legacy compatibility audit and regression.
+- Reason: remote CI verification, JSON Schema and version-migration design,
+  legacy compatibility audit, fixtures and deterministic regression.
 
 ChatGPT can do:
 - Targeted content/schema review and small documentation-only corrections on

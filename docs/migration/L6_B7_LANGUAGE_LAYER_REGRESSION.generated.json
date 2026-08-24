@@ -1,0 +1,2001 @@
+{
+  "schema": "L6_B7_LANGUAGE_LAYER_REGRESSION_V1",
+  "contractId": "bauman-language-layer-hooks",
+  "contractVersion": "1.0.0",
+  "universalContractVersion": "2.0.0",
+  "typeRegistryVersion": "1.0.0",
+  "masterReadyPolicyVersion": "1.0.0",
+  "visualTeachingContractVersion": "1.0.0",
+  "roadmapVersion": "3.0.0",
+  "activation": {
+    "declarationRound": "L6-B7",
+    "fullLearnerUiRound": "L12",
+    "defaultState": "declared",
+    "defaultVisibility": "hidden-until-resolved",
+    "autoActivate": false,
+    "states": [
+      "declared",
+      "available",
+      "recommended",
+      "active",
+      "deferred",
+      "unavailable"
+    ],
+    "authorizedActivators": [
+      "learner-explicit-choice",
+      "instructor-assignment",
+      "deterministic-study-plan"
+    ],
+    "recommendationActors": [
+      "deterministic-context-resolver",
+      "ai-advisory"
+    ]
+  },
+  "languageCodes": [
+    "vi",
+    "ru",
+    "en"
+  ],
+  "alignmentReviewStatuses": [
+    "unreviewed-ai-draft",
+    "source-aligned",
+    "instructor-reviewed",
+    "official-source-original",
+    "needs-repair"
+  ],
+  "protectedTokenCategories": [
+    "code-identifier",
+    "api-symbol",
+    "sql-keyword",
+    "formula-symbol",
+    "dataset-field",
+    "citation-key",
+    "file-path",
+    "version-id",
+    "official-program-code",
+    "official-course-title"
+  ],
+  "russianTwinModes": [
+    "technical-terminology",
+    "concept-twin",
+    "worked-step-narration",
+    "classroom-dialogue",
+    "lab-report-language",
+    "error-repair-language",
+    "oral-defense",
+    "nir-vkr-register"
+  ],
+  "englishResearchModes": [
+    "search-query",
+    "paper-reading",
+    "claim-evidence-annotation",
+    "methods-results-language",
+    "citation-paraphrase-boundary",
+    "scientific-writing",
+    "conference-defense",
+    "reproducibility-readme"
+  ],
+  "exposureLevels": [
+    "hidden",
+    "term-only",
+    "term-plus-rescue",
+    "aligned-snippet",
+    "guided-output",
+    "independent-output"
+  ],
+  "profileSummaries": {
+    "language": {
+      "russianTwinModes": [
+        "technical-terminology",
+        "concept-twin",
+        "worked-step-narration",
+        "classroom-dialogue",
+        "lab-report-language",
+        "error-repair-language",
+        "oral-defense",
+        "nir-vkr-register"
+      ],
+      "englishResearchModes": [
+        "search-query",
+        "paper-reading",
+        "citation-paraphrase-boundary",
+        "scientific-writing",
+        "conference-defense"
+      ],
+      "masteryProjectionRefs": [
+        "comprehension-response",
+        "dialogue-turn",
+        "oral-response",
+        "written-response"
+      ],
+      "protectedTokenCategories": [
+        "official-program-code",
+        "official-course-title",
+        "citation-key"
+      ],
+      "activationNotes": "Russian may be the primary lesson objective here; English Research remains a scoped research-language companion unless the lesson objective explicitly targets English.",
+      "errors": []
+    },
+    "mathematics": {
+      "russianTwinModes": [
+        "technical-terminology",
+        "concept-twin",
+        "worked-step-narration",
+        "error-repair-language",
+        "oral-defense"
+      ],
+      "englishResearchModes": [
+        "search-query",
+        "paper-reading",
+        "claim-evidence-annotation",
+        "methods-results-language"
+      ],
+      "masteryProjectionRefs": [
+        "mathematical-solution",
+        "derivation",
+        "result-verification",
+        "oral-response"
+      ],
+      "protectedTokenCategories": [
+        "formula-symbol",
+        "citation-key",
+        "official-program-code"
+      ],
+      "activationNotes": "Language support narrates assumptions, notation, dimensions, derivation and oral defense but never alters the mathematical expression or proof source.",
+      "errors": []
+    },
+    "programming": {
+      "russianTwinModes": [
+        "technical-terminology",
+        "concept-twin",
+        "lab-report-language",
+        "error-repair-language",
+        "oral-defense"
+      ],
+      "englishResearchModes": [
+        "search-query",
+        "paper-reading",
+        "methods-results-language",
+        "reproducibility-readme"
+      ],
+      "masteryProjectionRefs": [
+        "code",
+        "passing-tests",
+        "complexity-explanation",
+        "repository-artifact",
+        "oral-response"
+      ],
+      "protectedTokenCategories": [
+        "code-identifier",
+        "api-symbol",
+        "file-path",
+        "version-id",
+        "citation-key"
+      ],
+      "activationNotes": "Explanations and reports may align across languages, while code identifiers, APIs, paths, versions and executable behavior remain exact.",
+      "errors": []
+    },
+    "database": {
+      "russianTwinModes": [
+        "technical-terminology",
+        "concept-twin",
+        "worked-step-narration",
+        "lab-report-language",
+        "oral-defense"
+      ],
+      "englishResearchModes": [
+        "search-query",
+        "paper-reading",
+        "methods-results-language",
+        "reproducibility-readme"
+      ],
+      "masteryProjectionRefs": [
+        "schema-artifact",
+        "query-result",
+        "transaction-analysis",
+        "query-plan-analysis",
+        "oral-response"
+      ],
+      "protectedTokenCategories": [
+        "sql-keyword",
+        "dataset-field",
+        "code-identifier",
+        "version-id"
+      ],
+      "activationNotes": "Schema, query, transaction and plan explanations may align, while SQL tokens, identifiers, fields and engine version remain protected.",
+      "errors": []
+    },
+    "software-design": {
+      "russianTwinModes": [
+        "technical-terminology",
+        "concept-twin",
+        "lab-report-language",
+        "oral-defense"
+      ],
+      "englishResearchModes": [
+        "search-query",
+        "paper-reading",
+        "claim-evidence-annotation",
+        "scientific-writing",
+        "conference-defense",
+        "reproducibility-readme"
+      ],
+      "masteryProjectionRefs": [
+        "requirements-artifact",
+        "uml-artifact",
+        "architecture-artifact",
+        "tradeoff-record",
+        "oral-defense"
+      ],
+      "protectedTokenCategories": [
+        "code-identifier",
+        "api-symbol",
+        "official-course-title",
+        "citation-key"
+      ],
+      "activationNotes": "Language layers support requirement, architecture, tradeoff and defense language without translating diagram identity or inventing a canonical design.",
+      "errors": []
+    },
+    "ml-data": {
+      "russianTwinModes": [
+        "technical-terminology",
+        "concept-twin",
+        "lab-report-language",
+        "oral-defense"
+      ],
+      "englishResearchModes": [
+        "search-query",
+        "paper-reading",
+        "claim-evidence-annotation",
+        "methods-results-language",
+        "citation-paraphrase-boundary",
+        "scientific-writing",
+        "conference-defense",
+        "reproducibility-readme"
+      ],
+      "masteryProjectionRefs": [
+        "dataset-artifact",
+        "experiment-log",
+        "model-result",
+        "metric-analysis",
+        "error-analysis",
+        "reproducibility-record",
+        "oral-response"
+      ],
+      "protectedTokenCategories": [
+        "dataset-field",
+        "code-identifier",
+        "formula-symbol",
+        "version-id",
+        "citation-key"
+      ],
+      "activationNotes": "English Research is strongly applicable to papers and experiments, but language quality never masks leakage, invalid evaluation or unreproducible results.",
+      "errors": []
+    },
+    "asoiu-system": {
+      "russianTwinModes": [
+        "technical-terminology",
+        "concept-twin",
+        "worked-step-narration",
+        "lab-report-language",
+        "error-repair-language",
+        "oral-defense",
+        "nir-vkr-register"
+      ],
+      "englishResearchModes": [
+        "search-query",
+        "paper-reading",
+        "claim-evidence-annotation",
+        "methods-results-language",
+        "scientific-writing",
+        "conference-defense",
+        "reproducibility-readme"
+      ],
+      "masteryProjectionRefs": [
+        "system-model",
+        "architecture-artifact",
+        "information-flow-analysis",
+        "reliability-analysis",
+        "lifecycle-analysis",
+        "oral-defense"
+      ],
+      "protectedTokenCategories": [
+        "formula-symbol",
+        "dataset-field",
+        "code-identifier",
+        "official-course-title",
+        "citation-key"
+      ],
+      "activationNotes": "Russian supports Bauman system terminology and defense; English supports source and research work while boundaries, states and models remain source-grounded.",
+      "errors": []
+    },
+    "research": {
+      "russianTwinModes": [
+        "technical-terminology",
+        "concept-twin",
+        "classroom-dialogue",
+        "lab-report-language",
+        "error-repair-language",
+        "oral-defense",
+        "nir-vkr-register"
+      ],
+      "englishResearchModes": [
+        "search-query",
+        "paper-reading",
+        "claim-evidence-annotation",
+        "methods-results-language",
+        "citation-paraphrase-boundary",
+        "scientific-writing",
+        "conference-defense",
+        "reproducibility-readme"
+      ],
+      "masteryProjectionRefs": [
+        "research-question",
+        "literature-matrix",
+        "experiment-protocol",
+        "research-note",
+        "result-analysis",
+        "scientific-section",
+        "nir-milestone",
+        "vkr-milestone",
+        "oral-defense"
+      ],
+      "protectedTokenCategories": [
+        "citation-key",
+        "dataset-field",
+        "file-path",
+        "version-id",
+        "official-program-code",
+        "official-course-title"
+      ],
+      "activationNotes": "Russian supports НИР/ВКР work and defense; English Research supports international sources and writing while source integrity and method remain independent critical gates.",
+      "errors": []
+    }
+  },
+  "profileErrors": {
+    "language": [],
+    "mathematics": [],
+    "programming": [],
+    "database": [],
+    "software-design": [],
+    "ml-data": [],
+    "asoiu-system": [],
+    "research": []
+  },
+  "referenceMetrics": {
+    "russianLessons": 26,
+    "russianTitles": 26,
+    "researchLessons": 45,
+    "researchContractVersions": [
+      "elearning-v1.1"
+    ],
+    "researchCurriculumModules": 15
+  },
+  "referenceHashes": {
+    "russian": {
+      "subjects/russian/data/lessons.json": "c8693eeefed17ea39b0cea4a600c9086f1b597ae7174e56bd8b2f8b46b985062",
+      "subjects/russian/assets/subject-adapter.js": "1c6a6930ab06e1510879ed374093016ff721b20fab7bf720a65613e4c411d625",
+      "subjects/russian/subject-manifest.json": "2a4ce2f51454673275c07659112953a15cace9553af148cdb2e537b7315563dd"
+    },
+    "research": {
+      "subjects/research/data/lessons.json": "eb453c78c6a4340c6f4d12aa435adfdfd1ab59b68393586cbcd772742d757d16",
+      "subjects/research/data/curriculum.json": "9e12ee45bbed52fa29deffe199a2edb8782d80f1f3bd5bdb800b4a8a20f0f8ae",
+      "subjects/research/subject-manifest.json": "2318ae4dd6abdd2749277f0e39079ddf5cb4c97f139740ed14d0b1be44051296"
+    }
+  },
+  "checks": [
+    {
+      "id": "FILE-assets/data/lesson/universal-lesson-contract-v2.json",
+      "title": "required B7 input exists",
+      "ok": true,
+      "evidence": "assets/data/lesson/universal-lesson-contract-v2.json"
+    },
+    {
+      "id": "FILE-assets/data/lesson/lesson-type-registry-v1.json",
+      "title": "required B7 input exists",
+      "ok": true,
+      "evidence": "assets/data/lesson/lesson-type-registry-v1.json"
+    },
+    {
+      "id": "FILE-assets/data/lesson/master-ready-policy-v1.json",
+      "title": "required B7 input exists",
+      "ok": true,
+      "evidence": "assets/data/lesson/master-ready-policy-v1.json"
+    },
+    {
+      "id": "FILE-assets/data/lesson/visual-teaching-contract-v1.json",
+      "title": "required B7 input exists",
+      "ok": true,
+      "evidence": "assets/data/lesson/visual-teaching-contract-v1.json"
+    },
+    {
+      "id": "FILE-assets/data/roadmap/iu5-090401-11-v3.json",
+      "title": "required B7 input exists",
+      "ok": true,
+      "evidence": "assets/data/roadmap/iu5-090401-11-v3.json"
+    },
+    {
+      "id": "FILE-assets/data/lesson/language-layer-hooks-v1.json",
+      "title": "required B7 input exists",
+      "ok": true,
+      "evidence": "assets/data/lesson/language-layer-hooks-v1.json"
+    },
+    {
+      "id": "FILE-docs/migration/L6_B7_LANGUAGE_LAYER_HOOKS.md",
+      "title": "required B7 input exists",
+      "ok": true,
+      "evidence": "docs/migration/L6_B7_LANGUAGE_LAYER_HOOKS.md"
+    },
+    {
+      "id": "FILE-subjects/russian/data/lessons.json",
+      "title": "required B7 input exists",
+      "ok": true,
+      "evidence": "subjects/russian/data/lessons.json"
+    },
+    {
+      "id": "FILE-subjects/russian/assets/subject-adapter.js",
+      "title": "required B7 input exists",
+      "ok": true,
+      "evidence": "subjects/russian/assets/subject-adapter.js"
+    },
+    {
+      "id": "FILE-subjects/russian/subject-manifest.json",
+      "title": "required B7 input exists",
+      "ok": true,
+      "evidence": "subjects/russian/subject-manifest.json"
+    },
+    {
+      "id": "FILE-subjects/research/data/lessons.json",
+      "title": "required B7 input exists",
+      "ok": true,
+      "evidence": "subjects/research/data/lessons.json"
+    },
+    {
+      "id": "FILE-subjects/research/data/curriculum.json",
+      "title": "required B7 input exists",
+      "ok": true,
+      "evidence": "subjects/research/data/curriculum.json"
+    },
+    {
+      "id": "FILE-subjects/research/subject-manifest.json",
+      "title": "required B7 input exists",
+      "ok": true,
+      "evidence": "subjects/research/subject-manifest.json"
+    },
+    {
+      "id": "HOOKS-IDENTITY",
+      "title": "language layer contract identity version and status are explicit",
+      "ok": true,
+      "evidence": {
+        "contractId": "bauman-language-layer-hooks",
+        "contractVersion": "1.0.0",
+        "status": "L6-B7-CONTRACT"
+      }
+    },
+    {
+      "id": "UNIVERSAL-REF",
+      "title": "B7 references the exact B2 Universal Lesson language namespace",
+      "ok": true,
+      "evidence": {
+        "path": "assets/data/lesson/universal-lesson-contract-v2.json",
+        "contractId": "bauman-universal-lesson-contract",
+        "schemaVersion": "2.0.0",
+        "extensionNamespace": "language"
+      }
+    },
+    {
+      "id": "REGISTRY-REF",
+      "title": "B7 references the exact B4 lesson type registry",
+      "ok": true,
+      "evidence": {
+        "path": "assets/data/lesson/lesson-type-registry-v1.json",
+        "registryId": "bauman-lesson-type-registry",
+        "registryVersion": "1.0.0"
+      }
+    },
+    {
+      "id": "MASTERY-REF",
+      "title": "B7 references the exact B5 Master-ready policy",
+      "ok": true,
+      "evidence": {
+        "path": "assets/data/lesson/master-ready-policy-v1.json",
+        "policyId": "bauman-master-ready-policy",
+        "policyVersion": "1.0.0"
+      }
+    },
+    {
+      "id": "VISUAL-REF",
+      "title": "B7 references the exact B6 visual teaching contract",
+      "ok": true,
+      "evidence": {
+        "path": "assets/data/lesson/visual-teaching-contract-v1.json",
+        "contractId": "bauman-visual-teaching-contract",
+        "contractVersion": "1.0.0"
+      }
+    },
+    {
+      "id": "ROADMAP-REF",
+      "title": "B7 references the exact Roadmap V3 identity",
+      "ok": true,
+      "evidence": {
+        "path": "assets/data/roadmap/iu5-090401-11-v3.json",
+        "roadmapId": "bauman-iu5-090401-11",
+        "schemaVersion": "3.0.0"
+      }
+    },
+    {
+      "id": "RESERVED-B2-HOOKS",
+      "title": "B2 reserved the four language hook fields and B7/L12 activation boundary",
+      "ok": true,
+      "evidence": {
+        "reservedFields": [
+          "russianTwinRef",
+          "englishResearchRef",
+          "vietnameseRescuePolicyRef",
+          "exposurePolicyRef"
+        ],
+        "activationRound": "L6-B7-and-L12"
+      }
+    },
+    {
+      "id": "PRINCIPLES",
+      "title": "B7 principles cover companion latent source type rescue research AI assessment and offline boundaries",
+      "ok": true,
+      "evidence": [
+        "companion-not-copy",
+        "latent-by-default",
+        "source-language-preserved",
+        "subject-type-preserved",
+        "rescue-not-mastery",
+        "research-english-not-ui-english",
+        "ai-draft-not-source",
+        "assessment-integrity",
+        "offline-usable"
+      ]
+    },
+    {
+      "id": "NOT-TRANSLATED-COPY",
+      "title": "hook is a source-aligned companion without duplicate lesson or progress",
+      "ok": true,
+      "evidence": {
+        "companion": {
+          "id": "companion-not-copy",
+          "rule": "A language layer aligns concepts, terms, actions and evidence to a stable source lesson; it is not a duplicate lesson, an unsourced translation or a parallel progress record."
+        },
+        "stateRule": "Hook progress and evidence reference Personal Learning State; they do not create a second source-lesson completion flag."
+      }
+    },
+    {
+      "id": "PRIMARY-TYPE-PRESERVED",
+      "title": "language support never reclassifies a technical lesson or merges language blocks",
+      "ok": true,
+      "evidence": "A language hook never changes the primary lesson type or blind-merges the language block policy."
+    },
+    {
+      "id": "LATENT-DEFAULT",
+      "title": "B7 is declared hidden and not auto-activated before L12",
+      "ok": true,
+      "evidence": {
+        "declarationRound": "L6-B7",
+        "fullLearnerUiRound": "L12",
+        "defaultState": "declared",
+        "defaultVisibility": "hidden-until-resolved",
+        "autoActivate": false,
+        "states": [
+          "declared",
+          "available",
+          "recommended",
+          "active",
+          "deferred",
+          "unavailable"
+        ],
+        "authorizedActivators": [
+          "learner-explicit-choice",
+          "instructor-assignment",
+          "deterministic-study-plan"
+        ],
+        "recommendationActors": [
+          "deterministic-context-resolver",
+          "ai-advisory"
+        ],
+        "requiredResolverInputs": [
+          "currentLesson",
+          "currentSubject",
+          "prerequisiteGraph",
+          "learnerProgress",
+          "assessmentErrors",
+          "weakTopics",
+          "schedule",
+          "languageState",
+          "nirVkrContext",
+          "offlineAvailability"
+        ],
+        "rules": [
+          "A recommendation explains the language need, scope, expected learner action and estimated cost before activation.",
+          "AI advisory may recommend but cannot activate a hook, change its language role or mark language evidence verified.",
+          "A deterministic study plan activates only a pre-authorized policy and keeps an immediate learner defer control.",
+          "Unavailable source alignment or offline pack never blocks the source lesson, required assessment or existing subject engine.",
+          "Deactivation hides the companion surface without deleting source-independent learner evidence or language-state history."
+        ]
+      }
+    },
+    {
+      "id": "ACTIVATION-STATES",
+      "title": "activation separates declared available recommended active deferred and unavailable",
+      "ok": true,
+      "evidence": [
+        "declared",
+        "available",
+        "recommended",
+        "active",
+        "deferred",
+        "unavailable"
+      ]
+    },
+    {
+      "id": "ACTIVATION-AUTHORITY",
+      "title": "only learner instructor or deterministic plan activates while AI only recommends",
+      "ok": true,
+      "evidence": {
+        "authorized": [
+          "learner-explicit-choice",
+          "instructor-assignment",
+          "deterministic-study-plan"
+        ],
+        "recommenders": [
+          "deterministic-context-resolver",
+          "ai-advisory"
+        ]
+      }
+    },
+    {
+      "id": "ACTIVATION-CONTEXT",
+      "title": "resolver inputs are available in the B2 context contract",
+      "ok": true,
+      "evidence": {
+        "inputs": [
+          "currentLesson",
+          "currentSubject",
+          "prerequisiteGraph",
+          "learnerProgress",
+          "assessmentErrors",
+          "weakTopics",
+          "schedule",
+          "languageState",
+          "nirVkrContext",
+          "offlineAvailability"
+        ],
+        "available": [
+          "currentLesson",
+          "prerequisiteGraph",
+          "learnerProgress",
+          "assessmentErrors",
+          "weakTopics",
+          "schedule",
+          "currentSubject",
+          "languageState",
+          "nirVkrContext",
+          "recentEvidence",
+          "offlineAvailability",
+          "preferredExplanationMode",
+          "accessibilityPreferences"
+        ]
+      }
+    },
+    {
+      "id": "DEFER-NONBLOCKING",
+      "title": "plan activation is deferable and missing alignment never blocks source lesson",
+      "ok": true,
+      "evidence": [
+        "A recommendation explains the language need, scope, expected learner action and estimated cost before activation.",
+        "AI advisory may recommend but cannot activate a hook, change its language role or mark language evidence verified.",
+        "A deterministic study plan activates only a pre-authorized policy and keeps an immediate learner defer control.",
+        "Unavailable source alignment or offline pack never blocks the source lesson, required assessment or existing subject engine.",
+        "Deactivation hides the companion surface without deleting source-independent learner evidence or language-state history."
+      ]
+    },
+    {
+      "id": "LANGUAGE-CODES",
+      "title": "language layer uses explicit Vietnamese Russian and English codes",
+      "ok": true,
+      "evidence": [
+        "vi",
+        "ru",
+        "en"
+      ]
+    },
+    {
+      "id": "LANGUAGE-ROLES",
+      "title": "source learning support and target output roles are explicit",
+      "ok": true,
+      "evidence": {
+        "languageCodes": [
+          "vi",
+          "ru",
+          "en"
+        ],
+        "roles": [
+          "sourceLanguage",
+          "primaryLearningLanguage",
+          "supportLanguages",
+          "targetOutputLanguage"
+        ],
+        "requiredFields": [
+          "sourceLanguage",
+          "primaryLearningLanguage",
+          "supportLanguages",
+          "targetOutputLanguage",
+          "script",
+          "locale",
+          "fallbackOrder"
+        ],
+        "rules": [
+          "One language may hold more than one role, but every role is explicit for a hook instance.",
+          "Russian Twin normally targets ru output while Vietnamese may be a rescue language and English may be a source-term language.",
+          "English Research normally targets en reading or output while Russian and Vietnamese may explain context.",
+          "Changing a support language never changes source identity, learner evidence identity or official assessment requirements."
+        ]
+      }
+    },
+    {
+      "id": "LANGUAGE-ROLE-INVARIANTS",
+      "title": "Russian and English target roles preserve source identity and assessment",
+      "ok": true,
+      "evidence": [
+        "One language may hold more than one role, but every role is explicit for a hook instance.",
+        "Russian Twin normally targets ru output while Vietnamese may be a rescue language and English may be a source-term language.",
+        "English Research normally targets en reading or output while Russian and Vietnamese may explain context.",
+        "Changing a support language never changes source identity, learner evidence identity or official assessment requirements."
+      ]
+    },
+    {
+      "id": "HOOK-ENVELOPE",
+      "title": "hook envelope binds identity objectives sources alignment roles activation exposure evidence offline and provenance",
+      "ok": true,
+      "evidence": {
+        "requiredFields": [
+          "hookId",
+          "hookKind",
+          "lessonId",
+          "subjectId",
+          "lessonType",
+          "objectiveRefs",
+          "sourceBindings",
+          "alignmentRefs",
+          "languageRoles",
+          "activationPolicyRef",
+          "exposurePolicyRef",
+          "evidenceRefs",
+          "offlineRef",
+          "provenance"
+        ],
+        "hookKinds": [
+          "russian-twin",
+          "english-research"
+        ],
+        "identityRule": "hookId remains stable for one source lesson, hook kind, objective scope and content version; array position or rendered locale is never identity.",
+        "objectiveRule": "Every active hook supports a named lesson, language or research objective and never exists only to fill a bilingual UI slot.",
+        "sourceRule": "sourceBindings reuse the Universal Lesson source binding contract and preserve original source language and precedence.",
+        "stateRule": "Hook progress and evidence reference Personal Learning State; they do not create a second source-lesson completion flag."
+      }
+    },
+    {
+      "id": "ALIGNMENT-FIELDS",
+      "title": "alignment binds source concepts language text outputs tokens review version and provenance",
+      "ok": true,
+      "evidence": [
+        "alignmentId",
+        "hookId",
+        "sourceAnchorRefs",
+        "conceptRefs",
+        "unitKind",
+        "languageRoles",
+        "sourceTextRefs",
+        "alignedOutputRefs",
+        "protectedTokenRefs",
+        "reviewStatus",
+        "contentVersion",
+        "provenance"
+      ]
+    },
+    {
+      "id": "ALIGNMENT-UNITS",
+      "title": "alignment covers terms claims steps instructions language technical research and defense units",
+      "ok": true,
+      "evidence": [
+        "term",
+        "definition",
+        "claim",
+        "worked-step",
+        "instruction",
+        "dialogue-turn",
+        "formula-narration",
+        "code-or-query-explanation",
+        "research-section",
+        "defense-prompt"
+      ]
+    },
+    {
+      "id": "ALIGNMENT-REVIEW-STATES",
+      "title": "AI draft source alignment instructor review official original and repair are distinct",
+      "ok": true,
+      "evidence": [
+        "unreviewed-ai-draft",
+        "source-aligned",
+        "instructor-reviewed",
+        "official-source-original",
+        "needs-repair"
+      ]
+    },
+    {
+      "id": "ALIGNMENT-PROVENANCE",
+      "title": "AI draft cannot become source and source changes invalidate incompatible alignment",
+      "ok": true,
+      "evidence": [
+        "Aligned text points to versioned source anchors and never replaces the source text in place.",
+        "An AI draft stays unreviewed-ai-draft until a permitted reviewer checks meaning, terminology and protected tokens.",
+        "Official-source-original labels only an original authoritative artifact, never an AI or learner translation.",
+        "A source version change invalidates incompatible alignment and creates needs-repair rather than silently reusing it.",
+        "Alignment can be partial; missing units are reported as unavailable instead of fabricated."
+      ]
+    },
+    {
+      "id": "ALIGNMENT-REVIEW-AUTHORITY",
+      "title": "alignment review actors have exact bounded status authority",
+      "ok": true,
+      "evidence": {
+        "deterministic-source-importer": {
+          "maySetStatuses": [
+            "official-source-original"
+          ],
+          "condition": "Only an unchanged artifact with verified authoritative origin, source identity, content version and integrity may be marked official-source-original."
+        },
+        "curriculum-curator": {
+          "maySetStatuses": [
+            "source-aligned",
+            "needs-repair"
+          ],
+          "condition": "A curator reviews meaning, terminology, source anchors and protected tokens."
+        },
+        "instructor-review": {
+          "maySetStatuses": [
+            "source-aligned",
+            "instructor-reviewed",
+            "needs-repair"
+          ],
+          "condition": "An instructor may review alignment and pedagogical use but this does not verify learner mastery."
+        },
+        "system-integrity-check": {
+          "maySetStatuses": [
+            "needs-repair"
+          ],
+          "condition": "A source version, checksum, protected-token or reference failure invalidates incompatible alignment."
+        },
+        "learner-contribution": {
+          "maySetStatuses": [],
+          "condition": "A learner may propose an aligned term or output, retained as user evidence pending review."
+        },
+        "ai-advisory": {
+          "maySetStatuses": [
+            "unreviewed-ai-draft"
+          ],
+          "condition": "AI output remains ai-inference and cannot promote itself to source-aligned, instructor-reviewed or official-source-original."
+        }
+      }
+    },
+    {
+      "id": "ALIGNMENT-NOT-MASTERY",
+      "title": "alignment review cannot verify learner competence or bypass B5",
+      "ok": true,
+      "evidence": [
+        "Alignment review status describes companion-content provenance and quality, not learner competence or Master-ready verification.",
+        "No actor may set a status outside its declared set.",
+        "A reviewed alignment still requires a separate authorized B5 verifier for learner evidence."
+      ]
+    },
+    {
+      "id": "PROTECTED-TOKEN-CATEGORIES",
+      "title": "technical citation version and official identity tokens are protected",
+      "ok": true,
+      "evidence": [
+        "code-identifier",
+        "api-symbol",
+        "sql-keyword",
+        "formula-symbol",
+        "dataset-field",
+        "citation-key",
+        "file-path",
+        "version-id",
+        "official-program-code",
+        "official-course-title"
+      ]
+    },
+    {
+      "id": "PROTECTED-TOKEN-HANDLING",
+      "title": "protected tokens carry identity source handling and review",
+      "ok": true,
+      "evidence": {
+        "categories": [
+          "code-identifier",
+          "api-symbol",
+          "sql-keyword",
+          "formula-symbol",
+          "dataset-field",
+          "citation-key",
+          "file-path",
+          "version-id",
+          "official-program-code",
+          "official-course-title"
+        ],
+        "requiredFields": [
+          "tokenId",
+          "category",
+          "surface",
+          "sourceRef",
+          "handling",
+          "reviewStatus"
+        ],
+        "handlingValues": [
+          "preserve-exact",
+          "preserve-plus-explanation",
+          "localized-label-with-original",
+          "review-required"
+        ],
+        "identityRules": [
+          "Official published direction code remains 09.04.01 in source metadata.",
+          "Personalized learner display remains ИУ-5 · 09.04.01/11.",
+          "Code, formula, query, dataset and citation identity is preserved unless an explicit domain adapter declares a safe transformation."
+        ]
+      }
+    },
+    {
+      "id": "PROGRAM-CODE-TOKENS",
+      "title": "official and personalized Bauman program codes remain distinct",
+      "ok": true,
+      "evidence": [
+        "Official published direction code remains 09.04.01 in source metadata.",
+        "Personalized learner display remains ИУ-5 · 09.04.01/11.",
+        "Code, formula, query, dataset and citation identity is preserved unless an explicit domain adapter declares a safe transformation."
+      ]
+    },
+    {
+      "id": "GLOSSARY-FIELDS",
+      "title": "glossary binds concept subject languages sources false friends review version and provenance",
+      "ok": true,
+      "evidence": {
+        "requiredFields": [
+          "termId",
+          "conceptRef",
+          "subjectRefs",
+          "terms",
+          "usageContexts",
+          "sourceRefs",
+          "falseFriendRefs",
+          "reviewStatus",
+          "contentVersion",
+          "provenance"
+        ],
+        "termLanguages": [
+          "vi",
+          "ru",
+          "en"
+        ],
+        "termRequiredFields": [
+          "surface",
+          "language",
+          "partOfSpeechOrSymbolClass",
+          "meaningRef",
+          "usageNote"
+        ],
+        "russianOptionalFields": [
+          "stress",
+          "gender",
+          "casePattern",
+          "aspect",
+          "collocations",
+          "pronunciationRef"
+        ],
+        "englishResearchOptionalFields": [
+          "searchSynonyms",
+          "paperSectionUsage",
+          "claimStrength",
+          "collocations",
+          "citationUsageNote"
+        ],
+        "rules": [
+          "Terms align through conceptRef and source evidence, never through surface-string equality alone.",
+          "A missing Russian or English term remains missing rather than being invented from a generic dictionary guess.",
+          "Learner personal glossary entries remain user evidence until reviewed and never overwrite the shared glossary.",
+          "Term review and source version are independent from UI locale preference."
+        ]
+      }
+    },
+    {
+      "id": "GLOSSARY-TYPED-FIELDS",
+      "title": "Russian and English research glossary fields remain domain-specific",
+      "ok": true,
+      "evidence": {
+        "russian": [
+          "stress",
+          "gender",
+          "casePattern",
+          "aspect",
+          "collocations",
+          "pronunciationRef"
+        ],
+        "englishResearch": [
+          "searchSynonyms",
+          "paperSectionUsage",
+          "claimStrength",
+          "collocations",
+          "citationUsageNote"
+        ]
+      }
+    },
+    {
+      "id": "GLOSSARY-SOURCE-BOUNDARY",
+      "title": "glossary aligns by concept and preserves missing shared and personal entries",
+      "ok": true,
+      "evidence": [
+        "Terms align through conceptRef and source evidence, never through surface-string equality alone.",
+        "A missing Russian or English term remains missing rather than being invented from a generic dictionary guess.",
+        "Learner personal glossary entries remain user evidence until reviewed and never overwrite the shared glossary.",
+        "Term review and source version are independent from UI locale preference."
+      ]
+    },
+    {
+      "id": "RUSSIAN-TWIN-IDENTITY",
+      "title": "Russian Twin has Russian target and Vietnamese rescue defaults",
+      "ok": true,
+      "evidence": {
+        "hookId": "russian-twin",
+        "targetLanguage": "ru",
+        "supportLanguageDefault": "vi"
+      }
+    },
+    {
+      "id": "RUSSIAN-TWIN-MODES",
+      "title": "Russian Twin modes cover terminology concept steps classroom lab repair defense and NIR/VKR register",
+      "ok": true,
+      "evidence": [
+        "technical-terminology",
+        "concept-twin",
+        "worked-step-narration",
+        "classroom-dialogue",
+        "lab-report-language",
+        "error-repair-language",
+        "oral-defense",
+        "nir-vkr-register"
+      ]
+    },
+    {
+      "id": "RUSSIAN-TWIN-UNIT",
+      "title": "Russian Twin unit binds source Russian rescue terminology action evidence review and offline",
+      "ok": true,
+      "evidence": [
+        "twinUnitId",
+        "sourceLessonRef",
+        "sourceAnchorRefs",
+        "mode",
+        "ruOutputRef",
+        "viRescueRef",
+        "terminologyRefs",
+        "learnerAction",
+        "evidenceKind",
+        "reviewStatus",
+        "offlineRef"
+      ]
+    },
+    {
+      "id": "RUSSIAN-EXPOSURE",
+      "title": "Russian exposure progresses recognition comprehension retrieval production defense",
+      "ok": true,
+      "evidence": [
+        "recognize",
+        "comprehend",
+        "retrieve",
+        "produce",
+        "defend"
+      ]
+    },
+    {
+      "id": "RUSSIAN-ENGINE-OWNERSHIP",
+      "title": "Russian engine retains specialist tools and missing alignment is nonblocking",
+      "ok": true,
+      "evidence": [
+        "Russian Twin is an aligned companion, not a machine-translated clone of every lesson block.",
+        "Vietnamese rescue is available according to exposure policy but never verifies Russian production.",
+        "The dedicated Russian engine owns dialogue, shadowing, speech, handwriting, writing, review and exam interactions.",
+        "Technical symbols, code, formulas, SQL and citations remain protected tokens inside Russian narration.",
+        "No hook activates when source alignment is missing; the source lesson continues unchanged."
+      ]
+    },
+    {
+      "id": "ENGLISH-RESEARCH-IDENTITY",
+      "title": "English Research has English target and Vietnamese Russian support defaults",
+      "ok": true,
+      "evidence": {
+        "hookId": "english-research",
+        "targetLanguage": "en",
+        "supportLanguageDefaults": [
+          "vi",
+          "ru"
+        ]
+      }
+    },
+    {
+      "id": "ENGLISH-RESEARCH-MODES",
+      "title": "English Research modes cover search papers claims methods citations writing defense and reproducibility",
+      "ok": true,
+      "evidence": [
+        "search-query",
+        "paper-reading",
+        "claim-evidence-annotation",
+        "methods-results-language",
+        "citation-paraphrase-boundary",
+        "scientific-writing",
+        "conference-defense",
+        "reproducibility-readme"
+      ]
+    },
+    {
+      "id": "ENGLISH-RESEARCH-UNIT",
+      "title": "English Research unit binds research/source context output terminology action evidence claims review and offline",
+      "ok": true,
+      "evidence": [
+        "researchUnitId",
+        "sourceLessonRef",
+        "researchContextRef",
+        "sourceAnchorRefs",
+        "mode",
+        "enInputOrOutputRef",
+        "terminologyRefs",
+        "learnerAction",
+        "evidenceKind",
+        "claimSourceBoundaryRef",
+        "reviewStatus",
+        "offlineRef"
+      ]
+    },
+    {
+      "id": "ENGLISH-NOT-SITE-LOCALE",
+      "title": "English Research is scoped and cannot fabricate or mask invalid research",
+      "ok": true,
+      "evidence": [
+        "English Research is not a whole-site locale and does not translate unrelated navigation or official course records.",
+        "Search terms, claims, methods, results, limitations and citations keep traceable source anchors.",
+        "AI paraphrase remains advisory and is checked for meaning, attribution, unsupported claim and plagiarism risk.",
+        "Language quality cannot compensate for invalid research method, evidence, source or reproducibility.",
+        "A missing English source is never synthesized and presented as a paper or official citation."
+      ]
+    },
+    {
+      "id": "EXPOSURE-LEVELS",
+      "title": "exposure progresses hidden term rescue aligned guided and independent output",
+      "ok": true,
+      "evidence": [
+        "hidden",
+        "term-only",
+        "term-plus-rescue",
+        "aligned-snippet",
+        "guided-output",
+        "independent-output"
+      ]
+    },
+    {
+      "id": "RESCUE-BOUNDARY",
+      "title": "rescue reduces for independent output and cannot bypass assessment or script",
+      "ok": true,
+      "evidence": [
+        "Exposure increases only for a named objective or learner choice and can be reduced without losing source-lesson access.",
+        "Rescue content is progressively reduced when independent target-language output is the objective.",
+        "Formal assessment exposure is capped by the active disclosure policy even if a richer companion pack is cached.",
+        "Transliteration may support recognition but never replaces required Cyrillic or source-script evidence.",
+        "Unavailable audio or speech recognition falls back to text, transcript, self-recording or instructor review."
+      ]
+    },
+    {
+      "id": "NON-EVIDENCE-EVENTS",
+      "title": "open view rescue and feedback events are explicitly non-evidence",
+      "ok": true,
+      "evidence": {
+        "hookEventKinds": [
+          "hook-opened",
+          "term-viewed",
+          "rescue-used",
+          "retrieval-attempted",
+          "aligned-output-submitted",
+          "feedback-received",
+          "repair-completed"
+        ],
+        "nonEvidenceEvents": [
+          "hook-opened",
+          "term-viewed",
+          "rescue-used",
+          "feedback-received"
+        ],
+        "verificationRule": "A hook event projects to Master-ready only when a named objective maps it to a registered type evidence output and an authorized B5 verifier verifies the learner artifact.",
+        "supportRule": "Using Russian or English support for a technical objective does not create language mastery; using language support for research does not verify research validity.",
+        "repairRule": "Language repair appends an aligned evidence link and never rewrites the source lesson or prior attempt."
+      }
+    },
+    {
+      "id": "MASTERY-EVIDENCE-BOUNDARY",
+      "title": "only mapped learner artifacts verified by B5 can project to mastery",
+      "ok": true,
+      "evidence": {
+        "hookEventKinds": [
+          "hook-opened",
+          "term-viewed",
+          "rescue-used",
+          "retrieval-attempted",
+          "aligned-output-submitted",
+          "feedback-received",
+          "repair-completed"
+        ],
+        "nonEvidenceEvents": [
+          "hook-opened",
+          "term-viewed",
+          "rescue-used",
+          "feedback-received"
+        ],
+        "verificationRule": "A hook event projects to Master-ready only when a named objective maps it to a registered type evidence output and an authorized B5 verifier verifies the learner artifact.",
+        "supportRule": "Using Russian or English support for a technical objective does not create language mastery; using language support for research does not verify research validity.",
+        "repairRule": "Language repair appends an aligned evidence link and never rewrites the source lesson or prior attempt."
+      }
+    },
+    {
+      "id": "ASSESSMENT-DIMENSIONS",
+      "title": "assessment separates domain source comprehension production terminology and register",
+      "ok": true,
+      "evidence": [
+        "domain-correctness",
+        "source-integrity",
+        "target-language-comprehension",
+        "target-language-production",
+        "terminology-accuracy",
+        "register-and-defense"
+      ]
+    },
+    {
+      "id": "ASSESSMENT-INTEGRITY",
+      "title": "language support cannot fake production or reveal protected answers",
+      "ok": true,
+      "evidence": [
+        "Assessment declares which language dimensions are scored and which are support-only.",
+        "Domain correctness and language quality remain separate rubric dimensions unless an official objective binds them.",
+        "A translated or rescue answer cannot satisfy target-language production.",
+        "Protected question answer hint or solution content is unavailable to both hooks and AI before submission.",
+        "Post-submission review links the exact source and one focused language or domain repair at a time."
+      ]
+    },
+    {
+      "id": "AI-ALLOWED",
+      "title": "AI may recommend draft explain search diagnose repair and simulate practice",
+      "ok": true,
+      "evidence": [
+        "recommend-hook",
+        "draft-alignment",
+        "explain-term",
+        "suggest-search-query",
+        "diagnose-language-error",
+        "suggest-source-linked-repair",
+        "simulate-unverified-oral-practice"
+      ]
+    },
+    {
+      "id": "AI-FORBIDDEN",
+      "title": "AI cannot activate overwrite promote fabricate verify leak or change roles",
+      "ok": true,
+      "evidence": [
+        "auto-activate-hook",
+        "overwrite-source-text",
+        "promote-ai-draft-to-source",
+        "fabricate-paper-or-citation",
+        "set-verified",
+        "reveal-protected-answer",
+        "silently-change-language-role"
+      ]
+    },
+    {
+      "id": "AI-CONTEXT",
+      "title": "AI requires all B2 current lesson learner schedule language and NIR/VKR refs",
+      "ok": true,
+      "evidence": {
+        "B7": [
+          "currentLesson",
+          "prerequisiteGraph",
+          "learnerProgress",
+          "assessmentErrors",
+          "weakTopics",
+          "schedule",
+          "currentSubject",
+          "languageState",
+          "nirVkrContext"
+        ],
+        "B2": [
+          "currentLesson",
+          "prerequisiteGraph",
+          "learnerProgress",
+          "assessmentErrors",
+          "weakTopics",
+          "schedule",
+          "currentSubject",
+          "languageState",
+          "nirVkrContext"
+        ]
+      }
+    },
+    {
+      "id": "AI-PROVENANCE-OFFLINE",
+      "title": "AI stays inference with source review and no queued offline verification",
+      "ok": true,
+      "evidence": {
+        "allowedActions": [
+          "recommend-hook",
+          "draft-alignment",
+          "explain-term",
+          "suggest-search-query",
+          "diagnose-language-error",
+          "suggest-source-linked-repair",
+          "simulate-unverified-oral-practice"
+        ],
+        "forbiddenActions": [
+          "auto-activate-hook",
+          "overwrite-source-text",
+          "promote-ai-draft-to-source",
+          "fabricate-paper-or-citation",
+          "set-verified",
+          "reveal-protected-answer",
+          "silently-change-language-role"
+        ],
+        "requiredContextRefs": [
+          "currentLesson",
+          "prerequisiteGraph",
+          "learnerProgress",
+          "assessmentErrors",
+          "weakTopics",
+          "schedule",
+          "currentSubject",
+          "languageState",
+          "nirVkrContext"
+        ],
+        "provenanceRule": "AI output is stored or referenced as ai-inference with model or provider policy, prompt context refs, source refs, creation time and review status.",
+        "offlineFallbackRule": "When AI is unavailable, resolved glossary, source alignment, deterministic checks, exposure policy and recovery routes continue without queued AI verification."
+      }
+    },
+    {
+      "id": "OFFLINE-CLASSES",
+      "title": "B7 offline classes match B4 and B6",
+      "ok": true,
+      "evidence": [
+        "bundled",
+        "subject-pack",
+        "local-file"
+      ]
+    },
+    {
+      "id": "OFFLINE-BEHAVIOR",
+      "title": "offline alignment uses explicit packs zero-copy optional services and stable reconciliation",
+      "ok": true,
+      "evidence": [
+        "Resolved glossary and aligned text retain version integrity and deterministic lookup offline.",
+        "Large audio paper or media resources require explicit subject-pack or local-file authorization.",
+        "Speech recognition synthesis translation and generative AI are optional services, never required offline gates.",
+        "Local papers and notes remain zero-copy references under Direct Local Reader and sandbox policy.",
+        "Sync reconciles stable hook alignment and evidence IDs without silently replacing reviewed content."
+      ]
+    },
+    {
+      "id": "ACCESSIBILITY-FIELDS",
+      "title": "B7 accessibility binds language script order reader transcript keyboard scaling and fallback",
+      "ok": true,
+      "evidence": [
+        "languageTag",
+        "script",
+        "readingOrder",
+        "screenReaderLabel",
+        "transcriptRef",
+        "keyboardPath",
+        "textScalingBehavior",
+        "fallbackRef"
+      ]
+    },
+    {
+      "id": "ACCESSIBILITY-BEHAVIOR",
+      "title": "mixed scripts stack accessibly with transcript controls text semantics and token boundaries",
+      "ok": true,
+      "evidence": [
+        "Every aligned segment declares language and script so assistive technology changes pronunciation rules correctly.",
+        "Side-by-side alignment may stack but preserves source then companion then learner-action order.",
+        "Stress case grammar claim strength and protected-token notes are available as text, not color alone.",
+        "Audio has transcript and independent controls; timed content can be paused and replayed.",
+        "Mixed Cyrillic Latin code formula and citation spans retain explicit language or token boundaries."
+      ]
+    },
+    {
+      "id": "PROFILE-SET",
+      "title": "B7 has exactly one language hook profile for every B4 lesson type",
+      "ok": true,
+      "evidence": {
+        "profiles": [
+          "language",
+          "mathematics",
+          "programming",
+          "database",
+          "software-design",
+          "ml-data",
+          "asoiu-system",
+          "research"
+        ],
+        "types": [
+          "language",
+          "mathematics",
+          "programming",
+          "database",
+          "software-design",
+          "ml-data",
+          "asoiu-system",
+          "research"
+        ]
+      }
+    },
+    {
+      "id": "PROFILE-LANGUAGE",
+      "title": "language uses registered language modes evidence outputs tokens and B4 forward ref",
+      "ok": true,
+      "evidence": {
+        "russianTwinModes": [
+          "technical-terminology",
+          "concept-twin",
+          "worked-step-narration",
+          "classroom-dialogue",
+          "lab-report-language",
+          "error-repair-language",
+          "oral-defense",
+          "nir-vkr-register"
+        ],
+        "englishResearchModes": [
+          "search-query",
+          "paper-reading",
+          "citation-paraphrase-boundary",
+          "scientific-writing",
+          "conference-defense"
+        ],
+        "masteryProjectionRefs": [
+          "comprehension-response",
+          "dialogue-turn",
+          "oral-response",
+          "written-response"
+        ],
+        "protectedTokenCategories": [
+          "official-program-code",
+          "official-course-title",
+          "citation-key"
+        ],
+        "activationNotes": "Russian may be the primary lesson objective here; English Research remains a scoped research-language companion unless the lesson objective explicitly targets English.",
+        "errors": []
+      }
+    },
+    {
+      "id": "PROFILE-MATHEMATICS",
+      "title": "mathematics uses registered language modes evidence outputs tokens and B4 forward ref",
+      "ok": true,
+      "evidence": {
+        "russianTwinModes": [
+          "technical-terminology",
+          "concept-twin",
+          "worked-step-narration",
+          "error-repair-language",
+          "oral-defense"
+        ],
+        "englishResearchModes": [
+          "search-query",
+          "paper-reading",
+          "claim-evidence-annotation",
+          "methods-results-language"
+        ],
+        "masteryProjectionRefs": [
+          "mathematical-solution",
+          "derivation",
+          "result-verification",
+          "oral-response"
+        ],
+        "protectedTokenCategories": [
+          "formula-symbol",
+          "citation-key",
+          "official-program-code"
+        ],
+        "activationNotes": "Language support narrates assumptions, notation, dimensions, derivation and oral defense but never alters the mathematical expression or proof source.",
+        "errors": []
+      }
+    },
+    {
+      "id": "PROFILE-PROGRAMMING",
+      "title": "programming uses registered language modes evidence outputs tokens and B4 forward ref",
+      "ok": true,
+      "evidence": {
+        "russianTwinModes": [
+          "technical-terminology",
+          "concept-twin",
+          "lab-report-language",
+          "error-repair-language",
+          "oral-defense"
+        ],
+        "englishResearchModes": [
+          "search-query",
+          "paper-reading",
+          "methods-results-language",
+          "reproducibility-readme"
+        ],
+        "masteryProjectionRefs": [
+          "code",
+          "passing-tests",
+          "complexity-explanation",
+          "repository-artifact",
+          "oral-response"
+        ],
+        "protectedTokenCategories": [
+          "code-identifier",
+          "api-symbol",
+          "file-path",
+          "version-id",
+          "citation-key"
+        ],
+        "activationNotes": "Explanations and reports may align across languages, while code identifiers, APIs, paths, versions and executable behavior remain exact.",
+        "errors": []
+      }
+    },
+    {
+      "id": "PROFILE-DATABASE",
+      "title": "database uses registered language modes evidence outputs tokens and B4 forward ref",
+      "ok": true,
+      "evidence": {
+        "russianTwinModes": [
+          "technical-terminology",
+          "concept-twin",
+          "worked-step-narration",
+          "lab-report-language",
+          "oral-defense"
+        ],
+        "englishResearchModes": [
+          "search-query",
+          "paper-reading",
+          "methods-results-language",
+          "reproducibility-readme"
+        ],
+        "masteryProjectionRefs": [
+          "schema-artifact",
+          "query-result",
+          "transaction-analysis",
+          "query-plan-analysis",
+          "oral-response"
+        ],
+        "protectedTokenCategories": [
+          "sql-keyword",
+          "dataset-field",
+          "code-identifier",
+          "version-id"
+        ],
+        "activationNotes": "Schema, query, transaction and plan explanations may align, while SQL tokens, identifiers, fields and engine version remain protected.",
+        "errors": []
+      }
+    },
+    {
+      "id": "PROFILE-SOFTWARE-DESIGN",
+      "title": "software-design uses registered language modes evidence outputs tokens and B4 forward ref",
+      "ok": true,
+      "evidence": {
+        "russianTwinModes": [
+          "technical-terminology",
+          "concept-twin",
+          "lab-report-language",
+          "oral-defense"
+        ],
+        "englishResearchModes": [
+          "search-query",
+          "paper-reading",
+          "claim-evidence-annotation",
+          "scientific-writing",
+          "conference-defense",
+          "reproducibility-readme"
+        ],
+        "masteryProjectionRefs": [
+          "requirements-artifact",
+          "uml-artifact",
+          "architecture-artifact",
+          "tradeoff-record",
+          "oral-defense"
+        ],
+        "protectedTokenCategories": [
+          "code-identifier",
+          "api-symbol",
+          "official-course-title",
+          "citation-key"
+        ],
+        "activationNotes": "Language layers support requirement, architecture, tradeoff and defense language without translating diagram identity or inventing a canonical design.",
+        "errors": []
+      }
+    },
+    {
+      "id": "PROFILE-ML-DATA",
+      "title": "ml-data uses registered language modes evidence outputs tokens and B4 forward ref",
+      "ok": true,
+      "evidence": {
+        "russianTwinModes": [
+          "technical-terminology",
+          "concept-twin",
+          "lab-report-language",
+          "oral-defense"
+        ],
+        "englishResearchModes": [
+          "search-query",
+          "paper-reading",
+          "claim-evidence-annotation",
+          "methods-results-language",
+          "citation-paraphrase-boundary",
+          "scientific-writing",
+          "conference-defense",
+          "reproducibility-readme"
+        ],
+        "masteryProjectionRefs": [
+          "dataset-artifact",
+          "experiment-log",
+          "model-result",
+          "metric-analysis",
+          "error-analysis",
+          "reproducibility-record",
+          "oral-response"
+        ],
+        "protectedTokenCategories": [
+          "dataset-field",
+          "code-identifier",
+          "formula-symbol",
+          "version-id",
+          "citation-key"
+        ],
+        "activationNotes": "English Research is strongly applicable to papers and experiments, but language quality never masks leakage, invalid evaluation or unreproducible results.",
+        "errors": []
+      }
+    },
+    {
+      "id": "PROFILE-ASOIU-SYSTEM",
+      "title": "asoiu-system uses registered language modes evidence outputs tokens and B4 forward ref",
+      "ok": true,
+      "evidence": {
+        "russianTwinModes": [
+          "technical-terminology",
+          "concept-twin",
+          "worked-step-narration",
+          "lab-report-language",
+          "error-repair-language",
+          "oral-defense",
+          "nir-vkr-register"
+        ],
+        "englishResearchModes": [
+          "search-query",
+          "paper-reading",
+          "claim-evidence-annotation",
+          "methods-results-language",
+          "scientific-writing",
+          "conference-defense",
+          "reproducibility-readme"
+        ],
+        "masteryProjectionRefs": [
+          "system-model",
+          "architecture-artifact",
+          "information-flow-analysis",
+          "reliability-analysis",
+          "lifecycle-analysis",
+          "oral-defense"
+        ],
+        "protectedTokenCategories": [
+          "formula-symbol",
+          "dataset-field",
+          "code-identifier",
+          "official-course-title",
+          "citation-key"
+        ],
+        "activationNotes": "Russian supports Bauman system terminology and defense; English supports source and research work while boundaries, states and models remain source-grounded.",
+        "errors": []
+      }
+    },
+    {
+      "id": "PROFILE-RESEARCH",
+      "title": "research uses registered language modes evidence outputs tokens and B4 forward ref",
+      "ok": true,
+      "evidence": {
+        "russianTwinModes": [
+          "technical-terminology",
+          "concept-twin",
+          "classroom-dialogue",
+          "lab-report-language",
+          "error-repair-language",
+          "oral-defense",
+          "nir-vkr-register"
+        ],
+        "englishResearchModes": [
+          "search-query",
+          "paper-reading",
+          "claim-evidence-annotation",
+          "methods-results-language",
+          "citation-paraphrase-boundary",
+          "scientific-writing",
+          "conference-defense",
+          "reproducibility-readme"
+        ],
+        "masteryProjectionRefs": [
+          "research-question",
+          "literature-matrix",
+          "experiment-protocol",
+          "research-note",
+          "result-analysis",
+          "scientific-section",
+          "nir-milestone",
+          "vkr-milestone",
+          "oral-defense"
+        ],
+        "protectedTokenCategories": [
+          "citation-key",
+          "dataset-field",
+          "file-path",
+          "version-id",
+          "official-program-code",
+          "official-course-title"
+        ],
+        "activationNotes": "Russian supports НИР/ВКР work and defense; English Research supports international sources and writing while source integrity and method remain independent critical gates.",
+        "errors": []
+      }
+    },
+    {
+      "id": "LANGUAGE-RUSSIAN-COVERAGE",
+      "title": "language type permits the complete Russian Twin vocabulary",
+      "ok": true,
+      "evidence": [
+        "technical-terminology",
+        "concept-twin",
+        "worked-step-narration",
+        "classroom-dialogue",
+        "lab-report-language",
+        "error-repair-language",
+        "oral-defense",
+        "nir-vkr-register"
+      ]
+    },
+    {
+      "id": "ML-ENGLISH-COVERAGE",
+      "title": "ML data permits the complete English Research vocabulary",
+      "ok": true,
+      "evidence": [
+        "search-query",
+        "paper-reading",
+        "claim-evidence-annotation",
+        "methods-results-language",
+        "citation-paraphrase-boundary",
+        "scientific-writing",
+        "conference-defense",
+        "reproducibility-readme"
+      ]
+    },
+    {
+      "id": "RESEARCH-ENGLISH-COVERAGE",
+      "title": "research permits the complete English Research vocabulary and NIR/VKR Russian register",
+      "ok": true,
+      "evidence": {
+        "typeId": "research",
+        "russianTwinModes": [
+          "technical-terminology",
+          "concept-twin",
+          "classroom-dialogue",
+          "lab-report-language",
+          "error-repair-language",
+          "oral-defense",
+          "nir-vkr-register"
+        ],
+        "englishResearchModes": [
+          "search-query",
+          "paper-reading",
+          "claim-evidence-annotation",
+          "methods-results-language",
+          "citation-paraphrase-boundary",
+          "scientific-writing",
+          "conference-defense",
+          "reproducibility-readme"
+        ],
+        "masteryProjectionRefs": [
+          "research-question",
+          "literature-matrix",
+          "experiment-protocol",
+          "research-note",
+          "result-analysis",
+          "scientific-section",
+          "nir-milestone",
+          "vkr-milestone",
+          "oral-defense"
+        ],
+        "protectedTokenCategories": [
+          "citation-key",
+          "dataset-field",
+          "file-path",
+          "version-id",
+          "official-program-code",
+          "official-course-title"
+        ],
+        "activationNotes": "Russian supports НИР/ВКР work and defense; English Research supports international sources and writing while source integrity and method remain independent critical gates."
+      }
+    },
+    {
+      "id": "RUSSIAN-REFERENCE-MODE",
+      "title": "Russian remains read-only and unprojected with specialist ownership",
+      "ok": true,
+      "evidence": {
+        "mode": "read-only-reference-unprojected",
+        "sourcePaths": [
+          "subjects/russian/data/lessons.json",
+          "subjects/russian/assets/subject-adapter.js",
+          "subjects/russian/subject-manifest.json"
+        ],
+        "auditedExpectations": {
+          "lessonCount": 26,
+          "ruTitleCount": 26
+        },
+        "ownership": "The Russian engine retains dialogue, shadowing, deep speaking, speech, handwriting, writing, review and exam interactions."
+      }
+    },
+    {
+      "id": "RUSSIAN-REFERENCE-COUNTS",
+      "title": "Russian keeps 26 lessons and Russian titles",
+      "ok": true,
+      "evidence": {
+        "lessons": 26,
+        "ruTitles": 26
+      }
+    },
+    {
+      "id": "RESEARCH-REFERENCE-MODE",
+      "title": "Research remains a read-only light subject and B7 only declares hooks",
+      "ok": true,
+      "evidence": {
+        "mode": "read-only-light-subject-unprojected",
+        "sourcePaths": [
+          "subjects/research/data/lessons.json",
+          "subjects/research/data/curriculum.json",
+          "subjects/research/subject-manifest.json"
+        ],
+        "auditedExpectations": {
+          "lessonCount": 45,
+          "lessonContractVersion": "elearning-v1.1"
+        },
+        "ownership": "Research content remains the source for methodology, artifacts, НИР/ВКР and defense; B7 only declares aligned language hooks."
+      }
+    },
+    {
+      "id": "RESEARCH-REFERENCE-COUNTS",
+      "title": "Research keeps 45 eLearning v1.1 lessons and staged curriculum",
+      "ok": true,
+      "evidence": {
+        "lessons": 45,
+        "versions": [
+          "elearning-v1.1"
+        ],
+        "curriculumModules": 15
+      }
+    },
+    {
+      "id": "ROADMAP-HOOK-MODULES",
+      "title": "Roadmap retains Russian Twin methodology and research thesis modules",
+      "ok": true,
+      "evidence": [
+        "russian-twin-lesson",
+        "research-methodology",
+        "research-thesis"
+      ]
+    },
+    {
+      "id": "ROADMAP-PRIORITY-SIGNALS",
+      "title": "Roadmap priority engine retains NIR/VKR and matching Russian technical",
+      "ok": true,
+      "evidence": [
+        "current-bauman-subject",
+        "missing-prerequisite",
+        "deadline-lab-assessment",
+        "nir-vkr",
+        "matching-russian-technical",
+        "weak-topic-review",
+        "support-on-demand"
+      ]
+    },
+    {
+      "id": "REFERENCE-RUSSIAN-subjects/russian/data/lessons.json",
+      "title": "russian reference source exists and is hashable",
+      "ok": true,
+      "evidence": "c8693eeefed17ea39b0cea4a600c9086f1b597ae7174e56bd8b2f8b46b985062"
+    },
+    {
+      "id": "REFERENCE-RUSSIAN-subjects/russian/assets/subject-adapter.js",
+      "title": "russian reference source exists and is hashable",
+      "ok": true,
+      "evidence": "1c6a6930ab06e1510879ed374093016ff721b20fab7bf720a65613e4c411d625"
+    },
+    {
+      "id": "REFERENCE-RUSSIAN-subjects/russian/subject-manifest.json",
+      "title": "russian reference source exists and is hashable",
+      "ok": true,
+      "evidence": "2a4ce2f51454673275c07659112953a15cace9553af148cdb2e537b7315563dd"
+    },
+    {
+      "id": "REFERENCE-RESEARCH-subjects/research/data/lessons.json",
+      "title": "research reference source exists and is hashable",
+      "ok": true,
+      "evidence": "eb453c78c6a4340c6f4d12aa435adfdfd1ab59b68393586cbcd772742d757d16"
+    },
+    {
+      "id": "REFERENCE-RESEARCH-subjects/research/data/curriculum.json",
+      "title": "research reference source exists and is hashable",
+      "ok": true,
+      "evidence": "9e12ee45bbed52fa29deffe199a2edb8782d80f1f3bd5bdb800b4a8a20f0f8ae"
+    },
+    {
+      "id": "REFERENCE-RESEARCH-subjects/research/subject-manifest.json",
+      "title": "research reference source exists and is hashable",
+      "ok": true,
+      "evidence": "2318ae4dd6abdd2749277f0e39079ddf5cb4c97f139740ed14d0b1be44051296"
+    },
+    {
+      "id": "PROGRAM-IDENTITY",
+      "title": "B7 inherits exact official and personalized Bauman identity",
+      "ok": true,
+      "evidence": {
+        "contract": {
+          "department": "ИУ-5",
+          "officialPublishedDirectionCode": "09.04.01",
+          "personalizedDisplayCode": "09.04.01/11",
+          "learnerBrandPolicy": "bauman-iu5-only",
+          "identityRule": "Official-source metadata keeps 09.04.01; personalized learner surfaces display ИУ-5 · 09.04.01/11."
+        },
+        "roadmap": {
+          "official": "09.04.01",
+          "display": "09.04.01/11"
+        }
+      }
+    },
+    {
+      "id": "LEARNER-BRAND-BOUNDARY",
+      "title": "B7 contract and decision record contain no comparison-school learner label",
+      "ok": true,
+      "evidence": "bauman-iu5-only"
+    },
+    {
+      "id": "FORWARD-OWNERSHIP",
+      "title": "B7 leaves schema factory renderer regression multilingual UI and AI runtime forward work explicit",
+      "ok": true,
+      "evidence": {
+        "L6-B8": "formal instance schema, validator and version migration",
+        "L6-B9": "Subject Factory registration and data-source resolution",
+        "L6-B10": "renderer and legacy bridge integration",
+        "L6-B11": "reference and light-subject runtime regression",
+        "L12": "full multilingual learner UI, Russian Twin generation workflow and English Research experience",
+        "L13": "contextual AI runtime and grounded provider policies",
+        "rule": "B7 reserves executable hook semantics and profiles but does not claim translated content coverage, automatic generation, runtime rendering or full multilingual UI."
+      }
+    },
+    {
+      "id": "ROLLBACK",
+      "title": "B7 rollback has no learner-state or legacy-runtime impact",
+      "ok": true,
+      "evidence": {
+        "scope": "Remove the B7 contract, decision record, generated report and workflow gate, then restore progress markers to the B6 checkpoint.",
+        "learnerStateImpact": "none",
+        "legacyRuntimeImpact": "none"
+      }
+    },
+    {
+      "id": "DOC-COVERAGE",
+      "title": "B7 decision record covers audit activation roles alignment tokens glossary layers exposure evidence assessment AI offline profiles compatibility rollback and acceptance",
+      "ok": true,
+      "evidence": "docs/migration/L6_B7_LANGUAGE_LAYER_HOOKS.md"
+    }
+  ],
+  "failures": [],
+  "result": "PASS"
+}

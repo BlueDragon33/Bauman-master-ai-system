@@ -107,7 +107,7 @@ L5 PASS nhưng `serviceWorkerCache` production vẫn OFF. Chỉ bật ở stagin
 
 ## Lượt 6 · Universal Lesson Architecture & Subject Factory · 11 bước
 
-Trạng thái: **B1–B6 PASS · B7 CHƯA BẮT ĐẦU**.
+Trạng thái: **B1–B6 PASS · B7 IMPLEMENTED · LOCAL GATE PASS · REMOTE CI PENDING**.
 
 Bằng chứng B1:
 - Audit quyết định: L6_B1_REFERENCE_IMPLEMENTATION_AUDIT.md.
@@ -229,13 +229,41 @@ Bằng chứng B6:
   17/17, academic runtime 36/36, roadmap/offline static 75/75, data loading 8
   môn với 0 lỗi, runtime diagnostics 14/14, offline report integrity 5/5.
 
+Bằng chứng B7:
+- Contract: `assets/data/lesson/language-layer-hooks-v1.json`.
+- Decision record: `L6_B7_LANGUAGE_LAYER_HOOKS.md`.
+- Evidence máy đọc được:
+  `L6_B7_LANGUAGE_LAYER_REGRESSION.generated.json`.
+- Deterministic gate: 96/96 checks PASS; B1-B6 vẫn PASS; report B7 ổn định
+  qua hai lần chạy với SHA-256
+  `e4d2269047b69559dd27ed40ccf9010fbbe4d314c9e57100dd5984ef1aea6c59`.
+- Russian Twin và English Research mỗi lớp có 8 mode, alignment/glossary/token
+  provenance riêng; mặc định `declared`, hidden, `autoActivate=false`, toàn bộ
+  learner UI đa ngôn ngữ vẫn thuộc L12.
+- Manual audit sửa role `supportLanguages` nhất quán và thêm exact review
+  authority: AI chỉ được đặt `unreviewed-ai-draft`; review alignment không phải
+  xác minh Master-ready và vẫn cần B5 verifier riêng.
+- Evidence boundary cấm hook-open/term-view/rescue/feedback trở thành mastery;
+  assessment tách domain/source/language và cấm hook/AI lộ protected answer.
+- Năm mutation test về auto-activation, AI review promotion, English Research
+  coverage, rescue-as-evidence và answer leakage đều FAIL đúng dự kiến.
+- Russian vẫn 26 bài/26 `ruTitle`; Research vẫn 45 bài `elearning-v1.1`;
+  Roadmap giữ `russian-twin-lesson`, research methodology/thesis,
+  `nir-vkr` và `matching-russian-technical`; sáu source path có hash trong
+  report, source/runtime không có diff.
+- L5 regression trên bản nguồn sạch sau B7: static routing 9/9, service worker
+  17/17, academic runtime 36/36, roadmap/offline static 75/75, data loading 8
+  môn với 0 lỗi, runtime diagnostics 14/14, offline report integrity 5/5.
+- Chưa đánh dấu B7 remote PASS cho tới khi workflow L6 trên nhánh làm việc
+  hoàn tất thành công.
+
 1. **L6-B1** · Audit sâu ba reference implementations: Tiếng Nga, Toán và nguyên tắc UX bài giảng Bơi ếch; lập bảng phần nào giữ, phần nào chuẩn hóa, phần nào không dùng chung. **PASS**.
 2. **L6-B2** · Định nghĩa `UniversalLessonContract` gồm metadata, prerequisite, objectives, theory, example, exercise, lab/simulation, misconception, visual-check, oral, review, test, mastery, project/NIR evidence. **PASS**.
 3. **L6-B3** · Tách `required blocks` và `optional blocks` theo lesson type để không ép mọi bài có 18 tab. **PASS**.
 4. **L6-B4** · Định nghĩa lesson types: language, mathematics, programming, database, software-design, ML/data, ASOIU/system, research. **PASS**.
 5. **L6-B5** · Định nghĩa Master-ready evidence/gate chung: understand → solve → build/apply → explain → retain; rubric theo loại môn. **PASS**.
 6. **L6-B6** · Định nghĩa Visual Teaching Contract: hình/diagram/step-state/correct-wrong/interactive feedback, kế thừa tinh thần Bơi ếch nhưng phù hợp môn kỹ thuật. **PASS**.
-7. Định nghĩa Russian Twin + English Research Layer hooks ngay trong contract, chưa ép hiển thị toàn bộ trước L12.
+7. **L6-B7** · Định nghĩa Russian Twin + English Research Layer hooks ngay trong contract, chưa ép hiển thị toàn bộ trước L12. **LOCAL PASS · CI PENDING**.
 8. Tạo machine-readable lesson schema + validator + version migration.
 9. Tạo Subject Factory registry: subject → engine → lesson types → special widgets → data sources → offline policy.
 10. Tạo Universal Lesson Renderer/bridge dùng được với content engine hiện tại mà không phá Russian/Math legacy.
