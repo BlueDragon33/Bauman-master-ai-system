@@ -56,6 +56,7 @@ jobs:
           node --check scripts/migration/l5-roadmap-offline-static-regression.cjs
           node --check scripts/migration/l5-browser-network-regression.cjs
           node --check scripts/migration/l5-responsive-regression.cjs
+          node --check scripts/migration/l5-render-performance-regression.cjs
           node --check scripts/migration/l5-roadmap-offline-browser-regression.cjs
           node --check scripts/migration/l5-record-ci-result.cjs
           node -e "const x=require('./assets/data/roadmap/iu5-090401-11-v3.json'); if(x.displayCode!=='09.04.01/11'||x.department!=='ИУ-5') process.exit(2)"
@@ -176,6 +177,20 @@ jobs:
           if [ "$GATE_OUTCOME" = "success" ]; then STATE=success; fi
           gh api --method POST "repos/${GITHUB_REPOSITORY}/statuses/${GITHUB_SHA}" -f state="$STATE" -f context="migration/l5-responsive" -f description="L5 responsive/runtime routing gate: ${GATE_OUTCOME}"
 
+      - name: Render and DOM performance regression
+        id: render_performance_gate
+        run: node scripts/migration/l5-render-performance-regression.cjs
+
+      - name: Publish render performance status
+        if: ${{ always() && github.event_name == 'push' && steps.render_performance_gate.outcome != 'skipped' }}
+        env:
+          GH_TOKEN: ${{ github.token }}
+          GATE_OUTCOME: ${{ steps.render_performance_gate.outcome }}
+        run: |
+          STATE=failure
+          if [ "$GATE_OUTCOME" = "success" ]; then STATE=success; fi
+          gh api --method POST "repos/${GITHUB_REPOSITORY}/statuses/${GITHUB_SHA}" -f state="$STATE" -f context="migration/l5-render-performance" -f description="L5 render/DOM performance gate: ${GATE_OUTCOME}"
+
       - name: Roadmap V3 local-library and offline navigation regression
         id: offline_browser_gate
         run: node scripts/migration/l5-roadmap-offline-browser-regression.cjs
@@ -209,6 +224,7 @@ jobs:
             docs/migration/L5_DATA_LOADING_AUDIT.generated.md
             docs/migration/L5_BROWSER_NETWORK_REGRESSION.generated.json
             docs/migration/L5_RESPONSIVE_REGRESSION.generated.json
+            docs/migration/L5_RENDER_PERFORMANCE_REGRESSION.generated.json
             docs/migration/L5_ROADMAP_OFFLINE_BROWSER_REGRESSION.generated.json
           if-no-files-found: warn
           retention-days: 7
@@ -243,6 +259,7 @@ jobs:
           git add docs/migration/L5_ROADMAP_OFFLINE_STATIC_REGRESSION.generated.json 2>/dev/null || true
           git add docs/migration/L5_BROWSER_NETWORK_REGRESSION.generated.json 2>/dev/null || true
           git add docs/migration/L5_RESPONSIVE_REGRESSION.generated.json 2>/dev/null || true
+          git add docs/migration/L5_RENDER_PERFORMANCE_REGRESSION.generated.json 2>/dev/null || true
           git add docs/migration/L5_ROADMAP_OFFLINE_BROWSER_REGRESSION.generated.json 2>/dev/null || true
           git add docs/migration/L5_DATA_LOADING_AUDIT.generated.md 2>/dev/null || true
           if git diff --cached --quiet; then
