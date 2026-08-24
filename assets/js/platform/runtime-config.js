@@ -14,6 +14,8 @@
       aiServiceProxy: false,
       personalLearningShadow: false,
       siteRuntime: true,
+      offlineLibrary: true,
+      localFileLibrary: true,
       serviceWorkerCache: false
     },
     storage: {
