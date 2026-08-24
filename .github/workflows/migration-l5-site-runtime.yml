@@ -38,14 +38,24 @@ jobs:
         run: |
           node --check assets/js/platform/site-runtime.js
           node --check assets/js/platform/site-routing-bridge.js
+          node --check assets/js/platform/offline-content-library.js
+          node --check assets/js/platform/academic-roadmap-v3-bridge.js
+          node --check assets/js/platform/offline-library-ui.js
+          node --check assets/js/platform/offline-html-sandbox-guard.js
+          node --check assets/js/platform/offline-import-quota-guard.js
+          node --check assets/js/platform/offline-subject-pack-refcount-guard.js
+          node --check assets/js/platform/offline-subject-pack-manager.js
           node --check service-worker.js
           node --check subjects/math/assets/theory_skin/theory-legacy-route-E246.js
           node --check subjects/russian/assets/lazy-heavy-data-v1341.js
           node --check scripts/migration/l5-data-loading-audit.cjs
           node --check scripts/migration/l5-static-routing-audit.cjs
+          node --check scripts/migration/l5-roadmap-offline-static-regression.cjs
           node --check scripts/migration/l5-browser-network-regression.cjs
           node --check scripts/migration/l5-responsive-regression.cjs
+          node --check scripts/migration/l5-roadmap-offline-browser-regression.cjs
           node --check scripts/migration/l5-record-ci-result.cjs
+          node -e "const x=require('./assets/data/roadmap/iu5-090401-11-v3.json'); if(x.displayCode!=='09.04.01/11'||x.department!=='ИУ-5') process.exit(2)"
 
       - name: Publish syntax status
         if: ${{ always() && github.event_name == 'push' && steps.syntax.outcome != 'skipped' }}
@@ -70,6 +80,20 @@ jobs:
           STATE=failure
           if [ "$GATE_OUTCOME" = "success" ]; then STATE=success; fi
           gh api --method POST "repos/${GITHUB_REPOSITORY}/statuses/${GITHUB_SHA}" -f state="$STATE" -f context="migration/l5-static-routing" -f description="L5 static path/cache/routing gate: ${GATE_OUTCOME}"
+
+      - name: Audit Roadmap V3 and offline-first invariants
+        id: offline_static_gate
+        run: node scripts/migration/l5-roadmap-offline-static-regression.cjs
+
+      - name: Publish Roadmap/offline static status
+        if: ${{ always() && github.event_name == 'push' && steps.offline_static_gate.outcome != 'skipped' }}
+        env:
+          GH_TOKEN: ${{ github.token }}
+          GATE_OUTCOME: ${{ steps.offline_static_gate.outcome }}
+        run: |
+          STATE=failure
+          if [ "$GATE_OUTCOME" = "success" ]; then STATE=success; fi
+          gh api --method POST "repos/${GITHUB_REPOSITORY}/statuses/${GITHUB_SHA}" -f state="$STATE" -f context="migration/l5-roadmap-offline-static" -f description="L5 Roadmap/offline static gate: ${GATE_OUTCOME}"
 
       - name: Audit large JSON loading policy
         id: data_gate
@@ -135,6 +159,20 @@ jobs:
           if [ "$GATE_OUTCOME" = "success" ]; then STATE=success; fi
           gh api --method POST "repos/${GITHUB_REPOSITORY}/statuses/${GITHUB_SHA}" -f state="$STATE" -f context="migration/l5-responsive" -f description="L5 responsive/runtime routing gate: ${GATE_OUTCOME}"
 
+      - name: Roadmap V3 local-library and offline navigation regression
+        id: offline_browser_gate
+        run: node scripts/migration/l5-roadmap-offline-browser-regression.cjs
+
+      - name: Publish Roadmap/offline browser status
+        if: ${{ always() && github.event_name == 'push' && steps.offline_browser_gate.outcome != 'skipped' }}
+        env:
+          GH_TOKEN: ${{ github.token }}
+          GATE_OUTCOME: ${{ steps.offline_browser_gate.outcome }}
+        run: |
+          STATE=failure
+          if [ "$GATE_OUTCOME" = "success" ]; then STATE=success; fi
+          gh api --method POST "repos/${GITHUB_REPOSITORY}/statuses/${GITHUB_SHA}" -f state="$STATE" -f context="migration/l5-roadmap-offline-browser" -f description="L5 Roadmap/offline browser gate: ${GATE_OUTCOME}"
+
       - name: Record durable L5 CI result
         if: always()
         env:
@@ -149,9 +187,11 @@ jobs:
           path: |
             docs/migration/L5_CI_RESULT.generated.json
             docs/migration/L5_STATIC_ROUTING_AUDIT.generated.json
+            docs/migration/L5_ROADMAP_OFFLINE_STATIC_REGRESSION.generated.json
             docs/migration/L5_DATA_LOADING_AUDIT.generated.md
             docs/migration/L5_BROWSER_NETWORK_REGRESSION.generated.json
             docs/migration/L5_RESPONSIVE_REGRESSION.generated.json
+            docs/migration/L5_ROADMAP_OFFLINE_BROWSER_REGRESSION.generated.json
           if-no-files-found: warn
           retention-days: 7
 
@@ -181,8 +221,10 @@ jobs:
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git add docs/migration/L5_CI_RESULT.generated.json
           git add docs/migration/L5_STATIC_ROUTING_AUDIT.generated.json 2>/dev/null || true
+          git add docs/migration/L5_ROADMAP_OFFLINE_STATIC_REGRESSION.generated.json 2>/dev/null || true
           git add docs/migration/L5_BROWSER_NETWORK_REGRESSION.generated.json 2>/dev/null || true
           git add docs/migration/L5_RESPONSIVE_REGRESSION.generated.json 2>/dev/null || true
+          git add docs/migration/L5_ROADMAP_OFFLINE_BROWSER_REGRESSION.generated.json 2>/dev/null || true
           git add docs/migration/L5_DATA_LOADING_AUDIT.generated.md 2>/dev/null || true
           if git diff --cached --quiet; then
             exit 0
