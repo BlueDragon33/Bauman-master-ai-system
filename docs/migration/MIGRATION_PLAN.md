@@ -1,177 +1,328 @@
-# BAUMAN MASTER AI · KẾ HOẠCH MIGRATION AN TOÀN
+# BAUMAN MASTER AI · MASTER PLAN WEB APP
 
-Baseline: `main`
-Working branch đầu tiên: `migration/webapp-l1-audit-storage`
+Baseline ổn định: `main`
+Working branch: `migration/webapp-l1-audit-storage`
+Mục tiêu sản phẩm: **Bauman Master AI · ИУ-5 · 09.04.01/11 · Web App/PWA · Online + Offline · AI-assisted · VI/RU/EN adaptive**
 
-Kế hoạch hiện tại trong Lượt 5: **14 lượt · 122 bước**. Ban đầu là 88 bước; Lượt 2 phát sinh thêm 3 bước, Lượt 3 thêm 9 bước, Lượt 4 thêm 3 bước và Lượt 5 hiện thêm 19 bước do audit/test tìm thấy rủi ro thật, yêu cầu Roadmap V3 và offline-first cho Web App. Số lượt/bước được phép tăng tiếp khi audit/test phát hiện vấn đề mới. Không giảm bước chỉ để rút ngắn tiến độ.
+Kế hoạch chính thức hiện tại: **23 lượt · 218 bước**.
+
+Quy tắc cố định:
+- Thực hiện tuần tự; lỗi ở lượt/bước nào thì dừng tiến độ tại đó, sửa xong và chạy lại gate rồi mới tiếp tục.
+- Được tự tăng lượt/bước khi audit/test phát hiện rủi ro hoặc một cải tiến có giá trị học tập rõ ràng; không giảm bước chỉ để rút ngắn tiến độ.
+- Không phá học liệu Tiếng Nga/Toán đã có chỉ để ép vào schema mới; ưu tiên adapter/bridge/migration có rollback.
+- Không merge/deploy `main` trước khi staging và regression tương ứng PASS.
+- Learner-facing UI chỉ theo Bauman · ИУ-5 · 09.04.01/11; không đưa nhãn trường so sánh vào lộ trình học.
+- AI phải hỗ trợ học tập thật, không chỉ là ô chat; offline phải vẫn học được khi AI/cloud/VPN không khả dụng.
+
+---
 
 ## Lượt 1 · Audit toàn hệ thống · 15 bước
 
-Trạng thái: **PASS**. Bản đồ chi tiết ở `L1_SYSTEM_AUDIT.md`.
+Trạng thái: **PASS**. Bản đồ chi tiết: `L1_SYSTEM_AUDIT.md`.
 
 ## Lượt 2 · Safety Platform Layer · 8 bước
 
-Trạng thái: **PASS**. Báo cáo chi tiết ở `L2_SAFETY_PLATFORM_REPORT.md`.
+Trạng thái: **PASS**. Báo cáo: `L2_SAFETY_PLATFORM_REPORT.md`.
 
-1. Tạo runtime feature config, mặc định cloud/auth backend/AI proxy OFF.
-2. Tạo storage adapter tương thích localStorage và legacy keys.
-3. Bổ sung schema/version metadata cho state migration.
-4. Bước phát sinh: sửa ký tự rác HTML tại topbar.
-5. Wire adapter/platform layer vào main theo chế độ pass-through, không đổi hành vi runtime cũ.
-6. Tạo platform bootstrap/audit không phá dữ liệu.
-7. Bước phát sinh: deterministic regression harness.
-8. Bước phát sinh: GitHub Actions safety regression và xác nhận run SUCCESS.
+1. Runtime feature config, mặc định cloud/auth backend/AI proxy OFF.
+2. Storage adapter tương thích localStorage và legacy keys.
+3. Schema/version metadata cho state migration.
+4. Sửa ký tự rác HTML tại topbar.
+5. Wire adapter/platform layer vào Main theo pass-through.
+6. Platform bootstrap/audit không phá dữ liệu.
+7. Deterministic regression harness.
+8. GitHub Actions safety regression và checkpoint PASS.
 
 ## Lượt 3 · Storage abstraction toàn hệ · 15 bước
 
-Trạng thái: **PASS**. Báo cáo chi tiết ở `L3_STORAGE_ABSTRACTION_REPORT.md`.
+Trạng thái: **PASS**. Báo cáo: `L3_STORAGE_ABSTRACTION_REPORT.md`.
 
-1. Tạo main state repository trên platform storage.
-2. Chuyển main state read/write qua repository, giữ nguyên legacy key.
-3. Chuyển users/current-user/session cache qua repository, giữ nguyên legacy keys.
-4. Chuyển schedule/progress/report writes qua đường `save()` của repository.
-5. Tạo L3 regression workflow và scope protection.
-6. Tạo full-repo storage inventory tự động.
-7. Bước phát sinh: sửa workflow inventory không nhận generated file untracked.
-8. Tạo shared subject storage abstraction.
-9. Bổ sung allowlist migration để chặn sửa runtime ngoài phạm vi storage.
-10. Wire storage layer vào entry của đủ 8 môn.
-11. Chuyển AI/Foundation/Research/Signal/Systems qua subject storage.
-12. Chuyển Russian/Programming và đổi oversized-data behavior từ xóa sang preserve.
-13. Chuyển active Math storage E129/E239/E240 qua subject storage.
-14. Bước phát sinh: chuyển Math core-subject/DataVault E127 còn direct browser storage.
-15. Bước phát sinh: final direct-API inventory + byte-for-byte legacy preservation; sửa helper contract được gate phát hiện và chạy lại PASS.
+1. Main state repository.
+2. Main state read/write qua repository, giữ legacy key.
+3. Users/current-user/session cache qua repository.
+4. Schedule/progress/report qua save path chung.
+5. L3 regression workflow + scope protection.
+6. Full-repo storage inventory.
+7. Sửa inventory generated-file edge case.
+8. Shared subject storage abstraction.
+9. Allowlist migration guard.
+10. Wire storage layer vào đủ 8 subject entry.
+11. Chuyển AI/Foundation/Research/Signal/Systems.
+12. Chuyển Russian/Programming và preserve oversized data.
+13. Chuyển active Math storage.
+14. Chuyển Math core-subject/DataVault legacy direct storage.
+15. Final direct-API inventory + byte-for-byte legacy preservation.
 
-## Lượt 4 · Chuẩn hóa Personal Learning State · 8 bước
+## Lượt 4 · Personal Learning State · 8 bước
 
-Trạng thái: **PASS**. Báo cáo chi tiết ở `L4_PERSONAL_LEARNING_STATE_REPORT.md`.
+Trạng thái: **PASS**. Báo cáo: `L4_PERSONAL_LEARNING_STATE_REPORT.md`.
 
-1. Tách static/content state khỏi Personal Learning State bằng schema riêng.
-2. Định nghĩa progress schema với monotonic-completion policy.
-3. Định nghĩa assessment/test append-only và review record revision.
-4. Định nghĩa schedule/activity/preferences/planning/research/configuration schema.
-5. Viết deterministic versioned migration + integrity checks.
-6. Bước phát sinh: shadow repository chỉ ghi khi integrity PASS, kiểm legacy state byte-for-byte.
-7. Bước phát sinh: bootstrap OFF-by-default và wire vào main entry mà không tự tạo shadow.
-8. Bước phát sinh: sửa CI guard dùng sai baseline, thêm bootstrap/index regression và checkpoint L3 guard.
+1. Tách content/static state khỏi Personal Learning State.
+2. Progress schema + monotonic completion.
+3. Assessment append-only + review revision.
+4. Schedule/activity/preferences/planning/research/configuration schema.
+5. Deterministic versioned migration + integrity.
+6. Shadow repository chỉ ghi khi integrity PASS.
+7. Bootstrap OFF-by-default, không tự tạo shadow.
+8. CI baseline/bootstrap/index regression và checkpoint.
 
-## Lượt 5 · Site runtime, Roadmap V3 và offline-first data loading · 24 bước
+## Lượt 5 · Web App runtime · Roadmap V3 · Offline-first · 25 bước
 
-Trạng thái: **IN PROGRESS**. Static audit đã được sửa false positive; browser gate sau đó phát hiện eager-load thật ở Math/Russian, audit tiếp phát hiện SiteRuntime chưa nằm trong Main entry graph, yêu cầu Web App offline-first phát sinh Local Library/content packs, audit Roadmap V3 phát hiện Main vẫn còn dùng academic dataset cũ ở Home/Kho môn/Lịch, audit offline phát hiện pack có nguy cơ giữ bản cũ vô thời hạn nếu cache luôn thắng network, và local-file audit phát hiện file lớn trên máy không nên bắt buộc sao chép thêm vào IndexedDB mới đọc được. Không được chuyển sang L6 trước khi toàn bộ gate L5 PASS.
+Trạng thái: **PASS**.
+
+Validated source: `de34c9606d8e35b138e9933c835d4ab55228fca6`
+Immutable checkpoint: `checkpoint/l5-webapp-offline-pass-a20-20260824`
+Authoritative run: `32702609199`
+Báo cáo đóng lượt: `L5_WEBAPP_OFFLINE_FINAL_REPORT.md`
 
 1. Chuẩn hóa static serving paths.
 2. Lazy-load data lớn theo môn/tab.
-3. Cache nội dung tĩnh có version.
+3. Versioned cache cho static shell.
 4. Chuẩn hóa iframe/new-tab routing.
 5. Regression desktop/laptop/tablet/mobile.
-6. Bước phát sinh L5-A1: phân biệt catalog metadata, declared-initial metadata và request thật của browser; không coi `adapter.dataFiles` là startup network load.
-7. Bước phát sinh L5-A2: dựng static entry-graph audit từ `subjects/*/index.html` và các script được nạp trực tiếp; giữ nguyên dữ liệu học thuật.
-8. Bước phát sinh L5-A3: bổ sung browser/network regression làm nguồn authoritative cho startup payload và lazy-load behavior.
-9. Bước phát sinh L5-A4: browser gate phát hiện eager-load thật; tách Math `lessons.json` legacy và Russian `vocab/tests/speaking` khỏi startup mà không sửa byte học liệu.
-10. Bước phát sinh L5-A5: nâng GitHub Actions runtime lên Node 24 và gate syntax cho các module deferred-loader mới.
-11. Bước phát sinh L5-A6: regression hai chiều, vừa cấm JSON lớn lúc startup vừa bắt buộc nguồn deferred phải tải khi người học mở đúng chức năng/Refresh.
-12. Bước phát sinh L5-A7: khôi phục deferred source theo Personal Learning State đã lưu khi reload trực tiếp vào Vocab/Practice/Review/Exam/Storage.
-13. Bước phát sinh L5-A8: wire `site-runtime.js` vào Main entry thật, chuẩn hóa site-root/service-worker scope và bọc iframe/new-tab/editor bằng same-origin routing bridge mà không ghi hostname triển khai vào state lâu dài.
-14. Bước phát sinh L5-A9: đồng bộ runtime/cache version, static path + script-order + cache-policy gate, responsive matrix 9 entry × 4 viewport.
-15. Bước phát sinh L5-A10: ghi durable CI checkpoint vào repo cho source SHA mới nhất, kèm các báo cáo gate sinh được; workflow checkpoint tự bỏ qua để không tạo vòng lặp. Chỉ khi checkpoint cuối là PASS mới ghi root cause/rollback report và đóng Lượt 5.
-16. Bước phát sinh L5-A11: tách `lazy` khỏi `optional/non-persistent` ở Russian; giữ `vocab/tests/speaking` là nguồn bắt buộc có thể chỉnh sửa, cắt startup network nhưng bảo toàn legacy `_db` overlay byte/state-wise; thêm browser regression chống mất dữ liệu.
-17. Bước phát sinh L5-A12: khóa Roadmap V3 riêng cho **Bauman · ИУ-5 · 09.04.01/11**, tạo manifest machine-readable bám curriculum 2026 và runtime bridge để Main đọc manifest mà không sửa khối `main.js` lớn.
-18. Bước phát sinh L5-A13: tạo Offline Content Library bằng IndexedDB, file/folder picker, quota, local-file preview và sandbox HTML; không lưu file máy tính vào legacy Personal Learning State.
-19. Bước phát sinh L5-A14: tạo explicit offline content-pack contract cho Web App/môn học; chỉ cache URL người học chủ động giữ, cho phép JSON đã chọn chạy offline nhưng vẫn cấm precache toàn bộ kho dữ liệu lớn.
-20. Bước phát sinh L5-A15: gate Roadmap/offline gồm static source invariants, IndexedDB roundtrip, local HTML sandbox, explicit pack add/remove, Main offline reload, ít nhất một môn nhẹ + Math + Russian offline-flow, quota/storage-full handling và cache update/rollback. Chỉ sau PASS mới bật `serviceWorkerCache` cho rollout.
-21. Bước phát sinh L5-A16: tạo **Academic Main Runtime V3** nạp sau `data.js` nhưng trước `main.js`, thay toàn bộ stage/semester/subject/course graph của Main bằng Bauman-only ИУ-5 · 09.04.01/11; migrate metadata state tại chỗ nhưng giữ nguyên progress, lịch thủ công, subject paths/editor paths và dữ liệu người học; thay Research UI bằng pipeline НИР 1→4→ВКР.
-22. Bước phát sinh L5-A17: performance/render gate cho data lớn và Main V3: xác nhận Russian Vocab phân trang 20, Review/Exam 20–25, card Main dùng `content-visibility`, không render toàn kho một lượt; đo navigation/render responsiveness cho Main + Russian + Math và fail nếu long-task/DOM/request budget vượt ngưỡng đã khóa.
-23. Bước phát sinh L5-A18: sửa freshness/lifecycle cho offline cache: explicit pack và versioned shell phục vụ cache ngay để không lag/mất mạng vẫn mở được, đồng thời revalidate nền khi network có lại; mọi refresh promise phải được đăng ký `waitUntil` trong fetch-event lifetime, shell install all-or-nothing, không để pack offline giữ nội dung cũ vĩnh viễn.
-24. Bước phát sinh L5-A19: thêm **Direct Local Reader** zero-copy cho file đã tải sẵn trên máy: PDF/video/audio/ảnh dùng Blob URL, HTML chạy sandbox, text/code chỉ đọc tối đa 300 KB đầu để preview; không bắt buộc sao chép file lớn vào IndexedDB, không tạo Personal Learning State/pack mới và có browser regression chống duplicate storage/sandbox escape.
+6. A1: phân biệt catalog metadata / initial declaration / network request thật.
+7. A2: static entry-graph audit từ subject entry.
+8. A3: browser/network regression làm nguồn authoritative.
+9. A4: defer Math legacy lessons và Russian vocab/tests/speaking khỏi startup.
+10. A5: Node 24 + syntax gate cho deferred loaders.
+11. A6: regression hai chiều: cấm eager-load nhưng bắt lazy source tải khi mở đúng chức năng.
+12. A7: restore deferred source theo Personal Learning State khi reload trực tiếp.
+13. A8: SiteRuntime vào Main, site-root/service-worker scope/same-origin routing.
+14. A9: runtime/cache version + script-order/cache-policy + responsive matrix.
+15. A10: durable checkpoint/report/rollback contract.
+16. A11: tách Russian lazy khỏi optional/non-persistent, giữ overlay persistence.
+17. A12: Roadmap V3 Bauman · ИУ-5 · 09.04.01/11 + manifest machine-readable.
+18. A13: IndexedDB Offline Content Library + file/folder picker + HTML sandbox.
+19. A14: explicit subject offline packs; không precache toàn kho lớn.
+20. A15: Local Library/offline browser/quota/cache/update/rollback gates.
+21. A16: Academic Main Runtime V3 thống nhất Home/Roadmap/Subjects/Schedule/NIR.
+22. A17: render/DOM performance gate cho Main + Russian + Math.
+23. A18: cache freshness + Service Worker lifecycle/revalidation/atomic install.
+24. A19: Direct Local Reader zero-copy cho PDF/video/audio/image/text/code/HTML sandbox.
+25. A20: offline report semantic-integrity; sandbox block dự kiến không bị hiểu sai thành runtime failure.
 
-## Lượt 6 · Backend/API shell · 6 bước
+L5 PASS nhưng `serviceWorkerCache` production vẫn OFF. Chỉ bật ở staging/PWA rollout sau gate riêng.
 
-1. Chọn backend tối thiểu theo yêu cầu thực tế, không đổi frontend framework.
-2. Thiết lập environment/config/secrets server-side.
+---
+
+## Lượt 6 · Universal Lesson Architecture & Subject Factory · 11 bước
+
+Trạng thái: **NEXT / IN PROGRESS khi bắt đầu triển khai**.
+
+1. Audit sâu ba reference implementations: Tiếng Nga, Toán và nguyên tắc UX bài giảng Bơi ếch; lập bảng phần nào giữ, phần nào chuẩn hóa, phần nào không dùng chung.
+2. Định nghĩa `UniversalLessonContract` gồm metadata, prerequisite, objectives, theory, example, exercise, lab/simulation, misconception, visual-check, oral, review, test, mastery, project/NIR evidence.
+3. Tách `required blocks` và `optional blocks` theo lesson type để không ép mọi bài có 18 tab.
+4. Định nghĩa lesson types: language, mathematics, programming, database, software-design, ML/data, ASOIU/system, research.
+5. Định nghĩa Master-ready evidence/gate chung: understand → solve → build/apply → explain → retain; rubric theo loại môn.
+6. Định nghĩa Visual Teaching Contract: hình/diagram/step-state/correct-wrong/interactive feedback, kế thừa tinh thần Bơi ếch nhưng phù hợp môn kỹ thuật.
+7. Định nghĩa Russian Twin + English Research Layer hooks ngay trong contract, chưa ép hiển thị toàn bộ trước L12.
+8. Tạo machine-readable lesson schema + validator + version migration.
+9. Tạo Subject Factory registry: subject → engine → lesson types → special widgets → data sources → offline policy.
+10. Tạo Universal Lesson Renderer/bridge dùng được với content engine hiện tại mà không phá Russian/Math legacy.
+11. Regression reference subjects + rollback checkpoint; chỉ PASS khi Russian/Math không giảm chức năng và một subject nhẹ dựng được bằng Factory.
+
+## Lượt 7 · Hoàn thiện Reference Subjects · Russian + Math + Foundation · 9 bước
+
+1. Audit coverage Russian theo roadmap dự bị → technical → academic → defense.
+2. Chuẩn hóa Russian lesson map vào Universal Contract bằng adapter, giữ dialogue/speech/handwriting/flashcard/exam đặc thù.
+3. Hoàn thiện Russian Twin lesson generator/registry và glossary theo subject/context.
+4. Audit Math toàn bộ theory/exercise/test/simulation; map prerequisite theo AI/Data/ИУ-5.
+5. Chuẩn hóa Math vào Universal Contract, giữ formula/step solution/simulation đặc thù.
+6. Hoàn thiện Foundation cho giai đoạn dự bị: classroom Russian + math/science transition + study-method bridge.
+7. Master-ready evidence + spaced-review hooks cho Russian/Math/Foundation.
+8. Visual/pedagogical QA desktop/tablet/mobile/offline.
+9. Cross-reference checkpoint: Russian/Math là reference implementation chính thức cho các môn sau.
+
+## Lượt 8 · Programming Core FULL · Python/OOP/Algorithms/DB/Software Engineering · 14 bước
+
+1. Python fundamentals roadmap theo prerequisite thực tế.
+2. OOP + SOLID/patterns cần cho ИУ-5.
+3. NumPy/Pandas/data pipeline.
+4. Testing/debugging/Git.
+5. Algorithms & Data Structures vừa đủ, không competitive-programming hóa.
+6. Complexity/search/sort/hash/tree/graph practical modules.
+7. SQL full path từ query cơ bản đến complex query.
+8. Relational model/schema/normalization/transactions.
+9. Index/query plan/database optimization.
+10. Post-relational/NoSQL + ML data architecture.
+11. Software requirements/UML/architecture/OOP system design.
+12. Testing strategy/versioning/CI/lifecycle/project management.
+13. Đặc sản UI: code runner/test/debug challenge + SQL playground/schema/query-plan + UML/architecture interactions.
+14. Full subject QA + Master-ready + RU Twin/EN terminology hooks + offline packs.
+
+## Lượt 9 · AI & Data FULL · ML/Neural/Data Analysis/Time Series · 13 bước
+
+1. Data preparation/statistical bridge.
+2. Supervised learning.
+3. Unsupervised learning.
+4. Metrics/cross-validation/model selection.
+5. Feature engineering/regularization.
+6. Ensembles/clustering.
+7. Neural-network fundamentals.
+8. Neural training/loss/activation/optimization practicals.
+9. Multivariate data analysis + covariance/PCA/SVD links to Math.
+10. Time-series foundations/stationarity/autocorrelation/decomposition.
+11. Forecasting + anomaly detection + telemetry examples.
+12. Đặc sản UI: dataset playground/model comparison/confusion matrix/overfit/network/time-series visualizers.
+13. Full QA + reproducible experiments + Master-ready + RU/EN layers.
+
+## Lượt 10 · ASOIU · Reliability · Systems · Support Bridges FULL · 11 bước
+
+1. Analytical models of ASOIU.
+2. System architecture/information flow/modeling.
+3. OOP design links to software-engineering subject.
+4. Reliability models and failure reasoning.
+5. Lifecycle/process description.
+6. Ergonomic analysis of information/display systems.
+7. Information security bridge where official course requires it.
+8. Markov bridge on demand.
+9. Queueing/Operations Research bridge on demand.
+10. Linux/OS/Networks bridge on demand, only depth actually needed.
+11. System-diagram/reliability-scenario/lifecycle interactive QA + Master-ready.
+
+## Lượt 11 · Research Methodology · НИР 1–4 · ВКР FULL · 9 bước
+
+1. Research question/hypothesis builder.
+2. Literature matrix + source/evidence vault.
+3. Dataset/system/experimental asset registry.
+4. Baseline + metric design.
+5. Experimental protocol/version log/reproducibility.
+6. Comparative experiment + statistics/error analysis.
+7. Scientific writing RU/EN support with citation/source boundary.
+8. NIR Semester 1→4 milestones mapped to current Bauman courses.
+9. ВКР preparation, demo, pre-defense and oral-defense simulator.
+
+## Lượt 12 · Multilingual Immersion Engine · VI/RU/EN · 10 bước
+
+1. Language-state schema: general Russian, classroom Russian, technical Russian, academic Russian, English technical, English paper-reading.
+2. Configurable stage timeline; dates editable because preparatory start can change.
+3. Home adaptive language distribution.
+4. Roadmap adaptive language distribution.
+5. Subjects/chapter/lesson adaptive labels.
+6. RU–EN–VI concept mapping + hover/tap rescue layer.
+7. Russian Twin content policy by stage and subject.
+8. English Research Layer: terminology, documentation words, paper/search keywords.
+9. Russian-first transition around half preparatory; Master uses Russian classroom + English research + Vietnamese rescue.
+10. Adaptive per-subject exposure + accessibility/fallback QA; never blindly translate formulas/code/official course names.
+
+## Lượt 13 · AI Core & Context Engine · 8 bước
+
+1. AI provider abstraction; client UI does not contain production secret.
+2. Context schema from current lesson, prerequisite, progress, scores, weak topics, schedule and NIR/VKR.
+3. Context-size budget/chunking and privacy boundary.
+4. AI Mentor modes: explain-simple, explain-deep, example, hint, Socratic, quiz-me.
+5. Grounding contract: source content vs user data vs AI inference must be distinguishable.
+6. Structured AI result schema with confidence/source/version.
+7. Offline/non-AI fallback so learning flow never depends on model availability.
+8. Safety/cost/latency regression + deterministic mock provider for tests.
+
+## Lượt 14 · Adaptive Learning Engine · 8 bước
+
+1. Prerequisite graph evaluation.
+2. Weak-topic/misconception detection.
+3. Mastery state per concept, not only subject percent.
+4. Adaptive daily priority engine.
+5. Recovery Route after failed assessment.
+6. Spaced repetition 1/3/7/14/30-day baseline with performance adjustment.
+7. Adaptive test composition from core/weak/old/integrated topics.
+8. Explainability: system must show why a lesson/review was prioritized; regression against endless-loop/over-practice.
+
+## Lượt 15 · AI Language Tutor · Russian/English/Oral · 8 bước
+
+1. Russian conversation tutor by stage.
+2. Classroom Russian simulator.
+3. Technical Russian terminology coach linked to current subject.
+4. Russian oral exam / преподаватель role-play.
+5. Rubric: content, terminology, Russian clarity, completeness.
+6. English technical-reading helper + paper vocabulary/search-query builder.
+7. RU/EN/VI rescue rules integrated with Language Immersion Engine.
+8. Speech/text fallback, transcript retention policy and multilingual QA.
+
+## Lượt 16 · AI Research Mentor · НИР/VКР · 7 bước
+
+1. Research context builder from user-selected sources/evidence only.
+2. Literature summarization/comparison with source traceability.
+3. Research-question critique without inventing evidence.
+4. Experiment-plan/baseline/metric assistant.
+5. Error-analysis/results interpretation assistant.
+6. Writing/revision/translation support with explicit source vs inference boundary.
+7. Defense simulator + anti-hallucination/source-integrity regression.
+
+## Lượt 17 · Backend/API Shell · 6 bước
+
+1. Chọn backend tối thiểu phù hợp deployment, không rewrite frontend framework.
+2. Environment/config/secrets server-side.
 3. Health/version endpoint.
 4. User-state API contract.
-5. Progress/schedule/test API contract.
-6. Validation/error envelope/logging cơ bản.
+5. Progress/schedule/test/AI context API contracts.
+6. Validation/error envelope/logging + offline-safe failure behavior.
 
-## Lượt 7 · Database cho dữ liệu động · 7 bước
+## Lượt 18 · Authentication & Authorization thật · 6 bước
 
-1. Users/identity reference.
-2. Progress/lesson completion.
-3. Test results/history.
-4. Schedule.
-5. Weak topics/review state.
-6. Study history/activity/settings.
-7. Migration/import từ local backup với idempotency.
+1. Loại production credential khỏi frontend.
+2. Password hashing hoặc identity provider phù hợp.
+3. Login/session/token lifecycle.
+4. Roles/authorization.
+5. CSRF/CORS/session hardening theo kiến trúc thực tế.
+6. Backup/export không chứa credential + auth regression/recovery.
 
-## Lượt 8 · Authentication thật · 6 bước
+## Lượt 19 · Database + Cloud Sync đa thiết bị · 7 bước
 
-1. Loại ADMIN_PASS khỏi frontend production path.
-2. Password hashing hoặc external identity provider.
-3. Login/session/token.
-4. Authorization/roles.
-5. CSRF/CORS/session hardening theo kiến trúc đã chọn.
-6. Chuyển backup sang không chứa credential.
+1. Users/identity reference + Personal Learning records.
+2. Progress/lesson/mastery/test/review schema.
+3. Schedule/history/preferences/research evidence metadata.
+4. Record-level revision + device/client metadata.
+5. Pull bootstrap + push mutation queue, không sync whole-state blob.
+6. Conflict policy theo loại record; offline queue/retry/idempotency.
+7. Máy A → cloud → Máy B + concurrent edit + recovery regression.
 
-## Lượt 9 · Cloud sync đa thiết bị · 7 bước
+## Lượt 20 · Progress/Test/Schedule/AI Cloud Integration · 5 bước
 
-1. Revision/version cho record.
-2. Device/client metadata tối thiểu.
-3. Pull bootstrap khi đăng nhập.
-4. Push mutations theo record, không sync whole-state blob.
-5. Offline queue/cache fallback.
-6. Conflict strategy theo loại dữ liệu.
-7. Test Máy A → cloud → Máy B và xung đột gần đồng thời.
+1. Sync lesson completion/mastery/weak topics.
+2. Sync assessment/review/spaced repetition state.
+3. Sync schedule/PlanningBridge/current Bauman subjects.
+4. Sync settings/bookmarks/study history/NIR checkpoints.
+5. AI context uses synced records without leaking unrelated personal data; full learning-flow regression.
 
-## Lượt 10 · Progress/Test/Schedule cloud integration · 5 bước
+## Lượt 21 · Security · Privacy · Performance Hardening · 5 bước
 
-1. Đồng bộ lesson completion/progress.
-2. Đồng bộ test results/review queue.
-3. Đồng bộ schedule/PlanningBridge state.
-4. Đồng bộ settings/bookmarks/study history.
-5. Regression toàn bộ learning flow cũ.
+1. XSS/injection/local-file sandbox/client-tampering audit.
+2. Authz/API validation/rate limiting/AI abuse guard.
+3. Secret scan/dependency/deploy-env/privacy retention audit.
+4. Lazy-loading/cache/DOM/memory/network/AI-context profiling across full subjects.
+5. Security/performance regression + failure/recovery/rollback drill.
 
-## Lượt 11 · Personal AI Mentor foundation · 5 bước
+## Lượt 22 · PWA · Site · Staging · Cross-device QA · 6 bước
 
-1. Giữ mentor client hiện tại làm fallback.
-2. Backend AI proxy không lộ API key.
-3. Context builder từ profile/progress/history/score/weak topics/current lesson/schedule.
-4. Recommendation contract có nguồn/context/version.
-5. Fallback và privacy controls khi AI service lỗi/tắt.
+1. PWA manifest/install/update UX and deliberate Service Worker rollout.
+2. Site deployment/staging domain with version/health marker.
+3. Offline install → open → study → reconnect → update regression.
+4. Cross-device/browser matrix: desktop/laptop/tablet/mobile; Chrome/Edge and supported fallbacks.
+5. Full curriculum path smoke: Home → Roadmap → Subject → Lesson → Lab → Review → Test → AI → NIR.
+6. Pedagogical/visual consistency audit across every full subject; no subject may ship as a low-quality text dump compared with reference lesson form.
 
-## Lượt 12 · Security và performance hardening · 5 bước
+## Lượt 23 · Production · Backup · Rollback · Monitoring · 4 bước
 
-1. XSS/injection/client tampering audit.
-2. Authz/API validation/rate-limit audit.
-3. Secret scan và deploy-env audit.
-4. Lazy loading/cache/network payload profiling.
-5. Security regression + dependency/config review.
+1. Production release with immutable version/checkpoint and no premature migration of `main`.
+2. Database/content/state backup + restore drill.
+3. App/API/database/content rollback procedure tested from checkpoint.
+4. Monitoring/logging/health + final acceptance: Web App/site, offline, multilingual, AI, all core subjects and NIR/VKR PASS.
 
-## Lượt 13 · Staging và regression đa thiết bị · 6 bước
+---
 
-1. Staging deployment.
-2. Regression homepage → subject → lesson → practice → simulation → review → test.
-3. Math formula/slideshow/artifact regression.
-4. Russian/Data Manager/assessment regression.
-5. Responsive/browser matrix.
-6. Sync/auth/failure/recovery tests.
+## Conflict policy
 
-## Lượt 14 · Production, backup và rollback · 5 bước
+- Static/content: versioned authoritative content; user learning state is separate.
+- Completion/mastery: monotonic where appropriate; never silently lose completed evidence.
+- Assessment: append-only results; review status may revise separately.
+- Schedule: record-level revision; same-slot conflicts must be visible.
+- Settings: timestamped last-write-wins only where harmless.
+- Research evidence: append/version, never overwrite source silently.
+- AI output: derived/advisory; never treated as authoritative source without provenance.
+- Offline cache: user-selectable; no giant automatic precache; server update may revalidate without deleting a working old shell before new shell is complete.
 
-1. Production deployment có version/checkpoint.
-2. Database backup + restore drill.
-3. Rollback app/API/database migration procedure.
-4. Monitoring/logging/health checks.
-5. Release acceptance theo tiêu chí thành công của migration.
+## Merge / progression gates
 
-## Conflict policy định hướng
+Không được chuyển lượt nếu gate bắt buộc của lượt hiện tại chưa PASS. Không merge sang stable nếu thiếu ít nhất một trong: syntax/data validation, legacy-data preservation, functional/browser regression, pedagogical/content validation phù hợp phạm vi, security review phù hợp cấp thay đổi, và rollback path.
 
-- Content tĩnh: server/version là authoritative, không merge user edit vào runtime content production nếu chưa qua workflow biên tập.
-- Progress completion: monotonic completion ưu tiên không làm mất trạng thái đã hoàn thành.
-- Test result: append-only event/result, không last-write-wins whole history.
-- Schedule: record-level revision; xung đột cùng slot cần phát hiện rõ.
-- Settings: last-write-wins theo `updatedAt` có server timestamp.
-- AI history/state: append/event-based hoặc summary revision, không ghi đè mù.
-
-## Merge gates
-
-Không merge sang stable nếu thiếu ít nhất một trong các điều kiện: syntax/data validation, legacy-data preservation, regression chức năng liên quan, security review phù hợp cấp thay đổi, và rollback path.
+Mọi lượt hoàn tất phải có ít nhất: source checkpoint, gate result, report ngắn về root cause/phần phát sinh, và rollback point.
