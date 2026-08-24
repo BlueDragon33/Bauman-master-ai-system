@@ -2,7 +2,7 @@
   'use strict';
 
   const config=global.BAUMAN_RUNTIME_CONFIG||{};
-  const VERSION='2026.08.24-l5.5';
+  const VERSION='2026.08.24-l5.6';
   const SCRIPT_URL=global.document?.currentScript?.src||'';
 
   function runtimeBase(){
