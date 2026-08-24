@@ -1,0 +1,842 @@
+{
+  "registryId": "bauman-lesson-type-registry",
+  "registryVersion": "1.0.0",
+  "status": "L6-B4-REGISTRY",
+  "programIdentityRef": "assets/data/lesson/universal-lesson-contract-v2.json#programIdentity",
+  "contractRef": {
+    "path": "assets/data/lesson/universal-lesson-contract-v2.json",
+    "contractId": "bauman-universal-lesson-contract",
+    "schemaVersion": "2.0.0"
+  },
+  "blockPolicyRef": {
+    "path": "assets/data/lesson/universal-lesson-block-policy-v1.json",
+    "policyId": "bauman-universal-lesson-block-policy",
+    "policyVersion": "1.0.0"
+  },
+  "identityRules": [
+    "A subject is a curriculum container; a lesson type is a pedagogical and interaction profile.",
+    "Every lesson has exactly one primary type.",
+    "A lesson may declare secondary facets, but secondary facets never merge block requirements automatically.",
+    "A subject may contain multiple lesson types.",
+    "A type never changes the official or personalized Bauman program identity."
+  ],
+  "profileContract": {
+    "requiredFields": [
+      "id",
+      "title",
+      "definition",
+      "useWhen",
+      "avoidWhen",
+      "blockPolicyRef",
+      "capabilityRefs",
+      "sourceArtifactKinds",
+      "presentationStrategies",
+      "visualRepresentationKinds",
+      "evidenceOutputs",
+      "assessmentModes",
+      "contextEmphasis",
+      "offlineResourceClasses",
+      "compatibilityReference",
+      "forwardRefs"
+    ],
+    "minimumCapabilityRefs": 5,
+    "minimumEvidenceOutputs": 4,
+    "minimumAssessmentModes": 2,
+    "minimumContextEmphasis": 3
+  },
+  "types": {
+    "language": {
+      "id": "language",
+      "title": {
+        "vi": "Ngôn ngữ",
+        "ru": "Языковой урок",
+        "en": "Language"
+      },
+      "definition": "Build comprehension and production through listening, dialogue, shadowing, vocabulary, grammar, writing and oral performance in a target language.",
+      "useWhen": [
+        "The primary outcome is understanding or producing language.",
+        "Pronunciation, dialogue turn, vocabulary, grammar, listening, handwriting or writing is assessed."
+      ],
+      "avoidWhen": [
+        "Language is only terminology support for a technical concept.",
+        "The primary artifact is a mathematical solution, executable program, database query, design model, ML experiment, system model or research protocol."
+      ],
+      "blockPolicyRef": "assets/data/lesson/universal-lesson-block-policy-v1.json#policiesByLessonType/language",
+      "capabilityRefs": [
+        "dialogue",
+        "shadowing",
+        "deep-speaking",
+        "speech-recording",
+        "listening-media",
+        "vocabulary-flashcard",
+        "grammar-workbench",
+        "handwriting-workspace",
+        "writing-workspace"
+      ],
+      "sourceArtifactKinds": [
+        "lesson-record",
+        "dialogue",
+        "media",
+        "exercise-bank",
+        "assessment-bank",
+        "external-specialist-artifact"
+      ],
+      "presentationStrategies": [
+        "gated-stepper",
+        "specialist-workspace",
+        "split-view",
+        "slide-deck",
+        "external-artifact"
+      ],
+      "visualRepresentationKinds": [
+        "pronunciation-state",
+        "dialogue-turn-map",
+        "correct-wrong-phrase",
+        "handwriting-overlay",
+        "listening-timeline"
+      ],
+      "evidenceOutputs": [
+        "comprehension-response",
+        "dialogue-turn",
+        "shadowing-attempt",
+        "oral-response",
+        "written-response",
+        "retention-check"
+      ],
+      "assessmentModes": [
+        "listening-comprehension",
+        "oral-performance",
+        "writing-task",
+        "delayed-language-test"
+      ],
+      "contextEmphasis": [
+        "languageState",
+        "assessmentErrors",
+        "weakTopics",
+        "currentLesson",
+        "schedule"
+      ],
+      "offlineResourceClasses": [
+        "bundled",
+        "subject-pack",
+        "local-file"
+      ],
+      "compatibilityReference": {
+        "subjectId": "russian",
+        "status": "audited-reference-unprojected",
+        "preserveCapabilities": [
+          "dialogue",
+          "deep-speaking",
+          "handwriting",
+          "review",
+          "exam",
+          "lazy-data"
+        ]
+      },
+      "forwardRefs": {
+        "masteryProfile": "L6-B5#language",
+        "visualProfile": "L6-B6#language",
+        "languageHooks": "L6-B7#language",
+        "rendererProfile": "L6-B10#language"
+      }
+    },
+    "mathematics": {
+      "id": "mathematics",
+      "title": {
+        "vi": "Toán học",
+        "ru": "Математический урок",
+        "en": "Mathematics"
+      },
+      "definition": "Develop mathematical meaning, assumptions, notation, derivation, problem solving, modeling, verification and oral explanation with exact formula and source identity.",
+      "useWhen": [
+        "The governing reasoning is mathematical.",
+        "A formula, proof, derivation, matrix, graph, numeric model or parameter relationship is the primary learning object."
+      ],
+      "avoidWhen": [
+        "Mathematics only supports an implementation, database, ML experiment, system architecture or research protocol whose primary evidence belongs to another type."
+      ],
+      "blockPolicyRef": "assets/data/lesson/universal-lesson-block-policy-v1.json#policiesByLessonType/mathematics",
+      "capabilityRefs": [
+        "authoritative-theory-deck",
+        "formula-typesetting",
+        "matrix-rendering",
+        "derivation",
+        "artifact-reader",
+        "parameter-simulation",
+        "math-concept-map",
+        "professor-oral-defense",
+        "misconception-map"
+      ],
+      "sourceArtifactKinds": [
+        "lesson-record",
+        "lecture-record",
+        "slide-deck",
+        "exercise-bank",
+        "assessment-bank",
+        "simulation",
+        "external-specialist-artifact"
+      ],
+      "presentationStrategies": [
+        "slide-deck",
+        "split-view",
+        "specialist-workspace",
+        "modal-tool",
+        "external-artifact"
+      ],
+      "visualRepresentationKinds": [
+        "formula-diagram",
+        "matrix-visualizer",
+        "graph-or-plot",
+        "assumption-gate",
+        "correct-wrong-derivation",
+        "parameter-state"
+      ],
+      "evidenceOutputs": [
+        "mathematical-solution",
+        "derivation",
+        "result-verification",
+        "simulation-result",
+        "oral-response",
+        "retention-check"
+      ],
+      "assessmentModes": [
+        "problem-set",
+        "derivation-check",
+        "professor-oral",
+        "delayed-math-test"
+      ],
+      "contextEmphasis": [
+        "prerequisiteGraph",
+        "assessmentErrors",
+        "weakTopics",
+        "currentLesson",
+        "nirVkrContext"
+      ],
+      "offlineResourceClasses": [
+        "bundled",
+        "subject-pack",
+        "local-file"
+      ],
+      "compatibilityReference": {
+        "subjectId": "math",
+        "status": "audited-reference-unprojected",
+        "preserveCapabilities": [
+          "formula-typesetting",
+          "authoritative-routing",
+          "artifact-reader",
+          "simulation",
+          "professor-oral-defense",
+          "source-identity"
+        ]
+      },
+      "forwardRefs": {
+        "masteryProfile": "L6-B5#mathematics",
+        "visualProfile": "L6-B6#mathematics",
+        "languageHooks": "L6-B7#mathematics",
+        "rendererProfile": "L6-B10#mathematics"
+      }
+    },
+    "programming": {
+      "id": "programming",
+      "title": {
+        "vi": "Lập trình",
+        "ru": "Программирование",
+        "en": "Programming"
+      },
+      "definition": "Build executable behavior through code reading, implementation, testing, debugging, complexity reasoning and repository evidence.",
+      "useWhen": [
+        "The primary artifact is executable code or a verified program behavior.",
+        "Compilation, tests, runtime output or debugging evidence decides correctness."
+      ],
+      "avoidWhen": [
+        "The primary outcome is an architecture/UML decision without implementation.",
+        "The primary executable artifact is a SQL query or data-model operation owned by the database type."
+      ],
+      "blockPolicyRef": "assets/data/lesson/universal-lesson-block-policy-v1.json#policiesByLessonType/programming",
+      "capabilityRefs": [
+        "code-lab",
+        "unit-test",
+        "debug-runner",
+        "code-trace",
+        "output-prediction",
+        "complexity-check",
+        "repository-artifact",
+        "code-review-defense"
+      ],
+      "sourceArtifactKinds": [
+        "lesson-record",
+        "exercise-bank",
+        "assessment-bank",
+        "local-file",
+        "user-artifact",
+        "external-specialist-artifact"
+      ],
+      "presentationStrategies": [
+        "split-view",
+        "specialist-workspace",
+        "gated-stepper",
+        "external-artifact"
+      ],
+      "visualRepresentationKinds": [
+        "code-trace",
+        "call-stack-state",
+        "data-structure-state",
+        "test-output-diff",
+        "complexity-plot"
+      ],
+      "evidenceOutputs": [
+        "code",
+        "passing-tests",
+        "debug-trace",
+        "complexity-explanation",
+        "repository-artifact",
+        "oral-response"
+      ],
+      "assessmentModes": [
+        "code-task",
+        "test-repair",
+        "output-prediction",
+        "code-review-defense"
+      ],
+      "contextEmphasis": [
+        "currentLesson",
+        "prerequisiteGraph",
+        "assessmentErrors",
+        "weakTopics",
+        "recentEvidence"
+      ],
+      "offlineResourceClasses": [
+        "bundled",
+        "subject-pack",
+        "local-file"
+      ],
+      "compatibilityReference": null,
+      "forwardRefs": {
+        "masteryProfile": "L6-B5#programming",
+        "visualProfile": "L6-B6#programming",
+        "languageHooks": "L6-B7#programming",
+        "rendererProfile": "L6-B10#programming"
+      }
+    },
+    "database": {
+      "id": "database",
+      "title": {
+        "vi": "Cơ sở dữ liệu",
+        "ru": "Базы данных",
+        "en": "Database"
+      },
+      "definition": "Teach data modeling, relational reasoning, SQL, normalization, transactions, indexing, query plans, optimization and post-relational tradeoffs through executable data evidence.",
+      "useWhen": [
+        "Schema, query, transaction, index, query plan or database architecture is the primary object.",
+        "Correctness depends on data state, query result, constraints or execution plan."
+      ],
+      "avoidWhen": [
+        "Data is only an input to a model experiment.",
+        "The primary outcome is general-purpose application code or high-level software architecture."
+      ],
+      "blockPolicyRef": "assets/data/lesson/universal-lesson-block-policy-v1.json#policiesByLessonType/database",
+      "capabilityRefs": [
+        "sql-playground",
+        "schema-diagram",
+        "query-plan",
+        "transaction-scenario",
+        "normalization-workbench",
+        "index-comparison",
+        "data-pipeline",
+        "database-defense"
+      ],
+      "sourceArtifactKinds": [
+        "lesson-record",
+        "exercise-bank",
+        "assessment-bank",
+        "simulation",
+        "local-file",
+        "user-artifact",
+        "external-specialist-artifact"
+      ],
+      "presentationStrategies": [
+        "split-view",
+        "specialist-workspace",
+        "gated-stepper",
+        "external-artifact"
+      ],
+      "visualRepresentationKinds": [
+        "schema-diagram",
+        "relation-state",
+        "query-plan",
+        "transaction-timeline",
+        "index-cost-comparison",
+        "pipeline-map"
+      ],
+      "evidenceOutputs": [
+        "schema-artifact",
+        "query-result",
+        "normalization-proof",
+        "transaction-analysis",
+        "query-plan-analysis",
+        "oral-response"
+      ],
+      "assessmentModes": [
+        "sql-task",
+        "schema-design",
+        "transaction-scenario",
+        "query-plan-defense"
+      ],
+      "contextEmphasis": [
+        "currentLesson",
+        "prerequisiteGraph",
+        "assessmentErrors",
+        "weakTopics",
+        "nirVkrContext"
+      ],
+      "offlineResourceClasses": [
+        "bundled",
+        "subject-pack",
+        "local-file"
+      ],
+      "compatibilityReference": null,
+      "forwardRefs": {
+        "masteryProfile": "L6-B5#database",
+        "visualProfile": "L6-B6#database",
+        "languageHooks": "L6-B7#database",
+        "rendererProfile": "L6-B10#database"
+      }
+    },
+    "software-design": {
+      "id": "software-design",
+      "title": {
+        "vi": "Thiết kế phần mềm",
+        "ru": "Проектирование программного обеспечения",
+        "en": "Software Design"
+      },
+      "definition": "Develop requirements, UML, architecture, patterns, interface contracts, quality attributes, testing strategy and lifecycle decisions through reviewable design artifacts.",
+      "useWhen": [
+        "The primary evidence is a requirements, UML, architecture, pattern or lifecycle artifact.",
+        "Correctness depends on traceability, tradeoffs, interfaces and design justification."
+      ],
+      "avoidWhen": [
+        "The main evidence is executable code behavior.",
+        "The design object is specifically a database schema/query plan or an ASOIU system model."
+      ],
+      "blockPolicyRef": "assets/data/lesson/universal-lesson-block-policy-v1.json#policiesByLessonType/software-design",
+      "capabilityRefs": [
+        "requirements-map",
+        "uml-workspace",
+        "architecture-workspace",
+        "pattern-comparison",
+        "interface-contract",
+        "quality-attribute-scenario",
+        "traceability-matrix",
+        "design-defense"
+      ],
+      "sourceArtifactKinds": [
+        "lesson-record",
+        "slide-deck",
+        "exercise-bank",
+        "assessment-bank",
+        "local-file",
+        "user-artifact",
+        "external-specialist-artifact"
+      ],
+      "presentationStrategies": [
+        "split-view",
+        "specialist-workspace",
+        "slide-deck",
+        "external-artifact"
+      ],
+      "visualRepresentationKinds": [
+        "uml-diagram",
+        "architecture-diagram",
+        "requirement-trace",
+        "sequence-state",
+        "quality-attribute-tradeoff"
+      ],
+      "evidenceOutputs": [
+        "requirements-artifact",
+        "uml-artifact",
+        "architecture-artifact",
+        "tradeoff-record",
+        "traceability-matrix",
+        "oral-defense"
+      ],
+      "assessmentModes": [
+        "design-task",
+        "architecture-review",
+        "tradeoff-defense",
+        "traceability-audit"
+      ],
+      "contextEmphasis": [
+        "currentLesson",
+        "prerequisiteGraph",
+        "recentEvidence",
+        "assessmentErrors",
+        "nirVkrContext"
+      ],
+      "offlineResourceClasses": [
+        "bundled",
+        "subject-pack",
+        "local-file"
+      ],
+      "compatibilityReference": null,
+      "forwardRefs": {
+        "masteryProfile": "L6-B5#software-design",
+        "visualProfile": "L6-B6#software-design",
+        "languageHooks": "L6-B7#software-design",
+        "rendererProfile": "L6-B10#software-design"
+      }
+    },
+    "ml-data": {
+      "id": "ml-data",
+      "title": {
+        "vi": "Machine Learning và dữ liệu",
+        "ru": "Машинное обучение и данные",
+        "en": "ML and Data"
+      },
+      "definition": "Develop data preparation, statistical reasoning, models, metrics, validation, error analysis and reproducible experiments through dataset and model evidence.",
+      "useWhen": [
+        "A dataset, feature pipeline, model, metric, validation result or experiment is the primary object.",
+        "Correctness depends on reproducible data and model evaluation."
+      ],
+      "avoidWhen": [
+        "The primary problem is mathematical derivation without an experiment.",
+        "The primary object is database optimization, general code behavior or research-method design."
+      ],
+      "blockPolicyRef": "assets/data/lesson/universal-lesson-block-policy-v1.json#policiesByLessonType/ml-data",
+      "capabilityRefs": [
+        "dataset-playground",
+        "experiment-runner",
+        "pipeline-map",
+        "metric-visualizer",
+        "confusion-matrix",
+        "model-comparison",
+        "error-analysis",
+        "experiment-log",
+        "reproducibility-check"
+      ],
+      "sourceArtifactKinds": [
+        "lesson-record",
+        "lecture-record",
+        "exercise-bank",
+        "assessment-bank",
+        "simulation",
+        "local-file",
+        "user-artifact",
+        "external-specialist-artifact"
+      ],
+      "presentationStrategies": [
+        "split-view",
+        "specialist-workspace",
+        "gated-stepper",
+        "external-artifact"
+      ],
+      "visualRepresentationKinds": [
+        "dataset-profile",
+        "pipeline-map",
+        "metric-plot",
+        "confusion-matrix",
+        "model-comparison",
+        "error-slice",
+        "training-state"
+      ],
+      "evidenceOutputs": [
+        "dataset-artifact",
+        "experiment-log",
+        "model-result",
+        "metric-analysis",
+        "error-analysis",
+        "reproducibility-record",
+        "oral-response"
+      ],
+      "assessmentModes": [
+        "experiment-task",
+        "model-comparison",
+        "error-analysis",
+        "reproducibility-audit"
+      ],
+      "contextEmphasis": [
+        "currentLesson",
+        "prerequisiteGraph",
+        "assessmentErrors",
+        "weakTopics",
+        "recentEvidence",
+        "nirVkrContext"
+      ],
+      "offlineResourceClasses": [
+        "bundled",
+        "subject-pack",
+        "local-file"
+      ],
+      "compatibilityReference": null,
+      "forwardRefs": {
+        "masteryProfile": "L6-B5#ml-data",
+        "visualProfile": "L6-B6#ml-data",
+        "languageHooks": "L6-B7#ml-data",
+        "rendererProfile": "L6-B10#ml-data"
+      }
+    },
+    "asoiu-system": {
+      "id": "asoiu-system",
+      "title": {
+        "vi": "АСОИУ và hệ thống",
+        "ru": "АСОИУ и системный анализ",
+        "en": "ASOIU and Systems"
+      },
+      "definition": "Develop analytical models, architecture, information flow, reliability, lifecycle, ergonomics and system tradeoffs for automated information processing and control systems.",
+      "useWhen": [
+        "The primary object is an ASOIU/system model, architecture, information flow, reliability scenario or lifecycle.",
+        "Correctness depends on system boundaries, states, flows, failures and tradeoffs."
+      ],
+      "avoidWhen": [
+        "The primary artifact is general software architecture, executable code, a database query, an ML experiment or a research protocol."
+      ],
+      "blockPolicyRef": "assets/data/lesson/universal-lesson-block-policy-v1.json#policiesByLessonType/asoiu-system",
+      "capabilityRefs": [
+        "system-concept-map",
+        "architecture-diagram",
+        "information-flow",
+        "analytical-model",
+        "reliability-scenario",
+        "failure-state",
+        "lifecycle-map",
+        "ergonomic-scenario",
+        "system-defense"
+      ],
+      "sourceArtifactKinds": [
+        "lesson-record",
+        "lecture-record",
+        "slide-deck",
+        "exercise-bank",
+        "assessment-bank",
+        "simulation",
+        "user-artifact",
+        "external-specialist-artifact"
+      ],
+      "presentationStrategies": [
+        "slide-deck",
+        "split-view",
+        "specialist-workspace",
+        "external-artifact"
+      ],
+      "visualRepresentationKinds": [
+        "system-boundary",
+        "architecture-diagram",
+        "information-flow",
+        "reliability-state",
+        "failure-tree",
+        "lifecycle-map",
+        "ergonomic-state"
+      ],
+      "evidenceOutputs": [
+        "system-model",
+        "architecture-artifact",
+        "information-flow-analysis",
+        "reliability-analysis",
+        "lifecycle-analysis",
+        "oral-defense"
+      ],
+      "assessmentModes": [
+        "system-scenario",
+        "reliability-case",
+        "architecture-defense",
+        "lifecycle-analysis"
+      ],
+      "contextEmphasis": [
+        "currentLesson",
+        "prerequisiteGraph",
+        "assessmentErrors",
+        "weakTopics",
+        "nirVkrContext"
+      ],
+      "offlineResourceClasses": [
+        "bundled",
+        "subject-pack",
+        "local-file"
+      ],
+      "compatibilityReference": null,
+      "forwardRefs": {
+        "masteryProfile": "L6-B5#asoiu-system",
+        "visualProfile": "L6-B6#asoiu-system",
+        "languageHooks": "L6-B7#asoiu-system",
+        "rendererProfile": "L6-B10#asoiu-system"
+      }
+    },
+    "research": {
+      "id": "research",
+      "title": {
+        "vi": "Nghiên cứu · НИР · ВКР",
+        "ru": "Исследование · НИР · ВКР",
+        "en": "Research · NIR · VKR"
+      },
+      "definition": "Develop a traceable research question, literature evidence, method, protocol, experiment record, analysis, scientific writing and defense artifact across НИР and ВКР.",
+      "useWhen": [
+        "The primary outcome is a research question, literature matrix, protocol, evidence record, paper section, НИР/ВКР milestone or defense.",
+        "Correctness depends on traceability, evidence quality, reproducibility and source boundaries."
+      ],
+      "avoidWhen": [
+        "Research context is only an application example for a technical lesson.",
+        "The primary outcome is a technical solution whose evidence belongs to another type."
+      ],
+      "blockPolicyRef": "assets/data/lesson/universal-lesson-block-policy-v1.json#policiesByLessonType/research",
+      "capabilityRefs": [
+        "research-question-builder",
+        "literature-matrix",
+        "evidence-map",
+        "evidence-vault",
+        "experiment-protocol",
+        "baseline-registry",
+        "citation-boundary",
+        "scientific-writing",
+        "nir-milestone",
+        "vkr-milestone",
+        "defense-simulator"
+      ],
+      "sourceArtifactKinds": [
+        "lesson-record",
+        "lecture-record",
+        "assessment-bank",
+        "local-file",
+        "user-artifact",
+        "external-specialist-artifact"
+      ],
+      "presentationStrategies": [
+        "gated-stepper",
+        "split-view",
+        "specialist-workspace",
+        "external-artifact"
+      ],
+      "visualRepresentationKinds": [
+        "research-question-map",
+        "literature-map",
+        "evidence-map",
+        "protocol-timeline",
+        "result-plot",
+        "claim-source-boundary",
+        "milestone-state"
+      ],
+      "evidenceOutputs": [
+        "research-question",
+        "literature-matrix",
+        "experiment-protocol",
+        "research-note",
+        "result-analysis",
+        "scientific-section",
+        "nir-milestone",
+        "vkr-milestone",
+        "oral-defense"
+      ],
+      "assessmentModes": [
+        "source-audit",
+        "protocol-review",
+        "reproducibility-audit",
+        "written-review",
+        "oral-defense"
+      ],
+      "contextEmphasis": [
+        "nirVkrContext",
+        "recentEvidence",
+        "schedule",
+        "currentLesson",
+        "prerequisiteGraph",
+        "languageState"
+      ],
+      "offlineResourceClasses": [
+        "bundled",
+        "subject-pack",
+        "local-file"
+      ],
+      "compatibilityReference": null,
+      "forwardRefs": {
+        "masteryProfile": "L6-B5#research",
+        "visualProfile": "L6-B6#research",
+        "languageHooks": "L6-B7#research",
+        "rendererProfile": "L6-B10#research"
+      }
+    }
+  },
+  "classificationSignals": {
+    "language": [
+      "target-language comprehension or production",
+      "dialogue pronunciation listening vocabulary grammar handwriting writing"
+    ],
+    "mathematics": [
+      "formula derivation proof matrix graph mathematical model"
+    ],
+    "programming": [
+      "executable code tests debugging runtime output complexity"
+    ],
+    "database": [
+      "schema SQL transaction index query plan database optimization"
+    ],
+    "software-design": [
+      "requirements UML architecture pattern interface quality attribute lifecycle"
+    ],
+    "ml-data": [
+      "dataset feature model metric validation error analysis experiment"
+    ],
+    "asoiu-system": [
+      "АСОИУ system boundary information flow reliability failure lifecycle ergonomics"
+    ],
+    "research": [
+      "research question literature source protocol evidence reproducibility НИР ВКР defense"
+    ]
+  },
+  "compositionRules": {
+    "primaryTypeCount": 1,
+    "secondaryFacetCount": {
+      "minimum": 0,
+      "maximum": 3
+    },
+    "secondaryFacetEffect": "context-and-capability-hints-only",
+    "blockPolicyMerge": "forbidden-without-explicit-composite-profile",
+    "conflictRule": "Prefer the type that owns the primary learner artifact and correctness test.",
+    "examples": [
+      {
+        "lesson": "PCA derivation",
+        "primaryType": "mathematics",
+        "secondaryFacets": [
+          "ml-data"
+        ],
+        "reason": "The primary evidence is a derivation; the dataset context is an application."
+      },
+      {
+        "lesson": "PCA model comparison experiment",
+        "primaryType": "ml-data",
+        "secondaryFacets": [
+          "mathematics",
+          "research"
+        ],
+        "reason": "The primary evidence is a reproducible experiment and metric comparison."
+      },
+      {
+        "lesson": "SQL index implementation in Python service",
+        "primaryType": "database",
+        "secondaryFacets": [
+          "programming"
+        ],
+        "reason": "The query plan and database behavior decide correctness."
+      },
+      {
+        "lesson": "АСОИУ architecture for a ВКР",
+        "primaryType": "asoiu-system",
+        "secondaryFacets": [
+          "software-design",
+          "research"
+        ],
+        "reason": "The primary artifact is a system model; research and software design provide context."
+      }
+    ]
+  },
+  "classificationProcedure": [
+    "Identify the primary learner artifact.",
+    "Identify the test that decides correctness.",
+    "Choose the type that owns both artifact and correctness test.",
+    "Add at most three secondary facets for terminology, context or optional capabilities.",
+    "Never merge block requirement matrices merely because a secondary facet exists.",
+    "Escalate unresolved conflicts to an explicit composite profile in a later registry version."
+  ],
+  "subjectBoundary": {
+    "rule": "Subjects map lessons to types in the Subject Factory registry at L6-B9.",
+    "currentSubjectMappingAllowed": false,
+    "reason": "B4 defines types independently; binding entire subjects here would recreate one-engine-per-subject coupling."
+  }
+}

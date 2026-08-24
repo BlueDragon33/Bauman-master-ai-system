@@ -1,6 +1,6 @@
 # CODEX_STATE
 
-Current task: `L6-B3_BLOCK_REQUIREMENT_POLICIES`
+Current task: `L6-B4_LESSON_TYPE_REGISTRY`
 
 Status: `IN_PROGRESS`
 
@@ -11,35 +11,38 @@ Main sync status: `branch_only`
 
 Files changed:
 - `.github/workflows/migration-l6-academic.yml`
+- `assets/data/lesson/lesson-type-registry-v1.json`
 - `assets/data/lesson/universal-lesson-block-policy-v1.json`
-- `docs/migration/L6_B3_BLOCK_REQUIREMENT_POLICIES.md`
-- `docs/migration/L6_B3_BLOCK_POLICY.generated.json`
-- `scripts/academic/l6-b3-block-policy-regression.cjs`
+- `docs/migration/L6_B4_LESSON_TYPE_REGISTRY.md`
+- `docs/migration/L6_B4_LESSON_TYPE_REGISTRY.generated.json`
+- `scripts/academic/l6-b4-lesson-type-registry-regression.cjs`
 - `docs/migration/MIGRATION_PLAN.md`
 - `CODEX_STATE.md`
 
 What changed:
-- Locked L6-B2 after GitHub Actions run `32713023513` reported
-  B1 and B2 contexts successful at commit `bcf0eedf…`.
-- Defined separate requirement states (required, optional, conditional,
-  forbidden) and fulfillment modes (inline, external, either) for all 13
-  semantic blocks.
-- Added executable block matrices for the eight planned lesson-type IDs plus
-  orientation-only, diagnostic and recovery mode overlays.
-- Manual policy review found and fixed an inheritance leak where
-  orientation-only still inherited Mathematics requirements; the regression
-  now locks exact required sets for all three overlays.
-- Added the deterministic B3 gate and B3 commit-status context to the L6
-  branch-only workflow.
+- Locked L6-B3 after GitHub Actions run `32713846615` reported
+  B1-B3 contexts successful at commit `6a356c92…`.
+- Defined the exact eight lesson types: language, mathematics, programming,
+  database, software-design, ml-data, asoiu-system and research.
+- Separated curriculum subject from lesson type; each lesson has one primary
+  type and optional secondary facets that cannot blind-merge block policies.
+- Linked every B3 policy to its exact B4 definition while leaving whole-subject
+  mapping for B9.
+- Kept only Russian and Mathematics as audited-reference-unprojected and added
+  guards for their preserved specialist capabilities.
+- Manual audit fixed mixed Latin/Cyrillic spelling in `ВКР` and
+  added a regression guard.
+- Added the deterministic B4 gate and B4 commit-status context.
 - Did not change learner content, subject runtime, storage, offline policy,
   service worker or `main`.
 
 Verification:
 - L6-B1 deterministic audit, 44/44 checks: PASS
 - L6-B2 deterministic contract regression, 35/35 checks: PASS
-- L6-B2 GitHub Actions run `32713023513`: PASS
 - L6-B3 deterministic block-policy regression, 37/37 checks: PASS
-- B1, B2 and B3 report hashes stable over consecutive runs: PASS
+- L6-B3 GitHub Actions run `32713846615`: PASS
+- L6-B4 deterministic lesson-type regression, 36/36 checks: PASS
+- B1-B4 report hashes stable over consecutive runs: PASS
 - Workflow YAML parse: PASS
 - Russian/Mathematics runtime and content diff: NONE
 - L5 static routing, 9/9: PASS
@@ -49,7 +52,7 @@ Verification:
 - L5 data-loading audit, 8 subjects and 0 failures: PASS
 - L5 runtime diagnostics, 14/14: PASS
 - L5 offline-report integrity, 5/5 with one expected sandbox block: PASS
-- GitHub Actions L6-B3 gate: PENDING
+- GitHub Actions L6-B4 gate: PENDING
 
 Main sync / pull instruction:
 - The work is branch-only on `migration/webapp-l1-audit-storage`.
@@ -57,15 +60,15 @@ Main sync / pull instruction:
 - Do not merge to `main` until the corresponding L6 gates pass.
 
 Next recommended task:
-- Wait for the L6-B3 GitHub Actions gate; after PASS, start
-  `L6-B4_LESSON_TYPE_REGISTRY`.
+- Wait for the L6-B4 GitHub Actions gate; after PASS, start
+  `L6-B5_MASTER_READY_EVIDENCE_GATES`.
 
 Next actor:
 - Codex
 
 Codex required:
 - yes
-- Reason: remote CI verification, lesson-type registry design,
+- Reason: remote CI verification, type-specific mastery rubric design,
   schema/validator implementation, large JSON compatibility audit and
   regression.
 

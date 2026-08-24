@@ -1,0 +1,1466 @@
+{
+  "schema": "L6_B4_LESSON_TYPE_REGISTRY_REGRESSION_V1",
+  "registryId": "bauman-lesson-type-registry",
+  "registryVersion": "1.0.0",
+  "contractVersion": "2.0.0",
+  "policyVersion": "1.0.0",
+  "typeIds": [
+    "language",
+    "mathematics",
+    "programming",
+    "database",
+    "software-design",
+    "ml-data",
+    "asoiu-system",
+    "research"
+  ],
+  "profileSummaries": {
+    "language": {
+      "title": {
+        "vi": "Ngôn ngữ",
+        "ru": "Языковой урок",
+        "en": "Language"
+      },
+      "capabilities": 9,
+      "sourceArtifactKinds": [
+        "lesson-record",
+        "dialogue",
+        "media",
+        "exercise-bank",
+        "assessment-bank",
+        "external-specialist-artifact"
+      ],
+      "presentationStrategies": [
+        "gated-stepper",
+        "specialist-workspace",
+        "split-view",
+        "slide-deck",
+        "external-artifact"
+      ],
+      "visuals": 5,
+      "evidenceOutputs": 6,
+      "assessmentModes": 4,
+      "contextEmphasis": [
+        "languageState",
+        "assessmentErrors",
+        "weakTopics",
+        "currentLesson",
+        "schedule"
+      ],
+      "offlineResourceClasses": [
+        "bundled",
+        "subject-pack",
+        "local-file"
+      ],
+      "compatibilityReference": {
+        "subjectId": "russian",
+        "status": "audited-reference-unprojected",
+        "preserveCapabilities": [
+          "dialogue",
+          "deep-speaking",
+          "handwriting",
+          "review",
+          "exam",
+          "lazy-data"
+        ]
+      }
+    },
+    "mathematics": {
+      "title": {
+        "vi": "Toán học",
+        "ru": "Математический урок",
+        "en": "Mathematics"
+      },
+      "capabilities": 9,
+      "sourceArtifactKinds": [
+        "lesson-record",
+        "lecture-record",
+        "slide-deck",
+        "exercise-bank",
+        "assessment-bank",
+        "simulation",
+        "external-specialist-artifact"
+      ],
+      "presentationStrategies": [
+        "slide-deck",
+        "split-view",
+        "specialist-workspace",
+        "modal-tool",
+        "external-artifact"
+      ],
+      "visuals": 6,
+      "evidenceOutputs": 6,
+      "assessmentModes": 4,
+      "contextEmphasis": [
+        "prerequisiteGraph",
+        "assessmentErrors",
+        "weakTopics",
+        "currentLesson",
+        "nirVkrContext"
+      ],
+      "offlineResourceClasses": [
+        "bundled",
+        "subject-pack",
+        "local-file"
+      ],
+      "compatibilityReference": {
+        "subjectId": "math",
+        "status": "audited-reference-unprojected",
+        "preserveCapabilities": [
+          "formula-typesetting",
+          "authoritative-routing",
+          "artifact-reader",
+          "simulation",
+          "professor-oral-defense",
+          "source-identity"
+        ]
+      }
+    },
+    "programming": {
+      "title": {
+        "vi": "Lập trình",
+        "ru": "Программирование",
+        "en": "Programming"
+      },
+      "capabilities": 8,
+      "sourceArtifactKinds": [
+        "lesson-record",
+        "exercise-bank",
+        "assessment-bank",
+        "local-file",
+        "user-artifact",
+        "external-specialist-artifact"
+      ],
+      "presentationStrategies": [
+        "split-view",
+        "specialist-workspace",
+        "gated-stepper",
+        "external-artifact"
+      ],
+      "visuals": 5,
+      "evidenceOutputs": 6,
+      "assessmentModes": 4,
+      "contextEmphasis": [
+        "currentLesson",
+        "prerequisiteGraph",
+        "assessmentErrors",
+        "weakTopics",
+        "recentEvidence"
+      ],
+      "offlineResourceClasses": [
+        "bundled",
+        "subject-pack",
+        "local-file"
+      ],
+      "compatibilityReference": null
+    },
+    "database": {
+      "title": {
+        "vi": "Cơ sở dữ liệu",
+        "ru": "Базы данных",
+        "en": "Database"
+      },
+      "capabilities": 8,
+      "sourceArtifactKinds": [
+        "lesson-record",
+        "exercise-bank",
+        "assessment-bank",
+        "simulation",
+        "local-file",
+        "user-artifact",
+        "external-specialist-artifact"
+      ],
+      "presentationStrategies": [
+        "split-view",
+        "specialist-workspace",
+        "gated-stepper",
+        "external-artifact"
+      ],
+      "visuals": 6,
+      "evidenceOutputs": 6,
+      "assessmentModes": 4,
+      "contextEmphasis": [
+        "currentLesson",
+        "prerequisiteGraph",
+        "assessmentErrors",
+        "weakTopics",
+        "nirVkrContext"
+      ],
+      "offlineResourceClasses": [
+        "bundled",
+        "subject-pack",
+        "local-file"
+      ],
+      "compatibilityReference": null
+    },
+    "software-design": {
+      "title": {
+        "vi": "Thiết kế phần mềm",
+        "ru": "Проектирование программного обеспечения",
+        "en": "Software Design"
+      },
+      "capabilities": 8,
+      "sourceArtifactKinds": [
+        "lesson-record",
+        "slide-deck",
+        "exercise-bank",
+        "assessment-bank",
+        "local-file",
+        "user-artifact",
+        "external-specialist-artifact"
+      ],
+      "presentationStrategies": [
+        "split-view",
+        "specialist-workspace",
+        "slide-deck",
+        "external-artifact"
+      ],
+      "visuals": 5,
+      "evidenceOutputs": 6,
+      "assessmentModes": 4,
+      "contextEmphasis": [
+        "currentLesson",
+        "prerequisiteGraph",
+        "recentEvidence",
+        "assessmentErrors",
+        "nirVkrContext"
+      ],
+      "offlineResourceClasses": [
+        "bundled",
+        "subject-pack",
+        "local-file"
+      ],
+      "compatibilityReference": null
+    },
+    "ml-data": {
+      "title": {
+        "vi": "Machine Learning và dữ liệu",
+        "ru": "Машинное обучение и данные",
+        "en": "ML and Data"
+      },
+      "capabilities": 9,
+      "sourceArtifactKinds": [
+        "lesson-record",
+        "lecture-record",
+        "exercise-bank",
+        "assessment-bank",
+        "simulation",
+        "local-file",
+        "user-artifact",
+        "external-specialist-artifact"
+      ],
+      "presentationStrategies": [
+        "split-view",
+        "specialist-workspace",
+        "gated-stepper",
+        "external-artifact"
+      ],
+      "visuals": 7,
+      "evidenceOutputs": 7,
+      "assessmentModes": 4,
+      "contextEmphasis": [
+        "currentLesson",
+        "prerequisiteGraph",
+        "assessmentErrors",
+        "weakTopics",
+        "recentEvidence",
+        "nirVkrContext"
+      ],
+      "offlineResourceClasses": [
+        "bundled",
+        "subject-pack",
+        "local-file"
+      ],
+      "compatibilityReference": null
+    },
+    "asoiu-system": {
+      "title": {
+        "vi": "АСОИУ và hệ thống",
+        "ru": "АСОИУ и системный анализ",
+        "en": "ASOIU and Systems"
+      },
+      "capabilities": 9,
+      "sourceArtifactKinds": [
+        "lesson-record",
+        "lecture-record",
+        "slide-deck",
+        "exercise-bank",
+        "assessment-bank",
+        "simulation",
+        "user-artifact",
+        "external-specialist-artifact"
+      ],
+      "presentationStrategies": [
+        "slide-deck",
+        "split-view",
+        "specialist-workspace",
+        "external-artifact"
+      ],
+      "visuals": 7,
+      "evidenceOutputs": 6,
+      "assessmentModes": 4,
+      "contextEmphasis": [
+        "currentLesson",
+        "prerequisiteGraph",
+        "assessmentErrors",
+        "weakTopics",
+        "nirVkrContext"
+      ],
+      "offlineResourceClasses": [
+        "bundled",
+        "subject-pack",
+        "local-file"
+      ],
+      "compatibilityReference": null
+    },
+    "research": {
+      "title": {
+        "vi": "Nghiên cứu · НИР · ВКР",
+        "ru": "Исследование · НИР · ВКР",
+        "en": "Research · NIR · VKR"
+      },
+      "capabilities": 11,
+      "sourceArtifactKinds": [
+        "lesson-record",
+        "lecture-record",
+        "assessment-bank",
+        "local-file",
+        "user-artifact",
+        "external-specialist-artifact"
+      ],
+      "presentationStrategies": [
+        "gated-stepper",
+        "split-view",
+        "specialist-workspace",
+        "external-artifact"
+      ],
+      "visuals": 7,
+      "evidenceOutputs": 9,
+      "assessmentModes": 5,
+      "contextEmphasis": [
+        "nirVkrContext",
+        "recentEvidence",
+        "schedule",
+        "currentLesson",
+        "prerequisiteGraph",
+        "languageState"
+      ],
+      "offlineResourceClasses": [
+        "bundled",
+        "subject-pack",
+        "local-file"
+      ],
+      "compatibilityReference": null
+    }
+  },
+  "profileErrors": {
+    "language": [],
+    "mathematics": [],
+    "programming": [],
+    "database": [],
+    "software-design": [],
+    "ml-data": [],
+    "asoiu-system": [],
+    "research": []
+  },
+  "compatibilitySubjects": [
+    {
+      "typeId": "language",
+      "subjectId": "russian",
+      "status": "audited-reference-unprojected"
+    },
+    {
+      "typeId": "mathematics",
+      "subjectId": "math",
+      "status": "audited-reference-unprojected"
+    }
+  ],
+  "compositionExamples": [
+    {
+      "lesson": "PCA derivation",
+      "primaryType": "mathematics",
+      "secondaryFacets": [
+        "ml-data"
+      ],
+      "reason": "The primary evidence is a derivation; the dataset context is an application."
+    },
+    {
+      "lesson": "PCA model comparison experiment",
+      "primaryType": "ml-data",
+      "secondaryFacets": [
+        "mathematics",
+        "research"
+      ],
+      "reason": "The primary evidence is a reproducible experiment and metric comparison."
+    },
+    {
+      "lesson": "SQL index implementation in Python service",
+      "primaryType": "database",
+      "secondaryFacets": [
+        "programming"
+      ],
+      "reason": "The query plan and database behavior decide correctness."
+    },
+    {
+      "lesson": "АСОИУ architecture for a ВКР",
+      "primaryType": "asoiu-system",
+      "secondaryFacets": [
+        "software-design",
+        "research"
+      ],
+      "reason": "The primary artifact is a system model; research and software design provide context."
+    }
+  ],
+  "subjectBoundary": {
+    "rule": "Subjects map lessons to types in the Subject Factory registry at L6-B9.",
+    "currentSubjectMappingAllowed": false,
+    "reason": "B4 defines types independently; binding entire subjects here would recreate one-engine-per-subject coupling."
+  },
+  "checks": [
+    {
+      "id": "FILE-assets/data/lesson/universal-lesson-contract-v2.json",
+      "title": "required B4 input exists",
+      "ok": true,
+      "evidence": "assets/data/lesson/universal-lesson-contract-v2.json"
+    },
+    {
+      "id": "FILE-assets/data/lesson/universal-lesson-block-policy-v1.json",
+      "title": "required B4 input exists",
+      "ok": true,
+      "evidence": "assets/data/lesson/universal-lesson-block-policy-v1.json"
+    },
+    {
+      "id": "FILE-assets/data/lesson/lesson-type-registry-v1.json",
+      "title": "required B4 input exists",
+      "ok": true,
+      "evidence": "assets/data/lesson/lesson-type-registry-v1.json"
+    },
+    {
+      "id": "FILE-docs/migration/L6_B4_LESSON_TYPE_REGISTRY.md",
+      "title": "required B4 input exists",
+      "ok": true,
+      "evidence": "docs/migration/L6_B4_LESSON_TYPE_REGISTRY.md"
+    },
+    {
+      "id": "REGISTRY-IDENTITY",
+      "title": "registry identity version and status are explicit",
+      "ok": true,
+      "evidence": {
+        "registryId": "bauman-lesson-type-registry",
+        "registryVersion": "1.0.0",
+        "status": "L6-B4-REGISTRY"
+      }
+    },
+    {
+      "id": "CONTRACT-REF",
+      "title": "registry references the exact B2 contract",
+      "ok": true,
+      "evidence": {
+        "path": "assets/data/lesson/universal-lesson-contract-v2.json",
+        "contractId": "bauman-universal-lesson-contract",
+        "schemaVersion": "2.0.0"
+      }
+    },
+    {
+      "id": "POLICY-REF",
+      "title": "registry references the exact B3 policy",
+      "ok": true,
+      "evidence": {
+        "path": "assets/data/lesson/universal-lesson-block-policy-v1.json",
+        "policyId": "bauman-universal-lesson-block-policy",
+        "policyVersion": "1.0.0"
+      }
+    },
+    {
+      "id": "TYPE-SET",
+      "title": "registry contains exactly the eight master-plan lesson types",
+      "ok": true,
+      "evidence": {
+        "registry": [
+          "language",
+          "mathematics",
+          "programming",
+          "database",
+          "software-design",
+          "ml-data",
+          "asoiu-system",
+          "research"
+        ],
+        "policy": [
+          "language",
+          "mathematics",
+          "programming",
+          "database",
+          "software-design",
+          "ml-data",
+          "asoiu-system",
+          "research"
+        ]
+      }
+    },
+    {
+      "id": "TYPE-LANGUAGE",
+      "title": "language satisfies the common lesson-type profile contract",
+      "ok": true,
+      "evidence": {
+        "summary": {
+          "title": {
+            "vi": "Ngôn ngữ",
+            "ru": "Языковой урок",
+            "en": "Language"
+          },
+          "capabilities": 9,
+          "sourceArtifactKinds": [
+            "lesson-record",
+            "dialogue",
+            "media",
+            "exercise-bank",
+            "assessment-bank",
+            "external-specialist-artifact"
+          ],
+          "presentationStrategies": [
+            "gated-stepper",
+            "specialist-workspace",
+            "split-view",
+            "slide-deck",
+            "external-artifact"
+          ],
+          "visuals": 5,
+          "evidenceOutputs": 6,
+          "assessmentModes": 4,
+          "contextEmphasis": [
+            "languageState",
+            "assessmentErrors",
+            "weakTopics",
+            "currentLesson",
+            "schedule"
+          ],
+          "offlineResourceClasses": [
+            "bundled",
+            "subject-pack",
+            "local-file"
+          ],
+          "compatibilityReference": {
+            "subjectId": "russian",
+            "status": "audited-reference-unprojected",
+            "preserveCapabilities": [
+              "dialogue",
+              "deep-speaking",
+              "handwriting",
+              "review",
+              "exam",
+              "lazy-data"
+            ]
+          }
+        },
+        "errors": []
+      }
+    },
+    {
+      "id": "TYPE-MATHEMATICS",
+      "title": "mathematics satisfies the common lesson-type profile contract",
+      "ok": true,
+      "evidence": {
+        "summary": {
+          "title": {
+            "vi": "Toán học",
+            "ru": "Математический урок",
+            "en": "Mathematics"
+          },
+          "capabilities": 9,
+          "sourceArtifactKinds": [
+            "lesson-record",
+            "lecture-record",
+            "slide-deck",
+            "exercise-bank",
+            "assessment-bank",
+            "simulation",
+            "external-specialist-artifact"
+          ],
+          "presentationStrategies": [
+            "slide-deck",
+            "split-view",
+            "specialist-workspace",
+            "modal-tool",
+            "external-artifact"
+          ],
+          "visuals": 6,
+          "evidenceOutputs": 6,
+          "assessmentModes": 4,
+          "contextEmphasis": [
+            "prerequisiteGraph",
+            "assessmentErrors",
+            "weakTopics",
+            "currentLesson",
+            "nirVkrContext"
+          ],
+          "offlineResourceClasses": [
+            "bundled",
+            "subject-pack",
+            "local-file"
+          ],
+          "compatibilityReference": {
+            "subjectId": "math",
+            "status": "audited-reference-unprojected",
+            "preserveCapabilities": [
+              "formula-typesetting",
+              "authoritative-routing",
+              "artifact-reader",
+              "simulation",
+              "professor-oral-defense",
+              "source-identity"
+            ]
+          }
+        },
+        "errors": []
+      }
+    },
+    {
+      "id": "TYPE-PROGRAMMING",
+      "title": "programming satisfies the common lesson-type profile contract",
+      "ok": true,
+      "evidence": {
+        "summary": {
+          "title": {
+            "vi": "Lập trình",
+            "ru": "Программирование",
+            "en": "Programming"
+          },
+          "capabilities": 8,
+          "sourceArtifactKinds": [
+            "lesson-record",
+            "exercise-bank",
+            "assessment-bank",
+            "local-file",
+            "user-artifact",
+            "external-specialist-artifact"
+          ],
+          "presentationStrategies": [
+            "split-view",
+            "specialist-workspace",
+            "gated-stepper",
+            "external-artifact"
+          ],
+          "visuals": 5,
+          "evidenceOutputs": 6,
+          "assessmentModes": 4,
+          "contextEmphasis": [
+            "currentLesson",
+            "prerequisiteGraph",
+            "assessmentErrors",
+            "weakTopics",
+            "recentEvidence"
+          ],
+          "offlineResourceClasses": [
+            "bundled",
+            "subject-pack",
+            "local-file"
+          ],
+          "compatibilityReference": null
+        },
+        "errors": []
+      }
+    },
+    {
+      "id": "TYPE-DATABASE",
+      "title": "database satisfies the common lesson-type profile contract",
+      "ok": true,
+      "evidence": {
+        "summary": {
+          "title": {
+            "vi": "Cơ sở dữ liệu",
+            "ru": "Базы данных",
+            "en": "Database"
+          },
+          "capabilities": 8,
+          "sourceArtifactKinds": [
+            "lesson-record",
+            "exercise-bank",
+            "assessment-bank",
+            "simulation",
+            "local-file",
+            "user-artifact",
+            "external-specialist-artifact"
+          ],
+          "presentationStrategies": [
+            "split-view",
+            "specialist-workspace",
+            "gated-stepper",
+            "external-artifact"
+          ],
+          "visuals": 6,
+          "evidenceOutputs": 6,
+          "assessmentModes": 4,
+          "contextEmphasis": [
+            "currentLesson",
+            "prerequisiteGraph",
+            "assessmentErrors",
+            "weakTopics",
+            "nirVkrContext"
+          ],
+          "offlineResourceClasses": [
+            "bundled",
+            "subject-pack",
+            "local-file"
+          ],
+          "compatibilityReference": null
+        },
+        "errors": []
+      }
+    },
+    {
+      "id": "TYPE-SOFTWARE-DESIGN",
+      "title": "software-design satisfies the common lesson-type profile contract",
+      "ok": true,
+      "evidence": {
+        "summary": {
+          "title": {
+            "vi": "Thiết kế phần mềm",
+            "ru": "Проектирование программного обеспечения",
+            "en": "Software Design"
+          },
+          "capabilities": 8,
+          "sourceArtifactKinds": [
+            "lesson-record",
+            "slide-deck",
+            "exercise-bank",
+            "assessment-bank",
+            "local-file",
+            "user-artifact",
+            "external-specialist-artifact"
+          ],
+          "presentationStrategies": [
+            "split-view",
+            "specialist-workspace",
+            "slide-deck",
+            "external-artifact"
+          ],
+          "visuals": 5,
+          "evidenceOutputs": 6,
+          "assessmentModes": 4,
+          "contextEmphasis": [
+            "currentLesson",
+            "prerequisiteGraph",
+            "recentEvidence",
+            "assessmentErrors",
+            "nirVkrContext"
+          ],
+          "offlineResourceClasses": [
+            "bundled",
+            "subject-pack",
+            "local-file"
+          ],
+          "compatibilityReference": null
+        },
+        "errors": []
+      }
+    },
+    {
+      "id": "TYPE-ML-DATA",
+      "title": "ml-data satisfies the common lesson-type profile contract",
+      "ok": true,
+      "evidence": {
+        "summary": {
+          "title": {
+            "vi": "Machine Learning và dữ liệu",
+            "ru": "Машинное обучение и данные",
+            "en": "ML and Data"
+          },
+          "capabilities": 9,
+          "sourceArtifactKinds": [
+            "lesson-record",
+            "lecture-record",
+            "exercise-bank",
+            "assessment-bank",
+            "simulation",
+            "local-file",
+            "user-artifact",
+            "external-specialist-artifact"
+          ],
+          "presentationStrategies": [
+            "split-view",
+            "specialist-workspace",
+            "gated-stepper",
+            "external-artifact"
+          ],
+          "visuals": 7,
+          "evidenceOutputs": 7,
+          "assessmentModes": 4,
+          "contextEmphasis": [
+            "currentLesson",
+            "prerequisiteGraph",
+            "assessmentErrors",
+            "weakTopics",
+            "recentEvidence",
+            "nirVkrContext"
+          ],
+          "offlineResourceClasses": [
+            "bundled",
+            "subject-pack",
+            "local-file"
+          ],
+          "compatibilityReference": null
+        },
+        "errors": []
+      }
+    },
+    {
+      "id": "TYPE-ASOIU-SYSTEM",
+      "title": "asoiu-system satisfies the common lesson-type profile contract",
+      "ok": true,
+      "evidence": {
+        "summary": {
+          "title": {
+            "vi": "АСОИУ và hệ thống",
+            "ru": "АСОИУ и системный анализ",
+            "en": "ASOIU and Systems"
+          },
+          "capabilities": 9,
+          "sourceArtifactKinds": [
+            "lesson-record",
+            "lecture-record",
+            "slide-deck",
+            "exercise-bank",
+            "assessment-bank",
+            "simulation",
+            "user-artifact",
+            "external-specialist-artifact"
+          ],
+          "presentationStrategies": [
+            "slide-deck",
+            "split-view",
+            "specialist-workspace",
+            "external-artifact"
+          ],
+          "visuals": 7,
+          "evidenceOutputs": 6,
+          "assessmentModes": 4,
+          "contextEmphasis": [
+            "currentLesson",
+            "prerequisiteGraph",
+            "assessmentErrors",
+            "weakTopics",
+            "nirVkrContext"
+          ],
+          "offlineResourceClasses": [
+            "bundled",
+            "subject-pack",
+            "local-file"
+          ],
+          "compatibilityReference": null
+        },
+        "errors": []
+      }
+    },
+    {
+      "id": "TYPE-RESEARCH",
+      "title": "research satisfies the common lesson-type profile contract",
+      "ok": true,
+      "evidence": {
+        "summary": {
+          "title": {
+            "vi": "Nghiên cứu · НИР · ВКР",
+            "ru": "Исследование · НИР · ВКР",
+            "en": "Research · NIR · VKR"
+          },
+          "capabilities": 11,
+          "sourceArtifactKinds": [
+            "lesson-record",
+            "lecture-record",
+            "assessment-bank",
+            "local-file",
+            "user-artifact",
+            "external-specialist-artifact"
+          ],
+          "presentationStrategies": [
+            "gated-stepper",
+            "split-view",
+            "specialist-workspace",
+            "external-artifact"
+          ],
+          "visuals": 7,
+          "evidenceOutputs": 9,
+          "assessmentModes": 5,
+          "contextEmphasis": [
+            "nirVkrContext",
+            "recentEvidence",
+            "schedule",
+            "currentLesson",
+            "prerequisiteGraph",
+            "languageState"
+          ],
+          "offlineResourceClasses": [
+            "bundled",
+            "subject-pack",
+            "local-file"
+          ],
+          "compatibilityReference": null
+        },
+        "errors": []
+      }
+    },
+    {
+      "id": "PROFILE-FIELD-CONTRACT",
+      "title": "profile contract includes identity boundaries capabilities evidence context offline and forward refs",
+      "ok": true,
+      "evidence": [
+        "id",
+        "title",
+        "definition",
+        "useWhen",
+        "avoidWhen",
+        "blockPolicyRef",
+        "capabilityRefs",
+        "sourceArtifactKinds",
+        "presentationStrategies",
+        "visualRepresentationKinds",
+        "evidenceOutputs",
+        "assessmentModes",
+        "contextEmphasis",
+        "offlineResourceClasses",
+        "compatibilityReference",
+        "forwardRefs"
+      ]
+    },
+    {
+      "id": "POLICY-DEFINITION-REFS",
+      "title": "every B3 type policy resolves to its exact B4 definition",
+      "ok": true,
+      "evidence": {
+        "language": "assets/data/lesson/lesson-type-registry-v1.json#types/language",
+        "mathematics": "assets/data/lesson/lesson-type-registry-v1.json#types/mathematics",
+        "programming": "assets/data/lesson/lesson-type-registry-v1.json#types/programming",
+        "database": "assets/data/lesson/lesson-type-registry-v1.json#types/database",
+        "software-design": "assets/data/lesson/lesson-type-registry-v1.json#types/software-design",
+        "ml-data": "assets/data/lesson/lesson-type-registry-v1.json#types/ml-data",
+        "asoiu-system": "assets/data/lesson/lesson-type-registry-v1.json#types/asoiu-system",
+        "research": "assets/data/lesson/lesson-type-registry-v1.json#types/research"
+      }
+    },
+    {
+      "id": "LANGUAGE-BOUNDARY",
+      "title": "language owns production and preserves Russian specialist capabilities",
+      "ok": true,
+      "evidence": {
+        "title": {
+          "vi": "Ngôn ngữ",
+          "ru": "Языковой урок",
+          "en": "Language"
+        },
+        "capabilities": 9,
+        "sourceArtifactKinds": [
+          "lesson-record",
+          "dialogue",
+          "media",
+          "exercise-bank",
+          "assessment-bank",
+          "external-specialist-artifact"
+        ],
+        "presentationStrategies": [
+          "gated-stepper",
+          "specialist-workspace",
+          "split-view",
+          "slide-deck",
+          "external-artifact"
+        ],
+        "visuals": 5,
+        "evidenceOutputs": 6,
+        "assessmentModes": 4,
+        "contextEmphasis": [
+          "languageState",
+          "assessmentErrors",
+          "weakTopics",
+          "currentLesson",
+          "schedule"
+        ],
+        "offlineResourceClasses": [
+          "bundled",
+          "subject-pack",
+          "local-file"
+        ],
+        "compatibilityReference": {
+          "subjectId": "russian",
+          "status": "audited-reference-unprojected",
+          "preserveCapabilities": [
+            "dialogue",
+            "deep-speaking",
+            "handwriting",
+            "review",
+            "exam",
+            "lazy-data"
+          ]
+        }
+      }
+    },
+    {
+      "id": "MATHEMATICS-BOUNDARY",
+      "title": "mathematics owns derivation formula matrix simulation and professor oral",
+      "ok": true,
+      "evidence": {
+        "title": {
+          "vi": "Toán học",
+          "ru": "Математический урок",
+          "en": "Mathematics"
+        },
+        "capabilities": 9,
+        "sourceArtifactKinds": [
+          "lesson-record",
+          "lecture-record",
+          "slide-deck",
+          "exercise-bank",
+          "assessment-bank",
+          "simulation",
+          "external-specialist-artifact"
+        ],
+        "presentationStrategies": [
+          "slide-deck",
+          "split-view",
+          "specialist-workspace",
+          "modal-tool",
+          "external-artifact"
+        ],
+        "visuals": 6,
+        "evidenceOutputs": 6,
+        "assessmentModes": 4,
+        "contextEmphasis": [
+          "prerequisiteGraph",
+          "assessmentErrors",
+          "weakTopics",
+          "currentLesson",
+          "nirVkrContext"
+        ],
+        "offlineResourceClasses": [
+          "bundled",
+          "subject-pack",
+          "local-file"
+        ],
+        "compatibilityReference": {
+          "subjectId": "math",
+          "status": "audited-reference-unprojected",
+          "preserveCapabilities": [
+            "formula-typesetting",
+            "authoritative-routing",
+            "artifact-reader",
+            "simulation",
+            "professor-oral-defense",
+            "source-identity"
+          ]
+        }
+      }
+    },
+    {
+      "id": "PROGRAMMING-BOUNDARY",
+      "title": "programming owns executable code tests and debugging",
+      "ok": true,
+      "evidence": {
+        "title": {
+          "vi": "Lập trình",
+          "ru": "Программирование",
+          "en": "Programming"
+        },
+        "capabilities": 8,
+        "sourceArtifactKinds": [
+          "lesson-record",
+          "exercise-bank",
+          "assessment-bank",
+          "local-file",
+          "user-artifact",
+          "external-specialist-artifact"
+        ],
+        "presentationStrategies": [
+          "split-view",
+          "specialist-workspace",
+          "gated-stepper",
+          "external-artifact"
+        ],
+        "visuals": 5,
+        "evidenceOutputs": 6,
+        "assessmentModes": 4,
+        "contextEmphasis": [
+          "currentLesson",
+          "prerequisiteGraph",
+          "assessmentErrors",
+          "weakTopics",
+          "recentEvidence"
+        ],
+        "offlineResourceClasses": [
+          "bundled",
+          "subject-pack",
+          "local-file"
+        ],
+        "compatibilityReference": null
+      }
+    },
+    {
+      "id": "DATABASE-BOUNDARY",
+      "title": "database owns SQL schema transaction and query-plan evidence",
+      "ok": true,
+      "evidence": {
+        "title": {
+          "vi": "Cơ sở dữ liệu",
+          "ru": "Базы данных",
+          "en": "Database"
+        },
+        "capabilities": 8,
+        "sourceArtifactKinds": [
+          "lesson-record",
+          "exercise-bank",
+          "assessment-bank",
+          "simulation",
+          "local-file",
+          "user-artifact",
+          "external-specialist-artifact"
+        ],
+        "presentationStrategies": [
+          "split-view",
+          "specialist-workspace",
+          "gated-stepper",
+          "external-artifact"
+        ],
+        "visuals": 6,
+        "evidenceOutputs": 6,
+        "assessmentModes": 4,
+        "contextEmphasis": [
+          "currentLesson",
+          "prerequisiteGraph",
+          "assessmentErrors",
+          "weakTopics",
+          "nirVkrContext"
+        ],
+        "offlineResourceClasses": [
+          "bundled",
+          "subject-pack",
+          "local-file"
+        ],
+        "compatibilityReference": null
+      }
+    },
+    {
+      "id": "SOFTWARE-DESIGN-BOUNDARY",
+      "title": "software design owns requirements UML architecture and traceability",
+      "ok": true,
+      "evidence": {
+        "title": {
+          "vi": "Thiết kế phần mềm",
+          "ru": "Проектирование программного обеспечения",
+          "en": "Software Design"
+        },
+        "capabilities": 8,
+        "sourceArtifactKinds": [
+          "lesson-record",
+          "slide-deck",
+          "exercise-bank",
+          "assessment-bank",
+          "local-file",
+          "user-artifact",
+          "external-specialist-artifact"
+        ],
+        "presentationStrategies": [
+          "split-view",
+          "specialist-workspace",
+          "slide-deck",
+          "external-artifact"
+        ],
+        "visuals": 5,
+        "evidenceOutputs": 6,
+        "assessmentModes": 4,
+        "contextEmphasis": [
+          "currentLesson",
+          "prerequisiteGraph",
+          "recentEvidence",
+          "assessmentErrors",
+          "nirVkrContext"
+        ],
+        "offlineResourceClasses": [
+          "bundled",
+          "subject-pack",
+          "local-file"
+        ],
+        "compatibilityReference": null
+      }
+    },
+    {
+      "id": "ML-DATA-BOUNDARY",
+      "title": "ML data owns dataset model metric experiment and reproducibility evidence",
+      "ok": true,
+      "evidence": {
+        "title": {
+          "vi": "Machine Learning và dữ liệu",
+          "ru": "Машинное обучение и данные",
+          "en": "ML and Data"
+        },
+        "capabilities": 9,
+        "sourceArtifactKinds": [
+          "lesson-record",
+          "lecture-record",
+          "exercise-bank",
+          "assessment-bank",
+          "simulation",
+          "local-file",
+          "user-artifact",
+          "external-specialist-artifact"
+        ],
+        "presentationStrategies": [
+          "split-view",
+          "specialist-workspace",
+          "gated-stepper",
+          "external-artifact"
+        ],
+        "visuals": 7,
+        "evidenceOutputs": 7,
+        "assessmentModes": 4,
+        "contextEmphasis": [
+          "currentLesson",
+          "prerequisiteGraph",
+          "assessmentErrors",
+          "weakTopics",
+          "recentEvidence",
+          "nirVkrContext"
+        ],
+        "offlineResourceClasses": [
+          "bundled",
+          "subject-pack",
+          "local-file"
+        ],
+        "compatibilityReference": null
+      }
+    },
+    {
+      "id": "ASOIU-BOUNDARY",
+      "title": "ASOIU system owns architecture information flow reliability and lifecycle",
+      "ok": true,
+      "evidence": {
+        "title": {
+          "vi": "АСОИУ và hệ thống",
+          "ru": "АСОИУ и системный анализ",
+          "en": "ASOIU and Systems"
+        },
+        "capabilities": 9,
+        "sourceArtifactKinds": [
+          "lesson-record",
+          "lecture-record",
+          "slide-deck",
+          "exercise-bank",
+          "assessment-bank",
+          "simulation",
+          "user-artifact",
+          "external-specialist-artifact"
+        ],
+        "presentationStrategies": [
+          "slide-deck",
+          "split-view",
+          "specialist-workspace",
+          "external-artifact"
+        ],
+        "visuals": 7,
+        "evidenceOutputs": 6,
+        "assessmentModes": 4,
+        "contextEmphasis": [
+          "currentLesson",
+          "prerequisiteGraph",
+          "assessmentErrors",
+          "weakTopics",
+          "nirVkrContext"
+        ],
+        "offlineResourceClasses": [
+          "bundled",
+          "subject-pack",
+          "local-file"
+        ],
+        "compatibilityReference": null
+      }
+    },
+    {
+      "id": "RESEARCH-BOUNDARY",
+      "title": "research owns question literature protocol evidence NIR VKR and defense",
+      "ok": true,
+      "evidence": {
+        "title": {
+          "vi": "Nghiên cứu · НИР · ВКР",
+          "ru": "Исследование · НИР · ВКР",
+          "en": "Research · NIR · VKR"
+        },
+        "capabilities": 11,
+        "sourceArtifactKinds": [
+          "lesson-record",
+          "lecture-record",
+          "assessment-bank",
+          "local-file",
+          "user-artifact",
+          "external-specialist-artifact"
+        ],
+        "presentationStrategies": [
+          "gated-stepper",
+          "split-view",
+          "specialist-workspace",
+          "external-artifact"
+        ],
+        "visuals": 7,
+        "evidenceOutputs": 9,
+        "assessmentModes": 5,
+        "contextEmphasis": [
+          "nirVkrContext",
+          "recentEvidence",
+          "schedule",
+          "currentLesson",
+          "prerequisiteGraph",
+          "languageState"
+        ],
+        "offlineResourceClasses": [
+          "bundled",
+          "subject-pack",
+          "local-file"
+        ],
+        "compatibilityReference": null
+      }
+    },
+    {
+      "id": "REFERENCE-CLAIMS",
+      "title": "only Russian and Mathematics are audited references and neither claims migration",
+      "ok": true,
+      "evidence": [
+        {
+          "typeId": "language",
+          "subjectId": "russian",
+          "status": "audited-reference-unprojected"
+        },
+        {
+          "typeId": "mathematics",
+          "subjectId": "math",
+          "status": "audited-reference-unprojected"
+        }
+      ]
+    },
+    {
+      "id": "CLASSIFICATION-SIGNALS",
+      "title": "every type has non-empty classification signals",
+      "ok": true,
+      "evidence": [
+        "language",
+        "mathematics",
+        "programming",
+        "database",
+        "software-design",
+        "ml-data",
+        "asoiu-system",
+        "research"
+      ]
+    },
+    {
+      "id": "COMPOSITION-RULES",
+      "title": "composition requires one primary type and prevents blind policy merge",
+      "ok": true,
+      "evidence": {
+        "primaryTypeCount": 1,
+        "secondaryFacetCount": {
+          "minimum": 0,
+          "maximum": 3
+        },
+        "secondaryFacetEffect": "context-and-capability-hints-only",
+        "blockPolicyMerge": "forbidden-without-explicit-composite-profile",
+        "conflictRule": "Prefer the type that owns the primary learner artifact and correctness test.",
+        "examples": [
+          {
+            "lesson": "PCA derivation",
+            "primaryType": "mathematics",
+            "secondaryFacets": [
+              "ml-data"
+            ],
+            "reason": "The primary evidence is a derivation; the dataset context is an application."
+          },
+          {
+            "lesson": "PCA model comparison experiment",
+            "primaryType": "ml-data",
+            "secondaryFacets": [
+              "mathematics",
+              "research"
+            ],
+            "reason": "The primary evidence is a reproducible experiment and metric comparison."
+          },
+          {
+            "lesson": "SQL index implementation in Python service",
+            "primaryType": "database",
+            "secondaryFacets": [
+              "programming"
+            ],
+            "reason": "The query plan and database behavior decide correctness."
+          },
+          {
+            "lesson": "АСОИУ architecture for a ВКР",
+            "primaryType": "asoiu-system",
+            "secondaryFacets": [
+              "software-design",
+              "research"
+            ],
+            "reason": "The primary artifact is a system model; research and software design provide context."
+          }
+        ]
+      }
+    },
+    {
+      "id": "COMPOSITION-EXAMPLES",
+      "title": "composition examples use only registered distinct primary and secondary types",
+      "ok": true,
+      "evidence": []
+    },
+    {
+      "id": "CLASSIFICATION-PROCEDURE",
+      "title": "classification starts from artifact and correctness test and never blind-merges policies",
+      "ok": true,
+      "evidence": [
+        "Identify the primary learner artifact.",
+        "Identify the test that decides correctness.",
+        "Choose the type that owns both artifact and correctness test.",
+        "Add at most three secondary facets for terminology, context or optional capabilities.",
+        "Never merge block requirement matrices merely because a secondary facet exists.",
+        "Escalate unresolved conflicts to an explicit composite profile in a later registry version."
+      ]
+    },
+    {
+      "id": "SUBJECT-BOUNDARY",
+      "title": "B4 does not bind whole subjects before the Subject Factory step",
+      "ok": true,
+      "evidence": {
+        "rule": "Subjects map lessons to types in the Subject Factory registry at L6-B9.",
+        "currentSubjectMappingAllowed": false,
+        "reason": "B4 defines types independently; binding entire subjects here would recreate one-engine-per-subject coupling."
+      }
+    },
+    {
+      "id": "PROGRAM-IDENTITY",
+      "title": "registry inherits official 09.04.01 and personalized 09.04.01/11 identity",
+      "ok": true,
+      "evidence": {
+        "department": "ИУ-5",
+        "officialPublishedDirectionCode": "09.04.01",
+        "personalizedDisplayCode": "09.04.01/11",
+        "learnerBrandPolicy": "bauman-iu5-only",
+        "identityRule": "Official-source metadata keeps 09.04.01; personalized learner surfaces display ИУ-5 · 09.04.01/11."
+      }
+    },
+    {
+      "id": "CYRILLIC-RESEARCH-CODES",
+      "title": "Russian research abbreviations use consistent Cyrillic НИР and ВКР",
+      "ok": true,
+      "evidence": {
+        "vi": "Nghiên cứu · НИР · ВКР",
+        "ru": "Исследование · НИР · ВКР",
+        "en": "Research · NIR · VKR"
+      }
+    },
+    {
+      "id": "LEARNER-BRAND-BOUNDARY",
+      "title": "registry contains no comparison-school learner label",
+      "ok": true,
+      "evidence": "bauman-iu5-only"
+    },
+    {
+      "id": "DOC-COVERAGE",
+      "title": "B4 decision record covers subject boundary profile types composition references and rollback",
+      "ok": true,
+      "evidence": "docs/migration/L6_B4_LESSON_TYPE_REGISTRY.md"
+    }
+  ],
+  "failures": [],
+  "result": "PASS"
+}

@@ -63,6 +63,13 @@ jobs:
           node scripts/academic/l6-b3-block-policy-regression.cjs
           git diff --exit-code -- docs/migration/L6_B3_BLOCK_POLICY.generated.json
 
+      - name: Run deterministic L6-B4 gate
+        id: b4_gate
+        run: |
+          node --check scripts/academic/l6-b4-lesson-type-registry-regression.cjs
+          node scripts/academic/l6-b4-lesson-type-registry-regression.cjs
+          git diff --exit-code -- docs/migration/L6_B4_LESSON_TYPE_REGISTRY.generated.json
+
       - name: Publish L6-B1 status
         if: ${{ always() && github.event_name == 'push' && steps.b1_gate.outcome != 'skipped' }}
         env:
@@ -103,4 +110,18 @@ jobs:
             -f state="$STATE" \
             -f context="migration/l6-b3-block-policy" \
             -f description="L6-B3 block policy: ${GATE_OUTCOME}" \
+            -f target_url="${GITHUB_SERVER_URL}/${GITHUB_REPOSITORY}/actions/runs/${GITHUB_RUN_ID}"
+
+      - name: Publish L6-B4 status
+        if: ${{ always() && github.event_name == 'push' && steps.b4_gate.outcome != 'skipped' }}
+        env:
+          GH_TOKEN: ${{ github.token }}
+          GATE_OUTCOME: ${{ steps.b4_gate.outcome }}
+        run: |
+          STATE=failure
+          if [ "$GATE_OUTCOME" = "success" ]; then STATE=success; fi
+          gh api --method POST "repos/${GITHUB_REPOSITORY}/statuses/${GITHUB_SHA}" \
+            -f state="$STATE" \
+            -f context="migration/l6-b4-lesson-types" \
+            -f description="L6-B4 lesson types: ${GATE_OUTCOME}" \
             -f target_url="${GITHUB_SERVER_URL}/${GITHUB_REPOSITORY}/actions/runs/${GITHUB_RUN_ID}"
