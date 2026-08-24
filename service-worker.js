@@ -1,6 +1,6 @@
 'use strict';
 
-const VERSION='2026.08.24-l5.3';
+const VERSION='2026.08.24-l5.4';
 const CACHE_NAME=`bauman-shell-${VERSION}`;
 const OFFLINE_CONTENT_CACHE='bauman-offline-content-v1';
 const ROADMAP_MANIFEST='./assets/data/roadmap/iu5-090401-11-v3.json';
@@ -26,6 +26,7 @@ const SHELL=[
   './assets/js/platform/site-routing-bridge.js',
   './assets/js/platform/offline-library-ui.js',
   './assets/js/platform/offline-html-sandbox-guard.js',
+  './assets/js/platform/offline-import-quota-guard.js',
   './assets/js/platform/offline-subject-pack-refcount-guard.js',
   './assets/js/platform/offline-subject-pack-manager.js',
   './assets/js/data.js',
@@ -56,12 +57,16 @@ async function explicitOfflineMatch(request){
 self.addEventListener('install',(event)=>{
   event.waitUntil((async()=>{
     const cache=await caches.open(CACHE_NAME);
-    await Promise.allSettled(SHELL.map(async(path)=>{
-      try{
+    try{
+      await Promise.all(SHELL.map(async(path)=>{
         const response=await fetch(path,{cache:'no-cache'});
-        if(response.ok)await cache.put(path,response.clone());
-      }catch(_){ }
-    }));
+        if(!response.ok)throw new Error(`Shell fetch failed ${response.status}: ${path}`);
+        await cache.put(path,response.clone());
+      }));
+    }catch(error){
+      await caches.delete(CACHE_NAME);
+      throw error;
+    }
     await self.skipWaiting();
   })());
 });
