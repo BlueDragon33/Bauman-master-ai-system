@@ -107,7 +107,7 @@ L5 PASS nhưng `serviceWorkerCache` production vẫn OFF. Chỉ bật ở stagin
 
 ## Lượt 6 · Universal Lesson Architecture & Subject Factory · 11 bước
 
-Trạng thái: **B1–B7 PASS · B8 CHƯA BẮT ĐẦU**.
+Trạng thái: **B1–B7 PASS · B8 LOCAL PASS, CHỜ REMOTE CI**.
 
 Bằng chứng B1:
 - Audit quyết định: L6_B1_REFERENCE_IMPLEMENTATION_AUDIT.md.
@@ -259,6 +259,40 @@ Bằng chứng B7:
   17/17, academic runtime 36/36, roadmap/offline static 75/75, data loading 8
   môn với 0 lỗi, runtime diagnostics 14/14, offline report integrity 5/5.
 
+Bằng chứng B8 local, chưa được phép ghi PASS cho tới khi remote context thành
+công:
+- Schema Draft 2020-12:
+  `assets/data/lesson/schema/universal-lesson-v2.schema.json`; validator và
+  pure dry-run migrator dùng browser UMD, không thêm dependency và không nối
+  vào learner runtime trong B8.
+- Migration registry:
+  `assets/data/lesson/schema/lesson-migration-registry-v1.json`; chỉ
+  `universal-v1@1.0.0` và `elearning-v1.1` có đường tạo candidate V2 cần manual
+  review. Russian rich và Math rich trả `ADAPTER_REQUIRED`, không có direct
+  migration hoặc write authority.
+- Deterministic B8 gate local: 110/110 checks PASS; 6/6 mutation failures được
+  quan sát; 45/45 Research `elearning-v1.1` tạo candidate schema-valid ở dry-run;
+  report SHA-256
+  `4e405706231995f6067a460717536b138da878a04a803f0f55613291b24f6be6`.
+- Source/candidate/rollback integrity dùng SHA-256 stable JSON; `NaN`, Infinity,
+  cycle, prototype-control, credential-like key, duplicate ID, evidence sai
+  lesson type và offline ref không resolve đều fail closed.
+- Universal V1/eLearning fixture giữ source không đổi, giữ field chưa map trong
+  migration extension/source snapshot, không tạo empty block; snapshot bị sửa
+  không rollback được.
+- Russian vẫn 26 bài/26 `ruTitle`; Russian/Math source thật không đổi và bị chặn
+  direct migration; B8 không ghi Personal Learning State, offline library,
+  Service Worker hoặc runtime subject.
+- L5 regression trên baseline sạch sau B8: static routing 9/9, service worker
+  17/17, academic runtime 36/36, roadmap/offline static 75/75, data loading 8
+  môn với 0 lỗi, runtime diagnostics 14/14, offline report integrity 5/5 với
+  một sandbox block đúng dự kiến.
+- Decision record:
+  `docs/migration/L6_B8_LESSON_SCHEMA_VALIDATOR_MIGRATION.md`; evidence:
+  `docs/migration/L6_B8_SCHEMA_MIGRATION_REGRESSION.generated.json`.
+- Remote context dự kiến: `migration/l6-b8-schema-migration`. Chưa có remote
+  commit/run thành công nên B8 vẫn **chờ remote CI**.
+
 1. **L6-B1** · Audit sâu ba reference implementations: Tiếng Nga, Toán và nguyên tắc UX bài giảng Bơi ếch; lập bảng phần nào giữ, phần nào chuẩn hóa, phần nào không dùng chung. **PASS**.
 2. **L6-B2** · Định nghĩa `UniversalLessonContract` gồm metadata, prerequisite, objectives, theory, example, exercise, lab/simulation, misconception, visual-check, oral, review, test, mastery, project/NIR evidence. **PASS**.
 3. **L6-B3** · Tách `required blocks` và `optional blocks` theo lesson type để không ép mọi bài có 18 tab. **PASS**.
@@ -267,6 +301,7 @@ Bằng chứng B7:
 6. **L6-B6** · Định nghĩa Visual Teaching Contract: hình/diagram/step-state/correct-wrong/interactive feedback, kế thừa tinh thần Bơi ếch nhưng phù hợp môn kỹ thuật. **PASS**.
 7. **L6-B7** · Định nghĩa Russian Twin + English Research Layer hooks ngay trong contract, chưa ép hiển thị toàn bộ trước L12. **PASS**.
 8. Tạo machine-readable lesson schema + validator + version migration.
+   **LOCAL PASS · CHỜ REMOTE CI**.
 9. Tạo Subject Factory registry: subject → engine → lesson types → special widgets → data sources → offline policy.
 10. Tạo Universal Lesson Renderer/bridge dùng được với content engine hiện tại mà không phá Russian/Math legacy.
 11. Regression reference subjects + rollback checkpoint; chỉ PASS khi Russian/Math không giảm chức năng và một subject nhẹ dựng được bằng Factory.

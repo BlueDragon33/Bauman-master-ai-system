@@ -11,10 +11,14 @@ Main sync status: `branch_only`
 
 Files changed:
 - `.github/workflows/migration-l6-academic.yml`
-- `assets/data/lesson/language-layer-hooks-v1.json`
-- `docs/migration/L6_B7_LANGUAGE_LAYER_HOOKS.md`
-- `docs/migration/L6_B7_LANGUAGE_LAYER_REGRESSION.generated.json`
-- `scripts/academic/l6-b7-language-layer-regression.cjs`
+- `assets/data/lesson/schema/universal-lesson-v2.schema.json`
+- `assets/data/lesson/schema/lesson-migration-registry-v1.json`
+- `assets/js/platform/universal-lesson/lesson-schema-validator-v1.js`
+- `assets/js/platform/universal-lesson/lesson-version-migrator-v1.js`
+- `scripts/academic/fixtures/l6-b8/*.json`
+- `scripts/academic/l6-b8-schema-migration-regression.cjs`
+- `docs/migration/L6_B8_LESSON_SCHEMA_VALIDATOR_MIGRATION.md`
+- `docs/migration/L6_B8_SCHEMA_MIGRATION_REGRESSION.generated.json`
 - `docs/migration/MIGRATION_PLAN.md`
 - `CODEX_STATE.md`
 
@@ -34,6 +38,21 @@ What changed:
 - Added the deterministic B7 gate and B7 commit-status context.
 - Locked L6-B7 after GitHub Actions run `32718320781` reported B1-B7 contexts
   successful at commit `4997800c…`.
+- Added the formal Universal Lesson V2 JSON Schema, browser-native validator,
+  source-family migration registry and pure dry-run version migrator.
+- Added SHA-256 stable-JSON integrity, complexity/security guards, semantic
+  duplicate/evidence/offline checks and exact Bauman program identity fields.
+- Added deterministic, source-preserving and rollbackable projections from
+  Universal V1 and eLearning V1.1. Candidates remain manual-review-only; apply,
+  commit and write requests fail closed.
+- Kept Russian/Mathematics rich sources adapter-only. Real sources return
+  `ADAPTER_REQUIRED`; no direct conversion, learner-state write or runtime
+  cutover occurs in B8.
+- Validated all 45 Research eLearning V1.1 lessons as dry-run V2 candidates and
+  retained wrapper/unmapped fields without placeholder blocks.
+- Added B8 negative fixtures, six mutation tests, generated evidence and the
+  planned remote status context `migration/l6-b8-schema-migration`.
+- B8 is local PASS only and remains pending remote CI.
 - Did not change learner content, subject runtime, storage, offline policy,
   service worker or `main`.
 
@@ -50,6 +69,16 @@ Verification:
 - L6-B6 GitHub Actions run `32717062541`: PASS
 - L6-B7 deterministic language-layer regression, 96/96 checks: PASS
 - L6-B7 GitHub Actions run `32718320781`: PASS
+- L6-B8 deterministic schema/migration regression, 110/110 checks: LOCAL PASS
+- L6-B8 mutation tests, 6/6 expected failures observed: LOCAL PASS
+- Research eLearning V1.1 dry-run projection, 45/45 candidates: LOCAL PASS
+- B8 report SHA-256:
+  `4e405706231995f6067a460717536b138da878a04a803f0f55613291b24f6be6`
+- B8 workflow YAML and JavaScript syntax: LOCAL PASS
+- L5 clean-baseline regression after B8: routing 9/9, service worker 17/17,
+  academic runtime 36/36, roadmap/offline 75/75, 8 subjects with 0 data-load
+  failures, diagnostics 14/14, offline integrity 5/5: PASS
+- B8 GitHub Actions context: PENDING
 - B1-B7 report hashes stable over consecutive runs: PASS
 - B7 mutation tests (activation, review authority, English coverage,
   rescue evidence, assessment leakage), 5/5 expected failures observed: PASS
@@ -71,8 +100,9 @@ Main sync / pull instruction:
 - Do not merge to `main` until the corresponding L6 gates pass.
 
 Next recommended task:
-- Audit schema variants and implement machine-readable lesson schema,
-  validator and version migration in `L6-B8_LESSON_SCHEMA_VALIDATOR_MIGRATION`.
+- Push the reviewed B8 checkpoint to the working branch, require all B1-B8
+  GitHub Actions contexts to succeed, then lock B8 and begin L6-B9 Subject
+  Factory registry work.
 
 Next actor:
 - Codex

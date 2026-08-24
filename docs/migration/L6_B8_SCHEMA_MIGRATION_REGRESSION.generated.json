@@ -1,0 +1,2398 @@
+{
+  "schema": "L6_B8_SCHEMA_MIGRATION_REGRESSION_V1",
+  "status": "PASS",
+  "branch": "migration/webapp-l1-audit-storage",
+  "generatedFor": "2026-08-24",
+  "scope": "Universal Lesson V2 schema validator pure migration and rollback; no runtime cutover or learner-state write.",
+  "summary": {
+    "total": 110,
+    "passed": 110,
+    "failed": 0,
+    "mutationTests": 6,
+    "expectedMutationFailuresObserved": 6,
+    "researchSources": 45,
+    "researchCandidates": 45
+  },
+  "contracts": {
+    "schemaId": "https://bauman-master-ai.local/schema/universal-lesson-v2.schema.json",
+    "validatorRelease": "L6-B8-LESSON-SCHEMA-VALIDATOR-V1",
+    "migratorRelease": "L6-B8-LESSON-VERSION-MIGRATOR-V1",
+    "migrationRegistryId": "bauman-universal-lesson-migration-registry",
+    "targetVersion": "2.0.0",
+    "digestAlgorithm": "sha256-stable-json-v1"
+  },
+  "migrationOutcomes": {
+    "canonical": {
+      "code": "DRY_RUN_CANDIDATE",
+      "migrationId": "migration_55c62456",
+      "inputDigest": "5f6450f60f29755bdc1ee90bd1254e9383639387dc3e6eed715d21c542c7c50f",
+      "outputDigest": "5f6450f60f29755bdc1ee90bd1254e9383639387dc3e6eed715d21c542c7c50f"
+    },
+    "universalV1": {
+      "code": "DRY_RUN_CANDIDATE",
+      "migrationId": "migration_e0539b23",
+      "inputDigest": "5ec7b332f6076185718354803c31cb47027c6803fa940ad7cddff4d114090090",
+      "outputDigest": "fc6d30d39b24908606f4a61053a9f152b26d9265d24a1835ef1b63729d149491",
+      "blockKinds": [
+        "orientation",
+        "theory",
+        "exercise"
+      ]
+    },
+    "elearningV11": {
+      "code": "DRY_RUN_CANDIDATE",
+      "migrationId": "migration_b0a1986b",
+      "inputDigest": "621ebdc39cc6528ce4da6603b732eb11a2da3ab86ea10cbec2233727d315d913",
+      "outputDigest": "4c44c5be88e96c7b3ddd120a9c27b3ec8edeb98f6320852a65c42d475b4831cb",
+      "blockKinds": [
+        "orientation",
+        "theory",
+        "worked-example",
+        "exercise",
+        "lab-simulation",
+        "misconception",
+        "review",
+        "mastery",
+        "project-nir-evidence"
+      ]
+    }
+  },
+  "guardOutcomes": {
+    "missingFamily": "SOURCE_FAMILY_REQUIRED",
+    "unknownFamily": "UNKNOWN_SOURCE_FAMILY",
+    "wrongSourceVersion": "SOURCE_FAMILY_VERSION_MISMATCH",
+    "incompleteContext": "MIGRATION_CONTEXT_REQUIRED",
+    "wrongContextVersion": "CONTEXT_SOURCE_VERSION_MISMATCH",
+    "apply": "B8_DRY_RUN_ONLY",
+    "commit": "B8_DRY_RUN_ONLY",
+    "write": "B8_DRY_RUN_ONLY"
+  },
+  "invalidFixtureOutcomes": [
+    {
+      "descriptorPath": "scripts/academic/fixtures/l6-b8/invalid-missing-metadata.json",
+      "expected": {
+        "path": "/metadata",
+        "keyword": "required"
+      },
+      "valid": false,
+      "matched": true,
+      "errors": [
+        {
+          "path": "/metadata",
+          "keyword": "required",
+          "message": "Required property is missing.",
+          "details": null
+        }
+      ]
+    },
+    {
+      "descriptorPath": "scripts/academic/fixtures/l6-b8/invalid-duplicate-block-id.json",
+      "expected": {
+        "path": "/blocks/1/id",
+        "keyword": "unique-id"
+      },
+      "valid": false,
+      "matched": true,
+      "errors": [
+        {
+          "path": "/blocks/1/id",
+          "keyword": "unique-id",
+          "message": "Identifier is duplicated within blocks.",
+          "details": "block-orientation"
+        }
+      ]
+    },
+    {
+      "descriptorPath": "scripts/academic/fixtures/l6-b8/invalid-offline-ref.json",
+      "expected": {
+        "path": "/blocks/0/offlineRef",
+        "keyword": "offline-ref"
+      },
+      "valid": false,
+      "matched": true,
+      "errors": [
+        {
+          "path": "/blocks/0/offlineRef",
+          "keyword": "offline-ref",
+          "message": "Block offlineRef does not resolve to lesson.offline.resources.",
+          "details": "missing-subject-pack"
+        }
+      ]
+    },
+    {
+      "descriptorPath": "scripts/academic/fixtures/l6-b8/invalid-credential-key.json",
+      "expected": {
+        "path": "/extensions/fixture/apiKey",
+        "keyword": "credential-key"
+      },
+      "valid": false,
+      "matched": true,
+      "errors": [
+        {
+          "path": "/extensions/fixture/apiKey",
+          "keyword": "credential-key",
+          "message": "Credential-like fields do not belong in lesson content.",
+          "details": null
+        }
+      ]
+    }
+  ],
+  "researchProjection": {
+    "sourceCount": 45,
+    "candidateCount": 45,
+    "distinctOutputDigests": 45,
+    "outputDigestAggregate": "1ea8d8179250b67e24f785c7b7c1aeaa62236fb8c212e7034060c6476bad5de0",
+    "outcomes": [
+      {
+        "lessonId": "r_p01_l1",
+        "ok": true,
+        "code": "DRY_RUN_CANDIDATE",
+        "valid": true,
+        "sourceUnchanged": true,
+        "manualReviewRequired": true,
+        "outputDigest": "ef9afe81b707b01914916a30ee956897c5ed70d4b111779c1853712af441fb08",
+        "blockCount": 9
+      },
+      {
+        "lessonId": "r_p01_l2",
+        "ok": true,
+        "code": "DRY_RUN_CANDIDATE",
+        "valid": true,
+        "sourceUnchanged": true,
+        "manualReviewRequired": true,
+        "outputDigest": "714e741e2f200e7eafadf2232ea04f5fc1d6520a5ccbf8ce2d800a455abebf14",
+        "blockCount": 9
+      },
+      {
+        "lessonId": "r_p01_l3",
+        "ok": true,
+        "code": "DRY_RUN_CANDIDATE",
+        "valid": true,
+        "sourceUnchanged": true,
+        "manualReviewRequired": true,
+        "outputDigest": "b465c55b5461a29fdb8967171e44a1234bedc3cdd3d1072ee470a5fb3bbc097f",
+        "blockCount": 9
+      },
+      {
+        "lessonId": "r_p02_l1",
+        "ok": true,
+        "code": "DRY_RUN_CANDIDATE",
+        "valid": true,
+        "sourceUnchanged": true,
+        "manualReviewRequired": true,
+        "outputDigest": "5e62a87d244b3db67f28a5793c1ddfa608eefe8e5b539e3496c3490cf95b0fc3",
+        "blockCount": 9
+      },
+      {
+        "lessonId": "r_p02_l2",
+        "ok": true,
+        "code": "DRY_RUN_CANDIDATE",
+        "valid": true,
+        "sourceUnchanged": true,
+        "manualReviewRequired": true,
+        "outputDigest": "806ff9a2f956279efb8080c72a01cfbc9616f98e16f6b22381fba251a2011f1d",
+        "blockCount": 9
+      },
+      {
+        "lessonId": "r_p02_l3",
+        "ok": true,
+        "code": "DRY_RUN_CANDIDATE",
+        "valid": true,
+        "sourceUnchanged": true,
+        "manualReviewRequired": true,
+        "outputDigest": "e248a472399213adbd1f10eedf54ce368675ba1fcd8bcca3d8449ed31f482e82",
+        "blockCount": 9
+      },
+      {
+        "lessonId": "r_p03_l1",
+        "ok": true,
+        "code": "DRY_RUN_CANDIDATE",
+        "valid": true,
+        "sourceUnchanged": true,
+        "manualReviewRequired": true,
+        "outputDigest": "6ec33e8827f722bb147e934422541931c3985c134f643b6e3d0fc0d96cc2d1e1",
+        "blockCount": 9
+      },
+      {
+        "lessonId": "r_p03_l2",
+        "ok": true,
+        "code": "DRY_RUN_CANDIDATE",
+        "valid": true,
+        "sourceUnchanged": true,
+        "manualReviewRequired": true,
+        "outputDigest": "0f78d09fed08da3480e56e5c1693219d4c7067935d969e7cd8cdc1e2fc4a415a",
+        "blockCount": 9
+      },
+      {
+        "lessonId": "r_p03_l3",
+        "ok": true,
+        "code": "DRY_RUN_CANDIDATE",
+        "valid": true,
+        "sourceUnchanged": true,
+        "manualReviewRequired": true,
+        "outputDigest": "3ced260697d5c6072fb1af43ee87be132d144bc9468996b058730cc3f459488f",
+        "blockCount": 9
+      },
+      {
+        "lessonId": "r_p04_l1",
+        "ok": true,
+        "code": "DRY_RUN_CANDIDATE",
+        "valid": true,
+        "sourceUnchanged": true,
+        "manualReviewRequired": true,
+        "outputDigest": "690ba94d7c929cd073fe7d053f3e826a698a4aaae4da56e3f787397b43a21374",
+        "blockCount": 9
+      },
+      {
+        "lessonId": "r_p04_l2",
+        "ok": true,
+        "code": "DRY_RUN_CANDIDATE",
+        "valid": true,
+        "sourceUnchanged": true,
+        "manualReviewRequired": true,
+        "outputDigest": "e065641f14389ff544437a6ac566ca55b7cc7bb66e7250f8464e1c0be3df02a1",
+        "blockCount": 9
+      },
+      {
+        "lessonId": "r_p04_l3",
+        "ok": true,
+        "code": "DRY_RUN_CANDIDATE",
+        "valid": true,
+        "sourceUnchanged": true,
+        "manualReviewRequired": true,
+        "outputDigest": "e4052ec175f7c1a0652789bea8b681ef1e32957fab247a01ecf770c06efdb699",
+        "blockCount": 9
+      },
+      {
+        "lessonId": "r_s01_l1",
+        "ok": true,
+        "code": "DRY_RUN_CANDIDATE",
+        "valid": true,
+        "sourceUnchanged": true,
+        "manualReviewRequired": true,
+        "outputDigest": "d5194c292b0cbfcf2698eaf7a3a544f39ff4b668d2d0509cef07138783224646",
+        "blockCount": 9
+      },
+      {
+        "lessonId": "r_s01_l2",
+        "ok": true,
+        "code": "DRY_RUN_CANDIDATE",
+        "valid": true,
+        "sourceUnchanged": true,
+        "manualReviewRequired": true,
+        "outputDigest": "c599a5c33508281656e1f08e20e0dfa15bbb5d02f0ba1cda991388f8a0a1ddb9",
+        "blockCount": 9
+      },
+      {
+        "lessonId": "r_s01_l3",
+        "ok": true,
+        "code": "DRY_RUN_CANDIDATE",
+        "valid": true,
+        "sourceUnchanged": true,
+        "manualReviewRequired": true,
+        "outputDigest": "e0a1d81f3f6ba40f762875d5edad4dce4677b55c51e887c636871732b5867b60",
+        "blockCount": 9
+      },
+      {
+        "lessonId": "r_s02_l1",
+        "ok": true,
+        "code": "DRY_RUN_CANDIDATE",
+        "valid": true,
+        "sourceUnchanged": true,
+        "manualReviewRequired": true,
+        "outputDigest": "d0673864054baa07907f1b3cc119dbec1add737beb0605c39417f1bc901d76e8",
+        "blockCount": 9
+      },
+      {
+        "lessonId": "r_s02_l2",
+        "ok": true,
+        "code": "DRY_RUN_CANDIDATE",
+        "valid": true,
+        "sourceUnchanged": true,
+        "manualReviewRequired": true,
+        "outputDigest": "ff5643bf0b8e3056c28aa57631820bfbf1157c2887ad4dff4b5a0932c24ec9df",
+        "blockCount": 9
+      },
+      {
+        "lessonId": "r_s02_l3",
+        "ok": true,
+        "code": "DRY_RUN_CANDIDATE",
+        "valid": true,
+        "sourceUnchanged": true,
+        "manualReviewRequired": true,
+        "outputDigest": "130e184cedf078bb4ec6cf773479f9953d78adb3252a80f28e186c80047c0d63",
+        "blockCount": 9
+      },
+      {
+        "lessonId": "r_m101_l1",
+        "ok": true,
+        "code": "DRY_RUN_CANDIDATE",
+        "valid": true,
+        "sourceUnchanged": true,
+        "manualReviewRequired": true,
+        "outputDigest": "3996f42600ee73b9e10419c16969711564457da14a6ef4b21eb08d4ad35db959",
+        "blockCount": 9
+      },
+      {
+        "lessonId": "r_m101_l2",
+        "ok": true,
+        "code": "DRY_RUN_CANDIDATE",
+        "valid": true,
+        "sourceUnchanged": true,
+        "manualReviewRequired": true,
+        "outputDigest": "7093e1c828a482c570bf8f20540dfce07fcf3f1f85d12c041cbdf38d1e0b63b7",
+        "blockCount": 9
+      },
+      {
+        "lessonId": "r_m101_l3",
+        "ok": true,
+        "code": "DRY_RUN_CANDIDATE",
+        "valid": true,
+        "sourceUnchanged": true,
+        "manualReviewRequired": true,
+        "outputDigest": "e32ed41ef05b649fd623a22722ef61a9ef30ffc5ac8e65858f1a4bd9fe45fa77",
+        "blockCount": 9
+      },
+      {
+        "lessonId": "r_m102_l1",
+        "ok": true,
+        "code": "DRY_RUN_CANDIDATE",
+        "valid": true,
+        "sourceUnchanged": true,
+        "manualReviewRequired": true,
+        "outputDigest": "0d59479ffb0902edf51fd4a2814d24eb0b330f145a4d95180fa116a53c3901be",
+        "blockCount": 9
+      },
+      {
+        "lessonId": "r_m102_l2",
+        "ok": true,
+        "code": "DRY_RUN_CANDIDATE",
+        "valid": true,
+        "sourceUnchanged": true,
+        "manualReviewRequired": true,
+        "outputDigest": "d9ddd619188bd929b8eedc0fc0cf5b5cc523474445f8a68e15a43b6df0ecdaf0",
+        "blockCount": 9
+      },
+      {
+        "lessonId": "r_m102_l3",
+        "ok": true,
+        "code": "DRY_RUN_CANDIDATE",
+        "valid": true,
+        "sourceUnchanged": true,
+        "manualReviewRequired": true,
+        "outputDigest": "86da2d5fd61e36b6e60874399618f8f49866697ee0baaba8c748979de0fb9803",
+        "blockCount": 9
+      },
+      {
+        "lessonId": "r_m201_l1",
+        "ok": true,
+        "code": "DRY_RUN_CANDIDATE",
+        "valid": true,
+        "sourceUnchanged": true,
+        "manualReviewRequired": true,
+        "outputDigest": "af2bc20fb8c3c600c35a0c1c1b7e4186a3e3835fae4d1294b0da2860caf65c7d",
+        "blockCount": 9
+      },
+      {
+        "lessonId": "r_m201_l2",
+        "ok": true,
+        "code": "DRY_RUN_CANDIDATE",
+        "valid": true,
+        "sourceUnchanged": true,
+        "manualReviewRequired": true,
+        "outputDigest": "88bba697fba02038cc65107ef9ff33728e70fa1c683b806ca44de3c04ac6bb1b",
+        "blockCount": 9
+      },
+      {
+        "lessonId": "r_m201_l3",
+        "ok": true,
+        "code": "DRY_RUN_CANDIDATE",
+        "valid": true,
+        "sourceUnchanged": true,
+        "manualReviewRequired": true,
+        "outputDigest": "56b07bf4dec9957dfef7aa948a3ae10e91bb024b9e636542595b8a7524dc3a48",
+        "blockCount": 9
+      },
+      {
+        "lessonId": "r_m202_l1",
+        "ok": true,
+        "code": "DRY_RUN_CANDIDATE",
+        "valid": true,
+        "sourceUnchanged": true,
+        "manualReviewRequired": true,
+        "outputDigest": "b3bbd177aae06d4279a40d692d6316db7eb25ef3d7d1c68cebcb21df831ac896",
+        "blockCount": 9
+      },
+      {
+        "lessonId": "r_m202_l2",
+        "ok": true,
+        "code": "DRY_RUN_CANDIDATE",
+        "valid": true,
+        "sourceUnchanged": true,
+        "manualReviewRequired": true,
+        "outputDigest": "62b9e035f4515056a67a87c2d3ac1afb9c17662f46743a146473c1c23fd45680",
+        "blockCount": 9
+      },
+      {
+        "lessonId": "r_m202_l3",
+        "ok": true,
+        "code": "DRY_RUN_CANDIDATE",
+        "valid": true,
+        "sourceUnchanged": true,
+        "manualReviewRequired": true,
+        "outputDigest": "cd265edc89b3b9730906283f60c365ed9d7fd9ac406df56b1b0f7c2fa01626ed",
+        "blockCount": 9
+      },
+      {
+        "lessonId": "r_m301_l1",
+        "ok": true,
+        "code": "DRY_RUN_CANDIDATE",
+        "valid": true,
+        "sourceUnchanged": true,
+        "manualReviewRequired": true,
+        "outputDigest": "3c1232a4995986d542b9eba627fceb7abd7c8a9442e531048fac8c1dc0b35d39",
+        "blockCount": 9
+      },
+      {
+        "lessonId": "r_m301_l2",
+        "ok": true,
+        "code": "DRY_RUN_CANDIDATE",
+        "valid": true,
+        "sourceUnchanged": true,
+        "manualReviewRequired": true,
+        "outputDigest": "adde17f28aee5eda50468dd85d1e9793995103e0c5e55db1bd70119d9154ff26",
+        "blockCount": 9
+      },
+      {
+        "lessonId": "r_m301_l3",
+        "ok": true,
+        "code": "DRY_RUN_CANDIDATE",
+        "valid": true,
+        "sourceUnchanged": true,
+        "manualReviewRequired": true,
+        "outputDigest": "1c1102bf94d16fd7188e5a7767be9733bc41a1b4a98214afa35960dd98dc68be",
+        "blockCount": 9
+      },
+      {
+        "lessonId": "r_m302_l1",
+        "ok": true,
+        "code": "DRY_RUN_CANDIDATE",
+        "valid": true,
+        "sourceUnchanged": true,
+        "manualReviewRequired": true,
+        "outputDigest": "a334294d65d79961267808505a75d83ca226806630238f2d5bc35c521124f282",
+        "blockCount": 9
+      },
+      {
+        "lessonId": "r_m302_l2",
+        "ok": true,
+        "code": "DRY_RUN_CANDIDATE",
+        "valid": true,
+        "sourceUnchanged": true,
+        "manualReviewRequired": true,
+        "outputDigest": "99c863a2ba3e06a703e4f94e7ceca2919e3642fec48e147203c6ea53c6f310e7",
+        "blockCount": 9
+      },
+      {
+        "lessonId": "r_m302_l3",
+        "ok": true,
+        "code": "DRY_RUN_CANDIDATE",
+        "valid": true,
+        "sourceUnchanged": true,
+        "manualReviewRequired": true,
+        "outputDigest": "1d372f2ab32105bc273b80687a44d84bd8f824097828df47d211ceb7b52824a6",
+        "blockCount": 9
+      },
+      {
+        "lessonId": "r_m401_l1",
+        "ok": true,
+        "code": "DRY_RUN_CANDIDATE",
+        "valid": true,
+        "sourceUnchanged": true,
+        "manualReviewRequired": true,
+        "outputDigest": "47264c58ba67d50be2ae5a1d3107949947ed2d3545653734dfd544d27252f1f5",
+        "blockCount": 9
+      },
+      {
+        "lessonId": "r_m401_l2",
+        "ok": true,
+        "code": "DRY_RUN_CANDIDATE",
+        "valid": true,
+        "sourceUnchanged": true,
+        "manualReviewRequired": true,
+        "outputDigest": "2b599924855741e8cdfe580ecaa98997955d690dbde879ed274c717288e952ea",
+        "blockCount": 9
+      },
+      {
+        "lessonId": "r_m401_l3",
+        "ok": true,
+        "code": "DRY_RUN_CANDIDATE",
+        "valid": true,
+        "sourceUnchanged": true,
+        "manualReviewRequired": true,
+        "outputDigest": "5698d9ca17bbea4996ee2dccfe37c99d8e4058644d4efc1528165c242d3b6e9c",
+        "blockCount": 9
+      },
+      {
+        "lessonId": "r_m402_l1",
+        "ok": true,
+        "code": "DRY_RUN_CANDIDATE",
+        "valid": true,
+        "sourceUnchanged": true,
+        "manualReviewRequired": true,
+        "outputDigest": "6e6758f070c7bb54ffce9bbaa0cbefccb4099706151697ae32fe7ee6da23db8a",
+        "blockCount": 9
+      },
+      {
+        "lessonId": "r_m402_l2",
+        "ok": true,
+        "code": "DRY_RUN_CANDIDATE",
+        "valid": true,
+        "sourceUnchanged": true,
+        "manualReviewRequired": true,
+        "outputDigest": "602b37f44db1b5cafee8c2dd07669f808502e99131018817be5cb7607d75cf5b",
+        "blockCount": 9
+      },
+      {
+        "lessonId": "r_m402_l3",
+        "ok": true,
+        "code": "DRY_RUN_CANDIDATE",
+        "valid": true,
+        "sourceUnchanged": true,
+        "manualReviewRequired": true,
+        "outputDigest": "c3dc2d0a169768e69b934b8843270e29531763aa324e262454b2c2bc84f8b197",
+        "blockCount": 9
+      },
+      {
+        "lessonId": "r_m403_l1",
+        "ok": true,
+        "code": "DRY_RUN_CANDIDATE",
+        "valid": true,
+        "sourceUnchanged": true,
+        "manualReviewRequired": true,
+        "outputDigest": "fb5e6bfde8f7346928be701b2ccccb3360c0d9880f49827c48a51ad8e7d5a8d1",
+        "blockCount": 9
+      },
+      {
+        "lessonId": "r_m403_l2",
+        "ok": true,
+        "code": "DRY_RUN_CANDIDATE",
+        "valid": true,
+        "sourceUnchanged": true,
+        "manualReviewRequired": true,
+        "outputDigest": "19c2f31e36ac5580e282f858e9efd4a54d718d09b585a63de29b63c365a8980a",
+        "blockCount": 9
+      },
+      {
+        "lessonId": "r_m403_l3",
+        "ok": true,
+        "code": "DRY_RUN_CANDIDATE",
+        "valid": true,
+        "sourceUnchanged": true,
+        "manualReviewRequired": true,
+        "outputDigest": "73fca38c4569ddaecfb9a12978feb605be91346aaa44a37c8a7f94e2fb748915",
+        "blockCount": 9
+      }
+    ]
+  },
+  "referenceCompatibility": {
+    "russian": {
+      "lessonCount": 26,
+      "ruTitleCount": 26,
+      "migrationCode": "ADAPTER_REQUIRED"
+    },
+    "mathematics": {
+      "lessonId": "MATH-VN-C01-vector_trong_khong_gian_-L01-vector-as-engineering-data-e130",
+      "migrationCode": "ADAPTER_REQUIRED"
+    },
+    "sourceSha256": {
+      "subjects/russian/data/lessons.json": "c8693eeefed17ea39b0cea4a600c9086f1b597ae7174e56bd8b2f8b46b985062",
+      "subjects/russian/assets/subject-adapter.js": "1c6a6930ab06e1510879ed374093016ff721b20fab7bf720a65613e4c411d625",
+      "subjects/russian/subject-manifest.json": "2a4ce2f51454673275c07659112953a15cace9553af148cdb2e537b7315563dd",
+      "subjects/math/data/theory_core/theory_core_c01_l01.json": "64da121db5453f6796f3a894c7f879714187cc38cc9a6fac60a262383ed32d2a",
+      "subjects/math/data/theory_lecture_content.json": "d0cd18601b1ede84f58072b3c47cfcc176b4d21d3fa71b23762b908485391447",
+      "subjects/research/data/lessons.json": "eb453c78c6a4340c6f4d12aa435adfdfd1ab59b68393586cbcd772742d757d16",
+      "subjects/research/subject-manifest.json": "2318ae4dd6abdd2749277f0e39079ddf5cb4c97f139740ed14d0b1be44051296"
+    }
+  },
+  "mutationTests": [
+    {
+      "id": "OFFICIAL-CODE",
+      "title": "personalized code substituted into official field is caught",
+      "expectedFailureObserved": true,
+      "evidence": [
+        {
+          "path": "/metadata/programIdentity/officialPublishedDirectionCode",
+          "keyword": "const",
+          "message": "Value must equal the schema constant.",
+          "details": "09.04.01/11"
+        }
+      ]
+    },
+    {
+      "id": "DUPLICATE-ID",
+      "title": "removing duplicate block ID guard makes the negative fixture escape",
+      "expectedFailureObserved": true,
+      "evidence": {
+        "mutantLoaded": true,
+        "valid": true,
+        "errors": []
+      }
+    },
+    {
+      "id": "RUSSIAN-DIRECT-MIGRATION",
+      "title": "registry audit rejects direct Russian migration and write authority",
+      "expectedFailureObserved": true,
+      "evidence": {
+        "versions": [
+          "legacy-rich"
+        ],
+        "strategy": "direct-migration",
+        "explicitFamilyRequired": true,
+        "manualReviewRequired": true,
+        "writesAllowed": true,
+        "migrationPath": "russian-rich-v13-to-v2",
+        "fallback": "route-to-unchanged-russian-engine"
+      }
+    },
+    {
+      "id": "DRY-RUN-GUARD",
+      "title": "removing the write guard is exposed by the apply=true regression",
+      "expectedFailureObserved": true,
+      "evidence": {
+        "mutantLoaded": true,
+        "code": "DRY_RUN_CANDIDATE"
+      }
+    },
+    {
+      "id": "ADAPTER-GUARD",
+      "title": "removing adapter-only branch is exposed by the real Russian regression",
+      "expectedFailureObserved": true,
+      "evidence": {
+        "mutantLoaded": true,
+        "code": "SOURCE_FAMILY_VERSION_MISMATCH"
+      }
+    },
+    {
+      "id": "ROLLBACK-INTEGRITY",
+      "title": "removing snapshot digest comparison lets tampering escape and is observed",
+      "expectedFailureObserved": true,
+      "evidence": {
+        "mutantLoaded": true,
+        "rollback": {
+          "ok": true,
+          "code": "SOURCE_SNAPSHOT_RESTORED",
+          "source": {
+            "contractVersion": "1.0.0",
+            "id": "legacy-programming-001",
+            "subjectId": "programming",
+            "lessonType": "programming",
+            "title": "Legacy test-first repair",
+            "stage": "vn-foundation",
+            "estimatedMinutes": 45,
+            "prerequisites": [
+              "Python functions",
+              {
+                "id": "legacy-prerequisite-tests",
+                "lessonId": "python-unit-tests",
+                "relation": "requires",
+                "requiredState": "introduced"
+              }
+            ],
+            "objectives": [
+              "Explain the failing test before editing code.",
+              {
+                "id": "legacy-objective-repair",
+                "statement": "Submit a repair with passing tests.",
+                "evidenceKinds": [
+                  "passing-tests"
+                ]
+              }
+            ],
+            "sections": [
+              {
+                "id": "legacy-orientation",
+                "type": "hook",
+                "content": {
+                  "question": "Why reproduce before repair?"
+                },
+                "legacyDisplayMode": "compact"
+              },
+              {
+                "id": "legacy-theory",
+                "type": "explanation",
+                "payload": {
+                  "text": "A deterministic failing test fixes the observation boundary."
+                },
+                "legacyAnnotation": "preserve-me"
+              },
+              {
+                "id": "legacy-practice",
+                "type": "practice",
+                "content": {
+                  "prompt": "Repair the function and retain the regression test."
+                },
+                "specialistCapabilityRef": "code-lab"
+              }
+            ],
+            "legacyRoute": "#/tampered-by-mutation",
+            "legacyWidgetConfig": {
+              "runner": "python",
+              "timeoutSeconds": 3
+            },
+            "extensions": {
+              "legacyNamespace": {
+                "keep": true
+              }
+            }
+          },
+          "digest": "5ec7b332f6076185718354803c31cb47027c6803fa940ad7cddff4d114090090"
+        }
+      }
+    }
+  ],
+  "b8ArtifactSha256": {
+    "assets/data/lesson/schema/universal-lesson-v2.schema.json": "873b550f58aa1fbc52e48833a99b1540bead8c41be6eaba676d020b53e3f2efd",
+    "assets/data/lesson/schema/lesson-migration-registry-v1.json": "a0ede7932457cdadca285a8453158de4d07995e9dcd6e6995dd81b460b4dd8db",
+    "assets/js/platform/universal-lesson/lesson-schema-validator-v1.js": "59272c7e6b55c36b81bbd005aa2c06675b6be976fd9d4a035e62d69ea64a76b6",
+    "assets/js/platform/universal-lesson/lesson-version-migrator-v1.js": "faf7903a51d62cd5372b78b0a9a89d18749d45b0d3f8f50e23c19d9c8366c7b8",
+    "docs/migration/L6_B8_LESSON_SCHEMA_VALIDATOR_MIGRATION.md": "60741774cee78ab8ae5b95991a0bbc0248a6e0e03a2e840dd48925c2a56ebf36",
+    "scripts/academic/fixtures/l6-b8/canonical-minimal-v2.json": "d0ed949733de9aaae9b1fd0e2a0407529a9e3352c3eee9393523ef936abd74e5",
+    "scripts/academic/fixtures/l6-b8/legacy-universal-v1.json": "0766bf4e32995bd44c7c599ee4120b1031565163b4651faceae88a32a97afba9",
+    "scripts/academic/fixtures/l6-b8/legacy-elearning-v1.1.json": "46ae8753db03dba04540b882e6afe984ce66208de6ee89c4957880223c70a08e",
+    "scripts/academic/fixtures/l6-b8/invalid-missing-metadata.json": "daf4a0f6e7f81c3d1c892d91b3c4323ab8039f32fe052d0e4a405a7eb86b5d6e",
+    "scripts/academic/fixtures/l6-b8/invalid-duplicate-block-id.json": "05276b24e5fba2dab5fb559d04316208b6c537ea65e74aadb623d2aefbd57f43",
+    "scripts/academic/fixtures/l6-b8/invalid-offline-ref.json": "33208367f422c6bbb71ef7f795c2b3e2a3c33fe08a8899405fd5c5b03aafed8f",
+    "scripts/academic/fixtures/l6-b8/invalid-credential-key.json": "48bda083b764d56897800adf37ffce0d488e4af102c3afe19724df50e0866dcc"
+  },
+  "checks": [
+    {
+      "id": "FILE-assets/data/lesson/schema/universal-lesson-v2.schema.json",
+      "title": "required B8 input exists",
+      "ok": true,
+      "evidence": "assets/data/lesson/schema/universal-lesson-v2.schema.json"
+    },
+    {
+      "id": "FILE-assets/data/lesson/schema/lesson-migration-registry-v1.json",
+      "title": "required B8 input exists",
+      "ok": true,
+      "evidence": "assets/data/lesson/schema/lesson-migration-registry-v1.json"
+    },
+    {
+      "id": "FILE-assets/js/platform/universal-lesson/lesson-schema-validator-v1.js",
+      "title": "required B8 input exists",
+      "ok": true,
+      "evidence": "assets/js/platform/universal-lesson/lesson-schema-validator-v1.js"
+    },
+    {
+      "id": "FILE-assets/js/platform/universal-lesson/lesson-version-migrator-v1.js",
+      "title": "required B8 input exists",
+      "ok": true,
+      "evidence": "assets/js/platform/universal-lesson/lesson-version-migrator-v1.js"
+    },
+    {
+      "id": "FILE-assets/data/lesson/universal-lesson-contract-v2.json",
+      "title": "required B8 input exists",
+      "ok": true,
+      "evidence": "assets/data/lesson/universal-lesson-contract-v2.json"
+    },
+    {
+      "id": "FILE-assets/data/lesson/universal-lesson-block-policy-v1.json",
+      "title": "required B8 input exists",
+      "ok": true,
+      "evidence": "assets/data/lesson/universal-lesson-block-policy-v1.json"
+    },
+    {
+      "id": "FILE-assets/data/lesson/lesson-type-registry-v1.json",
+      "title": "required B8 input exists",
+      "ok": true,
+      "evidence": "assets/data/lesson/lesson-type-registry-v1.json"
+    },
+    {
+      "id": "FILE-assets/data/lesson/master-ready-policy-v1.json",
+      "title": "required B8 input exists",
+      "ok": true,
+      "evidence": "assets/data/lesson/master-ready-policy-v1.json"
+    },
+    {
+      "id": "FILE-assets/data/lesson/visual-teaching-contract-v1.json",
+      "title": "required B8 input exists",
+      "ok": true,
+      "evidence": "assets/data/lesson/visual-teaching-contract-v1.json"
+    },
+    {
+      "id": "FILE-assets/data/lesson/language-layer-hooks-v1.json",
+      "title": "required B8 input exists",
+      "ok": true,
+      "evidence": "assets/data/lesson/language-layer-hooks-v1.json"
+    },
+    {
+      "id": "FILE-docs/migration/L6_B8_LESSON_SCHEMA_VALIDATOR_MIGRATION.md",
+      "title": "required B8 input exists",
+      "ok": true,
+      "evidence": "docs/migration/L6_B8_LESSON_SCHEMA_VALIDATOR_MIGRATION.md"
+    },
+    {
+      "id": "FILE-scripts/academic/fixtures/l6-b8/canonical-minimal-v2.json",
+      "title": "required B8 input exists",
+      "ok": true,
+      "evidence": "scripts/academic/fixtures/l6-b8/canonical-minimal-v2.json"
+    },
+    {
+      "id": "FILE-scripts/academic/fixtures/l6-b8/legacy-universal-v1.json",
+      "title": "required B8 input exists",
+      "ok": true,
+      "evidence": "scripts/academic/fixtures/l6-b8/legacy-universal-v1.json"
+    },
+    {
+      "id": "FILE-scripts/academic/fixtures/l6-b8/legacy-elearning-v1.1.json",
+      "title": "required B8 input exists",
+      "ok": true,
+      "evidence": "scripts/academic/fixtures/l6-b8/legacy-elearning-v1.1.json"
+    },
+    {
+      "id": "FILE-subjects/russian/data/lessons.json",
+      "title": "required B8 input exists",
+      "ok": true,
+      "evidence": "subjects/russian/data/lessons.json"
+    },
+    {
+      "id": "FILE-subjects/russian/assets/subject-adapter.js",
+      "title": "required B8 input exists",
+      "ok": true,
+      "evidence": "subjects/russian/assets/subject-adapter.js"
+    },
+    {
+      "id": "FILE-subjects/russian/subject-manifest.json",
+      "title": "required B8 input exists",
+      "ok": true,
+      "evidence": "subjects/russian/subject-manifest.json"
+    },
+    {
+      "id": "FILE-subjects/math/data/theory_core/theory_core_c01_l01.json",
+      "title": "required B8 input exists",
+      "ok": true,
+      "evidence": "subjects/math/data/theory_core/theory_core_c01_l01.json"
+    },
+    {
+      "id": "FILE-subjects/math/data/theory_lecture_content.json",
+      "title": "required B8 input exists",
+      "ok": true,
+      "evidence": "subjects/math/data/theory_lecture_content.json"
+    },
+    {
+      "id": "FILE-subjects/research/data/lessons.json",
+      "title": "required B8 input exists",
+      "ok": true,
+      "evidence": "subjects/research/data/lessons.json"
+    },
+    {
+      "id": "FILE-subjects/research/subject-manifest.json",
+      "title": "required B8 input exists",
+      "ok": true,
+      "evidence": "subjects/research/subject-manifest.json"
+    },
+    {
+      "id": "FILE-scripts/academic/fixtures/l6-b8/invalid-missing-metadata.json",
+      "title": "required B8 input exists",
+      "ok": true,
+      "evidence": "scripts/academic/fixtures/l6-b8/invalid-missing-metadata.json"
+    },
+    {
+      "id": "FILE-scripts/academic/fixtures/l6-b8/invalid-duplicate-block-id.json",
+      "title": "required B8 input exists",
+      "ok": true,
+      "evidence": "scripts/academic/fixtures/l6-b8/invalid-duplicate-block-id.json"
+    },
+    {
+      "id": "FILE-scripts/academic/fixtures/l6-b8/invalid-offline-ref.json",
+      "title": "required B8 input exists",
+      "ok": true,
+      "evidence": "scripts/academic/fixtures/l6-b8/invalid-offline-ref.json"
+    },
+    {
+      "id": "FILE-scripts/academic/fixtures/l6-b8/invalid-credential-key.json",
+      "title": "required B8 input exists",
+      "ok": true,
+      "evidence": "scripts/academic/fixtures/l6-b8/invalid-credential-key.json"
+    },
+    {
+      "id": "SCHEMA-IDENTITY",
+      "title": "schema is stable JSON Schema Draft 2020-12 for Universal Lesson V2",
+      "ok": true,
+      "evidence": {
+        "draft": "https://json-schema.org/draft/2020-12/schema",
+        "id": "https://bauman-master-ai.local/schema/universal-lesson-v2.schema.json",
+        "title": "Bauman Universal Lesson Instance V2"
+      }
+    },
+    {
+      "id": "SCHEMA-LOCAL-REFS",
+      "title": "schema definition passes and every reference resolves locally",
+      "ok": true,
+      "evidence": []
+    },
+    {
+      "id": "SCHEMA-TOP-LEVEL",
+      "title": "schema requires the eight B2 canonical top-level fields",
+      "ok": true,
+      "evidence": [
+        "metadata",
+        "prerequisites",
+        "objectives",
+        "blocks",
+        "masteryEvidence",
+        "contextRefs",
+        "offline",
+        "provenance"
+      ]
+    },
+    {
+      "id": "SCHEMA-BLOCK-KINDS",
+      "title": "schema block vocabulary is exactly the 13 B2 semantic kinds",
+      "ok": true,
+      "evidence": [
+        "orientation",
+        "concept-map",
+        "theory",
+        "worked-example",
+        "exercise",
+        "lab-simulation",
+        "misconception",
+        "visual-check",
+        "oral",
+        "review",
+        "assessment",
+        "mastery",
+        "project-nir-evidence"
+      ]
+    },
+    {
+      "id": "SCHEMA-LESSON-TYPES",
+      "title": "schema lesson types are exactly the eight B4 primary types",
+      "ok": true,
+      "evidence": [
+        "language",
+        "mathematics",
+        "programming",
+        "database",
+        "software-design",
+        "ml-data",
+        "asoiu-system",
+        "research"
+      ]
+    },
+    {
+      "id": "SCHEMA-UNKNOWN-PASS-THROUGH",
+      "title": "canonical top level block and extensions permit specialist pass-through fields",
+      "ok": true,
+      "evidence": {
+        "root": true,
+        "block": true,
+        "extensions": true
+      }
+    },
+    {
+      "id": "SCHEMA-PROGRAM-IDENTITY",
+      "title": "official and personalized program codes remain distinct exact constants",
+      "ok": true,
+      "evidence": {
+        "department": {
+          "const": "ИУ-5"
+        },
+        "officialPublishedDirectionCode": {
+          "const": "09.04.01"
+        },
+        "personalizedDisplayCode": {
+          "const": "09.04.01/11"
+        }
+      }
+    },
+    {
+      "id": "REGISTRY-IDENTITY",
+      "title": "B8 migration registry identity and status are explicit",
+      "ok": true,
+      "evidence": {
+        "id": "bauman-universal-lesson-migration-registry",
+        "version": "1.0.0",
+        "status": "L6-B8-MIGRATION-REGISTRY"
+      }
+    },
+    {
+      "id": "REGISTRY-TARGET",
+      "title": "registry binds the exact target contract schema validator and migrator",
+      "ok": true,
+      "evidence": {
+        "contractId": "bauman-universal-lesson-contract",
+        "contractVersion": "2.0.0",
+        "schemaPath": "assets/data/lesson/schema/universal-lesson-v2.schema.json",
+        "schemaId": "https://bauman-master-ai.local/schema/universal-lesson-v2.schema.json",
+        "validatorPath": "assets/js/platform/universal-lesson/lesson-schema-validator-v1.js",
+        "migratorPath": "assets/js/platform/universal-lesson/lesson-version-migrator-v1.js"
+      }
+    },
+    {
+      "id": "REGISTRY-REF-universal",
+      "title": "registry references the exact universal contract",
+      "ok": true,
+      "evidence": {
+        "path": "assets/data/lesson/universal-lesson-contract-v2.json",
+        "id": "bauman-universal-lesson-contract",
+        "version": "2.0.0"
+      }
+    },
+    {
+      "id": "REGISTRY-REF-blockPolicy",
+      "title": "registry references the exact blockPolicy contract",
+      "ok": true,
+      "evidence": {
+        "path": "assets/data/lesson/universal-lesson-block-policy-v1.json",
+        "id": "bauman-universal-lesson-block-policy",
+        "version": "1.0.0"
+      }
+    },
+    {
+      "id": "REGISTRY-REF-lessonTypes",
+      "title": "registry references the exact lessonTypes contract",
+      "ok": true,
+      "evidence": {
+        "path": "assets/data/lesson/lesson-type-registry-v1.json",
+        "id": "bauman-lesson-type-registry",
+        "version": "1.0.0"
+      }
+    },
+    {
+      "id": "REGISTRY-REF-masterReady",
+      "title": "registry references the exact masterReady contract",
+      "ok": true,
+      "evidence": {
+        "path": "assets/data/lesson/master-ready-policy-v1.json",
+        "id": "bauman-master-ready-policy",
+        "version": "1.0.0"
+      }
+    },
+    {
+      "id": "REGISTRY-REF-visualTeaching",
+      "title": "registry references the exact visualTeaching contract",
+      "ok": true,
+      "evidence": {
+        "path": "assets/data/lesson/visual-teaching-contract-v1.json",
+        "id": "bauman-visual-teaching-contract",
+        "version": "1.0.0"
+      }
+    },
+    {
+      "id": "REGISTRY-REF-languageHooks",
+      "title": "registry references the exact languageHooks contract",
+      "ok": true,
+      "evidence": {
+        "path": "assets/data/lesson/language-layer-hooks-v1.json",
+        "id": "bauman-language-layer-hooks",
+        "version": "1.0.0"
+      }
+    },
+    {
+      "id": "REGISTRY-DIGEST",
+      "title": "SHA-256 stable JSON is the only B8 integrity digest",
+      "ok": true,
+      "evidence": {
+        "algorithm": "sha256-stable-json-v1",
+        "canonicalization": "UTF-8 JSON with recursively sorted object keys and preserved array order",
+        "uses": [
+          "source snapshot integrity",
+          "candidate identity",
+          "determinism regression",
+          "rollback verification"
+        ],
+        "nonIntegrityIdentifier": "FNV-1a-32 is permitted only for compact deterministic record IDs, never rollback integrity."
+      }
+    },
+    {
+      "id": "REGISTRY-FAMILIES",
+      "title": "registry declares exactly canonical V2 two migratable legacy families and two adapter-only families",
+      "ok": true,
+      "evidence": [
+        "canonical-v2",
+        "universal-v1",
+        "elearning-v1.1",
+        "russian-rich-v13",
+        "math-rich-legacy"
+      ]
+    },
+    {
+      "id": "REGISTRY-ADAPTER-russian-rich-v13",
+      "title": "russian-rich-v13 is adapter-only with no migration path or write authority",
+      "ok": true,
+      "evidence": {
+        "versions": [
+          "legacy-rich"
+        ],
+        "strategy": "adapter-required",
+        "explicitFamilyRequired": true,
+        "manualReviewRequired": true,
+        "writesAllowed": false,
+        "migrationPath": null,
+        "fallback": "route-to-unchanged-russian-engine"
+      }
+    },
+    {
+      "id": "REGISTRY-ADAPTER-math-rich-legacy",
+      "title": "math-rich-legacy is adapter-only with no migration path or write authority",
+      "ok": true,
+      "evidence": {
+        "versions": [
+          "legacy-rich"
+        ],
+        "strategy": "adapter-required",
+        "explicitFamilyRequired": true,
+        "manualReviewRequired": true,
+        "writesAllowed": false,
+        "migrationPath": null,
+        "fallback": "route-to-unchanged-math-engine"
+      }
+    },
+    {
+      "id": "REGISTRY-VERSION-GRAPH",
+      "title": "version graph has two dry-run forward edges no cycles and no automatic cutover",
+      "ok": true,
+      "evidence": {
+        "nodes": [
+          "universal-v1@1.0.0",
+          "elearning-v1.1@elearning-v1.1",
+          "canonical-v2@2.0.0"
+        ],
+        "edges": [
+          {
+            "from": "universal-v1@1.0.0",
+            "to": "canonical-v2@2.0.0",
+            "mode": "dry-run-candidate",
+            "strategy": "universal-v1-to-v2"
+          },
+          {
+            "from": "elearning-v1.1@elearning-v1.1",
+            "to": "canonical-v2@2.0.0",
+            "mode": "dry-run-candidate",
+            "strategy": "elearning-v1.1-to-v2"
+          }
+        ],
+        "cyclesAllowed": false,
+        "automaticCutoverAllowed": false
+      }
+    },
+    {
+      "id": "REGISTRY-CONTEXT",
+      "title": "projection context matches the executable migrator and source detection is advisory only",
+      "ok": true,
+      "evidence": {
+        "requiredFields": [
+          "subjectId",
+          "lessonId",
+          "lessonType",
+          "stageId",
+          "sourcePath",
+          "sourceArtifactId",
+          "sourceVersion",
+          "adapterId",
+          "contentVersion"
+        ],
+        "sourceFamilyIsExplicit": true,
+        "sourceDetectionIsAdvisoryOnly": true,
+        "lessonTypeVocabularyRef": "contractRefs.lessonTypes",
+        "contextMustNotContainCredentials": true
+      }
+    },
+    {
+      "id": "REGISTRY-INVARIANTS",
+      "title": "registry locks dry-run validation determinism rollback review and legacy preservation",
+      "ok": true,
+      "evidence": [
+        {
+          "id": "dry-run-only",
+          "rule": "apply, commit and write requests are blocked with B8_DRY_RUN_ONLY."
+        },
+        {
+          "id": "source-byte-equivalent",
+          "rule": "Migration does not mutate the supplied JSON object; its stable SHA-256 remains unchanged."
+        },
+        {
+          "id": "validated-output",
+          "rule": "A candidate is returned only after Universal Lesson V2 schema and semantic validation pass."
+        },
+        {
+          "id": "deterministic",
+          "rule": "The same source, context, schema and sourceFamily produce the same migrationId and outputDigest."
+        },
+        {
+          "id": "idempotent-canonical",
+          "rule": "A valid canonical V2 lesson is validated and cloned without semantic transformation."
+        },
+        {
+          "id": "rollback-snapshot",
+          "rule": "Rollback restores the exact source snapshot only after SHA-256 integrity verification."
+        },
+        {
+          "id": "manual-review-before-cutover",
+          "rule": "Universal V1 and eLearning V1.1 candidates remain manual-review-required and cannot persist in B8."
+        },
+        {
+          "id": "legacy-specialist-preservation",
+          "rule": "Russian and Mathematics rich sources cannot enter a direct B8 migration path."
+        },
+        {
+          "id": "no-learner-state-write",
+          "rule": "Validation and migration never write progress, evidence, schedule, language, НИР or ВКР state."
+        }
+      ]
+    },
+    {
+      "id": "REGISTRY-FORWARD-BOUNDARY",
+      "title": "B8 does not claim factory renderer reference runtime or cutover work",
+      "ok": true,
+      "evidence": {
+        "L6-B9": "Subject Factory registry and source resolution",
+        "L6-B10": "Universal renderer and legacy bridges",
+        "L6-B11": "runtime reference-subject regression and rollback checkpoint",
+        "L7": "reviewed Russian and Mathematics adapter projections",
+        "runtimeCutoverInB8": false
+      }
+    },
+    {
+      "id": "VALIDATOR-API",
+      "title": "validator exposes the versioned browser API and security inspection",
+      "ok": true,
+      "evidence": {
+        "release": "L6-B8-LESSON-SCHEMA-VALIDATOR-V1",
+        "version": "2.0.0"
+      }
+    },
+    {
+      "id": "MIGRATOR-API",
+      "title": "migrator exposes target versions source families migration and rollback",
+      "ok": true,
+      "evidence": {
+        "release": "L6-B8-LESSON-VERSION-MIGRATOR-V1",
+        "targetVersion": "2.0.0",
+        "sourceFamilies": [
+          "canonical-v2",
+          "universal-v1",
+          "elearning-v1.1",
+          "russian-rich-v13",
+          "math-rich-legacy"
+        ]
+      }
+    },
+    {
+      "id": "VALIDATOR-SHA256",
+      "title": "browser SHA-256 matches Node crypto for ASCII and UTF-8 vectors",
+      "ok": true,
+      "evidence": [
+        {
+          "value": "",
+          "digest": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "value": "abc",
+          "digest": "ba7816bf8f01cfea414140de5dae2223b00361a396177a9cb410ff61f20015ad"
+        },
+        {
+          "value": "Bauman ИУ-5 · 09.04.01/11",
+          "digest": "ba7621ef6b172ecd3b3480a5640f2ea4add664c4d18119a76cc183cb19cb2e31"
+        }
+      ]
+    },
+    {
+      "id": "VALIDATOR-EVIDENCE-VOCABULARY",
+      "title": "validator evidence outputs exactly match all eight B4 type profiles",
+      "ok": true,
+      "evidence": {
+        "language": [
+          "comprehension-response",
+          "dialogue-turn",
+          "shadowing-attempt",
+          "oral-response",
+          "written-response",
+          "retention-check"
+        ],
+        "mathematics": [
+          "mathematical-solution",
+          "derivation",
+          "result-verification",
+          "simulation-result",
+          "oral-response",
+          "retention-check"
+        ],
+        "programming": [
+          "code",
+          "passing-tests",
+          "debug-trace",
+          "complexity-explanation",
+          "repository-artifact",
+          "oral-response"
+        ],
+        "database": [
+          "schema-artifact",
+          "query-result",
+          "normalization-proof",
+          "transaction-analysis",
+          "query-plan-analysis",
+          "oral-response"
+        ],
+        "software-design": [
+          "requirements-artifact",
+          "uml-artifact",
+          "architecture-artifact",
+          "tradeoff-record",
+          "traceability-matrix",
+          "oral-defense"
+        ],
+        "ml-data": [
+          "dataset-artifact",
+          "experiment-log",
+          "model-result",
+          "metric-analysis",
+          "error-analysis",
+          "reproducibility-record",
+          "oral-response"
+        ],
+        "asoiu-system": [
+          "system-model",
+          "architecture-artifact",
+          "information-flow-analysis",
+          "reliability-analysis",
+          "lifecycle-analysis",
+          "oral-defense"
+        ],
+        "research": [
+          "research-question",
+          "literature-matrix",
+          "experiment-protocol",
+          "research-note",
+          "result-analysis",
+          "scientific-section",
+          "nir-milestone",
+          "vkr-milestone",
+          "oral-defense"
+        ]
+      }
+    },
+    {
+      "id": "FIXTURE-CANONICAL-VALID",
+      "title": "canonical V2 fixture passes schema security and semantic validation",
+      "ok": true,
+      "evidence": {
+        "valid": true,
+        "schemaId": "https://bauman-master-ai.local/schema/universal-lesson-v2.schema.json",
+        "supportedContractVersion": "2.0.0",
+        "lessonId": "fixture-programming-001",
+        "lessonType": "programming",
+        "digestAlgorithm": "sha256-stable-json-v1",
+        "digest": "5f6450f60f29755bdc1ee90bd1254e9383639387dc3e6eed715d21c542c7c50f",
+        "errors": [],
+        "warnings": [],
+        "metrics": {
+          "nodes": 130,
+          "maximumDepth": 6,
+          "serializedBytes": 3803
+        }
+      }
+    },
+    {
+      "id": "FIXTURE-PROGRAM-IDENTITY",
+      "title": "canonical fixture keeps official and personalized codes in their exact fields",
+      "ok": true,
+      "evidence": {
+        "department": "ИУ-5",
+        "officialPublishedDirectionCode": "09.04.01",
+        "personalizedDisplayCode": "09.04.01/11"
+      }
+    },
+    {
+      "id": "VALIDATOR-CROSS-REALM",
+      "title": "plain JSON from the host realm validates inside the browser VM realm",
+      "ok": true,
+      "evidence": []
+    },
+    {
+      "id": "VALIDATOR-NON-PLAIN",
+      "title": "class instances remain rejected while cross-realm plain JSON is accepted",
+      "ok": true,
+      "evidence": [
+        {
+          "path": "/extensions/nonPlain",
+          "keyword": "plain-object",
+          "message": "Lesson objects must be plain JSON objects.",
+          "details": null
+        }
+      ]
+    },
+    {
+      "id": "VALIDATOR-NON-FINITE",
+      "title": "non-finite numbers are rejected as non-JSON values",
+      "ok": true,
+      "evidence": [
+        {
+          "path": "/extensions/nonFinite",
+          "keyword": "finite-number",
+          "message": "NaN and infinite values are not valid JSON numbers.",
+          "details": null
+        }
+      ]
+    },
+    {
+      "id": "VALIDATOR-CYCLE",
+      "title": "cyclic inputs are rejected before schema evaluation",
+      "ok": true,
+      "evidence": [
+        {
+          "path": "/",
+          "keyword": "json-value",
+          "message": "Lesson cannot be serialized as acyclic JSON.",
+          "details": "Converting circular structure to JSON\n    --> starting at object with constructor 'Object'\n    |     property 'extensions' -> object with constructor 'Object'\n    --- property 'cycle' closes the circle"
+        },
+        {
+          "path": "/extensions/cycle",
+          "keyword": "cycle",
+          "message": "Cyclic object references are not valid lesson JSON.",
+          "details": null
+        }
+      ]
+    },
+    {
+      "id": "VALIDATOR-PROTOTYPE-KEY",
+      "title": "prototype-control keys are rejected",
+      "ok": true,
+      "evidence": [
+        {
+          "path": "/extensions/attack/__proto__",
+          "keyword": "forbidden-key",
+          "message": "Prototype-control key is forbidden.",
+          "details": null
+        }
+      ]
+    },
+    {
+      "id": "VALIDATOR-COMPLEXITY",
+      "title": "configured complexity limits fail closed",
+      "ok": true,
+      "evidence": [
+        {
+          "path": "/metadata/lessonType",
+          "keyword": "maxNodes",
+          "message": "Lesson exceeds the configured node limit.",
+          "details": {
+            "actual": 6,
+            "maximum": 5
+          }
+        },
+        {
+          "path": "/metadata/titles",
+          "keyword": "maxNodes",
+          "message": "Lesson exceeds the configured node limit.",
+          "details": {
+            "actual": 7,
+            "maximum": 5
+          }
+        },
+        {
+          "path": "/metadata/stageId",
+          "keyword": "maxNodes",
+          "message": "Lesson exceeds the configured node limit.",
+          "details": {
+            "actual": 8,
+            "maximum": 5
+          }
+        },
+        {
+          "path": "/metadata/estimatedMinutes",
+          "keyword": "maxNodes",
+          "message": "Lesson exceeds the configured node limit.",
+          "details": {
+            "actual": 9,
+            "maximum": 5
+          }
+        },
+        {
+          "path": "/metadata/difficulty",
+          "keyword": "maxNodes",
+          "message": "Lesson exceeds the configured node limit.",
+          "details": {
+            "actual": 10,
+            "maximum": 5
+          }
+        },
+        {
+          "path": "/metadata/programIdentity",
+          "keyword": "maxNodes",
+          "message": "Lesson exceeds the configured node limit.",
+          "details": {
+            "actual": 11,
+            "maximum": 5
+          }
+        },
+        {
+          "path": "/metadata/sourceIdentity",
+          "keyword": "maxNodes",
+          "message": "Lesson exceeds the configured node limit.",
+          "details": {
+            "actual": 12,
+            "maximum": 5
+          }
+        },
+        {
+          "path": "/metadata/contentVersion",
+          "keyword": "maxNodes",
+          "message": "Lesson exceeds the configured node limit.",
+          "details": {
+            "actual": 13,
+            "maximum": 5
+          }
+        },
+        {
+          "path": "/metadata/tags",
+          "keyword": "maxNodes",
+          "message": "Lesson exceeds the configured node limit.",
+          "details": {
+            "actual": 14,
+            "maximum": 5
+          }
+        },
+        {
+          "path": "/prerequisites",
+          "keyword": "maxNodes",
+          "message": "Lesson exceeds the configured node limit.",
+          "details": {
+            "actual": 15,
+            "maximum": 5
+          }
+        },
+        {
+          "path": "/objectives",
+          "keyword": "maxNodes",
+          "message": "Lesson exceeds the configured node limit.",
+          "details": {
+            "actual": 16,
+            "maximum": 5
+          }
+        },
+        {
+          "path": "/blocks",
+          "keyword": "maxNodes",
+          "message": "Lesson exceeds the configured node limit.",
+          "details": {
+            "actual": 17,
+            "maximum": 5
+          }
+        },
+        {
+          "path": "/masteryEvidence",
+          "keyword": "maxNodes",
+          "message": "Lesson exceeds the configured node limit.",
+          "details": {
+            "actual": 18,
+            "maximum": 5
+          }
+        },
+        {
+          "path": "/contextRefs",
+          "keyword": "maxNodes",
+          "message": "Lesson exceeds the configured node limit.",
+          "details": {
+            "actual": 19,
+            "maximum": 5
+          }
+        },
+        {
+          "path": "/offline",
+          "keyword": "maxNodes",
+          "message": "Lesson exceeds the configured node limit.",
+          "details": {
+            "actual": 20,
+            "maximum": 5
+          }
+        },
+        {
+          "path": "/provenance",
+          "keyword": "maxNodes",
+          "message": "Lesson exceeds the configured node limit.",
+          "details": {
+            "actual": 21,
+            "maximum": 5
+          }
+        },
+        {
+          "path": "/extensions",
+          "keyword": "maxNodes",
+          "message": "Lesson exceeds the configured node limit.",
+          "details": {
+            "actual": 22,
+            "maximum": 5
+          }
+        }
+      ]
+    },
+    {
+      "id": "VALIDATOR-EXTERNAL-REF",
+      "title": "external and unresolved schema references are rejected",
+      "ok": true,
+      "evidence": [
+        {
+          "path": "/properties/metadata/$ref",
+          "keyword": "$ref",
+          "message": "Schema references must resolve locally.",
+          "details": "https://example.invalid/external-schema.json"
+        }
+      ]
+    },
+    {
+      "id": "INVALID-invalid-missing-metadata",
+      "title": "negative fixture fails for the intended path and keyword",
+      "ok": true,
+      "evidence": {
+        "expected": {
+          "path": "/metadata",
+          "keyword": "required"
+        },
+        "errors": [
+          {
+            "path": "/metadata",
+            "keyword": "required",
+            "message": "Required property is missing.",
+            "details": null
+          }
+        ]
+      }
+    },
+    {
+      "id": "INVALID-invalid-duplicate-block-id",
+      "title": "negative fixture fails for the intended path and keyword",
+      "ok": true,
+      "evidence": {
+        "expected": {
+          "path": "/blocks/1/id",
+          "keyword": "unique-id"
+        },
+        "errors": [
+          {
+            "path": "/blocks/1/id",
+            "keyword": "unique-id",
+            "message": "Identifier is duplicated within blocks.",
+            "details": "block-orientation"
+          }
+        ]
+      }
+    },
+    {
+      "id": "INVALID-invalid-offline-ref",
+      "title": "negative fixture fails for the intended path and keyword",
+      "ok": true,
+      "evidence": {
+        "expected": {
+          "path": "/blocks/0/offlineRef",
+          "keyword": "offline-ref"
+        },
+        "errors": [
+          {
+            "path": "/blocks/0/offlineRef",
+            "keyword": "offline-ref",
+            "message": "Block offlineRef does not resolve to lesson.offline.resources.",
+            "details": "missing-subject-pack"
+          }
+        ]
+      }
+    },
+    {
+      "id": "INVALID-invalid-credential-key",
+      "title": "negative fixture fails for the intended path and keyword",
+      "ok": true,
+      "evidence": {
+        "expected": {
+          "path": "/extensions/fixture/apiKey",
+          "keyword": "credential-key"
+        },
+        "errors": [
+          {
+            "path": "/extensions/fixture/apiKey",
+            "keyword": "credential-key",
+            "message": "Credential-like fields do not belong in lesson content.",
+            "details": null
+          }
+        ]
+      }
+    },
+    {
+      "id": "VALIDATOR-FALLBACK-REF",
+      "title": "deterministic offline fallback must resolve to a declared resource",
+      "ok": true,
+      "evidence": [
+        {
+          "path": "/offline/deterministicFallbackRef",
+          "keyword": "offline-ref",
+          "message": "Offline deterministicFallbackRef does not resolve to lesson.offline.resources.",
+          "details": "missing-fallback"
+        }
+      ]
+    },
+    {
+      "id": "VALIDATOR-TYPE-EVIDENCE",
+      "title": "evidence output from another lesson type is rejected",
+      "ok": true,
+      "evidence": [
+        {
+          "path": "/objectives/0/evidenceKinds/0",
+          "keyword": "type-evidence-output",
+          "message": "Objective evidence kind is not registered for lesson type programming.",
+          "details": "query-result"
+        }
+      ]
+    },
+    {
+      "id": "MIGRATION-CANONICAL-NOOP",
+      "title": "canonical V2 is validated and cloned without semantic transformation",
+      "ok": true,
+      "evidence": {
+        "code": "DRY_RUN_CANDIDATE",
+        "migrationId": "migration_55c62456",
+        "inputDigest": "5f6450f60f29755bdc1ee90bd1254e9383639387dc3e6eed715d21c542c7c50f",
+        "outputDigest": "5f6450f60f29755bdc1ee90bd1254e9383639387dc3e6eed715d21c542c7c50f"
+      }
+    },
+    {
+      "id": "MIGRATION-CANONICAL-DETERMINISTIC",
+      "title": "canonical no-op migration is deterministic and idempotent",
+      "ok": true,
+      "evidence": {
+        "first": {
+          "code": "DRY_RUN_CANDIDATE",
+          "migrationId": "migration_55c62456",
+          "inputDigest": "5f6450f60f29755bdc1ee90bd1254e9383639387dc3e6eed715d21c542c7c50f",
+          "outputDigest": "5f6450f60f29755bdc1ee90bd1254e9383639387dc3e6eed715d21c542c7c50f"
+        },
+        "secondId": "migration_55c62456",
+        "secondDigest": "5f6450f60f29755bdc1ee90bd1254e9383639387dc3e6eed715d21c542c7c50f"
+      }
+    },
+    {
+      "id": "MIGRATION-CANONICAL-SOURCE",
+      "title": "canonical validation does not mutate its source",
+      "ok": true,
+      "evidence": {
+        "sourceUnchanged": true,
+        "digest": "5f6450f60f29755bdc1ee90bd1254e9383639387dc3e6eed715d21c542c7c50f"
+      }
+    },
+    {
+      "id": "MIGRATION-CANONICAL-ROLLBACK",
+      "title": "canonical source snapshot rolls back exactly",
+      "ok": true,
+      "evidence": {
+        "code": "SOURCE_SNAPSHOT_RESTORED",
+        "digest": "5f6450f60f29755bdc1ee90bd1254e9383639387dc3e6eed715d21c542c7c50f"
+      }
+    },
+    {
+      "id": "MIGRATION-V1-CANDIDATE",
+      "title": "Universal V1 produces a validated manual-review V2 candidate",
+      "ok": true,
+      "evidence": {
+        "code": "DRY_RUN_CANDIDATE",
+        "migrationId": "migration_e0539b23",
+        "inputDigest": "5ec7b332f6076185718354803c31cb47027c6803fa940ad7cddff4d114090090",
+        "outputDigest": "fc6d30d39b24908606f4a61053a9f152b26d9265d24a1835ef1b63729d149491",
+        "blockKinds": [
+          "orientation",
+          "theory",
+          "exercise"
+        ]
+      }
+    },
+    {
+      "id": "MIGRATION-V1-PRESERVATION",
+      "title": "Universal V1 source legacy fields and block annotations are preserved",
+      "ok": true,
+      "evidence": {
+        "strategyId": "universal-v1-to-v2",
+        "sourceFamily": "universal-v1",
+        "sourceVersion": "1.0.0",
+        "targetVersion": "2.0.0",
+        "dryRunOnly": true,
+        "manualReviewRequired": true,
+        "mappedTopLevelFields": [
+          "contractVersion",
+          "title",
+          "prerequisites",
+          "objectives",
+          "sections"
+        ],
+        "unmappedFields": {
+          "estimatedMinutes": 45,
+          "extensions": {
+            "legacyNamespace": {
+              "keep": true
+            }
+          },
+          "id": "legacy-programming-001",
+          "legacyRoute": "#/programming/legacy-programming-001",
+          "legacyWidgetConfig": {
+            "runner": "python",
+            "timeoutSeconds": 3
+          },
+          "lessonType": "programming",
+          "stage": "vn-foundation",
+          "subjectId": "programming"
+        }
+      }
+    },
+    {
+      "id": "MIGRATION-V1-DETERMINISTIC",
+      "title": "Universal V1 mapping is deterministic",
+      "ok": true,
+      "evidence": {
+        "first": "migration_e0539b23",
+        "second": "migration_e0539b23"
+      }
+    },
+    {
+      "id": "MIGRATION-V1-SOURCE",
+      "title": "Universal V1 source stays unchanged",
+      "ok": true,
+      "evidence": {
+        "sourceUnchanged": true,
+        "inputDigest": "5ec7b332f6076185718354803c31cb47027c6803fa940ad7cddff4d114090090"
+      }
+    },
+    {
+      "id": "MIGRATION-V1-ROLLBACK",
+      "title": "Universal V1 rollback restores the exact source snapshot",
+      "ok": true,
+      "evidence": {
+        "code": "SOURCE_SNAPSHOT_RESTORED",
+        "digest": "5ec7b332f6076185718354803c31cb47027c6803fa940ad7cddff4d114090090"
+      }
+    },
+    {
+      "id": "MIGRATION-ELEARNING-CANDIDATE",
+      "title": "eLearning V1.1 produces a validated manual-review Research candidate",
+      "ok": true,
+      "evidence": {
+        "code": "DRY_RUN_CANDIDATE",
+        "migrationId": "migration_b0a1986b",
+        "inputDigest": "621ebdc39cc6528ce4da6603b732eb11a2da3ab86ea10cbec2233727d315d913",
+        "outputDigest": "4c44c5be88e96c7b3ddd120a9c27b3ec8edeb98f6320852a65c42d475b4831cb",
+        "blockKinds": [
+          "orientation",
+          "theory",
+          "worked-example",
+          "exercise",
+          "lab-simulation",
+          "misconception",
+          "review",
+          "mastery",
+          "project-nir-evidence"
+        ]
+      }
+    },
+    {
+      "id": "MIGRATION-ELEARNING-NO-EMPTY-BLOCK",
+      "title": "eLearning mapping emits no empty placeholder block",
+      "ok": true,
+      "evidence": [
+        {
+          "id": "block_fc7df48f",
+          "kind": "orientation",
+          "payloadKeys": [
+            "legacyField",
+            "value"
+          ]
+        },
+        {
+          "id": "block_e30aa505",
+          "kind": "theory",
+          "payloadKeys": [
+            "legacyField",
+            "value"
+          ]
+        },
+        {
+          "id": "block_05e3c0cc",
+          "kind": "worked-example",
+          "payloadKeys": [
+            "legacyField",
+            "value"
+          ]
+        },
+        {
+          "id": "block_4441552d",
+          "kind": "exercise",
+          "payloadKeys": [
+            "legacyField",
+            "value"
+          ]
+        },
+        {
+          "id": "block_24c03d37",
+          "kind": "lab-simulation",
+          "payloadKeys": [
+            "legacyField",
+            "value"
+          ]
+        },
+        {
+          "id": "block_6678834c",
+          "kind": "misconception",
+          "payloadKeys": [
+            "legacyField",
+            "value"
+          ]
+        },
+        {
+          "id": "block_0fea88e5",
+          "kind": "review",
+          "payloadKeys": [
+            "legacyField",
+            "value"
+          ]
+        },
+        {
+          "id": "block_96d5e3ac",
+          "kind": "mastery",
+          "payloadKeys": [
+            "legacyField",
+            "value"
+          ]
+        },
+        {
+          "id": "block_38c9a2c0",
+          "kind": "project-nir-evidence",
+          "payloadKeys": [
+            "legacyField",
+            "value"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "MIGRATION-ELEARNING-PRESERVATION",
+      "title": "eLearning wrapper and unmapped payload fields remain in the migration extension",
+      "ok": true,
+      "evidence": {
+        "strategyId": "elearning-v1.1-to-v2",
+        "sourceFamily": "elearning-v1.1",
+        "sourceVersion": "elearning-v1.1",
+        "targetVersion": "2.0.0",
+        "dryRunOnly": true,
+        "manualReviewRequired": true,
+        "legacyMetadata": {
+          "stage": "GĐ1 · Chuẩn bị tại Việt Nam",
+          "moduleTitle": "Research question to reproducible artifact",
+          "estimatedMinutes": 60
+        },
+        "sourceBasis": "Reproducible computational research practice",
+        "reviewIfWrong": "Return to the evidence chain and repair one missing link.",
+        "attachmentsAllowed": [
+          "json",
+          "md"
+        ],
+        "wrapperUnmappedFields": {
+          "description": "A compact synthetic eLearning V1.1 fixture for safe projection testing.",
+          "id": "research-fixture-001",
+          "keyPoints": [
+            "A claim needs evidence.",
+            "An artifact needs a replay path."
+          ],
+          "kind": "theory",
+          "legacyCardTheme": "research-blue",
+          "moduleId": "research-fixture-module",
+          "stage": "prepare",
+          "tasks": [
+            "Write a measurable research question.",
+            "Record a reproducible protocol."
+          ]
+        },
+        "payloadUnmappedFields": {
+          "legacyExperimentalFlag": "preserve-in-extension"
+        }
+      }
+    },
+    {
+      "id": "MIGRATION-ELEARNING-DETERMINISTIC",
+      "title": "eLearning V1.1 mapping is deterministic",
+      "ok": true,
+      "evidence": {
+        "first": "migration_b0a1986b",
+        "second": "migration_b0a1986b"
+      }
+    },
+    {
+      "id": "MIGRATION-ELEARNING-SOURCE",
+      "title": "eLearning V1.1 source stays unchanged",
+      "ok": true,
+      "evidence": {
+        "sourceUnchanged": true,
+        "inputDigest": "621ebdc39cc6528ce4da6603b732eb11a2da3ab86ea10cbec2233727d315d913"
+      }
+    },
+    {
+      "id": "MIGRATION-ELEARNING-ROLLBACK",
+      "title": "eLearning rollback restores the exact source snapshot",
+      "ok": true,
+      "evidence": {
+        "code": "SOURCE_SNAPSHOT_RESTORED",
+        "digest": "621ebdc39cc6528ce4da6603b732eb11a2da3ab86ea10cbec2233727d315d913"
+      }
+    },
+    {
+      "id": "MIGRATION-EXPLICIT-FAMILY",
+      "title": "non-canonical source without explicit family is blocked",
+      "ok": true,
+      "evidence": "SOURCE_FAMILY_REQUIRED"
+    },
+    {
+      "id": "MIGRATION-UNKNOWN-FAMILY",
+      "title": "unknown source family is blocked",
+      "ok": true,
+      "evidence": "UNKNOWN_SOURCE_FAMILY"
+    },
+    {
+      "id": "MIGRATION-SOURCE-VERSION",
+      "title": "mismatched source signature and version are blocked",
+      "ok": true,
+      "evidence": "SOURCE_FAMILY_VERSION_MISMATCH"
+    },
+    {
+      "id": "MIGRATION-CONTEXT-REQUIRED",
+      "title": "incomplete projection context is blocked",
+      "ok": true,
+      "evidence": {
+        "missingFields": [
+          "adapterId"
+        ]
+      }
+    },
+    {
+      "id": "MIGRATION-CONTEXT-VERSION",
+      "title": "context source version must match the registered version",
+      "ok": true,
+      "evidence": "CONTEXT_SOURCE_VERSION_MISMATCH"
+    },
+    {
+      "id": "MIGRATION-DRY-RUN-ONLY",
+      "title": "apply commit and write requests all fail closed",
+      "ok": true,
+      "evidence": {
+        "apply": "B8_DRY_RUN_ONLY",
+        "commit": "B8_DRY_RUN_ONLY",
+        "write": "B8_DRY_RUN_ONLY"
+      }
+    },
+    {
+      "id": "MIGRATION-UNKNOWN-BLOCK",
+      "title": "unregistered legacy block kind blocks the candidate instead of dropping content",
+      "ok": true,
+      "evidence": {
+        "code": "MIGRATION_MAPPING_ERROR",
+        "details": [
+          {
+            "index": 0,
+            "message": "Unsupported block kind: unregistered-legacy-panel"
+          }
+        ]
+      }
+    },
+    {
+      "id": "MIGRATION-SPARSE-NO-PLACEHOLDER",
+      "title": "absent eLearning fields do not create empty semantic blocks or views",
+      "ok": true,
+      "evidence": [
+        "orientation",
+        "theory"
+      ]
+    },
+    {
+      "id": "MIGRATION-SOURCE-JSON",
+      "title": "non-JSON migration source is rejected before mapping",
+      "ok": true,
+      "evidence": [
+        {
+          "path": "/nonFinite",
+          "keyword": "finite-number",
+          "message": "NaN and infinite values are not valid JSON numbers.",
+          "details": null
+        }
+      ]
+    },
+    {
+      "id": "MIGRATION-CONTEXT-JSON",
+      "title": "credential-like migration context is rejected before mapping",
+      "ok": true,
+      "evidence": [
+        {
+          "path": "/apiKey",
+          "keyword": "credential-key",
+          "message": "Credential-like fields do not belong in lesson content.",
+          "details": null
+        }
+      ]
+    },
+    {
+      "id": "MIGRATION-ROLLBACK-INTEGRITY",
+      "title": "tampered source snapshot cannot be restored",
+      "ok": true,
+      "evidence": {
+        "ok": false,
+        "code": "SOURCE_SNAPSHOT_INTEGRITY_FAILED",
+        "source": null
+      }
+    },
+    {
+      "id": "REFERENCE-RUSSIAN-ADAPTER",
+      "title": "real Russian rich lesson is adapter-only and unchanged",
+      "ok": true,
+      "evidence": {
+        "code": "ADAPTER_REQUIRED",
+        "digest": "670f824e2faf5c4a92876bb367784eb007d6ad07e6d0b897f671e5c66ef92e80"
+      }
+    },
+    {
+      "id": "REFERENCE-RUSSIAN-COVERAGE",
+      "title": "Russian reference remains 26 lessons with 26 Russian titles",
+      "ok": true,
+      "evidence": {
+        "lessons": 26,
+        "ruTitles": 26
+      }
+    },
+    {
+      "id": "REFERENCE-MATH-ADAPTER",
+      "title": "real Mathematics rich lesson is adapter-only and unchanged",
+      "ok": true,
+      "evidence": {
+        "code": "ADAPTER_REQUIRED",
+        "digest": "7a16756f2373baf118630ba59027ef96f798e5e25499bc24ad6bf0502fe62cb7",
+        "lessonId": "MATH-VN-C01-vector_trong_khong_gian_-L01-vector-as-engineering-data-e130"
+      }
+    },
+    {
+      "id": "REFERENCE-RESEARCH-45",
+      "title": "all 45 current Research eLearning V1.1 sources produce validated dry-run candidates",
+      "ok": true,
+      "evidence": {
+        "sourceCount": 45,
+        "candidateCount": 45
+      }
+    },
+    {
+      "id": "REFERENCE-RESEARCH-SOURCE",
+      "title": "full Research source array remains unchanged after 45 projections",
+      "ok": true,
+      "evidence": {
+        "unchangedCount": 45
+      }
+    },
+    {
+      "id": "REFERENCE-RESEARCH-DIGESTS",
+      "title": "each Research candidate has a distinct SHA-256 output digest",
+      "ok": true,
+      "evidence": {
+        "distinct": 45,
+        "aggregate": "1ea8d8179250b67e24f785c7b7c1aeaa62236fb8c212e7034060c6476bad5de0"
+      }
+    },
+    {
+      "id": "LEARNER-BRAND-OUTPUT",
+      "title": "canonical and migrated learner candidates contain only the Bauman program identity",
+      "ok": true,
+      "evidence": "Bauman-only candidate surfaces"
+    },
+    {
+      "id": "MUTATION-OFFICIAL-CODE",
+      "title": "personalized code substituted into official field is caught",
+      "ok": true,
+      "evidence": [
+        {
+          "path": "/metadata/programIdentity/officialPublishedDirectionCode",
+          "keyword": "const",
+          "message": "Value must equal the schema constant.",
+          "details": "09.04.01/11"
+        }
+      ]
+    },
+    {
+      "id": "MUTATION-DUPLICATE-ID",
+      "title": "removing duplicate block ID guard makes the negative fixture escape",
+      "ok": true,
+      "evidence": {
+        "mutantLoaded": true,
+        "valid": true,
+        "errors": []
+      }
+    },
+    {
+      "id": "MUTATION-RUSSIAN-DIRECT-MIGRATION",
+      "title": "registry audit rejects direct Russian migration and write authority",
+      "ok": true,
+      "evidence": {
+        "versions": [
+          "legacy-rich"
+        ],
+        "strategy": "direct-migration",
+        "explicitFamilyRequired": true,
+        "manualReviewRequired": true,
+        "writesAllowed": true,
+        "migrationPath": "russian-rich-v13-to-v2",
+        "fallback": "route-to-unchanged-russian-engine"
+      }
+    },
+    {
+      "id": "MUTATION-DRY-RUN-GUARD",
+      "title": "removing the write guard is exposed by the apply=true regression",
+      "ok": true,
+      "evidence": {
+        "mutantLoaded": true,
+        "code": "DRY_RUN_CANDIDATE"
+      }
+    },
+    {
+      "id": "MUTATION-ADAPTER-GUARD",
+      "title": "removing adapter-only branch is exposed by the real Russian regression",
+      "ok": true,
+      "evidence": {
+        "mutantLoaded": true,
+        "code": "SOURCE_FAMILY_VERSION_MISMATCH"
+      }
+    },
+    {
+      "id": "MUTATION-ROLLBACK-INTEGRITY",
+      "title": "removing snapshot digest comparison lets tampering escape and is observed",
+      "ok": true,
+      "evidence": {
+        "mutantLoaded": true,
+        "rollback": {
+          "ok": true,
+          "code": "SOURCE_SNAPSHOT_RESTORED",
+          "source": {
+            "contractVersion": "1.0.0",
+            "id": "legacy-programming-001",
+            "subjectId": "programming",
+            "lessonType": "programming",
+            "title": "Legacy test-first repair",
+            "stage": "vn-foundation",
+            "estimatedMinutes": 45,
+            "prerequisites": [
+              "Python functions",
+              {
+                "id": "legacy-prerequisite-tests",
+                "lessonId": "python-unit-tests",
+                "relation": "requires",
+                "requiredState": "introduced"
+              }
+            ],
+            "objectives": [
+              "Explain the failing test before editing code.",
+              {
+                "id": "legacy-objective-repair",
+                "statement": "Submit a repair with passing tests.",
+                "evidenceKinds": [
+                  "passing-tests"
+                ]
+              }
+            ],
+            "sections": [
+              {
+                "id": "legacy-orientation",
+                "type": "hook",
+                "content": {
+                  "question": "Why reproduce before repair?"
+                },
+                "legacyDisplayMode": "compact"
+              },
+              {
+                "id": "legacy-theory",
+                "type": "explanation",
+                "payload": {
+                  "text": "A deterministic failing test fixes the observation boundary."
+                },
+                "legacyAnnotation": "preserve-me"
+              },
+              {
+                "id": "legacy-practice",
+                "type": "practice",
+                "content": {
+                  "prompt": "Repair the function and retain the regression test."
+                },
+                "specialistCapabilityRef": "code-lab"
+              }
+            ],
+            "legacyRoute": "#/tampered-by-mutation",
+            "legacyWidgetConfig": {
+              "runner": "python",
+              "timeoutSeconds": 3
+            },
+            "extensions": {
+              "legacyNamespace": {
+                "keep": true
+              }
+            }
+          },
+          "digest": "5ec7b332f6076185718354803c31cb47027c6803fa940ad7cddff4d114090090"
+        }
+      }
+    },
+    {
+      "id": "MUTATION-SUMMARY",
+      "title": "all six B8 protection mutations fail in the expected direction",
+      "ok": true,
+      "evidence": [
+        {
+          "id": "OFFICIAL-CODE",
+          "observed": true
+        },
+        {
+          "id": "DUPLICATE-ID",
+          "observed": true
+        },
+        {
+          "id": "RUSSIAN-DIRECT-MIGRATION",
+          "observed": true
+        },
+        {
+          "id": "DRY-RUN-GUARD",
+          "observed": true
+        },
+        {
+          "id": "ADAPTER-GUARD",
+          "observed": true
+        },
+        {
+          "id": "ROLLBACK-INTEGRITY",
+          "observed": true
+        }
+      ]
+    },
+    {
+      "id": "DOC-BOUNDARY",
+      "title": "decision record states pending remote CI dry-run boundary and future ownership",
+      "ok": true,
+      "evidence": "docs/migration/L6_B8_LESSON_SCHEMA_VALIDATOR_MIGRATION.md"
+    },
+    {
+      "id": "DOC-CODES",
+      "title": "decision record distinguishes official and personalized program codes",
+      "ok": true,
+      "evidence": "docs/migration/L6_B8_LESSON_SCHEMA_VALIDATOR_MIGRATION.md"
+    },
+    {
+      "id": "REFERENCE-SOURCE-HASHES",
+      "title": "reference source and runtime files remain readable and hashed for rollback comparison",
+      "ok": true,
+      "evidence": {
+        "subjects/russian/data/lessons.json": "c8693eeefed17ea39b0cea4a600c9086f1b597ae7174e56bd8b2f8b46b985062",
+        "subjects/russian/assets/subject-adapter.js": "1c6a6930ab06e1510879ed374093016ff721b20fab7bf720a65613e4c411d625",
+        "subjects/russian/subject-manifest.json": "2a4ce2f51454673275c07659112953a15cace9553af148cdb2e537b7315563dd",
+        "subjects/math/data/theory_core/theory_core_c01_l01.json": "64da121db5453f6796f3a894c7f879714187cc38cc9a6fac60a262383ed32d2a",
+        "subjects/math/data/theory_lecture_content.json": "d0cd18601b1ede84f58072b3c47cfcc176b4d21d3fa71b23762b908485391447",
+        "subjects/research/data/lessons.json": "eb453c78c6a4340c6f4d12aa435adfdfd1ab59b68393586cbcd772742d757d16",
+        "subjects/research/subject-manifest.json": "2318ae4dd6abdd2749277f0e39079ddf5cb4c97f139740ed14d0b1be44051296"
+      }
+    }
+  ]
+}

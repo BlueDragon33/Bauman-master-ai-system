@@ -1,0 +1,13 @@
+{
+  "fixtureContract": "l6-b8-lesson-mutation-v1",
+  "base": "scripts/academic/fixtures/l6-b8/canonical-minimal-v2.json",
+  "mutation": {
+    "operation": "replace",
+    "path": "/blocks/0/offlineRef",
+    "value": "missing-subject-pack"
+  },
+  "expectedError": {
+    "path": "/blocks/0/offlineRef",
+    "keyword": "offline-ref"
+  }
+}

@@ -1,0 +1,13 @@
+{
+  "fixtureContract": "l6-b8-lesson-mutation-v1",
+  "base": "scripts/academic/fixtures/l6-b8/canonical-minimal-v2.json",
+  "mutation": {
+    "operation": "replace",
+    "path": "/blocks/1/id",
+    "value": "block-orientation"
+  },
+  "expectedError": {
+    "path": "/blocks/1/id",
+    "keyword": "unique-id"
+  }
+}

@@ -1,0 +1,76 @@
+{
+  "id": "research-fixture-001",
+  "stage": "prepare",
+  "moduleId": "research-fixture-module",
+  "title": "Research question to reproducible artifact",
+  "description": "A compact synthetic eLearning V1.1 fixture for safe projection testing.",
+  "kind": "theory",
+  "keyPoints": [
+    "A claim needs evidence.",
+    "An artifact needs a replay path."
+  ],
+  "tasks": [
+    "Write a measurable research question.",
+    "Record a reproducible protocol."
+  ],
+  "eLearning": {
+    "lessonContractVersion": "elearning-v1.1",
+    "stage": "GĐ1 · Chuẩn bị tại Việt Nam",
+    "moduleTitle": "Research question to reproducible artifact",
+    "estimatedMinutes": 60,
+    "sourceBasis": "Reproducible computational research practice",
+    "objectives": [
+      "Formulate a measurable research question.",
+      "Create an experiment protocol that can be replayed."
+    ],
+    "prerequisites": [
+      "A project topic and a note file"
+    ],
+    "whyItMatters": "НИР/ВКР claims must remain tied to evidence and repeatable artifacts.",
+    "coreTheory": [
+      "Question, method, data, metric and limitation form one evidence chain."
+    ],
+    "coreFormulas": [
+      "claim + evidence + limitation"
+    ],
+    "workedExample": {
+      "question": "Does detector A reduce false alarms on dataset D?",
+      "verification": "Compare against a declared baseline with a fixed split."
+    },
+    "guidedPractice": [
+      {
+        "level": "foundation",
+        "task": "Rewrite an unmeasurable topic as a measurable question."
+      }
+    ],
+    "simulationLink": "offline:research-method-scenario",
+    "commonMistakes": [
+      "No baseline",
+      "Metric chosen after seeing results"
+    ],
+    "checkpointQuestions": [
+      {
+        "q": "What binds a claim to a result?",
+        "a": "A declared method, dataset, metric and traceable artifact."
+      }
+    ],
+    "masteryCriteria": [
+      "Question is measurable.",
+      "Protocol can be replayed."
+    ],
+    "rubric": [
+      {
+        "criterion": "Traceability",
+        "weight": 1
+      }
+    ],
+    "attachmentsAllowed": [
+      "json",
+      "md"
+    ],
+    "baumanConnection": "Supports Bauman ИУ-5 НИР/ВКР evidence and defense.",
+    "reviewIfWrong": "Return to the evidence chain and repair one missing link.",
+    "legacyExperimentalFlag": "preserve-in-extension"
+  },
+  "legacyCardTheme": "research-blue"
+}

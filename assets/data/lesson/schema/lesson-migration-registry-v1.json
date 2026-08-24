@@ -1,0 +1,255 @@
+{
+  "registryId": "bauman-universal-lesson-migration-registry",
+  "registryVersion": "1.0.0",
+  "status": "L6-B8-MIGRATION-REGISTRY",
+  "scope": "Pure validation and dry-run candidate migration for Universal Lesson V2; no runtime cutover, persistence, or learner-state write.",
+  "programIdentity": {
+    "department": "ИУ-5",
+    "officialPublishedDirectionCode": "09.04.01",
+    "personalizedDisplayCode": "09.04.01/11",
+    "rule": "Official Bauman source metadata keeps 09.04.01; personalized learner surfaces use ИУ-5 · 09.04.01/11."
+  },
+  "target": {
+    "contractId": "bauman-universal-lesson-contract",
+    "contractVersion": "2.0.0",
+    "schemaPath": "assets/data/lesson/schema/universal-lesson-v2.schema.json",
+    "schemaId": "https://bauman-master-ai.local/schema/universal-lesson-v2.schema.json",
+    "validatorPath": "assets/js/platform/universal-lesson/lesson-schema-validator-v1.js",
+    "migratorPath": "assets/js/platform/universal-lesson/lesson-version-migrator-v1.js"
+  },
+  "contractRefs": {
+    "universal": {
+      "path": "assets/data/lesson/universal-lesson-contract-v2.json",
+      "id": "bauman-universal-lesson-contract",
+      "version": "2.0.0"
+    },
+    "blockPolicy": {
+      "path": "assets/data/lesson/universal-lesson-block-policy-v1.json",
+      "id": "bauman-universal-lesson-block-policy",
+      "version": "1.0.0"
+    },
+    "lessonTypes": {
+      "path": "assets/data/lesson/lesson-type-registry-v1.json",
+      "id": "bauman-lesson-type-registry",
+      "version": "1.0.0"
+    },
+    "masterReady": {
+      "path": "assets/data/lesson/master-ready-policy-v1.json",
+      "id": "bauman-master-ready-policy",
+      "version": "1.0.0"
+    },
+    "visualTeaching": {
+      "path": "assets/data/lesson/visual-teaching-contract-v1.json",
+      "id": "bauman-visual-teaching-contract",
+      "version": "1.0.0"
+    },
+    "languageHooks": {
+      "path": "assets/data/lesson/language-layer-hooks-v1.json",
+      "id": "bauman-language-layer-hooks",
+      "version": "1.0.0"
+    }
+  },
+  "digest": {
+    "algorithm": "sha256-stable-json-v1",
+    "canonicalization": "UTF-8 JSON with recursively sorted object keys and preserved array order",
+    "uses": [
+      "source snapshot integrity",
+      "candidate identity",
+      "determinism regression",
+      "rollback verification"
+    ],
+    "nonIntegrityIdentifier": "FNV-1a-32 is permitted only for compact deterministic record IDs, never rollback integrity."
+  },
+  "sourceFamilies": {
+    "canonical-v2": {
+      "versions": [
+        "2.0.0"
+      ],
+      "strategy": "validate-clone",
+      "explicitFamilyRequired": false,
+      "manualReviewRequired": false,
+      "writesAllowed": false
+    },
+    "universal-v1": {
+      "versions": [
+        "1.0.0"
+      ],
+      "strategy": "universal-v1-to-v2",
+      "explicitFamilyRequired": true,
+      "manualReviewRequired": true,
+      "writesAllowed": false,
+      "unmappedFieldPolicy": "preserve-in-versioned-migration-extension-and-source-snapshot"
+    },
+    "elearning-v1.1": {
+      "versions": [
+        "elearning-v1.1"
+      ],
+      "strategy": "elearning-v1.1-to-v2",
+      "explicitFamilyRequired": true,
+      "manualReviewRequired": true,
+      "writesAllowed": false,
+      "unmappedFieldPolicy": "preserve-in-versioned-migration-extension-and-source-snapshot"
+    },
+    "russian-rich-v13": {
+      "versions": [
+        "legacy-rich"
+      ],
+      "strategy": "adapter-required",
+      "explicitFamilyRequired": true,
+      "manualReviewRequired": true,
+      "writesAllowed": false,
+      "migrationPath": null,
+      "fallback": "route-to-unchanged-russian-engine"
+    },
+    "math-rich-legacy": {
+      "versions": [
+        "legacy-rich"
+      ],
+      "strategy": "adapter-required",
+      "explicitFamilyRequired": true,
+      "manualReviewRequired": true,
+      "writesAllowed": false,
+      "migrationPath": null,
+      "fallback": "route-to-unchanged-math-engine"
+    }
+  },
+  "versionGraph": {
+    "nodes": [
+      "universal-v1@1.0.0",
+      "elearning-v1.1@elearning-v1.1",
+      "canonical-v2@2.0.0"
+    ],
+    "edges": [
+      {
+        "from": "universal-v1@1.0.0",
+        "to": "canonical-v2@2.0.0",
+        "mode": "dry-run-candidate",
+        "strategy": "universal-v1-to-v2"
+      },
+      {
+        "from": "elearning-v1.1@elearning-v1.1",
+        "to": "canonical-v2@2.0.0",
+        "mode": "dry-run-candidate",
+        "strategy": "elearning-v1.1-to-v2"
+      }
+    ],
+    "cyclesAllowed": false,
+    "automaticCutoverAllowed": false
+  },
+  "projectionContext": {
+    "requiredFields": [
+      "subjectId",
+      "lessonId",
+      "lessonType",
+      "stageId",
+      "sourcePath",
+      "sourceArtifactId",
+      "sourceVersion",
+      "adapterId",
+      "contentVersion"
+    ],
+    "sourceFamilyIsExplicit": true,
+    "sourceDetectionIsAdvisoryOnly": true,
+    "lessonTypeVocabularyRef": "contractRefs.lessonTypes",
+    "contextMustNotContainCredentials": true
+  },
+  "invariants": [
+    {
+      "id": "dry-run-only",
+      "rule": "apply, commit and write requests are blocked with B8_DRY_RUN_ONLY."
+    },
+    {
+      "id": "source-byte-equivalent",
+      "rule": "Migration does not mutate the supplied JSON object; its stable SHA-256 remains unchanged."
+    },
+    {
+      "id": "validated-output",
+      "rule": "A candidate is returned only after Universal Lesson V2 schema and semantic validation pass."
+    },
+    {
+      "id": "deterministic",
+      "rule": "The same source, context, schema and sourceFamily produce the same migrationId and outputDigest."
+    },
+    {
+      "id": "idempotent-canonical",
+      "rule": "A valid canonical V2 lesson is validated and cloned without semantic transformation."
+    },
+    {
+      "id": "rollback-snapshot",
+      "rule": "Rollback restores the exact source snapshot only after SHA-256 integrity verification."
+    },
+    {
+      "id": "manual-review-before-cutover",
+      "rule": "Universal V1 and eLearning V1.1 candidates remain manual-review-required and cannot persist in B8."
+    },
+    {
+      "id": "legacy-specialist-preservation",
+      "rule": "Russian and Mathematics rich sources cannot enter a direct B8 migration path."
+    },
+    {
+      "id": "no-learner-state-write",
+      "rule": "Validation and migration never write progress, evidence, schedule, language, НИР or ВКР state."
+    }
+  ],
+  "fixtureManifest": [
+    {
+      "path": "scripts/academic/fixtures/l6-b8/canonical-minimal-v2.json",
+      "expectation": "valid-canonical"
+    },
+    {
+      "path": "scripts/academic/fixtures/l6-b8/legacy-universal-v1.json",
+      "expectation": "validated-dry-run-candidate"
+    },
+    {
+      "path": "scripts/academic/fixtures/l6-b8/legacy-elearning-v1.1.json",
+      "expectation": "validated-dry-run-candidate"
+    },
+    {
+      "path": "scripts/academic/fixtures/l6-b8/invalid-missing-metadata.json",
+      "expectation": "required-error"
+    },
+    {
+      "path": "scripts/academic/fixtures/l6-b8/invalid-duplicate-block-id.json",
+      "expectation": "unique-id-error"
+    },
+    {
+      "path": "scripts/academic/fixtures/l6-b8/invalid-offline-ref.json",
+      "expectation": "offline-ref-error"
+    },
+    {
+      "path": "scripts/academic/fixtures/l6-b8/invalid-credential-key.json",
+      "expectation": "credential-key-error"
+    }
+  ],
+  "referenceCompatibility": {
+    "russian": {
+      "sourcePath": "subjects/russian/data/lessons.json",
+      "expectedLessonCount": 26,
+      "expectedRuTitleCount": 26,
+      "mode": "read-only-adapter-required"
+    },
+    "mathematics": {
+      "sourcePath": "subjects/math/data/theory_lecture_content.json",
+      "mode": "read-only-adapter-required"
+    },
+    "research": {
+      "sourcePath": "subjects/research/data/lessons.json",
+      "expectedLessonCount": 45,
+      "expectedSourceVersion": "elearning-v1.1",
+      "mode": "dry-run-fixture-and-real-source-regression-only"
+    }
+  },
+  "forwardOwnership": {
+    "L6-B9": "Subject Factory registry and source resolution",
+    "L6-B10": "Universal renderer and legacy bridges",
+    "L6-B11": "runtime reference-subject regression and rollback checkpoint",
+    "L7": "reviewed Russian and Mathematics adapter projections",
+    "runtimeCutoverInB8": false
+  },
+  "rollback": {
+    "scope": "Remove B8 schema, validator, migrator, registry, fixtures, report, documentation and workflow gate; restore progress markers to B7.",
+    "sourceContentImpact": "none",
+    "learnerStateImpact": "none",
+    "legacyRuntimeImpact": "none"
+  }
+}

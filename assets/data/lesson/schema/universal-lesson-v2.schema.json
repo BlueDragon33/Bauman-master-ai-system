@@ -1,0 +1,640 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://bauman-master-ai.local/schema/universal-lesson-v2.schema.json",
+  "title": "Bauman Universal Lesson Instance V2",
+  "description": "Machine-readable instance schema for UniversalLessonContract 2.0.0. Semantic block requiredness remains owned by the lesson-type block policy.",
+  "type": "object",
+  "required": [
+    "metadata",
+    "prerequisites",
+    "objectives",
+    "blocks",
+    "masteryEvidence",
+    "contextRefs",
+    "offline",
+    "provenance"
+  ],
+  "properties": {
+    "metadata": {
+      "$ref": "#/$defs/metadata"
+    },
+    "prerequisites": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/prerequisite"
+      }
+    },
+    "objectives": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "$ref": "#/$defs/objective"
+      }
+    },
+    "blocks": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/block"
+      }
+    },
+    "masteryEvidence": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/masteryEvidence"
+      }
+    },
+    "contextRefs": {
+      "$ref": "#/$defs/contextRefs"
+    },
+    "offline": {
+      "$ref": "#/$defs/offline"
+    },
+    "provenance": {
+      "$ref": "#/$defs/provenance"
+    },
+    "extensions": {
+      "type": "object",
+      "description": "Versioned extension namespaces. Unknown fields pass through for specialist adapters.",
+      "additionalProperties": true
+    }
+  },
+  "additionalProperties": true,
+  "$defs": {
+    "nonEmptyString": {
+      "type": "string",
+      "minLength": 1
+    },
+    "identifier": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 240,
+      "pattern": "^[^\\s]+(?:[^\\s]*[^\\s])?$"
+    },
+    "referenceValue": {
+      "type": [
+        "string",
+        "object",
+        "null"
+      ]
+    },
+    "programIdentity": {
+      "type": "object",
+      "required": [
+        "department",
+        "officialPublishedDirectionCode",
+        "personalizedDisplayCode"
+      ],
+      "properties": {
+        "department": {
+          "const": "ИУ-5"
+        },
+        "officialPublishedDirectionCode": {
+          "const": "09.04.01"
+        },
+        "personalizedDisplayCode": {
+          "const": "09.04.01/11"
+        }
+      },
+      "additionalProperties": true
+    },
+    "titles": {
+      "type": "object",
+      "required": [
+        "primary"
+      ],
+      "properties": {
+        "primary": {
+          "$ref": "#/$defs/nonEmptyString"
+        },
+        "vi": {
+          "type": "string"
+        },
+        "ru": {
+          "type": "string"
+        },
+        "en": {
+          "type": "string"
+        }
+      },
+      "additionalProperties": true
+    },
+    "sourceIdentity": {
+      "type": "object",
+      "required": [
+        "sourceArtifactId",
+        "sourceArtifactKind",
+        "sourceVersion",
+        "locator",
+        "origin",
+        "adapterId",
+        "precedence"
+      ],
+      "properties": {
+        "sourceArtifactId": {
+          "$ref": "#/$defs/identifier"
+        },
+        "sourceArtifactKind": {
+          "enum": [
+            "lesson-record",
+            "lecture-record",
+            "slide-deck",
+            "exercise-bank",
+            "assessment-bank",
+            "simulation",
+            "dialogue",
+            "media",
+            "local-file",
+            "user-artifact",
+            "external-specialist-artifact"
+          ]
+        },
+        "sourceVersion": {
+          "$ref": "#/$defs/nonEmptyString"
+        },
+        "locator": {
+          "$ref": "#/$defs/locator"
+        },
+        "origin": {
+          "enum": [
+            "provided-source",
+            "legacy-runtime",
+            "factory-native",
+            "user-provided",
+            "system-derived",
+            "ai-inference"
+          ]
+        },
+        "adapterId": {
+          "$ref": "#/$defs/identifier"
+        },
+        "precedence": {
+          "type": "integer",
+          "minimum": 0
+        }
+      },
+      "additionalProperties": true
+    },
+    "locator": {
+      "type": "object",
+      "properties": {
+        "sourcePath": {
+          "type": "string"
+        },
+        "recordId": {
+          "type": "string"
+        },
+        "lessonId": {
+          "type": "string"
+        },
+        "sourceAnchors": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "checksum": {
+          "type": "string"
+        }
+      },
+      "anyOf": [
+        {
+          "required": [
+            "sourcePath"
+          ]
+        },
+        {
+          "required": [
+            "recordId"
+          ]
+        },
+        {
+          "required": [
+            "lessonId"
+          ]
+        },
+        {
+          "required": [
+            "sourceAnchors"
+          ]
+        },
+        {
+          "required": [
+            "checksum"
+          ]
+        }
+      ],
+      "additionalProperties": true
+    },
+    "metadata": {
+      "type": "object",
+      "required": [
+        "contractVersion",
+        "lessonId",
+        "subjectId",
+        "lessonType",
+        "titles",
+        "stageId",
+        "programIdentity",
+        "sourceIdentity",
+        "contentVersion"
+      ],
+      "properties": {
+        "contractVersion": {
+          "const": "2.0.0"
+        },
+        "lessonId": {
+          "$ref": "#/$defs/identifier"
+        },
+        "subjectId": {
+          "$ref": "#/$defs/identifier"
+        },
+        "lessonType": {
+          "enum": [
+            "language",
+            "mathematics",
+            "programming",
+            "database",
+            "software-design",
+            "ml-data",
+            "asoiu-system",
+            "research"
+          ]
+        },
+        "titles": {
+          "$ref": "#/$defs/titles"
+        },
+        "stageId": {
+          "$ref": "#/$defs/identifier"
+        },
+        "estimatedMinutes": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "difficulty": {
+          "type": "string"
+        },
+        "programIdentity": {
+          "$ref": "#/$defs/programIdentity"
+        },
+        "sourceIdentity": {
+          "$ref": "#/$defs/sourceIdentity"
+        },
+        "contentVersion": {
+          "$ref": "#/$defs/nonEmptyString"
+        },
+        "tags": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "uniqueItems": true
+        }
+      },
+      "additionalProperties": true
+    },
+    "prerequisite": {
+      "type": "object",
+      "required": [
+        "id",
+        "relation",
+        "targetRef",
+        "requiredState"
+      ],
+      "properties": {
+        "id": {
+          "$ref": "#/$defs/identifier"
+        },
+        "relation": {
+          "enum": [
+            "requires",
+            "recommended",
+            "diagnostic",
+            "co-requisite"
+          ]
+        },
+        "targetRef": {
+          "$ref": "#/$defs/nonEmptyString"
+        },
+        "requiredState": {
+          "enum": [
+            "introduced",
+            "practised",
+            "assessment-pass",
+            "master-ready"
+          ]
+        }
+      },
+      "additionalProperties": true
+    },
+    "objective": {
+      "type": "object",
+      "required": [
+        "id",
+        "statement",
+        "evidenceKinds"
+      ],
+      "properties": {
+        "id": {
+          "$ref": "#/$defs/identifier"
+        },
+        "statement": {
+          "$ref": "#/$defs/nonEmptyString"
+        },
+        "evidenceKinds": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "$ref": "#/$defs/identifier"
+          },
+          "uniqueItems": true
+        },
+        "language": {
+          "enum": [
+            "vi",
+            "ru",
+            "en"
+          ]
+        },
+        "cognitiveLevel": {
+          "type": "string"
+        },
+        "skillRefs": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "rubricRefs": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      },
+      "additionalProperties": true
+    },
+    "sourceBinding": {
+      "$ref": "#/$defs/sourceIdentity"
+    },
+    "block": {
+      "type": "object",
+      "required": [
+        "id",
+        "kind",
+        "sourceBindings",
+        "payload",
+        "presentationHint",
+        "evidenceRefs",
+        "offlineRef"
+      ],
+      "properties": {
+        "id": {
+          "$ref": "#/$defs/identifier"
+        },
+        "kind": {
+          "enum": [
+            "orientation",
+            "concept-map",
+            "theory",
+            "worked-example",
+            "exercise",
+            "lab-simulation",
+            "misconception",
+            "visual-check",
+            "oral",
+            "review",
+            "assessment",
+            "mastery",
+            "project-nir-evidence"
+          ]
+        },
+        "sourceBindings": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "$ref": "#/$defs/sourceBinding"
+          }
+        },
+        "payload": {
+          "type": "object",
+          "additionalProperties": true
+        },
+        "presentationHint": {
+          "type": "object",
+          "additionalProperties": true
+        },
+        "evidenceRefs": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "uniqueItems": true
+        },
+        "offlineRef": {
+          "$ref": "#/$defs/identifier"
+        },
+        "specialistCapabilityRef": {
+          "type": [
+            "string",
+            "null"
+          ]
+        }
+      },
+      "additionalProperties": true
+    },
+    "masteryEvidence": {
+      "type": "object",
+      "required": [
+        "id",
+        "stage",
+        "evidenceKind",
+        "status",
+        "artifactRefs"
+      ],
+      "properties": {
+        "id": {
+          "$ref": "#/$defs/identifier"
+        },
+        "stage": {
+          "enum": [
+            "understand",
+            "solve",
+            "build-apply",
+            "explain",
+            "retain"
+          ]
+        },
+        "evidenceKind": {
+          "$ref": "#/$defs/identifier"
+        },
+        "status": {
+          "enum": [
+            "missing",
+            "in-progress",
+            "submitted",
+            "verified",
+            "needs-repair",
+            "retention-due"
+          ]
+        },
+        "artifactRefs": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      },
+      "additionalProperties": true
+    },
+    "contextRefs": {
+      "type": "object",
+      "required": [
+        "currentLesson",
+        "prerequisiteGraph",
+        "learnerProgress",
+        "assessmentErrors",
+        "weakTopics",
+        "schedule",
+        "currentSubject",
+        "languageState",
+        "nirVkrContext"
+      ],
+      "properties": {
+        "currentLesson": {
+          "$ref": "#/$defs/referenceValue"
+        },
+        "prerequisiteGraph": {
+          "$ref": "#/$defs/referenceValue"
+        },
+        "learnerProgress": {
+          "$ref": "#/$defs/referenceValue"
+        },
+        "assessmentErrors": {
+          "$ref": "#/$defs/referenceValue"
+        },
+        "weakTopics": {
+          "$ref": "#/$defs/referenceValue"
+        },
+        "schedule": {
+          "$ref": "#/$defs/referenceValue"
+        },
+        "currentSubject": {
+          "$ref": "#/$defs/referenceValue"
+        },
+        "languageState": {
+          "$ref": "#/$defs/referenceValue"
+        },
+        "nirVkrContext": {
+          "$ref": "#/$defs/referenceValue"
+        },
+        "recentEvidence": {
+          "$ref": "#/$defs/referenceValue"
+        },
+        "offlineAvailability": {
+          "$ref": "#/$defs/referenceValue"
+        },
+        "preferredExplanationMode": {
+          "$ref": "#/$defs/referenceValue"
+        },
+        "accessibilityPreferences": {
+          "$ref": "#/$defs/referenceValue"
+        }
+      },
+      "additionalProperties": true
+    },
+    "offlineResource": {
+      "type": "object",
+      "required": [
+        "id",
+        "availability",
+        "bytesPolicy",
+        "freshnessPolicy",
+        "rollbackRef"
+      ],
+      "properties": {
+        "id": {
+          "$ref": "#/$defs/identifier"
+        },
+        "availability": {
+          "enum": [
+            "shell",
+            "bundled",
+            "subject-pack",
+            "local-file",
+            "network-only"
+          ]
+        },
+        "bytesPolicy": {
+          "$ref": "#/$defs/nonEmptyString"
+        },
+        "freshnessPolicy": {
+          "$ref": "#/$defs/nonEmptyString"
+        },
+        "rollbackRef": {
+          "$ref": "#/$defs/nonEmptyString"
+        }
+      },
+      "additionalProperties": true
+    },
+    "offline": {
+      "type": "object",
+      "required": [
+        "policyId",
+        "resources",
+        "deterministicFallbackRef"
+      ],
+      "properties": {
+        "policyId": {
+          "$ref": "#/$defs/identifier"
+        },
+        "resources": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "$ref": "#/$defs/offlineResource"
+          }
+        },
+        "deterministicFallbackRef": {
+          "$ref": "#/$defs/nonEmptyString"
+        }
+      },
+      "additionalProperties": true
+    },
+    "provenance": {
+      "type": "object",
+      "required": [
+        "sourceRefs",
+        "userEvidenceRefs",
+        "systemDerivedRefs",
+        "aiInferenceRefs"
+      ],
+      "properties": {
+        "sourceRefs": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "userEvidenceRefs": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "systemDerivedRefs": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "aiInferenceRefs": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      },
+      "additionalProperties": true
+    }
+  }
+}

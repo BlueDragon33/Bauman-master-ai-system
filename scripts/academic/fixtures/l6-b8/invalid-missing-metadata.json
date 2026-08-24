@@ -1,0 +1,12 @@
+{
+  "fixtureContract": "l6-b8-lesson-mutation-v1",
+  "base": "scripts/academic/fixtures/l6-b8/canonical-minimal-v2.json",
+  "mutation": {
+    "operation": "delete",
+    "path": "/metadata"
+  },
+  "expectedError": {
+    "path": "/metadata",
+    "keyword": "required"
+  }
+}

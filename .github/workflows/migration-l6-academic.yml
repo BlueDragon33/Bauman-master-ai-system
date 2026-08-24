@@ -91,6 +91,15 @@ jobs:
           node scripts/academic/l6-b7-language-layer-regression.cjs
           git diff --exit-code -- docs/migration/L6_B7_LANGUAGE_LAYER_REGRESSION.generated.json
 
+      - name: Run deterministic L6-B8 gate
+        id: b8_gate
+        run: |
+          node --check assets/js/platform/universal-lesson/lesson-schema-validator-v1.js
+          node --check assets/js/platform/universal-lesson/lesson-version-migrator-v1.js
+          node --check scripts/academic/l6-b8-schema-migration-regression.cjs
+          node scripts/academic/l6-b8-schema-migration-regression.cjs
+          git diff --exit-code -- docs/migration/L6_B8_SCHEMA_MIGRATION_REGRESSION.generated.json
+
       - name: Publish L6-B1 status
         if: ${{ always() && github.event_name == 'push' && steps.b1_gate.outcome != 'skipped' }}
         env:
@@ -187,4 +196,18 @@ jobs:
             -f state="$STATE" \
             -f context="migration/l6-b7-language-hooks" \
             -f description="L6-B7 language hooks: ${GATE_OUTCOME}" \
+            -f target_url="${GITHUB_SERVER_URL}/${GITHUB_REPOSITORY}/actions/runs/${GITHUB_RUN_ID}"
+
+      - name: Publish L6-B8 status
+        if: ${{ always() && github.event_name == 'push' && steps.b8_gate.outcome != 'skipped' }}
+        env:
+          GH_TOKEN: ${{ github.token }}
+          GATE_OUTCOME: ${{ steps.b8_gate.outcome }}
+        run: |
+          STATE=failure
+          if [ "$GATE_OUTCOME" = "success" ]; then STATE=success; fi
+          gh api --method POST "repos/${GITHUB_REPOSITORY}/statuses/${GITHUB_SHA}" \
+            -f state="$STATE" \
+            -f context="migration/l6-b8-schema-migration" \
+            -f description="L6-B8 schema migration: ${GATE_OUTCOME}" \
             -f target_url="${GITHUB_SERVER_URL}/${GITHUB_REPOSITORY}/actions/runs/${GITHUB_RUN_ID}"

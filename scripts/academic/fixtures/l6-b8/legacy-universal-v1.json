@@ -1,0 +1,64 @@
+{
+  "contractVersion": "1.0.0",
+  "id": "legacy-programming-001",
+  "subjectId": "programming",
+  "lessonType": "programming",
+  "title": "Legacy test-first repair",
+  "stage": "vn-foundation",
+  "estimatedMinutes": 45,
+  "prerequisites": [
+    "Python functions",
+    {
+      "id": "legacy-prerequisite-tests",
+      "lessonId": "python-unit-tests",
+      "relation": "requires",
+      "requiredState": "introduced"
+    }
+  ],
+  "objectives": [
+    "Explain the failing test before editing code.",
+    {
+      "id": "legacy-objective-repair",
+      "statement": "Submit a repair with passing tests.",
+      "evidenceKinds": [
+        "passing-tests"
+      ]
+    }
+  ],
+  "sections": [
+    {
+      "id": "legacy-orientation",
+      "type": "hook",
+      "content": {
+        "question": "Why reproduce before repair?"
+      },
+      "legacyDisplayMode": "compact"
+    },
+    {
+      "id": "legacy-theory",
+      "type": "explanation",
+      "payload": {
+        "text": "A deterministic failing test fixes the observation boundary."
+      },
+      "legacyAnnotation": "preserve-me"
+    },
+    {
+      "id": "legacy-practice",
+      "type": "practice",
+      "content": {
+        "prompt": "Repair the function and retain the regression test."
+      },
+      "specialistCapabilityRef": "code-lab"
+    }
+  ],
+  "legacyRoute": "#/programming/legacy-programming-001",
+  "legacyWidgetConfig": {
+    "runner": "python",
+    "timeoutSeconds": 3
+  },
+  "extensions": {
+    "legacyNamespace": {
+      "keep": true
+    }
+  }
+}

@@ -1,0 +1,169 @@
+{
+  "metadata": {
+    "contractVersion": "2.0.0",
+    "lessonId": "fixture-programming-001",
+    "subjectId": "programming",
+    "lessonType": "programming",
+    "titles": {
+      "primary": "Deterministic debugging loop",
+      "vi": "Vòng lặp gỡ lỗi xác định",
+      "ru": "Детерминированный цикл отладки"
+    },
+    "stageId": "vn-foundation",
+    "estimatedMinutes": 35,
+    "difficulty": "foundation",
+    "programIdentity": {
+      "department": "ИУ-5",
+      "officialPublishedDirectionCode": "09.04.01",
+      "personalizedDisplayCode": "09.04.01/11"
+    },
+    "sourceIdentity": {
+      "sourceArtifactId": "fixture-programming-source-001",
+      "sourceArtifactKind": "lesson-record",
+      "sourceVersion": "fixture-1",
+      "locator": {
+        "sourcePath": "scripts/academic/fixtures/l6-b8/canonical-minimal-v2.json",
+        "recordId": "fixture-programming-001"
+      },
+      "origin": "provided-source",
+      "adapterId": "canonical-fixture-adapter",
+      "precedence": 0
+    },
+    "contentVersion": "fixture-content-1",
+    "tags": [
+      "debugging",
+      "deterministic-test"
+    ]
+  },
+  "prerequisites": [
+    {
+      "id": "prerequisite-python-functions",
+      "relation": "requires",
+      "targetRef": "lesson:python-functions",
+      "requiredState": "practised"
+    }
+  ],
+  "objectives": [
+    {
+      "id": "objective-debug-loop",
+      "statement": "Reproduce a failing test, isolate its cause, and submit a passing repair.",
+      "evidenceKinds": [
+        "debug-trace",
+        "passing-tests"
+      ],
+      "language": "en"
+    }
+  ],
+  "blocks": [
+    {
+      "id": "block-orientation",
+      "kind": "orientation",
+      "sourceBindings": [
+        {
+          "sourceArtifactId": "fixture-programming-source-001",
+          "sourceArtifactKind": "lesson-record",
+          "sourceVersion": "fixture-1",
+          "locator": {
+            "sourcePath": "scripts/academic/fixtures/l6-b8/canonical-minimal-v2.json",
+            "recordId": "fixture-programming-001"
+          },
+          "origin": "provided-source",
+          "adapterId": "canonical-fixture-adapter",
+          "precedence": 0
+        }
+      ],
+      "payload": {
+        "governingQuestion": "How can a failing test become reproducible evidence?"
+      },
+      "presentationHint": {
+        "preferredStrategy": "inline-flow"
+      },
+      "evidenceRefs": [
+        "objective-debug-loop"
+      ],
+      "offlineRef": "lesson-core",
+      "specialistCapabilityRef": null
+    },
+    {
+      "id": "block-exercise",
+      "kind": "exercise",
+      "sourceBindings": [
+        {
+          "sourceArtifactId": "fixture-programming-source-001",
+          "sourceArtifactKind": "lesson-record",
+          "sourceVersion": "fixture-1",
+          "locator": {
+            "sourcePath": "scripts/academic/fixtures/l6-b8/canonical-minimal-v2.json",
+            "recordId": "fixture-programming-001"
+          },
+          "origin": "provided-source",
+          "adapterId": "canonical-fixture-adapter",
+          "precedence": 0
+        }
+      ],
+      "payload": {
+        "prompt": "Repair the fixture without changing the public API.",
+        "expectedArtifact": "passing test and debug trace"
+      },
+      "presentationHint": {
+        "preferredStrategy": "specialist-workspace"
+      },
+      "evidenceRefs": [
+        "objective-debug-loop"
+      ],
+      "offlineRef": "lesson-core",
+      "specialistCapabilityRef": "code-lab"
+    }
+  ],
+  "masteryEvidence": [
+    {
+      "id": "evidence-debug-loop",
+      "stage": "solve",
+      "evidenceKind": "passing-tests",
+      "status": "verified",
+      "artifactRefs": [
+        "artifact:fixture-test-run"
+      ]
+    }
+  ],
+  "contextRefs": {
+    "currentLesson": "lesson:fixture-programming-001",
+    "prerequisiteGraph": "prerequisite-graph:fixture-programming-001",
+    "learnerProgress": "personal-learning:progress:programming",
+    "assessmentErrors": "personal-learning:assessment-errors:fixture-programming-001",
+    "weakTopics": "personal-learning:weak-topics:programming",
+    "schedule": "personal-learning:schedule",
+    "currentSubject": "subject:programming",
+    "languageState": "personal-learning:language-state",
+    "nirVkrContext": "personal-learning:nir-vkr-context",
+    "offlineAvailability": "offline-availability:programming"
+  },
+  "offline": {
+    "policyId": "fixture-lesson-offline",
+    "resources": [
+      {
+        "id": "lesson-core",
+        "availability": "bundled",
+        "bytesPolicy": "metadata-and-small-content",
+        "freshnessPolicy": "content-version-authoritative",
+        "rollbackRef": "fixture-source"
+      }
+    ],
+    "deterministicFallbackRef": "lesson-core"
+  },
+  "provenance": {
+    "sourceRefs": [
+      "fixture-programming-source-001"
+    ],
+    "userEvidenceRefs": [
+      "artifact:fixture-test-run"
+    ],
+    "systemDerivedRefs": [],
+    "aiInferenceRefs": []
+  },
+  "extensions": {
+    "fixture": {
+      "purpose": "L6-B8 deterministic schema regression"
+    }
+  }
+}
