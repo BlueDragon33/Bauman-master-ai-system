@@ -1,7 +1,6 @@
 'use strict';
 
 const fs=require('fs');
-const path=require('path');
 
 const failures=[];
 const checks=[];
@@ -16,11 +15,13 @@ const libraryPath='assets/js/platform/offline-content-library.js';
 const roadmapBridgePath='assets/js/platform/academic-roadmap-v3-bridge.js';
 const offlineUiPath='assets/js/platform/offline-library-ui.js';
 const sandboxGuardPath='assets/js/platform/offline-html-sandbox-guard.js';
+const packManagerPath='assets/js/platform/offline-subject-pack-manager.js';
+const refcountGuardPath='assets/js/platform/offline-subject-pack-refcount-guard.js';
 const indexPath='index.html';
 const configPath='assets/js/platform/runtime-config.js';
 const workerPath='service-worker.js';
 
-for(const file of [manifestPath,roadmapDocPath,blueprintPath,libraryPath,roadmapBridgePath,offlineUiPath,sandboxGuardPath,indexPath,configPath,workerPath])requireFile(file);
+for(const file of [manifestPath,roadmapDocPath,blueprintPath,libraryPath,roadmapBridgePath,offlineUiPath,sandboxGuardPath,packManagerPath,refcountGuardPath,indexPath,configPath,workerPath])requireFile(file);
 
 let manifest=null;
 try{manifest=JSON.parse(read(manifestPath));}catch(error){failures.push(`Manifest JSON invalid: ${error.message}`);}
@@ -47,12 +48,30 @@ const index=read(indexPath);
 const requiredEntryAssets=[
   'assets/css/academic-roadmap-v3.css',
   'assets/css/offline-library.css',
+  'assets/css/offline-subject-pack.css',
   'assets/js/platform/offline-content-library.js',
   'assets/js/platform/academic-roadmap-v3-bridge.js',
   'assets/js/platform/offline-library-ui.js',
-  'assets/js/platform/offline-html-sandbox-guard.js'
+  'assets/js/platform/offline-html-sandbox-guard.js',
+  'assets/js/platform/offline-subject-pack-refcount-guard.js',
+  'assets/js/platform/offline-subject-pack-manager.js'
 ];
 for(const asset of requiredEntryAssets)check(`main entry wires ${asset}`,index.includes(asset));
+
+const order=[
+  'assets/js/platform/site-runtime.js',
+  'assets/js/platform/offline-content-library.js',
+  'assets/js/main.js',
+  'assets/js/platform/academic-roadmap-v3-bridge.js',
+  'assets/js/platform/site-routing-bridge.js',
+  'assets/js/platform/offline-library-ui.js',
+  'assets/js/platform/offline-html-sandbox-guard.js',
+  'assets/js/platform/offline-subject-pack-refcount-guard.js',
+  'assets/js/platform/offline-subject-pack-manager.js',
+  'assets/js/planning-main.js'
+];
+let last=-1;
+for(const asset of order){const at=index.indexOf(asset);check(`entry order ${asset}`,at>last,`index=${at}, previous=${last}`);if(at>=0)last=at;}
 
 const library=read(libraryPath);
 check('offline library uses IndexedDB',/indexedDB\.open\(/.test(library));
@@ -64,9 +83,21 @@ check('offline pack remove contract',/removePack/.test(library));
 
 const guard=read(sandboxGuardPath);
 check('local HTML capture guard',/captureGuard:true/.test(guard)&&/stopImmediatePropagation/.test(guard));
-check('local HTML sandbox has empty sandbox permissions',/sandbox=\\?"\\?"/.test(guard)||/sandbox=\"\"/.test(guard),'sandbox attribute missing');
-check('local HTML does not grant allow-scripts',!(/allow-scripts/i.test(guard)));
+check('local HTML sandbox has empty sandbox permissions',guard.includes('sandbox=\"\"')||guard.includes('sandbox=""'),'sandbox attribute missing');
+check('local HTML does not grant allow-scripts',!guard.includes('allow-scripts'));
 check('local HTML object URL revoked',/revokeObjectURL/.test(guard));
+
+const manager=read(packManagerPath);
+check('subject pack uses explicit cache name',manager.includes("CACHE_NAME='bauman-offline-content-v1'"));
+check('base pack per-resource limit 5 MB',/BASE_MAX_RESOURCE=5\*1024\*1024/.test(manager));
+check('session pack explicit large limit 64 MB',/SESSION_MAX_RESOURCE=64\*1024\*1024/.test(manager));
+check('subject pack probes actual browser resources',/performance\.getEntriesByType\('resource'\)/.test(manager));
+check('subject pack caches only same-origin',/sameOrigin/.test(manager)&&/Chỉ cache tài nguyên same-origin/.test(manager));
+check('subject pack stores metadata not whole state',/source:'service-worker-cache'/.test(manager)&&/metadata:\{mode,urls/.test(manager));
+
+const refguard=read(refcountGuardPath);
+check('shared pack reference guard exists',/referencedElsewhere/.test(refguard)&&/preservedShared/.test(refguard));
+check('shared pack guard patches manager remove',/manager\.removePack=safeRemovePack/.test(refguard));
 
 const config=read(configPath);
 check('offline library feature enabled',/offlineLibrary:\s*true/.test(config));
@@ -80,6 +111,10 @@ check('no subject academic JSON precache',!/["']\.\/subjects\/[^"']+\/data\/[^"'
 check('offline library shell asset cached',worker.includes("'./assets/js/platform/offline-content-library.js'"));
 check('roadmap bridge shell asset cached',worker.includes("'./assets/js/platform/academic-roadmap-v3-bridge.js'"));
 check('HTML sandbox guard shell asset cached',worker.includes("'./assets/js/platform/offline-html-sandbox-guard.js'"));
+check('subject pack manager shell asset cached',worker.includes("'./assets/js/platform/offline-subject-pack-manager.js'"));
+check('subject pack refcount guard shell asset cached',worker.includes("'./assets/js/platform/offline-subject-pack-refcount-guard.js'"));
+check('explicit content cache served before generic JSON exclusion',worker.indexOf('explicitOfflineMatch(request)')<worker.indexOf('if(!cacheEligible(url))'));
+check('explicit content cache name matches manager',worker.includes("OFFLINE_CONTENT_CACHE='bauman-offline-content-v1'"));
 
 const report={generatedAt:new Date().toISOString(),manifest:{id:manifest?.id||null,displayCode:manifest?.displayCode||null,department:manifest?.department||null},checks,failures};
 fs.mkdirSync('docs/migration',{recursive:true});
