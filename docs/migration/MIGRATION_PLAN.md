@@ -107,7 +107,7 @@ L5 PASS nhưng `serviceWorkerCache` production vẫn OFF. Chỉ bật ở stagin
 
 ## Lượt 6 · Universal Lesson Architecture & Subject Factory · 11 bước
 
-Trạng thái: **B1–B9 PASS · B10 CHƯA BẮT ĐẦU**.
+Trạng thái: **B1–B9 PASS · B10 LOCAL PASS, CHỜ REMOTE CI**.
 
 Bằng chứng B1:
 - Audit quyết định: L6_B1_REFERENCE_IMPLEMENTATION_AUDIT.md.
@@ -324,6 +324,36 @@ Bằng chứng B9:
   run `32723374054`, context `migration/l6-b9-subject-factory` = `success`;
   B1-B8 contexts trong cùng run đều `success`.
 
+Bằng chứng B10 (chưa được đánh dấu PASS trước remote CI):
+- Contract:
+  `assets/data/lesson/universal-lesson-renderer-contract-v1.json`; pure renderer:
+  `universal-lesson-renderer-v1.js`; read-only bridge:
+  `legacy-lesson-bridge-v1.js`.
+- Renderer resolve đúng B3 base → type → mode cho đủ 13 block, không sinh
+  fixed tabs/routes/empty views; canonical fixture của đủ 8 lesson type đều
+  schema-valid, policy-complete và render semantic HTML an toàn.
+- HTML escape toàn bộ source text, không raw script/inline handler/source URL;
+  official-attempt che đệ quy answer/solution/correct-state; renderer luôn
+  `masterReadyClaimed=false`, quyền vẫn thuộc B5 verifier.
+- Russian, Math và Programming trả `DELEGATE_SPECIALIST_ENGINE` tới route cũ,
+  không project source hoặc đổi state. Rollback kiểm SHA-256 source rồi trả
+  lại route engine nguyên trạng.
+- Audit phát hiện `LIGHT-POLICY-CAPABILITY-GAP`: 5/5 light eLearning source chỉ
+  là `REVIEW_REQUIRED`; generic widget hiện tại không được gắn nhãn giả thành
+  oral/code-lab/metric/architecture specialist capability. B11 phải bổ sung và
+  validate một reviewed light reference path trước runtime activation; phạm vi
+  này đã nằm trong yêu cầu B11 nên không tăng số bước L6.
+- Deterministic B10 gate local: 189/189 checks PASS; 9/9 mutation failures được
+  quan sát; report ổn định qua hai lần chạy với SHA-256
+  `3157bed5c4494209b65a539c9c08a5a2794cc2b888991858ea6e7e7445b93ce8`.
+- B1-B10 chạy tuần tự đều PASS. Clean-baseline L5 sau B10: static routing 9/9,
+  service worker 17/17, academic runtime 36/36, roadmap/offline 75/75, data
+  loading 8 môn với 0 lỗi, diagnostics 14/14, offline integrity 5/5 với một
+  sandbox block đúng dự kiến.
+- B10 chưa được load bởi learner runtime và không sửa content, subject engine,
+  storage, offline manager hoặc Service Worker. Remote context đang chờ:
+  `migration/l6-b10-renderer-bridge`.
+
 1. **L6-B1** · Audit sâu ba reference implementations: Tiếng Nga, Toán và nguyên tắc UX bài giảng Bơi ếch; lập bảng phần nào giữ, phần nào chuẩn hóa, phần nào không dùng chung. **PASS**.
 2. **L6-B2** · Định nghĩa `UniversalLessonContract` gồm metadata, prerequisite, objectives, theory, example, exercise, lab/simulation, misconception, visual-check, oral, review, test, mastery, project/NIR evidence. **PASS**.
 3. **L6-B3** · Tách `required blocks` và `optional blocks` theo lesson type để không ép mọi bài có 18 tab. **PASS**.
@@ -334,8 +364,8 @@ Bằng chứng B9:
 8. Tạo machine-readable lesson schema + validator + version migration.
    **PASS**.
 9. Tạo Subject Factory registry: subject → engine → lesson types → special widgets → data sources → offline policy. **PASS**.
-10. Tạo Universal Lesson Renderer/bridge dùng được với content engine hiện tại mà không phá Russian/Math legacy.
-11. Regression reference subjects + rollback checkpoint; chỉ PASS khi Russian/Math không giảm chức năng và một subject nhẹ dựng được bằng Factory.
+10. Tạo Universal Lesson Renderer/bridge dùng được với content engine hiện tại mà không phá Russian/Math legacy. **LOCAL PASS · CHỜ REMOTE CI**.
+11. Regression reference subjects + rollback checkpoint; chỉ PASS khi Russian/Math không giảm chức năng và một subject nhẹ có reviewed capability path dựng được bằng Factory, khép `LIGHT-POLICY-CAPABILITY-GAP` mà không hạ chuẩn B3.
 
 ## Lượt 7 · Hoàn thiện Reference Subjects · Russian + Math + Foundation · 9 bước
 

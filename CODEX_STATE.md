@@ -2,7 +2,7 @@
 
 Current task: `L6-B10_UNIVERSAL_LESSON_RENDERER_BRIDGE`
 
-Status: `L6_B9_PASS_READY_FOR_L6_B10`
+Status: `L6_B10_LOCAL_PASS_PENDING_REMOTE_CI`
 
 Date: 2026-08-24
 Branch: `migration/webapp-l1-audit-storage`
@@ -11,11 +11,12 @@ Main sync status: `branch_only`
 
 Files changed:
 - `.github/workflows/migration-l6-academic.yml`
-- `assets/data/lesson/subject-factory-registry-v1.json`
-- `assets/js/platform/universal-lesson/subject-factory-registry-v1.js`
-- `scripts/academic/l6-b9-subject-factory-regression.cjs`
-- `docs/migration/L6_B9_SUBJECT_FACTORY_REGISTRY.md`
-- `docs/migration/L6_B9_SUBJECT_FACTORY_REGRESSION.generated.json`
+- `assets/data/lesson/universal-lesson-renderer-contract-v1.json`
+- `assets/js/platform/universal-lesson/universal-lesson-renderer-v1.js`
+- `assets/js/platform/universal-lesson/legacy-lesson-bridge-v1.js`
+- `scripts/academic/l6-b10-renderer-bridge-regression.cjs`
+- `docs/migration/L6_B10_UNIVERSAL_LESSON_RENDERER_BRIDGE.md`
+- `docs/migration/L6_B10_RENDERER_BRIDGE_REGRESSION.generated.json`
 - `docs/migration/MIGRATION_PLAN.md`
 - `CODEX_STATE.md`
 
@@ -64,6 +65,17 @@ What changed:
   context `migration/l6-b9-subject-factory`.
 - Locked L6-B9 after GitHub Actions run `32723374054` reported B1-B9 contexts
   successful at feature commit `7d76270e1e5bbd1141465a722794f2fde5cd6290`.
+- Added the pure B10 Universal Lesson Renderer, exact B3 policy resolution,
+  safe semantic HTML and a read-only legacy routing bridge.
+- Preserved Russian, Mathematics and Programming specialist ownership through
+  `DELEGATE_SPECIALIST_ENGINE`; no rich source projection or state rewrite.
+- Added recursive official-attempt disclosure protection, truthfully filtered
+  capability providers and SHA-256 rollback routing.
+- Recorded `LIGHT-POLICY-CAPABILITY-GAP`: current generic light widgets cannot
+  satisfy strict external capabilities; B10 keeps all five sources review-only
+  and assigns one reviewed reference path to existing B11 scope.
+- Added deterministic B10 gate, nine mutation tests and planned remote context
+  `migration/l6-b10-renderer-bridge`.
 - Did not change learner content, subject runtime, storage, offline policy,
   service worker or `main`.
 
@@ -105,6 +117,18 @@ Verification:
 - L6-B9 GitHub Actions run `32723374054`: PASS
 - L6-B9 remote context `migration/l6-b9-subject-factory`: PASS
 - L6-B1 through L6-B8 contexts in the same run: PASS
+- L6-B10 deterministic renderer/bridge regression, 189/189: LOCAL PASS
+- L6-B10 canonical type policy/render matrix, 8/8: LOCAL PASS
+- L6-B10 specialist unchanged delegates, 3/3: LOCAL PASS
+- L6-B10 light review-only source routes, 5/5: LOCAL PASS
+- L6-B10 mutation tests, 9/9 expected failures observed: LOCAL PASS
+- L6-B10 report deterministic SHA-256:
+  `3157bed5c4494209b65a539c9c08a5a2794cc2b888991858ea6e7e7445b93ce8`
+- L6-B1 through L6-B10 sequential local gates: PASS
+- L5 clean-baseline regression after B10: routing 9/9, service worker 17/17,
+  academic runtime 36/36, roadmap/offline 75/75, 8 subjects with 0 data-load
+  failures, diagnostics 14/14, offline integrity 5/5: PASS
+- L6-B10 GitHub Actions/context: PENDING; B10 is not yet declared PASS
 - B1-B7 report hashes stable over consecutive runs: PASS
 - B7 mutation tests (activation, review authority, English coverage,
   rescue evidence, assessment leakage), 5/5 expected failures observed: PASS
@@ -126,9 +150,9 @@ Main sync / pull instruction:
 - Do not merge to `main` until the corresponding L6 gates pass.
 
 Next recommended task:
-- Begin L6-B10 Universal Lesson Renderer/legacy bridge design from the locked
-  B2-B9 contracts without changing Russian/Mathematics source ownership or
-  writing learner state.
+- Publish the exact B10 checkpoint, require B1-B10 remote contexts to succeed,
+  then begin B11 with one reviewed light reference capability path plus
+  Russian/Mathematics runtime/offline/rollback regression.
 
 Next actor:
 - Codex

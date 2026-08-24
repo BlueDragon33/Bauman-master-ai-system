@@ -1,0 +1,257 @@
+{
+  "contractId": "bauman-universal-lesson-renderer-contract",
+  "contractVersion": "1.0.0",
+  "status": "L6-B10-RENDERER-BRIDGE-CONTRACT",
+  "programIdentity": {
+    "department": "ИУ-5",
+    "officialPublishedDirectionCode": "09.04.01",
+    "personalizedDisplayCode": "09.04.01/11"
+  },
+  "contractRefs": {
+    "universalLesson": "assets/data/lesson/universal-lesson-contract-v2.json",
+    "blockPolicy": "assets/data/lesson/universal-lesson-block-policy-v1.json",
+    "lessonTypes": "assets/data/lesson/lesson-type-registry-v1.json",
+    "masterReady": "assets/data/lesson/master-ready-policy-v1.json",
+    "visualTeaching": "assets/data/lesson/visual-teaching-contract-v1.json",
+    "languageHooks": "assets/data/lesson/language-layer-hooks-v1.json",
+    "schema": "assets/data/lesson/schema/universal-lesson-v2.schema.json",
+    "migration": "assets/data/lesson/schema/lesson-migration-registry-v1.json",
+    "subjectFactory": "assets/data/lesson/subject-factory-registry-v1.json"
+  },
+  "runtimeBoundary": {
+    "purePlanning": true,
+    "domWriteAllowed": false,
+    "networkAllowed": false,
+    "cacheWriteAllowed": false,
+    "sourceMutationAllowed": false,
+    "learnerStateWriteAllowed": false,
+    "legacyStateKeyMutationAllowed": false,
+    "runtimeWiringInB10": false,
+    "runtimeActivationRound": "L6-B11",
+    "rollback": "route-directly-to-unchanged-subject-engine"
+  },
+  "presentation": {
+    "strategies": [
+      "inline-flow",
+      "gated-stepper",
+      "slide-deck",
+      "specialist-workspace",
+      "split-view",
+      "modal-tool",
+      "external-artifact"
+    ],
+    "genericDefault": "inline-flow",
+    "unknownHintBehavior": "ignore-and-use-generic-default",
+    "createsFixedTabs": false,
+    "createsRoutes": false,
+    "createsEmptyViews": false,
+    "semanticOrder": [
+      "orientation",
+      "concept-map",
+      "theory",
+      "worked-example",
+      "exercise",
+      "lab-simulation",
+      "misconception",
+      "visual-check",
+      "oral",
+      "review",
+      "assessment",
+      "mastery",
+      "project-nir-evidence"
+    ],
+    "blockLabelsVi": {
+      "orientation": "Bắt đầu và mục tiêu",
+      "concept-map": "Bản đồ khái niệm",
+      "theory": "Lý thuyết cốt lõi",
+      "worked-example": "Ví dụ có lời giải",
+      "exercise": "Luyện tập",
+      "lab-simulation": "Lab và mô phỏng",
+      "misconception": "Sai lầm và sửa lỗi",
+      "visual-check": "Kiểm tra trực quan",
+      "oral": "Giải thích và bảo vệ",
+      "review": "Ôn tập và phục hồi",
+      "assessment": "Đánh giá",
+      "mastery": "Bằng chứng Master-ready",
+      "project-nir-evidence": "Liên hệ project · НИР · ВКР"
+    }
+  },
+  "renderStates": [
+    "CANONICAL_RENDER_READY",
+    "REVIEW_REQUIRED",
+    "REVIEW_PREVIEW_READY",
+    "REVIEW_PREVIEW_BLOCKED",
+    "POLICY_BLOCKED",
+    "DELEGATE_SPECIALIST_ENGINE",
+    "UNCLASSIFIED_LESSON",
+    "INVALID_SOURCE"
+  ],
+  "policyResolution": {
+    "baseThenTypeThenMode": true,
+    "allowedLessonModes": [
+      "orientation-only",
+      "diagnostic",
+      "recovery"
+    ],
+    "conditionalTrueBehavior": "required",
+    "conditionalFalseBehavior": "optional-present-content-may-render",
+    "forbiddenPresentBehavior": "error-and-quarantine",
+    "requiredMissingBehavior": "POLICY_BLOCKED",
+    "optionalMissingBehavior": "omit-without-placeholder",
+    "externalMissingBehavior": "POLICY_BLOCKED",
+    "unknownConditionBehavior": "POLICY_BLOCKED",
+    "manualReviewCandidateMasterReadyEligible": false
+  },
+  "capabilityProviderCatalog": {
+    "generic-elearning-flow": [
+      "inline-flow"
+    ],
+    "generic-simulation": [
+      "generic-simulation"
+    ],
+    "generic-assessment": [
+      "practice-assessment"
+    ],
+    "russian-dialogue-studio": [
+      "dialogue",
+      "dialogue-model"
+    ],
+    "russian-shadowing": [
+      "shadowing",
+      "speech-recording"
+    ],
+    "russian-deep-speaking": [
+      "deep-speaking",
+      "speech-recording"
+    ],
+    "russian-handwriting": [
+      "handwriting-workspace",
+      "handwriting-state"
+    ],
+    "russian-flashcards": [
+      "vocabulary"
+    ],
+    "russian-scheduled-exam": [
+      "language-assessment"
+    ],
+    "math-rich-theory-reader": [
+      "authoritative-theory-deck",
+      "artifact-reader",
+      "derivation"
+    ],
+    "math-formula-typesetter": [
+      "formula-typesetting",
+      "matrix-rendering",
+      "formula-diagram"
+    ],
+    "math-step-solution": [
+      "derivation",
+      "common-mistakes"
+    ],
+    "math-parameter-simulation": [
+      "parameter-simulation",
+      "plot"
+    ],
+    "math-professor-oral": [
+      "professor-oral-defense"
+    ],
+    "programming-syntax-workflow": [
+      "code-trace",
+      "output-prediction"
+    ],
+    "programming-software-lab": [
+      "code-lab",
+      "unit-test",
+      "debug-runner",
+      "architecture-workspace"
+    ],
+    "code-runner": [
+      "code-lab",
+      "unit-test",
+      "debug-runner"
+    ],
+    "sql-playground": [
+      "sql-playground",
+      "query-plan"
+    ],
+    "model-metric-visual": [
+      "metric-visualizer",
+      "confusion-matrix",
+      "model-comparison"
+    ],
+    "signal-plot": [
+      "signal-plot"
+    ],
+    "system-architecture-workspace": [
+      "architecture-diagram",
+      "information-flow",
+      "reliability-state"
+    ],
+    "research-evidence-board": [
+      "literature-map",
+      "evidence-map",
+      "experiment-protocol",
+      "nir-milestone",
+      "vkr-milestone"
+    ]
+  },
+  "capabilityAvailabilityRule": "Only B9 widgets with availability existing or existing-lazy may expose their listed capabilities. Declared and planned widgets remain deterministic fallbacks and cannot satisfy external B3 requirements.",
+  "bridge": {
+    "specialistCompatibilityModes": [
+      "read-only-adapter-bridge"
+    ],
+    "specialistEngineModes": [
+      "rich-legacy-specialist",
+      "rich-specialist"
+    ],
+    "specialistBehavior": "DELEGATE_SPECIALIST_ENGINE",
+    "specialistSourceProjectionAllowed": false,
+    "canonicalBehavior": "validate-resolve-policy-build-safe-render-model",
+    "elearningV11Behavior": "dry-run-migrate-then-require-review",
+    "elearningV11RuntimeCutoverAllowed": false,
+    "reviewPreviewMasterReadyEligible": false,
+    "activationWriteCommitRequests": "B10_PLAN_ONLY",
+    "stableSourceLookup": "subject-id-plus-lesson-id-never-array-index"
+  },
+  "htmlSafety": {
+    "rawHtmlFromSourceAllowed": false,
+    "inlineScriptAllowed": false,
+    "inlineEventHandlerAllowed": false,
+    "sourceUrlNavigationAllowed": false,
+    "allSourceTextEscaped": true,
+    "specialistActions": "data-attributes-only",
+    "officialAttemptProtectedKeys": [
+      "answer",
+      "answers",
+      "correct",
+      "correctAnswer",
+      "correctState",
+      "solution",
+      "solutions",
+      "expectedAnswer",
+      "answerKey"
+    ],
+    "protectedReplacement": "[protected-until-submit]"
+  },
+  "auditFindings": [
+    {
+      "id": "LIGHT-POLICY-CAPABILITY-GAP",
+      "severity": "fail-closed",
+      "finding": "Current light eLearning V1.1 sources are review candidates and their existing generic widgets do not truthfully satisfy every external capability required by the B3 type profiles.",
+      "decision": "B10 provides review previews only; B11 must add and validate one reviewed light reference projection/capability path before any runtime activation."
+    },
+    {
+      "id": "SPECIALIST-ENGINE-OWNERSHIP",
+      "severity": "critical",
+      "finding": "Russian, Mathematics and Programming retain richer interactions and state behavior than the generic renderer.",
+      "decision": "B10 delegates directly to the unchanged specialist route and never projects those sources automatically."
+    }
+  ],
+  "forwardOwnership": {
+    "L6-B11": "Wire and validate one reviewed light reference path plus Russian/Mathematics delegate rollback",
+    "L7": "Reviewed Russian Mathematics and Foundation content projections",
+    "L8-L10": "Implement planned specialist widgets before they can satisfy external capabilities",
+    "L12": "Activate reviewed language-layer learner surfaces",
+    "L13": "Attach grounded AI context without changing evidence authority"
+  }
+}

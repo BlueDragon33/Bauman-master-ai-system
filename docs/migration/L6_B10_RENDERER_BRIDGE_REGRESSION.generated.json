@@ -1,0 +1,3701 @@
+{
+  "schema": "L6_B10_RENDERER_BRIDGE_REGRESSION_V1",
+  "status": "PASS",
+  "branch": "migration/webapp-l1-audit-storage",
+  "generatedFor": "2026-08-24",
+  "scope": "Pure Universal Lesson policy renderer safe HTML and read-only legacy bridge; no learner runtime activation or state write.",
+  "summary": {
+    "total": 189,
+    "passed": 189,
+    "failed": 0,
+    "canonicalTypes": 8,
+    "specialistDelegates": 3,
+    "lightReviewSources": 5,
+    "currentLightPolicyGaps": 5,
+    "mutationTests": 9,
+    "expectedMutationFailuresObserved": 9
+  },
+  "contracts": {
+    "rendererContractId": "bauman-universal-lesson-renderer-contract",
+    "rendererContractVersion": "1.0.0",
+    "rendererRelease": "L6-B10-UNIVERSAL-LESSON-RENDERER-V1",
+    "bridgeRelease": "L6-B10-LEGACY-LESSON-BRIDGE-V1",
+    "universalContract": "bauman-universal-lesson-contract",
+    "blockPolicy": "bauman-universal-lesson-block-policy",
+    "lessonTypeRegistry": "bauman-lesson-type-registry",
+    "masteryPolicy": "bauman-master-ready-policy",
+    "visualContract": "bauman-visual-teaching-contract",
+    "languageContract": "bauman-language-layer-hooks",
+    "migrationRegistry": "bauman-universal-lesson-migration-registry",
+    "subjectFactory": "bauman-subject-factory-registry"
+  },
+  "typeEvidence": {
+    "language": {
+      "schemaValid": true,
+      "state": "CANONICAL_RENDER_READY",
+      "sectionCount": 13,
+      "modelDigest": "17e4d6a3ce4af16188bd2c6734446452e866d9380dee2319e4619a5b2c864105",
+      "htmlDigest": "49ed80a282053cc6b17a4c17b755eb9bb1e4b15d9e0da99479a49d1b942bd8ae",
+      "omittedKinds": [],
+      "warnings": []
+    },
+    "mathematics": {
+      "schemaValid": true,
+      "state": "CANONICAL_RENDER_READY",
+      "sectionCount": 13,
+      "modelDigest": "f76fd130c7fd08a506bf74556e67bc42ea69b1e04740937d74d6a012f0ceb200",
+      "htmlDigest": "e8ec305a7d800f83668f82bf8fb246e4b8ed8f0aba0b2e2e00f16e23b93e9af1",
+      "omittedKinds": [],
+      "warnings": []
+    },
+    "programming": {
+      "schemaValid": true,
+      "state": "CANONICAL_RENDER_READY",
+      "sectionCount": 13,
+      "modelDigest": "9e4b0c0242bbd2acac16671ea9b0591aedbf4b67532b32a06e34cd3a2396ef57",
+      "htmlDigest": "63a34d6cd1af350be96ac3697067d0df2c082cef4e7be6e2ae97e1bfdf01f495",
+      "omittedKinds": [],
+      "warnings": []
+    },
+    "database": {
+      "schemaValid": true,
+      "state": "CANONICAL_RENDER_READY",
+      "sectionCount": 13,
+      "modelDigest": "22dfa81e1e015d6c6ef58ffc8b2334970258df0e5867068a5a3f270443f4e00d",
+      "htmlDigest": "a7b39ba2c437c49df45c3bd9195badc9593b007640c5b71a9b17c3a73193fc0c",
+      "omittedKinds": [],
+      "warnings": []
+    },
+    "software-design": {
+      "schemaValid": true,
+      "state": "CANONICAL_RENDER_READY",
+      "sectionCount": 13,
+      "modelDigest": "759bed47800058d5820f6f68a87cdfd3270bf499a201a8622bf3954e8f9ab052",
+      "htmlDigest": "5ff1a2bc13e505e52c8a887b43860109d738683f63a5e74978661e95b180c3d1",
+      "omittedKinds": [],
+      "warnings": []
+    },
+    "ml-data": {
+      "schemaValid": true,
+      "state": "CANONICAL_RENDER_READY",
+      "sectionCount": 13,
+      "modelDigest": "483e83d9603ff946670ef88d7a2d2eaae9af210b6a3406fd972d6500d092fd84",
+      "htmlDigest": "90176e2c50a249e8a52e3728a4b2727f09b1d051c98ecefecd894deaca291dff",
+      "omittedKinds": [],
+      "warnings": []
+    },
+    "asoiu-system": {
+      "schemaValid": true,
+      "state": "CANONICAL_RENDER_READY",
+      "sectionCount": 13,
+      "modelDigest": "fcc5adf715bd81757d1e60e37c514ef16ec079a1544c03b59ffb2ad35a6242cb",
+      "htmlDigest": "21340802aebaefafa15009681ff4bc7ddae3a92dbda219e74000c41b18336132",
+      "omittedKinds": [],
+      "warnings": []
+    },
+    "research": {
+      "schemaValid": true,
+      "state": "CANONICAL_RENDER_READY",
+      "sectionCount": 13,
+      "modelDigest": "b3b4ee0440c440d84f1a126a42e61c453cd577922763730e75adac32d7164064",
+      "htmlDigest": "a372d41cbcd934acaf65801887111a8a66dfa74662c36adbe72a3599c527f7fb",
+      "omittedKinds": [],
+      "warnings": []
+    }
+  },
+  "capabilityProviders": {
+    "russian": {
+      "dialogue": {
+        "capabilityRef": "dialogue",
+        "widgetId": "russian-dialogue-studio",
+        "availability": "existing"
+      },
+      "dialogue-model": {
+        "capabilityRef": "dialogue-model",
+        "widgetId": "russian-dialogue-studio",
+        "availability": "existing"
+      },
+      "shadowing": {
+        "capabilityRef": "shadowing",
+        "widgetId": "russian-shadowing",
+        "availability": "existing"
+      },
+      "speech-recording": {
+        "capabilityRef": "speech-recording",
+        "widgetId": "russian-shadowing",
+        "availability": "existing"
+      },
+      "deep-speaking": {
+        "capabilityRef": "deep-speaking",
+        "widgetId": "russian-deep-speaking",
+        "availability": "existing-lazy"
+      },
+      "handwriting-workspace": {
+        "capabilityRef": "handwriting-workspace",
+        "widgetId": "russian-handwriting",
+        "availability": "existing"
+      },
+      "handwriting-state": {
+        "capabilityRef": "handwriting-state",
+        "widgetId": "russian-handwriting",
+        "availability": "existing"
+      },
+      "vocabulary": {
+        "capabilityRef": "vocabulary",
+        "widgetId": "russian-flashcards",
+        "availability": "existing"
+      },
+      "language-assessment": {
+        "capabilityRef": "language-assessment",
+        "widgetId": "russian-scheduled-exam",
+        "availability": "existing"
+      }
+    },
+    "math": {
+      "authoritative-theory-deck": {
+        "capabilityRef": "authoritative-theory-deck",
+        "widgetId": "math-rich-theory-reader",
+        "availability": "existing"
+      },
+      "artifact-reader": {
+        "capabilityRef": "artifact-reader",
+        "widgetId": "math-rich-theory-reader",
+        "availability": "existing"
+      },
+      "derivation": {
+        "capabilityRef": "derivation",
+        "widgetId": "math-rich-theory-reader",
+        "availability": "existing"
+      },
+      "formula-typesetting": {
+        "capabilityRef": "formula-typesetting",
+        "widgetId": "math-formula-typesetter",
+        "availability": "existing"
+      },
+      "matrix-rendering": {
+        "capabilityRef": "matrix-rendering",
+        "widgetId": "math-formula-typesetter",
+        "availability": "existing"
+      },
+      "formula-diagram": {
+        "capabilityRef": "formula-diagram",
+        "widgetId": "math-formula-typesetter",
+        "availability": "existing"
+      },
+      "common-mistakes": {
+        "capabilityRef": "common-mistakes",
+        "widgetId": "math-step-solution",
+        "availability": "existing"
+      },
+      "parameter-simulation": {
+        "capabilityRef": "parameter-simulation",
+        "widgetId": "math-parameter-simulation",
+        "availability": "existing"
+      },
+      "plot": {
+        "capabilityRef": "plot",
+        "widgetId": "math-parameter-simulation",
+        "availability": "existing"
+      },
+      "professor-oral-defense": {
+        "capabilityRef": "professor-oral-defense",
+        "widgetId": "math-professor-oral",
+        "availability": "existing"
+      }
+    },
+    "programming": {
+      "code-trace": {
+        "capabilityRef": "code-trace",
+        "widgetId": "programming-syntax-workflow",
+        "availability": "existing"
+      },
+      "output-prediction": {
+        "capabilityRef": "output-prediction",
+        "widgetId": "programming-syntax-workflow",
+        "availability": "existing"
+      },
+      "code-lab": {
+        "capabilityRef": "code-lab",
+        "widgetId": "programming-software-lab",
+        "availability": "existing"
+      },
+      "unit-test": {
+        "capabilityRef": "unit-test",
+        "widgetId": "programming-software-lab",
+        "availability": "existing"
+      },
+      "debug-runner": {
+        "capabilityRef": "debug-runner",
+        "widgetId": "programming-software-lab",
+        "availability": "existing"
+      },
+      "architecture-workspace": {
+        "capabilityRef": "architecture-workspace",
+        "widgetId": "programming-software-lab",
+        "availability": "existing"
+      }
+    },
+    "foundation": {
+      "inline-flow": {
+        "capabilityRef": "inline-flow",
+        "widgetId": "generic-elearning-flow",
+        "availability": "existing"
+      },
+      "generic-simulation": {
+        "capabilityRef": "generic-simulation",
+        "widgetId": "generic-simulation",
+        "availability": "existing"
+      },
+      "practice-assessment": {
+        "capabilityRef": "practice-assessment",
+        "widgetId": "generic-assessment",
+        "availability": "existing"
+      }
+    },
+    "ai": {
+      "inline-flow": {
+        "capabilityRef": "inline-flow",
+        "widgetId": "generic-elearning-flow",
+        "availability": "existing"
+      },
+      "generic-simulation": {
+        "capabilityRef": "generic-simulation",
+        "widgetId": "generic-simulation",
+        "availability": "existing"
+      },
+      "practice-assessment": {
+        "capabilityRef": "practice-assessment",
+        "widgetId": "generic-assessment",
+        "availability": "existing"
+      }
+    },
+    "signal": {
+      "inline-flow": {
+        "capabilityRef": "inline-flow",
+        "widgetId": "generic-elearning-flow",
+        "availability": "existing"
+      },
+      "generic-simulation": {
+        "capabilityRef": "generic-simulation",
+        "widgetId": "generic-simulation",
+        "availability": "existing"
+      },
+      "practice-assessment": {
+        "capabilityRef": "practice-assessment",
+        "widgetId": "generic-assessment",
+        "availability": "existing"
+      }
+    },
+    "systems": {
+      "inline-flow": {
+        "capabilityRef": "inline-flow",
+        "widgetId": "generic-elearning-flow",
+        "availability": "existing"
+      },
+      "generic-simulation": {
+        "capabilityRef": "generic-simulation",
+        "widgetId": "generic-simulation",
+        "availability": "existing"
+      },
+      "practice-assessment": {
+        "capabilityRef": "practice-assessment",
+        "widgetId": "generic-assessment",
+        "availability": "existing"
+      }
+    },
+    "research": {
+      "inline-flow": {
+        "capabilityRef": "inline-flow",
+        "widgetId": "generic-elearning-flow",
+        "availability": "existing"
+      },
+      "generic-simulation": {
+        "capabilityRef": "generic-simulation",
+        "widgetId": "generic-simulation",
+        "availability": "existing"
+      },
+      "practice-assessment": {
+        "capabilityRef": "practice-assessment",
+        "widgetId": "generic-assessment",
+        "availability": "existing"
+      }
+    }
+  },
+  "specialistPlans": {
+    "russian": {
+      "code": "DELEGATE_SPECIALIST_ENGINE",
+      "engineRef": "russian-v13-specialist",
+      "route": "subjects/russian/index.html",
+      "sourceDigest": "670f824e2faf5c4a92876bb367784eb007d6ad07e6d0b897f671e5c66ef92e80"
+    },
+    "math": {
+      "code": "DELEGATE_SPECIALIST_ENGINE",
+      "engineRef": "math-e126-specialist",
+      "route": "subjects/math/index.html",
+      "sourceDigest": "5226c32fd850954be78b7f98f599c107b8fd3ac225db00599ce22f56eabc0056"
+    },
+    "programming": {
+      "code": "DELEGATE_SPECIALIST_ENGINE",
+      "engineRef": "programming-v2-specialist",
+      "route": "subjects/programming/index.html",
+      "sourceDigest": "6b81d7aab35412701838348fb050cc7d048276a8f7b5f5fea32645146570d6ee"
+    }
+  },
+  "lightPlans": {
+    "foundation": {
+      "code": "REVIEW_REQUIRED",
+      "lessonType": "programming",
+      "migrationId": "migration_367d2f83",
+      "outputDigest": "4739695fa1b4d18d8f4671ed19e52b3e1cee612cdecc26809ca5acb5c3e5588e",
+      "manualReviewRequired": true
+    },
+    "ai": {
+      "code": "REVIEW_REQUIRED",
+      "lessonType": "ml-data",
+      "migrationId": "migration_9cf95e0d",
+      "outputDigest": "e8ed01a2b39cff6aa5e360803c9b44262bffea8c61cf28cd94c737727fdf3a53",
+      "manualReviewRequired": true
+    },
+    "signal": {
+      "code": "REVIEW_REQUIRED",
+      "lessonType": "ml-data",
+      "migrationId": "migration_7acf59e7",
+      "outputDigest": "6a461ebf5c317445f9144357db16485f40e75da99a6b664a723953921b92b460",
+      "manualReviewRequired": true
+    },
+    "systems": {
+      "code": "REVIEW_REQUIRED",
+      "lessonType": "asoiu-system",
+      "migrationId": "migration_f496dacc",
+      "outputDigest": "ccf01bbfd5328c6e8dc951f845ab6c73dc996afe07e27b50b7a86acab4d91fac",
+      "manualReviewRequired": true
+    },
+    "research": {
+      "code": "REVIEW_REQUIRED",
+      "lessonType": "research",
+      "migrationId": "migration_6bca7e9b",
+      "outputDigest": "8f7395f1b7d9f8dfded577836eb63f71d933517f424621f32703371758fa1453",
+      "manualReviewRequired": true
+    }
+  },
+  "canonicalLightOrientation": {
+    "code": "CANONICAL_RENDER_READY",
+    "sections": 1,
+    "modelDigest": "38035687878daf83a793140be88e90c55d4e386c295c45f35a6d5dae96a656eb",
+    "htmlDigest": "bb5e7cc362674cc7eb500f38435bcd9bd3f224d1f441231495d080ab776ac578"
+  },
+  "mutationTests": [
+    {
+      "id": "RUNTIME-WIRING",
+      "title": "activating B10 runtime wiring is rejected by dependency audit",
+      "expectedFailureObserved": true,
+      "evidence": [
+        {
+          "code": "B10_RUNTIME_BOUNDARY_BROKEN"
+        }
+      ]
+    },
+    {
+      "id": "PLANNED-CAPABILITY",
+      "title": "removing availability guard exposes a declared widget as implemented",
+      "expectedFailureObserved": true,
+      "evidence": {
+        "inline-flow": {
+          "capabilityRef": "inline-flow",
+          "widgetId": "generic-elearning-flow",
+          "availability": "existing"
+        },
+        "generic-simulation": {
+          "capabilityRef": "generic-simulation",
+          "widgetId": "generic-simulation",
+          "availability": "existing"
+        },
+        "practice-assessment": {
+          "capabilityRef": "practice-assessment",
+          "widgetId": "generic-assessment",
+          "availability": "existing"
+        },
+        "metric-visualizer": {
+          "capabilityRef": "metric-visualizer",
+          "widgetId": "model-metric-visual",
+          "availability": "declared"
+        },
+        "confusion-matrix": {
+          "capabilityRef": "confusion-matrix",
+          "widgetId": "model-metric-visual",
+          "availability": "declared"
+        },
+        "model-comparison": {
+          "capabilityRef": "model-comparison",
+          "widgetId": "model-metric-visual",
+          "availability": "declared"
+        }
+      }
+    },
+    {
+      "id": "HTML-ESCAPE",
+      "title": "removing less-than escaping exposes source script markup",
+      "expectedFailureObserved": true,
+      "evidence": {
+        "mutantLoaded": true,
+        "rawScriptObserved": true
+      }
+    },
+    {
+      "id": "ANSWER-DISCLOSURE",
+      "title": "removing answer protection leaks official-attempt material",
+      "expectedFailureObserved": true,
+      "evidence": {
+        "mutantLoaded": true,
+        "answerLeaked": true
+      }
+    },
+    {
+      "id": "FORBIDDEN-BLOCK",
+      "title": "removing forbidden-block guard lets mastery enter orientation-only mode",
+      "expectedFailureObserved": true,
+      "evidence": {
+        "mutantLoaded": true,
+        "ok": true,
+        "sections": [
+          "orientation",
+          "mastery"
+        ]
+      }
+    },
+    {
+      "id": "PLAN-ONLY",
+      "title": "removing apply guard lets an activation-shaped request reach routing",
+      "expectedFailureObserved": true,
+      "evidence": {
+        "mutantLoaded": true,
+        "code": "DELEGATE_SPECIALIST_ENGINE"
+      }
+    },
+    {
+      "id": "SPECIALIST-DELEGATION",
+      "title": "removing specialist detection breaks unchanged Russian delegation",
+      "expectedFailureObserved": true,
+      "evidence": {
+        "mutantLoaded": true,
+        "code": "INVALID_SOURCE"
+      }
+    },
+    {
+      "id": "ROLLBACK-DIGEST",
+      "title": "removing rollback digest comparison accepts a modified source",
+      "expectedFailureObserved": true,
+      "evidence": {
+        "mutantLoaded": true,
+        "rollback": {
+          "ok": true,
+          "blocked": false,
+          "code": "UNCHANGED_ENGINE_ROUTE_RESTORED",
+          "route": "subjects/russian/index.html",
+          "sourceDigest": "f3d88c024d6ccae877f9ad283dee7f89e06c39f3545dca29e2a62068be00586c",
+          "sourceUnchanged": true,
+          "learnerStateWritePerformed": false,
+          "cacheWritePerformed": false
+        }
+      }
+    },
+    {
+      "id": "EXTERNAL-LAB-POLICY",
+      "title": "weakening Programming code lab from external to either lets inline generic content satisfy it",
+      "expectedFailureObserved": true,
+      "evidence": [
+        {
+          "id": "block-orientation",
+          "kind": "orientation",
+          "mode": "inline",
+          "label": "Bắt đầu và mục tiêu",
+          "payload": {
+            "governingQuestion": "How does <source> become safe evidence?",
+            "whyItMatters": "Connect this lesson to Bauman ИУ-5.",
+            "successPreview": "Explain and verify one result."
+          },
+          "presentationHint": {
+            "preferredStrategy": "inline-flow",
+            "accessibilityMode": "semantic"
+          },
+          "evidenceRefs": [
+            "objective-b10"
+          ],
+          "offlineRef": "lesson-core",
+          "sourceBindingCount": 1
+        },
+        {
+          "id": "block-exercise",
+          "kind": "exercise",
+          "mode": "inline",
+          "label": "Luyện tập",
+          "payload": {
+            "prompt": "Produce a reviewable artifact.",
+            "expectedArtifact": "artifact and explanation"
+          },
+          "presentationHint": {
+            "preferredStrategy": "inline-flow",
+            "accessibilityMode": "semantic"
+          },
+          "evidenceRefs": [
+            "objective-b10"
+          ],
+          "offlineRef": "lesson-core",
+          "sourceBindingCount": 1
+        },
+        {
+          "id": "block-lab-simulation",
+          "kind": "lab-simulation",
+          "mode": "inline",
+          "label": "Lab và mô phỏng",
+          "payload": {
+            "mode": "parameter-check",
+            "procedure": [
+              "set baseline",
+              "change one input",
+              "record result"
+            ]
+          },
+          "presentationHint": {
+            "preferredStrategy": "inline-flow",
+            "accessibilityMode": "semantic"
+          },
+          "evidenceRefs": [
+            "objective-b10"
+          ],
+          "offlineRef": "lesson-core",
+          "sourceBindingCount": 1
+        },
+        {
+          "id": "block-misconception",
+          "kind": "misconception",
+          "mode": "inline",
+          "label": "Sai lầm và sửa lỗi",
+          "payload": {
+            "wrongPattern": "claim without evidence",
+            "likelyCause": "source boundary missing",
+            "repairRef": "block-review"
+          },
+          "presentationHint": {
+            "preferredStrategy": "inline-flow",
+            "accessibilityMode": "semantic"
+          },
+          "evidenceRefs": [
+            "objective-b10"
+          ],
+          "offlineRef": "lesson-core",
+          "sourceBindingCount": 1
+        },
+        {
+          "id": "block-review",
+          "kind": "review",
+          "mode": "inline",
+          "label": "Ôn tập và phục hồi",
+          "payload": {
+            "retrievalItems": [
+              "governing question",
+              "verification rule"
+            ],
+            "repairGroups": [
+              "source boundary"
+            ]
+          },
+          "presentationHint": {
+            "preferredStrategy": "inline-flow",
+            "accessibilityMode": "semantic"
+          },
+          "evidenceRefs": [
+            "objective-b10"
+          ],
+          "offlineRef": "lesson-core",
+          "sourceBindingCount": 1
+        },
+        {
+          "id": "block-mastery",
+          "kind": "mastery",
+          "mode": "inline",
+          "label": "Bằng chứng Master-ready",
+          "payload": {
+            "stageEvidenceRefs": [
+              "evidence-b10"
+            ],
+            "gatePolicyRef": "L6-B5"
+          },
+          "presentationHint": {
+            "preferredStrategy": "inline-flow",
+            "accessibilityMode": "semantic"
+          },
+          "evidenceRefs": [
+            "objective-b10"
+          ],
+          "offlineRef": "lesson-core",
+          "sourceBindingCount": 1
+        }
+      ]
+    }
+  ],
+  "referenceCompatibilitySha256": {
+    "assets/js/data.js": "0150011b1d91ab3d2ea8d3f9aaa2b984039d94838183fb1d110da15d008d6079",
+    "assets/js/platform/offline-subject-pack-manager.js": "5f6e4d37cb464b792558b014d19da1f62389b06245b8446b180e6d1890500be6",
+    "subjects/russian/assets/core.js": "71f24d0e0300dddee18f2dd91617b34137de66290c47f0484cae454a1cdeb573",
+    "subjects/russian/assets/subject-adapter.js": "1c6a6930ab06e1510879ed374093016ff721b20fab7bf720a65613e4c411d625",
+    "subjects/russian/data/lessons.json": "c8693eeefed17ea39b0cea4a600c9086f1b597ae7174e56bd8b2f8b46b985062",
+    "subjects/math/assets/subject-adapter.js": "40cb9d93a713929f3b8c9c99c01c30e29f103043a2f2c207521c5446f8f47731",
+    "subjects/math/assets/theory_skin/theory-tab-E129.js": "f9040b5dff1d3e38a1440e74445a7d97c1d19e4ec5d5f4312e5d526ac4e69d00",
+    "subjects/math/data/theory_lecture_content.json": "d0cd18601b1ede84f58072b3c47cfcc176b4d21d3fa71b23762b908485391447",
+    "subjects/programming/assets/subject-adapter.js": "a66453de4c0816d9d47986df1ffab8d8b19015174d52f3c3aa8eabefa2192b68",
+    "subjects/programming/data/lessons.json": "1b5485cb6b34380b949b247fd1cf521f0fda0534dd4834b9dee53beb2f49491d",
+    "subjects/foundation/assets/foundation.js": "ddb1665c505986962da6c4c5f157d3827e9940e86866afbb7ca42ea4e4430315",
+    "subjects/foundation/data/lessons.json": "435dc2faea81b59f3b1f29b6e7f1d48d7c99947f0a70ccd62eb3bb60c2f402e1",
+    "subjects/ai/assets/ai.js": "ddb1665c505986962da6c4c5f157d3827e9940e86866afbb7ca42ea4e4430315",
+    "subjects/ai/data/lessons.json": "ee22f47274b6e51a9fe03d00ceff1ebe3e0b255b4363dddf8ed476c9d9264e73",
+    "subjects/signal/assets/signal.js": "ddb1665c505986962da6c4c5f157d3827e9940e86866afbb7ca42ea4e4430315",
+    "subjects/signal/data/lessons.json": "bf2dc25a23df3bd0f8b496df28eac57b51bc0f8dd9619b00aab2086742f67634",
+    "subjects/systems/assets/systems.js": "ddb1665c505986962da6c4c5f157d3827e9940e86866afbb7ca42ea4e4430315",
+    "subjects/systems/data/lessons.json": "437239b73ee9b7dacb16801df932f0124167aae6a8706ae25c76d6fce5633efa",
+    "subjects/research/assets/research.js": "ddb1665c505986962da6c4c5f157d3827e9940e86866afbb7ca42ea4e4430315",
+    "subjects/research/data/lessons.json": "eb453c78c6a4340c6f4d12aa435adfdfd1ab59b68393586cbcd772742d757d16"
+  },
+  "b10ArtifactSha256": {
+    "assets/data/lesson/universal-lesson-renderer-contract-v1.json": "62572ee518866877af0f5ff2a41f642b7996a8543368f900a379e0e542d18694",
+    "assets/js/platform/universal-lesson/universal-lesson-renderer-v1.js": "44ec43406ec5d6ec6d14610d99e51a842c62c8339b71623c5811b43f6a65e9ff",
+    "assets/js/platform/universal-lesson/legacy-lesson-bridge-v1.js": "626600973c50e3902704f42b7109f823e6e525a920aeb7b4c7ef63573c7a242f",
+    "docs/migration/L6_B10_UNIVERSAL_LESSON_RENDERER_BRIDGE.md": "0b95678dd9e155480909d858738c407f5d86d0ba5319073ce4a3d42643362a60"
+  },
+  "checks": [
+    {
+      "id": "FILE-assets/data/lesson/universal-lesson-renderer-contract-v1.json",
+      "title": "required B10 input exists",
+      "ok": true,
+      "evidence": "assets/data/lesson/universal-lesson-renderer-contract-v1.json"
+    },
+    {
+      "id": "FILE-assets/js/platform/universal-lesson/universal-lesson-renderer-v1.js",
+      "title": "required B10 input exists",
+      "ok": true,
+      "evidence": "assets/js/platform/universal-lesson/universal-lesson-renderer-v1.js"
+    },
+    {
+      "id": "FILE-assets/js/platform/universal-lesson/legacy-lesson-bridge-v1.js",
+      "title": "required B10 input exists",
+      "ok": true,
+      "evidence": "assets/js/platform/universal-lesson/legacy-lesson-bridge-v1.js"
+    },
+    {
+      "id": "FILE-assets/js/platform/universal-lesson/lesson-schema-validator-v1.js",
+      "title": "required B10 input exists",
+      "ok": true,
+      "evidence": "assets/js/platform/universal-lesson/lesson-schema-validator-v1.js"
+    },
+    {
+      "id": "FILE-assets/js/platform/universal-lesson/lesson-version-migrator-v1.js",
+      "title": "required B10 input exists",
+      "ok": true,
+      "evidence": "assets/js/platform/universal-lesson/lesson-version-migrator-v1.js"
+    },
+    {
+      "id": "FILE-assets/js/platform/universal-lesson/subject-factory-registry-v1.js",
+      "title": "required B10 input exists",
+      "ok": true,
+      "evidence": "assets/js/platform/universal-lesson/subject-factory-registry-v1.js"
+    },
+    {
+      "id": "FILE-assets/data/lesson/schema/universal-lesson-v2.schema.json",
+      "title": "required B10 input exists",
+      "ok": true,
+      "evidence": "assets/data/lesson/schema/universal-lesson-v2.schema.json"
+    },
+    {
+      "id": "FILE-assets/data/lesson/universal-lesson-contract-v2.json",
+      "title": "required B10 input exists",
+      "ok": true,
+      "evidence": "assets/data/lesson/universal-lesson-contract-v2.json"
+    },
+    {
+      "id": "FILE-assets/data/lesson/universal-lesson-block-policy-v1.json",
+      "title": "required B10 input exists",
+      "ok": true,
+      "evidence": "assets/data/lesson/universal-lesson-block-policy-v1.json"
+    },
+    {
+      "id": "FILE-assets/data/lesson/lesson-type-registry-v1.json",
+      "title": "required B10 input exists",
+      "ok": true,
+      "evidence": "assets/data/lesson/lesson-type-registry-v1.json"
+    },
+    {
+      "id": "FILE-assets/data/lesson/master-ready-policy-v1.json",
+      "title": "required B10 input exists",
+      "ok": true,
+      "evidence": "assets/data/lesson/master-ready-policy-v1.json"
+    },
+    {
+      "id": "FILE-assets/data/lesson/visual-teaching-contract-v1.json",
+      "title": "required B10 input exists",
+      "ok": true,
+      "evidence": "assets/data/lesson/visual-teaching-contract-v1.json"
+    },
+    {
+      "id": "FILE-assets/data/lesson/language-layer-hooks-v1.json",
+      "title": "required B10 input exists",
+      "ok": true,
+      "evidence": "assets/data/lesson/language-layer-hooks-v1.json"
+    },
+    {
+      "id": "FILE-assets/data/lesson/schema/lesson-migration-registry-v1.json",
+      "title": "required B10 input exists",
+      "ok": true,
+      "evidence": "assets/data/lesson/schema/lesson-migration-registry-v1.json"
+    },
+    {
+      "id": "FILE-assets/data/lesson/subject-factory-registry-v1.json",
+      "title": "required B10 input exists",
+      "ok": true,
+      "evidence": "assets/data/lesson/subject-factory-registry-v1.json"
+    },
+    {
+      "id": "FILE-scripts/academic/fixtures/l6-b8/canonical-minimal-v2.json",
+      "title": "required B10 input exists",
+      "ok": true,
+      "evidence": "scripts/academic/fixtures/l6-b8/canonical-minimal-v2.json"
+    },
+    {
+      "id": "FILE-docs/migration/L6_B10_UNIVERSAL_LESSON_RENDERER_BRIDGE.md",
+      "title": "required B10 input exists",
+      "ok": true,
+      "evidence": "docs/migration/L6_B10_UNIVERSAL_LESSON_RENDERER_BRIDGE.md"
+    },
+    {
+      "id": "FILE-subjects/russian/index.html",
+      "title": "required B10 input exists",
+      "ok": true,
+      "evidence": "subjects/russian/index.html"
+    },
+    {
+      "id": "FILE-subjects/russian/data/lessons.json",
+      "title": "required B10 input exists",
+      "ok": true,
+      "evidence": "subjects/russian/data/lessons.json"
+    },
+    {
+      "id": "FILE-subjects/math/index.html",
+      "title": "required B10 input exists",
+      "ok": true,
+      "evidence": "subjects/math/index.html"
+    },
+    {
+      "id": "FILE-subjects/math/data/lessons.json",
+      "title": "required B10 input exists",
+      "ok": true,
+      "evidence": "subjects/math/data/lessons.json"
+    },
+    {
+      "id": "FILE-subjects/programming/index.html",
+      "title": "required B10 input exists",
+      "ok": true,
+      "evidence": "subjects/programming/index.html"
+    },
+    {
+      "id": "FILE-subjects/programming/data/lessons.json",
+      "title": "required B10 input exists",
+      "ok": true,
+      "evidence": "subjects/programming/data/lessons.json"
+    },
+    {
+      "id": "FILE-subjects/foundation/index.html",
+      "title": "required B10 input exists",
+      "ok": true,
+      "evidence": "subjects/foundation/index.html"
+    },
+    {
+      "id": "FILE-subjects/foundation/data/lessons.json",
+      "title": "required B10 input exists",
+      "ok": true,
+      "evidence": "subjects/foundation/data/lessons.json"
+    },
+    {
+      "id": "FILE-subjects/ai/index.html",
+      "title": "required B10 input exists",
+      "ok": true,
+      "evidence": "subjects/ai/index.html"
+    },
+    {
+      "id": "FILE-subjects/ai/data/lessons.json",
+      "title": "required B10 input exists",
+      "ok": true,
+      "evidence": "subjects/ai/data/lessons.json"
+    },
+    {
+      "id": "FILE-subjects/signal/index.html",
+      "title": "required B10 input exists",
+      "ok": true,
+      "evidence": "subjects/signal/index.html"
+    },
+    {
+      "id": "FILE-subjects/signal/data/lessons.json",
+      "title": "required B10 input exists",
+      "ok": true,
+      "evidence": "subjects/signal/data/lessons.json"
+    },
+    {
+      "id": "FILE-subjects/systems/index.html",
+      "title": "required B10 input exists",
+      "ok": true,
+      "evidence": "subjects/systems/index.html"
+    },
+    {
+      "id": "FILE-subjects/systems/data/lessons.json",
+      "title": "required B10 input exists",
+      "ok": true,
+      "evidence": "subjects/systems/data/lessons.json"
+    },
+    {
+      "id": "FILE-subjects/research/index.html",
+      "title": "required B10 input exists",
+      "ok": true,
+      "evidence": "subjects/research/index.html"
+    },
+    {
+      "id": "FILE-subjects/research/data/lessons.json",
+      "title": "required B10 input exists",
+      "ok": true,
+      "evidence": "subjects/research/data/lessons.json"
+    },
+    {
+      "id": "CONTRACT-IDENTITY",
+      "title": "renderer contract has stable B10 identity and version",
+      "ok": true,
+      "evidence": {
+        "id": "bauman-universal-lesson-renderer-contract",
+        "version": "1.0.0",
+        "status": "L6-B10-RENDERER-BRIDGE-CONTRACT"
+      }
+    },
+    {
+      "id": "PROGRAM-IDENTITY",
+      "title": "renderer contract preserves distinct official and personalized Bauman codes",
+      "ok": true,
+      "evidence": {
+        "department": "ИУ-5",
+        "officialPublishedDirectionCode": "09.04.01",
+        "personalizedDisplayCode": "09.04.01/11"
+      }
+    },
+    {
+      "id": "CONTRACT-REFS",
+      "title": "renderer contract references B2 through B9 artifacts exactly",
+      "ok": true,
+      "evidence": {
+        "universalLesson": "assets/data/lesson/universal-lesson-contract-v2.json",
+        "blockPolicy": "assets/data/lesson/universal-lesson-block-policy-v1.json",
+        "lessonTypes": "assets/data/lesson/lesson-type-registry-v1.json",
+        "masterReady": "assets/data/lesson/master-ready-policy-v1.json",
+        "visualTeaching": "assets/data/lesson/visual-teaching-contract-v1.json",
+        "languageHooks": "assets/data/lesson/language-layer-hooks-v1.json",
+        "schema": "assets/data/lesson/schema/universal-lesson-v2.schema.json",
+        "migration": "assets/data/lesson/schema/lesson-migration-registry-v1.json",
+        "subjectFactory": "assets/data/lesson/subject-factory-registry-v1.json"
+      }
+    },
+    {
+      "id": "CONTRACT-REF-universalLesson",
+      "title": "renderer contract reference exists",
+      "ok": true,
+      "evidence": "assets/data/lesson/universal-lesson-contract-v2.json"
+    },
+    {
+      "id": "CONTRACT-REF-blockPolicy",
+      "title": "renderer contract reference exists",
+      "ok": true,
+      "evidence": "assets/data/lesson/universal-lesson-block-policy-v1.json"
+    },
+    {
+      "id": "CONTRACT-REF-lessonTypes",
+      "title": "renderer contract reference exists",
+      "ok": true,
+      "evidence": "assets/data/lesson/lesson-type-registry-v1.json"
+    },
+    {
+      "id": "CONTRACT-REF-masterReady",
+      "title": "renderer contract reference exists",
+      "ok": true,
+      "evidence": "assets/data/lesson/master-ready-policy-v1.json"
+    },
+    {
+      "id": "CONTRACT-REF-visualTeaching",
+      "title": "renderer contract reference exists",
+      "ok": true,
+      "evidence": "assets/data/lesson/visual-teaching-contract-v1.json"
+    },
+    {
+      "id": "CONTRACT-REF-languageHooks",
+      "title": "renderer contract reference exists",
+      "ok": true,
+      "evidence": "assets/data/lesson/language-layer-hooks-v1.json"
+    },
+    {
+      "id": "CONTRACT-REF-schema",
+      "title": "renderer contract reference exists",
+      "ok": true,
+      "evidence": "assets/data/lesson/schema/universal-lesson-v2.schema.json"
+    },
+    {
+      "id": "CONTRACT-REF-migration",
+      "title": "renderer contract reference exists",
+      "ok": true,
+      "evidence": "assets/data/lesson/schema/lesson-migration-registry-v1.json"
+    },
+    {
+      "id": "CONTRACT-REF-subjectFactory",
+      "title": "renderer contract reference exists",
+      "ok": true,
+      "evidence": "assets/data/lesson/subject-factory-registry-v1.json"
+    },
+    {
+      "id": "RUNTIME-BOUNDARY",
+      "title": "B10 contract is pure and leaves runtime wiring to B11",
+      "ok": true,
+      "evidence": {
+        "purePlanning": true,
+        "domWriteAllowed": false,
+        "networkAllowed": false,
+        "cacheWriteAllowed": false,
+        "sourceMutationAllowed": false,
+        "learnerStateWriteAllowed": false,
+        "legacyStateKeyMutationAllowed": false,
+        "runtimeWiringInB10": false,
+        "runtimeActivationRound": "L6-B11",
+        "rollback": "route-directly-to-unchanged-subject-engine"
+      }
+    },
+    {
+      "id": "PRESENTATION-VOCABULARY",
+      "title": "renderer keeps all seven B2 strategies without creating fixed tabs routes or empty views",
+      "ok": true,
+      "evidence": {
+        "strategies": [
+          "inline-flow",
+          "gated-stepper",
+          "slide-deck",
+          "specialist-workspace",
+          "split-view",
+          "modal-tool",
+          "external-artifact"
+        ],
+        "genericDefault": "inline-flow",
+        "unknownHintBehavior": "ignore-and-use-generic-default",
+        "createsFixedTabs": false,
+        "createsRoutes": false,
+        "createsEmptyViews": false,
+        "semanticOrder": [
+          "orientation",
+          "concept-map",
+          "theory",
+          "worked-example",
+          "exercise",
+          "lab-simulation",
+          "misconception",
+          "visual-check",
+          "oral",
+          "review",
+          "assessment",
+          "mastery",
+          "project-nir-evidence"
+        ],
+        "blockLabelsVi": {
+          "orientation": "Bắt đầu và mục tiêu",
+          "concept-map": "Bản đồ khái niệm",
+          "theory": "Lý thuyết cốt lõi",
+          "worked-example": "Ví dụ có lời giải",
+          "exercise": "Luyện tập",
+          "lab-simulation": "Lab và mô phỏng",
+          "misconception": "Sai lầm và sửa lỗi",
+          "visual-check": "Kiểm tra trực quan",
+          "oral": "Giải thích và bảo vệ",
+          "review": "Ôn tập và phục hồi",
+          "assessment": "Đánh giá",
+          "mastery": "Bằng chứng Master-ready",
+          "project-nir-evidence": "Liên hệ project · НИР · ВКР"
+        }
+      }
+    },
+    {
+      "id": "SEMANTIC-ORDER",
+      "title": "renderer semantic order is exactly the 13 B2 block kinds",
+      "ok": true,
+      "evidence": [
+        "orientation",
+        "concept-map",
+        "theory",
+        "worked-example",
+        "exercise",
+        "lab-simulation",
+        "misconception",
+        "visual-check",
+        "oral",
+        "review",
+        "assessment",
+        "mastery",
+        "project-nir-evidence"
+      ]
+    },
+    {
+      "id": "BLOCK-LABELS",
+      "title": "every semantic block has a non-empty learner label",
+      "ok": true,
+      "evidence": {
+        "orientation": "Bắt đầu và mục tiêu",
+        "concept-map": "Bản đồ khái niệm",
+        "theory": "Lý thuyết cốt lõi",
+        "worked-example": "Ví dụ có lời giải",
+        "exercise": "Luyện tập",
+        "lab-simulation": "Lab và mô phỏng",
+        "misconception": "Sai lầm và sửa lỗi",
+        "visual-check": "Kiểm tra trực quan",
+        "oral": "Giải thích và bảo vệ",
+        "review": "Ôn tập và phục hồi",
+        "assessment": "Đánh giá",
+        "mastery": "Bằng chứng Master-ready",
+        "project-nir-evidence": "Liên hệ project · НИР · ВКР"
+      }
+    },
+    {
+      "id": "CAPABILITY-WIDGET-COVERAGE",
+      "title": "capability catalog covers exactly every B9 widget",
+      "ok": true,
+      "evidence": {
+        "contract": [
+          "generic-elearning-flow",
+          "generic-simulation",
+          "generic-assessment",
+          "russian-dialogue-studio",
+          "russian-shadowing",
+          "russian-deep-speaking",
+          "russian-handwriting",
+          "russian-flashcards",
+          "russian-scheduled-exam",
+          "math-rich-theory-reader",
+          "math-formula-typesetter",
+          "math-step-solution",
+          "math-parameter-simulation",
+          "math-professor-oral",
+          "programming-syntax-workflow",
+          "programming-software-lab",
+          "code-runner",
+          "sql-playground",
+          "model-metric-visual",
+          "signal-plot",
+          "system-architecture-workspace",
+          "research-evidence-board"
+        ],
+        "factory": [
+          "generic-elearning-flow",
+          "generic-simulation",
+          "generic-assessment",
+          "russian-dialogue-studio",
+          "russian-shadowing",
+          "russian-deep-speaking",
+          "russian-handwriting",
+          "russian-flashcards",
+          "russian-scheduled-exam",
+          "math-rich-theory-reader",
+          "math-formula-typesetter",
+          "math-step-solution",
+          "math-parameter-simulation",
+          "math-professor-oral",
+          "programming-syntax-workflow",
+          "programming-software-lab",
+          "code-runner",
+          "sql-playground",
+          "model-metric-visual",
+          "signal-plot",
+          "system-architecture-workspace",
+          "research-evidence-board"
+        ]
+      }
+    },
+    {
+      "id": "CAPABILITY-generic-elearning-flow",
+      "title": "widget capability map uses non-empty unique safe identifiers",
+      "ok": true,
+      "evidence": [
+        "inline-flow"
+      ]
+    },
+    {
+      "id": "CAPABILITY-generic-simulation",
+      "title": "widget capability map uses non-empty unique safe identifiers",
+      "ok": true,
+      "evidence": [
+        "generic-simulation"
+      ]
+    },
+    {
+      "id": "CAPABILITY-generic-assessment",
+      "title": "widget capability map uses non-empty unique safe identifiers",
+      "ok": true,
+      "evidence": [
+        "practice-assessment"
+      ]
+    },
+    {
+      "id": "CAPABILITY-russian-dialogue-studio",
+      "title": "widget capability map uses non-empty unique safe identifiers",
+      "ok": true,
+      "evidence": [
+        "dialogue",
+        "dialogue-model"
+      ]
+    },
+    {
+      "id": "CAPABILITY-russian-shadowing",
+      "title": "widget capability map uses non-empty unique safe identifiers",
+      "ok": true,
+      "evidence": [
+        "shadowing",
+        "speech-recording"
+      ]
+    },
+    {
+      "id": "CAPABILITY-russian-deep-speaking",
+      "title": "widget capability map uses non-empty unique safe identifiers",
+      "ok": true,
+      "evidence": [
+        "deep-speaking",
+        "speech-recording"
+      ]
+    },
+    {
+      "id": "CAPABILITY-russian-handwriting",
+      "title": "widget capability map uses non-empty unique safe identifiers",
+      "ok": true,
+      "evidence": [
+        "handwriting-workspace",
+        "handwriting-state"
+      ]
+    },
+    {
+      "id": "CAPABILITY-russian-flashcards",
+      "title": "widget capability map uses non-empty unique safe identifiers",
+      "ok": true,
+      "evidence": [
+        "vocabulary"
+      ]
+    },
+    {
+      "id": "CAPABILITY-russian-scheduled-exam",
+      "title": "widget capability map uses non-empty unique safe identifiers",
+      "ok": true,
+      "evidence": [
+        "language-assessment"
+      ]
+    },
+    {
+      "id": "CAPABILITY-math-rich-theory-reader",
+      "title": "widget capability map uses non-empty unique safe identifiers",
+      "ok": true,
+      "evidence": [
+        "authoritative-theory-deck",
+        "artifact-reader",
+        "derivation"
+      ]
+    },
+    {
+      "id": "CAPABILITY-math-formula-typesetter",
+      "title": "widget capability map uses non-empty unique safe identifiers",
+      "ok": true,
+      "evidence": [
+        "formula-typesetting",
+        "matrix-rendering",
+        "formula-diagram"
+      ]
+    },
+    {
+      "id": "CAPABILITY-math-step-solution",
+      "title": "widget capability map uses non-empty unique safe identifiers",
+      "ok": true,
+      "evidence": [
+        "derivation",
+        "common-mistakes"
+      ]
+    },
+    {
+      "id": "CAPABILITY-math-parameter-simulation",
+      "title": "widget capability map uses non-empty unique safe identifiers",
+      "ok": true,
+      "evidence": [
+        "parameter-simulation",
+        "plot"
+      ]
+    },
+    {
+      "id": "CAPABILITY-math-professor-oral",
+      "title": "widget capability map uses non-empty unique safe identifiers",
+      "ok": true,
+      "evidence": [
+        "professor-oral-defense"
+      ]
+    },
+    {
+      "id": "CAPABILITY-programming-syntax-workflow",
+      "title": "widget capability map uses non-empty unique safe identifiers",
+      "ok": true,
+      "evidence": [
+        "code-trace",
+        "output-prediction"
+      ]
+    },
+    {
+      "id": "CAPABILITY-programming-software-lab",
+      "title": "widget capability map uses non-empty unique safe identifiers",
+      "ok": true,
+      "evidence": [
+        "code-lab",
+        "unit-test",
+        "debug-runner",
+        "architecture-workspace"
+      ]
+    },
+    {
+      "id": "CAPABILITY-code-runner",
+      "title": "widget capability map uses non-empty unique safe identifiers",
+      "ok": true,
+      "evidence": [
+        "code-lab",
+        "unit-test",
+        "debug-runner"
+      ]
+    },
+    {
+      "id": "CAPABILITY-sql-playground",
+      "title": "widget capability map uses non-empty unique safe identifiers",
+      "ok": true,
+      "evidence": [
+        "sql-playground",
+        "query-plan"
+      ]
+    },
+    {
+      "id": "CAPABILITY-model-metric-visual",
+      "title": "widget capability map uses non-empty unique safe identifiers",
+      "ok": true,
+      "evidence": [
+        "metric-visualizer",
+        "confusion-matrix",
+        "model-comparison"
+      ]
+    },
+    {
+      "id": "CAPABILITY-signal-plot",
+      "title": "widget capability map uses non-empty unique safe identifiers",
+      "ok": true,
+      "evidence": [
+        "signal-plot"
+      ]
+    },
+    {
+      "id": "CAPABILITY-system-architecture-workspace",
+      "title": "widget capability map uses non-empty unique safe identifiers",
+      "ok": true,
+      "evidence": [
+        "architecture-diagram",
+        "information-flow",
+        "reliability-state"
+      ]
+    },
+    {
+      "id": "CAPABILITY-research-evidence-board",
+      "title": "widget capability map uses non-empty unique safe identifiers",
+      "ok": true,
+      "evidence": [
+        "literature-map",
+        "evidence-map",
+        "experiment-protocol",
+        "nir-milestone",
+        "vkr-milestone"
+      ]
+    },
+    {
+      "id": "DEPENDENCY-AUDIT",
+      "title": "bridge dependency audit accepts the locked B8-B10 stack",
+      "ok": true,
+      "evidence": {
+        "ok": true,
+        "code": "DEPENDENCIES_READY",
+        "errors": [],
+        "registryDigest": "c852e9bd4ab02bb7307274f1efc3c3b34c766de679cf06f3cff7bcb2c16d3001"
+      }
+    },
+    {
+      "id": "RELEASES",
+      "title": "renderer and bridge expose stable B10 releases",
+      "ok": true,
+      "evidence": {
+        "renderer": "L6-B10-UNIVERSAL-LESSON-RENDERER-V1",
+        "bridge": "L6-B10-LEGACY-LESSON-BRIDGE-V1"
+      }
+    },
+    {
+      "id": "TYPE-SCHEMA-language",
+      "title": "synthetic canonical type fixture passes the B8 schema",
+      "ok": true,
+      "evidence": []
+    },
+    {
+      "id": "TYPE-POLICY-language",
+      "title": "canonical type fixture resolves the exact B3 policy",
+      "ok": true,
+      "evidence": {
+        "schemaValid": true,
+        "state": "CANONICAL_RENDER_READY",
+        "sectionCount": 13,
+        "modelDigest": "17e4d6a3ce4af16188bd2c6734446452e866d9380dee2319e4619a5b2c864105",
+        "htmlDigest": "49ed80a282053cc6b17a4c17b755eb9bb1e4b15d9e0da99479a49d1b942bd8ae",
+        "omittedKinds": [],
+        "warnings": []
+      }
+    },
+    {
+      "id": "TYPE-HTML-language",
+      "title": "canonical type fixture renders safe semantic HTML",
+      "ok": true,
+      "evidence": "49ed80a282053cc6b17a4c17b755eb9bb1e4b15d9e0da99479a49d1b942bd8ae"
+    },
+    {
+      "id": "TYPE-DETERMINISTIC-language",
+      "title": "canonical render model and HTML are deterministic",
+      "ok": true,
+      "evidence": {
+        "model": "17e4d6a3ce4af16188bd2c6734446452e866d9380dee2319e4619a5b2c864105",
+        "html": "49ed80a282053cc6b17a4c17b755eb9bb1e4b15d9e0da99479a49d1b942bd8ae"
+      }
+    },
+    {
+      "id": "TYPE-SOURCE-language",
+      "title": "renderer leaves the canonical type source unchanged",
+      "ok": true,
+      "evidence": "aaeb0dd83dca07927f03664d379cd5d07a006f23d727b7d1e8cdf83d1520ae45"
+    },
+    {
+      "id": "TYPE-SCHEMA-mathematics",
+      "title": "synthetic canonical type fixture passes the B8 schema",
+      "ok": true,
+      "evidence": []
+    },
+    {
+      "id": "TYPE-POLICY-mathematics",
+      "title": "canonical type fixture resolves the exact B3 policy",
+      "ok": true,
+      "evidence": {
+        "schemaValid": true,
+        "state": "CANONICAL_RENDER_READY",
+        "sectionCount": 13,
+        "modelDigest": "f76fd130c7fd08a506bf74556e67bc42ea69b1e04740937d74d6a012f0ceb200",
+        "htmlDigest": "e8ec305a7d800f83668f82bf8fb246e4b8ed8f0aba0b2e2e00f16e23b93e9af1",
+        "omittedKinds": [],
+        "warnings": []
+      }
+    },
+    {
+      "id": "TYPE-HTML-mathematics",
+      "title": "canonical type fixture renders safe semantic HTML",
+      "ok": true,
+      "evidence": "e8ec305a7d800f83668f82bf8fb246e4b8ed8f0aba0b2e2e00f16e23b93e9af1"
+    },
+    {
+      "id": "TYPE-DETERMINISTIC-mathematics",
+      "title": "canonical render model and HTML are deterministic",
+      "ok": true,
+      "evidence": {
+        "model": "f76fd130c7fd08a506bf74556e67bc42ea69b1e04740937d74d6a012f0ceb200",
+        "html": "e8ec305a7d800f83668f82bf8fb246e4b8ed8f0aba0b2e2e00f16e23b93e9af1"
+      }
+    },
+    {
+      "id": "TYPE-SOURCE-mathematics",
+      "title": "renderer leaves the canonical type source unchanged",
+      "ok": true,
+      "evidence": "6d9374620c1ab9ea31ceeb3f22933aaf4d051400f1ce14dfcb4fa73b30d3b589"
+    },
+    {
+      "id": "TYPE-SCHEMA-programming",
+      "title": "synthetic canonical type fixture passes the B8 schema",
+      "ok": true,
+      "evidence": []
+    },
+    {
+      "id": "TYPE-POLICY-programming",
+      "title": "canonical type fixture resolves the exact B3 policy",
+      "ok": true,
+      "evidence": {
+        "schemaValid": true,
+        "state": "CANONICAL_RENDER_READY",
+        "sectionCount": 13,
+        "modelDigest": "9e4b0c0242bbd2acac16671ea9b0591aedbf4b67532b32a06e34cd3a2396ef57",
+        "htmlDigest": "63a34d6cd1af350be96ac3697067d0df2c082cef4e7be6e2ae97e1bfdf01f495",
+        "omittedKinds": [],
+        "warnings": []
+      }
+    },
+    {
+      "id": "TYPE-HTML-programming",
+      "title": "canonical type fixture renders safe semantic HTML",
+      "ok": true,
+      "evidence": "63a34d6cd1af350be96ac3697067d0df2c082cef4e7be6e2ae97e1bfdf01f495"
+    },
+    {
+      "id": "TYPE-DETERMINISTIC-programming",
+      "title": "canonical render model and HTML are deterministic",
+      "ok": true,
+      "evidence": {
+        "model": "9e4b0c0242bbd2acac16671ea9b0591aedbf4b67532b32a06e34cd3a2396ef57",
+        "html": "63a34d6cd1af350be96ac3697067d0df2c082cef4e7be6e2ae97e1bfdf01f495"
+      }
+    },
+    {
+      "id": "TYPE-SOURCE-programming",
+      "title": "renderer leaves the canonical type source unchanged",
+      "ok": true,
+      "evidence": "3e990603413c361cba8cd819df4cf7ae667c984b8c769e2c6f2f55fb51befea5"
+    },
+    {
+      "id": "TYPE-SCHEMA-database",
+      "title": "synthetic canonical type fixture passes the B8 schema",
+      "ok": true,
+      "evidence": []
+    },
+    {
+      "id": "TYPE-POLICY-database",
+      "title": "canonical type fixture resolves the exact B3 policy",
+      "ok": true,
+      "evidence": {
+        "schemaValid": true,
+        "state": "CANONICAL_RENDER_READY",
+        "sectionCount": 13,
+        "modelDigest": "22dfa81e1e015d6c6ef58ffc8b2334970258df0e5867068a5a3f270443f4e00d",
+        "htmlDigest": "a7b39ba2c437c49df45c3bd9195badc9593b007640c5b71a9b17c3a73193fc0c",
+        "omittedKinds": [],
+        "warnings": []
+      }
+    },
+    {
+      "id": "TYPE-HTML-database",
+      "title": "canonical type fixture renders safe semantic HTML",
+      "ok": true,
+      "evidence": "a7b39ba2c437c49df45c3bd9195badc9593b007640c5b71a9b17c3a73193fc0c"
+    },
+    {
+      "id": "TYPE-DETERMINISTIC-database",
+      "title": "canonical render model and HTML are deterministic",
+      "ok": true,
+      "evidence": {
+        "model": "22dfa81e1e015d6c6ef58ffc8b2334970258df0e5867068a5a3f270443f4e00d",
+        "html": "a7b39ba2c437c49df45c3bd9195badc9593b007640c5b71a9b17c3a73193fc0c"
+      }
+    },
+    {
+      "id": "TYPE-SOURCE-database",
+      "title": "renderer leaves the canonical type source unchanged",
+      "ok": true,
+      "evidence": "bef457d26f740f64cebdba7adc3139cdb2d1073496efe282628d90afa6f1008c"
+    },
+    {
+      "id": "TYPE-SCHEMA-software-design",
+      "title": "synthetic canonical type fixture passes the B8 schema",
+      "ok": true,
+      "evidence": []
+    },
+    {
+      "id": "TYPE-POLICY-software-design",
+      "title": "canonical type fixture resolves the exact B3 policy",
+      "ok": true,
+      "evidence": {
+        "schemaValid": true,
+        "state": "CANONICAL_RENDER_READY",
+        "sectionCount": 13,
+        "modelDigest": "759bed47800058d5820f6f68a87cdfd3270bf499a201a8622bf3954e8f9ab052",
+        "htmlDigest": "5ff1a2bc13e505e52c8a887b43860109d738683f63a5e74978661e95b180c3d1",
+        "omittedKinds": [],
+        "warnings": []
+      }
+    },
+    {
+      "id": "TYPE-HTML-software-design",
+      "title": "canonical type fixture renders safe semantic HTML",
+      "ok": true,
+      "evidence": "5ff1a2bc13e505e52c8a887b43860109d738683f63a5e74978661e95b180c3d1"
+    },
+    {
+      "id": "TYPE-DETERMINISTIC-software-design",
+      "title": "canonical render model and HTML are deterministic",
+      "ok": true,
+      "evidence": {
+        "model": "759bed47800058d5820f6f68a87cdfd3270bf499a201a8622bf3954e8f9ab052",
+        "html": "5ff1a2bc13e505e52c8a887b43860109d738683f63a5e74978661e95b180c3d1"
+      }
+    },
+    {
+      "id": "TYPE-SOURCE-software-design",
+      "title": "renderer leaves the canonical type source unchanged",
+      "ok": true,
+      "evidence": "b26e3dab60784bc75d4ad54bb10cff3db30b524656773237dfa5e1819f073ef7"
+    },
+    {
+      "id": "TYPE-SCHEMA-ml-data",
+      "title": "synthetic canonical type fixture passes the B8 schema",
+      "ok": true,
+      "evidence": []
+    },
+    {
+      "id": "TYPE-POLICY-ml-data",
+      "title": "canonical type fixture resolves the exact B3 policy",
+      "ok": true,
+      "evidence": {
+        "schemaValid": true,
+        "state": "CANONICAL_RENDER_READY",
+        "sectionCount": 13,
+        "modelDigest": "483e83d9603ff946670ef88d7a2d2eaae9af210b6a3406fd972d6500d092fd84",
+        "htmlDigest": "90176e2c50a249e8a52e3728a4b2727f09b1d051c98ecefecd894deaca291dff",
+        "omittedKinds": [],
+        "warnings": []
+      }
+    },
+    {
+      "id": "TYPE-HTML-ml-data",
+      "title": "canonical type fixture renders safe semantic HTML",
+      "ok": true,
+      "evidence": "90176e2c50a249e8a52e3728a4b2727f09b1d051c98ecefecd894deaca291dff"
+    },
+    {
+      "id": "TYPE-DETERMINISTIC-ml-data",
+      "title": "canonical render model and HTML are deterministic",
+      "ok": true,
+      "evidence": {
+        "model": "483e83d9603ff946670ef88d7a2d2eaae9af210b6a3406fd972d6500d092fd84",
+        "html": "90176e2c50a249e8a52e3728a4b2727f09b1d051c98ecefecd894deaca291dff"
+      }
+    },
+    {
+      "id": "TYPE-SOURCE-ml-data",
+      "title": "renderer leaves the canonical type source unchanged",
+      "ok": true,
+      "evidence": "4d3bb2d188f8c04faeb9c0d0f2be949b58ea70c68bfb031e352fb576a183f310"
+    },
+    {
+      "id": "TYPE-SCHEMA-asoiu-system",
+      "title": "synthetic canonical type fixture passes the B8 schema",
+      "ok": true,
+      "evidence": []
+    },
+    {
+      "id": "TYPE-POLICY-asoiu-system",
+      "title": "canonical type fixture resolves the exact B3 policy",
+      "ok": true,
+      "evidence": {
+        "schemaValid": true,
+        "state": "CANONICAL_RENDER_READY",
+        "sectionCount": 13,
+        "modelDigest": "fcc5adf715bd81757d1e60e37c514ef16ec079a1544c03b59ffb2ad35a6242cb",
+        "htmlDigest": "21340802aebaefafa15009681ff4bc7ddae3a92dbda219e74000c41b18336132",
+        "omittedKinds": [],
+        "warnings": []
+      }
+    },
+    {
+      "id": "TYPE-HTML-asoiu-system",
+      "title": "canonical type fixture renders safe semantic HTML",
+      "ok": true,
+      "evidence": "21340802aebaefafa15009681ff4bc7ddae3a92dbda219e74000c41b18336132"
+    },
+    {
+      "id": "TYPE-DETERMINISTIC-asoiu-system",
+      "title": "canonical render model and HTML are deterministic",
+      "ok": true,
+      "evidence": {
+        "model": "fcc5adf715bd81757d1e60e37c514ef16ec079a1544c03b59ffb2ad35a6242cb",
+        "html": "21340802aebaefafa15009681ff4bc7ddae3a92dbda219e74000c41b18336132"
+      }
+    },
+    {
+      "id": "TYPE-SOURCE-asoiu-system",
+      "title": "renderer leaves the canonical type source unchanged",
+      "ok": true,
+      "evidence": "b6a18e9f24e255435837cc30d3e2d2c30ea0cbed499eba0e34bd1ca38cf3e6c3"
+    },
+    {
+      "id": "TYPE-SCHEMA-research",
+      "title": "synthetic canonical type fixture passes the B8 schema",
+      "ok": true,
+      "evidence": []
+    },
+    {
+      "id": "TYPE-POLICY-research",
+      "title": "canonical type fixture resolves the exact B3 policy",
+      "ok": true,
+      "evidence": {
+        "schemaValid": true,
+        "state": "CANONICAL_RENDER_READY",
+        "sectionCount": 13,
+        "modelDigest": "b3b4ee0440c440d84f1a126a42e61c453cd577922763730e75adac32d7164064",
+        "htmlDigest": "a372d41cbcd934acaf65801887111a8a66dfa74662c36adbe72a3599c527f7fb",
+        "omittedKinds": [],
+        "warnings": []
+      }
+    },
+    {
+      "id": "TYPE-HTML-research",
+      "title": "canonical type fixture renders safe semantic HTML",
+      "ok": true,
+      "evidence": "a372d41cbcd934acaf65801887111a8a66dfa74662c36adbe72a3599c527f7fb"
+    },
+    {
+      "id": "TYPE-DETERMINISTIC-research",
+      "title": "canonical render model and HTML are deterministic",
+      "ok": true,
+      "evidence": {
+        "model": "b3b4ee0440c440d84f1a126a42e61c453cd577922763730e75adac32d7164064",
+        "html": "a372d41cbcd934acaf65801887111a8a66dfa74662c36adbe72a3599c527f7fb"
+      }
+    },
+    {
+      "id": "TYPE-SOURCE-research",
+      "title": "renderer leaves the canonical type source unchanged",
+      "ok": true,
+      "evidence": "080afe0e2db2eb08957cb2b2bc2f56d32be09e4f31f4a98df1b5f8dad5d1faab"
+    },
+    {
+      "id": "POLICY-REQUIRED-MISSING",
+      "title": "missing required review block fails closed",
+      "ok": true,
+      "evidence": [
+        {
+          "code": "MISSING_REQUIRED_BLOCK",
+          "kind": "review",
+          "fulfillment": "either",
+          "requiredCapabilities": []
+        }
+      ]
+    },
+    {
+      "id": "POLICY-EXTERNAL-MISSING",
+      "title": "missing required Programming external capabilities fails closed",
+      "ok": true,
+      "evidence": [
+        {
+          "code": "EXTERNAL_CAPABILITY_UNAVAILABLE",
+          "kind": "lab-simulation",
+          "requiredCapabilities": [
+            "code-lab",
+            "unit-test",
+            "debug-runner"
+          ],
+          "blockIds": [
+            "block-lab-simulation"
+          ]
+        },
+        {
+          "code": "EXTERNAL_CAPABILITY_UNAVAILABLE",
+          "kind": "visual-check",
+          "requiredCapabilities": [
+            "code-trace",
+            "test-output-diff"
+          ],
+          "blockIds": [
+            "block-visual-check"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "MODE-orientation-only",
+      "title": "registered lesson mode renders only its populated required semantic set",
+      "ok": true,
+      "evidence": [
+        "orientation"
+      ]
+    },
+    {
+      "id": "MODE-ORIENTATION-MASTERY",
+      "title": "orientation-only suppresses top-level mastery evidence and claims no completion",
+      "ok": true,
+      "evidence": {
+        "modelVersion": "1.0.0",
+        "state": "CANONICAL_RENDER_READY",
+        "reviewPreview": false,
+        "masterReadyClaimed": false,
+        "masterReadyAuthority": "external-b5-policy-only",
+        "lessonDigest": "96e8451f02c7c39c815fa6cf345be0c969f7486e81cfc41c0b3f92b3410641bb",
+        "lessonId": "b10-programming-fixture",
+        "subjectId": "programming",
+        "lessonType": "programming",
+        "title": "B10 programming renderer fixture",
+        "titles": {
+          "primary": "B10 programming renderer fixture",
+          "vi": "Bài kiểm thử renderer programming"
+        },
+        "stageId": "prepare",
+        "estimatedMinutes": 35,
+        "strategy": "inline-flow",
+        "programIdentity": {
+          "department": "ИУ-5",
+          "officialPublishedDirectionCode": "09.04.01",
+          "personalizedDisplayCode": "09.04.01/11"
+        },
+        "sourceIdentity": {
+          "sourceArtifactId": "b10-source-programming-b10-programming-fixture",
+          "sourceArtifactKind": "lesson-record",
+          "sourceVersion": "b10-fixture-v1",
+          "locator": {
+            "sourcePath": "scripts/academic/fixtures/l6-b8/canonical-minimal-v2.json",
+            "recordId": "b10-programming-fixture"
+          },
+          "origin": "provided-source",
+          "adapterId": "b10-regression-fixture",
+          "precedence": 0
+        },
+        "prerequisites": [],
+        "objectives": [
+          {
+            "id": "objective-b10",
+            "statement": "Produce and explain a source-grounded programming artifact.",
+            "evidenceKinds": [
+              "code"
+            ],
+            "language": "en"
+          }
+        ],
+        "sections": [
+          {
+            "id": "block-orientation",
+            "kind": "orientation",
+            "mode": "inline",
+            "label": "Bắt đầu và mục tiêu",
+            "payload": {
+              "governingQuestion": "How does <source> become safe evidence?",
+              "whyItMatters": "Connect this lesson to Bauman ИУ-5.",
+              "successPreview": "Explain and verify one result."
+            },
+            "presentationHint": {
+              "preferredStrategy": "inline-flow",
+              "accessibilityMode": "semantic"
+            },
+            "evidenceRefs": [
+              "objective-b10"
+            ],
+            "offlineRef": "lesson-core",
+            "sourceBindingCount": 1
+          }
+        ],
+        "masteryEvidence": [],
+        "offline": {
+          "policyId": "fixture-lesson-offline",
+          "resources": [
+            {
+              "id": "lesson-core",
+              "availability": "bundled",
+              "bytesPolicy": "metadata-and-small-content",
+              "freshnessPolicy": "content-version-authoritative",
+              "rollbackRef": "fixture-source"
+            }
+          ],
+          "deterministicFallbackRef": "lesson-core"
+        },
+        "provenanceSummary": {
+          "sourceRefs": 1,
+          "userEvidenceRefs": 0,
+          "systemDerivedRefs": 0,
+          "aiInferenceRefs": 0
+        },
+        "policyEvidence": {
+          "lessonMode": "orientation-only",
+          "suppressedMasteryEvidenceCount": 1,
+          "omittedKinds": [
+            "concept-map",
+            "theory",
+            "worked-example",
+            "exercise",
+            "lab-simulation",
+            "misconception",
+            "visual-check",
+            "oral",
+            "review",
+            "assessment",
+            "mastery",
+            "project-nir-evidence"
+          ],
+          "conditionOutcomes": {},
+          "warnings": []
+        }
+      }
+    },
+    {
+      "id": "MODE-diagnostic",
+      "title": "registered lesson mode renders only its populated required semantic set",
+      "ok": true,
+      "evidence": [
+        "orientation",
+        "assessment"
+      ]
+    },
+    {
+      "id": "MODE-recovery",
+      "title": "registered lesson mode renders only its populated required semantic set",
+      "ok": true,
+      "evidence": [
+        "exercise",
+        "misconception",
+        "review",
+        "mastery"
+      ]
+    },
+    {
+      "id": "POLICY-FORBIDDEN",
+      "title": "forbidden mastery block is quarantined and blocks orientation-only mode",
+      "ok": true,
+      "evidence": {
+        "ok": false,
+        "blocked": true,
+        "code": "POLICY_BLOCKED",
+        "lessonType": "programming",
+        "lessonMode": "orientation-only",
+        "renderedBlocks": [
+          {
+            "id": "block-orientation",
+            "kind": "orientation",
+            "mode": "inline",
+            "label": "Bắt đầu và mục tiêu",
+            "payload": {
+              "governingQuestion": "How does <source> become safe evidence?",
+              "whyItMatters": "Connect this lesson to Bauman ИУ-5.",
+              "successPreview": "Explain and verify one result."
+            },
+            "presentationHint": {
+              "preferredStrategy": "inline-flow",
+              "accessibilityMode": "semantic"
+            },
+            "evidenceRefs": [
+              "objective-b10"
+            ],
+            "offlineRef": "lesson-core",
+            "sourceBindingCount": 1
+          }
+        ],
+        "omittedKinds": [
+          "concept-map",
+          "theory",
+          "worked-example",
+          "exercise",
+          "lab-simulation",
+          "misconception",
+          "visual-check",
+          "oral",
+          "review",
+          "assessment",
+          "project-nir-evidence"
+        ],
+        "quarantinedBlockIds": [
+          "block-mastery"
+        ],
+        "conditionOutcomes": {},
+        "errors": [
+          {
+            "code": "FORBIDDEN_BLOCK_PRESENT",
+            "kind": "mastery",
+            "blockIds": [
+              "block-mastery"
+            ],
+            "provider": null
+          }
+        ],
+        "warnings": [],
+        "policyTable": {
+          "orientation": {
+            "requirement": "required",
+            "fulfillment": "inline",
+            "capabilityRefs": []
+          },
+          "concept-map": {
+            "requirement": "optional",
+            "fulfillment": "either",
+            "capabilityRefs": []
+          },
+          "theory": {
+            "requirement": "optional",
+            "fulfillment": "either",
+            "capabilityRefs": []
+          },
+          "worked-example": {
+            "requirement": "optional",
+            "fulfillment": "either",
+            "capabilityRefs": [
+              "code-trace"
+            ]
+          },
+          "exercise": {
+            "requirement": "optional",
+            "fulfillment": "either",
+            "capabilityRefs": []
+          },
+          "lab-simulation": {
+            "requirement": "optional",
+            "fulfillment": "either",
+            "capabilityRefs": [
+              "code-lab",
+              "unit-test",
+              "debug-runner"
+            ]
+          },
+          "misconception": {
+            "requirement": "optional",
+            "fulfillment": "either",
+            "capabilityRefs": []
+          },
+          "visual-check": {
+            "requirement": "optional",
+            "fulfillment": "either",
+            "capabilityRefs": [
+              "code-trace",
+              "test-output-diff"
+            ]
+          },
+          "oral": {
+            "requirement": "optional",
+            "fulfillment": "either",
+            "capabilityRefs": [
+              "code-review-defense"
+            ]
+          },
+          "review": {
+            "requirement": "optional",
+            "fulfillment": "either",
+            "capabilityRefs": []
+          },
+          "assessment": {
+            "requirement": "forbidden",
+            "fulfillment": "inline",
+            "capabilityRefs": []
+          },
+          "mastery": {
+            "requirement": "forbidden",
+            "fulfillment": "inline",
+            "capabilityRefs": []
+          },
+          "project-nir-evidence": {
+            "requirement": "optional",
+            "fulfillment": "either",
+            "capabilityRefs": []
+          }
+        }
+      }
+    },
+    {
+      "id": "POLICY-UNKNOWN-MODE",
+      "title": "unknown lesson mode fails closed",
+      "ok": true,
+      "evidence": "UNKNOWN_LESSON_MODE"
+    },
+    {
+      "id": "POLICY-CONDITIONAL-PRESENT",
+      "title": "false conditional keeps present source content as optional with warning",
+      "ok": true,
+      "evidence": [
+        {
+          "code": "CONDITIONAL_FALSE_CONTENT_RETAINED",
+          "kind": "theory",
+          "message": "Present source content remains visible but was not required by the condition."
+        }
+      ]
+    },
+    {
+      "id": "PRESENTATION-UNKNOWN-HINT",
+      "title": "unknown requested strategy falls back deterministically without dropping content",
+      "ok": true,
+      "evidence": "inline-flow"
+    },
+    {
+      "id": "HTML-ESCAPING",
+      "title": "source markup is escaped and cannot create script image or inline handler nodes",
+      "ok": true,
+      "evidence": "81a7fe85875edfae88e95d2764350eca9d4ae4c04b0d0d7223948228cabcc046"
+    },
+    {
+      "id": "ASSESSMENT-PROTECTED",
+      "title": "active official attempt recursively hides answer solution and correct-state keys",
+      "ok": true,
+      "evidence": "0cf26f0c8f8760881220d1526460c54bc80da7b8c683a088e754040dbd5dfaa5"
+    },
+    {
+      "id": "ASSESSMENT-SUBMITTED",
+      "title": "explicit submitted review may display escaped answer material",
+      "ok": true,
+      "evidence": "63a34d6cd1af350be96ac3697067d0df2c082cef4e7be6e2ae97e1bfdf01f495"
+    },
+    {
+      "id": "HTML-INVALID-MODEL",
+      "title": "HTML renderer rejects arbitrary non-ready models",
+      "ok": true,
+      "evidence": {
+        "ok": false,
+        "blocked": true,
+        "code": "INVALID_RENDER_MODEL",
+        "message": "HTML renderer accepts only a ready B10 render model.",
+        "details": null
+      }
+    },
+    {
+      "id": "PROVIDERS-russian",
+      "title": "bridge exposes capabilities only through existing subject widgets",
+      "ok": true,
+      "evidence": {
+        "dialogue": {
+          "capabilityRef": "dialogue",
+          "widgetId": "russian-dialogue-studio",
+          "availability": "existing"
+        },
+        "dialogue-model": {
+          "capabilityRef": "dialogue-model",
+          "widgetId": "russian-dialogue-studio",
+          "availability": "existing"
+        },
+        "shadowing": {
+          "capabilityRef": "shadowing",
+          "widgetId": "russian-shadowing",
+          "availability": "existing"
+        },
+        "speech-recording": {
+          "capabilityRef": "speech-recording",
+          "widgetId": "russian-shadowing",
+          "availability": "existing"
+        },
+        "deep-speaking": {
+          "capabilityRef": "deep-speaking",
+          "widgetId": "russian-deep-speaking",
+          "availability": "existing-lazy"
+        },
+        "handwriting-workspace": {
+          "capabilityRef": "handwriting-workspace",
+          "widgetId": "russian-handwriting",
+          "availability": "existing"
+        },
+        "handwriting-state": {
+          "capabilityRef": "handwriting-state",
+          "widgetId": "russian-handwriting",
+          "availability": "existing"
+        },
+        "vocabulary": {
+          "capabilityRef": "vocabulary",
+          "widgetId": "russian-flashcards",
+          "availability": "existing"
+        },
+        "language-assessment": {
+          "capabilityRef": "language-assessment",
+          "widgetId": "russian-scheduled-exam",
+          "availability": "existing"
+        }
+      }
+    },
+    {
+      "id": "PROVIDERS-math",
+      "title": "bridge exposes capabilities only through existing subject widgets",
+      "ok": true,
+      "evidence": {
+        "authoritative-theory-deck": {
+          "capabilityRef": "authoritative-theory-deck",
+          "widgetId": "math-rich-theory-reader",
+          "availability": "existing"
+        },
+        "artifact-reader": {
+          "capabilityRef": "artifact-reader",
+          "widgetId": "math-rich-theory-reader",
+          "availability": "existing"
+        },
+        "derivation": {
+          "capabilityRef": "derivation",
+          "widgetId": "math-rich-theory-reader",
+          "availability": "existing"
+        },
+        "formula-typesetting": {
+          "capabilityRef": "formula-typesetting",
+          "widgetId": "math-formula-typesetter",
+          "availability": "existing"
+        },
+        "matrix-rendering": {
+          "capabilityRef": "matrix-rendering",
+          "widgetId": "math-formula-typesetter",
+          "availability": "existing"
+        },
+        "formula-diagram": {
+          "capabilityRef": "formula-diagram",
+          "widgetId": "math-formula-typesetter",
+          "availability": "existing"
+        },
+        "common-mistakes": {
+          "capabilityRef": "common-mistakes",
+          "widgetId": "math-step-solution",
+          "availability": "existing"
+        },
+        "parameter-simulation": {
+          "capabilityRef": "parameter-simulation",
+          "widgetId": "math-parameter-simulation",
+          "availability": "existing"
+        },
+        "plot": {
+          "capabilityRef": "plot",
+          "widgetId": "math-parameter-simulation",
+          "availability": "existing"
+        },
+        "professor-oral-defense": {
+          "capabilityRef": "professor-oral-defense",
+          "widgetId": "math-professor-oral",
+          "availability": "existing"
+        }
+      }
+    },
+    {
+      "id": "PROVIDERS-programming",
+      "title": "bridge exposes capabilities only through existing subject widgets",
+      "ok": true,
+      "evidence": {
+        "code-trace": {
+          "capabilityRef": "code-trace",
+          "widgetId": "programming-syntax-workflow",
+          "availability": "existing"
+        },
+        "output-prediction": {
+          "capabilityRef": "output-prediction",
+          "widgetId": "programming-syntax-workflow",
+          "availability": "existing"
+        },
+        "code-lab": {
+          "capabilityRef": "code-lab",
+          "widgetId": "programming-software-lab",
+          "availability": "existing"
+        },
+        "unit-test": {
+          "capabilityRef": "unit-test",
+          "widgetId": "programming-software-lab",
+          "availability": "existing"
+        },
+        "debug-runner": {
+          "capabilityRef": "debug-runner",
+          "widgetId": "programming-software-lab",
+          "availability": "existing"
+        },
+        "architecture-workspace": {
+          "capabilityRef": "architecture-workspace",
+          "widgetId": "programming-software-lab",
+          "availability": "existing"
+        }
+      }
+    },
+    {
+      "id": "PROVIDERS-foundation",
+      "title": "bridge exposes capabilities only through existing subject widgets",
+      "ok": true,
+      "evidence": {
+        "inline-flow": {
+          "capabilityRef": "inline-flow",
+          "widgetId": "generic-elearning-flow",
+          "availability": "existing"
+        },
+        "generic-simulation": {
+          "capabilityRef": "generic-simulation",
+          "widgetId": "generic-simulation",
+          "availability": "existing"
+        },
+        "practice-assessment": {
+          "capabilityRef": "practice-assessment",
+          "widgetId": "generic-assessment",
+          "availability": "existing"
+        }
+      }
+    },
+    {
+      "id": "PROVIDERS-ai",
+      "title": "bridge exposes capabilities only through existing subject widgets",
+      "ok": true,
+      "evidence": {
+        "inline-flow": {
+          "capabilityRef": "inline-flow",
+          "widgetId": "generic-elearning-flow",
+          "availability": "existing"
+        },
+        "generic-simulation": {
+          "capabilityRef": "generic-simulation",
+          "widgetId": "generic-simulation",
+          "availability": "existing"
+        },
+        "practice-assessment": {
+          "capabilityRef": "practice-assessment",
+          "widgetId": "generic-assessment",
+          "availability": "existing"
+        }
+      }
+    },
+    {
+      "id": "PROVIDERS-signal",
+      "title": "bridge exposes capabilities only through existing subject widgets",
+      "ok": true,
+      "evidence": {
+        "inline-flow": {
+          "capabilityRef": "inline-flow",
+          "widgetId": "generic-elearning-flow",
+          "availability": "existing"
+        },
+        "generic-simulation": {
+          "capabilityRef": "generic-simulation",
+          "widgetId": "generic-simulation",
+          "availability": "existing"
+        },
+        "practice-assessment": {
+          "capabilityRef": "practice-assessment",
+          "widgetId": "generic-assessment",
+          "availability": "existing"
+        }
+      }
+    },
+    {
+      "id": "PROVIDERS-systems",
+      "title": "bridge exposes capabilities only through existing subject widgets",
+      "ok": true,
+      "evidence": {
+        "inline-flow": {
+          "capabilityRef": "inline-flow",
+          "widgetId": "generic-elearning-flow",
+          "availability": "existing"
+        },
+        "generic-simulation": {
+          "capabilityRef": "generic-simulation",
+          "widgetId": "generic-simulation",
+          "availability": "existing"
+        },
+        "practice-assessment": {
+          "capabilityRef": "practice-assessment",
+          "widgetId": "generic-assessment",
+          "availability": "existing"
+        }
+      }
+    },
+    {
+      "id": "PROVIDERS-research",
+      "title": "bridge exposes capabilities only through existing subject widgets",
+      "ok": true,
+      "evidence": {
+        "inline-flow": {
+          "capabilityRef": "inline-flow",
+          "widgetId": "generic-elearning-flow",
+          "availability": "existing"
+        },
+        "generic-simulation": {
+          "capabilityRef": "generic-simulation",
+          "widgetId": "generic-simulation",
+          "availability": "existing"
+        },
+        "practice-assessment": {
+          "capabilityRef": "practice-assessment",
+          "widgetId": "generic-assessment",
+          "availability": "existing"
+        }
+      }
+    },
+    {
+      "id": "PROVIDERS-PLANNED-EXCLUDED",
+      "title": "declared and planned widgets do not expose external capabilities",
+      "ok": true,
+      "evidence": {
+        "russian": {
+          "dialogue": {
+            "capabilityRef": "dialogue",
+            "widgetId": "russian-dialogue-studio",
+            "availability": "existing"
+          },
+          "dialogue-model": {
+            "capabilityRef": "dialogue-model",
+            "widgetId": "russian-dialogue-studio",
+            "availability": "existing"
+          },
+          "shadowing": {
+            "capabilityRef": "shadowing",
+            "widgetId": "russian-shadowing",
+            "availability": "existing"
+          },
+          "speech-recording": {
+            "capabilityRef": "speech-recording",
+            "widgetId": "russian-shadowing",
+            "availability": "existing"
+          },
+          "deep-speaking": {
+            "capabilityRef": "deep-speaking",
+            "widgetId": "russian-deep-speaking",
+            "availability": "existing-lazy"
+          },
+          "handwriting-workspace": {
+            "capabilityRef": "handwriting-workspace",
+            "widgetId": "russian-handwriting",
+            "availability": "existing"
+          },
+          "handwriting-state": {
+            "capabilityRef": "handwriting-state",
+            "widgetId": "russian-handwriting",
+            "availability": "existing"
+          },
+          "vocabulary": {
+            "capabilityRef": "vocabulary",
+            "widgetId": "russian-flashcards",
+            "availability": "existing"
+          },
+          "language-assessment": {
+            "capabilityRef": "language-assessment",
+            "widgetId": "russian-scheduled-exam",
+            "availability": "existing"
+          }
+        },
+        "math": {
+          "authoritative-theory-deck": {
+            "capabilityRef": "authoritative-theory-deck",
+            "widgetId": "math-rich-theory-reader",
+            "availability": "existing"
+          },
+          "artifact-reader": {
+            "capabilityRef": "artifact-reader",
+            "widgetId": "math-rich-theory-reader",
+            "availability": "existing"
+          },
+          "derivation": {
+            "capabilityRef": "derivation",
+            "widgetId": "math-rich-theory-reader",
+            "availability": "existing"
+          },
+          "formula-typesetting": {
+            "capabilityRef": "formula-typesetting",
+            "widgetId": "math-formula-typesetter",
+            "availability": "existing"
+          },
+          "matrix-rendering": {
+            "capabilityRef": "matrix-rendering",
+            "widgetId": "math-formula-typesetter",
+            "availability": "existing"
+          },
+          "formula-diagram": {
+            "capabilityRef": "formula-diagram",
+            "widgetId": "math-formula-typesetter",
+            "availability": "existing"
+          },
+          "common-mistakes": {
+            "capabilityRef": "common-mistakes",
+            "widgetId": "math-step-solution",
+            "availability": "existing"
+          },
+          "parameter-simulation": {
+            "capabilityRef": "parameter-simulation",
+            "widgetId": "math-parameter-simulation",
+            "availability": "existing"
+          },
+          "plot": {
+            "capabilityRef": "plot",
+            "widgetId": "math-parameter-simulation",
+            "availability": "existing"
+          },
+          "professor-oral-defense": {
+            "capabilityRef": "professor-oral-defense",
+            "widgetId": "math-professor-oral",
+            "availability": "existing"
+          }
+        },
+        "programming": {
+          "code-trace": {
+            "capabilityRef": "code-trace",
+            "widgetId": "programming-syntax-workflow",
+            "availability": "existing"
+          },
+          "output-prediction": {
+            "capabilityRef": "output-prediction",
+            "widgetId": "programming-syntax-workflow",
+            "availability": "existing"
+          },
+          "code-lab": {
+            "capabilityRef": "code-lab",
+            "widgetId": "programming-software-lab",
+            "availability": "existing"
+          },
+          "unit-test": {
+            "capabilityRef": "unit-test",
+            "widgetId": "programming-software-lab",
+            "availability": "existing"
+          },
+          "debug-runner": {
+            "capabilityRef": "debug-runner",
+            "widgetId": "programming-software-lab",
+            "availability": "existing"
+          },
+          "architecture-workspace": {
+            "capabilityRef": "architecture-workspace",
+            "widgetId": "programming-software-lab",
+            "availability": "existing"
+          }
+        },
+        "foundation": {
+          "inline-flow": {
+            "capabilityRef": "inline-flow",
+            "widgetId": "generic-elearning-flow",
+            "availability": "existing"
+          },
+          "generic-simulation": {
+            "capabilityRef": "generic-simulation",
+            "widgetId": "generic-simulation",
+            "availability": "existing"
+          },
+          "practice-assessment": {
+            "capabilityRef": "practice-assessment",
+            "widgetId": "generic-assessment",
+            "availability": "existing"
+          }
+        },
+        "ai": {
+          "inline-flow": {
+            "capabilityRef": "inline-flow",
+            "widgetId": "generic-elearning-flow",
+            "availability": "existing"
+          },
+          "generic-simulation": {
+            "capabilityRef": "generic-simulation",
+            "widgetId": "generic-simulation",
+            "availability": "existing"
+          },
+          "practice-assessment": {
+            "capabilityRef": "practice-assessment",
+            "widgetId": "generic-assessment",
+            "availability": "existing"
+          }
+        },
+        "signal": {
+          "inline-flow": {
+            "capabilityRef": "inline-flow",
+            "widgetId": "generic-elearning-flow",
+            "availability": "existing"
+          },
+          "generic-simulation": {
+            "capabilityRef": "generic-simulation",
+            "widgetId": "generic-simulation",
+            "availability": "existing"
+          },
+          "practice-assessment": {
+            "capabilityRef": "practice-assessment",
+            "widgetId": "generic-assessment",
+            "availability": "existing"
+          }
+        },
+        "systems": {
+          "inline-flow": {
+            "capabilityRef": "inline-flow",
+            "widgetId": "generic-elearning-flow",
+            "availability": "existing"
+          },
+          "generic-simulation": {
+            "capabilityRef": "generic-simulation",
+            "widgetId": "generic-simulation",
+            "availability": "existing"
+          },
+          "practice-assessment": {
+            "capabilityRef": "practice-assessment",
+            "widgetId": "generic-assessment",
+            "availability": "existing"
+          }
+        },
+        "research": {
+          "inline-flow": {
+            "capabilityRef": "inline-flow",
+            "widgetId": "generic-elearning-flow",
+            "availability": "existing"
+          },
+          "generic-simulation": {
+            "capabilityRef": "generic-simulation",
+            "widgetId": "generic-simulation",
+            "availability": "existing"
+          },
+          "practice-assessment": {
+            "capabilityRef": "practice-assessment",
+            "widgetId": "generic-assessment",
+            "availability": "existing"
+          }
+        }
+      }
+    },
+    {
+      "id": "BRIDGE-SPECIALIST-russian",
+      "title": "specialist subject delegates to the unchanged engine route",
+      "ok": true,
+      "evidence": {
+        "ok": true,
+        "blocked": false,
+        "code": "DELEGATE_SPECIALIST_ENGINE",
+        "mode": "read-only-plan",
+        "subjectId": "russian",
+        "engineRef": "russian-v13-specialist",
+        "sourceDigest": "670f824e2faf5c4a92876bb367784eb007d6ad07e6d0b897f671e5c66ef92e80",
+        "digestAlgorithm": "sha256-stable-json-v1",
+        "sourceUnchanged": true,
+        "sourceMutationAllowed": false,
+        "learnerStateWriteAllowed": false,
+        "masterReadyClaimed": false,
+        "route": {
+          "main": "subjects/russian/index.html",
+          "editor": "subjects/russian/editor.html",
+          "manifest": "subjects/russian/subject-manifest.json",
+          "adapter": "subjects/russian/assets/subject-adapter.js"
+        },
+        "rollback": {
+          "behavior": "route-directly-to-unchanged-subject-engine",
+          "route": "subjects/russian/index.html",
+          "sourceDigest": "670f824e2faf5c4a92876bb367784eb007d6ad07e6d0b897f671e5c66ef92e80"
+        },
+        "delegate": {
+          "rendererOwner": "russian-subject-engine",
+          "adapterGlobal": "SUBJECT_ADAPTER",
+          "route": "subjects/russian/index.html",
+          "editorRoute": "subjects/russian/editor.html",
+          "reason": "Specialist engine retains interaction, source and learner-state ownership."
+        },
+        "projection": null,
+        "render": null
+      }
+    },
+    {
+      "id": "BRIDGE-SPECIALIST-SOURCE-russian",
+      "title": "specialist bridge leaves source byte-equivalent",
+      "ok": true,
+      "evidence": "670f824e2faf5c4a92876bb367784eb007d6ad07e6d0b897f671e5c66ef92e80"
+    },
+    {
+      "id": "BRIDGE-SPECIALIST-ROLLBACK-russian",
+      "title": "specialist rollback restores the direct unchanged route",
+      "ok": true,
+      "evidence": {
+        "ok": true,
+        "blocked": false,
+        "code": "UNCHANGED_ENGINE_ROUTE_RESTORED",
+        "route": "subjects/russian/index.html",
+        "sourceDigest": "670f824e2faf5c4a92876bb367784eb007d6ad07e6d0b897f671e5c66ef92e80",
+        "sourceUnchanged": true,
+        "learnerStateWritePerformed": false,
+        "cacheWritePerformed": false
+      }
+    },
+    {
+      "id": "BRIDGE-SPECIALIST-math",
+      "title": "specialist subject delegates to the unchanged engine route",
+      "ok": true,
+      "evidence": {
+        "ok": true,
+        "blocked": false,
+        "code": "DELEGATE_SPECIALIST_ENGINE",
+        "mode": "read-only-plan",
+        "subjectId": "math",
+        "engineRef": "math-e126-specialist",
+        "sourceDigest": "5226c32fd850954be78b7f98f599c107b8fd3ac225db00599ce22f56eabc0056",
+        "digestAlgorithm": "sha256-stable-json-v1",
+        "sourceUnchanged": true,
+        "sourceMutationAllowed": false,
+        "learnerStateWriteAllowed": false,
+        "masterReadyClaimed": false,
+        "route": {
+          "main": "subjects/math/index.html",
+          "editor": "subjects/math/editor.html",
+          "manifest": "subjects/math/subject-manifest.json",
+          "adapter": "subjects/math/assets/subject-adapter.js"
+        },
+        "rollback": {
+          "behavior": "route-directly-to-unchanged-subject-engine",
+          "route": "subjects/math/index.html",
+          "sourceDigest": "5226c32fd850954be78b7f98f599c107b8fd3ac225db00599ce22f56eabc0056"
+        },
+        "delegate": {
+          "rendererOwner": "math-subject-engine",
+          "adapterGlobal": "SUBJECT_ADAPTER",
+          "route": "subjects/math/index.html",
+          "editorRoute": "subjects/math/editor.html",
+          "reason": "Specialist engine retains interaction, source and learner-state ownership."
+        },
+        "projection": null,
+        "render": null
+      }
+    },
+    {
+      "id": "BRIDGE-SPECIALIST-SOURCE-math",
+      "title": "specialist bridge leaves source byte-equivalent",
+      "ok": true,
+      "evidence": "5226c32fd850954be78b7f98f599c107b8fd3ac225db00599ce22f56eabc0056"
+    },
+    {
+      "id": "BRIDGE-SPECIALIST-ROLLBACK-math",
+      "title": "specialist rollback restores the direct unchanged route",
+      "ok": true,
+      "evidence": {
+        "ok": true,
+        "blocked": false,
+        "code": "UNCHANGED_ENGINE_ROUTE_RESTORED",
+        "route": "subjects/math/index.html",
+        "sourceDigest": "5226c32fd850954be78b7f98f599c107b8fd3ac225db00599ce22f56eabc0056",
+        "sourceUnchanged": true,
+        "learnerStateWritePerformed": false,
+        "cacheWritePerformed": false
+      }
+    },
+    {
+      "id": "BRIDGE-SPECIALIST-programming",
+      "title": "specialist subject delegates to the unchanged engine route",
+      "ok": true,
+      "evidence": {
+        "ok": true,
+        "blocked": false,
+        "code": "DELEGATE_SPECIALIST_ENGINE",
+        "mode": "read-only-plan",
+        "subjectId": "programming",
+        "engineRef": "programming-v2-specialist",
+        "sourceDigest": "6b81d7aab35412701838348fb050cc7d048276a8f7b5f5fea32645146570d6ee",
+        "digestAlgorithm": "sha256-stable-json-v1",
+        "sourceUnchanged": true,
+        "sourceMutationAllowed": false,
+        "learnerStateWriteAllowed": false,
+        "masterReadyClaimed": false,
+        "route": {
+          "main": "subjects/programming/index.html",
+          "editor": "subjects/programming/editor.html",
+          "manifest": "subjects/programming/subject-manifest.json",
+          "adapter": "subjects/programming/assets/subject-adapter.js"
+        },
+        "rollback": {
+          "behavior": "route-directly-to-unchanged-subject-engine",
+          "route": "subjects/programming/index.html",
+          "sourceDigest": "6b81d7aab35412701838348fb050cc7d048276a8f7b5f5fea32645146570d6ee"
+        },
+        "delegate": {
+          "rendererOwner": "programming-subject-engine",
+          "adapterGlobal": "SUBJECT_ADAPTER",
+          "route": "subjects/programming/index.html",
+          "editorRoute": "subjects/programming/editor.html",
+          "reason": "Specialist engine retains interaction, source and learner-state ownership."
+        },
+        "projection": null,
+        "render": null
+      }
+    },
+    {
+      "id": "BRIDGE-SPECIALIST-SOURCE-programming",
+      "title": "specialist bridge leaves source byte-equivalent",
+      "ok": true,
+      "evidence": "6b81d7aab35412701838348fb050cc7d048276a8f7b5f5fea32645146570d6ee"
+    },
+    {
+      "id": "BRIDGE-SPECIALIST-ROLLBACK-programming",
+      "title": "specialist rollback restores the direct unchanged route",
+      "ok": true,
+      "evidence": {
+        "ok": true,
+        "blocked": false,
+        "code": "UNCHANGED_ENGINE_ROUTE_RESTORED",
+        "route": "subjects/programming/index.html",
+        "sourceDigest": "6b81d7aab35412701838348fb050cc7d048276a8f7b5f5fea32645146570d6ee",
+        "sourceUnchanged": true,
+        "learnerStateWritePerformed": false,
+        "cacheWritePerformed": false
+      }
+    },
+    {
+      "id": "BRIDGE-LIGHT-REVIEW-foundation",
+      "title": "current light eLearning source remains review-only by default",
+      "ok": true,
+      "evidence": {
+        "ok": true,
+        "blocked": false,
+        "code": "REVIEW_REQUIRED",
+        "mode": "read-only-plan",
+        "subjectId": "foundation",
+        "engineRef": "light-elearning-v2",
+        "sourceDigest": "d49df469336f20ef35a0303e9f9a32ba3d2b1edf7e296efdccc65401f2fa71c3",
+        "digestAlgorithm": "sha256-stable-json-v1",
+        "sourceUnchanged": true,
+        "sourceMutationAllowed": false,
+        "learnerStateWriteAllowed": false,
+        "masterReadyClaimed": false,
+        "route": {
+          "main": "subjects/foundation/index.html",
+          "editor": "subjects/foundation/editor.html",
+          "manifest": "subjects/foundation/subject-manifest.json",
+          "manifestScript": "subjects/foundation/subject-manifest.js",
+          "runtime": "subjects/foundation/assets/foundation.js"
+        },
+        "rollback": {
+          "behavior": "route-directly-to-unchanged-subject-engine",
+          "route": "subjects/foundation/index.html",
+          "sourceDigest": "d49df469336f20ef35a0303e9f9a32ba3d2b1edf7e296efdccc65401f2fa71c3"
+        },
+        "lessonType": "programming",
+        "typeAuthority": "subject-classification-rule",
+        "projection": {
+          "sourceFamily": "elearning-v1.1",
+          "sourceVersion": "elearning-v1.1",
+          "migrationId": "migration_367d2f83",
+          "inputDigest": "d49df469336f20ef35a0303e9f9a32ba3d2b1edf7e296efdccc65401f2fa71c3",
+          "outputDigest": "4739695fa1b4d18d8f4671ed19e52b3e1cee612cdecc26809ca5acb5c3e5588e",
+          "manualReviewRequired": true,
+          "sourceUnchanged": true,
+          "warnings": [
+            "eLearning-v1.1 projection is a dry-run compatibility migration; block and evidence mappings require subject review.",
+            "Objective evidence kinds were selected from the registered lesson-type defaults and require review."
+          ]
+        },
+        "render": null
+      }
+    },
+    {
+      "id": "BRIDGE-LIGHT-SOURCE-foundation",
+      "title": "light review planning leaves source unchanged",
+      "ok": true,
+      "evidence": {
+        "sourceFamily": "elearning-v1.1",
+        "sourceVersion": "elearning-v1.1",
+        "migrationId": "migration_367d2f83",
+        "inputDigest": "d49df469336f20ef35a0303e9f9a32ba3d2b1edf7e296efdccc65401f2fa71c3",
+        "outputDigest": "4739695fa1b4d18d8f4671ed19e52b3e1cee612cdecc26809ca5acb5c3e5588e",
+        "manualReviewRequired": true,
+        "sourceUnchanged": true,
+        "warnings": [
+          "eLearning-v1.1 projection is a dry-run compatibility migration; block and evidence mappings require subject review.",
+          "Objective evidence kinds were selected from the registered lesson-type defaults and require review."
+        ]
+      }
+    },
+    {
+      "id": "BRIDGE-LIGHT-GAP-foundation",
+      "title": "current light review preview fails closed on an unmet strict B3 capability or block",
+      "ok": true,
+      "evidence": [
+        {
+          "code": "EXTERNAL_CAPABILITY_UNAVAILABLE",
+          "kind": "lab-simulation",
+          "requiredCapabilities": [
+            "code-lab",
+            "unit-test",
+            "debug-runner"
+          ],
+          "blockIds": [
+            "block_12d3ad11"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "BRIDGE-LIGHT-REVIEW-ai",
+      "title": "current light eLearning source remains review-only by default",
+      "ok": true,
+      "evidence": {
+        "ok": true,
+        "blocked": false,
+        "code": "REVIEW_REQUIRED",
+        "mode": "read-only-plan",
+        "subjectId": "ai",
+        "engineRef": "light-elearning-v2",
+        "sourceDigest": "831397afec4e5cd6daf071aae82c0d685f4662bf4e8a2e804b624d9d2d5785e1",
+        "digestAlgorithm": "sha256-stable-json-v1",
+        "sourceUnchanged": true,
+        "sourceMutationAllowed": false,
+        "learnerStateWriteAllowed": false,
+        "masterReadyClaimed": false,
+        "route": {
+          "main": "subjects/ai/index.html",
+          "editor": "subjects/ai/editor.html",
+          "manifest": "subjects/ai/subject-manifest.json",
+          "manifestScript": "subjects/ai/subject-manifest.js",
+          "runtime": "subjects/ai/assets/ai.js"
+        },
+        "rollback": {
+          "behavior": "route-directly-to-unchanged-subject-engine",
+          "route": "subjects/ai/index.html",
+          "sourceDigest": "831397afec4e5cd6daf071aae82c0d685f4662bf4e8a2e804b624d9d2d5785e1"
+        },
+        "lessonType": "ml-data",
+        "typeAuthority": "subject-default",
+        "projection": {
+          "sourceFamily": "elearning-v1.1",
+          "sourceVersion": "elearning-v1.1",
+          "migrationId": "migration_9cf95e0d",
+          "inputDigest": "831397afec4e5cd6daf071aae82c0d685f4662bf4e8a2e804b624d9d2d5785e1",
+          "outputDigest": "e8ed01a2b39cff6aa5e360803c9b44262bffea8c61cf28cd94c737727fdf3a53",
+          "manualReviewRequired": true,
+          "sourceUnchanged": true,
+          "warnings": [
+            "eLearning-v1.1 projection is a dry-run compatibility migration; block and evidence mappings require subject review.",
+            "Objective evidence kinds were selected from the registered lesson-type defaults and require review."
+          ]
+        },
+        "render": null
+      }
+    },
+    {
+      "id": "BRIDGE-LIGHT-SOURCE-ai",
+      "title": "light review planning leaves source unchanged",
+      "ok": true,
+      "evidence": {
+        "sourceFamily": "elearning-v1.1",
+        "sourceVersion": "elearning-v1.1",
+        "migrationId": "migration_9cf95e0d",
+        "inputDigest": "831397afec4e5cd6daf071aae82c0d685f4662bf4e8a2e804b624d9d2d5785e1",
+        "outputDigest": "e8ed01a2b39cff6aa5e360803c9b44262bffea8c61cf28cd94c737727fdf3a53",
+        "manualReviewRequired": true,
+        "sourceUnchanged": true,
+        "warnings": [
+          "eLearning-v1.1 projection is a dry-run compatibility migration; block and evidence mappings require subject review.",
+          "Objective evidence kinds were selected from the registered lesson-type defaults and require review."
+        ]
+      }
+    },
+    {
+      "id": "BRIDGE-LIGHT-GAP-ai",
+      "title": "current light review preview fails closed on an unmet strict B3 capability or block",
+      "ok": true,
+      "evidence": [
+        {
+          "code": "MISSING_REQUIRED_BLOCK",
+          "kind": "concept-map",
+          "fulfillment": "either",
+          "requiredCapabilities": [
+            "pipeline-map"
+          ]
+        },
+        {
+          "code": "EXTERNAL_CAPABILITY_UNAVAILABLE",
+          "kind": "lab-simulation",
+          "requiredCapabilities": [
+            "dataset-playground",
+            "experiment-runner"
+          ],
+          "blockIds": [
+            "block_b28629af"
+          ]
+        },
+        {
+          "code": "MISSING_EXTERNAL_CAPABILITY",
+          "kind": "visual-check",
+          "fulfillment": "external",
+          "requiredCapabilities": [
+            "metric-visualizer",
+            "confusion-matrix",
+            "model-comparison"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "BRIDGE-LIGHT-REVIEW-signal",
+      "title": "current light eLearning source remains review-only by default",
+      "ok": true,
+      "evidence": {
+        "ok": true,
+        "blocked": false,
+        "code": "REVIEW_REQUIRED",
+        "mode": "read-only-plan",
+        "subjectId": "signal",
+        "engineRef": "light-elearning-v2",
+        "sourceDigest": "3e61b306a10db1c195b23af606afbfa7a988d36d92a48b80ba9f22da6417ff6b",
+        "digestAlgorithm": "sha256-stable-json-v1",
+        "sourceUnchanged": true,
+        "sourceMutationAllowed": false,
+        "learnerStateWriteAllowed": false,
+        "masterReadyClaimed": false,
+        "route": {
+          "main": "subjects/signal/index.html",
+          "editor": "subjects/signal/editor.html",
+          "manifest": "subjects/signal/subject-manifest.json",
+          "manifestScript": "subjects/signal/subject-manifest.js",
+          "runtime": "subjects/signal/assets/signal.js"
+        },
+        "rollback": {
+          "behavior": "route-directly-to-unchanged-subject-engine",
+          "route": "subjects/signal/index.html",
+          "sourceDigest": "3e61b306a10db1c195b23af606afbfa7a988d36d92a48b80ba9f22da6417ff6b"
+        },
+        "lessonType": "ml-data",
+        "typeAuthority": "subject-default",
+        "projection": {
+          "sourceFamily": "elearning-v1.1",
+          "sourceVersion": "elearning-v1.1",
+          "migrationId": "migration_7acf59e7",
+          "inputDigest": "3e61b306a10db1c195b23af606afbfa7a988d36d92a48b80ba9f22da6417ff6b",
+          "outputDigest": "6a461ebf5c317445f9144357db16485f40e75da99a6b664a723953921b92b460",
+          "manualReviewRequired": true,
+          "sourceUnchanged": true,
+          "warnings": [
+            "eLearning-v1.1 projection is a dry-run compatibility migration; block and evidence mappings require subject review.",
+            "Objective evidence kinds were selected from the registered lesson-type defaults and require review."
+          ]
+        },
+        "render": null
+      }
+    },
+    {
+      "id": "BRIDGE-LIGHT-SOURCE-signal",
+      "title": "light review planning leaves source unchanged",
+      "ok": true,
+      "evidence": {
+        "sourceFamily": "elearning-v1.1",
+        "sourceVersion": "elearning-v1.1",
+        "migrationId": "migration_7acf59e7",
+        "inputDigest": "3e61b306a10db1c195b23af606afbfa7a988d36d92a48b80ba9f22da6417ff6b",
+        "outputDigest": "6a461ebf5c317445f9144357db16485f40e75da99a6b664a723953921b92b460",
+        "manualReviewRequired": true,
+        "sourceUnchanged": true,
+        "warnings": [
+          "eLearning-v1.1 projection is a dry-run compatibility migration; block and evidence mappings require subject review.",
+          "Objective evidence kinds were selected from the registered lesson-type defaults and require review."
+        ]
+      }
+    },
+    {
+      "id": "BRIDGE-LIGHT-GAP-signal",
+      "title": "current light review preview fails closed on an unmet strict B3 capability or block",
+      "ok": true,
+      "evidence": [
+        {
+          "code": "MISSING_REQUIRED_BLOCK",
+          "kind": "concept-map",
+          "fulfillment": "either",
+          "requiredCapabilities": [
+            "pipeline-map"
+          ]
+        },
+        {
+          "code": "EXTERNAL_CAPABILITY_UNAVAILABLE",
+          "kind": "lab-simulation",
+          "requiredCapabilities": [
+            "dataset-playground",
+            "experiment-runner"
+          ],
+          "blockIds": [
+            "block_261e0f58"
+          ]
+        },
+        {
+          "code": "MISSING_EXTERNAL_CAPABILITY",
+          "kind": "visual-check",
+          "fulfillment": "external",
+          "requiredCapabilities": [
+            "metric-visualizer",
+            "confusion-matrix",
+            "model-comparison"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "BRIDGE-LIGHT-REVIEW-systems",
+      "title": "current light eLearning source remains review-only by default",
+      "ok": true,
+      "evidence": {
+        "ok": true,
+        "blocked": false,
+        "code": "REVIEW_REQUIRED",
+        "mode": "read-only-plan",
+        "subjectId": "systems",
+        "engineRef": "light-elearning-v2",
+        "sourceDigest": "50b70c046a36d7c4d86c30a934d3c9020a7e41ead2ec6da94449b086f155f2bb",
+        "digestAlgorithm": "sha256-stable-json-v1",
+        "sourceUnchanged": true,
+        "sourceMutationAllowed": false,
+        "learnerStateWriteAllowed": false,
+        "masterReadyClaimed": false,
+        "route": {
+          "main": "subjects/systems/index.html",
+          "editor": "subjects/systems/editor.html",
+          "manifest": "subjects/systems/subject-manifest.json",
+          "manifestScript": "subjects/systems/subject-manifest.js",
+          "runtime": "subjects/systems/assets/systems.js"
+        },
+        "rollback": {
+          "behavior": "route-directly-to-unchanged-subject-engine",
+          "route": "subjects/systems/index.html",
+          "sourceDigest": "50b70c046a36d7c4d86c30a934d3c9020a7e41ead2ec6da94449b086f155f2bb"
+        },
+        "lessonType": "asoiu-system",
+        "typeAuthority": "subject-default",
+        "projection": {
+          "sourceFamily": "elearning-v1.1",
+          "sourceVersion": "elearning-v1.1",
+          "migrationId": "migration_f496dacc",
+          "inputDigest": "50b70c046a36d7c4d86c30a934d3c9020a7e41ead2ec6da94449b086f155f2bb",
+          "outputDigest": "ccf01bbfd5328c6e8dc951f845ab6c73dc996afe07e27b50b7a86acab4d91fac",
+          "manualReviewRequired": true,
+          "sourceUnchanged": true,
+          "warnings": [
+            "eLearning-v1.1 projection is a dry-run compatibility migration; block and evidence mappings require subject review.",
+            "Objective evidence kinds were selected from the registered lesson-type defaults and require review."
+          ]
+        },
+        "render": null
+      }
+    },
+    {
+      "id": "BRIDGE-LIGHT-SOURCE-systems",
+      "title": "light review planning leaves source unchanged",
+      "ok": true,
+      "evidence": {
+        "sourceFamily": "elearning-v1.1",
+        "sourceVersion": "elearning-v1.1",
+        "migrationId": "migration_f496dacc",
+        "inputDigest": "50b70c046a36d7c4d86c30a934d3c9020a7e41ead2ec6da94449b086f155f2bb",
+        "outputDigest": "ccf01bbfd5328c6e8dc951f845ab6c73dc996afe07e27b50b7a86acab4d91fac",
+        "manualReviewRequired": true,
+        "sourceUnchanged": true,
+        "warnings": [
+          "eLearning-v1.1 projection is a dry-run compatibility migration; block and evidence mappings require subject review.",
+          "Objective evidence kinds were selected from the registered lesson-type defaults and require review."
+        ]
+      }
+    },
+    {
+      "id": "BRIDGE-LIGHT-GAP-systems",
+      "title": "current light review preview fails closed on an unmet strict B3 capability or block",
+      "ok": true,
+      "evidence": [
+        {
+          "code": "MISSING_REQUIRED_BLOCK",
+          "kind": "concept-map",
+          "fulfillment": "either",
+          "requiredCapabilities": [
+            "system-concept-map"
+          ]
+        },
+        {
+          "code": "EXTERNAL_CAPABILITY_UNAVAILABLE",
+          "kind": "lab-simulation",
+          "requiredCapabilities": [
+            "reliability-scenario",
+            "information-flow-simulation"
+          ],
+          "blockIds": [
+            "block_249807b5"
+          ]
+        },
+        {
+          "code": "MISSING_EXTERNAL_CAPABILITY",
+          "kind": "visual-check",
+          "fulfillment": "external",
+          "requiredCapabilities": [
+            "architecture-diagram",
+            "information-flow",
+            "reliability-state"
+          ]
+        },
+        {
+          "code": "MISSING_REQUIRED_BLOCK",
+          "kind": "oral",
+          "fulfillment": "either",
+          "requiredCapabilities": [
+            "system-defense"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "BRIDGE-LIGHT-REVIEW-research",
+      "title": "current light eLearning source remains review-only by default",
+      "ok": true,
+      "evidence": {
+        "ok": true,
+        "blocked": false,
+        "code": "REVIEW_REQUIRED",
+        "mode": "read-only-plan",
+        "subjectId": "research",
+        "engineRef": "light-elearning-v2",
+        "sourceDigest": "4873346670c30c5e981b532957adab5a356041ffbc226cdb0271613ae4b7a36c",
+        "digestAlgorithm": "sha256-stable-json-v1",
+        "sourceUnchanged": true,
+        "sourceMutationAllowed": false,
+        "learnerStateWriteAllowed": false,
+        "masterReadyClaimed": false,
+        "route": {
+          "main": "subjects/research/index.html",
+          "editor": "subjects/research/editor.html",
+          "manifest": "subjects/research/subject-manifest.json",
+          "manifestScript": "subjects/research/subject-manifest.js",
+          "runtime": "subjects/research/assets/research.js"
+        },
+        "rollback": {
+          "behavior": "route-directly-to-unchanged-subject-engine",
+          "route": "subjects/research/index.html",
+          "sourceDigest": "4873346670c30c5e981b532957adab5a356041ffbc226cdb0271613ae4b7a36c"
+        },
+        "lessonType": "research",
+        "typeAuthority": "subject-default",
+        "projection": {
+          "sourceFamily": "elearning-v1.1",
+          "sourceVersion": "elearning-v1.1",
+          "migrationId": "migration_6bca7e9b",
+          "inputDigest": "4873346670c30c5e981b532957adab5a356041ffbc226cdb0271613ae4b7a36c",
+          "outputDigest": "8f7395f1b7d9f8dfded577836eb63f71d933517f424621f32703371758fa1453",
+          "manualReviewRequired": true,
+          "sourceUnchanged": true,
+          "warnings": [
+            "eLearning-v1.1 projection is a dry-run compatibility migration; block and evidence mappings require subject review.",
+            "Objective evidence kinds were selected from the registered lesson-type defaults and require review."
+          ]
+        },
+        "render": null
+      }
+    },
+    {
+      "id": "BRIDGE-LIGHT-SOURCE-research",
+      "title": "light review planning leaves source unchanged",
+      "ok": true,
+      "evidence": {
+        "sourceFamily": "elearning-v1.1",
+        "sourceVersion": "elearning-v1.1",
+        "migrationId": "migration_6bca7e9b",
+        "inputDigest": "4873346670c30c5e981b532957adab5a356041ffbc226cdb0271613ae4b7a36c",
+        "outputDigest": "8f7395f1b7d9f8dfded577836eb63f71d933517f424621f32703371758fa1453",
+        "manualReviewRequired": true,
+        "sourceUnchanged": true,
+        "warnings": [
+          "eLearning-v1.1 projection is a dry-run compatibility migration; block and evidence mappings require subject review.",
+          "Objective evidence kinds were selected from the registered lesson-type defaults and require review."
+        ]
+      }
+    },
+    {
+      "id": "BRIDGE-LIGHT-GAP-research",
+      "title": "current light review preview fails closed on an unmet strict B3 capability or block",
+      "ok": true,
+      "evidence": [
+        {
+          "code": "MISSING_REQUIRED_BLOCK",
+          "kind": "concept-map",
+          "fulfillment": "either",
+          "requiredCapabilities": [
+            "literature-map",
+            "evidence-map"
+          ]
+        },
+        {
+          "code": "MISSING_EXTERNAL_CAPABILITY",
+          "kind": "oral",
+          "fulfillment": "external",
+          "requiredCapabilities": [
+            "defense-simulator"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "BRIDGE-FOUNDATION-HELD",
+      "title": "Foundation unreviewed module remains UNCLASSIFIED_LESSON",
+      "ok": true,
+      "evidence": {
+        "ok": false,
+        "blocked": true,
+        "code": "UNCLASSIFIED_LESSON",
+        "message": "Lesson module is explicitly held for manual type review.",
+        "details": {
+          "subjectId": "foundation",
+          "lessonId": "f_m201_l1",
+          "moduleId": "f_m201",
+          "manualReviewRequired": true
+        }
+      }
+    },
+    {
+      "id": "BRIDGE-CANONICAL-LIGHT",
+      "title": "bridge can build a safe canonical orientation-only light render plan",
+      "ok": true,
+      "evidence": {
+        "code": "CANONICAL_RENDER_READY",
+        "sections": 1,
+        "htmlDigest": "bb5e7cc362674cc7eb500f38435bcd9bd3f224d1f441231495d080ab776ac578"
+      }
+    },
+    {
+      "id": "BRIDGE-CANONICAL-ROLLBACK",
+      "title": "canonical light plan rolls back to the unchanged light route",
+      "ok": true,
+      "evidence": {
+        "ok": true,
+        "blocked": false,
+        "code": "UNCHANGED_ENGINE_ROUTE_RESTORED",
+        "route": "subjects/ai/index.html",
+        "sourceDigest": "9f1641abe152e3cdd8f8e6446ef31d7d0d79695982e5c093df227d90b9d65739",
+        "sourceUnchanged": true,
+        "learnerStateWritePerformed": false,
+        "cacheWritePerformed": false
+      }
+    },
+    {
+      "id": "BRIDGE-CANONICAL-CAPABILITY-GAP",
+      "title": "full canonical light lesson cannot use declared metric widget as implemented capability",
+      "ok": true,
+      "evidence": [
+        {
+          "code": "EXTERNAL_CAPABILITY_UNAVAILABLE",
+          "kind": "lab-simulation",
+          "requiredCapabilities": [
+            "dataset-playground",
+            "experiment-runner"
+          ],
+          "blockIds": [
+            "block-lab-simulation"
+          ]
+        },
+        {
+          "code": "EXTERNAL_CAPABILITY_UNAVAILABLE",
+          "kind": "visual-check",
+          "requiredCapabilities": [
+            "metric-visualizer",
+            "confusion-matrix",
+            "model-comparison"
+          ],
+          "blockIds": [
+            "block-visual-check"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "BRIDGE-PLAN-ONLY",
+      "title": "apply write commit persist and activate requests all fail closed",
+      "ok": true,
+      "evidence": {
+        "apply": "B10_PLAN_ONLY",
+        "write": "B10_PLAN_ONLY",
+        "commit": "B10_PLAN_ONLY",
+        "persist": "B10_PLAN_ONLY",
+        "activate": "B10_PLAN_ONLY"
+      }
+    },
+    {
+      "id": "BRIDGE-SUBJECT-GUARDS",
+      "title": "unknown and unsafe subject IDs fail closed",
+      "ok": true,
+      "evidence": {
+        "unknown": "UNKNOWN_SUBJECT",
+        "unsafe": "INVALID_SUBJECT_ID"
+      }
+    },
+    {
+      "id": "BRIDGE-CREDENTIAL-GUARD",
+      "title": "credential-like bridge request is rejected before planning",
+      "ok": true,
+      "evidence": "INVALID_BRIDGE_REQUEST"
+    },
+    {
+      "id": "BRIDGE-INVALID-SOURCE",
+      "title": "null and non-JSON sources fail closed",
+      "ok": true,
+      "evidence": "INVALID_SOURCE"
+    },
+    {
+      "id": "ROLLBACK-INTEGRITY",
+      "title": "rollback rejects a source that differs from the planned digest",
+      "ok": true,
+      "evidence": {
+        "ok": false,
+        "blocked": true,
+        "code": "SOURCE_INTEGRITY_FAILED",
+        "message": "Current source differs from the read-only plan snapshot.",
+        "details": {
+          "expected": "670f824e2faf5c4a92876bb367784eb007d6ad07e6d0b897f671e5c66ef92e80",
+          "actual": "f3d88c024d6ccae877f9ad283dee7f89e06c39f3545dca29e2a62068be00586c"
+        }
+      }
+    },
+    {
+      "id": "PURE-RENDERER",
+      "title": "renderer source has no DOM network cache or persistence side effect",
+      "ok": true,
+      "evidence": "assets/js/platform/universal-lesson/universal-lesson-renderer-v1.js"
+    },
+    {
+      "id": "PURE-BRIDGE",
+      "title": "bridge source has no DOM network cache or persistence side effect",
+      "ok": true,
+      "evidence": "assets/js/platform/universal-lesson/legacy-lesson-bridge-v1.js"
+    },
+    {
+      "id": "B10-NO-RUNTIME-WIRING",
+      "title": "B10 modules are not loaded by current learner entry points",
+      "ok": true,
+      "evidence": [
+        "index.html",
+        "assets/js/data.js",
+        "subjects/russian/index.html",
+        "subjects/math/index.html",
+        "subjects/programming/index.html",
+        "subjects/foundation/index.html",
+        "subjects/ai/index.html",
+        "subjects/signal/index.html",
+        "subjects/systems/index.html",
+        "subjects/research/index.html"
+      ]
+    },
+    {
+      "id": "LEARNER-BRAND",
+      "title": "current learner entry surfaces and B10 HTML contain no comparison-school label",
+      "ok": true,
+      "evidence": [
+        "index.html",
+        "assets/js/data.js",
+        "subjects/russian/index.html",
+        "subjects/math/index.html",
+        "subjects/programming/index.html",
+        "subjects/foundation/index.html",
+        "subjects/ai/index.html",
+        "subjects/signal/index.html",
+        "subjects/systems/index.html",
+        "subjects/research/index.html"
+      ]
+    },
+    {
+      "id": "IDENTITY-DISPLAY",
+      "title": "generic learner HTML displays personalized code without rewriting official metadata",
+      "ok": true,
+      "evidence": {
+        "department": "ИУ-5",
+        "officialPublishedDirectionCode": "09.04.01",
+        "personalizedDisplayCode": "09.04.01/11"
+      }
+    },
+    {
+      "id": "MUTATION-RUNTIME-WIRING",
+      "title": "activating B10 runtime wiring is rejected by dependency audit",
+      "ok": true,
+      "evidence": [
+        {
+          "code": "B10_RUNTIME_BOUNDARY_BROKEN"
+        }
+      ]
+    },
+    {
+      "id": "MUTATION-PLANNED-CAPABILITY",
+      "title": "removing availability guard exposes a declared widget as implemented",
+      "ok": true,
+      "evidence": {
+        "inline-flow": {
+          "capabilityRef": "inline-flow",
+          "widgetId": "generic-elearning-flow",
+          "availability": "existing"
+        },
+        "generic-simulation": {
+          "capabilityRef": "generic-simulation",
+          "widgetId": "generic-simulation",
+          "availability": "existing"
+        },
+        "practice-assessment": {
+          "capabilityRef": "practice-assessment",
+          "widgetId": "generic-assessment",
+          "availability": "existing"
+        },
+        "metric-visualizer": {
+          "capabilityRef": "metric-visualizer",
+          "widgetId": "model-metric-visual",
+          "availability": "declared"
+        },
+        "confusion-matrix": {
+          "capabilityRef": "confusion-matrix",
+          "widgetId": "model-metric-visual",
+          "availability": "declared"
+        },
+        "model-comparison": {
+          "capabilityRef": "model-comparison",
+          "widgetId": "model-metric-visual",
+          "availability": "declared"
+        }
+      }
+    },
+    {
+      "id": "MUTATION-HTML-ESCAPE",
+      "title": "removing less-than escaping exposes source script markup",
+      "ok": true,
+      "evidence": {
+        "mutantLoaded": true,
+        "rawScriptObserved": true
+      }
+    },
+    {
+      "id": "MUTATION-ANSWER-DISCLOSURE",
+      "title": "removing answer protection leaks official-attempt material",
+      "ok": true,
+      "evidence": {
+        "mutantLoaded": true,
+        "answerLeaked": true
+      }
+    },
+    {
+      "id": "MUTATION-FORBIDDEN-BLOCK",
+      "title": "removing forbidden-block guard lets mastery enter orientation-only mode",
+      "ok": true,
+      "evidence": {
+        "mutantLoaded": true,
+        "ok": true,
+        "sections": [
+          "orientation",
+          "mastery"
+        ]
+      }
+    },
+    {
+      "id": "MUTATION-PLAN-ONLY",
+      "title": "removing apply guard lets an activation-shaped request reach routing",
+      "ok": true,
+      "evidence": {
+        "mutantLoaded": true,
+        "code": "DELEGATE_SPECIALIST_ENGINE"
+      }
+    },
+    {
+      "id": "MUTATION-SPECIALIST-DELEGATION",
+      "title": "removing specialist detection breaks unchanged Russian delegation",
+      "ok": true,
+      "evidence": {
+        "mutantLoaded": true,
+        "code": "INVALID_SOURCE"
+      }
+    },
+    {
+      "id": "MUTATION-ROLLBACK-DIGEST",
+      "title": "removing rollback digest comparison accepts a modified source",
+      "ok": true,
+      "evidence": {
+        "mutantLoaded": true,
+        "rollback": {
+          "ok": true,
+          "blocked": false,
+          "code": "UNCHANGED_ENGINE_ROUTE_RESTORED",
+          "route": "subjects/russian/index.html",
+          "sourceDigest": "f3d88c024d6ccae877f9ad283dee7f89e06c39f3545dca29e2a62068be00586c",
+          "sourceUnchanged": true,
+          "learnerStateWritePerformed": false,
+          "cacheWritePerformed": false
+        }
+      }
+    },
+    {
+      "id": "MUTATION-EXTERNAL-LAB-POLICY",
+      "title": "weakening Programming code lab from external to either lets inline generic content satisfy it",
+      "ok": true,
+      "evidence": [
+        {
+          "id": "block-orientation",
+          "kind": "orientation",
+          "mode": "inline",
+          "label": "Bắt đầu và mục tiêu",
+          "payload": {
+            "governingQuestion": "How does <source> become safe evidence?",
+            "whyItMatters": "Connect this lesson to Bauman ИУ-5.",
+            "successPreview": "Explain and verify one result."
+          },
+          "presentationHint": {
+            "preferredStrategy": "inline-flow",
+            "accessibilityMode": "semantic"
+          },
+          "evidenceRefs": [
+            "objective-b10"
+          ],
+          "offlineRef": "lesson-core",
+          "sourceBindingCount": 1
+        },
+        {
+          "id": "block-exercise",
+          "kind": "exercise",
+          "mode": "inline",
+          "label": "Luyện tập",
+          "payload": {
+            "prompt": "Produce a reviewable artifact.",
+            "expectedArtifact": "artifact and explanation"
+          },
+          "presentationHint": {
+            "preferredStrategy": "inline-flow",
+            "accessibilityMode": "semantic"
+          },
+          "evidenceRefs": [
+            "objective-b10"
+          ],
+          "offlineRef": "lesson-core",
+          "sourceBindingCount": 1
+        },
+        {
+          "id": "block-lab-simulation",
+          "kind": "lab-simulation",
+          "mode": "inline",
+          "label": "Lab và mô phỏng",
+          "payload": {
+            "mode": "parameter-check",
+            "procedure": [
+              "set baseline",
+              "change one input",
+              "record result"
+            ]
+          },
+          "presentationHint": {
+            "preferredStrategy": "inline-flow",
+            "accessibilityMode": "semantic"
+          },
+          "evidenceRefs": [
+            "objective-b10"
+          ],
+          "offlineRef": "lesson-core",
+          "sourceBindingCount": 1
+        },
+        {
+          "id": "block-misconception",
+          "kind": "misconception",
+          "mode": "inline",
+          "label": "Sai lầm và sửa lỗi",
+          "payload": {
+            "wrongPattern": "claim without evidence",
+            "likelyCause": "source boundary missing",
+            "repairRef": "block-review"
+          },
+          "presentationHint": {
+            "preferredStrategy": "inline-flow",
+            "accessibilityMode": "semantic"
+          },
+          "evidenceRefs": [
+            "objective-b10"
+          ],
+          "offlineRef": "lesson-core",
+          "sourceBindingCount": 1
+        },
+        {
+          "id": "block-review",
+          "kind": "review",
+          "mode": "inline",
+          "label": "Ôn tập và phục hồi",
+          "payload": {
+            "retrievalItems": [
+              "governing question",
+              "verification rule"
+            ],
+            "repairGroups": [
+              "source boundary"
+            ]
+          },
+          "presentationHint": {
+            "preferredStrategy": "inline-flow",
+            "accessibilityMode": "semantic"
+          },
+          "evidenceRefs": [
+            "objective-b10"
+          ],
+          "offlineRef": "lesson-core",
+          "sourceBindingCount": 1
+        },
+        {
+          "id": "block-mastery",
+          "kind": "mastery",
+          "mode": "inline",
+          "label": "Bằng chứng Master-ready",
+          "payload": {
+            "stageEvidenceRefs": [
+              "evidence-b10"
+            ],
+            "gatePolicyRef": "L6-B5"
+          },
+          "presentationHint": {
+            "preferredStrategy": "inline-flow",
+            "accessibilityMode": "semantic"
+          },
+          "evidenceRefs": [
+            "objective-b10"
+          ],
+          "offlineRef": "lesson-core",
+          "sourceBindingCount": 1
+        }
+      ]
+    },
+    {
+      "id": "MUTATION-SUMMARY",
+      "title": "all nine B10 protection mutations fail in the expected direction",
+      "ok": true,
+      "evidence": [
+        {
+          "id": "RUNTIME-WIRING",
+          "observed": true
+        },
+        {
+          "id": "PLANNED-CAPABILITY",
+          "observed": true
+        },
+        {
+          "id": "HTML-ESCAPE",
+          "observed": true
+        },
+        {
+          "id": "ANSWER-DISCLOSURE",
+          "observed": true
+        },
+        {
+          "id": "FORBIDDEN-BLOCK",
+          "observed": true
+        },
+        {
+          "id": "PLAN-ONLY",
+          "observed": true
+        },
+        {
+          "id": "SPECIALIST-DELEGATION",
+          "observed": true
+        },
+        {
+          "id": "ROLLBACK-DIGEST",
+          "observed": true
+        },
+        {
+          "id": "EXTERNAL-LAB-POLICY",
+          "observed": true
+        }
+      ]
+    },
+    {
+      "id": "DOC-BOUNDARY",
+      "title": "decision record states pending remote CI and no B10 runtime activation",
+      "ok": true,
+      "evidence": "docs/migration/L6_B10_UNIVERSAL_LESSON_RENDERER_BRIDGE.md"
+    },
+    {
+      "id": "DOC-GAP",
+      "title": "decision record documents the fail-closed light capability gap",
+      "ok": true,
+      "evidence": "docs/migration/L6_B10_UNIVERSAL_LESSON_RENDERER_BRIDGE.md"
+    },
+    {
+      "id": "DOC-IDENTITY",
+      "title": "decision record distinguishes official and personalized codes",
+      "ok": true,
+      "evidence": "docs/migration/L6_B10_UNIVERSAL_LESSON_RENDERER_BRIDGE.md"
+    },
+    {
+      "id": "REFERENCE-SOURCE-HASHES",
+      "title": "current engines adapters and lessons are hashed for rollback comparison",
+      "ok": true,
+      "evidence": {
+        "assets/js/data.js": "0150011b1d91ab3d2ea8d3f9aaa2b984039d94838183fb1d110da15d008d6079",
+        "assets/js/platform/offline-subject-pack-manager.js": "5f6e4d37cb464b792558b014d19da1f62389b06245b8446b180e6d1890500be6",
+        "subjects/russian/assets/core.js": "71f24d0e0300dddee18f2dd91617b34137de66290c47f0484cae454a1cdeb573",
+        "subjects/russian/assets/subject-adapter.js": "1c6a6930ab06e1510879ed374093016ff721b20fab7bf720a65613e4c411d625",
+        "subjects/russian/data/lessons.json": "c8693eeefed17ea39b0cea4a600c9086f1b597ae7174e56bd8b2f8b46b985062",
+        "subjects/math/assets/subject-adapter.js": "40cb9d93a713929f3b8c9c99c01c30e29f103043a2f2c207521c5446f8f47731",
+        "subjects/math/assets/theory_skin/theory-tab-E129.js": "f9040b5dff1d3e38a1440e74445a7d97c1d19e4ec5d5f4312e5d526ac4e69d00",
+        "subjects/math/data/theory_lecture_content.json": "d0cd18601b1ede84f58072b3c47cfcc176b4d21d3fa71b23762b908485391447",
+        "subjects/programming/assets/subject-adapter.js": "a66453de4c0816d9d47986df1ffab8d8b19015174d52f3c3aa8eabefa2192b68",
+        "subjects/programming/data/lessons.json": "1b5485cb6b34380b949b247fd1cf521f0fda0534dd4834b9dee53beb2f49491d",
+        "subjects/foundation/assets/foundation.js": "ddb1665c505986962da6c4c5f157d3827e9940e86866afbb7ca42ea4e4430315",
+        "subjects/foundation/data/lessons.json": "435dc2faea81b59f3b1f29b6e7f1d48d7c99947f0a70ccd62eb3bb60c2f402e1",
+        "subjects/ai/assets/ai.js": "ddb1665c505986962da6c4c5f157d3827e9940e86866afbb7ca42ea4e4430315",
+        "subjects/ai/data/lessons.json": "ee22f47274b6e51a9fe03d00ceff1ebe3e0b255b4363dddf8ed476c9d9264e73",
+        "subjects/signal/assets/signal.js": "ddb1665c505986962da6c4c5f157d3827e9940e86866afbb7ca42ea4e4430315",
+        "subjects/signal/data/lessons.json": "bf2dc25a23df3bd0f8b496df28eac57b51bc0f8dd9619b00aab2086742f67634",
+        "subjects/systems/assets/systems.js": "ddb1665c505986962da6c4c5f157d3827e9940e86866afbb7ca42ea4e4430315",
+        "subjects/systems/data/lessons.json": "437239b73ee9b7dacb16801df932f0124167aae6a8706ae25c76d6fce5633efa",
+        "subjects/research/assets/research.js": "ddb1665c505986962da6c4c5f157d3827e9940e86866afbb7ca42ea4e4430315",
+        "subjects/research/data/lessons.json": "eb453c78c6a4340c6f4d12aa435adfdfd1ab59b68393586cbcd772742d757d16"
+      }
+    }
+  ]
+}
