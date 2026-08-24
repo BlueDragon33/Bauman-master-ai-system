@@ -1,0 +1,784 @@
+{
+  "contractId": "bauman-universal-lesson-contract",
+  "schemaVersion": "2.0.0",
+  "status": "L6-B2-CONTRACT",
+  "programIdentity": {
+    "department": "ИУ-5",
+    "officialPublishedDirectionCode": "09.04.01",
+    "personalizedDisplayCode": "09.04.01/11",
+    "learnerBrandPolicy": "bauman-iu5-only",
+    "identityRule": "Official-source metadata keeps 09.04.01; personalized learner surfaces display ИУ-5 · 09.04.01/11."
+  },
+  "designDecisionRefs": [
+    "D01",
+    "D02",
+    "D03",
+    "D04",
+    "D05",
+    "D06",
+    "D07",
+    "D08",
+    "D09",
+    "D10",
+    "D11",
+    "D12"
+  ],
+  "principles": [
+    {
+      "id": "semantic-not-navigation",
+      "rule": "Semantic blocks describe learning meaning and never imply a fixed tab count, route count or display order."
+    },
+    {
+      "id": "profile-owned-requiredness",
+      "rule": "Required, optional, conditional, forbidden and external-artifact policies are assigned by lesson-type profiles, not by the block catalog."
+    },
+    {
+      "id": "read-only-first",
+      "rule": "Legacy engines are projected through read-only adapters before any source migration is considered."
+    },
+    {
+      "id": "specialist-ownership",
+      "rule": "Subject engines retain ownership of formula, language, code, database, diagram, simulation and research interactions."
+    },
+    {
+      "id": "evidence-not-page-view",
+      "rule": "Viewing a page is not mastery evidence; evidence must reference an observable learner artifact or assessment event."
+    },
+    {
+      "id": "offline-deterministic",
+      "rule": "Lesson, practice, review, assessment, progress and previously available content remain usable without generative AI."
+    },
+    {
+      "id": "source-ai-boundary",
+      "rule": "Provided source, user evidence, system-derived state and AI inference remain explicitly distinguishable."
+    }
+  ],
+  "instanceContract": {
+    "requiredTopLevelFields": [
+      "metadata",
+      "prerequisites",
+      "objectives",
+      "blocks",
+      "masteryEvidence",
+      "contextRefs",
+      "offline",
+      "provenance"
+    ],
+    "metadata": {
+      "requiredFields": [
+        "contractVersion",
+        "lessonId",
+        "subjectId",
+        "lessonType",
+        "titles",
+        "stageId",
+        "programIdentity",
+        "sourceIdentity",
+        "contentVersion"
+      ],
+      "fields": {
+        "contractVersion": {
+          "type": "string",
+          "const": "2.0.0"
+        },
+        "lessonId": {
+          "type": "string",
+          "stability": "stable-across-renderers"
+        },
+        "subjectId": {
+          "type": "string",
+          "registryRef": "subject-factory"
+        },
+        "lessonType": {
+          "type": "string",
+          "registryRef": "lesson-type-profiles"
+        },
+        "titles": {
+          "type": "object",
+          "requiredFields": [
+            "primary"
+          ],
+          "reservedLanguageFields": [
+            "vi",
+            "ru",
+            "en"
+          ]
+        },
+        "stageId": {
+          "type": "string",
+          "roadmapRef": "iu5-090401-11-v3"
+        },
+        "estimatedMinutes": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "difficulty": {
+          "type": "string",
+          "profileDefined": true
+        },
+        "programIdentity": {
+          "type": "object",
+          "requiredFields": [
+            "department",
+            "officialPublishedDirectionCode",
+            "personalizedDisplayCode"
+          ]
+        },
+        "sourceIdentity": {
+          "type": "object",
+          "contractRef": "sourceBindingContract",
+          "rule": "Array position or sourcePath alone is never sufficient identity."
+        },
+        "contentVersion": {
+          "type": "string"
+        },
+        "tags": {
+          "type": "array",
+          "itemType": "string"
+        }
+      }
+    },
+    "prerequisites": {
+      "type": "array",
+      "itemRequiredFields": [
+        "id",
+        "relation",
+        "targetRef",
+        "requiredState"
+      ],
+      "relations": [
+        "requires",
+        "recommended",
+        "diagnostic",
+        "co-requisite"
+      ],
+      "requiredStates": [
+        "introduced",
+        "practised",
+        "assessment-pass",
+        "master-ready"
+      ],
+      "resolutionRule": "Unresolved required prerequisites block assessment entry but still allow orientation and recovery routes."
+    },
+    "objectives": {
+      "type": "array",
+      "minimumItems": 1,
+      "itemRequiredFields": [
+        "id",
+        "statement",
+        "evidenceKinds"
+      ],
+      "optionalFields": [
+        "language",
+        "cognitiveLevel",
+        "skillRefs",
+        "rubricRefs"
+      ],
+      "rule": "Each objective must map to at least one observable evidence kind."
+    },
+    "blocks": {
+      "type": "array",
+      "itemContractRef": "blockEnvelope",
+      "orderingRule": "Source order may be preserved, but presentation strategy owns learner display order."
+    },
+    "masteryEvidence": {
+      "type": "array",
+      "itemRequiredFields": [
+        "id",
+        "stage",
+        "evidenceKind",
+        "status",
+        "artifactRefs"
+      ],
+      "stagesRef": "masteryEvidenceVocabulary",
+      "statusValues": [
+        "missing",
+        "in-progress",
+        "submitted",
+        "verified",
+        "needs-repair",
+        "retention-due"
+      ]
+    },
+    "contextRefs": {
+      "type": "object",
+      "contractRef": "contextReferenceContract"
+    },
+    "offline": {
+      "type": "object",
+      "contractRef": "offlineContract"
+    },
+    "provenance": {
+      "type": "object",
+      "requiredFields": [
+        "sourceRefs",
+        "userEvidenceRefs",
+        "systemDerivedRefs",
+        "aiInferenceRefs"
+      ],
+      "rule": "AI inference references cannot be promoted to provided-source references without explicit reviewed provenance."
+    }
+  },
+  "sourceBindingContract": {
+    "requiredFields": [
+      "sourceArtifactId",
+      "sourceArtifactKind",
+      "sourceVersion",
+      "locator",
+      "origin",
+      "adapterId",
+      "precedence"
+    ],
+    "artifactKinds": [
+      "lesson-record",
+      "lecture-record",
+      "slide-deck",
+      "exercise-bank",
+      "assessment-bank",
+      "simulation",
+      "dialogue",
+      "media",
+      "local-file",
+      "user-artifact",
+      "external-specialist-artifact"
+    ],
+    "locatorFields": [
+      "sourcePath",
+      "recordId",
+      "lessonId",
+      "sourceAnchors",
+      "checksum"
+    ],
+    "origins": [
+      "provided-source",
+      "legacy-runtime",
+      "factory-native",
+      "user-provided",
+      "system-derived",
+      "ai-inference"
+    ],
+    "precedenceRule": [
+      "Resolve stable lesson identity.",
+      "Resolve an authoritative specialist artifact when registered.",
+      "Apply the subject adapter projection.",
+      "Use a documented fallback only when no authoritative source resolves.",
+      "Never choose content by array index alone."
+    ],
+    "unknownFieldPolicy": "pass-through"
+  },
+  "blockEnvelope": {
+    "requiredFields": [
+      "id",
+      "kind",
+      "sourceBindings",
+      "payload",
+      "presentationHint",
+      "evidenceRefs",
+      "offlineRef"
+    ],
+    "fields": {
+      "id": {
+        "type": "string",
+        "uniqueWithinLesson": true
+      },
+      "kind": {
+        "type": "string",
+        "registryRef": "semanticBlockCatalog"
+      },
+      "sourceBindings": {
+        "type": "array",
+        "itemContractRef": "sourceBindingContract"
+      },
+      "payload": {
+        "type": "object",
+        "contractRefByKind": true
+      },
+      "presentationHint": {
+        "type": "object",
+        "binding": "non-binding",
+        "contractRef": "presentationContract"
+      },
+      "evidenceRefs": {
+        "type": "array",
+        "itemType": "string"
+      },
+      "offlineRef": {
+        "type": "string",
+        "contractRef": "offlineContract.resources"
+      },
+      "specialistCapabilityRef": {
+        "type": [
+          "string",
+          "null"
+        ],
+        "ownership": "subject-engine"
+      }
+    }
+  },
+  "semanticBlockCatalog": {
+    "orientation": {
+      "aliases": [
+        "hook",
+        "why-it-matters"
+      ],
+      "purpose": "Establish the governing question, relevance and safe starting point.",
+      "defaultRequirement": "profile-defined",
+      "payloadFields": [
+        "governingQuestion",
+        "whyItMatters",
+        "successPreview"
+      ],
+      "evidenceKinds": [
+        "goal-restatement",
+        "diagnostic-response"
+      ]
+    },
+    "concept-map": {
+      "aliases": [
+        "prerequisite-map"
+      ],
+      "purpose": "Expose concepts, prerequisite relations and the recovery route.",
+      "defaultRequirement": "profile-defined",
+      "payloadFields": [
+        "nodes",
+        "edges",
+        "recoveryRefs"
+      ],
+      "evidenceKinds": [
+        "concept-link",
+        "prerequisite-check"
+      ]
+    },
+    "theory": {
+      "aliases": [
+        "concept",
+        "explanation"
+      ],
+      "purpose": "Teach source-grounded concepts, rules, assumptions and formulas.",
+      "defaultRequirement": "profile-defined",
+      "payloadFields": [
+        "claims",
+        "definitions",
+        "rules",
+        "assumptions",
+        "formulaRefs",
+        "sourceAnchors"
+      ],
+      "evidenceKinds": [
+        "explanation",
+        "retrieval-response"
+      ]
+    },
+    "worked-example": {
+      "aliases": [
+        "example"
+      ],
+      "purpose": "Model a complete reasoning path with explicit assumptions and checks.",
+      "defaultRequirement": "profile-defined",
+      "payloadFields": [
+        "problem",
+        "inputs",
+        "steps",
+        "result",
+        "verification",
+        "sourceAnchors"
+      ],
+      "evidenceKinds": [
+        "step-explanation",
+        "result-verification"
+      ]
+    },
+    "exercise": {
+      "aliases": [
+        "practice",
+        "graded-practice"
+      ],
+      "purpose": "Require learner action before or without exposing a complete solution.",
+      "defaultRequirement": "profile-defined",
+      "payloadFields": [
+        "prompt",
+        "level",
+        "input",
+        "expectedArtifact",
+        "hintPolicy",
+        "solutionDisclosure"
+      ],
+      "evidenceKinds": [
+        "solution",
+        "code",
+        "query",
+        "diagram",
+        "written-response"
+      ]
+    },
+    "lab-simulation": {
+      "aliases": [
+        "lab",
+        "simulation",
+        "interactive"
+      ],
+      "purpose": "Manipulate a system, model, parameter, dataset or environment and record observations.",
+      "defaultRequirement": "profile-defined",
+      "payloadFields": [
+        "mode",
+        "toolRef",
+        "inputs",
+        "procedure",
+        "observations",
+        "artifactPolicy"
+      ],
+      "evidenceKinds": [
+        "experiment-log",
+        "simulation-result",
+        "code-run",
+        "query-result",
+        "dataset-result"
+      ],
+      "specialistCapabilityExamples": [
+        "parameter-simulation",
+        "code-lab",
+        "sql-playground",
+        "dataset-playground"
+      ]
+    },
+    "misconception": {
+      "aliases": [
+        "common-mistakes",
+        "error-intercept"
+      ],
+      "purpose": "Connect an observable wrong pattern to a cause, diagnosis and focused repair.",
+      "defaultRequirement": "profile-defined",
+      "payloadFields": [
+        "trigger",
+        "wrongPattern",
+        "likelyCause",
+        "diagnostic",
+        "repairRef",
+        "retryEvidence"
+      ],
+      "evidenceKinds": [
+        "error-diagnosis",
+        "corrected-attempt"
+      ]
+    },
+    "visual-check": {
+      "aliases": [
+        "correct-wrong",
+        "step-state"
+      ],
+      "purpose": "Make state, comparison or feedback visible through a domain-appropriate representation.",
+      "defaultRequirement": "profile-defined",
+      "payloadFields": [
+        "visualType",
+        "correctState",
+        "incorrectState",
+        "interaction",
+        "feedback",
+        "accessibilityFallback"
+      ],
+      "evidenceKinds": [
+        "visual-classification",
+        "state-correction"
+      ],
+      "specialistCapabilityExamples": [
+        "formula-diagram",
+        "code-trace",
+        "query-plan",
+        "architecture-diagram",
+        "signal-plot",
+        "language-media"
+      ]
+    },
+    "oral": {
+      "aliases": [
+        "oral-defense",
+        "speaking"
+      ],
+      "purpose": "Require an oral explanation, dialogue turn, defense or pressure question.",
+      "defaultRequirement": "profile-defined",
+      "payloadFields": [
+        "prompt",
+        "mode",
+        "language",
+        "rubricRef",
+        "feedbackPolicy",
+        "artifactPolicy"
+      ],
+      "evidenceKinds": [
+        "oral-response",
+        "dialogue-turn",
+        "defense-response"
+      ],
+      "specialistCapabilityExamples": [
+        "shadowing",
+        "dialogue",
+        "professor-oral-defense",
+        "defense-simulator"
+      ]
+    },
+    "review": {
+      "aliases": [
+        "retrieval",
+        "spaced-review"
+      ],
+      "purpose": "Retrieve, repair and schedule knowledge after initial learning.",
+      "defaultRequirement": "profile-defined",
+      "payloadFields": [
+        "retrievalItems",
+        "repairGroups",
+        "schedulePolicyRef",
+        "sourceLessonRefs"
+      ],
+      "evidenceKinds": [
+        "retrieval-response",
+        "repair-completion",
+        "retention-check"
+      ]
+    },
+    "assessment": {
+      "aliases": [
+        "test",
+        "exam"
+      ],
+      "purpose": "Measure objectives under an explicit integrity and disclosure policy.",
+      "defaultRequirement": "profile-defined",
+      "payloadFields": [
+        "blueprintRef",
+        "questionRefs",
+        "attemptPolicy",
+        "disclosureMode",
+        "passPolicyRef",
+        "remedialRef"
+      ],
+      "evidenceKinds": [
+        "assessment-attempt",
+        "assessment-pass",
+        "remedial-pass"
+      ]
+    },
+    "mastery": {
+      "aliases": [
+        "master-ready"
+      ],
+      "purpose": "Aggregate verified evidence without treating page views as completion.",
+      "defaultRequirement": "profile-defined",
+      "payloadFields": [
+        "stageEvidenceRefs",
+        "rubricRef",
+        "gatePolicyRef",
+        "retentionDue"
+      ],
+      "evidenceKinds": [
+        "understand",
+        "solve",
+        "build-apply",
+        "explain",
+        "retain"
+      ]
+    },
+    "project-nir-evidence": {
+      "aliases": [
+        "project-checkpoint",
+        "nir-checkpoint",
+        "vkr-checkpoint"
+      ],
+      "purpose": "Connect lesson work to project, НИР or ВКР artifacts with traceable evidence.",
+      "defaultRequirement": "profile-defined",
+      "payloadFields": [
+        "milestoneRef",
+        "researchQuestionRef",
+        "artifactRequirements",
+        "sourceRefs",
+        "reviewStatus",
+        "nextAction"
+      ],
+      "evidenceKinds": [
+        "project-artifact",
+        "experiment-protocol",
+        "research-note",
+        "nir-milestone",
+        "vkr-milestone"
+      ]
+    }
+  },
+  "learningJourney": {
+    "states": [
+      "learn",
+      "practise",
+      "analyse",
+      "review",
+      "assess"
+    ],
+    "candidateBlockKinds": {
+      "learn": [
+        "orientation",
+        "concept-map",
+        "theory",
+        "worked-example"
+      ],
+      "practise": [
+        "exercise",
+        "lab-simulation",
+        "oral"
+      ],
+      "analyse": [
+        "misconception",
+        "visual-check"
+      ],
+      "review": [
+        "review",
+        "mastery"
+      ],
+      "assess": [
+        "assessment",
+        "project-nir-evidence"
+      ]
+    },
+    "rule": "States are pedagogical gates, not mandatory tabs. Profiles and presentation strategies may combine or revisit states."
+  },
+  "masteryEvidenceVocabulary": {
+    "stages": [
+      "understand",
+      "solve",
+      "build-apply",
+      "explain",
+      "retain"
+    ],
+    "thresholdOwnership": "lesson-type-profile",
+    "rubricOwnership": "lesson-type-profile",
+    "completionRule": "Every required stage needs verified evidence; a page-view event never satisfies a stage."
+  },
+  "assessmentIntegrity": {
+    "disclosureModes": {
+      "practice": "immediate-or-hint-policy",
+      "official-attempt": "defer-correctness-until-submit",
+      "review": "diagnosis-and-source-linked-repair"
+    },
+    "aiPolicy": "AI may coach with hints or Socratic questions but cannot reveal protected answers during an active official attempt.",
+    "failurePolicy": "Failed objectives create explicit repair refs and a new attempt record; prior evidence is retained."
+  },
+  "contextReferenceContract": {
+    "requiredRefs": [
+      "currentLesson",
+      "prerequisiteGraph",
+      "learnerProgress",
+      "assessmentErrors",
+      "weakTopics",
+      "schedule",
+      "currentSubject",
+      "languageState",
+      "nirVkrContext"
+    ],
+    "optionalRefs": [
+      "recentEvidence",
+      "offlineAvailability",
+      "preferredExplanationMode",
+      "accessibilityPreferences"
+    ],
+    "dataBoundary": "References are resolved at runtime under privacy and source policies; the lesson payload does not embed private learner history.",
+    "aiOutputOrigins": [
+      "ai-inference"
+    ]
+  },
+  "presentationContract": {
+    "binding": "separate-from-semantic-contract",
+    "strategyRefRequired": true,
+    "strategies": [
+      "inline-flow",
+      "gated-stepper",
+      "slide-deck",
+      "specialist-workspace",
+      "split-view",
+      "modal-tool",
+      "external-artifact"
+    ],
+    "hintFields": [
+      "preferredStrategy",
+      "density",
+      "visualPriority",
+      "specialistCapabilityRef",
+      "accessibilityMode"
+    ],
+    "rules": [
+      "A block hint cannot force creation of an empty view.",
+      "A renderer may combine multiple blocks in one view.",
+      "A specialist engine may own an entire block interaction.",
+      "Unknown presentation hints are ignored without dropping semantic content."
+    ]
+  },
+  "offlineContract": {
+    "requiredFields": [
+      "policyId",
+      "resources",
+      "deterministicFallbackRef"
+    ],
+    "availabilityValues": [
+      "shell",
+      "bundled",
+      "subject-pack",
+      "local-file",
+      "network-only"
+    ],
+    "resourceRequiredFields": [
+      "id",
+      "availability",
+      "bytesPolicy",
+      "freshnessPolicy",
+      "rollbackRef"
+    ],
+    "rules": [
+      "Large resources are explicit packs or local files and are never silently added to the app shell.",
+      "A network-only block declares a deterministic fallback or is excluded by the lesson profile.",
+      "Generative AI is optional online augmentation and is never the only path through a required learner state.",
+      "User-imported local files keep their existing zero-copy and sandbox policies."
+    ]
+  },
+  "extensionNamespaces": {
+    "language": {
+      "reservedFields": [
+        "russianTwinRef",
+        "englishResearchRef",
+        "vietnameseRescuePolicyRef",
+        "exposurePolicyRef"
+      ],
+      "activationRound": "L6-B7-and-L12"
+    },
+    "ai": {
+      "reservedFields": [
+        "contextResolverRef",
+        "providerPolicyRef",
+        "groundingPolicyRef",
+        "fallbackRef"
+      ],
+      "activationRound": "L13"
+    },
+    "research": {
+      "reservedFields": [
+        "projectRef",
+        "nirRef",
+        "vkrRef",
+        "evidenceVaultRef"
+      ],
+      "activationRound": "L11"
+    }
+  },
+  "compatibilityContract": {
+    "projectionMode": "read-only-first",
+    "sourceMutationAllowed": false,
+    "legacyStateKeyMutationAllowed": false,
+    "unknownSourceFieldPolicy": "pass-through",
+    "specialistEngineOwnsInteraction": true,
+    "requiredReferenceSubjects": [
+      "russian",
+      "math"
+    ],
+    "rollbackRule": "Disable the universal projection and route directly to the unchanged subject engine and source artifacts."
+  },
+  "migrationFromExperimentalV1": {
+    "canonicalFlow": "Replace with learningJourney plus a separate presentation strategy; never treat it as fixed navigation.",
+    "sectionsRequiredFor": "Replace with lesson-type block policies in L6-B3.",
+    "sourcePaths": "Replace with ordered source bindings, stable identity and provenance.",
+    "globalThresholds": "Move to lesson-type mastery policies and rubrics in L6-B5.",
+    "referenceLabels": "Replace labels with executable Russian and Mathematics projection regressions before L6 PASS."
+  }
+}

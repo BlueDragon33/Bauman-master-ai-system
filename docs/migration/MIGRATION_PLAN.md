@@ -107,20 +107,34 @@ L5 PASS nhưng `serviceWorkerCache` production vẫn OFF. Chỉ bật ở stagin
 
 ## Lượt 6 · Universal Lesson Architecture & Subject Factory · 11 bước
 
-Trạng thái: **B1 IMPLEMENTED · LOCAL GATE PASS · REMOTE CI PENDING**.
+Trạng thái: **B1 PASS · B2 IMPLEMENTED · LOCAL GATE PASS · REMOTE CI PENDING**.
 
 Bằng chứng B1:
 - Audit quyết định: L6_B1_REFERENCE_IMPLEMENTATION_AUDIT.md.
 - Evidence máy đọc được: L6_B1_REFERENCE_AUDIT.generated.json.
 - Deterministic gate: 44/44 checks PASS; report hash ổn định qua hai lần chạy.
+- Remote gate: commit `e75ca680a50e79f75e14218f4a9ecbfe0683a4b0`,
+  context `migration/l6-b1-reference-audit` = `success`.
 - L5 non-browser regression sau B1: static routing 9/9, service worker 17/17,
   academic runtime 36/36, roadmap/offline static 75/75, data loading 8 môn
   với 0 lỗi, runtime diagnostics 14/14, offline report integrity 5/5.
-- Chưa đánh dấu B1 remote PASS cho tới khi workflow L6 trên nhánh làm việc
+
+Bằng chứng B2:
+- Contract: `assets/data/lesson/universal-lesson-contract-v2.json`.
+- Decision record: `L6_B2_UNIVERSAL_LESSON_CONTRACT.md`.
+- Evidence máy đọc được:
+  `L6_B2_UNIVERSAL_LESSON_CONTRACT.generated.json`.
+- Deterministic gate: 35/35 checks PASS; B1 vẫn 44/44; cả hai report có hash
+  ổn định qua hai lần chạy.
+- Russian/Math runtime và content: không có diff.
+- L5 non-browser regression sau B2: static routing 9/9, service worker 17/17,
+  academic runtime 36/36, roadmap/offline static 75/75, data loading 8 môn
+  với 0 lỗi, runtime diagnostics 14/14, offline report integrity 5/5.
+- Chưa đánh dấu B2 remote PASS cho tới khi workflow L6 trên nhánh làm việc
   hoàn tất thành công.
 
-1. **L6-B1** · Audit sâu ba reference implementations: Tiếng Nga, Toán và nguyên tắc UX bài giảng Bơi ếch; lập bảng phần nào giữ, phần nào chuẩn hóa, phần nào không dùng chung. **LOCAL PASS · CI PENDING**.
-2. Định nghĩa `UniversalLessonContract` gồm metadata, prerequisite, objectives, theory, example, exercise, lab/simulation, misconception, visual-check, oral, review, test, mastery, project/NIR evidence.
+1. **L6-B1** · Audit sâu ba reference implementations: Tiếng Nga, Toán và nguyên tắc UX bài giảng Bơi ếch; lập bảng phần nào giữ, phần nào chuẩn hóa, phần nào không dùng chung. **PASS**.
+2. **L6-B2** · Định nghĩa `UniversalLessonContract` gồm metadata, prerequisite, objectives, theory, example, exercise, lab/simulation, misconception, visual-check, oral, review, test, mastery, project/NIR evidence. **LOCAL PASS · CI PENDING**.
 3. Tách `required blocks` và `optional blocks` theo lesson type để không ép mọi bài có 18 tab.
 4. Định nghĩa lesson types: language, mathematics, programming, database, software-design, ML/data, ASOIU/system, research.
 5. Định nghĩa Master-ready evidence/gate chung: understand → solve → build/apply → explain → retain; rubric theo loại môn.

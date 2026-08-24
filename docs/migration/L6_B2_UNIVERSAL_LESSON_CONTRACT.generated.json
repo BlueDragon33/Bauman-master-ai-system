@@ -1,0 +1,641 @@
+{
+  "schema": "L6_B2_UNIVERSAL_LESSON_CONTRACT_REGRESSION_V1",
+  "contractId": "bauman-universal-lesson-contract",
+  "contractVersion": "2.0.0",
+  "semanticBlockKinds": [
+    "orientation",
+    "concept-map",
+    "theory",
+    "worked-example",
+    "exercise",
+    "lab-simulation",
+    "misconception",
+    "visual-check",
+    "oral",
+    "review",
+    "assessment",
+    "mastery",
+    "project-nir-evidence"
+  ],
+  "requiredTopLevelFields": [
+    "metadata",
+    "prerequisites",
+    "objectives",
+    "blocks",
+    "masteryEvidence",
+    "contextRefs",
+    "offline",
+    "provenance"
+  ],
+  "requiredContextRefs": [
+    "currentLesson",
+    "prerequisiteGraph",
+    "learnerProgress",
+    "assessmentErrors",
+    "weakTopics",
+    "schedule",
+    "currentSubject",
+    "languageState",
+    "nirVkrContext"
+  ],
+  "identity": {
+    "department": "ИУ-5",
+    "officialPublishedDirectionCode": "09.04.01",
+    "personalizedDisplayCode": "09.04.01/11",
+    "learnerBrandPolicy": "bauman-iu5-only",
+    "identityRule": "Official-source metadata keeps 09.04.01; personalized learner surfaces display ИУ-5 · 09.04.01/11."
+  },
+  "compatibility": {
+    "projectionMode": "read-only-first",
+    "sourceMutationAllowed": false,
+    "legacyStateKeyMutationAllowed": false,
+    "referenceSubjects": [
+      "russian",
+      "math"
+    ]
+  },
+  "checks": [
+    {
+      "id": "FILE-assets/data/lesson/universal-lesson-contract-v2.json",
+      "title": "required B2 input exists",
+      "ok": true,
+      "evidence": "assets/data/lesson/universal-lesson-contract-v2.json"
+    },
+    {
+      "id": "FILE-docs/migration/L6_B2_UNIVERSAL_LESSON_CONTRACT.md",
+      "title": "required B2 input exists",
+      "ok": true,
+      "evidence": "docs/migration/L6_B2_UNIVERSAL_LESSON_CONTRACT.md"
+    },
+    {
+      "id": "FILE-docs/migration/L6_B1_REFERENCE_IMPLEMENTATION_AUDIT.md",
+      "title": "required B2 input exists",
+      "ok": true,
+      "evidence": "docs/migration/L6_B1_REFERENCE_IMPLEMENTATION_AUDIT.md"
+    },
+    {
+      "id": "CONTRACT-IDENTITY",
+      "title": "contract identity and version are explicit",
+      "ok": true,
+      "evidence": {
+        "contractId": "bauman-universal-lesson-contract",
+        "schemaVersion": "2.0.0",
+        "status": "L6-B2-CONTRACT"
+      }
+    },
+    {
+      "id": "PROGRAM-IDENTITY",
+      "title": "official and personalized direction codes remain distinct",
+      "ok": true,
+      "evidence": {
+        "department": "ИУ-5",
+        "officialPublishedDirectionCode": "09.04.01",
+        "personalizedDisplayCode": "09.04.01/11",
+        "learnerBrandPolicy": "bauman-iu5-only",
+        "identityRule": "Official-source metadata keeps 09.04.01; personalized learner surfaces display ИУ-5 · 09.04.01/11."
+      }
+    },
+    {
+      "id": "B1-DECISIONS",
+      "title": "contract references all twelve B1 architecture decisions",
+      "ok": true,
+      "evidence": [
+        "D01",
+        "D02",
+        "D03",
+        "D04",
+        "D05",
+        "D06",
+        "D07",
+        "D08",
+        "D09",
+        "D10",
+        "D11",
+        "D12"
+      ]
+    },
+    {
+      "id": "INSTANCE-ENVELOPE",
+      "title": "instance envelope contains every required top-level learning field",
+      "ok": true,
+      "evidence": [
+        "metadata",
+        "prerequisites",
+        "objectives",
+        "blocks",
+        "masteryEvidence",
+        "contextRefs",
+        "offline",
+        "provenance"
+      ]
+    },
+    {
+      "id": "METADATA-CONTRACT",
+      "title": "metadata carries stable lesson subject type stage program and source identity",
+      "ok": true,
+      "evidence": [
+        "contractVersion",
+        "lessonId",
+        "subjectId",
+        "lessonType",
+        "titles",
+        "stageId",
+        "programIdentity",
+        "sourceIdentity",
+        "contentVersion"
+      ]
+    },
+    {
+      "id": "PREREQUISITE-CONTRACT",
+      "title": "prerequisite relations states and recovery behavior are explicit",
+      "ok": true,
+      "evidence": {
+        "type": "array",
+        "itemRequiredFields": [
+          "id",
+          "relation",
+          "targetRef",
+          "requiredState"
+        ],
+        "relations": [
+          "requires",
+          "recommended",
+          "diagnostic",
+          "co-requisite"
+        ],
+        "requiredStates": [
+          "introduced",
+          "practised",
+          "assessment-pass",
+          "master-ready"
+        ],
+        "resolutionRule": "Unresolved required prerequisites block assessment entry but still allow orientation and recovery routes."
+      }
+    },
+    {
+      "id": "OBJECTIVE-CONTRACT",
+      "title": "objectives require observable evidence kinds",
+      "ok": true,
+      "evidence": {
+        "type": "array",
+        "minimumItems": 1,
+        "itemRequiredFields": [
+          "id",
+          "statement",
+          "evidenceKinds"
+        ],
+        "optionalFields": [
+          "language",
+          "cognitiveLevel",
+          "skillRefs",
+          "rubricRefs"
+        ],
+        "rule": "Each objective must map to at least one observable evidence kind."
+      }
+    },
+    {
+      "id": "BLOCK-CATALOG",
+      "title": "semantic catalog contains exactly the thirteen reviewed B2 block kinds",
+      "ok": true,
+      "evidence": [
+        "orientation",
+        "concept-map",
+        "theory",
+        "worked-example",
+        "exercise",
+        "lab-simulation",
+        "misconception",
+        "visual-check",
+        "oral",
+        "review",
+        "assessment",
+        "mastery",
+        "project-nir-evidence"
+      ]
+    },
+    {
+      "id": "BLOCK-REQUIREDNESS-DEFERRED",
+      "title": "every block defers requiredness to profiles",
+      "ok": true,
+      "evidence": [
+        [
+          "orientation",
+          "profile-defined"
+        ],
+        [
+          "concept-map",
+          "profile-defined"
+        ],
+        [
+          "theory",
+          "profile-defined"
+        ],
+        [
+          "worked-example",
+          "profile-defined"
+        ],
+        [
+          "exercise",
+          "profile-defined"
+        ],
+        [
+          "lab-simulation",
+          "profile-defined"
+        ],
+        [
+          "misconception",
+          "profile-defined"
+        ],
+        [
+          "visual-check",
+          "profile-defined"
+        ],
+        [
+          "oral",
+          "profile-defined"
+        ],
+        [
+          "review",
+          "profile-defined"
+        ],
+        [
+          "assessment",
+          "profile-defined"
+        ],
+        [
+          "mastery",
+          "profile-defined"
+        ],
+        [
+          "project-nir-evidence",
+          "profile-defined"
+        ]
+      ]
+    },
+    {
+      "id": "BLOCK-PURPOSE",
+      "title": "every semantic block has purpose payload and evidence contracts",
+      "ok": true,
+      "evidence": [
+        "orientation",
+        "concept-map",
+        "theory",
+        "worked-example",
+        "exercise",
+        "lab-simulation",
+        "misconception",
+        "visual-check",
+        "oral",
+        "review",
+        "assessment",
+        "mastery",
+        "project-nir-evidence"
+      ]
+    },
+    {
+      "id": "REQUESTED-THEORY-EXAMPLE-EXERCISE",
+      "title": "theory example and exercise contracts are present",
+      "ok": true,
+      "evidence": [
+        "theory",
+        "worked-example",
+        "exercise"
+      ]
+    },
+    {
+      "id": "REQUESTED-LAB-SIMULATION",
+      "title": "lab and simulation share a typed block without forcing both",
+      "ok": true,
+      "evidence": {
+        "aliases": [
+          "lab",
+          "simulation",
+          "interactive"
+        ],
+        "purpose": "Manipulate a system, model, parameter, dataset or environment and record observations.",
+        "defaultRequirement": "profile-defined",
+        "payloadFields": [
+          "mode",
+          "toolRef",
+          "inputs",
+          "procedure",
+          "observations",
+          "artifactPolicy"
+        ],
+        "evidenceKinds": [
+          "experiment-log",
+          "simulation-result",
+          "code-run",
+          "query-result",
+          "dataset-result"
+        ],
+        "specialistCapabilityExamples": [
+          "parameter-simulation",
+          "code-lab",
+          "sql-playground",
+          "dataset-playground"
+        ]
+      }
+    },
+    {
+      "id": "REQUESTED-MISCONCEPTION-VISUAL",
+      "title": "misconception and visual-check contracts include diagnosis repair and accessibility",
+      "ok": true,
+      "evidence": [
+        "misconception",
+        "visual-check"
+      ]
+    },
+    {
+      "id": "REQUESTED-ORAL-REVIEW",
+      "title": "oral and review contracts preserve specialist and retention evidence",
+      "ok": true,
+      "evidence": [
+        "oral",
+        "review"
+      ]
+    },
+    {
+      "id": "REQUESTED-TEST",
+      "title": "assessment contract explicitly aliases test and exam",
+      "ok": true,
+      "evidence": {
+        "aliases": [
+          "test",
+          "exam"
+        ],
+        "purpose": "Measure objectives under an explicit integrity and disclosure policy.",
+        "defaultRequirement": "profile-defined",
+        "payloadFields": [
+          "blueprintRef",
+          "questionRefs",
+          "attemptPolicy",
+          "disclosureMode",
+          "passPolicyRef",
+          "remedialRef"
+        ],
+        "evidenceKinds": [
+          "assessment-attempt",
+          "assessment-pass",
+          "remedial-pass"
+        ]
+      }
+    },
+    {
+      "id": "REQUESTED-MASTERY",
+      "title": "mastery contract uses the five evidence stages",
+      "ok": true,
+      "evidence": [
+        "understand",
+        "solve",
+        "build-apply",
+        "explain",
+        "retain"
+      ]
+    },
+    {
+      "id": "REQUESTED-PROJECT-NIR",
+      "title": "project NIR and VKR evidence is represented without global requiredness",
+      "ok": true,
+      "evidence": {
+        "aliases": [
+          "project-checkpoint",
+          "nir-checkpoint",
+          "vkr-checkpoint"
+        ],
+        "purpose": "Connect lesson work to project, НИР or ВКР artifacts with traceable evidence.",
+        "defaultRequirement": "profile-defined",
+        "payloadFields": [
+          "milestoneRef",
+          "researchQuestionRef",
+          "artifactRequirements",
+          "sourceRefs",
+          "reviewStatus",
+          "nextAction"
+        ],
+        "evidenceKinds": [
+          "project-artifact",
+          "experiment-protocol",
+          "research-note",
+          "nir-milestone",
+          "vkr-milestone"
+        ]
+      }
+    },
+    {
+      "id": "SOURCE-BINDING",
+      "title": "source binding combines artifact identity locator provenance adapter and precedence",
+      "ok": true,
+      "evidence": [
+        "sourceArtifactId",
+        "sourceArtifactKind",
+        "sourceVersion",
+        "locator",
+        "origin",
+        "adapterId",
+        "precedence"
+      ]
+    },
+    {
+      "id": "PROVENANCE-BOUNDARY",
+      "title": "provided source user system and AI origins remain distinguishable",
+      "ok": true,
+      "evidence": [
+        "provided-source",
+        "legacy-runtime",
+        "factory-native",
+        "user-provided",
+        "system-derived",
+        "ai-inference"
+      ]
+    },
+    {
+      "id": "BLOCK-ENVELOPE",
+      "title": "block envelope separates source payload presentation evidence and offline refs",
+      "ok": true,
+      "evidence": [
+        "id",
+        "kind",
+        "sourceBindings",
+        "payload",
+        "presentationHint",
+        "evidenceRefs",
+        "offlineRef"
+      ]
+    },
+    {
+      "id": "NO-CANONICAL-FLOW",
+      "title": "contract has no fixed canonicalFlow navigation",
+      "ok": true,
+      "evidence": {
+        "states": [
+          "learn",
+          "practise",
+          "analyse",
+          "review",
+          "assess"
+        ],
+        "candidateBlockKinds": {
+          "learn": [
+            "orientation",
+            "concept-map",
+            "theory",
+            "worked-example"
+          ],
+          "practise": [
+            "exercise",
+            "lab-simulation",
+            "oral"
+          ],
+          "analyse": [
+            "misconception",
+            "visual-check"
+          ],
+          "review": [
+            "review",
+            "mastery"
+          ],
+          "assess": [
+            "assessment",
+            "project-nir-evidence"
+          ]
+        },
+        "rule": "States are pedagogical gates, not mandatory tabs. Profiles and presentation strategies may combine or revisit states."
+      }
+    },
+    {
+      "id": "PRESENTATION-STRATEGIES",
+      "title": "presentation contract supports common and specialist strategies without empty views",
+      "ok": true,
+      "evidence": [
+        "inline-flow",
+        "gated-stepper",
+        "slide-deck",
+        "specialist-workspace",
+        "split-view",
+        "modal-tool",
+        "external-artifact"
+      ]
+    },
+    {
+      "id": "LEARNING-JOURNEY",
+      "title": "learning journey transfers learn practise analyse review assess as states",
+      "ok": true,
+      "evidence": [
+        "learn",
+        "practise",
+        "analyse",
+        "review",
+        "assess"
+      ]
+    },
+    {
+      "id": "MASTERY-THRESHOLDS-DEFERRED",
+      "title": "mastery vocabulary exists while thresholds and rubrics remain profile-owned",
+      "ok": true,
+      "evidence": {
+        "stages": [
+          "understand",
+          "solve",
+          "build-apply",
+          "explain",
+          "retain"
+        ],
+        "thresholdOwnership": "lesson-type-profile",
+        "rubricOwnership": "lesson-type-profile",
+        "completionRule": "Every required stage needs verified evidence; a page-view event never satisfies a stage."
+      }
+    },
+    {
+      "id": "ASSESSMENT-INTEGRITY",
+      "title": "practice official attempt and review use distinct disclosure modes",
+      "ok": true,
+      "evidence": {
+        "disclosureModes": {
+          "practice": "immediate-or-hint-policy",
+          "official-attempt": "defer-correctness-until-submit",
+          "review": "diagnosis-and-source-linked-repair"
+        },
+        "aiPolicy": "AI may coach with hints or Socratic questions but cannot reveal protected answers during an active official attempt.",
+        "failurePolicy": "Failed objectives create explicit repair refs and a new attempt record; prior evidence is retained."
+      }
+    },
+    {
+      "id": "CONTEXT-REFS",
+      "title": "context includes lesson prerequisite weakness schedule language and NIR/VKR",
+      "ok": true,
+      "evidence": [
+        "currentLesson",
+        "prerequisiteGraph",
+        "learnerProgress",
+        "assessmentErrors",
+        "weakTopics",
+        "schedule",
+        "currentSubject",
+        "languageState",
+        "nirVkrContext"
+      ]
+    },
+    {
+      "id": "OFFLINE-CONTRACT",
+      "title": "offline resources and deterministic fallback are mandatory",
+      "ok": true,
+      "evidence": [
+        "policyId",
+        "resources",
+        "deterministicFallbackRef"
+      ]
+    },
+    {
+      "id": "LANGUAGE-HOOKS-RESERVED",
+      "title": "Russian Twin English Research and Vietnamese rescue slots are reserved for B7 and L12",
+      "ok": true,
+      "evidence": {
+        "reservedFields": [
+          "russianTwinRef",
+          "englishResearchRef",
+          "vietnameseRescuePolicyRef",
+          "exposurePolicyRef"
+        ],
+        "activationRound": "L6-B7-and-L12"
+      }
+    },
+    {
+      "id": "COMPATIBILITY",
+      "title": "Russian and Mathematics compatibility is read-only with rollback",
+      "ok": true,
+      "evidence": {
+        "projectionMode": "read-only-first",
+        "sourceMutationAllowed": false,
+        "legacyStateKeyMutationAllowed": false,
+        "unknownSourceFieldPolicy": "pass-through",
+        "specialistEngineOwnsInteraction": true,
+        "requiredReferenceSubjects": [
+          "russian",
+          "math"
+        ],
+        "rollbackRule": "Disable the universal projection and route directly to the unchanged subject engine and source artifacts."
+      }
+    },
+    {
+      "id": "LEARNER-BRAND-BOUNDARY",
+      "title": "contract contains no comparison-school learner label",
+      "ok": true,
+      "evidence": "bauman-iu5-only"
+    },
+    {
+      "id": "DOC-CONTRACT-MAPPING",
+      "title": "B2 documentation explains all requested contract areas and later-step boundaries",
+      "ok": true,
+      "evidence": "docs/migration/L6_B2_UNIVERSAL_LESSON_CONTRACT.md"
+    },
+    {
+      "id": "DOC-REFERENCE-CONSISTENCY",
+      "title": "B2 remains consistent with the binding B1 decisions",
+      "ok": true,
+      "evidence": "docs/migration/L6_B1_REFERENCE_IMPLEMENTATION_AUDIT.md"
+    }
+  ],
+  "failures": [],
+  "result": "PASS"
+}

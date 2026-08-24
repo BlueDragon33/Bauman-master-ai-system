@@ -1,6 +1,6 @@
 # CODEX_STATE
 
-Current task: `L6-B1_REFERENCE_IMPLEMENTATION_AUDIT`
+Current task: `L6-B2_UNIVERSAL_LESSON_CONTRACT`
 
 Status: `IN_PROGRESS`
 
@@ -11,25 +11,35 @@ Main sync status: `branch_only`
 
 Files changed:
 - `.github/workflows/migration-l6-academic.yml`
-- `docs/migration/L6_B1_REFERENCE_IMPLEMENTATION_AUDIT.md`
-- `docs/migration/L6_B1_REFERENCE_AUDIT.generated.json`
-- `scripts/academic/l6-b1-reference-audit.cjs`
+- `assets/data/lesson/universal-lesson-contract-v2.json`
+- `docs/migration/L6_B2_UNIVERSAL_LESSON_CONTRACT.md`
+- `docs/migration/L6_B2_UNIVERSAL_LESSON_CONTRACT.generated.json`
+- `scripts/academic/l6-b2-universal-lesson-contract-regression.cjs`
 - `docs/migration/MIGRATION_PLAN.md`
 - `CODEX_STATE.md`
 
 What changed:
-- Audited Russian, Mathematics, five light-subject payloads, the frozen Bơi ếch
-  pedagogical reference and the divergent experimental L6 branch.
-- Locked twelve architecture decisions that keep semantic blocks separate from
-  UI tabs and require read-only compatibility adapters for Russian/Mathematics.
-- Added a deterministic L6-B1 gate and a dedicated branch-only CI workflow.
+- Locked L6-B1 after GitHub reported
+  `migration/l6-b1-reference-audit = success` at commit
+  `e75ca680a50e79f75e14218f4a9ecbfe0683a4b0`.
+- Defined Universal Lesson Contract V2 with metadata, prerequisites,
+  objectives, source/provenance identity, 13 semantic block kinds, evidence,
+  context, offline and rollback boundaries.
+- Kept semantic blocks separate from UI tabs and deferred requiredness,
+  lesson-type profiles, rubrics, formal JSON Schema and renderer work to their
+  ordered L6 steps.
+- Added the deterministic B2 gate and B2 commit-status context to the L6
+  branch-only workflow.
 - Did not change learner content, subject runtime, storage, offline policy,
   service worker or `main`.
 
 Verification:
 - L6-B1 deterministic audit, 44/44 checks: PASS
-- Generated report SHA-256 stable over two consecutive runs: PASS
+- L6-B1 GitHub status at `e75ca680…`: PASS
+- L6-B2 deterministic contract regression, 35/35 checks: PASS
+- B1 and B2 generated report hashes stable over consecutive runs: PASS
 - Workflow YAML parse: PASS
+- Russian/Mathematics runtime and content diff: NONE
 - L5 static routing, 9/9: PASS
 - L5 service-worker lifecycle, 17/17: PASS
 - L5 academic runtime V3, 36/36: PASS
@@ -37,24 +47,24 @@ Verification:
 - L5 data-loading audit, 8 subjects and 0 failures: PASS
 - L5 runtime diagnostics, 14/14: PASS
 - L5 offline-report integrity, 5/5 with one expected sandbox block: PASS
-- GitHub Actions L6 gate: PENDING
+- GitHub Actions L6-B2 gate: PENDING
 
 Main sync / pull instruction:
 - The work is branch-only on `migration/webapp-l1-audit-storage`.
-- Do not pull `main` for this task; `main` does not contain L6-B1.
+- Do not pull `main` for this task; `main` does not contain L6.
 - Do not merge to `main` until the corresponding L6 gates pass.
 
 Next recommended task:
-- Wait for the L6-B1 GitHub Actions gate; after PASS, start
-  `L6-B2_UNIVERSAL_LESSON_CONTRACT`.
+- Wait for the L6-B2 GitHub Actions gate; after PASS, start
+  `L6-B3_BLOCK_REQUIREMENT_POLICIES`.
 
 Next actor:
 - Codex
 
 Codex required:
 - yes
-- Reason: remote CI verification, schema/validator implementation, large JSON
-  compatibility audit and regression.
+- Reason: remote CI verification, profile-policy design, schema/validator
+  implementation, large JSON compatibility audit and regression.
 
 ChatGPT can do:
 - Targeted content/schema review and small documentation-only corrections on
