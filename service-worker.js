@@ -1,6 +1,6 @@
 'use strict';
 
-const VERSION='2026.08.24-l5.6';
+const VERSION='2026.08.24-l5.7';
 const CACHE_NAME=`bauman-shell-${VERSION}`;
 const OFFLINE_CONTENT_CACHE='bauman-offline-content-v1';
 const ROADMAP_MANIFEST='./assets/data/roadmap/iu5-090401-11-v3.json';
@@ -101,12 +101,13 @@ self.addEventListener('fetch',(event)=>{
   const url=new URL(request.url);
   if(url.origin!==self.location.origin)return;
 
+  const explicitPromise=explicitOfflineMatch(request);
+  const explicitRefresh=explicitPromise.then((cached)=>cached?revalidateExplicit(request):false).catch(()=>false);
+  event.waitUntil(explicitRefresh);
+
   event.respondWith((async()=>{
-    const explicit=await explicitOfflineMatch(request);
-    if(explicit){
-      event.waitUntil(revalidateExplicit(request));
-      return explicit;
-    }
+    const explicit=await explicitPromise;
+    if(explicit)return explicit;
 
     if(!cacheEligible(url)){
       try{return await fetch(request);}catch(_){return Response.error();}
