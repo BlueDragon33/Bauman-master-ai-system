@@ -1,6 +1,6 @@
 # CODEX_STATE
 
-Current task: `L6-B6_VISUAL_TEACHING_CONTRACT`
+Current task: `L6-B7_RUSSIAN_TWIN_ENGLISH_RESEARCH_HOOKS`
 
 Status: `IN_PROGRESS`
 
@@ -34,6 +34,8 @@ What changed:
 - Manual audit added conditional-null rules for generic family renderers,
   correct outcomes and repair feedback.
 - Added the deterministic B6 gate and B6 commit-status context.
+- Locked L6-B6 after GitHub Actions run `32717062541` reported B1-B6 contexts
+  successful at commit `39dc6f08…`.
 - Did not change learner content, subject runtime, storage, offline policy,
   service worker or `main`.
 
@@ -47,6 +49,7 @@ Verification:
 - L6-B5 deterministic Master-ready regression, 44/44 checks: PASS
 - L6-B5 GitHub Actions run `32715744137`: PASS
 - L6-B6 deterministic visual-teaching regression, 75/75 checks: PASS
+- L6-B6 GitHub Actions run `32717062541`: PASS
 - B1-B6 report hashes stable over consecutive runs: PASS
 - B6 mutation tests (type coverage, focused feedback, assessment disclosure,
   accessibility), 4/4 expected failures observed: PASS
@@ -60,7 +63,7 @@ Verification:
 - L5 runtime diagnostics, 14/14: PASS
 - L5 offline-report integrity, 5/5 with one expected sandbox block: PASS
 - Bơi reference URL + three B1 hashes: MATCH
-- GitHub Actions L6-B6 gate: PENDING
+- GitHub Actions L6-B6 gate: PASS
 
 Main sync / pull instruction:
 - The work is branch-only on `migration/webapp-l1-audit-storage`.
@@ -68,8 +71,8 @@ Main sync / pull instruction:
 - Do not merge to `main` until the corresponding L6 gates pass.
 
 Next recommended task:
-- Wait for the L6-B6 GitHub Actions gate; after PASS, start
-  `L6-B7_RUSSIAN_TWIN_ENGLISH_RESEARCH_HOOKS`.
+- Audit and implement latent Russian Twin + English Research Layer hooks in
+  `L6-B7_RUSSIAN_TWIN_ENGLISH_RESEARCH_HOOKS` without forcing translated UI.
 
 Next actor:
 - Codex

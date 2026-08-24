@@ -107,7 +107,7 @@ L5 PASS nhưng `serviceWorkerCache` production vẫn OFF. Chỉ bật ở stagin
 
 ## Lượt 6 · Universal Lesson Architecture & Subject Factory · 11 bước
 
-Trạng thái: **B1–B5 PASS · B6 IMPLEMENTED · LOCAL GATE PASS · REMOTE CI PENDING**.
+Trạng thái: **B1–B6 PASS · B7 CHƯA BẮT ĐẦU**.
 
 Bằng chứng B1:
 - Audit quyết định: L6_B1_REFERENCE_IMPLEMENTATION_AUDIT.md.
@@ -221,18 +221,20 @@ Bằng chứng B6:
   repair/offline, không sao chép interaction theo miền bơi hoặc fixed tabs.
 - Russian/Math vẫn `read-only-reference-unprojected`; runtime/content không có
   diff và sáu source compatibility paths có hash trong report.
+- Remote gate: commit `39dc6f08023536924e1faa81029c30b8a8f51f3f`,
+  run `32717062541`, context
+  `migration/l6-b6-visual-teaching` = `success`; B1-B5 contexts cùng run cũng
+  `success`.
 - L5 regression trên bản nguồn sạch sau B6: static routing 9/9, service worker
   17/17, academic runtime 36/36, roadmap/offline static 75/75, data loading 8
   môn với 0 lỗi, runtime diagnostics 14/14, offline report integrity 5/5.
-- Chưa đánh dấu B6 remote PASS cho tới khi workflow L6 trên nhánh làm việc
-  hoàn tất thành công.
 
 1. **L6-B1** · Audit sâu ba reference implementations: Tiếng Nga, Toán và nguyên tắc UX bài giảng Bơi ếch; lập bảng phần nào giữ, phần nào chuẩn hóa, phần nào không dùng chung. **PASS**.
 2. **L6-B2** · Định nghĩa `UniversalLessonContract` gồm metadata, prerequisite, objectives, theory, example, exercise, lab/simulation, misconception, visual-check, oral, review, test, mastery, project/NIR evidence. **PASS**.
 3. **L6-B3** · Tách `required blocks` và `optional blocks` theo lesson type để không ép mọi bài có 18 tab. **PASS**.
 4. **L6-B4** · Định nghĩa lesson types: language, mathematics, programming, database, software-design, ML/data, ASOIU/system, research. **PASS**.
 5. **L6-B5** · Định nghĩa Master-ready evidence/gate chung: understand → solve → build/apply → explain → retain; rubric theo loại môn. **PASS**.
-6. **L6-B6** · Định nghĩa Visual Teaching Contract: hình/diagram/step-state/correct-wrong/interactive feedback, kế thừa tinh thần Bơi ếch nhưng phù hợp môn kỹ thuật. **LOCAL PASS · CI PENDING**.
+6. **L6-B6** · Định nghĩa Visual Teaching Contract: hình/diagram/step-state/correct-wrong/interactive feedback, kế thừa tinh thần Bơi ếch nhưng phù hợp môn kỹ thuật. **PASS**.
 7. Định nghĩa Russian Twin + English Research Layer hooks ngay trong contract, chưa ép hiển thị toàn bộ trước L12.
 8. Tạo machine-readable lesson schema + validator + version migration.
 9. Tạo Subject Factory registry: subject → engine → lesson types → special widgets → data sources → offline policy.
