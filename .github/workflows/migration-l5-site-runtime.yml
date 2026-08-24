@@ -1,0 +1,108 @@
+name: Migration L5 Validation Gate
+
+on:
+  pull_request:
+    branches:
+      - validation/l5-base
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: migration-l5-validation-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  l5-validation:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout validation merge
+        uses: actions/checkout@v5
+        with:
+          fetch-depth: 0
+
+      - name: Use Node.js 24
+        uses: actions/setup-node@v5
+        with:
+          node-version: '24'
+
+      - name: Syntax and manifest gate
+        run: |
+          node --check assets/js/academic-data-v3.js
+          node --check assets/js/platform/academic-runtime-v3-bridge.js
+          node --check assets/js/platform/academic-roadmap-v3-bridge.js
+          node --check assets/js/platform/site-runtime.js
+          node --check assets/js/platform/site-routing-bridge.js
+          node --check assets/js/platform/offline-content-library.js
+          node --check assets/js/platform/offline-library-ui.js
+          node --check assets/js/platform/offline-html-sandbox-guard.js
+          node --check assets/js/platform/offline-import-quota-guard.js
+          node --check assets/js/platform/offline-direct-file-reader.js
+          node --check assets/js/platform/offline-subject-pack-refcount-guard.js
+          node --check assets/js/platform/offline-subject-pack-manager.js
+          node --check service-worker.js
+          node --check subjects/math/assets/theory_skin/theory-legacy-route-E246.js
+          node --check subjects/russian/assets/lazy-heavy-data-v1341.js
+          node --check scripts/migration/l5-academic-runtime-v3-regression.cjs
+          node --check scripts/migration/l5-data-loading-audit.cjs
+          node --check scripts/migration/l5-static-routing-audit.cjs
+          node --check scripts/migration/l5-service-worker-lifecycle-regression.cjs
+          node --check scripts/migration/l5-roadmap-offline-static-regression.cjs
+          node --check scripts/migration/l5-browser-network-regression.cjs
+          node --check scripts/migration/l5-responsive-regression.cjs
+          node --check scripts/migration/l5-render-performance-regression.cjs
+          node --check scripts/migration/l5-direct-file-reader-regression.cjs
+          node --check scripts/migration/l5-roadmap-offline-browser-regression.cjs
+          node -e "const x=require('./assets/data/roadmap/iu5-090401-11-v3.json'); if(x.displayCode!=='09.04.01/11'||x.department!=='ИУ-5'||x.semesters?.length!==4||x.phases?.length!==5) process.exit(2)"
+
+      - name: Static architecture gates
+        run: |
+          node scripts/migration/l5-static-routing-audit.cjs
+          node scripts/migration/l5-service-worker-lifecycle-regression.cjs
+          node scripts/migration/l5-academic-runtime-v3-regression.cjs
+          node scripts/migration/l5-roadmap-offline-static-regression.cjs
+          node scripts/migration/l5-direct-file-reader-regression.cjs
+          node scripts/migration/l5-data-loading-audit.cjs
+
+      - name: Install Playwright Chromium
+        run: |
+          npm install --no-save --package-lock=false playwright@1.54.2
+          npx playwright install --with-deps chromium
+
+      - name: Start local Web App server
+        run: python3 -m http.server 4173 --bind 127.0.0.1 > /tmp/bauman-l5-http.log 2>&1 &
+
+      - name: Browser lazy-loading gate
+        run: |
+          sleep 1
+          node scripts/migration/l5-browser-network-regression.cjs
+
+      - name: Responsive and routing gate
+        run: node scripts/migration/l5-responsive-regression.cjs
+
+      - name: Render performance gate
+        run: node scripts/migration/l5-render-performance-regression.cjs
+
+      - name: Offline/PWA browser gate
+        run: node scripts/migration/l5-roadmap-offline-browser-regression.cjs
+
+      - name: Upload validation reports
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: l5-validation-reports
+          path: |
+            docs/migration/L5_STATIC_ROUTING_AUDIT.generated.json
+            docs/migration/L5_SERVICE_WORKER_LIFECYCLE_REGRESSION.generated.json
+            docs/migration/L5_ACADEMIC_RUNTIME_V3_REGRESSION.generated.json
+            docs/migration/L5_ROADMAP_OFFLINE_STATIC_REGRESSION.generated.json
+            docs/migration/L5_DIRECT_FILE_READER_REGRESSION.generated.json
+            docs/migration/L5_DATA_LOADING_AUDIT.generated.md
+            docs/migration/L5_BROWSER_NETWORK_REGRESSION.generated.json
+            docs/migration/L5_RESPONSIVE_REGRESSION.generated.json
+            docs/migration/L5_RENDER_PERFORMANCE_REGRESSION.generated.json
+            docs/migration/L5_ROADMAP_OFFLINE_BROWSER_REGRESSION.generated.json
+            /tmp/bauman-l5-http.log
+          if-no-files-found: warn
+          retention-days: 7
