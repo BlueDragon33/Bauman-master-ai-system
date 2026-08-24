@@ -1,8 +1,8 @@
 # CODEX_STATE
 
-Current task: `L6-B9_SUBJECT_FACTORY_REGISTRY`
+Current task: `L6-B10_UNIVERSAL_LESSON_RENDERER_BRIDGE`
 
-Status: `L6_B9_LOCAL_PASS_PENDING_REMOTE_CI`
+Status: `L6_B9_PASS_READY_FOR_L6_B10`
 
 Date: 2026-08-24
 Branch: `migration/webapp-l1-audit-storage`
@@ -62,6 +62,8 @@ What changed:
   supplements without changing any existing subject runtime or content.
 - Added the deterministic B9 gate, eight mutation tests and planned remote
   context `migration/l6-b9-subject-factory`.
+- Locked L6-B9 after GitHub Actions run `32723374054` reported B1-B9 contexts
+  successful at feature commit `7d76270e1e5bbd1141465a722794f2fde5cd6290`.
 - Did not change learner content, subject runtime, storage, offline policy,
   service worker or `main`.
 
@@ -100,7 +102,9 @@ Verification:
   academic runtime 36/36, roadmap/offline 75/75, 8 subjects with 0 data-load
   failures, diagnostics 14/14, offline integrity 5/5: PASS
 - B9 workflow YAML and JavaScript syntax: LOCAL PASS
-- L6-B9 GitHub Actions/context: PENDING; B9 is not yet declared PASS
+- L6-B9 GitHub Actions run `32723374054`: PASS
+- L6-B9 remote context `migration/l6-b9-subject-factory`: PASS
+- L6-B1 through L6-B8 contexts in the same run: PASS
 - B1-B7 report hashes stable over consecutive runs: PASS
 - B7 mutation tests (activation, review authority, English coverage,
   rescue evidence, assessment leakage), 5/5 expected failures observed: PASS
@@ -122,9 +126,9 @@ Main sync / pull instruction:
 - Do not merge to `main` until the corresponding L6 gates pass.
 
 Next recommended task:
-- Publish the exact B9 checkpoint to the working branch, wait for all B1-B9
-  contexts, lock B9 only if `migration/l6-b9-subject-factory` succeeds, then
-  begin L6-B10 renderer/legacy bridge design.
+- Begin L6-B10 Universal Lesson Renderer/legacy bridge design from the locked
+  B2-B9 contracts without changing Russian/Mathematics source ownership or
+  writing learner state.
 
 Next actor:
 - Codex
