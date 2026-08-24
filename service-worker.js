@@ -1,6 +1,6 @@
 'use strict';
 
-const VERSION='2026.08.24-l5.8';
+const VERSION='2026.08.24-l5.9';
 const CACHE_NAME=`bauman-shell-${VERSION}`;
 const OFFLINE_CONTENT_CACHE='bauman-offline-content-v1';
 const ROADMAP_MANIFEST='./assets/data/roadmap/iu5-090401-11-v3.json';
@@ -31,6 +31,7 @@ const SHELL=[
   './assets/js/platform/offline-library-ui.js',
   './assets/js/platform/offline-html-sandbox-guard.js',
   './assets/js/platform/offline-import-quota-guard.js',
+  './assets/js/platform/offline-direct-file-reader.js',
   './assets/js/platform/offline-subject-pack-refcount-guard.js',
   './assets/js/platform/offline-subject-pack-manager.js',
   './assets/js/planning-main.js',
