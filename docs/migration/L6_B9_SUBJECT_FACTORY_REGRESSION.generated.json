@@ -1,0 +1,6094 @@
+{
+  "schema": "L6_B9_SUBJECT_FACTORY_REGRESSION_V1",
+  "status": "PASS",
+  "branch": "migration/webapp-l1-audit-storage",
+  "generatedFor": "2026-08-24",
+  "scope": "Read-only Subject Factory registry source resolver and compatibility audit; no renderer activation source migration or learner-state write.",
+  "summary": {
+    "total": 340,
+    "passed": 340,
+    "failed": 0,
+    "subjects": 8,
+    "engines": 4,
+    "widgets": 22,
+    "resolvedSources": 128,
+    "currentLessonsClassified": 631,
+    "heldFoundationLessons": 6,
+    "mutationTests": 8,
+    "expectedMutationFailuresObserved": 8
+  },
+  "registry": {
+    "id": "bauman-subject-factory-registry",
+    "version": "1.0.0",
+    "resolverRelease": "L6-B9-SUBJECT-FACTORY-REGISTRY-V1",
+    "digestAlgorithm": "sha256-stable-json-v1",
+    "digest": "c852e9bd4ab02bb7307274f1efc3c3b34c766de679cf06f3cff7bcb2c16d3001",
+    "validationSummary": {
+      "subjects": 8,
+      "engines": 4,
+      "widgets": 22,
+      "offlinePolicies": 4,
+      "manualReviewSubjects": 1
+    },
+    "warnings": [
+      {
+        "code": "MANUAL_TYPE_REVIEW_HELD",
+        "subjects": [
+          "foundation"
+        ],
+        "message": "Factory intentionally holds unclassified modules for manual review."
+      }
+    ]
+  },
+  "programIdentity": {
+    "department": "ИУ-5",
+    "officialPublishedDirectionCode": "09.04.01",
+    "personalizedDisplayCode": "09.04.01/11",
+    "rule": "Official Bauman source metadata keeps 09.04.01; personalized learner surfaces display ИУ-5 · 09.04.01/11."
+  },
+  "subjectDescriptors": {
+    "russian": {
+      "ok": true,
+      "engineRef": "russian-v13-specialist",
+      "sourceCount": 17,
+      "widgetCount": 6,
+      "offlinePolicyRef": "russian-rich-explicit",
+      "compatibility": {
+        "mode": "read-only-adapter-bridge",
+        "directMigration": false,
+        "directFactoryRender": false,
+        "sourceMutation": false,
+        "learnerStateMigration": false,
+        "factoryPilot": false
+      }
+    },
+    "math": {
+      "ok": true,
+      "engineRef": "math-e126-specialist",
+      "sourceCount": 59,
+      "widgetCount": 5,
+      "offlinePolicyRef": "math-rich-explicit",
+      "compatibility": {
+        "mode": "read-only-adapter-bridge",
+        "directMigration": false,
+        "directFactoryRender": false,
+        "sourceMutation": false,
+        "learnerStateMigration": false,
+        "factoryPilot": false
+      }
+    },
+    "programming": {
+      "ok": true,
+      "engineRef": "programming-v2-specialist",
+      "sourceCount": 17,
+      "widgetCount": 4,
+      "offlinePolicyRef": "programming-rich-explicit",
+      "compatibility": {
+        "mode": "read-only-adapter-bridge",
+        "directMigration": false,
+        "directFactoryRender": false,
+        "sourceMutation": false,
+        "learnerStateMigration": false,
+        "factoryPilot": false
+      }
+    },
+    "foundation": {
+      "ok": true,
+      "engineRef": "light-elearning-v2",
+      "sourceCount": 7,
+      "widgetCount": 3,
+      "offlinePolicyRef": "light-core-explicit",
+      "compatibility": {
+        "mode": "light-read-only-projection",
+        "directMigration": false,
+        "directFactoryRender": false,
+        "sourceMutation": false,
+        "learnerStateMigration": false,
+        "factoryPilot": true,
+        "pilotScope": "Only lessons with a deterministic B9 lesson-type classification."
+      }
+    },
+    "ai": {
+      "ok": true,
+      "engineRef": "light-elearning-v2",
+      "sourceCount": 7,
+      "widgetCount": 4,
+      "offlinePolicyRef": "light-core-explicit",
+      "compatibility": {
+        "mode": "light-read-only-projection",
+        "directMigration": false,
+        "directFactoryRender": false,
+        "sourceMutation": false,
+        "learnerStateMigration": false,
+        "factoryPilot": false
+      }
+    },
+    "signal": {
+      "ok": true,
+      "engineRef": "light-elearning-v2",
+      "sourceCount": 7,
+      "widgetCount": 4,
+      "offlinePolicyRef": "light-core-explicit",
+      "compatibility": {
+        "mode": "light-read-only-projection",
+        "directMigration": false,
+        "directFactoryRender": false,
+        "sourceMutation": false,
+        "learnerStateMigration": false,
+        "factoryPilot": false
+      }
+    },
+    "systems": {
+      "ok": true,
+      "engineRef": "light-elearning-v2",
+      "sourceCount": 7,
+      "widgetCount": 4,
+      "offlinePolicyRef": "light-core-explicit",
+      "compatibility": {
+        "mode": "light-read-only-projection",
+        "directMigration": false,
+        "directFactoryRender": false,
+        "sourceMutation": false,
+        "learnerStateMigration": false,
+        "factoryPilot": false
+      }
+    },
+    "research": {
+      "ok": true,
+      "engineRef": "light-elearning-v2",
+      "sourceCount": 7,
+      "widgetCount": 4,
+      "offlinePolicyRef": "light-core-explicit",
+      "compatibility": {
+        "mode": "light-read-only-projection",
+        "directMigration": false,
+        "directFactoryRender": false,
+        "sourceMutation": false,
+        "learnerStateMigration": false,
+        "factoryPilot": false
+      }
+    }
+  },
+  "classification": {
+    "russian": {
+      "sourceCount": 26,
+      "distribution": {
+        "language": 26
+      }
+    },
+    "math": {
+      "sourceCount": 347,
+      "distribution": {
+        "mathematics": 347
+      }
+    },
+    "programming": {
+      "sourceCount": 48,
+      "distribution": {
+        "programming": 28,
+        "database": 4,
+        "software-design": 16
+      }
+    },
+    "foundation": {
+      "sourceCount": 21,
+      "distribution": {
+        "language": 6,
+        "mathematics": 6,
+        "programming": 3,
+        "UNCLASSIFIED_LESSON": 6
+      }
+    },
+    "ai": {
+      "sourceCount": 51,
+      "distribution": {
+        "ml-data": 51
+      }
+    },
+    "signal": {
+      "sourceCount": 36,
+      "distribution": {
+        "ml-data": 36
+      }
+    },
+    "systems": {
+      "sourceCount": 57,
+      "distribution": {
+        "asoiu-system": 57
+      }
+    },
+    "research": {
+      "sourceCount": 45,
+      "distribution": {
+        "research": 45
+      }
+    }
+  },
+  "sourceEvidence": {
+    "russian": [
+      {
+        "sourceId": "curriculum",
+        "loadClass": "startup",
+        "relativePath": "subjects/russian/data/curriculum.json",
+        "bytes": 4229
+      },
+      {
+        "sourceId": "lessons",
+        "loadClass": "startup",
+        "relativePath": "subjects/russian/data/lessons.json",
+        "bytes": 1418252
+      },
+      {
+        "sourceId": "grammar",
+        "loadClass": "startup",
+        "relativePath": "subjects/russian/data/grammar.json",
+        "bytes": 19892
+      },
+      {
+        "sourceId": "grammar-path",
+        "loadClass": "startup",
+        "relativePath": "subjects/russian/data/grammar-path.json",
+        "bytes": 29371
+      },
+      {
+        "sourceId": "mindmap",
+        "loadClass": "startup",
+        "relativePath": "subjects/russian/data/mindmap.json",
+        "bytes": 110754
+      },
+      {
+        "sourceId": "exercises",
+        "loadClass": "startup",
+        "relativePath": "subjects/russian/data/exercises.json",
+        "bytes": 476196
+      },
+      {
+        "sourceId": "simulations",
+        "loadClass": "startup",
+        "relativePath": "subjects/russian/data/simulations.json",
+        "bytes": 29334
+      },
+      {
+        "sourceId": "handwriting",
+        "loadClass": "startup",
+        "relativePath": "subjects/russian/data/handwriting.json",
+        "bytes": 48141
+      },
+      {
+        "sourceId": "writing",
+        "loadClass": "startup",
+        "relativePath": "subjects/russian/data/writing.json",
+        "bytes": 79470
+      },
+      {
+        "sourceId": "videos",
+        "loadClass": "startup",
+        "relativePath": "subjects/russian/data/videos.json",
+        "bytes": 19488
+      },
+      {
+        "sourceId": "knowledge-index",
+        "loadClass": "startup",
+        "relativePath": "subjects/russian/data/knowledge-index.json",
+        "bytes": 28372
+      },
+      {
+        "sourceId": "vocab",
+        "loadClass": "required-lazy",
+        "relativePath": "subjects/russian/data/vocab.json",
+        "bytes": 11212921
+      },
+      {
+        "sourceId": "tests",
+        "loadClass": "required-lazy",
+        "relativePath": "subjects/russian/data/tests.json",
+        "bytes": 7923057
+      },
+      {
+        "sourceId": "speaking",
+        "loadClass": "required-lazy",
+        "relativePath": "subjects/russian/data/speaking.json",
+        "bytes": 7343576
+      },
+      {
+        "sourceId": "dialogue-bauman-az",
+        "loadClass": "optional-lazy",
+        "relativePath": "subjects/russian/data/dialogue-bauman-az.json",
+        "bytes": 35049608
+      },
+      {
+        "sourceId": "deep-speaking-bauman",
+        "loadClass": "optional-lazy",
+        "relativePath": "subjects/russian/data/deep-speaking-bauman.json",
+        "bytes": 28156378
+      },
+      {
+        "sourceId": "speaking-link-index",
+        "loadClass": "optional-lazy",
+        "relativePath": "subjects/russian/data/speaking-link-index.json",
+        "bytes": 385702
+      }
+    ],
+    "math": [
+      {
+        "sourceId": "content_vault_manifest",
+        "loadClass": "startup",
+        "relativePath": "subjects/math/data/content_vault_manifest.json",
+        "bytes": 13983
+      },
+      {
+        "sourceId": "discipline_spine",
+        "loadClass": "startup",
+        "relativePath": "subjects/math/data/discipline_spine.json",
+        "bytes": 9364
+      },
+      {
+        "sourceId": "chapter_spine",
+        "loadClass": "startup",
+        "relativePath": "subjects/math/data/chapter_spine.json",
+        "bytes": 204065
+      },
+      {
+        "sourceId": "curriculum",
+        "loadClass": "startup",
+        "relativePath": "subjects/math/data/curriculum.json",
+        "bytes": 117642
+      },
+      {
+        "sourceId": "content-manifest",
+        "loadClass": "startup",
+        "relativePath": "subjects/math/data/content-manifest.json",
+        "bytes": 11690
+      },
+      {
+        "sourceId": "theory_lecture_frame",
+        "loadClass": "startup",
+        "relativePath": "subjects/math/data/theory_lecture_frame.json",
+        "bytes": 181265
+      },
+      {
+        "sourceId": "formula_frame",
+        "loadClass": "startup",
+        "relativePath": "subjects/math/data/formula_frame.json",
+        "bytes": 57344
+      },
+      {
+        "sourceId": "simulation_frame",
+        "loadClass": "startup",
+        "relativePath": "subjects/math/data/simulation_frame.json",
+        "bytes": 57524
+      },
+      {
+        "sourceId": "exercise_frame",
+        "loadClass": "startup",
+        "relativePath": "subjects/math/data/exercise_frame.json",
+        "bytes": 57398
+      },
+      {
+        "sourceId": "application_frame",
+        "loadClass": "startup",
+        "relativePath": "subjects/math/data/application_frame.json",
+        "bytes": 57591
+      },
+      {
+        "sourceId": "professor_qa_frame",
+        "loadClass": "startup",
+        "relativePath": "subjects/math/data/professor_qa_frame.json",
+        "bytes": 57625
+      },
+      {
+        "sourceId": "review_pack_frame",
+        "loadClass": "startup",
+        "relativePath": "subjects/math/data/review_pack_frame.json",
+        "bytes": 57582
+      },
+      {
+        "sourceId": "question_bank_frame",
+        "loadClass": "startup",
+        "relativePath": "subjects/math/data/question_bank_frame.json",
+        "bytes": 57706
+      },
+      {
+        "sourceId": "test_blueprint_frame",
+        "loadClass": "startup",
+        "relativePath": "subjects/math/data/test_blueprint_frame.json",
+        "bytes": 57775
+      },
+      {
+        "sourceId": "chapter_lecture_frame",
+        "loadClass": "startup",
+        "relativePath": "subjects/math/data/chapter_lecture_frame.json",
+        "bytes": 57876
+      },
+      {
+        "sourceId": "mindmap_frame",
+        "loadClass": "startup",
+        "relativePath": "subjects/math/data/mindmap_frame.json",
+        "bytes": 57313
+      },
+      {
+        "sourceId": "concept_map_frame",
+        "loadClass": "startup",
+        "relativePath": "subjects/math/data/concept_map_frame.json",
+        "bytes": 57587
+      },
+      {
+        "sourceId": "media_frame",
+        "loadClass": "startup",
+        "relativePath": "subjects/math/data/media_frame.json",
+        "bytes": 57224
+      },
+      {
+        "sourceId": "theory_lecture_content",
+        "loadClass": "startup",
+        "relativePath": "subjects/math/data/theory_lecture_content.json",
+        "bytes": 259002
+      },
+      {
+        "sourceId": "formula_content",
+        "loadClass": "startup",
+        "relativePath": "subjects/math/data/formula_content.json",
+        "bytes": 1916
+      },
+      {
+        "sourceId": "simulation_content",
+        "loadClass": "startup",
+        "relativePath": "subjects/math/data/simulation_content.json",
+        "bytes": 2081
+      },
+      {
+        "sourceId": "exercise_content",
+        "loadClass": "startup",
+        "relativePath": "subjects/math/data/exercise_content.json",
+        "bytes": 1843
+      },
+      {
+        "sourceId": "application_content",
+        "loadClass": "startup",
+        "relativePath": "subjects/math/data/application_content.json",
+        "bytes": 1921
+      },
+      {
+        "sourceId": "professor_qa_content",
+        "loadClass": "startup",
+        "relativePath": "subjects/math/data/professor_qa_content.json",
+        "bytes": 1874
+      },
+      {
+        "sourceId": "review_pack_content",
+        "loadClass": "startup",
+        "relativePath": "subjects/math/data/review_pack_content.json",
+        "bytes": 1822
+      },
+      {
+        "sourceId": "question_bank_content",
+        "loadClass": "startup",
+        "relativePath": "subjects/math/data/question_bank_content.json",
+        "bytes": 1981
+      },
+      {
+        "sourceId": "test_blueprint_content",
+        "loadClass": "startup",
+        "relativePath": "subjects/math/data/test_blueprint_content.json",
+        "bytes": 1714
+      },
+      {
+        "sourceId": "chapter_lecture_content",
+        "loadClass": "startup",
+        "relativePath": "subjects/math/data/chapter_lecture_content.json",
+        "bytes": 1693
+      },
+      {
+        "sourceId": "mindmap_content",
+        "loadClass": "startup",
+        "relativePath": "subjects/math/data/mindmap_content.json",
+        "bytes": 1554
+      },
+      {
+        "sourceId": "concept_map_content",
+        "loadClass": "startup",
+        "relativePath": "subjects/math/data/concept_map_content.json",
+        "bytes": 1604
+      },
+      {
+        "sourceId": "media_content",
+        "loadClass": "startup",
+        "relativePath": "subjects/math/data/media_content.json",
+        "bytes": 1586
+      },
+      {
+        "sourceId": "formulas",
+        "loadClass": "startup",
+        "relativePath": "subjects/math/data/formulas.json",
+        "bytes": 2
+      },
+      {
+        "sourceId": "simulations",
+        "loadClass": "startup",
+        "relativePath": "subjects/math/data/simulations.json",
+        "bytes": 2
+      },
+      {
+        "sourceId": "exercises",
+        "loadClass": "startup",
+        "relativePath": "subjects/math/data/exercises.json",
+        "bytes": 2
+      },
+      {
+        "sourceId": "applications",
+        "loadClass": "startup",
+        "relativePath": "subjects/math/data/applications.json",
+        "bytes": 2
+      },
+      {
+        "sourceId": "professor_qa",
+        "loadClass": "startup",
+        "relativePath": "subjects/math/data/professor_qa.json",
+        "bytes": 2
+      },
+      {
+        "sourceId": "review_packs",
+        "loadClass": "startup",
+        "relativePath": "subjects/math/data/review_packs.json",
+        "bytes": 2
+      },
+      {
+        "sourceId": "question_bank",
+        "loadClass": "startup",
+        "relativePath": "subjects/math/data/question_bank.json",
+        "bytes": 2
+      },
+      {
+        "sourceId": "test_blueprints",
+        "loadClass": "startup",
+        "relativePath": "subjects/math/data/test_blueprints.json",
+        "bytes": 2
+      },
+      {
+        "sourceId": "chapter_lectures",
+        "loadClass": "startup",
+        "relativePath": "subjects/math/data/chapter_lectures.json",
+        "bytes": 2
+      },
+      {
+        "sourceId": "mindmap",
+        "loadClass": "startup",
+        "relativePath": "subjects/math/data/mindmap.json",
+        "bytes": 2
+      },
+      {
+        "sourceId": "concept-map",
+        "loadClass": "startup",
+        "relativePath": "subjects/math/data/concept-map.json",
+        "bytes": 2
+      },
+      {
+        "sourceId": "videos",
+        "loadClass": "startup",
+        "relativePath": "subjects/math/data/videos.json",
+        "bytes": 10673
+      },
+      {
+        "sourceId": "learning_rules",
+        "loadClass": "startup",
+        "relativePath": "subjects/math/data/learning_rules.json",
+        "bytes": 319
+      },
+      {
+        "sourceId": "tests",
+        "loadClass": "startup",
+        "relativePath": "subjects/math/data/tests.json",
+        "bytes": 268
+      },
+      {
+        "sourceId": "content-index",
+        "loadClass": "startup",
+        "relativePath": "subjects/math/data/content-index.json",
+        "bytes": 2
+      },
+      {
+        "sourceId": "knowledge-index",
+        "loadClass": "startup",
+        "relativePath": "subjects/math/data/knowledge-index.json",
+        "bytes": 2
+      },
+      {
+        "sourceId": "mastery-map",
+        "loadClass": "startup",
+        "relativePath": "subjects/math/data/mastery-map.json",
+        "bytes": 2
+      },
+      {
+        "sourceId": "vocab",
+        "loadClass": "startup",
+        "relativePath": "subjects/math/data/vocab.json",
+        "bytes": 934291
+      },
+      {
+        "sourceId": "grammar",
+        "loadClass": "startup",
+        "relativePath": "subjects/math/data/grammar.json",
+        "bytes": 192699
+      },
+      {
+        "sourceId": "grammar-path",
+        "loadClass": "startup",
+        "relativePath": "subjects/math/data/grammar-path.json",
+        "bytes": 192699
+      },
+      {
+        "sourceId": "lessons",
+        "loadClass": "required-lazy",
+        "relativePath": "subjects/math/data/lessons.json",
+        "bytes": 7822102
+      },
+      {
+        "sourceId": "writing",
+        "loadClass": "optional-lazy",
+        "relativePath": "subjects/math/data/writing.json",
+        "bytes": 63976
+      },
+      {
+        "sourceId": "handwriting",
+        "loadClass": "optional-lazy",
+        "relativePath": "subjects/math/data/handwriting.json",
+        "bytes": 20770
+      },
+      {
+        "sourceId": "speaking",
+        "loadClass": "optional-lazy",
+        "relativePath": "subjects/math/data/speaking.json",
+        "bytes": 4747996
+      },
+      {
+        "sourceId": "deep-speaking-bauman",
+        "loadClass": "optional-lazy",
+        "relativePath": "subjects/math/data/deep-speaking-bauman.json",
+        "bytes": 45405
+      },
+      {
+        "sourceId": "speaking-link-index",
+        "loadClass": "optional-lazy",
+        "relativePath": "subjects/math/data/speaking-link-index.json",
+        "bytes": 11079
+      },
+      {
+        "sourceId": "dialogue-bauman-az",
+        "loadClass": "optional-lazy",
+        "relativePath": "subjects/math/data/dialogue-bauman-az.json",
+        "bytes": 1757754
+      },
+      {
+        "sourceId": "lessons-deferred",
+        "loadClass": "runtime-supplemental",
+        "relativePath": "subjects/math/data/lessons_deferred.json",
+        "bytes": 3
+      }
+    ],
+    "programming": [
+      {
+        "sourceId": "curriculum",
+        "loadClass": "startup",
+        "relativePath": "subjects/programming/data/curriculum.json",
+        "bytes": 12018
+      },
+      {
+        "sourceId": "lessons",
+        "loadClass": "startup",
+        "relativePath": "subjects/programming/data/lessons.json",
+        "bytes": 143151
+      },
+      {
+        "sourceId": "grammar",
+        "loadClass": "startup",
+        "relativePath": "subjects/programming/data/grammar.json",
+        "bytes": 33212
+      },
+      {
+        "sourceId": "grammar-path",
+        "loadClass": "startup",
+        "relativePath": "subjects/programming/data/grammar-path.json",
+        "bytes": 33212
+      },
+      {
+        "sourceId": "vocab",
+        "loadClass": "startup",
+        "relativePath": "subjects/programming/data/vocab.json",
+        "bytes": 40081
+      },
+      {
+        "sourceId": "mindmap",
+        "loadClass": "startup",
+        "relativePath": "subjects/programming/data/mindmap.json",
+        "bytes": 39551
+      },
+      {
+        "sourceId": "exercises",
+        "loadClass": "startup",
+        "relativePath": "subjects/programming/data/exercises.json",
+        "bytes": 151280
+      },
+      {
+        "sourceId": "tests",
+        "loadClass": "startup",
+        "relativePath": "subjects/programming/data/tests.json",
+        "bytes": 1152416
+      },
+      {
+        "sourceId": "simulations",
+        "loadClass": "startup",
+        "relativePath": "subjects/programming/data/simulations.json",
+        "bytes": 192416
+      },
+      {
+        "sourceId": "speaking",
+        "loadClass": "startup",
+        "relativePath": "subjects/programming/data/speaking.json",
+        "bytes": 145497
+      },
+      {
+        "sourceId": "dialogue-bauman-az",
+        "loadClass": "startup",
+        "relativePath": "subjects/programming/data/dialogue-bauman-az.json",
+        "bytes": 102863
+      },
+      {
+        "sourceId": "handwriting",
+        "loadClass": "startup",
+        "relativePath": "subjects/programming/data/handwriting.json",
+        "bytes": 28575
+      },
+      {
+        "sourceId": "writing",
+        "loadClass": "startup",
+        "relativePath": "subjects/programming/data/writing.json",
+        "bytes": 64220
+      },
+      {
+        "sourceId": "videos",
+        "loadClass": "startup",
+        "relativePath": "subjects/programming/data/videos.json",
+        "bytes": 11807
+      },
+      {
+        "sourceId": "knowledge-index",
+        "loadClass": "startup",
+        "relativePath": "subjects/programming/data/knowledge-index.json",
+        "bytes": 29775
+      },
+      {
+        "sourceId": "deep-speaking-bauman",
+        "loadClass": "optional-lazy",
+        "relativePath": "subjects/programming/data/deep-speaking-bauman.json",
+        "bytes": 34409
+      },
+      {
+        "sourceId": "speaking-link-index",
+        "loadClass": "optional-lazy",
+        "relativePath": "subjects/programming/data/speaking-link-index.json",
+        "bytes": 10957
+      }
+    ],
+    "foundation": [
+      {
+        "sourceId": "curriculum",
+        "loadClass": "startup",
+        "relativePath": "subjects/foundation/data/curriculum.json",
+        "bytes": 44870
+      },
+      {
+        "sourceId": "lessons",
+        "loadClass": "startup",
+        "relativePath": "subjects/foundation/data/lessons.json",
+        "bytes": 149895
+      },
+      {
+        "sourceId": "formulas",
+        "loadClass": "startup",
+        "relativePath": "subjects/foundation/data/formulas.json",
+        "bytes": 925
+      },
+      {
+        "sourceId": "exercises",
+        "loadClass": "startup",
+        "relativePath": "subjects/foundation/data/exercises.json",
+        "bytes": 11456
+      },
+      {
+        "sourceId": "tests",
+        "loadClass": "startup",
+        "relativePath": "subjects/foundation/data/tests.json",
+        "bytes": 18510
+      },
+      {
+        "sourceId": "knowledge-index",
+        "loadClass": "startup",
+        "relativePath": "subjects/foundation/data/knowledge-index.json",
+        "bytes": 24268
+      },
+      {
+        "sourceId": "simulations",
+        "loadClass": "runtime-supplemental",
+        "relativePath": "subjects/foundation/data/simulations.json",
+        "bytes": 8653
+      }
+    ],
+    "ai": [
+      {
+        "sourceId": "curriculum",
+        "loadClass": "startup",
+        "relativePath": "subjects/ai/data/curriculum.json",
+        "bytes": 106391
+      },
+      {
+        "sourceId": "lessons",
+        "loadClass": "startup",
+        "relativePath": "subjects/ai/data/lessons.json",
+        "bytes": 336820
+      },
+      {
+        "sourceId": "formulas",
+        "loadClass": "startup",
+        "relativePath": "subjects/ai/data/formulas.json",
+        "bytes": 913
+      },
+      {
+        "sourceId": "exercises",
+        "loadClass": "startup",
+        "relativePath": "subjects/ai/data/exercises.json",
+        "bytes": 27581
+      },
+      {
+        "sourceId": "tests",
+        "loadClass": "startup",
+        "relativePath": "subjects/ai/data/tests.json",
+        "bytes": 20253
+      },
+      {
+        "sourceId": "knowledge-index",
+        "loadClass": "startup",
+        "relativePath": "subjects/ai/data/knowledge-index.json",
+        "bytes": 49953
+      },
+      {
+        "sourceId": "simulations",
+        "loadClass": "runtime-supplemental",
+        "relativePath": "subjects/ai/data/simulations.json",
+        "bytes": 8642
+      }
+    ],
+    "signal": [
+      {
+        "sourceId": "curriculum",
+        "loadClass": "startup",
+        "relativePath": "subjects/signal/data/curriculum.json",
+        "bytes": 74981
+      },
+      {
+        "sourceId": "lessons",
+        "loadClass": "startup",
+        "relativePath": "subjects/signal/data/lessons.json",
+        "bytes": 248096
+      },
+      {
+        "sourceId": "formulas",
+        "loadClass": "startup",
+        "relativePath": "subjects/signal/data/formulas.json",
+        "bytes": 861
+      },
+      {
+        "sourceId": "exercises",
+        "loadClass": "startup",
+        "relativePath": "subjects/signal/data/exercises.json",
+        "bytes": 19157
+      },
+      {
+        "sourceId": "tests",
+        "loadClass": "startup",
+        "relativePath": "subjects/signal/data/tests.json",
+        "bytes": 17773
+      },
+      {
+        "sourceId": "knowledge-index",
+        "loadClass": "startup",
+        "relativePath": "subjects/signal/data/knowledge-index.json",
+        "bytes": 38948
+      },
+      {
+        "sourceId": "simulations",
+        "loadClass": "runtime-supplemental",
+        "relativePath": "subjects/signal/data/simulations.json",
+        "bytes": 8687
+      }
+    ],
+    "systems": [
+      {
+        "sourceId": "curriculum",
+        "loadClass": "startup",
+        "relativePath": "subjects/systems/data/curriculum.json",
+        "bytes": 118995
+      },
+      {
+        "sourceId": "lessons",
+        "loadClass": "startup",
+        "relativePath": "subjects/systems/data/lessons.json",
+        "bytes": 389328
+      },
+      {
+        "sourceId": "formulas",
+        "loadClass": "startup",
+        "relativePath": "subjects/systems/data/formulas.json",
+        "bytes": 943
+      },
+      {
+        "sourceId": "exercises",
+        "loadClass": "startup",
+        "relativePath": "subjects/systems/data/exercises.json",
+        "bytes": 30128
+      },
+      {
+        "sourceId": "tests",
+        "loadClass": "startup",
+        "relativePath": "subjects/systems/data/tests.json",
+        "bytes": 22513
+      },
+      {
+        "sourceId": "knowledge-index",
+        "loadClass": "startup",
+        "relativePath": "subjects/systems/data/knowledge-index.json",
+        "bytes": 58201
+      },
+      {
+        "sourceId": "simulations",
+        "loadClass": "runtime-supplemental",
+        "relativePath": "subjects/systems/data/simulations.json",
+        "bytes": 9050
+      }
+    ],
+    "research": [
+      {
+        "sourceId": "curriculum",
+        "loadClass": "startup",
+        "relativePath": "subjects/research/data/curriculum.json",
+        "bytes": 96001
+      },
+      {
+        "sourceId": "lessons",
+        "loadClass": "startup",
+        "relativePath": "subjects/research/data/lessons.json",
+        "bytes": 310424
+      },
+      {
+        "sourceId": "formulas",
+        "loadClass": "startup",
+        "relativePath": "subjects/research/data/formulas.json",
+        "bytes": 1017
+      },
+      {
+        "sourceId": "exercises",
+        "loadClass": "startup",
+        "relativePath": "subjects/research/data/exercises.json",
+        "bytes": 24116
+      },
+      {
+        "sourceId": "tests",
+        "loadClass": "startup",
+        "relativePath": "subjects/research/data/tests.json",
+        "bytes": 17803
+      },
+      {
+        "sourceId": "knowledge-index",
+        "loadClass": "startup",
+        "relativePath": "subjects/research/data/knowledge-index.json",
+        "bytes": 47642
+      },
+      {
+        "sourceId": "simulations",
+        "loadClass": "runtime-supplemental",
+        "relativePath": "subjects/research/data/simulations.json",
+        "bytes": 9027
+      }
+    ]
+  },
+  "adapterEvidence": {
+    "russian": {
+      "registered": [
+        "curriculum",
+        "lessons",
+        "grammar",
+        "grammar-path",
+        "mindmap",
+        "exercises",
+        "simulations",
+        "handwriting",
+        "writing",
+        "videos",
+        "knowledge-index",
+        "vocab",
+        "tests",
+        "speaking",
+        "dialogue-bauman-az",
+        "deep-speaking-bauman",
+        "speaking-link-index"
+      ],
+      "adapterDataFiles": [
+        "curriculum",
+        "lessons",
+        "grammar",
+        "grammar-path",
+        "vocab",
+        "mindmap",
+        "exercises",
+        "tests",
+        "simulations",
+        "speaking",
+        "handwriting",
+        "writing",
+        "videos",
+        "knowledge-index"
+      ],
+      "adapterOptionalDataFiles": [
+        "dialogue-bauman-az",
+        "deep-speaking-bauman",
+        "speaking-link-index"
+      ],
+      "adapterMetaKeys": [
+        "curriculum",
+        "lessons",
+        "grammar",
+        "grammar-path",
+        "vocab",
+        "mindmap",
+        "exercises",
+        "tests",
+        "simulations",
+        "speaking",
+        "dialogue-bauman-az",
+        "deep-speaking-bauman",
+        "speaking-link-index",
+        "handwriting",
+        "writing",
+        "videos",
+        "knowledge-index"
+      ]
+    },
+    "math": {
+      "registered": [
+        "content_vault_manifest",
+        "discipline_spine",
+        "chapter_spine",
+        "curriculum",
+        "content-manifest",
+        "theory_lecture_frame",
+        "formula_frame",
+        "simulation_frame",
+        "exercise_frame",
+        "application_frame",
+        "professor_qa_frame",
+        "review_pack_frame",
+        "question_bank_frame",
+        "test_blueprint_frame",
+        "chapter_lecture_frame",
+        "mindmap_frame",
+        "concept_map_frame",
+        "media_frame",
+        "theory_lecture_content",
+        "formula_content",
+        "simulation_content",
+        "exercise_content",
+        "application_content",
+        "professor_qa_content",
+        "review_pack_content",
+        "question_bank_content",
+        "test_blueprint_content",
+        "chapter_lecture_content",
+        "mindmap_content",
+        "concept_map_content",
+        "media_content",
+        "formulas",
+        "simulations",
+        "exercises",
+        "applications",
+        "professor_qa",
+        "review_packs",
+        "question_bank",
+        "test_blueprints",
+        "chapter_lectures",
+        "mindmap",
+        "concept-map",
+        "videos",
+        "learning_rules",
+        "tests",
+        "content-index",
+        "knowledge-index",
+        "mastery-map",
+        "vocab",
+        "grammar",
+        "grammar-path",
+        "lessons",
+        "writing",
+        "handwriting",
+        "speaking",
+        "deep-speaking-bauman",
+        "speaking-link-index",
+        "dialogue-bauman-az"
+      ],
+      "adapterDataFiles": [
+        "content_vault_manifest",
+        "discipline_spine",
+        "chapter_spine",
+        "curriculum",
+        "content-manifest",
+        "theory_lecture_frame",
+        "formula_frame",
+        "simulation_frame",
+        "exercise_frame",
+        "application_frame",
+        "professor_qa_frame",
+        "review_pack_frame",
+        "question_bank_frame",
+        "test_blueprint_frame",
+        "chapter_lecture_frame",
+        "mindmap_frame",
+        "concept_map_frame",
+        "media_frame",
+        "theory_lecture_content",
+        "formula_content",
+        "simulation_content",
+        "exercise_content",
+        "application_content",
+        "professor_qa_content",
+        "review_pack_content",
+        "question_bank_content",
+        "test_blueprint_content",
+        "chapter_lecture_content",
+        "mindmap_content",
+        "concept_map_content",
+        "media_content",
+        "lessons",
+        "formulas",
+        "simulations",
+        "exercises",
+        "applications",
+        "professor_qa",
+        "review_packs",
+        "question_bank",
+        "test_blueprints",
+        "chapter_lectures",
+        "mindmap",
+        "concept-map",
+        "videos",
+        "learning_rules",
+        "tests",
+        "content-index",
+        "knowledge-index",
+        "mastery-map",
+        "vocab",
+        "grammar",
+        "grammar-path",
+        "writing",
+        "handwriting",
+        "speaking",
+        "deep-speaking-bauman",
+        "speaking-link-index",
+        "dialogue-bauman-az"
+      ],
+      "adapterOptionalDataFiles": [
+        "speaking",
+        "dialogue-bauman-az",
+        "handwriting",
+        "writing",
+        "deep-speaking-bauman",
+        "speaking-link-index"
+      ],
+      "adapterMetaKeys": [
+        "content-manifest",
+        "theory-framework",
+        "concept-map",
+        "mastery-map",
+        "formulas",
+        "professor_qa",
+        "question_bank",
+        "test_blueprints",
+        "review_packs",
+        "learning_rules",
+        "content-index",
+        "curriculum",
+        "lessons",
+        "grammar",
+        "grammar-path",
+        "vocab",
+        "mindmap",
+        "exercises",
+        "applications",
+        "tests",
+        "simulations",
+        "speaking",
+        "dialogue-bauman-az",
+        "deep-speaking-bauman",
+        "speaking-link-index",
+        "handwriting",
+        "writing",
+        "videos",
+        "knowledge-index",
+        "chapter_lectures",
+        "discipline_spine",
+        "chapter_spine",
+        "theory_lecture_frame",
+        "theory_lecture_content",
+        "content_vault_manifest",
+        "formula_frame",
+        "formula_content",
+        "simulation_frame",
+        "simulation_content",
+        "exercise_frame",
+        "exercise_content",
+        "application_frame",
+        "application_content",
+        "professor_qa_frame",
+        "professor_qa_content",
+        "review_pack_frame",
+        "review_pack_content",
+        "question_bank_frame",
+        "question_bank_content",
+        "test_blueprint_frame",
+        "test_blueprint_content",
+        "chapter_lecture_frame",
+        "chapter_lecture_content",
+        "mindmap_frame",
+        "mindmap_content",
+        "concept_map_frame",
+        "concept_map_content",
+        "media_frame",
+        "media_content"
+      ]
+    },
+    "programming": {
+      "registered": [
+        "curriculum",
+        "lessons",
+        "grammar",
+        "grammar-path",
+        "vocab",
+        "mindmap",
+        "exercises",
+        "tests",
+        "simulations",
+        "speaking",
+        "dialogue-bauman-az",
+        "handwriting",
+        "writing",
+        "videos",
+        "knowledge-index",
+        "deep-speaking-bauman",
+        "speaking-link-index"
+      ],
+      "adapterDataFiles": [
+        "curriculum",
+        "lessons",
+        "grammar",
+        "grammar-path",
+        "vocab",
+        "mindmap",
+        "exercises",
+        "tests",
+        "simulations",
+        "speaking",
+        "dialogue-bauman-az",
+        "handwriting",
+        "writing",
+        "videos",
+        "knowledge-index"
+      ],
+      "adapterOptionalDataFiles": [
+        "deep-speaking-bauman",
+        "speaking-link-index"
+      ],
+      "adapterMetaKeys": [
+        "curriculum",
+        "lessons",
+        "grammar",
+        "grammar-path",
+        "vocab",
+        "mindmap",
+        "exercises",
+        "tests",
+        "simulations",
+        "speaking",
+        "dialogue-bauman-az",
+        "deep-speaking-bauman",
+        "speaking-link-index",
+        "handwriting",
+        "writing",
+        "videos",
+        "knowledge-index"
+      ]
+    }
+  },
+  "lightEvidence": {
+    "ai": {
+      "manifestSources": [
+        "curriculum",
+        "lessons",
+        "formulas",
+        "exercises",
+        "tests",
+        "knowledge-index"
+      ],
+      "runtimeDataFiles": [
+        "curriculum",
+        "lessons",
+        "formulas",
+        "exercises",
+        "tests",
+        "simulations",
+        "knowledge-index"
+      ],
+      "lessonCount": 51,
+      "sourceVersionCount": 51
+    },
+    "foundation": {
+      "manifestSources": [
+        "curriculum",
+        "lessons",
+        "formulas",
+        "exercises",
+        "tests",
+        "knowledge-index"
+      ],
+      "runtimeDataFiles": [
+        "curriculum",
+        "lessons",
+        "formulas",
+        "exercises",
+        "tests",
+        "simulations",
+        "knowledge-index"
+      ],
+      "lessonCount": 21,
+      "sourceVersionCount": 21
+    },
+    "research": {
+      "manifestSources": [
+        "curriculum",
+        "lessons",
+        "formulas",
+        "exercises",
+        "tests",
+        "knowledge-index"
+      ],
+      "runtimeDataFiles": [
+        "curriculum",
+        "lessons",
+        "formulas",
+        "exercises",
+        "tests",
+        "simulations",
+        "knowledge-index"
+      ],
+      "lessonCount": 45,
+      "sourceVersionCount": 45
+    },
+    "signal": {
+      "manifestSources": [
+        "curriculum",
+        "lessons",
+        "formulas",
+        "exercises",
+        "tests",
+        "knowledge-index"
+      ],
+      "runtimeDataFiles": [
+        "curriculum",
+        "lessons",
+        "formulas",
+        "exercises",
+        "tests",
+        "simulations",
+        "knowledge-index"
+      ],
+      "lessonCount": 36,
+      "sourceVersionCount": 36
+    },
+    "systems": {
+      "manifestSources": [
+        "curriculum",
+        "lessons",
+        "formulas",
+        "exercises",
+        "tests",
+        "knowledge-index"
+      ],
+      "runtimeDataFiles": [
+        "curriculum",
+        "lessons",
+        "formulas",
+        "exercises",
+        "tests",
+        "simulations",
+        "knowledge-index"
+      ],
+      "lessonCount": 57,
+      "sourceVersionCount": 57
+    }
+  },
+  "widgetEvidence": [
+    {
+      "subjectId": "russian",
+      "widgetId": "russian-dialogue-studio",
+      "availability": "existing",
+      "lessonType": "language",
+      "ok": true,
+      "useSpecialistWidget": true,
+      "useDeterministicFallback": false
+    },
+    {
+      "subjectId": "russian",
+      "widgetId": "russian-shadowing",
+      "availability": "existing",
+      "lessonType": "language",
+      "ok": true,
+      "useSpecialistWidget": true,
+      "useDeterministicFallback": false
+    },
+    {
+      "subjectId": "russian",
+      "widgetId": "russian-deep-speaking",
+      "availability": "existing-lazy",
+      "lessonType": "language",
+      "ok": true,
+      "useSpecialistWidget": true,
+      "useDeterministicFallback": false
+    },
+    {
+      "subjectId": "russian",
+      "widgetId": "russian-handwriting",
+      "availability": "existing",
+      "lessonType": "language",
+      "ok": true,
+      "useSpecialistWidget": true,
+      "useDeterministicFallback": false
+    },
+    {
+      "subjectId": "russian",
+      "widgetId": "russian-flashcards",
+      "availability": "existing",
+      "lessonType": "language",
+      "ok": true,
+      "useSpecialistWidget": true,
+      "useDeterministicFallback": false
+    },
+    {
+      "subjectId": "russian",
+      "widgetId": "russian-scheduled-exam",
+      "availability": "existing",
+      "lessonType": "language",
+      "ok": true,
+      "useSpecialistWidget": true,
+      "useDeterministicFallback": false
+    },
+    {
+      "subjectId": "math",
+      "widgetId": "math-rich-theory-reader",
+      "availability": "existing",
+      "lessonType": "mathematics",
+      "ok": true,
+      "useSpecialistWidget": true,
+      "useDeterministicFallback": false
+    },
+    {
+      "subjectId": "math",
+      "widgetId": "math-formula-typesetter",
+      "availability": "existing",
+      "lessonType": "mathematics",
+      "ok": true,
+      "useSpecialistWidget": true,
+      "useDeterministicFallback": false
+    },
+    {
+      "subjectId": "math",
+      "widgetId": "math-step-solution",
+      "availability": "existing",
+      "lessonType": "mathematics",
+      "ok": true,
+      "useSpecialistWidget": true,
+      "useDeterministicFallback": false
+    },
+    {
+      "subjectId": "math",
+      "widgetId": "math-parameter-simulation",
+      "availability": "existing",
+      "lessonType": "mathematics",
+      "ok": true,
+      "useSpecialistWidget": true,
+      "useDeterministicFallback": false
+    },
+    {
+      "subjectId": "math",
+      "widgetId": "math-professor-oral",
+      "availability": "existing",
+      "lessonType": "mathematics",
+      "ok": true,
+      "useSpecialistWidget": true,
+      "useDeterministicFallback": false
+    },
+    {
+      "subjectId": "programming",
+      "widgetId": "programming-syntax-workflow",
+      "availability": "existing",
+      "lessonType": "programming",
+      "ok": true,
+      "useSpecialistWidget": true,
+      "useDeterministicFallback": false
+    },
+    {
+      "subjectId": "programming",
+      "widgetId": "programming-software-lab",
+      "availability": "existing",
+      "lessonType": "programming",
+      "ok": true,
+      "useSpecialistWidget": true,
+      "useDeterministicFallback": false
+    },
+    {
+      "subjectId": "programming",
+      "widgetId": "code-runner",
+      "availability": "planned-L8",
+      "lessonType": "programming",
+      "ok": true,
+      "useSpecialistWidget": false,
+      "useDeterministicFallback": true
+    },
+    {
+      "subjectId": "programming",
+      "widgetId": "sql-playground",
+      "availability": "planned-L8",
+      "lessonType": "database",
+      "ok": true,
+      "useSpecialistWidget": false,
+      "useDeterministicFallback": true
+    },
+    {
+      "subjectId": "foundation",
+      "widgetId": "generic-elearning-flow",
+      "availability": "existing",
+      "lessonType": "language",
+      "ok": true,
+      "useSpecialistWidget": true,
+      "useDeterministicFallback": false
+    },
+    {
+      "subjectId": "foundation",
+      "widgetId": "generic-simulation",
+      "availability": "existing",
+      "lessonType": "mathematics",
+      "ok": true,
+      "useSpecialistWidget": true,
+      "useDeterministicFallback": false
+    },
+    {
+      "subjectId": "foundation",
+      "widgetId": "generic-assessment",
+      "availability": "existing",
+      "lessonType": "language",
+      "ok": true,
+      "useSpecialistWidget": true,
+      "useDeterministicFallback": false
+    },
+    {
+      "subjectId": "ai",
+      "widgetId": "generic-elearning-flow",
+      "availability": "existing",
+      "lessonType": "ml-data",
+      "ok": true,
+      "useSpecialistWidget": true,
+      "useDeterministicFallback": false
+    },
+    {
+      "subjectId": "ai",
+      "widgetId": "generic-simulation",
+      "availability": "existing",
+      "lessonType": "ml-data",
+      "ok": true,
+      "useSpecialistWidget": true,
+      "useDeterministicFallback": false
+    },
+    {
+      "subjectId": "ai",
+      "widgetId": "generic-assessment",
+      "availability": "existing",
+      "lessonType": "ml-data",
+      "ok": true,
+      "useSpecialistWidget": true,
+      "useDeterministicFallback": false
+    },
+    {
+      "subjectId": "ai",
+      "widgetId": "model-metric-visual",
+      "availability": "declared",
+      "lessonType": "ml-data",
+      "ok": true,
+      "useSpecialistWidget": false,
+      "useDeterministicFallback": true
+    },
+    {
+      "subjectId": "signal",
+      "widgetId": "generic-elearning-flow",
+      "availability": "existing",
+      "lessonType": "mathematics",
+      "ok": true,
+      "useSpecialistWidget": true,
+      "useDeterministicFallback": false
+    },
+    {
+      "subjectId": "signal",
+      "widgetId": "generic-simulation",
+      "availability": "existing",
+      "lessonType": "mathematics",
+      "ok": true,
+      "useSpecialistWidget": true,
+      "useDeterministicFallback": false
+    },
+    {
+      "subjectId": "signal",
+      "widgetId": "generic-assessment",
+      "availability": "existing",
+      "lessonType": "mathematics",
+      "ok": true,
+      "useSpecialistWidget": true,
+      "useDeterministicFallback": false
+    },
+    {
+      "subjectId": "signal",
+      "widgetId": "signal-plot",
+      "availability": "planned-L9",
+      "lessonType": "ml-data",
+      "ok": true,
+      "useSpecialistWidget": false,
+      "useDeterministicFallback": true
+    },
+    {
+      "subjectId": "systems",
+      "widgetId": "generic-elearning-flow",
+      "availability": "existing",
+      "lessonType": "asoiu-system",
+      "ok": true,
+      "useSpecialistWidget": true,
+      "useDeterministicFallback": false
+    },
+    {
+      "subjectId": "systems",
+      "widgetId": "generic-simulation",
+      "availability": "existing",
+      "lessonType": "asoiu-system",
+      "ok": true,
+      "useSpecialistWidget": true,
+      "useDeterministicFallback": false
+    },
+    {
+      "subjectId": "systems",
+      "widgetId": "generic-assessment",
+      "availability": "existing",
+      "lessonType": "asoiu-system",
+      "ok": true,
+      "useSpecialistWidget": true,
+      "useDeterministicFallback": false
+    },
+    {
+      "subjectId": "systems",
+      "widgetId": "system-architecture-workspace",
+      "availability": "planned-L10",
+      "lessonType": "asoiu-system",
+      "ok": true,
+      "useSpecialistWidget": false,
+      "useDeterministicFallback": true
+    },
+    {
+      "subjectId": "research",
+      "widgetId": "generic-elearning-flow",
+      "availability": "existing",
+      "lessonType": "research",
+      "ok": true,
+      "useSpecialistWidget": true,
+      "useDeterministicFallback": false
+    },
+    {
+      "subjectId": "research",
+      "widgetId": "generic-simulation",
+      "availability": "existing",
+      "lessonType": "research",
+      "ok": true,
+      "useSpecialistWidget": true,
+      "useDeterministicFallback": false
+    },
+    {
+      "subjectId": "research",
+      "widgetId": "generic-assessment",
+      "availability": "existing",
+      "lessonType": "research",
+      "ok": true,
+      "useSpecialistWidget": true,
+      "useDeterministicFallback": false
+    },
+    {
+      "subjectId": "research",
+      "widgetId": "research-evidence-board",
+      "availability": "declared",
+      "lessonType": "research",
+      "ok": true,
+      "useSpecialistWidget": false,
+      "useDeterministicFallback": true
+    }
+  ],
+  "offlineEvidence": {
+    "russian-rich-explicit": {
+      "baseDiscovery": "runtime-network-probe",
+      "baseMaxResourceBytes": 5242880,
+      "sessionMaxResourceBytes": 67108864,
+      "largeResourcePolicy": "feature-entry-or-explicit-session-only",
+      "generativeAiRequired": false,
+      "deterministicFallback": "unchanged-russian-engine-and-local-source",
+      "silentWholeRepositoryPrecache": false
+    },
+    "math-rich-explicit": {
+      "baseDiscovery": "runtime-network-probe",
+      "baseMaxResourceBytes": 5242880,
+      "sessionMaxResourceBytes": 67108864,
+      "largeResourcePolicy": "authoritative-reader-or-explicit-session-only",
+      "generativeAiRequired": false,
+      "deterministicFallback": "unchanged-math-engine-and-authoritative-artifact-reader",
+      "silentWholeRepositoryPrecache": false
+    },
+    "programming-rich-explicit": {
+      "baseDiscovery": "runtime-network-probe",
+      "baseMaxResourceBytes": 5242880,
+      "sessionMaxResourceBytes": 67108864,
+      "largeResourcePolicy": "feature-entry-or-explicit-session-only",
+      "generativeAiRequired": false,
+      "deterministicFallback": "unchanged-programming-engine-and-local-source",
+      "silentWholeRepositoryPrecache": false
+    },
+    "light-core-explicit": {
+      "baseDiscovery": "runtime-network-probe",
+      "baseMaxResourceBytes": 5242880,
+      "sessionMaxResourceBytes": 67108864,
+      "largeResourcePolicy": "explicit-subject-pack-only",
+      "generativeAiRequired": false,
+      "deterministicFallback": "light-subject-local-json",
+      "silentWholeRepositoryPrecache": false
+    }
+  },
+  "largeDeferredSources": [
+    {
+      "sourceId": "vocab",
+      "loadClass": "required-lazy",
+      "relativePath": "subjects/russian/data/vocab.json",
+      "bytes": 11212921
+    },
+    {
+      "sourceId": "tests",
+      "loadClass": "required-lazy",
+      "relativePath": "subjects/russian/data/tests.json",
+      "bytes": 7923057
+    },
+    {
+      "sourceId": "speaking",
+      "loadClass": "required-lazy",
+      "relativePath": "subjects/russian/data/speaking.json",
+      "bytes": 7343576
+    },
+    {
+      "sourceId": "dialogue-bauman-az",
+      "loadClass": "optional-lazy",
+      "relativePath": "subjects/russian/data/dialogue-bauman-az.json",
+      "bytes": 35049608
+    },
+    {
+      "sourceId": "deep-speaking-bauman",
+      "loadClass": "optional-lazy",
+      "relativePath": "subjects/russian/data/deep-speaking-bauman.json",
+      "bytes": 28156378
+    },
+    {
+      "sourceId": "lessons",
+      "loadClass": "required-lazy",
+      "relativePath": "subjects/math/data/lessons.json",
+      "bytes": 7822102
+    }
+  ],
+  "mutationTests": [
+    {
+      "id": "DIRECT-FACTORY-RENDER",
+      "title": "activating a B9 engine renderer is rejected",
+      "expectedFailureObserved": true,
+      "evidence": [
+        {
+          "path": "/engineCatalog/math-e126-specialist",
+          "code": "ENGINE_RUNTIME_BOUNDARY_BROKEN",
+          "message": "B9 engine registration cannot activate rendering or rewrite source/state.",
+          "details": {
+            "mode": "rich-legacy-specialist",
+            "rendererOwner": "math-subject-engine",
+            "adapterGlobal": "SUBJECT_ADAPTER",
+            "directFactoryRender": true,
+            "bridgeEligible": true,
+            "sourceRewriteAllowed": false,
+            "stateKeyRewriteAllowed": false
+          }
+        }
+      ]
+    },
+    {
+      "id": "LIGHT-SIMULATION-SUPPLEMENT",
+      "title": "removing the audited light simulation supplement is rejected",
+      "expectedFailureObserved": true,
+      "evidence": [
+        {
+          "path": "/subjects/ai/dataSources/runtimeSupplemental",
+          "code": "LIGHT_SIMULATION_SUPPLEMENT_REQUIRED",
+          "message": "Light runtime simulations.json must remain registered as the audited runtime supplement.",
+          "details": []
+        }
+      ]
+    },
+    {
+      "id": "FOUNDATION-DEFAULT",
+      "title": "forcing a Foundation default across unreviewed modules is rejected",
+      "expectedFailureObserved": true,
+      "evidence": [
+        {
+          "path": "/subjects/foundation/lessonTypePolicy",
+          "code": "FOUNDATION_FAIL_CLOSED_POLICY_REQUIRED",
+          "message": "Foundation must keep a null default and hold f_m201/f_m202 for manual review.",
+          "details": {
+            "allowed": [
+              "language",
+              "mathematics",
+              "programming"
+            ],
+            "default": "language",
+            "rules": [
+              {
+                "id": "foundation-classroom-and-study",
+                "type": "language",
+                "moduleIds": [
+                  "f_s01",
+                  "f_s05"
+                ]
+              },
+              {
+                "id": "foundation-math-and-physics",
+                "type": "mathematics",
+                "moduleIds": [
+                  "f_s02",
+                  "f_s04"
+                ]
+              },
+              {
+                "id": "foundation-computing",
+                "type": "programming",
+                "moduleIds": [
+                  "f_s03"
+                ]
+              }
+            ],
+            "manualReviewModules": [
+              "f_m201",
+              "f_m202"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "id": "RUSSIAN-PERSISTENCE",
+      "title": "moving required Russian vocab into optional persistence exclusion is rejected",
+      "expectedFailureObserved": true,
+      "evidence": [
+        {
+          "path": "/subjects/russian/dataSources",
+          "code": "RUSSIAN_REQUIRED_LAZY_POLICY_REQUIRED",
+          "message": "Russian vocab/tests/speaking must remain required-lazy and outside startup/optional persistence exclusions.",
+          "details": {
+            "root": "subjects/russian/data",
+            "catalogRefs": [
+              "routes.adapter#SUBJECT_ADAPTER.dataFiles",
+              "routes.adapter#SUBJECT_ADAPTER.optionalDataFiles",
+              "routes.adapter#SUBJECT_ADAPTER.lazyDataFiles",
+              "routes.manifest#dataFiles"
+            ],
+            "startup": [
+              "curriculum",
+              "lessons",
+              "grammar",
+              "grammar-path",
+              "mindmap",
+              "exercises",
+              "simulations",
+              "handwriting",
+              "writing",
+              "videos",
+              "knowledge-index"
+            ],
+            "requiredLazy": [
+              "tests",
+              "speaking"
+            ],
+            "optionalLazy": [
+              "dialogue-bauman-az",
+              "deep-speaking-bauman",
+              "speaking-link-index",
+              "vocab"
+            ],
+            "runtimeSupplemental": [],
+            "pathOverrides": {},
+            "lessonSourcePolicy": {
+              "primary": "lessons",
+              "specialistSources": [
+                "speaking",
+                "dialogue-bauman-az",
+                "deep-speaking-bauman",
+                "speaking-link-index",
+                "handwriting",
+                "writing",
+                "vocab",
+                "tests"
+              ],
+              "precedence": "stable-lesson-id-then-specialist-source-id"
+            }
+          }
+        }
+      ]
+    },
+    {
+      "id": "MATH-SOURCE-PRECEDENCE",
+      "title": "selecting legacy Math lessons ahead of authoritative theory is rejected",
+      "expectedFailureObserved": true,
+      "evidence": [
+        {
+          "path": "/subjects/math/dataSources",
+          "code": "MATH_AUTHORITATIVE_SOURCE_POLICY_REQUIRED",
+          "message": "Math must prefer the authoritative theory reader and keep full legacy lessons deferred.",
+          "details": {
+            "root": "subjects/math/data",
+            "catalogRefs": [
+              "routes.adapter#SUBJECT_ADAPTER.dataFiles",
+              "routes.adapter#SUBJECT_ADAPTER.initialDataFiles",
+              "routes.adapter#SUBJECT_ADAPTER.optionalDataFiles",
+              "routes.adapter#SUBJECT_ADAPTER.dataSourceMeta",
+              "routes.manifest#dataFiles"
+            ],
+            "startup": [
+              "content_vault_manifest",
+              "discipline_spine",
+              "chapter_spine",
+              "curriculum",
+              "content-manifest",
+              "theory_lecture_frame",
+              "formula_frame",
+              "simulation_frame",
+              "exercise_frame",
+              "application_frame",
+              "professor_qa_frame",
+              "review_pack_frame",
+              "question_bank_frame",
+              "test_blueprint_frame",
+              "chapter_lecture_frame",
+              "mindmap_frame",
+              "concept_map_frame",
+              "media_frame",
+              "theory_lecture_content",
+              "formula_content",
+              "simulation_content",
+              "exercise_content",
+              "application_content",
+              "professor_qa_content",
+              "review_pack_content",
+              "question_bank_content",
+              "test_blueprint_content",
+              "chapter_lecture_content",
+              "mindmap_content",
+              "concept_map_content",
+              "media_content",
+              "formulas",
+              "simulations",
+              "exercises",
+              "applications",
+              "professor_qa",
+              "review_packs",
+              "question_bank",
+              "test_blueprints",
+              "chapter_lectures",
+              "mindmap",
+              "concept-map",
+              "videos",
+              "learning_rules",
+              "tests",
+              "content-index",
+              "knowledge-index",
+              "mastery-map",
+              "vocab",
+              "grammar",
+              "grammar-path"
+            ],
+            "requiredLazy": [
+              "lessons"
+            ],
+            "optionalLazy": [
+              "writing",
+              "handwriting",
+              "speaking",
+              "deep-speaking-bauman",
+              "speaking-link-index",
+              "dialogue-bauman-az"
+            ],
+            "runtimeSupplemental": [
+              "lessons-deferred"
+            ],
+            "pathOverrides": {
+              "lessons-deferred": "lessons_deferred.json"
+            },
+            "lessonSourcePolicy": {
+              "primary": "lessons",
+              "legacyFull": "lessons",
+              "legacyStartup": "lessons-deferred",
+              "precedence": [
+                "explicit-legacy-lessons"
+              ]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "id": "OFFLINE-WHOLE-REPOSITORY",
+      "title": "silent whole-repository precache is rejected",
+      "expectedFailureObserved": true,
+      "evidence": [
+        {
+          "path": "/offlinePolicyCatalog/light-core-explicit",
+          "code": "OFFLINE_POLICY_UNSAFE",
+          "message": "Offline policy must match L5 limits and deterministic fallback boundary.",
+          "details": {
+            "baseDiscovery": "runtime-network-probe",
+            "baseMaxResourceBytes": 5242880,
+            "sessionMaxResourceBytes": 67108864,
+            "largeResourcePolicy": "explicit-subject-pack-only",
+            "generativeAiRequired": false,
+            "deterministicFallback": "light-subject-local-json",
+            "silentWholeRepositoryPrecache": true
+          }
+        }
+      ]
+    },
+    {
+      "id": "SOURCE-TRAVERSAL",
+      "title": "a traversal source path override is rejected",
+      "expectedFailureObserved": true,
+      "evidence": [
+        {
+          "path": "/subjects/math/dataSources",
+          "code": "UNSAFE_DATA_SOURCE_PATH",
+          "message": "Resolved data source path is not repository-relative and safe.",
+          "details": "subjects/math/data/../../index.html"
+        }
+      ]
+    },
+    {
+      "id": "PLANNED-WIDGET-AUTHORITY",
+      "title": "a planned widget cannot claim Master-ready authority",
+      "expectedFailureObserved": true,
+      "evidence": [
+        {
+          "path": "/widgetCatalog/code-runner/masterReadyAuthority",
+          "code": "PLANNED_WIDGET_AUTHORITY_FORBIDDEN",
+          "message": "Planned widgets cannot claim Master-ready authority before implementation.",
+          "details": "deterministic-evaluator-only"
+        }
+      ]
+    }
+  ],
+  "referenceCompatibilitySha256": {
+    "assets/js/data.js": "0150011b1d91ab3d2ea8d3f9aaa2b984039d94838183fb1d110da15d008d6079",
+    "assets/js/platform/offline-subject-pack-manager.js": "5f6e4d37cb464b792558b014d19da1f62389b06245b8446b180e6d1890500be6",
+    "subjects/russian/assets/lazy-heavy-data-v1341.js": "e8c91de0b203029df44c358837591c1cc9bf5d04b57f0c7395efd1af54ec48fd",
+    "subjects/russian/assets/subject-adapter.js": "1c6a6930ab06e1510879ed374093016ff721b20fab7bf720a65613e4c411d625",
+    "subjects/russian/data/lessons.json": "c8693eeefed17ea39b0cea4a600c9086f1b597ae7174e56bd8b2f8b46b985062",
+    "subjects/math/assets/subject-adapter.js": "40cb9d93a713929f3b8c9c99c01c30e29f103043a2f2c207521c5446f8f47731",
+    "subjects/math/data/theory_lecture_content.json": "d0cd18601b1ede84f58072b3c47cfcc176b4d21d3fa71b23762b908485391447",
+    "subjects/math/data/lessons_deferred.json": "37517e5f3dc66819f61f5a7bb8ace1921282415f10551d2defa5c3eb0985b570",
+    "subjects/programming/assets/subject-adapter.js": "a66453de4c0816d9d47986df1ffab8d8b19015174d52f3c3aa8eabefa2192b68",
+    "subjects/programming/data/lessons.json": "1b5485cb6b34380b949b247fd1cf521f0fda0534dd4834b9dee53beb2f49491d",
+    "subjects/ai/subject-manifest.json": "d4508c08e7b5da5657976a5c730e97e71098dabe8182156c8b8a0bd8bd2a7fba",
+    "subjects/ai/assets/ai.js": "ddb1665c505986962da6c4c5f157d3827e9940e86866afbb7ca42ea4e4430315",
+    "subjects/ai/data/lessons.json": "ee22f47274b6e51a9fe03d00ceff1ebe3e0b255b4363dddf8ed476c9d9264e73",
+    "subjects/foundation/subject-manifest.json": "c7fec9b0b4965378523b9ea8f69568ba6ac109ab98c49e7bd0c87436866f8d86",
+    "subjects/foundation/assets/foundation.js": "ddb1665c505986962da6c4c5f157d3827e9940e86866afbb7ca42ea4e4430315",
+    "subjects/foundation/data/lessons.json": "435dc2faea81b59f3b1f29b6e7f1d48d7c99947f0a70ccd62eb3bb60c2f402e1",
+    "subjects/research/subject-manifest.json": "2318ae4dd6abdd2749277f0e39079ddf5cb4c97f139740ed14d0b1be44051296",
+    "subjects/research/assets/research.js": "ddb1665c505986962da6c4c5f157d3827e9940e86866afbb7ca42ea4e4430315",
+    "subjects/research/data/lessons.json": "eb453c78c6a4340c6f4d12aa435adfdfd1ab59b68393586cbcd772742d757d16",
+    "subjects/signal/subject-manifest.json": "eb6b429f95e1110abfab5f360c8e67d4ee38f6dea509fe1e781cba801050bd78",
+    "subjects/signal/assets/signal.js": "ddb1665c505986962da6c4c5f157d3827e9940e86866afbb7ca42ea4e4430315",
+    "subjects/signal/data/lessons.json": "bf2dc25a23df3bd0f8b496df28eac57b51bc0f8dd9619b00aab2086742f67634",
+    "subjects/systems/subject-manifest.json": "f5d7d242d5cee640be29d1f8cd16a6d799210ddefbbe71a8c5c239b52567184f",
+    "subjects/systems/assets/systems.js": "ddb1665c505986962da6c4c5f157d3827e9940e86866afbb7ca42ea4e4430315",
+    "subjects/systems/data/lessons.json": "437239b73ee9b7dacb16801df932f0124167aae6a8706ae25c76d6fce5633efa"
+  },
+  "b9ArtifactSha256": {
+    "assets/data/lesson/subject-factory-registry-v1.json": "fc0fe3932a922b252be70ba035afc923e66e001b97dcb63a103a8f7f1f655a06",
+    "assets/js/platform/universal-lesson/subject-factory-registry-v1.js": "112e2702c6d7843adcbdbea528bd116a7a0eb7672a78f3e7a8e6b09806061e89",
+    "docs/migration/L6_B9_SUBJECT_FACTORY_REGISTRY.md": "7e403534c1b84bc071002645ed865e3920e5da5cc740030a0f7406609eb1c8a5"
+  },
+  "checks": [
+    {
+      "id": "FILE-assets/data/lesson/subject-factory-registry-v1.json",
+      "title": "required B9 input exists",
+      "ok": true,
+      "evidence": "assets/data/lesson/subject-factory-registry-v1.json"
+    },
+    {
+      "id": "FILE-assets/js/platform/universal-lesson/subject-factory-registry-v1.js",
+      "title": "required B9 input exists",
+      "ok": true,
+      "evidence": "assets/js/platform/universal-lesson/subject-factory-registry-v1.js"
+    },
+    {
+      "id": "FILE-assets/js/platform/universal-lesson/lesson-schema-validator-v1.js",
+      "title": "required B9 input exists",
+      "ok": true,
+      "evidence": "assets/js/platform/universal-lesson/lesson-schema-validator-v1.js"
+    },
+    {
+      "id": "FILE-assets/data/lesson/lesson-type-registry-v1.json",
+      "title": "required B9 input exists",
+      "ok": true,
+      "evidence": "assets/data/lesson/lesson-type-registry-v1.json"
+    },
+    {
+      "id": "FILE-assets/js/data.js",
+      "title": "required B9 input exists",
+      "ok": true,
+      "evidence": "assets/js/data.js"
+    },
+    {
+      "id": "FILE-assets/js/platform/offline-subject-pack-manager.js",
+      "title": "required B9 input exists",
+      "ok": true,
+      "evidence": "assets/js/platform/offline-subject-pack-manager.js"
+    },
+    {
+      "id": "FILE-docs/migration/L6_B9_SUBJECT_FACTORY_REGISTRY.md",
+      "title": "required B9 input exists",
+      "ok": true,
+      "evidence": "docs/migration/L6_B9_SUBJECT_FACTORY_REGISTRY.md"
+    },
+    {
+      "id": "FILE-subjects/russian/assets/lazy-heavy-data-v1341.js",
+      "title": "required B9 input exists",
+      "ok": true,
+      "evidence": "subjects/russian/assets/lazy-heavy-data-v1341.js"
+    },
+    {
+      "id": "FILE-subjects/russian/index.html",
+      "title": "required B9 input exists",
+      "ok": true,
+      "evidence": "subjects/russian/index.html"
+    },
+    {
+      "id": "FILE-subjects/russian/data/lessons.json",
+      "title": "required B9 input exists",
+      "ok": true,
+      "evidence": "subjects/russian/data/lessons.json"
+    },
+    {
+      "id": "FILE-subjects/russian/subject-manifest.json",
+      "title": "required B9 input exists",
+      "ok": true,
+      "evidence": "subjects/russian/subject-manifest.json"
+    },
+    {
+      "id": "FILE-subjects/math/index.html",
+      "title": "required B9 input exists",
+      "ok": true,
+      "evidence": "subjects/math/index.html"
+    },
+    {
+      "id": "FILE-subjects/math/data/lessons.json",
+      "title": "required B9 input exists",
+      "ok": true,
+      "evidence": "subjects/math/data/lessons.json"
+    },
+    {
+      "id": "FILE-subjects/math/subject-manifest.json",
+      "title": "required B9 input exists",
+      "ok": true,
+      "evidence": "subjects/math/subject-manifest.json"
+    },
+    {
+      "id": "FILE-subjects/programming/index.html",
+      "title": "required B9 input exists",
+      "ok": true,
+      "evidence": "subjects/programming/index.html"
+    },
+    {
+      "id": "FILE-subjects/programming/data/lessons.json",
+      "title": "required B9 input exists",
+      "ok": true,
+      "evidence": "subjects/programming/data/lessons.json"
+    },
+    {
+      "id": "FILE-subjects/programming/subject-manifest.json",
+      "title": "required B9 input exists",
+      "ok": true,
+      "evidence": "subjects/programming/subject-manifest.json"
+    },
+    {
+      "id": "FILE-subjects/foundation/index.html",
+      "title": "required B9 input exists",
+      "ok": true,
+      "evidence": "subjects/foundation/index.html"
+    },
+    {
+      "id": "FILE-subjects/foundation/data/lessons.json",
+      "title": "required B9 input exists",
+      "ok": true,
+      "evidence": "subjects/foundation/data/lessons.json"
+    },
+    {
+      "id": "FILE-subjects/foundation/subject-manifest.json",
+      "title": "required B9 input exists",
+      "ok": true,
+      "evidence": "subjects/foundation/subject-manifest.json"
+    },
+    {
+      "id": "FILE-subjects/ai/index.html",
+      "title": "required B9 input exists",
+      "ok": true,
+      "evidence": "subjects/ai/index.html"
+    },
+    {
+      "id": "FILE-subjects/ai/data/lessons.json",
+      "title": "required B9 input exists",
+      "ok": true,
+      "evidence": "subjects/ai/data/lessons.json"
+    },
+    {
+      "id": "FILE-subjects/ai/subject-manifest.json",
+      "title": "required B9 input exists",
+      "ok": true,
+      "evidence": "subjects/ai/subject-manifest.json"
+    },
+    {
+      "id": "FILE-subjects/signal/index.html",
+      "title": "required B9 input exists",
+      "ok": true,
+      "evidence": "subjects/signal/index.html"
+    },
+    {
+      "id": "FILE-subjects/signal/data/lessons.json",
+      "title": "required B9 input exists",
+      "ok": true,
+      "evidence": "subjects/signal/data/lessons.json"
+    },
+    {
+      "id": "FILE-subjects/signal/subject-manifest.json",
+      "title": "required B9 input exists",
+      "ok": true,
+      "evidence": "subjects/signal/subject-manifest.json"
+    },
+    {
+      "id": "FILE-subjects/systems/index.html",
+      "title": "required B9 input exists",
+      "ok": true,
+      "evidence": "subjects/systems/index.html"
+    },
+    {
+      "id": "FILE-subjects/systems/data/lessons.json",
+      "title": "required B9 input exists",
+      "ok": true,
+      "evidence": "subjects/systems/data/lessons.json"
+    },
+    {
+      "id": "FILE-subjects/systems/subject-manifest.json",
+      "title": "required B9 input exists",
+      "ok": true,
+      "evidence": "subjects/systems/subject-manifest.json"
+    },
+    {
+      "id": "FILE-subjects/research/index.html",
+      "title": "required B9 input exists",
+      "ok": true,
+      "evidence": "subjects/research/index.html"
+    },
+    {
+      "id": "FILE-subjects/research/data/lessons.json",
+      "title": "required B9 input exists",
+      "ok": true,
+      "evidence": "subjects/research/data/lessons.json"
+    },
+    {
+      "id": "FILE-subjects/research/subject-manifest.json",
+      "title": "required B9 input exists",
+      "ok": true,
+      "evidence": "subjects/research/subject-manifest.json"
+    },
+    {
+      "id": "FILE-subjects/russian/assets/subject-adapter.js",
+      "title": "required B9 input exists",
+      "ok": true,
+      "evidence": "subjects/russian/assets/subject-adapter.js"
+    },
+    {
+      "id": "FILE-subjects/math/assets/subject-adapter.js",
+      "title": "required B9 input exists",
+      "ok": true,
+      "evidence": "subjects/math/assets/subject-adapter.js"
+    },
+    {
+      "id": "FILE-subjects/programming/assets/subject-adapter.js",
+      "title": "required B9 input exists",
+      "ok": true,
+      "evidence": "subjects/programming/assets/subject-adapter.js"
+    },
+    {
+      "id": "FILE-subjects/ai/assets/ai.js",
+      "title": "required B9 input exists",
+      "ok": true,
+      "evidence": "subjects/ai/assets/ai.js"
+    },
+    {
+      "id": "FILE-subjects/foundation/assets/foundation.js",
+      "title": "required B9 input exists",
+      "ok": true,
+      "evidence": "subjects/foundation/assets/foundation.js"
+    },
+    {
+      "id": "FILE-subjects/research/assets/research.js",
+      "title": "required B9 input exists",
+      "ok": true,
+      "evidence": "subjects/research/assets/research.js"
+    },
+    {
+      "id": "FILE-subjects/signal/assets/signal.js",
+      "title": "required B9 input exists",
+      "ok": true,
+      "evidence": "subjects/signal/assets/signal.js"
+    },
+    {
+      "id": "FILE-subjects/systems/assets/systems.js",
+      "title": "required B9 input exists",
+      "ok": true,
+      "evidence": "subjects/systems/assets/systems.js"
+    },
+    {
+      "id": "REGISTRY-IDENTITY",
+      "title": "registry has the stable B9 identity and version",
+      "ok": true,
+      "evidence": {
+        "id": "bauman-subject-factory-registry",
+        "version": "1.0.0",
+        "status": "L6-B9-SUBJECT-FACTORY-REGISTRY"
+      }
+    },
+    {
+      "id": "REGISTRY-VALID",
+      "title": "resolver validates the committed registry",
+      "ok": true,
+      "evidence": {
+        "valid": true,
+        "registryId": "bauman-subject-factory-registry",
+        "registryVersion": "1.0.0",
+        "digestAlgorithm": "sha256-stable-json-v1",
+        "digest": "c852e9bd4ab02bb7307274f1efc3c3b34c766de679cf06f3cff7bcb2c16d3001",
+        "errors": [],
+        "warnings": [
+          {
+            "code": "MANUAL_TYPE_REVIEW_HELD",
+            "subjects": [
+              "foundation"
+            ],
+            "message": "Factory intentionally holds unclassified modules for manual review."
+          }
+        ],
+        "summary": {
+          "subjects": 8,
+          "engines": 4,
+          "widgets": 22,
+          "offlinePolicies": 4,
+          "manualReviewSubjects": 1
+        }
+      }
+    },
+    {
+      "id": "REGISTRY-DIGEST",
+      "title": "registry validation emits a stable SHA-256 digest",
+      "ok": true,
+      "evidence": "c852e9bd4ab02bb7307274f1efc3c3b34c766de679cf06f3cff7bcb2c16d3001"
+    },
+    {
+      "id": "PROGRAM-IDENTITY",
+      "title": "official and personalized Bauman codes remain exact and distinct",
+      "ok": true,
+      "evidence": {
+        "department": "ИУ-5",
+        "officialPublishedDirectionCode": "09.04.01",
+        "personalizedDisplayCode": "09.04.01/11",
+        "rule": "Official Bauman source metadata keeps 09.04.01; personalized learner surfaces display ИУ-5 · 09.04.01/11."
+      }
+    },
+    {
+      "id": "SUBJECT-SET",
+      "title": "Factory registers exactly the eight Main subjects",
+      "ok": true,
+      "evidence": {
+        "registry": [
+          "russian",
+          "math",
+          "programming",
+          "foundation",
+          "ai",
+          "signal",
+          "systems",
+          "research"
+        ],
+        "main": [
+          "russian",
+          "math",
+          "programming",
+          "ai",
+          "systems",
+          "signal",
+          "research",
+          "foundation"
+        ]
+      }
+    },
+    {
+      "id": "MAIN-SUBJECT-UNIQUE",
+      "title": "Main subject catalog IDs are unique",
+      "ok": true,
+      "evidence": [
+        "russian",
+        "math",
+        "programming",
+        "ai",
+        "systems",
+        "signal",
+        "research",
+        "foundation"
+      ]
+    },
+    {
+      "id": "TYPE-REGISTRY-BOUNDARY",
+      "title": "every allowed Factory lesson type belongs to the locked B4 vocabulary",
+      "ok": true,
+      "evidence": [
+        "language",
+        "mathematics",
+        "programming",
+        "database",
+        "software-design",
+        "ml-data",
+        "asoiu-system",
+        "research"
+      ]
+    },
+    {
+      "id": "CONTRACT-SET",
+      "title": "B9 references all B2-B8 contracts plus Main and offline policy",
+      "ok": true,
+      "evidence": [
+        "universalLesson",
+        "blockPolicy",
+        "lessonTypes",
+        "masterReady",
+        "visualTeaching",
+        "languageHooks",
+        "lessonMigration",
+        "mainSubjectCatalog",
+        "offlinePackManager"
+      ]
+    },
+    {
+      "id": "CONTRACT-FILE-universalLesson",
+      "title": "contract reference resolves to an existing repository file",
+      "ok": true,
+      "evidence": {
+        "path": "assets/data/lesson/universal-lesson-contract-v2.json",
+        "id": "bauman-universal-lesson-contract",
+        "version": "2.0.0"
+      }
+    },
+    {
+      "id": "CONTRACT-IDENTITY-universalLesson",
+      "title": "referenced JSON contract identity and version match",
+      "ok": true,
+      "evidence": {
+        "expected": {
+          "id": "bauman-universal-lesson-contract",
+          "version": "2.0.0"
+        },
+        "actual": {
+          "id": "bauman-universal-lesson-contract",
+          "version": "2.0.0"
+        }
+      }
+    },
+    {
+      "id": "CONTRACT-FILE-blockPolicy",
+      "title": "contract reference resolves to an existing repository file",
+      "ok": true,
+      "evidence": {
+        "path": "assets/data/lesson/universal-lesson-block-policy-v1.json",
+        "id": "bauman-universal-lesson-block-policy",
+        "version": "1.0.0"
+      }
+    },
+    {
+      "id": "CONTRACT-IDENTITY-blockPolicy",
+      "title": "referenced JSON contract identity and version match",
+      "ok": true,
+      "evidence": {
+        "expected": {
+          "id": "bauman-universal-lesson-block-policy",
+          "version": "1.0.0"
+        },
+        "actual": {
+          "id": "bauman-universal-lesson-block-policy",
+          "version": "1.0.0"
+        }
+      }
+    },
+    {
+      "id": "CONTRACT-FILE-lessonTypes",
+      "title": "contract reference resolves to an existing repository file",
+      "ok": true,
+      "evidence": {
+        "path": "assets/data/lesson/lesson-type-registry-v1.json",
+        "id": "bauman-lesson-type-registry",
+        "version": "1.0.0"
+      }
+    },
+    {
+      "id": "CONTRACT-IDENTITY-lessonTypes",
+      "title": "referenced JSON contract identity and version match",
+      "ok": true,
+      "evidence": {
+        "expected": {
+          "id": "bauman-lesson-type-registry",
+          "version": "1.0.0"
+        },
+        "actual": {
+          "id": "bauman-lesson-type-registry",
+          "version": "1.0.0"
+        }
+      }
+    },
+    {
+      "id": "CONTRACT-FILE-masterReady",
+      "title": "contract reference resolves to an existing repository file",
+      "ok": true,
+      "evidence": {
+        "path": "assets/data/lesson/master-ready-policy-v1.json",
+        "id": "bauman-master-ready-policy",
+        "version": "1.0.0"
+      }
+    },
+    {
+      "id": "CONTRACT-IDENTITY-masterReady",
+      "title": "referenced JSON contract identity and version match",
+      "ok": true,
+      "evidence": {
+        "expected": {
+          "id": "bauman-master-ready-policy",
+          "version": "1.0.0"
+        },
+        "actual": {
+          "id": "bauman-master-ready-policy",
+          "version": "1.0.0"
+        }
+      }
+    },
+    {
+      "id": "CONTRACT-FILE-visualTeaching",
+      "title": "contract reference resolves to an existing repository file",
+      "ok": true,
+      "evidence": {
+        "path": "assets/data/lesson/visual-teaching-contract-v1.json",
+        "id": "bauman-visual-teaching-contract",
+        "version": "1.0.0"
+      }
+    },
+    {
+      "id": "CONTRACT-IDENTITY-visualTeaching",
+      "title": "referenced JSON contract identity and version match",
+      "ok": true,
+      "evidence": {
+        "expected": {
+          "id": "bauman-visual-teaching-contract",
+          "version": "1.0.0"
+        },
+        "actual": {
+          "id": "bauman-visual-teaching-contract",
+          "version": "1.0.0"
+        }
+      }
+    },
+    {
+      "id": "CONTRACT-FILE-languageHooks",
+      "title": "contract reference resolves to an existing repository file",
+      "ok": true,
+      "evidence": {
+        "path": "assets/data/lesson/language-layer-hooks-v1.json",
+        "id": "bauman-language-layer-hooks",
+        "version": "1.0.0"
+      }
+    },
+    {
+      "id": "CONTRACT-IDENTITY-languageHooks",
+      "title": "referenced JSON contract identity and version match",
+      "ok": true,
+      "evidence": {
+        "expected": {
+          "id": "bauman-language-layer-hooks",
+          "version": "1.0.0"
+        },
+        "actual": {
+          "id": "bauman-language-layer-hooks",
+          "version": "1.0.0"
+        }
+      }
+    },
+    {
+      "id": "CONTRACT-FILE-lessonMigration",
+      "title": "contract reference resolves to an existing repository file",
+      "ok": true,
+      "evidence": {
+        "path": "assets/data/lesson/schema/lesson-migration-registry-v1.json",
+        "id": "bauman-universal-lesson-migration-registry",
+        "version": "1.0.0"
+      }
+    },
+    {
+      "id": "CONTRACT-IDENTITY-lessonMigration",
+      "title": "referenced JSON contract identity and version match",
+      "ok": true,
+      "evidence": {
+        "expected": {
+          "id": "bauman-universal-lesson-migration-registry",
+          "version": "1.0.0"
+        },
+        "actual": {
+          "id": "bauman-universal-lesson-migration-registry",
+          "version": "1.0.0"
+        }
+      }
+    },
+    {
+      "id": "CONTRACT-FILE-mainSubjectCatalog",
+      "title": "contract reference resolves to an existing repository file",
+      "ok": true,
+      "evidence": {
+        "path": "assets/js/data.js",
+        "global": "BAUMAN_DATA.subjects",
+        "expectedSubjects": 8
+      }
+    },
+    {
+      "id": "CONTRACT-FILE-offlinePackManager",
+      "title": "contract reference resolves to an existing repository file",
+      "ok": true,
+      "evidence": {
+        "path": "assets/js/platform/offline-subject-pack-manager.js",
+        "release": "BAUMAN_OFFLINE_SUBJECT_PACK_MANAGER_2026_08_24"
+      }
+    },
+    {
+      "id": "SUBJECT-RESOLVE-russian",
+      "title": "subject resolves with registered engine and offline policy",
+      "ok": true,
+      "evidence": {
+        "engineRef": "russian-v13-specialist",
+        "offlinePolicyRef": "russian-rich-explicit"
+      }
+    },
+    {
+      "id": "SUBJECT-DESCRIPTOR-russian",
+      "title": "subject descriptor builds deterministically",
+      "ok": true,
+      "evidence": {
+        "engineRef": "russian-v13-specialist",
+        "sourceCount": 17,
+        "widgetCount": 6
+      }
+    },
+    {
+      "id": "SUBJECT-MAIN-ROUTE-russian",
+      "title": "subject Main route is stable and exists",
+      "ok": true,
+      "evidence": "subjects/russian/index.html"
+    },
+    {
+      "id": "SUBJECT-ROUTES-russian",
+      "title": "all registered subject routes are safe and exist",
+      "ok": true,
+      "evidence": {
+        "main": "subjects/russian/index.html",
+        "editor": "subjects/russian/editor.html",
+        "manifest": "subjects/russian/subject-manifest.json",
+        "adapter": "subjects/russian/assets/subject-adapter.js"
+      }
+    },
+    {
+      "id": "SUBJECT-READ-ONLY-russian",
+      "title": "B9 subject profile cannot render migrate mutate source or migrate state",
+      "ok": true,
+      "evidence": {
+        "mode": "read-only-adapter-bridge",
+        "directMigration": false,
+        "directFactoryRender": false,
+        "sourceMutation": false,
+        "learnerStateMigration": false,
+        "factoryPilot": false
+      }
+    },
+    {
+      "id": "SOURCE-CLASS-UNIQUE-russian",
+      "title": "each registered source belongs to exactly one load class",
+      "ok": true,
+      "evidence": {
+        "startup": 11,
+        "requiredLazy": 3,
+        "optionalLazy": 3,
+        "runtimeSupplemental": 0
+      }
+    },
+    {
+      "id": "SOURCE-RESOLVE-russian-curriculum",
+      "title": "registered source resolves to an existing safe local file",
+      "ok": true,
+      "evidence": {
+        "loadClass": "startup",
+        "relativePath": "subjects/russian/data/curriculum.json",
+        "bytes": 4229
+      }
+    },
+    {
+      "id": "SOURCE-RESOLVE-russian-lessons",
+      "title": "registered source resolves to an existing safe local file",
+      "ok": true,
+      "evidence": {
+        "loadClass": "startup",
+        "relativePath": "subjects/russian/data/lessons.json",
+        "bytes": 1418252
+      }
+    },
+    {
+      "id": "SOURCE-RESOLVE-russian-grammar",
+      "title": "registered source resolves to an existing safe local file",
+      "ok": true,
+      "evidence": {
+        "loadClass": "startup",
+        "relativePath": "subjects/russian/data/grammar.json",
+        "bytes": 19892
+      }
+    },
+    {
+      "id": "SOURCE-RESOLVE-russian-grammar-path",
+      "title": "registered source resolves to an existing safe local file",
+      "ok": true,
+      "evidence": {
+        "loadClass": "startup",
+        "relativePath": "subjects/russian/data/grammar-path.json",
+        "bytes": 29371
+      }
+    },
+    {
+      "id": "SOURCE-RESOLVE-russian-mindmap",
+      "title": "registered source resolves to an existing safe local file",
+      "ok": true,
+      "evidence": {
+        "loadClass": "startup",
+        "relativePath": "subjects/russian/data/mindmap.json",
+        "bytes": 110754
+      }
+    },
+    {
+      "id": "SOURCE-RESOLVE-russian-exercises",
+      "title": "registered source resolves to an existing safe local file",
+      "ok": true,
+      "evidence": {
+        "loadClass": "startup",
+        "relativePath": "subjects/russian/data/exercises.json",
+        "bytes": 476196
+      }
+    },
+    {
+      "id": "SOURCE-RESOLVE-russian-simulations",
+      "title": "registered source resolves to an existing safe local file",
+      "ok": true,
+      "evidence": {
+        "loadClass": "startup",
+        "relativePath": "subjects/russian/data/simulations.json",
+        "bytes": 29334
+      }
+    },
+    {
+      "id": "SOURCE-RESOLVE-russian-handwriting",
+      "title": "registered source resolves to an existing safe local file",
+      "ok": true,
+      "evidence": {
+        "loadClass": "startup",
+        "relativePath": "subjects/russian/data/handwriting.json",
+        "bytes": 48141
+      }
+    },
+    {
+      "id": "SOURCE-RESOLVE-russian-writing",
+      "title": "registered source resolves to an existing safe local file",
+      "ok": true,
+      "evidence": {
+        "loadClass": "startup",
+        "relativePath": "subjects/russian/data/writing.json",
+        "bytes": 79470
+      }
+    },
+    {
+      "id": "SOURCE-RESOLVE-russian-videos",
+      "title": "registered source resolves to an existing safe local file",
+      "ok": true,
+      "evidence": {
+        "loadClass": "startup",
+        "relativePath": "subjects/russian/data/videos.json",
+        "bytes": 19488
+      }
+    },
+    {
+      "id": "SOURCE-RESOLVE-russian-knowledge-index",
+      "title": "registered source resolves to an existing safe local file",
+      "ok": true,
+      "evidence": {
+        "loadClass": "startup",
+        "relativePath": "subjects/russian/data/knowledge-index.json",
+        "bytes": 28372
+      }
+    },
+    {
+      "id": "SOURCE-RESOLVE-russian-vocab",
+      "title": "registered source resolves to an existing safe local file",
+      "ok": true,
+      "evidence": {
+        "loadClass": "required-lazy",
+        "relativePath": "subjects/russian/data/vocab.json",
+        "bytes": 11212921
+      }
+    },
+    {
+      "id": "SOURCE-RESOLVE-russian-tests",
+      "title": "registered source resolves to an existing safe local file",
+      "ok": true,
+      "evidence": {
+        "loadClass": "required-lazy",
+        "relativePath": "subjects/russian/data/tests.json",
+        "bytes": 7923057
+      }
+    },
+    {
+      "id": "SOURCE-RESOLVE-russian-speaking",
+      "title": "registered source resolves to an existing safe local file",
+      "ok": true,
+      "evidence": {
+        "loadClass": "required-lazy",
+        "relativePath": "subjects/russian/data/speaking.json",
+        "bytes": 7343576
+      }
+    },
+    {
+      "id": "SOURCE-RESOLVE-russian-dialogue-bauman-az",
+      "title": "registered source resolves to an existing safe local file",
+      "ok": true,
+      "evidence": {
+        "loadClass": "optional-lazy",
+        "relativePath": "subjects/russian/data/dialogue-bauman-az.json",
+        "bytes": 35049608
+      }
+    },
+    {
+      "id": "SOURCE-RESOLVE-russian-deep-speaking-bauman",
+      "title": "registered source resolves to an existing safe local file",
+      "ok": true,
+      "evidence": {
+        "loadClass": "optional-lazy",
+        "relativePath": "subjects/russian/data/deep-speaking-bauman.json",
+        "bytes": 28156378
+      }
+    },
+    {
+      "id": "SOURCE-RESOLVE-russian-speaking-link-index",
+      "title": "registered source resolves to an existing safe local file",
+      "ok": true,
+      "evidence": {
+        "loadClass": "optional-lazy",
+        "relativePath": "subjects/russian/data/speaking-link-index.json",
+        "bytes": 385702
+      }
+    },
+    {
+      "id": "SUBJECT-RESOLVE-math",
+      "title": "subject resolves with registered engine and offline policy",
+      "ok": true,
+      "evidence": {
+        "engineRef": "math-e126-specialist",
+        "offlinePolicyRef": "math-rich-explicit"
+      }
+    },
+    {
+      "id": "SUBJECT-DESCRIPTOR-math",
+      "title": "subject descriptor builds deterministically",
+      "ok": true,
+      "evidence": {
+        "engineRef": "math-e126-specialist",
+        "sourceCount": 59,
+        "widgetCount": 5
+      }
+    },
+    {
+      "id": "SUBJECT-MAIN-ROUTE-math",
+      "title": "subject Main route is stable and exists",
+      "ok": true,
+      "evidence": "subjects/math/index.html"
+    },
+    {
+      "id": "SUBJECT-ROUTES-math",
+      "title": "all registered subject routes are safe and exist",
+      "ok": true,
+      "evidence": {
+        "main": "subjects/math/index.html",
+        "editor": "subjects/math/editor.html",
+        "manifest": "subjects/math/subject-manifest.json",
+        "adapter": "subjects/math/assets/subject-adapter.js"
+      }
+    },
+    {
+      "id": "SUBJECT-READ-ONLY-math",
+      "title": "B9 subject profile cannot render migrate mutate source or migrate state",
+      "ok": true,
+      "evidence": {
+        "mode": "read-only-adapter-bridge",
+        "directMigration": false,
+        "directFactoryRender": false,
+        "sourceMutation": false,
+        "learnerStateMigration": false,
+        "factoryPilot": false
+      }
+    },
+    {
+      "id": "SOURCE-CLASS-UNIQUE-math",
+      "title": "each registered source belongs to exactly one load class",
+      "ok": true,
+      "evidence": {
+        "startup": 51,
+        "requiredLazy": 1,
+        "optionalLazy": 6,
+        "runtimeSupplemental": 1
+      }
+    },
+    {
+      "id": "SOURCE-RESOLVE-math-content_vault_manifest",
+      "title": "registered source resolves to an existing safe local file",
+      "ok": true,
+      "evidence": {
+        "loadClass": "startup",
+        "relativePath": "subjects/math/data/content_vault_manifest.json",
+        "bytes": 13983
+      }
+    },
+    {
+      "id": "SOURCE-RESOLVE-math-discipline_spine",
+      "title": "registered source resolves to an existing safe local file",
+      "ok": true,
+      "evidence": {
+        "loadClass": "startup",
+        "relativePath": "subjects/math/data/discipline_spine.json",
+        "bytes": 9364
+      }
+    },
+    {
+      "id": "SOURCE-RESOLVE-math-chapter_spine",
+      "title": "registered source resolves to an existing safe local file",
+      "ok": true,
+      "evidence": {
+        "loadClass": "startup",
+        "relativePath": "subjects/math/data/chapter_spine.json",
+        "bytes": 204065
+      }
+    },
+    {
+      "id": "SOURCE-RESOLVE-math-curriculum",
+      "title": "registered source resolves to an existing safe local file",
+      "ok": true,
+      "evidence": {
+        "loadClass": "startup",
+        "relativePath": "subjects/math/data/curriculum.json",
+        "bytes": 117642
+      }
+    },
+    {
+      "id": "SOURCE-RESOLVE-math-content-manifest",
+      "title": "registered source resolves to an existing safe local file",
+      "ok": true,
+      "evidence": {
+        "loadClass": "startup",
+        "relativePath": "subjects/math/data/content-manifest.json",
+        "bytes": 11690
+      }
+    },
+    {
+      "id": "SOURCE-RESOLVE-math-theory_lecture_frame",
+      "title": "registered source resolves to an existing safe local file",
+      "ok": true,
+      "evidence": {
+        "loadClass": "startup",
+        "relativePath": "subjects/math/data/theory_lecture_frame.json",
+        "bytes": 181265
+      }
+    },
+    {
+      "id": "SOURCE-RESOLVE-math-formula_frame",
+      "title": "registered source resolves to an existing safe local file",
+      "ok": true,
+      "evidence": {
+        "loadClass": "startup",
+        "relativePath": "subjects/math/data/formula_frame.json",
+        "bytes": 57344
+      }
+    },
+    {
+      "id": "SOURCE-RESOLVE-math-simulation_frame",
+      "title": "registered source resolves to an existing safe local file",
+      "ok": true,
+      "evidence": {
+        "loadClass": "startup",
+        "relativePath": "subjects/math/data/simulation_frame.json",
+        "bytes": 57524
+      }
+    },
+    {
+      "id": "SOURCE-RESOLVE-math-exercise_frame",
+      "title": "registered source resolves to an existing safe local file",
+      "ok": true,
+      "evidence": {
+        "loadClass": "startup",
+        "relativePath": "subjects/math/data/exercise_frame.json",
+        "bytes": 57398
+      }
+    },
+    {
+      "id": "SOURCE-RESOLVE-math-application_frame",
+      "title": "registered source resolves to an existing safe local file",
+      "ok": true,
+      "evidence": {
+        "loadClass": "startup",
+        "relativePath": "subjects/math/data/application_frame.json",
+        "bytes": 57591
+      }
+    },
+    {
+      "id": "SOURCE-RESOLVE-math-professor_qa_frame",
+      "title": "registered source resolves to an existing safe local file",
+      "ok": true,
+      "evidence": {
+        "loadClass": "startup",
+        "relativePath": "subjects/math/data/professor_qa_frame.json",
+        "bytes": 57625
+      }
+    },
+    {
+      "id": "SOURCE-RESOLVE-math-review_pack_frame",
+      "title": "registered source resolves to an existing safe local file",
+      "ok": true,
+      "evidence": {
+        "loadClass": "startup",
+        "relativePath": "subjects/math/data/review_pack_frame.json",
+        "bytes": 57582
+      }
+    },
+    {
+      "id": "SOURCE-RESOLVE-math-question_bank_frame",
+      "title": "registered source resolves to an existing safe local file",
+      "ok": true,
+      "evidence": {
+        "loadClass": "startup",
+        "relativePath": "subjects/math/data/question_bank_frame.json",
+        "bytes": 57706
+      }
+    },
+    {
+      "id": "SOURCE-RESOLVE-math-test_blueprint_frame",
+      "title": "registered source resolves to an existing safe local file",
+      "ok": true,
+      "evidence": {
+        "loadClass": "startup",
+        "relativePath": "subjects/math/data/test_blueprint_frame.json",
+        "bytes": 57775
+      }
+    },
+    {
+      "id": "SOURCE-RESOLVE-math-chapter_lecture_frame",
+      "title": "registered source resolves to an existing safe local file",
+      "ok": true,
+      "evidence": {
+        "loadClass": "startup",
+        "relativePath": "subjects/math/data/chapter_lecture_frame.json",
+        "bytes": 57876
+      }
+    },
+    {
+      "id": "SOURCE-RESOLVE-math-mindmap_frame",
+      "title": "registered source resolves to an existing safe local file",
+      "ok": true,
+      "evidence": {
+        "loadClass": "startup",
+        "relativePath": "subjects/math/data/mindmap_frame.json",
+        "bytes": 57313
+      }
+    },
+    {
+      "id": "SOURCE-RESOLVE-math-concept_map_frame",
+      "title": "registered source resolves to an existing safe local file",
+      "ok": true,
+      "evidence": {
+        "loadClass": "startup",
+        "relativePath": "subjects/math/data/concept_map_frame.json",
+        "bytes": 57587
+      }
+    },
+    {
+      "id": "SOURCE-RESOLVE-math-media_frame",
+      "title": "registered source resolves to an existing safe local file",
+      "ok": true,
+      "evidence": {
+        "loadClass": "startup",
+        "relativePath": "subjects/math/data/media_frame.json",
+        "bytes": 57224
+      }
+    },
+    {
+      "id": "SOURCE-RESOLVE-math-theory_lecture_content",
+      "title": "registered source resolves to an existing safe local file",
+      "ok": true,
+      "evidence": {
+        "loadClass": "startup",
+        "relativePath": "subjects/math/data/theory_lecture_content.json",
+        "bytes": 259002
+      }
+    },
+    {
+      "id": "SOURCE-RESOLVE-math-formula_content",
+      "title": "registered source resolves to an existing safe local file",
+      "ok": true,
+      "evidence": {
+        "loadClass": "startup",
+        "relativePath": "subjects/math/data/formula_content.json",
+        "bytes": 1916
+      }
+    },
+    {
+      "id": "SOURCE-RESOLVE-math-simulation_content",
+      "title": "registered source resolves to an existing safe local file",
+      "ok": true,
+      "evidence": {
+        "loadClass": "startup",
+        "relativePath": "subjects/math/data/simulation_content.json",
+        "bytes": 2081
+      }
+    },
+    {
+      "id": "SOURCE-RESOLVE-math-exercise_content",
+      "title": "registered source resolves to an existing safe local file",
+      "ok": true,
+      "evidence": {
+        "loadClass": "startup",
+        "relativePath": "subjects/math/data/exercise_content.json",
+        "bytes": 1843
+      }
+    },
+    {
+      "id": "SOURCE-RESOLVE-math-application_content",
+      "title": "registered source resolves to an existing safe local file",
+      "ok": true,
+      "evidence": {
+        "loadClass": "startup",
+        "relativePath": "subjects/math/data/application_content.json",
+        "bytes": 1921
+      }
+    },
+    {
+      "id": "SOURCE-RESOLVE-math-professor_qa_content",
+      "title": "registered source resolves to an existing safe local file",
+      "ok": true,
+      "evidence": {
+        "loadClass": "startup",
+        "relativePath": "subjects/math/data/professor_qa_content.json",
+        "bytes": 1874
+      }
+    },
+    {
+      "id": "SOURCE-RESOLVE-math-review_pack_content",
+      "title": "registered source resolves to an existing safe local file",
+      "ok": true,
+      "evidence": {
+        "loadClass": "startup",
+        "relativePath": "subjects/math/data/review_pack_content.json",
+        "bytes": 1822
+      }
+    },
+    {
+      "id": "SOURCE-RESOLVE-math-question_bank_content",
+      "title": "registered source resolves to an existing safe local file",
+      "ok": true,
+      "evidence": {
+        "loadClass": "startup",
+        "relativePath": "subjects/math/data/question_bank_content.json",
+        "bytes": 1981
+      }
+    },
+    {
+      "id": "SOURCE-RESOLVE-math-test_blueprint_content",
+      "title": "registered source resolves to an existing safe local file",
+      "ok": true,
+      "evidence": {
+        "loadClass": "startup",
+        "relativePath": "subjects/math/data/test_blueprint_content.json",
+        "bytes": 1714
+      }
+    },
+    {
+      "id": "SOURCE-RESOLVE-math-chapter_lecture_content",
+      "title": "registered source resolves to an existing safe local file",
+      "ok": true,
+      "evidence": {
+        "loadClass": "startup",
+        "relativePath": "subjects/math/data/chapter_lecture_content.json",
+        "bytes": 1693
+      }
+    },
+    {
+      "id": "SOURCE-RESOLVE-math-mindmap_content",
+      "title": "registered source resolves to an existing safe local file",
+      "ok": true,
+      "evidence": {
+        "loadClass": "startup",
+        "relativePath": "subjects/math/data/mindmap_content.json",
+        "bytes": 1554
+      }
+    },
+    {
+      "id": "SOURCE-RESOLVE-math-concept_map_content",
+      "title": "registered source resolves to an existing safe local file",
+      "ok": true,
+      "evidence": {
+        "loadClass": "startup",
+        "relativePath": "subjects/math/data/concept_map_content.json",
+        "bytes": 1604
+      }
+    },
+    {
+      "id": "SOURCE-RESOLVE-math-media_content",
+      "title": "registered source resolves to an existing safe local file",
+      "ok": true,
+      "evidence": {
+        "loadClass": "startup",
+        "relativePath": "subjects/math/data/media_content.json",
+        "bytes": 1586
+      }
+    },
+    {
+      "id": "SOURCE-RESOLVE-math-formulas",
+      "title": "registered source resolves to an existing safe local file",
+      "ok": true,
+      "evidence": {
+        "loadClass": "startup",
+        "relativePath": "subjects/math/data/formulas.json",
+        "bytes": 2
+      }
+    },
+    {
+      "id": "SOURCE-RESOLVE-math-simulations",
+      "title": "registered source resolves to an existing safe local file",
+      "ok": true,
+      "evidence": {
+        "loadClass": "startup",
+        "relativePath": "subjects/math/data/simulations.json",
+        "bytes": 2
+      }
+    },
+    {
+      "id": "SOURCE-RESOLVE-math-exercises",
+      "title": "registered source resolves to an existing safe local file",
+      "ok": true,
+      "evidence": {
+        "loadClass": "startup",
+        "relativePath": "subjects/math/data/exercises.json",
+        "bytes": 2
+      }
+    },
+    {
+      "id": "SOURCE-RESOLVE-math-applications",
+      "title": "registered source resolves to an existing safe local file",
+      "ok": true,
+      "evidence": {
+        "loadClass": "startup",
+        "relativePath": "subjects/math/data/applications.json",
+        "bytes": 2
+      }
+    },
+    {
+      "id": "SOURCE-RESOLVE-math-professor_qa",
+      "title": "registered source resolves to an existing safe local file",
+      "ok": true,
+      "evidence": {
+        "loadClass": "startup",
+        "relativePath": "subjects/math/data/professor_qa.json",
+        "bytes": 2
+      }
+    },
+    {
+      "id": "SOURCE-RESOLVE-math-review_packs",
+      "title": "registered source resolves to an existing safe local file",
+      "ok": true,
+      "evidence": {
+        "loadClass": "startup",
+        "relativePath": "subjects/math/data/review_packs.json",
+        "bytes": 2
+      }
+    },
+    {
+      "id": "SOURCE-RESOLVE-math-question_bank",
+      "title": "registered source resolves to an existing safe local file",
+      "ok": true,
+      "evidence": {
+        "loadClass": "startup",
+        "relativePath": "subjects/math/data/question_bank.json",
+        "bytes": 2
+      }
+    },
+    {
+      "id": "SOURCE-RESOLVE-math-test_blueprints",
+      "title": "registered source resolves to an existing safe local file",
+      "ok": true,
+      "evidence": {
+        "loadClass": "startup",
+        "relativePath": "subjects/math/data/test_blueprints.json",
+        "bytes": 2
+      }
+    },
+    {
+      "id": "SOURCE-RESOLVE-math-chapter_lectures",
+      "title": "registered source resolves to an existing safe local file",
+      "ok": true,
+      "evidence": {
+        "loadClass": "startup",
+        "relativePath": "subjects/math/data/chapter_lectures.json",
+        "bytes": 2
+      }
+    },
+    {
+      "id": "SOURCE-RESOLVE-math-mindmap",
+      "title": "registered source resolves to an existing safe local file",
+      "ok": true,
+      "evidence": {
+        "loadClass": "startup",
+        "relativePath": "subjects/math/data/mindmap.json",
+        "bytes": 2
+      }
+    },
+    {
+      "id": "SOURCE-RESOLVE-math-concept-map",
+      "title": "registered source resolves to an existing safe local file",
+      "ok": true,
+      "evidence": {
+        "loadClass": "startup",
+        "relativePath": "subjects/math/data/concept-map.json",
+        "bytes": 2
+      }
+    },
+    {
+      "id": "SOURCE-RESOLVE-math-videos",
+      "title": "registered source resolves to an existing safe local file",
+      "ok": true,
+      "evidence": {
+        "loadClass": "startup",
+        "relativePath": "subjects/math/data/videos.json",
+        "bytes": 10673
+      }
+    },
+    {
+      "id": "SOURCE-RESOLVE-math-learning_rules",
+      "title": "registered source resolves to an existing safe local file",
+      "ok": true,
+      "evidence": {
+        "loadClass": "startup",
+        "relativePath": "subjects/math/data/learning_rules.json",
+        "bytes": 319
+      }
+    },
+    {
+      "id": "SOURCE-RESOLVE-math-tests",
+      "title": "registered source resolves to an existing safe local file",
+      "ok": true,
+      "evidence": {
+        "loadClass": "startup",
+        "relativePath": "subjects/math/data/tests.json",
+        "bytes": 268
+      }
+    },
+    {
+      "id": "SOURCE-RESOLVE-math-content-index",
+      "title": "registered source resolves to an existing safe local file",
+      "ok": true,
+      "evidence": {
+        "loadClass": "startup",
+        "relativePath": "subjects/math/data/content-index.json",
+        "bytes": 2
+      }
+    },
+    {
+      "id": "SOURCE-RESOLVE-math-knowledge-index",
+      "title": "registered source resolves to an existing safe local file",
+      "ok": true,
+      "evidence": {
+        "loadClass": "startup",
+        "relativePath": "subjects/math/data/knowledge-index.json",
+        "bytes": 2
+      }
+    },
+    {
+      "id": "SOURCE-RESOLVE-math-mastery-map",
+      "title": "registered source resolves to an existing safe local file",
+      "ok": true,
+      "evidence": {
+        "loadClass": "startup",
+        "relativePath": "subjects/math/data/mastery-map.json",
+        "bytes": 2
+      }
+    },
+    {
+      "id": "SOURCE-RESOLVE-math-vocab",
+      "title": "registered source resolves to an existing safe local file",
+      "ok": true,
+      "evidence": {
+        "loadClass": "startup",
+        "relativePath": "subjects/math/data/vocab.json",
+        "bytes": 934291
+      }
+    },
+    {
+      "id": "SOURCE-RESOLVE-math-grammar",
+      "title": "registered source resolves to an existing safe local file",
+      "ok": true,
+      "evidence": {
+        "loadClass": "startup",
+        "relativePath": "subjects/math/data/grammar.json",
+        "bytes": 192699
+      }
+    },
+    {
+      "id": "SOURCE-RESOLVE-math-grammar-path",
+      "title": "registered source resolves to an existing safe local file",
+      "ok": true,
+      "evidence": {
+        "loadClass": "startup",
+        "relativePath": "subjects/math/data/grammar-path.json",
+        "bytes": 192699
+      }
+    },
+    {
+      "id": "SOURCE-RESOLVE-math-lessons",
+      "title": "registered source resolves to an existing safe local file",
+      "ok": true,
+      "evidence": {
+        "loadClass": "required-lazy",
+        "relativePath": "subjects/math/data/lessons.json",
+        "bytes": 7822102
+      }
+    },
+    {
+      "id": "SOURCE-RESOLVE-math-writing",
+      "title": "registered source resolves to an existing safe local file",
+      "ok": true,
+      "evidence": {
+        "loadClass": "optional-lazy",
+        "relativePath": "subjects/math/data/writing.json",
+        "bytes": 63976
+      }
+    },
+    {
+      "id": "SOURCE-RESOLVE-math-handwriting",
+      "title": "registered source resolves to an existing safe local file",
+      "ok": true,
+      "evidence": {
+        "loadClass": "optional-lazy",
+        "relativePath": "subjects/math/data/handwriting.json",
+        "bytes": 20770
+      }
+    },
+    {
+      "id": "SOURCE-RESOLVE-math-speaking",
+      "title": "registered source resolves to an existing safe local file",
+      "ok": true,
+      "evidence": {
+        "loadClass": "optional-lazy",
+        "relativePath": "subjects/math/data/speaking.json",
+        "bytes": 4747996
+      }
+    },
+    {
+      "id": "SOURCE-RESOLVE-math-deep-speaking-bauman",
+      "title": "registered source resolves to an existing safe local file",
+      "ok": true,
+      "evidence": {
+        "loadClass": "optional-lazy",
+        "relativePath": "subjects/math/data/deep-speaking-bauman.json",
+        "bytes": 45405
+      }
+    },
+    {
+      "id": "SOURCE-RESOLVE-math-speaking-link-index",
+      "title": "registered source resolves to an existing safe local file",
+      "ok": true,
+      "evidence": {
+        "loadClass": "optional-lazy",
+        "relativePath": "subjects/math/data/speaking-link-index.json",
+        "bytes": 11079
+      }
+    },
+    {
+      "id": "SOURCE-RESOLVE-math-dialogue-bauman-az",
+      "title": "registered source resolves to an existing safe local file",
+      "ok": true,
+      "evidence": {
+        "loadClass": "optional-lazy",
+        "relativePath": "subjects/math/data/dialogue-bauman-az.json",
+        "bytes": 1757754
+      }
+    },
+    {
+      "id": "SOURCE-RESOLVE-math-lessons-deferred",
+      "title": "registered source resolves to an existing safe local file",
+      "ok": true,
+      "evidence": {
+        "loadClass": "runtime-supplemental",
+        "relativePath": "subjects/math/data/lessons_deferred.json",
+        "bytes": 3
+      }
+    },
+    {
+      "id": "SUBJECT-RESOLVE-programming",
+      "title": "subject resolves with registered engine and offline policy",
+      "ok": true,
+      "evidence": {
+        "engineRef": "programming-v2-specialist",
+        "offlinePolicyRef": "programming-rich-explicit"
+      }
+    },
+    {
+      "id": "SUBJECT-DESCRIPTOR-programming",
+      "title": "subject descriptor builds deterministically",
+      "ok": true,
+      "evidence": {
+        "engineRef": "programming-v2-specialist",
+        "sourceCount": 17,
+        "widgetCount": 4
+      }
+    },
+    {
+      "id": "SUBJECT-MAIN-ROUTE-programming",
+      "title": "subject Main route is stable and exists",
+      "ok": true,
+      "evidence": "subjects/programming/index.html"
+    },
+    {
+      "id": "SUBJECT-ROUTES-programming",
+      "title": "all registered subject routes are safe and exist",
+      "ok": true,
+      "evidence": {
+        "main": "subjects/programming/index.html",
+        "editor": "subjects/programming/editor.html",
+        "manifest": "subjects/programming/subject-manifest.json",
+        "adapter": "subjects/programming/assets/subject-adapter.js"
+      }
+    },
+    {
+      "id": "SUBJECT-READ-ONLY-programming",
+      "title": "B9 subject profile cannot render migrate mutate source or migrate state",
+      "ok": true,
+      "evidence": {
+        "mode": "read-only-adapter-bridge",
+        "directMigration": false,
+        "directFactoryRender": false,
+        "sourceMutation": false,
+        "learnerStateMigration": false,
+        "factoryPilot": false
+      }
+    },
+    {
+      "id": "SOURCE-CLASS-UNIQUE-programming",
+      "title": "each registered source belongs to exactly one load class",
+      "ok": true,
+      "evidence": {
+        "startup": 15,
+        "requiredLazy": 0,
+        "optionalLazy": 2,
+        "runtimeSupplemental": 0
+      }
+    },
+    {
+      "id": "SOURCE-RESOLVE-programming-curriculum",
+      "title": "registered source resolves to an existing safe local file",
+      "ok": true,
+      "evidence": {
+        "loadClass": "startup",
+        "relativePath": "subjects/programming/data/curriculum.json",
+        "bytes": 12018
+      }
+    },
+    {
+      "id": "SOURCE-RESOLVE-programming-lessons",
+      "title": "registered source resolves to an existing safe local file",
+      "ok": true,
+      "evidence": {
+        "loadClass": "startup",
+        "relativePath": "subjects/programming/data/lessons.json",
+        "bytes": 143151
+      }
+    },
+    {
+      "id": "SOURCE-RESOLVE-programming-grammar",
+      "title": "registered source resolves to an existing safe local file",
+      "ok": true,
+      "evidence": {
+        "loadClass": "startup",
+        "relativePath": "subjects/programming/data/grammar.json",
+        "bytes": 33212
+      }
+    },
+    {
+      "id": "SOURCE-RESOLVE-programming-grammar-path",
+      "title": "registered source resolves to an existing safe local file",
+      "ok": true,
+      "evidence": {
+        "loadClass": "startup",
+        "relativePath": "subjects/programming/data/grammar-path.json",
+        "bytes": 33212
+      }
+    },
+    {
+      "id": "SOURCE-RESOLVE-programming-vocab",
+      "title": "registered source resolves to an existing safe local file",
+      "ok": true,
+      "evidence": {
+        "loadClass": "startup",
+        "relativePath": "subjects/programming/data/vocab.json",
+        "bytes": 40081
+      }
+    },
+    {
+      "id": "SOURCE-RESOLVE-programming-mindmap",
+      "title": "registered source resolves to an existing safe local file",
+      "ok": true,
+      "evidence": {
+        "loadClass": "startup",
+        "relativePath": "subjects/programming/data/mindmap.json",
+        "bytes": 39551
+      }
+    },
+    {
+      "id": "SOURCE-RESOLVE-programming-exercises",
+      "title": "registered source resolves to an existing safe local file",
+      "ok": true,
+      "evidence": {
+        "loadClass": "startup",
+        "relativePath": "subjects/programming/data/exercises.json",
+        "bytes": 151280
+      }
+    },
+    {
+      "id": "SOURCE-RESOLVE-programming-tests",
+      "title": "registered source resolves to an existing safe local file",
+      "ok": true,
+      "evidence": {
+        "loadClass": "startup",
+        "relativePath": "subjects/programming/data/tests.json",
+        "bytes": 1152416
+      }
+    },
+    {
+      "id": "SOURCE-RESOLVE-programming-simulations",
+      "title": "registered source resolves to an existing safe local file",
+      "ok": true,
+      "evidence": {
+        "loadClass": "startup",
+        "relativePath": "subjects/programming/data/simulations.json",
+        "bytes": 192416
+      }
+    },
+    {
+      "id": "SOURCE-RESOLVE-programming-speaking",
+      "title": "registered source resolves to an existing safe local file",
+      "ok": true,
+      "evidence": {
+        "loadClass": "startup",
+        "relativePath": "subjects/programming/data/speaking.json",
+        "bytes": 145497
+      }
+    },
+    {
+      "id": "SOURCE-RESOLVE-programming-dialogue-bauman-az",
+      "title": "registered source resolves to an existing safe local file",
+      "ok": true,
+      "evidence": {
+        "loadClass": "startup",
+        "relativePath": "subjects/programming/data/dialogue-bauman-az.json",
+        "bytes": 102863
+      }
+    },
+    {
+      "id": "SOURCE-RESOLVE-programming-handwriting",
+      "title": "registered source resolves to an existing safe local file",
+      "ok": true,
+      "evidence": {
+        "loadClass": "startup",
+        "relativePath": "subjects/programming/data/handwriting.json",
+        "bytes": 28575
+      }
+    },
+    {
+      "id": "SOURCE-RESOLVE-programming-writing",
+      "title": "registered source resolves to an existing safe local file",
+      "ok": true,
+      "evidence": {
+        "loadClass": "startup",
+        "relativePath": "subjects/programming/data/writing.json",
+        "bytes": 64220
+      }
+    },
+    {
+      "id": "SOURCE-RESOLVE-programming-videos",
+      "title": "registered source resolves to an existing safe local file",
+      "ok": true,
+      "evidence": {
+        "loadClass": "startup",
+        "relativePath": "subjects/programming/data/videos.json",
+        "bytes": 11807
+      }
+    },
+    {
+      "id": "SOURCE-RESOLVE-programming-knowledge-index",
+      "title": "registered source resolves to an existing safe local file",
+      "ok": true,
+      "evidence": {
+        "loadClass": "startup",
+        "relativePath": "subjects/programming/data/knowledge-index.json",
+        "bytes": 29775
+      }
+    },
+    {
+      "id": "SOURCE-RESOLVE-programming-deep-speaking-bauman",
+      "title": "registered source resolves to an existing safe local file",
+      "ok": true,
+      "evidence": {
+        "loadClass": "optional-lazy",
+        "relativePath": "subjects/programming/data/deep-speaking-bauman.json",
+        "bytes": 34409
+      }
+    },
+    {
+      "id": "SOURCE-RESOLVE-programming-speaking-link-index",
+      "title": "registered source resolves to an existing safe local file",
+      "ok": true,
+      "evidence": {
+        "loadClass": "optional-lazy",
+        "relativePath": "subjects/programming/data/speaking-link-index.json",
+        "bytes": 10957
+      }
+    },
+    {
+      "id": "SUBJECT-RESOLVE-foundation",
+      "title": "subject resolves with registered engine and offline policy",
+      "ok": true,
+      "evidence": {
+        "engineRef": "light-elearning-v2",
+        "offlinePolicyRef": "light-core-explicit"
+      }
+    },
+    {
+      "id": "SUBJECT-DESCRIPTOR-foundation",
+      "title": "subject descriptor builds deterministically",
+      "ok": true,
+      "evidence": {
+        "engineRef": "light-elearning-v2",
+        "sourceCount": 7,
+        "widgetCount": 3
+      }
+    },
+    {
+      "id": "SUBJECT-MAIN-ROUTE-foundation",
+      "title": "subject Main route is stable and exists",
+      "ok": true,
+      "evidence": "subjects/foundation/index.html"
+    },
+    {
+      "id": "SUBJECT-ROUTES-foundation",
+      "title": "all registered subject routes are safe and exist",
+      "ok": true,
+      "evidence": {
+        "main": "subjects/foundation/index.html",
+        "editor": "subjects/foundation/editor.html",
+        "manifest": "subjects/foundation/subject-manifest.json",
+        "manifestScript": "subjects/foundation/subject-manifest.js",
+        "runtime": "subjects/foundation/assets/foundation.js"
+      }
+    },
+    {
+      "id": "SUBJECT-READ-ONLY-foundation",
+      "title": "B9 subject profile cannot render migrate mutate source or migrate state",
+      "ok": true,
+      "evidence": {
+        "mode": "light-read-only-projection",
+        "directMigration": false,
+        "directFactoryRender": false,
+        "sourceMutation": false,
+        "learnerStateMigration": false,
+        "factoryPilot": true,
+        "pilotScope": "Only lessons with a deterministic B9 lesson-type classification."
+      }
+    },
+    {
+      "id": "SOURCE-CLASS-UNIQUE-foundation",
+      "title": "each registered source belongs to exactly one load class",
+      "ok": true,
+      "evidence": {
+        "startup": 6,
+        "requiredLazy": 0,
+        "optionalLazy": 0,
+        "runtimeSupplemental": 1
+      }
+    },
+    {
+      "id": "SOURCE-RESOLVE-foundation-curriculum",
+      "title": "registered source resolves to an existing safe local file",
+      "ok": true,
+      "evidence": {
+        "loadClass": "startup",
+        "relativePath": "subjects/foundation/data/curriculum.json",
+        "bytes": 44870
+      }
+    },
+    {
+      "id": "SOURCE-RESOLVE-foundation-lessons",
+      "title": "registered source resolves to an existing safe local file",
+      "ok": true,
+      "evidence": {
+        "loadClass": "startup",
+        "relativePath": "subjects/foundation/data/lessons.json",
+        "bytes": 149895
+      }
+    },
+    {
+      "id": "SOURCE-RESOLVE-foundation-formulas",
+      "title": "registered source resolves to an existing safe local file",
+      "ok": true,
+      "evidence": {
+        "loadClass": "startup",
+        "relativePath": "subjects/foundation/data/formulas.json",
+        "bytes": 925
+      }
+    },
+    {
+      "id": "SOURCE-RESOLVE-foundation-exercises",
+      "title": "registered source resolves to an existing safe local file",
+      "ok": true,
+      "evidence": {
+        "loadClass": "startup",
+        "relativePath": "subjects/foundation/data/exercises.json",
+        "bytes": 11456
+      }
+    },
+    {
+      "id": "SOURCE-RESOLVE-foundation-tests",
+      "title": "registered source resolves to an existing safe local file",
+      "ok": true,
+      "evidence": {
+        "loadClass": "startup",
+        "relativePath": "subjects/foundation/data/tests.json",
+        "bytes": 18510
+      }
+    },
+    {
+      "id": "SOURCE-RESOLVE-foundation-knowledge-index",
+      "title": "registered source resolves to an existing safe local file",
+      "ok": true,
+      "evidence": {
+        "loadClass": "startup",
+        "relativePath": "subjects/foundation/data/knowledge-index.json",
+        "bytes": 24268
+      }
+    },
+    {
+      "id": "SOURCE-RESOLVE-foundation-simulations",
+      "title": "registered source resolves to an existing safe local file",
+      "ok": true,
+      "evidence": {
+        "loadClass": "runtime-supplemental",
+        "relativePath": "subjects/foundation/data/simulations.json",
+        "bytes": 8653
+      }
+    },
+    {
+      "id": "SUBJECT-RESOLVE-ai",
+      "title": "subject resolves with registered engine and offline policy",
+      "ok": true,
+      "evidence": {
+        "engineRef": "light-elearning-v2",
+        "offlinePolicyRef": "light-core-explicit"
+      }
+    },
+    {
+      "id": "SUBJECT-DESCRIPTOR-ai",
+      "title": "subject descriptor builds deterministically",
+      "ok": true,
+      "evidence": {
+        "engineRef": "light-elearning-v2",
+        "sourceCount": 7,
+        "widgetCount": 4
+      }
+    },
+    {
+      "id": "SUBJECT-MAIN-ROUTE-ai",
+      "title": "subject Main route is stable and exists",
+      "ok": true,
+      "evidence": "subjects/ai/index.html"
+    },
+    {
+      "id": "SUBJECT-ROUTES-ai",
+      "title": "all registered subject routes are safe and exist",
+      "ok": true,
+      "evidence": {
+        "main": "subjects/ai/index.html",
+        "editor": "subjects/ai/editor.html",
+        "manifest": "subjects/ai/subject-manifest.json",
+        "manifestScript": "subjects/ai/subject-manifest.js",
+        "runtime": "subjects/ai/assets/ai.js"
+      }
+    },
+    {
+      "id": "SUBJECT-READ-ONLY-ai",
+      "title": "B9 subject profile cannot render migrate mutate source or migrate state",
+      "ok": true,
+      "evidence": {
+        "mode": "light-read-only-projection",
+        "directMigration": false,
+        "directFactoryRender": false,
+        "sourceMutation": false,
+        "learnerStateMigration": false,
+        "factoryPilot": false
+      }
+    },
+    {
+      "id": "SOURCE-CLASS-UNIQUE-ai",
+      "title": "each registered source belongs to exactly one load class",
+      "ok": true,
+      "evidence": {
+        "startup": 6,
+        "requiredLazy": 0,
+        "optionalLazy": 0,
+        "runtimeSupplemental": 1
+      }
+    },
+    {
+      "id": "SOURCE-RESOLVE-ai-curriculum",
+      "title": "registered source resolves to an existing safe local file",
+      "ok": true,
+      "evidence": {
+        "loadClass": "startup",
+        "relativePath": "subjects/ai/data/curriculum.json",
+        "bytes": 106391
+      }
+    },
+    {
+      "id": "SOURCE-RESOLVE-ai-lessons",
+      "title": "registered source resolves to an existing safe local file",
+      "ok": true,
+      "evidence": {
+        "loadClass": "startup",
+        "relativePath": "subjects/ai/data/lessons.json",
+        "bytes": 336820
+      }
+    },
+    {
+      "id": "SOURCE-RESOLVE-ai-formulas",
+      "title": "registered source resolves to an existing safe local file",
+      "ok": true,
+      "evidence": {
+        "loadClass": "startup",
+        "relativePath": "subjects/ai/data/formulas.json",
+        "bytes": 913
+      }
+    },
+    {
+      "id": "SOURCE-RESOLVE-ai-exercises",
+      "title": "registered source resolves to an existing safe local file",
+      "ok": true,
+      "evidence": {
+        "loadClass": "startup",
+        "relativePath": "subjects/ai/data/exercises.json",
+        "bytes": 27581
+      }
+    },
+    {
+      "id": "SOURCE-RESOLVE-ai-tests",
+      "title": "registered source resolves to an existing safe local file",
+      "ok": true,
+      "evidence": {
+        "loadClass": "startup",
+        "relativePath": "subjects/ai/data/tests.json",
+        "bytes": 20253
+      }
+    },
+    {
+      "id": "SOURCE-RESOLVE-ai-knowledge-index",
+      "title": "registered source resolves to an existing safe local file",
+      "ok": true,
+      "evidence": {
+        "loadClass": "startup",
+        "relativePath": "subjects/ai/data/knowledge-index.json",
+        "bytes": 49953
+      }
+    },
+    {
+      "id": "SOURCE-RESOLVE-ai-simulations",
+      "title": "registered source resolves to an existing safe local file",
+      "ok": true,
+      "evidence": {
+        "loadClass": "runtime-supplemental",
+        "relativePath": "subjects/ai/data/simulations.json",
+        "bytes": 8642
+      }
+    },
+    {
+      "id": "SUBJECT-RESOLVE-signal",
+      "title": "subject resolves with registered engine and offline policy",
+      "ok": true,
+      "evidence": {
+        "engineRef": "light-elearning-v2",
+        "offlinePolicyRef": "light-core-explicit"
+      }
+    },
+    {
+      "id": "SUBJECT-DESCRIPTOR-signal",
+      "title": "subject descriptor builds deterministically",
+      "ok": true,
+      "evidence": {
+        "engineRef": "light-elearning-v2",
+        "sourceCount": 7,
+        "widgetCount": 4
+      }
+    },
+    {
+      "id": "SUBJECT-MAIN-ROUTE-signal",
+      "title": "subject Main route is stable and exists",
+      "ok": true,
+      "evidence": "subjects/signal/index.html"
+    },
+    {
+      "id": "SUBJECT-ROUTES-signal",
+      "title": "all registered subject routes are safe and exist",
+      "ok": true,
+      "evidence": {
+        "main": "subjects/signal/index.html",
+        "editor": "subjects/signal/editor.html",
+        "manifest": "subjects/signal/subject-manifest.json",
+        "manifestScript": "subjects/signal/subject-manifest.js",
+        "runtime": "subjects/signal/assets/signal.js"
+      }
+    },
+    {
+      "id": "SUBJECT-READ-ONLY-signal",
+      "title": "B9 subject profile cannot render migrate mutate source or migrate state",
+      "ok": true,
+      "evidence": {
+        "mode": "light-read-only-projection",
+        "directMigration": false,
+        "directFactoryRender": false,
+        "sourceMutation": false,
+        "learnerStateMigration": false,
+        "factoryPilot": false
+      }
+    },
+    {
+      "id": "SOURCE-CLASS-UNIQUE-signal",
+      "title": "each registered source belongs to exactly one load class",
+      "ok": true,
+      "evidence": {
+        "startup": 6,
+        "requiredLazy": 0,
+        "optionalLazy": 0,
+        "runtimeSupplemental": 1
+      }
+    },
+    {
+      "id": "SOURCE-RESOLVE-signal-curriculum",
+      "title": "registered source resolves to an existing safe local file",
+      "ok": true,
+      "evidence": {
+        "loadClass": "startup",
+        "relativePath": "subjects/signal/data/curriculum.json",
+        "bytes": 74981
+      }
+    },
+    {
+      "id": "SOURCE-RESOLVE-signal-lessons",
+      "title": "registered source resolves to an existing safe local file",
+      "ok": true,
+      "evidence": {
+        "loadClass": "startup",
+        "relativePath": "subjects/signal/data/lessons.json",
+        "bytes": 248096
+      }
+    },
+    {
+      "id": "SOURCE-RESOLVE-signal-formulas",
+      "title": "registered source resolves to an existing safe local file",
+      "ok": true,
+      "evidence": {
+        "loadClass": "startup",
+        "relativePath": "subjects/signal/data/formulas.json",
+        "bytes": 861
+      }
+    },
+    {
+      "id": "SOURCE-RESOLVE-signal-exercises",
+      "title": "registered source resolves to an existing safe local file",
+      "ok": true,
+      "evidence": {
+        "loadClass": "startup",
+        "relativePath": "subjects/signal/data/exercises.json",
+        "bytes": 19157
+      }
+    },
+    {
+      "id": "SOURCE-RESOLVE-signal-tests",
+      "title": "registered source resolves to an existing safe local file",
+      "ok": true,
+      "evidence": {
+        "loadClass": "startup",
+        "relativePath": "subjects/signal/data/tests.json",
+        "bytes": 17773
+      }
+    },
+    {
+      "id": "SOURCE-RESOLVE-signal-knowledge-index",
+      "title": "registered source resolves to an existing safe local file",
+      "ok": true,
+      "evidence": {
+        "loadClass": "startup",
+        "relativePath": "subjects/signal/data/knowledge-index.json",
+        "bytes": 38948
+      }
+    },
+    {
+      "id": "SOURCE-RESOLVE-signal-simulations",
+      "title": "registered source resolves to an existing safe local file",
+      "ok": true,
+      "evidence": {
+        "loadClass": "runtime-supplemental",
+        "relativePath": "subjects/signal/data/simulations.json",
+        "bytes": 8687
+      }
+    },
+    {
+      "id": "SUBJECT-RESOLVE-systems",
+      "title": "subject resolves with registered engine and offline policy",
+      "ok": true,
+      "evidence": {
+        "engineRef": "light-elearning-v2",
+        "offlinePolicyRef": "light-core-explicit"
+      }
+    },
+    {
+      "id": "SUBJECT-DESCRIPTOR-systems",
+      "title": "subject descriptor builds deterministically",
+      "ok": true,
+      "evidence": {
+        "engineRef": "light-elearning-v2",
+        "sourceCount": 7,
+        "widgetCount": 4
+      }
+    },
+    {
+      "id": "SUBJECT-MAIN-ROUTE-systems",
+      "title": "subject Main route is stable and exists",
+      "ok": true,
+      "evidence": "subjects/systems/index.html"
+    },
+    {
+      "id": "SUBJECT-ROUTES-systems",
+      "title": "all registered subject routes are safe and exist",
+      "ok": true,
+      "evidence": {
+        "main": "subjects/systems/index.html",
+        "editor": "subjects/systems/editor.html",
+        "manifest": "subjects/systems/subject-manifest.json",
+        "manifestScript": "subjects/systems/subject-manifest.js",
+        "runtime": "subjects/systems/assets/systems.js"
+      }
+    },
+    {
+      "id": "SUBJECT-READ-ONLY-systems",
+      "title": "B9 subject profile cannot render migrate mutate source or migrate state",
+      "ok": true,
+      "evidence": {
+        "mode": "light-read-only-projection",
+        "directMigration": false,
+        "directFactoryRender": false,
+        "sourceMutation": false,
+        "learnerStateMigration": false,
+        "factoryPilot": false
+      }
+    },
+    {
+      "id": "SOURCE-CLASS-UNIQUE-systems",
+      "title": "each registered source belongs to exactly one load class",
+      "ok": true,
+      "evidence": {
+        "startup": 6,
+        "requiredLazy": 0,
+        "optionalLazy": 0,
+        "runtimeSupplemental": 1
+      }
+    },
+    {
+      "id": "SOURCE-RESOLVE-systems-curriculum",
+      "title": "registered source resolves to an existing safe local file",
+      "ok": true,
+      "evidence": {
+        "loadClass": "startup",
+        "relativePath": "subjects/systems/data/curriculum.json",
+        "bytes": 118995
+      }
+    },
+    {
+      "id": "SOURCE-RESOLVE-systems-lessons",
+      "title": "registered source resolves to an existing safe local file",
+      "ok": true,
+      "evidence": {
+        "loadClass": "startup",
+        "relativePath": "subjects/systems/data/lessons.json",
+        "bytes": 389328
+      }
+    },
+    {
+      "id": "SOURCE-RESOLVE-systems-formulas",
+      "title": "registered source resolves to an existing safe local file",
+      "ok": true,
+      "evidence": {
+        "loadClass": "startup",
+        "relativePath": "subjects/systems/data/formulas.json",
+        "bytes": 943
+      }
+    },
+    {
+      "id": "SOURCE-RESOLVE-systems-exercises",
+      "title": "registered source resolves to an existing safe local file",
+      "ok": true,
+      "evidence": {
+        "loadClass": "startup",
+        "relativePath": "subjects/systems/data/exercises.json",
+        "bytes": 30128
+      }
+    },
+    {
+      "id": "SOURCE-RESOLVE-systems-tests",
+      "title": "registered source resolves to an existing safe local file",
+      "ok": true,
+      "evidence": {
+        "loadClass": "startup",
+        "relativePath": "subjects/systems/data/tests.json",
+        "bytes": 22513
+      }
+    },
+    {
+      "id": "SOURCE-RESOLVE-systems-knowledge-index",
+      "title": "registered source resolves to an existing safe local file",
+      "ok": true,
+      "evidence": {
+        "loadClass": "startup",
+        "relativePath": "subjects/systems/data/knowledge-index.json",
+        "bytes": 58201
+      }
+    },
+    {
+      "id": "SOURCE-RESOLVE-systems-simulations",
+      "title": "registered source resolves to an existing safe local file",
+      "ok": true,
+      "evidence": {
+        "loadClass": "runtime-supplemental",
+        "relativePath": "subjects/systems/data/simulations.json",
+        "bytes": 9050
+      }
+    },
+    {
+      "id": "SUBJECT-RESOLVE-research",
+      "title": "subject resolves with registered engine and offline policy",
+      "ok": true,
+      "evidence": {
+        "engineRef": "light-elearning-v2",
+        "offlinePolicyRef": "light-core-explicit"
+      }
+    },
+    {
+      "id": "SUBJECT-DESCRIPTOR-research",
+      "title": "subject descriptor builds deterministically",
+      "ok": true,
+      "evidence": {
+        "engineRef": "light-elearning-v2",
+        "sourceCount": 7,
+        "widgetCount": 4
+      }
+    },
+    {
+      "id": "SUBJECT-MAIN-ROUTE-research",
+      "title": "subject Main route is stable and exists",
+      "ok": true,
+      "evidence": "subjects/research/index.html"
+    },
+    {
+      "id": "SUBJECT-ROUTES-research",
+      "title": "all registered subject routes are safe and exist",
+      "ok": true,
+      "evidence": {
+        "main": "subjects/research/index.html",
+        "editor": "subjects/research/editor.html",
+        "manifest": "subjects/research/subject-manifest.json",
+        "manifestScript": "subjects/research/subject-manifest.js",
+        "runtime": "subjects/research/assets/research.js"
+      }
+    },
+    {
+      "id": "SUBJECT-READ-ONLY-research",
+      "title": "B9 subject profile cannot render migrate mutate source or migrate state",
+      "ok": true,
+      "evidence": {
+        "mode": "light-read-only-projection",
+        "directMigration": false,
+        "directFactoryRender": false,
+        "sourceMutation": false,
+        "learnerStateMigration": false,
+        "factoryPilot": false
+      }
+    },
+    {
+      "id": "SOURCE-CLASS-UNIQUE-research",
+      "title": "each registered source belongs to exactly one load class",
+      "ok": true,
+      "evidence": {
+        "startup": 6,
+        "requiredLazy": 0,
+        "optionalLazy": 0,
+        "runtimeSupplemental": 1
+      }
+    },
+    {
+      "id": "SOURCE-RESOLVE-research-curriculum",
+      "title": "registered source resolves to an existing safe local file",
+      "ok": true,
+      "evidence": {
+        "loadClass": "startup",
+        "relativePath": "subjects/research/data/curriculum.json",
+        "bytes": 96001
+      }
+    },
+    {
+      "id": "SOURCE-RESOLVE-research-lessons",
+      "title": "registered source resolves to an existing safe local file",
+      "ok": true,
+      "evidence": {
+        "loadClass": "startup",
+        "relativePath": "subjects/research/data/lessons.json",
+        "bytes": 310424
+      }
+    },
+    {
+      "id": "SOURCE-RESOLVE-research-formulas",
+      "title": "registered source resolves to an existing safe local file",
+      "ok": true,
+      "evidence": {
+        "loadClass": "startup",
+        "relativePath": "subjects/research/data/formulas.json",
+        "bytes": 1017
+      }
+    },
+    {
+      "id": "SOURCE-RESOLVE-research-exercises",
+      "title": "registered source resolves to an existing safe local file",
+      "ok": true,
+      "evidence": {
+        "loadClass": "startup",
+        "relativePath": "subjects/research/data/exercises.json",
+        "bytes": 24116
+      }
+    },
+    {
+      "id": "SOURCE-RESOLVE-research-tests",
+      "title": "registered source resolves to an existing safe local file",
+      "ok": true,
+      "evidence": {
+        "loadClass": "startup",
+        "relativePath": "subjects/research/data/tests.json",
+        "bytes": 17803
+      }
+    },
+    {
+      "id": "SOURCE-RESOLVE-research-knowledge-index",
+      "title": "registered source resolves to an existing safe local file",
+      "ok": true,
+      "evidence": {
+        "loadClass": "startup",
+        "relativePath": "subjects/research/data/knowledge-index.json",
+        "bytes": 47642
+      }
+    },
+    {
+      "id": "SOURCE-RESOLVE-research-simulations",
+      "title": "registered source resolves to an existing safe local file",
+      "ok": true,
+      "evidence": {
+        "loadClass": "runtime-supplemental",
+        "relativePath": "subjects/research/data/simulations.json",
+        "bytes": 9027
+      }
+    },
+    {
+      "id": "ADAPTER-SOURCES-russian",
+      "title": "specialist adapter source inventory reconciles exactly with B9",
+      "ok": true,
+      "evidence": {
+        "registeredCount": 17,
+        "adapterCount": 17,
+        "registryOnly": [],
+        "adapterOnly": []
+      }
+    },
+    {
+      "id": "ADAPTER-META-russian",
+      "title": "every registered specialist adapter source has metadata",
+      "ok": true,
+      "evidence": {
+        "registeredCount": 17,
+        "metaCount": 17
+      }
+    },
+    {
+      "id": "ADAPTER-SOURCES-math",
+      "title": "specialist adapter source inventory reconciles exactly with B9",
+      "ok": true,
+      "evidence": {
+        "registeredCount": 58,
+        "adapterCount": 58,
+        "registryOnly": [],
+        "adapterOnly": []
+      }
+    },
+    {
+      "id": "ADAPTER-META-math",
+      "title": "every registered specialist adapter source has metadata",
+      "ok": true,
+      "evidence": {
+        "registeredCount": 58,
+        "metaCount": 59
+      }
+    },
+    {
+      "id": "ADAPTER-SOURCES-programming",
+      "title": "specialist adapter source inventory reconciles exactly with B9",
+      "ok": true,
+      "evidence": {
+        "registeredCount": 17,
+        "adapterCount": 17,
+        "registryOnly": [],
+        "adapterOnly": []
+      }
+    },
+    {
+      "id": "ADAPTER-META-programming",
+      "title": "every registered specialist adapter source has metadata",
+      "ok": true,
+      "evidence": {
+        "registeredCount": 17,
+        "metaCount": 17
+      }
+    },
+    {
+      "id": "RUSSIAN-REQUIRED-LAZY",
+      "title": "Russian vocab tests and speaking are required-lazy and persistence-safe",
+      "ok": true,
+      "evidence": {
+        "ok": true,
+        "release": "RUSSIAN_V13_42_HEAVY_DATA_LAZY_PERSISTENCE_SAFE",
+        "dataFiles": [
+          "curriculum",
+          "lessons",
+          "grammar",
+          "grammar-path",
+          "mindmap",
+          "exercises",
+          "simulations",
+          "handwriting",
+          "writing",
+          "videos",
+          "knowledge-index"
+        ],
+        "optionalDataFiles": [
+          "dialogue-bauman-az",
+          "deep-speaking-bauman",
+          "speaking-link-index"
+        ],
+        "lazyDataFiles": [
+          "vocab",
+          "tests",
+          "speaking"
+        ],
+        "heavy": [
+          "vocab",
+          "tests",
+          "speaking"
+        ],
+        "persistenceSafe": true,
+        "startupSafe": true,
+        "storageListBridgeConsumed": true,
+        "metadataSafe": true
+      }
+    },
+    {
+      "id": "MATH-AUTHORITATIVE-PRECEDENCE",
+      "title": "Mathematics prefers authoritative theory and keeps full legacy lessons deferred",
+      "ok": true,
+      "evidence": {
+        "primary": "theory_lecture_content",
+        "legacyFull": "lessons",
+        "legacyStartup": "lessons-deferred",
+        "precedence": [
+          "window.DB.theory_lecture_content",
+          "subject-storage-theory-overlay",
+          "theory_lecture_content",
+          "registered-artifact-reader",
+          "explicit-legacy-lessons"
+        ]
+      }
+    },
+    {
+      "id": "LIGHT-MANIFEST-ai",
+      "title": "light JSON manifest matches the six registered startup sources",
+      "ok": true,
+      "evidence": [
+        "curriculum",
+        "lessons",
+        "formulas",
+        "exercises",
+        "tests",
+        "knowledge-index"
+      ]
+    },
+    {
+      "id": "LIGHT-RUNTIME-ai",
+      "title": "light runtime inventory equals startup plus simulations supplement",
+      "ok": true,
+      "evidence": [
+        "curriculum",
+        "lessons",
+        "formulas",
+        "exercises",
+        "tests",
+        "simulations",
+        "knowledge-index"
+      ]
+    },
+    {
+      "id": "LIGHT-ELEARNING-ai",
+      "title": "all current light lessons preserve eLearning V1.1 source identity",
+      "ok": true,
+      "evidence": {
+        "manifestSources": [
+          "curriculum",
+          "lessons",
+          "formulas",
+          "exercises",
+          "tests",
+          "knowledge-index"
+        ],
+        "runtimeDataFiles": [
+          "curriculum",
+          "lessons",
+          "formulas",
+          "exercises",
+          "tests",
+          "simulations",
+          "knowledge-index"
+        ],
+        "lessonCount": 51,
+        "sourceVersionCount": 51
+      }
+    },
+    {
+      "id": "LIGHT-MANIFEST-foundation",
+      "title": "light JSON manifest matches the six registered startup sources",
+      "ok": true,
+      "evidence": [
+        "curriculum",
+        "lessons",
+        "formulas",
+        "exercises",
+        "tests",
+        "knowledge-index"
+      ]
+    },
+    {
+      "id": "LIGHT-RUNTIME-foundation",
+      "title": "light runtime inventory equals startup plus simulations supplement",
+      "ok": true,
+      "evidence": [
+        "curriculum",
+        "lessons",
+        "formulas",
+        "exercises",
+        "tests",
+        "simulations",
+        "knowledge-index"
+      ]
+    },
+    {
+      "id": "LIGHT-ELEARNING-foundation",
+      "title": "all current light lessons preserve eLearning V1.1 source identity",
+      "ok": true,
+      "evidence": {
+        "manifestSources": [
+          "curriculum",
+          "lessons",
+          "formulas",
+          "exercises",
+          "tests",
+          "knowledge-index"
+        ],
+        "runtimeDataFiles": [
+          "curriculum",
+          "lessons",
+          "formulas",
+          "exercises",
+          "tests",
+          "simulations",
+          "knowledge-index"
+        ],
+        "lessonCount": 21,
+        "sourceVersionCount": 21
+      }
+    },
+    {
+      "id": "LIGHT-MANIFEST-research",
+      "title": "light JSON manifest matches the six registered startup sources",
+      "ok": true,
+      "evidence": [
+        "curriculum",
+        "lessons",
+        "formulas",
+        "exercises",
+        "tests",
+        "knowledge-index"
+      ]
+    },
+    {
+      "id": "LIGHT-RUNTIME-research",
+      "title": "light runtime inventory equals startup plus simulations supplement",
+      "ok": true,
+      "evidence": [
+        "curriculum",
+        "lessons",
+        "formulas",
+        "exercises",
+        "tests",
+        "simulations",
+        "knowledge-index"
+      ]
+    },
+    {
+      "id": "LIGHT-ELEARNING-research",
+      "title": "all current light lessons preserve eLearning V1.1 source identity",
+      "ok": true,
+      "evidence": {
+        "manifestSources": [
+          "curriculum",
+          "lessons",
+          "formulas",
+          "exercises",
+          "tests",
+          "knowledge-index"
+        ],
+        "runtimeDataFiles": [
+          "curriculum",
+          "lessons",
+          "formulas",
+          "exercises",
+          "tests",
+          "simulations",
+          "knowledge-index"
+        ],
+        "lessonCount": 45,
+        "sourceVersionCount": 45
+      }
+    },
+    {
+      "id": "LIGHT-MANIFEST-signal",
+      "title": "light JSON manifest matches the six registered startup sources",
+      "ok": true,
+      "evidence": [
+        "curriculum",
+        "lessons",
+        "formulas",
+        "exercises",
+        "tests",
+        "knowledge-index"
+      ]
+    },
+    {
+      "id": "LIGHT-RUNTIME-signal",
+      "title": "light runtime inventory equals startup plus simulations supplement",
+      "ok": true,
+      "evidence": [
+        "curriculum",
+        "lessons",
+        "formulas",
+        "exercises",
+        "tests",
+        "simulations",
+        "knowledge-index"
+      ]
+    },
+    {
+      "id": "LIGHT-ELEARNING-signal",
+      "title": "all current light lessons preserve eLearning V1.1 source identity",
+      "ok": true,
+      "evidence": {
+        "manifestSources": [
+          "curriculum",
+          "lessons",
+          "formulas",
+          "exercises",
+          "tests",
+          "knowledge-index"
+        ],
+        "runtimeDataFiles": [
+          "curriculum",
+          "lessons",
+          "formulas",
+          "exercises",
+          "tests",
+          "simulations",
+          "knowledge-index"
+        ],
+        "lessonCount": 36,
+        "sourceVersionCount": 36
+      }
+    },
+    {
+      "id": "LIGHT-MANIFEST-systems",
+      "title": "light JSON manifest matches the six registered startup sources",
+      "ok": true,
+      "evidence": [
+        "curriculum",
+        "lessons",
+        "formulas",
+        "exercises",
+        "tests",
+        "knowledge-index"
+      ]
+    },
+    {
+      "id": "LIGHT-RUNTIME-systems",
+      "title": "light runtime inventory equals startup plus simulations supplement",
+      "ok": true,
+      "evidence": [
+        "curriculum",
+        "lessons",
+        "formulas",
+        "exercises",
+        "tests",
+        "simulations",
+        "knowledge-index"
+      ]
+    },
+    {
+      "id": "LIGHT-ELEARNING-systems",
+      "title": "all current light lessons preserve eLearning V1.1 source identity",
+      "ok": true,
+      "evidence": {
+        "manifestSources": [
+          "curriculum",
+          "lessons",
+          "formulas",
+          "exercises",
+          "tests",
+          "knowledge-index"
+        ],
+        "runtimeDataFiles": [
+          "curriculum",
+          "lessons",
+          "formulas",
+          "exercises",
+          "tests",
+          "simulations",
+          "knowledge-index"
+        ],
+        "lessonCount": 57,
+        "sourceVersionCount": 57
+      }
+    },
+    {
+      "id": "CLASSIFICATION-russian",
+      "title": "current lessons match the audited B9 primary-type distribution",
+      "ok": true,
+      "evidence": {
+        "language": 26
+      }
+    },
+    {
+      "id": "CLASSIFICATION-math",
+      "title": "current lessons match the audited B9 primary-type distribution",
+      "ok": true,
+      "evidence": {
+        "mathematics": 347
+      }
+    },
+    {
+      "id": "CLASSIFICATION-programming",
+      "title": "current lessons match the audited B9 primary-type distribution",
+      "ok": true,
+      "evidence": {
+        "programming": 28,
+        "database": 4,
+        "software-design": 16
+      }
+    },
+    {
+      "id": "CLASSIFICATION-foundation",
+      "title": "current lessons match the audited B9 primary-type distribution",
+      "ok": true,
+      "evidence": {
+        "language": 6,
+        "mathematics": 6,
+        "programming": 3,
+        "UNCLASSIFIED_LESSON": 6
+      }
+    },
+    {
+      "id": "CLASSIFICATION-ai",
+      "title": "current lessons match the audited B9 primary-type distribution",
+      "ok": true,
+      "evidence": {
+        "ml-data": 51
+      }
+    },
+    {
+      "id": "CLASSIFICATION-signal",
+      "title": "current lessons match the audited B9 primary-type distribution",
+      "ok": true,
+      "evidence": {
+        "ml-data": 36
+      }
+    },
+    {
+      "id": "CLASSIFICATION-systems",
+      "title": "current lessons match the audited B9 primary-type distribution",
+      "ok": true,
+      "evidence": {
+        "asoiu-system": 57
+      }
+    },
+    {
+      "id": "CLASSIFICATION-research",
+      "title": "current lessons match the audited B9 primary-type distribution",
+      "ok": true,
+      "evidence": {
+        "research": 45
+      }
+    },
+    {
+      "id": "CLASSIFICATION-SOURCE-UNCHANGED",
+      "title": "classification does not mutate any current lesson source",
+      "ok": true,
+      "evidence": "42d0200aeaab96ea48b1735d874fc63a1a951f78a534e764b6088d04cc9ba101"
+    },
+    {
+      "id": "FOUNDATION-FAIL-CLOSED",
+      "title": "Foundation holds exactly the two unreviewed modules with no default",
+      "ok": true,
+      "evidence": {
+        "language": 6,
+        "mathematics": 6,
+        "programming": 3,
+        "UNCLASSIFIED_LESSON": 6
+      }
+    },
+    {
+      "id": "CLASSIFICATION-EXPLICIT-ALLOWED",
+      "title": "reviewed explicit context may select only an allowed subject type",
+      "ok": true,
+      "evidence": {
+        "signal": {
+          "ok": true,
+          "code": "LESSON_TYPE_RESOLVED",
+          "subjectId": "signal",
+          "lessonType": "mathematics",
+          "authority": "explicit-context",
+          "ruleId": null,
+          "manualReviewRequired": false
+        },
+        "systems": {
+          "ok": true,
+          "code": "LESSON_TYPE_RESOLVED",
+          "subjectId": "systems",
+          "lessonType": "software-design",
+          "authority": "explicit-context",
+          "ruleId": null,
+          "manualReviewRequired": false
+        }
+      }
+    },
+    {
+      "id": "CLASSIFICATION-EXPLICIT-BLOCKED",
+      "title": "explicit context outside the subject type set fails closed",
+      "ok": true,
+      "evidence": {
+        "ok": false,
+        "blocked": true,
+        "code": "LESSON_TYPE_NOT_ALLOWED",
+        "message": "Explicit lesson type is not allowed for this subject.",
+        "details": {
+          "subjectId": "signal",
+          "lessonType": "research",
+          "allowed": [
+            "ml-data",
+            "mathematics"
+          ]
+        }
+      }
+    },
+    {
+      "id": "CLASSIFICATION-AMBIGUITY",
+      "title": "two rules producing different primary types fail closed",
+      "ok": true,
+      "evidence": {
+        "ok": false,
+        "blocked": true,
+        "code": "AMBIGUOUS_LESSON_TYPE",
+        "message": "More than one classification rule resolved to different primary lesson types.",
+        "details": {
+          "subjectId": "programming",
+          "lessonId": "PR06",
+          "matches": [
+            {
+              "id": "database-lessons",
+              "type": "database",
+              "lessonIds": [
+                "PR06",
+                "PR15",
+                "PR20",
+                "PR21"
+              ]
+            },
+            {
+              "id": "mutation-pr06-design",
+              "type": "software-design",
+              "lessonIds": [
+                "PR06"
+              ]
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "WIDGET-russian-russian-dialogue-studio",
+      "title": "registered widget resolves with truthful availability and deterministic fallback",
+      "ok": true,
+      "evidence": {
+        "subjectId": "russian",
+        "widgetId": "russian-dialogue-studio",
+        "availability": "existing",
+        "lessonType": "language",
+        "ok": true,
+        "useSpecialistWidget": true,
+        "useDeterministicFallback": false
+      }
+    },
+    {
+      "id": "WIDGET-russian-russian-shadowing",
+      "title": "registered widget resolves with truthful availability and deterministic fallback",
+      "ok": true,
+      "evidence": {
+        "subjectId": "russian",
+        "widgetId": "russian-shadowing",
+        "availability": "existing",
+        "lessonType": "language",
+        "ok": true,
+        "useSpecialistWidget": true,
+        "useDeterministicFallback": false
+      }
+    },
+    {
+      "id": "WIDGET-russian-russian-deep-speaking",
+      "title": "registered widget resolves with truthful availability and deterministic fallback",
+      "ok": true,
+      "evidence": {
+        "subjectId": "russian",
+        "widgetId": "russian-deep-speaking",
+        "availability": "existing-lazy",
+        "lessonType": "language",
+        "ok": true,
+        "useSpecialistWidget": true,
+        "useDeterministicFallback": false
+      }
+    },
+    {
+      "id": "WIDGET-russian-russian-handwriting",
+      "title": "registered widget resolves with truthful availability and deterministic fallback",
+      "ok": true,
+      "evidence": {
+        "subjectId": "russian",
+        "widgetId": "russian-handwriting",
+        "availability": "existing",
+        "lessonType": "language",
+        "ok": true,
+        "useSpecialistWidget": true,
+        "useDeterministicFallback": false
+      }
+    },
+    {
+      "id": "WIDGET-russian-russian-flashcards",
+      "title": "registered widget resolves with truthful availability and deterministic fallback",
+      "ok": true,
+      "evidence": {
+        "subjectId": "russian",
+        "widgetId": "russian-flashcards",
+        "availability": "existing",
+        "lessonType": "language",
+        "ok": true,
+        "useSpecialistWidget": true,
+        "useDeterministicFallback": false
+      }
+    },
+    {
+      "id": "WIDGET-russian-russian-scheduled-exam",
+      "title": "registered widget resolves with truthful availability and deterministic fallback",
+      "ok": true,
+      "evidence": {
+        "subjectId": "russian",
+        "widgetId": "russian-scheduled-exam",
+        "availability": "existing",
+        "lessonType": "language",
+        "ok": true,
+        "useSpecialistWidget": true,
+        "useDeterministicFallback": false
+      }
+    },
+    {
+      "id": "WIDGET-math-math-rich-theory-reader",
+      "title": "registered widget resolves with truthful availability and deterministic fallback",
+      "ok": true,
+      "evidence": {
+        "subjectId": "math",
+        "widgetId": "math-rich-theory-reader",
+        "availability": "existing",
+        "lessonType": "mathematics",
+        "ok": true,
+        "useSpecialistWidget": true,
+        "useDeterministicFallback": false
+      }
+    },
+    {
+      "id": "WIDGET-math-math-formula-typesetter",
+      "title": "registered widget resolves with truthful availability and deterministic fallback",
+      "ok": true,
+      "evidence": {
+        "subjectId": "math",
+        "widgetId": "math-formula-typesetter",
+        "availability": "existing",
+        "lessonType": "mathematics",
+        "ok": true,
+        "useSpecialistWidget": true,
+        "useDeterministicFallback": false
+      }
+    },
+    {
+      "id": "WIDGET-math-math-step-solution",
+      "title": "registered widget resolves with truthful availability and deterministic fallback",
+      "ok": true,
+      "evidence": {
+        "subjectId": "math",
+        "widgetId": "math-step-solution",
+        "availability": "existing",
+        "lessonType": "mathematics",
+        "ok": true,
+        "useSpecialistWidget": true,
+        "useDeterministicFallback": false
+      }
+    },
+    {
+      "id": "WIDGET-math-math-parameter-simulation",
+      "title": "registered widget resolves with truthful availability and deterministic fallback",
+      "ok": true,
+      "evidence": {
+        "subjectId": "math",
+        "widgetId": "math-parameter-simulation",
+        "availability": "existing",
+        "lessonType": "mathematics",
+        "ok": true,
+        "useSpecialistWidget": true,
+        "useDeterministicFallback": false
+      }
+    },
+    {
+      "id": "WIDGET-math-math-professor-oral",
+      "title": "registered widget resolves with truthful availability and deterministic fallback",
+      "ok": true,
+      "evidence": {
+        "subjectId": "math",
+        "widgetId": "math-professor-oral",
+        "availability": "existing",
+        "lessonType": "mathematics",
+        "ok": true,
+        "useSpecialistWidget": true,
+        "useDeterministicFallback": false
+      }
+    },
+    {
+      "id": "WIDGET-programming-programming-syntax-workflow",
+      "title": "registered widget resolves with truthful availability and deterministic fallback",
+      "ok": true,
+      "evidence": {
+        "subjectId": "programming",
+        "widgetId": "programming-syntax-workflow",
+        "availability": "existing",
+        "lessonType": "programming",
+        "ok": true,
+        "useSpecialistWidget": true,
+        "useDeterministicFallback": false
+      }
+    },
+    {
+      "id": "WIDGET-programming-programming-software-lab",
+      "title": "registered widget resolves with truthful availability and deterministic fallback",
+      "ok": true,
+      "evidence": {
+        "subjectId": "programming",
+        "widgetId": "programming-software-lab",
+        "availability": "existing",
+        "lessonType": "programming",
+        "ok": true,
+        "useSpecialistWidget": true,
+        "useDeterministicFallback": false
+      }
+    },
+    {
+      "id": "WIDGET-programming-code-runner",
+      "title": "registered widget resolves with truthful availability and deterministic fallback",
+      "ok": true,
+      "evidence": {
+        "subjectId": "programming",
+        "widgetId": "code-runner",
+        "availability": "planned-L8",
+        "lessonType": "programming",
+        "ok": true,
+        "useSpecialistWidget": false,
+        "useDeterministicFallback": true
+      }
+    },
+    {
+      "id": "WIDGET-programming-sql-playground",
+      "title": "registered widget resolves with truthful availability and deterministic fallback",
+      "ok": true,
+      "evidence": {
+        "subjectId": "programming",
+        "widgetId": "sql-playground",
+        "availability": "planned-L8",
+        "lessonType": "database",
+        "ok": true,
+        "useSpecialistWidget": false,
+        "useDeterministicFallback": true
+      }
+    },
+    {
+      "id": "WIDGET-foundation-generic-elearning-flow",
+      "title": "registered widget resolves with truthful availability and deterministic fallback",
+      "ok": true,
+      "evidence": {
+        "subjectId": "foundation",
+        "widgetId": "generic-elearning-flow",
+        "availability": "existing",
+        "lessonType": "language",
+        "ok": true,
+        "useSpecialistWidget": true,
+        "useDeterministicFallback": false
+      }
+    },
+    {
+      "id": "WIDGET-foundation-generic-simulation",
+      "title": "registered widget resolves with truthful availability and deterministic fallback",
+      "ok": true,
+      "evidence": {
+        "subjectId": "foundation",
+        "widgetId": "generic-simulation",
+        "availability": "existing",
+        "lessonType": "mathematics",
+        "ok": true,
+        "useSpecialistWidget": true,
+        "useDeterministicFallback": false
+      }
+    },
+    {
+      "id": "WIDGET-foundation-generic-assessment",
+      "title": "registered widget resolves with truthful availability and deterministic fallback",
+      "ok": true,
+      "evidence": {
+        "subjectId": "foundation",
+        "widgetId": "generic-assessment",
+        "availability": "existing",
+        "lessonType": "language",
+        "ok": true,
+        "useSpecialistWidget": true,
+        "useDeterministicFallback": false
+      }
+    },
+    {
+      "id": "WIDGET-ai-generic-elearning-flow",
+      "title": "registered widget resolves with truthful availability and deterministic fallback",
+      "ok": true,
+      "evidence": {
+        "subjectId": "ai",
+        "widgetId": "generic-elearning-flow",
+        "availability": "existing",
+        "lessonType": "ml-data",
+        "ok": true,
+        "useSpecialistWidget": true,
+        "useDeterministicFallback": false
+      }
+    },
+    {
+      "id": "WIDGET-ai-generic-simulation",
+      "title": "registered widget resolves with truthful availability and deterministic fallback",
+      "ok": true,
+      "evidence": {
+        "subjectId": "ai",
+        "widgetId": "generic-simulation",
+        "availability": "existing",
+        "lessonType": "ml-data",
+        "ok": true,
+        "useSpecialistWidget": true,
+        "useDeterministicFallback": false
+      }
+    },
+    {
+      "id": "WIDGET-ai-generic-assessment",
+      "title": "registered widget resolves with truthful availability and deterministic fallback",
+      "ok": true,
+      "evidence": {
+        "subjectId": "ai",
+        "widgetId": "generic-assessment",
+        "availability": "existing",
+        "lessonType": "ml-data",
+        "ok": true,
+        "useSpecialistWidget": true,
+        "useDeterministicFallback": false
+      }
+    },
+    {
+      "id": "WIDGET-ai-model-metric-visual",
+      "title": "registered widget resolves with truthful availability and deterministic fallback",
+      "ok": true,
+      "evidence": {
+        "subjectId": "ai",
+        "widgetId": "model-metric-visual",
+        "availability": "declared",
+        "lessonType": "ml-data",
+        "ok": true,
+        "useSpecialistWidget": false,
+        "useDeterministicFallback": true
+      }
+    },
+    {
+      "id": "WIDGET-signal-generic-elearning-flow",
+      "title": "registered widget resolves with truthful availability and deterministic fallback",
+      "ok": true,
+      "evidence": {
+        "subjectId": "signal",
+        "widgetId": "generic-elearning-flow",
+        "availability": "existing",
+        "lessonType": "mathematics",
+        "ok": true,
+        "useSpecialistWidget": true,
+        "useDeterministicFallback": false
+      }
+    },
+    {
+      "id": "WIDGET-signal-generic-simulation",
+      "title": "registered widget resolves with truthful availability and deterministic fallback",
+      "ok": true,
+      "evidence": {
+        "subjectId": "signal",
+        "widgetId": "generic-simulation",
+        "availability": "existing",
+        "lessonType": "mathematics",
+        "ok": true,
+        "useSpecialistWidget": true,
+        "useDeterministicFallback": false
+      }
+    },
+    {
+      "id": "WIDGET-signal-generic-assessment",
+      "title": "registered widget resolves with truthful availability and deterministic fallback",
+      "ok": true,
+      "evidence": {
+        "subjectId": "signal",
+        "widgetId": "generic-assessment",
+        "availability": "existing",
+        "lessonType": "mathematics",
+        "ok": true,
+        "useSpecialistWidget": true,
+        "useDeterministicFallback": false
+      }
+    },
+    {
+      "id": "WIDGET-signal-signal-plot",
+      "title": "registered widget resolves with truthful availability and deterministic fallback",
+      "ok": true,
+      "evidence": {
+        "subjectId": "signal",
+        "widgetId": "signal-plot",
+        "availability": "planned-L9",
+        "lessonType": "ml-data",
+        "ok": true,
+        "useSpecialistWidget": false,
+        "useDeterministicFallback": true
+      }
+    },
+    {
+      "id": "WIDGET-systems-generic-elearning-flow",
+      "title": "registered widget resolves with truthful availability and deterministic fallback",
+      "ok": true,
+      "evidence": {
+        "subjectId": "systems",
+        "widgetId": "generic-elearning-flow",
+        "availability": "existing",
+        "lessonType": "asoiu-system",
+        "ok": true,
+        "useSpecialistWidget": true,
+        "useDeterministicFallback": false
+      }
+    },
+    {
+      "id": "WIDGET-systems-generic-simulation",
+      "title": "registered widget resolves with truthful availability and deterministic fallback",
+      "ok": true,
+      "evidence": {
+        "subjectId": "systems",
+        "widgetId": "generic-simulation",
+        "availability": "existing",
+        "lessonType": "asoiu-system",
+        "ok": true,
+        "useSpecialistWidget": true,
+        "useDeterministicFallback": false
+      }
+    },
+    {
+      "id": "WIDGET-systems-generic-assessment",
+      "title": "registered widget resolves with truthful availability and deterministic fallback",
+      "ok": true,
+      "evidence": {
+        "subjectId": "systems",
+        "widgetId": "generic-assessment",
+        "availability": "existing",
+        "lessonType": "asoiu-system",
+        "ok": true,
+        "useSpecialistWidget": true,
+        "useDeterministicFallback": false
+      }
+    },
+    {
+      "id": "WIDGET-systems-system-architecture-workspace",
+      "title": "registered widget resolves with truthful availability and deterministic fallback",
+      "ok": true,
+      "evidence": {
+        "subjectId": "systems",
+        "widgetId": "system-architecture-workspace",
+        "availability": "planned-L10",
+        "lessonType": "asoiu-system",
+        "ok": true,
+        "useSpecialistWidget": false,
+        "useDeterministicFallback": true
+      }
+    },
+    {
+      "id": "WIDGET-research-generic-elearning-flow",
+      "title": "registered widget resolves with truthful availability and deterministic fallback",
+      "ok": true,
+      "evidence": {
+        "subjectId": "research",
+        "widgetId": "generic-elearning-flow",
+        "availability": "existing",
+        "lessonType": "research",
+        "ok": true,
+        "useSpecialistWidget": true,
+        "useDeterministicFallback": false
+      }
+    },
+    {
+      "id": "WIDGET-research-generic-simulation",
+      "title": "registered widget resolves with truthful availability and deterministic fallback",
+      "ok": true,
+      "evidence": {
+        "subjectId": "research",
+        "widgetId": "generic-simulation",
+        "availability": "existing",
+        "lessonType": "research",
+        "ok": true,
+        "useSpecialistWidget": true,
+        "useDeterministicFallback": false
+      }
+    },
+    {
+      "id": "WIDGET-research-generic-assessment",
+      "title": "registered widget resolves with truthful availability and deterministic fallback",
+      "ok": true,
+      "evidence": {
+        "subjectId": "research",
+        "widgetId": "generic-assessment",
+        "availability": "existing",
+        "lessonType": "research",
+        "ok": true,
+        "useSpecialistWidget": true,
+        "useDeterministicFallback": false
+      }
+    },
+    {
+      "id": "WIDGET-research-research-evidence-board",
+      "title": "registered widget resolves with truthful availability and deterministic fallback",
+      "ok": true,
+      "evidence": {
+        "subjectId": "research",
+        "widgetId": "research-evidence-board",
+        "availability": "declared",
+        "lessonType": "research",
+        "ok": true,
+        "useSpecialistWidget": false,
+        "useDeterministicFallback": true
+      }
+    },
+    {
+      "id": "WIDGET-PLANNED-AUTHORITY",
+      "title": "planned widgets claim no Master-ready authority before implementation",
+      "ok": true,
+      "evidence": {
+        "code-runner": "none-until-implemented",
+        "sql-playground": "none-until-implemented",
+        "signal-plot": "none-until-implemented",
+        "system-architecture-workspace": "none-until-implemented"
+      }
+    },
+    {
+      "id": "WIDGET-UNKNOWN",
+      "title": "unknown or cross-subject widgets fail closed",
+      "ok": true,
+      "evidence": "UNREGISTERED_WIDGET"
+    },
+    {
+      "id": "WIDGET-TYPE-MISMATCH",
+      "title": "widget and lesson-type mismatch fails closed",
+      "ok": true,
+      "evidence": {
+        "ok": false,
+        "blocked": true,
+        "code": "WIDGET_LESSON_TYPE_MISMATCH",
+        "message": "Widget is not compatible with the resolved primary lesson type.",
+        "details": {
+          "subjectId": "programming",
+          "widgetId": "code-runner",
+          "lessonType": "database",
+          "allowed": [
+            "programming"
+          ]
+        }
+      }
+    },
+    {
+      "id": "OFFLINE-POLICY-russian-rich-explicit",
+      "title": "offline policy preserves L5 limits and deterministic local fallback",
+      "ok": true,
+      "evidence": {
+        "baseDiscovery": "runtime-network-probe",
+        "baseMaxResourceBytes": 5242880,
+        "sessionMaxResourceBytes": 67108864,
+        "largeResourcePolicy": "feature-entry-or-explicit-session-only",
+        "generativeAiRequired": false,
+        "deterministicFallback": "unchanged-russian-engine-and-local-source",
+        "silentWholeRepositoryPrecache": false
+      }
+    },
+    {
+      "id": "OFFLINE-POLICY-math-rich-explicit",
+      "title": "offline policy preserves L5 limits and deterministic local fallback",
+      "ok": true,
+      "evidence": {
+        "baseDiscovery": "runtime-network-probe",
+        "baseMaxResourceBytes": 5242880,
+        "sessionMaxResourceBytes": 67108864,
+        "largeResourcePolicy": "authoritative-reader-or-explicit-session-only",
+        "generativeAiRequired": false,
+        "deterministicFallback": "unchanged-math-engine-and-authoritative-artifact-reader",
+        "silentWholeRepositoryPrecache": false
+      }
+    },
+    {
+      "id": "OFFLINE-POLICY-programming-rich-explicit",
+      "title": "offline policy preserves L5 limits and deterministic local fallback",
+      "ok": true,
+      "evidence": {
+        "baseDiscovery": "runtime-network-probe",
+        "baseMaxResourceBytes": 5242880,
+        "sessionMaxResourceBytes": 67108864,
+        "largeResourcePolicy": "feature-entry-or-explicit-session-only",
+        "generativeAiRequired": false,
+        "deterministicFallback": "unchanged-programming-engine-and-local-source",
+        "silentWholeRepositoryPrecache": false
+      }
+    },
+    {
+      "id": "OFFLINE-POLICY-light-core-explicit",
+      "title": "offline policy preserves L5 limits and deterministic local fallback",
+      "ok": true,
+      "evidence": {
+        "baseDiscovery": "runtime-network-probe",
+        "baseMaxResourceBytes": 5242880,
+        "sessionMaxResourceBytes": 67108864,
+        "largeResourcePolicy": "explicit-subject-pack-only",
+        "generativeAiRequired": false,
+        "deterministicFallback": "light-subject-local-json",
+        "silentWholeRepositoryPrecache": false
+      }
+    },
+    {
+      "id": "OFFLINE-RUNTIME-CONSTANTS",
+      "title": "registry byte limits and release match the existing offline manager",
+      "ok": true,
+      "evidence": {
+        "path": "assets/js/platform/offline-subject-pack-manager.js",
+        "release": "BAUMAN_OFFLINE_SUBJECT_PACK_MANAGER_2026_08_24"
+      }
+    },
+    {
+      "id": "OFFLINE-LARGE-SOURCES-DEFERRED",
+      "title": "every current source over 5 MiB is excluded from the startup class",
+      "ok": true,
+      "evidence": [
+        {
+          "sourceId": "vocab",
+          "loadClass": "required-lazy",
+          "relativePath": "subjects/russian/data/vocab.json",
+          "bytes": 11212921
+        },
+        {
+          "sourceId": "tests",
+          "loadClass": "required-lazy",
+          "relativePath": "subjects/russian/data/tests.json",
+          "bytes": 7923057
+        },
+        {
+          "sourceId": "speaking",
+          "loadClass": "required-lazy",
+          "relativePath": "subjects/russian/data/speaking.json",
+          "bytes": 7343576
+        },
+        {
+          "sourceId": "dialogue-bauman-az",
+          "loadClass": "optional-lazy",
+          "relativePath": "subjects/russian/data/dialogue-bauman-az.json",
+          "bytes": 35049608
+        },
+        {
+          "sourceId": "deep-speaking-bauman",
+          "loadClass": "optional-lazy",
+          "relativePath": "subjects/russian/data/deep-speaking-bauman.json",
+          "bytes": 28156378
+        },
+        {
+          "sourceId": "lessons",
+          "loadClass": "required-lazy",
+          "relativePath": "subjects/math/data/lessons.json",
+          "bytes": 7822102
+        }
+      ]
+    },
+    {
+      "id": "SECURITY-UNKNOWN-SUBJECT",
+      "title": "unknown and unsafe subject identifiers fail closed",
+      "ok": true,
+      "evidence": {
+        "unknown": "UNKNOWN_SUBJECT",
+        "unsafe": "INVALID_SUBJECT_ID"
+      }
+    },
+    {
+      "id": "SECURITY-UNKNOWN-SOURCE",
+      "title": "unknown and unsafe source identifiers fail closed",
+      "ok": true,
+      "evidence": {
+        "unknown": "UNKNOWN_DATA_SOURCE",
+        "unsafe": "INVALID_SOURCE_ID"
+      }
+    },
+    {
+      "id": "SECURITY-PATH-GUARD",
+      "title": "path guard rejects protocol absolute traversal query and fragment paths",
+      "ok": true,
+      "evidence": "safe repository-relative same-origin paths only"
+    },
+    {
+      "id": "SECURITY-PURE-RUNTIME",
+      "title": "B9 resolver has no DOM network cache or persistence side effect",
+      "ok": true,
+      "evidence": "assets/js/platform/universal-lesson/subject-factory-registry-v1.js"
+    },
+    {
+      "id": "DESCRIPTOR-CLONE-BOUNDARY",
+      "title": "mutating a returned descriptor cannot mutate the registry",
+      "ok": true,
+      "evidence": "subjects/math/index.html"
+    },
+    {
+      "id": "LEARNER-BRAND",
+      "title": "current learner entry surfaces contain no HUTECH label",
+      "ok": true,
+      "evidence": [
+        "index.html",
+        "assets/js/data.js",
+        "subjects/russian/index.html",
+        "subjects/math/index.html",
+        "subjects/programming/index.html",
+        "subjects/foundation/index.html",
+        "subjects/ai/index.html",
+        "subjects/signal/index.html",
+        "subjects/systems/index.html",
+        "subjects/research/index.html"
+      ]
+    },
+    {
+      "id": "B9-NO-RUNTIME-WIRING",
+      "title": "B9 registry and resolver are not loaded by current learner runtimes",
+      "ok": true,
+      "evidence": "runtime wiring remains owned by L6-B10"
+    },
+    {
+      "id": "B9-FORWARD-BOUNDARY",
+      "title": "registry explicitly assigns runtime wiring to B10",
+      "ok": true,
+      "evidence": {
+        "L6-B10": "Renderer selection, projection execution and legacy bridges",
+        "L6-B11": "Reference-subject runtime, responsive, offline and rollback regression",
+        "L7": "Reviewed Russian and Mathematics Universal Lesson projections",
+        "L8": "Programming, database and software-design interactive widgets",
+        "L9": "AI/data and signal visual labs",
+        "L10": "ASOIU/system architecture interactions",
+        "L12": "Full Russian Twin and English Research learner UI",
+        "runtimeWiringInB9": false
+      }
+    },
+    {
+      "id": "MUTATION-DIRECT-FACTORY-RENDER",
+      "title": "activating a B9 engine renderer is rejected",
+      "ok": true,
+      "evidence": [
+        {
+          "path": "/engineCatalog/math-e126-specialist",
+          "code": "ENGINE_RUNTIME_BOUNDARY_BROKEN",
+          "message": "B9 engine registration cannot activate rendering or rewrite source/state.",
+          "details": {
+            "mode": "rich-legacy-specialist",
+            "rendererOwner": "math-subject-engine",
+            "adapterGlobal": "SUBJECT_ADAPTER",
+            "directFactoryRender": true,
+            "bridgeEligible": true,
+            "sourceRewriteAllowed": false,
+            "stateKeyRewriteAllowed": false
+          }
+        }
+      ]
+    },
+    {
+      "id": "MUTATION-LIGHT-SIMULATION-SUPPLEMENT",
+      "title": "removing the audited light simulation supplement is rejected",
+      "ok": true,
+      "evidence": [
+        {
+          "path": "/subjects/ai/dataSources/runtimeSupplemental",
+          "code": "LIGHT_SIMULATION_SUPPLEMENT_REQUIRED",
+          "message": "Light runtime simulations.json must remain registered as the audited runtime supplement.",
+          "details": []
+        }
+      ]
+    },
+    {
+      "id": "MUTATION-FOUNDATION-DEFAULT",
+      "title": "forcing a Foundation default across unreviewed modules is rejected",
+      "ok": true,
+      "evidence": [
+        {
+          "path": "/subjects/foundation/lessonTypePolicy",
+          "code": "FOUNDATION_FAIL_CLOSED_POLICY_REQUIRED",
+          "message": "Foundation must keep a null default and hold f_m201/f_m202 for manual review.",
+          "details": {
+            "allowed": [
+              "language",
+              "mathematics",
+              "programming"
+            ],
+            "default": "language",
+            "rules": [
+              {
+                "id": "foundation-classroom-and-study",
+                "type": "language",
+                "moduleIds": [
+                  "f_s01",
+                  "f_s05"
+                ]
+              },
+              {
+                "id": "foundation-math-and-physics",
+                "type": "mathematics",
+                "moduleIds": [
+                  "f_s02",
+                  "f_s04"
+                ]
+              },
+              {
+                "id": "foundation-computing",
+                "type": "programming",
+                "moduleIds": [
+                  "f_s03"
+                ]
+              }
+            ],
+            "manualReviewModules": [
+              "f_m201",
+              "f_m202"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "id": "MUTATION-RUSSIAN-PERSISTENCE",
+      "title": "moving required Russian vocab into optional persistence exclusion is rejected",
+      "ok": true,
+      "evidence": [
+        {
+          "path": "/subjects/russian/dataSources",
+          "code": "RUSSIAN_REQUIRED_LAZY_POLICY_REQUIRED",
+          "message": "Russian vocab/tests/speaking must remain required-lazy and outside startup/optional persistence exclusions.",
+          "details": {
+            "root": "subjects/russian/data",
+            "catalogRefs": [
+              "routes.adapter#SUBJECT_ADAPTER.dataFiles",
+              "routes.adapter#SUBJECT_ADAPTER.optionalDataFiles",
+              "routes.adapter#SUBJECT_ADAPTER.lazyDataFiles",
+              "routes.manifest#dataFiles"
+            ],
+            "startup": [
+              "curriculum",
+              "lessons",
+              "grammar",
+              "grammar-path",
+              "mindmap",
+              "exercises",
+              "simulations",
+              "handwriting",
+              "writing",
+              "videos",
+              "knowledge-index"
+            ],
+            "requiredLazy": [
+              "tests",
+              "speaking"
+            ],
+            "optionalLazy": [
+              "dialogue-bauman-az",
+              "deep-speaking-bauman",
+              "speaking-link-index",
+              "vocab"
+            ],
+            "runtimeSupplemental": [],
+            "pathOverrides": {},
+            "lessonSourcePolicy": {
+              "primary": "lessons",
+              "specialistSources": [
+                "speaking",
+                "dialogue-bauman-az",
+                "deep-speaking-bauman",
+                "speaking-link-index",
+                "handwriting",
+                "writing",
+                "vocab",
+                "tests"
+              ],
+              "precedence": "stable-lesson-id-then-specialist-source-id"
+            }
+          }
+        }
+      ]
+    },
+    {
+      "id": "MUTATION-MATH-SOURCE-PRECEDENCE",
+      "title": "selecting legacy Math lessons ahead of authoritative theory is rejected",
+      "ok": true,
+      "evidence": [
+        {
+          "path": "/subjects/math/dataSources",
+          "code": "MATH_AUTHORITATIVE_SOURCE_POLICY_REQUIRED",
+          "message": "Math must prefer the authoritative theory reader and keep full legacy lessons deferred.",
+          "details": {
+            "root": "subjects/math/data",
+            "catalogRefs": [
+              "routes.adapter#SUBJECT_ADAPTER.dataFiles",
+              "routes.adapter#SUBJECT_ADAPTER.initialDataFiles",
+              "routes.adapter#SUBJECT_ADAPTER.optionalDataFiles",
+              "routes.adapter#SUBJECT_ADAPTER.dataSourceMeta",
+              "routes.manifest#dataFiles"
+            ],
+            "startup": [
+              "content_vault_manifest",
+              "discipline_spine",
+              "chapter_spine",
+              "curriculum",
+              "content-manifest",
+              "theory_lecture_frame",
+              "formula_frame",
+              "simulation_frame",
+              "exercise_frame",
+              "application_frame",
+              "professor_qa_frame",
+              "review_pack_frame",
+              "question_bank_frame",
+              "test_blueprint_frame",
+              "chapter_lecture_frame",
+              "mindmap_frame",
+              "concept_map_frame",
+              "media_frame",
+              "theory_lecture_content",
+              "formula_content",
+              "simulation_content",
+              "exercise_content",
+              "application_content",
+              "professor_qa_content",
+              "review_pack_content",
+              "question_bank_content",
+              "test_blueprint_content",
+              "chapter_lecture_content",
+              "mindmap_content",
+              "concept_map_content",
+              "media_content",
+              "formulas",
+              "simulations",
+              "exercises",
+              "applications",
+              "professor_qa",
+              "review_packs",
+              "question_bank",
+              "test_blueprints",
+              "chapter_lectures",
+              "mindmap",
+              "concept-map",
+              "videos",
+              "learning_rules",
+              "tests",
+              "content-index",
+              "knowledge-index",
+              "mastery-map",
+              "vocab",
+              "grammar",
+              "grammar-path"
+            ],
+            "requiredLazy": [
+              "lessons"
+            ],
+            "optionalLazy": [
+              "writing",
+              "handwriting",
+              "speaking",
+              "deep-speaking-bauman",
+              "speaking-link-index",
+              "dialogue-bauman-az"
+            ],
+            "runtimeSupplemental": [
+              "lessons-deferred"
+            ],
+            "pathOverrides": {
+              "lessons-deferred": "lessons_deferred.json"
+            },
+            "lessonSourcePolicy": {
+              "primary": "lessons",
+              "legacyFull": "lessons",
+              "legacyStartup": "lessons-deferred",
+              "precedence": [
+                "explicit-legacy-lessons"
+              ]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "id": "MUTATION-OFFLINE-WHOLE-REPOSITORY",
+      "title": "silent whole-repository precache is rejected",
+      "ok": true,
+      "evidence": [
+        {
+          "path": "/offlinePolicyCatalog/light-core-explicit",
+          "code": "OFFLINE_POLICY_UNSAFE",
+          "message": "Offline policy must match L5 limits and deterministic fallback boundary.",
+          "details": {
+            "baseDiscovery": "runtime-network-probe",
+            "baseMaxResourceBytes": 5242880,
+            "sessionMaxResourceBytes": 67108864,
+            "largeResourcePolicy": "explicit-subject-pack-only",
+            "generativeAiRequired": false,
+            "deterministicFallback": "light-subject-local-json",
+            "silentWholeRepositoryPrecache": true
+          }
+        }
+      ]
+    },
+    {
+      "id": "MUTATION-SOURCE-TRAVERSAL",
+      "title": "a traversal source path override is rejected",
+      "ok": true,
+      "evidence": [
+        {
+          "path": "/subjects/math/dataSources",
+          "code": "UNSAFE_DATA_SOURCE_PATH",
+          "message": "Resolved data source path is not repository-relative and safe.",
+          "details": "subjects/math/data/../../index.html"
+        }
+      ]
+    },
+    {
+      "id": "MUTATION-PLANNED-WIDGET-AUTHORITY",
+      "title": "a planned widget cannot claim Master-ready authority",
+      "ok": true,
+      "evidence": [
+        {
+          "path": "/widgetCatalog/code-runner/masterReadyAuthority",
+          "code": "PLANNED_WIDGET_AUTHORITY_FORBIDDEN",
+          "message": "Planned widgets cannot claim Master-ready authority before implementation.",
+          "details": "deterministic-evaluator-only"
+        }
+      ]
+    },
+    {
+      "id": "MUTATION-SUMMARY",
+      "title": "all eight B9 protection mutations fail in the expected direction",
+      "ok": true,
+      "evidence": [
+        {
+          "id": "DIRECT-FACTORY-RENDER",
+          "observed": true
+        },
+        {
+          "id": "LIGHT-SIMULATION-SUPPLEMENT",
+          "observed": true
+        },
+        {
+          "id": "FOUNDATION-DEFAULT",
+          "observed": true
+        },
+        {
+          "id": "RUSSIAN-PERSISTENCE",
+          "observed": true
+        },
+        {
+          "id": "MATH-SOURCE-PRECEDENCE",
+          "observed": true
+        },
+        {
+          "id": "OFFLINE-WHOLE-REPOSITORY",
+          "observed": true
+        },
+        {
+          "id": "SOURCE-TRAVERSAL",
+          "observed": true
+        },
+        {
+          "id": "PLANNED-WIDGET-AUTHORITY",
+          "observed": true
+        }
+      ]
+    },
+    {
+      "id": "DOC-BOUNDARY",
+      "title": "decision record states pending remote CI and B9 no-render/no-write boundary",
+      "ok": true,
+      "evidence": "docs/migration/L6_B9_SUBJECT_FACTORY_REGISTRY.md"
+    },
+    {
+      "id": "DOC-CODES",
+      "title": "decision record distinguishes official and personalized program codes",
+      "ok": true,
+      "evidence": "docs/migration/L6_B9_SUBJECT_FACTORY_REGISTRY.md"
+    },
+    {
+      "id": "DOC-FOUNDATION",
+      "title": "decision record documents the fail-closed Foundation pilot",
+      "ok": true,
+      "evidence": "docs/migration/L6_B9_SUBJECT_FACTORY_REGISTRY.md"
+    },
+    {
+      "id": "REFERENCE-SOURCE-HASHES",
+      "title": "current catalogs adapters runtimes and lesson sources are hashed for rollback comparison",
+      "ok": true,
+      "evidence": {
+        "assets/js/data.js": "0150011b1d91ab3d2ea8d3f9aaa2b984039d94838183fb1d110da15d008d6079",
+        "assets/js/platform/offline-subject-pack-manager.js": "5f6e4d37cb464b792558b014d19da1f62389b06245b8446b180e6d1890500be6",
+        "subjects/russian/assets/lazy-heavy-data-v1341.js": "e8c91de0b203029df44c358837591c1cc9bf5d04b57f0c7395efd1af54ec48fd",
+        "subjects/russian/assets/subject-adapter.js": "1c6a6930ab06e1510879ed374093016ff721b20fab7bf720a65613e4c411d625",
+        "subjects/russian/data/lessons.json": "c8693eeefed17ea39b0cea4a600c9086f1b597ae7174e56bd8b2f8b46b985062",
+        "subjects/math/assets/subject-adapter.js": "40cb9d93a713929f3b8c9c99c01c30e29f103043a2f2c207521c5446f8f47731",
+        "subjects/math/data/theory_lecture_content.json": "d0cd18601b1ede84f58072b3c47cfcc176b4d21d3fa71b23762b908485391447",
+        "subjects/math/data/lessons_deferred.json": "37517e5f3dc66819f61f5a7bb8ace1921282415f10551d2defa5c3eb0985b570",
+        "subjects/programming/assets/subject-adapter.js": "a66453de4c0816d9d47986df1ffab8d8b19015174d52f3c3aa8eabefa2192b68",
+        "subjects/programming/data/lessons.json": "1b5485cb6b34380b949b247fd1cf521f0fda0534dd4834b9dee53beb2f49491d",
+        "subjects/ai/subject-manifest.json": "d4508c08e7b5da5657976a5c730e97e71098dabe8182156c8b8a0bd8bd2a7fba",
+        "subjects/ai/assets/ai.js": "ddb1665c505986962da6c4c5f157d3827e9940e86866afbb7ca42ea4e4430315",
+        "subjects/ai/data/lessons.json": "ee22f47274b6e51a9fe03d00ceff1ebe3e0b255b4363dddf8ed476c9d9264e73",
+        "subjects/foundation/subject-manifest.json": "c7fec9b0b4965378523b9ea8f69568ba6ac109ab98c49e7bd0c87436866f8d86",
+        "subjects/foundation/assets/foundation.js": "ddb1665c505986962da6c4c5f157d3827e9940e86866afbb7ca42ea4e4430315",
+        "subjects/foundation/data/lessons.json": "435dc2faea81b59f3b1f29b6e7f1d48d7c99947f0a70ccd62eb3bb60c2f402e1",
+        "subjects/research/subject-manifest.json": "2318ae4dd6abdd2749277f0e39079ddf5cb4c97f139740ed14d0b1be44051296",
+        "subjects/research/assets/research.js": "ddb1665c505986962da6c4c5f157d3827e9940e86866afbb7ca42ea4e4430315",
+        "subjects/research/data/lessons.json": "eb453c78c6a4340c6f4d12aa435adfdfd1ab59b68393586cbcd772742d757d16",
+        "subjects/signal/subject-manifest.json": "eb6b429f95e1110abfab5f360c8e67d4ee38f6dea509fe1e781cba801050bd78",
+        "subjects/signal/assets/signal.js": "ddb1665c505986962da6c4c5f157d3827e9940e86866afbb7ca42ea4e4430315",
+        "subjects/signal/data/lessons.json": "bf2dc25a23df3bd0f8b496df28eac57b51bc0f8dd9619b00aab2086742f67634",
+        "subjects/systems/subject-manifest.json": "f5d7d242d5cee640be29d1f8cd16a6d799210ddefbbe71a8c5c239b52567184f",
+        "subjects/systems/assets/systems.js": "ddb1665c505986962da6c4c5f157d3827e9940e86866afbb7ca42ea4e4430315",
+        "subjects/systems/data/lessons.json": "437239b73ee9b7dacb16801df932f0124167aae6a8706ae25c76d6fce5633efa"
+      }
+    }
+  ]
+}

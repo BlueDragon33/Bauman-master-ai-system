@@ -1,0 +1,1089 @@
+{
+  "registryId": "bauman-subject-factory-registry",
+  "registryVersion": "1.0.0",
+  "status": "L6-B9-SUBJECT-FACTORY-REGISTRY",
+  "scope": "Read-only subject, engine, lesson-type, widget, data-source and offline-policy registration. B9 does not render lessons, rewrite sources, or write learner state.",
+  "programIdentity": {
+    "department": "ИУ-5",
+    "officialPublishedDirectionCode": "09.04.01",
+    "personalizedDisplayCode": "09.04.01/11",
+    "rule": "Official Bauman source metadata keeps 09.04.01; personalized learner surfaces display ИУ-5 · 09.04.01/11."
+  },
+  "contractRefs": {
+    "universalLesson": {
+      "path": "assets/data/lesson/universal-lesson-contract-v2.json",
+      "id": "bauman-universal-lesson-contract",
+      "version": "2.0.0"
+    },
+    "blockPolicy": {
+      "path": "assets/data/lesson/universal-lesson-block-policy-v1.json",
+      "id": "bauman-universal-lesson-block-policy",
+      "version": "1.0.0"
+    },
+    "lessonTypes": {
+      "path": "assets/data/lesson/lesson-type-registry-v1.json",
+      "id": "bauman-lesson-type-registry",
+      "version": "1.0.0"
+    },
+    "masterReady": {
+      "path": "assets/data/lesson/master-ready-policy-v1.json",
+      "id": "bauman-master-ready-policy",
+      "version": "1.0.0"
+    },
+    "visualTeaching": {
+      "path": "assets/data/lesson/visual-teaching-contract-v1.json",
+      "id": "bauman-visual-teaching-contract",
+      "version": "1.0.0"
+    },
+    "languageHooks": {
+      "path": "assets/data/lesson/language-layer-hooks-v1.json",
+      "id": "bauman-language-layer-hooks",
+      "version": "1.0.0"
+    },
+    "lessonMigration": {
+      "path": "assets/data/lesson/schema/lesson-migration-registry-v1.json",
+      "id": "bauman-universal-lesson-migration-registry",
+      "version": "1.0.0"
+    },
+    "mainSubjectCatalog": {
+      "path": "assets/js/data.js",
+      "global": "BAUMAN_DATA.subjects",
+      "expectedSubjects": 8
+    },
+    "offlinePackManager": {
+      "path": "assets/js/platform/offline-subject-pack-manager.js",
+      "release": "BAUMAN_OFFLINE_SUBJECT_PACK_MANAGER_2026_08_24"
+    }
+  },
+  "factoryContract": {
+    "requiredSubjectFields": [
+      "id",
+      "engineRef",
+      "routes",
+      "lessonTypePolicy",
+      "widgetRefs",
+      "dataSources",
+      "offlinePolicyRef",
+      "compatibility"
+    ],
+    "onePrimaryLessonType": true,
+    "classificationFailureMode": "UNCLASSIFIED_LESSON",
+    "ambiguityFailureMode": "AMBIGUOUS_LESSON_TYPE",
+    "unknownSubjectFailureMode": "UNKNOWN_SUBJECT",
+    "unknownSourceFailureMode": "UNKNOWN_DATA_SOURCE",
+    "unknownWidgetFailureMode": "UNREGISTERED_WIDGET",
+    "sourceMutationAllowed": false,
+    "learnerStateWriteAllowed": false,
+    "rendererActivationRound": "L6-B10",
+    "referenceRuntimeRegressionRound": "L6-B11"
+  },
+  "sourceResolverContract": {
+    "precedence": [
+      "registry-path-override",
+      "adapter-dataSourceMeta",
+      "adapter-dataFiles",
+      "manifest-data",
+      "audited-runtime-supplement"
+    ],
+    "rules": [
+      "Resolve by stable subjectId and sourceId, never by array index.",
+      "Only repository-relative same-origin paths under the registered subject data root are allowed.",
+      "Reject protocols, absolute paths, traversal, query strings and fragments.",
+      "A source can be startup, required-lazy, optional-lazy or runtime-supplemental, never more than one.",
+      "Unregistered files remain owned by the specialist engine and are not guessed into Factory."
+    ],
+    "allowedLoadClasses": [
+      "startup",
+      "required-lazy",
+      "optional-lazy",
+      "runtime-supplemental"
+    ],
+    "defaultExtension": ".json",
+    "unregisteredFilePolicy": "specialist-owner-only"
+  },
+  "engineCatalog": {
+    "russian-v13-specialist": {
+      "mode": "rich-legacy-specialist",
+      "rendererOwner": "russian-subject-engine",
+      "adapterGlobal": "SUBJECT_ADAPTER",
+      "directFactoryRender": false,
+      "bridgeEligible": true,
+      "sourceRewriteAllowed": false,
+      "stateKeyRewriteAllowed": false
+    },
+    "math-e126-specialist": {
+      "mode": "rich-legacy-specialist",
+      "rendererOwner": "math-subject-engine",
+      "adapterGlobal": "SUBJECT_ADAPTER",
+      "directFactoryRender": false,
+      "bridgeEligible": true,
+      "sourceRewriteAllowed": false,
+      "stateKeyRewriteAllowed": false
+    },
+    "programming-v2-specialist": {
+      "mode": "rich-specialist",
+      "rendererOwner": "programming-subject-engine",
+      "adapterGlobal": "SUBJECT_ADAPTER",
+      "directFactoryRender": false,
+      "bridgeEligible": true,
+      "sourceRewriteAllowed": false,
+      "stateKeyRewriteAllowed": false
+    },
+    "light-elearning-v2": {
+      "mode": "light-elearning-v1.1",
+      "rendererOwner": "light-subject-engine",
+      "manifestGlobal": "SUBJECT_CONFIG",
+      "directFactoryRender": false,
+      "bridgeEligible": true,
+      "sourceRewriteAllowed": false,
+      "stateKeyRewriteAllowed": false
+    }
+  },
+  "widgetCatalog": {
+    "generic-elearning-flow": {
+      "owner": "light-subject-engine",
+      "availability": "existing",
+      "lessonTypes": [
+        "language",
+        "mathematics",
+        "programming",
+        "ml-data",
+        "asoiu-system",
+        "research"
+      ],
+      "fallback": "semantic-block-inline-flow",
+      "masterReadyAuthority": "none"
+    },
+    "generic-simulation": {
+      "owner": "light-subject-engine",
+      "availability": "existing",
+      "lessonTypes": [
+        "mathematics",
+        "programming",
+        "ml-data",
+        "asoiu-system",
+        "research"
+      ],
+      "fallback": "procedure-and-observation-block",
+      "masterReadyAuthority": "deterministic-evaluator-only"
+    },
+    "generic-assessment": {
+      "owner": "light-subject-engine",
+      "availability": "existing",
+      "lessonTypes": [
+        "language",
+        "mathematics",
+        "programming",
+        "ml-data",
+        "asoiu-system",
+        "research"
+      ],
+      "fallback": "offline-question-and-review-flow",
+      "masterReadyAuthority": "deterministic-evaluator-only"
+    },
+    "russian-dialogue-studio": {
+      "owner": "russian-subject-engine",
+      "availability": "existing",
+      "lessonTypes": [
+        "language"
+      ],
+      "fallback": "source-dialogue-transcript",
+      "masterReadyAuthority": "none"
+    },
+    "russian-shadowing": {
+      "owner": "russian-subject-engine",
+      "availability": "existing",
+      "lessonTypes": [
+        "language"
+      ],
+      "fallback": "offline-text-and-pronunciation-cue",
+      "masterReadyAuthority": "instructor-or-deterministic-rubric"
+    },
+    "russian-deep-speaking": {
+      "owner": "russian-subject-engine",
+      "availability": "existing-lazy",
+      "lessonTypes": [
+        "language"
+      ],
+      "fallback": "speaking-prompt-card",
+      "masterReadyAuthority": "instructor-or-deterministic-rubric"
+    },
+    "russian-handwriting": {
+      "owner": "russian-subject-engine",
+      "availability": "existing",
+      "lessonTypes": [
+        "language"
+      ],
+      "fallback": "print-cursive-copy-card",
+      "masterReadyAuthority": "none"
+    },
+    "russian-flashcards": {
+      "owner": "russian-subject-engine",
+      "availability": "existing",
+      "lessonTypes": [
+        "language"
+      ],
+      "fallback": "offline-term-card",
+      "masterReadyAuthority": "none"
+    },
+    "russian-scheduled-exam": {
+      "owner": "russian-subject-engine",
+      "availability": "existing",
+      "lessonTypes": [
+        "language"
+      ],
+      "fallback": "offline-assessment-and-remedial-flow",
+      "masterReadyAuthority": "deterministic-evaluator-only"
+    },
+    "math-rich-theory-reader": {
+      "owner": "math-subject-engine",
+      "availability": "existing",
+      "lessonTypes": [
+        "mathematics"
+      ],
+      "fallback": "authoritative-theory-record",
+      "masterReadyAuthority": "none"
+    },
+    "math-formula-typesetter": {
+      "owner": "math-subject-engine",
+      "availability": "existing",
+      "lessonTypes": [
+        "mathematics"
+      ],
+      "fallback": "accessible-formula-text",
+      "masterReadyAuthority": "none"
+    },
+    "math-step-solution": {
+      "owner": "math-subject-engine",
+      "availability": "existing",
+      "lessonTypes": [
+        "mathematics"
+      ],
+      "fallback": "ordered-solution-and-verification",
+      "masterReadyAuthority": "deterministic-evaluator-only"
+    },
+    "math-parameter-simulation": {
+      "owner": "math-subject-engine",
+      "availability": "existing",
+      "lessonTypes": [
+        "mathematics"
+      ],
+      "fallback": "parameter-table-and-observation",
+      "masterReadyAuthority": "deterministic-evaluator-only"
+    },
+    "math-professor-oral": {
+      "owner": "math-subject-engine",
+      "availability": "existing",
+      "lessonTypes": [
+        "mathematics"
+      ],
+      "fallback": "oral-prompt-and-rubric",
+      "masterReadyAuthority": "instructor"
+    },
+    "programming-syntax-workflow": {
+      "owner": "programming-subject-engine",
+      "availability": "existing",
+      "lessonTypes": [
+        "programming"
+      ],
+      "fallback": "code-and-debug-trace",
+      "masterReadyAuthority": "deterministic-evaluator-only"
+    },
+    "programming-software-lab": {
+      "owner": "programming-subject-engine",
+      "availability": "existing",
+      "lessonTypes": [
+        "programming",
+        "database",
+        "software-design"
+      ],
+      "fallback": "artifact-instructions-and-local-files",
+      "masterReadyAuthority": "deterministic-evaluator-or-instructor"
+    },
+    "code-runner": {
+      "owner": "programming-subject-engine",
+      "availability": "planned-L8",
+      "lessonTypes": [
+        "programming"
+      ],
+      "fallback": "static-code-exercise",
+      "masterReadyAuthority": "none-until-implemented"
+    },
+    "sql-playground": {
+      "owner": "programming-subject-engine",
+      "availability": "planned-L8",
+      "lessonTypes": [
+        "database"
+      ],
+      "fallback": "query-and-expected-result-card",
+      "masterReadyAuthority": "none-until-implemented"
+    },
+    "model-metric-visual": {
+      "owner": "ai-subject-engine",
+      "availability": "declared",
+      "lessonTypes": [
+        "ml-data"
+      ],
+      "fallback": "metric-table-and-error-analysis",
+      "masterReadyAuthority": "deterministic-evaluator-only"
+    },
+    "signal-plot": {
+      "owner": "signal-subject-engine",
+      "availability": "planned-L9",
+      "lessonTypes": [
+        "ml-data",
+        "mathematics"
+      ],
+      "fallback": "sample-table-and-plot-description",
+      "masterReadyAuthority": "none-until-implemented"
+    },
+    "system-architecture-workspace": {
+      "owner": "systems-subject-engine",
+      "availability": "planned-L10",
+      "lessonTypes": [
+        "asoiu-system",
+        "software-design"
+      ],
+      "fallback": "architecture-artifact-and-tradeoff-record",
+      "masterReadyAuthority": "none-until-implemented"
+    },
+    "research-evidence-board": {
+      "owner": "research-subject-engine",
+      "availability": "declared",
+      "lessonTypes": [
+        "research"
+      ],
+      "fallback": "research-note-and-artifact-checklist",
+      "masterReadyAuthority": "instructor"
+    }
+  },
+  "offlinePolicyCatalog": {
+    "russian-rich-explicit": {
+      "baseDiscovery": "runtime-network-probe",
+      "baseMaxResourceBytes": 5242880,
+      "sessionMaxResourceBytes": 67108864,
+      "largeResourcePolicy": "feature-entry-or-explicit-session-only",
+      "generativeAiRequired": false,
+      "deterministicFallback": "unchanged-russian-engine-and-local-source",
+      "silentWholeRepositoryPrecache": false
+    },
+    "math-rich-explicit": {
+      "baseDiscovery": "runtime-network-probe",
+      "baseMaxResourceBytes": 5242880,
+      "sessionMaxResourceBytes": 67108864,
+      "largeResourcePolicy": "authoritative-reader-or-explicit-session-only",
+      "generativeAiRequired": false,
+      "deterministicFallback": "unchanged-math-engine-and-authoritative-artifact-reader",
+      "silentWholeRepositoryPrecache": false
+    },
+    "programming-rich-explicit": {
+      "baseDiscovery": "runtime-network-probe",
+      "baseMaxResourceBytes": 5242880,
+      "sessionMaxResourceBytes": 67108864,
+      "largeResourcePolicy": "feature-entry-or-explicit-session-only",
+      "generativeAiRequired": false,
+      "deterministicFallback": "unchanged-programming-engine-and-local-source",
+      "silentWholeRepositoryPrecache": false
+    },
+    "light-core-explicit": {
+      "baseDiscovery": "runtime-network-probe",
+      "baseMaxResourceBytes": 5242880,
+      "sessionMaxResourceBytes": 67108864,
+      "largeResourcePolicy": "explicit-subject-pack-only",
+      "generativeAiRequired": false,
+      "deterministicFallback": "light-subject-local-json",
+      "silentWholeRepositoryPrecache": false
+    }
+  },
+  "subjects": {
+    "russian": {
+      "id": "russian",
+      "engineRef": "russian-v13-specialist",
+      "routes": {
+        "main": "subjects/russian/index.html",
+        "editor": "subjects/russian/editor.html",
+        "manifest": "subjects/russian/subject-manifest.json",
+        "adapter": "subjects/russian/assets/subject-adapter.js"
+      },
+      "lessonTypePolicy": {
+        "allowed": [
+          "language"
+        ],
+        "default": "language",
+        "rules": []
+      },
+      "widgetRefs": [
+        "russian-dialogue-studio",
+        "russian-shadowing",
+        "russian-deep-speaking",
+        "russian-handwriting",
+        "russian-flashcards",
+        "russian-scheduled-exam"
+      ],
+      "dataSources": {
+        "root": "subjects/russian/data",
+        "catalogRefs": [
+          "routes.adapter#SUBJECT_ADAPTER.dataFiles",
+          "routes.adapter#SUBJECT_ADAPTER.optionalDataFiles",
+          "routes.adapter#SUBJECT_ADAPTER.lazyDataFiles",
+          "routes.manifest#dataFiles"
+        ],
+        "startup": [
+          "curriculum",
+          "lessons",
+          "grammar",
+          "grammar-path",
+          "mindmap",
+          "exercises",
+          "simulations",
+          "handwriting",
+          "writing",
+          "videos",
+          "knowledge-index"
+        ],
+        "requiredLazy": [
+          "vocab",
+          "tests",
+          "speaking"
+        ],
+        "optionalLazy": [
+          "dialogue-bauman-az",
+          "deep-speaking-bauman",
+          "speaking-link-index"
+        ],
+        "runtimeSupplemental": [],
+        "pathOverrides": {},
+        "lessonSourcePolicy": {
+          "primary": "lessons",
+          "specialistSources": [
+            "speaking",
+            "dialogue-bauman-az",
+            "deep-speaking-bauman",
+            "speaking-link-index",
+            "handwriting",
+            "writing",
+            "vocab",
+            "tests"
+          ],
+          "precedence": "stable-lesson-id-then-specialist-source-id"
+        }
+      },
+      "offlinePolicyRef": "russian-rich-explicit",
+      "compatibility": {
+        "mode": "read-only-adapter-bridge",
+        "directMigration": false,
+        "directFactoryRender": false,
+        "sourceMutation": false,
+        "learnerStateMigration": false,
+        "factoryPilot": false
+      }
+    },
+    "math": {
+      "id": "math",
+      "engineRef": "math-e126-specialist",
+      "routes": {
+        "main": "subjects/math/index.html",
+        "editor": "subjects/math/editor.html",
+        "manifest": "subjects/math/subject-manifest.json",
+        "adapter": "subjects/math/assets/subject-adapter.js"
+      },
+      "lessonTypePolicy": {
+        "allowed": [
+          "mathematics"
+        ],
+        "default": "mathematics",
+        "rules": []
+      },
+      "widgetRefs": [
+        "math-rich-theory-reader",
+        "math-formula-typesetter",
+        "math-step-solution",
+        "math-parameter-simulation",
+        "math-professor-oral"
+      ],
+      "dataSources": {
+        "root": "subjects/math/data",
+        "catalogRefs": [
+          "routes.adapter#SUBJECT_ADAPTER.dataFiles",
+          "routes.adapter#SUBJECT_ADAPTER.initialDataFiles",
+          "routes.adapter#SUBJECT_ADAPTER.optionalDataFiles",
+          "routes.adapter#SUBJECT_ADAPTER.dataSourceMeta",
+          "routes.manifest#dataFiles"
+        ],
+        "startup": [
+          "content_vault_manifest",
+          "discipline_spine",
+          "chapter_spine",
+          "curriculum",
+          "content-manifest",
+          "theory_lecture_frame",
+          "formula_frame",
+          "simulation_frame",
+          "exercise_frame",
+          "application_frame",
+          "professor_qa_frame",
+          "review_pack_frame",
+          "question_bank_frame",
+          "test_blueprint_frame",
+          "chapter_lecture_frame",
+          "mindmap_frame",
+          "concept_map_frame",
+          "media_frame",
+          "theory_lecture_content",
+          "formula_content",
+          "simulation_content",
+          "exercise_content",
+          "application_content",
+          "professor_qa_content",
+          "review_pack_content",
+          "question_bank_content",
+          "test_blueprint_content",
+          "chapter_lecture_content",
+          "mindmap_content",
+          "concept_map_content",
+          "media_content",
+          "formulas",
+          "simulations",
+          "exercises",
+          "applications",
+          "professor_qa",
+          "review_packs",
+          "question_bank",
+          "test_blueprints",
+          "chapter_lectures",
+          "mindmap",
+          "concept-map",
+          "videos",
+          "learning_rules",
+          "tests",
+          "content-index",
+          "knowledge-index",
+          "mastery-map",
+          "vocab",
+          "grammar",
+          "grammar-path"
+        ],
+        "requiredLazy": [
+          "lessons"
+        ],
+        "optionalLazy": [
+          "writing",
+          "handwriting",
+          "speaking",
+          "deep-speaking-bauman",
+          "speaking-link-index",
+          "dialogue-bauman-az"
+        ],
+        "runtimeSupplemental": [
+          "lessons-deferred"
+        ],
+        "pathOverrides": {
+          "lessons-deferred": "lessons_deferred.json"
+        },
+        "lessonSourcePolicy": {
+          "primary": "theory_lecture_content",
+          "legacyFull": "lessons",
+          "legacyStartup": "lessons-deferred",
+          "precedence": [
+            "window.DB.theory_lecture_content",
+            "subject-storage-theory-overlay",
+            "theory_lecture_content",
+            "registered-artifact-reader",
+            "explicit-legacy-lessons"
+          ]
+        }
+      },
+      "offlinePolicyRef": "math-rich-explicit",
+      "compatibility": {
+        "mode": "read-only-adapter-bridge",
+        "directMigration": false,
+        "directFactoryRender": false,
+        "sourceMutation": false,
+        "learnerStateMigration": false,
+        "factoryPilot": false
+      }
+    },
+    "programming": {
+      "id": "programming",
+      "engineRef": "programming-v2-specialist",
+      "routes": {
+        "main": "subjects/programming/index.html",
+        "editor": "subjects/programming/editor.html",
+        "manifest": "subjects/programming/subject-manifest.json",
+        "adapter": "subjects/programming/assets/subject-adapter.js"
+      },
+      "lessonTypePolicy": {
+        "allowed": [
+          "programming",
+          "database",
+          "software-design"
+        ],
+        "default": "programming",
+        "rules": [
+          {
+            "id": "database-lessons",
+            "type": "database",
+            "lessonIds": [
+              "PR06",
+              "PR15",
+              "PR20",
+              "PR21"
+            ]
+          },
+          {
+            "id": "software-design-lessons",
+            "type": "software-design",
+            "lessonIds": [
+              "PR17",
+              "PR18",
+              "PR19",
+              "PR22",
+              "PR24",
+              "PR30",
+              "PR32",
+              "PR38",
+              "PR39",
+              "PR40",
+              "PR41",
+              "PR43",
+              "PR44",
+              "PR46",
+              "PR47",
+              "PR48"
+            ]
+          }
+        ]
+      },
+      "widgetRefs": [
+        "programming-syntax-workflow",
+        "programming-software-lab",
+        "code-runner",
+        "sql-playground"
+      ],
+      "dataSources": {
+        "root": "subjects/programming/data",
+        "catalogRefs": [
+          "routes.adapter#SUBJECT_ADAPTER.dataFiles",
+          "routes.adapter#SUBJECT_ADAPTER.optionalDataFiles",
+          "routes.adapter#SUBJECT_ADAPTER.dataSourceMeta",
+          "routes.manifest#dataFiles"
+        ],
+        "startup": [
+          "curriculum",
+          "lessons",
+          "grammar",
+          "grammar-path",
+          "vocab",
+          "mindmap",
+          "exercises",
+          "tests",
+          "simulations",
+          "speaking",
+          "dialogue-bauman-az",
+          "handwriting",
+          "writing",
+          "videos",
+          "knowledge-index"
+        ],
+        "requiredLazy": [],
+        "optionalLazy": [
+          "deep-speaking-bauman",
+          "speaking-link-index"
+        ],
+        "runtimeSupplemental": [],
+        "pathOverrides": {},
+        "lessonSourcePolicy": {
+          "primary": "lessons",
+          "specialistSources": [
+            "grammar",
+            "exercises",
+            "tests",
+            "simulations",
+            "speaking",
+            "writing"
+          ],
+          "precedence": "stable-lesson-id-then-specialist-source-id"
+        }
+      },
+      "offlinePolicyRef": "programming-rich-explicit",
+      "compatibility": {
+        "mode": "read-only-adapter-bridge",
+        "directMigration": false,
+        "directFactoryRender": false,
+        "sourceMutation": false,
+        "learnerStateMigration": false,
+        "factoryPilot": false
+      }
+    },
+    "foundation": {
+      "id": "foundation",
+      "engineRef": "light-elearning-v2",
+      "routes": {
+        "main": "subjects/foundation/index.html",
+        "editor": "subjects/foundation/editor.html",
+        "manifest": "subjects/foundation/subject-manifest.json",
+        "manifestScript": "subjects/foundation/subject-manifest.js",
+        "runtime": "subjects/foundation/assets/foundation.js"
+      },
+      "lessonTypePolicy": {
+        "allowed": [
+          "language",
+          "mathematics",
+          "programming"
+        ],
+        "default": null,
+        "rules": [
+          {
+            "id": "foundation-classroom-and-study",
+            "type": "language",
+            "moduleIds": [
+              "f_s01",
+              "f_s05"
+            ]
+          },
+          {
+            "id": "foundation-math-and-physics",
+            "type": "mathematics",
+            "moduleIds": [
+              "f_s02",
+              "f_s04"
+            ]
+          },
+          {
+            "id": "foundation-computing",
+            "type": "programming",
+            "moduleIds": [
+              "f_s03"
+            ]
+          }
+        ],
+        "manualReviewModules": [
+          "f_m201",
+          "f_m202"
+        ]
+      },
+      "widgetRefs": [
+        "generic-elearning-flow",
+        "generic-simulation",
+        "generic-assessment"
+      ],
+      "dataSources": {
+        "root": "subjects/foundation/data",
+        "catalogRefs": [
+          "routes.manifest#data",
+          "routes.runtime#DATA_FILES"
+        ],
+        "startup": [
+          "curriculum",
+          "lessons",
+          "formulas",
+          "exercises",
+          "tests",
+          "knowledge-index"
+        ],
+        "requiredLazy": [],
+        "optionalLazy": [],
+        "runtimeSupplemental": [
+          "simulations"
+        ],
+        "pathOverrides": {},
+        "lessonSourcePolicy": {
+          "primary": "lessons",
+          "sourceVersion": "elearning-v1.1",
+          "precedence": "stable-lesson-id"
+        }
+      },
+      "offlinePolicyRef": "light-core-explicit",
+      "compatibility": {
+        "mode": "light-read-only-projection",
+        "directMigration": false,
+        "directFactoryRender": false,
+        "sourceMutation": false,
+        "learnerStateMigration": false,
+        "factoryPilot": true,
+        "pilotScope": "Only lessons with a deterministic B9 lesson-type classification."
+      }
+    },
+    "ai": {
+      "id": "ai",
+      "engineRef": "light-elearning-v2",
+      "routes": {
+        "main": "subjects/ai/index.html",
+        "editor": "subjects/ai/editor.html",
+        "manifest": "subjects/ai/subject-manifest.json",
+        "manifestScript": "subjects/ai/subject-manifest.js",
+        "runtime": "subjects/ai/assets/ai.js"
+      },
+      "lessonTypePolicy": {
+        "allowed": [
+          "ml-data"
+        ],
+        "default": "ml-data",
+        "rules": []
+      },
+      "widgetRefs": [
+        "generic-elearning-flow",
+        "generic-simulation",
+        "generic-assessment",
+        "model-metric-visual"
+      ],
+      "dataSources": {
+        "root": "subjects/ai/data",
+        "catalogRefs": [
+          "routes.manifest#data",
+          "routes.runtime#DATA_FILES"
+        ],
+        "startup": [
+          "curriculum",
+          "lessons",
+          "formulas",
+          "exercises",
+          "tests",
+          "knowledge-index"
+        ],
+        "requiredLazy": [],
+        "optionalLazy": [],
+        "runtimeSupplemental": [
+          "simulations"
+        ],
+        "pathOverrides": {},
+        "lessonSourcePolicy": {
+          "primary": "lessons",
+          "sourceVersion": "elearning-v1.1",
+          "precedence": "stable-lesson-id"
+        }
+      },
+      "offlinePolicyRef": "light-core-explicit",
+      "compatibility": {
+        "mode": "light-read-only-projection",
+        "directMigration": false,
+        "directFactoryRender": false,
+        "sourceMutation": false,
+        "learnerStateMigration": false,
+        "factoryPilot": false
+      }
+    },
+    "signal": {
+      "id": "signal",
+      "engineRef": "light-elearning-v2",
+      "routes": {
+        "main": "subjects/signal/index.html",
+        "editor": "subjects/signal/editor.html",
+        "manifest": "subjects/signal/subject-manifest.json",
+        "manifestScript": "subjects/signal/subject-manifest.js",
+        "runtime": "subjects/signal/assets/signal.js"
+      },
+      "lessonTypePolicy": {
+        "allowed": [
+          "ml-data",
+          "mathematics"
+        ],
+        "default": "ml-data",
+        "rules": []
+      },
+      "widgetRefs": [
+        "generic-elearning-flow",
+        "generic-simulation",
+        "generic-assessment",
+        "signal-plot"
+      ],
+      "dataSources": {
+        "root": "subjects/signal/data",
+        "catalogRefs": [
+          "routes.manifest#data",
+          "routes.runtime#DATA_FILES"
+        ],
+        "startup": [
+          "curriculum",
+          "lessons",
+          "formulas",
+          "exercises",
+          "tests",
+          "knowledge-index"
+        ],
+        "requiredLazy": [],
+        "optionalLazy": [],
+        "runtimeSupplemental": [
+          "simulations"
+        ],
+        "pathOverrides": {},
+        "lessonSourcePolicy": {
+          "primary": "lessons",
+          "sourceVersion": "elearning-v1.1",
+          "precedence": "stable-lesson-id"
+        }
+      },
+      "offlinePolicyRef": "light-core-explicit",
+      "compatibility": {
+        "mode": "light-read-only-projection",
+        "directMigration": false,
+        "directFactoryRender": false,
+        "sourceMutation": false,
+        "learnerStateMigration": false,
+        "factoryPilot": false
+      }
+    },
+    "systems": {
+      "id": "systems",
+      "engineRef": "light-elearning-v2",
+      "routes": {
+        "main": "subjects/systems/index.html",
+        "editor": "subjects/systems/editor.html",
+        "manifest": "subjects/systems/subject-manifest.json",
+        "manifestScript": "subjects/systems/subject-manifest.js",
+        "runtime": "subjects/systems/assets/systems.js"
+      },
+      "lessonTypePolicy": {
+        "allowed": [
+          "asoiu-system",
+          "software-design"
+        ],
+        "default": "asoiu-system",
+        "rules": []
+      },
+      "widgetRefs": [
+        "generic-elearning-flow",
+        "generic-simulation",
+        "generic-assessment",
+        "system-architecture-workspace"
+      ],
+      "dataSources": {
+        "root": "subjects/systems/data",
+        "catalogRefs": [
+          "routes.manifest#data",
+          "routes.runtime#DATA_FILES"
+        ],
+        "startup": [
+          "curriculum",
+          "lessons",
+          "formulas",
+          "exercises",
+          "tests",
+          "knowledge-index"
+        ],
+        "requiredLazy": [],
+        "optionalLazy": [],
+        "runtimeSupplemental": [
+          "simulations"
+        ],
+        "pathOverrides": {},
+        "lessonSourcePolicy": {
+          "primary": "lessons",
+          "sourceVersion": "elearning-v1.1",
+          "precedence": "stable-lesson-id"
+        }
+      },
+      "offlinePolicyRef": "light-core-explicit",
+      "compatibility": {
+        "mode": "light-read-only-projection",
+        "directMigration": false,
+        "directFactoryRender": false,
+        "sourceMutation": false,
+        "learnerStateMigration": false,
+        "factoryPilot": false
+      }
+    },
+    "research": {
+      "id": "research",
+      "engineRef": "light-elearning-v2",
+      "routes": {
+        "main": "subjects/research/index.html",
+        "editor": "subjects/research/editor.html",
+        "manifest": "subjects/research/subject-manifest.json",
+        "manifestScript": "subjects/research/subject-manifest.js",
+        "runtime": "subjects/research/assets/research.js"
+      },
+      "lessonTypePolicy": {
+        "allowed": [
+          "research"
+        ],
+        "default": "research",
+        "rules": []
+      },
+      "widgetRefs": [
+        "generic-elearning-flow",
+        "generic-simulation",
+        "generic-assessment",
+        "research-evidence-board"
+      ],
+      "dataSources": {
+        "root": "subjects/research/data",
+        "catalogRefs": [
+          "routes.manifest#data",
+          "routes.runtime#DATA_FILES"
+        ],
+        "startup": [
+          "curriculum",
+          "lessons",
+          "formulas",
+          "exercises",
+          "tests",
+          "knowledge-index"
+        ],
+        "requiredLazy": [],
+        "optionalLazy": [],
+        "runtimeSupplemental": [
+          "simulations"
+        ],
+        "pathOverrides": {},
+        "lessonSourcePolicy": {
+          "primary": "lessons",
+          "sourceVersion": "elearning-v1.1",
+          "precedence": "stable-lesson-id"
+        }
+      },
+      "offlinePolicyRef": "light-core-explicit",
+      "compatibility": {
+        "mode": "light-read-only-projection",
+        "directMigration": false,
+        "directFactoryRender": false,
+        "sourceMutation": false,
+        "learnerStateMigration": false,
+        "factoryPilot": false
+      }
+    }
+  },
+  "auditFindings": [
+    {
+      "id": "LIGHT-MANIFEST-SIMULATION-GAP",
+      "severity": "bounded",
+      "finding": "The five light subject JSON manifests declare six data files while their runtimes load simulations.json as a seventh source.",
+      "decision": "Register simulations as audited-runtime-supplemental in B9; do not rewrite the five working runtimes."
+    },
+    {
+      "id": "FOUNDATION-MIXED-TYPE-GAP",
+      "severity": "fail-closed",
+      "finding": "Foundation contains language, mathematics, computing, entrepreneurship and legal/civic modules; the last two do not have a safe automatic mapping to the locked eight lesson types.",
+      "decision": "Pilot only deterministically classified modules; return UNCLASSIFIED_LESSON for f_m201 and f_m202 until content/type review."
+    },
+    {
+      "id": "MATH-AUTHORITATIVE-SOURCE-PRECEDENCE",
+      "severity": "critical",
+      "finding": "Math current theory uses an authoritative artifact/content reader while the large legacy lessons.json is a deferred compatibility source.",
+      "decision": "Register theory_lecture_content and artifact-reader precedence; never choose legacy content by array index or preload the full legacy source."
+    },
+    {
+      "id": "RUSSIAN-REQUIRED-LAZY-PERSISTENCE",
+      "severity": "critical",
+      "finding": "Russian vocab, tests and speaking are required sources deferred from startup without becoming persistence-excluded optional sources.",
+      "decision": "Register them as required-lazy, separate from the three optional specialist sources."
+    }
+  ],
+  "forwardOwnership": {
+    "L6-B10": "Renderer selection, projection execution and legacy bridges",
+    "L6-B11": "Reference-subject runtime, responsive, offline and rollback regression",
+    "L7": "Reviewed Russian and Mathematics Universal Lesson projections",
+    "L8": "Programming, database and software-design interactive widgets",
+    "L9": "AI/data and signal visual labs",
+    "L10": "ASOIU/system architecture interactions",
+    "L12": "Full Russian Twin and English Research learner UI",
+    "runtimeWiringInB9": false
+  },
+  "rollback": {
+    "scope": "Remove the B9 registry, resolver, decision record, generated report and workflow gate; restore progress markers to B8.",
+    "sourceContentImpact": "none",
+    "learnerStateImpact": "none",
+    "legacyRuntimeImpact": "none",
+    "offlineCacheImpact": "none"
+  }
+}

@@ -2,7 +2,7 @@
 
 Current task: `L6-B9_SUBJECT_FACTORY_REGISTRY`
 
-Status: `L6_B8_PASS_READY_FOR_L6_B9`
+Status: `L6_B9_LOCAL_PASS_PENDING_REMOTE_CI`
 
 Date: 2026-08-24
 Branch: `migration/webapp-l1-audit-storage`
@@ -11,14 +11,11 @@ Main sync status: `branch_only`
 
 Files changed:
 - `.github/workflows/migration-l6-academic.yml`
-- `assets/data/lesson/schema/universal-lesson-v2.schema.json`
-- `assets/data/lesson/schema/lesson-migration-registry-v1.json`
-- `assets/js/platform/universal-lesson/lesson-schema-validator-v1.js`
-- `assets/js/platform/universal-lesson/lesson-version-migrator-v1.js`
-- `scripts/academic/fixtures/l6-b8/*.json`
-- `scripts/academic/l6-b8-schema-migration-regression.cjs`
-- `docs/migration/L6_B8_LESSON_SCHEMA_VALIDATOR_MIGRATION.md`
-- `docs/migration/L6_B8_SCHEMA_MIGRATION_REGRESSION.generated.json`
+- `assets/data/lesson/subject-factory-registry-v1.json`
+- `assets/js/platform/universal-lesson/subject-factory-registry-v1.js`
+- `scripts/academic/l6-b9-subject-factory-regression.cjs`
+- `docs/migration/L6_B9_SUBJECT_FACTORY_REGISTRY.md`
+- `docs/migration/L6_B9_SUBJECT_FACTORY_REGRESSION.generated.json`
 - `docs/migration/MIGRATION_PLAN.md`
 - `CODEX_STATE.md`
 
@@ -54,6 +51,17 @@ What changed:
   planned remote status context `migration/l6-b8-schema-migration`.
 - Locked L6-B8 after GitHub Actions run `32721005666` reported B1-B8 contexts
   successful at feature commit `b627464e5691972c2367de1367b371a657f851db`.
+- Audited all eight current Main subjects, three specialist adapters, five
+  light manifests/runtimes, source inventories and L5 offline limits.
+- Added the read-only B9 Subject Factory registry and secure resolver for
+  subject, primary lesson type, widget, data-source and offline-policy lookup.
+- Locked Foundation to deterministic module mappings and held `f_m201` /
+  `f_m202` at `UNCLASSIFIED_LESSON` instead of forcing a wrong default.
+- Preserved Russian required-lazy persistence semantics, Mathematics
+  authoritative theory precedence and the five light runtime simulation
+  supplements without changing any existing subject runtime or content.
+- Added the deterministic B9 gate, eight mutation tests and planned remote
+  context `migration/l6-b9-subject-factory`.
 - Did not change learner content, subject runtime, storage, offline policy,
   service worker or `main`.
 
@@ -81,6 +89,18 @@ Verification:
   failures, diagnostics 14/14, offline integrity 5/5: PASS
 - L6-B8 GitHub Actions run `32721005666`: PASS
 - L6-B8 remote context `migration/l6-b8-schema-migration`: PASS
+- L6-B9 deterministic Subject Factory regression, 340/340 checks: LOCAL PASS
+- L6-B9 source resolution, 128/128 current sources: LOCAL PASS
+- L6-B9 current lesson classification/held outcomes, 631/631: LOCAL PASS
+- L6-B9 mutation tests, 8/8 expected failures observed: LOCAL PASS
+- L6-B9 report deterministic SHA-256:
+  `af8145f87c739400cfa5c4c04ec8c015914d5920fce89e146f15591d894e78a3`
+- L6-B1 through L6-B9 sequential local gates: PASS
+- L5 clean-baseline regression after B9: routing 9/9, service worker 17/17,
+  academic runtime 36/36, roadmap/offline 75/75, 8 subjects with 0 data-load
+  failures, diagnostics 14/14, offline integrity 5/5: PASS
+- B9 workflow YAML and JavaScript syntax: LOCAL PASS
+- L6-B9 GitHub Actions/context: PENDING; B9 is not yet declared PASS
 - B1-B7 report hashes stable over consecutive runs: PASS
 - B7 mutation tests (activation, review authority, English coverage,
   rescue evidence, assessment leakage), 5/5 expected failures observed: PASS
@@ -102,9 +122,9 @@ Main sync / pull instruction:
 - Do not merge to `main` until the corresponding L6 gates pass.
 
 Next recommended task:
-- Audit current subject manifests/adapters/data-source and offline policies,
-  then implement the L6-B9 Subject Factory registry without wiring the B10
-  renderer or changing Russian/Mathematics runtime.
+- Publish the exact B9 checkpoint to the working branch, wait for all B1-B9
+  contexts, lock B9 only if `migration/l6-b9-subject-factory` succeeds, then
+  begin L6-B10 renderer/legacy bridge design.
 
 Next actor:
 - Codex
