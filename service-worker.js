@@ -1,6 +1,6 @@
 'use strict';
 
-const VERSION='2026.08.24-l5.7';
+const VERSION='2026.08.24-l5.8';
 const CACHE_NAME=`bauman-shell-${VERSION}`;
 const OFFLINE_CONTENT_CACHE='bauman-offline-content-v1';
 const ROADMAP_MANIFEST='./assets/data/roadmap/iu5-090401-11-v3.json';
@@ -60,12 +60,18 @@ async function explicitOfflineMatch(request){
   return (await cache.match(request,{ignoreSearch:false}))||(await cache.match(canonicalRequestUrl(url.href),{ignoreSearch:false}))||null;
 }
 
-async function revalidateExplicit(request){
+async function shellMatch(request,url){
+  if(!cacheEligible(url))return null;
+  const cache=await caches.open(CACHE_NAME);
+  return (await cache.match(request,{ignoreSearch:false}))||(await cache.match(url.pathname.replace(/^\//,'./'),{ignoreSearch:false}))||null;
+}
+
+async function refreshCache(request,cacheName,key){
   try{
     const response=await fetch(request,{cache:'no-cache'});
     if(!response||!response.ok)return false;
-    const cache=await caches.open(OFFLINE_CONTENT_CACHE);
-    await cache.put(canonicalRequestUrl(request.url),response.clone());
+    const cache=await caches.open(cacheName);
+    await cache.put(key,response.clone());
     return true;
   }catch(_){return false;}
 }
@@ -102,28 +108,21 @@ self.addEventListener('fetch',(event)=>{
   if(url.origin!==self.location.origin)return;
 
   const explicitPromise=explicitOfflineMatch(request);
-  const explicitRefresh=explicitPromise.then((cached)=>cached?revalidateExplicit(request):false).catch(()=>false);
-  event.waitUntil(explicitRefresh);
+  const shellPromise=shellMatch(request,url);
+  const refreshPromise=Promise.all([explicitPromise,shellPromise]).then(([explicit,shellCached])=>{
+    if(explicit)return refreshCache(request,OFFLINE_CONTENT_CACHE,canonicalRequestUrl(request.url));
+    if(shellCached)return refreshCache(request,CACHE_NAME,request);
+    return false;
+  }).catch(()=>false);
+  event.waitUntil(refreshPromise);
 
   event.respondWith((async()=>{
     const explicit=await explicitPromise;
     if(explicit)return explicit;
 
-    if(!cacheEligible(url)){
-      try{return await fetch(request);}catch(_){return Response.error();}
-    }
+    const shellCached=await shellPromise;
+    if(shellCached)return shellCached;
 
-    const cache=await caches.open(CACHE_NAME);
-    const cached=await cache.match(request,{ignoreSearch:false})||await cache.match(url.pathname.replace(/^\//,'./'),{ignoreSearch:false});
-    const networkPromise=fetch(request).then(async(response)=>{
-      if(response&&response.ok)await cache.put(request,response.clone());
-      return response;
-    }).catch(()=>null);
-
-    if(cached){
-      event.waitUntil(networkPromise);
-      return cached;
-    }
-    return (await networkPromise)||Response.error();
+    try{return await fetch(request);}catch(_){return Response.error();}
   })());
 });
