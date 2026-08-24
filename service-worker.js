@@ -2,6 +2,7 @@
 
 const VERSION='2026.08.24-l5.3';
 const CACHE_NAME=`bauman-shell-${VERSION}`;
+const OFFLINE_CONTENT_CACHE='bauman-offline-content-v1';
 const ROADMAP_MANIFEST='./assets/data/roadmap/iu5-090401-11-v3.json';
 const SHELL=[
   './',
@@ -24,6 +25,7 @@ const SHELL=[
   './assets/js/platform/site-routing-bridge.js',
   './assets/js/platform/offline-library-ui.js',
   './assets/js/platform/offline-html-sandbox-guard.js',
+  './assets/js/platform/offline-subject-pack-manager.js',
   './assets/js/data.js',
   './assets/js/main.js',
   './assets/js/planning-main.js',
@@ -37,6 +39,16 @@ function cacheEligible(url){
   if(path.includes('/data/')||path.includes('/external-data/'))return false;
   if(path.endsWith('.json'))return false;
   return /\.(?:html?|css|js|svg|png|jpg|jpeg|webp|ico)$/.test(path)||path.endsWith('/');
+}
+
+async function explicitOfflineMatch(request){
+  const url=new URL(request.url);
+  if(url.origin!==self.location.origin)return null;
+  const cache=await caches.open(OFFLINE_CONTENT_CACHE);
+  let cached=await cache.match(request,{ignoreSearch:false});
+  if(cached)return cached;
+  if(url.search){url.search='';cached=await cache.match(url.href,{ignoreSearch:false});}
+  return cached||null;
 }
 
 self.addEventListener('install',(event)=>{
@@ -64,9 +76,16 @@ self.addEventListener('fetch',(event)=>{
   const request=event.request;
   if(request.method!=='GET')return;
   const url=new URL(request.url);
-  if(!cacheEligible(url))return;
+  if(url.origin!==self.location.origin)return;
 
   event.respondWith((async()=>{
+    const explicit=await explicitOfflineMatch(request);
+    if(explicit)return explicit;
+
+    if(!cacheEligible(url)){
+      try{return await fetch(request);}catch(_){return Response.error();}
+    }
+
     const cache=await caches.open(CACHE_NAME);
     const cached=await cache.match(request,{ignoreSearch:false})||await cache.match(url.pathname.replace(/^\//,'./'),{ignoreSearch:false});
     const networkPromise=fetch(request).then(async(response)=>{
