@@ -107,7 +107,7 @@ L5 PASS nhưng `serviceWorkerCache` production vẫn OFF. Chỉ bật ở stagin
 
 ## Lượt 6 · Universal Lesson Architecture & Subject Factory · 11 bước
 
-Trạng thái: **B1–B7 PASS · B8 LOCAL PASS, CHỜ REMOTE CI**.
+Trạng thái: **B1–B8 PASS · B9 CHƯA BẮT ĐẦU**.
 
 Bằng chứng B1:
 - Audit quyết định: L6_B1_REFERENCE_IMPLEMENTATION_AUDIT.md.
@@ -259,8 +259,7 @@ Bằng chứng B7:
   17/17, academic runtime 36/36, roadmap/offline static 75/75, data loading 8
   môn với 0 lỗi, runtime diagnostics 14/14, offline report integrity 5/5.
 
-Bằng chứng B8 local, chưa được phép ghi PASS cho tới khi remote context thành
-công:
+Bằng chứng B8:
 - Schema Draft 2020-12:
   `assets/data/lesson/schema/universal-lesson-v2.schema.json`; validator và
   pure dry-run migrator dùng browser UMD, không thêm dependency và không nối
@@ -290,8 +289,9 @@ công:
 - Decision record:
   `docs/migration/L6_B8_LESSON_SCHEMA_VALIDATOR_MIGRATION.md`; evidence:
   `docs/migration/L6_B8_SCHEMA_MIGRATION_REGRESSION.generated.json`.
-- Remote context dự kiến: `migration/l6-b8-schema-migration`. Chưa có remote
-  commit/run thành công nên B8 vẫn **chờ remote CI**.
+- Remote gate: commit `b627464e5691972c2367de1367b371a657f851db`,
+  run `32721005666`, context `migration/l6-b8-schema-migration` = `success`;
+  B1-B7 contexts trong cùng run đều `success`.
 
 1. **L6-B1** · Audit sâu ba reference implementations: Tiếng Nga, Toán và nguyên tắc UX bài giảng Bơi ếch; lập bảng phần nào giữ, phần nào chuẩn hóa, phần nào không dùng chung. **PASS**.
 2. **L6-B2** · Định nghĩa `UniversalLessonContract` gồm metadata, prerequisite, objectives, theory, example, exercise, lab/simulation, misconception, visual-check, oral, review, test, mastery, project/NIR evidence. **PASS**.
@@ -301,7 +301,7 @@ công:
 6. **L6-B6** · Định nghĩa Visual Teaching Contract: hình/diagram/step-state/correct-wrong/interactive feedback, kế thừa tinh thần Bơi ếch nhưng phù hợp môn kỹ thuật. **PASS**.
 7. **L6-B7** · Định nghĩa Russian Twin + English Research Layer hooks ngay trong contract, chưa ép hiển thị toàn bộ trước L12. **PASS**.
 8. Tạo machine-readable lesson schema + validator + version migration.
-   **LOCAL PASS · CHỜ REMOTE CI**.
+   **PASS**.
 9. Tạo Subject Factory registry: subject → engine → lesson types → special widgets → data sources → offline policy.
 10. Tạo Universal Lesson Renderer/bridge dùng được với content engine hiện tại mà không phá Russian/Math legacy.
 11. Regression reference subjects + rollback checkpoint; chỉ PASS khi Russian/Math không giảm chức năng và một subject nhẹ dựng được bằng Factory.

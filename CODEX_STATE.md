@@ -1,8 +1,8 @@
 # CODEX_STATE
 
-Current task: `L6-B8_LESSON_SCHEMA_VALIDATOR_MIGRATION`
+Current task: `L6-B9_SUBJECT_FACTORY_REGISTRY`
 
-Status: `IN_PROGRESS`
+Status: `L6_B8_PASS_READY_FOR_L6_B9`
 
 Date: 2026-08-24
 Branch: `migration/webapp-l1-audit-storage`
@@ -52,7 +52,8 @@ What changed:
   retained wrapper/unmapped fields without placeholder blocks.
 - Added B8 negative fixtures, six mutation tests, generated evidence and the
   planned remote status context `migration/l6-b8-schema-migration`.
-- B8 is local PASS only and remains pending remote CI.
+- Locked L6-B8 after GitHub Actions run `32721005666` reported B1-B8 contexts
+  successful at feature commit `b627464e5691972c2367de1367b371a657f851db`.
 - Did not change learner content, subject runtime, storage, offline policy,
   service worker or `main`.
 
@@ -78,7 +79,8 @@ Verification:
 - L5 clean-baseline regression after B8: routing 9/9, service worker 17/17,
   academic runtime 36/36, roadmap/offline 75/75, 8 subjects with 0 data-load
   failures, diagnostics 14/14, offline integrity 5/5: PASS
-- B8 GitHub Actions context: PENDING
+- L6-B8 GitHub Actions run `32721005666`: PASS
+- L6-B8 remote context `migration/l6-b8-schema-migration`: PASS
 - B1-B7 report hashes stable over consecutive runs: PASS
 - B7 mutation tests (activation, review authority, English coverage,
   rescue evidence, assessment leakage), 5/5 expected failures observed: PASS
@@ -100,9 +102,9 @@ Main sync / pull instruction:
 - Do not merge to `main` until the corresponding L6 gates pass.
 
 Next recommended task:
-- Push the reviewed B8 checkpoint to the working branch, require all B1-B8
-  GitHub Actions contexts to succeed, then lock B8 and begin L6-B9 Subject
-  Factory registry work.
+- Audit current subject manifests/adapters/data-source and offline policies,
+  then implement the L6-B9 Subject Factory registry without wiring the B10
+  renderer or changing Russian/Mathematics runtime.
 
 Next actor:
 - Codex
