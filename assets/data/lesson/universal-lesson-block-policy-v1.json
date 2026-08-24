@@ -1,0 +1,788 @@
+{
+  "policyId": "bauman-universal-lesson-block-policy",
+  "policyVersion": "1.0.0",
+  "status": "L6-B3-POLICY",
+  "contractRef": {
+    "path": "assets/data/lesson/universal-lesson-contract-v2.json",
+    "contractId": "bauman-universal-lesson-contract",
+    "schemaVersion": "2.0.0"
+  },
+  "requirementStates": {
+    "required": {
+      "meaning": "The semantic capability must resolve to valid inline or external content before the lesson can satisfy its profile.",
+      "emptyBehavior": "validation-error"
+    },
+    "optional": {
+      "meaning": "Use the block only when useful source content or a specialist capability exists.",
+      "emptyBehavior": "omit-without-placeholder"
+    },
+    "conditional": {
+      "meaning": "The block becomes required only when its named condition evaluates true.",
+      "falseBehavior": "omit-without-placeholder",
+      "trueEmptyBehavior": "validation-error"
+    },
+    "forbidden": {
+      "meaning": "The block is not allowed in the resolved lesson mode because it would leak, duplicate or misrepresent learning state.",
+      "presentBehavior": "validation-error-and-quarantine"
+    }
+  },
+  "fulfillmentModes": {
+    "inline": {
+      "meaning": "The universal projection supplies a payload."
+    },
+    "external": {
+      "meaning": "A registered specialist engine or authoritative artifact supplies the semantic capability."
+    },
+    "either": {
+      "meaning": "Inline payload or a registered specialist capability may satisfy the policy."
+    }
+  },
+  "conditionCatalog": {
+    "teaches-new-concept": {
+      "scope": "lesson",
+      "expression": "metadata.flags.teachesNewConcept === true",
+      "reason": "Practice-only lessons need not manufacture a theory view."
+    },
+    "has-worked-procedure": {
+      "scope": "lesson",
+      "expression": "metadata.flags.hasWorkedProcedure === true || sourceBindings contain worked-example",
+      "reason": "A worked example is required only when a model procedure exists."
+    },
+    "requires-interactive-manipulation": {
+      "scope": "lesson",
+      "expression": "metadata.flags.requiresInteractiveManipulation === true",
+      "reason": "Labs and simulations are learning tools, not decorative mandatory widgets."
+    },
+    "has-diagnosable-visual-state": {
+      "scope": "lesson",
+      "expression": "metadata.flags.hasDiagnosableVisualState === true",
+      "reason": "Visual checks are required when a meaningful correct/wrong or state comparison exists."
+    },
+    "requires-oral-performance": {
+      "scope": "lesson",
+      "expression": "metadata.flags.requiresOralPerformance === true",
+      "reason": "Oral evidence is activated by language, seminar or defense policy."
+    },
+    "assessment-blueprint-present": {
+      "scope": "lesson",
+      "expression": "metadata.assessmentBlueprintRef is present",
+      "reason": "The contract must not synthesize an official test from empty content."
+    },
+    "project-or-nir-link-present": {
+      "scope": "lesson",
+      "expression": "contextRefs.nirVkrContext or metadata.projectRef is present",
+      "reason": "Project and research evidence appears only when the lesson has a traceable milestone."
+    },
+    "has-concept-relations": {
+      "scope": "lesson",
+      "expression": "prerequisites are populated || metadata.conceptGraphRef is present",
+      "reason": "A concept map is useful only when relations exist."
+    },
+    "has-source-backed-misconceptions": {
+      "scope": "lesson",
+      "expression": "source bindings contain misconception or diagnostic records",
+      "reason": "Do not invent common errors merely to satisfy a template."
+    },
+    "has-experiment-or-dataset": {
+      "scope": "lesson",
+      "expression": "metadata.experimentRef or metadata.datasetRef is present",
+      "reason": "Research labs activate only for an actual experiment or dataset."
+    },
+    "post-diagnostic-repair-needed": {
+      "scope": "learner-state",
+      "expression": "assessmentErrors are non-empty || weakTopics are non-empty",
+      "reason": "Recovery content appears after a diagnosed gap."
+    }
+  },
+  "basePolicy": {
+    "orientation": {
+      "requirement": "required",
+      "fulfillment": "either"
+    },
+    "concept-map": {
+      "requirement": "conditional",
+      "fulfillment": "either",
+      "conditionRef": "has-concept-relations"
+    },
+    "theory": {
+      "requirement": "conditional",
+      "fulfillment": "either",
+      "conditionRef": "teaches-new-concept"
+    },
+    "worked-example": {
+      "requirement": "conditional",
+      "fulfillment": "either",
+      "conditionRef": "has-worked-procedure"
+    },
+    "exercise": {
+      "requirement": "required",
+      "fulfillment": "either"
+    },
+    "lab-simulation": {
+      "requirement": "conditional",
+      "fulfillment": "either",
+      "conditionRef": "requires-interactive-manipulation"
+    },
+    "misconception": {
+      "requirement": "conditional",
+      "fulfillment": "either",
+      "conditionRef": "has-source-backed-misconceptions"
+    },
+    "visual-check": {
+      "requirement": "conditional",
+      "fulfillment": "either",
+      "conditionRef": "has-diagnosable-visual-state"
+    },
+    "oral": {
+      "requirement": "conditional",
+      "fulfillment": "either",
+      "conditionRef": "requires-oral-performance"
+    },
+    "review": {
+      "requirement": "required",
+      "fulfillment": "either"
+    },
+    "assessment": {
+      "requirement": "conditional",
+      "fulfillment": "either",
+      "conditionRef": "assessment-blueprint-present"
+    },
+    "mastery": {
+      "requirement": "required",
+      "fulfillment": "either"
+    },
+    "project-nir-evidence": {
+      "requirement": "conditional",
+      "fulfillment": "either",
+      "conditionRef": "project-or-nir-link-present"
+    }
+  },
+  "lessonTypePolicyRefs": [
+    "language",
+    "mathematics",
+    "programming",
+    "database",
+    "software-design",
+    "ml-data",
+    "asoiu-system",
+    "research"
+  ],
+  "policiesByLessonType": {
+    "language": {
+      "definitionRef": "L6-B4#language",
+      "overrides": {
+        "concept-map": {
+          "requirement": "optional",
+          "fulfillment": "either"
+        },
+        "theory": {
+          "requirement": "conditional",
+          "fulfillment": "either",
+          "conditionRef": "teaches-new-concept",
+          "capabilityRefs": [
+            "grammar",
+            "vocabulary"
+          ]
+        },
+        "worked-example": {
+          "requirement": "conditional",
+          "fulfillment": "either",
+          "conditionRef": "has-worked-procedure",
+          "capabilityRefs": [
+            "dialogue-model",
+            "writing-model"
+          ]
+        },
+        "lab-simulation": {
+          "requirement": "optional",
+          "fulfillment": "either",
+          "capabilityRefs": [
+            "language-media",
+            "handwriting-workspace"
+          ]
+        },
+        "visual-check": {
+          "requirement": "conditional",
+          "fulfillment": "either",
+          "conditionRef": "has-diagnosable-visual-state",
+          "capabilityRefs": [
+            "pronunciation-state",
+            "handwriting-state",
+            "language-media"
+          ]
+        },
+        "oral": {
+          "requirement": "required",
+          "fulfillment": "external",
+          "capabilityRefs": [
+            "dialogue",
+            "shadowing",
+            "deep-speaking",
+            "speech-recording"
+          ]
+        },
+        "project-nir-evidence": {
+          "requirement": "optional",
+          "fulfillment": "either"
+        }
+      }
+    },
+    "mathematics": {
+      "definitionRef": "L6-B4#mathematics",
+      "overrides": {
+        "concept-map": {
+          "requirement": "required",
+          "fulfillment": "either",
+          "capabilityRefs": [
+            "math-concept-map"
+          ]
+        },
+        "theory": {
+          "requirement": "required",
+          "fulfillment": "either",
+          "capabilityRefs": [
+            "authoritative-theory-deck",
+            "formula-typesetting",
+            "matrix-rendering"
+          ]
+        },
+        "worked-example": {
+          "requirement": "required",
+          "fulfillment": "either",
+          "capabilityRefs": [
+            "derivation",
+            "artifact-reader"
+          ]
+        },
+        "misconception": {
+          "requirement": "required",
+          "fulfillment": "either",
+          "capabilityRefs": [
+            "misconception-map",
+            "common-mistakes"
+          ]
+        },
+        "lab-simulation": {
+          "requirement": "conditional",
+          "fulfillment": "external",
+          "conditionRef": "requires-interactive-manipulation",
+          "capabilityRefs": [
+            "parameter-simulation"
+          ]
+        },
+        "visual-check": {
+          "requirement": "conditional",
+          "fulfillment": "external",
+          "conditionRef": "has-diagnosable-visual-state",
+          "capabilityRefs": [
+            "formula-diagram",
+            "matrix-visualizer",
+            "plot"
+          ]
+        },
+        "oral": {
+          "requirement": "required",
+          "fulfillment": "external",
+          "capabilityRefs": [
+            "professor-oral-defense"
+          ]
+        }
+      }
+    },
+    "programming": {
+      "definitionRef": "L6-B4#programming",
+      "overrides": {
+        "concept-map": {
+          "requirement": "optional",
+          "fulfillment": "either"
+        },
+        "worked-example": {
+          "requirement": "conditional",
+          "fulfillment": "either",
+          "conditionRef": "has-worked-procedure",
+          "capabilityRefs": [
+            "code-trace"
+          ]
+        },
+        "lab-simulation": {
+          "requirement": "required",
+          "fulfillment": "external",
+          "capabilityRefs": [
+            "code-lab",
+            "unit-test",
+            "debug-runner"
+          ]
+        },
+        "visual-check": {
+          "requirement": "conditional",
+          "fulfillment": "external",
+          "conditionRef": "has-diagnosable-visual-state",
+          "capabilityRefs": [
+            "code-trace",
+            "test-output-diff"
+          ]
+        },
+        "oral": {
+          "requirement": "conditional",
+          "fulfillment": "either",
+          "conditionRef": "requires-oral-performance",
+          "capabilityRefs": [
+            "code-review-defense"
+          ]
+        }
+      }
+    },
+    "database": {
+      "definitionRef": "L6-B4#database",
+      "overrides": {
+        "concept-map": {
+          "requirement": "required",
+          "fulfillment": "either",
+          "capabilityRefs": [
+            "schema-diagram"
+          ]
+        },
+        "theory": {
+          "requirement": "required",
+          "fulfillment": "either"
+        },
+        "worked-example": {
+          "requirement": "required",
+          "fulfillment": "either",
+          "capabilityRefs": [
+            "query-walkthrough"
+          ]
+        },
+        "lab-simulation": {
+          "requirement": "required",
+          "fulfillment": "external",
+          "capabilityRefs": [
+            "sql-playground",
+            "transaction-scenario"
+          ]
+        },
+        "visual-check": {
+          "requirement": "required",
+          "fulfillment": "external",
+          "capabilityRefs": [
+            "schema-diagram",
+            "query-plan"
+          ]
+        }
+      }
+    },
+    "software-design": {
+      "definitionRef": "L6-B4#software-design",
+      "overrides": {
+        "concept-map": {
+          "requirement": "required",
+          "fulfillment": "either",
+          "capabilityRefs": [
+            "requirement-map"
+          ]
+        },
+        "theory": {
+          "requirement": "required",
+          "fulfillment": "either"
+        },
+        "worked-example": {
+          "requirement": "required",
+          "fulfillment": "either",
+          "capabilityRefs": [
+            "design-case"
+          ]
+        },
+        "lab-simulation": {
+          "requirement": "conditional",
+          "fulfillment": "external",
+          "conditionRef": "requires-interactive-manipulation",
+          "capabilityRefs": [
+            "uml-workspace",
+            "architecture-workspace"
+          ]
+        },
+        "visual-check": {
+          "requirement": "required",
+          "fulfillment": "external",
+          "capabilityRefs": [
+            "uml-diagram",
+            "architecture-diagram"
+          ]
+        },
+        "oral": {
+          "requirement": "required",
+          "fulfillment": "either",
+          "capabilityRefs": [
+            "design-defense"
+          ]
+        }
+      }
+    },
+    "ml-data": {
+      "definitionRef": "L6-B4#ml-data",
+      "overrides": {
+        "concept-map": {
+          "requirement": "required",
+          "fulfillment": "either",
+          "capabilityRefs": [
+            "pipeline-map"
+          ]
+        },
+        "theory": {
+          "requirement": "required",
+          "fulfillment": "either"
+        },
+        "worked-example": {
+          "requirement": "required",
+          "fulfillment": "either",
+          "capabilityRefs": [
+            "model-walkthrough"
+          ]
+        },
+        "lab-simulation": {
+          "requirement": "required",
+          "fulfillment": "external",
+          "capabilityRefs": [
+            "dataset-playground",
+            "experiment-runner"
+          ]
+        },
+        "visual-check": {
+          "requirement": "required",
+          "fulfillment": "external",
+          "capabilityRefs": [
+            "metric-visualizer",
+            "confusion-matrix",
+            "model-comparison"
+          ]
+        },
+        "oral": {
+          "requirement": "conditional",
+          "fulfillment": "either",
+          "conditionRef": "requires-oral-performance",
+          "capabilityRefs": [
+            "experiment-defense"
+          ]
+        }
+      }
+    },
+    "asoiu-system": {
+      "definitionRef": "L6-B4#asoiu-system",
+      "overrides": {
+        "concept-map": {
+          "requirement": "required",
+          "fulfillment": "either",
+          "capabilityRefs": [
+            "system-concept-map"
+          ]
+        },
+        "theory": {
+          "requirement": "required",
+          "fulfillment": "either"
+        },
+        "worked-example": {
+          "requirement": "required",
+          "fulfillment": "either",
+          "capabilityRefs": [
+            "system-scenario"
+          ]
+        },
+        "lab-simulation": {
+          "requirement": "conditional",
+          "fulfillment": "external",
+          "conditionRef": "requires-interactive-manipulation",
+          "capabilityRefs": [
+            "reliability-scenario",
+            "information-flow-simulation"
+          ]
+        },
+        "visual-check": {
+          "requirement": "required",
+          "fulfillment": "external",
+          "capabilityRefs": [
+            "architecture-diagram",
+            "information-flow",
+            "reliability-state"
+          ]
+        },
+        "oral": {
+          "requirement": "required",
+          "fulfillment": "either",
+          "capabilityRefs": [
+            "system-defense"
+          ]
+        }
+      }
+    },
+    "research": {
+      "definitionRef": "L6-B4#research",
+      "overrides": {
+        "concept-map": {
+          "requirement": "required",
+          "fulfillment": "either",
+          "capabilityRefs": [
+            "literature-map",
+            "evidence-map"
+          ]
+        },
+        "theory": {
+          "requirement": "required",
+          "fulfillment": "either"
+        },
+        "worked-example": {
+          "requirement": "required",
+          "fulfillment": "either",
+          "capabilityRefs": [
+            "protocol-example",
+            "paper-analysis-example"
+          ]
+        },
+        "lab-simulation": {
+          "requirement": "conditional",
+          "fulfillment": "either",
+          "conditionRef": "has-experiment-or-dataset",
+          "capabilityRefs": [
+            "experiment-runner",
+            "dataset-analysis"
+          ]
+        },
+        "visual-check": {
+          "requirement": "optional",
+          "fulfillment": "either",
+          "capabilityRefs": [
+            "evidence-map",
+            "result-plot"
+          ]
+        },
+        "oral": {
+          "requirement": "required",
+          "fulfillment": "external",
+          "capabilityRefs": [
+            "defense-simulator"
+          ]
+        },
+        "project-nir-evidence": {
+          "requirement": "required",
+          "fulfillment": "either",
+          "capabilityRefs": [
+            "literature-matrix",
+            "evidence-vault",
+            "experiment-protocol",
+            "nir-milestone",
+            "vkr-milestone"
+          ]
+        }
+      }
+    }
+  },
+  "lessonModeOverlays": {
+    "orientation-only": {
+      "purpose": "Preview scope and diagnose readiness without claiming lesson completion.",
+      "overrides": {
+        "orientation": {
+          "requirement": "required",
+          "fulfillment": "inline"
+        },
+        "concept-map": {
+          "requirement": "optional",
+          "fulfillment": "either"
+        },
+        "theory": {
+          "requirement": "optional",
+          "fulfillment": "either"
+        },
+        "worked-example": {
+          "requirement": "optional",
+          "fulfillment": "either"
+        },
+        "exercise": {
+          "requirement": "optional",
+          "fulfillment": "either"
+        },
+        "lab-simulation": {
+          "requirement": "optional",
+          "fulfillment": "either"
+        },
+        "misconception": {
+          "requirement": "optional",
+          "fulfillment": "either"
+        },
+        "visual-check": {
+          "requirement": "optional",
+          "fulfillment": "either"
+        },
+        "oral": {
+          "requirement": "optional",
+          "fulfillment": "either"
+        },
+        "review": {
+          "requirement": "optional",
+          "fulfillment": "either"
+        },
+        "assessment": {
+          "requirement": "forbidden",
+          "fulfillment": "inline"
+        },
+        "mastery": {
+          "requirement": "forbidden",
+          "fulfillment": "inline"
+        },
+        "project-nir-evidence": {
+          "requirement": "optional",
+          "fulfillment": "either"
+        }
+      }
+    },
+    "diagnostic": {
+      "purpose": "Measure prerequisite state before teaching or solution disclosure.",
+      "overrides": {
+        "orientation": {
+          "requirement": "required",
+          "fulfillment": "inline"
+        },
+        "concept-map": {
+          "requirement": "optional",
+          "fulfillment": "either"
+        },
+        "theory": {
+          "requirement": "optional",
+          "fulfillment": "either"
+        },
+        "worked-example": {
+          "requirement": "forbidden",
+          "fulfillment": "inline"
+        },
+        "exercise": {
+          "requirement": "optional",
+          "fulfillment": "either"
+        },
+        "lab-simulation": {
+          "requirement": "optional",
+          "fulfillment": "either"
+        },
+        "misconception": {
+          "requirement": "optional",
+          "fulfillment": "either"
+        },
+        "visual-check": {
+          "requirement": "optional",
+          "fulfillment": "either"
+        },
+        "oral": {
+          "requirement": "optional",
+          "fulfillment": "either"
+        },
+        "review": {
+          "requirement": "optional",
+          "fulfillment": "either"
+        },
+        "assessment": {
+          "requirement": "required",
+          "fulfillment": "either"
+        },
+        "mastery": {
+          "requirement": "optional",
+          "fulfillment": "either"
+        },
+        "project-nir-evidence": {
+          "requirement": "optional",
+          "fulfillment": "either"
+        }
+      }
+    },
+    "recovery": {
+      "purpose": "Repair one diagnosed error group and collect corrected evidence.",
+      "overrides": {
+        "orientation": {
+          "requirement": "optional",
+          "fulfillment": "either"
+        },
+        "concept-map": {
+          "requirement": "optional",
+          "fulfillment": "either"
+        },
+        "theory": {
+          "requirement": "conditional",
+          "fulfillment": "either",
+          "conditionRef": "post-diagnostic-repair-needed"
+        },
+        "worked-example": {
+          "requirement": "conditional",
+          "fulfillment": "either",
+          "conditionRef": "post-diagnostic-repair-needed"
+        },
+        "exercise": {
+          "requirement": "required",
+          "fulfillment": "either"
+        },
+        "lab-simulation": {
+          "requirement": "conditional",
+          "fulfillment": "either",
+          "conditionRef": "requires-interactive-manipulation"
+        },
+        "misconception": {
+          "requirement": "required",
+          "fulfillment": "either"
+        },
+        "visual-check": {
+          "requirement": "conditional",
+          "fulfillment": "either",
+          "conditionRef": "has-diagnosable-visual-state"
+        },
+        "oral": {
+          "requirement": "conditional",
+          "fulfillment": "either",
+          "conditionRef": "requires-oral-performance"
+        },
+        "review": {
+          "requirement": "required",
+          "fulfillment": "either"
+        },
+        "assessment": {
+          "requirement": "conditional",
+          "fulfillment": "either",
+          "conditionRef": "assessment-blueprint-present"
+        },
+        "mastery": {
+          "requirement": "required",
+          "fulfillment": "either"
+        },
+        "project-nir-evidence": {
+          "requirement": "optional",
+          "fulfillment": "either"
+        }
+      }
+    }
+  },
+  "resolutionAlgorithm": [
+    "Load the base policy for all registered semantic block kinds.",
+    "Apply the selected lesson-type overrides.",
+    "Apply at most one lesson-mode overlay.",
+    "Reject unknown block kinds, requirement states, fulfillment modes or condition refs.",
+    "Evaluate forbidden rules before resolving content.",
+    "Evaluate conditional rules against declared metadata and learner state.",
+    "Resolve inline payload or registered specialist capabilities according to fulfillment mode.",
+    "Omit empty optional and false conditional blocks without placeholders.",
+    "Fail required or true conditional blocks that have no valid fulfillment.",
+    "Pass the resolved semantic set to a presentation strategy; never convert policy rows directly into tabs."
+  ],
+  "presentationBehavior": {
+    "createsTabs": false,
+    "createsRoutes": false,
+    "emptyOptionalPlaceholder": false,
+    "rendererInput": "resolved-populated-semantic-blocks",
+    "specialistOwnershipPreserved": true
+  },
+  "validationPolicy": {
+    "allCatalogBlocksClassifiedAfterResolution": true,
+    "unknownBlockPolicy": "error",
+    "unknownConditionPolicy": "error",
+    "requiredEmptyPolicy": "error",
+    "conditionalTrueEmptyPolicy": "error",
+    "forbiddenPresentPolicy": "error-and-quarantine",
+    "optionalEmptyPolicy": "omit",
+    "externalWithoutCapabilityPolicy": "error",
+    "sourceMutationAllowed": false,
+    "legacyStateKeyMutationAllowed": false
+  }
+}

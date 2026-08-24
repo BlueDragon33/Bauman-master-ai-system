@@ -1,0 +1,1407 @@
+{
+  "schema": "L6_B3_BLOCK_POLICY_REGRESSION_V1",
+  "policyId": "bauman-universal-lesson-block-policy",
+  "policyVersion": "1.0.0",
+  "contractVersion": "2.0.0",
+  "blockKinds": [
+    "orientation",
+    "concept-map",
+    "theory",
+    "worked-example",
+    "exercise",
+    "lab-simulation",
+    "misconception",
+    "visual-check",
+    "oral",
+    "review",
+    "assessment",
+    "mastery",
+    "project-nir-evidence"
+  ],
+  "requirementStates": [
+    "required",
+    "optional",
+    "conditional",
+    "forbidden"
+  ],
+  "fulfillmentModes": [
+    "inline",
+    "external",
+    "either"
+  ],
+  "conditionIds": [
+    "teaches-new-concept",
+    "has-worked-procedure",
+    "requires-interactive-manipulation",
+    "has-diagnosable-visual-state",
+    "requires-oral-performance",
+    "assessment-blueprint-present",
+    "project-or-nir-link-present",
+    "has-concept-relations",
+    "has-source-backed-misconceptions",
+    "has-experiment-or-dataset",
+    "post-diagnostic-repair-needed"
+  ],
+  "resolvedProfiles": {
+    "language": {
+      "requirementCounts": {
+        "required": 5,
+        "optional": 3,
+        "conditional": 5
+      },
+      "fulfillmentCounts": {
+        "either": 12,
+        "external": 1
+      },
+      "requiredBlocks": [
+        "orientation",
+        "exercise",
+        "oral",
+        "review",
+        "mastery"
+      ],
+      "conditionalBlocks": [
+        "theory",
+        "worked-example",
+        "misconception",
+        "visual-check",
+        "assessment"
+      ],
+      "optionalBlocks": [
+        "concept-map",
+        "lab-simulation",
+        "project-nir-evidence"
+      ],
+      "externalBlocks": [
+        "oral"
+      ],
+      "errors": []
+    },
+    "mathematics": {
+      "requirementCounts": {
+        "required": 9,
+        "conditional": 4
+      },
+      "fulfillmentCounts": {
+        "either": 10,
+        "external": 3
+      },
+      "requiredBlocks": [
+        "orientation",
+        "concept-map",
+        "theory",
+        "worked-example",
+        "exercise",
+        "misconception",
+        "oral",
+        "review",
+        "mastery"
+      ],
+      "conditionalBlocks": [
+        "lab-simulation",
+        "visual-check",
+        "assessment",
+        "project-nir-evidence"
+      ],
+      "optionalBlocks": [],
+      "externalBlocks": [
+        "lab-simulation",
+        "visual-check",
+        "oral"
+      ],
+      "errors": []
+    },
+    "programming": {
+      "requirementCounts": {
+        "required": 5,
+        "optional": 1,
+        "conditional": 7
+      },
+      "fulfillmentCounts": {
+        "either": 11,
+        "external": 2
+      },
+      "requiredBlocks": [
+        "orientation",
+        "exercise",
+        "lab-simulation",
+        "review",
+        "mastery"
+      ],
+      "conditionalBlocks": [
+        "theory",
+        "worked-example",
+        "misconception",
+        "visual-check",
+        "oral",
+        "assessment",
+        "project-nir-evidence"
+      ],
+      "optionalBlocks": [
+        "concept-map"
+      ],
+      "externalBlocks": [
+        "lab-simulation",
+        "visual-check"
+      ],
+      "errors": []
+    },
+    "database": {
+      "requirementCounts": {
+        "required": 9,
+        "conditional": 4
+      },
+      "fulfillmentCounts": {
+        "either": 11,
+        "external": 2
+      },
+      "requiredBlocks": [
+        "orientation",
+        "concept-map",
+        "theory",
+        "worked-example",
+        "exercise",
+        "lab-simulation",
+        "visual-check",
+        "review",
+        "mastery"
+      ],
+      "conditionalBlocks": [
+        "misconception",
+        "oral",
+        "assessment",
+        "project-nir-evidence"
+      ],
+      "optionalBlocks": [],
+      "externalBlocks": [
+        "lab-simulation",
+        "visual-check"
+      ],
+      "errors": []
+    },
+    "software-design": {
+      "requirementCounts": {
+        "required": 9,
+        "conditional": 4
+      },
+      "fulfillmentCounts": {
+        "either": 11,
+        "external": 2
+      },
+      "requiredBlocks": [
+        "orientation",
+        "concept-map",
+        "theory",
+        "worked-example",
+        "exercise",
+        "visual-check",
+        "oral",
+        "review",
+        "mastery"
+      ],
+      "conditionalBlocks": [
+        "lab-simulation",
+        "misconception",
+        "assessment",
+        "project-nir-evidence"
+      ],
+      "optionalBlocks": [],
+      "externalBlocks": [
+        "lab-simulation",
+        "visual-check"
+      ],
+      "errors": []
+    },
+    "ml-data": {
+      "requirementCounts": {
+        "required": 9,
+        "conditional": 4
+      },
+      "fulfillmentCounts": {
+        "either": 11,
+        "external": 2
+      },
+      "requiredBlocks": [
+        "orientation",
+        "concept-map",
+        "theory",
+        "worked-example",
+        "exercise",
+        "lab-simulation",
+        "visual-check",
+        "review",
+        "mastery"
+      ],
+      "conditionalBlocks": [
+        "misconception",
+        "oral",
+        "assessment",
+        "project-nir-evidence"
+      ],
+      "optionalBlocks": [],
+      "externalBlocks": [
+        "lab-simulation",
+        "visual-check"
+      ],
+      "errors": []
+    },
+    "asoiu-system": {
+      "requirementCounts": {
+        "required": 9,
+        "conditional": 4
+      },
+      "fulfillmentCounts": {
+        "either": 11,
+        "external": 2
+      },
+      "requiredBlocks": [
+        "orientation",
+        "concept-map",
+        "theory",
+        "worked-example",
+        "exercise",
+        "visual-check",
+        "oral",
+        "review",
+        "mastery"
+      ],
+      "conditionalBlocks": [
+        "lab-simulation",
+        "misconception",
+        "assessment",
+        "project-nir-evidence"
+      ],
+      "optionalBlocks": [],
+      "externalBlocks": [
+        "lab-simulation",
+        "visual-check"
+      ],
+      "errors": []
+    },
+    "research": {
+      "requirementCounts": {
+        "required": 9,
+        "conditional": 3,
+        "optional": 1
+      },
+      "fulfillmentCounts": {
+        "either": 12,
+        "external": 1
+      },
+      "requiredBlocks": [
+        "orientation",
+        "concept-map",
+        "theory",
+        "worked-example",
+        "exercise",
+        "oral",
+        "review",
+        "mastery",
+        "project-nir-evidence"
+      ],
+      "conditionalBlocks": [
+        "lab-simulation",
+        "misconception",
+        "assessment"
+      ],
+      "optionalBlocks": [
+        "visual-check"
+      ],
+      "externalBlocks": [
+        "oral"
+      ],
+      "errors": []
+    }
+  },
+  "overlayProfiles": {
+    "orientation-only": {
+      "requirementCounts": {
+        "required": 1,
+        "optional": 10,
+        "forbidden": 2
+      },
+      "requiredBlocks": [
+        "orientation"
+      ],
+      "forbiddenBlocks": [
+        "assessment",
+        "mastery"
+      ],
+      "errors": []
+    },
+    "diagnostic": {
+      "requirementCounts": {
+        "required": 2,
+        "optional": 10,
+        "forbidden": 1
+      },
+      "requiredBlocks": [
+        "orientation",
+        "assessment"
+      ],
+      "forbiddenBlocks": [
+        "worked-example"
+      ],
+      "errors": []
+    },
+    "recovery": {
+      "requirementCounts": {
+        "optional": 3,
+        "conditional": 6,
+        "required": 4
+      },
+      "requiredBlocks": [
+        "exercise",
+        "misconception",
+        "review",
+        "mastery"
+      ],
+      "forbiddenBlocks": [],
+      "errors": []
+    }
+  },
+  "presentationBehavior": {
+    "createsTabs": false,
+    "createsRoutes": false,
+    "emptyOptionalPlaceholder": false,
+    "rendererInput": "resolved-populated-semantic-blocks",
+    "specialistOwnershipPreserved": true
+  },
+  "validationPolicy": {
+    "allCatalogBlocksClassifiedAfterResolution": true,
+    "unknownBlockPolicy": "error",
+    "unknownConditionPolicy": "error",
+    "requiredEmptyPolicy": "error",
+    "conditionalTrueEmptyPolicy": "error",
+    "forbiddenPresentPolicy": "error-and-quarantine",
+    "optionalEmptyPolicy": "omit",
+    "externalWithoutCapabilityPolicy": "error",
+    "sourceMutationAllowed": false,
+    "legacyStateKeyMutationAllowed": false
+  },
+  "checks": [
+    {
+      "id": "FILE-assets/data/lesson/universal-lesson-contract-v2.json",
+      "title": "required B3 input exists",
+      "ok": true,
+      "evidence": "assets/data/lesson/universal-lesson-contract-v2.json"
+    },
+    {
+      "id": "FILE-assets/data/lesson/universal-lesson-block-policy-v1.json",
+      "title": "required B3 input exists",
+      "ok": true,
+      "evidence": "assets/data/lesson/universal-lesson-block-policy-v1.json"
+    },
+    {
+      "id": "FILE-docs/migration/L6_B3_BLOCK_REQUIREMENT_POLICIES.md",
+      "title": "required B3 input exists",
+      "ok": true,
+      "evidence": "docs/migration/L6_B3_BLOCK_REQUIREMENT_POLICIES.md"
+    },
+    {
+      "id": "POLICY-IDENTITY",
+      "title": "policy identity version and B2 contract ref are explicit",
+      "ok": true,
+      "evidence": {
+        "policyId": "bauman-universal-lesson-block-policy",
+        "policyVersion": "1.0.0",
+        "contractRef": {
+          "path": "assets/data/lesson/universal-lesson-contract-v2.json",
+          "contractId": "bauman-universal-lesson-contract",
+          "schemaVersion": "2.0.0"
+        }
+      }
+    },
+    {
+      "id": "REQUIREMENT-STATES",
+      "title": "policy defines required optional conditional and forbidden states",
+      "ok": true,
+      "evidence": [
+        "required",
+        "optional",
+        "conditional",
+        "forbidden"
+      ]
+    },
+    {
+      "id": "FULFILLMENT-MODES",
+      "title": "policy separates inline external and either fulfillment",
+      "ok": true,
+      "evidence": [
+        "inline",
+        "external",
+        "either"
+      ]
+    },
+    {
+      "id": "CONDITION-CATALOG",
+      "title": "every named condition has scope expression and reason",
+      "ok": true,
+      "evidence": [
+        "teaches-new-concept",
+        "has-worked-procedure",
+        "requires-interactive-manipulation",
+        "has-diagnosable-visual-state",
+        "requires-oral-performance",
+        "assessment-blueprint-present",
+        "project-or-nir-link-present",
+        "has-concept-relations",
+        "has-source-backed-misconceptions",
+        "has-experiment-or-dataset",
+        "post-diagnostic-repair-needed"
+      ]
+    },
+    {
+      "id": "CONDITION-USAGE",
+      "title": "every declared condition is exercised by base type or mode policy",
+      "ok": true,
+      "evidence": {
+        "teaches-new-concept": 2,
+        "has-worked-procedure": 3,
+        "requires-interactive-manipulation": 5,
+        "has-diagnosable-visual-state": 5,
+        "requires-oral-performance": 4,
+        "assessment-blueprint-present": 2,
+        "project-or-nir-link-present": 1,
+        "has-concept-relations": 1,
+        "has-source-backed-misconceptions": 1,
+        "has-experiment-or-dataset": 1,
+        "post-diagnostic-repair-needed": 2
+      }
+    },
+    {
+      "id": "BASE-COVERAGE",
+      "title": "base policy classifies exactly every B2 semantic block",
+      "ok": true,
+      "evidence": {
+        "baseKinds": [
+          "orientation",
+          "concept-map",
+          "theory",
+          "worked-example",
+          "exercise",
+          "lab-simulation",
+          "misconception",
+          "visual-check",
+          "oral",
+          "review",
+          "assessment",
+          "mastery",
+          "project-nir-evidence"
+        ],
+        "catalogKinds": [
+          "orientation",
+          "concept-map",
+          "theory",
+          "worked-example",
+          "exercise",
+          "lab-simulation",
+          "misconception",
+          "visual-check",
+          "oral",
+          "review",
+          "assessment",
+          "mastery",
+          "project-nir-evidence"
+        ]
+      }
+    },
+    {
+      "id": "BASE-VALID",
+      "title": "base policy has no invalid state fulfillment or condition",
+      "ok": true,
+      "evidence": []
+    },
+    {
+      "id": "NO-FIXED-FLOW",
+      "title": "policy contains no fixed canonical flow or requiredFor lists",
+      "ok": true,
+      "evidence": {
+        "createsTabs": false,
+        "createsRoutes": false,
+        "emptyOptionalPlaceholder": false,
+        "rendererInput": "resolved-populated-semantic-blocks",
+        "specialistOwnershipPreserved": true
+      }
+    },
+    {
+      "id": "TYPE-REFS",
+      "title": "policy references exactly the eight master-plan lesson types",
+      "ok": true,
+      "evidence": {
+        "refs": [
+          "language",
+          "mathematics",
+          "programming",
+          "database",
+          "software-design",
+          "ml-data",
+          "asoiu-system",
+          "research"
+        ],
+        "keys": [
+          "language",
+          "mathematics",
+          "programming",
+          "database",
+          "software-design",
+          "ml-data",
+          "asoiu-system",
+          "research"
+        ]
+      }
+    },
+    {
+      "id": "TYPE-LANGUAGE",
+      "title": "language resolves all blocks without invalid entries or fixed-full requirements",
+      "ok": true,
+      "evidence": {
+        "requirementCounts": {
+          "required": 5,
+          "optional": 3,
+          "conditional": 5
+        },
+        "fulfillmentCounts": {
+          "either": 12,
+          "external": 1
+        },
+        "requiredBlocks": [
+          "orientation",
+          "exercise",
+          "oral",
+          "review",
+          "mastery"
+        ],
+        "conditionalBlocks": [
+          "theory",
+          "worked-example",
+          "misconception",
+          "visual-check",
+          "assessment"
+        ],
+        "optionalBlocks": [
+          "concept-map",
+          "lab-simulation",
+          "project-nir-evidence"
+        ],
+        "externalBlocks": [
+          "oral"
+        ],
+        "errors": []
+      }
+    },
+    {
+      "id": "TYPE-MATHEMATICS",
+      "title": "mathematics resolves all blocks without invalid entries or fixed-full requirements",
+      "ok": true,
+      "evidence": {
+        "requirementCounts": {
+          "required": 9,
+          "conditional": 4
+        },
+        "fulfillmentCounts": {
+          "either": 10,
+          "external": 3
+        },
+        "requiredBlocks": [
+          "orientation",
+          "concept-map",
+          "theory",
+          "worked-example",
+          "exercise",
+          "misconception",
+          "oral",
+          "review",
+          "mastery"
+        ],
+        "conditionalBlocks": [
+          "lab-simulation",
+          "visual-check",
+          "assessment",
+          "project-nir-evidence"
+        ],
+        "optionalBlocks": [],
+        "externalBlocks": [
+          "lab-simulation",
+          "visual-check",
+          "oral"
+        ],
+        "errors": []
+      }
+    },
+    {
+      "id": "TYPE-PROGRAMMING",
+      "title": "programming resolves all blocks without invalid entries or fixed-full requirements",
+      "ok": true,
+      "evidence": {
+        "requirementCounts": {
+          "required": 5,
+          "optional": 1,
+          "conditional": 7
+        },
+        "fulfillmentCounts": {
+          "either": 11,
+          "external": 2
+        },
+        "requiredBlocks": [
+          "orientation",
+          "exercise",
+          "lab-simulation",
+          "review",
+          "mastery"
+        ],
+        "conditionalBlocks": [
+          "theory",
+          "worked-example",
+          "misconception",
+          "visual-check",
+          "oral",
+          "assessment",
+          "project-nir-evidence"
+        ],
+        "optionalBlocks": [
+          "concept-map"
+        ],
+        "externalBlocks": [
+          "lab-simulation",
+          "visual-check"
+        ],
+        "errors": []
+      }
+    },
+    {
+      "id": "TYPE-DATABASE",
+      "title": "database resolves all blocks without invalid entries or fixed-full requirements",
+      "ok": true,
+      "evidence": {
+        "requirementCounts": {
+          "required": 9,
+          "conditional": 4
+        },
+        "fulfillmentCounts": {
+          "either": 11,
+          "external": 2
+        },
+        "requiredBlocks": [
+          "orientation",
+          "concept-map",
+          "theory",
+          "worked-example",
+          "exercise",
+          "lab-simulation",
+          "visual-check",
+          "review",
+          "mastery"
+        ],
+        "conditionalBlocks": [
+          "misconception",
+          "oral",
+          "assessment",
+          "project-nir-evidence"
+        ],
+        "optionalBlocks": [],
+        "externalBlocks": [
+          "lab-simulation",
+          "visual-check"
+        ],
+        "errors": []
+      }
+    },
+    {
+      "id": "TYPE-SOFTWARE-DESIGN",
+      "title": "software-design resolves all blocks without invalid entries or fixed-full requirements",
+      "ok": true,
+      "evidence": {
+        "requirementCounts": {
+          "required": 9,
+          "conditional": 4
+        },
+        "fulfillmentCounts": {
+          "either": 11,
+          "external": 2
+        },
+        "requiredBlocks": [
+          "orientation",
+          "concept-map",
+          "theory",
+          "worked-example",
+          "exercise",
+          "visual-check",
+          "oral",
+          "review",
+          "mastery"
+        ],
+        "conditionalBlocks": [
+          "lab-simulation",
+          "misconception",
+          "assessment",
+          "project-nir-evidence"
+        ],
+        "optionalBlocks": [],
+        "externalBlocks": [
+          "lab-simulation",
+          "visual-check"
+        ],
+        "errors": []
+      }
+    },
+    {
+      "id": "TYPE-ML-DATA",
+      "title": "ml-data resolves all blocks without invalid entries or fixed-full requirements",
+      "ok": true,
+      "evidence": {
+        "requirementCounts": {
+          "required": 9,
+          "conditional": 4
+        },
+        "fulfillmentCounts": {
+          "either": 11,
+          "external": 2
+        },
+        "requiredBlocks": [
+          "orientation",
+          "concept-map",
+          "theory",
+          "worked-example",
+          "exercise",
+          "lab-simulation",
+          "visual-check",
+          "review",
+          "mastery"
+        ],
+        "conditionalBlocks": [
+          "misconception",
+          "oral",
+          "assessment",
+          "project-nir-evidence"
+        ],
+        "optionalBlocks": [],
+        "externalBlocks": [
+          "lab-simulation",
+          "visual-check"
+        ],
+        "errors": []
+      }
+    },
+    {
+      "id": "TYPE-ASOIU-SYSTEM",
+      "title": "asoiu-system resolves all blocks without invalid entries or fixed-full requirements",
+      "ok": true,
+      "evidence": {
+        "requirementCounts": {
+          "required": 9,
+          "conditional": 4
+        },
+        "fulfillmentCounts": {
+          "either": 11,
+          "external": 2
+        },
+        "requiredBlocks": [
+          "orientation",
+          "concept-map",
+          "theory",
+          "worked-example",
+          "exercise",
+          "visual-check",
+          "oral",
+          "review",
+          "mastery"
+        ],
+        "conditionalBlocks": [
+          "lab-simulation",
+          "misconception",
+          "assessment",
+          "project-nir-evidence"
+        ],
+        "optionalBlocks": [],
+        "externalBlocks": [
+          "lab-simulation",
+          "visual-check"
+        ],
+        "errors": []
+      }
+    },
+    {
+      "id": "TYPE-RESEARCH",
+      "title": "research resolves all blocks without invalid entries or fixed-full requirements",
+      "ok": true,
+      "evidence": {
+        "requirementCounts": {
+          "required": 9,
+          "conditional": 3,
+          "optional": 1
+        },
+        "fulfillmentCounts": {
+          "either": 12,
+          "external": 1
+        },
+        "requiredBlocks": [
+          "orientation",
+          "concept-map",
+          "theory",
+          "worked-example",
+          "exercise",
+          "oral",
+          "review",
+          "mastery",
+          "project-nir-evidence"
+        ],
+        "conditionalBlocks": [
+          "lab-simulation",
+          "misconception",
+          "assessment"
+        ],
+        "optionalBlocks": [
+          "visual-check"
+        ],
+        "externalBlocks": [
+          "oral"
+        ],
+        "errors": []
+      }
+    },
+    {
+      "id": "LANGUAGE-SPECIALIST",
+      "title": "language requires externally fulfilled oral capability",
+      "ok": true,
+      "evidence": {
+        "requirement": "required",
+        "fulfillment": "external",
+        "capabilityRefs": [
+          "dialogue",
+          "shadowing",
+          "deep-speaking",
+          "speech-recording"
+        ]
+      }
+    },
+    {
+      "id": "MATH-SPECIALIST",
+      "title": "mathematics requires theory example concept map and professor oral while keeping lab visual conditional",
+      "ok": true,
+      "evidence": {
+        "requirementCounts": {
+          "required": 9,
+          "conditional": 4
+        },
+        "fulfillmentCounts": {
+          "either": 10,
+          "external": 3
+        },
+        "requiredBlocks": [
+          "orientation",
+          "concept-map",
+          "theory",
+          "worked-example",
+          "exercise",
+          "misconception",
+          "oral",
+          "review",
+          "mastery"
+        ],
+        "conditionalBlocks": [
+          "lab-simulation",
+          "visual-check",
+          "assessment",
+          "project-nir-evidence"
+        ],
+        "optionalBlocks": [],
+        "externalBlocks": [
+          "lab-simulation",
+          "visual-check",
+          "oral"
+        ],
+        "errors": []
+      }
+    },
+    {
+      "id": "PROGRAMMING-SPECIALIST",
+      "title": "programming requires an external code lab",
+      "ok": true,
+      "evidence": {
+        "requirement": "required",
+        "fulfillment": "external",
+        "capabilityRefs": [
+          "code-lab",
+          "unit-test",
+          "debug-runner"
+        ]
+      }
+    },
+    {
+      "id": "DATABASE-SPECIALIST",
+      "title": "database requires SQL lab and schema or query-plan visual",
+      "ok": true,
+      "evidence": {
+        "requirementCounts": {
+          "required": 9,
+          "conditional": 4
+        },
+        "fulfillmentCounts": {
+          "either": 11,
+          "external": 2
+        },
+        "requiredBlocks": [
+          "orientation",
+          "concept-map",
+          "theory",
+          "worked-example",
+          "exercise",
+          "lab-simulation",
+          "visual-check",
+          "review",
+          "mastery"
+        ],
+        "conditionalBlocks": [
+          "misconception",
+          "oral",
+          "assessment",
+          "project-nir-evidence"
+        ],
+        "optionalBlocks": [],
+        "externalBlocks": [
+          "lab-simulation",
+          "visual-check"
+        ],
+        "errors": []
+      }
+    },
+    {
+      "id": "SOFTWARE-DESIGN-SPECIALIST",
+      "title": "software design requires diagram visual and design defense",
+      "ok": true,
+      "evidence": {
+        "requirementCounts": {
+          "required": 9,
+          "conditional": 4
+        },
+        "fulfillmentCounts": {
+          "either": 11,
+          "external": 2
+        },
+        "requiredBlocks": [
+          "orientation",
+          "concept-map",
+          "theory",
+          "worked-example",
+          "exercise",
+          "visual-check",
+          "oral",
+          "review",
+          "mastery"
+        ],
+        "conditionalBlocks": [
+          "lab-simulation",
+          "misconception",
+          "assessment",
+          "project-nir-evidence"
+        ],
+        "optionalBlocks": [],
+        "externalBlocks": [
+          "lab-simulation",
+          "visual-check"
+        ],
+        "errors": []
+      }
+    },
+    {
+      "id": "ML-DATA-SPECIALIST",
+      "title": "ML data requires dataset lab and model or metric visual",
+      "ok": true,
+      "evidence": {
+        "requirementCounts": {
+          "required": 9,
+          "conditional": 4
+        },
+        "fulfillmentCounts": {
+          "either": 11,
+          "external": 2
+        },
+        "requiredBlocks": [
+          "orientation",
+          "concept-map",
+          "theory",
+          "worked-example",
+          "exercise",
+          "lab-simulation",
+          "visual-check",
+          "review",
+          "mastery"
+        ],
+        "conditionalBlocks": [
+          "misconception",
+          "oral",
+          "assessment",
+          "project-nir-evidence"
+        ],
+        "optionalBlocks": [],
+        "externalBlocks": [
+          "lab-simulation",
+          "visual-check"
+        ],
+        "errors": []
+      }
+    },
+    {
+      "id": "ASOIU-SPECIALIST",
+      "title": "ASOIU system requires architecture visual and system defense",
+      "ok": true,
+      "evidence": {
+        "requirementCounts": {
+          "required": 9,
+          "conditional": 4
+        },
+        "fulfillmentCounts": {
+          "either": 11,
+          "external": 2
+        },
+        "requiredBlocks": [
+          "orientation",
+          "concept-map",
+          "theory",
+          "worked-example",
+          "exercise",
+          "visual-check",
+          "oral",
+          "review",
+          "mastery"
+        ],
+        "conditionalBlocks": [
+          "lab-simulation",
+          "misconception",
+          "assessment",
+          "project-nir-evidence"
+        ],
+        "optionalBlocks": [],
+        "externalBlocks": [
+          "lab-simulation",
+          "visual-check"
+        ],
+        "errors": []
+      }
+    },
+    {
+      "id": "RESEARCH-SPECIALIST",
+      "title": "research requires oral defense and project NIR VKR evidence",
+      "ok": true,
+      "evidence": {
+        "requirementCounts": {
+          "required": 9,
+          "conditional": 3,
+          "optional": 1
+        },
+        "fulfillmentCounts": {
+          "either": 12,
+          "external": 1
+        },
+        "requiredBlocks": [
+          "orientation",
+          "concept-map",
+          "theory",
+          "worked-example",
+          "exercise",
+          "oral",
+          "review",
+          "mastery",
+          "project-nir-evidence"
+        ],
+        "conditionalBlocks": [
+          "lab-simulation",
+          "misconception",
+          "assessment"
+        ],
+        "optionalBlocks": [
+          "visual-check"
+        ],
+        "externalBlocks": [
+          "oral"
+        ],
+        "errors": []
+      }
+    },
+    {
+      "id": "MODE-OVERLAYS",
+      "title": "orientation diagnostic and recovery overlays resolve safely",
+      "ok": true,
+      "evidence": {
+        "orientation-only": {
+          "requirementCounts": {
+            "required": 1,
+            "optional": 10,
+            "forbidden": 2
+          },
+          "requiredBlocks": [
+            "orientation"
+          ],
+          "forbiddenBlocks": [
+            "assessment",
+            "mastery"
+          ],
+          "errors": []
+        },
+        "diagnostic": {
+          "requirementCounts": {
+            "required": 2,
+            "optional": 10,
+            "forbidden": 1
+          },
+          "requiredBlocks": [
+            "orientation",
+            "assessment"
+          ],
+          "forbiddenBlocks": [
+            "worked-example"
+          ],
+          "errors": []
+        },
+        "recovery": {
+          "requirementCounts": {
+            "optional": 3,
+            "conditional": 6,
+            "required": 4
+          },
+          "requiredBlocks": [
+            "exercise",
+            "misconception",
+            "review",
+            "mastery"
+          ],
+          "forbiddenBlocks": [],
+          "errors": []
+        }
+      }
+    },
+    {
+      "id": "MODE-REQUIRED-SCOPE",
+      "title": "special modes do not inherit unrelated full-lesson requirements",
+      "ok": true,
+      "evidence": {
+        "orientation-only": {
+          "requirementCounts": {
+            "required": 1,
+            "optional": 10,
+            "forbidden": 2
+          },
+          "requiredBlocks": [
+            "orientation"
+          ],
+          "forbiddenBlocks": [
+            "assessment",
+            "mastery"
+          ],
+          "errors": []
+        },
+        "diagnostic": {
+          "requirementCounts": {
+            "required": 2,
+            "optional": 10,
+            "forbidden": 1
+          },
+          "requiredBlocks": [
+            "orientation",
+            "assessment"
+          ],
+          "forbiddenBlocks": [
+            "worked-example"
+          ],
+          "errors": []
+        },
+        "recovery": {
+          "requirementCounts": {
+            "optional": 3,
+            "conditional": 6,
+            "required": 4
+          },
+          "requiredBlocks": [
+            "exercise",
+            "misconception",
+            "review",
+            "mastery"
+          ],
+          "forbiddenBlocks": [],
+          "errors": []
+        }
+      }
+    },
+    {
+      "id": "FORBIDDEN-EXERCISED",
+      "title": "mode overlays exercise forbidden behavior without banning a block globally",
+      "ok": true,
+      "evidence": {
+        "orientation-only": {
+          "requirementCounts": {
+            "required": 1,
+            "optional": 10,
+            "forbidden": 2
+          },
+          "requiredBlocks": [
+            "orientation"
+          ],
+          "forbiddenBlocks": [
+            "assessment",
+            "mastery"
+          ],
+          "errors": []
+        },
+        "diagnostic": {
+          "requirementCounts": {
+            "required": 2,
+            "optional": 10,
+            "forbidden": 1
+          },
+          "requiredBlocks": [
+            "orientation",
+            "assessment"
+          ],
+          "forbiddenBlocks": [
+            "worked-example"
+          ],
+          "errors": []
+        },
+        "recovery": {
+          "requirementCounts": {
+            "optional": 3,
+            "conditional": 6,
+            "required": 4
+          },
+          "requiredBlocks": [
+            "exercise",
+            "misconception",
+            "review",
+            "mastery"
+          ],
+          "forbiddenBlocks": [],
+          "errors": []
+        }
+      }
+    },
+    {
+      "id": "RECOVERY-FOCUS",
+      "title": "recovery requires only correction review and corrected mastery evidence",
+      "ok": true,
+      "evidence": {
+        "purpose": "Repair one diagnosed error group and collect corrected evidence.",
+        "overrides": {
+          "orientation": {
+            "requirement": "optional",
+            "fulfillment": "either"
+          },
+          "concept-map": {
+            "requirement": "optional",
+            "fulfillment": "either"
+          },
+          "theory": {
+            "requirement": "conditional",
+            "fulfillment": "either",
+            "conditionRef": "post-diagnostic-repair-needed"
+          },
+          "worked-example": {
+            "requirement": "conditional",
+            "fulfillment": "either",
+            "conditionRef": "post-diagnostic-repair-needed"
+          },
+          "exercise": {
+            "requirement": "required",
+            "fulfillment": "either"
+          },
+          "lab-simulation": {
+            "requirement": "conditional",
+            "fulfillment": "either",
+            "conditionRef": "requires-interactive-manipulation"
+          },
+          "misconception": {
+            "requirement": "required",
+            "fulfillment": "either"
+          },
+          "visual-check": {
+            "requirement": "conditional",
+            "fulfillment": "either",
+            "conditionRef": "has-diagnosable-visual-state"
+          },
+          "oral": {
+            "requirement": "conditional",
+            "fulfillment": "either",
+            "conditionRef": "requires-oral-performance"
+          },
+          "review": {
+            "requirement": "required",
+            "fulfillment": "either"
+          },
+          "assessment": {
+            "requirement": "conditional",
+            "fulfillment": "either",
+            "conditionRef": "assessment-blueprint-present"
+          },
+          "mastery": {
+            "requirement": "required",
+            "fulfillment": "either"
+          },
+          "project-nir-evidence": {
+            "requirement": "optional",
+            "fulfillment": "either"
+          }
+        }
+      }
+    },
+    {
+      "id": "VALIDATION-POLICY",
+      "title": "validation rejects missing external capabilities and source mutation",
+      "ok": true,
+      "evidence": {
+        "allCatalogBlocksClassifiedAfterResolution": true,
+        "unknownBlockPolicy": "error",
+        "unknownConditionPolicy": "error",
+        "requiredEmptyPolicy": "error",
+        "conditionalTrueEmptyPolicy": "error",
+        "forbiddenPresentPolicy": "error-and-quarantine",
+        "optionalEmptyPolicy": "omit",
+        "externalWithoutCapabilityPolicy": "error",
+        "sourceMutationAllowed": false,
+        "legacyStateKeyMutationAllowed": false
+      }
+    },
+    {
+      "id": "RESOLUTION-ALGORITHM",
+      "title": "resolution algorithm ends in populated semantic blocks rather than tabs",
+      "ok": true,
+      "evidence": [
+        "Load the base policy for all registered semantic block kinds.",
+        "Apply the selected lesson-type overrides.",
+        "Apply at most one lesson-mode overlay.",
+        "Reject unknown block kinds, requirement states, fulfillment modes or condition refs.",
+        "Evaluate forbidden rules before resolving content.",
+        "Evaluate conditional rules against declared metadata and learner state.",
+        "Resolve inline payload or registered specialist capabilities according to fulfillment mode.",
+        "Omit empty optional and false conditional blocks without placeholders.",
+        "Fail required or true conditional blocks that have no valid fulfillment.",
+        "Pass the resolved semantic set to a presentation strategy; never convert policy rows directly into tabs."
+      ]
+    },
+    {
+      "id": "LEARNER-BRAND-BOUNDARY",
+      "title": "policy contains no comparison-school learner label",
+      "ok": true,
+      "evidence": "bauman-iu5-only"
+    },
+    {
+      "id": "PROGRAM-IDENTITY",
+      "title": "B3 inherits the official and personalized code boundary from V2",
+      "ok": true,
+      "evidence": {
+        "department": "ИУ-5",
+        "officialPublishedDirectionCode": "09.04.01",
+        "personalizedDisplayCode": "09.04.01/11",
+        "learnerBrandPolicy": "bauman-iu5-only",
+        "identityRule": "Official-source metadata keeps 09.04.01; personalized learner surfaces display ИУ-5 · 09.04.01/11."
+      }
+    },
+    {
+      "id": "DOC-COVERAGE",
+      "title": "B3 decision record covers policy axes resolution conditions types modes and rollback",
+      "ok": true,
+      "evidence": "docs/migration/L6_B3_BLOCK_REQUIREMENT_POLICIES.md"
+    }
+  ],
+  "failures": [],
+  "result": "PASS"
+}

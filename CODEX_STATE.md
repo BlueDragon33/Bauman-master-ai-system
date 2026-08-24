@@ -1,6 +1,6 @@
 # CODEX_STATE
 
-Current task: `L6-B2_UNIVERSAL_LESSON_CONTRACT`
+Current task: `L6-B3_BLOCK_REQUIREMENT_POLICIES`
 
 Status: `IN_PROGRESS`
 
@@ -11,33 +11,35 @@ Main sync status: `branch_only`
 
 Files changed:
 - `.github/workflows/migration-l6-academic.yml`
-- `assets/data/lesson/universal-lesson-contract-v2.json`
-- `docs/migration/L6_B2_UNIVERSAL_LESSON_CONTRACT.md`
-- `docs/migration/L6_B2_UNIVERSAL_LESSON_CONTRACT.generated.json`
-- `scripts/academic/l6-b2-universal-lesson-contract-regression.cjs`
+- `assets/data/lesson/universal-lesson-block-policy-v1.json`
+- `docs/migration/L6_B3_BLOCK_REQUIREMENT_POLICIES.md`
+- `docs/migration/L6_B3_BLOCK_POLICY.generated.json`
+- `scripts/academic/l6-b3-block-policy-regression.cjs`
 - `docs/migration/MIGRATION_PLAN.md`
 - `CODEX_STATE.md`
 
 What changed:
-- Locked L6-B1 after GitHub reported
-  `migration/l6-b1-reference-audit = success` at commit
-  `e75ca680a50e79f75e14218f4a9ecbfe0683a4b0`.
-- Defined Universal Lesson Contract V2 with metadata, prerequisites,
-  objectives, source/provenance identity, 13 semantic block kinds, evidence,
-  context, offline and rollback boundaries.
-- Kept semantic blocks separate from UI tabs and deferred requiredness,
-  lesson-type profiles, rubrics, formal JSON Schema and renderer work to their
-  ordered L6 steps.
-- Added the deterministic B2 gate and B2 commit-status context to the L6
+- Locked L6-B2 after GitHub Actions run `32713023513` reported
+  B1 and B2 contexts successful at commit `bcf0eedf…`.
+- Defined separate requirement states (required, optional, conditional,
+  forbidden) and fulfillment modes (inline, external, either) for all 13
+  semantic blocks.
+- Added executable block matrices for the eight planned lesson-type IDs plus
+  orientation-only, diagnostic and recovery mode overlays.
+- Manual policy review found and fixed an inheritance leak where
+  orientation-only still inherited Mathematics requirements; the regression
+  now locks exact required sets for all three overlays.
+- Added the deterministic B3 gate and B3 commit-status context to the L6
   branch-only workflow.
 - Did not change learner content, subject runtime, storage, offline policy,
   service worker or `main`.
 
 Verification:
 - L6-B1 deterministic audit, 44/44 checks: PASS
-- L6-B1 GitHub status at `e75ca680…`: PASS
 - L6-B2 deterministic contract regression, 35/35 checks: PASS
-- B1 and B2 generated report hashes stable over consecutive runs: PASS
+- L6-B2 GitHub Actions run `32713023513`: PASS
+- L6-B3 deterministic block-policy regression, 37/37 checks: PASS
+- B1, B2 and B3 report hashes stable over consecutive runs: PASS
 - Workflow YAML parse: PASS
 - Russian/Mathematics runtime and content diff: NONE
 - L5 static routing, 9/9: PASS
@@ -47,7 +49,7 @@ Verification:
 - L5 data-loading audit, 8 subjects and 0 failures: PASS
 - L5 runtime diagnostics, 14/14: PASS
 - L5 offline-report integrity, 5/5 with one expected sandbox block: PASS
-- GitHub Actions L6-B2 gate: PENDING
+- GitHub Actions L6-B3 gate: PENDING
 
 Main sync / pull instruction:
 - The work is branch-only on `migration/webapp-l1-audit-storage`.
@@ -55,16 +57,17 @@ Main sync / pull instruction:
 - Do not merge to `main` until the corresponding L6 gates pass.
 
 Next recommended task:
-- Wait for the L6-B2 GitHub Actions gate; after PASS, start
-  `L6-B3_BLOCK_REQUIREMENT_POLICIES`.
+- Wait for the L6-B3 GitHub Actions gate; after PASS, start
+  `L6-B4_LESSON_TYPE_REGISTRY`.
 
 Next actor:
 - Codex
 
 Codex required:
 - yes
-- Reason: remote CI verification, profile-policy design, schema/validator
-  implementation, large JSON compatibility audit and regression.
+- Reason: remote CI verification, lesson-type registry design,
+  schema/validator implementation, large JSON compatibility audit and
+  regression.
 
 ChatGPT can do:
 - Targeted content/schema review and small documentation-only corrections on
