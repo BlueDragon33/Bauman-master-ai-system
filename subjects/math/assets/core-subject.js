@@ -9,9 +9,11 @@ const PAPER_LABEL = {standard:'Phổ thông',intensive:'Tăng cường',advanced
 const PAPER_SIZE = {standard:20,intensive:40,advanced:60,deep:100};
 const PASS_SCORE10 = Number(manifest.stageGate?.passScore10 || 8);
 let data = {}, activeTab='overview', todayContext=null, examGateSource=null, activeLessonId=null, activeModuleId=null, activeExamPage=1;
+const SUBJECT_STORAGE=window.BaumanSubjectStorage.forSubject(manifest.id||'math');
+const SUBJECT_STATE_KEY='bauman_subject_state_'+(manifest.id||'_template');
 let state = loadState();
-function loadState(){try{return JSON.parse(localStorage.getItem('bauman_subject_state_'+(manifest.id||'_template'))||'{}')}catch(e){return {}}}
-function save(){try{localStorage.setItem('bauman_subject_state_'+(manifest.id||'_template'), JSON.stringify(state));}catch(e){}}
+function loadState(){try{return SUBJECT_STORAGE.getJSON(SUBJECT_STATE_KEY,{})||{}}catch(e){return {}}}
+function save(){try{SUBJECT_STORAGE.setJSON(SUBJECT_STATE_KEY,state,{kind:'math-core-subject-state'});}catch(e){}}
 function arr(x){return Array.isArray(x)?x:[]}
 function stagePartCount(days){days=Number(days)||28; if(days>21)return 4; if(days>=14)return 3; return 2;}
 function activeStage(){return data.curriculum?.stages?.[0] || {id:'prepare',title:'Giai đoạn chuẩn bị',durationDays:28,parts:4};}

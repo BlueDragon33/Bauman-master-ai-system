@@ -5,6 +5,7 @@
   var STORE_KEY='bauman_math_e127_saved_lessons_v1';
   var BACKUP_KEY='bauman_math_e127_backup_lessons_v1';
   var REPORT_KEY='bauman_math_e127_last_report_v1';
+  var SUBJECT_STORAGE=window.BaumanSubjectStorage.forSubject('math');
   var REQUIRED_ROLES=['problem_framing','deep_essence','counter_intuition','real_bridge','notation','core_formula','assumption_gate','mini_case','interpretation','simulation','common_mistakes','application','practice','professor_qa','bridge','takeaway'];
   function H(v){return String(v==null?'':v).replace(/[&<>"']/g,function(m){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[m];});}
   function A(v){return Array.isArray(v)?v:[];}
@@ -15,9 +16,9 @@
   function state(){return api().state||window.__MATH_STATE||{};}
   function clone(v){return JSON.parse(JSON.stringify(v));}
   function safeJson(raw,fallback){try{return JSON.parse(raw)}catch(_){return fallback}}
-  function localGet(k,fallback){try{return safeJson(localStorage.getItem(k)||'',fallback)}catch(_){return fallback}}
-  function localSet(k,v){try{localStorage.setItem(k,JSON.stringify(v));return true}catch(e){return false}}
-  function localDel(k){try{localStorage.removeItem(k)}catch(_){}}
+  function localGet(k,fallback){try{return SUBJECT_STORAGE.getJSON(k,fallback)}catch(_){return fallback}}
+  function localSet(k,v){try{SUBJECT_STORAGE.setJSON(k,v,{kind:'math-e127-datavault'});return true}catch(e){return false}}
+  function localDel(k){try{SUBJECT_STORAGE.removeItem(k,{kind:'math-e127-datavault'})}catch(_){}}
   function lessonId(x){return S(x&& (x.lessonId||x.id)).trim();}
   function slideId(x){return S(x&&x.id).trim();}
   function sourceNo(x){var n=Number(x&& (x.sourceChapterNo||x.chapterNo||(x.sourceAnchors&&x.sourceAnchors.chapterNo))); return Number.isFinite(n)?n:0;}

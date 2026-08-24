@@ -1,0 +1,65 @@
+name: Migration L3 Apply Math Legacy Storage
+
+on:
+  push:
+    branches:
+      - migration/webapp-l1-audit-storage
+    paths:
+      - scripts/migration/apply-l3-math-legacy-storage.cjs
+      - .github/workflows/migration-l3-apply-math-legacy-storage.yml
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  apply-math-legacy-storage:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Use Node.js 20
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Fetch main baseline
+        run: git fetch origin main --depth=1
+
+      - name: Apply guarded Math legacy storage cleanup
+        run: node scripts/migration/apply-l3-math-legacy-storage.cjs
+
+      - name: Syntax check touched runtimes
+        run: |
+          node --check subjects/math/assets/core-subject.js
+          node --check subjects/math/assets/datavault_importer/datavault-importer-E127.js
+
+      - name: Run L3 regression before commit
+        run: node scripts/migration/l3-storage-regression.cjs
+
+      - name: Verify only expected files changed
+        shell: bash
+        run: |
+          allowed='^(subjects/math/assets/core-subject.js|subjects/math/assets/datavault_importer/datavault-importer-E127.js)$'
+          unexpected="$(git diff --name-only | grep -Ev "$allowed" || true)"
+          if [ -n "$unexpected" ]; then
+            echo "Unexpected files changed:"
+            echo "$unexpected"
+            exit 1
+          fi
+
+      - name: Commit Math legacy storage cleanup
+        shell: bash
+        run: |
+          if git diff --quiet; then
+            echo "No Math legacy storage changes to commit."
+            exit 0
+          fi
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add subjects/math/assets/core-subject.js subjects/math/assets/datavault_importer/datavault-importer-E127.js
+          git commit -m "migration L3: route Math legacy storage through adapter"
+          git push origin HEAD:migration/webapp-l1-audit-storage

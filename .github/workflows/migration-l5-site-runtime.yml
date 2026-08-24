@@ -1,0 +1,292 @@
+name: Migration L5 Site Runtime Regression
+
+on:
+  push:
+    branches:
+      - migration/webapp-l1-audit-storage
+  pull_request:
+    branches:
+      - main
+      - migration/webapp-l1-audit-storage
+  workflow_dispatch:
+
+permissions:
+  contents: write
+  statuses: write
+
+concurrency:
+  group: migration-l5-site-runtime-${{ github.event_name }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  l5-site-runtime:
+    if: ${{ github.event_name != 'push' || !startsWith(github.event.head_commit.message, 'ci(migration): record L5 result') }}
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v5
+        with:
+          fetch-depth: 0
+
+      - name: Use Node.js 24
+        uses: actions/setup-node@v5
+        with:
+          node-version: '24'
+
+      - name: Syntax check L5 modules
+        id: syntax
+        run: |
+          node --check assets/js/academic-data-v3.js
+          node --check assets/js/platform/academic-runtime-v3-bridge.js
+          node --check assets/js/platform/academic-roadmap-v3-bridge.js
+          node --check assets/js/platform/site-runtime.js
+          node --check assets/js/platform/site-routing-bridge.js
+          node --check assets/js/platform/offline-content-library.js
+          node --check assets/js/platform/offline-library-ui.js
+          node --check assets/js/platform/offline-html-sandbox-guard.js
+          node --check assets/js/platform/offline-import-quota-guard.js
+          node --check assets/js/platform/offline-direct-file-reader.js
+          node --check assets/js/platform/offline-subject-pack-refcount-guard.js
+          node --check assets/js/platform/offline-subject-pack-manager.js
+          node --check service-worker.js
+          node --check subjects/math/assets/theory_skin/theory-legacy-route-E246.js
+          node --check subjects/russian/assets/lazy-heavy-data-v1341.js
+          node --check scripts/migration/l5-academic-runtime-v3-regression.cjs
+          node --check scripts/migration/l5-data-loading-audit.cjs
+          node --check scripts/migration/l5-static-routing-audit.cjs
+          node --check scripts/migration/l5-service-worker-lifecycle-regression.cjs
+          node --check scripts/migration/l5-roadmap-offline-static-regression.cjs
+          node --check scripts/migration/l5-browser-network-regression.cjs
+          node --check scripts/migration/l5-responsive-regression.cjs
+          node --check scripts/migration/l5-render-performance-regression.cjs
+          node --check scripts/migration/l5-direct-file-reader-regression.cjs
+          node --check scripts/migration/l5-roadmap-offline-browser-regression.cjs
+          node --check scripts/migration/l5-record-ci-result.cjs
+          node -e "const x=require('./assets/data/roadmap/iu5-090401-11-v3.json'); if(x.displayCode!=='09.04.01/11'||x.department!=='ИУ-5') process.exit(2)"
+
+      - name: Publish syntax status
+        if: ${{ always() && github.event_name == 'push' && steps.syntax.outcome != 'skipped' }}
+        env:
+          GH_TOKEN: ${{ github.token }}
+          GATE_OUTCOME: ${{ steps.syntax.outcome }}
+        run: |
+          STATE=failure
+          if [ "$GATE_OUTCOME" = "success" ]; then STATE=success; fi
+          gh api --method POST "repos/${GITHUB_REPOSITORY}/statuses/${GITHUB_SHA}" -f state="$STATE" -f context="migration/l5-syntax" -f description="L5 syntax gate: ${GATE_OUTCOME}"
+
+      - name: Audit static paths cache routing and worker lifecycle
+        id: static_gate
+        run: |
+          node scripts/migration/l5-static-routing-audit.cjs
+          node scripts/migration/l5-service-worker-lifecycle-regression.cjs
+
+      - name: Publish static routing status
+        if: ${{ always() && github.event_name == 'push' && steps.static_gate.outcome != 'skipped' }}
+        env:
+          GH_TOKEN: ${{ github.token }}
+          GATE_OUTCOME: ${{ steps.static_gate.outcome }}
+        run: |
+          STATE=failure
+          if [ "$GATE_OUTCOME" = "success" ]; then STATE=success; fi
+          gh api --method POST "repos/${GITHUB_REPOSITORY}/statuses/${GITHUB_SHA}" -f state="$STATE" -f context="migration/l5-static-routing" -f description="L5 static path/cache/routing/lifecycle gate: ${GATE_OUTCOME}"
+
+      - name: Audit unified IU5 academic runtime
+        id: academic_runtime_gate
+        run: node scripts/migration/l5-academic-runtime-v3-regression.cjs
+
+      - name: Publish academic runtime status
+        if: ${{ always() && github.event_name == 'push' && steps.academic_runtime_gate.outcome != 'skipped' }}
+        env:
+          GH_TOKEN: ${{ github.token }}
+          GATE_OUTCOME: ${{ steps.academic_runtime_gate.outcome }}
+        run: |
+          STATE=failure
+          if [ "$GATE_OUTCOME" = "success" ]; then STATE=success; fi
+          gh api --method POST "repos/${GITHUB_REPOSITORY}/statuses/${GITHUB_SHA}" -f state="$STATE" -f context="migration/l5-academic-runtime-v3" -f description="L5 IU5 academic runtime gate: ${GATE_OUTCOME}"
+
+      - name: Audit Roadmap V3 and offline-first invariants
+        id: offline_static_gate
+        run: node scripts/migration/l5-roadmap-offline-static-regression.cjs
+
+      - name: Publish Roadmap/offline static status
+        if: ${{ always() && github.event_name == 'push' && steps.offline_static_gate.outcome != 'skipped' }}
+        env:
+          GH_TOKEN: ${{ github.token }}
+          GATE_OUTCOME: ${{ steps.offline_static_gate.outcome }}
+        run: |
+          STATE=failure
+          if [ "$GATE_OUTCOME" = "success" ]; then STATE=success; fi
+          gh api --method POST "repos/${GITHUB_REPOSITORY}/statuses/${GITHUB_SHA}" -f state="$STATE" -f context="migration/l5-roadmap-offline-static" -f description="L5 Roadmap/offline static gate: ${GATE_OUTCOME}"
+
+      - name: Audit large JSON loading policy
+        id: data_gate
+        run: node scripts/migration/l5-data-loading-audit.cjs
+
+      - name: Publish data loading status
+        if: ${{ always() && github.event_name == 'push' && steps.data_gate.outcome != 'skipped' }}
+        env:
+          GH_TOKEN: ${{ github.token }}
+          GATE_OUTCOME: ${{ steps.data_gate.outcome }}
+        run: |
+          STATE=failure
+          if [ "$GATE_OUTCOME" = "success" ]; then STATE=success; fi
+          gh api --method POST "repos/${GITHUB_REPOSITORY}/statuses/${GITHUB_SHA}" -f state="$STATE" -f context="migration/l5-data-loading" -f description="L5 data loading policy gate: ${GATE_OUTCOME}"
+
+      - name: Install browser test dependency
+        id: browser_deps
+        run: |
+          npm install --no-save --package-lock=false playwright@1.54.2
+          npx playwright install --with-deps chromium
+
+      - name: Publish browser dependency status
+        if: ${{ always() && github.event_name == 'push' && steps.browser_deps.outcome != 'skipped' }}
+        env:
+          GH_TOKEN: ${{ github.token }}
+          GATE_OUTCOME: ${{ steps.browser_deps.outcome }}
+        run: |
+          STATE=failure
+          if [ "$GATE_OUTCOME" = "success" ]; then STATE=success; fi
+          gh api --method POST "repos/${GITHUB_REPOSITORY}/statuses/${GITHUB_SHA}" -f state="$STATE" -f context="migration/l5-browser-deps" -f description="L5 browser dependency gate: ${GATE_OUTCOME}"
+
+      - name: Start local static server
+        id: static_server
+        run: python3 -m http.server 4173 --bind 127.0.0.1 > /tmp/bauman-l5-http.log 2>&1 &
+
+      - name: Browser startup and deferred interaction regression
+        id: browser_gate
+        run: |
+          sleep 1
+          node scripts/migration/l5-browser-network-regression.cjs
+
+      - name: Publish browser regression status
+        if: ${{ always() && github.event_name == 'push' && steps.browser_gate.outcome != 'skipped' }}
+        env:
+          GH_TOKEN: ${{ github.token }}
+          GATE_OUTCOME: ${{ steps.browser_gate.outcome }}
+        run: |
+          STATE=failure
+          if [ "$GATE_OUTCOME" = "success" ]; then STATE=success; fi
+          gh api --method POST "repos/${GITHUB_REPOSITORY}/statuses/${GITHUB_SHA}" -f state="$STATE" -f context="migration/l5-browser-network" -f description="L5 startup/deferred browser gate: ${GATE_OUTCOME}"
+
+      - name: Responsive and runtime routing regression
+        id: responsive_gate
+        run: node scripts/migration/l5-responsive-regression.cjs
+
+      - name: Publish responsive regression status
+        if: ${{ always() && github.event_name == 'push' && steps.responsive_gate.outcome != 'skipped' }}
+        env:
+          GH_TOKEN: ${{ github.token }}
+          GATE_OUTCOME: ${{ steps.responsive_gate.outcome }}
+        run: |
+          STATE=failure
+          if [ "$GATE_OUTCOME" = "success" ]; then STATE=success; fi
+          gh api --method POST "repos/${GITHUB_REPOSITORY}/statuses/${GITHUB_SHA}" -f state="$STATE" -f context="migration/l5-responsive" -f description="L5 responsive/runtime routing gate: ${GATE_OUTCOME}"
+
+      - name: Render and DOM performance regression
+        id: render_performance_gate
+        run: node scripts/migration/l5-render-performance-regression.cjs
+
+      - name: Publish render performance status
+        if: ${{ always() && github.event_name == 'push' && steps.render_performance_gate.outcome != 'skipped' }}
+        env:
+          GH_TOKEN: ${{ github.token }}
+          GATE_OUTCOME: ${{ steps.render_performance_gate.outcome }}
+        run: |
+          STATE=failure
+          if [ "$GATE_OUTCOME" = "success" ]; then STATE=success; fi
+          gh api --method POST "repos/${GITHUB_REPOSITORY}/statuses/${GITHUB_SHA}" -f state="$STATE" -f context="migration/l5-render-performance" -f description="L5 render/DOM performance gate: ${GATE_OUTCOME}"
+
+      - name: Direct local file reader regression
+        id: direct_file_gate
+        run: node scripts/migration/l5-direct-file-reader-regression.cjs
+
+      - name: Publish direct local reader status
+        if: ${{ always() && github.event_name == 'push' && steps.direct_file_gate.outcome != 'skipped' }}
+        env:
+          GH_TOKEN: ${{ github.token }}
+          GATE_OUTCOME: ${{ steps.direct_file_gate.outcome }}
+        run: |
+          STATE=failure
+          if [ "$GATE_OUTCOME" = "success" ]; then STATE=success; fi
+          gh api --method POST "repos/${GITHUB_REPOSITORY}/statuses/${GITHUB_SHA}" -f state="$STATE" -f context="migration/l5-direct-file-reader" -f description="L5 direct local reader gate: ${GATE_OUTCOME}"
+
+      - name: Roadmap V3 local-library and offline navigation regression
+        id: offline_browser_gate
+        run: node scripts/migration/l5-roadmap-offline-browser-regression.cjs
+
+      - name: Publish Roadmap/offline browser status
+        if: ${{ always() && github.event_name == 'push' && steps.offline_browser_gate.outcome != 'skipped' }}
+        env:
+          GH_TOKEN: ${{ github.token }}
+          GATE_OUTCOME: ${{ steps.offline_browser_gate.outcome }}
+        run: |
+          STATE=failure
+          if [ "$GATE_OUTCOME" = "success" ]; then STATE=success; fi
+          gh api --method POST "repos/${GITHUB_REPOSITORY}/statuses/${GITHUB_SHA}" -f state="$STATE" -f context="migration/l5-roadmap-offline-browser" -f description="L5 Roadmap/offline browser gate: ${GATE_OUTCOME}"
+
+      - name: Record durable L5 CI result
+        if: always()
+        env:
+          L5_JOB_STATUS: ${{ job.status }}
+        run: node scripts/migration/l5-record-ci-result.cjs
+
+      - name: Upload L5 generated reports
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: l5-runtime-regression-reports
+          path: |
+            docs/migration/L5_CI_RESULT.generated.json
+            docs/migration/L5_STATIC_ROUTING_AUDIT.generated.json
+            docs/migration/L5_SERVICE_WORKER_LIFECYCLE_REGRESSION.generated.json
+            docs/migration/L5_ACADEMIC_RUNTIME_V3_REGRESSION.generated.json
+            docs/migration/L5_ROADMAP_OFFLINE_STATIC_REGRESSION.generated.json
+            docs/migration/L5_DATA_LOADING_AUDIT.generated.md
+            docs/migration/L5_BROWSER_NETWORK_REGRESSION.generated.json
+            docs/migration/L5_RESPONSIVE_REGRESSION.generated.json
+            docs/migration/L5_RENDER_PERFORMANCE_REGRESSION.generated.json
+            docs/migration/L5_DIRECT_FILE_READER_REGRESSION.generated.json
+            docs/migration/L5_ROADMAP_OFFLINE_BROWSER_REGRESSION.generated.json
+          if-no-files-found: warn
+          retention-days: 7
+
+      - name: Ensure generated audit is committed/current when present
+        if: always()
+        shell: bash
+        run: |
+          if [ -f docs/migration/L5_DATA_LOADING_AUDIT.generated.md ]; then
+            git diff --exit-code -- docs/migration/L5_DATA_LOADING_AUDIT.generated.md || true
+          fi
+
+      - name: Publish aggregate L5 status
+        if: ${{ always() && github.event_name == 'push' }}
+        env:
+          GH_TOKEN: ${{ github.token }}
+          L5_JOB_STATUS: ${{ job.status }}
+        run: |
+          STATE=failure
+          if [ "$L5_JOB_STATUS" = "success" ]; then STATE=success; fi
+          gh api --method POST "repos/${GITHUB_REPOSITORY}/statuses/${GITHUB_SHA}" -f state="$STATE" -f context="migration/l5-runtime" -f description="L5 aggregate gate: ${L5_JOB_STATUS}"
+
+      - name: Commit durable L5 CI checkpoint
+        if: ${{ always() && github.event_name == 'push' }}
+        shell: bash
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add docs/migration/L5_CI_RESULT.generated.json
+          git add docs/migration/L5_STATIC_ROUTING_AUDIT.generated.json 2>/dev/null || true
+          git add docs/migration/L5_SERVICE_WORKER_LIFECYCLE_REGRESSION.generated.json 2>/dev/null || true
+          git add docs/migration/L5_ACADEMIC_RUNTIME_V3_REGRESSION.generated.json 2>/dev/null || true
+          git add docs/migration/L5_ROADMAP_OFFLINE_STATIC_REGRESSION.generated.json 2>/dev/null || true
+          git add docs/migration/L5_BROWSER_NETWORK_REGRESSION.generated.json 2>/dev/null || true
+          git add docs/migration/L5_RESPONSIVE_REGRESSION.generated.json 2>/dev/null || true
+          git add docs/migration/L5_RENDER_PERFORMANCE_REGRESSION.generated.json 2>/dev/null || true
+          git add docs/migration/L5_DIRECT_FILE_READER_REGRESSION.generated.json 2>/dev/null || true
+          git add docs/migration/L5_ROADMAP_OFFLINE_BROWSER_REGRESSION.generated.json 2>/dev/null || true
+          git add docs/migration/L5_DATA_LOADING_AUDIT.generated.md 2>/dev/null || true
+          if git diff --cached --quiet; then
+            exit 0
+          fi
+          git commit -m "ci(migration): record L5 result for ${GITHUB_SHA::12}"
+          git push

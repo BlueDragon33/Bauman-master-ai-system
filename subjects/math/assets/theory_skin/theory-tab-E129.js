@@ -7,6 +7,7 @@
   var RELEASE = 'E129_THEORY_CONTENT_IMPORTER';
   var CONTENT_OVERLAY_KEY = 'bauman_math_e129_theory_content_overlay_v1';
   var CONTENT_REPORT_KEY = 'bauman_math_e129_theory_content_report_v1';
+  var SUBJECT_STORAGE = window.BaumanSubjectStorage.forSubject('math');
   var CONTRACT = {
     release: RELEASE,
     contractDoc: 'subjects/math/THEORY_TAB_CONTRACT_E129.md',
@@ -130,9 +131,9 @@
   }
   function save(){ try{ api().save && api().save(); }catch(_){ } }
   function clone(v){ return JSON.parse(JSON.stringify(v)); }
-  function localGet(k,fallback){ try{ var raw=localStorage.getItem(k); return raw?JSON.parse(raw):fallback; }catch(_){ return fallback; } }
-  function localSet(k,v){ try{ localStorage.setItem(k,JSON.stringify(v)); return true; }catch(_){ return false; } }
-  function localDel(k){ try{ localStorage.removeItem(k); }catch(_){ } }
+  function localGet(k,fallback){ try{ return SUBJECT_STORAGE.getJSON(k,fallback); }catch(_){ return fallback; } }
+  function localSet(k,v){ try{ SUBJECT_STORAGE.setJSON(k,v,{kind:'math-e129-overlay'}); return true; }catch(_){ return false; } }
+  function localDel(k){ try{ SUBJECT_STORAGE.removeItem(k,{kind:'math-e129-overlay'}); }catch(_){ } }
   function isTheoryState(){ var st=state(); return S(st.view)==='learning' && S(st.learnTab||'theory')==='theory'; }
   function e169Path(){ var st=state(); st.e169Path=st.e169Path||{}; var p=st.e169Path; if(!p.moduleId)p.moduleId='pure'; if(!p.courseId)p.courseId='pure-algebra'; if(!p.chapterId)p.chapterId='c01'; if(!p.activityId)p.activityId='theory'; return p; }
   function e169Module(id){ return E169_HIERARCHY.find(function(m){return m.id===id;})||E169_HIERARCHY[0]; }

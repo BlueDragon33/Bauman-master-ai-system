@@ -15,18 +15,15 @@ let DB={},state={...DEFAULT},canvas=null,ctx=null,drawing=false,strokes=[],curre
 const $=(s,r=document)=>r.querySelector(s), $$=(s,r=document)=>Array.from(r.querySelectorAll(s));
 const arr=v=>Array.isArray(v)?v:[], str=v=>String(v??''), esc=v=>str(v).replace(/[&<>"']/g,m=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[m])), lower=v=>str(v).toLowerCase();
 const uniq=a=>Array.from(new Set(arr(a).filter(Boolean))); const key=A.storageKey||'bauman_russian_v11_clean_skeleton';
+const SUBJECT_STORAGE=window.BaumanSubjectStorage.forSubject(A.id||'russian');
 function safeParseJson(raw,fallback){try{return raw?JSON.parse(raw):fallback}catch(_){return fallback}}
 function safeLocalJson(keyName,fallback={},maxChars=3500000){
  try{
-  const raw=localStorage.getItem(keyName);
-  if(!raw)return fallback;
-  if(raw.length>maxChars){
-   console.warn('LocalStorage payload quá lớn, bỏ qua để tránh treo giao diện',keyName,raw.length);
-   localStorage.removeItem(keyName);
-   return fallback;
-  }
-  return safeParseJson(raw,fallback);
- }catch(e){console.warn('Không đọc được localStorage',keyName,e);return fallback;}
+  const result=SUBJECT_STORAGE.readJSONWithLimit(keyName,fallback,maxChars);
+  if(result.status==='oversize-preserved')console.warn('Storage payload quá lớn, bỏ qua nhưng giữ nguyên dữ liệu',keyName,result.chars);
+  if(result.status==='invalid-json-preserved')console.warn('Storage JSON không hợp lệ, bỏ qua nhưng giữ nguyên dữ liệu',keyName,result.error||'');
+  return result.value;
+ }catch(e){console.warn('Không đọc được subject storage',keyName,e);return fallback;}
 }
 function cleanDbOverlay(overlay){
  const out={};
@@ -35,12 +32,12 @@ function cleanDbOverlay(overlay){
 }
 function byId(list,id){return arr(list).find(x=>(x?.id||x?.title)===id)}
 function call(name,fallback,...args){return typeof A[name]==='function'?A[name](...args):fallback}
-function save(){try{localStorage.setItem(key,JSON.stringify(state)); const s=$('#saveState'); if(s)s.textContent='Đã đồng bộ'}catch(e){}}
+function save(){try{SUBJECT_STORAGE.setJSON(key,state,{kind:'subject-state'}); const s=$('#saveState'); if(s)s.textContent='Đã đồng bộ'}catch(e){}}
 function loadState(){const stored=safeLocalJson(key,{},1600000); state={...DEFAULT,...stored,testSession:{...DEFAULT.testSession,...(stored.testSession||{})},speechResults:{...(stored.speechResults||{})},practiceSpeechResults:{...(stored.practiceSpeechResults||{})},dialogueSpeechResults:{...(stored.dialogueSpeechResults||{})},deepSpeakingProgress:{done:{},weak:{},attempts:{},lastMode:{},...(stored.deepSpeakingProgress||{})},optionalDataLoading:{},optionalDataError:{...(stored.optionalDataError||{})},reviewProgress:{done:{},flagged:{},wrong:{},...(stored.reviewProgress||{})},examProgress:{answers:{},marked:{},submitted:false,submittedAt:null,result:null,wrong:{},paperResults:{},...(stored.examProgress||{})},examHistory:arr(stored.examHistory).slice(0,20),remedialPlan:{active:false,cards:[],completed:{},createdAt:null,lastExamAt:null,lastScore:null,...(stored.remedialPlan||{})},recentAccess:arr(stored.recentAccess)}; sanitize()}
 function sanitize(){const views=NAV.map(x=>x[0]); const tabs=LEARN_TABS.map(x=>x[0]); if(!views.includes(state.view))state.view='overview'; if(!tabs.includes(state.learnTab))state.learnTab='theory'; ['vocabIndex','vocabPage','grammarIndex','slide','exerciseIndex','testIndex','reviewIndex','reviewPage','examIndex','examPage','dialogueLineIndex','practiceLineIndex','deepSpeakingStep','handwritingIndex','handwritingStep','writingIndex'].forEach(k=>state[k]=Math.max(0,Number(state[k])||0)); if(state.learnTab==='tests')state.learnTab='review'; state.reviewProgress={done:{},flagged:{},wrong:{},...(state.reviewProgress||{})}; state.examProgress={answers:{},marked:{},submitted:false,submittedAt:null,result:null,wrong:{},paperResults:{},...(state.examProgress||{})}; if(!EXAM_PAPER_ORDER.includes(state.examPaperType))state.examPaperType=EXAM_PAPER_ORDER.includes(state.examPaperLevel)?state.examPaperLevel:'standard'; state.examPaperLevel=state.examPaperType; state.examCycle='auto'; state.examHistory=arr(state.examHistory).slice(0,20); state.remedialPlan={active:false,cards:[],completed:{},createdAt:null,lastExamAt:null,lastScore:null,...(state.remedialPlan||{})}; normalizeRemedialPlan(); state.testSession={...DEFAULT.testSession,...(state.testSession||{})}; state.speechResults={...(state.speechResults||{})}; state.practiceSpeechResults={...(state.practiceSpeechResults||{}),...(state.speechResults||{})}; state.dialogueSpeechResults={...(state.dialogueSpeechResults||{})}; state.deepSpeakingProgress={done:{},weak:{},attempts:{},lastMode:{},...(state.deepSpeakingProgress||{})}; state.optionalDataLoading={}; state.optionalDataError={...(state.optionalDataError||{})}; state.speechRecording=false; state.recentAccess=arr(state.recentAccess).slice(0,6); if(!state.storagePreviewAutoCollapsedV1322){state.storagePreviewLimit=0;state.storagePreviewAutoCollapsedV1322=true;} state.mindmapFontScale=normalizeMindFontSize(state.mindmapFontScale); state.mindmapDrag=state.mindmapDrag&&typeof state.mindmapDrag==='object'?state.mindmapDrag:{}; if(state.mindmapLayoutVersion!=='v13_32_clean'){state.mindmapDrag={};state.mindmapLayoutVersion='v13_32_clean';} state.stageGate=state.stageGate&&typeof state.stageGate==='object'?state.stageGate:null; state.examGateSource=state.examGateSource&&typeof state.examGateSource==='object'?state.examGateSource:null;}
 async function loadData(){const overlay=cleanDbOverlay(safeLocalJson(key+'_db',{},3500000)); for(const f of DATA_FILES){try{DB[f]=await fetch(`${DATA_ROOT}${f}.json`).then(r=>r.ok?r.json():null)}catch(e){DB[f]=null}} DB={...DB,...overlay};}
 function dbForLocalStorage(){const out={}; Object.keys(DB||{}).forEach(k=>{if(!OPTIONAL_DATA_FILES.includes(k))out[k]=DB[k]}); return out;}
-function saveDB(){try{localStorage.setItem(key+'_db',JSON.stringify(dbForLocalStorage()));}catch(e){toast('Trình duyệt không cho lưu DB lớn')}}
+function saveDB(){try{SUBJECT_STORAGE.setJSON(key+'_db',dbForLocalStorage(),{kind:'subject-db-overlay'});}catch(e){toast('Trình duyệt không cho lưu DB lớn')}}
 function isOptionalFile(name){return OPTIONAL_DATA_FILES.includes(name)}
 function optionalSourcePath(name){return A.dataSourceMeta?.[name]?.path||`${DATA_ROOT}${name}.json`}
 async function loadOptionalData(name,quiet=false){
@@ -448,7 +445,7 @@ function runConfirmedAction(action){
  if(action==='route-request-regen-do'){if(routeResetLocked()){closeModal(); toast(routeResetLockMessage()); return;} closeModal(); requestMainSchedule('regenerate'); return;}
  if(action==='clear-remedial-do'){state.remedialPlan.active=false; save(); closeModal(); render(); toast('Đã ẩn lịch trình phụ đạo'); return;}
  if(action==='storage-reset-source-do'){resetCurrentSource(); closeModal(); return;}
- if(action==='reset-db-do'){localStorage.removeItem(key+'_db'); closeModal(); toast('Đã khôi phục dữ liệu gốc, đang tải lại'); setTimeout(()=>location.reload(),300); return;}
+ if(action==='reset-db-do'){SUBJECT_STORAGE.removeItem(key+'_db',{kind:'subject-db-overlay-reset'}); closeModal(); toast('Đã khôi phục dữ liệu gốc, đang tải lại'); setTimeout(()=>location.reload(),300); return;}
  if(action==='media-group-delete-do'){const g=state.pendingMediaGroupDelete||''; deleteMediaGroup(g); state.pendingMediaGroupDelete=''; openModal(renderMediaGroupManager(),'media-groups'); toast('Đã xóa nhóm Video/Audio'); return;}
  toast('Không nhận diện được hành động xác nhận');
 }

@@ -3,12 +3,13 @@ const $=id=>document.getElementById(id), $$=s=>[...document.querySelectorAll(s)]
 const esc=s=>String(s??'').replace(/[&<>"']/g,m=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#039;'}[m]));
 const CONFIG=window.SUBJECT_CONFIG;
 const KEY='bauman_subject_'+CONFIG.id+'_all_phases_v1';
+const SUBJECT_STORAGE=window.BaumanSubjectStorage.forSubject(CONFIG.id);
 const DATA_FILES=['curriculum','lessons','formulas','exercises','tests','simulations','knowledge-index'];
 let store={curriculum:null,lessons:[],formulas:[],exercises:[],tests:{rules:{},questions:[]},simulations:{meta:{},observation:[],practice:[]},knowledge:[]};
 let state=readState();
 function defaultState(){return{page:'dashboard',stage:'prepare',module:null,lesson:null,formulaGroup:'all',exerciseDiff:'all',testLevel:'easy',simMode:'observation',activeSim:null,unlocked:{easy:true,medium:false,hard:false,excellent:false},progress:{modules:{},lessons:{},tests:{},simulations:{},simulationPractice:{}},lastScore:null}}
-function readState(){try{return {...defaultState(),...JSON.parse(localStorage.getItem(KEY)||'{}')}}catch{return defaultState()}}
-function save(){localStorage.setItem(KEY,JSON.stringify(state));reportProgress()}
+function readState(){try{return {...defaultState(),...(SUBJECT_STORAGE.getJSON(KEY,{})||{})}}catch{return defaultState()}}
+function save(){SUBJECT_STORAGE.setJSON(KEY,state,{kind:'subject-state'});reportProgress()}
 function toast(msg){const t=$('toast');t.textContent=msg;t.classList.add('show');clearTimeout(toast.t);toast.t=setTimeout(()=>t.classList.remove('show'),2600)}
 async function loadJSON(name){const key=name==='knowledge-index'?'knowledge':name;try{const res=await fetch(`./data/${name}.json`);store[key]=await res.json()}catch(e){console.warn('Không nạp được',name,e)}}
 function stages(){return store.curriculum?.stages||[]}

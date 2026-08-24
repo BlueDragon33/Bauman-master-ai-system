@@ -1,0 +1,45 @@
+name: Migration L3 Generate Storage Inventory
+
+on:
+  push:
+    branches:
+      - migration/webapp-l1-audit-storage
+    paths:
+      - assets/js/**
+      - subjects/**
+      - scripts/migration/generate-storage-inventory.cjs
+      - .github/workflows/migration-l3-inventory.yml
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  generate-storage-inventory:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Use Node.js 20
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Generate deterministic inventory
+        run: node scripts/migration/generate-storage-inventory.cjs
+
+      - name: Commit generated inventory
+        shell: bash
+        run: |
+          if [ -z "$(git status --porcelain -- docs/migration/L3_STORAGE_INVENTORY.generated.md)" ]; then
+            echo "Inventory already current."
+            exit 0
+          fi
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add docs/migration/L3_STORAGE_INVENTORY.generated.md
+          git commit -m "migration L3: refresh storage inventory"
+          git push origin HEAD:migration/webapp-l1-audit-storage

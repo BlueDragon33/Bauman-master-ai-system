@@ -1,0 +1,58 @@
+name: Migration L4 Personal Learning Regression
+
+on:
+  push:
+    branches:
+      - migration/webapp-l1-audit-storage
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+env:
+  L4_BASELINE: 4bc4cd1bb33f560aa61467dc606a275d1a70ebee
+
+jobs:
+  l4-personal-learning-regression:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Use Node.js 20
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Verify L4 baseline exists
+        run: git cat-file -e "$L4_BASELINE^{commit}"
+
+      - name: Syntax check L4 platform modules
+        run: |
+          node --check assets/js/platform/personal-learning-schema.js
+          node --check assets/js/platform/personal-learning-migrator.js
+          node --check assets/js/platform/personal-learning-repository.js
+          node --check assets/js/platform/personal-learning-bootstrap.js
+          node --check scripts/migration/l4-personal-learning-regression.cjs
+          node --check scripts/migration/l4-bootstrap-regression.cjs
+          node --check scripts/migration/l4-index-regression.cjs
+
+      - name: Run Personal Learning regression
+        run: node scripts/migration/l4-personal-learning-regression.cjs
+
+      - name: Verify disabled shadow bootstrap
+        run: node scripts/migration/l4-bootstrap-regression.cjs
+
+      - name: Verify main entry wiring and feature flag
+        run: node scripts/migration/l4-index-regression.cjs
+
+      - name: Guard academic runtimes during L4 normalization
+        shell: bash
+        run: |
+          if ! git diff --quiet "$L4_BASELINE" -- assets/js/data.js assets/js/planning-main.js subjects; then
+            echo "L4 must not introduce new academic/data/planning runtime changes after the L3 checkpoint."
+            git diff --name-only "$L4_BASELINE" -- assets/js/data.js assets/js/planning-main.js subjects
+            exit 1
+          fi

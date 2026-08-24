@@ -1,0 +1,186 @@
+{
+  "schemaVersion": "3.0.0",
+  "id": "bauman-iu5-090401-11",
+  "displayCode": "09.04.01/11",
+  "officialPublishedDirectionCode": "09.04.01",
+  "department": "ИУ-5",
+  "institution": "МГТУ им. Н.Э. Баумана",
+  "program": "Искусственный интеллект в автоматизированных системах обработки информации и управления",
+  "cohortYear": 2026,
+  "durationYears": 2,
+  "credits": 120,
+  "policy": {
+    "focus": "bauman-only",
+    "currentSubjectLeadWeeks": [2, 4],
+    "masterReady": ["understand", "solve", "build", "retain"],
+    "supportMode": "on-demand",
+    "preserveCompletedContent": true,
+    "offlineFirst": true
+  },
+  "phases": [
+    {
+      "id": "russian-foundation",
+      "title": "Russian Foundation",
+      "goal": "Sinh hoạt, dự bị, nghe hiểu lớp học và hình thành Russian technical vocabulary.",
+      "tracks": ["russian"]
+    },
+    {
+      "id": "pre-master-core",
+      "title": "Pre-Master Core",
+      "goal": "Hoàn tất prerequisite Toán, Python/OOP, Database và Software Engineering.",
+      "tracks": ["math-data", "python-oop", "algorithms", "database", "software-engineering"]
+    },
+    {
+      "id": "ai-asoiu-research-bridge",
+      "title": "AI · ASOIU · Research Bridge",
+      "goal": "Đủ nền ML, neural, analytical models, reliability, time series và research methodology.",
+      "tracks": ["ml-neural", "asoiu-reliability-timeseries", "research-methodology"]
+    },
+    {
+      "id": "master-mode",
+      "title": "Bauman Master Mode",
+      "goal": "Học trước prerequisite 2-4 tuần theo đúng môn ИУ-5 đang diễn ra.",
+      "tracks": ["current-bauman-subjects"]
+    },
+    {
+      "id": "nir-vkr",
+      "title": "НИР → ВКР",
+      "goal": "Nghiên cứu xuyên 4 học kỳ và hoàn thành ВКР.",
+      "tracks": ["research-thesis"]
+    }
+  ],
+  "tracks": {
+    "russian": {
+      "title": "Tiếng Nga Bauman",
+      "priority": "critical",
+      "modules": ["A0-A2", "classroom-russian", "technical-russian", "academic-russian", "russian-twin-lesson"]
+    },
+    "math-data": {
+      "title": "Toán cho AI & Data",
+      "priority": "critical",
+      "modules": ["linear-algebra", "probability-statistics", "multivariate-data", "pca-svd", "optimization-essentials", "numerical-essentials"]
+    },
+    "python-oop": {
+      "title": "Python & OOP",
+      "priority": "critical",
+      "modules": ["python-core", "oop", "solid-patterns", "numpy-pandas", "testing", "git", "api-data-pipeline"]
+    },
+    "algorithms": {
+      "title": "Algorithms & Data Structures",
+      "priority": "required-light",
+      "modules": ["complexity", "linear-structures", "hashing", "trees-graphs", "search-sort", "graph-traversal"]
+    },
+    "database": {
+      "title": "Database & Information Systems",
+      "priority": "critical",
+      "modules": ["sql", "relational-model", "schema-normalization", "transactions", "indexing-query-plan", "db-optimization", "post-relational", "ml-data-architecture"]
+    },
+    "software-engineering": {
+      "title": "Software Engineering & System Design",
+      "priority": "critical",
+      "modules": ["requirements", "uml", "architecture", "oop-system-design", "testing-strategy", "versioning-ci", "lifecycle", "project-management"]
+    },
+    "ml-neural": {
+      "title": "Machine Learning & Neural Systems",
+      "priority": "critical",
+      "modules": ["supervised", "unsupervised", "metrics-cv", "feature-engineering", "regularization", "ensembles", "clustering", "neural-fundamentals", "reproducible-experiments"]
+    },
+    "asoiu-reliability-timeseries": {
+      "title": "ASOIU · Reliability · Time Series",
+      "priority": "critical",
+      "modules": ["analytical-system-models", "stochastic-bridge", "reliability", "markov-on-demand", "time-series", "forecasting", "anomaly-detection", "lifecycle-ergonomics"]
+    },
+    "research-methodology": {
+      "title": "Research Methodology",
+      "priority": "critical",
+      "modules": ["research-question", "literature", "baseline", "experimental-protocol", "statistics-for-experiments", "reproducibility", "scientific-writing", "presentation-defense"]
+    },
+    "current-bauman-subjects": {
+      "title": "Current Bauman Subjects",
+      "priority": "dynamic",
+      "modules": ["semester-1", "semester-2", "semester-3", "semester-4"]
+    },
+    "research-thesis": {
+      "title": "НИР & ВКР",
+      "priority": "critical",
+      "modules": ["nir-1", "nir-2", "nir-3", "nir-4", "vkr"]
+    }
+  },
+  "semesters": [
+    {
+      "semester": 1,
+      "subjects": [
+        "Иностранный язык",
+        "Методология научного познания",
+        "Аналитические модели автоматизированных систем обработки информации и управления",
+        "Многомерный анализ данных в системах искусственного интеллекта",
+        "Объектно-ориентированное проектирование автоматизированных систем обработки информации и управления",
+        "Оптимизация баз данных систем машинного обучения",
+        "Технологии разработки программного обеспечения",
+        "Научно-исследовательская работа"
+      ],
+      "prerequisiteOrder": ["technical-russian", "linear-algebra", "probability-statistics", "multivariate-data", "pca-svd", "python-core", "oop", "sql", "indexing-query-plan", "uml", "analytical-system-models", "research-question"]
+    },
+    {
+      "semester": 2,
+      "subjects": [
+        "Иностранный язык",
+        "Основы предпринимательства",
+        "Методы машинного обучения в автоматизированных системах обработки информации и управления",
+        "Модели надёжности АСОИУ",
+        "Постреляционные базы данных",
+        "Разработка нейросетевых систем",
+        "Технологии разработки программного обеспечения",
+        "Проектно-технологическая практика",
+        "Эксплуатационная практика",
+        "Педагогическая практика",
+        "Научно-исследовательская работа"
+      ],
+      "prerequisiteOrder": ["supervised", "metrics-cv", "neural-fundamentals", "reliability", "markov-on-demand", "post-relational", "reproducible-experiments"]
+    },
+    {
+      "semester": 3,
+      "subjects": [
+        "Анализ временных рядов",
+        "Искусственный интеллект в задачах бизнес-аналитики",
+        "Управление проектированием информационных систем",
+        "НИР по обработке и анализу данных",
+        "Эргономический анализ систем обработки и отображения информации",
+        "Дисциплина по выбору №1: защита/информационная безопасность АСОИУ",
+        "Педагогическая практика",
+        "Научно-исследовательская работа"
+      ],
+      "prerequisiteOrder": ["time-series", "forecasting", "anomaly-detection", "project-management", "statistics-for-experiments", "scientific-writing"]
+    },
+    {
+      "semester": 4,
+      "subjects": [
+        "Миварные технологии логического искусственного интеллекта",
+        "Описание процессов жизненного цикла СТС",
+        "Дисциплина по выбору №2: технологии обработки больших данных или технологии разработки мультимедиа систем",
+        "Научно-исследовательская работа",
+        "Преддипломная практика",
+        "Подготовка и защита ВКР"
+      ],
+      "prerequisiteOrder": ["knowledge-representation", "lifecycle", "elective-bridge", "nir-4", "vkr"]
+    }
+  ],
+  "supportOnDemand": [
+    "linux-advanced",
+    "operating-systems-deep",
+    "computer-networks-deep",
+    "queueing-theory",
+    "markov-advanced",
+    "operations-research-full",
+    "cloud-devops-advanced",
+    "embedded-industrial-outside-nir"
+  ],
+  "lessonModel": ["theory", "example", "exercise", "application-lab", "simulation-when-relevant", "oral-qa", "review", "test", "mastery"],
+  "priorityEngine": ["current-bauman-subject", "missing-prerequisite", "deadline-lab-assessment", "nir-vkr", "matching-russian-technical", "weak-topic-review", "support-on-demand"],
+  "source": {
+    "authority": "ИУ-5 МГТУ им. Н.Э. Баумана",
+    "curriculumYear": 2026,
+    "publicDirectionCode": "09.04.01",
+    "refreshPolicy": "Update Current Bauman Subjects when a newer official curriculum/OPOP for the cohort is verified; never delete completed learning evidence."
+  }
+}
