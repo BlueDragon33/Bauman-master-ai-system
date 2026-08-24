@@ -2,7 +2,7 @@
   'use strict';
 
   const config=global.BAUMAN_RUNTIME_CONFIG||{};
-  const VERSION='2026.08.22-l5.2';
+  const VERSION='2026.08.24-l5.3';
   const SCRIPT_URL=global.document?.currentScript?.src||'';
 
   function runtimeBase(){
@@ -61,6 +61,7 @@
     const url=toUrl(urlLike);
     if(global.location?.origin&&global.location.origin!=='null'&&url.origin!==global.location.origin)return false;
     const pathname=url.pathname.toLowerCase();
+    if(pathname.endsWith('/assets/data/roadmap/iu5-090401-11-v3.json'))return true;
     if(pathname.includes('/data/')||pathname.includes('/external-data/'))return false;
     if(pathname.endsWith('.json'))return false;
     return /\.(?:html?|css|js|svg|png|jpg|jpeg|webp|ico)$/.test(pathname)||pathname.endsWith('/');
