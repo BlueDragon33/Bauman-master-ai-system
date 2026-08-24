@@ -1,7 +1,7 @@
 (function(global){
   'use strict';
 
-  const RELEASE='BAUMAN_RUNTIME_SELF_DIAGNOSTICS_2026_08_24';
+  const RELEASE='BAUMAN_RUNTIME_SELF_DIAGNOSTICS_2026_08_24_V2';
   const DOM_WARN=3500;
   const DOM_FAIL=6000;
   const esc=value=>String(value??'').replace(/[&<>"']/g,ch=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[ch]));
@@ -10,6 +10,9 @@
   function add(id,label,ok,detail='',severity='error'){
     const status=ok?'pass':(severity==='warning'?'warn':'fail');
     rows.push({id,label,status,detail:String(detail||'')});
+  }
+  function addStatus(id,label,status,detail=''){
+    rows.push({id,label,status:['pass','warn','fail'].includes(status)?status:'fail',detail:String(detail||'')});
   }
 
   async function run(){
@@ -44,7 +47,8 @@
     add('school-label','Learner UI contains no comparison-school label',!/hutech/i.test(document.body?.innerText||''),'Bauman-only learner surface');
 
     const nodeCount=document.getElementsByTagName('*').length;
-    add('dom-budget','Current DOM budget',nodeCount<DOM_FAIL,`${nodeCount} nodes · warn ${DOM_WARN} · fail ${DOM_FAIL}`,nodeCount<DOM_WARN?'warning':'error');
+    const domStatus=nodeCount>=DOM_FAIL?'fail':nodeCount>=DOM_WARN?'warn':'pass';
+    addStatus('dom-budget','Current DOM budget',domStatus,`${nodeCount} nodes · warn ${DOM_WARN} · fail ${DOM_FAIL}`);
 
     let estimate={usage:0,quota:0};
     try{estimate=await global.BaumanOfflineContentLibrary?.estimate?.()||estimate;}catch(_){ }
