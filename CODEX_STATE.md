@@ -1,6 +1,6 @@
 # CODEX_STATE
 
-Current task: `L6-B7_RUSSIAN_TWIN_ENGLISH_RESEARCH_HOOKS`
+Current task: `L6-B8_LESSON_SCHEMA_VALIDATOR_MIGRATION`
 
 Status: `IN_PROGRESS`
 
@@ -32,6 +32,8 @@ What changed:
 - Preserved Russian 26/26 titles, Research 45 eLearning lessons and Roadmap V3
   Russian/research priority hooks as read-only references.
 - Added the deterministic B7 gate and B7 commit-status context.
+- Locked L6-B7 after GitHub Actions run `32718320781` reported B1-B7 contexts
+  successful at commit `4997800c…`.
 - Did not change learner content, subject runtime, storage, offline policy,
   service worker or `main`.
 
@@ -47,6 +49,7 @@ Verification:
 - L6-B6 deterministic visual-teaching regression, 75/75 checks: PASS
 - L6-B6 GitHub Actions run `32717062541`: PASS
 - L6-B7 deterministic language-layer regression, 96/96 checks: PASS
+- L6-B7 GitHub Actions run `32718320781`: PASS
 - B1-B7 report hashes stable over consecutive runs: PASS
 - B7 mutation tests (activation, review authority, English coverage,
   rescue evidence, assessment leakage), 5/5 expected failures observed: PASS
@@ -60,7 +63,7 @@ Verification:
 - L5 runtime diagnostics, 14/14: PASS
 - L5 offline-report integrity, 5/5 with one expected sandbox block: PASS
 - Russian 26/26, Research 45/45 eLearning v1.1, Roadmap hook signals: PASS
-- GitHub Actions L6-B7 gate: PENDING
+- GitHub Actions L6-B7 gate: PASS
 
 Main sync / pull instruction:
 - The work is branch-only on `migration/webapp-l1-audit-storage`.
@@ -68,8 +71,8 @@ Main sync / pull instruction:
 - Do not merge to `main` until the corresponding L6 gates pass.
 
 Next recommended task:
-- Wait for the L6-B7 GitHub Actions gate; after PASS, start
-  `L6-B8_LESSON_SCHEMA_VALIDATOR_MIGRATION`.
+- Audit schema variants and implement machine-readable lesson schema,
+  validator and version migration in `L6-B8_LESSON_SCHEMA_VALIDATOR_MIGRATION`.
 
 Next actor:
 - Codex
