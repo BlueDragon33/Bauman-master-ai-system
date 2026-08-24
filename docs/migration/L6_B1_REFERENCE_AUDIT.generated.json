@@ -1,0 +1,549 @@
+{
+  "schema": "L6_B1_REFERENCE_AUDIT_V1",
+  "auditedDate": "2026-08-24",
+  "auditedBaseline": {
+    "workingBranch": "migration/webapp-l1-audit-storage",
+    "remoteHeadBeforeL6": "5d56a0da86f9f92359f24e4851075fc67133f36c",
+    "l5ValidatedSource": "de34c9606d8e35b138e9933c835d4ab55228fca6",
+    "l5Checkpoint": "checkpoint/l5-webapp-offline-pass-a20-20260824",
+    "l5WorkflowRun": "32702609199",
+    "l5ArtifactId": "9511098621",
+    "l5ArtifactSha256": "cbad86b04a73d92d1e2e9109787e6a73627c967191e13a0c42e3b18c23a41218",
+    "experimentalBranch": "academic/universal-lesson-factory-v1",
+    "experimentalHead": "1680540ae06fcb2185d15eec5b0870a7cf5c7219"
+  },
+  "boiSnapshot": {
+    "url": "https://boi-ech.dinhnam3391.chatgpt.site",
+    "htmlSha256": "e519d69fb792f6647ca824baaa1990db32eaee453944e814177595b6e2b77dea",
+    "pageJsSha256": "870bef7e83d04cd93025b1aa8936dd84ef72c69db3f3124bbf00a434ed8a6e87",
+    "cssSha256": "b18a588795cad3932b5e96b3c9358056c0e9e7b55685aca4abc233090311ea6f"
+  },
+  "metrics": {
+    "russian": {
+      "lessons": 26,
+      "firstLessonSlides": 43,
+      "firstLessonRoles": [
+        "opening",
+        "scenario",
+        "map",
+        "method",
+        "vocabulary",
+        "chapter",
+        "rule",
+        "model",
+        "drill",
+        "phrasebook",
+        "example",
+        "contrast",
+        "cohesion",
+        "mistake",
+        "exercise",
+        "application",
+        "rubric",
+        "quiz",
+        "summary",
+        "routine"
+      ],
+      "requiredDataSources": 12,
+      "lazyManifestSources": [
+        "dialogue-bauman-az",
+        "deep-speaking-bauman",
+        "speaking-link-index"
+      ],
+      "largeSourceBytes": {
+        "dialogueBaumanAz": 35049608,
+        "deepSpeakingBauman": 28156378,
+        "vocabulary": 11212921,
+        "tests": 7923057,
+        "speaking": 7343576
+      }
+    },
+    "mathematics": {
+      "lessons": 347,
+      "firstLessonSlides": 16,
+      "firstLessonRoles": [
+        "problem_framing",
+        "deep_essence",
+        "counter_intuition",
+        "real_bridge",
+        "notation",
+        "core_formula",
+        "assumption_gate",
+        "mini_case",
+        "interpretation",
+        "simulation",
+        "common_mistakes",
+        "application",
+        "practice",
+        "professor_qa",
+        "bridge",
+        "takeaway"
+      ],
+      "authoritativeTheoryRecords": 18,
+      "specialRuntimeLayers": [
+        "theory-slideshow-identity-E210.js",
+        "theory-slideshow-reader-content-E211.js",
+        "theory-artifact-registry-E244.js",
+        "theory-artifact-authoritative-route-E245.js",
+        "theory-artifact-reader-E241.js",
+        "theory-slideshow-richness-E242.js",
+        "theory-slideshow-reader-formula-accuracy-E224.js",
+        "theory-formula-typeset-E234.js"
+      ]
+    },
+    "lightSubjects": {
+      "foundation": {
+        "lessons": 21,
+        "validPayloads": 21,
+        "minimum": 21
+      },
+      "ai": {
+        "lessons": 51,
+        "validPayloads": 51,
+        "minimum": 51
+      },
+      "research": {
+        "lessons": 45,
+        "validPayloads": 45,
+        "minimum": 45
+      },
+      "signal": {
+        "lessons": 36,
+        "validPayloads": 36,
+        "minimum": 36
+      },
+      "systems": {
+        "lessons": 57,
+        "validPayloads": 57,
+        "minimum": 57
+      }
+    }
+  },
+  "decisions": [
+    "D01",
+    "D02",
+    "D03",
+    "D04",
+    "D05",
+    "D06",
+    "D07",
+    "D08",
+    "D09",
+    "D10",
+    "D11",
+    "D12"
+  ],
+  "checks": [
+    {
+      "id": "FILE-docs/migration/L6_B1_REFERENCE_IMPLEMENTATION_AUDIT.md",
+      "title": "required audit input exists",
+      "ok": true,
+      "evidence": "docs/migration/L6_B1_REFERENCE_IMPLEMENTATION_AUDIT.md"
+    },
+    {
+      "id": "FILE-docs/migration/MIGRATION_PLAN.md",
+      "title": "required audit input exists",
+      "ok": true,
+      "evidence": "docs/migration/MIGRATION_PLAN.md"
+    },
+    {
+      "id": "FILE-assets/data/roadmap/iu5-090401-11-v3.json",
+      "title": "required audit input exists",
+      "ok": true,
+      "evidence": "assets/data/roadmap/iu5-090401-11-v3.json"
+    },
+    {
+      "id": "FILE-subjects/russian/index.html",
+      "title": "required audit input exists",
+      "ok": true,
+      "evidence": "subjects/russian/index.html"
+    },
+    {
+      "id": "FILE-subjects/russian/subject-manifest.json",
+      "title": "required audit input exists",
+      "ok": true,
+      "evidence": "subjects/russian/subject-manifest.json"
+    },
+    {
+      "id": "FILE-subjects/russian/assets/subject-adapter.js",
+      "title": "required audit input exists",
+      "ok": true,
+      "evidence": "subjects/russian/assets/subject-adapter.js"
+    },
+    {
+      "id": "FILE-subjects/russian/assets/lazy-heavy-data-v1341.js",
+      "title": "required audit input exists",
+      "ok": true,
+      "evidence": "subjects/russian/assets/lazy-heavy-data-v1341.js"
+    },
+    {
+      "id": "FILE-subjects/russian/data/lessons.json",
+      "title": "required audit input exists",
+      "ok": true,
+      "evidence": "subjects/russian/data/lessons.json"
+    },
+    {
+      "id": "FILE-subjects/math/index.html",
+      "title": "required audit input exists",
+      "ok": true,
+      "evidence": "subjects/math/index.html"
+    },
+    {
+      "id": "FILE-subjects/math/subject-manifest.json",
+      "title": "required audit input exists",
+      "ok": true,
+      "evidence": "subjects/math/subject-manifest.json"
+    },
+    {
+      "id": "FILE-subjects/math/assets/subject-adapter.js",
+      "title": "required audit input exists",
+      "ok": true,
+      "evidence": "subjects/math/assets/subject-adapter.js"
+    },
+    {
+      "id": "FILE-subjects/math/data/lessons.json",
+      "title": "required audit input exists",
+      "ok": true,
+      "evidence": "subjects/math/data/lessons.json"
+    },
+    {
+      "id": "FILE-subjects/math/data/theory_lecture_content.json",
+      "title": "required audit input exists",
+      "ok": true,
+      "evidence": "subjects/math/data/theory_lecture_content.json"
+    },
+    {
+      "id": "PLAN-23-218",
+      "title": "master plan remains 23 rounds and 218 steps",
+      "ok": true,
+      "evidence": "docs/migration/MIGRATION_PLAN.md"
+    },
+    {
+      "id": "PLAN-L6-B1",
+      "title": "L6 starts with the three-reference deep audit",
+      "ok": true,
+      "evidence": "L6 step 1"
+    },
+    {
+      "id": "IDENTITY-DISPLAY",
+      "title": "personalized display code is 09.04.01/11",
+      "ok": true,
+      "evidence": {
+        "displayCode": "09.04.01/11",
+        "department": "ИУ-5"
+      }
+    },
+    {
+      "id": "IDENTITY-OFFICIAL",
+      "title": "official published code is 09.04.01",
+      "ok": true,
+      "evidence": {
+        "officialPublishedDirectionCode": "09.04.01",
+        "sourcePublicDirectionCode": "09.04.01"
+      }
+    },
+    {
+      "id": "RUSSIAN-SCHEMA",
+      "title": "Russian keeps its dedicated subject schema",
+      "ok": true,
+      "evidence": {
+        "id": "russian",
+        "schema": "SUBJECT_MODULE_V1"
+      }
+    },
+    {
+      "id": "RUSSIAN-LESSONS",
+      "title": "Russian baseline has 26 rich lessons",
+      "ok": true,
+      "evidence": {
+        "lessonCount": 26,
+        "firstLessonSlides": 43
+      }
+    },
+    {
+      "id": "RUSSIAN-ROLES",
+      "title": "Russian slide roles preserve specialist pedagogy",
+      "ok": true,
+      "evidence": [
+        "opening",
+        "scenario",
+        "map",
+        "method",
+        "vocabulary",
+        "chapter",
+        "rule",
+        "model",
+        "drill",
+        "phrasebook",
+        "example",
+        "contrast",
+        "cohesion",
+        "mistake",
+        "exercise",
+        "application",
+        "rubric",
+        "quiz",
+        "summary",
+        "routine"
+      ]
+    },
+    {
+      "id": "RUSSIAN-NOT-GENERIC",
+      "title": "Russian is not falsely classified as the generic eLearning payload",
+      "ok": true,
+      "evidence": [
+        "id",
+        "stage",
+        "title",
+        "ruTitle",
+        "summary",
+        "object",
+        "slides",
+        "tags",
+        "method"
+      ]
+    },
+    {
+      "id": "RUSSIAN-DATA-POLICY",
+      "title": "Russian manifest distinguishes required and lazy sources",
+      "ok": true,
+      "evidence": {
+        "requiredCount": 12,
+        "lazySources": [
+          "dialogue-bauman-az",
+          "deep-speaking-bauman",
+          "speaking-link-index"
+        ]
+      }
+    },
+    {
+      "id": "RUSSIAN-L5-LAZY",
+      "title": "Russian L5 lazy overlay preserves required persistence-safe heavy data",
+      "ok": true,
+      "evidence": "vocab/tests/speaking"
+    },
+    {
+      "id": "RUSSIAN-CAPABILITIES",
+      "title": "Russian adapter still declares the audited specialist capabilities",
+      "ok": true,
+      "evidence": [
+        "dialogue",
+        "deep-dialogue",
+        "deep-speaking",
+        "speaking-link-index",
+        "writing",
+        "vocab",
+        "grammar",
+        "mindmap",
+        "review",
+        "exam",
+        "json-import-export",
+        "lazy-data"
+      ]
+    },
+    {
+      "id": "RUSSIAN-ENTRY",
+      "title": "Russian entry preserves storage, adapter, lazy overlay, planning bridge and core order",
+      "ok": true,
+      "evidence": "subjects/russian/index.html"
+    },
+    {
+      "id": "MATH-SCHEMA",
+      "title": "Mathematics keeps its dedicated subject schema",
+      "ok": true,
+      "evidence": {
+        "id": "math",
+        "schema": "subject-v7"
+      }
+    },
+    {
+      "id": "MATH-LESSONS",
+      "title": "Mathematics baseline has 347 lessons",
+      "ok": true,
+      "evidence": {
+        "actual": 347,
+        "manifest": 347
+      }
+    },
+    {
+      "id": "MATH-ROLES",
+      "title": "Mathematics slide roles preserve technical pedagogy",
+      "ok": true,
+      "evidence": [
+        "problem_framing",
+        "deep_essence",
+        "counter_intuition",
+        "real_bridge",
+        "notation",
+        "core_formula",
+        "assumption_gate",
+        "mini_case",
+        "interpretation",
+        "simulation",
+        "common_mistakes",
+        "application",
+        "practice",
+        "professor_qa",
+        "bridge",
+        "takeaway"
+      ]
+    },
+    {
+      "id": "MATH-RENDER-METADATA",
+      "title": "Mathematics eLearning field is identified as render metadata",
+      "ok": true,
+      "evidence": [
+        "mode",
+        "hideSearchMeta",
+        "formulaRenderMode",
+        "matrixRenderMode",
+        "canvaReady",
+        "targetSource",
+        "importMode",
+        "uiCoreModified"
+      ]
+    },
+    {
+      "id": "MATH-AUTHORITATIVE-CONTENT",
+      "title": "Mathematics has a separate authoritative lecture record collection",
+      "ok": true,
+      "evidence": {
+        "schema": "bauman_math_content_records_v1",
+        "recordCount": 18
+      }
+    },
+    {
+      "id": "MATH-SPECIAL-LAYERS",
+      "title": "Mathematics entry keeps identity, artifact, reader, richness and formula layers",
+      "ok": true,
+      "evidence": [
+        "theory-slideshow-identity-E210.js",
+        "theory-slideshow-reader-content-E211.js",
+        "theory-artifact-registry-E244.js",
+        "theory-artifact-authoritative-route-E245.js",
+        "theory-artifact-reader-E241.js",
+        "theory-slideshow-richness-E242.js",
+        "theory-slideshow-reader-formula-accuracy-E224.js",
+        "theory-formula-typeset-E234.js"
+      ]
+    },
+    {
+      "id": "MATH-CAPABILITIES",
+      "title": "Mathematics adapter keeps formula, simulation, oral, application, review and exam capabilities",
+      "ok": true,
+      "evidence": "subjects/math/assets/subject-adapter.js"
+    },
+    {
+      "id": "LIGHT-FOUNDATION",
+      "title": "foundation has complete eLearning-v1.1 payloads",
+      "ok": true,
+      "evidence": {
+        "lessons": 21,
+        "validPayloads": 21,
+        "minimum": 21
+      }
+    },
+    {
+      "id": "LIGHT-AI",
+      "title": "ai has complete eLearning-v1.1 payloads",
+      "ok": true,
+      "evidence": {
+        "lessons": 51,
+        "validPayloads": 51,
+        "minimum": 51
+      }
+    },
+    {
+      "id": "LIGHT-RESEARCH",
+      "title": "research has complete eLearning-v1.1 payloads",
+      "ok": true,
+      "evidence": {
+        "lessons": 45,
+        "validPayloads": 45,
+        "minimum": 45
+      }
+    },
+    {
+      "id": "LIGHT-SIGNAL",
+      "title": "signal has complete eLearning-v1.1 payloads",
+      "ok": true,
+      "evidence": {
+        "lessons": 36,
+        "validPayloads": 36,
+        "minimum": 36
+      }
+    },
+    {
+      "id": "LIGHT-SYSTEMS",
+      "title": "systems has complete eLearning-v1.1 payloads",
+      "ok": true,
+      "evidence": {
+        "lessons": 57,
+        "validPayloads": 57,
+        "minimum": 57
+      }
+    },
+    {
+      "id": "LEARNER-IDENTITY-BOUNDARY",
+      "title": "learner-facing shell and lesson sources contain no comparison-school label",
+      "ok": true,
+      "evidence": []
+    },
+    {
+      "id": "AUDIT-DECISIONS",
+      "title": "audit records all twelve binding architecture decisions",
+      "ok": true,
+      "evidence": [
+        "D01 ·",
+        "D02 ·",
+        "D03 ·",
+        "D04 ·",
+        "D05 ·",
+        "D06 ·",
+        "D07 ·",
+        "D08 ·",
+        "D09 ·",
+        "D10 ·",
+        "D11 ·",
+        "D12 ·"
+      ]
+    },
+    {
+      "id": "AUDIT-NO-FIXED-TABS",
+      "title": "audit explicitly separates semantic blocks from UI tabs",
+      "ok": true,
+      "evidence": "D01"
+    },
+    {
+      "id": "AUDIT-READ-ONLY-ADAPTERS",
+      "title": "audit requires read-only compatibility adapters first",
+      "ok": true,
+      "evidence": "D03"
+    },
+    {
+      "id": "AUDIT-CANDIDATE-NO-MERGE",
+      "title": "experimental branch is recorded as inspected but not merged",
+      "ok": true,
+      "evidence": "academic/universal-lesson-factory-v1"
+    },
+    {
+      "id": "AUDIT-BOI-SNAPSHOT",
+      "title": "Bơi ếch reference is frozen by URL and three content hashes",
+      "ok": true,
+      "evidence": {
+        "url": "https://boi-ech.dinhnam3391.chatgpt.site",
+        "htmlSha256": "e519d69fb792f6647ca824baaa1990db32eaee453944e814177595b6e2b77dea",
+        "pageJsSha256": "870bef7e83d04cd93025b1aa8936dd84ef72c69db3f3124bbf00a434ed8a6e87",
+        "cssSha256": "b18a588795cad3932b5e96b3c9358056c0e9e7b55685aca4abc233090311ea6f"
+      }
+    },
+    {
+      "id": "AUDIT-BOI-TRANSFER",
+      "title": "Bơi ếch transfer keeps gated learning and offline flow without copying domain UI",
+      "ok": true,
+      "evidence": "pedagogical state transfer"
+    }
+  ],
+  "failures": [],
+  "result": "PASS"
+}

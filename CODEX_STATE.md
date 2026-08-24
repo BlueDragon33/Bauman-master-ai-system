@@ -1,11 +1,77 @@
 # CODEX_STATE
 
-Current task: `THEORY_C01_L06_CORE_CONTENT_PASS_07`
+Current task: `L6-B1_REFERENCE_IMPLEMENTATION_AUDIT`
 
-Status: `PASS_06_MISCONCEPTION_MAP_COMPLETE`
+Status: `IN_PROGRESS`
 
-Date: 2026-07-09
-Branch: `main`
+Date: 2026-08-24
+Branch: `migration/webapp-l1-audit-storage`
+Base branch: `main`
+Main sync status: `branch_only`
+
+Files changed:
+- `.github/workflows/migration-l6-academic.yml`
+- `docs/migration/L6_B1_REFERENCE_IMPLEMENTATION_AUDIT.md`
+- `docs/migration/L6_B1_REFERENCE_AUDIT.generated.json`
+- `scripts/academic/l6-b1-reference-audit.cjs`
+- `docs/migration/MIGRATION_PLAN.md`
+- `CODEX_STATE.md`
+
+What changed:
+- Audited Russian, Mathematics, five light-subject payloads, the frozen Bơi ếch
+  pedagogical reference and the divergent experimental L6 branch.
+- Locked twelve architecture decisions that keep semantic blocks separate from
+  UI tabs and require read-only compatibility adapters for Russian/Mathematics.
+- Added a deterministic L6-B1 gate and a dedicated branch-only CI workflow.
+- Did not change learner content, subject runtime, storage, offline policy,
+  service worker or `main`.
+
+Verification:
+- L6-B1 deterministic audit, 44/44 checks: PASS
+- Generated report SHA-256 stable over two consecutive runs: PASS
+- Workflow YAML parse: PASS
+- L5 static routing, 9/9: PASS
+- L5 service-worker lifecycle, 17/17: PASS
+- L5 academic runtime V3, 36/36: PASS
+- L5 roadmap/offline static, 75/75: PASS
+- L5 data-loading audit, 8 subjects and 0 failures: PASS
+- L5 runtime diagnostics, 14/14: PASS
+- L5 offline-report integrity, 5/5 with one expected sandbox block: PASS
+- GitHub Actions L6 gate: PENDING
+
+Main sync / pull instruction:
+- The work is branch-only on `migration/webapp-l1-audit-storage`.
+- Do not pull `main` for this task; `main` does not contain L6-B1.
+- Do not merge to `main` until the corresponding L6 gates pass.
+
+Next recommended task:
+- Wait for the L6-B1 GitHub Actions gate; after PASS, start
+  `L6-B2_UNIVERSAL_LESSON_CONTRACT`.
+
+Next actor:
+- Codex
+
+Codex required:
+- yes
+- Reason: remote CI verification, schema/validator implementation, large JSON
+  compatibility audit and regression.
+
+ChatGPT can do:
+- Targeted content/schema review and small documentation-only corrections on
+  the working branch.
+
+Codex prompt file:
+- None.
+
+---
+
+## Historical Math content state
+
+Historical current task: `THEORY_C01_L06_CORE_CONTENT_PASS_07`
+
+Historical status: `PASS_06_MISCONCEPTION_MAP_COMPLETE`
+
+Historical branch: `main`
 
 ## Execution policy
 - Prefer direct ChatGPT high-reasoning work with narrow GitHub reads and patches.

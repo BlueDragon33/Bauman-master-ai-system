@@ -107,9 +107,19 @@ L5 PASS nhưng `serviceWorkerCache` production vẫn OFF. Chỉ bật ở stagin
 
 ## Lượt 6 · Universal Lesson Architecture & Subject Factory · 11 bước
 
-Trạng thái: **NEXT / IN PROGRESS khi bắt đầu triển khai**.
+Trạng thái: **B1 IMPLEMENTED · LOCAL GATE PASS · REMOTE CI PENDING**.
 
-1. Audit sâu ba reference implementations: Tiếng Nga, Toán và nguyên tắc UX bài giảng Bơi ếch; lập bảng phần nào giữ, phần nào chuẩn hóa, phần nào không dùng chung.
+Bằng chứng B1:
+- Audit quyết định: L6_B1_REFERENCE_IMPLEMENTATION_AUDIT.md.
+- Evidence máy đọc được: L6_B1_REFERENCE_AUDIT.generated.json.
+- Deterministic gate: 44/44 checks PASS; report hash ổn định qua hai lần chạy.
+- L5 non-browser regression sau B1: static routing 9/9, service worker 17/17,
+  academic runtime 36/36, roadmap/offline static 75/75, data loading 8 môn
+  với 0 lỗi, runtime diagnostics 14/14, offline report integrity 5/5.
+- Chưa đánh dấu B1 remote PASS cho tới khi workflow L6 trên nhánh làm việc
+  hoàn tất thành công.
+
+1. **L6-B1** · Audit sâu ba reference implementations: Tiếng Nga, Toán và nguyên tắc UX bài giảng Bơi ếch; lập bảng phần nào giữ, phần nào chuẩn hóa, phần nào không dùng chung. **LOCAL PASS · CI PENDING**.
 2. Định nghĩa `UniversalLessonContract` gồm metadata, prerequisite, objectives, theory, example, exercise, lab/simulation, misconception, visual-check, oral, review, test, mastery, project/NIR evidence.
 3. Tách `required blocks` và `optional blocks` theo lesson type để không ép mọi bài có 18 tab.
 4. Định nghĩa lesson types: language, mathematics, programming, database, software-design, ML/data, ASOIU/system, research.

@@ -1,0 +1,51 @@
+name: Migration L6 Academic Architecture Regression
+
+on:
+  push:
+    branches:
+      - migration/webapp-l1-audit-storage
+    paths:
+      - assets/data/lesson/**
+      - assets/data/roadmap/**
+      - assets/js/platform/universal-lesson/**
+      - subjects/**
+      - scripts/academic/**
+      - docs/migration/L6_**
+      - docs/migration/MIGRATION_PLAN.md
+      - CODEX_STATE.md
+      - .github/workflows/migration-l6-academic.yml
+  pull_request:
+    branches:
+      - main
+      - migration/webapp-l1-audit-storage
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: migration-l6-academic-${{ github.event_name }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  l6-academic-architecture:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v5
+        with:
+          fetch-depth: 0
+
+      - name: Use Node.js 24
+        uses: actions/setup-node@v5
+        with:
+          node-version: '24'
+
+      - name: Syntax check L6 academic gates
+        run: node --check scripts/academic/l6-b1-reference-audit.cjs
+
+      - name: Audit L6-B1 reference implementations
+        run: node scripts/academic/l6-b1-reference-audit.cjs
+
+      - name: Verify deterministic L6-B1 evidence
+        run: git diff --exit-code -- docs/migration/L6_B1_REFERENCE_AUDIT.generated.json
