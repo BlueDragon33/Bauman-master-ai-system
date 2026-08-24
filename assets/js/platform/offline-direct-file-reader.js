@@ -1,7 +1,7 @@
 (function(global){
   'use strict';
 
-  const RELEASE='BAUMAN_OFFLINE_DIRECT_FILE_READER_2026_08_24';
+  const RELEASE='BAUMAN_OFFLINE_DIRECT_FILE_READER_2026_08_24_R2';
   const TEXT_PREVIEW_BYTES=300000;
   let objectUrl='';
 
@@ -65,11 +65,21 @@
     }
     return new Promise((resolve,reject)=>{
       const input=document.createElement('input');
+      let settled=false;
+      const finish=value=>{
+        if(settled)return;
+        settled=true;
+        global.removeEventListener('focus',onFocus,true);
+        input.remove();
+        resolve(value);
+      };
+      const onFocus=()=>setTimeout(()=>{if(!settled&&!input.files?.length)finish(null);},350);
       input.type='file';
       input.style.display='none';
       document.body.appendChild(input);
-      input.onchange=()=>{const file=input.files?.[0]||null;input.remove();resolve(file);};
-      input.onerror=()=>{input.remove();reject(new Error('Không mở được file picker'));};
+      input.onchange=()=>finish(input.files?.[0]||null);
+      input.onerror=()=>{if(settled)return;settled=true;global.removeEventListener('focus',onFocus,true);input.remove();reject(new Error('Không mở được file picker'));};
+      global.addEventListener('focus',onFocus,true);
       input.click();
     });
   }
@@ -90,13 +100,13 @@
   }
 
   document.addEventListener('click',event=>{
-    if(event.target.dataset.directLocalClose==='1'){revoke();modalRoot().innerHTML='';return;}
+    if(event.target.dataset.directLocalClose==='1'){revoke();const root=modalRoot();if(root)root.innerHTML='';return;}
     const target=event.target.closest?.('[data-direct-local-action]');
     if(!target)return;
     event.preventDefault();
     event.stopImmediatePropagation();
     if(target.dataset.directLocalAction==='open-file')openPicker().catch(error=>{if(error?.name!=='AbortError')global.toast?.(String(error?.message||error));});
-    if(target.dataset.directLocalAction==='close'){revoke();if(modalRoot())modalRoot().innerHTML='';}
+    if(target.dataset.directLocalAction==='close'){revoke();const root=modalRoot();if(root)root.innerHTML='';}
   },true);
 
   const observer=new MutationObserver(inject);
@@ -108,5 +118,5 @@
   if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',install,{once:true});else install();
   global.addEventListener('pagehide',revoke,{passive:true});
 
-  global.BaumanOfflineDirectFileReader={release:RELEASE,previewFile,openPicker,revoke,selfCheck(){return {ok:typeof File!=='undefined'&&typeof Blob!=='undefined',release:RELEASE,textPreviewBytes:TEXT_PREVIEW_BYTES,stored:false};}};
+  global.BaumanOfflineDirectFileReader={release:RELEASE,previewFile,openPicker,revoke,selfCheck(){return {ok:typeof File!=='undefined'&&typeof Blob!=='undefined',release:RELEASE,textPreviewBytes:TEXT_PREVIEW_BYTES,stored:false,cancelSafe:true};}};
 })(window);
