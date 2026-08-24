@@ -197,7 +197,7 @@ Direct API calls in file: **5**
 
 ### `subjects/russian/assets/lazy-heavy-data-v1341.js`
 
-- L61: `bauman_russian_survival_master_v11_clean_skeleton`, `storageKey`
+- L108: `bauman_russian_survival_master_v11_clean_skeleton`, `storageKey`
   - `var saved=storage&&storage.getJSON?storage.getJSON(A.storageKey||'bauman_russian_survival_master_v11_clean_skeleton',{}):{};`
 
 ### `subjects/russian/assets/subject-adapter.js`
