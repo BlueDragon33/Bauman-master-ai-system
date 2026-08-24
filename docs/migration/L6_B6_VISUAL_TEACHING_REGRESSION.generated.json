@@ -1,0 +1,1628 @@
+{
+  "schema": "L6_B6_VISUAL_TEACHING_REGRESSION_V1",
+  "contractId": "bauman-visual-teaching-contract",
+  "contractVersion": "1.0.0",
+  "universalContractVersion": "2.0.0",
+  "typeRegistryVersion": "1.0.0",
+  "masterReadyPolicyVersion": "1.0.0",
+  "learningRoles": [
+    "orient",
+    "concept-model",
+    "worked-step",
+    "predict",
+    "manipulate-observe",
+    "construct",
+    "compare",
+    "error-intercept",
+    "explain-defend",
+    "review-retrieve",
+    "result-evidence"
+  ],
+  "representationFamilies": [
+    "annotated-illustration",
+    "relationship-diagram",
+    "step-sequence",
+    "state-comparison",
+    "trace-timeline",
+    "plot-or-chart",
+    "media-overlay",
+    "artifact-view",
+    "interactive-model",
+    "specialist-widget"
+  ],
+  "registeredRepresentationAssignments": 48,
+  "distinctRegisteredRepresentationKinds": 46,
+  "kindFamilyCounts": {
+    "annotated-illustration": 1,
+    "relationship-diagram": 13,
+    "step-sequence": 2,
+    "state-comparison": 13,
+    "trace-timeline": 6,
+    "plot-or-chart": 7,
+    "media-overlay": 1,
+    "artifact-view": 0,
+    "interactive-model": 3,
+    "specialist-widget": 0
+  },
+  "stepStates": [
+    "locked",
+    "available",
+    "active",
+    "attempted",
+    "verified",
+    "needs-repair",
+    "complete"
+  ],
+  "outcomeVocabulary": [
+    "unattempted",
+    "correct",
+    "partially-correct",
+    "incorrect",
+    "inconclusive",
+    "needs-review"
+  ],
+  "disclosurePolicies": {
+    "orientation": {
+      "correctnessTiming": "not-scored",
+      "hintMode": "source-orientation",
+      "solutionMode": "not-applicable"
+    },
+    "worked-example": {
+      "correctnessTiming": "shown-with-annotated-reasoning",
+      "hintMode": "full-model",
+      "solutionMode": "complete-source-grounded-path"
+    },
+    "guided-practice": {
+      "correctnessTiming": "after-committed-step",
+      "hintMode": "progressive-source-linked",
+      "solutionMode": "after-attempt-and-policy-gate"
+    },
+    "independent-practice": {
+      "correctnessTiming": "after-committed-attempt",
+      "hintMode": "limited-by-attempt-policy",
+      "solutionMode": "after-retry-or-review-gate"
+    },
+    "review": {
+      "correctnessTiming": "after-retrieval-attempt",
+      "hintMode": "diagnosed-error-group",
+      "solutionMode": "source-linked-repair"
+    },
+    "formal-assessment": {
+      "correctnessTiming": "only-after-submission-boundary",
+      "hintMode": "none-unless-blueprint-explicitly-allows",
+      "solutionMode": "post-submission-policy-only",
+      "protectedAnswerRule": "Per-item correctness, protected hints and solutions are unavailable to learner and AI advisory before submission."
+    }
+  },
+  "profileSummaries": {
+    "language": {
+      "representationKinds": [
+        "pronunciation-state",
+        "dialogue-turn-map",
+        "correct-wrong-phrase",
+        "handwriting-overlay",
+        "listening-timeline"
+      ],
+      "representationFamilies": [
+        "state-comparison",
+        "relationship-diagram",
+        "media-overlay",
+        "trace-timeline"
+      ],
+      "specialistCapabilityRefs": [
+        "dialogue",
+        "shadowing",
+        "speech-recording",
+        "listening-media",
+        "handwriting-workspace",
+        "writing-workspace"
+      ],
+      "requiredRoleCoverage": [
+        "worked-step",
+        "predict",
+        "compare",
+        "error-intercept",
+        "explain-defend"
+      ],
+      "domainRules": 3,
+      "errors": []
+    },
+    "mathematics": {
+      "representationKinds": [
+        "formula-diagram",
+        "matrix-visualizer",
+        "graph-or-plot",
+        "assumption-gate",
+        "correct-wrong-derivation",
+        "parameter-state"
+      ],
+      "representationFamilies": [
+        "annotated-illustration",
+        "interactive-model",
+        "plot-or-chart",
+        "state-comparison",
+        "step-sequence"
+      ],
+      "specialistCapabilityRefs": [
+        "formula-typesetting",
+        "matrix-rendering",
+        "derivation",
+        "parameter-simulation",
+        "math-concept-map",
+        "misconception-map"
+      ],
+      "requiredRoleCoverage": [
+        "concept-model",
+        "worked-step",
+        "predict",
+        "manipulate-observe",
+        "compare",
+        "explain-defend"
+      ],
+      "domainRules": 3,
+      "errors": []
+    },
+    "programming": {
+      "representationKinds": [
+        "code-trace",
+        "call-stack-state",
+        "data-structure-state",
+        "test-output-diff",
+        "complexity-plot"
+      ],
+      "representationFamilies": [
+        "trace-timeline",
+        "state-comparison",
+        "interactive-model",
+        "plot-or-chart"
+      ],
+      "specialistCapabilityRefs": [
+        "code-lab",
+        "unit-test",
+        "debug-runner",
+        "code-trace",
+        "output-prediction",
+        "complexity-check"
+      ],
+      "requiredRoleCoverage": [
+        "predict",
+        "manipulate-observe",
+        "construct",
+        "error-intercept",
+        "explain-defend"
+      ],
+      "domainRules": 3,
+      "errors": []
+    },
+    "database": {
+      "representationKinds": [
+        "schema-diagram",
+        "relation-state",
+        "query-plan",
+        "transaction-timeline",
+        "index-cost-comparison",
+        "pipeline-map"
+      ],
+      "representationFamilies": [
+        "relationship-diagram",
+        "state-comparison",
+        "step-sequence",
+        "trace-timeline",
+        "plot-or-chart"
+      ],
+      "specialistCapabilityRefs": [
+        "sql-playground",
+        "schema-diagram",
+        "query-plan",
+        "transaction-scenario",
+        "normalization-workbench",
+        "index-comparison"
+      ],
+      "requiredRoleCoverage": [
+        "concept-model",
+        "predict",
+        "construct",
+        "compare",
+        "error-intercept",
+        "explain-defend"
+      ],
+      "domainRules": 3,
+      "errors": []
+    },
+    "software-design": {
+      "representationKinds": [
+        "uml-diagram",
+        "architecture-diagram",
+        "requirement-trace",
+        "sequence-state",
+        "quality-attribute-tradeoff"
+      ],
+      "representationFamilies": [
+        "relationship-diagram",
+        "trace-timeline",
+        "state-comparison"
+      ],
+      "specialistCapabilityRefs": [
+        "requirements-map",
+        "uml-workspace",
+        "architecture-workspace",
+        "quality-attribute-scenario",
+        "traceability-matrix",
+        "design-defense"
+      ],
+      "requiredRoleCoverage": [
+        "concept-model",
+        "construct",
+        "compare",
+        "explain-defend",
+        "result-evidence"
+      ],
+      "domainRules": 3,
+      "errors": []
+    },
+    "ml-data": {
+      "representationKinds": [
+        "dataset-profile",
+        "pipeline-map",
+        "metric-plot",
+        "confusion-matrix",
+        "model-comparison",
+        "error-slice",
+        "training-state"
+      ],
+      "representationFamilies": [
+        "plot-or-chart",
+        "relationship-diagram",
+        "state-comparison",
+        "trace-timeline"
+      ],
+      "specialistCapabilityRefs": [
+        "dataset-playground",
+        "experiment-runner",
+        "pipeline-map",
+        "metric-visualizer",
+        "confusion-matrix",
+        "error-analysis"
+      ],
+      "requiredRoleCoverage": [
+        "predict",
+        "manipulate-observe",
+        "compare",
+        "error-intercept",
+        "explain-defend",
+        "result-evidence"
+      ],
+      "domainRules": 3,
+      "errors": []
+    },
+    "asoiu-system": {
+      "representationKinds": [
+        "system-boundary",
+        "architecture-diagram",
+        "information-flow",
+        "reliability-state",
+        "failure-tree",
+        "lifecycle-map",
+        "ergonomic-state"
+      ],
+      "representationFamilies": [
+        "relationship-diagram",
+        "state-comparison"
+      ],
+      "specialistCapabilityRefs": [
+        "system-concept-map",
+        "architecture-diagram",
+        "information-flow",
+        "reliability-scenario",
+        "failure-state",
+        "lifecycle-map"
+      ],
+      "requiredRoleCoverage": [
+        "concept-model",
+        "predict",
+        "manipulate-observe",
+        "compare",
+        "explain-defend",
+        "result-evidence"
+      ],
+      "domainRules": 3,
+      "errors": []
+    },
+    "research": {
+      "representationKinds": [
+        "research-question-map",
+        "literature-map",
+        "evidence-map",
+        "protocol-timeline",
+        "result-plot",
+        "claim-source-boundary",
+        "milestone-state"
+      ],
+      "representationFamilies": [
+        "relationship-diagram",
+        "trace-timeline",
+        "plot-or-chart",
+        "state-comparison"
+      ],
+      "specialistCapabilityRefs": [
+        "research-question-builder",
+        "literature-matrix",
+        "evidence-map",
+        "experiment-protocol",
+        "citation-boundary",
+        "nir-milestone",
+        "vkr-milestone"
+      ],
+      "requiredRoleCoverage": [
+        "concept-model",
+        "construct",
+        "compare",
+        "explain-defend",
+        "result-evidence"
+      ],
+      "domainRules": 3,
+      "errors": []
+    }
+  },
+  "profileErrors": {
+    "language": [],
+    "mathematics": [],
+    "programming": [],
+    "database": [],
+    "software-design": [],
+    "ml-data": [],
+    "asoiu-system": [],
+    "research": []
+  },
+  "referenceModes": {
+    "russian": "read-only-reference-unprojected",
+    "mathematics": "read-only-reference-unprojected"
+  },
+  "referenceHashes": {
+    "russian": {
+      "subjects/russian/data/lessons.json": "c8693eeefed17ea39b0cea4a600c9086f1b597ae7174e56bd8b2f8b46b985062",
+      "subjects/russian/assets/core.js": "71f24d0e0300dddee18f2dd91617b34137de66290c47f0484cae454a1cdeb573",
+      "subjects/russian/assets/subject-adapter.js": "1c6a6930ab06e1510879ed374093016ff721b20fab7bf720a65613e4c411d625"
+    },
+    "mathematics": {
+      "subjects/math/data/lessons.json": "4a77e812ac13bdd3076bf34ff47362c2bbd0157c5210d466f63df1d9fd8e324d",
+      "subjects/math/data/theory_lecture_content.json": "d0cd18601b1ede84f58072b3c47cfcc176b4d21d3fa71b23762b908485391447",
+      "subjects/math/assets/subject-adapter.js": "40cb9d93a713929f3b8c9c99c01c30e29f103043a2f2c207521c5446f8f47731"
+    }
+  },
+  "boiSnapshot": {
+    "url": "https://boi-ech.dinhnam3391.chatgpt.site",
+    "htmlSha256": "e519d69fb792f6647ca824baaa1990db32eaee453944e814177595b6e2b77dea",
+    "pageJsSha256": "870bef7e83d04cd93025b1aa8936dd84ef72c69db3f3124bbf00a434ed8a6e87",
+    "cssSha256": "b18a588795cad3932b5e96b3c9358056c0e9e7b55685aca4abc233090311ea6f",
+    "kept": [
+      "visible learner journey",
+      "checkpoint before formal assessment",
+      "one primary error at a time",
+      "post-submission formal feedback",
+      "source-grounded AI recovery",
+      "deterministic offline learning"
+    ],
+    "notCopied": [
+      "swimming movement graphics",
+      "physical-safety instructions",
+      "stroke-specific interactions",
+      "five mandatory visual tabs"
+    ]
+  },
+  "checks": [
+    {
+      "id": "FILE-assets/data/lesson/universal-lesson-contract-v2.json",
+      "title": "required B6 input exists",
+      "ok": true,
+      "evidence": "assets/data/lesson/universal-lesson-contract-v2.json"
+    },
+    {
+      "id": "FILE-assets/data/lesson/lesson-type-registry-v1.json",
+      "title": "required B6 input exists",
+      "ok": true,
+      "evidence": "assets/data/lesson/lesson-type-registry-v1.json"
+    },
+    {
+      "id": "FILE-assets/data/lesson/master-ready-policy-v1.json",
+      "title": "required B6 input exists",
+      "ok": true,
+      "evidence": "assets/data/lesson/master-ready-policy-v1.json"
+    },
+    {
+      "id": "FILE-assets/data/lesson/visual-teaching-contract-v1.json",
+      "title": "required B6 input exists",
+      "ok": true,
+      "evidence": "assets/data/lesson/visual-teaching-contract-v1.json"
+    },
+    {
+      "id": "FILE-docs/migration/L6_B1_REFERENCE_AUDIT.generated.json",
+      "title": "required B6 input exists",
+      "ok": true,
+      "evidence": "docs/migration/L6_B1_REFERENCE_AUDIT.generated.json"
+    },
+    {
+      "id": "FILE-docs/migration/L6_B6_VISUAL_TEACHING_CONTRACT.md",
+      "title": "required B6 input exists",
+      "ok": true,
+      "evidence": "docs/migration/L6_B6_VISUAL_TEACHING_CONTRACT.md"
+    },
+    {
+      "id": "VISUAL-IDENTITY",
+      "title": "visual teaching contract identity version and status are explicit",
+      "ok": true,
+      "evidence": {
+        "contractId": "bauman-visual-teaching-contract",
+        "contractVersion": "1.0.0",
+        "status": "L6-B6-CONTRACT"
+      }
+    },
+    {
+      "id": "UNIVERSAL-REF",
+      "title": "B6 references the exact B2 Universal Lesson Contract",
+      "ok": true,
+      "evidence": {
+        "path": "assets/data/lesson/universal-lesson-contract-v2.json",
+        "contractId": "bauman-universal-lesson-contract",
+        "schemaVersion": "2.0.0"
+      }
+    },
+    {
+      "id": "REGISTRY-REF",
+      "title": "B6 references the exact B4 type registry",
+      "ok": true,
+      "evidence": {
+        "path": "assets/data/lesson/lesson-type-registry-v1.json",
+        "registryId": "bauman-lesson-type-registry",
+        "registryVersion": "1.0.0"
+      }
+    },
+    {
+      "id": "MASTERY-REF",
+      "title": "B6 references the exact B5 Master-ready policy",
+      "ok": true,
+      "evidence": {
+        "path": "assets/data/lesson/master-ready-policy-v1.json",
+        "policyId": "bauman-master-ready-policy",
+        "policyVersion": "1.0.0"
+      }
+    },
+    {
+      "id": "DESIGN-DECISIONS",
+      "title": "B6 binds semantic navigation specialist visual AI offline assessment and identity decisions",
+      "ok": true,
+      "evidence": [
+        "D01",
+        "D05",
+        "D07",
+        "D08",
+        "D09",
+        "D11",
+        "D12"
+      ]
+    },
+    {
+      "id": "PRINCIPLES",
+      "title": "visual principles cover pedagogy typing navigation interaction repair assessment accessibility offline and provenance",
+      "ok": true,
+      "evidence": [
+        "pedagogy-before-decoration",
+        "typed-specialist-ownership",
+        "visual-not-tab",
+        "predict-act-observe-explain",
+        "focused-repair",
+        "assessment-integrity",
+        "accessible-equivalence",
+        "offline-deterministic-core",
+        "provenance-boundary"
+      ]
+    },
+    {
+      "id": "NO-DECORATION-EVIDENCE",
+      "title": "decorative or page activity cannot become learning evidence",
+      "ok": true,
+      "evidence": {
+        "principle": "A visual declares a learning role, observable change and evidence relationship; decorative media never satisfies a required learning block or Master-ready stage.",
+        "evidenceRule": "evidenceRefs identify observable learner artifacts or events; opening, viewing or animating a visual alone is not evidence."
+      }
+    },
+    {
+      "id": "NO-FIXED-TABS",
+      "title": "contract does not define required visual tabs or a tab count",
+      "ok": true,
+      "evidence": {
+        "id": "visual-not-tab",
+        "rule": "A visual teaching sequence may render inline, as a stepper, deck, split view, workspace, modal or external artifact and never implies a fixed tab count."
+      }
+    },
+    {
+      "id": "VISUAL-ENVELOPE",
+      "title": "visual envelope binds identity type semantics source state feedback accessibility offline evidence and provenance",
+      "ok": true,
+      "evidence": {
+        "requiredFields": [
+          "visualId",
+          "lessonId",
+          "blockRef",
+          "lessonType",
+          "learningRole",
+          "representationKind",
+          "representationFamily",
+          "specialistCapabilityRef",
+          "sourceBindings",
+          "stateModelRef",
+          "interactionPolicyRef",
+          "feedbackPolicyRef",
+          "disclosurePolicyRef",
+          "accessibility",
+          "offline",
+          "evidenceRefs",
+          "provenance"
+        ],
+        "identityRule": "visualId is stable within a versioned lesson source and never derives only from array position or current DOM order.",
+        "blockRule": "blockRef resolves a Universal Lesson block; a visual does not create a hidden parallel lesson structure.",
+        "sourceRule": "sourceBindings reuse the Universal Lesson source binding contract and preserve authoritative specialist artifact precedence.",
+        "specialistCapabilityRule": "specialistCapabilityRef is required as an explicit field but may be null when the registered family renderer preserves the full learning meaning; otherwise it resolves to a capability registered for the lesson type.",
+        "evidenceRule": "evidenceRefs identify observable learner artifacts or events; opening, viewing or animating a visual alone is not evidence.",
+        "unknownFieldPolicy": "pass-through-for-specialist-adapters"
+      }
+    },
+    {
+      "id": "LEARNING-ROLES",
+      "title": "shared visual learning roles are exact and non-navigational",
+      "ok": true,
+      "evidence": [
+        "orient",
+        "concept-model",
+        "worked-step",
+        "predict",
+        "manipulate-observe",
+        "construct",
+        "compare",
+        "error-intercept",
+        "explain-defend",
+        "review-retrieve",
+        "result-evidence"
+      ]
+    },
+    {
+      "id": "REPRESENTATION-FAMILIES",
+      "title": "contract defines the ten shared fallback and accessibility families",
+      "ok": true,
+      "evidence": [
+        "annotated-illustration",
+        "relationship-diagram",
+        "step-sequence",
+        "state-comparison",
+        "trace-timeline",
+        "plot-or-chart",
+        "media-overlay",
+        "artifact-view",
+        "interactive-model",
+        "specialist-widget"
+      ]
+    },
+    {
+      "id": "SPECIALIST-OWNERSHIP",
+      "title": "resolution preserves registered specialist ownership and rejects extension inference",
+      "ok": true,
+      "evidence": {
+        "families": {
+          "annotated-illustration": "An image, formula surface or media frame with source-grounded labels and a non-image description.",
+          "relationship-diagram": "Nodes, edges, boundaries or traceability links with explicit semantics and a structured text or table fallback.",
+          "step-sequence": "An ordered reasoning or construction path whose steps have stable identity and observable transitions.",
+          "state-comparison": "Two or more states compared by named dimensions, including partial or inconclusive outcomes when the domain is not binary.",
+          "trace-timeline": "An ordered execution, dialogue, transaction, protocol or lifecycle trace with keyboard-readable events.",
+          "plot-or-chart": "A quantitative display with units, scale, series meaning and accessible underlying data.",
+          "media-overlay": "Audio, video, handwriting or image media synchronized with transcript, captions, annotations or timing state.",
+          "artifact-view": "A versioned learner or source artifact preview that preserves provenance and does not silently copy private local bytes.",
+          "interactive-model": "A deterministic parameterized model with initial state, controls, observable outputs, reset and reproducibility metadata.",
+          "specialist-widget": "A registered subject-engine tool used when a generic family cannot preserve the domain interaction."
+        },
+        "fallbackOrder": [
+          "registered specialist renderer",
+          "deterministic static state or artifact snapshot",
+          "structured table or ordered steps",
+          "long description with source anchors"
+        ],
+        "resolutionRule": "Resolve lessonType, then a registered representationKind, then its family and specialist capability; never infer a renderer from an arbitrary file extension alone.",
+        "profileUsageRule": "A type profile is an allowed typed vocabulary and compatibility target; an individual lesson instantiates only visuals justified by its objectives and block policy and never all profile kinds by default.",
+        "noGenericReplacementRule": "A fallback preserves learning meaning but does not claim feature parity with a missing formula, dialogue, code, query, diagram, simulation or research tool."
+      }
+    },
+    {
+      "id": "FALLBACK-ORDER",
+      "title": "fallback order keeps specialist then static structured and descriptive states",
+      "ok": true,
+      "evidence": [
+        "registered specialist renderer",
+        "deterministic static state or artifact snapshot",
+        "structured table or ordered steps",
+        "long description with source anchors"
+      ]
+    },
+    {
+      "id": "KIND-MAP-COVERAGE",
+      "title": "every distinct B4 visual kind is mapped once with no unknown kind",
+      "ok": true,
+      "evidence": {
+        "registeredAssignments": 48,
+        "registeredKinds": 46,
+        "mappedKinds": 46,
+        "missing": [],
+        "extra": []
+      }
+    },
+    {
+      "id": "KIND-MAP-FAMILIES",
+      "title": "every registered kind resolves to a declared family",
+      "ok": true,
+      "evidence": {
+        "pronunciation-state": "state-comparison",
+        "dialogue-turn-map": "relationship-diagram",
+        "correct-wrong-phrase": "state-comparison",
+        "handwriting-overlay": "media-overlay",
+        "listening-timeline": "trace-timeline",
+        "formula-diagram": "annotated-illustration",
+        "matrix-visualizer": "interactive-model",
+        "graph-or-plot": "plot-or-chart",
+        "assumption-gate": "state-comparison",
+        "correct-wrong-derivation": "step-sequence",
+        "parameter-state": "interactive-model",
+        "code-trace": "trace-timeline",
+        "call-stack-state": "state-comparison",
+        "data-structure-state": "interactive-model",
+        "test-output-diff": "state-comparison",
+        "complexity-plot": "plot-or-chart",
+        "schema-diagram": "relationship-diagram",
+        "relation-state": "state-comparison",
+        "query-plan": "step-sequence",
+        "transaction-timeline": "trace-timeline",
+        "index-cost-comparison": "plot-or-chart",
+        "pipeline-map": "relationship-diagram",
+        "uml-diagram": "relationship-diagram",
+        "architecture-diagram": "relationship-diagram",
+        "requirement-trace": "relationship-diagram",
+        "sequence-state": "trace-timeline",
+        "quality-attribute-tradeoff": "state-comparison",
+        "dataset-profile": "plot-or-chart",
+        "metric-plot": "plot-or-chart",
+        "confusion-matrix": "state-comparison",
+        "model-comparison": "state-comparison",
+        "error-slice": "plot-or-chart",
+        "training-state": "trace-timeline",
+        "system-boundary": "relationship-diagram",
+        "information-flow": "relationship-diagram",
+        "reliability-state": "state-comparison",
+        "failure-tree": "relationship-diagram",
+        "lifecycle-map": "relationship-diagram",
+        "ergonomic-state": "state-comparison",
+        "research-question-map": "relationship-diagram",
+        "literature-map": "relationship-diagram",
+        "evidence-map": "relationship-diagram",
+        "protocol-timeline": "trace-timeline",
+        "result-plot": "plot-or-chart",
+        "claim-source-boundary": "state-comparison",
+        "milestone-state": "state-comparison"
+      }
+    },
+    {
+      "id": "STEP-FIELDS",
+      "title": "step state binds purpose action observable change source evidence and accessibility",
+      "ok": true,
+      "evidence": [
+        "stepId",
+        "objectiveRef",
+        "instruction",
+        "learnerAction",
+        "observableStateChange",
+        "expectedObservation",
+        "sourceRefs",
+        "evidenceRefs",
+        "accessibilityLabel"
+      ]
+    },
+    {
+      "id": "STEP-STATES",
+      "title": "step states separate lock attempt verification repair and completion",
+      "ok": true,
+      "evidence": [
+        "locked",
+        "available",
+        "active",
+        "attempted",
+        "verified",
+        "needs-repair",
+        "complete"
+      ]
+    },
+    {
+      "id": "STEP-TRANSITIONS",
+      "title": "step transitions include explicit prerequisite attempt verification repair retry and completion",
+      "ok": true,
+      "evidence": [
+        "locked->available",
+        "available->active",
+        "active->attempted",
+        "attempted->verified",
+        "attempted->needs-repair",
+        "needs-repair->active",
+        "verified->complete"
+      ]
+    },
+    {
+      "id": "STEP-RECOVERY",
+      "title": "locked and failed steps expose recovery while reset preserves evidence",
+      "ok": true,
+      "evidence": [
+        "Step gating applies to the learning sequence, never to a fixed UI tab count.",
+        "A locked step exposes why it is locked and a reachable prerequisite or recovery route.",
+        "Reset restores a documented initial state without deleting append-only learner evidence.",
+        "The current step, controls and state change remain understandable at mobile, tablet and desktop widths.",
+        "State labels and icons accompany color; focus moves only after an explicit learner action."
+      ]
+    },
+    {
+      "id": "OUTCOME-VOCABULARY",
+      "title": "correct-wrong contract preserves partial inconclusive and review outcomes",
+      "ok": true,
+      "evidence": [
+        "unattempted",
+        "correct",
+        "partially-correct",
+        "incorrect",
+        "inconclusive",
+        "needs-review"
+      ]
+    },
+    {
+      "id": "COMPARISON-FIELDS",
+      "title": "comparison binds states dimensions reason source repair and disclosure",
+      "ok": true,
+      "evidence": [
+        "baselineState",
+        "candidateState",
+        "contrastDimensions",
+        "outcome",
+        "explanation",
+        "sourceRefs",
+        "repairRef",
+        "disclosurePolicyRef"
+      ]
+    },
+    {
+      "id": "NON-COLOR-NON-BINARY",
+      "title": "comparison is not color-only binary and separates runtime from learner error",
+      "ok": true,
+      "evidence": [
+        "Correct and incorrect states identify the governing dimension, not only a green or red surface.",
+        "Non-binary technical results may be partially-correct, inconclusive or needs-review.",
+        "A runtime error, unavailable source and incorrect learner answer are separate states.",
+        "An incorrect comparison names one primary cause and a source-linked repair before retry.",
+        "Formal assessment never exposes per-item correctness before the submission boundary."
+      ]
+    },
+    {
+      "id": "CONDITIONAL-REPAIR-REF",
+      "title": "repair reference is nullable for correct state but required for repair outcomes",
+      "ok": true,
+      "evidence": "repairRef may be null for correct or unattempted outcomes; it is required for partially-correct, incorrect and needs-review outcomes."
+    },
+    {
+      "id": "INTERACTION-MODES",
+      "title": "interaction modes cover observe predict classify manipulate construct trace compare annotate and explain",
+      "ok": true,
+      "evidence": [
+        "observe",
+        "predict",
+        "classify",
+        "manipulate",
+        "construct",
+        "trace",
+        "compare",
+        "annotate",
+        "explain"
+      ]
+    },
+    {
+      "id": "INTERACTION-EVENT",
+      "title": "interaction events retain visual step before/after state time and provenance",
+      "ok": true,
+      "evidence": [
+        "eventId",
+        "visualId",
+        "lessonId",
+        "stepId",
+        "action",
+        "inputRefs",
+        "beforeStateRef",
+        "afterStateRef",
+        "createdAt",
+        "provenance"
+      ]
+    },
+    {
+      "id": "INTERACTION-DETERMINISM",
+      "title": "interaction is reproducible resettable keyboard operable and autoplay-safe",
+      "ok": true,
+      "evidence": [
+        "The same versioned inputs, parameters and seed reproduce the same deterministic output.",
+        "Run, pause, step, retry and reset behavior is explicit when supported.",
+        "A required interaction has a keyboard-operable path and a non-pointer fallback.",
+        "Autoplay never performs a learner action or creates mastery evidence.",
+        "An interaction records stable event and artifact references rather than an opaque screenshot alone."
+      ]
+    },
+    {
+      "id": "FEEDBACK-EVENT",
+      "title": "feedback binds attempt outcome primary error source repair retry actor and provenance",
+      "ok": true,
+      "evidence": [
+        "feedbackId",
+        "attemptRef",
+        "visualId",
+        "outcome",
+        "primaryErrorRef",
+        "sourceAnchors",
+        "message",
+        "repairRef",
+        "retryPolicy",
+        "actorType",
+        "provenance"
+      ]
+    },
+    {
+      "id": "FOCUSED-FEEDBACK",
+      "title": "only one primary error group is expanded while secondary findings remain retrievable",
+      "ok": true,
+      "evidence": {
+        "maximum": 1,
+        "secondary": "collapsed-and-retrievable"
+      }
+    },
+    {
+      "id": "CONDITIONAL-PRIMARY-ERROR",
+      "title": "primary error is nullable for correct feedback and required for needs-repair",
+      "ok": true,
+      "evidence": {
+        "verificationAuthorityRef": "assets/data/lesson/master-ready-policy-v1.json#verificationActors",
+        "primaryErrorRule": "primaryErrorRef may be null for correct or unscored feedback; it is required when feedback creates a needs-repair route."
+      }
+    },
+    {
+      "id": "AI-FEEDBACK-BOUNDARY",
+      "title": "AI feedback is advisory source-bound and has deterministic fallback",
+      "ok": true,
+      "evidence": [
+        "Feedback states what changed, why it matters, where the governing source is and what one action to retry.",
+        "Praise or warning without observable state evidence is not sufficient feedback.",
+        "AI advisory feedback cannot set verified, fabricate a source or reveal a protected assessment answer.",
+        "Unavailable AI falls back to deterministic rules, source anchors and the registered recovery route.",
+        "A repaired attempt appends a link to prior evidence and never rewrites history."
+      ]
+    },
+    {
+      "id": "DISCLOSURE-CONTEXTS",
+      "title": "disclosure separates orientation examples guided independent review and formal assessment",
+      "ok": true,
+      "evidence": [
+        "orientation",
+        "worked-example",
+        "guided-practice",
+        "independent-practice",
+        "review",
+        "formal-assessment"
+      ]
+    },
+    {
+      "id": "FORMAL-ASSESSMENT-INTEGRITY",
+      "title": "formal assessment hides correctness hints and solutions before submission",
+      "ok": true,
+      "evidence": {
+        "correctnessTiming": "only-after-submission-boundary",
+        "hintMode": "none-unless-blueprint-explicitly-allows",
+        "solutionMode": "post-submission-policy-only",
+        "protectedAnswerRule": "Per-item correctness, protected hints and solutions are unavailable to learner and AI advisory before submission."
+      }
+    },
+    {
+      "id": "PRACTICE-DISCLOSURE",
+      "title": "guided independent and review feedback require committed attempts and policy gates",
+      "ok": true,
+      "evidence": {
+        "orientation": {
+          "correctnessTiming": "not-scored",
+          "hintMode": "source-orientation",
+          "solutionMode": "not-applicable"
+        },
+        "worked-example": {
+          "correctnessTiming": "shown-with-annotated-reasoning",
+          "hintMode": "full-model",
+          "solutionMode": "complete-source-grounded-path"
+        },
+        "guided-practice": {
+          "correctnessTiming": "after-committed-step",
+          "hintMode": "progressive-source-linked",
+          "solutionMode": "after-attempt-and-policy-gate"
+        },
+        "independent-practice": {
+          "correctnessTiming": "after-committed-attempt",
+          "hintMode": "limited-by-attempt-policy",
+          "solutionMode": "after-retry-or-review-gate"
+        },
+        "review": {
+          "correctnessTiming": "after-retrieval-attempt",
+          "hintMode": "diagnosed-error-group",
+          "solutionMode": "source-linked-repair"
+        },
+        "formal-assessment": {
+          "correctnessTiming": "only-after-submission-boundary",
+          "hintMode": "none-unless-blueprint-explicitly-allows",
+          "solutionMode": "post-submission-policy-only",
+          "protectedAnswerRule": "Per-item correctness, protected hints and solutions are unavailable to learner and AI advisory before submission."
+        }
+      }
+    },
+    {
+      "id": "ACCESSIBILITY-FIELDS",
+      "title": "accessibility requires description non-color keyboard focus motion fallback and language",
+      "ok": true,
+      "evidence": [
+        "shortLabel",
+        "longDescriptionRef",
+        "nonColorLegend",
+        "keyboardModel",
+        "focusOrder",
+        "reducedMotionBehavior",
+        "textOrTableFallbackRef",
+        "language"
+      ]
+    },
+    {
+      "id": "ACCESSIBILITY-FAMILIES",
+      "title": "every representation family has at least two explicit accessibility requirements",
+      "ok": true,
+      "evidence": {
+        "annotated-illustration": [
+          "descriptive alt or long description",
+          "annotation list in reading order"
+        ],
+        "relationship-diagram": [
+          "node and edge table",
+          "boundary and direction labels"
+        ],
+        "step-sequence": [
+          "ordered text steps",
+          "current and completed state labels"
+        ],
+        "state-comparison": [
+          "named contrast dimensions",
+          "non-color outcome labels"
+        ],
+        "trace-timeline": [
+          "ordered event list",
+          "keyboard event navigation"
+        ],
+        "plot-or-chart": [
+          "underlying data table",
+          "axis units scale and series description"
+        ],
+        "media-overlay": [
+          "captions or transcript",
+          "non-audio and non-motion explanation"
+        ],
+        "artifact-view": [
+          "artifact summary",
+          "download or reader fallback when authorized"
+        ],
+        "interactive-model": [
+          "control labels and keyboard path",
+          "initial and current state summary"
+        ],
+        "specialist-widget": [
+          "registered specialist accessibility adapter",
+          "deterministic static fallback"
+        ]
+      }
+    },
+    {
+      "id": "RESPONSIVE-ACCESSIBILITY",
+      "title": "responsive rules protect controls order zoom reflow and reduced motion",
+      "ok": true,
+      "evidence": [
+        "No required label, control, legend or feedback is clipped at supported mobile, tablet or desktop widths.",
+        "A split view may stack while preserving source-before-action reading order.",
+        "Zoom and text reflow do not require two-dimensional scrolling for the surrounding lesson shell.",
+        "Motion pauses and reduced-motion mode preserves the same learning state."
+      ]
+    },
+    {
+      "id": "OFFLINE-RESOURCE-CLASSES",
+      "title": "offline resource classes match the B4 registry vocabulary",
+      "ok": true,
+      "evidence": [
+        "bundled",
+        "subject-pack",
+        "local-file"
+      ]
+    },
+    {
+      "id": "OFFLINE-FIELDS",
+      "title": "offline resources carry class version size integrity availability and fallback",
+      "ok": true,
+      "evidence": [
+        "resourceClass",
+        "version",
+        "sizeBytes",
+        "integrityRef",
+        "availabilityState",
+        "fallbackRef"
+      ]
+    },
+    {
+      "id": "OFFLINE-BEHAVIOR",
+      "title": "offline core explicit packs zero-copy files AI independence and error separation are explicit",
+      "ok": true,
+      "evidence": [
+        "Core instructions, deterministic controls, outcome rules and text or table fallback remain available offline.",
+        "Large visual or media packs require explicit download and are never silently precached as the whole subject repository.",
+        "Direct Local Reader artifacts stay zero-copy and permission scoped; the visual contract stores references, not private file bytes.",
+        "Missing cloud or AI service never blocks practice, assessment, progress, review or deterministic repair.",
+        "A stale or failed visual resource reports its own availability state without being mislabeled as an incorrect learner answer."
+      ]
+    },
+    {
+      "id": "PERFORMANCE-METADATA",
+      "title": "performance metadata covers size class loading dimensions and fallback",
+      "ok": true,
+      "evidence": [
+        "sizeBytes",
+        "resourceClass",
+        "loadingPolicy",
+        "intrinsicDimensionsOrAspectRatio",
+        "fallbackRef"
+      ]
+    },
+    {
+      "id": "PERFORMANCE-BEHAVIOR",
+      "title": "visual performance requires lazy loading stable layout pause and early fallback",
+      "ok": true,
+      "evidence": [
+        "Specialist widgets and large media lazy-load at the point of use.",
+        "The lesson reserves stable layout space before a visual loads.",
+        "Animation and simulation pause when hidden and do not run solely for decoration.",
+        "A static or structured fallback renders before an optional large pack is available.",
+        "B6 defines metadata and behavior; numeric runtime budgets remain owned by performance gates and measured devices."
+      ]
+    },
+    {
+      "id": "PROFILE-SET",
+      "title": "B6 has exactly one visual profile for every B4 lesson type",
+      "ok": true,
+      "evidence": {
+        "profiles": [
+          "language",
+          "mathematics",
+          "programming",
+          "database",
+          "software-design",
+          "ml-data",
+          "asoiu-system",
+          "research"
+        ],
+        "types": [
+          "language",
+          "mathematics",
+          "programming",
+          "database",
+          "software-design",
+          "ml-data",
+          "asoiu-system",
+          "research"
+        ]
+      }
+    },
+    {
+      "id": "PROFILE-LANGUAGE",
+      "title": "language matches its registered visuals capabilities roles and forward ref",
+      "ok": true,
+      "evidence": {
+        "representationKinds": [
+          "pronunciation-state",
+          "dialogue-turn-map",
+          "correct-wrong-phrase",
+          "handwriting-overlay",
+          "listening-timeline"
+        ],
+        "representationFamilies": [
+          "state-comparison",
+          "relationship-diagram",
+          "media-overlay",
+          "trace-timeline"
+        ],
+        "specialistCapabilityRefs": [
+          "dialogue",
+          "shadowing",
+          "speech-recording",
+          "listening-media",
+          "handwriting-workspace",
+          "writing-workspace"
+        ],
+        "requiredRoleCoverage": [
+          "worked-step",
+          "predict",
+          "compare",
+          "error-intercept",
+          "explain-defend"
+        ],
+        "domainRules": 3,
+        "errors": []
+      }
+    },
+    {
+      "id": "PROFILE-MATHEMATICS",
+      "title": "mathematics matches its registered visuals capabilities roles and forward ref",
+      "ok": true,
+      "evidence": {
+        "representationKinds": [
+          "formula-diagram",
+          "matrix-visualizer",
+          "graph-or-plot",
+          "assumption-gate",
+          "correct-wrong-derivation",
+          "parameter-state"
+        ],
+        "representationFamilies": [
+          "annotated-illustration",
+          "interactive-model",
+          "plot-or-chart",
+          "state-comparison",
+          "step-sequence"
+        ],
+        "specialistCapabilityRefs": [
+          "formula-typesetting",
+          "matrix-rendering",
+          "derivation",
+          "parameter-simulation",
+          "math-concept-map",
+          "misconception-map"
+        ],
+        "requiredRoleCoverage": [
+          "concept-model",
+          "worked-step",
+          "predict",
+          "manipulate-observe",
+          "compare",
+          "explain-defend"
+        ],
+        "domainRules": 3,
+        "errors": []
+      }
+    },
+    {
+      "id": "PROFILE-PROGRAMMING",
+      "title": "programming matches its registered visuals capabilities roles and forward ref",
+      "ok": true,
+      "evidence": {
+        "representationKinds": [
+          "code-trace",
+          "call-stack-state",
+          "data-structure-state",
+          "test-output-diff",
+          "complexity-plot"
+        ],
+        "representationFamilies": [
+          "trace-timeline",
+          "state-comparison",
+          "interactive-model",
+          "plot-or-chart"
+        ],
+        "specialistCapabilityRefs": [
+          "code-lab",
+          "unit-test",
+          "debug-runner",
+          "code-trace",
+          "output-prediction",
+          "complexity-check"
+        ],
+        "requiredRoleCoverage": [
+          "predict",
+          "manipulate-observe",
+          "construct",
+          "error-intercept",
+          "explain-defend"
+        ],
+        "domainRules": 3,
+        "errors": []
+      }
+    },
+    {
+      "id": "PROFILE-DATABASE",
+      "title": "database matches its registered visuals capabilities roles and forward ref",
+      "ok": true,
+      "evidence": {
+        "representationKinds": [
+          "schema-diagram",
+          "relation-state",
+          "query-plan",
+          "transaction-timeline",
+          "index-cost-comparison",
+          "pipeline-map"
+        ],
+        "representationFamilies": [
+          "relationship-diagram",
+          "state-comparison",
+          "step-sequence",
+          "trace-timeline",
+          "plot-or-chart"
+        ],
+        "specialistCapabilityRefs": [
+          "sql-playground",
+          "schema-diagram",
+          "query-plan",
+          "transaction-scenario",
+          "normalization-workbench",
+          "index-comparison"
+        ],
+        "requiredRoleCoverage": [
+          "concept-model",
+          "predict",
+          "construct",
+          "compare",
+          "error-intercept",
+          "explain-defend"
+        ],
+        "domainRules": 3,
+        "errors": []
+      }
+    },
+    {
+      "id": "PROFILE-SOFTWARE-DESIGN",
+      "title": "software-design matches its registered visuals capabilities roles and forward ref",
+      "ok": true,
+      "evidence": {
+        "representationKinds": [
+          "uml-diagram",
+          "architecture-diagram",
+          "requirement-trace",
+          "sequence-state",
+          "quality-attribute-tradeoff"
+        ],
+        "representationFamilies": [
+          "relationship-diagram",
+          "trace-timeline",
+          "state-comparison"
+        ],
+        "specialistCapabilityRefs": [
+          "requirements-map",
+          "uml-workspace",
+          "architecture-workspace",
+          "quality-attribute-scenario",
+          "traceability-matrix",
+          "design-defense"
+        ],
+        "requiredRoleCoverage": [
+          "concept-model",
+          "construct",
+          "compare",
+          "explain-defend",
+          "result-evidence"
+        ],
+        "domainRules": 3,
+        "errors": []
+      }
+    },
+    {
+      "id": "PROFILE-ML-DATA",
+      "title": "ml-data matches its registered visuals capabilities roles and forward ref",
+      "ok": true,
+      "evidence": {
+        "representationKinds": [
+          "dataset-profile",
+          "pipeline-map",
+          "metric-plot",
+          "confusion-matrix",
+          "model-comparison",
+          "error-slice",
+          "training-state"
+        ],
+        "representationFamilies": [
+          "plot-or-chart",
+          "relationship-diagram",
+          "state-comparison",
+          "trace-timeline"
+        ],
+        "specialistCapabilityRefs": [
+          "dataset-playground",
+          "experiment-runner",
+          "pipeline-map",
+          "metric-visualizer",
+          "confusion-matrix",
+          "error-analysis"
+        ],
+        "requiredRoleCoverage": [
+          "predict",
+          "manipulate-observe",
+          "compare",
+          "error-intercept",
+          "explain-defend",
+          "result-evidence"
+        ],
+        "domainRules": 3,
+        "errors": []
+      }
+    },
+    {
+      "id": "PROFILE-ASOIU-SYSTEM",
+      "title": "asoiu-system matches its registered visuals capabilities roles and forward ref",
+      "ok": true,
+      "evidence": {
+        "representationKinds": [
+          "system-boundary",
+          "architecture-diagram",
+          "information-flow",
+          "reliability-state",
+          "failure-tree",
+          "lifecycle-map",
+          "ergonomic-state"
+        ],
+        "representationFamilies": [
+          "relationship-diagram",
+          "state-comparison"
+        ],
+        "specialistCapabilityRefs": [
+          "system-concept-map",
+          "architecture-diagram",
+          "information-flow",
+          "reliability-scenario",
+          "failure-state",
+          "lifecycle-map"
+        ],
+        "requiredRoleCoverage": [
+          "concept-model",
+          "predict",
+          "manipulate-observe",
+          "compare",
+          "explain-defend",
+          "result-evidence"
+        ],
+        "domainRules": 3,
+        "errors": []
+      }
+    },
+    {
+      "id": "PROFILE-RESEARCH",
+      "title": "research matches its registered visuals capabilities roles and forward ref",
+      "ok": true,
+      "evidence": {
+        "representationKinds": [
+          "research-question-map",
+          "literature-map",
+          "evidence-map",
+          "protocol-timeline",
+          "result-plot",
+          "claim-source-boundary",
+          "milestone-state"
+        ],
+        "representationFamilies": [
+          "relationship-diagram",
+          "trace-timeline",
+          "plot-or-chart",
+          "state-comparison"
+        ],
+        "specialistCapabilityRefs": [
+          "research-question-builder",
+          "literature-matrix",
+          "evidence-map",
+          "experiment-protocol",
+          "citation-boundary",
+          "nir-milestone",
+          "vkr-milestone"
+        ],
+        "requiredRoleCoverage": [
+          "concept-model",
+          "construct",
+          "compare",
+          "explain-defend",
+          "result-evidence"
+        ],
+        "domainRules": 3,
+        "errors": []
+      }
+    },
+    {
+      "id": "LANGUAGE-VISUAL-SAFETY",
+      "title": "language profile distinguishes pronunciation advisory state transcript and phrase dimensions",
+      "ok": true,
+      "evidence": [
+        "Pronunciation feedback separates transcript similarity from verified language competence.",
+        "Listening visuals keep transcript timing and an offline non-audio recovery path.",
+        "Correct-wrong phrase comparison explains meaning, form or pronunciation dimension rather than color alone."
+      ]
+    },
+    {
+      "id": "MATH-VISUAL-SAFETY",
+      "title": "mathematics profile preserves assumptions notation dimensions units values and prediction",
+      "ok": true,
+      "evidence": [
+        "Formula and derivation visuals preserve assumptions, notation, dimensions and source anchors.",
+        "Plots expose axis scale, units, parameter state and underlying values.",
+        "A simulation requires prediction before manipulation when prediction is the learning objective."
+      ]
+    },
+    {
+      "id": "PROGRAMMING-FOCUSED-FAILURE",
+      "title": "programming profile binds runtime state and focuses the first causal test failure",
+      "ok": true,
+      "evidence": [
+        "Code state binds source version, input, runtime and deterministic test output.",
+        "A trace never substitutes animation for readable source line, stack and variable state.",
+        "Test diffs focus the first causal failure while keeping the complete log retrievable."
+      ]
+    },
+    {
+      "id": "ML-EVALUATION-INTEGRITY",
+      "title": "ML visual profile keeps split baseline uncertainty leakage and scoped counts visible",
+      "ok": true,
+      "evidence": [
+        "Metric visuals bind dataset split, baseline, uncertainty and evaluation version.",
+        "A high score never hides leakage, invalid evaluation or an unsupported comparison.",
+        "Confusion matrices and error slices expose counts, labels and underlying scoped examples when authorized."
+      ]
+    },
+    {
+      "id": "RESEARCH-PROVENANCE",
+      "title": "research visual profile separates source learner system and AI and keeps NIR/VKR evidence",
+      "ok": true,
+      "evidence": [
+        "Claim-source visuals keep provided source, learner note, system-derived relation and AI inference separate.",
+        "Result plots preserve method, sample, units, uncertainty, limitations and versioned source data.",
+        "НИР/ВКР milestone state records evidence and review status without treating a decorative progress bar as completion."
+      ]
+    },
+    {
+      "id": "BOI-SNAPSHOT",
+      "title": "B6 uses the exact frozen B1 public reference and hashes",
+      "ok": true,
+      "evidence": {
+        "url": "https://boi-ech.dinhnam3391.chatgpt.site",
+        "htmlSha256": "e519d69fb792f6647ca824baaa1990db32eaee453944e814177595b6e2b77dea",
+        "pageJsSha256": "870bef7e83d04cd93025b1aa8936dd84ef72c69db3f3124bbf00a434ed8a6e87",
+        "cssSha256": "b18a588795cad3932b5e96b3c9358056c0e9e7b55685aca4abc233090311ea6f",
+        "kept": [
+          "visible learner journey",
+          "checkpoint before formal assessment",
+          "one primary error at a time",
+          "post-submission formal feedback",
+          "source-grounded AI recovery",
+          "deterministic offline learning"
+        ],
+        "notCopied": [
+          "swimming movement graphics",
+          "physical-safety instructions",
+          "stroke-specific interactions",
+          "five mandatory visual tabs"
+        ]
+      }
+    },
+    {
+      "id": "BOI-TRANSFER-BOUNDARY",
+      "title": "B6 keeps gated focused offline pedagogy and rejects domain graphics and fixed visual tabs",
+      "ok": true,
+      "evidence": {
+        "url": "https://boi-ech.dinhnam3391.chatgpt.site",
+        "htmlSha256": "e519d69fb792f6647ca824baaa1990db32eaee453944e814177595b6e2b77dea",
+        "pageJsSha256": "870bef7e83d04cd93025b1aa8936dd84ef72c69db3f3124bbf00a434ed8a6e87",
+        "cssSha256": "b18a588795cad3932b5e96b3c9358056c0e9e7b55685aca4abc233090311ea6f",
+        "kept": [
+          "visible learner journey",
+          "checkpoint before formal assessment",
+          "one primary error at a time",
+          "post-submission formal feedback",
+          "source-grounded AI recovery",
+          "deterministic offline learning"
+        ],
+        "notCopied": [
+          "swimming movement graphics",
+          "physical-safety instructions",
+          "stroke-specific interactions",
+          "five mandatory visual tabs"
+        ]
+      }
+    },
+    {
+      "id": "REFERENCE-RUSSIAN-subjects/russian/data/lessons.json",
+      "title": "russian compatibility source exists and is hashable",
+      "ok": true,
+      "evidence": "c8693eeefed17ea39b0cea4a600c9086f1b597ae7174e56bd8b2f8b46b985062"
+    },
+    {
+      "id": "REFERENCE-RUSSIAN-subjects/russian/assets/core.js",
+      "title": "russian compatibility source exists and is hashable",
+      "ok": true,
+      "evidence": "71f24d0e0300dddee18f2dd91617b34137de66290c47f0484cae454a1cdeb573"
+    },
+    {
+      "id": "REFERENCE-RUSSIAN-subjects/russian/assets/subject-adapter.js",
+      "title": "russian compatibility source exists and is hashable",
+      "ok": true,
+      "evidence": "1c6a6930ab06e1510879ed374093016ff721b20fab7bf720a65613e4c411d625"
+    },
+    {
+      "id": "REFERENCE-MATHEMATICS-subjects/math/data/lessons.json",
+      "title": "mathematics compatibility source exists and is hashable",
+      "ok": true,
+      "evidence": "4a77e812ac13bdd3076bf34ff47362c2bbd0157c5210d466f63df1d9fd8e324d"
+    },
+    {
+      "id": "REFERENCE-MATHEMATICS-subjects/math/data/theory_lecture_content.json",
+      "title": "mathematics compatibility source exists and is hashable",
+      "ok": true,
+      "evidence": "d0cd18601b1ede84f58072b3c47cfcc176b4d21d3fa71b23762b908485391447"
+    },
+    {
+      "id": "REFERENCE-MATHEMATICS-subjects/math/assets/subject-adapter.js",
+      "title": "mathematics compatibility source exists and is hashable",
+      "ok": true,
+      "evidence": "40cb9d93a713929f3b8c9c99c01c30e29f103043a2f2c207521c5446f8f47731"
+    },
+    {
+      "id": "REFERENCE-MODES",
+      "title": "Russian and Mathematics remain read-only and unprojected",
+      "ok": true,
+      "evidence": {
+        "russian": "read-only-reference-unprojected",
+        "mathematics": "read-only-reference-unprojected"
+      }
+    },
+    {
+      "id": "PROGRAM-IDENTITY",
+      "title": "B6 inherits official and personalized Bauman identity without conflating codes",
+      "ok": true,
+      "evidence": {
+        "department": "ИУ-5",
+        "officialPublishedDirectionCode": "09.04.01",
+        "personalizedDisplayCode": "09.04.01/11",
+        "learnerBrandPolicy": "bauman-iu5-only",
+        "identityRule": "Official-source metadata keeps 09.04.01; personalized learner surfaces display ИУ-5 · 09.04.01/11."
+      }
+    },
+    {
+      "id": "LEARNER-BRAND-BOUNDARY",
+      "title": "B6 contract and decision record contain no comparison-school learner label",
+      "ok": true,
+      "evidence": "bauman-iu5-only"
+    },
+    {
+      "id": "FORWARD-OWNERSHIP",
+      "title": "B6 leaves language hooks schema factory renderer and reference regression to B7-B11",
+      "ok": true,
+      "evidence": {
+        "L6-B7": "Russian Twin and English Research Layer hooks",
+        "L6-B8": "machine-readable lesson schema and version migration",
+        "L6-B9": "Subject Factory registry and specialist widget registration",
+        "L6-B10": "Universal Lesson Renderer and legacy bridges",
+        "L6-B11": "reference subject and responsive/offline regression",
+        "rule": "B6 defines semantics and validation inputs; it does not claim that a universal renderer, subject mapping or legacy projection already exists."
+      }
+    },
+    {
+      "id": "ROLLBACK",
+      "title": "B6 rollback has no learner-state or legacy-runtime impact",
+      "ok": true,
+      "evidence": {
+        "scope": "Remove the B6 contract, decision record, generated report and workflow gate, then restore progress markers to the B5 checkpoint.",
+        "learnerStateImpact": "none",
+        "legacyRuntimeImpact": "none"
+      }
+    },
+    {
+      "id": "DOC-COVERAGE",
+      "title": "B6 decision record covers audit architecture state feedback types accessibility offline provenance compatibility rollback and acceptance",
+      "ok": true,
+      "evidence": "docs/migration/L6_B6_VISUAL_TEACHING_CONTRACT.md"
+    }
+  ],
+  "failures": [],
+  "result": "PASS"
+}

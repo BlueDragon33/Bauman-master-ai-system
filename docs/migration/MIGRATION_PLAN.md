@@ -107,7 +107,7 @@ L5 PASS nhưng `serviceWorkerCache` production vẫn OFF. Chỉ bật ở stagin
 
 ## Lượt 6 · Universal Lesson Architecture & Subject Factory · 11 bước
 
-Trạng thái: **B1–B5 PASS · B6 CHƯA BẮT ĐẦU**.
+Trạng thái: **B1–B5 PASS · B6 IMPLEMENTED · LOCAL GATE PASS · REMOTE CI PENDING**.
 
 Bằng chứng B1:
 - Audit quyết định: L6_B1_REFERENCE_IMPLEMENTATION_AUDIT.md.
@@ -200,12 +200,39 @@ Bằng chứng B5:
   academic runtime 36/36, roadmap/offline static 75/75, data loading 8 môn
   với 0 lỗi, runtime diagnostics 14/14, offline report integrity 5/5.
 
+Bằng chứng B6:
+- Contract: `assets/data/lesson/visual-teaching-contract-v1.json`.
+- Decision record: `L6_B6_VISUAL_TEACHING_CONTRACT.md`.
+- Evidence máy đọc được:
+  `L6_B6_VISUAL_TEACHING_REGRESSION.generated.json`.
+- Deterministic gate: 75/75 checks PASS; B1-B5 vẫn PASS; report B6 ổn định
+  qua hai lần chạy với SHA-256
+  `a7ab789dae55ad78d9349fac686a74c1d1cb5dd65e35c833088e777f08b1e3d3`.
+- Khóa 11 learning role, 10 representation family và đủ 48 assignment/46
+  visual kind riêng biệt từ đúng tám type profile B4; profile là vocabulary
+  cho phép, không buộc một bài dựng mọi visual hoặc một số tab cố định.
+- Step-state, correct/partial/wrong/inconclusive, predict-act-observe-explain,
+  one-primary-error feedback và formal-assessment disclosure được tách rõ;
+  AI không được verify hoặc tiết lộ protected answer trước submission.
+- Manual audit bổ sung quy tắc nullable có điều kiện cho specialist capability,
+  repair ref và primary error; bốn mutation test về type coverage, focused
+  feedback, assessment leakage và accessibility đều FAIL đúng dự kiến.
+- Bơi ếch reference khớp URL và ba hash B1; chỉ giữ flow/checkpoint/focused
+  repair/offline, không sao chép interaction theo miền bơi hoặc fixed tabs.
+- Russian/Math vẫn `read-only-reference-unprojected`; runtime/content không có
+  diff và sáu source compatibility paths có hash trong report.
+- L5 regression trên bản nguồn sạch sau B6: static routing 9/9, service worker
+  17/17, academic runtime 36/36, roadmap/offline static 75/75, data loading 8
+  môn với 0 lỗi, runtime diagnostics 14/14, offline report integrity 5/5.
+- Chưa đánh dấu B6 remote PASS cho tới khi workflow L6 trên nhánh làm việc
+  hoàn tất thành công.
+
 1. **L6-B1** · Audit sâu ba reference implementations: Tiếng Nga, Toán và nguyên tắc UX bài giảng Bơi ếch; lập bảng phần nào giữ, phần nào chuẩn hóa, phần nào không dùng chung. **PASS**.
 2. **L6-B2** · Định nghĩa `UniversalLessonContract` gồm metadata, prerequisite, objectives, theory, example, exercise, lab/simulation, misconception, visual-check, oral, review, test, mastery, project/NIR evidence. **PASS**.
 3. **L6-B3** · Tách `required blocks` và `optional blocks` theo lesson type để không ép mọi bài có 18 tab. **PASS**.
 4. **L6-B4** · Định nghĩa lesson types: language, mathematics, programming, database, software-design, ML/data, ASOIU/system, research. **PASS**.
 5. **L6-B5** · Định nghĩa Master-ready evidence/gate chung: understand → solve → build/apply → explain → retain; rubric theo loại môn. **PASS**.
-6. Định nghĩa Visual Teaching Contract: hình/diagram/step-state/correct-wrong/interactive feedback, kế thừa tinh thần Bơi ếch nhưng phù hợp môn kỹ thuật.
+6. **L6-B6** · Định nghĩa Visual Teaching Contract: hình/diagram/step-state/correct-wrong/interactive feedback, kế thừa tinh thần Bơi ếch nhưng phù hợp môn kỹ thuật. **LOCAL PASS · CI PENDING**.
 7. Định nghĩa Russian Twin + English Research Layer hooks ngay trong contract, chưa ép hiển thị toàn bộ trước L12.
 8. Tạo machine-readable lesson schema + validator + version migration.
 9. Tạo Subject Factory registry: subject → engine → lesson types → special widgets → data sources → offline policy.

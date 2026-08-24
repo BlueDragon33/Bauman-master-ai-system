@@ -1,0 +1,796 @@
+{
+  "contractId": "bauman-visual-teaching-contract",
+  "contractVersion": "1.0.0",
+  "status": "L6-B6-CONTRACT",
+  "universalLessonContractRef": {
+    "path": "assets/data/lesson/universal-lesson-contract-v2.json",
+    "contractId": "bauman-universal-lesson-contract",
+    "schemaVersion": "2.0.0"
+  },
+  "typeRegistryRef": {
+    "path": "assets/data/lesson/lesson-type-registry-v1.json",
+    "registryId": "bauman-lesson-type-registry",
+    "registryVersion": "1.0.0"
+  },
+  "masterReadyPolicyRef": {
+    "path": "assets/data/lesson/master-ready-policy-v1.json",
+    "policyId": "bauman-master-ready-policy",
+    "policyVersion": "1.0.0"
+  },
+  "programIdentityRef": "assets/data/lesson/universal-lesson-contract-v2.json#programIdentity",
+  "designDecisionRefs": [
+    "D01",
+    "D05",
+    "D07",
+    "D08",
+    "D09",
+    "D11",
+    "D12"
+  ],
+  "purpose": "Make concepts, steps, state changes, comparisons and repair feedback visible through a type-appropriate representation without turning visual decoration, page activity or AI output into mastery evidence.",
+  "principles": [
+    {
+      "id": "pedagogy-before-decoration",
+      "rule": "A visual declares a learning role, observable change and evidence relationship; decorative media never satisfies a required learning block or Master-ready stage."
+    },
+    {
+      "id": "typed-specialist-ownership",
+      "rule": "Shared state and feedback semantics do not replace formula, language, code, database, architecture, ML, system or research renderers owned by specialist engines."
+    },
+    {
+      "id": "visual-not-tab",
+      "rule": "A visual teaching sequence may render inline, as a stepper, deck, split view, workspace, modal or external artifact and never implies a fixed tab count."
+    },
+    {
+      "id": "predict-act-observe-explain",
+      "rule": "Interactive visuals require a learner purpose: predict, manipulate or construct, observe a state change, and explain or record the result."
+    },
+    {
+      "id": "focused-repair",
+      "rule": "Feedback exposes one primary diagnosed error group at a time, links it to a source and recovery action, and keeps secondary findings available without flooding the learner."
+    },
+    {
+      "id": "assessment-integrity",
+      "rule": "Practice and formal assessment use separate disclosure policies; protected correctness, hints and solutions remain hidden until the applicable submission boundary."
+    },
+    {
+      "id": "accessible-equivalence",
+      "rule": "Color, motion, sound, geometry or pointer input is never the only carrier of meaning; every representation has an equivalent perceivable and operable fallback."
+    },
+    {
+      "id": "offline-deterministic-core",
+      "rule": "Previously available visuals, learner actions, deterministic feedback, reset and repair remain usable offline without generative AI."
+    },
+    {
+      "id": "provenance-boundary",
+      "rule": "Provided visual sources, learner actions, deterministic state and AI interpretation remain distinguishable and versioned."
+    }
+  ],
+  "visualEnvelope": {
+    "requiredFields": [
+      "visualId",
+      "lessonId",
+      "blockRef",
+      "lessonType",
+      "learningRole",
+      "representationKind",
+      "representationFamily",
+      "specialistCapabilityRef",
+      "sourceBindings",
+      "stateModelRef",
+      "interactionPolicyRef",
+      "feedbackPolicyRef",
+      "disclosurePolicyRef",
+      "accessibility",
+      "offline",
+      "evidenceRefs",
+      "provenance"
+    ],
+    "identityRule": "visualId is stable within a versioned lesson source and never derives only from array position or current DOM order.",
+    "blockRule": "blockRef resolves a Universal Lesson block; a visual does not create a hidden parallel lesson structure.",
+    "sourceRule": "sourceBindings reuse the Universal Lesson source binding contract and preserve authoritative specialist artifact precedence.",
+    "specialistCapabilityRule": "specialistCapabilityRef is required as an explicit field but may be null when the registered family renderer preserves the full learning meaning; otherwise it resolves to a capability registered for the lesson type.",
+    "evidenceRule": "evidenceRefs identify observable learner artifacts or events; opening, viewing or animating a visual alone is not evidence.",
+    "unknownFieldPolicy": "pass-through-for-specialist-adapters"
+  },
+  "learningRoles": [
+    "orient",
+    "concept-model",
+    "worked-step",
+    "predict",
+    "manipulate-observe",
+    "construct",
+    "compare",
+    "error-intercept",
+    "explain-defend",
+    "review-retrieve",
+    "result-evidence"
+  ],
+  "representationContract": {
+    "families": {
+      "annotated-illustration": "An image, formula surface or media frame with source-grounded labels and a non-image description.",
+      "relationship-diagram": "Nodes, edges, boundaries or traceability links with explicit semantics and a structured text or table fallback.",
+      "step-sequence": "An ordered reasoning or construction path whose steps have stable identity and observable transitions.",
+      "state-comparison": "Two or more states compared by named dimensions, including partial or inconclusive outcomes when the domain is not binary.",
+      "trace-timeline": "An ordered execution, dialogue, transaction, protocol or lifecycle trace with keyboard-readable events.",
+      "plot-or-chart": "A quantitative display with units, scale, series meaning and accessible underlying data.",
+      "media-overlay": "Audio, video, handwriting or image media synchronized with transcript, captions, annotations or timing state.",
+      "artifact-view": "A versioned learner or source artifact preview that preserves provenance and does not silently copy private local bytes.",
+      "interactive-model": "A deterministic parameterized model with initial state, controls, observable outputs, reset and reproducibility metadata.",
+      "specialist-widget": "A registered subject-engine tool used when a generic family cannot preserve the domain interaction."
+    },
+    "fallbackOrder": [
+      "registered specialist renderer",
+      "deterministic static state or artifact snapshot",
+      "structured table or ordered steps",
+      "long description with source anchors"
+    ],
+    "resolutionRule": "Resolve lessonType, then a registered representationKind, then its family and specialist capability; never infer a renderer from an arbitrary file extension alone.",
+    "profileUsageRule": "A type profile is an allowed typed vocabulary and compatibility target; an individual lesson instantiates only visuals justified by its objectives and block policy and never all profile kinds by default.",
+    "noGenericReplacementRule": "A fallback preserves learning meaning but does not claim feature parity with a missing formula, dialogue, code, query, diagram, simulation or research tool."
+  },
+  "kindFamilyMap": {
+    "pronunciation-state": "state-comparison",
+    "dialogue-turn-map": "relationship-diagram",
+    "correct-wrong-phrase": "state-comparison",
+    "handwriting-overlay": "media-overlay",
+    "listening-timeline": "trace-timeline",
+    "formula-diagram": "annotated-illustration",
+    "matrix-visualizer": "interactive-model",
+    "graph-or-plot": "plot-or-chart",
+    "assumption-gate": "state-comparison",
+    "correct-wrong-derivation": "step-sequence",
+    "parameter-state": "interactive-model",
+    "code-trace": "trace-timeline",
+    "call-stack-state": "state-comparison",
+    "data-structure-state": "interactive-model",
+    "test-output-diff": "state-comparison",
+    "complexity-plot": "plot-or-chart",
+    "schema-diagram": "relationship-diagram",
+    "relation-state": "state-comparison",
+    "query-plan": "step-sequence",
+    "transaction-timeline": "trace-timeline",
+    "index-cost-comparison": "plot-or-chart",
+    "pipeline-map": "relationship-diagram",
+    "uml-diagram": "relationship-diagram",
+    "architecture-diagram": "relationship-diagram",
+    "requirement-trace": "relationship-diagram",
+    "sequence-state": "trace-timeline",
+    "quality-attribute-tradeoff": "state-comparison",
+    "dataset-profile": "plot-or-chart",
+    "metric-plot": "plot-or-chart",
+    "confusion-matrix": "state-comparison",
+    "model-comparison": "state-comparison",
+    "error-slice": "plot-or-chart",
+    "training-state": "trace-timeline",
+    "system-boundary": "relationship-diagram",
+    "information-flow": "relationship-diagram",
+    "reliability-state": "state-comparison",
+    "failure-tree": "relationship-diagram",
+    "lifecycle-map": "relationship-diagram",
+    "ergonomic-state": "state-comparison",
+    "research-question-map": "relationship-diagram",
+    "literature-map": "relationship-diagram",
+    "evidence-map": "relationship-diagram",
+    "protocol-timeline": "trace-timeline",
+    "result-plot": "plot-or-chart",
+    "claim-source-boundary": "state-comparison",
+    "milestone-state": "state-comparison"
+  },
+  "stepStateContract": {
+    "requiredStepFields": [
+      "stepId",
+      "objectiveRef",
+      "instruction",
+      "learnerAction",
+      "observableStateChange",
+      "expectedObservation",
+      "sourceRefs",
+      "evidenceRefs",
+      "accessibilityLabel"
+    ],
+    "states": [
+      "locked",
+      "available",
+      "active",
+      "attempted",
+      "verified",
+      "needs-repair",
+      "complete"
+    ],
+    "transitions": [
+      {
+        "from": "locked",
+        "to": "available",
+        "when": "prerequisite or recovery requirement is satisfied"
+      },
+      {
+        "from": "available",
+        "to": "active",
+        "when": "learner explicitly starts or resumes the step"
+      },
+      {
+        "from": "active",
+        "to": "attempted",
+        "when": "the required learner action is committed"
+      },
+      {
+        "from": "attempted",
+        "to": "verified",
+        "when": "an authorized deterministic evaluator or instructor verifies the step evidence"
+      },
+      {
+        "from": "attempted",
+        "to": "needs-repair",
+        "when": "a diagnosed error or missing evidence blocks the step"
+      },
+      {
+        "from": "needs-repair",
+        "to": "active",
+        "when": "the learner follows the source-linked repair and retries"
+      },
+      {
+        "from": "verified",
+        "to": "complete",
+        "when": "required explanation or evidence capture for the step is committed"
+      }
+    ],
+    "rules": [
+      "Step gating applies to the learning sequence, never to a fixed UI tab count.",
+      "A locked step exposes why it is locked and a reachable prerequisite or recovery route.",
+      "Reset restores a documented initial state without deleting append-only learner evidence.",
+      "The current step, controls and state change remain understandable at mobile, tablet and desktop widths.",
+      "State labels and icons accompany color; focus moves only after an explicit learner action."
+    ]
+  },
+  "correctWrongContract": {
+    "outcomes": [
+      "unattempted",
+      "correct",
+      "partially-correct",
+      "incorrect",
+      "inconclusive",
+      "needs-review"
+    ],
+    "requiredComparisonFields": [
+      "baselineState",
+      "candidateState",
+      "contrastDimensions",
+      "outcome",
+      "explanation",
+      "sourceRefs",
+      "repairRef",
+      "disclosurePolicyRef"
+    ],
+    "rules": [
+      "Correct and incorrect states identify the governing dimension, not only a green or red surface.",
+      "Non-binary technical results may be partially-correct, inconclusive or needs-review.",
+      "A runtime error, unavailable source and incorrect learner answer are separate states.",
+      "An incorrect comparison names one primary cause and a source-linked repair before retry.",
+      "Formal assessment never exposes per-item correctness before the submission boundary."
+    ],
+    "nullableReferenceRule": "repairRef may be null for correct or unattempted outcomes; it is required for partially-correct, incorrect and needs-review outcomes."
+  },
+  "interactionContract": {
+    "modes": [
+      "observe",
+      "predict",
+      "classify",
+      "manipulate",
+      "construct",
+      "trace",
+      "compare",
+      "annotate",
+      "explain"
+    ],
+    "requiredActionEventFields": [
+      "eventId",
+      "visualId",
+      "lessonId",
+      "stepId",
+      "action",
+      "inputRefs",
+      "beforeStateRef",
+      "afterStateRef",
+      "createdAt",
+      "provenance"
+    ],
+    "determinismRules": [
+      "The same versioned inputs, parameters and seed reproduce the same deterministic output.",
+      "Run, pause, step, retry and reset behavior is explicit when supported.",
+      "A required interaction has a keyboard-operable path and a non-pointer fallback.",
+      "Autoplay never performs a learner action or creates mastery evidence.",
+      "An interaction records stable event and artifact references rather than an opaque screenshot alone."
+    ]
+  },
+  "feedbackContract": {
+    "requiredEventFields": [
+      "feedbackId",
+      "attemptRef",
+      "visualId",
+      "outcome",
+      "primaryErrorRef",
+      "sourceAnchors",
+      "message",
+      "repairRef",
+      "retryPolicy",
+      "actorType",
+      "provenance"
+    ],
+    "maxPrimaryErrorGroupsShownAtOnce": 1,
+    "secondaryFindingPolicy": "collapsed-and-retrievable",
+    "verificationAuthorityRef": "assets/data/lesson/master-ready-policy-v1.json#verificationActors",
+    "primaryErrorRule": "primaryErrorRef may be null for correct or unscored feedback; it is required when feedback creates a needs-repair route.",
+    "channels": [
+      "deterministic-inline",
+      "post-attempt-review",
+      "post-submission-review",
+      "instructor-review",
+      "ai-advisory"
+    ],
+    "rules": [
+      "Feedback states what changed, why it matters, where the governing source is and what one action to retry.",
+      "Praise or warning without observable state evidence is not sufficient feedback.",
+      "AI advisory feedback cannot set verified, fabricate a source or reveal a protected assessment answer.",
+      "Unavailable AI falls back to deterministic rules, source anchors and the registered recovery route.",
+      "A repaired attempt appends a link to prior evidence and never rewrites history."
+    ]
+  },
+  "disclosurePolicies": {
+    "orientation": {
+      "correctnessTiming": "not-scored",
+      "hintMode": "source-orientation",
+      "solutionMode": "not-applicable"
+    },
+    "worked-example": {
+      "correctnessTiming": "shown-with-annotated-reasoning",
+      "hintMode": "full-model",
+      "solutionMode": "complete-source-grounded-path"
+    },
+    "guided-practice": {
+      "correctnessTiming": "after-committed-step",
+      "hintMode": "progressive-source-linked",
+      "solutionMode": "after-attempt-and-policy-gate"
+    },
+    "independent-practice": {
+      "correctnessTiming": "after-committed-attempt",
+      "hintMode": "limited-by-attempt-policy",
+      "solutionMode": "after-retry-or-review-gate"
+    },
+    "review": {
+      "correctnessTiming": "after-retrieval-attempt",
+      "hintMode": "diagnosed-error-group",
+      "solutionMode": "source-linked-repair"
+    },
+    "formal-assessment": {
+      "correctnessTiming": "only-after-submission-boundary",
+      "hintMode": "none-unless-blueprint-explicitly-allows",
+      "solutionMode": "post-submission-policy-only",
+      "protectedAnswerRule": "Per-item correctness, protected hints and solutions are unavailable to learner and AI advisory before submission."
+    }
+  },
+  "accessibilityContract": {
+    "requiredFields": [
+      "shortLabel",
+      "longDescriptionRef",
+      "nonColorLegend",
+      "keyboardModel",
+      "focusOrder",
+      "reducedMotionBehavior",
+      "textOrTableFallbackRef",
+      "language"
+    ],
+    "familyRequirements": {
+      "annotated-illustration": [
+        "descriptive alt or long description",
+        "annotation list in reading order"
+      ],
+      "relationship-diagram": [
+        "node and edge table",
+        "boundary and direction labels"
+      ],
+      "step-sequence": [
+        "ordered text steps",
+        "current and completed state labels"
+      ],
+      "state-comparison": [
+        "named contrast dimensions",
+        "non-color outcome labels"
+      ],
+      "trace-timeline": [
+        "ordered event list",
+        "keyboard event navigation"
+      ],
+      "plot-or-chart": [
+        "underlying data table",
+        "axis units scale and series description"
+      ],
+      "media-overlay": [
+        "captions or transcript",
+        "non-audio and non-motion explanation"
+      ],
+      "artifact-view": [
+        "artifact summary",
+        "download or reader fallback when authorized"
+      ],
+      "interactive-model": [
+        "control labels and keyboard path",
+        "initial and current state summary"
+      ],
+      "specialist-widget": [
+        "registered specialist accessibility adapter",
+        "deterministic static fallback"
+      ]
+    },
+    "responsiveRules": [
+      "No required label, control, legend or feedback is clipped at supported mobile, tablet or desktop widths.",
+      "A split view may stack while preserving source-before-action reading order.",
+      "Zoom and text reflow do not require two-dimensional scrolling for the surrounding lesson shell.",
+      "Motion pauses and reduced-motion mode preserves the same learning state."
+    ]
+  },
+  "offlineContract": {
+    "resourceClasses": [
+      "bundled",
+      "subject-pack",
+      "local-file"
+    ],
+    "requiredFields": [
+      "resourceClass",
+      "version",
+      "sizeBytes",
+      "integrityRef",
+      "availabilityState",
+      "fallbackRef"
+    ],
+    "availabilityStates": [
+      "bundled-ready",
+      "pack-ready",
+      "local-authorized",
+      "download-required",
+      "permission-required",
+      "unavailable"
+    ],
+    "rules": [
+      "Core instructions, deterministic controls, outcome rules and text or table fallback remain available offline.",
+      "Large visual or media packs require explicit download and are never silently precached as the whole subject repository.",
+      "Direct Local Reader artifacts stay zero-copy and permission scoped; the visual contract stores references, not private file bytes.",
+      "Missing cloud or AI service never blocks practice, assessment, progress, review or deterministic repair.",
+      "A stale or failed visual resource reports its own availability state without being mislabeled as an incorrect learner answer."
+    ]
+  },
+  "performanceContract": {
+    "requiredResourceMetadata": [
+      "sizeBytes",
+      "resourceClass",
+      "loadingPolicy",
+      "intrinsicDimensionsOrAspectRatio",
+      "fallbackRef"
+    ],
+    "rules": [
+      "Specialist widgets and large media lazy-load at the point of use.",
+      "The lesson reserves stable layout space before a visual loads.",
+      "Animation and simulation pause when hidden and do not run solely for decoration.",
+      "A static or structured fallback renders before an optional large pack is available.",
+      "B6 defines metadata and behavior; numeric runtime budgets remain owned by performance gates and measured devices."
+    ]
+  },
+  "typeProfiles": {
+    "language": {
+      "typeId": "language",
+      "representationKinds": [
+        "pronunciation-state",
+        "dialogue-turn-map",
+        "correct-wrong-phrase",
+        "handwriting-overlay",
+        "listening-timeline"
+      ],
+      "specialistCapabilityRefs": [
+        "dialogue",
+        "shadowing",
+        "speech-recording",
+        "listening-media",
+        "handwriting-workspace",
+        "writing-workspace"
+      ],
+      "requiredRoleCoverage": [
+        "worked-step",
+        "predict",
+        "compare",
+        "error-intercept",
+        "explain-defend"
+      ],
+      "domainRules": [
+        "Pronunciation feedback separates transcript similarity from verified language competence.",
+        "Listening visuals keep transcript timing and an offline non-audio recovery path.",
+        "Correct-wrong phrase comparison explains meaning, form or pronunciation dimension rather than color alone."
+      ]
+    },
+    "mathematics": {
+      "typeId": "mathematics",
+      "representationKinds": [
+        "formula-diagram",
+        "matrix-visualizer",
+        "graph-or-plot",
+        "assumption-gate",
+        "correct-wrong-derivation",
+        "parameter-state"
+      ],
+      "specialistCapabilityRefs": [
+        "formula-typesetting",
+        "matrix-rendering",
+        "derivation",
+        "parameter-simulation",
+        "math-concept-map",
+        "misconception-map"
+      ],
+      "requiredRoleCoverage": [
+        "concept-model",
+        "worked-step",
+        "predict",
+        "manipulate-observe",
+        "compare",
+        "explain-defend"
+      ],
+      "domainRules": [
+        "Formula and derivation visuals preserve assumptions, notation, dimensions and source anchors.",
+        "Plots expose axis scale, units, parameter state and underlying values.",
+        "A simulation requires prediction before manipulation when prediction is the learning objective."
+      ]
+    },
+    "programming": {
+      "typeId": "programming",
+      "representationKinds": [
+        "code-trace",
+        "call-stack-state",
+        "data-structure-state",
+        "test-output-diff",
+        "complexity-plot"
+      ],
+      "specialistCapabilityRefs": [
+        "code-lab",
+        "unit-test",
+        "debug-runner",
+        "code-trace",
+        "output-prediction",
+        "complexity-check"
+      ],
+      "requiredRoleCoverage": [
+        "predict",
+        "manipulate-observe",
+        "construct",
+        "error-intercept",
+        "explain-defend"
+      ],
+      "domainRules": [
+        "Code state binds source version, input, runtime and deterministic test output.",
+        "A trace never substitutes animation for readable source line, stack and variable state.",
+        "Test diffs focus the first causal failure while keeping the complete log retrievable."
+      ]
+    },
+    "database": {
+      "typeId": "database",
+      "representationKinds": [
+        "schema-diagram",
+        "relation-state",
+        "query-plan",
+        "transaction-timeline",
+        "index-cost-comparison",
+        "pipeline-map"
+      ],
+      "specialistCapabilityRefs": [
+        "sql-playground",
+        "schema-diagram",
+        "query-plan",
+        "transaction-scenario",
+        "normalization-workbench",
+        "index-comparison"
+      ],
+      "requiredRoleCoverage": [
+        "concept-model",
+        "predict",
+        "construct",
+        "compare",
+        "error-intercept",
+        "explain-defend"
+      ],
+      "domainRules": [
+        "Schema visuals preserve keys, cardinality, optionality and integrity constraints in the fallback table.",
+        "Query-plan comparison binds the exact schema, query, statistics assumptions and engine version.",
+        "Transaction timelines distinguish isolation anomaly, runtime failure and incorrect learner prediction."
+      ]
+    },
+    "software-design": {
+      "typeId": "software-design",
+      "representationKinds": [
+        "uml-diagram",
+        "architecture-diagram",
+        "requirement-trace",
+        "sequence-state",
+        "quality-attribute-tradeoff"
+      ],
+      "specialistCapabilityRefs": [
+        "requirements-map",
+        "uml-workspace",
+        "architecture-workspace",
+        "quality-attribute-scenario",
+        "traceability-matrix",
+        "design-defense"
+      ],
+      "requiredRoleCoverage": [
+        "concept-model",
+        "construct",
+        "compare",
+        "explain-defend",
+        "result-evidence"
+      ],
+      "domainRules": [
+        "Every design visual identifies viewpoint, boundary, element semantics and traceable requirements.",
+        "Correctness may be conditional on a quality-attribute scenario and is not reduced to one canonical picture.",
+        "Diagram repair preserves prior versions and records the defended tradeoff."
+      ]
+    },
+    "ml-data": {
+      "typeId": "ml-data",
+      "representationKinds": [
+        "dataset-profile",
+        "pipeline-map",
+        "metric-plot",
+        "confusion-matrix",
+        "model-comparison",
+        "error-slice",
+        "training-state"
+      ],
+      "specialistCapabilityRefs": [
+        "dataset-playground",
+        "experiment-runner",
+        "pipeline-map",
+        "metric-visualizer",
+        "confusion-matrix",
+        "error-analysis"
+      ],
+      "requiredRoleCoverage": [
+        "predict",
+        "manipulate-observe",
+        "compare",
+        "error-intercept",
+        "explain-defend",
+        "result-evidence"
+      ],
+      "domainRules": [
+        "Metric visuals bind dataset split, baseline, uncertainty and evaluation version.",
+        "A high score never hides leakage, invalid evaluation or an unsupported comparison.",
+        "Confusion matrices and error slices expose counts, labels and underlying scoped examples when authorized."
+      ]
+    },
+    "asoiu-system": {
+      "typeId": "asoiu-system",
+      "representationKinds": [
+        "system-boundary",
+        "architecture-diagram",
+        "information-flow",
+        "reliability-state",
+        "failure-tree",
+        "lifecycle-map",
+        "ergonomic-state"
+      ],
+      "specialistCapabilityRefs": [
+        "system-concept-map",
+        "architecture-diagram",
+        "information-flow",
+        "reliability-scenario",
+        "failure-state",
+        "lifecycle-map"
+      ],
+      "requiredRoleCoverage": [
+        "concept-model",
+        "predict",
+        "manipulate-observe",
+        "compare",
+        "explain-defend",
+        "result-evidence"
+      ],
+      "domainRules": [
+        "System visuals declare boundary, actors, information flow, assumptions and operating state.",
+        "Reliability and failure representations distinguish probability, observed event and learner hypothesis.",
+        "Lifecycle and ergonomic comparisons name the scenario and criteria that govern the judgment."
+      ]
+    },
+    "research": {
+      "typeId": "research",
+      "representationKinds": [
+        "research-question-map",
+        "literature-map",
+        "evidence-map",
+        "protocol-timeline",
+        "result-plot",
+        "claim-source-boundary",
+        "milestone-state"
+      ],
+      "specialistCapabilityRefs": [
+        "research-question-builder",
+        "literature-matrix",
+        "evidence-map",
+        "experiment-protocol",
+        "citation-boundary",
+        "nir-milestone",
+        "vkr-milestone"
+      ],
+      "requiredRoleCoverage": [
+        "concept-model",
+        "construct",
+        "compare",
+        "explain-defend",
+        "result-evidence"
+      ],
+      "domainRules": [
+        "Claim-source visuals keep provided source, learner note, system-derived relation and AI inference separate.",
+        "Result plots preserve method, sample, units, uncertainty, limitations and versioned source data.",
+        "НИР/ВКР milestone state records evidence and review status without treating a decorative progress bar as completion."
+      ]
+    }
+  },
+  "referenceCompatibility": {
+    "boiPedagogy": {
+      "url": "https://boi-ech.dinhnam3391.chatgpt.site",
+      "htmlSha256": "e519d69fb792f6647ca824baaa1990db32eaee453944e814177595b6e2b77dea",
+      "pageJsSha256": "870bef7e83d04cd93025b1aa8936dd84ef72c69db3f3124bbf00a434ed8a6e87",
+      "cssSha256": "b18a588795cad3932b5e96b3c9358056c0e9e7b55685aca4abc233090311ea6f",
+      "kept": [
+        "visible learner journey",
+        "checkpoint before formal assessment",
+        "one primary error at a time",
+        "post-submission formal feedback",
+        "source-grounded AI recovery",
+        "deterministic offline learning"
+      ],
+      "notCopied": [
+        "swimming movement graphics",
+        "physical-safety instructions",
+        "stroke-specific interactions",
+        "five mandatory visual tabs"
+      ]
+    },
+    "russian": {
+      "mode": "read-only-reference-unprojected",
+      "sourcePaths": [
+        "subjects/russian/data/lessons.json",
+        "subjects/russian/assets/core.js",
+        "subjects/russian/assets/subject-adapter.js"
+      ],
+      "preserve": [
+        "dialogue and shadowing state",
+        "deep speaking feedback",
+        "handwriting workspace",
+        "review and formal assessment disclosure"
+      ]
+    },
+    "mathematics": {
+      "mode": "read-only-reference-unprojected",
+      "sourcePaths": [
+        "subjects/math/data/lessons.json",
+        "subjects/math/data/theory_lecture_content.json",
+        "subjects/math/assets/subject-adapter.js"
+      ],
+      "preserve": [
+        "formula and matrix rendering",
+        "assumption and derivation states",
+        "parameter simulations",
+        "professor oral and assessment disclosure"
+      ]
+    }
+  },
+  "forwardOwnership": {
+    "L6-B7": "Russian Twin and English Research Layer hooks",
+    "L6-B8": "machine-readable lesson schema and version migration",
+    "L6-B9": "Subject Factory registry and specialist widget registration",
+    "L6-B10": "Universal Lesson Renderer and legacy bridges",
+    "L6-B11": "reference subject and responsive/offline regression",
+    "rule": "B6 defines semantics and validation inputs; it does not claim that a universal renderer, subject mapping or legacy projection already exists."
+  },
+  "rollback": {
+    "scope": "Remove the B6 contract, decision record, generated report and workflow gate, then restore progress markers to the B5 checkpoint.",
+    "learnerStateImpact": "none",
+    "legacyRuntimeImpact": "none"
+  }
+}

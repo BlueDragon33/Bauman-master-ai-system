@@ -11,29 +11,29 @@ Main sync status: `branch_only`
 
 Files changed:
 - `.github/workflows/migration-l6-academic.yml`
-- `assets/data/lesson/master-ready-policy-v1.json`
-- `docs/migration/L6_B5_MASTER_READY_EVIDENCE_GATES.md`
-- `docs/migration/L6_B5_MASTER_READY_REGRESSION.generated.json`
-- `scripts/academic/l6-b5-master-ready-regression.cjs`
+- `assets/data/lesson/visual-teaching-contract-v1.json`
+- `docs/migration/L6_B6_VISUAL_TEACHING_CONTRACT.md`
+- `docs/migration/L6_B6_VISUAL_TEACHING_REGRESSION.generated.json`
+- `scripts/academic/l6-b6-visual-teaching-regression.cjs`
 - `docs/migration/MIGRATION_PLAN.md`
 - `CODEX_STATE.md`
 
 What changed:
-- Locked L6-B4 after GitHub Actions run `32714596099` reported B1-B4 contexts
-  successful at commit `b051c823…`.
-- Defined the five common Master-ready stages: understand, solve, build-apply,
-  explain and delayed retain.
-- Added an append-only, source-versioned evidence envelope that references
-  private learner state and zero-copy files without embedding them.
-- Limited final verification authority to deterministic evaluators and
-  instructor review; learner, peer and AI output remains advisory.
-- Defined exact mastery rubrics, critical minima and delayed retention windows
-  for all eight lesson types, distinct from official course-grade rules.
-- Added explicit repair transitions for failed prerequisites and invalidated
-  versioned sources/evidence.
-- Added the deterministic B5 gate and B5 commit-status context.
 - Locked L6-B5 after GitHub Actions run `32715744137` reported B1-B5 contexts
   successful at commit `73f70e99…`.
+- Defined 11 shared learning roles, ten representation families and exact
+  visual profiles for all eight lesson types without fixed tabs or a generic
+  specialist replacement.
+- Defined step-state transitions, non-binary outcomes, deterministic
+  interactions, one-primary-error feedback and separate practice/formal
+  disclosure boundaries.
+- Required responsive, keyboard, non-color, reduced-motion, structured
+  fallback, offline, provenance and resource metadata behavior.
+- Kept Bơi pedagogy at the flow/checkpoint/repair level and preserved Russian
+  and Mathematics as read-only unprojected reference engines.
+- Manual audit added conditional-null rules for generic family renderers,
+  correct outcomes and repair feedback.
+- Added the deterministic B6 gate and B6 commit-status context.
 - Did not change learner content, subject runtime, storage, offline policy,
   service worker or `main`.
 
@@ -46,9 +46,10 @@ Verification:
 - L6-B4 GitHub Actions run `32714596099`: PASS
 - L6-B5 deterministic Master-ready regression, 44/44 checks: PASS
 - L6-B5 GitHub Actions run `32715744137`: PASS
-- B1-B5 report hashes stable over consecutive runs: PASS
-- B5 mutation tests (rubric weight, AI authority, provisional wording),
-  3/3 expected failures observed: PASS
+- L6-B6 deterministic visual-teaching regression, 75/75 checks: PASS
+- B1-B6 report hashes stable over consecutive runs: PASS
+- B6 mutation tests (type coverage, focused feedback, assessment disclosure,
+  accessibility), 4/4 expected failures observed: PASS
 - Workflow YAML parse: PASS
 - Russian/Mathematics runtime and content diff: NONE
 - L5 static routing, 9/9: PASS
@@ -58,7 +59,8 @@ Verification:
 - L5 data-loading audit, 8 subjects and 0 failures: PASS
 - L5 runtime diagnostics, 14/14: PASS
 - L5 offline-report integrity, 5/5 with one expected sandbox block: PASS
-- GitHub Actions L6-B5 gate: PASS
+- Bơi reference URL + three B1 hashes: MATCH
+- GitHub Actions L6-B6 gate: PENDING
 
 Main sync / pull instruction:
 - The work is branch-only on `migration/webapp-l1-audit-storage`.
@@ -66,15 +68,15 @@ Main sync / pull instruction:
 - Do not merge to `main` until the corresponding L6 gates pass.
 
 Next recommended task:
-- Audit visual-teaching requirements and implement
-  `L6-B6_VISUAL_TEACHING_CONTRACT` without changing Russian/Math runtime.
+- Wait for the L6-B6 GitHub Actions gate; after PASS, start
+  `L6-B7_RUSSIAN_TWIN_ENGLISH_RESEARCH_HOOKS`.
 
 Next actor:
 - Codex
 
 Codex required:
 - yes
-- Reason: remote CI verification, visual-teaching contract design,
+- Reason: remote CI verification, multilingual hook contract design,
   schema/validator implementation, legacy compatibility audit and regression.
 
 ChatGPT can do:
