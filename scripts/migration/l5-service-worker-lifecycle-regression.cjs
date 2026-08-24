@@ -10,9 +10,11 @@ const read=file=>fs.readFileSync(file,'utf8');
 const workerPath='service-worker.js';
 const runtimePath='assets/js/platform/site-runtime.js';
 const configPath='assets/js/platform/runtime-config.js';
+const indexPath='index.html';
 const worker=read(workerPath);
 const runtime=read(runtimePath);
 const config=read(configPath);
+const index=read(indexPath);
 
 const workerVersion=(worker.match(/const VERSION='([^']+)'/)||[])[1]||'';
 const runtimeVersion=(runtime.match(/const VERSION='([^']+)'/)||[])[1]||'';
@@ -23,6 +25,8 @@ check('old versioned shell caches are cleaned only on activate',/startsWith\('ba
 check('explicit offline cache has canonical query-free key',/canonicalRequestUrl/.test(worker)&&/url\.search='';/.test(worker));
 check('generic subject data is not shell-cache eligible',/path\.includes\('\/data\/'\)\|\|path\.includes\('\/external-data\/'\)/.test(worker)&&/path\.endsWith\('\.json'\)/.test(worker));
 check('roadmap manifest is explicit shell exception',/iu5-090401-11-v3\.json/.test(worker));
+check('direct local reader wired in main',index.includes('assets/js/platform/offline-direct-file-reader.js'));
+check('direct local reader cached in shell',worker.includes("'./assets/js/platform/offline-direct-file-reader.js'"));
 
 const fetchBlock=(worker.match(/self\.addEventListener\('fetch',[\s\S]*$/)||[])[0]||'';
 check('explicit cache promise created before respondWith',fetchBlock.indexOf('const explicitPromise=')>=0&&fetchBlock.indexOf('const explicitPromise=')<fetchBlock.indexOf('event.respondWith'));
