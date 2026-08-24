@@ -10,6 +10,7 @@ const runAttempt=String(process.env.GITHUB_RUN_ATTEMPT||'');
 const ref=String(process.env.GITHUB_REF_NAME||'');
 const knownReports=[
   'docs/migration/L5_STATIC_ROUTING_AUDIT.generated.json',
+  'docs/migration/L5_SERVICE_WORKER_LIFECYCLE_REGRESSION.generated.json',
   'docs/migration/L5_ACADEMIC_RUNTIME_V3_REGRESSION.generated.json',
   'docs/migration/L5_ROADMAP_OFFLINE_STATIC_REGRESSION.generated.json',
   'docs/migration/L5_DATA_LOADING_AUDIT.generated.md',
@@ -30,13 +31,15 @@ function summarizeJson(file){
       offlineRoutes:Array.isArray(data.offlineRoutes)?data.offlineRoutes.length:null,
       packs:Array.isArray(data.packs)?data.packs.length:null,
       runtime:data.runtime||null,
-      budgets:data.budgets||null
+      budgets:data.budgets||null,
+      workerVersion:data.workerVersion||null,
+      runtimeVersion:data.runtimeVersion||null
     };
   }catch(_){return null;}
 }
 
 const reports=knownReports.filter((file)=>fs.existsSync(file)).map((file)=>({file,bytes:fs.statSync(file).size,summary:file.endsWith('.json')?summarizeJson(file):null}));
-const result={schema:'bauman-l5-ci-result-v4',status,passed:status==='success',sourceSha,runId,runAttempt,ref,generatedAt:new Date().toISOString(),reports};
+const result={schema:'bauman-l5-ci-result-v5',status,passed:status==='success',sourceSha,runId,runAttempt,ref,generatedAt:new Date().toISOString(),reports};
 fs.mkdirSync(path.join('docs','migration'),{recursive:true});
 fs.writeFileSync('docs/migration/L5_CI_RESULT.generated.json',JSON.stringify(result,null,2)+'\n');
 console.log(`L5 durable CI result: ${status}, source ${sourceSha.slice(0,12)}, ${reports.length} report(s).`);
