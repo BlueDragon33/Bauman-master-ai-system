@@ -16,9 +16,7 @@ if(fs.existsSync(subjectsRoot)){
   }
 }
 
-function cleanRef(raw){
-  return String(raw||'').trim().replace(/&amp;/g,'&');
-}
+function cleanRef(raw){return String(raw||'').trim().replace(/&amp;/g,'&');}
 function localRef(raw){
   const value=cleanRef(raw);
   if(!value||value.startsWith('#')||/^(?:https?:|data:|mailto:|tel:|javascript:|\/\/)/i.test(value))return null;
@@ -63,7 +61,11 @@ const requiredMainScripts=[
   'assets/js/platform/runtime-config.js',
   'assets/js/platform/site-runtime.js',
   'assets/js/platform/storage-adapter.js',
+  'assets/js/data.js',
+  'assets/js/academic-data-v3.js',
   'assets/js/main.js',
+  'assets/js/platform/academic-runtime-v3-bridge.js',
+  'assets/js/platform/academic-roadmap-v3-bridge.js',
   'assets/js/platform/site-routing-bridge.js'
 ];
 let previous=-1;
@@ -80,12 +82,23 @@ const runtimeVersion=(runtime.match(/const VERSION='([^']+)'/)||[])[1]||'';
 const workerVersion=(worker.match(/const VERSION='([^']+)'/)||[])[1]||'';
 if(!runtimeVersion||!workerVersion)failures.push('Cannot read L5 runtime/cache version markers.');
 if(runtimeVersion!==workerVersion)failures.push(`Runtime/service-worker version mismatch: ${runtimeVersion} vs ${workerVersion}`);
-if(!worker.includes("'./assets/js/platform/site-routing-bridge.js'"))failures.push('service-worker.js: routing bridge missing from versioned shell cache.');
+for(const asset of [
+  './assets/js/academic-data-v3.js',
+  './assets/js/platform/academic-runtime-v3-bridge.js',
+  './assets/js/platform/academic-roadmap-v3-bridge.js',
+  './assets/js/platform/site-routing-bridge.js'
+]){
+  if(!worker.includes(`'${asset}'`))failures.push(`service-worker.js: shell asset missing ${asset}`);
+}
 if(!/path\.includes\('\/data\/'\)/.test(worker)||!/path\.endsWith\('\.json'\)/.test(worker))failures.push('service-worker.js: JSON/data exclusion policy is missing.');
 
 const config=fs.readFileSync('assets/js/platform/runtime-config.js','utf8');
 if(!/siteRuntime:\s*true/.test(config))failures.push('runtime-config.js: siteRuntime must be enabled for L5 runtime gate.');
 if(!/serviceWorkerCache:\s*false/.test(config))warnings.push('serviceWorkerCache is not OFF during migration/staging gate; verify explicit rollout decision.');
+
+const academicData=fs.readFileSync('assets/js/academic-data-v3.js','utf8');
+if(!/09\.04\.01\/11/.test(academicData)||!/ИУ-5/.test(academicData))failures.push('academic-data-v3.js: expected ИУ-5 · 09.04.01/11 identity missing.');
+if(/hutech/i.test(academicData))failures.push('academic-data-v3.js: comparison-school label is forbidden in Bauman-only runtime.');
 
 const main=fs.readFileSync('assets/js/main.js','utf8');
 for(const id of ['russian','math','programming','ai','systems','signal','research','foundation']){
@@ -96,7 +109,7 @@ for(const id of ['russian','math','programming','ai','systems','signal','researc
   if(main.includes(editorPath)&&!fs.existsSync(editorPath))failures.push(`Configured subject editor does not exist: ${editorPath}`);
 }
 
-const report={runtimeVersion,workerVersion,entries:entryReport,warnings,failures};
+const report={runtimeVersion,workerVersion,entries:entryReport,requiredMainScripts,warnings,failures};
 fs.mkdirSync('docs/migration',{recursive:true});
 fs.writeFileSync('docs/migration/L5_STATIC_ROUTING_AUDIT.generated.json',JSON.stringify(report,null,2)+'\n');
 console.log(`L5 static routing audit: ${entries.length} entries, ${failures.length} failure(s), ${warnings.length} warning(s).`);
