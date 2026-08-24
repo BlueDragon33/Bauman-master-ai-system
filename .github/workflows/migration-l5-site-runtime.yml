@@ -53,6 +53,7 @@ jobs:
           node --check scripts/migration/l5-academic-runtime-v3-regression.cjs
           node --check scripts/migration/l5-data-loading-audit.cjs
           node --check scripts/migration/l5-static-routing-audit.cjs
+          node --check scripts/migration/l5-service-worker-lifecycle-regression.cjs
           node --check scripts/migration/l5-roadmap-offline-static-regression.cjs
           node --check scripts/migration/l5-browser-network-regression.cjs
           node --check scripts/migration/l5-responsive-regression.cjs
@@ -71,9 +72,11 @@ jobs:
           if [ "$GATE_OUTCOME" = "success" ]; then STATE=success; fi
           gh api --method POST "repos/${GITHUB_REPOSITORY}/statuses/${GITHUB_SHA}" -f state="$STATE" -f context="migration/l5-syntax" -f description="L5 syntax gate: ${GATE_OUTCOME}"
 
-      - name: Audit static paths cache and routing
+      - name: Audit static paths cache routing and worker lifecycle
         id: static_gate
-        run: node scripts/migration/l5-static-routing-audit.cjs
+        run: |
+          node scripts/migration/l5-static-routing-audit.cjs
+          node scripts/migration/l5-service-worker-lifecycle-regression.cjs
 
       - name: Publish static routing status
         if: ${{ always() && github.event_name == 'push' && steps.static_gate.outcome != 'skipped' }}
@@ -83,7 +86,7 @@ jobs:
         run: |
           STATE=failure
           if [ "$GATE_OUTCOME" = "success" ]; then STATE=success; fi
-          gh api --method POST "repos/${GITHUB_REPOSITORY}/statuses/${GITHUB_SHA}" -f state="$STATE" -f context="migration/l5-static-routing" -f description="L5 static path/cache/routing gate: ${GATE_OUTCOME}"
+          gh api --method POST "repos/${GITHUB_REPOSITORY}/statuses/${GITHUB_SHA}" -f state="$STATE" -f context="migration/l5-static-routing" -f description="L5 static path/cache/routing/lifecycle gate: ${GATE_OUTCOME}"
 
       - name: Audit unified IU5 academic runtime
         id: academic_runtime_gate
@@ -219,6 +222,7 @@ jobs:
           path: |
             docs/migration/L5_CI_RESULT.generated.json
             docs/migration/L5_STATIC_ROUTING_AUDIT.generated.json
+            docs/migration/L5_SERVICE_WORKER_LIFECYCLE_REGRESSION.generated.json
             docs/migration/L5_ACADEMIC_RUNTIME_V3_REGRESSION.generated.json
             docs/migration/L5_ROADMAP_OFFLINE_STATIC_REGRESSION.generated.json
             docs/migration/L5_DATA_LOADING_AUDIT.generated.md
@@ -255,6 +259,7 @@ jobs:
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git add docs/migration/L5_CI_RESULT.generated.json
           git add docs/migration/L5_STATIC_ROUTING_AUDIT.generated.json 2>/dev/null || true
+          git add docs/migration/L5_SERVICE_WORKER_LIFECYCLE_REGRESSION.generated.json 2>/dev/null || true
           git add docs/migration/L5_ACADEMIC_RUNTIME_V3_REGRESSION.generated.json 2>/dev/null || true
           git add docs/migration/L5_ROADMAP_OFFLINE_STATIC_REGRESSION.generated.json 2>/dev/null || true
           git add docs/migration/L5_BROWSER_NETWORK_REGRESSION.generated.json 2>/dev/null || true
