@@ -1,6 +1,6 @@
 # CODEX_STATE
 
-Current task: `L6-B4_LESSON_TYPE_REGISTRY`
+Current task: `L6-B5_MASTER_READY_EVIDENCE_GATES`
 
 Status: `IN_PROGRESS`
 
@@ -11,28 +11,27 @@ Main sync status: `branch_only`
 
 Files changed:
 - `.github/workflows/migration-l6-academic.yml`
-- `assets/data/lesson/lesson-type-registry-v1.json`
-- `assets/data/lesson/universal-lesson-block-policy-v1.json`
-- `docs/migration/L6_B4_LESSON_TYPE_REGISTRY.md`
-- `docs/migration/L6_B4_LESSON_TYPE_REGISTRY.generated.json`
-- `scripts/academic/l6-b4-lesson-type-registry-regression.cjs`
+- `assets/data/lesson/master-ready-policy-v1.json`
+- `docs/migration/L6_B5_MASTER_READY_EVIDENCE_GATES.md`
+- `docs/migration/L6_B5_MASTER_READY_REGRESSION.generated.json`
+- `scripts/academic/l6-b5-master-ready-regression.cjs`
 - `docs/migration/MIGRATION_PLAN.md`
 - `CODEX_STATE.md`
 
 What changed:
-- Locked L6-B3 after GitHub Actions run `32713846615` reported
-  B1-B3 contexts successful at commit `6a356c92…`.
-- Defined the exact eight lesson types: language, mathematics, programming,
-  database, software-design, ml-data, asoiu-system and research.
-- Separated curriculum subject from lesson type; each lesson has one primary
-  type and optional secondary facets that cannot blind-merge block policies.
-- Linked every B3 policy to its exact B4 definition while leaving whole-subject
-  mapping for B9.
-- Kept only Russian and Mathematics as audited-reference-unprojected and added
-  guards for their preserved specialist capabilities.
-- Manual audit fixed mixed Latin/Cyrillic spelling in `ВКР` and
-  added a regression guard.
-- Added the deterministic B4 gate and B4 commit-status context.
+- Locked L6-B4 after GitHub Actions run `32714596099` reported B1-B4 contexts
+  successful at commit `b051c823…`.
+- Defined the five common Master-ready stages: understand, solve, build-apply,
+  explain and delayed retain.
+- Added an append-only, source-versioned evidence envelope that references
+  private learner state and zero-copy files without embedding them.
+- Limited final verification authority to deterministic evaluators and
+  instructor review; learner, peer and AI output remains advisory.
+- Defined exact mastery rubrics, critical minima and delayed retention windows
+  for all eight lesson types, distinct from official course-grade rules.
+- Added explicit repair transitions for failed prerequisites and invalidated
+  versioned sources/evidence.
+- Added the deterministic B5 gate and B5 commit-status context.
 - Did not change learner content, subject runtime, storage, offline policy,
   service worker or `main`.
 
@@ -42,7 +41,11 @@ Verification:
 - L6-B3 deterministic block-policy regression, 37/37 checks: PASS
 - L6-B3 GitHub Actions run `32713846615`: PASS
 - L6-B4 deterministic lesson-type regression, 36/36 checks: PASS
-- B1-B4 report hashes stable over consecutive runs: PASS
+- L6-B4 GitHub Actions run `32714596099`: PASS
+- L6-B5 deterministic Master-ready regression, 44/44 checks: PASS
+- B1-B5 report hashes stable over consecutive runs: PASS
+- B5 mutation tests (rubric weight, AI authority, provisional wording),
+  3/3 expected failures observed: PASS
 - Workflow YAML parse: PASS
 - Russian/Mathematics runtime and content diff: NONE
 - L5 static routing, 9/9: PASS
@@ -52,7 +55,7 @@ Verification:
 - L5 data-loading audit, 8 subjects and 0 failures: PASS
 - L5 runtime diagnostics, 14/14: PASS
 - L5 offline-report integrity, 5/5 with one expected sandbox block: PASS
-- GitHub Actions L6-B4 gate: PENDING
+- GitHub Actions L6-B5 gate: PENDING
 
 Main sync / pull instruction:
 - The work is branch-only on `migration/webapp-l1-audit-storage`.
@@ -60,17 +63,16 @@ Main sync / pull instruction:
 - Do not merge to `main` until the corresponding L6 gates pass.
 
 Next recommended task:
-- Wait for the L6-B4 GitHub Actions gate; after PASS, start
-  `L6-B5_MASTER_READY_EVIDENCE_GATES`.
+- Wait for the L6-B5 GitHub Actions gate; after PASS, start
+  `L6-B6_VISUAL_TEACHING_CONTRACT`.
 
 Next actor:
 - Codex
 
 Codex required:
 - yes
-- Reason: remote CI verification, type-specific mastery rubric design,
-  schema/validator implementation, large JSON compatibility audit and
-  regression.
+- Reason: remote CI verification, visual-teaching contract design,
+  schema/validator implementation, legacy compatibility audit and regression.
 
 ChatGPT can do:
 - Targeted content/schema review and small documentation-only corrections on

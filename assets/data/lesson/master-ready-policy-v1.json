@@ -1,0 +1,1412 @@
+{
+  "policyId": "bauman-master-ready-policy",
+  "policyVersion": "1.0.0",
+  "status": "L6-B5-POLICY",
+  "contractRef": {
+    "path": "assets/data/lesson/universal-lesson-contract-v2.json",
+    "contractId": "bauman-universal-lesson-contract",
+    "schemaVersion": "2.0.0"
+  },
+  "typeRegistryRef": {
+    "path": "assets/data/lesson/lesson-type-registry-v1.json",
+    "registryId": "bauman-lesson-type-registry",
+    "registryVersion": "1.0.0"
+  },
+  "policyPurpose": "Master-ready is verified retained competence, not page completion and not merely a course-grade pass.",
+  "stageOrder": [
+    "understand",
+    "solve",
+    "build-apply",
+    "explain",
+    "retain"
+  ],
+  "stageContract": {
+    "understand": {
+      "meaning": "Identify governing concepts, assumptions, vocabulary, boundaries and why the method applies.",
+      "dependency": [],
+      "minimumEvidenceEvents": 1
+    },
+    "solve": {
+      "meaning": "Produce a correct constrained response, solution, procedure or method selection without protected-answer leakage.",
+      "dependency": [
+        "understand"
+      ],
+      "minimumEvidenceEvents": 1
+    },
+    "build-apply": {
+      "meaning": "Create or apply a domain artifact in a realistic task and verify the result.",
+      "dependency": [
+        "understand",
+        "solve"
+      ],
+      "minimumEvidenceEvents": 1
+    },
+    "explain": {
+      "meaning": "Explain choices, assumptions, errors, limits and evidence in a type-appropriate oral or written defense.",
+      "dependency": [
+        "understand",
+        "solve"
+      ],
+      "minimumEvidenceEvents": 1
+    },
+    "retain": {
+      "meaning": "Reproduce essential competence after a delayed interval using a new or varied prompt.",
+      "dependency": [
+        "understand",
+        "solve",
+        "build-apply",
+        "explain"
+      ],
+      "minimumEvidenceEvents": 1
+    }
+  },
+  "evidenceEnvelope": {
+    "requiredFields": [
+      "evidenceId",
+      "lessonId",
+      "typeId",
+      "stage",
+      "evidenceKind",
+      "artifactRefs",
+      "sourceRefs",
+      "learnerStateRef",
+      "attemptRef",
+      "createdAt",
+      "verification",
+      "provenance"
+    ],
+    "artifactRefRule": "Evidence may reference repository artifacts, Personal Learning State records, subject-engine records or zero-copy local files; the policy never embeds a private learner file.",
+    "sourceRefRule": "Every scored claim keeps versioned source or task refs distinct from learner artifacts and AI inference.",
+    "attemptRule": "Attempts are append-only. A repair event links prior evidence through supersedesRef but never deletes it.",
+    "verificationRequiredFields": [
+      "actorType",
+      "method",
+      "rubricProfileRef",
+      "criterionScores",
+      "status"
+    ],
+    "verificationStatuses": [
+      "submitted",
+      "verified",
+      "needs-repair",
+      "rejected",
+      "advisory-only"
+    ],
+    "provenanceGroups": [
+      "provided-source",
+      "user-evidence",
+      "system-derived",
+      "ai-inference"
+    ]
+  },
+  "verificationActors": {
+    "deterministic-evaluator": {
+      "maySetVerified": true,
+      "allowedMethods": [
+        "answer-key",
+        "unit-test",
+        "query-result",
+        "schema-rule",
+        "numeric-tolerance",
+        "simulation-invariant",
+        "artifact-validator"
+      ]
+    },
+    "instructor-review": {
+      "maySetVerified": true,
+      "allowedMethods": [
+        "rubric-review",
+        "oral-defense",
+        "artifact-review"
+      ]
+    },
+    "learner-self-check": {
+      "maySetVerified": false,
+      "allowedMethods": [
+        "reflection",
+        "self-rating",
+        "retrieval-log"
+      ]
+    },
+    "peer-review": {
+      "maySetVerified": false,
+      "allowedMethods": [
+        "rubric-comment",
+        "artifact-comment"
+      ]
+    },
+    "ai-advisory": {
+      "maySetVerified": false,
+      "allowedMethods": [
+        "hint",
+        "diagnosis",
+        "rubric-suggestion",
+        "oral-feedback",
+        "recovery-route"
+      ],
+      "boundary": "AI output may support a verifier but cannot be the final verification authority or fabricate source-grounded evidence."
+    }
+  },
+  "scoreContract": {
+    "criterionScale": {
+      "minimum": 0,
+      "maximum": 4,
+      "labels": {
+        "0": "missing-or-invalid",
+        "1": "major-gap",
+        "2": "partial",
+        "3": "competent",
+        "4": "independent-and-robust"
+      }
+    },
+    "normalizedFormula": "sum((criterionScore / 4) * criterionWeight)",
+    "weightSum": 1,
+    "criticalFailureRule": "Any critical criterion below its minimum blocks Master-ready regardless of total score.",
+    "stageFailureRule": "Any stage below its type-specific minimum blocks Master-ready.",
+    "prerequisiteRule": "Any unresolved required prerequisite blocks ready-for-retention and Master-ready while preserving orientation and recovery access.",
+    "sourceIntegrityRule": "Evidence whose required source version is withdrawn, superseded incompatibly or fails integrity review moves to needs-repair.",
+    "officialGradeBoundary": "Course pass and Master-ready are separate. An official course rule may add evidence or raise a gate but cannot silently lower Master-ready defaults."
+  },
+  "gateStateMachine": {
+    "states": [
+      "not-started",
+      "learning",
+      "ready-for-retention",
+      "master-ready",
+      "retention-due",
+      "needs-repair"
+    ],
+    "transitions": [
+      {
+        "from": "not-started",
+        "to": "learning",
+        "when": "first valid learning or evidence event"
+      },
+      {
+        "from": "learning",
+        "to": "ready-for-retention",
+        "when": "understand solve build-apply and explain pass, with retain not yet due"
+      },
+      {
+        "from": "ready-for-retention",
+        "to": "master-ready",
+        "when": "required delayed retain windows and all rubric gates pass"
+      },
+      {
+        "from": "ready-for-retention",
+        "to": "needs-repair",
+        "when": "required evidence or source integrity is invalidated before retention"
+      },
+      {
+        "from": "master-ready",
+        "to": "retention-due",
+        "when": "the next profile retention window becomes due"
+      },
+      {
+        "from": "master-ready",
+        "to": "needs-repair",
+        "when": "required evidence or source integrity is revoked"
+      },
+      {
+        "from": "retention-due",
+        "to": "master-ready",
+        "when": "a varied delayed retain attempt passes"
+      },
+      {
+        "from": "learning",
+        "to": "needs-repair",
+        "when": "a required stage or critical criterion fails"
+      },
+      {
+        "from": "retention-due",
+        "to": "needs-repair",
+        "when": "the delayed retain attempt fails"
+      },
+      {
+        "from": "needs-repair",
+        "to": "learning",
+        "when": "a source-linked repair route starts"
+      }
+    ],
+    "invariants": [
+      "ready-for-retention is provisional and is never displayed or exported as Master-ready.",
+      "A page-view, route-open, scroll, elapsed-time or AI-chat event is never sufficient evidence.",
+      "Master-ready requires all five stage gates, the profile total threshold and every critical minimum.",
+      "Unresolved required prerequisites block ready-for-retention and Master-ready.",
+      "Evidence remains tied to versioned sources; source invalidation creates an explicit repair transition.",
+      "Retention uses a varied prompt and cannot reuse a memorized official assessment answer.",
+      "State changes preserve prior attempts and repair links."
+    ]
+  },
+  "rubricContract": {
+    "requiredProfileFields": [
+      "typeId",
+      "totalThreshold",
+      "stageMinimums",
+      "stageInterpretation",
+      "stageEvidence",
+      "criteria",
+      "retentionPolicy",
+      "thresholdRationale"
+    ],
+    "requiredCriterionFields": [
+      "id",
+      "weight",
+      "critical",
+      "stages",
+      "evidenceOutputRefs",
+      "minimumNormalized"
+    ],
+    "rule": "Each type profile maps all five stages to accepted evidence, has weights totaling 1, contains critical criteria and defines delayed retention."
+  },
+  "profiles": {
+    "language": {
+      "typeId": "language",
+      "totalThreshold": 0.8,
+      "stageMinimums": {
+        "understand": 0.75,
+        "solve": 0.75,
+        "build-apply": 0.8,
+        "explain": 0.8,
+        "retain": 0.75
+      },
+      "stageInterpretation": {
+        "understand": "Comprehend target meaning, instruction, vocabulary and grammar in context.",
+        "solve": "Produce a correct constrained response without copying a model answer.",
+        "build-apply": "Complete a dialogue, listening, speaking or writing task in a realistic context.",
+        "explain": "Explain wording, grammar choice, repair and meaning orally or in writing.",
+        "retain": "Reproduce vocabulary, structures and communicative action after delay with a varied prompt."
+      },
+      "stageEvidence": {
+        "understand": [
+          "comprehension-response"
+        ],
+        "solve": [
+          "comprehension-response",
+          "written-response"
+        ],
+        "build-apply": [
+          "dialogue-turn",
+          "shadowing-attempt",
+          "written-response"
+        ],
+        "explain": [
+          "oral-response",
+          "written-response"
+        ],
+        "retain": [
+          "retention-check"
+        ]
+      },
+      "criteria": [
+        {
+          "id": "comprehension-accuracy",
+          "weight": 0.25,
+          "critical": true,
+          "stages": [
+            "understand",
+            "solve"
+          ],
+          "evidenceOutputRefs": [
+            "comprehension-response"
+          ],
+          "minimumNormalized": 0.75
+        },
+        {
+          "id": "production-accuracy",
+          "weight": 0.25,
+          "critical": true,
+          "stages": [
+            "solve",
+            "build-apply"
+          ],
+          "evidenceOutputRefs": [
+            "dialogue-turn",
+            "written-response"
+          ],
+          "minimumNormalized": 0.8
+        },
+        {
+          "id": "fluency-and-repair",
+          "weight": 0.2,
+          "critical": true,
+          "stages": [
+            "build-apply",
+            "explain"
+          ],
+          "evidenceOutputRefs": [
+            "shadowing-attempt",
+            "oral-response"
+          ],
+          "minimumNormalized": 0.75
+        },
+        {
+          "id": "contextual-appropriateness",
+          "weight": 0.15,
+          "critical": false,
+          "stages": [
+            "build-apply",
+            "explain"
+          ],
+          "evidenceOutputRefs": [
+            "dialogue-turn",
+            "written-response"
+          ],
+          "minimumNormalized": 0.7
+        },
+        {
+          "id": "language-retention",
+          "weight": 0.15,
+          "critical": true,
+          "stages": [
+            "retain"
+          ],
+          "evidenceOutputRefs": [
+            "retention-check"
+          ],
+          "minimumNormalized": 0.75
+        }
+      ],
+      "retentionPolicy": {
+        "windowsDays": [
+          1,
+          3,
+          7,
+          14
+        ],
+        "requiredWindowsDays": [
+          7,
+          14
+        ],
+        "minimumNormalized": 0.75,
+        "variedPromptRequired": true,
+        "scheduleContextRef": "schedule"
+      },
+      "thresholdRationale": "Communication requires accurate comprehension and production plus delayed retrieval; oral/written repair is critical."
+    },
+    "mathematics": {
+      "typeId": "mathematics",
+      "totalThreshold": 0.82,
+      "stageMinimums": {
+        "understand": 0.8,
+        "solve": 0.82,
+        "build-apply": 0.78,
+        "explain": 0.78,
+        "retain": 0.78
+      },
+      "stageInterpretation": {
+        "understand": "State concepts, assumptions, notation, dimensions and applicability.",
+        "solve": "Complete a correct derivation or problem solution with valid transformations.",
+        "build-apply": "Apply the mathematics to a model, case or simulation and verify units or invariants.",
+        "explain": "Defend assumptions, method, error checks and interpretation.",
+        "retain": "Solve a varied delayed problem without reusing the original answer."
+      },
+      "stageEvidence": {
+        "understand": [
+          "oral-response",
+          "derivation"
+        ],
+        "solve": [
+          "mathematical-solution",
+          "derivation"
+        ],
+        "build-apply": [
+          "simulation-result",
+          "result-verification"
+        ],
+        "explain": [
+          "oral-response",
+          "result-verification"
+        ],
+        "retain": [
+          "retention-check",
+          "mathematical-solution"
+        ]
+      },
+      "criteria": [
+        {
+          "id": "concept-and-assumption",
+          "weight": 0.18,
+          "critical": true,
+          "stages": [
+            "understand",
+            "explain"
+          ],
+          "evidenceOutputRefs": [
+            "oral-response",
+            "derivation"
+          ],
+          "minimumNormalized": 0.8
+        },
+        {
+          "id": "method-correctness",
+          "weight": 0.25,
+          "critical": true,
+          "stages": [
+            "solve"
+          ],
+          "evidenceOutputRefs": [
+            "mathematical-solution",
+            "derivation"
+          ],
+          "minimumNormalized": 0.82
+        },
+        {
+          "id": "notation-dimension-and-units",
+          "weight": 0.17,
+          "critical": true,
+          "stages": [
+            "understand",
+            "solve"
+          ],
+          "evidenceOutputRefs": [
+            "derivation",
+            "result-verification"
+          ],
+          "minimumNormalized": 0.8
+        },
+        {
+          "id": "application-and-verification",
+          "weight": 0.18,
+          "critical": true,
+          "stages": [
+            "build-apply"
+          ],
+          "evidenceOutputRefs": [
+            "simulation-result",
+            "result-verification"
+          ],
+          "minimumNormalized": 0.78
+        },
+        {
+          "id": "mathematical-defense",
+          "weight": 0.1,
+          "critical": false,
+          "stages": [
+            "explain"
+          ],
+          "evidenceOutputRefs": [
+            "oral-response"
+          ],
+          "minimumNormalized": 0.75
+        },
+        {
+          "id": "mathematical-retention",
+          "weight": 0.12,
+          "critical": true,
+          "stages": [
+            "retain"
+          ],
+          "evidenceOutputRefs": [
+            "retention-check",
+            "mathematical-solution"
+          ],
+          "minimumNormalized": 0.78
+        }
+      ],
+      "retentionPolicy": {
+        "windowsDays": [
+          1,
+          7,
+          21
+        ],
+        "requiredWindowsDays": [
+          7,
+          21
+        ],
+        "minimumNormalized": 0.78,
+        "variedPromptRequired": true,
+        "scheduleContextRef": "schedule"
+      },
+      "thresholdRationale": "Mathematics requires correct method, assumptions, notation and verification; a high total cannot hide a critical conceptual or dimensional error."
+    },
+    "programming": {
+      "typeId": "programming",
+      "totalThreshold": 0.84,
+      "stageMinimums": {
+        "understand": 0.75,
+        "solve": 0.9,
+        "build-apply": 0.85,
+        "explain": 0.75,
+        "retain": 0.8
+      },
+      "stageInterpretation": {
+        "understand": "Explain behavior, constraints, data structures and complexity.",
+        "solve": "Implement correct behavior with deterministic passing tests.",
+        "build-apply": "Integrate tested code into a repository artifact and handle realistic inputs.",
+        "explain": "Defend design, debugging decisions and complexity.",
+        "retain": "Reimplement or repair a varied task after delay with tests."
+      },
+      "stageEvidence": {
+        "understand": [
+          "complexity-explanation",
+          "oral-response"
+        ],
+        "solve": [
+          "code",
+          "passing-tests"
+        ],
+        "build-apply": [
+          "repository-artifact",
+          "passing-tests"
+        ],
+        "explain": [
+          "debug-trace",
+          "complexity-explanation",
+          "oral-response"
+        ],
+        "retain": [
+          "code",
+          "passing-tests",
+          "debug-trace"
+        ]
+      },
+      "criteria": [
+        {
+          "id": "functional-correctness",
+          "weight": 0.3,
+          "critical": true,
+          "stages": [
+            "solve",
+            "retain"
+          ],
+          "evidenceOutputRefs": [
+            "code",
+            "passing-tests"
+          ],
+          "minimumNormalized": 0.9
+        },
+        {
+          "id": "code-quality",
+          "weight": 0.15,
+          "critical": false,
+          "stages": [
+            "build-apply"
+          ],
+          "evidenceOutputRefs": [
+            "code",
+            "repository-artifact"
+          ],
+          "minimumNormalized": 0.75
+        },
+        {
+          "id": "debugging-evidence",
+          "weight": 0.15,
+          "critical": true,
+          "stages": [
+            "solve",
+            "explain"
+          ],
+          "evidenceOutputRefs": [
+            "debug-trace",
+            "passing-tests"
+          ],
+          "minimumNormalized": 0.75
+        },
+        {
+          "id": "complexity-and-reasoning",
+          "weight": 0.15,
+          "critical": false,
+          "stages": [
+            "understand",
+            "explain"
+          ],
+          "evidenceOutputRefs": [
+            "complexity-explanation",
+            "oral-response"
+          ],
+          "minimumNormalized": 0.75
+        },
+        {
+          "id": "repository-reproducibility",
+          "weight": 0.15,
+          "critical": true,
+          "stages": [
+            "build-apply"
+          ],
+          "evidenceOutputRefs": [
+            "repository-artifact",
+            "passing-tests"
+          ],
+          "minimumNormalized": 0.8
+        },
+        {
+          "id": "programming-retention",
+          "weight": 0.1,
+          "critical": true,
+          "stages": [
+            "retain"
+          ],
+          "evidenceOutputRefs": [
+            "code",
+            "passing-tests",
+            "debug-trace"
+          ],
+          "minimumNormalized": 0.8
+        }
+      ],
+      "retentionPolicy": {
+        "windowsDays": [
+          1,
+          7,
+          21
+        ],
+        "requiredWindowsDays": [
+          7,
+          21
+        ],
+        "minimumNormalized": 0.8,
+        "variedPromptRequired": true,
+        "scheduleContextRef": "schedule"
+      },
+      "thresholdRationale": "Executable correctness and reproducibility are critical; tests must pass on a varied delayed task rather than only the practised example."
+    },
+    "database": {
+      "typeId": "database",
+      "totalThreshold": 0.83,
+      "stageMinimums": {
+        "understand": 0.78,
+        "solve": 0.85,
+        "build-apply": 0.85,
+        "explain": 0.78,
+        "retain": 0.8
+      },
+      "stageInterpretation": {
+        "understand": "Explain data model, constraints, transaction and optimizer concepts.",
+        "solve": "Produce correct schema or query results under stated constraints.",
+        "build-apply": "Create and verify a schema, transaction, index or query-plan artifact.",
+        "explain": "Defend integrity, normalization, transaction and performance choices.",
+        "retain": "Solve a varied delayed database scenario and interpret the result."
+      },
+      "stageEvidence": {
+        "understand": [
+          "normalization-proof",
+          "oral-response"
+        ],
+        "solve": [
+          "query-result",
+          "schema-artifact"
+        ],
+        "build-apply": [
+          "schema-artifact",
+          "transaction-analysis",
+          "query-plan-analysis"
+        ],
+        "explain": [
+          "normalization-proof",
+          "query-plan-analysis",
+          "oral-response"
+        ],
+        "retain": [
+          "query-result",
+          "schema-artifact",
+          "query-plan-analysis"
+        ]
+      },
+      "criteria": [
+        {
+          "id": "query-correctness",
+          "weight": 0.25,
+          "critical": true,
+          "stages": [
+            "solve",
+            "retain"
+          ],
+          "evidenceOutputRefs": [
+            "query-result"
+          ],
+          "minimumNormalized": 0.85
+        },
+        {
+          "id": "data-model-and-integrity",
+          "weight": 0.2,
+          "critical": true,
+          "stages": [
+            "understand",
+            "build-apply"
+          ],
+          "evidenceOutputRefs": [
+            "schema-artifact",
+            "normalization-proof"
+          ],
+          "minimumNormalized": 0.82
+        },
+        {
+          "id": "transaction-and-normalization",
+          "weight": 0.15,
+          "critical": true,
+          "stages": [
+            "solve",
+            "explain"
+          ],
+          "evidenceOutputRefs": [
+            "transaction-analysis",
+            "normalization-proof"
+          ],
+          "minimumNormalized": 0.78
+        },
+        {
+          "id": "query-plan-and-optimization",
+          "weight": 0.15,
+          "critical": false,
+          "stages": [
+            "build-apply",
+            "explain"
+          ],
+          "evidenceOutputRefs": [
+            "query-plan-analysis"
+          ],
+          "minimumNormalized": 0.75
+        },
+        {
+          "id": "database-artifact",
+          "weight": 0.15,
+          "critical": true,
+          "stages": [
+            "build-apply"
+          ],
+          "evidenceOutputRefs": [
+            "schema-artifact",
+            "query-result"
+          ],
+          "minimumNormalized": 0.8
+        },
+        {
+          "id": "database-defense-and-retention",
+          "weight": 0.1,
+          "critical": true,
+          "stages": [
+            "explain",
+            "retain"
+          ],
+          "evidenceOutputRefs": [
+            "oral-response",
+            "query-plan-analysis",
+            "query-result"
+          ],
+          "minimumNormalized": 0.78
+        }
+      ],
+      "retentionPolicy": {
+        "windowsDays": [
+          1,
+          7,
+          21
+        ],
+        "requiredWindowsDays": [
+          7,
+          21
+        ],
+        "minimumNormalized": 0.8,
+        "variedPromptRequired": true,
+        "scheduleContextRef": "schedule"
+      },
+      "thresholdRationale": "Query correctness cannot compensate for integrity or transaction errors; delayed evidence must include a varied data state."
+    },
+    "software-design": {
+      "typeId": "software-design",
+      "totalThreshold": 0.82,
+      "stageMinimums": {
+        "understand": 0.78,
+        "solve": 0.8,
+        "build-apply": 0.82,
+        "explain": 0.8,
+        "retain": 0.78
+      },
+      "stageInterpretation": {
+        "understand": "Explain requirements, boundaries, quality attributes and design vocabulary.",
+        "solve": "Choose a defensible design under explicit constraints and tradeoffs.",
+        "build-apply": "Create consistent requirements, UML or architecture artifacts with traceability.",
+        "explain": "Defend interfaces, patterns, tradeoffs, tests and lifecycle choices.",
+        "retain": "Reconstruct and adapt the design reasoning for a varied scenario after delay."
+      },
+      "stageEvidence": {
+        "understand": [
+          "requirements-artifact",
+          "oral-defense"
+        ],
+        "solve": [
+          "tradeoff-record",
+          "architecture-artifact"
+        ],
+        "build-apply": [
+          "requirements-artifact",
+          "uml-artifact",
+          "architecture-artifact",
+          "traceability-matrix"
+        ],
+        "explain": [
+          "tradeoff-record",
+          "oral-defense"
+        ],
+        "retain": [
+          "architecture-artifact",
+          "tradeoff-record",
+          "oral-defense"
+        ]
+      },
+      "criteria": [
+        {
+          "id": "requirements-traceability",
+          "weight": 0.2,
+          "critical": true,
+          "stages": [
+            "understand",
+            "build-apply"
+          ],
+          "evidenceOutputRefs": [
+            "requirements-artifact",
+            "traceability-matrix"
+          ],
+          "minimumNormalized": 0.8
+        },
+        {
+          "id": "architecture-correctness",
+          "weight": 0.2,
+          "critical": true,
+          "stages": [
+            "solve",
+            "build-apply"
+          ],
+          "evidenceOutputRefs": [
+            "architecture-artifact"
+          ],
+          "minimumNormalized": 0.82
+        },
+        {
+          "id": "tradeoff-reasoning",
+          "weight": 0.2,
+          "critical": true,
+          "stages": [
+            "solve",
+            "explain"
+          ],
+          "evidenceOutputRefs": [
+            "tradeoff-record",
+            "oral-defense"
+          ],
+          "minimumNormalized": 0.8
+        },
+        {
+          "id": "diagram-consistency",
+          "weight": 0.15,
+          "critical": true,
+          "stages": [
+            "build-apply"
+          ],
+          "evidenceOutputRefs": [
+            "uml-artifact",
+            "architecture-artifact"
+          ],
+          "minimumNormalized": 0.78
+        },
+        {
+          "id": "verification-and-lifecycle",
+          "weight": 0.15,
+          "critical": false,
+          "stages": [
+            "build-apply",
+            "explain"
+          ],
+          "evidenceOutputRefs": [
+            "traceability-matrix",
+            "tradeoff-record"
+          ],
+          "minimumNormalized": 0.75
+        },
+        {
+          "id": "design-defense-and-retention",
+          "weight": 0.1,
+          "critical": true,
+          "stages": [
+            "explain",
+            "retain"
+          ],
+          "evidenceOutputRefs": [
+            "architecture-artifact",
+            "oral-defense"
+          ],
+          "minimumNormalized": 0.78
+        }
+      ],
+      "retentionPolicy": {
+        "windowsDays": [
+          3,
+          14,
+          30
+        ],
+        "requiredWindowsDays": [
+          14,
+          30
+        ],
+        "minimumNormalized": 0.78,
+        "variedPromptRequired": true,
+        "scheduleContextRef": "schedule"
+      },
+      "thresholdRationale": "A polished diagram cannot hide missing traceability or weak tradeoff reasoning; delayed transfer to a new scenario is required."
+    },
+    "ml-data": {
+      "typeId": "ml-data",
+      "totalThreshold": 0.84,
+      "stageMinimums": {
+        "understand": 0.8,
+        "solve": 0.82,
+        "build-apply": 0.85,
+        "explain": 0.78,
+        "retain": 0.8
+      },
+      "stageInterpretation": {
+        "understand": "Explain data, assumptions, leakage risks, model and metric meaning.",
+        "solve": "Select and execute a valid data/model method for the stated objective.",
+        "build-apply": "Run a reproducible experiment and preserve data, configuration, metrics and artifacts.",
+        "explain": "Defend model choice, evaluation, error analysis and limitations.",
+        "retain": "Repeat a varied experiment or diagnosis after delay without copying the prior notebook."
+      },
+      "stageEvidence": {
+        "understand": [
+          "metric-analysis",
+          "oral-response"
+        ],
+        "solve": [
+          "model-result",
+          "metric-analysis"
+        ],
+        "build-apply": [
+          "dataset-artifact",
+          "experiment-log",
+          "model-result",
+          "reproducibility-record"
+        ],
+        "explain": [
+          "error-analysis",
+          "metric-analysis",
+          "oral-response"
+        ],
+        "retain": [
+          "experiment-log",
+          "model-result",
+          "reproducibility-record"
+        ]
+      },
+      "criteria": [
+        {
+          "id": "data-pipeline-integrity",
+          "weight": 0.2,
+          "critical": true,
+          "stages": [
+            "understand",
+            "build-apply"
+          ],
+          "evidenceOutputRefs": [
+            "dataset-artifact",
+            "reproducibility-record"
+          ],
+          "minimumNormalized": 0.82
+        },
+        {
+          "id": "method-and-model",
+          "weight": 0.18,
+          "critical": true,
+          "stages": [
+            "solve"
+          ],
+          "evidenceOutputRefs": [
+            "model-result",
+            "experiment-log"
+          ],
+          "minimumNormalized": 0.82
+        },
+        {
+          "id": "evaluation-validity",
+          "weight": 0.22,
+          "critical": true,
+          "stages": [
+            "solve",
+            "explain"
+          ],
+          "evidenceOutputRefs": [
+            "metric-analysis",
+            "model-result"
+          ],
+          "minimumNormalized": 0.85
+        },
+        {
+          "id": "error-analysis",
+          "weight": 0.15,
+          "critical": false,
+          "stages": [
+            "explain"
+          ],
+          "evidenceOutputRefs": [
+            "error-analysis"
+          ],
+          "minimumNormalized": 0.75
+        },
+        {
+          "id": "experiment-reproducibility",
+          "weight": 0.15,
+          "critical": true,
+          "stages": [
+            "build-apply",
+            "retain"
+          ],
+          "evidenceOutputRefs": [
+            "experiment-log",
+            "reproducibility-record"
+          ],
+          "minimumNormalized": 0.85
+        },
+        {
+          "id": "ml-defense-and-retention",
+          "weight": 0.1,
+          "critical": true,
+          "stages": [
+            "explain",
+            "retain"
+          ],
+          "evidenceOutputRefs": [
+            "oral-response",
+            "model-result"
+          ],
+          "minimumNormalized": 0.78
+        }
+      ],
+      "retentionPolicy": {
+        "windowsDays": [
+          3,
+          14,
+          30
+        ],
+        "requiredWindowsDays": [
+          14,
+          30
+        ],
+        "minimumNormalized": 0.8,
+        "variedPromptRequired": true,
+        "scheduleContextRef": "schedule"
+      },
+      "thresholdRationale": "Data leakage, invalid evaluation or irreproducible experiments are critical failures even when a metric looks high."
+    },
+    "asoiu-system": {
+      "typeId": "asoiu-system",
+      "totalThreshold": 0.83,
+      "stageMinimums": {
+        "understand": 0.8,
+        "solve": 0.82,
+        "build-apply": 0.82,
+        "explain": 0.8,
+        "retain": 0.8
+      },
+      "stageInterpretation": {
+        "understand": "Explain system boundary, actors, states, flows, assumptions and reliability concepts.",
+        "solve": "Analyze a constrained system or reliability scenario with a valid model.",
+        "build-apply": "Create and verify a system, information-flow, reliability or lifecycle artifact.",
+        "explain": "Defend boundaries, model, failure reasoning, tradeoffs and limitations.",
+        "retain": "Transfer the model and reasoning to a varied system scenario after delay."
+      },
+      "stageEvidence": {
+        "understand": [
+          "system-model",
+          "oral-defense"
+        ],
+        "solve": [
+          "reliability-analysis",
+          "information-flow-analysis"
+        ],
+        "build-apply": [
+          "system-model",
+          "architecture-artifact",
+          "information-flow-analysis",
+          "lifecycle-analysis"
+        ],
+        "explain": [
+          "reliability-analysis",
+          "lifecycle-analysis",
+          "oral-defense"
+        ],
+        "retain": [
+          "system-model",
+          "reliability-analysis",
+          "oral-defense"
+        ]
+      },
+      "criteria": [
+        {
+          "id": "system-boundary-and-flow",
+          "weight": 0.2,
+          "critical": true,
+          "stages": [
+            "understand",
+            "build-apply"
+          ],
+          "evidenceOutputRefs": [
+            "system-model",
+            "information-flow-analysis"
+          ],
+          "minimumNormalized": 0.82
+        },
+        {
+          "id": "analytical-model",
+          "weight": 0.18,
+          "critical": true,
+          "stages": [
+            "solve"
+          ],
+          "evidenceOutputRefs": [
+            "system-model",
+            "reliability-analysis"
+          ],
+          "minimumNormalized": 0.82
+        },
+        {
+          "id": "reliability-and-failure",
+          "weight": 0.22,
+          "critical": true,
+          "stages": [
+            "solve",
+            "explain"
+          ],
+          "evidenceOutputRefs": [
+            "reliability-analysis"
+          ],
+          "minimumNormalized": 0.85
+        },
+        {
+          "id": "architecture-and-lifecycle",
+          "weight": 0.15,
+          "critical": true,
+          "stages": [
+            "build-apply"
+          ],
+          "evidenceOutputRefs": [
+            "architecture-artifact",
+            "lifecycle-analysis"
+          ],
+          "minimumNormalized": 0.8
+        },
+        {
+          "id": "scenario-and-tradeoff",
+          "weight": 0.15,
+          "critical": false,
+          "stages": [
+            "build-apply",
+            "explain"
+          ],
+          "evidenceOutputRefs": [
+            "information-flow-analysis",
+            "lifecycle-analysis",
+            "oral-defense"
+          ],
+          "minimumNormalized": 0.75
+        },
+        {
+          "id": "system-defense-and-retention",
+          "weight": 0.1,
+          "critical": true,
+          "stages": [
+            "explain",
+            "retain"
+          ],
+          "evidenceOutputRefs": [
+            "system-model",
+            "oral-defense"
+          ],
+          "minimumNormalized": 0.8
+        }
+      ],
+      "retentionPolicy": {
+        "windowsDays": [
+          3,
+          14,
+          30
+        ],
+        "requiredWindowsDays": [
+          14,
+          30
+        ],
+        "minimumNormalized": 0.8,
+        "variedPromptRequired": true,
+        "scheduleContextRef": "schedule"
+      },
+      "thresholdRationale": "A system diagram without valid boundaries, flows or reliability reasoning is not mastery; delayed transfer to a new scenario is required."
+    },
+    "research": {
+      "typeId": "research",
+      "totalThreshold": 0.85,
+      "stageMinimums": {
+        "understand": 0.82,
+        "solve": 0.82,
+        "build-apply": 0.85,
+        "explain": 0.85,
+        "retain": 0.82
+      },
+      "stageInterpretation": {
+        "understand": "Explain the question, source boundary, evidence need and methodological assumptions.",
+        "solve": "Select a defensible literature, baseline, metric or method route.",
+        "build-apply": "Create a traceable literature, protocol, evidence, analysis or scientific-writing artifact.",
+        "explain": "Defend claims, sources, method, results, limitations and next action.",
+        "retain": "Reconstruct and adapt the research reasoning for a delayed milestone or defense prompt."
+      },
+      "stageEvidence": {
+        "understand": [
+          "research-question",
+          "literature-matrix"
+        ],
+        "solve": [
+          "research-question",
+          "experiment-protocol",
+          "result-analysis"
+        ],
+        "build-apply": [
+          "literature-matrix",
+          "experiment-protocol",
+          "research-note",
+          "result-analysis",
+          "scientific-section",
+          "nir-milestone",
+          "vkr-milestone"
+        ],
+        "explain": [
+          "scientific-section",
+          "oral-defense"
+        ],
+        "retain": [
+          "research-note",
+          "scientific-section",
+          "oral-defense"
+        ]
+      },
+      "criteria": [
+        {
+          "id": "question-and-claim",
+          "weight": 0.15,
+          "critical": true,
+          "stages": [
+            "understand",
+            "solve"
+          ],
+          "evidenceOutputRefs": [
+            "research-question",
+            "scientific-section"
+          ],
+          "minimumNormalized": 0.82
+        },
+        {
+          "id": "source-integrity",
+          "weight": 0.2,
+          "critical": true,
+          "stages": [
+            "understand",
+            "build-apply",
+            "explain"
+          ],
+          "evidenceOutputRefs": [
+            "literature-matrix",
+            "research-note",
+            "scientific-section"
+          ],
+          "minimumNormalized": 0.85
+        },
+        {
+          "id": "method-and-protocol",
+          "weight": 0.2,
+          "critical": true,
+          "stages": [
+            "solve",
+            "build-apply"
+          ],
+          "evidenceOutputRefs": [
+            "experiment-protocol",
+            "nir-milestone"
+          ],
+          "minimumNormalized": 0.85
+        },
+        {
+          "id": "evidence-and-analysis",
+          "weight": 0.2,
+          "critical": true,
+          "stages": [
+            "build-apply",
+            "explain"
+          ],
+          "evidenceOutputRefs": [
+            "result-analysis",
+            "scientific-section",
+            "vkr-milestone"
+          ],
+          "minimumNormalized": 0.85
+        },
+        {
+          "id": "reproducibility-and-limits",
+          "weight": 0.15,
+          "critical": true,
+          "stages": [
+            "build-apply",
+            "retain"
+          ],
+          "evidenceOutputRefs": [
+            "experiment-protocol",
+            "research-note",
+            "nir-milestone"
+          ],
+          "minimumNormalized": 0.82
+        },
+        {
+          "id": "writing-defense-and-retention",
+          "weight": 0.1,
+          "critical": true,
+          "stages": [
+            "explain",
+            "retain"
+          ],
+          "evidenceOutputRefs": [
+            "scientific-section",
+            "oral-defense",
+            "vkr-milestone"
+          ],
+          "minimumNormalized": 0.82
+        }
+      ],
+      "retentionPolicy": {
+        "windowsDays": [
+          7,
+          21,
+          45
+        ],
+        "requiredWindowsDays": [
+          21,
+          45
+        ],
+        "minimumNormalized": 0.82,
+        "variedPromptRequired": true,
+        "scheduleContextRef": "schedule"
+      },
+      "thresholdRationale": "Source integrity, method, evidence and reproducibility are all critical; polished prose or a confident defense cannot compensate for a broken evidence chain."
+    }
+  },
+  "repairPolicy": {
+    "trigger": "Any failed stage, critical criterion or delayed retention gate.",
+    "routeInputs": [
+      "assessmentErrors",
+      "weakTopics",
+      "criterionScores",
+      "sourceRefs",
+      "prerequisiteGraph",
+      "schedule"
+    ],
+    "rules": [
+      "Repair one diagnosed error group at a time.",
+      "Every repair route links to source-grounded lesson blocks or specialist artifacts.",
+      "A corrected attempt appends evidence and links the failed attempt.",
+      "Only failed or expired criteria are repeated unless a dependency is invalid.",
+      "AI may suggest a recovery route but cannot mark the repaired evidence verified."
+    ]
+  },
+  "offlinePolicy": {
+    "evidenceCaptureWithoutNetwork": true,
+    "deterministicVerificationWithoutNetwork": true,
+    "queuedAiVerificationAllowed": false,
+    "localArtifactPolicyRef": "L5 Direct Local Reader and Offline Content Library",
+    "syncRule": "Offline evidence remains append-only locally and reconciles by stable IDs; cloud or AI availability never changes an existing verified score silently."
+  }
+}
