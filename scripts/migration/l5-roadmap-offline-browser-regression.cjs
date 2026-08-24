@@ -9,10 +9,22 @@ const report={generatedAt:new Date().toISOString(),baseUrl:BASE_URL,checks:[],pa
 const check=(name,ok,detail='')=>{report.checks.push({name,ok:!!ok,detail});if(!ok)failures.push(`${name}${detail?': '+detail:''}`);};
 const sameOrigin=url=>{try{return new URL(url).origin===new URL(BASE_URL).origin;}catch(_){return false;}};
 
+async function ensureLoggedIn(page){
+  await page.waitForFunction(()=>!!window.app&&!!window.auth,{timeout:10000});
+  const hidden=await page.evaluate(()=>document.getElementById('appRoot')?.classList.contains('hidden')===true);
+  if(hidden){
+    await page.click('#loginBtn');
+    await page.waitForFunction(()=>document.getElementById('appRoot')&&!document.getElementById('appRoot').classList.contains('hidden'),{timeout:10000});
+  }
+  return page.evaluate(()=>({loggedIn:!!window.auth?.current,appVisible:!document.getElementById('appRoot')?.classList.contains('hidden')}));
+}
+
 async function waitRoadmap(page){
+  const authState=await ensureLoggedIn(page);
+  check('main login exposes Web App shell',authState.loggedIn===true&&authState.appVisible===true,JSON.stringify(authState));
   await page.waitForFunction(()=>window.BaumanAcademicRoadmapV3?.selfCheck?.().loaded===true,{timeout:15000});
   await page.evaluate(()=>window.app?.page?.('roadmap',false));
-  await page.waitForSelector('.academic-roadmap-v3',{timeout:10000});
+  await page.waitForSelector('.academic-roadmap-v3',{state:'visible',timeout:10000});
 }
 
 async function testRoadmapAndLocalLibrary(page){
