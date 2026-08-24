@@ -23,6 +23,7 @@ const SHELL=[
   './assets/js/platform/academic-roadmap-v3-bridge.js',
   './assets/js/platform/site-routing-bridge.js',
   './assets/js/platform/offline-library-ui.js',
+  './assets/js/platform/offline-html-sandbox-guard.js',
   './assets/js/data.js',
   './assets/js/main.js',
   './assets/js/planning-main.js',
