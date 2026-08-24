@@ -7,7 +7,7 @@
   const state=global.state;
   if(!DATA||!app||!state)return;
 
-  const esc=value=>String(value??'').replace(/[&<>"']/g,ch=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot',"'":'&#39;'}[ch]));
+  const esc=value=>String(value??'').replace(/[&<>"']/g,ch=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[ch]));
   const stageShort=id=>({prepare:'GĐ1',preparatory:'GĐ2',bauman:'GĐ3',m1:'HK1',m2:'HK2',m3:'HK3',m4:'HK4'}[id]||String(id||''));
 
   function syncSubjectMetadata(){
