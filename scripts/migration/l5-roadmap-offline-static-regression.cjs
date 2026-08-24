@@ -15,13 +15,14 @@ const libraryPath='assets/js/platform/offline-content-library.js';
 const roadmapBridgePath='assets/js/platform/academic-roadmap-v3-bridge.js';
 const offlineUiPath='assets/js/platform/offline-library-ui.js';
 const sandboxGuardPath='assets/js/platform/offline-html-sandbox-guard.js';
+const quotaGuardPath='assets/js/platform/offline-import-quota-guard.js';
 const packManagerPath='assets/js/platform/offline-subject-pack-manager.js';
 const refcountGuardPath='assets/js/platform/offline-subject-pack-refcount-guard.js';
 const indexPath='index.html';
 const configPath='assets/js/platform/runtime-config.js';
 const workerPath='service-worker.js';
 
-for(const file of [manifestPath,roadmapDocPath,blueprintPath,libraryPath,roadmapBridgePath,offlineUiPath,sandboxGuardPath,packManagerPath,refcountGuardPath,indexPath,configPath,workerPath])requireFile(file);
+for(const file of [manifestPath,roadmapDocPath,blueprintPath,libraryPath,roadmapBridgePath,offlineUiPath,sandboxGuardPath,quotaGuardPath,packManagerPath,refcountGuardPath,indexPath,configPath,workerPath])requireFile(file);
 
 let manifest=null;
 try{manifest=JSON.parse(read(manifestPath));}catch(error){failures.push(`Manifest JSON invalid: ${error.message}`);}
@@ -53,6 +54,7 @@ const requiredEntryAssets=[
   'assets/js/platform/academic-roadmap-v3-bridge.js',
   'assets/js/platform/offline-library-ui.js',
   'assets/js/platform/offline-html-sandbox-guard.js',
+  'assets/js/platform/offline-import-quota-guard.js',
   'assets/js/platform/offline-subject-pack-refcount-guard.js',
   'assets/js/platform/offline-subject-pack-manager.js'
 ];
@@ -66,6 +68,7 @@ const order=[
   'assets/js/platform/site-routing-bridge.js',
   'assets/js/platform/offline-library-ui.js',
   'assets/js/platform/offline-html-sandbox-guard.js',
+  'assets/js/platform/offline-import-quota-guard.js',
   'assets/js/platform/offline-subject-pack-refcount-guard.js',
   'assets/js/platform/offline-subject-pack-manager.js',
   'assets/js/planning-main.js'
@@ -86,6 +89,12 @@ check('local HTML capture guard',/captureGuard:true/.test(guard)&&/stopImmediate
 check('local HTML sandbox has empty sandbox permissions',guard.includes('sandbox=\"\"')||guard.includes('sandbox=""'),'sandbox attribute missing');
 check('local HTML does not grant allow-scripts',!guard.includes('allow-scripts'));
 check('local HTML object URL revoked',/revokeObjectURL/.test(guard));
+
+const quotaGuard=read(quotaGuardPath);
+check('local import quota preflight',/capacityCheck/.test(quotaGuard)&&/navigator|estimate/.test(quotaGuard));
+check('local import reserves free space',/MIN_RESERVE=2\*1024\*1024/.test(quotaGuard));
+check('partial local import rolls back',/await library\.removePack\(packId\)/.test(quotaGuard));
+check('quota guard intercepts picker actions before legacy handler',/stopImmediatePropagation/.test(quotaGuard)&&/choose-directory/.test(quotaGuard)&&/choose-files/.test(quotaGuard));
 
 const manager=read(packManagerPath);
 check('subject pack uses explicit cache name',manager.includes("CACHE_NAME='bauman-offline-content-v1'"));
@@ -111,10 +120,14 @@ check('no subject academic JSON precache',!/["']\.\/subjects\/[^"']+\/data\/[^"'
 check('offline library shell asset cached',worker.includes("'./assets/js/platform/offline-content-library.js'"));
 check('roadmap bridge shell asset cached',worker.includes("'./assets/js/platform/academic-roadmap-v3-bridge.js'"));
 check('HTML sandbox guard shell asset cached',worker.includes("'./assets/js/platform/offline-html-sandbox-guard.js'"));
+check('quota guard shell asset cached',worker.includes("'./assets/js/platform/offline-import-quota-guard.js'"));
 check('subject pack manager shell asset cached',worker.includes("'./assets/js/platform/offline-subject-pack-manager.js'"));
 check('subject pack refcount guard shell asset cached',worker.includes("'./assets/js/platform/offline-subject-pack-refcount-guard.js'"));
 check('explicit content cache served before generic JSON exclusion',worker.indexOf('explicitOfflineMatch(request)')<worker.indexOf('if(!cacheEligible(url))'));
 check('explicit content cache name matches manager',worker.includes("OFFLINE_CONTENT_CACHE='bauman-offline-content-v1'"));
+check('shell install is atomic Promise.all',/await Promise\.all\(SHELL\.map/.test(worker));
+check('failed shell install deletes incomplete new cache',/catch\(error\)[\s\S]*await caches\.delete\(CACHE_NAME\)[\s\S]*throw error/.test(worker));
+check('old shell caches removed only in activate',worker.indexOf("names.filter((name)=>name.startsWith('bauman-shell-')")>worker.indexOf("self.addEventListener('activate'"));
 
 const report={generatedAt:new Date().toISOString(),manifest:{id:manifest?.id||null,displayCode:manifest?.displayCode||null,department:manifest?.department||null},checks,failures};
 fs.mkdirSync('docs/migration',{recursive:true});
