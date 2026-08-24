@@ -51,6 +51,7 @@ jobs:
           node --check scripts/migration/l5-roadmap-offline-static-regression.cjs
           node --check scripts/migration/l5-data-loading-audit.cjs
           node --check scripts/migration/l5-direct-file-reader-regression.cjs
+          node --check scripts/migration/l5-offline-report-integrity-regression.cjs
           node scripts/migration/l5-static-routing-audit.cjs
           node scripts/migration/l5-academic-runtime-v3-regression.cjs
           node scripts/migration/l5-service-worker-lifecycle-regression.cjs
@@ -74,6 +75,7 @@ jobs:
           node scripts/migration/l5-render-performance-regression.cjs
           node scripts/migration/l5-direct-file-reader-regression.cjs
           node scripts/migration/l5-roadmap-offline-browser-regression.cjs
+          node scripts/migration/l5-offline-report-integrity-regression.cjs
 
       - name: Upload reports
         if: always()
