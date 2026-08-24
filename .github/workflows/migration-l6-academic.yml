@@ -22,6 +22,7 @@ on:
 
 permissions:
   contents: read
+  statuses: write
 
 concurrency:
   group: migration-l6-academic-${{ github.event_name }}-${{ github.ref }}
@@ -41,11 +42,22 @@ jobs:
         with:
           node-version: '24'
 
-      - name: Syntax check L6 academic gates
-        run: node --check scripts/academic/l6-b1-reference-audit.cjs
+      - name: Run deterministic L6-B1 gate
+        id: b1_gate
+        run: |
+          node --check scripts/academic/l6-b1-reference-audit.cjs
+          node scripts/academic/l6-b1-reference-audit.cjs
+          git diff --exit-code -- docs/migration/L6_B1_REFERENCE_AUDIT.generated.json
 
-      - name: Audit L6-B1 reference implementations
-        run: node scripts/academic/l6-b1-reference-audit.cjs
-
-      - name: Verify deterministic L6-B1 evidence
-        run: git diff --exit-code -- docs/migration/L6_B1_REFERENCE_AUDIT.generated.json
+      - name: Publish L6-B1 status
+        if: ${{ always() && github.event_name == 'push' && steps.b1_gate.outcome != 'skipped' }}
+        env:
+          GH_TOKEN: ${{ github.token }}
+          GATE_OUTCOME: ${{ steps.b1_gate.outcome }}
+        run: |
+          STATE=failure
+          if [ "$GATE_OUTCOME" = "success" ]; then STATE=success; fi
+          gh api --method POST "repos/${GITHUB_REPOSITORY}/statuses/${GITHUB_SHA}" \
+            -f state="$STATE" \
+            -f context="migration/l6-b1-reference-audit" \
+            -f description="L6-B1 reference audit: ${GATE_OUTCOME}"
