@@ -8,6 +8,7 @@ const BASE_URL=process.env.BAUMAN_TEST_BASE_URL||'http://127.0.0.1:4173';
 const LARGE_BYTES=5*1024*1024;
 const SETTLE_MS=1800;
 const INTERACTION_MS=500;
+const RUSSIAN_DB_KEY='bauman_russian_survival_master_v11_clean_skeleton_db';
 const PAGES=[
   ['main','/index.html'],
   ['ai','/subjects/ai/index.html'],
@@ -91,8 +92,10 @@ async function expectRequest(requested,suffix,label,failures){
 
     if(id==='russian'){
       const selfCheck=await page.evaluate(()=>window.BAUMAN_RUSSIAN_V1341_LAZY?.selfCheck?.()||null).catch(()=>null);
-      interaction.checks.push({name:'v1341-self-check',result:selfCheck});
-      if(!selfCheck||selfCheck.ok!==true)failures.push('russian: V13.41 self-check failed');
+      interaction.checks.push({name:'v1342-self-check',result:selfCheck});
+      if(!selfCheck||selfCheck.ok!==true)failures.push('russian: V13.42 self-check failed');
+      if(selfCheck&&selfCheck.persistenceSafe!==true)failures.push('russian: heavy data is still classified as persistent optional data');
+      if(selfCheck&&selfCheck.storageListBridgeConsumed!==true)failures.push('russian: storage-list compatibility bridge was not consumed by core');
       for(const suffix of ['subjects/russian/data/vocab.json','subjects/russian/data/tests.json','subjects/russian/data/speaking.json']){
         if(hasRequested(requested,suffix))failures.push(`russian: ${suffix} was requested before feature entry`);
       }
@@ -128,10 +131,64 @@ async function expectRequest(requested,suffix,label,failures){
     await page.close();
   }
 
+  /*
+   * Persistence regression: simulate a legacy _db overlay that already contains user-edited
+   * heavy Russian sources. Boot must not erase/filter it and must not re-fetch static heavy JSON.
+   */
+  const overlayPayload=JSON.stringify({
+    vocab:[{id:'__l5_overlay_vocab__',ru:'проверка',vi:'kiểm tra overlay'}],
+    tests:[{id:'__l5_overlay_test__',question:'overlay test',choices:['A','B'],answer:0,difficulty:'easy'}],
+    speaking:[{id:'__l5_overlay_speaking__',lessonId:'__l5__',title:'overlay speaking',turns:[]}],
+    l5OverlayMarker:{preserve:true,version:1}
+  });
+  const overlayContext=await browser.newContext({serviceWorkers:'block',viewport:{width:1440,height:900}});
+  const overlayPage=await overlayContext.newPage();
+  const overlayRequested=new Map();
+  overlayPage.on('request',(request)=>{
+    const file=localJsonFile(request.url());
+    if(file)overlayRequested.set(file,fs.statSync(file).size);
+  });
+  await overlayPage.addInitScript(({key,payload})=>{
+    localStorage.setItem(key,payload);
+  },{key:RUSSIAN_DB_KEY,payload:overlayPayload});
+  try{
+    await overlayPage.goto(BASE_URL+'/subjects/russian/index.html',{waitUntil:'domcontentloaded',timeout:30000});
+    await overlayPage.waitForTimeout(SETTLE_MS);
+    const overlaySelfCheck=await overlayPage.evaluate(()=>window.BAUMAN_RUSSIAN_V1341_LAZY?.selfCheck?.()||null).catch(()=>null);
+    if(!overlaySelfCheck||overlaySelfCheck.ok!==true||overlaySelfCheck.persistenceSafe!==true){
+      failures.push('russian overlay: persistence-safe lazy self-check failed');
+    }
+    for(const suffix of ['subjects/russian/data/vocab.json','subjects/russian/data/tests.json','subjects/russian/data/speaking.json']){
+      if(hasRequested(overlayRequested,suffix))failures.push(`russian overlay: static heavy source re-fetched despite legacy overlay ${suffix}`);
+    }
+    const afterBoot=await overlayPage.evaluate((key)=>localStorage.getItem(key),RUSSIAN_DB_KEY);
+    if(afterBoot!==overlayPayload)failures.push('russian overlay: legacy _db bytes changed during boot');
+
+    await clickSelector(overlayPage,'[data-view="vocab"]','russian overlay vocab',failures);
+    await overlayPage.waitForTimeout(INTERACTION_MS);
+    const afterFeature=await overlayPage.evaluate((key)=>localStorage.getItem(key),RUSSIAN_DB_KEY);
+    if(afterFeature!==overlayPayload)failures.push('russian overlay: legacy _db bytes changed after heavy feature entry');
+    if(hasRequested(overlayRequested,'subjects/russian/data/vocab.json'))failures.push('russian overlay: vocab static JSON requested although overlay vocab was already loaded');
+
+    report.push({
+      id:'russian-overlay-persistence',
+      route:'/subjects/russian/index.html',
+      startupJsonCount:[...overlayRequested.keys()].length,
+      startupJsonBytes:[...overlayRequested.values()].reduce((sum,bytes)=>sum+bytes,0),
+      startupLarge:[],
+      allJsonCount:[...overlayRequested.keys()].length,
+      interaction:{checks:[{name:'legacy-db-byte-preservation',result:{ok:afterBoot===overlayPayload&&afterFeature===overlayPayload}},{name:'v1342-self-check',result:overlaySelfCheck}]}
+    });
+  }catch(error){
+    failures.push(`russian overlay: navigation/regression failed: ${error.message}`);
+  }
+  await overlayContext.close();
+
+  await context.close();
   await browser.close();
   fs.mkdirSync('docs/migration',{recursive:true});
   fs.writeFileSync('docs/migration/L5_BROWSER_NETWORK_REGRESSION.generated.json',JSON.stringify({largeBytes:LARGE_BYTES,settleMs:SETTLE_MS,interactionMs:INTERACTION_MS,pages:report,failures},null,2)+'\n');
   report.forEach((row)=>console.log(`${row.id}: ${row.startupJsonCount} startup JSON, ${(row.startupJsonBytes/1024/1024).toFixed(2)} MB, ${row.startupLarge.length} startup large`));
   if(failures.length){console.error(failures.join('\n'));process.exit(2);}
-  console.log('L5 browser network + deferred interaction regression PASS.');
+  console.log('L5 browser network + deferred interaction + Russian overlay persistence regression PASS.');
 })().catch((error)=>{console.error(error);process.exit(1);});
