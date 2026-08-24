@@ -10,16 +10,18 @@ const VIEWPORTS=[
   {id:'tablet',width:820,height:1180},
   {id:'mobile',width:390,height:844}
 ];
+// Root selector follows each subject shell contract. Generic SUBJECT_MODULE_V2 uses .app;
+// Russian/Math/Programming legacy-rich shells expose #app.
 const PAGES=[
   ['main','/index.html','#authScreen'],
-  ['ai','/subjects/ai/index.html','#app'],
-  ['foundation','/subjects/foundation/index.html','#app'],
+  ['ai','/subjects/ai/index.html','.app'],
+  ['foundation','/subjects/foundation/index.html','.app'],
   ['math','/subjects/math/index.html','#app'],
   ['programming','/subjects/programming/index.html','#app'],
-  ['research','/subjects/research/index.html','#app'],
+  ['research','/subjects/research/index.html','.app'],
   ['russian','/subjects/russian/index.html','#app'],
-  ['signal','/subjects/signal/index.html','#app'],
-  ['systems','/subjects/systems/index.html','#app']
+  ['signal','/subjects/signal/index.html','.app'],
+  ['systems','/subjects/systems/index.html','.app']
 ];
 const MAX_OVERFLOW_PX=64;
 
@@ -82,7 +84,7 @@ const MAX_OVERFLOW_PX=64;
         }
       }
 
-      report.push({viewport:viewport.id,width:viewport.width,height:viewport.height,id,route,metrics,runtime,routing});
+      report.push({viewport:viewport.id,width:viewport.width,height:viewport.height,id,route,rootSelector,metrics,runtime,routing});
       await page.close();
     }
   }
