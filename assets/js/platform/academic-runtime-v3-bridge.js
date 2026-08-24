@@ -1,13 +1,13 @@
 (function(global){
   'use strict';
 
-  const VERSION='BAUMAN_IU5_MAIN_UI_BRIDGE_V3_1';
+  const VERSION='BAUMAN_IU5_MAIN_UI_BRIDGE_V3_2';
   const DATA=global.BAUMAN_DATA;
   const app=global.app;
   const state=global.state;
   if(!DATA||!app||!state)return;
 
-  const esc=value=>String(value??'').replace(/[&<>"']/g,ch=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[ch]));
+  const esc=value=>String(value??'').replace(/[&<>"']/g,ch=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot',"'":'&#39;'}[ch]));
   const stageShort=id=>({prepare:'GĐ1',preparatory:'GĐ2',bauman:'GĐ3',m1:'HK1',m2:'HK2',m3:'HK3',m4:'HK4'}[id]||String(id||''));
 
   function syncSubjectMetadata(){
@@ -30,6 +30,15 @@
     return changed;
   }
 
+  function bestTask(subjectId){
+    const today=new Date().toISOString().slice(0,10);
+    const entries=Object.entries(state.schedule?.entries||{}).map(([key,value])=>{
+      const [date,slotId]=key.split('|');
+      return {...(value||{}),date,slotId,key};
+    }).filter(item=>item.subjectId===subjectId).sort((a,b)=>(a.date+a.slotId).localeCompare(b.date+b.slotId));
+    return entries.find(item=>item.date>=today)||entries.at(-1)||null;
+  }
+
   function courseTag(c){
     if(c.officialSource)return '<span class="tag strong">Учебный план ИУ-5 · 2026</span>';
     if(c.stage==='preparatory')return '<span class="tag strong">Dự bị / chuyển tiếp</span>';
@@ -50,7 +59,7 @@
   app.subjectDetailHTML=function(subject){
     const filter=['prepare','preparatory','bauman','m1','m2','m3','m4'].includes(state.subjectStage)?state.subjectStage:'prepare';
     const courses=app.subjectCourses(subject.id,filter);
-    const task=typeof global.findBestLearningTask==='function'?global.findBestLearningTask(subject.id):null;
+    const task=bestTask(subject.id);
     const competencies=[...new Set(courses.flatMap(c=>c.competencies||[]))].slice(0,8);
     return `<div class="subject-head compact academic-v3-subject-head"><span class="subject-icon">${esc(subject.icon)}</span><div><span class="pill purple">ИУ-5 · 09.04.01/11</span><h2>${esc(subject.name)}</h2><p>${esc(subject.desc)}</p></div></div>
       <div class="subject-actions compact-actions"><button class="launch primary compact-launch" onclick="app.openSubjectInPage('${esc(subject.id)}')"><strong>Học trong trang này</strong><small>Mở đúng content engine của môn</small></button><button class="launch compact-launch" onclick="app.openSubjectTab('${esc(subject.id)}')"><strong>Mở tab riêng</strong><small>Vẫn nhận nhiệm vụ từ Main</small></button><button class="btn compact-data" onclick="app.openSubjectEditor('${esc(subject.id)}')">Dữ liệu môn</button></div>
@@ -98,6 +107,7 @@
     version:VERSION,
     syncSubjectMetadata,
     nirPlan,
+    bestTask,
     selfCheck(){
       const runtime=global.BAUMAN_ACADEMIC_RUNTIME_V3;
       const ids=Object.keys(state.subjects||{});
