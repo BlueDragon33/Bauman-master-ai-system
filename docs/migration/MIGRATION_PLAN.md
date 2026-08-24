@@ -3,7 +3,7 @@
 Baseline: `main`
 Working branch đầu tiên: `migration/webapp-l1-audit-storage`
 
-Kế hoạch hiện tại trong Lượt 5: **14 lượt · 118 bước**. Ban đầu là 88 bước; Lượt 2 phát sinh thêm 3 bước, Lượt 3 thêm 9 bước, Lượt 4 thêm 3 bước và Lượt 5 hiện thêm 15 bước do audit/test tìm thấy rủi ro thật và yêu cầu offline-first cho Web App. Số lượt/bước được phép tăng tiếp khi audit/test phát hiện vấn đề mới. Không giảm bước chỉ để rút ngắn tiến độ.
+Kế hoạch hiện tại trong Lượt 5: **14 lượt · 120 bước**. Ban đầu là 88 bước; Lượt 2 phát sinh thêm 3 bước, Lượt 3 thêm 9 bước, Lượt 4 thêm 3 bước và Lượt 5 hiện thêm 17 bước do audit/test tìm thấy rủi ro thật, yêu cầu Roadmap V3 và offline-first cho Web App. Số lượt/bước được phép tăng tiếp khi audit/test phát hiện vấn đề mới. Không giảm bước chỉ để rút ngắn tiến độ.
 
 ## Lượt 1 · Audit toàn hệ thống · 15 bước
 
@@ -55,9 +55,9 @@ Trạng thái: **PASS**. Báo cáo chi tiết ở `L4_PERSONAL_LEARNING_STATE_RE
 7. Bước phát sinh: bootstrap OFF-by-default và wire vào main entry mà không tự tạo shadow.
 8. Bước phát sinh: sửa CI guard dùng sai baseline, thêm bootstrap/index regression và checkpoint L3 guard.
 
-## Lượt 5 · Site runtime, Roadmap V3 và offline-first data loading · 20 bước
+## Lượt 5 · Site runtime, Roadmap V3 và offline-first data loading · 22 bước
 
-Trạng thái: **IN PROGRESS**. Static audit đã được sửa false positive; browser gate sau đó phát hiện eager-load thật ở Math/Russian, audit tiếp phát hiện SiteRuntime chưa nằm trong Main entry graph, và yêu cầu Web App offline-first phát sinh thêm các gate về Local Library/content packs. Không được chuyển sang L6 trước khi toàn bộ gate L5 PASS.
+Trạng thái: **IN PROGRESS**. Static audit đã được sửa false positive; browser gate sau đó phát hiện eager-load thật ở Math/Russian, audit tiếp phát hiện SiteRuntime chưa nằm trong Main entry graph, yêu cầu Web App offline-first phát sinh Local Library/content packs, và audit Roadmap V3 phát hiện Main vẫn còn dùng academic dataset cũ ở Home/Kho môn/Lịch. Không được chuyển sang L6 trước khi toàn bộ gate L5 PASS.
 
 1. Chuẩn hóa static serving paths.
 2. Lazy-load data lớn theo môn/tab.
@@ -79,6 +79,8 @@ Trạng thái: **IN PROGRESS**. Static audit đã được sửa false positive;
 18. Bước phát sinh L5-A13: tạo Offline Content Library bằng IndexedDB, file/folder picker, quota, local-file preview và sandbox HTML; không lưu file máy tính vào legacy Personal Learning State.
 19. Bước phát sinh L5-A14: tạo explicit offline content-pack contract cho Web App/môn học; chỉ cache URL người học chủ động giữ, cho phép JSON đã chọn chạy offline nhưng vẫn cấm precache toàn bộ kho dữ liệu lớn.
 20. Bước phát sinh L5-A15: gate Roadmap/offline gồm static source invariants, IndexedDB roundtrip, local HTML sandbox, explicit pack add/remove, Main offline reload, ít nhất một môn nhẹ + Math + Russian offline-flow, quota/storage-full handling và cache update/rollback. Chỉ sau PASS mới bật `serviceWorkerCache` cho rollout.
+21. Bước phát sinh L5-A16: tạo **Academic Main Runtime V3** nạp sau `data.js` nhưng trước `main.js`, thay toàn bộ stage/semester/subject/course graph của Main bằng Bauman-only ИУ-5 · 09.04.01/11; migrate metadata state tại chỗ nhưng giữ nguyên progress, lịch thủ công, subject paths/editor paths và dữ liệu người học; thay Research UI bằng pipeline НИР 1→4→ВКР.
+22. Bước phát sinh L5-A17: performance/render gate cho data lớn và Main V3: xác nhận Russian Vocab phân trang 20, Review/Exam 20–25, card Main dùng `content-visibility`, không render toàn kho một lượt; đo navigation/render responsiveness cho Main + Russian + Math và fail nếu long-task/DOM/request budget vượt ngưỡng đã khóa.
 
 ## Lượt 6 · Backend/API shell · 6 bước
 
