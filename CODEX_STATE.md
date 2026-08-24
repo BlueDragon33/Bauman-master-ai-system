@@ -1,8 +1,8 @@
 # CODEX_STATE
 
-Current task: `L6-B10_UNIVERSAL_LESSON_RENDERER_BRIDGE`
+Current task: `L6-B11_REFERENCE_SUBJECT_ROLLBACK_CHECKPOINT`
 
-Status: `L6_B10_LOCAL_PASS_PENDING_REMOTE_CI`
+Status: `L6_B10_PASS_B11_READY`
 
 Date: 2026-08-24
 Branch: `migration/webapp-l1-audit-storage`
@@ -76,6 +76,9 @@ What changed:
   and assigns one reviewed reference path to existing B11 scope.
 - Added deterministic B10 gate, nine mutation tests and planned remote context
   `migration/l6-b10-renderer-bridge`.
+- Locked L6-B10 after GitHub Actions run `32725455874` reported all B1-B10
+  contexts successful at feature commit
+  `fa7eb674782444593f7035acfd70cba018495362`.
 - Did not change learner content, subject runtime, storage, offline policy,
   service worker or `main`.
 
@@ -128,7 +131,9 @@ Verification:
 - L5 clean-baseline regression after B10: routing 9/9, service worker 17/17,
   academic runtime 36/36, roadmap/offline 75/75, 8 subjects with 0 data-load
   failures, diagnostics 14/14, offline integrity 5/5: PASS
-- L6-B10 GitHub Actions/context: PENDING; B10 is not yet declared PASS
+- L6-B10 GitHub Actions run `32725455874`: PASS
+- L6-B10 remote context `migration/l6-b10-renderer-bridge`: PASS
+- L6-B1 through L6-B9 contexts in the same run: PASS
 - B1-B7 report hashes stable over consecutive runs: PASS
 - B7 mutation tests (activation, review authority, English coverage,
   rescue evidence, assessment leakage), 5/5 expected failures observed: PASS
@@ -150,9 +155,8 @@ Main sync / pull instruction:
 - Do not merge to `main` until the corresponding L6 gates pass.
 
 Next recommended task:
-- Publish the exact B10 checkpoint, require B1-B10 remote contexts to succeed,
-  then begin B11 with one reviewed light reference capability path plus
-  Russian/Mathematics runtime/offline/rollback regression.
+- Begin B11 with one reviewed light reference capability path plus
+  Russian/Mathematics runtime, responsive, offline and rollback regression.
 
 Next actor:
 - Codex
