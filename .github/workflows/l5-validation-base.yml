@@ -39,6 +39,7 @@ jobs:
           node --check assets/js/platform/offline-import-quota-guard.js
           node --check assets/js/platform/offline-subject-pack-refcount-guard.js
           node --check assets/js/platform/offline-subject-pack-manager.js
+          node --check assets/js/platform/runtime-self-diagnostics.js
           node --check assets/js/platform/site-runtime.js
           node --check service-worker.js
           node --check subjects/russian/assets/lazy-heavy-data-v1341.js
@@ -46,11 +47,13 @@ jobs:
           node --check scripts/migration/l5-static-routing-audit.cjs
           node --check scripts/migration/l5-academic-runtime-v3-regression.cjs
           node --check scripts/migration/l5-service-worker-lifecycle-regression.cjs
+          node --check scripts/migration/l5-runtime-self-diagnostics-regression.cjs
           node --check scripts/migration/l5-roadmap-offline-static-regression.cjs
           node --check scripts/migration/l5-data-loading-audit.cjs
           node scripts/migration/l5-static-routing-audit.cjs
           node scripts/migration/l5-academic-runtime-v3-regression.cjs
           node scripts/migration/l5-service-worker-lifecycle-regression.cjs
+          node scripts/migration/l5-runtime-self-diagnostics-regression.cjs
           node scripts/migration/l5-roadmap-offline-static-regression.cjs
           node scripts/migration/l5-data-loading-audit.cjs
 
