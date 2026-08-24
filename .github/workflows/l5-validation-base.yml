@@ -1,4 +1,4 @@
-name: L5 Validation Base
+name: L5 + Academic Factory Validation
 
 on:
   pull_request:
@@ -10,11 +10,11 @@ permissions:
   contents: read
 
 concurrency:
-  group: l5-validation-${{ github.event.pull_request.number || github.ref }}
+  group: l5-academic-validation-${{ github.event.pull_request.number || github.ref }}
   cancel-in-progress: true
 
 jobs:
-  validate-l5:
+  validate-l5-and-academic-factory:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout PR merge
@@ -52,12 +52,14 @@ jobs:
           node --check scripts/migration/l5-data-loading-audit.cjs
           node --check scripts/migration/l5-direct-file-reader-regression.cjs
           node --check scripts/migration/l5-offline-report-integrity-regression.cjs
+          node --check scripts/academic/universal-lesson-contract-regression.cjs
           node scripts/migration/l5-static-routing-audit.cjs
           node scripts/migration/l5-academic-runtime-v3-regression.cjs
           node scripts/migration/l5-service-worker-lifecycle-regression.cjs
           node scripts/migration/l5-runtime-self-diagnostics-regression.cjs
           node scripts/migration/l5-roadmap-offline-static-regression.cjs
           node scripts/migration/l5-data-loading-audit.cjs
+          node scripts/academic/universal-lesson-contract-regression.cjs
 
       - name: Install browser dependency
         run: |
@@ -65,7 +67,7 @@ jobs:
           npx playwright install --with-deps chromium
 
       - name: Start local Web App server
-        run: python3 -m http.server 4173 --bind 127.0.0.1 > /tmp/bauman-l5-http.log 2>&1 &
+        run: python3 -m http.server 4173 --bind 127.0.0.1 > /tmp/bauman-validation-http.log 2>&1 &
 
       - name: Browser, responsive, render and offline gates
         run: |
@@ -81,7 +83,9 @@ jobs:
         if: always()
         uses: actions/upload-artifact@v4
         with:
-          name: l5-validation-reports
-          path: docs/migration/L5_*generated*
+          name: l5-academic-validation-reports
+          path: |
+            docs/migration/L5_*generated*
+            docs/academic/*generated*
           if-no-files-found: warn
           retention-days: 7
