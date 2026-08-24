@@ -36,10 +36,12 @@ jobs:
       - name: Syntax check L5 modules
         id: syntax
         run: |
+          node --check assets/js/academic-data-v3.js
+          node --check assets/js/platform/academic-runtime-v3-bridge.js
+          node --check assets/js/platform/academic-roadmap-v3-bridge.js
           node --check assets/js/platform/site-runtime.js
           node --check assets/js/platform/site-routing-bridge.js
           node --check assets/js/platform/offline-content-library.js
-          node --check assets/js/platform/academic-roadmap-v3-bridge.js
           node --check assets/js/platform/offline-library-ui.js
           node --check assets/js/platform/offline-html-sandbox-guard.js
           node --check assets/js/platform/offline-import-quota-guard.js
@@ -48,6 +50,7 @@ jobs:
           node --check service-worker.js
           node --check subjects/math/assets/theory_skin/theory-legacy-route-E246.js
           node --check subjects/russian/assets/lazy-heavy-data-v1341.js
+          node --check scripts/migration/l5-academic-runtime-v3-regression.cjs
           node --check scripts/migration/l5-data-loading-audit.cjs
           node --check scripts/migration/l5-static-routing-audit.cjs
           node --check scripts/migration/l5-roadmap-offline-static-regression.cjs
@@ -80,6 +83,20 @@ jobs:
           STATE=failure
           if [ "$GATE_OUTCOME" = "success" ]; then STATE=success; fi
           gh api --method POST "repos/${GITHUB_REPOSITORY}/statuses/${GITHUB_SHA}" -f state="$STATE" -f context="migration/l5-static-routing" -f description="L5 static path/cache/routing gate: ${GATE_OUTCOME}"
+
+      - name: Audit unified IU5 academic runtime
+        id: academic_runtime_gate
+        run: node scripts/migration/l5-academic-runtime-v3-regression.cjs
+
+      - name: Publish academic runtime status
+        if: ${{ always() && github.event_name == 'push' && steps.academic_runtime_gate.outcome != 'skipped' }}
+        env:
+          GH_TOKEN: ${{ github.token }}
+          GATE_OUTCOME: ${{ steps.academic_runtime_gate.outcome }}
+        run: |
+          STATE=failure
+          if [ "$GATE_OUTCOME" = "success" ]; then STATE=success; fi
+          gh api --method POST "repos/${GITHUB_REPOSITORY}/statuses/${GITHUB_SHA}" -f state="$STATE" -f context="migration/l5-academic-runtime-v3" -f description="L5 IU5 academic runtime gate: ${GATE_OUTCOME}"
 
       - name: Audit Roadmap V3 and offline-first invariants
         id: offline_static_gate
@@ -187,6 +204,7 @@ jobs:
           path: |
             docs/migration/L5_CI_RESULT.generated.json
             docs/migration/L5_STATIC_ROUTING_AUDIT.generated.json
+            docs/migration/L5_ACADEMIC_RUNTIME_V3_REGRESSION.generated.json
             docs/migration/L5_ROADMAP_OFFLINE_STATIC_REGRESSION.generated.json
             docs/migration/L5_DATA_LOADING_AUDIT.generated.md
             docs/migration/L5_BROWSER_NETWORK_REGRESSION.generated.json
@@ -221,6 +239,7 @@ jobs:
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git add docs/migration/L5_CI_RESULT.generated.json
           git add docs/migration/L5_STATIC_ROUTING_AUDIT.generated.json 2>/dev/null || true
+          git add docs/migration/L5_ACADEMIC_RUNTIME_V3_REGRESSION.generated.json 2>/dev/null || true
           git add docs/migration/L5_ROADMAP_OFFLINE_STATIC_REGRESSION.generated.json 2>/dev/null || true
           git add docs/migration/L5_BROWSER_NETWORK_REGRESSION.generated.json 2>/dev/null || true
           git add docs/migration/L5_RESPONSIVE_REGRESSION.generated.json 2>/dev/null || true
