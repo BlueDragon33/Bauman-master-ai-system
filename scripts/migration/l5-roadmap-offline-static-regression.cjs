@@ -125,7 +125,8 @@ check('subject pack manager shell asset cached',worker.includes("'./assets/js/pl
 check('subject pack refcount guard shell asset cached',worker.includes("'./assets/js/platform/offline-subject-pack-refcount-guard.js'"));
 check('explicit content cache served before generic JSON exclusion',worker.indexOf('explicitOfflineMatch(request)')<worker.indexOf('if(!cacheEligible(url))'));
 check('explicit content cache name matches manager',worker.includes("OFFLINE_CONTENT_CACHE='bauman-offline-content-v1'"));
-check('shell install is atomic Promise.all',/await Promise\.all\(SHELL\.map/.test(worker));
+check('shell install iterates every shell asset',/for\(const path of SHELL\)/.test(worker));
+check('shell install validates each response before cache put',/if\(!response\.ok\)throw new Error\(`Shell fetch failed/.test(worker)&&/await cache\.put\(path,response\.clone\(\)\)/.test(worker));
 check('failed shell install deletes incomplete new cache',/catch\(error\)[\s\S]*await caches\.delete\(CACHE_NAME\)[\s\S]*throw error/.test(worker));
 check('old shell caches removed only in activate',worker.indexOf("names.filter((name)=>name.startsWith('bauman-shell-')")>worker.indexOf("self.addEventListener('activate'"));
 
