@@ -17,6 +17,7 @@ const knownReports=[
   'docs/migration/L5_BROWSER_NETWORK_REGRESSION.generated.json',
   'docs/migration/L5_RESPONSIVE_REGRESSION.generated.json',
   'docs/migration/L5_RENDER_PERFORMANCE_REGRESSION.generated.json',
+  'docs/migration/L5_DIRECT_FILE_READER_REGRESSION.generated.json',
   'docs/migration/L5_ROADMAP_OFFLINE_BROWSER_REGRESSION.generated.json'
 ];
 
@@ -39,7 +40,7 @@ function summarizeJson(file){
 }
 
 const reports=knownReports.filter((file)=>fs.existsSync(file)).map((file)=>({file,bytes:fs.statSync(file).size,summary:file.endsWith('.json')?summarizeJson(file):null}));
-const result={schema:'bauman-l5-ci-result-v5',status,passed:status==='success',sourceSha,runId,runAttempt,ref,generatedAt:new Date().toISOString(),reports};
+const result={schema:'bauman-l5-ci-result-v6',status,passed:status==='success',sourceSha,runId,runAttempt,ref,generatedAt:new Date().toISOString(),reports};
 fs.mkdirSync(path.join('docs','migration'),{recursive:true});
 fs.writeFileSync('docs/migration/L5_CI_RESULT.generated.json',JSON.stringify(result,null,2)+'\n');
 console.log(`L5 durable CI result: ${status}, source ${sourceSha.slice(0,12)}, ${reports.length} report(s).`);
