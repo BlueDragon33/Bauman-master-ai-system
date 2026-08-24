@@ -1,0 +1,237 @@
+{
+  "schema": "bauman-universal-lesson-contract-v1",
+  "version": "1.0.0",
+  "program": {
+    "department": "ИУ-5",
+    "displayCode": "09.04.01/11",
+    "policy": "bauman-only"
+  },
+  "principles": [
+    "Do not render empty pedagogical sections merely to satisfy the template.",
+    "Preserve each subject's specialist interactions; the universal contract is a pedagogical spine, not a visual clone.",
+    "A lesson is complete only when the learner produces mastery evidence, not when the page was viewed.",
+    "Russian and English are embedded progressively by stage; Vietnamese remains a rescue layer when needed.",
+    "AI may explain, diagnose and coach, but must not silently fabricate source-grounded academic content."
+  ],
+  "canonicalFlow": [
+    "hook",
+    "concept-map",
+    "theory",
+    "worked-example",
+    "try-it-yourself",
+    "graded-practice",
+    "interactive-lab",
+    "simulation",
+    "common-mistakes",
+    "visual-check",
+    "russian-twin",
+    "english-research",
+    "ai-tutor",
+    "oral-defense",
+    "review",
+    "assessment",
+    "master-ready",
+    "project-nir-checkpoint"
+  ],
+  "sections": {
+    "hook": {
+      "titleVi": "Vì sao cần học",
+      "titleRu": "Зачем это изучать",
+      "sourcePaths": ["eLearning.whyItMatters", "description"],
+      "requiredFor": ["all"],
+      "renderWhenPopulated": true
+    },
+    "concept-map": {
+      "titleVi": "Bản đồ khái niệm & prerequisite",
+      "titleRu": "Карта понятий и пререквизиты",
+      "sourcePaths": ["eLearning.conceptMap", "eLearning.prerequisites", "conceptMap"],
+      "requiredFor": ["math", "programming", "data-ml", "systems", "research"],
+      "renderWhenPopulated": true
+    },
+    "theory": {
+      "titleVi": "Lý thuyết trực quan",
+      "titleRu": "Теория",
+      "sourcePaths": ["eLearning.coreTheory", "keyPoints", "eLearning.coreFormulas"],
+      "requiredFor": ["all"],
+      "renderWhenPopulated": true
+    },
+    "worked-example": {
+      "titleVi": "Ví dụ có hướng dẫn",
+      "titleRu": "Разобранный пример",
+      "sourcePaths": ["eLearning.workedExample"],
+      "requiredFor": ["math", "programming", "data-ml", "systems", "research"],
+      "renderWhenPopulated": true
+    },
+    "try-it-yourself": {
+      "titleVi": "Tự làm trước khi xem lời giải",
+      "titleRu": "Попробуйте самостоятельно",
+      "sourcePaths": ["eLearning.tryItYourself", "eLearning.guidedPractice"],
+      "requiredFor": ["all"],
+      "renderWhenPopulated": true
+    },
+    "graded-practice": {
+      "titleVi": "Bài tập phân cấp",
+      "titleRu": "Упражнения по уровням",
+      "sourcePaths": ["eLearning.guidedPractice", "tasks"],
+      "requiredFor": ["all"],
+      "renderWhenPopulated": true
+    },
+    "interactive-lab": {
+      "titleVi": "Lab / tương tác",
+      "titleRu": "Практическая работа",
+      "sourcePaths": ["eLearning.lab", "eLearning.interactive", "lab"],
+      "requiredFor": ["programming", "database", "data-ml", "systems", "time-series", "research"],
+      "renderWhenPopulated": true
+    },
+    "simulation": {
+      "titleVi": "Mô phỏng",
+      "titleRu": "Моделирование",
+      "sourcePaths": ["eLearning.simulationLink", "eLearning.simulation", "simulation"],
+      "requiredFor": ["math", "data-ml", "systems", "time-series"],
+      "renderWhenPopulated": true,
+      "policy": "Only use simulation when manipulating a model or parameter materially improves understanding."
+    },
+    "common-mistakes": {
+      "titleVi": "Sai lầm thường gặp",
+      "titleRu": "Типичные ошибки",
+      "sourcePaths": ["eLearning.commonMistakes", "commonMistakes"],
+      "requiredFor": ["all"],
+      "renderWhenPopulated": true
+    },
+    "visual-check": {
+      "titleVi": "Kiểm tra trực quan",
+      "titleRu": "Визуальная проверка",
+      "sourcePaths": ["eLearning.visualCheck", "visualCheck"],
+      "requiredFor": ["math", "programming", "database", "data-ml", "systems", "time-series"],
+      "renderWhenPopulated": true,
+      "policy": "Prefer diagrams, plots, code output, schema or correct/incorrect visual comparisons over decorative images."
+    },
+    "russian-twin": {
+      "titleVi": "Russian Twin Lesson",
+      "titleRu": "Русский дубль урока",
+      "sourcePaths": ["eLearning.language.ruTwin", "language.ruTwin", "russianTwin"],
+      "requiredFor": ["all"],
+      "renderWhenPopulated": true
+    },
+    "english-research": {
+      "titleVi": "English Research Layer",
+      "titleRu": "Английский для исследований",
+      "sourcePaths": ["eLearning.language.enResearch", "language.enResearch", "englishResearch"],
+      "requiredFor": ["programming", "database", "data-ml", "systems", "time-series", "research"],
+      "renderWhenPopulated": true
+    },
+    "ai-tutor": {
+      "titleVi": "AI Tutor",
+      "titleRu": "ИИ-наставник",
+      "sourcePaths": ["eLearning.aiHooks", "aiHooks"],
+      "requiredFor": ["all"],
+      "renderWhenPopulated": true,
+      "modes": ["explain-simple", "explain-deep", "socratic", "hint-only", "new-example", "diagnose-error", "oral-coach"],
+      "networkPolicy": "Generative AI is optional online augmentation. Deterministic lesson/review/test flows must remain usable offline."
+    },
+    "oral-defense": {
+      "titleVi": "Vấn đáp",
+      "titleRu": "Устный опрос",
+      "sourcePaths": ["eLearning.oralDefense", "oralDefense", "speaking"],
+      "requiredFor": ["all"],
+      "renderWhenPopulated": true
+    },
+    "review": {
+      "titleVi": "Ôn tập",
+      "titleRu": "Повторение",
+      "sourcePaths": ["eLearning.review", "review"],
+      "requiredFor": ["all"],
+      "renderWhenPopulated": true
+    },
+    "assessment": {
+      "titleVi": "Kiểm tra",
+      "titleRu": "Контроль",
+      "sourcePaths": ["eLearning.checkpointQuestions", "tests", "questionBank"],
+      "requiredFor": ["all"],
+      "renderWhenPopulated": true
+    },
+    "master-ready": {
+      "titleVi": "Master-ready Gate",
+      "titleRu": "Готовность к магистратуре",
+      "sourcePaths": ["eLearning.masteryCriteria", "eLearning.rubric", "mastery"],
+      "requiredFor": ["all"],
+      "renderWhenPopulated": true,
+      "evidence": ["understand", "solve", "build-or-apply", "explain-orally", "retain"]
+    },
+    "project-nir-checkpoint": {
+      "titleVi": "Project / НИР checkpoint",
+      "titleRu": "Контрольная точка проекта / НИР",
+      "sourcePaths": ["eLearning.nirCheckpoint", "nirCheckpoint", "projectCheckpoint"],
+      "requiredFor": ["research", "data-ml", "systems", "time-series", "programming", "database"],
+      "renderWhenPopulated": true
+    }
+  },
+  "lessonProfiles": {
+    "language": {
+      "specialties": ["dialogue", "shadowing", "speech", "listening", "vocab-flashcard", "grammar", "handwriting", "writing"],
+      "referenceSubject": "russian"
+    },
+    "math": {
+      "specialties": ["math-typesetting", "derivation", "graph", "matrix-visualizer", "parameter-simulation", "professor-qa"],
+      "referenceSubject": "math"
+    },
+    "programming": {
+      "specialties": ["code-lab", "unit-test", "debug", "output-prediction", "repo-artifact", "oral-defense"],
+      "referenceSubject": "programming"
+    },
+    "database": {
+      "specialties": ["sql-playground", "schema-diagram", "query-plan", "transaction-scenario", "data-pipeline"]
+    },
+    "data-ml": {
+      "specialties": ["dataset-playground", "metric-visualizer", "model-comparison", "confusion-matrix", "error-analysis", "experiment-log"]
+    },
+    "systems": {
+      "specialties": ["architecture-diagram", "information-flow", "reliability-scenario", "lifecycle", "fault-analysis"]
+    },
+    "time-series": {
+      "specialties": ["signal-plot", "decomposition", "forecast", "anomaly", "telemetry-lab"]
+    },
+    "research": {
+      "specialties": ["literature-matrix", "research-question", "baseline", "experiment-protocol", "evidence-vault", "defense-simulator"]
+    },
+    "foundation": {
+      "specialties": ["bridge-prerequisite", "diagnostic", "fast-recovery"]
+    }
+  },
+  "languageImmersion": {
+    "modes": ["VI_PRIMARY", "RU_GROWING", "RU_FIRST", "MASTER_RU_EN", "ADAPTIVE"],
+    "stageDefaults": {
+      "prepare": {"mode": "VI_PRIMARY", "vi": 0.85, "ru": 0.10, "en": 0.05},
+      "preparatory-early": {"mode": "RU_GROWING", "vi": 0.60, "ru": 0.30, "en": 0.10},
+      "preparatory-late": {"mode": "RU_FIRST", "vi": 0.30, "ru": 0.60, "en": 0.10},
+      "master": {"mode": "MASTER_RU_EN", "vi": 0.10, "ru": 0.70, "en": 0.20}
+    },
+    "rules": [
+      "Russian is the classroom/technical language target.",
+      "English is primarily the documentation, paper and international terminology layer.",
+      "Vietnamese is the comprehension/rescue layer and must not disappear abruptly.",
+      "Subject-level adaptive ratios may differ from global defaults."
+    ]
+  },
+  "aiContract": {
+    "contextInputs": ["lesson", "prerequisites", "learner-progress", "assessment-errors", "weak-topics", "schedule", "current-bauman-subject", "language-level", "nir-vkr-context"],
+    "outputTypes": ["explanation", "hint", "socratic-question", "diagnosis", "recovery-route", "oral-feedback", "review-recommendation"],
+    "sourcePolicy": "For source-grounded or research claims, distinguish provided-source evidence from model inference and external research. Never invent citations.",
+    "antiShortcut": "Default to hints/Socratic coaching on active exercises; reveal full worked solution only when lesson policy allows it."
+  },
+  "masteryPolicy": {
+    "minimumAssessmentPercent": 80,
+    "retentionWindowDays": [14, 21],
+    "retentionTargetPercent": 75,
+    "requiredEvidence": ["assessment-pass", "application-or-lab", "oral-explanation", "retention-check"],
+    "statusVocabulary": ["Chưa học", "Đang học", "Đạt prerequisite", "Master-ready", "Cần ôn", "Gap"]
+  },
+  "offlinePolicy": {
+    "appShellSeparateFromContent": true,
+    "lazyHeavyData": true,
+    "selectiveSubjectPacks": true,
+    "localFileZeroCopySupported": true,
+    "generativeAiRequiredOffline": false,
+    "rule": "Offline mode must preserve deterministic learning, review, assessment, roadmap and previously downloaded/local material even when generative AI is unavailable."
+  }
+}
