@@ -1,6 +1,6 @@
 'use strict';
 
-const VERSION='2026.08.24-l5.4';
+const VERSION='2026.08.24-l5.5';
 const CACHE_NAME=`bauman-shell-${VERSION}`;
 const OFFLINE_CONTENT_CACHE='bauman-offline-content-v1';
 const ROADMAP_MANIFEST='./assets/data/roadmap/iu5-090401-11-v3.json';
@@ -22,6 +22,10 @@ const SHELL=[
   './assets/js/platform/personal-learning-repository.js',
   './assets/js/platform/personal-learning-bootstrap.js',
   './assets/js/platform/platform-bootstrap.js',
+  './assets/js/data.js',
+  './assets/js/academic-data-v3.js',
+  './assets/js/main.js',
+  './assets/js/platform/academic-runtime-v3-bridge.js',
   './assets/js/platform/academic-roadmap-v3-bridge.js',
   './assets/js/platform/site-routing-bridge.js',
   './assets/js/platform/offline-library-ui.js',
@@ -29,8 +33,6 @@ const SHELL=[
   './assets/js/platform/offline-import-quota-guard.js',
   './assets/js/platform/offline-subject-pack-refcount-guard.js',
   './assets/js/platform/offline-subject-pack-manager.js',
-  './assets/js/data.js',
-  './assets/js/main.js',
   './assets/js/planning-main.js',
   ROADMAP_MANIFEST
 ];
@@ -50,7 +52,10 @@ async function explicitOfflineMatch(request){
   const cache=await caches.open(OFFLINE_CONTENT_CACHE);
   let cached=await cache.match(request,{ignoreSearch:false});
   if(cached)return cached;
-  if(url.search){url.search='';cached=await cache.match(url.href,{ignoreSearch:false});}
+  if(url.search){
+    url.search='';
+    cached=await cache.match(url.href,{ignoreSearch:false});
+  }
   return cached||null;
 }
 
@@ -58,11 +63,11 @@ self.addEventListener('install',(event)=>{
   event.waitUntil((async()=>{
     const cache=await caches.open(CACHE_NAME);
     try{
-      await Promise.all(SHELL.map(async(path)=>{
+      for(const path of SHELL){
         const response=await fetch(path,{cache:'no-cache'});
         if(!response.ok)throw new Error(`Shell fetch failed ${response.status}: ${path}`);
         await cache.put(path,response.clone());
-      }));
+      }
     }catch(error){
       await caches.delete(CACHE_NAME);
       throw error;
