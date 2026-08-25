@@ -1,8 +1,8 @@
 # CODEX_STATE
 
-Current task: `L7-B4_MATH_COVERAGE_PREREQUISITE_AUDIT`
+Current task: `L7-B5_MATH_UNIVERSAL_ADAPTER`
 
-Status: `L7_B3_PASS_B4_READY`
+Status: `L7_B4_PASS_B5_READY`
 
 Date: 2026-08-24
 Branch: `migration/webapp-l1-audit-storage`
@@ -10,6 +10,11 @@ Base branch: `main`
 Main sync status: `branch_only`
 
 Files changed:
+- `assets/data/lesson/math-prerequisite-policy-v1.json`
+- `assets/data/lesson/math-prerequisite-graph-v1.generated.json`
+- `scripts/academic/l7-b4-math-coverage-prerequisite-audit.cjs`
+- `docs/migration/L7_B4_MATH_COVERAGE_PREREQUISITE_AUDIT.md`
+- `docs/migration/L7_B4_MATH_COVERAGE_PREREQUISITE_AUDIT.generated.json`
 - `assets/data/lesson/russian-twin-registry-v1.json`
 - `assets/data/lesson/russian-twin-glossary-v1.generated.json`
 - `assets/js/platform/universal-lesson/russian-twin-generator-v1.js`
@@ -35,6 +40,21 @@ Files changed:
 - `CODEX_STATE.md`
 
 What changed:
+- Added a read-only Math coverage audit preserving all 347 legacy lessons,
+  41 chapter IDs, six stages and all sixteen semantic slide roles per lesson.
+- Recorded the reviewed theory path truthfully as 18 overlays across three
+  chapters with 16–22 slides (300 total), not full 347-lesson coverage.
+- Confirmed external exercise/simulation/test/question-bank records remain
+  empty while every legacy lesson still retains embedded practice, simulation,
+  application and professor-Q&A roles.
+- Added a non-blocking review-candidate prerequisite graph with 347 nodes and
+  341 system-derived within-stage source-order edges; every edge requires
+  review and cannot block assessment or change Master-ready.
+- Mapped twelve Math domains to 1,279 stable downstream support refs across
+  AI/Data, Signal, Systems, Programming/Database, Research, Foundation and
+  Russian without mutating source or learner state.
+- Kept three findings open for B5/B7: partial theory overlays, empty external
+  banks and system-derived prerequisites.
 - Added a latent Russian Twin registry covering all eight Subject Factory
   subjects without activating multilingual learner UI.
 - Generated the first truthful source-aligned glossary pack from the existing
@@ -137,6 +157,13 @@ What changed:
   service worker or `main`.
 
 Verification:
+- L7-B4 GitHub Actions run `32859657749`: PASS
+- L6 full regression run `32859657535`: PASS
+- Full L5 runtime/browser/offline run `32859657567`: PASS
+- L7-B4 Math coverage/prerequisite audit, 25/25: PASS
+- Math legacy coverage, 347/347 lessons; overlay, 18 records/3 chapters: PASS
+- L7-B4 graph SHA-256:
+  `e768723bbfa66196edf1d3182d97f3bb39abf65ae64c043448926edea7757871`
 - L7-B3 GitHub Actions run `32858803630`: PASS
 - L6 full regression run `32858805155`: PASS
 - Full L5 runtime/browser/offline run `32858805279`: PASS

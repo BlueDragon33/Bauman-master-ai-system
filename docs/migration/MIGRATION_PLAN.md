@@ -378,7 +378,7 @@ Bằng chứng B10:
 
 ## Lượt 7 · Hoàn thiện Reference Subjects · Russian + Math + Foundation · 9 bước
 
-Trạng thái: **B1–B3 PASS · B4 kế tiếp**.
+Trạng thái: **B1–B4 PASS · B5 kế tiếp**.
 
 1. Audit coverage Russian theo roadmap dự bị → technical → academic → defense.
    **PASS**: 21/21 deterministic checks; 26/26 lesson, 6/6 stage,
@@ -399,6 +399,13 @@ Trạng thái: **B1–B3 PASS · B4 kế tiếp**.
    ghi source/state và không auto-activate. Gate 27/27; L7 remote run
    `32858803630`, L6 run `32858805155` và full L5 run `32858805279` PASS.
 4. Audit Math toàn bộ theory/exercise/test/simulation; map prerequisite theo AI/Data/ИУ-5.
+   **PASS**: 347/347 legacy lesson, 41 chapter, 6 stage và 16/16 slide-role
+   mỗi lesson được bảo toàn; 18 overlay/3 chapter được ghi đúng là partial.
+   Graph review-candidate có 347 node, 341 non-blocking prerequisite edge và
+   1279 downstream support edge. Ba finding `THEORY_OVERLAY_PARTIAL`,
+   `EXTERNAL_BANKS_EMPTY`, `PREREQUISITES_SYSTEM_DERIVED` vẫn mở cho B5/B7.
+   Gate 25/25; L7 run `32859657749`, L6 run `32859657535` và full L5 run
+   `32859657567` PASS.
 5. Chuẩn hóa Math vào Universal Contract, giữ formula/step solution/simulation đặc thù.
 6. Hoàn thiện Foundation cho giai đoạn dự bị: classroom Russian + math/science transition + study-method bridge.
 7. Master-ready evidence + spaced-review hooks cho Russian/Math/Foundation.
