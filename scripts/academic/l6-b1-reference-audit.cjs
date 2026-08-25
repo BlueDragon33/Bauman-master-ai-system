@@ -84,9 +84,9 @@ const mathLessons = json('subjects/math/data/lessons.json');
 const mathTheory = json('subjects/math/data/theory_lecture_content.json');
 
 check(
-  'PLAN-23-218',
-  'master plan remains 23 rounds and 218 steps',
-  masterPlan.includes('23 lượt · 218 bước'),
+  'PLAN-25-235',
+  'master plan remains 25 rounds and 235 steps',
+  masterPlan.includes('25 lượt · 235 bước'),
   'docs/migration/MIGRATION_PLAN.md'
 );
 check(
