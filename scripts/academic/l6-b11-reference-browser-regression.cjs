@@ -89,7 +89,7 @@ async function exerciseRecorder(page, prefix) {
   check(prefix + '-WIDGET', 'real local oral widget opens from the external capability block',
     initial.ready
       && initial.cue.includes('Правильно ли я понял')
-      && initial.uploadLabel.includes('Không tải âm thanh lên mạng')
+      && initial.uploadLabel.toLocaleLowerCase('vi').includes('không tải âm thanh lên mạng')
       && initial.checks === 3,
     initial);
 
