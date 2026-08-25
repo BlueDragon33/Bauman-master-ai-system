@@ -1,0 +1,98 @@
+{
+  "policyId": "bauman-math-prerequisite-policy",
+  "policyVersion": "1.0.0",
+  "status": "L7-B4-AUDIT-POLICY",
+  "programIdentity": {
+    "department": "ИУ-5",
+    "officialPublishedDirectionCode": "09.04.01",
+    "personalizedDisplayCode": "09.04.01/11"
+  },
+  "sourceAuthority": {
+    "legacyLessons": "subjects/math/data/lessons.json",
+    "reviewedTheoryOverlay": "subjects/math/data/theory_lecture_content.json#records",
+    "runtimePrecedenceRef": "assets/data/lesson/subject-factory-registry-v1.json#subjects.math.dataSources.lessonSourcePolicy",
+    "rule": "The 347 stable legacy lessons remain authoritative. The 18 reviewed theory records are overlays only and never imply full Math coverage."
+  },
+  "sequencePolicy": {
+    "kind": "recommended-system-derived-sequence",
+    "scope": "previous lesson in unchanged source order within the same stage",
+    "assessmentBlocking": false,
+    "manualReviewRequired": true,
+    "rule": "B4 records a review candidate graph; it does not promote inferred order into an official prerequisite or rewrite lesson source."
+  },
+  "domainProfiles": [
+    {
+      "id": "language-logic",
+      "departmentTitleIncludes": ["Ngôn ngữ toán học", "logic nền tảng"],
+      "downstreamRefs": ["foundation:f_s01_l1", "russian:R20", "research:r_p01_l1"]
+    },
+    {
+      "id": "linear-algebra-data",
+      "departmentTitleIncludes": ["Đại số tuyến tính", "không gian dữ liệu"],
+      "downstreamRefs": ["ai:a_p01_l1", "ai:a_p03_l1", "ai:a_p05_l1", "systems:s_m101_l1"]
+    },
+    {
+      "id": "calculus-multivariable",
+      "departmentTitleIncludes": ["Giải tích một biến", "nhiều biến"],
+      "downstreamRefs": ["ai:a_p06_l1", "ai:a_m302_l1", "systems:s_m101_l1"]
+    },
+    {
+      "id": "probability-statistics",
+      "departmentTitleIncludes": ["Xác suất", "thống kê", "suy luận dữ liệu"],
+      "downstreamRefs": ["ai:a_p01_l1", "ai:a_p03_l1", "ai:a_p05_l1", "signal:t_p02_l1", "signal:t_p05_l1", "signal:t_m301_l1"]
+    },
+    {
+      "id": "optimization",
+      "departmentTitleIncludes": ["Tối ưu hóa", "quy hoạch toán học"],
+      "downstreamRefs": ["ai:a_p06_l1", "ai:a_m302_l1", "systems:s_m101_l1"]
+    },
+    {
+      "id": "differential-dynamics",
+      "departmentTitleIncludes": ["Phương trình vi phân", "hệ động lực"],
+      "downstreamRefs": ["systems:s_m101_l1", "systems:s_m201_l1", "signal:t_m301_l1"]
+    },
+    {
+      "id": "numerical-computational",
+      "departmentTitleIncludes": ["Phương pháp số", "toán học tính toán"],
+      "downstreamRefs": ["ai:a_p07_l1", "ai:a_m302_l1", "research:r_p01_l1"]
+    },
+    {
+      "id": "signal-time-series",
+      "departmentTitleIncludes": ["Xử lý tín hiệu", "chuỗi thời gian"],
+      "downstreamRefs": ["signal:t_p01_l1", "signal:t_p02_l1", "signal:t_p05_l1", "signal:t_m301_l1"]
+    },
+    {
+      "id": "control",
+      "departmentTitleIncludes": ["Lý thuyết điều khiển"],
+      "downstreamRefs": ["systems:s_m101_l1", "signal:t_p01_l1", "research:r_p01_l1"]
+    },
+    {
+      "id": "state-estimation",
+      "departmentTitleIncludes": ["Ước lượng trạng thái", "sensor fusion"],
+      "downstreamRefs": ["signal:t_p02_l1", "signal:t_m301_l1", "systems:s_m101_l1"]
+    },
+    {
+      "id": "discrete-db-knowledge",
+      "departmentTitleIncludes": ["Toán rời rạc", "CSDL", "biểu diễn tri thức"],
+      "downstreamRefs": ["programming:PR06", "programming:PR20", "ai:a_p01_l1"]
+    },
+    {
+      "id": "reliability-verification",
+      "departmentTitleIncludes": ["Độ tin cậy", "kiểm chứng", "vòng đời hệ thống"],
+      "downstreamRefs": ["systems:s_m201_l1", "research:r_p01_l1", "ai:a_m402_l1"]
+    }
+  ],
+  "downstreamRefPolicy": {
+    "relation": "supports",
+    "masterReadyEffect": "none-until-reviewed-objective-binding",
+    "sourceMutation": false,
+    "learnerStateMutation": false,
+    "aiMayPromote": false,
+    "missingTargetBehavior": "fail-closed"
+  },
+  "knownGapCodes": [
+    "THEORY_OVERLAY_PARTIAL",
+    "EXTERNAL_BANKS_EMPTY",
+    "PREREQUISITES_SYSTEM_DERIVED"
+  ]
+}

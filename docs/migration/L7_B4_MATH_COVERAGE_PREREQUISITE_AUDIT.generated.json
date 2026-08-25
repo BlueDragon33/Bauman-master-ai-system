@@ -1,0 +1,332 @@
+{
+  "gate": "L7-B4",
+  "status": "PASS",
+  "passMeaning": "coverage and gap audit complete; not a claim that all external Math banks or theory overlays are complete",
+  "legacyLessonCount": 347,
+  "legacyChapterCount": 41,
+  "overlayLessonCount": 18,
+  "overlayChapterCount": 3,
+  "prerequisiteNodeCount": 347,
+  "prerequisiteEdgeCount": 341,
+  "downstreamEdgeCount": 1279,
+  "graphDigest": "e768723bbfa66196edf1d3182d97f3bb39abf65ae64c043448926edea7757871",
+  "findings": [
+    {
+      "code": "THEORY_OVERLAY_PARTIAL",
+      "severity": "planned-gap",
+      "evidence": {
+        "overlayLessons": 18,
+        "legacyLessons": 347,
+        "overlayChapters": 3,
+        "legacyChapters": 41
+      },
+      "owner": "L7-B5"
+    },
+    {
+      "code": "EXTERNAL_BANKS_EMPTY",
+      "severity": "planned-gap",
+      "evidence": {
+        "exercises": 0,
+        "exerciseContent": 0,
+        "simulations": 0,
+        "simulationContent": 0,
+        "tests": 0,
+        "questionBankContent": 0
+      },
+      "fallback": "347 legacy lessons retain embedded practice/simulation/application/professor_qa roles",
+      "owner": "L7-B5/L7-B7"
+    },
+    {
+      "code": "PREREQUISITES_SYSTEM_DERIVED",
+      "severity": "review-required",
+      "evidence": {
+        "candidateEdges": 341,
+        "runtimeActive": false
+      },
+      "owner": "L7-B5/L7-B7"
+    }
+  ],
+  "checks": [
+    {
+      "id": "FILE-assets/data/lesson/math-prerequisite-policy-v1.json",
+      "title": "required L7-B4 input exists",
+      "ok": true,
+      "evidence": "assets/data/lesson/math-prerequisite-policy-v1.json"
+    },
+    {
+      "id": "FILE-subjects/math/data/lessons.json",
+      "title": "required L7-B4 input exists",
+      "ok": true,
+      "evidence": "subjects/math/data/lessons.json"
+    },
+    {
+      "id": "FILE-subjects/math/data/theory_lecture_content.json",
+      "title": "required L7-B4 input exists",
+      "ok": true,
+      "evidence": "subjects/math/data/theory_lecture_content.json"
+    },
+    {
+      "id": "FILE-subjects/math/subject-manifest.json",
+      "title": "required L7-B4 input exists",
+      "ok": true,
+      "evidence": "subjects/math/subject-manifest.json"
+    },
+    {
+      "id": "FILE-assets/data/lesson/subject-factory-registry-v1.json",
+      "title": "required L7-B4 input exists",
+      "ok": true,
+      "evidence": "assets/data/lesson/subject-factory-registry-v1.json"
+    },
+    {
+      "id": "FILE-docs/migration/L7_B4_MATH_COVERAGE_PREREQUISITE_AUDIT.md",
+      "title": "required L7-B4 input exists",
+      "ok": true,
+      "evidence": "docs/migration/L7_B4_MATH_COVERAGE_PREREQUISITE_AUDIT.md"
+    },
+    {
+      "id": "POLICY-IDENTITY",
+      "title": "B4 policy identity and version are explicit",
+      "ok": true,
+      "evidence": {
+        "id": "bauman-math-prerequisite-policy",
+        "version": "1.0.0",
+        "status": "L7-B4-AUDIT-POLICY"
+      }
+    },
+    {
+      "id": "PROGRAM-IDENTITY",
+      "title": "official and personalized direction codes remain distinct",
+      "ok": true,
+      "evidence": {
+        "department": "ИУ-5",
+        "officialPublishedDirectionCode": "09.04.01",
+        "personalizedDisplayCode": "09.04.01/11"
+      }
+    },
+    {
+      "id": "LEGACY-COUNT",
+      "title": "all 347 stable Math legacy lessons remain present and unique",
+      "ok": true,
+      "evidence": {
+        "lessons": 347,
+        "manifest": 347
+      }
+    },
+    {
+      "id": "STAGE-COVERAGE",
+      "title": "Math legacy retains all six learning stages",
+      "ok": true,
+      "evidence": {
+        "vn": 59,
+        "prep": 98,
+        "master_y1_s1": 48,
+        "master_y1_s2": 52,
+        "nir": 54,
+        "vkr": 36
+      }
+    },
+    {
+      "id": "CHAPTER-COVERAGE",
+      "title": "Math legacy contains 41 stable chapter IDs",
+      "ok": true,
+      "evidence": 41
+    },
+    {
+      "id": "SLIDE-COUNT",
+      "title": "every legacy lesson retains exactly sixteen slides",
+      "ok": true,
+      "evidence": {
+        "minimum": 16,
+        "maximum": 16
+      }
+    },
+    {
+      "id": "ROLE-COVERAGE",
+      "title": "every legacy lesson retains theory practice simulation application and oral roles",
+      "ok": true,
+      "evidence": [
+        "problem_framing",
+        "deep_essence",
+        "counter_intuition",
+        "real_bridge",
+        "notation",
+        "core_formula",
+        "assumption_gate",
+        "interpretation",
+        "mini_case",
+        "common_mistakes",
+        "practice",
+        "simulation",
+        "application",
+        "professor_qa",
+        "bridge",
+        "takeaway"
+      ]
+    },
+    {
+      "id": "OVERLAY-TRUTH",
+      "title": "reviewed theory overlay is exactly 18 records across three chapters",
+      "ok": true,
+      "evidence": {
+        "records": 18,
+        "chapters": 3,
+        "minimumSlides": 16,
+        "maximumSlides": 22,
+        "totalSlides": 300
+      }
+    },
+    {
+      "id": "OVERLAY-NOT-FULL",
+      "title": "audit records that the 18 overlays are partial rather than full 347 coverage",
+      "ok": true,
+      "evidence": {
+        "overlayLessons": 18,
+        "legacyLessons": 347,
+        "overlayChapters": 3,
+        "legacyChapters": 41
+      }
+    },
+    {
+      "id": "BANK-TRUTH",
+      "title": "external exercise simulation and assessment banks remain empty and are not counted as content",
+      "ok": true,
+      "evidence": {
+        "exercises": 0,
+        "exerciseContent": 0,
+        "simulations": 0,
+        "simulationContent": 0,
+        "tests": 0,
+        "questionBankContent": 0
+      }
+    },
+    {
+      "id": "EMBEDDED-FALLBACK",
+      "title": "empty external banks do not erase embedded practice simulation and oral legacy roles",
+      "ok": true,
+      "evidence": [
+        "practice",
+        "simulation",
+        "application",
+        "professor_qa"
+      ]
+    },
+    {
+      "id": "SOURCE-AUTHORITY",
+      "title": "policy preserves legacy authority and reviewed overlay precedence without source mutation",
+      "ok": true,
+      "evidence": {
+        "legacyLessons": "subjects/math/data/lessons.json",
+        "reviewedTheoryOverlay": "subjects/math/data/theory_lecture_content.json#records",
+        "runtimePrecedenceRef": "assets/data/lesson/subject-factory-registry-v1.json#subjects.math.dataSources.lessonSourcePolicy",
+        "rule": "The 347 stable legacy lessons remain authoritative. The 18 reviewed theory records are overlays only and never imply full Math coverage."
+      }
+    },
+    {
+      "id": "DOMAIN-COVERAGE",
+      "title": "all 347 lessons resolve to one explicit ИУ-5 bridge domain",
+      "ok": true,
+      "evidence": [
+        "linear-algebra-data",
+        "calculus-multivariable",
+        "probability-statistics",
+        "numerical-computational",
+        "language-logic",
+        "differential-dynamics",
+        "optimization",
+        "signal-time-series",
+        "control",
+        "state-estimation",
+        "reliability-verification",
+        "discrete-db-knowledge"
+      ]
+    },
+    {
+      "id": "DOWNSTREAM-TARGETS",
+      "title": "all AI Data Signal Systems Research Russian Foundation and Programming refs resolve",
+      "ok": true,
+      "evidence": [
+        "foundation:f_s01_l1",
+        "russian:R20",
+        "research:r_p01_l1",
+        "ai:a_p01_l1",
+        "ai:a_p03_l1",
+        "ai:a_p05_l1",
+        "systems:s_m101_l1",
+        "ai:a_p06_l1",
+        "ai:a_m302_l1",
+        "systems:s_m101_l1",
+        "ai:a_p01_l1",
+        "ai:a_p03_l1",
+        "ai:a_p05_l1",
+        "signal:t_p02_l1",
+        "signal:t_p05_l1",
+        "signal:t_m301_l1",
+        "ai:a_p06_l1",
+        "ai:a_m302_l1",
+        "systems:s_m101_l1",
+        "systems:s_m101_l1",
+        "systems:s_m201_l1",
+        "signal:t_m301_l1",
+        "ai:a_p07_l1",
+        "ai:a_m302_l1",
+        "research:r_p01_l1",
+        "signal:t_p01_l1",
+        "signal:t_p02_l1",
+        "signal:t_p05_l1",
+        "signal:t_m301_l1",
+        "systems:s_m101_l1",
+        "signal:t_p01_l1",
+        "research:r_p01_l1",
+        "signal:t_p02_l1",
+        "signal:t_m301_l1",
+        "systems:s_m101_l1",
+        "programming:PR06",
+        "programming:PR20",
+        "ai:a_p01_l1",
+        "systems:s_m201_l1",
+        "research:r_p01_l1",
+        "ai:a_m402_l1"
+      ]
+    },
+    {
+      "id": "GRAPH-COVERAGE",
+      "title": "prerequisite graph has one node per stable legacy lesson",
+      "ok": true,
+      "evidence": 347
+    },
+    {
+      "id": "SEQUENCE-BOUNDARY",
+      "title": "inferred sequence is non-blocking system-derived and requires review",
+      "ok": true,
+      "evidence": {
+        "edges": 341,
+        "stageRoots": 6
+      }
+    },
+    {
+      "id": "DOWNSTREAM-NON-MASTERY",
+      "title": "downstream bridge cannot change Master-ready or learner state",
+      "ok": true,
+      "evidence": {
+        "relation": "supports",
+        "masterReadyEffect": "none-until-reviewed-objective-binding",
+        "sourceMutation": false,
+        "learnerStateMutation": false,
+        "aiMayPromote": false,
+        "missingTargetBehavior": "fail-closed"
+      }
+    },
+    {
+      "id": "SOURCE-IMMUTABLE",
+      "title": "audit leaves all Math legacy lesson JSON unchanged",
+      "ok": true,
+      "evidence": "5554fc9265d640a99831763e073c8e42ccf756a1f7f0a9f92a8df9a376b0a086"
+    },
+    {
+      "id": "NO-HUTECH-LEARNER-COPY",
+      "title": "B4 learner artifacts contain no HUTECH label",
+      "ok": true,
+      "evidence": "absent"
+    }
+  ]
+}
