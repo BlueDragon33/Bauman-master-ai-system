@@ -378,7 +378,7 @@ Bằng chứng B10:
 
 ## Lượt 7 · Hoàn thiện Reference Subjects · Russian + Math + Foundation · 9 bước
 
-Trạng thái: **B1 PASS · B2 kế tiếp**.
+Trạng thái: **B1–B2 PASS · B3 kế tiếp**.
 
 1. Audit coverage Russian theo roadmap dự bị → technical → academic → defense.
    **PASS**: 21/21 deterministic checks; 26/26 lesson, 6/6 stage,
@@ -388,6 +388,10 @@ Trạng thái: **B1 PASS · B2 kế tiếp**.
    `32803058030`; L6 regression sau mở rộng kế hoạch PASS tại run `32803174543`
    và full L5 runtime/browser/offline PASS tại run `32803174494`.
 2. Chuẩn hóa Russian lesson map vào Universal Contract bằng adapter, giữ dialogue/speech/handwriting/flashcard/exam đặc thù.
+   **PASS**: adapter thuần đọc project 26/26 lesson và 1138/1138 slide
+   sang Universal v2; validator 17/17, source bất biến, locator ổn định,
+   specialist ownership và offline fallback được giữ. L7 remote run
+   `32803834381`, L6 run `32803834330` và full L5 run `32803834294` PASS.
 3. Hoàn thiện Russian Twin lesson generator/registry và glossary theo subject/context.
 4. Audit Math toàn bộ theory/exercise/test/simulation; map prerequisite theo AI/Data/ИУ-5.
 5. Chuẩn hóa Math vào Universal Contract, giữ formula/step solution/simulation đặc thù.
@@ -556,7 +560,9 @@ Trạng thái: **B1 PASS · B2 kế tiếp**.
 5. Phát hiện duplicate, orphan prerequisite, ID conflict và broken source.
 6. Question-bank governance: difficulty, answer protection, revision và item quality.
 7. Curriculum refresh giữ nguyên completed evidence và version lịch sử.
-8. Content-integrity gate, audit log và recovery checkpoint.
+8. Content-integrity gate, audit log và recovery checkpoint; hiện đại hóa các
+   baseline guard L3/L4 để nhận checkpoint đã duyệt ở lượt sau mà vẫn fail-closed
+   với thay đổi runtime/content ngoài phạm vi.
 
 ## Lượt 22 · Security · Privacy · Performance Hardening · 5 bước
 

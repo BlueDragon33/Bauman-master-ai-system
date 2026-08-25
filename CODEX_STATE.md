@@ -1,8 +1,8 @@
 # CODEX_STATE
 
-Current task: `L7-B2_RUSSIAN_UNIVERSAL_ADAPTER`
+Current task: `L7-B3_RUSSIAN_TWIN_REGISTRY`
 
-Status: `L7_B1_PASS_B2_READY`
+Status: `L7_B2_PASS_B3_READY`
 
 Date: 2026-08-24
 Branch: `migration/webapp-l1-audit-storage`
@@ -10,6 +10,10 @@ Base branch: `main`
 Main sync status: `branch_only`
 
 Files changed:
+- `assets/js/platform/universal-lesson/russian-universal-adapter-v1.js`
+- `scripts/academic/l7-b2-russian-universal-adapter-regression.cjs`
+- `docs/migration/L7_B2_RUSSIAN_UNIVERSAL_ADAPTER.md`
+- `docs/migration/L7_B2_RUSSIAN_UNIVERSAL_ADAPTER.generated.json`
 - `.github/workflows/migration-l7-reference-subjects.yml`
 - `scripts/academic/l7-b1-russian-coverage-audit.cjs`
 - `docs/migration/L7_B1_RUSSIAN_COVERAGE_AUDIT.md`
@@ -25,6 +29,17 @@ Files changed:
 - `CODEX_STATE.md`
 
 What changed:
+- Added a pure read-only Russian → Universal v2 adapter for all 26 lessons and
+  1138 source slides without changing the Russian source/runtime/state.
+- Preserved dialogue, deep speaking, basic speaking, handwriting, writing,
+  assessment, simulation and speaking-link ownership as specialist references.
+- Fixed two contract mismatches found by the first real validator run: locators
+  now use structured `sourcePath/sourceAnchors`, and deterministic offline
+  fallback resolves to a declared subject-pack resource while retaining the
+  unchanged legacy runtime entry.
+- Recorded stale L3/L4 baseline-guard modernization inside L21 governance; the
+  guards currently reject already-approved later-round Math/Russian/Foundation
+  files even though their own functional regressions pass.
 - Expanded the audited master plan from 23 rounds / 218 steps to 25 rounds /
   235 steps by adding Content Operations & Curriculum Governance and Learning
   Quality / Accessibility / Acceptance gates.
@@ -104,6 +119,13 @@ What changed:
   service worker or `main`.
 
 Verification:
+- L7-B2 GitHub Actions run `32803834381`: PASS
+- L6 regression run `32803834330`: PASS
+- Full L5 runtime/browser/offline run `32803834294`: PASS
+- L7-B2 Universal adapter regression, 17/17: PASS
+- Russian Universal projections: 26/26 lessons, 1138/1138 slides: PASS
+- L7-B2 projection SHA-256:
+  `8f0b9b8acd74fafc75bed0e5a69f3fe17aff1c2d983fea6e33f323d5fe7e64ba`
 - L7-B1 GitHub Actions run `32803058030`: PASS
 - L7-B1 context `migration/l7-b1-russian-coverage`: PASS
 - L6 full sequential regression after 25-round expansion, run `32803174543`: PASS
