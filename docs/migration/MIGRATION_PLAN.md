@@ -378,7 +378,7 @@ Bằng chứng B10:
 
 ## Lượt 7 · Hoàn thiện Reference Subjects · Russian + Math + Foundation · 9 bước
 
-Trạng thái: **B1–B2 PASS · B3 kế tiếp**.
+Trạng thái: **B1–B3 PASS · B4 kế tiếp**.
 
 1. Audit coverage Russian theo roadmap dự bị → technical → academic → defense.
    **PASS**: 21/21 deterministic checks; 26/26 lesson, 6/6 stage,
@@ -393,6 +393,11 @@ Trạng thái: **B1–B2 PASS · B3 kế tiếp**.
    specialist ownership và offline fallback được giữ. L7 remote run
    `32803834381`, L6 run `32803834330` và full L5 run `32803834294` PASS.
 3. Hoàn thiện Russian Twin lesson generator/registry và glossary theo subject/context.
+   **PASS**: registry đủ 8 subject; 48/48 Programming lesson có thuật ngữ
+   `vi/ru/en` nguồn được project thành 48 glossary record + 48 latent Twin unit.
+   Generator fail-closed khi thiếu alignment, không generic translation, không
+   ghi source/state và không auto-activate. Gate 27/27; L7 remote run
+   `32858803630`, L6 run `32858805155` và full L5 run `32858805279` PASS.
 4. Audit Math toàn bộ theory/exercise/test/simulation; map prerequisite theo AI/Data/ИУ-5.
 5. Chuẩn hóa Math vào Universal Contract, giữ formula/step solution/simulation đặc thù.
 6. Hoàn thiện Foundation cho giai đoạn dự bị: classroom Russian + math/science transition + study-method bridge.

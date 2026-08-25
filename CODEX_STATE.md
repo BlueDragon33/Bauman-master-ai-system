@@ -1,8 +1,8 @@
 # CODEX_STATE
 
-Current task: `L7-B3_RUSSIAN_TWIN_REGISTRY`
+Current task: `L7-B4_MATH_COVERAGE_PREREQUISITE_AUDIT`
 
-Status: `L7_B2_PASS_B3_READY`
+Status: `L7_B3_PASS_B4_READY`
 
 Date: 2026-08-24
 Branch: `migration/webapp-l1-audit-storage`
@@ -10,6 +10,12 @@ Base branch: `main`
 Main sync status: `branch_only`
 
 Files changed:
+- `assets/data/lesson/russian-twin-registry-v1.json`
+- `assets/data/lesson/russian-twin-glossary-v1.generated.json`
+- `assets/js/platform/universal-lesson/russian-twin-generator-v1.js`
+- `scripts/academic/l7-b3-russian-twin-registry-regression.cjs`
+- `docs/migration/L7_B3_RUSSIAN_TWIN_REGISTRY.md`
+- `docs/migration/L7_B3_RUSSIAN_TWIN_REGISTRY.generated.json`
 - `assets/js/platform/universal-lesson/russian-universal-adapter-v1.js`
 - `scripts/academic/l7-b2-russian-universal-adapter-regression.cjs`
 - `docs/migration/L7_B2_RUSSIAN_UNIVERSAL_ADAPTER.md`
@@ -29,6 +35,18 @@ Files changed:
 - `CODEX_STATE.md`
 
 What changed:
+- Added a latent Russian Twin registry covering all eight Subject Factory
+  subjects without activating multilingual learner UI.
+- Generated the first truthful source-aligned glossary pack from the existing
+  48/48 Programming trilingual terminology records: 48 glossary records and
+  48 hidden technical-terminology Twin units.
+- Kept missing Russian/Math/Foundation/AI/Signal/Systems/Research alignments
+  explicitly unavailable; no generic dictionary or AI translation is used.
+- Moved Programming database/software-design classification into registry data
+  and verified exact parity with Subject Factory; generator code has no lesson
+  ID classification constants.
+- Fixed unavailable-record source indexing and added a regression that proves
+  the original input index survives filtering.
 - Added a pure read-only Russian → Universal v2 adapter for all 26 lessons and
   1138 source slides without changing the Russian source/runtime/state.
 - Preserved dialogue, deep speaking, basic speaking, handwriting, writing,
@@ -119,6 +137,13 @@ What changed:
   service worker or `main`.
 
 Verification:
+- L7-B3 GitHub Actions run `32858803630`: PASS
+- L6 full regression run `32858805155`: PASS
+- Full L5 runtime/browser/offline run `32858805279`: PASS
+- L7-B3 registry/generator/glossary regression, 27/27: PASS
+- Programming glossary records/Twin units, 48/48 and 48/48: PASS
+- L7-B3 pack SHA-256:
+  `bfa9b6fbf57df4a5558728fe9720abcb20e26b6f4a3fe615ab03456afac517d8`
 - L7-B2 GitHub Actions run `32803834381`: PASS
 - L6 regression run `32803834330`: PASS
 - Full L5 runtime/browser/offline run `32803834294`: PASS
