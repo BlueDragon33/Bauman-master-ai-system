@@ -59,9 +59,38 @@ jobs:
             -f description="L7-B1 Russian coverage: ${GATE_OUTCOME}" \
             -f target_url="${GITHUB_SERVER_URL}/${GITHUB_REPOSITORY}/actions/runs/${GITHUB_RUN_ID}"
 
+      - name: Run L7-B2 Russian Universal adapter regression
+        id: b2_gate
+        run: |
+          node --check assets/js/platform/universal-lesson/russian-universal-adapter-v1.js
+          node --check scripts/academic/l7-b2-russian-universal-adapter-regression.cjs
+          node scripts/academic/l7-b2-russian-universal-adapter-regression.cjs
+          git diff --exit-code -- docs/migration/L7_B2_RUSSIAN_UNIVERSAL_ADAPTER.generated.json
+
+      - name: Publish L7-B2 status
+        if: ${{ always() && github.event_name == 'push' && steps.b2_gate.outcome != 'skipped' }}
+        env:
+          GH_TOKEN: ${{ github.token }}
+          GATE_OUTCOME: ${{ steps.b2_gate.outcome }}
+        run: |
+          STATE=failure
+          if [ "$GATE_OUTCOME" = "success" ]; then STATE=success; fi
+          gh api --method POST "repos/${GITHUB_REPOSITORY}/statuses/${GITHUB_SHA}" \
+            -f state="$STATE" \
+            -f context="migration/l7-b2-russian-universal-adapter" \
+            -f description="L7-B2 Russian adapter: ${GATE_OUTCOME}" \
+            -f target_url="${GITHUB_SERVER_URL}/${GITHUB_REPOSITORY}/actions/runs/${GITHUB_RUN_ID}"
+
       - name: Upload L7-B1 evidence
         if: always()
         uses: actions/upload-artifact@v4
         with:
           name: l7-b1-russian-coverage
           path: docs/migration/L7_B1_RUSSIAN_COVERAGE_AUDIT.generated.json
+
+      - name: Upload L7-B2 evidence
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: l7-b2-russian-universal-adapter
+          path: docs/migration/L7_B2_RUSSIAN_UNIVERSAL_ADAPTER.generated.json

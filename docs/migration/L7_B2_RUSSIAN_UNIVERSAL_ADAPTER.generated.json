@@ -1,0 +1,293 @@
+{
+  "gate": "L7-B2",
+  "status": "PASS",
+  "adapterRelease": "L7-B2-RUSSIAN-UNIVERSAL-ADAPTER-V1",
+  "lessonCount": 26,
+  "projectedBlockCount": 1138,
+  "projectionDigest": "8f0b9b8acd74fafc75bed0e5a69f3fe17aff1c2d983fea6e33f323d5fe7e64ba",
+  "checks": [
+    {
+      "id": "FILE-assets/js/platform/universal-lesson/russian-universal-adapter-v1.js",
+      "title": "required L7-B2 input exists",
+      "ok": true,
+      "evidence": "assets/js/platform/universal-lesson/russian-universal-adapter-v1.js"
+    },
+    {
+      "id": "FILE-assets/js/platform/universal-lesson/lesson-schema-validator-v1.js",
+      "title": "required L7-B2 input exists",
+      "ok": true,
+      "evidence": "assets/js/platform/universal-lesson/lesson-schema-validator-v1.js"
+    },
+    {
+      "id": "FILE-assets/data/lesson/schema/universal-lesson-v2.schema.json",
+      "title": "required L7-B2 input exists",
+      "ok": true,
+      "evidence": "assets/data/lesson/schema/universal-lesson-v2.schema.json"
+    },
+    {
+      "id": "FILE-docs/migration/L7_B2_RUSSIAN_UNIVERSAL_ADAPTER.md",
+      "title": "required L7-B2 input exists",
+      "ok": true,
+      "evidence": "docs/migration/L7_B2_RUSSIAN_UNIVERSAL_ADAPTER.md"
+    },
+    {
+      "id": "ADAPTER-IDENTITY",
+      "title": "adapter has a stable release identity",
+      "ok": true,
+      "evidence": {
+        "adapterId": "russian-universal-adapter-v1",
+        "release": "L7-B2-RUSSIAN-UNIVERSAL-ADAPTER-V1"
+      }
+    },
+    {
+      "id": "LESSON-COVERAGE",
+      "title": "all 26 Russian lessons project exactly once",
+      "ok": true,
+      "evidence": [
+        "R01",
+        "R02",
+        "R03",
+        "R04",
+        "R05",
+        "R06",
+        "R07",
+        "R08",
+        "R09",
+        "R10",
+        "R11",
+        "R12",
+        "R13",
+        "R14",
+        "R15",
+        "R16",
+        "R17",
+        "R18",
+        "R19",
+        "R20",
+        "R21",
+        "R22",
+        "R23",
+        "R24",
+        "R25",
+        "R26"
+      ]
+    },
+    {
+      "id": "SOURCE-IMMUTABLE",
+      "title": "projection does not mutate Russian lesson source data",
+      "ok": true,
+      "evidence": "66a311c2387df733343c65cc3971fde90ce7baaeb06eca111e8fa44164549324"
+    },
+    {
+      "id": "SCHEMA-VALID",
+      "title": "every projected lesson passes the real Universal v2 validator",
+      "ok": true,
+      "evidence": []
+    },
+    {
+      "id": "IDENTITY-CODES",
+      "title": "official and personalized program codes remain separated",
+      "ok": true,
+      "evidence": {
+        "department": "ИУ-5",
+        "officialPublishedDirectionCode": "09.04.01",
+        "personalizedDisplayCode": "09.04.01/11"
+      }
+    },
+    {
+      "id": "SLIDE-PRESERVATION",
+      "title": "every source slide has one ordered Universal semantic block",
+      "ok": true,
+      "evidence": [
+        [
+          "R01",
+          43
+        ],
+        [
+          "R02",
+          43
+        ],
+        [
+          "R03",
+          44
+        ],
+        [
+          "R04",
+          43
+        ],
+        [
+          "R05",
+          44
+        ],
+        [
+          "R06",
+          43
+        ],
+        [
+          "R07",
+          44
+        ],
+        [
+          "R08",
+          43
+        ],
+        [
+          "R09",
+          44
+        ],
+        [
+          "R10",
+          43
+        ],
+        [
+          "R11",
+          44
+        ],
+        [
+          "R12",
+          43
+        ],
+        [
+          "R13",
+          44
+        ],
+        [
+          "R14",
+          43
+        ],
+        [
+          "R15",
+          44
+        ],
+        [
+          "R16",
+          43
+        ],
+        [
+          "R17",
+          44
+        ],
+        [
+          "R18",
+          43
+        ],
+        [
+          "R19",
+          45
+        ],
+        [
+          "R20",
+          44
+        ],
+        [
+          "R21",
+          45
+        ],
+        [
+          "R22",
+          44
+        ],
+        [
+          "R23",
+          45
+        ],
+        [
+          "R24",
+          44
+        ],
+        [
+          "R25",
+          45
+        ],
+        [
+          "R26",
+          44
+        ]
+      ]
+    },
+    {
+      "id": "SOURCE-LOCATORS",
+      "title": "lesson and slide bindings use stable source locators",
+      "ok": true,
+      "evidence": {
+        "sourcePath": "subjects/russian/data/lessons.json",
+        "lessonId": "R01",
+        "sourceAnchors": [
+          "/0/slides/0"
+        ]
+      }
+    },
+    {
+      "id": "SPECIALIST-OWNERSHIP",
+      "title": "language-specific engines remain referenced instead of flattened",
+      "ok": true,
+      "evidence": [
+        "dialogueRefs",
+        "deepSpeakingRefs",
+        "speakingRefs",
+        "handwritingRefs",
+        "writingRefs",
+        "assessmentRefs",
+        "simulationRefs",
+        "speakingLinkIndexRef"
+      ]
+    },
+    {
+      "id": "LANGUAGE-EVIDENCE",
+      "title": "all lessons expose comprehension oral writing and retention evidence",
+      "ok": true,
+      "evidence": [
+        "comprehension-response",
+        "written-response",
+        "oral-response",
+        "retention-check"
+      ]
+    },
+    {
+      "id": "OFFLINE-DETERMINISTIC",
+      "title": "all projections retain subject-pack and legacy offline fallback",
+      "ok": true,
+      "evidence": {
+        "policyId": "russian-subject-pack-v1",
+        "resources": [
+          {
+            "id": "R01-russian-pack",
+            "availability": "subject-pack",
+            "bytesPolicy": "reuse-existing-russian-pack-assets",
+            "freshnessPolicy": "content-version-and-integrity-check",
+            "rollbackRef": "russian-legacy-runtime"
+          }
+        ],
+        "deterministicFallbackRef": "R01-russian-pack",
+        "legacyRuntimeEntry": "subjects/russian/index.html"
+      }
+    },
+    {
+      "id": "NO-AI-SOURCE-PROMOTION",
+      "title": "adapter does not promote AI inference into source provenance",
+      "ok": true,
+      "evidence": {
+        "sourceRefs": [
+          "subjects/russian/data/lessons.json#/0"
+        ],
+        "userEvidenceRefs": [],
+        "systemDerivedRefs": [
+          "russian-universal-adapter-v1"
+        ],
+        "aiInferenceRefs": []
+      }
+    },
+    {
+      "id": "DETERMINISTIC",
+      "title": "repeated projection has a stable SHA-256 digest",
+      "ok": true,
+      "evidence": "8f0b9b8acd74fafc75bed0e5a69f3fe17aff1c2d983fea6e33f323d5fe7e64ba"
+    },
+    {
+      "id": "INVALID-INPUT-FAILS",
+      "title": "malformed Russian lessons fail closed",
+      "ok": true,
+      "evidence": "TypeError expected"
+    }
+  ]
+}
