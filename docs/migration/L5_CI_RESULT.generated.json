@@ -1,0 +1,175 @@
+{
+  "schema": "bauman-l5-ci-result-v6",
+  "status": "success",
+  "passed": true,
+  "sourceSha": "1400ca209fe9551861c3e203b038daebc82adb82",
+  "runId": "32792704340",
+  "runAttempt": "1",
+  "ref": "migration/webapp-l1-audit-storage",
+  "generatedAt": "2026-08-25T00:14:52.261Z",
+  "reports": [
+    {
+      "file": "docs/migration/L5_STATIC_ROUTING_AUDIT.generated.json",
+      "bytes": 1597,
+      "summary": {
+        "failures": [],
+        "warnings": [],
+        "pageChecks": null,
+        "checks": null,
+        "offlineRoutes": null,
+        "packs": null,
+        "runtime": null,
+        "budgets": null,
+        "workerVersion": "2026.08.24-l5.10",
+        "runtimeVersion": "2026.08.24-l5.10"
+      }
+    },
+    {
+      "file": "docs/migration/L5_SERVICE_WORKER_LIFECYCLE_REGRESSION.generated.json",
+      "bytes": 2083,
+      "summary": {
+        "failures": [],
+        "warnings": [],
+        "pageChecks": null,
+        "checks": 17,
+        "offlineRoutes": null,
+        "packs": null,
+        "runtime": null,
+        "budgets": null,
+        "workerVersion": "2026.08.24-l5.10",
+        "runtimeVersion": "2026.08.24-l5.10"
+      }
+    },
+    {
+      "file": "docs/migration/L5_ACADEMIC_RUNTIME_V3_REGRESSION.generated.json",
+      "bytes": 4914,
+      "summary": {
+        "failures": [],
+        "warnings": [],
+        "pageChecks": null,
+        "checks": 36,
+        "offlineRoutes": null,
+        "packs": null,
+        "runtime": {
+          "version": "BAUMAN_IU5_090401_11_MAIN_RUNTIME_V3_1",
+          "displayCode": "09.04.01/11",
+          "department": "ИУ-5",
+          "subjects": 8,
+          "courses": 50
+        },
+        "budgets": null,
+        "workerVersion": null,
+        "runtimeVersion": null
+      }
+    },
+    {
+      "file": "docs/migration/L5_ROADMAP_OFFLINE_STATIC_REGRESSION.generated.json",
+      "bytes": 8677,
+      "summary": {
+        "failures": [],
+        "warnings": [],
+        "pageChecks": null,
+        "checks": 75,
+        "offlineRoutes": null,
+        "packs": null,
+        "runtime": null,
+        "budgets": null,
+        "workerVersion": null,
+        "runtimeVersion": null
+      }
+    },
+    {
+      "file": "docs/migration/L5_DATA_LOADING_AUDIT.generated.md",
+      "bytes": 1621,
+      "summary": null
+    },
+    {
+      "file": "docs/migration/L5_BROWSER_NETWORK_REGRESSION.generated.json",
+      "bytes": 5244,
+      "summary": {
+        "failures": [],
+        "warnings": [],
+        "pageChecks": 10,
+        "checks": null,
+        "offlineRoutes": null,
+        "packs": null,
+        "runtime": null,
+        "budgets": null,
+        "workerVersion": null,
+        "runtimeVersion": null
+      }
+    },
+    {
+      "file": "docs/migration/L5_RESPONSIVE_REGRESSION.generated.json",
+      "bytes": 21622,
+      "summary": {
+        "failures": [],
+        "warnings": [],
+        "pageChecks": 36,
+        "checks": null,
+        "offlineRoutes": null,
+        "packs": null,
+        "runtime": null,
+        "budgets": null,
+        "workerVersion": null,
+        "runtimeVersion": null
+      }
+    },
+    {
+      "file": "docs/migration/L5_RENDER_PERFORMANCE_REGRESSION.generated.json",
+      "bytes": 1819,
+      "summary": {
+        "failures": [],
+        "warnings": [],
+        "pageChecks": 3,
+        "checks": null,
+        "offlineRoutes": null,
+        "packs": null,
+        "runtime": null,
+        "budgets": {
+          "mainDom": 6500,
+          "russianStartupDom": 6500,
+          "russianLoadedDom": 8500,
+          "mathDom": 9000,
+          "mainRenderMs": 1500,
+          "heavyLocalLoadMs": 12000,
+          "maxLongTaskMs": 2500
+        },
+        "workerVersion": null,
+        "runtimeVersion": null
+      }
+    },
+    {
+      "file": "docs/migration/L5_DIRECT_FILE_READER_REGRESSION.generated.json",
+      "bytes": 2558,
+      "summary": {
+        "failures": [],
+        "warnings": [],
+        "pageChecks": null,
+        "checks": 12,
+        "offlineRoutes": null,
+        "packs": null,
+        "runtime": null,
+        "budgets": null,
+        "workerVersion": null,
+        "runtimeVersion": null
+      }
+    },
+    {
+      "file": "docs/migration/L5_ROADMAP_OFFLINE_BROWSER_REGRESSION.generated.json",
+      "bytes": 9931,
+      "summary": {
+        "failures": [],
+        "warnings": [],
+        "pageChecks": null,
+        "checks": 46,
+        "offlineRoutes": 4,
+        "packs": 3,
+        "runtime": null,
+        "budgets": null,
+        "workerVersion": null,
+        "runtimeVersion": null
+      }
+    }
+  ]
+}

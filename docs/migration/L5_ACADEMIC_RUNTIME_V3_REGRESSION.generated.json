@@ -1,0 +1,193 @@
+{
+  "generatedAt": "2026-08-25T00:13:07.278Z",
+  "runtime": {
+    "version": "BAUMAN_IU5_090401_11_MAIN_RUNTIME_V3_1",
+    "displayCode": "09.04.01/11",
+    "department": "ИУ-5",
+    "subjects": 8,
+    "courses": 50
+  },
+  "checks": [
+    {
+      "name": "runtime display code",
+      "ok": true,
+      "detail": "09.04.01/11"
+    },
+    {
+      "name": "runtime department",
+      "ok": true,
+      "detail": "ИУ-5"
+    },
+    {
+      "name": "runtime has 8 content engines",
+      "ok": true,
+      "detail": "8"
+    },
+    {
+      "name": "runtime has 3 main stages",
+      "ok": true,
+      "detail": "3"
+    },
+    {
+      "name": "runtime has 4 master semesters",
+      "ok": true,
+      "detail": "4"
+    },
+    {
+      "name": "runtime has substantial course graph",
+      "ok": true,
+      "detail": "50"
+    },
+    {
+      "name": "all semester stages populated",
+      "ok": true,
+      "detail": "{\"prepare\":12,\"preparatory\":5,\"m1\":8,\"m2\":11,\"m3\":8,\"m4\":6}"
+    },
+    {
+      "name": "pre-master is populated",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "official curriculum tag exists",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "official course present: Аналитические модели автоматизированных систем обработки информации и управления",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "official course present: Многомерный анализ данных в системах искусственного интеллекта",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "official course present: Оптимизация баз данных систем машинного обучения",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "official course present: Методы машинного обучения в автоматизированных системах обработки информации и управления",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "official course present: Модели надёжности АСОИУ",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "official course present: Постреляционные базы данных",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "official course present: Разработка нейросетевых систем",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "official course present: Анализ временных рядов",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "official course present: Подготовка и защита ВКР",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "no comparison-school label in academic runtime",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "no UGV/USV hard-coded into academic runtime",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "main entry wires assets/js/data.js",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "main entry order assets/js/data.js",
+      "ok": true,
+      "detail": "6603 <= -1"
+    },
+    {
+      "name": "main entry wires assets/js/academic-data-v3.js",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "main entry order assets/js/academic-data-v3.js",
+      "ok": true,
+      "detail": "6647 <= 6603"
+    },
+    {
+      "name": "main entry wires assets/js/main.js",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "main entry order assets/js/main.js",
+      "ok": true,
+      "detail": "6703 <= 6647"
+    },
+    {
+      "name": "main entry wires assets/js/platform/academic-runtime-v3-bridge.js",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "main entry order assets/js/platform/academic-runtime-v3-bridge.js",
+      "ok": true,
+      "detail": "6747 <= 6703"
+    },
+    {
+      "name": "main entry wires assets/js/platform/academic-roadmap-v3-bridge.js",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "main entry order assets/js/platform/academic-roadmap-v3-bridge.js",
+      "ok": true,
+      "detail": "6822 <= 6747"
+    },
+    {
+      "name": "state metadata migration is idempotent",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "research page is replaced with NIR-VKR flow",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "legacy subject paths are preserved",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "course cards identify official 2026 source",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "offline shell caches academic data runtime",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "offline shell caches academic runtime bridge",
+      "ok": true,
+      "detail": ""
+    }
+  ],
+  "failures": []
+}

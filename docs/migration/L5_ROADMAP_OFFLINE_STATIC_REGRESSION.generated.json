@@ -1,0 +1,386 @@
+{
+  "generatedAt": "2026-08-25T00:13:08.125Z",
+  "manifest": {
+    "id": "bauman-iu5-090401-11",
+    "displayCode": "09.04.01/11",
+    "department": "ИУ-5"
+  },
+  "checks": [
+    {
+      "name": "roadmap id",
+      "ok": true,
+      "detail": "bauman-iu5-090401-11"
+    },
+    {
+      "name": "display code",
+      "ok": true,
+      "detail": "09.04.01/11"
+    },
+    {
+      "name": "department",
+      "ok": true,
+      "detail": "ИУ-5"
+    },
+    {
+      "name": "cohort 2026",
+      "ok": true,
+      "detail": "2026"
+    },
+    {
+      "name": "duration 2 years",
+      "ok": true,
+      "detail": "2"
+    },
+    {
+      "name": "credits 120",
+      "ok": true,
+      "detail": "120"
+    },
+    {
+      "name": "five roadmap phases",
+      "ok": true,
+      "detail": "5"
+    },
+    {
+      "name": "four master semesters",
+      "ok": true,
+      "detail": "4"
+    },
+    {
+      "name": "offline-first policy",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "master-ready contract",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "support-on-demand exists",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "NIR present all semesters",
+      "ok": true,
+      "detail": "[1,2,3,4]"
+    },
+    {
+      "name": "roadmap UI contains no comparison-school label",
+      "ok": true,
+      "detail": "forbidden comparison label found in Roadmap V3/UI source"
+    },
+    {
+      "name": "roadmap UI displays 09.04.01/11",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "main entry wires assets/css/academic-roadmap-v3.css",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "main entry wires assets/css/offline-library.css",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "main entry wires assets/css/offline-subject-pack.css",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "main entry wires assets/js/platform/offline-content-library.js",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "main entry wires assets/js/platform/academic-roadmap-v3-bridge.js",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "main entry wires assets/js/platform/offline-library-ui.js",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "main entry wires assets/js/platform/offline-html-sandbox-guard.js",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "main entry wires assets/js/platform/offline-import-quota-guard.js",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "main entry wires assets/js/platform/offline-subject-pack-refcount-guard.js",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "main entry wires assets/js/platform/offline-subject-pack-manager.js",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "entry order assets/js/platform/site-runtime.js",
+      "ok": true,
+      "detail": "index=5912, previous=-1"
+    },
+    {
+      "name": "entry order assets/js/platform/offline-content-library.js",
+      "ok": true,
+      "detail": "index=5973, previous=5912"
+    },
+    {
+      "name": "entry order assets/js/main.js",
+      "ok": true,
+      "detail": "index=6708, previous=5973"
+    },
+    {
+      "name": "entry order assets/js/platform/academic-roadmap-v3-bridge.js",
+      "ok": true,
+      "detail": "index=6827, previous=6708"
+    },
+    {
+      "name": "entry order assets/js/platform/site-routing-bridge.js",
+      "ok": true,
+      "detail": "index=6902, previous=6827"
+    },
+    {
+      "name": "entry order assets/js/platform/offline-library-ui.js",
+      "ok": true,
+      "detail": "index=6970, previous=6902"
+    },
+    {
+      "name": "entry order assets/js/platform/offline-html-sandbox-guard.js",
+      "ok": true,
+      "detail": "index=7037, previous=6970"
+    },
+    {
+      "name": "entry order assets/js/platform/offline-import-quota-guard.js",
+      "ok": true,
+      "detail": "index=7112, previous=7037"
+    },
+    {
+      "name": "entry order assets/js/platform/offline-subject-pack-refcount-guard.js",
+      "ok": true,
+      "detail": "index=7262, previous=7112"
+    },
+    {
+      "name": "entry order assets/js/platform/offline-subject-pack-manager.js",
+      "ok": true,
+      "detail": "index=7346, previous=7262"
+    },
+    {
+      "name": "entry order assets/js/planning-main.js",
+      "ok": true,
+      "detail": "index=7496, previous=7346"
+    },
+    {
+      "name": "offline library uses IndexedDB",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "offline library supports file picker",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "offline library supports directory picker",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "offline library has directory fallback",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "offline JSON safety limit",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "offline pack remove contract",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "local HTML capture guard",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "local HTML sandbox has empty sandbox permissions",
+      "ok": true,
+      "detail": "sandbox attribute missing"
+    },
+    {
+      "name": "local HTML does not grant allow-scripts",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "local HTML object URL revoked",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "local import quota preflight",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "local import reserves free space",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "partial local import rolls back",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "quota guard intercepts picker actions before legacy handler",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "subject pack uses explicit cache name",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "base pack per-resource limit 5 MB",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "session pack explicit large limit 64 MB",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "subject pack probes actual browser resources",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "subject pack caches only same-origin",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "subject pack stores metadata not whole state",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "shared pack reference guard exists",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "shared pack guard patches manager remove",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "offline library feature enabled",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "local file library feature enabled",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "service worker remains gated OFF",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "roadmap manifest is shell cached",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "generic subject data remains excluded",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "no subject academic JSON precache",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "offline library shell asset cached",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "roadmap bridge shell asset cached",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "HTML sandbox guard shell asset cached",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "quota guard shell asset cached",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "subject pack manager shell asset cached",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "subject pack refcount guard shell asset cached",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "explicit content cache served before generic JSON exclusion",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "explicit content cache name matches manager",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "shell install iterates every shell asset",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "shell install validates each response before cache put",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "failed shell install deletes incomplete new cache",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "old shell caches removed only in activate",
+      "ok": true,
+      "detail": ""
+    }
+  ],
+  "failures": []
+}

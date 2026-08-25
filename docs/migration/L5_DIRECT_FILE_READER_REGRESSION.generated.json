@@ -1,0 +1,67 @@
+{
+  "generatedAt": "2026-08-25T00:14:34.934Z",
+  "baseUrl": "http://127.0.0.1:4173",
+  "checks": [
+    {
+      "name": "direct reader runtime ready",
+      "ok": true,
+      "detail": "{\"ok\":true,\"release\":\"BAUMAN_OFFLINE_DIRECT_FILE_READER_2026_08_24_R2\",\"textPreviewBytes\":300000,\"stored\":false,\"cancelSafe\":true}"
+    },
+    {
+      "name": "direct reader declares non-persistent mode",
+      "ok": true,
+      "detail": "{\"ok\":true,\"release\":\"BAUMAN_OFFLINE_DIRECT_FILE_READER_2026_08_24_R2\",\"textPreviewBytes\":300000,\"stored\":false,\"cancelSafe\":true}"
+    },
+    {
+      "name": "direct text preview is bounded",
+      "ok": true,
+      "detail": "300000"
+    },
+    {
+      "name": "direct text reader does not create IndexedDB pack",
+      "ok": true,
+      "detail": "{\"before\":[],\"after\":[]}"
+    },
+    {
+      "name": "direct text reader marks large preview truncated",
+      "ok": true,
+      "detail": "{\"name\":\"large-notes.txt\",\"size\":1048576,\"mime\":\"text/plain\",\"objectUrl\":false,\"truncated\":true}"
+    },
+    {
+      "name": "direct text reader does not read entire 1MB into DOM",
+      "ok": true,
+      "detail": "300000"
+    },
+    {
+      "name": "direct text reader shows selected filename",
+      "ok": true,
+      "detail": "large-notes.txt"
+    },
+    {
+      "name": "direct HTML uses empty sandbox permissions",
+      "ok": true,
+      "detail": "{\"sandbox\":\"\",\"breach\":false,\"src\":\"blob:http://127.0.0.1:4173/cb50f896-0498-45c5-a898-eabd59e84769\",\"note\":\"HTML local chạy trong sandbox không cấp quyền script hay truy cập Web App.\"}"
+    },
+    {
+      "name": "direct HTML cannot mutate parent",
+      "ok": true,
+      "detail": "{\"sandbox\":\"\",\"breach\":false,\"src\":\"blob:http://127.0.0.1:4173/cb50f896-0498-45c5-a898-eabd59e84769\",\"note\":\"HTML local chạy trong sandbox không cấp quyền script hay truy cập Web App.\"}"
+    },
+    {
+      "name": "direct HTML uses local object URL",
+      "ok": true,
+      "detail": "blob:http://127.0.0.1:4173/cb50f896-0498-45c5-a898-eabd59e84769"
+    },
+    {
+      "name": "direct HTML explains sandbox",
+      "ok": true,
+      "detail": "HTML local chạy trong sandbox không cấp quyền script hay truy cập Web App."
+    },
+    {
+      "name": "direct reader remains healthy after revoke",
+      "ok": true,
+      "detail": "{\"ok\":true,\"release\":\"BAUMAN_OFFLINE_DIRECT_FILE_READER_2026_08_24_R2\",\"textPreviewBytes\":300000,\"stored\":false,\"cancelSafe\":true}"
+    }
+  ],
+  "failures": []
+}

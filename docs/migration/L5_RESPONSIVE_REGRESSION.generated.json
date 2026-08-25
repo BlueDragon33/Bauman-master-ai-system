@@ -1,0 +1,820 @@
+{
+  "maxOverflowPx": 64,
+  "viewports": [
+    {
+      "id": "desktop",
+      "width": 1440,
+      "height": 900
+    },
+    {
+      "id": "laptop",
+      "width": 1280,
+      "height": 800
+    },
+    {
+      "id": "tablet",
+      "width": 820,
+      "height": 1180
+    },
+    {
+      "id": "mobile",
+      "width": 390,
+      "height": 844
+    }
+  ],
+  "pages": [
+    {
+      "viewport": "desktop",
+      "width": 1440,
+      "height": 900,
+      "id": "main",
+      "route": "/index.html",
+      "rootSelector": "#authScreen",
+      "metrics": {
+        "viewportMeta": true,
+        "scrollWidth": 1440,
+        "innerWidth": 1440,
+        "overflowX": 0,
+        "rootExists": true,
+        "rootWidth": 1440,
+        "rootHeight": 900,
+        "title": "Bauman Master AI · ИУ-5 · 09.04.01/11"
+      },
+      "runtime": {
+        "version": "2026.08.24-l5.10",
+        "enabled": true,
+        "cacheEnabled": false,
+        "base": "http://127.0.0.1:4173/index.html",
+        "siteRoot": "http://127.0.0.1:4173/",
+        "currentPath": "/index.html",
+        "serviceWorkerSupported": true
+      },
+      "routing": {
+        "ok": true,
+        "version": "2026.08.22-l5.2",
+        "wrapped": {
+          "inPage": true,
+          "newTab": true,
+          "editor": true
+        },
+        "subjects": 8,
+        "invalid": []
+      }
+    },
+    {
+      "viewport": "desktop",
+      "width": 1440,
+      "height": 900,
+      "id": "ai",
+      "route": "/subjects/ai/index.html",
+      "rootSelector": ".app",
+      "metrics": {
+        "viewportMeta": true,
+        "scrollWidth": 1440,
+        "innerWidth": 1440,
+        "overflowX": 0,
+        "rootExists": true,
+        "rootWidth": 1440,
+        "rootHeight": 900,
+        "title": "Machine Learning, Neural Systems và đánh giá mô hình · Bauman Subject"
+      },
+      "runtime": null,
+      "routing": null
+    },
+    {
+      "viewport": "desktop",
+      "width": 1440,
+      "height": 900,
+      "id": "foundation",
+      "route": "/subjects/foundation/index.html",
+      "rootSelector": ".app",
+      "metrics": {
+        "viewportMeta": true,
+        "scrollWidth": 1440,
+        "innerWidth": 1440,
+        "overflowX": 0,
+        "rootExists": true,
+        "rootWidth": 1440,
+        "rootHeight": 900,
+        "title": "Dự bị STANKIN, khoa học nền và kỹ năng học đại học Nga · Bauman Subject"
+      },
+      "runtime": null,
+      "routing": null
+    },
+    {
+      "viewport": "desktop",
+      "width": 1440,
+      "height": 900,
+      "id": "math",
+      "route": "/subjects/math/index.html",
+      "rootSelector": "#app",
+      "metrics": {
+        "viewportMeta": true,
+        "scrollWidth": 1440,
+        "innerWidth": 1440,
+        "overflowX": 0,
+        "rootExists": true,
+        "rootWidth": 1440,
+        "rootHeight": 1148.171875,
+        "title": "Toán Bauman"
+      },
+      "runtime": null,
+      "routing": null
+    },
+    {
+      "viewport": "desktop",
+      "width": 1440,
+      "height": 900,
+      "id": "programming",
+      "route": "/subjects/programming/index.html",
+      "rootSelector": "#app",
+      "metrics": {
+        "viewportMeta": true,
+        "scrollWidth": 1440,
+        "innerWidth": 1440,
+        "overflowX": 0,
+        "rootExists": true,
+        "rootWidth": 1440,
+        "rootHeight": 1192.703125,
+        "title": "Programming Bauman · INFO Clean Render"
+      },
+      "runtime": null,
+      "routing": null
+    },
+    {
+      "viewport": "desktop",
+      "width": 1440,
+      "height": 900,
+      "id": "research",
+      "route": "/subjects/research/index.html",
+      "rootSelector": ".app",
+      "metrics": {
+        "viewportMeta": true,
+        "scrollWidth": 1440,
+        "innerWidth": 1440,
+        "overflowX": 0,
+        "rootExists": true,
+        "rootWidth": 1440,
+        "rootHeight": 900,
+        "title": "Phương pháp nghiên cứu, НИР và luận văn ВКР · Bauman Subject"
+      },
+      "runtime": null,
+      "routing": null
+    },
+    {
+      "viewport": "desktop",
+      "width": 1440,
+      "height": 900,
+      "id": "russian",
+      "route": "/subjects/russian/index.html",
+      "rootSelector": "#app",
+      "metrics": {
+        "viewportMeta": true,
+        "scrollWidth": 1440,
+        "innerWidth": 1440,
+        "overflowX": 0,
+        "rootExists": true,
+        "rootWidth": 1440,
+        "rootHeight": 1059.09375,
+        "title": "Tiếng Nga Bauman · Russian Survival Master V13.40 Storage Right Stack"
+      },
+      "runtime": null,
+      "routing": null
+    },
+    {
+      "viewport": "desktop",
+      "width": 1440,
+      "height": 900,
+      "id": "signal",
+      "route": "/subjects/signal/index.html",
+      "rootSelector": ".app",
+      "metrics": {
+        "viewportMeta": true,
+        "scrollWidth": 1440,
+        "innerWidth": 1440,
+        "overflowX": 0,
+        "rootExists": true,
+        "rootWidth": 1440,
+        "rootHeight": 900,
+        "title": "Xử lý tín hiệu, chuỗi thời gian, telemetry và cảm biến · Bauman Subject"
+      },
+      "runtime": null,
+      "routing": null
+    },
+    {
+      "viewport": "desktop",
+      "width": 1440,
+      "height": 900,
+      "id": "systems",
+      "route": "/subjects/systems/index.html",
+      "rootSelector": ".app",
+      "metrics": {
+        "viewportMeta": true,
+        "scrollWidth": 1440,
+        "innerWidth": 1440,
+        "overflowX": 0,
+        "rootExists": true,
+        "rootWidth": 1440,
+        "rootHeight": 900,
+        "title": "АСОИУ/АСОИУ, hệ tự hành và độ tin cậy hệ thống · Bauman Subject"
+      },
+      "runtime": null,
+      "routing": null
+    },
+    {
+      "viewport": "laptop",
+      "width": 1280,
+      "height": 800,
+      "id": "main",
+      "route": "/index.html",
+      "rootSelector": "#authScreen",
+      "metrics": {
+        "viewportMeta": true,
+        "scrollWidth": 1280,
+        "innerWidth": 1280,
+        "overflowX": 0,
+        "rootExists": true,
+        "rootWidth": 1280,
+        "rootHeight": 800,
+        "title": "Bauman Master AI · ИУ-5 · 09.04.01/11"
+      },
+      "runtime": {
+        "version": "2026.08.24-l5.10",
+        "enabled": true,
+        "cacheEnabled": false,
+        "base": "http://127.0.0.1:4173/index.html",
+        "siteRoot": "http://127.0.0.1:4173/",
+        "currentPath": "/index.html",
+        "serviceWorkerSupported": true
+      },
+      "routing": {
+        "ok": true,
+        "version": "2026.08.22-l5.2",
+        "wrapped": {
+          "inPage": true,
+          "newTab": true,
+          "editor": true
+        },
+        "subjects": 8,
+        "invalid": []
+      }
+    },
+    {
+      "viewport": "laptop",
+      "width": 1280,
+      "height": 800,
+      "id": "ai",
+      "route": "/subjects/ai/index.html",
+      "rootSelector": ".app",
+      "metrics": {
+        "viewportMeta": true,
+        "scrollWidth": 1280,
+        "innerWidth": 1280,
+        "overflowX": 0,
+        "rootExists": true,
+        "rootWidth": 1280,
+        "rootHeight": 800,
+        "title": "Machine Learning, Neural Systems và đánh giá mô hình · Bauman Subject"
+      },
+      "runtime": null,
+      "routing": null
+    },
+    {
+      "viewport": "laptop",
+      "width": 1280,
+      "height": 800,
+      "id": "foundation",
+      "route": "/subjects/foundation/index.html",
+      "rootSelector": ".app",
+      "metrics": {
+        "viewportMeta": true,
+        "scrollWidth": 1280,
+        "innerWidth": 1280,
+        "overflowX": 0,
+        "rootExists": true,
+        "rootWidth": 1280,
+        "rootHeight": 800,
+        "title": "Dự bị STANKIN, khoa học nền và kỹ năng học đại học Nga · Bauman Subject"
+      },
+      "runtime": null,
+      "routing": null
+    },
+    {
+      "viewport": "laptop",
+      "width": 1280,
+      "height": 800,
+      "id": "math",
+      "route": "/subjects/math/index.html",
+      "rootSelector": "#app",
+      "metrics": {
+        "viewportMeta": true,
+        "scrollWidth": 1280,
+        "innerWidth": 1280,
+        "overflowX": 0,
+        "rootExists": true,
+        "rootWidth": 1280,
+        "rootHeight": 1060.28125,
+        "title": "Toán Bauman"
+      },
+      "runtime": null,
+      "routing": null
+    },
+    {
+      "viewport": "laptop",
+      "width": 1280,
+      "height": 800,
+      "id": "programming",
+      "route": "/subjects/programming/index.html",
+      "rootSelector": "#app",
+      "metrics": {
+        "viewportMeta": true,
+        "scrollWidth": 1280,
+        "innerWidth": 1280,
+        "overflowX": 0,
+        "rootExists": true,
+        "rootWidth": 1280,
+        "rootHeight": 1450.9375,
+        "title": "Programming Bauman · INFO Clean Render"
+      },
+      "runtime": null,
+      "routing": null
+    },
+    {
+      "viewport": "laptop",
+      "width": 1280,
+      "height": 800,
+      "id": "research",
+      "route": "/subjects/research/index.html",
+      "rootSelector": ".app",
+      "metrics": {
+        "viewportMeta": true,
+        "scrollWidth": 1280,
+        "innerWidth": 1280,
+        "overflowX": 0,
+        "rootExists": true,
+        "rootWidth": 1280,
+        "rootHeight": 800,
+        "title": "Phương pháp nghiên cứu, НИР và luận văn ВКР · Bauman Subject"
+      },
+      "runtime": null,
+      "routing": null
+    },
+    {
+      "viewport": "laptop",
+      "width": 1280,
+      "height": 800,
+      "id": "russian",
+      "route": "/subjects/russian/index.html",
+      "rootSelector": "#app",
+      "metrics": {
+        "viewportMeta": true,
+        "scrollWidth": 1280,
+        "innerWidth": 1280,
+        "overflowX": 0,
+        "rootExists": true,
+        "rootWidth": 1280,
+        "rootHeight": 1152.1875,
+        "title": "Tiếng Nga Bauman · Russian Survival Master V13.40 Storage Right Stack"
+      },
+      "runtime": null,
+      "routing": null
+    },
+    {
+      "viewport": "laptop",
+      "width": 1280,
+      "height": 800,
+      "id": "signal",
+      "route": "/subjects/signal/index.html",
+      "rootSelector": ".app",
+      "metrics": {
+        "viewportMeta": true,
+        "scrollWidth": 1280,
+        "innerWidth": 1280,
+        "overflowX": 0,
+        "rootExists": true,
+        "rootWidth": 1280,
+        "rootHeight": 800,
+        "title": "Xử lý tín hiệu, chuỗi thời gian, telemetry và cảm biến · Bauman Subject"
+      },
+      "runtime": null,
+      "routing": null
+    },
+    {
+      "viewport": "laptop",
+      "width": 1280,
+      "height": 800,
+      "id": "systems",
+      "route": "/subjects/systems/index.html",
+      "rootSelector": ".app",
+      "metrics": {
+        "viewportMeta": true,
+        "scrollWidth": 1280,
+        "innerWidth": 1280,
+        "overflowX": 0,
+        "rootExists": true,
+        "rootWidth": 1280,
+        "rootHeight": 800,
+        "title": "АСОИУ/АСОИУ, hệ tự hành và độ tin cậy hệ thống · Bauman Subject"
+      },
+      "runtime": null,
+      "routing": null
+    },
+    {
+      "viewport": "tablet",
+      "width": 820,
+      "height": 1180,
+      "id": "main",
+      "route": "/index.html",
+      "rootSelector": "#authScreen",
+      "metrics": {
+        "viewportMeta": true,
+        "scrollWidth": 820,
+        "innerWidth": 820,
+        "overflowX": 0,
+        "rootExists": true,
+        "rootWidth": 820,
+        "rootHeight": 1180,
+        "title": "Bauman Master AI · ИУ-5 · 09.04.01/11"
+      },
+      "runtime": {
+        "version": "2026.08.24-l5.10",
+        "enabled": true,
+        "cacheEnabled": false,
+        "base": "http://127.0.0.1:4173/index.html",
+        "siteRoot": "http://127.0.0.1:4173/",
+        "currentPath": "/index.html",
+        "serviceWorkerSupported": true
+      },
+      "routing": {
+        "ok": true,
+        "version": "2026.08.22-l5.2",
+        "wrapped": {
+          "inPage": true,
+          "newTab": true,
+          "editor": true
+        },
+        "subjects": 8,
+        "invalid": []
+      }
+    },
+    {
+      "viewport": "tablet",
+      "width": 820,
+      "height": 1180,
+      "id": "ai",
+      "route": "/subjects/ai/index.html",
+      "rootSelector": ".app",
+      "metrics": {
+        "viewportMeta": true,
+        "scrollWidth": 820,
+        "innerWidth": 820,
+        "overflowX": 0,
+        "rootExists": true,
+        "rootWidth": 820,
+        "rootHeight": 2102.609375,
+        "title": "Machine Learning, Neural Systems và đánh giá mô hình · Bauman Subject"
+      },
+      "runtime": null,
+      "routing": null
+    },
+    {
+      "viewport": "tablet",
+      "width": 820,
+      "height": 1180,
+      "id": "foundation",
+      "route": "/subjects/foundation/index.html",
+      "rootSelector": ".app",
+      "metrics": {
+        "viewportMeta": true,
+        "scrollWidth": 820,
+        "innerWidth": 820,
+        "overflowX": 0,
+        "rootExists": true,
+        "rootWidth": 820,
+        "rootHeight": 2102.609375,
+        "title": "Dự bị STANKIN, khoa học nền và kỹ năng học đại học Nga · Bauman Subject"
+      },
+      "runtime": null,
+      "routing": null
+    },
+    {
+      "viewport": "tablet",
+      "width": 820,
+      "height": 1180,
+      "id": "math",
+      "route": "/subjects/math/index.html",
+      "rootSelector": "#app",
+      "metrics": {
+        "viewportMeta": true,
+        "scrollWidth": 820,
+        "innerWidth": 820,
+        "overflowX": 0,
+        "rootExists": true,
+        "rootWidth": 820,
+        "rootHeight": 2472.3125,
+        "title": "Toán Bauman"
+      },
+      "runtime": null,
+      "routing": null
+    },
+    {
+      "viewport": "tablet",
+      "width": 820,
+      "height": 1180,
+      "id": "programming",
+      "route": "/subjects/programming/index.html",
+      "rootSelector": "#app",
+      "metrics": {
+        "viewportMeta": true,
+        "scrollWidth": 820,
+        "innerWidth": 820,
+        "overflowX": 0,
+        "rootExists": true,
+        "rootWidth": 820,
+        "rootHeight": 2236.046875,
+        "title": "Programming Bauman · INFO Clean Render"
+      },
+      "runtime": null,
+      "routing": null
+    },
+    {
+      "viewport": "tablet",
+      "width": 820,
+      "height": 1180,
+      "id": "research",
+      "route": "/subjects/research/index.html",
+      "rootSelector": ".app",
+      "metrics": {
+        "viewportMeta": true,
+        "scrollWidth": 820,
+        "innerWidth": 820,
+        "overflowX": 0,
+        "rootExists": true,
+        "rootWidth": 820,
+        "rootHeight": 2048.609375,
+        "title": "Phương pháp nghiên cứu, НИР và luận văn ВКР · Bauman Subject"
+      },
+      "runtime": null,
+      "routing": null
+    },
+    {
+      "viewport": "tablet",
+      "width": 820,
+      "height": 1180,
+      "id": "russian",
+      "route": "/subjects/russian/index.html",
+      "rootSelector": "#app",
+      "metrics": {
+        "viewportMeta": true,
+        "scrollWidth": 820,
+        "innerWidth": 820,
+        "overflowX": 0,
+        "rootExists": true,
+        "rootWidth": 820,
+        "rootHeight": 2440.171875,
+        "title": "Tiếng Nga Bauman · Russian Survival Master V13.40 Storage Right Stack"
+      },
+      "runtime": null,
+      "routing": null
+    },
+    {
+      "viewport": "tablet",
+      "width": 820,
+      "height": 1180,
+      "id": "signal",
+      "route": "/subjects/signal/index.html",
+      "rootSelector": ".app",
+      "metrics": {
+        "viewportMeta": true,
+        "scrollWidth": 820,
+        "innerWidth": 820,
+        "overflowX": 0,
+        "rootExists": true,
+        "rootWidth": 820,
+        "rootHeight": 2087.609375,
+        "title": "Xử lý tín hiệu, chuỗi thời gian, telemetry và cảm biến · Bauman Subject"
+      },
+      "runtime": null,
+      "routing": null
+    },
+    {
+      "viewport": "tablet",
+      "width": 820,
+      "height": 1180,
+      "id": "systems",
+      "route": "/subjects/systems/index.html",
+      "rootSelector": ".app",
+      "metrics": {
+        "viewportMeta": true,
+        "scrollWidth": 820,
+        "innerWidth": 820,
+        "overflowX": 0,
+        "rootExists": true,
+        "rootWidth": 820,
+        "rootHeight": 2063.609375,
+        "title": "АСОИУ/АСОИУ, hệ tự hành và độ tin cậy hệ thống · Bauman Subject"
+      },
+      "runtime": null,
+      "routing": null
+    },
+    {
+      "viewport": "mobile",
+      "width": 390,
+      "height": 844,
+      "id": "main",
+      "route": "/index.html",
+      "rootSelector": "#authScreen",
+      "metrics": {
+        "viewportMeta": true,
+        "scrollWidth": 390,
+        "innerWidth": 390,
+        "overflowX": 0,
+        "rootExists": true,
+        "rootWidth": 390,
+        "rootHeight": 844,
+        "title": "Bauman Master AI · ИУ-5 · 09.04.01/11"
+      },
+      "runtime": {
+        "version": "2026.08.24-l5.10",
+        "enabled": true,
+        "cacheEnabled": false,
+        "base": "http://127.0.0.1:4173/index.html",
+        "siteRoot": "http://127.0.0.1:4173/",
+        "currentPath": "/index.html",
+        "serviceWorkerSupported": true
+      },
+      "routing": {
+        "ok": true,
+        "version": "2026.08.22-l5.2",
+        "wrapped": {
+          "inPage": true,
+          "newTab": true,
+          "editor": true
+        },
+        "subjects": 8,
+        "invalid": []
+      }
+    },
+    {
+      "viewport": "mobile",
+      "width": 390,
+      "height": 844,
+      "id": "ai",
+      "route": "/subjects/ai/index.html",
+      "rootSelector": ".app",
+      "metrics": {
+        "viewportMeta": true,
+        "scrollWidth": 390,
+        "innerWidth": 390,
+        "overflowX": 0,
+        "rootExists": true,
+        "rootWidth": 390,
+        "rootHeight": 2412.390625,
+        "title": "Machine Learning, Neural Systems và đánh giá mô hình · Bauman Subject"
+      },
+      "runtime": null,
+      "routing": null
+    },
+    {
+      "viewport": "mobile",
+      "width": 390,
+      "height": 844,
+      "id": "foundation",
+      "route": "/subjects/foundation/index.html",
+      "rootSelector": ".app",
+      "metrics": {
+        "viewportMeta": true,
+        "scrollWidth": 390,
+        "innerWidth": 390,
+        "overflowX": 0,
+        "rootExists": true,
+        "rootWidth": 390,
+        "rootHeight": 2451.390625,
+        "title": "Dự bị STANKIN, khoa học nền và kỹ năng học đại học Nga · Bauman Subject"
+      },
+      "runtime": null,
+      "routing": null
+    },
+    {
+      "viewport": "mobile",
+      "width": 390,
+      "height": 844,
+      "id": "math",
+      "route": "/subjects/math/index.html",
+      "rootSelector": "#app",
+      "metrics": {
+        "viewportMeta": true,
+        "scrollWidth": 390,
+        "innerWidth": 390,
+        "overflowX": 0,
+        "rootExists": true,
+        "rootWidth": 390,
+        "rootHeight": 1524.3125,
+        "title": "Toán Bauman"
+      },
+      "runtime": null,
+      "routing": null
+    },
+    {
+      "viewport": "mobile",
+      "width": 390,
+      "height": 844,
+      "id": "programming",
+      "route": "/subjects/programming/index.html",
+      "rootSelector": "#app",
+      "metrics": {
+        "viewportMeta": true,
+        "scrollWidth": 390,
+        "innerWidth": 390,
+        "overflowX": 0,
+        "rootExists": true,
+        "rootWidth": 390,
+        "rootHeight": 3987.40625,
+        "title": "Programming Bauman · INFO Clean Render"
+      },
+      "runtime": null,
+      "routing": null
+    },
+    {
+      "viewport": "mobile",
+      "width": 390,
+      "height": 844,
+      "id": "research",
+      "route": "/subjects/research/index.html",
+      "rootSelector": ".app",
+      "metrics": {
+        "viewportMeta": true,
+        "scrollWidth": 390,
+        "innerWidth": 390,
+        "overflowX": 0,
+        "rootExists": true,
+        "rootWidth": 390,
+        "rootHeight": 2346.609375,
+        "title": "Phương pháp nghiên cứu, НИР và luận văn ВКР · Bauman Subject"
+      },
+      "runtime": null,
+      "routing": null
+    },
+    {
+      "viewport": "mobile",
+      "width": 390,
+      "height": 844,
+      "id": "russian",
+      "route": "/subjects/russian/index.html",
+      "rootSelector": "#app",
+      "metrics": {
+        "viewportMeta": true,
+        "scrollWidth": 390,
+        "innerWidth": 390,
+        "overflowX": 0,
+        "rootExists": true,
+        "rootWidth": 390,
+        "rootHeight": 3919.828125,
+        "title": "Tiếng Nga Bauman · Russian Survival Master V13.40 Storage Right Stack"
+      },
+      "runtime": null,
+      "routing": null
+    },
+    {
+      "viewport": "mobile",
+      "width": 390,
+      "height": 844,
+      "id": "signal",
+      "route": "/subjects/signal/index.html",
+      "rootSelector": ".app",
+      "metrics": {
+        "viewportMeta": true,
+        "scrollWidth": 390,
+        "innerWidth": 390,
+        "overflowX": 0,
+        "rootExists": true,
+        "rootWidth": 390,
+        "rootHeight": 2366.75,
+        "title": "Xử lý tín hiệu, chuỗi thời gian, telemetry và cảm biến · Bauman Subject"
+      },
+      "runtime": null,
+      "routing": null
+    },
+    {
+      "viewport": "mobile",
+      "width": 390,
+      "height": 844,
+      "id": "systems",
+      "route": "/subjects/systems/index.html",
+      "rootSelector": ".app",
+      "metrics": {
+        "viewportMeta": true,
+        "scrollWidth": 390,
+        "innerWidth": 390,
+        "overflowX": 0,
+        "rootExists": true,
+        "rootWidth": 390,
+        "rootHeight": 2386.890625,
+        "title": "АСОИУ/АСОИУ, hệ tự hành và độ tin cậy hệ thống · Bauman Subject"
+      },
+      "runtime": null,
+      "routing": null
+    }
+  ],
+  "failures": []
+}

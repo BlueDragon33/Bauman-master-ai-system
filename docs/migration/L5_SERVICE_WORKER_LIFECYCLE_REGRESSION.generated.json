@@ -1,0 +1,93 @@
+{
+  "generatedAt": "2026-08-25T00:13:06.429Z",
+  "workerVersion": "2026.08.24-l5.10",
+  "runtimeVersion": "2026.08.24-l5.10",
+  "checks": [
+    {
+      "name": "runtime and worker version match",
+      "ok": true,
+      "detail": "2026.08.24-l5.10 vs 2026.08.24-l5.10"
+    },
+    {
+      "name": "service worker rollout remains gated off",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "shell install is atomic",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "old versioned shell caches are cleaned only on activate",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "explicit offline cache has canonical query-free key",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "generic subject data is not shell-cache eligible",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "roadmap manifest is explicit shell exception",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "direct local reader wired in main",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "direct local reader cached in shell",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "explicit cache promise created before respondWith",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "shell cache promise created before respondWith",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "background refresh promise registered before respondWith",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "no late waitUntil inside respondWith body",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "explicit pack is served before shell/network fallback",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "cached explicit resource revalidates in background",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "cached shell resource revalidates in background",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "network is final fallback",
+      "ok": true,
+      "detail": ""
+    }
+  ],
+  "failures": []
+}

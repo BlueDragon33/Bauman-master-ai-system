@@ -1,0 +1,310 @@
+{
+  "generatedAt": "2026-08-25T00:14:35.992Z",
+  "baseUrl": "http://127.0.0.1:4173",
+  "checks": [
+    {
+      "name": "main login exposes Web App shell",
+      "ok": true,
+      "detail": "{\"loggedIn\":true,\"appVisible\":true}"
+    },
+    {
+      "name": "roadmap bridge loaded",
+      "ok": true,
+      "detail": "{\"ok\":true,\"release\":\"BAUMAN_IU5_ROADMAP_V3_BRIDGE_2026_08_24\",\"loaded\":true,\"displayCode\":\"09.04.01/11\",\"department\":\"ИУ-5\",\"error\":null}"
+    },
+    {
+      "name": "roadmap renders five phases",
+      "ok": true,
+      "detail": "5"
+    },
+    {
+      "name": "roadmap renders four semesters",
+      "ok": true,
+      "detail": "4"
+    },
+    {
+      "name": "roadmap UI contains display code",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "roadmap UI contains no comparison-school label",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "offline IndexedDB runtime ready",
+      "ok": true,
+      "detail": "{\"ok\":true,\"indexedDB\":true,\"filePicker\":true,\"directoryPicker\":true,\"version\":\"2026.08.24-v1\"}"
+    },
+    {
+      "name": "offline UI runtime ready",
+      "ok": true,
+      "detail": "{\"ok\":true,\"release\":\"BAUMAN_OFFLINE_LIBRARY_UI_2026_08_24\",\"button\":true,\"library\":{\"ok\":true,\"indexedDB\":true,\"filePicker\":true,\"directoryPicker\":true,\"version\":\"2026.08.24-v1\"}}"
+    },
+    {
+      "name": "quota guard runtime ready",
+      "ok": true,
+      "detail": "{\"ok\":true,\"release\":\"BAUMAN_OFFLINE_IMPORT_QUOTA_GUARD_2026_08_24\",\"minReserveBytes\":2097152,\"rollback\":true}"
+    },
+    {
+      "name": "subject pack manager runtime ready",
+      "ok": true,
+      "detail": "{\"ok\":true,\"release\":\"BAUMAN_OFFLINE_SUBJECT_PACK_MANAGER_2026_08_24\",\"cacheStorage\":true,\"library\":true,\"baseMaxResourceBytes\":5242880,\"sessionMaxResourceBytes\":67108864}"
+    },
+    {
+      "name": "subject pack refcount manager patch ready",
+      "ok": true,
+      "detail": "{\"ok\":true,\"release\":\"BAUMAN_OFFLINE_SUBJECT_PACK_REFCOUNT_GUARD_2026_08_24\",\"cacheName\":\"bauman-offline-content-v1\",\"managerPatched\":true}"
+    },
+    {
+      "name": "roadmap phase state persists through main repository path",
+      "ok": true,
+      "detail": "{\"saved\":\"ai-asoiu-research-bridge\",\"active\":\"ai-asoiu-research-bridge\"}"
+    },
+    {
+      "name": "local file safe import roundtrip",
+      "ok": true,
+      "detail": "{\"result\":{\"packId\":\"__l5_local_roundtrip__\",\"fileCount\":3,\"bytes\":169},\"count\":3,\"names\":[\"note.md\",\"sample.json\",\"unsafe.html\"]}"
+    },
+    {
+      "name": "browser-console-error",
+      "ok": false,
+      "detail": "Blocked script execution in 'blob:http://127.0.0.1:4173/59de9e9f-0854-470c-8c00-dc75ef6af9c4' because the document's frame is sandboxed and the 'allow-scripts' permission is not set."
+    },
+    {
+      "name": "local HTML preview has empty sandbox permission set",
+      "ok": true,
+      "detail": "{\"value\":\"\",\"breach\":false,\"note\":\"HTML trên máy được render trong iframe sandbox không cấp script, same-origin, form, popup hay quyền truy cập Web App.\"}"
+    },
+    {
+      "name": "local HTML script cannot mutate parent",
+      "ok": true,
+      "detail": "{\"value\":\"\",\"breach\":false,\"note\":\"HTML trên máy được render trong iframe sandbox không cấp script, same-origin, form, popup hay quyền truy cập Web App.\"}"
+    },
+    {
+      "name": "sandbox UI explains isolation",
+      "ok": true,
+      "detail": "HTML trên máy được render trong iframe sandbox không cấp script, same-origin, form, popup hay quyền truy cập Web App."
+    },
+    {
+      "name": "local pack remove roundtrip",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "quota preflight rejects insufficient capacity",
+      "ok": true,
+      "detail": "{\"supported\":true,\"rejected\":true,\"name\":\"QuotaPreflightError\"}"
+    },
+    {
+      "name": "failed local import rolls back partial files",
+      "ok": true,
+      "detail": "{\"threw\":true,\"remaining\":0}"
+    },
+    {
+      "name": "refcount guard preserves shared cache on first pack removal",
+      "ok": true,
+      "detail": "{\"first\":{\"packId\":\"subject-l5-base\",\"removedUrls\":0,\"preservedShared\":1},\"afterFirst\":true,\"second\":{\"packId\":\"subject-l5-session\",\"removedUrls\":1,\"preservedShared\":0},\"afterSecond\":false}"
+    },
+    {
+      "name": "refcount guard removes cache after final reference",
+      "ok": true,
+      "detail": "{\"first\":{\"packId\":\"subject-l5-base\",\"removedUrls\":0,\"preservedShared\":1},\"afterFirst\":true,\"second\":{\"packId\":\"subject-l5-session\",\"removedUrls\":1,\"preservedShared\":0},\"afterSecond\":false}"
+    },
+    {
+      "name": "foundation base offline pack created",
+      "ok": true,
+      "detail": "{\"packId\":\"subject-foundation-base\",\"ok\":24,\"bytes\":561194,\"skipped\":[],\"failed\":[]}"
+    },
+    {
+      "name": "foundation base offline pack has no >5MB auto-cached resource",
+      "ok": true,
+      "detail": "[]"
+    },
+    {
+      "name": "foundation base offline pack has no fetch failures",
+      "ok": true,
+      "detail": "[]"
+    },
+    {
+      "name": "math base offline pack created",
+      "ok": true,
+      "detail": "{\"packId\":\"subject-math-base\",\"ok\":37,\"bytes\":1995171,\"skipped\":[],\"failed\":[]}"
+    },
+    {
+      "name": "math base offline pack has no >5MB auto-cached resource",
+      "ok": true,
+      "detail": "[]"
+    },
+    {
+      "name": "math base offline pack has no fetch failures",
+      "ok": true,
+      "detail": "[]"
+    },
+    {
+      "name": "russian base offline pack created",
+      "ok": true,
+      "detail": "{\"packId\":\"subject-russian-base\",\"ok\":20,\"bytes\":3410976,\"skipped\":[],\"failed\":[]}"
+    },
+    {
+      "name": "russian base offline pack has no >5MB auto-cached resource",
+      "ok": true,
+      "detail": "[]"
+    },
+    {
+      "name": "russian base offline pack has no fetch failures",
+      "ok": true,
+      "detail": "[]"
+    },
+    {
+      "name": "test service worker activates",
+      "ok": true,
+      "detail": "{\"ok\":true,\"scope\":\"http://127.0.0.1:4173/\",\"controller\":true,\"script\":\"http://127.0.0.1:4173/service-worker.js?l5-offline-browser=1\"}"
+    },
+    {
+      "name": "test service worker controls main page",
+      "ok": true,
+      "detail": "{\"ok\":true,\"scope\":\"http://127.0.0.1:4173/\",\"controller\":true,\"script\":\"http://127.0.0.1:4173/service-worker.js?l5-offline-browser=1\"}"
+    },
+    {
+      "name": "main login exposes Web App shell",
+      "ok": true,
+      "detail": "{\"loggedIn\":true,\"appVisible\":true}"
+    },
+    {
+      "name": "main offline navigation",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "main has no failed same-origin request",
+      "ok": true,
+      "detail": "[]"
+    },
+    {
+      "name": "main offline UI/data probe",
+      "ok": true,
+      "detail": "{\"ok\":true,\"textLength\":2833}"
+    },
+    {
+      "name": "foundation offline navigation",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "foundation has no failed same-origin request",
+      "ok": true,
+      "detail": "[]"
+    },
+    {
+      "name": "foundation offline UI/data probe",
+      "ok": true,
+      "detail": "{\"ok\":true,\"textLength\":1128,\"title\":\"Dự bị STANKIN, khoa học nền và kỹ năng học đại học Nga · Bauman Subject\"}"
+    },
+    {
+      "name": "math offline navigation",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "math has no failed same-origin request",
+      "ok": true,
+      "detail": "[]"
+    },
+    {
+      "name": "math offline UI/data probe",
+      "ok": true,
+      "detail": "{\"ok\":true,\"textLength\":13780,\"legacyRequested\":false,\"title\":\"Toán Bauman\"}"
+    },
+    {
+      "name": "russian offline navigation",
+      "ok": true,
+      "detail": ""
+    },
+    {
+      "name": "russian has no failed same-origin request",
+      "ok": true,
+      "detail": "[]"
+    },
+    {
+      "name": "russian offline UI/data probe",
+      "ok": true,
+      "detail": "{\"ok\":true,\"textLength\":2307,\"heavy\":[],\"title\":\"Tiếng Nga Bauman · Russian Survival Master V13.40 Storage Right Stack\"}"
+    }
+  ],
+  "packs": [
+    {
+      "id": "foundation",
+      "packId": "subject-foundation-base",
+      "ok": 24,
+      "bytes": 561194,
+      "skipped": [],
+      "failed": []
+    },
+    {
+      "id": "math",
+      "packId": "subject-math-base",
+      "ok": 37,
+      "bytes": 1995171,
+      "skipped": [],
+      "failed": []
+    },
+    {
+      "id": "russian",
+      "packId": "subject-russian-base",
+      "ok": 20,
+      "bytes": 3410976,
+      "skipped": [],
+      "failed": []
+    }
+  ],
+  "offlineRoutes": [
+    {
+      "label": "main",
+      "route": "/index.html",
+      "navError": "",
+      "failed": [],
+      "probe": {
+        "ok": true,
+        "textLength": 2833
+      }
+    },
+    {
+      "label": "foundation",
+      "route": "/subjects/foundation/index.html",
+      "navError": "",
+      "failed": [],
+      "probe": {
+        "ok": true,
+        "textLength": 1128,
+        "title": "Dự bị STANKIN, khoa học nền và kỹ năng học đại học Nga · Bauman Subject"
+      }
+    },
+    {
+      "label": "math",
+      "route": "/subjects/math/index.html",
+      "navError": "",
+      "failed": [],
+      "probe": {
+        "ok": true,
+        "textLength": 13780,
+        "legacyRequested": false,
+        "title": "Toán Bauman"
+      }
+    },
+    {
+      "label": "russian",
+      "route": "/subjects/russian/index.html",
+      "navError": "",
+      "failed": [],
+      "probe": {
+        "ok": true,
+        "textLength": 2307,
+        "heavy": [],
+        "title": "Tiếng Nga Bauman · Russian Survival Master V13.40 Storage Right Stack"
+      }
+    }
+  ],
+  "failures": []
+}

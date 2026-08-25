@@ -1,0 +1,212 @@
+{
+  "largeBytes": 5242880,
+  "settleMs": 1800,
+  "interactionMs": 500,
+  "pages": [
+    {
+      "id": "main",
+      "route": "/index.html",
+      "startupJsonCount": 1,
+      "startupJsonBytes": 9454,
+      "startupLarge": [],
+      "allJsonCount": 1,
+      "interaction": {
+        "checks": []
+      }
+    },
+    {
+      "id": "ai",
+      "route": "/subjects/ai/index.html",
+      "startupJsonCount": 7,
+      "startupJsonBytes": 550553,
+      "startupLarge": [],
+      "allJsonCount": 7,
+      "interaction": {
+        "checks": []
+      }
+    },
+    {
+      "id": "foundation",
+      "route": "/subjects/foundation/index.html",
+      "startupJsonCount": 11,
+      "startupJsonBytes": 335987,
+      "startupLarge": [],
+      "allJsonCount": 11,
+      "interaction": {
+        "checks": []
+      }
+    },
+    {
+      "id": "math",
+      "route": "/subjects/math/index.html",
+      "startupJsonCount": 7,
+      "startupJsonBytes": 512851,
+      "startupLarge": [],
+      "allJsonCount": 8,
+      "interaction": {
+        "checks": [
+          {
+            "name": "e246-self-check",
+            "result": {
+              "ok": true,
+              "legacyPath": "data/lessons_deferred.json"
+            }
+          }
+        ]
+      }
+    },
+    {
+      "id": "programming",
+      "route": "/subjects/programming/index.html",
+      "startupJsonCount": 15,
+      "startupJsonBytes": 2180074,
+      "startupLarge": [],
+      "allJsonCount": 15,
+      "interaction": {
+        "checks": []
+      }
+    },
+    {
+      "id": "research",
+      "route": "/subjects/research/index.html",
+      "startupJsonCount": 7,
+      "startupJsonBytes": 506030,
+      "startupLarge": [],
+      "allJsonCount": 7,
+      "interaction": {
+        "checks": []
+      }
+    },
+    {
+      "id": "russian",
+      "route": "/subjects/russian/index.html",
+      "startupJsonCount": 11,
+      "startupJsonBytes": 2263499,
+      "startupLarge": [],
+      "allJsonCount": 14,
+      "interaction": {
+        "checks": [
+          {
+            "name": "v1342-self-check",
+            "result": {
+              "ok": true,
+              "release": "RUSSIAN_V13_42_HEAVY_DATA_LAZY_PERSISTENCE_SAFE",
+              "dataFiles": [
+                "curriculum",
+                "lessons",
+                "grammar",
+                "grammar-path",
+                "mindmap",
+                "exercises",
+                "simulations",
+                "handwriting",
+                "writing",
+                "videos",
+                "knowledge-index"
+              ],
+              "optionalDataFiles": [
+                "dialogue-bauman-az",
+                "deep-speaking-bauman",
+                "speaking-link-index"
+              ],
+              "lazyDataFiles": [
+                "vocab",
+                "tests",
+                "speaking"
+              ],
+              "heavy": [
+                "vocab",
+                "tests",
+                "speaking"
+              ],
+              "persistenceSafe": true,
+              "startupSafe": true,
+              "storageListBridgeConsumed": true,
+              "metadataSafe": true
+            }
+          }
+        ]
+      }
+    },
+    {
+      "id": "signal",
+      "route": "/subjects/signal/index.html",
+      "startupJsonCount": 7,
+      "startupJsonBytes": 408503,
+      "startupLarge": [],
+      "allJsonCount": 7,
+      "interaction": {
+        "checks": []
+      }
+    },
+    {
+      "id": "systems",
+      "route": "/subjects/systems/index.html",
+      "startupJsonCount": 7,
+      "startupJsonBytes": 629158,
+      "startupLarge": [],
+      "allJsonCount": 7,
+      "interaction": {
+        "checks": []
+      }
+    },
+    {
+      "id": "russian-overlay-persistence",
+      "route": "/subjects/russian/index.html",
+      "startupJsonCount": 11,
+      "startupJsonBytes": 2263499,
+      "startupLarge": [],
+      "allJsonCount": 11,
+      "interaction": {
+        "checks": [
+          {
+            "name": "legacy-db-byte-preservation",
+            "result": {
+              "ok": true
+            }
+          },
+          {
+            "name": "v1342-self-check",
+            "result": {
+              "ok": true,
+              "release": "RUSSIAN_V13_42_HEAVY_DATA_LAZY_PERSISTENCE_SAFE",
+              "dataFiles": [
+                "curriculum",
+                "lessons",
+                "grammar",
+                "grammar-path",
+                "mindmap",
+                "exercises",
+                "simulations",
+                "handwriting",
+                "writing",
+                "videos",
+                "knowledge-index"
+              ],
+              "optionalDataFiles": [
+                "dialogue-bauman-az",
+                "deep-speaking-bauman",
+                "speaking-link-index"
+              ],
+              "lazyDataFiles": [
+                "vocab",
+                "tests",
+                "speaking"
+              ],
+              "heavy": [
+                "vocab",
+                "tests",
+                "speaking"
+              ],
+              "persistenceSafe": true,
+              "startupSafe": true,
+              "storageListBridgeConsumed": true,
+              "metadataSafe": true
+            }
+          }
+        ]
+      }
+    }
+  ],
+  "failures": []
+}
