@@ -378,12 +378,15 @@ Bằng chứng B10:
 
 ## Lượt 7 · Hoàn thiện Reference Subjects · Russian + Math + Foundation · 9 bước
 
-Trạng thái: **B1 LOCAL PASS · chờ remote CI**.
+Trạng thái: **B1 PASS · B2 kế tiếp**.
 
 1. Audit coverage Russian theo roadmap dự bị → technical → academic → defense.
-   **LOCAL PASS**: 21/21 deterministic checks; 26/26 lesson, 6/6 stage,
+   **PASS**: 21/21 deterministic checks; 26/26 lesson, 6/6 stage,
    4/4 capability tier và mọi support family có coverage. Đây chỉ là structural
    coverage audit; không suy diễn chất lượng từ số lượng và chưa project source.
+   Remote context `migration/l7-b1-russian-coverage` thành công tại run
+   `32803058030`; L6 regression sau mở rộng kế hoạch PASS tại run `32803174543`
+   và full L5 runtime/browser/offline PASS tại run `32803174494`.
 2. Chuẩn hóa Russian lesson map vào Universal Contract bằng adapter, giữ dialogue/speech/handwriting/flashcard/exam đặc thù.
 3. Hoàn thiện Russian Twin lesson generator/registry và glossary theo subject/context.
 4. Audit Math toàn bộ theory/exercise/test/simulation; map prerequisite theo AI/Data/ИУ-5.

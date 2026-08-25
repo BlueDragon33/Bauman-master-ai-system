@@ -1,8 +1,8 @@
 # CODEX_STATE
 
-Current task: `L7-B1_RUSSIAN_COVERAGE_AUDIT`
+Current task: `L7-B2_RUSSIAN_UNIVERSAL_ADAPTER`
 
-Status: `L7_B1_LOCAL_PASS_REMOTE_PENDING`
+Status: `L7_B1_PASS_B2_READY`
 
 Date: 2026-08-24
 Branch: `migration/webapp-l1-audit-storage`
@@ -104,6 +104,10 @@ What changed:
   service worker or `main`.
 
 Verification:
+- L7-B1 GitHub Actions run `32803058030`: PASS
+- L7-B1 context `migration/l7-b1-russian-coverage`: PASS
+- L6 full sequential regression after 25-round expansion, run `32803174543`: PASS
+- L5 full runtime/browser/offline regression, run `32803174494`: PASS
 - L7-B1 Russian coverage audit, 21/21: LOCAL PASS
 - Russian lessons, 26/26; ordered stages, 6/6; capability tiers, 4/4: PASS
 - L7-B1 report stable across consecutive runs, SHA-256:
