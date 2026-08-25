@@ -1,0 +1,155 @@
+{
+  "registryId": "bauman-russian-twin-registry",
+  "registryVersion": "1.0.0",
+  "status": "L7-B3-REGISTRY",
+  "programIdentity": {
+    "department": "ИУ-5",
+    "officialPublishedDirectionCode": "09.04.01",
+    "personalizedDisplayCode": "09.04.01/11"
+  },
+  "contractRefs": {
+    "languageLayer": "assets/data/lesson/language-layer-hooks-v1.json#russianTwin",
+    "glossary": "assets/data/lesson/language-layer-hooks-v1.json#glossaryContract",
+    "subjectFactory": "assets/data/lesson/subject-factory-registry-v1.json",
+    "universalLesson": "assets/data/lesson/universal-lesson-contract-v2.json"
+  },
+  "activationPolicy": {
+    "defaultState": "declared",
+    "defaultVisibility": "hidden",
+    "autoActivate": false,
+    "allowedActivators": [
+      "learner",
+      "instructor",
+      "authorized-deterministic-study-plan"
+    ],
+    "aiMayRecommend": true,
+    "aiMayActivate": false,
+    "missingAlignmentBehavior": "source-lesson-continues-unchanged"
+  },
+  "generationPolicy": {
+    "sourceMode": "read-only",
+    "requiredSourceFields": [
+      "id",
+      "stage",
+      "title",
+      "terminology.vi",
+      "terminology.ru",
+      "terminology.en"
+    ],
+    "allowedGeneratedMode": "technical-terminology",
+    "reviewStatus": "source-aligned",
+    "missingSourceCode": "ALIGNMENT_MISSING",
+    "sourceMutation": false,
+    "learnerStateMutation": false,
+    "runtimeActivation": false,
+    "genericTranslation": false,
+    "rule": "Generate only from an explicit trilingual terminology object already attached to a stable source lesson. Missing fields stay missing."
+  },
+  "glossaryPolicy": {
+    "identity": "subjectId:lessonId:terminology",
+    "languages": [
+      "vi",
+      "ru",
+      "en"
+    ],
+    "requiredUsageContext": [
+      "subjectId",
+      "lessonId",
+      "stageId",
+      "lessonType"
+    ],
+    "sharedReviewStatuses": [
+      "source-aligned",
+      "instructor-reviewed",
+      "official-source-original",
+      "needs-repair"
+    ],
+    "learnerEntries": "user-evidence-separate-store",
+    "offlinePolicy": "resolved-glossary-subject-pack",
+    "surfaceEqualityIsIdentity": false
+  },
+  "subjectProfiles": {
+    "russian": {
+      "lessonTypes": ["language"],
+      "defaultLessonType": "language",
+      "sourcePath": "subjects/russian/data/lessons.json",
+      "terminologyPath": "terminology",
+      "availability": "declared-awaiting-source-alignment"
+    },
+    "math": {
+      "lessonTypes": ["mathematics"],
+      "defaultLessonType": "mathematics",
+      "sourcePath": "subjects/math/data/lessons.json",
+      "terminologyPath": "terminology",
+      "availability": "declared-awaiting-source-alignment"
+    },
+    "programming": {
+      "lessonTypes": ["programming", "database", "software-design"],
+      "defaultLessonType": "programming",
+      "lessonTypeRules": [
+        {
+          "lessonType": "database",
+          "lessonIds": ["PR06", "PR15", "PR20", "PR21"]
+        },
+        {
+          "lessonType": "software-design",
+          "lessonIds": ["PR17", "PR18", "PR19", "PR22", "PR24", "PR30", "PR32", "PR38", "PR39", "PR40", "PR41", "PR43", "PR44", "PR46", "PR47", "PR48"]
+        }
+      ],
+      "sourcePath": "subjects/programming/data/lessons.json",
+      "terminologyPath": "terminology",
+      "availability": "source-aligned"
+    },
+    "foundation": {
+      "lessonTypes": ["language", "mathematics"],
+      "defaultLessonType": null,
+      "sourcePath": "subjects/foundation/data/lessons.json",
+      "terminologyPath": "terminology",
+      "availability": "declared-awaiting-source-alignment"
+    },
+    "ai": {
+      "lessonTypes": ["ml-data"],
+      "defaultLessonType": "ml-data",
+      "sourcePath": "subjects/ai/data/lessons.json",
+      "terminologyPath": "terminology",
+      "availability": "declared-awaiting-source-alignment"
+    },
+    "signal": {
+      "lessonTypes": ["asoiu-system"],
+      "defaultLessonType": "asoiu-system",
+      "sourcePath": "subjects/signal/data/lessons.json",
+      "terminologyPath": "terminology",
+      "availability": "declared-awaiting-source-alignment"
+    },
+    "systems": {
+      "lessonTypes": ["asoiu-system"],
+      "defaultLessonType": "asoiu-system",
+      "sourcePath": "subjects/systems/data/lessons.json",
+      "terminologyPath": "terminology",
+      "availability": "declared-awaiting-source-alignment"
+    },
+    "research": {
+      "lessonTypes": ["research"],
+      "defaultLessonType": "research",
+      "sourcePath": "subjects/research/data/lessons.json",
+      "terminologyPath": "terminology",
+      "availability": "declared-awaiting-source-alignment"
+    }
+  },
+  "offlinePolicy": {
+    "resourceKind": "resolved-glossary",
+    "availability": "subject-pack",
+    "generativeAiRequired": false,
+    "fallback": "source-lesson-without-twin",
+    "largeMediaAutoDownload": false
+  },
+  "rollback": {
+    "remove": [
+      "assets/data/lesson/russian-twin-registry-v1.json",
+      "assets/data/lesson/russian-twin-glossary-v1.generated.json",
+      "assets/js/platform/universal-lesson/russian-twin-generator-v1.js"
+    ],
+    "legacyRuntimeImpact": "none",
+    "learnerStateImpact": "none"
+  }
+}

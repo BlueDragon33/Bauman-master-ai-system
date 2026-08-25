@@ -1,0 +1,410 @@
+{
+  "gate": "L7-B3",
+  "status": "PASS",
+  "generatorRelease": "L7-B3-RUSSIAN-TWIN-GENERATOR-V1",
+  "subjectCount": 8,
+  "programmingLessonCount": 48,
+  "glossaryRecordCount": 48,
+  "twinUnitCount": 48,
+  "packDigest": "bfa9b6fbf57df4a5558728fe9720abcb20e26b6f4a3fe615ab03456afac517d8",
+  "checks": [
+    {
+      "id": "FILE-assets/data/lesson/russian-twin-registry-v1.json",
+      "title": "required L7-B3 input exists",
+      "ok": true,
+      "evidence": "assets/data/lesson/russian-twin-registry-v1.json"
+    },
+    {
+      "id": "FILE-assets/js/platform/universal-lesson/russian-twin-generator-v1.js",
+      "title": "required L7-B3 input exists",
+      "ok": true,
+      "evidence": "assets/js/platform/universal-lesson/russian-twin-generator-v1.js"
+    },
+    {
+      "id": "FILE-assets/data/lesson/language-layer-hooks-v1.json",
+      "title": "required L7-B3 input exists",
+      "ok": true,
+      "evidence": "assets/data/lesson/language-layer-hooks-v1.json"
+    },
+    {
+      "id": "FILE-assets/data/lesson/subject-factory-registry-v1.json",
+      "title": "required L7-B3 input exists",
+      "ok": true,
+      "evidence": "assets/data/lesson/subject-factory-registry-v1.json"
+    },
+    {
+      "id": "FILE-subjects/programming/data/lessons.json",
+      "title": "required L7-B3 input exists",
+      "ok": true,
+      "evidence": "subjects/programming/data/lessons.json"
+    },
+    {
+      "id": "FILE-docs/migration/L7_B3_RUSSIAN_TWIN_REGISTRY.md",
+      "title": "required L7-B3 input exists",
+      "ok": true,
+      "evidence": "docs/migration/L7_B3_RUSSIAN_TWIN_REGISTRY.md"
+    },
+    {
+      "id": "REGISTRY-IDENTITY",
+      "title": "registry identity version and status are explicit",
+      "ok": true,
+      "evidence": {
+        "registryId": "bauman-russian-twin-registry",
+        "version": "1.0.0",
+        "status": "L7-B3-REGISTRY"
+      }
+    },
+    {
+      "id": "PROGRAM-IDENTITY",
+      "title": "official and personalized direction codes stay separated",
+      "ok": true,
+      "evidence": {
+        "department": "ИУ-5",
+        "officialPublishedDirectionCode": "09.04.01",
+        "personalizedDisplayCode": "09.04.01/11"
+      }
+    },
+    {
+      "id": "SUBJECT-COVERAGE",
+      "title": "registry covers exactly the eight Subject Factory subjects",
+      "ok": true,
+      "evidence": [
+        "russian",
+        "math",
+        "programming",
+        "foundation",
+        "ai",
+        "signal",
+        "systems",
+        "research"
+      ]
+    },
+    {
+      "id": "TYPE-COMPATIBILITY",
+      "title": "subject lesson types exist in the L6-B7 type profiles",
+      "ok": true,
+      "evidence": {
+        "russian": [
+          "language"
+        ],
+        "math": [
+          "mathematics"
+        ],
+        "programming": [
+          "programming",
+          "database",
+          "software-design"
+        ],
+        "foundation": [
+          "language",
+          "mathematics"
+        ],
+        "ai": [
+          "ml-data"
+        ],
+        "signal": [
+          "asoiu-system"
+        ],
+        "systems": [
+          "asoiu-system"
+        ],
+        "research": [
+          "research"
+        ]
+      }
+    },
+    {
+      "id": "TYPE-POLICY-PARITY",
+      "title": "Programming type rules match the Subject Factory instead of code constants",
+      "ok": true,
+      "evidence": [
+        {
+          "lessonType": "database",
+          "lessonIds": [
+            "PR06",
+            "PR15",
+            "PR20",
+            "PR21"
+          ]
+        },
+        {
+          "lessonType": "software-design",
+          "lessonIds": [
+            "PR17",
+            "PR18",
+            "PR19",
+            "PR22",
+            "PR24",
+            "PR30",
+            "PR32",
+            "PR38",
+            "PR39",
+            "PR40",
+            "PR41",
+            "PR43",
+            "PR44",
+            "PR46",
+            "PR47",
+            "PR48"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "LATENT-ACTIVATION",
+      "title": "Twin remains hidden opt-in and AI cannot activate it",
+      "ok": true,
+      "evidence": {
+        "defaultState": "declared",
+        "defaultVisibility": "hidden",
+        "autoActivate": false,
+        "allowedActivators": [
+          "learner",
+          "instructor",
+          "authorized-deterministic-study-plan"
+        ],
+        "aiMayRecommend": true,
+        "aiMayActivate": false,
+        "missingAlignmentBehavior": "source-lesson-continues-unchanged"
+      }
+    },
+    {
+      "id": "READ-ONLY-POLICY",
+      "title": "generation policy forbids source state runtime and generic translation writes",
+      "ok": true,
+      "evidence": {
+        "sourceMode": "read-only",
+        "requiredSourceFields": [
+          "id",
+          "stage",
+          "title",
+          "terminology.vi",
+          "terminology.ru",
+          "terminology.en"
+        ],
+        "allowedGeneratedMode": "technical-terminology",
+        "reviewStatus": "source-aligned",
+        "missingSourceCode": "ALIGNMENT_MISSING",
+        "sourceMutation": false,
+        "learnerStateMutation": false,
+        "runtimeActivation": false,
+        "genericTranslation": false,
+        "rule": "Generate only from an explicit trilingual terminology object already attached to a stable source lesson. Missing fields stay missing."
+      }
+    },
+    {
+      "id": "SOURCE-COVERAGE",
+      "title": "all 48 Programming lessons have explicit source-aligned terminology",
+      "ok": true,
+      "evidence": {
+        "lessons": 48,
+        "records": 48,
+        "units": 48
+      }
+    },
+    {
+      "id": "SOURCE-IMMUTABLE",
+      "title": "generator leaves Programming source byte-equivalent as JSON",
+      "ok": true,
+      "evidence": "4272fa90632802c497bcf1fdf87c7dcc50f272d24e0ab48b8125039203af5a6e"
+    },
+    {
+      "id": "TERM-COPY-EXACT",
+      "title": "vi ru and en surfaces copy source terminology exactly",
+      "ok": true,
+      "evidence": [
+        [
+          {
+            "surface": "Môi trường phát triển",
+            "language": "vi",
+            "partOfSpeechOrSymbolClass": "technical-term",
+            "meaningRef": "lesson-title:PR01",
+            "usageNote": "Use only in the registered lesson and subject context until broader review."
+          },
+          {
+            "surface": "среда разработки",
+            "language": "ru",
+            "partOfSpeechOrSymbolClass": "technical-term",
+            "meaningRef": "lesson-title:PR01",
+            "usageNote": "Use only in the registered lesson and subject context until broader review."
+          },
+          {
+            "surface": "development environment",
+            "language": "en",
+            "partOfSpeechOrSymbolClass": "technical-term",
+            "meaningRef": "lesson-title:PR01",
+            "usageNote": "Use only in the registered lesson and subject context until broader review."
+          }
+        ],
+        [
+          {
+            "surface": "Độ phức tạp",
+            "language": "vi",
+            "partOfSpeechOrSymbolClass": "technical-term",
+            "meaningRef": "lesson-title:PR02",
+            "usageNote": "Use only in the registered lesson and subject context until broader review."
+          },
+          {
+            "surface": "сложность алгоритма",
+            "language": "ru",
+            "partOfSpeechOrSymbolClass": "technical-term",
+            "meaningRef": "lesson-title:PR02",
+            "usageNote": "Use only in the registered lesson and subject context until broader review."
+          },
+          {
+            "surface": "algorithmic complexity",
+            "language": "en",
+            "partOfSpeechOrSymbolClass": "technical-term",
+            "meaningRef": "lesson-title:PR02",
+            "usageNote": "Use only in the registered lesson and subject context until broader review."
+          }
+        ],
+        [
+          {
+            "surface": "Hàm",
+            "language": "vi",
+            "partOfSpeechOrSymbolClass": "technical-term",
+            "meaningRef": "lesson-title:PR03",
+            "usageNote": "Use only in the registered lesson and subject context until broader review."
+          },
+          {
+            "surface": "функция",
+            "language": "ru",
+            "partOfSpeechOrSymbolClass": "technical-term",
+            "meaningRef": "lesson-title:PR03",
+            "usageNote": "Use only in the registered lesson and subject context until broader review."
+          },
+          {
+            "surface": "function",
+            "language": "en",
+            "partOfSpeechOrSymbolClass": "technical-term",
+            "meaningRef": "lesson-title:PR03",
+            "usageNote": "Use only in the registered lesson and subject context until broader review."
+          }
+        ]
+      ]
+    },
+    {
+      "id": "CONTEXT-BOUND",
+      "title": "every glossary record binds subject lesson stage and resolved type",
+      "ok": true,
+      "evidence": [
+        {
+          "subjectId": "programming",
+          "lessonId": "PR01",
+          "stageId": "vn",
+          "lessonType": "programming"
+        },
+        {
+          "subjectId": "programming",
+          "lessonId": "PR02",
+          "stageId": "vn",
+          "lessonType": "programming"
+        },
+        {
+          "subjectId": "programming",
+          "lessonId": "PR03",
+          "stageId": "vn",
+          "lessonType": "programming"
+        },
+        {
+          "subjectId": "programming",
+          "lessonId": "PR04",
+          "stageId": "vn",
+          "lessonType": "programming"
+        },
+        {
+          "subjectId": "programming",
+          "lessonId": "PR05",
+          "stageId": "vn",
+          "lessonType": "programming"
+        }
+      ]
+    },
+    {
+      "id": "STABLE-IDENTITY",
+      "title": "term and twin identities use stable subject and lesson IDs",
+      "ok": true,
+      "evidence": [
+        "programming:PR01:terminology",
+        "programming:PR02:terminology",
+        "programming:PR03:terminology"
+      ]
+    },
+    {
+      "id": "SOURCE-PROVENANCE",
+      "title": "shared glossary contains source refs and no AI inference",
+      "ok": true,
+      "evidence": {
+        "origin": "provided-source",
+        "adapterRelease": "L7-B3-RUSSIAN-TWIN-GENERATOR-V1",
+        "sourceLessonRef": "PR01",
+        "aiInferenceRefs": []
+      }
+    },
+    {
+      "id": "TWIN-CONTRACT",
+      "title": "every unit contains all L6-B7 required Twin fields",
+      "ok": true,
+      "evidence": [
+        "twinUnitId",
+        "sourceLessonRef",
+        "sourceAnchorRefs",
+        "mode",
+        "ruOutputRef",
+        "viRescueRef",
+        "terminologyRefs",
+        "learnerAction",
+        "evidenceKind",
+        "reviewStatus",
+        "offlineRef"
+      ]
+    },
+    {
+      "id": "SPECIALIST-OWNERSHIP",
+      "title": "Twin references but does not replace the Russian specialist engine",
+      "ok": true,
+      "evidence": "subjects/russian/index.html"
+    },
+    {
+      "id": "OFFLINE-DETERMINISTIC",
+      "title": "resolved pack works offline without generative AI",
+      "ok": true,
+      "evidence": {
+        "availability": "subject-pack",
+        "generativeAiRequired": false,
+        "fallback": "source-lesson-without-twin"
+      }
+    },
+    {
+      "id": "MISSING-FAILS-CLOSED",
+      "title": "missing alignment remains unavailable without blocking the source lesson",
+      "ok": true,
+      "evidence": "AI lesson without reviewed terminology"
+    },
+    {
+      "id": "UNKNOWN-SUBJECT-FAILS",
+      "title": "unknown subjects fail closed",
+      "ok": true,
+      "evidence": "unknown"
+    },
+    {
+      "id": "UNAVAILABLE-SOURCE-INDEX",
+      "title": "unavailable records preserve their original source index",
+      "ok": true,
+      "evidence": 1
+    },
+    {
+      "id": "DETERMINISTIC",
+      "title": "repeated pack generation has a stable SHA-256 digest",
+      "ok": true,
+      "evidence": "bfa9b6fbf57df4a5558728fe9720abcb20e26b6f4a3fe615ab03456afac517d8"
+    },
+    {
+      "id": "NO-HUTECH-LEARNER-COPY",
+      "title": "B3 learner-facing artifacts contain no HUTECH label",
+      "ok": true,
+      "evidence": "absent"
+    }
+  ]
+}

@@ -81,6 +81,29 @@ jobs:
             -f description="L7-B2 Russian adapter: ${GATE_OUTCOME}" \
             -f target_url="${GITHUB_SERVER_URL}/${GITHUB_REPOSITORY}/actions/runs/${GITHUB_RUN_ID}"
 
+      - name: Run L7-B3 Russian Twin registry regression
+        id: b3_gate
+        run: |
+          node --check assets/js/platform/universal-lesson/russian-twin-generator-v1.js
+          node --check scripts/academic/l7-b3-russian-twin-registry-regression.cjs
+          node scripts/academic/l7-b3-russian-twin-registry-regression.cjs
+          git diff --exit-code -- assets/data/lesson/russian-twin-glossary-v1.generated.json
+          git diff --exit-code -- docs/migration/L7_B3_RUSSIAN_TWIN_REGISTRY.generated.json
+
+      - name: Publish L7-B3 status
+        if: ${{ always() && github.event_name == 'push' && steps.b3_gate.outcome != 'skipped' }}
+        env:
+          GH_TOKEN: ${{ github.token }}
+          GATE_OUTCOME: ${{ steps.b3_gate.outcome }}
+        run: |
+          STATE=failure
+          if [ "$GATE_OUTCOME" = "success" ]; then STATE=success; fi
+          gh api --method POST "repos/${GITHUB_REPOSITORY}/statuses/${GITHUB_SHA}" \
+            -f state="$STATE" \
+            -f context="migration/l7-b3-russian-twin-registry" \
+            -f description="L7-B3 Russian Twin registry: ${GATE_OUTCOME}" \
+            -f target_url="${GITHUB_SERVER_URL}/${GITHUB_REPOSITORY}/actions/runs/${GITHUB_RUN_ID}"
+
       - name: Upload L7-B1 evidence
         if: always()
         uses: actions/upload-artifact@v4
@@ -94,3 +117,12 @@ jobs:
         with:
           name: l7-b2-russian-universal-adapter
           path: docs/migration/L7_B2_RUSSIAN_UNIVERSAL_ADAPTER.generated.json
+
+      - name: Upload L7-B3 evidence
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: l7-b3-russian-twin-registry
+          path: |
+            assets/data/lesson/russian-twin-glossary-v1.generated.json
+            docs/migration/L7_B3_RUSSIAN_TWIN_REGISTRY.generated.json
