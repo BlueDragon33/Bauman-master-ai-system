@@ -1,0 +1,74 @@
+.universal-reference-backdrop{padding:16px}
+.universal-reference-dialog{display:grid;grid-template-rows:auto minmax(0,1fr);width:min(1240px,96vw);max-height:94vh;overflow:hidden;border:1px solid #d8e4f2}
+.universal-reference-head{background:#fff;position:relative;z-index:2}
+.universal-reference-head h2{font-size:20px;letter-spacing:-.035em;margin:5px 0 0}
+.ul-reference-kicker{color:#2563eb;font-size:10px;font-weight:950;letter-spacing:.1em;text-transform:uppercase}
+.universal-reference-body{overflow:auto;background:#f6f9fd;padding:18px;scrollbar-gutter:stable}
+.universal-lesson{--ul-ink:#10233f;--ul-muted:#63738a;--ul-line:#dce6f2;--ul-blue:#2563eb;color:var(--ul-ink);display:grid;gap:16px;min-width:0}
+.ul-hero{overflow:hidden;border-radius:25px;background:radial-gradient(circle at 92% 12%,rgba(34,211,238,.26),transparent 31%),linear-gradient(135deg,#07162f,#174487 68%,#086579);box-shadow:0 18px 38px rgba(7,22,47,.18);color:#fff;padding:24px}
+.ul-hero h1{font-size:clamp(25px,4vw,40px);letter-spacing:-.055em;line-height:1.08;margin:10px 0 8px;max-width:900px}
+.ul-hero p{color:#d9e8ff;font-weight:750;margin:0}
+.ul-program{display:inline-flex;border:1px solid rgba(255,255,255,.22);border-radius:999px;background:rgba(255,255,255,.1);font-size:11px;font-weight:900;letter-spacing:.07em;padding:7px 11px;text-transform:uppercase}
+.ul-support-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:13px}
+.ul-support{background:#fff;border:1px solid var(--ul-line);border-radius:20px;box-shadow:0 8px 22px rgba(15,35,64,.05);padding:16px;min-width:0}
+.ul-support h2{font-size:16px;margin:0 0 11px}
+.ul-support ol,.ul-support ul{display:grid;gap:9px;margin:0;padding-left:21px}
+.ul-support li{color:#354e6c;line-height:1.5}
+.ul-support li span{color:var(--ul-muted);display:block;font-size:11px;font-weight:800;margin-top:3px;text-transform:uppercase}
+.ul-section-nav{background:#fff;border:1px solid var(--ul-line);border-radius:18px;overflow:auto;padding:9px}
+.ul-section-nav ol{display:flex;gap:7px;list-style:none;margin:0;padding:0;width:max-content;max-width:none}
+.ul-section-nav a{display:block;border-radius:11px;background:#edf4ff;color:#1d4ed8;font-size:11px;font-weight:900;padding:8px 10px;text-decoration:none;white-space:nowrap}
+.ul-section-nav a:focus-visible,.ul-section-nav a:hover{background:#dbeafe;outline:2px solid #60a5fa;outline-offset:1px}
+.ul-flow{display:grid;gap:13px}
+.ul-block{background:#fff;border:1px solid var(--ul-line);border-radius:20px;box-shadow:0 9px 24px rgba(15,35,64,.05);min-width:0;overflow:hidden;padding:17px}
+.ul-block>header{border-bottom:1px solid #e9eff6;margin:-3px -3px 13px;padding:0 3px 12px}
+.ul-block>header span{color:#64748b;font-size:10px;font-weight:950;letter-spacing:.09em;text-transform:uppercase}
+.ul-block>header h2{font-size:19px;letter-spacing:-.035em;margin:5px 0 0}
+.ul-block-content{color:#304a68;line-height:1.65;overflow-wrap:anywhere}
+.ul-value-list{display:grid;gap:8px;margin:0;padding-left:22px}
+.ul-value-map{display:grid;gap:10px;margin:0}
+.ul-value-map>div{border:1px solid #e4ebf4;border-radius:14px;display:grid;gap:6px;padding:11px}
+.ul-value-map dt{color:#48617e;font-size:11px;font-weight:950;letter-spacing:.04em;text-transform:uppercase}
+.ul-value-map dd{margin:0;min-width:0}
+.ul-empty{color:#94a3b8;font-style:italic}
+.ul-block-external{border-color:#a7f3d0;background:linear-gradient(135deg,#f0fdf4,#fff)}
+.ul-block-external>p{color:#41645a;line-height:1.55}
+.ul-block-external>[data-universal-action]{border:1px solid #047857;border-bottom:3px solid #065f46;border-radius:12px;background:linear-gradient(135deg,#059669,#10b981);color:#fff;font-weight:900;padding:10px 13px}
+.ul-footer{display:flex;flex-wrap:wrap;gap:8px;justify-content:space-between;border:1px dashed #bfd0e5;border-radius:16px;color:#60758f;font-size:11px;font-weight:800;padding:12px}
+.ul-reference-boundary{align-items:start;background:#fff8e8;border:1px solid #f6d58c;border-radius:16px;color:#6b4b13;display:grid;gap:4px;margin-top:16px;padding:12px 14px}
+.ul-reference-boundary span{font-size:12px;line-height:1.5}
+.ul-reference-actions{display:flex;flex-wrap:wrap;gap:9px;margin:15px 0 2px}
+.ul-oral-widget{display:grid;grid-template-columns:minmax(0,1.15fr) minmax(280px,.85fr);gap:14px}
+.ul-oral-copy,.ul-recorder{border:1px solid #cde9df;border-radius:16px;background:#fff;padding:15px;min-width:0}
+.ul-oral-copy h3{font-size:19px;margin:11px 0 7px}
+.ul-oral-copy h4{font-size:13px;margin:14px 0 7px}
+.ul-oral-copy p,.ul-oral-copy li{color:#3f5e55;line-height:1.58}
+.ul-oral-copy ul{display:grid;gap:6px;margin:0;padding-left:20px}
+.ul-oral-copy blockquote{border-left:4px solid #10b981;background:#ecfdf5;border-radius:0 12px 12px 0;color:#065f46;font-size:17px;font-weight:850;margin:12px 0;padding:11px 13px}
+.ul-local-pill{display:inline-flex;border-radius:999px;background:#dcfce7;color:#166534;font-size:10px;font-weight:950;letter-spacing:.07em;padding:6px 9px;text-transform:uppercase}
+.ul-recorder{align-content:start;display:grid;gap:12px}
+.ul-record-status{border-radius:12px;background:#eef4fb;color:#415c78;font-size:12px;font-weight:800;line-height:1.45;padding:10px}
+.ul-record-status[data-tone="recording"]{background:#ffe4e6;color:#9f1239}
+.ul-record-status[data-tone="working"]{background:#e0f2fe;color:#075985}
+.ul-record-status[data-tone="success"]{background:#dcfce7;color:#166534}
+.ul-record-status[data-tone="error"]{background:#fff1f2;color:#be123c}
+.ul-record-timer{font:950 36px/1 ui-monospace,SFMono-Regular,Consolas,monospace;letter-spacing:-.05em;text-align:center}
+.ul-recorder-actions{display:flex;flex-wrap:wrap;gap:8px}
+.ul-recorder audio{display:block;width:100%;max-width:100%}
+.ul-recorder audio[hidden]{display:none}
+.ul-recorder small{color:#6b7e91;line-height:1.45}
+@media(max-width:760px){
+  .universal-reference-backdrop{padding:0}
+  .universal-reference-dialog{border-radius:0;width:100vw;max-height:100vh;height:100vh}
+  .universal-reference-head{padding:12px 13px}
+  .universal-reference-head h2{font-size:17px}
+  .universal-reference-body{padding:11px;scrollbar-gutter:auto}
+  .ul-hero{border-radius:19px;padding:18px}
+  .ul-support-grid,.ul-oral-widget{grid-template-columns:1fr}
+  .ul-block,.ul-support{border-radius:16px;padding:14px}
+  .ul-reference-actions{display:grid;grid-template-columns:1fr}
+  .ul-reference-actions .btn{width:100%}
+  .ul-recorder-actions{display:grid;grid-template-columns:1fr}
+  .ul-recorder-actions .btn{width:100%}
+}
+@media(prefers-reduced-motion:reduce){.universal-reference-dialog *{scroll-behavior:auto!important}}

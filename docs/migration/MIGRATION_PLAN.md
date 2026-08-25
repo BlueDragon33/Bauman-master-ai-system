@@ -107,7 +107,7 @@ L5 PASS nhưng `serviceWorkerCache` production vẫn OFF. Chỉ bật ở stagin
 
 ## Lượt 6 · Universal Lesson Architecture & Subject Factory · 11 bước
 
-Trạng thái: **B1–B10 PASS · B11 kế tiếp**.
+Trạng thái: **B1–B10 PASS · B11 local deterministic PASS, chờ browser/offline + remote CI**.
 
 Bằng chứng B1:
 - Audit quyết định: L6_B1_REFERENCE_IMPLEMENTATION_AUDIT.md.
@@ -369,6 +369,10 @@ Bằng chứng B10:
 9. Tạo Subject Factory registry: subject → engine → lesson types → special widgets → data sources → offline policy. **PASS**.
 10. Tạo Universal Lesson Renderer/bridge dùng được với content engine hiện tại mà không phá Russian/Math legacy. **PASS**.
 11. Regression reference subjects + rollback checkpoint; chỉ PASS khi Russian/Math không giảm chức năng và một subject nhẹ có reviewed capability path dựng được bằng Factory, khép `LIGHT-POLICY-CAPABILITY-GAP` mà không hạ chuẩn B3.
+    **IN PROGRESS**: deterministic activation/rollback gate 39/39 PASS; 12/12
+    protection mutations bị chặn đúng dự kiến. Candidate kích hoạt duy nhất
+    `foundation:f_s01_l1`; chưa đánh dấu PASS trước browser/offline và context
+    `migration/l6-b11-reference-runtime` cùng thành công trên feature commit.
 
 ## Lượt 7 · Hoàn thiện Reference Subjects · Russian + Math + Foundation · 9 bước
 

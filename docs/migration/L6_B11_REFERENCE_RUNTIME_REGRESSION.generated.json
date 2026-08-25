@@ -1,0 +1,703 @@
+{
+  "schema": "L6_B11_REFERENCE_RUNTIME_REGRESSION_V1",
+  "status": "PASS",
+  "branch": "migration/webapp-l1-audit-storage",
+  "generatedFor": "2026-08-24",
+  "scope": "Exact reviewed Foundation reference activation, real memory-only oral capability, responsive/offline browser ownership and digest-checked rollback; Russian and Mathematics remain unchanged delegates.",
+  "summary": {
+    "total": 39,
+    "passed": 39,
+    "failed": 0,
+    "referenceLessons": 1,
+    "renderedSections": 10,
+    "externalCapabilities": 1,
+    "mutationTests": 12,
+    "expectedMutationFailuresObserved": 12
+  },
+  "activation": {
+    "code": "REFERENCE_RUNTIME_READY",
+    "subjectId": "foundation",
+    "lessonId": "f_s01_l1",
+    "lessonType": "language",
+    "factory": {
+      "engineRef": "light-elearning-v2",
+      "typeAuthority": "subject-classification-rule",
+      "ruleId": "foundation-classroom-and-study",
+      "sourcePath": "subjects/foundation/data/lessons.json"
+    },
+    "sourceDigest": "1240a7a1ba8bc9eacc8469f3f1fc8ccf4fa5e457cb73f652a09fea96ed7e5234",
+    "outputDigest": "04655bdd74dd1c5b93cdecdfbaea82795f9410351704d195749abab2da34ea7e",
+    "modelDigest": "875f90b435eab9f136eea4f26409e2c76b97f49da671787a939fe47eb8473270",
+    "htmlDigest": "70b9da2fd9c5f03df969920ff462143b4c428ff4dd3ad1babece12b1f30efff4",
+    "sectionKinds": [
+      "orientation",
+      "theory",
+      "worked-example",
+      "exercise",
+      "lab-simulation",
+      "misconception",
+      "oral",
+      "review",
+      "mastery",
+      "project-nir-evidence"
+    ],
+    "capabilityProviders": {
+      "speech-recording": {
+        "capabilityRef": "speech-recording",
+        "widgetId": "foundation-oral-rehearsal",
+        "availability": "existing"
+      }
+    },
+    "masterReadyClaimed": false
+  },
+  "rollback": {
+    "ok": true,
+    "blocked": false,
+    "code": "UNCHANGED_FOUNDATION_ROUTE_RESTORED",
+    "route": "subjects/foundation/index.html",
+    "sourceDigest": "1240a7a1ba8bc9eacc8469f3f1fc8ccf4fa5e457cb73f652a09fea96ed7e5234",
+    "sourceUnchanged": true,
+    "learnerStateWritePerformed": false,
+    "cacheWritePerformed": false
+  },
+  "specialistEvidence": {
+    "russian": {
+      "guard": {
+        "route": "subjects/russian/index.html",
+        "behavior": "delegate-unchanged",
+        "activationAllowed": false
+      },
+      "referenceBootstrapLoaded": false
+    },
+    "math": {
+      "guard": {
+        "route": "subjects/math/index.html",
+        "behavior": "delegate-unchanged",
+        "activationAllowed": false
+      },
+      "referenceBootstrapLoaded": false
+    }
+  },
+  "protectedCompatibilitySha256": {
+    "subjects/russian/assets/core.js": {
+      "expected": "71f24d0e0300dddee18f2dd91617b34137de66290c47f0484cae454a1cdeb573",
+      "actual": "71f24d0e0300dddee18f2dd91617b34137de66290c47f0484cae454a1cdeb573"
+    },
+    "subjects/russian/assets/subject-adapter.js": {
+      "expected": "1c6a6930ab06e1510879ed374093016ff721b20fab7bf720a65613e4c411d625",
+      "actual": "1c6a6930ab06e1510879ed374093016ff721b20fab7bf720a65613e4c411d625"
+    },
+    "subjects/russian/data/lessons.json": {
+      "expected": "c8693eeefed17ea39b0cea4a600c9086f1b597ae7174e56bd8b2f8b46b985062",
+      "actual": "c8693eeefed17ea39b0cea4a600c9086f1b597ae7174e56bd8b2f8b46b985062"
+    },
+    "subjects/math/assets/subject-adapter.js": {
+      "expected": "40cb9d93a713929f3b8c9c99c01c30e29f103043a2f2c207521c5446f8f47731",
+      "actual": "40cb9d93a713929f3b8c9c99c01c30e29f103043a2f2c207521c5446f8f47731"
+    },
+    "subjects/math/assets/theory_skin/theory-tab-E129.js": {
+      "expected": "f9040b5dff1d3e38a1440e74445a7d97c1d19e4ec5d5f4312e5d526ac4e69d00",
+      "actual": "f9040b5dff1d3e38a1440e74445a7d97c1d19e4ec5d5f4312e5d526ac4e69d00"
+    },
+    "subjects/math/data/theory_lecture_content.json": {
+      "expected": "d0cd18601b1ede84f58072b3c47cfcc176b4d21d3fa71b23762b908485391447",
+      "actual": "d0cd18601b1ede84f58072b3c47cfcc176b4d21d3fa71b23762b908485391447"
+    },
+    "subjects/foundation/assets/foundation.js": {
+      "expected": "ddb1665c505986962da6c4c5f157d3827e9940e86866afbb7ca42ea4e4430315",
+      "actual": "ddb1665c505986962da6c4c5f157d3827e9940e86866afbb7ca42ea4e4430315"
+    },
+    "subjects/foundation/data/lessons.json": {
+      "expected": "435dc2faea81b59f3b1f29b6e7f1d48d7c99947f0a70ccd62eb3bb60c2f402e1",
+      "actual": "435dc2faea81b59f3b1f29b6e7f1d48d7c99947f0a70ccd62eb3bb60c2f402e1"
+    }
+  },
+  "mutationTests": [
+    {
+      "id": "DEPENDENCY-PIN",
+      "title": "changed schema pin blocks activation",
+      "expectedFailureObserved": true,
+      "code": "DEPENDENCY_DIGEST_MISMATCH"
+    },
+    {
+      "id": "SOURCE-DIGEST",
+      "title": "changed legacy lesson blocks activation",
+      "expectedFailureObserved": true,
+      "code": "SOURCE_DIGEST_MISMATCH"
+    },
+    {
+      "id": "CONTEXT",
+      "title": "changed projection type fails the exact manifest boundary",
+      "expectedFailureObserved": true,
+      "code": "INVALID_ACTIVATION_MANIFEST"
+    },
+    {
+      "id": "FACTORY-PILOT",
+      "title": "removing Factory pilot authorization blocks activation",
+      "expectedFailureObserved": true,
+      "code": "FACTORY_PILOT_NOT_AUTHORIZED"
+    },
+    {
+      "id": "CAPABILITY-SCOPE",
+      "title": "widening the reviewed widget capability list fails closed",
+      "expectedFailureObserved": true,
+      "code": "INVALID_ACTIVATION_MANIFEST"
+    },
+    {
+      "id": "REVIEW-AUTHORITY",
+      "title": "claiming unrecorded academic approval fails closed",
+      "expectedFailureObserved": true,
+      "code": "INVALID_ACTIVATION_MANIFEST"
+    },
+    {
+      "id": "MASTER-READY",
+      "title": "turning the pilot into a Master-ready claim fails closed",
+      "expectedFailureObserved": true,
+      "code": "INVALID_ACTIVATION_MANIFEST"
+    },
+    {
+      "id": "ROLLBACK-ROUTE",
+      "title": "redirecting rollback to another subject fails closed",
+      "expectedFailureObserved": true,
+      "code": "INVALID_ACTIVATION_MANIFEST"
+    },
+    {
+      "id": "MISSING-CAPABILITY",
+      "title": "missing recording API keeps the old lesson active",
+      "expectedFailureObserved": true,
+      "code": "CAPABILITY_UNAVAILABLE"
+    },
+    {
+      "id": "ROLLBACK-DIGEST",
+      "title": "rollback rejects a modified source snapshot",
+      "expectedFailureObserved": true,
+      "code": "SOURCE_INTEGRITY_FAILED"
+    },
+    {
+      "id": "SPECIALIST-GUARD",
+      "title": "enabling Russian pilot cutover fails the specialist guard",
+      "expectedFailureObserved": true,
+      "code": "INVALID_ACTIVATION_MANIFEST"
+    },
+    {
+      "id": "AUDIO-PERSISTENCE",
+      "title": "allowing recording persistence fails the privacy boundary",
+      "expectedFailureObserved": true,
+      "code": "INVALID_ACTIVATION_MANIFEST"
+    }
+  ],
+  "b11ArtifactSha256": {
+    "assets/data/lesson/reference-lesson-activation-v1.json": "1fa1de86545654d7efa55fb7a4a7f6344b5692075dbe977953c7852b86a55d8a",
+    "assets/js/platform/universal-lesson/reference-lesson-runtime-v1.js": "42a51771542ddd02df8139df26cdf978cd192c989e9e00bbbca35c071cf28406",
+    "assets/js/platform/universal-lesson/reference-lesson-bootstrap-v1.js": "e1f79cbb125bdc17373b48002e9f6a77812031876545b001a0d6ff05d24202bd",
+    "assets/css/universal-lesson-reference.css": "e48a3c68ca6df18b8c6e9d8716fc7dd11e982c3a4d367b9722a5910a7afa1ab8",
+    "subjects/foundation/index.html": "267e96e017f6b4da4290fe0fadce79b522c99d712ee94ad568fd684ffcdea27e",
+    "docs/migration/L6_B11_REFERENCE_RUNTIME_ROLLBACK_CHECKPOINT.md": "6abd2cb23b59767aecd9506674b2a62d2db04fd56a2e318b5ed2d596dd89b281"
+  },
+  "checks": [
+    {
+      "id": "MANIFEST-CONTRACT",
+      "title": "activation manifest validates as the exact B11 contract",
+      "ok": true,
+      "evidence": {
+        "valid": true,
+        "code": "ACTIVATION_MANIFEST_VALID",
+        "errors": [],
+        "digest": "57e58662176da7cb4f945df406004cbe3e74c7d1dfa8b6efeb07247829365502"
+      }
+    },
+    {
+      "id": "PROGRAM-IDENTITY",
+      "title": "official and personalized Bauman codes remain distinct",
+      "ok": true,
+      "evidence": {
+        "department": "ИУ-5",
+        "officialPublishedDirectionCode": "09.04.01",
+        "personalizedDisplayCode": "09.04.01/11"
+      }
+    },
+    {
+      "id": "EXACT-ALLOWLIST",
+      "title": "only one Foundation lesson is runtime-enabled by B11",
+      "ok": true,
+      "evidence": [
+        {
+          "subjectId": "foundation",
+          "lessonId": "f_s01_l1",
+          "enabled": true
+        }
+      ]
+    },
+    {
+      "id": "BOUNDARY",
+      "title": "activation forbids source migration state migration upload persistence and automatic Master-ready",
+      "ok": true,
+      "evidence": {
+        "activationMode": "exact-allowlist-opt-in",
+        "sourceMutationAllowed": false,
+        "learnerStateMigrationAllowed": false,
+        "automaticMasterReadyAllowed": false,
+        "audioPersistenceAllowed": false,
+        "networkUploadAllowed": false,
+        "legacyFallbackRequired": true,
+        "specialistCutoverAllowed": false
+      }
+    },
+    {
+      "id": "REVIEW-BOUNDARY",
+      "title": "review record is scoped to mapping policy capability and does not claim academic approval",
+      "ok": true,
+      "evidence": {
+        "status": "reviewed-for-exact-b11-reference",
+        "authority": "deterministic-source-preservation-and-capability-audit",
+        "scope": "mapping-policy-capability-runtime-only",
+        "academicApproval": "not-claimed",
+        "masterReadyApproval": "not-claimed",
+        "allowedMigrationWarnings": [
+          "eLearning-v1.1 projection is a dry-run compatibility migration; block and evidence mappings require subject review."
+        ]
+      }
+    },
+    {
+      "id": "REFERENCE-PLAN",
+      "title": "exact reviewed Foundation projection builds through Subject Factory",
+      "ok": true,
+      "evidence": {
+        "code": "REFERENCE_RUNTIME_READY",
+        "factory": {
+          "engineRef": "light-elearning-v2",
+          "typeAuthority": "subject-classification-rule",
+          "ruleId": "foundation-classroom-and-study",
+          "sourcePath": "subjects/foundation/data/lessons.json"
+        }
+      }
+    },
+    {
+      "id": "SOURCE-UNCHANGED",
+      "title": "planning leaves the complete legacy lessons array byte-semantically unchanged",
+      "ok": true,
+      "evidence": {
+        "sourceBefore": "559cb8887e183a6373cc7fbf829fe416bee5ec0fe336d272eef27001a6431d00",
+        "sourceAfter": "559cb8887e183a6373cc7fbf829fe416bee5ec0fe336d272eef27001a6431d00",
+        "sourceDigest": "1240a7a1ba8bc9eacc8469f3f1fc8ccf4fa5e457cb73f652a09fea96ed7e5234"
+      }
+    },
+    {
+      "id": "DEPENDENCY-PINS",
+      "title": "schema policy and Factory stable JSON digests match the review pins",
+      "ok": true,
+      "evidence": {
+        "schema": "8eccc5d4b8394388ae5e5a876841f8ab9e5210795487fb07a0841fb484041f5c",
+        "blockPolicy": "dc2e3597be9b5e1d29f11b2740e61282a6f047f91071e45e4b33ca6c575f2c30",
+        "subjectFactory": "c852e9bd4ab02bb7307274f1efc3c3b34c766de679cf06f3cff7bcb2c16d3001"
+      }
+    },
+    {
+      "id": "PROJECTION-PIN",
+      "title": "deterministic eLearning projection matches the reviewed output digest",
+      "ok": true,
+      "evidence": {
+        "outputDigest": "04655bdd74dd1c5b93cdecdfbaea82795f9410351704d195749abab2da34ea7e",
+        "warningCount": 1,
+        "reviewStatus": "reviewed-for-exact-b11-reference",
+        "academicApproval": "not-claimed"
+      }
+    },
+    {
+      "id": "RENDER-PINS",
+      "title": "render model and safe HTML match their exact review digests",
+      "ok": true,
+      "evidence": {
+        "modelDigest": "875f90b435eab9f136eea4f26409e2c76b97f49da671787a939fe47eb8473270",
+        "htmlDigest": "70b9da2fd9c5f03df969920ff462143b4c428ff4dd3ad1babece12b1f30efff4"
+      }
+    },
+    {
+      "id": "B3-POLICY-COMPLETE",
+      "title": "full language policy resolves ten meaningful sections without orientation-mode weakening",
+      "ok": true,
+      "evidence": [
+        "orientation",
+        "theory",
+        "worked-example",
+        "exercise",
+        "lab-simulation",
+        "misconception",
+        "oral",
+        "review",
+        "mastery",
+        "project-nir-evidence"
+      ]
+    },
+    {
+      "id": "REAL-ORAL-CAPABILITY",
+      "title": "required external oral block binds only to the implemented memory-only recording widget",
+      "ok": true,
+      "evidence": {
+        "id": "external-oral-speech-recording",
+        "kind": "oral",
+        "mode": "external",
+        "label": "Giải thích và bảo vệ",
+        "capabilityRef": "speech-recording",
+        "widgetId": "foundation-oral-rehearsal",
+        "availability": "existing",
+        "evidenceRefs": [],
+        "offlineRef": "lesson-core"
+      }
+    },
+    {
+      "id": "NO-MASTER-READY-CLAIM",
+      "title": "reference render never turns open completion or recording into Master-ready",
+      "ok": true,
+      "evidence": {
+        "plan": false,
+        "model": false
+      }
+    },
+    {
+      "id": "SAFE-LEARNER-HTML",
+      "title": "rendered learner HTML is semantic escaped and comparison-school free",
+      "ok": true,
+      "evidence": {
+        "htmlDigest": "70b9da2fd9c5f03df969920ff462143b4c428ff4dd3ad1babece12b1f30efff4"
+      }
+    },
+    {
+      "id": "ROLLBACK",
+      "title": "rollback restores the unchanged Foundation engine route after a source digest check",
+      "ok": true,
+      "evidence": {
+        "ok": true,
+        "blocked": false,
+        "code": "UNCHANGED_FOUNDATION_ROUTE_RESTORED",
+        "route": "subjects/foundation/index.html",
+        "sourceDigest": "1240a7a1ba8bc9eacc8469f3f1fc8ccf4fa5e457cb73f652a09fea96ed7e5234",
+        "sourceUnchanged": true,
+        "learnerStateWritePerformed": false,
+        "cacheWritePerformed": false
+      }
+    },
+    {
+      "id": "FAIL-CLOSED-CAPABILITY",
+      "title": "missing MediaRecorder capability blocks Universal activation and keeps legacy fallback",
+      "ok": true,
+      "evidence": {
+        "ok": false,
+        "blocked": true,
+        "code": "CAPABILITY_UNAVAILABLE",
+        "message": "Reviewed external capability is unavailable; keep the legacy lesson active.",
+        "details": {
+          "capabilityRef": "speech-recording",
+          "widgetId": "foundation-oral-rehearsal"
+        },
+        "legacyFallbackRequired": true
+      }
+    },
+    {
+      "id": "BOOTSTRAP-BOUNDARY",
+      "title": "Foundation entry loads only the B11 bootstrap after the unchanged legacy runtime",
+      "ok": true,
+      "evidence": "subjects/foundation/index.html"
+    },
+    {
+      "id": "BOOTSTRAP-SEQUENCE",
+      "title": "B11 bootstrap loads locked dependencies before the exact activation runtime",
+      "ok": true,
+      "evidence": "assets/js/platform/universal-lesson/reference-lesson-bootstrap-v1.js"
+    },
+    {
+      "id": "RUNTIME-PRIVACY",
+      "title": "recording is memory-only with track and object-URL cleanup and no persistence API",
+      "ok": true,
+      "evidence": "assets/js/platform/universal-lesson/reference-lesson-runtime-v1.js"
+    },
+    {
+      "id": "LEGACY-FALLBACK-UX",
+      "title": "Universal modal exposes an explicit old-interface fallback and wraps only openLesson",
+      "ok": true,
+      "evidence": "assets/js/platform/universal-lesson/reference-lesson-runtime-v1.js"
+    },
+    {
+      "id": "RESPONSIVE-CONTRACT",
+      "title": "reference modal CSS includes desktop two-column and mobile one-column boundaries",
+      "ok": true,
+      "evidence": "assets/css/universal-lesson-reference.css"
+    },
+    {
+      "id": "LEARNER-BRAND",
+      "title": "new learner entry runtime style and manifest contain no comparison-school label",
+      "ok": true,
+      "evidence": [
+        "subjects/foundation/index.html",
+        "assets/js/platform/universal-lesson/reference-lesson-runtime-v1.js",
+        "assets/js/platform/universal-lesson/reference-lesson-bootstrap-v1.js",
+        "assets/css/universal-lesson-reference.css",
+        "assets/data/lesson/reference-lesson-activation-v1.json"
+      ]
+    },
+    {
+      "id": "SPECIALIST-NOT-ACTIVATED",
+      "title": "Russian and Mathematics keep their unchanged delegate routes and load no B11 pilot",
+      "ok": true,
+      "evidence": {
+        "russian": {
+          "guard": {
+            "route": "subjects/russian/index.html",
+            "behavior": "delegate-unchanged",
+            "activationAllowed": false
+          },
+          "referenceBootstrapLoaded": false
+        },
+        "math": {
+          "guard": {
+            "route": "subjects/math/index.html",
+            "behavior": "delegate-unchanged",
+            "activationAllowed": false
+          },
+          "referenceBootstrapLoaded": false
+        }
+      }
+    },
+    {
+      "id": "REFERENCE-COMPATIBILITY",
+      "title": "Russian Math and unchanged Foundation source/runtime match the locked B10 checkpoint hashes",
+      "ok": true,
+      "evidence": {
+        "subjects/russian/assets/core.js": {
+          "expected": "71f24d0e0300dddee18f2dd91617b34137de66290c47f0484cae454a1cdeb573",
+          "actual": "71f24d0e0300dddee18f2dd91617b34137de66290c47f0484cae454a1cdeb573"
+        },
+        "subjects/russian/assets/subject-adapter.js": {
+          "expected": "1c6a6930ab06e1510879ed374093016ff721b20fab7bf720a65613e4c411d625",
+          "actual": "1c6a6930ab06e1510879ed374093016ff721b20fab7bf720a65613e4c411d625"
+        },
+        "subjects/russian/data/lessons.json": {
+          "expected": "c8693eeefed17ea39b0cea4a600c9086f1b597ae7174e56bd8b2f8b46b985062",
+          "actual": "c8693eeefed17ea39b0cea4a600c9086f1b597ae7174e56bd8b2f8b46b985062"
+        },
+        "subjects/math/assets/subject-adapter.js": {
+          "expected": "40cb9d93a713929f3b8c9c99c01c30e29f103043a2f2c207521c5446f8f47731",
+          "actual": "40cb9d93a713929f3b8c9c99c01c30e29f103043a2f2c207521c5446f8f47731"
+        },
+        "subjects/math/assets/theory_skin/theory-tab-E129.js": {
+          "expected": "f9040b5dff1d3e38a1440e74445a7d97c1d19e4ec5d5f4312e5d526ac4e69d00",
+          "actual": "f9040b5dff1d3e38a1440e74445a7d97c1d19e4ec5d5f4312e5d526ac4e69d00"
+        },
+        "subjects/math/data/theory_lecture_content.json": {
+          "expected": "d0cd18601b1ede84f58072b3c47cfcc176b4d21d3fa71b23762b908485391447",
+          "actual": "d0cd18601b1ede84f58072b3c47cfcc176b4d21d3fa71b23762b908485391447"
+        },
+        "subjects/foundation/assets/foundation.js": {
+          "expected": "ddb1665c505986962da6c4c5f157d3827e9940e86866afbb7ca42ea4e4430315",
+          "actual": "ddb1665c505986962da6c4c5f157d3827e9940e86866afbb7ca42ea4e4430315"
+        },
+        "subjects/foundation/data/lessons.json": {
+          "expected": "435dc2faea81b59f3b1f29b6e7f1d48d7c99947f0a70ccd62eb3bb60c2f402e1",
+          "actual": "435dc2faea81b59f3b1f29b6e7f1d48d7c99947f0a70ccd62eb3bb60c2f402e1"
+        }
+      }
+    },
+    {
+      "id": "B10-REPORT-STABLE",
+      "title": "locked B10 report remains byte-identical after guarded B11 wiring",
+      "ok": true,
+      "evidence": {
+        "status": "PASS",
+        "sha256": "3157bed5c4494209b65a539c9c08a5a2794cc2b888991858ea6e7e7445b93ce8"
+      }
+    },
+    {
+      "id": "MUTATION-DEPENDENCY-PIN",
+      "title": "changed schema pin blocks activation",
+      "ok": true,
+      "evidence": {
+        "code": "DEPENDENCY_DIGEST_MISMATCH",
+        "expectedCodes": [
+          "DEPENDENCY_DIGEST_MISMATCH"
+        ]
+      }
+    },
+    {
+      "id": "MUTATION-SOURCE-DIGEST",
+      "title": "changed legacy lesson blocks activation",
+      "ok": true,
+      "evidence": {
+        "code": "SOURCE_DIGEST_MISMATCH",
+        "expectedCodes": [
+          "SOURCE_DIGEST_MISMATCH"
+        ]
+      }
+    },
+    {
+      "id": "MUTATION-CONTEXT",
+      "title": "changed projection type fails the exact manifest boundary",
+      "ok": true,
+      "evidence": {
+        "code": "INVALID_ACTIVATION_MANIFEST",
+        "expectedCodes": [
+          "INVALID_ACTIVATION_MANIFEST"
+        ]
+      }
+    },
+    {
+      "id": "MUTATION-FACTORY-PILOT",
+      "title": "removing Factory pilot authorization blocks activation",
+      "ok": true,
+      "evidence": {
+        "code": "FACTORY_PILOT_NOT_AUTHORIZED",
+        "expectedCodes": [
+          "FACTORY_PILOT_NOT_AUTHORIZED"
+        ]
+      }
+    },
+    {
+      "id": "MUTATION-CAPABILITY-SCOPE",
+      "title": "widening the reviewed widget capability list fails closed",
+      "ok": true,
+      "evidence": {
+        "code": "INVALID_ACTIVATION_MANIFEST",
+        "expectedCodes": [
+          "INVALID_ACTIVATION_MANIFEST"
+        ]
+      }
+    },
+    {
+      "id": "MUTATION-REVIEW-AUTHORITY",
+      "title": "claiming unrecorded academic approval fails closed",
+      "ok": true,
+      "evidence": {
+        "code": "INVALID_ACTIVATION_MANIFEST",
+        "expectedCodes": [
+          "INVALID_ACTIVATION_MANIFEST"
+        ]
+      }
+    },
+    {
+      "id": "MUTATION-MASTER-READY",
+      "title": "turning the pilot into a Master-ready claim fails closed",
+      "ok": true,
+      "evidence": {
+        "code": "INVALID_ACTIVATION_MANIFEST",
+        "expectedCodes": [
+          "INVALID_ACTIVATION_MANIFEST"
+        ]
+      }
+    },
+    {
+      "id": "MUTATION-ROLLBACK-ROUTE",
+      "title": "redirecting rollback to another subject fails closed",
+      "ok": true,
+      "evidence": {
+        "code": "INVALID_ACTIVATION_MANIFEST",
+        "expectedCodes": [
+          "INVALID_ACTIVATION_MANIFEST"
+        ]
+      }
+    },
+    {
+      "id": "MUTATION-MISSING-CAPABILITY",
+      "title": "missing recording API keeps the old lesson active",
+      "ok": true,
+      "evidence": {
+        "code": "CAPABILITY_UNAVAILABLE",
+        "expectedCodes": [
+          "CAPABILITY_UNAVAILABLE"
+        ]
+      }
+    },
+    {
+      "id": "MUTATION-ROLLBACK-DIGEST",
+      "title": "rollback rejects a modified source snapshot",
+      "ok": true,
+      "evidence": {
+        "code": "SOURCE_INTEGRITY_FAILED",
+        "expectedCodes": [
+          "SOURCE_INTEGRITY_FAILED"
+        ]
+      }
+    },
+    {
+      "id": "MUTATION-SPECIALIST-GUARD",
+      "title": "enabling Russian pilot cutover fails the specialist guard",
+      "ok": true,
+      "evidence": {
+        "code": "INVALID_ACTIVATION_MANIFEST",
+        "expectedCodes": [
+          "INVALID_ACTIVATION_MANIFEST"
+        ]
+      }
+    },
+    {
+      "id": "MUTATION-AUDIO-PERSISTENCE",
+      "title": "allowing recording persistence fails the privacy boundary",
+      "ok": true,
+      "evidence": {
+        "code": "INVALID_ACTIVATION_MANIFEST",
+        "expectedCodes": [
+          "INVALID_ACTIVATION_MANIFEST"
+        ]
+      }
+    },
+    {
+      "id": "MUTATION-SUMMARY",
+      "title": "all twelve B11 protection mutations fail in the expected direction",
+      "ok": true,
+      "evidence": [
+        {
+          "id": "DEPENDENCY-PIN",
+          "code": "DEPENDENCY_DIGEST_MISMATCH"
+        },
+        {
+          "id": "SOURCE-DIGEST",
+          "code": "SOURCE_DIGEST_MISMATCH"
+        },
+        {
+          "id": "CONTEXT",
+          "code": "INVALID_ACTIVATION_MANIFEST"
+        },
+        {
+          "id": "FACTORY-PILOT",
+          "code": "FACTORY_PILOT_NOT_AUTHORIZED"
+        },
+        {
+          "id": "CAPABILITY-SCOPE",
+          "code": "INVALID_ACTIVATION_MANIFEST"
+        },
+        {
+          "id": "REVIEW-AUTHORITY",
+          "code": "INVALID_ACTIVATION_MANIFEST"
+        },
+        {
+          "id": "MASTER-READY",
+          "code": "INVALID_ACTIVATION_MANIFEST"
+        },
+        {
+          "id": "ROLLBACK-ROUTE",
+          "code": "INVALID_ACTIVATION_MANIFEST"
+        },
+        {
+          "id": "MISSING-CAPABILITY",
+          "code": "CAPABILITY_UNAVAILABLE"
+        },
+        {
+          "id": "ROLLBACK-DIGEST",
+          "code": "SOURCE_INTEGRITY_FAILED"
+        },
+        {
+          "id": "SPECIALIST-GUARD",
+          "code": "INVALID_ACTIVATION_MANIFEST"
+        },
+        {
+          "id": "AUDIO-PERSISTENCE",
+          "code": "INVALID_ACTIVATION_MANIFEST"
+        }
+      ]
+    },
+    {
+      "id": "DOC-DECISION",
+      "title": "B11 decision record explains capability truth rollback offline and specialist boundaries",
+      "ok": true,
+      "evidence": "docs/migration/L6_B11_REFERENCE_RUNTIME_ROLLBACK_CHECKPOINT.md"
+    }
+  ]
+}

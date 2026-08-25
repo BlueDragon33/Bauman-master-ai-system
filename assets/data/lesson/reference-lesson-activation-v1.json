@@ -1,0 +1,163 @@
+{
+  "contractId": "bauman-reference-lesson-activation",
+  "contractVersion": "1.0.0",
+  "status": "L6-B11-REVIEWED-REFERENCE-ACTIVATION",
+  "programIdentity": {
+    "department": "ИУ-5",
+    "officialPublishedDirectionCode": "09.04.01",
+    "personalizedDisplayCode": "09.04.01/11"
+  },
+  "runtimeBoundary": {
+    "activationMode": "exact-allowlist-opt-in",
+    "sourceMutationAllowed": false,
+    "learnerStateMigrationAllowed": false,
+    "automaticMasterReadyAllowed": false,
+    "audioPersistenceAllowed": false,
+    "networkUploadAllowed": false,
+    "legacyFallbackRequired": true,
+    "specialistCutoverAllowed": false
+  },
+  "dependencies": {
+    "schema": {
+      "path": "assets/data/lesson/schema/universal-lesson-v2.schema.json",
+      "stableJsonSha256": "8eccc5d4b8394388ae5e5a876841f8ab9e5210795487fb07a0841fb484041f5c"
+    },
+    "blockPolicy": {
+      "path": "assets/data/lesson/universal-lesson-block-policy-v1.json",
+      "stableJsonSha256": "dc2e3597be9b5e1d29f11b2740e61282a6f047f91071e45e4b33ca6c575f2c30"
+    },
+    "subjectFactory": {
+      "path": "assets/data/lesson/subject-factory-registry-v1.json",
+      "stableJsonSha256": "c852e9bd4ab02bb7307274f1efc3c3b34c766de679cf06f3cff7bcb2c16d3001"
+    }
+  },
+  "widgets": {
+    "foundation-oral-rehearsal": {
+      "availability": "existing-b11",
+      "owner": "foundation-reference-runtime",
+      "capabilityRefs": [
+        "speech-recording"
+      ],
+      "implementation": "browser-media-recorder-memory-only",
+      "fallback": "unchanged-foundation-elearning-modal",
+      "masterReadyAuthority": "none",
+      "privacy": {
+        "recordingLifetime": "current-modal-memory-only",
+        "upload": false,
+        "persistence": false
+      },
+      "prompt": "Trong 90 giây, trình bày quy trình plan → execute → evidence → review; nêu một tình huống trên lớp dự bị, một câu hỏi làm rõ bằng tiếng Nga và minh chứng bạn sẽ lưu.",
+      "languageCue": "Правильно ли я понял(а), что…?",
+      "selfCheck": [
+        "Nêu đúng bốn bước của quy trình học.",
+        "Dùng ít nhất một câu hỏi làm rõ bằng tiếng Nga.",
+        "Chỉ ra một artifact có thể xem lại sau buổi học."
+      ]
+    }
+  },
+  "referenceLessons": [
+    {
+      "activationId": "foundation-f_s01_l1-language-reference",
+      "enabled": true,
+      "subjectId": "foundation",
+      "lessonId": "f_s01_l1",
+      "lessonType": "language",
+      "factoryRuleId": "foundation-classroom-and-study",
+      "source": {
+        "family": "elearning-v1.1",
+        "path": "subjects/foundation/data/lessons.json",
+        "recordId": "f_s01_l1",
+        "stableRecordSha256": "1240a7a1ba8bc9eacc8469f3f1fc8ccf4fa5e457cb73f652a09fea96ed7e5234"
+      },
+      "projection": {
+        "context": {
+          "subjectId": "foundation",
+          "lessonId": "f_s01_l1",
+          "lessonType": "language",
+          "stageId": "preparatory",
+          "sourcePath": "subjects/foundation/data/lessons.json",
+          "sourceArtifactId": "foundation:f_s01_l1",
+          "sourceArtifactKind": "lesson-record",
+          "sourceVersion": "elearning-v1.1",
+          "adapterId": "l6-b11-reviewed-foundation-reference",
+          "contentVersion": "elearning-v1.1",
+          "estimatedMinutes": 60,
+          "tags": [
+            "l6-b11-reference",
+            "foundation",
+            "preparatory"
+          ],
+          "objectiveEvidenceKinds": [
+            "comprehension-response",
+            "oral-response",
+            "written-response"
+          ]
+        },
+        "stableContextSha256": "70ee600da25ff4957d81bb0f64bf81d67d9dafae141c8dbcf486bd5f1772d995",
+        "stableOutputSha256": "04655bdd74dd1c5b93cdecdfbaea82795f9410351704d195749abab2da34ea7e",
+        "stableRenderModelSha256": "875f90b435eab9f136eea4f26409e2c76b97f49da671787a939fe47eb8473270",
+        "stableHtmlSha256": "70b9da2fd9c5f03df969920ff462143b4c428ff4dd3ad1babece12b1f30efff4",
+        "review": {
+          "status": "reviewed-for-exact-b11-reference",
+          "authority": "deterministic-source-preservation-and-capability-audit",
+          "scope": "mapping-policy-capability-runtime-only",
+          "academicApproval": "not-claimed",
+          "masterReadyApproval": "not-claimed",
+          "allowedMigrationWarnings": [
+            "eLearning-v1.1 projection is a dry-run compatibility migration; block and evidence mappings require subject review."
+          ]
+        }
+      },
+      "capabilityProviders": {
+        "speech-recording": {
+          "capabilityRef": "speech-recording",
+          "widgetId": "foundation-oral-rehearsal",
+          "availability": "existing"
+        }
+      },
+      "expectedRender": {
+        "state": "CANONICAL_RENDER_READY",
+        "sectionKinds": [
+          "orientation",
+          "theory",
+          "worked-example",
+          "exercise",
+          "lab-simulation",
+          "misconception",
+          "oral",
+          "review",
+          "mastery",
+          "project-nir-evidence"
+        ],
+        "externalCapability": "speech-recording",
+        "masterReadyClaimed": false
+      },
+      "rollback": {
+        "behavior": "restore-unchanged-foundation-engine-route",
+        "route": "subjects/foundation/index.html",
+        "requiresSourceDigestMatch": true,
+        "learnerStateWritePerformed": false,
+        "cacheWritePerformed": false
+      }
+    }
+  ],
+  "specialistGuards": {
+    "russian": {
+      "route": "subjects/russian/index.html",
+      "behavior": "delegate-unchanged",
+      "activationAllowed": false
+    },
+    "math": {
+      "route": "subjects/math/index.html",
+      "behavior": "delegate-unchanged",
+      "activationAllowed": false
+    }
+  },
+  "rollback": {
+    "featureDisable": "remove the B11 runtime script from the Foundation entry or set the exact reference enabled flag false",
+    "sourceContentImpact": "none",
+    "legacyRuntimeImpact": "none",
+    "learnerStateMigrationImpact": "none",
+    "offlineCacheImpact": "refresh the explicit Foundation subject pack"
+  }
+}

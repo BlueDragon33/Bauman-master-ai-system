@@ -2,7 +2,7 @@
 
 Current task: `L6-B11_REFERENCE_SUBJECT_ROLLBACK_CHECKPOINT`
 
-Status: `L6_B10_PASS_B11_READY`
+Status: `L6_B11_LOCAL_DETERMINISTIC_PASS_REMOTE_PENDING`
 
 Date: 2026-08-24
 Branch: `migration/webapp-l1-audit-storage`
@@ -21,6 +21,16 @@ Files changed:
 - `CODEX_STATE.md`
 
 What changed:
+- Implemented the exact-allowlist B11 reference activation for
+  `foundation:f_s01_l1` without rewriting the Foundation source or learner
+  state, and preserved explicit fallback to the unchanged legacy lesson modal.
+- Added one truthful external oral capability using browser MediaRecorder with
+  current-modal memory only; upload, persistence and automatic Master-ready
+  claims remain forbidden.
+- Added responsive reference-lesson styling, secure bootstrap/module loading,
+  source/dependency/render digest pins and three-layer rollback behavior.
+- Added deterministic and Playwright browser/offline B11 gates plus the remote
+  status context `migration/l6-b11-reference-runtime`.
 - Locked L6-B6 after GitHub Actions run `32717062541` reported B1-B6 contexts
   successful at commit `39dc6f08…`.
 - Defined latent source-aligned Russian Twin and English Research hooks without
@@ -83,6 +93,14 @@ What changed:
   service worker or `main`.
 
 Verification:
+- L6-B11 deterministic activation/rollback regression, 39/39: LOCAL PASS
+- L6-B11 protection mutations, 12/12 expected failures observed: LOCAL PASS
+- L6-B11 report deterministic SHA-256:
+  `01ed21470098c4d6ebbfe3aa832134930b2862fd9b904223a8d75a43cb4b7d3c`
+- L6-B1 through L6-B11 sequential deterministic gates: LOCAL PASS
+- L6-B11 browser/offline regression: LOCAL BLOCKED because no Chromium binary
+  is installed and the sandbox browser download returned an empty archive;
+  remote CI owns the authoritative browser gate.
 - L6-B1 deterministic audit, 44/44 checks: PASS
 - L6-B2 deterministic contract regression, 35/35 checks: PASS
 - L6-B3 deterministic block-policy regression, 37/37 checks: PASS
