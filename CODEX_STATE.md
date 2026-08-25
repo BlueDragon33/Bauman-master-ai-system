@@ -2,7 +2,7 @@
 
 Current task: `L7-B1_RUSSIAN_COVERAGE_AUDIT`
 
-Status: `L6_COMPLETE_L7_READY`
+Status: `L7_B1_LOCAL_PASS_REMOTE_PENDING`
 
 Date: 2026-08-24
 Branch: `migration/webapp-l1-audit-storage`
@@ -10,6 +10,10 @@ Base branch: `main`
 Main sync status: `branch_only`
 
 Files changed:
+- `.github/workflows/migration-l7-reference-subjects.yml`
+- `scripts/academic/l7-b1-russian-coverage-audit.cjs`
+- `docs/migration/L7_B1_RUSSIAN_COVERAGE_AUDIT.md`
+- `docs/migration/L7_B1_RUSSIAN_COVERAGE_AUDIT.generated.json`
 - `.github/workflows/migration-l6-academic.yml`
 - `assets/data/lesson/universal-lesson-renderer-contract-v1.json`
 - `assets/js/platform/universal-lesson/universal-lesson-renderer-v1.js`
@@ -21,6 +25,13 @@ Files changed:
 - `CODEX_STATE.md`
 
 What changed:
+- Expanded the audited master plan from 23 rounds / 218 steps to 25 rounds /
+  235 steps by adding Content Operations & Curriculum Governance and Learning
+  Quality / Accessibility / Acceptance gates.
+- Added a read-only Russian coverage audit for the exact six stages and four
+  preparatory/technical/academic/defense capability tiers.
+- Kept all 26 Russian lesson IDs/titles and specialist source families
+  untouched; B1 does not project, render, migrate or write learner state.
 - Implemented the exact-allowlist B11 reference activation for
   `foundation:f_s01_l1` without rewriting the Foundation source or learner
   state, and preserved explicit fallback to the unchanged legacy lesson modal.
@@ -93,6 +104,10 @@ What changed:
   service worker or `main`.
 
 Verification:
+- L7-B1 Russian coverage audit, 21/21: LOCAL PASS
+- Russian lessons, 26/26; ordered stages, 6/6; capability tiers, 4/4: PASS
+- L7-B1 report stable across consecutive runs, SHA-256:
+  `c49d2300a5594294851711d330bd864f21df4c1240bac1aa8ae4a8e767046472`
 - L6-B11 GitHub Actions run `32792582696`: PASS
 - L6-B11 remote context `migration/l6-b11-reference-runtime`: PASS
 - L6-B11 browser regression, 21/21: PASS

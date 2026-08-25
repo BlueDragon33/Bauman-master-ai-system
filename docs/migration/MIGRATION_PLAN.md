@@ -4,7 +4,7 @@ Baseline ổn định: `main`
 Working branch: `migration/webapp-l1-audit-storage`
 Mục tiêu sản phẩm: **Bauman Master AI · ИУ-5 · 09.04.01/11 · Web App/PWA · Online + Offline · AI-assisted · VI/RU/EN adaptive**
 
-Kế hoạch chính thức hiện tại: **23 lượt · 218 bước**.
+Kế hoạch chính thức hiện tại: **25 lượt · 235 bước**.
 
 Quy tắc cố định:
 - Thực hiện tuần tự; lỗi ở lượt/bước nào thì dừng tiến độ tại đó, sửa xong và chạy lại gate rồi mới tiếp tục.
@@ -378,7 +378,12 @@ Bằng chứng B10:
 
 ## Lượt 7 · Hoàn thiện Reference Subjects · Russian + Math + Foundation · 9 bước
 
+Trạng thái: **B1 LOCAL PASS · chờ remote CI**.
+
 1. Audit coverage Russian theo roadmap dự bị → technical → academic → defense.
+   **LOCAL PASS**: 21/21 deterministic checks; 26/26 lesson, 6/6 stage,
+   4/4 capability tier và mọi support family có coverage. Đây chỉ là structural
+   coverage audit; không suy diễn chất lượng từ số lượng và chưa project source.
 2. Chuẩn hóa Russian lesson map vào Universal Contract bằng adapter, giữ dialogue/speech/handwriting/flashcard/exam đặc thù.
 3. Hoàn thiện Russian Twin lesson generator/registry và glossary theo subject/context.
 4. Audit Math toàn bộ theory/exercise/test/simulation; map prerequisite theo AI/Data/ИУ-5.
@@ -539,7 +544,18 @@ Bằng chứng B10:
 4. Sync settings/bookmarks/study history/NIR checkpoints.
 5. AI context uses synced records without leaking unrelated personal data; full learning-flow regression.
 
-## Lượt 21 · Security · Privacy · Performance Hardening · 5 bước
+## Lượt 21 · Content Operations & Curriculum Governance · 8 bước
+
+1. Source Registry cho nguồn Bauman, học liệu nội bộ và nội dung AI-assisted.
+2. Provenance/version/language/reviewer/date/scope cho mọi artifact xuất bản.
+3. Workflow author → validate → review → approve → publish với quyền tách biệt.
+4. Diff và rollback từng lesson/content artifact, không chỉ rollback toàn app.
+5. Phát hiện duplicate, orphan prerequisite, ID conflict và broken source.
+6. Question-bank governance: difficulty, answer protection, revision và item quality.
+7. Curriculum refresh giữ nguyên completed evidence và version lịch sử.
+8. Content-integrity gate, audit log và recovery checkpoint.
+
+## Lượt 22 · Security · Privacy · Performance Hardening · 5 bước
 
 1. XSS/injection/local-file sandbox/client-tampering audit.
 2. Authz/API validation/rate limiting/AI abuse guard.
@@ -547,7 +563,7 @@ Bằng chứng B10:
 4. Lazy-loading/cache/DOM/memory/network/AI-context profiling across full subjects.
 5. Security/performance regression + failure/recovery/rollback drill.
 
-## Lượt 22 · PWA · Site · Staging · Cross-device QA · 6 bước
+## Lượt 23 · PWA · Site · Staging · Cross-device QA · 6 bước
 
 1. PWA manifest/install/update UX and deliberate Service Worker rollout.
 2. Site deployment/staging domain with version/health marker.
@@ -556,7 +572,19 @@ Bằng chứng B10:
 5. Full curriculum path smoke: Home → Roadmap → Subject → Lesson → Lab → Review → Test → AI → NIR.
 6. Pedagogical/visual consistency audit across every full subject; no subject may ship as a low-quality text dump compared with reference lesson form.
 
-## Lượt 23 · Production · Backup · Rollback · Monitoring · 4 bước
+## Lượt 24 · Learning Quality · Accessibility · Acceptance · 9 bước
+
+1. Placement diagnostic đầu vào cho Russian, Math, Programming và Database.
+2. Coverage matrix: outcome → lesson → practice/lab → assessment → evidence.
+3. AI evaluation: grounding, hallucination, attribution, hint và answer leakage.
+4. Adaptive-engine evaluation: loop, overload, wrong priority và knowledge neglect.
+5. Accessibility: keyboard, screen reader, contrast, text size, reduced motion, touch.
+6. Low-bandwidth, low-storage, quota-near-full và older-device regression.
+7. Privacy lifecycle: export, deletion, retention và AI-derived-data removal.
+8. Real-flow UAT: Russian, Math, Foundation, technical subject và НИР milestone.
+9. Final pedagogical acceptance có evidence, không dùng feature count làm proxy.
+
+## Lượt 25 · Production · Backup · Rollback · Monitoring · 4 bước
 
 1. Production release with immutable version/checkpoint and no premature migration of `main`.
 2. Database/content/state backup + restore drill.

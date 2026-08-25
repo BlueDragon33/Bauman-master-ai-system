@@ -1,0 +1,524 @@
+{
+  "schema": "L7_B1_RUSSIAN_COVERAGE_AUDIT_V1",
+  "status": "PASS",
+  "scope": "Read-only Russian coverage inventory; no adapter projection, runtime wiring, content rewrite or learner-state write.",
+  "programIdentity": {
+    "department": "ИУ-5",
+    "officialPublishedDirectionCode": "09.04.01",
+    "personalizedDisplayCode": "09.04.01/11"
+  },
+  "summary": {
+    "checks": 21,
+    "passed": 21,
+    "failed": 0,
+    "lessons": 26,
+    "stages": 6,
+    "tiers": 4
+  },
+  "lessonCounts": {
+    "vn": 6,
+    "prep": 4,
+    "hk1": 4,
+    "hk2": 4,
+    "hk3": 4,
+    "hk4": 4
+  },
+  "support": {
+    "grammar": {
+      "vn": 6,
+      "prep": 6,
+      "hk1": 2,
+      "hk2": 2,
+      "hk3": 2,
+      "hk4": 2
+    },
+    "writing": {
+      "vn": 7,
+      "prep": 7,
+      "hk1": 7,
+      "hk2": 7,
+      "hk3": 7,
+      "hk4": 7
+    },
+    "assessment": {
+      "vn": 220,
+      "prep": 220,
+      "hk1": 220,
+      "hk2": 220,
+      "hk3": 220,
+      "hk4": 220
+    },
+    "simulation": {
+      "vn": 3,
+      "prep": 3,
+      "hk1": 3,
+      "hk2": 3,
+      "hk3": 3,
+      "hk4": 3
+    },
+    "speakingLinks": {
+      "vn": 50,
+      "prep": 100,
+      "hk1": 190,
+      "hk2": 260,
+      "hk3": 284,
+      "hk4": 174
+    },
+    "knowledgeIndex": {
+      "vn": 6,
+      "prep": 4,
+      "hk1": 4,
+      "hk2": 4,
+      "hk3": 4,
+      "hk4": 4
+    }
+  },
+  "tiers": [
+    {
+      "tier": "preparatory",
+      "stages": [
+        "vn",
+        "prep"
+      ],
+      "lessonIds": [
+        "R01",
+        "R02",
+        "R03",
+        "R04",
+        "R05",
+        "R06",
+        "R07",
+        "R08",
+        "R09",
+        "R10"
+      ],
+      "lessonCount": 10,
+      "totalSlides": 434,
+      "support": {
+        "grammar": 12,
+        "writing": 14,
+        "assessment": 440,
+        "simulation": 6,
+        "speakingLinks": 150,
+        "knowledgeIndex": 10
+      }
+    },
+    {
+      "tier": "technical",
+      "stages": [
+        "hk1",
+        "hk2"
+      ],
+      "lessonIds": [
+        "R11",
+        "R12",
+        "R13",
+        "R14",
+        "R15",
+        "R16",
+        "R17",
+        "R18"
+      ],
+      "lessonCount": 8,
+      "totalSlides": 348,
+      "support": {
+        "grammar": 4,
+        "writing": 14,
+        "assessment": 440,
+        "simulation": 6,
+        "speakingLinks": 450,
+        "knowledgeIndex": 8
+      }
+    },
+    {
+      "tier": "academic",
+      "stages": [
+        "hk3"
+      ],
+      "lessonIds": [
+        "R19",
+        "R20",
+        "R21",
+        "R22"
+      ],
+      "lessonCount": 4,
+      "totalSlides": 178,
+      "support": {
+        "grammar": 2,
+        "writing": 7,
+        "assessment": 220,
+        "simulation": 3,
+        "speakingLinks": 284,
+        "knowledgeIndex": 4
+      }
+    },
+    {
+      "tier": "defense",
+      "stages": [
+        "hk4"
+      ],
+      "lessonIds": [
+        "R23",
+        "R24",
+        "R25",
+        "R26"
+      ],
+      "lessonCount": 4,
+      "totalSlides": 178,
+      "support": {
+        "grammar": 2,
+        "writing": 7,
+        "assessment": 220,
+        "simulation": 3,
+        "speakingLinks": 174,
+        "knowledgeIndex": 4
+      }
+    }
+  ],
+  "sourceDigests": {
+    "curriculum": "c4a7ebeb6d7984a764265f1f21ca2912f9428c309496a4ee65f32e84a6af6557",
+    "lessons": "423a1c061fa01020ddb35ef1b409027a906923abdd9bf8b2672e7ae4fa656346",
+    "grammar": "082791c7625f77eecc0ac3272c68be59b6e4ba405cdd995f6bc0b967e826241f",
+    "writing": "7770a0d3c69423b51e147d18091738f606bc82ea761c9186525ddb621bfaebd5",
+    "tests": "3ca9d27e5e24afbe51ab1126b1e35943f1ff8b9ad30045faeff0917eb9d52c5c",
+    "simulations": "40098708d9f17d1308bfc3f1d10e17b9e432c269b7bd0e7e42de62d94f8d8525",
+    "speakingLinks": "b05fa42596fef38d03d48061d74e281fd811327e218eda37613987fa839c1e5a",
+    "knowledgeIndex": "609d8dad57d59e79998a6d511fbf73f0c29dc54ffa107ff6822055dcfbd559fa",
+    "roadmap": "e188d6fbbce06002aef7c583c76f494f65a0684a00fd8992a1a5ab0f91f618b5"
+  },
+  "checks": [
+    {
+      "id": "PROGRAM-IDENTITY",
+      "title": "Roadmap keeps official and personalized direction codes distinct",
+      "ok": true,
+      "evidence": {
+        "official": "09.04.01",
+        "display": "09.04.01/11"
+      }
+    },
+    {
+      "id": "STAGE-ORDER",
+      "title": "Russian curriculum has the exact six ordered stages",
+      "ok": true,
+      "evidence": [
+        "vn",
+        "prep",
+        "hk1",
+        "hk2",
+        "hk3",
+        "hk4"
+      ]
+    },
+    {
+      "id": "MODULE-ORDER",
+      "title": "Russian modules cover the same six stages in order",
+      "ok": true,
+      "evidence": [
+        "vn",
+        "prep",
+        "hk1",
+        "hk2",
+        "hk3",
+        "hk4"
+      ]
+    },
+    {
+      "id": "LESSON-COUNT",
+      "title": "Russian keeps exactly 26 legacy lessons",
+      "ok": true,
+      "evidence": 26
+    },
+    {
+      "id": "LESSON-ID-UNIQUE",
+      "title": "Russian lesson IDs are unique",
+      "ok": true,
+      "evidence": [
+        "R01",
+        "R02",
+        "R03",
+        "R04",
+        "R05",
+        "R06",
+        "R07",
+        "R08",
+        "R09",
+        "R10",
+        "R11",
+        "R12",
+        "R13",
+        "R14",
+        "R15",
+        "R16",
+        "R17",
+        "R18",
+        "R19",
+        "R20",
+        "R21",
+        "R22",
+        "R23",
+        "R24",
+        "R25",
+        "R26"
+      ]
+    },
+    {
+      "id": "MODULE-MAP-EXACT",
+      "title": "Curriculum module mapping covers every lesson exactly once",
+      "ok": true,
+      "evidence": {
+        "lessonCount": 26,
+        "mappedCount": 26
+      }
+    },
+    {
+      "id": "STAGE-DISTRIBUTION",
+      "title": "Lesson distribution matches the reviewed 6/4/4/4/4/4 route",
+      "ok": true,
+      "evidence": {
+        "vn": 6,
+        "prep": 4,
+        "hk1": 4,
+        "hk2": 4,
+        "hk3": 4,
+        "hk4": 4
+      }
+    },
+    {
+      "id": "RUSSIAN-TITLES",
+      "title": "Every lesson keeps a non-empty Russian title",
+      "ok": true,
+      "evidence": {
+        "covered": 26
+      }
+    },
+    {
+      "id": "RICH-LESSON-SOURCE",
+      "title": "Every legacy lesson remains a rich source with at least 16 slides",
+      "ok": true,
+      "evidence": {
+        "minimumSlides": 43
+      }
+    },
+    {
+      "id": "SUPPORT-GRAMMAR",
+      "title": "grammar has coverage in every Russian stage",
+      "ok": true,
+      "evidence": {
+        "vn": 6,
+        "prep": 6,
+        "hk1": 2,
+        "hk2": 2,
+        "hk3": 2,
+        "hk4": 2
+      }
+    },
+    {
+      "id": "SUPPORT-WRITING",
+      "title": "writing has coverage in every Russian stage",
+      "ok": true,
+      "evidence": {
+        "vn": 7,
+        "prep": 7,
+        "hk1": 7,
+        "hk2": 7,
+        "hk3": 7,
+        "hk4": 7
+      }
+    },
+    {
+      "id": "SUPPORT-ASSESSMENT",
+      "title": "assessment has coverage in every Russian stage",
+      "ok": true,
+      "evidence": {
+        "vn": 220,
+        "prep": 220,
+        "hk1": 220,
+        "hk2": 220,
+        "hk3": 220,
+        "hk4": 220
+      }
+    },
+    {
+      "id": "SUPPORT-SIMULATION",
+      "title": "simulation has coverage in every Russian stage",
+      "ok": true,
+      "evidence": {
+        "vn": 3,
+        "prep": 3,
+        "hk1": 3,
+        "hk2": 3,
+        "hk3": 3,
+        "hk4": 3
+      }
+    },
+    {
+      "id": "SUPPORT-SPEAKINGLINKS",
+      "title": "speakingLinks has coverage in every Russian stage",
+      "ok": true,
+      "evidence": {
+        "vn": 50,
+        "prep": 100,
+        "hk1": 190,
+        "hk2": 260,
+        "hk3": 284,
+        "hk4": 174
+      }
+    },
+    {
+      "id": "SUPPORT-KNOWLEDGEINDEX",
+      "title": "knowledgeIndex has coverage in every Russian stage",
+      "ok": true,
+      "evidence": {
+        "vn": 6,
+        "prep": 4,
+        "hk1": 4,
+        "hk2": 4,
+        "hk3": 4,
+        "hk4": 4
+      }
+    },
+    {
+      "id": "TIER-PREPARATORY",
+      "title": "preparatory has lessons and every support family",
+      "ok": true,
+      "evidence": {
+        "tier": "preparatory",
+        "stages": [
+          "vn",
+          "prep"
+        ],
+        "lessonIds": [
+          "R01",
+          "R02",
+          "R03",
+          "R04",
+          "R05",
+          "R06",
+          "R07",
+          "R08",
+          "R09",
+          "R10"
+        ],
+        "lessonCount": 10,
+        "totalSlides": 434,
+        "support": {
+          "grammar": 12,
+          "writing": 14,
+          "assessment": 440,
+          "simulation": 6,
+          "speakingLinks": 150,
+          "knowledgeIndex": 10
+        }
+      }
+    },
+    {
+      "id": "TIER-TECHNICAL",
+      "title": "technical has lessons and every support family",
+      "ok": true,
+      "evidence": {
+        "tier": "technical",
+        "stages": [
+          "hk1",
+          "hk2"
+        ],
+        "lessonIds": [
+          "R11",
+          "R12",
+          "R13",
+          "R14",
+          "R15",
+          "R16",
+          "R17",
+          "R18"
+        ],
+        "lessonCount": 8,
+        "totalSlides": 348,
+        "support": {
+          "grammar": 4,
+          "writing": 14,
+          "assessment": 440,
+          "simulation": 6,
+          "speakingLinks": 450,
+          "knowledgeIndex": 8
+        }
+      }
+    },
+    {
+      "id": "TIER-ACADEMIC",
+      "title": "academic has lessons and every support family",
+      "ok": true,
+      "evidence": {
+        "tier": "academic",
+        "stages": [
+          "hk3"
+        ],
+        "lessonIds": [
+          "R19",
+          "R20",
+          "R21",
+          "R22"
+        ],
+        "lessonCount": 4,
+        "totalSlides": 178,
+        "support": {
+          "grammar": 2,
+          "writing": 7,
+          "assessment": 220,
+          "simulation": 3,
+          "speakingLinks": 284,
+          "knowledgeIndex": 4
+        }
+      }
+    },
+    {
+      "id": "TIER-DEFENSE",
+      "title": "defense has lessons and every support family",
+      "ok": true,
+      "evidence": {
+        "tier": "defense",
+        "stages": [
+          "hk4"
+        ],
+        "lessonIds": [
+          "R23",
+          "R24",
+          "R25",
+          "R26"
+        ],
+        "lessonCount": 4,
+        "totalSlides": 178,
+        "support": {
+          "grammar": 2,
+          "writing": 7,
+          "assessment": 220,
+          "simulation": 3,
+          "speakingLinks": 174,
+          "knowledgeIndex": 4
+        }
+      }
+    },
+    {
+      "id": "ROADMAP-RUSSIAN",
+      "title": "Roadmap declares classroom technical academic and twin Russian",
+      "ok": true,
+      "evidence": [
+        "A0-A2",
+        "classroom-russian",
+        "technical-russian",
+        "academic-russian",
+        "russian-twin-lesson"
+      ]
+    },
+    {
+      "id": "NO-SOURCE-MUTATION",
+      "title": "Audit is read-only and records source digests",
+      "ok": true,
+      "evidence": {
+        "curriculum": "c4a7ebeb6d7984a764265f1f21ca2912f9428c309496a4ee65f32e84a6af6557",
+        "lessons": "423a1c061fa01020ddb35ef1b409027a906923abdd9bf8b2672e7ae4fa656346",
+        "tests": "3ca9d27e5e24afbe51ab1126b1e35943f1ff8b9ad30045faeff0917eb9d52c5c"
+      }
+    }
+  ],
+  "failures": []
+}
