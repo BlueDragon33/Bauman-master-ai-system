@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-08-25T14:21:33.145Z",
+  "generatedAt": "2026-08-25T14:24:31.039Z",
   "baseUrl": "http://127.0.0.1:4173",
   "checks": [
     {
@@ -40,17 +40,17 @@
     {
       "name": "direct HTML uses empty sandbox permissions",
       "ok": true,
-      "detail": "{\"sandbox\":\"\",\"breach\":false,\"src\":\"blob:http://127.0.0.1:4173/805bf945-194b-4ec5-8d6d-388465ee2aad\",\"note\":\"HTML local chạy trong sandbox không cấp quyền script hay truy cập Web App.\"}"
+      "detail": "{\"sandbox\":\"\",\"breach\":false,\"src\":\"blob:http://127.0.0.1:4173/b08004a4-2e69-4a95-8780-b7541fed6cda\",\"note\":\"HTML local chạy trong sandbox không cấp quyền script hay truy cập Web App.\"}"
     },
     {
       "name": "direct HTML cannot mutate parent",
       "ok": true,
-      "detail": "{\"sandbox\":\"\",\"breach\":false,\"src\":\"blob:http://127.0.0.1:4173/805bf945-194b-4ec5-8d6d-388465ee2aad\",\"note\":\"HTML local chạy trong sandbox không cấp quyền script hay truy cập Web App.\"}"
+      "detail": "{\"sandbox\":\"\",\"breach\":false,\"src\":\"blob:http://127.0.0.1:4173/b08004a4-2e69-4a95-8780-b7541fed6cda\",\"note\":\"HTML local chạy trong sandbox không cấp quyền script hay truy cập Web App.\"}"
     },
     {
       "name": "direct HTML uses local object URL",
       "ok": true,
-      "detail": "blob:http://127.0.0.1:4173/805bf945-194b-4ec5-8d6d-388465ee2aad"
+      "detail": "blob:http://127.0.0.1:4173/b08004a4-2e69-4a95-8780-b7541fed6cda"
     },
     {
       "name": "direct HTML explains sandbox",
