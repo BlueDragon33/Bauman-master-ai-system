@@ -20,7 +20,7 @@ concurrency:
 
 jobs:
   l5-site-runtime:
-    if: ${{ github.event_name != 'push' || !startsWith(github.event.head_commit.message, 'ci(migration): record L5 result') }}
+    if: "${{ github.event_name != 'push' || !startsWith(github.event.head_commit.message, 'ci(migration): record L5 result') }}"
     runs-on: ubuntu-latest
     steps:
       - name: Checkout repository
