@@ -1,8 +1,8 @@
 # CODEX_STATE
 
-Current task: `L6-B11_REFERENCE_SUBJECT_ROLLBACK_CHECKPOINT`
+Current task: `L7-B1_RUSSIAN_COVERAGE_AUDIT`
 
-Status: `L6_B11_LOCAL_DETERMINISTIC_PASS_REMOTE_PENDING`
+Status: `L6_COMPLETE_L7_READY`
 
 Date: 2026-08-24
 Branch: `migration/webapp-l1-audit-storage`
@@ -93,14 +93,22 @@ What changed:
   service worker or `main`.
 
 Verification:
+- L6-B11 GitHub Actions run `32792582696`: PASS
+- L6-B11 remote context `migration/l6-b11-reference-runtime`: PASS
+- L6-B11 browser regression, 21/21: PASS
+- L6-B11 responsive viewports, 3/3: PASS
+- L6-B11 explicit offline subject packs, 3/3: PASS
+- Foundation/Mathematics/Russian offline routes, 3/3: PASS
+- Full L5 runtime/browser/offline regression run `32792704340`: PASS
+- L5 workflow YAML startup defect was fixed by quoting the job-level condition;
+  the repaired workflow completed successfully.
 - L6-B11 deterministic activation/rollback regression, 39/39: LOCAL PASS
 - L6-B11 protection mutations, 12/12 expected failures observed: LOCAL PASS
 - L6-B11 report deterministic SHA-256:
   `01ed21470098c4d6ebbfe3aa832134930b2862fd9b904223a8d75a43cb4b7d3c`
 - L6-B1 through L6-B11 sequential deterministic gates: LOCAL PASS
-- L6-B11 browser/offline regression: LOCAL BLOCKED because no Chromium binary
-  is installed and the sandbox browser download returned an empty archive;
-  remote CI owns the authoritative browser gate.
+- Local sandbox had no Chromium binary, so the authoritative browser/offline
+  evidence is the successful remote CI run above.
 - L6-B1 deterministic audit, 44/44 checks: PASS
 - L6-B2 deterministic contract regression, 35/35 checks: PASS
 - L6-B3 deterministic block-policy regression, 37/37 checks: PASS
@@ -173,8 +181,9 @@ Main sync / pull instruction:
 - Do not merge to `main` until the corresponding L6 gates pass.
 
 Next recommended task:
-- Begin B11 with one reviewed light reference capability path plus
-  Russian/Mathematics runtime, responsive, offline and rollback regression.
+- Begin L7-B1 with a coverage audit of Russian from preparatory through
+  technical, academic and defense stages; do not project or rewrite Russian
+  content until the audit and adapter mapping gate are defined.
 
 Next actor:
 - Codex
