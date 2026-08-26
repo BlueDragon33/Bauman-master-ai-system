@@ -378,7 +378,7 @@ Bằng chứng B10:
 
 ## Lượt 7 · Hoàn thiện Reference Subjects · Russian + Math + Foundation · 9 bước
 
-Trạng thái: **B1–B5 PASS · B6 kế tiếp**.
+Trạng thái: **B1–B6 PASS · B7 kế tiếp**.
 
 1. Audit coverage Russian theo roadmap dự bị → technical → academic → defense.
    **PASS**: 21/21 deterministic checks; 26/26 lesson, 6/6 stage,
@@ -420,6 +420,18 @@ Trạng thái: **B1–B5 PASS · B6 kế tiếp**.
    L7 run `32940546331`, L6 run `32940546329` và full L5
    runtime/browser/offline run `32940546352` PASS; `main` không thay đổi.
 6. Hoàn thiện Foundation cho giai đoạn dự bị: classroom Russian + math/science transition + study-method bridge.
+   **PASS theo nghĩa structural bridge**: ba track bắt buộc phủ đúng 5/5
+   preparatory module và 15/15 lesson, bảo toàn thứ tự/locator/type của Subject
+   Factory. Chín capability checkpoint có Russian cue và chỉ là evidence target
+   chưa thu thập. B11 runtime reference vẫn duy nhất `f_s01_l1`; sáu handoff
+   chỉ trỏ route/roadmap, không suy diễn lesson equivalence hay mastery. Audit
+   ghi thật 15 exercise template, 22 preparatory question, 1 observation + 1
+   practice scenario và bốn finding chuyển B7/B8; không gọi đó là academic,
+   assessment hay Master-ready completion. Gate 51/51 cùng 8/8 protection
+   mutation PASS; pack SHA-256
+   `1fad88fd68b49ee4d614bddea21671af0fa11a0aea24d944e6e381e5a14a7c47`.
+   L7 run `32942456784`, L6 browser/offline run `32942456752` và full L5
+   runtime/browser/offline run `32942456698` PASS; `main` không thay đổi.
 7. Master-ready evidence + spaced-review hooks cho Russian/Math/Foundation.
 8. Visual/pedagogical QA desktop/tablet/mobile/offline.
 9. Cross-reference checkpoint: Russian/Math là reference implementation chính thức cho các môn sau.

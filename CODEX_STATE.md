@@ -1,8 +1,8 @@
 # CODEX_STATE
 
-Current task: `L7-B6_FOUNDATION_PREPARATORY_COMPLETION`
+Current task: `L7-B7_MASTER_READY_SPACED_REVIEW_HOOKS`
 
-Status: `L7_B5_PASS_B6_READY`
+Status: `L7_B6_PASS_B7_READY`
 
 Date: 2026-08-26
 Branch: `migration/webapp-l1-audit-storage`
@@ -10,6 +10,11 @@ Base branch: `main`
 Main sync status: `branch_only`
 
 Files changed:
+- `assets/data/lesson/foundation-preparatory-bridge-v1.json`
+- `assets/js/platform/universal-lesson/foundation-preparatory-bridge-v1.js`
+- `scripts/academic/l7-b6-foundation-preparatory-completion-regression.cjs`
+- `docs/migration/L7_B6_FOUNDATION_PREPARATORY_COMPLETION.md`
+- `docs/migration/L7_B6_FOUNDATION_PREPARATORY_COMPLETION.generated.json`
 - `assets/js/platform/universal-lesson/math-universal-adapter-v1.js`
 - `scripts/academic/l7-b5-math-universal-adapter-regression.cjs`
 - `docs/migration/L7_B5_MATH_UNIVERSAL_ADAPTER.md`
@@ -44,6 +49,22 @@ Files changed:
 - `CODEX_STATE.md`
 
 What changed:
+- Added a three-track Foundation preparatory bridge covering classroom
+  Russian, math/computing/science transition and study method.
+- Assigned all five current preparatory modules and all fifteen lessons exactly
+  once, preserving curriculum order, exact source locators and deterministic
+  Subject Factory lesson types.
+- Defined nine capability checkpoints with Russian classroom/technical cues;
+  every evidence target remains `target-defined-not-collected` with no mastery
+  effect before B7.
+- Preserved the single reviewed B11 runtime reference at `f_s01_l1`, kept all
+  later-subject handoffs route-only without inferred lesson equivalence and
+  made unknown/look-alike IDs fail closed.
+- Measured current source limitations instead of hiding them: shared template
+  theory/mastery text, 22 preparatory template questions, one observation and
+  one practice scenario, plus simulation stage drift remain open for B7/B8.
+- Added deterministic and mutation gates without changing Foundation source,
+  runtime, learner state, offline policy, Service Worker or `main`.
 - Added a pure read-only Math → Universal v2 adapter with exact-ID source
   resolution: reviewed overlays remain separate, legacy IDs keep legacy
   fallback, and unknown/look-alike IDs fail closed without fuzzy promotion.
@@ -176,6 +197,17 @@ What changed:
   service worker or `main`.
 
 Verification:
+- L7-B6 GitHub Actions run `32942456784`: PASS
+- L6 full regression/browser run `32942456752`: PASS
+- Full L5 runtime/browser/offline run `32942456698`: PASS
+- L7-B6 Foundation preparatory completion, 51/51 checks: PASS
+- L7-B6 protection mutations, 8/8 expected failures observed: PASS
+- Foundation bridge coverage, 3/3 tracks, 5/5 modules, 15/15 lessons and
+  9/9 capability checkpoints: PASS
+- L7-B6 pack SHA-256:
+  `1fad88fd68b49ee4d614bddea21671af0fa11a0aea24d944e6e381e5a14a7c47`
+- L7-B6 generated report stable SHA-256:
+  `8da9b3cde176aca2b95895e7e5850ad1377838af2b014df6204e79b4c0d0ae0a`
 - L7-B5 GitHub Actions run `32940546331`: PASS
 - L6 full regression run `32940546329`: PASS
 - Full L5 runtime/browser/offline run `32940546352`: PASS
@@ -300,20 +332,20 @@ Main sync / pull instruction:
 - The work is branch-only on `migration/webapp-l1-audit-storage`.
 - Do not pull `main` for this task; `main` does not contain L6.
 - Do not merge to `main` until the remaining L7 gates and final progression
-  gate pass; B5 remains draft-branch-only.
+  gate pass; B6 remains draft-branch-only.
 
 Next recommended task:
-- Begin L7-B6 by auditing Foundation against the preparatory target:
-  classroom Russian, math/science transition and study-method bridge. Preserve
-  current source/runtime/state and fail closed on unsupported completion.
+- Begin L7-B7 by defining Master-ready evidence and spaced-review hooks for
+  Russian, Math and Foundation. Treat B6 checkpoints as uncollected targets;
+  do not qualify current Foundation template assessments without review.
 
 Next actor:
 - Codex
 
 Codex required:
 - yes
-- Reason: Foundation source/coverage audit, preparatory-gap closure, legacy
-  compatibility, deterministic regression and remote CI verification.
+- Reason: cross-subject evidence authority, retention scheduling boundaries,
+  legacy-state compatibility, mutation fixtures and remote CI verification.
 
 ChatGPT can do:
 - Targeted content/schema review and small documentation-only corrections on
