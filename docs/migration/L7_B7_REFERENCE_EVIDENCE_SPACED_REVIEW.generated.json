@@ -1,0 +1,950 @@
+{
+  "gate": "L7-B7",
+  "release": "L7-B7-REFERENCE-EVIDENCE-REVIEW-V1",
+  "status": "PASS",
+  "subjectCounts": {
+    "russian": 26,
+    "math": 365,
+    "foundation": 15
+  },
+  "lessonCount": 406,
+  "evidenceSlotCount": 2030,
+  "reviewHookTemplateCount": 1250,
+  "requiredReviewHookTemplateCount": 812,
+  "sourceTargetCounts": {
+    "russianAdapterTargets": 104,
+    "russianAddedMissingTargets": 26,
+    "mathAdapterTargets": 1825,
+    "foundationUnqualifiedTargets": 75
+  },
+  "openFindings": [
+    {
+      "id": "RUSSIAN_BUILD_APPLY_TARGET_ABSENT_IN_B2",
+      "effect": "B7 creates a missing dialogue-turn target; no learner evidence is inferred.",
+      "blocks": [
+        "current-russian-master-ready-claim"
+      ]
+    },
+    {
+      "id": "FOUNDATION_SOURCE_EVIDENCE_UNQUALIFIED",
+      "effect": "B6 template targets remain source context only until B8 review and authorized evidence collection.",
+      "blocks": [
+        "current-foundation-master-ready-claim"
+      ]
+    },
+    {
+      "id": "NO_LEARNER_EVIDENCE_IMPORTED",
+      "effect": "All 406 catalog lessons begin with missing hook slots; B7 never migrates or fabricates learner state.",
+      "blocks": [
+        "current-reference-subject-master-ready-claim"
+      ]
+    }
+  ],
+  "sourceDigests": {
+    "registry": "425f5f21c143f6b7d3a0b3f372777bbbf6abaec4137783ba85d9b2c809b1e7e2",
+    "masterReadyPolicy": "de9b74adb4618f767e0d233cc4cc4c6c47be95771fa23833d1fb4d9f8f1cdb26",
+    "lessonTypeRegistry": "131d5d6cbf93cea2347a3db82fc8bf734ce12ff5937820eca3d20a10637e58c2",
+    "subjectFactory": "c429651766b72dba600b8d5e141aceb96464046395c8498649b28e9e776fc067",
+    "russianLessons": "66a311c2387df733343c65cc3971fde90ce7baaeb06eca111e8fa44164549324",
+    "russianSources": "15702a4b6deb6d356fefdf336daf1e368622400e774d98ebf8a4654db8084879",
+    "mathSources": "b3bd643eaf304f37925540df03a7fed71ef05862c7d4909baed0354da2936552",
+    "foundationSources": "fc6e7f5184a872d2564045ec57c6068b7cab68a6b05d892bbc19f283a708c685",
+    "runtime": {
+      "subjects/russian/index.html": "f37b483583c2ec5c2b7697cae67176d340837685658178234b78898b57c47a60",
+      "subjects/math/index.html": "4f6aaca01a5cdc74329ad2dec5626e931ac773ca533c0b911e94789052b71ee3",
+      "subjects/foundation/index.html": "267e96e017f6b4da4290fe0fadce79b522c99d712ee94ad568fd684ffcdea27e",
+      "assets/js/platform/storage-adapter.js": "fea272c570392177b517330eb9ad5e2d097175b1c898899281259bba263f00df",
+      "assets/js/platform/subject-storage.js": "96e9277194444bc737b97459f5d24a213b9d68f31d2adc4573c11e8ac110e714"
+    }
+  },
+  "catalogDigest": "99bb3bec7ad202ecc81cf309da2171adb9b2876792c76b585af83afbdf7255aa",
+  "scheduleFixtureDigest": "be57fbf4d1a46527b29495f28d6d9381bdc4f7a81cfff7c14231d89fe8a85644",
+  "checks": [
+    {
+      "id": "FILE-assets/js/platform/universal-lesson/reference-subject-evidence-review-v1.js",
+      "title": "required L7-B7 input exists",
+      "ok": true,
+      "evidence": "assets/js/platform/universal-lesson/reference-subject-evidence-review-v1.js"
+    },
+    {
+      "id": "FILE-assets/data/lesson/reference-subject-evidence-review-v1.json",
+      "title": "required L7-B7 input exists",
+      "ok": true,
+      "evidence": "assets/data/lesson/reference-subject-evidence-review-v1.json"
+    },
+    {
+      "id": "FILE-assets/data/lesson/master-ready-policy-v1.json",
+      "title": "required L7-B7 input exists",
+      "ok": true,
+      "evidence": "assets/data/lesson/master-ready-policy-v1.json"
+    },
+    {
+      "id": "FILE-assets/data/lesson/lesson-type-registry-v1.json",
+      "title": "required L7-B7 input exists",
+      "ok": true,
+      "evidence": "assets/data/lesson/lesson-type-registry-v1.json"
+    },
+    {
+      "id": "FILE-assets/data/lesson/subject-factory-registry-v1.json",
+      "title": "required L7-B7 input exists",
+      "ok": true,
+      "evidence": "assets/data/lesson/subject-factory-registry-v1.json"
+    },
+    {
+      "id": "FILE-assets/js/platform/universal-lesson/russian-universal-adapter-v1.js",
+      "title": "required L7-B7 input exists",
+      "ok": true,
+      "evidence": "assets/js/platform/universal-lesson/russian-universal-adapter-v1.js"
+    },
+    {
+      "id": "FILE-assets/js/platform/universal-lesson/math-universal-adapter-v1.js",
+      "title": "required L7-B7 input exists",
+      "ok": true,
+      "evidence": "assets/js/platform/universal-lesson/math-universal-adapter-v1.js"
+    },
+    {
+      "id": "FILE-assets/js/platform/universal-lesson/foundation-preparatory-bridge-v1.js",
+      "title": "required L7-B7 input exists",
+      "ok": true,
+      "evidence": "assets/js/platform/universal-lesson/foundation-preparatory-bridge-v1.js"
+    },
+    {
+      "id": "FILE-assets/data/lesson/foundation-preparatory-bridge-v1.json",
+      "title": "required L7-B7 input exists",
+      "ok": true,
+      "evidence": "assets/data/lesson/foundation-preparatory-bridge-v1.json"
+    },
+    {
+      "id": "FILE-docs/migration/L7_B7_REFERENCE_EVIDENCE_SPACED_REVIEW.md",
+      "title": "required L7-B7 input exists",
+      "ok": true,
+      "evidence": "docs/migration/L7_B7_REFERENCE_EVIDENCE_SPACED_REVIEW.md"
+    },
+    {
+      "id": "FILE-subjects/russian/data/lessons.json",
+      "title": "required L7-B7 input exists",
+      "ok": true,
+      "evidence": "subjects/russian/data/lessons.json"
+    },
+    {
+      "id": "FILE-subjects/math/data/lessons.json",
+      "title": "required L7-B7 input exists",
+      "ok": true,
+      "evidence": "subjects/math/data/lessons.json"
+    },
+    {
+      "id": "FILE-subjects/math/data/theory_lecture_content.json",
+      "title": "required L7-B7 input exists",
+      "ok": true,
+      "evidence": "subjects/math/data/theory_lecture_content.json"
+    },
+    {
+      "id": "FILE-assets/data/lesson/math-prerequisite-graph-v1.generated.json",
+      "title": "required L7-B7 input exists",
+      "ok": true,
+      "evidence": "assets/data/lesson/math-prerequisite-graph-v1.generated.json"
+    },
+    {
+      "id": "FILE-subjects/foundation/data/curriculum.json",
+      "title": "required L7-B7 input exists",
+      "ok": true,
+      "evidence": "subjects/foundation/data/curriculum.json"
+    },
+    {
+      "id": "FILE-subjects/foundation/data/lessons.json",
+      "title": "required L7-B7 input exists",
+      "ok": true,
+      "evidence": "subjects/foundation/data/lessons.json"
+    },
+    {
+      "id": "FILE-subjects/foundation/data/exercises.json",
+      "title": "required L7-B7 input exists",
+      "ok": true,
+      "evidence": "subjects/foundation/data/exercises.json"
+    },
+    {
+      "id": "FILE-subjects/foundation/data/tests.json",
+      "title": "required L7-B7 input exists",
+      "ok": true,
+      "evidence": "subjects/foundation/data/tests.json"
+    },
+    {
+      "id": "FILE-subjects/foundation/data/simulations.json",
+      "title": "required L7-B7 input exists",
+      "ok": true,
+      "evidence": "subjects/foundation/data/simulations.json"
+    },
+    {
+      "id": "FILE-assets/data/lesson/reference-lesson-activation-v1.json",
+      "title": "required L7-B7 input exists",
+      "ok": true,
+      "evidence": "assets/data/lesson/reference-lesson-activation-v1.json"
+    },
+    {
+      "id": "FILE-assets/data/roadmap/iu5-090401-11-v3.json",
+      "title": "required L7-B7 input exists",
+      "ok": true,
+      "evidence": "assets/data/roadmap/iu5-090401-11-v3.json"
+    },
+    {
+      "id": "FILE-subjects/math/data/formulas.json",
+      "title": "required L7-B7 input exists",
+      "ok": true,
+      "evidence": "subjects/math/data/formulas.json"
+    },
+    {
+      "id": "FILE-subjects/math/data/exercises.json",
+      "title": "required L7-B7 input exists",
+      "ok": true,
+      "evidence": "subjects/math/data/exercises.json"
+    },
+    {
+      "id": "FILE-subjects/math/data/simulations.json",
+      "title": "required L7-B7 input exists",
+      "ok": true,
+      "evidence": "subjects/math/data/simulations.json"
+    },
+    {
+      "id": "FILE-subjects/math/data/applications.json",
+      "title": "required L7-B7 input exists",
+      "ok": true,
+      "evidence": "subjects/math/data/applications.json"
+    },
+    {
+      "id": "FILE-subjects/math/data/professor_qa.json",
+      "title": "required L7-B7 input exists",
+      "ok": true,
+      "evidence": "subjects/math/data/professor_qa.json"
+    },
+    {
+      "id": "FILE-subjects/math/data/tests.json",
+      "title": "required L7-B7 input exists",
+      "ok": true,
+      "evidence": "subjects/math/data/tests.json"
+    },
+    {
+      "id": "FILE-subjects/math/data/question_bank.json",
+      "title": "required L7-B7 input exists",
+      "ok": true,
+      "evidence": "subjects/math/data/question_bank.json"
+    },
+    {
+      "id": "FILE-subjects/russian/index.html",
+      "title": "required L7-B7 input exists",
+      "ok": true,
+      "evidence": "subjects/russian/index.html"
+    },
+    {
+      "id": "FILE-subjects/math/index.html",
+      "title": "required L7-B7 input exists",
+      "ok": true,
+      "evidence": "subjects/math/index.html"
+    },
+    {
+      "id": "FILE-subjects/foundation/index.html",
+      "title": "required L7-B7 input exists",
+      "ok": true,
+      "evidence": "subjects/foundation/index.html"
+    },
+    {
+      "id": "FILE-assets/js/platform/storage-adapter.js",
+      "title": "required L7-B7 input exists",
+      "ok": true,
+      "evidence": "assets/js/platform/storage-adapter.js"
+    },
+    {
+      "id": "FILE-assets/js/platform/subject-storage.js",
+      "title": "required L7-B7 input exists",
+      "ok": true,
+      "evidence": "assets/js/platform/subject-storage.js"
+    },
+    {
+      "id": "ENGINE-IDENTITY",
+      "title": "B7 evidence-review engine has a stable identity",
+      "ok": true,
+      "evidence": {
+        "registryId": "bauman-reference-subject-evidence-review",
+        "release": "L7-B7-REFERENCE-EVIDENCE-REVIEW-V1"
+      }
+    },
+    {
+      "id": "PROGRAM-IDENTITY",
+      "title": "official and personalized program codes remain separated",
+      "ok": true,
+      "evidence": {
+        "department": "ИУ-5",
+        "officialPublishedDirectionCode": "09.04.01",
+        "personalizedDisplayCode": "09.04.01/11"
+      }
+    },
+    {
+      "id": "GOVERNING-REFS",
+      "title": "B7 remains governed by L6-B5, type registry, Factory and B2/B5/B6 adapters",
+      "ok": true,
+      "evidence": {
+        "masterReadyPolicy": "assets/data/lesson/master-ready-policy-v1.json",
+        "lessonTypeRegistry": "assets/data/lesson/lesson-type-registry-v1.json",
+        "subjectFactory": "assets/data/lesson/subject-factory-registry-v1.json",
+        "russianAdapter": "assets/js/platform/universal-lesson/russian-universal-adapter-v1.js",
+        "mathAdapter": "assets/js/platform/universal-lesson/math-universal-adapter-v1.js",
+        "foundationBridge": "assets/js/platform/universal-lesson/foundation-preparatory-bridge-v1.js",
+        "foundationBridgeContract": "assets/data/lesson/foundation-preparatory-bridge-v1.json"
+      }
+    },
+    {
+      "id": "FIVE-STAGE-POLICY",
+      "title": "B7 maps the exact L6-B5 five-stage order",
+      "ok": true,
+      "evidence": [
+        "understand",
+        "solve",
+        "build-apply",
+        "explain",
+        "retain"
+      ]
+    },
+    {
+      "id": "READ-ONLY-BOUNDARY",
+      "title": "B7 cannot mutate source, state, schedule, runtime or Master-ready",
+      "ok": true,
+      "evidence": {
+        "mode": "pure-read-only-hook-projection",
+        "sourceMutationAllowed": false,
+        "learnerStateMutationAllowed": false,
+        "scheduleWriteAllowed": false,
+        "runtimeActivationAllowed": false,
+        "automaticMasterReadyAllowed": false,
+        "aiFinalVerificationAllowed": false,
+        "pageEventEvidenceAllowed": false,
+        "fuzzyLessonMatchAllowed": false,
+        "attemptsAppendOnly": true
+      }
+    },
+    {
+      "id": "SUBJECT-ORDER",
+      "title": "catalog order is Russian, Math, Foundation",
+      "ok": true,
+      "evidence": [
+        "russian",
+        "math",
+        "foundation"
+      ]
+    },
+    {
+      "id": "SUBJECT-COUNTS",
+      "title": "B7 covers 26 Russian, 365 Math and 15 Foundation lessons",
+      "ok": true,
+      "evidence": {
+        "russian": 26,
+        "math": 365,
+        "foundation": 15
+      }
+    },
+    {
+      "id": "CATALOG-TOTAL",
+      "title": "all 406 current reference-subject lessons receive hooks",
+      "ok": true,
+      "evidence": {
+        "subjectCount": 3,
+        "lessonCount": 406,
+        "evidenceSlotCount": 2030,
+        "reviewHookTemplateCount": 1250,
+        "requiredReviewHookTemplateCount": 812
+      }
+    },
+    {
+      "id": "SUBJECT-LESSON-UNIQUENESS",
+      "title": "lesson IDs are unique inside each subject catalog",
+      "ok": true,
+      "evidence": [
+        "russian",
+        "math",
+        "foundation"
+      ]
+    },
+    {
+      "id": "EVIDENCE-SLOT-COVERAGE",
+      "title": "every lesson has five missing stage slots",
+      "ok": true,
+      "evidence": 2030
+    },
+    {
+      "id": "MISSING-EVIDENCE-TRUTH",
+      "title": "B7 imports no evidence, score, artifact, verifier or learner state",
+      "ok": true,
+      "evidence": {
+        "slots": 2030,
+        "imported": 0
+      }
+    },
+    {
+      "id": "EVIDENCE-KIND-POLICY-PARITY",
+      "title": "every preferred and accepted evidence kind comes from its L6-B5 type profile",
+      "ok": true,
+      "evidence": [
+        "language",
+        "mathematics",
+        "programming"
+      ]
+    },
+    {
+      "id": "RUSSIAN-SOURCE-TARGET-TRUTH",
+      "title": "Russian keeps 104 B2 targets and adds 26 missing build-apply targets without evidence",
+      "ok": true,
+      "evidence": {
+        "adapterTargets": 104,
+        "addedMissingTargets": 26
+      }
+    },
+    {
+      "id": "MATH-SOURCE-TARGET-TRUTH",
+      "title": "all 1,825 Math B5 stage targets remain present but missing",
+      "ok": true,
+      "evidence": 1825
+    },
+    {
+      "id": "FOUNDATION-SOURCE-TARGET-TRUTH",
+      "title": "all 75 Foundation slots remain unqualified hook targets",
+      "ok": true,
+      "evidence": 75
+    },
+    {
+      "id": "FOUNDATION-TYPE-DISTRIBUTION",
+      "title": "Foundation hooks preserve six language, six mathematics and three programming lessons",
+      "ok": true,
+      "evidence": {
+        "language": 6,
+        "mathematics": 6,
+        "programming": 3
+      }
+    },
+    {
+      "id": "REVIEW-TEMPLATE-COVERAGE",
+      "title": "type-specific policy windows create 1,250 unscheduled review templates",
+      "ok": true,
+      "evidence": 1250
+    },
+    {
+      "id": "REQUIRED-REVIEW-COVERAGE",
+      "title": "812 policy-required delayed review templates are identified",
+      "ok": true,
+      "evidence": 812
+    },
+    {
+      "id": "SUBJECT-REVIEW-TEMPLATE-COUNTS",
+      "title": "Russian, Math and Foundation retain their type-specific window counts",
+      "ok": true,
+      "evidence": {
+        "russian": 104,
+        "math": 1095,
+        "foundation": 51
+      }
+    },
+    {
+      "id": "SUBJECT-REQUIRED-TEMPLATE-COUNTS",
+      "title": "required retention windows total 52, 730 and 30 by subject",
+      "ok": true,
+      "evidence": {
+        "russian": 52,
+        "math": 730,
+        "foundation": 30
+      }
+    },
+    {
+      "id": "RETENTION-POLICY-PARITY",
+      "title": "every hook template copies its type window, requiredness and minimum exactly",
+      "ok": true,
+      "evidence": [
+        "language",
+        "mathematics",
+        "programming"
+      ]
+    },
+    {
+      "id": "STABLE-HOOK-IDENTITY",
+      "title": "every evidence and review hook uses exact stable subject/lesson identity",
+      "ok": true,
+      "evidence": [
+        "review:russian:R01:d1",
+        "review:russian:R01:d3",
+        "review:russian:R01:d7",
+        "review:russian:R01:d14"
+      ]
+    },
+    {
+      "id": "ROUTE-OFFLINE-PARITY",
+      "title": "subject routes and offline policies remain the registered existing values",
+      "ok": true,
+      "evidence": {
+        "russian": {
+          "route": "subjects/russian/index.html",
+          "offline": "russian-rich-explicit"
+        },
+        "math": {
+          "route": "subjects/math/index.html",
+          "offline": "math-rich-explicit"
+        },
+        "foundation": {
+          "route": "subjects/foundation/index.html",
+          "offline": "light-core-explicit"
+        }
+      }
+    },
+    {
+      "id": "CATALOG-CLAIM-BOUNDARY",
+      "title": "catalog makes no state, completion, runtime or Master-ready claim",
+      "ok": true,
+      "evidence": {
+        "learnerStateImported": false,
+        "learnerCompletionClaimed": false,
+        "masterReadyClaimed": false,
+        "runtimeActivationClaimed": false
+      }
+    },
+    {
+      "id": "OPEN-FINDINGS",
+      "title": "Russian, Foundation and no-state limitations remain explicit",
+      "ok": true,
+      "evidence": [
+        {
+          "id": "RUSSIAN_BUILD_APPLY_TARGET_ABSENT_IN_B2",
+          "effect": "B7 creates a missing dialogue-turn target; no learner evidence is inferred.",
+          "blocks": [
+            "current-russian-master-ready-claim"
+          ]
+        },
+        {
+          "id": "FOUNDATION_SOURCE_EVIDENCE_UNQUALIFIED",
+          "effect": "B6 template targets remain source context only until B8 review and authorized evidence collection.",
+          "blocks": [
+            "current-foundation-master-ready-claim"
+          ]
+        },
+        {
+          "id": "NO_LEARNER_EVIDENCE_IMPORTED",
+          "effect": "All 406 catalog lessons begin with missing hook slots; B7 never migrates or fabricates learner state.",
+          "blocks": [
+            "current-reference-subject-master-ready-claim"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "EXACT-RESOLUTION",
+      "title": "exact subject and lesson IDs resolve one hook record",
+      "ok": true,
+      "evidence": [
+        "R01",
+        "MATH-VN-C01-vector_trong_khong_gian_-L01-vector-as-engineering-data-e130",
+        "f_s03_l1"
+      ]
+    },
+    {
+      "id": "NO-FUZZY-RESOLUTION",
+      "title": "unknown, look-alike and cross-subject IDs fail closed",
+      "ok": true,
+      "evidence": "NO_EXACT_EVIDENCE_HOOK_MATCH"
+    },
+    {
+      "id": "SCHEDULE-WAITS-FOR-EVIDENCE",
+      "title": "no stage evidence means no dated review schedule",
+      "ok": true,
+      "evidence": "WAITING_FOR_VERIFIED_EVIDENCE"
+    },
+    {
+      "id": "SCHEDULE-WAITS-FOR-ALL-PRE-STAGES",
+      "title": "partial verified stages cannot create an anchor or due date",
+      "ok": true,
+      "evidence": [
+        {
+          "stage": "understand",
+          "state": "passed",
+          "pass": true,
+          "normalizedScore": 0.8,
+          "minimumNormalized": 0.75,
+          "evaluationRef": "eval:russian:R01:understand"
+        },
+        {
+          "stage": "solve",
+          "state": "passed",
+          "pass": true,
+          "normalizedScore": 0.8,
+          "minimumNormalized": 0.75,
+          "evaluationRef": "eval:russian:R01:solve"
+        },
+        {
+          "stage": "build-apply",
+          "state": "passed",
+          "pass": true,
+          "normalizedScore": 0.8500000000000001,
+          "minimumNormalized": 0.8,
+          "evaluationRef": "eval:russian:R01:build-apply"
+        },
+        {
+          "stage": "explain",
+          "state": "missing",
+          "pass": false
+        }
+      ]
+    },
+    {
+      "id": "STAGE-MINIMUM-REPAIR",
+      "title": "a verified stage below its type minimum routes to repair",
+      "ok": true,
+      "evidence": {
+        "stage": "solve",
+        "state": "needs-repair",
+        "pass": false,
+        "normalizedScore": 0.74,
+        "minimumNormalized": 0.75,
+        "evaluationRef": "eval:russian:R01:solve"
+      }
+    },
+    {
+      "id": "READY-FOR-RETENTION-ANCHOR",
+      "title": "four passing pre-retention stages create only an anchor candidate",
+      "ok": true,
+      "evidence": "READY_FOR_RETENTION_ANCHOR"
+    },
+    {
+      "id": "EXPLICIT-AS-OF-REQUIRED",
+      "title": "dated scheduling fails closed without explicit asOf",
+      "ok": true,
+      "evidence": "EVIDENCE_REVIEW_AS_OF_REQUIRED"
+    },
+    {
+      "id": "LANGUAGE-SCHEDULE-MATERIALIZATION",
+      "title": "language schedule materializes exact UTC days 1, 3, 7 and 14",
+      "ok": true,
+      "evidence": [
+        {
+          "day": 1,
+          "dueAt": "2026-01-02T00:00:00.000Z",
+          "state": "due"
+        },
+        {
+          "day": 3,
+          "dueAt": "2026-01-04T00:00:00.000Z",
+          "state": "scheduled"
+        },
+        {
+          "day": 7,
+          "dueAt": "2026-01-08T00:00:00.000Z",
+          "state": "scheduled"
+        },
+        {
+          "day": 14,
+          "dueAt": "2026-01-15T00:00:00.000Z",
+          "state": "scheduled"
+        }
+      ]
+    },
+    {
+      "id": "MATH-SCHEDULE-MATERIALIZATION",
+      "title": "Math schedule materializes exact days 1, 7 and 21",
+      "ok": true,
+      "evidence": [
+        {
+          "day": 1,
+          "dueAt": "2026-01-02T00:00:00.000Z"
+        },
+        {
+          "day": 7,
+          "dueAt": "2026-01-08T00:00:00.000Z"
+        },
+        {
+          "day": 21,
+          "dueAt": "2026-01-22T00:00:00.000Z"
+        }
+      ]
+    },
+    {
+      "id": "FOUNDATION-PROGRAMMING-SCHEDULE",
+      "title": "Foundation computing uses the programming retention profile",
+      "ok": true,
+      "evidence": [
+        {
+          "day": 1,
+          "minimum": 0.8
+        },
+        {
+          "day": 7,
+          "minimum": 0.8
+        },
+        {
+          "day": 21,
+          "minimum": 0.8
+        }
+      ]
+    },
+    {
+      "id": "EARLY-ATTEMPT-DOES-NOT-PASS",
+      "title": "an attempt before its due instant cannot satisfy that window",
+      "ok": true,
+      "evidence": {
+        "hookId": "review:russian:R01:d7",
+        "subjectId": "russian",
+        "lessonId": "R01",
+        "typeId": "language",
+        "windowDays": 7,
+        "required": true,
+        "minimumNormalized": 0.75,
+        "variedPromptRequired": true,
+        "state": "due",
+        "dueAt": "2026-01-08T00:00:00.000Z",
+        "attemptRefs": [
+          "attempt:russian:R01:d7:1"
+        ],
+        "latestAttemptRef": "attempt:russian:R01:d7:1",
+        "failureReason": "attempt-before-due-does-not-satisfy-window"
+      }
+    },
+    {
+      "id": "PROTECTED-ANSWER-REUSE-REPAIR",
+      "title": "protected-answer reuse cannot pass delayed retention",
+      "ok": true,
+      "evidence": {
+        "hookId": "review:russian:R01:d14",
+        "subjectId": "russian",
+        "lessonId": "R01",
+        "typeId": "language",
+        "windowDays": 14,
+        "required": true,
+        "minimumNormalized": 0.75,
+        "variedPromptRequired": true,
+        "state": "needs-repair",
+        "dueAt": "2026-01-15T00:00:00.000Z",
+        "attemptRefs": [
+          "attempt:russian:R01:d14:1"
+        ],
+        "latestAttemptRef": "attempt:russian:R01:d14:1",
+        "failureReason": "latest-due-attempt-did-not-pass-retention-boundary"
+      }
+    },
+    {
+      "id": "VARIED-PROMPT-REQUIRED",
+      "title": "an unvaried prompt cannot pass delayed retention",
+      "ok": true,
+      "evidence": {
+        "hookId": "review:russian:R01:d14",
+        "subjectId": "russian",
+        "lessonId": "R01",
+        "typeId": "language",
+        "windowDays": 14,
+        "required": true,
+        "minimumNormalized": 0.75,
+        "variedPromptRequired": true,
+        "state": "needs-repair",
+        "dueAt": "2026-01-15T00:00:00.000Z",
+        "attemptRefs": [
+          "attempt:russian:R01:d14:1"
+        ],
+        "latestAttemptRef": "attempt:russian:R01:d14:1",
+        "failureReason": "latest-due-attempt-did-not-pass-retention-boundary"
+      }
+    },
+    {
+      "id": "RETENTION-MINIMUM-REPAIR",
+      "title": "a due retention attempt below the type minimum routes to repair",
+      "ok": true,
+      "evidence": {
+        "hookId": "review:russian:R01:d14",
+        "subjectId": "russian",
+        "lessonId": "R01",
+        "typeId": "language",
+        "windowDays": 14,
+        "required": true,
+        "minimumNormalized": 0.75,
+        "variedPromptRequired": true,
+        "state": "needs-repair",
+        "dueAt": "2026-01-15T00:00:00.000Z",
+        "attemptRefs": [
+          "attempt:russian:R01:d14:1"
+        ],
+        "latestAttemptRef": "attempt:russian:R01:d14:1",
+        "failureReason": "latest-due-attempt-did-not-pass-retention-boundary"
+      }
+    },
+    {
+      "id": "RETENTION-COMPLETE-GATE-PENDING",
+      "title": "passing every review window still waits for the full Master-ready gate",
+      "ok": true,
+      "evidence": "RETENTION_COMPLETE_GATE_PENDING"
+    },
+    {
+      "id": "MASTER-READY-CANDIDATE-NOT-CLAIM",
+      "title": "full evidence yields only a verification candidate and performs no state write",
+      "ok": true,
+      "evidence": {
+        "status": "MASTER_READY_VERIFICATION_CANDIDATE",
+        "eligible": true,
+        "claimed": false
+      }
+    },
+    {
+      "id": "AI-CANNOT-VERIFY-STAGE",
+      "title": "AI advisory output cannot verify a pre-retention stage",
+      "ok": true,
+      "evidence": "EVIDENCE_REVIEW_UNAUTHORIZED_VERIFIER"
+    },
+    {
+      "id": "AI-CANNOT-VERIFY-FINAL-GATE",
+      "title": "AI advisory output cannot verify the final gate",
+      "ok": true,
+      "evidence": "EVIDENCE_REVIEW_UNAUTHORIZED_VERIFIER"
+    },
+    {
+      "id": "APPEND-ONLY-ATTEMPT-IDENTITY",
+      "title": "duplicate attempt IDs fail closed instead of overwriting evidence",
+      "ok": true,
+      "evidence": "EVIDENCE_REVIEW_ATTEMPT_DUPLICATE"
+    },
+    {
+      "id": "ATTEMPT-SCOPE-BOUNDARY",
+      "title": "a review attempt cannot cross subject or lesson identity",
+      "ok": true,
+      "evidence": "EVIDENCE_REVIEW_ATTEMPT_SCOPE_INVALID"
+    },
+    {
+      "id": "SOURCE-IMMUTABLE",
+      "title": "B7 leaves adapters, policies and all subject sources unchanged",
+      "ok": true,
+      "evidence": {
+        "registry": "425f5f21c143f6b7d3a0b3f372777bbbf6abaec4137783ba85d9b2c809b1e7e2",
+        "masterReadyPolicy": "de9b74adb4618f767e0d233cc4cc4c6c47be95771fa23833d1fb4d9f8f1cdb26",
+        "lessonTypeRegistry": "131d5d6cbf93cea2347a3db82fc8bf734ce12ff5937820eca3d20a10637e58c2",
+        "subjectFactory": "c429651766b72dba600b8d5e141aceb96464046395c8498649b28e9e776fc067",
+        "russianLessons": "66a311c2387df733343c65cc3971fde90ce7baaeb06eca111e8fa44164549324",
+        "russianSources": "15702a4b6deb6d356fefdf336daf1e368622400e774d98ebf8a4654db8084879",
+        "mathSources": "b3bd643eaf304f37925540df03a7fed71ef05862c7d4909baed0354da2936552",
+        "foundationSources": "fc6e7f5184a872d2564045ec57c6068b7cab68a6b05d892bbc19f283a708c685",
+        "runtime": {
+          "subjects/russian/index.html": "f37b483583c2ec5c2b7697cae67176d340837685658178234b78898b57c47a60",
+          "subjects/math/index.html": "4f6aaca01a5cdc74329ad2dec5626e931ac773ca533c0b911e94789052b71ee3",
+          "subjects/foundation/index.html": "267e96e017f6b4da4290fe0fadce79b522c99d712ee94ad568fd684ffcdea27e",
+          "assets/js/platform/storage-adapter.js": "fea272c570392177b517330eb9ad5e2d097175b1c898899281259bba263f00df",
+          "assets/js/platform/subject-storage.js": "96e9277194444bc737b97459f5d24a213b9d68f31d2adc4573c11e8ac110e714"
+        }
+      }
+    },
+    {
+      "id": "RUNTIME-IMMUTABLE",
+      "title": "B7 changes no Russian, Math, Foundation or storage runtime file",
+      "ok": true,
+      "evidence": {
+        "subjects/russian/index.html": "f37b483583c2ec5c2b7697cae67176d340837685658178234b78898b57c47a60",
+        "subjects/math/index.html": "4f6aaca01a5cdc74329ad2dec5626e931ac773ca533c0b911e94789052b71ee3",
+        "subjects/foundation/index.html": "267e96e017f6b4da4290fe0fadce79b522c99d712ee94ad568fd684ffcdea27e",
+        "assets/js/platform/storage-adapter.js": "fea272c570392177b517330eb9ad5e2d097175b1c898899281259bba263f00df",
+        "assets/js/platform/subject-storage.js": "96e9277194444bc737b97459f5d24a213b9d68f31d2adc4573c11e8ac110e714"
+      }
+    },
+    {
+      "id": "DETERMINISTIC-CATALOG",
+      "title": "repeated full hook catalog has a stable SHA-256 digest",
+      "ok": true,
+      "evidence": "99bb3bec7ad202ecc81cf309da2171adb9b2876792c76b585af83afbdf7255aa"
+    },
+    {
+      "id": "DETERMINISTIC-SCHEDULE",
+      "title": "repeated explicit scheduling has a stable SHA-256 digest",
+      "ok": true,
+      "evidence": "be57fbf4d1a46527b29495f28d6d9381bdc4f7a81cfff7c14231d89fe8a85644"
+    },
+    {
+      "id": "OFFLINE-NON-AI",
+      "title": "hook projection and scheduling remain offline and non-AI",
+      "ok": true,
+      "evidence": {
+        "hookProjectionWithoutNetwork": true,
+        "scheduleMaterializationWithoutNetwork": true,
+        "aiRequired": false,
+        "serviceWorkerChange": false,
+        "subjectPackChange": false
+      }
+    }
+  ],
+  "mutationTests": [
+    {
+      "id": "CATALOG-MASTER-READY-CLAIM",
+      "title": "catalog-level Master-ready promotion is rejected",
+      "expectedFailureObserved": true,
+      "evidence": {
+        "code": "EVIDENCE_REVIEW_CATALOG_BOUNDARY_ESCALATION"
+      }
+    },
+    {
+      "id": "SYNTHESIZE-EVIDENCE-SLOT",
+      "title": "a generated verified slot without evidence is rejected",
+      "expectedFailureObserved": true,
+      "evidence": {
+        "code": "EVIDENCE_REVIEW_CATALOG_BOUNDARY_ESCALATION"
+      }
+    },
+    {
+      "id": "PRE-SCHEDULE-CATALOG-HOOK",
+      "title": "catalog generation cannot invent a due date",
+      "expectedFailureObserved": true,
+      "evidence": {
+        "code": "EVIDENCE_REVIEW_CATALOG_BOUNDARY_ESCALATION"
+      }
+    },
+    {
+      "id": "ENABLE-AUTOMATIC-MASTER-READY",
+      "title": "registry cannot enable automatic Master-ready",
+      "expectedFailureObserved": true,
+      "evidence": {
+        "code": "EVIDENCE_REVIEW_BOUNDARY_ESCALATION"
+      }
+    },
+    {
+      "id": "USE-PAGE-EVENT-AS-EVIDENCE",
+      "title": "page events cannot become policy evidence kinds",
+      "expectedFailureObserved": true,
+      "evidence": {
+        "code": "EVIDENCE_REVIEW_KIND_INVALID"
+      }
+    },
+    {
+      "id": "DROP-RUSSIAN-LESSON",
+      "title": "catalog count drift fails closed",
+      "expectedFailureObserved": true,
+      "evidence": {
+        "code": "EVIDENCE_REVIEW_CATALOG_COUNT_MISMATCH"
+      }
+    },
+    {
+      "id": "DUPLICATE-RUSSIAN-LESSON",
+      "title": "duplicate hook identity fails closed",
+      "expectedFailureObserved": true,
+      "evidence": {
+        "code": "EVIDENCE_REVIEW_LESSON_DUPLICATE"
+      }
+    },
+    {
+      "id": "REUSE-PROTECTED-ANSWER",
+      "title": "protected-answer reuse cannot pass retention",
+      "expectedFailureObserved": true,
+      "evidence": {
+        "status": "NEEDS_REPAIR"
+      }
+    },
+    {
+      "id": "SATISFY-WINDOW-EARLY",
+      "title": "an early attempt cannot satisfy a delayed window",
+      "expectedFailureObserved": true,
+      "evidence": {
+        "status": "RETENTION_SCHEDULE_ACTIVE"
+      }
+    },
+    {
+      "id": "WRITE-MASTER-READY-STATE",
+      "title": "schedule output cannot write or claim Master-ready",
+      "expectedFailureObserved": true,
+      "evidence": {
+        "code": "EVIDENCE_REVIEW_SCHEDULE_BOUNDARY_ESCALATION"
+      }
+    }
+  ],
+  "passMeaning": "Evidence and spaced-review hooks are structurally complete and deterministic; no learner evidence was imported and no Master-ready or state-write claim was made."
+}

@@ -170,6 +170,28 @@ jobs:
             -f description="L7-B6 Foundation bridge: ${GATE_OUTCOME}" \
             -f target_url="${GITHUB_SERVER_URL}/${GITHUB_REPOSITORY}/actions/runs/${GITHUB_RUN_ID}"
 
+      - name: Run L7-B7 reference evidence and spaced-review regression
+        id: b7_gate
+        run: |
+          node --check assets/js/platform/universal-lesson/reference-subject-evidence-review-v1.js
+          node --check scripts/academic/l7-b7-reference-evidence-review-regression.cjs
+          node scripts/academic/l7-b7-reference-evidence-review-regression.cjs
+          git diff --exit-code -- docs/migration/L7_B7_REFERENCE_EVIDENCE_SPACED_REVIEW.generated.json
+
+      - name: Publish L7-B7 status
+        if: ${{ always() && github.event_name == 'push' && steps.b7_gate.outcome != 'skipped' }}
+        env:
+          GH_TOKEN: ${{ github.token }}
+          GATE_OUTCOME: ${{ steps.b7_gate.outcome }}
+        run: |
+          STATE=failure
+          if [ "$GATE_OUTCOME" = "success" ]; then STATE=success; fi
+          gh api --method POST "repos/${GITHUB_REPOSITORY}/statuses/${GITHUB_SHA}" \
+            -f state="$STATE" \
+            -f context="migration/l7-b7-reference-evidence-review" \
+            -f description="L7-B7 evidence/review hooks: ${GATE_OUTCOME}" \
+            -f target_url="${GITHUB_SERVER_URL}/${GITHUB_REPOSITORY}/actions/runs/${GITHUB_RUN_ID}"
+
       - name: Upload L7-B1 evidence
         if: always()
         uses: actions/upload-artifact@v4
@@ -215,3 +237,10 @@ jobs:
         with:
           name: l7-b6-foundation-preparatory
           path: docs/migration/L7_B6_FOUNDATION_PREPARATORY_COMPLETION.generated.json
+
+      - name: Upload L7-B7 evidence
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: l7-b7-reference-evidence-review
+          path: docs/migration/L7_B7_REFERENCE_EVIDENCE_SPACED_REVIEW.generated.json

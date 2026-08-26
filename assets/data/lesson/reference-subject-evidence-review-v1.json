@@ -1,0 +1,217 @@
+{
+  "registryId": "bauman-reference-subject-evidence-review",
+  "registryVersion": "1.0.0",
+  "release": "L7-B7-REFERENCE-EVIDENCE-REVIEW-V1",
+  "status": "HOOKS_DEFINED_NOT_RUNTIME_ACTIVATED",
+  "programIdentity": {
+    "department": "ИУ-5",
+    "officialPublishedDirectionCode": "09.04.01",
+    "personalizedDisplayCode": "09.04.01/11"
+  },
+  "governingRefs": {
+    "masterReadyPolicy": "assets/data/lesson/master-ready-policy-v1.json",
+    "lessonTypeRegistry": "assets/data/lesson/lesson-type-registry-v1.json",
+    "subjectFactory": "assets/data/lesson/subject-factory-registry-v1.json",
+    "russianAdapter": "assets/js/platform/universal-lesson/russian-universal-adapter-v1.js",
+    "mathAdapter": "assets/js/platform/universal-lesson/math-universal-adapter-v1.js",
+    "foundationBridge": "assets/js/platform/universal-lesson/foundation-preparatory-bridge-v1.js",
+    "foundationBridgeContract": "assets/data/lesson/foundation-preparatory-bridge-v1.json"
+  },
+  "runtimeBoundary": {
+    "mode": "pure-read-only-hook-projection",
+    "sourceMutationAllowed": false,
+    "learnerStateMutationAllowed": false,
+    "scheduleWriteAllowed": false,
+    "runtimeActivationAllowed": false,
+    "automaticMasterReadyAllowed": false,
+    "aiFinalVerificationAllowed": false,
+    "pageEventEvidenceAllowed": false,
+    "fuzzyLessonMatchAllowed": false,
+    "attemptsAppendOnly": true
+  },
+  "catalogOrder": [
+    "russian",
+    "math",
+    "foundation"
+  ],
+  "subjects": {
+    "russian": {
+      "expectedLessonCount": 26,
+      "catalogSource": "russian-universal-adapter-v1",
+      "typeResolution": {
+        "mode": "fixed",
+        "typeId": "language"
+      },
+      "sourceEvidenceBoundary": "B2 adapter targets remain missing; B7 adds the absent build-apply target but does not create an evidence event.",
+      "runtimeRoute": "subjects/russian/index.html",
+      "offlinePolicyRef": "russian-rich-explicit"
+    },
+    "math": {
+      "expectedLessonCount": 365,
+      "catalogSource": "math-universal-adapter-v1",
+      "sourceFamilies": [
+        "reviewed-theory-overlay",
+        "legacy-math-runtime"
+      ],
+      "typeResolution": {
+        "mode": "fixed",
+        "typeId": "mathematics"
+      },
+      "sourceEvidenceBoundary": "B5 adapter exposes five missing evidence targets; empty external banks and inactive prerequisite candidates remain unchanged.",
+      "runtimeRoute": "subjects/math/index.html",
+      "offlinePolicyRef": "math-rich-explicit"
+    },
+    "foundation": {
+      "expectedLessonCount": 15,
+      "catalogSource": "foundation-preparatory-bridge-v1",
+      "typeResolution": {
+        "mode": "source-factory-module-rule",
+        "allowedTypeIds": [
+          "language",
+          "mathematics",
+          "programming"
+        ]
+      },
+      "sourceEvidenceBoundary": "B6 bridge targets and template assessments are unqualified; B7 creates missing policy slots without upgrading source records.",
+      "runtimeRoute": "subjects/foundation/index.html",
+      "offlinePolicyRef": "light-core-explicit"
+    }
+  },
+  "evidenceProfiles": {
+    "language": {
+      "understand": {
+        "preferredEvidenceKind": "comprehension-response"
+      },
+      "solve": {
+        "preferredEvidenceKind": "written-response"
+      },
+      "build-apply": {
+        "preferredEvidenceKind": "dialogue-turn"
+      },
+      "explain": {
+        "preferredEvidenceKind": "oral-response"
+      },
+      "retain": {
+        "preferredEvidenceKind": "retention-check"
+      }
+    },
+    "mathematics": {
+      "understand": {
+        "preferredEvidenceKind": "derivation"
+      },
+      "solve": {
+        "preferredEvidenceKind": "mathematical-solution"
+      },
+      "build-apply": {
+        "preferredEvidenceKind": "simulation-result"
+      },
+      "explain": {
+        "preferredEvidenceKind": "oral-response"
+      },
+      "retain": {
+        "preferredEvidenceKind": "retention-check"
+      }
+    },
+    "programming": {
+      "understand": {
+        "preferredEvidenceKind": "complexity-explanation"
+      },
+      "solve": {
+        "preferredEvidenceKind": "passing-tests"
+      },
+      "build-apply": {
+        "preferredEvidenceKind": "repository-artifact"
+      },
+      "explain": {
+        "preferredEvidenceKind": "debug-trace"
+      },
+      "retain": {
+        "preferredEvidenceKind": "passing-tests"
+      }
+    }
+  },
+  "evidenceSlotBoundary": {
+    "initialStatus": "missing",
+    "artifactRefs": [],
+    "verificationStatus": "not-submitted",
+    "masteryEffect": "none-until-policy-verification",
+    "sourceTargetQualification": "target-only-not-evidence-event",
+    "missingSlotBehavior": "create a missing hook target; never synthesize an attempt, score, artifact or verifier"
+  },
+  "reviewSchedule": {
+    "timezone": "UTC",
+    "dayDurationMilliseconds": 86400000,
+    "anchorRule": "A schedule anchor is accepted only after verified understand, solve, build-apply and explain stage evaluations pass their type-specific minimums.",
+    "anchorSource": "ready-for-retention-transition",
+    "hookIdPattern": "review:<subjectId>:<lessonId>:d<windowDays>",
+    "hookStates": [
+      "template",
+      "scheduled",
+      "due",
+      "passed",
+      "needs-repair"
+    ],
+    "attemptRule": "Attempts are append-only, use stable attempt IDs and may satisfy a window only at or after its due time.",
+    "variedPromptRequired": true,
+    "protectedAnswerReuseAllowed": false,
+    "explicitAsOfRequired": true,
+    "finalGateRule": "Passing required retention windows creates only a Master-ready verification candidate. Final state still requires the full L6-B5 rubric, prerequisites, source integrity and an authorized verifier.",
+    "stateWriteOwner": "future-learning-state-runtime-not-B7"
+  },
+  "verificationBoundary": {
+    "finalActors": [
+      "deterministic-evaluator",
+      "instructor-review"
+    ],
+    "advisoryActors": [
+      "learner-self-check",
+      "peer-review",
+      "ai-advisory"
+    ],
+    "pageEventsNeverEvidence": [
+      "page-view",
+      "route-open",
+      "scroll",
+      "elapsed-time",
+      "ai-chat"
+    ],
+    "officialAnswerReuseAllowed": false
+  },
+  "openFindings": [
+    {
+      "id": "RUSSIAN_BUILD_APPLY_TARGET_ABSENT_IN_B2",
+      "effect": "B7 creates a missing dialogue-turn target; no learner evidence is inferred.",
+      "blocks": [
+        "current-russian-master-ready-claim"
+      ]
+    },
+    {
+      "id": "FOUNDATION_SOURCE_EVIDENCE_UNQUALIFIED",
+      "effect": "B6 template targets remain source context only until B8 review and authorized evidence collection.",
+      "blocks": [
+        "current-foundation-master-ready-claim"
+      ]
+    },
+    {
+      "id": "NO_LEARNER_EVIDENCE_IMPORTED",
+      "effect": "All 406 catalog lessons begin with missing hook slots; B7 never migrates or fabricates learner state.",
+      "blocks": [
+        "current-reference-subject-master-ready-claim"
+      ]
+    }
+  ],
+  "offline": {
+    "hookProjectionWithoutNetwork": true,
+    "scheduleMaterializationWithoutNetwork": true,
+    "aiRequired": false,
+    "serviceWorkerChange": false,
+    "subjectPackChange": false
+  },
+  "rollback": {
+    "behavior": "remove B7 registry, hook engine and gate; retain B2, B5 and B6 artifacts unchanged",
+    "sourceContentImpact": "none",
+    "learnerStateImpact": "none",
+    "runtimeImpact": "none",
+    "offlineImpact": "none"
+  }
+}
