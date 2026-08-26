@@ -1,8 +1,8 @@
 # CODEX_STATE
 
-Current task: `L7-B7_MASTER_READY_SPACED_REVIEW_HOOKS`
+Current task: `L7-B8_VISUAL_PEDAGOGICAL_QA`
 
-Status: `L7_B6_PASS_B7_READY`
+Status: `L7_B7_PASS_B8_READY`
 
 Date: 2026-08-26
 Branch: `migration/webapp-l1-audit-storage`
@@ -10,6 +10,11 @@ Base branch: `main`
 Main sync status: `branch_only`
 
 Files changed:
+- `assets/data/lesson/reference-subject-evidence-review-v1.json`
+- `assets/js/platform/universal-lesson/reference-subject-evidence-review-v1.js`
+- `scripts/academic/l7-b7-reference-evidence-review-regression.cjs`
+- `docs/migration/L7_B7_REFERENCE_EVIDENCE_SPACED_REVIEW.md`
+- `docs/migration/L7_B7_REFERENCE_EVIDENCE_SPACED_REVIEW.generated.json`
 - `assets/data/lesson/foundation-preparatory-bridge-v1.json`
 - `assets/js/platform/universal-lesson/foundation-preparatory-bridge-v1.js`
 - `scripts/academic/l7-b6-foundation-preparatory-completion-regression.cjs`
@@ -49,6 +54,23 @@ Files changed:
 - `CODEX_STATE.md`
 
 What changed:
+- Added a read-only evidence/review catalog and deterministic schedule
+  materializer for all 26 Russian, 365 Math and 15 Foundation lessons.
+- Declared 2,030 missing evidence slots across 406 lessons and 1,250
+  unscheduled spaced-review templates, including 812 required retention
+  windows; B7 does not backfill evidence or schedule reviews implicitly.
+- Preserved all 104 Russian B2 targets and added the missing `build-apply`
+  dialogue-turn target; preserved all 1,825 Math B5 targets and left all 75
+  Foundation checkpoint slots unqualified instead of promoting templates.
+- Required an explicit UTC anchor only after verified pre-retention stages and
+  an explicit `asOf`; early attempts cannot satisfy a retention window.
+- Required varied prompts, protected-answer separation, score/source integrity
+  and an authorized verifier. AI, self and peer review remain advisory only.
+- A passing set of required review windows creates only a Master-ready
+  verification candidate; the hooks cannot write learner state, cut over a
+  runtime or assert Master-ready.
+- Added deterministic, mutation and CI gates without changing subject source,
+  runtime, storage, Service Worker, offline policy or `main`.
 - Added a three-track Foundation preparatory bridge covering classroom
   Russian, math/computing/science transition and study method.
 - Assigned all five current preparatory modules and all fifteen lessons exactly
@@ -197,6 +219,23 @@ What changed:
   service worker or `main`.
 
 Verification:
+- L7-B7 GitHub Actions run `32944104639`: PASS
+- L6 full deterministic/browser/offline run `32944104642`: PASS
+- Full L5 runtime/browser/offline run `32944104588`: PASS
+- L7-B7 evidence/review regression, 83/83 checks: PASS
+- L7-B7 protection mutations, 10/10 expected failures observed: PASS
+- Reference coverage, 406/406 lessons and 2,030/2,030 evidence slots: PASS
+- Review coverage, 1,250 templates and 812 required windows: PASS
+- L7-B7 catalog SHA-256:
+  `99bb3bec7ad202ecc81cf309da2171adb9b2876792c76b585af83afbdf7255aa`
+- L7-B7 schedule fixture SHA-256:
+  `be57fbf4d1a46527b29495f28d6d9381bdc4f7a81cfff7c14231d89fe8a85644`
+- L7-B7 generated report stable SHA-256:
+  `8c296cb9a6114ca429032634f9e67976e4843895a3b42836ceff29c1a9e3b5b3`
+- Local sequential deterministic regressions L7-B1 through B7, L6-B1
+  through B11 and L5 static/runtime gates: PASS
+- Local Chromium was unavailable; authoritative browser/offline evidence is
+  supplied by the successful remote L6 and L5 runs above.
 - L7-B6 GitHub Actions run `32942456784`: PASS
 - L6 full regression/browser run `32942456752`: PASS
 - Full L5 runtime/browser/offline run `32942456698`: PASS
@@ -332,20 +371,21 @@ Main sync / pull instruction:
 - The work is branch-only on `migration/webapp-l1-audit-storage`.
 - Do not pull `main` for this task; `main` does not contain L6.
 - Do not merge to `main` until the remaining L7 gates and final progression
-  gate pass; B6 remains draft-branch-only.
+  gate pass; B7 remains draft-branch-only.
 
 Next recommended task:
-- Begin L7-B7 by defining Master-ready evidence and spaced-review hooks for
-  Russian, Math and Foundation. Treat B6 checkpoints as uncollected targets;
-  do not qualify current Foundation template assessments without review.
+- Begin L7-B8 visual/pedagogical QA across desktop, tablet, mobile and offline.
+  Preserve the B7 evidence authority boundary and treat template content,
+  template assessment, simulation-stage drift and the single B11 runtime scope
+  as explicit findings rather than silently promoting them.
 
 Next actor:
 - Codex
 
 Codex required:
 - yes
-- Reason: cross-subject evidence authority, retention scheduling boundaries,
-  legacy-state compatibility, mutation fixtures and remote CI verification.
+- Reason: cross-viewport visual/pedagogical evidence, specialist-runtime and
+  offline boundaries, mutation fixtures and remote browser CI verification.
 
 ChatGPT can do:
 - Targeted content/schema review and small documentation-only corrections on
