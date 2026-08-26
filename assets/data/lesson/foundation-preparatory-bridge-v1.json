@@ -1,0 +1,387 @@
+{
+  "contractId": "bauman-foundation-preparatory-bridge",
+  "contractVersion": "1.0.0",
+  "release": "L7-B6-FOUNDATION-PREPARATORY-COMPLETION-V1",
+  "status": "STRUCTURAL_BRIDGE_COMPLETE_REVIEW_GATES_PENDING",
+  "programIdentity": {
+    "department": "ИУ-5",
+    "officialPublishedDirectionCode": "09.04.01",
+    "personalizedDisplayCode": "09.04.01/11"
+  },
+  "scope": {
+    "subjectId": "foundation",
+    "stageId": "preparatory",
+    "completionMeaning": "Every current preparatory Foundation module and lesson is assigned exactly once to one required bridge track with explicit evidence targets and fail-closed handoffs.",
+    "notClaimed": [
+      "academic-content-approval",
+      "assessment-quality-approval",
+      "learner-completion",
+      "master-ready",
+      "runtime-cutover",
+      "translated-content"
+    ]
+  },
+  "sourceAuthority": {
+    "curriculum": "subjects/foundation/data/curriculum.json",
+    "lessons": "subjects/foundation/data/lessons.json",
+    "exercises": "subjects/foundation/data/exercises.json",
+    "tests": "subjects/foundation/data/tests.json",
+    "simulations": "subjects/foundation/data/simulations.json",
+    "subjectFactory": "assets/data/lesson/subject-factory-registry-v1.json",
+    "referenceActivation": "assets/data/lesson/reference-lesson-activation-v1.json",
+    "roadmap": "assets/data/roadmap/iu5-090401-11-v3.json"
+  },
+  "runtimeBoundary": {
+    "projectionMode": "read-only-exact-id",
+    "sourceMutationAllowed": false,
+    "learnerStateMutationAllowed": false,
+    "routeActivationAllowed": false,
+    "automaticMasterReadyAllowed": false,
+    "specialistCutoverAllowed": false,
+    "fuzzyLessonMatchAllowed": false,
+    "legacyFallbackRequired": true,
+    "legacyRoute": "subjects/foundation/index.html",
+    "offlinePolicyRef": "light-core-explicit"
+  },
+  "lessonRolePolicy": [
+    {
+      "suffix": "_l1",
+      "role": "concept-orientation",
+      "evidenceKind": "comprehension-response",
+      "evidenceStatus": "target-defined-not-collected"
+    },
+    {
+      "suffix": "_l2",
+      "role": "guided-practice",
+      "evidenceKind": "practice-artifact",
+      "evidenceStatus": "target-defined-not-collected"
+    },
+    {
+      "suffix": "_l3",
+      "role": "handoff-application",
+      "evidenceKind": "bridge-explanation",
+      "evidenceStatus": "target-defined-not-collected"
+    }
+  ],
+  "tracks": [
+    {
+      "id": "classroom-russian",
+      "title": "Classroom Russian bridge",
+      "required": true,
+      "moduleIds": [
+        "f_s01"
+      ],
+      "lessonTypeByModule": {
+        "f_s01": "language"
+      },
+      "capabilityCheckpoints": [
+        {
+          "id": "classroom-instruction-decode",
+          "outcome": "Identify the requested action, given information, unknown and expected response in a short classroom instruction.",
+          "russianCues": [
+            "прочитайте",
+            "найдите",
+            "объясните",
+            "сравните"
+          ],
+          "evidenceKind": "comprehension-response",
+          "masteryEffect": "none-until-L7-B7"
+        },
+        {
+          "id": "classroom-clarification-turn",
+          "outcome": "Ask for repetition or confirm the task before solving when the instruction is unclear.",
+          "russianCues": [
+            "Повторите, пожалуйста.",
+            "Правильно ли я понял(а), что…?",
+            "Что нужно найти?"
+          ],
+          "evidenceKind": "oral-response",
+          "masteryEffect": "none-until-L7-B7"
+        },
+        {
+          "id": "classroom-task-restatement",
+          "outcome": "Restate the task as input, unknown, unit or constraint, method and expected answer artifact.",
+          "russianCues": [
+            "дано",
+            "найти",
+            "решение",
+            "ответ"
+          ],
+          "evidenceKind": "written-response",
+          "masteryEffect": "none-until-L7-B7"
+        }
+      ],
+      "specialistRefs": [
+        {
+          "subjectId": "russian",
+          "owner": "russian-v13-specialist",
+          "route": "subjects/russian/index.html",
+          "behavior": "reference-only-no-cutover"
+        }
+      ],
+      "reviewedRuntimeReference": {
+        "activationId": "foundation-f_s01_l1-language-reference",
+        "lessonId": "f_s01_l1",
+        "availability": "existing-exact-only",
+        "speechRecordingScope": "current-modal-memory-only",
+        "expansionAllowed": false
+      },
+      "handoffs": [
+        {
+          "moduleId": "f_s01",
+          "targetSubjectId": "russian",
+          "targetRoute": "subjects/russian/index.html",
+          "targetLessonId": null,
+          "availability": "route-reference-only",
+          "exactLessonEquivalenceClaimed": false,
+          "masteryEffect": "none"
+        }
+      ]
+    },
+    {
+      "id": "math-science-transition",
+      "title": "Math, computing and science transition",
+      "required": true,
+      "moduleIds": [
+        "f_s02",
+        "f_s03",
+        "f_s04"
+      ],
+      "lessonTypeByModule": {
+        "f_s02": "mathematics",
+        "f_s03": "programming",
+        "f_s04": "mathematics"
+      },
+      "capabilityCheckpoints": [
+        {
+          "id": "technical-problem-language",
+          "outcome": "Extract quantities, symbols, units, input data and the requested result from a short Russian technical problem.",
+          "russianCues": [
+            "величина",
+            "единица измерения",
+            "дано",
+            "найти"
+          ],
+          "evidenceKind": "comprehension-response",
+          "masteryEffect": "none-until-L7-B7"
+        },
+        {
+          "id": "short-solution-chain",
+          "outcome": "Produce a checkable chain: given data → model or algorithm → substitution or execution → unit and limit check → answer.",
+          "russianCues": [
+            "формула",
+            "алгоритм",
+            "проверка",
+            "ответ"
+          ],
+          "evidenceKind": "mathematical-solution",
+          "masteryEffect": "none-until-L7-B7"
+        },
+        {
+          "id": "technical-handoff-explanation",
+          "outcome": "Explain what the preparatory artifact supports in the later Math, Programming, Signal or Systems route without claiming lesson equivalence.",
+          "russianCues": [
+            "объясните результат",
+            "проверьте единицы",
+            "сделайте вывод"
+          ],
+          "evidenceKind": "bridge-explanation",
+          "masteryEffect": "none-until-L7-B7"
+        }
+      ],
+      "specialistRefs": [
+        {
+          "subjectId": "math",
+          "owner": "math-e126-specialist",
+          "route": "subjects/math/index.html",
+          "behavior": "reference-only-no-cutover"
+        },
+        {
+          "subjectId": "programming",
+          "owner": "programming-v2-specialist",
+          "route": "subjects/programming/index.html",
+          "behavior": "reference-only-no-cutover"
+        },
+        {
+          "subjectId": "signal",
+          "owner": "light-elearning-v2",
+          "route": "subjects/signal/index.html",
+          "behavior": "later-support-reference-only"
+        },
+        {
+          "subjectId": "systems",
+          "owner": "light-elearning-v2",
+          "route": "subjects/systems/index.html",
+          "behavior": "later-support-reference-only"
+        }
+      ],
+      "handoffs": [
+        {
+          "moduleId": "f_s02",
+          "targetSubjectId": "math",
+          "targetRoute": "subjects/math/index.html",
+          "targetLessonId": null,
+          "availability": "route-reference-only",
+          "exactLessonEquivalenceClaimed": false,
+          "masteryEffect": "none"
+        },
+        {
+          "moduleId": "f_s03",
+          "targetSubjectId": "programming",
+          "targetRoute": "subjects/programming/index.html",
+          "targetLessonId": null,
+          "availability": "route-reference-only",
+          "exactLessonEquivalenceClaimed": false,
+          "masteryEffect": "none"
+        },
+        {
+          "moduleId": "f_s04",
+          "targetSubjectId": "signal",
+          "targetRoute": "subjects/signal/index.html",
+          "targetLessonId": null,
+          "availability": "later-support-reference-only",
+          "exactLessonEquivalenceClaimed": false,
+          "masteryEffect": "none"
+        },
+        {
+          "moduleId": "f_s04",
+          "targetSubjectId": "systems",
+          "targetRoute": "subjects/systems/index.html",
+          "targetLessonId": null,
+          "availability": "later-support-reference-only",
+          "exactLessonEquivalenceClaimed": false,
+          "masteryEffect": "none"
+        }
+      ]
+    },
+    {
+      "id": "study-method-bridge",
+      "title": "Study-method and university workflow bridge",
+      "required": true,
+      "moduleIds": [
+        "f_s05"
+      ],
+      "lessonTypeByModule": {
+        "f_s05": "language"
+      },
+      "capabilityCheckpoints": [
+        {
+          "id": "weekly-study-loop",
+          "outcome": "Plan, execute, store evidence and review one preparatory study week with a bounded workload.",
+          "russianCues": [
+            "план",
+            "задание",
+            "срок",
+            "проверка"
+          ],
+          "evidenceKind": "study-plan-artifact",
+          "masteryEffect": "none-until-L7-B7"
+        },
+        {
+          "id": "error-log-recovery",
+          "outcome": "Record the attempted task, observed error, cause, correction and next review date without overwriting prior evidence.",
+          "russianCues": [
+            "ошибка",
+            "исправление",
+            "повторение"
+          ],
+          "evidenceKind": "error-log-artifact",
+          "masteryEffect": "none-until-L7-B7"
+        },
+        {
+          "id": "seminar-communication",
+          "outcome": "Prepare a short note, clarification question or academic message with task, context and requested action.",
+          "russianCues": [
+            "вопрос",
+            "уточните, пожалуйста",
+            "срок сдачи"
+          ],
+          "evidenceKind": "written-response",
+          "masteryEffect": "none-until-L7-B7"
+        }
+      ],
+      "specialistRefs": [
+        {
+          "subjectId": "foundation",
+          "owner": "light-elearning-v2",
+          "route": "subjects/foundation/index.html",
+          "behavior": "unchanged-legacy-runtime"
+        }
+      ],
+      "handoffs": [
+        {
+          "moduleId": "f_s05",
+          "targetSubjectId": null,
+          "targetRoute": "assets/data/roadmap/iu5-090401-11-v3.json",
+          "targetLessonId": null,
+          "availability": "roadmap-reference-only",
+          "exactLessonEquivalenceClaimed": false,
+          "masteryEffect": "none"
+        }
+      ]
+    }
+  ],
+  "supportingEvidencePolicy": {
+    "exercises": {
+      "expectedPreparatoryRecords": 15,
+      "status": "supporting-template-review-required",
+      "masteryQualified": false
+    },
+    "tests": {
+      "expectedPreparatoryRecords": 22,
+      "status": "supporting-template-review-required",
+      "masteryQualified": false
+    },
+    "simulations": {
+      "expectedPreparatoryObservationRecords": 1,
+      "expectedPreparatoryPracticeRecords": 1,
+      "status": "supporting-scenario-review-required",
+      "masteryQualified": false
+    },
+    "b11Reference": {
+      "expectedEnabledRecords": 1,
+      "expectedLessonId": "f_s01_l1",
+      "status": "reviewed-runtime-reference-exact-only",
+      "masteryQualified": false
+    }
+  },
+  "openFindings": [
+    {
+      "id": "FOUNDATION_TEMPLATE_CONTENT_REVIEW_REQUIRED",
+      "owner": "L7-B8",
+      "blocks": [
+        "academic-content-approval",
+        "reference-subject-pedagogical-acceptance"
+      ]
+    },
+    {
+      "id": "FOUNDATION_ASSESSMENT_NOT_MASTERY_QUALIFIED",
+      "owner": "L7-B7/L7-B8",
+      "blocks": [
+        "master-ready",
+        "assessment-quality-approval"
+      ]
+    },
+    {
+      "id": "FOUNDATION_SIMULATION_STAGE_DRIFT",
+      "owner": "L7-B8",
+      "blocks": [
+        "full-simulation-coverage-claim"
+      ]
+    },
+    {
+      "id": "FOUNDATION_B11_SINGLE_REFERENCE_SCOPE",
+      "owner": "L7-B8",
+      "blocks": [
+        "whole-foundation-runtime-activation-claim"
+      ]
+    }
+  ],
+  "rollback": {
+    "behavior": "remove the L7-B6 bridge artifacts and retain the unchanged Foundation runtime and B11 exact reference",
+    "sourceContentImpact": "none",
+    "legacyRuntimeImpact": "none",
+    "learnerStateImpact": "none",
+    "offlineCacheImpact": "none"
+  }
+}

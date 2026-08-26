@@ -148,6 +148,28 @@ jobs:
             -f description="L7-B5 Math adapter: ${GATE_OUTCOME}" \
             -f target_url="${GITHUB_SERVER_URL}/${GITHUB_REPOSITORY}/actions/runs/${GITHUB_RUN_ID}"
 
+      - name: Run L7-B6 Foundation preparatory completion regression
+        id: b6_gate
+        run: |
+          node --check assets/js/platform/universal-lesson/foundation-preparatory-bridge-v1.js
+          node --check scripts/academic/l7-b6-foundation-preparatory-completion-regression.cjs
+          node scripts/academic/l7-b6-foundation-preparatory-completion-regression.cjs
+          git diff --exit-code -- docs/migration/L7_B6_FOUNDATION_PREPARATORY_COMPLETION.generated.json
+
+      - name: Publish L7-B6 status
+        if: ${{ always() && github.event_name == 'push' && steps.b6_gate.outcome != 'skipped' }}
+        env:
+          GH_TOKEN: ${{ github.token }}
+          GATE_OUTCOME: ${{ steps.b6_gate.outcome }}
+        run: |
+          STATE=failure
+          if [ "$GATE_OUTCOME" = "success" ]; then STATE=success; fi
+          gh api --method POST "repos/${GITHUB_REPOSITORY}/statuses/${GITHUB_SHA}" \
+            -f state="$STATE" \
+            -f context="migration/l7-b6-foundation-preparatory" \
+            -f description="L7-B6 Foundation bridge: ${GATE_OUTCOME}" \
+            -f target_url="${GITHUB_SERVER_URL}/${GITHUB_REPOSITORY}/actions/runs/${GITHUB_RUN_ID}"
+
       - name: Upload L7-B1 evidence
         if: always()
         uses: actions/upload-artifact@v4
@@ -186,3 +208,10 @@ jobs:
         with:
           name: l7-b5-math-universal-adapter
           path: docs/migration/L7_B5_MATH_UNIVERSAL_ADAPTER.generated.json
+
+      - name: Upload L7-B6 evidence
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: l7-b6-foundation-preparatory
+          path: docs/migration/L7_B6_FOUNDATION_PREPARATORY_COMPLETION.generated.json

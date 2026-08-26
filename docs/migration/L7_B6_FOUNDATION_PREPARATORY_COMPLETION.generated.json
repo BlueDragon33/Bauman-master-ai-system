@@ -1,0 +1,870 @@
+{
+  "gate": "L7-B6",
+  "release": "L7-B6-FOUNDATION-PREPARATORY-COMPLETION-V1",
+  "status": "PASS",
+  "trackIds": [
+    "classroom-russian",
+    "math-science-transition",
+    "study-method-bridge"
+  ],
+  "moduleCount": 5,
+  "lessonCount": 15,
+  "lessonRoleCounts": {
+    "concept-orientation": 5,
+    "guided-practice": 5,
+    "handoff-application": 5
+  },
+  "capabilityCheckpointCount": 9,
+  "supportingEvidence": {
+    "exercises": {
+      "recordCount": 15,
+      "status": "supporting-template-review-required",
+      "masteryQualified": false
+    },
+    "tests": {
+      "recordCount": 22,
+      "status": "supporting-template-review-required",
+      "masteryQualified": false
+    },
+    "simulations": {
+      "observationRecordCount": 1,
+      "practiceRecordCount": 1,
+      "stageDrift": [
+        "m1",
+        "m3",
+        "m4",
+        "prepare"
+      ],
+      "status": "supporting-scenario-review-required",
+      "masteryQualified": false
+    }
+  },
+  "sourceTemplateSignals": {
+    "uniqueKeyPointSets": 1,
+    "uniqueCoreTheorySets": 1,
+    "uniqueMasteryCriteriaSets": 1,
+    "preparatoryQuestionRecords": 22,
+    "uniquePreparatoryQuestionBodies": 10
+  },
+  "openFindings": [
+    {
+      "id": "FOUNDATION_TEMPLATE_CONTENT_REVIEW_REQUIRED",
+      "owner": "L7-B8",
+      "blocks": [
+        "academic-content-approval",
+        "reference-subject-pedagogical-acceptance"
+      ]
+    },
+    {
+      "id": "FOUNDATION_ASSESSMENT_NOT_MASTERY_QUALIFIED",
+      "owner": "L7-B7/L7-B8",
+      "blocks": [
+        "master-ready",
+        "assessment-quality-approval"
+      ]
+    },
+    {
+      "id": "FOUNDATION_SIMULATION_STAGE_DRIFT",
+      "owner": "L7-B8",
+      "blocks": [
+        "full-simulation-coverage-claim"
+      ]
+    },
+    {
+      "id": "FOUNDATION_B11_SINGLE_REFERENCE_SCOPE",
+      "owner": "L7-B8",
+      "blocks": [
+        "whole-foundation-runtime-activation-claim"
+      ]
+    }
+  ],
+  "sourceDigests": {
+    "contract": "09ea1613e7ee727284cea53440ac08ccabcc3fb34b448b6d5659e6d723afe468",
+    "curriculum": "a2e51bdb70c6e757f3c7a54151d9b5e605d5ec641cb1971015866f651768a999",
+    "lessons": "7bfb9a2caf97b57abe403c2a3c04d48b0d6ec0d9c31302ea5e7a6b1a7afd4276",
+    "exercises": "651953b76c0b0bc2c53193d3f4a3edda0a6e9e558dc729e9009b596828bd4569",
+    "tests": "9453951029de3a2d3d6dade2b4d405aacf6d9b0e3ae3095d81e051bdb54be9b2",
+    "simulations": "c9dbb59bc98e03f6a78fb1128cbd7a6cb760f15dfe3f9f1fed38ca75ef3b080c",
+    "subjectFactory": "c429651766b72dba600b8d5e141aceb96464046395c8498649b28e9e776fc067",
+    "referenceActivation": "4c5c234c7bee1cec3b6d1bc12886be4219bd38926a5fef848616e2fc2b24a22e",
+    "roadmap": "a505156771af068a5586fe4913c4aa4c1275cab0b2c4b3ad579bb2e3abe12d3f",
+    "runtime": {
+      "subjects/foundation/index.html": "267e96e017f6b4da4290fe0fadce79b522c99d712ee94ad568fd684ffcdea27e",
+      "subjects/foundation/assets/foundation.js": "ddb1665c505986962da6c4c5f157d3827e9940e86866afbb7ca42ea4e4430315",
+      "assets/js/platform/universal-lesson/reference-lesson-bootstrap-v1.js": "e1f79cbb125bdc17373b48002e9f6a77812031876545b001a0d6ff05d24202bd"
+    }
+  },
+  "packDigest": "1fad88fd68b49ee4d614bddea21671af0fa11a0aea24d944e6e381e5a14a7c47",
+  "checks": [
+    {
+      "id": "FILE-assets/js/platform/universal-lesson/foundation-preparatory-bridge-v1.js",
+      "title": "required L7-B6 input exists",
+      "ok": true,
+      "evidence": "assets/js/platform/universal-lesson/foundation-preparatory-bridge-v1.js"
+    },
+    {
+      "id": "FILE-assets/data/lesson/foundation-preparatory-bridge-v1.json",
+      "title": "required L7-B6 input exists",
+      "ok": true,
+      "evidence": "assets/data/lesson/foundation-preparatory-bridge-v1.json"
+    },
+    {
+      "id": "FILE-subjects/foundation/data/curriculum.json",
+      "title": "required L7-B6 input exists",
+      "ok": true,
+      "evidence": "subjects/foundation/data/curriculum.json"
+    },
+    {
+      "id": "FILE-subjects/foundation/data/lessons.json",
+      "title": "required L7-B6 input exists",
+      "ok": true,
+      "evidence": "subjects/foundation/data/lessons.json"
+    },
+    {
+      "id": "FILE-subjects/foundation/data/exercises.json",
+      "title": "required L7-B6 input exists",
+      "ok": true,
+      "evidence": "subjects/foundation/data/exercises.json"
+    },
+    {
+      "id": "FILE-subjects/foundation/data/tests.json",
+      "title": "required L7-B6 input exists",
+      "ok": true,
+      "evidence": "subjects/foundation/data/tests.json"
+    },
+    {
+      "id": "FILE-subjects/foundation/data/simulations.json",
+      "title": "required L7-B6 input exists",
+      "ok": true,
+      "evidence": "subjects/foundation/data/simulations.json"
+    },
+    {
+      "id": "FILE-assets/data/lesson/subject-factory-registry-v1.json",
+      "title": "required L7-B6 input exists",
+      "ok": true,
+      "evidence": "assets/data/lesson/subject-factory-registry-v1.json"
+    },
+    {
+      "id": "FILE-assets/data/lesson/reference-lesson-activation-v1.json",
+      "title": "required L7-B6 input exists",
+      "ok": true,
+      "evidence": "assets/data/lesson/reference-lesson-activation-v1.json"
+    },
+    {
+      "id": "FILE-assets/data/roadmap/iu5-090401-11-v3.json",
+      "title": "required L7-B6 input exists",
+      "ok": true,
+      "evidence": "assets/data/roadmap/iu5-090401-11-v3.json"
+    },
+    {
+      "id": "FILE-docs/migration/L7_B6_FOUNDATION_PREPARATORY_COMPLETION.md",
+      "title": "required L7-B6 input exists",
+      "ok": true,
+      "evidence": "docs/migration/L7_B6_FOUNDATION_PREPARATORY_COMPLETION.md"
+    },
+    {
+      "id": "FILE-subjects/foundation/index.html",
+      "title": "required L7-B6 input exists",
+      "ok": true,
+      "evidence": "subjects/foundation/index.html"
+    },
+    {
+      "id": "FILE-subjects/foundation/assets/foundation.js",
+      "title": "required L7-B6 input exists",
+      "ok": true,
+      "evidence": "subjects/foundation/assets/foundation.js"
+    },
+    {
+      "id": "FILE-assets/js/platform/universal-lesson/reference-lesson-bootstrap-v1.js",
+      "title": "required L7-B6 input exists",
+      "ok": true,
+      "evidence": "assets/js/platform/universal-lesson/reference-lesson-bootstrap-v1.js"
+    },
+    {
+      "id": "BRIDGE-IDENTITY",
+      "title": "bridge API has a stable L7-B6 identity",
+      "ok": true,
+      "evidence": {
+        "contractId": "bauman-foundation-preparatory-bridge",
+        "release": "L7-B6-FOUNDATION-PREPARATORY-COMPLETION-V1"
+      }
+    },
+    {
+      "id": "CONTRACT-SCOPE",
+      "title": "completion is explicitly structural and preparatory-only",
+      "ok": true,
+      "evidence": {
+        "subjectId": "foundation",
+        "stageId": "preparatory",
+        "completionMeaning": "Every current preparatory Foundation module and lesson is assigned exactly once to one required bridge track with explicit evidence targets and fail-closed handoffs.",
+        "notClaimed": [
+          "academic-content-approval",
+          "assessment-quality-approval",
+          "learner-completion",
+          "master-ready",
+          "runtime-cutover",
+          "translated-content"
+        ]
+      }
+    },
+    {
+      "id": "PROGRAM-IDENTITY",
+      "title": "official and personalized program codes remain separated",
+      "ok": true,
+      "evidence": {
+        "department": "ИУ-5",
+        "officialPublishedDirectionCode": "09.04.01",
+        "personalizedDisplayCode": "09.04.01/11"
+      }
+    },
+    {
+      "id": "RUNTIME-BOUNDARY",
+      "title": "B6 is read-only exact-ID and cannot activate routes or specialists",
+      "ok": true,
+      "evidence": {
+        "projectionMode": "read-only-exact-id",
+        "sourceMutationAllowed": false,
+        "learnerStateMutationAllowed": false,
+        "routeActivationAllowed": false,
+        "automaticMasterReadyAllowed": false,
+        "specialistCutoverAllowed": false,
+        "fuzzyLessonMatchAllowed": false,
+        "legacyFallbackRequired": true,
+        "legacyRoute": "subjects/foundation/index.html",
+        "offlinePolicyRef": "light-core-explicit"
+      }
+    },
+    {
+      "id": "FACTORY-BOUNDARY",
+      "title": "Foundation Factory remains a non-rendering read-only pilot",
+      "ok": true,
+      "evidence": {
+        "mode": "light-read-only-projection",
+        "directMigration": false,
+        "directFactoryRender": false,
+        "sourceMutation": false,
+        "learnerStateMigration": false,
+        "factoryPilot": true,
+        "pilotScope": "Only lessons with a deterministic B9 lesson-type classification."
+      }
+    },
+    {
+      "id": "TRACK-COVERAGE",
+      "title": "all three required preparatory bridge tracks are present once and ordered",
+      "ok": true,
+      "evidence": [
+        "classroom-russian",
+        "math-science-transition",
+        "study-method-bridge"
+      ]
+    },
+    {
+      "id": "MODULE-COVERAGE",
+      "title": "all five current preparatory modules are assigned exactly once",
+      "ok": true,
+      "evidence": [
+        "f_s01",
+        "f_s02",
+        "f_s03",
+        "f_s04",
+        "f_s05"
+      ]
+    },
+    {
+      "id": "LESSON-COVERAGE",
+      "title": "all fifteen current preparatory lessons are referenced exactly once",
+      "ok": true,
+      "evidence": [
+        "f_s01_l1",
+        "f_s01_l2",
+        "f_s01_l3",
+        "f_s02_l1",
+        "f_s02_l2",
+        "f_s02_l3",
+        "f_s03_l1",
+        "f_s03_l2",
+        "f_s03_l3",
+        "f_s04_l1",
+        "f_s04_l2",
+        "f_s04_l3",
+        "f_s05_l1",
+        "f_s05_l2",
+        "f_s05_l3"
+      ]
+    },
+    {
+      "id": "OUT-OF-SCOPE-EXCLUSION",
+      "title": "the six non-preparatory Foundation lessons remain outside B6",
+      "ok": true,
+      "evidence": [
+        "f_m201_l1",
+        "f_m201_l2",
+        "f_m201_l3",
+        "f_m202_l1",
+        "f_m202_l2",
+        "f_m202_l3"
+      ]
+    },
+    {
+      "id": "MODULE-LESSON-PARITY",
+      "title": "each module preserves its exact three source lesson IDs and source order",
+      "ok": true,
+      "evidence": [
+        {
+          "moduleId": "f_s01",
+          "lessons": 3
+        },
+        {
+          "moduleId": "f_s02",
+          "lessons": 3
+        },
+        {
+          "moduleId": "f_s03",
+          "lessons": 3
+        },
+        {
+          "moduleId": "f_s04",
+          "lessons": 3
+        },
+        {
+          "moduleId": "f_s05",
+          "lessons": 3
+        }
+      ]
+    },
+    {
+      "id": "LESSON-SOURCE-LOCATORS",
+      "title": "every bridge lesson retains an exact source record locator",
+      "ok": true,
+      "evidence": [
+        {
+          "lessonId": "f_s01_l1",
+          "sourceIndex": 0
+        },
+        {
+          "lessonId": "f_s01_l2",
+          "sourceIndex": 1
+        },
+        {
+          "lessonId": "f_s01_l3",
+          "sourceIndex": 2
+        },
+        {
+          "lessonId": "f_s02_l1",
+          "sourceIndex": 3
+        },
+        {
+          "lessonId": "f_s02_l2",
+          "sourceIndex": 4
+        },
+        {
+          "lessonId": "f_s02_l3",
+          "sourceIndex": 5
+        },
+        {
+          "lessonId": "f_s03_l1",
+          "sourceIndex": 6
+        },
+        {
+          "lessonId": "f_s03_l2",
+          "sourceIndex": 7
+        },
+        {
+          "lessonId": "f_s03_l3",
+          "sourceIndex": 8
+        },
+        {
+          "lessonId": "f_s04_l1",
+          "sourceIndex": 9
+        },
+        {
+          "lessonId": "f_s04_l2",
+          "sourceIndex": 10
+        },
+        {
+          "lessonId": "f_s04_l3",
+          "sourceIndex": 11
+        },
+        {
+          "lessonId": "f_s05_l1",
+          "sourceIndex": 12
+        },
+        {
+          "lessonId": "f_s05_l2",
+          "sourceIndex": 13
+        },
+        {
+          "lessonId": "f_s05_l3",
+          "sourceIndex": 14
+        }
+      ]
+    },
+    {
+      "id": "ROLE-COVERAGE",
+      "title": "theory, practice and handoff roles each cover all five modules",
+      "ok": true,
+      "evidence": {
+        "concept-orientation": 5,
+        "guided-practice": 5,
+        "handoff-application": 5
+      }
+    },
+    {
+      "id": "FACTORY-TYPE-PARITY",
+      "title": "all modules keep their deterministic Subject Factory lesson type",
+      "ok": true,
+      "evidence": [
+        {
+          "moduleId": "f_s01",
+          "lessonType": "language"
+        },
+        {
+          "moduleId": "f_s02",
+          "lessonType": "mathematics"
+        },
+        {
+          "moduleId": "f_s03",
+          "lessonType": "programming"
+        },
+        {
+          "moduleId": "f_s04",
+          "lessonType": "mathematics"
+        },
+        {
+          "moduleId": "f_s05",
+          "lessonType": "language"
+        }
+      ]
+    },
+    {
+      "id": "CHECKPOINT-COVERAGE",
+      "title": "the three tracks expose nine unique capability checkpoints",
+      "ok": true,
+      "evidence": [
+        "classroom-instruction-decode",
+        "classroom-clarification-turn",
+        "classroom-task-restatement",
+        "technical-problem-language",
+        "short-solution-chain",
+        "technical-handoff-explanation",
+        "weekly-study-loop",
+        "error-log-recovery",
+        "seminar-communication"
+      ]
+    },
+    {
+      "id": "RUSSIAN-CUE-COVERAGE",
+      "title": "every preparatory checkpoint carries nonempty Cyrillic classroom or technical cues",
+      "ok": true,
+      "evidence": 32
+    },
+    {
+      "id": "EVIDENCE-TARGET-BOUNDARY",
+      "title": "lesson and checkpoint evidence remains a target and has not been collected",
+      "ok": true,
+      "evidence": {
+        "lessons": 15,
+        "checkpoints": 9
+      }
+    },
+    {
+      "id": "CLASSROOM-SPECIALIST-OWNERSHIP",
+      "title": "classroom Russian remains a reference to the Russian specialist",
+      "ok": true,
+      "evidence": [
+        {
+          "subjectId": "russian",
+          "owner": "russian-v13-specialist",
+          "route": "subjects/russian/index.html",
+          "behavior": "reference-only-no-cutover"
+        }
+      ]
+    },
+    {
+      "id": "TRANSITION-SPECIALIST-OWNERSHIP",
+      "title": "Math, Programming, Signal and Systems keep their registered owners",
+      "ok": true,
+      "evidence": [
+        {
+          "subjectId": "math",
+          "owner": "math-e126-specialist",
+          "route": "subjects/math/index.html",
+          "behavior": "reference-only-no-cutover"
+        },
+        {
+          "subjectId": "programming",
+          "owner": "programming-v2-specialist",
+          "route": "subjects/programming/index.html",
+          "behavior": "reference-only-no-cutover"
+        },
+        {
+          "subjectId": "signal",
+          "owner": "light-elearning-v2",
+          "route": "subjects/signal/index.html",
+          "behavior": "later-support-reference-only"
+        },
+        {
+          "subjectId": "systems",
+          "owner": "light-elearning-v2",
+          "route": "subjects/systems/index.html",
+          "behavior": "later-support-reference-only"
+        }
+      ]
+    },
+    {
+      "id": "STUDY-METHOD-OWNERSHIP",
+      "title": "study method keeps the unchanged Foundation runtime",
+      "ok": true,
+      "evidence": [
+        {
+          "subjectId": "foundation",
+          "owner": "light-elearning-v2",
+          "route": "subjects/foundation/index.html",
+          "behavior": "unchanged-legacy-runtime"
+        }
+      ]
+    },
+    {
+      "id": "HANDOFF-ROUTE-PARITY",
+      "title": "all six handoffs resolve to registered subject routes or the pinned roadmap",
+      "ok": true,
+      "evidence": [
+        {
+          "moduleId": "f_s01",
+          "target": "russian"
+        },
+        {
+          "moduleId": "f_s02",
+          "target": "math"
+        },
+        {
+          "moduleId": "f_s03",
+          "target": "programming"
+        },
+        {
+          "moduleId": "f_s04",
+          "target": "signal"
+        },
+        {
+          "moduleId": "f_s04",
+          "target": "systems"
+        },
+        {
+          "moduleId": "f_s05",
+          "target": "roadmap"
+        }
+      ]
+    },
+    {
+      "id": "NO-LESSON-EQUIVALENCE",
+      "title": "handoffs never infer an exact later-subject lesson or mastery",
+      "ok": true,
+      "evidence": 6
+    },
+    {
+      "id": "B11-REFERENCE-SCOPE",
+      "title": "the sole existing runtime reference remains exact to f_s01_l1",
+      "ok": true,
+      "evidence": {
+        "activationId": "foundation-f_s01_l1-language-reference",
+        "lessonId": "f_s01_l1",
+        "enabledReferenceCount": 1,
+        "expandedByB6": false,
+        "masterReadyClaimed": false
+      }
+    },
+    {
+      "id": "B11-REFERENCE-PRESERVATION",
+      "title": "B6 records but does not recreate or expand the B11 activation",
+      "ok": true,
+      "evidence": [
+        "f_s01_l1"
+      ]
+    },
+    {
+      "id": "SUPPORTING-SOURCE-COUNTS",
+      "title": "current preparatory exercise, test and simulation counts are recorded exactly",
+      "ok": true,
+      "evidence": {
+        "exercises": {
+          "recordCount": 15,
+          "status": "supporting-template-review-required",
+          "masteryQualified": false
+        },
+        "tests": {
+          "recordCount": 22,
+          "status": "supporting-template-review-required",
+          "masteryQualified": false
+        },
+        "simulations": {
+          "observationRecordCount": 1,
+          "practiceRecordCount": 1,
+          "stageDrift": [
+            "m1",
+            "m3",
+            "m4",
+            "prepare"
+          ],
+          "status": "supporting-scenario-review-required",
+          "masteryQualified": false
+        }
+      }
+    },
+    {
+      "id": "SUPPORTING-SOURCES-NON-MASTERY",
+      "title": "template exercises, tests and scenarios remain non-mastery support",
+      "ok": true,
+      "evidence": {
+        "exercises": {
+          "recordCount": 15,
+          "status": "supporting-template-review-required",
+          "masteryQualified": false
+        },
+        "tests": {
+          "recordCount": 22,
+          "status": "supporting-template-review-required",
+          "masteryQualified": false
+        },
+        "simulations": {
+          "observationRecordCount": 1,
+          "practiceRecordCount": 1,
+          "stageDrift": [
+            "m1",
+            "m3",
+            "m4",
+            "prepare"
+          ],
+          "status": "supporting-scenario-review-required",
+          "masteryQualified": false
+        }
+      }
+    },
+    {
+      "id": "TEMPLATE-CONTENT-TRUTH",
+      "title": "generic source repetition is measured rather than called academic completion",
+      "ok": true,
+      "evidence": {
+        "uniqueKeyPointSets": 1,
+        "uniqueCoreTheorySets": 1,
+        "uniqueMasteryCriteriaSets": 1,
+        "preparatoryQuestionRecords": 22,
+        "uniquePreparatoryQuestionBodies": 10
+      }
+    },
+    {
+      "id": "SIMULATION-STAGE-DRIFT",
+      "title": "simulation stage IDs outside current curriculum remain an explicit finding",
+      "ok": true,
+      "evidence": [
+        "m1",
+        "m3",
+        "m4",
+        "prepare"
+      ]
+    },
+    {
+      "id": "OPEN-FINDINGS",
+      "title": "all four B6 limitations remain routed to B7 or B8",
+      "ok": true,
+      "evidence": [
+        {
+          "id": "FOUNDATION_TEMPLATE_CONTENT_REVIEW_REQUIRED",
+          "owner": "L7-B8",
+          "blocks": [
+            "academic-content-approval",
+            "reference-subject-pedagogical-acceptance"
+          ]
+        },
+        {
+          "id": "FOUNDATION_ASSESSMENT_NOT_MASTERY_QUALIFIED",
+          "owner": "L7-B7/L7-B8",
+          "blocks": [
+            "master-ready",
+            "assessment-quality-approval"
+          ]
+        },
+        {
+          "id": "FOUNDATION_SIMULATION_STAGE_DRIFT",
+          "owner": "L7-B8",
+          "blocks": [
+            "full-simulation-coverage-claim"
+          ]
+        },
+        {
+          "id": "FOUNDATION_B11_SINGLE_REFERENCE_SCOPE",
+          "owner": "L7-B8",
+          "blocks": [
+            "whole-foundation-runtime-activation-claim"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "CLAIM-BOUNDARY",
+      "title": "B6 creates no learner completion, Master-ready, cutover or whole-subject activation claim",
+      "ok": true,
+      "evidence": {
+        "learnerCompletionClaimed": false,
+        "masterReadyClaimed": false,
+        "runtimeCutoverClaimed": false,
+        "wholeFoundationActivationClaimed": false
+      }
+    },
+    {
+      "id": "OFFLINE-ROLLBACK",
+      "title": "offline ownership and deterministic Foundation fallback remain unchanged",
+      "ok": true,
+      "evidence": {
+        "offline": {
+          "policyRef": "light-core-explicit",
+          "deterministicFallback": "subjects/foundation/index.html",
+          "serviceWorkerOwner": "site-root",
+          "changedByB6": false
+        },
+        "rollback": {
+          "behavior": "remove the L7-B6 bridge artifacts and retain the unchanged Foundation runtime and B11 exact reference",
+          "sourceContentImpact": "none",
+          "legacyRuntimeImpact": "none",
+          "learnerStateImpact": "none",
+          "offlineCacheImpact": "none"
+        }
+      }
+    },
+    {
+      "id": "EXACT-LESSON-RESOLUTION",
+      "title": "exact preparatory lesson IDs resolve to one bridge record",
+      "ok": true,
+      "evidence": [
+        "f_s01_l1",
+        "f_s04_l3",
+        "f_s05_l2"
+      ]
+    },
+    {
+      "id": "EXACT-TRACK-RESOLUTION",
+      "title": "exact bridge track IDs resolve to one ordered track",
+      "ok": true,
+      "evidence": [
+        "classroom-russian",
+        "math-science-transition",
+        "study-method-bridge"
+      ]
+    },
+    {
+      "id": "NO-FUZZY-LESSON-PROMOTION",
+      "title": "unknown or look-alike lesson IDs fail closed",
+      "ok": true,
+      "evidence": "NO_EXACT_FOUNDATION_LESSON_MATCH"
+    },
+    {
+      "id": "NO-FUZZY-TRACK-PROMOTION",
+      "title": "unknown or look-alike track IDs fail closed",
+      "ok": true,
+      "evidence": "NO_EXACT_FOUNDATION_TRACK_MATCH"
+    },
+    {
+      "id": "SOURCE-IMMUTABLE",
+      "title": "bridge projection leaves all Foundation and governance sources unchanged",
+      "ok": true,
+      "evidence": {
+        "contract": "09ea1613e7ee727284cea53440ac08ccabcc3fb34b448b6d5659e6d723afe468",
+        "curriculum": "a2e51bdb70c6e757f3c7a54151d9b5e605d5ec641cb1971015866f651768a999",
+        "lessons": "7bfb9a2caf97b57abe403c2a3c04d48b0d6ec0d9c31302ea5e7a6b1a7afd4276",
+        "exercises": "651953b76c0b0bc2c53193d3f4a3edda0a6e9e558dc729e9009b596828bd4569",
+        "tests": "9453951029de3a2d3d6dade2b4d405aacf6d9b0e3ae3095d81e051bdb54be9b2",
+        "simulations": "c9dbb59bc98e03f6a78fb1128cbd7a6cb760f15dfe3f9f1fed38ca75ef3b080c",
+        "subjectFactory": "c429651766b72dba600b8d5e141aceb96464046395c8498649b28e9e776fc067",
+        "referenceActivation": "4c5c234c7bee1cec3b6d1bc12886be4219bd38926a5fef848616e2fc2b24a22e",
+        "roadmap": "a505156771af068a5586fe4913c4aa4c1275cab0b2c4b3ad579bb2e3abe12d3f",
+        "runtime": {
+          "subjects/foundation/index.html": "267e96e017f6b4da4290fe0fadce79b522c99d712ee94ad568fd684ffcdea27e",
+          "subjects/foundation/assets/foundation.js": "ddb1665c505986962da6c4c5f157d3827e9940e86866afbb7ca42ea4e4430315",
+          "assets/js/platform/universal-lesson/reference-lesson-bootstrap-v1.js": "e1f79cbb125bdc17373b48002e9f6a77812031876545b001a0d6ff05d24202bd"
+        }
+      }
+    },
+    {
+      "id": "RUNTIME-IMMUTABLE",
+      "title": "B6 does not change Foundation or B11 runtime files",
+      "ok": true,
+      "evidence": {
+        "subjects/foundation/index.html": "267e96e017f6b4da4290fe0fadce79b522c99d712ee94ad568fd684ffcdea27e",
+        "subjects/foundation/assets/foundation.js": "ddb1665c505986962da6c4c5f157d3827e9940e86866afbb7ca42ea4e4430315",
+        "assets/js/platform/universal-lesson/reference-lesson-bootstrap-v1.js": "e1f79cbb125bdc17373b48002e9f6a77812031876545b001a0d6ff05d24202bd"
+      }
+    },
+    {
+      "id": "DETERMINISTIC",
+      "title": "repeated full bridge projection has a stable SHA-256 digest",
+      "ok": true,
+      "evidence": "1fad88fd68b49ee4d614bddea21671af0fa11a0aea24d944e6e381e5a14a7c47"
+    }
+  ],
+  "mutationTests": [
+    {
+      "id": "DUPLICATE-MODULE-ASSIGNMENT",
+      "title": "a module cannot belong to two preparatory tracks",
+      "expectedFailureObserved": true,
+      "evidence": {
+        "code": "FOUNDATION_MODULE_MULTI_ASSIGNMENT"
+      }
+    },
+    {
+      "id": "DROP-PREPARATORY-LESSON",
+      "title": "a missing source lesson breaks exact bridge coverage",
+      "expectedFailureObserved": true,
+      "evidence": {
+        "code": "FOUNDATION_LESSON_SOURCE_MISMATCH"
+      }
+    },
+    {
+      "id": "DUPLICATE-PREPARATORY-LESSON",
+      "title": "duplicate source lesson IDs fail closed",
+      "expectedFailureObserved": true,
+      "evidence": {
+        "code": "FOUNDATION_LESSON_DUPLICATE"
+      }
+    },
+    {
+      "id": "FACTORY-TYPE-DRIFT",
+      "title": "a bridge lesson type cannot diverge from Subject Factory",
+      "expectedFailureObserved": true,
+      "evidence": {
+        "code": "FOUNDATION_FACTORY_TYPE_MISMATCH"
+      }
+    },
+    {
+      "id": "EXPAND-B11-REFERENCE",
+      "title": "B6 cannot silently expand the one reviewed B11 runtime reference",
+      "expectedFailureObserved": true,
+      "evidence": {
+        "code": "FOUNDATION_B11_SCOPE_MISMATCH"
+      }
+    },
+    {
+      "id": "QUALIFY-TEMPLATE-ASSESSMENT",
+      "title": "template tests cannot become mastery-qualified in B6",
+      "expectedFailureObserved": true,
+      "evidence": {
+        "code": "FOUNDATION_SUPPORT_MASTERY_ESCALATION"
+      }
+    },
+    {
+      "id": "PROMOTE-MASTER-READY",
+      "title": "B6 cannot promote structural coverage to Master-ready",
+      "expectedFailureObserved": true,
+      "evidence": {
+        "code": "FOUNDATION_PACK_BOUNDARY_ESCALATION"
+      }
+    },
+    {
+      "id": "PROMOTE-HANDOFF-EQUIVALENCE",
+      "title": "an unreviewed support route cannot become an exact lesson equivalence",
+      "expectedFailureObserved": true,
+      "evidence": {
+        "code": "FOUNDATION_PACK_BOUNDARY_ESCALATION"
+      }
+    }
+  ],
+  "passMeaning": "Structural preparatory bridge only; academic content, assessment quality, learner completion, Master-ready and whole-Foundation runtime activation remain unclaimed."
+}
