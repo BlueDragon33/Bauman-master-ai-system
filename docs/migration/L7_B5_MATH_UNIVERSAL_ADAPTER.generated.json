@@ -1,0 +1,487 @@
+{
+  "gate": "L7-B5",
+  "status": "PASS",
+  "passMeaning": "read-only Math Universal projection is complete; no runtime cutover, source rewrite, external-bank completion or Master-ready claim",
+  "adapterRelease": "L7-B5-MATH-UNIVERSAL-ADAPTER-V1",
+  "legacyLessonCount": 347,
+  "overlayLessonCount": 18,
+  "projectedLessonCount": 365,
+  "legacyBlockCount": 5552,
+  "overlayBlockCount": 300,
+  "prerequisiteCandidateCount": 341,
+  "downstreamSupportCount": 1279,
+  "externalBankCounts": {
+    "formulas": 0,
+    "exercises": 0,
+    "simulations": 0,
+    "applications": 0,
+    "professorQa": 0,
+    "tests": 0,
+    "questionBank": 0
+  },
+  "projectionDigest": "d9f37b5f88d05688dc6c01c0b77fe7d5e8dbaa9a091bc3cfcb69e13601fc8210",
+  "sourceDigests": {
+    "lessons": "5554fc9265d640a99831763e073c8e42ccf756a1f7f0a9f92a8df9a376b0a086",
+    "overlays": "db2acdbcf1d4774c86d02107ea381a250cd199da2464f456c0bc0ad4132ce39b",
+    "graph": "e768723bbfa66196edf1d3182d97f3bb39abf65ae64c043448926edea7757871",
+    "banks": "6dabc3fda0666315dc94bbf93eac960e7707762954c2d30825f8b75c3cd704f8",
+    "runtime": {
+      "subjects/math/index.html": "4f6aaca01a5cdc74329ad2dec5626e931ac773ca533c0b911e94789052b71ee3",
+      "subjects/math/assets/subject-adapter.js": "40cb9d93a713929f3b8c9c99c01c30e29f103043a2f2c207521c5446f8f47731",
+      "subjects/math/assets/theory_skin/theory-tab-E129.js": "f9040b5dff1d3e38a1440e74445a7d97c1d19e4ec5d5f4312e5d526ac4e69d00"
+    }
+  },
+  "checks": [
+    {
+      "id": "FILE-assets/js/platform/universal-lesson/math-universal-adapter-v1.js",
+      "title": "required L7-B5 input exists",
+      "ok": true,
+      "evidence": "assets/js/platform/universal-lesson/math-universal-adapter-v1.js"
+    },
+    {
+      "id": "FILE-assets/js/platform/universal-lesson/lesson-schema-validator-v1.js",
+      "title": "required L7-B5 input exists",
+      "ok": true,
+      "evidence": "assets/js/platform/universal-lesson/lesson-schema-validator-v1.js"
+    },
+    {
+      "id": "FILE-assets/data/lesson/schema/universal-lesson-v2.schema.json",
+      "title": "required L7-B5 input exists",
+      "ok": true,
+      "evidence": "assets/data/lesson/schema/universal-lesson-v2.schema.json"
+    },
+    {
+      "id": "FILE-assets/data/lesson/universal-lesson-block-policy-v1.json",
+      "title": "required L7-B5 input exists",
+      "ok": true,
+      "evidence": "assets/data/lesson/universal-lesson-block-policy-v1.json"
+    },
+    {
+      "id": "FILE-assets/data/lesson/lesson-type-registry-v1.json",
+      "title": "required L7-B5 input exists",
+      "ok": true,
+      "evidence": "assets/data/lesson/lesson-type-registry-v1.json"
+    },
+    {
+      "id": "FILE-assets/data/lesson/master-ready-policy-v1.json",
+      "title": "required L7-B5 input exists",
+      "ok": true,
+      "evidence": "assets/data/lesson/master-ready-policy-v1.json"
+    },
+    {
+      "id": "FILE-assets/data/lesson/subject-factory-registry-v1.json",
+      "title": "required L7-B5 input exists",
+      "ok": true,
+      "evidence": "assets/data/lesson/subject-factory-registry-v1.json"
+    },
+    {
+      "id": "FILE-assets/data/lesson/math-prerequisite-graph-v1.generated.json",
+      "title": "required L7-B5 input exists",
+      "ok": true,
+      "evidence": "assets/data/lesson/math-prerequisite-graph-v1.generated.json"
+    },
+    {
+      "id": "FILE-subjects/math/data/lessons.json",
+      "title": "required L7-B5 input exists",
+      "ok": true,
+      "evidence": "subjects/math/data/lessons.json"
+    },
+    {
+      "id": "FILE-subjects/math/data/theory_lecture_content.json",
+      "title": "required L7-B5 input exists",
+      "ok": true,
+      "evidence": "subjects/math/data/theory_lecture_content.json"
+    },
+    {
+      "id": "FILE-docs/migration/L7_B5_MATH_UNIVERSAL_ADAPTER.md",
+      "title": "required L7-B5 input exists",
+      "ok": true,
+      "evidence": "docs/migration/L7_B5_MATH_UNIVERSAL_ADAPTER.md"
+    },
+    {
+      "id": "FILE-subjects/math/index.html",
+      "title": "required L7-B5 input exists",
+      "ok": true,
+      "evidence": "subjects/math/index.html"
+    },
+    {
+      "id": "FILE-subjects/math/assets/subject-adapter.js",
+      "title": "required L7-B5 input exists",
+      "ok": true,
+      "evidence": "subjects/math/assets/subject-adapter.js"
+    },
+    {
+      "id": "FILE-subjects/math/assets/theory_skin/theory-tab-E129.js",
+      "title": "required L7-B5 input exists",
+      "ok": true,
+      "evidence": "subjects/math/assets/theory_skin/theory-tab-E129.js"
+    },
+    {
+      "id": "FILE-subjects/math/data/formulas.json",
+      "title": "required L7-B5 input exists",
+      "ok": true,
+      "evidence": "subjects/math/data/formulas.json"
+    },
+    {
+      "id": "FILE-subjects/math/data/exercises.json",
+      "title": "required L7-B5 input exists",
+      "ok": true,
+      "evidence": "subjects/math/data/exercises.json"
+    },
+    {
+      "id": "FILE-subjects/math/data/simulations.json",
+      "title": "required L7-B5 input exists",
+      "ok": true,
+      "evidence": "subjects/math/data/simulations.json"
+    },
+    {
+      "id": "FILE-subjects/math/data/applications.json",
+      "title": "required L7-B5 input exists",
+      "ok": true,
+      "evidence": "subjects/math/data/applications.json"
+    },
+    {
+      "id": "FILE-subjects/math/data/professor_qa.json",
+      "title": "required L7-B5 input exists",
+      "ok": true,
+      "evidence": "subjects/math/data/professor_qa.json"
+    },
+    {
+      "id": "FILE-subjects/math/data/tests.json",
+      "title": "required L7-B5 input exists",
+      "ok": true,
+      "evidence": "subjects/math/data/tests.json"
+    },
+    {
+      "id": "FILE-subjects/math/data/question_bank.json",
+      "title": "required L7-B5 input exists",
+      "ok": true,
+      "evidence": "subjects/math/data/question_bank.json"
+    },
+    {
+      "id": "ADAPTER-IDENTITY",
+      "title": "adapter has a stable Math Universal identity",
+      "ok": true,
+      "evidence": {
+        "adapterId": "math-universal-adapter-v1",
+        "release": "L7-B5-MATH-UNIVERSAL-ADAPTER-V1"
+      }
+    },
+    {
+      "id": "REFERENCE-POLICY",
+      "title": "Math registry, Factory and Master-ready policy remain the governing references",
+      "ok": true,
+      "evidence": {
+        "engine": "math-e126-specialist",
+        "directFactoryRender": false,
+        "threshold": 0.82
+      }
+    },
+    {
+      "id": "LEGACY-COVERAGE",
+      "title": "all 347 stable legacy lessons project exactly once",
+      "ok": true,
+      "evidence": 347
+    },
+    {
+      "id": "OVERLAY-COVERAGE",
+      "title": "all 18 reviewed theory overlays project separately",
+      "ok": true,
+      "evidence": 18
+    },
+    {
+      "id": "CROSS-FAMILY-IDENTITY",
+      "title": "current legacy and overlay ids remain distinct without inferred equivalence",
+      "ok": true,
+      "evidence": {
+        "projected": 365,
+        "unique": 365
+      }
+    },
+    {
+      "id": "SCHEMA-VALID",
+      "title": "all 365 projections pass the real Universal v2 validator",
+      "ok": true,
+      "evidence": []
+    },
+    {
+      "id": "LEGACY-SLIDE-PRESERVATION",
+      "title": "all 5,552 legacy source slides project one-to-one in source order",
+      "ok": true,
+      "evidence": 5552
+    },
+    {
+      "id": "OVERLAY-SLIDE-PRESERVATION",
+      "title": "all 300 overlay slides project one-to-one, including both 22-slide accepted decks",
+      "ok": true,
+      "evidence": {
+        "blocks": 300,
+        "richDecks": [
+          "MATH-VN-C01-vector_trong_khong_gian_-L04-basis-span-coordinate-e140",
+          "MATH-VN-C01-vector_trong_khong_gian_-L05-subspace-data-representation-e140"
+        ]
+      }
+    },
+    {
+      "id": "LOSSLESS-PAYLOAD",
+      "title": "titles, roles, layouts and nested source blocks are preserved without flattening",
+      "ok": true,
+      "evidence": {
+        "sourceBlockDigest": "97bcc799d87b221afc208aeb1c23bc4d6f3f5b0bc01d6cdeda1bbc38860ae790"
+      }
+    },
+    {
+      "id": "NESTED-TYPE-PRESERVATION",
+      "title": "formula, code, QA, lists and text block families remain exact",
+      "ok": true,
+      "evidence": {
+        "source": {
+          "section": 7634,
+          "bullet-list": 3123,
+          "formula-list": 694,
+          "qa-list": 347,
+          "text": 369,
+          "qa": 113,
+          "formula": 127,
+          "code": 23
+        },
+        "projected": {
+          "section": 7634,
+          "bullet-list": 3123,
+          "formula-list": 694,
+          "qa-list": 347,
+          "text": 369,
+          "qa": 113,
+          "formula": 127,
+          "code": 23
+        }
+      }
+    },
+    {
+      "id": "BLOCK-POLICY",
+      "title": "every Math projection fulfills all resolved required Universal block kinds",
+      "ok": true,
+      "evidence": [
+        "concept-map",
+        "misconception",
+        "oral",
+        "theory",
+        "worked-example"
+      ]
+    },
+    {
+      "id": "FORMULA-SPECIALIST",
+      "title": "notation and formula roles keep specialist formula ownership",
+      "ok": true,
+      "evidence": 730
+    },
+    {
+      "id": "STEP-SOLUTION-SPECIALIST",
+      "title": "worked and practice roles keep specialist step-solution ownership",
+      "ok": true,
+      "evidence": 732
+    },
+    {
+      "id": "SIMULATION-SPECIALIST",
+      "title": "simulation roles keep parameter-simulation ownership and evidence",
+      "ok": true,
+      "evidence": 366
+    },
+    {
+      "id": "ORAL-SPECIALIST",
+      "title": "professor Q&A remains an external specialist oral capability",
+      "ok": true,
+      "evidence": 365
+    },
+    {
+      "id": "EXACT-OVERLAY-RESOLUTION",
+      "title": "an exact overlay id resolves to the reviewed overlay only",
+      "ok": true,
+      "evidence": "MATH-VN-C01-vector_trong_khong_gian_-L01-vector-as-engineering-data-e130"
+    },
+    {
+      "id": "LEGACY-FALLBACK",
+      "title": "an exact legacy id without an overlay preserves legacy fallback",
+      "ok": true,
+      "evidence": "MATH-VN-LA-C01-L01"
+    },
+    {
+      "id": "NO-FUZZY-PROMOTION",
+      "title": "unknown or look-alike ids fail closed without fuzzy matching",
+      "ok": true,
+      "evidence": "NO_EXACT_SOURCE_MATCH"
+    },
+    {
+      "id": "PREREQUISITE-BOUNDARY",
+      "title": "341 system-derived prerequisite candidates remain outside active prerequisites",
+      "ok": true,
+      "evidence": 341
+    },
+    {
+      "id": "DOWNSTREAM-NON-MASTERY",
+      "title": "all 1,279 downstream support refs remain non-mastery and read-only",
+      "ok": true,
+      "evidence": 1279
+    },
+    {
+      "id": "EXTERNAL-BANK-TRUTH",
+      "title": "all empty standalone banks remain unavailable and never claim completion",
+      "ok": true,
+      "evidence": {
+        "formulas": 0,
+        "exercises": 0,
+        "simulations": 0,
+        "applications": 0,
+        "professorQa": 0,
+        "tests": 0,
+        "questionBank": 0
+      }
+    },
+    {
+      "id": "MASTER-READY-BOUNDARY",
+      "title": "adapter creates no verified or Master-ready learner claim",
+      "ok": true,
+      "evidence": {
+        "projected": 365,
+        "verified": 0,
+        "claimed": 0
+      }
+    },
+    {
+      "id": "OFFLINE-ROLLBACK",
+      "title": "all projections retain explicit Math pack fallback and unchanged runtime entry",
+      "ok": true,
+      "evidence": {
+        "policyId": "math-rich-explicit",
+        "resources": [
+          {
+            "id": "MATH-VN-LA-C01-L01-math-pack",
+            "availability": "subject-pack",
+            "bytesPolicy": "reuse-existing-math-assets-and-explicit-pack-limits",
+            "freshnessPolicy": "content-version-and-integrity-check",
+            "rollbackRef": "subjects/math/index.html"
+          }
+        ],
+        "deterministicFallbackRef": "MATH-VN-LA-C01-L01-math-pack",
+        "legacyRuntimeEntry": "subjects/math/index.html",
+        "serviceWorkerOwner": "site-root"
+      }
+    },
+    {
+      "id": "PROGRAM-IDENTITY",
+      "title": "official and personalized direction codes remain separated",
+      "ok": true,
+      "evidence": {
+        "department": "ИУ-5",
+        "officialPublishedDirectionCode": "09.04.01",
+        "personalizedDisplayCode": "09.04.01/11"
+      }
+    },
+    {
+      "id": "NO-AI-PROVENANCE",
+      "title": "adapter does not promote AI inference into Math source provenance",
+      "ok": true,
+      "evidence": 0
+    },
+    {
+      "id": "NO-PERSONAL-CURRICULUM-COPY",
+      "title": "adapter output contains no HUTECH learner label",
+      "ok": true,
+      "evidence": "absent"
+    },
+    {
+      "id": "SOURCE-IMMUTABLE",
+      "title": "projection leaves Math source, graph and banks unchanged",
+      "ok": true,
+      "evidence": {
+        "lessons": "5554fc9265d640a99831763e073c8e42ccf756a1f7f0a9f92a8df9a376b0a086",
+        "overlays": "db2acdbcf1d4774c86d02107ea381a250cd199da2464f456c0bc0ad4132ce39b",
+        "graph": "e768723bbfa66196edf1d3182d97f3bb39abf65ae64c043448926edea7757871",
+        "banks": "6dabc3fda0666315dc94bbf93eac960e7707762954c2d30825f8b75c3cd704f8",
+        "runtime": {
+          "subjects/math/index.html": "4f6aaca01a5cdc74329ad2dec5626e931ac773ca533c0b911e94789052b71ee3",
+          "subjects/math/assets/subject-adapter.js": "40cb9d93a713929f3b8c9c99c01c30e29f103043a2f2c207521c5446f8f47731",
+          "subjects/math/assets/theory_skin/theory-tab-E129.js": "f9040b5dff1d3e38a1440e74445a7d97c1d19e4ec5d5f4312e5d526ac4e69d00"
+        }
+      }
+    },
+    {
+      "id": "RUNTIME-IMMUTABLE",
+      "title": "B5 leaves Math runtime and specialist reader files unchanged",
+      "ok": true,
+      "evidence": {
+        "subjects/math/index.html": "4f6aaca01a5cdc74329ad2dec5626e931ac773ca533c0b911e94789052b71ee3",
+        "subjects/math/assets/subject-adapter.js": "40cb9d93a713929f3b8c9c99c01c30e29f103043a2f2c207521c5446f8f47731",
+        "subjects/math/assets/theory_skin/theory-tab-E129.js": "f9040b5dff1d3e38a1440e74445a7d97c1d19e4ec5d5f4312e5d526ac4e69d00"
+      }
+    },
+    {
+      "id": "DETERMINISTIC",
+      "title": "repeated full-catalog projection has a stable SHA-256 digest",
+      "ok": true,
+      "evidence": "d9f37b5f88d05688dc6c01c0b77fe7d5e8dbaa9a091bc3cfcb69e13601fc8210"
+    },
+    {
+      "id": "INVALID-SOURCE-FAILS",
+      "title": "malformed Math records fail closed",
+      "ok": true,
+      "evidence": "TypeError expected"
+    },
+    {
+      "id": "DUPLICATE-SOURCE-FAILS",
+      "title": "duplicate ids inside a source family fail closed",
+      "ok": true,
+      "evidence": "TypeError expected"
+    }
+  ],
+  "mutationTests": [
+    {
+      "id": "DROP-SOURCE-SLIDE",
+      "title": "dropping a source slide violates one-to-one preservation",
+      "expectedFailureObserved": true,
+      "evidence": {
+        "sourceSlides": 16,
+        "projectedBlocks": 15
+      }
+    },
+    {
+      "id": "ACTIVATE-INFERRED-PREREQUISITE",
+      "title": "system-derived prerequisite activation is rejected",
+      "expectedFailureObserved": true,
+      "evidence": true
+    },
+    {
+      "id": "PROMOTE-MASTER-READY",
+      "title": "adapter-level Master-ready promotion is rejected",
+      "expectedFailureObserved": true,
+      "evidence": true
+    },
+    {
+      "id": "CLAIM-EMPTY-BANK",
+      "title": "completion claim for an empty assessment bank is rejected",
+      "expectedFailureObserved": true,
+      "evidence": {
+        "sourceFamily": "assessment-bank",
+        "recordCount": 0,
+        "availability": "unavailable",
+        "fallback": "none-external-bank-unavailable",
+        "completionClaimed": true
+      }
+    },
+    {
+      "id": "PROMOTE-PARTIAL-OVERLAY",
+      "title": "global promotion of 18 partial overlays is rejected",
+      "expectedFailureObserved": true,
+      "evidence": true
+    },
+    {
+      "id": "MUTATE-FORMULA-PAYLOAD",
+      "title": "formula payload mutation is detected against the source digest",
+      "expectedFailureObserved": true,
+      "evidence": {
+        "source": "34d7d376b2372d39d1fa48db58b7a7a80900fb9d7f1bd8cbf6cc4a71ab352d78",
+        "mutated": "b1fc8811ddb700b84bb541344612642f4667a522c8214cc1cb730a3ac30732ff"
+      }
+    }
+  ]
+}
