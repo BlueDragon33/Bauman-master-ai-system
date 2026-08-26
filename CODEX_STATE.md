@@ -1,15 +1,19 @@
 # CODEX_STATE
 
-Current task: `L7-B5_MATH_UNIVERSAL_ADAPTER`
+Current task: `L7-B6_FOUNDATION_PREPARATORY_COMPLETION`
 
-Status: `L7_B4_PASS_B5_READY`
+Status: `L7_B5_PASS_B6_READY`
 
-Date: 2026-08-24
+Date: 2026-08-26
 Branch: `migration/webapp-l1-audit-storage`
 Base branch: `main`
 Main sync status: `branch_only`
 
 Files changed:
+- `assets/js/platform/universal-lesson/math-universal-adapter-v1.js`
+- `scripts/academic/l7-b5-math-universal-adapter-regression.cjs`
+- `docs/migration/L7_B5_MATH_UNIVERSAL_ADAPTER.md`
+- `docs/migration/L7_B5_MATH_UNIVERSAL_ADAPTER.generated.json`
 - `assets/data/lesson/math-prerequisite-policy-v1.json`
 - `assets/data/lesson/math-prerequisite-graph-v1.generated.json`
 - `scripts/academic/l7-b4-math-coverage-prerequisite-audit.cjs`
@@ -40,6 +44,21 @@ Files changed:
 - `CODEX_STATE.md`
 
 What changed:
+- Added a pure read-only Math → Universal v2 adapter with exact-ID source
+  resolution: reviewed overlays remain separate, legacy IDs keep legacy
+  fallback, and unknown/look-alike IDs fail closed without fuzzy promotion.
+- Projected all 347 legacy lessons plus 18 reviewed overlays as 365
+  schema-valid lessons while preserving all 5,552 legacy and 300 overlay
+  slides one-to-one, including both accepted 22-slide decks.
+- Kept formula, worked-step, parameter-simulation and professor-oral behavior
+  under the existing Math specialist owners; B5 does not cut over runtime.
+- Kept all 341 system-derived prerequisite candidates inactive and all 1,279
+  downstream support refs non-mastery/read-only.
+- Kept all seven empty standalone Math banks explicitly unavailable with no
+  completion or Master-ready claim; 18 overlays remain truthful partial
+  coverage rather than a replacement for the 347-lesson legacy catalog.
+- Added deterministic, mutation and CI gates for B5 without changing Math
+  source, learner state, specialist runtime, Service Worker or `main`.
 - Added a read-only Math coverage audit preserving all 347 legacy lessons,
   41 chapter IDs, six stages and all sixteen semantic slide roles per lesson.
 - Recorded the reviewed theory path truthfully as 18 overlays across three
@@ -157,6 +176,15 @@ What changed:
   service worker or `main`.
 
 Verification:
+- L7-B5 GitHub Actions run `32940546331`: PASS
+- L6 full regression run `32940546329`: PASS
+- Full L5 runtime/browser/offline run `32940546352`: PASS
+- L7-B5 Math Universal adapter regression, 52/52 checks: PASS
+- L7-B5 protection mutations, 6/6 expected failures observed: PASS
+- Math Universal projections, 365/365 schema-valid; source blocks,
+  5,852/5,852 preserved one-to-one: PASS
+- L7-B5 projection SHA-256:
+  `d9f37b5f88d05688dc6c01c0b77fe7d5e8dbaa9a091bc3cfcb69e13601fc8210`
 - L7-B4 GitHub Actions run `32859657749`: PASS
 - L6 full regression run `32859657535`: PASS
 - Full L5 runtime/browser/offline run `32859657567`: PASS
@@ -271,20 +299,21 @@ Verification:
 Main sync / pull instruction:
 - The work is branch-only on `migration/webapp-l1-audit-storage`.
 - Do not pull `main` for this task; `main` does not contain L6.
-- Do not merge to `main` until the corresponding L6 gates pass.
+- Do not merge to `main` until the remaining L7 gates and final progression
+  gate pass; B5 remains draft-branch-only.
 
 Next recommended task:
-- Begin L7-B1 with a coverage audit of Russian from preparatory through
-  technical, academic and defense stages; do not project or rewrite Russian
-  content until the audit and adapter mapping gate are defined.
+- Begin L7-B6 by auditing Foundation against the preparatory target:
+  classroom Russian, math/science transition and study-method bridge. Preserve
+  current source/runtime/state and fail closed on unsupported completion.
 
 Next actor:
 - Codex
 
 Codex required:
 - yes
-- Reason: remote CI verification, JSON Schema and version-migration design,
-  legacy compatibility audit, fixtures and deterministic regression.
+- Reason: Foundation source/coverage audit, preparatory-gap closure, legacy
+  compatibility, deterministic regression and remote CI verification.
 
 ChatGPT can do:
 - Targeted content/schema review and small documentation-only corrections on

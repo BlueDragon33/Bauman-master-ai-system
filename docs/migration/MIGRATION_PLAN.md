@@ -378,7 +378,7 @@ Bằng chứng B10:
 
 ## Lượt 7 · Hoàn thiện Reference Subjects · Russian + Math + Foundation · 9 bước
 
-Trạng thái: **B1–B4 PASS · B5 kế tiếp**.
+Trạng thái: **B1–B5 PASS · B6 kế tiếp**.
 
 1. Audit coverage Russian theo roadmap dự bị → technical → academic → defense.
    **PASS**: 21/21 deterministic checks; 26/26 lesson, 6/6 stage,
@@ -407,6 +407,18 @@ Trạng thái: **B1–B4 PASS · B5 kế tiếp**.
    Gate 25/25; L7 run `32859657749`, L6 run `32859657535` và full L5 run
    `32859657567` PASS.
 5. Chuẩn hóa Math vào Universal Contract, giữ formula/step solution/simulation đặc thù.
+   **PASS**: adapter thuần đọc project riêng 347 legacy lesson và 18 reviewed
+   overlay thành 365/365 Universal v2 lesson schema-valid; bảo toàn một-một
+   5.552 legacy + 300 overlay slide, không suy diễn equivalence hay fuzzy ID.
+   Exact overlay ID dùng overlay; exact legacy ID giữ legacy fallback; ID lạ
+   fail closed. Formula, step solution, simulation và oral vẫn do Math
+   specialist sở hữu. 341 prerequisite candidate vẫn inactive, 1.279
+   downstream ref vẫn non-mastery, bảy standalone bank rỗng vẫn unavailable,
+   và adapter không tạo Master-ready claim. Gate 52/52 cùng 6/6 protection
+   mutation PASS; projection SHA-256
+   `d9f37b5f88d05688dc6c01c0b77fe7d5e8dbaa9a091bc3cfcb69e13601fc8210`.
+   L7 run `32940546331`, L6 run `32940546329` và full L5
+   runtime/browser/offline run `32940546352` PASS; `main` không thay đổi.
 6. Hoàn thiện Foundation cho giai đoạn dự bị: classroom Russian + math/science transition + study-method bridge.
 7. Master-ready evidence + spaced-review hooks cho Russian/Math/Foundation.
 8. Visual/pedagogical QA desktop/tablet/mobile/offline.
