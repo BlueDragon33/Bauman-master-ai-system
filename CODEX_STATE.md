@@ -1,15 +1,20 @@
 # CODEX_STATE
 
-Current task: `L7-B8_VISUAL_PEDAGOGICAL_QA`
+Current task: `L7-B9_REFERENCE_IMPLEMENTATION_CHECKPOINT`
 
-Status: `L7_B7_PASS_B8_READY`
+Status: `L7_B8_PASS_B9_READY`
 
-Date: 2026-08-26
+Date: 2026-08-27
 Branch: `migration/webapp-l1-audit-storage`
 Base branch: `main`
 Main sync status: `branch_only`
 
 Files changed:
+- `assets/data/lesson/reference-subject-qa-profile-v1.json`
+- `scripts/academic/l7-b8-reference-visual-pedagogical-regression.cjs`
+- `scripts/academic/l7-b8-reference-browser-regression.cjs`
+- `docs/migration/L7_B8_REFERENCE_VISUAL_PEDAGOGICAL_QA.md`
+- `docs/migration/L7_B8_REFERENCE_VISUAL_PEDAGOGICAL_QA.generated.json`
 - `assets/data/lesson/reference-subject-evidence-review-v1.json`
 - `assets/js/platform/universal-lesson/reference-subject-evidence-review-v1.js`
 - `scripts/academic/l7-b7-reference-evidence-review-regression.cjs`
@@ -54,6 +59,20 @@ Files changed:
 - `CODEX_STATE.md`
 
 What changed:
+- Added a fail-closed visual/pedagogical QA profile for the exact 406-lesson
+  Russian/Math/Foundation reference catalog without modifying subject source.
+- Bound Russian to its current 26-lesson/1,138-slide specialist surface, Math
+  to 347 legacy lessons plus 18 reviewed overlays/5,852 blocks, and Foundation
+  to the exact single B11 pilot while preserving specialist runtime ownership.
+- Added a 3×3 online matrix for desktop, tablet and mobile plus three explicit
+  base-pack offline probes, with headings, named controls, focus, reduced
+  motion, reflow, identity and no-evidence/no-Master-ready checks.
+- Kept Foundation template content, non-qualified assessment and simulation
+  stage drift claim-blocking and routed them to L21 Content Operations and
+  Curriculum Governance; B8 PASS does not hide or resolve those findings.
+- Added integrity baselines, eleven protection mutations and CI browser
+  evidence without changing runtime, storage, Service Worker, offline policy or
+  `main`.
 - Added a read-only evidence/review catalog and deterministic schedule
   materializer for all 26 Russian, 365 Math and 15 Foundation lessons.
 - Declared 2,030 missing evidence slots across 406 lessons and 1,250
@@ -219,6 +238,24 @@ What changed:
   service worker or `main`.
 
 Verification:
+- L7-B8 GitHub Actions run `33034607212`: PASS
+- L6 full deterministic/browser/offline run `33034607221`: PASS
+- Full L5 runtime/browser/offline run `33034607213`: PASS
+- L7-B8 deterministic visual/pedagogical regression, 86/86 checks: PASS
+- L7-B8 protection mutations, 11/11 expected failures observed: PASS
+- L7-B8 browser QA, 44/44 checks: PASS
+- Online representative surfaces, 9/9 (3 subjects × 3 viewports): PASS
+- Explicit offline subject surfaces and subject packs, 3/3 and 3/3: PASS
+- L7-B8 generated report stable SHA-256:
+  `5a46c2ff18d656fdcd20ab176a7e034b95668eae0e6abe9fab4407aa4f7f269a`
+- L7-B8 profile projection SHA-256:
+  `5734de560783fb4c188b472bbcfe9fe884ee7d382497fdedf36569833d38356c`
+- Remote browser evidence artifact `9631549026`, digest:
+  `sha256:144913ba2c79fdde9d061559ec4b5f9fe0bcda9b6f3f23f7d11a71047a9ba08d`
+- Local sequential deterministic regressions L7-B1 through B8, L6-B1
+  through B11 and L5 static/runtime gates: PASS
+- Local Chromium remained unavailable; the authoritative B8 browser/offline
+  result is the successful remote L7 run above.
 - L7-B7 GitHub Actions run `32944104639`: PASS
 - L6 full deterministic/browser/offline run `32944104642`: PASS
 - Full L5 runtime/browser/offline run `32944104588`: PASS
@@ -371,21 +408,22 @@ Main sync / pull instruction:
 - The work is branch-only on `migration/webapp-l1-audit-storage`.
 - Do not pull `main` for this task; `main` does not contain L6.
 - Do not merge to `main` until the remaining L7 gates and final progression
-  gate pass; B7 remains draft-branch-only.
+  gate pass; B8 remains draft-branch-only.
 
 Next recommended task:
-- Begin L7-B8 visual/pedagogical QA across desktop, tablet, mobile and offline.
-  Preserve the B7 evidence authority boundary and treat template content,
-  template assessment, simulation-stage drift and the single B11 runtime scope
-  as explicit findings rather than silently promoting them.
+- Begin L7-B9 cross-reference checkpoint designating Russian and Math as the
+  official reference implementations for later subject work. Preserve the B8
+  Foundation finding dispositions and do not turn reference designation into
+  runtime cutover, content approval, learner completion or Master-ready.
 
 Next actor:
 - Codex
 
 Codex required:
 - yes
-- Reason: cross-viewport visual/pedagogical evidence, specialist-runtime and
-  offline boundaries, mutation fixtures and remote browser CI verification.
+- Reason: official reference designation needs exact artifact pointers,
+  downstream reuse boundaries, rollback evidence and final L7 progression
+  verification without changing runtime or `main`.
 
 ChatGPT can do:
 - Targeted content/schema review and small documentation-only corrections on
