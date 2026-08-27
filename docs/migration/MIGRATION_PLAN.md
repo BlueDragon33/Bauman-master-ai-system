@@ -378,7 +378,7 @@ Bằng chứng B10:
 
 ## Lượt 7 · Hoàn thiện Reference Subjects · Russian + Math + Foundation · 9 bước
 
-Trạng thái: **B1–B8 PASS · B9 kế tiếp**.
+Trạng thái: **B1–B9 PASS · L7 hoàn tất · L8-B1 kế tiếp**.
 
 1. Audit coverage Russian theo roadmap dự bị → technical → academic → defense.
    **PASS**: 21/21 deterministic checks; 26/26 lesson, 6/6 stage,
@@ -456,6 +456,24 @@ Trạng thái: **B1–B8 PASS · B9 kế tiếp**.
    L7 run `33034607212`, L6 run `33034607221` và full L5
    runtime/browser/offline run `33034607213` PASS; `main` không thay đổi.
 9. Cross-reference checkpoint: Russian/Math là reference implementation chính thức cho các môn sau.
+   **PASS theo nghĩa capability-specific, fail-closed**: registry chỉ định đúng
+   Russian và Math làm official reference, không dùng Foundation. Năm binding
+   downstream khóa Programming/L8, AI+Signal/L9, Systems/L10 và Research/L11
+   theo đúng engine/route/type/offline policy của Subject Factory. Russian Twin
+   chỉ source-aligned cho 48 Programming lesson; bốn môn còn lại tiếp tục
+   source unchanged khi thiếu reviewed alignment. Math chỉ cung cấp `supports`
+   review candidate (24 domain binding, 16 unique target tổng theo từng môn),
+   không assessment-blocking và không có Master-ready effect. B9 sửa type
+   metadata Russian Twin lệch cũ của Foundation/Signal/Systems và khóa parity
+   đủ 8/8 subject. Russian finding, ba Math finding, global no-evidence và bốn
+   Foundation disposition vẫn giữ nguyên. Gate 52/52 cùng 12/12 protection
+   mutation PASS; report SHA-256
+   `fc01c0a4c9099e4fce9ba82604823bf1890ec60606ebe3820da6e19839f65466`.
+   L7 run `33035599795`, L6 run `33035599823` và full L5
+   runtime/browser/offline run `33035599789` PASS; hai context B9/L7-complete
+   đều `success`, artifact `9631893058` có digest
+   `sha256:4c607a7433758eb2681f4ef9ba08065929aa7ee497c26cdac51740d68069abe9`;
+   `main` không thay đổi.
 
 ## Lượt 8 · Programming Core FULL · Python/OOP/Algorithms/DB/Software Engineering · 14 bước
 

@@ -1,8 +1,8 @@
 # CODEX_STATE
 
-Current task: `L7-B9_REFERENCE_IMPLEMENTATION_CHECKPOINT`
+Current task: `L8-B1_PROGRAMMING_PREREQUISITE_ROADMAP`
 
-Status: `L7_B8_PASS_B9_READY`
+Status: `L7_B9_PASS_L8_READY`
 
 Date: 2026-08-27
 Branch: `migration/webapp-l1-audit-storage`
@@ -10,6 +10,10 @@ Base branch: `main`
 Main sync status: `branch_only`
 
 Files changed:
+- `assets/data/lesson/reference-implementation-registry-v1.json`
+- `scripts/academic/l7-b9-reference-implementation-checkpoint-regression.cjs`
+- `docs/migration/L7_B9_REFERENCE_IMPLEMENTATION_CHECKPOINT.md`
+- `docs/migration/L7_B9_REFERENCE_IMPLEMENTATION_CHECKPOINT.generated.json`
 - `assets/data/lesson/reference-subject-qa-profile-v1.json`
 - `scripts/academic/l7-b8-reference-visual-pedagogical-regression.cjs`
 - `scripts/academic/l7-b8-reference-browser-regression.cjs`
@@ -59,6 +63,29 @@ Files changed:
 - `CODEX_STATE.md`
 
 What changed:
+- Designated exactly Russian and Math as the official, capability-specific
+  reference implementations for later subject work; Foundation remains a
+  supporting preparatory bridge and single reviewed pilot.
+- Added exact cross-reference bindings for Programming (L8), AI and Signal
+  (L9), Systems (L10) and Research (L11) while retaining each subject's own
+  engine, route, type profiles, widgets, source, storage, evidence and
+  assessment authority.
+- Kept Russian Twin source-aligned only for the current 48 Programming
+  terminology units; AI/Signal/Systems/Research remain explicitly unavailable
+  pending reviewed alignment and continue their source lessons unchanged.
+- Kept all Math downstream links as non-blocking `supports` review candidates;
+  no inferred prerequisite can affect assessment or Master-ready before a
+  reviewed objective binding.
+- Fixed stale Russian Twin type metadata for Foundation, Signal and Systems,
+  then strengthened B3 to require exact type/default parity for all eight
+  Subject Factory subjects instead of Programming alone.
+- Retained the Russian missing build/apply target disposition, all three Math
+  coverage/prerequisite findings, the global no-evidence finding and all four
+  Foundation B8 finding dispositions without claim escalation.
+- Added 52 fail-closed B9 checks, 12 protection mutations, an evidence artifact
+  and the final remote contexts `migration/l7-b9-reference-implementation` and
+  `migration/l7-reference-subjects-complete` without changing runtime, source,
+  learner state, offline policy, Service Worker or `main`.
 - Added a fail-closed visual/pedagogical QA profile for the exact 406-lesson
   Russian/Math/Foundation reference catalog without modifying subject source.
 - Bound Russian to its current 26-lesson/1,138-slide specialist surface, Math
@@ -238,6 +265,27 @@ What changed:
   service worker or `main`.
 
 Verification:
+- L7-B9/full L7 GitHub Actions run `33035599795`: PASS
+- L6 full deterministic/browser/offline run `33035599823`: PASS
+- Full L5 runtime/browser/offline run `33035599789`: PASS
+- Remote contexts `migration/l7-b9-reference-implementation` and
+  `migration/l7-reference-subjects-complete`: PASS
+- L7-B9 evidence artifact `9631893058`, digest:
+  `sha256:4c607a7433758eb2681f4ef9ba08065929aa7ee497c26cdac51740d68069abe9`
+- L7-B9 reference checkpoint regression, 52/52 checks: PASS
+- L7-B9 protection mutations, 12/12 expected failures observed: PASS
+- Official references, 2/2; downstream subject bindings, 5/5: PASS
+- Russian Twin/Subject Factory type and default parity, 8/8 subjects: PASS
+- L7-B9 generated report stable SHA-256:
+  `fc01c0a4c9099e4fce9ba82604823bf1890ec60606ebe3820da6e19839f65466`
+- L7-B9 registry projection SHA-256:
+  `c4ef2a479b5d7a9e4a88383984a84528a4c810b10491dc70f87bf39eb8c3bfbe`
+- Feature commit `a67514aacf1a11f66cc2cf9a67c2285f88dfc1ef`; L5 bot checkpoint
+  `455a0911fb18d2d872954bb3ba1141a07ef6e587`.
+- Local sequential deterministic regressions L7-B1 through B9 and L6-B1
+  through B11 plus L5 syntax/static/runtime gates: PASS
+- Local Chromium remained unavailable; authoritative B8/B9 progression browser
+  evidence is the successful remote L7/L6/L5 runs above.
 - L7-B8 GitHub Actions run `33034607212`: PASS
 - L6 full deterministic/browser/offline run `33034607221`: PASS
 - Full L5 runtime/browser/offline run `33034607213`: PASS
@@ -407,23 +455,24 @@ Verification:
 Main sync / pull instruction:
 - The work is branch-only on `migration/webapp-l1-audit-storage`.
 - Do not pull `main` for this task; `main` does not contain L6.
-- Do not merge to `main` until the remaining L7 gates and final progression
-  gate pass; B8 remains draft-branch-only.
+- L7 and its final progression gate have passed, but do not merge to `main`;
+  continue L8 sequentially on the same draft branch until the roadmap's final
+  release gates authorize cutover.
 
 Next recommended task:
-- Begin L7-B9 cross-reference checkpoint designating Russian and Math as the
-  official reference implementations for later subject work. Preserve the B8
-  Foundation finding dispositions and do not turn reference designation into
-  runtime cutover, content approval, learner completion or Master-ready.
+- Begin L8-B1: build the Programming fundamentals roadmap from real
+  prerequisites and the existing 48-lesson source, using the B9 Russian/Math
+  reference lanes without copying either specialist UI or activating
+  non-reviewed Math support links.
 
 Next actor:
 - Codex
 
 Codex required:
 - yes
-- Reason: official reference designation needs exact artifact pointers,
-  downstream reuse boundaries, rollback evidence and final L7 progression
-  verification without changing runtime or `main`.
+- Reason: L8-B1 needs an exact Programming lesson/prerequisite audit and a
+  source-preserving roadmap baseline before later code runner, database and
+  software-design expansion.
 
 ChatGPT can do:
 - Targeted content/schema review and small documentation-only corrections on
