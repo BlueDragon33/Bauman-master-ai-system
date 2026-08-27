@@ -1,0 +1,988 @@
+{
+  "gate": "L7-B8",
+  "release": "L7-B8-REFERENCE-VISUAL-PEDAGOGICAL-QA-V1",
+  "status": "PASS",
+  "branch": "migration/webapp-l1-audit-storage",
+  "scope": {
+    "subjects": [
+      "russian",
+      "math",
+      "foundation"
+    ],
+    "lessonCount": 406,
+    "onlineSurfaceCount": 9,
+    "offlineSubjectCount": 3,
+    "viewports": [
+      {
+        "id": "desktop",
+        "width": 1440,
+        "height": 900
+      },
+      {
+        "id": "tablet",
+        "width": 820,
+        "height": 1180
+      },
+      {
+        "id": "mobile",
+        "width": 390,
+        "height": 844
+      }
+    ]
+  },
+  "sourceCoverage": {
+    "russian": {
+      "lessons": 26,
+      "sourceSlides": 1138
+    },
+    "math": {
+      "legacyLessons": 347,
+      "reviewedOverlays": 18,
+      "lessons": 365,
+      "sourceBlocks": 5852
+    },
+    "foundation": {
+      "preparatoryLessons": 15,
+      "bridgeTracks": 3,
+      "reviewedRuntimeLessons": 1
+    }
+  },
+  "foundationFindings": [
+    {
+      "id": "FOUNDATION_TEMPLATE_CONTENT_REVIEW_REQUIRED",
+      "status": "OPEN_BLOCKING_CONTENT_ACCEPTANCE",
+      "observedSignal": "Fifteen preparatory lessons share one keyPoints set, one coreTheory set and one masteryCriteria set.",
+      "blocks": [
+        "foundation-academic-content-approval",
+        "foundation-reference-subject-pedagogical-acceptance"
+      ],
+      "nextOwner": "L21_CONTENT_OPERATIONS_AND_CURRICULUM_GOVERNANCE"
+    },
+    {
+      "id": "FOUNDATION_ASSESSMENT_NOT_MASTERY_QUALIFIED",
+      "status": "CONTROLLED_NOT_QUALIFIED",
+      "observedSignal": "Preparatory exercises and questions remain source templates and B7 keeps every evidence slot missing.",
+      "blocks": [
+        "foundation-assessment-quality-approval",
+        "foundation-master-ready-claim"
+      ],
+      "nextOwner": "L21_CONTENT_OPERATIONS_AND_CURRICULUM_GOVERNANCE"
+    },
+    {
+      "id": "FOUNDATION_SIMULATION_STAGE_DRIFT",
+      "status": "OPEN_BLOCKING_FULL_SIMULATION_COVERAGE",
+      "observedSignal": "The simulation source contains both prepare and preparatory records; only one observation and one practice record exactly match the preparatory stage.",
+      "blocks": [
+        "foundation-full-simulation-coverage-claim"
+      ],
+      "nextOwner": "L21_CONTENT_OPERATIONS_AND_CURRICULUM_GOVERNANCE"
+    },
+    {
+      "id": "FOUNDATION_B11_SINGLE_REFERENCE_SCOPE",
+      "status": "ACCEPTED_LIMITED_RUNTIME_SCOPE",
+      "observedSignal": "Exactly one enabled reference activation exists for foundation:f_s01_l1 and no expansion is allowed in B8.",
+      "blocks": [
+        "whole-foundation-universal-runtime-activation-claim"
+      ],
+      "nextOwner": "FUTURE_REVIEWED_REFERENCE_EXPANSION"
+    }
+  ],
+  "integrityDigests": {
+    "assets/data/lesson/foundation-preparatory-bridge-v1.json": "bcf2cb194c711acb36365f1143065492fffb0745da9f2aee45b2458008e8b2ca",
+    "assets/data/lesson/reference-lesson-activation-v1.json": "1fa1de86545654d7efa55fb7a4a7f6344b5692075dbe977953c7852b86a55d8a",
+    "assets/data/lesson/reference-subject-evidence-review-v1.json": "552fe7f4846be5f94edcac5834a298393e874df3ed23e0fe00268f9df8b9953e",
+    "assets/js/platform/offline-subject-pack-manager.js": "5f6e4d37cb464b792558b014d19da1f62389b06245b8446b180e6d1890500be6",
+    "service-worker.js": "2404ad8a7ff4c7f4d152f9c1c90c3f146da68924706f259d297042f55f9ae857",
+    "subjects/foundation/data/curriculum.json": "b419dcc1a63e55f02aec340dfdd55d3a405c57dbdeaa614e4d369fa8b38aac55",
+    "subjects/foundation/data/exercises.json": "bd38c62eedf217faf093158d494b737e0144c00df678eeff37722daa2bb0c2df",
+    "subjects/foundation/data/lessons.json": "435dc2faea81b59f3b1f29b6e7f1d48d7c99947f0a70ccd62eb3bb60c2f402e1",
+    "subjects/foundation/data/simulations.json": "fdfeca208f2103c21ddd6abb2ad2c1d6efc7aefb370473344a1df41b25073e42",
+    "subjects/foundation/data/tests.json": "b60da17d2724d964b1ecd7496ceb6bd97ae1d58329a6ad7d7a8d0645f8be153a",
+    "subjects/foundation/index.html": "267e96e017f6b4da4290fe0fadce79b522c99d712ee94ad568fd684ffcdea27e",
+    "subjects/math/data/lessons.json": "4a77e812ac13bdd3076bf34ff47362c2bbd0157c5210d466f63df1d9fd8e324d",
+    "subjects/math/data/theory_lecture_content.json": "d0cd18601b1ede84f58072b3c47cfcc176b4d21d3fa71b23762b908485391447",
+    "subjects/math/index.html": "4f6aaca01a5cdc74329ad2dec5626e931ac773ca533c0b911e94789052b71ee3",
+    "subjects/russian/data/lessons.json": "c8693eeefed17ea39b0cea4a600c9086f1b597ae7174e56bd8b2f8b46b985062",
+    "subjects/russian/index.html": "f37b483583c2ec5c2b7697cae67176d340837685658178234b78898b57c47a60"
+  },
+  "projectionDigests": {
+    "russian": "8f0b9b8acd74fafc75bed0e5a69f3fe17aff1c2d983fea6e33f323d5fe7e64ba",
+    "math": "d9f37b5f88d05688dc6c01c0b77fe7d5e8dbaa9a091bc3cfcb69e13601fc8210",
+    "foundation": "1fad88fd68b49ee4d614bddea21671af0fa11a0aea24d944e6e381e5a14a7c47",
+    "evidenceCatalog": "99bb3bec7ad202ecc81cf309da2171adb9b2876792c76b585af83afbdf7255aa",
+    "profile": "e7837950144a22f6587138b45fc81f2d0fbdef4d090f01df0990a1817e1be6f1"
+  },
+  "checks": [
+    {
+      "id": "FILE-assets/data/lesson/reference-subject-qa-profile-v1.json",
+      "title": "required L7-B8 input exists",
+      "ok": true,
+      "evidence": "assets/data/lesson/reference-subject-qa-profile-v1.json"
+    },
+    {
+      "id": "FILE-assets/data/lesson/visual-teaching-contract-v1.json",
+      "title": "required L7-B8 input exists",
+      "ok": true,
+      "evidence": "assets/data/lesson/visual-teaching-contract-v1.json"
+    },
+    {
+      "id": "FILE-assets/data/lesson/master-ready-policy-v1.json",
+      "title": "required L7-B8 input exists",
+      "ok": true,
+      "evidence": "assets/data/lesson/master-ready-policy-v1.json"
+    },
+    {
+      "id": "FILE-assets/data/lesson/subject-factory-registry-v1.json",
+      "title": "required L7-B8 input exists",
+      "ok": true,
+      "evidence": "assets/data/lesson/subject-factory-registry-v1.json"
+    },
+    {
+      "id": "FILE-assets/data/lesson/reference-subject-evidence-review-v1.json",
+      "title": "required L7-B8 input exists",
+      "ok": true,
+      "evidence": "assets/data/lesson/reference-subject-evidence-review-v1.json"
+    },
+    {
+      "id": "FILE-assets/js/platform/universal-lesson/reference-subject-evidence-review-v1.js",
+      "title": "required L7-B8 input exists",
+      "ok": true,
+      "evidence": "assets/js/platform/universal-lesson/reference-subject-evidence-review-v1.js"
+    },
+    {
+      "id": "FILE-assets/js/platform/universal-lesson/russian-universal-adapter-v1.js",
+      "title": "required L7-B8 input exists",
+      "ok": true,
+      "evidence": "assets/js/platform/universal-lesson/russian-universal-adapter-v1.js"
+    },
+    {
+      "id": "FILE-assets/js/platform/universal-lesson/math-universal-adapter-v1.js",
+      "title": "required L7-B8 input exists",
+      "ok": true,
+      "evidence": "assets/js/platform/universal-lesson/math-universal-adapter-v1.js"
+    },
+    {
+      "id": "FILE-assets/js/platform/universal-lesson/foundation-preparatory-bridge-v1.js",
+      "title": "required L7-B8 input exists",
+      "ok": true,
+      "evidence": "assets/js/platform/universal-lesson/foundation-preparatory-bridge-v1.js"
+    },
+    {
+      "id": "FILE-assets/data/lesson/foundation-preparatory-bridge-v1.json",
+      "title": "required L7-B8 input exists",
+      "ok": true,
+      "evidence": "assets/data/lesson/foundation-preparatory-bridge-v1.json"
+    },
+    {
+      "id": "FILE-assets/data/lesson/reference-lesson-activation-v1.json",
+      "title": "required L7-B8 input exists",
+      "ok": true,
+      "evidence": "assets/data/lesson/reference-lesson-activation-v1.json"
+    },
+    {
+      "id": "FILE-assets/data/roadmap/iu5-090401-11-v3.json",
+      "title": "required L7-B8 input exists",
+      "ok": true,
+      "evidence": "assets/data/roadmap/iu5-090401-11-v3.json"
+    },
+    {
+      "id": "FILE-docs/migration/L7_B8_REFERENCE_VISUAL_PEDAGOGICAL_QA.md",
+      "title": "required L7-B8 input exists",
+      "ok": true,
+      "evidence": "docs/migration/L7_B8_REFERENCE_VISUAL_PEDAGOGICAL_QA.md"
+    },
+    {
+      "id": "FILE-subjects/russian/assets/core.js",
+      "title": "required L7-B8 input exists",
+      "ok": true,
+      "evidence": "subjects/russian/assets/core.js"
+    },
+    {
+      "id": "FILE-subjects/russian/assets/lazy-heavy-data-v1341.js",
+      "title": "required L7-B8 input exists",
+      "ok": true,
+      "evidence": "subjects/russian/assets/lazy-heavy-data-v1341.js"
+    },
+    {
+      "id": "FILE-subjects/math/assets/theory_skin/theory-tab-E129.js",
+      "title": "required L7-B8 input exists",
+      "ok": true,
+      "evidence": "subjects/math/assets/theory_skin/theory-tab-E129.js"
+    },
+    {
+      "id": "FILE-subjects/math/assets/theory_skin/theory-legacy-route-E246.js",
+      "title": "required L7-B8 input exists",
+      "ok": true,
+      "evidence": "subjects/math/assets/theory_skin/theory-legacy-route-E246.js"
+    },
+    {
+      "id": "FILE-assets/js/platform/universal-lesson/reference-lesson-runtime-v1.js",
+      "title": "required L7-B8 input exists",
+      "ok": true,
+      "evidence": "assets/js/platform/universal-lesson/reference-lesson-runtime-v1.js"
+    },
+    {
+      "id": "FILE-assets/css/universal-lesson-reference.css",
+      "title": "required L7-B8 input exists",
+      "ok": true,
+      "evidence": "assets/css/universal-lesson-reference.css"
+    },
+    {
+      "id": "FILE-assets/js/platform/offline-subject-pack-manager.js",
+      "title": "required L7-B8 input exists",
+      "ok": true,
+      "evidence": "assets/js/platform/offline-subject-pack-manager.js"
+    },
+    {
+      "id": "FILE-service-worker.js",
+      "title": "required L7-B8 input exists",
+      "ok": true,
+      "evidence": "service-worker.js"
+    },
+    {
+      "id": "FILE-subjects/russian/index.html",
+      "title": "required L7-B8 input exists",
+      "ok": true,
+      "evidence": "subjects/russian/index.html"
+    },
+    {
+      "id": "FILE-subjects/russian/data/lessons.json",
+      "title": "required L7-B8 input exists",
+      "ok": true,
+      "evidence": "subjects/russian/data/lessons.json"
+    },
+    {
+      "id": "FILE-subjects/russian/data/dialogue-bauman-az.json",
+      "title": "required L7-B8 input exists",
+      "ok": true,
+      "evidence": "subjects/russian/data/dialogue-bauman-az.json"
+    },
+    {
+      "id": "FILE-subjects/russian/data/deep-speaking-bauman.json",
+      "title": "required L7-B8 input exists",
+      "ok": true,
+      "evidence": "subjects/russian/data/deep-speaking-bauman.json"
+    },
+    {
+      "id": "FILE-subjects/russian/data/speaking.json",
+      "title": "required L7-B8 input exists",
+      "ok": true,
+      "evidence": "subjects/russian/data/speaking.json"
+    },
+    {
+      "id": "FILE-subjects/russian/data/handwriting.json",
+      "title": "required L7-B8 input exists",
+      "ok": true,
+      "evidence": "subjects/russian/data/handwriting.json"
+    },
+    {
+      "id": "FILE-subjects/russian/data/writing.json",
+      "title": "required L7-B8 input exists",
+      "ok": true,
+      "evidence": "subjects/russian/data/writing.json"
+    },
+    {
+      "id": "FILE-subjects/russian/data/tests.json",
+      "title": "required L7-B8 input exists",
+      "ok": true,
+      "evidence": "subjects/russian/data/tests.json"
+    },
+    {
+      "id": "FILE-subjects/russian/data/simulations.json",
+      "title": "required L7-B8 input exists",
+      "ok": true,
+      "evidence": "subjects/russian/data/simulations.json"
+    },
+    {
+      "id": "FILE-subjects/math/index.html",
+      "title": "required L7-B8 input exists",
+      "ok": true,
+      "evidence": "subjects/math/index.html"
+    },
+    {
+      "id": "FILE-subjects/math/data/lessons.json",
+      "title": "required L7-B8 input exists",
+      "ok": true,
+      "evidence": "subjects/math/data/lessons.json"
+    },
+    {
+      "id": "FILE-subjects/math/data/theory_lecture_content.json",
+      "title": "required L7-B8 input exists",
+      "ok": true,
+      "evidence": "subjects/math/data/theory_lecture_content.json"
+    },
+    {
+      "id": "FILE-assets/data/lesson/math-prerequisite-graph-v1.generated.json",
+      "title": "required L7-B8 input exists",
+      "ok": true,
+      "evidence": "assets/data/lesson/math-prerequisite-graph-v1.generated.json"
+    },
+    {
+      "id": "FILE-subjects/foundation/index.html",
+      "title": "required L7-B8 input exists",
+      "ok": true,
+      "evidence": "subjects/foundation/index.html"
+    },
+    {
+      "id": "FILE-subjects/foundation/data/curriculum.json",
+      "title": "required L7-B8 input exists",
+      "ok": true,
+      "evidence": "subjects/foundation/data/curriculum.json"
+    },
+    {
+      "id": "FILE-subjects/foundation/data/lessons.json",
+      "title": "required L7-B8 input exists",
+      "ok": true,
+      "evidence": "subjects/foundation/data/lessons.json"
+    },
+    {
+      "id": "FILE-subjects/foundation/data/exercises.json",
+      "title": "required L7-B8 input exists",
+      "ok": true,
+      "evidence": "subjects/foundation/data/exercises.json"
+    },
+    {
+      "id": "FILE-subjects/foundation/data/tests.json",
+      "title": "required L7-B8 input exists",
+      "ok": true,
+      "evidence": "subjects/foundation/data/tests.json"
+    },
+    {
+      "id": "FILE-subjects/foundation/data/simulations.json",
+      "title": "required L7-B8 input exists",
+      "ok": true,
+      "evidence": "subjects/foundation/data/simulations.json"
+    },
+    {
+      "id": "FILE-subjects/math/data/formulas.json",
+      "title": "required L7-B8 input exists",
+      "ok": true,
+      "evidence": "subjects/math/data/formulas.json"
+    },
+    {
+      "id": "FILE-subjects/math/data/exercises.json",
+      "title": "required L7-B8 input exists",
+      "ok": true,
+      "evidence": "subjects/math/data/exercises.json"
+    },
+    {
+      "id": "FILE-subjects/math/data/simulations.json",
+      "title": "required L7-B8 input exists",
+      "ok": true,
+      "evidence": "subjects/math/data/simulations.json"
+    },
+    {
+      "id": "FILE-subjects/math/data/applications.json",
+      "title": "required L7-B8 input exists",
+      "ok": true,
+      "evidence": "subjects/math/data/applications.json"
+    },
+    {
+      "id": "FILE-subjects/math/data/professor_qa.json",
+      "title": "required L7-B8 input exists",
+      "ok": true,
+      "evidence": "subjects/math/data/professor_qa.json"
+    },
+    {
+      "id": "FILE-subjects/math/data/tests.json",
+      "title": "required L7-B8 input exists",
+      "ok": true,
+      "evidence": "subjects/math/data/tests.json"
+    },
+    {
+      "id": "FILE-subjects/math/data/question_bank.json",
+      "title": "required L7-B8 input exists",
+      "ok": true,
+      "evidence": "subjects/math/data/question_bank.json"
+    },
+    {
+      "id": "PROFILE-VALID",
+      "title": "B8 profile passes every fail-closed structural and observed-truth rule",
+      "ok": true,
+      "evidence": []
+    },
+    {
+      "id": "VISUAL-CONTRACT-OWNERSHIP",
+      "title": "L6-B6 visual contract remains the governing source for accessibility, evidence and offline semantics",
+      "ok": true,
+      "evidence": {
+        "contractId": "bauman-visual-teaching-contract",
+        "status": "L6-B6-CONTRACT"
+      }
+    },
+    {
+      "id": "PROGRAM-IDENTITY",
+      "title": "official and personalized program identities remain separate",
+      "ok": true,
+      "evidence": {
+        "department": "ИУ-5",
+        "officialPublishedDirectionCode": "09.04.01",
+        "personalizedDisplayCode": "09.04.01/11"
+      }
+    },
+    {
+      "id": "CATALOG-TRUTH",
+      "title": "B7 source projection still exposes exactly 406 lessons with no completion or Master-ready claim",
+      "ok": true,
+      "evidence": {
+        "subjectCount": 3,
+        "lessonCount": 406,
+        "evidenceSlotCount": 2030,
+        "reviewHookTemplateCount": 1250,
+        "requiredReviewHookTemplateCount": 812
+      }
+    },
+    {
+      "id": "RUSSIAN-SOURCE-TRUTH",
+      "title": "all 26 Russian lessons and 1,138 source slides remain in the specialist-owned projection",
+      "ok": true,
+      "evidence": {
+        "lessons": 26,
+        "slides": 1138
+      }
+    },
+    {
+      "id": "MATH-SOURCE-TRUTH",
+      "title": "Math keeps 347 legacy lessons plus 18 reviewed overlays and 5,852 source blocks",
+      "ok": true,
+      "evidence": {
+        "legacy": 347,
+        "overlays": 18,
+        "lessons": 365,
+        "blocks": 5852
+      }
+    },
+    {
+      "id": "MATH-PARTIAL-OVERLAY-TRUTH",
+      "title": "reviewed overlays remain a separate partial family and never replace legacy coverage",
+      "ok": true,
+      "evidence": {
+        "legacyLessonCount": 347,
+        "reviewedOverlayCount": 18,
+        "catalogCount": 365,
+        "sourceBlockCount": 5852,
+        "sourceFamilies": [
+          "reviewed-theory-overlay",
+          "legacy-math-runtime"
+        ]
+      }
+    },
+    {
+      "id": "FOUNDATION-BRIDGE-TRUTH",
+      "title": "Foundation keeps three tracks and fifteen exact preparatory bridge lessons",
+      "ok": true,
+      "evidence": {
+        "tracks": [
+          "classroom-russian",
+          "math-science-transition",
+          "study-method-bridge"
+        ],
+        "lessons": 15
+      }
+    },
+    {
+      "id": "FOUNDATION-TEMPLATE-TRUTH",
+      "title": "generic Foundation source repetition stays measured and visible",
+      "ok": true,
+      "evidence": {
+        "uniqueKeyPointSets": 1,
+        "uniqueCoreTheorySets": 1,
+        "uniqueMasteryCriteriaSets": 1,
+        "preparatoryQuestionRecords": 22,
+        "uniquePreparatoryQuestionBodies": 10
+      }
+    },
+    {
+      "id": "FOUNDATION-ASSESSMENT-TRUTH",
+      "title": "Foundation support records remain explicitly non-mastery-qualified",
+      "ok": true,
+      "evidence": {
+        "exercises": {
+          "recordCount": 15,
+          "status": "supporting-template-review-required",
+          "masteryQualified": false
+        },
+        "tests": {
+          "recordCount": 22,
+          "status": "supporting-template-review-required",
+          "masteryQualified": false
+        },
+        "simulations": {
+          "observationRecordCount": 1,
+          "practiceRecordCount": 1,
+          "stageDrift": [
+            "m1",
+            "m3",
+            "m4",
+            "prepare"
+          ],
+          "status": "supporting-scenario-review-required",
+          "masteryQualified": false
+        }
+      }
+    },
+    {
+      "id": "FOUNDATION-SIMULATION-TRUTH",
+      "title": "exact preparatory simulation coverage and stage drift remain visible",
+      "ok": true,
+      "evidence": {
+        "observationRecordCount": 1,
+        "practiceRecordCount": 1,
+        "stageDrift": [
+          "m1",
+          "m3",
+          "m4",
+          "prepare"
+        ],
+        "status": "supporting-scenario-review-required",
+        "masteryQualified": false
+      }
+    },
+    {
+      "id": "FOUNDATION-B11-SCOPE",
+      "title": "exactly one reviewed Foundation runtime activation remains enabled",
+      "ok": true,
+      "evidence": {
+        "activationId": "foundation-f_s01_l1-language-reference",
+        "lessonId": "f_s01_l1",
+        "enabledReferenceCount": 1,
+        "expandedByB6": false,
+        "masterReadyClaimed": false
+      }
+    },
+    {
+      "id": "FOUNDATION-FINDINGS-RETAINED",
+      "title": "all four Foundation findings remain explicit with claim-specific dispositions",
+      "ok": true,
+      "evidence": [
+        {
+          "id": "FOUNDATION_TEMPLATE_CONTENT_REVIEW_REQUIRED",
+          "status": "OPEN_BLOCKING_CONTENT_ACCEPTANCE",
+          "blocks": [
+            "foundation-academic-content-approval",
+            "foundation-reference-subject-pedagogical-acceptance"
+          ]
+        },
+        {
+          "id": "FOUNDATION_ASSESSMENT_NOT_MASTERY_QUALIFIED",
+          "status": "CONTROLLED_NOT_QUALIFIED",
+          "blocks": [
+            "foundation-assessment-quality-approval",
+            "foundation-master-ready-claim"
+          ]
+        },
+        {
+          "id": "FOUNDATION_SIMULATION_STAGE_DRIFT",
+          "status": "OPEN_BLOCKING_FULL_SIMULATION_COVERAGE",
+          "blocks": [
+            "foundation-full-simulation-coverage-claim"
+          ]
+        },
+        {
+          "id": "FOUNDATION_B11_SINGLE_REFERENCE_SCOPE",
+          "status": "ACCEPTED_LIMITED_RUNTIME_SCOPE",
+          "blocks": [
+            "whole-foundation-universal-runtime-activation-claim"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "L21-CONTENT-ROUTING",
+      "title": "content, assessment and simulation findings route to L21 governance rather than a false B8 approval",
+      "ok": true,
+      "evidence": [
+        {
+          "id": "FOUNDATION_TEMPLATE_CONTENT_REVIEW_REQUIRED",
+          "nextOwner": "L21_CONTENT_OPERATIONS_AND_CURRICULUM_GOVERNANCE"
+        },
+        {
+          "id": "FOUNDATION_ASSESSMENT_NOT_MASTERY_QUALIFIED",
+          "nextOwner": "L21_CONTENT_OPERATIONS_AND_CURRICULUM_GOVERNANCE"
+        },
+        {
+          "id": "FOUNDATION_SIMULATION_STAGE_DRIFT",
+          "nextOwner": "L21_CONTENT_OPERATIONS_AND_CURRICULUM_GOVERNANCE"
+        }
+      ]
+    },
+    {
+      "id": "NO-EVIDENCE-OR-MASTERY-PROMOTION",
+      "title": "B8 forbids page, scroll, time, AI and visual activation from becoming evidence or Master-ready",
+      "ok": true,
+      "evidence": {
+        "sourceMutationAllowed": false,
+        "learnerStateMigrationAllowed": false,
+        "evidenceWriteAllowed": false,
+        "reviewScheduleWriteAllowed": false,
+        "runtimeCutoverAllowed": false,
+        "referenceActivationExpansionAllowed": false,
+        "automaticMasterReadyAllowed": false,
+        "pageEventEvidenceAllowed": false,
+        "scrollEventEvidenceAllowed": false,
+        "elapsedTimeEvidenceAllowed": false,
+        "aiVerificationAllowed": false,
+        "serviceWorkerChangeAllowed": false,
+        "subjectPackPolicyChangeAllowed": false
+      }
+    },
+    {
+      "id": "NO-RUNTIME-OR-SOURCE-CUTOVER",
+      "title": "B8 changes no source, learner-state, specialist runtime, Service Worker or subject-pack policy",
+      "ok": true,
+      "evidence": {
+        "sourceMutationAllowed": false,
+        "learnerStateMigrationAllowed": false,
+        "evidenceWriteAllowed": false,
+        "reviewScheduleWriteAllowed": false,
+        "runtimeCutoverAllowed": false,
+        "referenceActivationExpansionAllowed": false,
+        "automaticMasterReadyAllowed": false,
+        "pageEventEvidenceAllowed": false,
+        "scrollEventEvidenceAllowed": false,
+        "elapsedTimeEvidenceAllowed": false,
+        "aiVerificationAllowed": false,
+        "serviceWorkerChangeAllowed": false,
+        "subjectPackPolicyChangeAllowed": false
+      }
+    },
+    {
+      "id": "EXPLICIT-OFFLINE-BOUNDARY",
+      "title": "offline QA uses explicit base packs and rejects whole-repository precache or cloud dependence",
+      "ok": true,
+      "evidence": {
+        "preparationMode": "explicit-base-pack",
+        "wholeRepositoryPrecacheAllowed": false,
+        "largeFeatureResources": "explicit-session-only",
+        "cloudOrAiRequired": false,
+        "offlinePassMeaning": "The probed deterministic surface and resources discovered for the explicit base pack remain available; this is not a claim that every optional or large repository asset is cached."
+      }
+    },
+    {
+      "id": "INTEGRITY-subjects/russian/index.html",
+      "title": "B7 checkpoint bytes remain unchanged for B8 audit",
+      "ok": true,
+      "evidence": {
+        "file": "subjects/russian/index.html",
+        "expected": "f37b483583c2ec5c2b7697cae67176d340837685658178234b78898b57c47a60",
+        "actual": "f37b483583c2ec5c2b7697cae67176d340837685658178234b78898b57c47a60"
+      }
+    },
+    {
+      "id": "INTEGRITY-subjects/russian/data/lessons.json",
+      "title": "B7 checkpoint bytes remain unchanged for B8 audit",
+      "ok": true,
+      "evidence": {
+        "file": "subjects/russian/data/lessons.json",
+        "expected": "c8693eeefed17ea39b0cea4a600c9086f1b597ae7174e56bd8b2f8b46b985062",
+        "actual": "c8693eeefed17ea39b0cea4a600c9086f1b597ae7174e56bd8b2f8b46b985062"
+      }
+    },
+    {
+      "id": "INTEGRITY-subjects/math/index.html",
+      "title": "B7 checkpoint bytes remain unchanged for B8 audit",
+      "ok": true,
+      "evidence": {
+        "file": "subjects/math/index.html",
+        "expected": "4f6aaca01a5cdc74329ad2dec5626e931ac773ca533c0b911e94789052b71ee3",
+        "actual": "4f6aaca01a5cdc74329ad2dec5626e931ac773ca533c0b911e94789052b71ee3"
+      }
+    },
+    {
+      "id": "INTEGRITY-subjects/math/data/lessons.json",
+      "title": "B7 checkpoint bytes remain unchanged for B8 audit",
+      "ok": true,
+      "evidence": {
+        "file": "subjects/math/data/lessons.json",
+        "expected": "4a77e812ac13bdd3076bf34ff47362c2bbd0157c5210d466f63df1d9fd8e324d",
+        "actual": "4a77e812ac13bdd3076bf34ff47362c2bbd0157c5210d466f63df1d9fd8e324d"
+      }
+    },
+    {
+      "id": "INTEGRITY-subjects/math/data/theory_lecture_content.json",
+      "title": "B7 checkpoint bytes remain unchanged for B8 audit",
+      "ok": true,
+      "evidence": {
+        "file": "subjects/math/data/theory_lecture_content.json",
+        "expected": "d0cd18601b1ede84f58072b3c47cfcc176b4d21d3fa71b23762b908485391447",
+        "actual": "d0cd18601b1ede84f58072b3c47cfcc176b4d21d3fa71b23762b908485391447"
+      }
+    },
+    {
+      "id": "INTEGRITY-subjects/foundation/index.html",
+      "title": "B7 checkpoint bytes remain unchanged for B8 audit",
+      "ok": true,
+      "evidence": {
+        "file": "subjects/foundation/index.html",
+        "expected": "267e96e017f6b4da4290fe0fadce79b522c99d712ee94ad568fd684ffcdea27e",
+        "actual": "267e96e017f6b4da4290fe0fadce79b522c99d712ee94ad568fd684ffcdea27e"
+      }
+    },
+    {
+      "id": "INTEGRITY-subjects/foundation/data/curriculum.json",
+      "title": "B7 checkpoint bytes remain unchanged for B8 audit",
+      "ok": true,
+      "evidence": {
+        "file": "subjects/foundation/data/curriculum.json",
+        "expected": "b419dcc1a63e55f02aec340dfdd55d3a405c57dbdeaa614e4d369fa8b38aac55",
+        "actual": "b419dcc1a63e55f02aec340dfdd55d3a405c57dbdeaa614e4d369fa8b38aac55"
+      }
+    },
+    {
+      "id": "INTEGRITY-subjects/foundation/data/lessons.json",
+      "title": "B7 checkpoint bytes remain unchanged for B8 audit",
+      "ok": true,
+      "evidence": {
+        "file": "subjects/foundation/data/lessons.json",
+        "expected": "435dc2faea81b59f3b1f29b6e7f1d48d7c99947f0a70ccd62eb3bb60c2f402e1",
+        "actual": "435dc2faea81b59f3b1f29b6e7f1d48d7c99947f0a70ccd62eb3bb60c2f402e1"
+      }
+    },
+    {
+      "id": "INTEGRITY-subjects/foundation/data/exercises.json",
+      "title": "B7 checkpoint bytes remain unchanged for B8 audit",
+      "ok": true,
+      "evidence": {
+        "file": "subjects/foundation/data/exercises.json",
+        "expected": "bd38c62eedf217faf093158d494b737e0144c00df678eeff37722daa2bb0c2df",
+        "actual": "bd38c62eedf217faf093158d494b737e0144c00df678eeff37722daa2bb0c2df"
+      }
+    },
+    {
+      "id": "INTEGRITY-subjects/foundation/data/tests.json",
+      "title": "B7 checkpoint bytes remain unchanged for B8 audit",
+      "ok": true,
+      "evidence": {
+        "file": "subjects/foundation/data/tests.json",
+        "expected": "b60da17d2724d964b1ecd7496ceb6bd97ae1d58329a6ad7d7a8d0645f8be153a",
+        "actual": "b60da17d2724d964b1ecd7496ceb6bd97ae1d58329a6ad7d7a8d0645f8be153a"
+      }
+    },
+    {
+      "id": "INTEGRITY-subjects/foundation/data/simulations.json",
+      "title": "B7 checkpoint bytes remain unchanged for B8 audit",
+      "ok": true,
+      "evidence": {
+        "file": "subjects/foundation/data/simulations.json",
+        "expected": "fdfeca208f2103c21ddd6abb2ad2c1d6efc7aefb370473344a1df41b25073e42",
+        "actual": "fdfeca208f2103c21ddd6abb2ad2c1d6efc7aefb370473344a1df41b25073e42"
+      }
+    },
+    {
+      "id": "INTEGRITY-assets/js/platform/offline-subject-pack-manager.js",
+      "title": "B7 checkpoint bytes remain unchanged for B8 audit",
+      "ok": true,
+      "evidence": {
+        "file": "assets/js/platform/offline-subject-pack-manager.js",
+        "expected": "5f6e4d37cb464b792558b014d19da1f62389b06245b8446b180e6d1890500be6",
+        "actual": "5f6e4d37cb464b792558b014d19da1f62389b06245b8446b180e6d1890500be6"
+      }
+    },
+    {
+      "id": "INTEGRITY-service-worker.js",
+      "title": "B7 checkpoint bytes remain unchanged for B8 audit",
+      "ok": true,
+      "evidence": {
+        "file": "service-worker.js",
+        "expected": "2404ad8a7ff4c7f4d152f9c1c90c3f146da68924706f259d297042f55f9ae857",
+        "actual": "2404ad8a7ff4c7f4d152f9c1c90c3f146da68924706f259d297042f55f9ae857"
+      }
+    },
+    {
+      "id": "INTEGRITY-assets/data/lesson/reference-lesson-activation-v1.json",
+      "title": "B7 checkpoint bytes remain unchanged for B8 audit",
+      "ok": true,
+      "evidence": {
+        "file": "assets/data/lesson/reference-lesson-activation-v1.json",
+        "expected": "1fa1de86545654d7efa55fb7a4a7f6344b5692075dbe977953c7852b86a55d8a",
+        "actual": "1fa1de86545654d7efa55fb7a4a7f6344b5692075dbe977953c7852b86a55d8a"
+      }
+    },
+    {
+      "id": "INTEGRITY-assets/data/lesson/foundation-preparatory-bridge-v1.json",
+      "title": "B7 checkpoint bytes remain unchanged for B8 audit",
+      "ok": true,
+      "evidence": {
+        "file": "assets/data/lesson/foundation-preparatory-bridge-v1.json",
+        "expected": "bcf2cb194c711acb36365f1143065492fffb0745da9f2aee45b2458008e8b2ca",
+        "actual": "bcf2cb194c711acb36365f1143065492fffb0745da9f2aee45b2458008e8b2ca"
+      }
+    },
+    {
+      "id": "INTEGRITY-assets/data/lesson/reference-subject-evidence-review-v1.json",
+      "title": "B7 checkpoint bytes remain unchanged for B8 audit",
+      "ok": true,
+      "evidence": {
+        "file": "assets/data/lesson/reference-subject-evidence-review-v1.json",
+        "expected": "552fe7f4846be5f94edcac5834a298393e874df3ed23e0fe00268f9df8b9953e",
+        "actual": "552fe7f4846be5f94edcac5834a298393e874df3ed23e0fe00268f9df8b9953e"
+      }
+    },
+    {
+      "id": "HTML-SHELLS",
+      "title": "all three audited routes declare Vietnamese language, viewport metadata and their current app roots",
+      "ok": true,
+      "evidence": [
+        "russian",
+        "math",
+        "foundation"
+      ]
+    },
+    {
+      "id": "RUSSIAN-SURFACE-CONTRACT",
+      "title": "Russian specialist source contains every declared learning-surface selector and ready probe",
+      "ok": true,
+      "evidence": {
+        "rootSelector": "#app",
+        "surfaceSelector": ".learn-canva-shell",
+        "readyProbe": "BAUMAN_RUSSIAN_V1341_LAZY.selfCheck().ok",
+        "requiredSelectors": [
+          ".lesson-reader",
+          ".slidebox",
+          "[data-lesson]",
+          "[data-slide]",
+          "[data-act=\"open-present\"]"
+        ]
+      }
+    },
+    {
+      "id": "MATH-SURFACE-CONTRACT",
+      "title": "Math E129/E246 source contains every declared reader selector and both ready probes",
+      "ok": true,
+      "evidence": {
+        "rootSelector": "#app",
+        "surfaceSelector": ".e129-theory-shell",
+        "readyProbe": "BAUMAN_MATH_THEORY_E129.selfCheck().ok && BAUMAN_MATH_E246_LEGACY_ROUTE.selfCheck().ok",
+        "requiredSelectors": [
+          ".e129-reader",
+          "[data-current-lesson]",
+          ".e129-slide",
+          "[data-e129-present]"
+        ]
+      }
+    },
+    {
+      "id": "FOUNDATION-SURFACE-CONTRACT",
+      "title": "Foundation exact pilot source contains Universal dialog, ten-block runtime hook and reduced-motion handling",
+      "ok": true,
+      "evidence": {
+        "rootSelector": ".app",
+        "surfaceSelector": ".universal-reference-dialog",
+        "readyProbe": "BaumanL6ReferenceLessonRuntime.selfCheck().ready",
+        "requiredSelectors": [
+          "[data-l6-reference-modal=\"true\"] .universal-lesson",
+          ".ul-block",
+          "[data-universal-action=\"open-specialist\"]"
+        ]
+      }
+    },
+    {
+      "id": "DOC-DECISION-RECORD",
+      "title": "B8 decision record states matrix, open findings, PASS meaning, rollback and B9 handoff",
+      "ok": true,
+      "evidence": "docs/migration/L7_B8_REFERENCE_VISUAL_PEDAGOGICAL_QA.md"
+    },
+    {
+      "id": "DETERMINISTIC-AUDIT",
+      "title": "repeated Foundation and 406-lesson audit projections have stable digests",
+      "ok": true,
+      "evidence": {
+        "foundationPackDigest": "1fad88fd68b49ee4d614bddea21671af0fa11a0aea24d944e6e381e5a14a7c47",
+        "catalogDigest": "99bb3bec7ad202ecc81cf309da2171adb9b2876792c76b585af83afbdf7255aa"
+      }
+    }
+  ],
+  "mutationTests": [
+    {
+      "id": "EXPAND-FOUNDATION-ACTIVATION",
+      "title": "an unreviewed second Foundation runtime activation fails closed",
+      "expectedFailureObserved": true,
+      "evidence": [
+        "OBSERVED_REFERENCE_SCOPE"
+      ]
+    },
+    {
+      "id": "APPROVE-TEMPLATE-CONTENT",
+      "title": "B8 cannot mark generic Foundation templates academically approved",
+      "expectedFailureObserved": true,
+      "evidence": [
+        "TEMPLATE_FINDING_OPEN"
+      ]
+    },
+    {
+      "id": "QUALIFY-TEMPLATE-ASSESSMENT",
+      "title": "B8 cannot qualify Foundation template assessment for Master-ready",
+      "expectedFailureObserved": true,
+      "evidence": [
+        "ASSESSMENT_FINDING_OPEN"
+      ]
+    },
+    {
+      "id": "HIDE-SIMULATION-DRIFT",
+      "title": "B8 cannot hide the Foundation simulation-stage drift",
+      "expectedFailureObserved": true,
+      "evidence": [
+        "SIMULATION_FINDING_OPEN"
+      ]
+    },
+    {
+      "id": "PROMOTE-MATH-OVERLAY",
+      "title": "eighteen reviewed overlays cannot become full Math replacement coverage",
+      "expectedFailureObserved": true,
+      "evidence": [
+        "MATH_PROFILE"
+      ]
+    },
+    {
+      "id": "DROP-MOBILE-VIEWPORT",
+      "title": "desktop and tablet alone cannot satisfy the B8 responsive matrix",
+      "expectedFailureObserved": true,
+      "evidence": [
+        "BROWSER_VIEWPORTS",
+        "BROWSER_THRESHOLDS"
+      ]
+    },
+    {
+      "id": "PROMOTE-PAGE-EVENT-EVIDENCE",
+      "title": "page activity cannot become evidence or automatic Master-ready state",
+      "expectedFailureObserved": true,
+      "evidence": [
+        "RUNTIME_BOUNDARY"
+      ]
+    },
+    {
+      "id": "ALLOW-SOURCE-RUNTIME-MUTATION",
+      "title": "the QA slice cannot mutate source or cut over specialist runtimes",
+      "expectedFailureObserved": true,
+      "evidence": [
+        "RUNTIME_BOUNDARY"
+      ]
+    },
+    {
+      "id": "WHOLE-REPOSITORY-PRECACHE",
+      "title": "offline QA cannot silently become whole-repository precache",
+      "expectedFailureObserved": true,
+      "evidence": [
+        "OFFLINE_BOUNDARY"
+      ]
+    },
+    {
+      "id": "DRIFT-SUBJECT-COUNTS",
+      "title": "a drift from 26/365/15 and 406 total fails closed",
+      "expectedFailureObserved": true,
+      "evidence": [
+        "SCOPE_LESSON_COUNT",
+        "RUSSIAN_PROFILE"
+      ]
+    },
+    {
+      "id": "DRIFT-INTEGRITY-BASELINE",
+      "title": "a changed audited source digest requires an explicit new review",
+      "expectedFailureObserved": true,
+      "evidence": [
+        "INTEGRITY_BASELINES"
+      ]
+    }
+  ],
+  "passMeaning": "The B8 audit profile, source truth, representative specialist/reference surface contracts and claim boundaries are deterministic and intact. Browser execution is a separate required CI gate; Foundation content, assessment and simulation findings remain open and claim-blocking."
+}

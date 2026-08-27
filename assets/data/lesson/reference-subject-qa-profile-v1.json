@@ -1,0 +1,287 @@
+{
+  "profileId": "bauman-reference-subject-visual-pedagogical-qa",
+  "profileVersion": "1.0.0",
+  "release": "L7-B8-REFERENCE-VISUAL-PEDAGOGICAL-QA-V1",
+  "status": "AUDIT_PROFILE_DEFINED_RUNTIME_UNCHANGED",
+  "programIdentity": {
+    "department": "ИУ-5",
+    "officialPublishedDirectionCode": "09.04.01",
+    "personalizedDisplayCode": "09.04.01/11"
+  },
+  "governingRefs": {
+    "visualTeachingContract": "assets/data/lesson/visual-teaching-contract-v1.json",
+    "masterReadyPolicy": "assets/data/lesson/master-ready-policy-v1.json",
+    "subjectFactory": "assets/data/lesson/subject-factory-registry-v1.json",
+    "evidenceReview": "assets/data/lesson/reference-subject-evidence-review-v1.json",
+    "foundationBridge": "assets/data/lesson/foundation-preparatory-bridge-v1.json",
+    "referenceActivation": "assets/data/lesson/reference-lesson-activation-v1.json"
+  },
+  "scope": {
+    "subjectOrder": [
+      "russian",
+      "math",
+      "foundation"
+    ],
+    "expectedLessonCatalogCount": 406,
+    "modes": [
+      "online",
+      "offline"
+    ],
+    "auditMeaning": "Verify source truth, pedagogical boundaries and representative specialist or reviewed-reference learning surfaces at supported desktop, tablet and mobile widths plus explicit-pack offline operation.",
+    "notClaimed": [
+      "all-406-lessons-manually-reviewed",
+      "foundation-academic-content-approved",
+      "foundation-assessment-quality-approved",
+      "whole-foundation-universal-runtime-activated",
+      "learner-completion",
+      "master-ready",
+      "runtime-cutover",
+      "whole-repository-offline-precache"
+    ]
+  },
+  "qaDimensions": [
+    {
+      "id": "source-truth",
+      "required": true,
+      "rule": "Counts, source families, exact lesson identity and known gaps must agree with B2, B5, B6 and B7 evidence."
+    },
+    {
+      "id": "pedagogy-before-decoration",
+      "required": true,
+      "rule": "The observed surface exposes a learning sequence, source-grounded content or a specialist action; appearance alone is not acceptance or evidence."
+    },
+    {
+      "id": "specialist-runtime-ownership",
+      "required": true,
+      "rule": "Russian and Math remain owned by their specialist runtimes; Foundation Universal rendering remains the exact B11 pilot only."
+    },
+    {
+      "id": "responsive-reflow",
+      "required": true,
+      "rule": "The primary audited surface remains readable and operable at desktop, tablet and mobile widths without material document overflow."
+    },
+    {
+      "id": "accessible-operation",
+      "required": true,
+      "rule": "The audited surface has headings, named controls, a keyboard-focus path, non-empty content and equivalent state under reduced motion."
+    },
+    {
+      "id": "assessment-and-evidence-integrity",
+      "required": true,
+      "rule": "Page views, scrolling, elapsed time, AI output and visual activation never become evidence or a Master-ready claim."
+    },
+    {
+      "id": "offline-deterministic-core",
+      "required": true,
+      "rule": "An explicit subject base pack restores the observed deterministic learning surface without cloud or generative AI."
+    },
+    {
+      "id": "claim-boundary",
+      "required": true,
+      "rule": "Open findings block only the claims they name and cannot be hidden by an aggregate PASS label."
+    }
+  ],
+  "browserContract": {
+    "viewports": [
+      {
+        "id": "desktop",
+        "width": 1440,
+        "height": 900
+      },
+      {
+        "id": "tablet",
+        "width": 820,
+        "height": 1180
+      },
+      {
+        "id": "mobile",
+        "width": 390,
+        "height": 844
+      }
+    ],
+    "maxDocumentOverflowPx": 64,
+    "maxFoundationDialogOverflowPx": 1,
+    "minimumMobileTargetSizePx": 24,
+    "reducedMotionMode": "reduce",
+    "consoleErrorTolerance": 0,
+    "pageErrorTolerance": 0,
+    "requiredOnlineSurfaceCount": 9,
+    "requiredOfflineSubjectCount": 3,
+    "storageBoundary": "Explicit learner navigation may update isolated subject state; the QA harness cannot write or infer evidence, retention or Master-ready state."
+  },
+  "subjects": {
+    "russian": {
+      "lessonType": "language",
+      "engineRef": "russian-v13-specialist",
+      "route": "subjects/russian/index.html",
+      "offlinePolicyRef": "russian-rich-explicit",
+      "sourceCoverage": {
+        "lessonCount": 26,
+        "sourceSlideCount": 1138,
+        "sourceFamily": "russian-rich-legacy"
+      },
+      "browserSurface": {
+        "rootSelector": "#app",
+        "surfaceSelector": ".learn-canva-shell",
+        "readyProbe": "BAUMAN_RUSSIAN_V1341_LAZY.selfCheck().ok",
+        "requiredSelectors": [
+          ".lesson-reader",
+          ".slidebox",
+          "[data-lesson]",
+          "[data-slide]",
+          "[data-act=\"open-present\"]"
+        ]
+      },
+      "acceptance": "SPECIALIST_RUNTIME_REPRESENTATIVE_SURFACE_QA",
+      "claimBoundary": "Representative browser QA does not equal manual academic approval of every Russian lesson or learner mastery."
+    },
+    "math": {
+      "lessonType": "mathematics",
+      "engineRef": "math-e126-specialist",
+      "route": "subjects/math/index.html",
+      "offlinePolicyRef": "math-rich-explicit",
+      "sourceCoverage": {
+        "legacyLessonCount": 347,
+        "reviewedOverlayCount": 18,
+        "catalogCount": 365,
+        "sourceBlockCount": 5852,
+        "sourceFamilies": [
+          "reviewed-theory-overlay",
+          "legacy-math-runtime"
+        ]
+      },
+      "browserSurface": {
+        "rootSelector": "#app",
+        "surfaceSelector": ".e129-theory-shell",
+        "readyProbe": "BAUMAN_MATH_THEORY_E129.selfCheck().ok && BAUMAN_MATH_E246_LEGACY_ROUTE.selfCheck().ok",
+        "requiredSelectors": [
+          ".e129-reader",
+          "[data-current-lesson]",
+          ".e129-slide",
+          "[data-e129-present]"
+        ]
+      },
+      "acceptance": "SPECIALIST_RUNTIME_REPRESENTATIVE_SURFACE_QA",
+      "claimBoundary": "The 18 reviewed overlays remain partial; the QA profile does not turn them into replacement coverage for 347 legacy lessons or populate empty external banks."
+    },
+    "foundation": {
+      "lessonTypes": [
+        "language",
+        "mathematics",
+        "programming"
+      ],
+      "engineRef": "light-elearning-v2",
+      "route": "subjects/foundation/index.html",
+      "offlinePolicyRef": "light-core-explicit",
+      "sourceCoverage": {
+        "preparatoryLessonCount": 15,
+        "bridgeTrackCount": 3,
+        "reviewedRuntimeLessonCount": 1,
+        "reviewedRuntimeLessonId": "f_s01_l1"
+      },
+      "browserSurface": {
+        "rootSelector": ".app",
+        "surfaceSelector": ".universal-reference-dialog",
+        "readyProbe": "BaumanL6ReferenceLessonRuntime.selfCheck().ready",
+        "requiredSelectors": [
+          "[data-l6-reference-modal=\"true\"] .universal-lesson",
+          ".ul-block",
+          "[data-universal-action=\"open-specialist\"]"
+        ]
+      },
+      "acceptance": "STRUCTURAL_BRIDGE_AND_SINGLE_PILOT_QA_WITH_BLOCKING_CONTENT_FINDINGS",
+      "claimBoundary": "Only the exact B11 pilot is browser-reviewed. The other fourteen preparatory lessons retain the unchanged legacy runtime and unqualified source templates."
+    }
+  },
+  "integrityBaselines": {
+    "algorithm": "sha256",
+    "meaning": "Exact B7 checkpoint bytes that B8 audits without modifying subject source, runtime, offline manager, Service Worker or prior governance artifacts.",
+    "files": {
+      "subjects/russian/index.html": "f37b483583c2ec5c2b7697cae67176d340837685658178234b78898b57c47a60",
+      "subjects/russian/data/lessons.json": "c8693eeefed17ea39b0cea4a600c9086f1b597ae7174e56bd8b2f8b46b985062",
+      "subjects/math/index.html": "4f6aaca01a5cdc74329ad2dec5626e931ac773ca533c0b911e94789052b71ee3",
+      "subjects/math/data/lessons.json": "4a77e812ac13bdd3076bf34ff47362c2bbd0157c5210d466f63df1d9fd8e324d",
+      "subjects/math/data/theory_lecture_content.json": "d0cd18601b1ede84f58072b3c47cfcc176b4d21d3fa71b23762b908485391447",
+      "subjects/foundation/index.html": "267e96e017f6b4da4290fe0fadce79b522c99d712ee94ad568fd684ffcdea27e",
+      "subjects/foundation/data/curriculum.json": "b419dcc1a63e55f02aec340dfdd55d3a405c57dbdeaa614e4d369fa8b38aac55",
+      "subjects/foundation/data/lessons.json": "435dc2faea81b59f3b1f29b6e7f1d48d7c99947f0a70ccd62eb3bb60c2f402e1",
+      "subjects/foundation/data/exercises.json": "bd38c62eedf217faf093158d494b737e0144c00df678eeff37722daa2bb0c2df",
+      "subjects/foundation/data/tests.json": "b60da17d2724d964b1ecd7496ceb6bd97ae1d58329a6ad7d7a8d0645f8be153a",
+      "subjects/foundation/data/simulations.json": "fdfeca208f2103c21ddd6abb2ad2c1d6efc7aefb370473344a1df41b25073e42",
+      "assets/js/platform/offline-subject-pack-manager.js": "5f6e4d37cb464b792558b014d19da1f62389b06245b8446b180e6d1890500be6",
+      "service-worker.js": "2404ad8a7ff4c7f4d152f9c1c90c3f146da68924706f259d297042f55f9ae857",
+      "assets/data/lesson/reference-lesson-activation-v1.json": "1fa1de86545654d7efa55fb7a4a7f6344b5692075dbe977953c7852b86a55d8a",
+      "assets/data/lesson/foundation-preparatory-bridge-v1.json": "bcf2cb194c711acb36365f1143065492fffb0745da9f2aee45b2458008e8b2ca",
+      "assets/data/lesson/reference-subject-evidence-review-v1.json": "552fe7f4846be5f94edcac5834a298393e874df3ed23e0fe00268f9df8b9953e"
+    }
+  },
+  "foundationFindingDisposition": [
+    {
+      "id": "FOUNDATION_TEMPLATE_CONTENT_REVIEW_REQUIRED",
+      "status": "OPEN_BLOCKING_CONTENT_ACCEPTANCE",
+      "observedSignal": "Fifteen preparatory lessons share one keyPoints set, one coreTheory set and one masteryCriteria set.",
+      "blocks": [
+        "foundation-academic-content-approval",
+        "foundation-reference-subject-pedagogical-acceptance"
+      ],
+      "nextOwner": "L21_CONTENT_OPERATIONS_AND_CURRICULUM_GOVERNANCE"
+    },
+    {
+      "id": "FOUNDATION_ASSESSMENT_NOT_MASTERY_QUALIFIED",
+      "status": "CONTROLLED_NOT_QUALIFIED",
+      "observedSignal": "Preparatory exercises and questions remain source templates and B7 keeps every evidence slot missing.",
+      "blocks": [
+        "foundation-assessment-quality-approval",
+        "foundation-master-ready-claim"
+      ],
+      "nextOwner": "L21_CONTENT_OPERATIONS_AND_CURRICULUM_GOVERNANCE"
+    },
+    {
+      "id": "FOUNDATION_SIMULATION_STAGE_DRIFT",
+      "status": "OPEN_BLOCKING_FULL_SIMULATION_COVERAGE",
+      "observedSignal": "The simulation source contains both prepare and preparatory records; only one observation and one practice record exactly match the preparatory stage.",
+      "blocks": [
+        "foundation-full-simulation-coverage-claim"
+      ],
+      "nextOwner": "L21_CONTENT_OPERATIONS_AND_CURRICULUM_GOVERNANCE"
+    },
+    {
+      "id": "FOUNDATION_B11_SINGLE_REFERENCE_SCOPE",
+      "status": "ACCEPTED_LIMITED_RUNTIME_SCOPE",
+      "observedSignal": "Exactly one enabled reference activation exists for foundation:f_s01_l1 and no expansion is allowed in B8.",
+      "blocks": [
+        "whole-foundation-universal-runtime-activation-claim"
+      ],
+      "nextOwner": "FUTURE_REVIEWED_REFERENCE_EXPANSION"
+    }
+  ],
+  "runtimeBoundary": {
+    "sourceMutationAllowed": false,
+    "learnerStateMigrationAllowed": false,
+    "evidenceWriteAllowed": false,
+    "reviewScheduleWriteAllowed": false,
+    "runtimeCutoverAllowed": false,
+    "referenceActivationExpansionAllowed": false,
+    "automaticMasterReadyAllowed": false,
+    "pageEventEvidenceAllowed": false,
+    "scrollEventEvidenceAllowed": false,
+    "elapsedTimeEvidenceAllowed": false,
+    "aiVerificationAllowed": false,
+    "serviceWorkerChangeAllowed": false,
+    "subjectPackPolicyChangeAllowed": false
+  },
+  "offlineBoundary": {
+    "preparationMode": "explicit-base-pack",
+    "wholeRepositoryPrecacheAllowed": false,
+    "largeFeatureResources": "explicit-session-only",
+    "cloudOrAiRequired": false,
+    "offlinePassMeaning": "The probed deterministic surface and resources discovered for the explicit base pack remain available; this is not a claim that every optional or large repository asset is cached."
+  },
+  "rollback": {
+    "behavior": "Remove the B8 QA profile, deterministic/browser gates and reports; retain B1-B7 artifacts and every subject runtime/source unchanged.",
+    "sourceContentImpact": "none",
+    "learnerStateImpact": "none",
+    "runtimeImpact": "none",
+    "offlinePolicyImpact": "none"
+  }
+}

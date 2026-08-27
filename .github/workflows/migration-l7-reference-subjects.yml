@@ -192,6 +192,43 @@ jobs:
             -f description="L7-B7 evidence/review hooks: ${GATE_OUTCOME}" \
             -f target_url="${GITHUB_SERVER_URL}/${GITHUB_REPOSITORY}/actions/runs/${GITHUB_RUN_ID}"
 
+      - name: Run deterministic L7-B8 visual and pedagogical QA
+        id: b8_deterministic_gate
+        run: |
+          node --check scripts/academic/l7-b8-reference-visual-pedagogical-regression.cjs
+          node --check scripts/academic/l7-b8-reference-browser-regression.cjs
+          node scripts/academic/l7-b8-reference-visual-pedagogical-regression.cjs
+          git diff --exit-code -- docs/migration/L7_B8_REFERENCE_VISUAL_PEDAGOGICAL_QA.generated.json
+
+      - name: Install L7-B8 browser dependency
+        id: b8_browser_deps
+        run: |
+          npm install --no-save --package-lock=false playwright@1.54.2
+          npx playwright install --with-deps chromium
+
+      - name: Start L7-B8 local static server
+        run: python3 -m http.server 4173 --bind 127.0.0.1 > /tmp/bauman-l7-b8-http.log 2>&1 &
+
+      - name: Run L7-B8 desktop tablet mobile and offline browser QA
+        id: b8_browser_gate
+        run: node scripts/academic/l7-b8-reference-browser-regression.cjs
+
+      - name: Publish L7-B8 status
+        if: ${{ always() && github.event_name == 'push' && steps.b8_deterministic_gate.outcome != 'skipped' }}
+        env:
+          GH_TOKEN: ${{ github.token }}
+          DETERMINISTIC_OUTCOME: ${{ steps.b8_deterministic_gate.outcome }}
+          BROWSER_DEPS_OUTCOME: ${{ steps.b8_browser_deps.outcome }}
+          BROWSER_OUTCOME: ${{ steps.b8_browser_gate.outcome }}
+        run: |
+          STATE=failure
+          if [ "$DETERMINISTIC_OUTCOME" = "success" ] && [ "$BROWSER_DEPS_OUTCOME" = "success" ] && [ "$BROWSER_OUTCOME" = "success" ]; then STATE=success; fi
+          gh api --method POST "repos/${GITHUB_REPOSITORY}/statuses/${GITHUB_SHA}" \
+            -f state="$STATE" \
+            -f context="migration/l7-b8-visual-pedagogical-qa" \
+            -f description="L7-B8 visual/pedagogical QA: deterministic=${DETERMINISTIC_OUTCOME}, browser=${BROWSER_OUTCOME}" \
+            -f target_url="${GITHUB_SERVER_URL}/${GITHUB_REPOSITORY}/actions/runs/${GITHUB_RUN_ID}"
+
       - name: Upload L7-B1 evidence
         if: always()
         uses: actions/upload-artifact@v4
@@ -244,3 +281,12 @@ jobs:
         with:
           name: l7-b7-reference-evidence-review
           path: docs/migration/L7_B7_REFERENCE_EVIDENCE_SPACED_REVIEW.generated.json
+
+      - name: Upload L7-B8 evidence
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: l7-b8-reference-visual-pedagogical-qa
+          path: |
+            docs/migration/L7_B8_REFERENCE_VISUAL_PEDAGOGICAL_QA.generated.json
+            docs/migration/L7_B8_REFERENCE_BROWSER_QA.generated.json
