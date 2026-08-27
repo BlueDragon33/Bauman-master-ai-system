@@ -160,6 +160,7 @@ function profileErrors(candidate, observed) {
   requireRule(candidate.browserContract?.maxDocumentOverflowPx === 64
     && candidate.browserContract?.maxFoundationDialogOverflowPx === 1
     && candidate.browserContract?.minimumMobileTargetSizePx === 24
+    && candidate.browserContract?.minimumMobileTargetRule === '24px-box-or-24px-center-spacing'
     && candidate.browserContract?.reducedMotionMode === 'reduce'
     && candidate.browserContract?.consoleErrorTolerance === 0
     && candidate.browserContract?.pageErrorTolerance === 0

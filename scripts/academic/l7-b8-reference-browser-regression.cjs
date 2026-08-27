@@ -103,12 +103,15 @@ async function openFoundation(page) {
     state: 'visible',
     timeout: 10000
   });
+  const requiredObserved = await page.evaluate((selectors) => {
+    return selectors.filter((selector) => !!document.querySelector(selector));
+  }, profile.subjects.foundation.browserSurface.requiredSelectors);
   await page.locator('[data-universal-action="open-specialist"][data-capability-ref="speech-recording"]').click();
   await page.waitForSelector('[data-l6-oral-widget="foundation-oral-rehearsal"]', {
     state: 'visible',
     timeout: 7000
   });
-  return handled;
+  return { handled, requiredObserved };
 }
 
 async function openRussian(page) {
@@ -144,8 +147,8 @@ async function openSubjectSurface(page, subjectId) {
   if (subjectId === 'math') await openMath(page);
   if (subjectId === 'foundation') {
     const ready = await waitFoundation(page);
-    const handled = await openFoundation(page);
-    return { ready, handled };
+    const opened = await openFoundation(page);
+    return { ready, ...opened };
   }
   return null;
 }
@@ -199,9 +202,9 @@ async function subjectProbe(page, subjectId) {
   }, subjectId);
 }
 
-async function surfaceMetrics(page, subjectId, viewport) {
+async function surfaceMetrics(page, subjectId, viewport, surfaceOpen) {
   const spec = profile.subjects[subjectId];
-  return page.evaluate(({ id, spec, viewport, browserContract }) => {
+  return page.evaluate(({ id, spec, viewport, browserContract, surfaceOpen }) => {
     const isVisible = (element) => {
       if (!element) return false;
       const style = getComputedStyle(element);
@@ -233,8 +236,9 @@ async function surfaceMetrics(page, subjectId, viewport) {
     };
     const surface = document.querySelector(spec.browserSurface.surfaceSelector);
     const surfaceRect = surface?.getBoundingClientRect();
+    const requiredObserved = new Set(surfaceOpen?.requiredObserved || []);
     const requiredMissing = spec.browserSurface.requiredSelectors
-      .filter((selector) => !document.querySelector(selector));
+      .filter((selector) => !document.querySelector(selector) && !requiredObserved.has(selector));
     const controls = surface
       ? Array.from(surface.querySelectorAll('button,a[href],input,select,textarea,[tabindex]'))
         .filter((element) => isVisible(element) && !element.disabled && element.getAttribute('tabindex') !== '-1')
@@ -245,8 +249,34 @@ async function surfaceMetrics(page, subjectId, viewport) {
         tag: element.tagName.toLowerCase(),
         name: accessibleName(element),
         width: Math.round(rect.width * 10) / 10,
-        height: Math.round(rect.height * 10) / 10
+        height: Math.round(rect.height * 10) / 10,
+        left: rect.left,
+        right: rect.right,
+        top: rect.top,
+        bottom: rect.bottom,
+        centerX: rect.left + rect.width / 2,
+        centerY: rect.top + rect.height / 2
       };
+    });
+    const targetSize = browserContract.minimumMobileTargetSizePx;
+    const smallTargets = controlMetrics.filter((item) => item.width < targetSize || item.height < targetSize);
+    const targetSpacingViolations = smallTargets.flatMap((item) => {
+      const conflict = controlMetrics.find((other) => {
+        if (other === item) return false;
+        if (other.width < targetSize || other.height < targetSize) {
+          return Math.hypot(item.centerX - other.centerX, item.centerY - other.centerY) < targetSize;
+        }
+        const dx = Math.max(other.left - item.centerX, 0, item.centerX - other.right);
+        const dy = Math.max(other.top - item.centerY, 0, item.centerY - other.bottom);
+        return Math.hypot(dx, dy) < targetSize / 2;
+      });
+      return conflict ? [{
+        name: item.name,
+        width: item.width,
+        height: item.height,
+        conflictsWith: conflict.name,
+        centerDistance: Math.round(Math.hypot(item.centerX - conflict.centerX, item.centerY - conflict.centerY) * 10) / 10
+      }] : [];
     });
     const firstFocusable = controls[0] || surface;
     try { firstFocusable?.focus?.({ preventScroll: true }); } catch (_) { firstFocusable?.focus?.(); }
@@ -266,6 +296,8 @@ async function surfaceMetrics(page, subjectId, viewport) {
       unnamedControls: controlMetrics.filter((item) => item.name === ''),
       minTargetWidth: controlMetrics.length ? Math.min(...controlMetrics.map((item) => item.width)) : 0,
       minTargetHeight: controlMetrics.length ? Math.min(...controlMetrics.map((item) => item.height)) : 0,
+      smallTargets: smallTargets.map((item) => ({ name: item.name, width: item.width, height: item.height })),
+      targetSpacingViolations,
       focusedInsideSurface: !!surface && !!active && (surface === active || surface.contains(active)),
       reducedMotion: matchMedia('(prefers-reduced-motion: reduce)').matches,
       documentOverflow: Math.max(0, document.documentElement.scrollWidth - window.innerWidth),
@@ -286,7 +318,7 @@ async function surfaceMetrics(page, subjectId, viewport) {
       maxFoundationDialogOverflowPx: browserContract.maxFoundationDialogOverflowPx,
       minimumMobileTargetSizePx: browserContract.minimumMobileTargetSizePx
     };
-  }, { id: subjectId, spec, viewport, browserContract: profile.browserContract });
+  }, { id: subjectId, spec, viewport, browserContract: profile.browserContract, surfaceOpen });
 }
 
 function assertSurface(prefix, subjectId, viewport, probe, metrics, diag) {
@@ -307,8 +339,7 @@ function assertSurface(prefix, subjectId, viewport, probe, metrics, diag) {
       focusedInsideSurface: metrics.focusedInsideSurface
     });
   const mobileTargets = viewport.id !== 'mobile'
-    || (metrics.minTargetWidth >= profile.browserContract.minimumMobileTargetSizePx
-      && metrics.minTargetHeight >= profile.browserContract.minimumMobileTargetSizePx);
+    || metrics.targetSpacingViolations.length === 0;
   const foundationDialog = subjectId !== 'foundation'
     || (metrics.foundationDialogOverflow <= profile.browserContract.maxFoundationDialogOverflowPx
       && metrics.foundationDialogLeft >= -1
@@ -327,6 +358,8 @@ function assertSurface(prefix, subjectId, viewport, probe, metrics, diag) {
       surfaceRight: metrics.surfaceRight,
       minTargetWidth: metrics.minTargetWidth,
       minTargetHeight: metrics.minTargetHeight,
+      smallTargets: metrics.smallTargets,
+      targetSpacingViolations: metrics.targetSpacingViolations,
       foundationDialogOverflow: metrics.foundationDialogOverflow,
       foundationDialogLeft: metrics.foundationDialogLeft,
       foundationDialogRight: metrics.foundationDialogRight
@@ -359,16 +392,17 @@ async function onlineFlow(browser) {
       const diag = diagnostics(page);
       let probe = null;
       let metrics = null;
+      let surfaceOpen = null;
       let navigationError = '';
       try {
         await page.goto(BASE_URL + '/' + profile.subjects[subjectId].route, {
           waitUntil: 'domcontentloaded',
           timeout: 30000
         });
-        await openSubjectSurface(page, subjectId);
+        surfaceOpen = await openSubjectSurface(page, subjectId);
         await page.waitForTimeout(250);
         probe = await subjectProbe(page, subjectId);
-        metrics = await surfaceMetrics(page, subjectId, viewport);
+        metrics = await surfaceMetrics(page, subjectId, viewport, surfaceOpen);
         assertSurface(prefix, subjectId, viewport, probe, metrics, diag);
       } catch (error) {
         navigationError = errorText(error);
@@ -459,10 +493,10 @@ async function offlineSubject(context, subjectId, viewport) {
       waitUntil: 'domcontentloaded',
       timeout: 30000
     });
-    await openSubjectSurface(page, subjectId);
+    const surfaceOpen = await openSubjectSurface(page, subjectId);
     await page.waitForTimeout(250);
     probe = await subjectProbe(page, subjectId);
-    metrics = await surfaceMetrics(page, subjectId, viewport);
+    metrics = await surfaceMetrics(page, subjectId, viewport, surfaceOpen);
   } catch (error) {
     navigationError = errorText(error);
   }

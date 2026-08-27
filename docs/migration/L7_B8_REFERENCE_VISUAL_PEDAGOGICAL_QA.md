@@ -39,7 +39,8 @@ checks:
 - a heading, non-empty source-grounded text and named visible controls;
 - a keyboard-focus path and equivalent state with reduced motion;
 - no material document overflow, with a stricter one-pixel Foundation dialog
-  bound and a 24-pixel minimum mobile target;
+  bound and a 24-pixel mobile target box or the equivalent 24-pixel
+  center-spacing rule for a smaller control;
 - zero page errors and zero console errors;
 - no HUTECH identity drift;
 - no automatic evidence or Master-ready claim.
