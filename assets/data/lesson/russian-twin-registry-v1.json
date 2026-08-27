@@ -101,7 +101,7 @@
       "availability": "source-aligned"
     },
     "foundation": {
-      "lessonTypes": ["language", "mathematics"],
+      "lessonTypes": ["language", "mathematics", "programming"],
       "defaultLessonType": null,
       "sourcePath": "subjects/foundation/data/lessons.json",
       "terminologyPath": "terminology",
@@ -115,14 +115,14 @@
       "availability": "declared-awaiting-source-alignment"
     },
     "signal": {
-      "lessonTypes": ["asoiu-system"],
-      "defaultLessonType": "asoiu-system",
+      "lessonTypes": ["ml-data", "mathematics"],
+      "defaultLessonType": "ml-data",
       "sourcePath": "subjects/signal/data/lessons.json",
       "terminologyPath": "terminology",
       "availability": "declared-awaiting-source-alignment"
     },
     "systems": {
-      "lessonTypes": ["asoiu-system"],
+      "lessonTypes": ["asoiu-system", "software-design"],
       "defaultLessonType": "asoiu-system",
       "sourcePath": "subjects/systems/data/lessons.json",
       "terminologyPath": "terminology",

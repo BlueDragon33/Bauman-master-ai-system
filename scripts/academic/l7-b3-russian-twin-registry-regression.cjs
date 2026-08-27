@@ -66,14 +66,29 @@ check('TYPE-COMPATIBILITY', 'subject lesson types exist in the L6-B7 type profil
   Object.values(registry.subjectProfiles).every((profile) =>
     profile.lessonTypes.every((type) => Boolean(hooks.typeProfiles[type]))),
   Object.fromEntries(Object.entries(registry.subjectProfiles).map(([id, profile]) => [id, profile.lessonTypes])));
-check('TYPE-POLICY-PARITY', 'Programming type rules match the Subject Factory instead of code constants', (() => {
+check('TYPE-POLICY-PARITY', 'all Twin subject type vocabularies and defaults match the Subject Factory', (() => {
+  const profilesMatch = Object.keys(factory.subjects).every((subjectId) => {
+    const twinProfile = registry.subjectProfiles[subjectId];
+    const factoryProfile = factory.subjects[subjectId].lessonTypePolicy;
+    return JSON.stringify(twinProfile.lessonTypes) === JSON.stringify(factoryProfile.allowed)
+      && twinProfile.defaultLessonType === factoryProfile.default;
+  });
   const twinProfile = registry.subjectProfiles.programming;
   const factoryProfile = factory.subjects.programming.lessonTypePolicy;
   const twinRules = Object.fromEntries(twinProfile.lessonTypeRules.map((rule) => [rule.lessonType, rule.lessonIds]));
   const factoryRules = Object.fromEntries(factoryProfile.rules.map((rule) => [rule.type, rule.lessonIds]));
-  return twinProfile.defaultLessonType === factoryProfile.default
+  return profilesMatch
     && JSON.stringify(twinRules) === JSON.stringify(factoryRules);
-})(), registry.subjectProfiles.programming.lessonTypeRules);
+})(), Object.fromEntries(Object.keys(factory.subjects).map((subjectId) => [subjectId, {
+  twin: {
+    lessonTypes: registry.subjectProfiles[subjectId].lessonTypes,
+    defaultLessonType: registry.subjectProfiles[subjectId].defaultLessonType
+  },
+  factory: {
+    lessonTypes: factory.subjects[subjectId].lessonTypePolicy.allowed,
+    defaultLessonType: factory.subjects[subjectId].lessonTypePolicy.default
+  }
+}])));
 check('LATENT-ACTIVATION', 'Twin remains hidden opt-in and AI cannot activate it',
   registry.activationPolicy.defaultState === 'declared'
     && registry.activationPolicy.defaultVisibility === 'hidden'

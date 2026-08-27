@@ -97,16 +97,19 @@
         ],
         "foundation": [
           "language",
-          "mathematics"
+          "mathematics",
+          "programming"
         ],
         "ai": [
           "ml-data"
         ],
         "signal": [
-          "asoiu-system"
+          "ml-data",
+          "mathematics"
         ],
         "systems": [
-          "asoiu-system"
+          "asoiu-system",
+          "software-design"
         ],
         "research": [
           "research"
@@ -115,40 +118,134 @@
     },
     {
       "id": "TYPE-POLICY-PARITY",
-      "title": "Programming type rules match the Subject Factory instead of code constants",
+      "title": "all Twin subject type vocabularies and defaults match the Subject Factory",
       "ok": true,
-      "evidence": [
-        {
-          "lessonType": "database",
-          "lessonIds": [
-            "PR06",
-            "PR15",
-            "PR20",
-            "PR21"
-          ]
+      "evidence": {
+        "russian": {
+          "twin": {
+            "lessonTypes": [
+              "language"
+            ],
+            "defaultLessonType": "language"
+          },
+          "factory": {
+            "lessonTypes": [
+              "language"
+            ],
+            "defaultLessonType": "language"
+          }
         },
-        {
-          "lessonType": "software-design",
-          "lessonIds": [
-            "PR17",
-            "PR18",
-            "PR19",
-            "PR22",
-            "PR24",
-            "PR30",
-            "PR32",
-            "PR38",
-            "PR39",
-            "PR40",
-            "PR41",
-            "PR43",
-            "PR44",
-            "PR46",
-            "PR47",
-            "PR48"
-          ]
+        "math": {
+          "twin": {
+            "lessonTypes": [
+              "mathematics"
+            ],
+            "defaultLessonType": "mathematics"
+          },
+          "factory": {
+            "lessonTypes": [
+              "mathematics"
+            ],
+            "defaultLessonType": "mathematics"
+          }
+        },
+        "programming": {
+          "twin": {
+            "lessonTypes": [
+              "programming",
+              "database",
+              "software-design"
+            ],
+            "defaultLessonType": "programming"
+          },
+          "factory": {
+            "lessonTypes": [
+              "programming",
+              "database",
+              "software-design"
+            ],
+            "defaultLessonType": "programming"
+          }
+        },
+        "foundation": {
+          "twin": {
+            "lessonTypes": [
+              "language",
+              "mathematics",
+              "programming"
+            ],
+            "defaultLessonType": null
+          },
+          "factory": {
+            "lessonTypes": [
+              "language",
+              "mathematics",
+              "programming"
+            ],
+            "defaultLessonType": null
+          }
+        },
+        "ai": {
+          "twin": {
+            "lessonTypes": [
+              "ml-data"
+            ],
+            "defaultLessonType": "ml-data"
+          },
+          "factory": {
+            "lessonTypes": [
+              "ml-data"
+            ],
+            "defaultLessonType": "ml-data"
+          }
+        },
+        "signal": {
+          "twin": {
+            "lessonTypes": [
+              "ml-data",
+              "mathematics"
+            ],
+            "defaultLessonType": "ml-data"
+          },
+          "factory": {
+            "lessonTypes": [
+              "ml-data",
+              "mathematics"
+            ],
+            "defaultLessonType": "ml-data"
+          }
+        },
+        "systems": {
+          "twin": {
+            "lessonTypes": [
+              "asoiu-system",
+              "software-design"
+            ],
+            "defaultLessonType": "asoiu-system"
+          },
+          "factory": {
+            "lessonTypes": [
+              "asoiu-system",
+              "software-design"
+            ],
+            "defaultLessonType": "asoiu-system"
+          }
+        },
+        "research": {
+          "twin": {
+            "lessonTypes": [
+              "research"
+            ],
+            "defaultLessonType": "research"
+          },
+          "factory": {
+            "lessonTypes": [
+              "research"
+            ],
+            "defaultLessonType": "research"
+          }
         }
-      ]
+      }
     },
     {
       "id": "LATENT-ACTIVATION",

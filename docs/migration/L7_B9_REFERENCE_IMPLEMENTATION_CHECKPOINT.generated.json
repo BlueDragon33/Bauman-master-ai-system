@@ -1,0 +1,735 @@
+{
+  "gate": "L7-B9",
+  "release": "L7-B9-REFERENCE-IMPLEMENTATION-CHECKPOINT-V1",
+  "status": "PASS",
+  "officialReferences": [
+    {
+      "id": "russian",
+      "designation": "OFFICIAL_LANGUAGE_REFERENCE_IMPLEMENTATION",
+      "engineRef": "russian-v13-specialist",
+      "capabilityCount": 5
+    },
+    {
+      "id": "math",
+      "designation": "OFFICIAL_MATHEMATICS_REFERENCE_IMPLEMENTATION",
+      "engineRef": "math-e126-specialist",
+      "capabilityCount": 5
+    }
+  ],
+  "downstreamSubjectCount": 5,
+  "downstreamBindings": {
+    "programming": {
+      "implementationRound": "L8",
+      "lessonTypes": [
+        "programming",
+        "database",
+        "software-design"
+      ],
+      "russianTwinAvailability": "source-aligned",
+      "mathDomainCount": 1,
+      "mathTargetCount": 2
+    },
+    "ai": {
+      "implementationRound": "L9",
+      "lessonTypes": [
+        "ml-data"
+      ],
+      "russianTwinAvailability": "declared-awaiting-source-alignment",
+      "mathDomainCount": 7,
+      "mathTargetCount": 7
+    },
+    "signal": {
+      "implementationRound": "L9",
+      "lessonTypes": [
+        "ml-data",
+        "mathematics"
+      ],
+      "russianTwinAvailability": "declared-awaiting-source-alignment",
+      "mathDomainCount": 5,
+      "mathTargetCount": 4
+    },
+    "systems": {
+      "implementationRound": "L10",
+      "lessonTypes": [
+        "asoiu-system",
+        "software-design"
+      ],
+      "russianTwinAvailability": "declared-awaiting-source-alignment",
+      "mathDomainCount": 7,
+      "mathTargetCount": 2
+    },
+    "research": {
+      "implementationRound": "L11",
+      "lessonTypes": [
+        "research"
+      ],
+      "russianTwinAvailability": "declared-awaiting-source-alignment",
+      "mathDomainCount": 4,
+      "mathTargetCount": 1
+    }
+  },
+  "sourceCoverage": {
+    "russian": {
+      "lessonCount": 26,
+      "sourceSlideCount": 1138,
+      "sourceFamily": "russian-rich-legacy"
+    },
+    "math": {
+      "legacyLessonCount": 347,
+      "reviewedOverlayCount": 18,
+      "catalogCount": 365,
+      "sourceBlockCount": 5852,
+      "sourceFamilies": [
+        "reviewed-theory-overlay",
+        "legacy-math-runtime"
+      ]
+    }
+  },
+  "retainedFindingCounts": {
+    "russian": 1,
+    "math": 3,
+    "global": 1,
+    "foundation": 4
+  },
+  "evidenceBaselines": {
+    "russianProjectionDigest": "8f0b9b8acd74fafc75bed0e5a69f3fe17aff1c2d983fea6e33f323d5fe7e64ba",
+    "russianTwinPackDigest": "bfa9b6fbf57df4a5558728fe9720abcb20e26b6f4a3fe615ab03456afac517d8",
+    "mathGraphDigest": "e768723bbfa66196edf1d3182d97f3bb39abf65ae64c043448926edea7757871",
+    "mathProjectionDigest": "d9f37b5f88d05688dc6c01c0b77fe7d5e8dbaa9a091bc3cfcb69e13601fc8210",
+    "evidenceCatalogDigest": "99bb3bec7ad202ecc81cf309da2171adb9b2876792c76b585af83afbdf7255aa",
+    "b8ProfileProjectionDigest": "5734de560783fb4c188b472bbcfe9fe884ee7d382497fdedf36569833d38356c"
+  },
+  "registryDigest": "23fe304808f247de80501a06b350d30b9a15faf5d98290842c583ce1873f2a15",
+  "designationProjectionDigest": "c4ef2a479b5d7a9e4a88383984a84528a4c810b10491dc70f87bf39eb8c3bfbe",
+  "factoryProjectionDigest": "d4544f66e7c650d68ed68924f6d0bc2b197d615cbea016221e8103e561769500",
+  "mutationTests": [
+    {
+      "id": "DROP-MATH-OFFICIAL-REFERENCE",
+      "title": "dropping Math from the official reference order fails closed",
+      "expectedFailureObserved": true,
+      "evidence": [
+        "OFFICIAL_REFERENCE_ORDER"
+      ]
+    },
+    {
+      "id": "PROMOTE-FOUNDATION-OFFICIAL",
+      "title": "Foundation cannot be promoted while its B8 findings remain claim-blocking",
+      "expectedFailureObserved": true,
+      "evidence": [
+        "OFFICIAL_REFERENCE_ORDER"
+      ]
+    },
+    {
+      "id": "ALLOW-REFERENCE-UI-COPY",
+      "title": "reference designation cannot authorize downstream UI copying",
+      "expectedFailureObserved": true,
+      "evidence": [
+        "RUNTIME_BOUNDARY"
+      ]
+    },
+    {
+      "id": "ALLOW-RUNTIME-CUTOVER",
+      "title": "B9 cannot cut over Russian or Math specialist runtimes",
+      "expectedFailureObserved": true,
+      "evidence": [
+        "RUNTIME_BOUNDARY"
+      ]
+    },
+    {
+      "id": "DRIFT-DOWNSTREAM-ENGINE",
+      "title": "a later subject must retain its registered engine and route",
+      "expectedFailureObserved": true,
+      "evidence": [
+        "DOWNSTREAM_FACTORY_PARITY_ai"
+      ]
+    },
+    {
+      "id": "ASSIGN-UNREGISTERED-TYPE",
+      "title": "a reference binding cannot introduce a lesson type absent from Subject Factory",
+      "expectedFailureObserved": true,
+      "evidence": [
+        "DOWNSTREAM_RUSSIAN_BINDING_signal"
+      ]
+    },
+    {
+      "id": "ACTIVATE-MATH-PREREQUISITE",
+      "title": "system-derived Math supports links cannot become assessment-blocking prerequisites",
+      "expectedFailureObserved": true,
+      "evidence": [
+        "DOWNSTREAM_MATH_BINDING_programming"
+      ]
+    },
+    {
+      "id": "INVENT-RUSSIAN-ALIGNMENT",
+      "title": "B9 cannot mark an unaligned later subject as Russian Twin source-aligned",
+      "expectedFailureObserved": true,
+      "evidence": [
+        "DOWNSTREAM_RUSSIAN_BINDING_ai"
+      ]
+    },
+    {
+      "id": "HIDE-FOUNDATION-FINDING",
+      "title": "all four Foundation finding dispositions must remain visible",
+      "expectedFailureObserved": true,
+      "evidence": [
+        "FOUNDATION_FINDINGS_RETAINED"
+      ]
+    },
+    {
+      "id": "PROMOTE-MATH-OVERLAY",
+      "title": "the 18 Math overlays cannot become full replacement coverage",
+      "expectedFailureObserved": true,
+      "evidence": [
+        "MATH_SOURCE_COVERAGE"
+      ]
+    },
+    {
+      "id": "ENABLE-AUTOMATIC-MASTER-READY",
+      "title": "official reference status cannot grant automatic Master-ready",
+      "expectedFailureObserved": true,
+      "evidence": [
+        "RUNTIME_BOUNDARY"
+      ]
+    },
+    {
+      "id": "DRIFT-EVIDENCE-BASELINE",
+      "title": "a changed B1-B8 evidence digest requires explicit re-review",
+      "expectedFailureObserved": true,
+      "evidence": [
+        "EVIDENCE_BASELINES"
+      ]
+    }
+  ],
+  "passMeaning": "The two official reference designations, capability-specific downstream bindings, source truth, retained findings and non-copy boundaries are deterministic and fail closed. Remote L7-B8 browser success remains a required CI predecessor; B9 does not synthesize a local browser PASS.",
+  "checks": [
+    {
+      "id": "FILE-assets/data/lesson/reference-implementation-registry-v1.json",
+      "title": "required L7-B9 input exists",
+      "ok": true,
+      "evidence": "assets/data/lesson/reference-implementation-registry-v1.json"
+    },
+    {
+      "id": "FILE-assets/data/lesson/subject-factory-registry-v1.json",
+      "title": "required L7-B9 input exists",
+      "ok": true,
+      "evidence": "assets/data/lesson/subject-factory-registry-v1.json"
+    },
+    {
+      "id": "FILE-assets/data/lesson/visual-teaching-contract-v1.json",
+      "title": "required L7-B9 input exists",
+      "ok": true,
+      "evidence": "assets/data/lesson/visual-teaching-contract-v1.json"
+    },
+    {
+      "id": "FILE-assets/data/lesson/language-layer-hooks-v1.json",
+      "title": "required L7-B9 input exists",
+      "ok": true,
+      "evidence": "assets/data/lesson/language-layer-hooks-v1.json"
+    },
+    {
+      "id": "FILE-assets/data/lesson/master-ready-policy-v1.json",
+      "title": "required L7-B9 input exists",
+      "ok": true,
+      "evidence": "assets/data/lesson/master-ready-policy-v1.json"
+    },
+    {
+      "id": "FILE-assets/data/lesson/reference-subject-evidence-review-v1.json",
+      "title": "required L7-B9 input exists",
+      "ok": true,
+      "evidence": "assets/data/lesson/reference-subject-evidence-review-v1.json"
+    },
+    {
+      "id": "FILE-assets/data/lesson/reference-subject-qa-profile-v1.json",
+      "title": "required L7-B9 input exists",
+      "ok": true,
+      "evidence": "assets/data/lesson/reference-subject-qa-profile-v1.json"
+    },
+    {
+      "id": "FILE-assets/data/lesson/russian-twin-registry-v1.json",
+      "title": "required L7-B9 input exists",
+      "ok": true,
+      "evidence": "assets/data/lesson/russian-twin-registry-v1.json"
+    },
+    {
+      "id": "FILE-assets/data/lesson/math-prerequisite-policy-v1.json",
+      "title": "required L7-B9 input exists",
+      "ok": true,
+      "evidence": "assets/data/lesson/math-prerequisite-policy-v1.json"
+    },
+    {
+      "id": "FILE-docs/migration/L7_B9_REFERENCE_IMPLEMENTATION_CHECKPOINT.md",
+      "title": "required L7-B9 input exists",
+      "ok": true,
+      "evidence": "docs/migration/L7_B9_REFERENCE_IMPLEMENTATION_CHECKPOINT.md"
+    },
+    {
+      "id": "FILE-docs/migration/L7_B1_RUSSIAN_COVERAGE_AUDIT.generated.json",
+      "title": "required L7-B9 input exists",
+      "ok": true,
+      "evidence": "docs/migration/L7_B1_RUSSIAN_COVERAGE_AUDIT.generated.json"
+    },
+    {
+      "id": "FILE-docs/migration/L7_B2_RUSSIAN_UNIVERSAL_ADAPTER.generated.json",
+      "title": "required L7-B9 input exists",
+      "ok": true,
+      "evidence": "docs/migration/L7_B2_RUSSIAN_UNIVERSAL_ADAPTER.generated.json"
+    },
+    {
+      "id": "FILE-docs/migration/L7_B3_RUSSIAN_TWIN_REGISTRY.generated.json",
+      "title": "required L7-B9 input exists",
+      "ok": true,
+      "evidence": "docs/migration/L7_B3_RUSSIAN_TWIN_REGISTRY.generated.json"
+    },
+    {
+      "id": "FILE-docs/migration/L7_B4_MATH_COVERAGE_PREREQUISITE_AUDIT.generated.json",
+      "title": "required L7-B9 input exists",
+      "ok": true,
+      "evidence": "docs/migration/L7_B4_MATH_COVERAGE_PREREQUISITE_AUDIT.generated.json"
+    },
+    {
+      "id": "FILE-docs/migration/L7_B5_MATH_UNIVERSAL_ADAPTER.generated.json",
+      "title": "required L7-B9 input exists",
+      "ok": true,
+      "evidence": "docs/migration/L7_B5_MATH_UNIVERSAL_ADAPTER.generated.json"
+    },
+    {
+      "id": "FILE-docs/migration/L7_B6_FOUNDATION_PREPARATORY_COMPLETION.generated.json",
+      "title": "required L7-B9 input exists",
+      "ok": true,
+      "evidence": "docs/migration/L7_B6_FOUNDATION_PREPARATORY_COMPLETION.generated.json"
+    },
+    {
+      "id": "FILE-docs/migration/L7_B7_REFERENCE_EVIDENCE_SPACED_REVIEW.generated.json",
+      "title": "required L7-B9 input exists",
+      "ok": true,
+      "evidence": "docs/migration/L7_B7_REFERENCE_EVIDENCE_SPACED_REVIEW.generated.json"
+    },
+    {
+      "id": "FILE-docs/migration/L7_B8_REFERENCE_VISUAL_PEDAGOGICAL_QA.generated.json",
+      "title": "required L7-B9 input exists",
+      "ok": true,
+      "evidence": "docs/migration/L7_B8_REFERENCE_VISUAL_PEDAGOGICAL_QA.generated.json"
+    },
+    {
+      "id": "FILE-assets/data/lesson/universal-lesson-contract-v2.json",
+      "title": "required L7-B9 input exists",
+      "ok": true,
+      "evidence": "assets/data/lesson/universal-lesson-contract-v2.json"
+    },
+    {
+      "id": "FILE-assets/data/lesson/universal-lesson-block-policy-v1.json",
+      "title": "required L7-B9 input exists",
+      "ok": true,
+      "evidence": "assets/data/lesson/universal-lesson-block-policy-v1.json"
+    },
+    {
+      "id": "FILE-assets/data/lesson/lesson-type-registry-v1.json",
+      "title": "required L7-B9 input exists",
+      "ok": true,
+      "evidence": "assets/data/lesson/lesson-type-registry-v1.json"
+    },
+    {
+      "id": "FILE-assets/js/platform/universal-lesson/russian-universal-adapter-v1.js",
+      "title": "required L7-B9 input exists",
+      "ok": true,
+      "evidence": "assets/js/platform/universal-lesson/russian-universal-adapter-v1.js"
+    },
+    {
+      "id": "FILE-assets/data/lesson/russian-twin-glossary-v1.generated.json",
+      "title": "required L7-B9 input exists",
+      "ok": true,
+      "evidence": "assets/data/lesson/russian-twin-glossary-v1.generated.json"
+    },
+    {
+      "id": "FILE-assets/data/lesson/math-prerequisite-graph-v1.generated.json",
+      "title": "required L7-B9 input exists",
+      "ok": true,
+      "evidence": "assets/data/lesson/math-prerequisite-graph-v1.generated.json"
+    },
+    {
+      "id": "FILE-assets/js/platform/universal-lesson/math-universal-adapter-v1.js",
+      "title": "required L7-B9 input exists",
+      "ok": true,
+      "evidence": "assets/js/platform/universal-lesson/math-universal-adapter-v1.js"
+    },
+    {
+      "id": "REGISTRY-VALID",
+      "title": "B9 designation registry passes every fail-closed structural and observed-truth rule",
+      "ok": true,
+      "evidence": []
+    },
+    {
+      "id": "FACTORY-SUBJECT-ORDER",
+      "title": "Subject Factory still contains the two references, Foundation and the five later subjects in the audited order",
+      "ok": true,
+      "evidence": [
+        "russian",
+        "math",
+        "programming",
+        "foundation",
+        "ai",
+        "signal",
+        "systems",
+        "research"
+      ]
+    },
+    {
+      "id": "TWIN-FACTORY-TYPE-PARITY",
+      "title": "Russian Twin profiles use every current Subject Factory lesson type and default exactly",
+      "ok": true,
+      "evidence": {
+        "russian": [
+          "language"
+        ],
+        "math": [
+          "mathematics"
+        ],
+        "programming": [
+          "programming",
+          "database",
+          "software-design"
+        ],
+        "foundation": [
+          "language",
+          "mathematics",
+          "programming"
+        ],
+        "ai": [
+          "ml-data"
+        ],
+        "signal": [
+          "ml-data",
+          "mathematics"
+        ],
+        "systems": [
+          "asoiu-system",
+          "software-design"
+        ],
+        "research": [
+          "research"
+        ]
+      }
+    },
+    {
+      "id": "VISUAL-TYPE-PROFILES",
+      "title": "every later-subject type has an L6 visual teaching profile",
+      "ok": true,
+      "evidence": [
+        "programming",
+        "database",
+        "software-design",
+        "ml-data",
+        "ml-data",
+        "mathematics",
+        "asoiu-system",
+        "software-design",
+        "research"
+      ]
+    },
+    {
+      "id": "LANGUAGE-TYPE-PROFILES",
+      "title": "every later-subject type has a Russian Twin language-layer profile",
+      "ok": true,
+      "evidence": [
+        "programming",
+        "database",
+        "software-design",
+        "ml-data",
+        "ml-data",
+        "mathematics",
+        "asoiu-system",
+        "software-design",
+        "research"
+      ]
+    },
+    {
+      "id": "MASTER-READY-OWNERSHIP",
+      "title": "Master-ready remains governed by the L6-B5 policy and not by B9 designation",
+      "ok": true,
+      "evidence": {
+        "policyId": "bauman-master-ready-policy",
+        "status": "L6-B5-POLICY"
+      }
+    },
+    {
+      "id": "ALL-B1-B8-REPORTS-PASS",
+      "title": "all committed L7-B1 through B8 deterministic input reports remain PASS",
+      "ok": true,
+      "evidence": {
+        "L7-B1": "PASS",
+        "L7-B2": "PASS",
+        "L7-B3": "PASS",
+        "L7-B4": "PASS",
+        "L7-B5": "PASS",
+        "L7-B6": "PASS",
+        "L7-B7": "PASS",
+        "L7-B8": "PASS"
+      }
+    },
+    {
+      "id": "B8-BROWSER-DEPENDENCY",
+      "title": "B9 declares the B8 browser gate as a required CI predecessor rather than a local synthetic PASS",
+      "ok": true,
+      "evidence": [
+        "L7-B1",
+        "L7-B2",
+        "L7-B3",
+        "L7-B4",
+        "L7-B5",
+        "L7-B6",
+        "L7-B7",
+        "L7-B8-DETERMINISTIC",
+        "L7-B8-BROWSER"
+      ]
+    },
+    {
+      "id": "RUSSIAN-COVERAGE-LOCK",
+      "title": "Russian reference designation retains exactly 26 lessons and 1,138 source slides",
+      "ok": true,
+      "evidence": {
+        "lessonCount": 26,
+        "sourceSlideCount": 1138,
+        "sourceFamily": "russian-rich-legacy"
+      }
+    },
+    {
+      "id": "MATH-COVERAGE-LOCK",
+      "title": "Math reference designation retains 347 legacy lessons plus 18 overlays, 365 catalog lessons and 5,852 blocks",
+      "ok": true,
+      "evidence": {
+        "legacyLessonCount": 347,
+        "reviewedOverlayCount": 18,
+        "catalogCount": 365,
+        "sourceBlockCount": 5852,
+        "sourceFamilies": [
+          "reviewed-theory-overlay",
+          "legacy-math-runtime"
+        ]
+      }
+    },
+    {
+      "id": "DOWNSTREAM-MATH-TARGETS",
+      "title": "all five later subjects have explicit non-blocking Math support targets from the B4 policy",
+      "ok": true,
+      "evidence": {
+        "programming": {
+          "domainIds": [
+            "discrete-db-knowledge"
+          ],
+          "targetRefs": [
+            "programming:PR06",
+            "programming:PR20"
+          ]
+        },
+        "ai": {
+          "domainIds": [
+            "linear-algebra-data",
+            "calculus-multivariable",
+            "probability-statistics",
+            "optimization",
+            "numerical-computational",
+            "discrete-db-knowledge",
+            "reliability-verification"
+          ],
+          "targetRefs": [
+            "ai:a_p01_l1",
+            "ai:a_p03_l1",
+            "ai:a_p05_l1",
+            "ai:a_p06_l1",
+            "ai:a_m302_l1",
+            "ai:a_p07_l1",
+            "ai:a_m402_l1"
+          ]
+        },
+        "signal": {
+          "domainIds": [
+            "probability-statistics",
+            "differential-dynamics",
+            "signal-time-series",
+            "control",
+            "state-estimation"
+          ],
+          "targetRefs": [
+            "signal:t_p02_l1",
+            "signal:t_p05_l1",
+            "signal:t_m301_l1",
+            "signal:t_p01_l1"
+          ]
+        },
+        "systems": {
+          "domainIds": [
+            "linear-algebra-data",
+            "calculus-multivariable",
+            "optimization",
+            "differential-dynamics",
+            "control",
+            "state-estimation",
+            "reliability-verification"
+          ],
+          "targetRefs": [
+            "systems:s_m101_l1",
+            "systems:s_m201_l1"
+          ]
+        },
+        "research": {
+          "domainIds": [
+            "language-logic",
+            "numerical-computational",
+            "control",
+            "reliability-verification"
+          ],
+          "targetRefs": [
+            "research:r_p01_l1"
+          ]
+        }
+      }
+    },
+    {
+      "id": "RUSSIAN-ALIGNMENT-TRUTH",
+      "title": "Programming is source-aligned while the other four later Russian Twin bindings remain unavailable pending reviewed alignment",
+      "ok": true,
+      "evidence": {
+        "programming": "source-aligned",
+        "ai": "declared-awaiting-source-alignment",
+        "signal": "declared-awaiting-source-alignment",
+        "systems": "declared-awaiting-source-alignment",
+        "research": "declared-awaiting-source-alignment"
+      }
+    },
+    {
+      "id": "FOUNDATION-FINDINGS-ROUTED",
+      "title": "three Foundation content findings remain routed to L21 and the single pilot remains limited",
+      "ok": true,
+      "evidence": [
+        {
+          "id": "FOUNDATION_TEMPLATE_CONTENT_REVIEW_REQUIRED",
+          "status": "OPEN_BLOCKING_CONTENT_ACCEPTANCE",
+          "nextOwner": "L21_CONTENT_OPERATIONS_AND_CURRICULUM_GOVERNANCE"
+        },
+        {
+          "id": "FOUNDATION_ASSESSMENT_NOT_MASTERY_QUALIFIED",
+          "status": "CONTROLLED_NOT_QUALIFIED",
+          "nextOwner": "L21_CONTENT_OPERATIONS_AND_CURRICULUM_GOVERNANCE"
+        },
+        {
+          "id": "FOUNDATION_SIMULATION_STAGE_DRIFT",
+          "status": "OPEN_BLOCKING_FULL_SIMULATION_COVERAGE",
+          "nextOwner": "L21_CONTENT_OPERATIONS_AND_CURRICULUM_GOVERNANCE"
+        },
+        {
+          "id": "FOUNDATION_B11_SINGLE_REFERENCE_SCOPE",
+          "status": "ACCEPTED_LIMITED_RUNTIME_SCOPE",
+          "nextOwner": "FUTURE_REVIEWED_REFERENCE_EXPANSION"
+        }
+      ]
+    },
+    {
+      "id": "NO-HUTECH-LEARNER-COPY",
+      "title": "B9 learner-facing governance artifacts contain no HUTECH label",
+      "ok": true,
+      "evidence": "absent"
+    },
+    {
+      "id": "DOC-DECISION-RECORD",
+      "title": "B9 decision record states official references, downstream matrix, non-copy boundary, findings, rollback and L8 handoff",
+      "ok": true,
+      "evidence": "docs/migration/L7_B9_REFERENCE_IMPLEMENTATION_CHECKPOINT.md"
+    },
+    {
+      "id": "MUTATION-DROP-MATH-OFFICIAL-REFERENCE",
+      "title": "dropping Math from the official reference order fails closed",
+      "ok": true,
+      "evidence": [
+        "OFFICIAL_REFERENCE_ORDER"
+      ]
+    },
+    {
+      "id": "MUTATION-PROMOTE-FOUNDATION-OFFICIAL",
+      "title": "Foundation cannot be promoted while its B8 findings remain claim-blocking",
+      "ok": true,
+      "evidence": [
+        "OFFICIAL_REFERENCE_ORDER"
+      ]
+    },
+    {
+      "id": "MUTATION-ALLOW-REFERENCE-UI-COPY",
+      "title": "reference designation cannot authorize downstream UI copying",
+      "ok": true,
+      "evidence": [
+        "RUNTIME_BOUNDARY"
+      ]
+    },
+    {
+      "id": "MUTATION-ALLOW-RUNTIME-CUTOVER",
+      "title": "B9 cannot cut over Russian or Math specialist runtimes",
+      "ok": true,
+      "evidence": [
+        "RUNTIME_BOUNDARY"
+      ]
+    },
+    {
+      "id": "MUTATION-DRIFT-DOWNSTREAM-ENGINE",
+      "title": "a later subject must retain its registered engine and route",
+      "ok": true,
+      "evidence": [
+        "DOWNSTREAM_FACTORY_PARITY_ai"
+      ]
+    },
+    {
+      "id": "MUTATION-ASSIGN-UNREGISTERED-TYPE",
+      "title": "a reference binding cannot introduce a lesson type absent from Subject Factory",
+      "ok": true,
+      "evidence": [
+        "DOWNSTREAM_RUSSIAN_BINDING_signal"
+      ]
+    },
+    {
+      "id": "MUTATION-ACTIVATE-MATH-PREREQUISITE",
+      "title": "system-derived Math supports links cannot become assessment-blocking prerequisites",
+      "ok": true,
+      "evidence": [
+        "DOWNSTREAM_MATH_BINDING_programming"
+      ]
+    },
+    {
+      "id": "MUTATION-INVENT-RUSSIAN-ALIGNMENT",
+      "title": "B9 cannot mark an unaligned later subject as Russian Twin source-aligned",
+      "ok": true,
+      "evidence": [
+        "DOWNSTREAM_RUSSIAN_BINDING_ai"
+      ]
+    },
+    {
+      "id": "MUTATION-HIDE-FOUNDATION-FINDING",
+      "title": "all four Foundation finding dispositions must remain visible",
+      "ok": true,
+      "evidence": [
+        "FOUNDATION_FINDINGS_RETAINED"
+      ]
+    },
+    {
+      "id": "MUTATION-PROMOTE-MATH-OVERLAY",
+      "title": "the 18 Math overlays cannot become full replacement coverage",
+      "ok": true,
+      "evidence": [
+        "MATH_SOURCE_COVERAGE"
+      ]
+    },
+    {
+      "id": "MUTATION-ENABLE-AUTOMATIC-MASTER-READY",
+      "title": "official reference status cannot grant automatic Master-ready",
+      "ok": true,
+      "evidence": [
+        "RUNTIME_BOUNDARY"
+      ]
+    },
+    {
+      "id": "MUTATION-DRIFT-EVIDENCE-BASELINE",
+      "title": "a changed B1-B8 evidence digest requires explicit re-review",
+      "ok": true,
+      "evidence": [
+        "EVIDENCE_BASELINES"
+      ]
+    }
+  ]
+}

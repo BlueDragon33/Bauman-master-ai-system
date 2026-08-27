@@ -229,6 +229,32 @@ jobs:
             -f description="L7-B8 visual/pedagogical QA: deterministic=${DETERMINISTIC_OUTCOME}, browser=${BROWSER_OUTCOME}" \
             -f target_url="${GITHUB_SERVER_URL}/${GITHUB_REPOSITORY}/actions/runs/${GITHUB_RUN_ID}"
 
+      - name: Run L7-B9 official reference implementation checkpoint
+        id: b9_gate
+        run: |
+          node --check scripts/academic/l7-b9-reference-implementation-checkpoint-regression.cjs
+          node scripts/academic/l7-b9-reference-implementation-checkpoint-regression.cjs
+          git diff --exit-code -- docs/migration/L7_B9_REFERENCE_IMPLEMENTATION_CHECKPOINT.generated.json
+
+      - name: Publish L7-B9 and completed L7 statuses
+        if: ${{ always() && github.event_name == 'push' && steps.b9_gate.outcome != 'skipped' }}
+        env:
+          GH_TOKEN: ${{ github.token }}
+          GATE_OUTCOME: ${{ steps.b9_gate.outcome }}
+        run: |
+          STATE=failure
+          if [ "$GATE_OUTCOME" = "success" ]; then STATE=success; fi
+          gh api --method POST "repos/${GITHUB_REPOSITORY}/statuses/${GITHUB_SHA}" \
+            -f state="$STATE" \
+            -f context="migration/l7-b9-reference-implementation" \
+            -f description="L7-B9 official reference checkpoint: ${GATE_OUTCOME}" \
+            -f target_url="${GITHUB_SERVER_URL}/${GITHUB_REPOSITORY}/actions/runs/${GITHUB_RUN_ID}"
+          gh api --method POST "repos/${GITHUB_REPOSITORY}/statuses/${GITHUB_SHA}" \
+            -f state="$STATE" \
+            -f context="migration/l7-reference-subjects-complete" \
+            -f description="L7 B1-B9 progression: ${GATE_OUTCOME}" \
+            -f target_url="${GITHUB_SERVER_URL}/${GITHUB_REPOSITORY}/actions/runs/${GITHUB_RUN_ID}"
+
       - name: Upload L7-B1 evidence
         if: always()
         uses: actions/upload-artifact@v4
@@ -290,3 +316,10 @@ jobs:
           path: |
             docs/migration/L7_B8_REFERENCE_VISUAL_PEDAGOGICAL_QA.generated.json
             docs/migration/L7_B8_REFERENCE_BROWSER_QA.generated.json
+
+      - name: Upload L7-B9 evidence
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: l7-b9-reference-implementation-checkpoint
+          path: docs/migration/L7_B9_REFERENCE_IMPLEMENTATION_CHECKPOINT.generated.json

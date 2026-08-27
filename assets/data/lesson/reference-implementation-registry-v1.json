@@ -1,0 +1,553 @@
+{
+  "registryId": "bauman-reference-implementation-registry",
+  "registryVersion": "1.0.0",
+  "release": "L7-B9-REFERENCE-IMPLEMENTATION-CHECKPOINT-V1",
+  "status": "OFFICIAL_REFERENCE_DESIGNATION_RUNTIME_UNCHANGED",
+  "programIdentity": {
+    "department": "ИУ-5",
+    "officialPublishedDirectionCode": "09.04.01",
+    "personalizedDisplayCode": "09.04.01/11"
+  },
+  "governingRefs": {
+    "universalLesson": "assets/data/lesson/universal-lesson-contract-v2.json",
+    "blockPolicy": "assets/data/lesson/universal-lesson-block-policy-v1.json",
+    "lessonTypes": "assets/data/lesson/lesson-type-registry-v1.json",
+    "masterReady": "assets/data/lesson/master-ready-policy-v1.json",
+    "visualTeaching": "assets/data/lesson/visual-teaching-contract-v1.json",
+    "languageLayer": "assets/data/lesson/language-layer-hooks-v1.json",
+    "subjectFactory": "assets/data/lesson/subject-factory-registry-v1.json",
+    "evidenceReview": "assets/data/lesson/reference-subject-evidence-review-v1.json",
+    "visualPedagogicalQa": "assets/data/lesson/reference-subject-qa-profile-v1.json",
+    "russianUniversalAdapter": "assets/js/platform/universal-lesson/russian-universal-adapter-v1.js",
+    "russianTwinRegistry": "assets/data/lesson/russian-twin-registry-v1.json",
+    "russianTwinGlossary": "assets/data/lesson/russian-twin-glossary-v1.generated.json",
+    "mathPrerequisitePolicy": "assets/data/lesson/math-prerequisite-policy-v1.json",
+    "mathPrerequisiteGraph": "assets/data/lesson/math-prerequisite-graph-v1.generated.json",
+    "mathUniversalAdapter": "assets/js/platform/universal-lesson/math-universal-adapter-v1.js"
+  },
+  "designationContract": {
+    "officialReferenceOrder": [
+      "russian",
+      "math"
+    ],
+    "downstreamSubjectOrder": [
+      "programming",
+      "ai",
+      "signal",
+      "systems",
+      "research"
+    ],
+    "meaning": "Russian and Math are the official, capability-specific implementation references for later subject work. A later subject reuses typed contracts, source-identity rules, evidence semantics, language hooks, offline expectations and QA boundaries while retaining its own engine, source, UI, state and assessment authority.",
+    "selectionRule": "Reuse the smallest registered capability or contract pattern that matches the downstream lesson type and objective; never clone a reference subject as a monolithic template.",
+    "allowedTransferModes": [
+      "contract-pattern",
+      "read-only-adapter-projection",
+      "source-aligned-hook",
+      "supports-link",
+      "qa-expectation"
+    ],
+    "prohibitedTransfers": [
+      "reference-subject-ui-copy",
+      "reference-subject-source-copy",
+      "reference-subject-runtime-owner-copy",
+      "reference-subject-storage-namespace-copy",
+      "reference-subject-learner-state-copy",
+      "reference-subject-evidence-or-score-copy",
+      "reference-subject-course-identity-copy",
+      "specialist-widget-use-outside-registered-type",
+      "automatic-prerequisite-activation",
+      "automatic-master-ready-promotion"
+    ],
+    "requiredInputGates": [
+      "L7-B1",
+      "L7-B2",
+      "L7-B3",
+      "L7-B4",
+      "L7-B5",
+      "L7-B6",
+      "L7-B7",
+      "L7-B8-DETERMINISTIC",
+      "L7-B8-BROWSER"
+    ]
+  },
+  "officialReferences": {
+    "russian": {
+      "id": "russian",
+      "designation": "OFFICIAL_LANGUAGE_REFERENCE_IMPLEMENTATION",
+      "engineRef": "russian-v13-specialist",
+      "route": "subjects/russian/index.html",
+      "offlinePolicyRef": "russian-rich-explicit",
+      "lessonTypes": [
+        "language"
+      ],
+      "sourceCoverage": {
+        "lessonCount": 26,
+        "sourceSlideCount": 1138,
+        "sourceFamily": "russian-rich-legacy"
+      },
+      "implementationRefs": [
+        "docs/migration/L7_B1_RUSSIAN_COVERAGE_AUDIT.generated.json",
+        "docs/migration/L7_B2_RUSSIAN_UNIVERSAL_ADAPTER.generated.json",
+        "docs/migration/L7_B3_RUSSIAN_TWIN_REGISTRY.generated.json",
+        "docs/migration/L7_B7_REFERENCE_EVIDENCE_SPACED_REVIEW.generated.json",
+        "docs/migration/L7_B8_REFERENCE_VISUAL_PEDAGOGICAL_QA.generated.json"
+      ],
+      "capabilities": [
+        {
+          "id": "russian-specialist-language-workspaces",
+          "transferMode": "contract-pattern",
+          "sourceWidgetRefs": [
+            "russian-dialogue-studio",
+            "russian-shadowing",
+            "russian-deep-speaking",
+            "russian-handwriting",
+            "russian-flashcards",
+            "russian-scheduled-exam"
+          ],
+          "consumerRule": "Use the language type profile and an independently registered downstream widget; Russian specialist widgets remain owned by the Russian engine."
+        },
+        {
+          "id": "russian-read-only-universal-projection",
+          "transferMode": "read-only-adapter-projection",
+          "consumerRule": "Project stable lesson and source identity without rewriting source records or legacy state keys."
+        },
+        {
+          "id": "russian-source-aligned-language-companion",
+          "transferMode": "source-aligned-hook",
+          "consumerRule": "Instantiate Russian Twin only from explicit reviewed alignment; missing alignment leaves the source lesson unchanged."
+        },
+        {
+          "id": "russian-evidence-and-review-shape",
+          "transferMode": "qa-expectation",
+          "consumerRule": "Reuse evidence-stage semantics and spaced-review boundaries, never Russian learner attempts or scores."
+        },
+        {
+          "id": "russian-responsive-offline-qa",
+          "transferMode": "qa-expectation",
+          "consumerRule": "Meet typed accessibility and explicit-pack offline expectations on the downstream subject's own surface."
+        }
+      ],
+      "claimBoundary": "Official reference status does not assert manual academic approval of every lesson, learner completion, current Master-ready state, runtime cutover or permission to reuse Russian specialist UI outside the language type."
+    },
+    "math": {
+      "id": "math",
+      "designation": "OFFICIAL_MATHEMATICS_REFERENCE_IMPLEMENTATION",
+      "engineRef": "math-e126-specialist",
+      "route": "subjects/math/index.html",
+      "offlinePolicyRef": "math-rich-explicit",
+      "lessonTypes": [
+        "mathematics"
+      ],
+      "sourceCoverage": {
+        "legacyLessonCount": 347,
+        "reviewedOverlayCount": 18,
+        "catalogCount": 365,
+        "sourceBlockCount": 5852,
+        "sourceFamilies": [
+          "reviewed-theory-overlay",
+          "legacy-math-runtime"
+        ]
+      },
+      "implementationRefs": [
+        "docs/migration/L7_B4_MATH_COVERAGE_PREREQUISITE_AUDIT.generated.json",
+        "docs/migration/L7_B5_MATH_UNIVERSAL_ADAPTER.generated.json",
+        "docs/migration/L7_B7_REFERENCE_EVIDENCE_SPACED_REVIEW.generated.json",
+        "docs/migration/L7_B8_REFERENCE_VISUAL_PEDAGOGICAL_QA.generated.json"
+      ],
+      "capabilities": [
+        {
+          "id": "math-authoritative-source-routing",
+          "transferMode": "read-only-adapter-projection",
+          "consumerRule": "Resolve stable source identity and precedence before rendering; reviewed overlays never silently replace legacy coverage."
+        },
+        {
+          "id": "math-typed-representations",
+          "transferMode": "contract-pattern",
+          "sourceWidgetRefs": [
+            "math-rich-theory-reader",
+            "math-formula-typesetter",
+            "math-step-solution",
+            "math-parameter-simulation",
+            "math-professor-oral"
+          ],
+          "consumerRule": "Use the downstream type profile and own registered widgets; do not copy the Math specialist surface."
+        },
+        {
+          "id": "math-downstream-support-graph",
+          "transferMode": "supports-link",
+          "consumerRule": "Math links are non-blocking review candidates until a reviewed downstream objective binding exists."
+        },
+        {
+          "id": "math-evidence-and-review-shape",
+          "transferMode": "qa-expectation",
+          "consumerRule": "Reuse derivation, solution, simulation and oral-evidence semantics without importing Math attempts or scores."
+        },
+        {
+          "id": "math-responsive-offline-qa",
+          "transferMode": "qa-expectation",
+          "consumerRule": "Preserve notation, assumptions, source truth, accessibility and explicit-pack offline behavior on the downstream surface."
+        }
+      ],
+      "claimBoundary": "Official reference status does not fill empty external banks, activate 341 system-derived prerequisite candidates, promote 18 overlays into full replacement coverage, assert learner completion or grant Master-ready."
+    }
+  },
+  "downstreamBindings": {
+    "programming": {
+      "subjectId": "programming",
+      "implementationRound": "L8",
+      "factorySnapshot": {
+        "engineRef": "programming-v2-specialist",
+        "route": "subjects/programming/index.html",
+        "lessonTypes": [
+          "programming",
+          "database",
+          "software-design"
+        ],
+        "offlinePolicyRef": "programming-rich-explicit"
+      },
+      "russianReference": {
+        "referenceId": "russian",
+        "capabilityRef": "russian-source-aligned-language-companion",
+        "availability": "source-aligned",
+        "typeProfiles": [
+          "programming",
+          "database",
+          "software-design"
+        ],
+        "activation": "source-alignment-and-authorized-opt-in-required"
+      },
+      "mathReference": {
+        "referenceId": "math",
+        "capabilityRef": "math-downstream-support-graph",
+        "relation": "supports",
+        "domainIds": [
+          "discrete-db-knowledge"
+        ],
+        "targetRefs": [
+          "programming:PR06",
+          "programming:PR20"
+        ],
+        "assessmentBlocking": false,
+        "masterReadyEffect": "none-until-reviewed-objective-binding",
+        "activation": "reviewed-objective-binding-required"
+      }
+    },
+    "ai": {
+      "subjectId": "ai",
+      "implementationRound": "L9",
+      "factorySnapshot": {
+        "engineRef": "light-elearning-v2",
+        "route": "subjects/ai/index.html",
+        "lessonTypes": [
+          "ml-data"
+        ],
+        "offlinePolicyRef": "light-core-explicit"
+      },
+      "russianReference": {
+        "referenceId": "russian",
+        "capabilityRef": "russian-source-aligned-language-companion",
+        "availability": "declared-awaiting-source-alignment",
+        "typeProfiles": [
+          "ml-data"
+        ],
+        "activation": "source-alignment-and-authorized-opt-in-required"
+      },
+      "mathReference": {
+        "referenceId": "math",
+        "capabilityRef": "math-downstream-support-graph",
+        "relation": "supports",
+        "domainIds": [
+          "linear-algebra-data",
+          "calculus-multivariable",
+          "probability-statistics",
+          "optimization",
+          "numerical-computational",
+          "discrete-db-knowledge",
+          "reliability-verification"
+        ],
+        "targetRefs": [
+          "ai:a_p01_l1",
+          "ai:a_p03_l1",
+          "ai:a_p05_l1",
+          "ai:a_p06_l1",
+          "ai:a_m302_l1",
+          "ai:a_p07_l1",
+          "ai:a_m402_l1"
+        ],
+        "assessmentBlocking": false,
+        "masterReadyEffect": "none-until-reviewed-objective-binding",
+        "activation": "reviewed-objective-binding-required"
+      }
+    },
+    "signal": {
+      "subjectId": "signal",
+      "implementationRound": "L9",
+      "factorySnapshot": {
+        "engineRef": "light-elearning-v2",
+        "route": "subjects/signal/index.html",
+        "lessonTypes": [
+          "ml-data",
+          "mathematics"
+        ],
+        "offlinePolicyRef": "light-core-explicit"
+      },
+      "russianReference": {
+        "referenceId": "russian",
+        "capabilityRef": "russian-source-aligned-language-companion",
+        "availability": "declared-awaiting-source-alignment",
+        "typeProfiles": [
+          "ml-data",
+          "mathematics"
+        ],
+        "activation": "source-alignment-and-authorized-opt-in-required"
+      },
+      "mathReference": {
+        "referenceId": "math",
+        "capabilityRef": "math-downstream-support-graph",
+        "relation": "supports",
+        "domainIds": [
+          "probability-statistics",
+          "differential-dynamics",
+          "signal-time-series",
+          "control",
+          "state-estimation"
+        ],
+        "targetRefs": [
+          "signal:t_p02_l1",
+          "signal:t_p05_l1",
+          "signal:t_m301_l1",
+          "signal:t_p01_l1"
+        ],
+        "assessmentBlocking": false,
+        "masterReadyEffect": "none-until-reviewed-objective-binding",
+        "activation": "reviewed-objective-binding-required"
+      }
+    },
+    "systems": {
+      "subjectId": "systems",
+      "implementationRound": "L10",
+      "factorySnapshot": {
+        "engineRef": "light-elearning-v2",
+        "route": "subjects/systems/index.html",
+        "lessonTypes": [
+          "asoiu-system",
+          "software-design"
+        ],
+        "offlinePolicyRef": "light-core-explicit"
+      },
+      "russianReference": {
+        "referenceId": "russian",
+        "capabilityRef": "russian-source-aligned-language-companion",
+        "availability": "declared-awaiting-source-alignment",
+        "typeProfiles": [
+          "asoiu-system",
+          "software-design"
+        ],
+        "activation": "source-alignment-and-authorized-opt-in-required"
+      },
+      "mathReference": {
+        "referenceId": "math",
+        "capabilityRef": "math-downstream-support-graph",
+        "relation": "supports",
+        "domainIds": [
+          "linear-algebra-data",
+          "calculus-multivariable",
+          "optimization",
+          "differential-dynamics",
+          "control",
+          "state-estimation",
+          "reliability-verification"
+        ],
+        "targetRefs": [
+          "systems:s_m101_l1",
+          "systems:s_m201_l1"
+        ],
+        "assessmentBlocking": false,
+        "masterReadyEffect": "none-until-reviewed-objective-binding",
+        "activation": "reviewed-objective-binding-required"
+      }
+    },
+    "research": {
+      "subjectId": "research",
+      "implementationRound": "L11",
+      "factorySnapshot": {
+        "engineRef": "light-elearning-v2",
+        "route": "subjects/research/index.html",
+        "lessonTypes": [
+          "research"
+        ],
+        "offlinePolicyRef": "light-core-explicit"
+      },
+      "russianReference": {
+        "referenceId": "russian",
+        "capabilityRef": "russian-source-aligned-language-companion",
+        "availability": "declared-awaiting-source-alignment",
+        "typeProfiles": [
+          "research"
+        ],
+        "activation": "source-alignment-and-authorized-opt-in-required"
+      },
+      "mathReference": {
+        "referenceId": "math",
+        "capabilityRef": "math-downstream-support-graph",
+        "relation": "supports",
+        "domainIds": [
+          "language-logic",
+          "numerical-computational",
+          "control",
+          "reliability-verification"
+        ],
+        "targetRefs": [
+          "research:r_p01_l1"
+        ],
+        "assessmentBlocking": false,
+        "masterReadyEffect": "none-until-reviewed-objective-binding",
+        "activation": "reviewed-objective-binding-required"
+      }
+    }
+  },
+  "downstreamImplementationBoundary": {
+    "ownEngineRequired": true,
+    "ownSourceAuthorityRequired": true,
+    "ownRegisteredWidgetsRequired": true,
+    "ownStorageNamespaceRequired": true,
+    "ownLearnerStateRequired": true,
+    "ownEvidenceRequired": true,
+    "ownAssessmentAuthorityRequired": true,
+    "factoryRegistrationMustRemainAuthoritative": true,
+    "typeProfileMustRemainAuthoritative": true,
+    "missingReferenceAlignmentBehavior": "continue-downstream-source-unchanged",
+    "missingReviewedMathBindingBehavior": "keep-support-link-inactive"
+  },
+  "retainedFindings": {
+    "russian": [
+      {
+        "id": "RUSSIAN_BUILD_APPLY_TARGET_ABSENT_IN_B2",
+        "status": "MISSING_HOOK_TARGET_ADDED_IN_B7_NOT_EVIDENCE",
+        "blocks": [
+          "current-russian-master-ready-claim"
+        ]
+      }
+    ],
+    "math": [
+      {
+        "id": "THEORY_OVERLAY_PARTIAL",
+        "status": "planned-gap",
+        "nextOwner": "L7-B5"
+      },
+      {
+        "id": "EXTERNAL_BANKS_EMPTY",
+        "status": "planned-gap",
+        "nextOwner": "L7-B5/L7-B7"
+      },
+      {
+        "id": "PREREQUISITES_SYSTEM_DERIVED",
+        "status": "review-required",
+        "nextOwner": "L7-B5/L7-B7"
+      }
+    ],
+    "global": [
+      {
+        "id": "NO_LEARNER_EVIDENCE_IMPORTED",
+        "status": "OPEN_BY_DESIGN",
+        "blocks": [
+          "current-reference-subject-master-ready-claim"
+        ]
+      }
+    ]
+  },
+  "foundationDisposition": {
+    "designation": "NOT_AN_OFFICIAL_REFERENCE_IMPLEMENTATION",
+    "role": "SUPPORTING_PREPARATORY_BRIDGE_AND_SINGLE_REVIEWED_PILOT",
+    "factoryPilot": true,
+    "reviewedRuntimeLessonId": "f_s01_l1",
+    "officialReferenceEligible": false,
+    "promotionRule": "Foundation requires claim-specific L21 content, assessment and simulation review plus explicit future reference expansion; B9 cannot promote it.",
+    "findings": [
+      {
+        "id": "FOUNDATION_TEMPLATE_CONTENT_REVIEW_REQUIRED",
+        "status": "OPEN_BLOCKING_CONTENT_ACCEPTANCE",
+        "observedSignal": "Fifteen preparatory lessons share one keyPoints set, one coreTheory set and one masteryCriteria set.",
+        "blocks": [
+          "foundation-academic-content-approval",
+          "foundation-reference-subject-pedagogical-acceptance"
+        ],
+        "nextOwner": "L21_CONTENT_OPERATIONS_AND_CURRICULUM_GOVERNANCE"
+      },
+      {
+        "id": "FOUNDATION_ASSESSMENT_NOT_MASTERY_QUALIFIED",
+        "status": "CONTROLLED_NOT_QUALIFIED",
+        "observedSignal": "Preparatory exercises and questions remain source templates and B7 keeps every evidence slot missing.",
+        "blocks": [
+          "foundation-assessment-quality-approval",
+          "foundation-master-ready-claim"
+        ],
+        "nextOwner": "L21_CONTENT_OPERATIONS_AND_CURRICULUM_GOVERNANCE"
+      },
+      {
+        "id": "FOUNDATION_SIMULATION_STAGE_DRIFT",
+        "status": "OPEN_BLOCKING_FULL_SIMULATION_COVERAGE",
+        "observedSignal": "The simulation source contains both prepare and preparatory records; only one observation and one practice record exactly match the preparatory stage.",
+        "blocks": [
+          "foundation-full-simulation-coverage-claim"
+        ],
+        "nextOwner": "L21_CONTENT_OPERATIONS_AND_CURRICULUM_GOVERNANCE"
+      },
+      {
+        "id": "FOUNDATION_B11_SINGLE_REFERENCE_SCOPE",
+        "status": "ACCEPTED_LIMITED_RUNTIME_SCOPE",
+        "observedSignal": "Exactly one enabled reference activation exists for foundation:f_s01_l1 and no expansion is allowed in B8.",
+        "blocks": [
+          "whole-foundation-universal-runtime-activation-claim"
+        ],
+        "nextOwner": "FUTURE_REVIEWED_REFERENCE_EXPANSION"
+      }
+    ]
+  },
+  "evidenceBaselines": {
+    "russianProjectionDigest": "8f0b9b8acd74fafc75bed0e5a69f3fe17aff1c2d983fea6e33f323d5fe7e64ba",
+    "russianTwinPackDigest": "bfa9b6fbf57df4a5558728fe9720abcb20e26b6f4a3fe615ab03456afac517d8",
+    "mathGraphDigest": "e768723bbfa66196edf1d3182d97f3bb39abf65ae64c043448926edea7757871",
+    "mathProjectionDigest": "d9f37b5f88d05688dc6c01c0b77fe7d5e8dbaa9a091bc3cfcb69e13601fc8210",
+    "evidenceCatalogDigest": "99bb3bec7ad202ecc81cf309da2171adb9b2876792c76b585af83afbdf7255aa",
+    "b8ProfileProjectionDigest": "5734de560783fb4c188b472bbcfe9fe884ee7d382497fdedf36569833d38356c"
+  },
+  "claimBoundary": {
+    "notClaimed": [
+      "runtime-cutover",
+      "source-content-copy-or-approval",
+      "all-reference-lessons-manually-approved",
+      "downstream-subject-implementation-complete",
+      "downstream-reference-binding-active",
+      "learner-completion",
+      "learner-evidence-imported",
+      "master-ready",
+      "foundation-official-reference-status",
+      "whole-repository-offline-precache",
+      "main-branch-merge"
+    ],
+    "passMeaning": "The two official reference designations, capability-specific downstream bindings, source truth, retained findings and non-copy boundaries are deterministic and fail closed."
+  },
+  "runtimeBoundary": {
+    "sourceMutationAllowed": false,
+    "runtimeCutoverAllowed": false,
+    "referenceUiCopyAllowed": false,
+    "learnerStateMigrationAllowed": false,
+    "evidenceWriteAllowed": false,
+    "scoreReuseAllowed": false,
+    "automaticPrerequisiteActivationAllowed": false,
+    "automaticMasterReadyAllowed": false,
+    "referenceActivationExpansionAllowed": false,
+    "serviceWorkerChangeAllowed": false,
+    "subjectPackPolicyChangeAllowed": false,
+    "mainMergeAllowed": false
+  },
+  "rollback": {
+    "behavior": "Remove the B9 designation registry, gate, report, decision record and CI wiring; restore the B3 type-parity metadata check if needed; retain B1-B8 artifacts and all subject source/runtime/state unchanged.",
+    "sourceContentImpact": "none",
+    "learnerStateImpact": "none",
+    "runtimeImpact": "none",
+    "offlinePolicyImpact": "none",
+    "mainBranchImpact": "none"
+  }
+}
