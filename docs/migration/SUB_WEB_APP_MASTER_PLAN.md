@@ -5,9 +5,9 @@ Nguồn phát triển duy nhất: `migration/webapp-l1-audit-storage`
 Baseline GitHub được giữ nguyên: `main@e383912354673bdce7a0059d6b9a23799d74e689`  
 Kênh phát hành cố định: **SUB WEB APP**
 
-Release đã chốt: **SUB WEB APP v1 · 2026.09.03-v1 · PASS**  
+Release hiện hành: **SUB WEB APP Hub v2 · 2026.09.03-hub-v2 · PASS**  
 URL production riêng tư: `https://bauman-sub-web-app.dinhnam3391.chatgpt.site`  
-Site source commit: `3f024477521447944c09a65c1c89ef15fd0ad7f9`
+Site source commit: `c6f5d4e58006e50eea0b729feff34ad12b2e3f49`
 
 ## 1. Quy ước thống nhất
 
@@ -26,7 +26,8 @@ Site source commit: `3f024477521447944c09a65c1c89ef15fd0ad7f9`
 
 - Lộ trình lõi hiện có: **25 lượt · 235 bước**.
 - Lượt phát hành cố định SUB WEB APP: **1 lượt · 12 bước**.
-- Tổng kế hoạch thống nhất: **26 lượt · 247 bước**.
+- Lượt tách Hub + 8 Subject Web Apps: **1 lượt · 18 bước**.
+- Tổng kế hoạch thống nhất: **27 lượt · 265 bước**.
 - Tiến độ học thuật hiện tại: L1–L7 PASS; L8-B1 PASS; bước kế tiếp sau khi đóng SUB WEB APP là **L8-B2 OOP + SOLID/Patterns**.
 
 ## 3. Lượt SWA · Fixed SUB WEB APP Release · 12/12 PASS
@@ -46,7 +47,28 @@ Site source commit: `3f024477521447944c09a65c1c89ef15fd0ad7f9`
 
 Kết quả cố định: Site version `1`, deployment `succeeded`, owner-only; bản runtime có 462 file, không còn hard-coded credential, không có asset vượt 24 MiB và giữ đủ 4.164 Russian dialogue records sau khi chia phần.
 
-## 4. Lộ trình lõi 25 lượt · 235 bước
+## 4. Lượt SWA-M1 · Hub + Subject Sites Split · 18/18 PASS
+
+1. Kiểm kê tám module và toàn bộ dependency runtime của từng môn.
+2. Khóa trách nhiệm: Hub điều phối; môn sở hữu code, dữ liệu, editor và release.
+3. Khóa contract `BAUMAN_SITE_BRIDGE_V1`.
+4. Giới hạn payload giao tiếp và exact-origin; không truyền credential hoặc kho dữ liệu.
+5. Dựng Subject Site shell, PWA manifest, Service Worker và JSON endpoint dùng chung.
+6. Tách Russian thành Site độc lập, giữ specialist engine và 4.164 dialogue records.
+7. Tách Math thành Site độc lập, giữ Math specialist engine và toàn bộ theory/simulation assets.
+8. Tách Programming thành Site độc lập.
+9. Tách AI thành Site độc lập.
+10. Tách Systems thành Site độc lập.
+11. Tách Signal thành Site độc lập.
+12. Tách Research thành Site độc lập.
+13. Tách Foundation thành Site độc lập.
+14. Kiểm tra JSON, JavaScript, entry, manifest, file size và hard-coded credential của tám Site.
+15. Phát hành tám Subject Site owner-only, mỗi Site version `1`.
+16. Refactor Hub: bỏ iframe và gói subject nội bộ; thêm registry URL và status reader.
+17. Phát hành SUB WEB APP Hub version `2`, chỉ còn 71 runtime file, khoảng 1,18 MiB.
+18. Ghi URL registry, rollback boundary, giới hạn local-device và điểm tiếp tục L8-B2.
+
+## 5. Lộ trình lõi 25 lượt · 235 bước
 
 | Lượt | Bước | Phạm vi | Trạng thái |
 |---:|---:|---|---|
@@ -76,7 +98,7 @@ Kết quả cố định: Site version `1`, deployment `succeeded`, owner-only; 
 | 24 | 9 | Learning Quality, Accessibility, Acceptance | Chưa bắt đầu |
 | 25 | 4 | Production, Backup, Rollback, Monitoring | Chưa bắt đầu; nâng cấp chính SUB WEB APP |
 
-## 5. Các cụm xử lý còn lại
+## 6. Các cụm xử lý còn lại
 
 ### Cụm A · Hoàn thiện học liệu và subject engines
 
@@ -94,20 +116,21 @@ L17–L20, tổng **24 bước**: API tối thiểu, auth thật, database recor
 
 L21–L25, tổng **32 bước**: provenance, review/publish, security/privacy, PWA public staging, accessibility/UAT và production monitoring.
 
-## 6. Gate phát hành SUB WEB APP
+## 7. Gate phát hành SUB WEB APP
 
 Một version chỉ được phát hành khi tất cả điều kiện sau PASS:
 
-- Không thiếu `index.html`, PWA manifest, Service Worker, release marker và tám subject entry.
+- Hub không thiếu `index.html`, PWA manifest, Service Worker, release marker và registry tám Subject Site.
+- Mỗi Subject Site có entry, editor, manifest, status JSON, bridge contract và origin riêng.
 - Tất cả JSON trong gói triển khai parse được; JavaScript quan trọng qua syntax check.
 - Không có credential mặc định hoặc password hard-coded.
 - Không asset đơn lẻ vượt ngân sách hosting; dữ liệu chia phần phải giữ nguyên tổng record.
-- Route Main → subject và subject asset path cùng origin.
+- Hub chỉ mở URL Site đã khóa trong registry; asset của mỗi môn chỉ nằm trên origin của môn đó.
 - Service Worker dùng version mới, cài đặt atomic và không precache dữ liệu nặng.
 - Source SHA và `main` preservation SHA khớp release manifest.
 - Site version được lưu bất biến; rollback quay về version trước, không sửa `main`.
 
-## 7. Dọn branch GitHub
+## 8. Dọn branch GitHub
 
 Audit ngày 2026-09-03 ghi nhận **41 branch**, trong khi trạng thái mong muốn chỉ có:
 
@@ -116,6 +139,6 @@ Audit ngày 2026-09-03 ghi nhận **41 branch**, trong khi trạng thái mong mu
 
 Ba mươi chín branch lịch sử phải được xóa sau khi lưu bảng SHA phục hồi. Không tạo branch `SUB WEB APP`; SUB WEB APP là kênh Site có version, tránh tái phát sinh branch rác.
 
-## 8. Điểm tiếp tục
+## 9. Điểm tiếp tục
 
-Sau khi Lượt SWA đủ 12/12 PASS và URL hoạt động, tiếp tục đúng **L8-B2**. Mọi checkpoint sau đó cập nhật SUB WEB APP bằng Site version mới; `main` không đổi trừ khi người dùng yêu cầu rõ ràng.
+Sau khi Lượt SWA-M1 đủ 18/18 PASS, tiếp tục đúng **L8-B2**. Thay đổi Hub tạo Hub version mới; thay đổi một môn chỉ tạo version mới cho đúng Subject Site đó. `main` không đổi trừ khi người dùng yêu cầu rõ ràng.

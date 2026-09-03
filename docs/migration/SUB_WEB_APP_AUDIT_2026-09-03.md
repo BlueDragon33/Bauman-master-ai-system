@@ -16,6 +16,17 @@ Source đã có Web App runtime và tám môn học, nhưng trước đợt xử
 - `main` vẫn ở đúng SHA bảo toàn `e383912354673bdce7a0059d6b9a23799d74e689`.
 - Phần chưa hoàn tất: backend/auth/cloud sync thật thuộc L17–L20; 39 branch lịch sử vẫn chờ xóa sau khi lập bảng SHA phục hồi.
 
+## Nâng cấp kiến trúc Hub + 8 Subject Sites
+
+- `SUB WEB APP Hub v2` đã deploy thành công tại URL cũ; Site source commit `c6f5d4e58006e50eea0b729feff34ad12b2e3f49`.
+- Hub giảm từ 462 xuống 71 runtime file, khoảng 1,18 MiB; không còn đóng gói source hoặc dữ liệu của môn học.
+- Đã bỏ iframe môn học. Mọi nút mở môn chuyển sang một Site độc lập.
+- Tám Subject Site đều có version `1`, PWA manifest, Service Worker, editor, subject descriptor, status JSON và contract JSON.
+- Contract duy nhất: `BAUMAN_SITE_BRIDGE_V1`; transport gồm query context, exact-origin `postMessage` và JSON endpoint read-only.
+- Tám Site qua validator: toàn bộ JSON parse được, JavaScript qua syntax check, không có hard-coded credential và không có asset vượt 24 MiB.
+- Russian, Math và các specialist engine không bị rewrite; dữ liệu được chuyển nguyên khối sang Site sở hữu tương ứng.
+- Hub validator: PASS; 8 distinct origins; 0 embedded subject; 0 HTML reference failure; 0 credential.
+
 ## Số liệu kiểm kê
 
 - Source phát triển: `migration/webapp-l1-audit-storage@998fad0d42b4c8a7ac7678f67e8d653ad24d6363`.
