@@ -1,15 +1,21 @@
 # CODEX_STATE
 
-Current task: `L8-B1_PROGRAMMING_PREREQUISITE_ROADMAP`
+Current task: `L8-B2_OOP_SOLID_PATTERNS`
 
-Status: `L7_B9_PASS_L8_READY`
+Status: `L8_B1_PASS_L8_B2_READY`
 
-Date: 2026-08-27
+Date: 2026-09-03
 Branch: `migration/webapp-l1-audit-storage`
 Base branch: `main`
 Main sync status: `branch_only`
 
 Files changed:
+- `assets/data/lesson/programming-prerequisite-policy-v1.json`
+- `assets/data/lesson/programming-prerequisite-graph-v1.generated.json`
+- `scripts/academic/l8-b1-programming-prerequisite-roadmap-audit.cjs`
+- `docs/migration/L8_B1_PROGRAMMING_PREREQUISITE_ROADMAP.md`
+- `docs/migration/L8_B1_PROGRAMMING_PREREQUISITE_ROADMAP.generated.json`
+- `.github/workflows/migration-l8-programming.yml`
 - `assets/data/lesson/reference-implementation-registry-v1.json`
 - `scripts/academic/l7-b9-reference-implementation-checkpoint-regression.cjs`
 - `docs/migration/L7_B9_REFERENCE_IMPLEMENTATION_CHECKPOINT.md`
@@ -63,6 +69,40 @@ Files changed:
 - `CODEX_STATE.md`
 
 What changed:
+- Audited all 48 current Programming lessons across six stages while retaining
+  the `programming-v2-specialist` engine, route, source authority, offline
+  policy and exact Subject Factory distribution of 28 programming, four
+  database and sixteen software-design lessons.
+- Recorded that no authoritative Programming lesson currently declares a
+  prerequisite/dependency field; B1 therefore creates only a read-only,
+  system-curated review-candidate graph rather than silently changing source
+  order, navigation, assessment or learner state.
+- Partitioned exactly sixteen `vn`/`prep` lessons into twelve mandatory-core
+  and four Data/Database branch-introduction lessons, across six primary
+  strands. Added seventeen concept-dependency candidates with five roots;
+  every edge remains manual-review-required, runtime-inactive and
+  assessment-non-blocking.
+- Kept `PR17`–`PR48` registered but deliberately unsequenced for their owning
+  L8-B2 through B14 steps, with explicit handoff boundaries that do not claim
+  those later steps complete.
+- Preserved the L7 reference contract: all 48 Programming terminology records
+  remain Russian-Twin source-aligned, while Math continues to provide only
+  non-blocking `supports` links for `PR06` and `PR20`.
+- Retained six open findings covering absent source prerequisites, unapproved
+  Python depth, thin Algorithms/Data Structures coverage, advanced Database
+  gaps, unqualified auxiliary assessment content and the planned-only code
+  runner/SQL playground. Each finding keeps a later L8 owner and blocks its
+  corresponding completion or Master-ready claim.
+- Added a dedicated L8 workflow plus 56 fail-closed checks and fourteen
+  protection mutations. The generated graph object digest is
+  `9a91971995b7b7c91bafadbdac0a340362cdbe6b1427607a0f19c5cf7fe612d0`.
+- Locked remote evidence for feature commit
+  `6d82643e90ada63f49ee26c350911b62b3daf45e`: L8 run `33701368108`, L7 run
+  `33701368085`, L6 run `33701368097` and full L5 browser/offline run
+  `33701368049` all succeeded. L8 artifact `9873627642` has digest
+  `sha256:e718271a39befdfba33078b4afc5de3c5c93684ca46f4fd25ab25388db550105`;
+  `migration/l8-b1-programming-prerequisite` is `success` and `main` remains
+  `e383912354673bdce7a0059d6b9a23799d74e689`.
 - Designated exactly Russian and Math as the official, capability-specific
   reference implementations for later subject work; Foundation remains a
   supporting preparatory bridge and single reviewed pilot.

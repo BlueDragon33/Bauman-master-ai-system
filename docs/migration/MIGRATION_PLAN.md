@@ -477,7 +477,29 @@ Trạng thái: **B1–B9 PASS · L7 hoàn tất · L8-B1 kế tiếp**.
 
 ## Lượt 8 · Programming Core FULL · Python/OOP/Algorithms/DB/Software Engineering · 14 bước
 
+Trạng thái: **B1 PASS theo nghĩa audit/roadmap · L8-B2 kế tiếp**.
+
 1. Python fundamentals roadmap theo prerequisite thực tế.
+   **PASS theo nghĩa source-preserving, review-candidate roadmap**: audit giữ
+   đủ 48/48 lesson, sáu stage × tám bài và type parity 28 programming + 4
+   database + 16 software-design. Nguồn có 0 prerequisite field, nên graph chỉ
+   rà 16 bài `vn`/`prep`: 12 mandatory core + 4 Data/Database introduction,
+   sáu strand, 17 concept-dependency candidate và năm root. Mọi edge đều
+   manual-review-required, runtime-inactive, assessment-non-blocking; `PR17`–
+   `PR48` vẫn registered nhưng chưa sequenced trước B2–B14. Russian Twin giữ
+   48 source-aligned terminology record; Math chỉ `supports` không blocking
+   cho `PR06`/`PR20`. Sáu finding về source prerequisite, Python depth,
+   Algorithms, Database, auxiliary content và planned widgets vẫn mở, có owner
+   và chặn claim tương ứng. Gate 56/56 cùng 14/14 protection mutation PASS;
+   graph digest
+   `9a91971995b7b7c91bafadbdac0a340362cdbe6b1427607a0f19c5cf7fe612d0`.
+   Feature commit `6d82643e90ada63f49ee26c350911b62b3daf45e`; L8 run
+   `33701368108`, L7 run `33701368085`, L6 run `33701368097` và full L5
+   runtime/browser/offline run `33701368049` đều PASS. Context
+   `migration/l8-b1-programming-prerequisite` là `success`; artifact
+   `9873627642` có digest
+   `sha256:e718271a39befdfba33078b4afc5de3c5c93684ca46f4fd25ab25388db550105`;
+   `main` không thay đổi.
 2. OOP + SOLID/patterns cần cho ИУ-5.
 3. NumPy/Pandas/data pipeline.
 4. Testing/debugging/Git.
