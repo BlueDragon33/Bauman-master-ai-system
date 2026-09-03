@@ -1,0 +1,71 @@
+name: Migration L8 Programming Regression
+
+on:
+  push:
+    branches:
+      - migration/webapp-l1-audit-storage
+    paths:
+      - subjects/programming/**
+      - assets/data/roadmap/**
+      - assets/data/lesson/**
+      - scripts/academic/l8-**
+      - docs/migration/L8_**
+      - docs/migration/MIGRATION_PLAN.md
+      - CODEX_STATE.md
+      - .github/workflows/migration-l8-programming.yml
+  pull_request:
+    branches:
+      - main
+      - migration/webapp-l1-audit-storage
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  statuses: write
+
+jobs:
+  l8-programming:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v5
+
+      - name: Use Node.js 24
+        uses: actions/setup-node@v5
+        with:
+          node-version: '24'
+
+      - name: Run L8-B1 Programming prerequisite roadmap audit
+        id: b1_gate
+        run: |
+          node --check scripts/academic/l8-b1-programming-prerequisite-roadmap-audit.cjs
+          node scripts/academic/l8-b1-programming-prerequisite-roadmap-audit.cjs
+          git diff --exit-code -- assets/data/lesson/programming-prerequisite-graph-v1.generated.json
+          git diff --exit-code -- docs/migration/L8_B1_PROGRAMMING_PREREQUISITE_ROADMAP.generated.json
+
+      - name: Publish L8-B1 status
+        if: ${{ always() && github.event_name == 'push' && steps.b1_gate.outcome != 'skipped' }}
+        env:
+          GH_TOKEN: ${{ github.token }}
+          GATE_OUTCOME: ${{ steps.b1_gate.outcome }}
+        run: |
+          STATE=failure
+          if [ "$GATE_OUTCOME" = "success" ]; then STATE=success; fi
+          gh api --method POST "repos/${GITHUB_REPOSITORY}/statuses/${GITHUB_SHA}" \
+            -f state="$STATE" \
+            -f context="migration/l8-b1-programming-prerequisite" \
+            -f description="L8-B1 Programming prerequisite roadmap: ${GATE_OUTCOME}" \
+            -f target_url="${GITHUB_SERVER_URL}/${GITHUB_REPOSITORY}/actions/runs/${GITHUB_RUN_ID}"
+
+      - name: Upload L8-B1 evidence
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: l8-b1-programming-prerequisite-${{ github.sha }}
+          path: |
+            assets/data/lesson/programming-prerequisite-policy-v1.json
+            assets/data/lesson/programming-prerequisite-graph-v1.generated.json
+            docs/migration/L8_B1_PROGRAMMING_PREREQUISITE_ROADMAP.md
+            docs/migration/L8_B1_PROGRAMMING_PREREQUISITE_ROADMAP.generated.json
+          if-no-files-found: error
+          retention-days: 14

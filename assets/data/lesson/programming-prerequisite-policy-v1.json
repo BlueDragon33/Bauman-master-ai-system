@@ -1,0 +1,599 @@
+{
+  "policyId": "bauman-programming-prerequisite-policy",
+  "policyVersion": "1.0.0",
+  "release": "L8-B1-PROGRAMMING-PREREQUISITE-ROADMAP-V1",
+  "status": "AUDIT_ROADMAP_RUNTIME_UNCHANGED",
+  "programIdentity": {
+    "department": "ИУ-5",
+    "officialPublishedDirectionCode": "09.04.01",
+    "personalizedDisplayCode": "09.04.01/11"
+  },
+  "sourceAuthority": {
+    "lessons": "subjects/programming/data/lessons.json",
+    "curriculum": "subjects/programming/data/curriculum.json",
+    "manifest": "subjects/programming/subject-manifest.json",
+    "subjectFactory": "assets/data/lesson/subject-factory-registry-v1.json#subjects.programming",
+    "referenceImplementationBinding": "assets/data/lesson/reference-implementation-registry-v1.json#downstreamBindings.programming",
+    "russianTwinProfile": "assets/data/lesson/russian-twin-registry-v1.json#subjectProfiles.programming",
+    "roadmap": "assets/data/roadmap/iu5-090401-11-v3.json",
+    "rule": "The existing 48 Programming lesson records and their specialist engine remain authoritative. L8-B1 adds a read-only, system-curated review candidate roadmap and never inserts inferred prerequisites into source lessons."
+  },
+  "sourceBaselines": {
+    "lessonsDigest": "4272fa90632802c497bcf1fdf87c7dcc50f272d24e0ab48b8125039203af5a6e",
+    "curriculumDigest": "e1939171c20f4b6c4294e096423d74ff9221c952a39602aa9c0a2c2edc520086",
+    "manifestDigest": "ab50855cab5f97c30cf43696ef0b5034291fa7038973855a0b6479bd41abb4ba",
+    "factoryProgrammingDigest": "3dd81abc5cef04ae4d1e3180481605040ea788345ed21116e271a6e125a154eb",
+    "referenceBindingDigest": "63c0525037d528584ecc0da53a5de58a6563a3c4209a3b76d477135209e50367",
+    "russianTwinProfileDigest": "e05e85c5b6e2958a9aac3ad760c96ac805d4928f69b1979f5a11c162739a6c01",
+    "roadmapDigest": "a505156771af068a5586fe4913c4aa4c1275cab0b2c4b3ad579bb2e3abe12d3f"
+  },
+  "scope": {
+    "auditedLessonCount": 48,
+    "foundationStageIds": [
+      "vn",
+      "prep"
+    ],
+    "foundationLessonCount": 16,
+    "downstreamRegisteredLessonCount": 32,
+    "mandatoryCoreLessonIds": [
+      "PR01",
+      "PR02",
+      "PR03",
+      "PR07",
+      "PR08",
+      "PR09",
+      "PR10",
+      "PR11",
+      "PR12",
+      "PR13",
+      "PR14",
+      "PR16"
+    ],
+    "branchIntroductionLessonIds": [
+      "PR04",
+      "PR05",
+      "PR06",
+      "PR15"
+    ],
+    "rule": "Only the sixteen vn/prep lessons receive B1 dependency review. PR17-PR48 remain registered and source-visible but deliberately unsequenced until their owning L8 steps."
+  },
+  "foundationStrands": [
+    {
+      "id": "python-core",
+      "title": "Environment and Python core",
+      "primaryLessonIds": [
+        "PR01",
+        "PR03"
+      ],
+      "futureOwners": [
+        "L8-B2",
+        "L8-B3",
+        "L8-B4"
+      ]
+    },
+    {
+      "id": "algorithmic-foundation",
+      "title": "Algorithmic thinking and introductory data structures",
+      "primaryLessonIds": [
+        "PR02",
+        "PR11"
+      ],
+      "futureOwners": [
+        "L8-B5",
+        "L8-B6"
+      ]
+    },
+    {
+      "id": "data-computing-introduction",
+      "title": "NumPy, Pandas and file data introduction",
+      "primaryLessonIds": [
+        "PR04",
+        "PR05",
+        "PR12"
+      ],
+      "futureOwners": [
+        "L8-B3"
+      ]
+    },
+    {
+      "id": "database-introduction",
+      "title": "SQL and relational database introduction",
+      "primaryLessonIds": [
+        "PR06",
+        "PR15"
+      ],
+      "futureOwners": [
+        "L8-B7",
+        "L8-B8",
+        "L8-B9",
+        "L8-B10"
+      ]
+    },
+    {
+      "id": "engineering-hygiene",
+      "title": "Versioning, reproducibility, debugging and unit testing",
+      "primaryLessonIds": [
+        "PR07",
+        "PR08",
+        "PR13",
+        "PR14"
+      ],
+      "futureOwners": [
+        "L8-B4",
+        "L8-B12",
+        "L8-B13",
+        "L8-B14"
+      ]
+    },
+    {
+      "id": "russian-technical-communication",
+      "title": "Russian technical explanation and bilingual documentation",
+      "primaryLessonIds": [
+        "PR09",
+        "PR10",
+        "PR16"
+      ],
+      "futureOwners": [
+        "L8-B14",
+        "L12"
+      ]
+    }
+  ],
+  "dependencyPolicy": {
+    "graphStatus": "review-candidate-not-runtime-active",
+    "allowedRelations": [
+      "candidate-required-foundation",
+      "candidate-supporting-foundation"
+    ],
+    "requiredState": "practised",
+    "assessmentBlocking": false,
+    "runtimeActive": false,
+    "manualReviewRequired": true,
+    "provenance": "system-curated-concept-dependency",
+    "sourceMutation": false,
+    "curriculumMutation": false,
+    "learnerStateMutation": false,
+    "aiMayPromote": false,
+    "unknownLessonBehavior": "fail-closed",
+    "rule": "An edge expresses a concept dependency inferred from the current lesson objective and title. It is not an official source prerequisite and cannot unlock, lock, score or promote a learner before explicit academic review."
+  },
+  "foundationEdges": [
+    {
+      "fromLessonId": "PR01",
+      "toLessonId": "PR03",
+      "relation": "candidate-required-foundation",
+      "rationale": "A reproducible Python environment is needed before running the syntax, functions and modules taught in PR03."
+    },
+    {
+      "fromLessonId": "PR03",
+      "toLessonId": "PR04",
+      "relation": "candidate-required-foundation",
+      "rationale": "NumPy work assumes Python values, functions and modules."
+    },
+    {
+      "fromLessonId": "PR04",
+      "toLessonId": "PR05",
+      "relation": "candidate-required-foundation",
+      "rationale": "Pandas table work builds on array shape and vectorized data reasoning."
+    },
+    {
+      "fromLessonId": "PR01",
+      "toLessonId": "PR08",
+      "relation": "candidate-required-foundation",
+      "rationale": "Notebook reproducibility requires a known executable environment."
+    },
+    {
+      "fromLessonId": "PR03",
+      "toLessonId": "PR08",
+      "relation": "candidate-required-foundation",
+      "rationale": "A reproducible notebook assumes the learner can read and run basic Python."
+    },
+    {
+      "fromLessonId": "PR07",
+      "toLessonId": "PR08",
+      "relation": "candidate-supporting-foundation",
+      "rationale": "Version control supports reproducible notebook and README history without being a runtime prerequisite."
+    },
+    {
+      "fromLessonId": "PR02",
+      "toLessonId": "PR10",
+      "relation": "candidate-required-foundation",
+      "rationale": "Explaining pseudocode in Russian assumes an algorithmic input-process-output model."
+    },
+    {
+      "fromLessonId": "PR09",
+      "toLessonId": "PR10",
+      "relation": "candidate-required-foundation",
+      "rationale": "Russian pseudocode explanation requires the preparatory computing terminology introduced in PR09."
+    },
+    {
+      "fromLessonId": "PR02",
+      "toLessonId": "PR11",
+      "relation": "candidate-required-foundation",
+      "rationale": "Data-structure choices require basic algorithmic and complexity reasoning."
+    },
+    {
+      "fromLessonId": "PR03",
+      "toLessonId": "PR11",
+      "relation": "candidate-required-foundation",
+      "rationale": "The introductory structures are exercised through current Python types and code."
+    },
+    {
+      "fromLessonId": "PR03",
+      "toLessonId": "PR12",
+      "relation": "candidate-required-foundation",
+      "rationale": "File, JSON and CSV workflows assume Python functions and data containers."
+    },
+    {
+      "fromLessonId": "PR03",
+      "toLessonId": "PR13",
+      "relation": "candidate-required-foundation",
+      "rationale": "Debugging, exceptions and logging require runnable Python code."
+    },
+    {
+      "fromLessonId": "PR03",
+      "toLessonId": "PR14",
+      "relation": "candidate-required-foundation",
+      "rationale": "Unit tests require functions or modules with observable behavior."
+    },
+    {
+      "fromLessonId": "PR13",
+      "toLessonId": "PR14",
+      "relation": "candidate-required-foundation",
+      "rationale": "Failure interpretation and exception behavior support meaningful pytest assertions."
+    },
+    {
+      "fromLessonId": "PR06",
+      "toLessonId": "PR15",
+      "relation": "candidate-required-foundation",
+      "rationale": "JOIN, GROUP BY and index reasoning assume basic SQL and relational concepts."
+    },
+    {
+      "fromLessonId": "PR07",
+      "toLessonId": "PR16",
+      "relation": "candidate-supporting-foundation",
+      "rationale": "Naming, comments and bilingual documentation are strengthened by versioned review history."
+    },
+    {
+      "fromLessonId": "PR09",
+      "toLessonId": "PR16",
+      "relation": "candidate-required-foundation",
+      "rationale": "Bilingual technical documentation requires the reviewed Russian computing terminology source."
+    }
+  ],
+  "futureStepHandoffs": [
+    {
+      "stepIds": [
+        "L8-B2"
+      ],
+      "track": "oop-solid-patterns",
+      "currentAnchorLessonIds": [
+        "PR17"
+      ],
+      "requiredFoundationLessonIds": [
+        "PR03",
+        "PR11"
+      ],
+      "supportingFoundationLessonIds": [
+        "PR14",
+        "PR16"
+      ],
+      "boundary": "B1 records readiness inputs only; B2 owns OOP, SOLID and pattern sequencing and depth."
+    },
+    {
+      "stepIds": [
+        "L8-B3"
+      ],
+      "track": "numpy-pandas-data-pipeline",
+      "currentAnchorLessonIds": [
+        "PR04",
+        "PR05",
+        "PR25"
+      ],
+      "requiredFoundationLessonIds": [
+        "PR03",
+        "PR04",
+        "PR05",
+        "PR12"
+      ],
+      "supportingFoundationLessonIds": [
+        "PR14"
+      ],
+      "boundary": "B3 owns data-pipeline content and may revise this candidate handoff after academic review."
+    },
+    {
+      "stepIds": [
+        "L8-B4"
+      ],
+      "track": "testing-debugging-git",
+      "currentAnchorLessonIds": [
+        "PR07",
+        "PR13",
+        "PR14",
+        "PR23",
+        "PR24"
+      ],
+      "requiredFoundationLessonIds": [
+        "PR03",
+        "PR07",
+        "PR13",
+        "PR14"
+      ],
+      "supportingFoundationLessonIds": [
+        "PR08",
+        "PR16"
+      ],
+      "boundary": "B4 owns executable testing, debugging and Git evidence; B1 does not qualify existing activities."
+    },
+    {
+      "stepIds": [
+        "L8-B5",
+        "L8-B6"
+      ],
+      "track": "algorithms-data-structures",
+      "currentAnchorLessonIds": [
+        "PR02",
+        "PR10",
+        "PR11"
+      ],
+      "requiredFoundationLessonIds": [
+        "PR02",
+        "PR03",
+        "PR11"
+      ],
+      "supportingFoundationLessonIds": [
+        "PR10"
+      ],
+      "boundary": "B5-B6 own practical search, sort, hash, tree and graph coverage; B1 does not infer missing lessons."
+    },
+    {
+      "stepIds": [
+        "L8-B7",
+        "L8-B8",
+        "L8-B9",
+        "L8-B10"
+      ],
+      "track": "database-information-systems",
+      "currentAnchorLessonIds": [
+        "PR06",
+        "PR15",
+        "PR20",
+        "PR21"
+      ],
+      "requiredFoundationLessonIds": [
+        "PR06",
+        "PR15"
+      ],
+      "supportingFoundationLessonIds": [
+        "PR03",
+        "PR12"
+      ],
+      "boundary": "B7-B10 own SQL depth, schema, transactions, optimization and post-relational coverage; Math remains a non-blocking support reference."
+    },
+    {
+      "stepIds": [
+        "L8-B11",
+        "L8-B12"
+      ],
+      "track": "software-engineering-system-design",
+      "currentAnchorLessonIds": [
+        "PR17",
+        "PR18",
+        "PR19",
+        "PR22",
+        "PR24",
+        "PR32"
+      ],
+      "requiredFoundationLessonIds": [
+        "PR03",
+        "PR11",
+        "PR14"
+      ],
+      "supportingFoundationLessonIds": [
+        "PR07",
+        "PR16"
+      ],
+      "boundary": "B11-B12 own requirements, UML, architecture, lifecycle and project-management sequencing."
+    },
+    {
+      "stepIds": [
+        "L8-B13"
+      ],
+      "track": "programming-interactive-ui",
+      "currentAnchorLessonIds": [],
+      "requiredFoundationLessonIds": [
+        "PR03",
+        "PR06",
+        "PR13",
+        "PR14"
+      ],
+      "supportingFoundationLessonIds": [
+        "PR07",
+        "PR08"
+      ],
+      "boundary": "Code runner and SQL playground stay planned-L8 with static fallbacks until B13 implements and tests them."
+    },
+    {
+      "stepIds": [
+        "L8-B14"
+      ],
+      "track": "full-subject-acceptance",
+      "currentAnchorLessonIds": [],
+      "requiredFoundationLessonIds": [
+        "PR01",
+        "PR02",
+        "PR03",
+        "PR07",
+        "PR08",
+        "PR09",
+        "PR10",
+        "PR11",
+        "PR12",
+        "PR13",
+        "PR14",
+        "PR16"
+      ],
+      "supportingFoundationLessonIds": [
+        "PR04",
+        "PR05",
+        "PR06",
+        "PR15"
+      ],
+      "boundary": "B14 owns full content, assessment, accessibility, offline, language-hook and Master-ready acceptance; B1 grants none of those claims."
+    }
+  ],
+  "referenceBindings": {
+    "russianTwin": {
+      "referenceId": "russian",
+      "availability": "source-aligned",
+      "sourceAlignedLessonCount": 48,
+      "typeProfiles": [
+        "programming",
+        "database",
+        "software-design"
+      ],
+      "activation": "source-alignment-and-authorized-opt-in-required",
+      "learnerStateMutation": false
+    },
+    "mathSupport": {
+      "referenceId": "math",
+      "relation": "supports",
+      "domainIds": [
+        "discrete-db-knowledge"
+      ],
+      "targetLessonIds": [
+        "PR06",
+        "PR20"
+      ],
+      "assessmentBlocking": false,
+      "runtimeActive": false,
+      "masterReadyEffect": "none-until-reviewed-objective-binding"
+    }
+  },
+  "coverageExpectations": {
+    "stageCounts": {
+      "vn": 8,
+      "prep": 8,
+      "hk1": 8,
+      "hk2": 8,
+      "hk3": 8,
+      "hk4": 8
+    },
+    "lessonTypeCounts": {
+      "programming": 28,
+      "database": 4,
+      "software-design": 16
+    },
+    "lessonSlidesEach": 5,
+    "auxiliaryRecords": {
+      "grammar": 48,
+      "grammarPath": 48,
+      "knowledgeIndex": 48,
+      "stageMindmaps": 6,
+      "exercises": 144,
+      "tests": 384,
+      "simulations": 96
+    }
+  },
+  "knownFindings": [
+    {
+      "code": "SOURCE_PREREQUISITES_ABSENT",
+      "status": "OPEN_REVIEW_REQUIRED",
+      "evidence": "None of the 48 authoritative lesson records declares a prerequisite or dependency field; all 17 B1 edges are system-curated review candidates.",
+      "blocks": [
+        "official-runtime-prerequisite-claim",
+        "learner-lock-or-unlock"
+      ],
+      "nextOwner": "L8-B14_FULL_SUBJECT_QA"
+    },
+    {
+      "code": "PYTHON_FUNDAMENTALS_DEPTH_NOT_YET_ACCEPTED",
+      "status": "OPEN_BLOCKING_FULL_CONTENT_ACCEPTANCE",
+      "evidence": "PR03 is the single broad source lesson for Python types, functions and modules, and all 48 lessons currently use the same five slide-title roles.",
+      "blocks": [
+        "programming-full-content-acceptance",
+        "programming-master-ready"
+      ],
+      "nextOwner": "L8-B14_FULL_SUBJECT_QA"
+    },
+    {
+      "code": "ALGORITHMS_DATA_STRUCTURES_COVERAGE_THIN",
+      "status": "OPEN_PLANNED_L8_B5_B6",
+      "evidence": "The current explicit anchors are PR02, PR10 and PR11; no source title explicitly covers search, sort, hashing, trees, graphs or graph traversal.",
+      "blocks": [
+        "algorithms-track-complete",
+        "programming-master-ready"
+      ],
+      "nextOwner": "L8-B5_L8-B6"
+    },
+    {
+      "code": "ADVANCED_DATABASE_COVERAGE_GAPS",
+      "status": "OPEN_PLANNED_L8_B7_B10",
+      "evidence": "Only PR06, PR15, PR20 and PR21 are classified as database; no source title explicitly covers normalization, transactions, query plans, database optimization or NoSQL.",
+      "blocks": [
+        "database-track-complete",
+        "programming-master-ready"
+      ],
+      "nextOwner": "L8-B7_L8-B10"
+    },
+    {
+      "code": "AUXILIARY_CONTENT_NOT_ACADEMICALLY_QUALIFIED",
+      "status": "OPEN_REVIEW_REQUIRED",
+      "evidence": "Counts exist for 144 exercises, 384 test questions and 96 simulations, but L8-B1 does not qualify their correctness, difficulty, executability or mastery evidence.",
+      "blocks": [
+        "assessment-quality-approval",
+        "programming-master-ready"
+      ],
+      "nextOwner": "L8-B14_FULL_SUBJECT_QA"
+    },
+    {
+      "code": "INTERACTIVE_WIDGETS_DECLARED_NOT_IMPLEMENTED",
+      "status": "OPEN_PLANNED_L8_B13",
+      "evidence": "Subject Factory marks code-runner and sql-playground as planned-L8 with no Master-ready authority until implemented.",
+      "blocks": [
+        "interactive-programming-ui-complete"
+      ],
+      "nextOwner": "L8-B13"
+    }
+  ],
+  "claimBoundary": {
+    "notClaimed": [
+      "source-prerequisites-are-official",
+      "runtime-prerequisite-enforcement",
+      "learner-locking-or-unlocking",
+      "all-48-lessons-manually-approved",
+      "programming-content-depth-approved",
+      "assessment-quality-approved",
+      "L8-B2-through-B14-complete",
+      "learner-completion",
+      "learner-evidence-imported",
+      "master-ready",
+      "runtime-or-ui-cutover",
+      "whole-repository-offline-precache",
+      "main-branch-merge"
+    ],
+    "passMeaning": "The 48-lesson source and specialist ownership are preserved, the sixteen-lesson foundation scope and seventeen concept-dependency candidates are deterministic and fail closed, and every unresolved depth or implementation claim remains routed to a later owner."
+  },
+  "runtimeBoundary": {
+    "sourceMutationAllowed": false,
+    "curriculumMutationAllowed": false,
+    "runtimeCutoverAllowed": false,
+    "navigationReorderAllowed": false,
+    "learnerStateMutationAllowed": false,
+    "assessmentBlockingAllowed": false,
+    "automaticPrerequisiteActivationAllowed": false,
+    "contentCompletionClaimAllowed": false,
+    "automaticMasterReadyAllowed": false,
+    "serviceWorkerChangeAllowed": false,
+    "subjectPackPolicyChangeAllowed": false,
+    "mainMergeAllowed": false
+  },
+  "rollback": {
+    "behavior": "Remove the L8-B1 policy, generated graph, regression, report, decision record and L8 workflow wiring; retain all Programming source, specialist runtime, learner state, L7 reference artifacts and prior migration gates unchanged.",
+    "sourceContentImpact": "none",
+    "learnerStateImpact": "none",
+    "runtimeImpact": "none",
+    "offlinePolicyImpact": "none",
+    "mainBranchImpact": "none"
+  }
+}

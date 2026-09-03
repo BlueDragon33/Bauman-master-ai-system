@@ -1,0 +1,843 @@
+{
+  "gate": "L8-B1",
+  "release": "L8-B1-PROGRAMMING-PREREQUISITE-ROADMAP-V1",
+  "status": "PASS",
+  "sourceAudit": {
+    "lessonCount": 48,
+    "stageCounts": {
+      "vn": 8,
+      "prep": 8,
+      "hk1": 8,
+      "hk2": 8,
+      "hk3": 8,
+      "hk4": 8
+    },
+    "lessonTypeCounts": {
+      "programming": 28,
+      "database": 4,
+      "software-design": 16
+    },
+    "slideCount": 240,
+    "explicitPrerequisiteFieldCount": 0,
+    "auxiliaryCounts": {
+      "grammar": 48,
+      "grammarPath": 48,
+      "knowledgeIndex": 48,
+      "stageMindmaps": 6,
+      "exercises": 144,
+      "tests": 384,
+      "simulations": 96
+    },
+    "sourceDigests": {
+      "lessonsDigest": "4272fa90632802c497bcf1fdf87c7dcc50f272d24e0ab48b8125039203af5a6e",
+      "curriculumDigest": "e1939171c20f4b6c4294e096423d74ff9221c952a39602aa9c0a2c2edc520086",
+      "manifestDigest": "ab50855cab5f97c30cf43696ef0b5034291fa7038973855a0b6479bd41abb4ba",
+      "factoryProgrammingDigest": "3dd81abc5cef04ae4d1e3180481605040ea788345ed21116e271a6e125a154eb",
+      "referenceBindingDigest": "63c0525037d528584ecc0da53a5de58a6563a3c4209a3b76d477135209e50367",
+      "russianTwinProfileDigest": "e05e85c5b6e2958a9aac3ad760c96ac805d4928f69b1979f5a11c162739a6c01",
+      "roadmapDigest": "a505156771af068a5586fe4913c4aa4c1275cab0b2c4b3ad579bb2e3abe12d3f"
+    }
+  },
+  "foundationRoadmap": {
+    "lessonCount": 16,
+    "mandatoryCoreCount": 12,
+    "branchIntroductionCount": 4,
+    "strandCount": 6,
+    "rootLessonIds": [
+      "PR01",
+      "PR02",
+      "PR06",
+      "PR07",
+      "PR09"
+    ],
+    "candidateEdgeCount": 17,
+    "requiredCandidateEdgeCount": 15,
+    "supportingCandidateEdgeCount": 2,
+    "graphDigest": "9a91971995b7b7c91bafadbdac0a340362cdbe6b1427607a0f19c5cf7fe612d0"
+  },
+  "downstreamBoundary": {
+    "registeredUnsequencedLessonCount": 32,
+    "futureStepCount": 13,
+    "russianTwinSourceAlignedLessonCount": 48,
+    "mathSupportTargetLessonIds": [
+      "PR06",
+      "PR20"
+    ],
+    "runtimeActive": false,
+    "assessmentBlocking": false
+  },
+  "findingCount": 6,
+  "findings": [
+    {
+      "code": "SOURCE_PREREQUISITES_ABSENT",
+      "status": "OPEN_REVIEW_REQUIRED",
+      "evidence": "None of the 48 authoritative lesson records declares a prerequisite or dependency field; all 17 B1 edges are system-curated review candidates.",
+      "blocks": [
+        "official-runtime-prerequisite-claim",
+        "learner-lock-or-unlock"
+      ],
+      "nextOwner": "L8-B14_FULL_SUBJECT_QA"
+    },
+    {
+      "code": "PYTHON_FUNDAMENTALS_DEPTH_NOT_YET_ACCEPTED",
+      "status": "OPEN_BLOCKING_FULL_CONTENT_ACCEPTANCE",
+      "evidence": "PR03 is the single broad source lesson for Python types, functions and modules, and all 48 lessons currently use the same five slide-title roles.",
+      "blocks": [
+        "programming-full-content-acceptance",
+        "programming-master-ready"
+      ],
+      "nextOwner": "L8-B14_FULL_SUBJECT_QA"
+    },
+    {
+      "code": "ALGORITHMS_DATA_STRUCTURES_COVERAGE_THIN",
+      "status": "OPEN_PLANNED_L8_B5_B6",
+      "evidence": "The current explicit anchors are PR02, PR10 and PR11; no source title explicitly covers search, sort, hashing, trees, graphs or graph traversal.",
+      "blocks": [
+        "algorithms-track-complete",
+        "programming-master-ready"
+      ],
+      "nextOwner": "L8-B5_L8-B6"
+    },
+    {
+      "code": "ADVANCED_DATABASE_COVERAGE_GAPS",
+      "status": "OPEN_PLANNED_L8_B7_B10",
+      "evidence": "Only PR06, PR15, PR20 and PR21 are classified as database; no source title explicitly covers normalization, transactions, query plans, database optimization or NoSQL.",
+      "blocks": [
+        "database-track-complete",
+        "programming-master-ready"
+      ],
+      "nextOwner": "L8-B7_L8-B10"
+    },
+    {
+      "code": "AUXILIARY_CONTENT_NOT_ACADEMICALLY_QUALIFIED",
+      "status": "OPEN_REVIEW_REQUIRED",
+      "evidence": "Counts exist for 144 exercises, 384 test questions and 96 simulations, but L8-B1 does not qualify their correctness, difficulty, executability or mastery evidence.",
+      "blocks": [
+        "assessment-quality-approval",
+        "programming-master-ready"
+      ],
+      "nextOwner": "L8-B14_FULL_SUBJECT_QA"
+    },
+    {
+      "code": "INTERACTIVE_WIDGETS_DECLARED_NOT_IMPLEMENTED",
+      "status": "OPEN_PLANNED_L8_B13",
+      "evidence": "Subject Factory marks code-runner and sql-playground as planned-L8 with no Master-ready authority until implemented.",
+      "blocks": [
+        "interactive-programming-ui-complete"
+      ],
+      "nextOwner": "L8-B13"
+    }
+  ],
+  "policyDigest": "2bc668373879831d318158fca2c84ff9422ee438a127ed37318bd1694b42da61",
+  "graphDigest": "9a91971995b7b7c91bafadbdac0a340362cdbe6b1427607a0f19c5cf7fe612d0",
+  "mutationTests": [
+    {
+      "id": "DRIFT-SOURCE-BASELINE",
+      "title": "a changed Programming source baseline requires explicit B1 review",
+      "expectedFailureObserved": true,
+      "evidence": [
+        "SOURCE_BASELINES"
+      ]
+    },
+    {
+      "id": "ENABLE-RUNTIME",
+      "title": "candidate prerequisites cannot become runtime-active in B1",
+      "expectedFailureObserved": true,
+      "evidence": [
+        "DEPENDENCY_BOUNDARY"
+      ]
+    },
+    {
+      "id": "BLOCK-ASSESSMENT",
+      "title": "candidate prerequisites cannot block assessment in B1",
+      "expectedFailureObserved": true,
+      "evidence": [
+        "DEPENDENCY_BOUNDARY"
+      ]
+    },
+    {
+      "id": "DROP-MANDATORY-CORE",
+      "title": "dropping a mandatory foundation lesson fails closed",
+      "expectedFailureObserved": true,
+      "evidence": [
+        "MANDATORY_CORE_IDS",
+        "FOUNDATION_SCOPE_PARTITION"
+      ]
+    },
+    {
+      "id": "OVERLAP-FOUNDATION-ROLES",
+      "title": "a lesson cannot be both mandatory core and branch introduction",
+      "expectedFailureObserved": true,
+      "evidence": [
+        "MANDATORY_CORE_IDS",
+        "FOUNDATION_SCOPE_PARTITION"
+      ]
+    },
+    {
+      "id": "CHANGE-CONCEPT-EDGE",
+      "title": "changing an approved B1 concept edge requires explicit review",
+      "expectedFailureObserved": true,
+      "evidence": [
+        "EDGE_PROJECTION"
+      ]
+    },
+    {
+      "id": "ADD-SELF-CYCLE",
+      "title": "self-referential prerequisite candidates fail closed",
+      "expectedFailureObserved": true,
+      "evidence": [
+        "EDGE_PROJECTION",
+        "EDGE_SHAPE_SCOPE",
+        "EDGE_FORWARD_SOURCE_POSITION",
+        "EDGE_ACYCLIC"
+      ]
+    },
+    {
+      "id": "SEQUENCE-DOWNSTREAM-EARLY",
+      "title": "B1 cannot add prerequisites to PR17-PR48",
+      "expectedFailureObserved": true,
+      "evidence": [
+        "EDGE_PROJECTION",
+        "EDGE_SHAPE_SCOPE",
+        "EDGE_ACYCLIC",
+        "FOUNDATION_ROOTS"
+      ]
+    },
+    {
+      "id": "DROP-FUTURE-STEP",
+      "title": "every L8-B2 through B14 handoff must remain visible",
+      "expectedFailureObserved": true,
+      "evidence": [
+        "FUTURE_STEP_COVERAGE"
+      ]
+    },
+    {
+      "id": "PROMOTE-MATH-SUPPORT",
+      "title": "Math supports links cannot become assessment-blocking prerequisites",
+      "expectedFailureObserved": true,
+      "evidence": [
+        "MATH_REFERENCE_BOUNDARY"
+      ]
+    },
+    {
+      "id": "INVENT-RUSSIAN-COVERAGE",
+      "title": "Russian Twin source-aligned count cannot exceed its 48 reviewed records",
+      "expectedFailureObserved": true,
+      "evidence": [
+        "RUSSIAN_REFERENCE_BOUNDARY"
+      ]
+    },
+    {
+      "id": "HIDE-FINDING",
+      "title": "all six unresolved L8 findings must remain visible",
+      "expectedFailureObserved": true,
+      "evidence": [
+        "FINDING_CODES"
+      ]
+    },
+    {
+      "id": "CLAIM-CONTENT-COMPLETE",
+      "title": "B1 cannot claim Programming content completion",
+      "expectedFailureObserved": true,
+      "evidence": [
+        "RUNTIME_BOUNDARY"
+      ]
+    },
+    {
+      "id": "CLAIM-MASTER-READY",
+      "title": "B1 cannot grant automatic Master-ready",
+      "expectedFailureObserved": true,
+      "evidence": [
+        "RUNTIME_BOUNDARY"
+      ]
+    }
+  ],
+  "passMeaning": "The 48-lesson source and specialist ownership are preserved, the sixteen-lesson foundation scope and seventeen concept-dependency candidates are deterministic and fail closed, and every unresolved depth or implementation claim remains routed to a later owner. PASS is an audit and roadmap checkpoint, not academic approval, runtime activation, learner evidence, content completion or Master-ready.",
+  "checks": [
+    {
+      "id": "FILE-assets/data/lesson/programming-prerequisite-policy-v1.json",
+      "title": "required L8-B1 input exists",
+      "ok": true,
+      "evidence": "assets/data/lesson/programming-prerequisite-policy-v1.json"
+    },
+    {
+      "id": "FILE-subjects/programming/data/lessons.json",
+      "title": "required L8-B1 input exists",
+      "ok": true,
+      "evidence": "subjects/programming/data/lessons.json"
+    },
+    {
+      "id": "FILE-subjects/programming/data/curriculum.json",
+      "title": "required L8-B1 input exists",
+      "ok": true,
+      "evidence": "subjects/programming/data/curriculum.json"
+    },
+    {
+      "id": "FILE-subjects/programming/subject-manifest.json",
+      "title": "required L8-B1 input exists",
+      "ok": true,
+      "evidence": "subjects/programming/subject-manifest.json"
+    },
+    {
+      "id": "FILE-assets/data/lesson/subject-factory-registry-v1.json",
+      "title": "required L8-B1 input exists",
+      "ok": true,
+      "evidence": "assets/data/lesson/subject-factory-registry-v1.json"
+    },
+    {
+      "id": "FILE-assets/data/lesson/reference-implementation-registry-v1.json",
+      "title": "required L8-B1 input exists",
+      "ok": true,
+      "evidence": "assets/data/lesson/reference-implementation-registry-v1.json"
+    },
+    {
+      "id": "FILE-assets/data/lesson/russian-twin-registry-v1.json",
+      "title": "required L8-B1 input exists",
+      "ok": true,
+      "evidence": "assets/data/lesson/russian-twin-registry-v1.json"
+    },
+    {
+      "id": "FILE-assets/data/lesson/russian-twin-glossary-v1.generated.json",
+      "title": "required L8-B1 input exists",
+      "ok": true,
+      "evidence": "assets/data/lesson/russian-twin-glossary-v1.generated.json"
+    },
+    {
+      "id": "FILE-assets/data/roadmap/iu5-090401-11-v3.json",
+      "title": "required L8-B1 input exists",
+      "ok": true,
+      "evidence": "assets/data/roadmap/iu5-090401-11-v3.json"
+    },
+    {
+      "id": "FILE-docs/migration/L8_B1_PROGRAMMING_PREREQUISITE_ROADMAP.md",
+      "title": "required L8-B1 input exists",
+      "ok": true,
+      "evidence": "docs/migration/L8_B1_PROGRAMMING_PREREQUISITE_ROADMAP.md"
+    },
+    {
+      "id": "FILE-subjects/programming/data/grammar.json",
+      "title": "required L8-B1 input exists",
+      "ok": true,
+      "evidence": "subjects/programming/data/grammar.json"
+    },
+    {
+      "id": "FILE-subjects/programming/data/grammar-path.json",
+      "title": "required L8-B1 input exists",
+      "ok": true,
+      "evidence": "subjects/programming/data/grammar-path.json"
+    },
+    {
+      "id": "FILE-subjects/programming/data/knowledge-index.json",
+      "title": "required L8-B1 input exists",
+      "ok": true,
+      "evidence": "subjects/programming/data/knowledge-index.json"
+    },
+    {
+      "id": "FILE-subjects/programming/data/mindmap.json",
+      "title": "required L8-B1 input exists",
+      "ok": true,
+      "evidence": "subjects/programming/data/mindmap.json"
+    },
+    {
+      "id": "FILE-subjects/programming/data/exercises.json",
+      "title": "required L8-B1 input exists",
+      "ok": true,
+      "evidence": "subjects/programming/data/exercises.json"
+    },
+    {
+      "id": "FILE-subjects/programming/data/tests.json",
+      "title": "required L8-B1 input exists",
+      "ok": true,
+      "evidence": "subjects/programming/data/tests.json"
+    },
+    {
+      "id": "FILE-subjects/programming/data/simulations.json",
+      "title": "required L8-B1 input exists",
+      "ok": true,
+      "evidence": "subjects/programming/data/simulations.json"
+    },
+    {
+      "id": "POLICY-VALID",
+      "title": "Programming prerequisite policy passes every fail-closed structural and observed-truth rule",
+      "ok": true,
+      "evidence": []
+    },
+    {
+      "id": "LESSON-IDENTITY-COVERAGE",
+      "title": "all 48 authoritative Programming lesson IDs remain unique and in their current source order",
+      "ok": true,
+      "evidence": {
+        "lessonCount": 48,
+        "first": "PR01",
+        "last": "PR48"
+      }
+    },
+    {
+      "id": "LESSON-FIELD-COVERAGE",
+      "title": "every source lesson retains the existing pedagogical and terminology fields",
+      "ok": true,
+      "evidence": [
+        "id",
+        "lessonId",
+        "stage",
+        "moduleId",
+        "title",
+        "summary",
+        "description",
+        "object",
+        "method",
+        "keyPoints",
+        "slides",
+        "formula",
+        "application",
+        "terminology"
+      ]
+    },
+    {
+      "id": "SOURCE-PREREQUISITES-ABSENT",
+      "title": "source truth records zero explicit prerequisite or dependency fields",
+      "ok": true,
+      "evidence": []
+    },
+    {
+      "id": "CURRICULUM-STAGE-COVERAGE",
+      "title": "curriculum and lessons retain six stages with eight lessons each",
+      "ok": true,
+      "evidence": {
+        "stageIds": [
+          "vn",
+          "prep",
+          "hk1",
+          "hk2",
+          "hk3",
+          "hk4"
+        ],
+        "stageCounts": {
+          "vn": 8,
+          "prep": 8,
+          "hk1": 8,
+          "hk2": 8,
+          "hk3": 8,
+          "hk4": 8
+        }
+      }
+    },
+    {
+      "id": "CURRICULUM-PRINCIPLE",
+      "title": "current curriculum still states the Python SQL Git to terminology to OOP database software engineering to NIR VKR progression",
+      "ok": true,
+      "evidence": [
+        "Code phải chạy được, đọc được và chạy lại được.",
+        "Mỗi bài có input, output, test, lỗi thường gặp và artifact rõ ràng.",
+        "Không nhồi framework; ưu tiên nền tảng, repo sạch, dữ liệu sạch và metric sạch.",
+        "Bám lộ trình Main: Python/SQL/Git → thuật ngữ dự bị → OOP/CSDL/Kỹ nghệ → НИР/ВКР."
+      ]
+    },
+    {
+      "id": "FACTORY-TYPE-PARITY",
+      "title": "all Programming lessons resolve through the authoritative three-type Subject Factory policy",
+      "ok": true,
+      "evidence": {
+        "programming": 28,
+        "database": 4,
+        "software-design": 16
+      }
+    },
+    {
+      "id": "SPECIALIST-OWNERSHIP",
+      "title": "Programming keeps its specialist engine route source and offline policy without direct migration",
+      "ok": true,
+      "evidence": {
+        "engineRef": "programming-v2-specialist",
+        "route": "subjects/programming/index.html",
+        "offlinePolicyRef": "programming-rich-explicit"
+      }
+    },
+    {
+      "id": "FIVE-SLIDE-SOURCE-TRUTH",
+      "title": "every lesson currently retains five blocks with the same source slide-title roles",
+      "ok": true,
+      "evidence": {
+        "lessons": 48,
+        "slidesEach": 5,
+        "uniqueSlideTitleSets": 1
+      }
+    },
+    {
+      "id": "FOUNDATION-PARTITION",
+      "title": "the sixteen vn/prep lessons split into twelve mandatory core and four branch introductions exactly once",
+      "ok": true,
+      "evidence": {
+        "mandatory-core": 12,
+        "branch-introduction": 4,
+        "downstream-registered-not-sequenced": 32
+      }
+    },
+    {
+      "id": "DOWNSTREAM-UNSEQUENCED",
+      "title": "PR17-PR48 remain visible but receive no B1 prerequisite edge or completion claim",
+      "ok": true,
+      "evidence": {
+        "downstreamNodes": 32
+      }
+    },
+    {
+      "id": "GRAPH-BOUNDARY",
+      "title": "all seventeen concept-dependency candidates are inactive non-blocking and require manual review",
+      "ok": true,
+      "evidence": {
+        "total": 17,
+        "required": 15,
+        "supporting": 2
+      }
+    },
+    {
+      "id": "GRAPH-NOT-SOURCE-ORDER-CHAIN",
+      "title": "B1 graph is a concept map with five roots rather than an automatic previous-lesson chain",
+      "ok": true,
+      "evidence": [
+        "PR01",
+        "PR02",
+        "PR06",
+        "PR07",
+        "PR09"
+      ]
+    },
+    {
+      "id": "AUXILIARY-COUNT-COVERAGE",
+      "title": "current workflow index exercise test simulation and stage-map counts remain exact",
+      "ok": true,
+      "evidence": {
+        "grammar": 48,
+        "grammarPath": 48,
+        "knowledgeIndex": 48,
+        "stageMindmaps": 6,
+        "exercises": 144,
+        "tests": 384,
+        "simulations": 96
+      }
+    },
+    {
+      "id": "AUXILIARY-LESSON-COVERAGE",
+      "title": "each lesson retains one workflow record three exercises eight test questions and two simulations",
+      "ok": true,
+      "evidence": {
+        "lessons": 48,
+        "grammarEach": 1,
+        "grammarPathEach": 1,
+        "exercisesEach": 3,
+        "testsEach": 8,
+        "simulationsEach": 2
+      }
+    },
+    {
+      "id": "KNOWLEDGE-MINDMAP-COVERAGE",
+      "title": "knowledge index and stage mindmaps cover every stable lesson identity exactly once",
+      "ok": true,
+      "evidence": {
+        "knowledgeRecords": 48,
+        "mindmapNodes": 48
+      }
+    },
+    {
+      "id": "ROADMAP-TRACK-ALIGNMENT",
+      "title": "B1 keeps the four authoritative Programming-adjacent Roadmap V3 tracks and priorities",
+      "ok": true,
+      "evidence": {
+        "pythonOop": [
+          "python-core",
+          "oop",
+          "solid-patterns",
+          "numpy-pandas",
+          "testing",
+          "git",
+          "api-data-pipeline"
+        ],
+        "algorithms": [
+          "complexity",
+          "linear-structures",
+          "hashing",
+          "trees-graphs",
+          "search-sort",
+          "graph-traversal"
+        ],
+        "database": [
+          "sql",
+          "relational-model",
+          "schema-normalization",
+          "transactions",
+          "indexing-query-plan",
+          "db-optimization",
+          "post-relational",
+          "ml-data-architecture"
+        ],
+        "softwareEngineering": [
+          "requirements",
+          "uml",
+          "architecture",
+          "oop-system-design",
+          "testing-strategy",
+          "versioning-ci",
+          "lifecycle",
+          "project-management"
+        ]
+      }
+    },
+    {
+      "id": "ALGORITHM-GAP-TRUTH",
+      "title": "current titles do not silently claim explicit search sort hash tree or graph module coverage",
+      "ok": true,
+      "evidence": [
+        "search",
+        "sort",
+        "hash",
+        "tree",
+        "graph",
+        "duyệt đồ thị",
+        "cây",
+        "băm",
+        "sắp xếp",
+        "tìm kiếm"
+      ]
+    },
+    {
+      "id": "DATABASE-GAP-TRUTH",
+      "title": "current titles do not silently claim explicit normalization transaction query-plan optimization or NoSQL coverage",
+      "ok": true,
+      "evidence": [
+        "normalization",
+        "transaction",
+        "query plan",
+        "database optimization",
+        "nosql",
+        "chuẩn hóa cơ sở dữ liệu",
+        "giao dịch cơ sở dữ liệu",
+        "kế hoạch truy vấn",
+        "tối ưu cơ sở dữ liệu"
+      ]
+    },
+    {
+      "id": "RUSSIAN-TWIN-SOURCE-ALIGNMENT",
+      "title": "Russian Twin remains source-aligned to all 48 Programming terminology records without learner-state mutation",
+      "ok": true,
+      "evidence": {
+        "availability": "source-aligned",
+        "records": 48
+      }
+    },
+    {
+      "id": "MATH-SUPPORT-NONBLOCKING",
+      "title": "Math remains a supports-only review candidate for PR06 and PR20",
+      "ok": true,
+      "evidence": {
+        "referenceId": "math",
+        "capabilityRef": "math-downstream-support-graph",
+        "relation": "supports",
+        "domainIds": [
+          "discrete-db-knowledge"
+        ],
+        "targetRefs": [
+          "programming:PR06",
+          "programming:PR20"
+        ],
+        "assessmentBlocking": false,
+        "masterReadyEffect": "none-until-reviewed-objective-binding",
+        "activation": "reviewed-objective-binding-required"
+      }
+    },
+    {
+      "id": "PLANNED-WIDGET-TRUTH",
+      "title": "code runner and SQL playground remain planned-L8 with static fallbacks and no Master-ready authority",
+      "ok": true,
+      "evidence": {
+        "codeRunner": {
+          "owner": "programming-subject-engine",
+          "availability": "planned-L8",
+          "lessonTypes": [
+            "programming"
+          ],
+          "fallback": "static-code-exercise",
+          "masterReadyAuthority": "none-until-implemented"
+        },
+        "sqlPlayground": {
+          "owner": "programming-subject-engine",
+          "availability": "planned-L8",
+          "lessonTypes": [
+            "database"
+          ],
+          "fallback": "query-and-expected-result-card",
+          "masterReadyAuthority": "none-until-implemented"
+        }
+      }
+    },
+    {
+      "id": "FINDINGS-REMAIN-OPEN",
+      "title": "all six audit findings stay visible and block their specific later acceptance claims",
+      "ok": true,
+      "evidence": [
+        {
+          "code": "SOURCE_PREREQUISITES_ABSENT",
+          "status": "OPEN_REVIEW_REQUIRED",
+          "nextOwner": "L8-B14_FULL_SUBJECT_QA"
+        },
+        {
+          "code": "PYTHON_FUNDAMENTALS_DEPTH_NOT_YET_ACCEPTED",
+          "status": "OPEN_BLOCKING_FULL_CONTENT_ACCEPTANCE",
+          "nextOwner": "L8-B14_FULL_SUBJECT_QA"
+        },
+        {
+          "code": "ALGORITHMS_DATA_STRUCTURES_COVERAGE_THIN",
+          "status": "OPEN_PLANNED_L8_B5_B6",
+          "nextOwner": "L8-B5_L8-B6"
+        },
+        {
+          "code": "ADVANCED_DATABASE_COVERAGE_GAPS",
+          "status": "OPEN_PLANNED_L8_B7_B10",
+          "nextOwner": "L8-B7_L8-B10"
+        },
+        {
+          "code": "AUXILIARY_CONTENT_NOT_ACADEMICALLY_QUALIFIED",
+          "status": "OPEN_REVIEW_REQUIRED",
+          "nextOwner": "L8-B14_FULL_SUBJECT_QA"
+        },
+        {
+          "code": "INTERACTIVE_WIDGETS_DECLARED_NOT_IMPLEMENTED",
+          "status": "OPEN_PLANNED_L8_B13",
+          "nextOwner": "L8-B13"
+        }
+      ]
+    },
+    {
+      "id": "NO-HUTECH-LEARNER-COPY",
+      "title": "L8-B1 learner-facing governance artifacts contain no HUTECH label",
+      "ok": true,
+      "evidence": "absent"
+    },
+    {
+      "id": "DOC-DECISION-RECORD",
+      "title": "decision record states source truth candidate semantics handoffs findings claim boundary and rollback",
+      "ok": true,
+      "evidence": "docs/migration/L8_B1_PROGRAMMING_PREREQUISITE_ROADMAP.md"
+    },
+    {
+      "id": "MUTATION-DRIFT-SOURCE-BASELINE",
+      "title": "a changed Programming source baseline requires explicit B1 review",
+      "ok": true,
+      "evidence": [
+        "SOURCE_BASELINES"
+      ]
+    },
+    {
+      "id": "MUTATION-ENABLE-RUNTIME",
+      "title": "candidate prerequisites cannot become runtime-active in B1",
+      "ok": true,
+      "evidence": [
+        "DEPENDENCY_BOUNDARY"
+      ]
+    },
+    {
+      "id": "MUTATION-BLOCK-ASSESSMENT",
+      "title": "candidate prerequisites cannot block assessment in B1",
+      "ok": true,
+      "evidence": [
+        "DEPENDENCY_BOUNDARY"
+      ]
+    },
+    {
+      "id": "MUTATION-DROP-MANDATORY-CORE",
+      "title": "dropping a mandatory foundation lesson fails closed",
+      "ok": true,
+      "evidence": [
+        "MANDATORY_CORE_IDS",
+        "FOUNDATION_SCOPE_PARTITION"
+      ]
+    },
+    {
+      "id": "MUTATION-OVERLAP-FOUNDATION-ROLES",
+      "title": "a lesson cannot be both mandatory core and branch introduction",
+      "ok": true,
+      "evidence": [
+        "MANDATORY_CORE_IDS",
+        "FOUNDATION_SCOPE_PARTITION"
+      ]
+    },
+    {
+      "id": "MUTATION-CHANGE-CONCEPT-EDGE",
+      "title": "changing an approved B1 concept edge requires explicit review",
+      "ok": true,
+      "evidence": [
+        "EDGE_PROJECTION"
+      ]
+    },
+    {
+      "id": "MUTATION-ADD-SELF-CYCLE",
+      "title": "self-referential prerequisite candidates fail closed",
+      "ok": true,
+      "evidence": [
+        "EDGE_PROJECTION",
+        "EDGE_SHAPE_SCOPE",
+        "EDGE_FORWARD_SOURCE_POSITION",
+        "EDGE_ACYCLIC"
+      ]
+    },
+    {
+      "id": "MUTATION-SEQUENCE-DOWNSTREAM-EARLY",
+      "title": "B1 cannot add prerequisites to PR17-PR48",
+      "ok": true,
+      "evidence": [
+        "EDGE_PROJECTION",
+        "EDGE_SHAPE_SCOPE",
+        "EDGE_ACYCLIC",
+        "FOUNDATION_ROOTS"
+      ]
+    },
+    {
+      "id": "MUTATION-DROP-FUTURE-STEP",
+      "title": "every L8-B2 through B14 handoff must remain visible",
+      "ok": true,
+      "evidence": [
+        "FUTURE_STEP_COVERAGE"
+      ]
+    },
+    {
+      "id": "MUTATION-PROMOTE-MATH-SUPPORT",
+      "title": "Math supports links cannot become assessment-blocking prerequisites",
+      "ok": true,
+      "evidence": [
+        "MATH_REFERENCE_BOUNDARY"
+      ]
+    },
+    {
+      "id": "MUTATION-INVENT-RUSSIAN-COVERAGE",
+      "title": "Russian Twin source-aligned count cannot exceed its 48 reviewed records",
+      "ok": true,
+      "evidence": [
+        "RUSSIAN_REFERENCE_BOUNDARY"
+      ]
+    },
+    {
+      "id": "MUTATION-HIDE-FINDING",
+      "title": "all six unresolved L8 findings must remain visible",
+      "ok": true,
+      "evidence": [
+        "FINDING_CODES"
+      ]
+    },
+    {
+      "id": "MUTATION-CLAIM-CONTENT-COMPLETE",
+      "title": "B1 cannot claim Programming content completion",
+      "ok": true,
+      "evidence": [
+        "RUNTIME_BOUNDARY"
+      ]
+    },
+    {
+      "id": "MUTATION-CLAIM-MASTER-READY",
+      "title": "B1 cannot grant automatic Master-ready",
+      "ok": true,
+      "evidence": [
+        "RUNTIME_BOUNDARY"
+      ]
+    }
+  ]
+}

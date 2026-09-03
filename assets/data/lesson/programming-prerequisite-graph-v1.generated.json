@@ -1,0 +1,1059 @@
+{
+  "schema": "bauman-programming-prerequisite-graph-v1",
+  "release": "L8-B1-PROGRAMMING-PREREQUISITE-ROADMAP-V1",
+  "status": "review-candidate-not-runtime-active",
+  "policyRef": "assets/data/lesson/programming-prerequisite-policy-v1.json",
+  "sourceRefs": {
+    "lessons": "subjects/programming/data/lessons.json",
+    "curriculum": "subjects/programming/data/curriculum.json",
+    "subjectFactory": "assets/data/lesson/subject-factory-registry-v1.json#subjects.programming",
+    "roadmap": "assets/data/roadmap/iu5-090401-11-v3.json"
+  },
+  "sourceDigests": {
+    "lessonsDigest": "4272fa90632802c497bcf1fdf87c7dcc50f272d24e0ab48b8125039203af5a6e",
+    "curriculumDigest": "e1939171c20f4b6c4294e096423d74ff9221c952a39602aa9c0a2c2edc520086",
+    "manifestDigest": "ab50855cab5f97c30cf43696ef0b5034291fa7038973855a0b6479bd41abb4ba",
+    "factoryProgrammingDigest": "3dd81abc5cef04ae4d1e3180481605040ea788345ed21116e271a6e125a154eb",
+    "referenceBindingDigest": "63c0525037d528584ecc0da53a5de58a6563a3c4209a3b76d477135209e50367",
+    "russianTwinProfileDigest": "e05e85c5b6e2958a9aac3ad760c96ac805d4928f69b1979f5a11c162739a6c01",
+    "roadmapDigest": "a505156771af068a5586fe4913c4aa4c1275cab0b2c4b3ad579bb2e3abe12d3f"
+  },
+  "nodeCount": 48,
+  "foundationNodeCount": 16,
+  "downstreamRegisteredNodeCount": 32,
+  "prerequisiteEdgeCount": 17,
+  "requiredCandidateEdgeCount": 15,
+  "supportingCandidateEdgeCount": 2,
+  "foundationRootLessonIds": [
+    "PR01",
+    "PR02",
+    "PR06",
+    "PR07",
+    "PR09"
+  ],
+  "nodes": [
+    {
+      "lessonId": "PR01",
+      "sourceIndex": 0,
+      "stageId": "vn",
+      "moduleId": "mod_vn",
+      "lessonType": "programming",
+      "title": "Thiết lập môi trường Python, VS Code và Live Server",
+      "readinessRole": "mandatory-core",
+      "primaryStrandId": "python-core",
+      "reviewState": "L8-B1-system-curated-review-candidate",
+      "prerequisiteRefs": [],
+      "sourceRef": "subjects/programming/data/lessons.json#/0"
+    },
+    {
+      "lessonId": "PR02",
+      "sourceIndex": 1,
+      "stageId": "vn",
+      "moduleId": "mod_vn",
+      "lessonType": "programming",
+      "title": "Tư duy thuật toán và độ phức tạp",
+      "readinessRole": "mandatory-core",
+      "primaryStrandId": "algorithmic-foundation",
+      "reviewState": "L8-B1-system-curated-review-candidate",
+      "prerequisiteRefs": [],
+      "sourceRef": "subjects/programming/data/lessons.json#/1"
+    },
+    {
+      "lessonId": "PR03",
+      "sourceIndex": 2,
+      "stageId": "vn",
+      "moduleId": "mod_vn",
+      "lessonType": "programming",
+      "title": "Python căn bản: kiểu dữ liệu, hàm, module",
+      "readinessRole": "mandatory-core",
+      "primaryStrandId": "python-core",
+      "reviewState": "L8-B1-system-curated-review-candidate",
+      "prerequisiteRefs": [
+        {
+          "targetLessonId": "PR01",
+          "relation": "candidate-required-foundation",
+          "requiredState": "practised",
+          "assessmentBlocking": false,
+          "runtimeActive": false,
+          "manualReviewRequired": true,
+          "provenance": "system-curated-concept-dependency",
+          "rationale": "A reproducible Python environment is needed before running the syntax, functions and modules taught in PR03."
+        }
+      ],
+      "sourceRef": "subjects/programming/data/lessons.json#/2"
+    },
+    {
+      "lessonId": "PR04",
+      "sourceIndex": 3,
+      "stageId": "vn",
+      "moduleId": "mod_vn",
+      "lessonType": "programming",
+      "title": "NumPy và vector hóa dữ liệu",
+      "readinessRole": "branch-introduction",
+      "primaryStrandId": "data-computing-introduction",
+      "reviewState": "L8-B1-system-curated-review-candidate",
+      "prerequisiteRefs": [
+        {
+          "targetLessonId": "PR03",
+          "relation": "candidate-required-foundation",
+          "requiredState": "practised",
+          "assessmentBlocking": false,
+          "runtimeActive": false,
+          "manualReviewRequired": true,
+          "provenance": "system-curated-concept-dependency",
+          "rationale": "NumPy work assumes Python values, functions and modules."
+        }
+      ],
+      "sourceRef": "subjects/programming/data/lessons.json#/3"
+    },
+    {
+      "lessonId": "PR05",
+      "sourceIndex": 4,
+      "stageId": "vn",
+      "moduleId": "mod_vn",
+      "lessonType": "programming",
+      "title": "Pandas và làm sạch bảng dữ liệu",
+      "readinessRole": "branch-introduction",
+      "primaryStrandId": "data-computing-introduction",
+      "reviewState": "L8-B1-system-curated-review-candidate",
+      "prerequisiteRefs": [
+        {
+          "targetLessonId": "PR04",
+          "relation": "candidate-required-foundation",
+          "requiredState": "practised",
+          "assessmentBlocking": false,
+          "runtimeActive": false,
+          "manualReviewRequired": true,
+          "provenance": "system-curated-concept-dependency",
+          "rationale": "Pandas table work builds on array shape and vectorized data reasoning."
+        }
+      ],
+      "sourceRef": "subjects/programming/data/lessons.json#/4"
+    },
+    {
+      "lessonId": "PR06",
+      "sourceIndex": 5,
+      "stageId": "vn",
+      "moduleId": "mod_vn",
+      "lessonType": "database",
+      "title": "SQL căn bản và mô hình quan hệ",
+      "readinessRole": "branch-introduction",
+      "primaryStrandId": "database-introduction",
+      "reviewState": "L8-B1-system-curated-review-candidate",
+      "prerequisiteRefs": [],
+      "sourceRef": "subjects/programming/data/lessons.json#/5"
+    },
+    {
+      "lessonId": "PR07",
+      "sourceIndex": 6,
+      "stageId": "vn",
+      "moduleId": "mod_vn",
+      "lessonType": "programming",
+      "title": "Git, GitHub và nhật ký học tập",
+      "readinessRole": "mandatory-core",
+      "primaryStrandId": "engineering-hygiene",
+      "reviewState": "L8-B1-system-curated-review-candidate",
+      "prerequisiteRefs": [],
+      "sourceRef": "subjects/programming/data/lessons.json#/6"
+    },
+    {
+      "lessonId": "PR08",
+      "sourceIndex": 7,
+      "stageId": "vn",
+      "moduleId": "mod_vn",
+      "lessonType": "programming",
+      "title": "Notebook thực nghiệm và README tái lập",
+      "readinessRole": "mandatory-core",
+      "primaryStrandId": "engineering-hygiene",
+      "reviewState": "L8-B1-system-curated-review-candidate",
+      "prerequisiteRefs": [
+        {
+          "targetLessonId": "PR01",
+          "relation": "candidate-required-foundation",
+          "requiredState": "practised",
+          "assessmentBlocking": false,
+          "runtimeActive": false,
+          "manualReviewRequired": true,
+          "provenance": "system-curated-concept-dependency",
+          "rationale": "Notebook reproducibility requires a known executable environment."
+        },
+        {
+          "targetLessonId": "PR03",
+          "relation": "candidate-required-foundation",
+          "requiredState": "practised",
+          "assessmentBlocking": false,
+          "runtimeActive": false,
+          "manualReviewRequired": true,
+          "provenance": "system-curated-concept-dependency",
+          "rationale": "A reproducible notebook assumes the learner can read and run basic Python."
+        },
+        {
+          "targetLessonId": "PR07",
+          "relation": "candidate-supporting-foundation",
+          "requiredState": "practised",
+          "assessmentBlocking": false,
+          "runtimeActive": false,
+          "manualReviewRequired": true,
+          "provenance": "system-curated-concept-dependency",
+          "rationale": "Version control supports reproducible notebook and README history without being a runtime prerequisite."
+        }
+      ],
+      "sourceRef": "subjects/programming/data/lessons.json#/7"
+    },
+    {
+      "lessonId": "PR09",
+      "sourceIndex": 8,
+      "stageId": "prep",
+      "moduleId": "mod_prep",
+      "lessonType": "programming",
+      "title": "Thuật ngữ tin học Nga cho lớp dự bị",
+      "readinessRole": "mandatory-core",
+      "primaryStrandId": "russian-technical-communication",
+      "reviewState": "L8-B1-system-curated-review-candidate",
+      "prerequisiteRefs": [],
+      "sourceRef": "subjects/programming/data/lessons.json#/8"
+    },
+    {
+      "lessonId": "PR10",
+      "sourceIndex": 9,
+      "stageId": "prep",
+      "moduleId": "mod_prep",
+      "lessonType": "programming",
+      "title": "Pseudocode và giải thích thuật toán bằng tiếng Nga",
+      "readinessRole": "mandatory-core",
+      "primaryStrandId": "russian-technical-communication",
+      "reviewState": "L8-B1-system-curated-review-candidate",
+      "prerequisiteRefs": [
+        {
+          "targetLessonId": "PR02",
+          "relation": "candidate-required-foundation",
+          "requiredState": "practised",
+          "assessmentBlocking": false,
+          "runtimeActive": false,
+          "manualReviewRequired": true,
+          "provenance": "system-curated-concept-dependency",
+          "rationale": "Explaining pseudocode in Russian assumes an algorithmic input-process-output model."
+        },
+        {
+          "targetLessonId": "PR09",
+          "relation": "candidate-required-foundation",
+          "requiredState": "practised",
+          "assessmentBlocking": false,
+          "runtimeActive": false,
+          "manualReviewRequired": true,
+          "provenance": "system-curated-concept-dependency",
+          "rationale": "Russian pseudocode explanation requires the preparatory computing terminology introduced in PR09."
+        }
+      ],
+      "sourceRef": "subjects/programming/data/lessons.json#/9"
+    },
+    {
+      "lessonId": "PR11",
+      "sourceIndex": 10,
+      "stageId": "prep",
+      "moduleId": "mod_prep",
+      "lessonType": "programming",
+      "title": "Cấu trúc dữ liệu nhập môn",
+      "readinessRole": "mandatory-core",
+      "primaryStrandId": "algorithmic-foundation",
+      "reviewState": "L8-B1-system-curated-review-candidate",
+      "prerequisiteRefs": [
+        {
+          "targetLessonId": "PR02",
+          "relation": "candidate-required-foundation",
+          "requiredState": "practised",
+          "assessmentBlocking": false,
+          "runtimeActive": false,
+          "manualReviewRequired": true,
+          "provenance": "system-curated-concept-dependency",
+          "rationale": "Data-structure choices require basic algorithmic and complexity reasoning."
+        },
+        {
+          "targetLessonId": "PR03",
+          "relation": "candidate-required-foundation",
+          "requiredState": "practised",
+          "assessmentBlocking": false,
+          "runtimeActive": false,
+          "manualReviewRequired": true,
+          "provenance": "system-curated-concept-dependency",
+          "rationale": "The introductory structures are exercised through current Python types and code."
+        }
+      ],
+      "sourceRef": "subjects/programming/data/lessons.json#/10"
+    },
+    {
+      "lessonId": "PR12",
+      "sourceIndex": 11,
+      "stageId": "prep",
+      "moduleId": "mod_prep",
+      "lessonType": "programming",
+      "title": "File, JSON, CSV và dữ liệu học tập",
+      "readinessRole": "mandatory-core",
+      "primaryStrandId": "data-computing-introduction",
+      "reviewState": "L8-B1-system-curated-review-candidate",
+      "prerequisiteRefs": [
+        {
+          "targetLessonId": "PR03",
+          "relation": "candidate-required-foundation",
+          "requiredState": "practised",
+          "assessmentBlocking": false,
+          "runtimeActive": false,
+          "manualReviewRequired": true,
+          "provenance": "system-curated-concept-dependency",
+          "rationale": "File, JSON and CSV workflows assume Python functions and data containers."
+        }
+      ],
+      "sourceRef": "subjects/programming/data/lessons.json#/11"
+    },
+    {
+      "lessonId": "PR13",
+      "sourceIndex": 12,
+      "stageId": "prep",
+      "moduleId": "mod_prep",
+      "lessonType": "programming",
+      "title": "Debug, exception và logging",
+      "readinessRole": "mandatory-core",
+      "primaryStrandId": "engineering-hygiene",
+      "reviewState": "L8-B1-system-curated-review-candidate",
+      "prerequisiteRefs": [
+        {
+          "targetLessonId": "PR03",
+          "relation": "candidate-required-foundation",
+          "requiredState": "practised",
+          "assessmentBlocking": false,
+          "runtimeActive": false,
+          "manualReviewRequired": true,
+          "provenance": "system-curated-concept-dependency",
+          "rationale": "Debugging, exceptions and logging require runnable Python code."
+        }
+      ],
+      "sourceRef": "subjects/programming/data/lessons.json#/12"
+    },
+    {
+      "lessonId": "PR14",
+      "sourceIndex": 13,
+      "stageId": "prep",
+      "moduleId": "mod_prep",
+      "lessonType": "programming",
+      "title": "Unit test căn bản với pytest",
+      "readinessRole": "mandatory-core",
+      "primaryStrandId": "engineering-hygiene",
+      "reviewState": "L8-B1-system-curated-review-candidate",
+      "prerequisiteRefs": [
+        {
+          "targetLessonId": "PR03",
+          "relation": "candidate-required-foundation",
+          "requiredState": "practised",
+          "assessmentBlocking": false,
+          "runtimeActive": false,
+          "manualReviewRequired": true,
+          "provenance": "system-curated-concept-dependency",
+          "rationale": "Unit tests require functions or modules with observable behavior."
+        },
+        {
+          "targetLessonId": "PR13",
+          "relation": "candidate-required-foundation",
+          "requiredState": "practised",
+          "assessmentBlocking": false,
+          "runtimeActive": false,
+          "manualReviewRequired": true,
+          "provenance": "system-curated-concept-dependency",
+          "rationale": "Failure interpretation and exception behavior support meaningful pytest assertions."
+        }
+      ],
+      "sourceRef": "subjects/programming/data/lessons.json#/13"
+    },
+    {
+      "lessonId": "PR15",
+      "sourceIndex": 14,
+      "stageId": "prep",
+      "moduleId": "mod_prep",
+      "lessonType": "database",
+      "title": "SQL nâng nền: JOIN, GROUP BY, index",
+      "readinessRole": "branch-introduction",
+      "primaryStrandId": "database-introduction",
+      "reviewState": "L8-B1-system-curated-review-candidate",
+      "prerequisiteRefs": [
+        {
+          "targetLessonId": "PR06",
+          "relation": "candidate-required-foundation",
+          "requiredState": "practised",
+          "assessmentBlocking": false,
+          "runtimeActive": false,
+          "manualReviewRequired": true,
+          "provenance": "system-curated-concept-dependency",
+          "rationale": "JOIN, GROUP BY and index reasoning assume basic SQL and relational concepts."
+        }
+      ],
+      "sourceRef": "subjects/programming/data/lessons.json#/14"
+    },
+    {
+      "lessonId": "PR16",
+      "sourceIndex": 15,
+      "stageId": "prep",
+      "moduleId": "mod_prep",
+      "lessonType": "programming",
+      "title": "Quy tắc đặt tên, comment và tài liệu song ngữ",
+      "readinessRole": "mandatory-core",
+      "primaryStrandId": "russian-technical-communication",
+      "reviewState": "L8-B1-system-curated-review-candidate",
+      "prerequisiteRefs": [
+        {
+          "targetLessonId": "PR07",
+          "relation": "candidate-supporting-foundation",
+          "requiredState": "practised",
+          "assessmentBlocking": false,
+          "runtimeActive": false,
+          "manualReviewRequired": true,
+          "provenance": "system-curated-concept-dependency",
+          "rationale": "Naming, comments and bilingual documentation are strengthened by versioned review history."
+        },
+        {
+          "targetLessonId": "PR09",
+          "relation": "candidate-required-foundation",
+          "requiredState": "practised",
+          "assessmentBlocking": false,
+          "runtimeActive": false,
+          "manualReviewRequired": true,
+          "provenance": "system-curated-concept-dependency",
+          "rationale": "Bilingual technical documentation requires the reviewed Russian computing terminology source."
+        }
+      ],
+      "sourceRef": "subjects/programming/data/lessons.json#/15"
+    },
+    {
+      "lessonId": "PR17",
+      "sourceIndex": 16,
+      "stageId": "hk1",
+      "moduleId": "mod_hk1",
+      "lessonType": "software-design",
+      "title": "OOP cho АСОИУ: class, interface, responsibility",
+      "readinessRole": "downstream-registered-not-sequenced",
+      "primaryStrandId": null,
+      "reviewState": "registered-for-owning-later-L8-step",
+      "prerequisiteRefs": [],
+      "sourceRef": "subjects/programming/data/lessons.json#/16"
+    },
+    {
+      "lessonId": "PR18",
+      "sourceIndex": 17,
+      "stageId": "hk1",
+      "moduleId": "mod_hk1",
+      "lessonType": "software-design",
+      "title": "Thiết kế module và kiến trúc package Python",
+      "readinessRole": "downstream-registered-not-sequenced",
+      "primaryStrandId": null,
+      "reviewState": "registered-for-owning-later-L8-step",
+      "prerequisiteRefs": [],
+      "sourceRef": "subjects/programming/data/lessons.json#/17"
+    },
+    {
+      "lessonId": "PR19",
+      "sourceIndex": 18,
+      "stageId": "hk1",
+      "moduleId": "mod_hk1",
+      "lessonType": "software-design",
+      "title": "Mẫu thiết kế ứng dụng: factory, strategy, adapter",
+      "readinessRole": "downstream-registered-not-sequenced",
+      "primaryStrandId": null,
+      "reviewState": "registered-for-owning-later-L8-step",
+      "prerequisiteRefs": [],
+      "sourceRef": "subjects/programming/data/lessons.json#/18"
+    },
+    {
+      "lessonId": "PR20",
+      "sourceIndex": 19,
+      "stageId": "hk1",
+      "moduleId": "mod_hk1",
+      "lessonType": "database",
+      "title": "CSDL cho hệ thống học máy: schema và metadata",
+      "readinessRole": "downstream-registered-not-sequenced",
+      "primaryStrandId": null,
+      "reviewState": "registered-for-owning-later-L8-step",
+      "prerequisiteRefs": [],
+      "sourceRef": "subjects/programming/data/lessons.json#/19"
+    },
+    {
+      "lessonId": "PR21",
+      "sourceIndex": 20,
+      "stageId": "hk1",
+      "moduleId": "mod_hk1",
+      "lessonType": "database",
+      "title": "ORM và migration nhập môn",
+      "readinessRole": "downstream-registered-not-sequenced",
+      "primaryStrandId": null,
+      "reviewState": "registered-for-owning-later-L8-step",
+      "prerequisiteRefs": [],
+      "sourceRef": "subjects/programming/data/lessons.json#/20"
+    },
+    {
+      "lessonId": "PR22",
+      "sourceIndex": 21,
+      "stageId": "hk1",
+      "moduleId": "mod_hk1",
+      "lessonType": "software-design",
+      "title": "Kỹ nghệ phần mềm: requirement, issue, milestone",
+      "readinessRole": "downstream-registered-not-sequenced",
+      "primaryStrandId": null,
+      "reviewState": "registered-for-owning-later-L8-step",
+      "prerequisiteRefs": [],
+      "sourceRef": "subjects/programming/data/lessons.json#/21"
+    },
+    {
+      "lessonId": "PR23",
+      "sourceIndex": 22,
+      "stageId": "hk1",
+      "moduleId": "mod_hk1",
+      "lessonType": "programming",
+      "title": "Kiểm thử tích hợp và test dữ liệu",
+      "readinessRole": "downstream-registered-not-sequenced",
+      "primaryStrandId": null,
+      "reviewState": "registered-for-owning-later-L8-step",
+      "prerequisiteRefs": [],
+      "sourceRef": "subjects/programming/data/lessons.json#/22"
+    },
+    {
+      "lessonId": "PR24",
+      "sourceIndex": 23,
+      "stageId": "hk1",
+      "moduleId": "mod_hk1",
+      "lessonType": "software-design",
+      "title": "CI nhẹ và kiểm tra chất lượng code",
+      "readinessRole": "downstream-registered-not-sequenced",
+      "primaryStrandId": null,
+      "reviewState": "registered-for-owning-later-L8-step",
+      "prerequisiteRefs": [],
+      "sourceRef": "subjects/programming/data/lessons.json#/23"
+    },
+    {
+      "lessonId": "PR25",
+      "sourceIndex": 24,
+      "stageId": "hk2",
+      "moduleId": "mod_hk2",
+      "lessonType": "programming",
+      "title": "Pipeline dữ liệu cho ML",
+      "readinessRole": "downstream-registered-not-sequenced",
+      "primaryStrandId": null,
+      "reviewState": "registered-for-owning-later-L8-step",
+      "prerequisiteRefs": [],
+      "sourceRef": "subjects/programming/data/lessons.json#/24"
+    },
+    {
+      "lessonId": "PR26",
+      "sourceIndex": 25,
+      "stageId": "hk2",
+      "moduleId": "mod_hk2",
+      "lessonType": "programming",
+      "title": "Scikit-learn baseline và metric",
+      "readinessRole": "downstream-registered-not-sequenced",
+      "primaryStrandId": null,
+      "reviewState": "registered-for-owning-later-L8-step",
+      "prerequisiteRefs": [],
+      "sourceRef": "subjects/programming/data/lessons.json#/25"
+    },
+    {
+      "lessonId": "PR27",
+      "sourceIndex": 26,
+      "stageId": "hk2",
+      "moduleId": "mod_hk2",
+      "lessonType": "programming",
+      "title": "API inference với FastAPI",
+      "readinessRole": "downstream-registered-not-sequenced",
+      "primaryStrandId": null,
+      "reviewState": "registered-for-owning-later-L8-step",
+      "prerequisiteRefs": [],
+      "sourceRef": "subjects/programming/data/lessons.json#/26"
+    },
+    {
+      "lessonId": "PR28",
+      "sourceIndex": 27,
+      "stageId": "hk2",
+      "moduleId": "mod_hk2",
+      "lessonType": "programming",
+      "title": "Serialization model và artifact version",
+      "readinessRole": "downstream-registered-not-sequenced",
+      "primaryStrandId": null,
+      "reviewState": "registered-for-owning-later-L8-step",
+      "prerequisiteRefs": [],
+      "sourceRef": "subjects/programming/data/lessons.json#/27"
+    },
+    {
+      "lessonId": "PR29",
+      "sourceIndex": 28,
+      "stageId": "hk2",
+      "moduleId": "mod_hk2",
+      "lessonType": "programming",
+      "title": "Cấu hình thí nghiệm bằng YAML/JSON",
+      "readinessRole": "downstream-registered-not-sequenced",
+      "primaryStrandId": null,
+      "reviewState": "registered-for-owning-later-L8-step",
+      "prerequisiteRefs": [],
+      "sourceRef": "subjects/programming/data/lessons.json#/28"
+    },
+    {
+      "lessonId": "PR30",
+      "sourceIndex": 29,
+      "stageId": "hk2",
+      "moduleId": "mod_hk2",
+      "lessonType": "software-design",
+      "title": "Docker nhập môn cho môi trường tái lập",
+      "readinessRole": "downstream-registered-not-sequenced",
+      "primaryStrandId": null,
+      "reviewState": "registered-for-owning-later-L8-step",
+      "prerequisiteRefs": [],
+      "sourceRef": "subjects/programming/data/lessons.json#/29"
+    },
+    {
+      "lessonId": "PR31",
+      "sourceIndex": 30,
+      "stageId": "hk2",
+      "moduleId": "mod_hk2",
+      "lessonType": "programming",
+      "title": "Bảo mật dữ liệu và quản lý secret",
+      "readinessRole": "downstream-registered-not-sequenced",
+      "primaryStrandId": null,
+      "reviewState": "registered-for-owning-later-L8-step",
+      "prerequisiteRefs": [],
+      "sourceRef": "subjects/programming/data/lessons.json#/30"
+    },
+    {
+      "lessonId": "PR32",
+      "sourceIndex": 31,
+      "stageId": "hk2",
+      "moduleId": "mod_hk2",
+      "lessonType": "software-design",
+      "title": "Tài liệu kỹ thuật và sơ đồ kiến trúc",
+      "readinessRole": "downstream-registered-not-sequenced",
+      "primaryStrandId": null,
+      "reviewState": "registered-for-owning-later-L8-step",
+      "prerequisiteRefs": [],
+      "sourceRef": "subjects/programming/data/lessons.json#/31"
+    },
+    {
+      "lessonId": "PR33",
+      "sourceIndex": 32,
+      "stageId": "hk3",
+      "moduleId": "mod_hk3",
+      "lessonType": "programming",
+      "title": "Dataset card cho telemetry và cảm biến",
+      "readinessRole": "downstream-registered-not-sequenced",
+      "primaryStrandId": null,
+      "reviewState": "registered-for-owning-later-L8-step",
+      "prerequisiteRefs": [],
+      "sourceRef": "subjects/programming/data/lessons.json#/32"
+    },
+    {
+      "lessonId": "PR34",
+      "sourceIndex": 33,
+      "stageId": "hk3",
+      "moduleId": "mod_hk3",
+      "lessonType": "programming",
+      "title": "Experiment tracking và bảng metric",
+      "readinessRole": "downstream-registered-not-sequenced",
+      "primaryStrandId": null,
+      "reviewState": "registered-for-owning-later-L8-step",
+      "prerequisiteRefs": [],
+      "sourceRef": "subjects/programming/data/lessons.json#/33"
+    },
+    {
+      "lessonId": "PR35",
+      "sourceIndex": 34,
+      "stageId": "hk3",
+      "moduleId": "mod_hk3",
+      "lessonType": "programming",
+      "title": "Ablation study bằng code có kiểm soát",
+      "readinessRole": "downstream-registered-not-sequenced",
+      "primaryStrandId": null,
+      "reviewState": "registered-for-owning-later-L8-step",
+      "prerequisiteRefs": [],
+      "sourceRef": "subjects/programming/data/lessons.json#/34"
+    },
+    {
+      "lessonId": "PR36",
+      "sourceIndex": 35,
+      "stageId": "hk3",
+      "moduleId": "mod_hk3",
+      "lessonType": "programming",
+      "title": "Xử lý log cảm biến và chuỗi thời gian",
+      "readinessRole": "downstream-registered-not-sequenced",
+      "primaryStrandId": null,
+      "reviewState": "registered-for-owning-later-L8-step",
+      "prerequisiteRefs": [],
+      "sourceRef": "subjects/programming/data/lessons.json#/35"
+    },
+    {
+      "lessonId": "PR37",
+      "sourceIndex": 36,
+      "stageId": "hk3",
+      "moduleId": "mod_hk3",
+      "lessonType": "programming",
+      "title": "Module đánh giá lỗi và phân tích thất bại",
+      "readinessRole": "downstream-registered-not-sequenced",
+      "primaryStrandId": null,
+      "reviewState": "registered-for-owning-later-L8-step",
+      "prerequisiteRefs": [],
+      "sourceRef": "subjects/programming/data/lessons.json#/36"
+    },
+    {
+      "lessonId": "PR38",
+      "sourceIndex": 37,
+      "stageId": "hk3",
+      "moduleId": "mod_hk3",
+      "lessonType": "software-design",
+      "title": "Prototype dashboard kết quả nghiên cứu",
+      "readinessRole": "downstream-registered-not-sequenced",
+      "primaryStrandId": null,
+      "reviewState": "registered-for-owning-later-L8-step",
+      "prerequisiteRefs": [],
+      "sourceRef": "subjects/programming/data/lessons.json#/37"
+    },
+    {
+      "lessonId": "PR39",
+      "sourceIndex": 38,
+      "stageId": "hk3",
+      "moduleId": "mod_hk3",
+      "lessonType": "software-design",
+      "title": "Đóng gói demo nghiên cứu",
+      "readinessRole": "downstream-registered-not-sequenced",
+      "primaryStrandId": null,
+      "reviewState": "registered-for-owning-later-L8-step",
+      "prerequisiteRefs": [],
+      "sourceRef": "subjects/programming/data/lessons.json#/38"
+    },
+    {
+      "lessonId": "PR40",
+      "sourceIndex": 39,
+      "stageId": "hk3",
+      "moduleId": "mod_hk3",
+      "lessonType": "software-design",
+      "title": "Quản lý rủi ro phần mềm trong НИР",
+      "readinessRole": "downstream-registered-not-sequenced",
+      "primaryStrandId": null,
+      "reviewState": "registered-for-owning-later-L8-step",
+      "prerequisiteRefs": [],
+      "sourceRef": "subjects/programming/data/lessons.json#/39"
+    },
+    {
+      "lessonId": "PR41",
+      "sourceIndex": 40,
+      "stageId": "hk4",
+      "moduleId": "mod_hk4",
+      "lessonType": "software-design",
+      "title": "Đóng băng mã nguồn và tag release",
+      "readinessRole": "downstream-registered-not-sequenced",
+      "primaryStrandId": null,
+      "reviewState": "registered-for-owning-later-L8-step",
+      "prerequisiteRefs": [],
+      "sourceRef": "subjects/programming/data/lessons.json#/40"
+    },
+    {
+      "lessonId": "PR42",
+      "sourceIndex": 41,
+      "stageId": "hk4",
+      "moduleId": "mod_hk4",
+      "lessonType": "programming",
+      "title": "Script chạy lại toàn bộ kết quả",
+      "readinessRole": "downstream-registered-not-sequenced",
+      "primaryStrandId": null,
+      "reviewState": "registered-for-owning-later-L8-step",
+      "prerequisiteRefs": [],
+      "sourceRef": "subjects/programming/data/lessons.json#/41"
+    },
+    {
+      "lessonId": "PR43",
+      "sourceIndex": 42,
+      "stageId": "hk4",
+      "moduleId": "mod_hk4",
+      "lessonType": "software-design",
+      "title": "Chuẩn hóa thư mục luận văn và artifact",
+      "readinessRole": "downstream-registered-not-sequenced",
+      "primaryStrandId": null,
+      "reviewState": "registered-for-owning-later-L8-step",
+      "prerequisiteRefs": [],
+      "sourceRef": "subjects/programming/data/lessons.json#/42"
+    },
+    {
+      "lessonId": "PR44",
+      "sourceIndex": 43,
+      "stageId": "hk4",
+      "moduleId": "mod_hk4",
+      "lessonType": "software-design",
+      "title": "Demo offline và kế hoạch dự phòng",
+      "readinessRole": "downstream-registered-not-sequenced",
+      "primaryStrandId": null,
+      "reviewState": "registered-for-owning-later-L8-step",
+      "prerequisiteRefs": [],
+      "sourceRef": "subjects/programming/data/lessons.json#/43"
+    },
+    {
+      "lessonId": "PR45",
+      "sourceIndex": 44,
+      "stageId": "hk4",
+      "moduleId": "mod_hk4",
+      "lessonType": "programming",
+      "title": "Tối ưu nhỏ: runtime, memory và latency",
+      "readinessRole": "downstream-registered-not-sequenced",
+      "primaryStrandId": null,
+      "reviewState": "registered-for-owning-later-L8-step",
+      "prerequisiteRefs": [],
+      "sourceRef": "subjects/programming/data/lessons.json#/44"
+    },
+    {
+      "lessonId": "PR46",
+      "sourceIndex": 45,
+      "stageId": "hk4",
+      "moduleId": "mod_hk4",
+      "lessonType": "software-design",
+      "title": "Kiểm tra license, citation và nguồn mở",
+      "readinessRole": "downstream-registered-not-sequenced",
+      "primaryStrandId": null,
+      "reviewState": "registered-for-owning-later-L8-step",
+      "prerequisiteRefs": [],
+      "sourceRef": "subjects/programming/data/lessons.json#/45"
+    },
+    {
+      "lessonId": "PR47",
+      "sourceIndex": 46,
+      "stageId": "hk4",
+      "moduleId": "mod_hk4",
+      "lessonType": "software-design",
+      "title": "Slide kỹ thuật: kiến trúc, pipeline, kết quả",
+      "readinessRole": "downstream-registered-not-sequenced",
+      "primaryStrandId": null,
+      "reviewState": "registered-for-owning-later-L8-step",
+      "prerequisiteRefs": [],
+      "sourceRef": "subjects/programming/data/lessons.json#/46"
+    },
+    {
+      "lessonId": "PR48",
+      "sourceIndex": 47,
+      "stageId": "hk4",
+      "moduleId": "mod_hk4",
+      "lessonType": "software-design",
+      "title": "Trả lời phản biện kỹ thuật phần mềm",
+      "readinessRole": "downstream-registered-not-sequenced",
+      "primaryStrandId": null,
+      "reviewState": "registered-for-owning-later-L8-step",
+      "prerequisiteRefs": [],
+      "sourceRef": "subjects/programming/data/lessons.json#/47"
+    }
+  ],
+  "futureStepHandoffs": [
+    {
+      "stepIds": [
+        "L8-B2"
+      ],
+      "track": "oop-solid-patterns",
+      "currentAnchorLessonIds": [
+        "PR17"
+      ],
+      "requiredFoundationLessonIds": [
+        "PR03",
+        "PR11"
+      ],
+      "supportingFoundationLessonIds": [
+        "PR14",
+        "PR16"
+      ],
+      "boundary": "B1 records readiness inputs only; B2 owns OOP, SOLID and pattern sequencing and depth."
+    },
+    {
+      "stepIds": [
+        "L8-B3"
+      ],
+      "track": "numpy-pandas-data-pipeline",
+      "currentAnchorLessonIds": [
+        "PR04",
+        "PR05",
+        "PR25"
+      ],
+      "requiredFoundationLessonIds": [
+        "PR03",
+        "PR04",
+        "PR05",
+        "PR12"
+      ],
+      "supportingFoundationLessonIds": [
+        "PR14"
+      ],
+      "boundary": "B3 owns data-pipeline content and may revise this candidate handoff after academic review."
+    },
+    {
+      "stepIds": [
+        "L8-B4"
+      ],
+      "track": "testing-debugging-git",
+      "currentAnchorLessonIds": [
+        "PR07",
+        "PR13",
+        "PR14",
+        "PR23",
+        "PR24"
+      ],
+      "requiredFoundationLessonIds": [
+        "PR03",
+        "PR07",
+        "PR13",
+        "PR14"
+      ],
+      "supportingFoundationLessonIds": [
+        "PR08",
+        "PR16"
+      ],
+      "boundary": "B4 owns executable testing, debugging and Git evidence; B1 does not qualify existing activities."
+    },
+    {
+      "stepIds": [
+        "L8-B5",
+        "L8-B6"
+      ],
+      "track": "algorithms-data-structures",
+      "currentAnchorLessonIds": [
+        "PR02",
+        "PR10",
+        "PR11"
+      ],
+      "requiredFoundationLessonIds": [
+        "PR02",
+        "PR03",
+        "PR11"
+      ],
+      "supportingFoundationLessonIds": [
+        "PR10"
+      ],
+      "boundary": "B5-B6 own practical search, sort, hash, tree and graph coverage; B1 does not infer missing lessons."
+    },
+    {
+      "stepIds": [
+        "L8-B7",
+        "L8-B8",
+        "L8-B9",
+        "L8-B10"
+      ],
+      "track": "database-information-systems",
+      "currentAnchorLessonIds": [
+        "PR06",
+        "PR15",
+        "PR20",
+        "PR21"
+      ],
+      "requiredFoundationLessonIds": [
+        "PR06",
+        "PR15"
+      ],
+      "supportingFoundationLessonIds": [
+        "PR03",
+        "PR12"
+      ],
+      "boundary": "B7-B10 own SQL depth, schema, transactions, optimization and post-relational coverage; Math remains a non-blocking support reference."
+    },
+    {
+      "stepIds": [
+        "L8-B11",
+        "L8-B12"
+      ],
+      "track": "software-engineering-system-design",
+      "currentAnchorLessonIds": [
+        "PR17",
+        "PR18",
+        "PR19",
+        "PR22",
+        "PR24",
+        "PR32"
+      ],
+      "requiredFoundationLessonIds": [
+        "PR03",
+        "PR11",
+        "PR14"
+      ],
+      "supportingFoundationLessonIds": [
+        "PR07",
+        "PR16"
+      ],
+      "boundary": "B11-B12 own requirements, UML, architecture, lifecycle and project-management sequencing."
+    },
+    {
+      "stepIds": [
+        "L8-B13"
+      ],
+      "track": "programming-interactive-ui",
+      "currentAnchorLessonIds": [],
+      "requiredFoundationLessonIds": [
+        "PR03",
+        "PR06",
+        "PR13",
+        "PR14"
+      ],
+      "supportingFoundationLessonIds": [
+        "PR07",
+        "PR08"
+      ],
+      "boundary": "Code runner and SQL playground stay planned-L8 with static fallbacks until B13 implements and tests them."
+    },
+    {
+      "stepIds": [
+        "L8-B14"
+      ],
+      "track": "full-subject-acceptance",
+      "currentAnchorLessonIds": [],
+      "requiredFoundationLessonIds": [
+        "PR01",
+        "PR02",
+        "PR03",
+        "PR07",
+        "PR08",
+        "PR09",
+        "PR10",
+        "PR11",
+        "PR12",
+        "PR13",
+        "PR14",
+        "PR16"
+      ],
+      "supportingFoundationLessonIds": [
+        "PR04",
+        "PR05",
+        "PR06",
+        "PR15"
+      ],
+      "boundary": "B14 owns full content, assessment, accessibility, offline, language-hook and Master-ready acceptance; B1 grants none of those claims."
+    }
+  ],
+  "referenceBindings": {
+    "russianTwin": {
+      "referenceId": "russian",
+      "availability": "source-aligned",
+      "sourceAlignedLessonCount": 48,
+      "typeProfiles": [
+        "programming",
+        "database",
+        "software-design"
+      ],
+      "activation": "source-alignment-and-authorized-opt-in-required",
+      "learnerStateMutation": false
+    },
+    "mathSupport": {
+      "referenceId": "math",
+      "relation": "supports",
+      "domainIds": [
+        "discrete-db-knowledge"
+      ],
+      "targetLessonIds": [
+        "PR06",
+        "PR20"
+      ],
+      "assessmentBlocking": false,
+      "runtimeActive": false,
+      "masterReadyEffect": "none-until-reviewed-objective-binding"
+    }
+  },
+  "activation": {
+    "runtimeActive": false,
+    "assessmentBlocking": false,
+    "manualReviewRequired": true,
+    "sourceMutation": false,
+    "curriculumMutation": false,
+    "learnerStateMutation": false,
+    "automaticMasterReady": false
+  }
+}
