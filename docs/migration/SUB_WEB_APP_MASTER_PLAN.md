@@ -5,6 +5,10 @@ Nguồn phát triển duy nhất: `migration/webapp-l1-audit-storage`
 Baseline GitHub được giữ nguyên: `main@e383912354673bdce7a0059d6b9a23799d74e689`  
 Kênh phát hành cố định: **SUB WEB APP**
 
+Release đã chốt: **SUB WEB APP v1 · 2026.09.03-v1 · PASS**  
+URL production riêng tư: `https://bauman-sub-web-app.dinhnam3391.chatgpt.site`  
+Site source commit: `3f024477521447944c09a65c1c89ef15fd0ad7f9`
+
 ## 1. Quy ước thống nhất
 
 1. `main` là baseline lưu trữ, không còn là nguồn phát hành Web App.
@@ -25,7 +29,7 @@ Kênh phát hành cố định: **SUB WEB APP**
 - Tổng kế hoạch thống nhất: **26 lượt · 247 bước**.
 - Tiến độ học thuật hiện tại: L1–L7 PASS; L8-B1 PASS; bước kế tiếp sau khi đóng SUB WEB APP là **L8-B2 OOP + SOLID/Patterns**.
 
-## 3. Lượt SWA · Fixed SUB WEB APP Release · 12 bước
+## 3. Lượt SWA · Fixed SUB WEB APP Release · 12/12 PASS
 
 1. Đối chiếu repo, branch, source SHA, trạng thái CI và phạm vi nội dung.
 2. Khóa quy ước ba lớp: `main` lưu trữ, một branch phát triển, SUB WEB APP phát hành.
@@ -39,6 +43,8 @@ Kênh phát hành cố định: **SUB WEB APP**
 10. Chạy lại các gate L5–L8 phù hợp với source và kiểm tra không còn credential trong release.
 11. Lưu một Site version bất biến và triển khai bằng URL riêng.
 12. Ghi audit, rollback, phần chưa có thật và điểm tiếp tục L8-B2.
+
+Kết quả cố định: Site version `1`, deployment `succeeded`, owner-only; bản runtime có 462 file, không còn hard-coded credential, không có asset vượt 24 MiB và giữ đủ 4.164 Russian dialogue records sau khi chia phần.
 
 ## 4. Lộ trình lõi 25 lượt · 235 bước
 
@@ -113,4 +119,3 @@ Ba mươi chín branch lịch sử phải được xóa sau khi lưu bảng SHA 
 ## 8. Điểm tiếp tục
 
 Sau khi Lượt SWA đủ 12/12 PASS và URL hoạt động, tiếp tục đúng **L8-B2**. Mọi checkpoint sau đó cập nhật SUB WEB APP bằng Site version mới; `main` không đổi trừ khi người dùng yêu cầu rõ ràng.
-
