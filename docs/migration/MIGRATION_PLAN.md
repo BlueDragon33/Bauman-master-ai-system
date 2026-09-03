@@ -2,6 +2,7 @@
 
 Baseline ổn định: `main`
 Working branch: `migration/webapp-l1-audit-storage`
+Fixed release channel: `SUB WEB APP` (Site versioned; không dùng `main` làm deployment source)
 Mục tiêu sản phẩm: **Bauman Master AI · ИУ-5 · 09.04.01/11 · Web App/PWA · Online + Offline · AI-assisted · VI/RU/EN adaptive**
 
 Kế hoạch chính thức hiện tại: **25 lượt · 235 bước**.
@@ -712,6 +713,6 @@ Trạng thái: **B1 PASS theo nghĩa audit/roadmap · L8-B2 kế tiếp**.
 
 ## Merge / progression gates
 
-Không được chuyển lượt nếu gate bắt buộc của lượt hiện tại chưa PASS. Không merge sang stable nếu thiếu ít nhất một trong: syntax/data validation, legacy-data preservation, functional/browser regression, pedagogical/content validation phù hợp phạm vi, security review phù hợp cấp thay đổi, và rollback path.
+Không được chuyển lượt nếu gate bắt buộc của lượt hiện tại chưa PASS. Không phát hành version mới của SUB WEB APP nếu thiếu ít nhất một trong: syntax/data validation, legacy-data preservation, functional/browser regression phù hợp phạm vi, pedagogical/content validation, security review và rollback path.
 
-Mọi lượt hoàn tất phải có ít nhất: source checkpoint, gate result, report ngắn về root cause/phần phát sinh, và rollback point.
+Mọi lượt hoàn tất phải có ít nhất: source checkpoint, gate result, báo cáo ngắn về root cause/phần phát sinh và rollback point. `main` chỉ thay đổi khi người dùng yêu cầu rõ ràng.
