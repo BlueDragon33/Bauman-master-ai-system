@@ -1,0 +1,45 @@
+{
+  "contractVersion": 1,
+  "application": {
+    "id": "bauman-master-ai",
+    "name": "Bauman Master AI",
+    "tier": "client",
+    "repository": "BlueDragon33/Bauman-master-ai-system"
+  },
+  "boundary": {
+    "independentRuntime": true,
+    "embeddedInApplicationManagement": false,
+    "sharedDatabaseWithApplicationManagement": false,
+    "sharedDeviceRegistryWithOtherClients": false
+  },
+  "readiness": {
+    "runtime": "available",
+    "subclientInventory": "available",
+    "deviceRegistry": "missing",
+    "deviceGateway": "missing",
+    "adminApi": "missing",
+    "auditApi": "missing",
+    "contentReviewApi": "missing"
+  },
+  "requiredDeviceContract": {
+    "namespace": "BM-",
+    "identity": "p256-public-key-fingerprint",
+    "classes": ["desktop", "tablet", "phone"],
+    "accessAndEditSeparated": true
+  },
+  "subclients": [
+    { "id": "math", "name": "Toán Bauman", "kind": "subject-site", "repository": "BlueDragon33/Math_Bauman", "state": "independent" },
+    { "id": "programming", "name": "Lập trình", "kind": "module", "sourcePath": "subjects/programming", "state": "module" },
+    { "id": "ai", "name": "AI", "kind": "module", "sourcePath": "subjects/ai", "state": "module" },
+    { "id": "signal", "name": "Tín hiệu", "kind": "module", "sourcePath": "subjects/signal", "state": "module" },
+    { "id": "systems", "name": "Hệ thống", "kind": "module", "sourcePath": "subjects/systems", "state": "module" },
+    { "id": "foundation", "name": "Nền tảng", "kind": "module", "sourcePath": "subjects/foundation", "state": "module" },
+    { "id": "research", "name": "Nghiên cứu", "kind": "module", "sourcePath": "subjects/research", "state": "module" },
+    { "id": "russian", "name": "Tiếng Nga", "kind": "module", "sourcePath": "subjects/russian", "state": "module" }
+  ],
+  "policy": {
+    "applicationManagementMayOpenLearningRuntimeDirectly": false,
+    "applicationManagementMayInventOperationsWithoutBackend": false,
+    "subclientsRemainUnderBaumanUntilIndependentContractExists": true
+  }
+}
