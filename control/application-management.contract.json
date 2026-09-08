@@ -1,5 +1,5 @@
 {
-  "contractVersion": 1,
+  "contractVersion": 2,
   "application": {
     "id": "bauman-master-ai",
     "name": "Bauman Master AI",
@@ -15,11 +15,19 @@
   "readiness": {
     "runtime": "available",
     "subclientInventory": "available",
+    "readOnlyControlApi": "available",
     "deviceRegistry": "missing",
     "deviceGateway": "missing",
-    "adminApi": "missing",
+    "mutationAdminApi": "missing",
     "auditApi": "missing",
     "contentReviewApi": "missing"
+  },
+  "controlService": {
+    "location": "control-service/",
+    "protocol": "bauman-control-v1",
+    "audience": "bauman-control",
+    "routes": ["/health", "/api/control/status", "/api/control/subclients"],
+    "mutationsEnabled": false
   },
   "requiredDeviceContract": {
     "namespace": "BM-",
