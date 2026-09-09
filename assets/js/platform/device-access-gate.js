@@ -3,7 +3,8 @@
 
   const runtime = global.BAUMAN_RUNTIME_CONFIG || {};
   const control = runtime.control || {};
-  const enabled = control.deviceAccess !== false;
+  const localBypass = ['127.0.0.1', 'localhost', 'terminal.local'].includes(global.location?.hostname || '');
+  const enabled = control.deviceAccess !== false && !localBypass;
   const baseUrl = String(control.baseUrl || 'https://learning-management.boiech-ai.workers.dev').replace(/\/$/, '');
   const endpoint = `${baseUrl}/api/bauman/device`;
   const OFFLINE_GRACE_MS = Number(control.offlineGraceMs || 24 * 60 * 60 * 1000);
@@ -20,7 +21,7 @@
     deviceId: null,
     deviceCode: null,
     verifiedAt: null,
-    mode: enabled ? 'remote' : 'disabled'
+    mode: enabled ? 'remote' : localBypass ? 'local-bypass' : 'disabled'
   };
   global.BAUMAN_DEVICE_ACCESS = accessState;
 
@@ -261,7 +262,7 @@
   }
 
   if (!enabled) {
-    document.documentElement.dataset.baumanDeviceAccess = 'disabled';
+    document.documentElement.dataset.baumanDeviceAccess = localBypass ? 'local-bypass' : 'disabled';
     return;
   }
 
