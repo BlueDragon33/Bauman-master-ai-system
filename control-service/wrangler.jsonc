@@ -1,0 +1,18 @@
+{
+  "$schema": "./node_modules/wrangler/config-schema.json",
+  "name": "bauman-control-service",
+  "main": "src/index.js",
+  "compatibility_date": "2026-09-01",
+  "compatibility_flags": ["nodejs_compat"],
+  "d1_databases": [
+    {
+      "binding": "BAUMAN_DB",
+      "database_name": "bauman-control-db",
+      "database_id": "REPLACE_WITH_BAUMAN_D1_DATABASE_ID",
+      "migrations_dir": "migrations"
+    }
+  ],
+  "vars": {
+    "BAUMAN_BUILD_SOURCE": "BlueDragon33/Bauman-master-ai-system"
+  }
+}
