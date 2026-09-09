@@ -8,6 +8,13 @@
       enabled: false,
       baseUrl: ''
     },
+    control: {
+      deviceAccess: true,
+      baseUrl: 'https://learning-management.boiech-ai.workers.dev',
+      pendingPollMs: 15000,
+      heartbeatMs: 60000,
+      offlineGraceMs: 86400000
+    },
     features: {
       cloudSync: false,
       backendAuth: false,
@@ -16,7 +23,8 @@
       siteRuntime: true,
       offlineLibrary: true,
       localFileLibrary: true,
-      serviceWorkerCache: false
+      serviceWorkerCache: false,
+      deviceAccessControl: true
     },
     storage: {
       mode: 'local-compatible',
