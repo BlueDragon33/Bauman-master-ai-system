@@ -10,7 +10,7 @@
     },
     control: {
       deviceAccess: true,
-      baseUrl: 'https://learning-management.boiech-ai.workers.dev',
+      baseUrl: 'https://bauman-control-service.workers.dev',
       pendingPollMs: 15000,
       heartbeatMs: 60000,
       offlineGraceMs: 86400000
