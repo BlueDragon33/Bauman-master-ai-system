@@ -1,0 +1,63 @@
+name: Bauman Device Control Regression
+
+on:
+  pull_request:
+    branches:
+      - migration/webapp-l1-audit-storage
+      - main
+    paths:
+      - control-service/**
+      - assets/js/platform/device-access-gate.js
+      - assets/js/platform/runtime-config.js
+      - assets/css/device-access-gate.css
+      - index.html
+      - .github/workflows/bauman-device-control-regression.yml
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  device-control:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v5
+
+      - name: Use Node.js 24
+        uses: actions/setup-node@v5
+        with:
+          node-version: '24'
+
+      - name: Syntax checks
+        run: |
+          node --check assets/js/platform/device-access-gate.js
+          node --check control-service/src/index.js
+          node --check control-service/scripts/contract-regression.mjs
+
+      - name: Run control contract regression
+        run: node control-service/scripts/contract-regression.mjs
+
+      - name: Verify runtime wiring and protected offline boundary
+        run: |
+          node - <<'NODE'
+          const fs=require('fs');
+          const index=fs.readFileSync('index.html','utf8');
+          const config=fs.readFileSync('assets/js/platform/runtime-config.js','utf8');
+          const gate=fs.readFileSync('assets/js/platform/device-access-gate.js','utf8');
+          const worker=fs.readFileSync('service-worker.js','utf8');
+          const failures=[];
+          const check=(name,ok)=>{if(!ok) failures.push(name)};
+          check('client-owned control origin', config.includes("https://bauman-control-service.workers.dev"));
+          check('local test bypass', gate.includes("['127.0.0.1', 'localhost', 'terminal.local']"));
+          check('P-256 proof string', gate.includes('bauman-runtime:${device.deviceId}:${challengeData.challenge}'));
+          const runtimeConfig=index.indexOf('assets/js/platform/runtime-config.js');
+          const deviceGate=index.indexOf('assets/js/platform/device-access-gate.js');
+          const siteRuntime=index.indexOf('assets/js/platform/site-runtime.js');
+          check('gate loads after config', runtimeConfig>=0 && runtimeConfig<deviceGate);
+          check('gate loads before site runtime', deviceGate>=0 && deviceGate<siteRuntime);
+          check('protected service worker unchanged by feature', !worker.includes('device-access-gate.css') && !worker.includes('device-access-gate.js'));
+          if(failures.length){console.error(failures.join('\n'));process.exit(2)}
+          console.log('Bauman device runtime wiring PASS.');
+          NODE
