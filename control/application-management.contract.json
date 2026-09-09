@@ -1,5 +1,5 @@
 {
-  "contractVersion": 2,
+  "contractVersion": 3,
   "application": {
     "id": "bauman-master-ai",
     "name": "Bauman Master AI",
@@ -16,23 +16,34 @@
     "runtime": "available",
     "subclientInventory": "available",
     "readOnlyControlApi": "available",
-    "deviceRegistry": "missing",
-    "deviceGateway": "missing",
-    "mutationAdminApi": "missing",
-    "auditApi": "missing",
+    "deviceRegistry": "available",
+    "deviceGateway": "available",
+    "mutationAdminApi": "available",
+    "auditApi": "available",
     "contentReviewApi": "missing"
   },
   "controlService": {
     "location": "control-service/",
     "protocol": "bauman-control-v1",
     "audience": "bauman-control",
-    "routes": ["/health", "/api/control/status", "/api/control/subclients"],
-    "mutationsEnabled": false
+    "routes": [
+      "/health",
+      "/api/device/register",
+      "/api/device/challenge",
+      "/api/device/prove",
+      "/api/control/status",
+      "/api/control/subclients",
+      "/api/control/devices",
+      "/api/control/audit"
+    ],
+    "mutationsEnabled": true,
+    "persistence": "Durable Object SQLite · DeviceRegistry"
   },
   "requiredDeviceContract": {
     "namespace": "BM-",
     "identity": "p256-public-key-fingerprint",
-    "classes": ["desktop", "tablet", "phone"],
+    "proof": "ECDSA P-256 SHA-256 challenge-response",
+    "classes": ["desktop", "tablet", "phone", "unknown"],
     "accessAndEditSeparated": true
   },
   "subclients": [
@@ -48,6 +59,7 @@
   "policy": {
     "applicationManagementMayOpenLearningRuntimeDirectly": false,
     "applicationManagementMayInventOperationsWithoutBackend": false,
-    "subclientsRemainUnderBaumanUntilIndependentContractExists": true
+    "subclientsRemainUnderBaumanUntilIndependentContractExists": true,
+    "deviceDecisionOwnerOnly": true
   }
 }
