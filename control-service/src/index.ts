@@ -153,27 +153,26 @@ function allowedCorsOrigin(request: Request, env: Env) {
   return "";
 }
 
-function cors(request: Request, env: Env) {
+function cors(request: Request, env: Env): Record<string, string> {
   const origin = allowedCorsOrigin(request, env);
-  return origin ? {
+  if (!origin) return {};
+  return {
     "access-control-allow-origin": origin,
     "access-control-allow-methods": "GET, POST, OPTIONS",
     "access-control-allow-headers": "authorization, content-type, x-control-actor, x-control-role, x-control-device",
     "access-control-max-age": "600",
     vary: "Origin",
-  } : {};
+  };
 }
 
 function json(request: Request, env: Env, data: unknown, status = 200) {
-  return Response.json(data, {
-    status,
-    headers: {
-      "cache-control": "no-store, private",
-      "content-security-policy": "default-src 'none'; frame-ancestors 'none'",
-      "x-content-type-options": "nosniff",
-      ...cors(request, env),
-    },
-  });
+  const headers: Record<string, string> = {
+    "cache-control": "no-store, private",
+    "content-security-policy": "default-src 'none'; frame-ancestors 'none'",
+    "x-content-type-options": "nosniff",
+    ...cors(request, env),
+  };
+  return Response.json(data, { status, headers });
 }
 
 function registry(env: Env) {
@@ -239,7 +238,7 @@ export class DeviceRegistry {
       const device = await this.state.storage.get<DeviceRecord>(`device:${deviceId}`);
       if (!device) return Response.json({ error: "DEVICE_NOT_FOUND" }, { status: 404 });
       const challenge: ChallengeRecord = { value: base64Url(crypto.getRandomValues(new Uint8Array(24))), expiresAt: Date.now() + 120_000 };
-      await this.state.storage.put(`challenge:${deviceId}`, challenge, { expirationTtl: 180 });
+      await this.state.storage.put(`challenge:${deviceId}`, challenge);
       return Response.json({ device, challenge });
     }
 
@@ -256,7 +255,8 @@ export class DeviceRegistry {
       const key = `device:${deviceId}`;
       const device = await this.state.storage.get<DeviceRecord>(key);
       if (!device) return Response.json({ error: "DEVICE_NOT_FOUND" }, { status: 404 });
-      const next = { ...device, lastSeenAt: new Date().toISOString(), updatedAt: new Date().toISOString() };
+      const now = new Date().toISOString();
+      const next = { ...device, lastSeenAt: now, updatedAt: now };
       await this.state.storage.put(key, next);
       return Response.json({ device: next });
     }
