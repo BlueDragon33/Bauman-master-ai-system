@@ -1,6 +1,6 @@
 'use strict';
 
-const VERSION='2026.08.24-l5.10';
+const VERSION='2026.09.09-device-access-v1';
 const CACHE_NAME=`bauman-shell-${VERSION}`;
 const OFFLINE_CONTENT_CACHE='bauman-offline-content-v1';
 const ROADMAP_MANIFEST='./assets/data/roadmap/iu5-090401-11-v3.json';
@@ -12,7 +12,9 @@ const SHELL=[
   './assets/css/offline-library.css',
   './assets/css/offline-subject-pack.css',
   './assets/css/runtime-diagnostics.css',
+  './assets/css/device-access-gate.css',
   './assets/js/platform/runtime-config.js',
+  './assets/js/platform/device-access-gate.js',
   './assets/js/platform/site-runtime.js',
   './assets/js/platform/offline-content-library.js',
   './assets/js/platform/storage-adapter.js',
