@@ -2,7 +2,9 @@
 
 Date: 2026-09-10
 Branch: `temp/bauman-master-hub-prereq-2026`
-Status: `P7_PACK_IMPLEMENTED_GATE_PENDING`
+Status: `P7_BLUEPRINT_VALIDATED_CI_PASS`
+CI run: `34453120930`
+Head SHA validated: `ea0830b741a5ea3017ba36eb94221dad8115881c`
 
 ## Goal
 
@@ -64,26 +66,20 @@ D1 focuses on real troubleshooting rather than trivia: safe file operations, per
 
 The active route excludes kernel compilation/modules, advanced scheduler/virtual-memory internals, firewall administration deep dives, CCNA/CCNP, Kubernetes administration, cloud networking certification and penetration testing. It also keeps UGV/USV/control/hardware-specific material out of the prerequisite route.
 
-## Validator
+## Validator and CI
 
 Added `scripts/validate-p07-linux-os-networks.js` and wired it into the Academic 2026 workflow.
 
-The validator checks:
+The validator checks registry target/topic integrity, official target identities, actual PR01/PR27/PR30 existence before reuse, 10 unique ordered acyclic nodes, required Linux/OS/network signals, D0/D1/D2 integrity, Russian oral prompts, critical misconceptions, repair routes and scope guards. Independent sanity checks validate Unix permission 0640, /24 subnet matching, URL decomposition and valid port ranges.
 
-- registry target/topic integrity;
-- official target identities;
-- actual PR01/PR27/PR30 existence before reuse;
-- 10 unique ordered acyclic nodes;
-- required Linux/OS/network topic signals;
-- D0/D1/D2 integrity and Russian oral prompts;
-- critical misconceptions and repair routes;
-- scope guards;
-- independent sanity checks for Unix permission 0640, /24 subnet matching, URL decomposition and valid port ranges.
+The first strict CI run correctly stopped in the P7 gate because the scope regex treated the operating-system term `PID` (process identifier) as if it were the control-theory term PID. This was a validator false positive, not an academic-content error. The validator was corrected narrowly: operating-system PID remains valid, while PID controller/control terminology remains blocked from the active prerequisite path. No content requirement was weakened.
+
+CI run `34453120930` completed successfully for head `ea0830b741a5ea3017ba36eb94221dad8115881c`, including official curriculum, prerequisite coverage, P9, P6, P4, P7 and runtime checks.
 
 ## Runtime policy
 
 Pass 07 still does not write diagnostic scores, mutate the adaptive scheduler, require Docker for READY, create a new top-level subject, overwrite existing Programming lessons or merge into `main`.
 
-## Next pass after CI
+## Next pass
 
 Pass 08 should implement `P8 · Software Engineering` by reusing PR07/PR14/PR17/PR18/PR19/PR22/PR23/PR24 and filling only the remaining gaps: explicit requirements quality, UML views, SOLID, architecture quality attributes, lifecycle models, integration/regression/system testing and configuration/release management.
