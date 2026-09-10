@@ -1,0 +1,167 @@
+{
+  "schema": "bauman_prerequisite_pack_v1",
+  "version": "P10_SCIENTIFIC_DATA_PYTHON_PASS09_V1",
+  "gateId": "P10",
+  "titleVi": "Scientific/Data Python cho IU5",
+  "titleRu": "Научный Python и обработка данных для ИУ5",
+  "status": "diagnostic_and_repair_blueprint",
+  "notOfficialAdministrativePrerequisite": true,
+  "purpose": "Khôi phục đúng năng lực Python khoa học và xử lý dữ liệu cần cho phân tích đa biến, machine learning, neural systems, time series, business analytics và NIR; tái sử dụng NumPy/pandas/sklearn hiện có, không học vòng sang MLOps hoặc framework nâng cao.",
+  "officialTargets": [
+    {"courseId":"d04","nameRu":"Многомерный анализ данных в системах искусственного интеллекта","semester":1,"role":"primary"},
+    {"courseId":"d08","nameRu":"Методы машинного обучения в автоматизированных системах обработки информации и управления","semester":2,"role":"bridge"},
+    {"courseId":"d11","nameRu":"Разработка нейросетевых систем","semester":2,"role":"bridge"},
+    {"courseId":"d12","nameRu":"Анализ временных рядов","semester":3,"role":"downstream"},
+    {"courseId":"d13","nameRu":"Искусственный интеллект в задачах бизнес-аналитики","semester":3,"role":"downstream"},
+    {"courseId":"d16","nameRu":"НИР по обработке и анализу данных","semester":3,"role":"downstream"}
+  ],
+  "sourceEvidence": [
+    {"kind":"official_curriculum","url":"https://home.science.iu5.bmstu.ru/study-plans/iu5-master-program.pdf","note":"Khóa các học phần chính thức và học kỳ. P10 là competency prerequisite do Hub suy ra, không phải prerequisite hành chính do Bauman công bố."}
+  ],
+  "localReuse": [
+    {"subject":"programming","path":"subjects/programming/data/lessons.json","lessonIds":["PR04"],"coverage":["NumPy arrays","vectorization","matrix-shaped data"]},
+    {"subject":"programming","path":"subjects/programming/data/lessons.json","lessonIds":["PR05"],"coverage":["pandas DataFrame","cleaning","groupby","merge"]},
+    {"subject":"programming","path":"subjects/programming/data/lessons.json","lessonIds":["PR08"],"coverage":["reproducible notebook","README","artifact organization"]},
+    {"subject":"programming","path":"subjects/programming/data/lessons.json","lessonIds":["PR12"],"coverage":["JSON/CSV/file IO"]},
+    {"subject":"programming","path":"subjects/programming/data/lessons.json","lessonIds":["PR25"],"coverage":["ML data pipeline concept"],"activation":"after core data handling"},
+    {"subject":"programming","path":"subjects/programming/data/lessons.json","lessonIds":["PR26"],"coverage":["scikit-learn baseline","basic metrics","train-test workflow"],"activation":"after leakage-safe split discipline"}
+  ],
+  "upstream": {
+    "critical": ["P5"],
+    "support": ["P2","P3"],
+    "reuseInsteadOfDuplicate": [
+      {"lesson":"PR04","concept":"NumPy/vectorization"},
+      {"lesson":"PR05","concept":"pandas cleaning"},
+      {"lesson":"PR08","concept":"reproducible notebook"},
+      {"lesson":"PR12","concept":"file/tabular IO"},
+      {"lesson":"PR25","concept":"pipeline idea"},
+      {"lesson":"PR26","concept":"baseline and metric workflow"}
+    ]
+  },
+  "mastery": {
+    "target": 90,
+    "applicationMinimum": 85,
+    "criticalMisconceptionsAllowed": 0,
+    "diagnosticFormula": "M = 0.25*D0 + 0.50*D1 + 0.25*D2",
+    "stopRule": "Nếu P10 >= 95, D1 >= 90 và không còn critical misconception thì dừng học rộng; chỉ mở lại node cụ thể khi d04/d08/d11/d12/d13/NIR cho thấy lỗ hổng thực tế."
+  },
+  "scopeGuard": {
+    "required": [
+      "NumPy shape-dtype-vectorization discipline",
+      "pandas schema and missing-data handling",
+      "CSV/JSON/tabular ingestion",
+      "SciPy essentials only",
+      "matplotlib diagnostic visualization",
+      "train-validation-test split discipline",
+      "data leakage prevention",
+      "scikit-learn Pipeline and ColumnTransformer",
+      "scaling-encoding-imputation",
+      "cross-validation and metric workflow",
+      "reproducible preprocessing",
+      "dataset/schema validation"
+    ],
+    "excludedFromDefaultRoute": [
+      "deep MLOps",
+      "Kubernetes",
+      "Kubeflow",
+      "Airflow administration",
+      "Spark internals",
+      "GPU/CUDA optimization",
+      "distributed training",
+      "feature-store platform engineering",
+      "LLM frameworks",
+      "robotics telemetry specialization"
+    ]
+  },
+  "nodes": [
+    {"id":"P10-N01","order":1,"titleVi":"NumPy: shape, dtype, axis và vectorization","titleRu":"NumPy: shape, dtype, axis и векторизация","kind":"reuse_extend","dependsOn":[],"reuse":["PR04"],"outcomes":["Đọc đúng shape của vector/matrix/tensor nhỏ.","Phân biệt axis khi aggregate.","Nhận biết dtype không phù hợp và ép kiểu có chủ đích.","Ưu tiên vectorization thay loop Python khi phép toán là mảng."],"repairHoursHint":"2–4 giờ"},
+    {"id":"P10-N02","order":2,"titleVi":"pandas: schema, index, missing values và merge an toàn","titleRu":"pandas: схема, индекс, пропуски и безопасное объединение","kind":"reuse_extend","dependsOn":["P10-N01"],"reuse":["PR05"],"outcomes":["Kiểm tra columns/dtypes/nulls trước phân tích.","Phân biệt index với cột dữ liệu.","Xử lý missing theo ngữ cảnh thay vì dropna mù.","Kiểm tra cardinality/khoá khi merge để tránh nhân bản hàng ngoài ý muốn."],"repairHoursHint":"3–5 giờ"},
+    {"id":"P10-N03","order":3,"titleVi":"Đọc CSV/JSON và khóa kiểu dữ liệu đầu vào","titleRu":"Загрузка CSV/JSON и контроль типов входных данных","kind":"reuse_bridge","dependsOn":["P10-N02"],"reuse":["PR12"],"outcomes":["Đọc dữ liệu với encoding/delimiter/decimal/date hợp lý.","Phân biệt parse lỗi với missing hợp lệ.","Khóa tên cột và dtype kỳ vọng.","Không để cùng một cột lúc là số lúc là chuỗi mà không phát hiện."],"repairHoursHint":"2–3 giờ"},
+    {"id":"P10-N04","order":4,"titleVi":"SciPy tối thiểu cho kiểm chứng số","titleRu":"Минимально необходимый SciPy для численной проверки","kind":"core","dependsOn":["P10-N01"],"outcomes":["Biết dùng scipy.stats/linalg/optimize ở mức gọi hàm kiểm chứng khi cần.","Không coi SciPy là thay thế cho hiểu toán nền.","Kiểm tra điều kiện đầu vào và độ ổn định số cơ bản.","Đọc kết quả solver/statistic thay vì chỉ lấy một con số."],"repairHoursHint":"3–4 giờ"},
+    {"id":"P10-N05","order":5,"titleVi":"Matplotlib cho chẩn đoán dữ liệu, không trang trí","titleRu":"Matplotlib для диагностики данных, а не оформления","kind":"core","dependsOn":["P10-N02"],"outcomes":["Vẽ histogram/scatter/line/boxplot tối thiểu đúng loại dữ liệu.","Gắn nhãn trục/đơn vị và không đánh lừa bằng scale.","Dùng biểu đồ để phát hiện outlier, drift hoặc quan hệ đáng kiểm tra.","Không thay kiểm định định lượng bằng nhìn biểu đồ."],"repairHoursHint":"2–3 giờ"},
+    {"id":"P10-N06","order":6,"titleVi":"Train/validation/test và chống data leakage","titleRu":"Разделение train/validation/test и предотвращение утечки данных","kind":"critical","dependsOn":["P10-N02","P10-N03"],"outcomes":["Tách dữ liệu trước khi fit preprocessing có học tham số.","Phân biệt train/validation/test và mục đích từng phần.","Nhận diện target leakage, temporal leakage và duplicate leakage.","Chỉ tính statistics của scaler/imputer trên train rồi áp dụng sang validation/test."],"repairHoursHint":"3–5 giờ"},
+    {"id":"P10-N07","order":7,"titleVi":"Pipeline và ColumnTransformer trong scikit-learn","titleRu":"Pipeline и ColumnTransformer в scikit-learn","kind":"core","dependsOn":["P10-N06"],"reuse":["PR25"],"outcomes":["Đóng gói preprocessing và estimator trong cùng pipeline.","Tách numeric/categorical transforms có kiểm soát.","Tránh fit-transform validation/test độc lập.","Giữ cùng feature order/schema giữa train và inference."],"repairHoursHint":"3–5 giờ"},
+    {"id":"P10-N08","order":8,"titleVi":"Imputation, scaling và encoding đúng thời điểm","titleRu":"Импутация, масштабирование и кодирование без утечки","kind":"core","dependsOn":["P10-N07"],"outcomes":["Chọn imputation đơn giản phù hợp baseline.","Biết khi nào scaling quan trọng và khi nào ít ảnh hưởng.","One-hot categorical theo pipeline thay vì xử lý thủ công rời rạc.","Không dùng toàn dataset để tính mean/std hoặc vocabulary categories."],"repairHoursHint":"3–4 giờ"},
+    {"id":"P10-N09","order":9,"titleVi":"Cross-validation, baseline và metric workflow","titleRu":"Кросс-валидация, baseline и метрики","kind":"reuse_extend","dependsOn":["P10-N07","P10-N08"],"reuse":["PR26"],"outcomes":["Chọn metric phù hợp regression/classification cơ bản.","Dùng cross-validation trên pipeline để tránh leakage.","So sánh với baseline đơn giản trước mô hình phức tạp.","Ghi mean/spread và không chỉ báo một lần split may mắn."],"repairHoursHint":"3–5 giờ"},
+    {"id":"P10-N10","order":10,"titleVi":"Notebook và preprocessing có thể tái lập","titleRu":"Воспроизводимый notebook и preprocessing","kind":"reuse_extend","dependsOn":["P10-N09"],"reuse":["PR08"],"outcomes":["Chạy notebook từ đầu đến cuối trên dữ liệu sạch mà không phụ thuộc hidden state.","Khóa seed/config/path ở mức cần thiết.","Tách raw/interim/processed/results hợp lý.","Ghi dependency và artifact đủ để chạy lại."],"repairHoursHint":"2–4 giờ"},
+    {"id":"P10-N11","order":11,"titleVi":"Dataset contract, schema validation và cầu nối d04/NIR","titleRu":"Контракт набора данных, проверка схемы и переход к d04/НИР","kind":"official_course_bridge","dependsOn":["P10-N03","P10-N06","P10-N10"],"outcomes":["Định nghĩa required columns, dtype, range/null policy và uniqueness tối thiểu.","Fail sớm khi schema drift thay vì để mô hình lỗi âm thầm.","Tạo một preprocessing artifact tái lập cho bài phân tích đa biến.","Biết P2/P3 vẫn là prerequisite toán critical của d04; P10 không thay thế chúng."],"repairHoursHint":"3–4 giờ"}
+  ],
+  "diagnostic": {
+    "D0": {"name":"Recall","weight":0.25,"recommendedMinutes":30,"items":[
+      {"id":"P10-D0-01","node":"P10-N01","prompt":"shape (n,d) mô tả điều gì trong bảng đặc trưng?"},
+      {"id":"P10-D0-02","node":"P10-N01","prompt":"axis=0 và axis=1 khác nhau ra sao khi tính mean trên ma trận 2D?"},
+      {"id":"P10-D0-03","node":"P10-N02","prompt":"dtype và missing-value profile cần kiểm tra trước phân tích vì sao?"},
+      {"id":"P10-D0-04","node":"P10-N02","prompt":"Merge many-to-many có thể gây vấn đề gì?"},
+      {"id":"P10-D0-05","node":"P10-N03","prompt":"Parse error khác missing value hợp lệ thế nào?"},
+      {"id":"P10-D0-06","node":"P10-N04","prompt":"SciPy hỗ trợ nhóm tác vụ stats/linalg/optimize ở vai trò nào?"},
+      {"id":"P10-D0-07","node":"P10-N05","prompt":"Histogram và scatter plot trả lời hai loại câu hỏi dữ liệu khác nhau nào?"},
+      {"id":"P10-D0-08","node":"P10-N06","prompt":"Data leakage là gì?"},
+      {"id":"P10-D0-09","node":"P10-N06","prompt":"Vì sao scaler phải fit trên train thay vì toàn dataset?"},
+      {"id":"P10-D0-10","node":"P10-N07","prompt":"Pipeline giải quyết vấn đề consistency nào?"},
+      {"id":"P10-D0-11","node":"P10-N07","prompt":"ColumnTransformer dùng khi nào?"},
+      {"id":"P10-D0-12","node":"P10-N08","prompt":"One-hot encoding thuộc preprocessing nào?"},
+      {"id":"P10-D0-13","node":"P10-N09","prompt":"Cross-validation dùng để làm gì?"},
+      {"id":"P10-D0-14","node":"P10-N09","prompt":"Baseline có vai trò gì trước mô hình phức tạp?"},
+      {"id":"P10-D0-15","node":"P10-N10","prompt":"Notebook hidden state gây lỗi reproducibility thế nào?"},
+      {"id":"P10-D0-16","node":"P10-N10","prompt":"Random seed giúp gì và không bảo đảm điều gì?"},
+      {"id":"P10-D0-17","node":"P10-N11","prompt":"Dataset schema contract tối thiểu nên mô tả những gì?"},
+      {"id":"P10-D0-18","node":"P10-N11","prompt":"Schema drift là gì?"}
+    ]},
+    "D1": {"name":"Application","weight":0.5,"recommendedMinutes":90,"items":[
+      {"id":"P10-D1-01","node":"P10-N01","prompt":"Cho X shape (120,8) và w shape (8,), xác định shape của X@w và chỉ ra một shape sai sẽ làm phép nhân không hợp lệ."},
+      {"id":"P10-D1-02","node":"P10-N02","prompt":"Một merge làm 100 hàng thành 460 hàng. Hãy xác định kiểm tra key/cardinality cần làm trước khi chấp nhận kết quả."},
+      {"id":"P10-D1-03","node":"P10-N03","prompt":"Thiết kế bước đọc CSV có cột date, score và label sao cho lỗi dtype được phát hiện sớm."},
+      {"id":"P10-D1-04","node":"P10-N04","prompt":"Cho một phép giải hệ tuyến tính số; mô tả cách kiểm residual thay vì chỉ tin kết quả solver."},
+      {"id":"P10-D1-05","node":"P10-N05","prompt":"Chọn biểu đồ để kiểm outlier và quan hệ giữa hai biến liên tục; giải thích lựa chọn."},
+      {"id":"P10-D1-06","node":"P10-N06","prompt":"Dataset 1000 hàng: mô tả workflow split và fit scaler sao cho validation/test không rò thông tin."},
+      {"id":"P10-D1-07","node":"P10-N06","prompt":"Cho dữ liệu time series, chỉ ra vì sao random split có thể gây temporal leakage và đề xuất split đúng hơn."},
+      {"id":"P10-D1-08","node":"P10-N07","prompt":"Thiết kế Pipeline có numeric imputer+scaler, categorical imputer+one-hot và estimator."},
+      {"id":"P10-D1-09","node":"P10-N08","prompt":"Một người fit encoder riêng trên test. Hãy chỉ ra lỗi và sửa workflow."},
+      {"id":"P10-D1-10","node":"P10-N09","prompt":"Chọn metric và baseline cho một bài classification mất cân bằng; giải thích vì sao accuracy có thể gây hiểu sai."},
+      {"id":"P10-D1-11","node":"P10-N10","prompt":"Biến một notebook chạy được nhờ thứ tự cell ngẫu nhiên thành notebook chạy Run All từ đầu ổn định."},
+      {"id":"P10-D1-12","node":"P10-N11","prompt":"Thiết kế schema check tối thiểu cho dataset gồm id, timestamp, feature_1..feature_k và target trước khi đưa vào d04/NIR."}
+    ]},
+    "D2": {"name":"Explain/Oral","weight":0.25,"recommendedMinutes":30,"items":[
+      {"id":"P10-D2-01","node":"P10-N01","promptVi":"Giải thích shape, dtype và vectorization bằng một ví dụ ma trận dữ liệu.","promptRu":"Объясните shape, dtype и векторизацию на простом примере матрицы данных."},
+      {"id":"P10-D2-02","node":"P10-N02","promptVi":"Giải thích vì sao merge phải kiểm key cardinality.","promptRu":"Объясните, почему перед объединением таблиц нужно проверить кардинальность ключей."},
+      {"id":"P10-D2-03","node":"P10-N06","promptVi":"Giải thích data leakage và một ví dụ preprocessing gây leakage.","promptRu":"Объясните утечку данных и приведите пример утечки при предобработке."},
+      {"id":"P10-D2-04","node":"P10-N07","promptVi":"Giải thích lợi ích của Pipeline và ColumnTransformer.","promptRu":"Объясните назначение Pipeline и ColumnTransformer в scikit-learn."},
+      {"id":"P10-D2-05","node":"P10-N09","promptVi":"Giải thích vì sao cần baseline và cross-validation.","promptRu":"Объясните, зачем нужны baseline-модель и кросс-валидация."},
+      {"id":"P10-D2-06","node":"P10-N10","promptVi":"Giải thích reproducible notebook là gì.","promptRu":"Объясните, что означает воспроизводимый notebook и какие условия для этого нужны."},
+      {"id":"P10-D2-07","node":"P10-N11","promptVi":"Giải thích dataset contract và schema drift.","promptRu":"Объясните контракт набора данных и понятие изменения схемы данных."},
+      {"id":"P10-D2-08","node":"P10-N11","promptVi":"Giải thích vì sao P10 không thể thay thế đại số tuyến tính và thống kê khi học d04.","promptRu":"Объясните, почему навыки Data Python не заменяют линейную алгебру и статистику в многомерном анализе данных."}
+    ]}
+  },
+  "criticalMisconceptions": [
+    {"id":"P10-M01","node":"P10-N01","text":"Broadcast chạy được thì mặc định nghĩa toán học cũng đúng."},
+    {"id":"P10-M02","node":"P10-N02","text":"Merge tăng mạnh số hàng chắc chắn là bình thường."},
+    {"id":"P10-M03","node":"P10-N03","text":"Cột object/string có thể dùng như số mà không cần kiểm dtype."},
+    {"id":"P10-M04","node":"P10-N04","text":"Gọi SciPy solver có nghĩa là không cần hiểu residual hoặc điều kiện bài toán."},
+    {"id":"P10-M05","node":"P10-N05","text":"Biểu đồ đẹp có thể thay thế kiểm tra định lượng."},
+    {"id":"P10-M06","node":"P10-N06","text":"Có thể fit scaler/imputer trên toàn dataset trước split vì target chưa được dùng."},
+    {"id":"P10-M07","node":"P10-N06","text":"Time series luôn có thể random split như dữ liệu IID."},
+    {"id":"P10-M08","node":"P10-N07","text":"Fit riêng preprocessing trên validation/test là cách đúng để dữ liệu phù hợp mô hình."},
+    {"id":"P10-M09","node":"P10-N09","text":"Một lần split có điểm cao đủ để chứng minh mô hình ổn định."},
+    {"id":"P10-M10","node":"P10-N10","text":"Notebook chạy được trên máy hiện tại thì mặc định tái lập được ở lần sau."},
+    {"id":"P10-M11","node":"P10-N11","text":"Schema drift chỉ là lỗi giao diện cột, không thể làm sai kết quả mô hình âm thầm."}
+  ],
+  "repairRoutes": [
+    {"id":"P10-R01","triggerNodes":["P10-N01"],"route":["PR04","P10-N01"]},
+    {"id":"P10-R02","triggerNodes":["P10-N02","P10-N03"],"route":["PR05","PR12","P10-N02","P10-N03"]},
+    {"id":"P10-R03","triggerNodes":["P10-N04","P10-N05"],"route":["P10-N04","P10-N05"]},
+    {"id":"P10-R04","triggerNodes":["P10-N06"],"route":["P10-N06"]},
+    {"id":"P10-R05","triggerNodes":["P10-N07","P10-N08"],"route":["PR25","P10-N07","P10-N08"]},
+    {"id":"P10-R06","triggerNodes":["P10-N09"],"route":["PR26","P10-N09"]},
+    {"id":"P10-R07","triggerNodes":["P10-N10"],"route":["PR08","P10-N10"]},
+    {"id":"P10-R08","triggerNodes":["P10-N11"],"route":["P10-N03","P10-N06","P10-N10","P10-N11"]}
+  ],
+  "implementationPolicy": {
+    "writesDiagnosticScores": false,
+    "schedulerMutation": false,
+    "newTopLevelSubject": false,
+    "overwritesExistingLessons": false,
+    "requiresSciPyForEveryTask": false,
+    "requiresMLOpsForReady": false,
+    "mainBranchMutation": false
+  }
+}
