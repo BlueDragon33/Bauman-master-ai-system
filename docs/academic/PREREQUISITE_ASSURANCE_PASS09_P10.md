@@ -2,7 +2,9 @@
 
 Date: 2026-09-10
 Branch: `temp/bauman-master-hub-prereq-2026`
-Status: `P10_PACK_IMPLEMENTED_GATE_PENDING`
+Status: `P10_BLUEPRINT_VALIDATED_CI_PASS`
+CI run: `34474982725`
+Head SHA validated: `670862c7c5f8869be135474ed559e6de7c9153bd`
 
 ## Goal
 
@@ -82,7 +84,7 @@ Added `scripts/validate-p10-scientific-data-python.js` and wired it into `.githu
 
 The validator checks registry integrity, exact official-course identities, actual existence and identity of all six reused lessons, 11 unique ordered acyclic nodes, diagnostic/misconception/repair-route references, Russian oral prompts, scope guards and independent sanity invariants for matrix-vector shape compatibility, train-only preprocessing statistics versus leaked full-data statistics, and dataset-schema/dtype/category validation.
 
-CI run for the workflow-wiring commit is pending at the time this file is first written. This status must be updated only after the run completes.
+CI run `34474982725` completed successfully for head SHA `670862c7c5f8869be135474ed559e6de7c9153bd`. The full Academic 2026 regression gate passed, including all prior P9/P6/P4/P7/P8 validators, the new P10 validator, JavaScript syntax and runtime-reference checks.
 
 ## Runtime policy
 
