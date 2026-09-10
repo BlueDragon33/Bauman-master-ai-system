@@ -13,6 +13,7 @@ on:
       - 'scripts/validate-academic-2026.js'
       - 'scripts/validate-prerequisite-coverage-2026.js'
       - 'scripts/validate-p09-markov-queueing.js'
+      - 'scripts/validate-p06-database-fundamentals.js'
       - '.github/workflows/academic-2026-prerequisite-gate.yml'
   pull_request:
     paths:
@@ -26,6 +27,7 @@ on:
       - 'scripts/validate-academic-2026.js'
       - 'scripts/validate-prerequisite-coverage-2026.js'
       - 'scripts/validate-p09-markov-queueing.js'
+      - 'scripts/validate-p06-database-fundamentals.js'
       - '.github/workflows/academic-2026-prerequisite-gate.yml'
 
 jobs:
@@ -42,6 +44,8 @@ jobs:
         run: node scripts/validate-prerequisite-coverage-2026.js
       - name: Validate P9 Markov / Queueing / Simulation pack
         run: node scripts/validate-p09-markov-queueing.js
+      - name: Validate P6 Database Fundamentals pack
+        run: node scripts/validate-p06-database-fundamentals.js
       - name: Check Academic 2026 runtime JavaScript syntax
         run: node --check assets/js/academic-main.js
       - name: Check runtime references are loaded by index
