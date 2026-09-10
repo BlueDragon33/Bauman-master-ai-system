@@ -2,7 +2,9 @@
 
 Date: 2026-09-10
 Branch: `temp/bauman-master-hub-prereq-2026`
-Status: `J1_PACK_IMPLEMENTED_GATE_PENDING`
+Status: `J1_BLUEPRINT_VALIDATED_CI_PASS`
+Validated SHA: `a1cc0b010808c9c4777fa6bbf5bdbc4c17d4d91f`
+CI run: `34483358181`
 
 ## Goal
 
@@ -14,9 +16,9 @@ J1 is a competency bridge inferred by Bauman Master Hub. It is not an administra
 
 The existing Systems curriculum is strongly biased toward autonomous systems: its title, target, outcomes and first preparation module explicitly center UGV/USV, sensors, controllers and feedback. The reusable concepts are system boundary, component responsibility, interface/message contracts, failure modes and fallback. Those concepts are retained; the autonomous-system case is no longer allowed to control the default prerequisite route.
 
-## New J1 pack
+## J1 pack
 
-Added `assets/data/prerequisite-packs/j01-information-system-architecture.json` with a neutral default case:
+`assets/data/prerequisite-packs/j01-information-system-architecture.json` defines the neutral default case:
 
 `web client → application service → database → analytics worker → observability`
 
@@ -45,17 +47,9 @@ Pass 11 reuses `s_p01_l1` only at concept level. Its UGV/USV and sensor-estimato
 
 ## Diagnostic
 
-Global formula remains:
+Global formula remains `M = 0.25*D0 + 0.50*D1 + 0.25*D2`.
 
-`M = 0.25*D0 + 0.50*D1 + 0.25*D2`
-
-J1 target = 85, D1 application minimum = 80, critical misconceptions allowed = 0. The pack contains:
-
-- D0: 18 recall items;
-- D1: 12 application tasks;
-- D2: 8 bilingual VI/RU oral prompts;
-- 12 critical misconceptions;
-- 8 targeted repair routes.
+J1 target = 85, D1 application minimum = 80, critical misconceptions allowed = 0. The pack contains D0=18, D1=12, D2=8, 12 critical misconceptions and 8 targeted repair routes.
 
 D1 requires actual architecture work: context/component/sequence/deployment views, API/data contract, latency budget, bottleneck evidence, failure/degradation matrix, observability map and a compact architecture dossier.
 
@@ -63,22 +57,11 @@ D1 requires actual architecture work: context/component/sequence/deployment view
 
 The default route excludes robot-specific architecture, UGV/USV sensor-control pipelines, PID/LQR/Kalman, ROS specialization, FPGA/PLC/SCADA, Kubernetes/service mesh and cloud-certification architecture. These may exist later as topic-specific extensions only when an official course, practice or confirmed NIR/VKR direction requires them.
 
-## Validator
+## Validator and CI
 
-Added `scripts/validate-j01-information-system-architecture.js` and wired it into the Academic 2026 CI workflow.
+`scripts/validate-j01-information-system-architecture.js` is wired into the Academic 2026 CI workflow. It checks J1 registry integrity, official course identities, neutral default case, concept-only legacy reuse, DAG integrity, D0/D1/D2, Russian oral prompts, misconceptions/repair routes, scope guards and independent cycle/latency/availability/bottleneck invariants.
 
-The validator checks:
-
-- J1 registry target and pre-semester-1 activation;
-- exact official identities for d03/d05/d09/d14/d15/d19/p03;
-- neutral default reference case;
-- concept-only reuse policy for `s_p01_l1`;
-- 10-node unique ordered acyclic dependency graph;
-- architecture concept coverage;
-- D0/D1/D2 counts, references and Russian prompts;
-- misconception/repair-route integrity;
-- scope guards against robotics/control/platform detours;
-- independent dependency-cycle, serial-latency, serial-availability and bottleneck-measurement sanity invariants.
+The first fully wired run correctly stopped because the neutrality assertion inspected the explanatory `whyNeutral` field itself; that field necessarily mentioned the excluded robot domain in a negative explanation. The validator was corrected to test only positive active-case fields while preserving explicit exclusion documentation. The subsequent run `34483358181` passed J1 and the entire Academic 2026 regression chain.
 
 ## Runtime policy
 
