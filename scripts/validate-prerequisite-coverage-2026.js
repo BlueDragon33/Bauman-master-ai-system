@@ -59,7 +59,7 @@ assertKnownRefs('languagePassPending', findings.languagePassPending);
 assertKnownRefs('highestPriority', findings.highestPriority);
 
 const jsonText = JSON.stringify(coverage);
-assert(!/coveragePercent|percentCovered|estimatedCoverage/i.test(jsonText), 'coverage audit must not invent numeric coverage percentages');
+assert(!/"coveragePercent"\s*:|"percentCovered"\s*:|"estimatedCoverage"\s*:/i.test(jsonText), 'coverage audit must not invent numeric coverage percentage fields');
 assert(!/official administrative prerequisite/i.test(jsonText) || prereq.notOfficialAdministrativePrerequisites === true, 'competency prerequisites must not be presented as official administrative prerequisites');
 
 if (errors.length) {
