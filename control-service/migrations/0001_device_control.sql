@@ -20,6 +20,31 @@ CREATE INDEX IF NOT EXISTS bm_devices_status_created_idx
 CREATE INDEX IF NOT EXISTS bm_devices_last_seen_idx
   ON bm_devices(last_seen_at DESC);
 
+CREATE TABLE IF NOT EXISTS bm_device_challenges (
+  challenge_id TEXT PRIMARY KEY NOT NULL,
+  device_id TEXT NOT NULL,
+  challenge TEXT NOT NULL,
+  expires_at INTEGER NOT NULL,
+  created_at TEXT DEFAULT CURRENT_TIMESTAMP NOT NULL
+);
+
+CREATE INDEX IF NOT EXISTS bm_device_challenges_device_idx
+  ON bm_device_challenges(device_id, expires_at DESC);
+
+CREATE TABLE IF NOT EXISTS bm_device_sessions (
+  session_hash TEXT PRIMARY KEY NOT NULL,
+  device_id TEXT NOT NULL,
+  state TEXT DEFAULT 'active' NOT NULL,
+  created_at TEXT DEFAULT CURRENT_TIMESTAMP NOT NULL,
+  expires_at INTEGER NOT NULL,
+  last_seen_at INTEGER NOT NULL,
+  revoked_at TEXT,
+  revoked_by TEXT
+);
+
+CREATE INDEX IF NOT EXISTS bm_device_sessions_device_state_idx
+  ON bm_device_sessions(device_id, state, expires_at DESC);
+
 CREATE TABLE IF NOT EXISTS bm_control_commands (
   command_id TEXT PRIMARY KEY NOT NULL,
   device_id TEXT NOT NULL,
