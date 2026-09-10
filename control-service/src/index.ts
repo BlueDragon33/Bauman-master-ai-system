@@ -112,7 +112,7 @@ function configuredOrigin(value: string | undefined) {
   return (value ?? "").trim().replace(/\/$/, "");
 }
 
-function controlCors(request: Request, env: Env) {
+function controlCors(request: Request, env: Env): Record<string, string> {
   const configured = configuredOrigin(env.APPLICATION_MANAGEMENT_ORIGIN);
   const origin = configuredOrigin(request.headers.get("origin") ?? "");
   return configured && origin === configured ? {
@@ -124,7 +124,7 @@ function controlCors(request: Request, env: Env) {
   } : {};
 }
 
-function appCors(request: Request, env: Env) {
+function appCors(request: Request, env: Env): Record<string, string> {
   const configured = configuredOrigin(env.BAUMAN_APP_ORIGIN);
   const origin = configuredOrigin(request.headers.get("origin") ?? "");
   return configured && origin === configured ? {
@@ -136,7 +136,7 @@ function appCors(request: Request, env: Env) {
   } : {};
 }
 
-function securityHeaders() {
+function securityHeaders(): Record<string, string> {
   return {
     "cache-control": "no-store, private",
     "content-security-policy": "default-src 'none'; frame-ancestors 'none'",
