@@ -2,34 +2,39 @@
 
 ## Vai trò và ranh giới
 
-`BlueDragon33/Bauman-master-ai-system` là **client cấp 1** (Bauman Hub). `BlueDragon33/Application-Management` là control-plane. Trung tâm không sở hữu dữ liệu học tập, registry thiết bị, command ledger hay audit của Bauman.
+`BlueDragon33/Bauman-master-ai-system` là **client cấp 1** (Bauman Hub). `BlueDragon33/Application-Management` là control-plane. Trung tâm không sở hữu dữ liệu học tập, registry thiết bị, command ledger, session hay audit của Bauman.
 
 Bauman Hub vẫn quản lý các sub-client/module: `Math_Bauman`, Lập trình, AI, Tín hiệu, Hệ thống, Nền tảng, Nghiên cứu và Tiếng Nga. Sub-client chỉ trở thành client cấp 1 khi có runtime, repo và admin contract độc lập.
 
-## Device-control v3
+## Device-control v4
 
-Control service đã triển khai backend thiết bị riêng của Bauman với namespace `BM-`:
+Control service triển khai backend thiết bị riêng của Bauman với namespace `BM-`:
 
 - `bm_devices`: registry thiết bị do Bauman sở hữu;
+- `bm_device_challenges`: challenge P-256 dùng một lần, TTL 120 giây;
+- `bm_device_sessions`: phiên thiết bị có thể thu hồi, TTL 24 giờ;
 - `bm_control_commands`: command ledger bền vững;
 - `bm_audit_log`: audit của Bauman;
-- danh tính thiết bị được suy ra server-side từ public JWK ECDSA P-256; private key không được gửi lên server;
+- device id là SHA-256 của canonical public JWK ECDSA P-256; private key chỉ nằm trên endpoint;
+- challenge ký theo chuỗi `bauman-device:v1:<deviceId>:<challengeId>:<challenge>`;
 - `approve` và `block` chỉ chạy qua command envelope có `commandId` + `expectedStatus`;
 - cùng `commandId` chỉ replay được khi payload giống hệt và lệnh trước đã `completed`;
 - lệnh đang `processing`, `failed` hoặc `uncertain` không được tự chạy lại mù;
-- `block` giữ registry, tắt quyền sửa và ghi audit; không xóa thiết bị.
+- `block` giữ registry, tắt quyền sửa, thu hồi mọi device session đang hoạt động và ghi audit; không xóa thiết bị.
 
-Mutation thiết bị Bauman hiện yêu cầu vai trò `owner`, đúng với policy của Application Management.
+Mutation thiết bị Bauman yêu cầu vai trò `owner`.
 
 ## API contract
 
 ### Device gateway — Bauman sở hữu
 
 - `POST /api/device/register`
-- `POST /api/device/heartbeat`
+- `POST /api/device/challenge`
+- `POST /api/device/verify`
+- `POST /api/device/heartbeat` — yêu cầu `Authorization: Bearer bm1.<session>`
 - `GET /api/device/status?deviceId=...`
 
-Gateway chỉ nhận browser từ `BAUMAN_APP_ORIGIN` đã cấu hình. Nếu chưa cấu hình origin hoặc chưa gắn D1, endpoint fail-closed.
+Gateway chỉ nhận browser từ `BAUMAN_APP_ORIGIN` đã cấu hình. Nếu chưa cấu hình origin hoặc chưa gắn D1, endpoint fail-closed. Challenge được tiêu thụ một lần trước khi kết quả proof được chấp nhận. Chỉ thiết bị `approved` sau proof hợp lệ mới nhận session. Thiết bị `pending` hoặc `blocked` không nhận session.
 
 ### Remote admin — Application Management gọi qua vé app-scoped
 
@@ -41,13 +46,19 @@ Gateway chỉ nhận browser từ `BAUMAN_APP_ORIGIN` đã cấu hình. Nếu ch
 
 Vé quản trị giữ issuer `application-management`, audience `bauman-control`, app `bauman-master-ai`, actor, role, central control-device id và expiry ngắn hạn. Control API cũng có thể dùng service secret riêng của Bauman cho service-to-service khi cần.
 
+## Local / offline
+
+`control-service/wrangler.local.jsonc` cung cấp D1 local riêng tên `bauman-control-local`, binding `DB`, dùng UUID giả chỉ cho local Wrangler. Không được dùng config này với `--remote`.
+
+Khi chạy Local Control Plane, Bauman Control dùng port `3003`. Application Management phải chạy cùng máy/mạng được cấu hình và trỏ `BAUMAN_CONTROL_LOCAL_BASE_URL` vào runtime này. Local D1 hoàn toàn tách production D1.
+
 ## D1 production bắt buộc
 
-Source đã có migration `control-service/migrations/0001_device_control.sql`, nhưng repository **không chứa database id giả**. Trước khi bật production phải:
+Repository không chứa production database id hoặc production secret. Trước khi bật production phải:
 
 1. tạo/chọn D1 production thuộc Bauman;
-2. bind D1 vào control service với tên binding chính xác `DB`;
-3. áp dụng migration `0001_device_control.sql`;
+2. bind D1 vào control service với binding chính xác `DB`;
+3. áp migration `control-service/migrations/0001_device_control.sql`;
 4. cấu hình `BAUMAN_CONTROL_SERVICE_SECRET` riêng, tối thiểu 32 ký tự;
 5. cấu hình `APPLICATION_MANAGEMENT_ORIGIN` đúng origin production của Trung tâm;
 6. cấu hình `BAUMAN_APP_ORIGIN` đúng origin production của Bauman Hub;
@@ -55,11 +66,21 @@ Source đã có migration `control-service/migrations/0001_device_control.sql`, 
 
 Nếu `DB` chưa bind hoặc schema chưa tồn tại, runtime status trả `configuration-required`; Application Management không được suy diễn trạng thái `connected` chỉ từ CI.
 
-## Trạng thái access gate
+## Trạng thái learning access gate
 
-Device registry/gateway/control mutation đã được triển khai ở backend, nhưng **learning runtime hiện chưa được tuyên bố là đã bảo vệ bởi device gate**. Static Bauman frontend còn luồng đăng nhập cục bộ cũ; không được coi đó là cơ chế xác thực production.
+Backend device identity, challenge/proof, session, block/revoke và audit đã được triển khai trong control service, nhưng **learning runtime chưa được tuyên bố là đã bảo vệ bởi device gate** cho tới khi frontend Bauman dùng đúng v4 gateway và E2E pass.
 
-Cutover tiếp theo phải tạo challenge/session hoặc cơ chế chứng minh sở hữu private key P-256, nối static runtime vào gateway, rồi mới khóa truy cập học tập theo trạng thái `approved`. Chỉ sau E2E đó mới đổi capability `learningAccessGate` sang true.
+PR/runtime cũ dùng endpoint trung gian hoặc signing input khác không được merge nguyên trạng. Runtime mới phải:
+
+1. tạo P-256 private key non-extractable trên endpoint;
+2. đăng ký public JWK;
+3. nhận challenge từ control service;
+4. ký đúng `signingInput` server trả về;
+5. verify để nhận `bm1.*` session khi thiết bị đã approved;
+6. heartbeat bằng session;
+7. khóa UI ngay khi heartbeat trả `DEVICE_BLOCKED`, `DEVICE_PENDING`, `DEVICE_SESSION_REVOKED` hoặc hết offline grace.
+
+Chỉ sau E2E đó mới đổi capability `learningAccessGate` sang true.
 
 ## Biến môi trường
 
@@ -87,6 +108,7 @@ BAUMAN_CONTROL_SERVICE_SECRET=<cùng secret với control service>
 - Không xóa registry khi block.
 - Không mutation trong bootstrap/sync/read-back.
 - Không bật nút quản trị nếu live `/api/control/status` chưa quảng bá capability tương ứng.
+- Không coi P-256 public key đơn thuần là proof; quyền truy cập cần challenge + chữ ký + session.
 - Không coi GitHub CI xanh là production đã deploy.
 
 Nguồn machine-readable: `control/application-management.contract.json`.
