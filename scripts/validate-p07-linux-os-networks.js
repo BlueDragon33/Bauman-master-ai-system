@@ -109,7 +109,8 @@ const requiredScope=new Set(pack.scopeGuard?.required||[]);
 for(const required of ['Linux shell, paths and files','users, permissions and environment variables','process, thread, standard streams and exit status','memory and filesystem basics','package/environment management','SSH and remote workflow','IPv4/TCP-IP/DNS/ports basics','TCP versus UDP','sockets and client-server model','HTTP request-response basics','service/database connectivity troubleshooting']) assert(requiredScope.has(required),`P7 scope missing ${required}`);
 const activeText=JSON.stringify({nodes:pack.nodes,diagnostic:pack.diagnostic,criticalMisconceptions:pack.criticalMisconceptions,repairRoutes:pack.repairRoutes});
 assert(!/kernel compilation|kernel-module|CCNA|CCNP|Kubernetes|penetration testing|nftables|iptables.*deep/i.test(activeText),'P7 active content must stay free of sysadmin/network-cert detours');
-assert(!/UGV|USV|PID|LQR|Kalman|FPGA|PLC|SCADA/i.test(activeText),'P7 active content must remain project/control neutral');
+// A process identifier named PID is legitimate P7 content. Only ban PID when it clearly denotes a control topic.
+assert(!/UGV|USV|LQR|Kalman|FPGA|PLC|SCADA|PID\s*(controller|control|điều khiển)/i.test(activeText),'P7 active content must remain project/control neutral');
 
 // Independent sanity invariants.
 function modeBits(mode){return {owner:(mode>>6)&7,group:(mode>>3)&7,other:mode&7};}
