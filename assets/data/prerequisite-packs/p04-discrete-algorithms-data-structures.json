@@ -1,0 +1,208 @@
+{
+  "schema": "bauman_prerequisite_pack_v1",
+  "version": "P4_DISCRETE_ALGORITHMS_DATA_STRUCTURES_PASS06_V1",
+  "gateId": "P4",
+  "titleVi": "Toán rời rạc, thuật toán và cấu trúc dữ liệu",
+  "titleRu": "Дискретная математика, алгоритмы и структуры данных",
+  "status": "diagnostic_and_repair_blueprint",
+  "notOfficialAdministrativePrerequisite": true,
+  "purpose": "Khôi phục đúng nền logic-rời rạc, độ phức tạp, cấu trúc dữ liệu và thuật toán cần cho OOP АСОИУ, CSDL, Mivar và Big Data; không biến thành lộ trình competitive programming.",
+  "officialTargets": [
+    {"courseId":"d05","nameRu":"Объектно-ориентированное проектирование автоматизированных систем обработки информации и управления","semester":1,"role":"primary"},
+    {"courseId":"d06","nameRu":"Оптимизация баз данных систем машинного обучения","semester":1,"role":"support"},
+    {"courseId":"d10","nameRu":"Постреляционные базы данных","semester":2,"role":"primary"},
+    {"courseId":"d18","nameRu":"Миварные технологии логического искусственного интеллекта","semester":4,"role":"primary"},
+    {"courseId":"e02a","nameRu":"Технологии обработки больших данных","semester":4,"role":"elective_bridge"}
+  ],
+  "sourceEvidence": [
+    {"kind":"official_curriculum","url":"https://home.science.iu5.bmstu.ru/study-plans/iu5-master-program.pdf","note":"Khóa các môn đích chính thức của IU5 2026. P4 là competency prerequisite do Hub suy ra, không phải điều kiện hành chính do Bauman công bố."}
+  ],
+  "localReuse": [
+    {"subject":"programming","path":"subjects/programming/data/lessons.json","lessonIds":["PR02"],"coverage":["algorithmic thinking","Big-O basics"]},
+    {"subject":"programming","path":"subjects/programming/data/lessons.json","lessonIds":["PR10"],"coverage":["pseudocode","Russian algorithm explanation"]},
+    {"subject":"programming","path":"subjects/programming/data/lessons.json","lessonIds":["PR11"],"coverage":["array","stack","queue","dict/hash concept","graph introduction"]},
+    {"subject":"math","path":"subjects/math/data/discipline_spine.json","spineId":"math_language_logic","coverage":["logic","sets","mappings","necessary/sufficient conditions"]},
+    {"subject":"math","path":"subjects/math/data/discipline_spine.json","spineId":"discrete_graph_db_knowledge","coverage":["logic","relations","graph","tree","relational algebra","algorithmic complexity"]}
+  ],
+  "upstream": {
+    "critical": [],
+    "support": ["P1","P5"],
+    "reuseInsteadOfDuplicate": [
+      {"subject":"programming","lesson":"PR02","concept":"Tư duy thuật toán và độ phức tạp"},
+      {"subject":"programming","lesson":"PR11","concept":"Cấu trúc dữ liệu nhập môn"},
+      {"subject":"programming","lesson":"PR10","concept":"Pseudocode và giải thích thuật toán bằng tiếng Nga"}
+    ]
+  },
+  "mastery": {
+    "target": 88,
+    "applicationMinimum": 85,
+    "criticalMisconceptionsAllowed": 0,
+    "diagnosticFormula": "M = 0.25*D0 + 0.50*D1 + 0.25*D2",
+    "stopRule": "Nếu P4 >= 95, D1 >= 90 và không còn critical misconception thì dừng học rộng P4; chỉ mở lại node liên quan khi môn d05/d06/d10/d18/e02a thực tế yêu cầu."
+  },
+  "scopeGuard": {
+    "required": [
+      "logic, sets and relations",
+      "asymptotic time/space complexity",
+      "array and linked list",
+      "stack and queue",
+      "hash table and collision handling",
+      "tree and tree traversal",
+      "sorting and binary search",
+      "recursion and call-stack reasoning",
+      "graph representation",
+      "BFS and DFS",
+      "graph complexity reasoning",
+      "relation/graph bridge to database and logical AI"
+    ],
+    "excludedFromDefaultRoute": [
+      "competitive programming",
+      "advanced contest tricks",
+      "segment tree",
+      "Fenwick tree",
+      "suffix array/tree",
+      "advanced max-flow/min-cost-flow",
+      "computational geometry",
+      "NP-completeness proofs beyond awareness"
+    ]
+  },
+  "nodes": [
+    {
+      "id":"P4-N01","order":1,"titleVi":"Logic, tập hợp, quan hệ và ánh xạ","titleRu":"Логика, множества, отношения и отображения","kind":"reuse_bridge","dependsOn":[],
+      "outcomes":["Đọc đúng mệnh đề, phủ định, kéo theo, tương đương và lượng từ ở mức ứng dụng.","Dùng tập hợp, tích Descartes, quan hệ và ánh xạ để mô tả dữ liệu có cấu trúc.","Phân biệt quan hệ tương đương, thứ tự và quan hệ tổng quát ở mức nền.","Nối logic/quan hệ với rule-based AI, Mivar và relational algebra mà chưa đi sâu vào môn chính thức."],
+      "repairHoursHint":"2–3 giờ"
+    },
+    {
+      "id":"P4-N02","order":2,"titleVi":"Độ phức tạp thời gian và bộ nhớ","titleRu":"Временная и пространственная сложность алгоритмов","kind":"reuse_extend","dependsOn":["P4-N01"],
+      "reuse":["PR02"],
+      "outcomes":["Phân biệt O, Omega và Theta ở mức dùng được; trọng tâm Big-O cho upper-bound thực hành.","Suy ra độ phức tạp của một hoặc hai vòng lặp, nested loops và divide-and-conquer đơn giản.","Phân biệt worst/average/best case khi nó ảnh hưởng lựa chọn thuật toán.","Đánh giá trade-off thời gian-bộ nhớ thay vì chỉ nói thuật toán nhanh hay chậm."],
+      "repairHoursHint":"2–3 giờ"
+    },
+    {
+      "id":"P4-N03","order":3,"titleVi":"Array, linked list, stack và queue","titleRu":"Массив, связный список, стек и очередь","kind":"reuse_extend","dependsOn":["P4-N02"],
+      "reuse":["PR11"],
+      "outcomes":["So sánh random access, insert/delete và memory overhead của array với linked list.","Cài đặt/giải thích push-pop và enqueue-dequeue.","Chọn stack cho call/undo/depth-first style và queue cho FIFO/breadth-first style.","Không mặc định linked list nhanh hơn array nếu locality và workload không phù hợp."],
+      "repairHoursHint":"3–4 giờ"
+    },
+    {
+      "id":"P4-N04","order":4,"titleVi":"Hash table và xử lý va chạm","titleRu":"Хеш-таблицы и разрешение коллизий","kind":"core","dependsOn":["P4-N02"],
+      "outcomes":["Giải thích hash function, bucket, collision và load factor.","Phân biệt chaining với open addressing ở mức nền.","Hiểu lookup O(1) là kỳ vọng/amortized trong điều kiện phù hợp, không phải bảo đảm tuyệt đối.","Liên hệ dictionary/hash với index/key lookup nhưng không đồng nhất hash table trong RAM với database index."],
+      "repairHoursHint":"2–3 giờ"
+    },
+    {
+      "id":"P4-N05","order":5,"titleVi":"Tree, BST và traversal","titleRu":"Деревья, двоичное дерево поиска и обходы","kind":"core","dependsOn":["P4-N03"],
+      "outcomes":["Phân biệt root, parent, child, leaf, depth và height.","Giải thích BST invariant và ảnh hưởng của tree height đến lookup.","Thực hiện preorder, inorder và postorder traversal.","Nhận diện balanced-tree concept là nền cho cấu trúc index mà chưa cần cài Red-Black/B-tree đầy đủ ở P4."],
+      "repairHoursHint":"3–4 giờ"
+    },
+    {
+      "id":"P4-N06","order":6,"titleVi":"Recursion và call stack","titleRu":"Рекурсия и стек вызовов","kind":"core","dependsOn":["P4-N03"],
+      "outcomes":["Xác định base case và recursive step.","Trace call stack của recursion ngắn.","Phân biệt recursion depth với độ phức tạp tổng thể.","Chuyển một recursion đơn giản sang iterative form khi cần tránh sâu stack."],
+      "repairHoursHint":"2–3 giờ"
+    },
+    {
+      "id":"P4-N07","order":7,"titleVi":"Sorting và binary search","titleRu":"Сортировка и двоичный поиск","kind":"core","dependsOn":["P4-N02","P4-N03"],
+      "outcomes":["Nắm insertion/selection/bubble chỉ ở mức trực giác và complexity.","Dùng merge sort/quicksort như hai mẫu O(n log n) điển hình và hiểu worst-case của quicksort.","Áp dụng binary search trên miền đã sắp xếp và viết đúng điều kiện biên.","Chọn sort/search theo workload thay vì học thuộc danh sách thuật toán."],
+      "repairHoursHint":"3–4 giờ"
+    },
+    {
+      "id":"P4-N08","order":8,"titleVi":"Biểu diễn đồ thị và BFS/DFS","titleRu":"Представление графов, поиск в ширину и глубину","kind":"core","dependsOn":["P4-N03","P4-N06"],
+      "outcomes":["Phân biệt directed/undirected, weighted/unweighted graph.","Chọn adjacency list hoặc adjacency matrix theo density/use case.","Trace và cài BFS bằng queue, DFS bằng stack/recursion.","Dùng BFS cho shortest path trong unweighted graph và DFS cho reachability/component/traversal ở mức nền."],
+      "repairHoursHint":"4–5 giờ"
+    },
+    {
+      "id":"P4-N09","order":9,"titleVi":"Độ phức tạp trên tree/graph và chọn cấu trúc dữ liệu","titleRu":"Сложность алгоритмов на деревьях и графах и выбор структуры данных","kind":"application","dependsOn":["P4-N04","P4-N05","P4-N07","P4-N08"],
+      "outcomes":["Phân tích BFS/DFS theo O(V+E) khi dùng adjacency list.","So sánh chi phí lookup/insert của list, hash table và tree trong các giả thiết rõ ràng.","Nhận diện khi cấu trúc dữ liệu làm thay đổi complexity của toàn pipeline.","Viết một decision note ngắn giải thích lựa chọn structure/algorithm bằng workload và complexity."],
+      "repairHoursHint":"3–4 giờ"
+    },
+    {
+      "id":"P4-N10","order":10,"titleVi":"Cầu nối sang OOP, CSDL, Mivar và Big Data","titleRu":"Переход к ООП, базам данных, миварному ИИ и большим данным","kind":"official_course_bridge","dependsOn":["P4-N01","P4-N09"],
+      "outcomes":["Nối relation/graph/tree với object model, database model và knowledge representation.","Giải thích vì sao complexity và data structure ảnh hưởng thiết kế module và tối ưu truy vấn.","Nhận diện graph/rule reasoning là nền cho logical AI/Mivar nhưng không tự học Mivar sớm.","Biết phần distributed algorithms, advanced graph processing và Big Data engine internals được để JIT theo môn chính thức."],
+      "repairHoursHint":"2–3 giờ"
+    }
+  ],
+  "diagnostic": {
+    "D0": {
+      "name":"Recall","weight":0.25,"recommendedMinutes":30,
+      "items":[
+        {"id":"P4-D0-01","node":"P4-N01","prompt":"Mệnh đề P→Q sai trong trường hợp nào?"},
+        {"id":"P4-D0-02","node":"P4-N01","prompt":"Quan hệ trên tập khác ánh xạ như thế nào?"},
+        {"id":"P4-D0-03","node":"P4-N02","prompt":"Big-O mô tả điều gì và không mô tả điều gì?"},
+        {"id":"P4-D0-04","node":"P4-N02","prompt":"Hai vòng lặp lồng nhau mỗi vòng n bước thường có độ phức tạp nào?"},
+        {"id":"P4-D0-05","node":"P4-N03","prompt":"Array và linked list khác nhau về random access và insert/delete thế nào?"},
+        {"id":"P4-D0-06","node":"P4-N03","prompt":"Stack khác queue ở quy tắc lấy phần tử nào?"},
+        {"id":"P4-D0-07","node":"P4-N04","prompt":"Collision trong hash table là gì?"},
+        {"id":"P4-D0-08","node":"P4-N04","prompt":"Load factor ảnh hưởng hash table ra sao?"},
+        {"id":"P4-D0-09","node":"P4-N05","prompt":"Height của tree ảnh hưởng lookup trong BST thế nào?"},
+        {"id":"P4-D0-10","node":"P4-N05","prompt":"Inorder traversal của BST có tính chất gì?"},
+        {"id":"P4-D0-11","node":"P4-N06","prompt":"Base case của recursion dùng để làm gì?"},
+        {"id":"P4-D0-12","node":"P4-N06","prompt":"Recursion depth khác time complexity thế nào?"},
+        {"id":"P4-D0-13","node":"P4-N07","prompt":"Binary search cần điều kiện tiên quyết nào?"},
+        {"id":"P4-D0-14","node":"P4-N07","prompt":"Merge sort có time complexity chuẩn nào?"},
+        {"id":"P4-D0-15","node":"P4-N08","prompt":"BFS dùng cấu trúc dữ liệu nào làm hàng chờ chính?"},
+        {"id":"P4-D0-16","node":"P4-N08","prompt":"Adjacency list thường phù hợp hơn adjacency matrix khi nào?"},
+        {"id":"P4-D0-17","node":"P4-N09","prompt":"BFS/DFS trên adjacency list có complexity theo V,E thế nào?"},
+        {"id":"P4-D0-18","node":"P4-N10","prompt":"Vì sao graph/tree/relation là cầu nối sang CSDL và biểu diễn tri thức?"}
+      ]
+    },
+    "D1": {
+      "name":"Application","weight":0.5,"recommendedMinutes":80,
+      "items":[
+        {"id":"P4-D1-01","node":"P4-N01","prompt":"Cho quan hệ prerequisites(course, prerequisite). Biểu diễn một truy vấn quan hệ đơn giản để tìm các prerequisite trực tiếp của một course."},
+        {"id":"P4-D1-02","node":"P4-N02","prompt":"Phân tích Big-O của đoạn code có một vòng n, bên trong chạy binary search trên n phần tử."},
+        {"id":"P4-D1-03","node":"P4-N03","prompt":"Chọn array hay linked list cho workload 95% random-read, 5% insert ở cuối và giải thích."},
+        {"id":"P4-D1-04","node":"P4-N04","prompt":"Cho 8 bucket và 10 key với hai collision. Minh họa chaining và giải thích ảnh hưởng load factor."},
+        {"id":"P4-D1-05","node":"P4-N05","prompt":"Cho dãy 8,3,10,1,6,14,4,7,13. Dựng BST và ghi preorder/inorder/postorder."},
+        {"id":"P4-D1-06","node":"P4-N06","prompt":"Trace factorial(5) theo call stack rồi viết bản iterative tương đương."},
+        {"id":"P4-D1-07","node":"P4-N07","prompt":"Viết binary search tránh lỗi off-by-one và nêu complexity."},
+        {"id":"P4-D1-08","node":"P4-N07","prompt":"So sánh merge sort và quicksort cho dữ liệu lớn khi cần worst-case dễ dự đoán."},
+        {"id":"P4-D1-09","node":"P4-N08","prompt":"Cho graph A-B,A-C,B-D,C-D,D-E. Trace BFS từ A và một DFS hợp lệ."},
+        {"id":"P4-D1-10","node":"P4-N08","prompt":"Thiết kế BFS để tìm shortest path theo số cạnh trong graph không trọng số và tái dựng đường đi bằng parent map."},
+        {"id":"P4-D1-11","node":"P4-N09","prompt":"Với V=100000,E=300000, so sánh memory/complexity adjacency list và matrix, chọn cấu trúc phù hợp."},
+        {"id":"P4-D1-12","node":"P4-N10","prompt":"Một hệ có user→role→permission và service dependency graph. Chọn representation thích hợp cho từng phần và giải thích complexity của một truy vấn chính."}
+      ]
+    },
+    "D2": {
+      "name":"Explain/Oral","weight":0.25,"recommendedMinutes":25,
+      "items":[
+        {"id":"P4-D2-01","node":"P4-N02","promptVi":"Giải thích tại sao hai thuật toán cùng Big-O vẫn có thể chạy khác nhau đáng kể.","promptRu":"Объясните, почему два алгоритма с одинаковой асимптотической сложностью могут заметно отличаться по времени работы."},
+        {"id":"P4-D2-02","node":"P4-N03","promptVi":"So sánh array và linked list theo workload cụ thể.","promptRu":"Сравните массив и связный список с точки зрения доступа, вставки, удаления и локальности памяти."},
+        {"id":"P4-D2-03","node":"P4-N04","promptVi":"Giải thích vì sao hash lookup không phải lúc nào cũng O(1).","promptRu":"Объясните, почему поиск в хеш-таблице нельзя считать гарантированно O(1) во всех случаях."},
+        {"id":"P4-D2-04","node":"P4-N05","promptVi":"Giải thích quan hệ giữa chiều cao cây và hiệu năng BST.","promptRu":"Объясните, как высота дерева влияет на сложность поиска в двоичном дереве поиска."},
+        {"id":"P4-D2-05","node":"P4-N06","promptVi":"Giải thích base case và call stack của recursion.","promptRu":"Объясните роль базового случая и стека вызовов в рекурсивном алгоритме."},
+        {"id":"P4-D2-06","node":"P4-N08","promptVi":"So sánh BFS và DFS, cấu trúc dữ liệu và tình huống dùng.","promptRu":"Сравните поиск в ширину и поиск в глубину: используемые структуры данных, сложность и типичные задачи."},
+        {"id":"P4-D2-07","node":"P4-N09","promptVi":"Giải thích O(V+E) của BFS/DFS trên adjacency list.","promptRu":"Объясните, почему сложность BFS и DFS при списках смежности равна O(V+E)."},
+        {"id":"P4-D2-08","node":"P4-N10","promptVi":"Giải thích vì sao nền rời rạc/graph quan trọng cho CSDL và logical AI.","promptRu":"Объясните, почему отношения, графы и структуры данных важны для баз данных и логического искусственного интеллекта."}
+      ]
+    }
+  },
+  "criticalMisconceptions": [
+    {"id":"P4-M01","node":"P4-N02","text":"Coi Big-O là thời gian chạy chính xác theo giây hoặc là tốc độ tuyệt đối của thuật toán."},
+    {"id":"P4-M02","node":"P4-N03","text":"Cho rằng linked list luôn nhanh hơn array khi insert/delete mà bỏ qua vị trí truy cập và locality."},
+    {"id":"P4-M03","node":"P4-N04","text":"Coi hash lookup luôn bảo đảm O(1) bất kể collision/load factor."},
+    {"id":"P4-M04","node":"P4-N05","text":"Cho rằng BST bất kỳ luôn có lookup O(log n), kể cả cây suy biến."},
+    {"id":"P4-M05","node":"P4-N06","text":"Viết recursion không có base case hoặc base case không tiến tới được."},
+    {"id":"P4-M06","node":"P4-N07","text":"Dùng binary search trên dữ liệu chưa sắp xếp mà không có invariant tương đương."},
+    {"id":"P4-M07","node":"P4-N08","text":"Nhầm BFS dùng stack và DFS dùng queue như quy tắc mặc định."},
+    {"id":"P4-M08","node":"P4-N08","text":"Khẳng định BFS cho shortest path tổng quát trên graph có trọng số bất kỳ."},
+    {"id":"P4-M09","node":"P4-N09","text":"Báo complexity của graph algorithm mà không nêu representation hoặc V,E."},
+    {"id":"P4-M10","node":"P4-N10","text":"Đồng nhất graph/tree trong bộ nhớ với database index hoặc knowledge representation mà không xét semantics/implementation."}
+  ],
+  "repairRoutes": [
+    {"id":"P4-R01","name":"Logic/relations repair","triggerNodes":["P4-N01"],"route":["P4-N01"]},
+    {"id":"P4-R02","name":"Complexity repair","triggerNodes":["P4-N02","P4-N09"],"route":["PR02","P4-N02","P4-N09"]},
+    {"id":"P4-R03","name":"Linear data structures repair","triggerNodes":["P4-N03"],"route":["PR11","P4-N03"]},
+    {"id":"P4-R04","name":"Hash repair","triggerNodes":["P4-N04"],"route":["P4-N04","P4-N09"]},
+    {"id":"P4-R05","name":"Tree/recursion repair","triggerNodes":["P4-N05","P4-N06"],"route":["P4-N03","P4-N05","P4-N06"]},
+    {"id":"P4-R06","name":"Search/sort repair","triggerNodes":["P4-N07"],"route":["P4-N02","P4-N07"]},
+    {"id":"P4-R07","name":"Graph repair","triggerNodes":["P4-N08","P4-N09"],"route":["PR11","P4-N06","P4-N08","P4-N09"]},
+    {"id":"P4-R08","name":"Russian explanation repair","triggerNodes":["P4-N02","P4-N08","P4-N10"],"route":["PR10","P4-N02","P4-N08","P4-N10"]}
+  ],
+  "implementationPolicy": {
+    "schedulerMutation": false,
+    "writesDiagnosticScores": false,
+    "newTopLevelSubject": false,
+    "duplicatesExistingPR02PR10PR11": false,
+    "mainBranchMutation": false,
+    "runtimeIntegration": "deferred_until_gate_pass"
+  }
+}
