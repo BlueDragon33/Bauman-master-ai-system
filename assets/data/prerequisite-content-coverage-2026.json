@@ -1,0 +1,247 @@
+{
+  "schema": "bauman_prerequisite_content_coverage_v1",
+  "version": "PREREQ_CONTENT_COVERAGE_IU5_2026_PASS03",
+  "auditedAt": "2026-09-10",
+  "branch": "temp/bauman-master-hub-prereq-2026",
+  "policy": {
+    "scope": "Audit existing Bauman Master Hub subject content against the competency gates required to prepare for the official IU5 2026 curriculum.",
+    "noFabricatedCoveragePercent": true,
+    "statusIsQualitative": true,
+    "sourceOfTruth": [
+      "assets/data/official-curriculum-iu5-2026.json",
+      "assets/data/prerequisite-registry-iu5-2026.json"
+    ],
+    "auditBaselineRef": "main@6050657d0089f4eb6d0c868d9d76c14b7fc48c2b",
+    "rule": "Existing content may be reused only when its actual lesson/scaffold covers a gate topic. Optional UGV/USV/control content must not be counted toward readiness unless the gate explicitly needs it."
+  },
+  "allowedStatuses": [
+    "verified_reuse",
+    "partial_reuse",
+    "scaffold_only",
+    "missing_active_path",
+    "scope_bias",
+    "deferred_language_audit"
+  ],
+  "gates": [
+    {
+      "gateId": "P0",
+      "status": "deferred_language_audit",
+      "homeSubject": "russian",
+      "evidence": [
+        {"path":"subjects/russian/subject-manifest.json","kind":"manifest","note":"Large Russian module exists with listening, speaking, writing, vocabulary, dialogue and deep-speaking data sources."}
+      ],
+      "verifiedExisting": ["general Russian learning infrastructure", "speaking/dialogue/test infrastructure"],
+      "missingOrUnverified": ["course-specific technical Russian mapping for every official IU5 discipline", "D2 oral diagnostic tied to official subjects"],
+      "action": "Audit and remap Russian content by official-course terminology after the HK1 prerequisite content gaps are locked."
+    },
+    {
+      "gateId": "P1",
+      "status": "verified_reuse",
+      "homeSubject": "math",
+      "evidence": [
+        {"path":"subjects/math/data/discipline_spine.json","kind":"spine","ids":["calculus_multivariable"],"note":"Calculus spine includes functions, limits, derivatives, integrals, partial derivatives, gradient, Jacobian and Hessian."},
+        {"path":"subjects/math/data/lessons.json","kind":"content","note":"Math theory vault contains stage-linked calculus content; no new broad calculus subject is required."}
+      ],
+      "verifiedExisting": ["functions", "limits", "derivatives", "partial derivatives", "gradient", "basic integration"],
+      "missingOrUnverified": ["diagnostic item map", "explicit stop rule at sub-topic level"],
+      "action": "Reuse existing Math content; build diagnostic aliases rather than create duplicate calculus lessons."
+    },
+    {
+      "gateId": "P2",
+      "status": "verified_reuse",
+      "homeSubject": "math",
+      "evidence": [
+        {"path":"subjects/math/data/discipline_spine.json","kind":"spine","ids":["linear_algebra_data_space"],"note":"Linear algebra spine covers vectors, matrices, rank, basis, eigenvalues and SVD."},
+        {"path":"subjects/math/data/lessons.json","kind":"content","ids":["math_chapter_01","math_chapter_10"],"note":"Actual theory content exists for vector/data-space material and the chapter 'Đại số tuyến tính II: trị riêng, trực giao, SVD, PCA'."}
+      ],
+      "verifiedExisting": ["vectors", "matrices", "rank", "basis/coordinates", "eigenvalues/eigenvectors", "orthogonality", "SVD", "PCA prerequisites"],
+      "missingOrUnverified": ["gate-level D0/D1/D2 diagnostic", "mastery mapping from existing lesson IDs to P2 sub-gates"],
+      "action": "Do not add a second linear-algebra course. Create P2 diagnostic and map repair routes into the existing Math chapters."
+    },
+    {
+      "gateId": "P3",
+      "status": "verified_reuse",
+      "homeSubject": "math",
+      "evidence": [
+        {"path":"subjects/math/data/discipline_spine.json","kind":"spine","ids":["probability_statistics_inference"],"note":"Probability/statistics spine contains random variables, distributions, expectation/variance, covariance, estimation, hypothesis testing and confidence intervals."},
+        {"path":"subjects/math/data/lessons.json","kind":"content","ids":["math_chapter_04","math_chapter_16"],"note":"Actual lessons include Bayes, common distributions including Poisson, and a statistics chapter covering estimation, hypothesis testing, confidence intervals and p-values."}
+      ],
+      "verifiedExisting": ["conditional probability/Bayes", "random variables", "common distributions", "expectation/variance", "covariance/correlation", "estimation", "confidence intervals", "hypothesis testing"],
+      "missingOrUnverified": ["D1 problem bank explicitly aligned to IU5 readiness", "course-specific thresholding for d03/d04/d09"],
+      "action": "Reuse current probability/statistics theory; add readiness diagnostics and targeted repair packs instead of broad new theory."
+    },
+    {
+      "gateId": "P4",
+      "status": "partial_reuse",
+      "homeSubject": "programming",
+      "evidence": [
+        {"path":"subjects/programming/data/lessons.json","kind":"content","ids":["PR02","PR11"],"note":"PR02 covers algorithmic complexity; PR11 introduces array, stack, queue, dict and graph."}
+      ],
+      "verifiedExisting": ["algorithmic thinking", "Big-O basics", "array", "stack", "queue", "dictionary/hash concept", "graph introduction"],
+      "missingOrUnverified": ["linked list", "tree traversal", "hash-table collision model", "sorting families", "binary search", "recursion depth", "BFS", "DFS", "basic graph complexity", "relational logic bridge"],
+      "action": "Add one compact DSA prerequisite cluster focused on application and complexity; do not build a competitive-programming track."
+    },
+    {
+      "gateId": "P5",
+      "status": "verified_reuse",
+      "homeSubject": "programming",
+      "evidence": [
+        {"path":"subjects/programming/data/lessons.json","kind":"content","ids":["PR03","PR13","PR14","PR17"],"note":"Existing lessons cover Python basics, debugging/exceptions/logging, pytest and OOP class/interface/responsibility."},
+        {"path":"subjects/programming/subject-manifest.json","kind":"manifest","note":"Programming module exposes exercises, tests, simulations, oral defense and lab reports."}
+      ],
+      "verifiedExisting": ["Python data types/functions/modules", "exceptions", "debugging/logging", "pytest basics", "OOP basics", "interface/responsibility"],
+      "missingOrUnverified": ["typing protocol/ABC depth", "diagnostic coding tasks", "stop rule by skill"],
+      "action": "Reuse current Programming content and add executable D1 diagnostic tasks before any new Python theory."
+    },
+    {
+      "gateId": "P6",
+      "status": "partial_reuse",
+      "homeSubject": "programming",
+      "evidence": [
+        {"path":"subjects/programming/data/lessons.json","kind":"content","ids":["PR06","PR15"],"note":"PR06 covers SQL basics and relational model; PR15 covers JOIN, GROUP BY and basic index creation."}
+      ],
+      "verifiedExisting": ["relational model basics", "PK/FK", "SELECT/WHERE", "JOIN", "GROUP BY", "basic index concept"],
+      "missingOrUnverified": ["relational algebra depth", "normal forms 1NF-3NF/BCNF", "ACID", "transactions", "isolation levels", "locking/deadlock", "B-tree vs hash", "query planner", "EXPLAIN/EXPLAIN ANALYZE", "CTE/window functions depth", "physical database design"],
+      "action": "Create a focused Database Fundamentals repair cluster before d06; prioritize transaction/index/query-plan competence over extra application frameworks."
+    },
+    {
+      "gateId": "P7",
+      "status": "missing_active_path",
+      "homeSubject": "programming",
+      "evidence": [
+        {"path":"subjects/programming/data/lessons.json","kind":"audit_search","note":"No Linux lesson was found in the audited Programming lesson vault; current content is not sufficient to claim OS/network readiness."},
+        {"path":"subjects/programming/data/curriculum.json","kind":"roadmap","note":"Current programming roadmap emphasizes Python/SQL/Git/OOP/pipeline but does not define an explicit Linux/OS/Networks prerequisite stage."}
+      ],
+      "verifiedExisting": ["virtual environment setup", "tooling concepts that can later sit on Linux"],
+      "missingOrUnverified": ["Linux shell/files/permissions", "process/thread", "memory/filesystem basics", "SSH", "TCP/IP", "TCP vs UDP", "ports/sockets", "HTTP", "client-server", "environment/package management on Linux"],
+      "action": "Add a new prerequisite cluster inside Programming. Keep it compact and systems-oriented; do not create a separate top-level website."
+    },
+    {
+      "gateId": "P8",
+      "status": "partial_reuse",
+      "homeSubject": "programming",
+      "evidence": [
+        {"path":"subjects/programming/data/lessons.json","kind":"content","ids":["PR07","PR14","PR17","PR19"],"note":"Git, unit testing, OOP and Factory/Strategy/Adapter design-pattern content already exists."}
+      ],
+      "verifiedExisting": ["Git basics", "unit testing", "OOP responsibilities/interfaces", "Factory/Strategy/Adapter patterns"],
+      "missingOrUnverified": ["requirements engineering", "UML use-case/class/sequence/component/deployment diagrams", "SOLID as an explicit competence", "architecture quality attributes", "software lifecycle models", "integration/regression/system testing", "release/configuration management"],
+      "action": "Extend the existing Programming module with a software-engineering bridge aligned to d05 and d15; reuse current Git/test/pattern lessons."
+    },
+    {
+      "gateId": "P9",
+      "status": "scaffold_only",
+      "homeSubject": "math",
+      "evidence": [
+        {"path":"subjects/math/data/discipline_spine.json","kind":"spine","ids":["reliability_verification_lifecycle"],"note":"Spine mentions Markov chain and queueing but does not prove lesson-level readiness."},
+        {"path":"subjects/math/data/lessons.json","kind":"content","ids":["math_chapter_04"],"note":"Actual lessons include Poisson distribution material, but audit found no lesson-level Markov or M/M/1 content in the current vault."}
+      ],
+      "verifiedExisting": ["probability bridge", "Poisson distribution foundation"],
+      "missingOrUnverified": ["stochastic-process bridge", "Poisson process", "memoryless/exponential service-time model", "Markov chains", "state-transition matrices", "stationary distribution basics", "M/M/1", "M/M/c", "utilization/stability", "Little's law", "waiting/queue metrics", "discrete-event simulation", "bridge to reliability"],
+      "action": "Highest-priority new Math prerequisite cluster for HK1. Build before optional control/robotics extensions because d03 depends directly on it."
+    },
+    {
+      "gateId": "P10",
+      "status": "partial_reuse",
+      "homeSubject": "programming",
+      "evidence": [
+        {"path":"subjects/programming/data/lessons.json","kind":"content","ids":["PR04"],"note":"NumPy/vectorization exists; pandas/data-cleaning tags are present in the vault."},
+        {"path":"subjects/programming/subject-manifest.json","kind":"manifest","note":"Programming package is structured for notebooks, experiments, tests and reproducible artifacts."}
+      ],
+      "verifiedExisting": ["NumPy arrays/vectorization", "pandas/dataframe basics", "data cleaning concept", "notebook workflow"],
+      "missingOrUnverified": ["SciPy basics", "matplotlib interpretation rather than plotting-only", "train-only preprocessing discipline", "scikit-learn Pipeline/ColumnTransformer", "random seed/reproducibility contract", "data leakage checks", "dataset schema/data types validation"],
+      "action": "Do not create another data-science course. Add a compact scientific-Python readiness pack and diagnostic mapped to existing Programming/AI content."
+    },
+    {
+      "gateId": "P11",
+      "status": "scope_bias",
+      "homeSubject": "research",
+      "evidence": [
+        {"path":"subjects/research/data/curriculum.json","kind":"curriculum","note":"Research module already covers literature matrix, research log, proposal, baseline, experiment protocol and defense flow, but its target and examples are hard-wired to UGV/USV."}
+      ],
+      "verifiedExisting": ["literature matrix", "research log", "research question framing", "proposal", "baseline", "experiment protocol", "report/defense workflow"],
+      "missingOrUnverified": ["topic-neutral default path", "systematic evidence-quality rubric", "reproducibility checklist independent of UGV/USV", "early-supervisor decision checkpoint tied to NIR semester 1"],
+      "action": "Keep the research method engine; remove UGV/USV as default and turn project tracks into optional candidates selected only after supervisor/topic confirmation."
+    },
+    {
+      "gateId": "P12",
+      "status": "verified_reuse",
+      "homeSubject": "ai",
+      "evidence": [
+        {"path":"subjects/ai/data/curriculum.json","kind":"curriculum","note":"AI module starts from data/features/model/metric, baseline, validation and error analysis before neural systems."}
+      ],
+      "verifiedExisting": ["train/validation/test thinking", "baseline-first workflow", "model metrics", "overfit/underfit", "scikit-learn/PyTorch bridge", "error analysis"],
+      "missingOrUnverified": ["gate-specific diagnostic coverage of all classical algorithms", "explicit stop rule before deep learning"],
+      "action": "Keep P12 locked until semester 1 rolling-ahead preparation; do not make it a dominant pre-STANKIN track."
+    },
+    {
+      "gateId": "J1",
+      "status": "scope_bias",
+      "homeSubject": "systems",
+      "evidence": [
+        {"path":"subjects/systems/data/curriculum.json","kind":"curriculum","note":"Systems module has system boundary, interface, data contract, failure mode, reliability and lifecycle ideas, but the curriculum is dominated by UGV/USV, sensors, controllers and feedback."}
+      ],
+      "verifiedExisting": ["system boundary", "components/interfaces", "data contract", "failure mode", "reliability/lifecycle framing"],
+      "missingOrUnverified": ["information-system/service architecture as default case", "request/data/control-flow distinction", "client-service-database architecture", "bottleneck/throughput/latency", "deployment/component diagrams", "availability as software-system property"],
+      "action": "Rewrite the active Systems spine around ASOIU information-system architecture; retain UGV/USV as an optional application track."
+    },
+    {
+      "gateId": "J2",
+      "status": "scaffold_only",
+      "homeSubject": "programming",
+      "evidence": [
+        {"path":"assets/data/prerequisite-registry-iu5-2026.json","kind":"registry","note":"J2 is defined for semester-3 just-in-time activation; current audited Programming core does not establish a complete BI/OLAP bridge."}
+      ],
+      "verifiedExisting": ["database/data-pipeline foundations usable later"],
+      "missingOrUnverified": ["OLTP vs OLAP", "warehouse", "star schema", "ETL/ELT", "multidimensional analytics", "BI metric layer"],
+      "action": "Defer implementation until rolling preparation for semester 3."
+    },
+    {
+      "gateId": "J3",
+      "status": "missing_active_path",
+      "homeSubject": "systems",
+      "evidence": [
+        {"path":"assets/data/prerequisite-registry-iu5-2026.json","kind":"registry","note":"J3 is required before the official ergonomics course; no dedicated HCI prerequisite cluster is present in the audited active Systems curriculum."}
+      ],
+      "verifiedExisting": [],
+      "missingOrUnverified": ["human factors", "perception", "usability", "cognitive load", "interface evaluation", "experiment protocol"],
+      "action": "Defer until semester-2 rolling preparation, then add a compact HCI/ergonomics bridge."
+    },
+    {
+      "gateId": "J4",
+      "status": "missing_active_path",
+      "homeSubject": "systems",
+      "evidence": [
+        {"path":"assets/data/prerequisite-registry-iu5-2026.json","kind":"registry","note":"J4 is required before the semester-3 security elective; no complete security prerequisite cluster is proven by the audited current content."}
+      ],
+      "verifiedExisting": [],
+      "missingOrUnverified": ["CIA", "authentication", "authorization", "hashing", "encryption concepts", "TLS", "access control", "threat modeling", "secure DB/API basics"],
+      "action": "Defer until semester-2 rolling preparation; do not pull security into the immediate HK1 critical path."
+    }
+  ],
+  "criticalPathFindings": {
+    "reuseWithoutBroadRebuild": ["P1","P2","P3","P5","P12"],
+    "repairOrExtend": ["P4","P6","P8","P10","P11","J1"],
+    "newCriticalContent": ["P7","P9"],
+    "deferUntilJIT": ["J2","J3","J4"],
+    "languagePassPending": ["P0"],
+    "highestPriority": [
+      "P9: Markov/Queueing/Simulation",
+      "P6: Database transactions/index/query-plan depth",
+      "P4: Algorithms & Data Structures depth",
+      "P7: Linux/OS/Networks",
+      "P8: UML/requirements/software lifecycle",
+      "J1: neutral ASOIU information-system architecture"
+    ]
+  },
+  "contentRoutingPolicy": {
+    "doNotDuplicate": ["linear algebra", "probability/statistics", "Python basics", "general ML baseline"],
+    "moveOutOfDefaultCriticalPath": ["PID/LQR", "robot dynamics", "Kalman/sensor fusion", "FPGA/HDL", "PLC/SCADA", "UGV/USV-specific examples when a neutral system example is sufficient"],
+    "defaultCaseFamilies": [
+      "data matrix / multivariate dataset",
+      "request-service-database queue",
+      "ML experiment database",
+      "software service architecture",
+      "research experiment with measurable metrics"
+    ]
+  }
+}
