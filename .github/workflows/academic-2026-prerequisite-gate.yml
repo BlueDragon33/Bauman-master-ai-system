@@ -18,6 +18,7 @@ on:
       - 'scripts/validate-p07-linux-os-networks.js'
       - 'scripts/validate-p08-software-engineering.js'
       - 'scripts/validate-p10-scientific-data-python.js'
+      - 'scripts/validate-p11-research-foundation.js'
       - '.github/workflows/academic-2026-prerequisite-gate.yml'
   pull_request:
     paths:
@@ -36,6 +37,7 @@ on:
       - 'scripts/validate-p07-linux-os-networks.js'
       - 'scripts/validate-p08-software-engineering.js'
       - 'scripts/validate-p10-scientific-data-python.js'
+      - 'scripts/validate-p11-research-foundation.js'
       - '.github/workflows/academic-2026-prerequisite-gate.yml'
 
 jobs:
@@ -62,6 +64,8 @@ jobs:
         run: node scripts/validate-p08-software-engineering.js
       - name: Validate P10 Scientific / Data Python pack
         run: node scripts/validate-p10-scientific-data-python.js
+      - name: Validate P11 Research Foundation pack
+        run: node scripts/validate-p11-research-foundation.js
       - name: Check Academic 2026 runtime JavaScript syntax
         run: node --check assets/js/academic-main.js
       - name: Check runtime references are loaded by index
