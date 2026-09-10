@@ -1,0 +1,217 @@
+{
+  "schema": "bauman_prerequisite_pack_v1",
+  "version": "P9_MARKOV_QUEUEING_SIMULATION_PASS04_V1",
+  "gateId": "P9",
+  "titleVi": "OR, Markov, Queueing và mô phỏng",
+  "titleRu": "Исследование операций, марковские процессы, теория массового обслуживания и моделирование",
+  "status": "diagnostic_and_repair_blueprint",
+  "notOfficialAdministrativePrerequisite": true,
+  "purpose": "Khôi phục đúng phần xác suất-ngẫu nhiên-hàng đợi cần để vào môn Аналитические модели АСОИУ và làm nền cho Модели надёжности АСОИУ, không học vòng sang điều khiển/robotics.",
+  "officialTargets": [
+    {"courseId":"d03","nameRu":"Аналитические модели автоматизированных систем обработки информации и управления","semester":1,"role":"primary"},
+    {"courseId":"d09","nameRu":"Модели надёжности АСОИУ","semester":2,"role":"bridge"}
+  ],
+  "sourceEvidence": [
+    {"kind":"official_curriculum","url":"https://home.science.iu5.bmstu.ru/study-plans/iu5-master-program.pdf","note":"Locks the official 2026 course names, semesters and credits; it does not declare P9 as an administrative prerequisite."},
+    {"kind":"iu5_public_learning_material","url":"https://e-learning.bmstu.ru/iu5/course/view.php?id=48","note":"Public IU5 Analytical Models course materials include queueing-theory based analytical modeling."},
+    {"kind":"iu5_public_learning_material","url":"https://e-learning.bmstu.ru/iu5/pluginfile.php/2994/mod_folder/content/0/%D0%BC%D0%B5%D1%82%D0%BE%D0%B4%D0%B8%D1%87%D0%B5%D1%81%D0%BA%D0%B8%D0%B5%20%D1%83%D0%BA%D0%B0%D0%B7%D0%B0%D0%BD%D0%B8%D1%8F%20%D0%BF%D0%BE%20%D1%82%D0%B5%D0%BE%D1%80%D0%B8%D0%B8%20%D0%BE%D0%BF%D0%B8%D1%81%D0%B0%D0%BD%D0%B8%D1%8F%20%D0%BF%D1%80%D0%BE%D1%86%D0%B5%D1%81%D1%81%D0%BE%D0%B2.pdf","note":"IU5 material discusses queueing networks as a flow-modeling formalism."}
+  ],
+  "upstream": {
+    "critical": ["P3"],
+    "support": ["P1"],
+    "reuseInsteadOfDuplicate": [
+      {"subject":"math","source":"subjects/math/data/lessons.json","concept":"basic probability, random variables, Bayes and common distributions including Poisson"}
+    ]
+  },
+  "mastery": {
+    "target": 90,
+    "applicationMinimum": 85,
+    "criticalMisconceptionsAllowed": 0,
+    "diagnosticFormula": "M = 0.25*D0 + 0.50*D1 + 0.25*D2",
+    "stopRule": "If P9 >= 95, D1 >= 90 and critical misconceptions = 0, stop broad P9 study and reopen only the sub-node required by d03/d09 feedback."
+  },
+  "scopeGuard": {
+    "required": [
+      "operations-research modeling language",
+      "stochastic process/rate intuition",
+      "Poisson process",
+      "exponential distribution and memoryless property",
+      "Markov chains/CTMC bridge",
+      "stationary behavior",
+      "Kendall queue notation",
+      "M/M/1",
+      "M/M/c",
+      "utilization and stability",
+      "Little's law",
+      "waiting/queue metrics",
+      "queueing-network bridge",
+      "finite-capacity/feedback/priority awareness",
+      "discrete-event simulation",
+      "reliability bridge"
+    ],
+    "excludedFromDefaultRoute": ["PID", "LQR", "Kalman filter", "sensor fusion", "robot dynamics", "FPGA", "PLC", "SCADA"]
+  },
+  "nodes": [
+    {
+      "id":"P9-N01","order":1,"titleVi":"Mô hình nghiên cứu vận trù: biến quyết định, ràng buộc và tiêu chí","titleRu":"Модель исследования операций: решения, ограничения и критерии","kind":"bridge","dependsOn":[],
+      "outcomes":["Phân biệt biến quyết định, tham số, ràng buộc và tiêu chí hiệu quả.","Chuyển một bài toán hệ thống sang mô hình định lượng tối thiểu."],
+      "repairHoursHint":"1–2 giờ nếu đã học trước đây"
+    },
+    {
+      "id":"P9-N02","order":2,"titleVi":"Quá trình ngẫu nhiên, cường độ và trạng thái","titleRu":"Случайный процесс, интенсивность и состояние","kind":"core","dependsOn":["P9-N01"],
+      "outcomes":["Phân biệt biến ngẫu nhiên với quá trình ngẫu nhiên.","Đọc đúng cường độ đến λ và cường độ phục vụ μ.","Giải thích state/state space trong mô hình động ngẫu nhiên."],
+      "repairHoursHint":"2–3 giờ"
+    },
+    {
+      "id":"P9-N03","order":3,"titleVi":"Quá trình Poisson và phân phối mũ","titleRu":"Пуассоновский поток и экспоненциальное распределение","kind":"core","dependsOn":["P9-N02"],
+      "outcomes":["Tính xác suất số sự kiện của Poisson process trong khoảng thời gian.","Liên hệ inter-arrival time với exponential distribution.","Giải thích tính không nhớ và đơn vị của λ, μ."],
+      "formulas":[
+        {"id":"P9-F01","expr":"P{N(t)=k}=exp(-lambda*t)*(lambda*t)^k/k!","meaning":"Số sự kiện của Poisson process có cường độ lambda trong thời gian t."},
+        {"id":"P9-F02","expr":"P{T>t}=exp(-mu*t), E[T]=1/mu","meaning":"Thời gian phục vụ mũ với rate mu."},
+        {"id":"P9-F03","expr":"P{T>s+t | T>s}=P{T>t}","meaning":"Tính không nhớ của phân phối mũ."}
+      ],
+      "repairHoursHint":"2–3 giờ"
+    },
+    {
+      "id":"P9-N04","order":4,"titleVi":"Chuỗi Markov và ma trận chuyển","titleRu":"Цепи Маркова и матрица переходов","kind":"core","dependsOn":["P9-N02"],
+      "outcomes":["Lập state space và transition matrix.","Kiểm tra ma trận chuyển hợp lệ.","Tính phân phối trạng thái sau n bước.","Phân biệt discrete-time Markov chain với continuous-time Markov chain ở mức nền."],
+      "formulas":[
+        {"id":"P9-F04","expr":"p_(n+1)=p_n P","meaning":"Tiến hóa phân phối trạng thái trong DTMC theo quy ước vector hàng."}
+      ],
+      "repairHoursHint":"3–4 giờ"
+    },
+    {
+      "id":"P9-N05","order":5,"titleVi":"Trạng thái dừng và cầu nối birth-death/CTMC","titleRu":"Стационарное распределение и процессы рождения-гибели","kind":"core","dependsOn":["P9-N03","P9-N04"],
+      "outcomes":["Giải thích stationary distribution không có nghĩa hệ đứng yên.","Giải hệ pi=pi P ở DTMC đơn giản.","Nhận diện birth-death process là nền của M/M/1 và M/M/c."],
+      "formulas":[
+        {"id":"P9-F05","expr":"pi = pi P, sum_i pi_i = 1","meaning":"Điều kiện trạng thái dừng của DTMC."}
+      ],
+      "repairHoursHint":"2–3 giờ"
+    },
+    {
+      "id":"P9-N06","order":6,"titleVi":"Mô hình hàng đợi và ký hiệu Kendall","titleRu":"Системы массового обслуживания и обозначения Кендалла","kind":"core","dependsOn":["P9-N03","P9-N05"],
+      "outcomes":["Nhận diện arrival process, service process, số server, capacity, discipline.","Đọc M/M/1 và M/M/c đúng nghĩa.","Phân biệt queue length với number in system, service rate một server với tổng năng lực hệ."],
+      "repairHoursHint":"1–2 giờ"
+    },
+    {
+      "id":"P9-N07","order":7,"titleVi":"M/M/1: ổn định, tải, thời gian chờ và số khách","titleRu":"СМО M/M/1: устойчивость, загрузка, ожидание и число заявок","kind":"core","dependsOn":["P9-N06"],
+      "outcomes":["Kiểm tra điều kiện ổn định lambda < mu.","Tính rho, Pn, L, Lq, W, Wq.","Kiểm tra chéo kết quả bằng Little's law.","Giải thích điều gì xảy ra khi rho tiến tới 1."],
+      "formulas":[
+        {"id":"P9-F06","expr":"rho=lambda/mu, require rho<1","meaning":"Utilization và điều kiện trạng thái ổn định của M/M/1."},
+        {"id":"P9-F07","expr":"P_n=(1-rho)*rho^n","meaning":"Phân phối số khách trong hệ ở trạng thái dừng."},
+        {"id":"P9-F08","expr":"L=rho/(1-rho)=lambda/(mu-lambda)","meaning":"Số khách trung bình trong hệ."},
+        {"id":"P9-F09","expr":"Lq=rho^2/(1-rho)","meaning":"Số khách trung bình đang chờ, không tính khách đang phục vụ."},
+        {"id":"P9-F10","expr":"W=1/(mu-lambda)","meaning":"Thời gian trung bình trong hệ."},
+        {"id":"P9-F11","expr":"Wq=rho/(mu-lambda)","meaning":"Thời gian chờ trung bình trước phục vụ."},
+        {"id":"P9-F12","expr":"L=lambda*W; Lq=lambda*Wq","meaning":"Little's law cho hệ ổn định."}
+      ],
+      "repairHoursHint":"3–4 giờ"
+    },
+    {
+      "id":"P9-N08","order":8,"titleVi":"M/M/c và Erlang C ở mức dùng được","titleRu":"СМО M/M/c и формула Эрланга C","kind":"core","dependsOn":["P9-N07"],
+      "outcomes":["Phân biệt mu một server với c*mu tổng năng lực.","Kiểm tra rho=lambda/(c*mu)<1.","Tính P0 và xác suất phải chờ theo Erlang C.","Suy ra Lq, Wq, W, L."],
+      "formulas":[
+        {"id":"P9-F13","expr":"a=lambda/mu; rho=lambda/(c*mu)=a/c","meaning":"Offered load a và utilization rho của M/M/c."},
+        {"id":"P9-F14","expr":"P0 = 1 / [sum_(n=0)^(c-1) a^n/n! + a^c/(c!*(1-rho))]","meaning":"Xác suất hệ rỗng ở trạng thái dừng."},
+        {"id":"P9-F15","expr":"P_wait = [a^c/(c!*(1-rho))] * P0","meaning":"Erlang C: xác suất một arrival phải chờ."},
+        {"id":"P9-F16","expr":"Lq=P_wait*rho/(1-rho); Wq=Lq/lambda; W=Wq+1/mu; L=lambda*W","meaning":"Các metric chờ và hệ thống của M/M/c."}
+      ],
+      "repairHoursHint":"3–4 giờ"
+    },
+    {
+      "id":"P9-N09","order":9,"titleVi":"Mạng hàng đợi, finite capacity, feedback và priority: cầu nối vào môn thật","titleRu":"Сети массового обслуживания, ограниченная очередь, обратная связь и приоритеты","kind":"official_course_bridge","dependsOn":["P9-N07","P9-N08"],
+      "outcomes":["Nhận diện khi mô hình một hàng đợi không còn đủ.","Vẽ luồng request qua nhiều service centers.","Nhận diện feedback/retry, finite buffer/refusal và priority class mà chưa cần học hết công thức chuyên sâu.","Biết phần này thuộc cầu nối vào d03 chứ không phải yêu cầu phải tự học hết trước Bauman."],
+      "repairHoursHint":"2–3 giờ"
+    },
+    {
+      "id":"P9-N10","order":10,"titleVi":"Mô phỏng sự kiện rời rạc để kiểm tra mô hình","titleRu":"Дискретно-событийное моделирование для проверки модели","kind":"application","dependsOn":["P9-N07"],
+      "outcomes":["Mô phỏng arrival/service events mà không dùng time-step thô không cần thiết.","Ước lượng L, Lq, W, Wq từ log.","So sánh simulation với công thức M/M/1 ở vùng ổn định.","Nhận diện warm-up, run length và random seed là nguồn sai lệch thực nghiệm."],
+      "repairHoursHint":"3–4 giờ"
+    },
+    {
+      "id":"P9-N11","order":11,"titleVi":"Cầu nối sang reliability","titleRu":"Переход от СМО к моделям надёжности","kind":"bridge","dependsOn":["P9-N04","P9-N05"],
+      "outcomes":["Dùng state-transition thinking cho up/down/degraded states.","Phân biệt failure rate với service rate dù cùng có thể dùng phân phối mũ.","Hiểu vì sao Markov/CTMC tái xuất hiện trong môn reliability HK2."],
+      "repairHoursHint":"1–2 giờ"
+    }
+  ],
+  "criticalMisconceptions": [
+    {"id":"P9-M01","node":"P9-N03","statement":"Poisson distribution và Poisson process là hoàn toàn cùng một đối tượng.","intercept":"Poisson distribution mô tả count; Poisson process mô tả quá trình theo thời gian với independent stationary increments."},
+    {"id":"P9-M02","node":"P9-N03","statement":"lambda và mu là thời gian trung bình.","intercept":"Trong mô hình rate, lambda/mu có đơn vị 1/thời gian; mean inter-arrival/service time tương ứng là 1/lambda và 1/mu."},
+    {"id":"P9-M03","node":"P9-N05","statement":"Stationary distribution nghĩa là hệ không thay đổi trạng thái.","intercept":"Trạng thái vẫn chuyển; phân phối xác suất tổng thể không đổi theo thời gian khi đã ở stationary regime."},
+    {"id":"P9-M04","node":"P9-N07","statement":"M/M/1 luôn có steady-state dù lambda >= mu.","intercept":"Cần rho=lambda/mu<1; nếu không, các steady-state mean metrics chuẩn không hữu hạn."},
+    {"id":"P9-M05","node":"P9-N07","statement":"Lq và L, Wq và W là cùng một đại lượng.","intercept":"q chỉ phần chờ; L/W bao gồm cả khách đang được phục vụ/thời gian phục vụ."},
+    {"id":"P9-M06","node":"P9-N08","statement":"Trong M/M/c, utilization vẫn bằng lambda/mu.","intercept":"Utilization mỗi server đối xứng là rho=lambda/(c*mu)."},
+    {"id":"P9-M07","node":"P9-N07","statement":"Little's law tự động đúng với mọi lambda nhập vào, kể cả arrival rate bị từ chối.","intercept":"Phải dùng throughput/effective arrival rate phù hợp với population được đo và chế độ ổn định."},
+    {"id":"P9-M08","node":"P9-N10","statement":"Simulation chạy một lần cho một kết quả gần công thức là đủ xác minh.","intercept":"Cần kiểm soát seed, warm-up, horizon/replications và sai số thống kê."},
+    {"id":"P9-M09","node":"P9-N11","statement":"Service rate mu và failure rate đều có thể ký hiệu rate nên có cùng ý nghĩa vật lý.","intercept":"Chúng mô tả sự kiện khác nhau; phải đọc từ mô hình và đơn vị, không suy nghĩa từ ký hiệu."}
+  ],
+  "diagnostic": {
+    "D0": {
+      "name":"Recall","weight":0.25,"recommendedMinutes":25,
+      "items":[
+        {"id":"P9-D0-01","node":"P9-N02","prompt":"Biến ngẫu nhiên khác quá trình ngẫu nhiên ở điểm nào?","answerKey":["random variable is one random quantity/indexed outcome","stochastic process is a family of random variables indexed by time/space"]},
+        {"id":"P9-D0-02","node":"P9-N03","prompt":"Với Poisson process rate lambda, N(t) có phân phối gì?","answerKey":["Poisson with mean lambda*t"]},
+        {"id":"P9-D0-03","node":"P9-N03","prompt":"Nếu service time ~ Exp(mu), thời gian phục vụ trung bình bằng bao nhiêu?","answerKey":["1/mu"]},
+        {"id":"P9-D0-04","node":"P9-N03","prompt":"Nêu tính không nhớ của exponential distribution.","answerKey":["P(T>s+t|T>s)=P(T>t)"]},
+        {"id":"P9-D0-05","node":"P9-N04","prompt":"Mỗi hàng của transition matrix DTMC phải thỏa điều kiện gì theo quy ước row-stochastic?","answerKey":["entries nonnegative","row sum equals 1"]},
+        {"id":"P9-D0-06","node":"P9-N05","prompt":"Viết điều kiện stationary distribution của DTMC theo quy ước vector hàng.","answerKey":["pi=pi P","sum pi_i=1"]},
+        {"id":"P9-D0-07","node":"P9-N06","prompt":"M/M/1 có ý nghĩa gì?","answerKey":["Markovian/Poisson arrivals","Markovian/exponential service","one server"]},
+        {"id":"P9-D0-08","node":"P9-N07","prompt":"Điều kiện steady-state của M/M/1 là gì?","answerKey":["lambda<mu","rho<1"]},
+        {"id":"P9-D0-09","node":"P9-N07","prompt":"Phân biệt L và Lq.","answerKey":["L number in system","Lq number waiting in queue"]},
+        {"id":"P9-D0-10","node":"P9-N07","prompt":"Phân biệt W và Wq.","answerKey":["W time in system","Wq waiting time before service"]},
+        {"id":"P9-D0-11","node":"P9-N07","prompt":"Nêu Little's law.","answerKey":["L=lambda W","consistent population/effective rate"]},
+        {"id":"P9-D0-12","node":"P9-N08","prompt":"Utilization rho của M/M/c là gì?","answerKey":["lambda/(c*mu)"]},
+        {"id":"P9-D0-13","node":"P9-N09","prompt":"Nêu hai tình huống khiến M/M/1 đơn lẻ không đủ mô hình một hệ thống.","answerKey":["multiple service centers","finite capacity","feedback/retry","priority classes","multiple servers"]},
+        {"id":"P9-D0-14","node":"P9-N10","prompt":"Discrete-event simulation khác time-step simulation ở ý chính nào?","answerKey":["clock jumps to event times rather than updating every fixed small time step"]},
+        {"id":"P9-D0-15","node":"P9-N10","prompt":"Vì sao simulation queue cần warm-up hoặc xem xét transient?","answerKey":["starting empty biases steady-state estimates"]},
+        {"id":"P9-D0-16","node":"P9-N11","prompt":"Failure rate và service rate có cùng nghĩa không?","answerKey":["no","different event semantics despite both being rates"]}
+      ]
+    },
+    "D1": {
+      "name":"Application","weight":0.5,"recommendedMinutes":70,
+      "items":[
+        {"id":"P9-D1-01","node":"P9-N03","prompt":"Requests arrive as Poisson process lambda=6/hour. Tính xác suất có đúng 2 request trong 20 phút.","expected":"Use mean lambda*t=2; probability exp(-2)*2^2/2! = 2*exp(-2) ≈ 0.2707.","criticalChecks":["convert 20 min to 1/3 hour","use count distribution, not exponential CDF"]},
+        {"id":"P9-D1-02","node":"P9-N03","prompt":"Service time exponential with mu=12/hour. Tính mean service time theo phút.","expected":"1/12 hour = 5 minutes.","criticalChecks":["rate inversion","unit conversion"]},
+        {"id":"P9-D1-03","node":"P9-N04","prompt":"Cho P=[[0.8,0.2],[0.3,0.7]] và p0=[1,0]. Tính p1 và p2.","expected":"p1=[0.8,0.2]; p2=[0.70,0.30].","criticalChecks":["row-vector convention","probabilities sum to 1"]},
+        {"id":"P9-D1-04","node":"P9-N05","prompt":"Tìm stationary distribution của P=[[0.8,0.2],[0.3,0.7]].","expected":"Solve pi=pi P, pi1+pi2=1 -> pi=[0.6,0.4].","criticalChecks":["stationary equation","normalization"]},
+        {"id":"P9-D1-05","node":"P9-N07","prompt":"M/M/1 with lambda=8/hour, mu=10/hour. Tính rho, L, Lq, W, Wq.","expected":"rho=0.8; L=4; Lq=3.2; W=0.5h=30min; Wq=0.4h=24min.","criticalChecks":["lambda<mu","Little law cross-check"]},
+        {"id":"P9-D1-06","node":"P9-N07","prompt":"M/M/1 with lambda=10/hour, mu=9/hour. Có được dùng steady-state formulas L,W chuẩn không? Giải thích.","expected":"No; rho>1, no finite steady-state means under standard M/M/1 assumptions.","criticalChecks":["stability before substitution"]},
+        {"id":"P9-D1-07","node":"P9-N07","prompt":"Một stable system has throughput 15/min and measured mean time in system 0.2 min. Theo Little's law, mean number in system là bao nhiêu?","expected":"L=15*0.2=3.","criticalChecks":["consistent units","use effective throughput"]},
+        {"id":"P9-D1-08","node":"P9-N08","prompt":"M/M/2 with lambda=6/hour and mu=4/hour per server. Tính rho và xác định stable/unstable.","expected":"rho=6/(2*4)=0.75; stable.","criticalChecks":["mu is per server","divide by c*mu"]},
+        {"id":"P9-D1-09","node":"P9-N08","prompt":"For M/M/2 with lambda=6/hour, mu=4/hour, compute P0, Erlang-C P_wait, Lq and Wq.","expected":"a=1.5,rho=0.75; P0=1/[1+1.5+2.25/(2*0.25)]=1/7=0.142857; P_wait=(2.25/(2*0.25))*P0=4.5/7=0.642857; Lq=P_wait*0.75/0.25≈1.92857; Wq=Lq/6≈0.32143h≈19.286min.","criticalChecks":["Erlang C denominator","units","rho<1"]},
+        {"id":"P9-D1-10","node":"P9-N09","prompt":"A web request goes API -> AI inference -> database, and 15% retry AI once after a validation failure. Sketch queueing centers and identify the feedback edge.","expected":"At least three service centers/queues as justified; explicit feedback from validation/result path back to AI inference for retry probability 0.15.","criticalChecks":["do not force single M/M/1","identify feedback"]},
+        {"id":"P9-D1-11","node":"P9-N10","prompt":"Design a minimal event-driven simulation of M/M/1. Name event types, state variables and metrics to log.","expected":"Arrival/departure events; clock, queue length/server busy, arrival timestamps; log arrivals/departures/wait/system time and time-average number in system/queue.","criticalChecks":["event-driven clock","queue discipline stated","seed/run horizon considered"]},
+        {"id":"P9-D1-12","node":"P9-N10","prompt":"Simulation of lambda=8/hour, mu=10/hour produces L≈7 after a very short run starting empty. What checks should be made before rejecting theory?","expected":"Check run length, warm-up/transient, random seed/replications, implementation, units, arrival/service assumptions; theoretical L=4 for stable M/M/1.","criticalChecks":["do not tune formula to one run","recognize statistical/transient error"]}
+      ]
+    },
+    "D2": {
+      "name":"Explain/Oral","weight":0.25,"recommendedMinutes":25,
+      "items":[
+        {"id":"P9-D2-01","node":"P9-N03","promptVi":"Giải thích bằng lời vì sao Poisson arrivals thường đi cùng exponential inter-arrival times.","promptRu":"Объясните, почему пуассоновский поток связан с экспоненциальным распределением интервалов между заявками.","mustMention":["constant rate homogeneous case","independent increments","inter-arrival exponential","memoryless property"]},
+        {"id":"P9-D2-02","node":"P9-N04","promptVi":"Ma trận chuyển Markov biểu diễn cái gì và phải kiểm tra gì trước khi tính?","promptRu":"Что описывает матрица переходных вероятностей цепи Маркова и как проверить её корректность?","mustMention":["states","conditional transition probabilities","nonnegative","row sums 1 under row-stochastic convention"]},
+        {"id":"P9-D2-03","node":"P9-N05","promptVi":"Stationary distribution có nghĩa hệ đứng yên không?","promptRu":"Означает ли стационарное распределение, что система перестаёт менять состояние?","mustMention":["no","states continue changing","distribution invariant"]},
+        {"id":"P9-D2-04","node":"P9-N07","promptVi":"Vì sao phải kiểm tra rho<1 trước khi dùng công thức M/M/1?","promptRu":"Почему перед использованием стационарных формул M/M/1 необходимо проверить условие rho<1?","mustMention":["service capacity greater than arrival rate","finite stationary mean metrics","queue otherwise grows without bound in model"]},
+        {"id":"P9-D2-05","node":"P9-N07","promptVi":"Phân biệt L/Lq và W/Wq bằng ví dụ request-server.","promptRu":"Объясните различие между L и Lq, а также между W и Wq на примере запросов к серверу.","mustMention":["system includes service","queue excludes in-service request","time in system includes service time"]},
+        {"id":"P9-D2-06","node":"P9-N08","promptVi":"Trong M/M/c, vì sao rho không phải lambda/mu?","promptRu":"Почему в системе M/M/c коэффициент загрузки равен lambda/(c*mu), а не lambda/mu?","mustMention":["c parallel servers","mu is per-server rate","total nominal capacity c*mu"]},
+        {"id":"P9-D2-07","node":"P9-N09","promptVi":"Khi nào phải chuyển từ một queue sang queueing network?","promptRu":"Когда одной системы массового обслуживания недостаточно и требуется сеть массового обслуживания?","mustMention":["multiple processing stages/resources","routing","feedback/retry or multiple centers"]},
+        {"id":"P9-D2-08","node":"P9-N10","promptVi":"Bạn sẽ chứng minh mô phỏng hàng đợi đáng tin như thế nào?","promptRu":"Как вы проверите достоверность дискретно-событийной модели системы массового обслуживания?","mustMention":["verify implementation","compare with analytical case","warm-up/run length","replications/seeds","confidence/error reporting"]}
+      ]
+    }
+  },
+  "repairRoutes": [
+    {"id":"P9-R01","triggerNodes":["P9-N02","P9-N03"],"route":["reuse P3 probability/distribution lessons","P9-N02","P9-N03"],"stopWhen":"D1 for N03 >=85 and no P9-M01/P9-M02"},
+    {"id":"P9-R02","triggerNodes":["P9-N04","P9-N05"],"route":["P9-N04","P9-N05"],"stopWhen":"Can compute n-step and stationary probabilities and explain stationary meaning"},
+    {"id":"P9-R03","triggerNodes":["P9-N06","P9-N07"],"route":["P9-N06","P9-N07"],"stopWhen":"M/M/1 application tasks >=90 and stability check is automatic"},
+    {"id":"P9-R04","triggerNodes":["P9-N08"],"route":["P9-N08"],"stopWhen":"M/M/c utilization and Erlang-C task solved without rate/unit errors"},
+    {"id":"P9-R05","triggerNodes":["P9-N09"],"route":["P9-N09"],"stopWhen":"Can map a multi-stage request flow to service centers and identify routing/feedback/priority/finite capacity"},
+    {"id":"P9-R06","triggerNodes":["P9-N10"],"route":["P9-N10"],"stopWhen":"Simulation design includes event model, warm-up/horizon, seed/replication and analytical cross-check"},
+    {"id":"P9-R07","triggerNodes":["P9-N11"],"route":["P9-N11"],"stopWhen":"Can separate service-rate and failure-rate semantics and draw a basic reliability state model"}
+  ],
+  "implementationPolicy": {
+    "phase":"Pass04 blueprint before subject-vault integration",
+    "schedulerMutation": false,
+    "writesDiagnosticScores": false,
+    "duplicatesExistingP3Theory": false,
+    "nextIntegration":"After validator/CI pass, map this pack into Math as an additive prerequisite route; do not overwrite accepted Math lessons."
+  }
+}
