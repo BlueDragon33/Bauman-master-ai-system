@@ -8,7 +8,10 @@ on:
       - 'assets/data/prerequisite-content-coverage-2026.json'
       - 'assets/data/prerequisite-packs/**'
       - 'assets/js/academic-main.js'
+      - 'assets/js/platform/runtime-config.js'
+      - 'assets/js/platform/device-access-gate.js'
       - 'assets/css/academic-2026.css'
+      - 'assets/css/device-access-gate.css'
       - 'index.html'
       - 'scripts/validate-academic-2026.js'
       - 'scripts/validate-prerequisite-coverage-2026.js'
@@ -29,7 +32,10 @@ on:
       - 'assets/data/prerequisite-content-coverage-2026.json'
       - 'assets/data/prerequisite-packs/**'
       - 'assets/js/academic-main.js'
+      - 'assets/js/platform/runtime-config.js'
+      - 'assets/js/platform/device-access-gate.js'
       - 'assets/css/academic-2026.css'
+      - 'assets/css/device-access-gate.css'
       - 'index.html'
       - 'scripts/validate-academic-2026.js'
       - 'scripts/validate-prerequisite-coverage-2026.js'
@@ -74,11 +80,18 @@ jobs:
         run: node scripts/validate-j01-information-system-architecture.js
       - name: Validate P0 Technical Russian mapping pack
         run: node scripts/validate-p00-technical-russian.js
-      - name: Check Academic 2026 runtime JavaScript syntax
-        run: node --check assets/js/academic-main.js
+      - name: Check Academic and Device Gate runtime JavaScript syntax
+        run: |
+          node --check assets/js/academic-main.js
+          node --check assets/js/platform/runtime-config.js
+          node --check assets/js/platform/device-access-gate.js
       - name: Check runtime references are loaded by index
         shell: bash
         run: |
+          grep -q 'assets/css/device-access-gate.css' index.html
           grep -q 'assets/css/academic-2026.css' index.html
-          grep -q 'assets/js/academic-main.js' index.html
+          grep -q 'assets/js/platform/runtime-config.js' index.html
+          grep -q 'assets/js/platform/device-access-gate.js' index.html
           grep -q 'assets/js/planning-main.js' index.html
+          grep -q 'assets/js/academic-main.js' index.html
+          ! grep -q '</div>7' index.html
