@@ -15,6 +15,7 @@ on:
       - 'scripts/validate-p09-markov-queueing.js'
       - 'scripts/validate-p06-database-fundamentals.js'
       - 'scripts/validate-p04-discrete-algorithms-data-structures.js'
+      - 'scripts/validate-p07-linux-os-networks.js'
       - '.github/workflows/academic-2026-prerequisite-gate.yml'
   pull_request:
     paths:
@@ -30,6 +31,7 @@ on:
       - 'scripts/validate-p09-markov-queueing.js'
       - 'scripts/validate-p06-database-fundamentals.js'
       - 'scripts/validate-p04-discrete-algorithms-data-structures.js'
+      - 'scripts/validate-p07-linux-os-networks.js'
       - '.github/workflows/academic-2026-prerequisite-gate.yml'
 
 jobs:
@@ -50,6 +52,8 @@ jobs:
         run: node scripts/validate-p06-database-fundamentals.js
       - name: Validate P4 Discrete / Algorithms / Data Structures pack
         run: node scripts/validate-p04-discrete-algorithms-data-structures.js
+      - name: Validate P7 Linux / OS / Networks pack
+        run: node scripts/validate-p07-linux-os-networks.js
       - name: Check Academic 2026 runtime JavaScript syntax
         run: node --check assets/js/academic-main.js
       - name: Check runtime references are loaded by index
