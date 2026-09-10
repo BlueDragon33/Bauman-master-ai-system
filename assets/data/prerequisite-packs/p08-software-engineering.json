@@ -1,0 +1,158 @@
+{
+  "schema": "bauman_prerequisite_pack_v1",
+  "version": "P8_SOFTWARE_ENGINEERING_PASS08_V1",
+  "gateId": "P8",
+  "titleVi": "Kỹ nghệ phần mềm nền tảng cho IU5",
+  "titleRu": "Основы программной инженерии для ИУ5",
+  "status": "diagnostic_and_repair_blueprint",
+  "notOfficialAdministrativePrerequisite": true,
+  "purpose": "Khôi phục đúng năng lực phân tích yêu cầu, mô hình hóa, thiết kế kiến trúc, OOP/SOLID, kiểm thử và quản lý thay đổi cần để vào d05/d15 với lợi thế điểm số; không học vòng sang framework doanh nghiệp, cloud hay microservices chuyên sâu.",
+  "officialTargets": [
+    {"courseId":"d05","nameRu":"Объектно-ориентированное проектирование автоматизированных систем обработки информации и управления","semester":1,"role":"primary"},
+    {"courseId":"d15","nameRu":"Технологии разработки программного обеспечения","semester":1,"role":"primary"},
+    {"courseId":"d14","nameRu":"Управление проектированием информационных систем","semester":3,"role":"downstream"},
+    {"courseId":"d19","nameRu":"Описание процессов жизненного цикла СТС","semester":4,"role":"downstream"},
+    {"courseId":"p01","nameRu":"Проектно-технологическая практика","semester":2,"role":"practice_bridge"}
+  ],
+  "sourceEvidence": [
+    {"kind":"official_curriculum","url":"https://home.science.iu5.bmstu.ru/study-plans/iu5-master-program.pdf","note":"Khóa tên, học kỳ, tín chỉ và hình thức đánh giá của các học phần/practice đích. P8 là competency prerequisite do Hub suy ra, không phải prerequisite hành chính của Bauman."}
+  ],
+  "localReuse": [
+    {"subject":"programming","path":"subjects/programming/data/lessons.json","lessonIds":["PR07"],"coverage":["Git basics","commit/branch/repository"]},
+    {"subject":"programming","path":"subjects/programming/data/lessons.json","lessonIds":["PR14"],"coverage":["unit testing","pytest assertions"]},
+    {"subject":"programming","path":"subjects/programming/data/lessons.json","lessonIds":["PR17"],"coverage":["OOP class/interface/responsibility"],"reusePolicy":"concept_only_neutralize_project_example"},
+    {"subject":"programming","path":"subjects/programming/data/lessons.json","lessonIds":["PR18"],"coverage":["module/package architecture"]},
+    {"subject":"programming","path":"subjects/programming/data/lessons.json","lessonIds":["PR19"],"coverage":["factory/strategy/adapter"],"reusePolicy":"concept_only_neutralize_project_example"},
+    {"subject":"programming","path":"subjects/programming/data/lessons.json","lessonIds":["PR22"],"coverage":["requirements/issues/milestones","branch/PR/release workflow"]},
+    {"subject":"programming","path":"subjects/programming/data/lessons.json","lessonIds":["PR23"],"coverage":["integration testing","data/pipeline tests"]},
+    {"subject":"programming","path":"subjects/programming/data/lessons.json","lessonIds":["PR24"],"coverage":["CI","lint/tests/type-check"]}
+  ],
+  "upstream": {
+    "critical": ["P5"],
+    "support": ["P4","P7","J1"],
+    "reuseInsteadOfDuplicate": ["PR07","PR14","PR17","PR18","PR19","PR22","PR23","PR24"]
+  },
+  "mastery": {
+    "target": 88,
+    "applicationMinimum": 85,
+    "criticalMisconceptionsAllowed": 0,
+    "diagnosticFormula": "M = 0.25*D0 + 0.50*D1 + 0.25*D2",
+    "stopRule": "Nếu P8 >= 95, D1 >= 90 và không còn critical misconception thì dừng học rộng P8; chỉ mở lại node liên quan khi d05/d15, practice hoặc feedback của giảng viên phát hiện lỗ hổng cụ thể."
+  },
+  "scopeGuard": {
+    "required": [
+      "problem boundary and stakeholders",
+      "functional and non-functional requirements",
+      "acceptance criteria and traceability",
+      "UML use-case/class/sequence/component/deployment views",
+      "OOP responsibility and SOLID",
+      "basic design patterns",
+      "software architecture and interfaces",
+      "quality attributes and trade-offs",
+      "software lifecycle and change management",
+      "Git/review/configuration/release workflow",
+      "unit/integration/system/regression/acceptance testing"
+    ],
+    "excludedFromDefaultRoute": [
+      "enterprise-framework specialization",
+      "microservices deep dive",
+      "Kubernetes administration",
+      "cloud architecture certification",
+      "service mesh",
+      "advanced DevOps platform engineering",
+      "competitive programming",
+      "robot-specific architecture",
+      "UGV/USV control stack",
+      "PID/LQR/Kalman/FPGA/PLC/SCADA"
+    ]
+  },
+  "nodes": [
+    {"id":"P8-N01","order":1,"titleVi":"Ranh giới hệ thống, stakeholder và bài toán","titleRu":"Границы системы, заинтересованные стороны и постановка задачи","kind":"core","dependsOn":[],"outcomes":["Xác định system boundary, external actor và responsibility.","Phân biệt problem statement với solution proposal.","Viết context ngắn nêu input/output, constraint và success criterion."],"repairHoursHint":"2–3 giờ"},
+    {"id":"P8-N02","order":2,"titleVi":"Yêu cầu chức năng/phi chức năng, acceptance criteria và traceability","titleRu":"Функциональные и нефункциональные требования, критерии приёмки и трассируемость","kind":"reuse_extend","dependsOn":["P8-N01"],"reuse":["PR22"],"outcomes":["Viết requirement cụ thể, kiểm thử được, tránh từ mơ hồ.","Phân biệt functional requirement với quality constraint.","Viết acceptance criterion quan sát được.","Lập traceability requirement→design→test ở mức dự án môn học."],"repairHoursHint":"3–4 giờ"},
+    {"id":"P8-N03","order":3,"titleVi":"UML tối thiểu nhưng đủ dùng","titleRu":"Минимально достаточное UML-моделирование","kind":"core","dependsOn":["P8-N01","P8-N02"],"outcomes":["Dùng use-case để mô tả actor-goal, không biến thành flowchart.","Dùng class diagram cho structure/responsibility/relationship.","Dùng sequence diagram cho tương tác theo thời gian.","Dùng component/deployment diagram khi cần mô tả module và runtime placement.","Chọn đúng diagram cho câu hỏi cần trả lời, không vẽ UML để trang trí."],"repairHoursHint":"4–5 giờ"},
+    {"id":"P8-N04","order":4,"titleVi":"OOP theo trách nhiệm và SOLID","titleRu":"ООП по ответственности и принципы SOLID","kind":"reuse_extend","dependsOn":["P8-N03"],"reuse":["PR17"],"outcomes":["Phân công responsibility cho class/module theo cohesion.","Phân biệt inheritance với composition và ưu tiên composition khi phù hợp.","Giải thích SRP/OCP/LSP/ISP/DIP bằng ví dụ phần mềm trung lập.","Nhận diện god class, feature envy và coupling quá chặt ở mức cơ bản."],"repairHoursHint":"4–5 giờ"},
+    {"id":"P8-N05","order":5,"titleVi":"Design pattern vừa đủ: Strategy, Adapter, Factory","titleRu":"Базовые шаблоны проектирования: Strategy, Adapter, Factory","kind":"reuse_extend","dependsOn":["P8-N04"],"reuse":["PR19"],"outcomes":["Dùng Strategy để thay thuật toán qua interface ổn định.","Dùng Adapter để chuyển interface không tương thích.","Dùng Factory khi logic tạo object cần tách khỏi client.","Không áp pattern khi một hàm/class đơn giản đã đủ."],"repairHoursHint":"3–4 giờ"},
+    {"id":"P8-N06","order":6,"titleVi":"Kiến trúc phần mềm, module, interface và data contract","titleRu":"Архитектура ПО, модули, интерфейсы и контракты данных","kind":"reuse_extend","dependsOn":["P8-N02","P8-N04"],"reuse":["PR18"],"outcomes":["Tách presentation/application/domain/data hoặc các lớp tương đương theo trách nhiệm.","Định nghĩa interface và data contract trước khi nối module.","Phân biệt module dependency với runtime communication.","Vẽ component dependency đủ để giải thích hệ thống khi bảo vệ."],"repairHoursHint":"4–5 giờ"},
+    {"id":"P8-N07","order":7,"titleVi":"Quality attributes và trade-off kiến trúc","titleRu":"Атрибуты качества и архитектурные компромиссы","kind":"core","dependsOn":["P8-N06"],"outcomes":["Phân biệt performance, scalability, availability, reliability, security, maintainability và testability.","Chuyển quality attribute thành scenario đo được.","Giải thích một thay đổi kiến trúc có thể cải thiện một thuộc tính nhưng làm xấu thuộc tính khác.","Không đồng nhất performance với scalability hoặc reliability với availability."],"repairHoursHint":"3–4 giờ"},
+    {"id":"P8-N08","order":8,"titleVi":"Vòng đời phần mềm và quản lý thay đổi","titleRu":"Жизненный цикл ПО и управление изменениями","kind":"core","dependsOn":["P8-N02"],"outcomes":["Phân biệt waterfall/iterative/incremental/agile ở mức lựa chọn quy trình.","Mô tả requirements→design→implementation→verification→release→maintenance.","Quản lý change request và impact analysis ở mức môn học.","Hiểu baseline/configuration item/version ở mức thực hành."],"repairHoursHint":"3–4 giờ"},
+    {"id":"P8-N09","order":9,"titleVi":"Git, review, configuration và release","titleRu":"Git, ревью, управление конфигурацией и релизами","kind":"reuse_extend","dependsOn":["P8-N08"],"reuse":["PR07","PR22","PR24"],"outcomes":["Dùng branch/commit/PR/review để giữ lịch sử thay đổi có chủ đích.","Liên kết issue/requirement với commit/PR khi phù hợp.","Phân biệt source version, configuration và release artifact.","Dùng tag/version/changelog tối thiểu cho bản nộp có thể tái lập."],"repairHoursHint":"2–3 giờ nếu Git còn chắc"},
+    {"id":"P8-N10","order":10,"titleVi":"Kiểm thử từ unit tới acceptance và regression","titleRu":"Тестирование от модульного до приёмочного и регрессионного","kind":"reuse_extend","dependsOn":["P8-N02","P8-N06"],"reuse":["PR14","PR23","PR24"],"outcomes":["Phân biệt unit, integration, system, acceptance và regression testing.","Chọn test level theo loại lỗi cần bắt.","Viết test từ acceptance criterion và interface contract.","Hiểu regression suite bảo vệ hành vi cũ sau thay đổi.","Không xem CI xanh là bằng chứng hệ thống đúng nếu test coverage/quality kém."],"repairHoursHint":"4–5 giờ"},
+    {"id":"P8-N11","order":11,"titleVi":"Mini-project cầu nối vào d05/d15","titleRu":"Мини-проект-переход к дисциплинам d05/d15","kind":"official_course_bridge","dependsOn":["P8-N03","P8-N05","P8-N07","P8-N09","P8-N10"],"outcomes":["Từ một bài toán trung lập tạo requirement + acceptance criteria + UML tối thiểu.","Thiết kế module/interface và triển khai skeleton có unit/integration test.","Tạo traceability requirement→design→test→release artifact.","Bảo vệ 7–10 phút bằng sơ đồ, trade-off và bằng chứng test thay vì chỉ trình diễn code."],"repairHoursHint":"6–8 giờ"}
+  ],
+  "diagnostic": {
+    "D0": {"name":"Recall","weight":0.25,"recommendedMinutes":30,"items":[
+      {"id":"P8-D0-01","node":"P8-N01","prompt":"System boundary và stakeholder khác nhau thế nào?"},
+      {"id":"P8-D0-02","node":"P8-N02","prompt":"Functional và non-functional requirement khác nhau thế nào?"},
+      {"id":"P8-D0-03","node":"P8-N02","prompt":"Acceptance criterion tốt cần có đặc điểm gì?"},
+      {"id":"P8-D0-04","node":"P8-N03","prompt":"Use-case diagram trả lời câu hỏi gì?"},
+      {"id":"P8-D0-05","node":"P8-N03","prompt":"Sequence diagram khác class diagram ở loại thông tin nào?"},
+      {"id":"P8-D0-06","node":"P8-N04","prompt":"SRP và DIP nghĩa là gì ở mức thiết kế?"},
+      {"id":"P8-D0-07","node":"P8-N04","prompt":"Inheritance và composition khác nhau thế nào?"},
+      {"id":"P8-D0-08","node":"P8-N05","prompt":"Khi nào Strategy phù hợp hơn if/else rải rác?"},
+      {"id":"P8-D0-09","node":"P8-N06","prompt":"Interface contract và implementation khác nhau thế nào?"},
+      {"id":"P8-D0-10","node":"P8-N07","prompt":"Performance và scalability khác nhau thế nào?"},
+      {"id":"P8-D0-11","node":"P8-N07","prompt":"Reliability và availability khác nhau thế nào?"},
+      {"id":"P8-D0-12","node":"P8-N08","prompt":"Iterative và incremental khác nhau thế nào ở mức cơ bản?"},
+      {"id":"P8-D0-13","node":"P8-N08","prompt":"Configuration item là gì?"},
+      {"id":"P8-D0-14","node":"P8-N09","prompt":"Commit, branch, tag và release khác vai trò thế nào?"},
+      {"id":"P8-D0-15","node":"P8-N10","prompt":"Unit test và integration test bắt lỗi khác nhau thế nào?"},
+      {"id":"P8-D0-16","node":"P8-N10","prompt":"Regression test nhằm bảo vệ điều gì?"},
+      {"id":"P8-D0-17","node":"P8-N11","prompt":"Traceability requirement→test giúp gì khi bảo vệ?"},
+      {"id":"P8-D0-18","node":"P8-N11","prompt":"Vì sao demo chạy được chưa đủ chứng minh thiết kế tốt?"}
+    ]},
+    "D1": {"name":"Application","weight":0.5,"recommendedMinutes":90,"items":[
+      {"id":"P8-D1-01","node":"P8-N01","prompt":"Cho bài toán quản lý thí nghiệm ML; xác định system boundary, 3 actor ngoài hệ thống và 5 responsibility bên trong."},
+      {"id":"P8-D1-02","node":"P8-N02","prompt":"Viết lại 5 requirement mơ hồ thành requirement kiểm thử được và thêm acceptance criteria."},
+      {"id":"P8-D1-03","node":"P8-N03","prompt":"Từ một use case nộp kết quả thí nghiệm, chọn và phác thảo use-case + sequence + class/component view cần thiết."},
+      {"id":"P8-D1-04","node":"P8-N04","prompt":"Refactor một god class chứa UI, business logic và persistence thành các responsibility hợp lý; giải thích SOLID liên quan."},
+      {"id":"P8-D1-05","node":"P8-N05","prompt":"Cho ba thuật toán scoring thay đổi được lúc chạy; thiết kế Strategy và chỉ rõ trường hợp không cần Factory."},
+      {"id":"P8-D1-06","node":"P8-N06","prompt":"Thiết kế module/interface/data contract cho client→service→database của một hệ thống học thuật trung lập."},
+      {"id":"P8-D1-07","node":"P8-N07","prompt":"Cho yêu cầu latency, availability và maintainability; đưa ra 2 quyết định kiến trúc và nêu trade-off."},
+      {"id":"P8-D1-08","node":"P8-N08","prompt":"Một requirement thay đổi sau khi code đã xong 50%; lập impact analysis lên design, test, docs và release."},
+      {"id":"P8-D1-09","node":"P8-N09","prompt":"Thiết kế workflow issue→branch→commit→PR→review→tag/release cho bài nhóm nhỏ, có rollback point."},
+      {"id":"P8-D1-10","node":"P8-N10","prompt":"Phân loại 12 test case vào unit/integration/system/acceptance/regression và giải thích 3 trường hợp dễ nhầm."},
+      {"id":"P8-D1-11","node":"P8-N10","prompt":"Từ 4 acceptance criteria, tạo test matrix và chỉ ra criterion nào chưa có test; sửa để coverage đầy đủ."},
+      {"id":"P8-D1-12","node":"P8-N11","prompt":"Tạo mini dossier gồm requirement IDs, UML views, architecture decision, tests, traceability matrix và release artifact đủ để bảo vệ 7–10 phút."}
+    ]},
+    "D2": {"name":"Explain/Oral","weight":0.25,"recommendedMinutes":30,"items":[
+      {"id":"P8-D2-01","node":"P8-N02","promptVi":"Giải thích vì sao requirement 'hệ thống phải nhanh' là không đủ.","promptRu":"Объясните, почему требование «система должна работать быстро» недостаточно и как сделать его проверяемым."},
+      {"id":"P8-D2-02","node":"P8-N03","promptVi":"Giải thích khi nào dùng class diagram và khi nào dùng sequence diagram.","promptRu":"Объясните, когда следует использовать диаграмму классов, а когда диаграмму последовательности."},
+      {"id":"P8-D2-03","node":"P8-N04","promptVi":"Giải thích SRP và DIP bằng một ví dụ phần mềm trung lập.","promptRu":"Объясните принципы единственной ответственности и инверсии зависимостей на нейтральном программном примере."},
+      {"id":"P8-D2-04","node":"P8-N05","promptVi":"Giải thích lợi ích và chi phí của Strategy pattern.","promptRu":"Объясните преимущества и издержки шаблона Strategy и приведите пример, когда он не нужен."},
+      {"id":"P8-D2-05","node":"P8-N07","promptVi":"Giải thích trade-off giữa performance, maintainability và reliability.","promptRu":"Объясните архитектурный компромисс между производительностью, сопровождаемостью и надёжностью."},
+      {"id":"P8-D2-06","node":"P8-N08","promptVi":"Giải thích vòng đời thay đổi từ change request tới release.","promptRu":"Опишите жизненный цикл изменения от запроса на изменение до выпуска новой версии."},
+      {"id":"P8-D2-07","node":"P8-N10","promptVi":"Giải thích khác nhau giữa integration, system và acceptance testing.","promptRu":"Объясните различия между интеграционным, системным и приёмочным тестированием."},
+      {"id":"P8-D2-08","node":"P8-N11","promptVi":"Bảo vệ ngắn một quyết định kiến trúc bằng requirement, trade-off và test evidence.","promptRu":"Кратко защитите архитектурное решение, связав требование, компромисс и доказательство в виде тестов."}
+    ]}
+  },
+  "criticalMisconceptions": [
+    {"id":"P8-M01","node":"P8-N02","text":"Requirement càng chung chung càng linh hoạt; không cần đo được."},
+    {"id":"P8-M02","node":"P8-N03","text":"UML là tài liệu trang trí, diagram nào cũng thay thế cho nhau."},
+    {"id":"P8-M03","node":"P8-N04","text":"SOLID nghĩa là luôn phải tạo nhiều interface/class nhỏ."},
+    {"id":"P8-M04","node":"P8-N04","text":"Inheritance luôn tốt hơn composition khi tái sử dụng code."},
+    {"id":"P8-M05","node":"P8-N05","text":"Dùng design pattern càng nhiều thì thiết kế càng tốt."},
+    {"id":"P8-M06","node":"P8-N07","text":"Performance và scalability là cùng một thuộc tính chất lượng."},
+    {"id":"P8-M07","node":"P8-N07","text":"Reliability và availability là cùng một khái niệm."},
+    {"id":"P8-M08","node":"P8-N09","text":"Git history/release artifact không liên quan tới khả năng tái lập và bảo vệ bài."},
+    {"id":"P8-M09","node":"P8-N10","text":"CI xanh đồng nghĩa hệ thống đúng, kể cả khi test yếu hoặc thiếu acceptance coverage."},
+    {"id":"P8-M10","node":"P8-N11","text":"Demo chạy được là đủ; không cần traceability, trade-off hay bằng chứng test."}
+  ],
+  "repairRoutes": [
+    {"id":"P8-R01","triggerNodes":["P8-N01","P8-N02"],"route":["PR22","P8-N01","P8-N02"],"goal":"repair problem/requirements"},
+    {"id":"P8-R02","triggerNodes":["P8-N03"],"route":["P8-N03"],"goal":"repair UML views"},
+    {"id":"P8-R03","triggerNodes":["P8-N04","P8-N05"],"route":["PR17","P8-N04","PR19","P8-N05"],"goal":"repair OOP/SOLID/patterns with neutral examples"},
+    {"id":"P8-R04","triggerNodes":["P8-N06","P8-N07"],"route":["PR18","P8-N06","P8-N07"],"goal":"repair architecture/quality attributes"},
+    {"id":"P8-R05","triggerNodes":["P8-N08","P8-N09"],"route":["PR07","PR22","PR24","P8-N08","P8-N09"],"goal":"repair lifecycle/config/release"},
+    {"id":"P8-R06","triggerNodes":["P8-N10"],"route":["PR14","PR23","PR24","P8-N10"],"goal":"repair testing levels/regression"},
+    {"id":"P8-R07","triggerNodes":["P8-N11"],"route":["P8-N02","P8-N03","P8-N06","P8-N10","P8-N11"],"goal":"repair end-to-end course-readiness dossier"},
+    {"id":"P8-R08","triggerNodes":["P8-N02","P8-N03","P8-N04","P8-N06","P8-N10"],"route":["P8-N02","P8-N03","P8-N04","P8-N06","P8-N10","P8-N11"],"goal":"rebuild critical design path only"}
+  ],
+  "implementationPolicy": {
+    "schedulerMutation": false,
+    "writesDiagnosticScores": false,
+    "newTopLevelSubject": false,
+    "overwritesExistingProgrammingLessons": false,
+    "neutralizesUGVExamplesInPrerequisiteRoute": true,
+    "mainBranchMutation": false
+  }
+}
