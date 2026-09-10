@@ -37,6 +37,21 @@ type DeviceRow = {
   blocked_at: string | null;
 };
 
+type ChallengeRow = {
+  challenge_id: string;
+  device_id: string;
+  challenge: string;
+  expires_at: number;
+};
+
+type SessionRow = {
+  session_hash: string;
+  device_id: string;
+  state: string;
+  expires_at: number;
+  last_seen_at: number;
+};
+
 type CommandRow = {
   command_id: string;
   device_id: string;
@@ -52,6 +67,9 @@ type CommandRow = {
   created_at: string;
   completed_at: string | null;
 };
+
+const CHALLENGE_TTL_MS = 2 * 60 * 1000;
+const DEVICE_SESSION_TTL_MS = 24 * 60 * 60 * 1000;
 
 function text(value: unknown, limit: number) {
   return typeof value === "string" ? value.trim().slice(0, limit) : "";
@@ -73,6 +91,28 @@ function validCommandId(value: string) {
   return /^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i.test(value);
 }
 
+function validChallengeId(value: string) {
+  return /^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i.test(value);
+}
+
+function base64Url(bytes: Uint8Array) {
+  let binary = "";
+  bytes.forEach((byte) => { binary += String.fromCharCode(byte); });
+  return btoa(binary).replaceAll("+", "-").replaceAll("/", "_").replaceAll("=", "");
+}
+
+function fromBase64Url(value: string) {
+  if (!/^[A-Za-z0-9_-]+$/.test(value) || value.length > 2048) {
+    throw new BaumanDeviceError("Chữ ký thiết bị không hợp lệ.", 400, "INVALID_DEVICE_SIGNATURE");
+  }
+  const padded = value.replaceAll("-", "+").replaceAll("_", "/").padEnd(Math.ceil(value.length / 4) * 4, "=");
+  try {
+    return Uint8Array.from(atob(padded), (character) => character.charCodeAt(0));
+  } catch {
+    throw new BaumanDeviceError("Chữ ký thiết bị không hợp lệ.", 400, "INVALID_DEVICE_SIGNATURE");
+  }
+}
+
 function base64UrlCoordinate(value: unknown) {
   return typeof value === "string" && /^[A-Za-z0-9_-]{43}$/.test(value) ? value : "";
 }
@@ -80,6 +120,10 @@ function base64UrlCoordinate(value: unknown) {
 async function sha256Hex(value: string) {
   const digest = await crypto.subtle.digest("SHA-256", new TextEncoder().encode(value));
   return [...new Uint8Array(digest)].map((byte) => byte.toString(16).padStart(2, "0")).join("");
+}
+
+function randomToken(bytes = 32) {
+  return base64Url(crypto.getRandomValues(new Uint8Array(bytes)));
 }
 
 function displayCodeFor(deviceId: string) {
@@ -151,8 +195,17 @@ async function audit(database: D1Database, actor: string, action: string, target
   ).bind(actor, action, target, JSON.stringify(detail)).run();
 }
 
+async function revokeDeviceSessions(database: D1Database, deviceId: string, actor: string) {
+  const result = await database.prepare(
+    `UPDATE bm_device_sessions
+        SET state='revoked', revoked_at=CURRENT_TIMESTAMP, revoked_by=?
+      WHERE device_id=? AND state='active'`,
+  ).bind(actor, deviceId).run();
+  return Number(result.meta.changes ?? 0);
+}
+
 export async function registerBaumanDevice(database: D1Database, payload: Record<string, unknown>) {
-  const key = await canonicalPublicJwk(payload.publicJwk);
+  const key = await canonicalPublicJwk(payload.publicJwk ?? payload.publicKey);
   const deviceId = await sha256Hex(key.canonical);
   const displayCode = displayCodeFor(deviceId);
   const now = Date.now();
@@ -168,25 +221,156 @@ export async function registerBaumanDevice(database: D1Database, payload: Record
 
   await database.prepare(
     `UPDATE bm_devices
-        SET device_type = ?, display_name = COALESCE(?, display_name), label = COALESCE(?, label),
+        SET device_type = CASE WHEN ?='unknown' THEN device_type ELSE ? END,
+            display_name = COALESCE(?, display_name), label = COALESCE(?, label),
             last_seen_at = ?, updated_at = CURRENT_TIMESTAMP
       WHERE device_id = ?`,
-  ).bind(deviceType, displayName, label, now, deviceId).run();
+  ).bind(deviceType, deviceType, displayName, label, now, deviceId).run();
 
   const row = await deviceRow(database, deviceId);
   if (!row) throw new BaumanDeviceError("Không thể tạo registry thiết bị Bauman.", 500, "DEVICE_REGISTRY_WRITE_FAILED");
   return publicDevice(row);
 }
 
-export async function touchBaumanDevice(database: D1Database, deviceIdValue: unknown) {
+export async function issueBaumanDeviceChallenge(database: D1Database, deviceIdValue: unknown) {
   const deviceId = text(deviceIdValue, 64).toLowerCase();
   if (!validDeviceId(deviceId)) throw new BaumanDeviceError("Mã thiết bị không hợp lệ.", 400, "INVALID_DEVICE_ID");
-  await database.prepare(
-    "UPDATE bm_devices SET last_seen_at = ?, updated_at = CURRENT_TIMESTAMP WHERE device_id = ?",
-  ).bind(Date.now(), deviceId).run();
   const row = await deviceRow(database, deviceId);
   if (!row) throw new BaumanDeviceError("Không tìm thấy thiết bị Bauman.", 404, "DEVICE_NOT_FOUND");
-  return publicDevice(row);
+
+  const challengeId = crypto.randomUUID();
+  const challenge = randomToken(32);
+  const expiresAt = Date.now() + CHALLENGE_TTL_MS;
+  await database.prepare("DELETE FROM bm_device_challenges WHERE device_id=? OR expires_at<=?")
+    .bind(deviceId, Date.now()).run();
+  await database.prepare(
+    "INSERT INTO bm_device_challenges (challenge_id, device_id, challenge, expires_at) VALUES (?, ?, ?, ?)",
+  ).bind(challengeId, deviceId, challenge, expiresAt).run();
+
+  return {
+    device: publicDevice(row),
+    challengeId,
+    challenge,
+    expiresAt,
+    signingInput: `bauman-device:v1:${deviceId}:${challengeId}:${challenge}`,
+  };
+}
+
+export async function verifyBaumanDeviceProof(database: D1Database, payload: Record<string, unknown>) {
+  const deviceId = text(payload.deviceId, 64).toLowerCase();
+  const challengeId = text(payload.challengeId, 64).toLowerCase();
+  const signature = text(payload.signature, 2048);
+  if (!validDeviceId(deviceId)) throw new BaumanDeviceError("Mã thiết bị không hợp lệ.", 400, "INVALID_DEVICE_ID");
+  if (!validChallengeId(challengeId)) throw new BaumanDeviceError("challengeId không hợp lệ.", 400, "INVALID_CHALLENGE_ID");
+  if (!signature) throw new BaumanDeviceError("Thiếu chữ ký thiết bị.", 400, "INVALID_DEVICE_SIGNATURE");
+
+  const challenge = await database.prepare(
+    "SELECT challenge_id, device_id, challenge, expires_at FROM bm_device_challenges WHERE challenge_id=? AND device_id=?",
+  ).bind(challengeId, deviceId).first<ChallengeRow>();
+  if (!challenge) throw new BaumanDeviceError("Challenge không tồn tại hoặc đã được dùng.", 409, "CHALLENGE_NOT_FOUND");
+  if (Number(challenge.expires_at) <= Date.now()) {
+    await database.prepare("DELETE FROM bm_device_challenges WHERE challenge_id=?").bind(challengeId).run();
+    throw new BaumanDeviceError("Challenge đã hết hạn.", 409, "CHALLENGE_EXPIRED");
+  }
+
+  const consumed = await database.prepare(
+    "DELETE FROM bm_device_challenges WHERE challenge_id=? AND device_id=?",
+  ).bind(challengeId, deviceId).run();
+  if (Number(consumed.meta.changes ?? 0) !== 1) {
+    throw new BaumanDeviceError("Challenge đã được sử dụng.", 409, "CHALLENGE_ALREADY_USED");
+  }
+
+  const row = await deviceRow(database, deviceId);
+  if (!row) throw new BaumanDeviceError("Không tìm thấy thiết bị Bauman.", 404, "DEVICE_NOT_FOUND");
+  let jwk: JsonWebKey;
+  try {
+    jwk = JSON.parse(row.public_jwk_json) as JsonWebKey;
+  } catch {
+    throw new BaumanDeviceError("Khóa thiết bị trong registry bị lỗi.", 500, "DEVICE_PUBLIC_KEY_CORRUPT");
+  }
+
+  const publicKey = await crypto.subtle.importKey("jwk", jwk, { name: "ECDSA", namedCurve: "P-256" }, false, ["verify"]);
+  const signingInput = `bauman-device:v1:${deviceId}:${challengeId}:${challenge.challenge}`;
+  const verified = await crypto.subtle.verify(
+    { name: "ECDSA", hash: "SHA-256" },
+    publicKey,
+    fromBase64Url(signature),
+    new TextEncoder().encode(signingInput),
+  );
+  if (!verified) throw new BaumanDeviceError("Chữ ký thiết bị không hợp lệ.", 403, "DEVICE_PROOF_INVALID");
+
+  await database.prepare(
+    "UPDATE bm_devices SET last_seen_at=?, updated_at=CURRENT_TIMESTAMP WHERE device_id=?",
+  ).bind(Date.now(), deviceId).run();
+  const updated = await deviceRow(database, deviceId);
+  if (!updated) throw new BaumanDeviceError("Không tìm thấy thiết bị Bauman.", 404, "DEVICE_NOT_FOUND");
+  const device = publicDevice(updated);
+
+  if (device.status === "pending") {
+    throw new BaumanDeviceError("Thiết bị Bauman đang chờ quản trị viên duyệt.", 409, "DEVICE_PENDING");
+  }
+  if (device.status === "blocked") {
+    throw new BaumanDeviceError("Thiết bị Bauman đã bị khóa.", 403, "DEVICE_BLOCKED");
+  }
+
+  const sessionToken = `bm1.${randomToken(32)}`;
+  const sessionHash = await sha256Hex(sessionToken);
+  const expiresAt = Date.now() + DEVICE_SESSION_TTL_MS;
+  await database.prepare(
+    `INSERT INTO bm_device_sessions (session_hash, device_id, state, expires_at, last_seen_at)
+     VALUES (?, ?, 'active', ?, ?)`,
+  ).bind(sessionHash, deviceId, expiresAt, Date.now()).run();
+  await audit(database, `device:${deviceId}`, "device_proof_verified", deviceId, { expiresAt });
+
+  return { device, sessionToken, expiresAt };
+}
+
+async function sessionAndDevice(database: D1Database, sessionTokenValue: unknown) {
+  const sessionToken = text(sessionTokenValue, 256);
+  if (!/^bm1\.[A-Za-z0-9_-]{40,100}$/.test(sessionToken)) {
+    throw new BaumanDeviceError("Phiên thiết bị không hợp lệ.", 401, "DEVICE_SESSION_INVALID");
+  }
+  const sessionHash = await sha256Hex(sessionToken);
+  const session = await database.prepare(
+    "SELECT session_hash, device_id, state, expires_at, last_seen_at FROM bm_device_sessions WHERE session_hash=?",
+  ).bind(sessionHash).first<SessionRow>();
+  if (!session || session.state !== "active") {
+    throw new BaumanDeviceError("Phiên thiết bị đã hết hiệu lực.", 401, "DEVICE_SESSION_REVOKED");
+  }
+  if (Number(session.expires_at) <= Date.now()) {
+    await database.prepare(
+      "UPDATE bm_device_sessions SET state='expired', revoked_at=CURRENT_TIMESTAMP WHERE session_hash=? AND state='active'",
+    ).bind(sessionHash).run();
+    throw new BaumanDeviceError("Phiên thiết bị đã hết hạn.", 401, "DEVICE_SESSION_EXPIRED");
+  }
+  const row = await deviceRow(database, session.device_id);
+  if (!row) throw new BaumanDeviceError("Thiết bị của phiên không còn trong registry.", 401, "DEVICE_NOT_FOUND");
+  const device = publicDevice(row);
+  if (device.status !== "approved") {
+    await database.prepare(
+      "UPDATE bm_device_sessions SET state='revoked', revoked_at=CURRENT_TIMESTAMP, revoked_by='device-status' WHERE session_hash=? AND state='active'",
+    ).bind(sessionHash).run();
+    throw new BaumanDeviceError(
+      device.status === "blocked" ? "Thiết bị Bauman đã bị khóa." : "Thiết bị Bauman chưa được duyệt.",
+      403,
+      device.status === "blocked" ? "DEVICE_BLOCKED" : "DEVICE_PENDING",
+    );
+  }
+  return { sessionHash, session, device };
+}
+
+export async function touchBaumanDeviceSession(database: D1Database, sessionToken: unknown) {
+  const authenticated = await sessionAndDevice(database, sessionToken);
+  const now = Date.now();
+  await database.batch([
+    database.prepare("UPDATE bm_devices SET last_seen_at=?, updated_at=CURRENT_TIMESTAMP WHERE device_id=?")
+      .bind(now, authenticated.device.deviceId),
+    database.prepare("UPDATE bm_device_sessions SET last_seen_at=? WHERE session_hash=? AND state='active'")
+      .bind(now, authenticated.sessionHash),
+  ]);
+  const updated = await deviceRow(database, authenticated.device.deviceId);
+  if (!updated) throw new BaumanDeviceError("Thiết bị không còn trong registry.", 401, "DEVICE_NOT_FOUND");
+  return publicDevice(updated);
 }
 
 export async function readBaumanDeviceStatus(database: D1Database, deviceIdValue: unknown) {
@@ -305,12 +489,14 @@ export async function executeBaumanDeviceCommand(
       throw new BaumanDeviceError("Trạng thái thiết bị đã thay đổi trước khi lệnh được áp dụng.", 409, "DEVICE_STATE_CONFLICT");
     }
 
+    const revokedSessions = operation === "block" ? await revokeDeviceSessions(database, deviceId, identity.actor) : 0;
     await audit(database, identity.actor, operation === "approve" ? "device_approved" : "device_blocked", deviceId, {
       commandId,
       expectedStatus,
       resultStatus: targetStatus,
       registryPreserved: true,
       editDisabled: operation === "block",
+      revokedSessions,
     });
 
     await database.prepare(
@@ -321,7 +507,7 @@ export async function executeBaumanDeviceCommand(
     if (!updated || normalizeStatus(updated.status) !== targetStatus) {
       throw new BaumanDeviceError("Registry Bauman chưa xác nhận kết quả lệnh.", 502, "DEVICE_COMMAND_READBACK_MISMATCH");
     }
-    return { commandId, deviceId, operation, status: targetStatus, replayed: false, device: publicDevice(updated) };
+    return { commandId, deviceId, operation, status: targetStatus, replayed: false, device: publicDevice(updated), revokedSessions };
   } catch (error) {
     if (!(error instanceof BaumanDeviceError && error.code === "DEVICE_STATE_CONFLICT")) {
       try {
@@ -329,7 +515,7 @@ export async function executeBaumanDeviceCommand(
           "UPDATE bm_control_commands SET state='uncertain', error_code='COMMAND_REQUIRES_RECONCILIATION' WHERE command_id=? AND execution_nonce=? AND state='processing'",
         ).bind(commandId, executionNonce).run();
       } catch {
-        // The safest retry policy is still to refuse replay while the ledger is unresolved.
+        // Refuse blind replay while the ledger is unresolved.
       }
     }
     throw error;
