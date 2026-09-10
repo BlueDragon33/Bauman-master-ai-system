@@ -1,0 +1,26 @@
+name: Academic 2026 Prerequisite Gate
+
+on:
+  push:
+    paths:
+      - 'assets/data/official-curriculum-iu5-2026.json'
+      - 'assets/data/prerequisite-registry-iu5-2026.json'
+      - 'scripts/validate-academic-2026.js'
+      - '.github/workflows/academic-2026-prerequisite-gate.yml'
+  pull_request:
+    paths:
+      - 'assets/data/official-curriculum-iu5-2026.json'
+      - 'assets/data/prerequisite-registry-iu5-2026.json'
+      - 'scripts/validate-academic-2026.js'
+      - '.github/workflows/academic-2026-prerequisite-gate.yml'
+
+jobs:
+  validate-academic-registry:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+      - name: Validate IU5 2026 curriculum and prerequisite registry
+        run: node scripts/validate-academic-2026.js
