@@ -30,6 +30,7 @@ CREATE TABLE IF NOT EXISTS bm_control_commands (
   result_status TEXT,
   actor TEXT NOT NULL,
   control_device_id TEXT,
+  execution_nonce TEXT NOT NULL,
   error_code TEXT,
   created_at TEXT DEFAULT CURRENT_TIMESTAMP NOT NULL,
   completed_at TEXT
