@@ -1,0 +1,84 @@
+name: Academic 2026 Prerequisite Gate
+
+on:
+  push:
+    paths:
+      - 'assets/data/official-curriculum-iu5-2026.json'
+      - 'assets/data/prerequisite-registry-iu5-2026.json'
+      - 'assets/data/prerequisite-content-coverage-2026.json'
+      - 'assets/data/prerequisite-packs/**'
+      - 'assets/js/academic-main.js'
+      - 'assets/css/academic-2026.css'
+      - 'index.html'
+      - 'scripts/validate-academic-2026.js'
+      - 'scripts/validate-prerequisite-coverage-2026.js'
+      - 'scripts/validate-p09-markov-queueing.js'
+      - 'scripts/validate-p06-database-fundamentals.js'
+      - 'scripts/validate-p04-discrete-algorithms-data-structures.js'
+      - 'scripts/validate-p07-linux-os-networks.js'
+      - 'scripts/validate-p08-software-engineering.js'
+      - 'scripts/validate-p10-scientific-data-python.js'
+      - 'scripts/validate-p11-research-foundation.js'
+      - 'scripts/validate-j01-information-system-architecture.js'
+      - 'scripts/validate-p00-technical-russian.js'
+      - '.github/workflows/academic-2026-prerequisite-gate.yml'
+  pull_request:
+    paths:
+      - 'assets/data/official-curriculum-iu5-2026.json'
+      - 'assets/data/prerequisite-registry-iu5-2026.json'
+      - 'assets/data/prerequisite-content-coverage-2026.json'
+      - 'assets/data/prerequisite-packs/**'
+      - 'assets/js/academic-main.js'
+      - 'assets/css/academic-2026.css'
+      - 'index.html'
+      - 'scripts/validate-academic-2026.js'
+      - 'scripts/validate-prerequisite-coverage-2026.js'
+      - 'scripts/validate-p09-markov-queueing.js'
+      - 'scripts/validate-p06-database-fundamentals.js'
+      - 'scripts/validate-p04-discrete-algorithms-data-structures.js'
+      - 'scripts/validate-p07-linux-os-networks.js'
+      - 'scripts/validate-p08-software-engineering.js'
+      - 'scripts/validate-p10-scientific-data-python.js'
+      - 'scripts/validate-p11-research-foundation.js'
+      - 'scripts/validate-j01-information-system-architecture.js'
+      - 'scripts/validate-p00-technical-russian.js'
+      - '.github/workflows/academic-2026-prerequisite-gate.yml'
+
+jobs:
+  validate-academic-registry:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+      - name: Validate IU5 2026 curriculum and prerequisite registry
+        run: node scripts/validate-academic-2026.js
+      - name: Validate prerequisite content coverage audit
+        run: node scripts/validate-prerequisite-coverage-2026.js
+      - name: Validate P9 Markov / Queueing / Simulation pack
+        run: node scripts/validate-p09-markov-queueing.js
+      - name: Validate P6 Database Fundamentals pack
+        run: node scripts/validate-p06-database-fundamentals.js
+      - name: Validate P4 Discrete / Algorithms / Data Structures pack
+        run: node scripts/validate-p04-discrete-algorithms-data-structures.js
+      - name: Validate P7 Linux / OS / Networks pack
+        run: node scripts/validate-p07-linux-os-networks.js
+      - name: Validate P8 Software Engineering pack
+        run: node scripts/validate-p08-software-engineering.js
+      - name: Validate P10 Scientific / Data Python pack
+        run: node scripts/validate-p10-scientific-data-python.js
+      - name: Validate P11 Research Foundation pack
+        run: node scripts/validate-p11-research-foundation.js
+      - name: Validate J1 Information-System Architecture bridge
+        run: node scripts/validate-j01-information-system-architecture.js
+      - name: Validate P0 Technical Russian mapping pack
+        run: node scripts/validate-p00-technical-russian.js
+      - name: Check Academic 2026 runtime JavaScript syntax
+        run: node --check assets/js/academic-main.js
+      - name: Check runtime references are loaded by index
+        shell: bash
+        run: |
+          grep -q 'assets/css/academic-2026.css' index.html
+          grep -q 'assets/js/academic-main.js' index.html
+          grep -q 'assets/js/planning-main.js' index.html

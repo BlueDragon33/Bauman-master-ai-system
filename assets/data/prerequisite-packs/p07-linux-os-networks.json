@@ -1,0 +1,207 @@
+{
+  "schema": "bauman_prerequisite_pack_v1",
+  "version": "P7_LINUX_OS_NETWORKS_PASS07_V1",
+  "gateId": "P7",
+  "titleVi": "Linux, hệ điều hành và mạng nền tảng",
+  "titleRu": "Linux, основы операционных систем и компьютерных сетей",
+  "status": "diagnostic_and_repair_blueprint",
+  "notOfficialAdministrativePrerequisite": true,
+  "purpose": "Khôi phục lớp hệ thống tối thiểu để làm việc tự tin với CSDL, phần mềm, dịch vụ, Post-relational DB, Security, Big Data và NIR; giữ phạm vi thực dụng, không học vòng thành sysadmin/network engineer.",
+  "officialTargets": [
+    {"courseId":"d06","nameRu":"Оптимизация баз данных систем машинного обучения","semester":1,"role":"support"},
+    {"courseId":"d10","nameRu":"Постреляционные базы данных","semester":2,"role":"support"},
+    {"courseId":"d15","nameRu":"Технологии разработки программного обеспечения","semester":1,"role":"support"},
+    {"courseId":"e01","nameRu":"Security elective group","semester":3,"role":"critical_bridge"},
+    {"courseId":"e02a","nameRu":"Технологии обработки больших данных","semester":4,"role":"critical_bridge"},
+    {"courseId":"p03","nameRu":"Эксплуатационная практика","semester":2,"role":"support"}
+  ],
+  "sourceEvidence": [
+    {"kind":"official_curriculum","url":"https://home.science.iu5.bmstu.ru/study-plans/iu5-master-program.pdf","note":"Khóa các môn/practice đích chính thức. P7 là competency prerequisite do Hub suy ra; учебный план không tuyên bố đây là prerequisite hành chính."}
+  ],
+  "localReuse": [
+    {"subject":"programming","path":"subjects/programming/data/lessons.json","lessonIds":["PR01"],"coverage":["development environment","virtual environment","command-line setup"]},
+    {"subject":"programming","path":"subjects/programming/data/lessons.json","lessonIds":["PR27"],"coverage":["HTTP API application bridge"],"activation":"after core P7 only"},
+    {"subject":"programming","path":"subjects/programming/data/lessons.json","lessonIds":["PR30"],"coverage":["container/reproducible environment bridge"],"activation":"deferred; not prerequisite for P7 READY"}
+  ],
+  "upstream": {
+    "critical": [],
+    "support": ["P5"],
+    "reuseInsteadOfDuplicate": [
+      {"subject":"programming","lesson":"PR01","concept":"development environment and venv basics"},
+      {"subject":"programming","lesson":"PR27","concept":"HTTP API as later client-server application"},
+      {"subject":"programming","lesson":"PR30","concept":"containerization only after OS/network foundations"}
+    ]
+  },
+  "mastery": {
+    "target": 85,
+    "applicationMinimum": 85,
+    "criticalMisconceptionsAllowed": 0,
+    "diagnosticFormula": "M = 0.25*D0 + 0.50*D1 + 0.25*D2",
+    "stopRule": "Nếu P7 >= 95, D1 >= 90 và không còn critical misconception thì dừng học rộng P7; chỉ mở lại sub-node khi CSDL/software/security/Big Data/practice thực tế cho thấy lỗ hổng."
+  },
+  "scopeGuard": {
+    "required": [
+      "Linux shell, paths and files",
+      "users, permissions and environment variables",
+      "process, thread, standard streams and exit status",
+      "memory and filesystem basics",
+      "package/environment management",
+      "SSH and remote workflow",
+      "IPv4/TCP-IP/DNS/ports basics",
+      "TCP versus UDP",
+      "sockets and client-server model",
+      "HTTP request-response basics",
+      "service/database connectivity troubleshooting"
+    ],
+    "excludedFromDefaultRoute": [
+      "Linux kernel compilation",
+      "kernel-module development",
+      "advanced scheduler internals",
+      "advanced virtual-memory internals",
+      "iptables/nftables administration deep dive",
+      "routing-protocol certification",
+      "CCNA/CCNP track",
+      "Kubernetes administration",
+      "cloud networking certification",
+      "penetration testing"
+    ]
+  },
+  "nodes": [
+    {
+      "id":"P7-N01","order":1,"titleVi":"Shell, đường dẫn và thao tác tệp","titleRu":"Командная оболочка, пути и работа с файлами","kind":"reuse_extend","dependsOn":[],"reuse":["PR01"],
+      "outcomes":["Phân biệt absolute/relative path, current/home directory.","Dùng pwd, cd, ls, mkdir, cp, mv, rm, cat/less ở mức an toàn.","Dùng glob đơn giản và quote khi đường dẫn có khoảng trắng.","Hiểu exit status thành công/thất bại ở mức nền."],
+      "repairHoursHint":"2–3 giờ"
+    },
+    {
+      "id":"P7-N02","order":2,"titleVi":"User, permission và biến môi trường","titleRu":"Пользователи, права доступа и переменные окружения","kind":"core","dependsOn":["P7-N01"],
+      "outcomes":["Đọc quyền rwx cho owner/group/others và chmod dạng symbolic/octal cơ bản.","Giải thích vì sao executable bit khác read/write.","Dùng biến môi trường cho PATH/config/secret reference mà không hard-code.","Phân biệt permission denied với file-not-found hoặc command-not-found."],
+      "repairHoursHint":"2–3 giờ"
+    },
+    {
+      "id":"P7-N03","order":3,"titleVi":"Process, thread, stdin/stdout/stderr và pipe","titleRu":"Процессы, потоки, стандартные потоки и конвейеры","kind":"core","dependsOn":["P7-N01"],
+      "outcomes":["Phân biệt program với process và process với thread ở mức chức năng.","Đọc PID, foreground/background và exit code.","Phân biệt stdin, stdout, stderr; redirect và pipe đơn giản.","Hiểu kill/signal ở mức vận hành an toàn, không học sâu kernel scheduling."],
+      "repairHoursHint":"3–4 giờ"
+    },
+    {
+      "id":"P7-N04","order":4,"titleVi":"Bộ nhớ và filesystem ở mức lập trình viên","titleRu":"Память и файловые системы на уровне разработчика","kind":"core","dependsOn":["P7-N03"],
+      "outcomes":["Phân biệt RAM, virtual memory và persistent storage ở mức khái niệm.","Hiểu process có address space riêng nhưng threads trong cùng process chia sẻ nhiều tài nguyên.","Phân biệt file, directory, metadata và file descriptor ở mức nền.","Nhận diện I/O, memory pressure và disk-full là các lớp lỗi khác nhau."],
+      "repairHoursHint":"2–3 giờ"
+    },
+    {
+      "id":"P7-N05","order":5,"titleVi":"Package, virtual environment và CLI workflow","titleRu":"Пакеты, виртуальное окружение и работа из командной строки","kind":"reuse_bridge","dependsOn":["P7-N01","P7-N02"],"reuse":["PR01"],
+      "outcomes":["Tạo/activate/deactivate Python virtual environment và phân biệt với system Python.","Cài package có kiểm soát và khóa dependency ở mức dự án.","Dùng which/whereis hoặc tương đương để biết executable nào được chạy.","Giải thích PATH và lỗi môi trường thường gặp."],
+      "repairHoursHint":"1–2 giờ nếu PR01 còn chắc"
+    },
+    {
+      "id":"P7-N06","order":6,"titleVi":"SSH và làm việc từ xa","titleRu":"SSH и удалённая работа","kind":"core","dependsOn":["P7-N01","P7-N02"],
+      "outcomes":["Hiểu client, server, host, user và port trong SSH.","Đăng nhập bằng password/key theo môi trường được cấp quyền và biết quyền file private key cần được bảo vệ.","Dùng scp/sftp hoặc workflow tương đương ở mức cơ bản.","Phân biệt lỗi DNS/route/port/authentication khi SSH không kết nối."],
+      "repairHoursHint":"2–3 giờ"
+    },
+    {
+      "id":"P7-N07","order":7,"titleVi":"TCP/IP, IPv4, DNS và port","titleRu":"TCP/IP, IPv4, DNS и порты","kind":"core","dependsOn":["P7-N01"],
+      "outcomes":["Đọc IPv4 và subnet /24 ở mức trực giác đủ dùng.","Phân biệt hostname, IP address, DNS resolution và port.","Hiểu loopback 127.0.0.1/localhost khác địa chỉ mạng của máy.","Dùng ping/nslookup/dig/curl hoặc công cụ tương đương để khoanh vùng lỗi ở mức developer."],
+      "repairHoursHint":"3–4 giờ"
+    },
+    {
+      "id":"P7-N08","order":8,"titleVi":"TCP, UDP và socket client-server","titleRu":"TCP, UDP и клиент-серверные сокеты","kind":"core","dependsOn":["P7-N03","P7-N07"],
+      "outcomes":["Phân biệt connection-oriented/reliable byte stream của TCP với datagram best-effort của UDP ở mức nền.","Hiểu socket endpoint gồm protocol/address/port.","Giải thích bind/listen/accept/connect/send/receive ở mức workflow.","Không nhầm TCP reliability với application-level correctness."],
+      "repairHoursHint":"3–4 giờ"
+    },
+    {
+      "id":"P7-N09","order":9,"titleVi":"HTTP request-response và API ở mức hệ thống","titleRu":"HTTP: запрос-ответ и API на системном уровне","kind":"reuse_extend","dependsOn":["P7-N08"],"reuse":["PR27"],
+      "outcomes":["Đọc URL thành scheme/host/port/path/query.","Phân biệt method, headers, body và status code.","Hiểu HTTP chạy trên transport và application server phải bind đúng interface/port.","Dùng curl để kiểm tra endpoint trước khi đổ lỗi cho code client."],
+      "repairHoursHint":"2–3 giờ"
+    },
+    {
+      "id":"P7-N10","order":10,"titleVi":"Chẩn đoán service ↔ database ↔ network và cầu nối môn chính thức","titleRu":"Диагностика цепочки сервис ↔ база данных ↔ сеть и переход к дисциплинам ИУ5","kind":"official_course_bridge","dependsOn":["P7-N04","P7-N05","P7-N06","P7-N09"],
+      "outcomes":["Khoanh vùng lỗi theo lớp: process không chạy → port không listen → DNS/IP sai → transport lỗi → auth/config lỗi → application/database lỗi.","Đọc log và exit status trước khi thay đổi cấu hình ngẫu nhiên.","Giải thích đường request client→service→database và điểm có thể nghẽn/thất bại.","Biết container, security hardening, distributed systems và Big Data internals sẽ được mở JIT sau khi nền P7 READY."],
+      "repairHoursHint":"3–4 giờ"
+    }
+  ],
+  "diagnostic": {
+    "D0": {
+      "name":"Recall","weight":0.25,"recommendedMinutes":30,
+      "items":[
+        {"id":"P7-D0-01","node":"P7-N01","prompt":"Absolute path và relative path khác nhau thế nào?"},
+        {"id":"P7-D0-02","node":"P7-N01","prompt":"Exit status 0 thường có nghĩa gì trong Unix-like system?"},
+        {"id":"P7-D0-03","node":"P7-N02","prompt":"Quyền rwx áp dụng cho owner/group/others như thế nào?"},
+        {"id":"P7-D0-04","node":"P7-N02","prompt":"PATH dùng để làm gì?"},
+        {"id":"P7-D0-05","node":"P7-N03","prompt":"Program và process khác nhau thế nào?"},
+        {"id":"P7-D0-06","node":"P7-N03","prompt":"stdout và stderr khác nhau vì sao?"},
+        {"id":"P7-D0-07","node":"P7-N04","prompt":"RAM, virtual memory và persistent storage khác nhau thế nào?"},
+        {"id":"P7-D0-08","node":"P7-N04","prompt":"File descriptor là gì ở mức khái niệm?"},
+        {"id":"P7-D0-09","node":"P7-N05","prompt":"Virtual environment giải quyết vấn đề gì?"},
+        {"id":"P7-D0-10","node":"P7-N06","prompt":"SSH client cần host/user/port để làm gì?"},
+        {"id":"P7-D0-11","node":"P7-N07","prompt":"Hostname, IP và DNS khác vai trò thế nào?"},
+        {"id":"P7-D0-12","node":"P7-N07","prompt":"localhost/127.0.0.1 chỉ tới đâu?"},
+        {"id":"P7-D0-13","node":"P7-N08","prompt":"TCP và UDP khác nhau ở bảo đảm truyền dữ liệu nào?"},
+        {"id":"P7-D0-14","node":"P7-N08","prompt":"Port và socket khác nhau thế nào?"},
+        {"id":"P7-D0-15","node":"P7-N09","prompt":"HTTP method và status code đóng vai trò gì?"},
+        {"id":"P7-D0-16","node":"P7-N09","prompt":"URL gồm các phần chính nào?"},
+        {"id":"P7-D0-17","node":"P7-N10","prompt":"Nếu connection refused thì nên kiểm tra lớp nào trước?"},
+        {"id":"P7-D0-18","node":"P7-N10","prompt":"Vì sao log và exit code nên được xem trước khi đổi cấu hình?"}
+      ]
+    },
+    "D1": {
+      "name":"Application","weight":0.5,"recommendedMinutes":80,
+      "items":[
+        {"id":"P7-D1-01","node":"P7-N01","prompt":"Từ /home/user/project, viết lệnh tạo data/raw, copy sample.csv vào đó và kiểm tra file tồn tại mà không xóa nhầm file khác."},
+        {"id":"P7-D1-02","node":"P7-N02","prompt":"Giải thích permission 640 và chọn permission hợp lý cho một file config không cần executable."},
+        {"id":"P7-D1-03","node":"P7-N03","prompt":"Cho pipeline producer | consumer; giải thích dữ liệu đi qua stdin/stdout và cách tách stderr để debug."},
+        {"id":"P7-D1-04","node":"P7-N04","prompt":"Một job bị OOM trong khi disk còn trống. Khoanh vùng memory/storage và nêu bằng chứng cần kiểm tra."},
+        {"id":"P7-D1-05","node":"P7-N05","prompt":"Một package import được trong terminal A nhưng không import được trong terminal B. Chẩn đoán interpreter/venv/PATH."},
+        {"id":"P7-D1-06","node":"P7-N06","prompt":"SSH báo timeout, connection refused, rồi permission denied trong ba tình huống riêng. Phân loại lớp lỗi cho từng thông báo."},
+        {"id":"P7-D1-07","node":"P7-N07","prompt":"Với 192.168.1.42/24, xác định 192.168.1.99 có cùng subnet /24 hay không và giải thích."},
+        {"id":"P7-D1-08","node":"P7-N08","prompt":"Chọn TCP hay UDP cho truy vấn DB và cho telemetry mất vài gói vẫn chấp nhận được; giải thích theo requirement."},
+        {"id":"P7-D1-09","node":"P7-N08","prompt":"Vẽ workflow tối thiểu của TCP server bind→listen→accept và client connect→send→receive."},
+        {"id":"P7-D1-10","node":"P7-N09","prompt":"Phân tích URL http://127.0.0.1:8080/api/predict?x=1 thành scheme/host/port/path/query và nêu HTTP layer."},
+        {"id":"P7-D1-11","node":"P7-N09","prompt":"API trả 404, 401 và 500 ở ba lần thử. Giải thích sự khác nhau và bằng chứng tiếp theo cần xem."},
+        {"id":"P7-D1-12","node":"P7-N10","prompt":"Client không gọi được service kết nối DB. Lập checklist có thứ tự: process, listen port, DNS/IP, transport, auth/config, app log, DB connectivity."}
+      ]
+    },
+    "D2": {
+      "name":"Explain/Oral","weight":0.25,"recommendedMinutes":25,
+      "items":[
+        {"id":"P7-D2-01","node":"P7-N02","promptVi":"Giải thích quyền file Linux và vì sao không nên chmod 777 như phản xạ.","promptRu":"Объясните права доступа к файлам в Linux и почему не следует автоматически использовать chmod 777 для устранения ошибок."},
+        {"id":"P7-D2-02","node":"P7-N03","promptVi":"Phân biệt process và thread ở mức cần cho lập trình viên.","promptRu":"Объясните разницу между процессом и потоком на уровне, необходимом разработчику информационной системы."},
+        {"id":"P7-D2-03","node":"P7-N04","promptVi":"Giải thích khác nhau giữa memory pressure và disk-full.","promptRu":"Объясните разницу между нехваткой оперативной памяти и отсутствием свободного места на диске."},
+        {"id":"P7-D2-04","node":"P7-N06","promptVi":"Giải thích các lớp lỗi SSH: DNS, route/timeout, refused, authentication.","promptRu":"Объясните, как различать ошибки DNS, сетевого маршрута, connection refused и аутентификации при подключении по SSH."},
+        {"id":"P7-D2-05","node":"P7-N07","promptVi":"Phân biệt hostname, IP, DNS và port.","promptRu":"Объясните различие между именем хоста, IP-адресом, DNS и номером порта."},
+        {"id":"P7-D2-06","node":"P7-N08","promptVi":"So sánh TCP và UDP theo yêu cầu ứng dụng.","promptRu":"Сравните TCP и UDP по надёжности, порядку доставки и типичным требованиям приложения."},
+        {"id":"P7-D2-07","node":"P7-N09","promptVi":"Giải thích một HTTP request đi từ client tới server và quay lại.","promptRu":"Объясните путь HTTP-запроса от клиента к серверу и структуру ответа на уровне разработчика."},
+        {"id":"P7-D2-08","node":"P7-N10","promptVi":"Trình bày cách khoanh vùng lỗi client→service→database có thứ tự.","promptRu":"Опишите последовательную диагностику цепочки клиент → сервис → база данных без случайного изменения конфигурации."}
+      ]
+    }
+  },
+  "criticalMisconceptions": [
+    {"id":"P7-M01","node":"P7-N02","text":"Dùng chmod 777 như cách mặc định để sửa mọi lỗi permission."},
+    {"id":"P7-M02","node":"P7-N03","text":"Đồng nhất program với process hoặc process với thread."},
+    {"id":"P7-M03","node":"P7-N04","text":"Nhầm hết RAM với hết disk hoặc coi virtual memory là persistent storage."},
+    {"id":"P7-M04","node":"P7-N05","text":"Không phân biệt system Python với virtual environment và cài package ngẫu nhiên để sửa lỗi."},
+    {"id":"P7-M05","node":"P7-N06","text":"Coi timeout, connection refused và permission denied là cùng một lớp lỗi SSH."},
+    {"id":"P7-M06","node":"P7-N07","text":"Coi localhost là địa chỉ mà máy khác trong mạng luôn truy cập được."},
+    {"id":"P7-M07","node":"P7-N08","text":"Coi TCP bảo đảm dữ liệu ứng dụng đúng về nội dung/logic, thay vì chỉ cung cấp transport reliable ordered stream."},
+    {"id":"P7-M08","node":"P7-N08","text":"Coi UDP luôn nhanh hơn và vì thế luôn tốt hơn TCP."},
+    {"id":"P7-M09","node":"P7-N09","text":"Đồng nhất HTTP status 500 với lỗi network hoặc 404 với server không chạy."},
+    {"id":"P7-M10","node":"P7-N10","text":"Thay đổi firewall/config/code ngẫu nhiên trước khi xác định process/port/log/layer đang lỗi."}
+  ],
+  "repairRoutes": [
+    {"id":"P7-R01","name":"Shell/files repair","triggerNodes":["P7-N01","P7-N02"],"route":["PR01","P7-N01","P7-N02"]},
+    {"id":"P7-R02","name":"Process/IO repair","triggerNodes":["P7-N03","P7-N04"],"route":["P7-N03","P7-N04"]},
+    {"id":"P7-R03","name":"Environment repair","triggerNodes":["P7-N05"],"route":["PR01","P7-N05"]},
+    {"id":"P7-R04","name":"SSH repair","triggerNodes":["P7-N06"],"route":["P7-N02","P7-N06"]},
+    {"id":"P7-R05","name":"TCP/IP repair","triggerNodes":["P7-N07"],"route":["P7-N07"]},
+    {"id":"P7-R06","name":"Socket repair","triggerNodes":["P7-N08"],"route":["P7-N07","P7-N08"]},
+    {"id":"P7-R07","name":"HTTP/client-server repair","triggerNodes":["P7-N09"],"route":["P7-N08","P7-N09","PR27"]},
+    {"id":"P7-R08","name":"End-to-end troubleshooting repair","triggerNodes":["P7-N10"],"route":["P7-N03","P7-N07","P7-N08","P7-N09","P7-N10"]}
+  ],
+  "implementationPolicy": {
+    "schedulerMutation": false,
+    "writesDiagnosticScores": false,
+    "newTopLevelSubject": false,
+    "duplicatesExistingPR01PR27PR30": false,
+    "requiresDockerForReady": false,
+    "mainBranchMutation": false,
+    "runtimeIntegration": "deferred_until_gate_pass"
+  }
+}

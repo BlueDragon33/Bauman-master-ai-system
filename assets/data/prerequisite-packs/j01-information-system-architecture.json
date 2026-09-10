@@ -1,0 +1,210 @@
+{
+  "schema": "bauman_prerequisite_pack_v1",
+  "version": "J1_INFORMATION_SYSTEM_ARCHITECTURE_V1",
+  "gateId": "J1",
+  "title": "Kiến trúc hệ thống thông tin / Архитектура информационных систем",
+  "verifiedAt": "2026-09-10",
+  "notOfficialAdministrativePrerequisite": true,
+  "purpose": "Tạo bridge kiến trúc АСОИУ trung lập theo hệ thống thông tin trước HK1, thay cho việc mặc định hóa robot/sensor/controller trong lộ trình nền.",
+  "mastery": {
+    "target": 85,
+    "applicationMinimum": 80,
+    "criticalMisconceptionsAllowed": 0,
+    "masteredThreshold": 95,
+    "masteredApplicationMinimum": 90,
+    "scoreFormula": "M = 0.25*D0 + 0.50*D1 + 0.25*D2"
+  },
+  "implementationPolicy": {
+    "schedulerMutation": false,
+    "writesDiagnosticScores": false,
+    "newTopLevelSubject": false,
+    "overwritesExistingSystemsLessons": false,
+    "legacyAutonomousExamplesBecomeDefault": false,
+    "neutralInformationSystemCaseIsDefault": true,
+    "mainBranchMutation": false
+  },
+  "defaultReferenceCase": {
+    "id": "CASE-IS-01",
+    "name": "Academic analytics information system",
+    "description": "Client web gửi yêu cầu tới application service; service xác thực/kiểm tra dữ liệu, đọc ghi database, gọi analytics worker khi cần và trả kết quả kèm observability metadata.",
+    "components": ["web client", "application service", "database", "analytics worker", "observability"],
+    "whyNeutral": "Case tập trung boundary, component, interface, data flow, deployment, performance và reliability; không đòi hỏi kiến thức robot, điều khiển hay phần cứng."
+  },
+  "officialTargets": [
+    {"courseId":"d03","role":"support","reason":"Analytical Models cần xác định boundary, service resources, flows và bottlenecks trước khi mô hình hóa."},
+    {"courseId":"d05","role":"support","reason":"OOP design cần component responsibilities, interfaces và contracts."},
+    {"courseId":"d09","role":"support","reason":"Reliability models cần system boundary, dependency và failure propagation."},
+    {"courseId":"d14","role":"primary","reason":"IS project management cần architecture scope, components, dependencies và architecture documentation."},
+    {"courseId":"d15","role":"support","reason":"Software development technologies cần architecture, deployment and interface thinking."},
+    {"courseId":"d19","role":"primary","reason":"Lifecycle process description cần architecture baseline và traceable system decomposition."},
+    {"courseId":"p03","role":"primary","reason":"Operational practice cần hiểu service/database/network flow và điểm quan sát sự cố."}
+  ],
+  "localReuse": [
+    {
+      "lessonIds": ["s_p01_l1"],
+      "reusePolicy": "concept_only_neutralize_autonomous_case",
+      "reuse": ["system boundary", "module responsibility", "interface/message contract", "failure mode", "fallback concept"],
+      "doNotReuseAsDefault": ["UGV/USV", "sensor-estimator-planner-motor-controller chain", "robot-specific safe mode"]
+    }
+  ],
+  "nodes": [
+    {
+      "id":"J1-N01","order":1,"title":"System boundary, actors and responsibilities","dependsOn":[],
+      "competencies":["phân biệt system/environment","xác định actor/external dependency","viết responsibility cho từng component","không trộn business goal với implementation detail"],
+      "artifact":"context diagram + responsibility table"
+    },
+    {
+      "id":"J1-N02","order":2,"title":"Components, layers and decomposition","dependsOn":["J1-N01"],
+      "competencies":["client/service/database/worker decomposition","phân biệt component với deployment node","tránh god service","xác định dependency direction"],
+      "artifact":"component diagram"
+    },
+    {
+      "id":"J1-N03","order":3,"title":"Interfaces and data contracts","dependsOn":["J1-N02"],
+      "competencies":["input/output contract","schema/version/error semantics","idempotency concept","timeout/retry boundary","contract compatibility"],
+      "artifact":"interface-contract table"
+    },
+    {
+      "id":"J1-N04","order":4,"title":"End-to-end data flow and state","dependsOn":["J1-N03"],
+      "competencies":["trace request client→service→database→response","identify state ownership","distinguish synchronous/asynchronous flow","mark validation and persistence points"],
+      "artifact":"sequence/data-flow diagram"
+    },
+    {
+      "id":"J1-N05","order":5,"title":"Deployment and runtime topology","dependsOn":["J1-N04"],
+      "competencies":["map logical components to runtime nodes","process/service/database boundary","network hop awareness","configuration/environment separation"],
+      "artifact":"minimal deployment diagram"
+    },
+    {
+      "id":"J1-N06","order":6,"title":"Latency, throughput and capacity","dependsOn":["J1-N05"],
+      "competencies":["distinguish latency vs throughput","identify service demand","basic utilization reasoning","recognize queue formation","connect measurements to P9 queueing"],
+      "artifact":"latency-budget + capacity table"
+    },
+    {
+      "id":"J1-N07","order":7,"title":"Bottleneck and dependency analysis","dependsOn":["J1-N06"],
+      "competencies":["find critical path","separate symptom from bottleneck","reason about database/network/service constraints","define measurable bottleneck evidence"],
+      "artifact":"dependency graph + bottleneck hypothesis"
+    },
+    {
+      "id":"J1-N08","order":8,"title":"Availability, failure modes and graceful degradation","dependsOn":["J1-N07"],
+      "competencies":["single point of failure","failure propagation","timeout/retry/circuit-breaker concepts","degraded mode","availability vs reliability distinction"],
+      "artifact":"failure-mode/degradation matrix"
+    },
+    {
+      "id":"J1-N09","order":9,"title":"Observability and operational evidence","dependsOn":["J1-N08"],
+      "competencies":["logs/metrics/traces roles","correlation/request id","define SLI-like measures","choose evidence for latency/error/availability investigations"],
+      "artifact":"observability map"
+    },
+    {
+      "id":"J1-N10","order":10,"title":"Architecture documentation and trade-off defense","dependsOn":["J1-N09"],
+      "competencies":["context/component/sequence/deployment views","record assumptions and constraints","state quality trade-offs","defend why architecture is sufficient not overengineered","connect evidence to d03/d05/d14/d15"],
+      "artifact":"architecture dossier + 5-minute oral defense"
+    }
+  ],
+  "diagnostic": {
+    "D0": {
+      "weight":0.25,
+      "items":[
+        {"id":"J1-D0-01","node":"J1-N01","prompt":"System boundary dùng để tách điều gì?"},
+        {"id":"J1-D0-02","node":"J1-N01","prompt":"Actor khác component nội bộ thế nào?"},
+        {"id":"J1-D0-03","node":"J1-N02","prompt":"Component khác deployment node thế nào?"},
+        {"id":"J1-D0-04","node":"J1-N02","prompt":"God service gây rủi ro gì?"},
+        {"id":"J1-D0-05","node":"J1-N03","prompt":"Data contract tối thiểu phải mô tả những gì?"},
+        {"id":"J1-D0-06","node":"J1-N03","prompt":"Timeout và retry thuộc loại quyết định nào trong interface?"},
+        {"id":"J1-D0-07","node":"J1-N04","prompt":"State ownership nghĩa là gì?"},
+        {"id":"J1-D0-08","node":"J1-N04","prompt":"Synchronous và asynchronous flow khác nhau ở điểm cốt lõi nào?"},
+        {"id":"J1-D0-09","node":"J1-N05","prompt":"Logical architecture khác deployment topology thế nào?"},
+        {"id":"J1-D0-10","node":"J1-N06","prompt":"Latency khác throughput thế nào?"},
+        {"id":"J1-D0-11","node":"J1-N06","prompt":"Utilization tiến gần 100% thường ảnh hưởng hàng đợi ra sao?"},
+        {"id":"J1-D0-12","node":"J1-N07","prompt":"Bottleneck là gì?"},
+        {"id":"J1-D0-13","node":"J1-N08","prompt":"Availability khác reliability thế nào?"},
+        {"id":"J1-D0-14","node":"J1-N08","prompt":"Single point of failure là gì?"},
+        {"id":"J1-D0-15","node":"J1-N09","prompt":"Logs, metrics, traces trả lời ba nhóm câu hỏi nào?"},
+        {"id":"J1-D0-16","node":"J1-N09","prompt":"Correlation/request ID giúp điều tra gì?"},
+        {"id":"J1-D0-17","node":"J1-N10","prompt":"Một architecture decision cần ghi assumption/constraint vì sao?"},
+        {"id":"J1-D0-18","node":"J1-N10","prompt":"Trade-off kiến trúc nghĩa là gì?"}
+      ]
+    },
+    "D1": {
+      "weight":0.50,
+      "items":[
+        {"id":"J1-D1-01","node":"J1-N01","task":"Từ mô tả hệ thống phân tích học tập, vẽ boundary và phân loại actor/external system/internal component."},
+        {"id":"J1-D1-02","node":"J1-N02","task":"Tách một service nguyên khối thành client/service/database/worker với responsibility rõ, không tách quá mức."},
+        {"id":"J1-D1-03","node":"J1-N03","task":"Viết contract cho POST /analysis gồm request schema, response schema, validation error, timeout và versioning rule."},
+        {"id":"J1-D1-04","node":"J1-N04","task":"Vẽ sequence cho request từ client qua service tới DB và analytics worker; đánh dấu nơi validate, persist và trả lỗi."},
+        {"id":"J1-D1-05","node":"J1-N05","task":"Chuyển logical architecture thành deployment tối thiểu cho local/dev/production, chỉ ra network hop và config boundary."},
+        {"id":"J1-D1-06","node":"J1-N06","task":"Cho p50=80ms, p95=420ms và throughput=40 req/s; giải thích vì sao không được gọi 420ms là throughput và đề xuất đo thêm gì."},
+        {"id":"J1-D1-07","node":"J1-N06","task":"Với service arrival rate tăng trong khi service capacity gần cố định, mô tả bằng lời khi nào queue bắt đầu tăng và liên hệ P9."},
+        {"id":"J1-D1-08","node":"J1-N07","task":"Từ số đo client 900ms, service CPU thấp, DB query 760ms, xác định bottleneck hypothesis và bằng chứng cần lấy trước khi tối ưu."},
+        {"id":"J1-D1-09","node":"J1-N08","task":"Lập failure matrix khi DB chính chậm/mất kết nối: detection, propagation, user impact, degraded behavior và recovery evidence."},
+        {"id":"J1-D1-10","node":"J1-N09","task":"Thiết kế logs/metrics/traces tối thiểu để điều tra một request lỗi chậm xuyên client-service-database."},
+        {"id":"J1-D1-11","node":"J1-N10","task":"So sánh hai phương án: một service đơn giản và nhiều service nhỏ; chọn phương án theo quy mô bài toán, latency, operability và maintainability."},
+        {"id":"J1-D1-12","node":"J1-N10","task":"Nộp dossier gồm context, component, sequence, deployment, contract, bottleneck, failure mode và 3 architecture decisions có trade-off."}
+      ]
+    },
+    "D2": {
+      "weight":0.25,
+      "items":[
+        {"id":"J1-D2-01","node":"J1-N01","promptVi":"Giải thích boundary của một АСОИУ dạng hệ thống thông tin.","promptRu":"Объясните границы информационно-управляющей системы, внешних акторов и внутренних компонентов."},
+        {"id":"J1-D2-02","node":"J1-N03","promptVi":"Bảo vệ data contract giữa client và service.","promptRu":"Объясните контракт данных между клиентом и сервисом: вход, выход, ошибки, версия и совместимость."},
+        {"id":"J1-D2-03","node":"J1-N04","promptVi":"Mô tả luồng request end-to-end và state ownership.","promptRu":"Опишите сквозной поток запроса от клиента к сервису и базе данных и укажите владельца состояния."},
+        {"id":"J1-D2-04","node":"J1-N06","promptVi":"Phân biệt latency, throughput, utilization và queueing.","promptRu":"Сравните задержку, пропускную способность, загрузку ресурса и образование очереди в системе."},
+        {"id":"J1-D2-05","node":"J1-N07","promptVi":"Giải thích cách chứng minh một bottleneck thay vì đoán.","promptRu":"Объясните, как доказать наличие узкого места измерениями и не спутать симптом с причиной."},
+        {"id":"J1-D2-06","node":"J1-N08","promptVi":"Phân biệt availability và reliability, nêu failure propagation.","promptRu":"Сравните доступность и надежность системы и объясните распространение отказа между зависимыми компонентами."},
+        {"id":"J1-D2-07","node":"J1-N09","promptVi":"Giải thích logs, metrics và traces trong điều tra sự cố.","promptRu":"Объясните роли журналов, метрик и трассировок при анализе ошибки или высокой задержки запроса."},
+        {"id":"J1-D2-08","node":"J1-N10","promptVi":"Bảo vệ kiến trúc tối thiểu và các trade-off chính.","promptRu":"Защитите минимально достаточную архитектуру системы и объясните основные компромиссы проектного решения."}
+      ]
+    }
+  },
+  "criticalMisconceptions": [
+    {"id":"J1-M01","node":"J1-N01","text":"Coi mọi thứ có liên quan nghiệp vụ đều nằm trong system boundary."},
+    {"id":"J1-M02","node":"J1-N02","text":"Coi càng nhiều microservice càng chứng minh kiến trúc tốt."},
+    {"id":"J1-M03","node":"J1-N03","text":"Interface chỉ cần endpoint name, không cần schema/error/version semantics."},
+    {"id":"J1-M04","node":"J1-N04","text":"Không cần xác định component nào sở hữu và thay đổi state."},
+    {"id":"J1-M05","node":"J1-N05","text":"Component diagram và deployment diagram là một."},
+    {"id":"J1-M06","node":"J1-N06","text":"Latency và throughput là cùng một đại lượng hiệu năng."},
+    {"id":"J1-M07","node":"J1-N07","text":"Tối ưu component có CPU cao nhất mà không cần đo critical path/bottleneck."},
+    {"id":"J1-M08","node":"J1-N08","text":"Retry vô hạn luôn tăng reliability."},
+    {"id":"J1-M09","node":"J1-N08","text":"Availability cao đồng nghĩa hệ thống không có failure mode."},
+    {"id":"J1-M10","node":"J1-N09","text":"Chỉ cần log text tự do là đủ observability cho hệ phân tán."},
+    {"id":"J1-M11","node":"J1-N10","text":"Architecture documentation càng nhiều diagram càng tốt dù không trả lời quyết định nào."},
+    {"id":"J1-M12","node":"J1-N10","text":"Robot/controller là kiến trúc mặc định bắt buộc của АСОИУ trong lộ trình này."}
+  ],
+  "repairRoutes": [
+    {"id":"J1-R01","triggerNodes":["J1-N01","J1-N02"],"route":["J1-N01","J1-N02"],"stopWhen":"vẽ đúng context+component và trách nhiệm không chồng chéo"},
+    {"id":"J1-R02","triggerNodes":["J1-N03"],"route":["s_p01_l1","J1-N03"],"stopWhen":"viết được contract có schema/error/version/timeout"},
+    {"id":"J1-R03","triggerNodes":["J1-N04","J1-N05"],"route":["J1-N04","J1-N05"],"stopWhen":"phân biệt đúng logical flow và deployment topology"},
+    {"id":"J1-R04","triggerNodes":["J1-N06"],"route":["J1-N06"],"stopWhen":"phân biệt latency-throughput-utilization và nối được sang queueing"},
+    {"id":"J1-R05","triggerNodes":["J1-N07"],"route":["J1-N06","J1-N07"],"stopWhen":"đưa ra bottleneck hypothesis kèm measurement plan"},
+    {"id":"J1-R06","triggerNodes":["J1-N08"],"route":["J1-N08"],"stopWhen":"lập failure propagation/degradation matrix hợp lý"},
+    {"id":"J1-R07","triggerNodes":["J1-N09"],"route":["J1-N09"],"stopWhen":"chọn đúng logs/metrics/traces cho một incident"},
+    {"id":"J1-R08","triggerNodes":["J1-N10"],"route":["J1-N10"],"stopWhen":"bảo vệ được minimal architecture bằng assumptions, evidence và trade-offs"}
+  ],
+  "scopeGuard": {
+    "required": [
+      "system boundary and actors",
+      "components and responsibilities",
+      "interfaces and data contracts",
+      "end-to-end data flow and state ownership",
+      "deployment topology",
+      "latency throughput utilization and capacity",
+      "bottleneck and dependency analysis",
+      "availability reliability and failure propagation",
+      "observability evidence",
+      "architecture documentation and trade-offs"
+    ],
+    "excludedFromDefault": [
+      "robot-specific architecture",
+      "UGV/USV sensor-control pipeline",
+      "PID/LQR/Kalman control design",
+      "ROS specialization",
+      "Kubernetes/service-mesh architecture",
+      "cloud certification architecture",
+      "PLC/SCADA specialization",
+      "FPGA/embedded architecture"
+    ]
+  },
+  "sourceEvidence": [
+    {"kind":"official_curriculum","url":"https://home.science.iu5.bmstu.ru/study-plans/iu5-master-program.pdf","locked":true,"use":"course identity/semester/credits only"},
+    {"kind":"local_systems_vault","path":"subjects/systems/data/curriculum.json","locked":false,"use":"reuse concepts, not legacy robot scope"},
+    {"kind":"local_systems_lessons","path":"subjects/systems/data/lessons.json","locked":false,"use":"concept-only reuse of s_p01_l1"}
+  ]
+}

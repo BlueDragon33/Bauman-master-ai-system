@@ -1,0 +1,248 @@
+{
+  "schema": "bauman_prerequisite_pack_v1",
+  "version": "P11_RESEARCH_FOUNDATION_PASS10_V1",
+  "gateId": "P11",
+  "titleVi": "Nghiên cứu khoa học nền tảng",
+  "titleRu": "Основы научно-исследовательской работы",
+  "status": "diagnostic_and_repair_blueprint",
+  "notOfficialAdministrativePrerequisite": true,
+  "purpose": "Chuẩn hóa năng lực nghiên cứu để hỗ trợ Методология научного познания, НИР từ học kỳ 1, НИР по обработке и анализу данных, thực tập tiền tốt nghiệp và ВКР; giữ hướng đề tài trung lập cho tới khi có giảng viên hướng dẫn/đề tài được xác nhận.",
+  "officialTargets": [
+    {"courseId":"d02","nameRu":"Методология научного познания","semester":1,"role":"primary"},
+    {"courseId":"p02","nameRu":"Научно-исследовательская работа","semester":[1,2,3,4],"role":"primary"},
+    {"courseId":"d16","nameRu":"НИР по обработке и анализу данных","semester":3,"role":"primary"},
+    {"courseId":"p05","nameRu":"Преддипломная практика","semester":4,"role":"primary"},
+    {"courseId":"g01","nameRu":"Подготовка и защита ВКР","semester":4,"role":"primary"},
+    {"courseId":"d13","nameRu":"Искусственный интеллект в задачах бизнес-аналитики","semester":3,"role":"support"},
+    {"courseId":"d17","nameRu":"Эргономический анализ систем обработки и отображения информации","semester":3,"role":"support"}
+  ],
+  "sourceEvidence": [
+    {
+      "kind":"official_curriculum",
+      "url":"https://home.science.iu5.bmstu.ru/study-plans/iu5-master-program.pdf",
+      "status":"locked_source_of_truth_for_course_identity_timing_credits",
+      "note":"Nguồn khóa cho tên môn, tín chỉ, học kỳ và NIR 21 tín chỉ/756 giờ từ HK1-HK4. P11 là competency prerequisite do Hub suy ra, không phải prerequisite hành chính Bauman công bố."
+    },
+    {
+      "kind":"public_iu5_nir_page",
+      "url":"https://e-learning.bmstu.ru/iu5/course/view.php?id=153",
+      "status":"public_learning_material_not_locked_as_exact_2026_master_requirement",
+      "note":"Trang NIR công khai nêu cấu trúc báo cáo, deadline tuần 17 trên trang hiện tại, tối thiểu 10 trang phần nội dung, tính актуальность/новизна/методы và ít nhất 20 nguồn. Hub dùng làm bằng chứng về kỹ năng/báo cáo, không hard-code các con số này thành quy định 2026 nếu chưa được xác nhận theo cohort."
+    }
+  ],
+  "localReuse": [
+    {"subject":"research","path":"subjects/research/data/lessons.json","lessonIds":["r_p02_l1","r_p03_l1","r_p04_l1"],"coverage":["literature search","research question/hypothesis/metrics","preliminary topic memo with data/baseline/risk"]},
+    {"subject":"research","path":"subjects/research/data/lessons.json","lessonIds":["r_s02_l1","r_m102_l1"],"coverage":["paper annotation in Russian","NIR topic novelty and feasibility"]},
+    {"subject":"research","path":"subjects/research/data/lessons.json","lessonIds":["r_m201_l1","r_m301_l1","r_m302_l1"],"coverage":["proposal/baseline","experiment sprint","NIR report/thesis chapter"]},
+    {"subject":"research","path":"subjects/research/data/lessons.json","lessonIds":["r_m401_l1","r_m402_l1","r_m403_l1"],"coverage":["pre-diploma evidence","VKR/pre-defense","defense package"]}
+  ],
+  "legacyResearchVaultPolicy": {
+    "currentIssue":"Research vault có nội dung cũ ép UGV/USV làm hướng mặc định, trong khi curriculum 2026 không khóa một thesis domain duy nhất.",
+    "reuseRule":"Tái sử dụng quy trình nghiên cứu, artifact, literature, baseline, experiment, report và defense; ví dụ UGV/USV cũ chỉ là example/reference và không được quyết định active research track.",
+    "overwriteLegacyLessonsInPass10":false,
+    "neutralizationAppliedInPrerequisiteRoute":true
+  },
+  "researchTrackPolicy": {
+    "stateBeforeSupervisor":"TOPIC_NEUTRAL",
+    "activeTrack":null,
+    "lockRequires":"supervisor_or_formal_topic_confirmation",
+    "candidateTracks":[
+      {"id":"llm_rag_agents","label":"LLM / RAG / AI Agents"},
+      {"id":"ml_data_systems","label":"Machine Learning / Data Systems"},
+      {"id":"neural_cv_nlp","label":"Neural Networks / CV / NLP"},
+      {"id":"time_series_decision","label":"Time Series / Decision Support"},
+      {"id":"logical_mivar","label":"Logical / Mivar AI"},
+      {"id":"database_ai_systems","label":"Database / Performance / AI Systems"},
+      {"id":"autonomous_systems","label":"Autonomous Systems / UGV as optional track"}
+    ],
+    "policy":"Trước xác nhận của giảng viên hướng dẫn, các track chỉ dùng để so sánh feasibility/data/supervisor fit; không track nào được đẩy vào lịch học bắt buộc. Sau xác nhận, chỉ một track được ACTIVE_NIR, các track còn lại chuyển REFERENCE."
+  },
+  "upstream": {
+    "critical": [],
+    "support": ["P0","P3","P5","P10"],
+    "note":"P11 có thể bắt đầu trước khi P0/P3/P5/P10 hoàn tất; các gate hỗ trợ được mở JIT khi research question yêu cầu thống kê, code, dữ liệu hoặc vấn đáp tiếng Nga."
+  },
+  "mastery": {
+    "target":88,
+    "applicationMinimum":85,
+    "criticalMisconceptionsAllowed":0,
+    "diagnosticFormula":"M = 0.25*D0 + 0.50*D1 + 0.25*D2",
+    "stopRule":"Nếu P11 >=95, D1 >=90 và không còn critical misconception, dừng học phương pháp luận rộng; chuyển thời gian sang artifact NIR/VKR thật và chỉ mở lại sub-node khi supervisor/assessment yêu cầu."
+  },
+  "scopeGuard": {
+    "required":[
+      "problem framing and research scope",
+      "literature search and source quality",
+      "literature matrix and citation traceability",
+      "research question and hypothesis",
+      "baseline and metrics",
+      "experiment design and controls",
+      "reproducibility and research log",
+      "result analysis and limitations",
+      "novelty contribution feasibility and risk",
+      "technical report structure",
+      "supervisor checkpoints and change control",
+      "NIR to VKR continuity and defense evidence"
+    ],
+    "excludedFromDefaultRoute":[
+      "forcing UGV/USV as thesis topic",
+      "forcing LLM/RAG/Agents before supervisor confirmation",
+      "robotics hardware procurement",
+      "FPGA/PLC/SCADA thesis specialization",
+      "publication-count chasing",
+      "fabricated citations or fabricated novelty claims",
+      "deep philosophy-of-science detour beyond course need"
+    ]
+  },
+  "nodes": [
+    {
+      "id":"P11-N01","order":1,"titleVi":"Vấn đề nghiên cứu, phạm vi và tiêu chí khả thi","titleRu":"Исследовательская проблема, границы и реализуемость","kind":"core","dependsOn":[],
+      "outcomes":["Phân biệt topic rộng với research problem có thể kiểm chứng.","Xác định object/context, input/output, phạm vi, constraint, dữ liệu và rủi ro.","Viết problem statement 3–5 câu không khóa trước công nghệ hay domain.","Loại đề tài không có dữ liệu, metric, thời gian hoặc điều kiện triển khai khả thi."],
+      "repairHoursHint":"2–3 giờ"
+    },
+    {
+      "id":"P11-N02","order":2,"titleVi":"Tìm kiếm tài liệu và đánh giá chất lượng nguồn","titleRu":"Поиск литературы и оценка качества источников","kind":"reuse_extend","dependsOn":["P11-N01"],"reuse":["r_p02_l1"],
+      "outcomes":["Tạo query tìm kiếm từ problem, method, data và metric thay vì tìm theo tên đề tài duy nhất.","Phân biệt primary paper, review, preprint, documentation và nguồn thứ cấp.","Theo dõi năm, venue, dataset, method, metric và limitation.","Không dùng số lượng paper thay cho chất lượng/độ liên quan."],
+      "repairHoursHint":"2–4 giờ"
+    },
+    {
+      "id":"P11-N03","order":3,"titleVi":"Literature matrix, claim–evidence và trích dẫn","titleRu":"Матрица литературы, утверждение–доказательство и цитирование","kind":"core","dependsOn":["P11-N02"],
+      "outcomes":["Lập literature matrix theo problem/method/data/metric/result/limitation.","Gắn mỗi claim quan trọng với nguồn có thể truy vết.","Phân biệt paraphrase, quotation và synthesis; tránh patchwriting.","Ghi DOI/URL/metadata đủ để tìm lại nguồn."],
+      "repairHoursHint":"2–3 giờ"
+    },
+    {
+      "id":"P11-N04","order":4,"titleVi":"Câu hỏi nghiên cứu, giả thuyết và operationalization","titleRu":"Исследовательский вопрос, гипотеза и операционализация","kind":"reuse_extend","dependsOn":["P11-N01","P11-N03"],"reuse":["r_p03_l1"],
+      "outcomes":["Viết research question có đối tượng, so sánh hoặc quan hệ đo được.","Viết hypothesis có thể bị bác bỏ khi phù hợp với loại nghiên cứu.","Chuyển khái niệm mơ hồ thành biến/metric/quan sát đo được.","Phân biệt exploratory question với confirmatory hypothesis."],
+      "repairHoursHint":"2–3 giờ"
+    },
+    {
+      "id":"P11-N05","order":5,"titleVi":"Baseline, metric và protocol đánh giá","titleRu":"Базовый метод, метрики и протокол оценки","kind":"reuse_extend","dependsOn":["P11-N04"],"reuse":["r_p04_l1","r_m201_l1"],
+      "outcomes":["Chọn baseline đủ mạnh và có lý do.","Chọn metric gắn với research question và cost of error.","Tách development/tuning khỏi final evaluation khi có mô hình dữ liệu.","Định nghĩa success criterion trước khi nhìn kết quả cuối nếu có thể."],
+      "repairHoursHint":"3–4 giờ"
+    },
+    {
+      "id":"P11-N06","order":6,"titleVi":"Thiết kế thí nghiệm, biến, đối chứng và nhiễu","titleRu":"План эксперимента, переменные, контроль и смешивающие факторы","kind":"core","dependsOn":["P11-N04","P11-N05"],
+      "outcomes":["Xác định independent/dependent/control variables hoặc tương đương theo loại nghiên cứu.","Giữ protocol nhất quán giữa baseline và method mới.","Nhận diện leakage, confounder, selection bias và unfair comparison.","Lập bảng run plan có seed/config/data version/metric."],
+      "repairHoursHint":"3–5 giờ"
+    },
+    {
+      "id":"P11-N07","order":7,"titleVi":"Reproducibility, research log và artifact","titleRu":"Воспроизводимость, журнал исследования и артефакты","kind":"core","dependsOn":["P11-N05","P11-N06"],
+      "outcomes":["Ghi code/data/config/environment/command/result đủ để chạy lại.","Dùng research log ghi hypothesis, run, lỗi, quyết định và lý do.","Version dữ liệu/cấu hình/kết quả ở mức phù hợp, không chỉ version code.","Giữ failed run có giá trị chẩn đoán thay vì xóa dấu vết."],
+      "repairHoursHint":"2–4 giờ"
+    },
+    {
+      "id":"P11-N08","order":8,"titleVi":"Phân tích kết quả, bất định và giới hạn","titleRu":"Анализ результатов, неопределённость и ограничения","kind":"core","dependsOn":["P11-N06","P11-N07"],
+      "outcomes":["Phân biệt observed result với causal claim.","Báo cáo variability/uncertainty phù hợp thay vì chỉ một số tốt nhất.","Phân tích failure case và sensitivity khi cần.","Viết limitation trung thực và nêu phạm vi khái quát hóa."],
+      "repairHoursHint":"3–4 giờ"
+    },
+    {
+      "id":"P11-N09","order":9,"titleVi":"Novelty, contribution, feasibility và risk","titleRu":"Новизна, вклад, реализуемость и риски","kind":"reuse_extend","dependsOn":["P11-N03","P11-N08"],"reuse":["r_m102_l1"],
+      "outcomes":["Phân biệt novelty với chỉ đổi dataset/tool/hyperparameter.","Nêu contribution ở mức được evidence hỗ trợ.","Đánh giá data access, compute, thời gian, supervisor fit và dependency risk.","Không tuyên bố 'chưa ai làm' nếu literature search không chứng minh được."],
+      "repairHoursHint":"2–4 giờ"
+    },
+    {
+      "id":"P11-N10","order":10,"titleVi":"Báo cáo kỹ thuật НИР và cấu trúc luận chứng","titleRu":"Технический отчёт НИР и структура аргументации","kind":"reuse_extend","dependsOn":["P11-N03","P11-N08","P11-N09"],"reuse":["r_m302_l1"],
+      "outcomes":["Tổ chức report theo problem/relevance → prior work → method → experiment → results → limitations → conclusion.","Tạo bảng/figure có caption và thông điệp rõ.","Giữ traceability từ research question tới method, metric và conclusion.","Phân biệt evidence cần trong report với chi tiết nên để appendix/artifact."],
+      "repairHoursHint":"3–5 giờ"
+    },
+    {
+      "id":"P11-N11","order":11,"titleVi":"Checkpoint với giảng viên hướng dẫn và quản lý thay đổi đề tài","titleRu":"Контрольные точки с научным руководителем и управление изменениями темы","kind":"core","dependsOn":["P11-N01","P11-N09","P11-N10"],
+      "outcomes":["Mang tới supervisor một dossier ngắn: problem, literature gap, data, baseline, metric, risk và next experiment.","Ghi decision log sau mỗi checkpoint.","Không tự khóa research track trước xác nhận; khi đổi scope phải cập nhật RQ/data/method/metric/timeline cùng nhau.","Phân biệt candidate track, ACTIVE_NIR và REFERENCE track."],
+      "repairHoursHint":"2–3 giờ"
+    },
+    {
+      "id":"P11-N12","order":12,"titleVi":"Liên tục НИР → ВКР → pre-defense/defense","titleRu":"Непрерывность НИР → ВКР → предварительная защита и защита","kind":"official_course_bridge","dependsOn":["P11-N07","P11-N10","P11-N11"],"reuse":["r_m401_l1","r_m402_l1","r_m403_l1"],
+      "outcomes":["Tái sử dụng literature, baseline, protocol, artifact và results từ NIR cho VKR thay vì làm lại cuối khóa.","Duy trì evidence index: claim → figure/table → run/artifact → source/version.","Chuẩn bị defense theo problem → method → evidence → contribution → limitation → answer to questions.","Ưu tiên milestone thật của cohort/supervisor hơn lịch cứng trong Hub."],
+      "repairHoursHint":"2–4 giờ"
+    }
+  ],
+  "diagnostic": {
+    "D0": {
+      "name":"Recall","weight":0.25,"recommendedMinutes":30,
+      "items":[
+        {"id":"P11-D0-01","node":"P11-N01","prompt":"Topic và research problem khác nhau thế nào?"},
+        {"id":"P11-D0-02","node":"P11-N01","prompt":"Feasibility của đề tài cần kiểm tra những loại constraint nào?"},
+        {"id":"P11-D0-03","node":"P11-N02","prompt":"Primary paper và review khác vai trò thế nào?"},
+        {"id":"P11-D0-04","node":"P11-N03","prompt":"Literature matrix tối thiểu nên theo dõi những trường nào?"},
+        {"id":"P11-D0-05","node":"P11-N03","prompt":"Claim–evidence traceability là gì?"},
+        {"id":"P11-D0-06","node":"P11-N04","prompt":"Research question kiểm chứng được cần đặc điểm gì?"},
+        {"id":"P11-D0-07","node":"P11-N04","prompt":"Operationalization nghĩa là gì?"},
+        {"id":"P11-D0-08","node":"P11-N05","prompt":"Baseline dùng để làm gì?"},
+        {"id":"P11-D0-09","node":"P11-N05","prompt":"Vì sao metric phải gắn với research question/cost of error?"},
+        {"id":"P11-D0-10","node":"P11-N06","prompt":"Control variable/confounder là gì ở mức thực dụng?"},
+        {"id":"P11-D0-11","node":"P11-N06","prompt":"Data leakage làm hỏng kết luận thí nghiệm thế nào?"},
+        {"id":"P11-D0-12","node":"P11-N07","prompt":"Một reproducible artifact cần gì ngoài code?"},
+        {"id":"P11-D0-13","node":"P11-N08","prompt":"Observed association và causal claim khác nhau thế nào?"},
+        {"id":"P11-D0-14","node":"P11-N08","prompt":"Limitation tốt cần nêu điều gì?"},
+        {"id":"P11-D0-15","node":"P11-N09","prompt":"Novelty và contribution khác nhau thế nào?"},
+        {"id":"P11-D0-16","node":"P11-N10","prompt":"Một technical report nên duy trì traceability từ RQ tới kết luận thế nào?"},
+        {"id":"P11-D0-17","node":"P11-N11","prompt":"Khi nào research track được chuyển từ candidate sang ACTIVE_NIR?"},
+        {"id":"P11-D0-18","node":"P11-N12","prompt":"Vì sao NIR nên được xem là chuỗi tích lũy cho VKR thay vì công việc tách rời?"}
+      ]
+    },
+    "D1": {
+      "name":"Application","weight":0.5,"recommendedMinutes":90,
+      "items":[
+        {"id":"P11-D1-01","node":"P11-N01","prompt":"Từ chủ đề 'AI cho hệ thống thông tin', viết problem statement 4 câu có object, constraint, measurable outcome và phạm vi; không khóa công nghệ trước."},
+        {"id":"P11-D1-02","node":"P11-N02","prompt":"Cho 8 nguồn gồm paper/review/blog/docs/preprint; chọn 5 nguồn cho literature matrix và giải thích vai trò, độ tin cậy và giới hạn của từng nguồn."},
+        {"id":"P11-D1-03","node":"P11-N03","prompt":"Tạo literature matrix 5 nguồn và viết 3 claim; mỗi claim phải truy ngược được tới nguồn hỗ trợ, không bịa citation."},
+        {"id":"P11-D1-04","node":"P11-N04","prompt":"Sửa một research question mơ hồ thành RQ đo được; nếu phù hợp, thêm hypothesis và operationalize biến chính."},
+        {"id":"P11-D1-05","node":"P11-N05","prompt":"Cho một bài toán classification mất cân bằng; chọn baseline, metric chính/phụ và success criterion, giải thích vì sao accuracy có thể gây hiểu sai."},
+        {"id":"P11-D1-06","node":"P11-N06","prompt":"Thiết kế experiment matrix so baseline với method mới: giữ dataset/split/metric cố định, nêu biến thay đổi, control, seed và ít nhất 2 confounder/leakage risk."},
+        {"id":"P11-D1-07","node":"P11-N07","prompt":"Từ một run notebook rời rạc, lập reproducibility checklist gồm code commit, data version, config, environment, command, seed, outputs và research-log entry."},
+        {"id":"P11-D1-08","node":"P11-N08","prompt":"Cho 5 run có kết quả khác nhau; viết kết luận không cherry-pick, nêu variability, failure case, uncertainty và limitation."},
+        {"id":"P11-D1-09","node":"P11-N09","prompt":"Đánh giá 3 đề tài candidate bằng matrix novelty evidence / data / compute / timeline / supervisor fit / risk; không chọn chỉ vì công nghệ mới hơn."},
+        {"id":"P11-D1-10","node":"P11-N10","prompt":"Lập outline report NIR 2 cấp heading từ RQ đã cho, chỉ ra ở đâu đặt prior work, method, experiment, results, limitations và conclusion."},
+        {"id":"P11-D1-11","node":"P11-N11","prompt":"Mô phỏng checkpoint supervisor: tạo one-page dossier và decision log; nếu supervisor đổi scope, cập nhật RQ/data/method/metric/timeline đồng bộ."},
+        {"id":"P11-D1-12","node":"P11-N12","prompt":"Tạo evidence index cho một kết luận VKR gồm claim, figure/table, experiment run, artifact/config và source/version; chỉ ra artifact nào có thể tái sử dụng từ NIR."}
+      ]
+    },
+    "D2": {
+      "name":"Explain/Oral","weight":0.25,"recommendedMinutes":35,
+      "items":[
+        {"id":"P11-D2-01","node":"P11-N01","promptVi":"Trình bày trong 60–90 giây problem statement của một đề tài trung lập và vì sao nó khả thi.","promptRu":"Сформулируйте исследовательскую проблему, её границы и объясните, почему работа выполнима в заданных условиях."},
+        {"id":"P11-D2-02","node":"P11-N03","promptVi":"Giải thích cách literature matrix ngăn việc trích dẫn không truy vết.","promptRu":"Объясните, как матрица литературы связывает научные утверждения с проверяемыми источниками и ограничениями работ."},
+        {"id":"P11-D2-03","node":"P11-N04","promptVi":"Phân biệt research question, hypothesis và metric bằng một ví dụ.","promptRu":"Различите исследовательский вопрос, гипотезу и метрику оценки на одном конкретном примере."},
+        {"id":"P11-D2-04","node":"P11-N05","promptVi":"Bảo vệ lựa chọn baseline và metric trước hội đồng giả định.","promptRu":"Обоснуйте выбор базового метода и основной метрики так, чтобы сравнение было корректным и проверяемым."},
+        {"id":"P11-D2-05","node":"P11-N06","promptVi":"Giải thích một thiết kế thí nghiệm và cách bạn kiểm soát confounder/leakage.","promptRu":"Опишите план эксперимента и объясните, как вы контролируете смешивающие факторы и утечку данных."},
+        {"id":"P11-D2-06","node":"P11-N08","promptVi":"Trình bày kết quả chưa tốt nhưng khoa học, gồm uncertainty và limitation.","promptRu":"Представьте неоднозначный результат исследования, укажите неопределённость, ограничения и корректный вывод без преувеличения."},
+        {"id":"P11-D2-07","node":"P11-N09","promptVi":"Giải thích novelty/contribution mà không dùng câu 'chưa ai từng làm'.","promptRu":"Сформулируйте научную новизну и вклад работы без неподтверждённого утверждения о том, что никто ранее этого не делал."},
+        {"id":"P11-D2-08","node":"P11-N12","promptVi":"Trình bày chuỗi NIR→VKR và evidence nào sẽ dùng khi bảo vệ.","promptRu":"Объясните, как результаты НИР переходят в ВКР и какие воспроизводимые доказательства вы представите на защите."}
+      ]
+    }
+  },
+  "criticalMisconceptions": [
+    {"id":"P11-M01","node":"P11-N01","wrong":"Tên đề tài càng hiện đại thì problem càng tốt.","correction":"Problem phải đo được, khả thi và có evidence path; công nghệ chỉ là phương tiện."},
+    {"id":"P11-M02","node":"P11-N02","wrong":"Nhiều nguồn tự động nghĩa là literature review tốt.","correction":"Độ liên quan, chất lượng, coverage và synthesis quan trọng hơn số lượng đơn thuần."},
+    {"id":"P11-M03","node":"P11-N03","wrong":"Có thể viết claim trước rồi tìm citation bất kỳ cho khớp.","correction":"Nguồn phải thực sự hỗ trợ claim và phải truy vết được."},
+    {"id":"P11-M04","node":"P11-N04","wrong":"Hypothesis càng khó bác bỏ càng tốt.","correction":"Hypothesis khoa học cần rõ và có khả năng kiểm chứng/bác bỏ khi thích hợp."},
+    {"id":"P11-M05","node":"P11-N05","wrong":"Method phức tạp hơn luôn là baseline tốt hơn hoặc kết quả tốt hơn.","correction":"Baseline cần hợp lý, reproducible và đúng bài toán; complexity không tự tạo contribution."},
+    {"id":"P11-M06","node":"P11-N06","wrong":"Có thể dùng test set nhiều lần để chọn model rồi vẫn coi đó là final evaluation.","correction":"Tuning trên test làm leakage và phá tính độc lập của đánh giá cuối."},
+    {"id":"P11-M07","node":"P11-N07","wrong":"Có code là đủ reproducible.","correction":"Cần data/config/environment/command/version/seed/result và log quyết định phù hợp."},
+    {"id":"P11-M08","node":"P11-N08","wrong":"Một run tốt nhất đủ để chứng minh superiority.","correction":"Cần protocol công bằng, variability/uncertainty và tránh cherry-picking."},
+    {"id":"P11-M09","node":"P11-N08","wrong":"Correlation hoặc metric tăng chứng minh causal mechanism.","correction":"Causal claim cần thiết kế/evidence phù hợp; observed association không tự chứng minh nguyên nhân."},
+    {"id":"P11-M10","node":"P11-N09","wrong":"Novelty nghĩa là phải tuyên bố chưa ai từng làm.","correction":"Novelty/contribution phải được literature và evidence hỗ trợ, có thể là method, formulation, system, evaluation hoặc insight mới trong phạm vi rõ."},
+    {"id":"P11-M11","node":"P11-N11","wrong":"Nên khóa UGV/LLM hay một track cụ thể trước khi có supervisor để chuẩn bị càng sớm càng tốt.","correction":"Chỉ chuẩn bị method-neutral foundation; track chỉ ACTIVE_NIR sau xác nhận supervisor/đề tài."},
+    {"id":"P11-M12","node":"P11-N12","wrong":"NIR và VKR là hai sản phẩm độc lập nên cuối khóa có thể làm lại từ đầu.","correction":"NIR nên tích lũy literature, baseline, experiment, evidence và report để giảm rủi ro VKR."}
+  ],
+  "repairRoutes": [
+    {"id":"P11-R01","triggerNodes":["P11-N01"],"route":["P11-N01"],"exitCriterion":"Viết được problem statement đo được + feasibility matrix, không khóa domain/tool trước."},
+    {"id":"P11-R02","triggerNodes":["P11-N02","P11-N03"],"route":["r_p02_l1","P11-N02","P11-N03"],"exitCriterion":"Literature matrix >=5 nguồn và 3 claim đều truy vết đúng nguồn."},
+    {"id":"P11-R03","triggerNodes":["P11-N04"],"route":["r_p03_l1","P11-N04"],"exitCriterion":"RQ đo được; hypothesis/operationalization hợp lý nếu bài toán cần."},
+    {"id":"P11-R04","triggerNodes":["P11-N05","P11-N06"],"route":["r_p04_l1","r_m201_l1","P11-N05","P11-N06"],"exitCriterion":"Có baseline/metric/split/run matrix và zero leakage/confounder critical error."},
+    {"id":"P11-R05","triggerNodes":["P11-N07","P11-N08"],"route":["P11-N07","P11-N08"],"exitCriterion":"Một experiment có thể chạy lại và report kết quả không cherry-pick."},
+    {"id":"P11-R06","triggerNodes":["P11-N09"],"route":["r_m102_l1","P11-N09"],"exitCriterion":"Contribution statement có evidence + feasibility/risk matrix."},
+    {"id":"P11-R07","triggerNodes":["P11-N10"],"route":["r_m302_l1","P11-N10"],"exitCriterion":"Outline NIR giữ được RQ→method→metric→result→conclusion traceability."},
+    {"id":"P11-R08","triggerNodes":["P11-N11","P11-N12"],"route":["P11-N11","r_m401_l1","r_m402_l1","r_m403_l1","P11-N12"],"exitCriterion":"Có supervisor dossier, decision log và evidence index NIR→VKR; active track chỉ được khóa sau xác nhận."}
+  ],
+  "implementationPolicy": {
+    "schedulerMutation":false,
+    "writesDiagnosticScores":false,
+    "newTopLevelSubject":false,
+    "overwritesExistingResearchLessons":false,
+    "autoSelectsResearchTrack":false,
+    "legacyUGVUSVBecomesDefault":false,
+    "mainBranchMutation":false,
+    "milestoneDatesAreEventDriven":true
+  }
+}
