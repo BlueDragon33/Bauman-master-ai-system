@@ -2,7 +2,9 @@
 
 Date: 2026-09-10
 Branch: `temp/bauman-master-hub-prereq-2026`
-Status: `P4_PACK_IMPLEMENTED_GATE_PENDING`
+Status: `P4_BLUEPRINT_VALIDATED_CI_PASS`
+CI run: `34452679592`
+Head SHA validated: `72cc9ef475b2e483d5c48a055694bd0e8dbf6bb2`
 
 ## Goal
 
@@ -49,9 +51,7 @@ The locked official curriculum remains `assets/data/official-curriculum-iu5-2026
 
 ## Diagnostic design
 
-P4 follows the global mastery formula:
-
-`M = 0.25*D0 + 0.50*D1 + 0.25*D2`
+P4 follows the global mastery formula `M = 0.25*D0 + 0.50*D1 + 0.25*D2`.
 
 Registry target is 88, with D1 application minimum 85 and zero critical misconceptions. Broad P4 study stops at MASTERED (`>=95`, D1 `>=90`, zero critical misconceptions) and only reopens a narrower node when an official course exposes a real gap.
 
@@ -69,29 +69,18 @@ D1 emphasizes actual use: workload-based array/list choice, collision reasoning,
 
 The default P4 path explicitly excludes competitive-programming expansion such as segment/Fenwick trees, suffix structures, advanced flow tricks and computational geometry. It also keeps UGV/USV, PID/LQR, Kalman, FPGA, PLC/SCADA and robot-specific material out of active P4 content.
 
-## Validator
+## Validator and CI
 
-Added `scripts/validate-p04-discrete-algorithms-data-structures.js`.
+Added `scripts/validate-p04-discrete-algorithms-data-structures.js` and wired it into the Academic 2026 workflow.
 
-The validator checks:
+The validator checks P4 registry/topic integrity, exact official targets, actual PR02/PR10/PR11 reuse, Math spine IDs, 10 unique ordered acyclic nodes, required topic signals, D0/D1/D2 integrity, Russian oral prompts, misconception/repair-route integrity and scope guards. Independent sanity checks execute binary search, BFS shortest-path-by-edge-count, DFS reachability and a hash-collision case.
 
-- P4 registry target and topic integrity;
-- exact official-course targets and semester placement;
-- actual existence/identity of PR02, PR10 and PR11 before reuse;
-- Math spine IDs used as conceptual sources;
-- 10 unique, ordered, acyclic nodes;
-- required content signals (linked list, collision, BST, recursion, binary search, BFS/DFS, O(V+E), Mivar bridge);
-- D0/D1/D2 counts, node references and Russian oral prompts;
-- misconception and repair-route integrity;
-- scope guards against contest/project/control detours;
-- independent binary-search, BFS shortest-path, DFS reachability and hash-collision sanity invariants.
-
-The Academic 2026 workflow has been extended to run this validator after P9 and P6 validators.
+CI run `34452679592` completed successfully for head `72cc9ef475b2e483d5c48a055694bd0e8dbf6bb2`, including official curriculum, prerequisite coverage, P9, P6, P4 and runtime checks.
 
 ## Runtime policy
 
 Pass 06 still does not write diagnostic scores, mutate the scheduler, overwrite existing Programming lessons, create a new top-level subject or merge into `main`.
 
-## Next pass after CI
+## Next pass
 
-Pass 07 should implement `P7 · Linux / OS / Networks`, currently the clearest missing active prerequisite path. It should stay compact and practical: shell/files/permissions → process/thread → memory/filesystem → SSH → TCP/IP/TCP-UDP → ports/sockets → HTTP → client/server → environment/package management.
+Pass 07: implement `P7 · Linux / OS / Networks`, currently the clearest missing active prerequisite path. Keep it compact and practical: shell/files/permissions → process/thread → memory/filesystem → SSH → TCP/IP/TCP-UDP → ports/sockets → HTTP → client/server → environment/package management.
