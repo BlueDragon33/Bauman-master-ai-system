@@ -1,11 +1,13 @@
 import {
   BaumanDeviceError,
   executeBaumanDeviceCommand,
+  issueBaumanDeviceChallenge,
   listBaumanAudit,
   listBaumanDevices,
   readBaumanDeviceStatus,
   registerBaumanDevice,
-  touchBaumanDevice,
+  touchBaumanDeviceSession,
+  verifyBaumanDeviceProof,
   type BaumanControlIdentity,
   type BaumanControlRole,
 } from "./device-store";
@@ -23,7 +25,7 @@ type Role = BaumanControlRole;
 const TOKEN_ISSUER = "application-management";
 const TOKEN_AUDIENCE = "bauman-control";
 const TOKEN_APP = "bauman-master-ai";
-const CONTROL_PROTOCOL = "bauman-control-v3";
+const CONTROL_PROTOCOL = "bauman-control-v4";
 
 const SUBCLIENTS = [
   { id: "math", name: "Toán Bauman", kind: "subject-site", repository: "BlueDragon33/Math_Bauman", state: "independent", controlState: "pending" },
@@ -128,7 +130,7 @@ function appCors(request: Request, env: Env) {
   return configured && origin === configured ? {
     "access-control-allow-origin": configured,
     "access-control-allow-methods": "GET, POST, OPTIONS",
-    "access-control-allow-headers": "content-type",
+    "access-control-allow-headers": "authorization, content-type",
     "access-control-max-age": "600",
     vary: "Origin",
   } : {};
@@ -163,6 +165,8 @@ async function databaseReady(env: Env) {
   if (!env.DB) return false;
   try {
     await env.DB.prepare("SELECT device_id FROM bm_devices LIMIT 1").first();
+    await env.DB.prepare("SELECT challenge_id FROM bm_device_challenges LIMIT 1").first();
+    await env.DB.prepare("SELECT session_hash FROM bm_device_sessions LIMIT 1").first();
     await env.DB.prepare("SELECT command_id FROM bm_control_commands LIMIT 1").first();
     await env.DB.prepare("SELECT id FROM bm_audit_log LIMIT 1").first();
     return true;
@@ -177,6 +181,11 @@ async function body(request: Request) {
     throw new BaumanDeviceError("JSON body không hợp lệ.", 400, "INVALID_JSON_BODY");
   }
   return parsed as Record<string, unknown>;
+}
+
+function bearerToken(request: Request) {
+  const authorization = request.headers.get("authorization") ?? "";
+  return authorization.startsWith("Bearer ") ? authorization.slice(7).trim() : "";
 }
 
 function errorResponse(request: Request, env: Env, error: unknown, surface: "control" | "app") {
@@ -194,9 +203,17 @@ async function publicDeviceRoute(request: Request, env: Env, url: URL) {
       const device = await registerBaumanDevice(database, await body(request));
       return json(request, env, { ok: true, application: TOKEN_APP, device }, 200, "app");
     }
-    if (request.method === "POST" && url.pathname === "/api/device/heartbeat") {
+    if (request.method === "POST" && url.pathname === "/api/device/challenge") {
       const payload = await body(request);
-      const device = await touchBaumanDevice(database, payload.deviceId);
+      const challenge = await issueBaumanDeviceChallenge(database, payload.deviceId);
+      return json(request, env, { ok: true, application: TOKEN_APP, ...challenge }, 200, "app");
+    }
+    if (request.method === "POST" && url.pathname === "/api/device/verify") {
+      const verified = await verifyBaumanDeviceProof(database, await body(request));
+      return json(request, env, { ok: true, application: TOKEN_APP, ...verified }, 200, "app");
+    }
+    if (request.method === "POST" && url.pathname === "/api/device/heartbeat") {
+      const device = await touchBaumanDeviceSession(database, bearerToken(request));
       return json(request, env, { ok: true, application: TOKEN_APP, device }, 200, "app");
     }
     if (request.method === "GET" && url.pathname === "/api/device/status") {
@@ -214,6 +231,7 @@ async function controlRoute(request: Request, env: Env, url: URL) {
     const identity = await authenticate(request, env);
     if (request.method === "GET" && url.pathname === "/api/control/status") {
       const ready = await databaseReady(env);
+      const appOriginReady = Boolean(configuredOrigin(env.BAUMAN_APP_ORIGIN));
       return json(request, env, {
         ok: true,
         application: TOKEN_APP,
@@ -224,6 +242,7 @@ async function controlRoute(request: Request, env: Env, url: URL) {
           runtime: "Bauman-master-ai-system",
           database: "Bauman-master-ai-system",
           deviceRegistry: "Bauman-master-ai-system",
+          deviceSessions: "Bauman-master-ai-system",
           audit: "Bauman-master-ai-system",
           subclients: "Bauman-master-ai-system",
           centralRole: "policy-and-remote-admin-only",
@@ -233,21 +252,25 @@ async function controlRoute(request: Request, env: Env, url: URL) {
           subclientInventory: "available",
           readOnlyControlApi: "available",
           deviceRegistry: ready ? "available" : "configuration-required",
-          deviceGateway: ready && configuredOrigin(env.BAUMAN_APP_ORIGIN) ? "available" : "configuration-required",
+          deviceGateway: ready && appOriginReady ? "available" : "configuration-required",
           mutationAdminApi: ready ? "available" : "configuration-required",
           auditApi: ready ? "available" : "configuration-required",
+          p256Proof: ready && appOriginReady ? "available" : "configuration-required",
+          revocableDeviceSessions: ready && appOriginReady ? "available" : "configuration-required",
           accessGate: "missing",
           contentReviewApi: "missing",
         },
         capabilities: {
           deviceRegistry: ready,
-          deviceRegistration: ready && Boolean(configuredOrigin(env.BAUMAN_APP_ORIGIN)),
+          deviceRegistration: ready && appOriginReady,
           deviceApproval: ready,
           deviceIdempotentCommands: ready,
           optimisticConcurrency: ready,
           accessAndEditSeparated: ready,
           audit: ready,
           p256DeviceIdentity: ready,
+          p256ChallengeProof: ready && appOriginReady,
+          revocableDeviceSessions: ready && appOriginReady,
           learningAccessGate: false,
         },
         endpoints: {
@@ -256,6 +279,8 @@ async function controlRoute(request: Request, env: Env, url: URL) {
           audit: "/api/control/audit",
           subclients: "/api/control/subclients",
           deviceRegister: "/api/device/register",
+          deviceChallenge: "/api/device/challenge",
+          deviceVerify: "/api/device/verify",
           deviceHeartbeat: "/api/device/heartbeat",
           deviceStatus: "/api/device/status",
         },
@@ -320,7 +345,7 @@ export default {
         application: TOKEN_APP,
         protocol: CONTROL_PROTOCOL,
         independentRuntime: true,
-        controlMode: "device-control-v3",
+        controlMode: "device-control-v4",
         databaseReady: ready,
         appOriginConfigured: Boolean(configuredOrigin(env.BAUMAN_APP_ORIGIN)),
         checkedAt: Date.now(),
