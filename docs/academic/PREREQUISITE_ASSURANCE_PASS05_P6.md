@@ -2,15 +2,13 @@
 
 Date: 2026-09-10
 Branch: `temp/bauman-master-hub-prereq-2026`
-Status: `P6_PACK_IMPLEMENTED_GATE_PENDING`
+Status: `P6_BLUEPRINT_VALIDATED_CI_PASS`
+CI run: `34451113967`
+Head SHA validated: `91012f06ab9a2cbeafd627dc76912e1830de43b2`
 
 ## Goal
 
-Close the database-foundation gap before the official semester-1 course:
-
-`d06 · Оптимизация баз данных систем машинного обучения`
-
-without rebuilding SQL from zero and without detouring into vendor administration, cloud certifications, ORM frameworks, NoSQL or data warehousing too early.
+Close the database-foundation gap before the official semester-1 course `d06 · Оптимизация баз данных систем машинного обучения` without rebuilding SQL from zero and without detouring into vendor administration, cloud certifications, ORM frameworks, NoSQL or data warehousing too early.
 
 The locked IU5 2026 curriculum remains the source of truth for the official course identity: d06 is 4 credits / 144 hours, semester 1, exam. P6 itself is a competency prerequisite inferred by Bauman Master Hub, not an administrative prerequisite declared by Bauman.
 
@@ -25,11 +23,7 @@ Pass 05 therefore does not duplicate those lessons. Repair routes enter PR06/PR1
 
 ## New P6 pack
 
-Added:
-
-`assets/data/prerequisite-packs/p06-database-fundamentals.json`
-
-The active path has 11 nodes:
+Added `assets/data/prerequisite-packs/p06-database-fundamentals.json` with 11 active nodes:
 
 1. Relational model, keys and integrity constraints — reuse bridge.
 2. Relational algebra and query semantics.
@@ -47,99 +41,48 @@ The downstream bridge to `d10 · Постреляционные базы дан�
 
 ## Diagnostic design
 
-P6 uses the same locked mastery model as the global prerequisite registry:
+P6 uses the locked formula `M = 0.25*D0 + 0.50*D1 + 0.25*D2`, target 90, D1 minimum 85 and zero critical misconceptions. Stop broad P6 study when P6 >= 95 and D1 >= 90 with zero critical misconceptions.
 
-`M = 0.25*D0 + 0.50*D1 + 0.25*D2`
+The pack contains 18 D0 recall items, 12 D1 application tasks, 8 Vietnamese/Russian D2 oral prompts, 11 critical misconceptions and 8 targeted repair routes.
 
-with:
-
-- target: 90;
-- D1 application minimum: 85;
-- critical misconceptions allowed: 0;
-- stop broad study when P6 >= 95 and D1 >= 90 with zero critical misconceptions.
-
-The pack contains:
-
-- D0: 18 recall items;
-- D1: 12 application tasks;
-- D2: 8 Vietnamese/Russian oral-explanation prompts;
-- 11 critical misconceptions;
-- 8 targeted repair routes.
-
-## D1 emphasis
-
-D1 is deliberately the largest weight. It checks whether the learner can actually:
-
-- design PK/FK/constraints;
-- translate relational-algebra intent into SQL;
-- normalize a realistic relation;
-- use a window function;
-- define a correct transaction boundary;
-- detect a wait-for deadlock cycle;
-- reason about selectivity;
-- choose a composite index from a workload;
-- diagnose cardinality-estimation error;
-- read before/after execution plans;
-- benchmark repeatedly rather than cherry-pick one run;
-- design an experiment/run/metric schema for ML research data.
+D1 checks actual competence: PK/FK/constraints, relational algebra → SQL, normalization, window SQL, transaction boundaries, deadlock detection, selectivity, composite-index choice, cardinality-estimation diagnosis, execution-plan comparison, repeated benchmarking and experiment/run/metric schema design for ML research data.
 
 ## PostgreSQL policy
 
-PostgreSQL is selected only as the recommended practice platform because it exposes transactions, indexes and EXPLAIN/EXPLAIN ANALYZE well enough for this preparation route.
-
-It is explicitly marked:
-
-`officiallyRequiredByBauman2026Plan: false`
-
-so the Hub cannot present PostgreSQL as an official Bauman requirement.
+PostgreSQL is only the recommended practice platform for transactions, indexes and EXPLAIN/EXPLAIN ANALYZE. The pack explicitly sets `officiallyRequiredByBauman2026Plan: false`, so the Hub cannot present PostgreSQL as an official Bauman requirement.
 
 ## Source discipline
 
-Official source:
+Official source: `https://home.science.iu5.bmstu.ru/study-plans/iu5-master-program.pdf`.
 
-- IU5 2026 study plan: `https://home.science.iu5.bmstu.ru/study-plans/iu5-master-program.pdf`
+Related public IU5 material: `https://e-learning.bmstu.ru/iu5/course/view.php?id=44`. It is labeled `legacy_related_iu5_material` and is not treated as the exact 2026 d06 syllabus.
 
-Related IU5 public material:
+## Validator and CI
 
-- `https://e-learning.bmstu.ru/iu5/course/view.php?id=44`
+Added `scripts/validate-p06-database-fundamentals.js`. The Academic 2026 workflow now runs it together with the locked curriculum validator, prerequisite coverage validator, P9 validator and runtime syntax/reference checks.
 
-The second source is labeled `legacy_related_iu5_material`. It is used only to confirm that database/transaction/locking themes exist in related public IU5 teaching material. It is not treated as the exact 2026 syllabus for d06.
+P6 validation checks:
 
-## New validator
+- exact d06 identity, 4 credits / 144 hours, semester 1, exam;
+- d10 semester-2 bridge;
+- real existence of PR06 and PR15 before reuse;
+- 11 unique, ordered, acyclic nodes;
+- required database topic signals;
+- D0/D1/D2 counts and node references;
+- Russian D2 prompts;
+- repair-route references;
+- scope guards against administration/cloud detours;
+- PostgreSQL not promoted to an official requirement;
+- canonical functional-dependency closure for the normalization sanity case;
+- wait-for graph deadlock/acyclic invariants;
+- selectivity-order sanity invariant.
 
-Added:
-
-`scripts/validate-p06-database-fundamentals.js`
-
-The validator checks:
-
-- P6 identity and global mastery-policy invariants;
-- d06 remains exactly the locked official course name, 4 credits / 144 hours, semester 1, exam;
-- d10 remains the official semester-2 bridge;
-- PR06 and PR15 actually exist before they can be referenced as reusable content;
-- all 11 nodes are unique, ordered and acyclic;
-- required database topics are present in the intended nodes;
-- D0/D1/D2 counts and node references are valid;
-- Russian D2 prompts are present;
-- repair routes cannot point to missing nodes or missing reused lessons;
-- excluded administration/cloud detours do not enter active content;
-- PostgreSQL cannot be promoted to an official Bauman requirement;
-- canonical functional-dependency closure verifies the composite key used in the normalization sanity case;
-- a canonical wait-for graph detects a two-transaction deadlock and rejects an acyclic graph;
-- the selectivity sanity check preserves the expected ordering in the diagnostic example.
+CI run `34451113967` completed successfully. Every step passed, including `Validate P6 Database Fundamentals pack`, P9 validation, official curriculum/prerequisite validation, coverage validation and runtime checks.
 
 ## Runtime policy
 
-Pass 05 still does not:
+Pass 05 still does not write diagnostic scores, mutate the adaptive scheduler, create a new top-level database site, overwrite existing Programming lessons or merge the temporary branch into `main`.
 
-- write diagnostic scores;
-- mutate the adaptive scheduler;
-- create a new top-level database site;
-- overwrite existing Programming lessons;
-- merge the temporary branch into `main`.
+## Next pass
 
-Runtime integration is deferred until the pack passes CI.
-
-## Next step after CI passes
-
-Pass 06 should implement `P4 · Discrete Mathematics, Algorithms & Data Structures` as a compact repair package, reusing `PR02` and `PR11` and filling only the audited gaps: linked list, tree traversal, hash collisions, sorting/searching, recursion, BFS/DFS and basic graph complexity.
+Pass 06: implement `P4 · Discrete Mathematics, Algorithms & Data Structures` as a compact repair package. Reuse `PR02` and `PR11`, then fill only the audited gaps: linked list, tree traversal, hash collisions, sorting/searching, recursion, BFS/DFS and basic graph complexity. No competitive-programming detour.
