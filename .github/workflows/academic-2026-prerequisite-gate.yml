@@ -5,19 +5,23 @@ on:
     paths:
       - 'assets/data/official-curriculum-iu5-2026.json'
       - 'assets/data/prerequisite-registry-iu5-2026.json'
+      - 'assets/data/prerequisite-content-coverage-2026.json'
       - 'assets/js/academic-main.js'
       - 'assets/css/academic-2026.css'
       - 'index.html'
       - 'scripts/validate-academic-2026.js'
+      - 'scripts/validate-prerequisite-coverage-2026.js'
       - '.github/workflows/academic-2026-prerequisite-gate.yml'
   pull_request:
     paths:
       - 'assets/data/official-curriculum-iu5-2026.json'
       - 'assets/data/prerequisite-registry-iu5-2026.json'
+      - 'assets/data/prerequisite-content-coverage-2026.json'
       - 'assets/js/academic-main.js'
       - 'assets/css/academic-2026.css'
       - 'index.html'
       - 'scripts/validate-academic-2026.js'
+      - 'scripts/validate-prerequisite-coverage-2026.js'
       - '.github/workflows/academic-2026-prerequisite-gate.yml'
 
 jobs:
@@ -30,6 +34,8 @@ jobs:
           node-version: '20'
       - name: Validate IU5 2026 curriculum and prerequisite registry
         run: node scripts/validate-academic-2026.js
+      - name: Validate prerequisite content coverage audit
+        run: node scripts/validate-prerequisite-coverage-2026.js
       - name: Check Academic 2026 runtime JavaScript syntax
         run: node --check assets/js/academic-main.js
       - name: Check runtime references are loaded by index
