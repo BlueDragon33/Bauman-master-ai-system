@@ -1,0 +1,126 @@
+html[data-bauman-device-access="checking"] body > *:not(#baumanDeviceGate),
+html[data-bauman-device-access="pending"] body > *:not(#baumanDeviceGate),
+html[data-bauman-device-access="blocked"] body > *:not(#baumanDeviceGate),
+html[data-bauman-device-access="offline"] body > *:not(#baumanDeviceGate) {
+  visibility: hidden !important;
+}
+
+html[data-bauman-device-access="authorized"] #baumanDeviceGate,
+html[data-bauman-device-access="offline-grace"] #baumanDeviceGate {
+  display: none !important;
+}
+
+.bauman-device-gate {
+  position: fixed;
+  inset: 0;
+  z-index: 2147483000;
+  display: grid;
+  place-items: center;
+  padding: 24px;
+  background:
+    radial-gradient(circle at 25% 20%, rgba(18, 100, 82, .26), transparent 36%),
+    linear-gradient(145deg, #0d1713, #17170f 70%);
+  color: #f5f1e4;
+  font-family: "Segoe UI", Arial, sans-serif;
+  visibility: visible !important;
+}
+
+.bauman-device-gate.hidden { display: none; }
+
+.bauman-device-card {
+  width: min(580px, 100%);
+  box-sizing: border-box;
+  border: 1px solid #415348;
+  background: rgba(27, 31, 23, .98);
+  border-radius: 24px;
+  padding: 34px;
+  box-shadow: 0 30px 90px rgba(0, 0, 0, .45);
+}
+
+.bauman-device-mark {
+  width: 64px;
+  height: 64px;
+  border-radius: 18px;
+  display: grid;
+  place-items: center;
+  background: #967414;
+  color: #fff4bf;
+  font-family: Georgia, serif;
+  font-weight: 900;
+  font-size: 20px;
+  box-shadow: inset 0 0 0 1px rgba(255, 255, 255, .08);
+}
+
+.bauman-device-kicker {
+  display: block;
+  margin-top: 21px;
+  color: #d7bb62;
+  letter-spacing: .16em;
+  font-size: 11px;
+  font-weight: 900;
+}
+
+.bauman-device-card h1 {
+  margin: 8px 0 10px;
+  font: 700 32px/1.2 Georgia, "Times New Roman", serif;
+  color: #fffdf4;
+}
+
+.bauman-device-card p { margin: 0; color: #abb9b2; line-height: 1.65; }
+
+.bauman-device-code {
+  margin-top: 22px;
+  padding: 16px;
+  border: 1px solid #4c5038;
+  border-radius: 14px;
+  background: #14170f;
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 7px 12px;
+  align-items: center;
+}
+
+.bauman-device-code.hidden { display: none; }
+.bauman-device-code span { grid-column: 1 / -1; color: #aaa88e; font-size: 10px; text-transform: uppercase; letter-spacing: .12em; font-weight: 800; }
+.bauman-device-code strong { font: 800 18px/1.3 ui-monospace, SFMono-Regular, Consolas, monospace; color: #f2d76e; letter-spacing: .03em; word-break: break-all; }
+
+.bauman-device-code button,
+.bauman-device-retry {
+  border: 1px solid #366e5d;
+  background: #124b3e;
+  color: #e5fff6;
+  border-radius: 10px;
+  padding: 9px 12px;
+  font-weight: 800;
+  cursor: pointer;
+}
+
+.bauman-device-status {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  margin-top: 18px;
+  padding: 12px 14px;
+  border-radius: 12px;
+  background: #14241e;
+  color: #9dddc8;
+  font-size: 12px;
+  font-weight: 750;
+}
+
+.bauman-device-status i { width: 9px; height: 9px; border-radius: 50%; background: #50d9aa; box-shadow: 0 0 14px rgba(80, 217, 170, .5); }
+.bauman-device-gate[data-state="pending"] .bauman-device-status { background: #302b17; color: #dfc95e; }
+.bauman-device-gate[data-state="pending"] .bauman-device-status i { background: #e1c34e; }
+.bauman-device-gate[data-state="blocked"] .bauman-device-status { background: #3b201e; color: #ffafa7; }
+.bauman-device-gate[data-state="blocked"] .bauman-device-status i { background: #e9685e; }
+.bauman-device-gate[data-state="offline"] .bauman-device-status { background: #262b30; color: #bec7cf; }
+.bauman-device-gate[data-state="offline"] .bauman-device-status i { background: #96a3ae; }
+.bauman-device-retry { margin-top: 14px; width: 100%; padding: 12px; }
+.bauman-device-card > small { display: block; margin-top: 14px; color: #788982; font-size: 10px; line-height: 1.55; }
+
+@media (max-width: 520px) {
+  .bauman-device-card { padding: 24px 20px; border-radius: 18px; }
+  .bauman-device-card h1 { font-size: 26px; }
+  .bauman-device-code { grid-template-columns: 1fr; }
+  .bauman-device-code button { width: 100%; }
+}

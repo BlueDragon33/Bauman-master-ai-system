@@ -1,0 +1,102 @@
+name: Bauman Runtime Device Gate CI
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - "index.html"
+      - "assets/css/device-access-gate.css"
+      - "assets/js/platform/runtime-config.js"
+      - "assets/js/platform/device-access-gate.js"
+      - "scripts/serve-local-runtime.mjs"
+      - "scripts/runtime-device-gate-regression.mjs"
+      - "scripts/runtime-device-gate-e2e.mjs"
+      - "control-service/**"
+      - ".github/workflows/runtime-device-gate-ci.yml"
+  pull_request:
+    branches: [main]
+    paths:
+      - "index.html"
+      - "assets/css/device-access-gate.css"
+      - "assets/js/platform/runtime-config.js"
+      - "assets/js/platform/device-access-gate.js"
+      - "scripts/serve-local-runtime.mjs"
+      - "scripts/runtime-device-gate-regression.mjs"
+      - "scripts/runtime-device-gate-e2e.mjs"
+      - "control-service/**"
+      - ".github/workflows/runtime-device-gate-ci.yml"
+
+jobs:
+  verify-runtime-device-gate:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 15
+    env:
+      BAUMAN_TEST_SECRET: local-e2e-bauman-control-secret-0123456789abcdef
+      BAUMAN_CONTROL_ORIGIN: http://127.0.0.1:3003
+      BAUMAN_APP_ORIGIN: http://127.0.0.1:3005
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22.13.0
+
+      - name: Install Bauman Control dependencies
+        working-directory: control-service
+        run: npm install --no-audit --no-fund
+
+      - name: Static runtime gate regression
+        run: node scripts/runtime-device-gate-regression.mjs
+
+      - name: Typecheck and contract gate
+        working-directory: control-service
+        run: npm run gate
+
+      - name: Prepare isolated local D1
+        working-directory: control-service
+        run: npx wrangler d1 migrations apply bauman-control-local --local --config wrangler.local.jsonc
+
+      - name: Start isolated local Bauman stack
+        shell: bash
+        run: |
+          set -euo pipefail
+          (
+            cd control-service
+            npx wrangler dev --local --config wrangler.local.jsonc --ip 127.0.0.1 --port 3003 \
+              --var "BAUMAN_CONTROL_SERVICE_SECRET:${BAUMAN_TEST_SECRET}" \
+              --var "APPLICATION_MANAGEMENT_ORIGIN:http://127.0.0.1:3000" \
+              --var "BAUMAN_APP_ORIGIN:${BAUMAN_APP_ORIGIN}" \
+              > /tmp/bauman-control.log 2>&1
+          ) &
+          echo $! > /tmp/bauman-control.pid
+          node scripts/serve-local-runtime.mjs --host 127.0.0.1 --port 3005 > /tmp/bauman-runtime.log 2>&1 &
+          echo $! > /tmp/bauman-runtime.pid
+
+          for attempt in $(seq 1 60); do
+            if curl --fail --silent http://127.0.0.1:3003/health >/dev/null \
+              && curl --fail --silent http://127.0.0.1:3005/_local/health >/dev/null; then
+              exit 0
+            fi
+            sleep 0.5
+          done
+          echo "Bauman local stack did not become ready" >&2
+          cat /tmp/bauman-control.log || true
+          cat /tmp/bauman-runtime.log || true
+          exit 1
+
+      - name: Device lifecycle E2E
+        run: node scripts/runtime-device-gate-e2e.mjs
+
+      - name: Show local stack logs on failure
+        if: failure()
+        run: |
+          echo "===== Bauman Control ====="
+          cat /tmp/bauman-control.log || true
+          echo "===== Bauman Runtime ====="
+          cat /tmp/bauman-runtime.log || true
+
+      - name: Stop isolated local stack
+        if: always()
+        shell: bash
+        run: |
+          if [ -f /tmp/bauman-runtime.pid ]; then kill "$(cat /tmp/bauman-runtime.pid)" 2>/dev/null || true; fi
+          if [ -f /tmp/bauman-control.pid ]; then kill "$(cat /tmp/bauman-control.pid)" 2>/dev/null || true; fi
