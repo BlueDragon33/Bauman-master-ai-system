@@ -2,7 +2,9 @@
 
 Date: 2026-09-10
 Branch: `temp/bauman-master-hub-prereq-2026`
-Status: `P8_PACK_IMPLEMENTED_GATE_PENDING`
+Status: `P8_BLUEPRINT_VALIDATED_CI_PASS`
+CI run: `34455096221`
+Head SHA validated: `f032ed0cdd3be59d4fcfb1d5414f80b4330fd1fb`
 
 ## Goal
 
@@ -68,7 +70,7 @@ D1 emphasizes actual design competence: turning vague requirements into testable
 
 The active P8 route excludes enterprise framework specialization, deep microservices, Kubernetes, service mesh, cloud architecture certification, advanced DevOps platform engineering and competitive programming. It also excludes UGV/USV/control/hardware-specific architecture from the prerequisite path.
 
-## Validator
+## Validator and CI
 
 Added `scripts/validate-p08-software-engineering.js` and wired it into the Academic 2026 workflow.
 
@@ -87,10 +89,12 @@ The validator checks:
 - independent requirement-to-test traceability sanity checks;
 - independent semantic-version ordering sanity checks.
 
+CI run `34455096221` completed successfully. Every step passed, including official curriculum validation, prerequisite coverage validation, P9/P6/P4/P7 regression validators, `Validate P8 Software Engineering pack`, runtime JavaScript syntax and runtime reference checks.
+
 ## Runtime policy
 
 Pass 08 still does not write diagnostic scores, mutate the adaptive scheduler, overwrite Programming lessons, create a new top-level subject or merge into `main`.
 
-## Next pass after CI
+## Next pass
 
 Pass 09 should implement `P10 · Scientific/Data Python` by reusing PR04/PR05/PR08/PR12/PR25/PR26 and filling only missing readiness nodes: SciPy essentials, vectorization/numerical shape discipline, train/validation leakage prevention, sklearn Pipeline/ColumnTransformer, reproducible preprocessing and dataset/schema validation.
