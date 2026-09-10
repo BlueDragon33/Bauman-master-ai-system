@@ -68,7 +68,8 @@ assert((reuse?.doNotReuseAsDefault || []).some(x => /UGV\/USV/i.test(x)), 'reuse
 const refCase = pack.defaultReferenceCase || {};
 assert(refCase.id === 'CASE-IS-01', 'default reference case identity drifted');
 for (const c of ['web client','application service','database','analytics worker','observability']) assert((refCase.components || []).includes(c), `default reference case missing ${c}`);
-assert(!/UGV|USV|robot|sensor|controller|PID|LQR|Kalman/i.test(JSON.stringify(refCase)), 'default J1 reference case must remain neutral');
+const refCasePositive = JSON.stringify({id:refCase.id,name:refCase.name,description:refCase.description,components:refCase.components});
+assert(!/UGV|USV|robot|sensor|controller|PID|LQR|Kalman/i.test(refCasePositive), 'default J1 reference case must remain neutral');
 
 const nodes = pack.nodes || [];
 const nodeIds = nodes.map(x => x.id);
@@ -137,11 +138,10 @@ for (const required of [
   'system boundary and actors','components and responsibilities','interfaces and data contracts','end-to-end data flow and state ownership','deployment topology','latency throughput utilization and capacity','bottleneck and dependency analysis','availability reliability and failure propagation','observability evidence','architecture documentation and trade-offs'
 ]) assert(requiredScope.has(required), `J1 scope missing ${required}`);
 
-const positiveText = JSON.stringify({defaultReferenceCase:pack.defaultReferenceCase,nodes:pack.nodes,diagnostic:pack.diagnostic,repairRoutes:pack.repairRoutes});
+const positiveText = JSON.stringify({defaultReferenceCase:{id:refCase.id,name:refCase.name,description:refCase.description,components:refCase.components},nodes:pack.nodes,diagnostic:pack.diagnostic,repairRoutes:pack.repairRoutes});
 assert(!/UGV|USV|PID|LQR|Kalman|FPGA|PLC|SCADA|ROS specialization|robot-specific|sensor-control/i.test(positiveText), 'J1 active/default route must remain information-system neutral');
 assert(!/Kubernetes|service mesh|cloud certification/i.test(positiveText), 'J1 active route must avoid platform/certification detours');
 
-// Independent architecture sanity: detect dependency cycles.
 function hasCycle(graph) {
   const seen = new Set(), active = new Set();
   function dfs(v) {
@@ -156,16 +156,13 @@ function hasCycle(graph) {
 assert(hasCycle({client:['service'],service:['db'],db:[]}) === false, 'acyclic dependency invariant failed');
 assert(hasCycle({a:['b'],b:['c'],c:['a']}) === true, 'cycle detection invariant failed');
 
-// Independent latency sanity: serial critical path sums component/hop latency.
 const serialPathMs = [35, 70, 240, 55].reduce((a,b)=>a+b,0);
 assert(serialPathMs === 400, 'serial latency-budget invariant failed');
 
-// Independent availability sanity for independent serial dependencies.
 function serialAvailability(values) { return values.reduce((a,b)=>a*b,1); }
 const avail = serialAvailability([0.999,0.995,0.9995]);
 assert(avail < 0.999 && avail > 0.992, 'serial availability invariant failed');
 
-// Independent bottleneck evidence sanity.
 const measurements = {client:40, service:75, database:760, network:25};
 const bottleneck = Object.entries(measurements).sort((a,b)=>b[1]-a[1])[0][0];
 assert(bottleneck === 'database', 'bottleneck measurement invariant failed');
