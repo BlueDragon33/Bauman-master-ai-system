@@ -24,17 +24,34 @@ for(const token of [
   'function activeRepairPlan(',
   'function schedulerCompatibility(',
   "mode:'advice_only'",
-  'Readiness risk only; not a probability of receiving a grade.'
+  'Readiness risk only; not a probability of receiving a grade.',
+  '.find(x=>x.stage===stageId)'
 ]) assert(runtime.includes(token),`runtime missing ${token}`);
 
 assert(!/SCHEDULER_MUTATION_ENABLED\s*=\s*true/.test(runtime),'scheduler mutation must remain disabled in Pass13C');
 assert(!/\.autoSchedule\s*\(/.test(runtime),'Academic runtime must not invoke legacy autoSchedule in Pass13C');
 assert(!/schedule\.entries\s*\[[^\]]+\]\s*=/.test(runtime),'Academic runtime must not write schedule entries in Pass13C');
 assert(!/probability of receiving a grade[^.]*\d+%/i.test(runtime),'Course risk must not fabricate grade probability');
+assert(!/stagePolicy\([^)]*\)\{return byId\(/.test(runtime),'stageActivationPolicy uses stage keys, not generic id keys');
 
 const stageExpected={prepare:'before_stankin',preparatory:'stankin',bauman:'pre_bauman_8_weeks',m1:'semester_1',m2:'semester_2',m3:'semester_3',m4:'semester_4'};
 for(const [legacy,academic] of Object.entries(stageExpected)) assert(runtime.includes(`${legacy}:'${academic}'`),`stage map missing ${legacy} -> ${academic}`);
 for(const id of Object.values(stageExpected)) assert(registry.stageActivationPolicy.some(x=>x.stage===id),`registry missing activation stage ${id}`);
+
+const beforeStankin=registry.stageActivationPolicy.find(x=>x.stage==='before_stankin');
+assert(beforeStankin?.active?.includes('P1'),'before_stankin must activate P1');
+assert(beforeStankin?.secondary?.includes('P4'),'before_stankin must keep P4 secondary');
+assert(beforeStankin?.locked?.includes('P12'),'before_stankin must keep P12 locked');
+function activationFromPolicy(policy,gateId,state='repair'){
+  if(state==='mastered')return 'stopped';
+  if((policy.locked||[]).includes(gateId))return 'locked';
+  if((policy.active||[]).includes(gateId))return 'active';
+  if((policy.secondary||[]).includes(gateId))return 'secondary';
+  return 'inactive';
+}
+assert(activationFromPolicy(beforeStankin,'P1')==='active','P1 must resolve ACTIVE before STANKIN');
+assert(activationFromPolicy(beforeStankin,'P4')==='secondary','P4 must resolve SECONDARY before STANKIN');
+assert(activationFromPolicy(beforeStankin,'P12')==='locked','P12 must resolve LOCKED before STANKIN');
 
 const electiveGroups=curriculum.electiveGroups.map(g=>({...g,semesters:[g.semester]}));
 const electiveOptions=curriculum.electiveGroups.flatMap(g=>g.options.map(o=>({...o,credits:g.credits,hours:g.hours,semesters:[g.semester],assessment:g.assessment})));
@@ -90,4 +107,4 @@ if(errors.length){
   process.exit(1);
 }
 console.log('PASS13C_RISK_ENGINE_PASS');
-console.log(JSON.stringify({schedulerMutation:false,stageMappings:Object.keys(stageExpected).length,officialDependencies:registry.courseDependencies.length,riskStates:['CRITICAL','HIGH','MEDIUM','UNKNOWN','CLEAR'],p0StopMode:'JIT_ONLY'},null,2));
+console.log(JSON.stringify({schedulerMutation:false,stageMappings:Object.keys(stageExpected).length,stageLookup:'stage_key',officialDependencies:registry.courseDependencies.length,riskStates:['CRITICAL','HIGH','MEDIUM','UNKNOWN','CLEAR'],p0StopMode:'JIT_ONLY'},null,2));
