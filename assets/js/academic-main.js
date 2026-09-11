@@ -18,7 +18,7 @@
     mastered:{id:'clear',label:'CLEAR',rank:0}
   });
 
-  const h=s=>String(s??'').replace(/[&<>"']/g,m=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot',"'":'&#39;'}[m]));
+  const h=s=>String(s??'').replace(/[&<>"']/g,m=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[m]));
   const byId=(arr,id)=>(arr||[]).find(x=>x.id===id)||null;
   const uniq=a=>Array.from(new Set((a||[]).filter(Boolean)));
   const finite=n=>Number.isFinite(Number(n));
