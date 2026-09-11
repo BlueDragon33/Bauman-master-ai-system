@@ -1,0 +1,31 @@
+{
+  "schema": "BAUMAN_ROADMAP_V2_MIGRATION_REPORT_L19_V2",
+  "generatedAt": "2026-08-10T21:00:00+07:00",
+  "contract": {
+    "path": "roadmap_v2/migration/migration-contract.json",
+    "sha256": "d052fbcf0402a01581cdd1705f754cf866c0a4d0bfdeef3379752de811be902e"
+  },
+  "mapping": {
+    "path": "roadmap_v2/migration/legacy-to-roadmap-v2.mapping.json",
+    "sha256": "bbf2d4d70c78a43c21970d465a666b7e82564d3f5eec77205417f1be6378354c"
+  },
+  "summary": {
+    "baselineCommit": "e383912354673bdce7a0059d6b9a23799d74e689",
+    "legacyLessonsInventoried": 347,
+    "exactLegacyLessonMappingsVerified": 5,
+    "preservedLegacyLessonsUnmapped": 342,
+    "overlayRecordsInventoried": 18,
+    "frameworkChaptersInventoried": 21,
+    "frameworkSubLessonsInventoried": 172,
+    "frameworkCandidatesQuarantined": 21,
+    "sidecarSourceGaps": 15,
+    "priorityEngineEligibleLegacyRecords": 0,
+    "sourceMutations": 0,
+    "result": "PASS_CONTRACT_ONLY"
+  },
+  "resolvedIssue": {
+    "issue": "Large GitHub blobs returned empty inline content through the connector, which initially made populated lessons/speaking/dialogue sources look empty.",
+    "resolution": "Decode immutable blobs by SHA. lessons.json contains 347 unique lessons/5,552 slides; theory_lecture_content contains 18 overlay records; standalone sidecar arrays remain genuinely empty and tests has zero questions.",
+    "consequence": "Migration preserves the 347 lessons and 18 overlays, treats theory-framework as secondary, maps only five verified MATH-L2-C07 refs, and quarantines every unverified semantic mapping."
+  }
+}

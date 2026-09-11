@@ -1,0 +1,162 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://bauman.local/schemas/roadmap-v2.registry.schema.json",
+  "title": "Bauman Roadmap V2 Syllabus Registry",
+  "type": "object",
+  "required": [
+    "schema",
+    "version",
+    "source",
+    "program",
+    "knowledgeStates",
+    "priorityEngine",
+    "globalMasterReadyGate",
+    "counts",
+    "courses"
+  ],
+  "properties": {
+    "schema": { "const": "BAUMAN_ROADMAP_V2_SYLLABUS_REGISTRY_V1" },
+    "version": { "type": "integer", "minimum": 1 },
+    "source": { "type": "object" },
+    "program": { "type": "object" },
+    "knowledgeStates": {
+      "type": "array",
+      "minItems": 6,
+      "uniqueItems": true,
+      "items": { "type": "string" }
+    },
+    "priorityEngine": { "type": "object" },
+    "globalMasterReadyGate": { "type": "object" },
+    "counts": {
+      "type": "object",
+      "required": ["courses", "chapters", "numberedLessons", "dynamicChapters"],
+      "properties": {
+        "courses": { "const": 10 },
+        "chapters": { "const": 85 },
+        "numberedLessons": { "const": 304 },
+        "dynamicChapters": { "const": 8 },
+        "legacyPreserveChapters": { "const": 1 }
+      }
+    },
+    "courses": {
+      "type": "array",
+      "minItems": 10,
+      "maxItems": 10,
+      "items": { "$ref": "#/$defs/course" }
+    }
+  },
+  "$defs": {
+    "course": {
+      "type": "object",
+      "required": ["id", "order", "title", "levels", "chapterCount", "staticLessonCount"],
+      "properties": {
+        "id": { "type": "string", "pattern": "^\\d{2}-" },
+        "order": { "type": "integer", "minimum": 1, "maximum": 10 },
+        "title": { "type": "string", "minLength": 1 },
+        "levels": {
+          "type": "array",
+          "minItems": 1,
+          "items": { "$ref": "#/$defs/level" }
+        },
+        "chapterCount": { "type": "integer", "minimum": 1 },
+        "staticLessonCount": { "type": "integer", "minimum": 0 },
+        "dynamicChapterCount": { "type": "integer", "minimum": 0 },
+        "legacyPreserveChapterCount": { "type": "integer", "minimum": 0 }
+      }
+    },
+    "level": {
+      "type": "object",
+      "required": ["id", "order", "title", "chapters"],
+      "properties": {
+        "id": { "type": "string", "pattern": "^(R|L)\\d$" },
+        "order": { "type": "integer", "minimum": 1 },
+        "title": { "type": "string", "minLength": 1 },
+        "chapters": {
+          "type": "array",
+          "minItems": 1,
+          "items": { "$ref": "#/$defs/chapter" }
+        }
+      }
+    },
+    "chapter": {
+      "type": "object",
+      "required": [
+        "id",
+        "order",
+        "title",
+        "levelId",
+        "deliveryMode",
+        "prerequisites",
+        "learningContract",
+        "lessons",
+        "dynamicLessonTemplates"
+      ],
+      "properties": {
+        "id": { "type": "string", "pattern": "^[A-Z]+-(R|L)\\d-C\\d{2}$" },
+        "order": { "type": "integer", "minimum": 1 },
+        "title": { "type": "string", "minLength": 1 },
+        "levelId": { "type": "string", "pattern": "^(R|L)\\d$" },
+        "deliveryMode": { "enum": ["static", "dynamic", "legacy_preserve"] },
+        "prerequisites": { "$ref": "#/$defs/prerequisites" },
+        "learningContract": { "type": "object" },
+        "lessons": {
+          "type": "array",
+          "items": { "$ref": "#/$defs/lesson" }
+        },
+        "dynamicLessonTemplates": {
+          "type": "array",
+          "items": { "type": "string" }
+        },
+        "legacyBinding": { "type": ["object", "null"] }
+      }
+    },
+    "prerequisites": {
+      "type": "object",
+      "required": ["raw", "refs", "resolutionStatus"],
+      "properties": {
+        "raw": { "type": "string", "minLength": 1 },
+        "refs": { "type": "array", "items": { "type": "string" } },
+        "resolutionStatus": { "type": "string" }
+      }
+    },
+    "lesson": {
+      "type": "object",
+      "required": [
+        "id",
+        "localId",
+        "order",
+        "title",
+        "prerequisites",
+        "theory",
+        "exercises",
+        "application",
+        "simulationOrLab",
+        "assessment",
+        "projectCheckpoint",
+        "masterReadyEvidence",
+        "status",
+        "competencySource"
+      ],
+      "properties": {
+        "id": { "type": "string", "pattern": "-L\\d{2}$" },
+        "localId": { "type": "string", "pattern": "^L\\d{2}$" },
+        "order": { "type": "integer", "minimum": 1 },
+        "title": { "type": "string", "minLength": 1 },
+        "prerequisites": { "$ref": "#/$defs/prerequisites" },
+        "theory": { "type": "object" },
+        "exercises": { "type": "object" },
+        "application": { "type": "object" },
+        "simulationOrLab": { "type": "object" },
+        "assessment": { "type": "object" },
+        "projectCheckpoint": { "type": "object" },
+        "masterReadyEvidence": { "type": "object" },
+        "status": {
+          "enum": ["chua_hoc", "dang_hoc", "dat_prerequisite", "master_ready", "can_on", "gap"]
+        },
+        "competencySource": {
+          "enum": ["existing_competency", "new_gap", "bauman_current"]
+        }
+      }
+    }
+  }
+}

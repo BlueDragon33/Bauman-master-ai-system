@@ -1,0 +1,146 @@
+{
+  "schema": "BAUMAN_ROADMAP_V2_VALIDATION_REPORT_L19_V2",
+  "generatedAt": "2026-08-10T21:00:00+07:00",
+  "scope": "Lượt 19 / Bước 73-76",
+  "files": {
+    "spec": {
+      "path": "roadmap_v2/spec/Bauman_Roadmap_V2_Syllabus_Luot18.md",
+      "sha256": "22b1bbbf900f2b0fb34db2d683944495dd3d34805ee28ac63de312a6ec648b5d"
+    },
+    "baseline": {
+      "path": "roadmap_v2/baseline/math-main-e383912-inventory.json",
+      "sha256": "792b215e7f8264c5529468a3083b8d1feb8e4de5dd9496cad51bc4f3a4bd9e6b"
+    },
+    "legacyLessons": {
+      "path": "roadmap_v2/baseline/math-legacy-lessons-inventory.json",
+      "sha256": "b1e014a3f944d756544678a24bfc04873a7ab2bbcb42e3c98094d595f27faa7e"
+    },
+    "theoryFramework": {
+      "path": "roadmap_v2/baseline/math-theory-framework-inventory.json",
+      "sha256": "9844e2976ce93bb5a7aa8bb956d26ed862d09ff061bc1fa90d556f063333b5eb"
+    },
+    "physical": {
+      "path": "roadmap_v2/baseline/math-physical-source-inventory.json",
+      "sha256": "afc49ae4db33b5706cd5f3537ef4b199df96d95115479b26aa2bd79aab508495"
+    },
+    "registry": {
+      "path": "roadmap_v2/registry/roadmap-v2.registry.json",
+      "sha256": "b504b89f7e473fca4a521665a5f32cc4d7831f4e92edfda5127eb68aa72e53c7"
+    },
+    "graph": {
+      "path": "roadmap_v2/graph/prerequisite-graph.json",
+      "sha256": "1b14eb6ef099dcf3dcd16ed53b4e28d43b24e071702ba5dcde8de683eb22ffd4"
+    },
+    "mapping": {
+      "path": "roadmap_v2/migration/legacy-to-roadmap-v2.mapping.json",
+      "sha256": "bbf2d4d70c78a43c21970d465a666b7e82564d3f5eec77205417f1be6378354c"
+    },
+    "migrationContract": {
+      "path": "roadmap_v2/migration/migration-contract.json",
+      "sha256": "d052fbcf0402a01581cdd1705f754cf866c0a4d0bfdeef3379752de811be902e"
+    },
+    "acceptance": {
+      "path": "roadmap_v2/reports/LUOT_19_ACCEPTANCE.md",
+      "sha256": "30c6e0fbc46a6a5d28a1392e120efa7be5e6eff83a1ac68a98dcb3d8d2aeecb1"
+    }
+  },
+  "steps": [
+    {
+      "step": 73,
+      "script": "roadmap_v2/tools/validate-baseline-inventory.mjs",
+      "pass": true,
+      "result": {
+        "step": 73,
+        "result": "PASS",
+        "ref": "e383912354673bdce7a0059d6b9a23799d74e689",
+        "legacyLessons": 347,
+        "legacySlides": 5552,
+        "sourceChapters": 40,
+        "physicalContentGroups": 41,
+        "overlayRecords": 18,
+        "verifiedCompositeRefs": 5,
+        "runtimeModified": false
+      },
+      "stderr": null
+    },
+    {
+      "step": 74,
+      "script": "roadmap_v2/tools/validate-registry.mjs",
+      "pass": true,
+      "result": {
+        "step": 74,
+        "result": "PASS",
+        "sourceSha256": "22b1bbbf900f2b0fb34db2d683944495dd3d34805ee28ac63de312a6ec648b5d",
+        "counts": {
+          "courses": 10,
+          "chapters": 85,
+          "numberedLessons": 304,
+          "dynamicChapters": 8,
+          "legacyPreserveChapters": 1,
+          "preservedLegacyLessons": 347,
+          "preservedTheoryOverlayRecords": 18,
+          "preservedLegacyLessonCandidates": 5
+        },
+        "chapterContractsChecked": 85,
+        "lessonContractsChecked": 304,
+        "uniqueIds": 389,
+        "verifiedLegacyRefs": 5,
+        "runtimeModified": false
+      },
+      "stderr": null
+    },
+    {
+      "step": 75,
+      "script": "roadmap_v2/tools/validate-prerequisite-graph.mjs",
+      "pass": true,
+      "result": {
+        "step": 75,
+        "result": "PASS",
+        "registrySha256": "b504b89f7e473fca4a521665a5f32cc4d7831f4e92edfda5127eb68aa72e53c7",
+        "nodes": 450,
+        "hierarchyEdges": 425,
+        "prerequisiteEdges": 185,
+        "resolutions": 85,
+        "topologicalChapters": 85,
+        "priorityEngineActivated": false,
+        "runtimeModified": false
+      },
+      "stderr": null
+    },
+    {
+      "step": 76,
+      "script": "roadmap_v2/tools/validate-migration-contract.mjs",
+      "pass": true,
+      "result": {
+        "step": 76,
+        "result": "PASS_CONTRACT_ONLY",
+        "legacyLessonsInventoried": 347,
+        "exactLegacyMappings": 5,
+        "preservedUnmappedLegacy": 342,
+        "overlayRecords": 18,
+        "frameworkChapters": 21,
+        "frameworkSubLessons": 172,
+        "sidecarGaps": 15,
+        "priorityEngineEligibleRecords": 0,
+        "sourceMutations": 0,
+        "runtimeModified": false
+      },
+      "stderr": null
+    }
+  ],
+  "acceptanceDocument": {
+    "path": "roadmap_v2/reports/LUOT_19_ACCEPTANCE.md",
+    "pass": true
+  },
+  "safetyBoundary": {
+    "runtimeModified": false,
+    "sourceMutations": 0,
+    "priorityEngineActivated": false
+  },
+  "summary": {
+    "totalSteps": 4,
+    "passedSteps": 4,
+    "failedSteps": 0,
+    "result": "PASS_CONTRACT_ONLY"
+  }
+}

@@ -1,0 +1,51 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://bauman.local/schemas/prerequisite-graph.schema.json",
+  "title": "Bauman Roadmap V2 Prerequisite Graph",
+  "type": "object",
+  "required": [
+    "schema",
+    "version",
+    "source",
+    "direction",
+    "nodes",
+    "hierarchyEdges",
+    "prerequisiteEdges",
+    "resolutions",
+    "topologicalChapterOrder",
+    "validation"
+  ],
+  "properties": {
+    "schema": { "const": "BAUMAN_ROADMAP_V2_PREREQUISITE_GRAPH_V1" },
+    "version": { "type": "integer", "minimum": 1 },
+    "source": { "type": "object" },
+    "direction": { "const": "prerequisite_to_dependent" },
+    "nodes": { "type": "array", "minItems": 400 },
+    "hierarchyEdges": { "type": "array", "minItems": 390 },
+    "prerequisiteEdges": { "type": "array", "minItems": 1 },
+    "resolutions": { "type": "array", "minItems": 85, "maxItems": 85 },
+    "topologicalChapterOrder": { "type": "array", "minItems": 85, "maxItems": 85 },
+    "validation": {
+      "type": "object",
+      "required": [
+        "chapterNodes",
+        "lessonNodes",
+        "unresolvedResiduals",
+        "missingRefs",
+        "selfRefs",
+        "cycleNodes",
+        "result"
+      ],
+      "properties": {
+        "chapterNodes": { "const": 85 },
+        "lessonNodes": { "const": 304 },
+        "unresolvedResiduals": { "type": "array", "maxItems": 0 },
+        "missingRefs": { "type": "array", "maxItems": 0 },
+        "selfRefs": { "type": "array", "maxItems": 0 },
+        "cycleNodes": { "type": "array", "maxItems": 0 },
+        "topologicalChapterCount": { "const": 85 },
+        "result": { "const": "PASS" }
+      }
+    }
+  }
+}
