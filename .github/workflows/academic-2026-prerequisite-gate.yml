@@ -9,6 +9,7 @@ on:
       - 'assets/data/prerequisite-packs/**'
       - 'assets/js/academic-main.js'
       - 'assets/js/academic-scheduler-preview.js'
+      - 'assets/js/academic-scheduler-apply.js'
       - 'assets/js/platform/runtime-config.js'
       - 'assets/js/platform/device-access-gate.js'
       - 'assets/css/academic-2026.css'
@@ -28,6 +29,7 @@ on:
       - 'scripts/validate-diagnostic-runtime-13b.js'
       - 'scripts/validate-risk-engine-13c.js'
       - 'scripts/validate-scheduler-preview-13d.js'
+      - 'scripts/validate-scheduler-apply-13f.js'
       - 'tests/academic-browser-acceptance-13e.mjs'
       - '.github/workflows/academic-2026-prerequisite-gate.yml'
   pull_request:
@@ -38,6 +40,7 @@ on:
       - 'assets/data/prerequisite-packs/**'
       - 'assets/js/academic-main.js'
       - 'assets/js/academic-scheduler-preview.js'
+      - 'assets/js/academic-scheduler-apply.js'
       - 'assets/js/platform/runtime-config.js'
       - 'assets/js/platform/device-access-gate.js'
       - 'assets/css/academic-2026.css'
@@ -57,6 +60,7 @@ on:
       - 'scripts/validate-diagnostic-runtime-13b.js'
       - 'scripts/validate-risk-engine-13c.js'
       - 'scripts/validate-scheduler-preview-13d.js'
+      - 'scripts/validate-scheduler-apply-13f.js'
       - 'tests/academic-browser-acceptance-13e.mjs'
       - '.github/workflows/academic-2026-prerequisite-gate.yml'
 
@@ -96,10 +100,13 @@ jobs:
         run: node scripts/validate-risk-engine-13c.js
       - name: Validate Pass13D scheduler integration preview
         run: node scripts/validate-scheduler-preview-13d.js
+      - name: Validate Pass13F transactional scheduler Apply/rollback
+        run: node scripts/validate-scheduler-apply-13f.js
       - name: Check Academic and Device Gate runtime JavaScript syntax
         run: |
           node --check assets/js/academic-main.js
           node --check assets/js/academic-scheduler-preview.js
+          node --check assets/js/academic-scheduler-apply.js
           node --check assets/js/platform/runtime-config.js
           node --check assets/js/platform/device-access-gate.js
           node --check tests/academic-browser-acceptance-13e.mjs
@@ -113,6 +120,7 @@ jobs:
           grep -q 'assets/js/planning-main.js' index.html
           grep -q 'assets/js/academic-main.js' index.html
           grep -q 'assets/js/academic-scheduler-preview.js' index.html
+          grep -q 'assets/js/academic-scheduler-apply.js' index.html
           ! grep -q '</div>7' index.html
 
   browser-e2e-acceptance:
@@ -139,7 +147,7 @@ jobs:
           done
           cat /tmp/bauman-http.log
           exit 1
-      - name: Run Pass13E browser acceptance
+      - name: Run Pass13E + Pass13F browser acceptance
         env:
           BAUMAN_E2E_BASE_URL: http://127.0.0.1:4173/
           BAUMAN_E2E_ARTIFACT_DIR: artifacts/browser-13e
@@ -151,7 +159,7 @@ jobs:
         if: always()
         uses: actions/upload-artifact@v4
         with:
-          name: academic-browser-13e-${{ github.run_id }}
+          name: academic-browser-13e-13f-${{ github.run_id }}
           path: artifacts/browser-13e
           if-no-files-found: warn
           retention-days: 7
