@@ -8,6 +8,7 @@ on:
       - 'assets/data/prerequisite-content-coverage-2026.json'
       - 'assets/data/prerequisite-packs/**'
       - 'assets/js/academic-main.js'
+      - 'assets/js/academic-scheduler-preview.js'
       - 'assets/js/platform/runtime-config.js'
       - 'assets/js/platform/device-access-gate.js'
       - 'assets/css/academic-2026.css'
@@ -26,6 +27,7 @@ on:
       - 'scripts/validate-p00-technical-russian.js'
       - 'scripts/validate-diagnostic-runtime-13b.js'
       - 'scripts/validate-risk-engine-13c.js'
+      - 'scripts/validate-scheduler-preview-13d.js'
       - '.github/workflows/academic-2026-prerequisite-gate.yml'
   pull_request:
     paths:
@@ -34,6 +36,7 @@ on:
       - 'assets/data/prerequisite-content-coverage-2026.json'
       - 'assets/data/prerequisite-packs/**'
       - 'assets/js/academic-main.js'
+      - 'assets/js/academic-scheduler-preview.js'
       - 'assets/js/platform/runtime-config.js'
       - 'assets/js/platform/device-access-gate.js'
       - 'assets/css/academic-2026.css'
@@ -52,6 +55,7 @@ on:
       - 'scripts/validate-p00-technical-russian.js'
       - 'scripts/validate-diagnostic-runtime-13b.js'
       - 'scripts/validate-risk-engine-13c.js'
+      - 'scripts/validate-scheduler-preview-13d.js'
       - '.github/workflows/academic-2026-prerequisite-gate.yml'
 
 jobs:
@@ -88,9 +92,12 @@ jobs:
         run: node scripts/validate-diagnostic-runtime-13b.js
       - name: Validate Pass13C course risk and active repair engine
         run: node scripts/validate-risk-engine-13c.js
+      - name: Validate Pass13D scheduler integration preview
+        run: node scripts/validate-scheduler-preview-13d.js
       - name: Check Academic and Device Gate runtime JavaScript syntax
         run: |
           node --check assets/js/academic-main.js
+          node --check assets/js/academic-scheduler-preview.js
           node --check assets/js/platform/runtime-config.js
           node --check assets/js/platform/device-access-gate.js
       - name: Check runtime references are loaded by index
@@ -102,4 +109,5 @@ jobs:
           grep -q 'assets/js/platform/device-access-gate.js' index.html
           grep -q 'assets/js/planning-main.js' index.html
           grep -q 'assets/js/academic-main.js' index.html
+          grep -q 'assets/js/academic-scheduler-preview.js' index.html
           ! grep -q '</div>7' index.html
