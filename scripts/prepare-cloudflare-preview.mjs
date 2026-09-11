@@ -21,14 +21,19 @@ function exactHttpsOrigin(name) {
   return url.origin;
 }
 
-function uuid(name) {
+function uuidValue(name) {
   const value = required(name).toLowerCase();
   if (!/^[0-9a-f]{8}-[0-9a-f]{4}-[1-5][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$/.test(value)) {
     throw new Error(`${name} must be a real D1 UUID.`);
   }
+  return value;
+}
+
+function previewD1Id() {
+  const value = uuidValue('BAUMAN_CONTROL_PREVIEW_D1_DATABASE_ID');
   if (value === LOCAL_D1_ID) throw new Error('Preview must never use the Bauman local D1 placeholder.');
-  const production = String(process.env.BAUMAN_CONTROL_PRODUCTION_D1_DATABASE_ID || '').trim().toLowerCase();
-  if (production && value === production) throw new Error('Preview must never reuse the Bauman production D1 database.');
+  const production = uuidValue('BAUMAN_CONTROL_PRODUCTION_D1_DATABASE_ID');
+  if (value === production) throw new Error('Preview must never reuse the Bauman production D1 database.');
   return value;
 }
 
@@ -48,7 +53,7 @@ function materialize(templatePath, outputPath, replacements) {
   fs.writeFileSync(path.join(root, outputPath), source);
 }
 
-const d1 = uuid('BAUMAN_CONTROL_PREVIEW_D1_DATABASE_ID');
+const d1 = previewD1Id();
 const applicationManagementOrigin = exactHttpsOrigin('APPLICATION_MANAGEMENT_PREVIEW_ORIGIN');
 const controlOrigin = exactHttpsOrigin('BAUMAN_CONTROL_PREVIEW_ORIGIN');
 const runtimeOrigin = exactHttpsOrigin('BAUMAN_RUNTIME_PREVIEW_ORIGIN');
