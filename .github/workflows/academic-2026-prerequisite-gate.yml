@@ -28,6 +28,7 @@ on:
       - 'scripts/validate-diagnostic-runtime-13b.js'
       - 'scripts/validate-risk-engine-13c.js'
       - 'scripts/validate-scheduler-preview-13d.js'
+      - 'tests/academic-browser-acceptance-13e.mjs'
       - '.github/workflows/academic-2026-prerequisite-gate.yml'
   pull_request:
     paths:
@@ -56,6 +57,7 @@ on:
       - 'scripts/validate-diagnostic-runtime-13b.js'
       - 'scripts/validate-risk-engine-13c.js'
       - 'scripts/validate-scheduler-preview-13d.js'
+      - 'tests/academic-browser-acceptance-13e.mjs'
       - '.github/workflows/academic-2026-prerequisite-gate.yml'
 
 jobs:
@@ -100,6 +102,7 @@ jobs:
           node --check assets/js/academic-scheduler-preview.js
           node --check assets/js/platform/runtime-config.js
           node --check assets/js/platform/device-access-gate.js
+          node --check tests/academic-browser-acceptance-13e.mjs
       - name: Check runtime references are loaded by index
         shell: bash
         run: |
@@ -111,3 +114,44 @@ jobs:
           grep -q 'assets/js/academic-main.js' index.html
           grep -q 'assets/js/academic-scheduler-preview.js' index.html
           ! grep -q '</div>7' index.html
+
+  browser-e2e-acceptance:
+    needs: validate-academic-registry
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22.13.0'
+      - name: Install Playwright Chromium
+        run: |
+          printf '{"private":true,"type":"module"}\n' > package.json
+          npm install --no-save --no-audit --no-fund playwright@1.55.0
+          npx playwright install --with-deps chromium
+      - name: Start static Hub server
+        run: |
+          python3 -m http.server 4173 --bind 127.0.0.1 > /tmp/bauman-http.log 2>&1 &
+          echo $! > /tmp/bauman-http.pid
+          for i in {1..30}; do
+            if curl -fsS http://127.0.0.1:4173/ >/dev/null; then exit 0; fi
+            sleep 1
+          done
+          cat /tmp/bauman-http.log
+          exit 1
+      - name: Run Pass13E browser acceptance
+        env:
+          BAUMAN_E2E_BASE_URL: http://127.0.0.1:4173/
+          BAUMAN_E2E_ARTIFACT_DIR: artifacts/browser-13e
+        run: node tests/academic-browser-acceptance-13e.mjs
+      - name: Show static server log on failure
+        if: failure()
+        run: cat /tmp/bauman-http.log || true
+      - name: Upload Browser/E2E evidence
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: academic-browser-13e-${{ github.run_id }}
+          path: artifacts/browser-13e
+          if-no-files-found: warn
+          retention-days: 7
