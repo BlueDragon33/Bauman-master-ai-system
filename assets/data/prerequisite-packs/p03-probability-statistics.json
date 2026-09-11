@@ -1,0 +1,82 @@
+{
+  "schema":"bauman_prerequisite_pack_v1",
+  "version":"P3_PROBABILITY_STATISTICS_REUSE_DIAGNOSTIC_PASS13B_V1",
+  "gateId":"P3",
+  "title":"Xác suất & thống kê / Теория вероятностей и статистика",
+  "verifiedAt":"2026-09-11",
+  "notOfficialAdministrativePrerequisite":true,
+  "reuseOnly":true,
+  "purpose":"Chẩn đoán xác suất-thống kê đã có trong Math và chỉ định đúng phần cần sửa trước d03/d04/d09.",
+  "mastery":{"target":90,"applicationMinimum":85,"criticalMisconceptionsAllowed":0,"masteredThreshold":95,"masteredApplicationMinimum":90,"scoreFormula":"M = 0.25*D0 + 0.50*D1 + 0.25*D2"},
+  "localReuse":[
+    {"disciplineId":"probability_statistics_inference","source":"subjects/math/data/discipline_spine.json"},
+    {"chapterId":"MATH-VN-C04-xac_suat_co_ban_va_bien_","source":"subjects/math/data/chapter_spine.json"},
+    {"chapterId":"MATH-PREP-C16-thong_ke_uoc_luong_kiem_","source":"subjects/math/data/chapter_spine.json"}
+  ],
+  "nodes":[
+    {"id":"P3-N01","order":1,"title":"Probability rules and conditional probability","dependsOn":[]},
+    {"id":"P3-N02","order":2,"title":"Bayes rule and independence","dependsOn":["P3-N01"]},
+    {"id":"P3-N03","order":3,"title":"Random variables and distributions","dependsOn":["P3-N01"]},
+    {"id":"P3-N04","order":4,"title":"Expectation, variance and moments","dependsOn":["P3-N03"]},
+    {"id":"P3-N05","order":5,"title":"Covariance and correlation","dependsOn":["P3-N04"]},
+    {"id":"P3-N06","order":6,"title":"Sampling and estimators","dependsOn":["P3-N04"]},
+    {"id":"P3-N07","order":7,"title":"Confidence intervals and hypothesis tests","dependsOn":["P3-N06"]},
+    {"id":"P3-N08","order":8,"title":"Statistical interpretation for models and experiments","dependsOn":["P3-N05","P3-N07"]}
+  ],
+  "diagnostic":{
+    "D0":{"weight":0.25,"items":[
+      {"id":"P3-D0-01","node":"P3-N01","prompt":"Nêu quy tắc cộng và nhân xác suất."},
+      {"id":"P3-D0-02","node":"P3-N01","prompt":"Định nghĩa xác suất có điều kiện P(A|B)."},
+      {"id":"P3-D0-03","node":"P3-N02","prompt":"Viết công thức Bayes."},
+      {"id":"P3-D0-04","node":"P3-N02","prompt":"Độc lập khác xung khắc thế nào?"},
+      {"id":"P3-D0-05","node":"P3-N03","prompt":"Biến ngẫu nhiên rời rạc và liên tục khác nhau thế nào?"},
+      {"id":"P3-D0-06","node":"P3-N03","prompt":"Nêu ví dụ phân phối Bernoulli, Poisson, Normal."},
+      {"id":"P3-D0-07","node":"P3-N04","prompt":"Kỳ vọng biểu diễn gì?"},
+      {"id":"P3-D0-08","node":"P3-N04","prompt":"Phương sai đo đại lượng gì?"},
+      {"id":"P3-D0-09","node":"P3-N05","prompt":"Covariance dương/âm nói gì?"},
+      {"id":"P3-D0-10","node":"P3-N05","prompt":"Correlation nằm trong khoảng nào?"},
+      {"id":"P3-D0-11","node":"P3-N06","prompt":"Estimator và estimate khác nhau thế nào?"},
+      {"id":"P3-D0-12","node":"P3-N06","prompt":"Bias của estimator là gì?"},
+      {"id":"P3-D0-13","node":"P3-N07","prompt":"Khoảng tin cậy 95% không có nghĩa gì về một interval cố định sau khi đã tính?"},
+      {"id":"P3-D0-14","node":"P3-N07","prompt":"p-value dùng để đánh giá điều gì?"},
+      {"id":"P3-D0-15","node":"P3-N08","prompt":"Statistical significance khác practical significance thế nào?"},
+      {"id":"P3-D0-16","node":"P3-N08","prompt":"Vì sao test set không dùng để chọn mô hình?"}
+    ]},
+    "D1":{"weight":0.50,"items":[
+      {"id":"P3-D1-01","node":"P3-N01","task":"Cho P(A)=0.6, P(B)=0.5, P(A∩B)=0.3; tính P(A|B) và kiểm tra độc lập."},
+      {"id":"P3-D1-02","node":"P3-N02","task":"Dùng Bayes cho test bệnh: prevalence 1%, sensitivity 95%, specificity 90%; tính P(bệnh|dương tính)."},
+      {"id":"P3-D1-03","node":"P3-N03","task":"Với X~Bernoulli(0.2), tính P(X=1), E[X], Var(X)."},
+      {"id":"P3-D1-04","node":"P3-N04","task":"Cho dữ liệu 1,2,3,4; tính mean và population variance."},
+      {"id":"P3-D1-05","node":"P3-N05","task":"Tính covariance/correlation cho hai vector nhỏ và giải thích dấu."},
+      {"id":"P3-D1-06","node":"P3-N06","task":"Giải thích vì sao sample mean là estimator của population mean và mô phỏng tư duy khi n tăng."},
+      {"id":"P3-D1-07","node":"P3-N07","task":"Từ mean=10, SE=1, lập xấp xỉ CI95% và giải thích đúng cách."},
+      {"id":"P3-D1-08","node":"P3-N07","task":"Với p=0.03 và alpha=0.05, nêu kết luận kiểm định nhưng không nói xác suất H0 đúng bằng 3%."},
+      {"id":"P3-D1-09","node":"P3-N08","task":"Một mô hình tăng accuracy 0.1% trên 1 triệu mẫu; phân biệt ý nghĩa thống kê và ý nghĩa thực tế."},
+      {"id":"P3-D1-10","node":"P3-N08","task":"Thiết kế split train/validation/test cho một thí nghiệm và nêu vai trò từng phần."}
+    ]},
+    "D2":{"weight":0.25,"items":[
+      {"id":"P3-D2-01","node":"P3-N02","promptRu":"Объясните формулу Байеса и разницу между независимостью и несовместностью событий."},
+      {"id":"P3-D2-02","node":"P3-N03","promptRu":"Что такое случайная величина и чем дискретное распределение отличается от непрерывного?"},
+      {"id":"P3-D2-03","node":"P3-N04","promptRu":"Объясните математический смысл математического ожидания и дисперсии."},
+      {"id":"P3-D2-04","node":"P3-N05","promptRu":"Сравните ковариацию и коэффициент корреляции и объясните ограничения интерпретации корреляции."},
+      {"id":"P3-D2-05","node":"P3-N07","promptRu":"Объясните доверительный интервал и p-значение без распространенных ошибочных интерпретаций."},
+      {"id":"P3-D2-06","node":"P3-N08","promptRu":"Как отличить статистическую значимость результата от его практической значимости в эксперименте?"}
+    ]}
+  },
+  "criticalMisconceptions":[
+    {"id":"P3-M01","node":"P3-N02","text":"Nhầm P(A|B) với P(B|A)."},
+    {"id":"P3-M02","node":"P3-N02","text":"Độc lập đồng nghĩa xung khắc."},
+    {"id":"P3-M03","node":"P3-N04","text":"Phương sai có cùng đơn vị với biến gốc."},
+    {"id":"P3-M04","node":"P3-N05","text":"Correlation chứng minh quan hệ nhân quả."},
+    {"id":"P3-M05","node":"P3-N06","text":"Estimate quan sát được và estimator là cùng một khái niệm."},
+    {"id":"P3-M06","node":"P3-N07","text":"p-value là xác suất H0 đúng."},
+    {"id":"P3-M07","node":"P3-N07","text":"CI95% đã tính chứa tham số với xác suất 95% theo diễn giải frequentist chuẩn."},
+    {"id":"P3-M08","node":"P3-N08","text":"Test set có thể dùng lặp lại để chọn hyperparameter mà không gây bias."}
+  ],
+  "repairRoutes":[
+    {"id":"P3-R01","triggerNodes":["P3-N01","P3-N02","P3-N03","P3-N04"],"route":["MATH-VN-C04-xac_suat_co_ban_va_bien_"],"stopWhen":"D1 xác suất/biến ngẫu nhiên >=85 và 0 misconception."},
+    {"id":"P3-R02","triggerNodes":["P3-N05"],"route":["MATH-VN-C04-xac_suat_co_ban_va_bien_"],"stopWhen":"Tính và diễn giải covariance/correlation đúng >=85%."},
+    {"id":"P3-R03","triggerNodes":["P3-N06","P3-N07","P3-N08"],"route":["MATH-PREP-C16-thong_ke_uoc_luong_kiem_"],"stopWhen":"Ước lượng/CI/test/experimental interpretation >=85 và 0 misconception."}
+  ],
+  "implementationPolicy":{"schedulerMutation":false,"writesDiagnosticScores":false,"newTopLevelSubject":false,"duplicatesExistingTheory":false,"mainBranchMutation":false}
+}
