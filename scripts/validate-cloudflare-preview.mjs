@@ -29,6 +29,7 @@ if (/\n\s*push\s*:/.test(workflow)) throw new Error('Bauman preview không đư�
 for (const token of [
   'DEPLOY_PREVIEW',
   'BAUMAN_CONTROL_PREVIEW_D1_DATABASE_ID',
+  'BAUMAN_CONTROL_PRODUCTION_D1_DATABASE_ID',
   'BAUMAN_CONTROL_SERVICE_SECRET',
   'bauman-control-preview-db --remote',
   'wrangler.runtime.preview.jsonc',
@@ -65,7 +66,7 @@ for (const token of [
 }
 
 for (const marker of [
-  'BAUMAN_CONTROL_PRODUCTION_D1_DATABASE_ID',
+  "uuidValue('BAUMAN_CONTROL_PRODUCTION_D1_DATABASE_ID')",
   '00000000-0000-0000-0000-000000000002',
   '.chatgpt.site',
   'runtime-dist',
@@ -91,4 +92,4 @@ if (!localConfig.includes('"name": "bauman-control-local"') || !localConfig.incl
   throw new Error('Bauman local runtime phải tiếp tục dùng D1 local riêng.');
 }
 
-console.log('Bauman Cloudflare migration gate PASS: Control + Learning Runtime separated, preview manual-only, isolated D1, device gate preserved, no ChatGPT Sites fallback.');
+console.log('Bauman Cloudflare migration gate PASS: Control + Learning Runtime separated, preview manual-only, isolated D1, fail-closed production guard, device gate preserved, no ChatGPT Sites fallback.');
