@@ -36,7 +36,9 @@ const stageExpected={prepare:'before_stankin',preparatory:'stankin',bauman:'pre_
 for(const [legacy,academic] of Object.entries(stageExpected)) assert(runtime.includes(`${legacy}:'${academic}'`),`stage map missing ${legacy} -> ${academic}`);
 for(const id of Object.values(stageExpected)) assert(registry.stageActivationPolicy.some(x=>x.stage===id),`registry missing activation stage ${id}`);
 
-const allOfficial=[...curriculum.disciplines,...curriculum.practices,...curriculum.gia,...curriculum.electiveGroups.flatMap(g=>g.options.map(o=>({...o,credits:g.credits,hours:g.hours,semesters:[g.semester],assessment:g.assessment})))];
+const electiveGroups=curriculum.electiveGroups.map(g=>({...g,semesters:[g.semester]}));
+const electiveOptions=curriculum.electiveGroups.flatMap(g=>g.options.map(o=>({...o,credits:g.credits,hours:g.hours,semesters:[g.semester],assessment:g.assessment})));
+const allOfficial=[...curriculum.disciplines,...curriculum.practices,...curriculum.gia,...electiveGroups,...electiveOptions];
 const officialIds=new Set(allOfficial.map(x=>x.id));
 for(const dep of registry.courseDependencies) assert(officialIds.has(dep.courseId),`risk engine dependency points to unknown official course ${dep.courseId}`);
 
@@ -77,7 +79,7 @@ assert(courseWorst(['mastered','unassessed'])==='unassessed','unknown critical g
 const p0=registry.coreGates.find(g=>g.id==='P0');
 assert(Boolean(p0),'P0 must exist');
 assert(runtime.includes("gateId==='P0'?'JIT_ONLY':'STOP_BROAD'"),'P0 MASTERED must stop broad remediation but keep JIT continuity');
-assert(runtime.includes("course_event_jit_russian_only"),'P0 stop continuity marker is required');
+assert(runtime.includes('course_event_jit_russian_only'),'P0 stop continuity marker is required');
 
 const pre=registry.stageActivationPolicy.find(x=>x.stage==='pre_bauman_8_weeks');
 for(const gateId of ['P2','P3','P4','P5','P6','P8','P9','P10','P11','J1']) assert(pre.active.includes(gateId),`pre-Bauman active route missing ${gateId}`);
