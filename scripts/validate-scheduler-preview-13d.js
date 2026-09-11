@@ -26,7 +26,9 @@ for(const token of [
   "intervention.action==='REPAIR_MATCHED'&&!proposed.academic2026.routeIds.length",
   "x.action==='STOP_BROAD'||x.action==='JIT_ONLY'||x.state?.id==='mastered'",
   "source:'academic_preview'",
-  "Apply đang khóa · Browser/E2E chưa PASS"
+  "Apply đang khóa · Browser/E2E chưa PASS",
+  'window.BAUMAN_PREREQ_PACKS_2026',
+  'window.app?.__academic2026Patched'
 ]) assert(runtime.includes(token),`preview runtime missing ${token}`);
 
 assert(!/APPLY_ENABLED\s*=\s*true/.test(runtime),'Pass13D Apply must remain disabled');
@@ -35,6 +37,7 @@ assert(!/window\.state\.schedule\.entries\s*\[[^\]]+\]\s*=/.test(runtime),'Pass1
 assert(!/window\.state\.schedule\.entries\s*=/.test(runtime),'Pass13D must not replace schedule entries');
 assert(!/delete\s+window\.state\.schedule\.entries/.test(runtime),'Pass13D must not delete schedule entries');
 assert(runtime.includes("throw new Error('Apply đang khóa cho tới khi Browser/E2E regression gate PASS. Pass13D chỉ tạo preview/diff.')"),'applySchedulePreview must fail closed before Browser/E2E gate');
+assert(/const ready=academicRuntime\(\)&&window\.BAUMAN_PREREQ_2026&&window\.BAUMAN_PREREQ_PACKS_2026&&window\.state\?\.schedule&&window\.app\?\.__academic2026Patched/.test(runtime),'preview init must wait until Academic pack load and Academic home patch are complete');
 
 const academicPos=index.indexOf('assets/js/academic-main.js');
 const previewPos=index.indexOf('assets/js/academic-scheduler-preview.js');
@@ -80,4 +83,4 @@ assert((goodRepair.repairRoutes||[]).map(x=>x.id).length===1,'matched repair fix
 
 if(errors.length){console.error(`PASS13D_SCHEDULER_PREVIEW_FAIL (${errors.length})`);errors.forEach(e=>console.error(`- ${e}`));process.exit(1)}
 console.log('PASS13D_SCHEDULER_PREVIEW_PASS');
-console.log(JSON.stringify({applyEnabled:false,previewDays:7,maxChanges:6,manualPreservation:true,externalPreservation:true,rollbackBaseline:true,staleFingerprint:true,stopGateExcluded:true},null,2));
+console.log(JSON.stringify({applyEnabled:false,previewDays:7,maxChanges:6,manualPreservation:true,externalPreservation:true,rollbackBaseline:true,staleFingerprint:true,stopGateExcluded:true,initOrderGuard:true},null,2));
