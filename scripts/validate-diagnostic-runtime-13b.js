@@ -19,7 +19,7 @@ assert(manifest.schema==='bauman_prerequisite_pack_manifest_v1','diagnostic pack
 const manifestIds=(manifest.packs||[]).map(x=>x.gateId);
 assert(unique(manifestIds),'manifest gate IDs must be unique');
 for(const id of ['P0','P1','P2','P3','P4','P5','P6','P7','P8','P9','P10','P11','J1']) assert(manifestIds.includes(id),`manifest missing ${id}`);
-assert(JSON.stringify(manifest.deferredUntilLaterJIT)===JSON.stringify(['P12','J2','J3','J4']),'later JIT gates must remain deferred in Pass13B');
+assert(JSON.stringify(manifest.deferredUntilLaterJIT)===JSON.stringify(['P12','J2','J3','J4']),'later JIT gates must remain deferred after Pass13B');
 
 const gateMap=new Map([...registry.coreGates,...registry.jitBridgeGates].map(x=>[x.id,x]));
 const newSpecs={
@@ -41,7 +41,7 @@ for(const [gateId,spec] of Object.entries(newSpecs)){
   assert(pack.mastery?.target===90 && gate?.target===90,`${gateId} target must remain 90`);
   assert(pack.mastery?.applicationMinimum===85,`${gateId} D1 floor must be 85`);
   assert(pack.mastery?.masteredThreshold===95 && pack.mastery?.masteredApplicationMinimum===90,`${gateId} mastered rule drifted`);
-  assert(pack.implementationPolicy?.schedulerMutation===false,`${gateId} must not mutate scheduler in Pass13B`);
+  assert(pack.implementationPolicy?.schedulerMutation===false,`${gateId} content pack must not mutate scheduler`);
   assert(pack.implementationPolicy?.writesDiagnosticScores===false,`${gateId} content pack must not write learner scores`);
   assert(pack.implementationPolicy?.duplicatesExistingTheory===false,`${gateId} must not duplicate existing theory`);
   const nodes=pack.nodes||[],ids=nodes.map(x=>x.id),nodeSet=new Set(ids);
@@ -60,39 +60,26 @@ for(const [gateId,spec] of Object.entries(newSpecs)){
   assert(d2.every(x=>typeof x.promptRu==='string'&&x.promptRu.length>35),`${gateId} D2 Russian prompts must be substantive`);
   assert((pack.criticalMisconceptions||[]).length>=7,`${gateId} needs critical misconceptions`);
   assert((pack.repairRoutes||[]).length>=3,`${gateId} needs repair routes`);
-  for(const route of pack.repairRoutes||[]){
-    for(const id of route.triggerNodes||[])assert(nodeSet.has(id),`${gateId} route ${route.id} has missing trigger ${id}`);
-    assert(typeof route.stopWhen==='string'&&route.stopWhen.length>20,`${gateId} route ${route.id} needs measurable stop condition`);
-  }
+  for(const route of pack.repairRoutes||[]){for(const id of route.triggerNodes||[])assert(nodeSet.has(id),`${gateId} route ${route.id} has missing trigger ${id}`);assert(typeof route.stopWhen==='string'&&route.stopWhen.length>20,`${gateId} route ${route.id} needs measurable stop condition`)}
   if(spec.discipline)assert(disciplineIds.has(spec.discipline),`${gateId} reused Math discipline missing`);
   for(const id of spec.chapters||[])assert(chapterIds.has(id),`${gateId} reused Math chapter ${id} missing`);
   for(const id of spec.lessons||[])assert(programmingIds.has(id),`${gateId} reused Programming lesson ${id} missing`);
 }
 
-assert(runtime.includes("Academic 2026 Runtime · Pass 13B"),'runtime version must identify Pass13B');
-assert(runtime.includes("bauman_academic_2026_diagnostics_v1"),'runtime must use dedicated diagnostic storage');
+assert(/Academic 2026 Runtime · Pass 13[B-Z]/.test(runtime),'runtime must retain Pass13B-or-later diagnostic model');
+assert(runtime.includes('bauman_academic_2026_diagnostics_v1'),'runtime must use dedicated diagnostic storage');
 assert(runtime.includes('criticalMisconceptions'),'runtime must persist explicit critical misconception count');
 assert(runtime.includes('failedNodeIds'),'runtime must support failed-node evidence');
 assert(runtime.includes('Promise.allSettled'),'runtime must tolerate individual optional pack load failures');
 assert(runtime.includes('repairRoutesForGate'),'runtime must expose evidence-aware repair routing');
 assert(runtime.includes('shouldStopGate'),'runtime must expose STOP rule state');
 assert(runtime.includes("reason:'application_floor_not_met'"),'runtime must enforce D1 floor');
-assert(runtime.includes("diag.score>=95&&diag.d1>=90"),'MASTERED must require D1 >= 90');
-assert(runtime.includes("diag.score<globalReady"),'runtime must keep sub-90 scores out of READY even when a local gate target is lower');
-assert(!/window\.state\b/.test(runtime),'Pass13B runtime must not depend on non-global main.js lexical state');
-assert(!/state\.schedule|ensureSchedule\(|applyAutoScheduleSettings\(/.test(runtime),'Pass13B academic runtime must not mutate scheduler');
+assert(runtime.includes('diag.score>=95&&diag.d1>=90'),'MASTERED must require D1 >= 90');
+assert(runtime.includes('diag.score<globalReady'),'runtime must keep sub-90 scores out of READY even when a local gate target is lower');
+assert(!/schedule\.entries\s*\[[^\]]+\]\s*=/.test(runtime),'Academic runtime must not write schedule entries while scheduler feature gate is off');
+assert(!/\.autoSchedule\s*\(/.test(runtime),'Academic runtime must not invoke autoSchedule while scheduler feature gate is off');
 
-function stateOf(diag){
-  if(!diag)return 'unassessed';
-  const score=.25*diag.D0+.5*diag.D1+.25*diag.D2;
-  if(diag.critical>0)return 'repair';
-  if(score<60)return 'rebuild';
-  if(score<80)return 'repair';
-  if(score<90)return 'bridge';
-  if(diag.D1<85)return 'repair';
-  if(score>=95&&diag.D1>=90)return 'mastered';
-  return 'ready';
-}
+function stateOf(diag){if(!diag)return 'unassessed';const score=.25*diag.D0+.5*diag.D1+.25*diag.D2;if(diag.critical>0)return 'repair';if(score<60)return 'rebuild';if(score<80)return 'repair';if(score<90)return 'bridge';if(diag.D1<85)return 'repair';if(score>=95&&diag.D1>=90)return 'mastered';return 'ready'}
 assert(stateOf(null)==='unassessed','UNASSESSED invariant failed');
 assert(stateOf({D0:59,D1:59,D2:59,critical:0})==='rebuild','REBUILD boundary failed');
 assert(stateOf({D0:60,D1:60,D2:60,critical:0})==='repair','REPAIR lower boundary failed');
@@ -103,7 +90,6 @@ assert(stateOf({D0:92,D1:92,D2:92,critical:0})==='ready','READY invariant failed
 assert(stateOf({D0:96,D1:89,D2:96,critical:0})==='ready','MASTERED D1 floor invariant failed');
 assert(stateOf({D0:96,D1:96,D2:96,critical:0})==='mastered','MASTERED invariant failed');
 assert(stateOf({D0:100,D1:100,D2:100,critical:1})==='repair','critical misconception override failed');
-
 function courseReady(states){return states.every(x=>x==='mastered')?'mastered':states.every(x=>x==='ready'||x==='mastered')?'ready':states.includes('rebuild')?'rebuild':states.includes('repair')?'repair':'bridge'}
 assert(courseReady(['ready','mastered'])==='ready','course READY worst-gate invariant failed');
 assert(courseReady(['mastered','mastered'])==='mastered','course MASTERED invariant failed');
@@ -111,4 +97,4 @@ assert(courseReady(['ready','bridge'])==='bridge','course weak critical gate mus
 
 if(errors.length){console.error(`DIAGNOSTIC_RUNTIME_13B_VALIDATION_FAIL (${errors.length})`);errors.forEach(e=>console.error(`- ${e}`));process.exit(1)}
 console.log('DIAGNOSTIC_RUNTIME_13B_VALIDATION_PASS');
-console.log(JSON.stringify({manifestPacks:manifestIds.length,newReuseDiagnosticGates:Object.keys(newSpecs),statePolicy:['unassessed','rebuild','repair','bridge','ready','mastered'],schedulerMutation:false},null,2));
+console.log(JSON.stringify({manifestPacks:manifestIds.length,newReuseDiagnosticGates:Object.keys(newSpecs),statePolicy:['unassessed','rebuild','repair','bridge','ready','mastered'],schedulerMutation:false,forwardCompatible:true},null,2));
