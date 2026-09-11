@@ -1,0 +1,30 @@
+name: Academic 2026 Phase2 Course Architecture
+
+on:
+  push:
+    paths:
+      - 'assets/data/course-learning-architecture-s1-2026.json'
+      - 'assets/data/official-curriculum-iu5-2026.json'
+      - 'assets/data/prerequisite-registry-iu5-2026.json'
+      - 'scripts/validate-course-learning-architecture-s1-2026.js'
+      - '.github/workflows/academic-2026-phase2-course-architecture.yml'
+  pull_request:
+    paths:
+      - 'assets/data/course-learning-architecture-s1-2026.json'
+      - 'assets/data/official-curriculum-iu5-2026.json'
+      - 'assets/data/prerequisite-registry-iu5-2026.json'
+      - 'scripts/validate-course-learning-architecture-s1-2026.js'
+      - '.github/workflows/academic-2026-phase2-course-architecture.yml'
+
+jobs:
+  validate-course-architecture:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+      - name: Validate Semester 1 official-course learning architecture
+        run: node scripts/validate-course-learning-architecture-s1-2026.js
+      - name: Preserve Academic 2026 registry invariants
+        run: node scripts/validate-academic-2026.js
