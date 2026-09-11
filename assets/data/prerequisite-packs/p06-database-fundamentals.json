@@ -1,0 +1,214 @@
+{
+  "schema": "bauman_prerequisite_pack_v1",
+  "version": "P6_DATABASE_FUNDAMENTALS_PASS05_V1",
+  "gateId": "P6",
+  "titleVi": "Cơ sở dữ liệu nền tảng cho IU5",
+  "titleRu": "Фундаментальные основы баз данных для ИУ5",
+  "status": "diagnostic_and_repair_blueprint",
+  "notOfficialAdministrativePrerequisite": true,
+  "purpose": "Khôi phục đúng phần cơ sở dữ liệu cần để vào môn Оптимизация баз данных систем машинного обучения ở học kỳ 1 và làm nền cho Постреляционные базы данных ở học kỳ 2, không học vòng sang framework ứng dụng hoặc quản trị CSDL chuyên sâu.",
+  "officialTargets": [
+    {"courseId":"d06","nameRu":"Оптимизация баз данных систем машинного обучения","semester":1,"role":"primary"},
+    {"courseId":"d10","nameRu":"Постреляционные базы данных","semester":2,"role":"bridge"},
+    {"courseId":"d13","nameRu":"Искусственный интеллект в задачах бизнес-аналитики","semester":3,"role":"downstream"}
+  ],
+  "sourceEvidence": [
+    {"kind":"official_curriculum","url":"https://home.science.iu5.bmstu.ru/study-plans/iu5-master-program.pdf","note":"Khóa tên học phần chính thức, học kỳ và số tín chỉ của chương trình IU5 năm 2026; tài liệu này không tuyên bố P6 là điều kiện hành chính."},
+    {"kind":"legacy_related_iu5_material","url":"https://e-learning.bmstu.ru/iu5/course/view.php?id=44","note":"Học liệu IU5 công khai liên quan thiết kế АСОИУ có các chủ đề CSDL, giao dịch, khóa và hệ phân tán. Chỉ dùng làm bằng chứng về ngữ cảnh học thuật IU5, không coi là syllabus chính thức 2026 của d06."}
+  ],
+  "localReuse": [
+    {"subject":"programming","path":"subjects/programming/data/lessons.json","lessonIds":["PR06"],"coverage":["relational model basics","PK/FK","SELECT/WHERE"]},
+    {"subject":"programming","path":"subjects/programming/data/lessons.json","lessonIds":["PR15"],"coverage":["JOIN","GROUP BY","basic index creation"]}
+  ],
+  "upstream": {
+    "critical": [],
+    "support": ["P4","P5","P7"],
+    "reuseInsteadOfDuplicate": [
+      {"subject":"programming","lesson":"PR06","concept":"SQL căn bản và mô hình quan hệ"},
+      {"subject":"programming","lesson":"PR15","concept":"JOIN, GROUP BY và index cơ bản"}
+    ]
+  },
+  "mastery": {
+    "target": 90,
+    "applicationMinimum": 85,
+    "criticalMisconceptionsAllowed": 0,
+    "diagnosticFormula": "M = 0.25*D0 + 0.50*D1 + 0.25*D2",
+    "stopRule": "Nếu P6 >= 95, D1 >= 90 và không còn critical misconception thì dừng học rộng P6; chỉ mở lại sub-node khi d06/d10 hoặc bài lab thực tế cho thấy lỗ hổng cụ thể."
+  },
+  "practicePlatform": {
+    "recommended": "PostgreSQL",
+    "officiallyRequiredByBauman2026Plan": false,
+    "reason": "Dùng một hệ quản trị CSDL quan hệ đủ mạnh để thực hành transaction, index và EXPLAIN/EXPLAIN ANALYZE; không biến lựa chọn công cụ thành yêu cầu chính thức của Bauman."
+  },
+  "scopeGuard": {
+    "required": [
+      "relational model and integrity constraints",
+      "relational algebra",
+      "functional dependencies and normalization",
+      "SQL joins/subqueries/CTE/window functions",
+      "ACID and transactions",
+      "isolation anomalies, locking and deadlocks",
+      "storage/page/selectivity basics",
+      "B-tree/hash/composite indexes",
+      "query planner, cardinality and cost",
+      "EXPLAIN/EXPLAIN ANALYZE workflow",
+      "physical database design",
+      "ML-data workload bridge"
+    ],
+    "excludedFromDefaultRoute": [
+      "ORM framework specialization",
+      "vendor administration certification",
+      "Kubernetes database operations",
+      "distributed consensus internals",
+      "NoSQL deep dive before d10",
+      "data warehouse/OLAP before J2",
+      "cloud-specific managed database certification"
+    ]
+  },
+  "nodes": [
+    {
+      "id":"P6-N01","order":1,"titleVi":"Mô hình quan hệ, khóa và ràng buộc toàn vẹn","titleRu":"Реляционная модель, ключи и ограничения целостности","kind":"reuse_bridge","dependsOn":[],
+      "reuse":["PR06"],
+      "outcomes":["Phân biệt relation, tuple, attribute và schema.","Xác định candidate key, primary key, foreign key.","Chọn NOT NULL, UNIQUE, CHECK, PK, FK đúng mục đích.","Giải thích entity integrity và referential integrity."],
+      "repairHoursHint":"1–2 giờ nếu PR06 còn nhớ"
+    },
+    {
+      "id":"P6-N02","order":2,"titleVi":"Đại số quan hệ và tư duy truy vấn","titleRu":"Реляционная алгебра и логика запросов","kind":"core","dependsOn":["P6-N01"],
+      "outcomes":["Dùng selection, projection, rename, union, difference, Cartesian product và join.","Phân biệt điều kiện lọc hàng với chọn cột.","Chuyển một biểu thức đại số quan hệ đơn giản sang SQL và ngược lại.","Nhận ra phép join sai có thể làm tăng số dòng ngoài ý muốn."],
+      "notation":["sigma_condition(R)","pi_columns(R)","R join_condition S","R union S","R - S"],
+      "repairHoursHint":"2–3 giờ"
+    },
+    {
+      "id":"P6-N03","order":3,"titleVi":"Phụ thuộc hàm và chuẩn hóa 1NF–3NF/BCNF","titleRu":"Функциональные зависимости и нормализация 1НФ–3НФ/НФБК","kind":"core","dependsOn":["P6-N01"],
+      "outcomes":["Xác định functional dependency và candidate key trong ví dụ vừa sức.","Nhận diện repeating group, partial dependency và transitive dependency.","Chuẩn hóa tới 1NF, 2NF, 3NF và nhận diện điều kiện BCNF.","Giải thích lossless decomposition và mục tiêu bảo toàn phụ thuộc ở mức nền.","Phân biệt chuẩn hóa với tối ưu hiệu năng; không mặc định càng tách nhiều bảng càng nhanh."],
+      "repairHoursHint":"3–4 giờ"
+    },
+    {
+      "id":"P6-N04","order":4,"titleVi":"SQL truy vấn nâng nền: JOIN, subquery, CTE và window","titleRu":"SQL: JOIN, подзапросы, CTE и оконные функции","kind":"reuse_extend","dependsOn":["P6-N02"],
+      "reuse":["PR15"],
+      "outcomes":["Viết INNER/LEFT JOIN và giải thích cardinality đầu ra.","Dùng correlated/non-correlated subquery khi phù hợp.","Dùng CTE để tách bước logic, không coi CTE luôn nhanh hơn.","Dùng GROUP BY/HAVING đúng ngữ nghĩa.","Dùng ROW_NUMBER, RANK, LAG/LEAD và aggregate window ở mức ứng dụng."],
+      "repairHoursHint":"3–4 giờ"
+    },
+    {
+      "id":"P6-N05","order":5,"titleVi":"Transaction và ACID","titleRu":"Транзакции и свойства ACID","kind":"core","dependsOn":["P6-N01"],
+      "outcomes":["Giải thích Atomicity, Consistency, Isolation, Durability bằng tình huống dữ liệu thực.","Xác định ranh giới transaction và lý do COMMIT/ROLLBACK.","Phân biệt database consistency với business-rule correctness.","Giải thích vì sao transaction quá dài làm tăng contention và rủi ro khóa."],
+      "repairHoursHint":"2–3 giờ"
+    },
+    {
+      "id":"P6-N06","order":6,"titleVi":"Isolation, MVCC, khóa và deadlock","titleRu":"Изоляция, MVCC, блокировки и взаимоблокировки","kind":"core","dependsOn":["P6-N05"],
+      "outcomes":["Nhận diện dirty read, non-repeatable read và phantom read.","Giải thích mức isolation ở mức khái niệm thay vì học thuộc tên.","Phân biệt shared/exclusive locking ở mức nền và hiểu mục tiêu của MVCC.","Vẽ wait-for cycle đơn giản để nhận diện deadlock.","Đề xuất thứ tự truy cập nhất quán hoặc transaction ngắn hơn để giảm deadlock."],
+      "repairHoursHint":"3–4 giờ"
+    },
+    {
+      "id":"P6-N07","order":7,"titleVi":"Lưu trữ vật lý, page, cardinality và selectivity","titleRu":"Физическое хранение, страницы, кардинальность и селективность","kind":"core","dependsOn":["P6-N01"],
+      "outcomes":["Hiểu ở mức dùng được rằng dữ liệu được đọc theo page/block chứ không phải từng ô logic độc lập.","Phân biệt table cardinality, distinct count và predicate selectivity.","Giải thích vì sao một index kém chọn lọc có thể không được planner sử dụng.","Liên hệ row width, số page đọc và I/O với chi phí truy vấn."],
+      "repairHoursHint":"2–3 giờ"
+    },
+    {
+      "id":"P6-N08","order":8,"titleVi":"Index: B-tree, hash và composite index","titleRu":"Индексы: B-tree, hash и составные индексы","kind":"core","dependsOn":["P6-N07","P6-N04"],
+      "outcomes":["Giải thích trade-off đọc nhanh hơn đổi lấy dung lượng và chi phí ghi/cập nhật.","Chọn B-tree cho equality/range/order phổ biến và hiểu giới hạn dùng hash ở mức khái niệm.","Giải thích vai trò thứ tự cột trong composite index.","Nhận diện over-indexing và index không phục vụ workload.","Đề xuất index từ predicate/join/order thực tế, không từ cảm tính."],
+      "repairHoursHint":"3–4 giờ"
+    },
+    {
+      "id":"P6-N09","order":9,"titleVi":"Query planner, cardinality estimate và cost","titleRu":"Планировщик запросов, оценка кардинальности и стоимости","kind":"core","dependsOn":["P6-N07","P6-N08"],
+      "outcomes":["Phân biệt parser/planner/executor ở mức chức năng.","Đọc khái niệm sequential scan, index scan và join strategy.","Giải thích vì sao cardinality estimate sai có thể dẫn tới plan kém.","Phân biệt estimated cost với thời gian thực thi đo được.","Hiểu statistics là đầu vào quan trọng của optimizer."],
+      "repairHoursHint":"3–4 giờ"
+    },
+    {
+      "id":"P6-N10","order":10,"titleVi":"EXPLAIN/EXPLAIN ANALYZE và quy trình tối ưu có bằng chứng","titleRu":"EXPLAIN/EXPLAIN ANALYZE и доказательная оптимизация запросов","kind":"application","dependsOn":["P6-N09"],
+      "outcomes":["Đọc plan từ node ngoài vào trong theo dữ liệu thực thi.","So sánh estimated rows với actual rows.","Phân biệt startup/total cost với actual time ở PostgreSQL thực hành.","Đo trước và sau một thay đổi index/query bằng cùng dataset và điều kiện.","Không kết luận tối ưu chỉ vì query ngắn hơn hoặc có thêm index."],
+      "repairHoursHint":"3–5 giờ"
+    },
+    {
+      "id":"P6-N11","order":11,"titleVi":"Thiết kế vật lý cho dữ liệu ML và cầu nối vào d06","titleRu":"Физическое проектирование данных ML и переход к дисциплине d06","kind":"official_course_bridge","dependsOn":["P6-N03","P6-N04","P6-N06","P6-N08","P6-N10"],
+      "outcomes":["Thiết kế schema tối thiểu cho dataset metadata, experiment, run, metric và artifact reference.","Chọn normalized core trước rồi cân nhắc denormalization có bằng chứng workload.","Xây workload đọc/ghi và query benchmark thay vì tối ưu một query cô lập.","Ghi baseline, dataset size, plan, latency và thay đổi để tạo báo cáo có thể tái lập.","Biết đây là cầu nối vào d06; partitioning, advanced optimizer internals và database-for-ML specialization sẽ học tiếp theo nhu cầu môn chính thức."],
+      "repairHoursHint":"3–5 giờ"
+    }
+  ],
+  "diagnostic": {
+    "D0": {
+      "name":"Recall","weight":0.25,
+      "items":[
+        {"id":"P6-D0-01","node":"P6-N01","prompt":"Phân biệt candidate key, primary key và foreign key."},
+        {"id":"P6-D0-02","node":"P6-N01","prompt":"NOT NULL, UNIQUE, CHECK dùng để bảo vệ loại ràng buộc nào?"},
+        {"id":"P6-D0-03","node":"P6-N02","prompt":"Selection và projection khác nhau thế nào trong đại số quan hệ?"},
+        {"id":"P6-D0-04","node":"P6-N02","prompt":"Cartesian product khác join có điều kiện thế nào?"},
+        {"id":"P6-D0-05","node":"P6-N03","prompt":"Functional dependency X -> Y nói điều gì?"},
+        {"id":"P6-D0-06","node":"P6-N03","prompt":"1NF, 2NF, 3NF và BCNF xử lý loại vấn đề nào ở mức khái niệm?"},
+        {"id":"P6-D0-07","node":"P6-N04","prompt":"WHERE và HAVING khác nhau ở đâu?"},
+        {"id":"P6-D0-08","node":"P6-N04","prompt":"Window function khác GROUP BY ở điểm cốt lõi nào?"},
+        {"id":"P6-D0-09","node":"P6-N05","prompt":"Nêu đúng bốn tính chất ACID và ý nghĩa ngắn gọn."},
+        {"id":"P6-D0-10","node":"P6-N06","prompt":"Phân biệt dirty read, non-repeatable read và phantom read."},
+        {"id":"P6-D0-11","node":"P6-N06","prompt":"Deadlock cần có kiểu phụ thuộc chờ nào?"},
+        {"id":"P6-D0-12","node":"P6-N07","prompt":"Cardinality và selectivity khác nhau thế nào?"},
+        {"id":"P6-D0-13","node":"P6-N08","prompt":"B-tree index phù hợp equality/range ở mức tổng quát như thế nào?"},
+        {"id":"P6-D0-14","node":"P6-N08","prompt":"Vì sao composite index phụ thuộc thứ tự cột?"},
+        {"id":"P6-D0-15","node":"P6-N09","prompt":"Planner khác executor thế nào?"},
+        {"id":"P6-D0-16","node":"P6-N09","prompt":"Estimated rows và actual rows phản ánh điều gì?"},
+        {"id":"P6-D0-17","node":"P6-N10","prompt":"EXPLAIN khác EXPLAIN ANALYZE ở điểm quan trọng nào?"},
+        {"id":"P6-D0-18","node":"P6-N11","prompt":"Denormalization có phải luôn là tối ưu không? Vì sao?"}
+      ]
+    },
+    "D1": {
+      "name":"Application","weight":0.5,
+      "items":[
+        {"id":"P6-D1-01","node":"P6-N01","task":"Cho bảng Student(student_id,email,class_id) và Class(class_id,name). Chọn PK/FK/UNIQUE/NOT NULL hợp lý và giải thích từng ràng buộc.","evidence":"DDL hoặc sơ đồ + giải thích."},
+        {"id":"P6-D1-02","node":"P6-N02","task":"Từ yêu cầu 'lấy tên sinh viên lớp A có điểm >= 8', viết biểu thức đại số quan hệ tối thiểu rồi chuyển sang SQL.","evidence":"Hai biểu diễn cho cùng semantics."},
+        {"id":"P6-D1-03","node":"P6-N03","task":"Quan hệ Enrollment(student_id,student_name,course_id,course_name,teacher_id,teacher_name,grade) có các phụ thuộc hợp lý theo khóa ghép student_id+course_id. Tách tới 3NF và chỉ rõ phụ thuộc gây dư thừa.","evidence":"FDs + decomposition + PK/FK."},
+        {"id":"P6-D1-04","node":"P6-N04","task":"Trên bảng run(model_id,started_at,metric), lấy mỗi model một run mới nhất và metric tương ứng bằng window function.","evidence":"SQL dùng ROW_NUMBER hoặc tương đương + giải thích partition/order."},
+        {"id":"P6-D1-05","node":"P6-N05","task":"Thiết kế transaction chuyển quota giữa hai project sao cho hoặc cả hai cập nhật cùng thành công hoặc rollback.","evidence":"Pseudo-SQL BEGIN/UPDATE/COMMIT/ROLLBACK + invariant."},
+        {"id":"P6-D1-06","node":"P6-N06","task":"Hai transaction cập nhật hàng A rồi B và B rồi A. Vẽ wait-for cycle và đề xuất cách giảm deadlock.","evidence":"Đồ thị chờ + biện pháp cụ thể."},
+        {"id":"P6-D1-07","node":"P6-N07","task":"Bảng 10 triệu dòng có status chỉ 3 giá trị và user_id gần như duy nhất. So sánh selectivity của hai predicate và dự đoán loại index nào đáng cân nhắc trước.","evidence":"Lập luận selectivity/workload, không chỉ nêu tên index."},
+        {"id":"P6-D1-08","node":"P6-N08","task":"Workload thường lọc WHERE user_id=? AND created_at BETWEEN ... ORDER BY created_at. Đề xuất composite index và giải thích thứ tự cột.","evidence":"CREATE INDEX mẫu + trade-off ghi/dung lượng."},
+        {"id":"P6-D1-09","node":"P6-N09","task":"Planner ước lượng 20 dòng nhưng actual là 200000, sau đó chọn nested-loop rất chậm. Nêu ít nhất ba nguyên nhân/kiểm tra hợp lý trước khi chỉnh query.","evidence":"Checklist statistics/selectivity/correlation/data skew/index."},
+        {"id":"P6-D1-10","node":"P6-N10","task":"Cho một plan trước/sau khi thêm index. So sánh scan type, estimated-vs-actual rows, actual time và buffer/I-O nếu có; kết luận thay đổi có thực sự tốt hơn không.","evidence":"Bảng before/after có metric."},
+        {"id":"P6-D1-11","node":"P6-N10","task":"Benchmark cùng query ít nhất 5 lần trước/sau một thay đổi; giữ dataset và điều kiện ổn định, ghi median thay vì chọn lần chạy đẹp nhất.","evidence":"Script/log + bảng đo."},
+        {"id":"P6-D1-12","node":"P6-N11","task":"Thiết kế schema experiment-run-metric cho hệ ML, tạo ba truy vấn workload chính và đề xuất tối ưu vật lý có bằng chứng cần đo.","evidence":"ER/schema + workload + baseline plan + hypothesis tối ưu."}
+      ]
+    },
+    "D2": {
+      "name":"Explain/Oral","weight":0.25,
+      "items":[
+        {"id":"P6-D2-01","node":"P6-N03","promptVi":"Giải thích vì sao chuẩn hóa giảm dư thừa nhưng có thể làm tăng số join.","promptRu":"Объясните, почему нормализация уменьшает избыточность, но может увеличить количество соединений."},
+        {"id":"P6-D2-02","node":"P6-N05","promptVi":"Giải thích ACID bằng một transaction thực tế, không đọc định nghĩa thuộc lòng.","promptRu":"Объясните свойства ACID на конкретном примере транзакции."},
+        {"id":"P6-D2-03","node":"P6-N06","promptVi":"Vì sao isolation mạnh hơn không phải lúc nào cũng miễn phí?","promptRu":"Почему более строгий уровень изоляции не является бесплатным с точки зрения производительности и конкуренции?"},
+        {"id":"P6-D2-04","node":"P6-N08","promptVi":"Vì sao thêm index có thể làm query đọc nhanh hơn nhưng workload tổng thể tệ hơn?","promptRu":"Почему добавление индекса может ускорить чтение, но ухудшить общую нагрузку системы?"},
+        {"id":"P6-D2-05","node":"P6-N09","promptVi":"Giải thích cardinality estimation tác động tới lựa chọn plan như thế nào.","promptRu":"Объясните, как ошибка оценки кардинальности влияет на выбор плана запроса."},
+        {"id":"P6-D2-06","node":"P6-N10","promptVi":"Khi nào EXPLAIN ANALYZE có thể gây rủi ro và cần thận trọng?","promptRu":"Когда EXPLAIN ANALYZE следует запускать с осторожностью и почему?"},
+        {"id":"P6-D2-07","node":"P6-N11","promptVi":"Trình bày quy trình tối ưu CSDL có bằng chứng từ baseline tới kết luận.","promptRu":"Опишите доказательный процесс оптимизации базы данных: от базовой линии до вывода."},
+        {"id":"P6-D2-08","node":"P6-N11","promptVi":"Nếu dữ liệu ML chủ yếu append và đọc theo experiment/time, bạn sẽ bắt đầu thiết kế schema/index từ đâu và đo gì trước?","promptRu":"С чего вы начнете проектирование схемы и индексов для данных ML, если записи в основном добавляются и читаются по experiment и времени?"}
+      ]
+    }
+  },
+  "criticalMisconceptions": [
+    {"id":"P6-M01","node":"P6-N01","statement":"Primary key chỉ là một index và không liên quan tới mô hình dữ liệu.","repair":"Quay lại candidate key/entity integrity và tách logical constraint khỏi physical access path."},
+    {"id":"P6-M02","node":"P6-N02","statement":"JOIN luôn làm số dòng giảm.","repair":"Dùng cardinality ví dụ 1:1, 1:N, N:M và Cartesian-product lỗi."},
+    {"id":"P6-M03","node":"P6-N03","statement":"Càng chuẩn hóa cao thì query luôn càng nhanh.","repair":"Tách mục tiêu integrity/redundancy khỏi performance workload."},
+    {"id":"P6-M04","node":"P6-N04","statement":"CTE luôn tối ưu hơn subquery hoặc join.","repair":"Đánh giá semantics và plan thực tế thay vì coi cú pháp là tối ưu."},
+    {"id":"P6-M05","node":"P6-N05","statement":"Consistency trong ACID có nghĩa mọi dữ liệu nghiệp vụ tự động đúng.","repair":"Phân biệt invariants do DB/ràng buộc bảo vệ với logic nghiệp vụ ngoài DB."},
+    {"id":"P6-M06","node":"P6-N06","statement":"Isolation càng cao luôn là lựa chọn tốt nhất và không có trade-off.","repair":"So sánh anomaly prevention với contention/throughput/latency."},
+    {"id":"P6-M07","node":"P6-N08","statement":"Có index thì DB chắc chắn dùng index.","repair":"Quay lại selectivity, cost, statistics và sequential scan."},
+    {"id":"P6-M08","node":"P6-N08","statement":"Thêm càng nhiều index càng nhanh.","repair":"Đo write amplification, storage và maintenance cost."},
+    {"id":"P6-M09","node":"P6-N09","statement":"Estimated cost trong plan là mili-giây.","repair":"Phân biệt cost units của planner với actual time."},
+    {"id":"P6-M10","node":"P6-N10","statement":"Một lần benchmark nhanh hơn đủ chứng minh tối ưu.","repair":"Lặp đo, giữ điều kiện, dùng phân phối/median và ghi warm-cache/cold-cache context."},
+    {"id":"P6-M11","node":"P6-N11","statement":"Dữ liệu cho ML không cần transaction hay integrity vì cuối cùng chỉ đưa vào model.","repair":"Theo dõi provenance, consistency, experiment metadata và reproducibility."}
+  ],
+  "repairRoutes": [
+    {"id":"P6-R01","triggerNodes":["P6-N01"],"route":["PR06","P6-N01"],"goal":"Khôi phục mô hình quan hệ, key và constraints mà không học lại toàn SQL."},
+    {"id":"P6-R02","triggerNodes":["P6-N02","P6-N04"],"route":["PR15","P6-N02","P6-N04"],"goal":"Khôi phục semantics truy vấn trước rồi mới luyện SQL nâng nền."},
+    {"id":"P6-R03","triggerNodes":["P6-N03"],"route":["P6-N03"],"goal":"Sửa riêng phụ thuộc hàm/normalization; không kéo sang tối ưu vật lý quá sớm."},
+    {"id":"P6-R04","triggerNodes":["P6-N05","P6-N06"],"route":["P6-N05","P6-N06"],"goal":"Khôi phục transaction, isolation, locking và deadlock thành một cụm nhất quán."},
+    {"id":"P6-R05","triggerNodes":["P6-N07","P6-N08"],"route":["P6-N07","P6-N08"],"goal":"Từ storage/selectivity tới lựa chọn index có lý do."},
+    {"id":"P6-R06","triggerNodes":["P6-N09","P6-N10"],"route":["P6-N09","P6-N10"],"goal":"Đọc planner trước, tối ưu bằng EXPLAIN ANALYZE sau."},
+    {"id":"P6-R07","triggerNodes":["P6-N11"],"route":["P6-N03","P6-N08","P6-N10","P6-N11"],"goal":"Ghép logical design, physical index và benchmark thành workload ML hoàn chỉnh."},
+    {"id":"P6-R08","triggerNodes":["P6-N01","P6-N02","P6-N03","P6-N04","P6-N05","P6-N06","P6-N07","P6-N08","P6-N09","P6-N10","P6-N11"],"route":["PR06","PR15","P6-N01","P6-N02","P6-N03","P6-N04","P6-N05","P6-N06","P6-N07","P6-N08","P6-N09","P6-N10","P6-N11"],"goal":"REBUILD route chỉ dùng khi diagnostic thấp toàn gate; vẫn tái sử dụng PR06/PR15 thay vì tạo SQL course mới."}
+  ],
+  "implementationPolicy": {
+    "schedulerMutation": false,
+    "writesDiagnosticScores": false,
+    "duplicatesExistingPR06PR15": false,
+    "newTopLevelSubject": false,
+    "runtimeIntegration": "deferred_until_pack_validation",
+    "mainBranchMutation": false
+  }
+}

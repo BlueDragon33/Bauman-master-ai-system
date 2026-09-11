@@ -1,0 +1,22 @@
+{
+  "schema":"bauman_prerequisite_pack_manifest_v1",
+  "version":"ACADEMIC_DIAGNOSTIC_PACKS_PASS13B_V1",
+  "verifiedAt":"2026-09-11",
+  "policy":"Manifest only. A listed pack is a competency-support artifact, not an official Bauman administrative prerequisite.",
+  "packs":[
+    {"gateId":"P0","path":"assets/data/prerequisite-packs/p00-technical-russian.json"},
+    {"gateId":"P1","path":"assets/data/prerequisite-packs/p01-calculus-foundation.json"},
+    {"gateId":"P2","path":"assets/data/prerequisite-packs/p02-linear-algebra.json"},
+    {"gateId":"P3","path":"assets/data/prerequisite-packs/p03-probability-statistics.json"},
+    {"gateId":"P4","path":"assets/data/prerequisite-packs/p04-discrete-algorithms-data-structures.json"},
+    {"gateId":"P5","path":"assets/data/prerequisite-packs/p05-python-oop.json"},
+    {"gateId":"P6","path":"assets/data/prerequisite-packs/p06-database-fundamentals.json"},
+    {"gateId":"P7","path":"assets/data/prerequisite-packs/p07-linux-os-networks.json"},
+    {"gateId":"P8","path":"assets/data/prerequisite-packs/p08-software-engineering.json"},
+    {"gateId":"P9","path":"assets/data/prerequisite-packs/p09-markov-queueing-simulation.json"},
+    {"gateId":"P10","path":"assets/data/prerequisite-packs/p10-scientific-data-python.json"},
+    {"gateId":"P11","path":"assets/data/prerequisite-packs/p11-research-foundation.json"},
+    {"gateId":"J1","path":"assets/data/prerequisite-packs/j01-information-system-architecture.json"}
+  ],
+  "deferredUntilLaterJIT":["P12","J2","J3","J4"]
+}

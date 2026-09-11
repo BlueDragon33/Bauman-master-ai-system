@@ -10,6 +10,14 @@ on:
       - "wrangler.runtime.preview.example.jsonc"
       - "scripts/prepare-cloudflare-preview.mjs"
       - "scripts/validate-cloudflare-preview.mjs"
+      - "index.html"
+      - "assets/css/academic-2026.css"
+      - "assets/data/official-curriculum-iu5-2026.json"
+      - "assets/data/prerequisite-registry-iu5-2026.json"
+      - "assets/data/prerequisite-packs/**"
+      - "assets/js/academic-main.js"
+      - "assets/js/academic-scheduler-preview.js"
+      - "assets/js/academic-scheduler-apply.js"
       - "assets/js/platform/runtime-config.js"
       - "assets/js/platform/device-access-gate.js"
       - "control-service/**"
@@ -22,6 +30,14 @@ on:
       - "wrangler.runtime.preview.example.jsonc"
       - "scripts/prepare-cloudflare-preview.mjs"
       - "scripts/validate-cloudflare-preview.mjs"
+      - "index.html"
+      - "assets/css/academic-2026.css"
+      - "assets/data/official-curriculum-iu5-2026.json"
+      - "assets/data/prerequisite-registry-iu5-2026.json"
+      - "assets/data/prerequisite-packs/**"
+      - "assets/js/academic-main.js"
+      - "assets/js/academic-scheduler-preview.js"
+      - "assets/js/academic-scheduler-apply.js"
       - "assets/js/platform/runtime-config.js"
       - "assets/js/platform/device-access-gate.js"
       - "control-service/**"
@@ -62,6 +78,20 @@ jobs:
 
       - name: Materialize isolated preview configs
         run: node scripts/prepare-cloudflare-preview.mjs
+
+      - name: Verify Academic 2026 runtime is present in packaged preview
+        shell: bash
+        run: |
+          set -euo pipefail
+          test -f runtime-dist/assets/js/academic-main.js
+          test -f runtime-dist/assets/js/academic-scheduler-preview.js
+          test -f runtime-dist/assets/js/academic-scheduler-apply.js
+          test -f runtime-dist/assets/css/academic-2026.css
+          test -f runtime-dist/assets/data/official-curriculum-iu5-2026.json
+          test -f runtime-dist/assets/data/prerequisite-registry-iu5-2026.json
+          grep -q 'assets/js/academic-main.js' runtime-dist/index.html
+          grep -q 'assets/js/academic-scheduler-preview.js' runtime-dist/index.html
+          grep -q 'assets/js/academic-scheduler-apply.js' runtime-dist/index.html
 
       - name: Verify control preview artifact without deployment
         working-directory: control-service

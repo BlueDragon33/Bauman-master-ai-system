@@ -1,0 +1,83 @@
+{
+  "schema": "bauman_iu5_official_curriculum_v1",
+  "version": "IU5_09_04_01_AI_ASOIU_2026_LOCKED_V1",
+  "verifiedAt": "2026-09-10",
+  "status": "official_source_mirror",
+  "source": {
+    "title": "Учебный план ИУ5, 09.04.01, Искусственный интеллект в автоматизированных системах обработки информации и управления",
+    "url": "https://home.science.iu5.bmstu.ru/study-plans/iu5-master-program.pdf",
+    "yearStart": 2026,
+    "pages": 2
+  },
+  "program": {
+    "faculty": "Информатика и системы управления",
+    "department": "Системы обработки информации и управления, ИУ5",
+    "directionCode": "09.04.01",
+    "directionName": "Информатика и вычислительная техника",
+    "masterProgram": "Искусственный интеллект в автоматизированных системах обработки информации и управления",
+    "qualification": "Магистр",
+    "durationYears": 2,
+    "studyMode": "очная",
+    "totalCredits": 120,
+    "totalHours": 4320,
+    "classroomHours": 994,
+    "selfAndOtherHours": 3326,
+    "disciplineCredits": 80,
+    "practiceCredits": 31,
+    "giaCredits": 9
+  },
+  "disciplines": [
+    {"id":"d01","nameRu":"Иностранный язык","department":"Л2","credits":4,"hours":144,"classroom":68,"lecture":0,"seminar":68,"lab":0,"selfOther":76,"semesters":[1,2],"assessment":["Зчт"],"part":"mandatory"},
+    {"id":"d02","nameRu":"Методология научного познания","department":"СГН4","credits":2,"hours":72,"classroom":34,"lecture":34,"seminar":0,"lab":0,"selfOther":38,"semesters":[1],"assessment":["Зчт"],"part":"mandatory"},
+    {"id":"d03","nameRu":"Аналитические модели автоматизированных систем обработки информации и управления","department":"ИУ5","credits":4,"hours":144,"classroom":34,"lecture":34,"seminar":0,"lab":0,"selfOther":110,"semesters":[1],"assessment":["Зчт","ДЗчт"],"part":"mandatory"},
+    {"id":"d04","nameRu":"Многомерный анализ данных в системах искусственного интеллекта","department":"ИУ5","credits":5,"hours":180,"classroom":51,"lecture":17,"seminar":34,"lab":0,"selfOther":129,"semesters":[1],"assessment":["Экз","ДЗчт"],"part":"mandatory"},
+    {"id":"d05","nameRu":"Объектно-ориентированное проектирование автоматизированных систем обработки информации и управления","department":"ИУ5","credits":6,"hours":216,"classroom":51,"lecture":17,"seminar":0,"lab":34,"selfOther":165,"semesters":[1],"assessment":["Экз","ДЗчт"],"part":"mandatory"},
+    {"id":"d06","nameRu":"Оптимизация баз данных систем машинного обучения","department":"ИУ5","credits":4,"hours":144,"classroom":51,"lecture":34,"seminar":17,"lab":0,"selfOther":93,"semesters":[1],"assessment":["Экз"],"part":"mandatory"},
+    {"id":"d07","nameRu":"Основы предпринимательства","department":"ИБМ6","credits":2,"hours":72,"classroom":34,"lecture":34,"seminar":0,"lab":0,"selfOther":38,"semesters":[2],"assessment":["Зчт"],"part":"mandatory"},
+    {"id":"d08","nameRu":"Методы машинного обучения в автоматизированных системах обработки информации и управления","department":"ИУ5","credits":3,"hours":108,"classroom":68,"lecture":34,"seminar":0,"lab":34,"selfOther":40,"semesters":[2],"assessment":["РЭкз"],"part":"mandatory"},
+    {"id":"d09","nameRu":"Модели надёжности АСОИУ","department":"ИУ5","credits":3,"hours":108,"classroom":51,"lecture":34,"seminar":0,"lab":17,"selfOther":57,"semesters":[2],"assessment":["Экз"],"part":"mandatory"},
+    {"id":"d10","nameRu":"Постреляционные базы данных","department":"ИУ5","credits":4,"hours":144,"classroom":51,"lecture":17,"seminar":0,"lab":34,"selfOther":93,"semesters":[2],"assessment":["Экз"],"part":"mandatory"},
+    {"id":"d11","nameRu":"Разработка нейросетевых систем","department":"ИУ5","credits":4,"hours":144,"classroom":51,"lecture":17,"seminar":0,"lab":34,"selfOther":93,"semesters":[2],"assessment":["Экз"],"part":"mandatory"},
+    {"id":"d12","nameRu":"Анализ временных рядов","department":"ИУ5","credits":4,"hours":144,"classroom":51,"lecture":17,"seminar":0,"lab":34,"selfOther":93,"semesters":[3],"assessment":["Экз"],"part":"mandatory"},
+    {"id":"d13","nameRu":"Искусственный интеллект в задачах бизнес-аналитики","department":"ИУ5","credits":4,"hours":144,"classroom":51,"lecture":17,"seminar":17,"lab":17,"selfOther":93,"semesters":[3],"assessment":["Экз"],"part":"mandatory"},
+    {"id":"d14","nameRu":"Управление проектированием информационных систем","department":"ИУ5","credits":3,"hours":108,"classroom":51,"lecture":17,"seminar":34,"lab":0,"selfOther":57,"semesters":[3],"assessment":["Зчт"],"part":"mandatory"},
+    {"id":"d15","nameRu":"Технологии разработки программного обеспечения","department":"ИУ5","credits":6,"hours":216,"classroom":51,"lecture":17,"seminar":0,"lab":34,"selfOther":165,"semesters":[1,2],"assessment":["Экз","ДЗчт"],"part":"participant_formed"},
+    {"id":"d16","nameRu":"НИР по обработке и анализу данных","department":"ИУ5","credits":2,"hours":72,"classroom":0,"lecture":0,"seminar":0,"lab":0,"selfOther":72,"semesters":[3],"assessment":["ДЗчт"],"part":"participant_formed"},
+    {"id":"d17","nameRu":"Эргономический анализ систем обработки и отображения информации","department":"ИУ5","credits":6,"hours":216,"classroom":68,"lecture":34,"seminar":34,"lab":0,"selfOther":148,"semesters":[3],"assessment":["Экз","ДЗчт"],"part":"participant_formed"},
+    {"id":"d18","nameRu":"Миварные технологии логического искусственного интеллекта","department":"ИУ5","credits":4,"hours":144,"classroom":33,"lecture":11,"seminar":0,"lab":22,"selfOther":111,"semesters":[4],"assessment":["Экз","ДЗчт"],"part":"participant_formed"},
+    {"id":"d19","nameRu":"Описание процессов жизненного цикла СТС","department":"ИУ5","credits":4,"hours":144,"classroom":33,"lecture":22,"seminar":0,"lab":11,"selfOther":111,"semesters":[4],"assessment":["Экз"],"part":"participant_formed"}
+  ],
+  "electiveGroups": [
+    {"id":"e01","credits":3,"hours":108,"semester":3,"assessment":["Зчт"],"choose":1,"options":[
+      {"id":"e01a","nameRu":"Защита информации в автоматизированных системах обработки информации и управления","department":"ИУ5"},
+      {"id":"e01b","nameRu":"Информационная безопасность автоматизированных систем обработки информации и управления","department":"ИУ5"}
+    ]},
+    {"id":"e02","credits":3,"hours":108,"semester":4,"assessment":["Экз"],"choose":1,"options":[
+      {"id":"e02a","nameRu":"Технологии обработки больших данных","department":"ИУ5"},
+      {"id":"e02b","nameRu":"Технологии разработки мультимедиа систем","department":"ИУ5"}
+    ]}
+  ],
+  "practices": [
+    {"id":"p01","nameRu":"Проектно-технологическая практика","type":"Учебная","credits":2,"hours":72,"semesters":[2],"assessment":["ДЗчт"]},
+    {"id":"p02","nameRu":"Научно-исследовательская работа","type":"Производственная","credits":21,"hours":756,"semesters":[1,2,3,4],"assessment":["ДЗчт"]},
+    {"id":"p03","nameRu":"Эксплуатационная практика","type":"Производственная","credits":3,"hours":108,"semesters":[2],"assessment":["ДЗчт"]},
+    {"id":"p04","nameRu":"Педагогическая практика","type":"Производственная","credits":2,"hours":72,"semesters":[2,3],"assessment":["ДЗчт"]},
+    {"id":"p05","nameRu":"Преддипломная практика","type":"Производственная","credits":3,"hours":108,"semesters":[4],"assessment":["ДЗчт"]}
+  ],
+  "gia": [
+    {"id":"g01","nameRu":"Подготовка и защита ВКР","credits":9,"hours":324,"semesters":[4],"assessment":["ГЭК"]}
+  ],
+  "facultatives": [
+    {"id":"f01","nameRu":"Антикоррупционная деятельность в Российской Федерации","department":"ЮР","credits":2,"hours":72,"semester":2,"assessment":["Зчт"]},
+    {"id":"f02","nameRu":"Менеджмент креативности и эвристики","department":"ИБМ2","credits":2,"hours":72,"semester":3,"assessment":["Зчт"]}
+  ],
+  "integrity": {
+    "mandatoryDisciplineCredits": 52,
+    "participantFormedDisciplineCredits": 28,
+    "electiveCreditsWithinParticipantFormed": 6,
+    "disciplineCredits": 80,
+    "practiceCredits": 31,
+    "giaCredits": 9,
+    "totalCredits": 120
+  }
+}

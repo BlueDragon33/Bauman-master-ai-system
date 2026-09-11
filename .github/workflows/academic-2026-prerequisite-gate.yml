@@ -1,0 +1,165 @@
+name: Academic 2026 Prerequisite Gate
+
+on:
+  push:
+    paths:
+      - 'assets/data/official-curriculum-iu5-2026.json'
+      - 'assets/data/prerequisite-registry-iu5-2026.json'
+      - 'assets/data/prerequisite-content-coverage-2026.json'
+      - 'assets/data/prerequisite-packs/**'
+      - 'assets/js/academic-main.js'
+      - 'assets/js/academic-scheduler-preview.js'
+      - 'assets/js/academic-scheduler-apply.js'
+      - 'assets/js/platform/runtime-config.js'
+      - 'assets/js/platform/device-access-gate.js'
+      - 'assets/css/academic-2026.css'
+      - 'assets/css/device-access-gate.css'
+      - 'index.html'
+      - 'scripts/validate-academic-2026.js'
+      - 'scripts/validate-prerequisite-coverage-2026.js'
+      - 'scripts/validate-p09-markov-queueing.js'
+      - 'scripts/validate-p06-database-fundamentals.js'
+      - 'scripts/validate-p04-discrete-algorithms-data-structures.js'
+      - 'scripts/validate-p07-linux-os-networks.js'
+      - 'scripts/validate-p08-software-engineering.js'
+      - 'scripts/validate-p10-scientific-data-python.js'
+      - 'scripts/validate-p11-research-foundation.js'
+      - 'scripts/validate-j01-information-system-architecture.js'
+      - 'scripts/validate-p00-technical-russian.js'
+      - 'scripts/validate-diagnostic-runtime-13b.js'
+      - 'scripts/validate-risk-engine-13c.js'
+      - 'scripts/validate-scheduler-preview-13d.js'
+      - 'scripts/validate-scheduler-apply-13f.js'
+      - 'tests/academic-browser-acceptance-13e.mjs'
+      - '.github/workflows/academic-2026-prerequisite-gate.yml'
+  pull_request:
+    paths:
+      - 'assets/data/official-curriculum-iu5-2026.json'
+      - 'assets/data/prerequisite-registry-iu5-2026.json'
+      - 'assets/data/prerequisite-content-coverage-2026.json'
+      - 'assets/data/prerequisite-packs/**'
+      - 'assets/js/academic-main.js'
+      - 'assets/js/academic-scheduler-preview.js'
+      - 'assets/js/academic-scheduler-apply.js'
+      - 'assets/js/platform/runtime-config.js'
+      - 'assets/js/platform/device-access-gate.js'
+      - 'assets/css/academic-2026.css'
+      - 'assets/css/device-access-gate.css'
+      - 'index.html'
+      - 'scripts/validate-academic-2026.js'
+      - 'scripts/validate-prerequisite-coverage-2026.js'
+      - 'scripts/validate-p09-markov-queueing.js'
+      - 'scripts/validate-p06-database-fundamentals.js'
+      - 'scripts/validate-p04-discrete-algorithms-data-structures.js'
+      - 'scripts/validate-p07-linux-os-networks.js'
+      - 'scripts/validate-p08-software-engineering.js'
+      - 'scripts/validate-p10-scientific-data-python.js'
+      - 'scripts/validate-p11-research-foundation.js'
+      - 'scripts/validate-j01-information-system-architecture.js'
+      - 'scripts/validate-p00-technical-russian.js'
+      - 'scripts/validate-diagnostic-runtime-13b.js'
+      - 'scripts/validate-risk-engine-13c.js'
+      - 'scripts/validate-scheduler-preview-13d.js'
+      - 'scripts/validate-scheduler-apply-13f.js'
+      - 'tests/academic-browser-acceptance-13e.mjs'
+      - '.github/workflows/academic-2026-prerequisite-gate.yml'
+
+jobs:
+  validate-academic-registry:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+      - name: Validate IU5 2026 curriculum and prerequisite registry
+        run: node scripts/validate-academic-2026.js
+      - name: Validate prerequisite content coverage audit
+        run: node scripts/validate-prerequisite-coverage-2026.js
+      - name: Validate P9 Markov / Queueing / Simulation pack
+        run: node scripts/validate-p09-markov-queueing.js
+      - name: Validate P6 Database Fundamentals pack
+        run: node scripts/validate-p06-database-fundamentals.js
+      - name: Validate P4 Discrete / Algorithms / Data Structures pack
+        run: node scripts/validate-p04-discrete-algorithms-data-structures.js
+      - name: Validate P7 Linux / OS / Networks pack
+        run: node scripts/validate-p07-linux-os-networks.js
+      - name: Validate P8 Software Engineering pack
+        run: node scripts/validate-p08-software-engineering.js
+      - name: Validate P10 Scientific / Data Python pack
+        run: node scripts/validate-p10-scientific-data-python.js
+      - name: Validate P11 Research Foundation pack
+        run: node scripts/validate-p11-research-foundation.js
+      - name: Validate J1 Information-System Architecture bridge
+        run: node scripts/validate-j01-information-system-architecture.js
+      - name: Validate P0 Technical Russian mapping pack
+        run: node scripts/validate-p00-technical-russian.js
+      - name: Validate Pass13B diagnostic runtime and reuse packs
+        run: node scripts/validate-diagnostic-runtime-13b.js
+      - name: Validate Pass13C course risk and active repair engine
+        run: node scripts/validate-risk-engine-13c.js
+      - name: Validate Pass13D scheduler integration preview
+        run: node scripts/validate-scheduler-preview-13d.js
+      - name: Validate Pass13F transactional scheduler Apply/rollback
+        run: node scripts/validate-scheduler-apply-13f.js
+      - name: Check Academic and Device Gate runtime JavaScript syntax
+        run: |
+          node --check assets/js/academic-main.js
+          node --check assets/js/academic-scheduler-preview.js
+          node --check assets/js/academic-scheduler-apply.js
+          node --check assets/js/platform/runtime-config.js
+          node --check assets/js/platform/device-access-gate.js
+          node --check tests/academic-browser-acceptance-13e.mjs
+      - name: Check runtime references are loaded by index
+        shell: bash
+        run: |
+          grep -q 'assets/css/device-access-gate.css' index.html
+          grep -q 'assets/css/academic-2026.css' index.html
+          grep -q 'assets/js/platform/runtime-config.js' index.html
+          grep -q 'assets/js/platform/device-access-gate.js' index.html
+          grep -q 'assets/js/planning-main.js' index.html
+          grep -q 'assets/js/academic-main.js' index.html
+          grep -q 'assets/js/academic-scheduler-preview.js' index.html
+          grep -q 'assets/js/academic-scheduler-apply.js' index.html
+          ! grep -q '</div>7' index.html
+
+  browser-e2e-acceptance:
+    needs: validate-academic-registry
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22.13.0'
+      - name: Install Playwright Chromium
+        run: |
+          printf '{"private":true,"type":"module"}\n' > package.json
+          npm install --no-save --no-audit --no-fund playwright@1.55.0
+          npx playwright install --with-deps chromium
+      - name: Start static Hub server
+        run: |
+          python3 -m http.server 4173 --bind 127.0.0.1 > /tmp/bauman-http.log 2>&1 &
+          echo $! > /tmp/bauman-http.pid
+          for i in {1..30}; do
+            if curl -fsS http://127.0.0.1:4173/ >/dev/null; then exit 0; fi
+            sleep 1
+          done
+          cat /tmp/bauman-http.log
+          exit 1
+      - name: Run Pass13E + Pass13F browser acceptance
+        env:
+          BAUMAN_E2E_BASE_URL: http://127.0.0.1:4173/
+          BAUMAN_E2E_ARTIFACT_DIR: artifacts/browser-13e
+        run: node tests/academic-browser-acceptance-13e.mjs
+      - name: Show static server log on failure
+        if: failure()
+        run: cat /tmp/bauman-http.log || true
+      - name: Upload Browser/E2E evidence
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: academic-browser-13e-13f-${{ github.run_id }}
+          path: artifacts/browser-13e
+          if-no-files-found: warn
+          retention-days: 7

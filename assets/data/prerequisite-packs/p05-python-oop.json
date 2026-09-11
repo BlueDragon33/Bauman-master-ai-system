@@ -1,0 +1,84 @@
+{
+  "schema":"bauman_prerequisite_pack_v1",
+  "version":"P5_PYTHON_OOP_REUSE_DIAGNOSTIC_PASS13B_V1",
+  "gateId":"P5",
+  "title":"Python & OOP / Python и ООП",
+  "verifiedAt":"2026-09-11",
+  "notOfficialAdministrativePrerequisite":true,
+  "reuseOnly":true,
+  "purpose":"Chẩn đoán năng lực Python/OOP hiện có trong Programming; sửa đúng phần yếu thay vì học lại toàn bộ Python.",
+  "mastery":{"target":90,"applicationMinimum":85,"criticalMisconceptionsAllowed":0,"masteredThreshold":95,"masteredApplicationMinimum":90,"scoreFormula":"M = 0.25*D0 + 0.50*D1 + 0.25*D2"},
+  "localReuse":[
+    {"lessonId":"PR03","source":"subjects/programming/data/lessons.json","focus":"Python core, data types, functions, modules"},
+    {"lessonId":"PR13","source":"subjects/programming/data/lessons.json","focus":"exceptions, debugging, logging"},
+    {"lessonId":"PR14","source":"subjects/programming/data/lessons.json","focus":"pytest basics"},
+    {"lessonId":"PR17","source":"subjects/programming/data/lessons.json","focus":"OOP class, interface, responsibility"}
+  ],
+  "nodes":[
+    {"id":"P5-N01","order":1,"title":"Python values, collections and control flow","dependsOn":[]},
+    {"id":"P5-N02","order":2,"title":"Functions, scope and pure data flow","dependsOn":["P5-N01"]},
+    {"id":"P5-N03","order":3,"title":"Modules, imports and package boundaries","dependsOn":["P5-N02"]},
+    {"id":"P5-N04","order":4,"title":"Exceptions, debugging and logging","dependsOn":["P5-N02"]},
+    {"id":"P5-N05","order":5,"title":"Classes, objects and state","dependsOn":["P5-N02"]},
+    {"id":"P5-N06","order":6,"title":"Composition, inheritance and polymorphism","dependsOn":["P5-N05"]},
+    {"id":"P5-N07","order":7,"title":"Typing, protocols/ABC and contracts","dependsOn":["P5-N03","P5-N06"]},
+    {"id":"P5-N08","order":8,"title":"Unit tests and refactoring confidence","dependsOn":["P5-N04","P5-N07"]}
+  ],
+  "diagnostic":{
+    "D0":{"weight":0.25,"items":[
+      {"id":"P5-D0-01","node":"P5-N01","prompt":"Phân biệt list, tuple, set và dict theo use case."},
+      {"id":"P5-D0-02","node":"P5-N01","prompt":"Mutable và immutable ảnh hưởng thế nào đến code?"},
+      {"id":"P5-D0-03","node":"P5-N02","prompt":"Parameter khác argument thế nào?"},
+      {"id":"P5-D0-04","node":"P5-N02","prompt":"Local scope và global scope khác nhau ra sao?"},
+      {"id":"P5-D0-05","node":"P5-N03","prompt":"Module và package khác nhau thế nào ở mức cơ bản?"},
+      {"id":"P5-D0-06","node":"P5-N03","prompt":"Vì sao circular import là dấu hiệu thiết kế cần xem lại?"},
+      {"id":"P5-D0-07","node":"P5-N04","prompt":"Exception khác lỗi logic thế nào?"},
+      {"id":"P5-D0-08","node":"P5-N04","prompt":"Logging khác print debugging ở điểm nào?"},
+      {"id":"P5-D0-09","node":"P5-N05","prompt":"Class, object, attribute và method là gì?"},
+      {"id":"P5-D0-10","node":"P5-N05","prompt":"Instance state khác class attribute thế nào?"},
+      {"id":"P5-D0-11","node":"P5-N06","prompt":"Composition khác inheritance thế nào?"},
+      {"id":"P5-D0-12","node":"P5-N06","prompt":"Polymorphism có cần inheritance trực tiếp không?"},
+      {"id":"P5-D0-13","node":"P5-N07","prompt":"Type hint giúp gì và không đảm bảo điều gì ở runtime?"},
+      {"id":"P5-D0-14","node":"P5-N07","prompt":"Protocol/ABC dùng để mô tả contract thế nào?"},
+      {"id":"P5-D0-15","node":"P5-N08","prompt":"Unit test nên cô lập loại hành vi nào?"},
+      {"id":"P5-D0-16","node":"P5-N08","prompt":"Regression test có vai trò gì khi refactor?"}
+    ]},
+    "D1":{"weight":0.50,"items":[
+      {"id":"P5-D1-01","node":"P5-N01","task":"Viết đoạn Python đếm tần suất phần tử bằng dict và giải thích complexity gần đúng."},
+      {"id":"P5-D1-02","node":"P5-N02","task":"Viết hàm normalize(values) không sửa list đầu vào và xử lý list rỗng rõ ràng."},
+      {"id":"P5-D1-03","node":"P5-N03","task":"Tách một script 60 dòng giả định thành module io.py, metrics.py, main.py và giải thích dependency direction."},
+      {"id":"P5-D1-04","node":"P5-N04","task":"Thiết kế try/except cho đọc JSON: phân biệt file missing, JSON invalid và lỗi không dự kiến; log đủ context."},
+      {"id":"P5-D1-05","node":"P5-N05","task":"Thiết kế class DatasetSummary với constructor, state tối thiểu và method mean(); tránh god object."},
+      {"id":"P5-D1-06","node":"P5-N06","task":"Chọn composition hay inheritance cho Report chứa Formatter và bảo vệ quyết định."},
+      {"id":"P5-D1-07","node":"P5-N07","task":"Định nghĩa Protocol tối thiểu cho Predictor có predict(X) và giải thích lợi ích với testing."},
+      {"id":"P5-D1-08","node":"P5-N08","task":"Viết pytest cho normalize gồm normal case, empty case và invalid input."},
+      {"id":"P5-D1-09","node":"P5-N08","task":"Refactor function dài thành hai function nhỏ nhưng giữ test xanh; mô tả bằng chứng không đổi behavior."},
+      {"id":"P5-D1-10","node":"P5-N04","task":"Cho stack trace giả định, xác định frame đầu tiên thuộc code ứng dụng và đề xuất bước debug có thể kiểm chứng."}
+    ]},
+    "D2":{"weight":0.25,"items":[
+      {"id":"P5-D2-01","node":"P5-N02","promptRu":"Объясните область видимости переменных и передачу данных между функциями в Python."},
+      {"id":"P5-D2-02","node":"P5-N04","promptRu":"Как вы различаете исключение, логическую ошибку и проблему входных данных при отладке программы?"},
+      {"id":"P5-D2-03","node":"P5-N05","promptRu":"Объясните разницу между классом, объектом, состоянием объекта и методом."},
+      {"id":"P5-D2-04","node":"P5-N06","promptRu":"Сравните композицию и наследование и приведите пример выбора между ними."},
+      {"id":"P5-D2-05","node":"P5-N07","promptRu":"Зачем нужны аннотации типов, абстрактные интерфейсы или протоколы в Python-проекте?"},
+      {"id":"P5-D2-06","node":"P5-N08","promptRu":"Объясните, как модульные и регрессионные тесты позволяют безопасно выполнять рефакторинг."}
+    ]}
+  },
+  "criticalMisconceptions":[
+    {"id":"P5-M01","node":"P5-N01","text":"Dùng mutable default argument mà không hiểu state bị giữ giữa các lần gọi."},
+    {"id":"P5-M02","node":"P5-N02","text":"Function luôn được quyền sửa object đầu vào mà không cần contract."},
+    {"id":"P5-M03","node":"P5-N03","text":"Circular import chỉ là lỗi cú pháp, không liên quan design boundary."},
+    {"id":"P5-M04","node":"P5-N04","text":"Bắt Exception rộng rồi bỏ qua là error handling tốt."},
+    {"id":"P5-M05","node":"P5-N05","text":"Class chỉ là nhóm function, không cần invariant/state responsibility."},
+    {"id":"P5-M06","node":"P5-N06","text":"Inheritance luôn tốt hơn composition để tái sử dụng code."},
+    {"id":"P5-M07","node":"P5-N07","text":"Type hints tự động validate mọi giá trị runtime."},
+    {"id":"P5-M08","node":"P5-N08","text":"Test pass một case nghĩa là function đúng cho mọi input."}
+  ],
+  "repairRoutes":[
+    {"id":"P5-R01","triggerNodes":["P5-N01","P5-N02","P5-N03"],"route":["PR03"],"stopWhen":"Coding D1 core >=85 và không còn misconception."},
+    {"id":"P5-R02","triggerNodes":["P5-N04"],"route":["PR13"],"stopWhen":"Xử lý exception/debug/log task >=85%."},
+    {"id":"P5-R03","triggerNodes":["P5-N05","P5-N06","P5-N07"],"route":["PR17"],"stopWhen":"Thiết kế class/composition/interface task >=85%."},
+    {"id":"P5-R04","triggerNodes":["P5-N08"],"route":["PR14"],"stopWhen":"Test/refactor tasks >=85% và regression evidence đầy đủ."}
+  ],
+  "implementationPolicy":{"schedulerMutation":false,"writesDiagnosticScores":false,"newTopLevelSubject":false,"duplicatesExistingTheory":false,"mainBranchMutation":false}
+}

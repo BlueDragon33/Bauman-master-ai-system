@@ -1,0 +1,80 @@
+{
+  "schema": "bauman_prerequisite_pack_v1",
+  "version": "P1_CALCULUS_REUSE_DIAGNOSTIC_PASS13B_V1",
+  "gateId": "P1",
+  "title": "Toán nền & giải tích cơ bản / Базовая математика и анализ",
+  "verifiedAt": "2026-09-11",
+  "notOfficialAdministrativePrerequisite": true,
+  "reuseOnly": true,
+  "purpose": "Chẩn đoán và định tuyến sửa phần giải tích đã có trong Math; không tạo khóa giải tích thứ hai.",
+  "mastery": {"target":90,"applicationMinimum":85,"criticalMisconceptionsAllowed":0,"masteredThreshold":95,"masteredApplicationMinimum":90,"scoreFormula":"M = 0.25*D0 + 0.50*D1 + 0.25*D2"},
+  "localReuse": [
+    {"disciplineId":"calculus_multivariable","source":"subjects/math/data/discipline_spine.json"},
+    {"chapterId":"MATH-VN-C03-ham_so_ao_ham_va_gradien","source":"subjects/math/data/chapter_spine.json"}
+  ],
+  "nodes": [
+    {"id":"P1-N01","order":1,"title":"Algebra, functions, exponentials and logarithms","dependsOn":[]},
+    {"id":"P1-N02","order":2,"title":"Limits and continuity intuition","dependsOn":["P1-N01"]},
+    {"id":"P1-N03","order":3,"title":"Derivative and rate of change","dependsOn":["P1-N02"]},
+    {"id":"P1-N04","order":4,"title":"Chain, product and quotient rules","dependsOn":["P1-N03"]},
+    {"id":"P1-N05","order":5,"title":"Basic integration and fundamental theorem intuition","dependsOn":["P1-N03"]},
+    {"id":"P1-N06","order":6,"title":"Partial derivatives and multivariable functions","dependsOn":["P1-N04"]},
+    {"id":"P1-N07","order":7,"title":"Gradient, Jacobian and directional change","dependsOn":["P1-N06"]},
+    {"id":"P1-N08","order":8,"title":"Calculus bridge to optimization, probability and ML","dependsOn":["P1-N05","P1-N07"]}
+  ],
+  "diagnostic": {
+    "D0":{"weight":0.25,"items":[
+      {"id":"P1-D0-01","node":"P1-N01","prompt":"Phân biệt hàm mũ và logarit; nêu điều kiện miền xác định cơ bản."},
+      {"id":"P1-D0-02","node":"P1-N01","prompt":"Nêu ý nghĩa của miền xác định và tập giá trị."},
+      {"id":"P1-D0-03","node":"P1-N02","prompt":"Giới hạn mô tả điều gì?"},
+      {"id":"P1-D0-04","node":"P1-N02","prompt":"Liên tục tại một điểm cần trực giác/điều kiện nào?"},
+      {"id":"P1-D0-05","node":"P1-N03","prompt":"Đạo hàm biểu diễn đại lượng gì?"},
+      {"id":"P1-D0-06","node":"P1-N03","prompt":"Nêu đạo hàm của x^n, e^x và ln x."},
+      {"id":"P1-D0-07","node":"P1-N04","prompt":"Khi nào dùng chain rule?"},
+      {"id":"P1-D0-08","node":"P1-N04","prompt":"Nêu product rule."},
+      {"id":"P1-D0-09","node":"P1-N05","prompt":"Tích phân xác định có thể hiểu như đại lượng tích lũy thế nào?"},
+      {"id":"P1-D0-10","node":"P1-N05","prompt":"Đạo hàm và tích phân liên hệ ra sao ở mức cơ bản?"},
+      {"id":"P1-D0-11","node":"P1-N06","prompt":"Đạo hàm riêng giữ các biến còn lại như thế nào?"},
+      {"id":"P1-D0-12","node":"P1-N06","prompt":"Hàm nhiều biến khác hàm một biến ở điểm nào khi xét độ dốc?"},
+      {"id":"P1-D0-13","node":"P1-N07","prompt":"Gradient là vector gì?"},
+      {"id":"P1-D0-14","node":"P1-N07","prompt":"Jacobian chứa những đạo hàm nào?"},
+      {"id":"P1-D0-15","node":"P1-N08","prompt":"Gradient descent dùng dấu âm của gradient vì sao?"},
+      {"id":"P1-D0-16","node":"P1-N08","prompt":"Nêu một tình huống trong thống kê/ML cần đạo hàm."}
+    ]},
+    "D1":{"weight":0.50,"items":[
+      {"id":"P1-D1-01","node":"P1-N01","task":"Giải phương trình 2^(x+1)=16 và log_2(x)=3; kiểm tra miền xác định."},
+      {"id":"P1-D1-02","node":"P1-N02","task":"Tính giới hạn lim(x→2) (x^2-4)/(x-2) và giải thích vì sao biểu thức gốc không xác định tại x=2."},
+      {"id":"P1-D1-03","node":"P1-N03","task":"Tính đạo hàm f(x)=x^3-4x+2 và xác định điểm dừng."},
+      {"id":"P1-D1-04","node":"P1-N04","task":"Tính đạo hàm ln(1+x^2) và chỉ rõ chain rule."},
+      {"id":"P1-D1-05","node":"P1-N05","task":"Tính tích phân từ 0 đến 2 của (3x^2+1) dx và kiểm tra bằng nguyên hàm."},
+      {"id":"P1-D1-06","node":"P1-N06","task":"Với f(x,y)=x^2y+e^y, tính hai đạo hàm riêng tại (1,0)."},
+      {"id":"P1-D1-07","node":"P1-N07","task":"Với f(x,y)=x^2+3xy+y^2, tính gradient tại (1,2) và nêu hướng tăng nhanh nhất."},
+      {"id":"P1-D1-08","node":"P1-N07","task":"Tính Jacobian của F(x,y)=(x+y,xy) tại (2,3)."},
+      {"id":"P1-D1-09","node":"P1-N08","task":"Cho L(w)=(w-4)^2, thực hiện một bước gradient descent từ w=0 với learning rate 0.1."},
+      {"id":"P1-D1-10","node":"P1-N08","task":"Giải thích bằng công thức vì sao scale quá lớn có thể làm một bước gradient thay đổi mạnh."}
+    ]},
+    "D2":{"weight":0.25,"items":[
+      {"id":"P1-D2-01","node":"P1-N03","promptRu":"Объясните геометрический и прикладной смысл производной функции в точке."},
+      {"id":"P1-D2-02","node":"P1-N04","promptRu":"Объясните правило цепочки и приведите простой пример составной функции."},
+      {"id":"P1-D2-03","node":"P1-N05","promptRu":"Объясните смысл определенного интеграла как накопленной величины."},
+      {"id":"P1-D2-04","node":"P1-N06","promptRu":"Чем частная производная функции нескольких переменных отличается от обычной производной?"},
+      {"id":"P1-D2-05","node":"P1-N07","promptRu":"Что показывает градиент функции и как определить направление наибольшего роста?"},
+      {"id":"P1-D2-06","node":"P1-N08","promptRu":"Объясните, как производные используются при оптимизации функции потерь в машинном обучении."}
+    ]}
+  },
+  "criticalMisconceptions": [
+    {"id":"P1-M01","node":"P1-N02","text":"Thay trực tiếp vào biểu thức không xác định rồi kết luận giới hạn không tồn tại."},
+    {"id":"P1-M02","node":"P1-N03","text":"Đạo hàm là giá trị của hàm chứ không phải tốc độ thay đổi."},
+    {"id":"P1-M03","node":"P1-N04","text":"Quên chain rule với hàm hợp."},
+    {"id":"P1-M04","node":"P1-N05","text":"Nhầm tích phân xác định với nguyên hàm không cần cận."},
+    {"id":"P1-M05","node":"P1-N06","text":"Lấy đạo hàm riêng theo x nhưng vẫn đạo hàm luôn y."},
+    {"id":"P1-M06","node":"P1-N07","text":"Gradient là một số vô hướng cho hàm nhiều biến."},
+    {"id":"P1-M07","node":"P1-N08","text":"Gradient descent luôn đi theo chiều gradient dương."}
+  ],
+  "repairRoutes": [
+    {"id":"P1-R01","triggerNodes":["P1-N01","P1-N02"],"route":["MATH-VN-C03-ham_so_ao_ham_va_gradien"],"stopWhen":"D1 các node liên quan >=85 và không còn critical misconception."},
+    {"id":"P1-R02","triggerNodes":["P1-N03","P1-N04","P1-N05"],"route":["MATH-VN-C03-ham_so_ao_ham_va_gradien"],"stopWhen":"Giải đúng >=85% bài ứng dụng đạo hàm/tích phân."},
+    {"id":"P1-R03","triggerNodes":["P1-N06","P1-N07","P1-N08"],"route":["MATH-VN-C03-ham_so_ao_ham_va_gradien"],"stopWhen":"Tính gradient/Jacobian đúng và giải thích được bằng lời."}
+  ],
+  "implementationPolicy":{"schedulerMutation":false,"writesDiagnosticScores":false,"newTopLevelSubject":false,"duplicatesExistingTheory":false,"mainBranchMutation":false}
+}

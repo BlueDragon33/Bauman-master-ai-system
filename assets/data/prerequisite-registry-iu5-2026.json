@@ -1,0 +1,98 @@
+{
+  "schema": "bauman_prerequisite_assurance_v1",
+  "version": "PREREQ_ASSURANCE_IU5_2026_V1",
+  "verifiedAt": "2026-09-10",
+  "scope": "Competency prerequisites inferred from the official IU5 2026 curriculum and public IU5 learning materials. These are NOT administrative prerequisites declared by Bauman.",
+  "notOfficialAdministrativePrerequisites": true,
+  "masteryPolicy": {
+    "diagnosticLayers": [
+      {"id":"D0","name":"Recall","weight":0.25},
+      {"id":"D1","name":"Application","weight":0.5},
+      {"id":"D2","name":"Explain/Oral","weight":0.25}
+    ],
+    "scoreFormula": "M = 0.25*D0 + 0.50*D1 + 0.25*D2",
+    "states": [
+      {"id":"rebuild","min":0,"max":59},
+      {"id":"repair","min":60,"max":79},
+      {"id":"bridge","min":80,"max":89},
+      {"id":"ready","min":90,"max":94},
+      {"id":"mastered","min":95,"max":100}
+    ],
+    "readyRules": {
+      "overallMinimum": 90,
+      "applicationMinimum": 85,
+      "criticalMisconceptionsAllowed": 0,
+      "courseReadyRule": "minimum of all critical prerequisite gate scores must satisfy the gate threshold"
+    },
+    "stopRule": "When a gate is MASTERED and no critical misconception remains, remove it from the active route unless a later official course reopens a narrower sub-gate."
+  },
+  "coreGates": [
+    {"id":"P0","name":"Tiếng Nga kỹ thuật","homeSubject":"russian","target":90,"priority":"critical","topics":["đọc đề kỹ thuật","nghe chỉ dẫn lớp/lab","thuật ngữ toán-CNTT-AI-CSDL","trình bày lời giải","vấn đáp học thuật"]},
+    {"id":"P1","name":"Toán nền & giải tích cơ bản","homeSubject":"math","target":90,"priority":"critical","topics":["đại số cơ bản","hàm số","logarit-hàm mũ","giới hạn","đạo hàm","đạo hàm riêng","tích phân cơ bản","gradient","chain rule"]},
+    {"id":"P2","name":"Đại số tuyến tính","homeSubject":"math","target":90,"priority":"critical","topics":["vector","ma trận","hạng","hệ tuyến tính","cơ sở","trị riêng-vector riêng","SVD","PCA prerequisites"]},
+    {"id":"P3","name":"Xác suất & thống kê","homeSubject":"math","target":90,"priority":"critical","topics":["xác suất có điều kiện","Bayes","biến ngẫu nhiên","phân phối","kỳ vọng-phương sai","covariance-correlation","ước lượng","khoảng tin cậy","kiểm định"]},
+    {"id":"P4","name":"Toán rời rạc, thuật toán & cấu trúc dữ liệu","homeSubject":"programming","target":88,"priority":"critical","topics":["logic-tập hợp-quan hệ","độ phức tạp","array-list","stack-queue","hash","tree","graph","sorting-searching","BFS-DFS","recursion"]},
+    {"id":"P5","name":"Python & OOP","homeSubject":"programming","target":90,"priority":"critical","topics":["Python core","functions-modules","exceptions","files","OOP","typing cơ bản","debugging","pytest cơ bản"]},
+    {"id":"P6","name":"Cơ sở dữ liệu nền tảng","homeSubject":"programming","target":90,"priority":"critical","topics":["relational model","keys-constraints","relational algebra","normalization","SQL JOIN/subquery/CTE/window","ACID","transactions","isolation-locking","indexes","B-tree/hash","query plan"]},
+    {"id":"P7","name":"Linux, hệ điều hành & mạng","homeSubject":"programming","target":85,"priority":"high","topics":["shell-files-permissions","process-thread","memory-filesystem","SSH","TCP/IP","TCP-UDP","port-socket","HTTP","client-server","environment-package management"]},
+    {"id":"P8","name":"Kỹ nghệ phần mềm","homeSubject":"programming","target":88,"priority":"high","topics":["requirements","UML","SOLID","design patterns cơ bản","architecture","Git workflow","testing","software lifecycle","documentation"]},
+    {"id":"P9","name":"OR, Markov, Queueing & mô phỏng","homeSubject":"math","target":90,"priority":"critical","topics":["optimization cơ bản","random process","Poisson process","exponential distribution","Markov chain","queueing M/M/1-M/M/c","Little law","simulation","reliability bridge"]},
+    {"id":"P10","name":"Scientific/Data Python","homeSubject":"programming","target":90,"priority":"critical","topics":["NumPy","pandas","SciPy cơ bản","matplotlib","data cleaning","feature preprocessing","scikit-learn workflow","reproducible notebook"]},
+    {"id":"P11","name":"Nghiên cứu khoa học nền tảng","homeSubject":"research","target":88,"priority":"high","topics":["research question","hypothesis","literature matrix","experiment design","metrics","baseline","reproducibility","citation","technical report"]},
+    {"id":"P12","name":"Machine Learning nền tảng","homeSubject":"ai","target":88,"priority":"high","topics":["train-validation-test","linear-logistic regression","kNN","tree-random forest","SVM concept","clustering","PCA usage","cross-validation","metrics","bias-variance","overfit-underfit"]}
+  ],
+  "jitBridgeGates": [
+    {"id":"J1","name":"Kiến trúc hệ thống thông tin","homeSubject":"systems","target":85,"activateBeforeSemester":1,"topics":["system boundary","components-interfaces","data flow","service architecture","availability","bottleneck","architecture documentation"]},
+    {"id":"J2","name":"Data Warehouse, OLAP & BI","homeSubject":"programming","target":85,"activateBeforeSemester":3,"topics":["OLTP-vs-OLAP","warehouse","star-schema concept","ETL/ELT","multidimensional analytics","BI metrics"]},
+    {"id":"J3","name":"HCI & đánh giá công thái học","homeSubject":"systems","target":85,"activateBeforeSemester":3,"topics":["human factors","perception","usability","cognitive load","interface evaluation","experiment protocol"]},
+    {"id":"J4","name":"An toàn thông tin nền tảng","homeSubject":"systems","target":85,"activateBeforeSemester":3,"topics":["CIA","authentication","authorization","hashing","encryption concepts","TLS","access control","threat model","secure DB/API basics"]}
+  ],
+  "courseDependencies": [
+    {"courseId":"d01","critical":["P0"],"support":[]},
+    {"courseId":"d02","critical":["P11"],"support":["P0","P3"]},
+    {"courseId":"d03","critical":["P3","P9"],"support":["P1","J1"]},
+    {"courseId":"d04","critical":["P2","P3","P10"],"support":["P1"]},
+    {"courseId":"d05","critical":["P4","P5","P8"],"support":["J1"]},
+    {"courseId":"d06","critical":["P6"],"support":["P4","P7"]},
+    {"courseId":"d07","critical":[],"support":["P0"]},
+    {"courseId":"d08","critical":["P2","P3","P5","P10","P12"],"support":["P1"]},
+    {"courseId":"d09","critical":["P3","P9"],"support":["J1"]},
+    {"courseId":"d10","critical":["P6","P4"],"support":["P7"]},
+    {"courseId":"d11","critical":["P2","P3","P5","P10","P12"],"support":["P1"]},
+    {"courseId":"d12","critical":["P3","P10"],"support":["P1","P12"]},
+    {"courseId":"d13","critical":["P6","P3","P10","P12","J2"],"support":["P11"]},
+    {"courseId":"d14","critical":["P8","J1"],"support":["P0"]},
+    {"courseId":"d15","critical":["P5","P8"],"support":["P7","J1"]},
+    {"courseId":"d16","critical":["P3","P10","P11"],"support":["P0","P5"]},
+    {"courseId":"d17","critical":["J3","P11"],"support":["P3","P0"]},
+    {"courseId":"d18","critical":["P4"],"support":["P0","P11"]},
+    {"courseId":"d19","critical":["P8","J1"],"support":["P9"]},
+    {"courseId":"e01","critical":["P7","P6","J4"],"support":["P8"]},
+    {"courseId":"e02a","critical":["P5","P6","P7","P4"],"support":["P8"]},
+    {"courseId":"e02b","critical":["P5","P8"],"support":["P7"]},
+    {"courseId":"p01","critical":["P5","P8"],"support":["P11"]},
+    {"courseId":"p02","critical":["P11"],"support":["P0","P3","P5","P10"]},
+    {"courseId":"p03","critical":["J1","P8"],"support":["P7"]},
+    {"courseId":"p04","critical":["P0"],"support":["P11"]},
+    {"courseId":"p05","critical":["P11"],"support":["P0","P3","P5","P10"]},
+    {"courseId":"g01","critical":["P0","P11"],"support":["P3","P5","P10"]}
+  ],
+  "stageActivationPolicy": [
+    {"stage":"before_stankin","active":["P0","P1","P2","P3","P5","P6"],"secondary":["P4","P10"],"locked":["P12","J2","J3","J4"]},
+    {"stage":"stankin","active":["P0"],"secondary":["P1","P2","P3","P4","P5","P6","P10"],"policy":"STANKIN official classes remain primary; prerequisite repair is diagnostic-driven and must not crowd out Russian."},
+    {"stage":"pre_bauman_8_weeks","active":["P2","P3","P4","P5","P6","P8","P9","P10","P11","J1"],"secondary":["P0"],"goal":"Semester 1 READY, not learn all AI."},
+    {"stage":"semester_1","active":["P12"],"secondary":["P0","P11"],"rollingAheadSemester":2},
+    {"stage":"semester_2","active":["J2","J3","J4"],"secondary":["P0","P11"],"rollingAheadSemester":3},
+    {"stage":"semester_3","active":[],"secondary":["P0","P11"],"rollingAheadSemester":4},
+    {"stage":"semester_4","active":[],"secondary":["P0","P11"],"goal":"VKR/defense first; no broad prerequisite expansion."}
+  ],
+  "deprioritizedByDefault": [
+    "PID/LQR",
+    "robot dynamics",
+    "Kalman/sensor fusion",
+    "FPGA/HDL",
+    "PLC/SCADA",
+    "deep control theory",
+    "LLM/RAG/Agents before NIR direction is known"
+  ]
+}
