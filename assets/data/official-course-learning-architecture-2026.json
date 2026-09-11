@@ -1,0 +1,158 @@
+{
+  "schema": "bauman_official_course_learning_architecture_v1",
+  "version": "OFFICIAL_COURSE_LEARNING_PASS14A_V1",
+  "verifiedAt": "2026-09-11",
+  "status": "semester_1_learning_contract_blueprint",
+  "scope": "Structural learning architecture for official IU5 2026 semester-1 courses and NIR. This file does not invent an official syllabus where only the curriculum title is verified.",
+  "policy": {
+    "officialIdentitySource": "assets/data/official-curriculum-iu5-2026.json",
+    "prerequisiteSource": "assets/data/prerequisite-registry-iu5-2026.json",
+    "defaultLane": ["PREREQUISITE_ASSURANCE", "COURSE_CORE", "GRADED_EVENT", "EVIDENCE_REUSE"],
+    "readinessRule": "Worst critical prerequisite gate wins; no averaging across critical gates.",
+    "unassessedRule": "Missing diagnostic evidence remains UNASSESSED and must never be converted to 0/100.",
+    "contentClaimLevels": {
+      "official_identity": "Directly mirrored from the official 2026 curriculum only.",
+      "public_course_evidence": "Supported by a public IU5 learning page/material, but not promoted to a complete official 2026 syllabus.",
+      "existing_repo_reuse": "Existing Bauman Hub content reused as preparation/support.",
+      "bridge_inference": "Competency bridge inferred from course title + prerequisite graph; explicitly not an official syllabus claim.",
+      "suggested_evidence": "Recommended learner artifact for study control; not an official Bauman submission requirement unless separately verified."
+    },
+    "performanceTargets": {
+      "courseReady": 90,
+      "gradedEventReady": 92,
+      "sourceType": "internal_strategy_not_official_rule"
+    },
+    "defaultThesisTrack": null,
+    "schedulerMutation": false,
+    "courseContentMutation": false
+  },
+  "sourceCatalog": [
+    {
+      "id": "official_curriculum_2026",
+      "type": "official_identity",
+      "url": "https://home.science.iu5.bmstu.ru/study-plans/iu5-master-program.pdf"
+    },
+    {
+      "id": "iu5_analytical_models_public",
+      "type": "public_course_evidence",
+      "url": "https://e-learning.bmstu.ru/iu5/course/view.php?id=48",
+      "caveat": "Public IU5 material supports queueing-theory preparation; it is not treated as a complete locked 2026 master syllabus."
+    },
+    {
+      "id": "iu5_nir_public",
+      "type": "public_course_evidence",
+      "url": "https://e-learning.bmstu.ru/iu5/course/view.php?id=153",
+      "caveat": "Public NIR guidance is used as study evidence only; exact cohort-2026 submission rules must be confirmed with the supervisor/department."
+    }
+  ],
+  "semester1DisplayOrder": ["d01", "d02", "d03", "d04", "d05", "d06", "d15", "p02"],
+  "courseBlueprints": [
+    {
+      "courseId": "d01",
+      "knowledgeDomains": ["russian"],
+      "criticalGates": ["P0"],
+      "supportGates": [],
+      "gradedEvents": ["Зчт"],
+      "focus": [
+        {"label": "Tiếng Nga kỹ thuật JIT theo môn và graded event đang học", "sourceType": "existing_repo_reuse"},
+        {"label": "Đọc động từ yêu cầu, nghe chỉ dẫn, trình bày lời giải và vấn đáp", "sourceType": "existing_repo_reuse"}
+      ],
+      "suggestedEvidence": ["glossary theo môn", "oral-answer recording", "error log đọc đề"],
+      "reuseInto": ["all_semesters", "p02", "g01"]
+    },
+    {
+      "courseId": "d02",
+      "knowledgeDomains": ["research", "russian", "math"],
+      "criticalGates": ["P11"],
+      "supportGates": ["P0", "P3"],
+      "gradedEvents": ["Зчт"],
+      "focus": [
+        {"label": "Research question, literature matrix, hypothesis, metric và lập luận khoa học", "sourceType": "bridge_inference"},
+        {"label": "Tái sử dụng nền P11 thay vì tạo một khóa phương pháp nghiên cứu trùng lặp", "sourceType": "existing_repo_reuse"}
+      ],
+      "suggestedEvidence": ["1-page research memo", "literature matrix", "oral explanation"],
+      "reuseInto": ["p02", "d16", "p05", "g01"]
+    },
+    {
+      "courseId": "d03",
+      "knowledgeDomains": ["systems", "math"],
+      "criticalGates": ["P3", "P9"],
+      "supportGates": ["P1", "J1"],
+      "gradedEvents": ["Зчт", "ДЗчт"],
+      "focus": [
+        {"label": "Queueing-theory preparation for analytical ASOIU models", "sourceType": "public_course_evidence", "sourceRef": "iu5_analytical_models_public"},
+        {"label": "Poisson/exponential/Markov/queueing readiness reused from P9", "sourceType": "existing_repo_reuse"},
+        {"label": "System boundary, components, data flow and bottleneck language reused from J1", "sourceType": "bridge_inference"}
+      ],
+      "suggestedEvidence": ["solved model sheet", "assumption checklist", "7-minute oral defense"],
+      "reuseInto": ["d09", "p02"]
+    },
+    {
+      "courseId": "d04",
+      "knowledgeDomains": ["math", "programming"],
+      "criticalGates": ["P2", "P3", "P10"],
+      "supportGates": ["P1"],
+      "gradedEvents": ["Экз", "ДЗчт"],
+      "focus": [
+        {"label": "Multivariate-data bridge combining linear algebra, statistics and scientific/data Python", "sourceType": "bridge_inference"},
+        {"label": "Covariance/correlation/PCA prerequisites reused from existing math and P2/P3/P10 content", "sourceType": "existing_repo_reuse"},
+        {"label": "Leakage-safe preprocessing and reproducible data workflow reused from P10", "sourceType": "existing_repo_reuse"}
+      ],
+      "suggestedEvidence": ["derivation sheet", "reproducible notebook", "oral explanation of assumptions"],
+      "reuseInto": ["d08", "d11", "d12", "p02"]
+    },
+    {
+      "courseId": "d05",
+      "knowledgeDomains": ["programming", "systems"],
+      "criticalGates": ["P4", "P5", "P8"],
+      "supportGates": ["J1"],
+      "gradedEvents": ["Экз", "ДЗчт"],
+      "focus": [
+        {"label": "OOP design bridge using Python/OOP, algorithms/data structures and software engineering", "sourceType": "bridge_inference"},
+        {"label": "Responsibility, interfaces, minimal UML, SOLID and architecture trade-offs reused from P8/J1", "sourceType": "existing_repo_reuse"}
+      ],
+      "suggestedEvidence": ["small design model", "class/sequence diagram", "tested implementation", "oral design defense"],
+      "reuseInto": ["d15", "p01", "p02"]
+    },
+    {
+      "courseId": "d06",
+      "knowledgeDomains": ["programming"],
+      "criticalGates": ["P6"],
+      "supportGates": ["P4", "P7"],
+      "gradedEvents": ["Экз"],
+      "focus": [
+        {"label": "Database-optimization bridge using relational design, indexes, query plans, transactions and locking", "sourceType": "bridge_inference"},
+        {"label": "P6 remains the primary reusable foundation; P4/P7 are supporting bridges", "sourceType": "existing_repo_reuse"}
+      ],
+      "suggestedEvidence": ["SQL/query-plan notebook", "index trade-off table", "oral explanation of plan changes"],
+      "reuseInto": ["d10", "d13", "e02a", "p02"]
+    },
+    {
+      "courseId": "d15",
+      "knowledgeDomains": ["programming", "systems"],
+      "criticalGates": ["P5", "P8"],
+      "supportGates": ["P7", "J1"],
+      "gradedEvents": ["Экз", "ДЗчт"],
+      "focus": [
+        {"label": "Software-development bridge using requirements, architecture, Git, testing and lifecycle", "sourceType": "bridge_inference"},
+        {"label": "Reuse P8 engineering workflow and P5 implementation skills; do not create a duplicate generic software course", "sourceType": "existing_repo_reuse"}
+      ],
+      "suggestedEvidence": ["requirements-to-test traceability", "small repo", "test evidence", "architecture note"],
+      "reuseInto": ["p01", "d14", "d19", "p02"]
+    },
+    {
+      "courseId": "p02",
+      "knowledgeDomains": ["research", "russian", "math", "programming"],
+      "criticalGates": ["P11"],
+      "supportGates": ["P0", "P3", "P5", "P10"],
+      "gradedEvents": ["ДЗчт"],
+      "focus": [
+        {"label": "NIR starts in semester 1 and continues through semesters 1–4", "sourceType": "official_identity"},
+        {"label": "Literature, relevance/novelty, methods and report structure supported by public IU5 NIR guidance", "sourceType": "public_course_evidence", "sourceRef": "iu5_nir_public"},
+        {"label": "Exact page/source-count/week rules are not locked as cohort-2026 requirements without supervisor confirmation", "sourceType": "public_course_evidence", "sourceRef": "iu5_nir_public"}
+      ],
+      "suggestedEvidence": ["topic-neutral research memo", "literature matrix", "baseline/experiment log", "NIR report draft"],
+      "reuseInto": ["d16", "p05", "g01"]
+    }
+  ]
+}
