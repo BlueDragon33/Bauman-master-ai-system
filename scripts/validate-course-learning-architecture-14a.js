@@ -12,7 +12,7 @@ const curriculum=read('assets/data/official-curriculum-iu5-2026.json');
 const prereq=read('assets/data/prerequisite-registry-iu5-2026.json');
 const arch=read('assets/data/official-course-learning-architecture-2026.json');
 const runtime=text('assets/js/academic-course-learning.js');
-const index=text('index.html');
+const loaderHost=text('assets/js/academic-scheduler-apply.js');
 
 must(arch.schema==='bauman_official_course_learning_architecture_v1','schema mismatch');
 must(arch.version==='OFFICIAL_COURSE_LEARNING_PASS14A_V1','version mismatch');
@@ -70,8 +70,8 @@ must(/const\s+READ_ONLY\s*=\s*true/.test(runtime),'Runtime must declare READ_ONL
 must(!/localStorage\.setItem/.test(runtime),'Pass14A runtime must not write localStorage');
 must(!/window\.state\.schedule/.test(runtime),'Pass14A runtime must not touch schedule');
 must(!/autoSchedule\s*\(/.test(runtime),'Pass14A runtime must not call autoSchedule');
-must(index.includes('assets/css/academic-course-learning.css'),'index missing academic-course-learning.css');
-must(index.includes('assets/js/academic-course-learning.js'),'index missing academic-course-learning.js');
+must(loaderHost.includes('assets/css/academic-course-learning.css'),'Pass13F host missing Pass14A CSS loader');
+must(loaderHost.includes('assets/js/academic-course-learning.js'),'Pass13F host missing Pass14A JS loader');
 
 console.log('PASS14A official course learning architecture validated',{
   s1Items:expectedS1Ids.length,
