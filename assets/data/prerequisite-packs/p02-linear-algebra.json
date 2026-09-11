@@ -1,0 +1,82 @@
+{
+  "schema":"bauman_prerequisite_pack_v1",
+  "version":"P2_LINEAR_ALGEBRA_REUSE_DIAGNOSTIC_PASS13B_V1",
+  "gateId":"P2",
+  "title":"Đại số tuyến tính / Линейная алгебра",
+  "verifiedAt":"2026-09-11",
+  "notOfficialAdministrativePrerequisite":true,
+  "reuseOnly":true,
+  "purpose":"Chẩn đoán đại số tuyến tính đã có trong Math và định tuyến sửa đúng chương; không tạo khóa mới.",
+  "mastery":{"target":90,"applicationMinimum":85,"criticalMisconceptionsAllowed":0,"masteredThreshold":95,"masteredApplicationMinimum":90,"scoreFormula":"M = 0.25*D0 + 0.50*D1 + 0.25*D2"},
+  "localReuse":[
+    {"disciplineId":"linear_algebra_data_space","source":"subjects/math/data/discipline_spine.json"},
+    {"chapterId":"MATH-VN-C01-vector_trong_khong_gian_","source":"subjects/math/data/chapter_spine.json"},
+    {"chapterId":"MATH-VN-C02-ma_tran_va_phep_bien_oi_","source":"subjects/math/data/chapter_spine.json"},
+    {"chapterId":"MATH-PREP-C10-ai_so_tuyen_tinh_ii_tri_","source":"subjects/math/data/chapter_spine.json"}
+  ],
+  "nodes":[
+    {"id":"P2-N01","order":1,"title":"Vectors, norms, dot products","dependsOn":[]},
+    {"id":"P2-N02","order":2,"title":"Matrices and linear transformations","dependsOn":["P2-N01"]},
+    {"id":"P2-N03","order":3,"title":"Linear systems, rank and invertibility","dependsOn":["P2-N02"]},
+    {"id":"P2-N04","order":4,"title":"Vector spaces, basis and coordinates","dependsOn":["P2-N03"]},
+    {"id":"P2-N05","order":5,"title":"Orthogonality and projections","dependsOn":["P2-N04"]},
+    {"id":"P2-N06","order":6,"title":"Eigenvalues and eigenvectors","dependsOn":["P2-N03"]},
+    {"id":"P2-N07","order":7,"title":"SVD and low-rank structure","dependsOn":["P2-N05","P2-N06"]},
+    {"id":"P2-N08","order":8,"title":"PCA prerequisite bridge","dependsOn":["P2-N07"]}
+  ],
+  "diagnostic":{
+    "D0":{"weight":0.25,"items":[
+      {"id":"P2-D0-01","node":"P2-N01","prompt":"Nêu ý nghĩa tích vô hướng và chuẩn Euclid."},
+      {"id":"P2-D0-02","node":"P2-N01","prompt":"Hai vector trực giao khi nào?"},
+      {"id":"P2-D0-03","node":"P2-N02","prompt":"Ma trận biểu diễn phép biến đổi tuyến tính như thế nào?"},
+      {"id":"P2-D0-04","node":"P2-N02","prompt":"Kích thước của tích AB được xác định ra sao?"},
+      {"id":"P2-D0-05","node":"P2-N03","prompt":"Hạng ma trận nói gì về thông tin tuyến tính độc lập?"},
+      {"id":"P2-D0-06","node":"P2-N03","prompt":"Ma trận vuông khả nghịch liên hệ với nghiệm duy nhất thế nào?"},
+      {"id":"P2-D0-07","node":"P2-N04","prompt":"Cơ sở của không gian vector cần những tính chất gì?"},
+      {"id":"P2-D0-08","node":"P2-N04","prompt":"Tọa độ vector phụ thuộc cơ sở ra sao?"},
+      {"id":"P2-D0-09","node":"P2-N05","prompt":"Projection trực giao dùng để làm gì?"},
+      {"id":"P2-D0-10","node":"P2-N05","prompt":"Ma trận trực giao có tính chất nghịch đảo nào?"},
+      {"id":"P2-D0-11","node":"P2-N06","prompt":"Định nghĩa eigenvalue/eigenvector."},
+      {"id":"P2-D0-12","node":"P2-N06","prompt":"Phương trình đặc trưng dùng để tìm gì?"},
+      {"id":"P2-D0-13","node":"P2-N07","prompt":"SVD phân rã ma trận thành ba thành phần nào?"},
+      {"id":"P2-D0-14","node":"P2-N07","prompt":"Singular value lớn biểu thị điều gì ở mức trực giác?"},
+      {"id":"P2-D0-15","node":"P2-N08","prompt":"PCA tìm các hướng có phương sai như thế nào?"},
+      {"id":"P2-D0-16","node":"P2-N08","prompt":"Vì sao cần center dữ liệu trước PCA chuẩn?"}
+    ]},
+    "D1":{"weight":0.50,"items":[
+      {"id":"P2-D1-01","node":"P2-N01","task":"Tính dot product và cosine giữa (1,2) và (2,1)."},
+      {"id":"P2-D1-02","node":"P2-N02","task":"Nhân ma trận 2x3 với vector 3 chiều và kiểm tra shape kết quả."},
+      {"id":"P2-D1-03","node":"P2-N03","task":"Giải hệ 2x+y=5, x-y=1 và giải thích vì sao nghiệm duy nhất."},
+      {"id":"P2-D1-04","node":"P2-N03","task":"Xác định hạng của ma trận [[1,2],[2,4]] và hệ quả với invertibility."},
+      {"id":"P2-D1-05","node":"P2-N04","task":"Biểu diễn vector (3,1) theo cơ sở {(1,1),(1,-1)}."},
+      {"id":"P2-D1-06","node":"P2-N05","task":"Chiếu vector (2,1) lên span của (1,1)."},
+      {"id":"P2-D1-07","node":"P2-N06","task":"Tìm eigenvalues/eigenvectors của ma trận chéo diag(3,1)."},
+      {"id":"P2-D1-08","node":"P2-N07","task":"Giải thích rank-1 approximation giữ lại thành phần singular value lớn nhất thế nào."},
+      {"id":"P2-D1-09","node":"P2-N08","task":"Cho covariance diag(4,1), xác định principal component thứ nhất và explained variance ratio."},
+      {"id":"P2-D1-10","node":"P2-N08","task":"Phân biệt PCA từ covariance eigen-decomposition và SVD của centered data ở mức workflow."}
+    ]},
+    "D2":{"weight":0.25,"items":[
+      {"id":"P2-D2-01","node":"P2-N03","promptRu":"Объясните связь ранга матрицы, линейной независимости и единственности решения системы."},
+      {"id":"P2-D2-02","node":"P2-N04","promptRu":"Что такое базис векторного пространства и как меняются координаты вектора при смене базиса?"},
+      {"id":"P2-D2-03","node":"P2-N05","promptRu":"Объясните смысл ортогональной проекции и приведите простой пример."},
+      {"id":"P2-D2-04","node":"P2-N06","promptRu":"Что означают собственное значение и собственный вектор линейного преобразования?"},
+      {"id":"P2-D2-05","node":"P2-N07","promptRu":"Объясните сингулярное разложение матрицы и смысл больших сингулярных значений."},
+      {"id":"P2-D2-06","node":"P2-N08","promptRu":"Объясните математическую идею метода главных компонент и необходимость центрирования данных."}
+    ]}
+  },
+  "criticalMisconceptions":[
+    {"id":"P2-M01","node":"P2-N02","text":"Nhân ma trận không kiểm tra kích thước trong/ngoài."},
+    {"id":"P2-M02","node":"P2-N03","text":"Hạng đầy đủ luôn đồng nghĩa mọi ma trận chữ nhật đều khả nghịch."},
+    {"id":"P2-M03","node":"P2-N04","text":"Bất kỳ tập vector sinh nào cũng là cơ sở dù phụ thuộc tuyến tính."},
+    {"id":"P2-M04","node":"P2-N05","text":"Projection luôn bằng vector gốc."},
+    {"id":"P2-M05","node":"P2-N06","text":"Eigenvector có thể là vector 0."},
+    {"id":"P2-M06","node":"P2-N07","text":"SVD chỉ tồn tại cho ma trận vuông."},
+    {"id":"P2-M07","node":"P2-N08","text":"PCA chọn biến gốc có variance lớn nhất thay vì hướng tuyến tính mới."}
+  ],
+  "repairRoutes":[
+    {"id":"P2-R01","triggerNodes":["P2-N01","P2-N02","P2-N03"],"route":["MATH-VN-C01-vector_trong_khong_gian_","MATH-VN-C02-ma_tran_va_phep_bien_oi_"],"stopWhen":"D1 nhóm vector/ma trận/hệ tuyến tính >=85 và 0 misconception."},
+    {"id":"P2-R02","triggerNodes":["P2-N04","P2-N05"],"route":["MATH-VN-C01-vector_trong_khong_gian_","MATH-PREP-C10-ai_so_tuyen_tinh_ii_tri_"],"stopWhen":"Giải đúng cơ sở/projection >=85%."},
+    {"id":"P2-R03","triggerNodes":["P2-N06","P2-N07","P2-N08"],"route":["MATH-PREP-C10-ai_so_tuyen_tinh_ii_tri_"],"stopWhen":"Giải thích và tính đúng eigen/SVD/PCA bridge >=85%."}
+  ],
+  "implementationPolicy":{"schedulerMutation":false,"writesDiagnosticScores":false,"newTopLevelSubject":false,"duplicatesExistingTheory":false,"mainBranchMutation":false}
+}
