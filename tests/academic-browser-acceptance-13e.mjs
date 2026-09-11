@@ -32,7 +32,16 @@ async function mockControl(page,state){
 }
 
 async function waitAcademic(page){
-  await page.waitForFunction(()=>Boolean(window.BAUMAN_ACADEMIC_2026_RUNTIME&&window.BAUMAN_ACADEMIC_SCHEDULER_PREVIEW_2026&&window.BAUMAN_PREREQ_2026),null,{timeout:15000});
+  await page.waitForFunction(()=>Boolean(
+    window.BAUMAN_ACADEMIC_2026_RUNTIME&&
+    window.BAUMAN_ACADEMIC_SCHEDULER_PREVIEW_2026&&
+    window.BAUMAN_ACADEMIC_SCHEDULER_APPLY_2026&&
+    window.BAUMAN_PREREQ_2026&&
+    window.BAUMAN_PREREQ_PACKS_2026&&
+    window.app?.__academic2026Patched&&
+    window.app?.__academic13dPreviewPatched&&
+    window.app?.__academic13fApplyPatched
+  ),null,{timeout:15000});
 }
 
 async function approvedFlow(browser){
@@ -51,20 +60,24 @@ async function approvedFlow(browser){
   const runtime=await page.evaluate(()=>({
     academic:window.BAUMAN_ACADEMIC_2026_RUNTIME?.version,
     preview:window.BAUMAN_ACADEMIC_SCHEDULER_PREVIEW_2026?.version,
+    apply:window.BAUMAN_ACADEMIC_SCHEDULER_APPLY_2026?.version,
     planning:Boolean(window.app?.__planningV3Patched),
     academicPatch:Boolean(window.app?.__academic2026Patched),
     previewPatch:Boolean(window.app?.__academic13dPreviewPatched),
-    schedulerMutation:window.BAUMAN_ACADEMIC_2026_RUNTIME?.schedulerMutationEnabled,
-    apply:window.BAUMAN_ACADEMIC_SCHEDULER_PREVIEW_2026?.applyEnabled
+    applyPatch:Boolean(window.app?.__academic13fApplyPatched),
+    automaticSchedulerMutation:window.BAUMAN_ACADEMIC_2026_RUNTIME?.schedulerMutationEnabled,
+    directPreviewApply:window.BAUMAN_ACADEMIC_SCHEDULER_PREVIEW_2026?.applyEnabled,
+    explicitApply:window.BAUMAN_ACADEMIC_SCHEDULER_APPLY_2026?.explicitApplyEnabled
   }));
-  must(runtime.planning&&runtime.academicPatch&&runtime.previewPatch,'Runtime patches do not coexist');
-  must(runtime.schedulerMutation===false&&runtime.apply===false,'Mutation must remain locked');
+  must(runtime.planning&&runtime.academicPatch&&runtime.previewPatch&&runtime.applyPatch,'PlanningBridge + Academic + Preview + Apply patches do not coexist');
+  must(runtime.automaticSchedulerMutation===false&&runtime.directPreviewApply===false&&runtime.explicitApply===true,'Apply policy drift: automatic/direct path must stay off; explicit transactional path must be on');
   ok('runtime_coexistence',JSON.stringify(runtime));
 
   await page.waitForSelector('[data-academic2026="home"]');
   assert.equal(await page.locator('[data-academic2026="home"]').count(),1);
   assert.equal(await page.getByText('Course Risk + Active Repair',{exact:true}).count(),1);
   assert.equal(await page.getByText('Scheduler Integration Preview',{exact:true}).count(),1);
+  assert.equal(await page.locator('[data-academic13f="apply"]').count(),1);
   await page.screenshot({path:path.join(OUT,'desktop-home.png'),fullPage:true});
   ok('home_render');
 
@@ -78,9 +91,9 @@ async function approvedFlow(browser){
     const p1=rt.recordDiagnostic('P1',{D0:70,D1:70,D2:70,criticalMisconceptions:0,failedNodeIds:['P1-N03']});
     const p2=rt.recordDiagnostic('P2',{D0:96,D1:96,D2:96,criticalMisconceptions:0,failedNodeIds:[]});
     const i1=rt.gateIntervention('P1','before_stankin'),i2=rt.gateIntervention('P2','before_stankin');
-    return {p1:p1.id,p2:p2.id,p1Action:i1.action,p1Routes:i1.repairRoutes.map(x=>x.id),p2Action:i2.action,p2Stop:i2.broadStop};
+    return {p1:p1.id,p2:p2.id,p1Action:i1.action,p1Routes:i1.repairRoutes.map(x=>x.id),p1Activation:i1.activation.id,p2Action:i2.action,p2Stop:i2.broadStop};
   });
-  assert.equal(diag.p1,'repair');assert.equal(diag.p2,'mastered');assert.equal(diag.p1Action,'REPAIR_MATCHED');must(diag.p1Routes.length>0,'P1 route missing');assert.equal(diag.p2Action,'STOP_BROAD');must(diag.p2Stop,'P2 STOP missing');
+  assert.equal(diag.p1,'repair');assert.equal(diag.p2,'mastered');assert.equal(diag.p1Activation,'active');assert.equal(diag.p1Action,'REPAIR_MATCHED');must(diag.p1Routes.length>0,'P1 route missing');assert.equal(diag.p2Action,'STOP_BROAD');must(diag.p2Stop,'P2 STOP missing');
   ok('diagnostic_repair_stop',JSON.stringify(diag));
 
   await page.evaluate(()=>{
@@ -92,39 +105,70 @@ async function approvedFlow(browser){
   await page.waitForSelector('[data-academic13d="preview"]');
   const preview=await page.evaluate(()=>{
     const pv=window.BAUMAN_ACADEMIC_SCHEDULER_PREVIEW_2026,before=JSON.stringify(window.state.schedule.entries),p=pv.generateSchedulePreview(),after=JSON.stringify(window.state.schedule.entries);
-    let applyError='';try{pv.applySchedulePreview()}catch(e){applyError=String(e?.message||e)}
-    return {unchanged:before===after,protected:p.protectedManualAndExternal.map(x=>x.key),changes:p.changes.map(x=>x.key),routeSafe:p.changes.filter(x=>x.action==='REPAIR_MATCHED').every(x=>(x.repairEvidence?.routeIds||[]).length>0&&(x.repairEvidence?.failedNodeIds||[]).length>0),rollback:Object.keys(p.rollbackBaseline||{}).sort(),proposed:p.summary.proposedChanges,stop:p.summary.stopGatesExcluded,applyError};
+    let directApplyError='';try{pv.applySchedulePreview()}catch(e){directApplyError=String(e?.message||e)}
+    return {unchanged:before===after,protected:p.protectedManualAndExternal.map(x=>x.key),changes:p.changes.map(x=>x.key),routeSafe:p.changes.filter(x=>x.action==='REPAIR_MATCHED').every(x=>(x.repairEvidence?.routeIds||[]).length>0&&(x.repairEvidence?.failedNodeIds||[]).length>0),rollback:Object.keys(p.rollbackBaseline||{}).sort(),proposed:p.summary.proposedChanges,stop:p.summary.stopGatesExcluded,directApplyError};
   });
-  must(preview.unchanged,'Preview mutated schedule');must(preview.protected.includes('2026-06-08|afternoon'),'Manual slot not protected');must(preview.protected.includes('2026-06-09|morning1'),'External slot not protected');must(!preview.changes.includes('2026-06-08|afternoon')&&!preview.changes.includes('2026-06-09|morning1'),'Protected slot proposed for change');must(preview.routeSafe,'Repair evidence missing');must(preview.proposed<=6,'Preview exceeds cap');assert.deepEqual(preview.rollback,[...preview.changes].sort());must(preview.stop.includes('P2'),'MASTERED P2 not excluded');must(/Browser\/E2E|khóa|locked/i.test(preview.applyError),'Apply did not fail closed');
+  must(preview.unchanged,'Preview mutated schedule');must(preview.protected.includes('2026-06-08|afternoon'),'Manual slot not protected');must(preview.protected.includes('2026-06-09|morning1'),'External slot not protected');must(!preview.changes.includes('2026-06-08|afternoon')&&!preview.changes.includes('2026-06-09|morning1'),'Protected slot proposed for change');must(preview.routeSafe,'Repair evidence missing');must(preview.proposed>0&&preview.proposed<=6,'Preview must contain 1..6 safe changes');assert.deepEqual(preview.rollback,[...preview.changes].sort());must(preview.stop.includes('P2'),'MASTERED P2 not excluded');must(/Browser\/E2E|khóa|locked/i.test(preview.directApplyError),'Pass13D direct Apply did not remain fail-closed');
   ok('preview_diff_safety',JSON.stringify({proposed:preview.proposed,protected:preview.protected.length,stop:preview.stop}));
 
-  const stale=await page.evaluate(()=>{
-    const pv=window.BAUMAN_ACADEMIC_SCHEDULER_PREVIEW_2026,p=pv.readStoredPreview(),k='2026-06-10|morning1',cur=window.state.schedule.entries[k]||{subjectId:'russian',source:'auto',learningItem:'Auto'};
-    window.state.schedule.entries[k]={...cur,learningItem:`${cur.learningItem||'Auto'} changed`};window.save();return {stale:pv.previewIsStale(p),rollback:pv.rollbackPackage(p)};
+  const firstApply=await page.evaluate(()=>{
+    const ap=window.BAUMAN_ACADEMIC_SCHEDULER_APPLY_2026,pv=window.BAUMAN_ACADEMIC_SCHEDULER_PREVIEW_2026,p=pv.readStoredPreview();
+    const manualBefore=JSON.stringify(window.state.schedule.entries['2026-06-08|afternoon']);
+    const externalBefore=JSON.stringify(window.state.schedule.entries['2026-06-09|morning1']);
+    let unconfirmedError='';try{ap.applyApprovedPreview()}catch(e){unconfirmedError=String(e?.message||e)}
+    const tx=ap.applyApprovedPreview({confirmed:true});
+    const changed=tx.changedKeys.map(key=>({key,entry:window.state.schedule.entries[key],expected:tx.entriesAfter[key]}));
+    return {tx,changed,manualPreserved:manualBefore===JSON.stringify(window.state.schedule.entries['2026-06-08|afternoon']),externalPreserved:externalBefore===JSON.stringify(window.state.schedule.entries['2026-06-09|morning1']),previewStale:pv.previewIsStale(p),unconfirmedError,history:ap.transactionHistory()};
   });
-  must(stale.stale,'Stale fingerprint not detected');must(stale.rollback?.requiresFingerprintMatch===true,'Rollback fingerprint guard missing');ok('stale_fingerprint');
+  must(/xác nhận/i.test(firstApply.unconfirmedError),'Programmatic Apply without confirmed:true must fail');
+  assert.equal(firstApply.tx.status,'applied');must(firstApply.tx.changedKeys.length===preview.proposed,'Transaction changed-key count must match preview');must(firstApply.manualPreserved&&firstApply.externalPreserved,'Apply changed manual/external protected entries');must(firstApply.previewStale,'Applied preview must become stale after schedule mutation');must(firstApply.changed.every(x=>x.entry?.source==='academic_applied'&&x.entry?.academic2026?.transactionId===firstApply.tx.id&&JSON.stringify(x.entry)===JSON.stringify(x.expected)),'Applied entries must exactly match transaction entriesAfter and carry transaction id');must(firstApply.history.some(x=>x.id===firstApply.tx.id&&x.status==='applied'),'Applied transaction must persist in history');
+  ok('transactional_apply',JSON.stringify({id:firstApply.tx.id,changed:firstApply.tx.changedKeys.length}));
+
+  const firstRollback=await page.evaluate(()=>{
+    const ap=window.BAUMAN_ACADEMIC_SCHEDULER_APPLY_2026,tx=ap.latestActiveTransaction();
+    let unconfirmedError='';try{ap.rollbackLatest()}catch(e){unconfirmedError=String(e?.message||e)}
+    const row=ap.rollbackLatest({confirmed:true});
+    const restored=tx.changedKeys.map(key=>({key,current:window.state.schedule.entries[key]??null,expected:tx.entriesBefore[key]??null}));
+    return {row,restored,fingerprint:ap.scheduleFingerprint(),expectedFingerprint:tx.beforeFingerprint,unconfirmedError,history:ap.transactionHistory()};
+  });
+  must(/xác nhận/i.test(firstRollback.unconfirmedError),'Rollback without confirmed:true must fail');assert.equal(firstRollback.row.status,'rolled_back');assert.equal(firstRollback.fingerprint,firstRollback.expectedFingerprint);must(firstRollback.restored.every(x=>JSON.stringify(x.current)===JSON.stringify(x.expected)),'Rollback must restore/delete each changed slot exactly');must(firstRollback.history.some(x=>x.id===firstApply.tx.id&&x.status==='rolled_back'),'Rolled-back transaction status must persist');
+  ok('transactional_rollback');
+
+  const rollbackGuard=await page.evaluate(()=>{
+    const pv=window.BAUMAN_ACADEMIC_SCHEDULER_PREVIEW_2026,ap=window.BAUMAN_ACADEMIC_SCHEDULER_APPLY_2026;
+    const p=pv.generateSchedulePreview(),tx=ap.applyApprovedPreview({confirmed:true});
+    const guardKey='2026-06-08|afternoon',guardBefore=JSON.parse(JSON.stringify(window.state.schedule.entries[guardKey]));
+    window.state.schedule.entries[guardKey]={...guardBefore,learningItem:`${guardBefore.learningItem} · external-after-apply`};window.save();
+    let guardError='';try{ap.rollbackLatest({confirmed:true})}catch(e){guardError=String(e?.message||e)}
+    window.state.schedule.entries[guardKey]=guardBefore;window.save();
+    const fingerprintRestored=ap.scheduleFingerprint()===tx.afterFingerprint;
+    const rolled=ap.rollbackLatest({confirmed:true});
+    return {previewChanges:p.changes.length,txId:tx.id,guardError,fingerprintRestored,rolledStatus:rolled.status,history:ap.transactionHistory(),manualFinal:window.state.schedule.entries[guardKey]};
+  });
+  must(/thay đổi sau Apply/i.test(rollbackGuard.guardError),'Rollback must reject any post-Apply schedule change');must(rollbackGuard.fingerprintRestored,'Restoring external mutation must restore exact transaction afterFingerprint');assert.equal(rollbackGuard.rolledStatus,'rolled_back');assert.equal(rollbackGuard.manualFinal.source,'manual');
+  ok('rollback_stale_guard');
 
   await page.evaluate(()=>{window.app.home();window.app.home();window.app.home()});
-  const duplicates=await page.evaluate(()=>({home:document.querySelectorAll('[data-academic2026="home"]').length,preview:document.querySelectorAll('[data-academic13d="preview"]').length}));
-  assert.deepEqual(duplicates,{home:1,preview:1});ok('no_duplicate_patches');
+  const duplicates=await page.evaluate(()=>({home:document.querySelectorAll('[data-academic2026="home"]').length,preview:document.querySelectorAll('[data-academic13d="preview"]').length,apply:document.querySelectorAll('[data-academic13f="apply"]').length}));
+  assert.deepEqual(duplicates,{home:1,preview:1,apply:1});ok('no_duplicate_patches');
 
   await page.setViewportSize({width:390,height:844});await page.evaluate(()=>{window.app.page('home',false);window.app.home()});await page.waitForSelector('[data-academic2026="home"]');
-  const mobile=await page.evaluate(()=>{const h=document.getElementById('page-home'),risk=document.querySelector('.academic2026-risk-grid'),action=document.querySelector('.academic2026-action-row');return{client:h?.clientWidth||0,scroll:h?.scrollWidth||0,risk:risk?getComputedStyle(risk).gridTemplateColumns:'',action:action?getComputedStyle(action).gridTemplateColumns:''}});
-  must(mobile.scroll<=mobile.client+2,`Mobile horizontal overflow ${JSON.stringify(mobile)}`);if(mobile.risk)must(mobile.risk.trim().split(/\s+/).length===1,`Risk grid not one column: ${mobile.risk}`);if(mobile.action)must(mobile.action.trim().split(/\s+/).length===1,`Action grid not one column: ${mobile.action}`);
+  const mobile=await page.evaluate(()=>{const home=document.getElementById('page-home'),risk=document.querySelector('.academic2026-risk-grid'),action=document.querySelector('.academic2026-action-row'),apply=document.querySelector('.academic2026-apply-panel');return{client:home?.clientWidth||0,scroll:home?.scrollWidth||0,risk:risk?getComputedStyle(risk).gridTemplateColumns:'',action:action?getComputedStyle(action).gridTemplateColumns:'',apply:apply?getComputedStyle(apply).gridTemplateColumns:''}});
+  must(mobile.scroll<=mobile.client+2,`Mobile horizontal overflow ${JSON.stringify(mobile)}`);if(mobile.risk)must(mobile.risk.trim().split(/\s+/).length===1,`Risk grid not one column: ${mobile.risk}`);if(mobile.action)must(mobile.action.trim().split(/\s+/).length===1,`Action grid not one column: ${mobile.action}`);if(mobile.apply)must(mobile.apply.trim().split(/\s+/).length===1,`Apply panel not one column: ${mobile.apply}`);
   await page.screenshot({path:path.join(OUT,'mobile-home.png'),fullPage:true});ok('responsive_390px',JSON.stringify(mobile));
 
   await page.setViewportSize({width:1440,height:1000});
   await page.evaluate(({MAIN,DIAG})=>{const m=JSON.parse(localStorage.getItem(MAIN)||'{}');m.academic2026={...(m.academic2026||{}),gateDiagnostics:{P3:{D0:92,D1:92,D2:92,criticalMisconceptions:0,failedNodeIds:[],source:'legacy_e2e'}}};localStorage.setItem(MAIN,JSON.stringify(m));localStorage.removeItem(DIAG)},{MAIN,DIAG});
   await page.reload({waitUntil:'domcontentloaded'});await page.waitForFunction(()=>document.documentElement.dataset.baumanDeviceAccess==='authorized',null,{timeout:15000});await waitAcademic(page);
-  const migration=await page.evaluate(({DIAG,USER})=>{const rt=window.BAUMAN_ACADEMIC_2026_RUNTIME,s=JSON.parse(localStorage.getItem(DIAG)||'{}'),g=window.BAUMAN_PREREQ_2026.coreGates.find(x=>x.id==='P3');return{state:rt.gateState(g).id,score:rt.scoreForGate('P3')?.score,migrated:Boolean(s.users?.[USER]?.gateDiagnostics?.P3),checked:Boolean(s.users?.[USER]?.migrationChecked)}},{DIAG,USER});
-  assert.equal(migration.state,'ready');assert.equal(migration.score,92);must(migration.migrated&&migration.checked,'Legacy migration failed');ok('legacy_diagnostic_migration',JSON.stringify(migration));
+  const migration=await page.evaluate(({DIAG,USER})=>{const rt=window.BAUMAN_ACADEMIC_2026_RUNTIME,s=JSON.parse(localStorage.getItem(DIAG)||'{}'),g=window.BAUMAN_PREREQ_2026.coreGates.find(x=>x.id==='P3'),tx=window.BAUMAN_ACADEMIC_SCHEDULER_APPLY_2026.transactionHistory();return{state:rt.gateState(g).id,score:rt.scoreForGate('P3')?.score,migrated:Boolean(s.users?.[USER]?.gateDiagnostics?.P3),checked:Boolean(s.users?.[USER]?.migrationChecked),transactions:tx.length,rolledBack:tx.filter(x=>x.status==='rolled_back').length}},{DIAG,USER});
+  assert.equal(migration.state,'ready');assert.equal(migration.score,92);must(migration.migrated&&migration.checked,'Legacy migration failed');must(migration.transactions>=2&&migration.rolledBack>=2,'Transaction history must persist through reload');ok('legacy_diagnostic_and_transaction_persistence',JSON.stringify(migration));
 
   const compat=await page.evaluate(()=>window.BAUMAN_ACADEMIC_2026_RUNTIME.schedulerCompatibility('before_stankin'));
-  must(compat.mode==='advice_only'&&compat.mutationEnabled===false,'PlanningBridge compatibility drift');assert.equal(compat.academicReadyMinimum,90);ok('planningbridge_compatibility');
+  must(compat.mode==='advice_only'&&compat.mutationEnabled===false,'PlanningBridge automatic compatibility drift');assert.equal(compat.academicReadyMinimum,90);ok('planningbridge_compatibility');
   const pwa=await page.evaluate(async()=>{if(!('serviceWorker'in navigator))return{supported:false,registrations:0};return{supported:true,registrations:(await navigator.serviceWorker.getRegistrations()).length}});ok('pwa_observation',JSON.stringify(pwa));
 
   await page.evaluate(SESSION=>sessionStorage.removeItem(SESSION),SESSION);control.online=false;await page.reload({waitUntil:'domcontentloaded'});await page.waitForFunction(()=>document.documentElement.dataset.baumanDeviceAccess==='offline-grace',null,{timeout:15000});await waitAcademic(page);must(!(await page.locator('#appRoot').evaluate(e=>e.classList.contains('hidden'))),'Offline grace hid logged-in app');ok('device_offline_grace');
-  control.online=true;await context.close();return{runtime,diag,preview,mobile,migration,pwa};
+  control.online=true;await context.close();return{runtime,diag,preview,firstApply:{id:firstApply.tx.id,changed:firstApply.tx.changedKeys.length},rollbackGuard,mobile,migration,pwa};
 }
 
 async function pendingFlow(browser){
@@ -132,6 +176,6 @@ async function pendingFlow(browser){
 }
 
 let browser,result;
-try{browser=await chromium.launch({headless:true});result=await approvedFlow(browser);await pendingFlow(browser);must(pageErrors.length===0,`Page errors: ${pageErrors.join('\n')}`);must(failedRequests.length===0,`Unexpected failed requests: ${failedRequests.join('\n')}`);fs.writeFileSync(path.join(OUT,'summary.json'),JSON.stringify({status:'PASS',suite:'Academic Browser Acceptance · Pass13E',checks,pageErrors,failedRequests,observations:result,completedAt:new Date().toISOString()},null,2));console.log('ACADEMIC_BROWSER_ACCEPTANCE_13E_PASS');console.log(JSON.stringify({checks:checks.length,pwa:result.pwa,offlineGrace:true,manualProtection:true,staleFingerprint:true},null,2))}
-catch(e){fs.writeFileSync(path.join(OUT,'summary.json'),JSON.stringify({status:'FAIL',suite:'Academic Browser Acceptance · Pass13E',error:String(e?.stack||e),checks,pageErrors,failedRequests,completedAt:new Date().toISOString()},null,2));console.error('ACADEMIC_BROWSER_ACCEPTANCE_13E_FAIL');console.error(e?.stack||e);process.exitCode=1}
+try{browser=await chromium.launch({headless:true});result=await approvedFlow(browser);await pendingFlow(browser);must(pageErrors.length===0,`Page errors: ${pageErrors.join('\n')}`);must(failedRequests.length===0,`Unexpected failed requests: ${failedRequests.join('\n')}`);fs.writeFileSync(path.join(OUT,'summary.json'),JSON.stringify({status:'PASS',suite:'Academic Browser Acceptance · Pass13E+13F',checks,pageErrors,failedRequests,observations:result,completedAt:new Date().toISOString()},null,2));console.log('ACADEMIC_BROWSER_ACCEPTANCE_13E_13F_PASS');console.log(JSON.stringify({checks:checks.length,pwa:result.pwa,offlineGrace:true,manualProtection:true,transactionApply:true,rollback:true,rollbackStaleGuard:true},null,2))}
+catch(e){fs.writeFileSync(path.join(OUT,'summary.json'),JSON.stringify({status:'FAIL',suite:'Academic Browser Acceptance · Pass13E+13F',error:String(e?.stack||e),checks,pageErrors,failedRequests,completedAt:new Date().toISOString()},null,2));console.error('ACADEMIC_BROWSER_ACCEPTANCE_13E_13F_FAIL');console.error(e?.stack||e);process.exitCode=1}
 finally{if(browser)await browser.close()}
