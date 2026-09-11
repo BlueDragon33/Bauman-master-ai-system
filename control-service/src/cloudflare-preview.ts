@@ -20,19 +20,26 @@ async function databaseReady(env: PreviewEnv) {
   }
 }
 
+function deployment(env: PreviewEnv, ready: boolean) {
+  return {
+    channel: env.BAUMAN_DEPLOYMENT_CHANNEL ?? "unknown",
+    revision: env.BAUMAN_BUILD_REVISION ?? "unknown",
+    databaseReady: ready,
+    applicationManagementOriginConfigured: Boolean(env.APPLICATION_MANAGEMENT_ORIGIN),
+    appOriginConfigured: Boolean(env.BAUMAN_APP_ORIGIN),
+  };
+}
+
 export default {
   async fetch(request: Request, env: PreviewEnv, ctx: ExecutionContext): Promise<Response> {
     const url = new URL(request.url);
     if (request.method === "GET" && url.pathname === "/__deployment") {
+      const ready = await databaseReady(env);
       return Response.json({
         ok: true,
         application: "bauman-master-ai",
         runtime: "control-service",
-        channel: env.BAUMAN_DEPLOYMENT_CHANNEL ?? "unknown",
-        revision: env.BAUMAN_BUILD_REVISION ?? "unknown",
-        databaseReady: await databaseReady(env),
-        applicationManagementOriginConfigured: Boolean(env.APPLICATION_MANAGEMENT_ORIGIN),
-        appOriginConfigured: Boolean(env.BAUMAN_APP_ORIGIN),
+        ...deployment(env, ready),
         checkedAt: Date.now(),
       }, {
         headers: {
@@ -43,6 +50,33 @@ export default {
       });
     }
 
-    return controlService.fetch(request, env, ctx);
+    const response = await controlService.fetch(request, env, ctx);
+    if (request.method !== "GET" || url.pathname !== "/api/control/status" || !response.ok) return response;
+
+    const payload = await response.json() as Record<string, unknown>;
+    const ready = await databaseReady(env);
+    const appOriginReady = Boolean(env.BAUMAN_APP_ORIGIN);
+    const gateAvailable = ready && appOriginReady;
+    const readiness = payload.readiness && typeof payload.readiness === "object"
+      ? payload.readiness as Record<string, unknown>
+      : {};
+    const capabilities = payload.capabilities && typeof payload.capabilities === "object"
+      ? payload.capabilities as Record<string, unknown>
+      : {};
+
+    const headers = new Headers(response.headers);
+    headers.set("cache-control", "no-store, private");
+    return Response.json({
+      ...payload,
+      readiness: {
+        ...readiness,
+        accessGate: gateAvailable ? "available" : "configuration-required",
+      },
+      capabilities: {
+        ...capabilities,
+        learningAccessGate: gateAvailable,
+      },
+      deployment: deployment(env, ready),
+    }, { status: response.status, headers });
   },
 } satisfies ExportedHandler<PreviewEnv>;
