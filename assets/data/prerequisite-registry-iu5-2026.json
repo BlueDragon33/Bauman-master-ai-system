@@ -1,7 +1,7 @@
 {
   "schema": "bauman_prerequisite_assurance_v1",
-  "version": "PREREQ_ASSURANCE_IU5_2026_V1",
-  "verifiedAt": "2026-09-10",
+  "version": "PREREQ_ASSURANCE_IU5_2026_V2_INTEGRITY_CORRECTED",
+  "verifiedAt": "2026-09-11",
   "scope": "Competency prerequisites inferred from the official IU5 2026 curriculum and public IU5 learning materials. These are NOT administrative prerequisites declared by Bauman.",
   "notOfficialAdministrativePrerequisites": true,
   "masteryPolicy": {
@@ -48,7 +48,7 @@
     {"id":"J4","name":"An toàn thông tin nền tảng","homeSubject":"systems","target":85,"activateBeforeSemester":3,"topics":["CIA","authentication","authorization","hashing","encryption concepts","TLS","access control","threat model","secure DB/API basics"]}
   ],
   "courseDependencies": [
-    {"courseId":"d01","critical":["P0"],"support":[]},
+    {"courseId":"d01","critical":[],"support":[],"note":"Foreign Language is taught by L2 as English for IU students; Russian P0 is not a prerequisite for d01. Course-local English readiness is handled by the Phase2 course architecture."},
     {"courseId":"d02","critical":["P11"],"support":["P0","P3"]},
     {"courseId":"d03","critical":["P3","P9"],"support":["P1","J1"]},
     {"courseId":"d04","critical":["P2","P3","P10"],"support":["P1"]},
