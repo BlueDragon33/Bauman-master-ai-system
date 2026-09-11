@@ -18,7 +18,7 @@
     mastered:{id:'clear',label:'CLEAR',rank:0}
   });
 
-  const h=s=>String(s??'').replace(/[&<>"']/g,m=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[m]));
+  const h=s=>String(s??'').replace(/[&<>"']/g,m=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot',"'":'&#39;'}[m]));
   const byId=(arr,id)=>(arr||[]).find(x=>x.id===id)||null;
   const uniq=a=>Array.from(new Set((a||[]).filter(Boolean)));
   const finite=n=>Number.isFinite(Number(n));
@@ -90,7 +90,7 @@
     return 'prepare';
   }
   function currentStageId(){return STAGE_MAP[legacyStageId()]||'before_stankin'}
-  function stagePolicy(stageId=currentStageId()){return byId(window.BAUMAN_PREREQ_2026?.stageActivationPolicy,stageId)||{stage:stageId,active:[],secondary:[],locked:[]}}
+  function stagePolicy(stageId=currentStageId()){return (window.BAUMAN_PREREQ_2026?.stageActivationPolicy||[]).find(x=>x.stage===stageId)||{stage:stageId,active:[],secondary:[],locked:[]}}
   function stageSemester(stageId=currentStageId()){
     const m=String(stageId).match(/^semester_(\d)$/);if(m)return Number(m[1]);return 1;
   }
