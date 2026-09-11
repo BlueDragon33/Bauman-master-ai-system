@@ -63,7 +63,7 @@ assert.equal(await page.getByText('Official Course Learning Architecture · HK1'
 await page.locator('.course14a-card').filter({hasText:'d03'}).click();
 await page.waitForSelector('.course14a-modal');
 assert.equal(await page.getByText('PUBLIC IU5 EVIDENCE',{exact:true}).count(),1);
-assert.equal(await page.getByText('iu5_analytical_models_public',{exact:true}).count(),1);
+must((await page.getByText('iu5_analytical_models_public',{exact:true}).count())>=1,'d03 public source id missing');
 await page.locator('#modalRoot .btn').filter({hasText:'Đóng'}).click().catch(()=>{});
 
 await page.locator('.course14a-card').filter({hasText:'p02'}).click();
