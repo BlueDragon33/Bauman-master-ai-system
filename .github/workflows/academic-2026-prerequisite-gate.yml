@@ -24,6 +24,7 @@ on:
       - 'scripts/validate-p11-research-foundation.js'
       - 'scripts/validate-j01-information-system-architecture.js'
       - 'scripts/validate-p00-technical-russian.js'
+      - 'scripts/validate-diagnostic-runtime-13b.js'
       - '.github/workflows/academic-2026-prerequisite-gate.yml'
   pull_request:
     paths:
@@ -48,6 +49,7 @@ on:
       - 'scripts/validate-p11-research-foundation.js'
       - 'scripts/validate-j01-information-system-architecture.js'
       - 'scripts/validate-p00-technical-russian.js'
+      - 'scripts/validate-diagnostic-runtime-13b.js'
       - '.github/workflows/academic-2026-prerequisite-gate.yml'
 
 jobs:
@@ -80,6 +82,8 @@ jobs:
         run: node scripts/validate-j01-information-system-architecture.js
       - name: Validate P0 Technical Russian mapping pack
         run: node scripts/validate-p00-technical-russian.js
+      - name: Validate Pass13B diagnostic runtime and reuse packs
+        run: node scripts/validate-diagnostic-runtime-13b.js
       - name: Check Academic and Device Gate runtime JavaScript syntax
         run: |
           node --check assets/js/academic-main.js
