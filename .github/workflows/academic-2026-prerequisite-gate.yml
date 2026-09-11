@@ -7,12 +7,15 @@ on:
       - 'assets/data/prerequisite-registry-iu5-2026.json'
       - 'assets/data/prerequisite-content-coverage-2026.json'
       - 'assets/data/prerequisite-packs/**'
+      - 'assets/data/official-course-learning-architecture-2026.json'
       - 'assets/js/academic-main.js'
       - 'assets/js/academic-scheduler-preview.js'
       - 'assets/js/academic-scheduler-apply.js'
+      - 'assets/js/academic-course-learning.js'
       - 'assets/js/platform/runtime-config.js'
       - 'assets/js/platform/device-access-gate.js'
       - 'assets/css/academic-2026.css'
+      - 'assets/css/academic-course-learning.css'
       - 'assets/css/device-access-gate.css'
       - 'index.html'
       - 'scripts/validate-academic-2026.js'
@@ -30,7 +33,9 @@ on:
       - 'scripts/validate-risk-engine-13c.js'
       - 'scripts/validate-scheduler-preview-13d.js'
       - 'scripts/validate-scheduler-apply-13f.js'
+      - 'scripts/validate-course-learning-architecture-14a.js'
       - 'tests/academic-browser-acceptance-13e.mjs'
+      - 'tests/official-course-learning-14a.mjs'
       - '.github/workflows/academic-2026-prerequisite-gate.yml'
   pull_request:
     paths:
@@ -38,12 +43,15 @@ on:
       - 'assets/data/prerequisite-registry-iu5-2026.json'
       - 'assets/data/prerequisite-content-coverage-2026.json'
       - 'assets/data/prerequisite-packs/**'
+      - 'assets/data/official-course-learning-architecture-2026.json'
       - 'assets/js/academic-main.js'
       - 'assets/js/academic-scheduler-preview.js'
       - 'assets/js/academic-scheduler-apply.js'
+      - 'assets/js/academic-course-learning.js'
       - 'assets/js/platform/runtime-config.js'
       - 'assets/js/platform/device-access-gate.js'
       - 'assets/css/academic-2026.css'
+      - 'assets/css/academic-course-learning.css'
       - 'assets/css/device-access-gate.css'
       - 'index.html'
       - 'scripts/validate-academic-2026.js'
@@ -61,7 +69,9 @@ on:
       - 'scripts/validate-risk-engine-13c.js'
       - 'scripts/validate-scheduler-preview-13d.js'
       - 'scripts/validate-scheduler-apply-13f.js'
+      - 'scripts/validate-course-learning-architecture-14a.js'
       - 'tests/academic-browser-acceptance-13e.mjs'
+      - 'tests/official-course-learning-14a.mjs'
       - '.github/workflows/academic-2026-prerequisite-gate.yml'
 
 jobs:
@@ -102,14 +112,18 @@ jobs:
         run: node scripts/validate-scheduler-preview-13d.js
       - name: Validate Pass13F transactional scheduler Apply/rollback
         run: node scripts/validate-scheduler-apply-13f.js
+      - name: Validate Pass14A official course learning architecture
+        run: node scripts/validate-course-learning-architecture-14a.js
       - name: Check Academic and Device Gate runtime JavaScript syntax
         run: |
           node --check assets/js/academic-main.js
           node --check assets/js/academic-scheduler-preview.js
           node --check assets/js/academic-scheduler-apply.js
+          node --check assets/js/academic-course-learning.js
           node --check assets/js/platform/runtime-config.js
           node --check assets/js/platform/device-access-gate.js
           node --check tests/academic-browser-acceptance-13e.mjs
+          node --check tests/official-course-learning-14a.mjs
       - name: Check runtime references are loaded by index
         shell: bash
         run: |
@@ -152,6 +166,10 @@ jobs:
           BAUMAN_E2E_BASE_URL: http://127.0.0.1:4173/
           BAUMAN_E2E_ARTIFACT_DIR: artifacts/browser-13e
         run: node tests/academic-browser-acceptance-13e.mjs
+      - name: Run Pass14A official course learning browser acceptance
+        env:
+          BAUMAN_E2E_BASE_URL: http://127.0.0.1:4173/
+        run: node tests/official-course-learning-14a.mjs
       - name: Show static server log on failure
         if: failure()
         run: cat /tmp/bauman-http.log || true
@@ -159,7 +177,7 @@ jobs:
         if: always()
         uses: actions/upload-artifact@v4
         with:
-          name: academic-browser-13e-13f-${{ github.run_id }}
+          name: academic-browser-13e-13f-14a-${{ github.run_id }}
           path: artifacts/browser-13e
           if-no-files-found: warn
           retention-days: 7
