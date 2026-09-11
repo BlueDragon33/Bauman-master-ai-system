@@ -1,0 +1,86 @@
+name: Bauman Cloudflare Preview CI
+
+on:
+  pull_request:
+    branches: [main]
+    paths:
+      - ".github/workflows/cloudflare-preview-ci.yml"
+      - ".github/workflows/deploy-bauman-preview.yml"
+      - "cloudflare/**"
+      - "wrangler.runtime.preview.example.jsonc"
+      - "scripts/prepare-cloudflare-preview.mjs"
+      - "scripts/validate-cloudflare-preview.mjs"
+      - "assets/js/platform/runtime-config.js"
+      - "assets/js/platform/device-access-gate.js"
+      - "control-service/**"
+  push:
+    branches: [main]
+    paths:
+      - ".github/workflows/cloudflare-preview-ci.yml"
+      - ".github/workflows/deploy-bauman-preview.yml"
+      - "cloudflare/**"
+      - "wrangler.runtime.preview.example.jsonc"
+      - "scripts/prepare-cloudflare-preview.mjs"
+      - "scripts/validate-cloudflare-preview.mjs"
+      - "assets/js/platform/runtime-config.js"
+      - "assets/js/platform/device-access-gate.js"
+      - "control-service/**"
+
+permissions:
+  contents: read
+
+jobs:
+  preview-boundary:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 20
+    env:
+      BAUMAN_CONTROL_PREVIEW_D1_DATABASE_ID: 11111111-1111-4111-8111-111111111111
+      BAUMAN_CONTROL_PRODUCTION_D1_DATABASE_ID: 22222222-2222-4222-8222-222222222222
+      APPLICATION_MANAGEMENT_PREVIEW_ORIGIN: https://application-management-preview.example.com
+      BAUMAN_CONTROL_PREVIEW_ORIGIN: https://bauman-control-preview.example.com
+      BAUMAN_RUNTIME_PREVIEW_ORIGIN: https://bauman-runtime-preview.example.com
+
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22.13.0"
+
+      - name: Install Bauman Control dependencies
+        working-directory: control-service
+        run: npm install --no-audit --no-fund
+
+      - name: Validate migration boundary
+        run: node scripts/validate-cloudflare-preview.mjs
+
+      - name: Preserve runtime device-gate regression
+        run: node scripts/runtime-device-gate-regression.mjs
+
+      - name: Preserve Bauman Control contract
+        working-directory: control-service
+        run: npm run gate
+
+      - name: Materialize isolated preview configs
+        run: node scripts/prepare-cloudflare-preview.mjs
+
+      - name: Verify control preview artifact without deployment
+        working-directory: control-service
+        run: npx wrangler deploy --dry-run --outdir dist-preview --config wrangler.preview.jsonc
+
+      - name: Verify learning runtime preview artifact without deployment
+        run: npx --yes wrangler@4.92.0 deploy --dry-run --outdir .wrangler/runtime-preview --config wrangler.runtime.preview.jsonc
+
+      - name: Assert generated configs remain preview-only
+        shell: bash
+        run: |
+          set -euo pipefail
+          grep -q 'bauman-control-preview-db' control-service/wrangler.preview.jsonc
+          grep -q 'bauman-master-ai-preview' wrangler.runtime.preview.jsonc
+          if grep -R '00000000-0000-0000-0000-000000000002' control-service/wrangler.preview.jsonc; then
+            echo '::error::Generated preview config references local D1.'
+            exit 1
+          fi
+          if grep -R '22222222-2222-4222-8222-222222222222' control-service/wrangler.preview.jsonc; then
+            echo '::error::Generated preview config references production D1.'
+            exit 1
+          fi

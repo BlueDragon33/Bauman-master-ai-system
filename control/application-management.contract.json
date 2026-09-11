@@ -1,5 +1,5 @@
 {
-  "contractVersion": 2,
+  "contractVersion": 5,
   "application": {
     "id": "bauman-master-ai",
     "name": "Bauman Master AI",
@@ -10,30 +10,77 @@
     "independentRuntime": true,
     "embeddedInApplicationManagement": false,
     "sharedDatabaseWithApplicationManagement": false,
-    "sharedDeviceRegistryWithOtherClients": false
+    "sharedDeviceRegistryWithOtherClients": false,
+    "learningRuntimeSeparatedFromControlService": true
   },
   "readiness": {
     "runtime": "available",
     "subclientInventory": "available",
     "readOnlyControlApi": "available",
-    "deviceRegistry": "missing",
-    "deviceGateway": "missing",
-    "mutationAdminApi": "missing",
-    "auditApi": "missing",
+    "deviceRegistry": "implemented-requires-d1",
+    "deviceGateway": "implemented-requires-d1-and-app-origin",
+    "mutationAdminApi": "implemented-requires-d1",
+    "auditApi": "implemented-requires-d1",
+    "p256ChallengeProof": "implemented-requires-d1-and-app-origin",
+    "revocableDeviceSessions": "implemented-requires-d1-and-app-origin",
+    "learningAccessGate": "implemented-e2e-verified-requires-d1-and-app-origin",
     "contentReviewApi": "missing"
   },
   "controlService": {
     "location": "control-service/",
-    "protocol": "bauman-control-v1",
+    "protocol": "bauman-control-v4",
     "audience": "bauman-control",
-    "routes": ["/health", "/api/control/status", "/api/control/subclients"],
-    "mutationsEnabled": false
+    "routes": [
+      "/health",
+      "/api/control/status",
+      "/api/control/subclients",
+      "/api/control/devices",
+      "/api/control/device-commands",
+      "/api/control/audit",
+      "/api/device/register",
+      "/api/device/challenge",
+      "/api/device/verify",
+      "/api/device/heartbeat",
+      "/api/device/status"
+    ],
+    "mutationsEnabled": "runtime-gated-by-d1",
+    "commandSemantics": {
+      "idempotencyKey": "commandId",
+      "optimisticConcurrency": "expectedStatus",
+      "blockPreservesRegistry": true,
+      "blockRevokesDeviceSessions": true,
+      "ownerOnlyMutations": true
+    }
   },
   "requiredDeviceContract": {
     "namespace": "BM-",
-    "identity": "p256-public-key-fingerprint",
-    "classes": ["desktop", "tablet", "phone"],
-    "accessAndEditSeparated": true
+    "identity": "sha256-canonical-p256-public-key",
+    "classes": ["desktop", "tablet", "phone", "unknown"],
+    "accessAndEditSeparated": true,
+    "privateKeyLocation": "endpoint-only",
+    "challengeTtlSeconds": 120,
+    "deviceSessionTtlHours": 24,
+    "proofSigningInput": "bauman-device:v1:<deviceId>:<challengeId>:<challenge>",
+    "challengeSingleUse": true,
+    "blockedDeviceSessionsRevoked": true,
+    "offlineGraceMilliseconds": 86400000
+  },
+  "localRuntime": {
+    "controlConfig": "control-service/wrangler.local.jsonc",
+    "controlDatabaseName": "bauman-control-local",
+    "controlPort": 3003,
+    "learningRuntimePort": 3005,
+    "productionDataIsolated": true
+  },
+  "cloudflarePreview": {
+    "manualOnly": true,
+    "workflow": ".github/workflows/deploy-bauman-preview.yml",
+    "controlWorker": "bauman-control-preview",
+    "controlDatabase": "bauman-control-preview-db",
+    "learningWorker": "bauman-master-ai-preview",
+    "productionDataIsolated": true,
+    "chatgptSitesFallbackAllowed": false,
+    "applicationManagementRemainsCanonical": true
   },
   "subclients": [
     { "id": "math", "name": "Toán Bauman", "kind": "subject-site", "repository": "BlueDragon33/Math_Bauman", "state": "independent" },
@@ -48,6 +95,9 @@
   "policy": {
     "applicationManagementMayOpenLearningRuntimeDirectly": false,
     "applicationManagementMayInventOperationsWithoutBackend": false,
-    "subclientsRemainUnderBaumanUntilIndependentContractExists": true
+    "subclientsRemainUnderBaumanUntilIndependentContractExists": true,
+    "centralMayEnableDeviceMutationOnlyAfterLiveCapabilityProbe": true,
+    "centralMayClaimLearningGateOnlyAfterLiveCapabilityProbe": true,
+    "productionDeployRequiresExplicitPromotionAfterPreview": true
   }
 }
