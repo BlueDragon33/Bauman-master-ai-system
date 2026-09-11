@@ -8,7 +8,7 @@
   const ALLOWED_PREVIEW_ACTIONS=new Set(['DIAGNOSE','LOCATE_FAILED_NODES','REPAIR_MATCHED','BRIDGE_TO_READY','REPAIR','REVIEW_DIAGNOSTIC']);
   const MUTABLE_BASELINE_SOURCES=new Set(['auto','review']);
   const clone=x=>x==null?x:JSON.parse(JSON.stringify(x));
-  const h=s=>String(s??'').replace(/[&<>"']/g,m=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[m]));
+  const h=s=>String(s??'').replace(/[&<>"']/g,m=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot',"'":'&#39;'}[m]));
 
   function currentUserScope(){try{const u=JSON.parse(localStorage.getItem(CURRENT_USER_KEY)||'null');return String(u?.email||'anonymous').toLowerCase()}catch{return 'anonymous'}}
   function stableValue(value){
@@ -114,8 +114,13 @@
   function patchHome(){if(!window.app||window.app.__academic13fApplyPatched)return false;const app=window.app,oldHome=app.home?.bind(app);if(!oldHome)return false;app.__academic13fApplyPatched=true;app.home=function(){oldHome();renderControls()};app.home();return true}
   function init(attempt=0){const ready=previewRuntime()&&window.app?.__academic13dPreviewPatched&&window.app?.__academic2026Patched&&window.state?.schedule;if(ready&&patchHome()){console.info(VERSION,{explicitApply:EXPLICIT_APPLY_ENABLED,transactionStore:TX_STORAGE_KEY});return}if(attempt<60)setTimeout(()=>init(attempt+1),100);else console.warn(`${VERSION} disabled safely: prerequisite runtimes not ready`)}
 
+  function loadPass14AAssets(){
+    if(!document.querySelector('link[data-course-learning14a]')){const link=document.createElement('link');link.rel='stylesheet';link.href='assets/css/academic-course-learning.css';link.dataset.courseLearning14a='css';document.head.appendChild(link)}
+    if(!document.querySelector('script[data-course-learning14a]')&&!window.BAUMAN_OFFICIAL_COURSE_LEARNING_2026){const script=document.createElement('script');script.src='assets/js/academic-course-learning.js';script.dataset.courseLearning14a='js';document.body.appendChild(script)}
+  }
+
   window.applyAcademicSchedulePreview2026=applyFromUi;
   window.rollbackAcademicSchedule2026=rollbackFromUi;
   window.BAUMAN_ACADEMIC_SCHEDULER_APPLY_2026=Object.freeze({version:VERSION,applyApprovedPreview,rollbackLatest,validatePreviewForApply,transactionHistory,latestActiveTransaction,scheduleFingerprint,explicitApplyEnabled:EXPLICIT_APPLY_ENABLED,storageKey:TX_STORAGE_KEY});
-  document.addEventListener('DOMContentLoaded',()=>setTimeout(()=>init(0),0));
+  document.addEventListener('DOMContentLoaded',()=>{setTimeout(()=>init(0),0);setTimeout(loadPass14AAssets,0)});
 })();
