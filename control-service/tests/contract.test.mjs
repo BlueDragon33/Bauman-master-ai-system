@@ -32,6 +32,15 @@ test("Bauman v4 publishes real device control only when D1 is ready", async () =
   assert.match(worker, /learningAccessGate: false/);
 });
 
+test("Cloudflare preview promotes learningAccessGate only after D1 and app origin are ready", async () => {
+  const preview = await source("../src/cloudflare-preview.ts");
+  assert.match(preview, /const gateAvailable = ready && appOriginReady/);
+  assert.match(preview, /learningAccessGate: gateAvailable/);
+  assert.match(preview, /accessGate: gateAvailable \? "available" : "configuration-required"/);
+  assert.match(preview, /BAUMAN_DEPLOYMENT_CHANNEL/);
+  assert.match(preview, /BAUMAN_BUILD_REVISION/);
+});
+
 test("device gateway uses single-use P-256 challenge proof before issuing a session", async () => {
   const worker = await source("../src/index.ts");
   const store = await source("../src/device-store.ts");
@@ -92,15 +101,21 @@ test("local Bauman control uses an isolated D1 binding", async () => {
   assert.match(local.d1_databases?.[0]?.database_id ?? "", /^00000000-0000-0000-0000-000000000002$/);
 });
 
-test("machine-readable contract keeps learning access gate false until runtime integration", async () => {
+test("machine-readable contract records the E2E-verified learning gate and isolated preview", async () => {
   const contract = await json("../../control/application-management.contract.json");
-  assert.equal(contract.contractVersion, 4);
+  assert.equal(contract.contractVersion, 5);
   assert.equal(contract.controlService.protocol, "bauman-control-v4");
   assert.equal(contract.requiredDeviceContract.namespace, "BM-");
   assert.equal(contract.requiredDeviceContract.challengeSingleUse, true);
   assert.equal(contract.requiredDeviceContract.blockedDeviceSessionsRevoked, true);
-  assert.equal(contract.readiness.learningAccessGate, "missing");
-  assert.equal(contract.policy.learningRuntimeMustNotBeClaimedProtectedUntilAccessGateExists, true);
+  assert.equal(contract.readiness.learningAccessGate, "implemented-e2e-verified-requires-d1-and-app-origin");
+  assert.equal(contract.cloudflarePreview.manualOnly, true);
+  assert.equal(contract.cloudflarePreview.controlWorker, "bauman-control-preview");
+  assert.equal(contract.cloudflarePreview.controlDatabase, "bauman-control-preview-db");
+  assert.equal(contract.cloudflarePreview.learningWorker, "bauman-master-ai-preview");
+  assert.equal(contract.cloudflarePreview.productionDataIsolated, true);
+  assert.equal(contract.cloudflarePreview.chatgptSitesFallbackAllowed, false);
+  assert.equal(contract.policy.centralMayClaimLearningGateOnlyAfterLiveCapabilityProbe, true);
 });
 
 test("Bauman topology remains under one level-1 hub", async () => {

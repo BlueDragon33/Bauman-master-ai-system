@@ -1,0 +1,17 @@
+{
+  "$schema": "node_modules/wrangler/config-schema.json",
+  "name": "bauman-master-ai-preview",
+  "main": "cloudflare/runtime-worker.mjs",
+  "compatibility_date": "2026-09-01",
+  "compatibility_flags": ["nodejs_compat"],
+  "vars": {
+    "BAUMAN_CONTROL_ORIGIN": "__BAUMAN_CONTROL_PREVIEW_ORIGIN__",
+    "BAUMAN_DEPLOYMENT_CHANNEL": "cloudflare-preview",
+    "BAUMAN_BUILD_REVISION": "__BAUMAN_BUILD_REVISION__"
+  },
+  "assets": {
+    "directory": "./runtime-dist",
+    "binding": "ASSETS",
+    "run_worker_first": true
+  }
+}
