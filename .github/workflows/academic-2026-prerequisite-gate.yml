@@ -25,6 +25,7 @@ on:
       - 'scripts/validate-j01-information-system-architecture.js'
       - 'scripts/validate-p00-technical-russian.js'
       - 'scripts/validate-diagnostic-runtime-13b.js'
+      - 'scripts/validate-risk-engine-13c.js'
       - '.github/workflows/academic-2026-prerequisite-gate.yml'
   pull_request:
     paths:
@@ -50,6 +51,7 @@ on:
       - 'scripts/validate-j01-information-system-architecture.js'
       - 'scripts/validate-p00-technical-russian.js'
       - 'scripts/validate-diagnostic-runtime-13b.js'
+      - 'scripts/validate-risk-engine-13c.js'
       - '.github/workflows/academic-2026-prerequisite-gate.yml'
 
 jobs:
@@ -84,6 +86,8 @@ jobs:
         run: node scripts/validate-p00-technical-russian.js
       - name: Validate Pass13B diagnostic runtime and reuse packs
         run: node scripts/validate-diagnostic-runtime-13b.js
+      - name: Validate Pass13C course risk and active repair engine
+        run: node scripts/validate-risk-engine-13c.js
       - name: Check Academic and Device Gate runtime JavaScript syntax
         run: |
           node --check assets/js/academic-main.js
