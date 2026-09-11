@@ -2,7 +2,7 @@
 
 ## Vai trò và ranh giới
 
-`BlueDragon33/Bauman-master-ai-system` là **client cấp 1** (Bauman Hub). `BlueDragon33/Application-Management` là control-plane. Trung tâm không sở hữu dữ liệu học tập, registry thiết bị, command ledger, session hay audit của Bauman.
+`BlueDragon33/Bauman-master-ai-system` là **client cấp 1** (Bauman Hub). `BlueDragon33/Application-Management` là **control-plane canonical**. Trung tâm không sở hữu dữ liệu học tập, registry thiết bị, command ledger, session hay audit của Bauman và không được triển khai một bản Bauman admin thứ hai.
 
 Bauman Hub vẫn quản lý các sub-client/module: `Math_Bauman`, Lập trình, AI, Tín hiệu, Hệ thống, Nền tảng, Nghiên cứu và Tiếng Nga. Sub-client chỉ trở thành client cấp 1 khi có runtime, repo và admin contract độc lập.
 
@@ -18,11 +18,18 @@ Control service triển khai backend thiết bị riêng của Bauman với name
 - device id là SHA-256 của canonical public JWK ECDSA P-256; private key chỉ nằm trên endpoint;
 - challenge ký theo chuỗi `bauman-device:v1:<deviceId>:<challengeId>:<challenge>`;
 - `approve` và `block` chỉ chạy qua command envelope có `commandId` + `expectedStatus`;
-- cùng `commandId` chỉ replay được khi payload giống hệt và lệnh trước đã `completed`;
-- lệnh đang `processing`, `failed` hoặc `uncertain` không được tự chạy lại mù;
-- `block` giữ registry, tắt quyền sửa, thu hồi mọi device session đang hoạt động và ghi audit; không xóa thiết bị.
+- cùng `commandId` chỉ replay khi payload giống hệt và lệnh trước đã `completed`;
+- `block` giữ registry, tắt quyền sửa, thu hồi device session và ghi audit; không xóa thiết bị.
 
 Mutation thiết bị Bauman yêu cầu vai trò `owner`.
+
+## Learning Runtime Device Gate
+
+Bauman learning runtime hiện đã gắn Device Gate v4 tại `assets/js/platform/device-access-gate.js` và được kiểm tra bằng E2E local trong workflow `runtime-device-gate-ci.yml`.
+
+Luồng chuẩn: tạo private key P-256 non-extractable trên thiết bị → đăng ký public JWK → nhận challenge → ký đúng `signingInput` → control service verify → thiết bị `approved` mới nhận session `bm1.*` → heartbeat định kỳ. Khi bị block/revoke/pending, UI bị khóa. Offline grace chỉ dùng last-known approved state trong thời gian hữu hạn; thiết bị chưa từng verify không được mở khóa bằng offline mode.
+
+Core control service vẫn báo capability thận trọng khi chưa có D1/app origin. Cloudflare preview wrapper chỉ quảng bá `learningAccessGate: true` sau khi **D1 schema sẵn sàng và BAUMAN_APP_ORIGIN đã cấu hình**, vì Application Management chỉ được tin live capability, không được suy diễn từ CI.
 
 ## API contract
 
@@ -31,12 +38,12 @@ Mutation thiết bị Bauman yêu cầu vai trò `owner`.
 - `POST /api/device/register`
 - `POST /api/device/challenge`
 - `POST /api/device/verify`
-- `POST /api/device/heartbeat` — yêu cầu `Authorization: Bearer bm1.<session>`
+- `POST /api/device/heartbeat` — `Authorization: Bearer bm1.<session>`
 - `GET /api/device/status?deviceId=...`
 
-Gateway chỉ nhận browser từ `BAUMAN_APP_ORIGIN` đã cấu hình. Nếu chưa cấu hình origin hoặc chưa gắn D1, endpoint fail-closed. Challenge được tiêu thụ một lần trước khi kết quả proof được chấp nhận. Chỉ thiết bị `approved` sau proof hợp lệ mới nhận session. Thiết bị `pending` hoặc `blocked` không nhận session.
+Gateway chỉ nhận browser từ `BAUMAN_APP_ORIGIN` đã cấu hình. Nếu chưa cấu hình origin hoặc chưa gắn D1, endpoint fail-closed.
 
-### Remote admin — Application Management gọi qua vé app-scoped
+### Remote admin — Application Management gọi
 
 - `GET /api/control/status`
 - `GET /api/control/subclients`
@@ -44,62 +51,63 @@ Gateway chỉ nhận browser từ `BAUMAN_APP_ORIGIN` đã cấu hình. Nếu ch
 - `POST /api/control/device-commands`
 - `GET /api/control/audit`
 
-Vé quản trị giữ issuer `application-management`, audience `bauman-control`, app `bauman-master-ai`, actor, role, central control-device id và expiry ngắn hạn. Control API cũng có thể dùng service secret riêng của Bauman cho service-to-service khi cần.
+Vé quản trị giữ issuer `application-management`, audience `bauman-control`, app `bauman-master-ai`, actor, role, central control-device id và expiry ngắn hạn. Service-to-service dùng `BAUMAN_CONTROL_SERVICE_SECRET` riêng của Bauman.
 
 ## Local / offline
 
-`control-service/wrangler.local.jsonc` cung cấp D1 local riêng tên `bauman-control-local`, binding `DB`, dùng UUID giả chỉ cho local Wrangler. Không được dùng config này với `--remote`.
+`control-service/wrangler.local.jsonc` dùng D1 local riêng `bauman-control-local` với UUID giả chỉ cho local Wrangler. Không dùng config này với `--remote`.
 
-Khi chạy Local Control Plane, Bauman Control dùng port `3003`. Application Management phải chạy cùng máy/mạng được cấu hình và trỏ `BAUMAN_CONTROL_LOCAL_BASE_URL` vào runtime này. Local D1 hoàn toàn tách production D1.
+Topology local chuẩn:
 
-## D1 production bắt buộc
-
-Repository không chứa production database id hoặc production secret. Trước khi bật production phải:
-
-1. tạo/chọn D1 production thuộc Bauman;
-2. bind D1 vào control service với binding chính xác `DB`;
-3. áp migration `control-service/migrations/0001_device_control.sql`;
-4. cấu hình `BAUMAN_CONTROL_SERVICE_SECRET` riêng, tối thiểu 32 ký tự;
-5. cấu hình `APPLICATION_MANAGEMENT_ORIGIN` đúng origin production của Trung tâm;
-6. cấu hình `BAUMAN_APP_ORIGIN` đúng origin production của Bauman Hub;
-7. deploy control service rồi kiểm tra `/api/control/status` trả capability thật từ DB trước khi Trung tâm bật mutation.
-
-Nếu `DB` chưa bind hoặc schema chưa tồn tại, runtime status trả `configuration-required`; Application Management không được suy diễn trạng thái `connected` chỉ từ CI.
-
-## Trạng thái learning access gate
-
-Backend device identity, challenge/proof, session, block/revoke và audit đã được triển khai trong control service, nhưng **learning runtime chưa được tuyên bố là đã bảo vệ bởi device gate** cho tới khi frontend Bauman dùng đúng v4 gateway và E2E pass.
-
-PR/runtime cũ dùng endpoint trung gian hoặc signing input khác không được merge nguyên trạng. Runtime mới phải:
-
-1. tạo P-256 private key non-extractable trên endpoint;
-2. đăng ký public JWK;
-3. nhận challenge từ control service;
-4. ký đúng `signingInput` server trả về;
-5. verify để nhận `bm1.*` session khi thiết bị đã approved;
-6. heartbeat bằng session;
-7. khóa UI ngay khi heartbeat trả `DEVICE_BLOCKED`, `DEVICE_PENDING`, `DEVICE_SESSION_REVOKED` hoặc hết offline grace.
-
-Chỉ sau E2E đó mới đổi capability `learningAccessGate` sang true.
-
-## Biến môi trường
-
-### Bauman control service
-
-```env
-BAUMAN_CONTROL_SERVICE_SECRET=<secret riêng của Bauman, tối thiểu 32 ký tự>
-APPLICATION_MANAGEMENT_ORIGIN=<origin production của Application Management>
-BAUMAN_APP_ORIGIN=<origin production của Bauman Hub>
+```text
+Application Management :3000
+        |
+        +--> Bauman Control :3003  (D1 local riêng)
+                    |
+                    +--> Bauman Learning Runtime :3005
 ```
 
-Ngoài ra cần D1 binding tên `DB`. Không đưa secret vào static JS hoặc biến public.
+Learning runtime tự trỏ `http://127.0.0.1:3003` khi chạy loopback. Local D1 hoàn toàn tách production D1.
 
-### Application Management
+## Cloudflare preview — giai đoạn migration
 
-```env
-BAUMAN_BASE_URL=<origin production của Bauman control service>
-BAUMAN_CONTROL_SERVICE_SECRET=<cùng secret với control service>
+Preview dùng hai Worker tách biệt trong cùng repo:
+
+```text
+Application Management preview
+        |
+        +--> bauman-control-preview
+                |-- D1: bauman-control-preview-db
+                |
+                +--> bauman-master-ai-preview
+                     (static Learning Runtime + Device Gate v4)
 ```
+
+Workflow `.github/workflows/deploy-bauman-preview.yml` là **manual-only** và yêu cầu nhập `DEPLOY_PREVIEW`. Workflow không được auto-deploy production và không được dùng D1 local/production cho preview.
+
+Các biến/secret cần đặt trong GitHub Environment `bauman-preview`:
+
+```text
+Secrets:
+CLOUDFLARE_API_TOKEN
+CLOUDFLARE_ACCOUNT_ID
+BAUMAN_CONTROL_PREVIEW_D1_DATABASE_ID
+BAUMAN_CONTROL_SERVICE_SECRET
+BAUMAN_CONTROL_PRODUCTION_D1_DATABASE_ID   # khuyến nghị để guard chống tái sử dụng production DB
+
+Variables:
+APPLICATION_MANAGEMENT_PREVIEW_ORIGIN
+BAUMAN_CONTROL_PREVIEW_ORIGIN
+BAUMAN_RUNTIME_PREVIEW_ORIGIN
+```
+
+Ba origin phải là HTTPS exact origins và không được là `*.chatgpt.site`. `scripts/prepare-cloudflare-preview.mjs` tạo `runtime-dist`, `control-service/wrangler.preview.jsonc` và `wrangler.runtime.preview.jsonc`; các file sinh ra không commit.
+
+Preview smoke bắt buộc xác minh: D1 schema thật đã sẵn sàng, control identity đúng, device capabilities thật, CORS device gateway chỉ nhận learning runtime preview, runtime Worker inject đúng `bauman-control-origin`, revision/channel đúng và learning runtime có Device Gate script.
+
+## Production sau preview
+
+Repo hiện chưa tự động promote preview sang production. Chỉ tạo production path sau khi preview pass và Application Management kết nối thử thành công. Production cần D1 Bauman riêng, secret riêng, exact origin của Application Management và exact origin của Bauman Learning Runtime. Không thay URL cũ hoặc tắt rollback path trước khi read-back production pass.
 
 ## Quy tắc an toàn
 
@@ -110,5 +118,6 @@ BAUMAN_CONTROL_SERVICE_SECRET=<cùng secret với control service>
 - Không bật nút quản trị nếu live `/api/control/status` chưa quảng bá capability tương ứng.
 - Không coi P-256 public key đơn thuần là proof; quyền truy cập cần challenge + chữ ký + session.
 - Không coi GitHub CI xanh là production đã deploy.
+- Không hard-code ChatGPT Sites làm fallback mới.
 
 Nguồn machine-readable: `control/application-management.contract.json`.
