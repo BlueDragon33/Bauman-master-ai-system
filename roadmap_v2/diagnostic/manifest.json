@@ -1,0 +1,78 @@
+{
+  "schema": "BAUMAN_ROADMAP_V2_DIAGNOSTIC_MANIFEST_V1",
+  "version": "2.3.0-l23-b91",
+  "status": "PASS_B91_ENGINE_CATALOG_BLOCKED_NO_ITEM_BANKS",
+  "mode": "read_only_diagnostic_harness",
+  "productionIntegration": "disconnected",
+  "baselineCommit": "e383912354673bdce7a0059d6b9a23799d74e689",
+  "upstream": {
+    "consumerManifest": {
+      "path": "consumer/manifest.json",
+      "bytes": 1445,
+      "sha256": "19448bca6ff10a046cd1a14e95b99de40800fbf86515777e531899310bf1c1e4"
+    }
+  },
+  "files": {
+    "diagnosticContract": {
+      "path": "diagnostic/diagnostic-contract.json",
+      "bytes": 4619,
+      "sha256": "a1c8498c656f169c933e786dc66446db64b039ae5ca2bf63446ac5ff0a2789f4"
+    },
+    "diagnosticContractSchema": {
+      "path": "diagnostic/diagnostic-contract.schema.json",
+      "bytes": 2953,
+      "sha256": "f2d061cdee86e84cfeee10448b6ca9251f98a3627367a9f3697416b9bf7beb54"
+    },
+    "catalogSchema": {
+      "path": "diagnostic/catalog.schema.json",
+      "bytes": 1640,
+      "sha256": "775eb636f47546bd6ab21107c80eb1f943f1bee69dbad2f62721d5de8f389fa7"
+    },
+    "itemBankSchema": {
+      "path": "diagnostic/item-bank.schema.json",
+      "bytes": 3249,
+      "sha256": "f828e7a2da147a408766fb3158e7113de87094900d827f9186aad75ebaf78833"
+    },
+    "attemptSchema": {
+      "path": "diagnostic/attempt.schema.json",
+      "bytes": 1066,
+      "sha256": "614b980d59bc7a824eb481413e842cde5b842acb786c9130936249a9e1f7b22f"
+    },
+    "diagnosticEngine": {
+      "path": "diagnostic.mjs",
+      "bytes": 14867,
+      "sha256": "7132bae98e2c9670a6a064459b3060476c02835a177c04f2640c1d5bac939594"
+    },
+    "catalog": {
+      "path": "diagnostic/catalog.json",
+      "bytes": 472462,
+      "sha256": "08826948e162f138a8b5720e7bbab887912b889306a85e3bd97862f0581462de"
+    }
+  },
+  "counts": {
+    "plans": 381,
+    "chapterPlans": 77,
+    "lessonPlans": 304,
+    "blockedDynamicTargets": 8,
+    "verifiedItemBanks": 0,
+    "executablePlans": 0
+  },
+  "safety": {
+    "generatedQuestionItems": 0,
+    "verifiedItemBanks": 0,
+    "executablePlans": 0,
+    "masteryEvidenceWrites": 0,
+    "priorityEngineWrites": 0,
+    "runtimeWrites": 0
+  },
+  "acceptance": {
+    "step": 91,
+    "catalogCompleteFromEligibleBlueprints": true,
+    "dynamicTargetsBlocked": true,
+    "missingBanksFailClosed": true,
+    "proposedBankHarnessOnly": true,
+    "diagnosticEnginePinned": true,
+    "masterReadyOutcomeAllowed": false,
+    "result": "PASS_ENGINE_CATALOG_BLOCKED_NO_ITEM_BANKS"
+  }
+}

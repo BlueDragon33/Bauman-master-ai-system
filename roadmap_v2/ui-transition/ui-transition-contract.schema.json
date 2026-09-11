@@ -1,0 +1,22 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://bauman.local/schemas/roadmap-v2-ui-transition-contract-v1.json",
+  "title": "Bauman Roadmap V2 L32 additive 8-to-10 UI transition contract",
+  "type": "object",
+  "required": ["schema", "version", "status", "baselineCommit", "headBeforeL32", "mode", "invariants", "capabilities", "acceptance"],
+  "properties": {
+    "schema": { "const": "BAUMAN_ROADMAP_V2_UI_TRANSITION_CONTRACT_V1" },
+    "version": { "const": "2.12.0-l32-b125" },
+    "status": { "const": "PASS_B125_CONTRACT_ONLY" },
+    "mode": { "const": "DESIGN_ONLY" },
+    "baselineCommit": { "pattern": "^[0-9a-f]{40}$" },
+    "headBeforeL32": { "pattern": "^[0-9a-f]{40}$" },
+    "capabilities": { "type": "object", "additionalProperties": { "const": false } },
+    "acceptance": {
+      "type": "object",
+      "properties": { "step": { "const": 125 }, "result": { "const": "PASS_CONTRACT_ONLY" } },
+      "required": ["step", "result"]
+    }
+  },
+  "additionalProperties": true
+}

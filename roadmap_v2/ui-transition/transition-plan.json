@@ -1,0 +1,321 @@
+{
+  "schema": "BAUMAN_ROADMAP_V2_UI_TRANSITION_PLAN_V1",
+  "version": "2.12.0-l32-b126",
+  "status": "PASS_B126_DETERMINISTIC_ADDITIVE_DESIGN",
+  "headBeforeL32": "649d98ccfcf06ec8c558e79a80bac9a3560916c7",
+  "counts": {
+    "canonicalCourses": 10,
+    "plannedCanonicalRoutes": 10,
+    "physicalCanonicalRoutesCreated": 0,
+    "legacyRoutes": 8,
+    "legacyRoutesPreserved": 8,
+    "automaticRedirects": 0,
+    "openFindings": 16,
+    "remediationPhases": 4
+  },
+  "stages": [
+    {
+      "id": "T0_DESIGN",
+      "description": "Deterministic route, compatibility, and remediation design only."
+    },
+    {
+      "id": "T1_ADDITIVE_DISCOVERY",
+      "description": "Future authorized shell may present ten canonical destinations while retaining eight direct legacy routes."
+    },
+    {
+      "id": "T2_CANONICAL_PRIMARY",
+      "description": "Future canonical-first navigation requires explicit implementation and rollback acceptance; legacy routes remain compatibility surfaces."
+    }
+  ],
+  "canonicalDestinations": [
+    {
+      "id": "01",
+      "title": "TIẾNG NGA",
+      "plannedRoute": "/courses/01/index.html",
+      "routeStatus": "planned_not_created",
+      "strategy": "adapt_and_extend",
+      "activation": "static_registry_allowed",
+      "legacyModuleIds": [
+        "russian",
+        "foundation"
+      ]
+    },
+    {
+      "id": "02",
+      "title": "TOÁN AI & DATA",
+      "plannedRoute": "/courses/02/index.html",
+      "routeStatus": "planned_not_created",
+      "strategy": "adapt_and_extend",
+      "activation": "static_registry_allowed",
+      "legacyModuleIds": [
+        "math",
+        "foundation",
+        "signal"
+      ]
+    },
+    {
+      "id": "03",
+      "title": "PYTHON & OOP",
+      "plannedRoute": "/courses/03/index.html",
+      "routeStatus": "planned_not_created",
+      "strategy": "rebuild_from_legacy_shell",
+      "activation": "content_requires_academic_validation",
+      "legacyModuleIds": [
+        "programming"
+      ]
+    },
+    {
+      "id": "04",
+      "title": "ALGORITHMS & DATA STRUCTURES",
+      "plannedRoute": "/courses/04/index.html",
+      "routeStatus": "planned_not_created",
+      "strategy": "build_new_with_legacy_support",
+      "activation": "content_requires_academic_validation",
+      "legacyModuleIds": [
+        "programming"
+      ]
+    },
+    {
+      "id": "05",
+      "title": "DATABASE & INFORMATION SYSTEMS",
+      "plannedRoute": "/courses/05/index.html",
+      "routeStatus": "planned_not_created",
+      "strategy": "build_new_with_legacy_support",
+      "activation": "content_requires_academic_validation",
+      "legacyModuleIds": [
+        "programming",
+        "systems"
+      ]
+    },
+    {
+      "id": "06",
+      "title": "LINUX, OS & COMPUTER NETWORKS",
+      "plannedRoute": "/courses/06/index.html",
+      "routeStatus": "planned_not_created",
+      "strategy": "build_new_with_legacy_support",
+      "activation": "content_requires_academic_validation",
+      "legacyModuleIds": [
+        "programming",
+        "foundation",
+        "systems"
+      ]
+    },
+    {
+      "id": "07",
+      "title": "OPERATIONS RESEARCH & SYSTEM MODELING",
+      "plannedRoute": "/courses/07/index.html",
+      "routeStatus": "planned_not_created",
+      "strategy": "build_new_with_legacy_support",
+      "activation": "content_requires_academic_validation",
+      "legacyModuleIds": [
+        "signal",
+        "systems"
+      ]
+    },
+    {
+      "id": "08",
+      "title": "MACHINE LEARNING & RESEARCH",
+      "plannedRoute": "/courses/08/index.html",
+      "routeStatus": "planned_not_created",
+      "strategy": "rebuild_from_legacy_shell",
+      "activation": "content_requires_academic_validation",
+      "legacyModuleIds": [
+        "ai",
+        "signal"
+      ]
+    },
+    {
+      "id": "09",
+      "title": "CURRENT BAUMAN SUBJECTS — MODULE ĐỘNG",
+      "plannedRoute": "/courses/09/index.html",
+      "routeStatus": "planned_not_created",
+      "strategy": "dynamic_import_only",
+      "activation": "blocked_pending_verified_syllabus",
+      "legacyModuleIds": [
+        "foundation",
+        "signal",
+        "systems"
+      ]
+    },
+    {
+      "id": "10",
+      "title": "NIR/THESIS",
+      "plannedRoute": "/courses/10/index.html",
+      "routeStatus": "planned_not_created",
+      "strategy": "rebuild_from_legacy_shell",
+      "activation": "content_requires_academic_validation",
+      "legacyModuleIds": [
+        "research",
+        "signal",
+        "systems"
+      ]
+    }
+  ],
+  "legacyCompatibility": [
+    {
+      "id": "ai",
+      "route": "/subjects/ai/index.html",
+      "disposition": "preserve_as_compatibility_surface",
+      "redirectPolicy": "no_automatic_redirect",
+      "canonicalCourseIds": [
+        "08"
+      ]
+    },
+    {
+      "id": "foundation",
+      "route": "/subjects/foundation/index.html",
+      "disposition": "preserve_as_compatibility_surface",
+      "redirectPolicy": "no_automatic_redirect",
+      "canonicalCourseIds": [
+        "01",
+        "02",
+        "06",
+        "09"
+      ]
+    },
+    {
+      "id": "math",
+      "route": "/subjects/math/index.html",
+      "disposition": "preserve_as_compatibility_surface",
+      "redirectPolicy": "no_automatic_redirect",
+      "canonicalCourseIds": [
+        "02"
+      ]
+    },
+    {
+      "id": "programming",
+      "route": "/subjects/programming/index.html",
+      "disposition": "preserve_as_compatibility_surface",
+      "redirectPolicy": "no_automatic_redirect",
+      "canonicalCourseIds": [
+        "03",
+        "04",
+        "05",
+        "06"
+      ]
+    },
+    {
+      "id": "research",
+      "route": "/subjects/research/index.html",
+      "disposition": "preserve_as_compatibility_surface",
+      "redirectPolicy": "no_automatic_redirect",
+      "canonicalCourseIds": [
+        "10"
+      ]
+    },
+    {
+      "id": "russian",
+      "route": "/subjects/russian/index.html",
+      "disposition": "preserve_as_compatibility_surface",
+      "redirectPolicy": "no_automatic_redirect",
+      "canonicalCourseIds": [
+        "01"
+      ]
+    },
+    {
+      "id": "signal",
+      "route": "/subjects/signal/index.html",
+      "disposition": "preserve_as_compatibility_surface",
+      "redirectPolicy": "no_automatic_redirect",
+      "canonicalCourseIds": [
+        "02",
+        "07",
+        "08",
+        "09",
+        "10"
+      ]
+    },
+    {
+      "id": "systems",
+      "route": "/subjects/systems/index.html",
+      "disposition": "preserve_as_compatibility_surface",
+      "redirectPolicy": "no_automatic_redirect",
+      "canonicalCourseIds": [
+        "05",
+        "06",
+        "07",
+        "09",
+        "10"
+      ]
+    }
+  ],
+  "remediation": [
+    {
+      "id": "P0_SECURITY_BOUNDARY",
+      "order": 0,
+      "findingIds": [
+        "L31-F001",
+        "L31-F012",
+        "L31-F015"
+      ],
+      "exitCriteria": [
+        "No static/default credentials",
+        "Versioned origin/source-checked message envelope",
+        "Trusted-data-flow review for HTML sinks"
+      ]
+    },
+    {
+      "id": "P1_CANONICAL_SEMANTICS",
+      "order": 1,
+      "findingIds": [
+        "L31-F002",
+        "L31-F003",
+        "L31-F004",
+        "L31-F016"
+      ],
+      "exitCriteria": [
+        "One progress contract",
+        "One GĐ0-GĐ3 registry",
+        "Ten canonical destinations with eight compatibility routes",
+        "Course 09 verified-import gate"
+      ]
+    },
+    {
+      "id": "P2_EVIDENCE_UX",
+      "order": 2,
+      "findingIds": [
+        "L31-F005",
+        "L31-F006",
+        "L31-F009",
+        "L31-F011"
+      ],
+      "exitCriteria": [
+        "Assessment copy matches blueprint",
+        "Completion requires evidence",
+        "Six mastery states and readiness are projections",
+        "Legacy percent is compatibility-only"
+      ]
+    },
+    {
+      "id": "P3_ACCESSIBILITY_AND_MAINTAINABILITY",
+      "order": 3,
+      "findingIds": [
+        "L31-F007",
+        "L31-F008",
+        "L31-F010",
+        "L31-F013",
+        "L31-F014"
+      ],
+      "exitCriteria": [
+        "Validated import contract",
+        "Shared shell separated from subject adapters",
+        "Assistant grounding contract",
+        "Math load order documented",
+        "Visible controls have accessible names"
+      ]
+    }
+  ],
+  "safety": {
+    "productionFilesChanged": 0,
+    "routesCreated": 0,
+    "redirectsCreated": 0,
+    "legacyModulesDeleted": 0,
+    "findingsResolved": 0,
+    "runtimeActivations": 0,
+    "persistenceWrites": 0
+  },
+  "acceptance": {
+    "step": 126,
+    "result": "PASS_DETERMINISTIC_ADDITIVE_DESIGN_ONLY"
+  }
+}

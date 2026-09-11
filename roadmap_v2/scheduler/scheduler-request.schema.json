@@ -1,0 +1,85 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "BAUMAN_ROADMAP_V2_SCHEDULER_REQUEST_V1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema",
+    "requestId",
+    "phaseId",
+    "weekStart",
+    "weeklyCapacityMinutes",
+    "items"
+  ],
+  "properties": {
+    "schema": { "const": "BAUMAN_ROADMAP_V2_SCHEDULER_REQUEST_V1" },
+    "requestId": { "type": "string", "minLength": 1 },
+    "phaseId": { "enum": ["GD0", "GD1", "GD2", "GD3"] },
+    "weekStart": { "type": "string", "format": "date" },
+    "weeklyCapacityMinutes": { "type": "integer", "minimum": 1, "maximum": 10080 },
+    "items": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "scheduleItemId",
+          "priorityCandidate",
+          "activityKind",
+          "estimatedMinutes",
+          "technicalTrack",
+          "russianTwinMinutes",
+          "dueDate",
+          "reviewRequested",
+          "source"
+        ],
+        "properties": {
+          "scheduleItemId": { "type": "string", "minLength": 1 },
+          "priorityCandidate": { "type": "object" },
+          "activityKind": {
+            "enum": [
+              "russian_foundation",
+              "technical_core",
+              "bridge",
+              "retention_review",
+              "current_subject_preview",
+              "current_subject_weekly",
+              "assessment_readiness",
+              "nir_thesis"
+            ]
+          },
+          "estimatedMinutes": { "type": "integer", "minimum": 1, "maximum": 1440 },
+          "technicalTrack": {
+            "type": ["string", "null"],
+            "enum": ["python", "database", "math", "other", null]
+          },
+          "russianTwinMinutes": {
+            "type": ["integer", "null"],
+            "minimum": 1,
+            "maximum": 1440
+          },
+          "dueDate": { "type": ["string", "null"], "format": "date" },
+          "reviewRequested": { "type": "boolean" },
+          "source": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": ["kind", "ref", "verified", "masterModeRelation"],
+            "properties": {
+              "kind": { "enum": ["registry_static", "current_bauman_official", "nir_plan_verified"] },
+              "ref": { "type": "string", "minLength": 1 },
+              "verified": { "const": true },
+              "masterModeRelation": {
+                "enum": [
+                  "not_applicable",
+                  "current_subject_prerequisite",
+                  "nir_thesis_prerequisite",
+                  "unrelated_static"
+                ]
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

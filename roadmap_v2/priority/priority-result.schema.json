@@ -1,0 +1,78 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "BAUMAN_ROADMAP_V2_PRIORITY_RESULT_V1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema",
+    "candidateId",
+    "targetId",
+    "phaseId",
+    "knowledgeState",
+    "features",
+    "contributions",
+    "weightedScore",
+    "criticalOverride",
+    "reviewOnDemand",
+    "disposition",
+    "masterReady",
+    "schedulerWriteAllowed",
+    "persisted",
+    "reasonCodes"
+  ],
+  "properties": {
+    "schema": {
+      "const": "BAUMAN_ROADMAP_V2_PRIORITY_RESULT_V1"
+    },
+    "candidateId": {
+      "type": "string"
+    },
+    "targetId": {
+      "type": "string"
+    },
+    "phaseId": {
+      "type": "string"
+    },
+    "knowledgeState": {
+      "type": "string"
+    },
+    "features": {
+      "type": "object"
+    },
+    "contributions": {
+      "type": "object"
+    },
+    "weightedScore": {
+      "type": "number",
+      "minimum": 0,
+      "maximum": 100
+    },
+    "criticalOverride": {
+      "type": "boolean"
+    },
+    "reviewOnDemand": {
+      "type": "boolean"
+    },
+    "disposition": {
+      "enum": [
+        "critical",
+        "review_on_demand",
+        "high",
+        "medium",
+        "low"
+      ]
+    },
+    "masterReady": {
+      "type": "boolean"
+    },
+    "schedulerWriteAllowed": {
+      "const": false
+    },
+    "persisted": {
+      "const": false
+    },
+    "reasonCodes": {
+      "type": "array"
+    }
+  }
+}

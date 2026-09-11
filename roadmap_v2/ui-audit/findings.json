@@ -1,0 +1,186 @@
+{
+  "schema": "BAUMAN_ROADMAP_V2_UI_AUDIT_FINDINGS_V1",
+  "version": "2.11.0-l31-b122",
+  "status": "PASS_B122_STATIC_AUDIT_WITH_OPEN_FINDINGS",
+  "auditHead": "a1eece596c198f48cdd84f77c59986f59eb2eb3d",
+  "productionFixAuthorized": false,
+  "findings": [
+    {
+      "id": "L31-F001",
+      "severity": "critical",
+      "area": "security",
+      "title": "Default administrator credentials are prefilled and stored in client code",
+      "status": "OPEN",
+      "affectedTargets": ["main"],
+      "evidence": "The login form contains prefilled email/password values; main.js also declares the same credentials and initializes users in localStorage.",
+      "sourceRefs": ["index.html:16", "index.html:17", "assets/js/main.js:5", "assets/js/main.js:6", "assets/js/main.js:44"],
+      "recommendedDisposition": "Remove secrets from static assets and replace client-only authentication in an explicitly authorized security pass."
+    },
+    {
+      "id": "L31-F002",
+      "severity": "high",
+      "area": "integration",
+      "title": "Five subject modules emit a progress message Main does not accept",
+      "status": "OPEN",
+      "affectedTargets": ["ai", "foundation", "research", "signal", "systems", "main"],
+      "evidence": "The shared runtime emits SUBJECT_FEEDBACK while Main accepts BAUMAN_SUBJECT_PROGRESS or BAUMAN_PROGRESS_REPORT.",
+      "sourceRefs": ["subjects/ai/assets/ai.js:266", "assets/js/planning-main.js:1"],
+      "recommendedDisposition": "Define one versioned, origin-checked progress envelope before wiring all modules to it."
+    },
+    {
+      "id": "L31-F003",
+      "severity": "high",
+      "area": "curriculum_semantics",
+      "title": "Stage labels conflict across Main, Math, and Roadmap V2",
+      "status": "OPEN",
+      "affectedTargets": ["main", "math"],
+      "evidence": "Main declares GĐ1-GĐ3, while Roadmap V2 requires GĐ0-GĐ3; Math contains both GĐ1-GĐ3 and GĐ0-GĐ9 definitions.",
+      "sourceRefs": ["assets/js/data.js:3", "assets/js/main.js:36", "subjects/math/assets/subject-adapter.js:64", "subjects/math/assets/subject-adapter.js:209"],
+      "recommendedDisposition": "Adopt one canonical stage registry and migrate labels only after the L32 transition design is accepted."
+    },
+    {
+      "id": "L31-F004",
+      "severity": "high",
+      "area": "information_architecture",
+      "title": "Physical UI exposes eight modules while the accepted target curriculum has ten courses",
+      "status": "OPEN",
+      "affectedTargets": ["main", "ai", "foundation", "math", "programming", "research", "russian", "signal", "systems"],
+      "evidence": "The pinned repository has eight subject entrypoints; the L30 target disposition contains ten target courses.",
+      "sourceRefs": ["roadmap_v2/ui-audit/source-inventory.json:1", "roadmap_v2/curriculum/target-course-disposition.json:1"],
+      "recommendedDisposition": "Design an additive 8-to-10 transition mapping; do not delete legacy modules."
+    },
+    {
+      "id": "L31-F005",
+      "severity": "high",
+      "area": "assessment",
+      "title": "Quiz size copy conflicts with the implemented maximum",
+      "status": "OPEN",
+      "affectedTargets": ["ai", "foundation", "research", "signal", "systems"],
+      "evidence": "The shared UI advertises 20/30/40/50 questions but startTest slices every test to at most ten.",
+      "sourceRefs": ["subjects/ai/assets/ai.js:158", "subjects/ai/assets/ai.js:160"],
+      "recommendedDisposition": "Align display and selection rules through a validated assessment blueprint."
+    },
+    {
+      "id": "L31-F006",
+      "severity": "high",
+      "area": "mastery",
+      "title": "Shared modules allow direct lesson completion without an evidence gate",
+      "status": "OPEN",
+      "affectedTargets": ["ai", "foundation", "research", "signal", "systems"],
+      "evidence": "The shared lesson UI calls markLessonDone directly from a completion button and does not require evidence from the accepted mastery model.",
+      "sourceRefs": ["subjects/ai/assets/ai.js:141"],
+      "recommendedDisposition": "Route completion through the evidence-backed mastery transition designed in L24."
+    },
+    {
+      "id": "L31-F007",
+      "severity": "medium",
+      "area": "data_portability",
+      "title": "Shared JSON import validates syntax but does not complete a durable import workflow",
+      "status": "OPEN",
+      "affectedTargets": ["ai", "foundation", "research", "signal", "systems"],
+      "evidence": "The shared data action parses JSON and displays manual-copy guidance instead of applying a validated migration transaction.",
+      "sourceRefs": ["subjects/ai/assets/ai.js:1"],
+      "recommendedDisposition": "Specify import validation, conflict handling, rollback, and user confirmation before persistence work at L34."
+    },
+    {
+      "id": "L31-F008",
+      "severity": "medium",
+      "area": "maintainability",
+      "title": "Five subjects use byte-identical generic JavaScript and CSS runtimes",
+      "status": "OPEN",
+      "affectedTargets": ["ai", "foundation", "research", "signal", "systems"],
+      "evidence": "All five runtime scripts share one Git blob SHA and all five styles share another, despite distinct subject domains.",
+      "sourceRefs": ["roadmap_v2/ui-audit/source-inventory.json:1"],
+      "recommendedDisposition": "Separate shared shell behavior from course-specific labs and assessment adapters."
+    },
+    {
+      "id": "L31-F009",
+      "severity": "high",
+      "area": "mastery",
+      "title": "Legacy UI has no representation for the accepted control-plane states",
+      "status": "OPEN",
+      "affectedTargets": ["main", "ai", "foundation", "math", "programming", "research", "russian", "signal", "systems"],
+      "evidence": "The audited entrypoints do not expose Diagnostic, six-state mastery, dependency eligibility, readiness, or Master Mode semantics.",
+      "sourceRefs": ["roadmap_v2/ui-audit/source-inventory.json:1", "roadmap_v2/mastery/mastery-contract.json:1", "roadmap_v2/readiness/readiness-contract.json:1"],
+      "recommendedDisposition": "Create a read-only presentation model before any UI mutation."
+    },
+    {
+      "id": "L31-F010",
+      "severity": "medium",
+      "area": "curriculum_semantics",
+      "title": "Shared subject assistant is keyword lookup rather than an evidence-aware tutor",
+      "status": "OPEN",
+      "affectedTargets": ["ai", "foundation", "research", "signal", "systems"],
+      "evidence": "Responses are selected by local keyword matching and are not grounded in current lesson evidence or readiness state.",
+      "sourceRefs": ["subjects/ai/assets/ai.js:1"],
+      "recommendedDisposition": "Define grounding, citations, refusal, and scope rules before expanding assistant behavior."
+    },
+    {
+      "id": "L31-F011",
+      "severity": "medium",
+      "area": "mastery",
+      "title": "Legacy progress is a local percentage rather than the accepted mastery projection",
+      "status": "OPEN",
+      "affectedTargets": ["main", "ai", "foundation", "math", "programming", "research", "russian", "signal", "systems"],
+      "evidence": "Local completion percentages are persisted independently of the append-only evidence and readiness contracts.",
+      "sourceRefs": ["assets/js/main.js:80", "subjects/ai/assets/ai.js:1"],
+      "recommendedDisposition": "Treat legacy percentage as a labeled compatibility signal, never as Master-ready evidence."
+    },
+    {
+      "id": "L31-F012",
+      "severity": "high",
+      "area": "security",
+      "title": "Cross-frame messages use wildcard delivery without origin/source validation",
+      "status": "OPEN",
+      "affectedTargets": ["main", "ai", "foundation", "math", "programming", "research", "russian", "signal", "systems"],
+      "evidence": "Subject messages target '*' and the Main receiver filters type but does not authenticate event.origin or event.source.",
+      "sourceRefs": ["assets/js/planning-main.js:1", "subjects/programming/assets/planning-bridge.js:522"],
+      "recommendedDisposition": "Pin allowed origins, validate the source window and schema, and reject unknown versions."
+    },
+    {
+      "id": "L31-F013",
+      "severity": "medium",
+      "area": "maintainability",
+      "title": "Math uses a heterogeneous patch-stack entrypoint",
+      "status": "OPEN",
+      "affectedTargets": ["math"],
+      "evidence": "Math loads multiple patch scripts and the default-OFF Roadmap bridge, while its planning bridge exists but is not directly loaded by the entrypoint.",
+      "sourceRefs": ["subjects/math/index.html:1", "roadmap_v2/ui-audit/source-inventory.json:1"],
+      "recommendedDisposition": "Document load order and ownership before normalizing adapters."
+    },
+    {
+      "id": "L31-F014",
+      "severity": "medium",
+      "area": "accessibility",
+      "title": "Visible form controls across all legacy routes lack programmatically associated names",
+      "status": "OPEN",
+      "affectedTargets": ["main", "ai", "foundation", "math", "programming", "research", "russian", "signal", "systems"],
+      "evidence": "Real Chromium observed 17 visible unlabeled controls across two viewports: Main 4; AI, Foundation, Research, Signal, and Systems 2 each; Math, Programming, and Russian 1 each. Hidden controls and controls nested in label elements are excluded.",
+      "sourceRefs": ["index.html:16", "index.html:17", "scripts/browser-audit-roadmap-ui.mjs:1"],
+      "recommendedDisposition": "Add visible labels, programmatic names, errors, and a verified keyboard focus order in the authorized UI pass."
+    },
+    {
+      "id": "L31-F015",
+      "severity": "medium",
+      "area": "security",
+      "title": "Widespread innerHTML rendering requires a data-flow security review",
+      "status": "OPEN",
+      "affectedTargets": ["main", "ai", "foundation", "math", "programming", "research", "russian", "signal", "systems"],
+      "evidence": "Multiple runtimes construct interface fragments with innerHTML; this audit does not claim exploitability without tracing each input source.",
+      "sourceRefs": ["assets/js/main.js:1", "subjects/ai/assets/ai.js:1"],
+      "recommendedDisposition": "Trace trust boundaries and replace unsafe sinks where untrusted content can reach them."
+    },
+    {
+      "id": "L31-F016",
+      "severity": "high",
+      "area": "curriculum_semantics",
+      "title": "Current Bauman Subjects cannot be represented as static guessed curriculum",
+      "status": "OPEN",
+      "affectedTargets": ["main"],
+      "evidence": "L30 requires course 09 to remain dynamic-import-only and blocked until a verified Bauman syllabus is supplied.",
+      "sourceRefs": ["roadmap_v2/curriculum/target-course-disposition.json:1"],
+      "recommendedDisposition": "Reserve a fail-closed dynamic import surface; do not invent static subjects."
+    }
+  ],
+  "acceptance": { "step": 122, "result": "PASS_STATIC_AUDIT_WITH_OPEN_FINDINGS" }
+}

@@ -1,0 +1,418 @@
+name: Roadmap V2 contract gate
+
+on:
+  pull_request:
+    paths:
+      - 'Bauman_Roadmap_V2_Syllabus_Luot18.md'
+      - 'Bauman_Roadmap_V2_Execution_State.md'
+      - 'docs/roadmap_v2/**'
+      - 'roadmap_v2/**'
+      - 'scripts/build-roadmap-sidecar.mjs'
+      - 'scripts/build-roadmap-consumer-bridge.mjs'
+      - 'scripts/validate-roadmap-consumer-contract.mjs'
+      - 'scripts/validate-roadmap-consumer-api.mjs'
+      - 'scripts/validate-roadmap-l22.mjs'
+      - 'scripts/validate-roadmap-diagnostic-contract.mjs'
+      - 'scripts/build-roadmap-diagnostic-catalog.mjs'
+      - 'scripts/validate-roadmap-diagnostic-catalog.mjs'
+      - 'scripts/validate-roadmap-diagnostic-engine.mjs'
+      - 'scripts/validate-roadmap-l23.mjs'
+      - 'scripts/validate-roadmap-mastery-contract.mjs'
+      - 'scripts/build-roadmap-mastery-harness.mjs'
+      - 'scripts/validate-roadmap-mastery-reducer.mjs'
+      - 'scripts/validate-roadmap-mastery-gates.mjs'
+      - 'scripts/validate-roadmap-l24.mjs'
+      - 'scripts/validate-roadmap-priority-contract.mjs'
+      - 'scripts/build-roadmap-priority-harness.mjs'
+      - 'scripts/validate-roadmap-priority-engine.mjs'
+      - 'scripts/validate-roadmap-l25.mjs'
+      - 'scripts/validate-roadmap-scheduler-contract.mjs'
+      - 'scripts/build-roadmap-scheduler-harness.mjs'
+      - 'scripts/validate-roadmap-scheduler-engine.mjs'
+      - 'scripts/validate-roadmap-l26.mjs'
+      - 'scripts/validate-roadmap-readiness-contract.mjs'
+      - 'scripts/build-roadmap-readiness-harness.mjs'
+      - 'scripts/validate-roadmap-readiness-engine.mjs'
+      - 'scripts/validate-roadmap-l27.mjs'
+      - 'scripts/validate-roadmap-integration-contract.mjs'
+      - 'scripts/build-roadmap-integration-harness.mjs'
+      - 'scripts/validate-roadmap-integration-engine.mjs'
+      - 'scripts/validate-roadmap-l28.mjs'
+      - 'scripts/validate-roadmap-runtime-contract.mjs'
+      - 'scripts/build-roadmap-runtime-bridge.mjs'
+      - 'scripts/validate-roadmap-runtime-bridge.mjs'
+      - 'scripts/validate-roadmap-runtime-entrypoint.mjs'
+      - 'scripts/validate-roadmap-l29.mjs'
+      - 'roadmap_v2/curriculum.mjs'
+      - 'roadmap_v2/curriculum/**'
+      - 'scripts/validate-roadmap-curriculum-contract.mjs'
+      - 'scripts/build-roadmap-curriculum-matrix.mjs'
+      - 'scripts/validate-roadmap-curriculum-matrix.mjs'
+      - 'scripts/validate-roadmap-l30.mjs'
+      - 'tests/roadmap-v2-curriculum.test.mjs'
+      - 'roadmap_v2/ui-audit.mjs'
+      - 'roadmap_v2/ui-audit/**'
+      - 'scripts/validate-roadmap-ui-audit-contract.mjs'
+      - 'scripts/build-roadmap-ui-audit.mjs'
+      - 'scripts/validate-roadmap-ui-audit.mjs'
+      - 'scripts/browser-audit-roadmap-ui.mjs'
+      - 'scripts/validate-roadmap-l31.mjs'
+      - 'tests/roadmap-v2-ui-audit.test.mjs'
+      - 'roadmap_v2/ui-transition.mjs'
+      - 'roadmap_v2/ui-transition/**'
+      - 'scripts/validate-roadmap-ui-transition-contract.mjs'
+      - 'scripts/build-roadmap-ui-transition.mjs'
+      - 'scripts/validate-roadmap-ui-transition.mjs'
+      - 'scripts/validate-roadmap-l32.mjs'
+      - 'tests/roadmap-v2-ui-transition.test.mjs'
+      - 'roadmap_v2/backend-api.mjs'
+      - 'roadmap_v2/backend-api/**'
+      - 'scripts/validate-roadmap-backend-api-contract.mjs'
+      - 'scripts/build-roadmap-backend-api.mjs'
+      - 'scripts/validate-roadmap-backend-api.mjs'
+      - 'scripts/validate-roadmap-l33.mjs'
+      - 'tests/roadmap-v2-backend-api.test.mjs'
+      - 'roadmap_v2/persistence.mjs'
+      - 'roadmap_v2/persistence/**'
+      - 'scripts/validate-roadmap-persistence-contract.mjs'
+      - 'scripts/build-roadmap-persistence-harness.mjs'
+      - 'scripts/validate-roadmap-persistence-harness.mjs'
+      - 'scripts/validate-roadmap-l34.mjs'
+      - 'tests/roadmap-v2-persistence.test.mjs'
+      - 'scripts/browser-smoke-roadmap-runtime.mjs'
+      - 'scripts/validate-roadmap-production-boundary.mjs'
+      - 'tests/roadmap-v2-integration.test.mjs'
+      - 'tests/roadmap-v2-runtime.test.mjs'
+      - 'tests/roadmap-v2-loader.test.mjs'
+      - 'tests/roadmap-v2-consumer.test.mjs'
+      - 'tests/roadmap-v2-diagnostic.test.mjs'
+      - 'tests/roadmap-v2-mastery.test.mjs'
+      - 'tests/roadmap-v2-priority.test.mjs'
+      - 'tests/roadmap-v2-scheduler.test.mjs'
+      - 'tests/roadmap-v2-readiness.test.mjs'
+      - '.github/workflows/roadmap-v2-contract.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  contract:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+
+      - name: Validate immutable Math baseline
+        run: node roadmap_v2/tools/validate-baseline-inventory.mjs
+
+      - name: Regenerate canonical registry
+        run: node roadmap_v2/tools/build-registry.mjs
+
+      - name: Validate canonical registry
+        run: node roadmap_v2/tools/validate-registry.mjs
+
+      - name: Regenerate canonical prerequisite graph
+        run: node roadmap_v2/tools/build-prerequisite-graph.mjs
+
+      - name: Validate canonical prerequisite graph
+        run: node roadmap_v2/tools/validate-prerequisite-graph.mjs
+
+      - name: Regenerate canonical migration contract
+        run: node roadmap_v2/tools/build-migration-contract.mjs
+
+      - name: Validate canonical migration contract
+        run: node roadmap_v2/tools/validate-migration-contract.mjs
+
+      - name: Aggregate Lượt 19 validation evidence
+        run: node roadmap_v2/tools/validate-roadmap-v2.mjs
+
+      - name: Assert deterministic canonical artifacts
+        run: git diff --exit-code -- roadmap_v2/registry roadmap_v2/graph roadmap_v2/migration roadmap_v2/reports
+
+      - name: Validate repository baseline fingerprints
+        run: node scripts/validate-repository-baseline.mjs
+
+      - name: Dry-run migration and verify rollback
+        run: node scripts/test-roadmap-rollback.mjs
+
+      - name: Build canonical read-only sidecar
+        run: node scripts/build-roadmap-sidecar.mjs
+
+      - name: Assert deterministic sidecar package
+        run: git diff --exit-code -- roadmap_v2/data roadmap_v2/manifest.json
+
+      - name: Test sidecar loader and failure modes
+        run: node --test tests/roadmap-v2-loader.test.mjs
+
+      - name: Build L22 read-only consumer bridge
+        run: node scripts/build-roadmap-consumer-bridge.mjs
+
+      - name: Validate B85 consumer contract and eligibility boundary
+        run: node scripts/validate-roadmap-consumer-contract.mjs
+
+      - name: Assert deterministic L22 consumer manifest
+        run: git diff --exit-code -- roadmap_v2/consumer/manifest.json
+
+      - name: Validate B86 consumer API and cross-source audit
+        run: node scripts/validate-roadmap-consumer-api.mjs
+
+      - name: Test B87 consumer failure modes and invariants
+        run: node --test tests/roadmap-v2-consumer.test.mjs
+
+      - name: Aggregate L22 contract evidence
+        run: node scripts/validate-roadmap-l22.mjs
+
+      - name: Validate B89 diagnostic contract and status semantics
+        run: node scripts/validate-roadmap-diagnostic-contract.mjs
+
+      - name: Build B90 diagnostic catalog and B91 pinned harness
+        run: node scripts/build-roadmap-diagnostic-catalog.mjs
+
+      - name: Validate B90 catalog coverage and blockers
+        run: node scripts/validate-roadmap-diagnostic-catalog.mjs
+
+      - name: Assert deterministic diagnostic catalog and manifest
+        run: git diff --exit-code -- roadmap_v2/diagnostic/catalog.json roadmap_v2/diagnostic/manifest.json
+
+      - name: Validate B91 diagnostic scoring harness
+        run: node scripts/validate-roadmap-diagnostic-engine.mjs
+
+      - name: Test B91 diagnostic gates and failure modes
+        run: node --test tests/roadmap-v2-diagnostic.test.mjs
+
+      - name: Aggregate L23 diagnostic evidence
+        run: node scripts/validate-roadmap-l23.mjs
+
+      - name: Validate B93 mastery and evidence contract
+        run: node scripts/validate-roadmap-mastery-contract.mjs
+
+      - name: Build B94-B95 mastery harness
+        run: node scripts/build-roadmap-mastery-harness.mjs
+
+      - name: Validate B94 append-only reducer
+        run: node scripts/validate-roadmap-mastery-reducer.mjs
+
+      - name: Validate B95 Master-ready and prerequisite gates
+        run: node scripts/validate-roadmap-mastery-gates.mjs
+
+      - name: Assert deterministic mastery manifest
+        run: git diff --exit-code -- roadmap_v2/mastery/manifest.json
+
+      - name: Test B94-B95 mastery failure modes
+        run: node --test tests/roadmap-v2-mastery.test.mjs
+
+      - name: Aggregate L24 mastery evidence
+        run: node scripts/validate-roadmap-l24.mjs
+
+      - name: Validate B97 Priority contract and exact weights
+        run: node scripts/validate-roadmap-priority-contract.mjs
+
+      - name: Build B98-B99 Priority harness
+        run: node scripts/build-roadmap-priority-harness.mjs
+
+      - name: Validate B98-B99 scoring and ranking
+        run: node scripts/validate-roadmap-priority-engine.mjs
+
+      - name: Assert deterministic Priority manifest
+        run: git diff --exit-code -- roadmap_v2/priority/manifest.json
+
+      - name: Test B98-B99 Priority failure modes
+        run: node --test tests/roadmap-v2-priority.test.mjs
+
+      - name: Aggregate L25 Priority evidence
+        run: node scripts/validate-roadmap-l25.mjs
+
+      - name: Validate B101 Scheduler and Master Mode contract
+        run: node scripts/validate-roadmap-scheduler-contract.mjs
+
+      - name: Build B102-B103 Scheduler projection harness
+        run: node scripts/build-roadmap-scheduler-harness.mjs
+
+      - name: Validate B102 in-memory Scheduler projector
+        run: node scripts/validate-roadmap-scheduler-engine.mjs
+
+      - name: Assert deterministic Scheduler manifest
+        run: git diff --exit-code -- roadmap_v2/scheduler/manifest.json
+
+      - name: Test B103 Scheduler policies and failure modes
+        run: node --test tests/roadmap-v2-scheduler.test.mjs
+
+      - name: Aggregate L26 Scheduler evidence
+        run: node scripts/validate-roadmap-l26.mjs
+
+      - name: Validate B105 Readiness model contract
+        run: node scripts/validate-roadmap-readiness-contract.mjs
+
+      - name: Build B106-B107 Readiness projection harness
+        run: node scripts/build-roadmap-readiness-harness.mjs
+
+      - name: Validate B106 read-only Readiness projector
+        run: node scripts/validate-roadmap-readiness-engine.mjs
+
+      - name: Assert deterministic Readiness manifest
+        run: git diff --exit-code -- roadmap_v2/readiness/manifest.json
+
+      - name: Test B107 Readiness semantics and failure modes
+        run: node --test tests/roadmap-v2-readiness.test.mjs
+
+      - name: Aggregate L27 Readiness evidence
+        run: node scripts/validate-roadmap-l27.mjs
+
+      - name: Validate B109 Integration contract and default-OFF flags
+        run: node scripts/validate-roadmap-integration-contract.mjs
+
+      - name: Build B110 fail-closed Integration planning harness
+        run: node scripts/build-roadmap-integration-harness.mjs
+
+      - name: Validate B110 activation and rollback planner
+        run: node scripts/validate-roadmap-integration-engine.mjs
+
+      - name: Assert deterministic Integration manifest
+        run: git diff --exit-code -- roadmap_v2/integration/manifest.json
+
+      - name: Test B111 Integration provenance and failure modes
+        run: node --test tests/roadmap-v2-integration.test.mjs
+
+      - name: Aggregate L28 Integration evidence
+        run: node scripts/validate-roadmap-l28.mjs
+
+      - name: Validate B113 Runtime Bridge contract and rollback authorization
+        run: node scripts/validate-roadmap-runtime-contract.mjs
+
+      - name: Build B114 browser read-only Runtime Bridge
+        run: node scripts/build-roadmap-runtime-bridge.mjs
+
+      - name: Validate B114 hash-pinned browser projection
+        run: node scripts/validate-roadmap-runtime-bridge.mjs
+
+      - name: Validate B114 authorized entrypoint and byte-exact rollback
+        run: node scripts/validate-roadmap-runtime-entrypoint.mjs
+
+      - name: Assert deterministic Runtime manifest
+        run: git diff --exit-code -- roadmap_v2/runtime/manifest.json
+
+      - name: Test B115 Runtime flags and failure modes
+        run: node --test tests/roadmap-v2-runtime.test.mjs
+
+      - name: Aggregate L29 Runtime evidence
+        run: node scripts/validate-roadmap-l29.mjs
+
+      - name: Validate B117 curriculum reconciliation contract
+        run: node scripts/validate-roadmap-curriculum-contract.mjs
+
+      - name: Build B118 deterministic Roadmap V2.1 curriculum matrix
+        run: node scripts/build-roadmap-curriculum-matrix.mjs
+
+      - name: Validate B118 curriculum matrix and evidence fingerprints
+        run: node scripts/validate-roadmap-curriculum-matrix.mjs
+
+      - name: Assert deterministic L30 curriculum artifacts
+        run: git diff --exit-code -- roadmap_v2/curriculum/roadmap-v2.1-matrix.json roadmap_v2/curriculum/manifest.json
+
+      - name: Test B119 curriculum failure modes
+        run: node --test tests/roadmap-v2-curriculum.test.mjs
+
+      - name: Aggregate L30 curriculum evidence
+        run: node scripts/validate-roadmap-l30.mjs
+
+      - name: Validate B121 read-only UI audit contract and pinned source inventory
+        run: node scripts/validate-roadmap-ui-audit-contract.mjs
+
+      - name: Build B122 deterministic static UI audit package
+        run: node scripts/build-roadmap-ui-audit.mjs
+
+      - name: Validate B122 static findings and evidence fingerprints
+        run: node scripts/validate-roadmap-ui-audit.mjs
+
+      - name: Assert deterministic L31 static UI audit artifacts
+        run: git diff --exit-code -- roadmap_v2/ui-audit/static-summary.json roadmap_v2/ui-audit/manifest.json
+
+      - name: Test B123 UI audit failure modes
+        run: node --test tests/roadmap-v2-ui-audit.test.mjs
+
+      - name: Validate B125 additive UI transition contract
+        run: node scripts/validate-roadmap-ui-transition-contract.mjs
+
+      - name: Build B126 deterministic 8-to-10 transition design
+        run: node scripts/build-roadmap-ui-transition.mjs
+
+      - name: Validate B126 routes, compatibility and remediation backlog
+        run: node scripts/validate-roadmap-ui-transition.mjs
+
+      - name: Assert deterministic L32 UI transition artifacts
+        run: git diff --exit-code -- roadmap_v2/ui-transition/transition-plan.json roadmap_v2/ui-transition/manifest.json
+
+      - name: Test B127 UI transition failure modes
+        run: node --test tests/roadmap-v2-ui-transition.test.mjs
+
+      - name: Validate B129-B130 Backend API and Sync contracts
+        run: node scripts/validate-roadmap-backend-api-contract.mjs
+
+      - name: Build B131 deterministic disconnected Backend API harness
+        run: node scripts/build-roadmap-backend-api.mjs
+
+      - name: Validate B131 fail-closed Backend API projection
+        run: node scripts/validate-roadmap-backend-api.mjs
+
+      - name: Assert deterministic L33 Backend API artifacts
+        run: git diff --exit-code -- roadmap_v2/backend-api/projection.json roadmap_v2/backend-api/manifest.json
+
+      - name: Test B131 Backend API security and failure modes
+        run: node --test tests/roadmap-v2-backend-api.test.mjs
+
+      - name: Validate B133-B134 provider-neutral Persistence contracts
+        run: node scripts/validate-roadmap-persistence-contract.mjs
+
+      - name: Build B135 deterministic transactional Persistence harness
+        run: node scripts/build-roadmap-persistence-harness.mjs
+
+      - name: Validate B134-B135 migration, transaction and restore harness
+        run: node scripts/validate-roadmap-persistence-harness.mjs
+
+      - name: Assert deterministic L34 Persistence artifacts
+        run: git diff --exit-code -- roadmap_v2/persistence/projection.json roadmap_v2/persistence/manifest.json
+
+      - name: Test B135 Persistence security, atomicity and failure modes
+        run: node --test tests/roadmap-v2-persistence.test.mjs
+
+      - name: Install Chromium for B115 smoke and B123 audit
+        run: |
+          npm install --no-save --no-package-lock playwright@1.55.0
+          npx playwright install --with-deps chromium
+
+      - name: Run B115 real Chromium OFF-ON-rollback smoke
+        run: node scripts/browser-smoke-roadmap-runtime.mjs
+
+      - name: Run B123 real Chromium Main and subject UI audit
+        run: node scripts/browser-audit-roadmap-ui.mjs
+
+      - name: Aggregate B124 L31 full-checkout acceptance evidence
+        env:
+          ROADMAP_L31_REQUIRE_BROWSER: '1'
+        run: node scripts/validate-roadmap-l31.mjs
+
+      - name: Validate production boundary
+        run: node scripts/validate-roadmap-production-boundary.mjs
+
+      - name: Aggregate B128 L32 full-checkout acceptance evidence
+        env:
+          ROADMAP_L32_FULL_CHECKOUT: '1'
+        run: node scripts/validate-roadmap-l32.mjs
+
+      - name: Aggregate B132 L33 full-checkout acceptance evidence
+        env:
+          ROADMAP_L33_FULL_CHECKOUT: '1'
+        run: node scripts/validate-roadmap-l33.mjs
+
+
+      - name: Aggregate B136 L34 full-checkout acceptance evidence
+        env:
+          ROADMAP_L34_FULL_CHECKOUT: '1'
+        run: node scripts/validate-roadmap-l34.mjs

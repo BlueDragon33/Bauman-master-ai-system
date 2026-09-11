@@ -1,0 +1,66 @@
+{
+  "schema": "BAUMAN_ROADMAP_V2_BACKEND_API_MANIFEST_V1",
+  "version": "2.13.0-l33-b131",
+  "status": "PASS_B131_DETERMINISTIC_BACKEND_API_PACKAGE",
+  "headBeforeL33": "6b6226c81f94d5adaca300ba480b60e29a6569ef",
+  "sources": {
+    "contract": {
+      "path": "roadmap_v2/backend-api/backend-api-contract.json",
+      "bytes": 2024,
+      "sha256": "f23a9eef7d5b94f19c53c7e4618a47a20ed2faa17ce38e9629af7000a8a56428"
+    },
+    "apiSurface": {
+      "path": "roadmap_v2/backend-api/api-surface.json",
+      "bytes": 2261,
+      "sha256": "09ce50b8396d447c3f234d425b339588278883762431212b1e5a7711f2fe7da5"
+    },
+    "requestContextSchema": {
+      "path": "roadmap_v2/backend-api/request-context.schema.json",
+      "bytes": 726,
+      "sha256": "146d7e4a9afe066c7fa4f89a9528252744e607ea6d506ea9feb92380d65a70f0"
+    },
+    "learningEventBatchSchema": {
+      "path": "roadmap_v2/backend-api/learning-event-batch.schema.json",
+      "bytes": 824,
+      "sha256": "15fe4440fb913e5e683a3172eded59b26626ea658baff507b3d468d7ac58e507"
+    },
+    "syncContract": {
+      "path": "roadmap_v2/backend-api/sync-contract.json",
+      "bytes": 1238,
+      "sha256": "d7e05f52a4bae4341ee4ebba7ed9fa544dc2435de7361d50cfa3cde84c128d2a"
+    },
+    "targetDisposition": {
+      "path": "roadmap_v2/curriculum/target-course-disposition.json",
+      "bytes": 3100,
+      "sha256": "cae24e8d8e2478ffb6da26a634b8128bf99b483cc08b4fb9c5171322ce40b433"
+    }
+  },
+  "generatedProjection": {
+    "path": "roadmap_v2/backend-api/projection.json",
+    "bytes": 1273,
+    "sha256": "0ca2b0692d4f0575a70dd24e3e23fc132a39095c06ce647e1f9967fd49f8fd85"
+  },
+  "counts": {
+    "endpoints": 7,
+    "inMemoryReadOnly": 2,
+    "persistenceBlocked": 5,
+    "productionRoutes": 0,
+    "databaseConnections": 0,
+    "persistentStores": 0
+  },
+  "safety": {
+    "productionServerStarts": 0,
+    "productionRoutesCreated": 0,
+    "databaseConnections": 0,
+    "databaseMigrations": 0,
+    "userRecords": 0,
+    "sessions": 0,
+    "tokens": 0,
+    "eventWrites": 0,
+    "syncWrites": 0
+  },
+  "acceptance": {
+    "step": 131,
+    "result": "PASS_BACKEND_API_PACKAGE"
+  }
+}

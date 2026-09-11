@@ -1,0 +1,97 @@
+{
+  "schema": "BAUMAN_ROADMAP_V2_RUNTIME_BRIDGE_CONTRACT_V1",
+  "version": "2.9.0-l29-b113",
+  "purpose": "Lượt 29 / Bước 113–116 — connect a browser-safe Roadmap core projection behind an explicit default-OFF flag while preserving the legacy Math runtime and atomic rollback",
+  "baselineCommit": "e383912354673bdce7a0059d6b9a23799d74e689",
+  "upstreamSchemas": {
+    "integrationManifest": "BAUMAN_ROADMAP_V2_INTEGRATION_MANIFEST_V1",
+    "integrationContract": "BAUMAN_ROADMAP_V2_INTEGRATION_CONTRACT_V1",
+    "diagnosticManifest": "BAUMAN_ROADMAP_V2_DIAGNOSTIC_MANIFEST_V1",
+    "readinessManifest": "BAUMAN_ROADMAP_V2_READINESS_MANIFEST_V1"
+  },
+  "mode": {
+    "bridgeLoadedByProduction": true,
+    "defaultActivation": "disabled",
+    "legacyRuntimeAuthoritativeWhenDisabled": true,
+    "productionDataWriteAllowed": false,
+    "legacyMutationAllowed": false,
+    "failClosed": true
+  },
+  "featureFlags": {
+    "roadmapCoreProjection": { "default": false, "availableInL29": true },
+    "diagnosticRuntime": { "default": false, "availableInL29": false },
+    "evidencePersistence": { "default": false, "availableInL29": false },
+    "priorityScheduler": { "default": false, "availableInL29": false },
+    "readinessDashboard": { "default": false, "availableInL29": false }
+  },
+  "mutationScope": {
+    "authorizedModifiedFiles": [
+      "subjects/math/index.html",
+      "scripts/validate-repository-baseline.mjs",
+      "scripts/validate-roadmap-production-boundary.mjs",
+      ".github/workflows/roadmap-v2-contract.yml"
+    ],
+    "authorizedAddedRuntimeFiles": [
+      "subjects/math/assets/roadmap-v2-bridge.mjs",
+      "roadmap_v2/browser-runtime.mjs"
+    ],
+    "protectedUnchangedEntrypoints": [
+      "subjects/math/subject-manifest.json",
+      "subjects/math/subject-manifest.js"
+    ],
+    "indexMutation": {
+      "legacySnapshot": "runtime/legacy-index.e383912.html",
+      "legacyGitBlobSha": "f3f98f53459d4ce46080ffdf7eebb6c32fcda3ef",
+      "legacySnapshotStorageTrailingLfExcluded": true,
+      "allowedInsertion": "<script type=\"module\" src=\"assets/roadmap-v2-bridge.mjs?v=290\"></script>",
+      "allowedInsertionCount": 1,
+      "insertionPoint": "immediately_before_closing_body"
+    }
+  },
+  "activationPolicy": {
+    "explicitGlobalFlagObjectRequired": true,
+    "unknownOrNonBooleanFlagPolicy": "disable_all_fail_closed",
+    "unsupportedEnabledFlagPolicy": "disable_all_fail_closed",
+    "coreProjectionLoadsOnlyWhenExplicitlyTrue": true,
+    "defaultRoadmapNetworkRequests": 0,
+    "domMutationAllowed": false,
+    "runtimeStatusSurface": "globalThis.__BAUMAN_ROADMAP_V2_RUNTIME__",
+    "readyPromiseSurface": "globalThis.__BAUMAN_ROADMAP_V2_READY__"
+  },
+  "rollbackPolicy": {
+    "killSwitch": "remove_or_set_all_feature_flags_false",
+    "defaultOffRestoresLegacyOnlyPath": true,
+    "bridgeRemovalRestoresExactLegacySnapshot": true,
+    "persistentDataRollbackRequired": false,
+    "rollbackMustPassBrowserSmoke": true
+  },
+  "capabilities": {
+    "coreProjectionRead": true,
+    "diagnosticExecution": false,
+    "evidenceRead": false,
+    "evidenceWrite": false,
+    "prioritySchedulerExecution": false,
+    "dashboardRender": false,
+    "calendarWrite": false,
+    "notificationWrite": false,
+    "legacyMutation": false
+  },
+  "abortConditions": [
+    "legacy index cannot be reconstructed byte-for-byte by removing the single authorized script tag",
+    "subject manifest JSON or JS fingerprint drift",
+    "any feature flag defaults ON",
+    "default-OFF page requests a Roadmap V2 resource",
+    "unknown, non-boolean or unsupported feature flag does not disable all flags",
+    "bridge changes existing DOM, storage, calendar, notification or legacy data",
+    "runtime projection schema, hash, baseline or upstream production boundary mismatch",
+    "kill-switch or browser smoke failure"
+  ],
+  "acceptance": {
+    "step": 113,
+    "mutationScopeExplicit": true,
+    "allFeatureFlagsDefaultOff": true,
+    "legacyRollbackByteExact": true,
+    "runtimeActivationAllowed": false,
+    "result": "PASS_CONTRACT_ONLY"
+  }
+}

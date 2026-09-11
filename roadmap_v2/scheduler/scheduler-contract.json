@@ -1,0 +1,131 @@
+{
+  "schema": "BAUMAN_ROADMAP_V2_SCHEDULER_CONTRACT_V1",
+  "version": "2.6.0-l26-b101",
+  "purpose": "Deterministic weekly schedule projection for Roadmap phases and Master Mode without calendar, persistence or runtime writes",
+  "mode": {
+    "access": "in_memory_projection_harness",
+    "productionIntegration": "disconnected",
+    "failClosed": true,
+    "calendarReadEnabled": false,
+    "calendarWriteEnabled": false,
+    "persistentStoreEnabled": false,
+    "runtimeWriteAllowed": false,
+    "dynamicContentGenerationAllowed": false
+  },
+  "upstreamSchemas": {
+    "consumerManifest": "BAUMAN_ROADMAP_V2_CONSUMER_MANIFEST_V1",
+    "priorityManifest": "BAUMAN_ROADMAP_V2_PRIORITY_MANIFEST_V1",
+    "priorityCandidate": "BAUMAN_ROADMAP_V2_PRIORITY_CANDIDATE_V1",
+    "priorityResult": "BAUMAN_ROADMAP_V2_PRIORITY_RESULT_V1"
+  },
+  "phasePolicies": {
+    "GD0": {
+      "mode": "russian_parallel_foundation",
+      "masterMode": false,
+      "currentBaumanOverride": false,
+      "russianTwinRequiredForTechnical": false
+    },
+    "GD1": {
+      "mode": "russian_dominant",
+      "masterMode": false,
+      "currentBaumanOverride": false,
+      "technicalSessionMinimumAdvisory": 2,
+      "technicalSessionMaximum": 3,
+      "technicalRotationTracks": [
+        "python",
+        "database",
+        "math"
+      ],
+      "russianTwinRequiredForTechnical": true
+    },
+    "GD2": {
+      "mode": "prerequisite_acceleration",
+      "masterMode": false,
+      "currentBaumanOverride": false,
+      "russianTwinRequiredForTechnical": true
+    },
+    "GD3": {
+      "mode": "preview_2_4_weeks_and_nir",
+      "masterMode": true,
+      "currentBaumanOverride": true,
+      "previewWindowWeeks": {
+        "minimum": 2,
+        "maximum": 4
+      },
+      "unrelatedStaticPolicy": "defer",
+      "russianTwinRequiredForTechnical": true
+    }
+  },
+  "priorityAdmission": {
+    "recomputeFromPriorityCandidate": true,
+    "acceptCallerSuppliedPriorityResult": false,
+    "criticalFirst": true,
+    "reviewOnDemandRequiresExplicitRequest": true,
+    "reviewOnDemandGrantsMasterReady": false,
+    "duplicateItemOrTargetPolicy": "reject"
+  },
+  "sourcePolicy": {
+    "verifiedSourceRequired": true,
+    "currentBaumanSourceKind": "current_bauman_official",
+    "nirSourceKind": "nir_plan_verified",
+    "unverifiedDynamicInputPolicy": "reject",
+    "generatesSyllabusOrLessonContent": false
+  },
+  "bundlePolicy": {
+    "technicalAndRussianTwinAtomic": true,
+    "callerSuppliesRussianTwinMinutes": true,
+    "partialBundleAllowed": false,
+    "capacityOverrunAllowed": false
+  },
+  "ordering": [
+    "Critical gap first",
+    "GD3 verified Current Bauman item before weighted Priority",
+    "Priority rank ascending",
+    "due date ascending with null last",
+    "target ID ascending",
+    "schedule item ID ascending"
+  ],
+  "outputPolicy": {
+    "weeklyProjectionOnly": true,
+    "actualCalendarEvents": false,
+    "persistentSchedule": false,
+    "deepFrozen": true,
+    "explainableSelectionAndDeferral": true
+  },
+  "capabilities": {
+    "requestValidate": true,
+    "priorityRecompute": true,
+    "weeklyProject": true,
+    "masterModeOverrideProject": true,
+    "russianTwinPlaceholderProject": true,
+    "calendarRead": false,
+    "calendarWrite": false,
+    "persistentStoreWrite": false,
+    "runtimeActivation": false,
+    "dynamicContentGenerate": false
+  },
+  "abortConditions": [
+    "upstream manifest hash drift",
+    "unknown phase, target, knowledge state or activity kind",
+    "caller-supplied Priority result or derived Priority override",
+    "duplicate schedule item, Priority candidate or target ID",
+    "unverified source provenance",
+    "GD3 Current Bauman item without official source reference",
+    "GD3 preview item outside the 2-4 week window",
+    "GD3 unrelated static syllabus selected",
+    "review-on-demand selected without explicit request",
+    "technical item missing its required Russian twin budget",
+    "GD1 technical session maximum exceeded",
+    "capacity overrun or partial atomic bundle",
+    "calendar, persistence, dynamic content or runtime write attempted"
+  ],
+  "acceptance": {
+    "step": 101,
+    "phasePoliciesPinned": true,
+    "masterModePreviewWindowPinned": true,
+    "priorityResultsRecomputed": true,
+    "productionCalendarConnected": false,
+    "runtimeActivationAllowed": false,
+    "result": "PASS_CONTRACT_ONLY"
+  }
+}

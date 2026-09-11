@@ -1,0 +1,1710 @@
+{
+  "schema": "BAUMAN_ROADMAP_V2_PREREQUISITE_GRAPH_V1",
+  "version": "2.0.0-l19-b75",
+  "status": "PASS_B75",
+  "registryVersion": "2.0.0-l19-b74",
+  "direction": "prerequisite_to_dependent",
+  "cyclePolicy": "required_edges_must_be_acyclic; recommended_edges_are_non_blocking",
+  "nodes": [
+    {
+      "id": "RU-R0-C01",
+      "subjectId": "01",
+      "level": "R0"
+    },
+    {
+      "id": "RU-R0-C02",
+      "subjectId": "01",
+      "level": "R0"
+    },
+    {
+      "id": "RU-R1-C03",
+      "subjectId": "01",
+      "level": "R1"
+    },
+    {
+      "id": "RU-R1-C04",
+      "subjectId": "01",
+      "level": "R1"
+    },
+    {
+      "id": "RU-R2-C05",
+      "subjectId": "01",
+      "level": "R2"
+    },
+    {
+      "id": "RU-R2-C06",
+      "subjectId": "01",
+      "level": "R2"
+    },
+    {
+      "id": "RU-R3-C07",
+      "subjectId": "01",
+      "level": "R3"
+    },
+    {
+      "id": "RU-R3-C08",
+      "subjectId": "01",
+      "level": "R3"
+    },
+    {
+      "id": "RU-R4-C09",
+      "subjectId": "01",
+      "level": "R4"
+    },
+    {
+      "id": "RU-R4-C10",
+      "subjectId": "01",
+      "level": "R4"
+    },
+    {
+      "id": "MATH-L0-C01",
+      "subjectId": "02",
+      "level": "L0"
+    },
+    {
+      "id": "MATH-L0-C02",
+      "subjectId": "02",
+      "level": "L0"
+    },
+    {
+      "id": "MATH-L1-C03",
+      "subjectId": "02",
+      "level": "L1"
+    },
+    {
+      "id": "MATH-L1-C04",
+      "subjectId": "02",
+      "level": "L1"
+    },
+    {
+      "id": "MATH-L2-C05",
+      "subjectId": "02",
+      "level": "L2"
+    },
+    {
+      "id": "MATH-L2-C06",
+      "subjectId": "02",
+      "level": "L2"
+    },
+    {
+      "id": "MATH-L2-C07",
+      "subjectId": "02",
+      "level": "L2"
+    },
+    {
+      "id": "MATH-L3-C08",
+      "subjectId": "02",
+      "level": "L3"
+    },
+    {
+      "id": "MATH-L3-C09",
+      "subjectId": "02",
+      "level": "L3"
+    },
+    {
+      "id": "MATH-L3-C10",
+      "subjectId": "02",
+      "level": "L3"
+    },
+    {
+      "id": "PY-L0-C01",
+      "subjectId": "03",
+      "level": "L0–L1"
+    },
+    {
+      "id": "PY-L1-C02",
+      "subjectId": "03",
+      "level": "L0–L1"
+    },
+    {
+      "id": "PY-L1-C03",
+      "subjectId": "03",
+      "level": "L0–L1"
+    },
+    {
+      "id": "PY-L2-C04",
+      "subjectId": "03",
+      "level": "L2"
+    },
+    {
+      "id": "PY-L2-C05",
+      "subjectId": "03",
+      "level": "L2"
+    },
+    {
+      "id": "PY-L2-C06",
+      "subjectId": "03",
+      "level": "L2"
+    },
+    {
+      "id": "PY-L3-C07",
+      "subjectId": "03",
+      "level": "L3"
+    },
+    {
+      "id": "PY-L3-C08",
+      "subjectId": "03",
+      "level": "L3"
+    },
+    {
+      "id": "ADS-L0-C01",
+      "subjectId": "04",
+      "level": "L0–L1"
+    },
+    {
+      "id": "ADS-L1-C02",
+      "subjectId": "04",
+      "level": "L0–L1"
+    },
+    {
+      "id": "ADS-L1-C03",
+      "subjectId": "04",
+      "level": "L0–L1"
+    },
+    {
+      "id": "ADS-L2-C04",
+      "subjectId": "04",
+      "level": "L2"
+    },
+    {
+      "id": "ADS-L2-C05",
+      "subjectId": "04",
+      "level": "L2"
+    },
+    {
+      "id": "ADS-L2-C06",
+      "subjectId": "04",
+      "level": "L2"
+    },
+    {
+      "id": "ADS-L3-C07",
+      "subjectId": "04",
+      "level": "L3"
+    },
+    {
+      "id": "ADS-L3-C08",
+      "subjectId": "04",
+      "level": "L3"
+    },
+    {
+      "id": "DB-L0-C01",
+      "subjectId": "05",
+      "level": "L0–L1"
+    },
+    {
+      "id": "DB-L1-C02",
+      "subjectId": "05",
+      "level": "L0–L1"
+    },
+    {
+      "id": "DB-L1-C03",
+      "subjectId": "05",
+      "level": "L0–L1"
+    },
+    {
+      "id": "DB-L2-C04",
+      "subjectId": "05",
+      "level": "L2"
+    },
+    {
+      "id": "DB-L2-C05",
+      "subjectId": "05",
+      "level": "L2"
+    },
+    {
+      "id": "DB-L2-C06",
+      "subjectId": "05",
+      "level": "L2"
+    },
+    {
+      "id": "DB-L3-C07",
+      "subjectId": "05",
+      "level": "L3"
+    },
+    {
+      "id": "DB-L3-C08",
+      "subjectId": "05",
+      "level": "L3"
+    },
+    {
+      "id": "SYS-L0-C01",
+      "subjectId": "06",
+      "level": "L0–L1"
+    },
+    {
+      "id": "SYS-L1-C02",
+      "subjectId": "06",
+      "level": "L0–L1"
+    },
+    {
+      "id": "SYS-L1-C03",
+      "subjectId": "06",
+      "level": "L0–L1"
+    },
+    {
+      "id": "SYS-L2-C04",
+      "subjectId": "06",
+      "level": "L2"
+    },
+    {
+      "id": "SYS-L2-C05",
+      "subjectId": "06",
+      "level": "L2"
+    },
+    {
+      "id": "SYS-L2-C06",
+      "subjectId": "06",
+      "level": "L2"
+    },
+    {
+      "id": "SYS-L3-C07",
+      "subjectId": "06",
+      "level": "L3"
+    },
+    {
+      "id": "SYS-L3-C08",
+      "subjectId": "06",
+      "level": "L3"
+    },
+    {
+      "id": "OR-L1-C01",
+      "subjectId": "07",
+      "level": "L1"
+    },
+    {
+      "id": "OR-L1-C02",
+      "subjectId": "07",
+      "level": "L1"
+    },
+    {
+      "id": "OR-L2-C03",
+      "subjectId": "07",
+      "level": "L2"
+    },
+    {
+      "id": "OR-L2-C04",
+      "subjectId": "07",
+      "level": "L2"
+    },
+    {
+      "id": "OR-L2-C05",
+      "subjectId": "07",
+      "level": "L2"
+    },
+    {
+      "id": "OR-L2-C06",
+      "subjectId": "07",
+      "level": "L2"
+    },
+    {
+      "id": "OR-L3-C07",
+      "subjectId": "07",
+      "level": "L3"
+    },
+    {
+      "id": "OR-L3-C08",
+      "subjectId": "07",
+      "level": "L3"
+    },
+    {
+      "id": "OR-L3-C09",
+      "subjectId": "07",
+      "level": "L3"
+    },
+    {
+      "id": "ML-L1-C01",
+      "subjectId": "08",
+      "level": "L1"
+    },
+    {
+      "id": "ML-L1-C02",
+      "subjectId": "08",
+      "level": "L1"
+    },
+    {
+      "id": "ML-L1-C03",
+      "subjectId": "08",
+      "level": "L1"
+    },
+    {
+      "id": "ML-L2-C04",
+      "subjectId": "08",
+      "level": "L2"
+    },
+    {
+      "id": "ML-L2-C05",
+      "subjectId": "08",
+      "level": "L2"
+    },
+    {
+      "id": "ML-L2-C06",
+      "subjectId": "08",
+      "level": "L2"
+    },
+    {
+      "id": "ML-L3-C07",
+      "subjectId": "08",
+      "level": "L3"
+    },
+    {
+      "id": "ML-L3-C08",
+      "subjectId": "08",
+      "level": "L3"
+    },
+    {
+      "id": "ML-L3-C09",
+      "subjectId": "08",
+      "level": "L3"
+    },
+    {
+      "id": "CUR-L4-C01",
+      "subjectId": "09",
+      "level": "L4"
+    },
+    {
+      "id": "CUR-L4-C02",
+      "subjectId": "09",
+      "level": "L4"
+    },
+    {
+      "id": "CUR-L4-C03",
+      "subjectId": "09",
+      "level": "L4"
+    },
+    {
+      "id": "CUR-L4-C04",
+      "subjectId": "09",
+      "level": "L4"
+    },
+    {
+      "id": "CUR-L4-C05",
+      "subjectId": "09",
+      "level": "L4"
+    },
+    {
+      "id": "CUR-L4-C06",
+      "subjectId": "09",
+      "level": "L4"
+    },
+    {
+      "id": "NIR-L1-C01",
+      "subjectId": "10",
+      "level": "L1"
+    },
+    {
+      "id": "NIR-L1-C02",
+      "subjectId": "10",
+      "level": "L1"
+    },
+    {
+      "id": "NIR-L1-C03",
+      "subjectId": "10",
+      "level": "L1"
+    },
+    {
+      "id": "NIR-L2-C04",
+      "subjectId": "10",
+      "level": "L2"
+    },
+    {
+      "id": "NIR-L2-C05",
+      "subjectId": "10",
+      "level": "L2"
+    },
+    {
+      "id": "NIR-L2-C06",
+      "subjectId": "10",
+      "level": "L2"
+    },
+    {
+      "id": "NIR-L3-C07",
+      "subjectId": "10",
+      "level": "L3–L4"
+    },
+    {
+      "id": "NIR-L3-C08",
+      "subjectId": "10",
+      "level": "L3–L4"
+    },
+    {
+      "id": "NIR-L4-C09",
+      "subjectId": "10",
+      "level": "L3–L4"
+    }
+  ],
+  "externalGates": [
+    {
+      "id": "ACTIVE_SPECIALIST_CHAPTER",
+      "label": "Active specialist chapter is selected"
+    },
+    {
+      "id": "COMPLETE_TECHNICAL_PROJECT",
+      "label": "A complete technical project exists"
+    },
+    {
+      "id": "COURSE_COMPLETE",
+      "label": "Current Bauman course completed"
+    },
+    {
+      "id": "COURSE_SYLLABUS_IMPORTED",
+      "label": "Current Bauman course syllabus imported"
+    },
+    {
+      "id": "ENTRY_DIAGNOSTIC",
+      "label": "Entry diagnostic completed"
+    },
+    {
+      "id": "EXISTING_COMPETENCY_CONTROL",
+      "label": "Control and automation competency verified"
+    },
+    {
+      "id": "EXISTING_COMPETENCY_GENERAL",
+      "label": "Relevant existing competency verified"
+    },
+    {
+      "id": "EXISTING_COMPETENCY_SIGNAL",
+      "label": "Signal competency verified"
+    },
+    {
+      "id": "NIR_TOPIC_AND_PLAN_READY",
+      "label": "NIR topic and research plan ready"
+    },
+    {
+      "id": "OFFICIAL_COURSE_SYLLABUS",
+      "label": "Official course syllabus available"
+    },
+    {
+      "id": "REAL_WEEK_MATERIAL",
+      "label": "Real weekly course material available"
+    },
+    {
+      "id": "RELATED_TECH_MODULE",
+      "label": "Related technical module selected"
+    },
+    {
+      "id": "RELEVANT_WEEKS_COMPLETE",
+      "label": "Relevant course weeks completed"
+    }
+  ],
+  "edges": [
+    {
+      "source": "RU-R0-C01",
+      "target": "RU-R0-C02",
+      "kind": "required",
+      "evidence": "RU-R0-C01-L01–L03."
+    },
+    {
+      "source": "RU-R0-C02",
+      "target": "RU-R1-C03",
+      "kind": "required",
+      "evidence": "RU-R0-C02."
+    },
+    {
+      "source": "RU-R1-C03",
+      "target": "RU-R1-C04",
+      "kind": "required",
+      "evidence": "RU-R1-C03-L01–L03."
+    },
+    {
+      "source": "RU-R1-C03",
+      "target": "RU-R2-C05",
+      "kind": "required",
+      "evidence": "RU-R1-C03–C04."
+    },
+    {
+      "source": "RU-R1-C04",
+      "target": "RU-R2-C05",
+      "kind": "required",
+      "evidence": "RU-R1-C03–C04."
+    },
+    {
+      "source": "RU-R2-C05",
+      "target": "RU-R2-C06",
+      "kind": "required",
+      "evidence": "RU-R2-C05; chapter chuyên môn tương ứng đang học."
+    },
+    {
+      "source": "RU-R2-C05",
+      "target": "RU-R3-C07",
+      "kind": "required",
+      "evidence": "RU-R2-C05–C06."
+    },
+    {
+      "source": "RU-R2-C06",
+      "target": "RU-R3-C07",
+      "kind": "required",
+      "evidence": "RU-R2-C05–C06."
+    },
+    {
+      "source": "RU-R3-C07",
+      "target": "RU-R3-C08",
+      "kind": "required",
+      "evidence": "RU-R3-C07; một project kỹ thuật hoàn chỉnh."
+    },
+    {
+      "source": "MATH-L0-C01",
+      "target": "MATH-L0-C02",
+      "kind": "required",
+      "evidence": "MATH-L0-C01 hoặc Existing Competency xác nhận."
+    },
+    {
+      "source": "MATH-L0-C01",
+      "target": "MATH-L1-C03",
+      "kind": "required",
+      "evidence": "MATH-L0-C01."
+    },
+    {
+      "source": "MATH-L0-C02",
+      "target": "MATH-L1-C04",
+      "kind": "required",
+      "evidence": "MATH-L0-C02; MATH-L1-C03-L01–L02."
+    },
+    {
+      "source": "MATH-L1-C03",
+      "target": "MATH-L1-C04",
+      "kind": "required",
+      "evidence": "MATH-L0-C02; MATH-L1-C03-L01–L02."
+    },
+    {
+      "source": "MATH-L1-C03",
+      "target": "MATH-L2-C05",
+      "kind": "required",
+      "evidence": "MATH-L1-C03; giải tích cơ bản."
+    },
+    {
+      "source": "MATH-L0-C02",
+      "target": "MATH-L2-C05",
+      "kind": "required",
+      "evidence": "MATH-L1-C03; giải tích cơ bản."
+    },
+    {
+      "source": "MATH-L2-C05",
+      "target": "MATH-L2-C06",
+      "kind": "required",
+      "evidence": "MATH-L2-C05; Python NumPy/Pandas."
+    },
+    {
+      "source": "PY-L2-C04",
+      "target": "MATH-L2-C06",
+      "kind": "required",
+      "evidence": "MATH-L2-C05; Python NumPy/Pandas."
+    },
+    {
+      "source": "PY-L2-C05",
+      "target": "MATH-L2-C06",
+      "kind": "required",
+      "evidence": "MATH-L2-C05; Python NumPy/Pandas."
+    },
+    {
+      "source": "MATH-L1-C03",
+      "target": "MATH-L2-C07",
+      "kind": "required",
+      "evidence": "MATH-L1-C03; MATH-L2-C05–C06."
+    },
+    {
+      "source": "MATH-L2-C05",
+      "target": "MATH-L2-C07",
+      "kind": "required",
+      "evidence": "MATH-L1-C03; MATH-L2-C05–C06."
+    },
+    {
+      "source": "MATH-L2-C06",
+      "target": "MATH-L2-C07",
+      "kind": "required",
+      "evidence": "MATH-L1-C03; MATH-L2-C05–C06."
+    },
+    {
+      "source": "MATH-L1-C03",
+      "target": "MATH-L3-C08",
+      "kind": "required",
+      "evidence": "MATH-L1-C03–C04; Python L2."
+    },
+    {
+      "source": "MATH-L1-C04",
+      "target": "MATH-L3-C08",
+      "kind": "required",
+      "evidence": "MATH-L1-C03–C04; Python L2."
+    },
+    {
+      "source": "PY-L2-C04",
+      "target": "MATH-L3-C08",
+      "kind": "required",
+      "evidence": "MATH-L1-C03–C04; Python L2."
+    },
+    {
+      "source": "PY-L2-C05",
+      "target": "MATH-L3-C08",
+      "kind": "required",
+      "evidence": "MATH-L1-C03–C04; Python L2."
+    },
+    {
+      "source": "PY-L2-C06",
+      "target": "MATH-L3-C08",
+      "kind": "required",
+      "evidence": "MATH-L1-C03–C04; Python L2."
+    },
+    {
+      "source": "MATH-L1-C04",
+      "target": "MATH-L3-C09",
+      "kind": "required",
+      "evidence": "MATH-L1-C04; MATH-L2-C05."
+    },
+    {
+      "source": "MATH-L2-C05",
+      "target": "MATH-L3-C09",
+      "kind": "required",
+      "evidence": "MATH-L1-C04; MATH-L2-C05."
+    },
+    {
+      "source": "MATH-L2-C05",
+      "target": "MATH-L3-C10",
+      "kind": "required",
+      "evidence": "MATH-L2-C05–C07; Existing Competency tín hiệu được chẩn đoán."
+    },
+    {
+      "source": "MATH-L2-C06",
+      "target": "MATH-L3-C10",
+      "kind": "required",
+      "evidence": "MATH-L2-C05–C07; Existing Competency tín hiệu được chẩn đoán."
+    },
+    {
+      "source": "MATH-L2-C07",
+      "target": "MATH-L3-C10",
+      "kind": "required",
+      "evidence": "MATH-L2-C05–C07; Existing Competency tín hiệu được chẩn đoán."
+    },
+    {
+      "source": "PY-L0-C01",
+      "target": "PY-L1-C02",
+      "kind": "required",
+      "evidence": "PY-L0-C01."
+    },
+    {
+      "source": "PY-L1-C02",
+      "target": "PY-L1-C03",
+      "kind": "required",
+      "evidence": "PY-L1-C02."
+    },
+    {
+      "source": "MATH-L1-C03",
+      "target": "PY-L2-C04",
+      "kind": "required",
+      "evidence": "PY-L1-C02; MATH-L1-C03."
+    },
+    {
+      "source": "PY-L1-C02",
+      "target": "PY-L2-C04",
+      "kind": "required",
+      "evidence": "PY-L1-C02; MATH-L1-C03."
+    },
+    {
+      "source": "PY-L2-C04",
+      "target": "PY-L2-C05",
+      "kind": "required",
+      "evidence": "PY-L2-C04; DB-L1-C02 được khuyến nghị."
+    },
+    {
+      "source": "DB-L1-C02",
+      "target": "PY-L2-C05",
+      "kind": "recommended",
+      "evidence": "PY-L2-C04; DB-L1-C02 được khuyến nghị."
+    },
+    {
+      "source": "PY-L1-C03",
+      "target": "PY-L2-C06",
+      "kind": "required",
+      "evidence": "PY-L1-C03; DB-L0-C01; DB-L1-C02–C03; SYS-L0-C01."
+    },
+    {
+      "source": "DB-L0-C01",
+      "target": "PY-L2-C06",
+      "kind": "required",
+      "evidence": "PY-L1-C03; DB-L0-C01; DB-L1-C02–C03; SYS-L0-C01."
+    },
+    {
+      "source": "DB-L1-C02",
+      "target": "PY-L2-C06",
+      "kind": "required",
+      "evidence": "PY-L1-C03; DB-L0-C01; DB-L1-C02–C03; SYS-L0-C01."
+    },
+    {
+      "source": "SYS-L0-C01",
+      "target": "PY-L2-C06",
+      "kind": "required",
+      "evidence": "PY-L1-C03; DB-L0-C01; DB-L1-C02–C03; SYS-L0-C01."
+    },
+    {
+      "source": "DB-L1-C03",
+      "target": "PY-L2-C06",
+      "kind": "required",
+      "evidence": "PY-L1-C03; DB-L0-C01; DB-L1-C02–C03; SYS-L0-C01."
+    },
+    {
+      "source": "PY-L2-C04",
+      "target": "PY-L3-C07",
+      "kind": "required",
+      "evidence": "PY-L2-C04–C06; ADS-L0-C01."
+    },
+    {
+      "source": "ADS-L0-C01",
+      "target": "PY-L3-C07",
+      "kind": "required",
+      "evidence": "PY-L2-C04–C06; ADS-L0-C01."
+    },
+    {
+      "source": "PY-L2-C05",
+      "target": "PY-L3-C07",
+      "kind": "required",
+      "evidence": "PY-L2-C04–C06; ADS-L0-C01."
+    },
+    {
+      "source": "PY-L2-C06",
+      "target": "PY-L3-C07",
+      "kind": "required",
+      "evidence": "PY-L2-C04–C06; ADS-L0-C01."
+    },
+    {
+      "source": "PY-L3-C07",
+      "target": "PY-L3-C08",
+      "kind": "required",
+      "evidence": "PY-L3-C07; SYS-L0-C01; SYS-L1-C02."
+    },
+    {
+      "source": "SYS-L0-C01",
+      "target": "PY-L3-C08",
+      "kind": "required",
+      "evidence": "PY-L3-C07; SYS-L0-C01; SYS-L1-C02."
+    },
+    {
+      "source": "SYS-L1-C02",
+      "target": "PY-L3-C08",
+      "kind": "required",
+      "evidence": "PY-L3-C07; SYS-L0-C01; SYS-L1-C02."
+    },
+    {
+      "source": "PY-L0-C01",
+      "target": "ADS-L0-C01",
+      "kind": "required",
+      "evidence": "PY-L0-C01."
+    },
+    {
+      "source": "ADS-L0-C01",
+      "target": "ADS-L1-C02",
+      "kind": "required",
+      "evidence": "ADS-L0-C01."
+    },
+    {
+      "source": "ADS-L1-C02",
+      "target": "ADS-L1-C03",
+      "kind": "required",
+      "evidence": "ADS-L1-C02."
+    },
+    {
+      "source": "ADS-L1-C02",
+      "target": "ADS-L2-C04",
+      "kind": "required",
+      "evidence": "ADS-L1-C02–C03."
+    },
+    {
+      "source": "ADS-L1-C03",
+      "target": "ADS-L2-C04",
+      "kind": "required",
+      "evidence": "ADS-L1-C02–C03."
+    },
+    {
+      "source": "ADS-L1-C03",
+      "target": "ADS-L2-C05",
+      "kind": "required",
+      "evidence": "ADS-L1-C03."
+    },
+    {
+      "source": "ADS-L0-C01",
+      "target": "ADS-L2-C06",
+      "kind": "required",
+      "evidence": "ADS-L0-C01; ADS-L1-C02."
+    },
+    {
+      "source": "ADS-L1-C02",
+      "target": "ADS-L2-C06",
+      "kind": "required",
+      "evidence": "ADS-L0-C01; ADS-L1-C02."
+    },
+    {
+      "source": "ADS-L2-C05",
+      "target": "ADS-L3-C07",
+      "kind": "required",
+      "evidence": "ADS-L2-C05–C06."
+    },
+    {
+      "source": "ADS-L2-C06",
+      "target": "ADS-L3-C07",
+      "kind": "required",
+      "evidence": "ADS-L2-C05–C06."
+    },
+    {
+      "source": "PY-L3-C07",
+      "target": "ADS-L3-C08",
+      "kind": "required",
+      "evidence": "ADS-L3-C07; PY-L3-C07."
+    },
+    {
+      "source": "ADS-L3-C07",
+      "target": "ADS-L3-C08",
+      "kind": "required",
+      "evidence": "ADS-L3-C07; PY-L3-C07."
+    },
+    {
+      "source": "PY-L0-C01",
+      "target": "DB-L0-C01",
+      "kind": "recommended",
+      "evidence": "không; Python cơ bản được khuyến nghị."
+    },
+    {
+      "source": "DB-L0-C01",
+      "target": "DB-L1-C02",
+      "kind": "required",
+      "evidence": "DB-L0-C01."
+    },
+    {
+      "source": "DB-L0-C01",
+      "target": "DB-L1-C03",
+      "kind": "required",
+      "evidence": "DB-L0-C01; DB-L1-C02."
+    },
+    {
+      "source": "DB-L1-C02",
+      "target": "DB-L1-C03",
+      "kind": "required",
+      "evidence": "DB-L0-C01; DB-L1-C02."
+    },
+    {
+      "source": "DB-L1-C03",
+      "target": "DB-L2-C04",
+      "kind": "required",
+      "evidence": "DB-L1-C03."
+    },
+    {
+      "source": "ADS-L2-C04",
+      "target": "DB-L2-C05",
+      "kind": "required",
+      "evidence": "DB-L1-C02; ADS-L2-C04."
+    },
+    {
+      "source": "DB-L1-C02",
+      "target": "DB-L2-C05",
+      "kind": "required",
+      "evidence": "DB-L1-C02; ADS-L2-C04."
+    },
+    {
+      "source": "PY-L2-C05",
+      "target": "DB-L2-C06",
+      "kind": "required",
+      "evidence": "DB-L1-C03; PY-L2-C05–C06."
+    },
+    {
+      "source": "DB-L1-C03",
+      "target": "DB-L2-C06",
+      "kind": "required",
+      "evidence": "DB-L1-C03; PY-L2-C05–C06."
+    },
+    {
+      "source": "PY-L2-C06",
+      "target": "DB-L2-C06",
+      "kind": "required",
+      "evidence": "DB-L1-C03; PY-L2-C05–C06."
+    },
+    {
+      "source": "PY-L2-C06",
+      "target": "DB-L3-C07",
+      "kind": "required",
+      "evidence": "DB-L2-C04–C06; PY-L2-C06; Linux L1."
+    },
+    {
+      "source": "DB-L2-C04",
+      "target": "DB-L3-C07",
+      "kind": "required",
+      "evidence": "DB-L2-C04–C06; PY-L2-C06; Linux L1."
+    },
+    {
+      "source": "DB-L2-C05",
+      "target": "DB-L3-C07",
+      "kind": "required",
+      "evidence": "DB-L2-C04–C06; PY-L2-C06; Linux L1."
+    },
+    {
+      "source": "DB-L2-C06",
+      "target": "DB-L3-C07",
+      "kind": "required",
+      "evidence": "DB-L2-C04–C06; PY-L2-C06; Linux L1."
+    },
+    {
+      "source": "SYS-L1-C02",
+      "target": "DB-L3-C07",
+      "kind": "required",
+      "evidence": "DB-L2-C04–C06; PY-L2-C06; Linux L1."
+    },
+    {
+      "source": "SYS-L1-C03",
+      "target": "DB-L3-C07",
+      "kind": "required",
+      "evidence": "DB-L2-C04–C06; PY-L2-C06; Linux L1."
+    },
+    {
+      "source": "MATH-L3-C10",
+      "target": "DB-L3-C08",
+      "kind": "required",
+      "evidence": "DB-L2-C05–C06; MATH-L3-C10."
+    },
+    {
+      "source": "DB-L2-C05",
+      "target": "DB-L3-C08",
+      "kind": "required",
+      "evidence": "DB-L2-C05–C06; MATH-L3-C10."
+    },
+    {
+      "source": "DB-L2-C06",
+      "target": "DB-L3-C08",
+      "kind": "required",
+      "evidence": "DB-L2-C05–C06; MATH-L3-C10."
+    },
+    {
+      "source": "SYS-L0-C01",
+      "target": "SYS-L1-C02",
+      "kind": "required",
+      "evidence": "SYS-L0-C01."
+    },
+    {
+      "source": "ADS-L0-C01",
+      "target": "SYS-L1-C03",
+      "kind": "required",
+      "evidence": "SYS-L1-C02; ADS-L0-C01."
+    },
+    {
+      "source": "SYS-L1-C02",
+      "target": "SYS-L1-C03",
+      "kind": "required",
+      "evidence": "SYS-L1-C02; ADS-L0-C01."
+    },
+    {
+      "source": "SYS-L0-C01",
+      "target": "SYS-L2-C04",
+      "kind": "required",
+      "evidence": "SYS-L0-C01."
+    },
+    {
+      "source": "PY-L2-C06",
+      "target": "SYS-L2-C05",
+      "kind": "required",
+      "evidence": "SYS-L2-C04; PY-L2-C06."
+    },
+    {
+      "source": "SYS-L2-C04",
+      "target": "SYS-L2-C05",
+      "kind": "required",
+      "evidence": "SYS-L2-C04; PY-L2-C06."
+    },
+    {
+      "source": "SYS-L1-C03",
+      "target": "SYS-L2-C06",
+      "kind": "required",
+      "evidence": "SYS-L1-C03; SYS-L2-C04–C05."
+    },
+    {
+      "source": "SYS-L2-C04",
+      "target": "SYS-L2-C06",
+      "kind": "required",
+      "evidence": "SYS-L1-C03; SYS-L2-C04–C05."
+    },
+    {
+      "source": "SYS-L2-C05",
+      "target": "SYS-L2-C06",
+      "kind": "required",
+      "evidence": "SYS-L1-C03; SYS-L2-C04–C05."
+    },
+    {
+      "source": "PY-L3-C08",
+      "target": "SYS-L3-C07",
+      "kind": "required",
+      "evidence": "SYS-L1-C02–C03; PY-L3-C08; DB-L2-C04."
+    },
+    {
+      "source": "DB-L2-C04",
+      "target": "SYS-L3-C07",
+      "kind": "required",
+      "evidence": "SYS-L1-C02–C03; PY-L3-C08; DB-L2-C04."
+    },
+    {
+      "source": "SYS-L1-C02",
+      "target": "SYS-L3-C07",
+      "kind": "required",
+      "evidence": "SYS-L1-C02–C03; PY-L3-C08; DB-L2-C04."
+    },
+    {
+      "source": "SYS-L1-C03",
+      "target": "SYS-L3-C07",
+      "kind": "required",
+      "evidence": "SYS-L1-C02–C03; PY-L3-C08; DB-L2-C04."
+    },
+    {
+      "source": "DB-L3-C07",
+      "target": "SYS-L3-C08",
+      "kind": "required",
+      "evidence": "SYS-L3-C07; DB-L3-C07."
+    },
+    {
+      "source": "SYS-L3-C07",
+      "target": "SYS-L3-C08",
+      "kind": "required",
+      "evidence": "SYS-L3-C07; DB-L3-C07."
+    },
+    {
+      "source": "MATH-L0-C01",
+      "target": "OR-L1-C01",
+      "kind": "required",
+      "evidence": "MATH-L0-C01; Python L1."
+    },
+    {
+      "source": "PY-L1-C02",
+      "target": "OR-L1-C01",
+      "kind": "required",
+      "evidence": "MATH-L0-C01; Python L1."
+    },
+    {
+      "source": "PY-L1-C03",
+      "target": "OR-L1-C01",
+      "kind": "required",
+      "evidence": "MATH-L0-C01; Python L1."
+    },
+    {
+      "source": "MATH-L1-C03",
+      "target": "OR-L1-C02",
+      "kind": "required",
+      "evidence": "OR-L1-C01; MATH-L1-C03."
+    },
+    {
+      "source": "OR-L1-C01",
+      "target": "OR-L1-C02",
+      "kind": "required",
+      "evidence": "OR-L1-C01; MATH-L1-C03."
+    },
+    {
+      "source": "ADS-L2-C05",
+      "target": "OR-L2-C03",
+      "kind": "required",
+      "evidence": "OR-L1-C02; ADS-L2-C05; ADS-L3-C07."
+    },
+    {
+      "source": "ADS-L3-C07",
+      "target": "OR-L2-C03",
+      "kind": "required",
+      "evidence": "OR-L1-C02; ADS-L2-C05; ADS-L3-C07."
+    },
+    {
+      "source": "OR-L1-C02",
+      "target": "OR-L2-C03",
+      "kind": "required",
+      "evidence": "OR-L1-C02; ADS-L2-C05; ADS-L3-C07."
+    },
+    {
+      "source": "MATH-L2-C05",
+      "target": "OR-L2-C04",
+      "kind": "required",
+      "evidence": "ADS-L3-C07; MATH-L2-C05."
+    },
+    {
+      "source": "ADS-L3-C07",
+      "target": "OR-L2-C04",
+      "kind": "required",
+      "evidence": "ADS-L3-C07; MATH-L2-C05."
+    },
+    {
+      "source": "MATH-L2-C05",
+      "target": "OR-L2-C05",
+      "kind": "required",
+      "evidence": "MATH-L2-C05; OR-L2-C04."
+    },
+    {
+      "source": "OR-L2-C04",
+      "target": "OR-L2-C05",
+      "kind": "required",
+      "evidence": "MATH-L2-C05; OR-L2-C04."
+    },
+    {
+      "source": "MATH-L2-C05",
+      "target": "OR-L2-C06",
+      "kind": "required",
+      "evidence": "MATH-L2-C05–C06."
+    },
+    {
+      "source": "MATH-L2-C06",
+      "target": "OR-L2-C06",
+      "kind": "required",
+      "evidence": "MATH-L2-C05–C06."
+    },
+    {
+      "source": "MATH-L2-C06",
+      "target": "OR-L3-C07",
+      "kind": "required",
+      "evidence": "OR-L2-C05–C06; PY-L2; MATH-L2-C06."
+    },
+    {
+      "source": "OR-L2-C05",
+      "target": "OR-L3-C07",
+      "kind": "required",
+      "evidence": "OR-L2-C05–C06; PY-L2; MATH-L2-C06."
+    },
+    {
+      "source": "OR-L2-C06",
+      "target": "OR-L3-C07",
+      "kind": "required",
+      "evidence": "OR-L2-C05–C06; PY-L2; MATH-L2-C06."
+    },
+    {
+      "source": "PY-L2-C04",
+      "target": "OR-L3-C07",
+      "kind": "required",
+      "evidence": "OR-L2-C05–C06; PY-L2; MATH-L2-C06."
+    },
+    {
+      "source": "PY-L2-C05",
+      "target": "OR-L3-C07",
+      "kind": "required",
+      "evidence": "OR-L2-C05–C06; PY-L2; MATH-L2-C06."
+    },
+    {
+      "source": "PY-L2-C06",
+      "target": "OR-L3-C07",
+      "kind": "required",
+      "evidence": "OR-L2-C05–C06; PY-L2; MATH-L2-C06."
+    },
+    {
+      "source": "MATH-L1-C04",
+      "target": "OR-L3-C08",
+      "kind": "required",
+      "evidence": "MATH-L1-C04; MATH-L3-C09; OR-L1-C02."
+    },
+    {
+      "source": "MATH-L3-C09",
+      "target": "OR-L3-C08",
+      "kind": "required",
+      "evidence": "MATH-L1-C04; MATH-L3-C09; OR-L1-C02."
+    },
+    {
+      "source": "OR-L1-C02",
+      "target": "OR-L3-C08",
+      "kind": "required",
+      "evidence": "MATH-L1-C04; MATH-L3-C09; OR-L1-C02."
+    },
+    {
+      "source": "OR-L3-C07",
+      "target": "OR-L3-C09",
+      "kind": "required",
+      "evidence": "OR-L3-C07–C08; Existing Competency Control/automation."
+    },
+    {
+      "source": "OR-L3-C08",
+      "target": "OR-L3-C09",
+      "kind": "required",
+      "evidence": "OR-L3-C07–C08; Existing Competency Control/automation."
+    },
+    {
+      "source": "MATH-L2-C05",
+      "target": "ML-L1-C01",
+      "kind": "required",
+      "evidence": "PY-L2-C05; MATH-L2-C05–C06."
+    },
+    {
+      "source": "PY-L2-C05",
+      "target": "ML-L1-C01",
+      "kind": "required",
+      "evidence": "PY-L2-C05; MATH-L2-C05–C06."
+    },
+    {
+      "source": "MATH-L2-C06",
+      "target": "ML-L1-C01",
+      "kind": "required",
+      "evidence": "PY-L2-C05; MATH-L2-C05–C06."
+    },
+    {
+      "source": "MATH-L1-C03",
+      "target": "ML-L1-C02",
+      "kind": "required",
+      "evidence": "ML-L1-C01; MATH-L1-C03–C04; MATH-L3-C09-L02–L03 học just-in-time."
+    },
+    {
+      "source": "MATH-L3-C09",
+      "target": "ML-L1-C02",
+      "kind": "required",
+      "evidence": "ML-L1-C01; MATH-L1-C03–C04; MATH-L3-C09-L02–L03 học just-in-time."
+    },
+    {
+      "source": "ML-L1-C01",
+      "target": "ML-L1-C02",
+      "kind": "required",
+      "evidence": "ML-L1-C01; MATH-L1-C03–C04; MATH-L3-C09-L02–L03 học just-in-time."
+    },
+    {
+      "source": "MATH-L1-C04",
+      "target": "ML-L1-C02",
+      "kind": "required",
+      "evidence": "ML-L1-C01; MATH-L1-C03–C04; MATH-L3-C09-L02–L03 học just-in-time."
+    },
+    {
+      "source": "ADS-L2-C04",
+      "target": "ML-L1-C03",
+      "kind": "required",
+      "evidence": "ML-L1-C01; ADS-L2-C04."
+    },
+    {
+      "source": "ML-L1-C01",
+      "target": "ML-L1-C03",
+      "kind": "required",
+      "evidence": "ML-L1-C01; ADS-L2-C04."
+    },
+    {
+      "source": "MATH-L2-C07",
+      "target": "ML-L2-C04",
+      "kind": "required",
+      "evidence": "MATH-L2-C07; PY-L2-C04–C05."
+    },
+    {
+      "source": "PY-L2-C04",
+      "target": "ML-L2-C04",
+      "kind": "required",
+      "evidence": "MATH-L2-C07; PY-L2-C04–C05."
+    },
+    {
+      "source": "PY-L2-C05",
+      "target": "ML-L2-C04",
+      "kind": "required",
+      "evidence": "MATH-L2-C07; PY-L2-C04–C05."
+    },
+    {
+      "source": "MATH-L3-C10",
+      "target": "ML-L2-C05",
+      "kind": "required",
+      "evidence": "MATH-L3-C10; Existing Competency signal; PY-L2."
+    },
+    {
+      "source": "PY-L2-C04",
+      "target": "ML-L2-C05",
+      "kind": "required",
+      "evidence": "MATH-L3-C10; Existing Competency signal; PY-L2."
+    },
+    {
+      "source": "PY-L2-C05",
+      "target": "ML-L2-C05",
+      "kind": "required",
+      "evidence": "MATH-L3-C10; Existing Competency signal; PY-L2."
+    },
+    {
+      "source": "PY-L2-C06",
+      "target": "ML-L2-C05",
+      "kind": "required",
+      "evidence": "MATH-L3-C10; Existing Competency signal; PY-L2."
+    },
+    {
+      "source": "MATH-L1-C04",
+      "target": "ML-L2-C06",
+      "kind": "required",
+      "evidence": "MATH-L1-C04; ML-L1-C02; PY-L2-C04."
+    },
+    {
+      "source": "PY-L2-C04",
+      "target": "ML-L2-C06",
+      "kind": "required",
+      "evidence": "MATH-L1-C04; ML-L1-C02; PY-L2-C04."
+    },
+    {
+      "source": "ML-L1-C02",
+      "target": "ML-L2-C06",
+      "kind": "required",
+      "evidence": "MATH-L1-C04; ML-L1-C02; PY-L2-C04."
+    },
+    {
+      "source": "ML-L1-C02",
+      "target": "ML-L3-C07",
+      "kind": "required",
+      "evidence": "ML-L1-C02–C03; ML-L2-C04–C06."
+    },
+    {
+      "source": "ML-L2-C04",
+      "target": "ML-L3-C07",
+      "kind": "required",
+      "evidence": "ML-L1-C02–C03; ML-L2-C04–C06."
+    },
+    {
+      "source": "ML-L1-C03",
+      "target": "ML-L3-C07",
+      "kind": "required",
+      "evidence": "ML-L1-C02–C03; ML-L2-C04–C06."
+    },
+    {
+      "source": "ML-L2-C05",
+      "target": "ML-L3-C07",
+      "kind": "required",
+      "evidence": "ML-L1-C02–C03; ML-L2-C04–C06."
+    },
+    {
+      "source": "ML-L2-C06",
+      "target": "ML-L3-C07",
+      "kind": "required",
+      "evidence": "ML-L1-C02–C03; ML-L2-C04–C06."
+    },
+    {
+      "source": "RU-R3-C07",
+      "target": "ML-L3-C08",
+      "kind": "required",
+      "evidence": "ML-L1-C01; RU-R3-C07 đang song hành."
+    },
+    {
+      "source": "ML-L1-C01",
+      "target": "ML-L3-C08",
+      "kind": "required",
+      "evidence": "ML-L1-C01; RU-R3-C07 đang song hành."
+    },
+    {
+      "source": "MATH-L2-C06",
+      "target": "ML-L3-C09",
+      "kind": "required",
+      "evidence": "ML-L3-C07–C08; PY-L3-C08; MATH-L2-C06."
+    },
+    {
+      "source": "PY-L3-C08",
+      "target": "ML-L3-C09",
+      "kind": "required",
+      "evidence": "ML-L3-C07–C08; PY-L3-C08; MATH-L2-C06."
+    },
+    {
+      "source": "ML-L3-C07",
+      "target": "ML-L3-C09",
+      "kind": "required",
+      "evidence": "ML-L3-C07–C08; PY-L3-C08; MATH-L2-C06."
+    },
+    {
+      "source": "ML-L3-C08",
+      "target": "ML-L3-C09",
+      "kind": "required",
+      "evidence": "ML-L3-C07–C08; PY-L3-C08; MATH-L2-C06."
+    },
+    {
+      "source": "CUR-L4-C01",
+      "target": "CUR-L4-C02",
+      "kind": "required",
+      "evidence": "CUR-L4-C01."
+    },
+    {
+      "source": "CUR-L4-C02",
+      "target": "CUR-L4-C03",
+      "kind": "required",
+      "evidence": "CUR-L4-C02."
+    },
+    {
+      "source": "ML-L1-C01",
+      "target": "NIR-L1-C01",
+      "kind": "required",
+      "evidence": "Existing Competency automation/control; ML-L1-C01."
+    },
+    {
+      "source": "RU-R3-C07",
+      "target": "NIR-L1-C02",
+      "kind": "required",
+      "evidence": "ML-L3-C08; RU-R3-C07."
+    },
+    {
+      "source": "ML-L3-C08",
+      "target": "NIR-L1-C02",
+      "kind": "required",
+      "evidence": "ML-L3-C08; RU-R3-C07."
+    },
+    {
+      "source": "NIR-L1-C01",
+      "target": "NIR-L1-C03",
+      "kind": "required",
+      "evidence": "NIR-L1-C01–C02."
+    },
+    {
+      "source": "NIR-L1-C02",
+      "target": "NIR-L1-C03",
+      "kind": "required",
+      "evidence": "NIR-L1-C01–C02."
+    },
+    {
+      "source": "MATH-L2-C06",
+      "target": "NIR-L2-C04",
+      "kind": "required",
+      "evidence": "NIR-L1-C03; MATH-L2-C06; ML-L3-C08."
+    },
+    {
+      "source": "ML-L3-C08",
+      "target": "NIR-L2-C04",
+      "kind": "required",
+      "evidence": "NIR-L1-C03; MATH-L2-C06; ML-L3-C08."
+    },
+    {
+      "source": "NIR-L1-C03",
+      "target": "NIR-L2-C04",
+      "kind": "required",
+      "evidence": "NIR-L1-C03; MATH-L2-C06; ML-L3-C08."
+    },
+    {
+      "source": "DB-L2-C06",
+      "target": "NIR-L2-C05",
+      "kind": "required",
+      "evidence": "DB-L2-C06; SYS-L3-C08."
+    },
+    {
+      "source": "SYS-L3-C08",
+      "target": "NIR-L2-C05",
+      "kind": "required",
+      "evidence": "DB-L2-C06; SYS-L3-C08."
+    },
+    {
+      "source": "PY-L3-C08",
+      "target": "NIR-L2-C06",
+      "kind": "required",
+      "evidence": "PY-L3-C08; module kỹ thuật liên quan."
+    },
+    {
+      "source": "MATH-L2-C06",
+      "target": "NIR-L3-C07",
+      "kind": "required",
+      "evidence": "NIR-L2-C04–C06; MATH-L2-C06."
+    },
+    {
+      "source": "NIR-L2-C04",
+      "target": "NIR-L3-C07",
+      "kind": "required",
+      "evidence": "NIR-L2-C04–C06; MATH-L2-C06."
+    },
+    {
+      "source": "NIR-L2-C05",
+      "target": "NIR-L3-C07",
+      "kind": "required",
+      "evidence": "NIR-L2-C04–C06; MATH-L2-C06."
+    },
+    {
+      "source": "NIR-L2-C06",
+      "target": "NIR-L3-C07",
+      "kind": "required",
+      "evidence": "NIR-L2-C04–C06; MATH-L2-C06."
+    },
+    {
+      "source": "RU-R3-C07",
+      "target": "NIR-L3-C08",
+      "kind": "required",
+      "evidence": "NIR-L3-C07; RU-R3-C07."
+    },
+    {
+      "source": "NIR-L3-C07",
+      "target": "NIR-L3-C08",
+      "kind": "required",
+      "evidence": "NIR-L3-C07; RU-R3-C07."
+    },
+    {
+      "source": "RU-R3-C08",
+      "target": "NIR-L4-C09",
+      "kind": "required",
+      "evidence": "NIR-L3-C08; RU-R3-C08/R4-C10."
+    },
+    {
+      "source": "NIR-L3-C08",
+      "target": "NIR-L4-C09",
+      "kind": "required",
+      "evidence": "NIR-L3-C08; RU-R3-C08/R4-C10."
+    },
+    {
+      "source": "RU-R4-C10",
+      "target": "NIR-L4-C09",
+      "kind": "required",
+      "evidence": "NIR-L3-C08; RU-R3-C08/R4-C10."
+    },
+    {
+      "source": "ACTIVE_SPECIALIST_CHAPTER",
+      "target": "RU-R2-C06",
+      "kind": "gate",
+      "evidence": "RU-R2-C05; chapter chuyên môn tương ứng đang học."
+    },
+    {
+      "source": "COMPLETE_TECHNICAL_PROJECT",
+      "target": "RU-R3-C08",
+      "kind": "gate",
+      "evidence": "RU-R3-C07; một project kỹ thuật hoàn chỉnh."
+    },
+    {
+      "source": "COURSE_SYLLABUS_IMPORTED",
+      "target": "RU-R4-C09",
+      "kind": "gate",
+      "evidence": "syllabus môn đã nhập vào Kho 09."
+    },
+    {
+      "source": "NIR_TOPIC_AND_PLAN_READY",
+      "target": "RU-R4-C10",
+      "kind": "gate",
+      "evidence": "Kho 10 đã có topic và research plan."
+    },
+    {
+      "source": "ENTRY_DIAGNOSTIC",
+      "target": "MATH-L0-C01",
+      "kind": "gate",
+      "evidence": "diagnostic đầu vào."
+    },
+    {
+      "source": "EXISTING_COMPETENCY_GENERAL",
+      "target": "MATH-L0-C02",
+      "kind": "gate",
+      "evidence": "MATH-L0-C01 hoặc Existing Competency xác nhận."
+    },
+    {
+      "source": "EXISTING_COMPETENCY_SIGNAL",
+      "target": "MATH-L3-C10",
+      "kind": "gate",
+      "evidence": "MATH-L2-C05–C07; Existing Competency tín hiệu được chẩn đoán."
+    },
+    {
+      "source": "EXISTING_COMPETENCY_CONTROL",
+      "target": "OR-L3-C09",
+      "kind": "gate",
+      "evidence": "OR-L3-C07–C08; Existing Competency Control/automation."
+    },
+    {
+      "source": "EXISTING_COMPETENCY_SIGNAL",
+      "target": "ML-L2-C05",
+      "kind": "gate",
+      "evidence": "MATH-L3-C10; Existing Competency signal; PY-L2."
+    },
+    {
+      "source": "OFFICIAL_COURSE_SYLLABUS",
+      "target": "CUR-L4-C01",
+      "kind": "gate",
+      "evidence": "syllabus/tài liệu chính thức của môn."
+    },
+    {
+      "source": "REAL_WEEK_MATERIAL",
+      "target": "CUR-L4-C04",
+      "kind": "gate",
+      "evidence": "tài liệu tuần thật."
+    },
+    {
+      "source": "RELEVANT_WEEKS_COMPLETE",
+      "target": "CUR-L4-C05",
+      "kind": "gate",
+      "evidence": "các tuần liên quan đã học."
+    },
+    {
+      "source": "COURSE_COMPLETE",
+      "target": "CUR-L4-C06",
+      "kind": "gate",
+      "evidence": "hoàn thành môn."
+    },
+    {
+      "source": "EXISTING_COMPETENCY_CONTROL",
+      "target": "NIR-L1-C01",
+      "kind": "gate",
+      "evidence": "Existing Competency automation/control; ML-L1-C01."
+    },
+    {
+      "source": "RELATED_TECH_MODULE",
+      "target": "NIR-L2-C06",
+      "kind": "gate",
+      "evidence": "PY-L3-C08; module kỹ thuật liên quan."
+    }
+  ],
+  "topologicalOrder": [
+    "CUR-L4-C01",
+    "CUR-L4-C02",
+    "CUR-L4-C03",
+    "CUR-L4-C04",
+    "CUR-L4-C05",
+    "CUR-L4-C06",
+    "DB-L0-C01",
+    "DB-L1-C02",
+    "DB-L1-C03",
+    "DB-L2-C04",
+    "MATH-L0-C01",
+    "MATH-L0-C02",
+    "MATH-L1-C03",
+    "MATH-L1-C04",
+    "MATH-L2-C05",
+    "MATH-L3-C09",
+    "PY-L0-C01",
+    "ADS-L0-C01",
+    "ADS-L1-C02",
+    "ADS-L1-C03",
+    "ADS-L2-C04",
+    "ADS-L2-C05",
+    "ADS-L2-C06",
+    "ADS-L3-C07",
+    "DB-L2-C05",
+    "OR-L2-C04",
+    "OR-L2-C05",
+    "PY-L1-C02",
+    "PY-L1-C03",
+    "OR-L1-C01",
+    "OR-L1-C02",
+    "OR-L2-C03",
+    "OR-L3-C08",
+    "PY-L2-C04",
+    "PY-L2-C05",
+    "MATH-L2-C06",
+    "MATH-L2-C07",
+    "MATH-L3-C10",
+    "ML-L1-C01",
+    "ML-L1-C02",
+    "ML-L1-C03",
+    "ML-L2-C04",
+    "ML-L2-C06",
+    "NIR-L1-C01",
+    "OR-L2-C06",
+    "RU-R0-C01",
+    "RU-R0-C02",
+    "RU-R1-C03",
+    "RU-R1-C04",
+    "RU-R2-C05",
+    "RU-R2-C06",
+    "RU-R3-C07",
+    "ML-L3-C08",
+    "NIR-L1-C02",
+    "NIR-L1-C03",
+    "NIR-L2-C04",
+    "RU-R3-C08",
+    "RU-R4-C09",
+    "RU-R4-C10",
+    "SYS-L0-C01",
+    "PY-L2-C06",
+    "DB-L2-C06",
+    "DB-L3-C08",
+    "MATH-L3-C08",
+    "ML-L2-C05",
+    "ML-L3-C07",
+    "OR-L3-C07",
+    "OR-L3-C09",
+    "PY-L3-C07",
+    "ADS-L3-C08",
+    "SYS-L1-C02",
+    "PY-L3-C08",
+    "ML-L3-C09",
+    "NIR-L2-C06",
+    "SYS-L1-C03",
+    "DB-L3-C07",
+    "SYS-L2-C04",
+    "SYS-L2-C05",
+    "SYS-L2-C06",
+    "SYS-L3-C07",
+    "SYS-L3-C08",
+    "NIR-L2-C05",
+    "NIR-L3-C07",
+    "NIR-L3-C08",
+    "NIR-L4-C09"
+  ],
+  "cycleNodes": [],
+  "counts": {
+    "registryNodes": 85,
+    "requiredInternalEdges": 170,
+    "recommendedInternalEdges": 2,
+    "externalGates": 13,
+    "externalGateEdges": 15,
+    "unresolvedInternalRefs": 0,
+    "cycles": 0
+  }
+}

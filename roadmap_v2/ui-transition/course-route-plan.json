@@ -1,0 +1,21 @@
+{
+  "schema": "BAUMAN_ROADMAP_V2_CANONICAL_COURSE_ROUTE_PLAN_V1",
+  "version": "2.12.0-l32-b126",
+  "status": "PASS_B126_PLANNED_ROUTES_ONLY",
+  "routeNamespace": "/courses/{courseId}/index.html",
+  "physicalRoutesCreated": 0,
+  "courses": [
+    { "id": "01", "title": "TIẾNG NGA", "plannedRoute": "/courses/01/index.html", "routeStatus": "planned_not_created", "strategy": "adapt_and_extend", "activation": "static_registry_allowed", "legacyModuleIds": ["russian", "foundation"], "chapters": 10, "numberedLessons": 32, "dynamicChapters": 2 },
+    { "id": "02", "title": "TOÁN AI & DATA", "plannedRoute": "/courses/02/index.html", "routeStatus": "planned_not_created", "strategy": "adapt_and_extend", "activation": "static_registry_allowed", "legacyModuleIds": ["math", "foundation", "signal"], "chapters": 10, "numberedLessons": 36, "dynamicChapters": 0 },
+    { "id": "03", "title": "PYTHON & OOP", "plannedRoute": "/courses/03/index.html", "routeStatus": "planned_not_created", "strategy": "rebuild_from_legacy_shell", "activation": "content_requires_academic_validation", "legacyModuleIds": ["programming"], "chapters": 8, "numberedLessons": 32, "dynamicChapters": 0 },
+    { "id": "04", "title": "ALGORITHMS & DATA STRUCTURES", "plannedRoute": "/courses/04/index.html", "routeStatus": "planned_not_created", "strategy": "build_new_with_legacy_support", "activation": "content_requires_academic_validation", "legacyModuleIds": ["programming"], "chapters": 8, "numberedLessons": 32, "dynamicChapters": 0 },
+    { "id": "05", "title": "DATABASE & INFORMATION SYSTEMS", "plannedRoute": "/courses/05/index.html", "routeStatus": "planned_not_created", "strategy": "build_new_with_legacy_support", "activation": "content_requires_academic_validation", "legacyModuleIds": ["programming", "systems"], "chapters": 8, "numberedLessons": 32, "dynamicChapters": 0 },
+    { "id": "06", "title": "LINUX, OS & COMPUTER NETWORKS", "plannedRoute": "/courses/06/index.html", "routeStatus": "planned_not_created", "strategy": "build_new_with_legacy_support", "activation": "content_requires_academic_validation", "legacyModuleIds": ["programming", "foundation", "systems"], "chapters": 8, "numberedLessons": 32, "dynamicChapters": 0 },
+    { "id": "07", "title": "OPERATIONS RESEARCH & SYSTEM MODELING", "plannedRoute": "/courses/07/index.html", "routeStatus": "planned_not_created", "strategy": "build_new_with_legacy_support", "activation": "content_requires_academic_validation", "legacyModuleIds": ["signal", "systems"], "chapters": 9, "numberedLessons": 36, "dynamicChapters": 0 },
+    { "id": "08", "title": "MACHINE LEARNING & RESEARCH", "plannedRoute": "/courses/08/index.html", "routeStatus": "planned_not_created", "strategy": "rebuild_from_legacy_shell", "activation": "content_requires_academic_validation", "legacyModuleIds": ["ai", "signal"], "chapters": 9, "numberedLessons": 36, "dynamicChapters": 0 },
+    { "id": "09", "title": "CURRENT BAUMAN SUBJECTS — MODULE ĐỘNG", "plannedRoute": "/courses/09/index.html", "routeStatus": "planned_not_created", "strategy": "dynamic_import_only", "activation": "blocked_pending_verified_syllabus", "requiredAuthority": "verified_bauman_syllabus_import", "legacyModuleIds": ["foundation", "signal", "systems"], "chapters": 6, "numberedLessons": 0, "dynamicChapters": 6 },
+    { "id": "10", "title": "NIR/THESIS", "plannedRoute": "/courses/10/index.html", "routeStatus": "planned_not_created", "strategy": "rebuild_from_legacy_shell", "activation": "content_requires_academic_validation", "legacyModuleIds": ["research", "signal", "systems"], "chapters": 9, "numberedLessons": 36, "dynamicChapters": 0 }
+  ],
+  "totals": { "courses": 10, "chapters": 85, "numberedLessons": 304, "dynamicChapters": 8 },
+  "acceptance": { "step": 126, "result": "PASS_CANONICAL_ROUTE_DESIGN_ONLY" }
+}

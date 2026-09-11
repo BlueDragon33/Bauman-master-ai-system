@@ -1,0 +1,56 @@
+{
+  "schema": "BAUMAN_ROADMAP_V2_PERSISTENCE_PROJECTION_V1",
+  "version": "2.14.0-l34-b135",
+  "status": "PASS_B135_TRANSACTIONAL_IN_MEMORY_PERSISTENCE_HARNESS",
+  "provider": "unselected",
+  "counts": {
+    "tables": 12,
+    "userOwnedTables": 11,
+    "migrations": 4,
+    "indexes": 4,
+    "eventTypes": 11,
+    "productionConnections": 0,
+    "productionMigrations": 0,
+    "productionWrites": 0
+  },
+  "migrationSimulation": {
+    "appliedMigrations": 4,
+    "tablesAfterUp": 12,
+    "indexesAfterUp": 4,
+    "tablesAfterRollback": 0,
+    "indexesAfterRollback": 0
+  },
+  "transactionSimulation": {
+    "committedEvents": 2,
+    "cursor": "cur_0000000000000002",
+    "replayCursor": "cur_0000000000000002",
+    "replayAdditionalWrites": 0
+  },
+  "backupRestoreSimulation": {
+    "digest": "c916d9a171bae7aac62255625cf07c5b3b277d4e210c91dc5b55225c840df8d9",
+    "restoredEvents": 2,
+    "isolatedValidation": true,
+    "atomicSwap": true
+  },
+  "compatibility": {
+    "legacyLocalStorageRetained": true,
+    "role": "temporary_cache_and_offline_fallback",
+    "destructiveClientRewrite": false
+  },
+  "safety": {
+    "providerConnections": 0,
+    "productionMigrations": 0,
+    "productionRollbacks": 0,
+    "productionUserWrites": 0,
+    "productionEventWrites": 0,
+    "productionSyncWrites": 0,
+    "productionBackups": 0,
+    "productionRestores": 0,
+    "runtimeActivations": 0,
+    "legacyMutations": 0
+  },
+  "acceptance": {
+    "step": 135,
+    "result": "PASS_TRANSACTIONAL_IN_MEMORY_PERSISTENCE_HARNESS"
+  }
+}

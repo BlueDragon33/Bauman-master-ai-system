@@ -1,0 +1,200 @@
+{
+  "schema": "BAUMAN_ROADMAP_V2_RELATIONAL_MODEL_V1",
+  "version": "2.14.0-l34-b134",
+  "status": "PASS_B134_DECLARATIVE_RELATIONAL_MODEL",
+  "provider": "unselected",
+  "dialectProfile": "portable_relational_postgresql_compatible",
+  "staticContentDisposition": "hash_pinned_file_sidecars_outside_database",
+  "rootTables": ["users"],
+  "infrastructureTables": [],
+  "tables": [
+    {
+      "name": "users",
+      "class": "identity_root",
+      "primaryKey": ["user_id"],
+      "ownerColumn": null,
+      "authority": "opaque_identity_reference_only",
+      "columns": [
+        { "name": "user_id", "type": "varchar(68)", "nullable": false },
+        { "name": "created_at", "type": "timestamp_utc", "nullable": false },
+        { "name": "status", "type": "varchar(24)", "nullable": false }
+      ],
+      "constraints": ["user_id_prefix_usr", "status_active_or_disabled"]
+    },
+    {
+      "name": "devices",
+      "class": "user_owned_identity",
+      "primaryKey": ["device_id"],
+      "ownerColumn": "user_id",
+      "authority": "registered_device_reference",
+      "columns": [
+        { "name": "device_id", "type": "varchar(68)", "nullable": false },
+        { "name": "user_id", "type": "varchar(68)", "nullable": false },
+        { "name": "label", "type": "varchar(120)", "nullable": true },
+        { "name": "created_at", "type": "timestamp_utc", "nullable": false },
+        { "name": "last_seen_at", "type": "timestamp_utc", "nullable": false }
+      ],
+      "constraints": ["device_id_prefix_dev", "fk_devices_user_restrict"]
+    },
+    {
+      "name": "learning_events",
+      "class": "user_owned_event",
+      "primaryKey": ["event_id"],
+      "ownerColumn": "user_id",
+      "authority": "append_only_source_of_truth",
+      "columns": [
+        { "name": "event_id", "type": "varchar(68)", "nullable": false },
+        { "name": "user_id", "type": "varchar(68)", "nullable": false },
+        { "name": "device_id", "type": "varchar(68)", "nullable": false },
+        { "name": "event_type", "type": "varchar(64)", "nullable": false },
+        { "name": "occurred_at", "type": "timestamp_utc", "nullable": false },
+        { "name": "accepted_at", "type": "timestamp_utc", "nullable": false },
+        { "name": "cursor_value", "type": "bigint", "nullable": false },
+        { "name": "payload_json", "type": "json", "nullable": false }
+      ],
+      "constraints": ["unique_user_event_id", "unique_user_cursor", "fk_event_user_restrict", "fk_event_device_restrict", "append_only_no_update_delete"]
+    },
+    {
+      "name": "idempotency_keys",
+      "class": "user_owned_control",
+      "primaryKey": ["user_id", "idempotency_key"],
+      "ownerColumn": "user_id",
+      "authority": "transaction_replay_control",
+      "columns": [
+        { "name": "user_id", "type": "varchar(68)", "nullable": false },
+        { "name": "idempotency_key", "type": "varchar(133)", "nullable": false },
+        { "name": "request_sha256", "type": "char(64)", "nullable": false },
+        { "name": "result_json", "type": "json", "nullable": false },
+        { "name": "created_at", "type": "timestamp_utc", "nullable": false }
+      ],
+      "constraints": ["idempotency_key_prefix_idem", "fk_idempotency_user_restrict"]
+    },
+    {
+      "name": "user_sync_heads",
+      "class": "user_owned_control",
+      "primaryKey": ["user_id"],
+      "ownerColumn": "user_id",
+      "authority": "transactional_sync_cursor",
+      "columns": [
+        { "name": "user_id", "type": "varchar(68)", "nullable": false },
+        { "name": "cursor_value", "type": "bigint", "nullable": false },
+        { "name": "updated_at", "type": "timestamp_utc", "nullable": false }
+      ],
+      "constraints": ["cursor_nonnegative", "fk_sync_head_user_restrict"]
+    },
+    {
+      "name": "mastery_snapshots",
+      "class": "user_owned_projection",
+      "primaryKey": ["user_id", "target_id"],
+      "ownerColumn": "user_id",
+      "authority": "derived_rebuildable_cache_never_event_authority",
+      "columns": [
+        { "name": "user_id", "type": "varchar(68)", "nullable": false },
+        { "name": "target_id", "type": "varchar(96)", "nullable": false },
+        { "name": "source_cursor_value", "type": "bigint", "nullable": false },
+        { "name": "snapshot_json", "type": "json", "nullable": false },
+        { "name": "projected_at", "type": "timestamp_utc", "nullable": false }
+      ],
+      "constraints": ["fk_mastery_user_restrict", "snapshot_cursor_nonnegative"]
+    },
+    {
+      "name": "assessment_attempts",
+      "class": "user_owned_record",
+      "primaryKey": ["attempt_id"],
+      "ownerColumn": "user_id",
+      "authority": "assessment_record_linked_to_event",
+      "columns": [
+        { "name": "attempt_id", "type": "varchar(68)", "nullable": false },
+        { "name": "user_id", "type": "varchar(68)", "nullable": false },
+        { "name": "event_id", "type": "varchar(68)", "nullable": false },
+        { "name": "target_id", "type": "varchar(96)", "nullable": false },
+        { "name": "result_json", "type": "json", "nullable": false }
+      ],
+      "constraints": ["fk_attempt_user_restrict", "fk_attempt_event_restrict"]
+    },
+    {
+      "name": "study_schedule_entries",
+      "class": "user_owned_mutable",
+      "primaryKey": ["entry_id"],
+      "ownerColumn": "user_id",
+      "authority": "user_schedule_state",
+      "columns": [
+        { "name": "entry_id", "type": "varchar(68)", "nullable": false },
+        { "name": "user_id", "type": "varchar(68)", "nullable": false },
+        { "name": "target_id", "type": "varchar(96)", "nullable": false },
+        { "name": "scheduled_for", "type": "timestamp_utc", "nullable": false },
+        { "name": "source_cursor_value", "type": "bigint", "nullable": false }
+      ],
+      "constraints": ["fk_schedule_user_restrict", "schedule_cursor_nonnegative"]
+    },
+    {
+      "name": "bookmarks",
+      "class": "user_owned_mutable",
+      "primaryKey": ["user_id", "target_id"],
+      "ownerColumn": "user_id",
+      "authority": "user_bookmark_state",
+      "columns": [
+        { "name": "user_id", "type": "varchar(68)", "nullable": false },
+        { "name": "target_id", "type": "varchar(96)", "nullable": false },
+        { "name": "created_at", "type": "timestamp_utc", "nullable": false },
+        { "name": "source_cursor_value", "type": "bigint", "nullable": false }
+      ],
+      "constraints": ["fk_bookmark_user_restrict", "bookmark_cursor_nonnegative"]
+    },
+    {
+      "name": "weak_topics",
+      "class": "user_owned_projection",
+      "primaryKey": ["user_id", "target_id"],
+      "ownerColumn": "user_id",
+      "authority": "derived_rebuildable_cache",
+      "columns": [
+        { "name": "user_id", "type": "varchar(68)", "nullable": false },
+        { "name": "target_id", "type": "varchar(96)", "nullable": false },
+        { "name": "severity", "type": "varchar(16)", "nullable": false },
+        { "name": "source_cursor_value", "type": "bigint", "nullable": false }
+      ],
+      "constraints": ["fk_weak_topic_user_restrict", "weak_topic_cursor_nonnegative"]
+    },
+    {
+      "name": "mentor_history",
+      "class": "user_owned_record",
+      "primaryKey": ["interaction_id"],
+      "ownerColumn": "user_id",
+      "authority": "redacted_user_interaction_record",
+      "columns": [
+        { "name": "interaction_id", "type": "varchar(68)", "nullable": false },
+        { "name": "user_id", "type": "varchar(68)", "nullable": false },
+        { "name": "source_cursor_value", "type": "bigint", "nullable": false },
+        { "name": "redacted_content_json", "type": "json", "nullable": false },
+        { "name": "retention_class", "type": "varchar(24)", "nullable": false }
+      ],
+      "constraints": ["fk_mentor_user_restrict", "mentor_cursor_nonnegative", "secrets_redacted_before_write"]
+    },
+    {
+      "name": "user_preferences",
+      "class": "user_owned_mutable",
+      "primaryKey": ["user_id", "preference_key"],
+      "ownerColumn": "user_id",
+      "authority": "user_preference_state",
+      "columns": [
+        { "name": "user_id", "type": "varchar(68)", "nullable": false },
+        { "name": "preference_key", "type": "varchar(64)", "nullable": false },
+        { "name": "preference_json", "type": "json", "nullable": false },
+        { "name": "source_cursor_value", "type": "bigint", "nullable": false }
+      ],
+      "constraints": ["fk_preference_user_restrict", "preference_cursor_nonnegative"]
+    }
+  ],
+  "requiredProductionPolicies": [
+    "database_role_least_privilege",
+    "row_level_user_ownership",
+    "deny_cross_user_by_default",
+    "append_only_learning_events",
+    "transactional_idempotency_and_cursor_update",
+    "encrypted_transport_and_managed_at_rest_encryption",
+    "migration_checksum_journal",
+    "backup_restore_drill_before_activation"
+  ],
+  "counts": { "tables": 12, "identityRoots": 1, "userOwnedTables": 11, "appendOnlyAuthorities": 1, "derivedProjectionTables": 2, "passwordColumns": 0 },
+  "acceptance": { "step": 134, "result": "PASS_RELATIONAL_MODEL_DESIGN" }
+}

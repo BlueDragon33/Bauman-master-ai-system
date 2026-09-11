@@ -1,0 +1,104 @@
+{
+  "schema": "BAUMAN_ROADMAP_V2_MIGRATION_PLAN_V1",
+  "version": "2.14.0-l34-b134",
+  "status": "PASS_B134_REVERSIBLE_MIGRATION_DESIGN",
+  "provider": "unselected",
+  "executionMode": "declarative_simulation_only",
+  "targetSchemaVersion": "bauman.persistence.v1",
+  "preconditions": [
+    "explicit_provider_and_connection_authorization",
+    "encrypted_backup_verified",
+    "migration_checksum_verified",
+    "empty_or_canary_target_first",
+    "staging_restore_drill_passed",
+    "production_maintenance_and_observability_ready"
+  ],
+  "migrations": [
+    {
+      "id": "0001_identity_devices",
+      "dependsOn": [],
+      "transactionRequired": true,
+      "targetTables": ["users", "devices"],
+      "up": [
+        { "op": "create_table", "table": "users" },
+        { "op": "create_table", "table": "devices" }
+      ],
+      "down": [
+        { "op": "drop_table", "table": "devices" },
+        { "op": "drop_table", "table": "users" }
+      ],
+      "checksumSha256": "75b4c5cd34e336bf4a50c6a0febbe23c01469d8664d0878ebc745cb564100485"
+    },
+    {
+      "id": "0002_event_sync_core",
+      "dependsOn": ["0001_identity_devices"],
+      "transactionRequired": true,
+      "targetTables": ["learning_events", "idempotency_keys", "user_sync_heads"],
+      "up": [
+        { "op": "create_table", "table": "learning_events" },
+        { "op": "create_table", "table": "idempotency_keys" },
+        { "op": "create_table", "table": "user_sync_heads" }
+      ],
+      "down": [
+        { "op": "drop_table", "table": "user_sync_heads" },
+        { "op": "drop_table", "table": "idempotency_keys" },
+        { "op": "drop_table", "table": "learning_events" }
+      ],
+      "checksumSha256": "5441fcaa1f335d2ca2621e0d39c2d4057ee42080f40f92bf9e433c8f62b94180"
+    },
+    {
+      "id": "0003_learning_state",
+      "dependsOn": ["0002_event_sync_core"],
+      "transactionRequired": true,
+      "targetTables": ["mastery_snapshots", "assessment_attempts", "study_schedule_entries", "bookmarks", "weak_topics", "mentor_history", "user_preferences"],
+      "up": [
+        { "op": "create_table", "table": "mastery_snapshots" },
+        { "op": "create_table", "table": "assessment_attempts" },
+        { "op": "create_table", "table": "study_schedule_entries" },
+        { "op": "create_table", "table": "bookmarks" },
+        { "op": "create_table", "table": "weak_topics" },
+        { "op": "create_table", "table": "mentor_history" },
+        { "op": "create_table", "table": "user_preferences" }
+      ],
+      "down": [
+        { "op": "drop_table", "table": "user_preferences" },
+        { "op": "drop_table", "table": "mentor_history" },
+        { "op": "drop_table", "table": "weak_topics" },
+        { "op": "drop_table", "table": "bookmarks" },
+        { "op": "drop_table", "table": "study_schedule_entries" },
+        { "op": "drop_table", "table": "assessment_attempts" },
+        { "op": "drop_table", "table": "mastery_snapshots" }
+      ],
+      "checksumSha256": "fedacb054a76ebea3c9aa4671e26bdf5aa7ece5bbd7b7ea0722446c07814c758"
+    },
+    {
+      "id": "0004_operational_indexes",
+      "dependsOn": ["0003_learning_state"],
+      "transactionRequired": true,
+      "targetTables": [],
+      "up": [
+        { "op": "create_index", "index": "idx_events_user_cursor", "table": "learning_events" },
+        { "op": "create_index", "index": "idx_events_user_type", "table": "learning_events" },
+        { "op": "create_index", "index": "idx_devices_user", "table": "devices" },
+        { "op": "create_index", "index": "idx_schedule_user_time", "table": "study_schedule_entries" }
+      ],
+      "down": [
+        { "op": "drop_index", "index": "idx_schedule_user_time", "table": "study_schedule_entries" },
+        { "op": "drop_index", "index": "idx_devices_user", "table": "devices" },
+        { "op": "drop_index", "index": "idx_events_user_type", "table": "learning_events" },
+        { "op": "drop_index", "index": "idx_events_user_cursor", "table": "learning_events" }
+      ],
+      "checksumSha256": "fbed9e0e37e6d54ee2af328ddf0061ccaa6d7d8e43428c5d133facb4149ab89d"
+    }
+  ],
+  "rollback": {
+    "downMigrationScope": "empty_or_isolated_restore_target_only",
+    "productionRollback": "stop_writes_then_restore_last_verified_backup_or_forward_fix",
+    "reverseOrderRequired": true,
+    "inPlaceDestructiveRestoreAllowed": false,
+    "automaticProductionDownMigrationAllowed": false
+  },
+  "deploymentSequence": ["development", "local_test", "migration_test", "regression_test", "staging", "production"],
+  "counts": { "migrations": 4, "tablesCreated": 12, "indexesCreated": 4, "productionExecutions": 0 },
+  "acceptance": { "step": 134, "result": "PASS_REVERSIBLE_MIGRATION_DESIGN" }
+}

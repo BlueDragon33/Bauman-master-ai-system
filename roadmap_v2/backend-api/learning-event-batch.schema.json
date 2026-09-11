@@ -1,0 +1,16 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://bauman.local/schemas/roadmap-v2-learning-event-batch-v1.json",
+  "title": "Future append-only learning event batch",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schema", "userId", "deviceId", "idempotencyKey", "baseCursor", "events"],
+  "properties": {
+    "schema": { "const": "BAUMAN_ROADMAP_V2_LEARNING_EVENT_BATCH_V1" },
+    "userId": { "type": "string", "pattern": "^usr_[A-Za-z0-9_-]{8,64}$" },
+    "deviceId": { "type": "string", "pattern": "^dev_[A-Za-z0-9_-]{8,64}$" },
+    "idempotencyKey": { "type": "string", "pattern": "^idem_[A-Za-z0-9_-]{12,96}$" },
+    "baseCursor": { "type": ["string", "null"] },
+    "events": { "type": "array", "minItems": 1, "maxItems": 100, "items": { "type": "object" } }
+  }
+}

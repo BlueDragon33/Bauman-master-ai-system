@@ -1,0 +1,123 @@
+{
+  "schema": "BAUMAN_ROADMAP_V2_INTEGRATION_CONTRACT_V1",
+  "version": "2.8.0-l28-b109",
+  "purpose": "Lượt 28 / Bước 109–112 — fail-closed production integration planning with feature flags and atomic rollback; no runtime activation",
+  "baselineCommit": "e383912354673bdce7a0059d6b9a23799d74e689",
+  "mode": {
+    "access": "read_only_activation_planning",
+    "productionIntegration": "disconnected",
+    "failClosed": true,
+    "legacyRuntimeAuthoritative": true,
+    "runtimeWriteAllowed": false
+  },
+  "upstreamSchemas": {
+    "consumerManifest": "BAUMAN_ROADMAP_V2_CONSUMER_MANIFEST_V1",
+    "diagnosticManifest": "BAUMAN_ROADMAP_V2_DIAGNOSTIC_MANIFEST_V1",
+    "masteryManifest": "BAUMAN_ROADMAP_V2_MASTERY_MANIFEST_V1",
+    "priorityManifest": "BAUMAN_ROADMAP_V2_PRIORITY_MANIFEST_V1",
+    "schedulerManifest": "BAUMAN_ROADMAP_V2_SCHEDULER_MANIFEST_V1",
+    "readinessManifest": "BAUMAN_ROADMAP_V2_READINESS_MANIFEST_V1"
+  },
+  "featureFlags": {
+    "roadmapCoreProjection": {
+      "default": false,
+      "activationStep": 113,
+      "requires": []
+    },
+    "diagnosticRuntime": {
+      "default": false,
+      "activationStep": 129,
+      "requires": [
+        "roadmapCoreProjection",
+        "verifiedDiagnosticItemBanks"
+      ]
+    },
+    "evidencePersistence": {
+      "default": false,
+      "activationStep": 117,
+      "requires": [
+        "roadmapCoreProjection",
+        "versionedEvidenceStore",
+        "backupRestoreVerified"
+      ]
+    },
+    "priorityScheduler": {
+      "default": false,
+      "activationStep": 133,
+      "requires": [
+        "evidencePersistence",
+        "verifiedLegacyMappings"
+      ]
+    },
+    "readinessDashboard": {
+      "default": false,
+      "activationStep": 137,
+      "requires": [
+        "priorityScheduler",
+        "readinessUiVerified"
+      ]
+    }
+  },
+  "activationPolicy": {
+    "allFlagsDefaultOff": true,
+    "explicitRequestRequired": true,
+    "verifiedSourceRequired": true,
+    "exactBaselineRequired": true,
+    "protectedFingerprintPassRequired": true,
+    "rollbackVerificationRequired": true,
+    "dependencyClosureRequired": true,
+    "partialActivationAllowed": false,
+    "activationAllowedInL28": false
+  },
+  "rollbackPolicy": {
+    "strategy": "atomic_feature_flag_kill_switch",
+    "legacyEntrypointsRemainUnchanged": true,
+    "disableAllFlagsOnFailure": true,
+    "dataRollbackRequiredInL28": false,
+    "reason": "L28 creates no persistent data and performs no production writes.",
+    "requiredEvidence": [
+      "protected production fingerprints PASS",
+      "all Roadmap V2 feature flags resolve false",
+      "legacy entrypoints contain no Roadmap V2 import",
+      "activation plan is deterministic and non-persisted"
+    ]
+  },
+  "capabilities": {
+    "activationPlanRead": true,
+    "rollbackPlanRead": true,
+    "featureFlagWrite": false,
+    "runtimeImportWrite": false,
+    "evidenceStoreWrite": false,
+    "calendarWrite": false,
+    "dashboardRender": false,
+    "notificationWrite": false,
+    "legacyMutation": false
+  },
+  "reasonCodes": {
+    "PRODUCTION_INTEGRATION_DISCONNECTED": "L28 is an integration-planning harness and cannot activate production.",
+    "DIAGNOSTIC_ITEM_BANKS_MISSING": "No verified Diagnostic item bank is available.",
+    "EVIDENCE_STORE_NOT_IMPLEMENTED": "The versioned evidence store and restore path are not implemented.",
+    "LEGACY_MAPPING_REVIEW_INCOMPLETE": "Unverified legacy mappings remain quarantined.",
+    "RUNTIME_BRIDGE_NOT_IMPLEMENTED": "The production runtime bridge begins in L29 only.",
+    "DEPENDENCY_NOT_ENABLED": "A requested feature flag dependency is not enabled.",
+    "REQUESTED_FLAGS_ALL_OFF": "The request preserves the safe default with every feature flag off."
+  },
+  "abortConditions": [
+    "baseline commit mismatch",
+    "protected fingerprint gate not PASS",
+    "unverified request source",
+    "rollback gate not verified",
+    "unknown or non-boolean feature flag",
+    "feature flag default drift",
+    "dependency closure violation",
+    "upstream manifest schema, hash or production-boundary mismatch",
+    "any production import, persistent write, UI render, calendar write or notification write in L28"
+  ],
+  "acceptance": {
+    "step": 109,
+    "featureFlagsDefaultOff": true,
+    "rollbackPolicyExplicit": true,
+    "productionActivationAllowed": false,
+    "result": "PASS_CONTRACT_ONLY"
+  }
+}

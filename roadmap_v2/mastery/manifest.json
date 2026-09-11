@@ -1,0 +1,74 @@
+{
+  "schema": "BAUMAN_ROADMAP_V2_MASTERY_MANIFEST_V1",
+  "version": "2.4.0-l24-b95",
+  "status": "PASS_B95_MASTERY_PREREQUISITE_HARNESS",
+  "mode": "in_memory_append_only_evidence_harness",
+  "productionIntegration": "disconnected",
+  "baselineCommit": "e383912354673bdce7a0059d6b9a23799d74e689",
+  "upstream": {
+    "consumerManifest": {
+      "path": "consumer/manifest.json",
+      "bytes": 1445,
+      "sha256": "19448bca6ff10a046cd1a14e95b99de40800fbf86515777e531899310bf1c1e4"
+    },
+    "diagnosticManifest": {
+      "path": "diagnostic/manifest.json",
+      "bytes": 2494,
+      "sha256": "5985fca8af87c35c1f4a38d1a1ffd265f0e5cdd877ec7cda347f7ae3f3969a58"
+    }
+  },
+  "files": {
+    "masteryContract": {
+      "path": "mastery/mastery-contract.json",
+      "bytes": 4161,
+      "sha256": "1839e976a296db71c4465d15a11cab6fc66b9459588c0a280dbf018c2c29e921"
+    },
+    "masteryContractSchema": {
+      "path": "mastery/mastery-contract.schema.json",
+      "bytes": 3262,
+      "sha256": "f37330eb8c3ec2cb02d0ce9fbba87dea4458e5b7039bfd3f33b0715820dddbee"
+    },
+    "evidenceEventSchema": {
+      "path": "mastery/evidence-event.schema.json",
+      "bytes": 1334,
+      "sha256": "ffb0c7fae053e674512d1719960999add8f7982cecec51044aacd2218bfa2590"
+    },
+    "masterySnapshotSchema": {
+      "path": "mastery/mastery-snapshot.schema.json",
+      "bytes": 1403,
+      "sha256": "dba8a5d89c1274c38e066c119e8dc6de20dee0ec76e014e035e68f12cb959f67"
+    },
+    "masteryEngine": {
+      "path": "mastery.mjs",
+      "bytes": 22000,
+      "sha256": "c1e82cd8da51c6d0a1debd165aff7cb183d7ad021745d555d8849a0c1beff936"
+    }
+  },
+  "counts": {
+    "knowledgeStates": 6,
+    "evidenceTypes": 8,
+    "catalogTargets": 381,
+    "persistentStores": 0,
+    "persistedEvents": 0,
+    "persistedSnapshots": 0
+  },
+  "safety": {
+    "appendOnlyValidation": true,
+    "inMemoryReductionOnly": true,
+    "diagnosticPassGrantsMasterReady": false,
+    "persistentStoreWrites": 0,
+    "priorityEngineWrites": 0,
+    "schedulerWrites": 0,
+    "runtimeWrites": 0
+  },
+  "acceptance": {
+    "step": 95,
+    "eventSchemaPinned": true,
+    "reducerPinned": true,
+    "deterministicReplayRequired": true,
+    "masterReadyGateEnabled": true,
+    "prerequisitePropagationEnabled": true,
+    "productionPersistenceEnabled": false,
+    "result": "PASS_MASTERY_PREREQUISITE_HARNESS"
+  }
+}

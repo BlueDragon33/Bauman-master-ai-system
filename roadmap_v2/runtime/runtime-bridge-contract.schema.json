@@ -1,0 +1,58 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "BAUMAN_ROADMAP_V2_RUNTIME_BRIDGE_CONTRACT_V1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema",
+    "version",
+    "purpose",
+    "baselineCommit",
+    "upstreamSchemas",
+    "mode",
+    "featureFlags",
+    "mutationScope",
+    "activationPolicy",
+    "rollbackPolicy",
+    "capabilities",
+    "abortConditions",
+    "acceptance"
+  ],
+  "properties": {
+    "schema": { "const": "BAUMAN_ROADMAP_V2_RUNTIME_BRIDGE_CONTRACT_V1" },
+    "version": { "const": "2.9.0-l29-b113" },
+    "purpose": { "type": "string", "minLength": 1 },
+    "baselineCommit": { "const": "e383912354673bdce7a0059d6b9a23799d74e689" },
+    "upstreamSchemas": { "type": "object" },
+    "mode": { "type": "object" },
+    "featureFlags": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["roadmapCoreProjection", "diagnosticRuntime", "evidencePersistence", "priorityScheduler", "readinessDashboard"],
+      "properties": {
+        "roadmapCoreProjection": { "$ref": "#/$defs/flag" },
+        "diagnosticRuntime": { "$ref": "#/$defs/flag" },
+        "evidencePersistence": { "$ref": "#/$defs/flag" },
+        "priorityScheduler": { "$ref": "#/$defs/flag" },
+        "readinessDashboard": { "$ref": "#/$defs/flag" }
+      }
+    },
+    "mutationScope": { "type": "object" },
+    "activationPolicy": { "type": "object" },
+    "rollbackPolicy": { "type": "object" },
+    "capabilities": { "type": "object" },
+    "abortConditions": { "type": "array", "minItems": 1, "items": { "type": "string" } },
+    "acceptance": { "type": "object" }
+  },
+  "$defs": {
+    "flag": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["default", "availableInL29"],
+      "properties": {
+        "default": { "const": false },
+        "availableInL29": { "type": "boolean" }
+      }
+    }
+  }
+}

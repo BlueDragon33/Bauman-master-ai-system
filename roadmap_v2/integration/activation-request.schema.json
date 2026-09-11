@@ -1,0 +1,49 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "BAUMAN_ROADMAP_V2_ACTIVATION_REQUEST_V1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema",
+    "planId",
+    "baselineCommit",
+    "requestedFeatureFlags",
+    "source",
+    "protectedFingerprintStatus",
+    "rollbackVerified"
+  ],
+  "properties": {
+    "schema": { "const": "BAUMAN_ROADMAP_V2_ACTIVATION_REQUEST_V1" },
+    "planId": { "type": "string", "minLength": 1 },
+    "baselineCommit": { "const": "e383912354673bdce7a0059d6b9a23799d74e689" },
+    "requestedFeatureFlags": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "roadmapCoreProjection",
+        "diagnosticRuntime",
+        "evidencePersistence",
+        "priorityScheduler",
+        "readinessDashboard"
+      ],
+      "properties": {
+        "roadmapCoreProjection": { "type": "boolean" },
+        "diagnosticRuntime": { "type": "boolean" },
+        "evidencePersistence": { "type": "boolean" },
+        "priorityScheduler": { "type": "boolean" },
+        "readinessDashboard": { "type": "boolean" }
+      }
+    },
+    "source": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["ref", "verified"],
+      "properties": {
+        "ref": { "type": "string", "minLength": 1 },
+        "verified": { "const": true }
+      }
+    },
+    "protectedFingerprintStatus": { "const": "PASS" },
+    "rollbackVerified": { "const": true }
+  }
+}

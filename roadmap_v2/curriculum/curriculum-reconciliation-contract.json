@@ -1,0 +1,49 @@
+{
+  "schema": "BAUMAN_ROADMAP_V2_CURRICULUM_RECONCILIATION_CONTRACT_V1",
+  "version": "2.10.0-l30-b117",
+  "status": "PASS_B117_CONTRACT_ONLY",
+  "baselineCommit": "e383912354673bdce7a0059d6b9a23799d74e689",
+  "headBeforeL30": "0cb08f8cbac183c9b82cd4370878aa61117c0002",
+  "planAmendment": {
+    "approvedAt": "2026-08-13",
+    "previousNextAction": "L30/B117 persistence",
+    "approvedNextAction": "L30/B117 curriculum reconciliation V2.1",
+    "persistenceDeferredTo": "L34/B133",
+    "totalPlan": "58 lượt / 232 bước",
+    "renumberCompletedSteps": false
+  },
+  "evidenceClasses": [
+    "physical_repository_baseline",
+    "prior_curriculum_reconciliation",
+    "diagnostic_evidence",
+    "verified_bauman_syllabus_import"
+  ],
+  "dispositions": [
+    "retain_and_adapt",
+    "redistribute_as_support",
+    "diagnostic_review_only",
+    "build_new",
+    "dynamic_import_only",
+    "quarantine_unverified"
+  ],
+  "prohibitedInferences": [
+    "entrance_score_implies_curriculum_depth",
+    "hutech_background_equals_bauman_course_credit",
+    "declared_existing_competency_grants_prerequisite",
+    "diagnostic_pass_grants_master_ready",
+    "unverified_bauman_subject_name_creates_static_lessons",
+    "legacy_module_name_proves_content_coverage"
+  ],
+  "capabilities": {
+    "runtimeWrite": false,
+    "legacyMutation": false,
+    "persistence": false,
+    "uiActivation": false,
+    "calendarWrite": false,
+    "notificationWrite": false
+  },
+  "acceptance": {
+    "step": 117,
+    "result": "PASS_CONTRACT_ONLY"
+  }
+}

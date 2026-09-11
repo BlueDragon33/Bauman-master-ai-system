@@ -1,0 +1,50 @@
+{
+  "schema": "BAUMAN_ROADMAP_V2_BACKEND_API_CONTRACT_V1",
+  "version": "2.13.0-l33-b129",
+  "status": "PASS_B129_CONTRACT_ONLY",
+  "baselineCommit": "e383912354673bdce7a0059d6b9a23799d74e689",
+  "headBeforeL33": "6b6226c81f94d5adaca300ba480b60e29a6569ef",
+  "mode": "PROVIDER_NEUTRAL_DISCONNECTED_HARNESS",
+  "scopeDecision": {
+    "basis": "User-authorized migration order recovered from Library plus the previously locked L34/B133 persistence deferral.",
+    "sequence": ["inventory", "normalize", "separate_layers", "site", "backend_api", "database_persistence", "multi_device_sync", "personal_ai"],
+    "thisTurnLayer": "backend_api",
+    "persistenceDeferredTo": "L34/B133"
+  },
+  "dataClasses": {
+    "staticContent": ["course_registry", "prerequisite_graph", "lesson_content", "exercise_content", "simulation_content", "assessment_blueprints"],
+    "dynamicUserData": ["learning_events", "mastery_snapshots", "assessment_attempts", "study_schedule", "bookmarks", "weak_topics", "mentor_history", "user_preferences", "sync_cursors"]
+  },
+  "securityBoundary": {
+    "defaultCredentialsAllowed": false,
+    "plaintextPasswordsAllowed": false,
+    "frontendSecretsAllowed": false,
+    "callerSuppliedRolesTrusted": false,
+    "userResourceOwnershipRequired": true,
+    "opaqueUserIdRequired": true,
+    "corsMode": "explicit_allowlist_only",
+    "crossFrameContract": "separate_origin_source_validated_boundary_required_before_production"
+  },
+  "persistenceBoundary": {
+    "databaseConnections": 0,
+    "persistentStores": 0,
+    "userRecords": 0,
+    "sessions": 0,
+    "tokens": 0,
+    "syncWrites": 0,
+    "eventWrites": 0
+  },
+  "capabilities": {
+    "productionServerStart": false,
+    "databaseConnect": false,
+    "databaseMigrate": false,
+    "userCreate": false,
+    "sessionCreate": false,
+    "tokenIssue": false,
+    "progressWrite": false,
+    "syncWrite": false,
+    "productionRouteMutation": false,
+    "runtimeActivation": false
+  },
+  "acceptance": { "step": 129, "result": "PASS_CONTRACT_ONLY" }
+}

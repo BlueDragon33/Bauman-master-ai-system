@@ -1,0 +1,288 @@
+{
+  "schema": "BAUMAN_ROADMAP_V2_STATIC_UI_AUDIT_SUMMARY_V1",
+  "version": "2.11.0-l31-b122",
+  "status": "PASS_B122_DETERMINISTIC_STATIC_AUDIT_WITH_FINDINGS",
+  "auditHead": "a1eece596c198f48cdd84f77c59986f59eb2eb3d",
+  "scope": {
+    "routes": 9,
+    "viewportsDeferredToBrowser": 2,
+    "physicalModules": 8,
+    "targetCourses": 10
+  },
+  "counts": {
+    "findings": 16,
+    "open": 16,
+    "resolved": 0,
+    "bySeverity": {
+      "critical": 1,
+      "high": 8,
+      "medium": 7
+    },
+    "byArea": {
+      "security": 3,
+      "integration": 1,
+      "curriculum_semantics": 3,
+      "information_architecture": 1,
+      "assessment": 1,
+      "mastery": 3,
+      "data_portability": 1,
+      "maintainability": 2,
+      "accessibility": 1
+    }
+  },
+  "observedRuntimeFamilies": [
+    {
+      "id": "shared_subject_module_v2",
+      "modules": [
+        "ai",
+        "foundation",
+        "research",
+        "signal",
+        "systems"
+      ]
+    },
+    {
+      "id": "large_core_with_planning_bridge",
+      "modules": [
+        "programming",
+        "russian"
+      ]
+    },
+    {
+      "id": "math_patch_stack",
+      "modules": [
+        "math"
+      ]
+    }
+  ],
+  "priorities": [
+    {
+      "id": "L31-F001",
+      "severity": "critical",
+      "area": "security",
+      "title": "Default administrator credentials are prefilled and stored in client code",
+      "affectedTargets": [
+        "main"
+      ]
+    },
+    {
+      "id": "L31-F002",
+      "severity": "high",
+      "area": "integration",
+      "title": "Five subject modules emit a progress message Main does not accept",
+      "affectedTargets": [
+        "ai",
+        "foundation",
+        "research",
+        "signal",
+        "systems",
+        "main"
+      ]
+    },
+    {
+      "id": "L31-F003",
+      "severity": "high",
+      "area": "curriculum_semantics",
+      "title": "Stage labels conflict across Main, Math, and Roadmap V2",
+      "affectedTargets": [
+        "main",
+        "math"
+      ]
+    },
+    {
+      "id": "L31-F004",
+      "severity": "high",
+      "area": "information_architecture",
+      "title": "Physical UI exposes eight modules while the accepted target curriculum has ten courses",
+      "affectedTargets": [
+        "main",
+        "ai",
+        "foundation",
+        "math",
+        "programming",
+        "research",
+        "russian",
+        "signal",
+        "systems"
+      ]
+    },
+    {
+      "id": "L31-F005",
+      "severity": "high",
+      "area": "assessment",
+      "title": "Quiz size copy conflicts with the implemented maximum",
+      "affectedTargets": [
+        "ai",
+        "foundation",
+        "research",
+        "signal",
+        "systems"
+      ]
+    },
+    {
+      "id": "L31-F006",
+      "severity": "high",
+      "area": "mastery",
+      "title": "Shared modules allow direct lesson completion without an evidence gate",
+      "affectedTargets": [
+        "ai",
+        "foundation",
+        "research",
+        "signal",
+        "systems"
+      ]
+    },
+    {
+      "id": "L31-F009",
+      "severity": "high",
+      "area": "mastery",
+      "title": "Legacy UI has no representation for the accepted control-plane states",
+      "affectedTargets": [
+        "main",
+        "ai",
+        "foundation",
+        "math",
+        "programming",
+        "research",
+        "russian",
+        "signal",
+        "systems"
+      ]
+    },
+    {
+      "id": "L31-F012",
+      "severity": "high",
+      "area": "security",
+      "title": "Cross-frame messages use wildcard delivery without origin/source validation",
+      "affectedTargets": [
+        "main",
+        "ai",
+        "foundation",
+        "math",
+        "programming",
+        "research",
+        "russian",
+        "signal",
+        "systems"
+      ]
+    },
+    {
+      "id": "L31-F016",
+      "severity": "high",
+      "area": "curriculum_semantics",
+      "title": "Current Bauman Subjects cannot be represented as static guessed curriculum",
+      "affectedTargets": [
+        "main"
+      ]
+    },
+    {
+      "id": "L31-F007",
+      "severity": "medium",
+      "area": "data_portability",
+      "title": "Shared JSON import validates syntax but does not complete a durable import workflow",
+      "affectedTargets": [
+        "ai",
+        "foundation",
+        "research",
+        "signal",
+        "systems"
+      ]
+    },
+    {
+      "id": "L31-F008",
+      "severity": "medium",
+      "area": "maintainability",
+      "title": "Five subjects use byte-identical generic JavaScript and CSS runtimes",
+      "affectedTargets": [
+        "ai",
+        "foundation",
+        "research",
+        "signal",
+        "systems"
+      ]
+    },
+    {
+      "id": "L31-F010",
+      "severity": "medium",
+      "area": "curriculum_semantics",
+      "title": "Shared subject assistant is keyword lookup rather than an evidence-aware tutor",
+      "affectedTargets": [
+        "ai",
+        "foundation",
+        "research",
+        "signal",
+        "systems"
+      ]
+    },
+    {
+      "id": "L31-F011",
+      "severity": "medium",
+      "area": "mastery",
+      "title": "Legacy progress is a local percentage rather than the accepted mastery projection",
+      "affectedTargets": [
+        "main",
+        "ai",
+        "foundation",
+        "math",
+        "programming",
+        "research",
+        "russian",
+        "signal",
+        "systems"
+      ]
+    },
+    {
+      "id": "L31-F013",
+      "severity": "medium",
+      "area": "maintainability",
+      "title": "Math uses a heterogeneous patch-stack entrypoint",
+      "affectedTargets": [
+        "math"
+      ]
+    },
+    {
+      "id": "L31-F014",
+      "severity": "medium",
+      "area": "accessibility",
+      "title": "Visible form controls across all legacy routes lack programmatically associated names",
+      "affectedTargets": [
+        "main",
+        "ai",
+        "foundation",
+        "math",
+        "programming",
+        "research",
+        "russian",
+        "signal",
+        "systems"
+      ]
+    },
+    {
+      "id": "L31-F015",
+      "severity": "medium",
+      "area": "security",
+      "title": "Widespread innerHTML rendering requires a data-flow security review",
+      "affectedTargets": [
+        "main",
+        "ai",
+        "foundation",
+        "math",
+        "programming",
+        "research",
+        "russian",
+        "signal",
+        "systems"
+      ]
+    }
+  ],
+  "safety": {
+    "productionFilesChanged": 0,
+    "findingsAutoResolved": 0,
+    "runtimeActivated": 0,
+    "persistenceWrites": 0
+  },
+  "acceptance": {
+    "step": 122,
+    "result": "PASS_DETERMINISTIC_STATIC_AUDIT_WITH_OPEN_FINDINGS"
+  }
+}

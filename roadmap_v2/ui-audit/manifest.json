@@ -1,0 +1,46 @@
+{
+  "schema": "BAUMAN_ROADMAP_V2_UI_AUDIT_MANIFEST_V1",
+  "version": "2.11.0-l31-b122",
+  "status": "PASS_B122_DETERMINISTIC_STATIC_AUDIT",
+  "auditHead": "a1eece596c198f48cdd84f77c59986f59eb2eb3d",
+  "sources": {
+    "contract": {
+      "path": "ui-audit-contract.json",
+      "bytes": 1824,
+      "sha256": "08537c9355e8913356ba04755344d978519b1e21b4580adbec44ea761bc7d66d"
+    },
+    "inventory": {
+      "path": "source-inventory.json",
+      "bytes": 6265,
+      "sha256": "1597d627bb4172080c32a6ca7c048f8fcc83385e4e56dcbbaa7060716de4bc3a"
+    },
+    "findings": {
+      "path": "findings.json",
+      "bytes": 10927,
+      "sha256": "12925607a36fa29c0fa49b38dbc743794899ea8f6bf6e094526c62abb3751106"
+    }
+  },
+  "generatedSummary": {
+    "path": "static-summary.json",
+    "bytes": 6606,
+    "sha256": "d3d9049e5ba407eb2c33634eaf2d9c0cfd137fbfe929e9e1c91fcec278159019"
+  },
+  "counts": {
+    "routes": 9,
+    "viewports": 2,
+    "observationsRequired": 18,
+    "findings": 16,
+    "open": 16,
+    "resolved": 0
+  },
+  "safety": {
+    "productionFilesChanged": 0,
+    "findingsAutoResolved": 0,
+    "runtimeActivated": 0,
+    "persistenceWrites": 0
+  },
+  "acceptance": {
+    "step": 122,
+    "result": "PASS_STATIC_AUDIT_PACKAGE"
+  }
+}

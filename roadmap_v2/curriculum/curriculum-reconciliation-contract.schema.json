@@ -1,0 +1,52 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "BAUMAN_ROADMAP_V2_CURRICULUM_RECONCILIATION_CONTRACT_V1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schema", "version", "status", "baselineCommit", "planAmendment", "evidenceClasses", "dispositions", "prohibitedInferences", "capabilities", "acceptance"],
+  "properties": {
+    "schema": { "const": "BAUMAN_ROADMAP_V2_CURRICULUM_RECONCILIATION_CONTRACT_V1" },
+    "version": { "const": "2.10.0-l30-b117" },
+    "status": { "const": "PASS_B117_CONTRACT_ONLY" },
+    "baselineCommit": { "const": "e383912354673bdce7a0059d6b9a23799d74e689" },
+    "headBeforeL30": { "type": "string", "pattern": "^[0-9a-f]{40}$" },
+    "planAmendment": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["approvedAt", "previousNextAction", "approvedNextAction", "persistenceDeferredTo", "totalPlan", "renumberCompletedSteps"],
+      "properties": {
+        "approvedAt": { "const": "2026-08-13" },
+        "previousNextAction": { "const": "L30/B117 persistence" },
+        "approvedNextAction": { "const": "L30/B117 curriculum reconciliation V2.1" },
+        "persistenceDeferredTo": { "const": "L34/B133" },
+        "totalPlan": { "const": "58 lượt / 232 bước" },
+        "renumberCompletedSteps": { "const": false }
+      }
+    },
+    "evidenceClasses": { "type": "array", "minItems": 4, "uniqueItems": true, "items": { "type": "string" } },
+    "dispositions": { "type": "array", "minItems": 6, "uniqueItems": true, "items": { "type": "string" } },
+    "prohibitedInferences": { "type": "array", "minItems": 5, "uniqueItems": true, "items": { "type": "string" } },
+    "capabilities": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["runtimeWrite", "legacyMutation", "persistence", "uiActivation", "calendarWrite", "notificationWrite"],
+      "properties": {
+        "runtimeWrite": { "const": false },
+        "legacyMutation": { "const": false },
+        "persistence": { "const": false },
+        "uiActivation": { "const": false },
+        "calendarWrite": { "const": false },
+        "notificationWrite": { "const": false }
+      }
+    },
+    "acceptance": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["step", "result"],
+      "properties": {
+        "step": { "const": 117 },
+        "result": { "const": "PASS_CONTRACT_ONLY" }
+      }
+    }
+  }
+}

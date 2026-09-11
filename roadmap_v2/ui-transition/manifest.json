@@ -1,0 +1,65 @@
+{
+  "schema": "BAUMAN_ROADMAP_V2_UI_TRANSITION_MANIFEST_V1",
+  "version": "2.12.0-l32-b126",
+  "status": "PASS_B126_DETERMINISTIC_UI_TRANSITION_DESIGN",
+  "headBeforeL32": "649d98ccfcf06ec8c558e79a80bac9a3560916c7",
+  "sources": {
+    "contract": {
+      "path": "roadmap_v2/ui-transition/ui-transition-contract.json",
+      "bytes": 2196,
+      "sha256": "ffb94000368820874008eb9881e9bea30b0ce2e4519a14cbeaa42a77d4df4df8"
+    },
+    "courseRoutePlan": {
+      "path": "roadmap_v2/ui-transition/course-route-plan.json",
+      "bytes": 3828,
+      "sha256": "068106f7d81ab973eb99a5a1ba8fb466dcfaaa9775a429b98bbb4f71d207ba3d"
+    },
+    "legacyCompatibilityPlan": {
+      "path": "roadmap_v2/ui-transition/legacy-compatibility-plan.json",
+      "bytes": 1604,
+      "sha256": "f70e514faba5332732a3acf7a8ac31010b9edd7cb248ce187de576f8c3ab2ce3"
+    },
+    "remediationBacklog": {
+      "path": "roadmap_v2/ui-transition/remediation-backlog.json",
+      "bytes": 1618,
+      "sha256": "a1724b9809525913b09c145d4fa6520319c9ff8997721310a7ba4e897a229434"
+    },
+    "targetDisposition": {
+      "path": "roadmap_v2/curriculum/target-course-disposition.json",
+      "bytes": 3100,
+      "sha256": "cae24e8d8e2478ffb6da26a634b8128bf99b483cc08b4fb9c5171322ce40b433"
+    },
+    "findings": {
+      "path": "roadmap_v2/ui-audit/findings.json",
+      "bytes": 10927,
+      "sha256": "12925607a36fa29c0fa49b38dbc743794899ea8f6bf6e094526c62abb3751106"
+    }
+  },
+  "generatedPlan": {
+    "path": "roadmap_v2/ui-transition/transition-plan.json",
+    "bytes": 8577,
+    "sha256": "3100948cd5294c79547ffbbea67d7a4001725a721d4de6b9dd20f6652ee45780"
+  },
+  "counts": {
+    "canonicalCourses": 10,
+    "plannedCanonicalRoutes": 10,
+    "physicalCanonicalRoutesCreated": 0,
+    "legacyRoutesPreserved": 8,
+    "automaticRedirects": 0,
+    "openFindings": 16,
+    "remediationPhases": 4
+  },
+  "safety": {
+    "productionFilesChanged": 0,
+    "routesCreated": 0,
+    "redirectsCreated": 0,
+    "legacyModulesDeleted": 0,
+    "findingsResolved": 0,
+    "runtimeActivations": 0,
+    "persistenceWrites": 0
+  },
+  "acceptance": {
+    "step": 126,
+    "result": "PASS_UI_TRANSITION_DESIGN_PACKAGE"
+  }
+}

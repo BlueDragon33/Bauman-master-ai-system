@@ -1,0 +1,15 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://bauman.local/schemas/roadmap-v2-request-context-v1.json",
+  "title": "Authenticated request context supplied by a future trusted server adapter",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["requestId", "actorUserId", "sessionId", "authenticated", "authSource"],
+  "properties": {
+    "requestId": { "type": "string", "pattern": "^[A-Za-z0-9._:-]{8,128}$" },
+    "actorUserId": { "type": "string", "pattern": "^usr_[A-Za-z0-9_-]{8,64}$" },
+    "sessionId": { "type": "string", "pattern": "^ses_[A-Za-z0-9_-]{8,64}$" },
+    "authenticated": { "const": true },
+    "authSource": { "const": "trusted_server_adapter" }
+  }
+}

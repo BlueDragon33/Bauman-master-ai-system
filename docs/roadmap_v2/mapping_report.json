@@ -1,0 +1,664 @@
+{
+  "schema": "BAUMAN_ROADMAP_V2_MAPPING_REPORT_V1",
+  "version": "2.0.0-l19-b76",
+  "status": "PASS_MAPPING_CONTRACT",
+  "baselineCommit": "e383912354673bdce7a0059d6b9a23799d74e689",
+  "registryVersion": "2.0.0-l19-b74",
+  "policy": {
+    "exactLegacyRefRequiredForReuse": true,
+    "candidateChapterMappingIsReusableContent": false,
+    "plannedManifestCountIsReusableContent": false,
+    "unmatchedNodeIsMigrationFailure": false,
+    "ambiguousLegacyRefIsMigrationFailure": true
+  },
+  "entries": [
+    {
+      "roadmapNodeId": "RU-R0-C01",
+      "status": "legacy_module_inventory_pending",
+      "legacyRefs": [],
+      "evidence": "Russian module is outside the inventoried math-only baseline scope",
+      "action": "inventory Russian source during its scheduled integration lượt"
+    },
+    {
+      "roadmapNodeId": "RU-R0-C02",
+      "status": "legacy_module_inventory_pending",
+      "legacyRefs": [],
+      "evidence": "Russian module is outside the inventoried math-only baseline scope",
+      "action": "inventory Russian source during its scheduled integration lượt"
+    },
+    {
+      "roadmapNodeId": "RU-R1-C03",
+      "status": "legacy_module_inventory_pending",
+      "legacyRefs": [],
+      "evidence": "Russian module is outside the inventoried math-only baseline scope",
+      "action": "inventory Russian source during its scheduled integration lượt"
+    },
+    {
+      "roadmapNodeId": "RU-R1-C04",
+      "status": "legacy_module_inventory_pending",
+      "legacyRefs": [],
+      "evidence": "Russian module is outside the inventoried math-only baseline scope",
+      "action": "inventory Russian source during its scheduled integration lượt"
+    },
+    {
+      "roadmapNodeId": "RU-R2-C05",
+      "status": "legacy_module_inventory_pending",
+      "legacyRefs": [],
+      "evidence": "Russian module is outside the inventoried math-only baseline scope",
+      "action": "inventory Russian source during its scheduled integration lượt"
+    },
+    {
+      "roadmapNodeId": "RU-R2-C06",
+      "status": "legacy_module_inventory_pending",
+      "legacyRefs": [],
+      "evidence": "Russian module is outside the inventoried math-only baseline scope",
+      "action": "inventory Russian source during its scheduled integration lượt"
+    },
+    {
+      "roadmapNodeId": "RU-R3-C07",
+      "status": "legacy_module_inventory_pending",
+      "legacyRefs": [],
+      "evidence": "Russian module is outside the inventoried math-only baseline scope",
+      "action": "inventory Russian source during its scheduled integration lượt"
+    },
+    {
+      "roadmapNodeId": "RU-R3-C08",
+      "status": "legacy_module_inventory_pending",
+      "legacyRefs": [],
+      "evidence": "Russian module is outside the inventoried math-only baseline scope",
+      "action": "inventory Russian source during its scheduled integration lượt"
+    },
+    {
+      "roadmapNodeId": "RU-R4-C09",
+      "status": "legacy_module_inventory_pending",
+      "legacyRefs": [],
+      "evidence": "Russian module is outside the inventoried math-only baseline scope",
+      "action": "inventory Russian source during its scheduled integration lượt"
+    },
+    {
+      "roadmapNodeId": "RU-R4-C10",
+      "status": "legacy_module_inventory_pending",
+      "legacyRefs": [],
+      "evidence": "Russian module is outside the inventoried math-only baseline scope",
+      "action": "inventory Russian source during its scheduled integration lượt"
+    },
+    {
+      "roadmapNodeId": "MATH-L0-C01",
+      "status": "candidate_chapter_mapping",
+      "legacyRefs": [
+        "MATH-VN-LA-C01",
+        "MATH-PREP-LOG-C08"
+      ],
+      "evidence": "B73 lesson catalogue title/topic match; exact per-lesson audit deferred to Math integration lượt",
+      "action": "audit lesson-level coverage before reuse; do not rewrite legacy"
+    },
+    {
+      "roadmapNodeId": "MATH-L0-C02",
+      "status": "candidate_chapter_mapping",
+      "legacyRefs": [
+        "MATH-VN-CA-C03",
+        "MATH-PREP-CA1-C11",
+        "MATH-PREP-CA2-C12",
+        "MATH-PREP-CA3-C13",
+        "MATH-PREP-ODE-C14"
+      ],
+      "evidence": "B73 lesson catalogue title/topic match; exact per-lesson audit deferred to Math integration lượt",
+      "action": "audit lesson-level coverage before reuse; do not rewrite legacy"
+    },
+    {
+      "roadmapNodeId": "MATH-L1-C03",
+      "status": "candidate_chapter_mapping",
+      "legacyRefs": [
+        "MATH-VN-LA-C01",
+        "MATH-VN-LA-C02",
+        "MATH-PREP-LA1-C09",
+        "MATH-PREP-LA2-C10",
+        "MATH-HK1-NLA-C19"
+      ],
+      "evidence": "B73 lesson catalogue title/topic match; exact per-lesson audit deferred to Math integration lượt",
+      "action": "audit lesson-level coverage before reuse; do not rewrite legacy"
+    },
+    {
+      "roadmapNodeId": "MATH-L1-C04",
+      "status": "candidate_chapter_mapping",
+      "legacyRefs": [
+        "MATH-VN-CA-C03",
+        "MATH-PREP-CA2-C12",
+        "MATH-HK1-OPT-C20",
+        "MATH-HK2-NN-C27"
+      ],
+      "evidence": "B73 lesson catalogue title/topic match; exact per-lesson audit deferred to Math integration lượt",
+      "action": "audit lesson-level coverage before reuse; do not rewrite legacy"
+    },
+    {
+      "roadmapNodeId": "MATH-L2-C05",
+      "status": "candidate_chapter_mapping",
+      "legacyRefs": [
+        "MATH-VN-PS-C04",
+        "MATH-VN-PS-C05",
+        "MATH-PREP-PS2-C15"
+      ],
+      "evidence": "B73 lesson catalogue title/topic match; exact per-lesson audit deferred to Math integration lượt",
+      "action": "audit lesson-level coverage before reuse; do not rewrite legacy"
+    },
+    {
+      "roadmapNodeId": "MATH-L2-C06",
+      "status": "candidate_chapter_mapping",
+      "legacyRefs": [
+        "MATH-VN-PS-C06",
+        "MATH-PREP-ST1-C16"
+      ],
+      "evidence": "B73 lesson catalogue title/topic match; exact per-lesson audit deferred to Math integration lượt",
+      "action": "audit lesson-level coverage before reuse; do not rewrite legacy"
+    },
+    {
+      "roadmapNodeId": "MATH-L2-C07",
+      "status": "verified_composite",
+      "legacyRefs": [
+        "MATH-VN-PS-C05-L05",
+        "MATH-PREP-LA2-C10-L05",
+        "MATH-PREP-LA2-C10-L06",
+        "MATH-PREP-LA2-C10-L07",
+        "MATH-PREP-PS2-C15-L06"
+      ],
+      "evidence": "B73 parsed immutable lessons.json blob and verified exact lesson IDs/titles",
+      "action": "reuse theory source; create missing formula/exercise/simulation/test sidecars"
+    },
+    {
+      "roadmapNodeId": "MATH-L3-C08",
+      "status": "candidate_chapter_mapping",
+      "legacyRefs": [
+        "MATH-PREP-NM-C17",
+        "MATH-HK1-NLA-C19"
+      ],
+      "evidence": "B73 lesson catalogue title/topic match; exact per-lesson audit deferred to Math integration lượt",
+      "action": "audit lesson-level coverage before reuse; do not rewrite legacy"
+    },
+    {
+      "roadmapNodeId": "MATH-L3-C09",
+      "status": "candidate_chapter_mapping",
+      "legacyRefs": [
+        "MATH-HK1-OPT-C20",
+        "MATH-HK1-INFO-C21",
+        "MATH-HK2-MLB-C25",
+        "MATH-HK2-NN-C27"
+      ],
+      "evidence": "B73 lesson catalogue title/topic match; exact per-lesson audit deferred to Math integration lượt",
+      "action": "audit lesson-level coverage before reuse; do not rewrite legacy"
+    },
+    {
+      "roadmapNodeId": "MATH-L3-C10",
+      "status": "candidate_chapter_mapping",
+      "legacyRefs": [
+        "MATH-HK1-TS-C22",
+        "MATH-HK1-SIG-C23",
+        "MATH-HK2-KF-C29",
+        "MATH-NIR-TSADV-C31"
+      ],
+      "evidence": "B73 lesson catalogue title/topic match; exact per-lesson audit deferred to Math integration lượt",
+      "action": "audit lesson-level coverage before reuse; do not rewrite legacy"
+    },
+    {
+      "roadmapNodeId": "PY-L0-C01",
+      "status": "create_new",
+      "legacyRefs": [],
+      "evidence": "Lượt 18 reuse matrix classifies this academic content as new",
+      "action": "create content through the common module contract and Master-ready gate"
+    },
+    {
+      "roadmapNodeId": "PY-L1-C02",
+      "status": "create_new",
+      "legacyRefs": [],
+      "evidence": "Lượt 18 reuse matrix classifies this academic content as new",
+      "action": "create content through the common module contract and Master-ready gate"
+    },
+    {
+      "roadmapNodeId": "PY-L1-C03",
+      "status": "create_new",
+      "legacyRefs": [],
+      "evidence": "Lượt 18 reuse matrix classifies this academic content as new",
+      "action": "create content through the common module contract and Master-ready gate"
+    },
+    {
+      "roadmapNodeId": "PY-L2-C04",
+      "status": "create_new",
+      "legacyRefs": [],
+      "evidence": "Lượt 18 reuse matrix classifies this academic content as new",
+      "action": "create content through the common module contract and Master-ready gate"
+    },
+    {
+      "roadmapNodeId": "PY-L2-C05",
+      "status": "create_new",
+      "legacyRefs": [],
+      "evidence": "Lượt 18 reuse matrix classifies this academic content as new",
+      "action": "create content through the common module contract and Master-ready gate"
+    },
+    {
+      "roadmapNodeId": "PY-L2-C06",
+      "status": "create_new",
+      "legacyRefs": [],
+      "evidence": "Lượt 18 reuse matrix classifies this academic content as new",
+      "action": "create content through the common module contract and Master-ready gate"
+    },
+    {
+      "roadmapNodeId": "PY-L3-C07",
+      "status": "create_new",
+      "legacyRefs": [],
+      "evidence": "Lượt 18 reuse matrix classifies this academic content as new",
+      "action": "create content through the common module contract and Master-ready gate"
+    },
+    {
+      "roadmapNodeId": "PY-L3-C08",
+      "status": "create_new",
+      "legacyRefs": [],
+      "evidence": "Lượt 18 reuse matrix classifies this academic content as new",
+      "action": "create content through the common module contract and Master-ready gate"
+    },
+    {
+      "roadmapNodeId": "ADS-L0-C01",
+      "status": "create_new",
+      "legacyRefs": [],
+      "evidence": "Lượt 18 reuse matrix classifies this academic content as new",
+      "action": "create content through the common module contract and Master-ready gate"
+    },
+    {
+      "roadmapNodeId": "ADS-L1-C02",
+      "status": "create_new",
+      "legacyRefs": [],
+      "evidence": "Lượt 18 reuse matrix classifies this academic content as new",
+      "action": "create content through the common module contract and Master-ready gate"
+    },
+    {
+      "roadmapNodeId": "ADS-L1-C03",
+      "status": "create_new",
+      "legacyRefs": [],
+      "evidence": "Lượt 18 reuse matrix classifies this academic content as new",
+      "action": "create content through the common module contract and Master-ready gate"
+    },
+    {
+      "roadmapNodeId": "ADS-L2-C04",
+      "status": "create_new",
+      "legacyRefs": [],
+      "evidence": "Lượt 18 reuse matrix classifies this academic content as new",
+      "action": "create content through the common module contract and Master-ready gate"
+    },
+    {
+      "roadmapNodeId": "ADS-L2-C05",
+      "status": "create_new",
+      "legacyRefs": [],
+      "evidence": "Lượt 18 reuse matrix classifies this academic content as new",
+      "action": "create content through the common module contract and Master-ready gate"
+    },
+    {
+      "roadmapNodeId": "ADS-L2-C06",
+      "status": "create_new",
+      "legacyRefs": [],
+      "evidence": "Lượt 18 reuse matrix classifies this academic content as new",
+      "action": "create content through the common module contract and Master-ready gate"
+    },
+    {
+      "roadmapNodeId": "ADS-L3-C07",
+      "status": "create_new",
+      "legacyRefs": [],
+      "evidence": "Lượt 18 reuse matrix classifies this academic content as new",
+      "action": "create content through the common module contract and Master-ready gate"
+    },
+    {
+      "roadmapNodeId": "ADS-L3-C08",
+      "status": "create_new",
+      "legacyRefs": [],
+      "evidence": "Lượt 18 reuse matrix classifies this academic content as new",
+      "action": "create content through the common module contract and Master-ready gate"
+    },
+    {
+      "roadmapNodeId": "DB-L0-C01",
+      "status": "create_new",
+      "legacyRefs": [],
+      "evidence": "Lượt 18 reuse matrix classifies this academic content as new",
+      "action": "create content through the common module contract and Master-ready gate"
+    },
+    {
+      "roadmapNodeId": "DB-L1-C02",
+      "status": "create_new",
+      "legacyRefs": [],
+      "evidence": "Lượt 18 reuse matrix classifies this academic content as new",
+      "action": "create content through the common module contract and Master-ready gate"
+    },
+    {
+      "roadmapNodeId": "DB-L1-C03",
+      "status": "create_new",
+      "legacyRefs": [],
+      "evidence": "Lượt 18 reuse matrix classifies this academic content as new",
+      "action": "create content through the common module contract and Master-ready gate"
+    },
+    {
+      "roadmapNodeId": "DB-L2-C04",
+      "status": "create_new",
+      "legacyRefs": [],
+      "evidence": "Lượt 18 reuse matrix classifies this academic content as new",
+      "action": "create content through the common module contract and Master-ready gate"
+    },
+    {
+      "roadmapNodeId": "DB-L2-C05",
+      "status": "create_new",
+      "legacyRefs": [],
+      "evidence": "Lượt 18 reuse matrix classifies this academic content as new",
+      "action": "create content through the common module contract and Master-ready gate"
+    },
+    {
+      "roadmapNodeId": "DB-L2-C06",
+      "status": "create_new",
+      "legacyRefs": [],
+      "evidence": "Lượt 18 reuse matrix classifies this academic content as new",
+      "action": "create content through the common module contract and Master-ready gate"
+    },
+    {
+      "roadmapNodeId": "DB-L3-C07",
+      "status": "create_new",
+      "legacyRefs": [],
+      "evidence": "Lượt 18 reuse matrix classifies this academic content as new",
+      "action": "create content through the common module contract and Master-ready gate"
+    },
+    {
+      "roadmapNodeId": "DB-L3-C08",
+      "status": "create_new",
+      "legacyRefs": [],
+      "evidence": "Lượt 18 reuse matrix classifies this academic content as new",
+      "action": "create content through the common module contract and Master-ready gate"
+    },
+    {
+      "roadmapNodeId": "SYS-L0-C01",
+      "status": "create_new",
+      "legacyRefs": [],
+      "evidence": "Lượt 18 reuse matrix classifies this academic content as new",
+      "action": "create content through the common module contract and Master-ready gate"
+    },
+    {
+      "roadmapNodeId": "SYS-L1-C02",
+      "status": "create_new",
+      "legacyRefs": [],
+      "evidence": "Lượt 18 reuse matrix classifies this academic content as new",
+      "action": "create content through the common module contract and Master-ready gate"
+    },
+    {
+      "roadmapNodeId": "SYS-L1-C03",
+      "status": "create_new",
+      "legacyRefs": [],
+      "evidence": "Lượt 18 reuse matrix classifies this academic content as new",
+      "action": "create content through the common module contract and Master-ready gate"
+    },
+    {
+      "roadmapNodeId": "SYS-L2-C04",
+      "status": "create_new",
+      "legacyRefs": [],
+      "evidence": "Lượt 18 reuse matrix classifies this academic content as new",
+      "action": "create content through the common module contract and Master-ready gate"
+    },
+    {
+      "roadmapNodeId": "SYS-L2-C05",
+      "status": "create_new",
+      "legacyRefs": [],
+      "evidence": "Lượt 18 reuse matrix classifies this academic content as new",
+      "action": "create content through the common module contract and Master-ready gate"
+    },
+    {
+      "roadmapNodeId": "SYS-L2-C06",
+      "status": "create_new",
+      "legacyRefs": [],
+      "evidence": "Lượt 18 reuse matrix classifies this academic content as new",
+      "action": "create content through the common module contract and Master-ready gate"
+    },
+    {
+      "roadmapNodeId": "SYS-L3-C07",
+      "status": "create_new",
+      "legacyRefs": [],
+      "evidence": "Lượt 18 reuse matrix classifies this academic content as new",
+      "action": "create content through the common module contract and Master-ready gate"
+    },
+    {
+      "roadmapNodeId": "SYS-L3-C08",
+      "status": "create_new",
+      "legacyRefs": [],
+      "evidence": "Lượt 18 reuse matrix classifies this academic content as new",
+      "action": "create content through the common module contract and Master-ready gate"
+    },
+    {
+      "roadmapNodeId": "OR-L1-C01",
+      "status": "create_new",
+      "legacyRefs": [],
+      "evidence": "Lượt 18 reuse matrix classifies this academic content as new",
+      "action": "create content through the common module contract and Master-ready gate"
+    },
+    {
+      "roadmapNodeId": "OR-L1-C02",
+      "status": "create_new",
+      "legacyRefs": [],
+      "evidence": "Lượt 18 reuse matrix classifies this academic content as new",
+      "action": "create content through the common module contract and Master-ready gate"
+    },
+    {
+      "roadmapNodeId": "OR-L2-C03",
+      "status": "create_new",
+      "legacyRefs": [],
+      "evidence": "Lượt 18 reuse matrix classifies this academic content as new",
+      "action": "create content through the common module contract and Master-ready gate"
+    },
+    {
+      "roadmapNodeId": "OR-L2-C04",
+      "status": "create_new",
+      "legacyRefs": [],
+      "evidence": "Lượt 18 reuse matrix classifies this academic content as new",
+      "action": "create content through the common module contract and Master-ready gate"
+    },
+    {
+      "roadmapNodeId": "OR-L2-C05",
+      "status": "create_new",
+      "legacyRefs": [],
+      "evidence": "Lượt 18 reuse matrix classifies this academic content as new",
+      "action": "create content through the common module contract and Master-ready gate"
+    },
+    {
+      "roadmapNodeId": "OR-L2-C06",
+      "status": "create_new",
+      "legacyRefs": [],
+      "evidence": "Lượt 18 reuse matrix classifies this academic content as new",
+      "action": "create content through the common module contract and Master-ready gate"
+    },
+    {
+      "roadmapNodeId": "OR-L3-C07",
+      "status": "create_new",
+      "legacyRefs": [],
+      "evidence": "Lượt 18 reuse matrix classifies this academic content as new",
+      "action": "create content through the common module contract and Master-ready gate"
+    },
+    {
+      "roadmapNodeId": "OR-L3-C08",
+      "status": "create_new",
+      "legacyRefs": [],
+      "evidence": "Lượt 18 reuse matrix classifies this academic content as new",
+      "action": "create content through the common module contract and Master-ready gate"
+    },
+    {
+      "roadmapNodeId": "OR-L3-C09",
+      "status": "create_new",
+      "legacyRefs": [],
+      "evidence": "Lượt 18 reuse matrix classifies this academic content as new",
+      "action": "create content through the common module contract and Master-ready gate"
+    },
+    {
+      "roadmapNodeId": "ML-L1-C01",
+      "status": "create_new",
+      "legacyRefs": [],
+      "evidence": "Lượt 18 reuse matrix classifies this academic content as new",
+      "action": "create content through the common module contract and Master-ready gate"
+    },
+    {
+      "roadmapNodeId": "ML-L1-C02",
+      "status": "create_new",
+      "legacyRefs": [],
+      "evidence": "Lượt 18 reuse matrix classifies this academic content as new",
+      "action": "create content through the common module contract and Master-ready gate"
+    },
+    {
+      "roadmapNodeId": "ML-L1-C03",
+      "status": "create_new",
+      "legacyRefs": [],
+      "evidence": "Lượt 18 reuse matrix classifies this academic content as new",
+      "action": "create content through the common module contract and Master-ready gate"
+    },
+    {
+      "roadmapNodeId": "ML-L2-C04",
+      "status": "create_new",
+      "legacyRefs": [],
+      "evidence": "Lượt 18 reuse matrix classifies this academic content as new",
+      "action": "create content through the common module contract and Master-ready gate"
+    },
+    {
+      "roadmapNodeId": "ML-L2-C05",
+      "status": "create_new",
+      "legacyRefs": [],
+      "evidence": "Lượt 18 reuse matrix classifies this academic content as new",
+      "action": "create content through the common module contract and Master-ready gate"
+    },
+    {
+      "roadmapNodeId": "ML-L2-C06",
+      "status": "create_new",
+      "legacyRefs": [],
+      "evidence": "Lượt 18 reuse matrix classifies this academic content as new",
+      "action": "create content through the common module contract and Master-ready gate"
+    },
+    {
+      "roadmapNodeId": "ML-L3-C07",
+      "status": "create_new",
+      "legacyRefs": [],
+      "evidence": "Lượt 18 reuse matrix classifies this academic content as new",
+      "action": "create content through the common module contract and Master-ready gate"
+    },
+    {
+      "roadmapNodeId": "ML-L3-C08",
+      "status": "create_new",
+      "legacyRefs": [],
+      "evidence": "Lượt 18 reuse matrix classifies this academic content as new",
+      "action": "create content through the common module contract and Master-ready gate"
+    },
+    {
+      "roadmapNodeId": "ML-L3-C09",
+      "status": "create_new",
+      "legacyRefs": [],
+      "evidence": "Lượt 18 reuse matrix classifies this academic content as new",
+      "action": "create content through the common module contract and Master-ready gate"
+    },
+    {
+      "roadmapNodeId": "CUR-L4-C01",
+      "status": "create_dynamic",
+      "legacyRefs": [],
+      "evidence": "Course Instance must be generated from an official current syllabus",
+      "action": "create schema/template only; never invent a Bauman course list"
+    },
+    {
+      "roadmapNodeId": "CUR-L4-C02",
+      "status": "create_dynamic",
+      "legacyRefs": [],
+      "evidence": "Course Instance must be generated from an official current syllabus",
+      "action": "create schema/template only; never invent a Bauman course list"
+    },
+    {
+      "roadmapNodeId": "CUR-L4-C03",
+      "status": "create_dynamic",
+      "legacyRefs": [],
+      "evidence": "Course Instance must be generated from an official current syllabus",
+      "action": "create schema/template only; never invent a Bauman course list"
+    },
+    {
+      "roadmapNodeId": "CUR-L4-C04",
+      "status": "create_dynamic",
+      "legacyRefs": [],
+      "evidence": "Course Instance must be generated from an official current syllabus",
+      "action": "create schema/template only; never invent a Bauman course list"
+    },
+    {
+      "roadmapNodeId": "CUR-L4-C05",
+      "status": "create_dynamic",
+      "legacyRefs": [],
+      "evidence": "Course Instance must be generated from an official current syllabus",
+      "action": "create schema/template only; never invent a Bauman course list"
+    },
+    {
+      "roadmapNodeId": "CUR-L4-C06",
+      "status": "create_dynamic",
+      "legacyRefs": [],
+      "evidence": "Course Instance must be generated from an official current syllabus",
+      "action": "create schema/template only; never invent a Bauman course list"
+    },
+    {
+      "roadmapNodeId": "NIR-L1-C01",
+      "status": "create_new",
+      "legacyRefs": [],
+      "evidence": "Lượt 18 reuse matrix classifies this academic content as new",
+      "action": "create content through the common module contract and Master-ready gate"
+    },
+    {
+      "roadmapNodeId": "NIR-L1-C02",
+      "status": "create_new",
+      "legacyRefs": [],
+      "evidence": "Lượt 18 reuse matrix classifies this academic content as new",
+      "action": "create content through the common module contract and Master-ready gate"
+    },
+    {
+      "roadmapNodeId": "NIR-L1-C03",
+      "status": "create_new",
+      "legacyRefs": [],
+      "evidence": "Lượt 18 reuse matrix classifies this academic content as new",
+      "action": "create content through the common module contract and Master-ready gate"
+    },
+    {
+      "roadmapNodeId": "NIR-L2-C04",
+      "status": "create_new",
+      "legacyRefs": [],
+      "evidence": "Lượt 18 reuse matrix classifies this academic content as new",
+      "action": "create content through the common module contract and Master-ready gate"
+    },
+    {
+      "roadmapNodeId": "NIR-L2-C05",
+      "status": "create_new",
+      "legacyRefs": [],
+      "evidence": "Lượt 18 reuse matrix classifies this academic content as new",
+      "action": "create content through the common module contract and Master-ready gate"
+    },
+    {
+      "roadmapNodeId": "NIR-L2-C06",
+      "status": "create_new",
+      "legacyRefs": [],
+      "evidence": "Lượt 18 reuse matrix classifies this academic content as new",
+      "action": "create content through the common module contract and Master-ready gate"
+    },
+    {
+      "roadmapNodeId": "NIR-L3-C07",
+      "status": "create_new",
+      "legacyRefs": [],
+      "evidence": "Lượt 18 reuse matrix classifies this academic content as new",
+      "action": "create content through the common module contract and Master-ready gate"
+    },
+    {
+      "roadmapNodeId": "NIR-L3-C08",
+      "status": "create_new",
+      "legacyRefs": [],
+      "evidence": "Lượt 18 reuse matrix classifies this academic content as new",
+      "action": "create content through the common module contract and Master-ready gate"
+    },
+    {
+      "roadmapNodeId": "NIR-L4-C09",
+      "status": "create_new",
+      "legacyRefs": [],
+      "evidence": "Lượt 18 reuse matrix classifies this academic content as new",
+      "action": "create content through the common module contract and Master-ready gate"
+    }
+  ],
+  "counts": {
+    "legacy_module_inventory_pending": 10,
+    "candidate_chapter_mapping": 9,
+    "verified_composite": 1,
+    "create_new": 59,
+    "create_dynamic": 6
+  }
+}

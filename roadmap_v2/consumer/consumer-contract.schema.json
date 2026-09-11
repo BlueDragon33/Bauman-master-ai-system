@@ -1,0 +1,138 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "BAUMAN_ROADMAP_V2_CONSUMER_CONTRACT_V1",
+  "title": "Bauman Roadmap V2 consumer contract",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema",
+    "version",
+    "scope",
+    "upstreamSchemas",
+    "mode",
+    "capabilities",
+    "states",
+    "reasonCodes",
+    "provenance",
+    "eligibilityRules",
+    "abortConditions",
+    "acceptance"
+  ],
+  "properties": {
+    "schema": {
+      "const": "BAUMAN_ROADMAP_V2_CONSUMER_CONTRACT_V1"
+    },
+    "version": {
+      "const": 1
+    },
+    "scope": {
+      "type": "string",
+      "minLength": 1
+    },
+    "upstreamSchemas": {
+      "type": "object",
+      "minProperties": 5,
+      "additionalProperties": {
+        "type": "string",
+        "minLength": 1
+      }
+    },
+    "mode": {
+      "type": "object",
+      "required": [
+        "access",
+        "productionIntegration",
+        "failClosed",
+        "legacyMutationAllowed",
+        "runtimeWriteAllowed"
+      ],
+      "properties": {
+        "access": {
+          "const": "read_only"
+        },
+        "productionIntegration": {
+          "const": "disconnected"
+        },
+        "failClosed": {
+          "const": true
+        },
+        "legacyMutationAllowed": {
+          "const": false
+        },
+        "runtimeWriteAllowed": {
+          "const": false
+        }
+      }
+    },
+    "capabilities": {
+      "type": "object",
+      "required": [
+        "registryRead",
+        "prerequisiteRead",
+        "provenanceRead",
+        "eligibilityRead",
+        "diagnosticBlueprintRead",
+        "diagnosticExecution",
+        "masteryEvidenceRead",
+        "masteryEvidenceWrite",
+        "priorityEngineRead",
+        "priorityEngineWrite",
+        "schedulerWrite",
+        "runtimeActivation"
+      ],
+      "additionalProperties": {
+        "type": "boolean"
+      }
+    },
+    "states": {
+      "type": "object",
+      "minProperties": 5
+    },
+    "reasonCodes": {
+      "type": "object",
+      "minProperties": 8,
+      "additionalProperties": {
+        "type": "string",
+        "minLength": 1
+      }
+    },
+    "provenance": {
+      "type": "object",
+      "required": [
+        "precedence",
+        "rules"
+      ]
+    },
+    "eligibilityRules": {
+      "type": "object",
+      "required": [
+        "chapterBlueprint",
+        "lessonBlueprint",
+        "legacyReference",
+        "dynamicChapter"
+      ]
+    },
+    "abortConditions": {
+      "type": "array",
+      "minItems": 9,
+      "uniqueItems": true,
+      "items": {
+        "type": "string",
+        "minLength": 1
+      }
+    },
+    "acceptance": {
+      "type": "object",
+      "required": [
+        "step",
+        "mappingBoundaryExplicit",
+        "contentBoundaryExplicit",
+        "schemaBoundaryExplicit",
+        "crossChapterAuditRequired",
+        "diagnosticInputIsBlueprintOnly",
+        "runtimeActivationAllowed",
+        "result"
+      ]
+    }
+  }
+}

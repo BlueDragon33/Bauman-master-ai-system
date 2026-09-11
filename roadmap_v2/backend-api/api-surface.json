@@ -1,0 +1,19 @@
+{
+  "schema": "BAUMAN_ROADMAP_V2_API_SURFACE_V1",
+  "version": "2.13.0-l33-b130",
+  "status": "PASS_B130_PLANNED_API_SURFACE",
+  "basePath": "/api/v1",
+  "provider": "unselected",
+  "productionRoutesCreated": 0,
+  "endpoints": [
+    { "operationId": "health", "method": "GET", "path": "/health", "auth": "none", "dataClass": "operational", "harnessDisposition": "implemented_in_memory", "productionDisposition": "planned_not_deployed" },
+    { "operationId": "catalogSummary", "method": "GET", "path": "/catalog/summary", "auth": "bearer_session", "dataClass": "static_content", "harnessDisposition": "implemented_in_memory", "productionDisposition": "planned_not_deployed" },
+    { "operationId": "learningState", "method": "GET", "path": "/users/{userId}/learning-state", "auth": "bearer_session_and_owner", "dataClass": "dynamic_user_data", "harnessDisposition": "blocked_persistence_unavailable", "productionDisposition": "deferred_to_l34_b133" },
+    { "operationId": "appendLearningEvents", "method": "POST", "path": "/users/{userId}/learning-events", "auth": "bearer_session_and_owner", "dataClass": "dynamic_user_data", "harnessDisposition": "blocked_persistence_unavailable", "productionDisposition": "deferred_to_l34_b133" },
+    { "operationId": "readSchedule", "method": "GET", "path": "/users/{userId}/schedule", "auth": "bearer_session_and_owner", "dataClass": "dynamic_user_data", "harnessDisposition": "blocked_persistence_unavailable", "productionDisposition": "deferred_to_l34_b133" },
+    { "operationId": "writeSchedule", "method": "PUT", "path": "/users/{userId}/schedule", "auth": "bearer_session_and_owner", "dataClass": "dynamic_user_data", "harnessDisposition": "blocked_persistence_unavailable", "productionDisposition": "deferred_to_l34_b133" },
+    { "operationId": "syncChanges", "method": "POST", "path": "/users/{userId}/sync/changes", "auth": "bearer_session_and_owner", "dataClass": "dynamic_user_data", "harnessDisposition": "blocked_persistence_unavailable", "productionDisposition": "deferred_after_l34" }
+  ],
+  "counts": { "endpoints": 7, "public": 1, "authenticated": 6, "inMemoryReadOnly": 2, "persistenceBlocked": 5, "productionDeployed": 0 },
+  "acceptance": { "step": 130, "result": "PASS_API_SURFACE_DESIGN_ONLY" }
+}

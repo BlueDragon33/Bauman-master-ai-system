@@ -1,0 +1,82 @@
+{
+  "schema": "BAUMAN_ROADMAP_V2_RUNTIME_MANIFEST_V1",
+  "version": "2.9.0-l29-b114",
+  "status": "PASS_B114_BROWSER_READ_ONLY_CORE_PROJECTION_BRIDGE",
+  "mode": "browser_read_only_core_projection_bridge",
+  "productionIntegration": "connected_default_off",
+  "defaultActivation": "disabled",
+  "baselineCommit": "e383912354673bdce7a0059d6b9a23799d74e689",
+  "upstream": {
+    "integrationManifest": {
+      "path": "integration/manifest.json",
+      "bytes": 2479,
+      "sha256": "92ed8e04cbc07e8741435c9236816a61165f6fc356f9cb127e7c4a1c6d39fc5c"
+    },
+    "sidecarManifest": {
+      "path": "manifest.json",
+      "bytes": 2079,
+      "sha256": "0bef90ea6d1d47f6776bdfdbdec13a0bd750035d75909fb76a8b4e6c7f597607"
+    }
+  },
+  "files": {
+    "runtimeContract": {
+      "path": "runtime/runtime-bridge-contract.json",
+      "bytes": 4081,
+      "sha256": "e543bc80614a4f0c9eadf63f7d100422fc6c7c9f3d60070b9ca9f7b92a567be1"
+    },
+    "runtimeContractSchema": {
+      "path": "runtime/runtime-bridge-contract.schema.json",
+      "bytes": 1910,
+      "sha256": "98d722455a11ff40443bb11d238ec4d3d8429b7d67f6273d7658df455c0dd49b"
+    },
+    "browserRuntime": {
+      "path": "browser-runtime.mjs",
+      "bytes": 5421,
+      "sha256": "08f41fd6a4622a4e61b43e6f088d3d3869d159a24d8480a597f24f3e09d6e609"
+    },
+    "mathBridge": {
+      "path": "../subjects/math/assets/roadmap-v2-bridge.mjs",
+      "bytes": 3381,
+      "sha256": "b4a337017a06fc89ca4f92c85438250e6a826702e79e6bb9cd9fe256c1bd4dd1"
+    },
+    "legacyIndexSnapshot": {
+      "path": "runtime/legacy-index.e383912.html",
+      "bytes": 3246,
+      "sha256": "8b00f7d9ce175166aed902d2aae88acfb6908f8f56146818e60347f23c11400e"
+    }
+  },
+  "counts": {
+    "featureFlags": 5,
+    "defaultOffFlags": 5,
+    "availableL29Capabilities": 1,
+    "courses": 10,
+    "chapters": 85,
+    "numberedLessons": 304,
+    "graphNodes": 450,
+    "prerequisiteEdges": 185,
+    "productionEntrypointsModified": 1,
+    "persistentStores": 0,
+    "domMutations": 0,
+    "runtimeWrites": 0,
+    "legacyMutations": 0
+  },
+  "safety": {
+    "defaultOffMakesZeroRoadmapRequests": true,
+    "unsupportedFlagsFailClosed": true,
+    "browserPayloadHashPinned": true,
+    "legacyIndexByteExactRollback": true,
+    "subjectManifestsUnchanged": true,
+    "persistentStoreWrites": 0,
+    "domMutations": 0,
+    "runtimeWrites": 0,
+    "legacyMutations": 0
+  },
+  "acceptance": {
+    "step": 114,
+    "contractPinned": true,
+    "browserRuntimePinned": true,
+    "bridgePinned": true,
+    "defaultActivation": "disabled",
+    "result": "PASS_BROWSER_READ_ONLY_CORE_PROJECTION_BRIDGE"
+  }
+}
