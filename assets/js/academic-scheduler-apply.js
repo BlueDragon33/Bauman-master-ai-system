@@ -114,8 +114,16 @@
   function patchHome(){if(!window.app||window.app.__academic13fApplyPatched)return false;const app=window.app,oldHome=app.home?.bind(app);if(!oldHome)return false;app.__academic13fApplyPatched=true;app.home=function(){oldHome();renderControls()};app.home();return true}
   function init(attempt=0){const ready=previewRuntime()&&window.app?.__academic13dPreviewPatched&&window.app?.__academic2026Patched&&window.state?.schedule;if(ready&&patchHome()){console.info(VERSION,{explicitApply:EXPLICIT_APPLY_ENABLED,transactionStore:TX_STORAGE_KEY});return}if(attempt<60)setTimeout(()=>init(attempt+1),100);else console.warn(`${VERSION} disabled safely: prerequisite runtimes not ready`)}
 
+  function bootstrapPhase2CourseRuntime(){
+    if(document.querySelector('script[data-phase2-course-runtime]'))return;
+    if(!document.querySelector('link[data-phase2-course-style]')){
+      const link=document.createElement('link');link.rel='stylesheet';link.href='assets/css/academic-course-2026.css';link.dataset.phase2CourseStyle='1';document.head.appendChild(link);
+    }
+    const script=document.createElement('script');script.src='assets/js/academic-course-runtime.js';script.dataset.phase2CourseRuntime='1';script.async=false;document.body.appendChild(script);
+  }
+
   window.applyAcademicSchedulePreview2026=applyFromUi;
   window.rollbackAcademicSchedule2026=rollbackFromUi;
   window.BAUMAN_ACADEMIC_SCHEDULER_APPLY_2026=Object.freeze({version:VERSION,applyApprovedPreview,rollbackLatest,validatePreviewForApply,transactionHistory,latestActiveTransaction,scheduleFingerprint,explicitApplyEnabled:EXPLICIT_APPLY_ENABLED,storageKey:TX_STORAGE_KEY});
-  document.addEventListener('DOMContentLoaded',()=>setTimeout(()=>init(0),0));
+  document.addEventListener('DOMContentLoaded',()=>{setTimeout(()=>init(0),0);setTimeout(bootstrapPhase2CourseRuntime,0)});
 })();
