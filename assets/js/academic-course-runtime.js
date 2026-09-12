@@ -1,6 +1,6 @@
 'use strict';
 (function(){
-  const VERSION='Academic 2026 Phase2 · Pass 14B Course Readiness Runtime';
+  const VERSION='Academic 2026 Phase2 · Pass 14B Course Readiness Runtime · Event Bridge';
   const ARCH_URL='assets/data/course-learning-architecture-s1-2026.json';
   const COURSE_ORDER=['d01','d02','d03','d04','d05','d06','d15','p02'];
   let architecture=null;
@@ -46,7 +46,7 @@
     return {id:null,label:'Chưa ghi kết quả vòng đời',reason:'no_completion_evidence',stageId:stage.stageId};
   }
 
-  function eventAxis(courseId){
+  function fallbackEventAxis(courseId){
     const course=courseById(courseId),stage=stageSemester(),events=course?.eventModel?.events||[];
     if(!events.length)return {id:'NOT_APPLICABLE',label:'Không có event đã mô hình hóa',events:[]};
     const rows=events.map(event=>{
@@ -55,6 +55,10 @@
       return {...event,state:'EVENT_UNASSESSED',label:unresolved?'Timing chưa được nguồn khóa':(inCurrent?'Chưa có evidence event-readiness':'Chưa tới/không xác định event hiện tại')};
     });
     return {id:'EVENT_UNASSESSED',label:rows.some(x=>/^unresolved/.test(x.timing||''))?'Event timing còn chưa khóa':'Chưa đánh giá event readiness',events:rows};
+  }
+  function eventAxis(courseId){
+    const enhanced=window.BAUMAN_EVENT_READINESS_2026?.courseEventAxis?.(courseId);
+    return enhanced||fallbackEventAxis(courseId);
   }
 
   function gateRows(courseId){
@@ -103,7 +107,12 @@
     return map[block.evidenceClass]||block.evidenceClass||'—';
   }
   function eventRows(course){
-    return (eventAxis(course.courseId).events||[]).map(e=>`<div class="course14b-event"><b>${h(e.code)}</b><span>${e.gradingNature==='graded'?`Có điểm · target nội bộ ${h(e.internalTarget)}`:'Pass/fail · không gán target 90'}</span><small>${h(e.label)}</small></div>`).join('');
+    const axis=eventAxis(course.courseId),enhanced=Boolean(window.BAUMAN_EVENT_READINESS_2026);
+    return (axis.events||[]).map(e=>{
+      const unresolved=/^unresolved/.test(e.timing||'')||e.reason==='timing_unresolved',stateLabel=e.label||e.state||'EVENT_UNASSESSED';
+      const content=`<b>${h(e.code)}</b><span>${e.gradingNature==='graded'?`Có điểm · target nội bộ ${h(e.internalTarget)}`:'Pass/fail · không gán target 90'}</span><small>${h(stateLabel)}</small>`;
+      return enhanced&&!unresolved?`<button class="course14b-event" onclick="openAcademicEventReadiness2026('${h(course.courseId)}','${h(e.code)}')">${content}</button>`:`<div class="course14b-event">${content}</div>`;
+    }).join('');
   }
   function blockersHtml(course){
     if(course.courseLocalReadiness)return `<div class="course14b-local"><b>${h(course.courseLocalReadiness.id)}</b><p>Ngôn ngữ: English · threshold: chưa định nghĩa. P0 Russian không phải gate của d01.</p><small>Nguồn: ${h(course.courseLocalReadiness.sourceEvidence?.[0]?.url||'—')}</small></div>`;
@@ -135,11 +144,18 @@
       if(!patchApp())throw new Error('Could not patch app after Academic scheduler Apply layer');
       if(!window.openOfficialCoursePhase1)window.openOfficialCoursePhase1=window.openOfficialCourse2026;
       window.openOfficialCourse2026=openCourse;
-      console.info(VERSION,{architecture:architecture.version,courses:architecture.courses?.length||0,readOnly:true});
+      console.info(VERSION,{architecture:architecture.version,courses:architecture.courses?.length||0,readOnly:true,eventBridge:true});
     }catch(err){console.warn('Phase2 Course Readiness runtime disabled safely:',err)}
   }
+  function bootstrapEventRuntime(){
+    if(!document.querySelector('link[data-phase2-event-style]')){
+      const link=document.createElement('link');link.rel='stylesheet';link.href='assets/css/academic-event-2026.css';link.dataset.phase2EventStyle='1';document.head.appendChild(link);
+    }
+    if(window.BAUMAN_EVENT_READINESS_2026||document.querySelector('script[data-phase2-event-runtime]'))return;
+    const script=document.createElement('script');script.src='assets/js/academic-event-runtime.js';script.dataset.phase2EventRuntime='1';script.async=false;document.body.appendChild(script);
+  }
   window.openOfficialCoursePhase2=openCourse;
-  window.BAUMAN_COURSE_READINESS_2026=Object.freeze({version:VERSION,load,prereqAxis,lifecycleAxis,eventAxis,gateRows,nextAction,courseById,renderPanel,readOnly:true,architectureUrl:ARCH_URL});
-  if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',()=>setTimeout(load,0),{once:true});
-  else setTimeout(load,0);
+  window.BAUMAN_COURSE_READINESS_2026=Object.freeze({version:VERSION,load,prereqAxis,lifecycleAxis,eventAxis,fallbackEventAxis,gateRows,nextAction,courseById,renderPanel,readOnly:true,architectureUrl:ARCH_URL});
+  if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',()=>{setTimeout(load,0);setTimeout(bootstrapEventRuntime,0)},{once:true});
+  else {setTimeout(load,0);setTimeout(bootstrapEventRuntime,0)}
 })();
