@@ -6,14 +6,24 @@ on:
       - 'assets/data/course-learning-architecture-s1-2026.json'
       - 'assets/data/official-curriculum-iu5-2026.json'
       - 'assets/data/prerequisite-registry-iu5-2026.json'
+      - 'assets/data/prerequisite-packs/p00-technical-russian.json'
+      - 'assets/js/academic-main.js'
       - 'scripts/validate-course-learning-architecture-s1-2026.js'
+      - 'scripts/validate-academic-2026.js'
+      - 'scripts/validate-p00-technical-russian.js'
+      - 'scripts/validate-risk-engine-13c.js'
       - '.github/workflows/academic-2026-phase2-course-architecture.yml'
   pull_request:
     paths:
       - 'assets/data/course-learning-architecture-s1-2026.json'
       - 'assets/data/official-curriculum-iu5-2026.json'
       - 'assets/data/prerequisite-registry-iu5-2026.json'
+      - 'assets/data/prerequisite-packs/p00-technical-russian.json'
+      - 'assets/js/academic-main.js'
       - 'scripts/validate-course-learning-architecture-s1-2026.js'
+      - 'scripts/validate-academic-2026.js'
+      - 'scripts/validate-p00-technical-russian.js'
+      - 'scripts/validate-risk-engine-13c.js'
       - '.github/workflows/academic-2026-phase2-course-architecture.yml'
 
 jobs:
@@ -24,7 +34,13 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: '20'
-      - name: Validate Semester 1 official-course learning architecture
+      - name: Validate corrected Semester 1 official-course learning architecture
         run: node scripts/validate-course-learning-architecture-s1-2026.js
       - name: Preserve Academic 2026 registry invariants
         run: node scripts/validate-academic-2026.js
+      - name: Validate P0 Technical Russian / d01 English separation
+        run: node scripts/validate-p00-technical-russian.js
+      - name: Validate semester-safe course risk engine
+        run: node scripts/validate-risk-engine-13c.js
+      - name: Check corrected academic runtime syntax
+        run: node --check assets/js/academic-main.js
