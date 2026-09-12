@@ -1,8 +1,8 @@
 # CODEX_STATE
 
-Current task: `THEORY_C01_L06_WORKED_EXAMPLES_DERIVATIONS_PASS_08`
+Current task: `THEORY_C01_L06_RETRIEVAL_PROFESSOR_QA_PASS_10`
 
-Status: `PASS_07_CORE_CONTENT_COMPLETE`
+Status: `PASS_09_DETERMINISTIC_COMPUTATIONAL_LAB_COMPLETE`
 
 Date: 2026-09-12
 Branch: `main`
@@ -80,41 +80,33 @@ Lesson title:
 `§1.6 · Từ vector sang ma trận dữ liệu`
 
 Progress:
-- academic passes complete: `7/14`;
-- academic passes remaining: `7/14`;
+- academic passes complete: `9/14`;
+- academic passes remaining: `5/14`;
 - runtime integration: not started;
 - durable runtime content: unchanged baseline;
 - browser QA: not applicable before runtime integration.
 
 ### Pass 1 · Baseline audit
 - Status: `PASS_01_BASELINE_AUDIT_COMPLETE`.
-- Files:
-  - `subjects/math/THEORY_C01_L06_BASELINE_AUDIT.md`;
-  - `subjects/math/THEORY_C01_L06_BASELINE_AUDIT.json`.
-- Durable record: index `5` of `18`.
-- Current runtime slides: `16`.
-- Existing specialist artifacts at the time of audit: `0`; missing: `11`.
+- Files: `subjects/math/THEORY_C01_L06_BASELINE_AUDIT.md`, `subjects/math/THEORY_C01_L06_BASELINE_AUDIT.json`.
+- Durable record: index `5` of `18`; current runtime baseline has `16` slides.
 - Durable content, runtime readers, manifest and E235 unchanged.
 
 ### Pass 2 · Learning contract
 - Status: `PASS_02_LEARNING_CONTRACT_COMPLETE`.
 - File: `subjects/math/THEORY_C01_L06_LEARNING_CONTRACT.md`.
-- Prerequisite gates: `P1–P4`.
-- Learning outcomes: `LO1–LO9`.
+- Prerequisite gates `P1–P4`; outcomes `LO1–LO9`.
 - Canonical convention: `X in R^(m x n)`, observations as rows, features as columns.
 - Fixed case: `UGV_TELEMETRY_8X6`.
 - Raw, centred and scaled matrices use distinct notation.
-- Gram, covariance, rank, SVD and PCA claims remain assumption-gated or deferred.
+- Gram, covariance, rank, SVD and PCA remain assumption-gated or deferred.
 - Runtime unchanged.
 
 ### Pass 3 · Source map and terminology
 - Status: `PASS_03_SOURCE_MAP_TERMINOLOGY_COMPLETE`.
 - File: `subjects/math/THEORY_C01_L06_SOURCE_MAP_TERMINOLOGY.md`.
-- Source anchors: `S1–S12`.
-- Claim trace set: `C01–C24`.
-- Trilingual terminology: `T01–T40`.
-- Project/mathematics/API/engineering ownership layers locked.
-- Legacy 16-slide disposition locked role by role.
+- Source anchors `S1–S12`; claims `C01–C24`; terminology `T01–T40`.
+- Project/mathematics/API/engineering ownership layers and legacy-slide disposition locked.
 - Runtime unchanged.
 
 ### Pass 4 · Formula registry
@@ -122,8 +114,7 @@ Progress:
 - File: `subjects/math/THEORY_C01_L06_FORMULA_REGISTRY.md`.
 - Formula IDs: `F01–F18`.
 - Core: assembly, indexing/slicing, transpose conversion, linear score, mean and centering.
-- API equivalents: row-wise and column-wise NumPy stacking.
-- F07 locks the one-dimensional transpose trap as a forbidden shortcut.
+- API equivalents: F08/F09; F07 is the one-dimensional transpose forbidden shortcut.
 - Gram, scaling, covariance, feature transform and rank are preview/assumption scoped.
 - SVD and PCA formulas remain deferred.
 - Runtime unchanged.
@@ -132,12 +123,11 @@ Progress:
 - Status: `PASS_05_ENGINEERING_CASE_VERIFIED`.
 - Case: `subjects/math/data/theory_case/theory_case_c01_l06.json`.
 - Validation: `subjects/math/THEORY_C01_L06_CASE_VALIDATION.json`.
-- Case version: `CASE_C01_L06_V1_LOCKED`.
-- Shape: `8 x 6`, observations as rows.
-- Observation IDs: `UGV-W01–UGV-W08`; timestamps increase by 250 ms.
-- Ordered feature schema, units, version and checksum locked.
+- Version: `CASE_C01_L06_V1_LOCKED`.
+- Shape `8 x 6`, observations as rows; IDs `UGV-W01–UGV-W08`; timestamps increase by 250 ms.
+- Ordered schema, units, version and checksum locked.
 - Mean: `(8.5, 8.55, 0.03125, 0.02375, 0.01, 12.1625)`.
-- Four negative variants locked: swapped columns, stale unit, wrong orientation and schema-version mismatch.
+- Four negative variants locked: swapped columns, stale unit, wrong orientation, schema-version mismatch.
 - Scale vector, fault threshold, PCA result and physical mode count remain unlocked/prohibited.
 - Runtime unchanged.
 
@@ -145,9 +135,8 @@ Progress:
 - Status: `PASS_06_MISCONCEPTION_MAP_COMPLETE`.
 - File: `subjects/math/THEORY_C01_L06_MISCONCEPTION_MAP.md`.
 - Misconceptions: `M01–M18`.
-- Failure classes: conceptual, notation, API, metadata, engineering inference and scope.
 - Orientation, 1D transpose, stacking, schema, units, slicing and preprocessing failures locked.
-- Covariance, rank, PCA and fault-diagnosis overclaims explicitly blocked.
+- Covariance, rank, PCA and fault-diagnosis overclaims blocked.
 - Retrieval distribution and code-audit requirements locked.
 - Runtime unchanged.
 
@@ -156,37 +145,54 @@ Progress:
 - Artifact: `subjects/math/data/theory_core/theory_core_c01_l06.json`.
 - Version: `CORE_C01_L06_V1_PASS07_ARCHITECTURE`.
 - Commit: `ec281b90883ca8edad77b688492c7bcf59525121`.
-- Learning beats: `22`.
-- Embedded retrieval checks: `12`.
-- Coverage:
-  - learning outcomes: `LO1–LO9` complete;
-  - claims: `C01–C24` reachable;
-  - formulas: `F01–F18` reachable;
-  - misconceptions: `M01–M18` covered.
-- Core distinguishes `CORE`, `API_EQUIVALENT`, `FORBIDDEN_SHORTCUT` and `PREVIEW`.
-- Locked UGV feature order, units, observation IDs, timestamps, raw values, mean and centred values preserved.
-- No scale vector, numerical-rank interpretation, SVD/PCA result, retained dimension, threshold or fault diagnosis invented.
-- Source architecture supports expansion beyond the minimum `16` slides without compression.
+- Learning beats: `22`; embedded retrieval checks: `12`.
+- Coverage: `LO1–LO9`, `C01–C24`, `F01–F18`, `M01–M18` complete/reachable.
+- Distinguishes `CORE`, `API_EQUIVALENT`, `FORBIDDEN_SHORTCUT`, `PREVIEW`.
+- Locked UGV numeric and metadata contracts preserved; no scale/rank/SVD/PCA/diagnostic result invented.
 - Runtime files modified: `false`.
-- Academic acceptance: not yet; Pass 8–14 remain.
+
+### Pass 8 · Worked examples and derivations
+- Status: `PASS_08_WORKED_EXAMPLES_DERIVATIONS_COMPLETE`.
+- Artifact: `subjects/math/data/theory_worked_examples/theory_worked_examples_c01_l06.json`.
+- Version: `WORKED_EXAMPLES_C01_L06_V1_PASS08`.
+- Commit: `f46521e74b71eb34304510c99713f1f1191ccc1a`.
+- Worked examples: `15`.
+- Coverage: `LO1–LO9`, `C01–C24`, `F01–F18`, `M01–M18` complete.
+- Includes compatibility rejection, canonical assembly, entry/row/column/block extraction, convention translation, NumPy 1D trap, feature selector, Gram-vs-covariance counterexample, locked mean/centering, scaling boundary, feature-transform preview and rank/PCA/diagnosis boundaries.
+- Locked yaw-rate raw self-product: `0.0382`; sample variance after centering: `0.005342857142857143`.
+- No scale vector, numerical rank, PCA component, retained dimension or fault conclusion fabricated.
+- Runtime files modified: `false`.
+
+### Pass 9 · Deterministic computational lab
+- Status: `PASS_09_DETERMINISTIC_COMPUTATIONAL_LAB_COMPLETE`.
+- Artifact: `subjects/math/data/theory_lab/theory_lab_c01_l06.json`.
+- Version: `LAB_C01_L06_V1_PASS09`.
+- Commit: `302cafdf5519b59c64fbdb00889189f561807694`.
+- Lab stages: `8`; broken-code audits: `6`.
+- Canonical NumPy code executed before commit with no randomness, network or file input.
+- Assertions passed for canonical shape, locked extraction values, 6x8 transpose, 1D transpose behavior, yaw selector, locked mean, locked centered matrix, zero-mean invariant, UGV-W03 reconstruction, Gram shapes, yaw self-product/sample variance and rank upper bound `6`.
+- Lab tasks explicitly cover the four locked invalid variants and forbid silent normalization of bad input.
+- Scale policy remains unlocked; rank interpretation and SVD/PCA remain deferred; fault diagnosis remains prohibited.
+- Runtime files modified: `false`.
 
 ## Current task requirements
 
-`THEORY_C01_L06_WORKED_EXAMPLES_DERIVATIONS_PASS_08`
+`THEORY_C01_L06_RETRIEVAL_PROFESSOR_QA_PASS_10`
 
-Pass 8 must:
-- create `subjects/math/data/theory_worked_examples/theory_worked_examples_c01_l06.json`;
-- use schema `bauman_math_theory_worked_examples_v1` and version `WORKED_EXAMPLES_C01_L06_V1_PASS08`;
-- derive examples only from the accepted Pass 1–7 contracts and `CASE_C01_L06_V1_LOCKED`;
-- cover LO1–LO9 and all core formula families needed for mastery without turning preview formulas into full deferred theory;
-- include explicit examples for compatibility rejection, row-observation assembly, entry/row/column/block extraction, transpose convention conversion, NumPy 1D transpose trap, mean/centering, Gram-versus-covariance distinction and downstream rank/PCA boundaries;
-- preserve all locked UGV numeric values, feature order, units, observation IDs and timestamps;
-- show dimensions/shapes at each derivation step and carry metadata through slices;
-- include misconception intercepts and quality checks in every relevant example;
-- keep scaling policy task-dependent and unlocked;
-- keep rank interpretation, SVD/PCA component selection and fault diagnosis deferred;
+Pass 10 must:
+- create `subjects/math/data/theory_assessment/theory_assessment_c01_l06.json`;
+- use schema `bauman_math_theory_assessment_v1` and version `ASSESSMENT_C01_L06_V1_PASS10`;
+- build retrieval checks, professor Q&A and mastery gates from the locked Pass 1–9 artifacts;
+- keep answers initially hidden and require evidence before reveal;
+- require shape/orientation/schema/unit evidence whenever a calculation or API result is interpreted;
+- cover `LO1–LO9`, `C01–C24`, `F01–F18`, `M01–M18` with strong emphasis on compatibility, orientation, indexing/slicing, centering and scope boundaries;
+- include critical items for equal-shape semantic mismatch, 1D transpose trap, locked extraction, centering, Gram-vs-covariance distinction, live preprocessing leakage, rank boundary and PCA/diagnosis overclaim;
+- use the locked UGV numbers without changing values, order, units, IDs or timestamps;
+- keep scaling policy task-dependent/unlocked;
+- keep numerical-rank interpretation, SVD/PCA component selection and physical fault diagnosis deferred;
+- set minimum mastery to at least `80%` and require all critical items to pass;
 - modify no runtime file;
-- finish with `PASS_08_WORKED_EXAMPLES_DERIVATIONS_COMPLETE` and set next task to `THEORY_C01_L06_DETERMINISTIC_COMPUTATIONAL_LAB_PASS_09`.
+- finish with `PASS_10_RETRIEVAL_PROFESSOR_QA_COMPLETE` and advance to `THEORY_C01_L06_REFERENCE_ARTIFACT_PASS_11`.
 
 ## Maintenance patch · E215 Reader Pro extension panel and fit rules
 
