@@ -3,30 +3,83 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Tiếng Nga Bauman · Russian Survival Master V13.40 Storage Right Stack</title>
+<meta name="theme-color" content="#061326">
+<title>Tiếng Nga Bauman · Russian Hub Premium</title>
 <link rel="stylesheet" href="assets/core.css">
 <link rel="stylesheet" href="assets/russian.css">
+<link rel="stylesheet" href="assets/russian-reference-ui.css">
 </head>
-<body>
-<div id="app" class="app">
-  <aside class="sidebar">
-    <div class="brand"><div id="subjectLogo" class="logo">Я</div><div><h1 id="subjectTitle">Tiếng Nga Bauman</h1><p id="subjectSubtitle">A0/A2 → STANKIN → Bauman → НИР/ВКР</p></div></div>
-    <label id="stageLabel" class="select-label">Giai đoạn</label>
-    <select id="stageSelect" class="input"></select>
-    <nav id="nav" class="nav"></nav>
+<body class="ru-reference-ui">
+<div id="app" class="app ru-app-shell">
+  <aside class="sidebar ru-sidebar">
+    <div class="brand ru-brand"><div id="subjectLogo" class="logo">Я</div><div><h1 id="subjectTitle">Tiếng Nga Bauman</h1><p id="subjectSubtitle">A0/A2 → STANKIN → Bauman → НИР/ВКР</p></div></div>
+    <div class="ru-brand-caption">TIẾNG NGA · MỞ RỘNG TƯƠNG LAI</div>
+    <div class="ru-stage-box">
+      <label id="stageLabel" class="select-label">Giai đoạn</label>
+      <select id="stageSelect" class="input"></select>
+    </div>
+    <nav id="nav" class="nav ru-nav"></nav>
+    <div class="ru-sidebar-quote">
+      <span>“Язык открывает новые миры”</span>
+      <small>Ngôn ngữ mở ra những thế giới mới</small>
+      <b>BAUMAN RUSSIAN HUB</b>
+    </div>
   </aside>
-  <main class="main">
-    <header class="topbar">
-      <div><span id="coreLabel" class="kicker">RUSSIAN SURVIVAL MASTER V13.40 STORAGE RIGHT STACK</span><h2 id="pageTitle">Tổng quan</h2><p id="pageSub">V13.40: cụm Kho môn học trong tab Dữ liệu xếp dọc gọn, canh phải, giữ indicator nguồn hiện tại rõ ràng.</p></div>
-      <div class="top-actions"><button id="themeBtn" class="btn soft">🎛️ Giao diện</button><button id="aiBtn" class="btn primary">✨ AI Mentor</button><span id="saveState" class="status">Đã đồng bộ</span></div>
+
+  <main class="main ru-main">
+    <header class="topbar ru-topbar">
+      <div class="ru-global-search-wrap">
+        <span class="ru-search-icon">⌕</span>
+        <input id="russianGlobalSearch" class="ru-global-search" type="search" autocomplete="off" placeholder="Tìm bài học, từ vựng, chủ đề... (VD: падежи, привет, AI...)" aria-label="Tìm nhanh trong Tiếng Nga Bauman">
+        <kbd>⌘ K</kbd>
+        <div id="russianSearchHints" class="ru-search-hints hidden" role="listbox"></div>
+      </div>
+      <div class="ru-page-context">
+        <span id="coreLabel" class="kicker">RUSSIAN SURVIVAL MASTER</span>
+        <h2 id="pageTitle">Tổng quan</h2>
+        <p id="pageSub">Học tiếng Nga theo lộ trình Bauman.</p>
+      </div>
+      <div class="top-actions ru-top-actions">
+        <button id="themeBtn" class="btn soft" title="Đổi giao diện">☀</button>
+        <button id="aiBtn" class="btn primary" title="Mở AI Mentor">AI</button>
+        <span id="saveState" class="status">Đã đồng bộ</span>
+      </div>
     </header>
-    <section id="view" class="view"></section>
+    <section id="view" class="view ru-view"></section>
   </main>
+
+  <aside id="russianRightRail" class="ru-right-rail" aria-label="Trợ lý và công cụ nhanh">
+    <section class="ru-rail-card ru-ai-rail-card">
+      <header><div class="ru-rail-icon">♙</div><div><b>AI Trợ lý Tiếng Nga</b><small>Học thông minh hơn, nối từ tình huống.</small></div><em>Beta</em></header>
+      <div class="ru-ai-bubble"><span class="ru-ai-orb">AI</span><p><b>Привет! 👋</b><br>Tôi là trợ lý học tiếng Nga của bạn. Tôi có thể giúp gì cho bạn hôm nay?</p></div>
+      <div class="ru-ai-quick">
+        <button data-ai-quick="vocab">Giải thích từ/cụm đang học</button>
+        <button data-ai-quick="lesson">Giải thích ngữ pháp/bài hiện tại</button>
+        <button data-ai-quick="dialogue">Thực hành hội thoại với AI</button>
+        <button data-ai-quick="review">Gợi ý bài học phù hợp hôm nay</button>
+      </div>
+      <div class="ru-ai-input-row"><input id="ruRailAiPrompt" type="text" placeholder="Nhập câu hỏi của bạn..."><button id="ruRailAiSend" type="button" aria-label="Gửi câu hỏi">➤</button></div>
+    </section>
+
+    <section class="ru-rail-card ru-pronunciation-card">
+      <header><div><b>🎙 Luyện phát âm</b><small>Nghe · nhại · tự sửa</small></div></header>
+      <div class="ru-pronunciation-main"><span class="ru-mic-ring">◉</span><div><strong>Привет</strong><small>/priˈvʲet/</small><i></i></div></div>
+      <button class="ru-rail-primary" data-route='{"view":"dialogue"}'>Mở phòng luyện nói →</button>
+    </section>
+
+    <section class="ru-rail-card ru-rail-focus-card">
+      <span>KỶ LUẬT HÔM NAY</span>
+      <b>Mỗi ngày nghe một ít, nói một ít, tiến gần hơn tới nước Nga.</b>
+      <button data-act="route-modal">Mở lịch trình hôm nay</button>
+    </section>
+  </aside>
 </div>
+
 <div id="modal" class="modal hidden"><div class="modal-card"><button class="modal-close" id="modalClose">×</button><div id="modalBody"></div></div></div>
 <div id="toast" class="toast"></div>
 <script src="assets/subject-adapter.js"></script>
 <script src="assets/planning-bridge.js"></script>
 <script src="assets/core.js"></script>
+<script src="assets/russian-reference-ui.js"></script>
 </body>
 </html>
