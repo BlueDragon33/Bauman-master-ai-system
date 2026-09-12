@@ -1,67 +1,95 @@
 # CODEX_TASK
 
-Task: `THEORY_C01_L06_REFERENCE_ARTIFACT_PASS_11`
-Mode: academic-reference-only, compact lookup, no runtime edits.
+Task: `THEORY_C01_L06_FULL_VIEW_NORMALIZATION_PASS_12`
+Mode: academic-presentation-data-only, normalization-only, no runtime edits.
 
 ## Read only what is needed
 1. `CODEX_STATE.md`
-2. `subjects/math/THEORY_C01_L06_LEARNING_CONTRACT.md`
-3. `subjects/math/THEORY_C01_L06_SOURCE_MAP_TERMINOLOGY.md`
-4. `subjects/math/THEORY_C01_L06_FORMULA_REGISTRY.md`
-5. `subjects/math/THEORY_C01_L06_MISCONCEPTION_MAP.md`
+2. `subjects/math/data/theory_core/theory_core_c01_l06.json`
+3. `subjects/math/data/theory_reference/theory_reference_c01_l06.json`
+4. `subjects/math/data/theory_worked_examples/theory_worked_examples_c01_l06.json`
+5. `subjects/math/data/theory_assessment/theory_assessment_c01_l06.json`
 6. `subjects/math/data/theory_case/theory_case_c01_l06.json`
-7. `subjects/math/data/theory_core/theory_core_c01_l06.json`
-8. `subjects/math/data/theory_worked_examples/theory_worked_examples_c01_l06.json`
-9. `subjects/math/data/theory_lab/theory_lab_c01_l06.json`
-10. `subjects/math/data/theory_assessment/theory_assessment_c01_l06.json`
-11. `subjects/math/data/theory_reference/theory_reference_c01_l05.json` only as structural precedent.
+7. `subjects/math/THEORY_C01_L06_FORMULA_REGISTRY.md`
+8. `subjects/math/THEORY_C01_L06_SOURCE_MAP_TERMINOLOGY.md`
+9. `subjects/math/THEORY_C01_L06_MISCONCEPTION_MAP.md`
+10. `subjects/math/data/theory_full_view/theory_full_view_c01_l05.json` only as structural precedent.
+11. `subjects/math/data/theory_normalization/theory_normalization_c01_l05.json` only as structural precedent.
 
 ## Goal
-Create `subjects/math/data/theory_reference/theory_reference_c01_l06.json` with schema `bauman_math_theory_reference_v1` and version `REFERENCE_C01_L06_V1_PASS11`.
+Create two Pass 12 artifacts:
 
-The reference artifact is a compact lookup companion, not a new lesson and not a new source of mathematics.
+1. `subjects/math/data/theory_full_view/theory_full_view_c01_l06.json`
+   - schema: `bauman_math_theory_full_view_v1`
+   - version: `FULL_VIEW_C01_L06_V1_PASS12`
 
-## Required reference architecture
-Use eight compact sections:
-1. canonical matrix/data contract and orientation;
-2. notation lookup;
-3. formula table `F01–F18` with shape, conditions, checks and misuse warnings;
-4. extraction/slicing + metadata lookup;
-5. NumPy/API orientation and 1D-transpose lookup;
-6. preprocessing/centering/Gram/covariance gates;
-7. locked `UGV_TELEMETRY_8X6` case and troubleshooting for `M01–M18`;
-8. Việt–Anh–Nga terminology plus permitted/prohibited interpretation language.
+2. `subjects/math/data/theory_normalization/theory_normalization_c01_l06.json`
+   - schema: `bauman_math_theory_normalization_v1`
+   - version: `NORMALIZATION_C01_L06_V1_PASS12`
+
+## Full View contract
+- Complete reading flow, not a new mathematical source.
+- Core remains source-of-truth candidate; Reference remains lookup layer; Worked Examples provide verified derivations.
+- Add no new mathematics, policy, case value or diagnostic conclusion.
+- Do not copy assessment answers as primary teaching prose.
+- Do not embed implementation/runtime code as lesson content.
+- Every formula used in teaching flow must carry meaning, shape/conditions and misuse warning.
+- Use the locked UGV case for concrete interpretation while preserving all numeric and metadata values.
+- The flow must be rich enough for later slideshow expansion to at least 16 slides without compression.
+
+## Suggested Full View architecture
+Build approximately 12 coherent reading sections covering:
+1. governing question + why a data matrix is a semantic contract;
+2. compatibility before stacking;
+3. canonical row-observation assembly and matrix meaning;
+4. entry/row/column/block extraction with metadata;
+5. row-observation vs column-observation conventions;
+6. NumPy stack/vstack/column_stack and 1D `.T` trap;
+7. linear score and feature-order interface;
+8. feature/observation Gram matrices and their distinct meanings;
+9. locked mean and feature-wise centering;
+10. centering vs scaling, fit/transform reuse and leakage boundary;
+11. sample covariance preview and rank/SVD/PCA boundaries;
+12. locked UGV case, troubleshooting, mastery close and downstream bridge.
+
+## Normalization contract
+- Canonical overlay only; core meaning has precedence.
+- Lexical/display aliases may map to a canonical form; semantic conflicts must block integration.
+- Normalize notation for `m`, `n`, `x^(i)`, `X`, `X_col`, `X_raw`, `mu`, `X_c`, `X_s`, `G_f`, `G_o`, `C`, `w`, `y`, index sets `I/J`, transpose and shape notation.
+- Keep mathematical vector orientation distinct from NumPy 1D shape semantics.
+- Keep row-observation and column-observation conventions distinct.
+- Keep raw, centred and scaled matrices distinct.
+- Keep feature Gram, observation Gram and covariance distinct.
+- Keep centering, scaling, standardization and vector normalization distinct.
+- Keep exact algebraic rank bound distinct from numerical rank, retained dimension and physical mode count.
+- Preserve `F01–F18`, `C01–C24`, `M01–M18`, `T01–T40` identities and meaning.
+- Preserve case/version `UGV_TELEMETRY_8X6` / `CASE_C01_L06_V1_LOCKED` exactly.
 
 ## Locked case evidence
-- Case/version: `UGV_TELEMETRY_8X6` / `CASE_C01_L06_V1_LOCKED`.
-- `X_raw` shape: `8 x 6`, observations as rows.
+- Shape: `8 x 6`, observations as rows.
 - Ordered features: `omega_left`, `omega_right`, `a_long`, `a_lat`, `yaw_rate`, `battery_current`.
 - Units: `rad/s`, `rad/s`, `m/s^2`, `m/s^2`, `rad/s`, `A`.
-- Observation IDs: `UGV-W01–UGV-W08`; preserve locked timestamps.
+- IDs: `UGV-W01–UGV-W08`; timestamps remain the locked 250 ms sequence.
 - Mean: `(8.5, 8.55, 0.03125, 0.02375, 0.01, 12.1625)`.
-- Locked extraction: `X_raw[2,4]=0.08 rad/s` for UGV-W03 yaw_rate.
-- Centered matrix and covariance preview may be quoted only from the locked case.
+- Locked extraction: `X_raw[2,4]=0.08 rad/s`, UGV-W03 yaw_rate.
+- Scale vector: not locked.
+- Numerical-rank tolerance: not locked.
+- PCA result / retained dimension: not locked.
+- Fault threshold/label: prohibited.
 
-## Reference rules
-- Reference only; compact by design.
-- Add no new mathematics or policy.
-- Trace formulas and claims to locked sources.
-- Keep row-observation convention explicit.
-- Keep raw, centred and scaled matrices distinct.
-- Keep feature Gram, observation Gram and sample covariance distinct.
-- Explain `x.T` on a NumPy 1D array as a trap; do not normalize it away.
-- Preserve feature order, units, IDs, timestamps, schema version and acquisition contract.
-- Do not invent a scale vector, rank tolerance, numerical rank, PCA result, retained dimension, anomaly threshold or fault label.
-- No runtime registration or UI instructions.
+## Runtime protection
+- No changes to durable lesson records, `index.html`, runtime readers, manifest, CSS or JS.
+- No Reader Pro patch.
+- Do not touch E235.
+- E236/E237/E238 remain disabled.
 
 ## Acceptance
-Finish with:
-- status `PASS_11_REFERENCE_ARTIFACT_COMPLETE`;
-- section count `8`;
-- formula count `18`;
-- terminology coverage `T01–T40` or a clearly complete compact lookup derived from that contract;
-- misconception coverage `M01–M18`;
-- `runtimeFilesModified: false`;
-- next task `THEORY_C01_L06_FULL_VIEW_NORMALIZATION_PASS_12`.
-
-After verification, update `CODEX_STATE.md` to `11/14` and advance the current task to Pass 12.
+Pass only when:
+- both Full View and Normalization artifacts exist and parse;
+- Full View has a complete coherent reading flow and no new mathematics;
+- Normalization reports zero semantic conflicts or explicitly blocks integration if a real conflict is found;
+- all locked case values remain unchanged;
+- formula, claim, misconception and terminology traceability is complete;
+- runtime files modified: `false`;
+- final status advances to `PASS_12_FULL_VIEW_NORMALIZATION_COMPLETE`;
+- next task becomes `THEORY_C01_L06_SLIDESHOW_RUNTIME_IMPORT_PASS_13`.
