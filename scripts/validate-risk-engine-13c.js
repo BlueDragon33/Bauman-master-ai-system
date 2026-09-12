@@ -10,7 +10,7 @@ const assert=(cond,msg)=>{if(!cond)errors.push(msg)};
 
 for(const token of [
   "Academic 2026 Runtime · Pass 13C",
-  "Integrity R1",
+  "Integrity R2",
   "const SCHEDULER_MUTATION_ENABLED=false",
   "prepare:'before_stankin'",
   "preparatory:'stankin'",
@@ -18,6 +18,8 @@ for(const token of [
   "m1:'semester_1'",
   'function currentStageId()',
   'function currentCourseHorizon(',
+  'function dependencyFor(courseId)',
+  '.find(x=>x.courseId===courseId)',
   'function gateActivation(',
   'function courseRisk(',
   'function courseRiskBoard(',
@@ -36,6 +38,7 @@ assert(!/\.autoSchedule\s*\(/.test(runtime),'Academic runtime must not invoke le
 assert(!/schedule\.entries\s*\[[^\]]+\]\s*=/.test(runtime),'Academic runtime must not write schedule entries in Pass13C');
 assert(!/probability of receiving a grade[^.]*\d+%/i.test(runtime),'Course risk must not fabricate grade probability');
 assert(!/stagePolicy\([^)]*\)\{return byId\(/.test(runtime),'stageActivationPolicy uses stage keys, not generic id keys');
+assert(!/dependencyFor\(courseId\)\{return byId\([^}]*courseDependencies/.test(runtime),'courseDependencies rows are keyed by courseId, not id');
 assert(!/if\(!critical\.length\)return \{id:'clear',label:'CLEAR'/.test(runtime),'No registered critical gate must not be treated as automatic CLEAR');
 assert(!/creditsRank=Math\.min\(4,Math\.ceil\(Number\(course\.credits\|\|0\)\/2\)\),priorityScore/.test(runtime),'Risk engine must not directly use whole-course credits for every semester item');
 
@@ -63,6 +66,11 @@ const electiveOptions=curriculum.electiveGroups.flatMap(g=>g.options.map(o=>({..
 const allOfficial=[...curriculum.disciplines,...curriculum.practices,...curriculum.gia,...electiveGroups,...electiveOptions];
 const officialIds=new Set(allOfficial.map(x=>x.id));
 for(const dep of registry.courseDependencies) assert(officialIds.has(dep.courseId),`risk engine dependency points to unknown official course ${dep.courseId}`);
+function dependencyByCourseId(courseId){return registry.courseDependencies.find(x=>x.courseId===courseId)||{critical:[],support:[]}}
+const d04dep=dependencyByCourseId('d04');
+assert(JSON.stringify(d04dep.critical)===JSON.stringify(['P2','P3','P10']),'d04 dependency lookup by courseId must resolve P2/P3/P10');
+const d05dep=dependencyByCourseId('d05');
+assert(JSON.stringify(d05dep.critical)===JSON.stringify(['P4','P5','P8']),'d05 dependency lookup by courseId must resolve P4/P5/P8');
 
 function stateRisk(state){return ({rebuild:'CRITICAL',repair:'HIGH',bridge:'MEDIUM',unassessed:'UNKNOWN',ready:'CLEAR',mastered:'CLEAR'})[state]}
 assert(stateRisk('unassessed')==='UNKNOWN','unassessed course readiness must stay UNKNOWN, not be treated as failure');
@@ -129,4 +137,4 @@ if(errors.length){
   process.exit(1);
 }
 console.log('PASS13C_RISK_ENGINE_PASS');
-console.log(JSON.stringify({schedulerMutation:false,stageMappings:Object.keys(stageExpected).length,stageLookup:'stage_key',officialDependencies:registry.courseDependencies.length,riskStates:['CRITICAL','HIGH','MEDIUM','UNKNOWN','CLEAR'],p0StopMode:'JIT_ONLY',noCriticalCourse:'UNKNOWN',multiSemesterPriority:'whole_course_weight_zero'},null,2));
+console.log(JSON.stringify({schedulerMutation:false,stageMappings:Object.keys(stageExpected).length,stageLookup:'stage_key',dependencyLookup:'courseId_key',officialDependencies:registry.courseDependencies.length,riskStates:['CRITICAL','HIGH','MEDIUM','UNKNOWN','CLEAR'],p0StopMode:'JIT_ONLY',noCriticalCourse:'UNKNOWN',multiSemesterPriority:'whole_course_weight_zero'},null,2));
