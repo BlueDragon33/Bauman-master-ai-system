@@ -1,6 +1,6 @@
 'use strict';
 (function(){
-  const VERSION='Academic 2026 Phase2 · Pass 14C Assessment Event Readiness';
+  const VERSION='Academic 2026 Phase2 · Pass 14C Assessment Event Readiness · Grade Bridge';
   const STORE_KEY='bauman_academic_2026_event_readiness_v1';
   const CURRENT_USER_KEY='bauman_current_user_fullcode_v1';
   const COURSE_ORDER=['d01','d02','d03','d04','d05','d06','d15','p02'];
@@ -82,9 +82,14 @@
   function refreshUi(){try{if(window.app?.home)window.app.home();else appendPanel()}catch{appendPanel()}}
   function patchHome(){if(!window.app||window.app.__event14cPatched)return false;if(!window.app.__course14bPatched)return false;const app=window.app,oldHome=app.home.bind(app);app.__event14cPatched=true;app.home=function(){oldHome();appendPanel()};app.home();return true}
   async function waitBase(timeout=15000){const start=Date.now();while(Date.now()-start<timeout){if(courseRuntime()&&architecture()&&window.app?.__course14bPatched)return true;await new Promise(r=>setTimeout(r,50))}return false}
-  async function load(){try{if(!(await waitBase()))throw new Error('Pass14B course runtime did not become ready');if(!patchHome())throw new Error('Could not patch home for Pass14C');console.info(VERSION,{storageKey:STORE_KEY,userScoped:true,schedulerMutation:false,officialResultMutation:false})}catch(err){console.warn('Pass14C event runtime disabled safely:',err)}}
+  async function load(){try{if(!(await waitBase()))throw new Error('Pass14B course runtime did not become ready');if(!patchHome())throw new Error('Could not patch home for Pass14C');console.info(VERSION,{storageKey:STORE_KEY,userScoped:true,schedulerMutation:false,officialResultMutation:false,gradeBridge:true})}catch(err){console.warn('Pass14C event runtime disabled safely:',err)}}
+  function bootstrapGradeRuntime(){
+    if(!document.querySelector('link[data-phase2-grade-style]')){const link=document.createElement('link');link.rel='stylesheet';link.href='assets/css/academic-grade-2026.css';link.dataset.phase2GradeStyle='1';document.head.appendChild(link)}
+    if(window.BAUMAN_GRADE_CONTROL_2026||document.querySelector('script[data-phase2-grade-runtime]'))return;
+    const script=document.createElement('script');script.src='assets/js/academic-grade-runtime.js';script.dataset.phase2GradeRuntime='1';script.async=false;document.body.appendChild(script);
+  }
 
   window.openAcademicEventReadiness2026=openEvent;window.saveAcademicEventReadiness2026=saveFromUi;window.clearAcademicEventReadiness2026=clearFromUi;
   window.BAUMAN_EVENT_READINESS_2026=Object.freeze({version:VERSION,load,eventState,courseEventAxis,recordEvidence,clearEvidence,evidenceFor,readinessCounts,currentResolvedEvents,storageKey:STORE_KEY,userScoped:true,schedulerMutation:false,officialResultMutation:false});
-  if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',()=>setTimeout(load,0),{once:true});else setTimeout(load,0);
+  if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',()=>{setTimeout(load,0);setTimeout(bootstrapGradeRuntime,0)},{once:true});else {setTimeout(load,0);setTimeout(bootstrapGradeRuntime,0)}
 })();
