@@ -1,10 +1,10 @@
 # CODEX_STATE
 
-Current task: `THEORY_C01_L06_CORE_CONTENT_PASS_07`
+Current task: `THEORY_C01_L06_WORKED_EXAMPLES_DERIVATIONS_PASS_08`
 
-Status: `PASS_06_MISCONCEPTION_MAP_COMPLETE`
+Status: `PASS_07_CORE_CONTENT_COMPLETE`
 
-Date: 2026-07-09
+Date: 2026-09-12
 Branch: `main`
 
 ## Execution policy
@@ -80,8 +80,8 @@ Lesson title:
 `§1.6 · Từ vector sang ma trận dữ liệu`
 
 Progress:
-- academic passes complete: `6/14`;
-- academic passes remaining: `8/14`;
+- academic passes complete: `7/14`;
+- academic passes remaining: `7/14`;
 - runtime integration: not started;
 - durable runtime content: unchanged baseline;
 - browser QA: not applicable before runtime integration.
@@ -93,57 +93,40 @@ Progress:
   - `subjects/math/THEORY_C01_L06_BASELINE_AUDIT.json`.
 - Durable record: index `5` of `18`.
 - Current runtime slides: `16`.
-- Current slide IDs: absent in all `16` baseline slides.
-- Current content blocks: `36` text, `18` Q&A, `7` formula and `3` code.
-- Canonical formula references: `0`.
-- Existing specialist artifacts: `0`; missing: `11`.
-- Exact target-ID matches outside durable content: none.
+- Existing specialist artifacts at the time of audit: `0`; missing: `11`.
 - Durable content, runtime readers, manifest and E235 unchanged.
 
 ### Pass 2 · Learning contract
 - Status: `PASS_02_LEARNING_CONTRACT_COMPLETE`.
 - File: `subjects/math/THEORY_C01_L06_LEARNING_CONTRACT.md`.
-- Prerequisite gates: `P1–P4` locked.
-- Learning outcomes: `LO1–LO9` locked.
-- Mastery evidence groups: `E1–E8` locked.
-- Misconception intercepts: `M1–M8` locked.
-- Canonical convention: `X in R^(m x n)`, rows are observations, columns are features.
-- Alternative column-observation convention is allowed only when declared and translated explicitly.
+- Prerequisite gates: `P1–P4`.
+- Learning outcomes: `LO1–LO9`.
+- Canonical convention: `X in R^(m x n)`, observations as rows, features as columns.
 - Fixed case: `UGV_TELEMETRY_8X6`.
-- Fixed raw shape: `X_raw in R^(8 x 6)`.
-- Locked feature order: left wheel speed, right wheel speed, longitudinal acceleration, lateral acceleration, yaw rate, battery current.
-- Raw, centred and scaled matrices must use distinct notation.
+- Raw, centred and scaled matrices use distinct notation.
 - Gram, covariance, rank, SVD and PCA claims remain assumption-gated or deferred.
-- Numeric values, centering mean, scale vector and thresholds remain unlocked until Pass 5.
-- Runtime content, readers, manifest and E235 unchanged.
+- Runtime unchanged.
 
 ### Pass 3 · Source map and terminology
 - Status: `PASS_03_SOURCE_MAP_TERMINOLOGY_COMPLETE`.
 - File: `subjects/math/THEORY_C01_L06_SOURCE_MAP_TERMINOLOGY.md`.
-- Convention ownership layers: project, mathematics, array/API and engineering.
 - Source anchors: `S1–S12`.
 - Claim trace set: `C01–C24`.
 - Trilingual terminology: `T01–T40`.
-- Symbol contract covers observations, rows, columns, slices, transpose, raw/centred/scaled matrices and Gram objects.
-- Usage rules: `U1–U12`.
-- NumPy operation map is locked to the row-observation project convention.
-- Legacy 16-slide disposition is locked role by role.
-- Rank, singular-value, PCA, missing/outlier policy and physical-mode claims are deferred or rewritten.
-- Runtime content, readers, manifest and E235 unchanged.
+- Project/mathematics/API/engineering ownership layers locked.
+- Legacy 16-slide disposition locked role by role.
+- Runtime unchanged.
 
 ### Pass 4 · Formula registry
 - Status: `PASS_04_FORMULA_REGISTRY_COMPLETE`.
 - File: `subjects/math/THEORY_C01_L06_FORMULA_REGISTRY.md`.
 - Formula IDs: `F01–F18`.
-- Core coverage: matrix assembly, entry/row/column/block access, transpose conversion, linear score, mean and centering.
+- Core: assembly, indexing/slicing, transpose conversion, linear score, mean and centering.
 - API equivalents: row-wise and column-wise NumPy stacking.
-- One-dimensional transpose trap and valid reshape forms are locked.
-- Feature and observation Gram matrices are preview-only.
-- Scaling, covariance, feature transformation and rank are preview-only and assumption-scoped.
+- F07 locks the one-dimensional transpose trap as a forbidden shortcut.
+- Gram, scaling, covariance, feature transform and rank are preview/assumption scoped.
 - SVD and PCA formulas remain deferred.
-- Dimensional failures `D01–D05` and forbidden shortcuts are locked.
-- Numeric case values remain unlocked until Pass 5.
-- Runtime content, readers, manifest and E235 unchanged.
+- Runtime unchanged.
 
 ### Pass 5 · Engineering case
 - Status: `PASS_05_ENGINEERING_CASE_VERIFIED`.
@@ -151,76 +134,68 @@ Progress:
 - Validation: `subjects/math/THEORY_C01_L06_CASE_VALIDATION.json`.
 - Case version: `CASE_C01_L06_V1_LOCKED`.
 - Shape: `8 x 6`, observations as rows.
-- Observation IDs: `UGV-W01–UGV-W08`; timestamps strictly increasing by 250 ms.
-- Feature schema, order, units, version and checksum locked.
+- Observation IDs: `UGV-W01–UGV-W08`; timestamps increase by 250 ms.
+- Ordered feature schema, units, version and checksum locked.
 - Mean: `(8.5, 8.55, 0.03125, 0.02375, 0.01, 12.1625)`.
-- Centered column sums and reconstruction pass at `1e-12`.
-- Four negative variants locked: swapped columns, wrong units, wrong orientation and schema-version mismatch.
+- Four negative variants locked: swapped columns, stale unit, wrong orientation and schema-version mismatch.
 - Scale vector, fault threshold, PCA result and physical mode count remain unlocked/prohibited.
-- Runtime content, readers, manifest and E235 unchanged.
+- Runtime unchanged.
 
 ### Pass 6 · Misconception map
 - Status: `PASS_06_MISCONCEPTION_MAP_COMPLETE`.
 - File: `subjects/math/THEORY_C01_L06_MISCONCEPTION_MAP.md`.
 - Misconceptions: `M01–M18`.
 - Failure classes: conceptual, notation, API, metadata, engineering inference and scope.
-- All four invalid case variants are mapped to explicit misconceptions and expected detections.
-- Orientation, one-dimensional transpose, stacking, schema, units, slicing and preprocessing failures are locked.
-- Covariance, rank, PCA and physical-fault overclaims are explicitly blocked.
-- Retrieval distribution and code-audit requirements are locked.
-- Runtime content, readers, manifest and E235 unchanged.
+- Orientation, 1D transpose, stacking, schema, units, slicing and preprocessing failures locked.
+- Covariance, rank, PCA and fault-diagnosis overclaims explicitly blocked.
+- Retrieval distribution and code-audit requirements locked.
+- Runtime unchanged.
+
+### Pass 7 · Core content
+- Status: `PASS_07_CORE_CONTENT_COMPLETE`.
+- Artifact: `subjects/math/data/theory_core/theory_core_c01_l06.json`.
+- Version: `CORE_C01_L06_V1_PASS07_ARCHITECTURE`.
+- Commit: `ec281b90883ca8edad77b688492c7bcf59525121`.
+- Learning beats: `22`.
+- Embedded retrieval checks: `12`.
+- Coverage:
+  - learning outcomes: `LO1–LO9` complete;
+  - claims: `C01–C24` reachable;
+  - formulas: `F01–F18` reachable;
+  - misconceptions: `M01–M18` covered.
+- Core distinguishes `CORE`, `API_EQUIVALENT`, `FORBIDDEN_SHORTCUT` and `PREVIEW`.
+- Locked UGV feature order, units, observation IDs, timestamps, raw values, mean and centred values preserved.
+- No scale vector, numerical-rank interpretation, SVD/PCA result, retained dimension, threshold or fault diagnosis invented.
+- Source architecture supports expansion beyond the minimum `16` slides without compression.
+- Runtime files modified: `false`.
+- Academic acceptance: not yet; Pass 8–14 remain.
 
 ## Current task requirements
 
-`THEORY_C01_L06_CORE_CONTENT_PASS_07`
+`THEORY_C01_L06_WORKED_EXAMPLES_DERIVATIONS_PASS_08`
 
-Pass 7 must:
-- create the canonical theory core artifact for §1.6;
-- map every section to LO1–LO9, C01–C24, F01–F18, M01–M18 and CASE_C01_L06_V1_LOCKED;
-- teach the governing question, canonical orientation, compatibility gate, assembly, indexing, slicing, transpose, mean and centering;
-- use the locked UGV case without changing any numeric value, feature order, unit, observation ID or timestamp;
-- distinguish core, API-equivalent and preview content;
-- include retrieval checks and misconception intercepts throughout the core;
-- defer missing/outlier policy, scaling choice, rank interpretation, SVD and PCA;
-- produce source sections that can later expand to at least 16 slides without compression;
-- avoid runtime modification.
+Pass 8 must:
+- create `subjects/math/data/theory_worked_examples/theory_worked_examples_c01_l06.json`;
+- use schema `bauman_math_theory_worked_examples_v1` and version `WORKED_EXAMPLES_C01_L06_V1_PASS08`;
+- derive examples only from the accepted Pass 1–7 contracts and `CASE_C01_L06_V1_LOCKED`;
+- cover LO1–LO9 and all core formula families needed for mastery without turning preview formulas into full deferred theory;
+- include explicit examples for compatibility rejection, row-observation assembly, entry/row/column/block extraction, transpose convention conversion, NumPy 1D transpose trap, mean/centering, Gram-versus-covariance distinction and downstream rank/PCA boundaries;
+- preserve all locked UGV numeric values, feature order, units, observation IDs and timestamps;
+- show dimensions/shapes at each derivation step and carry metadata through slices;
+- include misconception intercepts and quality checks in every relevant example;
+- keep scaling policy task-dependent and unlocked;
+- keep rank interpretation, SVD/PCA component selection and fault diagnosis deferred;
+- modify no runtime file;
+- finish with `PASS_08_WORKED_EXAMPLES_DERIVATIONS_COMPLETE` and set next task to `THEORY_C01_L06_DETERMINISTIC_COMPUTATIONAL_LAB_PASS_09`.
 
 ## Maintenance patch · E215 Reader Pro extension panel and fit rules
 
-Date: 2026-07-10
-Status: `BROWSER_SMOKE_PASS_CURRENT_HEAD`
-
-Scope:
-- inspected only `CODEX_STATE.md`, `subjects/math/index.html`, E211 reader content, E212 reader fit and E242 slideshow richness, plus the loaded formula layers needed to trace duplicated relation signs;
-- preserved the active §1.6 Pass 07 task and all accepted §1.4/§1.5 records;
-- did not create a slideshow engine and did not enable E190, E191, E192, E193 or E195.
-
-Patched files:
-- `subjects/math/assets/theory_skin/theory-slideshow-reader-fit-E212.js`;
-- `subjects/math/assets/theory_skin/theory-slideshow-richness-E242.js`;
-- `subjects/math/index.html` cache versions for E212 and E242.
-
-Behavior locked by the patch:
-- right-side Reader Pro panel title is forced to `Nội dung mở rộng`;
-- panel content is checked against the three lower cards and replaced with a non-summary extension note when it duplicates them or contains `Diễn giải kỹ thuật`, `Câu hỏi tự kiểm` or `Câu hỏi đúng cần đặt`;
-- light content receives larger type and stronger weight;
-- dense content receives controlled smaller type and an internal body scrollbar;
-- the panel keeps a fixed title row and scrollable content row, preventing visual overflow without removing other boxes;
-- responsive layout keeps the extension panel present instead of hiding it below 1100 px;
-- duplicated relation operators are sanitized after formula typesetting, including `≥=`, `≤=`, `≠=`, `>==`, `<==` and analogous repeated-equals forms;
-- E242 semantic diagrams are embedded inside the extension panel's scrollable body instead of replacing the entire `.e202-visual` panel;
-- E242 diagram, misconception and retrieval richness remains registered and verifiable;
-- E235 was not modified.
-
-Browser verification:
-- JavaScript syntax check: PASS for the patched E212 file;
-- Playwright Chromium workflow: `E215 Reader Pro browser smoke`, run `29082358198`, conclusion `success`;
-- tested runtime URL: `http://127.0.0.1:4173/subjects/math/index.html`;
-- tested viewports: `1280 x 720` and `900 x 720`;
-- both viewports: panel title PASS, duplicate guard PASS, forbidden-label guard PASS, density rules PASS, internal scrolling PASS, geometric containment PASS and responsive visibility PASS;
-- relation repair PASS: `>==`, `<==`, `≥=`, `≤=` and `≠=` no longer remain in rendered/raw probes;
-- E242 richness PASS with `22` slides, `8` diagrams, `9` retrieval checks and `16` misconception intercepts for the tested §1.4 package;
-- console errors: `0`; page errors: `0`; local HTTP errors: `0`;
-- tested runtime fix commits: E242 `2f4b3d761b5446a4d348a642a005177954a157d6`, index cache `d3fb88643183520520df70f22e3745b861a5e268`;
-- evidence artifact: `e215-browser-smoke-evidence`, artifact ID `8223302254`, digest `sha256:424d069d4fb391c153fa011c887013dd29fc564730794f3cbf72070ed4aff656`;
-- final state: `E215_BROWSER_SMOKE_ACCEPTED_CURRENT_HEAD`.
+Historical accepted maintenance state:
+- status: `E215_BROWSER_SMOKE_ACCEPTED_CURRENT_HEAD`;
+- patched E212 reader-fit and E242 richness layers plus index cache versions;
+- right-side Reader Pro panel is `Nội dung mở rộng`, de-duplicates lower-card summaries and preserves internal scrolling/responsive visibility;
+- duplicated relation operators are sanitized after formula typesetting;
+- E242 semantic diagrams remain embedded in the extension panel;
+- Chromium smoke passed at `1280 x 720` and `900 x 720`;
+- console/page/local HTTP errors: `0`;
+- E235 remained unchanged and E236/E237/E238 remained disabled.
