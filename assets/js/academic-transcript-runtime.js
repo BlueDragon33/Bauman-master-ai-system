@@ -10,10 +10,18 @@
   const h=s=>String(s??'').replace(/[&<>"']/g,m=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[m]));
   const gradeRuntime=()=>window.BAUMAN_GRADE_CONTROL_2026||null;
 
-  function currentUserScope(){try{const u=JSON.parse(localStorage.getItem(CURRENT_USER_KEY)||'null');return String(u?.email||'anonymous').toLowerCase()}catch{return 'anonymous'}}
+  function currentUserScope(){
+    try{return String(JSON.parse(localStorage.getItem(CURRENT_USER_KEY)||'null')?.email||'anonymous').toLowerCase()}
+    catch{return 'anonymous'}
+  }
   function blankStore(){return {schema:'bauman_academic_transcript_evidence_store_v1',version:'PASS14E',users:{}}}
   function readStore(){try{const x=JSON.parse(localStorage.getItem(STORE_KEY)||'null');return x&&typeof x==='object'?x:blankStore()}catch{return blankStore()}}
-  function userState(store=readStore()){store.version='PASS14E';store.users=store.users&&typeof store.users==='object'?store.users:{};const scope=currentUserScope();store.users[scope]=store.users[scope]&&typeof store.users[scope]==='object'?store.users[scope]:{entries:{}};store.users[scope].entries=store.users[scope].entries&&typeof store.users[scope].entries==='object'?store.users[scope].entries:{};return {store,scope,user:store.users[scope]}}
+  function userState(store=readStore()){
+    store.version='PASS14E';store.users=store.users&&typeof store.users==='object'?store.users:{};
+    const scope=currentUserScope();store.users[scope]=store.users[scope]&&typeof store.users[scope]==='object'?store.users[scope]:{entries:{}};
+    store.users[scope].entries=store.users[scope].entries&&typeof store.users[scope].entries==='object'?store.users[scope].entries:{};
+    return {store,scope,user:store.users[scope]};
+  }
   function persist(store){localStorage.setItem(STORE_KEY,JSON.stringify(store));return true}
   function isCreditOnly(assessment=[]){return assessment.length>0&&assessment.every(x=>x==='Зчт')}
   function rowNature(assessment=[]){return isCreditOnly(assessment)?'credit':'graded'}
@@ -27,11 +35,21 @@
     for(const g of curriculum.gia||[])rows.push({rowId:g.id,kind:'gia',nameRu:g.nameRu,credits:g.credits,assessment:g.assessment||[],expectedNature:'graded',requiredForBaseline:true});
     return rows;
   }
-  function facultativeRows(){return (curriculum?.facultatives||[]).map(f=>({rowId:f.id,kind:'facultative',nameRu:f.nameRu,credits:f.credits,assessment:f.assessment||[],expectedNature:rowNature(f.assessment||[]),requiredForBaseline:false,organizationPolicyRequired:true}))}
+  function facultativeRows(){
+    return (curriculum?.facultatives||[]).map(f=>({rowId:f.id,kind:'facultative',nameRu:f.nameRu,credits:f.credits,assessment:f.assessment||[],expectedNature:rowNature(f.assessment||[]),requiredForBaseline:false,organizationPolicyRequired:true}));
+  }
   function rowById(id){return candidateRows().find(x=>x.rowId===id)||facultativeRows().find(x=>x.rowId===id)||null}
   function rawEntry(rowId){const {user}=userState();return clone(user.entries[rowId]||null)}
-  function entryState(rowId){const row=rowById(rowId);if(!row)return {id:'ENTRY_UNKNOWN',label:'Không có dòng dự kiến',verified:false,row:null,evidence:null};const evidence=rawEntry(rowId);if(!evidence)return {id:'ENTRY_UNVERIFIED',label:'Chưa xác minh dòng phụ lục',verified:false,row,evidence:null};if(row.expectedNature==='credit'){const pass=evidence.transcriptValue==='зачтено';return {id:pass?'ENTRY_CREDIT':'ENTRY_CREDIT_FAIL',label:pass?'зачтено · không vào %':'незачтено · đang chặn',verified:true,row,evidence}}
-    const grade=Number(evidence.transcriptValue);return {id:grade===5?'ENTRY_GRADE_5':grade===4?'ENTRY_GRADE_4':grade===3?'ENTRY_GRADE_3':'ENTRY_GRADE_2',label:`${grade} · ${grade===5?'отлично':grade===4?'хорошо':grade===3?'удовлетворительно':'неудовлетворительно'}`,verified:true,row,evidence};
+  function entryState(rowId){
+    const row=rowById(rowId);if(!row)return {id:'ENTRY_UNKNOWN',label:'Không có dòng dự kiến',verified:false,row:null,evidence:null};
+    const evidence=rawEntry(rowId);if(!evidence)return {id:'ENTRY_UNVERIFIED',label:'Chưa xác minh dòng phụ lục',verified:false,row,evidence:null};
+    if(row.expectedNature==='credit'){
+      const pass=evidence.transcriptValue==='зачтено';
+      return {id:pass?'ENTRY_CREDIT':'ENTRY_CREDIT_FAIL',label:pass?'зачтено · không vào %':'незачтено · đang chặn',verified:true,row,evidence};
+    }
+    const grade=Number(evidence.transcriptValue);
+    const label=grade===5?'отлично':grade===4?'хорошо':grade===3?'удовлетворительно':'неудовлетворительно';
+    return {id:grade===5?'ENTRY_GRADE_5':grade===4?'ENTRY_GRADE_4':grade===3?'ENTRY_GRADE_3':'ENTRY_GRADE_2',label:`${grade} · ${label}`,verified:true,row,evidence};
   }
   function recordEntry(rowId,payload={}){
     const row=rowById(rowId);if(!row)throw new Error('Dòng phụ lục dự kiến không tồn tại.');
@@ -39,7 +57,8 @@
     const source=String(payload.source||'').trim();if(source.length<3)throw new Error('Phải ghi nguồn xác minh dòng phụ lục.');
     let selectedOptionId=null,entryName=String(payload.entryName||row.nameRu).trim();
     if(row.kind==='elective_group'){
-      selectedOptionId=String(payload.selectedOptionId||'').trim();const option=(row.options||[]).find(x=>x.id===selectedOptionId);if(!option)throw new Error('Phải chọn đúng học phần tự chọn đã học trước khi xác minh dòng phụ lục.');entryName=option.nameRu;
+      selectedOptionId=String(payload.selectedOptionId||'').trim();
+      const option=(row.options||[]).find(x=>x.id===selectedOptionId);if(!option)throw new Error('Phải chọn đúng học phần tự chọn đã học trước khi xác minh dòng phụ lục.');entryName=option.nameRu;
     }
     let transcriptValue;
     if(row.expectedNature==='credit'){
@@ -52,29 +71,59 @@
   }
   function clearEntry(rowId){const {store,user}=userState();delete user.entries[rowId];persist(store);refreshUi();return entryState(rowId)}
 
-  function projection(){const rows=candidateRows(),graded=rows.filter(x=>x.expectedNature==='graded'),credits=rows.filter(x=>x.expectedNature==='credit');const requiredFive=Math.ceil((policy?.honorsRules?.minimumExcellentShare||0.75)*graded.length);return {baselineRows:rows.length,projectedGradeBearingRows:graded.length,projectedCreditRows:credits.length,requiredFiveIfProjectionConfirmed:requiredFive,maximumFoursIfProjectionConfirmed:graded.length-requiredFive,facultativesExcludedPendingPolicy:facultativeRows().length,courseWorkRowsKnown:0,projectionOnly:true}}
+  function projection(){
+    const rows=candidateRows(),graded=rows.filter(x=>x.expectedNature==='graded'),credits=rows.filter(x=>x.expectedNature==='credit');
+    const requiredFive=Math.ceil((policy?.honorsRules?.minimumExcellentShare||0.75)*graded.length);
+    return {baselineRows:rows.length,projectedGradeBearingRows:graded.length,projectedCreditRows:credits.length,requiredFiveIfProjectionConfirmed:requiredFive,maximumFoursIfProjectionConfirmed:graded.length-requiredFive,facultativesExcludedPendingPolicy:facultativeRows().length,courseWorkRowsKnown:0,projectionOnly:true};
+  }
   function honorsEvaluation(){
-    const rows=candidateRows(),states=rows.map(r=>entryState(r.rowId)),graded=states.filter(x=>x.row.expectedNature==='graded'),credits=states.filter(x=>x.row.expectedNature==='credit'),verified=states.filter(x=>x.verified),missing=states.filter(x=>!x.verified),five=graded.filter(x=>x.evidence?.transcriptValue===5),four=graded.filter(x=>x.evidence?.transcriptValue===4),low=graded.filter(x=>[2,3].includes(Number(x.evidence?.transcriptValue))),giaBad=graded.filter(x=>x.row.kind==='gia'&&x.verified&&Number(x.evidence?.transcriptValue)!==5),creditFail=credits.filter(x=>x.verified&&x.evidence?.transcriptValue==='незачтено'),p=projection();
+    const rows=candidateRows(),states=rows.map(r=>entryState(r.rowId));
+    const graded=states.filter(x=>x.row.expectedNature==='graded'),credits=states.filter(x=>x.row.expectedNature==='credit'),verified=states.filter(x=>x.verified),missing=states.filter(x=>!x.verified);
+    const five=graded.filter(x=>x.evidence?.transcriptValue===5),four=graded.filter(x=>x.evidence?.transcriptValue===4),low=graded.filter(x=>[2,3].includes(Number(x.evidence?.transcriptValue)));
+    const giaBad=graded.filter(x=>x.row.kind==='gia'&&x.verified&&Number(x.evidence?.transcriptValue)!==5),creditFail=credits.filter(x=>x.verified&&x.evidence?.transcriptValue==='незачтено'),p=projection();
     const complete=missing.length===0;let id='EVIDENCE_INCOMPLETE',label='Chưa đủ evidence để kết luận bằng đỏ';
     if(low.length||giaBad.length||creditFail.length){id='CURRENT_EVIDENCE_BLOCKS_HONORS';label='Evidence hiện tại đang vi phạm điều kiện bằng đỏ'}
     else if(complete&&five.length>=p.requiredFiveIfProjectionConfirmed){id='HONORS_RULES_MET_ON_VERIFIED_LEDGER';label='Đủ điều kiện theo ledger đã xác minh'}
     else if(complete){id='EXCELLENT_SHARE_BELOW_75';label='Tỷ lệ điểm 5 dưới 75%'}
-    return {id,label,complete,verifiedRows:verified.length,totalRows:states.length,missingRows:missing.map(x=>x.row.rowId),gradeBearingVerified:graded.filter(x=>x.verified).length,projectedGradeBearingRows:p.projectedGradeBearingRows,fiveCount:five.length,fourCount:four.length,lowGradeRows:low.map(x=>x.row.rowId),giaNonExcellentRows:giaBad.map(x=>x.row.rowId),creditFailRows:creditFail.map(x=>x.row.rowId),excellentShare:complete&&graded.length?five.length/graded.length:null,requiredFive:p.requiredFiveIfProjectionConfirmed,projection:p,finalEligibilityClaimed:complete&&id==='HONORS_RULES_MET_ON_VERIFIED_LEDGER'}
+    return {id,label,complete,verifiedRows:verified.length,totalRows:states.length,missingRows:missing.map(x=>x.row.rowId),gradeBearingVerified:graded.filter(x=>x.verified).length,projectedGradeBearingRows:p.projectedGradeBearingRows,fiveCount:five.length,fourCount:four.length,lowGradeRows:low.map(x=>x.row.rowId),giaNonExcellentRows:giaBad.map(x=>x.row.rowId),creditFailRows:creditFail.map(x=>x.row.rowId),excellentShare:complete&&graded.length?five.length/graded.length:null,requiredFive:p.requiredFiveIfProjectionConfirmed,projection:p,finalEligibilityClaimed:complete&&id==='HONORS_RULES_MET_ON_VERIFIED_LEDGER'};
   }
 
-  function badge(state){const cls=state.id==='ENTRY_GRADE_5'||state.id==='ENTRY_CREDIT'?'safe':state.id==='ENTRY_UNVERIFIED'?'empty':state.id==='ENTRY_GRADE_4'?'warn':'fail';return `<span class="transcript14e-badge ${cls}">${h(state.label)}</span>`}
-  function renderPanel(){const e=honorsEvaluation(),p=e.projection,rows=candidateRows().map(r=>{const s=entryState(r.rowId);return `<button class="transcript14e-row" onclick="openAcademicTranscriptEntry2026('${h(r.rowId)}')"><span><b>${h(r.rowId)} · ${h(r.nameRu)}</b><small>${h(r.kind)} · ${r.expectedNature==='graded'?'dòng có điểm':'Зчт / loại khỏi % nếu зачтено'}</small></span>${badge(s)}</button>`}).join('');return `<section class="transcript14e-shell" data-transcript14e="ledger"><article class="academic2026-panel"><div class="academic2026-head"><div><span class="academic2026-badge">PHASE 2 · PASS 14E</span><h3>Diploma Supplement · Honors Evidence</h3><p>Tính bằng đỏ theo dòng phụ lục đã xác minh, không theo số assessment event. Mỗi môn/practice/GIA dùng cấu trúc dòng theo Order 670.</p></div><span class="academic2026-lock">No event auto-promotion</span></div><div class="transcript14e-kpis"><span><b>${e.verifiedRows}/${e.totalRows}</b><small>ROW VERIFIED</small></span><span><b>${p.projectedGradeBearingRows}</b><small>GRADED PROJECTION</small></span><span><b>${p.requiredFiveIfProjectionConfirmed}</b><small>5s NEEDED*</small></span><span><b>${e.fiveCount}</b><small>5s VERIFIED</small></span></div><div class="transcript14e-status"><b>${h(e.label)}</b><small>* ${p.projectedGradeBearingRows} dòng có điểm và ${p.requiredFiveIfProjectionConfirmed} điểm 5 chỉ là projection từ curriculum hiện tại; nếu có course work/project hoặc quy tắc cục bộ bổ sung thì mẫu số phải cập nhật.</small></div><div class="transcript14e-list">${rows}</div></article></section>`}
+  function badge(state){
+    const cls=state.id==='ENTRY_GRADE_5'||state.id==='ENTRY_CREDIT'?'safe':state.id==='ENTRY_UNVERIFIED'?'empty':state.id==='ENTRY_GRADE_4'?'warn':'fail';
+    return `<span class="transcript14e-badge ${cls}">${h(state.label)}</span>`;
   }
-  function form(rowId){const row=rowById(rowId);if(!row)return '<p>Không có dòng.</p>';const s=entryState(rowId),e=s.evidence||{},opts=row.kind==='elective_group'?`<label>Học phần tự chọn đã học<select class="field" id="transcript14eOption"><option value="">Chọn</option>${(row.options||[]).map(o=>`<option value="${h(o.id)}" ${e.selectedOptionId===o.id?'selected':''}>${h(o.id)} · ${h(o.nameRu)}</option>`).join('')}</select></label>`:'';const val=row.expectedNature==='credit'?`<label>Giá trị trên phụ lục<select class="field" id="transcript14eValue"><option value="">Chọn</option><option value="зачтено" ${e.transcriptValue==='зачтено'?'selected':''}>зачтено</option><option value="незачтено" ${e.transcriptValue==='незачтено'?'selected':''}>незачтено</option></select></label>`:`<label>Điểm trên phụ lục<select class="field" id="transcript14eValue"><option value="">Chọn</option>${[5,4,3,2].map(g=>`<option value="${g}" ${Number(e.transcriptValue)===g?'selected':''}>${g}</option>`).join('')}</select></label>`;return `<div class="transcript14e-form"><div>${badge(s)}</div><label class="transcript14e-check"><input id="transcript14eVerified" type="checkbox" ${e.entryVerified?'checked':''}> Tôi đã kiểm chứng dòng/điểm này từ phụ lục, bản nháp học vụ, ведомость hoặc nguồn tương đương có thẩm quyền.</label><label>Nguồn xác minh<input class="field" id="transcript14eSource" value="${h(e.source||'')}" placeholder="Nguồn học vụ / phụ lục / ведомость..."></label>${opts}${val}<label>Ghi chú<textarea class="field" id="transcript14eNotes" rows="3">${h(e.notes||'')}</textarea></label><div class="transcript14e-actions"><button class="btn primary" onclick="saveAcademicTranscriptEntry2026('${h(rowId)}')">Lưu evidence</button>${e.entryVerified?`<button class="btn" onclick="clearAcademicTranscriptEntry2026('${h(rowId)}')">Xóa evidence</button>`:''}</div><p class="academic2026-note">Kết quả Pass14D không tự biến thành dòng phụ lục. Với môn có nhiều assessment event, Hub vẫn chỉ tính theo dòng phụ lục đã xác minh.</p></div>`}
-  function openEntry(rowId){const row=rowById(rowId);if(!row)return;const body=`<div class="transcript14e-modal"><h4>${h(row.nameRu)}</h4><p>${row.expectedNature==='graded'?'Dòng có điểm · có thể vào mẫu số bằng đỏ':'Зчт · bị loại khỏi tỷ lệ nếu là зачтено'}</p>${form(rowId)}</div>`;if(typeof window.openModal==='function')return window.openModal(`${rowId} · Diploma supplement evidence`,body,true)}
-  function saveFromUi(rowId){try{const v=id=>document.getElementById(id),state=recordEntry(rowId,{entryVerified:v('transcript14eVerified')?.checked===true,source:v('transcript14eSource')?.value||'',selectedOptionId:v('transcript14eOption')?.value||'',transcriptValue:v('transcript14eValue')?.value,notes:v('transcript14eNotes')?.value||''});openEntry(rowId);if(typeof window.toast==='function')window.toast(`${rowId}: ${state.label}`)}catch(err){alert(err.message||String(err))}}
+  function renderPanel(){
+    const e=honorsEvaluation(),p=e.projection;
+    const rows=candidateRows().map(r=>{const s=entryState(r.rowId);return `<button class="transcript14e-row" onclick="openAcademicTranscriptEntry2026('${h(r.rowId)}')"><span><b>${h(r.rowId)} · ${h(r.nameRu)}</b><small>${h(r.kind)} · ${r.expectedNature==='graded'?'dòng có điểm':'Зчт / loại khỏi % nếu зачтено'}</small></span>${badge(s)}</button>`}).join('');
+    return `<section class="transcript14e-shell" data-transcript14e="ledger"><article class="academic2026-panel"><div class="academic2026-head"><div><span class="academic2026-badge">PHASE 2 · PASS 14E</span><h3>Diploma Supplement · Honors Evidence</h3><p>Tính bằng đỏ theo dòng phụ lục đã xác minh, không theo số assessment event. Mỗi môn/practice/GIA dùng cấu trúc dòng theo Order 670.</p></div><span class="academic2026-lock">No event auto-promotion</span></div><div class="transcript14e-kpis"><span><b>${e.verifiedRows}/${e.totalRows}</b><small>ROW VERIFIED</small></span><span><b>${p.projectedGradeBearingRows}</b><small>GRADED PROJECTION</small></span><span><b>${p.requiredFiveIfProjectionConfirmed}</b><small>5s NEEDED*</small></span><span><b>${e.fiveCount}</b><small>5s VERIFIED</small></span></div><div class="transcript14e-status"><b>${h(e.label)}</b><small>* ${p.projectedGradeBearingRows} dòng có điểm và ${p.requiredFiveIfProjectionConfirmed} điểm 5 chỉ là projection từ curriculum hiện tại; nếu có course work/project hoặc quy tắc cục bộ bổ sung thì mẫu số phải cập nhật.</small></div><div class="transcript14e-list">${rows}</div></article></section>`;
+  }
+  function form(rowId){
+    const row=rowById(rowId);if(!row)return '<p>Không có dòng.</p>';const s=entryState(rowId),e=s.evidence||{};
+    const opts=row.kind==='elective_group'?`<label>Học phần tự chọn đã học<select class="field" id="transcript14eOption"><option value="">Chọn</option>${(row.options||[]).map(o=>`<option value="${h(o.id)}" ${e.selectedOptionId===o.id?'selected':''}>${h(o.id)} · ${h(o.nameRu)}</option>`).join('')}</select></label>`:'';
+    const val=row.expectedNature==='credit'
+      ? `<label>Giá trị trên phụ lục<select class="field" id="transcript14eValue"><option value="">Chọn</option><option value="зачтено" ${e.transcriptValue==='зачтено'?'selected':''}>зачтено</option><option value="незачтено" ${e.transcriptValue==='незачтено'?'selected':''}>незачтено</option></select></label>`
+      : `<label>Điểm trên phụ lục<select class="field" id="transcript14eValue"><option value="">Chọn</option>${[5,4,3,2].map(g=>`<option value="${g}" ${Number(e.transcriptValue)===g?'selected':''}>${g}</option>`).join('')}</select></label>`;
+    return `<div class="transcript14e-form"><div>${badge(s)}</div><label class="transcript14e-check"><input id="transcript14eVerified" type="checkbox" ${e.entryVerified?'checked':''}> Tôi đã kiểm chứng dòng/điểm này từ phụ lục, bản nháp học vụ, ведомость hoặc nguồn tương đương có thẩm quyền.</label><label>Nguồn xác minh<input class="field" id="transcript14eSource" value="${h(e.source||'')}" placeholder="Nguồn học vụ / phụ lục / ведомость..."></label>${opts}${val}<label>Ghi chú<textarea class="field" id="transcript14eNotes" rows="3">${h(e.notes||'')}</textarea></label><div class="transcript14e-actions"><button class="btn primary" onclick="saveAcademicTranscriptEntry2026('${h(rowId)}')">Lưu evidence</button>${e.entryVerified?`<button class="btn" onclick="clearAcademicTranscriptEntry2026('${h(rowId)}')">Xóa evidence</button>`:''}</div><p class="academic2026-note">Kết quả Pass14D không tự biến thành dòng phụ lục. Với môn có nhiều assessment event, Hub vẫn chỉ tính theo dòng phụ lục đã xác minh.</p></div>`;
+  }
+  function openEntry(rowId){
+    const row=rowById(rowId);if(!row)return;
+    const body=`<div class="transcript14e-modal"><h4>${h(row.nameRu)}</h4><p>${row.expectedNature==='graded'?'Dòng có điểm · có thể vào mẫu số bằng đỏ':'Зчт · bị loại khỏi tỷ lệ nếu là зачтено'}</p>${form(rowId)}</div>`;
+    if(typeof window.openModal==='function')return window.openModal(`${rowId} · Diploma supplement evidence`,body,true);
+  }
+  function saveFromUi(rowId){
+    try{const v=id=>document.getElementById(id),state=recordEntry(rowId,{entryVerified:v('transcript14eVerified')?.checked===true,source:v('transcript14eSource')?.value||'',selectedOptionId:v('transcript14eOption')?.value||'',transcriptValue:v('transcript14eValue')?.value,notes:v('transcript14eNotes')?.value||''});openEntry(rowId);if(typeof window.toast==='function')window.toast(`${rowId}: ${state.label}`)}
+    catch(err){alert(err.message||String(err))}
+  }
   function clearFromUi(rowId){clearEntry(rowId);openEntry(rowId)}
   function appendPanel(){const root=document.getElementById('page-home');if(!root||root.querySelector('[data-transcript14e="ledger"]'))return;root.insertAdjacentHTML('beforeend',renderPanel())}
   function refreshUi(){try{if(window.app?.home)window.app.home();else appendPanel()}catch{appendPanel()}}
   function patchHome(){if(!window.app||window.app.__transcript14ePatched)return false;if(!window.app.__grade14dPatched)return false;const app=window.app,oldHome=app.home.bind(app);app.__transcript14ePatched=true;app.home=function(){oldHome();appendPanel()};app.home();return true}
   async function fetchJson(url){const r=await fetch(url,{cache:'no-cache'});if(!r.ok)throw new Error(`${url} HTTP ${r.status}`);return r.json()}
   async function waitBase(timeout=15000){const start=Date.now();while(Date.now()-start<timeout){if(gradeRuntime()&&window.app?.__grade14dPatched)return true;await new Promise(r=>setTimeout(r,50))}return false}
-  async function load(){try{[policy,curriculum]=await Promise.all([fetchJson(POLICY_URL),fetchJson(CURRICULUM_URL)]);window.BAUMAN_DIPLOMA_HONORS_POLICY_2026=policy;if(!(await waitBase()))throw new Error('Pass14D grade runtime did not become ready');if(!patchHome())throw new Error('Could not patch home for Pass14E');console.info(VERSION,{policy:policy.version,baselineRows:candidateRows().length,projection:projection(),eventAutoPromotion:false})}catch(err){console.warn('Pass14E transcript runtime disabled safely:',err)}}
+  async function load(){
+    try{[policy,curriculum]=await Promise.all([fetchJson(POLICY_URL),fetchJson(CURRICULUM_URL)]);window.BAUMAN_DIPLOMA_HONORS_POLICY_2026=policy;if(!(await waitBase()))throw new Error('Pass14D grade runtime did not become ready');if(!patchHome())throw new Error('Could not patch home for Pass14E');console.info(VERSION,{policy:policy.version,baselineRows:candidateRows().length,projection:projection(),eventAutoPromotion:false})}
+    catch(err){console.warn('Pass14E transcript runtime disabled safely:',err)}
+  }
 
   window.openAcademicTranscriptEntry2026=openEntry;window.saveAcademicTranscriptEntry2026=saveFromUi;window.clearAcademicTranscriptEntry2026=clearFromUi;
   window.BAUMAN_TRANSCRIPT_HONORS_2026=Object.freeze({version:VERSION,load,candidateRows,facultativeRows,rowById,entryState,recordEntry,clearEntry,rawEntry,projection,honorsEvaluation,storageKey:STORE_KEY,userScoped:true,eventAutoPromotion:false,schedulerMutation:false,courseCompletionMutation:false,policyUrl:POLICY_URL,curriculumUrl:CURRICULUM_URL});
