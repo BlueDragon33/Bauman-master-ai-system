@@ -1,24 +1,33 @@
-# Phase 2 · Pass 14A — Semester 1 Official Course Learning Architecture
+# Phase 2 · Pass 14A-R — Semester 1 Course Architecture Integrity Correction
 
-Status: `S1_COURSE_ARCHITECTURE_VALIDATED_CI_PASS`
+Status: `S1_COURSE_ARCHITECTURE_INTEGRITY_STABLE`
 
 Branch: `phase2/official-course-learning-architecture`
 
-## Goal
+## Why Pass14A was reopened
 
-Introduce a course-first orchestration layer on top of the completed Academic 2026 prerequisite system. The architecture must answer: which official semester-1 course is active, which critical prerequisite gate is blocking it, which competency block is relevant, and which official assessment code the learner is preparing for.
+The first Pass14A was structurally consistent, but semantic review found assumptions that were too strong for the available evidence. The correction pass was completed before any Phase2 readiness UI/runtime expansion.
+
+## Corrections locked
+
+1. `d01 — Иностранный язык` is no longer mapped to P0 Technical Russian. Public BMSTU L2 learning evidence identifies Foreign Language for IU as English and exposes a master's-programme category. Phase2 therefore uses a course-local English readiness placeholder with no invented CEFR threshold or exam format.
+2. P0 remains Russian language-of-instruction / technical-Russian JIT support for technical courses, NIR, pedagogy and VKR. It does not replace d01.
+3. Multi-semester items `d01`, `d15`, and `p02` keep whole-course totals but have semester-1 credits/hours and assessment timing set to unresolved. The Hub must not split or infer them.
+4. Readiness is modeled on three independent axes: prerequisite readiness, course lifecycle and event readiness. A course can be active while prerequisite repair is still required.
+5. Internal target 90 applies only to graded planning events. A pure `Зчт` carries no fabricated numeric 90 target.
+6. The Pass13C risk engine no longer uses whole-course credits or undated assessment codes as current-semester priority weight for a multi-semester course.
+7. A course with no registered global critical gate is `UNKNOWN`, not automatically `CLEAR`; d01 uses its course-local English readiness model.
+8. The unverified secondary d01 library record was removed. Until another source is independently verified, d01 uses only the verified public L2 learning portal evidence.
 
 ## Source boundary
 
-Official identity, credits, hours, semester and assessment codes are mirrored only from `assets/data/official-curriculum-iu5-2026.json`.
+Official identity and whole-course credits/hours/semester membership/assessment codes come from `assets/data/official-curriculum-iu5-2026.json`.
 
-Prerequisite dependencies are mirrored only from `assets/data/prerequisite-registry-iu5-2026.json` and remain competency prerequisites, not Bauman administrative prerequisites.
+Competency prerequisites come from `assets/data/prerequisite-registry-iu5-2026.json` and remain Hub planning prerequisites, not Bauman administrative prerequisites.
 
-Competency blocks in `assets/data/course-learning-architecture-s1-2026.json` are planning inferences unless they explicitly carry a public IU5 learning source. They must not be presented as the official syllabus.
+Course competency blocks are planning inferences unless explicitly backed by public BMSTU/IU5 learning evidence. They are never presented as the official syllabus.
 
-## Semester-1 route
-
-The stable course set is:
+## Semester-1 course set
 
 - d01 — Иностранный язык
 - d02 — Методология научного познания
@@ -29,33 +38,30 @@ The stable course set is:
 - d15 — Технологии разработки программного обеспечения
 - p02 — Научно-исследовательская работа
 
-## Readiness policy
+## Public evidence retained
 
-Course readiness uses `worst critical prerequisite gate wins`. Internal target remains 90, READY requires overall >=90, D1 >=85 and zero critical misconceptions. MASTERED requires overall >=95, D1 >=90 and zero critical misconceptions.
+- d01: `https://e-learning.bmstu.ru/l/course/index.php?categoryid=3` — L2 public learning portal; supports English separation only. No CEFR level, exact assessment format or exact 2026 syllabus is inferred.
+- d03: `https://e-learning.bmstu.ru/iu5/course/view.php?id=48` — supports queueing/analytical-model preparation, not a complete 2026 syllabus claim.
+- p02: `https://e-learning.bmstu.ru/iu5/course/view.php?id=153` — public NIR guidance only; numerical requirements are not treated as universal 2026 master's rules.
 
-A course does not become READY from an average across strong and weak prerequisite gates.
+## Validation gates
 
-## Scope guards
+- Corrected Phase2 architecture validator: `scripts/validate-course-learning-architecture-s1-2026.js`
+- Source-boundary validator: `scripts/validate-phase2-source-integrity.js`
+- Corrected P0 validator: `scripts/validate-p00-technical-russian.js`
+- Semester-safe risk validator: `scripts/validate-risk-engine-13c.js`
+- Base Academic registry validator: `scripts/validate-academic-2026.js`
 
-The default course route does not inject UGV/USV, robotics, PID/LQR, FPGA/HDL, PLC/SCADA, Kalman/sensor fusion or LLM/RAG/agents unless an official task or confirmed NIR/VKR direction requires them.
+Phase2 workflow run `34662351499`: SUCCESS on head `10bcefc7cf7d2867de588487929fbd04a44eeb80`.
 
-NIR remains `TOPIC_NEUTRAL` until supervisor or confirmed NIR/VKR direction activates a specialized track.
+Full Academic regression run `34662154224`: SUCCESS on head `93a32a0957225f365e6b2f58239b61397fe7fb5f`, including Browser/E2E acceptance after the risk/runtime correction.
 
-## Public IU5 evidence currently attached
+The later commits only tighten source evidence, the Phase2 CI gate and preserve the latest main preview-production-D1 guard; they do not introduce a new learning/runtime feature.
 
-- d03: `https://e-learning.bmstu.ru/iu5/course/view.php?id=48` supports queueing/analytical-model preparation but is not treated as the complete 2026 syllabus.
-- p02: `https://e-learning.bmstu.ru/iu5/course/view.php?id=153` is public NIR guidance only; numerical requirements are not locked as universal 2026 master rules.
+## Main synchronization
 
-## Validation
+Latest `main` hardening commit `309530b3214a334f381e4dc80ec7638d62615f30` has been reconciled into this Phase2 branch. The branch is no longer behind `main` at the time of this audit.
 
-Validator: `scripts/validate-course-learning-architecture-s1-2026.js`
+## Decision
 
-CI workflow: `.github/workflows/academic-2026-phase2-course-architecture.yml`
-
-Validated run: `34581091203`
-
-Validated head before this documentation-only commit: `19211afcfae614f06da54e91de93de780d320f41`
-
-Result: SUCCESS.
-
-The validator checks exact official course identity/hours/credits/semester/assessment, exact prerequisite dependency mapping, unique competency-block IDs, evidence classification, default-route scope guards, NIR topic neutrality and preservation of the existing Academic 2026 registry invariants.
+Pass14A-R is stable enough to serve as the semantic base for Pass14B. No Phase2 feature should bypass these invariants. `main` is not modified by this correction pass.
