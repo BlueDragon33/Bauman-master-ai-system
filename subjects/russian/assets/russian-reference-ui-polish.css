@@ -1,0 +1,32 @@
+/* Russian Reference UI · post-merge polish round 2 */
+.ru-skill-card{min-height:108px!important;padding-top:12px!important;padding-bottom:12px!important}
+.ru-skill-card .ico{margin-bottom:8px!important}
+.ru-skill-card .mini-progress{display:none!important}
+
+.ru-empty-activity{grid-column:1/-1;min-height:92px;padding:16px;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;border:1px dashed rgba(103,166,229,.26);border-radius:12px;background:rgba(9,31,55,.52)}
+.ru-empty-activity b{font-size:11px!important}
+.ru-empty-activity span{max-width:260px;margin-top:5px;color:#8399b2!important;font-size:8px!important;line-height:1.45}
+
+.ru-legacy-overview-details{margin-top:2px;border:1px solid rgba(88,153,218,.18);border-radius:14px;background:linear-gradient(145deg,rgba(7,23,42,.78),rgba(5,18,34,.86));overflow:hidden}
+.ru-legacy-overview-details>summary{list-style:none;min-height:48px;padding:10px 14px;display:flex;align-items:center;justify-content:space-between;gap:12px;cursor:pointer;color:#d6e7f8;background:rgba(13,39,68,.44);border-bottom:1px solid transparent}
+.ru-legacy-overview-details>summary::-webkit-details-marker{display:none}
+.ru-legacy-overview-details>summary:before{content:'＋';width:24px;height:24px;display:grid;place-items:center;flex:0 0 auto;border:1px solid rgba(77,160,241,.28);border-radius:8px;background:#0b2847;color:#8fcaff;font-size:14px}
+.ru-legacy-overview-details[open]>summary:before{content:'−'}
+.ru-legacy-overview-details[open]>summary{border-bottom-color:rgba(88,153,218,.16)}
+.ru-legacy-overview-details>summary span{flex:1;font-size:10px;font-weight:760}
+.ru-legacy-overview-details>summary small{font-size:8px!important;color:#7890aa!important}
+.ru-legacy-overview-body{padding:10px;display:grid;gap:10px}
+.ru-legacy-overview-body>.overview-canva-lower{margin:0!important}
+
+.ru-reference-ui button:focus-visible,.ru-reference-ui input:focus-visible,.ru-reference-ui select:focus-visible,.ru-reference-ui textarea:focus-visible,.ru-legacy-overview-details>summary:focus-visible{outline:2px solid #58b7ff!important;outline-offset:2px!important}
+.ru-search-hints button:focus-visible{background:#12375d!important;color:#fff!important}
+
+@media (max-width:760px){
+  .ru-legacy-overview-details>summary{align-items:flex-start;flex-wrap:wrap}
+  .ru-legacy-overview-details>summary small{width:100%;padding-left:36px}
+  .ru-legacy-overview-body{padding:7px}
+}
+
+@media (prefers-reduced-motion:reduce){
+  .ru-reference-ui *{scroll-behavior:auto!important;transition:none!important;animation:none!important}
+}
