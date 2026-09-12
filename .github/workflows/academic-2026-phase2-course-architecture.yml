@@ -31,11 +31,13 @@ on:
       - 'scripts/validate-grade-control-runtime-14d.js'
       - 'scripts/validate-transcript-honors-runtime-14e.js'
       - 'scripts/validate-academic-command-center-14f.js'
+      - 'scripts/validate-phase2-final-integration-14g.js'
       - 'tests/course-readiness-browser-14b.mjs'
       - 'tests/event-readiness-browser-14c.mjs'
       - 'tests/grade-control-browser-14d.mjs'
       - 'tests/transcript-honors-browser-14e.mjs'
       - 'tests/academic-command-center-browser-14f.mjs'
+      - 'tests/phase2-final-integration-browser-14g.mjs'
       - '.github/workflows/academic-2026-phase2-course-architecture.yml'
   pull_request:
     paths:
@@ -67,11 +69,13 @@ on:
       - 'scripts/validate-grade-control-runtime-14d.js'
       - 'scripts/validate-transcript-honors-runtime-14e.js'
       - 'scripts/validate-academic-command-center-14f.js'
+      - 'scripts/validate-phase2-final-integration-14g.js'
       - 'tests/course-readiness-browser-14b.mjs'
       - 'tests/event-readiness-browser-14c.mjs'
       - 'tests/grade-control-browser-14d.mjs'
       - 'tests/transcript-honors-browser-14e.mjs'
       - 'tests/academic-command-center-browser-14f.mjs'
+      - 'tests/phase2-final-integration-browser-14g.mjs'
       - '.github/workflows/academic-2026-phase2-course-architecture.yml'
 
 jobs:
@@ -102,6 +106,8 @@ jobs:
         run: node scripts/validate-transcript-honors-runtime-14e.js
       - name: Validate Pass14F Academic Command Center
         run: node scripts/validate-academic-command-center-14f.js
+      - name: Validate Pass14G final integration invariants
+        run: node scripts/validate-phase2-final-integration-14g.js
       - name: Check Phase1 + Phase2 runtime syntax
         run: |
           node --check assets/js/academic-main.js
@@ -116,11 +122,12 @@ jobs:
           node --check tests/grade-control-browser-14d.mjs
           node --check tests/transcript-honors-browser-14e.mjs
           node --check tests/academic-command-center-browser-14f.mjs
+          node --check tests/phase2-final-integration-browser-14g.mjs
 
   browser-course-readiness:
     needs: validate-course-architecture
     runs-on: ubuntu-latest
-    timeout-minutes: 20
+    timeout-minutes: 25
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4
@@ -160,11 +167,16 @@ jobs:
           BAUMAN_E2E_BASE_URL: http://127.0.0.1:4173/
           BAUMAN_E2E_ARTIFACT_DIR: artifacts/browser-14e
         run: node tests/transcript-honors-browser-14e.mjs
-      - name: Run Pass14F browser acceptance
+      - name: Run Pass14F browser regression
         env:
           BAUMAN_E2E_BASE_URL: http://127.0.0.1:4173/
           BAUMAN_E2E_ARTIFACT_DIR: artifacts/browser-14f
         run: node tests/academic-command-center-browser-14f.mjs
+      - name: Run Pass14G final integration browser acceptance
+        env:
+          BAUMAN_E2E_BASE_URL: http://127.0.0.1:4173/
+          BAUMAN_E2E_ARTIFACT_DIR: artifacts/browser-14g
+        run: node tests/phase2-final-integration-browser-14g.mjs
       - name: Show static server log on failure
         if: failure()
         run: cat /tmp/bauman-phase2-http.log || true
@@ -172,12 +184,13 @@ jobs:
         if: always()
         uses: actions/upload-artifact@v4
         with:
-          name: academic-phase2-browser-14bcdef-${{ github.run_id }}
+          name: academic-phase2-browser-14bcdefg-${{ github.run_id }}
           path: |
             artifacts/browser-14b
             artifacts/browser-14c
             artifacts/browser-14d
             artifacts/browser-14e
             artifacts/browser-14f
+            artifacts/browser-14g
           if-no-files-found: warn
           retention-days: 7
