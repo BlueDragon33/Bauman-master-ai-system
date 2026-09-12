@@ -17,6 +17,7 @@ assert(!/return \{id:'COMPLETED'/.test(runtime),'Pass14B must not fabricate cour
 assert(runtime.includes("return {id:null,label:'Chưa ghi kết quả vòng đời'"),'Lifecycle must stay unknown after course horizon without completion evidence');
 assert(runtime.includes("if(course?.courseLocalReadiness)return {type:'LOCAL_DIAGNOSTIC_PENDING'"),'d01 must use local English readiness path');
 assert(runtime.includes("target nội bộ")&&runtime.includes("Pass/fail · không gán target 90"),'event UI must distinguish graded vs pass/fail target policy');
+assert(runtime.includes("if(document.readyState==='loading')")&&runtime.includes("else setTimeout(load,0)"),'Dynamically injected Phase2 runtime must initialize even after DOMContentLoaded already fired');
 assert(apply.includes('function bootstrapPhase2CourseRuntime()'),'Pass13F layer must bootstrap Phase2 runtime');
 assert(apply.includes("assets/css/academic-course-2026.css")&&apply.includes("assets/js/academic-course-runtime.js"),'Phase2 bootstrap assets missing');
 assert(!index.includes('academic-course-runtime.js')&&!index.includes('academic-course-2026.css'),'Base index must remain unchanged; Phase2 assets load through additive bootstrap');
@@ -31,4 +32,4 @@ const d04=arch.courses.find(x=>x.courseId==='d04');
 assert(d04.eventModel.events.every(x=>x.internalTarget===90),'d04 graded events must retain internal target 90');
 if(errors.length){console.error(`PASS14B_COURSE_READINESS_FAIL (${errors.length})`);for(const e of errors)console.error(`- ${e}`);process.exit(1)}
 console.log('PASS14B_COURSE_READINESS_VALID');
-console.log(JSON.stringify({courses:required.length,readOnly:true,d01:'course-local-English',multiSemester:['d01','d15','p02'],stateAxes:3},null,2));
+console.log(JSON.stringify({courses:required.length,readOnly:true,d01:'course-local-English',multiSemester:['d01','d15','p02'],stateAxes:3,dynamicBootstrap:'readyState-safe'},null,2));
