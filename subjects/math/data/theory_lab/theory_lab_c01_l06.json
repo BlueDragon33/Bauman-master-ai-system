@@ -1,0 +1,184 @@
+{
+  "id": "bauman_math_theory_lab_c01_l06_v1",
+  "schema": "bauman_math_theory_lab_v1",
+  "version": "LAB_C01_L06_V1_PASS09",
+  "status": "pass09_complete_pending_assessment_design",
+  "lessonId": "MATH-VN-C01-vector_trong_khong_gian_-L06-vector-to-data-matrix-e140",
+  "lessonTitle": "§1.6 · Từ vector sang ma trận dữ liệu",
+  "language": "vi",
+  "purpose": "Phòng lab deterministic cho data-contract validation, row-observation assembly, extraction/slicing, transpose convention, NumPy shape traps, feature-wise centering, Gram/covariance boundary và semantic code audit.",
+  "sourceContracts": {
+    "core": "subjects/math/data/theory_core/theory_core_c01_l06.json",
+    "workedExamples": "subjects/math/data/theory_worked_examples/theory_worked_examples_c01_l06.json",
+    "formulaRegistry": "subjects/math/THEORY_C01_L06_FORMULA_REGISTRY.md",
+    "engineeringCase": "subjects/math/data/theory_case/theory_case_c01_l06.json",
+    "caseValidation": "subjects/math/THEORY_C01_L06_CASE_VALIDATION.json",
+    "caseVersion": "CASE_C01_L06_V1_LOCKED"
+  },
+  "runtimeContract": {
+    "language": "python",
+    "minimumPython": "3.10",
+    "requiredPackages": ["numpy"],
+    "randomness": "none",
+    "network": "not_required",
+    "fileInput": "not_required",
+    "deterministic": true,
+    "expectedExecutionMode": "local_notebook_or_script",
+    "runtimeIntegrationAllowed": false
+  },
+  "learningObjectives": [
+    "Validate shape plus semantic schema before stacking.",
+    "Assemble X_raw with observations as rows and keep metadata aligned.",
+    "Extract entry/row/column/block with feature and observation identity.",
+    "Translate row/column observation conventions deliberately.",
+    "Demonstrate NumPy one-dimensional transpose behavior safely.",
+    "Reproduce locked mean and centred matrix with assertions.",
+    "Distinguish raw Gram calculations from sample covariance assumptions.",
+    "Reject the locked negative variants without numeric guesswork.",
+    "Audit shape-correct but semantically invalid code.",
+    "Stop at rank/PCA/diagnosis boundaries required by §1.6."
+  ],
+  "canonicalCode": {
+    "id": "LAB_CANONICAL",
+    "title": "Pipeline chuẩn có assertion",
+    "code": "import numpy as np\n\nFEATURES = [\n    'omega_left', 'omega_right', 'a_long',\n    'a_lat', 'yaw_rate', 'battery_current'\n]\nUNITS = ['rad/s', 'rad/s', 'm/s^2', 'm/s^2', 'rad/s', 'A']\nOBS_IDS = [f'UGV-W{i:02d}' for i in range(1, 9)]\nTIMESTAMPS = [\n    '2026-07-09T10:00:00.000Z',\n    '2026-07-09T10:00:00.250Z',\n    '2026-07-09T10:00:00.500Z',\n    '2026-07-09T10:00:00.750Z',\n    '2026-07-09T10:00:01.000Z',\n    '2026-07-09T10:00:01.250Z',\n    '2026-07-09T10:00:01.500Z',\n    '2026-07-09T10:00:01.750Z',\n]\nSCHEMA_VERSION = 'CASE_C01_L06_V1_LOCKED'\n\nrows = [\n    [8.2, 8.1, 0.12, 0.03, -0.02, 11.8],\n    [8.5, 8.7, 0.18, 0.05,  0.04, 12.1],\n    [9.0, 9.4, 0.25, 0.11,  0.08, 12.9],\n    [9.3, 9.1, 0.10,-0.04, -0.05, 13.2],\n    [8.8, 8.3,-0.08,-0.12, -0.10, 12.4],\n    [8.1, 7.9,-0.22,-0.06, -0.04, 11.6],\n    [7.7, 8.0,-0.15, 0.08,  0.06, 11.3],\n    [8.4, 8.9, 0.05, 0.14,  0.11, 12.0],\n]\n\nLOCKED_MU = np.array([8.5, 8.55, 0.03125, 0.02375, 0.01, 12.1625])\nLOCKED_XC = np.array([\n    [-0.3,-0.45, 0.08875, 0.00625,-0.03,-0.3625],\n    [ 0.0, 0.15, 0.14875, 0.02625, 0.03,-0.0625],\n    [ 0.5, 0.85, 0.21875, 0.08625, 0.07, 0.7375],\n    [ 0.8, 0.55, 0.06875,-0.06375,-0.06, 1.0375],\n    [ 0.3,-0.25,-0.11125,-0.14375,-0.11, 0.2375],\n    [-0.4,-0.65,-0.25125,-0.08375,-0.05,-0.5625],\n    [-0.8,-0.55,-0.18125, 0.05625, 0.05,-0.8625],\n    [-0.1, 0.35, 0.01875, 0.11625, 0.10,-0.1625],\n], dtype=float)\n\ndef validate_contract(rows_value, features, units, obs_ids, timestamps, version):\n    if version != SCHEMA_VERSION:\n        raise ValueError('schema version mismatch')\n    if list(features) != FEATURES:\n        raise ValueError('feature order mismatch')\n    if list(units) != UNITS:\n        raise ValueError('unit contract mismatch')\n    if list(obs_ids) != OBS_IDS:\n        raise ValueError('observation identity mismatch')\n    if list(timestamps) != TIMESTAMPS:\n        raise ValueError('timestamp contract mismatch')\n    arr = np.asarray(rows_value, dtype=float)\n    if arr.shape != (8, 6):\n        raise ValueError(f'wrong canonical shape: {arr.shape}')\n    return arr\n\nobservations = [np.array(row, dtype=float) for row in rows]\nX_candidate = np.stack(observations, axis=0)\nX_raw = validate_contract(X_candidate, FEATURES, UNITS, OBS_IDS, TIMESTAMPS, SCHEMA_VERSION)\nassert X_raw.shape == (8, 6)\n\nassert np.isclose(X_raw[2, 4], 0.08)\nassert np.allclose(X_raw[2, :], [9.0, 9.4, 0.25, 0.11, 0.08, 12.9])\nassert np.allclose(X_raw[:, 4], [-0.02, 0.04, 0.08, -0.05, -0.10, -0.04, 0.06, 0.11])\nassert np.allclose(X_raw[2:5, 2:5], [\n    [0.25, 0.11, 0.08],\n    [0.10,-0.04,-0.05],\n    [-0.08,-0.12,-0.10],\n])\n\nX_col = X_raw.T\nassert X_col.shape == (6, 8)\nassert np.allclose(X_col[:, 2], X_raw[2, :])\n\nx = X_raw[2, :]\nassert x.shape == (6,)\nassert x.T.shape == (6,)\nassert x.reshape(1, 6).shape == (1, 6)\nassert x.reshape(6, 1).shape == (6, 1)\n\ne_yaw = np.array([0., 0., 0., 0., 1., 0.])\nyaw = X_raw @ e_yaw\nassert np.allclose(yaw, X_raw[:, 4])\n\nmu = X_raw.mean(axis=0)\nassert np.allclose(mu, LOCKED_MU, atol=1e-12)\nX_c = X_raw - mu\nassert X_c.shape == (8, 6)\nassert np.allclose(X_c, LOCKED_XC, atol=1e-12)\nassert np.allclose(X_c.mean(axis=0), np.zeros(6), atol=1e-12)\nassert np.allclose(X_c[2, :] + mu, X_raw[2, :], atol=1e-12)\n\nG_f = X_raw.T @ X_raw\nG_o = X_raw @ X_raw.T\nassert G_f.shape == (6, 6)\nassert G_o.shape == (8, 8)\n\nyaw_raw_self_product = float(yaw @ yaw)\nyaw_centered = X_c[:, 4]\nyaw_sample_variance = float((yaw_centered @ yaw_centered) / (X_c.shape[0] - 1))\nassert np.isclose(yaw_raw_self_product, 0.0382, atol=1e-12)\nassert np.isclose(yaw_sample_variance, 0.005342857142857143, atol=1e-12)\n\nrank_upper_bound = min(X_raw.shape)\nassert rank_upper_bound == 6\n\nprint({\n    'shape': X_raw.shape,\n    'transpose_shape': X_col.shape,\n    'mean': mu.tolist(),\n    'yaw_raw_self_product': yaw_raw_self_product,\n    'yaw_sample_variance': yaw_sample_variance,\n    'rank_upper_bound': rank_upper_bound,\n})",
+    "expectedOutput": {
+      "shape": [8, 6],
+      "transpose_shape": [6, 8],
+      "mean": [8.5, 8.55, 0.03125, 0.02375, 0.01, 12.1625],
+      "yaw_raw_self_product": 0.0382,
+      "yaw_sample_variance": 0.005342857142857143,
+      "rank_upper_bound": 6
+    }
+  },
+  "labSequence": [
+    {
+      "id": "LAB01",
+      "title": "Load and validate the locked contract",
+      "learningOutcomeRefs": ["LO1", "LO2", "LO6", "LO8"],
+      "formulaRefs": ["F01", "F08"],
+      "misconceptionRefs": ["M04", "M06", "M07", "M08", "M10"],
+      "tasks": [
+        "Create FEATURES, UNITS, OBS_IDS, TIMESTAMPS and rows exactly as locked.",
+        "Assemble the eight observations with np.stack(observations, axis=0) under the row-observation convention.",
+        "Validate schema version, feature order, units, observation IDs and timestamps before downstream arithmetic.",
+        "Assert final canonical shape 8x6.",
+        "State why timestamp remains metadata rather than feature column."
+      ],
+      "passConditions": ["Any metadata mismatch raises before downstream arithmetic.", "No timestamp column is appended.", "Canonical orientation remains observations-as-rows."]
+    },
+    {
+      "id": "LAB02",
+      "title": "Extract scalar, row, column and block with metadata",
+      "learningOutcomeRefs": ["LO3", "LO6"],
+      "formulaRefs": ["F02", "F03", "F04", "F05"],
+      "misconceptionRefs": ["M05", "M09"],
+      "tasks": ["Assert X_raw[2,4]==0.08 and attach UGV-W03/yaw_rate/rad/s labels.", "Recover X_raw[2,:].", "Recover X_raw[:,4].", "Recover X_raw[2:5,2:5] and the aligned row/feature metadata."],
+      "expectedValues": {"entry": 0.08, "row": [9.0,9.4,0.25,0.11,0.08,12.9], "yawColumn": [-0.02,0.04,0.08,-0.05,-0.1,-0.04,0.06,0.11], "block": [[0.25,0.11,0.08],[0.10,-0.04,-0.05],[-0.08,-0.12,-0.10]]}
+    },
+    {
+      "id": "LAB03",
+      "title": "Translate convention and expose the 1D transpose trap",
+      "learningOutcomeRefs": ["LO4", "LO8"],
+      "formulaRefs": ["F06", "F07", "F08", "F09"],
+      "misconceptionRefs": ["M01", "M02", "M03"],
+      "tasks": ["Compute X_col=X_raw.T and assert shape 6x8.", "Verify UGV-W03 appears as column 2 in X_col.", "Show x.shape and x.T.shape are both (6,) for a 1D ndarray.", "Create explicit (1,6) and (6,1) views with reshape.", "Compare stack(axis=0) versus column_stack outputs without calling either one universally correct."],
+      "expectedValues": {"X_col_shape": [6,8], "oneDShape": [6], "oneDTransposeShape": [6], "row2D": [1,6], "column2D": [6,1]}
+    },
+    {
+      "id": "LAB04",
+      "title": "Linear selector proves feature-order dependence",
+      "learningOutcomeRefs": ["LO5", "LO6"],
+      "formulaRefs": ["F10"],
+      "misconceptionRefs": ["M06", "M08"],
+      "tasks": ["Create e_yaw=[0,0,0,0,1,0].", "Compute y=X_raw@e_yaw.", "Assert y equals X_raw[:,4].", "Explain why the same numeric w would select the wrong semantic feature after a silent column permutation."],
+      "expectedValues": {"y": [-0.02,0.04,0.08,-0.05,-0.1,-0.04,0.06,0.11]}
+    },
+    {
+      "id": "LAB05",
+      "title": "Reproduce locked mean and centering",
+      "learningOutcomeRefs": ["LO7", "LO8"],
+      "formulaRefs": ["F13", "F14"],
+      "misconceptionRefs": ["M11", "M12"],
+      "tasks": ["Compute mu=X_raw.mean(axis=0).", "Assert mu equals LOCKED_MU.", "Compute X_c=X_raw-mu and assert exact locked shape 8x6.", "Assert X_c equals LOCKED_XC within 1e-12.", "Assert feature-wise mean of X_c is zero within tolerance.", "Reconstruct UGV-W03 from X_c[2,:]+mu."],
+      "expectedValues": {"mean": [8.5,8.55,0.03125,0.02375,0.01,12.1625], "UGV_W03_centered": [0.5,0.85,0.21875,0.08625,0.07,0.7375]}
+    },
+    {
+      "id": "LAB06",
+      "title": "Gram shapes and covariance boundary",
+      "learningOutcomeRefs": ["LO5", "LO7", "LO9"],
+      "formulaRefs": ["F11", "F12", "F16"],
+      "misconceptionRefs": ["M13", "M14"],
+      "tasks": ["Compute G_f=X_raw.T@X_raw and G_o=X_raw@X_raw.T.", "Assert shapes 6x6 and 8x8.", "Compute raw yaw self-product and centered sample variance.", "Explain why 0.0382 and 0.005342857142857143 answer different questions.", "Do not eigendecompose covariance or interpret PCA components."],
+      "expectedValues": {"G_f_shape": [6,6], "G_o_shape": [8,8], "yaw_raw_self_product": 0.0382, "yaw_sample_variance": 0.005342857142857143}
+    },
+    {
+      "id": "LAB07",
+      "title": "Reject the four locked invalid variants",
+      "learningOutcomeRefs": ["LO1", "LO6", "LO8"],
+      "formulaRefs": ["F01", "F08", "F09"],
+      "misconceptionRefs": ["M04", "M06", "M07", "M08"],
+      "tasks": ["Construct a metadata variant with swapped wheel feature order and expect rejection.", "Construct stale-unit metadata for omega_left rpm with rad/s label and expect rejection.", "Pass X_raw.T under canonical validator and expect shape rejection.", "Pass a schema-version mismatch and expect rejection."],
+      "passConditions": ["All four invalid variants fail loudly.", "No transpose or relabeling silently normalizes bad input.", "The canonical locked case still passes."]
+    },
+    {
+      "id": "LAB08",
+      "title": "Audit downstream boundaries before handing off",
+      "learningOutcomeRefs": ["LO7", "LO9"],
+      "formulaRefs": ["F15", "F17", "F18"],
+      "misconceptionRefs": ["M12", "M14", "M15", "M16", "M17", "M18"],
+      "tasks": ["Record scale vector as unlocked rather than fabricate X_s.", "For symbolic A in R^(6xp), state Y=XA has shape 8xp and requires input feature-order compatibility.", "Compute only rank upper bound min(8,6)=6.", "List missing ingredients before PCA component/retained-dimension claims.", "State that contract/data-quality failures are not physical fault diagnosis."],
+      "expectedValues": {"scaleVector": "UNLOCKED", "rankUpperBound": 6, "pcaResult": "DEFERRED", "faultDiagnosis": "PROHIBITED"}
+    }
+  ],
+  "brokenCodeAudits": [
+    {"id":"BUG01","title":"Transpose until multiplication runs","badCode":"X = X.T  # because downstream shape failed","whyWrong":"It changes observation/feature convention without translating metadata or formulas.","repair":"Fix the upstream orientation contract; if converting conventions intentionally, rename to X_col and rewrite interpretation.","targets":["M01","M03","LO4"]},
+    {"id":"BUG02","title":"Assume x.T creates a row matrix","badCode":"row = x.T  # x.shape == (6,)","whyWrong":"For a one-dimensional ndarray, .T keeps shape (6,).","repair":"Use x.reshape(1,6) for explicit row or x.reshape(6,1) for explicit column.","targets":["M02","F07","LO4","LO8"]},
+    {"id":"BUG03","title":"Stack equal-length vectors without schema checks","badCode":"X = np.vstack(rows)","whyWrong":"NumPy can stack shape-compatible rows even if units, order or schema version differ.","repair":"Validate semantic contract first, then call vstack/stack(axis=0).","targets":["M04","M06","M07","M08","LO1","LO8"]},
+    {"id":"BUG04","title":"Treat raw Gram as covariance","badCode":"C = X_raw.T @ X_raw","whyWrong":"Raw Gram lacks centering and the declared covariance normalization; mixed units further limit interpretation.","repair":"Use covariance formula only under declared row-observation, centering and divisor assumptions.","targets":["M13","M14","F11","F16","LO5","LO7"]},
+    {"id":"BUG05","title":"Refit preprocessing on every live batch","badCode":"mu_live = X_live.mean(axis=0); X_live_c = X_live - mu_live","whyWrong":"It silently changes the reference interface and can introduce leakage/drift relative to a fitted downstream model.","repair":"Reuse the declared reference/training mean and scale parameters when the model contract requires them.","targets":["M12","C18","LO7","LO9"]},
+    {"id":"BUG06","title":"Turn data-contract failure into a fault diagnosis","badCode":"if schema_mismatch: print('left motor fault')","whyWrong":"Schema/data-quality evidence does not identify a physical cause.","repair":"Raise a data-contract error; diagnostic inference requires a separate validated model and evidence.","targets":["M18","LO9"]}
+  ],
+  "verification": {
+    "canonicalCodeExecuted": true,
+    "executionEnvironment": "private Python reasoning runtime with NumPy",
+    "randomnessUsed": false,
+    "networkUsed": false,
+    "assertionsPassed": ["canonical shape 8x6", "locked entry/row/column/block", "transpose shape 6x8", "NumPy 1D transpose trap", "yaw selector equality", "locked mean", "locked centered matrix", "centered zero-mean invariant", "UGV-W03 reconstruction", "Gram shapes", "yaw raw self-product 0.0382", "yaw sample variance 0.005342857142857143", "rank upper bound 6"],
+    "runtimeFilesModified": false
+  },
+  "coverage": {
+    "labStageCount": 8,
+    "brokenCodeAuditCount": 6,
+    "learningOutcomes": {
+      "LO1": ["LAB01", "LAB07"],
+      "LO2": ["LAB01"],
+      "LO3": ["LAB02"],
+      "LO4": ["LAB03"],
+      "LO5": ["LAB04", "LAB06"],
+      "LO6": ["LAB01", "LAB02", "LAB04", "LAB07"],
+      "LO7": ["LAB05", "LAB06", "LAB08"],
+      "LO8": ["LAB01", "LAB03", "LAB05", "LAB07"],
+      "LO9": ["LAB06", "LAB08"]
+    },
+    "formulaIdsCovered": ["F01", "F02", "F03", "F04", "F05", "F06", "F07", "F08", "F09", "F10", "F11", "F12", "F13", "F14", "F15", "F16", "F17", "F18"],
+    "misconceptionsCovered": ["M01", "M02", "M03", "M04", "M05", "M06", "M07", "M08", "M09", "M10", "M11", "M12", "M13", "M14", "M15", "M16", "M17", "M18"]
+  },
+  "pass09Acceptance": {
+    "status": "PASS_09_DETERMINISTIC_COMPUTATIONAL_LAB_COMPLETE",
+    "canonicalCodeExecuted": true,
+    "labStageCount": 8,
+    "brokenCodeAuditCount": 6,
+    "lockedCaseReproduced": true,
+    "allFourInvalidVariantsRejectedByDesign": true,
+    "orientationAndMetadataChecksCovered": true,
+    "centeringChecksCovered": true,
+    "gramCovarianceBoundaryCovered": true,
+    "scalePolicyPreservedUnlocked": true,
+    "rankInterpretationPreservedDeferred": true,
+    "svdPcaPreservedDeferred": true,
+    "faultDiagnosisBlocked": true,
+    "runtimeFilesModified": false,
+    "nextTask": "THEORY_C01_L06_RETRIEVAL_PROFESSOR_QA_PASS_10"
+  }
+}
