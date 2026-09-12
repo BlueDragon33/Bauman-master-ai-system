@@ -1,0 +1,384 @@
+{
+  "id": "bauman_math_theory_worked_examples_c01_l06_v1",
+  "schema": "bauman_math_theory_worked_examples_v1",
+  "version": "WORKED_EXAMPLES_C01_L06_V1_PASS08",
+  "status": "pass08_complete_pending_pass09_lab",
+  "lessonId": "MATH-VN-C01-vector_trong_khong_gian_-L06-vector-to-data-matrix-e140",
+  "lessonTitle": "§1.6 · Từ vector sang ma trận dữ liệu",
+  "language": "vi",
+  "purpose": "Bộ ví dụ và phép dẫn xuất kiểm được cho compatibility, assembly, indexing/slicing, convention translation, NumPy orientation, mean/centering và các downstream boundaries của §1.6. Artifact độc lập với giao diện, dùng CASE_C01_L06_V1_LOCKED và không thay đổi runtime.",
+  "sourceContracts": {
+    "core": "subjects/math/data/theory_core/theory_core_c01_l06.json",
+    "learningContract": "subjects/math/THEORY_C01_L06_LEARNING_CONTRACT.md",
+    "sourceMapTerminology": "subjects/math/THEORY_C01_L06_SOURCE_MAP_TERMINOLOGY.md",
+    "formulaRegistry": "subjects/math/THEORY_C01_L06_FORMULA_REGISTRY.md",
+    "engineeringCase": "subjects/math/data/theory_case/theory_case_c01_l06.json",
+    "caseValidation": "subjects/math/THEORY_C01_L06_CASE_VALIDATION.json",
+    "misconceptionMap": "subjects/math/THEORY_C01_L06_MISCONCEPTION_MAP.md",
+    "caseVersion": "CASE_C01_L06_V1_LOCKED"
+  },
+  "globalRules": [
+    "All UGV engineering-case numbers are copied from or exactly derived from CASE_C01_L06_V1_LOCKED.",
+    "The active project convention is X in R^(m x n): observations are rows and ordered features are columns.",
+    "Every shape statement names the represented axes; equal shape alone never establishes semantic compatibility.",
+    "Observation IDs/timestamps and feature schema/units travel with every row, column or slice.",
+    "F07 is a forbidden shortcut, F08/F09 are API equivalents, and F11/F12/F15–F18 remain preview or assumption scoped.",
+    "No scale vector, numerical-rank tolerance, retained dimension, PCA component, anomaly threshold or physical fault conclusion is invented.",
+    "No runtime file may consume this artifact before academic acceptance."
+  ],
+  "examples": [
+    {
+      "id": "WE01",
+      "title": "Compatibility gate: cùng shape vẫn có thể không cùng nghĩa",
+      "learningOutcomeRefs": ["LO1", "LO6", "LO8"],
+      "formulaRefs": ["F01", "F08"],
+      "claimRefs": ["C04", "C15", "C16", "C23", "C24"],
+      "misconceptionRefs": ["M04", "M06", "M07", "M08"],
+      "caseRefs": ["invalidVariants", "featureSchema", "physicalContract"],
+      "contentClass": "CORE",
+      "problem": "Audit bốn candidate batches so với CASE_C01_L06_V1_LOCKED: swapped wheel columns, omega_left đổi sang rpm nhưng metadata vẫn rad/s, orientation 6x8, và schema-version mismatch.",
+      "derivation": [
+        {"step": 1, "statement": "Canonical batch có shape 8x6, ordered features [omega_left, omega_right, a_long, a_lat, yaw_rate, battery_current], units [rad/s, rad/s, m/s^2, m/s^2, rad/s, A]."},
+        {"step": 2, "statement": "Swapped wheel columns có thể vẫn shape 8x6 nhưng column 0/1 không còn đúng locked feature order; reject trước stack/model use."},
+        {"step": 3, "statement": "Variant đổi omega_left sang rpm nhưng giữ unit rad/s có cùng shape và feature name, nhưng unit contract sai; reject."},
+        {"step": 4, "statement": "Variant 6x8 thay đổi orientation: features trở thành rows và observations thành columns; nó không phải canonical X_raw."},
+        {"step": 5, "statement": "Schema-version mismatch có thể giữ toàn bộ values/shape nhưng phá interface version; reject."},
+        {"step": 6, "statement": "Chỉ canonical locked case qua đủ structural + semantic gates."}
+      ],
+      "answer": {"accepted": "CASE_C01_L06_V1_LOCKED only", "rejected": ["swapped_columns", "stale_unit", "wrong_orientation", "schema_version_mismatch"]},
+      "qualityChecks": ["Equal shape is not used as proof of compatibility.", "Feature order, unit and schema version are all checked.", "No numeric repair/transposition is used to hide a contract failure."]
+    },
+    {
+      "id": "WE02",
+      "title": "Ghép tám observation vectors thành canonical X_raw 8x6",
+      "learningOutcomeRefs": ["LO2", "LO8"],
+      "formulaRefs": ["F01", "F08"],
+      "claimRefs": ["C01", "C02", "C05", "C06", "C23"],
+      "misconceptionRefs": ["M04"],
+      "caseRefs": ["rawMatrix", "observationMetadata"],
+      "contentClass": "API_EQUIVALENT",
+      "problem": "Cho tám locked UGV observations x^(1),...,x^(8) in R^6. Lập ma trận theo project convention.",
+      "derivation": [
+        {"step": 1, "statement": "Mỗi x^(i) là observation column vector trong R^6 trước khi ghép."},
+        {"step": 2, "statement": "F01 đặt x^(i)^T thành row i: X_raw=[x^(1)^T;...;x^(8)^T]."},
+        {"step": 3, "statement": "Số observations m=8 và số ordered features n=6 nên X_raw in R^(8x6)."},
+        {"step": 4, "statement": "API-equivalent F08 là np.stack(observations, axis=0) hoặc np.vstack sau compatibility gate."},
+        {"step": 5, "statement": "Row 1 là UGV-W01=[8.2,8.1,0.12,0.03,-0.02,11.8]; row 8 là UGV-W08=[8.4,8.9,0.05,0.14,0.11,12.0]."},
+        {"step": 6, "statement": "Row identities remain UGV-W01...UGV-W08 and timestamps remain ordered 250 ms apart."}
+      ],
+      "answer": {"shape": [8, 6], "sampleAxis": 0, "featureAxis": 1, "firstObservation": "UGV-W01", "lastObservation": "UGV-W08"},
+      "qualityChecks": ["All eight locked observations are preserved in order.", "No feature permutation is introduced.", "API syntax is labeled equivalent to, not stronger than, the semantic contract."]
+    },
+    {
+      "id": "WE03",
+      "title": "Entry, row và column: một index luôn cần semantic label",
+      "learningOutcomeRefs": ["LO3", "LO6"],
+      "formulaRefs": ["F02", "F03", "F04"],
+      "claimRefs": ["C03", "C16", "C19"],
+      "misconceptionRefs": ["M05", "M07", "M09", "M10"],
+      "caseRefs": ["lockedExtractions.entry", "lockedExtractions.observationRow", "lockedExtractions.featureColumn"],
+      "contentClass": "CORE",
+      "problem": "Giải thích X_raw[2,4], X_raw[2,:] và X_raw[:,4] theo zero-based Python indexing.",
+      "derivation": [
+        {"step": 1, "statement": "Row index 2 maps to UGV-W03, timestamp 2026-07-09T10:00:00.500Z."},
+        {"step": 2, "statement": "Column index 4 maps to yaw_rate with unit rad/s."},
+        {"step": 3, "statement": "Do đó X_raw[2,4]=0.08 rad/s là yaw_rate của UGV-W03."},
+        {"step": 4, "statement": "F03 gives X_raw[2,:]=[9.0,9.4,0.25,0.11,0.08,12.9], still tied to UGV-W03 and the six-feature schema."},
+        {"step": 5, "statement": "F04 gives X_raw[:,4]=[-0.02,0.04,0.08,-0.05,-0.10,-0.04,0.06,0.11], a feature trajectory over eight observations."},
+        {"step": 6, "statement": "Timestamp remains row metadata; it is not silently appended as a seventh feature."}
+      ],
+      "answer": {"entry": {"value": 0.08, "feature": "yaw_rate", "unit": "rad/s", "observationId": "UGV-W03"}, "rowShape": [6], "columnShape": [8]},
+      "qualityChecks": ["Entry meaning includes observation and feature identity.", "Feature unit is preserved.", "Timestamp is metadata, not an undeclared feature."]
+    },
+    {
+      "id": "WE04",
+      "title": "Block slicing phải slice metadata cùng numeric block",
+      "learningOutcomeRefs": ["LO3", "LO6"],
+      "formulaRefs": ["F05"],
+      "claimRefs": ["C03", "C16"],
+      "misconceptionRefs": ["M09"],
+      "caseRefs": ["lockedExtractions.dataBlock"],
+      "contentClass": "CORE",
+      "problem": "Lấy X_raw[2:5,2:5] và mô tả đầy đủ observation/feature identities.",
+      "derivation": [
+        {"step": 1, "statement": "Rows 2:5 select UGV-W03, UGV-W04, UGV-W05."},
+        {"step": 2, "statement": "Columns 2:5 select a_long, a_lat, yaw_rate with units m/s^2, m/s^2, rad/s."},
+        {"step": 3, "statement": "Numeric block is [[0.25,0.11,0.08],[0.10,-0.04,-0.05],[-0.08,-0.12,-0.10]]."},
+        {"step": 4, "statement": "Block shape is 3x3, but shape alone does not encode those identities."},
+        {"step": 5, "statement": "Any downstream export of this block must carry the three row IDs/timestamps plus the three ordered feature descriptors."}
+      ],
+      "answer": {"shape": [3, 3], "observationIds": ["UGV-W03", "UGV-W04", "UGV-W05"], "featureIds": ["a_long", "a_lat", "yaw_rate"], "units": ["m/s^2", "m/s^2", "rad/s"]},
+      "qualityChecks": ["Numeric block matches locked case.", "Observation and feature metadata are aligned with exactly the same index sets.", "No slice is presented as self-describing."]
+    },
+    {
+      "id": "WE05",
+      "title": "Transpose: 8x6 ↔ 6x8 là đổi convention, không phải sửa lỗi",
+      "learningOutcomeRefs": ["LO4", "LO5"],
+      "formulaRefs": ["F06"],
+      "claimRefs": ["C09", "C10", "C12"],
+      "misconceptionRefs": ["M01", "M03"],
+      "caseRefs": ["transposeRepresentation"],
+      "contentClass": "CORE",
+      "problem": "Chuyển canonical X_raw 8x6 sang X_col=X_raw^T và mô tả lại axes.",
+      "derivation": [
+        {"step": 1, "statement": "Canonical X_raw has shape 8x6: row i=observation i, column j=feature j."},
+        {"step": 2, "statement": "F06 gives X_col=X_raw^T with shape 6x8."},
+        {"step": 3, "statement": "In X_col, row j now corresponds to feature j, while column i corresponds to observation i."},
+        {"step": 4, "statement": "UGV-W03 therefore appears in column 2 of X_col, not row 2."},
+        {"step": 5, "statement": "A formula or API written under row-observation convention must be translated; blindly transposing until multiplication runs is forbidden."}
+      ],
+      "answer": {"canonicalShape": [8, 6], "columnConventionShape": [6, 8], "UGV_W03_location_in_X_col": "column 2"},
+      "qualityChecks": ["Both shape and semantic axes are restated after transpose.", "No claim treats transpose as a harmless display operation.", "No dimension error is repaired blindly."]
+    },
+    {
+      "id": "WE06",
+      "title": "NumPy 1D transpose trap: x.T vẫn là shape (6,)",
+      "learningOutcomeRefs": ["LO4", "LO8"],
+      "formulaRefs": ["F07", "F08", "F09"],
+      "claimRefs": ["C05", "C07", "C08"],
+      "misconceptionRefs": ["M01", "M02", "M03"],
+      "caseRefs": ["lockedExtractions.observationRow"],
+      "contentClass": "FORBIDDEN_SHORTCUT",
+      "problem": "Cho x=np.array([9.0,9.4,0.25,0.11,0.08,12.9]). So sánh x, x.T, x.reshape(1,6), x.reshape(6,1).",
+      "derivation": [
+        {"step": 1, "statement": "x.shape==(6,), tức ndarray có một axis; nó chưa mang explicit row/column 2D shape."},
+        {"step": 2, "statement": "x.T.shape vẫn là (6,), nên F07 ghi shortcut này là forbidden nếu mục tiêu là tạo row/column matrix."},
+        {"step": 3, "statement": "x.reshape(1,6) has shape (1,6): explicit single-observation row under project convention."},
+        {"step": 4, "statement": "x.reshape(6,1) has shape (6,1): explicit column vector representation."},
+        {"step": 5, "statement": "np.stack([x1,...,x8],axis=0) yields 8x6; np.column_stack([x1,...,x8]) yields 6x8. Hai outputs có conventions khác nhau."}
+      ],
+      "answer": {"xShape": [6], "xTShape": [6], "explicitRowShape": [1, 6], "explicitColumnShape": [6, 1]},
+      "qualityChecks": ["Distinguishes mathematical vector notation from ndarray axis behavior.", "F07 is explicitly treated as a trap, not a valid orientation conversion.", "F08/F09 outputs are named by convention."]
+    },
+    {
+      "id": "WE07",
+      "title": "Linear selector y=Xw kiểm tra feature order bằng chính yaw_rate",
+      "learningOutcomeRefs": ["LO5", "LO6", "LO9"],
+      "formulaRefs": ["F10"],
+      "claimRefs": ["C16", "C24"],
+      "misconceptionRefs": ["M06", "M08"],
+      "caseRefs": ["featureSchema", "lockedExtractions.featureColumn"],
+      "contentClass": "CORE",
+      "problem": "Dùng w=e_5=(0,0,0,0,1,0)^T theo locked feature order để tính y=X_raw w.",
+      "derivation": [
+        {"step": 1, "statement": "X_raw has shape 8x6 and w has shape 6, so F10 yields y in R^8."},
+        {"step": 2, "statement": "Because the fifth locked feature is yaw_rate, w selects column index 4 without mixing units or features."},
+        {"step": 3, "statement": "The result is y=[-0.02,0.04,0.08,-0.05,-0.10,-0.04,0.06,0.11]."},
+        {"step": 4, "statement": "This exactly matches X_raw[:,4], confirming orientation and feature-order alignment for this selector."},
+        {"step": 5, "statement": "If the columns were silently permuted but w remained unchanged, multiplication would still run while semantic meaning would be wrong."}
+      ],
+      "answer": {"w": [0, 0, 0, 0, 1, 0], "y": [-0.02, 0.04, 0.08, -0.05, -0.1, -0.04, 0.06, 0.11], "meaning": "yaw_rate per observation"},
+      "qualityChecks": ["Selector is a structural demonstration, not a learned diagnostic model.", "Feature order is explicitly part of the multiplication contract.", "Code success is not used as proof after a hypothetical permutation."]
+    },
+    {
+      "id": "WE08",
+      "title": "Hai Gram objects có shape và pairwise role khác nhau",
+      "learningOutcomeRefs": ["LO5", "LO9"],
+      "formulaRefs": ["F11", "F12"],
+      "claimRefs": ["C10", "C11", "C12"],
+      "misconceptionRefs": ["M13", "M14"],
+      "caseRefs": ["rawMatrix"],
+      "contentClass": "PREVIEW",
+      "problem": "Với X_raw in R^(8x6), xác định shapes và pairwise roles của G_f=X_raw^T X_raw và G_o=X_raw X_raw^T.",
+      "derivation": [
+        {"step": 1, "statement": "X_raw^T has shape 6x8."},
+        {"step": 2, "statement": "F11: G_f=(6x8)(8x6), so G_f in R^(6x6). Its indices pair feature columns under the raw inner-product geometry."},
+        {"step": 3, "statement": "F12: G_o=(8x6)(6x8), so G_o in R^(8x8). Its indices pair observation rows under the raw inner-product geometry."},
+        {"step": 4, "statement": "Both are Gram-type matrices, but they live in different index spaces."},
+        {"step": 5, "statement": "Because raw columns mix rad/s, m/s^2 and A, magnitude comparisons are preprocessing-sensitive and must not be overinterpreted."}
+      ],
+      "answer": {"featureGramShape": [6, 6], "observationGramShape": [8, 8], "featureGramIndexSpace": "features", "observationGramIndexSpace": "observations"},
+      "qualityChecks": ["Shapes are derived before interpretation.", "Raw mixed-unit geometry warning is retained.", "Neither object is called covariance automatically."]
+    },
+    {
+      "id": "WE09",
+      "title": "Raw Gram không phải covariance: yaw_rate làm counterexample số",
+      "learningOutcomeRefs": ["LO5", "LO7", "LO9"],
+      "formulaRefs": ["F11", "F13", "F14", "F16"],
+      "claimRefs": ["C13", "C14", "C20"],
+      "misconceptionRefs": ["M11", "M13", "M14"],
+      "caseRefs": ["meanVector", "centeredMatrix", "previewOnlyDerivedObjects.sampleCovariance"],
+      "contentClass": "PREVIEW",
+      "problem": "So sánh raw yaw_rate Gram diagonal với sample variance của yaw_rate sau centering.",
+      "derivation": [
+        {"step": 1, "statement": "Locked yaw_rate raw column is [-0.02,0.04,0.08,-0.05,-0.10,-0.04,0.06,0.11]."},
+        {"step": 2, "statement": "Its raw self-product is sum(x_i^2)=0.0382; this is one diagonal entry of X_raw^T X_raw, not sample variance."},
+        {"step": 3, "statement": "F13 gives locked yaw_rate mean mu_yaw=0.01."},
+        {"step": 4, "statement": "Centered yaw_rate values are [-0.03,0.03,0.07,-0.06,-0.11,-0.05,0.05,0.10]."},
+        {"step": 5, "statement": "The centred sum of squares is 0.0374."},
+        {"step": 6, "statement": "Under preview-only F16, sample variance is 0.0374/(8-1)=0.005342857142857143."},
+        {"step": 7, "statement": "The difference demonstrates why raw Gram, centering and normalization divisor must not be conflated."}
+      ],
+      "answer": {"rawSelfProduct": 0.0382, "mean": 0.01, "centeredSumSquares": 0.0374, "sampleVariance": 0.005342857142857143},
+      "qualityChecks": ["Uses only locked yaw_rate values and locked mean.", "F16 is labeled preview and assumption scoped.", "No PCA/eigendecomposition is inferred from this variance example."]
+    },
+    {
+      "id": "WE10",
+      "title": "Feature-wise mean và centering của UGV-W03",
+      "learningOutcomeRefs": ["LO7", "LO8"],
+      "formulaRefs": ["F13", "F14"],
+      "claimRefs": ["C17", "C18", "C20"],
+      "misconceptionRefs": ["M11", "M12"],
+      "caseRefs": ["meanVector", "centeredMatrix", "lockedExtractions.observationRow"],
+      "contentClass": "CORE",
+      "problem": "Dùng locked mean để tính centered row cho UGV-W03 và reconstruct raw row.",
+      "derivation": [
+        {"step": 1, "statement": "Locked mean mu=[8.5,8.55,0.03125,0.02375,0.01,12.1625]."},
+        {"step": 2, "statement": "UGV-W03 raw row is [9.0,9.4,0.25,0.11,0.08,12.9]."},
+        {"step": 3, "statement": "Subtract feature-wise: X_c[2,:]=[0.5,0.85,0.21875,0.08625,0.07,0.7375]."},
+        {"step": 4, "statement": "Reconstruction X_c[2,:]+mu returns [9.0,9.4,0.25,0.11,0.08,12.9]."},
+        {"step": 5, "statement": "Centering changes the reference origin but does not standardize variances or remove mixed units."},
+        {"step": 6, "statement": "For later live/test observations, this reference mean must be reused when the model contract requires it; do not refit silently."}
+      ],
+      "answer": {"observationId": "UGV-W03", "centeredRow": [0.5, 0.85, 0.21875, 0.08625, 0.07, 0.7375], "reconstruction": [9.0, 9.4, 0.25, 0.11, 0.08, 12.9]},
+      "qualityChecks": ["Centered row exactly matches locked case.", "Reconstruction is exact at the locked decimal representation.", "Centering and scaling are kept distinct."]
+    },
+    {
+      "id": "WE11",
+      "title": "Centering invariant: mỗi feature column có mean zero trong reference batch",
+      "learningOutcomeRefs": ["LO7", "LO8"],
+      "formulaRefs": ["F13", "F14"],
+      "claimRefs": ["C17", "C18", "C20"],
+      "misconceptionRefs": ["M11", "M12"],
+      "caseRefs": ["centeredMatrix"],
+      "contentClass": "CORE",
+      "problem": "Kiểm tra 1_8^T X_c=0^T cho locked centred matrix.",
+      "derivation": [
+        {"step": 1, "statement": "X_c keeps shape 8x6 because the same 1x6 mean row is subtracted from every observation."},
+        {"step": 2, "statement": "Sum each locked centred column over the 8 observations."},
+        {"step": 3, "statement": "At exact decimal arithmetic, each column sum is 0; floating arithmetic may show only round-off such as about 5.33e-15 maximum absolute residual."},
+        {"step": 4, "statement": "Therefore feature-wise mean of this reference X_c is zero within numerical tolerance."},
+        {"step": 5, "statement": "This invariant verifies centering; it does not prove scaling, independence, low rank, PCA quality or physical health."}
+      ],
+      "answer": {"shape": [8, 6], "exactColumnSumTarget": [0, 0, 0, 0, 0, 0], "observedFloatMaxAbsColumnSum": 5.329070518200751e-15},
+      "qualityChecks": ["Numerical tolerance is identified as floating-point verification only.", "No rank/PCA or diagnostic conclusion is attached to zero mean.", "The reference dataset is named."]
+    },
+    {
+      "id": "WE12",
+      "title": "Scaling boundary và leakage: biết mixed units chưa đủ để chọn X_s",
+      "learningOutcomeRefs": ["LO7", "LO9"],
+      "formulaRefs": ["F15"],
+      "claimRefs": ["C17", "C18", "C20"],
+      "misconceptionRefs": ["M11", "M12", "M14"],
+      "caseRefs": ["previewOnlyDerivedObjects.scalePolicy"],
+      "contentClass": "PREVIEW",
+      "problem": "Case có rad/s, m/s^2 và A. Có nên tự động standardize bằng statistics của mỗi incoming batch không?",
+      "derivation": [
+        {"step": 1, "statement": "F15 writes X_s=X_c D_s^(-1), but D_s must come from a declared policy and reference population."},
+        {"step": 2, "statement": "Mixed units are a reason to question geometry, not a license to invent a particular scale vector."},
+        {"step": 3, "statement": "CASE_C01_L06_V1_LOCKED does not lock D_s in Pass 5, so no numeric X_s is accepted in this lesson pass."},
+        {"step": 4, "statement": "If a downstream model was fitted with reference scaling, recomputing D_s on each test/live batch changes the interface and can leak future/test information."},
+        {"step": 5, "statement": "Correct Pass 8 output is therefore a boundary statement plus contract requirements, not fabricated standardized values."}
+      ],
+      "answer": {"scaleVector": "UNLOCKED", "numericScaledMatrix": "NOT_CREATED", "fitTransformRule": "fit on declared reference/training source; reuse for compatible later data"},
+      "qualityChecks": ["No scale value is invented.", "Leakage/interface drift is named explicitly.", "Scaling remains separate from centering."]
+    },
+    {
+      "id": "WE13",
+      "title": "Feature transform preview Y=XA giữ observation axis",
+      "learningOutcomeRefs": ["LO4", "LO6", "LO9"],
+      "formulaRefs": ["F17"],
+      "claimRefs": ["C16", "C24"],
+      "misconceptionRefs": ["M06", "M08"],
+      "caseRefs": ["featureSchema", "observationMetadata"],
+      "contentClass": "PREVIEW",
+      "problem": "Cho X in R^(8x6) và một declared feature transform A in R^(6xp). Suy ra shape và metadata requirements của Y=XA.",
+      "derivation": [
+        {"step": 1, "statement": "Inner dimension 6 matches the six input features, so multiplication is dimensionally defined."},
+        {"step": 2, "statement": "F17 gives Y in R^(8xp): the 8 observation rows remain aligned with the same UGV IDs/timestamps."},
+        {"step": 3, "statement": "Columns of Y are p transformed features whose definitions/units now depend on A."},
+        {"step": 4, "statement": "A must be authored for the exact locked input feature order; a shape-compatible permutation can silently change results."},
+        {"step": 5, "statement": "This example is shape/contract preview only; no particular A or transformed numeric matrix is invented."}
+      ],
+      "answer": {"inputShape": [8, 6], "transformShape": [6, "p"], "outputShape": [8, "p"], "observationIdentityPreserved": true},
+      "qualityChecks": ["No transform matrix is fabricated.", "Input feature-order contract is explicit.", "New output-feature semantics are required rather than assumed."]
+    },
+    {
+      "id": "WE14",
+      "title": "Rank boundary: shape chỉ khóa rank(X)<=6",
+      "learningOutcomeRefs": ["LO9"],
+      "formulaRefs": ["F18"],
+      "claimRefs": ["C21", "C22", "C23"],
+      "misconceptionRefs": ["M15"],
+      "caseRefs": ["rawMatrix", "previewOnlyDerivedObjects.rankPolicy"],
+      "contentClass": "PREVIEW",
+      "problem": "Với X_raw shape 8x6, điều gì được phép kết luận về rank ở Pass 8?",
+      "derivation": [
+        {"step": 1, "statement": "F18 gives rank(X)<=min(m,n)."},
+        {"step": 2, "statement": "For m=8 and n=6, rank(X_raw)<=6."},
+        {"step": 3, "statement": "This bound is an algebraic shape consequence and requires no SVD result."},
+        {"step": 4, "statement": "Pass 5 did not lock numerical-rank tolerance, and §1.6 does not equate rank with physical UGV mode count."},
+        {"step": 5, "statement": "Therefore no exact/numerical rank value or number of physical modes is accepted here."}
+      ],
+      "answer": {"rankBound": "rank(X_raw) <= 6", "exactRank": "NOT_ASSERTED", "numericalRank": "NOT_ASSERTED", "physicalModeCount": "NOT_ASSERTED"},
+      "qualityChecks": ["Only the locked shape-based bound is claimed.", "No SVD/numerical tolerance is introduced.", "Physical interpretation remains deferred."]
+    },
+    {
+      "id": "WE15",
+      "title": "PCA và diagnosis boundary: covariance preview chưa phải kết luận",
+      "learningOutcomeRefs": ["LO9"],
+      "formulaRefs": ["F15", "F16", "F18"],
+      "claimRefs": ["C14", "C17", "C18", "C21", "C22"],
+      "misconceptionRefs": ["M16", "M17", "M18"],
+      "caseRefs": ["previewOnlyDerivedObjects.sampleCovariance", "previewOnlyDerivedObjects.rankPolicy"],
+      "contentClass": "PREVIEW",
+      "problem": "Giả sử sample covariance preview đã được tính đúng từ X_c. Có thể kết luận principal components, retained dimension hoặc UGV fault không?",
+      "derivation": [
+        {"step": 1, "statement": "F16 defines a covariance object only after centering, orientation and normalization assumptions are declared."},
+        {"step": 2, "statement": "Principal components still require an eigendecomposition/SVD convention plus an explicit scaling choice where relevant."},
+        {"step": 3, "statement": "Retained dimension requires a criterion such as explained-variance policy that is not locked in Pass 8."},
+        {"step": 4, "statement": "Low variance of one raw/centred feature does not prove that feature is useless for every downstream task."},
+        {"step": 5, "statement": "An unusual matrix/data-quality pattern can motivate investigation but does not identify a mechanical/electrical fault without a diagnostic model and evidence."},
+        {"step": 6, "statement": "Thus Pass 8 stops at the validated data matrix and bounded previews; full SVD/PCA/model selection/diagnosis stay deferred."}
+      ],
+      "answer": {"principalComponents": "DEFERRED", "retainedDimension": "DEFERRED", "faultDiagnosis": "PROHIBITED", "nextConceptualStep": "deterministic computational lab"},
+      "qualityChecks": ["No component or retained-dimension result is fabricated.", "No variance-to-importance shortcut is accepted.", "No data audit is turned into a physical diagnosis."]
+    }
+  ],
+  "coverage": {
+    "exampleCount": 15,
+    "learningOutcomes": {
+      "LO1": ["WE01"],
+      "LO2": ["WE02"],
+      "LO3": ["WE03", "WE04"],
+      "LO4": ["WE05", "WE06", "WE13"],
+      "LO5": ["WE05", "WE07", "WE08", "WE09"],
+      "LO6": ["WE01", "WE03", "WE04", "WE07", "WE13"],
+      "LO7": ["WE09", "WE10", "WE11", "WE12"],
+      "LO8": ["WE01", "WE02", "WE06", "WE10", "WE11"],
+      "LO9": ["WE07", "WE08", "WE09", "WE12", "WE13", "WE14", "WE15"]
+    },
+    "claimIdsCovered": ["C01", "C02", "C03", "C04", "C05", "C06", "C07", "C08", "C09", "C10", "C11", "C12", "C13", "C14", "C15", "C16", "C17", "C18", "C19", "C20", "C21", "C22", "C23", "C24"],
+    "formulaIdsCovered": ["F01", "F02", "F03", "F04", "F05", "F06", "F07", "F08", "F09", "F10", "F11", "F12", "F13", "F14", "F15", "F16", "F17", "F18"],
+    "misconceptionsCovered": ["M01", "M02", "M03", "M04", "M05", "M06", "M07", "M08", "M09", "M10", "M11", "M12", "M13", "M14", "M15", "M16", "M17", "M18"],
+    "lockedCaseNumericExamples": ["WE01", "WE02", "WE03", "WE04", "WE07", "WE09", "WE10", "WE11", "WE12", "WE14", "WE15"],
+    "contentClasses": {
+      "CORE": ["WE01", "WE03", "WE04", "WE05", "WE07", "WE10", "WE11"],
+      "API_EQUIVALENT": ["WE02"],
+      "FORBIDDEN_SHORTCUT": ["WE06"],
+      "PREVIEW": ["WE08", "WE09", "WE12", "WE13", "WE14", "WE15"]
+    }
+  },
+  "pass08Acceptance": {
+    "status": "PASS_08_WORKED_EXAMPLES_DERIVATIONS_COMPLETE",
+    "exampleCount": 15,
+    "allLearningOutcomesCovered": true,
+    "allClaimIdsCovered": true,
+    "allFormulaIdsCovered": true,
+    "allMisconceptionsCovered": true,
+    "compatibilityNegativeVariantsCovered": true,
+    "canonicalAssemblyCovered": true,
+    "entryRowColumnBlockExtractionCovered": true,
+    "transposeAndNumpy1DTrapCovered": true,
+    "meanAndCenteringFullyCalculated": true,
+    "centeringInvariantCovered": true,
+    "gramCovarianceDistinctionCovered": true,
+    "scalingBoundaryPreserved": true,
+    "rankBoundaryPreserved": true,
+    "pcaSvdBoundaryPreserved": true,
+    "faultDiagnosisBlocked": true,
+    "lockedCaseValuesChanged": false,
+    "runtimeFilesModified": false,
+    "nextTask": "THEORY_C01_L06_DETERMINISTIC_COMPUTATIONAL_LAB_PASS_09"
+  }
+}
