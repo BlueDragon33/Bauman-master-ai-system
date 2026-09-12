@@ -4,18 +4,18 @@
 Redesign giao diện Web App Tiếng Nga theo ảnh tham chiếu dark premium Bauman/Russia. Không tạo ảnh mới, không thay learning engine, không thay dữ liệu học.
 
 ## RU-UI.1 · App Shell
-- Sidebar trái dark navy/gold, dùng `bauman-logo.png` sẵn có.
+- Sidebar trái dark navy/gold, logo/chữ hiệu được dựng bằng CSS và phần tử có sẵn, không phụ thuộc asset ảnh mới.
 - Top search + page context + theme/AI/sync.
 - Desktop chuyển sang bố cục 3 cột: sidebar / learning workspace / AI rail.
 
 ## RU-UI.2 · Dashboard
-- Hero dùng `subject-header.jpg` sẵn có.
+- Hero dùng lớp gradient/aurora tự chứa để tái hiện tinh thần ảnh tham chiếu mà không thêm ảnh minh họa vào repo.
 - 8 lối tắt: Cyrillic, phát âm, từ vựng, ngữ pháp, giao tiếp, nghe hiểu, bài học, mind map.
 - Thêm Tiếp tục học và Bài học tiếp theo, dùng routing hiện hữu.
 
 ## RU-UI.3 · AI Assistant
-- AI rail phải dùng `data-ai-quick` và nút AI hiện hữu; không dựng AI engine thứ hai.
-- Ô nhập nhanh chuyển câu hỏi sang AI Mentor hiện tại.
+- AI rail dùng `data-ai-quick` và nút AI hiện hữu; không dựng AI engine thứ hai.
+- Ô nhập nhanh chuyển câu hỏi sang AI Mentor hiện tại và dùng action `ai-run` của core.
 - Card luyện phát âm đi thẳng sang Đối thoại.
 
 ## RU-UI.4 · Progress
