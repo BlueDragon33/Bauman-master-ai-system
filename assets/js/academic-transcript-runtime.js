@@ -124,8 +124,13 @@
     try{[policy,curriculum]=await Promise.all([fetchJson(POLICY_URL),fetchJson(CURRICULUM_URL)]);window.BAUMAN_DIPLOMA_HONORS_POLICY_2026=policy;if(!(await waitBase()))throw new Error('Pass14D grade runtime did not become ready');if(!patchHome())throw new Error('Could not patch home for Pass14E');console.info(VERSION,{policy:policy.version,baselineRows:candidateRows().length,projection:projection(),eventAutoPromotion:false})}
     catch(err){console.warn('Pass14E transcript runtime disabled safely:',err)}
   }
+  function bootstrapCommandCenter(){
+    if(!document.querySelector('link[data-phase2-command-style]')){const link=document.createElement('link');link.rel='stylesheet';link.href='assets/css/academic-command-center-2026.css';link.dataset.phase2CommandStyle='1';document.head.appendChild(link)}
+    if(window.BAUMAN_ACADEMIC_COMMAND_CENTER_2026||document.querySelector('script[data-phase2-command-runtime]'))return;
+    const script=document.createElement('script');script.src='assets/js/academic-command-center-runtime.js';script.dataset.phase2CommandRuntime='1';script.async=false;document.body.appendChild(script);
+  }
 
   window.openAcademicTranscriptEntry2026=openEntry;window.saveAcademicTranscriptEntry2026=saveFromUi;window.clearAcademicTranscriptEntry2026=clearFromUi;
   window.BAUMAN_TRANSCRIPT_HONORS_2026=Object.freeze({version:VERSION,load,candidateRows,facultativeRows,rowById,entryState,recordEntry,clearEntry,rawEntry,projection,honorsEvaluation,storageKey:STORE_KEY,userScoped:true,eventAutoPromotion:false,schedulerMutation:false,courseCompletionMutation:false,policyUrl:POLICY_URL,curriculumUrl:CURRICULUM_URL});
-  if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',()=>setTimeout(load,0),{once:true});else setTimeout(load,0);
+  if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',()=>{setTimeout(load,0);setTimeout(bootstrapCommandCenter,0)},{once:true});else {setTimeout(load,0);setTimeout(bootstrapCommandCenter,0)}
 })();
