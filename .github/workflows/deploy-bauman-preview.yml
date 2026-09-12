@@ -160,8 +160,19 @@ jobs:
           curl --fail --silent --show-error --max-time 20 "$BAUMAN_RUNTIME_PREVIEW_ORIGIN/subjects/russian/" > /tmp/bauman-russian.html
           grep -Fq 'assets/russian-reference-ui.js' /tmp/bauman-russian.html
           grep -Fq 'assets/russian-reference-ui-polish.css' /tmp/bauman-russian.html
+          grep -Fq 'assets/russian-optional-data-loader.js' /tmp/bauman-russian.html
           curl --fail --silent --show-error --max-time 20 --output /dev/null "$BAUMAN_RUNTIME_PREVIEW_ORIGIN/subjects/russian/assets/russian-reference-ui.js"
           curl --fail --silent --show-error --max-time 20 --output /dev/null "$BAUMAN_RUNTIME_PREVIEW_ORIGIN/subjects/russian/assets/russian-reference-ui-polish.css"
+          curl --fail --silent --show-error --max-time 20 --output /dev/null "$BAUMAN_RUNTIME_PREVIEW_ORIGIN/subjects/russian/assets/russian-optional-data-loader.js"
+
+          for dataset in dialogue-bauman-az deep-speaking-bauman; do
+            manifest="/tmp/${dataset}-manifest.json"
+            curl --fail --silent --show-error --max-time 20 \
+              "$BAUMAN_RUNTIME_PREVIEW_ORIGIN/subjects/russian/data/chunks/$dataset/manifest.json" > "$manifest"
+            first="$(node -e "const m=require(process.argv[1]); if(m.format!=='json-array-chunks-v1'||!m.chunks?.length) process.exit(2); process.stdout.write(m.chunks[0].file)" "$manifest")"
+            curl --fail --silent --show-error --max-time 30 --output /dev/null \
+              "$BAUMAN_RUNTIME_PREVIEW_ORIGIN/subjects/russian/data/chunks/$dataset/$first"
+          done
 
       - name: Deployment boundary summary
         shell: bash
@@ -171,5 +182,6 @@ jobs:
           echo 'D1: bauman-control-preview-db'
           echo 'Learning Worker: bauman-master-ai-preview'
           echo 'Subject Web Apps: /subjects/* packaged and smoke-tested.'
+          echo 'Russian lazy datasets: chunk manifests and first chunks smoke-tested.'
           echo 'Application-Management remains the only central control-plane.'
           echo 'No production Worker or production D1 is changed by this workflow.'
