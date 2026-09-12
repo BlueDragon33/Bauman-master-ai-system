@@ -8,11 +8,16 @@ on:
       - 'assets/data/prerequisite-registry-iu5-2026.json'
       - 'assets/data/prerequisite-packs/p00-technical-russian.json'
       - 'assets/js/academic-main.js'
+      - 'assets/js/academic-scheduler-apply.js'
+      - 'assets/js/academic-course-runtime.js'
+      - 'assets/css/academic-course-2026.css'
       - 'scripts/validate-course-learning-architecture-s1-2026.js'
       - 'scripts/validate-academic-2026.js'
       - 'scripts/validate-p00-technical-russian.js'
       - 'scripts/validate-risk-engine-13c.js'
       - 'scripts/validate-phase2-source-integrity.js'
+      - 'scripts/validate-course-readiness-runtime-14b.js'
+      - 'tests/course-readiness-browser-14b.mjs'
       - '.github/workflows/academic-2026-phase2-course-architecture.yml'
   pull_request:
     paths:
@@ -21,11 +26,16 @@ on:
       - 'assets/data/prerequisite-registry-iu5-2026.json'
       - 'assets/data/prerequisite-packs/p00-technical-russian.json'
       - 'assets/js/academic-main.js'
+      - 'assets/js/academic-scheduler-apply.js'
+      - 'assets/js/academic-course-runtime.js'
+      - 'assets/css/academic-course-2026.css'
       - 'scripts/validate-course-learning-architecture-s1-2026.js'
       - 'scripts/validate-academic-2026.js'
       - 'scripts/validate-p00-technical-russian.js'
       - 'scripts/validate-risk-engine-13c.js'
       - 'scripts/validate-phase2-source-integrity.js'
+      - 'scripts/validate-course-readiness-runtime-14b.js'
+      - 'tests/course-readiness-browser-14b.mjs'
       - '.github/workflows/academic-2026-phase2-course-architecture.yml'
 
 jobs:
@@ -46,5 +56,51 @@ jobs:
         run: node scripts/validate-risk-engine-13c.js
       - name: Validate Phase2 public-source boundaries
         run: node scripts/validate-phase2-source-integrity.js
-      - name: Check corrected academic runtime syntax
-        run: node --check assets/js/academic-main.js
+      - name: Validate Pass14B course readiness runtime
+        run: node scripts/validate-course-readiness-runtime-14b.js
+      - name: Check Phase1 + Phase2 runtime syntax
+        run: |
+          node --check assets/js/academic-main.js
+          node --check assets/js/academic-scheduler-apply.js
+          node --check assets/js/academic-course-runtime.js
+          node --check tests/course-readiness-browser-14b.mjs
+
+  browser-course-readiness:
+    needs: validate-course-architecture
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22.13.0'
+      - name: Install Playwright Chromium
+        run: |
+          printf '{"private":true,"type":"module"}\n' > package.json
+          npm install --no-save --no-audit --no-fund playwright@1.55.0
+          npx playwright install --with-deps chromium
+      - name: Start static Hub server
+        run: |
+          python3 -m http.server 4173 --bind 127.0.0.1 > /tmp/bauman-phase2-http.log 2>&1 &
+          for i in {1..30}; do
+            if curl -fsS http://127.0.0.1:4173/ >/dev/null; then exit 0; fi
+            sleep 1
+          done
+          cat /tmp/bauman-phase2-http.log
+          exit 1
+      - name: Run Pass14B browser acceptance
+        env:
+          BAUMAN_E2E_BASE_URL: http://127.0.0.1:4173/
+          BAUMAN_E2E_ARTIFACT_DIR: artifacts/browser-14b
+        run: node tests/course-readiness-browser-14b.mjs
+      - name: Show static server log on failure
+        if: failure()
+        run: cat /tmp/bauman-phase2-http.log || true
+      - name: Upload Pass14B Browser evidence
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: academic-course-readiness-14b-${{ github.run_id }}
+          path: artifacts/browser-14b
+          if-no-files-found: warn
+          retention-days: 7
