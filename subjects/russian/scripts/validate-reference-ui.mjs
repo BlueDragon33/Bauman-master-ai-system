@@ -21,6 +21,7 @@ for(const ref of ['assets/core.css','assets/russian.css','assets/russian-referen
 must(index.indexOf('assets/core.js')<index.indexOf('assets/russian-reference-ui.js'),'Reference UI JS must load after core.js');
 must(index.includes('id="russianRightRail"'),'Missing right AI rail');
 must(index.includes('id="russianGlobalSearch"'),'Missing global search');
+must(index.includes('data-ai-quick='),'AI rail must expose core AI Mentor quick-action contract');
 
 for(const token of ['.ru-app-shell','.ru-right-rail','.ru-skill-grid','.ru-dashboard-middle','.ru-dashboard-bottom','@media (max-width:1080px)','@media (max-width:760px)','@media (max-width:480px)']){
   must(css.includes(token),`Missing CSS contract: ${token}`);
@@ -32,7 +33,8 @@ must(!css.includes("url('./bauman-logo.png')"),'Reference UI must not depend on 
 new Function(js);
 must(js.includes("window.SUBJECT_ADAPTER?.storageKey"),'Dashboard must use adapter storage key');
 must(js.includes('MutationObserver'),'Dashboard enhancer must follow core renders');
-must(js.includes('data-ai-quick'),'AI rail must reuse core AI Mentor contract');
+must(js.includes("getElementById('aiBtn')"),'AI rail custom prompt must open existing AI Mentor');
+must(js.includes("document.querySelector('[data-act=\"ai-run\"]')"),'AI rail custom prompt must reuse core AI run action');
 must(js.includes("data-act=\"route-modal\""),'Dashboard must reuse route modal contract');
 must(js.includes('data-route'),'Dashboard shortcuts must use core routing contract');
 
