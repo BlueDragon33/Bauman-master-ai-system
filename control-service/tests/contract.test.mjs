@@ -34,6 +34,7 @@ test("Bauman v4 publishes real device control only when D1 is ready", async () =
 
 test("Cloudflare preview promotes learningAccessGate only after D1 and app origin are ready", async () => {
   const preview = await source("../src/cloudflare-preview.ts");
+  assert.match(preview, /import controlService from "\.\/automation-contract"/);
   assert.match(preview, /const gateAvailable = ready && appOriginReady/);
   assert.match(preview, /learningAccessGate: gateAvailable/);
   assert.match(preview, /accessGate: gateAvailable \? "available" : "configuration-required"/);
@@ -92,9 +93,23 @@ test("Bauman D1 schema owns registry, challenge, session, command and audit tabl
   }
 });
 
+test("Bauman auto approval is client-owned, persisted and only promotes pending devices", async () => {
+  const automation = await source("../src/automation-contract.ts");
+  const migration = await source("../migrations/0002_automation_policy.sql");
+  assert.match(migration, /CREATE TABLE IF NOT EXISTS bm_automation_policy/);
+  assert.match(migration, /auto_approve_devices INTEGER DEFAULT 0/);
+  assert.match(automation, /\/api\/control\/automation/);
+  assert.match(automation, /deviceAutoApproval: ready/);
+  assert.match(automation, /WHERE device_id=\? AND status='pending'/);
+  assert.match(automation, /device_auto_approved/);
+  assert.match(automation, /identity\.role !== "owner"/);
+  assert.match(automation, /CONTROL_TICKET_FORBIDDEN/);
+});
+
 test("local Bauman control uses an isolated D1 binding", async () => {
   const local = await json("../wrangler.local.jsonc");
   assert.equal(local.name, "bauman-control-local");
+  assert.equal(local.main, "src/automation-contract.ts");
   assert.equal(local.d1_databases?.[0]?.binding, "DB");
   assert.equal(local.d1_databases?.[0]?.database_name, "bauman-control-local");
   assert.equal(local.d1_databases?.[0]?.migrations_dir, "migrations");
