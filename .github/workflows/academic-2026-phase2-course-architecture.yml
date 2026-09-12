@@ -10,14 +10,18 @@ on:
       - 'assets/js/academic-main.js'
       - 'assets/js/academic-scheduler-apply.js'
       - 'assets/js/academic-course-runtime.js'
+      - 'assets/js/academic-event-runtime.js'
       - 'assets/css/academic-course-2026.css'
+      - 'assets/css/academic-event-2026.css'
       - 'scripts/validate-course-learning-architecture-s1-2026.js'
       - 'scripts/validate-academic-2026.js'
       - 'scripts/validate-p00-technical-russian.js'
       - 'scripts/validate-risk-engine-13c.js'
       - 'scripts/validate-phase2-source-integrity.js'
       - 'scripts/validate-course-readiness-runtime-14b.js'
+      - 'scripts/validate-event-readiness-runtime-14c.js'
       - 'tests/course-readiness-browser-14b.mjs'
+      - 'tests/event-readiness-browser-14c.mjs'
       - '.github/workflows/academic-2026-phase2-course-architecture.yml'
   pull_request:
     paths:
@@ -28,14 +32,18 @@ on:
       - 'assets/js/academic-main.js'
       - 'assets/js/academic-scheduler-apply.js'
       - 'assets/js/academic-course-runtime.js'
+      - 'assets/js/academic-event-runtime.js'
       - 'assets/css/academic-course-2026.css'
+      - 'assets/css/academic-event-2026.css'
       - 'scripts/validate-course-learning-architecture-s1-2026.js'
       - 'scripts/validate-academic-2026.js'
       - 'scripts/validate-p00-technical-russian.js'
       - 'scripts/validate-risk-engine-13c.js'
       - 'scripts/validate-phase2-source-integrity.js'
       - 'scripts/validate-course-readiness-runtime-14b.js'
+      - 'scripts/validate-event-readiness-runtime-14c.js'
       - 'tests/course-readiness-browser-14b.mjs'
+      - 'tests/event-readiness-browser-14c.mjs'
       - '.github/workflows/academic-2026-phase2-course-architecture.yml'
 
 jobs:
@@ -58,12 +66,16 @@ jobs:
         run: node scripts/validate-phase2-source-integrity.js
       - name: Validate Pass14B course readiness runtime
         run: node scripts/validate-course-readiness-runtime-14b.js
+      - name: Validate Pass14C assessment event readiness runtime
+        run: node scripts/validate-event-readiness-runtime-14c.js
       - name: Check Phase1 + Phase2 runtime syntax
         run: |
           node --check assets/js/academic-main.js
           node --check assets/js/academic-scheduler-apply.js
           node --check assets/js/academic-course-runtime.js
+          node --check assets/js/academic-event-runtime.js
           node --check tests/course-readiness-browser-14b.mjs
+          node --check tests/event-readiness-browser-14c.mjs
 
   browser-course-readiness:
     needs: validate-course-architecture
@@ -88,19 +100,26 @@ jobs:
           done
           cat /tmp/bauman-phase2-http.log
           exit 1
-      - name: Run Pass14B browser acceptance
+      - name: Run Pass14B browser regression
         env:
           BAUMAN_E2E_BASE_URL: http://127.0.0.1:4173/
           BAUMAN_E2E_ARTIFACT_DIR: artifacts/browser-14b
         run: node tests/course-readiness-browser-14b.mjs
+      - name: Run Pass14C browser acceptance
+        env:
+          BAUMAN_E2E_BASE_URL: http://127.0.0.1:4173/
+          BAUMAN_E2E_ARTIFACT_DIR: artifacts/browser-14c
+        run: node tests/event-readiness-browser-14c.mjs
       - name: Show static server log on failure
         if: failure()
         run: cat /tmp/bauman-phase2-http.log || true
-      - name: Upload Pass14B Browser evidence
+      - name: Upload Phase2 Browser evidence
         if: always()
         uses: actions/upload-artifact@v4
         with:
-          name: academic-course-readiness-14b-${{ github.run_id }}
-          path: artifacts/browser-14b
+          name: academic-phase2-browser-14bc-${{ github.run_id }}
+          path: |
+            artifacts/browser-14b
+            artifacts/browser-14c
           if-no-files-found: warn
           retention-days: 7
