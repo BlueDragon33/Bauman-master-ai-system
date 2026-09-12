@@ -140,5 +140,6 @@
   }
   window.openOfficialCoursePhase2=openCourse;
   window.BAUMAN_COURSE_READINESS_2026=Object.freeze({version:VERSION,load,prereqAxis,lifecycleAxis,eventAxis,gateRows,nextAction,courseById,renderPanel,readOnly:true,architectureUrl:ARCH_URL});
-  document.addEventListener('DOMContentLoaded',()=>setTimeout(load,0));
+  if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',()=>setTimeout(load,0),{once:true});
+  else setTimeout(load,0);
 })();
