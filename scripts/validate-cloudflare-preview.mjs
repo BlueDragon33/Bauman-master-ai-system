@@ -45,8 +45,9 @@ for (const token of [
   'bauman-master-ai-preview',
   '/subjects/russian/',
   'russian-reference-ui-polish.css',
-  'data/chunks/dialogue-bauman-az/manifest.json',
-  'data/chunks/deep-speaking-bauman/manifest.json',
+  'russian-optional-data-loader.js',
+  'for dataset in dialogue-bauman-az deep-speaking-bauman',
+  'data/chunks/$dataset/manifest.json',
 ]) {
   if (!workflow.includes(token)) throw new Error(`Bauman preview workflow thiếu: ${token}`);
 }
