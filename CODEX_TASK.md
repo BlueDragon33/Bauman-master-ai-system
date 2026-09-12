@@ -1,66 +1,79 @@
 # CODEX_TASK
 
-Task: `THEORY_C01_L06_WORKED_EXAMPLES_DERIVATIONS_PASS_08`
-Mode: academic-content-only, inspect-first, deterministic derivations, no runtime edits.
+Task: `THEORY_C01_L06_RETRIEVAL_PROFESSOR_QA_PASS_10`
+Mode: academic-assessment-only, evidence-first, no runtime edits.
 
 ## Read only what is needed
 1. `CODEX_STATE.md`
-2. `subjects/math/data/theory_core/theory_core_c01_l06.json`
-3. `subjects/math/THEORY_C01_L06_LEARNING_CONTRACT.md`
-4. `subjects/math/THEORY_C01_L06_SOURCE_MAP_TERMINOLOGY.md`
-5. `subjects/math/THEORY_C01_L06_FORMULA_REGISTRY.md`
-6. `subjects/math/THEORY_C01_L06_MISCONCEPTION_MAP.md`
-7. `subjects/math/data/theory_case/theory_case_c01_l06.json`
-8. `subjects/math/THEORY_C01_L06_CASE_VALIDATION.json`
-9. `subjects/math/data/theory_worked_examples/theory_worked_examples_c01_l05.json` only as structural precedent.
+2. `subjects/math/THEORY_C01_L06_LEARNING_CONTRACT.md`
+3. `subjects/math/THEORY_C01_L06_SOURCE_MAP_TERMINOLOGY.md`
+4. `subjects/math/THEORY_C01_L06_FORMULA_REGISTRY.md`
+5. `subjects/math/THEORY_C01_L06_MISCONCEPTION_MAP.md`
+6. `subjects/math/data/theory_case/theory_case_c01_l06.json`
+7. `subjects/math/data/theory_core/theory_core_c01_l06.json`
+8. `subjects/math/data/theory_worked_examples/theory_worked_examples_c01_l06.json`
+9. `subjects/math/data/theory_lab/theory_lab_c01_l06.json`
+10. `subjects/math/data/theory_assessment/theory_assessment_c01_l05.json` only as structural precedent.
 
 ## Goal
-Create `subjects/math/data/theory_worked_examples/theory_worked_examples_c01_l06.json` with version `WORKED_EXAMPLES_C01_L06_V1_PASS08`.
+Create `subjects/math/data/theory_assessment/theory_assessment_c01_l06.json` with schema `bauman_math_theory_assessment_v1` and version `ASSESSMENT_C01_L06_V1_PASS10`.
 
-The artifact must turn the locked §1.6 core into worked, checkable derivations while preserving the project convention `X in R^(m x n)` with observations as rows and features as columns.
+The assessment must test whether the learner can preserve matrix semantics and engineering scope, not merely reproduce syntax.
 
-## Required worked coverage
-- compatibility gate: equal shape is not enough;
-- canonical row-observation assembly and explicit column-observation alternative;
-- scalar entry, observation-row, feature-column and block extraction with aligned metadata;
-- transpose convention conversion;
-- NumPy 1D `.T` trap and valid reshape forms;
-- linear score `y=Xw` with feature-order contract;
-- feature and observation Gram shapes/roles;
-- why raw Gram is not automatically covariance;
-- locked feature-wise mean and centering of `UGV_TELEMETRY_8X6`;
-- centering invariant and reconstruction check;
-- scaling boundary: no invented scale vector;
-- feature transform preview `Y=XA` with shape reasoning;
-- rank bound only: `rank(X)<=6`, no invented numerical/physical rank;
-- PCA/SVD boundary and prohibited fault diagnosis.
+## Assessment policy
+- Answers initially hidden.
+- Evidence before reveal.
+- Minimum mastery: at least 80%.
+- Every critical item must pass.
+- Numeric answers require object, shape/orientation and unit/metadata context where relevant.
+- API answers must state the active convention.
+- Data-contract or preprocessing evidence must never be converted into physical fault diagnosis.
 
-## Locked evidence
-- Case version: `CASE_C01_L06_V1_LOCKED`.
-- Raw shape: `8 x 6`.
-- Feature order: `omega_left`, `omega_right`, `a_long`, `a_lat`, `yaw_rate`, `battery_current`.
+## Required retrieval clusters
+- compatibility before stacking;
+- canonical row-observation orientation;
+- scalar/row/column/block extraction with metadata;
+- transpose convention translation;
+- NumPy 1D `.T` trap;
+- feature-order dependency of `Xw`;
+- feature/observation Gram shapes and meaning;
+- raw Gram versus sample covariance;
+- locked mean and centering invariant;
+- centering versus scaling and fit/transform reuse;
+- rank bound versus numerical/physical-rank overclaim;
+- PCA/SVD and fault-diagnosis boundaries.
+
+## Professor Q&A requirements
+Questions must force explanation, not recognition. Include adversarial prompts such as:
+- “Hai arrays cùng 8x6 thì vì sao chưa chắc stack-compatible?”
+- “Code chạy được sau `.T` thì vì sao vẫn có thể sai?”
+- “X_raw.T@X_raw có phải covariance không?”
+- “Vì sao không được refit mean/scale trên live batch tùy tiện?”
+- “Từ shape 8x6 có được kết luận UGV có 6 physical modes không?”
+- “Covariance đã có thì có được gọi ngay các eigenvectors là accepted principal components của pipeline không?”
+
+## Locked case evidence
+- Case: `CASE_C01_L06_V1_LOCKED` / `UGV_TELEMETRY_8X6`.
+- Shape: `8 x 6`, observations as rows.
+- Ordered features: `omega_left`, `omega_right`, `a_long`, `a_lat`, `yaw_rate`, `battery_current`.
 - Units: `rad/s`, `rad/s`, `m/s^2`, `m/s^2`, `rad/s`, `A`.
-- Observation IDs: `UGV-W01–UGV-W08` with the locked timestamps.
+- Preserve `UGV-W01–UGV-W08` and locked timestamps.
 - Mean: `(8.5, 8.55, 0.03125, 0.02375, 0.01, 12.1625)`.
-- Do not change or substitute locked case numbers.
+- Locked extraction: `X_raw[2,4]=0.08 rad/s` for `UGV-W03` yaw_rate.
+- Do not invent scale vector, numerical-rank tolerance, PCA result, retained dimension, threshold or fault label.
 
-## Quality rules
-- Map examples to `LO1–LO9`, `C01–C24`, `F01–F18` and `M01–M18` as relevant.
-- State dimensions/shapes before or during every derivation where orientation matters.
-- Carry observation metadata and feature schema/units through slices.
-- Treat F07 as a forbidden shortcut, F08/F09 as API equivalents and F11/F12/F15–F18 as preview/assumption scoped.
-- Do not derive full covariance eigendecomposition, SVD or PCA.
-- Do not select a scale vector, numerical-rank tolerance, retained dimension, threshold or physical mode count.
-- Do not turn semantic/data-quality failures into fault diagnosis.
-- Do not modify durable runtime, readers, slideshow engine, manifest or E235.
-- Keep E236/E237/E238 disabled.
+## Coverage
+- Cover `LO1–LO9`.
+- Trace to `C01–C24`, `F01–F18`, `M01–M18` as relevant.
+- Include critical items for equal-shape semantic mismatch, 1D transpose, locked extraction, centering, Gram/covariance, preprocessing leakage, rank boundary, PCA/diagnosis overclaim.
+- Include mastery gates that combine conceptual explanation, locked arithmetic and code-audit evidence.
 
 ## Acceptance
-The artifact must end with:
-- status `PASS_08_WORKED_EXAMPLES_DERIVATIONS_COMPLETE`;
-- coverage proving LO1–LO9 are represented;
-- locked-case numeric examples traceable to the case artifact;
+Finish with:
+- status `PASS_10_RETRIEVAL_PROFESSOR_QA_COMPLETE`;
+- minimum mastery >= 80%;
+- all critical items mandatory;
 - `runtimeFilesModified: false`;
-- next task `THEORY_C01_L06_DETERMINISTIC_COMPUTATIONAL_LAB_PASS_09`.
+- next task `THEORY_C01_L06_REFERENCE_ARTIFACT_PASS_11`.
 
-After the artifact is verified, update `CODEX_STATE.md` to 8/14 academic passes and advance the current task to Pass 9.
+After verification, update `CODEX_STATE.md` to 10/14 and advance the current task to Pass 11.
