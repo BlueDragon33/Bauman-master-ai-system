@@ -3,7 +3,6 @@ import path from 'node:path';
 
 const root=path.resolve('subjects/russian');
 const read=p=>fs.readFileSync(path.join(root,p),'utf8');
-const exists=p=>fs.existsSync(path.join(root,p));
 const fail=m=>{throw new Error(m)};
 const must=(cond,m)=>{if(!cond)fail(m)};
 
@@ -22,13 +21,13 @@ for(const ref of ['assets/core.css','assets/russian.css','assets/russian-referen
 must(index.indexOf('assets/core.js')<index.indexOf('assets/russian-reference-ui.js'),'Reference UI JS must load after core.js');
 must(index.includes('id="russianRightRail"'),'Missing right AI rail');
 must(index.includes('id="russianGlobalSearch"'),'Missing global search');
-must(exists('assets/subject-header.jpg'),'Missing subject-header.jpg');
-must(exists('assets/bauman-logo.png'),'Missing bauman-logo.png');
 
 for(const token of ['.ru-app-shell','.ru-right-rail','.ru-skill-grid','.ru-dashboard-middle','.ru-dashboard-bottom','@media (max-width:1080px)','@media (max-width:760px)','@media (max-width:480px)']){
   must(css.includes(token),`Missing CSS contract: ${token}`);
 }
 must((css.match(/{/g)||[]).length===(css.match(/}/g)||[]).length,'CSS brace imbalance');
+must(!css.includes("url('./subject-header.jpg')"),'Reference UI must not depend on missing subject-header.jpg');
+must(!css.includes("url('./bauman-logo.png')"),'Reference UI must not depend on missing bauman-logo.png');
 
 new Function(js);
 must(js.includes("window.SUBJECT_ADAPTER?.storageKey"),'Dashboard must use adapter storage key');
@@ -44,4 +43,4 @@ must(core.includes("if(act==='ai-run')"),'Core AI run contract missing');
 must(adapter.includes("storageKey: 'bauman_russian_survival_master_v11_clean_skeleton'"),'Unexpected Russian storage key');
 
 console.log('RUSSIAN_REFERENCE_UI_GATE=PASS');
-console.log('Checks: shell, required runtime ids, asset order, existing imagery, responsive contracts, JS parse, storage binding, routing, AI and schedule integration.');
+console.log('Checks: shell, required runtime ids, asset order, self-contained visuals, responsive contracts, JS parse, storage binding, routing, AI and schedule integration.');
