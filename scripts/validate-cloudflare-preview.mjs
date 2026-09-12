@@ -14,6 +14,7 @@ const required = [
   'subjects/russian/index.html',
   'subjects/russian/assets/russian-reference-ui.js',
   'subjects/russian/assets/russian-reference-ui-polish.css',
+  'subjects/russian/assets/russian-optional-data-loader.js',
 ];
 for (const file of required) {
   if (!fs.existsSync(file)) throw new Error(`Thiếu Bauman Cloudflare preview scaffold: ${file}`);
@@ -28,6 +29,8 @@ const runtimeWorker = fs.readFileSync('cloudflare/runtime-worker.mjs', 'utf8');
 const runtimeConfig = fs.readFileSync('assets/js/platform/runtime-config.js', 'utf8');
 const deviceGate = fs.readFileSync('assets/js/platform/device-access-gate.js', 'utf8');
 const localConfig = fs.readFileSync('control-service/wrangler.local.jsonc', 'utf8');
+const russianIndex = fs.readFileSync('subjects/russian/index.html', 'utf8');
+const optionalLoader = fs.readFileSync('subjects/russian/assets/russian-optional-data-loader.js', 'utf8');
 
 if (!workflow.includes('workflow_dispatch')) throw new Error('Bauman preview deploy phải manual-only.');
 if (/\n\s*push\s*:/.test(workflow)) throw new Error('Bauman preview không được auto-deploy theo push.');
@@ -42,6 +45,8 @@ for (const token of [
   'bauman-master-ai-preview',
   '/subjects/russian/',
   'russian-reference-ui-polish.css',
+  'data/chunks/dialogue-bauman-az/manifest.json',
+  'data/chunks/deep-speaking-bauman/manifest.json',
 ]) {
   if (!workflow.includes(token)) throw new Error(`Bauman preview workflow thiếu: ${token}`);
 }
@@ -52,6 +57,9 @@ for (const token of [
   'runtime-dist/subjects/russian/index.html',
   'runtime-dist/subjects/russian/assets/russian-reference-ui.js',
   'runtime-dist/subjects/russian/assets/russian-reference-ui-polish.css',
+  'runtime-dist/subjects/russian/assets/russian-optional-data-loader.js',
+  'runtime-dist/subjects/russian/data/chunks/dialogue-bauman-az/manifest.json',
+  'runtime-dist/subjects/russian/data/chunks/deep-speaking-bauman/manifest.json',
 ]) {
   if (!ciWorkflow.includes(token)) throw new Error(`Cloudflare preview CI chưa kiểm tra subject package: ${token}`);
 }
@@ -88,11 +96,23 @@ for (const marker of [
   'runtime-dist',
   "fs.cpSync(path.join(root, 'assets')",
   "fs.cpSync(path.join(root, 'subjects')",
-  'subjects/russian/index.html',
-  'subjects/russian/assets/russian-reference-ui.js',
-  'subjects/russian/assets/russian-reference-ui-polish.css',
+  'chunkJsonArray',
+  'CHUNK_TARGET_BYTES',
+  'MAX_RUNTIME_ASSET_BYTES',
+  'json-array-chunks-v1',
+  'assertRuntimeAssetSizes',
+  'subjects/russian/assets/russian-optional-data-loader.js',
+  'subjects/russian/data/chunks/dialogue-bauman-az/manifest.json',
+  'subjects/russian/data/chunks/deep-speaking-bauman/manifest.json',
 ]) {
   if (!prepare.includes(marker)) throw new Error(`Bauman preview materializer thiếu guard/package marker: ${marker}`);
+}
+
+if (!russianIndex.includes('assets/russian-optional-data-loader.js') || russianIndex.indexOf('assets/russian-optional-data-loader.js') > russianIndex.indexOf('assets/core.js')) {
+  throw new Error('Russian optional data loader phải được nạp trước core.js.');
+}
+for (const marker of ['dialogue-bauman-az.json','deep-speaking-bauman.json','json-array-chunks-v1','RUSSIAN_OPTIONAL_CHUNKS_V1']) {
+  if (!optionalLoader.includes(marker)) throw new Error(`Russian optional data loader thiếu marker: ${marker}`);
 }
 
 for (const marker of ['HTMLRewriter', 'bauman-control-origin', '/__deployment', 'BAUMAN_CONTROL_ORIGIN']) {
@@ -112,4 +132,4 @@ if (!localConfig.includes('"name": "bauman-control-local"') || !localConfig.incl
   throw new Error('Bauman local runtime phải tiếp tục dùng D1 local riêng.');
 }
 
-console.log('Bauman Cloudflare migration gate PASS: Control + Learning Runtime separated, preview manual-only, isolated D1, Subject Web Apps packaged under /subjects/*, device gate preserved, no ChatGPT Sites fallback.');
+console.log('Bauman Cloudflare migration gate PASS: Control + Learning Runtime separated, preview manual-only, isolated D1, Subject Web Apps packaged under /subjects/*, oversized Russian optional data chunked safely, device gate preserved, no ChatGPT Sites fallback.');
