@@ -1,0 +1,549 @@
+{
+  "id": "bauman_math_theory_assessment_c01_l06_v1",
+  "schema": "bauman_math_theory_assessment_v1",
+  "version": "ASSESSMENT_C01_L06_V1_PASS10",
+  "status": "pass10_complete_pending_reference_artifact",
+  "lessonId": "MATH-VN-C01-vector_trong_khong_gian_-L06-vector-to-data-matrix-e140",
+  "lessonTitle": "§1.6 · Từ vector sang ma trận dữ liệu",
+  "language": "vi",
+  "purpose": "Retrieval checks, professor Q&A và mastery gates cho data-matrix contract, orientation, indexing/slicing, transpose, centering, preprocessing và downstream boundaries. Assessment kiểm khả năng giữ đúng semantics và engineering scope, không chỉ nhớ cú pháp.",
+  "sourceContracts": {
+    "learningContract": "subjects/math/THEORY_C01_L06_LEARNING_CONTRACT.md",
+    "sourceMapTerminology": "subjects/math/THEORY_C01_L06_SOURCE_MAP_TERMINOLOGY.md",
+    "formulaRegistry": "subjects/math/THEORY_C01_L06_FORMULA_REGISTRY.md",
+    "misconceptions": "subjects/math/THEORY_C01_L06_MISCONCEPTION_MAP.md",
+    "case": "subjects/math/data/theory_case/theory_case_c01_l06.json",
+    "core": "subjects/math/data/theory_core/theory_core_c01_l06.json",
+    "workedExamples": "subjects/math/data/theory_worked_examples/theory_worked_examples_c01_l06.json",
+    "lab": "subjects/math/data/theory_lab/theory_lab_c01_l06.json",
+    "caseVersion": "CASE_C01_L06_V1_LOCKED",
+    "caseId": "UGV_TELEMETRY_8X6"
+  },
+  "assessmentPolicy": {
+    "answerInitiallyHidden": true,
+    "evidenceBeforeReveal": true,
+    "minimumMasteryPercent": 80,
+    "allCriticalItemsMustPass": true,
+    "numericAnswerRequiresObjectShapeOrientation": true,
+    "unitsAndMetadataRequiredWhereRelevant": true,
+    "apiAnswerMustStateActiveConvention": true,
+    "diagnosticOverclaimForbidden": true,
+    "inventedScaleRankPcaThresholdForbidden": true
+  },
+  "retrievalChecks": [
+    {
+      "id": "RC01",
+      "cluster": "compatibility",
+      "prompt": "Hai arrays đều có shape 8x6. Vì sao vẫn chưa đủ bằng chứng để ghép hoặc đưa vào cùng model?",
+      "expectedEvidence": [
+        "Nêu shape chỉ kiểm cấu trúc.",
+        "Kiểm ordered feature schema và feature order.",
+        "Kiểm units, acquisition/frame contract và schema version."
+      ],
+      "answer": "Vì equal shape không chứng minh semantic compatibility. Chỉ được ghép khi dimension, ordered schema, units và version/contract đều tương thích.",
+      "learningOutcomeRefs": ["LO1", "LO6"],
+      "critical": true,
+      "formulaRefs": ["F01"],
+      "claimRefs": ["C04", "C15", "C16", "C24"],
+      "misconceptionRefs": ["M04", "M05", "M06", "M07", "M08"]
+    },
+    {
+      "id": "RC02",
+      "cluster": "orientation",
+      "prompt": "Trong project convention, X in R^(m x n) lưu gì theo hàng và theo cột?",
+      "expectedEvidence": [
+        "m là số observations.",
+        "n là số ordered features.",
+        "Row i là observation i; column j là trajectory của feature j."
+      ],
+      "answer": "Rows là observations, columns là features; x_ij là feature j của observation i.",
+      "learningOutcomeRefs": ["LO2", "LO3"],
+      "formulaRefs": ["F01", "F02", "F03", "F04"],
+      "claimRefs": ["C01", "C02", "C03"],
+      "misconceptionRefs": ["M03", "M05"]
+    },
+    {
+      "id": "RC03",
+      "cluster": "locked_extraction",
+      "prompt": "Trong CASE_C01_L06_V1_LOCKED, X_raw[2,4] bằng bao nhiêu, thuộc observation nào, feature nào và unit gì?",
+      "expectedEvidence": [
+        "Dùng zero-based Python indexing.",
+        "Observation là UGV-W03.",
+        "Feature là yaw_rate.",
+        "Unit là rad/s."
+      ],
+      "answer": "X_raw[2,4] = 0.08 rad/s, là yaw_rate của UGV-W03.",
+      "learningOutcomeRefs": ["LO3", "LO6"],
+      "critical": true,
+      "formulaRefs": ["F02"],
+      "claimRefs": ["C03", "C23"],
+      "misconceptionRefs": ["M09"]
+    },
+    {
+      "id": "RC04",
+      "cluster": "slice_metadata",
+      "prompt": "Nếu lấy X_raw[2:5,2:5], ngoài numeric block cần mang theo metadata nào?",
+      "expectedEvidence": [
+        "Observation IDs UGV-W03–UGV-W05.",
+        "Features a_long, a_lat, yaw_rate.",
+        "Units tương ứng m/s^2, m/s^2, rad/s.",
+        "Giữ relative order."
+      ],
+      "answer": "Phải slice đồng bộ observation IDs/timestamps và feature schema/units; block là 3x3 cho UGV-W03–W05 và ba features a_long, a_lat, yaw_rate.",
+      "learningOutcomeRefs": ["LO3", "LO6"],
+      "formulaRefs": ["F05"],
+      "claimRefs": ["C03", "C16"],
+      "misconceptionRefs": ["M09"]
+    },
+    {
+      "id": "RC05",
+      "cluster": "transpose_translation",
+      "prompt": "X_raw là 8x6 observations-as-rows. Sau X_col=X_raw^T, shape và meaning đổi thế nào?",
+      "expectedEvidence": [
+        "Shape thành 6x8.",
+        "Rows trở thành feature trajectories.",
+        "Columns trở thành observations.",
+        "Không giữ nguyên prose/formula interpretation cũ."
+      ],
+      "answer": "X_col có shape 6x8; features nằm trên rows và observations nằm trên columns. Transpose đổi representation convention chứ không chỉ đổi layout.",
+      "learningOutcomeRefs": ["LO4"],
+      "formulaRefs": ["F06"],
+      "claimRefs": ["C09"],
+      "misconceptionRefs": ["M01", "M03"]
+    },
+    {
+      "id": "RC06",
+      "cluster": "numpy_1d_transpose",
+      "prompt": "Với NumPy x.shape==(6,), x.T có shape gì? Muốn row/column 2D phải làm gì?",
+      "expectedEvidence": [
+        "x.T vẫn là (6,).",
+        "Row dùng reshape(1,6).",
+        "Column dùng reshape(6,1)."
+      ],
+      "answer": "x.T vẫn có shape (6,). Phải reshape rõ ràng để tạo (1,6) hoặc (6,1).",
+      "learningOutcomeRefs": ["LO4", "LO8"],
+      "critical": true,
+      "formulaRefs": ["F07"],
+      "claimRefs": ["C08"],
+      "misconceptionRefs": ["M01", "M02"]
+    },
+    {
+      "id": "RC07",
+      "cluster": "linear_score",
+      "prompt": "Vì sao Xw có thể chạy đúng shape nhưng vẫn sai nghĩa?",
+      "expectedEvidence": [
+        "w phải dùng cùng feature order như columns của X.",
+        "Units/preprocessing contract phải tương thích.",
+        "Matrix multiplication success không chứng minh interface đúng."
+      ],
+      "answer": "Xw chỉ có semantic validity khi w khớp ordered feature interface và preprocessing contract của X; chạy được chỉ chứng minh dimension compatible.",
+      "learningOutcomeRefs": ["LO5", "LO6"],
+      "formulaRefs": ["F10"],
+      "claimRefs": ["C16", "C24"],
+      "misconceptionRefs": ["M06"]
+    },
+    {
+      "id": "RC08",
+      "cluster": "gram_shapes",
+      "prompt": "Với X in R^(m x n), shapes và meaning cơ bản của X^T X và X X^T là gì?",
+      "expectedEvidence": [
+        "X^T X là n x n feature-feature Gram-type object.",
+        "X X^T là m x m observation-observation Gram-type object."
+      ],
+      "answer": "X^T X có shape n x n và so sánh feature columns; X X^T có shape m x m và so sánh observations.",
+      "learningOutcomeRefs": ["LO5"],
+      "formulaRefs": ["F11", "F12"],
+      "claimRefs": ["C10", "C11", "C12"],
+      "misconceptionRefs": ["M13", "M14"]
+    },
+    {
+      "id": "RC09",
+      "cluster": "covariance_boundary",
+      "prompt": "X_raw^T X_raw có phải sample covariance matrix không?",
+      "expectedEvidence": [
+        "Raw Gram chưa centered.",
+        "Thiếu normalization divisor.",
+        "Phải nêu row-observation convention và m>1."
+      ],
+      "answer": "Không. Với assumptions của F16, sample covariance là C=(1/(m-1)) X_c^T X_c sau feature-wise centering và normalization m-1.",
+      "learningOutcomeRefs": ["LO5", "LO7"],
+      "critical": true,
+      "formulaRefs": ["F11", "F16"],
+      "claimRefs": ["C13", "C14"],
+      "misconceptionRefs": ["M13"]
+    },
+    {
+      "id": "RC10",
+      "cluster": "centering",
+      "prompt": "Mean locked của case là gì và centering invariant nào phải kiểm?",
+      "expectedEvidence": [
+        "mu=(8.5,8.55,0.03125,0.02375,0.01,12.1625).",
+        "X_c=X_raw-1_8 mu^T.",
+        "Column sums của X_c xấp xỉ zero under tolerance."
+      ],
+      "answer": "Mean locked là (8.5, 8.55, 0.03125, 0.02375, 0.01, 12.1625); sau centering phải có 1_8^T X_c≈0^T.",
+      "learningOutcomeRefs": ["LO7", "LO8"],
+      "critical": true,
+      "formulaRefs": ["F13", "F14"],
+      "claimRefs": ["C20"],
+      "misconceptionRefs": ["M11"]
+    },
+    {
+      "id": "RC11",
+      "cluster": "centering_vs_scaling",
+      "prompt": "Centering và scaling khác nhau thế nào trong §1.6?",
+      "expectedEvidence": [
+        "Centering subtracts feature mean.",
+        "Scaling divides by declared feature scale.",
+        "Centering không làm các units/scales trở nên tương đương.",
+        "Scale vector chưa được khóa trong case."
+      ],
+      "answer": "Centering tạo X_c bằng cách trừ mean; scaling tạo X_s bằng scale policy riêng. Case không khóa scale vector nên không được tự bịa.",
+      "learningOutcomeRefs": ["LO7"],
+      "formulaRefs": ["F14", "F15"],
+      "claimRefs": ["C20"],
+      "misconceptionRefs": ["M11", "M14"]
+    },
+    {
+      "id": "RC12",
+      "cluster": "preprocessing_reuse",
+      "prompt": "Vì sao không được tự refit mean/scale trên live batch khi downstream model dùng preprocessing đã khóa?",
+      "expectedEvidence": [
+        "Phân biệt fit và transform.",
+        "Independent refit đổi representation.",
+        "Có thể che distribution shift và gây interface drift/leakage."
+      ],
+      "answer": "Live/test data phải reuse approved training/reference preprocessing contract; refit cần explicit retraining/versioning workflow.",
+      "learningOutcomeRefs": ["LO7", "LO8"],
+      "critical": true,
+      "formulaRefs": ["F14", "F15"],
+      "claimRefs": ["C17", "C18"],
+      "misconceptionRefs": ["M12"]
+    },
+    {
+      "id": "RC13",
+      "cluster": "rank_boundary",
+      "prompt": "Từ shape X_raw=8x6, kết luận rank nào là chắc chắn? Có được suy ra 6 physical modes không?",
+      "expectedEvidence": [
+        "Chỉ có rank(X)<=min(8,6)=6.",
+        "Numerical rank cần tolerance.",
+        "Physical mode interpretation cần model/evidence riêng."
+      ],
+      "answer": "Chỉ khóa rank(X)<=6. Không được kết luận UGV có 6 physical modes và cũng không được invent numerical rank.",
+      "learningOutcomeRefs": ["LO9"],
+      "critical": true,
+      "formulaRefs": ["F18"],
+      "claimRefs": ["C21", "C22"],
+      "misconceptionRefs": ["M15"]
+    },
+    {
+      "id": "RC14",
+      "cluster": "pca_boundary",
+      "prompt": "Có covariance preview rồi thì có được gọi ngay eigenvectors là accepted principal components của pipeline không?",
+      "expectedEvidence": [
+        "PCA eigendecomposition/selection chưa được thực hiện trong §1.6.",
+        "Chưa có retained-dimension policy.",
+        "Preprocessing/scaling contract vẫn phải được khóa."
+      ],
+      "answer": "Không. Covariance preview chỉ là bridge; accepted PCA components và retained dimension đều deferred.",
+      "learningOutcomeRefs": ["LO9"],
+      "critical": true,
+      "formulaRefs": ["F16"],
+      "claimRefs": ["C22"],
+      "misconceptionRefs": ["M17"]
+    },
+    {
+      "id": "RC15",
+      "cluster": "diagnosis_boundary",
+      "prompt": "Một data audit phát hiện unit mismatch hoặc unusual variance. Có được kết luận wheel/IMU/battery fault không?",
+      "expectedEvidence": [
+        "Data-quality evidence không phải causal diagnostic evidence.",
+        "Cần diagnostic model và domain evidence.",
+        "§1.6 cấm fault overclaim."
+      ],
+      "answer": "Không. Audit chỉ xác nhận contract/data mismatch hoặc descriptive property; không định danh physical fault.",
+      "learningOutcomeRefs": ["LO9"],
+      "critical": true,
+      "claimRefs": ["C24"],
+      "misconceptionRefs": ["M16", "M18"]
+    },
+    {
+      "id": "RC16",
+      "cluster": "api_axis",
+      "prompt": "Dưới row-observation convention, np.stack(observations, axis=0) và np.column_stack(observations) khác nhau ra sao?",
+      "expectedEvidence": [
+        "axis=0 tạo m x n rows-as-observations.",
+        "column_stack tạo n x m observations-as-columns với 1D inputs.",
+        "API call phải đi kèm convention declaration."
+      ],
+      "answer": "np.stack(...,axis=0) hoặc vstack phù hợp canonical m x n; column_stack tạo alternative n x m và yêu cầu translate downstream semantics.",
+      "learningOutcomeRefs": ["LO2", "LO4", "LO8"],
+      "formulaRefs": ["F08", "F09"],
+      "claimRefs": ["C05", "C06", "C07"],
+      "misconceptionRefs": ["M01", "M03"]
+    }
+  ],
+  "professorQA": [
+    {
+      "id": "PQ01",
+      "prompt": "Hai arrays cùng 8x6 thì vì sao chưa chắc stack-compatible? Hãy nêu một counterexample từ locked case.",
+      "expectedEvidence": [
+        "Swapped wheel columns vẫn 8x6.",
+        "Feature-order checksum/interface bị phá.",
+        "Shape gate khác semantic gate."
+      ],
+      "answer": "Ví dụ swapped omega_left/omega_right vẫn 8x6 nhưng stale schema; numerical stacking chạy được nhưng semantic contract sai.",
+      "learningOutcomeRefs": ["LO1", "LO6"],
+      "critical": true,
+      "formulaRefs": ["F01"],
+      "claimRefs": ["C04", "C15", "C16"],
+      "misconceptionRefs": ["M04", "M05", "M06"]
+    },
+    {
+      "id": "PQ02",
+      "prompt": "Code bị dimension error, bạn thêm .T và code chạy. Vì sao vẫn có thể sai?",
+      "expectedEvidence": [
+        "Transpose phải là declared convention conversion.",
+        "Rows/columns đổi meaning.",
+        "1D .T thậm chí không đổi shape."
+      ],
+      "answer": "Chạy được không chứng minh đúng semantics; phải viết shape/axis meaning trước-sau transpose và translate formula tương ứng.",
+      "learningOutcomeRefs": ["LO4", "LO8"],
+      "critical": true,
+      "formulaRefs": ["F06", "F07"],
+      "claimRefs": ["C08", "C09", "C24"],
+      "misconceptionRefs": ["M01", "M02", "M03"]
+    },
+    {
+      "id": "PQ03",
+      "prompt": "X_raw.T @ X_raw có phải covariance không? Hãy nêu chính xác điều kiện để F16 hợp lệ.",
+      "expectedEvidence": [
+        "Need X_c not X_raw.",
+        "Rows are observations.",
+        "m>1.",
+        "Use divisor m-1.",
+        "No alternate weighting convention."
+      ],
+      "answer": "Raw cross-product là feature Gram. F16 sample covariance cần C=(1/(m-1))X_c^T X_c với feature-wise centering và declared orientation.",
+      "learningOutcomeRefs": ["LO5", "LO7"],
+      "critical": true,
+      "formulaRefs": ["F11", "F16"],
+      "claimRefs": ["C13", "C14"],
+      "misconceptionRefs": ["M13"]
+    },
+    {
+      "id": "PQ04",
+      "prompt": "Vì sao không được refit mean/scale trên live batch tùy tiện?",
+      "expectedEvidence": [
+        "Fit-transform distinction.",
+        "Model expects one versioned representation.",
+        "Independent refit can hide shift and create drift/leakage."
+      ],
+      "answer": "Reuse approved reference preprocessing. Refit only through explicit retraining/versioning workflow.",
+      "learningOutcomeRefs": ["LO7", "LO8"],
+      "critical": true,
+      "formulaRefs": ["F14", "F15"],
+      "claimRefs": ["C17", "C18"],
+      "misconceptionRefs": ["M12"]
+    },
+    {
+      "id": "PQ05",
+      "prompt": "Từ X_raw shape 8x6 có được kết luận UGV có 6 physical modes không? Nếu không, cái gì được phép nói?",
+      "expectedEvidence": [
+        "Allowed rank upper bound <=6.",
+        "Numerical rank needs tolerance.",
+        "Physical modes need model/context/evidence."
+      ],
+      "answer": "Chỉ được nói algebraic rank không vượt 6; không suy ra physical mode count.",
+      "learningOutcomeRefs": ["LO9"],
+      "critical": true,
+      "formulaRefs": ["F18"],
+      "claimRefs": ["C21", "C22"],
+      "misconceptionRefs": ["M15"]
+    },
+    {
+      "id": "PQ06",
+      "prompt": "Covariance đã có thì có được gọi ngay eigenvectors là accepted principal components của pipeline không?",
+      "expectedEvidence": [
+        "Covariance is preview only.",
+        "No eigendecomposition/selection acceptance yet.",
+        "No retained-energy policy or scaling choice locked."
+      ],
+      "answer": "Không. PCA components/retained dimension là downstream/deferred và cần full preprocessing + selection contract.",
+      "learningOutcomeRefs": ["LO9"],
+      "critical": true,
+      "formulaRefs": ["F16"],
+      "claimRefs": ["C22"],
+      "misconceptionRefs": ["M17"]
+    },
+    {
+      "id": "PQ07",
+      "prompt": "Timestamp là số và có một giá trị cho mỗi observation. Vì sao không tự động append thành feature 7?",
+      "expectedEvidence": [
+        "Locked case treats timestamp as metadata.",
+        "Appending changes shape 8x6 to 8x7.",
+        "Requires new feature-engineering contract/schema version/unit/downstream regeneration."
+      ],
+      "answer": "Timestamp chỉ là observation metadata trong locked case; promote thành feature cần explicit schema/version change.",
+      "learningOutcomeRefs": ["LO6", "LO8"],
+      "formulaRefs": ["F01"],
+      "claimRefs": ["C19"],
+      "misconceptionRefs": ["M10"]
+    },
+    {
+      "id": "PQ08",
+      "prompt": "omega_left vẫn có đúng tên nhưng values đã đổi từ rad/s sang rpm, metadata vẫn ghi rad/s. Tại sao lỗi này nguy hiểm dù shape và tên cột đúng?",
+      "expectedEvidence": [
+        "Feature identity includes unit.",
+        "Magnitude changes while stale unit misleads preprocessing/model.",
+        "Semantic validator must reject."
+      ],
+      "answer": "Tên feature không đủ; unit là phần của contract. Stale unit makes values semantically incompatible even with identical shape/name.",
+      "learningOutcomeRefs": ["LO1", "LO6"],
+      "critical": true,
+      "formulaRefs": ["F01"],
+      "claimRefs": ["C15", "C16"],
+      "misconceptionRefs": ["M07"]
+    },
+    {
+      "id": "PQ09",
+      "prompt": "Sau khi lấy submatrix 3x3 từ rows 2:5 và columns 2:5, tại sao không được chỉ giữ numeric array?",
+      "expectedEvidence": [
+        "Need observation IDs/timestamps.",
+        "Need feature schema/units.",
+        "Otherwise result is not self-describing and can be misinterpreted."
+      ],
+      "answer": "Phải slice metadata cùng numeric block; nếu không, identity và units bị mất.",
+      "learningOutcomeRefs": ["LO3", "LO6"],
+      "formulaRefs": ["F05"],
+      "claimRefs": ["C03", "C16"],
+      "misconceptionRefs": ["M09"]
+    },
+    {
+      "id": "PQ10",
+      "prompt": "Một phép Xw hoặc Gram matrix chạy không lỗi. Điều đó chứng minh được những gì, và không chứng minh được những gì?",
+      "expectedEvidence": [
+        "Proves dimension/API compatibility only.",
+        "Does not prove schema/order/units/preprocessing validity.",
+        "Does not prove physical interpretation."
+      ],
+      "answer": "Nó chỉ chứng minh phép toán có thể thực hiện trên shape hiện tại; semantic contract và engineering interpretation vẫn cần kiểm riêng.",
+      "learningOutcomeRefs": ["LO5", "LO6", "LO9"],
+      "formulaRefs": ["F10", "F11", "F12", "F17"],
+      "claimRefs": ["C24"],
+      "misconceptionRefs": ["M05", "M06", "M14", "M18"]
+    }
+  ],
+  "masteryGates": [
+    {
+      "id": "MG01",
+      "name": "Semantic compatibility audit",
+      "critical": true,
+      "targets": ["LO1", "LO6", "LO8", "M04", "M06", "M07", "M08"],
+      "task": "Nhận một canonical payload và bốn negative variants của CASE_C01_L06_V1_LOCKED; quyết định accept/reject từng payload và nêu chính xác failed contract.",
+      "passEvidence": [
+        "Phát hiện swapped feature order.",
+        "Phát hiện stale unit.",
+        "Phát hiện wrong orientation.",
+        "Phát hiện schema-version mismatch.",
+        "Không dùng equal shape như bằng chứng duy nhất."
+      ]
+    },
+    {
+      "id": "MG02",
+      "name": "Locked extraction and metadata",
+      "critical": true,
+      "targets": ["LO3", "LO6", "M09"],
+      "task": "Không nhìn đáp án, tái tạo X_raw[2,4] và X_raw[2:5,2:5], kèm observation IDs, features và units.",
+      "passEvidence": [
+        "X_raw[2,4]=0.08 rad/s.",
+        "Gắn đúng UGV-W03 và yaw_rate.",
+        "Block 3x3 đi với UGV-W03–W05 và a_long/a_lat/yaw_rate.",
+        "Không mất metadata."
+      ]
+    },
+    {
+      "id": "MG03",
+      "name": "Orientation and NumPy code audit",
+      "critical": true,
+      "targets": ["LO2", "LO4", "LO8", "M01", "M02", "M03"],
+      "task": "Sửa một snippet dùng wrong axis, x.T trên 1D array và transpose-until-it-runs; viết lại shape assertions và active convention.",
+      "passEvidence": [
+        "Canonical output 8x6 rows-as-observations.",
+        "Giải thích x.T trên (6,) không tạo row/column 2D.",
+        "Không dùng transpose như repair button.",
+        "Downstream formulas được translate nếu đổi convention."
+      ]
+    },
+    {
+      "id": "MG04",
+      "name": "Centering, preprocessing and covariance boundary",
+      "critical": true,
+      "targets": ["LO5", "LO7", "LO8", "M11", "M12", "M13", "M14"],
+      "task": "Từ locked X_raw, tái tạo mu và X_c, kiểm centering invariant, rồi giải thích vì sao raw Gram chưa phải covariance và vì sao không refit preprocessing trên live batch.",
+      "passEvidence": [
+        "Mu đúng 6 values.",
+        "X_c column sums≈0.",
+        "Phân biệt centering với scaling.",
+        "F16 assumptions được nêu đầy đủ.",
+        "Không invent scale vector.",
+        "Nêu fit/transform reuse."
+      ]
+    },
+    {
+      "id": "MG05",
+      "name": "Downstream scope defense",
+      "critical": true,
+      "targets": ["LO9", "M15", "M16", "M17", "M18"],
+      "task": "Phản biện bốn kết luận: rank=physical modes, low variance=useless, covariance=accepted PCA components, data mismatch=physical fault.",
+      "passEvidence": [
+        "Chỉ nêu rank upper bound <=6.",
+        "Không invent numerical-rank tolerance.",
+        "Không invent PCA components/retained dimension.",
+        "Không biến descriptive variance thành universal usefulness.",
+        "Không đưa fault label từ data audit."
+      ]
+    }
+  ],
+  "coverage": {
+    "retrievalCheckCount": 16,
+    "professorQuestionCount": 10,
+    "masteryGateCount": 5,
+    "criticalRetrievalChecks": ["RC01", "RC03", "RC06", "RC09", "RC10", "RC12", "RC13", "RC14", "RC15"],
+    "criticalProfessorQuestions": ["PQ01", "PQ02", "PQ03", "PQ04", "PQ05", "PQ06", "PQ08"],
+    "criticalMasteryGates": ["MG01", "MG02", "MG03", "MG04", "MG05"],
+    "learningOutcomes": {
+      "LO1": ["RC01", "PQ01", "PQ08", "MG01"],
+      "LO2": ["RC02", "RC16", "MG03"],
+      "LO3": ["RC02", "RC03", "RC04", "PQ09", "MG02"],
+      "LO4": ["RC05", "RC06", "RC16", "PQ02", "MG03"],
+      "LO5": ["RC07", "RC08", "RC09", "PQ03", "PQ10", "MG04"],
+      "LO6": ["RC01", "RC03", "RC04", "RC07", "PQ01", "PQ08", "PQ09", "PQ10", "MG01", "MG02"],
+      "LO7": ["RC09", "RC10", "RC11", "RC12", "PQ03", "PQ04", "MG04"],
+      "LO8": ["RC06", "RC10", "RC12", "RC16", "PQ02", "PQ04", "PQ07", "MG01", "MG03", "MG04"],
+      "LO9": ["RC13", "RC14", "RC15", "PQ05", "PQ06", "PQ10", "MG05"]
+    },
+    "claimIdsCovered": ["C01", "C02", "C03", "C04", "C05", "C06", "C07", "C08", "C09", "C10", "C11", "C12", "C13", "C14", "C15", "C16", "C17", "C18", "C19", "C20", "C21", "C22", "C23", "C24"],
+    "formulaIdsCovered": ["F01", "F02", "F03", "F04", "F05", "F06", "F07", "F08", "F09", "F10", "F11", "F12", "F13", "F14", "F15", "F16", "F17", "F18"],
+    "misconceptionsCovered": ["M01", "M02", "M03", "M04", "M05", "M06", "M07", "M08", "M09", "M10", "M11", "M12", "M13", "M14", "M15", "M16", "M17", "M18"]
+  },
+  "pass10Acceptance": {
+    "status": "PASS_10_RETRIEVAL_PROFESSOR_QA_COMPLETE",
+    "minimumMasteryPercent": 80,
+    "allCriticalItemsMandatory": true,
+    "answersInitiallyHidden": true,
+    "evidenceBeforeReveal": true,
+    "allLearningOutcomesCovered": true,
+    "allClaimIdsCovered": true,
+    "allFormulaIdsCovered": true,
+    "allMisconceptionsCovered": true,
+    "lockedCaseEvidencePreserved": true,
+    "inventedScaleVector": false,
+    "inventedNumericalRankTolerance": false,
+    "inventedPcaResult": false,
+    "inventedRetainedDimension": false,
+    "inventedFaultThresholdOrLabel": false,
+    "runtimeFilesModified": false,
+    "nextTask": "THEORY_C01_L06_REFERENCE_ARTIFACT_PASS_11"
+  }
+}
