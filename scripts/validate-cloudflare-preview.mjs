@@ -2,6 +2,7 @@ import fs from 'node:fs';
 
 const required = [
   '.github/workflows/deploy-bauman-preview.yml',
+  '.github/workflows/cloudflare-preview-ci.yml',
   'wrangler.runtime.preview.example.jsonc',
   'cloudflare/runtime-worker.mjs',
   'scripts/prepare-cloudflare-preview.mjs',
@@ -10,12 +11,16 @@ const required = [
   'control-service/wrangler.local.jsonc',
   'assets/js/platform/runtime-config.js',
   'assets/js/platform/device-access-gate.js',
+  'subjects/russian/index.html',
+  'subjects/russian/assets/russian-reference-ui.js',
+  'subjects/russian/assets/russian-reference-ui-polish.css',
 ];
 for (const file of required) {
   if (!fs.existsSync(file)) throw new Error(`Thiếu Bauman Cloudflare preview scaffold: ${file}`);
 }
 
 const workflow = fs.readFileSync('.github/workflows/deploy-bauman-preview.yml', 'utf8');
+const ciWorkflow = fs.readFileSync('.github/workflows/cloudflare-preview-ci.yml', 'utf8');
 const runtimeTemplate = fs.readFileSync('wrangler.runtime.preview.example.jsonc', 'utf8');
 const controlTemplate = fs.readFileSync('control-service/wrangler.preview.example.jsonc', 'utf8');
 const prepare = fs.readFileSync('scripts/prepare-cloudflare-preview.mjs', 'utf8');
@@ -35,10 +40,21 @@ for (const token of [
   'wrangler.runtime.preview.jsonc',
   'bauman-control-preview',
   'bauman-master-ai-preview',
+  '/subjects/russian/',
+  'russian-reference-ui-polish.css',
 ]) {
   if (!workflow.includes(token)) throw new Error(`Bauman preview workflow thiếu: ${token}`);
 }
 if (workflow.includes('bauman-control-local --remote')) throw new Error('Bauman preview tuyệt đối không migrate local D1 qua remote.');
+
+if (!ciWorkflow.includes('"subjects/**"')) throw new Error('Cloudflare preview CI phải chạy khi Subject Web Apps thay đổi.');
+for (const token of [
+  'runtime-dist/subjects/russian/index.html',
+  'runtime-dist/subjects/russian/assets/russian-reference-ui.js',
+  'runtime-dist/subjects/russian/assets/russian-reference-ui-polish.css',
+]) {
+  if (!ciWorkflow.includes(token)) throw new Error(`Cloudflare preview CI chưa kiểm tra subject package: ${token}`);
+}
 
 for (const token of [
   '"name": "bauman-control-preview"',
@@ -70,9 +86,13 @@ for (const marker of [
   '00000000-0000-0000-0000-000000000002',
   '.chatgpt.site',
   'runtime-dist',
-  'fs.cpSync',
+  "fs.cpSync(path.join(root, 'assets')",
+  "fs.cpSync(path.join(root, 'subjects')",
+  'subjects/russian/index.html',
+  'subjects/russian/assets/russian-reference-ui.js',
+  'subjects/russian/assets/russian-reference-ui-polish.css',
 ]) {
-  if (!prepare.includes(marker)) throw new Error(`Bauman preview materializer thiếu guard: ${marker}`);
+  if (!prepare.includes(marker)) throw new Error(`Bauman preview materializer thiếu guard/package marker: ${marker}`);
 }
 
 for (const marker of ['HTMLRewriter', 'bauman-control-origin', '/__deployment', 'BAUMAN_CONTROL_ORIGIN']) {
@@ -92,4 +112,4 @@ if (!localConfig.includes('"name": "bauman-control-local"') || !localConfig.incl
   throw new Error('Bauman local runtime phải tiếp tục dùng D1 local riêng.');
 }
 
-console.log('Bauman Cloudflare migration gate PASS: Control + Learning Runtime separated, preview manual-only, isolated D1, fail-closed production guard, device gate preserved, no ChatGPT Sites fallback.');
+console.log('Bauman Cloudflare migration gate PASS: Control + Learning Runtime separated, preview manual-only, isolated D1, Subject Web Apps packaged under /subjects/*, device gate preserved, no ChatGPT Sites fallback.');
