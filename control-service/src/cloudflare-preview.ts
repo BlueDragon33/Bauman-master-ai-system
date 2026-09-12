@@ -1,4 +1,4 @@
-import controlService from "./index";
+import controlService from "./automation-contract";
 
 interface PreviewEnv {
   BAUMAN_CONTROL_SERVICE_SECRET?: string;
