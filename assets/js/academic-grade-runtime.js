@@ -80,8 +80,13 @@
   async function fetchJson(url){const r=await fetch(url,{cache:'no-cache'});if(!r.ok)throw new Error(`${url} HTTP ${r.status}`);return r.json()}
   async function waitBase(timeout=15000){const start=Date.now();while(Date.now()-start<timeout){if(eventRuntime()&&courseRuntime()&&architecture()&&window.app?.__event14cPatched)return true;await new Promise(r=>setTimeout(r,50))}return false}
   async function load(){try{policy=await fetchJson(POLICY_URL);window.BAUMAN_GRADING_POLICY_2024=policy;if(!(await waitBase()))throw new Error('Pass14C event runtime did not become ready');if(!patchHome())throw new Error('Could not patch home for Pass14D');console.info(VERSION,{policy:policy.version,storageKey:STORE_KEY,supplementCounting:false,courseCompletionMutation:false})}catch(err){console.warn('Pass14D grade runtime disabled safely:',err)}}
+  function bootstrapTranscriptRuntime(){
+    if(!document.querySelector('link[data-phase2-transcript-style]')){const link=document.createElement('link');link.rel='stylesheet';link.href='assets/css/academic-transcript-2026.css';link.dataset.phase2TranscriptStyle='1';document.head.appendChild(link)}
+    if(window.BAUMAN_TRANSCRIPT_HONORS_2026||document.querySelector('script[data-phase2-transcript-runtime]'))return;
+    const script=document.createElement('script');script.src='assets/js/academic-transcript-runtime.js';script.dataset.phase2TranscriptRuntime='1';script.async=false;document.body.appendChild(script);
+  }
 
   window.openAcademicGradeResult2026=openResult;window.saveAcademicGradeResult2026=saveFromUi;window.clearAcademicGradeResult2026=clearFromUi;
   window.BAUMAN_GRADE_CONTROL_2026=Object.freeze({version:VERSION,load,resultState,recordResult,clearResult,rawResult,policyBand,resolvedEvents,summary,storageKey:STORE_KEY,userScoped:true,schedulerMutation:false,courseCompletionMutation:false,supplementCounting:false,policyUrl:POLICY_URL});
-  if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',()=>setTimeout(load,0),{once:true});else setTimeout(load,0);
+  if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',()=>{setTimeout(load,0);setTimeout(bootstrapTranscriptRuntime,0)},{once:true});else {setTimeout(load,0);setTimeout(bootstrapTranscriptRuntime,0)}
 })();
