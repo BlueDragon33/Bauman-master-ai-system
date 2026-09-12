@@ -69,6 +69,7 @@ fs.rmSync(runtimeDist, { recursive: true, force: true });
 fs.mkdirSync(runtimeDist, { recursive: true });
 fs.copyFileSync(path.join(root, 'index.html'), path.join(runtimeDist, 'index.html'));
 fs.cpSync(path.join(root, 'assets'), path.join(runtimeDist, 'assets'), { recursive: true });
+fs.cpSync(path.join(root, 'subjects'), path.join(runtimeDist, 'subjects'), { recursive: true });
 
 materialize('control-service/wrangler.preview.example.jsonc', 'control-service/wrangler.preview.jsonc', {
   '__APPLICATION_MANAGEMENT_PREVIEW_ORIGIN__': applicationManagementOrigin,
@@ -90,6 +91,10 @@ for (const resource of [
   'assets/js/data.js',
   'assets/js/main.js',
   'assets/js/planning-main.js',
+  'subjects/russian/index.html',
+  'subjects/russian/assets/core.js',
+  'subjects/russian/assets/russian-reference-ui.js',
+  'subjects/russian/assets/russian-reference-ui-polish.css',
 ]) {
   if (!fs.existsSync(path.join(runtimeDist, resource))) throw new Error(`Runtime asset missing: ${resource}`);
 }
@@ -100,4 +105,5 @@ if (!html.includes('assets/js/platform/runtime-config.js') || !html.includes('as
 console.log('Bauman Cloudflare preview materialized safely.');
 console.log(`Control Worker: bauman-control-preview -> ${controlOrigin}`);
 console.log(`Learning Worker: bauman-master-ai-preview -> ${runtimeOrigin}`);
+console.log('Subject Web Apps: packaged under /subjects/* inside the Learning Runtime.');
 console.log('D1: bauman-control-preview-db (isolated preview database).');
