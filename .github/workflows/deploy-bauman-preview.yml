@@ -157,6 +157,12 @@ jobs:
           grep -Fq "name=\"bauman-control-origin\" content=\"$BAUMAN_CONTROL_PREVIEW_ORIGIN\"" /tmp/bauman-home.html
           grep -Fq 'assets/js/platform/device-access-gate.js' /tmp/bauman-home.html
 
+          curl --fail --silent --show-error --max-time 20 "$BAUMAN_RUNTIME_PREVIEW_ORIGIN/subjects/russian/" > /tmp/bauman-russian.html
+          grep -Fq 'assets/russian-reference-ui.js' /tmp/bauman-russian.html
+          grep -Fq 'assets/russian-reference-ui-polish.css' /tmp/bauman-russian.html
+          curl --fail --silent --show-error --max-time 20 --output /dev/null "$BAUMAN_RUNTIME_PREVIEW_ORIGIN/subjects/russian/assets/russian-reference-ui.js"
+          curl --fail --silent --show-error --max-time 20 --output /dev/null "$BAUMAN_RUNTIME_PREVIEW_ORIGIN/subjects/russian/assets/russian-reference-ui-polish.css"
+
       - name: Deployment boundary summary
         shell: bash
         run: |
@@ -164,5 +170,6 @@ jobs:
           echo 'Control Worker: bauman-control-preview'
           echo 'D1: bauman-control-preview-db'
           echo 'Learning Worker: bauman-master-ai-preview'
+          echo 'Subject Web Apps: /subjects/* packaged and smoke-tested.'
           echo 'Application-Management remains the only central control-plane.'
           echo 'No production Worker or production D1 is changed by this workflow.'
