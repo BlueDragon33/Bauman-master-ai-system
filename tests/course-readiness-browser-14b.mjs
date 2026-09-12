@@ -41,12 +41,7 @@ try{
   const initial=await page.evaluate(()=>{
     const r=window.BAUMAN_COURSE_READINESS_2026,a=window.BAUMAN_COURSE_ARCHITECTURE_S1_2026;
     const d01=a.courses.find(x=>x.courseId==='d01'),d15=a.courses.find(x=>x.courseId==='d15'),p02=a.courses.find(x=>x.courseId==='p02'),d02=a.courses.find(x=>x.courseId==='d02');
-    return {
-      version:r.version,readOnly:r.readOnly,courses:a.courses.length,
-      d01Prereq:r.prereqAxis('d01'),d01Action:r.nextAction('d01'),d01Critical:d01.criticalPrerequisites,
-      d15Allocation:d15.semester1Allocation,p02Allocation:p02.semester1Allocation,
-      d02Events:d02.eventModel.events,lifecycle:r.lifecycleAxis('d04'),event:r.eventAxis('d15')
-    };
+    return {version:r.version,readOnly:r.readOnly,courses:a.courses.length,d01Prereq:r.prereqAxis('d01'),d01Action:r.nextAction('d01'),d01Critical:d01.criticalPrerequisites,d15Allocation:d15.semester1Allocation,p02Allocation:p02.semester1Allocation,d02Events:d02.eventModel.events,lifecycle:r.lifecycleAxis('d04'),event:r.eventAxis('d15')};
   });
   must(initial.readOnly,'Pass14B runtime must be read-only');assert.equal(initial.courses,8);
   assert.equal(initial.d01Prereq.id,'UNASSESSED');assert.equal(initial.d01Action.type,'LOCAL_DIAGNOSTIC_PENDING');assert.deepEqual(initial.d01Critical,[]);
@@ -56,12 +51,12 @@ try{
 
   const ready=await page.evaluate(()=>{
     const p1=window.BAUMAN_ACADEMIC_2026_RUNTIME,r=window.BAUMAN_COURSE_READINESS_2026;
-    for(const g of ['P2','P3','P10'])p1.recordDiagnostic(g,{D0:92,D1:92,D2:92,criticalMisconceptions:0,failedNodeIds:[]});
-    const before=r.prereqAxis('d04');
+    const recorded={};for(const g of ['P2','P3','P10'])recorded[g]=p1.recordDiagnostic(g,{D0:92,D1:92,D2:92,criticalMisconceptions:0,failedNodeIds:[]});
+    const rawCourse=p1.courseReadiness('d04'),gateRows=r.gateRows('d04'),before=r.prereqAxis('d04');
     window.state.schedule.autoStage='m1';window.save();window.app.home();
-    return {before,lifecycle:r.lifecycleAxis('d04'),event:r.eventAxis('d04'),panelCount:document.querySelectorAll('[data-course14b="s1"]').length};
+    return {recorded,rawCourse,gateRows,before,lifecycle:r.lifecycleAxis('d04'),event:r.eventAxis('d04'),panelCount:document.querySelectorAll('[data-course14b="s1"]').length};
   });
-  assert.equal(ready.before.id,'COURSE_READY');assert.equal(ready.lifecycle.id,'COURSE_ACTIVE');assert.equal(ready.event.id,'EVENT_UNASSESSED');assert.equal(ready.panelCount,1);
+  assert.equal(ready.before.id,'COURSE_READY',`Unexpected d04 readiness: ${JSON.stringify(ready)}`);assert.equal(ready.lifecycle.id,'COURSE_ACTIVE');assert.equal(ready.event.id,'EVENT_UNASSESSED');assert.equal(ready.panelCount,1);
 
   await page.locator('.course14b-card').first().click();
   await page.waitForSelector('.course14b-modal');
@@ -81,8 +76,7 @@ try{
   if(mobile.columns)assert.equal(mobile.columns.trim().split(/\s+/).length,1);
   await page.screenshot({path:path.join(OUT,'mobile-course-readiness.png'),fullPage:true});
 
-  must(errors.length===0,`Page errors: ${errors.join('\n')}`);
-  must(failed.length===0,`Unexpected failed requests: ${failed.join('\n')}`);
+  must(errors.length===0,`Page errors: ${errors.join('\n')}`);must(failed.length===0,`Unexpected failed requests: ${failed.join('\n')}`);
   fs.writeFileSync(path.join(OUT,'result.json'),JSON.stringify({status:'PASS',initial:{version:initial.version,courses:initial.courses},ready,mobile},null,2));
   console.log('PASS14B_BROWSER_ACCEPTANCE_PASS');
 } finally {await browser.close()}
