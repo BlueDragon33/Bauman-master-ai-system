@@ -55,9 +55,9 @@ function evalLedger(values={}){
   if(missing.length)return 'EVIDENCE_INCOMPLETE';
   return five.length>=17?'HONORS_RULES_MET_ON_VERIFIED_LEDGER':'EXCELLENT_SHARE_BELOW_75';
 }
-const full17={};for(const r of credits)full17[r.id]='зачтено';graded.forEach((r,i)=>full17[r.id]=i<17?5:4);const gia=graded.find(x=>x.kind==='gia');full17[gia.id]=5;
+const full17={};for(const r of credits)full17[r.id]='зачтено';for(const r of graded)full17[r.id]=4;const gia=graded.find(x=>x.kind==='gia');full17[gia.id]=5;const nonGia=graded.filter(x=>x.id!==gia.id);for(const r of nonGia.slice(0,16))full17[r.id]=5;
 assert(evalLedger(full17)==='HONORS_RULES_MET_ON_VERIFIED_LEDGER','17/22 grade-5 rows with all remaining grade 4 and GIA 5 should meet federal 75% rule');
-const full16={...full17};const nonGiaFive=graded.find(x=>x.id!==gia.id&&full16[x.id]===5);full16[nonGiaFive.id]=4;assert(evalLedger(full16)==='EXCELLENT_SHARE_BELOW_75','16/22 grade-5 rows must be below 75%');
+const full16={...full17};full16[nonGia[0].id]=4;assert(evalLedger(full16)==='EXCELLENT_SHARE_BELOW_75','16/22 grade-5 rows must be below 75%');
 const with3={...full17};const anyFour=graded.find(x=>with3[x.id]===4);with3[anyFour.id]=3;assert(evalLedger(with3)==='CURRENT_EVIDENCE_BLOCKS_HONORS','Any final 3 must block honors conditions');
 const badGia={...full17,[gia.id]:4};assert(evalLedger(badGia)==='CURRENT_EVIDENCE_BLOCKS_HONORS','Any GIA grade below 5 must block honors conditions');
 const missingOne={...full17};delete missingOne[graded[0].id];assert(evalLedger(missingOne)==='EVIDENCE_INCOMPLETE','Missing verified supplement row must prevent final honors conclusion');
