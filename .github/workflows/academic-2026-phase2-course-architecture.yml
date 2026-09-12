@@ -8,14 +8,17 @@ on:
       - 'assets/data/prerequisite-registry-iu5-2026.json'
       - 'assets/data/prerequisite-packs/p00-technical-russian.json'
       - 'assets/data/grading-policy-bauman-2024.json'
+      - 'assets/data/diploma-supplement-honors-policy-rf-2021.json'
       - 'assets/js/academic-main.js'
       - 'assets/js/academic-scheduler-apply.js'
       - 'assets/js/academic-course-runtime.js'
       - 'assets/js/academic-event-runtime.js'
       - 'assets/js/academic-grade-runtime.js'
+      - 'assets/js/academic-transcript-runtime.js'
       - 'assets/css/academic-course-2026.css'
       - 'assets/css/academic-event-2026.css'
       - 'assets/css/academic-grade-2026.css'
+      - 'assets/css/academic-transcript-2026.css'
       - 'scripts/validate-course-learning-architecture-s1-2026.js'
       - 'scripts/validate-academic-2026.js'
       - 'scripts/validate-p00-technical-russian.js'
@@ -24,9 +27,11 @@ on:
       - 'scripts/validate-course-readiness-runtime-14b.js'
       - 'scripts/validate-event-readiness-runtime-14c.js'
       - 'scripts/validate-grade-control-runtime-14d.js'
+      - 'scripts/validate-transcript-honors-runtime-14e.js'
       - 'tests/course-readiness-browser-14b.mjs'
       - 'tests/event-readiness-browser-14c.mjs'
       - 'tests/grade-control-browser-14d.mjs'
+      - 'tests/transcript-honors-browser-14e.mjs'
       - '.github/workflows/academic-2026-phase2-course-architecture.yml'
   pull_request:
     paths:
@@ -35,14 +40,17 @@ on:
       - 'assets/data/prerequisite-registry-iu5-2026.json'
       - 'assets/data/prerequisite-packs/p00-technical-russian.json'
       - 'assets/data/grading-policy-bauman-2024.json'
+      - 'assets/data/diploma-supplement-honors-policy-rf-2021.json'
       - 'assets/js/academic-main.js'
       - 'assets/js/academic-scheduler-apply.js'
       - 'assets/js/academic-course-runtime.js'
       - 'assets/js/academic-event-runtime.js'
       - 'assets/js/academic-grade-runtime.js'
+      - 'assets/js/academic-transcript-runtime.js'
       - 'assets/css/academic-course-2026.css'
       - 'assets/css/academic-event-2026.css'
       - 'assets/css/academic-grade-2026.css'
+      - 'assets/css/academic-transcript-2026.css'
       - 'scripts/validate-course-learning-architecture-s1-2026.js'
       - 'scripts/validate-academic-2026.js'
       - 'scripts/validate-p00-technical-russian.js'
@@ -51,9 +59,11 @@ on:
       - 'scripts/validate-course-readiness-runtime-14b.js'
       - 'scripts/validate-event-readiness-runtime-14c.js'
       - 'scripts/validate-grade-control-runtime-14d.js'
+      - 'scripts/validate-transcript-honors-runtime-14e.js'
       - 'tests/course-readiness-browser-14b.mjs'
       - 'tests/event-readiness-browser-14c.mjs'
       - 'tests/grade-control-browser-14d.mjs'
+      - 'tests/transcript-honors-browser-14e.mjs'
       - '.github/workflows/academic-2026-phase2-course-architecture.yml'
 
 jobs:
@@ -80,6 +90,8 @@ jobs:
         run: node scripts/validate-event-readiness-runtime-14c.js
       - name: Validate Pass14D Grade Control runtime
         run: node scripts/validate-grade-control-runtime-14d.js
+      - name: Validate Pass14E transcript and honors registry
+        run: node scripts/validate-transcript-honors-runtime-14e.js
       - name: Check Phase1 + Phase2 runtime syntax
         run: |
           node --check assets/js/academic-main.js
@@ -87,9 +99,11 @@ jobs:
           node --check assets/js/academic-course-runtime.js
           node --check assets/js/academic-event-runtime.js
           node --check assets/js/academic-grade-runtime.js
+          node --check assets/js/academic-transcript-runtime.js
           node --check tests/course-readiness-browser-14b.mjs
           node --check tests/event-readiness-browser-14c.mjs
           node --check tests/grade-control-browser-14d.mjs
+          node --check tests/transcript-honors-browser-14e.mjs
 
   browser-course-readiness:
     needs: validate-course-architecture
@@ -124,11 +138,16 @@ jobs:
           BAUMAN_E2E_BASE_URL: http://127.0.0.1:4173/
           BAUMAN_E2E_ARTIFACT_DIR: artifacts/browser-14c
         run: node tests/event-readiness-browser-14c.mjs
-      - name: Run Pass14D browser acceptance
+      - name: Run Pass14D browser regression
         env:
           BAUMAN_E2E_BASE_URL: http://127.0.0.1:4173/
           BAUMAN_E2E_ARTIFACT_DIR: artifacts/browser-14d
         run: node tests/grade-control-browser-14d.mjs
+      - name: Run Pass14E browser acceptance
+        env:
+          BAUMAN_E2E_BASE_URL: http://127.0.0.1:4173/
+          BAUMAN_E2E_ARTIFACT_DIR: artifacts/browser-14e
+        run: node tests/transcript-honors-browser-14e.mjs
       - name: Show static server log on failure
         if: failure()
         run: cat /tmp/bauman-phase2-http.log || true
@@ -136,10 +155,11 @@ jobs:
         if: always()
         uses: actions/upload-artifact@v4
         with:
-          name: academic-phase2-browser-14bcd-${{ github.run_id }}
+          name: academic-phase2-browser-14bcde-${{ github.run_id }}
           path: |
             artifacts/browser-14b
             artifacts/browser-14c
             artifacts/browser-14d
+            artifacts/browser-14e
           if-no-files-found: warn
           retention-days: 7
