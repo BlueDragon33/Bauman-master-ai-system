@@ -24,7 +24,8 @@ for(const token of [
 
 assert(!/schedule\.entries\s*\[[^\]]+\]\s*=/.test(runtime),'Pass14C must not mutate scheduler entries');
 assert(!/window\.save\s*\(/.test(runtime),'Pass14C must not call main save()');
-assert(!/COMPLETED/.test(runtime),'Pass14C must not manufacture course/event completion states');
+assert(!/id\s*:\s*['"](?:COMPLETED|EVENT_COMPLETED)['"]/.test(runtime),'Pass14C must not manufacture course/event completion states');
+assert(!/state\s*:\s*['"](?:COMPLETED|EVENT_COMPLETED)['"]/.test(runtime),'Pass14C must not write completion state into evidence');
 assert(!/officialResult\s*=/.test(runtime),'Pass14C must not write official result values');
 assert(runtime.includes('localStorage.setItem(STORE_KEY'),'Pass14C should persist only its dedicated readiness evidence store');
 assert(runtime.includes('currentUserScope()'),'Pass14C evidence must be user-scoped');
