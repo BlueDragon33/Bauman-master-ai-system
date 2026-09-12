@@ -9,7 +9,7 @@ fs.mkdirSync(OUT,{recursive:true});
 const errors=[],failed=[];const must=(v,m)=>assert.ok(v,m);
 
 async function mockControl(page){
-  const deviceId='g'.repeat(64),deviceCode='BM-14G-001',cors={'access-control-allow-origin':'*','access-control-allow-methods':'GET,POST,OPTIONS','access-control-allow-headers':'content-type,authorization','cache-control':'no-store'};
+  const deviceId='e'.repeat(64),deviceCode='BM-14G-001',cors={'access-control-allow-origin':'*','access-control-allow-methods':'GET,POST,OPTIONS','access-control-allow-headers':'content-type,authorization','cache-control':'no-store'};
   await page.route('http://127.0.0.1:3003/**',async route=>{
     const req=route.request();if(req.method()==='OPTIONS')return route.fulfill({status:204,headers:cors,body:''});
     const u=new URL(req.url()),headers={...cors,'content-type':'application/json'};const send=body=>route.fulfill({status:200,headers,body:JSON.stringify(body)});
