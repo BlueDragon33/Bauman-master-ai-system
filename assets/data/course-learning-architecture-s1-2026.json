@@ -1,7 +1,7 @@
 {
   "schema": "bauman_official_course_learning_architecture_v1",
   "version": "PHASE2_PASS14A_R_S1_COURSE_ARCHITECTURE_V2",
-  "verifiedAt": "2026-09-11",
+  "verifiedAt": "2026-09-12",
   "scope": "Semester 1 course-learning orchestration for the official IU5 2026 curriculum. Official identity and whole-course totals come from the locked curriculum mirror. Semester allocation and assessment timing are never inferred for multi-semester items. Competency blocks are planning inferences, not an official Bauman syllabus unless explicitly backed by a public BMSTU learning source.",
   "policies": {
     "gradedEventInternalTarget": 90,
@@ -54,8 +54,7 @@
         "globalGateRefs":[],
         "thresholdStatus":"not_defined_until_verified_course_requirements_or_diagnostic_blueprint",
         "sourceEvidence":[
-          {"type":"public_bmstu_learning_portal","url":"https://e-learning.bmstu.ru/l/course/index.php?categoryid=3","supports":"Department L2 states that it teaches Foreign Language (English) for IU students and exposes a master's-programme category."},
-          {"type":"bmstu_library_master_material","url":"https://library.bmstu.ru/Catalog/Details/552992","supports":"BMSTU master's material for Foreign Language (English) covers academic scientific reading/speaking/writing; it does not define the exact 2026 d01 syllabus or threshold."}
+          {"type":"public_bmstu_learning_portal","url":"https://e-learning.bmstu.ru/l/course/index.php?categoryid=3","supports":"Department L2 states that it teaches Foreign Language (English) for IU students and exposes a master's-programme category. No CEFR threshold, exact assessment format, or exact 2026 master's syllabus is inferred."}
         ]
       },
       "competencyBlocks":[
