@@ -1,4 +1,4 @@
-import controlService from "./index";
+import controlService from "./automation-contract";
 
 interface PreviewEnv {
   BAUMAN_CONTROL_SERVICE_SECRET?: string;
@@ -31,7 +31,7 @@ function deployment(env: PreviewEnv, ready: boolean) {
 }
 
 export default {
-  async fetch(request: Request, env: PreviewEnv, _ctx: ExecutionContext): Promise<Response> {
+  async fetch(request: Request, env: PreviewEnv, ctx: ExecutionContext): Promise<Response> {
     const url = new URL(request.url);
     if (request.method === "GET" && url.pathname === "/__deployment") {
       const ready = await databaseReady(env);
@@ -50,7 +50,7 @@ export default {
       });
     }
 
-    const response = await controlService.fetch(request, env);
+    const response = await controlService.fetch(request, env, ctx);
     if (request.method !== "GET" || url.pathname !== "/api/control/status" || !response.ok) return response;
 
     const payload = await response.json() as Record<string, unknown>;
