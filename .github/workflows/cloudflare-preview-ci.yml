@@ -95,7 +95,7 @@ jobs:
           grep -q 'assets/js/academic-scheduler-preview.js' runtime-dist/index.html
           grep -q 'assets/js/academic-scheduler-apply.js' runtime-dist/index.html
 
-      - name: Verify Subject Web Apps are present in packaged preview
+      - name: Verify Subject Web Apps and Russian chunk manifests
         shell: bash
         run: |
           set -euo pipefail
@@ -103,8 +103,37 @@ jobs:
           test -f runtime-dist/subjects/russian/assets/core.js
           test -f runtime-dist/subjects/russian/assets/russian-reference-ui.js
           test -f runtime-dist/subjects/russian/assets/russian-reference-ui-polish.css
+          test -f runtime-dist/subjects/russian/assets/russian-optional-data-loader.js
+          test -f runtime-dist/subjects/russian/data/chunks/dialogue-bauman-az/manifest.json
+          test -f runtime-dist/subjects/russian/data/chunks/deep-speaking-bauman/manifest.json
+          test ! -f runtime-dist/subjects/russian/data/dialogue-bauman-az.json
+          test ! -f runtime-dist/subjects/russian/data/deep-speaking-bauman.json
           grep -q 'assets/russian-reference-ui-polish.css' runtime-dist/subjects/russian/index.html
+          grep -q 'assets/russian-optional-data-loader.js' runtime-dist/subjects/russian/index.html
           grep -q 'assets/russian-reference-ui.js' runtime-dist/subjects/russian/index.html
+          node --input-type=module - <<'NODE'
+          import fs from 'node:fs';
+          import path from 'node:path';
+          const base='runtime-dist/subjects/russian/data/chunks';
+          for (const dataset of ['dialogue-bauman-az','deep-speaking-bauman']) {
+            const dir=path.join(base,dataset);
+            const manifest=JSON.parse(fs.readFileSync(path.join(dir,'manifest.json'),'utf8'));
+            if (manifest.format !== 'json-array-chunks-v1') throw new Error(`${dataset}: invalid manifest format`);
+            if (!Array.isArray(manifest.chunks) || !manifest.chunks.length) throw new Error(`${dataset}: no chunks`);
+            let count=0;
+            for (const chunk of manifest.chunks) {
+              const file=path.join(dir,chunk.file);
+              if (!fs.existsSync(file)) throw new Error(`${dataset}: missing ${chunk.file}`);
+              const size=fs.statSync(file).size;
+              if (size >= 24*1024*1024) throw new Error(`${dataset}: ${chunk.file} exceeds safety limit`);
+              const rows=JSON.parse(fs.readFileSync(file,'utf8'));
+              if (!Array.isArray(rows)) throw new Error(`${dataset}: ${chunk.file} is not an array`);
+              if (rows.length !== Number(chunk.count)) throw new Error(`${dataset}: count mismatch in ${chunk.file}`);
+              count += rows.length;
+            }
+            if (count !== Number(manifest.count)) throw new Error(`${dataset}: manifest total mismatch`);
+          }
+          NODE
 
       - name: Verify control preview artifact without deployment
         working-directory: control-service
