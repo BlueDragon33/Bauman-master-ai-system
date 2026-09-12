@@ -3,6 +3,8 @@ import path from 'node:path';
 
 const root = process.cwd();
 const LOCAL_D1_ID = '00000000-0000-0000-0000-000000000002';
+const CHUNK_TARGET_BYTES = 8 * 1024 * 1024;
+const MAX_RUNTIME_ASSET_BYTES = 24 * 1024 * 1024;
 
 function required(name) {
   const value = String(process.env[name] || '').trim();
@@ -53,6 +55,73 @@ function materialize(templatePath, outputPath, replacements) {
   fs.writeFileSync(path.join(root, outputPath), source);
 }
 
+function chunkJsonArray(runtimeDist, relativePath) {
+  const sourcePath = path.join(runtimeDist, relativePath);
+  const dataset = path.basename(relativePath, '.json');
+  const source = fs.readFileSync(sourcePath, 'utf8');
+  const data = JSON.parse(source);
+  if (!Array.isArray(data)) throw new Error(`${relativePath} must be a JSON array before chunking.`);
+
+  const chunkDir = path.join(path.dirname(sourcePath), 'chunks', dataset);
+  fs.rmSync(chunkDir, { recursive: true, force: true });
+  fs.mkdirSync(chunkDir, { recursive: true });
+
+  const chunks = [];
+  let current = [];
+  let currentBytes = 2;
+
+  function flush() {
+    if (!current.length) return;
+    const file = `part-${String(chunks.length + 1).padStart(3, '0')}.json`;
+    const text = `[${current.join(',')}]`;
+    const bytes = Buffer.byteLength(text);
+    if (bytes > MAX_RUNTIME_ASSET_BYTES) throw new Error(`${relativePath} generated an oversized chunk: ${file} (${bytes} bytes).`);
+    fs.writeFileSync(path.join(chunkDir, file), text);
+    chunks.push({ file, count: current.length, bytes });
+    current = [];
+    currentBytes = 2;
+  }
+
+  for (const item of data) {
+    const encoded = JSON.stringify(item);
+    const itemBytes = Buffer.byteLength(encoded);
+    if (itemBytes + 2 > MAX_RUNTIME_ASSET_BYTES) throw new Error(`${relativePath} contains one item too large for a Worker asset.`);
+    const addedBytes = itemBytes + (current.length ? 1 : 0);
+    if (current.length && currentBytes + addedBytes > CHUNK_TARGET_BYTES) flush();
+    current.push(encoded);
+    currentBytes += itemBytes + (current.length > 1 ? 1 : 0);
+  }
+  flush();
+
+  const manifest = {
+    format: 'json-array-chunks-v1',
+    dataset,
+    source: relativePath.replaceAll('\\', '/'),
+    count: data.length,
+    targetBytes: CHUNK_TARGET_BYTES,
+    chunks
+  };
+  fs.writeFileSync(path.join(chunkDir, 'manifest.json'), JSON.stringify(manifest));
+  fs.rmSync(sourcePath);
+  console.log(`Chunked ${relativePath}: ${data.length} items -> ${chunks.length} assets.`);
+}
+
+function assertRuntimeAssetSizes(dir) {
+  const oversized = [];
+  const walk = current => {
+    for (const entry of fs.readdirSync(current, { withFileTypes: true })) {
+      const full = path.join(current, entry.name);
+      if (entry.isDirectory()) walk(full);
+      else if (entry.isFile()) {
+        const size = fs.statSync(full).size;
+        if (size > MAX_RUNTIME_ASSET_BYTES) oversized.push(`${path.relative(dir, full)} (${size} bytes)`);
+      }
+    }
+  };
+  walk(dir);
+  if (oversized.length) throw new Error(`Runtime assets exceed the 24 MiB safety limit:\n${oversized.join('\n')}`);
+}
+
 const d1 = previewD1Id();
 const applicationManagementOrigin = exactHttpsOrigin('APPLICATION_MANAGEMENT_PREVIEW_ORIGIN');
 const controlOrigin = exactHttpsOrigin('BAUMAN_CONTROL_PREVIEW_ORIGIN');
@@ -69,6 +138,14 @@ fs.rmSync(runtimeDist, { recursive: true, force: true });
 fs.mkdirSync(runtimeDist, { recursive: true });
 fs.copyFileSync(path.join(root, 'index.html'), path.join(runtimeDist, 'index.html'));
 fs.cpSync(path.join(root, 'assets'), path.join(runtimeDist, 'assets'), { recursive: true });
+fs.cpSync(path.join(root, 'subjects'), path.join(runtimeDist, 'subjects'), { recursive: true });
+
+for (const relativePath of [
+  'subjects/russian/data/dialogue-bauman-az.json',
+  'subjects/russian/data/deep-speaking-bauman.json',
+]) chunkJsonArray(runtimeDist, relativePath);
+
+assertRuntimeAssetSizes(runtimeDist);
 
 materialize('control-service/wrangler.preview.example.jsonc', 'control-service/wrangler.preview.jsonc', {
   '__APPLICATION_MANAGEMENT_PREVIEW_ORIGIN__': applicationManagementOrigin,
@@ -90,8 +167,21 @@ for (const resource of [
   'assets/js/data.js',
   'assets/js/main.js',
   'assets/js/planning-main.js',
+  'subjects/russian/index.html',
+  'subjects/russian/assets/core.js',
+  'subjects/russian/assets/russian-reference-ui.js',
+  'subjects/russian/assets/russian-reference-ui-polish.css',
+  'subjects/russian/assets/russian-optional-data-loader.js',
+  'subjects/russian/data/chunks/dialogue-bauman-az/manifest.json',
+  'subjects/russian/data/chunks/deep-speaking-bauman/manifest.json',
 ]) {
   if (!fs.existsSync(path.join(runtimeDist, resource))) throw new Error(`Runtime asset missing: ${resource}`);
+}
+for (const oversizedOriginal of [
+  'subjects/russian/data/dialogue-bauman-az.json',
+  'subjects/russian/data/deep-speaking-bauman.json',
+]) {
+  if (fs.existsSync(path.join(runtimeDist, oversizedOriginal))) throw new Error(`Oversized runtime original must be removed after chunking: ${oversizedOriginal}`);
 }
 if (!html.includes('assets/js/platform/runtime-config.js') || !html.includes('assets/js/platform/device-access-gate.js')) {
   throw new Error('Bauman runtime is missing the device-access bootstrap scripts.');
@@ -100,4 +190,6 @@ if (!html.includes('assets/js/platform/runtime-config.js') || !html.includes('as
 console.log('Bauman Cloudflare preview materialized safely.');
 console.log(`Control Worker: bauman-control-preview -> ${controlOrigin}`);
 console.log(`Learning Worker: bauman-master-ai-preview -> ${runtimeOrigin}`);
+console.log('Subject Web Apps: packaged under /subjects/* inside the Learning Runtime.');
+console.log('Russian optional datasets: oversized lazy JSON converted to chunk manifests below Worker asset limits.');
 console.log('D1: bauman-control-preview-db (isolated preview database).');

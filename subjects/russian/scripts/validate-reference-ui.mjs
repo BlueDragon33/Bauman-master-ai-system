@@ -10,16 +10,18 @@ const index=read('index.html');
 const css=read('assets/russian-reference-ui.css');
 const polish=read('assets/russian-reference-ui-polish.css');
 const js=read('assets/russian-reference-ui.js');
+const optionalLoader=read('assets/russian-optional-data-loader.js');
 const core=read('assets/core.js');
 const adapter=read('assets/subject-adapter.js');
 
 for(const id of ['app','nav','stageSelect','view','modal','modalBody','toast','themeBtn','aiBtn','pageTitle','pageSub','coreLabel','saveState']){
   must(index.includes(`id="${id}"`),`Missing required runtime id: ${id}`);
 }
-for(const ref of ['assets/core.css','assets/russian.css','assets/russian-reference-ui.css','assets/russian-reference-ui-polish.css','assets/subject-adapter.js','assets/planning-bridge.js','assets/core.js','assets/russian-reference-ui.js']){
+for(const ref of ['assets/core.css','assets/russian.css','assets/russian-reference-ui.css','assets/russian-reference-ui-polish.css','assets/subject-adapter.js','assets/planning-bridge.js','assets/russian-optional-data-loader.js','assets/core.js','assets/russian-reference-ui.js']){
   must(index.includes(ref),`Missing asset reference: ${ref}`);
 }
 must(index.indexOf('assets/russian-reference-ui.css')<index.indexOf('assets/russian-reference-ui-polish.css'),'Polish CSS must load after reference UI CSS');
+must(index.indexOf('assets/russian-optional-data-loader.js')<index.indexOf('assets/core.js'),'Optional chunk loader must bootstrap before core.js');
 must(index.indexOf('assets/core.js')<index.indexOf('assets/russian-reference-ui.js'),'Reference UI JS must load after core.js');
 must(index.includes('id="russianRightRail"'),'Missing right AI rail');
 must(index.includes('id="russianGlobalSearch"'),'Missing global search');
@@ -37,6 +39,7 @@ must(!css.includes("url('./subject-header.jpg')"),'Reference UI must not depend 
 must(!css.includes("url('./bauman-logo.png')"),'Reference UI must not depend on missing bauman-logo.png');
 
 new Function(js);
+new Function(optionalLoader);
 must(js.includes("window.SUBJECT_ADAPTER?.storageKey"),'Dashboard must use adapter storage key');
 must(js.includes('MutationObserver'),'Dashboard enhancer must follow core renders');
 must(js.includes("getElementById('aiBtn')"),'AI rail custom prompt must open existing AI Mentor');
@@ -50,11 +53,19 @@ must(js.includes('navigator.platform'),'Shortcut hint must adapt to the user pla
 must(!js.includes('base+Math.round'),'Skill cards must not synthesize fake per-skill progress');
 must(!js.includes('mini-progress'),'Skill cards must not display invented per-skill progress bars');
 
+for(const token of ['dialogue-bauman-az.json','deep-speaking-bauman.json','json-array-chunks-v1','chunks/${dataset}/manifest.json','RUSSIAN_OPTIONAL_CHUNKS_V1']){
+  must(optionalLoader.includes(token),`Optional chunk loader missing contract: ${token}`);
+}
+must(optionalLoader.includes('const nativeFetch=window.fetch.bind(window)'),'Optional loader must preserve native fetch');
+must(optionalLoader.includes('window.fetch=async function'),'Optional loader must intercept only supported lazy datasets');
+must(optionalLoader.includes('if(!dataset)return nativeFetch(input,init)'),'Optional loader must pass unrelated requests through untouched');
+
 must(core.includes('if(b.dataset.route)'),'Core data-route contract missing');
 must(core.includes('if(b.dataset.aiQuick)'),'Core data-ai-quick contract missing');
 must(core.includes("if(act==='route-modal')"),'Core route-modal contract missing');
 must(core.includes("if(act==='ai-run')"),'Core AI run action missing');
 must(adapter.includes("storageKey: 'bauman_russian_survival_master_v11_clean_skeleton'"),'Unexpected Russian storage key');
+must(adapter.includes("optionalDataFiles: ['dialogue-bauman-az','deep-speaking-bauman','speaking-link-index']"),'Unexpected optional Russian dataset contract');
 
 console.log('RUSSIAN_REFERENCE_UI_GATE=PASS');
-console.log('Checks: shell, self-contained visuals, responsive layout, JS parse, truthful progress, compact legacy tools, accessibility polish, routing, AI and schedule integration.');
+console.log('Checks: shell, self-contained visuals, responsive layout, JS parse, truthful progress, compact legacy tools, optional chunk loading, accessibility, routing, AI and schedule integration.');
