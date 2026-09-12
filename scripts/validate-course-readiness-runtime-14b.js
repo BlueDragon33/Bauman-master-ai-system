@@ -10,7 +10,7 @@ const errors=[];const assert=(c,m)=>{if(!c)errors.push(m)};
 const required=['d01','d02','d03','d04','d05','d06','d15','p02'];
 assert(arch.version==='PHASE2_PASS14A_R_S1_COURSE_ARCHITECTURE_V2','Pass14B must consume corrected Pass14A-R architecture');
 assert(JSON.stringify(arch.courses.map(x=>x.courseId))===JSON.stringify(required),'Pass14B course order drifted');
-for(const token of ['Pass 14B Course Readiness Runtime','function prereqAxis(','function lifecycleAxis(','function eventAxis(','function nextAction(','data-course14b="s1"','course_local_readiness_unassessed','PREREQ_REPAIR','COURSE_READY','No scheduler/storage mutation'])assert(runtime.includes(token),`course runtime missing ${token}`);
+for(const token of ['Pass 14B Course Readiness Runtime','function prereqAxis(','function lifecycleAxis(','function eventAxis(','function fallbackEventAxis(','function nextAction(','data-course14b="s1"','course_local_readiness_unassessed','PREREQ_REPAIR','COURSE_READY','No scheduler/storage mutation'])assert(runtime.includes(token),`course runtime missing ${token}`);
 assert(!/localStorage\.setItem/.test(runtime),'Pass14B must not write localStorage');
 assert(!/window\.save\s*\(/.test(runtime),'Pass14B must not call Main save()');
 assert(!/schedule\.entries\s*\[[^\]]+\]\s*=/.test(runtime),'Pass14B must not mutate schedule entries');
@@ -18,11 +18,12 @@ assert(!/return \{id:'COMPLETED'/.test(runtime),'Pass14B must not fabricate cour
 assert(runtime.includes("return {id:null,label:'Chưa ghi kết quả vòng đời'"),'Lifecycle must stay unknown after course horizon without completion evidence');
 assert(runtime.includes("if(course?.courseLocalReadiness)return {type:'LOCAL_DIAGNOSTIC_PENDING'"),'d01 must use local English readiness path');
 assert(runtime.includes("target nội bộ")&&runtime.includes("Pass/fail · không gán target 90"),'event UI must distinguish graded vs pass/fail target policy');
-assert(runtime.includes("if(document.readyState==='loading')")&&runtime.includes("else setTimeout(load,0)"),'Dynamically injected Phase2 runtime must initialize even after DOMContentLoaded already fired');
+assert(runtime.includes("if(document.readyState==='loading')")&&/else\s*\{?\s*setTimeout\(load,0\)/.test(runtime),'Dynamically injected Phase2 runtime must initialize even after DOMContentLoaded already fired');
 assert(phase1.includes("function dependencyFor(courseId){return (window.BAUMAN_PREREQ_2026?.courseDependencies||[]).find(x=>x.courseId===courseId)"),'Phase1 course readiness must resolve dependency rows by courseId');
 assert(!/dependencyFor\(courseId\)\{return byId\([^}]*courseDependencies/.test(phase1),'Phase1 must not use generic id lookup for courseDependencies');
 assert(apply.includes('function bootstrapPhase2CourseRuntime()'),'Pass13F layer must bootstrap Phase2 runtime');
 assert(apply.includes("assets/css/academic-course-2026.css")&&apply.includes("assets/js/academic-course-runtime.js"),'Phase2 bootstrap assets missing');
+assert(runtime.includes('function bootstrapEventRuntime()')&&runtime.includes("assets/js/academic-event-runtime.js"),'Pass14B event bridge must bootstrap Pass14C without changing base index');
 assert(!index.includes('academic-course-runtime.js')&&!index.includes('academic-course-2026.css'),'Base index must remain unchanged; Phase2 assets load through additive bootstrap');
 assert(css.includes('.course14b-grid')&&css.includes('@media(max-width:850px)'),'Pass14B responsive CSS missing');
 const d01=arch.courses.find(x=>x.courseId==='d01');
@@ -35,4 +36,4 @@ const d04=arch.courses.find(x=>x.courseId==='d04');
 assert(d04.eventModel.events.every(x=>x.internalTarget===90),'d04 graded events must retain internal target 90');
 if(errors.length){console.error(`PASS14B_COURSE_READINESS_FAIL (${errors.length})`);for(const e of errors)console.error(`- ${e}`);process.exit(1)}
 console.log('PASS14B_COURSE_READINESS_VALID');
-console.log(JSON.stringify({courses:required.length,readOnly:true,d01:'course-local-English',multiSemester:['d01','d15','p02'],stateAxes:3,dynamicBootstrap:'readyState-safe',dependencyLookup:'courseId-keyed'},null,2));
+console.log(JSON.stringify({courses:required.length,readOnly:true,d01:'course-local-English',multiSemester:['d01','d15','p02'],stateAxes:3,dynamicBootstrap:'readyState-safe',dependencyLookup:'courseId-keyed',eventBridge:'additive'},null,2));
