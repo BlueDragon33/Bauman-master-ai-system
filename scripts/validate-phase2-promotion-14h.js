@@ -67,8 +67,10 @@ const gradeRuntime=read('assets/js/academic-grade-runtime.js');
 const transcriptRuntime=read('assets/js/academic-transcript-runtime.js');
 assert(phase2Runtime.includes('schedulerMutation:false'),'Command Center scheduler safety marker missing');
 assert(gradeRuntime.includes('supplementCounting:false'),'Grade runtime must not count transcript rows');
-assert(transcriptRuntime.includes('finalEligibilityClaimed:false'),'Transcript runtime must not claim final honors eligibility from projection/incomplete evidence');
-assert(eventRuntime.includes('courseCompletionMutation:false'),'Event runtime must not mutate course completion');
+assert(transcriptRuntime.includes('projectionOnly:true'),'Transcript projection-only boundary missing');
+assert(transcriptRuntime.includes("finalEligibilityClaimed:complete&&id==='HONORS_RULES_MET_ON_VERIFIED_LEDGER'"),'Final honors claim must require a complete verified ledger');
+assert(eventRuntime.includes('officialResultMutation:false'),'Event runtime must not write official assessment results');
+assert(!/COURSE_COMPLETED\s*=|courseCompletion\s*=\s*true|id:\s*['\"]COMPLETED['\"]/.test(eventRuntime),'Event runtime must not fabricate course completion');
 assert(courseRuntime.includes('No scheduler/storage mutation'),'Course runtime read-only boundary missing');
 
 if(errors.length){
