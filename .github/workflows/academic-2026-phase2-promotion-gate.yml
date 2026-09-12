@@ -1,0 +1,142 @@
+name: Academic 2026 Phase2 Promotion Gate
+
+on:
+  push:
+    branches:
+      - phase2/pass14h-promotion-gate
+  pull_request:
+    branches:
+      - main
+
+permissions:
+  contents: read
+
+concurrency:
+  group: academic-phase2-promotion-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  promotion-static:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 15
+    steps:
+      - name: Checkout full candidate history
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - name: Fetch current main promotion base
+        run: git fetch --no-tags origin main:refs/remotes/origin/main
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22.13.0'
+      - name: Validate existing Phase2 architecture and evidence boundaries
+        shell: bash
+        run: |
+          set -euo pipefail
+          node scripts/validate-course-learning-architecture-s1-2026.js
+          node scripts/validate-academic-2026.js
+          node scripts/validate-p00-technical-russian.js
+          node scripts/validate-risk-engine-13c.js
+          node scripts/validate-phase2-source-integrity.js
+          node scripts/validate-course-readiness-runtime-14b.js
+          node scripts/validate-event-readiness-runtime-14c.js
+          node scripts/validate-grade-control-runtime-14d.js
+          node scripts/validate-transcript-honors-runtime-14e.js
+          node scripts/validate-academic-command-center-14f.js
+          node scripts/validate-phase2-final-integration-14g.js
+      - name: Validate Pass14H promotion allowlist and production boundary
+        run: node scripts/validate-phase2-promotion-14h.js
+      - name: Syntax-check promoted runtimes and browser gates
+        shell: bash
+        run: |
+          set -euo pipefail
+          node --check assets/js/academic-main.js
+          node --check assets/js/academic-scheduler-apply.js
+          node --check assets/js/academic-course-runtime.js
+          node --check assets/js/academic-event-runtime.js
+          node --check assets/js/academic-grade-runtime.js
+          node --check assets/js/academic-transcript-runtime.js
+          node --check assets/js/academic-command-center-runtime.js
+          node --check tests/course-readiness-browser-14b.mjs
+          node --check tests/event-readiness-browser-14c.mjs
+          node --check tests/grade-control-browser-14d.mjs
+          node --check tests/transcript-honors-browser-14e.mjs
+          node --check tests/academic-command-center-browser-14f.mjs
+          node --check tests/phase2-final-integration-browser-14g.mjs
+      - name: Promotion boundary summary
+        shell: bash
+        run: |
+          set -euo pipefail
+          echo "Candidate SHA: $GITHUB_SHA"
+          echo "Main SHA: $(git rev-parse origin/main)"
+          echo "Changed paths vs main: $(git diff --name-only origin/main...HEAD | wc -l)"
+          echo 'State: CANDIDATE_ONLY'
+          echo 'Auto merge: disabled'
+          echo 'Auto deploy: disabled'
+          echo 'Production mutation: forbidden'
+
+  promotion-browser:
+    needs: promotion-static
+    runs-on: ubuntu-24.04
+    timeout-minutes: 25
+    steps:
+      - name: Checkout candidate
+        uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22.13.0'
+      - name: Install Playwright Chromium
+        shell: bash
+        run: |
+          printf '{"private":true,"type":"module"}\n' > package.json
+          npm install --no-save --no-audit --no-fund playwright@1.55.0
+          npx playwright install --with-deps chromium
+      - name: Start candidate static Hub
+        shell: bash
+        run: |
+          python3 -m http.server 4173 --bind 127.0.0.1 > /tmp/bauman-phase2-promotion-http.log 2>&1 &
+          for i in {1..30}; do
+            if curl -fsS http://127.0.0.1:4173/ >/dev/null; then exit 0; fi
+            sleep 1
+          done
+          cat /tmp/bauman-phase2-promotion-http.log
+          exit 1
+      - name: Run Phase2 Browser regression chain
+        shell: bash
+        env:
+          BAUMAN_E2E_BASE_URL: http://127.0.0.1:4173/
+        run: |
+          set -euo pipefail
+          BAUMAN_E2E_ARTIFACT_DIR=artifacts/promotion/browser-14b node tests/course-readiness-browser-14b.mjs
+          BAUMAN_E2E_ARTIFACT_DIR=artifacts/promotion/browser-14c node tests/event-readiness-browser-14c.mjs
+          BAUMAN_E2E_ARTIFACT_DIR=artifacts/promotion/browser-14d node tests/grade-control-browser-14d.mjs
+          BAUMAN_E2E_ARTIFACT_DIR=artifacts/promotion/browser-14e node tests/transcript-honors-browser-14e.mjs
+          BAUMAN_E2E_ARTIFACT_DIR=artifacts/promotion/browser-14f node tests/academic-command-center-browser-14f.mjs
+          BAUMAN_E2E_ARTIFACT_DIR=artifacts/promotion/browser-14g node tests/phase2-final-integration-browser-14g.mjs
+      - name: Write candidate evidence summary
+        if: success()
+        shell: bash
+        run: |
+          mkdir -p artifacts/promotion
+          cat > artifacts/promotion/promotion-result.json <<EOF
+          {
+            "status": "PASS",
+            "state": "CANDIDATE_ONLY",
+            "candidateSha": "$GITHUB_SHA",
+            "autoMerge": false,
+            "autoDeploy": false,
+            "productionMutation": false,
+            "browserChain": ["14B","14C","14D","14E","14F","14G"]
+          }
+          EOF
+      - name: Show static server log on failure
+        if: failure()
+        run: cat /tmp/bauman-phase2-promotion-http.log || true
+      - name: Upload promotion evidence
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: academic-phase2-promotion-${{ github.run_id }}
+          path: artifacts/promotion
+          if-no-files-found: warn
+          retention-days: 14
