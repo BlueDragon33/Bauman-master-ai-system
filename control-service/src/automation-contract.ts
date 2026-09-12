@@ -206,11 +206,11 @@ async function augmentRegistration(response: Response, env: AutomationEnv) {
 }
 
 export default {
-  async fetch(request: Request, env: AutomationEnv, ctx: ExecutionContext): Promise<Response> {
+  async fetch(request: Request, env: AutomationEnv, _ctx: ExecutionContext): Promise<Response> {
     const url = new URL(request.url);
     if (url.pathname === "/api/control/automation") return automationEndpoint(request, env);
 
-    const response = await controlService.fetch(request, env, ctx);
+    const response = await controlService.fetch(request, env);
     if (request.method === "GET" && url.pathname === "/api/control/status") return augmentStatus(response, env);
     if (request.method === "POST" && url.pathname === "/api/device/register") return augmentRegistration(response, env);
     return response;
