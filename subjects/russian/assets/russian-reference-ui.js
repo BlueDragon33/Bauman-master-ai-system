@@ -1,6 +1,6 @@
 'use strict';
 (function(){
-  const STORAGE_KEY='bauman_russian_v11_clean_skeleton';
+  const STORAGE_KEY=window.SUBJECT_ADAPTER?.storageKey||'bauman_russian_survival_master_v11_clean_skeleton';
   const ROUTES=[
     {keys:['bảng chữ','bang chu','cyrillic','chữ cái','chu cai','viết','viet'],label:'Bảng chữ cái & luyện viết',route:{view:'writing',mode:'handwriting'}},
     {keys:['phát âm','phat am','pronunciation','shadow','nói','noi'],label:'Phát âm & luyện nói',route:{view:'dialogue'}},
