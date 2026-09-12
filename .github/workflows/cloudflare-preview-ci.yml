@@ -20,6 +20,7 @@ on:
       - "assets/js/academic-scheduler-apply.js"
       - "assets/js/platform/runtime-config.js"
       - "assets/js/platform/device-access-gate.js"
+      - "subjects/**"
       - "control-service/**"
   push:
     branches: [main]
@@ -40,6 +41,7 @@ on:
       - "assets/js/academic-scheduler-apply.js"
       - "assets/js/platform/runtime-config.js"
       - "assets/js/platform/device-access-gate.js"
+      - "subjects/**"
       - "control-service/**"
 
 permissions:
@@ -92,6 +94,17 @@ jobs:
           grep -q 'assets/js/academic-main.js' runtime-dist/index.html
           grep -q 'assets/js/academic-scheduler-preview.js' runtime-dist/index.html
           grep -q 'assets/js/academic-scheduler-apply.js' runtime-dist/index.html
+
+      - name: Verify Subject Web Apps are present in packaged preview
+        shell: bash
+        run: |
+          set -euo pipefail
+          test -f runtime-dist/subjects/russian/index.html
+          test -f runtime-dist/subjects/russian/assets/core.js
+          test -f runtime-dist/subjects/russian/assets/russian-reference-ui.js
+          test -f runtime-dist/subjects/russian/assets/russian-reference-ui-polish.css
+          grep -q 'assets/russian-reference-ui-polish.css' runtime-dist/subjects/russian/index.html
+          grep -q 'assets/russian-reference-ui.js' runtime-dist/subjects/russian/index.html
 
       - name: Verify control preview artifact without deployment
         working-directory: control-service
