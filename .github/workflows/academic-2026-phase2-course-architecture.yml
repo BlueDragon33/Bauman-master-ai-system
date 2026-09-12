@@ -12,6 +12,7 @@ on:
       - 'scripts/validate-academic-2026.js'
       - 'scripts/validate-p00-technical-russian.js'
       - 'scripts/validate-risk-engine-13c.js'
+      - 'scripts/validate-phase2-source-integrity.js'
       - '.github/workflows/academic-2026-phase2-course-architecture.yml'
   pull_request:
     paths:
@@ -24,6 +25,7 @@ on:
       - 'scripts/validate-academic-2026.js'
       - 'scripts/validate-p00-technical-russian.js'
       - 'scripts/validate-risk-engine-13c.js'
+      - 'scripts/validate-phase2-source-integrity.js'
       - '.github/workflows/academic-2026-phase2-course-architecture.yml'
 
 jobs:
@@ -42,5 +44,7 @@ jobs:
         run: node scripts/validate-p00-technical-russian.js
       - name: Validate semester-safe course risk engine
         run: node scripts/validate-risk-engine-13c.js
+      - name: Validate Phase2 public-source boundaries
+        run: node scripts/validate-phase2-source-integrity.js
       - name: Check corrected academic runtime syntax
         run: node --check assets/js/academic-main.js
