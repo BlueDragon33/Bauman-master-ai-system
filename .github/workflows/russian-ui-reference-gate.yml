@@ -1,0 +1,45 @@
+name: Russian Reference UI Gate
+
+on:
+  pull_request:
+    branches: [main]
+    paths:
+      - "subjects/russian/**"
+      - ".github/workflows/russian-ui-reference-gate.yml"
+  push:
+    branches:
+      - "temp/russian-ui-reference-redesign"
+    paths:
+      - "subjects/russian/**"
+      - ".github/workflows/russian-ui-reference-gate.yml"
+
+permissions:
+  contents: read
+
+jobs:
+  russian-reference-ui:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22.13.0"
+      - name: Validate Russian reference UI contracts
+        run: node subjects/russian/scripts/validate-reference-ui.mjs
+      - name: Parse core UI JavaScript
+        run: |
+          node --check subjects/russian/assets/core.js
+          node --check subjects/russian/assets/subject-adapter.js
+          node --check subjects/russian/assets/russian-reference-ui.js
+      - name: Confirm redesign did not replace learning datasets
+        shell: bash
+        run: |
+          set -euo pipefail
+          test -d subjects/russian/data
+          test -f subjects/russian/data/lessons.json
+          test -f subjects/russian/data/vocab.json
+          test -f subjects/russian/data/grammar.json
+          test -f subjects/russian/data/tests.json
+          test -f subjects/russian/data/speaking.json
+          echo "Russian learning datasets remain present."

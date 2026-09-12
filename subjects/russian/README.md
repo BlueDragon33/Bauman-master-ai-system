@@ -10,7 +10,6 @@ Bản V12.10 Clean Final.
 
 Chạy bằng Live Server để fetch dữ liệu JSON ổn định.
 
-
 ## V12.16 · Clean Flag UI
 
 - Ôn tập: 20 câu/khung, chia tab 1-20, 21-40..., màu trắng/vàng/xanh theo trạng thái.
@@ -19,10 +18,8 @@ Chạy bằng Live Server để fetch dữ liệu JSON ổn định.
 - Phụ đạo: câu sai tạo lịch trình phụ đạo ở Tổng quan, bấm thẻ để hoàn thành, xong toàn bộ thì tự ẩn.
 - Final QA: sửa các nút chỉ số 0 như Câu 1, tab 1-20, slide đầu, đáp án A không bị bỏ qua.
 
-
 ## V12.20 Assessment Final Clean
 - Bổ sung bản vá nghiệm thu còn thiếu: bỏ renderExam cũ ghi đè logic nhiều đề, thêm popup kết quả chính thức, giữ bố cục câu hỏi cuộn đủ nội dung, và hoàn thiện trạng thái đề con 7/14/21/28 ngày.
-
 
 ## V12.21 Assessment Display Fix
 
@@ -30,7 +27,6 @@ Chạy bằng Live Server để fetch dữ liệu JSON ổn định.
 - Bảng flag số không còn bị khuyết hoặc sinh thanh cuộn ngang vô nghĩa.
 - Vùng câu hỏi và đáp án hiển thị đủ, nội dung dài cho phép cuộn trang tự nhiên.
 - Panel kết quả kiểm tra thu gọn để không che mất khu làm bài.
-
 
 ## V12.33 Step 4 Writing Practice
 - Trình chiếu mở rộng còn đúng khoảng 1 inch mỗi mép, có hướng dẫn phím: ←/→ qua slide, ↑/↓ cuộn, PageUp/PageDown cuộn xa, Space chuyển tiếp, Esc đóng.
@@ -45,7 +41,6 @@ Chạy bằng Live Server để fetch dữ liệu JSON ổn định.
 - Lịch mẫu mặc định đổi sang buổi 120 phút với khoảng 70% thời lượng cho nghe, nói, video.
 - Planning Bridge và Subject Adapter ưu tiên trọng số listening/speaking/video, giảm tải vocab/grammar trong giai đoạn đầu.
 
-
 ## V12.52 Final Storage Tree QA
 
 - QA tổng thể sau 4 bước sửa: nút nguy hiểm, đối thoại/luyện nói, trình chiếu và luyện viết.
@@ -53,9 +48,18 @@ Chạy bằng Live Server để fetch dữ liệu JSON ổn định.
 - Dọn lặp xử lý nhập JSON trong Data Manager.
 - Kiểm tra JS, JSON, handwriting strokes 33/33 chữ Cyrillic và ZIP trước khi phát hành.
 
-
 ## V12.54 Final Unified Overview Media Focus
 
 - Hợp nhất thẻ học hôm nay/timeline để tránh trùng lặp.
 - Làm gọn phần dưới Tổng quan thành bảng điều phối học.
 - Bố cục lại Video/Audio: phụ lục bên trái, khung xem trung tâm bên phải, thêm nhiệm vụ nghe 3 bước.
+
+## Premium Reference UI · 2026-09-12
+
+- Làm lại App Shell theo ảnh tham chiếu: dark navy, điểm nhấn vàng Bauman, sidebar trái, top search, dashboard trung tâm, AI rail bên phải.
+- Dashboard mới có 8 lối tắt kỹ năng, Tiếp tục học, Bài học tiếp theo, tiến độ, thành tựu, lịch học và CEFR.
+- AI rail dùng trực tiếp AI Mentor hiện hữu; không tạo một hệ AI thứ hai.
+- Số liệu tiến độ đọc từ đúng `SUBJECT_ADAPTER.storageKey`, không gắn số liệu minh họa giả vào trạng thái học thật.
+- Giữ nguyên core học tập/data hiện có; redesign được tách trong `assets/russian-reference-ui.css` và `assets/russian-reference-ui.js` để dễ nâng cấp hoặc rollback.
+- Responsive: desktop 3 cột; tablet 2 cột và ẩn rail; mobile chuyển sidebar thành thanh điều hướng ngang, dashboard về 1–2 cột.
+- Nhánh triển khai: `temp/russian-ui-reference-redesign`; chưa đẩy vào main trước khi hoàn tất gate kiểm thử giao diện thật.
