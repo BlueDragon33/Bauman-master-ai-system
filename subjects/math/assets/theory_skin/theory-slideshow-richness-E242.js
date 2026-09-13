@@ -6,6 +6,8 @@
   'use strict';
 
   var RELEASE='E242_MULTI_LESSON_SLIDESHOW_RICHNESS';
+  var L06='MATH-VN-C01-vector_trong_khong_gian_-L06-vector-to-data-matrix-e140';
+  var L06_DIAGRAM_ROLES={canonical_assembly:true,matrix_semantics:true,convention_translation:true,api_assembly:true,linear_interface:true,feature_gram:true,observation_gram:true,centering:true,covariance_gate:true,rank_boundary:true,locked_case:true};
   var cacheByLesson={},scheduled=false,lastKey='';
 
   function arr(v){return Array.isArray(v)?v:[];}
@@ -29,7 +31,7 @@
 
   function activeEntry(){var r=registry();return r&&r.resolve?r.resolve(candidates()):null;}
   function registerOptionalSources(){var r=registry();return !!(r&&r.register&&r.register());}
-  function cacheFor(entry){return cacheByLesson[entry.lessonId]||(cacheByLesson[entry.lessonId]={artifact:null,loading:null,error:null});}
+  function cacheFor(entry){return cacheByLesson[entry.lessonId]||(cacheByLesson[entry.lessonId]={artifact:null,loading:null,error:null,projection:null});}
 
   function countFeatures(slides){
     return {
@@ -51,13 +53,65 @@
     return j;
   }
 
+  function fetchSource(entry,spec){
+    return fetch(spec.path,{cache:'no-store'}).then(function(r){if(!r.ok)throw new Error(spec.path+' HTTP '+r.status);return r.json();}).then(function(j){
+      if(!j||j.lessonId!==entry.lessonId)throw new Error('E242 supporting source lessonId mismatch for '+entry.lessonId);
+      if(j.version!==spec.version)throw new Error('E242 supporting source version mismatch: '+String(j.version||''));
+      return j;
+    });
+  }
+
+  function needsAcceptedProjection(entry,j){
+    var counts=countFeatures(arr(j&&j.slides));
+    return entry.lessonId===L06&&counts.slides===22&&counts.diagrams===0&&counts.retrievalChecks===0&&counts.misconceptions===0;
+  }
+
+  function projectAcceptedL06(j,reference,normalization){
+    var projected=JSON.parse(JSON.stringify(j)),formulaById={},misconceptionById={};
+    arr(normalization&&normalization.canonicalFormulaRegistry).forEach(function(item){if(item&&item.id)formulaById[item.id]=item.canonicalText||item.canonical||'';});
+    arr(reference&&reference.troubleshootingMatrix).forEach(function(item){if(item&&item.id)misconceptionById[item.id]=item;});
+    projected.slides=arr(projected.slides).map(function(slide){
+      var formulas=arr(slide.formulaRefs).map(function(id){return formulaById[id];}).filter(Boolean);
+      var misconceptionRefs=arr(slide.misconceptionRefs),misconception=misconceptionById[misconceptionRefs[0]];
+      slide.retrievalCheck={
+        id:'L06-RC-'+slide.id,
+        prompt:slide.purpose||slide.title,
+        expectedEvidence:[slide.coreMessage].concat(formulas.slice(0,3)).filter(Boolean),
+        misconceptionTarget:misconceptionRefs.join(', ')
+      };
+      slide.misconceptionIntercept={
+        wrong:misconception?(misconception.id+' · '+misconception.symptom):misconceptionRefs.join(', '),
+        correction:misconception?misconception.repair:slide.coreMessage
+      };
+      if(L06_DIAGRAM_ROLES[slide.role]){
+        var labels=formulas.slice();
+        if(labels.length<2&&slide.coreMessage)labels.push(slide.coreMessage);
+        slide.diagramSpec={
+          type:'accepted_formula_trace',
+          purpose:slide.purpose||slide.title,
+          entities:arr(slide.formulaRefs),
+          labels:labels,
+          mathematicalConstraints:[slide.coreMessage].filter(Boolean)
+        };
+      }
+      return slide;
+    });
+    return projected;
+  }
+
   function load(entry){
     entry=entry||activeEntry();
     if(!entry||!entry.slideshow)return Promise.reject(new Error('Không có slideshow registry cho bài đang mở.'));
     var cache=cacheFor(entry);
     if(cache.artifact)return Promise.resolve(cache.artifact);
     if(cache.loading)return cache.loading;
-    cache.loading=fetch(entry.slideshow.path,{cache:'no-store'}).then(function(r){if(!r.ok)throw new Error(entry.slideshow.path+' HTTP '+r.status);return r.json();}).then(function(j){cache.artifact=validate(entry,j);cache.error=null;return cache.artifact;}).catch(function(e){cache.error=String(e&&e.message||e);throw e;}).finally(function(){cache.loading=null;});
+    cache.loading=fetchSource(entry,entry.slideshow).then(function(j){
+      if(!needsAcceptedProjection(entry,j)){cache.projection=null;return j;}
+      return Promise.all([fetchSource(entry,entry.reference),fetchSource(entry,entry.normalization)]).then(function(support){
+        cache.projection='accepted_fields_l06_v1';
+        return projectAcceptedL06(j,support[0],support[1]);
+      });
+    }).then(function(j){cache.artifact=validate(entry,j);cache.error=null;return cache.artifact;}).catch(function(e){cache.error=String(e&&e.message||e);throw e;}).finally(function(){cache.loading=null;});
     return cache.loading;
   }
 
@@ -180,7 +234,7 @@
     selfCheck:function(){
       var entry=activeEntry(),cache=entry&&cacheFor(entry),counts=cache&&cache.artifact?countFeatures(arr(cache.artifact.slides)):null,slide=null,d=deck();
       if(entry&&cache&&cache.artifact&&d)slide=arr(cache.artifact.slides)[currentIndex(d)]||null;
-      return {ok:!!registry()&&!(cache&&cache.error),release:RELEASE,multiLesson:true,activeLessonId:entry&&entry.lessonId||'',loaded:!!(cache&&cache.artifact),counts:counts,expected:entry&&entry.slideshow&&entry.slideshow.expected||null,currentSlide:d&&d.querySelector('.e132-clean-main')&&d.querySelector('.e132-clean-main').getAttribute('data-e242-slide'),richnessPresent:slide?richnessPresent(d,slide):null,newSlideshowEngineCreated:false,e235Modified:false,error:cache&&cache.error||null};
+      return {ok:!!registry()&&!(cache&&cache.error),release:RELEASE,multiLesson:true,activeLessonId:entry&&entry.lessonId||'',loaded:!!(cache&&cache.artifact),counts:counts,expected:entry&&entry.slideshow&&entry.slideshow.expected||null,projection:cache&&cache.projection||null,currentSlide:d&&d.querySelector('.e132-clean-main')&&d.querySelector('.e132-clean-main').getAttribute('data-e242-slide'),richnessPresent:slide?richnessPresent(d,slide):null,newSlideshowEngineCreated:false,e235Modified:false,error:cache&&cache.error||null};
     }
   };
 

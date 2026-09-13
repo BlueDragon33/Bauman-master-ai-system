@@ -1,0 +1,158 @@
+{
+  "id": "bauman_math_c01_l06_runtime_pass17_v1",
+  "schema": "bauman_math_multi_lesson_reader_report_v1",
+  "version": "RUNTIME_PASS17_C01_L06_V1",
+  "status": "PASS_17_MULTI_LESSON_READER_RICHNESS_STATIC_VERIFY_PASS",
+  "date": "2026-09-13",
+  "testedBaseCommit": "72de16751812bc93a69640f5a5dbb84dec4f2702",
+  "lessonId": "MATH-VN-C01-vector_trong_khong_gian_-L06-vector-to-data-matrix-e140",
+  "lessonTitle": "§1.6 · Từ vector sang ma trận dữ liệu",
+  "verification": {
+    "mode": "node_syntax_plus_vm_runtime_contract_and_git_blob_cross_check",
+    "browserRun": false,
+    "nodeSyntax": {
+      "status": "PASS",
+      "files": [
+        "subjects/math/assets/theory_skin/theory-artifact-reader-E241.js",
+        "subjects/math/assets/theory_skin/theory-slideshow-richness-E242.js",
+        "subjects/math/assets/theory_skin/theory-artifact-registry-E244.js"
+      ]
+    },
+    "vmRuntimeContract": {
+      "status": "PASS",
+      "coverage": [
+        "E244 registry load and exact version checks",
+        "E241 L06 artifact load, explicit Reference rendering and twelve-section Full View rendering",
+        "E241 L06 canonical formula normalization",
+        "E242 L04/L05 raw richness preservation",
+        "E242 L06 accepted-field projection and source-grounding",
+        "ordered slide identity and compression contract"
+      ]
+    },
+    "diffCheck": "PASS"
+  },
+  "changedRuntimeFiles": [
+    "subjects/math/assets/theory_skin/theory-artifact-reader-E241.js",
+    "subjects/math/assets/theory_skin/theory-slideshow-richness-E242.js",
+    "subjects/math/assets/theory_skin/theory-artifact-registry-E244.js"
+  ],
+  "runtimeBlobs": {
+    "artifactReader": {
+      "before": "30f726cebecb22708b571442c75368989f878b10",
+      "verifiedWorking": "8e4a588f50b10e84c17f21818e878f72273e4b71"
+    },
+    "slideshowRichness": {
+      "before": "8d07a9d15db08236ed1db39cc644ec02e5f3c281",
+      "verifiedWorking": "cb48b3cb18c843edaa49b6fbfc9b3476359b5b8f"
+    },
+    "registry": {
+      "before": "dcf374f75334aee231861742815290e7d448e412",
+      "verifiedWorking": "4c3f94aabc7bc4b2921c5b11328258441340bb7e",
+      "change": "L06 expected-count refinement only"
+    }
+  },
+  "artifactReader": {
+    "release": "E241_MULTI_LESSON_REFERENCE_FULL_VIEW_READER",
+    "lessonScopedCache": true,
+    "supportedSchemas": ["l04", "l05", "l06"],
+    "l06": {
+      "referenceAreas": 8,
+      "referenceFormulaCount": 18,
+      "fullViewSections": 12,
+      "fullViewFormulaCards": 18,
+      "normalizationFormulaCount": 18,
+      "troubleshootingCount": 18,
+      "terminologyCount": 40,
+      "lockedCaseRendered": true,
+      "canonicalNormalizationUsed": true
+    }
+  },
+  "slideshowRichness": {
+    "release": "E242_MULTI_LESSON_SLIDESHOW_RICHNESS",
+    "lessonScopedCache": true,
+    "usesExistingE202Deck": true,
+    "usesExistingE211Surfaces": true,
+    "newSlideshowEngineCreated": false,
+    "l04": {
+      "slides": 22,
+      "diagrams": 8,
+      "retrievalChecks": 9,
+      "misconceptionIntercepts": 16
+    },
+    "l05": {
+      "slides": 22,
+      "diagrams": 9,
+      "retrievalChecks": 10,
+      "misconceptionIntercepts": 18
+    },
+    "l06": {
+      "sourceSlides": 22,
+      "runtimeSlides": 22,
+      "diagrams": 11,
+      "retrievalChecks": 22,
+      "misconceptionIntercepts": 22,
+      "projection": "accepted_fields_l06_v1",
+      "sourceGrounding": "Slide purpose/core message/formulaRefs/misconceptionRefs plus accepted normalization formula text and Reference troubleshooting entries only",
+      "sourceArtifactMutated": false,
+      "compression": false
+    }
+  },
+  "runtimeIdentity": {
+    "sourceIds": "SL01-SL22",
+    "runtimeIds": "MATH-VN-C01-L06-S01-S22",
+    "oneToOne": true,
+    "targetRecordMatches": 1,
+    "durableRecordCount": 18
+  },
+  "lockedBoundaries": {
+    "caseId": "UGV_TELEMETRY_8X6",
+    "caseVersion": "CASE_C01_L06_V1_LOCKED",
+    "inventedScaleVector": false,
+    "inventedNumericalRank": false,
+    "inventedSvdOrPcaValues": false,
+    "inventedRetainedDimension": false,
+    "inventedAnomalyThreshold": false,
+    "inventedPhysicalModeCount": false,
+    "inventedFaultDiagnosis": false
+  },
+  "protectedFiles": {
+    "modified": [],
+    "verifiedUnchangedBlobs": {
+      "subjects/math/data/theory_reference/theory_reference_c01_l06.json": "7dac0b07748efb211136b369bc46cf691a9c92d2",
+      "subjects/math/data/theory_full_view/theory_full_view_c01_l06.json": "52e786161d495477106193215fb0f8cb34672f3d",
+      "subjects/math/data/theory_normalization/theory_normalization_c01_l06.json": "bf59fd93612b17237d637602587120d408bacc0b",
+      "subjects/math/data/theory_slideshow/theory_slideshow_c01_l06.json": "70c79b19f44f880ba53d8ea671c883800cbe6a60",
+      "subjects/math/data/theory_integration/theory_lecture_content_c01_l06_import.json": "5c9cc383cb9f640307cdc409fcf9845eef658d16",
+      "subjects/math/data/theory_lecture_content.json": "9e4a0a0b8d33c21b2e343c09f2152b5c53b5bb7e",
+      "subjects/math/assets/theory_skin/theory-slideshow-E202.js": "ccf69b7f9c89038cba8a90e547a29b0acd15cbb4",
+      "subjects/math/assets/theory_skin/theory-slideshow-reader-content-E211.js": "4bfdeab862626b78ead65ffa7050b27f34925ad6",
+      "subjects/math/assets/theory_skin/theory-formula-fraction-align-E235.js": "0a041b808473309f2bf58091ae690a7298b7c9eb",
+      "subjects/math/index.html": "f3f98f53459d4ce46080ffdf7eebb6c32fcda3ef"
+    },
+    "e236Loaded": false,
+    "e237Loaded": false,
+    "e238Loaded": false
+  },
+  "checks": [
+    {"id": "P17-01", "status": "PASS", "check": "E241, E242 and E244 JavaScript syntax is valid."},
+    {"id": "P17-02", "status": "PASS", "check": "E241 routes L06 through an explicit schema path and keeps lesson-scoped caches."},
+    {"id": "P17-03", "status": "PASS", "check": "E241 renders all eight L06 reference areas and F01-F18 with active-lesson normalization."},
+    {"id": "P17-04", "status": "PASS", "check": "E241 renders all twelve L06 Full View sections and accepted content/formula cards."},
+    {"id": "P17-05", "status": "PASS", "check": "The locked UGV case, extraction, API/preprocessing gates, M01-M18, T01-T40 and interpretation limits are represented."},
+    {"id": "P17-06", "status": "PASS", "check": "E242 maintains separate caches by lesson ID and reuses E202/E211."},
+    {"id": "P17-07", "status": "PASS", "check": "L04 richness remains exactly 22/8/9/16."},
+    {"id": "P17-08", "status": "PASS", "check": "L05 richness remains exactly 22/9/10/18."},
+    {"id": "P17-09", "status": "PASS", "check": "L06 accepted source fields project to meaningful existing-engine richness at 22/11/22/22."},
+    {"id": "P17-10", "status": "PASS", "check": "Every projected L06 formula/evidence/misconception value is traceable to accepted L06 fields."},
+    {"id": "P17-11", "status": "PASS", "check": "L06 source/runtime counts remain 22/22 with ordered one-to-one mapping and compression false."},
+    {"id": "P17-12", "status": "PASS", "check": "Academic artifacts, durable content, E202, E211, E235 and index are unchanged."},
+    {"id": "P17-13", "status": "PASS", "check": "E236, E237 and E238 remain disabled."},
+    {"id": "P17-14", "status": "PASS", "check": "No prohibited numerical policy, physical interpretation or diagnosis was created."}
+  ],
+  "runtimeProgress": {
+    "completedPasses": 3,
+    "totalPasses": 5,
+    "remainingPasses": 2
+  },
+  "nextTask": "THEORY_C01_L06_SELECTION_ROUTE_SYNC_PASS_18"
+}

@@ -1,5 +1,5 @@
 /* E241 · Multi-lesson Reference / Full View artifact reader
- * Consumes the E244 lesson registry for §1.4 and §1.5.
+ * Consumes the E244 lesson registry for §1.4, §1.5 and §1.6.
  * Keeps Reader Pro, formula modal, E234 and E235 intact.
  */
 (function(){
@@ -59,16 +59,17 @@
     return cache.promise;
   }
 
-  function canonicalFormula(raw,bundle){
+  function canonicalFormula(raw,bundle,id){
     var v=String(raw||'').trim(), n=bundle&&bundle.normalization;
     if(!v||!n)return v;
     var hit=null;
     arr(n.canonicalFormulaRegistry).some(function(item){
-      var aliases=arr(item.sourceAliases).concat([item.canonicalText]);
+      if(id&&item.id===id){hit=item;return true;}
+      var aliases=arr(item.sourceAliases).concat([item.canonicalText,item.canonical]);
       if(aliases.some(function(alias){return String(alias||'').trim()===v;})){hit=item;return true;}
       return false;
     });
-    return hit&&hit.canonicalText?hit.canonicalText:v;
+    return hit&&(hit.canonicalText||hit.canonical)?(hit.canonicalText||hit.canonical):v;
   }
 
   function ensureStyle(){
@@ -133,7 +134,7 @@
     var concepts=arr(r.conceptMap&&r.conceptMap.entries), formulas=arr(r.formulaTable), notation=arr(r.notationLookup);
     return '<section class="e241-section"><h3>Luận đề tra cứu</h3><p>'+esc(r.conceptMap&&r.conceptMap.thesis||r.purpose||'')+'</p></section>'
       +'<section class="e241-section"><h3>R01 · Bản đồ khái niệm</h3><div class="e241-grid">'+concepts.map(function(x){return '<article class="e241-card"><h4>'+esc(x.term)+'</h4><p>'+esc(x.compactDefinition)+'</p><p><b>Câu hỏi:</b> '+esc(x.keyQuestion)+'</p></article>';}).join('')+'</div></section>'
-      +'<section class="e241-section"><h3>R02 · Bảng công thức</h3>'+formulas.map(function(x){return '<article class="e241-card"><h4>'+esc(x.name)+'</h4><pre class="e241-formula">'+esc(canonicalFormula(x.formula,bundle))+'</pre><p>'+esc(x.answers)+'</p><p class="e241-condition"><b>Điều kiện:</b> '+esc(x.conditions)+'</p><p class="e241-warning"><b>Cảnh báo:</b> '+esc(x.warning)+'</p></article>';}).join('')+'</section>'
+      +'<section class="e241-section"><h3>R02 · Bảng công thức</h3>'+formulas.map(function(x){return '<article class="e241-card"><h4>'+esc(x.name)+'</h4><pre class="e241-formula">'+esc(canonicalFormula(x.formula,bundle,x.id))+'</pre><p>'+esc(x.answers)+'</p><p class="e241-condition"><b>Điều kiện:</b> '+esc(x.conditions)+'</p><p class="e241-warning"><b>Cảnh báo:</b> '+esc(x.warning)+'</p></article>';}).join('')+'</section>'
       +'<section class="e241-section"><h3>R03 · Phân loại họ biểu diễn</h3>'+tableHtml([{key:'family',label:'Họ biểu diễn'},{key:'spansTarget',label:'Sinh target'},{key:'independent',label:'Độc lập'},{key:'existence',label:'Tồn tại'},{key:'uniqueness',label:'Duy nhất'}],r.familyComparison)+'</section>'
       +'<section class="e241-section"><h3>R04 · Chọn phương pháp</h3>'+tableHtml([{key:'situation',label:'Tình huống'},{key:'use',label:'Nên dùng'},{key:'avoid',label:'Tránh'}],r.methodDecisionTable)+'</section>'
       +'<section class="e241-section"><h3>R05 · Cổng kiểm tra kỹ thuật</h3>'+tableHtml([{key:'gate',label:'Cổng'},{key:'question',label:'Câu hỏi kiểm'},{key:'failAction',label:'Khi không đạt'}],r.assumptionChecklist)+'</section>'
@@ -157,7 +158,7 @@
     var formulas=arr(r.formulaTable), terms=arr(r.terminologyLookup), limits=r.interpretationLimits||{};
     return '<section class="e241-section"><h3>Luận đề tra cứu</h3><p>'+esc(r.purpose||'')+'</p></section>'
       +'<section class="e241-section"><h3>R01 · Phân loại mô hình</h3>'+tableHtml([{key:'object',label:'Đối tượng'},{key:'tests',label:'Cổng kiểm'},{key:'classification',label:'Phân loại'},{key:'language',label:'Cách nói chuẩn'},{key:'warning',label:'Cảnh báo'}],r.modelClassification&&r.modelClassification.decisionTable)+'</section>'
-      +'<section class="e241-section"><h3>R02 · Bảng công thức F01–F16</h3>'+formulas.map(function(x){return '<article class="e241-card"><h4>'+esc(x.id+' · '+x.name)+'</h4><pre class="e241-formula">'+esc(canonicalFormula(x.formula,bundle))+'</pre><p>'+esc(x.answers)+'</p><p class="e241-condition"><b>Điều kiện:</b> '+esc(x.conditions)+'</p><p><b>Kiểm:</b> '+esc(x.checks)+'</p><p class="e241-warning"><b>Cảnh báo:</b> '+esc(x.warning)+'</p></article>';}).join('')+'</section>'
+      +'<section class="e241-section"><h3>R02 · Bảng công thức F01–F16</h3>'+formulas.map(function(x){return '<article class="e241-card"><h4>'+esc(x.id+' · '+x.name)+'</h4><pre class="e241-formula">'+esc(canonicalFormula(x.formula,bundle,x.id))+'</pre><p>'+esc(x.answers)+'</p><p class="e241-condition"><b>Điều kiện:</b> '+esc(x.conditions)+'</p><p><b>Kiểm:</b> '+esc(x.checks)+'</p><p class="e241-warning"><b>Cảnh báo:</b> '+esc(x.warning)+'</p></article>';}).join('')+'</section>'
       +'<section class="e241-section"><h3>R03 · Chọn projector</h3>'+tableHtml([{key:'case',label:'Basis gate'},{key:'coordinates',label:'Coordinates'},{key:'projector',label:'Projector'},{key:'recommendedComputation',label:'Cách tính'},{key:'reject',label:'Loại bỏ'}],r.projectorSelection)+'</section>'
       +'<section class="e241-section"><h3>R04 · Báo cáo rank</h3>'+tableHtml([{key:'label',label:'Loại kết quả'},{key:'requiredFields',label:'Bắt buộc nêu'},{key:'example',label:'Ví dụ đúng'},{key:'forbidden',label:'Không được nói'}],r.rankReporting)+'</section>'
       +'<section class="e241-section"><h3>R05 · Preprocessing gate</h3>'+tableHtml([{key:'check',label:'Cổng'},{key:'lockedValue',label:'Giá trị khóa'},{key:'failure',label:'Sai thì sao'}],r.preprocessingGate)+'</section>'
@@ -167,12 +168,43 @@
       +'<section class="e241-section"><h3>Giới hạn kết luận</h3><div class="e241-grid"><article class="e241-card e241-condition"><h4>Được phép</h4>'+listHtml(limits.permitted)+'</article><article class="e241-card e241-warning"><h4>Bị cấm</h4>'+listHtml(limits.prohibited)+'</article></div></section>';
   }
 
-  function referenceHtml(r,bundle){return r&&r.modelClassification?referenceHtmlL05(r,bundle):referenceHtmlL04(r,bundle);}
+  function caseHtmlL06(c){
+    c=c||{};var features=arr(c.features),observations=arr(c.observations),locked=c.lockedExtraction||{};
+    return '<div class="e241-grid">'
+      +'<article class="e241-card"><h4>Contract</h4><p>'+esc(c.caseId||'')+' · '+esc(c.version||'')+'</p><p>'+esc(c.system||'')+' · '+esc(c.scenario||'')+'</p><p>Shape: '+esc(arr(c.shape).join(' × '))+'</p><p>Orientation: '+esc(c.orientation||'')+'</p><p>Schema: '+esc(c.schemaVersion||'')+'</p><p>Acquisition: '+esc(c.acquisitionConfigId||'')+'</p><p>Checksum: '+esc(c.schemaChecksumSha256||'')+'</p></article>'
+      +'<article class="e241-card"><h4>Mean khóa</h4><pre class="e241-formula">μ = '+esc(JSON.stringify(c.mean||[]))+'</pre><p>Scale: '+esc(c.scalePolicy||'')+'</p><p>Rank: '+esc(c.rankPolicy||'')+'</p></article>'
+      +'<article class="e241-card"><h4>Extraction khóa</h4><pre class="e241-formula">'+esc((locked.expression||'')+' = '+String(locked.value==null?'':locked.value)+' '+(locked.unit||''))+'</pre><p>'+esc(locked.observationId||'')+' · '+esc(locked.featureId||'')+'</p></article>'
+      +'<article class="e241-card"><h4>Derived evidence đã khóa</h4><p>yaw-rate raw self-product: '+esc(c.yawRateRawSelfProduct)+'</p><p>sample variance after centering: '+esc(c.yawRateSampleVarianceAfterCentering)+'</p><p>Covariance: '+esc(c.covariancePreviewStatus||'')+'</p><p>Timestamp: '+esc(c.timestampPolicy||'')+'</p></article>'
+      +'</div><h4>Feature schema</h4>'+tableHtml([{key:'index',label:'Index'},{key:'id',label:'Feature'},{key:'vi',label:'Ý nghĩa'},{key:'unit',label:'Đơn vị'}],features)
+      +'<h4>Observation identity</h4>'+tableHtml([{key:'row',label:'Row'},{key:'id',label:'Observation'},{key:'timestamp',label:'Timestamp'}],observations);
+  }
+
+  function referenceHtmlL06(r,bundle){
+    var formulas=arr(r.formulaTable),terms=arr(r.terminologyLookup),limits=r.interpretationLimits||{},contract=r.canonicalDataContract||{},extract=r.extractionLookup||{},prep=r.preprocessingAndDerivedGates||{};
+    var extractionRows=['scalar','row','column','block'].map(function(k){var x=extract[k]||{};return {kind:k,expression:x.expression,shape:x.shape||'scalar',identity:x.meaning||x.observationId||x.featureId||'',value:x.value,unit:x.unit||''};});
+    var prepRows=Object.keys(prep).map(function(k){var x=prep[k];return {gate:k,status:x&&x.status||'',formula:x&&x.formula||'',rule:x&&x.forbidden||x&&x.deploymentRule||x&&x.meaning||value(x)};});
+    return '<section class="e241-section"><h3>Luận đề tra cứu</h3><p>'+esc(r.purpose||'')+'</p></section>'
+      +'<section class="e241-section"><h3>R01 · Bản đồ 8 khu tra cứu</h3><div class="e241-grid">'+arr(r.informationArchitecture).map(function(x){return '<article class="e241-card"><h4>'+esc(x.id+' · '+x.title)+'</h4><p>'+esc(x.purpose)+'</p>'+listHtml(x.sourceFields)+'</article>';}).join('')+'</div></section>'
+      +'<section class="e241-section"><h3>R02 · Data contract và ký hiệu</h3><pre class="e241-formula">'+esc(contract.matrix||'')+'</pre><div class="e241-grid"><article class="e241-card"><h4>Axis semantics</h4><p>'+esc(contract.rowMeaning||'')+'</p><p>'+esc(contract.columnMeaning||'')+'</p><p>'+esc(contract.entryMeaning||'')+'</p><p>'+esc(contract.observationVector||'')+'</p></article><article class="e241-card"><h4>Compatibility gate</h4>'+listHtml(contract.compatibilityGate)+'</article><article class="e241-card"><h4>Metadata và state</h4><p>'+esc(contract.metadataPolicy||'')+'</p><p>'+esc(contract.timestampPolicy||'')+'</p><p>'+esc(arr(contract.matrixStates).join(' · '))+'</p></article></div><p class="e241-warning">'+esc(contract.warning||'')+'</p>'+tableHtml([{key:'symbol',label:'Ký hiệu'},{key:'meaning',label:'Ý nghĩa'},{key:'shape',label:'Shape'}],r.notationLookup)+'</section>'
+      +'<section class="e241-section"><h3>R03 · Bảng công thức F01–F18</h3>'+formulas.map(function(x){return '<article class="e241-card"><h4>'+esc(x.id+' · '+x.name)+' <small>'+esc(x.status)+'</small></h4><pre class="e241-formula">'+esc(canonicalFormula(x.formula,bundle,x.id))+'</pre><p><b>Shape:</b> '+esc(x.shape)+'</p><p class="e241-condition"><b>Điều kiện:</b> '+esc(x.conditions)+'</p><p><b>Kiểm:</b> '+esc(x.checks)+'</p><p class="e241-warning"><b>Cảnh báo:</b> '+esc(x.warning)+'</p></article>';}).join('')+'</section>'
+      +'<section class="e241-section"><h3>R04 · Extraction, slicing và metadata</h3>'+tableHtml([{key:'kind',label:'Kiểu'},{key:'expression',label:'Biểu thức'},{key:'shape',label:'Shape'},{key:'identity',label:'Identity'},{key:'value',label:'Giá trị'},{key:'unit',label:'Đơn vị'}],extractionRows)+'<p class="e241-condition">'+esc(extract.metadataRule||'')+'</p></section>'
+      +'<section class="e241-section"><h3>R05 · NumPy/API và orientation</h3>'+tableHtml([{key:'operation',label:'Operation'},{key:'result',label:'Kết quả'},{key:'meaning',label:'Ý nghĩa'},{key:'gate',label:'Gate'}],r.apiOrientationLookup)+'</section>'
+      +'<section class="e241-section"><h3>R06 · Preprocessing, Gram và covariance</h3>'+tableHtml([{key:'gate',label:'Đối tượng'},{key:'status',label:'Status'},{key:'formula',label:'Formula'},{key:'rule',label:'Guard'}],prepRows)+'</section>'
+      +'<section class="e241-section"><h3>R07 · Case UGV khóa</h3>'+caseHtmlL06(r.lockedCaseLookup)+'</section>'
+      +'<section class="e241-section"><h3>Troubleshooting M01–M18</h3>'+tableHtml([{key:'id',label:'ID'},{key:'symptom',label:'Triệu chứng'},{key:'repair',label:'Cách sửa'},{key:'evidence',label:'Bằng chứng'},{key:'severity',label:'Mức độ'}],r.troubleshootingMatrix)+'</section>'
+      +'<section class="e241-section"><h3>R08 · Thuật ngữ Việt–Anh–Nga</h3>'+tableHtml([{key:'id',label:'ID'},{key:'vi',label:'Việt'},{key:'en',label:'English'},{key:'ru',label:'Русский'}],terms)+'</section>'
+      +'<section class="e241-section"><h3>Giới hạn kết luận</h3><div class="e241-grid"><article class="e241-card e241-condition"><h4>Được phép</h4>'+listHtml(limits.permitted)+'</article><article class="e241-card e241-warning"><h4>Bị cấm</h4>'+listHtml(limits.prohibited)+'</article></div></section>';
+  }
+
+  function referenceHtml(r,bundle){
+    if(r&&r.canonicalDataContract&&r.extractionLookup)return referenceHtmlL06(r,bundle);
+    return r&&r.modelClassification?referenceHtmlL05(r,bundle):referenceHtmlL04(r,bundle);
+  }
 
   function fullBlockHtml(b,bundle){
     if(!b||typeof b!=='object')return '<p>'+esc(b)+'</p>';
     var type=String(b.type||'').toLowerCase();
-    if(type==='formula')return '<article class="e241-card"><pre class="e241-formula">'+esc(canonicalFormula(b.formula||b.text||b.calculation,bundle))+'</pre>'+(b.meaning?'<p>'+esc(b.meaning)+'</p>':'')+(b.conditions?'<div class="e241-condition"><b>Điều kiện</b>'+listHtml(b.conditions)+'</div>':'')+(b.warning?'<p class="e241-warning"><b>Cảnh báo:</b> '+esc(b.warning)+'</p>':'')+'</article>';
+    if(type==='formula')return '<article class="e241-card"><pre class="e241-formula">'+esc(canonicalFormula(b.formula||b.text||b.calculation,bundle,b.id))+'</pre>'+(b.meaning?'<p>'+esc(b.meaning)+'</p>':'')+(b.conditions?'<div class="e241-condition"><b>Điều kiện</b>'+listHtml(b.conditions)+'</div>':'')+(b.warning?'<p class="e241-warning"><b>Cảnh báo:</b> '+esc(b.warning)+'</p>':'')+'</article>';
     if(type==='definition')return '<article class="e241-card"><h4>'+esc(b.term||'Định nghĩa')+'</h4><p>'+esc(b.text)+'</p></article>';
     if(type==='comparison'){
       if(arr(b.items).length)return '<div class="e241-grid">'+arr(b.items).map(function(x){return '<article class="e241-card"><h4>'+esc(x.label)+'</h4><p>'+esc(x.meaning||x.text)+'</p></article>';}).join('')+'</div>';
@@ -190,7 +222,15 @@
     return '<p>'+esc(b.text||b.body||b.lead||b.summary||b.meaning||b.calculation||'')+'</p>';
   }
 
-  function fullViewHtml(f,bundle){return arr(f.readingFlow).map(function(section,index){return '<section class="e241-section" id="e241-'+esc(section.id||String(index+1))+'"><h3>'+(index+1)+'. '+esc(section.title)+'</h3>'+(section.lead?'<p><b>'+esc(section.lead)+'</b></p>':'')+arr(section.blocks).map(function(b){return fullBlockHtml(b,bundle);}).join('')+'</section>';}).join('');}
+  function fullViewHtml(f,bundle){
+    var formulaById={};arr(f.formulaTeachingCards).forEach(function(card){if(card&&card.id)formulaById[card.id]=card;});
+    return arr(f.readingFlow).map(function(section,index){
+      var blocks=arr(section.blocks),content=blocks.length?blocks.map(function(b){return fullBlockHtml(b,bundle);}).join(''):arr(section.content).map(function(item){return '<article class="e241-card"><p>'+esc(item)+'</p></article>';}).join('');
+      var formulas=blocks.length?'':arr(section.formulaRefs).map(function(id){var card=formulaById[id];if(!card)return '';return '<article class="e241-card"><h4>'+esc(card.id)+'</h4><pre class="e241-formula">'+esc(canonicalFormula(card.formula,bundle,card.id))+'</pre><p>'+esc(card.meaning)+'</p><p><b>Shape:</b> '+esc(card.shape)+'</p><p class="e241-condition"><b>Điều kiện:</b> '+esc(card.conditions)+'</p><p class="e241-warning"><b>Cảnh báo:</b> '+esc(card.warning)+'</p></article>';}).join('');
+      var trace=blocks.length?'':section.trace?'<p><small>Trace · LO: '+esc(arr(section.trace.LO).join(', '))+' · Claims: '+esc(arr(section.trace.claims).join(', '))+' · Misconceptions: '+esc(arr(section.trace.misconceptions).join(', '))+'</small></p>':'';
+      return '<section class="e241-section" id="e241-'+esc(section.id||String(index+1))+'"><h3>'+(index+1)+'. '+esc(section.title)+'</h3>'+(section.lead?'<p><b>'+esc(section.lead)+'</b></p>':'')+content+formulas+trace+'</section>';
+    }).join('');
+  }
 
   function showReference(){
     var entry=activeEntry();
@@ -253,7 +293,7 @@
     apply:ensureControls,
     selfCheck:function(){
       var entry=activeEntry(),cache=entry&&cacheFor(entry);
-      return {ok:!!registry(),release:RELEASE,multiLesson:true,activeLessonId:entry&&entry.lessonId||'',registeredLessons:registry()&&registry().list?registry().list().length:0,referenceLoaded:!!(cache&&cache.reference),fullViewLoaded:!!(cache&&cache.fullView),normalizationLoaded:!!(cache&&cache.normalization),formulaPopupSeparate:true,newSlideshowEngineCreated:false,e235Modified:false,error:cache&&cache.error||null};
+      return {ok:!!registry(),release:RELEASE,multiLesson:true,activeLessonId:entry&&entry.lessonId||'',registeredLessons:registry()&&registry().list?registry().list().length:0,supportedSchemas:['l04','l05','l06'],referenceLoaded:!!(cache&&cache.reference),fullViewLoaded:!!(cache&&cache.fullView),normalizationLoaded:!!(cache&&cache.normalization),formulaPopupSeparate:true,newSlideshowEngineCreated:false,e235Modified:false,error:cache&&cache.error||null};
     }
   };
 

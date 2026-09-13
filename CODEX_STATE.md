@@ -1,8 +1,8 @@
 # CODEX_STATE
 
-Current task: `THEORY_C01_L06_MULTI_LESSON_READER_RICHNESS_PASS_17`
+Current task: `THEORY_C01_L06_SELECTION_ROUTE_SYNC_PASS_18`
 
-Status: `PASS_16_RUNTIME_SOURCE_REGISTRATION_STATIC_VERIFY_PASS`
+Status: `PASS_17_MULTI_LESSON_READER_RICHNESS_STATIC_VERIFY_PASS`
 
 Date: 2026-09-13
 Branch: `main`
@@ -82,22 +82,21 @@ Deferred boundaries remain locked:
 Following the accepted §1.5 runtime pattern, §1.6 should use five runtime passes:
 1. Pass 15 · Durable merge + static verification — PASS (`subjects/math/THEORY_C01_L06_RUNTIME_PASS15.json`).
 2. Pass 16 · Runtime source registration — PASS (`subjects/math/THEORY_C01_L06_RUNTIME_PASS16.json`).
-3. Pass 17 · Multi-lesson Reader/Reader Pro richness integration and static verification.
+3. Pass 17 · Multi-lesson Reader/Reader Pro richness integration and static verification — PASS (`subjects/math/THEORY_C01_L06_RUNTIME_PASS17.json`).
 4. Pass 18 · Selection/route/identity synchronization verification.
 5. Pass 19 · Chromium/browser revalidation and final runtime acceptance.
 
-Runtime progress: `2/5` complete.
+Runtime progress: `3/5` complete.
 
 ## Current task requirements
-`THEORY_C01_L06_MULTI_LESSON_READER_RICHNESS_PASS_17`
+`THEORY_C01_L06_SELECTION_ROUTE_SYNC_PASS_18`
 
-Pass 17 must:
-- read the Pass 16 report, E241/E242 runtime bridges and the accepted §1.6 Reference, Full View, Normalization and Slideshow schemas;
-- extend the existing E241 reader for the §1.6 schemas without regressing §1.4 or §1.5;
-- render meaningful §1.6 Reference and Full View content, using §1.6 normalization for canonical formula text;
-- integrate §1.6 slideshow richness into the existing E202 deck without changing the academic artifacts or creating a new slideshow engine;
-- keep caches lesson-scoped and prevent cross-lesson content leakage;
-- verify §1.4 and §1.5 richness counts remain `22/8/9/16` and `22/9/10/18`;
+Pass 18 must:
+- read the Pass 17 report and the existing selection, canonical identity and presenter route bridges;
+- verify §1.6 selection resolves to the durable L06 record and opens the existing Reader/Reader Pro deck with the exact canonical lesson ID/title;
+- verify E210, E243, E244, E241 and E242 agree on the active L06 identity, without stale fallback or cross-lesson leakage;
+- preserve the accepted §1.4/§1.5 identity behavior and all Pass 17 richness counts;
+- change route/identity code only if deterministic verification exposes a defect;
 - verify §1.6 remains `22/22`, one-to-one and `compression: false`, with E235 unchanged and E236/E237/E238 disabled;
-- write a Pass 17 static verification report;
-- advance only to selection/route/identity synchronization Pass 18 after all checks pass.
+- write a Pass 18 synchronization report;
+- advance only to Chromium/browser Pass 19 after all selection/route/identity checks pass.
