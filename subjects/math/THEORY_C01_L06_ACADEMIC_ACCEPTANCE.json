@@ -1,0 +1,89 @@
+{
+  "id": "bauman_math_c01_l06_academic_acceptance_v1",
+  "schema": "bauman_math_academic_acceptance_v1",
+  "version": "ACADEMIC_ACCEPTANCE_C01_L06_V1",
+  "status": "PASS",
+  "date": "2026-09-13",
+  "lessonId": "MATH-VN-C01-vector_trong_khong_gian_-L06-vector-to-data-matrix-e140",
+  "lessonTitle": "§1.6 · Từ vector sang ma trận dữ liệu",
+  "verification": {
+    "mode": "direct_high_reasoning_connector_static_cross_check",
+    "githubActionsRun": false,
+    "browserRun": false,
+    "runtimeMergePerformed": false,
+    "limitations": [
+      "This acceptance covers academic artifacts only.",
+      "Durable runtime merge must begin only in Pass 15.",
+      "Browser/runtime acceptance remains a later runtime-stage responsibility."
+    ]
+  },
+  "academicPasses": {"completed":14,"total":14,"remaining":0},
+  "approvedArtifacts": [
+    {"role":"baseline_audit","path":"subjects/math/THEORY_C01_L06_BASELINE_AUDIT.md"},
+    {"role":"learning_contract","path":"subjects/math/THEORY_C01_L06_LEARNING_CONTRACT.md"},
+    {"role":"source_map_terminology","path":"subjects/math/THEORY_C01_L06_SOURCE_MAP_TERMINOLOGY.md"},
+    {"role":"formula_registry","path":"subjects/math/THEORY_C01_L06_FORMULA_REGISTRY.md"},
+    {"role":"case","path":"subjects/math/data/theory_case/theory_case_c01_l06.json","version":"CASE_C01_L06_V1_LOCKED"},
+    {"role":"case_validation","path":"subjects/math/THEORY_C01_L06_CASE_VALIDATION.json"},
+    {"role":"misconception_map","path":"subjects/math/THEORY_C01_L06_MISCONCEPTION_MAP.md"},
+    {"role":"core","path":"subjects/math/data/theory_core/theory_core_c01_l06.json","version":"CORE_C01_L06_V1_PASS07_ARCHITECTURE"},
+    {"role":"worked_examples","path":"subjects/math/data/theory_worked_examples/theory_worked_examples_c01_l06.json","version":"WORKED_EXAMPLES_C01_L06_V1_PASS08"},
+    {"role":"lab","path":"subjects/math/data/theory_lab/theory_lab_c01_l06.json","version":"LAB_C01_L06_V1_PASS09"},
+    {"role":"assessment","path":"subjects/math/data/theory_assessment/theory_assessment_c01_l06.json","version":"ASSESSMENT_C01_L06_V1_PASS10"},
+    {"role":"reference","path":"subjects/math/data/theory_reference/theory_reference_c01_l06.json","version":"REFERENCE_C01_L06_V1_PASS11"},
+    {"role":"full_view","path":"subjects/math/data/theory_full_view/theory_full_view_c01_l06.json","version":"FULL_VIEW_C01_L06_V1_PASS12"},
+    {"role":"normalization","path":"subjects/math/data/theory_normalization/theory_normalization_c01_l06.json","version":"NORMALIZATION_C01_L06_V1_PASS12"},
+    {"role":"slideshow","path":"subjects/math/data/theory_slideshow/theory_slideshow_c01_l06.json","version":"SLIDESHOW_C01_L06_V1_PASS13"},
+    {"role":"runtime_import_candidate","path":"subjects/math/data/theory_integration/theory_lecture_content_c01_l06_import.json","version":"C01_L06_E129_IMPORT_V1_22_SLIDES_CANDIDATE"}
+  ],
+  "artifactCounts": {
+    "learningOutcomes": 9,
+    "claimIds": 24,
+    "formulaIds": 18,
+    "misconceptions": 18,
+    "terminologyEntries": 40,
+    "sourceSlides": 22,
+    "runtimeImportSlides": 22
+  },
+  "lockedCase": {
+    "caseId":"UGV_TELEMETRY_8X6",
+    "version":"CASE_C01_L06_V1_LOCKED",
+    "shape":[8,6],
+    "orientation":"observations_as_rows_features_as_columns",
+    "featureOrder":["omega_left","omega_right","a_long","a_lat","yaw_rate","battery_current"],
+    "units":["rad/s","rad/s","m/s^2","m/s^2","rad/s","A"],
+    "observationIds":["UGV-W01","UGV-W02","UGV-W03","UGV-W04","UGV-W05","UGV-W06","UGV-W07","UGV-W08"],
+    "timestampStart":"2026-07-09T10:00:00.000Z",
+    "timestampEnd":"2026-07-09T10:00:01.750Z",
+    "timestampStepMs":250,
+    "mean":[8.5,8.55,0.03125,0.02375,0.01,12.1625],
+    "lockedExtraction":{"expression":"X_raw[2,4]","value":0.08,"observationId":"UGV-W03","featureId":"yaw_rate","unit":"rad/s"}
+  },
+  "acceptanceChecks": [
+    {"id":"A01","status":"PASS","check":"Lesson ID/title are consistent across §1.6 academic artifacts."},
+    {"id":"A02","status":"PASS","check":"LO1–LO9 are covered by core, examples, lab and assessment."},
+    {"id":"A03","status":"PASS","check":"C01–C24, F01–F18, M01–M18 and T01–T40 remain traceable."},
+    {"id":"A04","status":"PASS","check":"Formula status classes CORE, API_EQUIVALENT, PREVIEW and FORBIDDEN_SHORTCUT remain distinct."},
+    {"id":"A05","status":"PASS","check":"Canonical X in R^(m x n) remains observations-as-rows, ordered-features-as-columns."},
+    {"id":"A06","status":"PASS","check":"Row-observation and column-observation conventions remain distinct."},
+    {"id":"A07","status":"PASS","check":"Mathematical vector orientation remains distinct from NumPy 1D .T behavior."},
+    {"id":"A08","status":"PASS","check":"X_raw, X_c and X_s remain distinct; centering, scaling, standardization and vector normalization remain distinct."},
+    {"id":"A09","status":"PASS","check":"Feature Gram, observation Gram and sample covariance remain distinct."},
+    {"id":"A10","status":"PASS","check":"Algebraic rank bound remains distinct from numerical rank, retained dimension and physical mode count."},
+    {"id":"A11","status":"PASS","check":"Locked UGV schema, units, IDs, timestamps, mean, extraction and locked numeric values are preserved."},
+    {"id":"A12","status":"PASS","check":"No scale vector, numerical-rank tolerance/rank, SVD singular values, PCA components, retained dimension, anomaly threshold, physical mode count or fault diagnosis is invented."},
+    {"id":"A13","status":"PASS","check":"Slide policy is minimum 16, actual 22, no maximum, compression false."},
+    {"id":"A14","status":"PASS","check":"SL01–SL22 map one-to-one to MATH-VN-C01-L06-S01–S22 with unique IDs and supported safe import blocks."},
+    {"id":"A15","status":"PASS","check":"Semantic diagram specs remain slideshow metadata and are not forced into unsupported runtime blocks."},
+    {"id":"A16","status":"PASS","check":"Durable runtime remains unchanged during Pass 14; E235 unchanged; E236/E237/E238 remain disabled."}
+  ],
+  "slidePolicy": {"minimum":16,"actual":22,"maximum":null,"compression":false,"oneSourceSlidePerRuntimeSlide":true},
+  "runtimeDecision": {
+    "importPackageApproved": true,
+    "durableMergePerformed": false,
+    "runtimeIntegrationStarted": false,
+    "runtimeFilesModified": false,
+    "nextTask":"THEORY_C01_L06_DURABLE_MERGE_RUNTIME_PASS_15"
+  },
+  "finalAcademicState":"ACADEMIC_14_OF_14_PASS_RUNTIME_NOT_STARTED"
+}
