@@ -1,0 +1,80 @@
+{
+  "id": "bauman_math_c01_l06_runtime_pass16_v1",
+  "schema": "bauman_math_runtime_source_registration_report_v1",
+  "version": "RUNTIME_PASS16_C01_L06_V1",
+  "status": "PASS_16_RUNTIME_SOURCE_REGISTRATION_STATIC_VERIFY_PASS",
+  "date": "2026-09-13",
+  "lessonId": "MATH-VN-C01-vector_trong_khong_gian_-L06-vector-to-data-matrix-e140",
+  "lessonTitle": "§1.6 · Từ vector sang ma trận dữ liệu",
+  "verificationMode": "node_syntax_vm_registry_and_artifact_contract_validation",
+  "browserRun": false,
+  "readerLogicModified": false,
+  "manifestModified": false,
+  "indexModified": false,
+  "e235Modified": false,
+  "e236Enabled": false,
+  "e237Enabled": false,
+  "e238Enabled": false,
+  "newSlideshowEngineCreated": false,
+  "registry": {
+    "path": "subjects/math/assets/theory_skin/theory-artifact-registry-E244.js",
+    "release": "E244_MULTI_LESSON_THEORY_ARTIFACT_REGISTRY",
+    "blobShaBefore": "996aab99055472d4adbc4e5b807809b777bc1be8",
+    "blobShaAfterWorkingTree": "dcf374f75334aee231861742815290e7d448e412",
+    "lessonCount": 3,
+    "sourceCount": 12,
+    "sourceKindsPerLesson": ["reference", "fullView", "normalization", "slideshow"],
+    "duplicateSourceIds": [],
+    "sharedResolver": true,
+    "allSourcesOptional": true,
+    "allSourcesLazy": true
+  },
+  "loadOrder": {
+    "indexPath": "subjects/math/index.html",
+    "indexBlobSha": "f3f98f53459d4ce46080ffdf7eebb6c32fcda3ef",
+    "after": "assets/theory_skin/theory-slideshow-reader-content-E211.js?v=223",
+    "registry": "assets/theory_skin/theory-artifact-registry-E244.js?v=244",
+    "before": [
+      "assets/theory_skin/theory-artifact-authoritative-route-E245.js?v=245",
+      "assets/theory_skin/theory-artifact-reader-E241.js?v=241"
+    ],
+    "unchanged": true
+  },
+  "preservedRegistrationFingerprints": {
+    "l04": "ef8f4e9dc959c5cf746565baf7d5d4e7f454c079c5b08a360354f7a20a550a6a",
+    "l05": "a9f0a5bb288f4cc8e8a1207a5e301fe495f8edc0b7e8c30c2704e0ccac8f93e8"
+  },
+  "registeredLesson": {
+    "lessonId": "MATH-VN-C01-vector_trong_khong_gian_-L06-vector-to-data-matrix-e140",
+    "lessonTitle": "§1.6 · Từ vector sang ma trận dữ liệu",
+    "academicStatus": "ACADEMIC_14_OF_14_PASS",
+    "academicAcceptance": "THEORY_C01_L06_ACADEMIC_ACCEPTANCE.json",
+    "sources": [
+      {"kind":"reference","id":"theory_reference_c01_l06","path":"data/theory_reference/theory_reference_c01_l06.json","version":"REFERENCE_C01_L06_V1_PASS11","blobSha":"7dac0b07748efb211136b369bc46cf691a9c92d2"},
+      {"kind":"fullView","id":"theory_full_view_c01_l06","path":"data/theory_full_view/theory_full_view_c01_l06.json","version":"FULL_VIEW_C01_L06_V1_PASS12","blobSha":"52e786161d495477106193215fb0f8cb34672f3d"},
+      {"kind":"normalization","id":"theory_normalization_c01_l06","path":"data/theory_normalization/theory_normalization_c01_l06.json","version":"NORMALIZATION_C01_L06_V1_PASS12","blobSha":"bf59fd93612b17237d637602587120d408bacc0b"},
+      {"kind":"slideshow","id":"theory_slideshow_c01_l06","path":"data/theory_slideshow/theory_slideshow_c01_l06.json","version":"SLIDESHOW_C01_L06_V1_PASS13","blobSha":"70c79b19f44f880ba53d8ea671c883800cbe6a60","expected":{"slides":22}}
+    ]
+  },
+  "richnessExpectationNote": "Pass 16 verifies only the accepted source slide count. The §1.6 slideshow intentionally contains no E242-specific diagramSpec/retrievalCheck/misconceptionIntercept fields; Pass 17 must integrate richness from accepted §1.6 structures without changing the academic artifacts or creating a slideshow engine.",
+  "checks": [
+    {"id":"P16-01","status":"PASS","check":"Pass 15 report is PASS and the durable §1.6 record is accepted."},
+    {"id":"P16-02","status":"PASS","check":"E244 JavaScript syntax is valid and its release identity is unchanged."},
+    {"id":"P16-03","status":"PASS","check":"E244 contains exactly three lesson entries and twelve unique source IDs."},
+    {"id":"P16-04","status":"PASS","check":"Every registered source remains optional and lazy."},
+    {"id":"P16-05","status":"PASS","check":"The §1.6 Reference path exists and lesson ID/version match the registry."},
+    {"id":"P16-06","status":"PASS","check":"The §1.6 Full View path exists and lesson ID/version match the registry."},
+    {"id":"P16-07","status":"PASS","check":"The §1.6 Normalization path exists and lesson ID/version match the registry."},
+    {"id":"P16-08","status":"PASS","check":"The §1.6 Slideshow path exists, lesson ID/version match and source slide count is 22."},
+    {"id":"P16-09","status":"PASS","check":"§1.4 and §1.5 registry entry canonical fingerprints are unchanged."},
+    {"id":"P16-10","status":"PASS","check":"The shared resolver returns the exact §1.6 identity."},
+    {"id":"P16-11","status":"PASS","check":"E244 load order remains after E211 and before E245/E241."},
+    {"id":"P16-12","status":"PASS","check":"No durable data, reader, manifest, index, E235, disabled E236/E237/E238 load state or slideshow engine changed."}
+  ],
+  "runtimeProgress": {
+    "completedPasses": 2,
+    "totalPasses": 5,
+    "remainingPasses": 3
+  },
+  "nextTask": "THEORY_C01_L06_MULTI_LESSON_READER_RICHNESS_PASS_17"
+}

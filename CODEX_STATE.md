@@ -1,8 +1,8 @@
 # CODEX_STATE
 
-Current task: `THEORY_C01_L06_RUNTIME_SOURCE_REGISTRATION_PASS_16`
+Current task: `THEORY_C01_L06_MULTI_LESSON_READER_RICHNESS_PASS_17`
 
-Status: `PASS_15_DURABLE_MERGE_STATIC_VERIFY_PASS`
+Status: `PASS_16_RUNTIME_SOURCE_REGISTRATION_STATIC_VERIFY_PASS`
 
 Date: 2026-09-13
 Branch: `main`
@@ -81,22 +81,23 @@ Deferred boundaries remain locked:
 ## Runtime workflow remaining
 Following the accepted §1.5 runtime pattern, §1.6 should use five runtime passes:
 1. Pass 15 · Durable merge + static verification — PASS (`subjects/math/THEORY_C01_L06_RUNTIME_PASS15.json`).
-2. Pass 16 · Runtime source registration.
+2. Pass 16 · Runtime source registration — PASS (`subjects/math/THEORY_C01_L06_RUNTIME_PASS16.json`).
 3. Pass 17 · Multi-lesson Reader/Reader Pro richness integration and static verification.
 4. Pass 18 · Selection/route/identity synchronization verification.
 5. Pass 19 · Chromium/browser revalidation and final runtime acceptance.
 
-Runtime progress: `1/5` complete.
+Runtime progress: `2/5` complete.
 
 ## Current task requirements
-`THEORY_C01_L06_RUNTIME_SOURCE_REGISTRATION_PASS_16`
+`THEORY_C01_L06_MULTI_LESSON_READER_RICHNESS_PASS_17`
 
-Pass 16 must:
-- read the Pass 15 report and the accepted §1.6 Reference, Full View, Normalization and Slideshow artifacts;
-- add exactly one §1.6 lesson entry to the existing shared E244 runtime artifact registry;
-- register the four optional lazy source kinds with the approved paths and versions;
-- preserve the §1.4 and §1.5 entries byte-semantically and keep all source IDs unique;
-- verify every registered file exists and its lesson ID/version match the registry;
-- keep the existing index load order, runtime readers, manifest, Reader Pro, E235 and disabled E236/E237/E238 unchanged;
-- write a Pass 16 registration report;
-- advance only to multi-lesson Reader/Reader Pro richness Pass 17 after static verification passes.
+Pass 17 must:
+- read the Pass 16 report, E241/E242 runtime bridges and the accepted §1.6 Reference, Full View, Normalization and Slideshow schemas;
+- extend the existing E241 reader for the §1.6 schemas without regressing §1.4 or §1.5;
+- render meaningful §1.6 Reference and Full View content, using §1.6 normalization for canonical formula text;
+- integrate §1.6 slideshow richness into the existing E202 deck without changing the academic artifacts or creating a new slideshow engine;
+- keep caches lesson-scoped and prevent cross-lesson content leakage;
+- verify §1.4 and §1.5 richness counts remain `22/8/9/16` and `22/9/10/18`;
+- verify §1.6 remains `22/22`, one-to-one and `compression: false`, with E235 unchanged and E236/E237/E238 disabled;
+- write a Pass 17 static verification report;
+- advance only to selection/route/identity synchronization Pass 18 after all checks pass.

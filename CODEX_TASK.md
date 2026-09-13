@@ -1,7 +1,7 @@
 # CODEX_TASK
 
-Task: `THEORY_C01_L06_RUNTIME_SOURCE_REGISTRATION_PASS_16`
-Mode: shared-registry source-registration-only, static verification first.
+Task: `THEORY_C01_L06_MULTI_LESSON_READER_RICHNESS_PASS_17`
+Mode: existing-reader richness-integration, static verification first.
 
 ## Work handoff execution order — mandatory
 When this project is continued in ChatGPT Work, do not jump directly to implementation or publishing. Execute in this order:
@@ -62,52 +62,51 @@ The required order is therefore:
 
 ## Read only what is needed
 1. `CODEX_STATE.md`
-2. `subjects/math/THEORY_C01_L06_RUNTIME_PASS15.json`
-3. `subjects/math/assets/theory_skin/theory-artifact-registry-E244.js`
-4. the accepted §1.6 Reference, Full View, Normalization and Slideshow artifacts
-5. `subjects/math/THEORY_C01_L05_RUNTIME_PASS16.json` only as structural precedent.
+2. `subjects/math/THEORY_C01_L06_RUNTIME_PASS16.json`
+3. `subjects/math/assets/theory_skin/theory-artifact-reader-E241.js`
+4. `subjects/math/assets/theory_skin/theory-slideshow-richness-E242.js`
+5. the accepted §1.6 Reference, Full View, Normalization and Slideshow artifacts
+6. `subjects/math/THEORY_C01_L05_RUNTIME_PASS17.json` only as structural precedent.
 
 ## Goal
-Register the accepted §1.6 artifact sources in the existing shared E244 registry without changing reader behavior or previously accepted lesson registrations.
+Integrate the accepted §1.6 artifact schemas into the existing multi-lesson Reader/Reader Pro and E202 richness bridges without altering the accepted academic package or regressing §1.4/§1.5.
 
 ## Preconditions
-- Pass 15 status is `PASS_15_DURABLE_MERGE_STATIC_VERIFY_PASS`.
-- The durable target matches the immutable approved import record.
-- Record count is `18`; target occurrence is exactly one at index `5`.
-- Source/runtime slide counts are `22/22`, with `compression: false` and one-to-one mapping.
+- Pass 16 status is `PASS_16_RUNTIME_SOURCE_REGISTRATION_STATIC_VERIFY_PASS`.
+- E244 exposes three lesson entries and twelve optional/lazy sources.
+- The §1.6 source files match the registered lesson ID and approved versions.
+- §1.6 source/runtime slide counts are `22/22`, with `compression: false` and one-to-one mapping.
 
-## Runtime source registration requirements
-- Modify only `subjects/math/assets/theory_skin/theory-artifact-registry-E244.js` for runtime behavior in this pass.
-- Add exactly one registry entry for `MATH-VN-C01-vector_trong_khong_gian_-L06-vector-to-data-matrix-e140`.
-- Register optional lazy sources:
-  - Reference: `data/theory_reference/theory_reference_c01_l06.json` / `REFERENCE_C01_L06_V1_PASS11`.
-  - Full View: `data/theory_full_view/theory_full_view_c01_l06.json` / `FULL_VIEW_C01_L06_V1_PASS12`.
-  - Normalization: `data/theory_normalization/theory_normalization_c01_l06.json` / `NORMALIZATION_C01_L06_V1_PASS12`.
-  - Slideshow: `data/theory_slideshow/theory_slideshow_c01_l06.json` / `SLIDESHOW_C01_L06_V1_PASS13`, expected `22` slides.
-- Preserve §1.4 and §1.5 registry entries and resolver behavior.
-- Keep source IDs unique and every source optional/lazy.
-- Do not change the existing E244 load position in `subjects/math/index.html`.
+## Reader and richness requirements
+- Extend E241 schema routing explicitly for §1.6; do not route it through the §1.4 fallback.
+- Render the eight §1.6 reference areas, formula table F01–F18, extraction/API/preprocessing gates, locked UGV case, troubleshooting, terminology and interpretation limits.
+- Render all twelve §1.6 Full View reading sections and their accepted content blocks.
+- Use the active lesson's §1.6 Normalization artifact for canonical formula text.
+- Preserve per-lesson caches and exact lesson/version validation.
+- Extend E242 only as needed to represent meaningful §1.6 richness from accepted fields in the existing E202/E211 surfaces; do not edit the approved source artifacts.
+- Keep §1.4 and §1.5 reader/richness behavior and counts unchanged.
 
 ## Static verification
-Create `subjects/math/THEORY_C01_L06_RUNTIME_PASS16.json` with deterministic checks covering:
-- exactly three lesson entries and twelve unique sources in E244;
-- all four §1.6 paths exist and lesson ID/version match;
-- §1.4/§1.5 registration fingerprints remain unchanged;
-- E244 remains loaded after SUBJECT_ADAPTER/E211 and before E245/E241 consumers;
-- no reader, manifest, E235, disabled E236/E237/E238 or slideshow-engine change.
+Create `subjects/math/THEORY_C01_L06_RUNTIME_PASS17.json` with deterministic checks covering:
+- E241/E242 syntax and release identities;
+- E241 explicit §1.6 schema support, lesson-scoped cache and twelve-section Full View rendering;
+- E242 lesson-scoped cache and existing-engine use;
+- unchanged §1.4/§1.5 richness counts;
+- §1.6 `22/22` identity/mapping and meaningful richness integration;
+- no change to approved source artifacts, E202, E211, E235 or disabled E236/E237/E238 load state.
 
 ## Runtime protection
-Do not modify during Pass 16:
+Do not modify during Pass 17:
 - durable theory content;
-- runtime readers or route/identity synchronization logic;
+- E244 registration except for a verified expected-count refinement required by E242 validation;
+- route/identity synchronization logic;
 - `subjects/math/index.html`;
 - manifest;
-- CSS/JavaScript presentation layers;
-- Reader Pro;
+- the E202 slideshow engine or E211 Reader Pro base;
 - E235.
 
 Keep E236, E237 and E238 disabled.
 
 ## Acceptance
-Pass only when static registration verification is clean.
-Then set status `PASS_16_RUNTIME_SOURCE_REGISTRATION_STATIC_VERIFY_PASS` and advance to `THEORY_C01_L06_MULTI_LESSON_READER_RICHNESS_PASS_17`.
+Pass only when static multi-lesson reader/richness verification is clean.
+Then set status `PASS_17_MULTI_LESSON_READER_RICHNESS_STATIC_VERIFY_PASS` and advance to `THEORY_C01_L06_SELECTION_ROUTE_SYNC_PASS_18`.
