@@ -1,15 +1,15 @@
 # CODEX_STATE
 
-Current task: `THEORY_C01_L06_DURABLE_MERGE_RUNTIME_PASS_15`
+Current task: `THEORY_C01_L06_RUNTIME_SOURCE_REGISTRATION_PASS_16`
 
-Status: `PASS_14_ACADEMIC_ACCEPTANCE_COMPLETE`
+Status: `PASS_15_DURABLE_MERGE_STATIC_VERIFY_PASS`
 
 Date: 2026-09-13
 Branch: `main`
 
 ## Execution policy
 - Academic work for §1.6 is complete and accepted.
-- Runtime integration may now begin from the immutable approved import candidate.
+- Runtime integration has begun from the immutable approved import candidate; the durable merge is statically accepted.
 - Prefer one bounded runtime pass at a time with explicit static/browser gates.
 - Keep non-target lessons unchanged.
 - When handed to ChatGPT Work, the mandatory project order is: GitHub reconciliation first, then §1.6 runtime completion, then whole-system comprehensive work, then whole-system QA, and only then ChatGPT Site publication.
@@ -80,25 +80,23 @@ Deferred boundaries remain locked:
 
 ## Runtime workflow remaining
 Following the accepted §1.5 runtime pattern, §1.6 should use five runtime passes:
-1. Pass 15 · Durable merge + static verification.
+1. Pass 15 · Durable merge + static verification — PASS (`subjects/math/THEORY_C01_L06_RUNTIME_PASS15.json`).
 2. Pass 16 · Runtime source registration.
 3. Pass 17 · Multi-lesson Reader/Reader Pro richness integration and static verification.
 4. Pass 18 · Selection/route/identity synchronization verification.
 5. Pass 19 · Chromium/browser revalidation and final runtime acceptance.
 
-Runtime progress: `0/5` complete.
+Runtime progress: `1/5` complete.
 
 ## Current task requirements
-`THEORY_C01_L06_DURABLE_MERGE_RUNTIME_PASS_15`
+`THEORY_C01_L06_RUNTIME_SOURCE_REGISTRATION_PASS_16`
 
-Pass 15 must:
-- read the academic acceptance and immutable approved import candidate;
-- verify package/version/lesson ID/22-slide one-to-one mapping before merge;
-- replace only the existing §1.6 record in durable `theory_lecture_content` using the accepted E129 merge contract;
-- keep record count and non-target records unchanged;
-- preserve lesson neighbors/order and zero duplicate lesson IDs;
-- verify all `22` runtime slide IDs and `F01–F18` coverage;
-- preserve locked UGV values and deferred boundaries;
-- write a Pass 15 runtime merge report;
-- do not modify runtime readers, manifest, Reader Pro, E235, E236/E237/E238;
-- advance only to runtime source registration Pass 16 after static verification passes.
+Pass 16 must:
+- read the Pass 15 report and the accepted §1.6 Reference, Full View, Normalization and Slideshow artifacts;
+- add exactly one §1.6 lesson entry to the existing shared E244 runtime artifact registry;
+- register the four optional lazy source kinds with the approved paths and versions;
+- preserve the §1.4 and §1.5 entries byte-semantically and keep all source IDs unique;
+- verify every registered file exists and its lesson ID/version match the registry;
+- keep the existing index load order, runtime readers, manifest, Reader Pro, E235 and disabled E236/E237/E238 unchanged;
+- write a Pass 16 registration report;
+- advance only to multi-lesson Reader/Reader Pro richness Pass 17 after static verification passes.

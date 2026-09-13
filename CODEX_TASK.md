@@ -1,7 +1,7 @@
 # CODEX_TASK
 
-Task: `THEORY_C01_L06_DURABLE_MERGE_RUNTIME_PASS_15`
-Mode: approved-import durable-merge-only, static verification first.
+Task: `THEORY_C01_L06_RUNTIME_SOURCE_REGISTRATION_PASS_16`
+Mode: shared-registry source-registration-only, static verification first.
 
 ## Work handoff execution order — mandatory
 When this project is continued in ChatGPT Work, do not jump directly to implementation or publishing. Execute in this order:
@@ -62,50 +62,45 @@ The required order is therefore:
 
 ## Read only what is needed
 1. `CODEX_STATE.md`
-2. `subjects/math/THEORY_C01_L06_ACADEMIC_ACCEPTANCE.json`
-3. `subjects/math/data/theory_integration/theory_lecture_content_c01_l06_import.json`
-4. durable `theory_lecture_content` data file used by the existing E129 importer
-5. `subjects/math/THEORY_C01_L05_RUNTIME_PASS15.json` only as structural precedent.
+2. `subjects/math/THEORY_C01_L06_RUNTIME_PASS15.json`
+3. `subjects/math/assets/theory_skin/theory-artifact-registry-E244.js`
+4. the accepted §1.6 Reference, Full View, Normalization and Slideshow artifacts
+5. `subjects/math/THEORY_C01_L05_RUNTIME_PASS16.json` only as structural precedent.
 
 ## Goal
-Merge exactly the academically approved §1.6 import candidate into the existing durable `theory_lecture_content` record and statically prove that no non-target lesson changes.
+Register the accepted §1.6 artifact sources in the existing shared E244 registry without changing reader behavior or previously accepted lesson registrations.
 
 ## Preconditions
-- Academic acceptance status is `PASS`.
-- Academic passes are `14/14`.
-- Approved import version is `C01_L06_E129_IMPORT_V1_22_SLIDES_CANDIDATE`.
-- Target lesson ID is `MATH-VN-C01-vector_trong_khong_gian_-L06-vector-to-data-matrix-e140`.
-- Source/runtime slide counts are `22/22`.
-- `compression: false` and mapping is one-to-one.
+- Pass 15 status is `PASS_15_DURABLE_MERGE_STATIC_VERIFY_PASS`.
+- The durable target matches the immutable approved import record.
+- Record count is `18`; target occurrence is exactly one at index `5`.
+- Source/runtime slide counts are `22/22`, with `compression: false` and one-to-one mapping.
 
-## Durable merge requirements
-- Replace only the existing §1.6 record; do not append a duplicate.
-- Preserve record count and target index/order unless the current durable contract explicitly requires otherwise.
-- Preserve previous and next lesson identities.
-- Keep every non-target record byte-equivalent or canonical-hash-equivalent.
-- Runtime slide IDs must be exactly `MATH-VN-C01-L06-S01` through `S22`.
-- Source mappings must be exactly `SL01` through `SL22` one-to-one.
-- Preserve `F01–F18` references and locked UGV case language.
-- Do not introduce deferred scale/rank/SVD/PCA/diagnosis results.
+## Runtime source registration requirements
+- Modify only `subjects/math/assets/theory_skin/theory-artifact-registry-E244.js` for runtime behavior in this pass.
+- Add exactly one registry entry for `MATH-VN-C01-vector_trong_khong_gian_-L06-vector-to-data-matrix-e140`.
+- Register optional lazy sources:
+  - Reference: `data/theory_reference/theory_reference_c01_l06.json` / `REFERENCE_C01_L06_V1_PASS11`.
+  - Full View: `data/theory_full_view/theory_full_view_c01_l06.json` / `FULL_VIEW_C01_L06_V1_PASS12`.
+  - Normalization: `data/theory_normalization/theory_normalization_c01_l06.json` / `NORMALIZATION_C01_L06_V1_PASS12`.
+  - Slideshow: `data/theory_slideshow/theory_slideshow_c01_l06.json` / `SLIDESHOW_C01_L06_V1_PASS13`, expected `22` slides.
+- Preserve §1.4 and §1.5 registry entries and resolver behavior.
+- Keep source IDs unique and every source optional/lazy.
+- Do not change the existing E244 load position in `subjects/math/index.html`.
 
 ## Static verification
-Create `subjects/math/THEORY_C01_L06_RUNTIME_PASS15.json` with a deterministic merge report covering:
-- durable record count before/after;
-- target occurrence exactly once before/after;
-- target canonical hash before/after and target content changed;
-- changed non-target records = zero;
-- duplicate lesson IDs = zero;
-- source/runtime slide counts `22/22`;
-- runtime ID and source mapping continuity;
-- formula coverage `F01–F18`;
-- minimum 16/no maximum/compression false;
-- locked case/deferred-boundary checks;
-- written JSON reparses.
+Create `subjects/math/THEORY_C01_L06_RUNTIME_PASS16.json` with deterministic checks covering:
+- exactly three lesson entries and twelve unique sources in E244;
+- all four §1.6 paths exist and lesson ID/version match;
+- §1.4/§1.5 registration fingerprints remain unchanged;
+- E244 remains loaded after SUBJECT_ADAPTER/E211 and before E245/E241 consumers;
+- no reader, manifest, E235, disabled E236/E237/E238 or slideshow-engine change.
 
 ## Runtime protection
-Do not modify during Pass 15:
-- runtime readers;
-- `subjects/math/index.html` unless the durable E129 contract itself requires it (expected: no);
+Do not modify during Pass 16:
+- durable theory content;
+- runtime readers or route/identity synchronization logic;
+- `subjects/math/index.html`;
 - manifest;
 - CSS/JavaScript presentation layers;
 - Reader Pro;
@@ -114,5 +109,5 @@ Do not modify during Pass 15:
 Keep E236, E237 and E238 disabled.
 
 ## Acceptance
-Pass only when static merge verification is clean.
-Then set status `PASS_15_DURABLE_MERGE_STATIC_VERIFY_PASS` and advance to `THEORY_C01_L06_RUNTIME_SOURCE_REGISTRATION_PASS_16`.
+Pass only when static registration verification is clean.
+Then set status `PASS_16_RUNTIME_SOURCE_REGISTRATION_STATIC_VERIFY_PASS` and advance to `THEORY_C01_L06_MULTI_LESSON_READER_RICHNESS_PASS_17`.

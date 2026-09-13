@@ -1,0 +1,78 @@
+{
+  "id": "bauman_math_c01_l06_runtime_pass15_v1",
+  "schema": "bauman_math_runtime_merge_report_v1",
+  "version": "RUNTIME_PASS15_C01_L06_V1",
+  "status": "PASS_15_DURABLE_MERGE_STATIC_VERIFY_PASS",
+  "date": "2026-09-13",
+  "lessonId": "MATH-VN-C01-vector_trong_khong_gian_-L06-vector-to-data-matrix-e140",
+  "verificationMode": "local_node_json_canonical_hash_validation",
+  "browserRun": false,
+  "runtimeReadersModified": false,
+  "manifestModified": false,
+  "e235Modified": false,
+  "e236Enabled": false,
+  "e237Enabled": false,
+  "e238Enabled": false,
+  "newSlideshowEngineCreated": false,
+  "academicAcceptanceCommit": "6adcb923a3c9e48e40f1007989051c767901c59a",
+  "approvedImportVersion": "C01_L06_E129_IMPORT_V1_22_SLIDES_CANDIDATE",
+  "approvedImportBlobSha": "5c9cc383cb9f640307cdc409fcf9845eef658d16",
+  "targetIndex": 5,
+  "previousLessonId": "MATH-VN-C01-vector_trong_khong_gian_-L05-subspace-data-representation-e140",
+  "nextLessonId": "MATH-VN-C02-ma_tran_va_phep_bien_oi_-L01-matrix-as-data-and-transform-e142",
+  "recordsBefore": 18,
+  "recordsAfter": 18,
+  "durableFileBlobShaBefore": "0a7c49c25c0546411717dc5c39308c0c71d2a2e1",
+  "durableFileSha256Mode": "repository_normalized_lf",
+  "durableFileSha256Before": "d0cd18601b1ede84f58072b3c47cfcc176b4d21d3fa71b23762b908485391447",
+  "durableFileSha256After": "d4e763950c5c8b417f8bbadd0500f22ee291de1428da5bc66889dcef6eeeb495",
+  "originalTargetCanonicalHash": "f8156ac9c4c0bde6657f802cc035fc3daff1a9c2142fba94e3e70118c33b5f6c",
+  "importedTargetCanonicalHash": "09a0e4f1b27109914508c8494ee44a0c2a3518ea0f112e2b314c1721360e854f",
+  "nonTargetRecordCount": 17,
+  "changedNonTargetRecords": [],
+  "duplicateLessonIds": [],
+  "sourceSlideCount": 22,
+  "runtimeSlideCount": 22,
+  "formulaCoverage": [
+    "F01", "F02", "F03", "F04", "F05", "F06", "F07", "F08", "F09",
+    "F10", "F11", "F12", "F13", "F14", "F15", "F16", "F17", "F18"
+  ],
+  "runtimeSlideFormulaRefs": [
+    "F01", "F02", "F03", "F04", "F05", "F06", "F07", "F08", "F09",
+    "F10", "F11", "F12", "F13", "F14", "F15", "F16", "F18"
+  ],
+  "metadataOnlyFormulaRefs": ["F17"],
+  "formulaCoverageNote": "F17 is the academically accepted PREVIEW feature-transformation bridge. It remains in canonicalFormulaIds and source traceability, but is intentionally not injected into a runtime slide by the immutable approved candidate.",
+  "checks": [
+    {"id":"P15-01","status":"PASS","check":"Academic acceptance is PASS with 14/14 passes."},
+    {"id":"P15-02","status":"PASS","check":"The approved import path/version and package contract match the acceptance artifact."},
+    {"id":"P15-03","status":"PASS","check":"Current import bytes match blob 5c9cc383 at the academic acceptance commit."},
+    {"id":"P15-04","status":"PASS","check":"Durable records remain 18; the target occurs exactly once before and after at index 5."},
+    {"id":"P15-05","status":"PASS","check":"Previous and next lesson identities and order are unchanged."},
+    {"id":"P15-06","status":"PASS","check":"The target canonical hash changed and now exactly matches the immutable import record."},
+    {"id":"P15-07","status":"PASS","check":"All 17 non-target canonical hashes are unchanged."},
+    {"id":"P15-08","status":"PASS","check":"Duplicate lesson IDs remain zero."},
+    {"id":"P15-09","status":"PASS","check":"Runtime IDs are exactly MATH-VN-C01-L06-S01 through S22."},
+    {"id":"P15-10","status":"PASS","check":"SL01 through SL22 map one-to-one to the 22 runtime slides."},
+    {"id":"P15-11","status":"PASS","check":"Canonical formula coverage is exactly F01 through F18; F17 remains the accepted metadata-only PREVIEW boundary."},
+    {"id":"P15-12","status":"PASS","check":"Minimum 16, actual 22, no maximum and compression false are preserved."},
+    {"id":"P15-13","status":"PASS","check":"CASE_C01_L06_V1_LOCKED, the locked mean and X_raw[2,4] UGV-W03 extraction are preserved."},
+    {"id":"P15-14","status":"PASS","check":"No deferred scale/rank/SVD/PCA/anomaly/mode/diagnosis result was added; durable target equals the approved candidate byte-semantically."},
+    {"id":"P15-15","status":"PASS","check":"Written durable JSON reparses successfully."},
+    {"id":"P15-16","status":"PASS","check":"Runtime readers, manifest, Reader Pro, E235 and disabled E236/E237/E238 load state were not modified."},
+    {"id":"P15-17","status":"PASS","check":"No slideshow engine was created."}
+  ],
+  "diagnostics": [
+    {
+      "name": "initial slide-only formula union",
+      "result": "FALSE_NEGATIVE_RESOLVED",
+      "detail": "The first diagnostic incorrectly required every canonical formula to appear in slide formulaRefs. Registry review confirmed F17 is PREVIEW and the accepted candidate deliberately keeps it in canonical metadata without adding new runtime mathematics. The corrected gate verifies exact F01-F18 canonical coverage plus the expected metadata-only F17 classification."
+    }
+  ],
+  "runtimeProgress": {
+    "completedPasses": 1,
+    "totalPasses": 5,
+    "remainingPasses": 4
+  },
+  "nextTask": "THEORY_C01_L06_RUNTIME_SOURCE_REGISTRATION_PASS_16"
+}
