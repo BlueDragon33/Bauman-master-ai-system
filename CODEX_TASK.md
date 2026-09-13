@@ -1,7 +1,7 @@
 # CODEX_TASK
 
-Task: `THEORY_C01_L06_SELECTION_ROUTE_SYNC_PASS_18`
-Mode: selection-route-identity synchronization, deterministic verification before browser acceptance.
+Task: `THEORY_C01_L06_CHROMIUM_FINAL_ACCEPTANCE_PASS_19`
+Mode: current-main local HTTP and Chromium final runtime acceptance; no publication.
 
 ## Work handoff execution order — mandatory
 When this project is continued in ChatGPT Work, do not jump directly to implementation or publishing. Execute in this order:
@@ -62,54 +62,46 @@ The required order is therefore:
 
 ## Read only what is needed
 1. `CODEX_STATE.md`
-2. `subjects/math/THEORY_C01_L06_RUNTIME_PASS17.json`
-3. `subjects/math/assets/theory_skin/theory-slideshow-identity-E210.js`
-4. `subjects/math/assets/theory_skin/theory-presenter-route-lock-E243.js`
-5. `subjects/math/assets/theory_skin/theory-artifact-registry-E244.js`
-6. `subjects/math/assets/theory_skin/theory-content-source-E240.js`
-7. E241/E242 self-check contracts and the durable §1.6 record only as needed for synchronization evidence
-8. `subjects/math/THEORY_C01_L05_RUNTIME_PASS18.json` only as structural precedent.
+2. `subjects/math/THEORY_C01_L06_RUNTIME_PASS18.json`
+3. `subjects/math/THEORY_C01_L05_RUNTIME_PASS19.json` only as browser-suite precedent
+4. the active Math index/runtime load order and existing E129/E202/E210/E211/E240-E245 public self-check APIs
+5. the accepted L04-L06 durable/slideshow artifacts only as needed to compare counts and identities.
 
 ## Goal
-Verify and, only if required, repair the existing selection/route/identity chain so §1.6 opens the existing Reader/Reader Pro deck under one canonical lesson identity without stale fallback, ghost routes or cross-lesson state leakage.
+Revalidate the current committed §1.6 runtime in Chromium, together with §1.4/§1.5 regressions, and issue final runtime acceptance only when all browser gates pass.
 
 ## Preconditions
-- Pass 17 status is `PASS_17_MULTI_LESSON_READER_RICHNESS_STATIC_VERIFY_PASS`.
-- E244 exposes three lesson entries and twelve optional/lazy sources.
-- E241 explicitly supports L04/L05/L06 and E242 preserves richness counts `22/8/9/16`, `22/9/10/18`, `22/11/22/22`.
-- The durable §1.6 record exists once and retains `22/22`, `compression: false` and one-to-one mapping.
+- Pass 18 status is `PASS_18_SELECTION_ROUTE_SYNC_STATIC_VERIFY_PASS`.
+- Selection/route/identity synchronization is deterministic for §1.4–§1.6.
+- Current `main` contains the exact Pass 15–18 commits and the working tree is clean before browser execution.
+- Publication remains blocked until W2 and W3 also pass.
 
-## Selection, route and identity requirements
-- The selected §1.6 item must resolve to `MATH-VN-C01-vector_trong_khong_gian_-L06-vector-to-data-matrix-e140` and `§1.6 · Từ vector sang ma trận dữ liệu`.
-- E210 must prefer canonical ID fields and use the existing E244/E240 identity sources.
-- E243 must treat the active deck/Reader identity as authoritative, stamp the exact L06 ID/title and block fallback to a stale registered lesson.
-- E241 actions and E242 richness must resolve the same active lesson as the selection and deck.
-- Switching among §1.4, §1.5 and §1.6 must not leave stale controls, markers, caches, route IDs or titles on the active deck.
-- Use the existing public APIs, renderer, data sources and state store; do not create replacements.
-- Preserve all accepted academic artifacts and Pass 15–17 runtime behavior.
+## Chromium requirements
+- Serve the repository over local HTTP; do not test from `file://` and do not publish.
+- Test §1.4, §1.5 and §1.6 from the active lesson selection into the existing Reader/Reader Pro presentation flow.
+- For every lesson verify 22 visible runtime slides, first/last navigation, exact route/deck/chip/actions/richness identity and required richness markers with no stale cross-lesson residue.
+- For §1.6 verify the eight-area Reference view, twelve-section Full View, separate E235 formula modal and accepted-field richness behavior.
+- Run desktop plus narrow responsive smoke and confirm primary controls remain usable.
+- Capture console errors, page errors and failed local HTTP/network requests.
+- Verify E235 is present and E236/E237/E238 are absent.
 
-## Deterministic verification
-Create `subjects/math/THEORY_C01_L06_RUNTIME_PASS18.json` with checks covering:
-- E210/E243 syntax and release identities;
-- exact canonical ID/title resolution for L04, L05 and L06;
-- the durable-record selection identity and E244/E240 resolver agreement;
-- E210 deck/chip identity stamping and E243 authoritative route behavior;
-- E241/E242 active-lesson agreement and absence of stale fallback/ghost identity;
-- unchanged Pass 17 richness counts and source/runtime `22/22` mapping;
-- no change to approved artifacts, E202, E211, E235 or disabled E236/E237/E238 load state.
+## Browser acceptance report
+Create `subjects/math/THEORY_C01_L06_RUNTIME_PASS19.json` containing:
+- exact tested commit, local URL, browser engine and execution time;
+- per-lesson reader count, identity, richness, slide navigation and modal evidence;
+- §1.6 desktop and narrow responsive smoke evidence;
+- console/page/local-HTTP error arrays;
+- final protected-runtime state and explicit no-new-engine/no-compression/no-prohibited-inference assertions.
 
 ## Runtime protection
-Do not modify during Pass 18 unless a verified synchronization defect requires the narrowest possible repair:
+Do not modify during Pass 19 unless browser evidence exposes a defect. If it does, stop the gate, make the narrowest repair and rerun the entire affected browser matrix before acceptance. Preserve:
 - durable theory content;
 - accepted Reference, Full View, Normalization or Slideshow artifacts;
-- E241/E242 richness behavior;
-- `subjects/math/index.html`;
-- manifest;
-- the E202 slideshow engine or E211 Reader Pro base;
+- E202/E211 and the established reader/slideshow architecture;
 - E235.
 
 Keep E236, E237 and E238 disabled.
 
 ## Acceptance
-Pass only when selection, route and canonical identity synchronization is deterministic and clean for §1.4–§1.6.
-Then set status `PASS_18_SELECTION_ROUTE_SYNC_STATIC_VERIFY_PASS` and advance to `THEORY_C01_L06_CHROMIUM_FINAL_ACCEPTANCE_PASS_19`.
+Pass only when the full Chromium suite is clean and §1.6 is browser accepted with §1.4/§1.5 regressions intact.
+Then set status `ACADEMIC_14_OF_14_PASS_RUNTIME_5_OF_5_BROWSER_ACCEPTED`, advance to `WHOLE_SYSTEM_COMPREHENSIVE_AUDIT_W2`, and keep publication blocked until W2/W3 PASS.

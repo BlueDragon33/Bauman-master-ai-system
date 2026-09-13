@@ -1,8 +1,8 @@
 # CODEX_STATE
 
-Current task: `THEORY_C01_L06_SELECTION_ROUTE_SYNC_PASS_18`
+Current task: `THEORY_C01_L06_CHROMIUM_FINAL_ACCEPTANCE_PASS_19`
 
-Status: `PASS_17_MULTI_LESSON_READER_RICHNESS_STATIC_VERIFY_PASS`
+Status: `PASS_18_SELECTION_ROUTE_SYNC_STATIC_VERIFY_PASS`
 
 Date: 2026-09-13
 Branch: `main`
@@ -83,20 +83,21 @@ Following the accepted §1.5 runtime pattern, §1.6 should use five runtime pass
 1. Pass 15 · Durable merge + static verification — PASS (`subjects/math/THEORY_C01_L06_RUNTIME_PASS15.json`).
 2. Pass 16 · Runtime source registration — PASS (`subjects/math/THEORY_C01_L06_RUNTIME_PASS16.json`).
 3. Pass 17 · Multi-lesson Reader/Reader Pro richness integration and static verification — PASS (`subjects/math/THEORY_C01_L06_RUNTIME_PASS17.json`).
-4. Pass 18 · Selection/route/identity synchronization verification.
+4. Pass 18 · Selection/route/identity synchronization verification — PASS (`subjects/math/THEORY_C01_L06_RUNTIME_PASS18.json`).
 5. Pass 19 · Chromium/browser revalidation and final runtime acceptance.
 
-Runtime progress: `3/5` complete.
+Runtime progress: `4/5` complete.
 
 ## Current task requirements
-`THEORY_C01_L06_SELECTION_ROUTE_SYNC_PASS_18`
+`THEORY_C01_L06_CHROMIUM_FINAL_ACCEPTANCE_PASS_19`
 
-Pass 18 must:
-- read the Pass 17 report and the existing selection, canonical identity and presenter route bridges;
-- verify §1.6 selection resolves to the durable L06 record and opens the existing Reader/Reader Pro deck with the exact canonical lesson ID/title;
-- verify E210, E243, E244, E241 and E242 agree on the active L06 identity, without stale fallback or cross-lesson leakage;
-- preserve the accepted §1.4/§1.5 identity behavior and all Pass 17 richness counts;
-- change route/identity code only if deterministic verification exposes a defect;
-- verify §1.6 remains `22/22`, one-to-one and `compression: false`, with E235 unchanged and E236/E237/E238 disabled;
-- write a Pass 18 synchronization report;
-- advance only to Chromium/browser Pass 19 after all selection/route/identity checks pass.
+Pass 19 must:
+- read the Pass 18 report and the prior §1.5 Pass 19 browser precedent;
+- serve the current repository build over local HTTP and test with Chromium;
+- exercise §1.4, §1.5 and §1.6 selection, Reader/Reader Pro, slide 1 through slide 22, Reference, Full View and formula modal behavior;
+- verify exact deck/chip/action/richness identity synchronization and no stale markers or routing ghosts while switching lessons;
+- verify console errors, page errors and local HTTP/network errors are empty for the tested flows;
+- include desktop and narrow responsive smoke for §1.6;
+- verify E235 remains active and unchanged while E236/E237/E238 remain disabled;
+- write the final Pass 19 browser acceptance report and mark §1.6 runtime `5/5` only when every gate passes;
+- proceed to W2 whole-system work only after final runtime acceptance; do not publish.
