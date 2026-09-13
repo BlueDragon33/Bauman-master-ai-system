@@ -12,6 +12,20 @@ Branch: `main`
 - Runtime integration may now begin from the immutable approved import candidate.
 - Prefer one bounded runtime pass at a time with explicit static/browser gates.
 - Keep non-target lessons unchanged.
+- When handed to ChatGPT Work, the mandatory project order is: GitHub reconciliation first, then §1.6 runtime completion, then whole-system comprehensive work, then whole-system QA, and only then ChatGPT Site publication.
+- Work must not publish an intermediate/debug build or skip directly from the current state to publication.
+
+## Work handoff checkpoint policy
+Before Work changes code, it must reconcile GitHub `main` and actual accepted artifacts/CI with this recorded state. If GitHub evidence disagrees with this file, record and resolve the discrepancy first.
+
+After reconciliation:
+1. finish §1.6 runtime Pass 15–19 with gate-by-gate verification;
+2. perform a repository/system-wide architecture, integration, UI/runtime-contract and regression review;
+3. repair and clean the system comprehensively while preserving accepted contracts;
+4. run whole-system static/integration/browser QA;
+5. publish to ChatGPT Site only after the whole-system gate passes, then verify the live result.
+
+Publishing remains blocked until the comprehensive system QA gate is PASS.
 
 ## Protected constraints
 - Minimum 16 slides, no maximum; accepted source/runtime count is `22/22`.
