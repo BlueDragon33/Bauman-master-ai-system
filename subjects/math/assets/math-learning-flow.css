@@ -1,0 +1,57 @@
+/* Bauman Math Learning Flow V1
+ * Reader orchestration UI only. No academic source writes or route ownership.
+ */
+:root{
+  --mlf-panel:rgba(5,20,38,.91);
+  --mlf-panel-2:rgba(8,29,51,.78);
+  --mlf-line:rgba(87,164,222,.18);
+  --mlf-cyan:#4fd7ff;
+  --mlf-gold:#f3c767;
+  --mlf-green:#42d69e;
+  --mlf-text:#eaf6ff;
+  --mlf-muted:#7894ad;
+}
+#mathLearningFlow{display:none;margin:0 auto 12px;max-width:1600px;}
+body.math-learning-flow-active:not(.e129-theory-storage):not(.e129-presenting) #mathLearningFlow{display:grid;gap:9px;}
+.math-lf-shell{
+  border:1px solid var(--mlf-line);border-radius:17px;overflow:hidden;
+  background:linear-gradient(145deg,rgba(4,17,33,.95),rgba(7,29,53,.84));
+  box-shadow:0 16px 50px rgba(0,0,0,.16);
+}
+.math-lf-head{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:14px;align-items:center;padding:12px 14px;border-bottom:1px solid rgba(98,168,222,.12);}
+.math-lf-title{display:flex;align-items:center;gap:10px;min-width:0;}
+.math-lf-badge{display:grid;place-items:center;width:34px;height:34px;border-radius:11px;flex:0 0 auto;background:linear-gradient(145deg,rgba(41,170,255,.16),rgba(57,87,222,.10));border:1px solid rgba(79,202,255,.2);color:#70ddff;font-family:"Cambria Math",serif;font-size:18px;}
+.math-lf-title-copy{min-width:0}.math-lf-title-copy small{display:block;color:#6f8ba4;font-size:8px;font-weight:900;letter-spacing:.14em;text-transform:uppercase;}.math-lf-title-copy h3{margin:3px 0 0;color:#eef8ff;font-size:14px;line-height:1.25;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}.math-lf-head-actions{display:flex;gap:6px;align-items:center;}
+.math-lf-head-actions button,.math-lf-mini-btn{border:1px solid rgba(95,165,220,.18);background:rgba(9,31,52,.72);color:#a9c0d3;border-radius:9px;padding:7px 9px;font-size:9px;font-weight:900;cursor:pointer;white-space:nowrap;}.math-lf-head-actions button:hover,.math-lf-mini-btn:hover{color:#fff;border-color:rgba(76,190,255,.4);background:rgba(12,62,98,.65)}.math-lf-head-actions button.active{color:#ffd978;border-color:rgba(243,199,103,.34);background:rgba(145,100,20,.14)}
+.math-lf-progress{height:3px;background:rgba(89,136,175,.12);}.math-lf-progress i{display:block;height:100%;width:0;background:linear-gradient(90deg,#27aefb,#59e6ff,#f0c45f);box-shadow:0 0 12px rgba(73,203,255,.35);transition:width .2s ease;}
+.math-lf-steps{display:grid;grid-template-columns:repeat(9,minmax(104px,1fr));gap:5px;padding:9px;overflow:auto;scrollbar-width:thin;}
+.math-lf-step{position:relative;min-width:104px;display:grid;grid-template-columns:25px minmax(0,1fr);gap:7px;align-items:center;text-align:left;padding:7px 8px;border:1px solid rgba(82,148,200,.12);border-radius:10px;background:rgba(7,25,43,.54);color:#91a8bc;cursor:pointer;transition:.15s ease;}
+.math-lf-step:hover{border-color:rgba(69,185,255,.32);background:rgba(14,59,94,.45);transform:translateY(-1px)}
+.math-lf-step.active{border-color:rgba(74,194,255,.42);background:linear-gradient(135deg,rgba(14,91,150,.54),rgba(9,45,79,.6));box-shadow:0 7px 22px rgba(0,104,188,.11);}
+.math-lf-step.visited::after{content:"";position:absolute;right:6px;top:6px;width:5px;height:5px;border-radius:50%;background:var(--mlf-green);box-shadow:0 0 8px rgba(66,214,158,.45)}
+.math-lf-step.unavailable{opacity:.45;filter:saturate(.55)}
+.math-lf-no{display:grid;place-items:center;width:25px;height:25px;border-radius:8px;background:rgba(62,166,231,.08);border:1px solid rgba(62,166,231,.14);color:#62caff;font-size:9px;font-weight:950}.math-lf-step.active .math-lf-no{color:#061525;background:linear-gradient(145deg,#6ddcff,#28aef0)}
+.math-lf-step b{display:block;color:#c6d8e6;font-size:9.5px;line-height:1.1}.math-lf-step.active b{color:#f2fbff}.math-lf-step small{display:block;margin-top:3px;color:#5f7c94;font-size:7.5px;line-height:1.15}.math-lf-step.active small{color:#8fbed9}
+
+.math-lf-context{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:10px;padding:9px 12px;border-top:1px solid rgba(92,157,208,.10);background:rgba(3,14,28,.32)}
+.math-lf-context-left{display:flex;align-items:center;gap:8px;min-width:0;color:#6e899f;font-size:8.5px}.math-lf-context-left b{color:#9fb8cc;white-space:nowrap}.math-lf-context-left span{white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.math-lf-context-right{display:flex;gap:5px}
+
+.math-lf-notes{display:none;grid-template-columns:minmax(0,1fr) 250px;gap:10px;padding:10px;border-top:1px solid rgba(93,162,216,.12);background:rgba(3,14,27,.55)}.math-lf-notes.open{display:grid}.math-lf-note-box{display:grid;gap:7px}.math-lf-note-box label{font-size:8px;font-weight:900;letter-spacing:.09em;text-transform:uppercase;color:#7894ac}.math-lf-note-box textarea{width:100%;min-height:96px;resize:vertical;box-sizing:border-box;border:1px solid rgba(91,162,220,.16);background:#06172a;color:#dcecff;border-radius:11px;padding:10px;outline:none;font:500 10.5px/1.55 Inter,system-ui,sans-serif}.math-lf-note-box textarea:focus{border-color:rgba(72,191,255,.5);box-shadow:0 0 0 3px rgba(54,178,255,.07)}.math-lf-note-side{padding:10px;border:1px solid rgba(89,155,209,.13);border-radius:11px;background:rgba(8,31,52,.55)}.math-lf-note-side b{display:block;color:#dfeeff;font-size:10px}.math-lf-note-side p{margin:5px 0 0;color:#6f8ba2;font-size:8.5px;line-height:1.5}.math-lf-note-status{margin-top:8px;color:#5acfa5!important;font-weight:800}
+
+/* Reader composition: preserve E129 content, improve rhythm only. */
+body.math-learning-flow-active:not(.e129-presenting) [data-current-lesson]{scroll-margin-top:112px;}
+body.math-learning-flow-active:not(.e129-presenting) .e129-slide{scroll-margin-top:116px;transition:border-color .18s ease,background .18s ease,transform .18s ease;}
+body.math-learning-flow-active:not(.e129-presenting) .e129-slide.math-lf-highlight{border-color:rgba(66,194,255,.42)!important;background:linear-gradient(145deg,rgba(10,45,75,.54),rgba(3,20,37,.7))!important;box-shadow:0 0 0 1px rgba(70,192,255,.08),0 15px 44px rgba(0,0,0,.16);transform:translateY(-1px)}
+
+/* Sticky study controller */
+.math-lf-studybar{position:fixed;z-index:64;left:50%;bottom:11px;transform:translateX(-50%);display:none;grid-template-columns:auto minmax(180px,360px) auto;gap:6px;align-items:center;width:min(760px,calc(100vw - 28px));padding:6px;border:1px solid rgba(91,167,225,.19);border-radius:14px;background:rgba(4,18,34,.91);backdrop-filter:blur(16px) saturate(130%);box-shadow:0 18px 55px rgba(0,0,0,.34);}
+body.math-learning-flow-active:not(.e129-presenting):not(.e129-theory-storage) .math-lf-studybar{display:grid}.math-lf-studybar button{height:34px;border:1px solid rgba(91,157,208,.15);border-radius:9px;background:rgba(10,32,53,.68);color:#a7bfd2;padding:0 10px;font-size:9px;font-weight:900;cursor:pointer}.math-lf-studybar button:hover{color:#fff;border-color:rgba(71,183,251,.4)}.math-lf-studybar button.primary{background:linear-gradient(135deg,#0b6db9,#1399df);border-color:rgba(87,198,255,.42);color:white}.math-lf-study-current{min-width:0;text-align:center;padding:0 8px}.math-lf-study-current small{display:block;color:#627f98;font-size:7.5px;font-weight:900;letter-spacing:.1em;text-transform:uppercase}.math-lf-study-current b{display:block;margin-top:2px;color:#dfedf7;font-size:10px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.math-lf-study-buttons{display:flex;gap:5px}
+
+/* Focus mode: reduce dashboard chrome while keeping current lesson + flow. */
+body.math-ws-focus #mathPremiumDashboard,body.math-ws-focus #mathV2Dashboard{display:none!important}body.math-ws-focus #mathLearningFlow{max-width:1180px}body.math-ws-focus .math-lf-studybar{width:min(680px,calc(100vw - 24px))}
+
+@media(max-width:1180px){.math-lf-steps{grid-template-columns:repeat(9,118px)}.math-lf-notes{grid-template-columns:1fr}.math-lf-note-side{display:none}}
+@media(max-width:760px){
+  #mathLearningFlow{margin-bottom:8px}.math-lf-head{grid-template-columns:1fr;padding:10px}.math-lf-head-actions{overflow:auto}.math-lf-steps{padding:7px;grid-template-columns:repeat(9,110px)}.math-lf-context{grid-template-columns:1fr}.math-lf-context-right{overflow:auto}.math-lf-studybar{left:7px;right:7px;bottom:7px;transform:none;width:auto;grid-template-columns:auto minmax(0,1fr) auto}.math-lf-studybar .math-lf-study-buttons button span{display:none}.math-lf-studybar button{padding:0 8px}.math-lf-title-copy h3{font-size:12px}.math-lf-context-left{display:none}
+}
+@media(max-width:480px){.math-lf-studybar{grid-template-columns:auto 1fr auto}.math-lf-study-current small{display:none}.math-lf-study-current b{font-size:9px}.math-lf-head-actions button{padding:6px 7px}.math-lf-step{min-width:104px}}
