@@ -1,0 +1,125 @@
+{
+  "reportVersion": "WHOLE_SYSTEM_W2_REPORT_V1",
+  "gate": "W2",
+  "status": "PASS",
+  "completedAt": "2026-09-14T19:01:58+07:00",
+  "branch": "main",
+  "w1AcceptanceCommit": "ead47ba57a16236343c2953088457e15957ccce7",
+  "githubReconciliation": {
+    "initialMain": "ead47ba57a16236343c2953088457e15957ccce7",
+    "concurrentMainDetected": "766102e",
+    "concurrentCommitsIntegrated": 32,
+    "secondConcurrentMainDetected": "3dff93a",
+    "additionalConcurrentCommitsIntegrated": 9,
+    "totalConcurrentCommitsIntegrated": 41,
+    "implementationCommit": "41daa39a9fcd99c8a887bb23912ca87e2c69a392",
+    "result": "The W2 change and acceptance checkpoint were rebased onto the current GitHub main without overwriting concurrent device-access or Math work. Active runtime changes were reverified; nine newly added but unregistered Math enhancement assets were explicitly quarantined as inactive candidates."
+  },
+  "scope": {
+    "hub": true,
+    "controlService": true,
+    "subjects": ["ai", "foundation", "math", "programming", "research", "russian", "signal", "systems"],
+    "areas": [
+      "entry points and manifests",
+      "Hub-to-subject task and identity handshake",
+      "subject-to-Hub progress handshake",
+      "navigation and route protection",
+      "session and local account state",
+      "device access and offline grace",
+      "responsive behavior",
+      "runtime packaging and asset loading",
+      "CI reproducibility",
+      "accepted Math academic/runtime regressions"
+    ]
+  },
+  "findings": [
+    {
+      "severity": "MAJOR",
+      "id": "W2-BRIDGE-CONTRACT",
+      "status": "RESOLVED",
+      "summary": "Hub and subject apps used inconsistent message types, wildcard targets, incomplete trust checks and a query-task route that subjects did not hydrate.",
+      "resolution": "Added the shared BAUMAN_SUBJECT_BRIDGE_V1 contract, canonical/legacy compatibility, explicit target origins, source/origin/subject validation, query hydration and normalized progress ingestion."
+    },
+    {
+      "severity": "MAJOR",
+      "id": "W2-LOCAL-ACCOUNT-DEFAULT",
+      "status": "RESOLVED",
+      "summary": "The public Hub shipped a prefilled default administrator credential and stored local passwords as plaintext.",
+      "resolution": "Replaced the default with first-use administrator setup, salted PBKDF2-SHA-256 records with stored iteration metadata and migration of legacy local accounts after a successful login."
+    },
+    {
+      "severity": "MAJOR",
+      "id": "W2-CI-BRANCH-DRIFT",
+      "status": "RESOLVED",
+      "summary": "The Russian UI workflow still targeted a temporary branch instead of main.",
+      "resolution": "Aligned the workflow trigger to main."
+    },
+    {
+      "severity": "MAJOR",
+      "id": "W2-CONTROL-DEPENDENCY-LOCK",
+      "status": "RESOLVED",
+      "summary": "The control service had no committed dependency lock and workflows used non-deterministic installation.",
+      "resolution": "Committed package-lock.json and changed control-service CI installs to npm ci."
+    },
+    {
+      "severity": "MINOR",
+      "id": "W2-MATH-LINK-VALIDATOR",
+      "status": "RESOLVED",
+      "summary": "The Math link validator treated manifest data-file strings as objects and could not validate the active package.",
+      "resolution": "Updated path resolution for the active data contract and verified every listed file."
+    },
+    {
+      "severity": "NON-BLOCKING",
+      "id": "W2-MATH-LEGACY-RUNTIME",
+      "status": "QUARANTINED",
+      "summary": "An older Math core, planning bridge and E236-E238 audit scripts remain in the repository but are not active runtime dependencies.",
+      "resolution": "Documented the inactive files in subjects/math/LEGACY_QUARANTINE.md and added static assertions that they are not loaded."
+    },
+    {
+      "severity": "NON-BLOCKING",
+      "id": "W2-PWA-OBSERVATION",
+      "status": "ACCEPTED_ARCHITECTURE",
+      "summary": "The current application does not register a service worker.",
+      "resolution": "No new PWA architecture was invented; the existing device-session offline-grace behavior was retained and browser-verified."
+    },
+    {
+      "severity": "NON-BLOCKING",
+      "id": "W2-MATH-UNREGISTERED-ENHANCEMENTS",
+      "status": "QUARANTINED",
+      "summary": "Nine Math enhancement assets added concurrently through 3dff93a were present on main but not referenced by the active Math entry point.",
+      "resolution": "Recorded them as inactive candidates in subjects/math/LEGACY_QUARANTINE.md and made the whole-system validator enforce that they remain outside the accepted runtime until separately registered and browser-verified."
+    },
+    {
+      "severity": "NON-BLOCKING",
+      "id": "W2-REMOTE-BRANCH-INVENTORY",
+      "status": "OUT_OF_RUNTIME",
+      "summary": "GitHub retains merged historical branches and several unmerged work branches, including fix/control-registry-automation.",
+      "resolution": "main remains the only runtime authority. Remote branches were not deleted because deletion is not required for runtime correctness and could discard independent work."
+    }
+  ],
+  "verification": [
+    {"name": "whole-system static integration gate", "result": "PASS", "evidence": "SYSTEM_INTEGRATION_VALIDATION_PASS; 8 subjects; 225 checks after both concurrent-main integrations"},
+    {"name": "whole-system Chromium acceptance", "result": "PASS", "evidence": "8/8 routes; canonical identity/task handshake; forged messages rejected; legitimate progress accepted; tablet/mobile no horizontal overflow; zero console/page/request/HTTP errors"},
+    {"name": "academic and device browser regression", "result": "PASS", "evidence": "ACADEMIC_BROWSER_ACCEPTANCE_13E_13F_PASS; 16 checks; explicit apply and rollback; stale rollback guard; offline grace; 390px responsive"},
+    {"name": "Math active data and link package", "result": "PASS", "evidence": "validate-data.js and validate-links.js accepted all active manifest files"},
+    {"name": "Math legacy stage gate", "result": "QUARANTINED_NON_BLOCKING", "evidence": "MATH_LEGACY_STAGE_GATE_QUARANTINED because assets/core-subject.js is not loaded"},
+    {"name": "control service gate", "result": "PASS", "evidence": "TypeScript check, Wrangler dry build and 12/12 Node tests"},
+    {"name": "Cloudflare preview package", "result": "PASS", "evidence": "manifest validation, packaging of all subject directories including shared, runtime dry build and control dry build"},
+    {"name": "accepted academic/runtime baseline", "result": "PASS", "evidence": "Academic, prerequisite, P00/P04/P06-P11/J01, 13B/13C/13D/13F and device-gate regression validators passed"}
+  ],
+  "protectedContracts": {
+    "sections1_4_1_5_1_6Preserved": true,
+    "sourceSlides": 22,
+    "runtimeSlides": 22,
+    "oneToOne": true,
+    "compression": false,
+    "newSlideshowEngine": false,
+    "e235Unchanged": true,
+    "e236E237E238Disabled": true,
+    "lockedCase": "UGV_TELEMETRY_8X6 / CASE_C01_L06_V1_LOCKED",
+    "inventedDeferredNumerics": false
+  },
+  "openCounts": {"BLOCKER": 0, "MAJOR": 0, "MINOR": 0, "NON_BLOCKING": 2},
+  "publication": {"performed": false, "blockedUntil": "W3 whole-system QA PASS"},
+  "nextGate": "WHOLE_SYSTEM_QA_W3"
+}

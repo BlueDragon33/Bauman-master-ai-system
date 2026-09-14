@@ -103,6 +103,9 @@ const mathIndex=read('subjects/math/index.html');
 check(!/theory-formula-mini-lesson-E236|theory-formula-academic-E237|theory-formula-coverage-audit-E238/.test(mathIndex),'E236/E237/E238 remain disabled');
 check(!mathIndex.includes('assets/core-subject.js')&&!mathIndex.includes('assets/planning-bridge.js'),'Legacy Math core and planning bridge remain outside the active Reader runtime');
 check(exists('subjects/math/LEGACY_QUARANTINE.md'),'Inactive Math compatibility runtime is explicitly quarantined');
+for(const candidate of ['math-activity-studio','math-formula-library','math-integration-sync','math-regression-gate','math-simulation-source']){
+  check(!mathIndex.includes(`assets/${candidate}.js`)&&!mathIndex.includes(`assets/${candidate}.css`),`Unverified Math enhancement ${candidate} remains outside the accepted runtime`);
+}
 
 if(failures.length){
   console.error('SYSTEM_INTEGRATION_VALIDATION_FAIL');

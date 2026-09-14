@@ -1,8 +1,8 @@
 # CODEX_STATE
 
-Current task: `WHOLE_SYSTEM_COMPREHENSIVE_AUDIT_W2`
+Current task: `WHOLE_SYSTEM_QA_W3`
 
-Status: `ACADEMIC_14_OF_14_PASS_RUNTIME_5_OF_5_BROWSER_ACCEPTED`
+Status: `WHOLE_SYSTEM_W2_PASS_W3_ACTIVE`
 
 Date: 2026-09-14
 Branch: `main`
@@ -10,7 +10,8 @@ Branch: `main`
 ## Execution policy
 - Academic work for §1.6 is complete and accepted.
 - Runtime integration and Chromium acceptance for §1.6 are complete.
-- W2 whole-system work is active; publication remains blocked until W2 and W3 pass.
+- W2 whole-system audit and repair is accepted at implementation commit `41daa39a9fcd99c8a887bb23912ca87e2c69a392` (`WHOLE_SYSTEM_W2_REPORT.json`).
+- W3 whole-system QA is active; publication remains blocked until W3 passes.
 - Keep non-target lessons unchanged.
 - When handed to ChatGPT Work, the mandatory project order is: GitHub reconciliation first, then §1.6 runtime completion, then whole-system comprehensive work, then whole-system QA, and only then ChatGPT Site publication.
 - Work must not publish an intermediate/debug build or skip directly from the current state to publication.
@@ -20,9 +21,9 @@ Before Work changes code, it must reconcile GitHub `main` and actual accepted ar
 
 After reconciliation:
 1. finish §1.6 runtime Pass 15–19 with gate-by-gate verification;
-2. perform a repository/system-wide architecture, integration, UI/runtime-contract and regression review;
-3. repair and clean the system comprehensively while preserving accepted contracts;
-4. run whole-system static/integration/browser QA;
+2. perform a repository/system-wide architecture, integration, UI/runtime-contract and regression review — PASS;
+3. repair and clean the system comprehensively while preserving accepted contracts — PASS;
+4. run whole-system static/integration/browser QA — ACTIVE;
 5. publish to ChatGPT Site only after the whole-system gate passes, then verify the live result.
 
 Publishing remains blocked until the comprehensive system QA gate is PASS.
@@ -89,6 +90,6 @@ Following the accepted §1.5 runtime pattern, §1.6 should use five runtime pass
 Runtime progress: `5/5` complete; browser accepted at commit `975b12acd8e4f3795b7318981ad83b8c3c6be6d6`.
 
 ## Current task requirements
-`WHOLE_SYSTEM_COMPREHENSIVE_AUDIT_W2`
+`WHOLE_SYSTEM_QA_W3`
 
-W2 must audit and improve the active Bauman system end-to-end: Master Hub, subject apps, Math/Russian contracts, navigation, identity, state/progress handshake, responsive/offline/runtime packaging, asset/error/route behavior, and relevant administration/device/access flows. Preserve all accepted §1.4–§1.6 contracts, remove or quarantine stale/duplicate paths only when safe, verify every repair, write a W2 report, and do not publish.
+W3 must execute the strongest available whole-system static, schema, build/package, integration, route, Chromium, responsive, console/page/network, Hub↔subject handshake and §1.4–§1.6 regression tests. Every result must be classified as BLOCKER, MAJOR, MINOR or NON-BLOCKING in `WHOLE_SYSTEM_W3_QA_REPORT.json`. Do not publish while any BLOCKER or main-function failure remains.
