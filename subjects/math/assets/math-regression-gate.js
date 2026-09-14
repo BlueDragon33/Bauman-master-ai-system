@@ -1,9 +1,9 @@
-/* Bauman Math Regression Gate V2
+/* Bauman Math Regression Gate V3
  * Runtime/static-DOM gate only. It does NOT claim browser/Chromium QA or CI.
  */
 (function mathRegressionGate(global){
   'use strict';
-  const RELEASE='MATH_REGRESSION_GATE_V2';
+  const RELEASE='MATH_REGRESSION_GATE_V3';
   const $=(s,r=document)=>r.querySelector(s);
   const $$=(s,r=document)=>Array.from(r.querySelectorAll(s));
   const esc=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
@@ -15,8 +15,8 @@
     if(!api)return row(`module-${name}`,name,'fail','Global API chưa được nạp.');
     try{
       const r=api.selfCheck?.();
-      const bad=r&&((r.academicWrites===true)||(r.newRouteEngine===true)||(r.routeEngineReplacement===true)||(r.mutationObserver===true)||(r.generatedQuestions===true)||(r.gradingAuthority===true));
-      return row(`module-${name}`,name,bad?'fail':'pass',r?Object.entries(r).filter(([k,v])=>['release','ready','loaded','academicWrites','mutationObserver','newRouteEngine','routeEngineReplacement','generatedQuestions','gradingAuthority','localOnly','localConfidenceOnly'].includes(k)).map(([k,v])=>`${k}=${v}`).join(' · '):'API có mặt');
+      const bad=r&&((r.academicWrites===true)||(r.newRouteEngine===true)||(r.routeEngineReplacement===true)||(r.mutationObserver===true)||(r.generatedQuestions===true)||(r.gradingAuthority===true)||(r.correctnessInference===true));
+      return row(`module-${name}`,name,bad?'fail':'pass',r?Object.entries(r).filter(([k,v])=>['release','ready','loaded','academicWrites','mutationObserver','newRouteEngine','routeEngineReplacement','generatedQuestions','gradingAuthority','correctnessInference','localOnly','localConfidenceOnly'].includes(k)).map(([k,v])=>`${k}=${v}`).join(' · '):'API có mặt');
     }catch(e){return row(`module-${name}`,name,'warn',String(e?.message||e))}
   }
   function currentSlideGate(){const slides=$$('.e129-slide').filter(x=>x.offsetParent!==null);if(!slides.length)return row('slides','Reader slide contract','warn','Không ở màn theory hoặc chưa có slide hiển thị.');const ids=slides.map(x=>x.dataset.slideId).filter(Boolean),unique=new Set(ids);if(ids.length&&unique.size!==ids.length)return row('slides','Reader slide contract','fail',`Có slideId trùng: ${ids.length} id / ${unique.size} unique.`);return row('slides','Reader slide contract',slides.length>=16?'pass':'warn',`${slides.length} slide đang hiển thị${slides.length<16?' · dưới policy 16 của lesson đầy đủ':''}.`)}
@@ -36,6 +36,7 @@
     rows.push(moduleCheck('Study Library',global.BAUMAN_MATH_STUDY_LIBRARY));
     rows.push(moduleCheck('Activity Studio',global.BAUMAN_MATH_ACTIVITY_STUDIO));
     rows.push(moduleCheck('Activity Mastery',global.BAUMAN_MATH_ACTIVITY_MASTERY));
+    rows.push(moduleCheck('Study Command Center',global.BAUMAN_MATH_STUDY_COMMAND_CENTER));
     rows.push(moduleCheck('Formula Library',global.BAUMAN_MATH_FORMULA_LIBRARY));
     rows.push(moduleCheck('Formula Context',global.BAUMAN_MATH_FORMULA_CONTEXT));
     rows.push(moduleCheck('Simulation Source',global.BAUMAN_MATH_SIMULATION_SOURCE));
@@ -45,6 +46,7 @@
     const fl=global.BAUMAN_MATH_FORMULA_LIBRARY?.selfCheck?.();if(fl)rows.push(row('formula-source','Formula Library source policy',fl.formulaContentSampleRecordUsed?'fail':fl.total?'pass':'warn',`source=${fl.source} · total=${fl.total} · sampleRecordUsed=${fl.formulaContentSampleRecordUsed}`));
     const pd=global.BAUMAN_MATH_PROFESSOR_DRILL?.selfCheck?.();if(pd)rows.push(row('professor-source','Professor Drill source policy',(pd.sampleRecordsRendered||pd.generatedQuestions||pd.gradingAuthority)?'fail':'pass',`source=${pd.source} · items=${pd.items} · generatedQuestions=${pd.generatedQuestions} · gradingAuthority=${pd.gradingAuthority}`));
     const am=global.BAUMAN_MATH_ACTIVITY_MASTERY?.selfCheck?.();if(am)rows.push(row('mastery-policy','Activity mastery local-state policy',(am.academicWrites||am.gradingAuthority)?'fail':'pass',`cards=${am.cards} · mastered=${am.mastered} · localOnly=${am.localOnly} · gradingAuthority=${am.gradingAuthority}`));
+    const scc=global.BAUMAN_MATH_STUDY_COMMAND_CENTER?.selfCheck?.();if(scc)rows.push(row('scc-policy','Study Command Center local-state policy',(scc.academicWrites||scc.gradingAuthority||scc.generatedQuestions||scc.correctnessInference||!scc.localOnly)?'fail':'pass',`masteryItems=${scc.masteryItems} · reviewQueue=${scc.reviewQueue} · historyEvents=${scc.historyEvents} · localOnly=${scc.localOnly} · correctnessInference=${scc.correctnessInference}`));
     rows.push(row('browser','Browser/Chromium QA','warn','Chưa chạy trong gate này; phải kiểm bằng browser/Work trước publish.'));
     const summary={total:rows.length,pass:rows.filter(x=>x.state==='pass').length,warn:rows.filter(x=>x.state==='warn').length,fail:rows.filter(x=>x.state==='fail').length};
     report={release:RELEASE,checkedAt:new Date().toISOString(),summary,rows,browserQA:false,ci:false,publishAllowed:false};render();return report;
