@@ -103,8 +103,14 @@ const mathIndex=read('subjects/math/index.html');
 check(!/theory-formula-mini-lesson-E236|theory-formula-academic-E237|theory-formula-coverage-audit-E238/.test(mathIndex),'E236/E237/E238 remain disabled');
 check(!mathIndex.includes('assets/core-subject.js')&&!mathIndex.includes('assets/planning-bridge.js'),'Legacy Math core and planning bridge remain outside the active Reader runtime');
 check(exists('subjects/math/LEGACY_QUARANTINE.md'),'Inactive Math compatibility runtime is explicitly quarantined');
+for(const candidate of ['math-activity-studio','math-formula-library','math-regression-gate','math-simulation-source']){
+  check(mathIndex.includes(`assets/${candidate}.js`)&&mathIndex.includes(`assets/${candidate}.css`),`Verified Math enhancement ${candidate} loads its paired runtime assets`);
+}
+check(mathIndex.includes('assets/math-integration-sync.js'),'Verified Math integration synchronizer is loaded');
 for(const candidate of ['math-activity-studio','math-formula-library','math-integration-sync','math-regression-gate','math-simulation-source']){
-  check(!mathIndex.includes(`assets/${candidate}.js`)&&!mathIndex.includes(`assets/${candidate}.css`),`Unverified Math enhancement ${candidate} remains outside the accepted runtime`);
+  const source=read(`subjects/math/assets/${candidate}.js`);
+  check(source.includes('academicWrites:false'),`${candidate}: declares read-only academic behavior`);
+  check(!/newSlideshowEngineCreated\s*:\s*true|newRouteEngine\s*:\s*true|routeEngineReplacement\s*:\s*true/.test(source),`${candidate}: does not replace accepted slideshow or route engines`);
 }
 
 if(failures.length){

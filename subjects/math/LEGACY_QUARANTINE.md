@@ -18,12 +18,10 @@ reactivated.
 This quarantine does not modify the accepted §1.4, §1.5, or §1.6 data/runtime.
 E235 remains active and unchanged; E236/E237/E238 remain disabled.
 
-## Unregistered enhancement candidates
+## Post-W2 enhancement reconciliation
 
-The following files arrived on `main` after the W2 implementation commit, but
-were not registered by `subjects/math/index.html` or another active loader at
-the reconciliation point `3dff93a`. They remain inactive candidates until a
-separate integration change registers and browser-verifies them:
+The following files arrived on `main` after the W2 implementation commit and
+were still unregistered at reconciliation point `3dff93a`:
 
 - `assets/math-activity-studio.css`
 - `assets/math-activity-studio.js`
@@ -35,5 +33,8 @@ separate integration change registers and browser-verifies them:
 - `assets/math-simulation-source.css`
 - `assets/math-simulation-source.js`
 
-Their presence does not change the accepted runtime while they remain
-unregistered. The whole-system gate verifies this boundary explicitly.
+They were subsequently registered by the upstream Math integration commits
+through `bd8cbf7`. They are no longer quarantined candidates: W3 treats them as
+active, read-only UI/source-diagnostic layers and verifies that they do not
+replace the accepted slideshow/route engines or write academic data. The legacy
+core, planning bridge and E236/E237/E238 list above remains quarantined.

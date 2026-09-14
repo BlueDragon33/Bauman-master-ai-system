@@ -8,6 +8,11 @@ const BASE=process.env.BAUMAN_E2E_BASE_URL||'http://127.0.0.1:4173/';
 const OUT=process.env.BAUMAN_E2E_ARTIFACT_DIR||'artifacts/system-browser';
 const SUBJECTS=['ai','foundation','math','programming','research','russian','signal','systems'];
 const SIMPLE=new Set(['ai','foundation','research','signal','systems']);
+const ACCEPTED_MATH_LESSONS=[
+  {key:'l04',id:'MATH-VN-C01-vector_trong_khong_gian_-L04-basis-span-coordinate-e140',diagrams:8,retrievalChecks:9,misconceptions:16},
+  {key:'l05',id:'MATH-VN-C01-vector_trong_khong_gian_-L05-subspace-data-representation-e140',diagrams:9,retrievalChecks:10,misconceptions:18},
+  {key:'l06',id:'MATH-VN-C01-vector_trong_khong_gian_-L06-vector-to-data-matrix-e140',diagrams:11,retrievalChecks:22,misconceptions:22}
+];
 const summary={status:'RUNNING',subjects:{},responsive:{},consoleErrors:[],pageErrors:[],failedRequests:[],httpErrors:[]};
 fs.mkdirSync(OUT,{recursive:true});
 
@@ -122,6 +127,68 @@ try{
   await queryPage.goto(`${BASE}subjects/math/index.html?host=main&hostOrigin=${encodeURIComponent(new URL(BASE).origin)}&subjectId=math&taskId=query-route-e2e&stage=prepare`,{waitUntil:'load'});
   await queryPage.waitForFunction(()=>window.BAUMAN_HOST_TASK?.taskId==='query-route-e2e');
   assert.deepEqual(await queryPage.evaluate(()=>({subjectId:window.BAUMAN_HOST_TASK.subjectId,taskId:window.BAUMAN_HOST_TASK.taskId,standalone:window.parent===window})),{subjectId:'math',taskId:'query-route-e2e',standalone:true});
+  await queryPage.waitForFunction(()=>window.BAUMAN_MATH_THEORY_E129?.sourceStatus?.().content>=3&&window.BAUMAN_MATH_THEORY_ARTIFACT_REGISTRY_E244?.selfCheck?.().ok===true,null,{timeout:30000});
+  const registry=await queryPage.evaluate(()=>window.BAUMAN_MATH_THEORY_ARTIFACT_REGISTRY_E244.selfCheck());
+  assert.equal(registry.lessonCount,3,'Math accepted lesson registry count drift');
+  assert.equal(registry.sourceCount,12,'Math accepted source registry count drift');
+  assert.deepEqual(registry.duplicateSourceIds,[],'Math runtime source IDs are duplicated');
+  assert.ok(await queryPage.evaluate(()=>Boolean(window.BAUMAN_MATH_E235_FORMULA_STANDARD&&!window.BAUMAN_MATH_E236_FORMULA_LAYOUT&&!window.BAUMAN_MATH_E237_ACADEMIC&&!window.BAUMAN_MATH_E238_AUDIT)),'Math E235/E236-E238 runtime boundary drift');
+  summary.mathRuntime={};
+  for(const lesson of ACCEPTED_MATH_LESSONS){
+    const selected=await queryPage.evaluate(async lessonId=>{
+      const payload=window.BAUMAN_MATH_E240_THEORY_CONTENT_SOURCE.getPayload()||await fetch('data/theory_lecture_content.json',{cache:'no-store'}).then(response=>response.json());
+      const record=payload?.records?.find(row=>row?.lessonId===lessonId);
+      if(!record)return null;
+      const state=window.__BAUMAN_CORE_API?.state||window.__MATH_STATE;
+      state.view='learning';state.learnTab='theory';state.stage='vn';state.e129Stage='vn';state.e129ChapterId=record.chapterId;state.e129LessonId=lessonId;
+      state.e169Path={...(state.e169Path||{}),chapterId:record.chapterId,activityId:'theory',lessonId};
+      window.BAUMAN_MATH_THEORY_E129.render();
+      return{lessonId:record.lessonId,chapterId:record.chapterId,slides:record.slides?.length||0};
+    },lesson.id);
+    assert.deepEqual(selected,{lessonId:lesson.id,chapterId:selected?.chapterId,slides:22},`${lesson.key}: durable source registration drift`);
+    await queryPage.waitForSelector(`[data-current-lesson="${lesson.id}"]`,{timeout:30000});
+    assert.equal(await queryPage.locator(`[data-current-lesson="${lesson.id}"] .e129-slide`).count(),22,`${lesson.key}: Reader slide count drift`);
+    if(lesson.key==='l04'){
+      await queryPage.waitForFunction(()=>window.BAUMAN_MATH_FORMULA_LIBRARY?.selfCheck?.().loaded===true&&window.BAUMAN_MATH_SIMULATION_SOURCE?.selfCheck?.().loaded===true&&window.BAUMAN_MATH_ACTIVITY_STUDIO&&window.BAUMAN_MATH_INTEGRATION_SYNC&&window.BAUMAN_MATH_REGRESSION_GATE&&window.BAUMAN_MATH_RUNTIME_HEALTH,null,{timeout:30000});
+      const layers=await queryPage.evaluate(()=>({
+        formula:window.BAUMAN_MATH_FORMULA_LIBRARY.selfCheck(),
+        simulation:window.BAUMAN_MATH_SIMULATION_SOURCE.selfCheck(),
+        activity:window.BAUMAN_MATH_ACTIVITY_STUDIO.selfCheck(),
+        integration:window.BAUMAN_MATH_INTEGRATION_SYNC.selfCheck(),
+        regression:window.BAUMAN_MATH_REGRESSION_GATE.run(),
+        health:window.BAUMAN_MATH_RUNTIME_HEALTH.check()
+      }));
+      assert.ok(layers.formula.total>0&&layers.formula.formulaContentSampleRecordUsed===false&&layers.formula.academicWrites===false,'Math Formula Library source policy drift');
+      assert.ok(layers.simulation.canonicalOk&&layers.simulation.sampleRecordUsed===false&&layers.simulation.academicWrites===false,'Math Simulation Source policy drift');
+      assert.ok(layers.activity.sampleRecordsRendered===false&&layers.activity.academicWrites===false&&layers.activity.newRouteEngine===false,'Math Activity Studio read-only policy drift');
+      assert.ok(layers.integration.academicWrites===false&&layers.integration.routeOwnership===false&&layers.integration.mutationObserver===false,'Math Integration Sync ownership drift');
+      assert.equal(layers.regression.summary.fail,0,'Math in-app regression gate reported a failure');
+      assert.deepEqual(layers.regression.rows.filter(row=>row.state==='warn').map(row=>row.id),['browser'],'Math in-app regression warnings drift');
+      assert.equal(layers.health.summary.fail,0,'Math runtime health reported a failure');
+      summary.mathRuntime.activeLayers={formulaItems:layers.formula.total,simulationRecords:layers.simulation.canonicalRecords,regression:layers.regression.summary,runtimeHealth:layers.health.summary,academicWrites:false,routeEngineReplacement:false};
+    }
+    await queryPage.locator('[data-e129-present]').click();
+    await queryPage.waitForFunction(lessonId=>{
+      const deck=document.querySelector('.e132-overlay-deck.open');
+      const richness=window.BAUMAN_MATH_E242_SLIDESHOW_RICHNESS?.selfCheck?.();
+      return deck?.getAttribute('data-e243-lesson-id')===lessonId&&deck?.getAttribute('data-e210-active-lesson-id')===lessonId&&richness?.activeLessonId===lessonId&&richness?.loaded===true;
+    },lesson.id,{timeout:30000});
+    const opened=await queryPage.evaluate(()=>{
+      const deck=document.querySelector('.e132-overlay-deck.open'),richness=window.BAUMAN_MATH_E242_SLIDESHOW_RICHNESS.selfCheck(),route=window.BAUMAN_MATH_E243_PRESENTER_ROUTE_LOCK.selfCheck();
+      return{count:deck?.querySelector('[data-e202-count]')?.textContent||'',routeId:route.deckLessonId,routeTitle:route.deckLessonTitle,routingGhost:route.routingGhostPresent,richness};
+    });
+    assert.match(opened.count,/01\s*\/\s*22/,`${lesson.key}: deck did not open at 01/22`);
+    assert.equal(opened.routeId,lesson.id,`${lesson.key}: presenter route identity drift`);
+    assert.ok(opened.routeTitle&&!opened.routingGhost,`${lesson.key}: missing title or routing ghost`);
+    assert.deepEqual(opened.richness.counts,{slides:22,diagrams:lesson.diagrams,retrievalChecks:lesson.retrievalChecks,misconceptions:lesson.misconceptions},`${lesson.key}: Reader Pro richness drift`);
+    for(let index=1;index<22;index+=1)await queryPage.keyboard.press('ArrowRight');
+    assert.match(await queryPage.locator('.e132-overlay-deck.open [data-e202-count]').textContent(),/22\s*\/\s*22/,`${lesson.key}: forward navigation did not reach 22/22`);
+    for(let index=1;index<22;index+=1)await queryPage.keyboard.press('ArrowLeft');
+    assert.match(await queryPage.locator('.e132-overlay-deck.open [data-e202-count]').textContent(),/01\s*\/\s*22/,`${lesson.key}: reverse navigation did not return to 01/22`);
+    summary.mathRuntime[lesson.key]={lessonId:lesson.id,sourceSlides:22,readerSlides:22,navigation:'01/22 -> 22/22 -> 01/22',identitySynchronized:true,richness:opened.richness.counts};
+    await queryPage.keyboard.press('Escape');
+    await queryPage.waitForFunction(()=>!document.querySelector('.e132-overlay-deck.open'));
+  }
   await queryPage.close();
 
   assert.deepEqual(summary.consoleErrors,[],'Console errors detected');
@@ -129,12 +196,14 @@ try{
   assert.deepEqual(summary.failedRequests,[],'Failed requests detected');
   assert.deepEqual(summary.httpErrors,[],'HTTP errors detected');
   summary.status='PASS';
-  summary.acceptance={firstUseHashedAccount:true,existingLogin:true,unsafeRouteRejected:true,adminRouteProtected:true,allSubjectRoutes:true,queryTaskHydration:true,forgedMessagesRejected:true,legitimateProgressAccepted:true};
+  summary.acceptance={firstUseHashedAccount:true,existingLogin:true,unsafeRouteRejected:true,adminRouteProtected:true,allSubjectRoutes:true,queryTaskHydration:true,forgedMessagesRejected:true,legitimateProgressAccepted:true,mathLessonRuntimeRegression:true};
   summary.completedAt=new Date().toISOString();
+  await context.close();
+  await browser.close();
+  browser=null;
   fs.writeFileSync(path.join(OUT,'summary.json'),JSON.stringify(summary,null,2));
   console.log('SYSTEM_BROWSER_ACCEPTANCE_PASS');
   console.log(JSON.stringify({subjects:Object.keys(summary.subjects).length,responsive:Object.keys(summary.responsive),acceptance:summary.acceptance},null,2));
-  await context.close();
 }catch(error){
   summary.status='FAIL';summary.error=String(error?.stack||error);summary.completedAt=new Date().toISOString();
   fs.writeFileSync(path.join(OUT,'summary.json'),JSON.stringify(summary,null,2));
