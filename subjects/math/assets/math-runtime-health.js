@@ -1,9 +1,9 @@
-/* Bauman Math Runtime Health V4
+/* Bauman Math Runtime Health V5
  * Aggregates existing selfCheck APIs. UI/diagnostic only.
  */
 (function mathRuntimeHealth(global){
   'use strict';
-  const RELEASE='MATH_RUNTIME_HEALTH_V4';
+  const RELEASE='MATH_RUNTIME_HEALTH_V5';
   let lastReport=null;
   const $=(s,r=document)=>r.querySelector(s);
   const esc=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]||c));
@@ -23,6 +23,7 @@
     ['Formula Context',()=>global.BAUMAN_MATH_FORMULA_CONTEXT?.selfCheck?.()],
     ['Activity Studio',()=>global.BAUMAN_MATH_ACTIVITY_STUDIO?.selfCheck?.()],
     ['Activity Mastery',()=>global.BAUMAN_MATH_ACTIVITY_MASTERY?.selfCheck?.()],
+    ['Study Command Center',()=>global.BAUMAN_MATH_STUDY_COMMAND_CENTER?.selfCheck?.()],
     ['Professor Drill',()=>global.BAUMAN_MATH_PROFESSOR_DRILL?.selfCheck?.()],
     ['Integration Sync',()=>global.BAUMAN_MATH_INTEGRATION_SYNC?.selfCheck?.()],
     ['Regression Gate',()=>global.BAUMAN_MATH_REGRESSION_GATE?.selfCheck?.()]
@@ -43,7 +44,7 @@
     if(error)return{name,state:'fail',detail:String(error?.message||error),raw:null};
     if(!value)return{name,state:'warn',detail:'API/selfCheck chưa sẵn sàng ở thời điểm kiểm tra.',raw:null};
     const explicitFail=value.ok===false||value.ready===false&&('ready'in value);
-    const unsafe=value.academicWrites===true||value.mutationObserver===true||value.newRouteEngine===true||value.routeEngineReplacement===true||value.generatedQuestions===true||value.gradingAuthority===true;
+    const unsafe=value.academicWrites===true||value.mutationObserver===true||value.newRouteEngine===true||value.routeEngineReplacement===true||value.generatedQuestions===true||value.gradingAuthority===true||value.correctnessInference===true;
     const state=unsafe?'fail':explicitFail?'warn':'pass';
     const facts=[];
     Object.entries(value).forEach(([k,v])=>{if(['release','ok','ready'].includes(k))return;if(typeof v==='boolean')facts.push(`${k}=${v}`);else if(typeof v==='number'||typeof v==='string')facts.push(`${k}=${String(v).slice(0,80)}`)});
