@@ -1,107 +1,61 @@
 # CODEX_TASK
 
-Task: `THEORY_C01_L06_CHROMIUM_FINAL_ACCEPTANCE_PASS_19`
-Mode: current-main local HTTP and Chromium final runtime acceptance; no publication.
+Task: `WHOLE_SYSTEM_COMPREHENSIVE_AUDIT_W2`
+Mode: repository-wide architecture, integration, runtime and maintainability work; no publication.
 
-## Work handoff execution order — mandatory
-When this project is continued in ChatGPT Work, do not jump directly to implementation or publishing. Execute in this order:
+## Gate status
 
-### Phase W0 · GitHub reconciliation first
-Before changing runtime or the wider system:
-- inspect the current `main` HEAD, `CODEX_STATE.md`, `CODEX_TASK.md`, accepted reports, active/merged PR state and relevant CI/workflow results;
-- reconcile what has actually been committed with the project state recorded in the repo;
-- identify stale/duplicate branches, obsolete temporary versions, unmerged work and any mismatch between claimed state and GitHub evidence;
-- preserve accepted §1.4/§1.5 behavior and the academically accepted §1.6 package;
-- produce a concise reconciliation checkpoint before proceeding.
+- W0 GitHub reconciliation: PASS (`W0_GITHUB_RECONCILIATION_2026-09-13.md`).
+- W1 §1.6 runtime Pass 15–19: PASS (`subjects/math/THEORY_C01_L06_RUNTIME_PASS15.json` through `THEORY_C01_L06_RUNTIME_PASS19.json`).
+- Current gate: W2 whole-system comprehensive work.
+- W3 and W4 have not started.
+- Publication remains blocked until W2 and W3 pass.
 
-Do not redo accepted work merely because an older branch/file exists. GitHub `main` plus accepted reports are the primary operational truth unless a verified inconsistency is found.
+## Required W2 scope
 
-### Phase W1 · Finish the current §1.6 runtime workflow
-After W0 reconciliation, execute Pass 15 → Pass 19 sequentially with gates:
-1. Pass 15 · Durable merge + static verification.
-2. Pass 16 · Runtime source registration.
-3. Pass 17 · Multi-lesson Reader/Reader Pro richness integration and verification.
-4. Pass 18 · Selection/route/identity synchronization verification.
-5. Pass 19 · Chromium/browser revalidation and final runtime acceptance.
+Audit the repository as one active Bauman system, then make only evidence-backed repairs needed for a clean, unified and maintainable runtime:
 
-If any pass fails, stop at that gate, repair it and re-verify before advancing.
+1. Bauman Master Hub and every active Subject Web App.
+2. Math and Russian subject integration and data contracts.
+3. Hub-to-subject and subject-to-Hub JSON/API handshake.
+4. Navigation, canonical identity, session/state/progress synchronization and recovery.
+5. Desktop, tablet and mobile behavior.
+6. Existing offline/PWA behavior, runtime packaging and asset loading.
+7. Error handling, route protection and missing-route recovery.
+8. Existing administration, device and access flows in this repository.
+9. UI/content/runtime consistency and accepted-contract regression safety.
+10. Stale, duplicate, temporary or obsolete paths/versions: remove or quarantine only when evidence proves it is safe.
 
-### Phase W2 · Whole-system comprehensive work
-Only after §1.6 runtime acceptance, review and improve the project as one integrated system rather than treating §1.6 in isolation. Cover the repository-level architecture and the active Bauman system end-to-end, including:
-- Bauman Master Hub and subject Web Apps;
-- Math and Russian subject integration/data contracts;
-- shared navigation, identity, state/progress handshakes and subject boundaries;
-- runtime packaging/deployment readiness;
-- responsive behavior, offline/PWA behavior where already part of the architecture, error states and recovery;
-- existing administration/device/access flows that belong to this repository/system;
-- consistency of UI/content/runtime contracts;
-- removal or quarantine of stale temporary paths/duplicate versions when safe;
-- regression protection for already accepted lessons/apps.
+## Protected contracts
 
-Do not perform cosmetic rewrites that break accepted contracts. Prefer clean, unified architecture and explicit compatibility checks.
+- Preserve all accepted §1.4, §1.5 and §1.6 academic/runtime behavior.
+- Preserve §1.6 source/runtime count `22/22`, one-to-one identity and `compression: false`.
+- Do not create a slideshow engine.
+- Keep E235 unchanged and active.
+- Keep E236, E237 and E238 disabled.
+- Preserve `UGV_TELEMETRY_8X6 / CASE_C01_L06_V1_LOCKED` and every locked field/value.
+- Do not invent scale vectors, numerical-rank tolerance/rank, SVD singular values, PCA components, retained dimension, anomaly thresholds, physical mode counts or fault diagnoses.
+- Do not publish during W2.
 
-### Phase W3 · Whole-system QA gate
-Before any ChatGPT Site publication:
-- run the strongest available static, integration and browser checks;
-- verify critical routes and subject entry points;
-- verify there are no blocking console/page/network errors in tested flows;
-- verify accepted lesson slide counts and identities remain intact;
-- verify no regression in previously accepted §1.4/§1.5 and completed §1.6 runtime;
-- record remaining non-blocking limitations separately from blockers.
+## Working method
 
-Publishing is prohibited while a blocking defect remains.
+- Inventory active entry points, route surfaces, manifests, workflows, data contracts and runtime dependencies before editing.
+- Compare implementation with documented contracts and current-main evidence.
+- Classify findings as BLOCKER, MAJOR, MINOR or NON-BLOCKING.
+- For each BLOCKER/MAJOR in scope, make the smallest coherent repair and verify it before continuing.
+- Preserve accepted behavior and unrelated user work.
+- Prefer `main`; do not create extra branches or versions.
+- Record exact commits, changed files, commands/checks and remaining limitations in `WHOLE_SYSTEM_W2_REPORT.json`.
 
-### Phase W4 · Publish to ChatGPT Site last
-Only after W0–W3 are complete and the whole-system QA gate is PASS:
-- publish the approved final system to ChatGPT Site using the existing project/site workflow available in Work;
-- do not publish an intermediate/debug build as the final site;
-- after publication, verify the live site/critical routes and record the published state.
+## W2 acceptance
 
-The required order is therefore:
-`GitHub reconciliation → §1.6 runtime completion → whole-system comprehensive work → whole-system QA → ChatGPT Site publication`.
+W2 passes only when:
 
-## Read only what is needed
-1. `CODEX_STATE.md`
-2. `subjects/math/THEORY_C01_L06_RUNTIME_PASS18.json`
-3. `subjects/math/THEORY_C01_L05_RUNTIME_PASS19.json` only as browser-suite precedent
-4. the active Math index/runtime load order and existing E129/E202/E210/E211/E240-E245 public self-check APIs
-5. the accepted L04-L06 durable/slideshow artifacts only as needed to compare counts and identities.
+- active Hub and subject architecture/contracts are internally consistent;
+- critical navigation/state/progress/runtime packaging defects found by the audit are repaired;
+- no W2 BLOCKER or unresolved main-function MAJOR remains;
+- §1.4–§1.6 protected contracts remain intact;
+- focused static/integration/browser verification for each repair passes;
+- `WHOLE_SYSTEM_W2_REPORT.json` is committed and `CODEX_STATE.md` advances to `WHOLE_SYSTEM_QA_W3`.
 
-## Goal
-Revalidate the current committed §1.6 runtime in Chromium, together with §1.4/§1.5 regressions, and issue final runtime acceptance only when all browser gates pass.
-
-## Preconditions
-- Pass 18 status is `PASS_18_SELECTION_ROUTE_SYNC_STATIC_VERIFY_PASS`.
-- Selection/route/identity synchronization is deterministic for §1.4–§1.6.
-- Current `main` contains the exact Pass 15–18 commits and the working tree is clean before browser execution.
-- Publication remains blocked until W2 and W3 also pass.
-
-## Chromium requirements
-- Serve the repository over local HTTP; do not test from `file://` and do not publish.
-- Test §1.4, §1.5 and §1.6 from the active lesson selection into the existing Reader/Reader Pro presentation flow.
-- For every lesson verify 22 visible runtime slides, first/last navigation, exact route/deck/chip/actions/richness identity and required richness markers with no stale cross-lesson residue.
-- For §1.6 verify the eight-area Reference view, twelve-section Full View, separate E235 formula modal and accepted-field richness behavior.
-- Run desktop plus narrow responsive smoke and confirm primary controls remain usable.
-- Capture console errors, page errors and failed local HTTP/network requests.
-- Verify E235 is present and E236/E237/E238 are absent.
-
-## Browser acceptance report
-Create `subjects/math/THEORY_C01_L06_RUNTIME_PASS19.json` containing:
-- exact tested commit, local URL, browser engine and execution time;
-- per-lesson reader count, identity, richness, slide navigation and modal evidence;
-- §1.6 desktop and narrow responsive smoke evidence;
-- console/page/local-HTTP error arrays;
-- final protected-runtime state and explicit no-new-engine/no-compression/no-prohibited-inference assertions.
-
-## Runtime protection
-Do not modify during Pass 19 unless browser evidence exposes a defect. If it does, stop the gate, make the narrowest repair and rerun the entire affected browser matrix before acceptance. Preserve:
-- durable theory content;
-- accepted Reference, Full View, Normalization or Slideshow artifacts;
-- E202/E211 and the established reader/slideshow architecture;
-- E235.
-
-Keep E236, E237 and E238 disabled.
-
-## Acceptance
-Pass only when the full Chromium suite is clean and §1.6 is browser accepted with §1.4/§1.5 regressions intact.
-Then set status `ACADEMIC_14_OF_14_PASS_RUNTIME_5_OF_5_BROWSER_ACCEPTED`, advance to `WHOLE_SYSTEM_COMPREHENSIVE_AUDIT_W2`, and keep publication blocked until W2/W3 PASS.
+Do not start W3 until this gate passes, and do not publish.

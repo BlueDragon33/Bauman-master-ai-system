@@ -1,16 +1,16 @@
 # CODEX_STATE
 
-Current task: `THEORY_C01_L06_CHROMIUM_FINAL_ACCEPTANCE_PASS_19`
+Current task: `WHOLE_SYSTEM_COMPREHENSIVE_AUDIT_W2`
 
-Status: `PASS_18_SELECTION_ROUTE_SYNC_STATIC_VERIFY_PASS`
+Status: `ACADEMIC_14_OF_14_PASS_RUNTIME_5_OF_5_BROWSER_ACCEPTED`
 
-Date: 2026-09-13
+Date: 2026-09-14
 Branch: `main`
 
 ## Execution policy
 - Academic work for §1.6 is complete and accepted.
-- Runtime integration has begun from the immutable approved import candidate; the durable merge is statically accepted.
-- Prefer one bounded runtime pass at a time with explicit static/browser gates.
+- Runtime integration and Chromium acceptance for §1.6 are complete.
+- W2 whole-system work is active; publication remains blocked until W2 and W3 pass.
 - Keep non-target lessons unchanged.
 - When handed to ChatGPT Work, the mandatory project order is: GitHub reconciliation first, then §1.6 runtime completion, then whole-system comprehensive work, then whole-system QA, and only then ChatGPT Site publication.
 - Work must not publish an intermediate/debug build or skip directly from the current state to publication.
@@ -84,20 +84,11 @@ Following the accepted §1.5 runtime pattern, §1.6 should use five runtime pass
 2. Pass 16 · Runtime source registration — PASS (`subjects/math/THEORY_C01_L06_RUNTIME_PASS16.json`).
 3. Pass 17 · Multi-lesson Reader/Reader Pro richness integration and static verification — PASS (`subjects/math/THEORY_C01_L06_RUNTIME_PASS17.json`).
 4. Pass 18 · Selection/route/identity synchronization verification — PASS (`subjects/math/THEORY_C01_L06_RUNTIME_PASS18.json`).
-5. Pass 19 · Chromium/browser revalidation and final runtime acceptance.
+5. Pass 19 · Chromium/browser revalidation and final runtime acceptance — PASS (`subjects/math/THEORY_C01_L06_RUNTIME_PASS19.json`).
 
-Runtime progress: `4/5` complete.
+Runtime progress: `5/5` complete; browser accepted at commit `975b12acd8e4f3795b7318981ad83b8c3c6be6d6`.
 
 ## Current task requirements
-`THEORY_C01_L06_CHROMIUM_FINAL_ACCEPTANCE_PASS_19`
+`WHOLE_SYSTEM_COMPREHENSIVE_AUDIT_W2`
 
-Pass 19 must:
-- read the Pass 18 report and the prior §1.5 Pass 19 browser precedent;
-- serve the current repository build over local HTTP and test with Chromium;
-- exercise §1.4, §1.5 and §1.6 selection, Reader/Reader Pro, slide 1 through slide 22, Reference, Full View and formula modal behavior;
-- verify exact deck/chip/action/richness identity synchronization and no stale markers or routing ghosts while switching lessons;
-- verify console errors, page errors and local HTTP/network errors are empty for the tested flows;
-- include desktop and narrow responsive smoke for §1.6;
-- verify E235 remains active and unchanged while E236/E237/E238 remain disabled;
-- write the final Pass 19 browser acceptance report and mark §1.6 runtime `5/5` only when every gate passes;
-- proceed to W2 whole-system work only after final runtime acceptance; do not publish.
+W2 must audit and improve the active Bauman system end-to-end: Master Hub, subject apps, Math/Russian contracts, navigation, identity, state/progress handshake, responsive/offline/runtime packaging, asset/error/route behavior, and relevant administration/device/access flows. Preserve all accepted §1.4–§1.6 contracts, remove or quarantine stale/duplicate paths only when safe, verify every repair, write a W2 report, and do not publish.

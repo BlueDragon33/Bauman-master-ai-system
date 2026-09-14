@@ -1,0 +1,149 @@
+{
+  "id": "bauman_math_c01_l06_runtime_pass19_v1",
+  "schema": "bauman_math_chromium_revalidation_v3",
+  "version": "RUNTIME_PASS19_C01_L06_V1",
+  "status": "PASS",
+  "executedAt": "2026-09-14T01:18:53.748Z",
+  "testedRuntimeCommit": "975b12acd8e4f3795b7318981ad83b8c3c6be6d6",
+  "browserRun": true,
+  "browser": "Google Chrome/Chromium 153.0.8010.36 via Playwright",
+  "url": "http://127.0.0.1:4173/subjects/math/index.html",
+  "gateHistory": [
+    {
+      "status": "FAIL_REPAIRED",
+      "defects": [
+        "L06 slides referenced accepted formulas but the existing formula modal had no runtime entry point.",
+        "A global important color rule reduced Reader Pro contrast.",
+        "The narrow Reader Pro header and content grid exceeded the viewport.",
+        "The Math entry point requested a missing favicon."
+      ],
+      "repairCommit": "975b12acd8e4f3795b7318981ad83b8c3c6be6d6",
+      "repairScope": [
+        "subjects/math/assets/theory_skin/theory-artifact-reader-E241.js",
+        "subjects/math/assets/theory_skin/theory-slideshow-reader-content-E211.js",
+        "subjects/math/assets/theory_skin/theory-slideshow-reader-fit-E212.js",
+        "subjects/math/index.html"
+      ],
+      "architectureChange": false
+    },
+    {
+      "status": "PASS",
+      "scope": "full L04-L06 browser matrix rerun after the narrow repair"
+    }
+  ],
+  "lessons": {
+    "l04": {
+      "lessonId": "MATH-VN-C01-vector_trong_khong_gian_-L04-basis-span-coordinate-e140",
+      "readerSlides": 22,
+      "runtimeSlidesVerifiedIndividually": 22,
+      "navigation": "01/22 -> 22/22 -> 01/22",
+      "richness": {"slides": 22, "diagrams": 8, "retrievalChecks": 9, "misconceptionIntercepts": 16},
+      "referenceSections": 9,
+      "fullViewSections": 11,
+      "formulaModal": {"visible": true, "separateFromArtifactModal": true, "e235Styled": true},
+      "identitySynchronized": true,
+      "routingGhosts": 0
+    },
+    "l05": {
+      "lessonId": "MATH-VN-C01-vector_trong_khong_gian_-L05-subspace-data-representation-e140",
+      "readerSlides": 22,
+      "runtimeSlidesVerifiedIndividually": 22,
+      "navigation": "01/22 -> 22/22 -> 01/22",
+      "richness": {"slides": 22, "diagrams": 9, "retrievalChecks": 10, "misconceptionIntercepts": 18},
+      "referenceSections": 10,
+      "fullViewSections": 12,
+      "formulaModal": {"visible": true, "separateFromArtifactModal": true, "e235Styled": true},
+      "identitySynchronized": true,
+      "routingGhosts": 0
+    },
+    "l06": {
+      "lessonId": "MATH-VN-C01-vector_trong_khong_gian_-L06-vector-to-data-matrix-e140",
+      "readerSlides": 22,
+      "sourceSlides": 22,
+      "runtimeSlidesVerifiedIndividually": 22,
+      "navigation": "01/22 -> 22/22 -> 01/22",
+      "oneToOne": true,
+      "compression": false,
+      "richness": {"slides": 22, "diagrams": 11, "retrievalChecks": 22, "misconceptionIntercepts": 22},
+      "projection": "accepted_fields_l06_v1",
+      "referenceSections": 11,
+      "referenceLockedCasePresent": true,
+      "referenceTroubleshootingM01ToM18Present": true,
+      "fullViewSections": 12,
+      "fullViewCanonicalNormalizationPresent": true,
+      "formulaModal": {"visible": true, "separateFromArtifactModal": true, "e235Styled": true},
+      "identitySynchronized": true,
+      "routingGhosts": 0
+    }
+  },
+  "identityContracts": {
+    "selectionReaderRouteDeckChipActionsRichnessExact": true,
+    "lessonsExercisedInOrder": ["§1.4", "§1.5", "§1.6"],
+    "crossLessonIdentityLeak": false,
+    "staleRichnessMarkers": 0,
+    "authoritativeFallbackBlocked": true
+  },
+  "responsive": {
+    "desktop": {"viewport": "1440x900", "status": "PASS", "screenshot": "qa/pass19/l06-desktop.png"},
+    "narrow": {
+      "viewport": "390x844",
+      "status": "PASS",
+      "readerHorizontalOverflow": false,
+      "deckHorizontalOverflow": false,
+      "primaryControlsInsideViewport": true,
+      "contentUsesInternalVerticalScroll": true,
+      "screenshot": "qa/pass19/l06-mobile.png"
+    },
+    "minimumComputedTextContrast": 14.52
+  },
+  "runtimeErrors": {
+    "consoleErrors": [],
+    "pageErrors": [],
+    "failedRequests": [],
+    "localHttpErrors": []
+  },
+  "runtimeBlobs": {
+    "E211": "35732340e2d6497c1a4b31465740357ee06ee489",
+    "E212": "95f47e031f572d1846814067b3547bb43eaa412a",
+    "E241": "66946f150fe80a464a846edf25398bb9b707857f",
+    "E242": "cb48b3cb18c843edaa49b6fbfc9b3476359b5b8f",
+    "E244": "4c3f94aabc7bc4b2921c5b11328258441340bb7e",
+    "E235": "0a041b808473309f2bf58091ae690a7298b7c9eb",
+    "mathIndex": "aea8b2f18a12458d20e1d7d08a1542e4576667c9"
+  },
+  "protectedArtifacts": {
+    "durableTheory": "9e4a0a0b8d33c21b2e343c09f2152b5c53b5bb7e",
+    "l06Reference": "7dac0b07748efb211136b369bc46cf691a9c92d2",
+    "l06FullView": "52e786161d495477106193215fb0f8cb34672f3d",
+    "l06Normalization": "bf59fd93612b17237d637602587120d408bacc0b",
+    "l06Slideshow": "70c79b19f44f880ba53d8ea671c883800cbe6a60",
+    "e235Unchanged": true,
+    "e236Loaded": false,
+    "e237Loaded": false,
+    "e238Loaded": false
+  },
+  "lockedBoundaries": {
+    "case": "UGV_TELEMETRY_8X6 / CASE_C01_L06_V1_LOCKED",
+    "lockedCasePreserved": true,
+    "inventedScaleVector": false,
+    "inventedNumericalRankToleranceOrRank": false,
+    "inventedSvdSingularValues": false,
+    "inventedPcaComponents": false,
+    "inventedRetainedDimension": false,
+    "inventedAnomalyThreshold": false,
+    "inventedPhysicalModeCount": false,
+    "inventedFaultDiagnosis": false
+  },
+  "acceptance": {
+    "allSixtySixSlidesVerified": true,
+    "l04Regression": "PASS",
+    "l05Regression": "PASS",
+    "l06Runtime": "PASS",
+    "newSlideshowEngineCreated": false,
+    "newFormulaModalCreated": false,
+    "sourceArtifactsMutated": false,
+    "finalRuntimeState": "ACADEMIC_14_OF_14_PASS_RUNTIME_5_OF_5_BROWSER_ACCEPTED"
+  },
+  "nextTask": "WHOLE_SYSTEM_COMPREHENSIVE_AUDIT_W2",
+  "publicationBlockedUntilW2W3Pass": true
+}
