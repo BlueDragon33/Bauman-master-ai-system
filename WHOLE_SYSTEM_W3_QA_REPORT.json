@@ -1,0 +1,164 @@
+{
+  "schema": "bauman_whole_system_w3_qa_report_v1",
+  "version": "WHOLE_SYSTEM_W3_QA_2026_09_14_V1",
+  "status": "PASS",
+  "date": "2026-09-14",
+  "branch": "main",
+  "testedCommit": "1a5969b38a49f88c24e98a87c044dd3f616a05c3",
+  "acceptance": {
+    "w0": "PASS",
+    "w1": "PASS",
+    "w2": "PASS",
+    "w3": "PASS",
+    "w4PublicationStarted": false,
+    "publicationAllowed": true,
+    "openBlockers": 0,
+    "openFunctionalMajors": 0
+  },
+  "ciEvidence": [
+    {
+      "workflow": "Whole System Integration Gate",
+      "runId": 34856746521,
+      "result": "success",
+      "jobs": [
+        {
+          "name": "validate-system-integration",
+          "result": "success",
+          "suites": [
+            "node scripts/validate-system-integration.mjs",
+            "node --check runtime JavaScript entry points"
+          ]
+        },
+        {
+          "name": "browser-system-acceptance",
+          "result": "success",
+          "suites": [
+            "node tests/system-browser-acceptance.mjs",
+            "node tests/math-study-command-center-browser.mjs"
+          ],
+          "browser": "Playwright Chromium 1.55.0",
+          "baseUrl": "http://127.0.0.1:4173/"
+        }
+      ],
+      "artifact": {
+        "id": 10352234581,
+        "name": "whole-system-browser-34856746521",
+        "digest": "sha256:1c3f1d3ba24fde7042785f1f4ac57d6ba242de2c2a3a8cd5bf5d333f89cb54ba",
+        "expiredAtAcceptance": false
+      }
+    },
+    {
+      "workflow": "Bauman Cloudflare Preview CI",
+      "runId": 34856746410,
+      "result": "success",
+      "suites": [
+        "node scripts/validate-cloudflare-preview.mjs",
+        "node scripts/runtime-device-gate-regression.mjs",
+        "control-service: npm run gate",
+        "node scripts/prepare-cloudflare-preview.mjs",
+        "wrangler dry-run for control preview",
+        "wrangler dry-run for learning runtime preview",
+        "Subject Web App and Russian chunk-manifest verification"
+      ]
+    },
+    {
+      "workflow": "Windows checkout safety",
+      "runId": 34856746465,
+      "result": "success",
+      "suites": [
+        "Windows-safe path audit",
+        "clean checkout verification"
+      ]
+    }
+  ],
+  "requiredCoverage": {
+    "staticJsonSchemaIntegrity": "PASS",
+    "buildRuntimePackageReproducibility": "PASS",
+    "hubControlSubjectIntegration": "PASS",
+    "canonicalSubjectEntryPointsAndRoutes": "PASS",
+    "hubSubjectIdentityTaskProgressHandshake": "PASS",
+    "sessionRouteProtectionDeviceAccessRecovery": "PASS",
+    "chromiumDesktopTabletMobileSmoke": "PASS",
+    "consolePageRequestHttpErrors": "PASS_NO_BLOCKING_ERRORS",
+    "mathRussianRuntimeAssetsAndUiContracts": "PASS",
+    "acceptedMathLessonsRegression": "PASS",
+    "mathL06SlideContract": {
+      "status": "PASS",
+      "sourceSlides": 22,
+      "runtimeSlides": 22,
+      "oneToOne": true,
+      "compression": false
+    },
+    "runtimeSourceRegistrationAndRouteIdentitySync": "PASS",
+    "cloudflarePreviewPackagingDryRun": "PASS",
+    "windowsCheckout": "PASS"
+  },
+  "findings": [
+    {
+      "id": "W3-F01",
+      "classification": "MAJOR",
+      "status": "CLOSED",
+      "summary": "Activity Studio lesson/activity identity could follow stale E169 state instead of current E186 path.",
+      "resolution": "Made Activity Studio E186-aware and added durable theory-content fallback when runtime DB was not populated."
+    },
+    {
+      "id": "W3-F02",
+      "classification": "MAJOR",
+      "status": "CLOSED",
+      "summary": "Formula-to-Simulation browser sequence used an invalid overlay-close assumption in the acceptance test.",
+      "resolution": "Aligned browser test with the real UI ownership and public interaction contract."
+    },
+    {
+      "id": "W3-F03",
+      "classification": "MAJOR",
+      "status": "CLOSED",
+      "summary": "Math Lab close step in the browser test assumed a nonexistent public closeLab API and left the overlay blocking Professor Drill.",
+      "resolution": "Changed the test to close the Lab through the actual visible close control and wait for the overlay to clear."
+    },
+    {
+      "id": "W3-F04",
+      "classification": "MAJOR",
+      "status": "CLOSED",
+      "summary": "Professor Drill had zero questions for L06 because companion content vaults were empty and the accepted Pass10 assessment source was not consumed.",
+      "resolution": "Added accepted theory-assessment Professor Q&A as a read-only source; no generated questions and no academic writes."
+    },
+    {
+      "id": "W3-F05",
+      "classification": "MINOR",
+      "status": "CLOSED",
+      "summary": "Study Command Center still preferred legacy E169 state during final hardening.",
+      "resolution": "Changed current lesson/activity resolution and canonical selection to E186-first while retaining legacy mirrors."
+    },
+    {
+      "id": "W3-F06",
+      "classification": "NON-BLOCKING",
+      "status": "CLOSED",
+      "summary": "Final browser cache keys needed refresh after the hardening changes.",
+      "resolution": "Bumped relevant Math runtime cache query values before final acceptance run."
+    }
+  ],
+  "findingCounts": {
+    "BLOCKER": {"open": 0, "closed": 0},
+    "MAJOR": {"open": 0, "closed": 4},
+    "MINOR": {"open": 0, "closed": 1},
+    "NON_BLOCKING": {"open": 0, "closed": 1}
+  },
+  "protectedContracts": {
+    "mathL14Accepted": true,
+    "mathL15Accepted": true,
+    "mathL16Accepted": true,
+    "e235Unchanged": true,
+    "e236Disabled": true,
+    "e237Disabled": true,
+    "e238Disabled": true,
+    "newSlideshowEngineCreated": false,
+    "lockedCasePreserved": "UGV_TELEMETRY_8X6 / CASE_C01_L06_V1_LOCKED",
+    "deferredResultsInvented": false
+  },
+  "decision": {
+    "status": "WHOLE_SYSTEM_W3_QA_PASS",
+    "publicationGate": "OPEN_FOR_W4",
+    "nextTask": "CHATGPT_SITE_PUBLICATION_W4",
+    "note": "Publish only this verified system lineage, then perform live post-publication revalidation before claiming W4 complete."
+  }
+}
