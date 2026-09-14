@@ -1,9 +1,9 @@
-/* Bauman Math Runtime Health V3
+/* Bauman Math Runtime Health V4
  * Aggregates existing selfCheck APIs. UI/diagnostic only.
  */
 (function mathRuntimeHealth(global){
   'use strict';
-  const RELEASE='MATH_RUNTIME_HEALTH_V3';
+  const RELEASE='MATH_RUNTIME_HEALTH_V4';
   let lastReport=null;
   const $=(s,r=document)=>r.querySelector(s);
   const esc=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]||c));
@@ -20,7 +20,10 @@
     ['System Bridge',()=>global.BAUMAN_MATH_SYSTEM_BRIDGE?.selfCheck?.()],
     ['Simulation Source',()=>global.BAUMAN_MATH_SIMULATION_SOURCE?.selfCheck?.()],
     ['Formula Library',()=>global.BAUMAN_MATH_FORMULA_LIBRARY?.selfCheck?.()],
+    ['Formula Context',()=>global.BAUMAN_MATH_FORMULA_CONTEXT?.selfCheck?.()],
     ['Activity Studio',()=>global.BAUMAN_MATH_ACTIVITY_STUDIO?.selfCheck?.()],
+    ['Activity Mastery',()=>global.BAUMAN_MATH_ACTIVITY_MASTERY?.selfCheck?.()],
+    ['Professor Drill',()=>global.BAUMAN_MATH_PROFESSOR_DRILL?.selfCheck?.()],
     ['Integration Sync',()=>global.BAUMAN_MATH_INTEGRATION_SYNC?.selfCheck?.()],
     ['Regression Gate',()=>global.BAUMAN_MATH_REGRESSION_GATE?.selfCheck?.()]
   ];
@@ -40,10 +43,11 @@
     if(error)return{name,state:'fail',detail:String(error?.message||error),raw:null};
     if(!value)return{name,state:'warn',detail:'API/selfCheck chưa sẵn sàng ở thời điểm kiểm tra.',raw:null};
     const explicitFail=value.ok===false||value.ready===false&&('ready'in value);
-    const state=explicitFail?'warn':'pass';
+    const unsafe=value.academicWrites===true||value.mutationObserver===true||value.newRouteEngine===true||value.routeEngineReplacement===true||value.generatedQuestions===true||value.gradingAuthority===true;
+    const state=unsafe?'fail':explicitFail?'warn':'pass';
     const facts=[];
     Object.entries(value).forEach(([k,v])=>{if(['release','ok','ready'].includes(k))return;if(typeof v==='boolean')facts.push(`${k}=${v}`);else if(typeof v==='number'||typeof v==='string')facts.push(`${k}=${String(v).slice(0,80)}`)});
-    return{name,state,detail:facts.slice(0,6).join(' · ')||'Self-check trả về trạng thái hợp lệ.',raw:value};
+    return{name,state,detail:facts.slice(0,7).join(' · ')||'Self-check trả về trạng thái hợp lệ.',raw:value};
   }
   function check(){
     const rows=MODULES.map(([name,fn])=>{try{return summarize(name,fn(),null)}catch(e){return summarize(name,null,e)}});
@@ -68,6 +72,6 @@
     document.addEventListener('click',e=>{const a=e.target.closest('[data-health]')?.dataset.health;if(!a)return;e.preventDefault();if(a==='open')open();if(a==='close')close();if(a==='refresh')check();if(a==='export')exportReport()},true);
     document.addEventListener('keydown',e=>{if(e.key==='Escape')close()});
   }
-  function init(){if(!document.body||document.body.dataset.mathRuntimeHealth==='1')return;document.body.dataset.mathRuntimeHealth='1';ensure();bind();[900,1900,3300].forEach(ms=>setTimeout(check,ms));global.BAUMAN_MATH_RUNTIME_HEALTH={release:RELEASE,check,open,close,getReport:()=>lastReport,selfCheck:()=>({release:RELEASE,ready:!!$('#mathRuntimeHealth'),modules:MODULES.length,diagnosticOnly:true,academicWrites:false})}}
+  function init(){if(!document.body||document.body.dataset.mathRuntimeHealth==='1')return;document.body.dataset.mathRuntimeHealth='1';ensure();bind();[950,2050,3500].forEach(ms=>setTimeout(check,ms));global.BAUMAN_MATH_RUNTIME_HEALTH={release:RELEASE,check,open,close,getReport:()=>lastReport,selfCheck:()=>({release:RELEASE,ready:!!$('#mathRuntimeHealth'),modules:MODULES.length,diagnosticOnly:true,academicWrites:false})}}
   if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',init,{once:true});else init();
 })(window);
