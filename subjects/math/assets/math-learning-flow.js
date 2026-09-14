@@ -4,7 +4,7 @@
  */
 (function mathLearningFlow(global){
   'use strict';
-  const RELEASE='MATH_LEARNING_FLOW_V1';
+  const RELEASE='MATH_LEARNING_FLOW_V1_1';
   const STATE_KEY='bauman_math_learning_flow_v1';
   const NOTES_KEY='bauman_math_learning_notes_v1';
   const BOOKMARK_KEY='bauman_math_learning_bookmarks_v1';
@@ -12,7 +12,6 @@
   const $=(s,r=document)=>r.querySelector(s);
   const $$=(s,r=document)=>Array.from(r.querySelectorAll(s));
   const esc=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
-  const clip=(s,n=100)=>{s=String(s||'').replace(/\s+/g,' ').trim();return s.length>n?s.slice(0,n-1)+'…':s;};
   const STEPS=[
     {id:'theory',label:'Lý thuyết',sub:'Đọc hiểu',kind:'reader',roles:['problem_framing','deep_essence','notation','core_formula','assumption_gate','interpretation','bridge','takeaway']},
     {id:'formula',label:'Công thức',sub:'Ký hiệu & điều kiện',kind:'formula',roles:['notation','core_formula','assumption_gate']},
@@ -52,7 +51,7 @@
   function slides(){return $$('.e129-slide').filter(x=>x.offsetParent!==null)}
   function roleIndexMap(){
     const rec=currentRecord(), map={};
-    (rec?.slides||[]).forEach((s,i)=>{const role=String(s?.role||'').toLowerCase(); if(role&&!map[role])map[role]=i;});
+    (rec?.slides||[]).forEach((s,i)=>{const role=String(s?.role||'').toLowerCase(); if(role&&map[role]==null)map[role]=i;});
     return map;
   }
   function findSlideByRoles(roles){
@@ -71,9 +70,20 @@
   }
   function isBookmarked(id){return bookmarks().some(x=>x.id===id)}
   function toggleBookmark(){
-    const cur=currentLesson();if(!cur.id)return;let list=bookmarks().filter(x=>x.id!==cur.id);const existed=isBookmarked(cur.id);if(!existed)list.unshift({id:cur.id,title:cur.title,at:Date.now()});saveBookmarks(list);refresh();toast(existed?'Đã bỏ đánh dấu bài học':'Đã đánh dấu bài học');
+    const cur=currentLesson();if(!cur.id)return;let list=bookmarks().filter(x=>x.id!==cur.id);const existed=isBookmarked(cur.id);if(!existed)list.unshift({id:cur.id,title:cur.title,at:Date.now()});saveBookmarks(list);refresh();global.BAUMAN_MATH_STUDY_LIBRARY?.refresh?.();toast(existed?'Đã bỏ đánh dấu bài học':'Đã đánh dấu bài học');
   }
   function toast(message){const el=$('#mathWsToast');if(el){el.textContent=message;el.style.opacity='1';clearTimeout(el._timer);el._timer=setTimeout(()=>el.style.opacity='0',1600)}else console.info('[Math Learning Flow]',message)}
+
+  function suggestLabMode(){
+    const rec=currentRecord(), cur=currentLesson();
+    const text=[cur.title,rec?.title,rec?.lessonTitle,rec?.chapterId,(rec?.tags||[]).join(' ')].filter(Boolean).join(' ').toLocaleLowerCase('vi');
+    if(/ma trận|matrix|pca|svd|eigen|hiệp phương sai|covariance|linear map|ánh xạ tuyến tính/.test(text))return'matrix';
+    if(/vector|vectơ|projection|cosine|dot product|tích vô hướng/.test(text))return'vector';
+    return'function';
+  }
+  function openContextLab(){
+    const mode=suggestLabMode();global.BAUMAN_MATH_WORKSPACE?.openLab?.();setTimeout(()=>document.querySelector(`[data-lab-mode="${mode}"]`)?.click(),55);return mode;
+  }
 
   function ensure(){
     const main=$('.main'),view=$('#view');if(!main||!view)return;
@@ -89,17 +99,17 @@
     document.body.classList.toggle('math-learning-flow-active',activeLesson);
     if(!activeLesson){if(host)host.innerHTML='';if(bar)bar.innerHTML='';return;}
     const st=lessonState(cur.id),visited=st.visited||{},active=STEPS.some(x=>x.id===st.active)?st.active:'theory',visitedCount=STEPS.filter(x=>visited[x.id]).length,pct=Math.round(visitedCount/STEPS.length*100),noteMap=notes();
-    const note=noteMap[cur.id]||'';
+    const note=noteMap[cur.id]||'',labMode=suggestLabMode();
     host.innerHTML=`<section class="math-lf-shell">
       <header class="math-lf-head"><div class="math-lf-title"><span class="math-lf-badge">∑</span><div class="math-lf-title-copy"><small>Learning Flow · ${visitedCount}/${STEPS.length} bước đã mở</small><h3>${esc(cur.title)}</h3></div></div><div class="math-lf-head-actions"><button type="button" data-lf="bookmark" class="${isBookmarked(cur.id)?'active':''}">${isBookmarked(cur.id)?'★ Đã lưu':'☆ Đánh dấu'}</button><button type="button" data-lf="notes">✎ Ghi chú</button><button type="button" data-lf="focus">⛶ Tập trung</button><button type="button" data-lf="control">☷ Nội dung</button></div></header>
       <div class="math-lf-progress"><i style="width:${pct}%"></i></div>
       <div class="math-lf-steps">${STEPS.map((x,i)=>`<button type="button" class="math-lf-step ${x.id===active?'active':''} ${visited[x.id]?'visited':''} ${available(x)?'':'unavailable'}" data-lf-step="${x.id}"><span class="math-lf-no">${String(i+1).padStart(2,'0')}</span><span><b>${esc(x.label)}</b><small>${esc(x.sub)}</small></span></button>`).join('')}</div>
-      <div class="math-lf-context"><div class="math-lf-context-left"><b>${esc(cur.id)}</b><span>${currentRecord()?.chapterId?`chapterId: ${esc(currentRecord().chapterId)}`:'Reader E129 · local study state only'}</span></div><div class="math-lf-context-right"><button class="math-lf-mini-btn" data-lf="formula">∑ Công thức</button><button class="math-lf-mini-btn" data-lf="lab">∿ Lab</button><button class="math-lf-mini-btn" data-lf="command">⌘K Lệnh nhanh</button></div></div>
+      <div class="math-lf-context"><div class="math-lf-context-left"><b>${esc(cur.id)}</b><span>${currentRecord()?.chapterId?`chapterId: ${esc(currentRecord().chapterId)}`:'Reader E129 · local study state only'}</span></div><div class="math-lf-context-right"><button class="math-lf-mini-btn" data-lf="formula">∑ Công thức</button><button class="math-lf-mini-btn" data-lf="lab">∿ Lab · ${esc(labMode)}</button><button class="math-lf-mini-btn" data-lf="command">⌘K Lệnh nhanh</button></div></div>
       <div class="math-lf-notes ${st.notesOpen?'open':''}"><div class="math-lf-note-box"><label>Ghi chú cá nhân của bài này</label><textarea id="mathLfNote" placeholder="Ghi lại câu hỏi, cách hiểu, công thức cần nhớ…">${esc(note)}</textarea></div><aside class="math-lf-note-side"><b>Ghi chú chỉ lưu trên thiết bị</b><p>Không chèn vào theory_lecture_content, không làm thay đổi bài giảng và không đồng bộ thành dữ liệu học thuật.</p><p class="math-lf-note-status">Tự lưu khi nhập.</p></aside></div>
     </section>`;
     const idx=Math.max(0,STEPS.findIndex(x=>x.id===active)),prev=STEPS[Math.max(0,idx-1)],next=STEPS[Math.min(STEPS.length-1,idx+1)];
     bar.innerHTML=`<div class="math-lf-study-buttons"><button type="button" data-lf-step="${prev.id}" ${idx===0?'disabled':''}>← <span>${esc(prev.label)}</span></button></div><div class="math-lf-study-current"><small>Bước ${idx+1}/${STEPS.length} · ${pct}% đã mở</small><b>${esc(STEPS[idx].label)} · ${esc(cur.title)}</b></div><div class="math-lf-study-buttons"><button type="button" class="primary" data-lf-step="${next.id}" ${idx===STEPS.length-1?'disabled':''}><span>${esc(next.label)}</span> →</button></div>`;
-    $('#mathLfNote')?.addEventListener('input',e=>{const map=notes();map[cur.id]=e.target.value;saveNotes(map)});
+    $('#mathLfNote')?.addEventListener('input',e=>{const map=notes();map[cur.id]=e.target.value;saveNotes(map);global.BAUMAN_MATH_STUDY_LIBRARY?.refresh?.()});
   }
 
   function clearHighlights(){slides().forEach(x=>x.classList.remove('math-lf-highlight'))}
@@ -109,7 +119,7 @@
     const step=STEPS.find(x=>x.id===stepId);if(!step)return;mark(stepId);render();
     if(step.kind==='reader'){currentLesson().host?.scrollIntoView({behavior:'smooth',block:'start'});return;}
     if(step.kind==='formula'){global.BAUMAN_MATH_NAVIGATION?.openFormulaFocus?.();return;}
-    if(step.kind==='lab'){global.BAUMAN_MATH_WORKSPACE?.openLab?.();return;}
+    if(step.kind==='lab'){openContextLab();return;}
     if(step.kind==='route'){global.BAUMAN_MATH_NAVIGATION?.route?.(step.route);schedule(260);return;}
     const hit=findSlideByRoles(step.roles||[]);if(!highlight(hit)){toast(`Chưa có slide ${step.label} riêng trong bài này`);global.BAUMAN_MATH_WORKSPACE?.openControl?.();}
   }
@@ -119,7 +129,7 @@
   function bind(){
     document.addEventListener('click',e=>{
       const step=e.target.closest('[data-lf-step]');if(step){e.preventDefault();activate(step.dataset.lfStep);return;}
-      const action=e.target.closest('[data-lf]')?.dataset.lf;if(action){e.preventDefault();if(action==='bookmark')toggleBookmark();if(action==='notes')toggleNotes();if(action==='focus')toggleFocus();if(action==='control')global.BAUMAN_MATH_WORKSPACE?.openControl?.();if(action==='formula')global.BAUMAN_MATH_NAVIGATION?.openFormulaFocus?.();if(action==='lab')global.BAUMAN_MATH_WORKSPACE?.openLab?.();if(action==='command')global.BAUMAN_MATH_NAVIGATION?.openCommand?.();return;}
+      const action=e.target.closest('[data-lf]')?.dataset.lf;if(action){e.preventDefault();if(action==='bookmark')toggleBookmark();if(action==='notes')toggleNotes();if(action==='focus')toggleFocus();if(action==='control')global.BAUMAN_MATH_WORKSPACE?.openControl?.();if(action==='formula')global.BAUMAN_MATH_NAVIGATION?.openFormulaFocus?.();if(action==='lab')openContextLab();if(action==='command')global.BAUMAN_MATH_NAVIGATION?.openCommand?.();return;}
       if(e.target.closest('[data-e129-chapter],[data-e129-lesson],[data-e129-stage],[data-e129-nav],[data-e169-pick-activity],[data-e129-back-theory],[data-e129-refresh]'))schedule(220);
     },true);
     document.addEventListener('keydown',e=>{
@@ -132,7 +142,7 @@
   }
   function schedule(ms=140){clearTimeout(timer);timer=setTimeout(refresh,ms)}
   function refresh(){ensure();const cur=currentLesson();if(cur.id!==lastLesson){lastLesson=cur.id;if(cur.id)writeLessonState(cur.id,{visited:{theory:true}})}render()}
-  function selfCheck(){const cur=currentLesson();return{release:RELEASE,ready:!!$('#mathLearningFlow'),active:document.body.classList.contains('math-learning-flow-active'),lessonId:cur.id||null,steps:STEPS.length,notesLocalOnly:true,bookmarksLocalOnly:true,academicWrites:false,mutationObserver:false,routeEngineReplacement:false}}
-  function init(){if(!document.body||document.body.dataset.mathLearningFlow==='1')return;document.body.dataset.mathLearningFlow='1';bind();refresh();[350,850,1600,2800].forEach(ms=>setTimeout(refresh,ms));global.BAUMAN_MATH_LEARNING_FLOW={release:RELEASE,refresh,activate,toggleBookmark,toggleNotes,selfCheck};}
+  function selfCheck(){const cur=currentLesson();return{release:RELEASE,ready:!!$('#mathLearningFlow'),active:document.body.classList.contains('math-learning-flow-active'),lessonId:cur.id||null,steps:STEPS.length,recommendedLabMode:suggestLabMode(),notesLocalOnly:true,bookmarksLocalOnly:true,academicWrites:false,mutationObserver:false,routeEngineReplacement:false}}
+  function init(){if(!document.body||document.body.dataset.mathLearningFlow==='1')return;document.body.dataset.mathLearningFlow='1';bind();refresh();[350,850,1600,2800].forEach(ms=>setTimeout(refresh,ms));global.BAUMAN_MATH_LEARNING_FLOW={release:RELEASE,refresh,activate,toggleBookmark,toggleNotes,openContextLab,selfCheck};}
   if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',init,{once:true});else init();
 })(window);
