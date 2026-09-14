@@ -111,6 +111,7 @@
     const codeLabel = codeWrap.querySelector('span');
     if (codeLabel) codeLabel.textContent = 'MÃ THIẾT BỊ BAUMAN';
     copy.textContent = 'Sao chép mã BM';
+    copy.hidden = true;
     retry.textContent = 'Kiểm tra lại quyền';
 
     const meta = document.createElement('div');
