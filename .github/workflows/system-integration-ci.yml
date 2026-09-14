@@ -9,6 +9,7 @@ on:
       - "subjects/**"
       - "scripts/validate-system-integration.mjs"
       - "tests/system-browser-acceptance.mjs"
+      - "tests/math-study-command-center-browser.mjs"
       - ".github/workflows/system-integration-ci.yml"
   pull_request:
     branches: [main]
@@ -18,6 +19,7 @@ on:
       - "subjects/**"
       - "scripts/validate-system-integration.mjs"
       - "tests/system-browser-acceptance.mjs"
+      - "tests/math-study-command-center-browser.mjs"
       - ".github/workflows/system-integration-ci.yml"
 
 permissions:
@@ -46,6 +48,8 @@ jobs:
           node --check subjects/systems/assets/systems.js
           node --check subjects/russian/assets/core.js
           node --check subjects/programming/assets/core.js
+          node --check subjects/math/assets/math-study-command-center.js
+          node --check tests/math-study-command-center-browser.mjs
 
   browser-system-acceptance:
     needs: validate-system-integration
@@ -75,6 +79,11 @@ jobs:
           BAUMAN_E2E_BASE_URL: http://127.0.0.1:4173/
           BAUMAN_E2E_ARTIFACT_DIR: artifacts/system-browser
         run: node tests/system-browser-acceptance.mjs
+      - name: Run Math Study Command Center browser acceptance
+        env:
+          BAUMAN_E2E_BASE_URL: http://127.0.0.1:4173/
+          BAUMAN_E2E_ARTIFACT_DIR: artifacts/math-study-command-center
+        run: node tests/math-study-command-center-browser.mjs
       - name: Show server log on failure
         if: failure()
         run: cat /tmp/bauman-system-http.log || true
@@ -83,6 +92,8 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: whole-system-browser-${{ github.run_id }}
-          path: artifacts/system-browser
+          path: |
+            artifacts/system-browser
+            artifacts/math-study-command-center
           if-no-files-found: warn
           retention-days: 7
