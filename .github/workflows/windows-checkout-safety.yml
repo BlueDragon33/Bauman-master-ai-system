@@ -1,0 +1,38 @@
+name: Windows checkout safety
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  windows-checkout:
+    runs-on: windows-latest
+    timeout-minutes: 10
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Enable long paths
+        shell: pwsh
+        run: git config core.longpaths true
+
+      - name: Audit Windows-safe paths
+        shell: pwsh
+        run: node scripts/check-windows-checkout.mjs
+
+      - name: Verify clean checkout
+        shell: pwsh
+        run: |
+          $status = git status --porcelain
+          if ($status) {
+            Write-Host $status
+            throw "Checkout produced unexpected working-tree changes"
+          }
