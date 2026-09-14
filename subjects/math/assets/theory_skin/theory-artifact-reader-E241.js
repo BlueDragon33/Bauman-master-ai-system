@@ -72,6 +72,13 @@
     return hit&&(hit.canonicalText||hit.canonical)?(hit.canonicalText||hit.canonical):v;
   }
 
+  function formulaText(lessonId,ids){
+    var r=registry(),entry=r&&r.get?r.get(lessonId):null,cache=entry&&cacheFor(entry),normalization=cache&&cache.normalization,byId={};
+    if(!normalization)return '';
+    arr(normalization.canonicalFormulaRegistry).forEach(function(item){if(item&&item.id)byId[item.id]=item.canonicalText||item.canonical||'';});
+    return arr(ids).map(function(id){return byId[id]||'';}).filter(Boolean).join('\n');
+  }
+
   function ensureStyle(){
     if(document.getElementById('e241-artifact-style'))return;
     var st=document.createElement('style');st.id='e241-artifact-style';st.textContent=''
@@ -288,6 +295,7 @@
     registry:registry,
     active:activeEntry,
     load:function(lessonId){var r=registry(),entry=lessonId&&r&&r.get?r.get(lessonId):activeEntry();return loadArtifacts(entry);},
+    formulaText:formulaText,
     showReference:showReference,
     showFullView:showFullView,
     apply:ensureControls,

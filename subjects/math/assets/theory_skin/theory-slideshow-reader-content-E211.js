@@ -66,6 +66,10 @@
     var blocks=blockOf(slide,'formula').map(function(b){return blockBody(b);}).filter(Boolean);
     return blocks.join('\n');
   }
+  function artifactFormula(record,slide){
+    var reader=window.BAUMAN_MATH_E241_ARTIFACT_READER;
+    return reader&&typeof reader.formulaText==='function'?reader.formulaText(record&&record.lessonId,slide&&slide.formulaRefs):'';
+  }
   function application(slide,mainBlock){
     var t=blockOf(slide,'text').filter(function(b){return b!==mainBlock;});
     return t[0]||t[1]||blockOf(slide,'code')[0]||blockOf(slide,'formula')[0]||mainBlock||null;
@@ -402,7 +406,8 @@
     var idx=currentIndex();
     if(idx>=r.slides.length)idx=0;
     var s=r.slides[idx]||r.slides[0];
-    var sig=(r.lessonId||r.lessonTitle)+'|'+idx+'|'+text(d.querySelector('[data-e202-count]'));
+    var b1=firstText(s), b2=application(s,b1), b3=qa(s), f=formula(s)||artifactFormula(r,s);
+    var sig=(r.lessonId||r.lessonTitle)+'|'+idx+'|'+text(d.querySelector('[data-e202-count]'))+'|'+f;
     if(sig===last)return; last=sig;
 
     var title=s.title||r.lessonTitle||r.title||'Bài học';
@@ -418,7 +423,6 @@
     var chip=d.querySelector('[data-e210-lesson-id]');
     if(chip)chip.textContent='Đang trình chiếu: '+lessonTitle;
 
-    var b1=firstText(s), b2=application(s,b1), b3=qa(s), f=formula(s);
     var insight=main&&main.querySelector('.e202-insight');
     var insightText=(b1&&b1.body)||title;
     setText(insight,insightText);
