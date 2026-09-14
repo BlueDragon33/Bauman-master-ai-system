@@ -2,9 +2,9 @@
 
 Mở bằng VS Code + Live Server tại `index.html`.
 
-Tài khoản quản trị mặc định:
-- Email: `dinhnam3391@gmail.com`
-- Mật khẩu: `123456789`
+Lần mở đầu tiên, trang yêu cầu tạo hồ sơ quản trị cục bộ ngay trong trình duyệt.
+Không có email hoặc mật khẩu mặc định trong gói phát hành. Hồ sơ cục bộ quản lý
+trạng thái học; Device Gate vẫn là lớp kiểm soát quyền truy cập hệ thống.
 
 Cấu trúc:
 - `index.html`

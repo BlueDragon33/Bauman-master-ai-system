@@ -1,0 +1,88 @@
+name: Whole System Integration Gate
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - "index.html"
+      - "assets/**"
+      - "subjects/**"
+      - "scripts/validate-system-integration.mjs"
+      - "tests/system-browser-acceptance.mjs"
+      - ".github/workflows/system-integration-ci.yml"
+  pull_request:
+    branches: [main]
+    paths:
+      - "index.html"
+      - "assets/**"
+      - "subjects/**"
+      - "scripts/validate-system-integration.mjs"
+      - "tests/system-browser-acceptance.mjs"
+      - ".github/workflows/system-integration-ci.yml"
+
+permissions:
+  contents: read
+
+jobs:
+  validate-system-integration:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22.13.0"
+      - name: Validate Hub, subject packages, bridge and locked Math runtime
+        run: node scripts/validate-system-integration.mjs
+      - name: Parse changed runtime JavaScript
+        run: |
+          node --check assets/js/main.js
+          node --check assets/js/planning-main.js
+          node --check subjects/shared/host-bridge.js
+          node --check subjects/ai/assets/ai.js
+          node --check subjects/foundation/assets/foundation.js
+          node --check subjects/research/assets/research.js
+          node --check subjects/signal/assets/signal.js
+          node --check subjects/systems/assets/systems.js
+          node --check subjects/russian/assets/core.js
+          node --check subjects/programming/assets/core.js
+
+  browser-system-acceptance:
+    needs: validate-system-integration
+    runs-on: ubuntu-24.04
+    timeout-minutes: 25
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22.13.0"
+      - name: Install Playwright Chromium
+        run: |
+          printf '{"private":true,"type":"module"}\n' > package.json
+          npm install --no-save --no-audit --no-fund playwright@1.55.0
+          npx playwright install --with-deps chromium
+      - name: Start local runtime
+        run: |
+          python3 -m http.server 4173 --bind 127.0.0.1 > /tmp/bauman-system-http.log 2>&1 &
+          for i in {1..30}; do
+            if curl -fsS http://127.0.0.1:4173/ >/dev/null; then exit 0; fi
+            sleep 1
+          done
+          cat /tmp/bauman-system-http.log
+          exit 1
+      - name: Run whole-system browser acceptance
+        env:
+          BAUMAN_E2E_BASE_URL: http://127.0.0.1:4173/
+          BAUMAN_E2E_ARTIFACT_DIR: artifacts/system-browser
+        run: node tests/system-browser-acceptance.mjs
+      - name: Show server log on failure
+        if: failure()
+        run: cat /tmp/bauman-system-http.log || true
+      - name: Upload browser evidence
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: whole-system-browser-${{ github.run_id }}
+          path: artifacts/system-browser
+          if-no-files-found: warn
+          retention-days: 7

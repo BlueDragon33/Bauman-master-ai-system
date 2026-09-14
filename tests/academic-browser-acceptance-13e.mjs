@@ -1,14 +1,15 @@
 import assert from 'node:assert/strict';
 import fs from 'node:fs';
 import path from 'node:path';
-import { chromium } from 'playwright';
+const { chromium }=await import(process.env.BAUMAN_PLAYWRIGHT_MODULE||'playwright');
 
 const BASE=process.env.BAUMAN_E2E_BASE_URL||'http://127.0.0.1:4173/';
 const OUT=process.env.BAUMAN_E2E_ARTIFACT_DIR||'artifacts/browser-13e';
 const MAIN='bauman_main_all_phases_subjects_v1';
 const DIAG='bauman_academic_2026_diagnostics_v1';
 const SESSION='bauman-device-session-v4';
-const USER='dinhnam3391@gmail.com';
+const USER='bauman-e2e@example.test';
+const PASS='bauman-e2e-pass';
 fs.mkdirSync(OUT,{recursive:true});
 const checks=[],pageErrors=[],failedRequests=[];
 const ok=(name,detail='')=>checks.push({name,detail});
@@ -54,6 +55,8 @@ async function approvedFlow(browser){
   must(await page.locator('#baumanDeviceGate').evaluate(e=>e.classList.contains('hidden')),'Device gate did not hide after approval');
   ok('device_authorized');
 
+  await page.locator('#loginEmail').fill(USER);
+  await page.locator('#loginPass').fill(PASS);
   await page.locator('#loginBtn').click();
   await page.waitForFunction(()=>!document.getElementById('appRoot')?.classList.contains('hidden'));
   await waitAcademic(page);
@@ -176,6 +179,6 @@ async function pendingFlow(browser){
 }
 
 let browser,result;
-try{browser=await chromium.launch({headless:true});result=await approvedFlow(browser);await pendingFlow(browser);must(pageErrors.length===0,`Page errors: ${pageErrors.join('\n')}`);must(failedRequests.length===0,`Unexpected failed requests: ${failedRequests.join('\n')}`);fs.writeFileSync(path.join(OUT,'summary.json'),JSON.stringify({status:'PASS',suite:'Academic Browser Acceptance · Pass13E+13F',checks,pageErrors,failedRequests,observations:result,completedAt:new Date().toISOString()},null,2));console.log('ACADEMIC_BROWSER_ACCEPTANCE_13E_13F_PASS');console.log(JSON.stringify({checks:checks.length,pwa:result.pwa,offlineGrace:true,manualProtection:true,transactionApply:true,rollback:true,rollbackStaleGuard:true},null,2))}
+try{browser=await chromium.launch({headless:true,...(process.env.BAUMAN_CHROME_PATH?{executablePath:process.env.BAUMAN_CHROME_PATH}:{})});result=await approvedFlow(browser);await pendingFlow(browser);must(pageErrors.length===0,`Page errors: ${pageErrors.join('\n')}`);must(failedRequests.length===0,`Unexpected failed requests: ${failedRequests.join('\n')}`);fs.writeFileSync(path.join(OUT,'summary.json'),JSON.stringify({status:'PASS',suite:'Academic Browser Acceptance · Pass13E+13F',checks,pageErrors,failedRequests,observations:result,completedAt:new Date().toISOString()},null,2));console.log('ACADEMIC_BROWSER_ACCEPTANCE_13E_13F_PASS');console.log(JSON.stringify({checks:checks.length,pwa:result.pwa,offlineGrace:true,manualProtection:true,transactionApply:true,rollback:true,rollbackStaleGuard:true},null,2))}
 catch(e){fs.writeFileSync(path.join(OUT,'summary.json'),JSON.stringify({status:'FAIL',suite:'Academic Browser Acceptance · Pass13E+13F',error:String(e?.stack||e),checks,pageErrors,failedRequests,completedAt:new Date().toISOString()},null,2));console.error('ACADEMIC_BROWSER_ACCEPTANCE_13E_13F_FAIL');console.error(e?.stack||e);process.exitCode=1}
 finally{if(browser)await browser.close()}

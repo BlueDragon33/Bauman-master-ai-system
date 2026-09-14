@@ -7,7 +7,7 @@ const OPTIONAL_DATA_FILES=A.optionalDataFiles||['dialogue-bauman-az','deep-speak
 const ALL_STORAGE_FILES=Array.from(new Set([...DATA_FILES,...OPTIONAL_DATA_FILES]));
 const DATA_ROOT=A.dataRoot||'data/';
 const EXTERNAL_DATA_ROOT=A.externalDataRoot||'external-data/';
-const PACKAGE_ROOT=A.packageRoot||'subjects/russian/';
+const PACKAGE_ROOT=A.packageRoot||'subjects/programming/';
 const NAV=A.nav||[['overview','🧭','Tổng quan'],['learning','🎓','Học tập'],['dialogue','🎙️','Vấn đáp'],['writing','🔬','Mô phỏng'],['media','🎬','Video/Tài nguyên'],['vocab','🧮','Cú pháp'],['grammar','∑','Cú pháp sâu'],['mindmap','🧠','Mind map'],['storage','🗄️','Dữ liệu']];
 const LEARN_TABS=A.learningTabs||[['theory','📘','Lý thuyết'],['exercises','📝','Bài tập'],['practice','🧩','Ứng dụng'],['review','🔁','Ôn tập'],['exam','🧪','Kiểm tra']];
 const DEFAULT={stage:'vn',view:'overview',learnTab:'theory',lessonId:'',slide:0,lessonQuery:'',conceptQuery:'',exerciseLevel:'all',exerciseIndex:0,testLevel:'easy',testIndex:0,testAnswer:null,reviewLevel:'easy',reviewFilter:'all',reviewLesson:'all',reviewIndex:0,reviewPage:0,reviewAnswer:null,reviewProgress:{done:{},flagged:{},wrong:{}},examLevel:'easy',examCycle:'auto',examPaperLevel:'easy',examPaperType:'standard',examIndex:0,examPage:0,examAnswer:null,examProgress:{answers:{},marked:{},submitted:false,submittedAt:null,result:null,wrong:{},paperResults:{}},examHistory:[],remedialPlan:{active:false,cards:[],completed:{},createdAt:null,lastExamAt:null,lastScore:null},dialogueId:'',dialogueGroup:'all',dialogueDifficulty:'all',dialogueQuery:'',dialogueLineIndex:0,dialogueRole:'all',dialogueHideVi:false,dialoguePeople:'2',dialogueMinutes:'10',dialogueMode:'shadow_roleplay',dialogueScenario:'classroom',practiceDialogueId:'',practiceGroup:'all',practiceDifficulty:'all',practiceQuery:'',practiceLineIndex:0,practiceRole:'all',practiceHideVi:false,practiceSpeechResults:{},dialogueSpeechResults:{},deepSpeakingId:'',deepSpeakingMode:'overview',deepSpeakingStep:0,deepSpeakingProgress:{done:{},weak:{},attempts:{},lastMode:{}},optionalDataLoading:{},optionalDataError:{},speechResults:{},speechRecording:false,speechAutoNext:false,mediaCat:'all',mediaQuery:'',mediaView:'list',mediaId:'',vocabQuery:'',vocabIndex:0,vocabPage:0,vocabFlipped:false,grammarLevel:'all',grammarTrack:'all',grammarQuery:'',grammarIndex:0,mindmapId:'roadmap-map',mindmapNode:'',mindmapFontScale:14,mindmapDrag:{},mindmapLayoutVersion:'v13_32_clean',writingMode:'handwriting',handwritingIndex:0,handwritingQuery:'',handwritingStep:0,handwritingPractice:'trace',handwritingShowGuide:true,handwritingShowLines:true,writingIndex:0,writingQuery:'',writingDraft:'',simulationKind:'theory',simulationTargetId:'',storageFile:'curriculum',storageGroup:'all',storageText:'',storagePreviewLimit:0,storagePreviewAutoCollapsedV1322:false,storageQuery:'',storageTreeOpen:{},aiDraft:'',aiOutput:'',interfaceTheme:'clean',interfaceDensity:'normal',hostTask:null,planningBundle:null,routeEdit:false,routeManual:null,routeFocus:'today',testSession:{answered:0,correct:0,targetQuestions:100,targetScore:80,seen:{}},recentAccess:[],stageGate:null,examGateSource:null};
@@ -930,7 +930,7 @@ function renderRouteWeek(){const list=allRouteSessions().slice(0,7); return `<di
 function renderRouteFull(){const list=allRouteSessions(); return `<details class="route-full"><summary>Toàn bộ lộ trình (${list.length} buổi)</summary><div>${list.map((x,i)=>`<article><b>${i+1}. ${esc(x.phase||'Buổi học')}</b><small>${esc(x.date||'')} · ${Number(x.minutes||0)} phút · ${esc(x.sessionKind||'study')}</small><span>${esc(x.output||'')}</span></article>`).join('')}</div></details>`}
 function renderRouteEditor(s){s=normalizeRouteSession(s); return `<div class="route-edit-form"><div class="form-row"><label>Tiêu đề buổi<input class="input" id="routePhase" value="${esc(s.phase||'')}"></label><label>Thời lượng<input class="input" id="routeMinutes" type="number" min="15" max="240" value="${Number(s.minutes||90)}"></label></div><label>Đầu ra / ghi chú<textarea class="textarea compact-textarea" id="routeOutput">${esc(s.output||'')}</textarea></label><h4>Nhiệm vụ trong buổi</h4><div class="routeCards edit-grid">${arr(s.cards).map((c,i)=>routeCardHtml(c,i,true)).join('')}</div></div>`}
 function saveRouteManual(){const s=normalizeRouteSession(JSON.parse(JSON.stringify(planSession()))); s.phase=$('#routePhase')?.value||s.phase; s.minutes=Number($('#routeMinutes')?.value)||s.minutes; s.output=$('#routeOutput')?.value||s.output; $$('.routeCard.edit').forEach(card=>{const i=Number($('[data-route-field="title"]',card)?.dataset.idx); if(!Number.isFinite(i))return; s.cards[i]=s.cards[i]||{}; ['title','limit','purpose'].forEach(f=>{const el=$(`[data-route-field="${f}"]`,card); if(el)s.cards[i][f]=el.value;});}); state.routeManual=normalizeRouteSession(s); state.routeEdit=false; save(); openModal(renderRouteModal(),'route'); toast('Đã lưu chỉnh sửa lịch trình')}
-function requestMainSchedule(action){const payload={type:'BAUMAN_SUBJECT_SCHEDULE_REQUEST',subjectId:A.id||'russian',action,session:planSession()}; try{if(window.parent!==window)window.parent.postMessage(payload,'*')}catch(_){} toast(action==='regenerate'?'Đã gửi yêu cầu tạo lại lịch':'Đã gửi yêu cầu học bù thêm giờ')}
+function requestMainSchedule(action){const payload={type:'BAUMAN_SUBJECT_SCHEDULE_REQUEST',subjectId:A.id||'programming',action,session:planSession()};window.BaumanSubjectHost?.send?.(payload);toast(action==='regenerate'?'Đã gửi yêu cầu tạo lại lịch':'Đã gửi yêu cầu học bù thêm giờ')}
 function renderRouteFocusPanel(s){
  s=normalizeRouteSession(s);
  return `<section class="panel route-focus-panel"><div class="route-focus-copy"><span class="chip">Trọng tâm buổi học</span><h4>${esc(s.phase||'Buổi học hôm nay')}</h4><p>${esc(stageReality())}</p></div><div class="route-focus-actions"><button class="btn dark" data-route='{"view":"learning","learnTab":"theory"}'>Bắt đầu học</button><button class="btn soft" data-route='{"view":"dialogue"}'>Vấn đáp</button><button class="btn soft" data-act="route-edit">Xem / chỉnh</button></div></section>`
@@ -3387,26 +3387,29 @@ function handleKeys(e){
 }
 function bridge(){
  const incoming=['BAUMAN_ASSIGN_TASK','BAUMAN_PLANNING_MISSION','BAUMAN_TODAY_TASK','BAUMAN_MAIN_TODAY','BAUMAN_TODAY_GOAL','BAUMAN_SCHEDULE_TODAY'];
- const status=A.exportSubjectStatus?A.exportSubjectStatus():{subjectId:A.id||'russian',version:VERSION,packageRoot:PACKAGE_ROOT,entry:'subjects/russian/index.html',dataFiles:DATA_FILES,selfContained:true};
+ const status=A.exportSubjectStatus?A.exportSubjectStatus():{subjectId:A.id||'programming',version:VERSION,packageRoot:PACKAGE_ROOT,entry:'subjects/programming/index.html',dataFiles:DATA_FILES,selfContained:true};
  const manifest=window.SUBJECT_MANIFEST||{};
- const send=(payload={})=>{try{if(window.parent!==window)window.parent.postMessage(payload,'*')}catch(_){}};
+ const send=(payload={})=>window.BaumanSubjectHost?.send?.(payload);
  const ready=()=>{
-   send({type:'BAUMAN_SUBJECT_READY',subjectId:A.id||'russian',version:VERSION,manifest,packageStatus:status,source:'subjects/russian'});
-   send({type:'BAUMAN_SUBJECT_DATA_SOURCES_READY',subjectId:A.id||'russian',dataRoot:DATA_ROOT,externalDataRoot:EXTERNAL_DATA_ROOT,dataFiles:ALL_STORAGE_FILES.map(f=>({id:f,path:sourceFilePath(f),count:sourceCount(f,DB[f]),status:sourceStatus(f,DB[f])[0],optional:isOptionalFile(f)}))});
-   send({type:'BAUMAN_SUBJECT_REQUEST_TODAY',subjectId:A.id||'russian'});
+   send({type:'BAUMAN_SUBJECT_READY',subjectId:A.id||'programming',version:VERSION,manifest,packageStatus:status,source:'subjects/programming'});
+   send({type:'BAUMAN_SUBJECT_DATA_SOURCES_READY',subjectId:A.id||'programming',dataRoot:DATA_ROOT,externalDataRoot:EXTERNAL_DATA_ROOT,dataFiles:ALL_STORAGE_FILES.map(f=>({id:f,path:sourceFilePath(f),count:sourceCount(f,DB[f]),status:sourceStatus(f,DB[f])[0],optional:isOptionalFile(f)}))});
+   send({type:'BAUMAN_SUBJECT_REQUEST_TODAY',subjectId:A.id||'programming'});
  };
+ const acceptTask=d=>{
+   if(!incoming.includes(d?.type))return;
+   state.hostTask=d.task||d.mission||d.today||d;
+   if(d.bundle||d.planningBundle)state.planningBundle=d.bundle||d.planningBundle;
+   else if(window.BaumanPlanningBridge){try{state.planningBundle=window.BaumanPlanningBridge.acceptMission(state.hostTask,{adapter:A,db:DB})}catch(_){}}
+   save();render();toast('Đã nhận mission từ Main');
+ };
+ window.BaumanSubjectHost?.onTask?.(acceptTask);
  window.addEventListener('message',e=>{
+   if(!window.BaumanSubjectHost?.trusted?.(e))return;
    const d=e.data||{};
    if(d.type==='BAUMAN_REQUEST_SUBJECT_MANIFEST'||d.type==='BAUMAN_PING'){
-     send({type:'BAUMAN_SUBJECT_MANIFEST',subjectId:A.id||'russian',manifest,packageStatus:status});
-     if(d.type==='BAUMAN_PING')send({type:'BAUMAN_PONG',subjectId:A.id||'russian',version:VERSION});
+     send({type:'BAUMAN_SUBJECT_MANIFEST',subjectId:A.id||'programming',manifest,packageStatus:status});
+     if(d.type==='BAUMAN_PING')send({type:'BAUMAN_PONG',subjectId:A.id||'programming',version:VERSION});
      return;
-   }
-   if(incoming.includes(d.type)){
-     state.hostTask=d.task||d.mission||d.today||d;
-     if(d.bundle||d.planningBundle)state.planningBundle=d.bundle||d.planningBundle;
-     else if(window.BaumanPlanningBridge){try{state.planningBundle=window.BaumanPlanningBridge.acceptMission(state.hostTask,{adapter:A,db:DB})}catch(_){}}
-     save();render();toast('Đã nhận mission từ Main');
    }
  });
  ready();

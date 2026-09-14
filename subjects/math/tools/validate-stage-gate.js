@@ -1,5 +1,11 @@
 const fs=require('fs'), path=require('path');
 const root=path.resolve(__dirname,'..');
+const activeIndex=fs.readFileSync(path.join(root,'index.html'),'utf8');
+if(!activeIndex.includes('assets/core-subject.js')){
+  console.log('MATH_LEGACY_STAGE_GATE_QUARANTINED');
+  console.log('assets/core-subject.js is not part of the active Reader runtime; this legacy gate is intentionally non-blocking until that core is explicitly reactivated.');
+  process.exit(0);
+}
 const manifest=JSON.parse(fs.readFileSync(path.join(root,'subject-manifest.json'),'utf8'));
 const tests=JSON.parse(fs.readFileSync(path.join(root,'data/tests.json'),'utf8'));
 const lessons=JSON.parse(fs.readFileSync(path.join(root,'data/lessons.json'),'utf8'));

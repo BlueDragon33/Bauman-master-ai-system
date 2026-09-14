@@ -8,7 +8,7 @@ on:
       - ".github/workflows/russian-ui-reference-gate.yml"
   push:
     branches:
-      - "temp/russian-ui-reference-redesign"
+      - "main"
     paths:
       - "subjects/russian/**"
       - ".github/workflows/russian-ui-reference-gate.yml"

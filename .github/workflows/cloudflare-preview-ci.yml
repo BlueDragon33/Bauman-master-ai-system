@@ -66,7 +66,7 @@ jobs:
 
       - name: Install Bauman Control dependencies
         working-directory: control-service
-        run: npm install --no-audit --no-fund
+        run: npm ci --no-audit --no-fund
 
       - name: Validate migration boundary
         run: node scripts/validate-cloudflare-preview.mjs

@@ -42,7 +42,7 @@ jobs:
 
       - name: Install Bauman Control dependencies
         working-directory: control-service
-        run: npm install --no-audit --no-fund
+        run: npm ci --no-audit --no-fund
 
       - name: Static runtime gate regression
         run: node scripts/runtime-device-gate-regression.mjs

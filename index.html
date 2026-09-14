@@ -3,7 +3,8 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Bauman Master AI · Main Route R4 Final QA</title>
+  <title>Bauman Master AI · Trung tâm học tập</title>
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%2307111f'/%3E%3Ctext x='32' y='45' text-anchor='middle' font-size='42' fill='%2367e8f9'%3EB%3C/text%3E%3C/svg%3E">
   <link rel="stylesheet" href="assets/css/main.css">
   <link rel="stylesheet" href="assets/css/device-access-gate.css">
   <link rel="stylesheet" href="assets/css/academic-2026.css">
@@ -12,13 +13,13 @@
   <div id="authScreen" class="auth-screen">
     <div class="auth-card">
       <div class="auth-visual-mark"><div class="auth-logo">B</div><span class="auth-kicker">Bauman Master AI</span></div>
-      <h1>Đăng nhập lộ trình Bauman</h1>
-      <p>Đăng nhập để dùng lộ trình, lịch học, môn học và tiến độ cá nhân.</p>
+      <h1 id="authTitle">Đăng nhập lộ trình Bauman</h1>
+      <p id="authDescription">Đăng nhập để dùng lộ trình, lịch học, môn học và tiến độ cá nhân.</p>
       <div class="auth-mini-pills"><span>PlanningBridge</span><span>Multi-subject</span><span>AI mentor</span></div>
-      <input id="loginEmail" class="field" placeholder="Email" autocomplete="username" value="dinhnam3391@gmail.com">
-      <input id="loginPass" class="field" type="password" placeholder="Mật khẩu" autocomplete="current-password" value="123456789">
+      <input id="loginEmail" class="field" placeholder="Email" autocomplete="username">
+      <input id="loginPass" class="field" type="password" placeholder="Mật khẩu" autocomplete="current-password">
       <button class="btn primary" id="loginBtn">Đăng nhập</button>
-      <small class="auth-safe-note">Tài khoản quản trị mặc định: dinhnam3391@gmail.com</small>
+      <small class="auth-safe-note" id="authSafeNote">Không có tài khoản hoặc mật khẩu mặc định được phát hành cùng trang.</small>
     </div>
   </div>
 
