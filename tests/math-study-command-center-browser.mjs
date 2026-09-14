@@ -32,23 +32,31 @@ try{
 
   const url=`${BASE}subjects/math/index.html?host=main&hostOrigin=${encodeURIComponent(new URL(BASE).origin)}&subjectId=math&taskId=study-command-center-e2e&stage=prepare`;
   await page.goto(url,{waitUntil:'load',timeout:30000});
-  await page.waitForFunction(()=>window.BAUMAN_MATH_STUDY_COMMAND_CENTER&&window.BAUMAN_MATH_ACTIVITY_STUDIO&&window.BAUMAN_MATH_ACTIVITY_MASTERY&&window.BAUMAN_MATH_FORMULA_LIBRARY&&window.BAUMAN_MATH_SIMULATION_SOURCE&&window.BAUMAN_MATH_PROFESSOR_DRILL&&window.BAUMAN_MATH_REGRESSION_GATE&&window.BAUMAN_MATH_RUNTIME_HEALTH,null,{timeout:30000});
+  await page.waitForFunction(()=>window.BAUMAN_MATH_STUDY_COMMAND_CENTER&&window.BAUMAN_MATH_ACTIVITY_STUDIO&&window.BAUMAN_MATH_ACTIVITY_MASTERY&&window.BAUMAN_MATH_FORMULA_LIBRARY&&window.BAUMAN_MATH_SIMULATION_SOURCE&&window.BAUMAN_MATH_PROFESSOR_DRILL&&window.BAUMAN_MATH_REGRESSION_GATE&&window.BAUMAN_MATH_RUNTIME_HEALTH&&window.BAUMAN_MATH_E186_LESSON_FIRST,null,{timeout:30000});
   await page.waitForFunction(()=>window.BAUMAN_MATH_THEORY_E129?.sourceStatus?.().content>=3,null,{timeout:30000});
 
-  const selected=await page.evaluate(async lessonId=>{
+  const canonical=await page.evaluate(async lessonId=>{
     const payload=window.BAUMAN_MATH_E240_THEORY_CONTENT_SOURCE.getPayload()||await fetch('data/theory_lecture_content.json',{cache:'no-store'}).then(r=>r.json());
     const record=payload?.records?.find(row=>row?.lessonId===lessonId);
-    if(!record)return null;
-    const state=window.__BAUMAN_CORE_API?.state||window.__MATH_STATE;
-    state.view='learning';state.learnTab='theory';state.stage='vn';state.e129Stage='vn';state.e129ChapterId=record.chapterId;state.e129LessonId=lessonId;
-    state.e169Path={...(state.e169Path||{}),chapterId:record.chapterId,activityId:'theory',lessonId};
-    window.BAUMAN_MATH_THEORY_E129.render();
-    window.BAUMAN_MATH_INTEGRATION_SYNC?.refresh?.();
-    return{lessonId:record.lessonId,chapterId:record.chapterId,slides:record.slides?.length||0};
+    return record?{lessonId:record.lessonId,chapterId:record.chapterId,slides:record.slides?.length||0}:null;
   },LESSON);
-  assert.ok(selected&&selected.lessonId===LESSON,'L06 canonical lesson could not be selected');
-  assert.equal(selected.slides,22,'L06 durable slide count drift');
-  await page.waitForSelector(`[data-current-lesson="${LESSON}"]`,{timeout:30000});
+  assert.ok(canonical&&canonical.lessonId===LESSON,'L06 canonical lesson could not be found');
+  assert.equal(canonical.slides,22,'L06 durable slide count drift');
+
+  // Drive the same E186 Lesson First route a real user uses instead of mutating legacy E169 selectors.
+  await page.evaluate(()=>window.BAUMAN_MATH_E186_LESSON_FIRST.open('lesson'));
+  const lessonChoice=page.locator(`[data-e186-pick="lesson"][data-e186-id="${LESSON}"]`);
+  await lessonChoice.waitFor({state:'visible',timeout:10000});
+  await lessonChoice.click();
+  const reviewChoice=page.locator('[data-e186-pick="activity"][data-e186-id="review"]');
+  await reviewChoice.waitFor({state:'visible',timeout:10000});
+  await reviewChoice.click();
+  await page.waitForFunction(lessonId=>{
+    const st=window.__BAUMAN_CORE_API?.state||window.__MATH_STATE||{};
+    return st.e169Path?.lessonId===lessonId&&st.e169Path?.activityId==='review'&&st.learnTab==='review';
+  },LESSON,{timeout:10000});
+  await page.waitForSelector('#mathActivityStudio .math-activity-card',{timeout:10000});
+  report.checks.e186LessonFirstRoute=true;
 
   await page.evaluate(({lessonId,masteryKey,historyKey,notesKey,sessionKey})=>{
     localStorage.removeItem(historyKey);localStorage.removeItem(notesKey);localStorage.removeItem(sessionKey);
@@ -58,6 +66,7 @@ try{
       [`${lessonId}::practice::e2e-mastered`]:{state:'mastered',updatedAt:now-2000},
       [`${lessonId}::application::e2e-learning`]:{state:'learning',updatedAt:now-1000}
     }));
+    window.BAUMAN_MATH_ACTIVITY_MASTERY.refresh();
     window.BAUMAN_MATH_STUDY_COMMAND_CENTER.refresh();
   },{lessonId:LESSON,masteryKey:MASTERY_KEY,historyKey:HISTORY_KEY,notesKey:NOTES_KEY,sessionKey:SESSION_KEY});
 
@@ -78,20 +87,6 @@ try{
   assert.equal(initial.self.correctnessInference,false);
   report.checks.dashboardLocalState=true;
 
-  const activityFound=await page.evaluate(async()=>{
-    const activities=['application','exercises','practice'];
-    for(const activity of activities){
-      window.BAUMAN_MATH_NAVIGATION?.route?.(activity);
-      await new Promise(resolve=>setTimeout(resolve,420));
-      window.BAUMAN_MATH_ACTIVITY_STUDIO?.refresh?.();
-      window.BAUMAN_MATH_ACTIVITY_MASTERY?.refresh?.();
-      window.BAUMAN_MATH_STUDY_COMMAND_CENTER?.refresh?.();
-      await new Promise(resolve=>setTimeout(resolve,100));
-      if(document.querySelectorAll('#mathActivityStudio .math-activity-card').length)return activity;
-    }
-    return null;
-  });
-  assert.ok(activityFound,'No real Activity Studio card was available for L06');
   await page.waitForSelector('#mathActivityStudio .math-activity-card .math-workbench',{timeout:10000});
   const card=page.locator('#mathActivityStudio .math-activity-card').first();
   const realKey=await card.getAttribute('data-math-mastery-key');
