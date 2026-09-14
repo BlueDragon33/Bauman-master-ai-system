@@ -1,12 +1,12 @@
-/* Bauman Math Runtime Health V1
+/* Bauman Math Runtime Health V2
  * Aggregates existing selfCheck APIs. UI/diagnostic only.
  */
 (function mathRuntimeHealth(global){
   'use strict';
-  const RELEASE='MATH_RUNTIME_HEALTH_V1';
+  const RELEASE='MATH_RUNTIME_HEALTH_V2';
   let lastReport=null;
   const $=(s,r=document)=>r.querySelector(s);
-  const esc=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+  const esc=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot',"'":'&#39;'}[c]||c));
   const MODULES=[
     ['E129 Theory',()=>global.BAUMAN_MATH_THEORY_E129?.selfCheck?.()],
     ['Program Frame E130',()=>global.BAUMAN_MATH_E130_PROGRAM_FRAME?.selfCheck?.()],
@@ -17,7 +17,10 @@
     ['Reader Role Map',()=>global.BAUMAN_MATH_READER_ROLE_MAP?.selfCheck?.()],
     ['Learning Flow',()=>global.BAUMAN_MATH_LEARNING_FLOW?.selfCheck?.()],
     ['Study Library',()=>global.BAUMAN_MATH_STUDY_LIBRARY?.selfCheck?.()],
-    ['System Bridge',()=>global.BAUMAN_MATH_SYSTEM_BRIDGE?.selfCheck?.()]
+    ['System Bridge',()=>global.BAUMAN_MATH_SYSTEM_BRIDGE?.selfCheck?.()],
+    ['Simulation Source',()=>global.BAUMAN_MATH_SIMULATION_SOURCE?.selfCheck?.()],
+    ['Formula Library',()=>global.BAUMAN_MATH_FORMULA_LIBRARY?.selfCheck?.()],
+    ['Activity Studio',()=>global.BAUMAN_MATH_ACTIVITY_STUDIO?.selfCheck?.()]
   ];
   function ensure(){
     if(!$('#mathRuntimeHealth')){
@@ -38,7 +41,7 @@
     const state=explicitFail?'warn':'pass';
     const facts=[];
     Object.entries(value).forEach(([k,v])=>{if(['release','ok','ready'].includes(k))return;if(typeof v==='boolean')facts.push(`${k}=${v}`);else if(typeof v==='number'||typeof v==='string')facts.push(`${k}=${String(v).slice(0,80)}`)});
-    return{name,state,detail:facts.slice(0,5).join(' · ')||'Self-check trả về trạng thái hợp lệ.',raw:value};
+    return{name,state,detail:facts.slice(0,6).join(' · ')||'Self-check trả về trạng thái hợp lệ.',raw:value};
   }
   function check(){
     const rows=MODULES.map(([name,fn])=>{try{return summarize(name,fn(),null)}catch(e){return summarize(name,null,e)}});
@@ -63,6 +66,6 @@
     document.addEventListener('click',e=>{const a=e.target.closest('[data-health]')?.dataset.health;if(!a)return;e.preventDefault();if(a==='open')open();if(a==='close')close();if(a==='refresh')check();if(a==='export')exportReport()},true);
     document.addEventListener('keydown',e=>{if(e.key==='Escape')close()});
   }
-  function init(){if(!document.body||document.body.dataset.mathRuntimeHealth==='1')return;document.body.dataset.mathRuntimeHealth='1';ensure();bind();[650,1400,2800].forEach(ms=>setTimeout(check,ms));global.BAUMAN_MATH_RUNTIME_HEALTH={release:RELEASE,check,open,close,getReport:()=>lastReport,selfCheck:()=>({release:RELEASE,ready:!!$('#mathRuntimeHealth'),modules:MODULES.length,diagnosticOnly:true,academicWrites:false})}}
+  function init(){if(!document.body||document.body.dataset.mathRuntimeHealth==='1')return;document.body.dataset.mathRuntimeHealth='1';ensure();bind();[750,1600,3000].forEach(ms=>setTimeout(check,ms));global.BAUMAN_MATH_RUNTIME_HEALTH={release:RELEASE,check,open,close,getReport:()=>lastReport,selfCheck:()=>({release:RELEASE,ready:!!$('#mathRuntimeHealth'),modules:MODULES.length,diagnosticOnly:true,academicWrites:false})}}
   if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',init,{once:true});else init();
 })(window);
