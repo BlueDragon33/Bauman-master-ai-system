@@ -7,7 +7,7 @@
   const RELEASE='MATH_ACTIVITY_STUDIO_V1';
   const $=(s,r=document)=>r.querySelector(s);
   const $$=(s,r=document)=>Array.from(r.querySelectorAll(s));
-  const esc=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+  const esc=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot',"'":'&#39;'}[c]));
   const clip=(s,n=420)=>{s=String(s??'').replace(/\s+/g,' ').trim();return s.length>n?s.slice(0,n-1)+'…':s};
   let timer=0,loading=null;
   const cache={};
@@ -23,7 +23,7 @@
     exercises:['practice','professor_qa','mini_case'],
     practice:['simulation','practice','mini_case'],
     application:['application','real_bridge'],
-    review:['takeaway','bridge','core_formula','notation'],
+    review:['takeaway','bridge','core_formula','notation','mastery_close','troubleshooting','code_contract_audit','preprocessing_distinction'],
     exam:['professor_qa','practice','retrieval','assessment']
   };
   const META={
@@ -35,8 +35,8 @@
   };
 
   function state(){return global.__BAUMAN_CORE_API?.state||global.__MATH_STATE||{}}
-  function activity(){return String(state().e169Path?.activityId||state().learnTab||'theory')}
-  function lessonId(){return String(state().e169Path?.lessonId||state().e129LessonId||'')}
+  function activity(){return String(state().e186Path?.activityId||state().e169Path?.activityId||state().learnTab||'theory')}
+  function lessonId(){return String(state().e186Path?.lessonId||state().e169Path?.lessonId||state().e129LessonId||'')}
   function chapterId(){
     const id=lessonId(),records=theoryRecords();
     return String(records.find(r=>(r.lessonId||r.id)===id)?.chapterId||state().e129ChapterId||'');
@@ -114,11 +114,14 @@
     return true;
   }
   function backTheory(){
-    const st=state(),id=lessonId();st.view='learning';st.learnTab='theory';st.e129LessonId=id;if(st.e169Path){st.e169Path.activityId='theory';st.e169Path.lessonId=id}try{global.__BAUMAN_CORE_API?.save?.()}catch(_){ }try{global.BAUMAN_MATH_THEORY_E129?.render?.()}catch(_){ }setTimeout(()=>{global.BAUMAN_MATH_READER_ROLE_MAP?.map?.();global.BAUMAN_MATH_LEARNING_FLOW?.refresh?.();$('#view')?.scrollIntoView({behavior:'smooth',block:'start'})},180);
+    const st=state(),id=lessonId();st.view='learning';st.learnTab='theory';st.e129LessonId=id;
+    if(st.e186Path){st.e186Path.activityId='theory';st.e186Path.lessonId=id}
+    if(st.e169Path){st.e169Path.activityId='theory';st.e169Path.lessonId=id}
+    try{global.__BAUMAN_CORE_API?.save?.()}catch(_){ }try{global.BAUMAN_MATH_THEORY_E129?.render?.()}catch(_){ }setTimeout(()=>{global.BAUMAN_MATH_READER_ROLE_MAP?.map?.();global.BAUMAN_MATH_LEARNING_FLOW?.refresh?.();$('#view')?.scrollIntoView({behavior:'smooth',block:'start'})},180);
   }
   function action(a){if(a==='theory')backTheory();if(a==='lab')global.BAUMAN_MATH_SIMULATION_SOURCE?.openForCurrent?.()||global.BAUMAN_MATH_WORKSPACE?.openLab?.();if(a==='control')global.BAUMAN_MATH_WORKSPACE?.openControl?.();if(a==='formula')global.BAUMAN_MATH_NAVIGATION?.openFormulaFocus?.();if(a==='library')global.BAUMAN_MATH_STUDY_LIBRARY?.open?.();if(a==='vault')global.BAUMAN_MATH_THEORY_E129?.openTheoryVault?.()}
   function schedule(ms=150){clearTimeout(timer);timer=setTimeout(()=>load().then(render),ms)}
-  function bind(){document.addEventListener('click',e=>{const a=e.target.closest('[data-activity-action]')?.dataset.activityAction;if(a){e.preventDefault();action(a);return}if(e.target.closest('[data-e169-pick-activity],[data-math-nav],[data-e129-back-theory],[data-e129-nav]'))schedule(180)},true)}
+  function bind(){document.addEventListener('click',e=>{const a=e.target.closest('[data-activity-action]')?.dataset.activityAction;if(a){e.preventDefault();action(a);return}if(e.target.closest('[data-e186-pick="activity"],[data-e169-pick-activity],[data-math-nav],[data-e129-back-theory],[data-e129-nav]'))schedule(180)},true)}
   function selfCheck(){const act=activity();return{release:RELEASE,ready:!!$('#mathActivityStudio'),activity:act,lessonId:lessonId()||null,canonicalSources:(SOURCES[act]||[]).length,companionMatches:sourceStatuses().reduce((s,x)=>s+x.match,0),embeddedFallbackSlides:roleSlides().length,sampleRecordsRendered:false,academicWrites:false,mutationObserver:false,newRouteEngine:false}}
   function init(){if(!document.body||document.body.dataset.mathActivityStudio==='1')return;document.body.dataset.mathActivityStudio='1';bind();load().then(()=>{render();[500,1200,2400].forEach(ms=>setTimeout(render,ms))});global.BAUMAN_MATH_ACTIVITY_STUDIO={release:RELEASE,refresh:()=>schedule(0),render,selfCheck}}
   if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',init,{once:true});else init();
