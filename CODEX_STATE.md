@@ -2,7 +2,7 @@
 
 Current task: `CHATGPT_SITE_PUBLICATION_W4`
 
-Status: `WHOLE_SYSTEM_W3_PASS_W4_READY`
+Status: `WHOLE_SYSTEM_W3_PASS_W4_PUBLICATION_LOCKED`
 
 Date: 2026-09-14
 Branch: `main`
@@ -12,16 +12,24 @@ Branch: `main`
 - W1 §1.6 runtime Pass 15–19: PASS.
 - W2 whole-system audit and repair: PASS.
 - W3 whole-system QA: PASS (`WHOLE_SYSTEM_W3_QA_REPORT.json`).
-- W4 ChatGPT Site publication: READY, not yet claimed complete.
+- W4 ChatGPT Site publication: READY, not yet published/accepted.
 
-Final W3 runtime tested commit: `1a5969b38a49f88c24e98a87c044dd3f616a05c3`.
+## Immutable W4 publication lineage
+Verified runtime commit to publish: `1a5969b38a49f88c24e98a87c044dd3f616a05c3`.
 W3 acceptance report commit: `aded176683f3cc21dc553416c5e0690e9686f766`.
+Publication manifest: `W4_PUBLICATION_MANIFEST.json`.
+Live checklist: `W4_LIVE_PUBLICATION_CHECKLIST.md`.
 
-Final W3 evidence:
-- Whole System Integration Gate run `34856746521`: PASS, including Chromium whole-system acceptance and Math Study Command Center acceptance.
+Current `main` may be ahead of the verified runtime only through documentation/state/report/manifest commits. Do not publish any untested runtime delta. Reconcile this condition immediately before publication.
+
+## Final W3 evidence
+- Whole System Integration Gate run `34856746521`: PASS.
+- Chromium whole-system acceptance: PASS.
+- Math Study Command Center browser acceptance: PASS.
 - Cloudflare Preview CI run `34856746410`: PASS.
 - Windows checkout safety run `34856746465`: PASS.
-- Browser evidence artifact: `whole-system-browser-34856746521`, SHA-256 `1c3f1d3ba24fde7042785f1f4ac57d6ba242de2c2a3a8cd5bf5d333f89cb54ba`.
+- Browser evidence artifact: `whole-system-browser-34856746521`.
+- Browser artifact SHA-256: `1c3f1d3ba24fde7042785f1f4ac57d6ba242de2c2a3a8cd5bf5d333f89cb54ba`.
 - Open BLOCKER: `0`.
 - Open functional MAJOR: `0`.
 
