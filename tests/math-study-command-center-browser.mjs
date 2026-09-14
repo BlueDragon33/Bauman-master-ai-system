@@ -111,12 +111,14 @@ try{
   await page.waitForFunction(()=>document.getElementById('mathFormulaLibrary')?.classList.contains('open'));
   assert.ok((await page.locator('#mathFlList .math-fl-item').count())>0,'Formula deep link opened without formula records');
   await page.evaluate(()=>window.BAUMAN_MATH_FORMULA_LIBRARY.close());
+  await page.waitForFunction(()=>!document.getElementById('mathFormulaLibrary')?.classList.contains('open'));
   report.checks.formulaDeepLink=true;
 
   await page.locator('#mathStudyCommandCenter [data-scc="simulation"]').click();
   await page.waitForFunction(()=>document.getElementById('mathWorkspaceLab')?.classList.contains('open'));
   assert.ok(await page.locator('#mathSimulationSource').count(),'Simulation deep link did not decorate canonical-source panel');
-  await page.evaluate(()=>window.BAUMAN_MATH_WORKSPACE.closeLab?.());
+  await page.locator('#mathWorkspaceLab [data-math-ws="close-lab"]').click();
+  await page.waitForFunction(()=>!document.getElementById('mathWorkspaceLab')?.classList.contains('open'));
   report.checks.simulationDeepLink=true;
 
   await page.locator('#mathStudyCommandCenter [data-scc="professor"]').click();
