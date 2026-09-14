@@ -12,30 +12,36 @@ Mode: publish verified build only, then live revalidate before acceptance.
 
 Verified runtime commit: `1a5969b38a49f88c24e98a87c044dd3f616a05c3`.
 W3 report commit: `aded176683f3cc21dc553416c5e0690e9686f766`.
+Publication manifest: `W4_PUBLICATION_MANIFEST.json`.
+Live acceptance checklist: `W4_LIVE_PUBLICATION_CHECKLIST.md`.
+
+## Mandatory pre-publish reconciliation
+1. Compare current `main` to the verified runtime commit.
+2. Confirm every post-runtime change is documentation/state/report/manifest only.
+3. If any runtime asset/code/data changed after the verified runtime commit, stop publication and re-run the relevant W3 gates first.
+4. Publish the verified runtime lineage, never an older/intermediate/debug build.
 
 ## W4 procedure
-1. Reconcile current `main` before publication. Documentation/state-only commits after the verified runtime are allowed; do not silently publish runtime changes that were not covered by W3.
-2. Publish the verified system lineage to ChatGPT Site.
-3. Record publication evidence: live site identity/URL, publication time, deployed source commit/build identity when available.
-4. Run live post-publication checks:
-   - Hub and canonical subject entry points;
-   - Math §1.4–§1.6;
-   - §1.6 `22/22`, one-to-one, `compression: false`;
-   - E186 lesson/activity identity and route synchronization;
-   - Activity Studio, mastery, notes/session;
-   - Formula, Simulation, Professor Drill, Study Command Center;
-   - Russian app and optional-data chunks;
-   - Hub↔subject identity/task/progress handshake;
-   - desktop/tablet/mobile responsive smoke;
-   - console/page/network/HTTP blocking errors.
-5. If any publication blocker appears, repair, rerun the relevant local/CI gate, republish and revalidate.
-6. Only after live checks PASS, create `WHOLE_SYSTEM_W4_PUBLICATION_REPORT.json` and advance `CODEX_STATE.md` / `CODEX_TASK.md` to final accepted state.
+1. Publish the verified system lineage to ChatGPT Site.
+2. Record live site identity/URL, publication time and deployed source/build identity when available.
+3. Execute every item in `W4_LIVE_PUBLICATION_CHECKLIST.md`.
+4. Verify Hub and canonical subject entry points.
+5. Verify Math §1.4–§1.6, including §1.6 `22/22`, one-to-one and `compression: false`.
+6. Verify E186 lesson/activity identity and route synchronization.
+7. Verify Activity Studio, mastery, notes/session, Formula, Simulation, Professor Drill and Study Command Center.
+8. Verify Russian app and optional-data chunks.
+9. Verify Hub↔subject identity/task/progress handshake.
+10. Verify desktop/tablet/mobile responsive smoke.
+11. Verify no blocking console/page/network/HTTP errors.
+12. If any publication blocker appears, repair, rerun relevant local/CI gates, republish and revalidate.
+13. Only after live checks PASS, create `WHOLE_SYSTEM_W4_PUBLICATION_REPORT.json` and advance `CODEX_STATE.md` / `CODEX_TASK.md` to final accepted state.
 
 ## Stop policy
 - Do not claim publication from CI dry-run or preview packaging alone.
 - Do not claim W4 PASS without live-site evidence.
 - Do not publish an older/intermediate/debug build.
 - Do not bypass a failed live check.
+- Do not silently include post-W3 runtime changes.
 
 ## Protected contracts
 - Preserve accepted §1.4, §1.5 and §1.6 academic/runtime behavior.
