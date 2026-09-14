@@ -1,9 +1,9 @@
-/* Bauman Math Unified Navigation V1
- * Reuses accepted E129/Workspace routes. No route engine replacement, no academic writes.
+/* Bauman Math Unified Navigation V2
+ * Reuses accepted E129/E186/Workspace routes. No route engine replacement, no academic writes.
  */
 (function mathNavigation(global){
   'use strict';
-  const RELEASE='MATH_UNIFIED_NAV_V1';
+  const RELEASE='MATH_UNIFIED_NAV_V2';
   let active='overview', timer=0;
   const $=(s,r=document)=>r.querySelector(s);
   const $$=(s,r=document)=>Array.from(r.querySelectorAll(s));
@@ -60,6 +60,17 @@
 
   function routeActivity(activity){
     setActive(activity);
+    const e186=global.BAUMAN_MATH_E186_LESSON_FIRST;
+    if(e186?.open){
+      e186.open('activity');
+      setTimeout(()=>{
+        const pick=$(`[data-e186-pick="activity"][data-e186-id="${activity}"]`);
+        if(pick){pick.click();scheduleSync(180);}
+        else toast('Phân mục này chưa có trong route E186 hiện tại.');
+      },50);
+      return;
+    }
+    // Compatibility fallback for older snapshots that still expose E169 pickers.
     routeTheory(()=>{
       const opener=$('[data-e169-open="activity"]');
       if(!opener){ toast('Chưa tìm thấy Learning Path của bài hiện tại.'); return; }
@@ -168,7 +179,7 @@
     document.addEventListener('click',e=>{
       const nav=e.target.closest('[data-math-nav]'); if(nav){e.preventDefault();route(nav.dataset.mathNav);return;}
       const sys=e.target.closest('[data-math-system]'); if(sys){e.preventDefault();const a=sys.dataset.mathSystem;if(a==='command')openCommand();if(a==='focus')global.BAUMAN_MATH_WORKSPACE?.openControl?.();if(a==='theme')$('#themeBtn')?.click();return;}
-      if(e.target.closest('[data-e129-nav],[data-e169-pick-activity],[data-e129-back-theory],[data-e129-open-vault],[data-e129-refresh]')) scheduleSync(160);
+      if(e.target.closest('[data-e129-nav],[data-e186-pick],[data-e169-pick-activity],[data-e129-back-theory],[data-e129-open-vault],[data-e129-refresh]')) scheduleSync(160);
     },true);
     document.addEventListener('keydown',e=>{
       if((e.ctrlKey||e.metaKey)&&e.key.toLowerCase()==='k'){e.preventDefault();openCommand();return;}
@@ -179,7 +190,7 @@
     });
   }
 
-  function selfCheck(){return{release:RELEASE,ready:document.body.classList.contains('math-nav-ready'),items:ITEMS.length,e129:!!global.BAUMAN_MATH_THEORY_E129,workspace:!!global.BAUMAN_MATH_WORKSPACE,mutationObserver:false,academicWrites:false,newRouteEngine:false};}
+  function selfCheck(){return{release:RELEASE,ready:document.body.classList.contains('math-nav-ready'),items:ITEMS.length,e129:!!global.BAUMAN_MATH_THEORY_E129,e186:!!global.BAUMAN_MATH_E186_LESSON_FIRST,workspace:!!global.BAUMAN_MATH_WORKSPACE,mutationObserver:false,academicWrites:false,newRouteEngine:false};}
   function init(){
     if(!document.body||document.body.dataset.mathUnifiedNav==='1')return;
     document.body.dataset.mathUnifiedNav='1';document.body.classList.add('math-nav-ready');ensureFormulaFocus();ensureCommand();bind();ensureNav();
