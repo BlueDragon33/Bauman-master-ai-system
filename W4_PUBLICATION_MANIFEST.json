@@ -1,0 +1,60 @@
+{
+  "schema": "bauman_w4_publication_manifest_v1",
+  "status": "READY_FOR_LIVE_PUBLICATION",
+  "createdAt": "2026-09-14",
+  "target": "ChatGPT Site",
+  "repository": "BlueDragon33/Bauman-master-ai-system",
+  "branch": "main",
+  "verifiedRuntimeCommit": "1a5969b38a49f88c24e98a87c044dd3f616a05c3",
+  "w3AcceptanceReportCommit": "aded176683f3cc21dc553416c5e0690e9686f766",
+  "w3ReportPath": "WHOLE_SYSTEM_W3_QA_REPORT.json",
+  "evidence": {
+    "wholeSystemIntegrationRun": 34856746521,
+    "wholeSystemIntegration": "PASS",
+    "chromiumWholeSystemAcceptance": "PASS",
+    "mathStudyCommandCenterAcceptance": "PASS",
+    "cloudflarePreviewRun": 34856746410,
+    "cloudflarePreview": "PASS",
+    "windowsCheckoutRun": 34856746465,
+    "windowsCheckout": "PASS",
+    "browserArtifact": "whole-system-browser-34856746521",
+    "browserArtifactSha256": "1c3f1d3ba24fde7042785f1f4ac57d6ba242de2c2a3a8cd5bf5d333f89cb54ba"
+  },
+  "publicationRule": {
+    "publishVerifiedRuntimeOnly": true,
+    "allowDocumentationOnlyCommitsAfterRuntime": true,
+    "allowUntestedRuntimeDelta": false,
+    "allowIntermediateOrDebugBuild": false,
+    "requireLiveVerificationBeforePass": true
+  },
+  "protectedContracts": {
+    "mathL14Slides": "22/22",
+    "mathL15Slides": "22/22",
+    "mathL16Slides": "22/22",
+    "mathL16OneToOne": true,
+    "mathL16Compression": false,
+    "e235Unchanged": true,
+    "e236Disabled": true,
+    "e237Disabled": true,
+    "e238Disabled": true,
+    "lockedCase": "UGV_TELEMETRY_8X6 / CASE_C01_L06_V1_LOCKED"
+  },
+  "requiredLiveChecks": [
+    "Hub loads",
+    "Canonical subject entry points load",
+    "Math §1.4, §1.5 and §1.6 open correctly",
+    "§1.6 remains 22/22, one-to-one, compression false",
+    "E186 lesson/activity identity and route synchronization work",
+    "Activity Studio, mastery, notes and session work",
+    "Formula Library and Formula Context work",
+    "Simulation Lab and lesson-context simulation routing work",
+    "Professor Drill works from accepted lesson assessment/content sources",
+    "Study Command Center works",
+    "Russian subject and optional chunk loader work",
+    "Hub↔subject identity/task/progress handshake works",
+    "Desktop/tablet/mobile responsive smoke passes",
+    "No blocking console/page/network/HTTP errors"
+  ],
+  "completionArtifact": "WHOLE_SYSTEM_W4_PUBLICATION_REPORT.json",
+  "completionPolicy": "Do not create PASS publication report until live publication and every required live check have evidence."
+}
