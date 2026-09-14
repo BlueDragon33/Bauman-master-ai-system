@@ -18,9 +18,10 @@
   function readJson(key,fallback){try{const x=JSON.parse(localStorage.getItem(key)||'null');return x??fallback}catch(_){return fallback}}
   function writeJson(key,value){try{localStorage.setItem(key,JSON.stringify(value));return true}catch(_){return false}}
   function state(){return global.__BAUMAN_CORE_API?.state||global.__MATH_STATE||{}}
-  function currentLessonId(){return String(state().e169Path?.lessonId||state().e129LessonId||'')}
-  function currentActivity(){return String(state().e169Path?.activityId||state().learnTab||'theory')}
-  function theoryRecords(){const raw=global.DB?.theory_lecture_content;if(Array.isArray(raw))return raw;if(Array.isArray(raw?.records))return raw.records;if(Array.isArray(raw?.lessons))return raw.lessons;if(Array.isArray(raw?.items))return raw.items;return[]}
+  function currentLessonId(){return String(state().e186Path?.lessonId||state().e169Path?.lessonId||state().e129LessonId||'')}
+  function currentActivity(){return String(state().e186Path?.activityId||state().e169Path?.activityId||state().learnTab||'theory')}
+  function recordsOf(raw){if(Array.isArray(raw))return raw;if(Array.isArray(raw?.records))return raw.records;if(Array.isArray(raw?.lessons))return raw.lessons;if(Array.isArray(raw?.items))return raw.items;return[]}
+  function theoryRecords(){const db=recordsOf(global.DB?.theory_lecture_content);if(db.length)return db;return recordsOf(global.BAUMAN_MATH_E240_THEORY_CONTENT_SOURCE?.getPayload?.())}
   function lessonMeta(id){const r=theoryRecords().find(x=>String(x.lessonId||x.id||'')===String(id||''));return r?{id:String(r.lessonId||r.id||''),title:String(r.title||r.lessonTitle||r.name||id||''),chapterId:String(r.chapterId||'unassigned'),chapterTitle:String(r.chapterTitle||r.chapterName||r.chapterId||'Chưa gắn chương')}:{id:String(id||''),title:String(id||'Bài chưa xác định'),chapterId:'unassigned',chapterTitle:'Chưa gắn chương'}}
   function parseKey(key){const [lessonId='',activity='',item='']=String(key||'').split('::');return{key:String(key||''),lessonId,activity,item}}
   function mastery(){return readJson(MASTERY_KEY,{})||{}}
@@ -90,8 +91,9 @@
 
   function selectCanonicalLesson(lessonId){
     const rec=theoryRecords().find(x=>String(x.lessonId||x.id||'')===String(lessonId||''));if(!rec)return false;
-    const st=state();st.view='learning';st.learnTab='theory';st.e129LessonId=String(rec.lessonId||rec.id);if(rec.chapterId)st.e129ChapterId=rec.chapterId;
-    if(st.e169Path){st.e169Path.lessonId=String(rec.lessonId||rec.id);if(rec.chapterId)st.e169Path.chapterId=rec.chapterId;st.e169Path.activityId='theory'}
+    const id=String(rec.lessonId||rec.id),st=state();st.view='learning';st.learnTab='theory';st.e129LessonId=id;if(rec.chapterId)st.e129ChapterId=rec.chapterId;
+    st.e186Path=st.e186Path||{};st.e186Path.lessonId=id;if(rec.chapterId)st.e186Path.chapterId=rec.chapterId;st.e186Path.activityId='theory';
+    st.e169Path=st.e169Path||{};st.e169Path.lessonId=id;if(rec.chapterId)st.e169Path.chapterId=rec.chapterId;st.e169Path.activityId='theory';
     try{global.__BAUMAN_CORE_API?.save?.()}catch(_){ }
     try{global.BAUMAN_MATH_THEORY_E129?.render?.()}catch(_){ }
     return true;
@@ -121,7 +123,7 @@
     document.addEventListener('change',e=>{if(e.target?.id==='stageSelect')schedule(220)},true);
     global.addEventListener('hashchange',()=>schedule(180));
   }
-  function selfCheck(){const s=summarize();return{release:RELEASE,ready:!!$('#mathStudyCommandCenter'),masteryItems:s.total,reviewQueue:s.review,chapters:s.chapters.length,historyEvents:history().length,notes:Object.keys(notes()).length,localOnly:true,academicWrites:false,gradingAuthority:false,generatedQuestions:false,correctnessInference:false,mutationObserver:false,newRouteEngine:false}}
+  function selfCheck(){const s=summarize();return{release:RELEASE,ready:!!$('#mathStudyCommandCenter'),masteryItems:s.total,reviewQueue:s.review,chapters:s.chapters.length,historyEvents:history().length,notes:Object.keys(notes()).length,currentLessonId:currentLessonId()||null,currentActivity:currentActivity(),routeOwner:'E186-first',localOnly:true,academicWrites:false,gradingAuthority:false,generatedQuestions:false,correctnessInference:false,mutationObserver:false,newRouteEngine:false}}
   function init(){if(!document.body||document.body.dataset.mathStudyCommandCenter==='1')return;document.body.dataset.mathStudyCommandCenter='1';bind();[650,1500,2900].forEach(ms=>setTimeout(refresh,ms));global.BAUMAN_MATH_STUDY_COMMAND_CENTER={release:RELEASE,refresh,openItem,reviewItems,summarize,selfCheck}}
   if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',init,{once:true});else init();
 })(window);
