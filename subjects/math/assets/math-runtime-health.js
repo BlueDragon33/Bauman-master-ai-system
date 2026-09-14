@@ -1,12 +1,12 @@
-/* Bauman Math Runtime Health V2
+/* Bauman Math Runtime Health V3
  * Aggregates existing selfCheck APIs. UI/diagnostic only.
  */
 (function mathRuntimeHealth(global){
   'use strict';
-  const RELEASE='MATH_RUNTIME_HEALTH_V2';
+  const RELEASE='MATH_RUNTIME_HEALTH_V3';
   let lastReport=null;
   const $=(s,r=document)=>r.querySelector(s);
-  const esc=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot',"'":'&#39;'}[c]||c));
+  const esc=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]||c));
   const MODULES=[
     ['E129 Theory',()=>global.BAUMAN_MATH_THEORY_E129?.selfCheck?.()],
     ['Program Frame E130',()=>global.BAUMAN_MATH_E130_PROGRAM_FRAME?.selfCheck?.()],
@@ -20,7 +20,9 @@
     ['System Bridge',()=>global.BAUMAN_MATH_SYSTEM_BRIDGE?.selfCheck?.()],
     ['Simulation Source',()=>global.BAUMAN_MATH_SIMULATION_SOURCE?.selfCheck?.()],
     ['Formula Library',()=>global.BAUMAN_MATH_FORMULA_LIBRARY?.selfCheck?.()],
-    ['Activity Studio',()=>global.BAUMAN_MATH_ACTIVITY_STUDIO?.selfCheck?.()]
+    ['Activity Studio',()=>global.BAUMAN_MATH_ACTIVITY_STUDIO?.selfCheck?.()],
+    ['Integration Sync',()=>global.BAUMAN_MATH_INTEGRATION_SYNC?.selfCheck?.()],
+    ['Regression Gate',()=>global.BAUMAN_MATH_REGRESSION_GATE?.selfCheck?.()]
   ];
   function ensure(){
     if(!$('#mathRuntimeHealth')){
@@ -66,6 +68,6 @@
     document.addEventListener('click',e=>{const a=e.target.closest('[data-health]')?.dataset.health;if(!a)return;e.preventDefault();if(a==='open')open();if(a==='close')close();if(a==='refresh')check();if(a==='export')exportReport()},true);
     document.addEventListener('keydown',e=>{if(e.key==='Escape')close()});
   }
-  function init(){if(!document.body||document.body.dataset.mathRuntimeHealth==='1')return;document.body.dataset.mathRuntimeHealth='1';ensure();bind();[750,1600,3000].forEach(ms=>setTimeout(check,ms));global.BAUMAN_MATH_RUNTIME_HEALTH={release:RELEASE,check,open,close,getReport:()=>lastReport,selfCheck:()=>({release:RELEASE,ready:!!$('#mathRuntimeHealth'),modules:MODULES.length,diagnosticOnly:true,academicWrites:false})}}
+  function init(){if(!document.body||document.body.dataset.mathRuntimeHealth==='1')return;document.body.dataset.mathRuntimeHealth='1';ensure();bind();[900,1900,3300].forEach(ms=>setTimeout(check,ms));global.BAUMAN_MATH_RUNTIME_HEALTH={release:RELEASE,check,open,close,getReport:()=>lastReport,selfCheck:()=>({release:RELEASE,ready:!!$('#mathRuntimeHealth'),modules:MODULES.length,diagnosticOnly:true,academicWrites:false})}}
   if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',init,{once:true});else init();
 })(window);
