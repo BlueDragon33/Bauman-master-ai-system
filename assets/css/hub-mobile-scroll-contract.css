@@ -33,6 +33,14 @@ body[data-hub-viewport="tablet"] .hub2-layout{
   min-inline-size:0!important;
   max-inline-size:100%!important;
 }
+body[data-hub-viewport="phone"] .hub2-dashboard,
+body[data-hub-viewport="phone"] .hub2-maincol,
+body[data-hub-viewport="phone"] .hub2-rail,
+body[data-hub-viewport="tablet"] .hub2-dashboard,
+body[data-hub-viewport="tablet"] .hub2-maincol,
+body[data-hub-viewport="tablet"] .hub2-rail{
+  grid-template-columns:minmax(0,1fr)!important;
+}
 
 /* Immediate mobile reflow: must not wait for hub-premium-v2.js resize classification. */
 @media (max-width:720px){
@@ -44,6 +52,11 @@ body[data-hub-viewport="tablet"] .hub2-layout{
     min-width:0!important;
     max-inline-size:100%!important;
     max-width:100%!important;
+  }
+  body.hub-premium-v2 .hub2-dashboard,
+  body.hub-premium-v2 .hub2-maincol,
+  body.hub-premium-v2 .hub2-rail{
+    grid-template-columns:minmax(0,1fr)!important;
   }
   body.hub-premium-v2 .hub2-subjects,
   body.hub-premium-v2 .hub2-stats,
