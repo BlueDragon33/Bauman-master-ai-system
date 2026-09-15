@@ -22,7 +22,7 @@ async function login(page){
 let browser;
 try{
   browser=await chromium.launch({headless:true});
-  const context=await browser.newContext({viewport:{width:1536,height:864}});
+  const context=await browser.newContext({viewport:{width:1920,height:1080}});
   const page=await context.newPage();await mockControl(page);
   const errors=[];page.on('console',m=>{if(m.type()==='error')errors.push(m.text())});page.on('pageerror',e=>errors.push(String(e?.stack||e)));
   await login(page);
@@ -37,7 +37,7 @@ try{
   await page.locator('[data-hub-action="schedule"]').click();await page.waitForFunction(()=>window.state.page==='schedule');
   await page.evaluate(()=>window.app.page('home'));await page.waitForSelector('.hub2-dashboard');
   await page.locator('[data-hub-ask]').first().click();await page.waitForSelector('#aiRoot .ai-panel');await page.evaluate(()=>window.mentor.close());
-  const cases=[['laptop-16x9',1536,864,'laptop'],['ipad-3x2',1180,787,'tablet'],['iphone-19_5x9',390,844,'phone']];
+  const cases=[['tuf-f15-1920x1080',1920,1080,'laptop'],['laptop-1536x864',1536,864,'laptop'],['ipad-3x2',1180,787,'tablet'],['iphone-19_5x9',390,844,'phone']];
   for(const [label,width,height,mode] of cases){
     await page.setViewportSize({width,height});await page.waitForTimeout(120);await page.evaluate(()=>window.app.page('home',false));await page.waitForSelector('.hub2-dashboard');
     const snap=await page.evaluate(()=>({mode:document.body.dataset.hubViewport,client:document.documentElement.clientWidth,scroll:document.documentElement.scrollWidth,hero:!!document.querySelector('.hub2-hero'),assistant:!!document.querySelector('.hub2-assistant'),appearance:!!document.getElementById('appearanceBtn'),search:!!document.getElementById('hubGlobalSearch')}));
