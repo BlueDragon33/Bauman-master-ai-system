@@ -87,13 +87,25 @@ body[data-hub-viewport="tablet"] .study-head>div:first-child,
 body[data-hub-viewport="tablet"] .canva-study-head>div:first-child{min-width:0;overflow-wrap:anywhere}
 
 /* iPhone portrait / 19.5:9 — single-column touch layout. */
-body[data-hub-viewport="phone"]{--hub-top:58px;max-width:100vw;overflow-x:hidden}
+body[data-hub-viewport="phone"]{--hub-top:96px;max-width:100vw;overflow-x:hidden}
 body[data-hub-viewport="phone"] .app,
 body[data-hub-viewport="phone"] .app.collapsed{display:block;--hub-sidebar:0;max-width:100vw;overflow-x:hidden}
 body[data-hub-viewport="phone"] .shell,
 body[data-hub-viewport="phone"] .main,
 body[data-hub-viewport="phone"] .page{width:100%;max-width:100vw;min-width:0;overflow-x:hidden}
 body[data-hub-viewport="phone"] .main{padding:7px 7px 84px}
+body[data-hub-viewport="phone"] .topbar{height:auto!important;min-height:96px;display:grid!important;grid-template-columns:minmax(0,1fr);align-items:center!important;gap:6px;padding:7px 9px!important}
+body[data-hub-viewport="phone"] .top-title{display:none!important}
+body[data-hub-viewport="phone"] .hub-search{grid-row:1;width:100%;height:38px;min-width:0;max-width:100%;flex:none}
+body[data-hub-viewport="phone"] .top-actions{grid-row:2;width:100%;min-width:0;max-width:100%;display:flex!important;align-items:center;justify-content:flex-end;gap:6px;margin:0!important}
+body[data-hub-viewport="phone"] .top-actions .hub-top-meta{display:none!important}
+body[data-hub-viewport="phone"] .appearance-wrap{margin-right:auto;min-width:0}
+body[data-hub-viewport="phone"] .appearance-trigger{width:auto!important;min-width:96px!important;height:36px!important;padding:0 11px!important;font-size:0!important;white-space:nowrap}
+body[data-hub-viewport="phone"] .appearance-trigger::before{content:'✦';font-size:12px!important;margin-right:6px;color:var(--hub-gold)}
+body[data-hub-viewport="phone"] .appearance-trigger::after{content:'Giao diện'!important;font-size:12px!important}
+body[data-hub-viewport="phone"] .top-actions .ai-trigger{width:auto!important;min-width:54px;height:36px!important;padding:0 10px!important;font-size:0!important}
+body[data-hub-viewport="phone"] .top-actions .ai-trigger::after{content:'AI';font-size:11px!important}
+body[data-hub-viewport="phone"] .avatar-btn{width:36px!important;height:36px!important}
 body[data-hub-viewport="phone"] .hub2-dashboard,
 body[data-hub-viewport="phone"] .hub2-maincol,
 body[data-hub-viewport="phone"] .hub2-rail{gap:8px}
@@ -117,11 +129,8 @@ body[data-hub-viewport="phone"] .hub2-ach{flex:0 0 94px}
 body[data-hub-viewport="phone"] .hub2-overall-inner{grid-template-columns:76px minmax(0,1fr)}
 body[data-hub-viewport="phone"] .hub2-bar{grid-template-columns:72px minmax(0,1fr) 26px}
 body[data-hub-viewport="phone"] .appearance-menu{overscroll-behavior:contain}
-body[data-hub-viewport="phone"] .topbar,
-body[data-hub-viewport="phone"] .top-actions,
-body[data-hub-viewport="phone"] .hub-search{min-width:0;max-width:100%}
-body[data-hub-viewport="phone"] .hub-search{flex:1 1 auto}
-body[data-hub-viewport="phone"] .hub-top-meta{display:none}
+body[data-hub-viewport="phone"] .profile-menu,
+body[data-hub-viewport="phone"] .appearance-menu{top:102px!important}
 
 /* Full-screen subject/AI/modal overlays must never widen the Hub document. */
 body[data-hub-viewport="phone"] #studyRoot,
