@@ -6,22 +6,32 @@ const BASE=process.env.BAUMAN_E2E_BASE_URL||'http://127.0.0.1:4173/';
 const OUT=process.env.BAUMAN_E2E_ARTIFACT_DIR||'artifacts/hub-premium-responsive';
 fs.mkdirSync(OUT,{recursive:true});
 async function mockControl(page){
-  const deviceId='h'.repeat(64),deviceCode='BM-HUB-V2';
+  const deviceId='c'.repeat(64),deviceCode='BM-SYSTEM-E2E';
   const cors={'access-control-allow-origin':'*','access-control-allow-methods':'GET,POST,OPTIONS','access-control-allow-headers':'content-type,authorization','cache-control':'no-store'};
-  await page.route('http://127.0.0.1:3003/**',async route=>{const req=route.request();if(req.method()==='OPTIONS')return route.fulfill({status:204,headers:cors,body:''});const pathname=new URL(req.url()).pathname,headers={...cors,'content-type':'application/json'};const send=body=>route.fulfill({status:200,headers,body:JSON.stringify(body)});if(pathname==='/api/device/register'||pathname==='/api/device/status')return send({device:{deviceId,deviceCode,status:'approved'}});if(pathname==='/api/device/challenge')return send({challengeId:'hub-v2',signingInput:`hub-v2:${deviceId}`});if(pathname==='/api/device/verify')return send({sessionToken:'bm1.hub-v2',expiresAt:Date.now()+3600000,device:{deviceId,deviceCode,status:'approved'}});if(pathname==='/api/device/heartbeat')return send({device:{deviceId,deviceCode,status:'approved'}});return route.fulfill({status:404,headers,body:'{}'});});
+  await page.route('http://127.0.0.1:3003/**',async route=>{
+    const req=route.request();
+    if(req.method()==='OPTIONS')return route.fulfill({status:204,headers:cors,body:''});
+    const pathname=new URL(req.url()).pathname,headers={...cors,'content-type':'application/json'};
+    const send=body=>route.fulfill({status:200,headers,body:JSON.stringify(body)});
+    if(pathname==='/api/device/register'||pathname==='/api/device/status')return send({device:{deviceId,deviceCode,status:'approved'}});
+    if(pathname==='/api/device/challenge')return send({challengeId:'challenge-system-e2e',signingInput:`bauman-system-e2e:${deviceId}`});
+    if(pathname==='/api/device/verify')return send({sessionToken:'bm1.system-e2e',expiresAt:Date.now()+3600000,device:{deviceId,deviceCode,status:'approved'}});
+    if(pathname==='/api/device/heartbeat')return send({device:{deviceId,deviceCode,status:'approved'}});
+    return route.fulfill({status:404,headers,body:'{}'});
+  });
 }
 async function login(page){
   await page.goto(BASE,{waitUntil:'domcontentloaded',timeout:30000});
-  await page.waitForFunction(()=>document.documentElement.dataset.baumanDeviceAccess==='authorized',null,{timeout:15000});
+  await page.waitForFunction(()=>document.documentElement.dataset.baumanDeviceAccess==='authorized',null,{timeout:30000});
   await page.locator('#loginEmail').fill('hub-v2@example.test');
   await page.locator('#loginPass').fill('hub-v2-pass');
   await page.locator('#loginBtn').click();
-  await page.waitForFunction(()=>!document.getElementById('appRoot')?.classList.contains('hidden'));
-  await page.waitForFunction(()=>window.BAUMAN_HUB_V2?.selfCheck?.().ready===true,null,{timeout:15000});
+  await page.waitForFunction(()=>!document.getElementById('appRoot')?.classList.contains('hidden'),null,{timeout:30000});
+  await page.waitForFunction(()=>window.BAUMAN_HUB_V2?.selfCheck?.().ready===true,null,{timeout:30000});
 }
 let browser;
 try{
-  browser=await chromium.launch({headless:true});
+  browser=await chromium.launch({headless:true,...(process.env.BAUMAN_CHROME_PATH?{executablePath:process.env.BAUMAN_CHROME_PATH}:{})});
   const context=await browser.newContext({viewport:{width:1920,height:1080}});
   const page=await context.newPage();await mockControl(page);
   const errors=[];page.on('console',m=>{if(m.type()==='error')errors.push(m.text())});page.on('pageerror',e=>errors.push(String(e?.stack||e)));
