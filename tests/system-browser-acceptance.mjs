@@ -194,17 +194,21 @@ try{
       return deck?.getAttribute('data-e243-lesson-id')===lessonId&&deck?.getAttribute('data-e210-active-lesson-id')===lessonId&&richness?.activeLessonId===lessonId&&richness?.loaded===true&&richness?.richnessPresent===true;
     },lesson.id,{timeout:30000});
     const opened=await queryPage.evaluate(()=>{
-      const deck=document.querySelector('.e132-overlay-deck.open'),richness=window.BAUMAN_MATH_E242_SLIDESHOW_RICHNESS.selfCheck(),route=window.BAUMAN_MATH_E243_PRESENTER_ROUTE_LOCK.selfCheck();
-      return{count:deck?.querySelector('[data-e202-count]')?.textContent||'',routeId:route.deckLessonId,routeTitle:route.deckLessonTitle,routingGhost:route.routingGhostPresent,richness};
+      const richness=window.BAUMAN_MATH_E242_SLIDESHOW_RICHNESS.selfCheck(),route=window.BAUMAN_MATH_E243_PRESENTER_ROUTE_LOCK.selfCheck(),presenter=window.BAUMAN_MATH_THEORY_E132.selfCheck();
+      return{presenter,routeId:route.deckLessonId,routeTitle:route.deckLessonTitle,routingGhost:route.routingGhostPresent,richness};
     });
-    assert.match(opened.count,/01\s*\/\s*22/,`${lesson.key}: deck did not open at 01/22`);
+    assert.equal(opened.presenter.slides,22,`${lesson.key}: presenter slide count drift`);
+    assert.equal(opened.presenter.currentIndex,0,`${lesson.key}: presenter did not open at slide 1`);
     assert.equal(opened.routeId,lesson.id,`${lesson.key}: presenter route identity drift`);
     assert.ok(opened.routeTitle&&!opened.routingGhost,`${lesson.key}: missing title or routing ghost`);
     assert.deepEqual(opened.richness.counts,{slides:22,diagrams:lesson.diagrams,retrievalChecks:lesson.retrievalChecks,misconceptions:lesson.misconceptions},`${lesson.key}: Reader Pro richness drift`);
     for(let index=1;index<22;index+=1)await queryPage.keyboard.press('ArrowRight');
-    assert.match(await queryPage.locator('.e132-overlay-deck.open [data-e202-count]').textContent(),/22\s*\/\s*22/,`${lesson.key}: forward navigation did not reach 22/22`);
+    const forward=await queryPage.evaluate(()=>window.BAUMAN_MATH_THEORY_E132.selfCheck());
+    assert.equal(forward.slides,22,`${lesson.key}: presenter slide total changed during navigation`);
+    assert.equal(forward.currentIndex,21,`${lesson.key}: forward navigation did not reach slide 22`);
     for(let index=1;index<22;index+=1)await queryPage.keyboard.press('ArrowLeft');
-    assert.match(await queryPage.locator('.e132-overlay-deck.open [data-e202-count]').textContent(),/01\s*\/\s*22/,`${lesson.key}: reverse navigation did not return to 01/22`);
+    const reverse=await queryPage.evaluate(()=>window.BAUMAN_MATH_THEORY_E132.selfCheck());
+    assert.equal(reverse.currentIndex,0,`${lesson.key}: reverse navigation did not return to slide 1`);
     summary.mathRuntime[lesson.key]={lessonId:lesson.id,sourceSlides:22,readerSlides:22,navigation:'01/22 -> 22/22 -> 01/22',identitySynchronized:true,richness:opened.richness.counts};
     await queryPage.keyboard.press('Escape');
     await queryPage.waitForFunction(()=>!document.querySelector('.e132-overlay-deck.open'));
