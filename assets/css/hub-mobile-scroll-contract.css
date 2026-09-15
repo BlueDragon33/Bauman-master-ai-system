@@ -27,19 +27,34 @@ body[data-hub-viewport="tablet"] .hub2-subjects{
 body[data-hub-viewport="phone"] .hub2-maincol,
 body[data-hub-viewport="phone"] .hub2-dashboard,
 body[data-hub-viewport="phone"] .hub2-layout,
+body[data-hub-viewport="phone"] .hub2-bottom,
+body[data-hub-viewport="phone"] .hub2-achievements,
+body[data-hub-viewport="phone"] .hub2-overall,
 body[data-hub-viewport="tablet"] .hub2-maincol,
 body[data-hub-viewport="tablet"] .hub2-dashboard,
 body[data-hub-viewport="tablet"] .hub2-layout{
   min-inline-size:0!important;
+  min-width:0!important;
   max-inline-size:100%!important;
+  max-width:100%!important;
 }
 body[data-hub-viewport="phone"] .hub2-dashboard,
 body[data-hub-viewport="phone"] .hub2-maincol,
 body[data-hub-viewport="phone"] .hub2-rail,
+body[data-hub-viewport="phone"] .hub2-bottom,
 body[data-hub-viewport="tablet"] .hub2-dashboard,
 body[data-hub-viewport="tablet"] .hub2-maincol,
 body[data-hub-viewport="tablet"] .hub2-rail{
   grid-template-columns:minmax(0,1fr)!important;
+}
+body[data-hub-viewport="phone"] .hub2-overall-inner{
+  grid-template-columns:76px minmax(0,1fr)!important;
+  min-width:0!important;
+}
+body[data-hub-viewport="phone"] .hub2-bars,
+body[data-hub-viewport="phone"] .hub2-bar{
+  min-width:0!important;
+  max-width:100%!important;
 }
 
 /* Immediate mobile reflow: must not wait for hub-premium-v2.js resize classification. */
@@ -47,7 +62,10 @@ body[data-hub-viewport="tablet"] .hub2-rail{
   body.hub-premium-v2 .hub2-dashboard,
   body.hub-premium-v2 .hub2-layout,
   body.hub-premium-v2 .hub2-maincol,
-  body.hub-premium-v2 .hub2-rail{
+  body.hub-premium-v2 .hub2-rail,
+  body.hub-premium-v2 .hub2-bottom,
+  body.hub-premium-v2 .hub2-achievements,
+  body.hub-premium-v2 .hub2-overall{
     min-inline-size:0!important;
     min-width:0!important;
     max-inline-size:100%!important;
@@ -55,7 +73,8 @@ body[data-hub-viewport="tablet"] .hub2-rail{
   }
   body.hub-premium-v2 .hub2-dashboard,
   body.hub-premium-v2 .hub2-maincol,
-  body.hub-premium-v2 .hub2-rail{
+  body.hub-premium-v2 .hub2-rail,
+  body.hub-premium-v2 .hub2-bottom{
     grid-template-columns:minmax(0,1fr)!important;
   }
   body.hub-premium-v2 .hub2-subjects,
@@ -73,5 +92,14 @@ body[data-hub-viewport="tablet"] .hub2-rail{
     overflow-y:hidden!important;
     overscroll-behavior-x:contain;
     -webkit-overflow-scrolling:touch;
+  }
+  body.hub-premium-v2 .hub2-overall-inner{
+    grid-template-columns:76px minmax(0,1fr)!important;
+    min-width:0!important;
+  }
+  body.hub-premium-v2 .hub2-bars,
+  body.hub-premium-v2 .hub2-bar{
+    min-width:0!important;
+    max-width:100%!important;
   }
 }
