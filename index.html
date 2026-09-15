@@ -2,18 +2,20 @@
 <html lang="vi">
 <head>
   <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Bauman Master AI · Trung tâm học tập</title>
-  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%2307111f'/%3E%3Ctext x='32' y='45' text-anchor='middle' font-size='42' fill='%2367e8f9'%3EB%3C/text%3E%3C/svg%3E">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#050b14">
+  <title>Bauman Master Hub · Trung tâm học tập</title>
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%23050b14'/%3E%3Cpath d='M32 8 49 38 32 55 15 38Z' fill='none' stroke='%23f4c35f' stroke-width='4'/%3E%3C/svg%3E">
   <link rel="stylesheet" href="assets/css/main.css">
   <link rel="stylesheet" href="assets/css/device-access-gate.css">
   <link rel="stylesheet" href="assets/css/academic-2026.css">
+  <link rel="stylesheet" href="assets/css/hub-premium-v2.css?v=2">
 </head>
-<body data-theme="academic" class="canva-main-v1 canva-main-v2 canva-main-v3 canva-main-v4 canva-contrast-r2 canva-contrast-r3 canva-contrast-r4">
+<body data-theme="academic" data-density="balanced" class="canva-main-v1 canva-main-v2 canva-main-v3 canva-main-v4 canva-contrast-r2 canva-contrast-r3 canva-contrast-r4 hub-premium-v2">
   <div id="authScreen" class="auth-screen">
     <div class="auth-card">
-      <div class="auth-visual-mark"><div class="auth-logo">B</div><span class="auth-kicker">Bauman Master AI</span></div>
-      <h1 id="authTitle">Đăng nhập lộ trình Bauman</h1>
+      <div class="auth-visual-mark"><div class="auth-logo">◇</div><span class="auth-kicker">Bauman Master Hub</span></div>
+      <h1 id="authTitle">Đăng nhập Bauman Master Hub</h1>
       <p id="authDescription">Đăng nhập để dùng lộ trình, lịch học, môn học và tiến độ cá nhân.</p>
       <div class="auth-mini-pills"><span>PlanningBridge</span><span>Multi-subject</span><span>AI mentor</span></div>
       <input id="loginEmail" class="field" placeholder="Email" autocomplete="username">
@@ -27,34 +29,34 @@
     <aside class="sidebar" id="sidebar">
       <div class="brand-row">
         <div class="brand">
-          <div class="logo">B</div>
-          <div><b>Lộ trình Bauman</b><small>Học tập · Theo dõi · Nhắc việc</small></div>
+          <div class="logo">◇</div>
+          <div><b>BAUMAN</b><small>MASTER HUB</small></div>
         </div>
         <button class="sidebar-toggle" id="sidebarToggle" title="Thu gọn/mở rộng menu">☰</button>
       </div>
       <nav class="nav" id="nav">
-        <button data-page="home" class="active" title="Tổng quan"><i>🏠</i><span>Tổng quan</span></button>
-        <button data-page="roadmap" title="Lộ trình"><i>🧭</i><span>Lộ trình</span></button>
-        <button data-page="subjects" title="Môn học"><i>📚</i><span>Môn học</span></button>
-        <button data-page="schedule" title="Lịch học"><i>🗓️</i><span>Lịch học</span></button>
+        <button data-page="home" class="active" title="Trang chủ"><i>⌂</i><span>Trang chủ</span></button>
+        <button data-page="roadmap" title="Lộ trình"><i>⌘</i><span>Lộ trình</span></button>
+        <button data-page="subjects" title="Môn học"><i>▦</i><span>Môn học</span></button>
+        <button data-page="schedule" title="Lịch học"><i>◷</i><span>Lịch học</span></button>
         <button data-page="research" title="НИР & Luận văn"><i>✦</i><span>НИР & Luận văn</span></button>
       </nav>
-      <div class="side-note"><b>Hôm nay</b><span id="sideToday">Sẵn sàng học</span></div>
+      <div class="side-note"><b>Tri thức hôm nay</b><span>Vững vàng ngày mai.</span></div>
     </aside>
 
     <div class="shell">
       <header class="topbar">
-        <div class="top-title"><h1 id="pageTitle">Tổng quan</h1><p id="pageSubtitle">Trang chính giúp bạn biết hôm nay học gì, mở đúng môn và theo dõi tiến độ.</p></div>
+        <div class="top-title"><h1 id="pageTitle">Trang chủ</h1><p id="pageSubtitle">Bauman Master Hub · học tập, lộ trình và tiến độ.</p></div>
         <div class="top-actions canva-top-actions">
           <div class="appearance-wrap">
-            <button class="btn appearance-trigger" id="appearanceBtn">🎨 Giao diện</button>
+            <button class="btn appearance-trigger" id="appearanceBtn">Giao diện</button>
             <div id="appearanceMenu" class="appearance-menu hidden">
               <label class="profile-line">Nền giao diện
                 <select id="themeSelect" class="field sm-field">
-                  <option value="academic">Sáng học thuật</option>
-                  <option value="paper">Giấy ấm</option>
-                  <option value="night">Tối tập trung</option>
-                  <option value="mint">Xanh dịu</option>
+                  <option value="academic">Bauman Navy · mặc định</option>
+                  <option value="night">Deep Focus · tối sâu</option>
+                  <option value="paper">Ivory Gold · sáng ấm</option>
+                  <option value="mint">Teal Lab · xanh dịu</option>
                 </select>
               </label>
               <label class="profile-line">Kiểu chữ
@@ -111,5 +113,6 @@
   <script src="assets/js/academic-main.js"></script>
   <script src="assets/js/academic-scheduler-preview.js"></script>
   <script src="assets/js/academic-scheduler-apply.js"></script>
+  <script src="assets/js/hub-premium-v2.js?v=2"></script>
 </body>
 </html>
