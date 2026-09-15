@@ -195,9 +195,9 @@ try{
     },lesson.id,{timeout:30000});
     const opened=await queryPage.evaluate(()=>{
       const richness=window.BAUMAN_MATH_E242_SLIDESHOW_RICHNESS.selfCheck(),route=window.BAUMAN_MATH_E243_PRESENTER_ROUTE_LOCK.selfCheck(),presenter=window.BAUMAN_MATH_THEORY_E132.selfCheck();
-      return{presenter,routeId:route.deckLessonId,routeTitle:route.deckLessonTitle,routingGhost:route.routingGhostPresent,richness};
+      return{presenter,routeId:route.deckLessonId,routeTitle:route.deckLessonTitle,routingGhost:route.routingGhostPresent,routeGuardInstalled:route.publicOpenGuardInstalled,richness};
     });
-    assert.equal(opened.presenter.slides,22,`${lesson.key}: presenter slide count drift`);
+    assert.equal(opened.presenter.slides,22,`${lesson.key}: presenter slide count drift ${JSON.stringify(opened)}`);
     assert.equal(opened.presenter.currentIndex,0,`${lesson.key}: presenter did not open at slide 1`);
     assert.equal(opened.routeId,lesson.id,`${lesson.key}: presenter route identity drift`);
     assert.ok(opened.routeTitle&&!opened.routingGhost,`${lesson.key}: missing title or routing ghost`);
