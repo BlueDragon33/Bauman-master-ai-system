@@ -1,5 +1,7 @@
 /* Hub mobile/tablet horizontal-scroll contract.
-   Scroll content may be wider than the viewport; the scroll container itself must not be. */
+   Scroll content may be wider than the viewport; the scroll container itself must not be.
+   CSS viewport media queries are authoritative so resize/orientation changes are safe even
+   before the JS viewport classifier updates body[data-hub-viewport]. */
 body[data-hub-viewport="phone"] .hub2-subjects,
 body[data-hub-viewport="phone"] .hub2-stats,
 body[data-hub-viewport="phone"] .hub2-ach-grid,
@@ -30,4 +32,33 @@ body[data-hub-viewport="tablet"] .hub2-dashboard,
 body[data-hub-viewport="tablet"] .hub2-layout{
   min-inline-size:0!important;
   max-inline-size:100%!important;
+}
+
+/* Immediate mobile reflow: must not wait for hub-premium-v2.js resize classification. */
+@media (max-width:720px){
+  body.hub-premium-v2 .hub2-dashboard,
+  body.hub-premium-v2 .hub2-layout,
+  body.hub-premium-v2 .hub2-maincol,
+  body.hub-premium-v2 .hub2-rail{
+    min-inline-size:0!important;
+    min-width:0!important;
+    max-inline-size:100%!important;
+    max-width:100%!important;
+  }
+  body.hub-premium-v2 .hub2-subjects,
+  body.hub-premium-v2 .hub2-stats,
+  body.hub-premium-v2 .hub2-ach-grid{
+    box-sizing:border-box!important;
+    inline-size:100%!important;
+    width:100%!important;
+    min-inline-size:0!important;
+    min-width:0!important;
+    max-inline-size:100%!important;
+    max-width:100%!important;
+    justify-self:stretch!important;
+    overflow-x:auto!important;
+    overflow-y:hidden!important;
+    overscroll-behavior-x:contain;
+    -webkit-overflow-scrolling:touch;
+  }
 }
