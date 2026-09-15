@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 620" role="img" aria-label="Bauman mountain sunrise">
+<defs>
+  <linearGradient id="sky" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#07111f"/><stop offset=".46" stop-color="#13213a"/><stop offset=".72" stop-color="#b66a45"/><stop offset="1" stop-color="#f1b458"/></linearGradient>
+  <linearGradient id="ridge" x1="0" y1="0" x2="0" y2="1"><stop stop-color="#243654"/><stop offset="1" stop-color="#081321"/></linearGradient>
+  <linearGradient id="ridge2" x1="0" y1="0" x2="0" y2="1"><stop stop-color="#44506a"/><stop offset="1" stop-color="#0b1424"/></linearGradient>
+  <radialGradient id="sun"><stop stop-color="#fff6c2"/><stop offset=".35" stop-color="#ffd77a" stop-opacity=".9"/><stop offset="1" stop-color="#ffd77a" stop-opacity="0"/></radialGradient>
+  <filter id="blur"><feGaussianBlur stdDeviation="18"/></filter>
+</defs>
+<rect width="1600" height="620" fill="url(#sky)"/>
+<circle cx="1180" cy="176" r="170" fill="url(#sun)"/>
+<circle cx="1180" cy="176" r="24" fill="#fff4bc"/>
+<g opacity=".52" filter="url(#blur)" fill="#e8edf2"><path d="M0 380C180 330 260 430 420 390s250-90 410-28 290-30 460-10 210 84 310 70v198H0Z"/><path d="M120 438c200-50 350-16 515-36s265-88 410-36 318 18 555 64v190H0Z"/></g>
+<path d="M0 454 180 330l104 74 170-212 104 136 128-92 105 132 160-218 120 164 128-92 123 168 152-110 146 126v244H0Z" fill="url(#ridge2)" opacity=".8"/>
+<path d="M0 520 190 390l88 58 168-166 128 160 105-74 154 114 178-176 142 178 112-80 146 116 129-82 130 102v100H0Z" fill="url(#ridge)"/>
+<g fill="#cbd5e1" opacity=".38"><path d="m190 390 88 58 168-166-73 142-79-40-48 66Z"/><path d="m1011 306 142 178-100-94-48 42-64-18Z"/><path d="m686 236 105 132-77-66-50 26Z"/></g>
+<path d="M1266 500c46-54 108-84 170-63 50 17 93 56 164 82v101h-370Z" fill="#050b13"/>
+<g fill="#03070d"><circle cx="1355" cy="419" r="11"/><path d="M1349 430h12l9 55h-31Z"/><path d="m1348 448-23 34 7 5 22-27m9-12 28 31-7 6-27-25" stroke="#03070d" stroke-width="8" fill="none" stroke-linecap="round"/></g>
+<rect width="1600" height="620" fill="url(#sky)" opacity=".08"/>
+</svg>
