@@ -6,7 +6,7 @@
 (function(){
   'use strict';
 
-  var RELEASE='E243_PRESENTER_ROUTE_IDENTITY_LOCK_R8_SINGLE_PRESENTING_SOURCE';
+  var RELEASE='E243_PRESENTER_ROUTE_IDENTITY_LOCK_R9_STATE_FIRST_IDENTITY';
   var handled=0;
   var lastLessonId='';
   var lastLessonTitle='';
@@ -49,9 +49,12 @@
     return {lessonId:id,lessonTitle:id,source:'raw-id'};
   }
   function visibleLesson(button){
+    var st=state();
+    var stateId=String(st.e129LessonId||(st.e169Path&&st.e169Path.lessonId)||st.lessonId||'').trim();
+    if(stateId&&registeredPresenterLesson(stateId))return stateId;
     var shell=button&&button.closest&&button.closest('.e129-theory-shell');
     var node=(shell&&shell.querySelector('[data-current-lesson]'))||document.querySelector('.e129-theory-shell.presenting [data-current-lesson]')||document.querySelector('[data-current-lesson]');
-    return String(node&&node.getAttribute('data-current-lesson')||state().e129LessonId||state().e169Path&&state().e169Path.lessonId||'').trim();
+    return String(node&&node.getAttribute('data-current-lesson')||stateId||'').trim();
   }
   function registeredPresenterLesson(id){
     var reg=registry(),entry=reg&&typeof reg.get==='function'?reg.get(String(id||'').trim()):null;
