@@ -29,6 +29,8 @@ async function login(page){
   await page.locator('#loginPass').fill('hub-preservation-pass');
   await page.locator('#loginBtn').click();
   await page.waitForFunction(()=>!document.getElementById('appRoot')?.classList.contains('hidden'),null,{timeout:30000});
+  await page.waitForFunction(()=>!!window.BAUMAN_HUB_SAFE?.selfCheck,null,{timeout:10000});
+  await page.waitForFunction(()=>!!document.querySelector('.hub-safe-dashboard'),null,{timeout:10000});
 }
 
 async function checkCanonicalContent(page){
@@ -37,12 +39,21 @@ async function checkCanonicalContent(page){
     pages:['home','roadmap','subjects','schedule','research'].filter(id=>document.getElementById(`page-${id}`)),
     appearance:!!document.getElementById('appearanceBtn'),
     ai:!!document.getElementById('aiBtn'),
-    optionalSkin:!!window.BAUMAN_HUB_V2
+    safeSkin:!!window.BAUMAN_HUB_SAFE,
+    safeCheck:window.BAUMAN_HUB_SAFE?.selfCheck?.()
   }));
   assert.deepEqual(content.subjectIds,['ai','foundation','math','programming','research','russian','signal','systems']);
   assert.equal(content.pages.length,5,'canonical Hub pages were removed');
   assert.ok(content.appearance,'Giao diện control missing');
   assert.ok(content.ai,'AI control missing');
+  assert.ok(content.safeSkin,'Safe Hub shell missing');
+  assert.equal(content.safeCheck?.ready,true,'Safe Hub shell is not healthy');
+  assert.equal(content.safeCheck?.canonicalPages,true,'Safe Hub removed canonical pages');
+  assert.equal(content.safeCheck?.authoritativeHome,true,'Safe Hub replaced app.home');
+  assert.equal(content.safeCheck?.originalHomePreserved,true,'Original home content was lost');
+  assert.equal(content.safeCheck?.additiveDashboard,true,'Additive premium dashboard missing');
+  assert.equal(content.safeCheck?.routesOwned,false,'Safe Hub must not own routes');
+  assert.equal(content.safeCheck?.dataWrites,false,'Safe Hub must not own academic data');
   return content;
 }
 
@@ -61,33 +72,31 @@ try{
   for(const id of ['roadmap','subjects','schedule','research','home']){
     await page.evaluate(id=>window.app?.page?.(id,false),id);
     await page.waitForFunction(id=>document.getElementById(`page-${id}`)?.classList.contains('active'),id,{timeout:10000});
-  }
-
-  if(content.optionalSkin){
-    const skin=await page.evaluate(()=>window.BAUMAN_HUB_V2?.selfCheck?.());
-    assert.equal(skin?.ready,true,'optional Hub skin is loaded but not healthy');
+    if(id==='home')await page.evaluate(()=>window.BAUMAN_HUB_SAFE?.refresh?.());
   }
 
   const cases=[['tuf-f15-1920x1080',1920,1080],['laptop-1536x864',1536,864],['ipad-3x2',1180,787],['iphone-19_5x9',390,844]];
   for(const [label,width,height] of cases){
     await page.setViewportSize({width,height});
-    await page.waitForTimeout(150);
-    await page.evaluate(()=>window.app?.page?.('home',false));
+    await page.waitForTimeout(120);
+    await page.evaluate(()=>{window.app?.page?.('home',false);window.BAUMAN_HUB_SAFE?.refresh?.()});
     const snap=await page.evaluate(()=>({
       client:document.documentElement.clientWidth,
       scroll:document.documentElement.scrollWidth,
       app:!!document.getElementById('appRoot')&&!document.getElementById('appRoot').classList.contains('hidden'),
       appearance:!!document.getElementById('appearanceBtn'),
+      dashboard:!!document.querySelector('.hub-safe-dashboard'),
+      original:!!document.querySelector('#page-home .canva-dashboard-page'),
       page:document.getElementById('page-home')?.classList.contains('active')===true
     }));
-    assert.ok(snap.app&&snap.appearance&&snap.page,`${label}: canonical Hub controls missing`);
+    assert.ok(snap.app&&snap.appearance&&snap.dashboard&&snap.original&&snap.page,`${label}: safe/preserved Hub content missing`);
     assert.ok(snap.scroll<=snap.client+2,`${label}: horizontal overflow ${snap.scroll}/${snap.client}`);
     await page.screenshot({path:path.join(OUT,`${label}.png`),fullPage:true});
   }
 
   assert.deepEqual(errors,[],'Hub emitted console/page errors');
-  fs.writeFileSync(path.join(OUT,'summary.json'),JSON.stringify({status:'PASS',mode:content.optionalSkin?'optional-skin':'preservation',subjects:content.subjectIds.length,viewports:cases.map(x=>x[0]),errors},null,2));
-  console.log(`Hub preservation responsive acceptance PASS (${content.optionalSkin?'optional-skin':'preservation'})`);
+  fs.writeFileSync(path.join(OUT,'summary.json'),JSON.stringify({status:'PASS',mode:'safe-additive-shell',subjects:content.subjectIds.length,viewports:cases.map(x=>x[0]),safeCheck:content.safeCheck,errors},null,2));
+  console.log('Hub safe additive responsive acceptance PASS');
 }finally{
   await browser?.close();
 }
