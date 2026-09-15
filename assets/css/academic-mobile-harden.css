@@ -1,0 +1,75 @@
+/* Academic 2026 mobile intrinsic-width hardening.
+   Keep real reflow; do not hide a wider layout behind page-level clipping. */
+@media (max-width:720px){
+  .academic2026-shell{
+    display:grid;
+    grid-template-columns:minmax(0,1fr)!important;
+    inline-size:100%;
+    min-inline-size:0!important;
+    max-inline-size:100%!important;
+  }
+  .academic2026-shell>*,
+  .academic2026-shell .academic2026-panel,
+  .academic2026-shell .academic2026-head,
+  .academic2026-shell .academic2026-course-grid,
+  .academic2026-shell .academic2026-kpis,
+  .academic2026-shell .academic2026-risk-grid,
+  .academic2026-shell .academic2026-action-list,
+  .academic2026-shell .academic2026-preview-panel,
+  .academic2026-shell .academic2026-preview-guard,
+  .academic2026-shell .academic2026-preview-actions,
+  .academic2026-shell .academic2026-apply-panel,
+  .academic2026-shell .academic2026-apply-actions{
+    min-inline-size:0!important;
+    max-inline-size:100%!important;
+  }
+  .academic2026-shell .academic2026-panel{
+    inline-size:100%!important;
+  }
+  .academic2026-shell button,
+  .academic2026-shell .btn,
+  .academic2026-shell span,
+  .academic2026-shell strong,
+  .academic2026-shell small,
+  .academic2026-shell p,
+  .academic2026-shell em{
+    min-inline-size:0;
+    overflow-wrap:anywhere;
+    word-break:normal;
+  }
+  .academic2026-shell .academic2026-course-grid,
+  .academic2026-shell .academic2026-kpis,
+  .academic2026-shell .academic2026-risk-grid,
+  .academic2026-shell .academic2026-action-list,
+  .academic2026-shell .academic2026-action-row,
+  .academic2026-shell .academic2026-preview-summary,
+  .academic2026-shell .academic2026-preview-list,
+  .academic2026-shell .academic2026-preview-row,
+  .academic2026-shell .academic2026-apply-panel{
+    grid-template-columns:minmax(0,1fr)!important;
+  }
+  .academic2026-shell .academic2026-risk-card,
+  .academic2026-shell .academic2026-action-row,
+  .academic2026-shell .academic2026-course,
+  .academic2026-shell .academic2026-kpi{
+    inline-size:100%;
+    min-inline-size:0!important;
+    max-inline-size:100%!important;
+  }
+  .academic2026-prereq-row{
+    grid-template-columns:44px minmax(0,1fr)!important;
+    min-inline-size:0!important;
+    max-inline-size:100%!important;
+  }
+  .academic2026-prereq-row>:nth-child(3){
+    grid-column:1/-1;
+    justify-self:start;
+    min-inline-size:0;
+    max-inline-size:100%;
+  }
+  .academic2026-shell .academic2026-apply-actions .btn{
+    flex:1 1 100%;
+    inline-size:auto;
+    max-inline-size:100%;
+  }
+}
