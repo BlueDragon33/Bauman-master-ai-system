@@ -17,8 +17,8 @@ Live acceptance checklist: `W4_LIVE_PUBLICATION_CHECKLIST.md`.
 
 ## Mandatory pre-publish reconciliation
 1. Compare current `main` to the verified runtime commit.
-2. Confirm every post-runtime change is documentation/state/report/manifest only.
-3. If any runtime asset/code/data changed after the verified runtime commit, stop publication and re-run the relevant W3 gates first.
+2. Classify every post-runtime change. Only documentation/state/report/manifest or CI-verified QA-only test/audit changes may remain outside the verified runtime lineage.
+3. If any runtime asset/code/data changed after the verified runtime commit, stop publication and re-run the relevant W3 gates first. Current QA-only HEAD `60631ca409ddff8b84c91f706e4aaa8c1bd851da` passed integration/browser run `34916354239` and Windows run `34916354249`.
 4. Publish the verified runtime lineage, never an older/intermediate/debug build.
 
 ## W4 procedure

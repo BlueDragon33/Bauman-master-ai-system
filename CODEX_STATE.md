@@ -4,7 +4,7 @@ Current task: `CHATGPT_SITE_PUBLICATION_W4`
 
 Status: `WHOLE_SYSTEM_W3_PASS_W4_PUBLICATION_LOCKED`
 
-Date: 2026-09-14
+Date: 2026-09-15
 Branch: `main`
 
 ## Gate state
@@ -20,7 +20,7 @@ W3 acceptance report commit: `aded176683f3cc21dc553416c5e0690e9686f766`.
 Publication manifest: `W4_PUBLICATION_MANIFEST.json`.
 Live checklist: `W4_LIVE_PUBLICATION_CHECKLIST.md`.
 
-Current `main` may be ahead of the verified runtime only through documentation/state/report/manifest commits. Do not publish any untested runtime delta. Reconcile this condition immediately before publication.
+Current `main` is ahead of the verified runtime through documentation/state/report/manifest commits plus QA-only test/audit hardening commits `1334981` and `60631ca`. There is no post-runtime asset/code/data delta. The QA-only HEAD passed Whole System Integration Gate run `34916354239` and Windows checkout safety run `34916354249`. Do not publish any untested runtime delta. Reconcile this condition immediately before publication.
 
 ## Final W3 evidence
 - Whole System Integration Gate run `34856746521`: PASS.
@@ -28,6 +28,9 @@ Current `main` may be ahead of the verified runtime only through documentation/s
 - Math Study Command Center browser acceptance: PASS.
 - Cloudflare Preview CI run `34856746410`: PASS.
 - Windows checkout safety run `34856746465`: PASS.
+- Post-acceptance QA-only HEAD `60631ca409ddff8b84c91f706e4aaa8c1bd851da`: PASS.
+- Whole System Integration Gate run `34916354239`: PASS.
+- Windows checkout safety run `34916354249`: PASS.
 - Browser evidence artifact: `whole-system-browser-34856746521`.
 - Browser artifact SHA-256: `1c3f1d3ba24fde7042785f1f4ac57d6ba242de2c2a3a8cd5bf5d333f89cb54ba`.
 - Open BLOCKER: `0`.

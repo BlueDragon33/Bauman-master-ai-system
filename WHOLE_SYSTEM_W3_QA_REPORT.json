@@ -71,6 +71,18 @@
       ]
     }
   ],
+  "postAcceptanceVerification": {
+    "qaOnlyHead": "60631ca409ddff8b84c91f706e4aaa8c1bd851da",
+    "runtimeDeltaAfterTestedCommit": false,
+    "changes": [
+      "Browser gate deterministic richness preload and slow-runner timeout hardening",
+      "Windows checkout audit status reporting correction"
+    ],
+    "wholeSystemIntegrationRun": 34916354239,
+    "wholeSystemIntegration": "PASS",
+    "windowsCheckoutRun": 34916354249,
+    "windowsCheckout": "PASS"
+  },
   "requiredCoverage": {
     "staticJsonSchemaIntegrity": "PASS",
     "buildRuntimePackageReproducibility": "PASS",

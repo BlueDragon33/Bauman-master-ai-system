@@ -17,12 +17,18 @@
     "cloudflarePreview": "PASS",
     "windowsCheckoutRun": 34856746465,
     "windowsCheckout": "PASS",
+    "postAcceptanceQaHead": "60631ca409ddff8b84c91f706e4aaa8c1bd851da",
+    "postAcceptanceWholeSystemRun": 34916354239,
+    "postAcceptanceWholeSystem": "PASS",
+    "postAcceptanceWindowsRun": 34916354249,
+    "postAcceptanceWindows": "PASS",
     "browserArtifact": "whole-system-browser-34856746521",
     "browserArtifactSha256": "1c3f1d3ba24fde7042785f1f4ac57d6ba242de2c2a3a8cd5bf5d333f89cb54ba"
   },
   "publicationRule": {
     "publishVerifiedRuntimeOnly": true,
     "allowDocumentationOnlyCommitsAfterRuntime": true,
+    "allowCiVerifiedQaOnlyCommitsAfterRuntime": true,
     "allowUntestedRuntimeDelta": false,
     "allowIntermediateOrDebugBuild": false,
     "requireLiveVerificationBeforePass": true

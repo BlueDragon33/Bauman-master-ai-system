@@ -11,7 +11,8 @@ Publication manifest: `W4_PUBLICATION_MANIFEST.json`
 ## Before Publish
 
 - Reconcile GitHub `main` against the verified runtime commit.
-- Confirm every commit after the verified runtime is documentation/state/report-only.
+- Classify every commit after the verified runtime and confirm there is no asset/code/data runtime delta. Documentation/state/report/manifest and CI-verified QA-only test/audit changes are non-runtime.
+- Confirm QA-only HEAD `60631ca409ddff8b84c91f706e4aaa8c1bd851da` passed integration/browser run `34916354239` and Windows run `34916354249`.
 - Do not publish any untested runtime delta.
 - Do not publish preview/debug/intermediate artifacts.
 - Keep E235 active and unchanged.
