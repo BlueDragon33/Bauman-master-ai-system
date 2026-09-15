@@ -6,7 +6,7 @@
 (function(){
   'use strict';
 
-  var RELEASE='E243_PRESENTER_ROUTE_IDENTITY_LOCK_R4';
+  var RELEASE='E243_PRESENTER_ROUTE_IDENTITY_LOCK_R5';
   var handled=0;
   var lastLessonId='';
   var lastLessonTitle='';
@@ -14,6 +14,7 @@
   var presenterRawOpen=null;
   var presenterGuardInstalled=false;
   var presenterGuardAttempts=0;
+  var minimalGhostBuilds=0;
 
   function state(){
     try{return (window.__BAUMAN_CORE_API&&window.__BAUMAN_CORE_API.state)||window.__MATH_STATE||(window.__MATH_STATE={});}
@@ -39,7 +40,7 @@
   }
   function visibleLesson(button){
     var shell=button&&button.closest&&button.closest('.e129-theory-shell');
-    var node=(shell&&shell.querySelector('[data-current-lesson]'))||document.querySelector('[data-current-lesson]');
+    var node=(shell&&shell.querySelector('[data-current-lesson]'))||document.querySelector('.e129-theory-shell.presenting [data-current-lesson]')||document.querySelector('[data-current-lesson]');
     return String(node&&node.getAttribute('data-current-lesson')||state().e129LessonId||state().e169Path&&state().e169Path.lessonId||'').trim();
   }
   function registeredPresenterLesson(id){
@@ -82,15 +83,36 @@
     var walker=document.createTreeWalker(root,NodeFilter.SHOW_TEXT),node;
     while((node=walker.nextNode()))node.nodeValue=String(node.nodeValue||'').replace(/([23])\.([1-6])/g,'$1·$2');
   }
+  function buildRoutingGhost(real,identity){
+    if(!real||!identity||!identity.lessonId)return null;
+    var escaped=window.CSS&&typeof window.CSS.escape==='function'?window.CSS.escape(identity.lessonId):identity.lessonId.replace(/["\\]/g,'\\$&');
+    var current=real.querySelector('[data-current-lesson="'+escaped+'"]')||real.querySelector('[data-current-lesson]');
+    var list=current&&current.querySelector('.e129-slide-list');
+    if(!current||!list)return null;
+    var ghost=document.createElement('main');
+    ghost.className='e129-theory-shell presenting';
+    ghost.setAttribute('data-e243-routing-ghost','1');
+    ghost.setAttribute('data-e243-routing-mode','minimal-reader');
+    ghost.style.display='none';
+    var holder=document.createElement('section');
+    holder.className='e129-placeholder';
+    holder.setAttribute('data-current-lesson',identity.lessonId);
+    holder.setAttribute('data-e243-minimal-reader','1');
+    var title=current.querySelector('.e169-reader-title,.e129-reader-title');
+    if(title)holder.appendChild(title.cloneNode(true));
+    holder.appendChild(list.cloneNode(true));
+    ghost.appendChild(holder);
+    sanitizeRoutingText(ghost);
+    minimalGhostBuilds+=1;
+    return ghost;
+  }
   function openDeckFromLockedReader(identity){
     var api=window.BAUMAN_MATH_THEORY_E132;
     var real=document.querySelector('.e129-theory-shell.presenting');
     var opener=presenterRawOpen||(api&&api.openDeck);
     if(!api||typeof opener!=='function'||!real)return false;
-    var ghost=real.cloneNode(true);
-    ghost.setAttribute('data-e243-routing-ghost','1');
-    ghost.style.display='none';
-    sanitizeRoutingText(ghost);
+    var ghost=buildRoutingGhost(real,identity);
+    if(!ghost)return false;
     real.classList.remove('presenting');
     document.body.appendChild(ghost);
     try{
@@ -175,6 +197,8 @@
         canonicalIdentityLocked:true,
         publicOpenGuardInstalled:presenterGuardInstalled,
         publicOpenGuardAttempts:presenterGuardAttempts,
+        routingGhostMinimal:true,
+        minimalGhostBuilds:minimalGhostBuilds,
         noNewRenderer:true,
         routingGhostPresent:!!document.querySelector('[data-e243-routing-ghost]')
       };
