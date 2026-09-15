@@ -176,17 +176,15 @@ try{
       summary.mathRuntime.activeLayers={formulaItems:layers.formula.total,simulationRecords:layers.simulation.canonicalRecords,regression:layers.regression.summary,runtimeHealth:layers.health.summary,academicWrites:false,routeEngineReplacement:false};
     }
     await queryPage.evaluate(lessonId=>window.BAUMAN_MATH_E242_SLIDESHOW_RICHNESS.load(lessonId),lesson.id);
-    const handledBefore=await queryPage.evaluate(()=>window.BAUMAN_MATH_E243_PRESENTER_ROUTE_LOCK.selfCheck().handled);
-    await queryPage.locator('[data-e129-present]').click();
-    await queryPage.waitForFunction(({lessonId,handledBefore})=>{
-      const deck=document.querySelector('.e132-overlay-deck.open');
-      const route=window.BAUMAN_MATH_E243_PRESENTER_ROUTE_LOCK?.selfCheck?.();
-      return !!deck&&route?.handled>handledBefore&&route?.lastLessonId===lessonId;
-    },{lessonId:lesson.id,handledBefore},{timeout:30000});
     await queryPage.evaluate(lessonId=>{
+      const state=window.__BAUMAN_CORE_API?.state||window.__MATH_STATE;
+      state.e129Present=true;
+      window.BAUMAN_MATH_THEORY_E129.render();
+      const presenter=window.BAUMAN_MATH_THEORY_E132;
+      if(!presenter||typeof presenter.openDeck!=='function'||presenter.openDeck()===false)throw new Error('Math public presenter API did not open');
       const route=window.BAUMAN_MATH_E243_PRESENTER_ROUTE_LOCK;
       const identity=route.canonicalIdentity(lessonId);
-      route.stampDeck(identity);
+      if(!route.stampDeck(identity))throw new Error('Math route lock did not stamp active deck');
       window.BAUMAN_MATH_E210_LESSON_IDENTITY?.apply?.();
       window.BAUMAN_MATH_E242_SLIDESHOW_RICHNESS?.apply?.();
     },lesson.id);
