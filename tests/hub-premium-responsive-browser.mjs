@@ -140,7 +140,7 @@ try{
   }
 
   assert.deepEqual(errors,[],'Hub emitted console/page errors');
-  fs.writeFileSync(path.join(OUT,'summary.json'),JSON.stringify({status:'PASS',mode:'safe-additive-shell',subjects:content.subjectIds.length,viewports:cases.map(x=>x[0]),planningWrapper:content.planningWrapper,safeCheck:window?.undefined,staticOwnershipGate:'PASS',canonicalDetailsFold:'PASS',appearancePresets:'PASS',errors},null,2));
+  fs.writeFileSync(path.join(OUT,'summary.json'),JSON.stringify({status:'PASS',mode:'safe-additive-shell',subjects:content.subjectIds.length,viewports:cases.map(x=>x[0]),planningWrapper:content.planningWrapper,safeCheck:content.safeCheck,staticOwnershipGate:'PASS',canonicalDetailsFold:'PASS',appearancePresets:'PASS',errors},null,2));
   console.log('Hub safe additive responsive acceptance PASS');
 }finally{
   await browser?.close();
