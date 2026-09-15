@@ -16,6 +16,8 @@ const config = text("assets/js/platform/runtime-config.js");
 const gate = text("assets/js/platform/device-access-gate.js");
 const css = text("assets/css/device-access-gate.css");
 const server = text("scripts/serve-local-runtime.mjs");
+const sitesBuild = text("scripts/prepare-chatgpt-site.mjs");
+const hosting = JSON.parse(text(".openai/hosting.json"));
 const control = text("control-service/src/index.ts");
 const store = text("control-service/src/device-store.ts");
 
@@ -30,6 +32,7 @@ const configIndex = html.indexOf("assets/js/platform/runtime-config.js");
 const gateIndex = html.indexOf("assets/js/platform/device-access-gate.js");
 const appIndex = html.indexOf("assets/js/data.js");
 assert.ok(configIndex >= 0 && gateIndex > configIndex && appIndex > gateIndex, "Device Gate must load before learning application code");
+assert.doesNotMatch(html, /bauman-platform-access/, "Source runtime must not trust the deployment platform implicitly");
 
 assert.match(config, /protocol:\s*'bauman-control-v4'/);
 assert.match(config, /local \? 'http:\/\/127\.0\.0\.1:3003'/);
@@ -53,6 +56,8 @@ assert.match(gate, /identity\.lastKnownStatus === 'approved'/);
 assert.match(gate, /connectivityFailure\(error\) && withinOfflineGrace\(identity\)/);
 assert.match(gate, /DEVICE_BLOCKED/);
 assert.match(gate, /DEVICE_PENDING/);
+assert.match(gate, /platformAccessMode === 'chatgpt-site-owner-private'/);
+assert.match(gate, /BAUMAN_DEVICE_ACCESS_BOUNDARY/);
 assert.doesNotMatch(gate, /localBypass|localhost.*bypass|skip.*device/i);
 assert.doesNotMatch(gate, /password|123456789|loginPass/i);
 
@@ -66,6 +71,12 @@ assert.match(server, /_local\/health/);
 assert.match(server, /request\.method !== "GET" && request\.method !== "HEAD"/);
 assert.match(server, /segment === "\.\." \|\| segment === "\.git"/);
 assert.doesNotMatch(server, /0\.0\.0\.0/);
+
+assert.equal(hosting.static?.directory, "dist");
+assert.equal(hosting.static?.not_found_handling, "none");
+assert.match(sitesBuild, /runtime-dist/);
+assert.match(sitesBuild, /chatgpt-site-owner-private/);
+assert.match(sitesBuild, /bauman-build-revision/);
 
 assert.match(control, /BAUMAN_APP_ORIGIN/);
 assert.match(control, /requireAppOrigin/);

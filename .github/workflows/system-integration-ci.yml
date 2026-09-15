@@ -10,6 +10,8 @@ on:
       - "scripts/validate-system-integration.mjs"
       - "tests/system-browser-acceptance.mjs"
       - "tests/math-study-command-center-browser.mjs"
+      - "scripts/prepare-chatgpt-site.mjs"
+      - ".openai/hosting.json"
       - ".github/workflows/system-integration-ci.yml"
   pull_request:
     branches: [main]
@@ -20,6 +22,8 @@ on:
       - "scripts/validate-system-integration.mjs"
       - "tests/system-browser-acceptance.mjs"
       - "tests/math-study-command-center-browser.mjs"
+      - "scripts/prepare-chatgpt-site.mjs"
+      - ".openai/hosting.json"
       - ".github/workflows/system-integration-ci.yml"
 
 permissions:
@@ -84,6 +88,31 @@ jobs:
           BAUMAN_E2E_BASE_URL: http://127.0.0.1:4173/
           BAUMAN_E2E_ARTIFACT_DIR: artifacts/math-study-command-center
         run: node tests/math-study-command-center-browser.mjs
+      - name: Materialize owner-private ChatGPT Site package
+        env:
+          BAUMAN_CONTROL_PREVIEW_D1_DATABASE_ID: 11111111-1111-4111-8111-111111111111
+          BAUMAN_CONTROL_PRODUCTION_D1_DATABASE_ID: 22222222-2222-4222-8222-222222222222
+          APPLICATION_MANAGEMENT_PREVIEW_ORIGIN: https://application-management-preview.example.com
+          BAUMAN_CONTROL_PREVIEW_ORIGIN: https://bauman-control-preview.example.com
+          BAUMAN_RUNTIME_PREVIEW_ORIGIN: https://bauman-runtime-preview.example.com
+        run: |
+          node scripts/prepare-cloudflare-preview.mjs
+          node scripts/prepare-chatgpt-site.mjs
+      - name: Start packaged ChatGPT Site runtime
+        run: |
+          python3 -m http.server 4174 --bind 127.0.0.1 --directory dist > /tmp/bauman-sites-http.log 2>&1 &
+          for i in {1..30}; do
+            if curl -fsS http://127.0.0.1:4174/ >/dev/null; then exit 0; fi
+            sleep 1
+          done
+          cat /tmp/bauman-sites-http.log
+          exit 1
+      - name: Run packaged ChatGPT Site browser acceptance
+        env:
+          BAUMAN_E2E_BASE_URL: http://127.0.0.1:4174/
+          BAUMAN_E2E_ARTIFACT_DIR: artifacts/chatgpt-site-browser
+          BAUMAN_E2E_EXPECT_PLATFORM_ACCESS: "1"
+        run: node tests/system-browser-acceptance.mjs
       - name: Show server log on failure
         if: failure()
         run: cat /tmp/bauman-system-http.log || true
@@ -95,5 +124,6 @@ jobs:
           path: |
             artifacts/system-browser
             artifacts/math-study-command-center
+            artifacts/chatgpt-site-browser
           if-no-files-found: warn
           retention-days: 7

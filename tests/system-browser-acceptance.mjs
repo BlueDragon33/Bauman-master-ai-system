@@ -6,6 +6,7 @@ const {chromium}=await import(process.env.BAUMAN_PLAYWRIGHT_MODULE||'playwright'
 
 const BASE=process.env.BAUMAN_E2E_BASE_URL||'http://127.0.0.1:4173/';
 const OUT=process.env.BAUMAN_E2E_ARTIFACT_DIR||'artifacts/system-browser';
+const EXPECT_PLATFORM_ACCESS=process.env.BAUMAN_E2E_EXPECT_PLATFORM_ACCESS==='1';
 const SUBJECTS=['ai','foundation','math','programming','research','russian','signal','systems'];
 const SIMPLE=new Set(['ai','foundation','research','signal','systems']);
 const ACCEPTED_MATH_LESSONS=[
@@ -60,6 +61,13 @@ try{
 
   await page.goto(BASE,{waitUntil:'domcontentloaded',timeout:30000});
   await page.waitForFunction(()=>document.documentElement.dataset.baumanDeviceAccess==='authorized',null,{timeout:15000});
+  const accessBoundary=await page.evaluate(()=>window.BAUMAN_DEVICE_ACCESS_BOUNDARY);
+  assert.deepEqual(accessBoundary,{
+    mode:EXPECT_PLATFORM_ACCESS?'chatgpt-site-owner-private':'bauman-control-v4',
+    platformAuthorized:EXPECT_PLATFORM_ACCESS,
+    controlProtocol:'bauman-control-v4'
+  });
+  summary.accessBoundary=accessBoundary;
   assert.equal(await page.locator('#authTitle').textContent(),'Thiết lập quản trị viên đầu tiên');
   assert.equal(await page.locator('#loginEmail').inputValue(),'');
   assert.equal(await page.locator('#loginPass').inputValue(),'');

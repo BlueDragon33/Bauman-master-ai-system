@@ -2,12 +2,20 @@
   'use strict';
 
   const config = global.BAUMAN_RUNTIME_CONFIG && global.BAUMAN_RUNTIME_CONFIG.control;
+  const platformAccessMode = document.querySelector('meta[name="bauman-platform-access"]')?.content?.trim() || '';
+  const platformAuthorized = platformAccessMode === 'chatgpt-site-owner-private';
   const ROOT_STATE = 'baumanDeviceAccess';
   const DB_NAME = 'bauman-device-identity-v4';
   const STORE_NAME = 'identity';
   const IDENTITY_KEY = 'primary';
   const SESSION_KEY = 'bauman-device-session-v4';
   const encoder = new TextEncoder();
+
+  global.BAUMAN_DEVICE_ACCESS_BOUNDARY = Object.freeze({
+    mode: platformAuthorized ? platformAccessMode : 'bauman-control-v4',
+    platformAuthorized,
+    controlProtocol: config?.protocol || '',
+  });
 
   class ApiError extends Error {
     constructor(message, status, code, payload) {
@@ -346,6 +354,10 @@
     clearTimers();
     let identity = null;
     try {
+      if (platformAuthorized) {
+        allow('authorized', 'Quyền truy cập được bảo vệ bởi ChatGPT Site owner-private.');
+        return;
+      }
       if (!global.crypto || !crypto.subtle || !global.indexedDB) throw new Error('Trình duyệt không hỗ trợ WebCrypto/IndexedDB cần cho Device Gate.');
       if (!config || config.deviceAccess !== true) throw new Error('Device Gate Bauman chưa được bật trong runtime config.');
       if (!config.baseUrl) {

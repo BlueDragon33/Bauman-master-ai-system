@@ -71,8 +71,16 @@ for(const subject of SUBJECTS){
 const main=read('assets/js/main.js');
 const planning=read('assets/js/planning-main.js');
 const hostBridge=read('subjects/shared/host-bridge.js');
+const rootHtml=read('index.html');
+const deviceGate=read('assets/js/platform/device-access-gate.js');
+const sitesBuild=read('scripts/prepare-chatgpt-site.mjs');
+const hosting=JSON.parse(read('.openai/hosting.json'));
 check(!main.includes('dinhnam3391@gmail.com')&&!main.includes("const ADMIN_PASS"),'Hub ships no default administrator credential');
-check(!read('index.html').includes('dinhnam3391@gmail.com'),'Login form contains no prefilled account');
+check(!rootHtml.includes('dinhnam3391@gmail.com'),'Login form contains no prefilled account');
+check(!rootHtml.includes('bauman-platform-access'),'Source runtime does not implicitly trust a hosting platform');
+check(deviceGate.includes("platformAccessMode === 'chatgpt-site-owner-private'")&&deviceGate.includes('BAUMAN_DEVICE_ACCESS_BOUNDARY'),'Device Gate exposes one exact owner-private Sites boundary');
+check(hosting.static?.directory==='dist'&&hosting.static?.not_found_handling==='none','ChatGPT Site uses an explicit static package boundary');
+check(sitesBuild.includes('runtime-dist')&&sitesBuild.includes('chatgpt-site-owner-private')&&sitesBuild.includes('bauman-build-revision'),'ChatGPT Site builder derives from the accepted packaged runtime and marks its access lineage');
 check(main.includes("name:'PBKDF2'")&&main.includes("hash:'SHA-256'")&&main.includes('PASSWORD_ITERATIONS=120000'),'Local profile passwords use salted PBKDF2-SHA-256 records');
 check(main.includes('event.source!==frame.contentWindow')&&main.includes('event.origin===url.origin'),'Hub validates subject window and origin');
 check(!main.includes("postMessage(task,'*')")&&!planning.includes("postMessage(task,'*')"),'Hub does not use wildcard task messaging');
