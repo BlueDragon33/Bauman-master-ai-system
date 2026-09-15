@@ -33,7 +33,7 @@ for(const file of files){
 }
 
 const report={
-  status:fail.length?'FAIL':'PASS',
+  status:out.length?'FAIL':'PASS',
   platform:process.platform,
   files:files.length,
   failures:out,
