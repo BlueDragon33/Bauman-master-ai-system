@@ -1,12 +1,12 @@
 {
   "schema": "bauman_w4_publication_manifest_v1",
-  "status": "BLOCKED_PENDING_PLATFORM_ACCESS_REVALIDATION",
+  "status": "READY_FOR_LIVE_PUBLICATION",
   "createdAt": "2026-09-14",
   "target": "ChatGPT Site",
   "repository": "BlueDragon33/Bauman-master-ai-system",
   "branch": "main",
-  "verifiedRuntimeCommit": "1a5969b38a49f88c24e98a87c044dd3f616a05c3",
-  "w3AcceptanceReportCommit": "aded176683f3cc21dc553416c5e0690e9686f766",
+  "verifiedRuntimeCommit": "d75f887ad9b16a0d64d056d7e8e0f9170e3a16b1",
+  "w3AcceptanceReportCommit": null,
   "w3ReportPath": "WHOLE_SYSTEM_W3_QA_REPORT.json",
   "evidence": {
     "wholeSystemIntegrationRun": 34856746521,
@@ -22,6 +22,12 @@
     "postAcceptanceWholeSystem": "PASS",
     "postAcceptanceWindowsRun": 34916354249,
     "postAcceptanceWindows": "PASS",
+    "sitesRevalidationWholeSystemRun": 34917940460,
+    "sitesRevalidationAcademicRun": 34917940471,
+    "sitesRevalidationCloudflarePreviewRun": 34917940496,
+    "sitesRevalidationDeviceGateRun": 34917940458,
+    "sitesRevalidationWindowsRun": 34917940466,
+    "sitesRevalidationChecks": "7/7 PASS",
     "browserArtifact": "whole-system-browser-34856746521",
     "browserArtifactSha256": "1c3f1d3ba24fde7042785f1f4ac57d6ba242de2c2a3a8cd5bf5d333f89cb54ba"
   },
@@ -34,12 +40,14 @@
     "requireLiveVerificationBeforePass": true
   },
   "prePublicationBlocker": {
-    "status": "OPEN",
+    "status": "CLOSED",
     "siteProjectId": "appgprj_6aa89ce658888191b08427f58a86d38b",
     "siteAccess": "owner-private",
     "publishedVersions": 0,
-    "summary": "The unchanged static root fails closed because no verified live Bauman Control Service origin exists for ChatGPT Site.",
-    "requiredRepair": "Build-only owner-private Sites access boundary followed by full relevant W3 revalidation."
+    "summary": "The unchanged static root failed closed because no verified live Bauman Control Service origin exists for ChatGPT Site.",
+    "resolution": "Device Gate v4 remains unchanged for Cloudflare; the Sites package receives an exact owner-private build marker and was revalidated on source and package.",
+    "revalidatedCommit": "d75f887ad9b16a0d64d056d7e8e0f9170e3a16b1",
+    "githubChecks": "7/7 PASS"
   },
   "protectedContracts": {
     "mathL14Slides": "22/22",

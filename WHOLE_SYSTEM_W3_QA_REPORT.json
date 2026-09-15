@@ -1,10 +1,10 @@
 {
   "schema": "bauman_whole_system_w3_qa_report_v1",
-  "version": "WHOLE_SYSTEM_W3_QA_2026_09_14_V1",
+  "version": "WHOLE_SYSTEM_W3_QA_2026_09_15_V2",
   "status": "PASS",
-  "date": "2026-09-14",
+  "date": "2026-09-15",
   "branch": "main",
-  "testedCommit": "1a5969b38a49f88c24e98a87c044dd3f616a05c3",
+  "testedCommit": "d75f887ad9b16a0d64d056d7e8e0f9170e3a16b1",
   "acceptance": {
     "w0": "PASS",
     "w1": "PASS",
@@ -71,7 +71,7 @@
       ]
     }
   ],
-  "postAcceptanceVerification": {
+  "historicalPostAcceptanceVerification": {
     "qaOnlyHead": "60631ca409ddff8b84c91f706e4aaa8c1bd851da",
     "runtimeDeltaAfterTestedCommit": false,
     "changes": [
@@ -82,6 +82,34 @@
     "wholeSystemIntegration": "PASS",
     "windowsCheckoutRun": 34916354249,
     "windowsCheckout": "PASS"
+  },
+  "sitesPackageRevalidation": {
+    "status": "PASS",
+    "testedCommit": "d75f887ad9b16a0d64d056d7e8e0f9170e3a16b1",
+    "accessBoundary": "chatgpt-site-owner-private",
+    "sourceRuntimeDeviceGate": "bauman-control-v4",
+    "sourceMarkerAbsent": true,
+    "packageMarkerBuildOnly": true,
+    "local": {
+      "systemIntegrationChecks": 257,
+      "sourceBrowser": "PASS",
+      "packagedBrowser": "PASS",
+      "academicBrowser": "PASS",
+      "deviceGateRegression": "PASS",
+      "consoleErrors": 0,
+      "pageErrors": 0,
+      "failedRequests": 0,
+      "httpErrors": 0
+    },
+    "github": {
+      "wholeSystemIntegrationRun": 34917940460,
+      "academicRun": 34917940471,
+      "cloudflarePreviewRun": 34917940496,
+      "deviceGateRun": 34917940458,
+      "windowsRun": 34917940466,
+      "checks": 7,
+      "passed": 7
+    }
   },
   "requiredCoverage": {
     "staticJsonSchemaIntegrity": "PASS",
@@ -103,6 +131,7 @@
     },
     "runtimeSourceRegistrationAndRouteIdentitySync": "PASS",
     "cloudflarePreviewPackagingDryRun": "PASS",
+    "chatgptSiteOwnerPrivatePackage": "PASS",
     "windowsCheckout": "PASS"
   },
   "findings": [
@@ -147,13 +176,27 @@
       "status": "CLOSED",
       "summary": "Final browser cache keys needed refresh after the hardening changes.",
       "resolution": "Bumped relevant Math runtime cache query values before final acceptance run."
+    },
+    {
+      "id": "W3-F07",
+      "classification": "BLOCKER",
+      "status": "CLOSED",
+      "summary": "The unchanged ChatGPT Site static root would fail closed because no verified live Bauman Control Service deployment exists.",
+      "resolution": "Added an exact build-only owner-private Sites access boundary while preserving Device Gate v4 for Cloudflare, then passed source/package/browser/CI revalidation."
+    },
+    {
+      "id": "W3-F08",
+      "classification": "NON-BLOCKING",
+      "status": "CLOSED",
+      "summary": "The first exact-SHA local package retry hit Python HTTP server connection refusals under parallel asset load.",
+      "resolution": "Used the repository Node server with a project-confined build root; the exact-SHA package rerun passed with zero request errors."
     }
   ],
   "findingCounts": {
-    "BLOCKER": {"open": 0, "closed": 0},
+    "BLOCKER": {"open": 0, "closed": 1},
     "MAJOR": {"open": 0, "closed": 4},
     "MINOR": {"open": 0, "closed": 1},
-    "NON_BLOCKING": {"open": 0, "closed": 1}
+    "NON_BLOCKING": {"open": 0, "closed": 2}
   },
   "protectedContracts": {
     "mathL14Accepted": true,
