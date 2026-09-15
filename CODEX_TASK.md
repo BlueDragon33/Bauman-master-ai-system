@@ -1,43 +1,51 @@
 # CODEX_TASK
 
-Task: `WHOLE_SYSTEM_QA_W3_HUB_REDESIGN`
-Mode: validate the redesigned Bauman Master Hub before any W4 publication.
+Task: `BAUMAN_CHAT_FIRST_PRESERVATION_AND_SAFE_REDESIGN`
+Mode: `CHAT_FIRST / WORK_SURGICAL_ONLY`
 
-## Current runtime change
-The Hub has been redesigned to follow the approved premium Bauman Master Hub reference while preserving the existing application model and subject apps.
+## Mandatory execution order
+1. Use normal chat/GitHub tools first for inspection, diff, code/data/UI changes, CI and regression review.
+2. Restore and verify the preservation baseline before redesign.
+3. Only after the baseline is green, resume the user-requested premium Hub redesign.
+4. Use Work only if a required GUI/live-browser action cannot be completed from chat.
 
-Required visual/runtime behavior:
-- Left Bauman navigation + global search + user/top controls.
-- Hero learning banner.
-- Real Bauman subject cards.
-- Continue Learning bound to current subject/state.
-- AI Study Assistant shortcut.
-- Today's schedule from Main state.
-- Achievement and overall progress panels.
-- `Giao diện` control with theme/font/text-size/density.
-- Responsive presentation modes:
-  - laptop 16:9;
-  - iPad/tablet 3:2;
-  - iPhone portrait 19.5:9.
+## Work policy — mandatory
+If Work is used, it MUST follow all rules below:
+- One narrow task only.
+- No project-wide redesign or audit unless explicitly requested.
+- Do not rewrite the application architecture.
+- Do not replace `app.home`, route ownership, state stores, Subject Bridge or canonical data loaders.
+- Do not remove, reduce, summarize away or replace existing learning content, JSON/data, progress/state or subject functionality.
+- Prefer the smallest patch possible.
+- If more than 8 files or an architecture change appears necessary: STOP and return to chat for review.
+- No force reset, no unnecessary branch/version proliferation, no production publish unless explicitly authorized after QA.
+- Report only changed files, preserved contracts, tests, failures and commit SHA.
 
-## Required W3 rerun
-1. Static/JavaScript validation.
-2. Whole-system integration gate.
-3. Browser acceptance for Hub and subject entry points.
-4. Responsive smoke at representative laptop/tablet/phone viewports.
-5. Hub -> subject task/identity/progress handshake.
-6. Math and Russian regression.
-7. Console/page/request/HTTP error checks.
-8. Device access regression and Windows checkout safety.
+## Current technical objective
+First stabilize the authoritative pre-V2 Hub runtime. Then redesign it to resemble the approved premium Bauman Master Hub reference while preserving the existing application model.
 
-## Stop policy
-- W4 publication is blocked until the redesigned Hub passes W3 revalidation.
-- Do not publish a previous verified runtime after the user-requested Hub runtime has changed.
-- Do not remove or bypass Device Gate protections outside the explicit owner-private ChatGPT Site packaging boundary.
+Required final visual behavior:
+- Premium navy/gold Bauman visual language.
+- Left navigation, search/top controls, hero, connected subject/progress/schedule/AI information.
+- Real Bauman subjects and real state only; no fake academic content.
+- Keep `Giao diện` with theme/font/text-size controls; density may be added without replacing state ownership.
+- Responsive targets: laptop 16:9, iPad/tablet 3:2, iPhone portrait 19.5:9.
+
+## Preservation acceptance before redesign
+- Eight canonical subjects remain present.
+- Home, roadmap, subjects, schedule and research routes remain usable.
+- Device Gate remains intact.
+- Hub↔subject identity/task/progress handshake remains intact.
+- Math and Russian regressions remain green.
+- No horizontal overflow at representative laptop/tablet/phone viewports.
+- No blocking console/page/network/HTTP errors.
 
 ## Protected contracts
-- Preserve accepted §1.4–§1.6 academic/runtime behavior.
+- Preserve accepted §1.4–§1.6 behavior and content.
 - Preserve §1.6 `22/22`, one-to-one, `compression: false`.
 - No new slideshow engine.
 - E235 unchanged; E236/E237/E238 disabled.
 - Preserve `UGV_TELEMETRY_8X6 / CASE_C01_L06_V1_LOCKED`.
+
+## Publication
+W4 is BLOCKED until the safe redesign completes and receives a new W3 acceptance lineage. Never use an older publication manifest as authorization for the current runtime.
