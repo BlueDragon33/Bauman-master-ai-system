@@ -1,0 +1,214 @@
+/* Bauman Hub Safe Polish
+   Visual overrides only. Loaded after legacy Canva + Hub Safe styles.
+   Purpose: make the additive shell match the navy/gold reference at 1920x1080
+   without touching routes, state, content, app.home or canonical pages. */
+
+/* Remove the old Canva floating-card canvas margins on the primary shell. */
+body.canva-main-v2 .app{gap:0!important;background:#030914!important}
+body.canva-main-v2 .sidebar{
+  margin:0!important;
+  height:100dvh!important;
+  min-height:100dvh!important;
+  border-radius:0!important;
+  border:0!important;
+  border-right:1px solid #172c44!important;
+  padding:13px 10px!important;
+  background:linear-gradient(180deg,#030812 0%,#061321 62%,#081d32 100%)!important;
+  box-shadow:14px 0 42px rgba(0,0,0,.22)!important;
+}
+body.canva-main-v2 .shell{
+  padding:0!important;
+  min-width:0!important;
+  max-width:none!important;
+  background:linear-gradient(145deg,#030914 0%,#061323 58%,#07172a 100%)!important;
+}
+body.canva-main-v2 .main{
+  width:100%!important;
+  max-width:none!important;
+  margin:0!important;
+  padding:10px 12px 18px!important;
+  background:radial-gradient(circle at 78% -18%,rgba(53,143,255,.12),transparent 34%),#030914!important;
+}
+
+/* Top bar: flush full-width dark command bar, not the old white floating Canva card. */
+body.canva-main-v2 .topbar{
+  height:68px!important;
+  min-height:68px!important;
+  margin:0!important;
+  padding:9px 15px!important;
+  border-radius:0!important;
+  border:0!important;
+  border-bottom:1px solid #182d46!important;
+  background:rgba(3,9,20,.96)!important;
+  box-shadow:none!important;
+  backdrop-filter:blur(20px) saturate(130%)!important;
+}
+body.canva-main-v2 .top-title h1{font-size:20px!important;letter-spacing:-.04em!important;color:#f1f6fd!important}
+body.canva-main-v2 .top-title p{font-size:11px!important;color:#8fa7c3!important;font-weight:650!important}
+body.canva-main-v2 .hub-safe-search{
+  background:linear-gradient(180deg,#101e33,#0a1627)!important;
+  border-color:#294462!important;
+  color:#849ab7!important;
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.03)!important;
+}
+body.canva-main-v2 .hub-safe-search input{background:transparent!important;color:#e5edf7!important}
+body.canva-main-v2 .hub-safe-search input::placeholder{color:#7890ad!important}
+body.canva-main-v2 .hub-safe-search kbd{background:#14243d!important;border-color:#314b6d!important;color:#b9c9db!important}
+body.canva-main-v2 .appearance-trigger{
+  min-height:40px!important;
+  border-radius:12px!important;
+  background:#081522!important;
+  border:1px solid #2b435f!important;
+  color:#f6f8fb!important;
+  box-shadow:none!important;
+}
+body.canva-main-v2 .ai-trigger{
+  min-height:40px!important;
+  border-radius:12px!important;
+  background:linear-gradient(135deg,#316fd4,#118eaf)!important;
+  border:1px solid #3a80c5!important;
+  color:#fff!important;
+  box-shadow:0 9px 24px rgba(31,118,206,.20)!important;
+}
+body.canva-main-v2 .canva-avatar-btn{width:42px!important;height:42px!important;border-radius:50%!important;border:1px solid #546e8b!important;background:linear-gradient(135deg,#355e91,#1592b5)!important;box-shadow:none!important}
+body.canva-main-v2 .appearance-menu,
+body.canva-main-v2 .profile-menu{
+  background:linear-gradient(180deg,#0b1827,#07121f)!important;
+  border:1px solid #29415e!important;
+  color:#eaf2fb!important;
+  box-shadow:0 26px 78px rgba(0,0,0,.46)!important;
+}
+body.canva-main-v2 .appearance-menu .profile-line,
+body.canva-main-v2 .profile-menu .profile-line{background:rgba(255,255,255,.025)!important;border-color:#253d59!important;color:#a9bad0!important}
+
+/* Sidebar refinement at full laptop scale. */
+body.canva-main-v2 .brand-row{margin-bottom:10px!important;padding:2px 3px 9px!important}
+body.canva-main-v2 .brand-row:after{background:linear-gradient(90deg,transparent,rgba(242,199,108,.28),transparent)!important}
+body.canva-main-v2 .brand{padding:2px 3px!important;gap:9px!important}
+body.canva-main-v2 .logo{width:44px!important;height:44px!important;border-radius:12px!important;background:linear-gradient(145deg,rgba(242,199,108,.19),rgba(242,199,108,.025))!important;border:1px solid rgba(242,199,108,.55)!important;color:#f2c76c!important;box-shadow:0 0 24px rgba(242,199,108,.12)!important}
+body.canva-main-v2 .brand b{font-family:Georgia,"Times New Roman",serif!important;font-size:18px!important;letter-spacing:.08em!important;color:#f7ddb0!important}
+body.canva-main-v2 .brand small{font-size:8px!important;letter-spacing:.18em!important;color:#cfaa66!important}
+body.canva-main-v2 .nav{gap:3px!important}
+body.canva-main-v2 .nav button,
+body.canva-main-v2 .hub-safe-nav-action{
+  min-height:41px!important;
+  padding:6px 8px!important;
+  border-radius:10px!important;
+  background:transparent!important;
+  border:1px solid transparent!important;
+  color:#aebfd5!important;
+  transform:none!important;
+}
+body.canva-main-v2 .nav button:hover,
+body.canva-main-v2 .nav button.active,
+body.canva-main-v2 .hub-safe-nav-action:hover{
+  background:linear-gradient(90deg,rgba(55,105,178,.34),rgba(28,68,119,.20))!important;
+  border-color:#416891!important;
+  color:#fff!important;
+  box-shadow:inset 3px 0 0 #f2c76c!important;
+}
+body.canva-main-v2 .nav button.active:before{display:none!important}
+body.canva-main-v2 .nav i,
+body.canva-main-v2 .hub-safe-nav-action i{width:28px!important;height:28px!important;border-radius:8px!important;background:rgba(70,114,168,.16)!important;color:#cbd9ea!important;box-shadow:none!important}
+body.canva-main-v2 .side-note{border-radius:14px!important;background:linear-gradient(180deg,rgba(17,37,61,.78),rgba(6,16,28,.82))!important;border-color:#29425f!important;box-shadow:none!important}
+body.canva-main-v2 .side-note b{color:#f1d18a!important}
+body.canva-main-v2 .side-note span{color:#93abc6!important}
+
+/* The premium additive dashboard always owns its own visual palette. */
+body.canva-main-v2 .hub-safe-dashboard{
+  min-height:calc(100dvh - 86px)!important;
+  margin:0 0 14px!important;
+  color:#eaf2fb!important;
+}
+body.canva-main-v2 .hub-safe-layout{
+  min-height:calc(100dvh - 88px)!important;
+  align-items:stretch!important;
+}
+body.canva-main-v2 .hub-safe-main{align-content:start!important}
+body.canva-main-v2 .hub-safe-rail{
+  min-height:calc(100dvh - 88px)!important;
+  grid-template-rows:minmax(294px,1.08fr) minmax(250px,.92fr) minmax(138px,.62fr)!important;
+  align-content:stretch!important;
+}
+body.canva-main-v2 .hub-safe-card{
+  background:linear-gradient(155deg,#091726,#04101c)!important;
+  border:1px solid #29415e!important;
+  color:#eaf2fb!important;
+  box-shadow:0 15px 42px rgba(0,0,0,.22)!important;
+}
+body.canva-main-v2 .hub-safe-hero{
+  background-color:#07111f!important;
+  border-color:#385474!important;
+  box-shadow:inset 0 0 76px rgba(2,7,14,.31),0 14px 40px rgba(0,0,0,.20)!important;
+}
+body.canva-main-v2 .hub-safe-hero h1{color:#fff!important;text-shadow:0 2px 14px rgba(0,0,0,.52)!important}
+body.canva-main-v2 .hub-safe-hero p{color:#f3ca73!important}
+body.canva-main-v2 .hub-safe-quote{color:#f0c76b!important}
+body.canva-main-v2 .hub-safe-section-head h2,
+body.canva-main-v2 .hub-safe-continue h2,
+body.canva-main-v2 .hub-safe-assistant h2{color:#f3f7fc!important}
+body.canva-main-v2 .hub-safe-link{color:#9db7d4!important;background:transparent!important;border:0!important;box-shadow:none!important}
+body.canva-main-v2 .hub-safe-subject{
+  background:linear-gradient(145deg,var(--subject-bg,#161c3d),#07111e 78%)!important;
+  color:#fff!important;
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.025)!important;
+}
+body.canva-main-v2 .hub-safe-subject b{color:#f4f7fc!important}
+body.canva-main-v2 .hub-safe-subject small{color:#9eb2ca!important}
+body.canva-main-v2 .hub-safe-progress-track{background:#1b3047!important}
+body.canva-main-v2 .hub-safe-progress em{color:#d5e2f0!important}
+body.canva-main-v2 .hub-safe-ring::after,
+body.canva-main-v2 .hub-safe-donut::after{background:#071421!important}
+body.canva-main-v2 .hub-safe-ring b,
+body.canva-main-v2 .hub-safe-donut b{color:#f1f6fc!important}
+body.canva-main-v2 .hub-safe-ring-label{color:#aabdd2!important}
+body.canva-main-v2 .hub-safe-breadcrumb{color:#8ca5c1!important}
+body.canva-main-v2 .hub-safe-lesson{background:rgba(18,36,58,.58)!important;color:#cad8e8!important}
+body.canva-main-v2 .hub-safe-lesson.active{background:linear-gradient(90deg,#193b66,#122843)!important;outline-color:#386590!important}
+body.canva-main-v2 .hub-safe-play{background:#315f98!important;color:#fff!important}
+body.canva-main-v2 .hub-safe-stats{border-color:#1d3047!important;color:#91a7c1!important}
+body.canva-main-v2 .hub-safe-stats b{color:#eef5ff!important}
+body.canva-main-v2 .hub-safe-ach{color:#cad8e7!important}
+body.canva-main-v2 .hub-safe-overall-inner{color:#dce7f4!important}
+body.canva-main-v2 .hub-safe-bar{color:#adbed1!important}
+body.canva-main-v2 .hub-safe-bar i{background:#1a2f46!important}
+body.canva-main-v2 .hub-safe-assistant-intro{border-color:#182c43!important}
+body.canva-main-v2 .hub-safe-assistant-intro p{color:#abbdd1!important}
+body.canva-main-v2 .hub-safe-suggestions button{
+  background:#101f33!important;
+  border:1px solid #2b4361!important;
+  color:#cad8e8!important;
+  box-shadow:none!important;
+}
+body.canva-main-v2 .hub-safe-suggestions button:hover{background:#152943!important;border-color:#4879aa!important}
+body.canva-main-v2 .hub-safe-ai-input{background:#0c1a2b!important;border-color:#2d4564!important;color:#7890ad!important;box-shadow:none!important}
+body.canva-main-v2 .hub-safe-date{color:#9eb2c9!important}
+body.canva-main-v2 .hub-safe-schedule-row time{color:#bac9da!important}
+body.canva-main-v2 .hub-safe-schedule-row div{background:#0e1e31!important;color:#d7e3ef!important}
+body.canva-main-v2 .hub-safe-empty{background:rgba(255,255,255,.015)!important;border-color:#29425f!important;color:#8199b5!important}
+body.canva-main-v2 .hub-safe-preserved-label{border-color:#1b3049!important;color:#a6b9ce!important}
+body.canva-main-v2 .hub-safe-preserved-label b{color:#e9f1fa!important}
+
+/* Paper mode intentionally stays light; only keep the full-width geometry. */
+body.canva-main-v2[data-theme="paper"] .shell,
+body.canva-main-v2[data-theme="paper"] .main{background:#eee8dc!important}
+body.canva-main-v2[data-theme="paper"] .topbar{background:rgba(255,250,240,.96)!important;border-bottom-color:#d8cbb3!important}
+body.canva-main-v2[data-theme="paper"] .top-title h1{color:#211b14!important}
+body.canva-main-v2[data-theme="paper"] .top-title p{color:#766a5b!important}
+
+/* Keep responsive modes exact after the desktop polish. */
+@media(max-width:1180px){
+  body.canva-main-v2 .sidebar{margin:0!important;height:100dvh!important;border-radius:0!important}
+  body.canva-main-v2 .shell{padding:0!important}
+  body.canva-main-v2 .topbar{margin:0!important;border-radius:0!important}
+  body.canva-main-v2 .hub-safe-dashboard,
+  body.canva-main-v2 .hub-safe-layout,
+  body.canva-main-v2 .hub-safe-rail{min-height:0!important}
+  body.canva-main-v2 .hub-safe-rail{grid-template-rows:auto!important}
+}
+@media(max-width:720px){
+  body.canva-main-v2 .sidebar{left:7px!important;right:7px!important;top:auto!important;bottom:7px!important;height:58px!important;min-height:58px!important;border:1px solid #25425f!important;border-radius:16px!important;margin:0!important}
+  body.canva-main-v2 .topbar{height:auto!important;min-height:98px!important;padding:7px 8px!important}
+  body.canva-main-v2 .main{padding:7px 7px 76px!important}
+  body.canva-main-v2 .hub-safe-dashboard{min-height:0!important}
+}
