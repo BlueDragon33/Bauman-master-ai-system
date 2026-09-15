@@ -1,0 +1,46 @@
+name: Academic Mobile Overflow Diagnostic
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - "tests/academic-mobile-overflow-diagnostic.mjs"
+      - ".github/workflows/academic-overflow-diagnostic.yml"
+      - "index.html"
+      - "assets/css/academic-2026.css"
+      - "assets/css/academic-mobile-harden.css"
+      - "assets/css/hub-device-layout.css"
+      - "assets/css/hub-premium-v2.css"
+
+permissions:
+  contents: read
+
+jobs:
+  probe:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 12
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22.13.0"
+      - name: Install Chromium
+        run: |
+          printf '{"private":true,"type":"module"}\n' > package.json
+          npm install --no-save --no-audit --no-fund playwright@1.55.0
+          npx playwright install --with-deps chromium
+      - name: Start Hub
+        run: |
+          python3 -m http.server 4173 --bind 127.0.0.1 >/tmp/bauman-overflow.log 2>&1 &
+          for i in {1..30}; do curl -fsS http://127.0.0.1:4173/ >/dev/null && exit 0; sleep 1; done
+          exit 1
+      - name: Probe mobile overflow
+        env:
+          BAUMAN_E2E_BASE_URL: http://127.0.0.1:4173/
+        run: node tests/academic-mobile-overflow-diagnostic.mjs
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: academic-overflow-debug-${{ github.run_id }}
+          path: artifacts/academic-overflow-debug
+          retention-days: 1
