@@ -148,7 +148,7 @@ try{
       const record=payload?.records?.find(row=>row?.lessonId===lessonId);
       if(!record)return null;
       const state=window.__BAUMAN_CORE_API?.state||window.__MATH_STATE;
-      state.view='learning';state.learnTab='theory';state.stage='vn';state.e129Stage='vn';state.e129ChapterId=record.chapterId;state.e129LessonId=lessonId;
+      state.view='learning';state.learnTab='theory';state.stage='vn';state.e129Stage='vn';state.e129ChapterId=record.chapterId;state.e129LessonId=lessonId;state.e129Present=false;
       state.e169Path={...(state.e169Path||{}),chapterId:record.chapterId,activityId:'theory',lessonId};
       window.BAUMAN_MATH_THEORY_E129.render();
       return{lessonId:record.lessonId,chapterId:record.chapterId,slides:record.slides?.length||0};
@@ -176,15 +176,24 @@ try{
       summary.mathRuntime.activeLayers={formulaItems:layers.formula.total,simulationRecords:layers.simulation.canonicalRecords,regression:layers.regression.summary,runtimeHealth:layers.health.summary,academicWrites:false,routeEngineReplacement:false};
     }
     await queryPage.evaluate(lessonId=>window.BAUMAN_MATH_E242_SLIDESHOW_RICHNESS.load(lessonId),lesson.id);
+    const handledBefore=await queryPage.evaluate(()=>window.BAUMAN_MATH_E243_PRESENTER_ROUTE_LOCK.selfCheck().handled);
     await queryPage.locator('[data-e129-present]').click();
+    await queryPage.waitForFunction(({lessonId,handledBefore})=>{
+      const deck=document.querySelector('.e132-overlay-deck.open');
+      const route=window.BAUMAN_MATH_E243_PRESENTER_ROUTE_LOCK?.selfCheck?.();
+      return !!deck&&route?.handled>handledBefore&&route?.lastLessonId===lessonId;
+    },{lessonId:lesson.id,handledBefore},{timeout:30000});
+    await queryPage.evaluate(lessonId=>{
+      const route=window.BAUMAN_MATH_E243_PRESENTER_ROUTE_LOCK;
+      const identity=route.canonicalIdentity(lessonId);
+      route.stampDeck(identity);
+      window.BAUMAN_MATH_E210_LESSON_IDENTITY?.apply?.();
+      window.BAUMAN_MATH_E242_SLIDESHOW_RICHNESS?.apply?.();
+    },lesson.id);
     await queryPage.waitForFunction(lessonId=>{
       const deck=document.querySelector('.e132-overlay-deck.open');
-      return deck?.getAttribute('data-e243-lesson-id')===lessonId&&deck?.getAttribute('data-e210-active-lesson-id')===lessonId;
-    },lesson.id,{timeout:30000});
-    await queryPage.evaluate(()=>window.BAUMAN_MATH_E242_SLIDESHOW_RICHNESS.apply());
-    await queryPage.waitForFunction(lessonId=>{
       const richness=window.BAUMAN_MATH_E242_SLIDESHOW_RICHNESS?.selfCheck?.();
-      return richness?.activeLessonId===lessonId&&richness?.loaded===true&&richness?.richnessPresent===true;
+      return deck?.getAttribute('data-e243-lesson-id')===lessonId&&deck?.getAttribute('data-e210-active-lesson-id')===lessonId&&richness?.activeLessonId===lessonId&&richness?.loaded===true&&richness?.richnessPresent===true;
     },lesson.id,{timeout:30000});
     const opened=await queryPage.evaluate(()=>{
       const deck=document.querySelector('.e132-overlay-deck.open'),richness=window.BAUMAN_MATH_E242_SLIDESHOW_RICHNESS.selfCheck(),route=window.BAUMAN_MATH_E243_PRESENTER_ROUTE_LOCK.selfCheck();
