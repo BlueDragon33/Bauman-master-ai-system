@@ -1,8 +1,8 @@
 # CODEX_STATE
 
-Current task: `CHATGPT_SITE_PUBLICATION_W4`
+Current task: `CHATGPT_SITE_PLATFORM_ACCESS_REVALIDATION_W3`
 
-Status: `WHOLE_SYSTEM_W3_PASS_W4_PUBLICATION_LOCKED`
+Status: `W4_PREPUBLICATION_BLOCKER_W3_REVALIDATION_REQUIRED`
 
 Date: 2026-09-15
 Branch: `main`
@@ -11,8 +11,14 @@ Branch: `main`
 - W0 GitHub reconciliation: PASS.
 - W1 §1.6 runtime Pass 15–19: PASS.
 - W2 whole-system audit and repair: PASS.
-- W3 whole-system QA: PASS (`WHOLE_SYSTEM_W3_QA_REPORT.json`).
-- W4 ChatGPT Site publication: READY, not yet published/accepted.
+- W3 whole-system QA: previously PASS (`WHOLE_SYSTEM_W3_QA_REPORT.json`); reopened only for the ChatGPT Site packaging/access adapter described below.
+- W4 ChatGPT Site publication: BLOCKED before publication; Site registered owner-private but no version has been published.
+
+## Active pre-publication blocker
+- Site project `appgprj_6aa89ce658888191b08427f58a86d38b` is registered and remains unpublished.
+- The Cloudflare runtime correctly fails closed without a separate Bauman Control Service origin.
+- GitHub has no configured `bauman-preview` Environment and the manual preview deploy workflow has no runs, so there is no verified live control origin to inject into ChatGPT Site.
+- Required smallest repair: keep Device Gate v4 unchanged for the Cloudflare channel, add an explicit build-only owner-private ChatGPT Site access boundary, then rerun all relevant W3 static/browser/package gates before publication.
 
 ## Immutable W4 publication lineage
 Verified runtime commit to publish: `1a5969b38a49f88c24e98a87c044dd3f616a05c3`.

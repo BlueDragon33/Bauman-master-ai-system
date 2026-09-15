@@ -1,14 +1,22 @@
 # CODEX_TASK
 
-Task: `CHATGPT_SITE_PUBLICATION_W4`
-Mode: publish verified build only, then live revalidate before acceptance.
+Task: `CHATGPT_SITE_PLATFORM_ACCESS_REVALIDATION_W3`
+Mode: repair the pre-publication access boundary, rerun W3, then resume W4.
 
 ## Gate status
 - W0 GitHub reconciliation: PASS.
 - W1 §1.6 runtime Pass 15–19: PASS.
 - W2 whole-system audit and repair: PASS.
-- W3 whole-system QA: PASS (`WHOLE_SYSTEM_W3_QA_REPORT.json`).
-- Current gate: W4 ChatGPT Site publication.
+- W3 whole-system QA: previously PASS (`WHOLE_SYSTEM_W3_QA_REPORT.json`), reopened for one publication-path repair.
+- Current gate: W3 ChatGPT Site package/access revalidation; W4 publication has not started.
+
+## Active blocker and repair scope
+1. The registered ChatGPT Site is owner-private and has no published version.
+2. The verified Cloudflare runtime fails closed without its separate Control Service, as designed.
+3. No live `bauman-preview` Environment/deployment exists on GitHub, so publishing the unchanged static root would lock the whole UI.
+4. Add only a build-time owner-private Sites access boundary; do not weaken or replace Device Gate v4 in the Cloudflare runtime.
+5. Re-run source and packaged static/browser/academic/integration gates and GitHub CI.
+6. Update the verified runtime/package lineage only after every reopened W3 gate passes, then resume W4.
 
 Verified runtime commit: `1a5969b38a49f88c24e98a87c044dd3f616a05c3`.
 W3 report commit: `aded176683f3cc21dc553416c5e0690e9686f766`.
