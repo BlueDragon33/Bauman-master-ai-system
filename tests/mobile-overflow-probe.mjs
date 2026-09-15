@@ -1,0 +1,37 @@
+import { chromium } from 'playwright';
+const BASE=process.env.BAUMAN_E2E_BASE_URL||'http://127.0.0.1:4173/';
+const browser=await chromium.launch({headless:true});
+const ctx=await browser.newContext({viewport:{width:1440,height:1000}});
+const page=await ctx.newPage();
+const deviceId='a'.repeat(64),deviceCode='BM-PROBE-001';
+await page.route('http://127.0.0.1:3003/**',async route=>{
+ const req=route.request(),u=new URL(req.url());
+ const cors={'access-control-allow-origin':'*','access-control-allow-methods':'GET,POST,OPTIONS','access-control-allow-headers':'content-type,authorization','cache-control':'no-store'};
+ if(req.method()==='OPTIONS')return route.fulfill({status:204,headers:cors,body:''});
+ const headers={...cors,'content-type':'application/json'},send=body=>route.fulfill({status:200,headers,body:JSON.stringify(body)});
+ if(u.pathname==='/api/device/register'||u.pathname==='/api/device/status')return send({device:{deviceId,deviceCode,status:'approved'}});
+ if(u.pathname==='/api/device/challenge')return send({challengeId:'c',signingInput:`probe:${deviceId}`});
+ if(u.pathname==='/api/device/verify')return send({sessionToken:'bm1.probe',expiresAt:Date.now()+3600000,device:{deviceId,deviceCode,status:'approved'}});
+ if(u.pathname==='/api/device/heartbeat')return send({device:{deviceId,deviceCode,status:'approved'}});
+ return route.fulfill({status:404,headers,body:'{}'});
+});
+await page.goto(BASE,{waitUntil:'domcontentloaded'});
+await page.waitForFunction(()=>document.documentElement.dataset.baumanDeviceAccess==='authorized',{timeout:15000});
+await page.locator('#loginEmail').fill('probe@example.test');
+await page.locator('#loginPass').fill('probe-pass');
+await page.locator('#loginBtn').click();
+await page.waitForFunction(()=>!document.getElementById('appRoot')?.classList.contains('hidden'));
+await page.waitForSelector('.hub2-subjects');
+await page.setViewportSize({width:390,height:844});
+await page.evaluate(()=>{window.app?.page?.('home',false);window.app?.home?.()});
+await page.waitForSelector('.hub2-subjects');
+await page.waitForTimeout(50);
+const out=await page.evaluate(()=>{
+ const home=document.querySelector('#page-home'),dash=document.querySelector('.hub2-dashboard'),sub=document.querySelector('.hub2-subjects');
+ const info=e=>{const r=e.getBoundingClientRect(),s=getComputedStyle(e);return{tag:e.tagName,cls:e.className,left:r.left,right:r.right,width:r.width,client:e.clientWidth,scroll:e.scrollWidth,cssWidth:s.width,minWidth:s.minWidth,maxWidth:s.maxWidth,display:s.display,overflowX:s.overflowX,boxSizing:s.boxSizing,justifySelf:s.justifySelf,gridTemplateColumns:s.gridTemplateColumns}};
+ const offenders=[...home.querySelectorAll('*')].map(e=>({e,r:e.getBoundingClientRect()})).filter(x=>x.r.right>home.getBoundingClientRect().right+1||x.r.width>home.clientWidth+1).sort((a,b)=>b.r.right-a.r.right).slice(0,15).map(x=>info(x.e));
+ const matches=[...document.styleSheets].flatMap(ss=>{try{return [...ss.cssRules]}catch{return[]}}).flatMap(r=>r.cssRules?[...r.cssRules]:[r]).filter(r=>r.selectorText&&r.selectorText.includes('hub2-subjects')).map(r=>({selector:r.selectorText,css:r.style.cssText,media:r.parentRule?.conditionText||''}));
+ return{innerWidth:innerWidth,bodyMode:document.body.dataset.hubViewport,home:info(home),dash:info(dash),sub:info(sub),offenders,matches};
+});
+console.log('MOBILE_OVERFLOW_PROBE',JSON.stringify(out));
+await browser.close();
