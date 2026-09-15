@@ -1,0 +1,33 @@
+/* Hub mobile/tablet horizontal-scroll contract.
+   Scroll content may be wider than the viewport; the scroll container itself must not be. */
+body[data-hub-viewport="phone"] .hub2-subjects,
+body[data-hub-viewport="phone"] .hub2-stats,
+body[data-hub-viewport="phone"] .hub2-ach-grid,
+body[data-hub-viewport="tablet"] .hub2-subjects{
+  box-sizing:border-box;
+  inline-size:100%!important;
+  width:100%!important;
+  min-inline-size:0!important;
+  min-width:0!important;
+  max-inline-size:100%!important;
+  max-width:100%!important;
+  justify-self:stretch!important;
+}
+body[data-hub-viewport="phone"] .hub2-subjects,
+body[data-hub-viewport="phone"] .hub2-stats,
+body[data-hub-viewport="phone"] .hub2-ach-grid,
+body[data-hub-viewport="tablet"] .hub2-subjects{
+  overflow-x:auto;
+  overflow-y:hidden;
+  overscroll-behavior-x:contain;
+  -webkit-overflow-scrolling:touch;
+}
+body[data-hub-viewport="phone"] .hub2-maincol,
+body[data-hub-viewport="phone"] .hub2-dashboard,
+body[data-hub-viewport="phone"] .hub2-layout,
+body[data-hub-viewport="tablet"] .hub2-maincol,
+body[data-hub-viewport="tablet"] .hub2-dashboard,
+body[data-hub-viewport="tablet"] .hub2-layout{
+  min-inline-size:0!important;
+  max-inline-size:100%!important;
+}
