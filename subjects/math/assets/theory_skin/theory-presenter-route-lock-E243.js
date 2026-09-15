@@ -6,7 +6,7 @@
 (function(){
   'use strict';
 
-  var RELEASE='E243_PRESENTER_ROUTE_IDENTITY_LOCK_R5';
+  var RELEASE='E243_PRESENTER_ROUTE_IDENTITY_LOCK_R6_CANONICAL_OWNER';
   var handled=0;
   var lastLessonId='';
   var lastLessonTitle='';
@@ -83,16 +83,25 @@
     var walker=document.createTreeWalker(root,NodeFilter.SHOW_TEXT),node;
     while((node=walker.nextNode()))node.nodeValue=String(node.nodeValue||'').replace(/([23])\.([1-6])/g,'$1·$2');
   }
+  function lessonNode(identity){
+    if(!identity||!identity.lessonId)return null;
+    var nodes=Array.prototype.slice.call(document.querySelectorAll('[data-current-lesson]'));
+    return nodes.find(function(node){return node.getAttribute('data-current-lesson')===identity.lessonId;})||null;
+  }
+  function lessonOwner(identity){
+    var node=lessonNode(identity);
+    return node&&node.closest&&node.closest('.e129-theory-shell')||document.querySelector('.e129-theory-shell.presenting')||document.querySelector('.e129-theory-shell');
+  }
   function buildRoutingGhost(real,identity){
-    if(!real||!identity||!identity.lessonId)return null;
-    var escaped=window.CSS&&typeof window.CSS.escape==='function'?window.CSS.escape(identity.lessonId):identity.lessonId.replace(/["\\]/g,'\\$&');
-    var current=real.querySelector('[data-current-lesson="'+escaped+'"]')||real.querySelector('[data-current-lesson]');
+    if(!identity||!identity.lessonId)return null;
+    var current=lessonNode(identity);
+    if(!current&&real)current=real.querySelector('[data-current-lesson]');
     var list=current&&current.querySelector('.e129-slide-list');
     if(!current||!list)return null;
     var ghost=document.createElement('main');
     ghost.className='e129-theory-shell presenting';
     ghost.setAttribute('data-e243-routing-ghost','1');
-    ghost.setAttribute('data-e243-routing-mode','minimal-reader');
+    ghost.setAttribute('data-e243-routing-mode','canonical-lesson-reader');
     ghost.style.display='none';
     var holder=document.createElement('section');
     holder.className='e129-placeholder';
@@ -108,11 +117,12 @@
   }
   function openDeckFromLockedReader(identity){
     var api=window.BAUMAN_MATH_THEORY_E132;
-    var real=document.querySelector('.e129-theory-shell.presenting');
+    var real=lessonOwner(identity);
     var opener=presenterRawOpen||(api&&api.openDeck);
     if(!api||typeof opener!=='function'||!real)return false;
     var ghost=buildRoutingGhost(real,identity);
     if(!ghost)return false;
+    var wasPresenting=real.classList.contains('presenting');
     real.classList.remove('presenting');
     document.body.appendChild(ghost);
     try{
@@ -121,7 +131,7 @@
       return result;
     }finally{
       if(ghost.parentNode)ghost.parentNode.removeChild(ghost);
-      real.classList.add('presenting');
+      if(wasPresenting||state().e129Present)real.classList.add('presenting');
     }
   }
   function installPresenterGuard(){
@@ -134,7 +144,7 @@
       var id=visibleLesson(null);
       if(!registeredPresenterLesson(id))return original.apply(api,arguments);
       var identity=lockState(id,true);
-      var real=document.querySelector('.e129-theory-shell.presenting');
+      var real=lessonOwner(identity);
       if(!real)return original.apply(api,arguments);
       return openDeckFromLockedReader(identity);
     };
@@ -198,6 +208,7 @@
         publicOpenGuardInstalled:presenterGuardInstalled,
         publicOpenGuardAttempts:presenterGuardAttempts,
         routingGhostMinimal:true,
+        routingGhostCanonicalOwner:true,
         minimalGhostBuilds:minimalGhostBuilds,
         noNewRenderer:true,
         routingGhostPresent:!!document.querySelector('[data-e243-routing-ghost]')
