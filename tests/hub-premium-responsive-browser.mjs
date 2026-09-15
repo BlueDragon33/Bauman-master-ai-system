@@ -48,6 +48,8 @@ async function checkCanonicalContent(page){
     ai:!!document.getElementById('aiBtn'),
     safeSkin:!!window.BAUMAN_HUB_SAFE,
     planningWrapper:window.app?.__planningV3Patched===true,
+    detailToggle:!!document.querySelector('[data-safe-action="details"]'),
+    appearancePresets:document.querySelectorAll('[data-safe-appearance]').length,
     safeCheck:window.BAUMAN_HUB_SAFE?.selfCheck?.()
   }));
   assert.deepEqual(content.subjectIds,['ai','foundation','math','programming','research','russian','signal','systems']);
@@ -55,10 +57,14 @@ async function checkCanonicalContent(page){
   assert.ok(content.appearance,'Giao diện control missing');
   assert.ok(content.ai,'AI control missing');
   assert.ok(content.safeSkin,'Safe Hub shell missing');
+  assert.ok(content.detailToggle,'Canonical detail toggle missing');
+  assert.equal(content.appearancePresets,3,'Appearance quick presets missing');
   assert.equal(content.safeCheck?.ready,true,'Safe Hub shell is not healthy');
   assert.equal(content.safeCheck?.canonicalPages,true,'Safe Hub removed canonical pages');
   assert.equal(content.safeCheck?.originalHomePreserved,true,'Original home content was lost');
   assert.equal(content.safeCheck?.additiveDashboard,true,'Additive premium dashboard missing');
+  assert.equal(content.safeCheck?.canonicalDetailsAvailable,true,'Canonical detail fold is unavailable');
+  assert.equal(content.safeCheck?.appearancePresets,3,'Appearance preset self-check drift');
   assert.equal(content.safeCheck?.routesOwned,false,'Safe Hub must not own routes');
   assert.equal(content.safeCheck?.dataWrites,false,'Safe Hub must not own academic data');
   return content;
@@ -76,6 +82,27 @@ try{
   await login(page);
   const content=await checkCanonicalContent(page);
 
+  // Canonical home is still present in DOM, but folded by default for a clean 16:9 first screen.
+  await page.evaluate(()=>localStorage.removeItem('bauman_hub_canonical_details_open_v1'));
+  await page.evaluate(()=>window.BAUMAN_HUB_SAFE?.refresh?.());
+  await page.waitForFunction(()=>document.querySelector('#page-home .canva-dashboard-page')?.classList.contains('hub-safe-preserved-collapsed')===true);
+  const detailButton=page.locator('[data-safe-action="details"]');
+  assert.equal(await detailButton.getAttribute('aria-expanded'),'false');
+  await detailButton.click();
+  await page.waitForFunction(()=>document.querySelector('#page-home .canva-dashboard-page')?.classList.contains('hub-safe-preserved-collapsed')===false);
+  assert.equal(await page.locator('[data-safe-action="details"]').getAttribute('aria-expanded'),'true');
+  await page.locator('[data-safe-action="details"]').click();
+  await page.waitForFunction(()=>document.querySelector('#page-home .canva-dashboard-page')?.classList.contains('hub-safe-preserved-collapsed')===true);
+
+  // Premium appearance control center must drive the existing canonical appearance state, not create another theme engine.
+  await page.locator('#appearanceBtn').click();
+  await page.waitForFunction(()=>!document.getElementById('appearanceMenu')?.classList.contains('hidden'));
+  await page.locator('[data-safe-appearance="focus"]').click();
+  await page.waitForFunction(()=>document.body.dataset.theme==='night'&&document.body.dataset.size==='compact'&&document.body.dataset.hubWallpaper==='plain'&&document.body.dataset.hubDensity==='fit1080');
+  await page.locator('[data-safe-appearance="bauman"]').click();
+  await page.waitForFunction(()=>document.body.dataset.theme==='academic'&&document.body.dataset.font==='system'&&document.body.dataset.size==='normal'&&document.body.dataset.hubWallpaper==='mountain'&&document.body.dataset.hubDensity==='fit1080');
+  await page.locator('#appearanceBtn').click();
+
   for(const id of ['roadmap','subjects','schedule','research','home']){
     await page.evaluate(id=>window.app?.page?.(id,false),id);
     await page.waitForFunction(id=>document.getElementById(`page-${id}`)?.classList.contains('active'),id,{timeout:10000});
@@ -87,22 +114,33 @@ try{
     await page.setViewportSize({width,height});
     await page.waitForTimeout(120);
     await page.evaluate(()=>{window.app?.page?.('home',false);window.BAUMAN_HUB_SAFE?.refresh?.()});
-    const snap=await page.evaluate(()=>({
-      client:document.documentElement.clientWidth,
-      scroll:document.documentElement.scrollWidth,
-      app:!!document.getElementById('appRoot')&&!document.getElementById('appRoot').classList.contains('hidden'),
-      appearance:!!document.getElementById('appearanceBtn'),
-      dashboard:!!document.querySelector('.hub-safe-dashboard'),
-      original:!!document.querySelector('#page-home .canva-dashboard-page'),
-      page:document.getElementById('page-home')?.classList.contains('active')===true
-    }));
+    const snap=await page.evaluate(()=>{
+      const dash=document.querySelector('.hub-safe-dashboard')?.getBoundingClientRect();
+      const gold=getComputedStyle(document.querySelector('.hub-safe-gold'));
+      return{
+        client:document.documentElement.clientWidth,
+        scroll:document.documentElement.scrollWidth,
+        app:!!document.getElementById('appRoot')&&!document.getElementById('appRoot').classList.contains('hidden'),
+        appearance:!!document.getElementById('appearanceBtn'),
+        dashboard:!!document.querySelector('.hub-safe-dashboard'),
+        original:!!document.querySelector('#page-home .canva-dashboard-page'),
+        originalFolded:document.querySelector('#page-home .canva-dashboard-page')?.classList.contains('hub-safe-preserved-collapsed')===true,
+        page:document.getElementById('page-home')?.classList.contains('active')===true,
+        dashboardBottom:dash?.bottom??null,
+        goldBackground:gold.backgroundImage,
+        goldColor:gold.color
+      };
+    });
     assert.ok(snap.app&&snap.appearance&&snap.dashboard&&snap.original&&snap.page,`${label}: safe/preserved Hub content missing`);
+    assert.ok(snap.originalFolded,`${label}: canonical home should stay folded by default`);
     assert.ok(snap.scroll<=snap.client+2,`${label}: horizontal overflow ${snap.scroll}/${snap.client}`);
+    assert.match(snap.goldBackground,/gradient/i,`${label}: primary CTA lost premium gold background`);
+    if(width>=1500)assert.ok(snap.dashboardBottom<=height+40,`${label}: premium dashboard no longer fits the first 16:9 screen (${snap.dashboardBottom}/${height})`);
     await page.screenshot({path:path.join(OUT,`${label}.png`),fullPage:true});
   }
 
   assert.deepEqual(errors,[],'Hub emitted console/page errors');
-  fs.writeFileSync(path.join(OUT,'summary.json'),JSON.stringify({status:'PASS',mode:'safe-additive-shell',subjects:content.subjectIds.length,viewports:cases.map(x=>x[0]),planningWrapper:content.planningWrapper,safeCheck:content.safeCheck,staticOwnershipGate:'PASS',errors},null,2));
+  fs.writeFileSync(path.join(OUT,'summary.json'),JSON.stringify({status:'PASS',mode:'safe-additive-shell',subjects:content.subjectIds.length,viewports:cases.map(x=>x[0]),planningWrapper:content.planningWrapper,safeCheck:window?.undefined,staticOwnershipGate:'PASS',canonicalDetailsFold:'PASS',appearancePresets:'PASS',errors},null,2));
   console.log('Hub safe additive responsive acceptance PASS');
 }finally{
   await browser?.close();
