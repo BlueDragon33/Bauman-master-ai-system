@@ -100,7 +100,7 @@ jobs:
           node scripts/prepare-chatgpt-site.mjs
       - name: Start packaged ChatGPT Site runtime
         run: |
-          python3 -m http.server 4174 --bind 127.0.0.1 --directory dist > /tmp/bauman-sites-http.log 2>&1 &
+          node scripts/serve-local-runtime.mjs --root dist --port 4174 > /tmp/bauman-sites-http.log 2>&1 &
           for i in {1..30}; do
             if curl -fsS http://127.0.0.1:4174/ >/dev/null; then exit 0; fi
             sleep 1

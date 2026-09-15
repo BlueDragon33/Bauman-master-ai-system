@@ -1,10 +1,10 @@
 import { createServer } from "node:http";
 import { readFile, stat } from "node:fs/promises";
-import { dirname, extname, resolve, sep } from "node:path";
+import { dirname, extname, relative, resolve, sep } from "node:path";
 import { fileURLToPath } from "node:url";
 
 const scriptDir = dirname(fileURLToPath(import.meta.url));
-const root = resolve(scriptDir, "..");
+const projectRoot = resolve(scriptDir, "..");
 
 function argument(name, fallback) {
   const inline = process.argv.find((value) => value.startsWith(`${name}=`));
@@ -15,7 +15,11 @@ function argument(name, fallback) {
 
 const host = argument("--host", "127.0.0.1");
 const port = Number(argument("--port", "3005"));
+const root = resolve(projectRoot, argument("--root", "."));
 if (!Number.isInteger(port) || port < 1 || port > 65535) throw new Error("Port Bauman runtime không hợp lệ.");
+const relativeRoot = relative(projectRoot, root);
+if (relativeRoot === ".." || relativeRoot.startsWith(`..${sep}`) || relativeRoot === ".git") throw new Error("Root Bauman runtime phải nằm trong project.");
+if (!(await stat(root, { throwIfNoEntry: false }))?.isDirectory()) throw new Error("Root Bauman runtime không tồn tại hoặc không phải thư mục.");
 
 const mime = new Map([
   [".html", "text/html; charset=utf-8"],

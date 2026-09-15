@@ -68,6 +68,8 @@ assert.match(css, /data-bauman-device-access="authorized"/);
 
 assert.match(server, /127\.0\.0\.1/);
 assert.match(server, /_local\/health/);
+assert.match(server, /argument\("--root", "\."\)/);
+assert.match(server, /relativeRoot\.startsWith/);
 assert.match(server, /request\.method !== "GET" && request\.method !== "HEAD"/);
 assert.match(server, /segment === "\.\." \|\| segment === "\.git"/);
 assert.doesNotMatch(server, /0\.0\.0\.0/);
