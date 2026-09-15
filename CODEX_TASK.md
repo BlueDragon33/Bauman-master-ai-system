@@ -19,7 +19,7 @@ Mode: publish the revalidated owner-private build, then live revalidate before a
 6. W4 may resume with that exact verified runtime/package lineage.
 
 Verified runtime commit: `d75f887ad9b16a0d64d056d7e8e0f9170e3a16b1`.
-W3 report commit: pending this acceptance checkpoint commit.
+W3 report commit: `18fd4eaba6d6fd1abc49eed5d2d63a7bb5b774fa`.
 Publication manifest: `W4_PUBLICATION_MANIFEST.json`.
 Live acceptance checklist: `W4_LIVE_PUBLICATION_CHECKLIST.md`.
 

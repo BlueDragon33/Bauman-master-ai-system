@@ -23,7 +23,7 @@ Branch: `main`
 
 ## Immutable W4 publication lineage
 Verified runtime commit to publish: `d75f887ad9b16a0d64d056d7e8e0f9170e3a16b1`.
-W3 acceptance report commit: pending this acceptance checkpoint commit.
+W3 acceptance report commit: `18fd4eaba6d6fd1abc49eed5d2d63a7bb5b774fa`.
 Publication manifest: `W4_PUBLICATION_MANIFEST.json`.
 Live checklist: `W4_LIVE_PUBLICATION_CHECKLIST.md`.
 
