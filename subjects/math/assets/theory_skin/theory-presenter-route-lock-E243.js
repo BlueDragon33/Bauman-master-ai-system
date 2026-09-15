@@ -6,11 +6,14 @@
 (function(){
   'use strict';
 
-  var RELEASE='E243_PRESENTER_ROUTE_IDENTITY_LOCK_R3';
+  var RELEASE='E243_PRESENTER_ROUTE_IDENTITY_LOCK_R4';
   var handled=0;
   var lastLessonId='';
   var lastLessonTitle='';
   var stabilizationRuns=0;
+  var presenterRawOpen=null;
+  var presenterGuardInstalled=false;
+  var presenterGuardAttempts=0;
 
   function state(){
     try{return (window.__BAUMAN_CORE_API&&window.__BAUMAN_CORE_API.state)||window.__MATH_STATE||(window.__MATH_STATE={});}
@@ -38,6 +41,10 @@
     var shell=button&&button.closest&&button.closest('.e129-theory-shell');
     var node=(shell&&shell.querySelector('[data-current-lesson]'))||document.querySelector('[data-current-lesson]');
     return String(node&&node.getAttribute('data-current-lesson')||state().e129LessonId||state().e169Path&&state().e169Path.lessonId||'').trim();
+  }
+  function registeredPresenterLesson(id){
+    var reg=registry(),entry=reg&&typeof reg.get==='function'?reg.get(String(id||'').trim()):null;
+    return !!(entry&&entry.slideshow&&entry.slideshow.expected);
   }
   function lockState(id,present){
     var st=state(),identity=canonicalIdentity(id);
@@ -78,7 +85,8 @@
   function openDeckFromLockedReader(identity){
     var api=window.BAUMAN_MATH_THEORY_E132;
     var real=document.querySelector('.e129-theory-shell.presenting');
-    if(!api||typeof api.openDeck!=='function'||!real)return false;
+    var opener=presenterRawOpen||(api&&api.openDeck);
+    if(!api||typeof opener!=='function'||!real)return false;
     var ghost=real.cloneNode(true);
     ghost.setAttribute('data-e243-routing-ghost','1');
     ghost.style.display='none';
@@ -86,13 +94,31 @@
     real.classList.remove('presenting');
     document.body.appendChild(ghost);
     try{
-      var result=api.openDeck()!==false;
+      var result=opener.call(api)!==false;
       stampDeck(identity);
       return result;
     }finally{
       if(ghost.parentNode)ghost.parentNode.removeChild(ghost);
       real.classList.add('presenting');
     }
+  }
+  function installPresenterGuard(){
+    var api=window.BAUMAN_MATH_THEORY_E132;
+    if(!api||typeof api.openDeck!=='function')return false;
+    if(api.__e243PresenterGuard===RELEASE){presenterGuardInstalled=true;return true;}
+    var original=api.openDeck;
+    presenterRawOpen=original;
+    api.openDeck=function(){
+      var id=visibleLesson(null);
+      if(!registeredPresenterLesson(id))return original.apply(api,arguments);
+      var identity=lockState(id,true);
+      var real=document.querySelector('.e129-theory-shell.presenting');
+      if(!real)return original.apply(api,arguments);
+      return openDeckFromLockedReader(identity);
+    };
+    api.__e243PresenterGuard=RELEASE;
+    presenterGuardInstalled=true;
+    return true;
   }
   function stabilizeReader(identity,e129){
     [0,120,720].forEach(function(delay){
@@ -115,6 +141,7 @@
     var st=state(),next=!st.e129Present,id=visibleLesson(button),identity=lockState(id,next);
     e129.render();
     if(next){
+      installPresenterGuard();
       openDeckFromLockedReader(identity);
       stabilizeReader(identity,e129);
     }else{
@@ -133,6 +160,7 @@
     release:RELEASE,
     canonicalIdentity:canonicalIdentity,
     stampDeck:stampDeck,
+    installPresenterGuard:installPresenterGuard,
     selfCheck:function(){
       var deck=document.querySelector('.e132-overlay-deck.open');
       return {
@@ -145,9 +173,19 @@
         deckLessonId:deck&&deck.getAttribute('data-e243-lesson-id')||'',
         deckLessonTitle:deck&&deck.getAttribute('data-e243-lesson-title')||'',
         canonicalIdentityLocked:true,
+        publicOpenGuardInstalled:presenterGuardInstalled,
+        publicOpenGuardAttempts:presenterGuardAttempts,
         noNewRenderer:true,
         routingGhostPresent:!!document.querySelector('[data-e243-routing-ghost]')
       };
     }
   };
+
+  (function bootPresenterGuard(){
+    if(installPresenterGuard())return;
+    var timer=setInterval(function(){
+      presenterGuardAttempts+=1;
+      if(installPresenterGuard()||presenterGuardAttempts>=80)clearInterval(timer);
+    },25);
+  })();
 })();
