@@ -101,7 +101,12 @@ try{
   await noteArea.fill(note);
   await page.waitForTimeout(320);
   assert.equal(await page.evaluate(({key,store})=>JSON.parse(localStorage.getItem(store)||'{}')?.[key]?.text,{key:realKey,store:NOTES_KEY}),note);
-  await card.locator('[data-scc="session-start"]').click();
+  // Mastery and note events can legitimately refresh the Activity Studio DOM. Re-decorate and
+  // reacquire the live session button instead of holding a stale workbench locator for 30 seconds.
+  await page.evaluate(()=>window.BAUMAN_MATH_STUDY_COMMAND_CENTER.refresh());
+  const liveSessionButton=page.locator('#mathActivityStudio .math-activity-card [data-scc="session-start"]').first();
+  await liveSessionButton.waitFor({state:'visible',timeout:15000});
+  await liveSessionButton.click();
   await page.waitForFunction(({key,store})=>JSON.parse(localStorage.getItem(store)||'null')?.key===key,{key:realKey,store:SESSION_KEY});
   const afterActivity=await page.evaluate(()=>window.BAUMAN_MATH_STUDY_COMMAND_CENTER.selfCheck());
   assert.ok(afterActivity.historyEvents>=1&&afterActivity.notes>=1,'Activity history/note state did not persist locally');
