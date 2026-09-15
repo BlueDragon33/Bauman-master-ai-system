@@ -1,0 +1,99 @@
+/* Bauman Master Hub — reference-layout device contract
+   Visual target: attached premium Bauman Master Hub dashboard.
+   Three explicit presentation modes are selected by hub-premium-v2.js:
+   laptop = 16:9 class, tablet = 3:2 class, phone = iPhone portrait / 19.5:9 class.
+   This file only refines layout; Main state/routes/data remain authoritative. */
+
+/* Shared reference polish */
+body.hub-premium-v2 .hub2-dashboard{width:100%;max-width:1800px;margin-inline:auto}
+body.hub-premium-v2 .hub2-card,
+body.hub-premium-v2 .hub2-hero,
+body.hub-premium-v2 .hub2-subject{backdrop-filter:blur(16px) saturate(118%)}
+body.hub-premium-v2 .hub2-card{border-color:#29415f;background:linear-gradient(155deg,rgba(10,22,38,.97),rgba(5,14,25,.98))}
+body.hub-premium-v2 .hub2-section-head{min-height:28px}
+body.hub-premium-v2 .hub2-section-head h2{font-weight:760}
+body.hub-premium-v2 .hub2-subject b{font-weight:760}
+body.hub-premium-v2 .hub2-hero-copy h1{max-width:700px}
+body.hub-premium-v2 .hub2-rail{align-content:start}
+
+/* Laptop 16:9 — target reference composition */
+body[data-hub-viewport="laptop"]{--hub-sidebar:220px;--hub-top:68px}
+body[data-hub-viewport="laptop"] .main{padding:10px 14px 18px}
+body[data-hub-viewport="laptop"] .hub2-layout{grid-template-columns:minmax(0,1fr) clamp(310px,20.5vw,360px);gap:12px}
+body[data-hub-viewport="laptop"] .hub2-maincol,
+body[data-hub-viewport="laptop"] .hub2-rail,
+body[data-hub-viewport="laptop"] .hub2-dashboard{gap:10px}
+body[data-hub-viewport="laptop"] .hub2-hero{min-height:clamp(188px,20vh,232px)}
+body[data-hub-viewport="laptop"] .hub2-hero-copy{width:min(650px,63%);padding:24px 28px}
+body[data-hub-viewport="laptop"] .hub2-subjects{grid-template-columns:repeat(5,minmax(0,1fr));gap:9px}
+body[data-hub-viewport="laptop"] .hub2-subject{min-height:118px}
+body[data-hub-viewport="laptop"] .hub2-continue{grid-template-columns:118px minmax(0,1fr) minmax(270px,31%);min-height:252px;padding:12px}
+body[data-hub-viewport="laptop"] .hub2-pca{min-height:218px}
+body[data-hub-viewport="laptop"] .hub2-assistant{min-height:300px}
+body[data-hub-viewport="laptop"] .hub2-schedule{min-height:250px}
+body[data-hub-viewport="laptop"] .hub2-bottom{grid-template-columns:1fr 1fr;gap:10px}
+body[data-hub-viewport="laptop"] .hub-top-meta{display:flex;align-items:center;gap:9px}
+
+/* iPad / tablet 3:2 — applies by classified aspect ratio, not only width. */
+body[data-hub-viewport="tablet"]{--hub-sidebar:78px;--hub-top:66px}
+body[data-hub-viewport="tablet"] .app{grid-template-columns:78px minmax(0,1fr)}
+body[data-hub-viewport="tablet"] .sidebar .brand b,
+body[data-hub-viewport="tablet"] .sidebar .brand small,
+body[data-hub-viewport="tablet"] .sidebar .side-note,
+body[data-hub-viewport="tablet"] .sidebar .nav span,
+body[data-hub-viewport="tablet"] .sidebar .hub-nav-action span{display:none}
+body[data-hub-viewport="tablet"] .sidebar .brand{justify-content:center}
+body[data-hub-viewport="tablet"] .sidebar .brand-row{display:grid;justify-items:center}
+body[data-hub-viewport="tablet"] .sidebar .sidebar-toggle{margin:5px auto 0}
+body[data-hub-viewport="tablet"] .sidebar .nav button,
+body[data-hub-viewport="tablet"] .sidebar .hub-nav-action{justify-content:center;padding:6px}
+body[data-hub-viewport="tablet"] .top-title{display:none}
+body[data-hub-viewport="tablet"] .main{padding:10px 12px 20px}
+body[data-hub-viewport="tablet"] .hub2-layout{grid-template-columns:1fr;gap:10px}
+body[data-hub-viewport="tablet"] .hub2-rail{grid-template-columns:1fr 1fr;gap:10px}
+body[data-hub-viewport="tablet"] .hub2-motivation{grid-column:1/-1;min-height:140px}
+body[data-hub-viewport="tablet"] .hub2-subjects{grid-template-columns:repeat(5,minmax(150px,1fr));overflow-x:auto;scroll-snap-type:x proximity;padding-bottom:4px}
+body[data-hub-viewport="tablet"] .hub2-subject{scroll-snap-align:start}
+body[data-hub-viewport="tablet"] .hub2-continue{grid-template-columns:100px minmax(0,1fr) minmax(230px,31%);min-height:242px}
+body[data-hub-viewport="tablet"] .hub2-pca{min-height:205px}
+body[data-hub-viewport="tablet"] .hub2-bottom{grid-template-columns:1fr 1fr}
+body[data-hub-viewport="tablet"] .roadmap-layout,
+body[data-hub-viewport="tablet"] .subject-page{grid-template-columns:minmax(220px,28%) minmax(0,1fr)}
+
+/* iPhone portrait / 19.5:9 — single-column touch layout. */
+body[data-hub-viewport="phone"]{--hub-top:58px}
+body[data-hub-viewport="phone"] .app,
+body[data-hub-viewport="phone"] .app.collapsed{display:block;--hub-sidebar:0}
+body[data-hub-viewport="phone"] .main{padding:7px 7px 84px}
+body[data-hub-viewport="phone"] .hub2-dashboard,
+body[data-hub-viewport="phone"] .hub2-maincol,
+body[data-hub-viewport="phone"] .hub2-rail{gap:8px}
+body[data-hub-viewport="phone"] .hub2-hero{min-height:225px;border-radius:13px}
+body[data-hub-viewport="phone"] .hub2-hero-copy{width:90%;padding:18px 15px}
+body[data-hub-viewport="phone"] .hub2-hero h1{font-size:clamp(24px,7.5vw,30px)}
+body[data-hub-viewport="phone"] .hub2-hero-actions .btn{min-height:42px}
+body[data-hub-viewport="phone"] .hub2-subjects{display:flex;overflow-x:auto;scroll-snap-type:x mandatory;gap:8px}
+body[data-hub-viewport="phone"] .hub2-subject{flex:0 0 min(72vw,168px);scroll-snap-align:start}
+body[data-hub-viewport="phone"] .hub2-continue{grid-template-columns:72px minmax(0,1fr);gap:8px;padding:10px}
+body[data-hub-viewport="phone"] .hub2-continue h2{font-size:15px}
+body[data-hub-viewport="phone"] .hub2-pca{grid-column:1/-1;min-height:160px}
+body[data-hub-viewport="phone"] .hub2-stats{grid-column:1/-1;justify-content:flex-start;overflow-x:auto;gap:18px}
+body[data-hub-viewport="phone"] .hub2-bottom,
+body[data-hub-viewport="phone"] .hub2-rail{grid-template-columns:1fr}
+body[data-hub-viewport="phone"] .hub2-assistant{min-height:auto}
+body[data-hub-viewport="phone"] .hub2-schedule{min-height:auto}
+body[data-hub-viewport="phone"] .hub2-ach-grid{display:flex;overflow-x:auto;gap:8px}
+body[data-hub-viewport="phone"] .hub2-ach{flex:0 0 94px}
+body[data-hub-viewport="phone"] .hub2-overall-inner{grid-template-columns:76px minmax(0,1fr)}
+body[data-hub-viewport="phone"] .hub2-bar{grid-template-columns:72px minmax(0,1fr) 26px}
+body[data-hub-viewport="phone"] .appearance-menu{overscroll-behavior:contain}
+
+/* Preserve user control from the Giao diện menu across all three layouts. */
+body[data-density="compact"] .hub2-card{padding-block:10px}
+body[data-density="comfortable"] .hub2-card{padding-block:18px}
+body[data-size="large"] .hub2-dashboard{font-size:1.04em}
+body[data-size="xlarge"] .hub2-dashboard{font-size:1.09em}
+
+@media (prefers-reduced-motion:reduce){
+  body.hub-premium-v2 *,body.hub-premium-v2 *::before,body.hub-premium-v2 *::after{scroll-behavior:auto!important;animation-duration:.001ms!important;transition-duration:.001ms!important}
+}
