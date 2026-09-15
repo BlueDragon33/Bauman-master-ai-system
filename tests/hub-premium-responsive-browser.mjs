@@ -6,6 +6,13 @@ const BASE=process.env.BAUMAN_E2E_BASE_URL||'http://127.0.0.1:4173/';
 const OUT=process.env.BAUMAN_E2E_ARTIFACT_DIR||'artifacts/hub-preservation-responsive';
 fs.mkdirSync(OUT,{recursive:true});
 
+// Static ownership gate: PlanningBridge is an accepted canonical wrapper around app.home.
+// The Safe Shell itself must never assign app.home or replace the canonical nav tree.
+const safeSource=fs.readFileSync('assets/js/hub-safe-shell.js','utf8');
+assert.doesNotMatch(safeSource,/(?:window\.)?app\.home\s*=/,'Safe Hub must not assign app.home');
+assert.doesNotMatch(safeSource,/\.home\s*=\s*function\s*\(/,'Safe Hub must not wrap app.home');
+assert.doesNotMatch(safeSource,/nav\.innerHTML\s*=/,'Safe Hub must not replace canonical navigation');
+
 async function mockControl(page){
   const deviceId='c'.repeat(64),deviceCode='BM-SYSTEM-E2E';
   const cors={'access-control-allow-origin':'*','access-control-allow-methods':'GET,POST,OPTIONS','access-control-allow-headers':'content-type,authorization','cache-control':'no-store'};
@@ -40,6 +47,7 @@ async function checkCanonicalContent(page){
     appearance:!!document.getElementById('appearanceBtn'),
     ai:!!document.getElementById('aiBtn'),
     safeSkin:!!window.BAUMAN_HUB_SAFE,
+    planningWrapper:window.app?.__planningV3Patched===true,
     safeCheck:window.BAUMAN_HUB_SAFE?.selfCheck?.()
   }));
   assert.deepEqual(content.subjectIds,['ai','foundation','math','programming','research','russian','signal','systems']);
@@ -49,7 +57,6 @@ async function checkCanonicalContent(page){
   assert.ok(content.safeSkin,'Safe Hub shell missing');
   assert.equal(content.safeCheck?.ready,true,'Safe Hub shell is not healthy');
   assert.equal(content.safeCheck?.canonicalPages,true,'Safe Hub removed canonical pages');
-  assert.equal(content.safeCheck?.authoritativeHome,true,'Safe Hub replaced app.home');
   assert.equal(content.safeCheck?.originalHomePreserved,true,'Original home content was lost');
   assert.equal(content.safeCheck?.additiveDashboard,true,'Additive premium dashboard missing');
   assert.equal(content.safeCheck?.routesOwned,false,'Safe Hub must not own routes');
@@ -95,7 +102,7 @@ try{
   }
 
   assert.deepEqual(errors,[],'Hub emitted console/page errors');
-  fs.writeFileSync(path.join(OUT,'summary.json'),JSON.stringify({status:'PASS',mode:'safe-additive-shell',subjects:content.subjectIds.length,viewports:cases.map(x=>x[0]),safeCheck:content.safeCheck,errors},null,2));
+  fs.writeFileSync(path.join(OUT,'summary.json'),JSON.stringify({status:'PASS',mode:'safe-additive-shell',subjects:content.subjectIds.length,viewports:cases.map(x=>x[0]),planningWrapper:content.planningWrapper,safeCheck:content.safeCheck,staticOwnershipGate:'PASS',errors},null,2));
   console.log('Hub safe additive responsive acceptance PASS');
 }finally{
   await browser?.close();
