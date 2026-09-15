@@ -1,6 +1,6 @@
 'use strict';
 (function(){
-  const VERSION='Academic 2026 Runtime · Pass 13C';
+  const VERSION='Academic 2026 Runtime · Pass 13C · Integrity R2';
   const CURRICULUM_URL='assets/data/official-curriculum-iu5-2026.json';
   const PREREQ_URL='assets/data/prerequisite-registry-iu5-2026.json';
   const PACK_MANIFEST_URL='assets/data/prerequisite-packs/manifest-2026.json';
@@ -76,7 +76,7 @@
     const c=window.BAUMAN_CURRICULUM_2026;if(!c)return null;let hit=byId(c.disciplines,id)||byId(c.practices,id)||byId(c.gia,id)||byId(c.electiveGroups,id);if(hit)return hit;
     for(const g of c.electiveGroups||[]){const opt=byId(g.options,id);if(opt)return {...opt,credits:g.credits,hours:g.hours,semesters:[g.semester],assessment:g.assessment,kind:'elective_option'}}return null;
   }
-  function dependencyFor(courseId){return byId(window.BAUMAN_PREREQ_2026?.courseDependencies,courseId)||{critical:[],support:[]}}
+  function dependencyFor(courseId){return (window.BAUMAN_PREREQ_2026?.courseDependencies||[]).find(x=>x.courseId===courseId)||{critical:[],support:[]}}
   function courseReadiness(courseId){
     const dep=dependencyFor(courseId);if(!(dep.critical||[]).length)return {id:'unassessed',label:'Không có gate bắt buộc',score:null,critical:[]};
     const rows=dep.critical.map(id=>({gate:gateById(id),state:gateState(gateById(id))}));if(rows.some(x=>x.state.id==='unassessed'))return {id:'unassessed',label:'Chưa chẩn đoán đủ',score:null,critical:rows};
@@ -110,15 +110,20 @@
     return {id:'inactive',label:'HOLD',reason:'not_active_for_stage'};
   }
   function assessmentPriority(course){const text=(course?.assessment||[]).join(' ');return /(?:^|\s)(?:Р?Экз)(?:\s|$)/u.test(text)?2:(/ДЗчт/u.test(text)?1:0)}
+  function semesterPriorityEvidence(course){
+    const sems=course?.semesters||((course?.semester!=null)?[course.semester]:[]),resolved=sems.length===1;
+    return {resolved,creditsRank:resolved?Math.min(4,Math.ceil(Number(course?.credits||0)/2)):0,assessmentRank:resolved?assessmentPriority(course):0,reason:resolved?'single_semester_official_item':'multisemester_allocation_unresolved'};
+  }
   function courseRisk(courseId,stageId=currentStageId()){
     const course=officialById(courseId);if(!course)return {id:'unknown',label:'UNKNOWN',priorityScore:-1,reason:'missing_course'};
-    const dep=dependencyFor(courseId),critical=dep.critical||[];if(!critical.length)return {id:'clear',label:'CLEAR',priorityScore:0,reason:'no_critical_gate_in_registry',course,readiness:courseReadiness(courseId),blockers:[]};
+    const dep=dependencyFor(courseId),critical=dep.critical||[],urgency=stageUrgency(stageId),urgencyRank=urgency==='immediate'?4:(urgency==='rolling'?2:1),termEvidence=semesterPriorityEvidence(course);
+    if(!critical.length){const meta=RISK_META.unassessed;return {...meta,priorityScore:meta.rank*100+urgencyRank*10,reason:'no_registered_critical_gate',course,readiness:courseReadiness(courseId),blockers:[],urgency,semester:stageSemester(stageId),termEvidence,note:'No registered critical gate does not mean the course is ready; course-local readiness may still be required.'}}
     const readiness=courseReadiness(courseId),meta=RISK_META[readiness.id]||RISK_META.unassessed,blockers=(readiness.critical||[]).filter(x=>!['ready','mastered'].includes(x.state.id));
-    const urgency=stageUrgency(stageId),urgencyRank=urgency==='immediate'?4:(urgency==='rolling'?2:1),creditsRank=Math.min(4,Math.ceil(Number(course.credits||0)/2)),priorityScore=meta.rank*100+urgencyRank*10+assessmentPriority(course)*3+creditsRank;
-    return {...meta,priorityScore,reason:readiness.id==='unassessed'?'readiness_unknown':readiness.id,course,readiness,blockers,urgency,semester:stageSemester(stageId),note:'Readiness risk only; not a probability of receiving a grade.'};
+    const priorityScore=meta.rank*100+urgencyRank*10+termEvidence.assessmentRank*3+termEvidence.creditsRank;
+    return {...meta,priorityScore,reason:readiness.id==='unassessed'?'readiness_unknown':readiness.id,course,readiness,blockers,urgency,semester:stageSemester(stageId),termEvidence,note:termEvidence.resolved?'Readiness risk only; not a probability of receiving a grade.':'Readiness risk only; multi-semester whole-course credits/assessment codes are not used as current-semester priority weight.'};
   }
   function courseRiskBoard(stageId=currentStageId()){
-    const sem=stageSemester(stageId);return semesterItems(sem).filter(c=>(dependencyFor(c.id).critical||[]).length).map(c=>courseRisk(c.id,stageId)).sort((a,b)=>b.priorityScore-a.priorityScore);
+    const sem=stageSemester(stageId);return semesterItems(sem).map(c=>courseRisk(c.id,stageId)).sort((a,b)=>b.priorityScore-a.priorityScore);
   }
   function shouldStopGate(gateId){return gateState(gateById(gateId)).id==='mastered'}
   function stopDecision(gateId){const stopped=shouldStopGate(gateId);return {gateId,stopBroadRemediation:stopped,continuity:stopped&&gateId==='P0'?'course_event_jit_russian_only':(stopped?'reopen_only_if_narrow_subgate_is_proven':'continue_by_state')}}
@@ -162,15 +167,15 @@
   function stateBadge(s){const score=s.score==null?'':` · ${h(s.score)}%`;return `<span class="academic2026-state ${h(s.id)}">${h(s.label)}${score}</span>`}
   function riskBadge(r){return `<span class="academic2026-risk ${h(r.id)}">${h(r.label)}</span>`}
   function assessmentText(x){return (x?.assessment||[]).join(' + ')||'—'}
-  function itemMeta(x){const sems=x.semesters||((x.semester!=null)?[x.semester]:[]);return `${Number(x.credits||0)} cr · ${Number(x.hours||0)} h · HK ${sems.join(', ')||'—'} · ${assessmentText(x)}`}
+  function itemMeta(x){const sems=x.semesters||((x.semester!=null)?[x.semester]:[]),multi=sems.length>1,totalNote=multi?' · tổng toàn môn, chưa chia theo HK':'';return `${Number(x.credits||0)} cr · ${Number(x.hours||0)} h${totalNote} · HK ${sems.join(', ')||'—'} · ${assessmentText(x)}`}
   function gateTags(ids){return (ids||[]).map(id=>{const g=gateById(id),st=gateState(g);return `<button class="academic2026-tag" onclick="openAcademicGate('${h(id)}')">${h(id)} · ${h(g?.name||id)}${st.score==null?'':` ${h(st.score)}%`}</button>`}).join('')}
   function primaryS1Ids(){return ['d03','d04','d05','d06','d15','p02']}
   function renderRiskPanel(){
     const stage=currentStageId(),risk=courseRiskBoard(stage).slice(0,6),plan=activeRepairPlan(stage).filter(x=>!['HOLD','DEFER'].includes(x.action)).slice(0,6),compat=schedulerCompatibility(stage);
-    const riskCards=risk.map(r=>`<button class="academic2026-risk-card" onclick="openOfficialCourse2026('${h(r.course.id)}')"><span><b>${h(r.course.id)}</b> ${riskBadge(r)}</span><strong>${h(r.course.nameRu)}</strong><small>${h(itemMeta(r.course))}</small><em>${r.blockers.length?`Blocker: ${h(r.blockers.map(b=>b.gate?.id||'?').join(', '))}`:'Không có blocker đã biết'}</em></button>`).join('')||'<p class="academic2026-note">Chưa có course risk trong horizon hiện tại.</p>';
+    const riskCards=risk.map(r=>`<button class="academic2026-risk-card" onclick="openOfficialCourse2026('${h(r.course.id)}')"><span><b>${h(r.course.id)}</b> ${riskBadge(r)}</span><strong>${h(r.course.nameRu)}</strong><small>${h(itemMeta(r.course))}</small><em>${r.blockers.length?`Blocker: ${h(r.blockers.map(b=>b.gate?.id||'?').join(', '))}`:(r.reason==='no_registered_critical_gate'?'Chưa có global critical gate; không đồng nghĩa READY':'Không có blocker đã biết')}</em></button>`).join('')||'<p class="academic2026-note">Chưa có course risk trong horizon hiện tại.</p>';
     const actions=plan.map(x=>`<button class="academic2026-action-row" onclick="openAcademicGate('${h(x.gateId)}')"><span><b>${h(x.gateId)}</b>${stateBadge(x.state)}</span><strong>${h(x.actionLabel)}</strong><small>${h(x.activation.label)} · ${x.threatCourses.length?`đe dọa ${x.threatCourses.map(c=>c.id).join(', ')}`:'chưa gắn blocker course trong horizon'}</small></button>`).join('')||'<p class="academic2026-note">Không có remediation active cần hiển thị.</p>';
     const legacyWarn=compat.targetBelowAcademicReady?`Target scheduler cũ ${h(compat.legacyTargetScore)}% thấp hơn READY ${h(compat.academicReadyMinimum)}%; Pass13C chỉ cảnh báo, chưa tự sửa.`:'Scheduler Academic vẫn khóa ở chế độ advice-only.';
-    return `<article class="academic2026-panel"><div class="academic2026-head"><div><span class="academic2026-badge">PASS 13C · ${h(stage)} · ADVICE ONLY</span><h3>Course Risk + Active Repair</h3><p>Risk dưới đây là readiness risk để sắp thứ tự can thiệp, không phải xác suất điểm số.</p></div><span class="academic2026-lock">Scheduler mutation: OFF</span></div><div class="academic2026-risk-grid">${riskCards}</div><h4 class="academic2026-subhead">Việc nền nên làm tiếp theo</h4><div class="academic2026-action-list">${actions}</div><p class="academic2026-note">${legacyWarn}</p></article>`;
+    return `<article class="academic2026-panel"><div class="academic2026-head"><div><span class="academic2026-badge">PASS 13C · ${h(stage)} · ADVICE ONLY</span><h3>Course Risk + Active Repair</h3><p>Risk dưới đây là readiness risk để sắp thứ tự can thiệp, không phải xác suất điểm số. Môn nhiều học kỳ không dùng tổng tín chỉ/assessment làm trọng số cho riêng HK hiện tại.</p></div><span class="academic2026-lock">Scheduler mutation: OFF</span></div><div class="academic2026-risk-grid">${riskCards}</div><h4 class="academic2026-subhead">Việc nền nên làm tiếp theo</h4><div class="academic2026-action-list">${actions}</div><p class="academic2026-note">${legacyWarn}</p></article>`;
   }
   function renderHomePanel(){
     const c=window.BAUMAN_CURRICULUM_2026;if(!c)return '';
@@ -197,7 +202,7 @@
   function openPrereqOverview(){const rows=allGates().map(g=>{const st=gateState(g),act=gateActivation(g.id);return `<div class="academic2026-prereq-row"><button onclick="openAcademicGate('${h(g.id)}')"><b>${h(g.id)}</b></button><button onclick="openAcademicGate('${h(g.id)}')"><strong>${h(g.name)}</strong><small>${h(g.homeSubject)} · ${h(act.label)} · target ${h(g.target)}%</small></button>${stateBadge(st)}</div>`}).join('');modal('Prerequisite Assurance · IU5 2026',`<div class="academic2026-prereq-list">${rows}</div><p class="academic2026-note">UNASSESSED là hợp lệ. MASTERED mới STOP remediation rộng; scheduler chưa được phép tự sửa lịch.</p>`)}
   function openCourse(id){
     const course=officialById(id);if(!course)return;const dep=dependencyFor(id),ready=courseReadiness(id),risk=courseRisk(id),critical=dep.critical||[],support=dep.support||[];
-    modal(course.nameRu||id,`<div class="academic2026-modal-grid"><section class="academic2026-modal-card"><h4>Dữ liệu chính thức</h4><p><b>${h(itemMeta(course))}</b></p><p>Readiness: ${stateBadge(ready)} · ${riskBadge(risk)}</p><p class="academic2026-note">Risk là readiness risk để xếp thứ tự can thiệp; không phải xác suất điểm số.</p></section><section class="academic2026-modal-card"><h4>Gate critical</h4><div class="academic2026-tags">${critical.length?gateTags(critical):'<span class="academic2026-tag">Không có gate critical trong registry V1</span>'}</div><h4 style="margin-top:12px">Gate hỗ trợ</h4><div class="academic2026-tags">${support.length?gateTags(support):'<span class="academic2026-tag">—</span>'}</div></section></div><p class="academic2026-source">Nguồn chương trình: ${h(window.BAUMAN_CURRICULUM_2026?.source?.url||CURRICULUM_URL)}</p>`);
+    modal(course.nameRu||id,`<div class="academic2026-modal-grid"><section class="academic2026-modal-card"><h4>Dữ liệu chính thức</h4><p><b>${h(itemMeta(course))}</b></p><p>Readiness: ${stateBadge(ready)} · ${riskBadge(risk)}</p><p class="academic2026-note">Risk là readiness risk để xếp thứ tự can thiệp; không phải xác suất điểm số.</p></section><section class="academic2026-modal-card"><h4>Gate critical</h4><div class="academic2026-tags">${critical.length?gateTags(critical):'<span class="academic2026-tag">Không có global critical gate; không đồng nghĩa COURSE_READY</span>'}</div><h4 style="margin-top:12px">Gate hỗ trợ</h4><div class="academic2026-tags">${support.length?gateTags(support):'<span class="academic2026-tag">—</span>'}</div></section></div><p class="academic2026-source">Nguồn chương trình: ${h(window.BAUMAN_CURRICULUM_2026?.source?.url||CURRICULUM_URL)}</p>`);
   }
 
   async function fetchJson(url){const r=await fetch(url,{cache:'no-cache'});if(!r.ok)throw new Error(`${url} HTTP ${r.status}`);return r.json()}
@@ -206,6 +211,6 @@
   }
 
   window.openAcademicGate=openGate;window.openPrerequisiteOverview2026=openPrereqOverview;window.openOfficialCourse2026=openCourse;window.saveAcademicDiagnostic2026=saveDiagnosticFromModal;window.clearAcademicDiagnostic2026=clearDiagnosticFromModal;
-  window.BAUMAN_ACADEMIC_2026_RUNTIME=Object.freeze({version:VERSION,load,scoreForGate,gateState,courseReadiness,currentStageId,currentCourseHorizon,gateActivation,courseRisk,courseRiskBoard,gateIntervention,activeRepairPlan,schedulerCompatibility,recordDiagnostic,clearDiagnostic,repairRoutesForGate,shouldStopGate,stopDecision,schedulerMutationEnabled:SCHEDULER_MUTATION_ENABLED,storageKey:DIAGNOSTIC_STORAGE_KEY});
+  window.BAUMAN_ACADEMIC_2026_RUNTIME=Object.freeze({version:VERSION,load,scoreForGate,gateState,courseReadiness,currentStageId,currentCourseHorizon,gateActivation,courseRisk,courseRiskBoard,gateIntervention,activeRepairPlan,schedulerCompatibility,recordDiagnostic,clearDiagnostic,repairRoutesForGate,shouldStopGate,stopDecision,semesterPriorityEvidence,schedulerMutationEnabled:SCHEDULER_MUTATION_ENABLED,storageKey:DIAGNOSTIC_STORAGE_KEY});
   document.addEventListener('DOMContentLoaded',()=>setTimeout(load,0));
 })();

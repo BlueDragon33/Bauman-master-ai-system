@@ -10,6 +10,7 @@ const assert=(cond,msg)=>{if(!cond)errors.push(msg)};
 
 for(const token of [
   "Academic 2026 Runtime · Pass 13C",
+  "Integrity R2",
   "const SCHEDULER_MUTATION_ENABLED=false",
   "prepare:'before_stankin'",
   "preparatory:'stankin'",
@@ -17,14 +18,18 @@ for(const token of [
   "m1:'semester_1'",
   'function currentStageId()',
   'function currentCourseHorizon(',
+  'function dependencyFor(courseId)',
+  '.find(x=>x.courseId===courseId)',
   'function gateActivation(',
   'function courseRisk(',
   'function courseRiskBoard(',
+  'function semesterPriorityEvidence(',
   'function gateIntervention(',
   'function activeRepairPlan(',
   'function schedulerCompatibility(',
   "mode:'advice_only'",
-  'Readiness risk only; not a probability of receiving a grade.',
+  'No registered critical gate does not mean the course is ready',
+  'multi-semester whole-course credits/assessment codes are not used as current-semester priority weight',
   '.find(x=>x.stage===stageId)'
 ]) assert(runtime.includes(token),`runtime missing ${token}`);
 
@@ -33,6 +38,9 @@ assert(!/\.autoSchedule\s*\(/.test(runtime),'Academic runtime must not invoke le
 assert(!/schedule\.entries\s*\[[^\]]+\]\s*=/.test(runtime),'Academic runtime must not write schedule entries in Pass13C');
 assert(!/probability of receiving a grade[^.]*\d+%/i.test(runtime),'Course risk must not fabricate grade probability');
 assert(!/stagePolicy\([^)]*\)\{return byId\(/.test(runtime),'stageActivationPolicy uses stage keys, not generic id keys');
+assert(!/dependencyFor\(courseId\)\{return byId\([^}]*courseDependencies/.test(runtime),'courseDependencies rows are keyed by courseId, not id');
+assert(!/if\(!critical\.length\)return \{id:'clear',label:'CLEAR'/.test(runtime),'No registered critical gate must not be treated as automatic CLEAR');
+assert(!/creditsRank=Math\.min\(4,Math\.ceil\(Number\(course\.credits\|\|0\)\/2\)\),priorityScore/.test(runtime),'Risk engine must not directly use whole-course credits for every semester item');
 
 const stageExpected={prepare:'before_stankin',preparatory:'stankin',bauman:'pre_bauman_8_weeks',m1:'semester_1',m2:'semester_2',m3:'semester_3',m4:'semester_4'};
 for(const [legacy,academic] of Object.entries(stageExpected)) assert(runtime.includes(`${legacy}:'${academic}'`),`stage map missing ${legacy} -> ${academic}`);
@@ -58,6 +66,11 @@ const electiveOptions=curriculum.electiveGroups.flatMap(g=>g.options.map(o=>({..
 const allOfficial=[...curriculum.disciplines,...curriculum.practices,...curriculum.gia,...electiveGroups,...electiveOptions];
 const officialIds=new Set(allOfficial.map(x=>x.id));
 for(const dep of registry.courseDependencies) assert(officialIds.has(dep.courseId),`risk engine dependency points to unknown official course ${dep.courseId}`);
+function dependencyByCourseId(courseId){return registry.courseDependencies.find(x=>x.courseId===courseId)||{critical:[],support:[]}}
+const d04dep=dependencyByCourseId('d04');
+assert(JSON.stringify(d04dep.critical)===JSON.stringify(['P2','P3','P10']),'d04 dependency lookup by courseId must resolve P2/P3/P10');
+const d05dep=dependencyByCourseId('d05');
+assert(JSON.stringify(d05dep.critical)===JSON.stringify(['P4','P5','P8']),'d05 dependency lookup by courseId must resolve P4/P5/P8');
 
 function stateRisk(state){return ({rebuild:'CRITICAL',repair:'HIGH',bridge:'MEDIUM',unassessed:'UNKNOWN',ready:'CLEAR',mastered:'CLEAR'})[state]}
 assert(stateRisk('unassessed')==='UNKNOWN','unassessed course readiness must stay UNKNOWN, not be treated as failure');
@@ -93,6 +106,23 @@ assert(courseWorst(['mastered','ready','bridge'])==='bridge','course readiness m
 assert(courseWorst(['mastered','ready','ready'])==='ready','course should be READY when all critical gates are ready/mastered');
 assert(courseWorst(['mastered','unassessed'])==='unassessed','unknown critical gate must keep course readiness unknown');
 
+function termPriorityEvidence(course){
+  const sems=course.semesters||((course.semester!=null)?[course.semester]:[]),resolved=sems.length===1;
+  const assessmentText=(course.assessment||[]).join(' '),assessmentRank=resolved?(/(?:^|\s)(?:Р?Экз)(?:\s|$)/u.test(assessmentText)?2:(/ДЗчт/u.test(assessmentText)?1:0)):0;
+  const creditsRank=resolved?Math.min(4,Math.ceil(Number(course.credits||0)/2)):0;
+  return {resolved,assessmentRank,creditsRank};
+}
+const d04=curriculum.disciplines.find(x=>x.id==='d04');
+const d15=curriculum.disciplines.find(x=>x.id==='d15');
+const p02=curriculum.practices.find(x=>x.id==='p02');
+assert(termPriorityEvidence(d04).resolved===true&&termPriorityEvidence(d04).creditsRank>0&&termPriorityEvidence(d04).assessmentRank>0,'single-semester d04 must retain semester priority evidence');
+assert(termPriorityEvidence(d15).resolved===false&&termPriorityEvidence(d15).creditsRank===0&&termPriorityEvidence(d15).assessmentRank===0,'multi-semester d15 must not use whole-course credits/assessment as S1 priority evidence');
+assert(termPriorityEvidence(p02).resolved===false&&termPriorityEvidence(p02).creditsRank===0&&termPriorityEvidence(p02).assessmentRank===0,'multi-semester p02 must not use whole-course credits/assessment as S1 priority evidence');
+
+const d01dep=registry.courseDependencies.find(x=>x.courseId==='d01');
+assert(d01dep&&d01dep.critical.length===0&&d01dep.support.length===0,'d01 must not use P0 Russian dependency after integrity correction');
+assert(runtime.includes("reason:'no_registered_critical_gate'"),'No-critical course must surface UNKNOWN semantics, not CLEAR');
+
 const p0=registry.coreGates.find(g=>g.id==='P0');
 assert(Boolean(p0),'P0 must exist');
 assert(runtime.includes("gateId==='P0'?'JIT_ONLY':'STOP_BROAD'"),'P0 MASTERED must stop broad remediation but keep JIT continuity');
@@ -107,4 +137,4 @@ if(errors.length){
   process.exit(1);
 }
 console.log('PASS13C_RISK_ENGINE_PASS');
-console.log(JSON.stringify({schedulerMutation:false,stageMappings:Object.keys(stageExpected).length,stageLookup:'stage_key',officialDependencies:registry.courseDependencies.length,riskStates:['CRITICAL','HIGH','MEDIUM','UNKNOWN','CLEAR'],p0StopMode:'JIT_ONLY'},null,2));
+console.log(JSON.stringify({schedulerMutation:false,stageMappings:Object.keys(stageExpected).length,stageLookup:'stage_key',dependencyLookup:'courseId_key',officialDependencies:registry.courseDependencies.length,riskStates:['CRITICAL','HIGH','MEDIUM','UNKNOWN','CLEAR'],p0StopMode:'JIT_ONLY',noCriticalCourse:'UNKNOWN',multiSemesterPriority:'whole_course_weight_zero'},null,2));

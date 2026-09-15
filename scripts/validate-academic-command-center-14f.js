@@ -1,0 +1,24 @@
+'use strict';
+const fs=require('fs');
+const runtime=fs.readFileSync('assets/js/academic-command-center-runtime.js','utf8');
+const transcript=fs.readFileSync('assets/js/academic-transcript-runtime.js','utf8');
+const css=fs.readFileSync('assets/css/academic-command-center-2026.css','utf8');
+const arch=JSON.parse(fs.readFileSync('assets/data/course-learning-architecture-s1-2026.json','utf8'));
+const errors=[];const assert=(c,m)=>{if(!c)errors.push(m)};
+const order=['d01','d02','d03','d04','d05','d06','d15','p02'];
+for(const token of ['Pass 14F Academic Command Center','function courseCommand(','function commandBoard(','function summary(','HONORS_BLOCKER','ASSESSMENT_FAILED','GRADE_3_RISK','HONORS_GRADE_4','GRADE_4_RISK','EVENT_TIMING_LOCKED','EVENT_PREPARING','PREREQ_REPAIR','EVENT_EVIDENCE_REQUIRED','PREREQ_UNASSESSED','READY_FOR_ASSESSMENT','Read-only orchestration','Không auto-apply scheduler'])assert(runtime.includes(token),`Pass14F runtime missing ${token}`);
+assert(!/localStorage\.setItem/.test(runtime),'Pass14F must not write localStorage');
+assert(!/window\.save\s*\(/.test(runtime),'Pass14F must not call Main save()');
+assert(!/schedule\.entries\s*\[[^\]]+\]\s*=/.test(runtime),'Pass14F must not mutate scheduler entries');
+assert(!/record(?:Entry|Result|Evidence|Diagnostic)\s*\(/.test(runtime),'Pass14F must not mutate lower-layer evidence stores');
+assert(runtime.includes("const COURSE_ORDER=['d01','d02','d03','d04','d05','d06','d15','p02']"),'Pass14F course order drifted');
+assert(JSON.stringify(arch.courses.map(x=>x.courseId))===JSON.stringify(order),'Pass14F must cover corrected S1 architecture exactly');
+assert(runtime.includes("transcriptRuntime()?.entryState?.(courseId)")&&runtime.includes("gradeRuntime()?.resolvedEvents?.()")&&runtime.includes("eventRuntime()?.courseEventAxis?.(courseId)")&&runtime.includes("cr?.prereqAxis?.(courseId)"),'Pass14F must integrate all four readiness/evidence layers');
+assert(runtime.includes("Projection 22/17 không được coi là mẫu số cuối"),'Pass14F must preserve transcript projection caveat');
+assert(transcript.includes('function bootstrapCommandCenter()')&&transcript.includes('assets/js/academic-command-center-runtime.js')&&transcript.includes('assets/css/academic-command-center-2026.css'),'Pass14E must additively bootstrap Pass14F');
+assert(css.includes('.command14f-grid')&&css.includes('@media(max-width:900px)')&&css.includes('@media(max-width:600px)'),'Pass14F responsive CSS missing');
+const precedence=['HONORS_BLOCKER','ASSESSMENT_FAILED','GRADE_3_RISK','HONORS_GRADE_4','GRADE_4_RISK','EVENT_TIMING_LOCKED','EVENT_PREPARING','PREREQ_REPAIR','EVENT_EVIDENCE_REQUIRED','PREREQ_UNASSESSED','EXCELLENT_BELOW_SAFETY_TARGET','READY_FOR_ASSESSMENT'];
+for(let i=1;i<precedence.length;i++)assert(runtime.indexOf(`type='${precedence[i-1]}'`)<runtime.indexOf(`type='${precedence[i]}'`),`Command precedence drift: ${precedence[i-1]} should appear before ${precedence[i]}`);
+if(errors.length){console.error(`PASS14F_COMMAND_CENTER_FAIL (${errors.length})`);for(const e of errors)console.error(`- ${e}`);process.exit(1)}
+console.log('PASS14F_COMMAND_CENTER_VALID');
+console.log(JSON.stringify({courses:order.length,readOnly:true,schedulerMutation:false,layers:['prerequisite','event','grade','transcript'],honorsProjectionFinal:false},null,2));
