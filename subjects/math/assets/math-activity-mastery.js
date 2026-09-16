@@ -4,7 +4,7 @@
  */
 (function mathActivityMastery(global){
   'use strict';
-  const RELEASE='MATH_ACTIVITY_MASTERY_V1';
+  const RELEASE='MATH_ACTIVITY_MASTERY_V1_SYNC_DECORATION';
   const KEY='bauman_math_activity_mastery_v1';
   const $=(s,r=document)=>r.querySelector(s);
   const $$=(s,r=document)=>Array.from(r.querySelectorAll(s));
@@ -45,14 +45,17 @@
     if(!box)return;
     const s=summary(cards);box.innerHTML=`<div class="math-am-top"><b>Mastery cá nhân · ${esc(lessonId()||'chưa có lesson')}</b><span>${esc(activity()||'activity')} · local only</span></div><div class="math-am-track"><i style="width:${s.pct}%"></i></div><div class="math-am-stats"><span class="math-am-stat"><strong>${s.mastered}</strong> đã nắm</span><span class="math-am-stat"><strong>${s.learning}</strong> đang học</span><span class="math-am-stat"><strong>${s.review}</strong> cần ôn</span><span class="math-am-stat"><strong>${s.pct}%</strong> mastery</span><button class="math-am-reset" data-am-reset>Đặt lại hoạt động</button></div>`;
   }
+  function apply(){
+    const host=$('#mathActivityStudio');if(!host||!document.body.classList.contains('math-activity-studio-active'))return false;
+    const cards=$$('.math-activity-card',host);cards.forEach(decorateCard);ensureSummary(host,cards);return true;
+  }
   function refresh(){
-    clearTimeout(timer);timer=setTimeout(()=>{
-      const host=$('#mathActivityStudio');if(!host||!document.body.classList.contains('math-activity-studio-active'))return;
-      const cards=$$('.math-activity-card',host);cards.forEach(decorateCard);ensureSummary(host,cards);
-    },70)
+    clearTimeout(timer);
+    apply();
+    timer=setTimeout(apply,70);
   }
   function bind(){document.addEventListener('click',e=>{const state=e.target.closest('[data-am-state]')?.dataset.amState,key=e.target.closest('[data-am-key]')?.dataset.amKey;if(state&&key){e.preventDefault();setState(key,state);return}if(e.target.closest('[data-am-reset]')){e.preventDefault();resetLesson()}if(e.target.closest('[data-e169-pick-activity],[data-activity-action],[data-math-nav],[data-e129-lesson]'))refresh()},true)}
-  function selfCheck(){const host=$('#mathActivityStudio'),cards=host?$$('.math-activity-card',host):[];const s=summary(cards);return{release:RELEASE,ready:!!host,lessonId:lessonId()||null,activity:activity()||null,cards:s.total,mastered:s.mastered,localOnly:true,academicWrites:false,gradingAuthority:false,mutationObserver:false}}
-  function init(){if(!document.body||document.body.dataset.mathActivityMastery==='1')return;document.body.dataset.mathActivityMastery='1';bind();[600,1400,2800].forEach(ms=>setTimeout(refresh,ms));global.BAUMAN_MATH_ACTIVITY_MASTERY={release:RELEASE,refresh,selfCheck,resetLesson}}
+  function selfCheck(){const host=$('#mathActivityStudio'),cards=host?$$('.math-activity-card',host):[];const s=summary(cards);return{release:RELEASE,ready:!!host,lessonId:lessonId()||null,activity:activity()||null,cards:s.total,mastered:s.mastered,localOnly:true,academicWrites:false,gradingAuthority:false,mutationObserver:false,synchronousDecoration:true}}
+  function init(){if(!document.body||document.body.dataset.mathActivityMastery==='1')return;document.body.dataset.mathActivityMastery='1';bind();[600,1400,2800].forEach(ms=>setTimeout(refresh,ms));global.BAUMAN_MATH_ACTIVITY_MASTERY={release:RELEASE,refresh,apply,selfCheck,resetLesson}}
   if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',init,{once:true});else init();
 })(window);
