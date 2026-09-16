@@ -6,7 +6,7 @@
 (function(){
   'use strict';
 
-  var RELEASE='E243_PRESENTER_ROUTE_IDENTITY_LOCK_R11_SHARED_CANONICAL_IDENTITY';
+  var RELEASE='E243_PRESENTER_ROUTE_IDENTITY_LOCK_R12_STAMP_REPAIR';
   var handled=0;
   var lastLessonId='';
   var lastLessonTitle='';
@@ -21,6 +21,9 @@
   var lastGhostSource='';
   var lastSuppressedShells=0;
   var presenterSelfCheckWrapped=false;
+  var stampRepairing=false;
+  var stampRepairAttempts=0;
+  var stampRepairSuccesses=0;
 
   function state(){
     try{return (window.__BAUMAN_CORE_API&&window.__BAUMAN_CORE_API.state)||window.__MATH_STATE||(window.__MATH_STATE={});}
@@ -87,13 +90,40 @@
     st.e129Present=!!present;
     return identity;
   }
-  function stampDeck(identity){
-    var deck=document.querySelector('.e132-overlay-deck.open');
+  function writeDeckIdentity(deck,identity){
     if(!deck||!identity||!identity.lessonId)return false;
     deck.setAttribute('data-e243-route-lock',RELEASE);
     deck.setAttribute('data-e243-lesson-id',identity.lessonId);
     deck.setAttribute('data-e243-lesson-title',identity.lessonTitle||identity.lessonId);
     deck.setAttribute('data-lesson-id',identity.lessonId);
+    return true;
+  }
+  function stampDeck(identity){
+    var deck=document.querySelector('.e132-overlay-deck.open');
+    if(!writeDeckIdentity(deck,identity))return false;
+
+    if(!stampRepairing){
+      try{
+        var api=window.BAUMAN_MATH_THEORY_E132;
+        var expected=expectedSlides(identity);
+        var check=api&&typeof api.selfCheck==='function'?api.selfCheck():null;
+        var current=Number(check&&check.slides)||0;
+        if(expected&&current!==expected){
+          stampRepairAttempts+=1;
+          stampRepairing=true;
+          try{
+            if(openDeckFromLockedReader(identity)){
+              stampRepairSuccesses+=1;
+              deck=document.querySelector('.e132-overlay-deck.open')||deck;
+              writeDeckIdentity(deck,identity);
+            }
+          }finally{
+            stampRepairing=false;
+          }
+        }
+      }catch(_){stampRepairing=false;}
+    }
+
     try{
       var e210=window.BAUMAN_MATH_E210_LESSON_IDENTITY;
       if(e210&&typeof e210.apply==='function')e210.apply();
@@ -194,7 +224,10 @@
       e243GhostSlides:lastGhostSlides,
       e243CanonicalGhostBuilds:canonicalGhostBuilds,
       e243SuppressedShells:lastSuppressedShells,
-      e243GuardReinstalls:presenterGuardReinstalls
+      e243GuardReinstalls:presenterGuardReinstalls,
+      e243StampRepairAttempts:stampRepairAttempts,
+      e243StampRepairSuccesses:stampRepairSuccesses,
+      e243StampRepairing:stampRepairing
     };
   }
   function wrapPresenterSelfCheck(api){
@@ -325,6 +358,9 @@
         lastGhostSource:lastGhostSource,
         lastSuppressedShells:lastSuppressedShells,
         minimalGhostBuilds:minimalGhostBuilds,
+        stampRepairAttempts:stampRepairAttempts,
+        stampRepairSuccesses:stampRepairSuccesses,
+        stampRepairing:stampRepairing,
         noNewRenderer:true,
         routingGhostPresent:!!document.querySelector('[data-e243-routing-ghost]')
       };
