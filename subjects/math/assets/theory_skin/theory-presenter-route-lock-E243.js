@@ -6,7 +6,7 @@
 (function(){
   'use strict';
 
-  var RELEASE='E243_PRESENTER_ROUTE_IDENTITY_LOCK_R9_STATE_FIRST_IDENTITY';
+  var RELEASE='E243_PRESENTER_ROUTE_IDENTITY_LOCK_R13_E242_CACHE_SOURCE';
   var handled=0;
   var lastLessonId='';
   var lastLessonTitle='';
@@ -14,18 +14,26 @@
   var presenterRawOpen=null;
   var presenterGuardInstalled=false;
   var presenterGuardAttempts=0;
+  var presenterGuardReinstalls=0;
   var minimalGhostBuilds=0;
   var canonicalGhostBuilds=0;
   var lastGhostSlides=0;
   var lastGhostSource='';
   var lastSuppressedShells=0;
   var presenterSelfCheckWrapped=false;
+  var stampRepairing=false;
+  var stampRepairAttempts=0;
+  var stampRepairSuccesses=0;
+  var richnessArtifactByLesson={};
+  var richnessLoadWrapped=false;
+  var richnessCaptureCount=0;
 
   function state(){
     try{return (window.__BAUMAN_CORE_API&&window.__BAUMAN_CORE_API.state)||window.__MATH_STATE||(window.__MATH_STATE={});}
     catch(_){return window.__MATH_STATE||(window.__MATH_STATE={});}
   }
   function registry(){return window.BAUMAN_MATH_THEORY_ARTIFACT_REGISTRY_E244||null;}
+  function richness(){return window.BAUMAN_MATH_E242_SLIDESHOW_RICHNESS||null;}
   function contentPayload(){
     try{
       var bridge=window.BAUMAN_MATH_E240_THEORY_CONTENT_SOURCE;
@@ -56,6 +64,14 @@
     var node=(shell&&shell.querySelector('[data-current-lesson]'))||document.querySelector('.e129-theory-shell.presenting [data-current-lesson]')||document.querySelector('[data-current-lesson]');
     return String(node&&node.getAttribute('data-current-lesson')||stateId||'').trim();
   }
+  function sharedCanonicalLesson(){
+    try{
+      var e210=window.BAUMAN_MATH_E210_LESSON_IDENTITY;
+      var identity=e210&&typeof e210.identity==='function'?e210.identity():null;
+      if(identity&&identity.lessonId&&registeredPresenterLesson(identity.lessonId))return identity;
+    }catch(_){}
+    return canonicalIdentity(visibleLesson(null));
+  }
   function registeredPresenterLesson(id){
     var reg=registry(),entry=reg&&typeof reg.get==='function'?reg.get(String(id||'').trim()):null;
     return !!(entry&&entry.slideshow&&entry.slideshow.expected);
@@ -63,6 +79,27 @@
   function expectedSlides(identity){
     var reg=registry(),entry=reg&&identity&&reg&&typeof reg.get==='function'?reg.get(identity.lessonId):null;
     return Number(entry&&entry.slideshow&&entry.slideshow.expected&&entry.slideshow.expected.slides)||0;
+  }
+  function captureRichnessArtifact(artifact,lessonId){
+    var id=String(artifact&&artifact.lessonId||lessonId||'').trim();
+    if(!id||!artifact||!Array.isArray(artifact.slides))return artifact;
+    richnessArtifactByLesson[id]=artifact;
+    richnessCaptureCount+=1;
+    return artifact;
+  }
+  function wrapRichnessLoad(){
+    var api=richness();
+    if(!api||typeof api.load!=='function')return false;
+    if(api.load.__e243CaptureRelease===RELEASE){richnessLoadWrapped=true;return true;}
+    var raw=api.load;
+    var wrapped=function(lessonId){
+      var args=arguments;
+      return Promise.resolve(raw.apply(api,args)).then(function(artifact){return captureRichnessArtifact(artifact,lessonId);});
+    };
+    wrapped.__e243CaptureRelease=RELEASE;
+    api.load=wrapped;
+    richnessLoadWrapped=true;
+    return true;
   }
   function lockState(id,present){
     var st=state(),identity=canonicalIdentity(id);
@@ -78,19 +115,46 @@
     st.e129Present=!!present;
     return identity;
   }
-  function stampDeck(identity){
-    var deck=document.querySelector('.e132-overlay-deck.open');
+  function writeDeckIdentity(deck,identity){
     if(!deck||!identity||!identity.lessonId)return false;
     deck.setAttribute('data-e243-route-lock',RELEASE);
     deck.setAttribute('data-e243-lesson-id',identity.lessonId);
     deck.setAttribute('data-e243-lesson-title',identity.lessonTitle||identity.lessonId);
     deck.setAttribute('data-lesson-id',identity.lessonId);
+    return true;
+  }
+  function stampDeck(identity){
+    var deck=document.querySelector('.e132-overlay-deck.open');
+    if(!writeDeckIdentity(deck,identity))return false;
+
+    if(!stampRepairing){
+      try{
+        var api=window.BAUMAN_MATH_THEORY_E132;
+        var expected=expectedSlides(identity);
+        var check=api&&typeof api.selfCheck==='function'?api.selfCheck():null;
+        var current=Number(check&&check.slides)||0;
+        if(expected&&current!==expected){
+          stampRepairAttempts+=1;
+          stampRepairing=true;
+          try{
+            if(openDeckFromLockedReader(identity)){
+              stampRepairSuccesses+=1;
+              deck=document.querySelector('.e132-overlay-deck.open')||deck;
+              writeDeckIdentity(deck,identity);
+            }
+          }finally{
+            stampRepairing=false;
+          }
+        }
+      }catch(_){stampRepairing=false;}
+    }
+
     try{
       var e210=window.BAUMAN_MATH_E210_LESSON_IDENTITY;
       if(e210&&typeof e210.apply==='function')e210.apply();
       var e241=window.BAUMAN_MATH_E241_ARTIFACT_READER;
       if(e241&&typeof e241.apply==='function')e241.apply();
-      var e242=window.BAUMAN_MATH_E242_SLIDESHOW_RICHNESS;
+      var e242=richness();
       if(e242&&typeof e242.apply==='function')e242.apply();
     }catch(_){}
     return true;
@@ -105,38 +169,49 @@
     return node&&node.closest&&node.closest('.e129-theory-shell')||document.querySelector('.e129-theory-shell.presenting')||document.querySelector('.e129-theory-shell');
   }
   function appendCanonicalSlides(holder,identity){
-    var record=canonicalRecord(identity),slides=record&&Array.isArray(record.slides)?record.slides:[];
+    var cached=identity&&richnessArtifactByLesson[identity.lessonId]||null;
+    var record=canonicalRecord(identity);
+    var source=cached&&Array.isArray(cached.slides)?cached:record;
+    var slides=source&&Array.isArray(source.slides)?source.slides:[];
     var expected=expectedSlides(identity);
     if(!slides.length||(expected&&slides.length!==expected))return false;
     var list=document.createElement('div');
     list.className='e129-slide-list';
     slides.forEach(function(slide,index){
+      slide=slide||{};
       var article=document.createElement('article');
       article.className='e129-slide';
       article.setAttribute('data-e243-canonical-slide',String(index+1));
-      article.setAttribute('data-slide-id',slide&&slide.id||('SL'+String(index+1).padStart(2,'0')));
+      article.setAttribute('data-slide-id',slide.id||('SL'+String(index+1).padStart(2,'0')));
       var title=document.createElement('h2');
-      title.textContent=slide&&slide.title||('Slide '+(index+1));
+      title.textContent=slide.title||('Slide '+(index+1));
       article.appendChild(title);
-      var blocks=slide&&Array.isArray(slide.blocks)?slide.blocks:[];
-      blocks.forEach(function(block){
-        if(!block)return;
-        var type=String(block.type||'text').toLowerCase();
-        var node=document.createElement(type==='formula'||type==='code'?'pre':'p');
-        if(type==='formula')node.className='formula';
-        if(type==='code')node.className='code';
-        var parts=[];
-        if(block.title)parts.push(String(block.title));
-        if(block.body)parts.push(String(block.body));
-        node.textContent=parts.join('\n');
-        article.appendChild(node);
-      });
+      var blocks=Array.isArray(slide.blocks)?slide.blocks:[];
+      if(blocks.length){
+        blocks.forEach(function(block){
+          if(!block)return;
+          var type=String(block.type||'text').toLowerCase();
+          var node=document.createElement(type==='formula'||type==='code'?'pre':'p');
+          if(type==='formula')node.className='formula';
+          if(type==='code')node.className='code';
+          var parts=[];
+          if(block.title)parts.push(String(block.title));
+          if(block.body)parts.push(String(block.body));
+          node.textContent=parts.join('\n');
+          article.appendChild(node);
+        });
+      }else{
+        var body=[slide.coreMessage,slide.purpose,slide.summary,slide.meaning].filter(Boolean).join('\n');
+        if(body){var p=document.createElement('p');p.textContent=body;article.appendChild(p);}
+        var formula=slide.formula||slide.canonicalFormula||slide.formulaText||'';
+        if(formula){var pre=document.createElement('pre');pre.className='formula';pre.textContent=String(formula);article.appendChild(pre);}
+      }
       list.appendChild(article);
     });
     holder.appendChild(list);
     canonicalGhostBuilds+=1;
     lastGhostSlides=slides.length;
-    lastGhostSource='E240';
+    lastGhostSource=cached?'E242':'E240';
     return true;
   }
   function appendDomSlides(holder,real,identity){
@@ -169,14 +244,29 @@
     minimalGhostBuilds+=1;
     return ghost;
   }
+  function guardCurrent(api){
+    api=api||window.BAUMAN_MATH_THEORY_E132;
+    return !!(api&&api.openDeck&&api.openDeck.__e243GuardRelease===RELEASE);
+  }
   function presenterDiagnostics(){
+    var shared=sharedCanonicalLesson();
     return {
       e243Release:RELEASE,
-      e243GuardCurrent:presenterGuardInstalled,
+      e243GuardCurrent:guardCurrent(),
+      e243SharedLessonId:shared&&shared.lessonId||'',
+      e243SharedLessonRegistered:!!(shared&&registeredPresenterLesson(shared.lessonId)),
+      e243SharedLessonOwner:!!lessonOwner(shared),
       e243GhostSource:lastGhostSource,
       e243GhostSlides:lastGhostSlides,
       e243CanonicalGhostBuilds:canonicalGhostBuilds,
-      e243SuppressedShells:lastSuppressedShells
+      e243SuppressedShells:lastSuppressedShells,
+      e243GuardReinstalls:presenterGuardReinstalls,
+      e243StampRepairAttempts:stampRepairAttempts,
+      e243StampRepairSuccesses:stampRepairSuccesses,
+      e243StampRepairing:stampRepairing,
+      e243RichnessLoadWrapped:richnessLoadWrapped,
+      e243RichnessCaptureCount:richnessCaptureCount,
+      e243RichnessCachedLesson:!!(shared&&richnessArtifactByLesson[shared.lessonId])
     };
   }
   function wrapPresenterSelfCheck(api){
@@ -218,11 +308,13 @@
     var api=window.BAUMAN_MATH_THEORY_E132;
     if(!api||typeof api.openDeck!=='function')return false;
     wrapPresenterSelfCheck(api);
-    if(api.__e243PresenterGuard===RELEASE){presenterGuardInstalled=true;return true;}
+    if(guardCurrent(api)){presenterGuardInstalled=true;return true;}
     var original=api.openDeck;
+    if(presenterGuardInstalled)presenterGuardReinstalls+=1;
     presenterRawOpen=original;
     var guarded=function(){
-      var id=visibleLesson(null);
+      var shared=sharedCanonicalLesson();
+      var id=String(shared&&shared.lessonId||visibleLesson(null)).trim();
       if(!registeredPresenterLesson(id))return original.apply(api,arguments);
       var identity=lockState(id,true);
       var real=lessonOwner(identity);
@@ -279,6 +371,7 @@
     selfCheck:function(){
       var deck=document.querySelector('.e132-overlay-deck.open');
       var api=window.BAUMAN_MATH_THEORY_E132;
+      var shared=sharedCanonicalLesson();
       return {
         ok:true,
         release:RELEASE,
@@ -289,9 +382,12 @@
         deckLessonId:deck&&deck.getAttribute('data-e243-lesson-id')||'',
         deckLessonTitle:deck&&deck.getAttribute('data-e243-lesson-title')||'',
         canonicalIdentityLocked:true,
+        sharedIdentityLessonId:shared&&shared.lessonId||'',
+        sharedIdentityRegistered:!!(shared&&registeredPresenterLesson(shared.lessonId)),
         publicOpenGuardInstalled:presenterGuardInstalled,
-        publicOpenGuardCurrent:!!(api&&api.openDeck&&api.openDeck.__e243GuardRelease===RELEASE),
+        publicOpenGuardCurrent:guardCurrent(api),
         publicOpenGuardAttempts:presenterGuardAttempts,
+        publicOpenGuardReinstalls:presenterGuardReinstalls,
         presenterSelfCheckWrapped:presenterSelfCheckWrapped,
         routingGhostMinimal:true,
         routingGhostCanonicalOwner:true,
@@ -301,17 +397,25 @@
         lastGhostSource:lastGhostSource,
         lastSuppressedShells:lastSuppressedShells,
         minimalGhostBuilds:minimalGhostBuilds,
+        stampRepairAttempts:stampRepairAttempts,
+        stampRepairSuccesses:stampRepairSuccesses,
+        stampRepairing:stampRepairing,
+        richnessLoadWrapped:richnessLoadWrapped,
+        richnessCaptureCount:richnessCaptureCount,
+        richnessCachedLesson:!!(shared&&richnessArtifactByLesson[shared.lessonId]),
         noNewRenderer:true,
         routingGhostPresent:!!document.querySelector('[data-e243-routing-ghost]')
       };
     }
   };
 
-  (function bootPresenterGuard(){
-    if(installPresenterGuard())return;
-    var timer=setInterval(function(){
+  (function keepPresenterGuardCurrent(){
+    wrapRichnessLoad();
+    installPresenterGuard();
+    setInterval(function(){
       presenterGuardAttempts+=1;
-      if(installPresenterGuard()||presenterGuardAttempts>=80)clearInterval(timer);
-    },25);
+      wrapRichnessLoad();
+      installPresenterGuard();
+    },100);
   })();
 })();
