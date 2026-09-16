@@ -82,6 +82,7 @@ try{
   await login(page);
   const content=await checkCanonicalContent(page);
 
+  // Canonical home is still present in DOM, but folded by default for a clean 16:9 first screen.
   await page.evaluate(()=>localStorage.removeItem('bauman_hub_canonical_details_open_v1'));
   await page.evaluate(()=>window.BAUMAN_HUB_SAFE?.refresh?.());
   await page.waitForFunction(()=>document.querySelector('#page-home .canva-dashboard-page')?.classList.contains('hub-safe-preserved-collapsed')===true);
@@ -93,6 +94,7 @@ try{
   await page.locator('[data-safe-action="details"]').click();
   await page.waitForFunction(()=>document.querySelector('#page-home .canva-dashboard-page')?.classList.contains('hub-safe-preserved-collapsed')===true);
 
+  // Premium appearance control center must drive the existing canonical appearance state, not create another theme engine.
   await page.locator('#appearanceBtn').click();
   await page.waitForFunction(()=>!document.getElementById('appearanceMenu')?.classList.contains('hidden'));
   await page.locator('[data-safe-appearance="focus"]').click();
@@ -113,7 +115,6 @@ try{
     await page.waitForTimeout(120);
     await page.evaluate(()=>{window.app?.page?.('home',false);window.BAUMAN_HUB_SAFE?.refresh?.()});
     const snap=await page.evaluate(()=>{
-      const rect=s=>{const r=document.querySelector(s)?.getBoundingClientRect();return r?{top:r.top,bottom:r.bottom,height:r.height,width:r.width}:null};
       const dash=document.querySelector('.hub-safe-dashboard')?.getBoundingClientRect();
       const gold=getComputedStyle(document.querySelector('.hub-safe-gold'));
       return{
@@ -126,14 +127,10 @@ try{
         originalFolded:document.querySelector('#page-home .canva-dashboard-page')?.classList.contains('hub-safe-preserved-collapsed')===true,
         page:document.getElementById('page-home')?.classList.contains('active')===true,
         dashboardBottom:dash?.bottom??null,
-        geometry:{
-          topbar:rect('.topbar'),main:rect('.main'),dashboard:rect('.hub-safe-dashboard'),layout:rect('.hub-safe-layout'),mainColumn:rect('.hub-safe-main'),rail:rect('.hub-safe-rail'),hero:rect('.hub-safe-hero'),sectionHead:rect('.hub-safe-section-head'),subjects:rect('.hub-safe-subjects'),continueCard:rect('.hub-safe-continue'),bottom:rect('.hub-safe-bottom'),assistant:rect('.hub-safe-assistant'),schedule:rect('.hub-safe-schedule'),motivation:rect('.hub-safe-motivation')
-        },
         goldBackground:gold.backgroundImage,
         goldColor:gold.color
       };
     });
-    if(width>=1500)console.log(`HUB_GEOMETRY ${label} ${JSON.stringify(snap.geometry)}`);
     assert.ok(snap.app&&snap.appearance&&snap.dashboard&&snap.original&&snap.page,`${label}: safe/preserved Hub content missing`);
     assert.ok(snap.originalFolded,`${label}: canonical home should stay folded by default`);
     assert.ok(snap.scroll<=snap.client+2,`${label}: horizontal overflow ${snap.scroll}/${snap.client}`);
