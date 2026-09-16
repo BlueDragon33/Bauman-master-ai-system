@@ -24,7 +24,9 @@ body[data-hub-density="fit1080"] .hub-safe-ring::after{inset:8px}
 body[data-hub-density="fit1080"] .hub-safe-lesson{min-height:25px;padding:2px 5px}
 body[data-hub-density="fit1080"] .hub-safe-art{min-height:158px}
 body[data-hub-density="fit1080"] .hub-safe-stats{padding-top:4px}
-body[data-hub-density="fit1080"] .hub-safe-achievements,body[data-hub-density="fit1080"] .hub-safe-overall{min-height:110px;padding:9px}
+body[data-hub-density="fit1080"] .hub-safe-bottom{height:220px!important;min-height:0!important;grid-template-rows:minmax(0,1fr)!important;align-items:stretch!important}
+body[data-hub-density="fit1080"] .hub-safe-bottom>.hub-safe-card{height:220px!important;min-height:0!important;overflow:auto;scrollbar-width:thin}
+body[data-hub-density="fit1080"] .hub-safe-achievements,body[data-hub-density="fit1080"] .hub-safe-overall{min-height:0!important;padding:9px}
 body[data-hub-density="fit1080"] .hub-safe-badge{width:32px;height:32px;margin-bottom:3px;font-size:16px}
 body[data-hub-density="fit1080"] .hub-safe-overall-inner{grid-template-columns:72px minmax(0,1fr);gap:7px;margin-top:3px}
 body[data-hub-density="fit1080"] .hub-safe-donut{width:66px;height:66px}
