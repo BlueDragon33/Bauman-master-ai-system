@@ -6,7 +6,7 @@
 (function(){
   'use strict';
 
-  var RELEASE='E243_PRESENTER_ROUTE_IDENTITY_LOCK_R10_GUARD_REINSTALL';
+  var RELEASE='E243_PRESENTER_ROUTE_IDENTITY_LOCK_R11_SHARED_CANONICAL_IDENTITY';
   var handled=0;
   var lastLessonId='';
   var lastLessonTitle='';
@@ -56,6 +56,14 @@
     var shell=button&&button.closest&&button.closest('.e129-theory-shell');
     var node=(shell&&shell.querySelector('[data-current-lesson]'))||document.querySelector('.e129-theory-shell.presenting [data-current-lesson]')||document.querySelector('[data-current-lesson]');
     return String(node&&node.getAttribute('data-current-lesson')||stateId||'').trim();
+  }
+  function sharedCanonicalLesson(){
+    try{
+      var e210=window.BAUMAN_MATH_E210_LESSON_IDENTITY;
+      var identity=e210&&typeof e210.identity==='function'?e210.identity():null;
+      if(identity&&identity.lessonId&&registeredPresenterLesson(identity.lessonId))return identity;
+    }catch(_){}
+    return canonicalIdentity(visibleLesson(null));
   }
   function registeredPresenterLesson(id){
     var reg=registry(),entry=reg&&typeof reg.get==='function'?reg.get(String(id||'').trim()):null;
@@ -175,9 +183,13 @@
     return !!(api&&api.openDeck&&api.openDeck.__e243GuardRelease===RELEASE);
   }
   function presenterDiagnostics(){
+    var shared=sharedCanonicalLesson();
     return {
       e243Release:RELEASE,
       e243GuardCurrent:guardCurrent(),
+      e243SharedLessonId:shared&&shared.lessonId||'',
+      e243SharedLessonRegistered:!!(shared&&registeredPresenterLesson(shared.lessonId)),
+      e243SharedLessonOwner:!!lessonOwner(shared),
       e243GhostSource:lastGhostSource,
       e243GhostSlides:lastGhostSlides,
       e243CanonicalGhostBuilds:canonicalGhostBuilds,
@@ -229,7 +241,8 @@
     if(presenterGuardInstalled)presenterGuardReinstalls+=1;
     presenterRawOpen=original;
     var guarded=function(){
-      var id=visibleLesson(null);
+      var shared=sharedCanonicalLesson();
+      var id=String(shared&&shared.lessonId||visibleLesson(null)).trim();
       if(!registeredPresenterLesson(id))return original.apply(api,arguments);
       var identity=lockState(id,true);
       var real=lessonOwner(identity);
@@ -286,6 +299,7 @@
     selfCheck:function(){
       var deck=document.querySelector('.e132-overlay-deck.open');
       var api=window.BAUMAN_MATH_THEORY_E132;
+      var shared=sharedCanonicalLesson();
       return {
         ok:true,
         release:RELEASE,
@@ -296,6 +310,8 @@
         deckLessonId:deck&&deck.getAttribute('data-e243-lesson-id')||'',
         deckLessonTitle:deck&&deck.getAttribute('data-e243-lesson-title')||'',
         canonicalIdentityLocked:true,
+        sharedIdentityLessonId:shared&&shared.lessonId||'',
+        sharedIdentityRegistered:!!(shared&&registeredPresenterLesson(shared.lessonId)),
         publicOpenGuardInstalled:presenterGuardInstalled,
         publicOpenGuardCurrent:guardCurrent(api),
         publicOpenGuardAttempts:presenterGuardAttempts,
