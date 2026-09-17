@@ -82,6 +82,13 @@
     const parsed=parseRegistryId(id);
     if(parsed.recordType!==type)fail(`${label}_TYPE_MISMATCH`);
     if(!has(registry,type,id))fail(`${label}_MISSING:${id}`);
+    return parsed;
+  }
+  function validateProvenanceInput(registry,id){
+    const parsed=parseRegistryId(id);
+    if(parsed.recordType!=='asset'&&parsed.recordType!=='content')fail(`PROVENANCE_INPUT_TYPE_MISMATCH:${parsed.recordType}`);
+    if(!has(registry,parsed.recordType,parsed.registryId))fail(`PROVENANCE_INPUT_MISSING:${parsed.registryId}`);
+    return parsed;
   }
   function validateRecord(registry,record,type){
     assertBase(record,type);
@@ -101,12 +108,25 @@
       if(!Array.isArray(record.locators)||record.locators.length===0)fail('ASSET_LOCATOR_REQUIRED');
       record.locators.forEach(validateLocator);
     }else if(type==='provenance'){
-      if(!PROVENANCE_TYPES.has(clean(record.eventType))||!clean(record.at)||!clean(record.actor))fail('INVALID_PROVENANCE');
+      const eventType=clean(record.eventType);
+      if(!PROVENANCE_TYPES.has(eventType)||!clean(record.at)||!clean(record.actor))fail('INVALID_PROVENANCE');
       const subject=parseRegistryId(record.subjectId);
+      if(subject.recordType==='provenance'||subject.recordType==='checksum'||subject.recordType==='access')fail(`INVALID_PROVENANCE_SUBJECT_TYPE:${subject.recordType}`);
       if(!has(registry,subject.recordType,subject.registryId))fail(`PROVENANCE_SUBJECT_MISSING:${subject.registryId}`);
       if(!Array.isArray(record.sourceIds))fail('PROVENANCE_SOURCE_IDS_REQUIRED');
       record.sourceIds.forEach(id=>validateReference(registry,id,'source','PROVENANCE_SOURCE'));
-      if(record.previousEventId!==undefined&&record.previousEventId!==null)validateReference(registry,record.previousEventId,'provenance','PREVIOUS_PROVENANCE');
+      if(record.inputIds!==undefined){
+        if(!Array.isArray(record.inputIds))fail('PROVENANCE_INPUT_IDS_INVALID');
+        record.inputIds.forEach(id=>validateProvenanceInput(registry,id));
+      }
+      if(eventType==='transformed'&&(!Array.isArray(record.inputIds)||record.inputIds.length===0))fail('TRANSFORM_INPUT_REQUIRED');
+      if(eventType==='generated'&&record.sourceIds.length===0&&(!Array.isArray(record.inputIds)||record.inputIds.length===0))fail('GENERATED_LINEAGE_REQUIRED');
+      if(eventType==='verified')validateReference(registry,record.checksumId,'checksum','VERIFICATION_CHECKSUM');
+      if(record.previousEventId!==undefined&&record.previousEventId!==null){
+        validateReference(registry,record.previousEventId,'provenance','PREVIOUS_PROVENANCE');
+        const previous=registry.records.provenance[record.previousEventId];
+        if(previous.subjectId!==record.subjectId)fail('PREVIOUS_PROVENANCE_SUBJECT_MISMATCH');
+      }
     }else if(type==='content'){
       validateCanonicalId(record.canonicalEntityId);
       if(!CONTENT_TYPES.has(clean(record.contentType))||!clean(record.title))fail('INVALID_CONTENT_METADATA');
