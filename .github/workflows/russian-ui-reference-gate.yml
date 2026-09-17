@@ -43,6 +43,7 @@ jobs:
         run: |
           node --check subjects/russian/assets/core.js
           node --check subjects/russian/assets/subject-adapter.js
+          node --check subjects/russian/assets/ui-cleanup-contract.js
           node --check subjects/russian/assets/content-contract.js
           node --check subjects/russian/assets/russian-reference-ui.js
           node --check subjects/russian/assets/learning-state.js
@@ -82,6 +83,7 @@ jobs:
           test -f subjects/russian/data/knowledge-index.json
           test -f subjects/russian/data/tests.json
           test -f subjects/russian/data/speaking.json
+          test -f subjects/russian/assets/ui-cleanup-contract.js
           test -f subjects/russian/assets/content-contract.js
           test -f subjects/russian/assets/content-contract.css
           test -f subjects/russian/assets/learning-flow.js
