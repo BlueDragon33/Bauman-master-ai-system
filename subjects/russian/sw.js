@@ -2,7 +2,7 @@
 const CACHE='russian-app-shell-v1';
 const DATA_CACHE='russian-learning-data-v1';
 const SHELL=[
-  './','./index.html','./manifest.webmanifest',
+  './','./index.html','./manifest.webmanifest','../shared/host-bridge.js',
   './assets/core.css','./assets/russian.css','./assets/russian-reference-ui.css','./assets/russian-reference-ui-polish.css',
   './assets/learning-state.css','./assets/content-contract.css','./assets/learning-flow.css','./assets/vocab-srs.css','./assets/speaking-coach.css','./assets/academic-language.css','./assets/runtime-optimizer.css',
   './assets/subject-adapter.js','./assets/content-contract.js','./assets/planning-bridge.js','./assets/russian-optional-data-loader.js','./assets/core.js','./assets/learning-state.js','./assets/learning-flow.js','./assets/vocab-srs.js','./assets/speaking-coach.js','./assets/academic-language.js','./assets/ai-mentor-guard.js','./assets/runtime-optimizer.js','./assets/russian-reference-ui.js'
@@ -14,7 +14,8 @@ self.addEventListener('fetch',event=>{
   const req=event.request;if(req.method!=='GET')return;
   const url=new URL(req.url);if(url.origin!==self.location.origin)return;
   const isRussian=url.pathname.includes('/subjects/russian/');
-  if(!isRussian)return;
+  const isSharedHost=url.pathname.endsWith('/subjects/shared/host-bridge.js');
+  if(!isRussian&&!isSharedHost)return;
   const file=url.pathname.split('/').pop()||'';
   const isData=url.pathname.includes('/subjects/russian/data/')&&!OPTIONAL_LARGE.has(file);
   if(isData){
