@@ -14,6 +14,7 @@ on:
       - 'subjects/russian/assets/learning-flow.js'
       - 'subjects/russian/assets/vocab-srs.js'
       - 'subjects/russian/assets/academic-language.js'
+      - 'subjects/russian/assets/ai-mentor-guard.js'
       - 'scripts/validate-foundation-domain-model.mjs'
       - 'scripts/validate-web-lesson-standard.mjs'
       - 'scripts/validate-russian-lesson1-golden-template.mjs'
@@ -24,6 +25,7 @@ on:
       - 'scripts/validate-foundation-browser-bootstrap.mjs'
       - 'scripts/validate-foundation-identity-persistence.mjs'
       - 'scripts/validate-foundation-canonical-projection.mjs'
+      - 'scripts/validate-foundation-canonical-context.mjs'
       - '.github/workflows/foundation-domain-model-gate.yml'
 
 permissions:
@@ -60,6 +62,8 @@ jobs:
         run: node scripts/validate-foundation-identity-persistence.mjs
       - name: Validate canonical read projection
         run: node scripts/validate-foundation-canonical-projection.mjs
+      - name: Validate canonical consumer context adapter
+        run: node scripts/validate-foundation-canonical-context.mjs
       - name: Parse foundation JSON
         run: |
           node -e "JSON.parse(require('fs').readFileSync('foundation/domain-model/domain-contract.v1.json','utf8')); console.log('FOUNDATION_JSON_PARSE=PASS')"
