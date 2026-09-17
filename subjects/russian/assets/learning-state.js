@@ -31,9 +31,11 @@
     state.items[key]={...prev,status:VALID_STATUS.has(prev.status)?prev.status:'in_progress',lastOpenedAt:next.savedAt,route:{...route}};
     write();
   }
-  function addReview(id,reason,route,label){
+  function addReview(id,reason,route,label,dueAt){
     const key=clean(id)||routeKey(route||routeFromCore());
-    state.reviewQueue[key]={id:key,reason:reason||'user_marked',label:label||humanActivity(route||routeFromCore()),route:{...(route||routeFromCore())},dueAt:now(),addedAt:state.reviewQueue[key]?.addedAt||now()};
+    const previous=state.reviewQueue[key]||{};
+    const scheduledAt=dueAt&&Number.isFinite(Date.parse(dueAt))?new Date(dueAt).toISOString():now();
+    state.reviewQueue[key]={...previous,id:key,reason:reason||previous.reason||'user_marked',label:label||previous.label||humanActivity(route||routeFromCore()),route:{...(route||previous.route||routeFromCore())},dueAt:scheduledAt,addedAt:previous.addedAt||now(),scheduledAt:now()};
     const item=state.items[key]||{};state.items[key]={...item,status:'review_due',route:{...(route||item.route||{})}};write();renderToday();
   }
   function removeReview(id){if(state.reviewQueue[id]){delete state.reviewQueue[id];const item=state.items[id];if(item&&item.status==='review_due')item.status='in_progress';write();renderToday();}}
