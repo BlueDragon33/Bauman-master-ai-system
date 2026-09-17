@@ -52,14 +52,18 @@
     return current;
   }
 
-  function preserveLegacy(entity,{legacyId,sourceSchema='',payload=null}={}){
+  function preserveLegacy(entity,{legacyId,legacyLocator,sourceSchema='',payload=null}={}){
     assert(isObject(entity),'entity is required');
+    if(legacyId!=null){
+      assert(typeof legacyId==='string'&&legacyId.length>0,'legacyId must be a non-empty string');
+      assert(typeof legacyLocator==='string'&&legacyLocator.trim(),'legacyLocator is required when preserving legacy identity');
+    }
     const next=clone(entity);
     next.extensions=isObject(next.extensions)?next.extensions:{};
     const existing=isObject(next.extensions.legacy)?next.extensions.legacy:{};
     next.extensions.legacy={
       ...existing,
-      ...(legacyId!=null?{legacyId:String(legacyId)}:{}),
+      ...(legacyId!=null?{legacyId:String(legacyId),legacyLocator:String(legacyLocator)}:{}),
       ...(sourceSchema?{sourceSchema:String(sourceSchema)}:{}),
       ...(payload!=null?{payload:clone(payload)}:{})
     };
