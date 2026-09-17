@@ -23,6 +23,7 @@ on:
       - 'scripts/validate-foundation-legacy-snapshot-extractor.mjs'
       - 'scripts/validate-foundation-browser-bootstrap.mjs'
       - 'scripts/validate-foundation-identity-persistence.mjs'
+      - 'scripts/validate-foundation-canonical-projection.mjs'
       - '.github/workflows/foundation-domain-model-gate.yml'
 
 permissions:
@@ -57,6 +58,8 @@ jobs:
         run: node scripts/validate-foundation-browser-bootstrap.mjs
       - name: Validate verified browser overlay persistence
         run: node scripts/validate-foundation-identity-persistence.mjs
+      - name: Validate canonical read projection
+        run: node scripts/validate-foundation-canonical-projection.mjs
       - name: Parse foundation JSON
         run: |
           node -e "JSON.parse(require('fs').readFileSync('foundation/domain-model/domain-contract.v1.json','utf8')); console.log('FOUNDATION_JSON_PARSE=PASS')"
