@@ -13,6 +13,15 @@
     "mappingMustBeIdempotent": true,
     "unknownOverlayFieldsPreserved": true
   },
+  "persistence": {
+    "storeSchema": "BAUMAN_IDENTITY_OVERLAY_STORE_V1",
+    "storageKey": "bauman_identity_overlay_v1",
+    "stagingKey": "bauman_identity_overlay_v1_staging",
+    "legacyKeysNeverWritten": true,
+    "stagingRequired": true,
+    "readBackVerificationRequired": true,
+    "recoveryFromValidStagingAllowed": true
+  },
   "systems": [
     {
       "systemId": "russian-core-state",
