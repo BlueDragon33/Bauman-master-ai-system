@@ -27,6 +27,8 @@ jobs:
           node-version: "22.13.0"
       - name: Validate Russian reference UI contracts
         run: node subjects/russian/scripts/validate-reference-ui.mjs
+      - name: Validate Russian lesson learning flow
+        run: node subjects/russian/scripts/validate-learning-flow.mjs
       - name: Parse Russian runtime JavaScript
         run: |
           node --check subjects/russian/assets/core.js
@@ -34,6 +36,7 @@ jobs:
           node --check subjects/russian/assets/content-contract.js
           node --check subjects/russian/assets/russian-reference-ui.js
           node --check subjects/russian/assets/learning-state.js
+          node --check subjects/russian/assets/learning-flow.js
       - name: Audit Russian learning datasets
         run: node subjects/russian/scripts/audit-learning-data.mjs
       - name: Audit Russian content contract
@@ -52,4 +55,6 @@ jobs:
           test -f subjects/russian/data/speaking.json
           test -f subjects/russian/assets/content-contract.js
           test -f subjects/russian/assets/content-contract.css
-          echo "Russian learning datasets and content contract remain present."
+          test -f subjects/russian/assets/learning-flow.js
+          test -f subjects/russian/assets/learning-flow.css
+          echo "Russian learning datasets, content contract and learning flow remain present."
