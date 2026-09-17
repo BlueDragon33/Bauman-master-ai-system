@@ -33,6 +33,8 @@ jobs:
         run: node subjects/russian/scripts/validate-vocab-srs.mjs
       - name: Validate Russian listening speaking coach
         run: node subjects/russian/scripts/validate-speaking-coach.mjs
+      - name: Validate Russian grammar reading writing academic bridge
+        run: node subjects/russian/scripts/validate-academic-language.mjs
       - name: Parse Russian runtime JavaScript
         run: |
           node --check subjects/russian/assets/core.js
@@ -43,6 +45,7 @@ jobs:
           node --check subjects/russian/assets/learning-flow.js
           node --check subjects/russian/assets/vocab-srs.js
           node --check subjects/russian/assets/speaking-coach.js
+          node --check subjects/russian/assets/academic-language.js
       - name: Audit Russian learning datasets
         run: node subjects/russian/scripts/audit-learning-data.mjs
       - name: Audit Russian content contract
@@ -63,6 +66,9 @@ jobs:
           test -f subjects/russian/data/lessons.json
           test -f subjects/russian/data/vocab.json
           test -f subjects/russian/data/grammar.json
+          test -f subjects/russian/data/grammar-path.json
+          test -f subjects/russian/data/writing.json
+          test -f subjects/russian/data/knowledge-index.json
           test -f subjects/russian/data/tests.json
           test -f subjects/russian/data/speaking.json
           test -f subjects/russian/assets/content-contract.js
@@ -73,4 +79,6 @@ jobs:
           test -f subjects/russian/assets/vocab-srs.css
           test -f subjects/russian/assets/speaking-coach.js
           test -f subjects/russian/assets/speaking-coach.css
-          echo "Russian learning datasets, content contract, learning flow, vocab SRS and speaking coach remain present."
+          test -f subjects/russian/assets/academic-language.js
+          test -f subjects/russian/assets/academic-language.css
+          echo "Russian learning datasets and additive learning runtimes remain present."
