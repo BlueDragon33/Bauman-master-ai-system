@@ -12,7 +12,7 @@ const forbid=(text,token,msg)=>{if(text.includes(token))throw new Error(msg||`Fo
 need(ai,'RUSSIAN_AI_MENTOR_CONTEXT_V1');need(ai,'canonicalStateReadOnly:true');need(ai,'aiMayModifyMastery:false');need(ai,'RussianLearningState?.get');need(ai,'RussianLearningFlow?.get');
 need(ai,'Object.values(learning.reviewQueue||{})','AI context must read canonical object-shaped Review Queue');forbid(ai,'Array.isArray(learning.reviewQueue)','AI context must not treat canonical Review Queue as an array');
 forbid(ai,'RussianLearningState?.set','AI guard must not write canonical learning state');forbid(ai,'.addReview','AI guard must not enqueue review by itself');forbid(ai,"status:'mastered'",'AI guard must not write mastery');
-need(runtime,'RUSSIAN_RUNTIME_OPTIMIZER_V1');need(runtime,'prepareOfflineCore');need(runtime,"navigator.connection?.saveData");need(runtime,"serviceWorker.register('./sw.js'");
+need(runtime,'RUSSIAN_RUNTIME_OPTIMIZER_V1');need(runtime,'prepareOfflineCore');need(runtime,'reconcileOfflineCore');need(runtime,'countCached');need(runtime,'{refresh:true}');need(runtime,"navigator.connection?.saveData");need(runtime,"serviceWorker.register('./sw.js'");
 need(sw,'OPTIONAL_LARGE');need(sw,'dialogue-bauman-az.json');need(sw,'deep-speaking-bauman.json');need(sw,'speaking-link-index.json');need(sw,'russian-app-shell-v1');
 need(sw,'isOptionalLarge');need(sw,'Optional source unavailable offline');need(sw,"req.mode==='navigate'");forbid(sw,"catch(()=>caches.match('./index.html'))",'HTML fallback must not be returned for arbitrary failed asset/data requests');
 need(css,'@media(max-width:1080px)');need(css,'@media(max-width:760px)');
@@ -21,4 +21,4 @@ if(manifest.display!=='standalone'||manifest.scope!=='./')throw new Error('Web m
 const academic=html.indexOf('assets/academic-language.js'), guard=html.indexOf('assets/ai-mentor-guard.js'), optimizer=html.indexOf('assets/runtime-optimizer.js'), ui=html.indexOf('assets/russian-reference-ui.js');
 if(!(academic>=0&&guard>academic&&optimizer>guard&&ui>optimizer))throw new Error('L7 runtime load order invalid');
 console.log('RUSSIAN_AI_RUNTIME_GATE=PASS');
-console.log('Checks: read-only AI context, canonical object-shaped Review Queue, no AI mastery mutation, scoped service worker, user-initiated full offline cache, Save-Data guard, JSON-safe offline failures and navigation-only HTML fallback.');
+console.log('Checks: read-only AI context, canonical object-shaped Review Queue, no AI mastery mutation, scoped service worker, verified Cache Storage readiness, user-initiated full offline refresh, Save-Data guard, JSON-safe offline failures and navigation-only HTML fallback.');
