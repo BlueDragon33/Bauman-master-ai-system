@@ -1,0 +1,204 @@
+{
+  "schema": "BAUMAN_WEB_LESSON_STANDARD_V1",
+  "contractVersion": 1,
+  "status": "foundation-authoring-standard",
+  "purpose": "Define a durable, multimodal, example-first lesson standard shared by Russian and future Bauman subjects without coupling content to a specific renderer.",
+  "principles": {
+    "knowledgeIndependentFromPresentation": true,
+    "exampleFirstWhereHelpful": true,
+    "visualizeWhenPedagogicallyMeaningful": true,
+    "interactionMustServeLearning": true,
+    "retrievalBeforeRevealWhenAppropriate": true,
+    "feedbackMustBeActionable": true,
+    "sourceProvenanceRequired": true,
+    "adultProfessionalTone": true,
+    "accessibilityRequired": true,
+    "aiGeneratedMaterialMustBeMarked": true
+  },
+  "lessonRhythm": [
+    "orient",
+    "observe",
+    "example",
+    "interact",
+    "retrieve",
+    "apply",
+    "reflect",
+    "review"
+  ],
+  "representationPolicy": {
+    "minimumChannelsPerCoreConcept": 2,
+    "preferredChannelsPerCoreConcept": 3,
+    "channels": [
+      "text",
+      "image",
+      "diagram",
+      "chart",
+      "audio",
+      "video",
+      "animation",
+      "simulation",
+      "worked_example",
+      "real_context",
+      "code",
+      "formula"
+    ],
+    "rule": "Use the representation that explains the concept best. Do not force decorative images onto abstract material; use diagrams, graphs, worked examples, simulations, or other meaningful representations instead.",
+    "languageRule": "Picturable vocabulary should normally have a meaningful visual. Non-picturable language must still have contextual examples and, when useful, contrastive or situational representation."
+  },
+  "examplePolicy": {
+    "coreConceptRequiresExample": true,
+    "exampleLevels": [
+      "simple",
+      "contextual",
+      "transfer"
+    ],
+    "rules": [
+      "Examples must demonstrate the target concept rather than merely repeat its definition.",
+      "At least one example should use a realistic context when the concept permits it.",
+      "Advanced or technical content should include at least one transfer example tied to the relevant Bauman subject context when source data supports it.",
+      "Examples derived or generated from source material must retain provenance or generation metadata."
+    ]
+  },
+  "interactionFamilies": [
+    "sort",
+    "drag_drop",
+    "pair_match",
+    "image_to_word",
+    "word_to_image",
+    "audio_to_word",
+    "audio_to_image",
+    "listen_discriminate",
+    "gap_fill",
+    "sentence_order",
+    "sequence_order",
+    "stress_place",
+    "hotspot",
+    "spot_missing",
+    "picture_speak",
+    "dialogue_match",
+    "diagram_build",
+    "parameter_explore",
+    "simulation_task",
+    "worked_step_order",
+    "code_trace"
+  ],
+  "interactionRules": {
+    "noInteractionForDecorationOnly": true,
+    "wrongAnswerMustProduceLearningSignal": true,
+    "firstAttemptEvidencePreserved": true,
+    "retryMayBeAllowed": true,
+    "masteryCannotBeInferredFromSingleOpenOrClick": true,
+    "reviewQueueOnlyFromRealEvidence": true,
+    "touchKeyboardPointerParityRequired": true
+  },
+  "contentTypeProfiles": {
+    "language_vocabulary": {
+      "required": [
+        "canonical_form",
+        "meaning_or_concept",
+        "context_example",
+        "retrieval_activity"
+      ],
+      "conditional": [
+        "source_stress_when_available",
+        "source_audio_when_available",
+        "meaningful_visual_when_picturable",
+        "pronunciation_support",
+        "production_activity"
+      ]
+    },
+    "language_grammar": {
+      "required": [
+        "concise_rule_or_pattern",
+        "worked_examples",
+        "recognition_activity",
+        "production_or_application_activity"
+      ],
+      "preferred": [
+        "contrastive_example",
+        "visual_pattern_or_table",
+        "real_context",
+        "error_correction"
+      ]
+    },
+    "language_listening_speaking": {
+      "required": [
+        "listen_or_model",
+        "meaning_context",
+        "retrieval_or_response",
+        "repeat_or_production"
+      ],
+      "preferred": [
+        "image_or_scene",
+        "shadowing",
+        "role_play",
+        "delayed_reveal"
+      ]
+    },
+    "mathematics_technical": {
+      "required": [
+        "definition_or_problem",
+        "worked_example",
+        "application_task"
+      ],
+      "preferred": [
+        "diagram_or_graph",
+        "step_visualization",
+        "parameter_exploration",
+        "simulation_when_meaningful",
+        "russian_technical_overlay"
+      ]
+    },
+    "research": {
+      "required": [
+        "source_or_claim",
+        "evidence_or_method",
+        "interpretation_task"
+      ],
+      "preferred": [
+        "figure_or_table",
+        "provenance_view",
+        "comparison",
+        "critique",
+        "reproducibility_artifact"
+      ]
+    }
+  },
+  "russianLesson1ReferencePattern": {
+    "source": "17_9_Урок 1 - РЯ сегодня.pptx",
+    "observedSequence": [
+      "read_words",
+      "game",
+      "listen_and_write",
+      "dialogue_with_people_and_objects",
+      "build_word_combinations",
+      "game",
+      "contextual_reading_room_of_ivan"
+    ],
+    "designLesson": "Re-encounter the same lexical and grammatical material through reading, listening, visual context, manipulation, dialogue, and contextual reading instead of presenting each item once."
+  },
+  "accessibility": {
+    "meaningfulImagesNeedAltText": true,
+    "audioNeedsTranscriptWhenFeasible": true,
+    "videoNeedsCaptionOrTranscriptWhenFeasible": true,
+    "colorCannotBeOnlySignal": true,
+    "keyboardOperableInteractions": true,
+    "touchOperableInteractions": true,
+    "reducedMotionSupportedWhereAnimationExists": true
+  },
+  "provenance": {
+    "sourceRequiredForImportedMaterial": true,
+    "locatorRequired": true,
+    "transformLineageRequired": true,
+    "generatedAssetMetadataRequired": true,
+    "generatedContentCannotSilentlyReplaceCanonicalSource": true
+  },
+  "qualityGate": {
+    "forbidTextOnlyByDefaultWhenMeaningfulRepresentationExists": true,
+    "forbidDecorativeVisualSubstitutionForExplanation": true,
+    "forbidUncontextualizedExampleDump": true,
+    "forbidFakeProgress": true,
+    "forbidFakeMastery": true,
+    "requireAtLeastOneRetrievalOrApplicationStepPerCoreConceptCluster": true
+  }
+}
