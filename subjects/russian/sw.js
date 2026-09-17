@@ -17,13 +17,37 @@ self.addEventListener('fetch',event=>{
   const isSharedHost=url.pathname.endsWith('/subjects/shared/host-bridge.js');
   if(!isRussian&&!isSharedHost)return;
   const file=url.pathname.split('/').pop()||'';
-  const isData=url.pathname.includes('/subjects/russian/data/')&&!OPTIONAL_LARGE.has(file);
-  if(isData){
-    event.respondWith(caches.open(DATA_CACHE).then(async cache=>{
-      const hit=await cache.match(req);if(hit)return hit;
-      const res=await fetch(req);if(res&&res.ok)cache.put(req,res.clone());return res;
-    }).catch(()=>caches.match(req)));
+  const isDataPath=url.pathname.includes('/subjects/russian/data/');
+  const isOptionalLarge=isDataPath&&OPTIONAL_LARGE.has(file);
+
+  if(isOptionalLarge){
+    event.respondWith(fetch(req).catch(()=>new Response(JSON.stringify({offline:true,optional:true,source:file}),{status:503,statusText:'Optional source unavailable offline',headers:{'Content-Type':'application/json'}})));
     return;
   }
-  event.respondWith(caches.match(req).then(hit=>hit||fetch(req).then(res=>{if(res&&res.ok)caches.open(CACHE).then(c=>c.put(req,res.clone()));return res;})).catch(()=>caches.match('./index.html')));
+
+  if(isDataPath){
+    event.respondWith(caches.open(DATA_CACHE).then(async cache=>{
+      try{
+        const res=await fetch(req);
+        if(res&&res.ok)await cache.put(req,res.clone());
+        return res;
+      }catch(_){
+        const hit=await cache.match(req);
+        return hit||new Response(JSON.stringify({offline:true,missing:true,source:file}),{status:503,statusText:'Required learning data unavailable offline',headers:{'Content-Type':'application/json'}});
+      }
+    }));
+    return;
+  }
+
+  event.respondWith(caches.match(req).then(async hit=>{
+    if(hit)return hit;
+    try{
+      const res=await fetch(req);
+      if(res&&res.ok)await caches.open(CACHE).then(c=>c.put(req,res.clone()));
+      return res;
+    }catch(_){
+      if(req.mode==='navigate')return (await caches.match('./index.html'))||Response.error();
+      return Response.error();
+    }
+  }));
 });
