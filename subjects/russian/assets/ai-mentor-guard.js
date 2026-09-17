@@ -16,13 +16,15 @@
     const speaking=window.RussianSpeakingCoach?.context?.()||null;
     const academic=window.RussianAcademicLanguage?.context?.()||null;
     const lessonId=clean(core.lessonId)||clean(window.RussianLearningFlow?.activeLessonId?.());
+    const reviewQueue=Object.values(learning.reviewQueue||{});
+    const reviewDue=reviewQueue.filter(x=>!x?.dueAt||Date.parse(x.dueAt)<=Date.now()).length;
     return {
       schema:SCHEMA,
       subjectId:'russian',
       generatedAt:new Date().toISOString(),
       route:{view:clean(core.view)||'overview',learnTab:clean(core.learnTab),stage:clean(core.stage)||'vn',lessonId,slide:Math.max(0,Number(core.slide)||0)},
       resume:clone(learning.resume||null),
-      reviewDue:Array.isArray(learning.reviewQueue)?learning.reviewQueue.filter(x=>!x?.dueAt||new Date(x.dueAt)<=new Date()).length:0,
+      reviewDue,
       lessonEvidence:lessonId?clone(flow.lessons?.[lessonId]||null):null,
       vocab:clone(vocab),
       speaking:clone(speaking),
