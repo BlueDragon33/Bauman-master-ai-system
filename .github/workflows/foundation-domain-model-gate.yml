@@ -8,6 +8,7 @@ on:
     paths:
       - 'foundation/**'
       - 'subjects/shared/**'
+      - 'subjects/russian/index.html'
       - 'subjects/russian/assets/learning-state.js'
       - 'subjects/russian/assets/content-contract.js'
       - 'subjects/russian/assets/learning-flow.js'
@@ -20,6 +21,7 @@ on:
       - 'scripts/validate-foundation-identity-runtime.mjs'
       - 'scripts/validate-foundation-identity-overlay-store.mjs'
       - 'scripts/validate-foundation-legacy-snapshot-extractor.mjs'
+      - 'scripts/validate-foundation-browser-bootstrap.mjs'
       - '.github/workflows/foundation-domain-model-gate.yml'
 
 permissions:
@@ -50,6 +52,8 @@ jobs:
         run: node scripts/validate-foundation-identity-overlay-store.mjs
       - name: Validate legacy snapshot extraction dry run
         run: node scripts/validate-foundation-legacy-snapshot-extractor.mjs
+      - name: Validate silent browser identity bootstrap
+        run: node scripts/validate-foundation-browser-bootstrap.mjs
       - name: Parse foundation JSON
         run: |
           node -e "JSON.parse(require('fs').readFileSync('foundation/domain-model/domain-contract.v1.json','utf8')); console.log('FOUNDATION_JSON_PARSE=PASS')"
