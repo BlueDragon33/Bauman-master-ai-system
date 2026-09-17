@@ -121,8 +121,8 @@
     clearTimeout(positionTimer);
     positionTimer=setTimeout(refreshResumePosition,450);
   }
-  function restoreResumePosition(){
-    const pos=state.resume?.position;if(!pos)return;
+  function restoreResumePosition(position=state.resume?.position){
+    const pos=position;if(!pos)return;
     const apply=()=>{
       const main=document.querySelector('.ru-main'),view=document.getElementById('view');
       if(Number.isFinite(Number(pos.windowY)))window.scrollTo({top:Number(pos.windowY),behavior:'auto'});
@@ -292,8 +292,9 @@
     const mark=event.target.closest?.('[data-ru-review-mark]');
     if(mark){event.preventDefault();const resume=state.resume;if(resume)addReview(routeKey(resume.route),'user_marked',resume.route,resume.activity);return;}
     const isResume=!!event.target.closest?.('.ru-resume-primary');
+    const resumePosition=isResume?state.resume?.position:null;
     const route=explicitRoute(event.target);
-    if(route)setTimeout(()=>{setResume({...routeFromCore(),...route},'navigation');if(isResume)restoreResumePosition();},0);
+    if(route)setTimeout(()=>{setResume({...routeFromCore(),...route},'navigation');if(isResume)restoreResumePosition(resumePosition);},0);
   },true);
   window.addEventListener('scroll',schedulePositionSave,{passive:true});
   window.addEventListener('pagehide',refreshResumePosition);
