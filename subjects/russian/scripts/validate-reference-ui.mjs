@@ -11,21 +11,26 @@ const css=read('assets/russian-reference-ui.css');
 const polish=read('assets/russian-reference-ui-polish.css');
 const js=read('assets/russian-reference-ui.js');
 const optionalLoader=read('assets/russian-optional-data-loader.js');
+const contentContract=read('assets/content-contract.js');
+const contentContractCss=read('assets/content-contract.css');
 const core=read('assets/core.js');
 const adapter=read('assets/subject-adapter.js');
 
 for(const id of ['app','nav','stageSelect','view','modal','modalBody','toast','themeBtn','aiBtn','pageTitle','pageSub','coreLabel','saveState']){
   must(index.includes(`id="${id}"`),`Missing required runtime id: ${id}`);
 }
-for(const ref of ['assets/core.css','assets/russian.css','assets/russian-reference-ui.css','assets/russian-reference-ui-polish.css','assets/subject-adapter.js','assets/planning-bridge.js','assets/russian-optional-data-loader.js','assets/core.js','assets/russian-reference-ui.js']){
+for(const ref of ['assets/core.css','assets/russian.css','assets/russian-reference-ui.css','assets/russian-reference-ui-polish.css','assets/learning-state.css','assets/content-contract.css','assets/subject-adapter.js','assets/content-contract.js','assets/planning-bridge.js','assets/russian-optional-data-loader.js','assets/core.js','assets/russian-reference-ui.js']){
   must(index.includes(ref),`Missing asset reference: ${ref}`);
 }
 must(index.indexOf('assets/russian-reference-ui.css')<index.indexOf('assets/russian-reference-ui-polish.css'),'Polish CSS must load after reference UI CSS');
+must(index.indexOf('assets/subject-adapter.js')<index.indexOf('assets/content-contract.js'),'Content contract must load after subject adapter');
+must(index.indexOf('assets/content-contract.js')<index.indexOf('assets/core.js'),'Content contract must normalize adapter before core.js');
 must(index.indexOf('assets/russian-optional-data-loader.js')<index.indexOf('assets/core.js'),'Optional chunk loader must bootstrap before core.js');
 must(index.indexOf('assets/core.js')<index.indexOf('assets/russian-reference-ui.js'),'Reference UI JS must load after core.js');
 must(index.includes('id="russianRightRail"'),'Missing right AI rail');
 must(index.includes('id="russianGlobalSearch"'),'Missing global search');
 must(index.includes('data-ai-quick='),'AI rail must expose core AI Mentor quick-action contract');
+must(!index.includes('/priˈvʲet/'),'Right rail must not expose a hard-coded pronunciation sample as canonical data');
 
 for(const token of ['.ru-app-shell','.ru-right-rail','.ru-skill-grid','.ru-dashboard-middle','.ru-dashboard-bottom','@media (max-width:1080px)','@media (max-width:760px)','@media (max-width:480px)']){
   must(css.includes(token),`Missing CSS contract: ${token}`);
@@ -33,13 +38,18 @@ for(const token of ['.ru-app-shell','.ru-right-rail','.ru-skill-grid','.ru-dashb
 for(const token of ['.ru-legacy-overview-details','.ru-empty-activity',':focus-visible','prefers-reduced-motion']){
   must(polish.includes(token),`Missing polish CSS contract: ${token}`);
 }
+for(const token of ['.ru-language-contract','.ru-language-contract-row','.stress.missing','@media (max-width:760px)']){
+  must(contentContractCss.includes(token),`Missing language contract CSS: ${token}`);
+}
 must((css.match(/{/g)||[]).length===(css.match(/}/g)||[]).length,'Reference CSS brace imbalance');
 must((polish.match(/{/g)||[]).length===(polish.match(/}/g)||[]).length,'Polish CSS brace imbalance');
+must((contentContractCss.match(/{/g)||[]).length===(contentContractCss.match(/}/g)||[]).length,'Content contract CSS brace imbalance');
 must(!css.includes("url('./subject-header.jpg')"),'Reference UI must not depend on missing subject-header.jpg');
 must(!css.includes("url('./bauman-logo.png')"),'Reference UI must not depend on missing bauman-logo.png');
 
 new Function(js);
 new Function(optionalLoader);
+new Function(contentContract);
 must(js.includes("window.SUBJECT_ADAPTER?.storageKey"),'Dashboard must use adapter storage key');
 must(js.includes('MutationObserver'),'Dashboard enhancer must follow core renders');
 must(js.includes("getElementById('aiBtn')"),'AI rail custom prompt must open existing AI Mentor');
@@ -52,6 +62,12 @@ must(js.includes('collapseLegacyOverview'),'Overview must preserve legacy tools 
 must(js.includes('navigator.platform'),'Shortcut hint must adapt to the user platform');
 must(!js.includes('base+Math.round'),'Skill cards must not synthesize fake per-skill progress');
 must(!js.includes('mini-progress'),'Skill cards must not display invented per-skill progress bars');
+
+for(const token of ['RUSSIAN_CONTENT_CONTRACT_V1','normalizeVocab','latin_transliteration','orthographic_yo','missing','Hệ thống không tự đoán','textForVocab']){
+  must(contentContract.includes(token),`Content contract missing truthful-language token: ${token}`);
+}
+must(!contentContract.includes('stressIndex-1'),'Content contract must not infer Russian stress from unknown numeric fields');
+must(!contentContract.includes('Math.random'),'Content contract must not synthesize language metadata');
 
 for(const token of ['dialogue-bauman-az.json','deep-speaking-bauman.json','json-array-chunks-v1','chunks/${dataset}/manifest.json','RUSSIAN_OPTIONAL_CHUNKS_V1']){
   must(optionalLoader.includes(token),`Optional chunk loader missing contract: ${token}`);
@@ -68,4 +84,4 @@ must(adapter.includes("storageKey: 'bauman_russian_survival_master_v11_clean_ske
 must(adapter.includes("optionalDataFiles: ['dialogue-bauman-az','deep-speaking-bauman','speaking-link-index']"),'Unexpected optional Russian dataset contract');
 
 console.log('RUSSIAN_REFERENCE_UI_GATE=PASS');
-console.log('Checks: shell, self-contained visuals, responsive layout, JS parse, truthful progress, compact legacy tools, optional chunk loading, accessibility, routing, AI and schedule integration.');
+console.log('Checks: shell, self-contained visuals, responsive layout, JS parse, truthful progress, truthful Russian content contract, optional chunk loading, accessibility, routing, AI and schedule integration.');

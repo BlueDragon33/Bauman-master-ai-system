@@ -1,0 +1,34 @@
+import fs from 'node:fs';
+import path from 'node:path';
+
+const root=path.resolve('subjects/russian');
+const js=fs.readFileSync(path.join(root,'assets','speaking-coach.js'),'utf8');
+const css=fs.readFileSync(path.join(root,'assets','speaking-coach.css'),'utf8');
+const html=fs.readFileSync(path.join(root,'index.html'),'utf8');
+const need=(text,token,msg)=>{if(!text.includes(token))throw new Error(msg||`Missing token: ${token}`);};
+const forbid=(text,token,msg)=>{if(text.includes(token))throw new Error(msg||`Forbidden token: ${token}`);};
+
+need(js,'RUSSIAN_SPEAKING_COACH_V1','Missing speaking coach schema');
+need(js,"'pronunciation_error'",'Pronunciation review reason missing');
+need(js,"'abandoned'",'Abandoned speaking review reason missing');
+need(js,"'shadow'",'Shadowing mode missing');
+need(js,"'memory'",'Memory speaking mode missing');
+need(js,"'roleplay'",'Role-play mode missing');
+need(js,"[data-act=\"${action}\"]",'Core action bridge missing');
+need(js,'RussianLearningState?.addReview','Review Queue bridge missing');
+need(js,'RussianLearningFlow?.touch','Learning Flow evidence bridge missing');
+need(js,"act==='mark-line-ok'",'Explicit learner OK signal missing');
+need(js,'Không thay đổi mastery','Truthful mastery wording missing');
+need(css,'.ru-speaking-memory-mode','Memory masking style missing');
+need(css,'@media(max-width:760px)','Phone responsive breakpoint missing');
+need(html,'assets/speaking-coach.css','Speaking coach CSS not loaded');
+need(html,'assets/speaking-coach.js','Speaking coach JS not loaded');
+const flowPos=html.indexOf('assets/learning-flow.js'), coachPos=html.indexOf('assets/speaking-coach.js'), uiPos=html.indexOf('assets/russian-reference-ui.js');
+if(!(flowPos>=0&&coachPos>flowPos&&uiPos>coachPos))throw new Error('Speaking coach must load after learning flow and before reference UI');
+forbid(js,'Math.random','Synthetic random evidence is forbidden');
+forbid(js,'score>=','Do not auto-classify pronunciation from similarity score');
+forbid(js,'score >','Do not auto-classify pronunciation from similarity score');
+forbid(js,'mastered:true','Speaking coach must not write mastery');
+forbid(js,"status:'mastered'",'Speaking coach must not write mastery');
+console.log('RUSSIAN_SPEAKING_COACH_RUNTIME_GATE=PASS');
+console.log('Checks: listening ladder, shadowing, memory speaking, role-play, explicit pronunciation review, abandoned-session review, no synthetic mastery or score threshold.');
