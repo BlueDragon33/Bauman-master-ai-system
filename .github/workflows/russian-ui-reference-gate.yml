@@ -35,6 +35,8 @@ jobs:
         run: node subjects/russian/scripts/validate-speaking-coach.mjs
       - name: Validate Russian grammar reading writing academic bridge
         run: node subjects/russian/scripts/validate-academic-language.mjs
+      - name: Validate Russian AI mentor and offline runtime
+        run: node subjects/russian/scripts/validate-ai-runtime.mjs
       - name: Parse Russian runtime JavaScript
         run: |
           node --check subjects/russian/assets/core.js
@@ -46,6 +48,9 @@ jobs:
           node --check subjects/russian/assets/vocab-srs.js
           node --check subjects/russian/assets/speaking-coach.js
           node --check subjects/russian/assets/academic-language.js
+          node --check subjects/russian/assets/ai-mentor-guard.js
+          node --check subjects/russian/assets/runtime-optimizer.js
+          node --check subjects/russian/sw.js
       - name: Audit Russian learning datasets
         run: node subjects/russian/scripts/audit-learning-data.mjs
       - name: Audit Russian content contract
@@ -58,6 +63,8 @@ jobs:
         run: node subjects/russian/scripts/audit-speaking-coach.mjs
       - name: Audit Russian grammar reading writing academic sources
         run: node subjects/russian/scripts/audit-academic-language.mjs
+      - name: Audit Russian offline cache policy
+        run: node subjects/russian/scripts/audit-runtime-offline.mjs
       - name: Confirm redesign did not replace learning datasets
         shell: bash
         run: |
@@ -81,4 +88,9 @@ jobs:
           test -f subjects/russian/assets/speaking-coach.css
           test -f subjects/russian/assets/academic-language.js
           test -f subjects/russian/assets/academic-language.css
+          test -f subjects/russian/assets/ai-mentor-guard.js
+          test -f subjects/russian/assets/runtime-optimizer.js
+          test -f subjects/russian/assets/runtime-optimizer.css
+          test -f subjects/russian/manifest.webmanifest
+          test -f subjects/russian/sw.js
           echo "Russian learning datasets and additive learning runtimes remain present."
