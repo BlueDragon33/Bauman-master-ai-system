@@ -9,16 +9,23 @@ const revision=String(process.env.BAUMAN_BUILD_REVISION||process.env.GITHUB_SHA|
 if(!/^[0-9a-f]{40}$/i.test(revision))throw new Error('BAUMAN_BUILD_REVISION or GITHUB_SHA must be a full 40-character Git commit.');
 if(!fs.statSync(path.join(source,'index.html'),{throwIfNoEntry:false})?.isFile())throw new Error('runtime-dist/index.html is required; materialize the accepted runtime package first.');
 
+const foundationRuntime=[
+  'subjects/shared/foundation-identity-bootstrap.js',
+  'subjects/shared/foundation-identity-persistence.js',
+  'subjects/shared/foundation-identity-projection.js',
+  'foundation/domain-model/canonical-identity-runtime.js',
+  'foundation/domain-model/identity-overlay-store.js',
+  'foundation/domain-model/legacy-snapshot-extractor.js',
+  'foundation/domain-model/canonical-read-projection.js',
+  'foundation/domain-model/legacy-mapping-registry.v1.json'
+];
+
 for(const relative of [
   'assets/js/platform/runtime-config.js',
   'assets/js/platform/device-access-gate.js',
   'subjects/math/index.html',
   'subjects/russian/index.html',
-  'subjects/shared/foundation-identity-bootstrap.js',
-  'foundation/domain-model/canonical-identity-runtime.js',
-  'foundation/domain-model/identity-overlay-store.js',
-  'foundation/domain-model/legacy-snapshot-extractor.js',
-  'foundation/domain-model/legacy-mapping-registry.v1.json',
+  ...foundationRuntime,
   'subjects/russian/data/chunks/dialogue-bauman-az/manifest.json',
   'subjects/russian/data/chunks/deep-speaking-bauman/manifest.json'
 ]){
@@ -34,16 +41,23 @@ for(const removed of [
 fs.rmSync(output,{recursive:true,force:true});
 fs.cpSync(source,output,{recursive:true});
 
-// Defense in depth: a ChatGPT Site package is valid only if the Foundation files
-// referenced by packaged subject pages survived the runtime-dist -> dist copy.
-for(const relative of [
-  'subjects/shared/foundation-identity-bootstrap.js',
-  'foundation/domain-model/canonical-identity-runtime.js',
-  'foundation/domain-model/identity-overlay-store.js',
-  'foundation/domain-model/legacy-snapshot-extractor.js',
-  'foundation/domain-model/legacy-mapping-registry.v1.json'
-]){
+// Defense in depth: a ChatGPT Site package is valid only if every Foundation file
+// referenced by packaged subject pages survives the runtime-dist -> dist copy.
+for(const relative of foundationRuntime){
   if(!fs.statSync(path.join(output,relative),{throwIfNoEntry:false})?.isFile())throw new Error(`ChatGPT Site package is missing runtime dependency ${relative}.`);
+}
+
+const russianHtml=fs.readFileSync(path.join(output,'subjects/russian/index.html'),'utf8');
+for(const resource of [
+  '../../foundation/domain-model/canonical-identity-runtime.js',
+  '../../foundation/domain-model/identity-overlay-store.js',
+  '../../foundation/domain-model/legacy-snapshot-extractor.js',
+  '../../foundation/domain-model/canonical-read-projection.js',
+  '../shared/foundation-identity-bootstrap.js',
+  '../shared/foundation-identity-persistence.js',
+  '../shared/foundation-identity-projection.js'
+]){
+  if(!russianHtml.includes(resource))throw new Error(`Packaged Russian runtime is missing Foundation script reference ${resource}.`);
 }
 
 const indexPath=path.join(output,'index.html');
@@ -65,5 +79,6 @@ console.log(JSON.stringify({
   output:'dist',
   accessBoundary:'chatgpt-site-owner-private',
   foundationRuntime:'present',
+  canonicalProjection:'present',
   revision
 },null,2));
