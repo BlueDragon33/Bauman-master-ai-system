@@ -86,23 +86,29 @@ try{
     controlProtocol:'bauman-control-v4'
   });
   summary.accessBoundary=accessBoundary;
-  assert.equal(await page.locator('#authTitle').textContent(),'Thiết lập quản trị viên đầu tiên');
-  assert.equal(await page.locator('#loginEmail').inputValue(),'');
-  assert.equal(await page.locator('#loginPass').inputValue(),'');
-  await page.locator('#loginEmail').fill('system-e2e@example.test');
-  await page.locator('#loginPass').fill('system-e2e-pass');
-  await page.locator('#loginBtn').click();
+  await page.waitForFunction(()=>window.BAUMAN_APP_MANAGER_ACCESS?.selfCheck?.().ready===true,null,{timeout:15000});
+  const managedAccess=await page.evaluate(()=>window.BAUMAN_APP_MANAGER_ACCESS.selfCheck());
+  assert.equal(managedAccess.mode,'app-manager');
+  assert.equal(managedAccess.deviceAuthorized,true);
+  assert.equal(managedAccess.localAuthBypassed,true);
+  assert.equal(managedAccess.authScreenHidden,true);
+  assert.equal(managedAccess.credentialStorePresent,false);
+  assert.equal(managedAccess.managedScopeStored,true);
+  assert.equal(managedAccess.currentManagedBy,'app-manager');
+  assert.equal(managedAccess.localAdminVisible,false);
+  assert.equal(managedAccess.localLogoutVisible,false);
+  assert.equal(managedAccess.routeOwnership,false);
+  assert.equal(managedAccess.academicWrites,false);
   await page.waitForFunction(()=>!document.getElementById('appRoot')?.classList.contains('hidden'));
-  const localAccount=await page.evaluate(()=>{const users=JSON.parse(localStorage.getItem('bauman_main_users_fullcode_v1')||'[]');return{role:window.auth?.current?.role,count:users.length,hashed:Boolean(users[0]?.passwordHash&&users[0]?.passwordSalt),plain:Object.hasOwn(users[0]||{},'password')}});
-  assert.deepEqual(localAccount,{role:'admin',count:1,hashed:true,plain:false});
 
-  await page.evaluate(()=>localStorage.removeItem('bauman_current_user_fullcode_v1'));
   await page.reload({waitUntil:'domcontentloaded'});
   await page.waitForFunction(()=>document.documentElement.dataset.baumanDeviceAccess==='authorized',null,{timeout:15000});
-  assert.equal(await page.locator('#authTitle').textContent(),'Đăng nhập lộ trình Bauman');
-  await page.locator('#loginEmail').fill('system-e2e@example.test');
-  await page.locator('#loginPass').fill('system-e2e-pass');
-  await page.locator('#loginBtn').click();
+  await page.waitForFunction(()=>window.BAUMAN_APP_MANAGER_ACCESS?.selfCheck?.().ready===true,null,{timeout:15000});
+  const managedReload=await page.evaluate(()=>window.BAUMAN_APP_MANAGER_ACCESS.selfCheck());
+  assert.equal(managedReload.credentialStorePresent,false);
+  assert.equal(managedReload.managedScopeStored,true);
+  assert.equal(managedReload.authScreenHidden,true);
+  assert.equal(managedReload.currentManagedBy,'app-manager');
   await page.waitForFunction(()=>!document.getElementById('appRoot')?.classList.contains('hidden'));
 
   const unsafeRejected=await page.evaluate(()=>{const old=window.state.subjects.ai.mainPath;window.state.subjects.ai.mainPath='javascript:alert(1)';document.getElementById('studyRoot').innerHTML='';window.app.openSubjectInPage('ai');const rejected=!document.getElementById('subjectFrame');window.state.subjects.ai.mainPath=old;return rejected});
@@ -238,7 +244,7 @@ try{
   assert.deepEqual(summary.failedRequests,[],'Failed requests detected');
   assert.deepEqual(summary.httpErrors,[],'HTTP errors detected');
   summary.status='PASS';
-  summary.acceptance={firstUseHashedAccount:true,existingLogin:true,unsafeRouteRejected:true,adminRouteProtected:true,allSubjectRoutes:true,queryTaskHydration:true,forgedMessagesRejected:true,legitimateProgressAccepted:true,mathLessonRuntimeRegression:true};
+  summary.acceptance={appManagerManagedAccess:true,localAuthBypassed:true,reloadBypassStable:true,unsafeRouteRejected:true,adminRouteProtected:true,allSubjectRoutes:true,queryTaskHydration:true,forgedMessagesRejected:true,legitimateProgressAccepted:true,mathLessonRuntimeRegression:true};
   summary.completedAt=new Date().toISOString();
   await context.close();
   await browser.close();
