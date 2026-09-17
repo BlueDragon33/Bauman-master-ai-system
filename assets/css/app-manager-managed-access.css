@@ -1,0 +1,8 @@
+/* App Manager managed access.
+ * Local Hub credentials are not user-facing; Device Gate remains authoritative.
+ */
+html[data-bauman-hub-access="app-manager"] #authScreen,
+html[data-bauman-hub-access="app-manager"] #adminOpenBtn,
+html[data-bauman-hub-access="app-manager"] #logoutBtn {
+  display: none !important;
+}
