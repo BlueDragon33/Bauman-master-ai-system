@@ -49,7 +49,7 @@ Step 5 does **not** attempt recovery or deletion in browser bootstrap mode. It p
 
 ## Acceptance requirements
 
-The validator must prove:
+The validator proves:
 
 - correct script load order in `subjects/russian/index.html`;
 - zero local/session storage writes;
@@ -59,6 +59,15 @@ The validator must prove:
 - ready event/report exposure works;
 - corrupt overlay handling remains read-only;
 - all previous Foundation gates continue to pass.
+
+## Verified result
+
+- `FOUNDATION_BROWSER_BOOTSTRAP_GATE=PASS`
+- `Foundation Domain Model Gate=SUCCESS`
+- `Russian Reference UI Gate=SUCCESS`
+- `Windows checkout safety=SUCCESS`
+- `Bauman Cloudflare Preview CI=SUCCESS`
+- Whole-system static validation and primary browser acceptance passed before any write-capable integration is allowed.
 
 ## Non-goals
 
