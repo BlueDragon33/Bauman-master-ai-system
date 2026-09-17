@@ -3,6 +3,7 @@
   const CORE_KEY=(window.SUBJECT_ADAPTER&&window.SUBJECT_ADAPTER.storageKey)||'bauman_russian_survival_master_v11_clean_skeleton';
   const FLOW_KEY='bauman_russian_learning_flow_v1';
   const SCHEMA='RUSSIAN_LEARNING_FLOW_V2';
+  const LEGACY_SCHEMA='RUSSIAN_LEARNING_FLOW_V1';
   const STEP_ORDER=['theory','speaking','vocab','grammar','exercises','check'];
   const CORE_STEPS=['theory','speaking','exercises','check'];
   const META={
@@ -233,6 +234,7 @@
   });
   window.RussianLearningFlow={
     schema:SCHEMA,
+    legacySchema:LEGACY_SCHEMA,
     get:()=>JSON.parse(JSON.stringify(flow)),
     activeLessonId,touch,navigate,statusFor,hasMeaningfulEvidence,nextSuggested
   };
