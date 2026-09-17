@@ -13,7 +13,8 @@ const contract=JSON.parse(read(contractPath));
 assert(contract.schema==='BAUMAN_DOMAIN_CONTRACT_V1','Unexpected domain contract schema');
 assert(contract.schemaVersion===1,'Unexpected domain contract version');
 for(const type of ['source','knowledge','competency','task','evidence','artifact','research'])assert(contract.entityTypes[type],`Missing entity type contract: ${type}`);
-for(const key of ['canonicalId','entityEnvelope','provenanceContract','evidenceContract','artifactContract','extensionsContract','migrationContract','aiContract','interoperability'])assert(contract[key],`Missing load-bearing contract: ${key}`);
+for(const key of ['canonicalId','legacyMappingContract','entityEnvelope','provenanceContract','evidenceContract','artifactContract','extensionsContract','migrationContract','aiContract','interoperability'])assert(contract[key],`Missing load-bearing contract: ${key}`);
+assert(contract.legacyMappingContract.legacyLocatorRequired===true,'Legacy mapping must require a locator/scope');
 assert(contract.evidenceContract.masterySeparated===true,'Evidence/mastery separation must be explicit');
 assert(contract.migrationContract.mode==='additive-pure','Migration contract must be additive-pure');
 assert(contract.interoperability.strategy==='adapter-first','Interoperability must be adapter-first');
@@ -73,15 +74,21 @@ assert(D.assertImmutableIdentity(knowledge,revised)===true,'Stable identity chec
 const moved=JSON.parse(JSON.stringify(revised));moved.id=D.makeId('knowledge','foundation','noun-gender');moved.namespace='foundation';
 let immutableRejected=false;try{D.assertImmutableIdentity(knowledge,moved)}catch{immutableRejected=true}assert(immutableRejected,'Identity mutation must be rejected');
 
-const legacy=D.legacyMapping({entityType:'knowledge',namespace:'russian',legacyId:'R01',canonicalLocalId:'lesson-r01',sourceSchema:'russian-lessons-v1'});
-assert(legacy.legacyId==='R01'&&legacy.canonicalId==='bauman:knowledge:russian:lesson-r01','Legacy mapping must be explicit and deterministic');
-const preserved=M.preserveLegacy(knowledge,{legacyId:'R01',sourceSchema:'russian-lessons-v1',payload:{id:'R01'}});
+let missingLocatorRejected=false;
+try{D.legacyMapping({entityType:'knowledge',namespace:'russian',legacyId:'R01',canonicalLocalId:'lesson-r01'})}catch{missingLocatorRejected=true}
+assert(missingLocatorRejected,'Legacy mapping without locator must be rejected');
+const legacy=D.legacyMapping({entityType:'knowledge',namespace:'russian',legacyId:'R01',legacyLocator:'subjects/russian/data/lessons.json#/0',canonicalLocalId:'lesson-r01',sourceSchema:'russian-lessons-v1'});
+assert(legacy.legacyId==='R01'&&legacy.legacyLocator.endsWith('#/0')&&legacy.canonicalId==='bauman:knowledge:russian:lesson-r01','Legacy mapping must be explicit, scoped and deterministic');
+let preserveWithoutLocatorRejected=false;
+try{M.preserveLegacy(knowledge,{legacyId:'R01',sourceSchema:'russian-lessons-v1'})}catch{preserveWithoutLocatorRejected=true}
+assert(preserveWithoutLocatorRejected,'Legacy preservation without locator must be rejected');
+const preserved=M.preserveLegacy(knowledge,{legacyId:'R01',legacyLocator:'subjects/russian/data/lessons.json#/0',sourceSchema:'russian-lessons-v1',payload:{id:'R01'}});
 assert(preserved!==knowledge,'Legacy preservation must return a new object');
 assert(!knowledge.extensions.legacy,'Legacy preservation mutated input');
-assert(preserved.extensions.legacy.legacyId==='R01','Legacy payload was not preserved');
+assert(preserved.extensions.legacy.legacyId==='R01'&&preserved.extensions.legacy.legacyLocator.endsWith('#/0'),'Legacy identity and locator were not preserved');
 const migrated=M.migrateEntity(knowledge,1);
 assert(migrated!==knowledge,'No-op migration must still clone input');
 assert(JSON.stringify(migrated)===JSON.stringify(knowledge),'No-op migration changed V1 entity');
 
 console.log('BAUMAN_DOMAIN_FOUNDATION_RUNTIME_GATE=PASS');
-console.log('Checks: explicit stable canonical IDs, seven domain entity types, provenance, immutable identity, task/evidence/mastery separation, artifact lineage, research future-compatibility, additive pure migration and explicit legacy mapping.');
+console.log('Checks: explicit stable canonical IDs, seven domain entity types, provenance, immutable identity, scoped legacy mapping, task/evidence/mastery separation, artifact lineage, research future-compatibility and additive pure migration.');
