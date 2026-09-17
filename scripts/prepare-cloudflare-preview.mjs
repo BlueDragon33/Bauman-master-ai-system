@@ -139,6 +139,9 @@ fs.mkdirSync(runtimeDist, { recursive: true });
 fs.copyFileSync(path.join(root, 'index.html'), path.join(runtimeDist, 'index.html'));
 fs.cpSync(path.join(root, 'assets'), path.join(runtimeDist, 'assets'), { recursive: true });
 fs.cpSync(path.join(root, 'subjects'), path.join(runtimeDist, 'subjects'), { recursive: true });
+// Foundation is runtime infrastructure, not build-only source. Subject pages may reference it
+// directly, so every accepted runtime/package must carry the same versioned Foundation tree.
+fs.cpSync(path.join(root, 'foundation'), path.join(runtimeDist, 'foundation'), { recursive: true });
 
 for (const relativePath of [
   'subjects/russian/data/dialogue-bauman-az.json',
@@ -172,6 +175,11 @@ for (const resource of [
   'subjects/russian/assets/russian-reference-ui.js',
   'subjects/russian/assets/russian-reference-ui-polish.css',
   'subjects/russian/assets/russian-optional-data-loader.js',
+  'subjects/shared/foundation-identity-bootstrap.js',
+  'foundation/domain-model/canonical-identity-runtime.js',
+  'foundation/domain-model/identity-overlay-store.js',
+  'foundation/domain-model/legacy-snapshot-extractor.js',
+  'foundation/domain-model/legacy-mapping-registry.v1.json',
   'subjects/russian/data/chunks/dialogue-bauman-az/manifest.json',
   'subjects/russian/data/chunks/deep-speaking-bauman/manifest.json',
 ]) {
@@ -190,6 +198,6 @@ if (!html.includes('assets/js/platform/runtime-config.js') || !html.includes('as
 console.log('Bauman Cloudflare preview materialized safely.');
 console.log(`Control Worker: bauman-control-preview -> ${controlOrigin}`);
 console.log(`Learning Worker: bauman-master-ai-preview -> ${runtimeOrigin}`);
-console.log('Subject Web Apps: packaged under /subjects/* inside the Learning Runtime.');
+console.log('Subject Web Apps and versioned Foundation runtime are packaged together inside the Learning Runtime.');
 console.log('Russian optional datasets: oversized lazy JSON converted to chunk manifests below Worker asset limits.');
 console.log('D1: bauman-control-preview-db (isolated preview database).');
