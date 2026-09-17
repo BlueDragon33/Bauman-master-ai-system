@@ -178,6 +178,7 @@ for (const resource of [
   'subjects/shared/foundation-identity-bootstrap.js',
   'subjects/shared/foundation-identity-persistence.js',
   'subjects/shared/foundation-identity-projection.js',
+  'subjects/shared/foundation-canonical-context.js',
   'foundation/domain-model/canonical-identity-runtime.js',
   'foundation/domain-model/identity-overlay-store.js',
   'foundation/domain-model/legacy-snapshot-extractor.js',
@@ -206,6 +207,7 @@ for (const resource of [
   '../shared/foundation-identity-bootstrap.js',
   '../shared/foundation-identity-persistence.js',
   '../shared/foundation-identity-projection.js',
+  '../shared/foundation-canonical-context.js',
 ]) {
   if (!russianHtml.includes(resource)) throw new Error(`Russian runtime is missing Foundation script reference: ${resource}`);
 }
@@ -214,6 +216,6 @@ console.log('Bauman Cloudflare preview materialized safely.');
 console.log(`Control Worker: bauman-control-preview -> ${controlOrigin}`);
 console.log(`Learning Worker: bauman-master-ai-preview -> ${runtimeOrigin}`);
 console.log('Subject Web Apps and versioned Foundation runtime are packaged together inside the Learning Runtime.');
-console.log('Canonical identity persistence and read projection dependencies are packaged with Russian runtime.');
+console.log('Canonical identity persistence, projection, and consumer context dependencies are packaged with Russian runtime.');
 console.log('Russian optional datasets: oversized lazy JSON converted to chunk manifests below Worker asset limits.');
 console.log('D1: bauman-control-preview-db (isolated preview database).');
