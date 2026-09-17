@@ -14,7 +14,7 @@ const ACCEPTED_MATH_LESSONS=[
   {key:'l05',id:'MATH-VN-C01-vector_trong_khong_gian_-L05-subspace-data-representation-e140',diagrams:9,retrievalChecks:10,misconceptions:18},
   {key:'l06',id:'MATH-VN-C01-vector_trong_khong_gian_-L06-vector-to-data-matrix-e140',diagrams:11,retrievalChecks:22,misconceptions:22}
 ];
-const summary={status:'RUNNING',subjects:{},responsive:{},consoleErrors:[],pageErrors:[],failedRequests:[],httpErrors:[]};
+const summary={status:'RUNNING',subjects:{},responsive:{},consoleErrors:[],pageErrors:[],failedRequests:[],httpErrors:[],ignoredDecorativeAborts:[]};
 fs.mkdirSync(OUT,{recursive:true});
 
 async function mockControl(page,status='approved'){
@@ -34,6 +34,16 @@ async function mockControl(page,status='approved'){
 }
 
 function subjectFrame(page,id){return page.frames().find(frame=>{try{return new URL(frame.url()).pathname===`/subjects/${id}/index.html`}catch{return false}})}
+
+function isConfirmedDecorativeNavigationAbort(request){
+  const errorText=request.failure()?.errorText||'';
+  if(request.method()!=='GET'||errorText!=='net::ERR_ABORTED')return false;
+  try{
+    const requestUrl=new URL(request.url());
+    const baseUrl=new URL(BASE);
+    return requestUrl.origin===baseUrl.origin&&requestUrl.pathname==='/assets/media/hub-mountains.svg';
+  }catch{return false}
+}
 
 async function openSubject(page,id){
   await page.evaluate(subjectId=>window.app.openSubjectInPage(subjectId),id);
@@ -56,7 +66,15 @@ try{
   await mockControl(page);
   page.on('console',message=>{if(message.type()==='error')summary.consoleErrors.push(message.text())});
   page.on('pageerror',error=>summary.pageErrors.push(String(error?.stack||error)));
-  page.on('requestfailed',request=>{if(!request.url().startsWith('http://127.0.0.1:3003/'))summary.failedRequests.push(`${request.method()} ${request.url()} ${request.failure()?.errorText||''}`)});
+  page.on('requestfailed',request=>{
+    if(request.url().startsWith('http://127.0.0.1:3003/'))return;
+    const failure=`${request.method()} ${request.url()} ${request.failure()?.errorText||''}`;
+    if(isConfirmedDecorativeNavigationAbort(request)){
+      summary.ignoredDecorativeAborts.push(failure);
+      return;
+    }
+    summary.failedRequests.push(failure);
+  });
   page.on('response',response=>{if(response.status()>=400)summary.httpErrors.push(`${response.status()} ${response.url()}`)});
 
   await page.goto(BASE,{waitUntil:'domcontentloaded',timeout:30000});
@@ -227,7 +245,7 @@ try{
   browser=null;
   fs.writeFileSync(path.join(OUT,'summary.json'),JSON.stringify(summary,null,2));
   console.log('SYSTEM_BROWSER_ACCEPTANCE_PASS');
-  console.log(JSON.stringify({subjects:Object.keys(summary.subjects).length,responsive:Object.keys(summary.responsive),acceptance:summary.acceptance},null,2));
+  console.log(JSON.stringify({subjects:Object.keys(summary.subjects).length,responsive:Object.keys(summary.responsive),acceptance:summary.acceptance,ignoredDecorativeAborts:summary.ignoredDecorativeAborts.length},null,2));
 }catch(error){
   summary.status='FAIL';summary.error=String(error?.stack||error);summary.completedAt=new Date().toISOString();
   fs.writeFileSync(path.join(OUT,'summary.json'),JSON.stringify(summary,null,2));
