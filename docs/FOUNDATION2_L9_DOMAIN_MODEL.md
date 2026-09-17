@@ -8,6 +8,8 @@ L9 establishes a cross-subject foundation without changing existing subject data
 
 Current subject datasets use useful local identifiers such as `R01`, `f_s01` and `f_s01_l1`. Those identifiers are valid inside their original subject, but are not globally safe because they do not encode entity type or namespace and may collide across domains.
 
+The L9 audit also found repeated local IDs inside individual legacy files (for example repeated `FV01`, `easy`, and stage IDs). Therefore **legacyId alone is not a migration identity key**.
+
 L9 adds a canonical identity layer:
 
 `bauman:<entityType>:<namespace>:<localId>`
@@ -44,7 +46,14 @@ The research entity exists now only to reserve stable semantics. L9 does not imp
 
 ### Legacy compatibility
 
-Legacy IDs are not rewritten in place. An explicit mapping links a legacy ID to a canonical ID. If legacy payload needs preservation, it can live under `extensions.legacy`.
+Legacy IDs are not rewritten in place. Every mapping requires both:
+
+- `legacyId` — the original ID exactly as stored;
+- `legacyLocator` — a stable source path/scope such as `subjects/russian/data/lessons.json#/0`.
+
+Only the pair `legacyId + legacyLocator` is safe enough to identify a legacy record during migration. The mapping then points explicitly to a canonical ID. No runtime guesses a canonical ID from a title or array position.
+
+If legacy payload needs preservation, it can live under `extensions.legacy` together with its original locator and source schema.
 
 ### Knowledge vs presentation
 
@@ -75,6 +84,7 @@ Migration mode is **additive-pure**:
 - versions advance explicitly;
 - existing top-level fields are not deleted;
 - no random/time/title-derived canonical IDs;
+- legacy identity preservation requires `legacyId + legacyLocator`;
 - legacy payload may be preserved under `extensions.legacy`.
 
 ## Interoperability posture
@@ -84,6 +94,10 @@ The core is vendor-neutral. Future QTI, CASE, LTI, Open Badges and CLR support m
 ## AI posture
 
 AI may consume entities, explain, suggest, critique or draft. AI does not own canonical learner truth, mastery or research conclusions. Authoritative writes require an explicit policy outside this model.
+
+## L9 audit policy
+
+The cross-subject audit parses **every JSON file under `subjects/*/data`**, including the large optional Russian dialogue datasets. L9 does not accept a partial audit merely to make CI faster. The audit inventories legacy IDs, duplicate IDs and any future canonical collisions, but it does not rewrite legacy source files.
 
 ## L9 boundary
 
@@ -103,7 +117,7 @@ Only the new shared domain foundation, its validators/audit, its CI gate and thi
 L9 may be promoted only when:
 
 - runtime validator passes;
-- cross-subject ID audit passes;
+- full cross-subject JSON identity audit passes;
 - JavaScript syntax checks pass;
 - L9 scope guard passes;
 - existing whole-system integration CI remains green;
