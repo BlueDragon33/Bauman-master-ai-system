@@ -1,0 +1,79 @@
+name: Foundation 2.0 L9 Domain Gate
+
+on:
+  pull_request:
+    branches: [main]
+    paths:
+      - "subjects/shared/domain/**"
+      - "scripts/audit-domain-foundation.mjs"
+      - "scripts/validate-domain-foundation.mjs"
+      - "docs/FOUNDATION2_L9_DOMAIN_MODEL.md"
+      - ".github/workflows/foundation-domain-gate.yml"
+  push:
+    branches: [main]
+    paths:
+      - "subjects/shared/domain/**"
+      - "scripts/audit-domain-foundation.mjs"
+      - "scripts/validate-domain-foundation.mjs"
+      - "docs/FOUNDATION2_L9_DOMAIN_MODEL.md"
+      - ".github/workflows/foundation-domain-gate.yml"
+
+permissions:
+  contents: read
+
+jobs:
+  foundation-domain:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22.13.0"
+
+      - name: Validate universal domain foundation
+        run: node scripts/validate-domain-foundation.mjs
+
+      - name: Audit existing cross-subject identity landscape
+        run: node scripts/audit-domain-foundation.mjs
+
+      - name: Parse foundation runtime JavaScript
+        run: |
+          node --check subjects/shared/domain/domain-model.js
+          node --check subjects/shared/domain/migrations.js
+
+      - name: Enforce L9 structural scope
+        if: github.event_name == 'pull_request'
+        env:
+          BASE_SHA: ${{ github.event.pull_request.base.sha }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          git diff --name-only "$BASE_SHA"...HEAD > /tmp/l9-files.txt
+          echo "L9 changed files:"
+          cat /tmp/l9-files.txt
+          while IFS= read -r file; do
+            case "$file" in
+              subjects/shared/domain/*|scripts/audit-domain-foundation.mjs|scripts/validate-domain-foundation.mjs|docs/FOUNDATION2_L9_DOMAIN_MODEL.md|.github/workflows/foundation-domain-gate.yml)
+                ;;
+              *)
+                echo "L9 scope violation: $file"
+                exit 1
+                ;;
+            esac
+          done < /tmp/l9-files.txt
+          echo "BAUMAN_L9_SCOPE_GATE=PASS"
+
+      - name: Confirm legacy runtimes remain present
+        shell: bash
+        run: |
+          set -euo pipefail
+          test -f subjects/shared/host-bridge.js
+          test -f subjects/russian/index.html
+          test -f subjects/russian/assets/learning-state.js
+          test -f subjects/math/index.html
+          test -f subjects/foundation/index.html
+          test -f subjects/foundation/data/curriculum.json
+          echo "BAUMAN_L9_LEGACY_PRESENCE_GATE=PASS"
