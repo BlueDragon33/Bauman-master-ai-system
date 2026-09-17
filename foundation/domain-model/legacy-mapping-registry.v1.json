@@ -1,0 +1,82 @@
+{
+  "schema": "BAUMAN_LEGACY_MAPPING_REGISTRY_V1",
+  "registryVersion": 1,
+  "domainContract": "BAUMAN_DOMAIN_CONTRACT_V1",
+  "overlaySchema": "BAUMAN_IDENTITY_OVERLAY_V1",
+  "policy": {
+    "mode": "overlay",
+    "legacyDataAuthoritative": true,
+    "rewriteLegacyIds": false,
+    "rewriteLegacyStorage": false,
+    "runtimeStorageWritesAllowed": false,
+    "mappingMustBeDeterministic": true,
+    "mappingMustBeIdempotent": true,
+    "unknownOverlayFieldsPreserved": true
+  },
+  "systems": [
+    {
+      "systemId": "russian-core-state",
+      "namespace": "russian-core",
+      "storageKey": "bauman_russian_survival_master_v11_clean_skeleton",
+      "legacySchema": null,
+      "scopeRules": [
+        {"scope": "state", "kind": "workflow", "localPrefix": "state"},
+        {"scope": "route", "kind": "task", "localPrefix": "route"}
+      ]
+    },
+    {
+      "systemId": "russian-learning-state",
+      "namespace": "russian-learning",
+      "storageKey": "bauman_russian_learning_state_v1",
+      "legacySchema": "RUSSIAN_LEARNING_STATE_V1",
+      "scopeRules": [
+        {"scope": "item", "kind": "task", "localPrefix": "item"},
+        {"scope": "review", "kind": "task", "localPrefix": "review"},
+        {"scope": "resume", "kind": "workflow", "localPrefix": "resume"}
+      ]
+    },
+    {
+      "systemId": "russian-learning-flow",
+      "namespace": "russian-flow",
+      "storageKey": "bauman_russian_learning_flow_v1",
+      "legacySchema": "RUSSIAN_LEARNING_FLOW_V1",
+      "scopeRules": [
+        {"scope": "lesson", "kind": "knowledge", "localPrefix": "lesson"},
+        {"scope": "step", "kind": "task", "localPrefix": "step"}
+      ]
+    },
+    {
+      "systemId": "russian-vocab-srs",
+      "namespace": "russian-vocab",
+      "storageKey": "bauman_russian_vocab_srs_v1",
+      "legacySchema": "RUSSIAN_VOCAB_SRS_V1",
+      "scopeRules": [
+        {"scope": "card", "kind": "knowledge", "localPrefix": "card"},
+        {"scope": "sentence", "kind": "artifact", "localPrefix": "sentence"}
+      ]
+    },
+    {
+      "systemId": "russian-academic-language",
+      "namespace": "russian-academic",
+      "storageKey": "bauman_russian_academic_language_v1",
+      "legacySchema": "RUSSIAN_ACADEMIC_LANGUAGE_V1",
+      "scopeRules": [
+        {"scope": "grammar", "kind": "knowledge", "localPrefix": "grammar"},
+        {"scope": "reading", "kind": "task", "localPrefix": "reading"},
+        {"scope": "writing", "kind": "artifact", "localPrefix": "writing"}
+      ]
+    },
+    {
+      "systemId": "bauman-subject-host",
+      "namespace": "host",
+      "storageKey": null,
+      "legacySchema": "BAUMAN_SUBJECT_BRIDGE_V1",
+      "scopeRules": [
+        {"scope": "subject", "kind": "knowledge", "localPrefix": "subject"},
+        {"scope": "course", "kind": "workflow", "localPrefix": "course"},
+        {"scope": "task", "kind": "task", "localPrefix": "task"},
+        {"scope": "mission", "kind": "workflow", "localPrefix": "mission"}
+      ]
+    }
+  ]
+}
