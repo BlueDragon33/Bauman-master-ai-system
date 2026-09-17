@@ -35,6 +35,8 @@ jobs:
           node --check subjects/russian/assets/learning-state.js
       - name: Audit Russian learning datasets
         run: node subjects/russian/scripts/audit-learning-data.mjs
+      - name: Audit Russian content contract
+        run: node subjects/russian/scripts/audit-content-contract.mjs
       - name: Confirm redesign did not replace learning datasets
         shell: bash
         run: |
