@@ -3,6 +3,7 @@
   const STORAGE_KEY='bauman_russian_learning_state_v1';
   const CORE_KEY=(window.SUBJECT_ADAPTER&&window.SUBJECT_ADAPTER.storageKey)||'bauman_russian_survival_master_v11_clean_skeleton';
   const SCHEMA='RUSSIAN_LEARNING_STATE_V2';
+  const LEGACY_SCHEMA='RUSSIAN_LEARNING_STATE_V1';
   const VALID_STATUS=new Set(['not_started','in_progress','review_due','mastered','completed']);
   const REVIEW_REASON_LABELS={
     wrong_answer:'Trả lời sai · cần sửa lại',
@@ -141,7 +142,8 @@
     setTimeout(apply,120);setTimeout(apply,420);
   }
   function reviewReason(reason){return REVIEW_REASON_LABELS[reason]||'Cần ôn lại';}
-  function addReview(id,reason,route,label,dueAt,evidence={}){
+  function addReview(id,reason,route,label,dueAt){
+    const evidence=(arguments[5]&&typeof arguments[5]==='object')?arguments[5]:{};
     const key=clean(id)||routeKey(route||routeFromCore());
     const previous=state.reviewQueue[key]||{};
     const scheduledAt=dueAt&&Number.isFinite(Date.parse(dueAt))?new Date(dueAt).toISOString():now();
@@ -313,6 +315,7 @@
   });
   window.RussianLearningState={
     schema:SCHEMA,
+    legacySchema:LEGACY_SCHEMA,
     get:()=>JSON.parse(JSON.stringify(state)),
     setResume,addReview,removeReview,snoozeReview,resolveReview,recordReviewResult,
     dueReviews,routeFromCore,publish,refreshResumePosition,restoreResumePosition
