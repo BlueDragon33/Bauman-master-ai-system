@@ -78,7 +78,7 @@
     const target=Math.max(0,Number(index)||0), core=readCore();
     if((core.view||'')==='vocab'){
       const visible=document.querySelector(`[data-vocab="${target}"]`);
-      if(visible){if(markDue)sessionStorage.setItem(ACTIVE_DUE_KEY,keyFor(target));visible.click();return;}
+      if(visible){visible.click();if(markDue)sessionStorage.setItem(ACTIVE_DUE_KEY,keyFor(target));return;}
     }
     const next={...core,view:'vocab',vocabIndex:target,vocabPage:Math.floor(target/20),vocabFlipped:false};
     try{localStorage.setItem(CORE_KEY,JSON.stringify(next));if(markDue)sessionStorage.setItem(ACTIVE_DUE_KEY,keyFor(target));location.reload();}catch(e){console.warn('Cannot open vocab index',e)}
