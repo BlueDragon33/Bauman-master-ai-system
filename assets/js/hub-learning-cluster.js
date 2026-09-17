@@ -2,8 +2,8 @@
    Presentation-only: preserves canonical nav nodes and handlers in-place. */
 (()=>{
   'use strict';
-  const RELEASE='HUB_LEARNING_CLUSTER_2026_09_R2';
-  const LEARNING_IDS=['study','simulation','exercise','test','review'];
+  const RELEASE='HUB_LEARNING_CLUSTER_2026_09_R3';
+  const LEARNING_IDS=['study','simulation','exercise','exam','review'];
   const REMOVE_IDS=new Set(['achievement','settings']);
   const q=(s,r=document)=>r.querySelector(s);
   const qa=(s,r=document)=>[...r.querySelectorAll(s)];
@@ -40,10 +40,14 @@
   }
 
   function makeDisplayClone(source){
+    const id=actionId(source);
     const clone=source.cloneNode(true);
     clone.removeAttribute('id');
+    clone.removeAttribute('data-safe-nav');
+    clone.removeAttribute('data-hub-action');
     clone.classList.remove('hub-nav-cluster-source','hub-nav-hidden-by-policy');
     clone.classList.add('hub-learning-clone');
+    clone.dataset.learningAction=id;
     clone.removeAttribute('aria-hidden');
     clone.removeAttribute('tabindex');
     return clone;
@@ -69,6 +73,16 @@
     return cluster;
   }
 
+  function forwardLearningAction(button){
+    const id=button?.dataset?.learningAction;
+    if(!id)return false;
+    const nav=q('#nav');
+    const source=nav&&canonicalActionButton(nav,id);
+    if(!source)return false;
+    source.click();
+    return true;
+  }
+
   function apply(){
     const nav=q('#nav');
     if(!nav)return false;
@@ -78,6 +92,16 @@
     nav.dataset.learningCluster='1';
     document.documentElement.dataset.hubLearningCluster=RELEASE;
     return LEARNING_IDS.filter(id=>Boolean(canonicalActionButton(nav,id))).length>=4;
+  }
+
+  function bind(){
+    document.addEventListener('click',event=>{
+      const button=event.target.closest('[data-learning-action]');
+      if(!button)return;
+      event.preventDefault();
+      event.stopPropagation();
+      forwardLearningAction(button);
+    },true);
   }
 
   function boot(){
@@ -90,6 +114,7 @@
     tick();
   }
 
+  bind();
   if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',boot,{once:true});
   else boot();
   window.BAUMAN_HUB_LEARNING_CLUSTER={release:RELEASE,apply,selfCheck:()=>{
@@ -98,7 +123,8 @@
       release:RELEASE,
       installed:Boolean(cluster),
       learningActions:LEARNING_IDS.filter(id=>Boolean(canonicalActionButton(nav,id))),
-      visibleLearningClones:cluster?qa('.hub-learning-clone',cluster).map(actionId):[],
+      visibleLearningClones:cluster?qa('[data-learning-action]',cluster).map(el=>el.dataset.learningAction):[],
+      canonicalSelectorsIsolated:cluster?qa('[data-safe-nav],[data-hub-action]',cluster).length===0:false,
       achievementHidden:Boolean(canonicalActionButton(nav,'achievement')?.classList.contains('hub-nav-hidden-by-policy')),
       settingsHidden:Boolean(canonicalActionButton(nav,'settings')?.classList.contains('hub-nav-hidden-by-policy')),
       progressLabel:q('span',canonicalActionButton(nav,'progress'))?.textContent?.trim()||''
