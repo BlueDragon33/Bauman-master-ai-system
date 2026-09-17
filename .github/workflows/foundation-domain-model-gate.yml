@@ -26,6 +26,7 @@ on:
       - 'scripts/validate-foundation-identity-persistence.mjs'
       - 'scripts/validate-foundation-canonical-projection.mjs'
       - 'scripts/validate-foundation-canonical-context.mjs'
+      - 'scripts/validate-foundation-l9-promotion.mjs'
       - '.github/workflows/foundation-domain-model-gate.yml'
 
 permissions:
@@ -64,10 +65,13 @@ jobs:
         run: node scripts/validate-foundation-canonical-projection.mjs
       - name: Validate canonical consumer context adapter
         run: node scripts/validate-foundation-canonical-context.mjs
+      - name: Validate L9 promotion freeze
+        run: node scripts/validate-foundation-l9-promotion.mjs
       - name: Parse foundation JSON
         run: |
           node -e "JSON.parse(require('fs').readFileSync('foundation/domain-model/domain-contract.v1.json','utf8')); console.log('FOUNDATION_JSON_PARSE=PASS')"
           node -e "JSON.parse(require('fs').readFileSync('foundation/domain-model/legacy-mapping-registry.v1.json','utf8')); console.log('LEGACY_MAPPING_REGISTRY_JSON_PARSE=PASS')"
+          node -e "JSON.parse(require('fs').readFileSync('foundation/domain-model/l9-promotion-manifest.v1.json','utf8')); console.log('FOUNDATION_L9_PROMOTION_JSON_PARSE=PASS')"
           node -e "JSON.parse(require('fs').readFileSync('foundation/learning-content/web-lesson-standard.v1.json','utf8')); console.log('WEB_LESSON_STANDARD_JSON_PARSE=PASS')"
           node -e "JSON.parse(require('fs').readFileSync('foundation/learning-content/examples/russian-lesson-01.template.v1.json','utf8')); console.log('RUSSIAN_LESSON1_TEMPLATE_JSON_PARSE=PASS')"
           node -e "JSON.parse(require('fs').readFileSync('foundation/learning-content/component-capabilities.v1.json','utf8')); console.log('LEARNING_COMPONENT_CAPABILITIES_JSON_PARSE=PASS')"
