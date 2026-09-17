@@ -1,0 +1,122 @@
+/* Bauman Hub Safe Redesign R1
+   Presentation-only layer. No route/state/content ownership. */
+:root{
+  --hs-r1-focus:#f4d07a;
+  --hs-r1-line:rgba(121,157,199,.34);
+  --hs-r1-line-strong:rgba(242,199,108,.42);
+  --hs-r1-shadow:0 18px 48px rgba(0,0,0,.24);
+  --hs-r1-shadow-hover:0 22px 54px rgba(0,0,0,.30);
+}
+
+/* Premium depth without changing box geometry. */
+body.canva-main-v2 .topbar{
+  background:
+    radial-gradient(circle at 72% -90%,rgba(70,138,218,.14),transparent 34%),
+    rgba(3,9,20,.96)!important;
+}
+body.canva-main-v2 .hub-safe-card{
+  border-color:var(--hs-r1-line)!important;
+  box-shadow:var(--hs-r1-shadow)!important;
+  position:relative;
+  isolation:isolate;
+}
+body.canva-main-v2 .hub-safe-card::before{
+  content:"";
+  position:absolute;
+  z-index:-1;
+  inset:0;
+  border-radius:inherit;
+  pointer-events:none;
+  background:linear-gradient(145deg,rgba(255,255,255,.035),transparent 36%);
+}
+body.canva-main-v2 .hub-safe-hero{
+  border-color:rgba(103,145,193,.52)!important;
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.05),inset 0 0 76px rgba(2,7,14,.34),0 18px 46px rgba(0,0,0,.24)!important;
+}
+body.canva-main-v2 .hub-safe-hero::before{
+  content:"";
+  position:absolute;
+  inset:0;
+  z-index:1;
+  pointer-events:none;
+  background:linear-gradient(180deg,rgba(255,255,255,.045),transparent 26%);
+}
+body.canva-main-v2 .hub-safe-hero-copy,
+body.canva-main-v2 .hub-safe-quote{z-index:2}
+
+/* Subject cards read like selectable study modules, not generic tiles. */
+body.canva-main-v2 .hub-safe-subject{
+  position:relative;
+  isolation:isolate;
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.035),0 10px 26px rgba(0,0,0,.14)!important;
+}
+body.canva-main-v2 .hub-safe-subject::after{
+  content:"";
+  position:absolute;
+  left:10px;
+  right:10px;
+  top:0;
+  height:1px;
+  background:linear-gradient(90deg,transparent,var(--subject-accent,#9b8cff),transparent);
+  opacity:.55;
+  pointer-events:none;
+}
+body.canva-main-v2 .hub-safe-subject:hover{
+  border-color:color-mix(in srgb,var(--subject-accent,#9b8cff) 58%,#405978)!important;
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.05),0 16px 34px rgba(0,0,0,.24)!important;
+}
+body.canva-main-v2 .hub-safe-subject .icon{
+  filter:drop-shadow(0 3px 12px color-mix(in srgb,var(--subject-accent,#9b8cff) 28%,transparent));
+}
+
+/* Stronger hierarchy for primary actions while preserving existing semantics. */
+body.canva-main-v2 .hub-safe-gold{
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.55),0 10px 26px rgba(239,174,60,.20)!important;
+}
+body.canva-main-v2 .hub-safe-outline{
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.04)!important;
+}
+body.canva-main-v2 .ai-trigger{
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.16),0 10px 26px rgba(31,118,206,.20)!important;
+}
+body.canva-main-v2 .hub-safe-assistant{
+  border-color:rgba(66,141,191,.44)!important;
+}
+body.canva-main-v2 .hub-safe-assistant::after{
+  content:"";
+  position:absolute;
+  inset:0;
+  border-radius:inherit;
+  pointer-events:none;
+  box-shadow:inset 0 0 0 1px rgba(53,214,255,.035);
+}
+
+/* Keyboard clarity across the additive shell. */
+body.canva-main-v2 :is(.nav button,.hub-safe-nav-action,.hub-safe-subject,.hub-safe-link,.hub-safe-gold,.hub-safe-outline,.hub-safe-suggestions button,.hub-safe-ai-input,.appearance-trigger,.ai-trigger,.avatar-btn):focus-visible{
+  outline:2px solid var(--hs-r1-focus)!important;
+  outline-offset:2px!important;
+}
+body.canva-main-v2 .hub-safe-search:focus-within{
+  border-color:rgba(99,169,232,.72)!important;
+  box-shadow:0 0 0 3px rgba(75,169,255,.10),inset 0 1px 0 rgba(255,255,255,.04)!important;
+}
+
+/* Theme-aware accents; geometry stays untouched. */
+body.canva-main-v2[data-theme="night"]{--hs-r1-line:rgba(91,127,168,.32);--hs-r1-focus:#d5b766}
+body.canva-main-v2[data-theme="mint"]{--hs-r1-line:rgba(88,166,143,.34);--hs-r1-focus:#7de2bd}
+body.canva-main-v2[data-theme="paper"]{--hs-r1-line:rgba(139,108,65,.24);--hs-r1-focus:#9f691e;--hs-r1-shadow:0 16px 38px rgba(58,41,19,.12);--hs-r1-shadow-hover:0 20px 44px rgba(58,41,19,.16)}
+body.canva-main-v2[data-theme="paper"] .hub-safe-card::before,
+body.canva-main-v2[data-theme="paper"] .hub-safe-hero::before{opacity:.45}
+
+/* Respect users who disable motion. */
+@media (prefers-reduced-motion:reduce){
+  body.canva-main-v2 *,
+  body.canva-main-v2 *::before,
+  body.canva-main-v2 *::after{
+    scroll-behavior:auto!important;
+    transition-duration:.001ms!important;
+    animation-duration:.001ms!important;
+    animation-iteration-count:1!important;
+  }
+  body.canva-main-v2 .hub-safe-subject:hover{transform:none!important}
+}
