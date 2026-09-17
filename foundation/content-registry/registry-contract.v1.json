@@ -6,10 +6,7 @@
     "schema": "BAUMAN_DOMAIN_CONTRACT_V1",
     "contractVersion": 1,
     "gitBlobSha": "0691acecbec6734cb746aa9cb745350880a98d59",
-    "canonicalEntityKinds": [
-      "source",
-      "artifact"
-    ],
+    "canonicalEntityKinds": ["source", "artifact"],
     "mustNotMutateDomainContract": true
   },
   "compatibility": {
@@ -21,14 +18,7 @@
   },
   "identity": {
     "registryIdPattern": "bdr:<recordType>:<namespace>:<localId>",
-    "allowedRecordTypes": [
-      "asset",
-      "content",
-      "source",
-      "provenance",
-      "checksum",
-      "access"
-    ],
+    "allowedRecordTypes": ["asset", "content", "source", "provenance", "checksum", "access"],
     "canonicalEntityField": "canonicalEntityId",
     "rules": {
       "stable": true,
@@ -39,147 +29,52 @@
   },
   "models": {
     "asset": {
-      "required": [
-        "registryId",
-        "canonicalEntityId",
-        "assetType",
-        "mediaType",
-        "checksumId",
-        "locators",
-        "state",
-        "recordVersion"
-      ],
-      "assetTypes": [
-        "pdf",
-        "ppt",
-        "pptx",
-        "audio",
-        "image",
-        "dataset",
-        "paper",
-        "document",
-        "video",
-        "archive",
-        "code",
-        "other"
-      ],
-      "states": [
-        "staged",
-        "verified",
-        "active",
-        "superseded",
-        "quarantined",
-        "missing"
-      ]
+      "required": ["registryId", "canonicalEntityId", "assetType", "mediaType", "checksumId", "locators", "state", "recordVersion"],
+      "assetTypes": ["pdf", "ppt", "pptx", "audio", "image", "dataset", "paper", "document", "video", "archive", "code", "other"],
+      "states": ["staged", "verified", "active", "superseded", "quarantined", "missing"]
     },
     "content": {
-      "required": [
-        "registryId",
-        "canonicalEntityId",
-        "contentType",
-        "title",
-        "assetIds",
-        "sourceIds",
-        "provenanceEventIds",
-        "recordVersion"
-      ],
-      "contentTypes": [
-        "learning_material",
-        "reference",
-        "assessment",
-        "research_material",
-        "dataset",
-        "publication",
-        "generated_content",
-        "other"
-      ]
+      "required": ["registryId", "canonicalEntityId", "contentType", "title", "assetIds", "sourceIds", "provenanceEventIds", "recordVersion"],
+      "contentTypes": ["learning_material", "reference", "assessment", "research_material", "dataset", "publication", "generated_content", "other"]
     },
     "source": {
-      "required": [
-        "registryId",
-        "canonicalEntityId",
-        "sourceType",
-        "title",
-        "locator",
-        "capturedAt",
-        "recordVersion"
-      ],
-      "sourceTypes": [
-        "repository",
-        "external_url",
-        "citation",
-        "user_import",
-        "generated",
-        "legacy"
-      ]
+      "required": ["registryId", "canonicalEntityId", "sourceType", "title", "locator", "capturedAt", "recordVersion"],
+      "sourceTypes": ["repository", "external_url", "citation", "user_import", "generated", "legacy"]
     },
     "provenance": {
-      "required": [
-        "registryId",
-        "eventType",
-        "subjectId",
-        "sourceIds",
-        "at",
-        "actor",
-        "recordVersion"
-      ],
-      "eventTypes": [
-        "captured",
-        "imported",
-        "transformed",
-        "generated",
-        "verified",
-        "superseded",
-        "relocated",
-        "linked"
-      ],
+      "required": ["registryId", "eventType", "subjectId", "sourceIds", "at", "actor", "recordVersion"],
+      "eventTypes": ["captured", "imported", "transformed", "generated", "verified", "superseded", "relocated", "linked"],
       "appendOnly": true,
-      "previousEventField": "previousEventId"
+      "previousEventField": "previousEventId",
+      "inputField": "inputIds",
+      "inputRecordTypes": ["asset", "content"],
+      "checksumField": "checksumId",
+      "requiresInputIdsFor": ["transformed"],
+      "requiresLineageFor": ["generated"],
+      "requiresChecksumFor": ["verified"]
     },
     "checksum": {
-      "required": [
-        "registryId",
-        "algorithm",
-        "digest",
-        "byteLength",
-        "recordVersion"
-      ],
+      "required": ["registryId", "algorithm", "digest", "byteLength", "recordVersion"],
       "requiredAlgorithm": "sha256",
       "digestEncoding": "lowercase_hex",
       "digestLength": 64,
       "immutable": true
     },
     "access": {
-      "required": [
-        "registryId",
-        "scope",
-        "visibility",
-        "recordVersion"
-      ],
-      "visibility": [
-        "private",
-        "course",
-        "organization",
-        "public"
-      ],
+      "required": ["registryId", "scope", "visibility", "recordVersion"],
+      "visibility": ["private", "course", "organization", "public"],
       "defaultVisibility": "private"
     }
   },
   "locatorPolicy": {
-    "canonicalLocatorKinds": [
-      "repository_relative",
-      "https_url",
-      "content_hash"
-    ],
+    "canonicalLocatorKinds": ["repository_relative", "https_url", "content_hash"],
     "repositoryRelative": {
       "separator": "/",
       "mustNotStartWithSlash": true,
       "mustNotContainDriveLetter": true,
       "mustNotContainParentTraversal": true
     },
-    "externalUrl": {
-      "scheme": "https"
-    },
+    "externalUrl": {"scheme": "https"},
     "rule": "OS-specific absolute paths may be recorded only as non-canonical import metadata; they must never be canonical locators."
   },
   "provenancePolicy": {
@@ -187,6 +82,8 @@
     "generatedContentMustRetainSourceLineage": true,
     "transformMustReferenceInputs": true,
     "verificationMustReferenceChecksum": true,
+    "previousEventMustShareSubject": true,
+    "lineageCyclesForbidden": true,
     "historyMayNotBeRewritten": true
   },
   "versioning": {
