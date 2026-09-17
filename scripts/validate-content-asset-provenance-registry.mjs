@@ -1,5 +1,6 @@
 import fs from 'node:fs';
 import path from 'node:path';
+import crypto from 'node:crypto';
 
 const root=process.cwd();
 const contractPath=path.join(root,'foundation/content-registry/registry-contract.v1.json');
@@ -13,6 +14,11 @@ for(const file of [contractPath,fixturePath,domainPath]) assert(fs.existsSync(fi
 const contract=readJson(contractPath);
 const fixture=readJson(fixturePath);
 const domain=readJson(domainPath);
+const domainBuffer=fs.readFileSync(domainPath);
+const domainBlobSha=crypto.createHash('sha1')
+  .update(Buffer.from(`blob ${domainBuffer.length}\0`))
+  .update(domainBuffer)
+  .digest('hex');
 
 assert(contract.schema==='BAUMAN_CONTENT_ASSET_PROVENANCE_REGISTRY_V1','Unexpected registry schema');
 assert(contract.contractVersion===1,'Registry contract version must be 1');
@@ -25,6 +31,7 @@ assert(contract.compatibility?.breakingChangesForbidden===true,'Breaking changes
 
 assert(domain.schema===contract.domainDependency?.schema,'Registry must depend on the current foundation domain schema');
 assert(domain.contractVersion===contract.domainDependency?.contractVersion,'Registry domain contract version mismatch');
+assert(domainBlobSha===contract.domainDependency?.gitBlobSha,`L9 domain contract changed: expected ${contract.domainDependency?.gitBlobSha}, got ${domainBlobSha}`);
 assert(contract.domainDependency?.mustNotMutateDomainContract===true,'L10 registry must not mutate L9 domain contract');
 for(const kind of contract.domainDependency?.canonicalEntityKinds||[]){
   assert(domain.identity?.allowedKinds?.includes(kind),`Registry canonical kind is not allowed by domain contract: ${kind}`);
@@ -131,6 +138,7 @@ console.log(JSON.stringify({
   models:requiredModels.length,
   fixtureRecords:seenIds.size,
   domainSchema:domain.schema,
+  domainBlobSha,
   compatibility:contract.compatibility.strategy,
   runtimeIntegration:contract.compatibility.runtimeIntegration
 },null,2));
