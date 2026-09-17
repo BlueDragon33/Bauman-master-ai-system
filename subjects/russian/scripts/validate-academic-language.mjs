@@ -1,0 +1,38 @@
+import fs from 'node:fs';
+import path from 'node:path';
+
+const root=path.resolve('subjects/russian');
+const js=fs.readFileSync(path.join(root,'assets','academic-language.js'),'utf8');
+const css=fs.readFileSync(path.join(root,'assets','academic-language.css'),'utf8');
+const html=fs.readFileSync(path.join(root,'index.html'),'utf8');
+const need=(text,token,msg)=>{if(!text.includes(token))throw new Error(msg||`Missing token: ${token}`);};
+const forbid=(text,token,msg)=>{if(text.includes(token))throw new Error(msg||`Forbidden token: ${token}`);};
+
+need(js,'RUSSIAN_ACADEMIC_LANGUAGE_V1','Missing academic language schema');
+need(js,"'grammar_review'",'Grammar Review Queue reason missing');
+need(js,"'reading_review'",'Reading Review Queue reason missing');
+need(js,"'writing_review'",'Writing Review Queue reason missing');
+need(js,'RussianLearningState?.addReview','Canonical Review Queue bridge missing');
+need(js,'RussianLearningState?.setResume','Exact resume bridge missing');
+need(js,'RussianLearningFlow?.touch','Learning Flow evidence bridge missing');
+need(js,'knowledge-index','Reading knowledge-index source missing');
+need(js,'grammar-path','Grammar path source missing');
+need(js,'writing_snapshot','Writing snapshot evidence missing');
+need(js,'Câu tự tạo cần có chữ Cyrillic','Cyrillic guard for grammar sentence missing');
+need(js,'Bản viết cần có chữ Cyrillic','Cyrillic guard for writing snapshot missing');
+need(js,'Không thay đổi mastery','Truthful grammar mastery wording missing');
+need(js,'không phải điểm hay xác nhận đạt chuẩn','Truthful writing evidence wording missing');
+need(js,'không phải danh sách chính thức bên ngoài repo','Reading source provenance wording missing');
+need(css,'.ru-academic-bridge','Academic bridge CSS missing');
+need(css,'.ru-academic-rubric','Writing rubric CSS missing');
+need(css,'@media(max-width:760px)','Phone responsive breakpoint missing');
+need(html,'assets/academic-language.css','Academic language CSS not loaded');
+need(html,'assets/academic-language.js','Academic language JS not loaded');
+const coach=html.indexOf('assets/speaking-coach.js'), academic=html.indexOf('assets/academic-language.js'), ui=html.indexOf('assets/russian-reference-ui.js');
+if(!(coach>=0&&academic>coach&&ui>academic))throw new Error('Academic language bridge must load after speaking coach and before reference UI');
+forbid(js,'Math.random','Synthetic random evidence is forbidden');
+forbid(js,'mastered:true','Academic bridge must not write mastery');
+forbid(js,"status:'mastered'",'Academic bridge must not write mastery');
+forbid(js,'completed:true','Academic bridge must not write completion');
+console.log('RUSSIAN_ACADEMIC_LANGUAGE_RUNTIME_GATE=PASS');
+console.log('Checks: grammar practice evidence, lesson-linked reading, stage-scoped writing, exact review routes, Cyrillic guards, source provenance, no synthetic mastery.');
