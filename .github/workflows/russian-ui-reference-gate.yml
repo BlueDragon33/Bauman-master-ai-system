@@ -27,11 +27,14 @@ jobs:
           node-version: "22.13.0"
       - name: Validate Russian reference UI contracts
         run: node subjects/russian/scripts/validate-reference-ui.mjs
-      - name: Parse core UI JavaScript
+      - name: Parse Russian runtime JavaScript
         run: |
           node --check subjects/russian/assets/core.js
           node --check subjects/russian/assets/subject-adapter.js
           node --check subjects/russian/assets/russian-reference-ui.js
+          node --check subjects/russian/assets/learning-state.js
+      - name: Audit Russian learning datasets
+        run: node subjects/russian/scripts/audit-learning-data.mjs
       - name: Confirm redesign did not replace learning datasets
         shell: bash
         run: |
