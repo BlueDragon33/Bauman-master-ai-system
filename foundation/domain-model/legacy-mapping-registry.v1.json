@@ -20,7 +20,11 @@
     "legacyKeysNeverWritten": true,
     "stagingRequired": true,
     "readBackVerificationRequired": true,
-    "recoveryFromValidStagingAllowed": true
+    "recoveryFromValidStagingAllowed": true,
+    "browserPersistenceMode": "verified_overlay_only",
+    "browserAutoCommitAllowed": true,
+    "corruptOverlayAutoRepairAllowed": false,
+    "idempotentNoRewriteRequired": true
   },
   "systems": [
     {
