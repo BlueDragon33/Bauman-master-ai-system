@@ -169,10 +169,11 @@
     return entry;
   }
 
-  function legacyMapping({entityType,namespace,legacyId,canonicalLocalId,sourceSchema=''}){
+  function legacyMapping({entityType,namespace,legacyId,legacyLocator,canonicalLocalId,sourceSchema=''}){
     assert(typeof legacyId==='string'&&legacyId.length>0,'legacyId is required');
+    assert(typeof legacyLocator==='string'&&legacyLocator.trim(),'legacyLocator is required because legacy IDs are not guaranteed unique');
     const canonicalId=makeId(entityType,namespace,canonicalLocalId);
-    return Object.freeze({legacyId,canonicalId,entityType,namespace,sourceSchema:String(sourceSchema||'')});
+    return Object.freeze({legacyId,legacyLocator,canonicalId,entityType,namespace,sourceSchema:String(sourceSchema||'')});
   }
 
   const api=Object.freeze({
