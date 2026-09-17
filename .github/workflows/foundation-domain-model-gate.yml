@@ -12,6 +12,7 @@ on:
       - 'subjects/russian/assets/content-contract.js'
       - 'scripts/validate-foundation-domain-model.mjs'
       - 'scripts/validate-web-lesson-standard.mjs'
+      - 'scripts/validate-russian-lesson1-golden-template.mjs'
       - '.github/workflows/foundation-domain-model-gate.yml'
 
 permissions:
@@ -32,7 +33,10 @@ jobs:
         run: node scripts/validate-foundation-domain-model.mjs
       - name: Validate web lesson authoring standard
         run: node scripts/validate-web-lesson-standard.mjs
+      - name: Validate Russian Lesson 1 golden template
+        run: node scripts/validate-russian-lesson1-golden-template.mjs
       - name: Parse foundation JSON
         run: |
           node -e "JSON.parse(require('fs').readFileSync('foundation/domain-model/domain-contract.v1.json','utf8')); console.log('FOUNDATION_JSON_PARSE=PASS')"
           node -e "JSON.parse(require('fs').readFileSync('foundation/learning-content/web-lesson-standard.v1.json','utf8')); console.log('WEB_LESSON_STANDARD_JSON_PARSE=PASS')"
+          node -e "JSON.parse(require('fs').readFileSync('foundation/learning-content/examples/russian-lesson-01.template.v1.json','utf8')); console.log('RUSSIAN_LESSON1_TEMPLATE_JSON_PARSE=PASS')"
