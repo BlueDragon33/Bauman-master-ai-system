@@ -13,6 +13,7 @@ const foundationRuntime=[
   'subjects/shared/foundation-identity-bootstrap.js',
   'subjects/shared/foundation-identity-persistence.js',
   'subjects/shared/foundation-identity-projection.js',
+  'subjects/shared/foundation-canonical-context.js',
   'foundation/domain-model/canonical-identity-runtime.js',
   'foundation/domain-model/identity-overlay-store.js',
   'foundation/domain-model/legacy-snapshot-extractor.js',
@@ -55,7 +56,8 @@ for(const resource of [
   '../../foundation/domain-model/canonical-read-projection.js',
   '../shared/foundation-identity-bootstrap.js',
   '../shared/foundation-identity-persistence.js',
-  '../shared/foundation-identity-projection.js'
+  '../shared/foundation-identity-projection.js',
+  '../shared/foundation-canonical-context.js'
 ]){
   if(!russianHtml.includes(resource))throw new Error(`Packaged Russian runtime is missing Foundation script reference ${resource}.`);
 }
@@ -80,5 +82,6 @@ console.log(JSON.stringify({
   accessBoundary:'chatgpt-site-owner-private',
   foundationRuntime:'present',
   canonicalProjection:'present',
+  canonicalContext:'present',
   revision
 },null,2));
