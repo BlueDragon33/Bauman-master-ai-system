@@ -8,9 +8,12 @@ on:
     paths:
       - 'foundation/content-registry/**'
       - 'foundation/domain-model/domain-contract.v1.json'
+      - 'foundation/domain-model/canonical-identity-runtime.js'
       - 'scripts/validate-content-asset-provenance-registry.mjs'
+      - 'scripts/validate-content-asset-registry-runtime.mjs'
       - 'scripts/validate-foundation-domain-model.mjs'
       - 'tests/content-asset-provenance-contract.test.mjs'
+      - 'tests/content-asset-registry-runtime.test.mjs'
       - '.github/workflows/content-asset-provenance-gate.yml'
 
 permissions:
@@ -27,16 +30,23 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: '22'
-      - name: Check validator syntax
+      - name: Check validator and runtime syntax
         run: |
+          node --check foundation/content-registry/content-asset-registry.js
           node --check scripts/validate-content-asset-provenance-registry.mjs
+          node --check scripts/validate-content-asset-registry-runtime.mjs
           node --check tests/content-asset-provenance-contract.test.mjs
+          node --check tests/content-asset-registry-runtime.test.mjs
       - name: Validate promoted L9 domain foundation
         run: node scripts/validate-foundation-domain-model.mjs
-      - name: Validate content asset provenance registry
+      - name: Validate content asset provenance contract
         run: node scripts/validate-content-asset-provenance-registry.mjs
-      - name: Run negative contract tests
+      - name: Run contract negative tests
         run: node tests/content-asset-provenance-contract.test.mjs
+      - name: Validate immutable registry runtime
+        run: node scripts/validate-content-asset-registry-runtime.mjs
+      - name: Run registry runtime negative tests
+        run: node tests/content-asset-registry-runtime.test.mjs
       - name: Parse registry JSON
         run: |
           node -e "JSON.parse(require('fs').readFileSync('foundation/content-registry/registry-contract.v1.json','utf8')); console.log('CONTENT_REGISTRY_JSON_PARSE=PASS')"
