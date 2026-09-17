@@ -23,6 +23,7 @@ need(js,'Bản viết cần có chữ Cyrillic','Cyrillic guard for writing snap
 need(js,'Không thay đổi mastery','Truthful grammar mastery wording missing');
 need(js,'không phải điểm hay xác nhận đạt chuẩn','Truthful writing evidence wording missing');
 need(js,'không phải danh sách chính thức bên ngoài repo','Reading source provenance wording missing');
+need(js,'subtree:false','Academic bridge observer must avoid subtree render loops');
 need(css,'.ru-academic-bridge','Academic bridge CSS missing');
 need(css,'.ru-academic-rubric','Writing rubric CSS missing');
 need(css,'@media(max-width:760px)','Phone responsive breakpoint missing');
@@ -35,4 +36,4 @@ forbid(js,'mastered:true','Academic bridge must not write mastery');
 forbid(js,"status:'mastered'",'Academic bridge must not write mastery');
 forbid(js,'completed:true','Academic bridge must not write completion');
 console.log('RUSSIAN_ACADEMIC_LANGUAGE_RUNTIME_GATE=PASS');
-console.log('Checks: grammar practice evidence, lesson-linked reading, stage-scoped writing, exact review routes, Cyrillic guards, source provenance, no synthetic mastery.');
+console.log('Checks: grammar practice evidence, lesson-linked reading, stage-scoped writing, exact review routes, Cyrillic guards, source provenance, stable rendering, no synthetic mastery.');
