@@ -29,6 +29,8 @@ jobs:
         run: node subjects/russian/scripts/validate-reference-ui.mjs
       - name: Validate Russian lesson learning flow
         run: node subjects/russian/scripts/validate-learning-flow.mjs
+      - name: Validate Russian vocabulary SRS runtime
+        run: node subjects/russian/scripts/validate-vocab-srs.mjs
       - name: Parse Russian runtime JavaScript
         run: |
           node --check subjects/russian/assets/core.js
@@ -37,6 +39,7 @@ jobs:
           node --check subjects/russian/assets/russian-reference-ui.js
           node --check subjects/russian/assets/learning-state.js
           node --check subjects/russian/assets/learning-flow.js
+          node --check subjects/russian/assets/vocab-srs.js
       - name: Audit Russian learning datasets
         run: node subjects/russian/scripts/audit-learning-data.mjs
       - name: Audit Russian content contract
@@ -59,4 +62,6 @@ jobs:
           test -f subjects/russian/assets/content-contract.css
           test -f subjects/russian/assets/learning-flow.js
           test -f subjects/russian/assets/learning-flow.css
-          echo "Russian learning datasets, content contract and learning flow remain present."
+          test -f subjects/russian/assets/vocab-srs.js
+          test -f subjects/russian/assets/vocab-srs.css
+          echo "Russian learning datasets, content contract, learning flow and vocab SRS remain present."
