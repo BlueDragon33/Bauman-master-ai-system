@@ -10,6 +10,7 @@
 <link rel="stylesheet" href="assets/russian-reference-ui.css">
 <link rel="stylesheet" href="assets/russian-reference-ui-polish.css">
 <link rel="stylesheet" href="assets/learning-state.css">
+<link rel="stylesheet" href="assets/content-contract.css">
 </head>
 <body class="ru-reference-ui">
 <div id="app" class="app ru-app-shell">
@@ -30,13 +31,14 @@
   </main>
   <aside id="russianRightRail" class="ru-right-rail" aria-label="Trợ lý và công cụ nhanh">
     <section class="ru-rail-card ru-ai-rail-card"><header><div class="ru-rail-icon">♙</div><div><b>AI Trợ lý Tiếng Nga</b><small>Giải thích, hội thoại và luyện phản xạ.</small></div></header><div class="ru-ai-bubble"><span class="ru-ai-orb">AI</span><p><b>Привет!</b><br>Tôi có thể giúp giải thích hoặc luyện nội dung bạn đang học.</p></div><div class="ru-ai-quick"><button data-ai-quick="vocab">Giải thích từ/cụm đang học</button><button data-ai-quick="lesson">Giải thích ngữ pháp/bài hiện tại</button><button data-ai-quick="dialogue">Thực hành hội thoại với AI</button><button data-ai-quick="review">Gợi ý bài học phù hợp hôm nay</button></div><div class="ru-ai-input-row"><input id="ruRailAiPrompt" type="text" placeholder="Nhập câu hỏi của bạn..."><button id="ruRailAiSend" type="button" aria-label="Gửi câu hỏi">➤</button></div></section>
-    <section class="ru-rail-card ru-pronunciation-card"><header><div><b>🎙 Luyện phát âm</b><small>Nghe · nhại · tự sửa</small></div></header><div class="ru-pronunciation-main"><span class="ru-mic-ring">◉</span><div><strong>Привет</strong><small>/priˈvʲet/</small><i></i></div></div><button class="ru-rail-primary" data-route='{"view":"dialogue"}'>Mở phòng luyện nói →</button></section>
+    <section class="ru-rail-card ru-pronunciation-card"><header><div><b>🎙 Trọng âm & phát âm</b><small>Chữ viết · nghe · nhại · tự sửa</small></div></header><div class="ru-pronunciation-main"><span class="ru-mic-ring">◉</span><div><strong>Không đoán trọng âm</strong><small>Thẻ từ sẽ chỉ rõ dữ liệu nào là chữ Nga, phiên tự Latin và dữ liệu trọng âm thật.</small><i></i></div></div><button class="ru-rail-primary" data-route='{"view":"vocab"}'>Mở thẻ từ →</button><button class="ru-rail-primary" data-route='{"view":"dialogue"}'>Mở phòng luyện nói →</button></section>
     <section class="ru-rail-card ru-rail-focus-card"><span>KỶ LUẬT HÔM NAY</span><b>Mỗi ngày nghe một ít, nói một ít, tiến gần hơn tới nước Nga.</b><button data-act="route-modal">Mở lịch trình hôm nay</button></section>
   </aside>
 </div>
 <div id="modal" class="modal hidden"><div class="modal-card"><button class="modal-close" id="modalClose">×</button><div id="modalBody"></div></div></div>
 <div id="toast" class="toast"></div>
 <script src="assets/subject-adapter.js"></script>
+<script src="assets/content-contract.js"></script>
 <script src="../shared/host-bridge.js"></script>
 <script src="assets/planning-bridge.js"></script>
 <script src="assets/russian-optional-data-loader.js"></script>
