@@ -14,6 +14,11 @@ for(const relative of [
   'assets/js/platform/device-access-gate.js',
   'subjects/math/index.html',
   'subjects/russian/index.html',
+  'subjects/shared/foundation-identity-bootstrap.js',
+  'foundation/domain-model/canonical-identity-runtime.js',
+  'foundation/domain-model/identity-overlay-store.js',
+  'foundation/domain-model/legacy-snapshot-extractor.js',
+  'foundation/domain-model/legacy-mapping-registry.v1.json',
   'subjects/russian/data/chunks/dialogue-bauman-az/manifest.json',
   'subjects/russian/data/chunks/deep-speaking-bauman/manifest.json'
 ]){
@@ -28,6 +33,18 @@ for(const removed of [
 
 fs.rmSync(output,{recursive:true,force:true});
 fs.cpSync(source,output,{recursive:true});
+
+// Defense in depth: a ChatGPT Site package is valid only if the Foundation files
+// referenced by packaged subject pages survived the runtime-dist -> dist copy.
+for(const relative of [
+  'subjects/shared/foundation-identity-bootstrap.js',
+  'foundation/domain-model/canonical-identity-runtime.js',
+  'foundation/domain-model/identity-overlay-store.js',
+  'foundation/domain-model/legacy-snapshot-extractor.js',
+  'foundation/domain-model/legacy-mapping-registry.v1.json'
+]){
+  if(!fs.statSync(path.join(output,relative),{throwIfNoEntry:false})?.isFile())throw new Error(`ChatGPT Site package is missing runtime dependency ${relative}.`);
+}
 
 const indexPath=path.join(output,'index.html');
 const sourceHtml=fs.readFileSync(indexPath,'utf8');
@@ -47,5 +64,6 @@ console.log(JSON.stringify({
   source:'runtime-dist',
   output:'dist',
   accessBoundary:'chatgpt-site-owner-private',
+  foundationRuntime:'present',
   revision
 },null,2));
