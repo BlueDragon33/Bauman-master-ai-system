@@ -32,48 +32,52 @@
     if(typeof root.dispatchEvent==='function'&&typeof root.CustomEvent==='function')root.dispatchEvent(new root.CustomEvent('bauman:foundation-identity-persistence',{detail:lastResult}));
     return lastResult;
   }
+  async function execute(report,options){
+    try{
+      if(!report||report.schema!=='BAUMAN_FOUNDATION_IDENTITY_BOOTSTRAP_V1'||report.mode!=='silent-read-only'||!report.overlay){
+        return result('skipped',{reason:'bootstrap_report_not_ready'});
+      }
+      const {bootstrap,store}=deps();
+      const registry=options.registry||await bootstrap.loadRegistry(options.fetchImpl||root.fetch?.bind(root));
+      const policy=registry?.persistence||{};
+      if(policy.browserPersistenceMode!=='verified_overlay_only'||policy.browserAutoCommitAllowed!==true||policy.legacyKeysNeverWritten!==true){
+        return result('blocked-policy',{reason:'persistence_policy_not_verified'});
+      }
+      const storage=options.storage||root.localStorage;
+      if(!storage||typeof storage.getItem!=='function'||typeof storage.setItem!=='function'||typeof storage.removeItem!=='function')throw new Error('FOUNDATION_IDENTITY_PERSISTENCE_STORAGE_MISSING');
+      if(store.checksum(report.overlay)!==report.plannedChecksum)return result('blocked-integrity',{reason:'bootstrap_checksum_mismatch'});
+      const beforeLegacy=legacySnapshot(registry,storage);
+      let current=store.read(storage,registry);
+      if(current.status==='corrupt')return result('blocked-corrupt',{reason:'existing_overlay_corrupt',mappingCount:Object.keys(report.overlay.mappings||{}).length});
+      if(current.status==='ok'&&store.checksum(current.overlay)===report.plannedChecksum){
+        return result('unchanged',{mappingCount:Object.keys(report.overlay.mappings||{}).length,checksum:report.plannedChecksum});
+      }
+      if(current.status==='staging'&&store.checksum(current.overlay)===report.plannedChecksum){
+        current=store.recover(storage,registry);
+        const afterRecoveryLegacy=legacySnapshot(registry,storage);
+        if(!sameLegacy(beforeLegacy,afterRecoveryLegacy))throw new Error('FOUNDATION_IDENTITY_PERSISTENCE_LEGACY_MUTATION');
+        return result('recovered',{mappingCount:Object.keys(report.overlay.mappings||{}).length,checksum:report.plannedChecksum,persistedStatus:current.status});
+      }
+      const at=clean(options.now)||new Date().toISOString();
+      const envelope=store.commit(storage,registry,report.overlay,at);
+      const verified=store.read(storage,registry);
+      if(verified.status!=='ok'||store.checksum(verified.overlay)!==report.plannedChecksum)throw new Error('FOUNDATION_IDENTITY_PERSISTENCE_VERIFY_FAILED');
+      const afterLegacy=legacySnapshot(registry,storage);
+      if(!sameLegacy(beforeLegacy,afterLegacy))throw new Error('FOUNDATION_IDENTITY_PERSISTENCE_LEGACY_MUTATION');
+      return result('persisted',{mappingCount:Object.keys(report.overlay.mappings||{}).length,checksum:envelope.checksum,persistedStatus:verified.status});
+    }catch(error){
+      return result('failed',{error:clean(error?.message||error)});
+    }
+  }
   async function persist(report=root.BAUMAN_FOUNDATION_IDENTITY_REPORT,options={}){
     if(inFlight)return inFlight;
-    inFlight=(async()=>{
-      try{
-        if(!report||report.schema!=='BAUMAN_FOUNDATION_IDENTITY_BOOTSTRAP_V1'||report.mode!=='silent-read-only'||!report.overlay){
-          return result('skipped',{reason:'bootstrap_report_not_ready'});
-        }
-        const {bootstrap,store}=deps();
-        const registry=options.registry||await bootstrap.loadRegistry(options.fetchImpl||root.fetch?.bind(root));
-        const policy=registry?.persistence||{};
-        if(policy.browserPersistenceMode!=='verified_overlay_only'||policy.browserAutoCommitAllowed!==true||policy.legacyKeysNeverWritten!==true){
-          return result('blocked-policy',{reason:'persistence_policy_not_verified'});
-        }
-        const storage=options.storage||root.localStorage;
-        if(!storage||typeof storage.getItem!=='function'||typeof storage.setItem!=='function'||typeof storage.removeItem!=='function')throw new Error('FOUNDATION_IDENTITY_PERSISTENCE_STORAGE_MISSING');
-        if(store.checksum(report.overlay)!==report.plannedChecksum)return result('blocked-integrity',{reason:'bootstrap_checksum_mismatch'});
-        const beforeLegacy=legacySnapshot(registry,storage);
-        let current=store.read(storage,registry);
-        if(current.status==='corrupt')return result('blocked-corrupt',{reason:'existing_overlay_corrupt',mappingCount:Object.keys(report.overlay.mappings||{}).length});
-        if(current.status==='ok'&&store.checksum(current.overlay)===report.plannedChecksum){
-          return result('unchanged',{mappingCount:Object.keys(report.overlay.mappings||{}).length,checksum:report.plannedChecksum});
-        }
-        if(current.status==='staging'&&store.checksum(current.overlay)===report.plannedChecksum){
-          current=store.recover(storage,registry);
-          const afterRecoveryLegacy=legacySnapshot(registry,storage);
-          if(!sameLegacy(beforeLegacy,afterRecoveryLegacy))throw new Error('FOUNDATION_IDENTITY_PERSISTENCE_LEGACY_MUTATION');
-          return result('recovered',{mappingCount:Object.keys(report.overlay.mappings||{}).length,checksum:report.plannedChecksum,persistedStatus:current.status});
-        }
-        const at=clean(options.now)||new Date().toISOString();
-        const envelope=store.commit(storage,registry,report.overlay,at);
-        const verified=store.read(storage,registry);
-        if(verified.status!=='ok'||store.checksum(verified.overlay)!==report.plannedChecksum)throw new Error('FOUNDATION_IDENTITY_PERSISTENCE_VERIFY_FAILED');
-        const afterLegacy=legacySnapshot(registry,storage);
-        if(!sameLegacy(beforeLegacy,afterLegacy))throw new Error('FOUNDATION_IDENTITY_PERSISTENCE_LEGACY_MUTATION');
-        return result('persisted',{mappingCount:Object.keys(report.overlay.mappings||{}).length,checksum:envelope.checksum,persistedStatus:verified.status});
-      }catch(error){
-        return result('failed',{error:clean(error?.message||error)});
-      }finally{
-        inFlight=null;
-      }
-    })();
-    return inFlight;
+    const operation=execute(report,options);
+    inFlight=operation;
+    try{
+      return await operation;
+    }finally{
+      if(inFlight===operation)inFlight=null;
+    }
   }
   function schedule(report){
     if(!report||report.status==='unavailable')return;
