@@ -57,7 +57,7 @@ const descriptors=[
 const fixed='2026-09-17T12:00:00.000Z';
 const planned1=store.planMappings(registry,descriptors,{...identity.emptyOverlay(),extensions:{future:{keep:true}},futureRoot:{x:7}},fixed);
 const planned2=store.planMappings(registry,descriptors,planned1,'2099-01-01T00:00:00.000Z');
-assert(JSON.stringify(planned1)===JSON.stringify(planned2),'Planning the same mappings twice must be idempotent');
+assert(store.stableStringify(planned1)===store.stableStringify(planned2),'Planning the same mappings twice must be semantically idempotent');
 assert(Object.keys(planned1.mappings).length===descriptors.length,'Unexpected planned mapping count');
 assert(planned1.extensions.future.keep===true&&planned1.futureRoot.x===7,'Planning must preserve unknown overlay fields');
 
@@ -65,7 +65,7 @@ const envelope=store.commit(storage,registry,planned1,fixed);
 assert(envelope.checksum===store.checksum(planned1),'Envelope checksum mismatch');
 const readBack=store.read(storage,registry);
 assert(readBack.status==='ok','Committed overlay did not read back as ok');
-assert(JSON.stringify(readBack.overlay)===JSON.stringify(planned1),'Read-back overlay differs from committed overlay');
+assert(store.stableStringify(readBack.overlay)===store.stableStringify(planned1),'Read-back overlay is not semantically identical to committed overlay');
 assert(storage.getItem(p.stagingKey)===null,'Staging key must be removed after verified commit');
 
 const allowed=new Set(store.allowedWriteKeys(registry));
@@ -97,4 +97,4 @@ const corrupt=store.read(corruptStorage,registry);
 assert(corrupt.status==='corrupt','Checksum tampering must fail closed as corrupt');
 
 console.log('FOUNDATION_IDENTITY_OVERLAY_STORE_GATE=PASS');
-console.log(JSON.stringify({storeSchema:store.schema,mappings:descriptors.length,transactional:true,recovery:true,legacyWrites:0,checksumFailClosed:true},null,2));
+console.log(JSON.stringify({storeSchema:store.schema,mappings:descriptors.length,transactional:true,recovery:true,legacyWrites:0,checksumFailClosed:true,canonicalSemanticCompare:true},null,2));
