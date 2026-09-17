@@ -1,0 +1,156 @@
+{
+  "schema": "BAUMAN_LEARNING_COMPONENT_CAPABILITIES_V1",
+  "contractVersion": 1,
+  "status": "foundation-capability-contract",
+  "designRule": "Capabilities define what a renderer must be able to do; they do not prescribe React, Vue, vanilla JS, AR, mobile, or any other implementation framework.",
+  "coreCapabilities": [
+    {
+      "id": "content.example",
+      "purpose": "Render simple, contextual and transfer examples with provenance and optional progressive reveal.",
+      "requiredFor": ["language_vocabulary", "language_grammar", "mathematics_technical", "research"]
+    },
+    {
+      "id": "content.meaningfulVisual",
+      "purpose": "Render a source/generated meaningful image, diagram, chart or visual scene with alt text and provenance metadata.",
+      "requiredFor": ["picturable_vocabulary", "scene_learning", "technical_visualization"]
+    },
+    {
+      "id": "media.audioModel",
+      "purpose": "Play source audio when available and truthfully-labelled runtime TTS when used as fallback.",
+      "requiredFor": ["language_vocabulary", "language_listening_speaking"]
+    },
+    {
+      "id": "media.transcript",
+      "purpose": "Render transcript/caption support without forcing it visible during retrieval tasks.",
+      "requiredFor": ["audio", "video", "lecture"]
+    },
+    {
+      "id": "interaction.dragDrop",
+      "purpose": "Reusable accessible drag/drop or equivalent pick-and-place interaction with keyboard/touch fallback.",
+      "requiredFor": ["sort", "phrase_building", "diagram_build"]
+    },
+    {
+      "id": "interaction.pairMatch",
+      "purpose": "Match word-image, term-definition, possessive-noun, concept-example or technical pairs.",
+      "requiredFor": ["pair_match", "image_to_word", "word_to_image"]
+    },
+    {
+      "id": "interaction.classify",
+      "purpose": "Classify items into semantic, grammatical, technical or research categories while preserving first-attempt evidence.",
+      "requiredFor": ["sort", "classification"]
+    },
+    {
+      "id": "interaction.order",
+      "purpose": "Order words, sentences, derivation steps, algorithm states or workflow steps.",
+      "requiredFor": ["sentence_order", "sequence_order", "worked_step_order"]
+    },
+    {
+      "id": "interaction.hotspotScene",
+      "purpose": "Use meaningful scenes/images for object identification, spatial/context comprehension and retrieval.",
+      "requiredFor": ["hotspot", "spot_missing", "scene_learning"]
+    },
+    {
+      "id": "interaction.textInput",
+      "purpose": "Capture dictation, short answers, sentence production and technical responses with preserved raw learner output.",
+      "requiredFor": ["listen_and_write", "gap_fill", "written_recall"]
+    },
+    {
+      "id": "interaction.speechPrompt",
+      "purpose": "Prompt picture-based speaking, hidden-text production, shadowing or role-play without claiming canonical pronunciation accuracy unless supported by evidence.",
+      "requiredFor": ["picture_speak", "shadowing", "role_play"]
+    },
+    {
+      "id": "language.stressDisplay",
+      "purpose": "Display source-backed Russian stress separately from transliteration and audio support; never infer missing canonical stress.",
+      "requiredFor": ["russian_vocabulary", "russian_pronunciation"]
+    },
+    {
+      "id": "dialogue.player",
+      "purpose": "Render line-level dialogue with role selection, audio/reveal controls and exact resume position.",
+      "requiredFor": ["dialogue", "role_play"]
+    },
+    {
+      "id": "technical.diagram",
+      "purpose": "Render semantic diagrams such as control block diagrams, network topologies, database relations or concept maps.",
+      "requiredFor": ["technical_visualization", "diagram_build"]
+    },
+    {
+      "id": "technical.plot",
+      "purpose": "Render graphs/curves with semantic axes, units and explanation rather than decorative charts.",
+      "requiredFor": ["mathematics_technical", "control", "probability", "ai_ml"]
+    },
+    {
+      "id": "technical.simulationHost",
+      "purpose": "Host parameter exploration and simulations through adapters while keeping lesson/task identity outside the simulator implementation.",
+      "requiredFor": ["parameter_explore", "simulation_task"]
+    },
+    {
+      "id": "feedback.actionable",
+      "purpose": "Explain what was wrong, allow correction, and distinguish hint/retry from verified completion.",
+      "requiredFor": ["all_interactive_tasks"]
+    },
+    {
+      "id": "evidence.capture",
+      "purpose": "Capture first attempt, correction, uncertainty, abandonment and completion evidence without silently mutating mastery.",
+      "requiredFor": ["all_evidence_tasks"]
+    },
+    {
+      "id": "learning.reviewBridge",
+      "purpose": "Send only real evidence-based items to subject Review Queue/SRS policies with an exact return route.",
+      "requiredFor": ["reviewable_tasks"]
+    },
+    {
+      "id": "learning.exactResume",
+      "purpose": "Resume a lesson at the precise activity/item/line/step where the learner stopped.",
+      "requiredFor": ["lesson_player", "dialogue", "simulation", "long_form_activity"]
+    },
+    {
+      "id": "provenance.inspect",
+      "purpose": "Keep imported or transformed learning assets traceable to source locator and transformation lineage.",
+      "requiredFor": ["imported_content", "generated_content", "research"]
+    }
+  ],
+  "goldenLesson1MinimumSet": [
+    "content.example",
+    "content.meaningfulVisual",
+    "media.audioModel",
+    "interaction.dragDrop",
+    "interaction.pairMatch",
+    "interaction.classify",
+    "interaction.hotspotScene",
+    "interaction.textInput",
+    "interaction.speechPrompt",
+    "language.stressDisplay",
+    "dialogue.player",
+    "feedback.actionable",
+    "evidence.capture",
+    "learning.reviewBridge",
+    "learning.exactResume",
+    "provenance.inspect"
+  ],
+  "platformExtensionSet": [
+    "technical.diagram",
+    "technical.plot",
+    "technical.simulationHost",
+    "interaction.order",
+    "media.transcript"
+  ],
+  "rendererInvariants": {
+    "desktop16x9": true,
+    "tablet3x2": true,
+    "phone19_5x9": true,
+    "noHorizontalOverflow": true,
+    "touchKeyboardPointerParity": true,
+    "reducedMotionWhenApplicable": true,
+    "noColorOnlyCorrectnessSignal": true
+  },
+  "architectureInvariants": {
+    "capabilityIndependentFromContent": true,
+    "capabilityIndependentFromSubject": true,
+    "capabilityIndependentFromFramework": true,
+    "taskIdentityLivesOutsideRenderer": true,
+    "evidenceLivesOutsideRenderer": true,
+    "simulatorsConnectedThroughAdapters": true,
+    "aiConnectedThroughCapabilityLayer": true
+  }
+}
