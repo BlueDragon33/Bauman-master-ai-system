@@ -37,6 +37,8 @@ jobs:
         run: node subjects/russian/scripts/validate-academic-language.mjs
       - name: Validate Russian AI mentor and offline runtime
         run: node subjects/russian/scripts/validate-ai-runtime.mjs
+      - name: Validate Russian promotion candidate
+        run: node subjects/russian/scripts/validate-promotion-candidate.mjs
       - name: Parse Russian runtime JavaScript
         run: |
           node --check subjects/russian/assets/core.js
@@ -65,6 +67,8 @@ jobs:
         run: node subjects/russian/scripts/audit-academic-language.mjs
       - name: Audit Russian offline cache policy
         run: node subjects/russian/scripts/audit-runtime-offline.mjs
+      - name: Audit Russian promotion surface and storage
+        run: node subjects/russian/scripts/audit-promotion-candidate.mjs
       - name: Confirm redesign did not replace learning datasets
         shell: bash
         run: |
@@ -93,4 +97,6 @@ jobs:
           test -f subjects/russian/assets/runtime-optimizer.css
           test -f subjects/russian/manifest.webmanifest
           test -f subjects/russian/sw.js
-          echo "Russian learning datasets and additive learning runtimes remain present."
+          test ! -e subjects/russian/assets/core.css.bak
+          test ! -e subjects/russian/assets/core.js.bak
+          echo "Russian learning datasets and additive learning runtimes remain present; legacy runtime backups are absent."
