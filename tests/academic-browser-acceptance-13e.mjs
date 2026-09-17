@@ -8,8 +8,7 @@ const OUT=process.env.BAUMAN_E2E_ARTIFACT_DIR||'artifacts/browser-13e';
 const MAIN='bauman_main_all_phases_subjects_v1';
 const DIAG='bauman_academic_2026_diagnostics_v1';
 const SESSION='bauman-device-session-v4';
-const USER='bauman-e2e@example.test';
-const PASS='bauman-e2e-pass';
+const USER='app-manager@bauman.local';
 fs.mkdirSync(OUT,{recursive:true});
 const checks=[],pageErrors=[],failedRequests=[];
 const ok=(name,detail='')=>checks.push({name,detail});
@@ -55,9 +54,13 @@ async function approvedFlow(browser){
   must(await page.locator('#baumanDeviceGate').evaluate(e=>e.classList.contains('hidden')),'Device gate did not hide after approval');
   ok('device_authorized');
 
-  await page.locator('#loginEmail').fill(USER);
-  await page.locator('#loginPass').fill(PASS);
-  await page.locator('#loginBtn').click();
+  await page.waitForFunction(()=>window.BAUMAN_APP_MANAGER_ACCESS?.selfCheck?.().ready===true,null,{timeout:15000});
+  const managedAccess=await page.evaluate(()=>window.BAUMAN_APP_MANAGER_ACCESS.selfCheck());
+  must(managedAccess.mode==='app-manager'&&managedAccess.deviceAuthorized===true,'App Manager access mode did not activate');
+  must(managedAccess.localAuthBypassed===true&&managedAccess.authScreenHidden===true,'Local Hub auth was not bypassed');
+  must(managedAccess.credentialStorePresent===false&&managedAccess.managedScopeStored===true,'Managed access created local credentials or lost its managed scope');
+  must(managedAccess.localAdminVisible===false&&managedAccess.localLogoutVisible===false,'Local admin controls remain visible');
+  ok('app_manager_managed_access',JSON.stringify(managedAccess));
   await page.waitForFunction(()=>!document.getElementById('appRoot')?.classList.contains('hidden'));
   await waitAcademic(page);
   const runtime=await page.evaluate(()=>({
@@ -162,7 +165,7 @@ async function approvedFlow(browser){
 
   await page.setViewportSize({width:1440,height:1000});
   await page.evaluate(({MAIN,DIAG})=>{const m=JSON.parse(localStorage.getItem(MAIN)||'{}');m.academic2026={...(m.academic2026||{}),gateDiagnostics:{P3:{D0:92,D1:92,D2:92,criticalMisconceptions:0,failedNodeIds:[],source:'legacy_e2e'}}};localStorage.setItem(MAIN,JSON.stringify(m));localStorage.removeItem(DIAG)},{MAIN,DIAG});
-  await page.reload({waitUntil:'domcontentloaded'});await page.waitForFunction(()=>document.documentElement.dataset.baumanDeviceAccess==='authorized',null,{timeout:15000});await waitAcademic(page);
+  await page.reload({waitUntil:'domcontentloaded'});await page.waitForFunction(()=>document.documentElement.dataset.baumanDeviceAccess==='authorized',null,{timeout:15000});await page.waitForFunction(()=>window.BAUMAN_APP_MANAGER_ACCESS?.selfCheck?.().ready===true,null,{timeout:15000});await waitAcademic(page);
   const migration=await page.evaluate(({DIAG,USER})=>{const rt=window.BAUMAN_ACADEMIC_2026_RUNTIME,s=JSON.parse(localStorage.getItem(DIAG)||'{}'),g=window.BAUMAN_PREREQ_2026.coreGates.find(x=>x.id==='P3'),tx=window.BAUMAN_ACADEMIC_SCHEDULER_APPLY_2026.transactionHistory();return{state:rt.gateState(g).id,score:rt.scoreForGate('P3')?.score,migrated:Boolean(s.users?.[USER]?.gateDiagnostics?.P3),checked:Boolean(s.users?.[USER]?.migrationChecked),transactions:tx.length,rolledBack:tx.filter(x=>x.status==='rolled_back').length}},{DIAG,USER});
   assert.equal(migration.state,'ready');assert.equal(migration.score,92);must(migration.migrated&&migration.checked,'Legacy migration failed');must(migration.transactions>=2&&migration.rolledBack>=2,'Transaction history must persist through reload');ok('legacy_diagnostic_and_transaction_persistence',JSON.stringify(migration));
 
@@ -170,15 +173,15 @@ async function approvedFlow(browser){
   must(compat.mode==='advice_only'&&compat.mutationEnabled===false,'PlanningBridge automatic compatibility drift');assert.equal(compat.academicReadyMinimum,90);ok('planningbridge_compatibility');
   const pwa=await page.evaluate(async()=>{if(!('serviceWorker'in navigator))return{supported:false,registrations:0};return{supported:true,registrations:(await navigator.serviceWorker.getRegistrations()).length}});ok('pwa_observation',JSON.stringify(pwa));
 
-  await page.evaluate(SESSION=>sessionStorage.removeItem(SESSION),SESSION);control.online=false;await page.reload({waitUntil:'domcontentloaded'});await page.waitForFunction(()=>document.documentElement.dataset.baumanDeviceAccess==='offline-grace',null,{timeout:15000});await waitAcademic(page);must(!(await page.locator('#appRoot').evaluate(e=>e.classList.contains('hidden'))),'Offline grace hid logged-in app');ok('device_offline_grace');
-  control.online=true;await context.close();return{runtime,diag,preview,firstApply:{id:firstApply.tx.id,changed:firstApply.tx.changedKeys.length},rollbackGuard,mobile,migration,pwa};
+  await page.evaluate(SESSION=>sessionStorage.removeItem(SESSION),SESSION);control.online=false;await page.reload({waitUntil:'domcontentloaded'});await page.waitForFunction(()=>document.documentElement.dataset.baumanDeviceAccess==='offline-grace',null,{timeout:15000});await page.waitForFunction(()=>window.BAUMAN_APP_MANAGER_ACCESS?.selfCheck?.().ready===true,null,{timeout:15000});await waitAcademic(page);must(!(await page.locator('#appRoot').evaluate(e=>e.classList.contains('hidden'))),'Offline grace hid managed Hub');ok('device_offline_grace');
+  control.online=true;await context.close();return{runtime,managedAccess,diag,preview,firstApply:{id:firstApply.tx.id,changed:firstApply.tx.changedKeys.length},rollbackGuard,mobile,migration,pwa};
 }
 
 async function pendingFlow(browser){
-  const context=await browser.newContext({viewport:{width:900,height:760}}),page=await context.newPage(),control={online:true,status:'pending'};await mockControl(page,control);await page.goto(BASE,{waitUntil:'domcontentloaded',timeout:30000});await page.waitForFunction(()=>document.documentElement.dataset.baumanDeviceAccess==='pending',null,{timeout:15000});must(!(await page.locator('#baumanDeviceGate').evaluate(e=>e.classList.contains('hidden'))),'Pending gate hidden');assert.equal((await page.locator('#baumanDeviceCode').textContent())?.trim(),'BM-E2E-001');must(/chờ duyệt/i.test((await page.locator('#baumanDeviceTitle').textContent())||''),'Pending title incorrect');await page.screenshot({path:path.join(OUT,'device-pending.png'),fullPage:true});ok('device_pending_gate');await context.close();
+  const context=await browser.newContext({viewport:{width:900,height:760}}),page=await context.newPage(),control={online:true,status:'pending'};await mockControl(page,control);await page.goto(BASE,{waitUntil:'domcontentloaded',timeout:30000});await page.waitForFunction(()=>document.documentElement.dataset.baumanDeviceAccess==='pending',null,{timeout:15000});must(!(await page.locator('#baumanDeviceGate').evaluate(e=>e.classList.contains('hidden'))),'Pending gate hidden');assert.equal((await page.locator('#baumanDeviceCode').textContent())?.trim(),'BM-E2E-001');must(/chờ duyệt/i.test((await page.locator('#baumanDeviceTitle').textContent())||''),'Pending title incorrect');must(await page.locator('#appRoot').evaluate(e=>e.classList.contains('hidden')),'Pending Device Gate exposed managed Hub');await page.screenshot({path:path.join(OUT,'device-pending.png'),fullPage:true});ok('device_pending_gate');await context.close();
 }
 
 let browser,result;
-try{browser=await chromium.launch({headless:true,...(process.env.BAUMAN_CHROME_PATH?{executablePath:process.env.BAUMAN_CHROME_PATH}:{})});result=await approvedFlow(browser);await pendingFlow(browser);must(pageErrors.length===0,`Page errors: ${pageErrors.join('\n')}`);must(failedRequests.length===0,`Unexpected failed requests: ${failedRequests.join('\n')}`);fs.writeFileSync(path.join(OUT,'summary.json'),JSON.stringify({status:'PASS',suite:'Academic Browser Acceptance · Pass13E+13F',checks,pageErrors,failedRequests,observations:result,completedAt:new Date().toISOString()},null,2));console.log('ACADEMIC_BROWSER_ACCEPTANCE_13E_13F_PASS');console.log(JSON.stringify({checks:checks.length,pwa:result.pwa,offlineGrace:true,manualProtection:true,transactionApply:true,rollback:true,rollbackStaleGuard:true},null,2))}
+try{browser=await chromium.launch({headless:true,...(process.env.BAUMAN_CHROME_PATH?{executablePath:process.env.BAUMAN_CHROME_PATH}:{})});result=await approvedFlow(browser);await pendingFlow(browser);must(pageErrors.length===0,`Page errors: ${pageErrors.join('\n')}`);must(failedRequests.length===0,`Unexpected failed requests: ${failedRequests.join('\n')}`);fs.writeFileSync(path.join(OUT,'summary.json'),JSON.stringify({status:'PASS',suite:'Academic Browser Acceptance · Pass13E+13F',checks,pageErrors,failedRequests,observations:result,completedAt:new Date().toISOString()},null,2));console.log('ACADEMIC_BROWSER_ACCEPTANCE_13E_13F_PASS');console.log(JSON.stringify({checks:checks.length,pwa:result.pwa,offlineGrace:true,appManagerAccess:true,manualProtection:true,transactionApply:true,rollback:true,rollbackStaleGuard:true},null,2))}
 catch(e){fs.writeFileSync(path.join(OUT,'summary.json'),JSON.stringify({status:'FAIL',suite:'Academic Browser Acceptance · Pass13E+13F',error:String(e?.stack||e),checks,pageErrors,failedRequests,completedAt:new Date().toISOString()},null,2));console.error('ACADEMIC_BROWSER_ACCEPTANCE_13E_13F_FAIL');console.error(e?.stack||e);process.exitCode=1}
 finally{if(browser)await browser.close()}

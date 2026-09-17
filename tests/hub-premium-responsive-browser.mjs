@@ -29,12 +29,21 @@ async function mockControl(page){
   });
 }
 
-async function login(page){
+async function openHub(page){
   await page.goto(BASE,{waitUntil:'domcontentloaded',timeout:30000});
   await page.waitForFunction(()=>document.documentElement.dataset.baumanDeviceAccess==='authorized',null,{timeout:30000});
-  await page.locator('#loginEmail').fill('hub-preservation@example.test');
-  await page.locator('#loginPass').fill('hub-preservation-pass');
-  await page.locator('#loginBtn').click();
+  await page.waitForFunction(()=>window.BAUMAN_APP_MANAGER_ACCESS?.selfCheck?.().ready===true,null,{timeout:10000});
+  const access=await page.evaluate(()=>window.BAUMAN_APP_MANAGER_ACCESS.selfCheck());
+  assert.equal(access.mode,'app-manager');
+  assert.equal(access.deviceAuthorized,true);
+  assert.equal(access.localAuthBypassed,true);
+  assert.equal(access.authScreenHidden,true);
+  assert.equal(access.credentialStorePresent,false);
+  assert.equal(access.managedScopeStored,true);
+  assert.equal(access.localAdminVisible,false);
+  assert.equal(access.localLogoutVisible,false);
+  assert.equal(access.routeOwnership,false);
+  assert.equal(access.academicWrites,false);
   await page.waitForFunction(()=>!document.getElementById('appRoot')?.classList.contains('hidden'),null,{timeout:30000});
   await page.waitForFunction(()=>!!window.BAUMAN_HUB_SAFE?.selfCheck,null,{timeout:10000});
   await page.waitForFunction(()=>!!document.querySelector('.hub-safe-dashboard'),null,{timeout:10000});
@@ -50,7 +59,8 @@ async function checkCanonicalContent(page){
     planningWrapper:window.app?.__planningV3Patched===true,
     detailToggle:!!document.querySelector('[data-safe-action="details"]'),
     appearancePresets:document.querySelectorAll('[data-safe-appearance]').length,
-    safeCheck:window.BAUMAN_HUB_SAFE?.selfCheck?.()
+    safeCheck:window.BAUMAN_HUB_SAFE?.selfCheck?.(),
+    managedAccess:window.BAUMAN_APP_MANAGER_ACCESS?.selfCheck?.()
   }));
   assert.deepEqual(content.subjectIds,['ai','foundation','math','programming','research','russian','signal','systems']);
   assert.equal(content.pages.length,5,'canonical Hub pages were removed');
@@ -67,6 +77,8 @@ async function checkCanonicalContent(page){
   assert.equal(content.safeCheck?.appearancePresets,3,'Appearance preset self-check drift');
   assert.equal(content.safeCheck?.routesOwned,false,'Safe Hub must not own routes');
   assert.equal(content.safeCheck?.dataWrites,false,'Safe Hub must not own academic data');
+  assert.equal(content.managedAccess?.ready,true,'App Manager managed access is not healthy');
+  assert.equal(content.managedAccess?.credentialStorePresent,false,'Local credential store must stay empty');
   return content;
 }
 
@@ -79,7 +91,7 @@ try{
   const errors=[];
   page.on('console',m=>{if(m.type()==='error')errors.push(m.text())});
   page.on('pageerror',e=>errors.push(String(e?.stack||e)));
-  await login(page);
+  await openHub(page);
   const content=await checkCanonicalContent(page);
 
   // Canonical home is still present in DOM, but folded by default for a clean 16:9 first screen.
@@ -140,7 +152,7 @@ try{
   }
 
   assert.deepEqual(errors,[],'Hub emitted console/page errors');
-  fs.writeFileSync(path.join(OUT,'summary.json'),JSON.stringify({status:'PASS',mode:'safe-additive-shell',subjects:content.subjectIds.length,viewports:cases.map(x=>x[0]),planningWrapper:content.planningWrapper,safeCheck:content.safeCheck,staticOwnershipGate:'PASS',canonicalDetailsFold:'PASS',appearancePresets:'PASS',errors},null,2));
+  fs.writeFileSync(path.join(OUT,'summary.json'),JSON.stringify({status:'PASS',mode:'safe-additive-shell+app-manager-access',subjects:content.subjectIds.length,viewports:cases.map(x=>x[0]),planningWrapper:content.planningWrapper,safeCheck:content.safeCheck,managedAccess:content.managedAccess,staticOwnershipGate:'PASS',canonicalDetailsFold:'PASS',appearancePresets:'PASS',errors},null,2));
   console.log('Hub safe additive responsive acceptance PASS');
 }finally{
   await browser?.close();
