@@ -43,6 +43,8 @@ jobs:
         run: node subjects/russian/scripts/audit-content-contract.mjs
       - name: Audit Russian lesson learning flow
         run: node subjects/russian/scripts/audit-learning-flow.mjs
+      - name: Audit Russian vocabulary SRS sources
+        run: node subjects/russian/scripts/audit-vocab-srs.mjs
       - name: Confirm redesign did not replace learning datasets
         shell: bash
         run: |
