@@ -45,7 +45,7 @@ try{
       resolved,
       projected,
       reverse:sample?api.reverse(sample.canonicalId):[],
-      missing:api?.canonicalFor?.('russian-vocab-srs','card','definitely-missing')??'unexpected',
+      missing:typeof api?.canonicalFor==='function'?api.canonicalFor('russian-vocab-srs','card','definitely-missing'):'unexpected',
       overlayRaw:localStorage.getItem('bauman_identity_overlay_v1'),
       uiLeak:/BAUMAN_(?:CANONICAL|FOUNDATION)_IDENTITY|IDENTITY_OVERLAY/.test(document.body.textContent||'')
     };
@@ -74,7 +74,7 @@ try{
     persistence:window.BAUMAN_FOUNDATION_IDENTITY_PERSISTENCE_REPORT,
     projection:window.BAUMAN_FOUNDATION_IDENTITY_PROJECTION_REPORT,
     rows:window.BaumanFoundationIdentityProjection?.list?.()||[],
-    lookup:window.BaumanFoundationIdentityProjection?.canonicalFor?.('russian-vocab-srs','card','vocab:12')??null,
+    lookup:typeof window.BaumanFoundationIdentityProjection?.canonicalFor==='function'?window.BaumanFoundationIdentityProjection.canonicalFor('russian-vocab-srs','card','vocab:12'):'unexpected',
     raw:localStorage.getItem('bauman_identity_overlay_v1')
   }));
   assert.equal(blocked.persistence?.status,'blocked-corrupt');
