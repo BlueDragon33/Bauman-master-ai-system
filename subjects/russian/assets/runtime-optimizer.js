@@ -4,7 +4,6 @@
   const CORE_DATA=['curriculum','lessons','grammar','grammar-path','vocab','mindmap','exercises','tests','simulations','speaking','handwriting','writing','videos','knowledge-index'];
   const LIGHT_DATA=['curriculum','grammar','grammar-path','handwriting','writing','videos','knowledge-index'];
   const DATA_CACHE='russian-learning-data-v1';
-  const clean=v=>String(v??'').trim();
   let preparing=false, prepared=Number(localStorage.getItem('ru_offline_core_count')||0);
 
   function statusButton(){
@@ -20,13 +19,29 @@
     const label=preparing?'Đang chuẩn bị offline…':ready?(online?'Offline sẵn sàng':'Đang dùng offline'):(online?`Online · offline ${prepared}/${CORE_DATA.length}`:'Offline · dữ liệu chưa đủ');
     const span=btn.querySelector('span');if(span)span.textContent=label;btn.title=ready?'Bộ dữ liệu học bắt buộc đã được cache cho lần dùng offline tiếp theo.':'Bấm để chuẩn bị bộ dữ liệu học bắt buộc cho offline.';
   }
-  async function cacheNames(names){
+  async function countCached(names=CORE_DATA){
+    if(!('caches'in window))return 0;
+    const cache=await caches.open(DATA_CACHE);let count=0;
+    for(const name of names){if(await cache.match(`data/${name}.json`))count++;}
+    return count;
+  }
+  async function reconcileOfflineCore(){
+    try{prepared=await countCached(CORE_DATA);localStorage.setItem('ru_offline_core_count',String(prepared));}
+    catch(_){prepared=0;}
+    paint();return prepared;
+  }
+  async function cacheNames(names,{refresh=false}={}){
     if(!('caches'in window))return 0;
     const cache=await caches.open(DATA_CACHE);let count=0;
     for(const name of names){
       const url=`data/${name}.json`;
-      try{const existing=await cache.match(url);if(existing){count++;continue;}const res=await fetch(url,{cache:'no-store'});if(res.ok){await cache.put(url,res.clone());count++;}}
-      catch(_){/* network can disappear while warming */}
+      try{
+        const existing=await cache.match(url);
+        if(existing&&!refresh){count++;continue;}
+        const res=await fetch(url,{cache:'no-store'});
+        if(res.ok){await cache.put(url,res.clone());count++;}
+        else if(existing){count++;}
+      }catch(_){if(await cache.match(url))count++;}
       if(names===CORE_DATA){prepared=count;localStorage.setItem('ru_offline_core_count',String(count));paint();}
     }
     return count;
@@ -34,20 +49,20 @@
   async function prepareOfflineCore(){
     if(preparing||!navigator.onLine)return;
     preparing=true;paint();
-    try{prepared=await cacheNames(CORE_DATA);localStorage.setItem('ru_offline_core_count',String(prepared));}
+    try{prepared=await cacheNames(CORE_DATA,{refresh:true});localStorage.setItem('ru_offline_core_count',String(prepared));}
     finally{preparing=false;paint();}
   }
   function idleWarm(){
     if(!navigator.onLine||navigator.connection?.saveData)return;
-    const run=()=>cacheNames(LIGHT_DATA).catch(()=>{});
+    const run=()=>cacheNames(LIGHT_DATA).then(()=>reconcileOfflineCore()).catch(()=>{});
     if('requestIdleCallback'in window)requestIdleCallback(run,{timeout:5000});else setTimeout(run,1800);
   }
   async function register(){
     if(!('serviceWorker'in navigator)||location.protocol==='file:')return;
-    try{await navigator.serviceWorker.register('./sw.js',{scope:'./'});await navigator.serviceWorker.ready;idleWarm();}
+    try{await navigator.serviceWorker.register('./sw.js',{scope:'./'});await navigator.serviceWorker.ready;await reconcileOfflineCore();idleWarm();}
     catch(e){console.warn('Russian offline shell unavailable',e);}
   }
-  window.addEventListener('online',paint);window.addEventListener('offline',paint);
+  window.addEventListener('online',()=>{paint();reconcileOfflineCore();});window.addEventListener('offline',()=>{paint();reconcileOfflineCore();});
   document.addEventListener('DOMContentLoaded',()=>{paint();register();});
-  window.RussianRuntimeOptimizer={schema:SCHEMA,prepareOfflineCore,status:()=>({online:navigator.onLine,prepared,total:CORE_DATA.length,ready:prepared>=CORE_DATA.length}),coreData:[...CORE_DATA]};
+  window.RussianRuntimeOptimizer={schema:SCHEMA,prepareOfflineCore,reconcileOfflineCore,status:()=>({online:navigator.onLine,prepared,total:CORE_DATA.length,ready:prepared>=CORE_DATA.length}),coreData:[...CORE_DATA]};
 })();
