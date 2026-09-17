@@ -14,6 +14,15 @@
       "localId is a stable author-assigned identifier and is never silently slugified."
     ]
   },
+  "legacyMappingContract": {
+    "identityKey": ["legacyId", "legacyLocator"],
+    "legacyLocatorRequired": true,
+    "principle": "A legacy ID alone is not a safe identity because existing datasets contain repeated local IDs, including duplicates inside one file. Every legacy mapping must carry a stable source locator or scope.",
+    "examples": [
+      "subjects/russian/data/lessons.json#/0",
+      "subjects/math/data/theory_full_view/theory_full_view_c01_l04.json#/sections/0"
+    ]
+  },
   "entityEnvelope": {
     "schema": "BAUMAN_DOMAIN_ENTITY_V1",
     "schemaVersion": 1,
@@ -114,6 +123,7 @@
       "id, entityType and namespace remain unchanged across migrations.",
       "Every migration declares explicit fromVersion and toVersion.",
       "Migrations are one-way and deterministic.",
+      "Legacy identity preservation requires both legacyId and legacyLocator.",
       "Legacy payload may be preserved under extensions.legacy when needed.",
       "No migration may use Math.random, current time or display labels to create canonical identity."
     ]
