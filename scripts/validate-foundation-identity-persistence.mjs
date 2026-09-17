@@ -53,6 +53,7 @@ const hostTask={subjectId:'russian',courseId:'prep',taskId:'task-001',missionId:
 const fixed='2026-09-17T13:00:00.000Z';
 function legacyRaw(storage){return Object.fromEntries(Object.keys(legacySeed).map(key=>[key,storage.raw(key)]));}
 function assertLegacyEqual(a,b,label){for(const key of Object.keys(legacySeed))assert(a[key]===b[key],`${label}: legacy bytes changed for ${key}`);}
+function mutationOps(storage){return storage.ops.filter(x=>x.op!=='get');}
 
 // Empty overlay -> exactly one verified persisted overlay.
 const storage=new MemoryStorage(legacySeed),before=legacyRaw(storage);
@@ -63,7 +64,7 @@ assert(first.status==='persisted','Fresh overlay was not persisted');
 assert(storage.raw(p.storageKey),'Final overlay key missing');
 assert(storage.raw(p.stagingKey)===null,'Staging key must be cleaned after commit');
 assertLegacyEqual(before,legacyRaw(storage),'fresh persist');
-const writeKeys=storage.ops.filter(x=>x.op!=='get').map(x=>x.key);
+const writeKeys=mutationOps(storage).map(x=>x.key);
 assert(writeKeys.length>0,'Fresh persistence performed no overlay writes');
 assert(writeKeys.every(key=>key===p.storageKey||key===p.stagingKey),`Persistence touched non-overlay key: ${JSON.stringify(writeKeys)}`);
 const firstRaw=storage.raw(p.storageKey);
@@ -77,17 +78,32 @@ assert(storage.ops.every(x=>x.op==='get'),'Unchanged overlay must not rewrite st
 assert(storage.raw(p.storageKey)===firstRaw,'Unchanged overlay envelope bytes changed');
 assertLegacyEqual(before,legacyRaw(storage),'idempotent persist');
 
+// Concurrent calls share one transaction; they must not duplicate writes.
+const concurrentStorage=new MemoryStorage(legacySeed),concurrentBefore=legacyRaw(concurrentStorage);
+const concurrentReport=bootstrap.buildReport(registry,concurrentStorage,hostTask,fixed);
+concurrentStorage.ops=[];
+const concurrentA=persist.persist(concurrentReport,{registry,storage:concurrentStorage,now:fixed});
+const concurrentB=persist.persist(concurrentReport,{registry,storage:concurrentStorage,now:fixed});
+const [concurrentFirst,concurrentSecond]=await Promise.all([concurrentA,concurrentB]);
+assert(concurrentFirst.status==='persisted'&&concurrentSecond.status==='persisted','Concurrent callers did not share the persisted result');
+const concurrentMutations=mutationOps(concurrentStorage);
+assert(concurrentMutations.length===3,`Concurrent persistence duplicated transaction writes: ${JSON.stringify(concurrentMutations)}`);
+assert(concurrentMutations[0].op==='set'&&concurrentMutations[0].key===p.stagingKey,'Concurrent transaction missing staging write');
+assert(concurrentMutations[1].op==='set'&&concurrentMutations[1].key===p.storageKey,'Concurrent transaction missing final write');
+assert(concurrentMutations[2].op==='remove'&&concurrentMutations[2].key===p.stagingKey,'Concurrent transaction missing staging cleanup');
+assertLegacyEqual(concurrentBefore,legacyRaw(concurrentStorage),'concurrent persist');
+
 // Valid staging with same planned checksum -> verified recovery only.
 const stagingStorage=new MemoryStorage(legacySeed);
 const stagingReport=bootstrap.buildReport(registry,stagingStorage,hostTask,fixed);
-const envelope={schema:store.schema,version:1,writtenAt:fixed,checksum:store.checksum(stagingReport.overlay),overlay:stagingReport.overlay};
+const envelope=store.seal(stagingReport.overlay,fixed);
 stagingStorage.map.set(p.stagingKey,store.stableStringify(envelope));
 const stagingBefore=legacyRaw(stagingStorage);stagingStorage.ops=[];
 const recovered=await persist.persist(stagingReport,{registry,storage:stagingStorage,now:fixed});
 assert(recovered.status==='recovered','Valid staging overlay was not recovered');
 assert(stagingStorage.raw(p.storageKey),'Recovered final key missing');
 assert(stagingStorage.raw(p.stagingKey)===null,'Recovered staging key not removed');
-assert(stagingStorage.ops.filter(x=>x.op!=='get').every(x=>x.key===p.storageKey||x.key===p.stagingKey),'Recovery touched non-overlay storage');
+assert(mutationOps(stagingStorage).every(x=>x.key===p.storageKey||x.key===p.stagingKey),'Recovery touched non-overlay storage');
 assertLegacyEqual(stagingBefore,legacyRaw(stagingStorage),'staging recovery');
 
 // Corrupt final overlay -> blocked, byte-for-byte unchanged, no writes/removes.
@@ -109,4 +125,4 @@ assert(!tamperStorage.raw(p.storageKey),'Integrity block created final overlay')
 
 assert(events.some(e=>e.type==='bauman:foundation-identity-persistence'),'Persistence status event missing');
 console.log('FOUNDATION_IDENTITY_PERSISTENCE_GATE=PASS');
-console.log(JSON.stringify({schema:persist.schema,first:first.status,second:second.status,recovery:recovered.status,corrupt:blocked.status,integrity:integrity.status,legacyWrites:0,idempotentNoRewrite:true},null,2));
+console.log(JSON.stringify({schema:persist.schema,first:first.status,second:second.status,concurrent:concurrentFirst.status,recovery:recovered.status,corrupt:blocked.status,integrity:integrity.status,legacyWrites:0,idempotentNoRewrite:true,singleFlight:true},null,2));
