@@ -60,6 +60,12 @@ The validator proves:
 - corrupt overlay handling remains read-only;
 - all previous Foundation gates continue to pass.
 
+## Packaging regression found and fixed
+
+The first packaged browser run exposed a real deployment fault: `runtime-dist` did not include the versioned `foundation/` runtime tree, so the packaged Russian page received HTTP 404 responses for the identity runtime, overlay store, snapshot extractor, and registry. The runtime materializer now copies the complete `foundation/` tree and both runtime and ChatGPT Site packaging fail immediately if any required Foundation dependency is absent.
+
+A second packaged responsive run exposed that `BAUMAN_HUB_SAFE.selfCheck().ready` could become true before the preserved canonical-home detail control was ready. The Safe Shell readiness contract now requires the complete preserved UI: canonical pages, original home, additive dashboard, detail control, and all three appearance presets. No arbitrary timeout was added to the test.
+
 ## Verified result
 
 - `FOUNDATION_BROWSER_BOOTSTRAP_GATE=PASS`
@@ -67,7 +73,11 @@ The validator proves:
 - `Russian Reference UI Gate=SUCCESS`
 - `Windows checkout safety=SUCCESS`
 - `Bauman Cloudflare Preview CI=SUCCESS`
-- Whole-system static validation and primary browser acceptance passed before any write-capable integration is allowed.
+- `Whole System Integration Gate=SUCCESS`
+- normal whole-system browser acceptance = SUCCESS
+- packaged ChatGPT Site browser acceptance = SUCCESS
+- normal Hub responsive acceptance = SUCCESS
+- packaged Hub responsive acceptance = SUCCESS
 
 ## Non-goals
 
