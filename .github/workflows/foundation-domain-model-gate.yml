@@ -18,6 +18,7 @@ on:
       - 'scripts/validate-russian-lesson1-golden-template.mjs'
       - 'scripts/validate-learning-component-capabilities.mjs'
       - 'scripts/validate-foundation-identity-runtime.mjs'
+      - 'scripts/validate-foundation-identity-overlay-store.mjs'
       - '.github/workflows/foundation-domain-model-gate.yml'
 
 permissions:
@@ -44,6 +45,8 @@ jobs:
         run: node scripts/validate-learning-component-capabilities.mjs
       - name: Validate canonical identity runtime overlay
         run: node scripts/validate-foundation-identity-runtime.mjs
+      - name: Validate transactional identity overlay store
+        run: node scripts/validate-foundation-identity-overlay-store.mjs
       - name: Parse foundation JSON
         run: |
           node -e "JSON.parse(require('fs').readFileSync('foundation/domain-model/domain-contract.v1.json','utf8')); console.log('FOUNDATION_JSON_PARSE=PASS')"
