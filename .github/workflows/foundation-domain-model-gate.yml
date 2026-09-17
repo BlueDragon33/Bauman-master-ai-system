@@ -19,6 +19,7 @@ on:
       - 'scripts/validate-learning-component-capabilities.mjs'
       - 'scripts/validate-foundation-identity-runtime.mjs'
       - 'scripts/validate-foundation-identity-overlay-store.mjs'
+      - 'scripts/validate-foundation-legacy-snapshot-extractor.mjs'
       - '.github/workflows/foundation-domain-model-gate.yml'
 
 permissions:
@@ -47,6 +48,8 @@ jobs:
         run: node scripts/validate-foundation-identity-runtime.mjs
       - name: Validate transactional identity overlay store
         run: node scripts/validate-foundation-identity-overlay-store.mjs
+      - name: Validate legacy snapshot extraction dry run
+        run: node scripts/validate-foundation-legacy-snapshot-extractor.mjs
       - name: Parse foundation JSON
         run: |
           node -e "JSON.parse(require('fs').readFileSync('foundation/domain-model/domain-contract.v1.json','utf8')); console.log('FOUNDATION_JSON_PARSE=PASS')"
