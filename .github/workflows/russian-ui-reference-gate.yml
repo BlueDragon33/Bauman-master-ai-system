@@ -53,6 +53,8 @@ jobs:
         run: node subjects/russian/scripts/audit-vocab-srs.mjs
       - name: Audit Russian listening speaking source
         run: node subjects/russian/scripts/audit-speaking-coach.mjs
+      - name: Audit Russian grammar reading writing academic sources
+        run: node subjects/russian/scripts/audit-academic-language.mjs
       - name: Confirm redesign did not replace learning datasets
         shell: bash
         run: |
