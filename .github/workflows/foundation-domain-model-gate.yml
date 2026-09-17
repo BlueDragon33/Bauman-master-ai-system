@@ -13,6 +13,7 @@ on:
       - 'scripts/validate-foundation-domain-model.mjs'
       - 'scripts/validate-web-lesson-standard.mjs'
       - 'scripts/validate-russian-lesson1-golden-template.mjs'
+      - 'scripts/validate-learning-component-capabilities.mjs'
       - '.github/workflows/foundation-domain-model-gate.yml'
 
 permissions:
@@ -35,8 +36,11 @@ jobs:
         run: node scripts/validate-web-lesson-standard.mjs
       - name: Validate Russian Lesson 1 golden template
         run: node scripts/validate-russian-lesson1-golden-template.mjs
+      - name: Validate reusable learning component capabilities
+        run: node scripts/validate-learning-component-capabilities.mjs
       - name: Parse foundation JSON
         run: |
           node -e "JSON.parse(require('fs').readFileSync('foundation/domain-model/domain-contract.v1.json','utf8')); console.log('FOUNDATION_JSON_PARSE=PASS')"
           node -e "JSON.parse(require('fs').readFileSync('foundation/learning-content/web-lesson-standard.v1.json','utf8')); console.log('WEB_LESSON_STANDARD_JSON_PARSE=PASS')"
           node -e "JSON.parse(require('fs').readFileSync('foundation/learning-content/examples/russian-lesson-01.template.v1.json','utf8')); console.log('RUSSIAN_LESSON1_TEMPLATE_JSON_PARSE=PASS')"
+          node -e "JSON.parse(require('fs').readFileSync('foundation/learning-content/component-capabilities.v1.json','utf8')); console.log('LEARNING_COMPONENT_CAPABILITIES_JSON_PARSE=PASS')"
