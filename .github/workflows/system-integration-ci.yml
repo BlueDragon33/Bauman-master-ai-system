@@ -11,6 +11,7 @@ on:
       - "scripts/validate-system-integration.mjs"
       - "tests/system-browser-acceptance.mjs"
       - "tests/foundation-identity-persistence-browser.mjs"
+      - "tests/foundation-identity-projection-browser.mjs"
       - "tests/math-study-command-center-browser.mjs"
       - "tests/hub-premium-responsive-browser.mjs"
       - "scripts/prepare-cloudflare-preview.mjs"
@@ -27,6 +28,7 @@ on:
       - "scripts/validate-system-integration.mjs"
       - "tests/system-browser-acceptance.mjs"
       - "tests/foundation-identity-persistence-browser.mjs"
+      - "tests/foundation-identity-projection-browser.mjs"
       - "tests/math-study-command-center-browser.mjs"
       - "tests/hub-premium-responsive-browser.mjs"
       - "scripts/prepare-cloudflare-preview.mjs"
@@ -56,9 +58,11 @@ jobs:
           node --check subjects/shared/host-bridge.js
           node --check subjects/shared/foundation-identity-bootstrap.js
           node --check subjects/shared/foundation-identity-persistence.js
+          node --check subjects/shared/foundation-identity-projection.js
           node --check foundation/domain-model/canonical-identity-runtime.js
           node --check foundation/domain-model/identity-overlay-store.js
           node --check foundation/domain-model/legacy-snapshot-extractor.js
+          node --check foundation/domain-model/canonical-read-projection.js
           node --check subjects/ai/assets/ai.js
           node --check subjects/foundation/assets/foundation.js
           node --check subjects/research/assets/research.js
@@ -68,6 +72,7 @@ jobs:
           node --check subjects/programming/assets/core.js
           node --check subjects/math/assets/math-study-command-center.js
           node --check tests/foundation-identity-persistence-browser.mjs
+          node --check tests/foundation-identity-projection-browser.mjs
           node --check tests/math-study-command-center-browser.mjs
           node --check tests/hub-premium-responsive-browser.mjs
 
@@ -104,6 +109,11 @@ jobs:
           BAUMAN_E2E_BASE_URL: http://127.0.0.1:4173/
           BAUMAN_E2E_ARTIFACT_DIR: artifacts/foundation-identity-persistence
         run: node tests/foundation-identity-persistence-browser.mjs
+      - name: Run Foundation canonical projection browser acceptance
+        env:
+          BAUMAN_E2E_BASE_URL: http://127.0.0.1:4173/
+          BAUMAN_E2E_ARTIFACT_DIR: artifacts/foundation-identity-projection
+        run: node tests/foundation-identity-projection-browser.mjs
       - name: Run Math Study Command Center browser acceptance
         env:
           BAUMAN_E2E_BASE_URL: http://127.0.0.1:4173/
@@ -144,6 +154,11 @@ jobs:
           BAUMAN_E2E_BASE_URL: http://127.0.0.1:4174/
           BAUMAN_E2E_ARTIFACT_DIR: artifacts/chatgpt-site-foundation-identity-persistence
         run: node tests/foundation-identity-persistence-browser.mjs
+      - name: Run packaged Foundation canonical projection acceptance
+        env:
+          BAUMAN_E2E_BASE_URL: http://127.0.0.1:4174/
+          BAUMAN_E2E_ARTIFACT_DIR: artifacts/chatgpt-site-foundation-identity-projection
+        run: node tests/foundation-identity-projection-browser.mjs
       - name: Run packaged Hub V2 responsive acceptance
         env:
           BAUMAN_E2E_BASE_URL: http://127.0.0.1:4174/
@@ -162,10 +177,12 @@ jobs:
           path: |
             artifacts/system-browser
             artifacts/foundation-identity-persistence
+            artifacts/foundation-identity-projection
             artifacts/math-study-command-center
             artifacts/hub-premium-responsive
             artifacts/chatgpt-site-browser
             artifacts/chatgpt-site-foundation-identity-persistence
+            artifacts/chatgpt-site-foundation-identity-projection
             artifacts/chatgpt-site-hub-responsive
           if-no-files-found: warn
           retention-days: 7
