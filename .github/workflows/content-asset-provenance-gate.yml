@@ -1,0 +1,43 @@
+name: Content Asset Provenance Gate
+
+on:
+  push:
+    branches:
+      - work/foundation-v2-l10-content-asset-provenance
+  pull_request:
+    paths:
+      - 'foundation/content-registry/**'
+      - 'foundation/domain-model/domain-contract.v1.json'
+      - 'scripts/validate-content-asset-provenance-registry.mjs'
+      - 'scripts/validate-foundation-domain-model.mjs'
+      - 'tests/content-asset-provenance-contract.test.mjs'
+      - '.github/workflows/content-asset-provenance-gate.yml'
+
+permissions:
+  contents: read
+
+jobs:
+  validate-content-asset-provenance:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+      - name: Use Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Check validator syntax
+        run: |
+          node --check scripts/validate-content-asset-provenance-registry.mjs
+          node --check tests/content-asset-provenance-contract.test.mjs
+      - name: Validate promoted L9 domain foundation
+        run: node scripts/validate-foundation-domain-model.mjs
+      - name: Validate content asset provenance registry
+        run: node scripts/validate-content-asset-provenance-registry.mjs
+      - name: Run negative contract tests
+        run: node tests/content-asset-provenance-contract.test.mjs
+      - name: Parse registry JSON
+        run: |
+          node -e "JSON.parse(require('fs').readFileSync('foundation/content-registry/registry-contract.v1.json','utf8')); console.log('CONTENT_REGISTRY_JSON_PARSE=PASS')"
+          node -e "JSON.parse(require('fs').readFileSync('foundation/content-registry/examples/step1-registry-fixture.v1.json','utf8')); console.log('CONTENT_REGISTRY_FIXTURE_JSON_PARSE=PASS')"
