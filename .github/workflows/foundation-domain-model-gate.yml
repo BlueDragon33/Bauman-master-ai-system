@@ -1,0 +1,33 @@
+name: Foundation Domain Model Gate
+
+on:
+  push:
+    branches:
+      - work/foundation-v2-l9-domain-model
+  pull_request:
+    paths:
+      - 'foundation/**'
+      - 'subjects/shared/**'
+      - 'subjects/russian/assets/learning-state.js'
+      - 'subjects/russian/assets/content-contract.js'
+      - 'scripts/validate-foundation-domain-model.mjs'
+      - '.github/workflows/foundation-domain-model-gate.yml'
+
+permissions:
+  contents: read
+
+jobs:
+  validate-foundation-domain-model:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+      - name: Use Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Validate universal domain foundation
+        run: node scripts/validate-foundation-domain-model.mjs
+      - name: Parse foundation JSON
+        run: node -e "JSON.parse(require('fs').readFileSync('foundation/domain-model/domain-contract.v1.json','utf8')); console.log('FOUNDATION_JSON_PARSE=PASS')"
