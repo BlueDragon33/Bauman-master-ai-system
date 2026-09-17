@@ -1,0 +1,130 @@
+{
+  "schema": "BAUMAN_DOMAIN_CONTRACT_V1",
+  "schemaVersion": 1,
+  "status": "foundation",
+  "purpose": "Stable cross-subject identity and domain contract for learning, research and future AI capabilities.",
+  "canonicalId": {
+    "format": "bauman:<entityType>:<namespace>:<localId>",
+    "pattern": "^bauman:(source|knowledge|competency|task|evidence|artifact|research):([a-z0-9][a-z0-9._-]{0,63}):([a-z0-9][a-z0-9._-]{0,127})$",
+    "rules": [
+      "Canonical IDs are explicit and immutable after creation.",
+      "Canonical IDs MUST NOT be derived from display titles, array positions, current timestamps or random values.",
+      "Legacy local IDs remain unchanged in source datasets and are mapped additively to canonical IDs.",
+      "namespace identifies a stable domain or subject boundary, not a UI route.",
+      "localId is a stable author-assigned identifier and is never silently slugified."
+    ]
+  },
+  "entityEnvelope": {
+    "schema": "BAUMAN_DOMAIN_ENTITY_V1",
+    "schemaVersion": 1,
+    "required": [
+      "schema",
+      "schemaVersion",
+      "id",
+      "entityType",
+      "namespace",
+      "title",
+      "revision",
+      "provenance",
+      "refs",
+      "extensions"
+    ],
+    "immutableIdentityFields": ["id", "entityType", "namespace"],
+    "optionalLifecycleFields": ["createdAt", "updatedAt", "status"]
+  },
+  "entityTypes": {
+    "source": {
+      "purpose": "External or repository source from which knowledge or artifacts originate.",
+      "requiredPayload": ["source.kind", "source.locator"]
+    },
+    "knowledge": {
+      "purpose": "A concept, principle, definition, method, formula or other knowledge object independent from presentation.",
+      "requiredPayload": ["knowledge.kind"]
+    },
+    "competency": {
+      "purpose": "A durable capability statement that can be supported by evidence.",
+      "requiredPayload": ["competency.statement"]
+    },
+    "task": {
+      "purpose": "A learner or researcher action request. Task definition is separate from evidence and mastery.",
+      "requiredPayload": ["task.kind", "task.evidencePolicy"]
+    },
+    "evidence": {
+      "purpose": "An immutable observation or result produced by a real action. Evidence does not directly set mastery.",
+      "requiredPayload": ["evidence.kind", "evidence.taskRef"]
+    },
+    "artifact": {
+      "purpose": "A durable output such as note, code, report, dataset, figure, recording or submission with lineage.",
+      "requiredPayload": ["artifact.kind", "artifact.lineage"]
+    },
+    "research": {
+      "purpose": "A future-ready research object used from literature review through dissertation without implementing the full Research OS in L9.",
+      "requiredPayload": ["research.kind"],
+      "allowedKinds": [
+        "paper",
+        "claim",
+        "research_question",
+        "hypothesis",
+        "experiment",
+        "dataset",
+        "code",
+        "config",
+        "result",
+        "figure",
+        "table",
+        "publication",
+        "dissertation_chapter"
+      ]
+    }
+  },
+  "relations": {
+    "provenance": ["derived_from", "quoted_from", "adapted_from", "measured_from", "imported_from"],
+    "knowledge": ["requires", "supports", "explains", "applies", "contrasts", "part_of"],
+    "learning": ["targets", "assesses", "produces", "evidences", "reviews"],
+    "research": ["cites", "supports_claim", "tests_hypothesis", "uses_dataset", "uses_code", "produces_result", "appears_in"]
+  },
+  "provenanceContract": {
+    "sourceIdMustBeCanonicalSource": true,
+    "locatorOptional": true,
+    "relationRequired": true,
+    "unknownSourcePolicy": "Do not invent provenance. Leave provenance empty until a source is known."
+  },
+  "referenceContract": {
+    "canonicalRefsOnly": true,
+    "danglingRefsPolicy": "Allowed only during staged import; integration gates must resolve required references before promotion."
+  },
+  "evidenceContract": {
+    "masterySeparated": true,
+    "forbiddenTaskOrEvidenceFields": ["mastery", "mastered", "completionStatus"],
+    "principle": "Tasks request actions; evidence records observations; competency/mastery engines interpret evidence later."
+  },
+  "artifactContract": {
+    "lineageRequired": true,
+    "principle": "Artifacts keep derivation lineage so future research, reproducibility and dissertation workflows do not need a second storage model."
+  },
+  "extensionsContract": {
+    "mustBeObject": true,
+    "reserved": ["legacy", "external", "interoperability"],
+    "principle": "New capabilities extend entities through namespaced extensions instead of changing stable identity."
+  },
+  "migrationContract": {
+    "mode": "additive-pure",
+    "rules": [
+      "A migration never mutates its input object.",
+      "id, entityType and namespace remain unchanged across migrations.",
+      "Every migration declares explicit fromVersion and toVersion.",
+      "Migrations are one-way and deterministic.",
+      "Legacy payload may be preserved under extensions.legacy when needed.",
+      "No migration may use Math.random, current time or display labels to create canonical identity."
+    ]
+  },
+  "aiContract": {
+    "principle": "AI consumes domain objects and may suggest or draft, but does not own canonical learner truth, mastery or research conclusions.",
+    "authoritativeWritesRequireExplicitPolicy": true
+  },
+  "interoperability": {
+    "strategy": "adapter-first",
+    "futureAdapters": ["QTI", "CASE", "LTI", "OpenBadges", "CLR"],
+    "principle": "External standards map through adapters; the core domain model does not depend on one vendor or standard."
+  }
+}
