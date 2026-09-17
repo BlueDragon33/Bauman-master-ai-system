@@ -37,18 +37,26 @@ for(const [name,keys] of Object.entries(candidates)){
  coverage[name]={count,total:vocab.length,percent:Number((100*count/Math.max(1,vocab.length)).toFixed(2)),keys:keyCounts};
 }
 let terms=0,withAcute=0,withYo=0,singleVowel=0,multiVowelNoStress=0,cyrTerms=0;
+let pronIpaStress=0,pronAcute=0,pronApostrophe=0,pronUppercaseHint=0;
 const stressSamples=[];
+const pronunciationSamples=[];
 for(const item of vocab){
  const termHit=first(item,candidates.term);const term=str(termHit?.value);if(!term)continue;terms++;
  if(cyr.test(term))cyrTerms++;
  const vowels=term.match(vowel)||[];
  const stressHit=first(item,candidates.stress);
  const explicit=stressHit?str(stressHit.value):'';
+ const pron=str(first(item,candidates.pronunciation)?.value);
  if(acute.test(term)||acute.test(explicit))withAcute++;
  if(/[Ёё]/.test(term))withYo++;
  if(vowels.length===1)singleVowel++;
  if(vowels.length>1&&!acute.test(term)&&!/[Ёё]/.test(term)&&!explicit)multiVowelNoStress++;
- if(stressHit&&stressSamples.length<12)stressSamples.push({term,field:stressHit.key,value:stressHit.value,pron:first(item,candidates.pronunciation)?.value||''});
+ if(/[ˈˌ]/.test(pron))pronIpaStress++;
+ if(acute.test(pron))pronAcute++;
+ if(/[’'`´]/.test(pron))pronApostrophe++;
+ if(/[A-ZА-ЯЁ]{2,}/.test(pron))pronUppercaseHint++;
+ if(pronunciationSamples.length<18)pronunciationSamples.push({term,pron,meaning:first(item,candidates.meaningVi)?.value||'',stage:item?.stage||''});
+ if(stressHit&&stressSamples.length<12)stressSamples.push({term,field:stressHit.key,value:stressHit.value,pron});
 }
 const topKeys=Object.entries(keyFrequency).sort((a,b)=>b[1]-a[1]).slice(0,40).map(([key,count])=>({key,count,percent:Number((100*count/Math.max(1,vocab.length)).toFixed(2))}));
 const lessonIds=new Set(arr(lessons).map(x=>str(x?.id||x?.lessonId)).filter(Boolean));
@@ -61,12 +69,14 @@ const report={
  counts:{vocab:vocab.length,lessons:arr(lessons).length,speaking:arr(speaking).length},
  coverage,
  stressEvidence:{terms,cyrTerms,withAcute,withYo,singleVowel,multiVowelNoStress,explicitStressField:coverage.stress.count},
+ pronunciationEvidence:{ipaStress:pronIpaStress,acute:pronAcute,apostrophe:pronApostrophe,uppercaseHint:pronUppercaseHint},
  links:{vocabLessonLinked,vocabLessonUnknown,speakingLessonLinked,speakingLessonUnknown},
  topKeys,
- stressSamples
+ stressSamples,
+ pronunciationSamples
 };
 console.log('RUSSIAN_CONTENT_CONTRACT_AUDIT='+JSON.stringify(report));
-console.log('RUSSIAN_CONTENT_CONTRACT_SUMMARY='+JSON.stringify({coverage,stressEvidence:report.stressEvidence,links:report.links}));
+console.log('RUSSIAN_CONTENT_CONTRACT_SUMMARY='+JSON.stringify({coverage,stressEvidence:report.stressEvidence,pronunciationEvidence:report.pronunciationEvidence,links:report.links,pronunciationSamples}));
 if(!Array.isArray(vocab)||!vocab.length)throw new Error('Vocabulary dataset missing/empty');
 if(!coverage.term.count)throw new Error('Vocabulary has no detectable Russian term field');
 if(!coverage.meaningVi.count&&!coverage.english.count&&!coverage.meaningRu.count)throw new Error('Vocabulary has no detectable meaning field');
