@@ -31,6 +31,8 @@ jobs:
         run: node subjects/russian/scripts/validate-learning-flow.mjs
       - name: Validate Russian vocabulary SRS runtime
         run: node subjects/russian/scripts/validate-vocab-srs.mjs
+      - name: Validate Russian listening speaking coach
+        run: node subjects/russian/scripts/validate-speaking-coach.mjs
       - name: Parse Russian runtime JavaScript
         run: |
           node --check subjects/russian/assets/core.js
@@ -40,6 +42,7 @@ jobs:
           node --check subjects/russian/assets/learning-state.js
           node --check subjects/russian/assets/learning-flow.js
           node --check subjects/russian/assets/vocab-srs.js
+          node --check subjects/russian/assets/speaking-coach.js
       - name: Audit Russian learning datasets
         run: node subjects/russian/scripts/audit-learning-data.mjs
       - name: Audit Russian content contract
@@ -48,6 +51,8 @@ jobs:
         run: node subjects/russian/scripts/audit-learning-flow.mjs
       - name: Audit Russian vocabulary SRS sources
         run: node subjects/russian/scripts/audit-vocab-srs.mjs
+      - name: Audit Russian listening speaking source
+        run: node subjects/russian/scripts/audit-speaking-coach.mjs
       - name: Confirm redesign did not replace learning datasets
         shell: bash
         run: |
@@ -64,4 +69,6 @@ jobs:
           test -f subjects/russian/assets/learning-flow.css
           test -f subjects/russian/assets/vocab-srs.js
           test -f subjects/russian/assets/vocab-srs.css
-          echo "Russian learning datasets, content contract, learning flow and vocab SRS remain present."
+          test -f subjects/russian/assets/speaking-coach.js
+          test -f subjects/russian/assets/speaking-coach.css
+          echo "Russian learning datasets, content contract, learning flow, vocab SRS and speaking coach remain present."
