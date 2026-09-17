@@ -1,0 +1,210 @@
+{
+  "schema": "BAUMAN_CONTENT_ASSET_PROVENANCE_REGISTRY_V1",
+  "contractVersion": 1,
+  "status": "foundation",
+  "domainDependency": {
+    "schema": "BAUMAN_DOMAIN_CONTRACT_V1",
+    "contractVersion": 1,
+    "canonicalEntityKinds": [
+      "source",
+      "artifact"
+    ],
+    "mustNotMutateDomainContract": true
+  },
+  "compatibility": {
+    "strategy": "additive",
+    "runtimeIntegration": "none",
+    "legacyPathsPreserved": true,
+    "legacyContentUntouched": true,
+    "breakingChangesForbidden": true
+  },
+  "identity": {
+    "registryIdPattern": "bdr:<recordType>:<namespace>:<localId>",
+    "allowedRecordTypes": [
+      "asset",
+      "content",
+      "source",
+      "provenance",
+      "checksum",
+      "access"
+    ],
+    "canonicalEntityField": "canonicalEntityId",
+    "rules": {
+      "stable": true,
+      "neverDerivedFromDisplayName": true,
+      "registryScoped": true,
+      "canonicalEntityMustUseDomainIdentity": true
+    }
+  },
+  "models": {
+    "asset": {
+      "required": [
+        "registryId",
+        "canonicalEntityId",
+        "assetType",
+        "mediaType",
+        "checksumId",
+        "locators",
+        "state",
+        "recordVersion"
+      ],
+      "assetTypes": [
+        "pdf",
+        "ppt",
+        "pptx",
+        "audio",
+        "image",
+        "dataset",
+        "paper",
+        "document",
+        "video",
+        "archive",
+        "code",
+        "other"
+      ],
+      "states": [
+        "staged",
+        "verified",
+        "active",
+        "superseded",
+        "quarantined",
+        "missing"
+      ]
+    },
+    "content": {
+      "required": [
+        "registryId",
+        "canonicalEntityId",
+        "contentType",
+        "title",
+        "assetIds",
+        "sourceIds",
+        "provenanceEventIds",
+        "recordVersion"
+      ],
+      "contentTypes": [
+        "learning_material",
+        "reference",
+        "assessment",
+        "research_material",
+        "dataset",
+        "publication",
+        "generated_content",
+        "other"
+      ]
+    },
+    "source": {
+      "required": [
+        "registryId",
+        "canonicalEntityId",
+        "sourceType",
+        "title",
+        "locator",
+        "capturedAt",
+        "recordVersion"
+      ],
+      "sourceTypes": [
+        "repository",
+        "external_url",
+        "citation",
+        "user_import",
+        "generated",
+        "legacy"
+      ]
+    },
+    "provenance": {
+      "required": [
+        "registryId",
+        "eventType",
+        "subjectId",
+        "sourceIds",
+        "at",
+        "actor",
+        "recordVersion"
+      ],
+      "eventTypes": [
+        "captured",
+        "imported",
+        "transformed",
+        "generated",
+        "verified",
+        "superseded",
+        "relocated",
+        "linked"
+      ],
+      "appendOnly": true,
+      "previousEventField": "previousEventId"
+    },
+    "checksum": {
+      "required": [
+        "registryId",
+        "algorithm",
+        "digest",
+        "byteLength",
+        "recordVersion"
+      ],
+      "requiredAlgorithm": "sha256",
+      "digestEncoding": "lowercase_hex",
+      "digestLength": 64,
+      "immutable": true
+    },
+    "access": {
+      "required": [
+        "registryId",
+        "scope",
+        "visibility",
+        "recordVersion"
+      ],
+      "visibility": [
+        "private",
+        "course",
+        "organization",
+        "public"
+      ],
+      "defaultVisibility": "private"
+    }
+  },
+  "locatorPolicy": {
+    "canonicalLocatorKinds": [
+      "repository_relative",
+      "https_url",
+      "content_hash"
+    ],
+    "repositoryRelative": {
+      "separator": "/",
+      "mustNotStartWithSlash": true,
+      "mustNotContainDriveLetter": true,
+      "mustNotContainParentTraversal": true
+    },
+    "externalUrl": {
+      "scheme": "https"
+    },
+    "rule": "OS-specific absolute paths may be recorded only as non-canonical import metadata; they must never be canonical locators."
+  },
+  "provenancePolicy": {
+    "appendOnly": true,
+    "generatedContentMustRetainSourceLineage": true,
+    "transformMustReferenceInputs": true,
+    "verificationMustReferenceChecksum": true,
+    "historyMayNotBeRewritten": true
+  },
+  "versioning": {
+    "recordVersionStartsAt": 1,
+    "supersedesField": "supersedesId",
+    "publishedIdentityImmutable": true,
+    "unknownExtensionsMustBePreserved": true,
+    "extensionsMustBeNamespaced": true
+  },
+  "integrity": {
+    "checksumRequiredForAssets": true,
+    "canonicalAlgorithm": "sha256",
+    "checksumMismatchState": "quarantined",
+    "missingAssetState": "missing"
+  },
+  "step1Gate": {
+    "runtimeMutationAllowed": false,
+    "requiresValidFixture": true,
+    "requiresNegativeContractTests": true,
+    "requiresDomainCompatibilityCheck": true
+  }
+}
