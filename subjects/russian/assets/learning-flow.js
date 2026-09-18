@@ -91,10 +91,47 @@
     }
     return null;
   }
+  function reviewStep(item){
+    const route=item?.route||{};
+    if(route.view==='learning'){
+      if(route.learnTab==='practice')return 'speaking';
+      if(route.learnTab==='exercises')return 'exercises';
+      if(route.learnTab==='theory')return 'theory';
+      if(route.learnTab==='review'||route.learnTab==='exam')return 'check';
+    }
+    if(route.view==='vocab')return 'vocab';
+    if(route.view==='grammar')return 'grammar';
+    if(/^(pron:|stress:|speak-abandoned:)/.test(clean(item?.id)))return 'speaking';
+    return 'check';
+  }
+  function dueReviewsForLesson(lessonId){
+    const id=clean(lessonId);if(!id)return [];
+    const api=window.RussianLearningState;
+    if(!api||typeof api.dueReviews!=='function')return [];
+    try{
+      return api.dueReviews().filter(item=>clean(item?.lessonId||item?.route?.lessonId)===id);
+    }catch(_){return [];}
+  }
+  function adaptiveNext(ls){
+    const due=dueReviewsForLesson(ls?.id);
+    if(due.length){
+      const item=due[0],step=reviewStep(item);
+      return {
+        kind:'review',step,item,
+        label:clean(item?.label)||'Mục cần sửa trước khi học mới',
+        reason:clean(item?.reason)||'review_due',
+        route:{...(item?.route||{view:'learning',learnTab:'review',lessonId:ls?.id})}
+      };
+    }
+    const step=nextSuggested(ls);
+    if(step)return {kind:'step',step,label:META[step]?.label||step};
+    return {kind:'reinforce',step:'check',label:'Ôn củng cố / kiểm tra lại'};
+  }
   function esc(v){return clean(v).replace(/[&<>"']/g,m=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[m]));}
+  function routeAttr(route){return JSON.stringify(route||{}).replace(/&/g,'&amp;').replace(/'/g,'&#39;').replace(/</g,'&lt;');}
   function scopeLabel(scope){return scope==='lesson'?'Gắn bài':'Hỗ trợ giai đoạn';}
   function panelHtml(ls){
-    const next=nextSuggested(ls),active=readCore();
+    const adaptive=adaptiveNext(ls),next=adaptive?.step||null,active=readCore();
     const rows=STEP_ORDER.map((step,i)=>{
       const m=META[step],s=ls.steps[step],st=statusFor(step,s);
       return `<button class="ru-flow-step ${esc(st.key)} ${next===step?'recommended':''}" data-ru-flow-step="${step}">
@@ -105,9 +142,11 @@
     const context=(active.view==='vocab'||active.view==='grammar')
       ?'Bạn đang dùng tài nguyên hỗ trợ theo giai đoạn. Việc mở phần này không tự nâng trạng thái bài học.'
       :'Tiến độ chỉ tăng khi có bằng chứng thao tác phù hợp; mở màn hình đơn thuần không được tính là đã học.';
-    const foot=next
-      ?`<span><b>Tiếp theo gợi ý:</b> ${esc(META[next].label)}</span><button type="button" data-ru-flow-step="${next}" class="btn primary">Mở bước tiếp theo →</button>`
-      :`<span><b>Đã có bằng chứng ở 4 bước cốt lõi.</b> Có thể tiếp tục luyện hoặc ôn các mục còn yếu.</span><button type="button" data-ru-flow-step="check" class="btn primary">Luyện kiểm tra tiếp →</button>`;
+    const foot=adaptive?.kind==='review'
+      ?`<span><b>Ưu tiên sửa trước:</b> ${esc(adaptive.label)} · Review Queue đang đến hạn.</span><button type="button" data-route='${routeAttr(adaptive.route)}' data-ru-adaptive-review="${esc(adaptive.item?.id)}" class="btn primary">Mở đúng lỗi →</button>`
+      :(adaptive?.kind==='step'
+        ?`<span><b>Tiếp theo gợi ý:</b> ${esc(META[next].label)}</span><button type="button" data-ru-flow-step="${next}" class="btn primary">Mở bước tiếp theo →</button>`
+        :`<span><b>Đã có bằng chứng ở 4 bước cốt lõi.</b> Không còn lỗi đến hạn của bài này; chuyển sang củng cố.</span><button type="button" data-ru-flow-step="check" class="btn primary">Luyện kiểm tra tiếp →</button>`);
     return `<header class="ru-flow-head"><div><span>LEARNING FLOW · ${esc(ls.id)}</span><h3>${esc(ls.title)}</h3><p>${esc(context)}</p></div><div class="ru-flow-evidence"><b>${evidence}/4</b><small>bước cốt lõi có bằng chứng</small></div></header><div class="ru-flow-steps">${rows}</div><footer class="ru-flow-foot">${foot}</footer>`;
   }
   let renderQueued=false,lastSig='';
@@ -122,7 +161,8 @@
       document.getElementById('ruLessonFlow')?.remove();lastSig='';return;
     }
     const id=activeLessonId();if(!id)return;
-    const ls=lessonState(id),sig=JSON.stringify([core.view,core.learnTab,id,ls.steps,flow.updatedAt]);
+    const ls=lessonState(id),learningState=window.RussianLearningState?.get?.()||{};
+    const adaptive=adaptiveNext(ls),sig=JSON.stringify([core.view,core.learnTab,id,ls.steps,flow.updatedAt,learningState.updatedAt,adaptive?.kind,adaptive?.item?.id||'']);
     let panel=document.getElementById('ruLessonFlow');
     if(!panel){panel=document.createElement('section');panel.id='ruLessonFlow';panel.className='ru-lesson-flow';view.prepend(panel);}
     if(sig!==lastSig){panel.innerHTML=panelHtml(ls);lastSig=sig;}
@@ -236,6 +276,7 @@
     schema:SCHEMA,
     legacySchema:LEGACY_SCHEMA,
     get:()=>JSON.parse(JSON.stringify(flow)),
-    activeLessonId,touch,navigate,statusFor,hasMeaningfulEvidence,nextSuggested
+    activeLessonId,touch,navigate,statusFor,hasMeaningfulEvidence,nextSuggested,
+    reviewStep,dueReviewsForLesson,adaptiveNext
   };
 })();
