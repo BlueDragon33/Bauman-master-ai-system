@@ -37,8 +37,8 @@ If a gate fails, repair it before continuing. Never weaken an assertion merely t
 | 6 | Sound ↔ letter mapping | GREEN | 33-letter curated sound map; ru-RU audio; listen-gated sound→letter evidence |
 | 7 | Handwriting motor practice | GREEN | Existing canvas reused; trace→copy→connect→free; per-letter motor evidence |
 | 8 | Listening ladder | GREEN | Normal→focused→repair-slow→gist/detail; slow gated after two normal plays |
-| 9 | Speaking & shadowing ladder | ACTIVE | Reuse recorder/scoring; imitation→shadowing→memory→role-play→repair |
-| 10 | Visual vocabulary contract | PLANNED | Forbid Vietnamese/English meaning authority |
+| 9 | Speaking & shadowing ladder | GREEN | Recorder-backed imitation→shadowing→memory→role-play→repair; Turn 8 retains listening ownership |
+| 10 | Visual vocabulary contract | ACTIVE | Lock direct-semantic authority before runtime migration; no translation fallback |
 | 11 | Visual asset coverage | PLANNED | Validate real visual semantics; no translation fallback |
 | 12 | Direct-semantic explanation | PLANNED | Scene/gesture/contrast/category/analogy |
 | 13 | Visual vocabulary runtime | PLANNED | Remove learner-facing “flip meaning” authority |

@@ -2,12 +2,12 @@
 
 Current task: `RUSSIAN_LISTEN_SPEAK_LITERACY_VISUAL_SEMANTICS`
 
-Status: `TURN8_GREEN_TURN9_ACTIVE`
+Status: `TURN9_GREEN_TURN10_ACTIVE`
 
 Date: 2026-09-18
 Branch: `work/russian-listen-speak-literacy-visual-semantics`
 Foundation base: content-resolution implementation through Step 14 is preserved from the accepted Foundation branch.
-Russian accepted head: `ec98f6649448ea424c2d87a6d2d4453dee9182a8`
+Russian accepted head: `5f64f0bac93e01f149f8a587bd41b108e9f546dd`
 
 ## Single source of truth
 
@@ -23,7 +23,7 @@ Architecture principles and ownership are defined in:
 
 ## Accepted Russian turns
 
-Turns 1–8 are green.
+Turns 1–9 are green.
 
 - Turn 1 — baseline audit and pedagogy contract
 - Turn 2 — oral-first route priority
@@ -33,14 +33,15 @@ Turns 1–8 are green.
 - Turn 6 — sound ↔ letter mapping
 - Turn 7 — handwriting motor practice
 - Turn 8 — listening ladder
+- Turn 9 — speaking & shadowing ladder
 
 Turn 5 retains one explicit deferred obligation: browser-level visual proof that the packaged cursive glyph differs from print. This is tracked for Turn 23 and blocks Turn 24 freeze if still open.
 
 ## Next turn
 
-Turn 9 — Speaking & shadowing ladder.
+Turn 10 — Visual vocabulary contract.
 
-Turn 10 does not begin until Turn 9's imitation/shadow/memory/role-play/repair sequence, negative tests, and existing Russian regression are green.
+Turn 11 does not begin until Turn 10 locks vocabulary semantic authority, prohibited translation fallback, required visual/audio/context channels, and the existing Russian regression is green.
 
 ## Protected authority
 

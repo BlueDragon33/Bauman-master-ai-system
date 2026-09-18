@@ -30,18 +30,18 @@ English is not the default translation bridge either.
 
 ## Current work
 
-Turns 1–8 are accepted.
+Turns 1–9 are accepted.
 
-Next: **Turn 9 — Speaking & shadowing ladder**.
+Next: **Turn 10 — Visual vocabulary contract**.
 
-Turn 9 must:
+Turn 10 must:
 
-- reuse the existing recording and pronunciation scoring path;
-- sequence imitation → shadowing → memory speaking → role-play → repair;
-- require heard text before recording;
-- record speaking evidence separately from mastery authority;
-- use pronunciation feedback without Vietnamese translation answers;
-- preserve Turn 3/8 oral-first listening constraints.
+- define learner-facing vocabulary meaning authority before changing the runtime;
+- forbid Vietnamese and English translation as semantic answers;
+- require visual, audio and contextual meaning channels;
+- allow legacy translation fields to remain only for migration/authoring diagnostics;
+- define an explicit missing-visual state instead of translation fallback;
+- preserve existing vocabulary data until a later gated migration changes its schema.
 
 ## Gate rule
 
