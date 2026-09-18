@@ -156,7 +156,7 @@ When writing new documents, put the responsibility name first. A checkpoint code
 - registry mutation;
 - implicit browser/network fetching in the core resolver.
 
-**Current state:** Step 6 Academic core shadow resolution active. Contract + resolver + delivery plan + injected executor + package-relative adapter are green; Academic loader paths are modeled only in CI shadow mode and remain authoritative in the existing runtime.
+**Current state:** Step 7 browser shadow acceptance active. Node shadow parity is green; Chromium acceptance uses a test-only harness, while root Hub and Academic runtime remain unchanged and authoritative.
 
 ### G. Foundation — Learning Content Standard
 
