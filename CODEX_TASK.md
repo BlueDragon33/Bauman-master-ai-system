@@ -1,68 +1,49 @@
 # CODEX_TASK
 
-Task: `BAUMAN_ARCHITECTURE_NAMING_AND_LAYER_MAP`
+Task: `CONTENT_RESOLUTION_RUNTIME_DELIVERY_FOUNDATION`
 
 Mode: `CHAT_FIRST / RESPONSIBILITY_BASED_ARCHITECTURE`
 
-## Objective
+## Architecture layer
 
-Make the Bauman Hub architecture easy to understand and safe to upgrade without relying on ambiguous generation names such as V2 or V3.
+**Foundation — Content Resolution & Runtime Delivery**
 
-## Mandatory naming policy
+## Goal
 
-1. Name architecture layers by responsibility.
-2. Reserve version numbers for compatibility-sensitive schemas, storage formats, migrations, and public protocols.
-3. Treat L9/L10 only as historical checkpoint IDs.
-4. New branches must use area + capability names, for example `work/foundation-content-provenance`.
-5. Do not introduce branch/document names based on `V2`, `V3`, `new`, `latest`, or `final`.
+Create a safe bridge from Content/Asset/Provenance Registry locators to runtime resource descriptors without replacing current loaders until each migration is separately proven.
 
-## Primary architecture map
+## Step 1
 
-`ARCHITECTURE.md` is the canonical navigation document for:
+Define and gate the contract only.
 
-- layer responsibility;
-- code ownership;
-- dependency direction;
-- current authority;
-- common edit locations;
-- upgrade procedure;
-- branch naming.
+Required:
 
-## Current completed foundation layers
-
-- **Foundation — Identity & Domain Model** (historical checkpoint L9).
-- **Foundation — Content, Asset & Provenance Registry** (historical checkpoint L10).
-
-The content/asset/provenance layer is frozen as a promotion candidate and must remain runtime-neutral until a separately defined integration layer is approved.
+1. dependency on the frozen Content, Asset & Provenance Registry;
+2. explicit resolution modes;
+3. safe locator rules for repository-relative, HTTPS, and content-hash locators;
+4. access decision required before learner runtime delivery;
+5. checksum reference required before learner runtime delivery;
+6. default-deny network policy;
+7. immutable runtime resource descriptor;
+8. explicit blocked/provider-required/not-found/ambiguous outcomes;
+9. no learner-state or route authority;
+10. no runtime loader migration.
 
 ## Protected contracts
 
-Preserve unless a separately gated migration explicitly changes them:
+Preserve:
 
+- Foundation — Identity & Domain Model frozen baseline;
+- Foundation — Content, Asset & Provenance Registry promotion candidate;
 - `BAUMAN_SUBJECT_BRIDGE_V1`;
-- `RUSSIAN_LEARNING_STATE_V1`;
-- `RUSSIAN_CONTENT_CONTRACT_V1`;
-- accepted Math runtime behavior;
-- existing learner progress/state;
-- subject routes and subject apps;
-- Device Gate and managed access boundary;
-- L9 domain baseline;
-- L10 content/provenance freeze invariants.
+- existing Russian/Math learning contracts;
+- learner progress/state;
+- Hub and subject routes;
+- Device Gate and managed-access boundary;
+- current source/package parity.
 
-## Rule for the next layer
+## Step 2 rule
 
-Do not start a numerically named “L11/V3” architecture by guess.
+Do not migrate any real loader until Step 1 gate is green.
 
-First define:
-
-- descriptive layer name;
-- responsibility;
-- owned data;
-- forbidden authority;
-- dependencies;
-- runtime integration;
-- persistence model;
-- security boundary;
-- acceptance gate.
-
-Only then implement it.
+Step 2 should introduce a pure resolver runtime in isolation, still without fetching or changing current subject/Hub behavior.
