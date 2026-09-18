@@ -1,0 +1,54 @@
+{
+  "schema": "BAUMAN_RUNTIME_DELIVERY_EXECUTOR_CONTRACT_V1",
+  "contractVersion": 1,
+  "architectureName": "Foundation — Content Resolution & Runtime Delivery",
+  "input": {
+    "planSchema": "BAUMAN_RUNTIME_DELIVERY_PLAN_V1",
+    "requiredPlanStatus": "ready",
+    "adapterInjectionRequired": true
+  },
+  "adapterBoundary": {
+    "lookupByExactAdapterId": true,
+    "implicitAdapterDiscovery": false,
+    "globalNetworkLookup": false,
+    "adapterReceivesFrozenPlan": true,
+    "acceptedPayloads": [
+      "string",
+      "ArrayBuffer",
+      "TypedArray",
+      "object.bytes"
+    ]
+  },
+  "verification": {
+    "algorithm": "sha256",
+    "verifyDigest": true,
+    "verifyByteLength": true,
+    "consumerRunsOnlyAfterVerification": true,
+    "failedPayloadNeverForwardedToConsumer": true
+  },
+  "result": {
+    "schema": "BAUMAN_RUNTIME_DELIVERY_EXECUTION_V1",
+    "statuses": [
+      "verified",
+      "blocked"
+    ],
+    "blockedReasons": [
+      "adapter_missing",
+      "adapter_error",
+      "adapter_invalid_payload",
+      "integrity_mismatch"
+    ],
+    "payloadReturnedByCore": false
+  },
+  "safety": {
+    "coreFetchesNetwork": false,
+    "coreUsesXHR": false,
+    "coreUsesWebSocket": false,
+    "coreWritesStorage": false,
+    "coreDiscoversAdapters": false,
+    "coreMutatesPlan": false,
+    "coreMutatesRegistry": false,
+    "coreChangesRoutes": false,
+    "coreChangesLearnerState": false
+  }
+}
