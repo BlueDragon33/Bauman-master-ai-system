@@ -3,6 +3,7 @@ import path from 'node:path';
 
 const root=path.resolve('subjects/russian');
 const js=fs.readFileSync(path.join(root,'assets','planning-bridge.js'),'utf8');
+const core=fs.readFileSync(path.join(root,'assets','core.js'),'utf8');
 const need=(token,msg)=>{if(!js.includes(token))throw new Error(msg||`Missing token: ${token}`);};
 const forbid=(token,msg)=>{if(js.includes(token))throw new Error(msg||`Forbidden token: ${token}`);};
 
@@ -16,8 +17,9 @@ need('reviewId:clean(item?.id)','Overlay card review id missing');
 need('reviewReason:reason','Overlay card review reason missing');
 need("target.cards=[...cards,...existing]",'Overlay must preserve original schedule cards');
 need('return applyLiveReviewOverlay(plan)','Generated plans must receive live review overlay');
+if(!core.includes('BaumanPlanningBridge?.applyLiveReviewOverlay'))throw new Error('Today schedule must refresh live review overlay at render time');
 need("limit:'Ưu tiên ngắn · không tự nâng mastery'",'Truthful non-mastery wording missing');
 forbid('mastered:true','Planning overlay must not synthesize mastery');
 forbid("status:'mastered'",'Planning overlay must not write mastery status');
 console.log('RUSSIAN_REVIEW_PLANNING_GATE=PASS');
-console.log('Checks: real due-review source, max-3 overlay, preserved base schedule, provenance, exact route metadata, no synthetic mastery.');
+console.log('Checks: real due-review source, max-3 overlay, preserved base schedule, live render refresh, provenance, exact route metadata, no synthetic mastery.');
