@@ -43,8 +43,8 @@ If a gate fails, repair it before continuing. Never weaken an assertion merely t
 | 12 | Direct-semantic explanation | GREEN | 8,000/8,000 direct-semantic ready via visual/category/Russian-definition/audio; gesture/contrast/analogy remain source-gated |
 | 13 | Visual vocabulary runtime | GREEN | Learner-facing authority switched to visual/Russian direct semantics; translation flip removed; SRS/mastery authority preserved |
 | 14 | Reading bridge | GREEN | 20 chunks + 16 real words + 8 short texts; self-read before audio check; Russian-only evidence |
-| 15 | Dictation & listen-to-write | ACTIVE | Source-backed sound→letter→word→short dictation; answer hidden until attempts |
-| 16 | Translation-free dialogue scaffolding | PLANNED | Scene/cue/role replaces default Vietnamese gloss |
+| 15 | Dictation & listen-to-write | GREEN | 33 letters + 16 words + 8 short texts; answer reveal after two attempts; Russian-only |
+| 16 | Translation-free dialogue scaffolding | ACTIVE | Scene/cue/role/Russian context replaces default Vietnamese/English gloss |
 | 17 | Grammar from patterns | PLANNED | Heard/spoken pattern before minimal rule |
 | 18 | Multimodal SRS & review | PLANNED | Audio/image/recognition/speaking/writing evidence |
 | 19 | Skill-gated assessment | PLANNED | Separate skill readiness before aggregate readiness |
