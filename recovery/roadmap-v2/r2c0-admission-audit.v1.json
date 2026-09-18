@@ -1,0 +1,195 @@
+{
+  "schema": "BAUMAN_ROADMAP_V2_R2C0_ADMISSION_AUDIT_V1",
+  "phase": "L27R2C0_TOOLCHAIN_DATA_TEST_ADMISSION_AUDIT",
+  "status": "audit_only_no_new_canonical_files",
+  "historical": {
+    "baseline": "e383912354673bdce7a0059d6b9a23799d74e689",
+    "terminalHead": "0438b6f4256003e6f20c266c97d944ade7c52f83",
+    "terminalRound": 27,
+    "terminalStep": 108
+  },
+  "current": {
+    "reconciliationBranch": "stabilization/roadmap-v2-reconcile-current-runtime",
+    "r2bCanonicalFiles": 23,
+    "productionIntegration": "disconnected"
+  },
+  "categories": {
+    "alreadyAdmittedR2B": {
+      "count": 23,
+      "files": [
+        "roadmap_v2/consumer/consumer-contract.json",
+        "roadmap_v2/consumer/consumer-contract.schema.json",
+        "roadmap_v2/diagnostic/diagnostic-contract.json",
+        "roadmap_v2/diagnostic/diagnostic-contract.schema.json",
+        "roadmap_v2/diagnostic/attempt.schema.json",
+        "roadmap_v2/diagnostic/catalog.schema.json",
+        "roadmap_v2/diagnostic/item-bank.schema.json",
+        "roadmap_v2/mastery/mastery-contract.json",
+        "roadmap_v2/mastery/mastery-contract.schema.json",
+        "roadmap_v2/mastery/evidence-event.schema.json",
+        "roadmap_v2/mastery/mastery-snapshot.schema.json",
+        "roadmap_v2/priority/priority-contract.json",
+        "roadmap_v2/priority/priority-contract.schema.json",
+        "roadmap_v2/priority/priority-candidate.schema.json",
+        "roadmap_v2/priority/priority-result.schema.json",
+        "roadmap_v2/scheduler/scheduler-contract.json",
+        "roadmap_v2/scheduler/scheduler-contract.schema.json",
+        "roadmap_v2/scheduler/scheduler-request.schema.json",
+        "roadmap_v2/scheduler/scheduler-result.schema.json",
+        "roadmap_v2/readiness/readiness-contract.json",
+        "roadmap_v2/readiness/readiness-contract.schema.json",
+        "roadmap_v2/readiness/readiness-request.schema.json",
+        "roadmap_v2/readiness/readiness-result.schema.json"
+      ],
+      "action": "keep"
+    },
+    "portableEngineCandidates": {
+      "count": 7,
+      "files": [
+        "roadmap_v2/consumer.mjs",
+        "roadmap_v2/diagnostic.mjs",
+        "roadmap_v2/loader.mjs",
+        "roadmap_v2/mastery.mjs",
+        "roadmap_v2/priority.mjs",
+        "roadmap_v2/readiness.mjs",
+        "roadmap_v2/scheduler.mjs"
+      ],
+      "action": "review_before_any_canonical_admission",
+      "risk": "depend_on_manifests_and_generated_sidecars"
+    },
+    "portableToolCandidates": {
+      "count": 8,
+      "files": [
+        "roadmap_v2/tools/build-migration-contract.mjs",
+        "roadmap_v2/tools/build-prerequisite-graph.mjs",
+        "roadmap_v2/tools/build-registry.mjs",
+        "roadmap_v2/tools/validate-baseline-inventory.mjs",
+        "roadmap_v2/tools/validate-migration-contract.mjs",
+        "roadmap_v2/tools/validate-prerequisite-graph.mjs",
+        "roadmap_v2/tools/validate-registry.mjs",
+        "roadmap_v2/tools/validate-roadmap-v2.mjs"
+      ],
+      "action": "review_hardcoded_baseline_and_output_paths_first"
+    },
+    "staleHashPinnedManifests": {
+      "count": 7,
+      "files": [
+        "roadmap_v2/consumer/manifest.json",
+        "roadmap_v2/diagnostic/manifest.json",
+        "roadmap_v2/manifest.json",
+        "roadmap_v2/mastery/manifest.json",
+        "roadmap_v2/priority/manifest.json",
+        "roadmap_v2/readiness/manifest.json",
+        "roadmap_v2/scheduler/manifest.json"
+      ],
+      "action": "quarantine_until_R3_regeneration",
+      "reason": "pin historical baseline and historical SHA-256/byte counts"
+    },
+    "baselineBoundGeneratedArtifacts": {
+      "count": 24,
+      "files": [
+        "roadmap_v2/baseline/math-legacy-lessons-inventory.json",
+        "roadmap_v2/baseline/math-main-e383912-inventory.json",
+        "roadmap_v2/baseline/math-main-e383912-inventory.sha256",
+        "roadmap_v2/baseline/math-physical-source-inventory.json",
+        "roadmap_v2/baseline/math-theory-framework-inventory.json",
+        "roadmap_v2/data/mappingReport.json",
+        "roadmap_v2/data/migrationContract.json",
+        "roadmap_v2/data/prerequisiteGraph.json",
+        "roadmap_v2/data/registry.json",
+        "roadmap_v2/diagnostic/catalog.json",
+        "roadmap_v2/graph/prerequisite-graph.json",
+        "roadmap_v2/migration/legacy-to-roadmap-v2.mapping.json",
+        "roadmap_v2/migration/migration-contract.json",
+        "roadmap_v2/registry/roadmap-v2.registry.json",
+        "roadmap_v2/reports/LUOT_19_ACCEPTANCE.md",
+        "roadmap_v2/reports/LUOT_21_ACCEPTANCE.md",
+        "roadmap_v2/reports/LUOT_22_ACCEPTANCE.md",
+        "roadmap_v2/reports/LUOT_23_ACCEPTANCE.md",
+        "roadmap_v2/reports/LUOT_24_ACCEPTANCE.md",
+        "roadmap_v2/reports/LUOT_25_ACCEPTANCE.md",
+        "roadmap_v2/reports/LUOT_26_ACCEPTANCE.md",
+        "roadmap_v2/reports/LUOT_27_ACCEPTANCE.md",
+        "roadmap_v2/reports/migration-l19.json",
+        "roadmap_v2/reports/validation-l19.json"
+      ],
+      "action": "quarantine_until_R3_regeneration"
+    },
+    "deferredStructuralSchemas": {
+      "count": 4,
+      "files": [
+        "roadmap_v2/graph/prerequisite-graph.schema.json",
+        "roadmap_v2/migration/legacy-to-roadmap-v2.mapping.schema.json",
+        "roadmap_v2/migration/migration-contract.schema.json",
+        "roadmap_v2/registry/roadmap-v2.registry.schema.json"
+      ],
+      "action": "review_with_builders_before_admission"
+    },
+    "historicalStateAndSpec": {
+      "count": 2,
+      "files": [
+        "roadmap_v2/ROADMAP_V2_STATE.md",
+        "roadmap_v2/spec/Bauman_Roadmap_V2_Syllabus_Luot18.md"
+      ],
+      "action": "evidence_only_use_archived_copy"
+    },
+    "externalValidationToolCandidates": {
+      "count": 1,
+      "files": [
+        "scripts/validate-roadmap-v2.mjs"
+      ],
+      "action": "review_before_admission"
+    },
+    "historicalTestHarnessCandidates": {
+      "count": 7,
+      "files": [
+        "tests/roadmap-v2-consumer.test.mjs",
+        "tests/roadmap-v2-diagnostic.test.mjs",
+        "tests/roadmap-v2-loader.test.mjs",
+        "tests/roadmap-v2-mastery.test.mjs",
+        "tests/roadmap-v2-priority.test.mjs",
+        "tests/roadmap-v2-readiness.test.mjs",
+        "tests/roadmap-v2-scheduler.test.mjs"
+      ],
+      "action": "stage_only_until_dependencies_are_modernized"
+    },
+    "historicalWorkflowCandidates": {
+      "count": 1,
+      "files": [
+        ".github/workflows/roadmap-v2-contract.yml"
+      ],
+      "action": "do_not_reuse_as_current_ci_without_review"
+    }
+  },
+  "invariants": {
+    "roadmapCanonicalHistoricalFileCount": 75,
+    "categorizedCanonicalHistoricalFileCount": 75,
+    "generatedArtifactsMayBeCopiedToCanonicalNow": false,
+    "oldManifestsMayBeCopiedToCanonicalNow": false,
+    "oldMigrationContractMayBeCopiedToCanonicalNow": false,
+    "runtimeActivationAllowed": false,
+    "uiChangesAllowed": false
+  },
+  "proposedSubrounds": [
+    {
+      "id": "L27R2C0",
+      "purpose": "Admission audit and classification",
+      "status": "in_progress"
+    },
+    {
+      "id": "L27R2C1",
+      "purpose": "Portable builder/validator review and controlled admission",
+      "status": "blocked_on_L27R2C0"
+    },
+    {
+      "id": "L27R2C2",
+      "purpose": "Engine/test staging with fail-closed dependency checks",
+      "status": "blocked_on_L27R2C1"
+    },
+    {
+      "id": "L27R2C3",
+      "purpose": "R2C consolidation gate before modern regeneration",
+      "status": "blocked_on_L27R2C2"
+    }
+  ]
+}
