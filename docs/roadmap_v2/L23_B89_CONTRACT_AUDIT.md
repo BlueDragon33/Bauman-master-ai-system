@@ -1,6 +1,6 @@
 # L23 / B89 — Current Diagnostic Contract Audit
 
-Status: `PENDING_GATE`
+Status: `PASS`
 
 ## Scope
 
@@ -48,3 +48,13 @@ This preserves compatibility with the reviewed item-bank schema and avoids inven
 ## Next
 
 B90 remains blocked until the B89 validator and the complete current gate set pass.
+
+
+## Full gate evidence
+
+- Roadmap V2 Current Gate: `35330792924` — PASS
+- Foundation Domain Model: `35330792942` — PASS
+- Windows checkout safety: `35330792965` — PASS
+- Russian Reference UI: `35330792902` — PASS
+- Cloudflare Preview: `35330793027` — PASS
+- Whole System Integration: `35330792968` — PASS
