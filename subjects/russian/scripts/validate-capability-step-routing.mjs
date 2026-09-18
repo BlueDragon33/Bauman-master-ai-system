@@ -69,5 +69,17 @@ assert.equal(band.missingLesson,'R02');
 assert.equal(band.missingStep,'theory');
 assert.deepEqual(JSON.parse(JSON.stringify(band.missingRoute)),{view:'learning',learnTab:'theory',lessonId:'R02'});
 
+for(const id of ['R01','R02','R03','R04','R05','R06','R07','R08','R09','R10']){
+  flow.lessons[id]={steps:{theory:{ok:true},speaking:{ok:true},check:{ok:true}}};
+}
+band=api.currentBand();
+assert.equal(band.id,'R1');
+assert.equal(band.missingStep,'writing');
+assert.equal(band.missingLesson,'R10');
+assert.deepEqual(JSON.parse(JSON.stringify(band.missingRoute)),{view:'writing',learnTab:'theory',lessonId:'R10'});
+payload=api.bridgePayload();
+assert.equal(payload.nextGap.step,'writing');
+assert.equal(payload.nextGap.route.view,'writing');
+
 console.log('RUSSIAN_CAPABILITY_STEP_ROUTING_GATE=PASS');
-console.log('Checks: theory evidence -> speaking/practice; speaking evidence -> check/review; completed lesson -> next lesson/theory.');
+console.log('Checks: theory -> speaking/practice; speaking -> check/review; completed lesson -> next lesson/theory; lesson-complete R1 -> writing gap.');
