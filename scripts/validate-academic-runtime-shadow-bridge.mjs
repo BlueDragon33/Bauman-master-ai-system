@@ -19,6 +19,12 @@ export function validateContract(contract){
   assert(Array.isArray(contract.resources)&&contract.resources.length===3,'Shadow bridge must track exactly three Academic core resources');
   assert(Array.isArray(contract.dependencies)&&contract.dependencies.length===8,'Shadow dependency chain drifted');
   assert(contract.verification?.failOpenForApplicationAvailability===true,'Shadow failure may block application');
+  assert(contract.verification?.registryCandidatePath==='foundation/content-resolution/registry-candidates/academic-core-2026.v1.json','Pinned registry path drifted');
+  assert(contract.verification?.registryCandidateStatus==='promotion_candidate','Pinned registry status drifted');
+  assert(contract.verification?.registryCandidateAuthority==='candidate_only','Pinned registry authority drifted');
+  assert(contract.verification?.selfDerivedChecksums===false,'Shadow bridge may derive its own expected checksums');
+  assert(contract.verification?.directDiagnosticChecksumDerivation===false,'Direct checksum derivation became enabled');
+  assert(contract.verification?.pinnedRegistryChecksumVerification===true,'Pinned registry verification disappeared');
   return true;
 }
 
@@ -35,7 +41,11 @@ export function validateSource(source,indexHtml){
   assert(!/BAUMAN_CURRICULUM_2026\s*=|BAUMAN_PREREQ_2026\s*=|BAUMAN_PREREQ_PACKS_2026_STATUS\s*=/.test(source),'Shadow bridge may write Academic authoritative globals');
   assert(source.includes("root.BaumanRuntimeDeliveryExecutor.execute"),'Verified executor is not used');
   assert(source.includes("root.BaumanPackageRelativeFetchAdapter.create"),'Package-relative adapter is not used');
-  assert(source.includes("root.crypto.subtle.digest('SHA-256'"),'Browser SHA-256 diagnostic binding missing');
+  assert(source.includes("const REGISTRY_CANDIDATE_PATH='foundation/content-resolution/registry-candidates/academic-core-2026.v1.json'"),'Pinned registry candidate path missing from runtime');
+  assert(source.includes('root.BaumanContentAssetRegistry.assertIntegrity(registry)'),'Pinned registry integrity validation missing');
+  assert(!source.includes("root.crypto.subtle.digest('SHA-256'"),'Shadow bridge must not derive expected checksums from fetched bytes');
+  assert(!source.includes('appendDiagnosticAsset'),'Dynamic diagnostic asset construction must be removed');
+  assert(!source.includes('directResource('),'Direct diagnostic resource hashing path must be removed');
   return true;
 }
 
