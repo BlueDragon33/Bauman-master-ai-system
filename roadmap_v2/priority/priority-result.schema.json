@@ -1,6 +1,6 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "$id": "BAUMAN_ROADMAP_V2_PRIORITY_RESULT_V1",
+  "$id": "BAUMAN_ROADMAP_V2_PRIORITY_RESULT_V2",
   "type": "object",
   "additionalProperties": false,
   "required": [
@@ -9,7 +9,9 @@
     "targetId",
     "phaseId",
     "knowledgeState",
+    "weeksUntilNeeded",
     "features",
+    "weights",
     "contributions",
     "weightedScore",
     "criticalOverride",
@@ -22,25 +24,112 @@
   ],
   "properties": {
     "schema": {
-      "const": "BAUMAN_ROADMAP_V2_PRIORITY_RESULT_V1"
+      "const": "BAUMAN_ROADMAP_V2_PRIORITY_RESULT_V2"
     },
     "candidateId": {
-      "type": "string"
+      "type": "string",
+      "minLength": 1
     },
     "targetId": {
-      "type": "string"
+      "type": "string",
+      "minLength": 1
     },
     "phaseId": {
-      "type": "string"
+      "enum": [
+        "GD0",
+        "GD1",
+        "GD2",
+        "GD3"
+      ]
     },
     "knowledgeState": {
-      "type": "string"
+      "enum": [
+        "chua_hoc",
+        "dang_hoc",
+        "dat_prerequisite",
+        "master_ready",
+        "can_on",
+        "gap"
+      ]
+    },
+    "weeksUntilNeeded": {
+      "type": [
+        "number",
+        "null"
+      ],
+      "minimum": 0
     },
     "features": {
-      "type": "object"
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "masterRelevance",
+        "knowledgeGap",
+        "prerequisiteUrgency",
+        "forgettingRisk"
+      ],
+      "properties": {
+        "masterRelevance": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 1
+        },
+        "knowledgeGap": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 1
+        },
+        "prerequisiteUrgency": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 1
+        },
+        "forgettingRisk": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 1
+        }
+      }
+    },
+    "weights": {
+      "const": {
+        "masterRelevance": 0.35,
+        "knowledgeGap": 0.3,
+        "prerequisiteUrgency": 0.2,
+        "forgettingRisk": 0.15
+      }
     },
     "contributions": {
-      "type": "object"
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "masterRelevance",
+        "knowledgeGap",
+        "prerequisiteUrgency",
+        "forgettingRisk"
+      ],
+      "properties": {
+        "masterRelevance": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 100
+        },
+        "knowledgeGap": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 100
+        },
+        "prerequisiteUrgency": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 100
+        },
+        "forgettingRisk": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 100
+        }
+      }
     },
     "weightedScore": {
       "type": "number",
@@ -72,7 +161,17 @@
       "const": false
     },
     "reasonCodes": {
-      "type": "array"
+      "type": "array",
+      "minItems": 2,
+      "uniqueItems": true,
+      "items": {
+        "type": "string",
+        "minLength": 1
+      }
+    },
+    "rank": {
+      "type": "integer",
+      "minimum": 1
     }
   }
 }
