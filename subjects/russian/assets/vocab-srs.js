@@ -88,15 +88,24 @@
     if(!vocabPromise)vocabPromise=fetch('data/vocab.json',{cache:'force-cache'}).then(r=>r.ok?r.json():Promise.reject(new Error('Không đọc được vocab.json')));
     try{const data=await vocabPromise;return Array.isArray(data)?data[index]||null:null;}finally{setTimeout(()=>{vocabPromise=null;},0);}
   }
-  function normalized(item){return A.normalizeVocab?A.normalizeVocab(item):{term:clean(item?.ru||item?.phrase_ru||item?.front),meaningVi:clean(item?.meaning_vi||item?.vi),english:clean(item?.clue_en),meaningRu:clean(item?.meaning_ru||item?.meaning),stage:clean(item?.stage),tags:Array.isArray(item?.tags)?item.tags:[]};}
-  function saveSentence(entry){state.sentences[entry.id]=entry;write();markLearningEvidence('');}
+  function normalized(item){
+ const direct=window.RussianVisualVocabularyRuntime?.describe?.(item)||{};
+ return {
+  term:clean(direct.term_ru||item?.ru||item?.phrase_ru||item?.front),
+  meaningRu:clean(direct.definition_ru||item?.meaning_ru||item?.meaning),
+  contextRu:clean(direct.context_ru||item?.example_ru||item?.context_ru||item?.voice_text||item?.example),
+  stage:clean(item?.stage),
+  tags:Array.isArray(item?.tags)?item.tags:[]
+ };
+}
+function saveSentence(entry){state.sentences[entry.id]=entry;write();markLearningEvidence('');}
   async function mineSource(){
     const index=indexNow(), key=keyFor(index);setNotice('Đang kiểm tra câu nguồn của thẻ…');
     try{
       const item=await loadVocabItem(index);if(!item){setNotice('Không tìm thấy dữ liệu nguồn của thẻ này.');return;}
-      const n=normalized(item), sentence=clean(item.example||item.example_ru||''), term=clean(n.term||termNow());
+      const n=normalized(item), sentence=clean(n.contextRu), term=clean(n.term||termNow());
       if(!sentence||lower(sentence)===lower(term)){setNotice('Nguồn của thẻ này chỉ lặp lại chính từ/cụm, nên không lưu như một câu ngữ cảnh.');return;}
-      const id=`source:${key}`;saveSentence({id,vocabKey:key,index,term,sentence,meaning:clean(n.meaningVi||n.english||n.meaningRu),source:'vocab.example',stage:clean(n.stage),tags:Array.isArray(n.tags)?n.tags:[],savedAt:state.sentences[id]?.savedAt||now()});
+      const id=`source:${key}`;saveSentence({id,vocabKey:key,index,term,sentence,meaning:clean(n.meaningRu),source:'vocab.example',stage:clean(n.stage),tags:Array.isArray(n.tags)?n.tags:[],savedAt:state.sentences[id]?.savedAt||now()});
       setNotice('Đã lưu câu ví dụ thật từ dữ liệu nguồn vào Sentence Mining.');
     }catch(e){setNotice('Không thể đọc câu nguồn: '+clean(e?.message||e));}
   }
@@ -127,7 +136,7 @@
   }
   function esc(v){return clean(v).replace(/[&<>"']/g,m=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[m]));}
   function cardStatus(card){if(!card?.reviewCount)return 'Chưa tự đánh giá';return `${card.reviewCount} lượt tự đánh giá · ${formatDue(card.dueAt)}`;}
-  function sentenceList(key){const rows=sentencesFor(key).slice(0,4);if(!rows.length)return '<div class="ru-vocab-srs-empty">Chưa lưu câu nào cho thẻ này.</div>';return rows.map(x=>`<article><div><span>${x.source==='vocab.example'?'Câu nguồn':'Câu của tôi'}</span><b lang="ru">${esc(x.sentence)}</b>${x.meaning?`<small>${esc(x.meaning)}</small>`:''}</div><button type="button" data-ru-srs-delete="${esc(x.id)}" aria-label="Bỏ câu đã lưu">×</button></article>`).join('');}
+  function sentenceList(key){const rows=sentencesFor(key).slice(0,4);if(!rows.length)return '<div class="ru-vocab-srs-empty">Chưa lưu câu nào cho thẻ này.</div>';return rows.map(x=>`<article><div><span>${x.source==='vocab.example'?'Câu nguồn':'Câu của tôi'}</span><b lang="ru">${esc(x.sentence)}</b></div><button type="button" data-ru-srs-delete="${esc(x.id)}" aria-label="Bỏ câu đã lưu">×</button></article>`).join('');}
   function speakingList(card){
     if(!card?.speakingCheckedAt)return '<p>Chỉ kiểm tra khi bạn bấm nút; không tải thêm kho speaking trong nền.</p>';
     const matches=Array.isArray(card.speakingMatches)?card.speakingMatches:[];
@@ -139,7 +148,7 @@
     if((core.view||'')!=='vocab'||!host){document.getElementById('ruVocabSrs')?.remove();return;}
     const index=indexNow(), key=keyFor(index), card=state.cards[key]||{}, due=dueCards(), scheduled=scheduledCards(), mined=sentencesFor(key), activeDue=sessionStorage.getItem(ACTIVE_DUE_KEY)===key;
     let panel=document.getElementById('ruVocabSrs');if(!panel){panel=document.createElement('section');panel.id='ruVocabSrs';panel.className='ru-vocab-srs';const anchor=host.querySelector('.ru-language-contract')||host.querySelector('.flash,.v1310-flash');if(anchor?.parentNode)anchor.parentNode.insertBefore(panel,anchor.nextSibling);else host.appendChild(panel);}
-    panel.innerHTML=`<header><div><span>ÔN THEO LỊCH · THẺ ${index+1}</span><h4>${esc(termNow())}</h4><p>${esc(cardStatus(card))}${activeDue?' · đang ôn thẻ đến hạn':''}</p></div><div class="ru-vocab-srs-summary"><button type="button" data-ru-srs-open-due><b>${due.length}</b><small>đến hạn</small></button><span><b>${scheduled.length}</b><small>đã hẹn</small></span><span><b>${Object.keys(state.sentences).length}</b><small>câu đã lưu</small></span></div></header><div class="ru-vocab-rating"><div><b>Tự nhớ lại trước khi lật nghĩa</b><small>Chọn theo kết quả thật của lần này. “Nhớ được” chỉ lên lịch ôn tiếp, không đánh dấu đã thuộc.</small></div><div><button type="button" class="forgot" data-ru-srs-rate="forgot">Quên</button><button type="button" class="unsure" data-ru-srs-rate="unsure">Chưa chắc</button><button type="button" class="recalled" data-ru-srs-rate="recalled">Nhớ được</button></div></div>${notice?`<div class="ru-vocab-srs-notice">${esc(notice)}</div>`:''}<details class="ru-vocab-mining"><summary><b>Sentence Mining</b><span>${mined.length} câu của thẻ này</span></summary><div class="ru-vocab-mining-body"><div class="ru-vocab-mining-actions"><button type="button" class="btn soft" data-ru-srs-mine-source>Lưu câu nguồn nếu có</button><div><input id="ruVocabMineInput" class="input" placeholder="Tự viết một câu tiếng Nga dùng từ này…"><button type="button" class="btn" data-ru-srs-mine-user>Lưu câu của tôi</button></div></div><div class="ru-vocab-sentence-list">${sentenceList(key)}</div></div></details><details class="ru-vocab-speaking-bridge"><summary><b>Cầu nối Nghe/Nói</b><span>chỉ exact vocabulary seed</span></summary><div class="ru-vocab-speaking-body"><button type="button" class="btn soft" data-ru-srs-find-speaking>Kiểm tra liên kết thật</button><div class="ru-vocab-speaking-list">${speakingList(card)}</div></div></details>`;
+    panel.innerHTML=`<header><div><span>ÔN THEO LỊCH · THẺ ${index+1}</span><h4>${esc(termNow())}</h4><p>${esc(cardStatus(card))}${activeDue?' · đang ôn thẻ đến hạn':''}</p></div><div class="ru-vocab-srs-summary"><button type="button" data-ru-srs-open-due><b>${due.length}</b><small>đến hạn</small></button><span><b>${scheduled.length}</b><small>đã hẹn</small></span><span><b>${Object.keys(state.sentences).length}</b><small>câu đã lưu</small></span></div></header><div class="ru-vocab-rating"><div><b>Tự nhớ lại qua hình, âm và ngữ cảnh Nga</b><small>Chọn theo kết quả thật của lần này. “Nhớ được” chỉ lên lịch ôn tiếp, không đánh dấu đã thuộc.</small></div><div><button type="button" class="forgot" data-ru-srs-rate="forgot">Quên</button><button type="button" class="unsure" data-ru-srs-rate="unsure">Chưa chắc</button><button type="button" class="recalled" data-ru-srs-rate="recalled">Nhớ được</button></div></div>${notice?`<div class="ru-vocab-srs-notice">${esc(notice)}</div>`:''}<details class="ru-vocab-mining"><summary><b>Sentence Mining</b><span>${mined.length} câu của thẻ này</span></summary><div class="ru-vocab-mining-body"><div class="ru-vocab-mining-actions"><button type="button" class="btn soft" data-ru-srs-mine-source>Lưu câu nguồn nếu có</button><div><input id="ruVocabMineInput" class="input" placeholder="Tự viết một câu tiếng Nga dùng từ này…"><button type="button" class="btn" data-ru-srs-mine-user>Lưu câu của tôi</button></div></div><div class="ru-vocab-sentence-list">${sentenceList(key)}</div></div></details><details class="ru-vocab-speaking-bridge"><summary><b>Cầu nối Nghe/Nói</b><span>chỉ exact vocabulary seed</span></summary><div class="ru-vocab-speaking-body"><button type="button" class="btn soft" data-ru-srs-find-speaking>Kiểm tra liên kết thật</button><div class="ru-vocab-speaking-list">${speakingList(card)}</div></div></details>`;
   }
   function routeWithVocabIndex(target){const node=target.closest?.('[data-route]');if(!node)return null;try{const r=JSON.parse(node.dataset.route||'{}');return r?.view==='vocab'&&r.vocabIndex!==undefined?r:null}catch(_){return null}}
   function shouldAbandon(target){
