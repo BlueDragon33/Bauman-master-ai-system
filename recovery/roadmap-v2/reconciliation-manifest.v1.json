@@ -1,6 +1,6 @@
 {
   "schema": "BAUMAN_ROADMAP_V2_RECONCILIATION_V1",
-  "phase": "L27R2B_STATIC_CONTRACT_SCHEMA_TRANSPLANT",
+  "phase": "L27R2C_TOOLCHAIN_DATA_TEST_TRANSPLANT",
   "status": "reconciliation_in_progress",
   "createdAt": "2026-09-18",
   "targetBranch": "stabilization/roadmap-v2-reconcile-current-runtime",
@@ -146,12 +146,12 @@
     {
       "id": "L27R2B",
       "name": "Static Roadmap contract/schema transplant",
-      "status": "in_progress"
+      "status": "pass"
     },
     {
       "id": "L27R2C",
-      "name": "Roadmap toolchain/data/test transplant",
-      "status": "blocked_on_L27R2B"
+      "name": "Roadmap toolchain/data/test transplant — admission audit",
+      "status": "in_progress"
     },
     {
       "id": "L27R3",
@@ -220,7 +220,16 @@
       "classification": "gate_design_regression_prevented",
       "cause": "R2B0 validator retained a phase-local canonical-path prohibition after R2B began.",
       "correction": "Make R2B0 timeless and move canonical admission/mutation boundaries to the R2B validator.",
-      "status": "applied_pending_gate"
+      "status": "pass"
+    },
+    {
+      "id": "L27R2B-F1",
+      "triggerRunId": 35325927158,
+      "failedStep": "Validate reconciliation state",
+      "classification": "gate_design_regression",
+      "cause": "Global reconciliation validator remained hard-coded to R2B0 and rejected valid R2B canonical paths.",
+      "correction": "Make global reconciliation validation phase-aware and keep phase-local admission rules in the active phase validator.",
+      "status": "pass"
     }
   ],
   "r2b": {
@@ -232,5 +241,31 @@
     "generatedDataFiles": 0,
     "runtimeUiChanges": 0,
     "productionIntegration": "disconnected"
+  },
+  "l27r2bGateEvidence": {
+    "reconciliation": {
+      "runId": 35326270461,
+      "conclusion": "success"
+    },
+    "foundation": {
+      "runId": 35326270426,
+      "conclusion": "success"
+    },
+    "windows": {
+      "runId": 35326270510,
+      "conclusion": "success"
+    },
+    "russian": {
+      "runId": 35326270418,
+      "conclusion": "success"
+    },
+    "preview": {
+      "runId": 35326270449,
+      "conclusion": "success"
+    },
+    "wholeSystem": {
+      "runId": 35326270438,
+      "conclusion": "success"
+    }
   }
 }
