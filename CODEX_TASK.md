@@ -30,18 +30,18 @@ English is not the default translation bridge either.
 
 ## Current work
 
-Turns 1–16 are accepted.
+Turns 1–17 are accepted.
 
-Next: **Turn 17 — Grammar from patterns**.
+Next: **Turn 18 — Multimodal SRS & review**.
 
-Turn 17 must:
+Turn 18 must:
 
-- start grammar practice from a heard Russian pattern, not a rule paragraph;
-- require a spoken/self-practice step before exposing the tiny rule;
-- provide a Russian contrast pair before rule reveal;
-- keep the rule minimal and immediately reuse it in a Russian prompt;
-- avoid Vietnamese/English semantic answers;
-- record pattern-practice evidence without taking mastery authority.
+- preserve the existing SRS scheduling and canonical Review Queue authority;
+- attach modality-specific review evidence for audio, visual, recognition, speaking, and writing;
+- allow one vocabulary/review item to accumulate multiple modality evidence records;
+- prevent a strong result in one modality from silently proving another modality;
+- keep due-date scheduling explicit and compatible with the current review gaps;
+- never synthesize mastery/completion from multimodal evidence.
 
 ## Gate rule
 

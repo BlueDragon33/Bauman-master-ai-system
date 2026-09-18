@@ -45,8 +45,8 @@ If a gate fails, repair it before continuing. Never weaken an assertion merely t
 | 14 | Reading bridge | GREEN | 20 chunks + 16 real words + 8 short texts; self-read before audio check; Russian-only evidence |
 | 15 | Dictation & listen-to-write | GREEN | 33 letters + 16 words + 8 short texts; answer reveal after two attempts; Russian-only |
 | 16 | Translation-free dialogue scaffolding | GREEN | Active dialogue/practice surfaces use scene/role/Russian context; hear-before-see preserved; legacy gloss fields source-only |
-| 17 | Grammar from patterns | ACTIVE | Heard pattern → spoken practice → Russian contrast → tiny rule → immediate reuse |
-| 18 | Multimodal SRS & review | PLANNED | Audio/image/recognition/speaking/writing evidence |
+| 17 | Grammar from patterns | GREEN | Heard pattern → spoken practice → Russian contrast → tiny rule → immediate reuse; no translation answer or mastery mutation |
+| 18 | Multimodal SRS & review | ACTIVE | Preserve scheduler; add audio/visual/recognition/speaking/writing evidence without cross-modality inference |
 | 19 | Skill-gated assessment | PLANNED | Separate skill readiness before aggregate readiness |
 | 20 | AI mentor direct explanation | PLANNED | Russian-first/visual/analogy before meta-language help |
 | 21 | Weakness repair routing | PLANNED | Focused repair without silent mastery changes |
