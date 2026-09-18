@@ -1136,7 +1136,6 @@ function renderPractice(){
  const idx=Math.min(state.practiceLineIndex,Math.max(0,turns.length-1));
  const line=turns[idx]||turns[0]||{};
  const role=state.practiceRole||'all';
- const hideVi=!!state.practiceHideVi;
  const result=speakingResultFor(active,idx);
  const prog=dialogueProgress(active);
  const roleStats=dialogueRoleStats(active,role);
@@ -1144,34 +1143,34 @@ function renderPractice(){
  const lineRole=dialogueRoleOf(line,idx);
  const isMine=role!=='all'&&role===lineRole;
  const difficulty=A.dialogueDifficulty?.(active)||active?.difficulty||active?.level||'Dễ';
- const title=A.dialogueTitle?.(active)||active?.title||'Chọn bài nghe-nhại';
- const purpose=A.dialogueSubtitle?.(active)||active?.purpose||active?.context_title_vi||'Nghe mẫu trước, sau đó mới nhìn chữ và nhại lại.';
+ const scaffold=dialogueScaffold(active,line,idx,role);
+ const title=dialogueDirectTitle(active)||'Диалог';
  const heardCount=practiceLineHeardCount(active,idx);
  const heard=heardCount>0;
  const slowReady=heardCount>=2;
  const currentRu=heard?esc(targetText||'Chọn một tình huống ở cột trái để bắt đầu luyện nghe-nhại.'):'<span class="oral-first-mask">🎧 Nghe trước · chữ Nga sẽ hiện sau lượt nghe mẫu đầu tiên</span>';
- const currentVi=heard&&!hideVi?dialogueVi(line):'';
- const cueText=!heard?'Chỉ nghe · chưa nhìn chữ':(role==='all'?'Nghe mẫu rồi nhại câu hiện tại':(isMine?'Đến lượt bạn nhại câu này':'Nghe vai còn lại để giữ mạch'));
- const roleName=role==='all'?'Nghe + nhại toàn đoạn':`Nhại vai ${role}`;
- const hints=heard?lineTokenHints(targetText):[];
- const roleLine=(t,i)=>{const r=dialogueRoleOf(t,i), mine=role!=='all'&&role===r, res=speakingResultFor(active,i), lineHeard=practiceLineHeard(active,i); return `<button class="dialogue-line v1294-map-line ${i===idx?'active':''} ${mine?'my-role':''} ${res?.ok?'spoken-ok':res?'spoken-try':''}" data-line="${i}"><span class="speaker">${esc(r)}</span><b>${lineHeard?esc(dialogueText(t)):'••••••'}</b><small>${String(i+1).padStart(2,'0')} · ${lineHeard?(mine?'Câu cần nhại':(role==='all'?'Nghe + nhại':'Nghe cue')):'Chưa nghe'}</small></button>`};
- return `<section class="panel v1294-speech-room v1295-speech-room" data-listening-dialogue="${esc(active?.id||active?.title||'practice')}" data-listening-line="${idx}">
-   <header class="v1294-speech-head v1295-speech-head">
-     <div class="v1294-speech-title v1295-speech-title"><span class="chip">🎙️ NGHE/NHẠI · ${esc(ctx.id)} · ${esc(difficulty)}</span><small>${esc(title)}</small></div>
-     <div class="v1294-speech-toolbar v1295-speech-toolbar"><button class="btn ${role==='all'?'active':''}" data-act="role-all">Nghe + nhại</button><button class="btn ${role==='A'?'active':''}" data-act="role-a">Vai A</button><button class="btn ${role==='B'?'active':''}" data-act="role-b">Vai B</button><button class="btn" data-act="toggle-vi">${hideVi?'Hiện nghĩa':'Ẩn nghĩa'}</button></div>
-   </header>
-   <div class="v1294-speech-progress"><article><b>Chế độ</b><span>${esc(roleName)}</span></article><article><b>Tiến độ chung</b><span>${prog.ok}/${prog.total} câu đạt · ${prog.percent}%</span></article><article><b>Tiến độ vai</b><span>${roleStats.ok}/${roleStats.total} câu · ${roleStats.percent}%</span></article></div>
-   <article class="v1294-current-line ${isMine?'student-turn':'listener-turn'} speech-content-board">
-     <div class="speaker">${esc(lineRole)}</div>
-     <div class="v1294-current-body"><label>Câu ${turns.length?idx+1:0}/${turns.length||0} · ${esc(cueText)}</label><div class="russian-line">${currentRu}</div>${currentVi?`<p>${esc(currentVi)}</p>`:''}${hints.length?`<div class="speech-hints">${hints.map(x=>`<span>${esc(x)}</span>`).join('')}</div>`:''}</div>
-     <button class="btn green speech-ok-corner" data-act="mark-line-ok" ${heard?'':'disabled'}>✓ Đã nói ổn</button>
-   </article>
-   <div class="v1294-speech-actions"><button class="btn" data-act="prev-line">← Câu trước</button><button class="btn green" data-act="speak-line">🔊 Nghe mẫu</button><button class="btn" data-act="speak-line-slow" ${slowReady?'':'disabled'} title="${slowReady?'Nghe chậm để sửa chi tiết':'Nghe tốc độ thường 2 lượt trước'}">🐢 Nghe chậm</button><button class="btn" data-act="record-line" ${heard?'':'disabled'}>🎙️ Nhại lại</button><button class="btn primary" data-act="next-line">Câu tiếp →</button></div>
-   <div class="v1294-feedback-line"><b>${result?`Điểm nhại: ${result.score}%`:'Gợi ý luyện'}</b><span>${result?esc(speechFeedback(result.score)):(heard?'Chữ đã mở: nhại theo âm trước, chỉ dùng chữ để kiểm tra sau.':'Bước 1: bấm Nghe mẫu và chỉ tập trung vào âm, nhịp, trọng âm. Chưa đọc chữ.')}</span></div>
-   <details class="v1294-speech-map"><summary>🧭 Bản đồ câu nói <span>${turns.length?idx+1:0}/${turns.length||0}</span></summary><div class="v1294-speech-map-grid">${turns.length?turns.map(roleLine).join(''):'<div class="note">Chưa có câu nói trong hội thoại đúng bài này.</div>'}</div></details>
- </section>`
+ const cueText=!heard?'Chỉ nghe · chưa nhìn chữ':scaffold.role_cue;
+ const roleName=role==='all'?'Nghe + nhại toàn đoạn':'Nhại vai '+role;
+ const hints=heard?(arr(scaffold.vocabulary_seed_ru).length?arr(scaffold.vocabulary_seed_ru).slice(0,5):lineTokenHints(targetText)):[];
+ const scaffoldUi=heard?dialogueScaffoldHtml(scaffold):'';
+ const roleLine=(t,i)=>{const r=dialogueRoleOf(t,i), mine=role!=='all'&&role===r, res=speakingResultFor(active,i), lineHeard=practiceLineHeard(active,i); return '<button class="dialogue-line v1294-map-line '+(i===idx?'active ':'')+(mine?'my-role ':'')+(res?.ok?'spoken-ok':res?'spoken-try':'')+'" data-line="'+i+'"><span class="speaker">'+esc(r)+'</span><b>'+(lineHeard?esc(dialogueText(t)):'••••••')+'</b><small>'+String(i+1).padStart(2,'0')+' · '+(lineHeard?(mine?'Câu cần nhại':(role==='all'?'Nghe + nhại':'Nghe cue')):'Chưa nghe')+'</small></button>';};
+ return '<section class="panel v1294-speech-room v1295-speech-room" data-listening-dialogue="'+esc(active?.id||active?.title||'practice')+'" data-listening-line="'+idx+'">'+
+   '<header class="v1294-speech-head v1295-speech-head">'+
+     '<div class="v1294-speech-title v1295-speech-title"><span class="chip">🎙️ NGHE/NHẠI · '+esc(ctx.id)+' · '+esc(difficulty)+'</span><small lang="ru">'+esc(title)+'</small></div>'+
+     '<div class="v1294-speech-toolbar v1295-speech-toolbar"><button class="btn '+(role==='all'?'active':'')+'" data-act="role-all">Nghe + nhại</button><button class="btn '+(role==='A'?'active':'')+'" data-act="role-a">Vai A</button><button class="btn '+(role==='B'?'active':'')+'" data-act="role-b">Vai B</button></div>'+
+   '</header>'+
+   '<div class="v1294-speech-progress"><article><b>Chế độ</b><span>'+esc(roleName)+'</span></article><article><b>Tiến độ chung</b><span>'+prog.ok+'/'+prog.total+' câu đạt · '+prog.percent+'%</span></article><article><b>Tiến độ vai</b><span>'+roleStats.ok+'/'+roleStats.total+' câu · '+roleStats.percent+'%</span></article></div>'+
+   scaffoldUi+
+   '<article class="v1294-current-line '+(isMine?'student-turn':'listener-turn')+' speech-content-board">'+
+     '<div class="speaker">'+esc(lineRole)+'</div>'+
+     '<div class="v1294-current-body"><label>Câu '+(turns.length?idx+1:0)+'/'+(turns.length||0)+' · '+esc(cueText)+'</label><div class="russian-line">'+currentRu+'</div>'+(hints.length?'<div class="speech-hints">'+hints.map(x=>'<span lang="ru">'+esc(x)+'</span>').join('')+'</div>':'')+'</div>'+
+     '<button class="btn green speech-ok-corner" data-act="mark-line-ok" '+(heard?'':'disabled')+'>✓ Đã nói ổn</button>'+
+   '</article>'+
+   '<div class="v1294-speech-actions"><button class="btn" data-act="prev-line">← Câu trước</button><button class="btn green" data-act="speak-line">🔊 Nghe mẫu</button><button class="btn" data-act="speak-line-slow" '+(slowReady?'':'disabled')+' title="'+(slowReady?'Nghe chậm để sửa chi tiết':'Nghe tốc độ thường 2 lượt trước')+'">🐢 Nghe chậm</button><button class="btn" data-act="record-line" '+(heard?'':'disabled')+'>🎙️ Nhại lại</button><button class="btn primary" data-act="next-line">Câu tiếp →</button></div>'+
+   '<div class="v1294-feedback-line"><b>'+(result?'Điểm nhại: '+result.score+'%':'Gợi ý luyện')+'</b><span>'+(result?esc(speechFeedback(result.score)):(heard?'Chữ đã mở: nhại theo âm trước, chỉ dùng chữ/cue Nga để kiểm tra sau.':'Bước 1: bấm Nghe mẫu và chỉ tập trung vào âm, nhịp, trọng âm. Chưa đọc chữ.'))+'</span></div>'+
+   '<details class="v1294-speech-map"><summary>🧭 Bản đồ câu nói <span>'+(turns.length?idx+1:0)+'/'+(turns.length||0)+'</span></summary><div class="v1294-speech-map-grid">'+(turns.length?turns.map(roleLine).join(''):'<div class="note">Chưa có câu nói trong hội thoại đúng bài này.</div>')+'</div></details>'+
+ '</section>';
 }
-
 function speechMapLineButton(active,t,i){
  const r=dialogueRoleOf(t,i), role=activeRole(), mine=role!=='all'&&role===r, res=speakingResultFor(active||{},i);
  const label=mine?'Lượt của bạn':(role==='all'?'Nhại':'Nghe cue');
@@ -1241,14 +1240,36 @@ function dialogueVi(t){return str(t?.vi||t?.meaning||t?.meaning_vi||'')}
 function dialogueSpeaker(t,i){return str(t?.speaker||((i%2)?'B':'A'))}
 function dialogueRoleOf(t,i){return (i%2)?'B':'A'}
 function dialogueRoleLabel(t,i){const role=dialogueRoleOf(t,i); return `${role} · ${dialogueSpeaker(t,i)}`}
+function dialogueScaffold(d,line={},i=0,role='all'){
+ return window.RussianDialogueScaffold?.describe?.(d,line,i,role)||{
+  status:'missing_dialogue_context',scene_icon:'💬',context_ru:'',purpose_ru:'',vocabulary_seed_ru:[],
+  line_ru:dialogueText(line),line_role:dialogueRoleOf(line,i),learner_role:role,is_learner_turn:false,
+  role_cue:role==='all'?'Nghe mẫu rồi nhại/đối đáp câu hiện tại':'Giữ đúng vai đang chọn',source_fields:[]
+ };
+}
+function dialogueDirectTitle(d){
+ const s=dialogueScaffold(d,dialogueTurns(d)[0]||{},0,'all');
+ return s.context_ru||str(d?.title_ru||d?.id||'Диалог');
+}
+function dialogueScaffoldHtml(s){
+ if(!s||s.status==='missing_dialogue_context'){
+  return '<div class="dialogue-direct-scaffold missing"><span class="scene">'+esc(s?.scene_icon||'💬')+'</span><code>missing_dialogue_context</code></div>';
+ }
+ const seed=arr(s.vocabulary_seed_ru).slice(0,6);
+ return '<div class="dialogue-direct-scaffold"><span class="scene">'+esc(s.scene_icon||'💬')+'</span><div class="ru-context">'+
+  '<b lang="ru">'+esc(s.context_ru||s.purpose_ru||'Контекст')+'</b>'+
+  (s.purpose_ru?'<span lang="ru">'+esc(s.purpose_ru)+'</span>':'')+
+  (seed.length?'<div class="seed">'+seed.map(x=>'<em lang="ru">'+esc(x)+'</em>').join('')+'</div>':'')+
+  '</div></div>';
+}
 function dialogueMeta(d,turns){
- const funcs=arr(d?.communicative_functions_vi).join(', ');
- const seed=arr(d?.vocabulary_seed_ru).join(' · ');
+ const s=dialogueScaffold(d,arr(turns)[0]||{},0,'all');
+ const seed=arr(s.vocabulary_seed_ru).join(' · ');
  return [
-  ['Ngữ cảnh', d?.context_title_vi||d?.context_title_ru||d?.group||''],
+  ['Ngữ cảnh Nga', s.context_ru||s.status],
   ['Mức', d?.difficulty||d?.difficulty_id||d?.level||''],
-  ['Mục tiêu nói', d?.purpose||funcs||''],
-  ['Từ khóa', seed]
+  ['Mục tiêu Nga', s.purpose_ru||''],
+  ['Từ khóa Nga', seed]
  ].filter(x=>x[1]);
 }
 function roleInstruction(role){
@@ -1791,7 +1812,6 @@ function renderDialogue(){
  const idx=Math.min(state.dialogueLineIndex,Math.max(0,turns.length-1));
  const line=turns[idx]||turns[0]||{};
  const role=state.dialogueRole||'all';
- const hideVi=!!state.dialogueHideVi;
  const result=speakingResultFor(active,idx);
  const prog=dialogueProgress(active);
  const roleStats=dialogueRoleStats(active,role);
@@ -1799,33 +1819,35 @@ function renderDialogue(){
  const lineRole=dialogueRoleOf(line,idx);
  const isMine=role!=='all'&&role===lineRole;
  const difficulty=A.dialogueDifficulty?.(active)||active?.difficulty||active?.level||'Dễ';
- const title=A.dialogueTitle?.(active)||active?.title||'Chọn hội thoại';
- const purpose=A.dialogueSubtitle?.(active)||active?.purpose||arr(active?.communicative_functions_vi).join(', ')||'Nghe mẫu, chọn vai và đối đáp trong tình huống thật.';
+ const scaffold=dialogueScaffold(active,line,idx,role);
+ const title=dialogueDirectTitle(active)||'Диалог';
+ const purpose=scaffold.purpose_ru||'Nghe mẫu, chọn vai và đối đáp trong tình huống thật.';
  const group=A.dialogueGroup?.(active)||active?.group||'Đối thoại';
- const currentVi=hideVi?'':dialogueVi(line);
- const cueText=role==='all'?'Nghe mẫu rồi nhại câu hiện tại':(isMine?'Đến lượt bạn đối đáp':'Nghe vai còn lại, chuẩn bị trả lời');
- const roleName=role==='all'?'Nghe + đối đáp toàn đoạn':`Đối đáp vai ${role}`;
- const hints=arr(active?.vocabulary_seed_ru).slice(0,5).length?arr(active?.vocabulary_seed_ru).slice(0,5):lineTokenHints(targetText);
- const roleLine=(t,i)=>{const r=dialogueRoleOf(t,i), mine=role!=='all'&&role===r, res=speakingResultFor(active,i); return `<button class="dialogue-line v1294-map-line dialogue-nine-map-line ${i===idx?'active':''} ${mine?'my-role':''} ${res?.ok?'spoken-ok':res?'spoken-try':''}" data-line="${i}"><span class="speaker">${esc(r)}</span><b>${esc(dialogueText(t))}</b><small>${String(i+1).padStart(2,'0')} · ${mine?'Câu cần đối đáp':(role==='all'?'Nghe + nhại':'Nghe cue')}</small></button>`};
- return `<div class="dialogue-nine-wrap">
-   <section class="panel v1294-speech-room v1295-speech-room dialogue-nine-room">
-     <header class="v1294-speech-head v1295-speech-head dialogue-nine-head">
-       <div class="v1294-speech-title v1295-speech-title"><span class="chip">💬 ĐỐI THOẠI · ${esc(difficulty)}</span><small>${esc(title)}</small><p>${esc(purpose)}</p></div>
-       <div class="v1294-speech-toolbar v1295-speech-toolbar dialogue-nine-toolbar"><button class="btn soft dialogue-setup-btn" data-act="dialogue-setup">⚙️ Thiết lập</button><button class="btn ${role==='all'?'active':''}" data-act="role-all">Nghe + đối đáp</button><button class="btn ${role==='A'?'active':''}" data-act="role-a">Vai A</button><button class="btn ${role==='B'?'active':''}" data-act="role-b">Vai B</button><button class="btn" data-act="toggle-vi">${hideVi?'Hiện nghĩa':'Ẩn nghĩa'}</button></div>
-     </header>
-     <div class="v1294-speech-progress dialogue-nine-progress"><article><b>Chế độ</b><span>${esc(roleName)}</span></article><article><b>Tiến độ chung</b><span>${prog.ok}/${prog.total} câu đạt · ${prog.percent}%</span></article><article><b>Tiến độ vai</b><span>${roleStats.ok}/${roleStats.total} câu · ${roleStats.percent}%</span></article><article><b>Chủ điểm</b><span>${esc(group)}</span></article></div>
-     <article class="v1294-current-line dialogue-nine-current ${isMine?'student-turn':'listener-turn'} speech-content-board">
-       <div class="speaker">${esc(lineRole)}</div>
-       <div class="v1294-current-body"><label>Câu ${turns.length?idx+1:0}/${turns.length||0} · ${esc(cueText)}</label><div class="russian-line">${esc(targetText||'Chọn một tình huống ở danh sách bên dưới để bắt đầu đối thoại.')}</div>${currentVi?`<p>${esc(currentVi)}</p>`:''}${hints.length?`<div class="speech-hints">${hints.map(x=>`<span>${esc(x)}</span>`).join('')}</div>`:''}</div>
-       <button class="btn green speech-ok-corner" data-act="mark-line-ok">✓ Tôi nói ổn</button>
-     </article>
-     <div class="v1294-speech-actions dialogue-nine-actions"><button class="btn" data-act="prev-line">← Câu trước</button><button class="btn green" data-act="speak-line">🔊 Câu mẫu</button><button class="btn" data-act="speak-line-slow">🐢 Chậm</button><button class="btn blue" data-act="speak-dialogue">Nghe cả đoạn</button><button class="btn" data-act="record-line">🎙️ Đối đáp</button><button class="btn" data-act="next-role-line">Câu của tôi →</button><button class="btn primary" data-act="next-line">Câu tiếp →</button></div>
-     <div class="v1294-feedback-line dialogue-nine-feedback"><b>${result?`Điểm nói: ${result.score}%`:'Gợi ý đối đáp'}</b><span>${result?esc(speechFeedback(result.score)):'Nghe câu mẫu, nói lại chậm, sau đó tự đối đáp theo vai. Tab Nghe/Nói vẫn giữ bộ cơ bản; tab này dùng Bauman A-Z.'}</span></div>
-     <details class="v1294-speech-map dialogue-nine-map"><summary>🧭 Bản đồ câu đối thoại <span>${turns.length?idx+1:0}/${turns.length||0}</span></summary><div class="v1294-speech-map-grid">${turns.length?turns.map(roleLine).join(''):'<div class="note">Chưa có câu hội thoại.</div>'}</div></details>
-     <details class="dialogue-picker compact-picker dialogue-nine-picker"><summary>Đổi tình huống luyện nói <span>${list.length}/${all.length}</span></summary><div class="dialogue-picker-body"><div class="dialogue-picker-tools"><select class="input" data-input="dialogueGroup"><option value="all">Tất cả nhóm</option>${groups.map(g=>`<option value="${esc(g)}" ${state.dialogueGroup===g?'selected':''}>${esc(g)}</option>`).join('')}</select><select class="input" data-input="dialogueDifficulty"><option value="all">Tất cả mức</option>${diffs.map(g=>`<option value="${esc(g)}" ${state.dialogueDifficulty===g?'selected':''}>${esc(g)}</option>`).join('')}</select><input class="input" data-input="dialogueQuery" value="${esc(state.dialogueQuery)}" placeholder="Tìm tình huống..."></div><div class="dialogue-picker-list">${list.slice(0,120).map(d=>`<button class="item-card ${active===d?'active':''}" data-dialogue="${esc(d.id||d.title)}"><b>${esc(A.dialogueTitle?.(d)||d.title||'Hội thoại')}</b><small>${esc((A.dialogueGroup?.(d)||d.group||'')+' · '+(A.dialogueDifficulty?.(d)||d.difficulty||d.level||''))}</small></button>`).join('')||'<div class="note">Chưa có hội thoại.</div>'}</div></div></details>
-   </section>
-   ${renderDeepDialoguePanel(active)}
- </div>`
+ const cueText=scaffold.role_cue;
+ const roleName=role==='all'?'Nghe + đối đáp toàn đoạn':'Đối đáp vai '+role;
+ const hints=arr(scaffold.vocabulary_seed_ru).length?arr(scaffold.vocabulary_seed_ru).slice(0,5):lineTokenHints(targetText);
+ const scaffoldUi=dialogueScaffoldHtml(scaffold);
+ const roleLine=(t,i)=>{const r=dialogueRoleOf(t,i), mine=role!=='all'&&role===r, res=speakingResultFor(active,i); return '<button class="dialogue-line v1294-map-line dialogue-nine-map-line '+(i===idx?'active ':'')+(mine?'my-role ':'')+(res?.ok?'spoken-ok':res?'spoken-try':'')+'" data-line="'+i+'"><span class="speaker">'+esc(r)+'</span><b>'+esc(dialogueText(t))+'</b><small>'+String(i+1).padStart(2,'0')+' · '+(mine?'Câu cần đối đáp':(role==='all'?'Nghe + nhại':'Nghe cue'))+'</small></button>';};
+ return '<div class="dialogue-nine-wrap">'+
+   '<section class="panel v1294-speech-room v1295-speech-room dialogue-nine-room">'+
+     '<header class="v1294-speech-head v1295-speech-head dialogue-nine-head">'+
+       '<div class="v1294-speech-title v1295-speech-title"><span class="chip">💬 ĐỐI THOẠI · '+esc(difficulty)+'</span><small lang="ru">'+esc(title)+'</small><p lang="ru">'+esc(purpose)+'</p></div>'+
+       '<div class="v1294-speech-toolbar v1295-speech-toolbar dialogue-nine-toolbar"><button class="btn soft dialogue-setup-btn" data-act="dialogue-setup">⚙️ Thiết lập</button><button class="btn '+(role==='all'?'active':'')+'" data-act="role-all">Nghe + đối đáp</button><button class="btn '+(role==='A'?'active':'')+'" data-act="role-a">Vai A</button><button class="btn '+(role==='B'?'active':'')+'" data-act="role-b">Vai B</button></div>'+
+     '</header>'+
+     '<div class="v1294-speech-progress dialogue-nine-progress"><article><b>Chế độ</b><span>'+esc(roleName)+'</span></article><article><b>Tiến độ chung</b><span>'+prog.ok+'/'+prog.total+' câu đạt · '+prog.percent+'%</span></article><article><b>Tiến độ vai</b><span>'+roleStats.ok+'/'+roleStats.total+' câu · '+roleStats.percent+'%</span></article><article><b>Chủ điểm</b><span>'+esc(group)+'</span></article></div>'+
+     scaffoldUi+
+     '<article class="v1294-current-line dialogue-nine-current '+(isMine?'student-turn':'listener-turn')+' speech-content-board">'+
+       '<div class="speaker">'+esc(lineRole)+'</div>'+
+       '<div class="v1294-current-body"><label>Câu '+(turns.length?idx+1:0)+'/'+(turns.length||0)+' · '+esc(cueText)+'</label><div class="russian-line">'+esc(targetText||'Chọn một tình huống ở danh sách bên dưới để bắt đầu đối thoại.')+'</div>'+(hints.length?'<div class="speech-hints">'+hints.map(x=>'<span lang="ru">'+esc(x)+'</span>').join('')+'</div>':'')+'</div>'+
+       '<button class="btn green speech-ok-corner" data-act="mark-line-ok">✓ Tôi nói ổn</button>'+
+     '</article>'+
+     '<div class="v1294-speech-actions dialogue-nine-actions"><button class="btn" data-act="prev-line">← Câu trước</button><button class="btn green" data-act="speak-line">🔊 Câu mẫu</button><button class="btn" data-act="speak-line-slow">🐢 Chậm</button><button class="btn blue" data-act="speak-dialogue">Nghe cả đoạn</button><button class="btn" data-act="record-line">🎙️ Đối đáp</button><button class="btn" data-act="next-role-line">Câu của tôi →</button><button class="btn primary" data-act="next-line">Câu tiếp →</button></div>'+
+     '<div class="v1294-feedback-line dialogue-nine-feedback"><b>'+(result?'Điểm nói: '+result.score+'%':'Gợi ý đối đáp')+'</b><span>'+(result?esc(speechFeedback(result.score)):'Nghe câu mẫu, dùng scene/cue Nga, nói lại chậm, sau đó tự đối đáp theo vai.')+'</span></div>'+
+     '<details class="v1294-speech-map dialogue-nine-map"><summary>🧭 Bản đồ câu đối thoại <span>'+(turns.length?idx+1:0)+'/'+(turns.length||0)+'</span></summary><div class="v1294-speech-map-grid">'+(turns.length?turns.map(roleLine).join(''):'<div class="note">Chưa có câu hội thoại.</div>')+'</div></details>'+
+     '<details class="dialogue-picker compact-picker dialogue-nine-picker"><summary>Đổi tình huống luyện nói <span>'+list.length+'/'+all.length+'</span></summary><div class="dialogue-picker-body"><div class="dialogue-picker-tools"><select class="input" data-input="dialogueGroup"><option value="all">Tất cả nhóm</option>'+groups.map(g=>'<option value="'+esc(g)+'" '+(state.dialogueGroup===g?'selected':'')+'>'+esc(g)+'</option>').join('')+'</select><select class="input" data-input="dialogueDifficulty"><option value="all">Tất cả mức</option>'+diffs.map(g=>'<option value="'+esc(g)+'" '+(state.dialogueDifficulty===g?'selected':'')+'>'+esc(g)+'</option>').join('')+'</select><input class="input" data-input="dialogueQuery" value="'+esc(state.dialogueQuery)+'" placeholder="Tìm tình huống..."></div><div class="dialogue-picker-list">'+(list.slice(0,120).map(d=>'<button class="item-card '+(active===d?'active':'')+'" data-dialogue="'+esc(d.id||d.title)+'"><b lang="ru">'+esc(dialogueDirectTitle(d)||'Диалог')+'</b><small>'+esc((A.dialogueGroup?.(d)||d.group||'')+' · '+(A.dialogueDifficulty?.(d)||d.difficulty||d.level||''))+'</small></button>').join('')||'<div class="note">Chưa có hội thoại.</div>')+'</div></div></details>'+
+   '</section>'+
+   renderDeepDialoguePanel(active)+
+ '</div>';
 }
 function handwritingText(item){return A.handwritingPrint?.(item)||item.print||item.text||item.letter||'А а'}
 function handwritingModeName(item){const m=item?.mode||'alphabet'; return ({alphabet:'Chữ cái',word:'Từ/cụm từ',sentence:'Câu thực tế',academic:'Học thuật'})[m]||m}
