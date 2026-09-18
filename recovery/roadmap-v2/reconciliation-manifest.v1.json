@@ -267,5 +267,14 @@
       "runId": 35326270438,
       "conclusion": "success"
     }
+  },
+  "r2c": {
+    "currentSubround": "L27R2C0",
+    "policy": "classify_before_transplant",
+    "canonicalNewFilesThisSubround": 0,
+    "historicalCanonicalFilesClassified": 75,
+    "staleManifestsQuarantined": 7,
+    "baselineBoundGeneratedArtifactsQuarantined": 24,
+    "next": "L27R2C1 only after R2C0 full gate pass"
   }
 }
