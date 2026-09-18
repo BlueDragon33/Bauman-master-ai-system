@@ -23,7 +23,7 @@ assert.ok(hub.includes('S().subjectCapabilities?.[id]'),'Hub must read Main summ
 assert.ok(hub.includes("sub?.id!=='russian'"),'Russian capability card must stay subject-scoped');
 assert.ok(hub.includes('data-safe-capability="russian"'),'Hub Russian capability marker missing');
 assert.ok(hub.includes('Snapshot từ Russian Sub Web App'),'Hub provenance disclosure missing');
-assert.ok(hub.includes("if(id==='capability')return a.openSubjectInPage?.('russian')"),'Capability CTA must return to Russian subject');
+assert.ok(hub.includes("if(id==='capability')return a.openSubjectCapabilityGap?.('russian')"),'Capability CTA must open the exact Russian capability gap');
 assert.ok(css.includes('.hub-safe-capability'),'Capability Hub styling missing');
 
 assert.ok(russian.includes("type:'BAUMAN_SUBJECT_CAPABILITY_STATE'"),'Russian producer missing');
