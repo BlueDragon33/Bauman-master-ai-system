@@ -1,4 +1,4 @@
-# L9 Step 3 — Identity Overlay Persistence + Transaction Safety
+# Bauman Foundation — Identity & Domain Model — Step 3 — Identity Overlay Persistence + Transaction Safety
 
 ## Goal
 
