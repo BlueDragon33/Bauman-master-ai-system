@@ -20,7 +20,7 @@ assert.throws(
  /canonical dialogue authority/
 );
 assert.throws(
- ()=>validateCore(core.replace('dialogue-direct-scaffold','dialogue-scaffold-missing')),
+ ()=>validateCore(core.replaceAll('dialogue-direct-scaffold','dialogue-scaffold-missing')),
  /UI helper missing direct scaffold class/
 );
 console.log('RUSSIAN_DIALOGUE_SCAFFOLD_NEGATIVE_TEST=PASS');
