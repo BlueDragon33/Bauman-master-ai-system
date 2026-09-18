@@ -131,14 +131,43 @@ jobs:
           BAUMAN_E2E_BASE_URL: http://127.0.0.1:4175/
           BAUMAN_E2E_ARTIFACT_DIR: artifacts/content-resolution-shadow-browser
         run: node tests/content-resolution-shadow-browser.mjs
-      - name: Show shadow server log on failure
+      - name: Materialize packaged runtime for shadow parity
+        env:
+          BAUMAN_CONTROL_PREVIEW_D1_DATABASE_ID: 11111111-1111-4111-8111-111111111111
+          BAUMAN_CONTROL_PRODUCTION_D1_DATABASE_ID: 22222222-2222-4222-8222-222222222222
+          APPLICATION_MANAGEMENT_PREVIEW_ORIGIN: https://application-management-preview.example.com
+          BAUMAN_CONTROL_PREVIEW_ORIGIN: https://bauman-control-preview.example.com
+          BAUMAN_RUNTIME_PREVIEW_ORIGIN: https://bauman-runtime-preview.example.com
+          BAUMAN_BUILD_REVISION: ${{ github.sha }}
+        run: |
+          node scripts/prepare-cloudflare-preview.mjs
+          node scripts/prepare-chatgpt-site.mjs
+      - name: Start packaged content-resolution shadow server
+        run: |
+          node scripts/serve-local-runtime.mjs --root dist --port 4176 > /tmp/bauman-content-resolution-packaged-http.log 2>&1 &
+          for i in {1..30}; do
+            if curl -fsS http://127.0.0.1:4176/foundation/content-resolution/examples/browser-shadow-harness.html >/dev/null; then exit 0; fi
+            sleep 1
+          done
+          cat /tmp/bauman-content-resolution-packaged-http.log
+          exit 1
+      - name: Run Packaged Content Resolution browser shadow acceptance
+        env:
+          BAUMAN_E2E_BASE_URL: http://127.0.0.1:4176/
+          BAUMAN_E2E_ARTIFACT_DIR: artifacts/content-resolution-shadow-browser-packaged
+        run: node tests/content-resolution-shadow-browser.mjs
+      - name: Show shadow server logs on failure
         if: failure()
-        run: cat /tmp/bauman-content-resolution-http.log || true
+        run: |
+          cat /tmp/bauman-content-resolution-http.log || true
+          cat /tmp/bauman-content-resolution-packaged-http.log || true
       - name: Upload shadow browser evidence
         if: always()
         uses: actions/upload-artifact@v4
         with:
           name: content-resolution-shadow-browser-${{ github.run_id }}
-          path: artifacts/content-resolution-shadow-browser
+          path: |
+            artifacts/content-resolution-shadow-browser
+            artifacts/content-resolution-shadow-browser-packaged
           if-no-files-found: warn
           retention-days: 7
