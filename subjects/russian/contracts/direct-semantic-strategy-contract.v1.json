@@ -1,0 +1,122 @@
+{
+  "schema": "RUSSIAN_DIRECT_SEMANTIC_STRATEGY_CONTRACT_V1",
+  "contractVersion": 1,
+  "authority": {
+    "runtimeAuthoritySwitch": false,
+    "authoritySwitchTurn": 13
+  },
+  "strategies": [
+    "visual_scene",
+    "gesture",
+    "contrast",
+    "category_examples",
+    "analogy",
+    "simple_russian_definition",
+    "audio_context"
+  ],
+  "evidenceFields": {
+    "visual_scene": [
+      "image",
+      "image_url",
+      "picture",
+      "illustration",
+      "illustration_url",
+      "pictogram",
+      "emoji",
+      "image_emoji",
+      "scene",
+      "scene_id",
+      "illustration_label_ru",
+      "visual_label",
+      "semantic_label"
+    ],
+    "gesture": [
+      "gesture",
+      "gesture_ru",
+      "action_ru",
+      "motion_ru"
+    ],
+    "contrast": [
+      "contrast_ru",
+      "opposite_ru",
+      "antonym_ru",
+      "contrast_pair_ru"
+    ],
+    "category_examples": [
+      "category_ru",
+      "hypernym_ru",
+      "examples_ru",
+      "tags"
+    ],
+    "analogy": [
+      "analogy_ru",
+      "like_ru",
+      "relation_ru",
+      "analogy"
+    ],
+    "simple_russian_definition": [
+      "meaning_ru",
+      "definition_ru",
+      "definition",
+      "meaning"
+    ],
+    "audio_context": [
+      "audio",
+      "audio_url",
+      "voice",
+      "voice_url",
+      "voice_text",
+      "example_ru",
+      "context_ru",
+      "example"
+    ]
+  },
+  "prohibitedEvidenceFields": [
+    "meaning_vi",
+    "vi_vi",
+    "translation_vi",
+    "gloss_vi",
+    "definition_vi",
+    "vi",
+    "clue_en",
+    "meaning_en",
+    "translation_en",
+    "definition_en",
+    "en"
+  ],
+  "selection": {
+    "deterministic": true,
+    "preserveAllSupportedStrategies": true,
+    "primaryOrder": [
+      "gesture",
+      "contrast",
+      "category_examples",
+      "analogy",
+      "simple_russian_definition",
+      "audio_context",
+      "visual_scene"
+    ],
+    "failClosedIfNoEvidence": true
+  },
+  "descriptor": {
+    "schema": "RUSSIAN_DIRECT_SEMANTIC_DESCRIPTOR_V1",
+    "required": [
+      "term_ru",
+      "status",
+      "primary_strategy",
+      "strategies",
+      "evidence"
+    ],
+    "statuses": [
+      "ready",
+      "missing_direct_semantics"
+    ]
+  },
+  "invariants": {
+    "noTranslationFallback": true,
+    "noSyntheticMeaning": true,
+    "sourceEvidenceTraceable": true,
+    "learnerStateAuthority": false,
+    "masteryMutation": false
+  }
+}
