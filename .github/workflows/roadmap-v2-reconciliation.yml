@@ -11,6 +11,8 @@ on:
       - 'scripts/validate-roadmap-v2-reconciliation.mjs'
       - 'scripts/validate-roadmap-v2-r2a.mjs'
       - 'scripts/validate-roadmap-v2-r2b0.mjs'
+      - 'scripts/validate-roadmap-v2-r2b.mjs'
+      - 'roadmap_v2/**'
       - '.github/workflows/roadmap-v2-reconciliation.yml'
 
 permissions:
@@ -33,6 +35,8 @@ jobs:
         run: node scripts/validate-roadmap-v2-r2a.mjs
       - name: Validate R2B0 contract hygiene
         run: node scripts/validate-roadmap-v2-r2b0.mjs
+      - name: Validate R2B static contract/schema admission
+        run: node scripts/validate-roadmap-v2-r2b.mjs
       - name: Validate Foundation V2 L9
         run: node scripts/validate-foundation-domain-model.mjs
       - name: Validate current system integration
