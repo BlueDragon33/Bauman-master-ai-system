@@ -20,6 +20,10 @@ need(cap,"lessonIds:['R15','R16','R17','R18','R19','R20','R21','R22']",'R3 resea
 need(cap,"lessonIds:['R23','R24','R25','R26']",'R4 thesis scope missing');
 
 need(cap,'function lessonEvidence','Lesson evidence resolver missing');
+need(cap,'function routeForStep','Capability step route resolver missing');
+need(cap,"step==='speaking'?'practice':step==='check'?'review':'theory'",'Capability step must map speaking→practice and check→review');
+need(cap,"missingStep=missing?.step||''",'Capability band must expose exact missing evidence step');
+need(cap,'missingRoute:missing?routeForStep','Capability band must expose exact missing evidence route');
 need(cap,'RussianLearningFlow?.hasMeaningfulEvidence','Capability bands must use real Learning Flow evidence');
 need(cap,'function dueForLessons','Review Queue blocker missing');
 need(cap,'RussianLearningState?.dueReviews','Capability progression must read real due reviews');
