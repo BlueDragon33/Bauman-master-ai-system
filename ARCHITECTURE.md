@@ -156,7 +156,7 @@ When writing new documents, put the responsibility name first. A checkpoint code
 - registry mutation;
 - implicit browser/network fetching in the core resolver.
 
-**Current state:** Step 1 contract active. Existing Hub, Academic, subject, and packaging loaders remain unchanged.
+**Current state:** Step 3 delivery-plan boundary active. Contract + pure resolver are green; existing Hub, Academic, subject, and packaging loaders remain unchanged.
 
 ### G. Foundation — Learning Content Standard
 
