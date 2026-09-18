@@ -230,6 +230,15 @@
       "cause": "Global reconciliation validator remained hard-coded to R2B0 and rejected valid R2B canonical paths.",
       "correction": "Make global reconciliation validation phase-aware and keep phase-local admission rules in the active phase validator.",
       "status": "pass"
+    },
+    {
+      "id": "L27R2C0-F1",
+      "triggerRunId": 35326766318,
+      "failedStep": "Run packaged ChatGPT Site browser acceptance",
+      "classification": "acceptance_timing_race",
+      "cause": "Math Reader marker became observable before packaged rerender stabilized its 22-slide DOM.",
+      "correction": "Wait for matching lesson identity and exact 22-slide Reader DOM, then recheck after a short stability interval.",
+      "status": "applied_pending_gate"
     }
   ],
   "r2b": {
@@ -275,6 +284,7 @@
     "historicalCanonicalFilesClassified": 75,
     "staleManifestsQuarantined": 7,
     "baselineBoundGeneratedArtifactsQuarantined": 24,
-    "next": "L27R2C1 only after R2C0 full gate pass"
+    "next": "L27R2C1 only after R2C0 full gate pass",
+    "lastFailure": "packaged_math_reader_acceptance_timing_race"
   }
 }
