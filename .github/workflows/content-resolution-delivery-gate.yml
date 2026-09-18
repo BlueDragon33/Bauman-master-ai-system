@@ -9,7 +9,10 @@ on:
       - 'foundation/content-resolution/**'
       - 'foundation/content-registry/**'
       - 'scripts/validate-content-resolution-contract.mjs'
+      - 'foundation/content-resolution/runtime-resource-resolver.js'
+      - 'scripts/validate-runtime-resource-resolver.mjs'
       - 'tests/content-resolution-contract.test.mjs'
+      - 'tests/runtime-resource-resolver.test.mjs'
       - 'ARCHITECTURE.md'
       - 'CODEX_STATE.md'
       - 'CODEX_TASK.md'
@@ -32,12 +35,19 @@ jobs:
         run: |
           node --check scripts/validate-content-resolution-contract.mjs
           node --check tests/content-resolution-contract.test.mjs
+          node --check foundation/content-resolution/runtime-resource-resolver.js
+          node --check scripts/validate-runtime-resource-resolver.mjs
+          node --check tests/runtime-resource-resolver.test.mjs
       - name: Validate frozen Content Asset Provenance foundation
         run: node scripts/validate-foundation-l10-promotion.mjs
       - name: Validate content resolution contract
         run: node scripts/validate-content-resolution-contract.mjs
       - name: Run content resolution negative tests
         run: node tests/content-resolution-contract.test.mjs
+      - name: Validate pure runtime resource resolver
+        run: node scripts/validate-runtime-resource-resolver.mjs
+      - name: Run pure resolver negative tests
+        run: node tests/runtime-resource-resolver.test.mjs
       - name: Parse resolution JSON
         run: |
           node -e "JSON.parse(require('fs').readFileSync('foundation/content-resolution/resolution-contract.v1.json','utf8')); JSON.parse(require('fs').readFileSync('foundation/content-resolution/examples/step1-resolution-request.v1.json','utf8')); console.log('CONTENT_RESOLUTION_JSON=PASS')"
