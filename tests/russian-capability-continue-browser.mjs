@@ -30,10 +30,34 @@ try{
   state.subjectCapabilities.russian={schema:'RUSSIAN_CAPABILITY_BRIDGE_V1',subjectId:'russian',currentBand:{id:'R0',reviewDue:0},nextGap:{lessonId:'R01',route:{view:'learning',learnTab:'theory',lessonId:'R01'}},stageExit:{reviewDue:0}};
   save();
  });
+ const progressBefore=await page.evaluate(()=>Number(state.progress?.russian||0));
  await page.evaluate(()=>app.continueStudy());
  await page.waitForFunction(()=>state.activeTask?.source==='capability-gap'&&state.activeTask?.capabilityRoute?.lessonId==='R01',null,{timeout:10000});
+
+ const tab=await page.evaluate(()=>{
+  window.__capturedTabUrl='';
+  window.open=url=>{window.__capturedTabUrl=String(url);return null;};
+  app.openSubjectTab('russian');
+  return {url:window.__capturedTabUrl,source:state.activeTask?.source,route:state.activeTask?.capabilityRoute||null};
+ });
+ assert.equal(tab.source,'capability-gap');
+ assert.deepEqual(tab.route,{view:'learning',learnTab:'theory',lessonId:'R01'});
+ assert.match(tab.url,/routeLesson=R01/);
+ assert.match(tab.url,/routeTab=theory/);
+
  await page.evaluate(()=>app.closeStudy());
  await page.evaluate(()=>{
+  state.subjectCapabilities.russian.currentBand.reviewDue=2;
+  state.subjectCapabilities.russian.stageExit.reviewDue=2;
+  save();
+  app.openSubjectCapabilityGap('russian');
+ });
+ await page.waitForFunction(()=>state.activeTask?.source!=='capability-gap'&&!state.activeTask?.capabilityRoute,null,{timeout:10000});
+ const directGapBlocked=await page.evaluate(()=>({source:state.activeTask.source,route:state.activeTask.capabilityRoute||null}));
+ assert.equal(directGapBlocked.route,null,'Capability CTA must not bypass due Review Queue');
+
+ await page.evaluate(()=>{
+  app.closeStudy();
   state.subjectCapabilities.russian.currentBand.reviewDue=2;
   state.subjectCapabilities.russian.stageExit.reviewDue=2;
   save();
@@ -42,7 +66,8 @@ try{
  await page.waitForFunction(()=>state.activeTask?.source!=='capability-gap'&&!state.activeTask?.capabilityRoute,null,{timeout:10000});
  const result=await page.evaluate(()=>({source:state.activeTask.source,route:state.activeTask.capabilityRoute||null,progress:Number(state.progress?.russian||0)}));
  assert.equal(result.route,null);
+ assert.equal(result.progress,progressBefore,'Capability navigation must not mutate canonical progress');
  await page.screenshot({path:path.join(OUT,'continue-review-safe.png'),fullPage:true});
- fs.writeFileSync(path.join(OUT,'summary.json'),JSON.stringify({status:'PASS',result},null,2));
+ fs.writeFileSync(path.join(OUT,'summary.json'),JSON.stringify({status:'PASS',tab,directGapBlocked,result,progressBefore},null,2));
  console.log('Russian capability continue browser acceptance PASS');
 }finally{await browser?.close()}
