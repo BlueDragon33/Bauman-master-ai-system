@@ -18,7 +18,7 @@
     if(!e)return null;
     const old=state.items?.[e.grammar_id]||{};
     const row={heard:Number(old.heard||0),spoken:Number(old.spoken||0),contrast:Number(old.contrast||0),ruleOpened:Number(old.ruleOpened||0),reuseAttempts:Number(old.reuseAttempts||0),reuseDraft:String(old.reuseDraft||''),lastAt:old.lastAt||null};
-    state.items={...(state.items||{}),[e.grammar_id]:row;
+    state.items={...(state.items||{}),[e.grammar_id]:row};
     return row;
   }
   function stageIndex(row=ev()){
