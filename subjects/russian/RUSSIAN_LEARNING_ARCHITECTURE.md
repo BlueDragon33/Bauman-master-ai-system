@@ -99,3 +99,12 @@ It does not own:
 - cross-subject identity contracts.
 
 Protected contracts remain protected, including `BAUMAN_SUBJECT_BRIDGE_V1` and existing learner-state persistence until separately migrated.
+
+
+## Control-document rule
+
+This document defines stable pedagogy and ownership only.
+
+It does **not** declare which development turn is currently green or active. Turn status is controlled only by `RUSSIAN_DEVELOPMENT_PLAN.md`.
+
+If a runtime decision conflicts with this architecture, fix the runtime or explicitly revise this architecture with a gated change. Do not create an alternate plan document.

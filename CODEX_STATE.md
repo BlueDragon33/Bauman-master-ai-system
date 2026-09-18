@@ -1,74 +1,57 @@
 # CODEX_STATE
 
-Current task: `CONTENT_RESOLUTION_RUNTIME_DELIVERY_FOUNDATION`
+Current task: `RUSSIAN_LISTEN_SPEAK_LITERACY_VISUAL_SEMANTICS`
 
-Status: `STEP14_FAILURE_INJECTION_GREEN`
+Status: `TURN5_GREEN_TURN6_NEXT`
 
 Date: 2026-09-18
-Branch: `work/foundation-content-resolution-delivery`
-Base checkpoint: `540126ba568b73b84cde3efeba02677ac089e437`
-Accepted implementation checkpoint: `277d451ded3fa05746e1f6c821bc0ead9d52e8e7`
+Branch: `work/russian-listen-speak-literacy-visual-semantics`
+Foundation base: content-resolution implementation through Step 14 is preserved from the accepted Foundation branch.
+Russian accepted head: `b5e6e4e6170f5a93626c07f3bd510511c025351f`
 
-## Architecture layer
+## Single source of truth
 
-**Foundation — Content Resolution & Runtime Delivery**
+The authoritative development/status document for the Russian subject is:
 
-Purpose:
+- `subjects/russian/RUSSIAN_DEVELOPMENT_PLAN.md`
 
-- resolve registry-backed content/assets into deterministic runtime resources;
-- bind runtime delivery to pinned SHA-256 integrity and access policy;
-- expose a reusable verified loader without silently taking learner-state or application authority.
+Do not independently redefine turn status in other documents.
 
-## Completed development
+Architecture principles and ownership are defined in:
 
-Steps 1–14 are green.
+- `subjects/russian/RUSSIAN_LEARNING_ARCHITECTURE.md`
 
-1. Resolution contract and access-trust boundary.
-2. Pure resolver runtime.
-3. Immutable delivery-plan boundary.
-4. Injected verified executor.
-5. Same-origin package-relative fetch adapter.
-6. Academic core Node shadow parity.
-7. Source Chromium shadow acceptance.
-8. Packaged Chromium shadow acceptance.
-9. Opt-in real-Hub runtime shadow bridge.
-10. Pinned Academic core registry promotion candidate.
-11. Pinned-checksum runtime shadow.
-12. Reusable non-authoritative Academic verified content loader.
-13. Opt-in Academic verified-loader authority trial.
-14. Failure injection proving checksum/registry failures fail closed with no hidden legacy fallback.
+## Accepted Russian turns
 
-## Current Academic authority
+Turns 1–5 are green.
 
-Default behavior remains `legacy_fetch`.
+- Turn 1 — baseline audit and pedagogy contract
+- Turn 2 — oral-first route priority
+- Turn 3 — hear-before-see warm-up
+- Turn 4 — 33-letter print recognition
+- Turn 5 — print ↔ cursive recognition
 
-Only `?academicVerifiedLoader=1` activates the verified core-loader authority trial.
+Turn 5 retains one explicit deferred obligation: browser-level visual proof that the packaged cursive glyph differs from print. This is tracked for Turn 23 and blocks Turn 24 freeze if still open.
 
-The trial is intentionally not the default yet.
+## Next turn
+
+Turn 6 — Sound ↔ letter mapping.
+
+No Turn 7 work begins until Turn 6's own contract, validator, negative tests, and existing Russian regression are green.
 
 ## Protected authority
 
-This layer still does not own:
+Preserve:
 
-- learner state or mastery;
-- Review Queue / SRS;
-- schedules or scheduler mutation;
-- Hub/subject routing;
-- authentication or device authority;
-- registry mutation.
+- `BAUMAN_SUBJECT_BRIDGE_V1`;
+- existing Russian learner-state authority;
+- saved progress/state;
+- Hub and Device Access boundaries;
+- Foundation registry authority;
+- Academic scheduler authority.
 
-## Integrity result
-
-Source and packaged Chromium both prove:
-
-- pinned SHA-256 + byte-length verification;
-- no double-load of Academic core files;
-- modified bytes are rejected;
-- missing registry candidate is rejected before core JSON fetch;
-- failures do not silently fall back to legacy core fetching.
+Subject-local drills may store additive evidence but must not silently promote mastery.
 
 ## Branch policy
 
 Do not merge to `main` without an explicit promotion decision.
-
-New subject-learning work should use a responsibility-specific branch rather than extending Foundation ownership into subject pedagogy.

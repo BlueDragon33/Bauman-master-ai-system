@@ -1,103 +1,171 @@
-# Russian Learning Rebuild — 24 Development Turns
+# Russian Learning Rebuild — Canonical 24-Turn Plan
 
-The prior module has strong content volume, speaking data and handwriting UI, but its pedagogy is still mixed with translation-first vocabulary and legacy UI assumptions. This rebuild uses 24 gated turns so each responsibility can be verified before the next authority change.
+**This file is the single source of truth for Russian development status.**
 
-## Turn 1 — Baseline audit & pedagogy contract
+Branch: `work/russian-listen-speak-literacy-visual-semantics`
+
+Architecture: `Russian Subject — Listen, Speak, Literacy & Visual Semantics`
+
+## Status vocabulary
+
+- **GREEN** — the turn-specific contract/gate and existing Russian regression pass on an accepted head.
+- **ACTIVE** — current implementation turn; not accepted yet.
+- **PLANNED** — not started.
+- **BLOCKED** — cannot proceed because a required prior gate is red.
+
+A turn may have a **deferred obligation** only when the obligation belongs to a later explicit cross-layer gate. Deferred obligations are listed below and must be closed before Turn 24 freeze.
+
+## Sequential rule
+
+Only one turn is ACTIVE at a time.
+
+Each turn follows:
+
+`contract → validator → negative tests → minimal runtime/data change → turn gate → existing regression → status update`
+
+If a gate fails, repair it before continuing. Never weaken an assertion merely to make CI green.
+
+## Status table
+
+| Turn | Responsibility | Status | Acceptance / next constraint |
+| --- | --- | --- | --- |
+| 1 | Baseline audit & pedagogy contract | GREEN | Real data measured; direct-semantic target frozen |
+| 2 | Learning-route priority | GREEN | Fresh Vietnam-stage route is oral-first; saved state preserved |
+| 3 | Oral-first warm-up | GREEN | Normal listen unlocks text; slow-listen cannot unlock first |
+| 4 | Print Cyrillic recognition | GREEN | Exact 33 letters; case/confusable recognition; additive evidence |
+| 5 | Handwritten Cyrillic recognition | GREEN | Print↔cursive runtime + contract green; visual glyph proof deferred to Turn 23 |
+| 6 | Sound ↔ letter mapping | ACTIVE | Must cover all 33 letters without Vietnamese semantic translation |
+| 7 | Handwriting motor practice | PLANNED | Begins only after Turn 6 green |
+| 8 | Listening ladder | PLANNED | Normal/focused/slow/gist/detail progression |
+| 9 | Speaking & shadowing ladder | PLANNED | Imitation→shadowing→memory→role-play→repair |
+| 10 | Visual vocabulary contract | PLANNED | Forbid Vietnamese/English meaning authority |
+| 11 | Visual asset coverage | PLANNED | Validate real visual semantics; no translation fallback |
+| 12 | Direct-semantic explanation | PLANNED | Scene/gesture/contrast/category/analogy |
+| 13 | Visual vocabulary runtime | PLANNED | Remove learner-facing “flip meaning” authority |
+| 14 | Reading bridge | PLANNED | Letter→chunk→word→short real text |
+| 15 | Dictation & listen-to-write | PLANNED | Sound→letter/word/short dictation |
+| 16 | Translation-free dialogue scaffolding | PLANNED | Scene/cue/role replaces default Vietnamese gloss |
+| 17 | Grammar from patterns | PLANNED | Heard/spoken pattern before minimal rule |
+| 18 | Multimodal SRS & review | PLANNED | Audio/image/recognition/speaking/writing evidence |
+| 19 | Skill-gated assessment | PLANNED | Separate skill readiness before aggregate readiness |
+| 20 | AI mentor direct explanation | PLANNED | Russian-first/visual/analogy before meta-language help |
+| 21 | Weakness repair routing | PLANNED | Focused repair without silent mastery changes |
+| 22 | Offline media & asset reliability | PLANNED | Explicit offline/missing-resource behavior |
+| 23 | Browser/package/accessibility/performance QA | PLANNED | Includes cursive visual-difference proof |
+| 24 | Migration freeze & promotion candidate | PLANNED | Cannot freeze with open deferred obligations |
+
+## Turn definitions
+
+### Turn 1 — Baseline audit & pedagogy contract
 
 Measure real runtime/data gaps and freeze the target learning policy.
 
-## Turn 2 — Learning-route priority
+### Turn 2 — Learning-route priority
 
-Make the default Vietnam-stage route visibly prioritize listening, speaking and literacy rather than theory/vocabulary/grammar navigation.
+Make the fresh Vietnam-stage route prioritize listening, speaking and literacy. Existing saved learner state must remain authoritative.
 
-## Turn 3 — Oral-first warm-up
+### Turn 3 — Oral-first warm-up
 
-Add an audio/context-first entry where text is initially hidden and the learner hears before reading.
+Hear before see: hide Russian text/hints/gloss until the learner completes the first normal-speed listen.
 
-## Turn 4 — Print Cyrillic recognition
+### Turn 4 — Print Cyrillic recognition
 
-Gate all 33 letters for uppercase/lowercase print recognition and confusable-letter discrimination.
+Cover all 33 uppercase/lowercase letters and confusable-letter discrimination.
 
-## Turn 5 — Handwritten Cyrillic recognition
+### Turn 5 — Handwritten Cyrillic recognition
 
-Gate all 33 letters for handwritten/cursive recognition, including print↔handwriting matching.
+Cover print→cursive and cursive→print recognition for all 33 letters using the subject's handwriting rendering layer.
 
-## Turn 6 — Sound ↔ letter mapping
+### Turn 6 — Sound ↔ letter mapping
 
-Connect each letter to sound examples, stress/phonology cues and real-word anchors without Vietnamese semantic translation.
+Connect every letter to Russian sound examples and usable real-word anchors. Distinguish letter name from sound behavior where needed. No Vietnamese vocabulary translation.
 
-## Turn 7 — Handwriting motor practice
+### Turn 7 — Handwriting motor practice
 
-Improve trace/free-write/copy flow, stroke guidance, letter connections and evidence of practice.
+Improve trace/free-write/copy flow, stroke guidance, letter connections and practice evidence.
 
-## Turn 8 — Listening ladder
+### Turn 8 — Listening ladder
 
-Standardize normal-speed listening, focused replay, slow replay only when needed, and gist/detail tasks.
+Standardize normal-speed listening, focused replay, slow replay only after need is established, and gist/detail tasks.
 
-## Turn 9 — Speaking & shadowing ladder
+### Turn 9 — Speaking & shadowing ladder
 
 Standardize imitation, shadowing, memory speaking, role-play and pronunciation repair evidence.
 
-## Turn 10 — Visual vocabulary contract
+### Turn 10 — Visual vocabulary contract
 
-Define a visual semantic schema for vocabulary cards and prohibit Vietnamese/English meaning answers in the learning surface.
+Define a visual semantic schema and prohibit Vietnamese/English meaning answers on vocabulary learning surfaces.
 
-## Turn 11 — Visual asset coverage
+### Turn 11 — Visual asset coverage
 
-Measure and fill photo/illustration/pictogram/scene coverage, with explicit missing-visual states instead of translation fallback.
+Measure and validate photo/illustration/pictogram/scene coverage with explicit missing-visual states instead of translation fallback.
 
-## Turn 12 — Direct-semantic explanation
+### Turn 12 — Direct-semantic explanation
 
-Add scene, gesture, contrast, category and analogy strategies so abstract words can be understood without Vietnamese translation.
+Use scene, gesture, contrast, category, examples and analogy to communicate meaning directly.
 
-## Turn 13 — Visual vocabulary runtime
+### Turn 13 — Visual vocabulary runtime
 
-Replace “flip meaning” with image/context discovery, audio recall and Russian usage.
+Replace translation-style “flip meaning” behavior with image/context discovery, audio recall and Russian usage.
 
-## Turn 14 — Reading bridge
+### Turn 14 — Reading bridge
 
-Move from letter recognition to syllables/chunks, high-frequency word recognition and short real-world reading.
+Move from letter recognition to chunks, high-frequency words and short real-world reading.
 
-## Turn 15 — Dictation & listen-to-write
+### Turn 15 — Dictation & listen-to-write
 
 Add sound→letter, sound→word and short dictation activities before longer composition.
 
-## Turn 16 — Translation-free dialogue scaffolding
+### Turn 16 — Translation-free dialogue scaffolding
 
-Default beginner dialogue support to scene/cue/gesture/role context; remove Vietnamese gloss from the normal learning path.
+Default beginner dialogue support to scene/cue/gesture/role context instead of Vietnamese gloss.
 
-## Turn 17 — Grammar from patterns
+### Turn 17 — Grammar from patterns
 
-Refactor beginner grammar to emerge from already-heard/spoken examples and minimal contrasts.
+Use `heard pattern → spoken pattern → noticed contrast → tiny rule → immediate reuse`.
 
-## Turn 18 — Multimodal SRS & review
+### Turn 18 — Multimodal SRS & review
 
-Schedule review using audio, image, recognition, speaking and writing evidence rather than text-translation flashcards alone.
+Schedule review using audio, image, recognition, speaking and writing evidence rather than translation flashcards alone.
 
-## Turn 19 — Skill-gated assessment
+### Turn 19 — Skill-gated assessment
 
-Assess listening, speaking, print recognition, cursive recognition, reading and writing separately before aggregate stage readiness.
+Assess listening, speaking, print recognition, cursive recognition, reading and writing separately before aggregate readiness.
 
-## Turn 20 — AI mentor direct explanation
+### Turn 20 — AI mentor direct explanation
 
-Constrain AI help to Russian-first/visual/analogy explanation before any optional meta-language explanation.
+Constrain AI help to Russian-first, visual/contextual and analogy-based explanation before optional meta-language explanation.
 
-## Turn 21 — Weakness repair routing
+### Turn 21 — Weakness repair routing
 
 Route missed sounds, letters, words and dialogue turns to focused repair without silently changing mastery.
 
-## Turn 22 — Offline media & asset reliability
+### Turn 22 — Offline media & asset reliability
 
 Ensure audio/visual/literacy assets work in PWA/offline packaging with explicit missing-resource behavior.
 
-## Turn 23 — Browser/package/accessibility/performance QA
+### Turn 23 — Browser/package/accessibility/performance QA
 
-Test desktop/tablet/mobile, keyboard, audio controls, packaged runtime, state persistence and large-data performance.
+Test desktop/tablet/mobile, keyboard, audio controls, packaged runtime, state persistence, large-data performance, and real cursive-vs-print glyph difference.
 
-## Turn 24 — Migration freeze & promotion candidate
+### Turn 24 — Migration freeze & promotion candidate
 
-Remove obsolete translation-first runtime paths from authority, document compatibility, run cross-system gates and freeze a promotion candidate.
+Remove obsolete translation-first runtime authority, document compatibility, close all deferred obligations, run cross-system gates and freeze a promotion candidate.
+
+## Deferred obligations
+
+### RUS-CURSIVE-VISUAL-001
+
+Created by: Turn 5.
+
+Requirement: browser/package QA must prove the selected handwriting font stack produces a visibly different cursive/handwritten glyph presentation from print for the literacy experience, or replace it with an explicit handwriting asset/shape representation.
+
+Due: Turn 23.
+
+Blocks: Turn 24 freeze.
 
 ## Expansion rule
 
-Any turn may create smaller substeps when audit or tests expose a real gap. A failing gate is repaired before advancing. No gate is weakened merely to turn green.
+A turn may create smaller substeps when a real defect or missing capability is discovered. Substeps stay inside the owning turn unless they establish a genuinely new responsibility.
+
+The plan may increase beyond 24 turns only when the new responsibility cannot safely fit an existing turn. Do not create turns merely for cosmetic refactoring.

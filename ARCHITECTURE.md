@@ -184,6 +184,10 @@ When writing new documents, put the responsibility name first. A checkpoint code
 
 Each subject app must remain independently understandable and must communicate with the Hub through explicit shared contracts.
 
+**Russian active architecture:** `Russian Subject — Listen, Speak, Literacy & Visual Semantics`.
+
+Canonical Russian status/turn control is `subjects/russian/RUSSIAN_DEVELOPMENT_PLAN.md`. Architecture principles are `subjects/russian/RUSSIAN_LEARNING_ARCHITECTURE.md`. Current Russian work must not redefine Foundation, Hub, Device Access, or global Academic authority.
+
 ### I. Learning State & Academic Planning
 
 **Responsibility:** current learner state, planning, prerequisite diagnostics, scheduling, progress, and academic roadmap behavior.

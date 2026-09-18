@@ -1,58 +1,58 @@
 # CODEX_TASK
 
-Task: `CONTENT_RESOLUTION_RUNTIME_DELIVERY_FOUNDATION`
+Task: `RUSSIAN_LISTEN_SPEAK_LITERACY_VISUAL_SEMANTICS`
 
-Mode: `CHAT_FIRST / RESPONSIBILITY_BASED_ARCHITECTURE`
+Mode: `SEQUENTIAL_GATED_DEVELOPMENT`
 
-## Goal
+## Canonical plan
 
-Provide a safe, pinned-integrity path from Content/Asset/Provenance Registry records to real runtime consumers while preserving existing application and learner-state authority until separately promoted.
+Use only:
 
-## Acceptance state
+`subjects/russian/RUSSIAN_DEVELOPMENT_PLAN.md`
 
-**Steps 1–14: COMPLETE / GREEN**
+for the current 24-turn status, entry/exit rules, deferred obligations, and next turn.
 
-Validated capabilities:
+## Pedagogy target
 
-- resolver-owned access evaluation;
-- deterministic locator selection;
-- exact HTTPS allowlist;
-- explicit provider requirement for content-hash locators;
-- immutable delivery plan;
-- injected adapter execution only;
-- SHA-256 + byte-length verification before consumer access;
-- package-relative same-origin fetch;
-- source and packaged browser parity;
-- pinned Academic core registry candidate;
-- reusable verified Academic loader;
-- opt-in authority trial with exact request-count checks;
-- fail-closed integrity/bootstrap failure behavior with zero legacy fallback.
+The beginner learning loop is:
 
-## Current authority rule
+`hear → imitate/shadow → speak → recognize print → recognize cursive → connect sound↔letter → understand visually/in context → read → write → reuse in dialogue`.
 
-Default Academic core loading remains the existing legacy path.
+Listening and speaking remain recurrent priorities rather than a one-time phase.
 
-The verified loader is an opt-in trial only:
+## Vocabulary rule
 
-`?academicVerifiedLoader=1`
+Learner-facing vocabulary meaning must not be Vietnamese translation.
 
-No default promotion is authorized in this task.
+Use visual, audio and context evidence. Vietnamese may remain in navigation/help text but is not semantic authority for vocabulary.
 
-## Protected contracts
+English is not the default translation bridge either.
 
-Preserve:
+## Current work
 
-- Foundation — Identity & Domain Model;
-- Foundation — Content, Asset & Provenance Registry;
-- `BAUMAN_SUBJECT_BRIDGE_V1`;
-- Russian/Math learning-state contracts;
-- Device Access Gate;
-- learner progress/state;
-- routes and scheduler mutation policy;
-- source/package parity.
+Turns 1–5 are accepted.
 
-## Next responsibility
+Next: **Turn 6 — Sound ↔ letter mapping**.
 
-Subject pedagogy changes belong to **Subject Web Apps**, not this Foundation layer.
+Turn 6 must:
 
-The next requested development area is the Russian subject learning architecture and should be performed on a separate responsibility-named branch.
+- cover all 33 Cyrillic letters;
+- connect letters to Russian sound examples;
+- distinguish letter name from usable sound where relevant;
+- use Russian-word anchors without Vietnamese semantic translation;
+- include stress/phonology cues where meaningful;
+- remain additive evidence, not mastery authority.
+
+## Gate rule
+
+For each turn:
+
+1. contract first;
+2. validator;
+3. negative tests;
+4. smallest runtime/data change;
+5. new-turn gate;
+6. existing Russian regression;
+7. update the canonical plan only after green.
+
+A failure is fixed before proceeding. Do not weaken assertions merely to obtain green CI.
