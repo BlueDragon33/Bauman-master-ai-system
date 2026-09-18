@@ -1,0 +1,173 @@
+{
+  "schema": "bauman_official_course_learning_architecture_v1",
+  "version": "PHASE2_PASS14A_R_S1_COURSE_ARCHITECTURE_V2",
+  "verifiedAt": "2026-09-12",
+  "scope": "Semester 1 course-learning orchestration for the official IU5 2026 curriculum. Official identity and whole-course totals come from the locked curriculum mirror. Semester allocation and assessment timing are never inferred for multi-semester items. Competency blocks are planning inferences, not an official Bauman syllabus unless explicitly backed by a public BMSTU learning source.",
+  "policies": {
+    "gradedEventInternalTarget": 90,
+    "gradedEventTargetMeaning": "Internal safety target for graded events only; it is not an official Bauman grading rule.",
+    "passFailCreditPolicy": "A pure Зчт event is pass/fail for planning purposes. Do not assign the generic internal score target 90 solely because the course exists in the route; prepare with a safety margin against the verified course requirements when available.",
+    "readyOverallMinimum": 90,
+    "readyApplicationMinimum": 85,
+    "masteredOverallMinimum": 95,
+    "masteredApplicationMinimum": 90,
+    "criticalMisconceptionsAllowed": 0,
+    "courseReadinessRule": "worst critical prerequisite gate wins",
+    "activeRepairRule": "repair only failed prerequisite nodes supported by diagnostic evidence",
+    "multiSemesterAllocationRule": "Whole-course credits/hours and assessment codes must not be split, weighted, or assigned to semester 1 unless an authoritative source provides semester-specific allocation/timing.",
+    "riskPriorityRule": "For multi-semester items with unresolved allocation/timing, current-semester risk priority must not use whole-course credits or all-course assessment codes as semester-specific weight.",
+    "topicPolicy": "Do not force UGV/USV, robotics, PID/LQR, FPGA/HDL, PLC/SCADA, Kalman/sensor fusion or LLM/RAG/agents into the default route unless an official course task or confirmed NIR/VKR direction requires them."
+  },
+  "stateModel": {
+    "rule": "The three axes are independent. A course can be COURSE_ACTIVE while prerequisite readiness is PREREQ_REPAIR and a specific assessment event is still EVENT_UNASSESSED.",
+    "prerequisiteReadinessAxis": [
+      {"id":"UNASSESSED","meaning":"Critical prerequisite evidence is incomplete."},
+      {"id":"PREREQ_REPAIR","meaning":"At least one critical prerequisite is below READY or has a critical misconception."},
+      {"id":"COURSE_READY","meaning":"All critical prerequisite gates are READY or MASTERED; course-local readiness, if any, is handled separately."}
+    ],
+    "courseLifecycleAxis": [
+      {"id":"NOT_STARTED","meaning":"Official course/practice has not started."},
+      {"id":"COURSE_ACTIVE","meaning":"Official course/practice is in progress."},
+      {"id":"COMPLETED","meaning":"Official course/practice result has been recorded."}
+    ],
+    "eventReadinessAxis": [
+      {"id":"NOT_APPLICABLE","meaning":"No assessment event is currently in scope."},
+      {"id":"EVENT_UNASSESSED","meaning":"Event-specific readiness evidence is incomplete."},
+      {"id":"EVENT_PREPARING","meaning":"Preparation for a verified assessment event is active."},
+      {"id":"EVENT_READY","meaning":"Event-specific evidence checks have passed."},
+      {"id":"EVENT_COMPLETED","meaning":"The assessment event result has been recorded."}
+    ]
+  },
+  "semester": 1,
+  "courses": [
+    {
+      "courseId":"d01",
+      "nameRu":"Иностранный язык",
+      "official":{"department":"Л2","wholeCourseTotals":{"credits":4,"hours":144,"classroom":68,"selfOther":76},"semesters":[1,2],"assessmentCodes":["Зчт"],"part":"mandatory"},
+      "semester1Allocation":{"status":"unresolved_from_locked_curriculum","credits":null,"hours":null,"assessmentTiming":"unresolved"},
+      "criticalPrerequisites":[],
+      "supportPrerequisites":[],
+      "courseLocalReadiness": {
+        "id":"d01-english-readiness",
+        "type":"course_local_language_readiness",
+        "language":"English",
+        "globalGateRefs":[],
+        "thresholdStatus":"not_defined_until_verified_course_requirements_or_diagnostic_blueprint",
+        "sourceEvidence":[
+          {"type":"public_bmstu_learning_portal","url":"https://e-learning.bmstu.ru/l/course/index.php?categoryid=3","supports":"Department L2 states that it teaches Foreign Language (English) for IU students and exposes a master's-programme category. No CEFR threshold, exact assessment format, or exact 2026 master's syllabus is inferred."}
+        ]
+      },
+      "competencyBlocks":[
+        {"id":"d01-c01","label":"Academic/scientific English comprehension","evidenceClass":"course_local_planning_inference","localReadinessRefs":["d01-english-readiness"]},
+        {"id":"d01-c02","label":"Academic English communication for master's study","evidenceClass":"course_local_planning_inference","localReadinessRefs":["d01-english-readiness"]}
+      ],
+      "eventModel":{"events":[{"code":"Зчт","gradingNature":"pass_fail","timing":"unresolved_for_multisemester_course","internalTarget":null}],"planningEvents":["verified course-requirement preparation","official credit event when timing is confirmed"]}
+    },
+    {
+      "courseId":"d02",
+      "nameRu":"Методология научного познания",
+      "official":{"department":"СГН4","wholeCourseTotals":{"credits":2,"hours":72,"classroom":34,"selfOther":38},"semesters":[1],"assessmentCodes":["Зчт"],"part":"mandatory"},
+      "semester1Allocation":{"status":"known_single_semester","credits":2,"hours":72,"assessmentTiming":"semester_1"},
+      "criticalPrerequisites":["P11"],
+      "supportPrerequisites":["P0","P3"],
+      "competencyBlocks":[
+        {"id":"d02-c01","label":"Research problem, question and hypothesis","evidenceClass":"competency_inference","gateRefs":["P11"]},
+        {"id":"d02-c02","label":"Literature, baseline, methods and reproducibility","evidenceClass":"competency_inference","gateRefs":["P11","P3"]},
+        {"id":"d02-c03","label":"Academic explanation in Russian","evidenceClass":"competency_inference","gateRefs":["P0"]}
+      ],
+      "eventModel":{"events":[{"code":"Зчт","gradingNature":"pass_fail","timing":"semester_1","internalTarget":null}],"planningEvents":["methodology artifact","official credit event"]}
+    },
+    {
+      "courseId":"d03",
+      "nameRu":"Аналитические модели автоматизированных систем обработки информации и управления",
+      "official":{"department":"ИУ5","wholeCourseTotals":{"credits":4,"hours":144,"classroom":34,"selfOther":110},"semesters":[1],"assessmentCodes":["Зчт","ДЗчт"],"part":"mandatory"},
+      "semester1Allocation":{"status":"known_single_semester","credits":4,"hours":144,"assessmentTiming":"semester_1"},
+      "criticalPrerequisites":["P3","P9"],
+      "supportPrerequisites":["P1","J1"],
+      "publicLearningEvidence":[{"type":"public_iu5_course","url":"https://e-learning.bmstu.ru/iu5/course/view.php?id=48","supports":"Queueing-theory/analytical-model preparation; does not by itself define the complete 2026 course syllabus."}],
+      "competencyBlocks":[
+        {"id":"d03-c01","label":"Stochastic-process and distribution bridge","evidenceClass":"public_material_plus_competency_inference","gateRefs":["P3","P9"]},
+        {"id":"d03-c02","label":"Poisson/exponential and Markov modeling","evidenceClass":"public_material_plus_competency_inference","gateRefs":["P9"]},
+        {"id":"d03-c03","label":"Queueing models, stability and Little-law reasoning","evidenceClass":"public_material_plus_competency_inference","gateRefs":["P9"]},
+        {"id":"d03-c04","label":"System-boundary and architecture interpretation","evidenceClass":"competency_inference","gateRefs":["J1"]}
+      ],
+      "eventModel":{"events":[{"code":"Зчт","gradingNature":"pass_fail","timing":"semester_1","internalTarget":null},{"code":"ДЗчт","gradingNature":"graded","timing":"semester_1","internalTarget":90}],"planningEvents":["model derivation/problem solving","defense/explanation preparation","official assessment event(s)"]}
+    },
+    {
+      "courseId":"d04",
+      "nameRu":"Многомерный анализ данных в системах искусственного интеллекта",
+      "official":{"department":"ИУ5","wholeCourseTotals":{"credits":5,"hours":180,"classroom":51,"selfOther":129},"semesters":[1],"assessmentCodes":["Экз","ДЗчт"],"part":"mandatory"},
+      "semester1Allocation":{"status":"known_single_semester","credits":5,"hours":180,"assessmentTiming":"semester_1"},
+      "criticalPrerequisites":["P2","P3","P10"],
+      "supportPrerequisites":["P1"],
+      "competencyBlocks":[
+        {"id":"d04-c01","label":"Matrix/vector data representation","evidenceClass":"competency_inference","gateRefs":["P2"]},
+        {"id":"d04-c02","label":"Covariance, correlation and multivariate statistical reasoning","evidenceClass":"competency_inference","gateRefs":["P3"]},
+        {"id":"d04-c03","label":"Eigen/SVD/PCA prerequisite bridge","evidenceClass":"competency_inference","gateRefs":["P2","P3"]},
+        {"id":"d04-c04","label":"Reproducible scientific/data Python workflow","evidenceClass":"competency_inference","gateRefs":["P10"]}
+      ],
+      "eventModel":{"events":[{"code":"Экз","gradingNature":"graded","timing":"semester_1","internalTarget":90},{"code":"ДЗчт","gradingNature":"graded","timing":"semester_1","internalTarget":90}],"planningEvents":["calculation/data-analysis practice","oral/defense preparation","exam preparation"]}
+    },
+    {
+      "courseId":"d05",
+      "nameRu":"Объектно-ориентированное проектирование автоматизированных систем обработки информации и управления",
+      "official":{"department":"ИУ5","wholeCourseTotals":{"credits":6,"hours":216,"classroom":51,"selfOther":165},"semesters":[1],"assessmentCodes":["Экз","ДЗчт"],"part":"mandatory"},
+      "semester1Allocation":{"status":"known_single_semester","credits":6,"hours":216,"assessmentTiming":"semester_1"},
+      "criticalPrerequisites":["P4","P5","P8"],
+      "supportPrerequisites":["J1"],
+      "competencyBlocks":[
+        {"id":"d05-c01","label":"OOP responsibility and interface design","evidenceClass":"competency_inference","gateRefs":["P5","P8"]},
+        {"id":"d05-c02","label":"Algorithms/data structures needed by object design","evidenceClass":"competency_inference","gateRefs":["P4"]},
+        {"id":"d05-c03","label":"UML and architecture documentation","evidenceClass":"competency_inference","gateRefs":["P8","J1"]},
+        {"id":"d05-c04","label":"Testing and design-defense workflow","evidenceClass":"competency_inference","gateRefs":["P8"]}
+      ],
+      "eventModel":{"events":[{"code":"Экз","gradingNature":"graded","timing":"semester_1","internalTarget":90},{"code":"ДЗчт","gradingNature":"graded","timing":"semester_1","internalTarget":90}],"planningEvents":["design artifact","implementation/testing evidence","defense preparation","exam preparation"]}
+    },
+    {
+      "courseId":"d06",
+      "nameRu":"Оптимизация баз данных систем машинного обучения",
+      "official":{"department":"ИУ5","wholeCourseTotals":{"credits":4,"hours":144,"classroom":51,"selfOther":93},"semesters":[1],"assessmentCodes":["Экз"],"part":"mandatory"},
+      "semester1Allocation":{"status":"known_single_semester","credits":4,"hours":144,"assessmentTiming":"semester_1"},
+      "criticalPrerequisites":["P6"],
+      "supportPrerequisites":["P4","P7"],
+      "competencyBlocks":[
+        {"id":"d06-c01","label":"Relational model, SQL and normalization readiness","evidenceClass":"competency_inference","gateRefs":["P6"]},
+        {"id":"d06-c02","label":"Transactions, isolation and locking readiness","evidenceClass":"competency_inference","gateRefs":["P6"]},
+        {"id":"d06-c03","label":"Indexes, selectivity and query-plan reasoning","evidenceClass":"competency_inference","gateRefs":["P6","P4"]},
+        {"id":"d06-c04","label":"Linux/runtime context for database experiments","evidenceClass":"competency_inference","gateRefs":["P7"]}
+      ],
+      "eventModel":{"events":[{"code":"Экз","gradingNature":"graded","timing":"semester_1","internalTarget":90}],"planningEvents":["SQL/query-plan practice","optimization reasoning","exam preparation"]}
+    },
+    {
+      "courseId":"d15",
+      "nameRu":"Технологии разработки программного обеспечения",
+      "official":{"department":"ИУ5","wholeCourseTotals":{"credits":6,"hours":216,"classroom":51,"selfOther":165},"semesters":[1,2],"assessmentCodes":["Экз","ДЗчт"],"part":"participant_formed"},
+      "semester1Allocation":{"status":"unresolved_from_locked_curriculum","credits":null,"hours":null,"assessmentTiming":"unresolved"},
+      "criticalPrerequisites":["P5","P8"],
+      "supportPrerequisites":["P7","J1"],
+      "competencyBlocks":[
+        {"id":"d15-c01","label":"Requirements and traceability","evidenceClass":"competency_inference","gateRefs":["P8"]},
+        {"id":"d15-c02","label":"Modular architecture and interfaces","evidenceClass":"competency_inference","gateRefs":["P5","P8","J1"]},
+        {"id":"d15-c03","label":"Git, testing and change/configuration workflow","evidenceClass":"competency_inference","gateRefs":["P8","P7"]},
+        {"id":"d15-c04","label":"Working software artifact and technical defense","evidenceClass":"competency_inference","gateRefs":["P5","P8"]}
+      ],
+      "eventModel":{"events":[{"code":"Экз","gradingNature":"graded","timing":"unresolved_for_multisemester_course","internalTarget":90},{"code":"ДЗчт","gradingNature":"graded","timing":"unresolved_for_multisemester_course","internalTarget":90}],"planningEvents":["requirements/design artifact","working implementation","testing evidence","event preparation only after timing is confirmed"]}
+    },
+    {
+      "courseId":"p02",
+      "nameRu":"Научно-исследовательская работа",
+      "official":{"type":"Производственная","wholeCourseTotals":{"credits":21,"hours":756},"semesters":[1,2,3,4],"assessmentCodes":["ДЗчт"]},
+      "semester1Allocation":{"status":"unresolved_from_locked_curriculum","credits":null,"hours":null,"assessmentTiming":"unresolved"},
+      "criticalPrerequisites":["P11"],
+      "supportPrerequisites":["P0","P3","P5","P10"],
+      "publicLearningEvidence":[{"type":"public_iu5_course","url":"https://e-learning.bmstu.ru/iu5/course/view.php?id=153","supports":"Public NIR learning guidance only; exact numerical requirements are not locked as universal 2026 master rules."}],
+      "competencyBlocks":[
+        {"id":"p02-c01","label":"Topic-neutral research question and literature baseline","evidenceClass":"public_material_plus_competency_inference","gateRefs":["P11"]},
+        {"id":"p02-c02","label":"Experiment/data workflow and reproducibility","evidenceClass":"competency_inference","gateRefs":["P3","P5","P10","P11"]},
+        {"id":"p02-c03","label":"Supervisor-facing report and oral explanation","evidenceClass":"public_material_plus_competency_inference","gateRefs":["P0","P11"]}
+      ],
+      "topicSelectionPolicy":{"defaultState":"TOPIC_NEUTRAL","activateSpecializedTrackOnlyWhen":"supervisor or confirmed NIR/VKR task establishes it"},
+      "eventModel":{"events":[{"code":"ДЗчт","gradingNature":"graded","timing":"unresolved_for_multisemester_practice","internalTarget":90}],"planningEvents":["research artifact","supervisor review","official differentiated-credit event only when timing/requirements are confirmed"]}
+    }
+  ]
+}

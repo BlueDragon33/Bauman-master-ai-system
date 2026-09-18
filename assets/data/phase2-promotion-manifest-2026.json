@@ -1,0 +1,118 @@
+{
+  "version": "PHASE2_PASS14H_PROMOTION_CANDIDATE_V1",
+  "baseBranch": "main",
+  "candidateBranch": "phase2/pass14h-promotion-gate",
+  "mainHeadAtAuditStart": "309530b3214a334f381e4dc80ec7638d62615f30",
+  "validatedIntegrationCodeHead": "e5e50d4d4b4de3bfbe28c597096b7051946b5837",
+  "validatedIntegrationRunId": 34683664986,
+  "validatedIntegrationArtifact": {
+    "id": 10294488264,
+    "name": "academic-phase2-browser-14bcdefg-34683664986",
+    "sha256": "6dc33fccba684b8cfad5a3d703bfa162251fde97c6ee7616a82667199a7fe8d1"
+  },
+  "promotionPolicy": {
+    "autoMerge": false,
+    "autoDeploy": false,
+    "productionMutationAllowed": false,
+    "previewDeploymentAllowedOnlyByExplicitWorkflowDispatch": true,
+    "previewConfirmationToken": "DEPLOY_PREVIEW",
+    "squashRecommendedAtFinalMerge": true
+  },
+  "highRiskBoundaries": {
+    "mustRemainUnchanged": [
+      "index.html",
+      "assets/js/main.js",
+      "assets/js/data.js",
+      "assets/js/platform/runtime-config.js",
+      "assets/js/platform/device-access-gate.js"
+    ],
+    "forbiddenChangedPrefixes": [
+      "control-service/",
+      "migrations/",
+      "worker/",
+      "workers/"
+    ],
+    "forbiddenChangedBasenames": [
+      "wrangler.toml",
+      "wrangler.json",
+      "wrangler.jsonc",
+      "wrangler.production.toml",
+      "wrangler.production.jsonc"
+    ]
+  },
+  "requiredValidationScripts": [
+    "scripts/validate-course-learning-architecture-s1-2026.js",
+    "scripts/validate-academic-2026.js",
+    "scripts/validate-p00-technical-russian.js",
+    "scripts/validate-risk-engine-13c.js",
+    "scripts/validate-phase2-source-integrity.js",
+    "scripts/validate-course-readiness-runtime-14b.js",
+    "scripts/validate-event-readiness-runtime-14c.js",
+    "scripts/validate-grade-control-runtime-14d.js",
+    "scripts/validate-transcript-honors-runtime-14e.js",
+    "scripts/validate-academic-command-center-14f.js",
+    "scripts/validate-phase2-final-integration-14g.js",
+    "scripts/validate-phase2-promotion-14h.js"
+  ],
+  "requiredBrowserTests": [
+    "tests/course-readiness-browser-14b.mjs",
+    "tests/event-readiness-browser-14c.mjs",
+    "tests/grade-control-browser-14d.mjs",
+    "tests/transcript-honors-browser-14e.mjs",
+    "tests/academic-command-center-browser-14f.mjs",
+    "tests/phase2-final-integration-browser-14g.mjs"
+  ],
+  "approvedChangedPaths": [
+    ".github/workflows/academic-2026-phase2-course-architecture.yml",
+    ".github/workflows/academic-2026-phase2-promotion-gate.yml",
+    "assets/css/academic-command-center-2026.css",
+    "assets/css/academic-course-2026.css",
+    "assets/css/academic-event-2026.css",
+    "assets/css/academic-grade-2026.css",
+    "assets/css/academic-transcript-2026.css",
+    "assets/data/course-learning-architecture-s1-2026.json",
+    "assets/data/diploma-supplement-honors-policy-rf-2021.json",
+    "assets/data/grading-policy-bauman-2024.json",
+    "assets/data/phase2-promotion-manifest-2026.json",
+    "assets/data/prerequisite-packs/p00-technical-russian.json",
+    "assets/data/prerequisite-registry-iu5-2026.json",
+    "assets/js/academic-command-center-runtime.js",
+    "assets/js/academic-course-runtime.js",
+    "assets/js/academic-event-runtime.js",
+    "assets/js/academic-grade-runtime.js",
+    "assets/js/academic-main.js",
+    "assets/js/academic-scheduler-apply.js",
+    "assets/js/academic-transcript-runtime.js",
+    "docs/academic/PHASE2_PASS14A_S1_COURSE_ARCHITECTURE.md",
+    "docs/academic/PHASE2_PASS14B_COURSE_READINESS.md",
+    "docs/academic/PHASE2_PASS14C_EVENT_READINESS.md",
+    "docs/academic/PHASE2_PASS14D_GRADE_CONTROL.md",
+    "docs/academic/PHASE2_PASS14E_TRANSCRIPT_HONORS.md",
+    "docs/academic/PHASE2_PASS14F_ACADEMIC_COMMAND_CENTER.md",
+    "docs/academic/PHASE2_PASS14G_FINAL_INTEGRATION_GATE.md",
+    "docs/academic/PHASE2_PASS14H_PROMOTION_GATE.md",
+    "scripts/validate-academic-command-center-14f.js",
+    "scripts/validate-course-learning-architecture-s1-2026.js",
+    "scripts/validate-course-readiness-runtime-14b.js",
+    "scripts/validate-event-readiness-runtime-14c.js",
+    "scripts/validate-grade-control-runtime-14d.js",
+    "scripts/validate-p00-technical-russian.js",
+    "scripts/validate-phase2-final-integration-14g.js",
+    "scripts/validate-phase2-promotion-14h.js",
+    "scripts/validate-phase2-source-integrity.js",
+    "scripts/validate-risk-engine-13c.js",
+    "scripts/validate-transcript-honors-runtime-14e.js",
+    "tests/academic-command-center-browser-14f.mjs",
+    "tests/course-readiness-browser-14b.mjs",
+    "tests/event-readiness-browser-14c.mjs",
+    "tests/grade-control-browser-14d.mjs",
+    "tests/phase2-final-integration-browser-14g.mjs",
+    "tests/transcript-honors-browser-14e.mjs"
+  ],
+  "decision": {
+    "state": "CANDIDATE_ONLY",
+    "mergeToMainAuthorized": false,
+    "deployAuthorized": false,
+    "notes": "Pass14H may prepare and validate a promotion candidate or draft PR. It must not merge main or deploy production without a separate explicit decision."
+  }
+}

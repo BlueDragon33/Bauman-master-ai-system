@@ -1,11 +1,11 @@
 {
   "schema": "bauman_prerequisite_pack_v1",
-  "version": "P0_TECHNICAL_RUSSIAN_IU5_2026_V1",
+  "version": "P0_TECHNICAL_RUSSIAN_IU5_2026_V2_INTEGRITY_CORRECTED",
   "gateId": "P0",
   "title": "Tiếng Nga kỹ thuật theo học phần / Технический русский по дисциплинам",
-  "verifiedAt": "2026-09-10",
+  "verifiedAt": "2026-09-11",
   "notOfficialAdministrativePrerequisite": true,
-  "purpose": "Tái sử dụng module Russian hiện có và thêm lớp ánh xạ ngôn ngữ đúng nhu cầu học thuật IU5: đọc yêu cầu, hiểu thuật ngữ, trình bày lời giải, nghe chỉ dẫn và vấn đáp theo học phần. Không tạo thêm một khóa tiếng Nga tổng quát mới.",
+  "purpose": "Tái sử dụng module Russian hiện có và thêm lớp ánh xạ ngôn ngữ đúng nhu cầu học thuật IU5: đọc yêu cầu, hiểu thuật ngữ, trình bày lời giải, nghe chỉ dẫn và vấn đáp theo các học phần kỹ thuật/NIR/VKR. P0 không phải prerequisite của d01 Иностранный язык thuộc Л2 và không thay thế môn tiếng Anh đó.",
   "mastery": {
     "target": 90,
     "applicationMinimum": 85,
@@ -13,7 +13,7 @@
     "masteredThreshold": 95,
     "masteredApplicationMinimum": 90,
     "scoreFormula": "M = 0.25*D0 + 0.50*D1 + 0.25*D2",
-    "continuityRule": "MASTERED chỉ loại bỏ remediation tiếng Nga tổng quát khỏi active route; micro-pack thuật ngữ và vấn đáp theo học phần vẫn được kích hoạt just-in-time khi môn chính thức hoặc NIR/VKR cần."
+    "continuityRule": "MASTERED chỉ loại bỏ remediation tiếng Nga tổng quát khỏi active route; micro-pack thuật ngữ và vấn đáp theo học phần vẫn được kích hoạt just-in-time khi môn kỹ thuật chính thức hoặc NIR/VKR cần."
   },
   "implementationPolicy": {
     "schedulerMutation": false,
@@ -24,7 +24,8 @@
     "courseSpecificMappingOnly": true,
     "mainBranchMutation": false,
     "officialCourseNamesComeOnlyFromLockedCurriculum": true,
-    "glossaryTermsAreLearningSupportNotOfficialSyllabusClaims": true
+    "glossaryTermsAreLearningSupportNotOfficialSyllabusClaims": true,
+    "excludesForeignLanguageCourseD01": true
   },
   "localReuse": [
     {"lessonIds":["R05"],"role":"reading_math_cs_prompts","reuse":"найдите, вычислите, докажите, определите, дано, требуется; function/vector/matrix prompt reading"},
@@ -39,8 +40,7 @@
     {"lessonIds":["R14"],"role":"technical_problem_explanation","reuse":"цель задачи, входные данные, алгоритм, выходной результат, ограничение, точность"}
   ],
   "officialTargets": [
-    {"courseId":"d01","role":"primary","reason":"P0 là prerequisite critical cho học phần ngoại ngữ và là nền ngôn ngữ cho toàn chương trình."},
-    {"courseId":"d02","role":"support","reason":"Cần đọc/diễn đạt khái niệm phương pháp luận và trả lời học thuật."},
+    {"courseId":"d02","role":"support","reason":"Cần đọc/diễn đạt khái niệm phương pháp luận và trả lời học thuật bằng ngôn ngữ học tập."},
     {"courseId":"d03","role":"support","reason":"Cần đọc đề mô hình, mô tả giả thiết, trạng thái, hàng đợi và kết luận định lượng."},
     {"courseId":"d04","role":"support","reason":"Cần diễn đạt ma trận dữ liệu, covariance/correlation/PCA và giải thích kết quả."},
     {"courseId":"d05","role":"support","reason":"Cần hiểu yêu cầu thiết kế, UML/OOP và bảo vệ quyết định kiến trúc."},
@@ -51,7 +51,7 @@
     {"courseId":"g01","role":"primary","reason":"P0 được registry đánh dấu critical cho chuẩn bị và bảo vệ VKR."}
   ],
   "assessmentLanguage": {
-    "sourcePolicy": "Assessment code meanings are taken from the locked curriculum only at the code/name level; this pack does not invent grading rules for a course.",
+    "sourcePolicy": "Assessment code meanings are taken from the locked curriculum only at the code/name level; this pack does not invent grading rules for a course and does not reinterpret d01 as Russian.",
     "terms": [
       {"ru":"дисциплина","vi":"học phần / môn học"},
       {"ru":"требования","vi":"yêu cầu"},
@@ -82,36 +82,12 @@
     {"ru":"оцените","vi":"hãy đánh giá/ước lượng"}
   ],
   "courseMiniGlossaries": [
-    {
-      "courseIds":["d03"],
-      "label":"Analytical Models / Queueing",
-      "terms":["аналитическая модель","состояние системы","переход","вероятность","поток заявок","интенсивность поступления","интенсивность обслуживания","очередь","загрузка","пропускная способность","среднее время ожидания","условие устойчивости"]
-    },
-    {
-      "courseIds":["d04"],
-      "label":"Multivariate Data Analysis",
-      "terms":["многомерные данные","признак","объект наблюдения","матрица данных","среднее значение","дисперсия","ковариация","корреляция","собственное значение","собственный вектор","главная компонента","стандартизация"]
-    },
-    {
-      "courseIds":["d05"],
-      "label":"OOP Design",
-      "terms":["объект","класс","интерфейс","наследование","композиция","ответственность","зависимость","диаграмма классов","диаграмма последовательности","компонент","архитектура","шаблон проектирования"]
-    },
-    {
-      "courseIds":["d06"],
-      "label":"Database Optimization",
-      "terms":["база данных","отношение","первичный ключ","внешний ключ","ограничение целостности","транзакция","уровень изоляции","блокировка","взаимная блокировка","индекс","план запроса","стоимость запроса"]
-    },
-    {
-      "courseIds":["d15"],
-      "label":"Software Development Technologies",
-      "terms":["требование","жизненный цикл","архитектура","модуль","интерфейс","версия","ветвь","сборка","конфигурация","модульное тестирование","интеграционное тестирование","выпуск"]
-    },
-    {
-      "courseIds":["d02","p02"],
-      "label":"Research Methodology / NIR",
-      "terms":["научная проблема","актуальность","новизна","гипотеза","метод","эксперимент","базовый метод","метрика","воспроизводимость","ограничение","результат","вывод","источник","ссылка"]
-    }
+    {"courseIds":["d03"],"label":"Analytical Models / Queueing","terms":["аналитическая модель","состояние системы","переход","вероятность","поток заявок","интенсивность поступления","интенсивность обслуживания","очередь","загрузка","пропускная способность","среднее время ожидания","условие устойчивости"]},
+    {"courseIds":["d04"],"label":"Multivariate Data Analysis","terms":["многомерные данные","признак","объект наблюдения","матрица данных","среднее значение","дисперсия","ковариация","корреляция","собственное значение","собственный вектор","главная компонента","стандартизация"]},
+    {"courseIds":["d05"],"label":"OOP Design","terms":["объект","класс","интерфейс","наследование","композиция","ответственность","зависимость","диаграмма классов","диаграмма последовательности","компонент","архитектура","шаблон проектирования"]},
+    {"courseIds":["d06"],"label":"Database Optimization","terms":["база данных","отношение","первичный ключ","внешний ключ","ограничение целостности","транзакция","уровень изоляции","блокировка","взаимная блокировка","индекс","план запроса","стоимость запроса"]},
+    {"courseIds":["d15"],"label":"Software Development Technologies","terms":["требование","жизненный цикл","архитектура","модуль","интерфейс","версия","ветвь","сборка","конфигурация","модульное тестирование","интеграционное тестирование","выпуск"]},
+    {"courseIds":["d02","p02"],"label":"Research Methodology / NIR","terms":["научная проблема","актуальность","новизна","гипотеза","метод","эксперимент","базовый метод","метрика","воспроизводимость","ограничение","результат","вывод","источник","ссылка"]}
   ],
   "oralFrames": [
     {"id":"OF01","ru":"Дано ... Требуется определить ...","use":"mở đầu lời giải có dữ kiện và yêu cầu"},
@@ -139,66 +115,57 @@
     {"id":"P0-N09","order":9,"title":"Trình bày lời giải kỹ thuật có cấu trúc","dependsOn":["P0-N04","P0-N06","P0-N07"],"competencies":["goal→input→method→result→limitation","dùng connector logic","nói con số/ký hiệu kèm ý nghĩa","tự sửa khi phát hiện sai giả thiết"],"artifact":"3-minute technical solution"},
     {"id":"P0-N10","order":10,"title":"Vấn đáp: giải thích, chứng minh, so sánh và bảo vệ lựa chọn","dependsOn":["P0-N09"],"competencies":["trả lời trực tiếp câu hỏi","justify bằng evidence/assumption","compare theo tiêu chí","xin làm rõ thay vì đoán","xử lý follow-up"],"artifact":"oral Q&A recording"},
     {"id":"P0-N11","order":11,"title":"Team/lab communication và báo cáo tiến độ","dependsOn":["P0-N02"],"competencies":["chia task","nêu trạng thái done/problem/next step","hỏi kiểm tra/feedback","mô tả lỗi và reproduction steps ngắn"],"artifact":"lab stand-up script"},
-    {"id":"P0-N12","order":12,"title":"Course-specific just-in-time Russian pack","dependsOn":["P0-N10","P0-N11"],"competencies":["chọn glossary theo courseId","ôn đúng command verbs của graded event","chuẩn bị 5-10 oral frames cho môn hiện tại","không học vocabulary ngoài nhu cầu khi deadline gần"],"artifact":"per-course oral/glossary card"}
+    {"id":"P0-N12","order":12,"title":"Course-specific just-in-time Russian pack","dependsOn":["P0-N10","P0-N11"],"competencies":["chọn glossary theo courseId kỹ thuật/NIR/VKR","ôn đúng command verbs của graded event","chuẩn bị 5-10 oral frames cho môn hiện tại","không học vocabulary ngoài nhu cầu khi deadline gần"],"artifact":"per-course oral/glossary card"}
   ],
   "diagnostic": {
-    "D0": {
-      "weight": 0.25,
-      "items": [
-        {"id":"P0-D0-01","node":"P0-N01","prompt":"Phân biệt найдите, вычислите và определите."},
-        {"id":"P0-D0-02","node":"P0-N01","prompt":"обоснуйте yêu cầu kiểu câu trả lời nào?"},
-        {"id":"P0-D0-03","node":"P0-N01","prompt":"сравните khác опишите thế nào?"},
-        {"id":"P0-D0-04","node":"P0-N02","prompt":"дисциплина, кредиты, требования nghĩa là gì trong ngữ cảnh học tập?"},
-        {"id":"P0-D0-05","node":"P0-N02","prompt":"Phân biệt зачёт và экзамен ở mức từ vựng, không suy diễn quy tắc chấm điểm."},
-        {"id":"P0-D0-06","node":"P0-N03","prompt":"определение, условие, пример, следствие, вывод dùng làm marker gì khi nghe giảng?"},
-        {"id":"P0-D0-07","node":"P0-N04","prompt":"интенсивность поступления và интенсивность обслуживания là hai đại lượng nào trong queueing?"},
-        {"id":"P0-D0-08","node":"P0-N04","prompt":"условие устойчивости được dùng để nói loại điều kiện gì?"},
-        {"id":"P0-D0-09","node":"P0-N05","prompt":"ковариация và корреляция là hai thuật ngữ nào?"},
-        {"id":"P0-D0-10","node":"P0-N05","prompt":"собственное значение và собственный вектор nghĩa là gì?"},
-        {"id":"P0-D0-11","node":"P0-N06","prompt":"объект, класс, интерфейс, композиция là gì?"},
-        {"id":"P0-D0-12","node":"P0-N06","prompt":"диаграмма классов và диаграмма последовательности là hai loại biểu đồ nào?"},
-        {"id":"P0-D0-13","node":"P0-N07","prompt":"первичный ключ, внешний ключ, транзакция, индекс là gì?"},
-        {"id":"P0-D0-14","node":"P0-N07","prompt":"план запроса và стоимость запроса nói về gì?"},
-        {"id":"P0-D0-15","node":"P0-N08","prompt":"актуальность, новизна, гипотеза, метод là bốn thuật ngữ nghiên cứu nào?"},
-        {"id":"P0-D0-16","node":"P0-N09","prompt":"Nêu thứ tự 5 phần tối thiểu khi trình bày một bài toán kỹ thuật."},
-        {"id":"P0-D0-17","node":"P0-N10","prompt":"Câu nào dùng để xin làm rõ yêu cầu bằng tiếng Nga?"},
-        {"id":"P0-D0-18","node":"P0-N11","prompt":"возникла проблема và следующий шаг dùng trong báo cáo tiến độ thế nào?"},
-        {"id":"P0-D0-19","node":"P0-N12","prompt":"Khi deadline gần, P0 ưu tiên vocabulary rộng hay vocabulary theo course/event?"},
-        {"id":"P0-D0-20","node":"P0-N12","prompt":"MASTERED P0 có nghĩa là ngừng học tiếng Nga hoàn toàn không?"}
-      ]
-    },
-    "D1": {
-      "weight": 0.50,
-      "items": [
-        {"id":"P0-D1-01","node":"P0-N01","task":"Đọc 12 prompt kỹ thuật Nga có các verb найдите/обоснуйте/сравните/оцените và ghi đúng loại output phải nộp."},
-        {"id":"P0-D1-02","node":"P0-N02","task":"Từ một đoạn yêu cầu học phần giả lập, trích course, assessment vocabulary, deadline, deliverable và viết một câu hỏi làm rõ bằng tiếng Nga."},
-        {"id":"P0-D1-03","node":"P0-N03","task":"Nghe/đọc một mini lecture 90 giây và ghi riêng definition, assumption, example, consequence và conclusion."},
-        {"id":"P0-D1-04","node":"P0-N04","task":"Trình bày bằng tiếng Nga bài M/M/1: dữ kiện lambda/mu, utilization, stability, W/L và ý nghĩa kết quả; không cần văn phong phức tạp."},
-        {"id":"P0-D1-05","node":"P0-N05","task":"Mô tả bằng tiếng Nga một ma trận dữ liệu, standardization, covariance/correlation và mục tiêu PCA trong 90-120 giây."},
-        {"id":"P0-D1-06","node":"P0-N06","task":"Nhìn class/sequence diagram đơn giản và giải thích bằng tiếng Nga component responsibility, interface và một trade-off."},
-        {"id":"P0-D1-07","node":"P0-N07","task":"Đọc mô tả query chậm và trình bày bằng tiếng Nga giả thuyết về index/query plan, bằng chứng cần đo và kết luận sau EXPLAIN ANALYZE."},
-        {"id":"P0-D1-08","node":"P0-N08","task":"Trình bày research pitch 3 phút: problem, relevance, RQ/hypothesis, method, baseline, metric, expected contribution, limitation."},
-        {"id":"P0-D1-09","node":"P0-N09","task":"Giải một bài kỹ thuật ngắn rồi nói theo cấu trúc goal→input→method→result→limitation, có ít nhất 3 connector logic tiếng Nga."},
-        {"id":"P0-D1-10","node":"P0-N10","task":"Trả lời 5 follow-up: explain, justify, compare, identify limitation, correct one wrong assumption; được phép xin làm rõ nhưng không né câu hỏi."},
-        {"id":"P0-D1-11","node":"P0-N11","task":"Mô phỏng lab stand-up 2 phút: đã làm gì, vấn đề gì, evidence nào, ai phụ trách, bước tiếp theo."},
-        {"id":"P0-D1-12","node":"P0-N12","task":"Từ một courseId HK1, tự tạo thẻ JIT gồm 12 thuật ngữ, 8 command verbs, 5 oral frames và một mini oral task; không thêm vocabulary không phục vụ graded event."}
-      ]
-    },
-    "D2": {
-      "weight": 0.25,
-      "items": [
-        {"id":"P0-D2-01","node":"P0-N01","promptRu":"Объясните разницу между командами «найдите», «вычислите», «обоснуйте» и «сравните» и скажите, какой ответ требуется в каждом случае."},
-        {"id":"P0-D2-02","node":"P0-N03","promptRu":"Кратко перескажите техническое определение: назовите объект, условие, основной смысл, пример и вывод, не переводя каждое слово на родной язык."},
-        {"id":"P0-D2-03","node":"P0-N04","promptRu":"Объясните модель очереди: что означают интенсивность поступления, интенсивность обслуживания, загрузка и условие устойчивости системы."},
-        {"id":"P0-D2-04","node":"P0-N05","promptRu":"Опишите матрицу многомерных данных и объясните различие между дисперсией, ковариацией и корреляцией, а затем цель стандартизации."},
-        {"id":"P0-D2-05","node":"P0-N06","promptRu":"Объясните роли класса, объекта и интерфейса и защитите одно решение о разделении ответственности между компонентами системы."},
-        {"id":"P0-D2-06","node":"P0-N07","promptRu":"Объясните, как индекс и план запроса могут влиять на выполнение запроса, и какие измерения нужны до вывода об оптимизации."},
-        {"id":"P0-D2-07","node":"P0-N08","promptRu":"Сформулируйте научную проблему, актуальность, гипотезу, метод, метрику, ограничение и ожидаемый вклад предполагаемой НИР."},
-        {"id":"P0-D2-08","node":"P0-N09","promptRu":"Представьте решение технической задачи: цель, входные данные, метод или алгоритм, результат, его смысл и основное ограничение."},
-        {"id":"P0-D2-09","node":"P0-N10","promptRu":"Ответьте на уточняющий вопрос преподавателя, обоснуйте выбранный подход, назовите альтернативу и исправьте одно неверное предположение."},
-        {"id":"P0-D2-10","node":"P0-N11","promptRu":"Дайте краткий отчёт о работе в лаборатории: что готово, какая проблема возникла, какие есть данные или логи и какой следующий шаг."}
-      ]
-    }
+    "D0": {"weight":0.25,"items":[
+      {"id":"P0-D0-01","node":"P0-N01","prompt":"Phân biệt найдите, вычислите và определите."},
+      {"id":"P0-D0-02","node":"P0-N01","prompt":"обоснуйте yêu cầu kiểu câu trả lời nào?"},
+      {"id":"P0-D0-03","node":"P0-N01","prompt":"сравните khác опишите thế nào?"},
+      {"id":"P0-D0-04","node":"P0-N02","prompt":"дисциплина, кредиты, требования nghĩa là gì trong ngữ cảnh học tập?"},
+      {"id":"P0-D0-05","node":"P0-N02","prompt":"Phân biệt зачёт và экзамен ở mức từ vựng, không suy diễn quy tắc chấm điểm."},
+      {"id":"P0-D0-06","node":"P0-N03","prompt":"определение, условие, пример, следствие, вывод dùng làm marker gì khi nghe giảng?"},
+      {"id":"P0-D0-07","node":"P0-N04","prompt":"интенсивность поступления và интенсивность обслуживания là hai đại lượng nào trong queueing?"},
+      {"id":"P0-D0-08","node":"P0-N04","prompt":"условие устойчивости được dùng để nói loại điều kiện gì?"},
+      {"id":"P0-D0-09","node":"P0-N05","prompt":"ковариация và корреляция là hai thuật ngữ nào?"},
+      {"id":"P0-D0-10","node":"P0-N05","prompt":"собственное значение và собственный вектор nghĩa là gì?"},
+      {"id":"P0-D0-11","node":"P0-N06","prompt":"объект, класс, интерфейс, композиция là gì?"},
+      {"id":"P0-D0-12","node":"P0-N06","prompt":"диаграмма классов và диаграмма последовательности là hai loại biểu đồ nào?"},
+      {"id":"P0-D0-13","node":"P0-N07","prompt":"первичный ключ, внешний ключ, транзакция, индекс là gì?"},
+      {"id":"P0-D0-14","node":"P0-N07","prompt":"план запроса và стоимость запроса nói về gì?"},
+      {"id":"P0-D0-15","node":"P0-N08","prompt":"актуальность, новизна, гипотеза, метод là bốn thuật ngữ nghiên cứu nào?"},
+      {"id":"P0-D0-16","node":"P0-N09","prompt":"Nêu thứ tự 5 phần tối thiểu khi trình bày một bài toán kỹ thuật."},
+      {"id":"P0-D0-17","node":"P0-N10","prompt":"Câu nào dùng để xin làm rõ yêu cầu bằng tiếng Nga?"},
+      {"id":"P0-D0-18","node":"P0-N11","prompt":"возникла проблема và следующий шаг dùng trong báo cáo tiến độ thế nào?"},
+      {"id":"P0-D0-19","node":"P0-N12","prompt":"Khi deadline gần, P0 ưu tiên vocabulary rộng hay vocabulary theo course/event?"},
+      {"id":"P0-D0-20","node":"P0-N12","prompt":"MASTERED P0 có nghĩa là ngừng học tiếng Nga hoàn toàn không?"}
+    ]},
+    "D1": {"weight":0.50,"items":[
+      {"id":"P0-D1-01","node":"P0-N01","task":"Đọc 12 prompt kỹ thuật Nga có các verb найдите/обоснуйте/сравните/оцените và ghi đúng loại output phải nộp."},
+      {"id":"P0-D1-02","node":"P0-N02","task":"Từ một đoạn yêu cầu học phần giả lập, trích course, assessment vocabulary, deadline, deliverable và viết một câu hỏi làm rõ bằng tiếng Nga."},
+      {"id":"P0-D1-03","node":"P0-N03","task":"Nghe/đọc một mini lecture 90 giây và ghi riêng definition, assumption, example, consequence và conclusion."},
+      {"id":"P0-D1-04","node":"P0-N04","task":"Trình bày bằng tiếng Nga bài M/M/1: dữ kiện lambda/mu, utilization, stability, W/L và ý nghĩa kết quả; không cần văn phong phức tạp."},
+      {"id":"P0-D1-05","node":"P0-N05","task":"Mô tả bằng tiếng Nga một ma trận dữ liệu, standardization, covariance/correlation và mục tiêu PCA trong 90-120 giây."},
+      {"id":"P0-D1-06","node":"P0-N06","task":"Nhìn class/sequence diagram đơn giản và giải thích bằng tiếng Nga component responsibility, interface và một trade-off."},
+      {"id":"P0-D1-07","node":"P0-N07","task":"Đọc mô tả query chậm và trình bày bằng tiếng Nga giả thuyết về index/query plan, bằng chứng cần đo và kết luận sau EXPLAIN ANALYZE."},
+      {"id":"P0-D1-08","node":"P0-N08","task":"Trình bày research pitch 3 phút: problem, relevance, RQ/hypothesis, method, baseline, metric, expected contribution, limitation."},
+      {"id":"P0-D1-09","node":"P0-N09","task":"Giải một bài kỹ thuật ngắn rồi nói theo cấu trúc goal→input→method→result→limitation, có ít nhất 3 connector logic tiếng Nga."},
+      {"id":"P0-D1-10","node":"P0-N10","task":"Trả lời 5 follow-up: explain, justify, compare, identify limitation, correct one wrong assumption; được phép xin làm rõ nhưng không né câu hỏi."},
+      {"id":"P0-D1-11","node":"P0-N11","task":"Mô phỏng lab stand-up 2 phút: đã làm gì, vấn đề gì, evidence nào, ai phụ trách, bước tiếp theo."},
+      {"id":"P0-D1-12","node":"P0-N12","task":"Từ một courseId kỹ thuật/NIR/VKR, tự tạo thẻ JIT gồm 12 thuật ngữ, 8 command verbs, 5 oral frames và một mini oral task; không thêm vocabulary không phục vụ graded event."}
+    ]},
+    "D2": {"weight":0.25,"items":[
+      {"id":"P0-D2-01","node":"P0-N01","promptRu":"Объясните разницу между командами «найдите», «вычислите», «обоснуйте» и «сравните» и скажите, какой ответ требуется в каждом случае."},
+      {"id":"P0-D2-02","node":"P0-N03","promptRu":"Кратко перескажите техническое определение: назовите объект, условие, основной смысл, пример и вывод, не переводя каждое слово на родной язык."},
+      {"id":"P0-D2-03","node":"P0-N04","promptRu":"Объясните модель очереди: что означают интенсивность поступления, интенсивность обслуживания, загрузка и условие устойчивости системы."},
+      {"id":"P0-D2-04","node":"P0-N05","promptRu":"Опишите матрицу многомерных данных и объясните различие между дисперсией, ковариацией и корреляцией, а затем цель стандартизации."},
+      {"id":"P0-D2-05","node":"P0-N06","promptRu":"Объясните роли класса, объекта и интерфейса и защитите одно решение о разделении ответственности между компонентами системы."},
+      {"id":"P0-D2-06","node":"P0-N07","promptRu":"Объясните, как индекс и план запроса могут влиять на выполнение запроса, и какие измерения нужны до вывода об оптимизации."},
+      {"id":"P0-D2-07","node":"P0-N08","promptRu":"Сформулируйте научную проблему, актуальность, гипотезу, метод, метрику, ограничение и ожидаемый вклад предполагаемой НИР."},
+      {"id":"P0-D2-08","node":"P0-N09","promptRu":"Представьте решение технической задачи: цель, входные данные, метод или алгоритм, результат, его смысл и основное ограничение."},
+      {"id":"P0-D2-09","node":"P0-N10","promptRu":"Ответьте на уточняющий вопрос преподавателя, обоснуйте выбранный подход, назовите альтернативу и исправьте одно неверное предположение."},
+      {"id":"P0-D2-10","node":"P0-N11","promptRu":"Дайте краткий отчёт о работе в лаборатории: что готово, какая проблема возникла, какие есть данные или логи и какой следующий шаг."}
+    ]}
   },
   "criticalMisconceptions": [
     {"id":"P0-M01","node":"P0-N01","statement":"Dịch từng chữ nhưng không xác định động từ yêu cầu của đề."},
@@ -213,7 +180,8 @@
     {"id":"P0-M10","node":"P0-N10","statement":"Không hiểu câu hỏi nhưng vẫn đoán thay vì xin làm rõ."},
     {"id":"P0-M11","node":"P0-N11","statement":"Báo 'có lỗi' mà không nêu symptom, evidence/reproduction và next step."},
     {"id":"P0-M12","node":"P0-N12","statement":"Học hàng nghìn từ ngoài môn trong khi graded event gần và glossary môn hiện tại chưa dùng được."},
-    {"id":"P0-M13","node":"P0-N12","statement":"Xem P0 MASTERED là lý do ngừng nghe/nói tiếng Nga trong các môn chính thức."}
+    {"id":"P0-M13","node":"P0-N12","statement":"Xem P0 MASTERED là lý do ngừng nghe/nói tiếng Nga trong các môn chính thức."},
+    {"id":"P0-M14","node":"P0-N12","statement":"Xem P0 tiếng Nga kỹ thuật là prerequisite của d01 Иностранный язык thuộc кафедра Л2."}
   ],
   "repairRoutes": [
     {"id":"P0-R01","triggerNodes":["P0-N01","P0-N02"],"route":["R05","R09","R11","P0-N01","P0-N02"],"stopWhen":"đọc đúng verb + deliverable của 10/10 prompt liên tiếp"},
@@ -226,18 +194,19 @@
     {"id":"P0-R08","triggerNodes":["P0-N11","P0-N12"],"route":["R07","R13","P0-N11","P0-N12"],"stopWhen":"stand-up + JIT course card dùng được cho graded event hiện tại"}
   ],
   "stagePolicy": {
-    "beforeStankin":"P0 là active critical: ưu tiên nghe/nói + R05/R06 cơ bản, chưa ép jargon chuyên ngành sâu.",
+    "beforeStankin":"P0 là active critical cho năng lực tiếng Nga kỹ thuật/học thuật: ưu tiên nghe/nói + R05/R06 cơ bản, chưa ép jargon chuyên ngành sâu.",
     "stankin":"STANKIN official Russian remains primary; P0 repair chỉ chạy theo diagnostic và hỗ trợ Toán/Tin/khoa học nền.",
-    "preBauman8Weeks":"Bật P0-N01..N12 theo HK1 priority courses; mục tiêu đọc đề và vấn đáp được, không chạy vocabulary marathon.",
-    "semester1To4":"P0 duy trì secondary/JIT; glossary được chọn từ course/event hiện tại và NIR/VKR thay vì học tuyến rộng cố định."
+    "preBauman8Weeks":"Bật P0-N01..N12 theo các môn kỹ thuật HK1; mục tiêu đọc đề và vấn đáp được, không chạy vocabulary marathon.",
+    "semester1To4":"P0 duy trì secondary/JIT cho môn kỹ thuật, NIR/VKR; d01 Foreign Language có readiness riêng theo English/L2."
   },
   "scopeGuard": {
     "required":["technical prompt reading","class and lab listening","course assessment vocabulary","math-data-CS terminology","structured technical explanation","academic oral Q&A","course-specific just-in-time glossary","NIR/VKR research communication"],
     "deferByDefault":["rare literary vocabulary","broad philology study","translation perfection before comprehension","memorizing thousands of unrelated words","course-independent jargon expansion"],
-    "rule":"P0 optimizes functional academic performance in actual IU5 coursework; it does not replace STANKIN Russian or claim that a glossary term is an official course syllabus item."
+    "rule":"P0 optimizes functional Russian-language academic performance in technical IU5 coursework; it does not replace STANKIN Russian, does not replace the L2 English Foreign Language course d01, and does not claim that a glossary term is an official course syllabus item."
   },
   "sourceEvidence": [
     {"kind":"official_curriculum","path":"assets/data/official-curriculum-iu5-2026.json","locked":true,"use":"official course identity, semester and assessment codes only"},
+    {"kind":"public_bmstu_learning_portal","url":"https://e-learning.bmstu.ru/l/course/index.php?categoryid=3","locked":false,"use":"L2 publicly states Foreign Language (English) for IU students; used only to keep d01 separate from P0 Russian"},
     {"kind":"local_russian_curriculum","path":"subjects/russian/data/curriculum.json","locked":false,"use":"existing stage/module structure"},
     {"kind":"local_russian_knowledge_index","path":"subjects/russian/data/knowledge-index.json","locked":false,"use":"verified lesson identity and content signals R05-R14"},
     {"kind":"local_subject_manifest","path":"subjects/russian/subject-manifest.json","locked":false,"use":"existing Russian listening/speaking/vocab/dialogue/testing infrastructure"}
