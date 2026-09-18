@@ -58,6 +58,10 @@
     "registryCandidateAuthority": "candidate_only",
     "selfDerivedChecksums": false,
     "directDiagnosticChecksumDerivation": false,
-    "pinnedRegistryChecksumVerification": true
+    "pinnedRegistryChecksumVerification": true,
+    "delegatedLoader": "assets/js/academic-content-resolution-loader.js",
+    "shadowOwnsResolutionImplementation": false,
+    "shadowOwnsRegistryLoading": false,
+    "shadowOwnsTransportAdapter": false
   }
 }
