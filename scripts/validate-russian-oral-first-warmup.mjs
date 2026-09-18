@@ -23,7 +23,7 @@ export function validateRuntime(core){
   assert(core.includes("const hints=heard?lineTokenHints(targetText):[];"),'Token hints are not hidden before listen');
   assert(/lineHeard\s*=\s*practiceLineHeard\(active,i\)/.test(core),'Dialogue map does not gate each line');
   assert(core.includes("data-act=\"speak-line-slow\" ${heard?'':'disabled'}"),'Slow-listen button is not disabled before normal listen');
-  assert(/if\(act==='speak-line'\)\{[^}]*markPracticeLineHeard\(d,activeLineIndex\(\)\)/.test(core),'Normal listen does not unlock text');
+  assert(core.includes("if(inPracticeMode()){markPracticeLineHeard(d,activeLineIndex());render()}"),'Normal listen does not unlock text');
   const slow=core.match(/if\(act==='speak-line-slow'\)\{([^}]*)\}/);
   assert(slow&&!slow[1].includes('markPracticeLineHeard'),'Slow listen must not unlock text');
   assert(!/markPracticeLineHeard\([^)]*\)[^\n]*master/i.test(core),'Listening evidence must not mutate mastery');
