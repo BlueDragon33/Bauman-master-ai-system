@@ -45,3 +45,10 @@ Indirect dependency:
 Step 1 defines the contract only. Existing Hub, Academic, subject, and packaging loaders remain unchanged.
 
 No runtime consumer is migrated until a later step has a separately green gate.
+
+
+## Step 2 — Pure resolver runtime
+
+`runtime-resource-resolver.js` is an isolated resolver that reads registry metadata and access policy and returns immutable runtime resource descriptors.
+
+It is not yet wired into existing Hub, Academic, subject, or packaging loaders.
