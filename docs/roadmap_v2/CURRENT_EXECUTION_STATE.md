@@ -8,7 +8,7 @@
 - Current round: **Lượt 25**
 - Current step: **Bước 100 — IN_PROGRESS**
 - L22 closeout: **B88 + H1 — PASS**
-- Status: **L23_COMPLETE · L24_COMPLETE · PASS_L25_F1 · PASS_L25_F2 · PASS_L25_B97 · PASS_L25_H1 · PASS_L25_F3 · PASS_L25_B98 · PASS_L25_F4 · PASS_L25_B99 · L25_B100_CLOSEOUT_IN_PROGRESS**
+- Status: **L23_COMPLETE · L24_COMPLETE · PASS_L25_F1 · PASS_L25_F2 · PASS_L25_B97 · PASS_L25_H1 · PASS_L25_F3 · PASS_L25_B98 · PASS_L25_F4 · PASS_L25_B99 · L25_F5_PACKAGED_DECORATIVE_ABORT_REPAIR_IN_PROGRESS · B100_BLOCKED_ON_F5**
 - Accepted head: `622e84aece7847b4179a8ff48937cb92717aaf3e`
 - Production/runtime activation by Roadmap V2: **disconnected**
 - Legacy/source destructive migration: **not executed**
@@ -303,3 +303,12 @@ Accepted B99/F4 head: `601a5d4fb7ba0a62f37847ebbb27a2f9a4457da7`
 - Whole System Integration — run `35341919158` — PASS
 
 B99 and F4 are closed. B100 closeout is now active.
+
+
+## L25-F5 defect
+
+B100 Whole System run `35342379719` failed because Playwright classified a same-origin `GET /assets/media/hub-ai-robot.svg net::ERR_ABORTED` as a failed request.
+
+The packaged server log proves the asset returned HTTP 200 repeatedly. F5 extends the existing decorative-navigation-abort allowlist to the robot SVG while preserving failure behavior for HTTP errors, missing assets, connection failures and all non-allowlisted aborts.
+
+B100 stays blocked until the complete six-gate set passes.
