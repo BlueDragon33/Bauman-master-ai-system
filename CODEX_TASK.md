@@ -129,3 +129,18 @@ Acceptance:
 - resolver → delivery plan → executor verification succeeds for all three;
 - verified JSON equals direct JSON;
 - no runtime code or loader authority changes.
+
+
+## Step 7 — Active
+
+Run source-runtime browser shadow acceptance without editing the application entry point.
+
+Acceptance:
+
+- same-origin test-only harness;
+- Foundation scripts injected only by Playwright;
+- real package-relative fetch adapter used in Chromium;
+- browser WebCrypto SHA-256;
+- all three Academic core resources resolve, plan, verify, parse and match direct JSON;
+- no console/page/request/HTTP errors;
+- no runtime authority switch.
