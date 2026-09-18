@@ -38,7 +38,8 @@ assert.throws(()=>validateSource(source+"\nwindow.BAUMAN_CURRICULUM_2026={};",in
   assert.throws(()=>validateContract(x),/derive its own expected checksums/);
 }
 assert.throws(()=>validateSource(source+"\nroot.crypto.subtle.digest('SHA-256',new Uint8Array());",indexHtml),/must not derive expected checksums/);
+assert.throws(()=>validateSource(source+"\nroot.BaumanRuntimeDeliveryExecutor.execute();",indexHtml),/must not own executor calls/);
 assert.throws(()=>validateSource(source,indexHtml.replace('<script src="assets/js/academic-content-resolution-shadow.js"></script>','')),/missing Academic content shadow bridge/);
 
 console.log('ACADEMIC_RUNTIME_SHADOW_BRIDGE_NEGATIVE_TEST=PASS');
-console.log(JSON.stringify({negativeCases:11,defaultEnabled:false,authoritySwitch:false},null,2));
+console.log(JSON.stringify({negativeCases:12,defaultEnabled:false,authoritySwitch:false},null,2));
