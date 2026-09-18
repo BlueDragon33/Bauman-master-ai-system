@@ -21,6 +21,9 @@ on:
       - 'subjects/russian/assets/cyrillic-literacy.css'
       - 'scripts/validate-russian-cyrillic-print-recognition.mjs'
       - 'tests/russian-cyrillic-print-recognition.test.mjs'
+      - 'subjects/russian/contracts/cyrillic-cursive-recognition-contract.v1.json'
+      - 'scripts/validate-russian-cyrillic-cursive-recognition.mjs'
+      - 'tests/russian-cyrillic-cursive-recognition.test.mjs'
       - '.github/workflows/russian-learning-architecture-gate.yml'
 
 permissions:
@@ -47,6 +50,8 @@ jobs:
           node --check subjects/russian/assets/cyrillic-literacy.js
           node --check scripts/validate-russian-cyrillic-print-recognition.mjs
           node --check tests/russian-cyrillic-print-recognition.test.mjs
+          node --check scripts/validate-russian-cyrillic-cursive-recognition.mjs
+          node --check tests/russian-cyrillic-cursive-recognition.test.mjs
       - name: Validate listen-speak literacy visual contract
         run: node scripts/validate-russian-learning-sequence-contract.mjs
       - name: Run contract negative tests
@@ -65,6 +70,10 @@ jobs:
         run: node scripts/validate-russian-cyrillic-print-recognition.mjs
       - name: Run Cyrillic print recognition negative tests
         run: node tests/russian-cyrillic-print-recognition.test.mjs
+      - name: Validate Cyrillic cursive recognition
+        run: node scripts/validate-russian-cyrillic-cursive-recognition.mjs
+      - name: Run Cyrillic cursive recognition negative tests
+        run: node tests/russian-cyrillic-cursive-recognition.test.mjs
       - name: Parse pedagogy contracts
         run: node -e "const fs=require('fs'); const a=JSON.parse(fs.readFileSync('subjects/russian/contracts/listen-speak-literacy-visual-contract.v1.json','utf8')); const b=JSON.parse(fs.readFileSync('subjects/russian/contracts/oral-first-route-contract.v1.json','utf8')); if(a.schema!=='RUSSIAN_LISTEN_SPEAK_LITERACY_VISUAL_CONTRACT_V1'||b.schema!=='RUSSIAN_ORAL_FIRST_ROUTE_CONTRACT_V1') process.exit(1); console.log('RUSSIAN_PEDAGOGY_JSON=PASS')"
 
