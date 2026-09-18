@@ -20,7 +20,9 @@ const currentTrackOwned=new Set([
   'roadmap_v2/diagnostic/diagnostic-contract.schema.json',
   'roadmap_v2/diagnostic/catalog.schema.json',
   'roadmap_v2/mastery/mastery-contract.json',
-  'roadmap_v2/mastery/mastery-contract.schema.json'
+  'roadmap_v2/mastery/mastery-contract.schema.json',
+  'roadmap_v2/priority/priority-contract.json',
+  'roadmap_v2/priority/priority-contract.schema.json'
 ]);
 
 const baseline=new Set();
@@ -49,6 +51,15 @@ assert.equal(masterySchema.$id,'BAUMAN_ROADMAP_V2_MASTERY_CONTRACT_V2','current-
 assert.equal(mastery.mode.productionIntegration,'disconnected');
 assert.equal(mastery.capabilities.runtimeActivation,false);
 assert.equal(mastery.capabilities.persistentStoreWrite,false);
+
+const priority=JSON.parse(fs.readFileSync('roadmap_v2/priority/priority-contract.json','utf8'));
+const prioritySchema=JSON.parse(fs.readFileSync('roadmap_v2/priority/priority-contract.schema.json','utf8'));
+assert.equal(priority.schema,'BAUMAN_ROADMAP_V2_PRIORITY_CONTRACT_V2','current-track Priority contract must be V2');
+assert.equal(prioritySchema.$id,'BAUMAN_ROADMAP_V2_PRIORITY_CONTRACT_V2','current-track Priority schema must be V2');
+assert.equal(priority.mode.productionIntegration,'disconnected');
+assert.equal(priority.capabilities.persistentStoreWrite,false);
+assert.equal(priority.capabilities.schedulerWrite,false);
+assert.equal(priority.capabilities.runtimeActivation,false);
 
 function walk(dir){
   if(!fs.existsSync(dir)) return [];
