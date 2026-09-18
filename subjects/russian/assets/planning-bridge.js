@@ -409,6 +409,8 @@
         bandId:clean(band.id),
         title:clean(band.title),
         lessonId:clean(band.missingLesson),
+        step:clean(band.missingStep)||'theory',
+        route:clone(band.missingRoute||window.RussianCapabilityProgression?.routeForStep?.(band.missingLesson,band.missingStep)||{view:'learning',learnTab:'theory',lessonId:band.missingLesson}),
         lessonReady:Number(band.lessonReady||0),
         lessonTotal:Number(band.lessonTotal||0),
         dueCount:Number(band.dueCount||0),
@@ -425,8 +427,8 @@
       title:`${clean(focus?.bandId)||'R?'} · Bù evidence trước khi mở rộng`,
       purpose:`Band ${clean(focus?.bandId)} còn thiếu bằng chứng ở ${id}. Học đúng bài này trước khi đẩy thêm nội dung mới.`,
       limit:'1 bài trọng tâm · evidence thật',
-      route:{view:'learning',learnTab:'theory',lessonId:id},
-      button:`Mở ${id}`,
+      route:clone(focus?.route||{view:'learning',learnTab:'theory',lessonId:id}),
+      button:`Mở ${id} · ${clean(focus?.step)||'theory'}`,
       capabilityBand:clean(focus?.bandId),
       lessonId:id,
       source:'capability_gap'
@@ -443,7 +445,8 @@
     target.cards=[...reviews,capabilityOverlayCard(focus),...existing];
     target.capabilityBand=focus.bandId;
     target.capabilityLesson=focus.lessonId;
-    target.pedagogyNote=`${reviews.length?'Sau Review Queue, ':''}ưu tiên band ${focus.bandId}: bù evidence ở ${focus.lessonId}. ${clean(target.pedagogyNote)}`.trim();
+    target.capabilityStep=focus.step;
+    target.pedagogyNote=`${reviews.length?'Sau Review Queue, ':''}ưu tiên band ${focus.bandId}: bù evidence ${focus.step} ở ${focus.lessonId}. ${clean(target.pedagogyNote)}`.trim();
     return out;
   }
   function buildInternalPlan(mission, analysis, ctx={}){
