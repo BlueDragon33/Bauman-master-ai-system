@@ -214,14 +214,15 @@
       const old=lessonState(id)?.steps?.theory||{};
       touch('theory',{slideMoves:Number(old.slideMoves||0)+1},id);
     }
-    if(core.view==='learning'&&core.learnTab==='practice'){
+    const speakingSurface=(core.view==='learning'&&core.learnTab==='practice')||core.view==='dialogue';
+    if(speakingSurface){
       if(['record-line','speak-line','speak-line-slow','speak-dialogue'].includes(act)){
         const old=lessonState(id)?.steps?.speaking||{};
-        touch('speaking',{attempts:Number(old.attempts||0)+1},id);
+        touch('speaking',{attempts:Number(old.attempts||0)+1,lastSurface:core.view==='dialogue'?'dialogue':'practice'},id);
       }
       if(act==='mark-line-ok'){
         const old=lessonState(id)?.steps?.speaking||{};
-        touch('speaking',{attempts:Number(old.attempts||0)+1,ok:Number(old.ok||0)+1,lastOkAt:now()},id);
+        touch('speaking',{attempts:Number(old.attempts||0)+1,ok:Number(old.ok||0)+1,lastOkAt:now(),lastSurface:core.view==='dialogue'?'dialogue':'practice'},id);
       }
     }
     if(core.view==='learning'&&core.learnTab==='exercises'&&(act==='next-exercise'||act==='prev-exercise'||target.closest?.('[data-exercise-focus]'))){
