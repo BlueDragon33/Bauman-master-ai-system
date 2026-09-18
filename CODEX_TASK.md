@@ -30,18 +30,18 @@ English is not the default translation bridge either.
 
 ## Current work
 
-Turns 1–14 are accepted.
+Turns 1–15 are accepted.
 
-Next: **Turn 15 — Dictation & listen-to-write**.
+Next: **Turn 16 — Translation-free dialogue scaffolding**.
 
-Turn 15 must:
+Turn 16 must:
 
-- reuse the 33-letter sound map and curated Reading Bridge words/texts as source material;
-- progress sound→letter → sound→word → short dictation;
-- hide the Russian answer until the learner submits attempts;
-- use ru-RU audio only;
-- allow correction/reveal only after real attempts;
-- record dictation evidence separately from mastery authority.
+- keep Russian dialogue text/audio authoritative;
+- replace learner-facing Vietnamese/English gloss with scene, role, communicative cue, and Russian context;
+- preserve hear-before-see and role-play behavior from Turns 3/8/9;
+- retain legacy translation fields only for migration/authoring diagnostics;
+- fail closed when scene/cue context is missing rather than translating;
+- keep dialogue/speaking mastery authority unchanged.
 
 ## Gate rule
 
