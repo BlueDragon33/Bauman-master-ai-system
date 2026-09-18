@@ -67,3 +67,11 @@ Subject-local drills may store additive evidence but must not silently promote m
 ## Branch policy
 
 Do not merge to `main` without an explicit promotion decision.
+
+
+## Turn 18 stop point
+
+- Fixed source-markup defect in `subjects/russian/index.html`: removed 10 literal `\\n` escape sequences from HTML markup.
+- Turn 18 remains ACTIVE; do not promote yet.
+- Next required development upgrade: add behavioral runtime acceptance for multimodal review evidence (real storage mutation/isolation checks), proving the evidence layer does not mutate SRS due dates, canonical Review Queue state, mastery, or completion.
+- This is an in-turn gate-strengthening substep, not a new responsibility/turn.
