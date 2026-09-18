@@ -6,9 +6,9 @@
 ## Active track
 
 - Current round: **Lượt 23**
-- Current step: **Bước 90 — IN_PROGRESS**
+- Current step: **Bước 90 — PENDING_FULL_GATE**
 - L22 closeout: **B88 + H1 — PASS**
-- Status: **PASS_L23_B89 · PASS_L23_H1 · B90_CATALOG_IN_PROGRESS**
+- Status: **PASS_L23_B89 · PASS_L23_H1 · B90_CATALOG_PENDING_FULL_GATE**
 - Accepted head: `622e84aece7847b4179a8ff48937cb92717aaf3e`
 - Production/runtime activation by Roadmap V2: **disconnected**
 - Legacy/source destructive migration: **not executed**
