@@ -1,0 +1,61 @@
+{
+  "schema": "RUSSIAN_VISUAL_VOCABULARY_COVERAGE_CONTRACT_V1",
+  "contractVersion": 1,
+  "corpusSize": 8000,
+  "classification": {
+    "statuses": [
+      "ready",
+      "partial",
+      "missing_visual_semantics"
+    ],
+    "coverageKinds": [
+      "explicit_visual_asset",
+      "russian_context_only",
+      "missing"
+    ],
+    "explicitVisualFields": [
+      "image",
+      "image_url",
+      "picture",
+      "illustration",
+      "illustration_url",
+      "pictogram",
+      "emoji",
+      "image_emoji",
+      "scene",
+      "scene_id",
+      "gesture"
+    ],
+    "russianContextFields": [
+      "illustration_label_ru",
+      "visual_label",
+      "semantic_label",
+      "context_ru",
+      "example_ru",
+      "usage_note",
+      "when_use",
+      "tags"
+    ],
+    "translationFieldsIgnored": [
+      "meaning_vi",
+      "vi_vi",
+      "translation_vi",
+      "gloss_vi",
+      "definition_vi",
+      "vi",
+      "clue_en",
+      "meaning_en",
+      "translation_en",
+      "definition_en",
+      "en"
+    ]
+  },
+  "rules": {
+    "explicitAssetIsReady": true,
+    "russianContextWithoutAssetIsPartial": true,
+    "translationOnlyIsMissing": true,
+    "missingStateIsExplicit": true,
+    "syntheticEmojiFallbackIsNotSourceCoverage": true,
+    "runtimeAuthoritySwitch": false
+  }
+}
