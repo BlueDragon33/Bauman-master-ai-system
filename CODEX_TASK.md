@@ -92,3 +92,20 @@ Acceptance:
 - executor contains no direct network/storage APIs.
 
 No real application loader is migrated in Step 4.
+
+
+## Step 5 — Active
+
+Gate the first concrete delivery adapter: `package-relative-resource`.
+
+Acceptance:
+
+- explicit HTTP/HTTPS base URL;
+- repository-relative resource path only;
+- same-origin GET only;
+- redirects rejected;
+- query/fragment/traversal rejected;
+- HTTP failure rejected;
+- bytes still verified by the executor before consumer use.
+
+No existing loader authority changes in Step 5.
