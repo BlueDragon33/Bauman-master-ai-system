@@ -247,6 +247,15 @@
       "classification": "validator_evidence_shape",
       "cause": "Validator expected full historical baseline SHA inside descriptive finding text that intentionally used abbreviated e383912...",
       "correction": "Store full baseline SHA in a structured historicalBaseline field and validate it directly.",
+      "status": "pass"
+    },
+    {
+      "id": "L27R2C1-F2",
+      "triggerRunId": 35327689495,
+      "failedStep": "Validate R2C1 toolchain compatibility review",
+      "classification": "validator_evidence_shape",
+      "cause": "Validator searched free-text findings for an exact historical filename.",
+      "correction": "Promote baseline/path/hash/report coupling into a structured couplingEvidence object and validate exact fields.",
       "status": "applied_pending_gate"
     }
   ],
