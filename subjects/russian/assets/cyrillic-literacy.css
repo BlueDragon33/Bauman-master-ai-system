@@ -20,3 +20,15 @@
 .ru-cyr-cursive,.ru-cyr-cursive-option{font-family:'Segoe Script','Comic Sans MS',cursive!important;font-weight:500!important;letter-spacing:.02em}
 .ru-cyr-cursive{font-size:78px}
 .ru-cyr-cursive-option{font-size:34px!important}
+
+.ru-cyr-sound-panel{width:min(720px,100%);display:grid;gap:12px;padding:14px;border:1px solid rgba(148,163,184,.24);border-radius:16px;background:rgba(15,23,42,.34)}
+.ru-cyr-sound-actions{display:flex;gap:10px;justify-content:center;flex-wrap:wrap}
+.ru-cyr-sound-actions button{border:1px solid rgba(148,163,184,.3);background:rgba(30,41,59,.9);color:inherit;border-radius:12px;padding:10px 14px;cursor:pointer;font-weight:700}
+.ru-cyr-sound-facts{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
+.ru-cyr-sound-facts article{padding:10px;border-radius:13px;background:rgba(2,6,23,.35);text-align:center}
+.ru-cyr-sound-facts small{display:block;opacity:.68;margin-bottom:5px}
+.ru-cyr-sound-facts b{font-size:20px}.ru-cyr-sound-facts article>div{display:flex;gap:5px;justify-content:center;flex-wrap:wrap}
+.ru-cyr-sound-facts span{padding:3px 7px;border-radius:999px;background:rgba(148,163,184,.15)}
+.ru-cyr-sound-rule{margin:0;font-size:12px;opacity:.72;text-align:center}
+.ru-cyr-sound-missing{padding:12px;border-radius:12px;background:rgba(127,29,29,.18)}
+@media(max-width:700px){.ru-cyr-sound-facts{grid-template-columns:1fr}}
