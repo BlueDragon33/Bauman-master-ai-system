@@ -1,4 +1,4 @@
-# L9 Step 4 — Legacy Snapshot Extractor + End-to-End Dry Run
+# Bauman Foundation — Identity & Domain Model — Step 4 — Legacy Snapshot Extractor + End-to-End Dry Run
 
 ## Goal
 
