@@ -19,6 +19,8 @@ on:
       - "tests/russian-capability-hub-browser.mjs"
       - "tests/russian-capability-deeplink-browser.mjs"
       - "tests/russian-capability-route-receipt-browser.mjs"
+      - "tests/russian-capability-continue-static.mjs"
+      - "tests/russian-capability-continue-browser.mjs"
       - "scripts/prepare-cloudflare-preview.mjs"
       - "scripts/prepare-chatgpt-site.mjs"
       - ".openai/hosting.json"
@@ -41,6 +43,8 @@ on:
       - "tests/russian-capability-hub-browser.mjs"
       - "tests/russian-capability-deeplink-browser.mjs"
       - "tests/russian-capability-route-receipt-browser.mjs"
+      - "tests/russian-capability-continue-static.mjs"
+      - "tests/russian-capability-continue-browser.mjs"
       - "scripts/prepare-cloudflare-preview.mjs"
       - "scripts/prepare-chatgpt-site.mjs"
       - ".openai/hosting.json"
@@ -66,6 +70,8 @@ jobs:
         run: node subjects/russian/scripts/validate-capability-deeplink.mjs
       - name: Validate Russian capability route receipt
         run: node subjects/russian/scripts/validate-capability-route-receipt.mjs
+      - name: Validate Russian capability-aware continue
+        run: node tests/russian-capability-continue-static.mjs
       - name: Parse changed runtime JavaScript
         run: |
           node --check assets/js/main.js
@@ -99,6 +105,8 @@ jobs:
           node --check tests/russian-capability-hub-browser.mjs
           node --check tests/russian-capability-deeplink-browser.mjs
           node --check tests/russian-capability-route-receipt-browser.mjs
+          node --check tests/russian-capability-continue-static.mjs
+          node --check tests/russian-capability-continue-browser.mjs
 
   browser-system-acceptance:
     needs: validate-system-integration
@@ -168,6 +176,11 @@ jobs:
           BAUMAN_E2E_BASE_URL: http://127.0.0.1:4173/
           BAUMAN_E2E_ARTIFACT_DIR: artifacts/russian-capability-route-receipt
         run: node tests/russian-capability-route-receipt-browser.mjs
+      - name: Run Russian capability-aware continue acceptance
+        env:
+          BAUMAN_E2E_BASE_URL: http://127.0.0.1:4173/
+          BAUMAN_E2E_ARTIFACT_DIR: artifacts/russian-capability-continue
+        run: node tests/russian-capability-continue-browser.mjs
       - name: Materialize owner-private ChatGPT Site package
         env:
           BAUMAN_CONTROL_PREVIEW_D1_DATABASE_ID: 11111111-1111-4111-8111-111111111111
@@ -228,6 +241,11 @@ jobs:
           BAUMAN_E2E_BASE_URL: http://127.0.0.1:4174/
           BAUMAN_E2E_ARTIFACT_DIR: artifacts/chatgpt-site-russian-capability-route-receipt
         run: node tests/russian-capability-route-receipt-browser.mjs
+      - name: Run packaged Russian capability-aware continue acceptance
+        env:
+          BAUMAN_E2E_BASE_URL: http://127.0.0.1:4174/
+          BAUMAN_E2E_ARTIFACT_DIR: artifacts/chatgpt-site-russian-capability-continue
+        run: node tests/russian-capability-continue-browser.mjs
       - name: Show server log on failure
         if: failure()
         run: |
@@ -248,6 +266,7 @@ jobs:
             artifacts/russian-capability-hub
             artifacts/russian-capability-deeplink
             artifacts/russian-capability-route-receipt
+            artifacts/russian-capability-continue
             artifacts/chatgpt-site-browser
             artifacts/chatgpt-site-foundation-identity-persistence
             artifacts/chatgpt-site-foundation-identity-projection
@@ -256,5 +275,6 @@ jobs:
             artifacts/chatgpt-site-russian-capability-hub
             artifacts/chatgpt-site-russian-capability-deeplink
             artifacts/chatgpt-site-russian-capability-route-receipt
+            artifacts/chatgpt-site-russian-capability-continue
           if-no-files-found: warn
           retention-days: 7
