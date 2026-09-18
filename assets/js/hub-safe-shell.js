@@ -32,11 +32,12 @@
   function capabilityHTML(sub){
     const x=capabilityState(sub?.id);if(!x||sub?.id!=='russian')return '';
     const band=x.currentBand||{},gap=x.nextGap||{},exit=x.stageExit||{},receipt=capabilityRouteReceipt(sub?.id,gap);
+    const reviewDue=Math.max(Number(band.reviewDue||0),Number(exit.reviewDue||0));
     const lessonBits=Number(band.lessonTotal||0)?`${Number(band.lessonReady||0)}/${Number(band.lessonTotal||0)} bài có evidence`:'Chưa có lesson evidence';
-    const reviewBits=Number(band.reviewDue||0)?`${Number(band.reviewDue)} mục ôn đến hạn`:'Review Queue sạch';
+    const reviewBits=reviewDue?`${reviewDue} mục ôn đến hạn`:'Review Queue sạch';
     const exitText=exit.allowed?'Đủ điều kiện rời stage':(exit.blocker||'Stage còn điều kiện chưa đạt');
     const receiptLine=receipt?`<div class="hub-safe-capability-receipt" data-safe-capability-receipt="confirmed"><b>✓ Russian đã xác nhận mở ${safe(receipt.route.lessonId)}</b><small>${safe(receipt.route.view)} · ${safe(receipt.route.learnTab)} · stage ${safe(receipt.stage||'')}</small></div>`:`<div class="hub-safe-capability-receipt pending" data-safe-capability-receipt="pending"><b>Chưa có biên nhận mở gap</b><small>Hub chỉ đánh dấu xác nhận sau ACK từ Russian Sub Web App.</small></div>`;
-    const actionLabel=receipt?`Mở lại ${safe(receipt.route.lessonId)} →`:'Mở Tiếng Nga theo gap hiện tại →';
+    const actionLabel=reviewDue?'Mở Tiếng Nga để xử lý Review Queue →':(receipt?`Mở lại ${safe(receipt.route.lessonId)} →`:'Mở Tiếng Nga theo gap hiện tại →');
     return `<article class="hub-safe-card hub-safe-capability" data-safe-capability="russian"><div class="hub-safe-section-head"><div><h2>Năng lực Tiếng Nga</h2><p>Snapshot từ Russian Sub Web App · Hub không đọc storage nội bộ.</p></div><span class="hub-safe-band-badge">${safe(band.id||'R0')}</span></div><div class="hub-safe-capability-grid"><span><b>${safe(band.title||'Năng lực hiện tại')}</b><small>${safe(lessonBits)}</small></span><span><b>${safe(gap.lessonId||'Không có gap mới')}</b><small>Evidence gap tiếp theo</small></span><span><b>${safe(reviewBits)}</b><small>Ưu tiên sửa trước học mới</small></span><span class="${exit.allowed?'ready':'blocked'}"><b>${exit.allowed?'Sẵn sàng':'Chưa sẵn sàng'}</b><small>${safe(exitText)}</small></span></div>${receiptLine}<button class="btn hub-safe-outline" data-safe-action="capability">${actionLabel}</button></article>`;
   }
   function scheduleItems(){const out=[];for(const [key,val] of Object.entries(S().schedule?.entries||{})){const [date,slotId]=key.split('|');if(!date||date<today())continue;out.push({date,slotId,time:SLOT_TIMES[slotId]||val.time||'Theo lịch',...val})}return out.sort((a,b)=>(a.date+a.time).localeCompare(b.date+b.time)).slice(0,4)}
