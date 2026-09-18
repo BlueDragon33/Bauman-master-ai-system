@@ -1,0 +1,39 @@
+{
+  "schema": "RUSSIAN_MULTIMODAL_REVIEW_CONTRACT_V1",
+  "contractVersion": 1,
+  "modalities": [
+    "audio",
+    "visual",
+    "recognition",
+    "speaking",
+    "writing"
+  ],
+  "ratings": [
+    "forgot",
+    "unsure",
+    "recalled"
+  ],
+  "authority": {
+    "schedulerOwner": "RUSSIAN_VOCAB_SRS_V1",
+    "canonicalReviewQueueOwner": "RUSSIAN_LEARNING_STATE_V1",
+    "masteryOwner": "existing_learning_state",
+    "multimodalEvidenceOnly": true
+  },
+  "evidence": {
+    "separateStorage": true,
+    "perVocabCard": true,
+    "perModality": true,
+    "attempts": true,
+    "lastRating": true,
+    "ratingCounts": true,
+    "lastAt": true,
+    "crossModalityInference": false
+  },
+  "invariants": {
+    "noDueDateMutation": true,
+    "noReviewQueueMutation": true,
+    "noMasteryMutation": true,
+    "noCompletionMutation": true,
+    "noTranslationAnswer": true
+  }
+}
