@@ -33,7 +33,12 @@ assert.equal(validateSource(source,indexHtml),true);
 assert.throws(()=>validateSource(source.replace("if(!enabled())","if(enabled())"),indexHtml),/Default-disabled fast path/);
 assert.throws(()=>validateSource(source+"\nlocalStorage.setItem('x','1');",indexHtml),/persist browser storage/);
 assert.throws(()=>validateSource(source+"\nwindow.BAUMAN_CURRICULUM_2026={};",indexHtml),/authoritative globals/);
+{
+  const x=copy(); x.verification.selfDerivedChecksums=true;
+  assert.throws(()=>validateContract(x),/derive its own expected checksums/);
+}
+assert.throws(()=>validateSource(source+"\nroot.crypto.subtle.digest('SHA-256',new Uint8Array());",indexHtml),/must not derive expected checksums/);
 assert.throws(()=>validateSource(source,indexHtml.replace('<script src="assets/js/academic-content-resolution-shadow.js"></script>','')),/missing Academic content shadow bridge/);
 
 console.log('ACADEMIC_RUNTIME_SHADOW_BRIDGE_NEGATIVE_TEST=PASS');
-console.log(JSON.stringify({negativeCases:9,defaultEnabled:false,authoritySwitch:false},null,2));
+console.log(JSON.stringify({negativeCases:11,defaultEnabled:false,authoritySwitch:false},null,2));
