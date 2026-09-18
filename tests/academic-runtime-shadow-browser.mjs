@@ -62,15 +62,17 @@ try{
   await disabledPage.waitForFunction(()=>window.BAUMAN_CONTENT_RESOLUTION_SHADOW_STATUS?.ready===true,null,{timeout:10000});
   const disabled=await disabledPage.evaluate(()=>({
     status:window.BAUMAN_CONTENT_RESOLUTION_SHADOW_STATUS,
-    injected:Array.from(document.scripts).filter(x=>x.dataset.baumanContentResolutionShadow==='1').map(x=>x.src),
+    injected:Array.from(document.scripts).filter(x=>x.dataset.baumanAcademicVerifiedLoader==='1').map(x=>x.src),
     resolverLoaded:Boolean(window.BaumanRuntimeResourceResolver),
-    bridgeLoaded:Boolean(window.BaumanAcademicContentResolutionShadow)
+    bridgeLoaded:Boolean(window.BaumanAcademicContentResolutionShadow),
+    verifiedLoaderLoaded:Boolean(window.BaumanAcademicVerifiedContentLoader)
   }));
   assert.equal(disabled.status.enabled,false,'Shadow must remain disabled by default');
   assert.equal(disabled.status.passed,null,'Disabled shadow must not report verification result');
   assert.deepEqual(disabled.injected,[],'Disabled shadow loaded Foundation dependencies');
   assert.equal(disabled.resolverLoaded,false,'Disabled shadow unexpectedly loaded resolver');
   assert.equal(disabled.bridgeLoaded,true,'Shadow bridge script is missing from real Hub');
+  assert.equal(disabled.verifiedLoaderLoaded,true,'Verified loader candidate script is missing from real Hub');
   assert.deepEqual(disabledSummary.consoleErrors,[]);
   assert.deepEqual(disabledSummary.pageErrors,[]);
   assert.deepEqual(disabledSummary.failedRequests,[]);
@@ -90,7 +92,7 @@ try{
   await enabledPage.waitForFunction(()=>window.BAUMAN_CONTENT_RESOLUTION_SHADOW_STATUS?.ready===true,null,{timeout:30000});
   const enabled=await enabledPage.evaluate(()=>({
     status:window.BAUMAN_CONTENT_RESOLUTION_SHADOW_STATUS,
-    dependencyScripts:Array.from(document.scripts).filter(x=>x.dataset.baumanContentResolutionShadow==='1').map(x=>new URL(x.src).pathname),
+    dependencyScripts:Array.from(document.scripts).filter(x=>x.dataset.baumanAcademicVerifiedLoader==='1').map(x=>new URL(x.src).pathname),
     authoritative:{
       curriculum:Boolean(window.BAUMAN_CURRICULUM_2026),
       prerequisite:Boolean(window.BAUMAN_PREREQ_2026),
@@ -102,6 +104,7 @@ try{
   assert.equal(enabled.status.passed,true,`Runtime shadow failed: ${JSON.stringify(enabled.status)}`);
   assert.equal(enabled.status.resources.length,3);
   assert.equal(enabled.status.registryMode,'pinned_candidate');
+  assert.equal(enabled.status.loaderSchema,'BAUMAN_ACADEMIC_VERIFIED_CONTENT_LOADER_V1');
   assert.equal(enabled.status.candidateStatus,'promotion_candidate');
   assert.equal(enabled.status.candidateAuthority,'candidate_only');
   assert.equal(enabled.status.packParity,true);
