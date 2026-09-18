@@ -1,13 +1,13 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "$id": "BAUMAN_ROADMAP_V2_DIAGNOSTIC_CATALOG_V1",
+  "$id": "BAUMAN_ROADMAP_V2_DIAGNOSTIC_CATALOG_V2",
   "type": "object",
   "additionalProperties": false,
   "required": [
     "schema",
     "version",
-    "generatedAt",
     "source",
+    "mode",
     "policy",
     "counts",
     "plans",
@@ -16,22 +16,42 @@
   ],
   "properties": {
     "schema": {
-      "const": "BAUMAN_ROADMAP_V2_DIAGNOSTIC_CATALOG_V1"
+      "const": "BAUMAN_ROADMAP_V2_DIAGNOSTIC_CATALOG_V2"
     },
     "version": {
-      "const": 1
-    },
-    "generatedAt": {
-      "type": "string",
-      "minLength": 1
+      "const": 2
     },
     "source": {
       "type": "object",
+      "additionalProperties": false,
       "required": [
-        "consumerManifest",
-        "consumerManifestSha256",
-        "consumerContractSchema"
+        "consumerBlueprintPath",
+        "consumerBlueprintGitBlobSha",
+        "consumerBlueprintSchema",
+        "diagnosticContractPath",
+        "diagnosticContractGitBlobSha",
+        "diagnosticContractSchema"
       ]
+    },
+    "mode": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "productionIntegration",
+        "executionEnabled",
+        "persistenceEnabled"
+      ],
+      "properties": {
+        "productionIntegration": {
+          "const": "disconnected"
+        },
+        "executionEnabled": {
+          "const": false
+        },
+        "persistenceEnabled": {
+          "const": false
+        }
+      }
     },
     "policy": {
       "type": "object",
@@ -51,7 +71,8 @@
         "lessonPlans",
         "blockedDynamicTargets",
         "verifiedItemBanks",
-        "executablePlans"
+        "executablePlans",
+        "generatedQuestionItems"
       ]
     },
     "plans": {
@@ -73,6 +94,8 @@
         "missingPrerequisiteRefs",
         "masterReadyOutcomes",
         "executablePlansWithoutVerifiedBank",
+        "answerLeakingPlans",
+        "persistenceEnabledPlans",
         "result"
       ]
     }
