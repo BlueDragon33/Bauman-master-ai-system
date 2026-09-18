@@ -1,0 +1,43 @@
+{
+  "schema": "BAUMAN_ACADEMIC_VERIFIED_LOADER_AUTHORITY_TRIAL_CONTRACT_V1",
+  "contractVersion": 1,
+  "architectureName": "Foundation — Content Resolution & Runtime Delivery",
+  "consumer": "assets/js/academic-main.js",
+  "activation": {
+    "queryParameter": "academicVerifiedLoader",
+    "enabledValue": "1",
+    "defaultEnabled": false
+  },
+  "defaultMode": {
+    "id": "legacy_fetch",
+    "existingFetchJsonAuthoritative": true,
+    "verifiedLoaderCalled": false
+  },
+  "trialMode": {
+    "id": "verified_candidate",
+    "authority": "opt_in_trial",
+    "coreResourcesOnly": true,
+    "coreResourceCount": 3,
+    "pinnedRegistryRequired": true,
+    "integrityVerificationRequired": true,
+    "legacyCoreFallbackOnFailure": false,
+    "prerequisitePackFilesRemainExistingLoader": true
+  },
+  "safety": {
+    "learnerStateAuthorityUnchanged": true,
+    "schedulerAuthorityUnchanged": true,
+    "routesUnchanged": true,
+    "subjectBridgeUnchanged": true,
+    "deviceAccessBoundaryUnchanged": true
+  },
+  "status": {
+    "global": "BAUMAN_ACADEMIC_CORE_LOADER_STATUS",
+    "fields": [
+      "ready",
+      "mode",
+      "verified",
+      "authority",
+      "error"
+    ]
+  }
+}
