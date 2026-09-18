@@ -6,15 +6,15 @@
 ## Active track
 
 - Current round: **Lượt 25**
-- Current step: **Bước 97 — IN_PROGRESS**
+- Current step: **Bước 98 — IN_PROGRESS**
 - L22 closeout: **B88 + H1 — PASS**
-- Status: **L23_COMPLETE · L24_COMPLETE · PASS_L25_F1 · L25_F2_PACKAGED_HUB_READINESS_REPAIR_IN_PROGRESS · B97_BLOCKED_ON_F2**
+- Status: **L23_COMPLETE · L24_COMPLETE · PASS_L25_F1 · PASS_L25_F2 · PASS_L25_B97 · L25_H1_PRIORITY_RESULT_SCHEMA_IN_PROGRESS · B98_BLOCKED_ON_H1**
 - Accepted head: `622e84aece7847b4179a8ff48937cb92717aaf3e`
 - Production/runtime activation by Roadmap V2: **disconnected**
 - Legacy/source destructive migration: **not executed**
 - Last completed: **L23/B92 — PASS**
 - Last hardening: **L23-H1 — PASS**
-- Current official step: **L25/B97 — Priority Contract**
+- Current official step: **L25/B98 — Deterministic Priority Scoring Harness (blocked on H1)**
 - L23 may start only after the L22 closeout snapshot remains green on the complete gate set.
 
 ## L22/B88 complete gate evidence
@@ -238,3 +238,17 @@ After F1 fixed the Priority validator, Whole System run `35336485020` failed onl
 Source acceptance passed. The packaged test was checking canonical detail content before Safe Shell reported its complete ready state.
 
 F2 now waits for Safe Shell `ready`, dashboard, detail toggle and all three appearance presets before canonical assertions. Assertions remain unchanged.
+
+
+## L25/B97 gate evidence
+
+Accepted B97/F1/F2 head: `28e730595828b326ba0f7409cb79821460e02d76`
+
+- Roadmap V2 Current Gate — run `35336940531` — PASS
+- Foundation Domain Model — run `35336940521` — PASS
+- Windows checkout safety — run `35336940515` — PASS
+- Russian Reference UI — run `35336940503` — PASS
+- Cloudflare Preview — run `35336940527` — PASS
+- Whole System Integration — run `35336940529` — PASS
+
+B98 pre-audit found a Priority result-schema explainability mismatch; L25-H1 must close before scoring harness implementation proceeds.
