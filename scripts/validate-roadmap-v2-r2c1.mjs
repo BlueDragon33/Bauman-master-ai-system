@@ -24,8 +24,13 @@ assert.equal(m.conclusions.portableValidatorsBlockedOnModernData,1);
 assert.equal(m.nextSubrounds[0].status,'blocked_on_L27R2C1');
 
 assert.equal(m.historicalBaseline,'e383912354673bdce7a0059d6b9a23799d74e689','historical baseline evidence drift');
-const findings=JSON.stringify(m.tools);
-assert.equal(findings.includes('math-main-e383912-inventory.json'),true,'audit lost historical filename coupling evidence');
+assert.deepEqual(m.couplingEvidence,{
+  historicalBaseline:'e383912354673bdce7a0059d6b9a23799d74e689',
+  historicalInventoryPath:'roadmap_v2/baseline/math-main-e383912-inventory.json',
+  correctedSyllabusSha256:'22b1bbbf900f2b0fb34db2d683944495dd3d34805ee28ac63de312a6ec648b5d',
+  historicalReportPath:'roadmap_v2/reports/validation-l19.json',
+  obsoleteDuplicateDocsRoot:'docs/roadmap_v2'
+},'structured toolchain coupling evidence drift');
 
 function walk(dir){
  if(!fs.existsSync(dir))return [];
