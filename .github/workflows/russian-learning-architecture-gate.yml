@@ -10,6 +10,9 @@ on:
       - 'scripts/audit-russian-learning-architecture.mjs'
       - 'scripts/validate-russian-learning-sequence-contract.mjs'
       - 'tests/russian-learning-sequence-contract.test.mjs'
+      - 'subjects/russian/contracts/oral-first-route-contract.v1.json'
+      - 'scripts/validate-russian-oral-first-route.mjs'
+      - 'tests/russian-oral-first-route.test.mjs'
       - '.github/workflows/russian-learning-architecture-gate.yml'
 
 permissions:
@@ -29,14 +32,20 @@ jobs:
           node --check scripts/audit-russian-learning-architecture.mjs
           node --check scripts/validate-russian-learning-sequence-contract.mjs
           node --check tests/russian-learning-sequence-contract.test.mjs
+          node --check scripts/validate-russian-oral-first-route.mjs
+          node --check tests/russian-oral-first-route.test.mjs
       - name: Validate listen-speak literacy visual contract
         run: node scripts/validate-russian-learning-sequence-contract.mjs
       - name: Run contract negative tests
         run: node tests/russian-learning-sequence-contract.test.mjs
       - name: Run Russian learning baseline audit
         run: node scripts/audit-russian-learning-architecture.mjs
-      - name: Parse pedagogy contract
-        run: node -e "const x=JSON.parse(require('fs').readFileSync('subjects/russian/contracts/listen-speak-literacy-visual-contract.v1.json','utf8')); if(x.schema!=='RUSSIAN_LISTEN_SPEAK_LITERACY_VISUAL_CONTRACT_V1') process.exit(1); console.log('RUSSIAN_PEDAGOGY_JSON=PASS')"
+      - name: Validate Russian oral-first route
+        run: node scripts/validate-russian-oral-first-route.mjs
+      - name: Run Russian oral-first route negative tests
+        run: node tests/russian-oral-first-route.test.mjs
+      - name: Parse pedagogy contracts
+        run: node -e "const fs=require('fs'); const a=JSON.parse(fs.readFileSync('subjects/russian/contracts/listen-speak-literacy-visual-contract.v1.json','utf8')); const b=JSON.parse(fs.readFileSync('subjects/russian/contracts/oral-first-route-contract.v1.json','utf8')); if(a.schema!=='RUSSIAN_LISTEN_SPEAK_LITERACY_VISUAL_CONTRACT_V1'||b.schema!=='RUSSIAN_ORAL_FIRST_ROUTE_CONTRACT_V1') process.exit(1); console.log('RUSSIAN_PEDAGOGY_JSON=PASS')"
 
   russian-existing-regression:
     needs: russian-learning-contract
