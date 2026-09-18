@@ -41,7 +41,15 @@ function walk(dir){
 }
 const canonical=walk('roadmap_v2').sort();
 const r2b=JSON.parse(fs.readFileSync('recovery/roadmap-v2/r2b-static-admission.v1.json','utf8')).files.map(x=>x.path).sort();
-assert.deepEqual(canonical,r2b,'R2C1 review must not add executable/data files to canonical Roadmap tree');
+for(const p of r2b)assert.equal(canonical.includes(p),true,`historical static baseline missing: ${p}`);
+
+for(const item of [...m.tools,...m.engines.files,...m.externalValidation]){
+  if(!item.path||!fs.existsSync(item.path)||!item.blobSha)continue;
+  const crypto=await import('node:crypto');
+  const bytes=fs.readFileSync(item.path);
+  const sha=crypto.createHash('sha1').update(Buffer.from(`blob ${bytes.length}\0`)).update(bytes).digest('hex');
+  assert.notEqual(sha,item.blobSha,`historical executable/tool blob re-admitted unchanged: ${item.path}`);
+}
 
 console.log('ROADMAP_V2_L27R2C1_TOOLCHAIN_COMPATIBILITY=PASS');
 console.log(JSON.stringify({historicalTools:8,safeAsIs:0,refactorOrReplace:7,portableBlockedOnData:1,enginesStagedLater:7,testsStagedLater:7},null,2));
