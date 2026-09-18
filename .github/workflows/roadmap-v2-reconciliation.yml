@@ -1,0 +1,43 @@
+name: Roadmap V2 Reconciliation Gate
+
+on:
+  push:
+    branches:
+      - stabilization/roadmap-v2-reconcile-current-runtime
+  pull_request:
+    branches: [main]
+    paths:
+      - 'recovery/roadmap-v2/**'
+      - 'scripts/validate-roadmap-v2-reconciliation.mjs'
+      - '.github/workflows/roadmap-v2-reconciliation.yml'
+
+permissions:
+  contents: read
+
+jobs:
+  l27r1-baseline-freeze:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22.13.0"
+      - name: Validate reconciliation contract
+        run: node scripts/validate-roadmap-v2-reconciliation.mjs
+      - name: Validate Foundation V2 L9
+        run: node scripts/validate-foundation-domain-model.mjs
+      - name: Validate current system integration
+        run: node scripts/validate-system-integration.mjs
+      - name: Validate current Russian promotion candidate
+        run: node subjects/russian/scripts/validate-promotion-candidate.mjs
+      - name: Audit current Russian offline runtime
+        run: node subjects/russian/scripts/audit-runtime-offline.mjs
+      - name: Validate current Russian capability progression
+        run: node subjects/russian/scripts/validate-capability-progression.mjs
+      - name: Validate current Russian readiness navigator
+        run: node subjects/russian/scripts/validate-readiness-navigator.mjs
+      - name: Validate subject progress static contract
+        run: node tests/subject-progress-contract-static.mjs
