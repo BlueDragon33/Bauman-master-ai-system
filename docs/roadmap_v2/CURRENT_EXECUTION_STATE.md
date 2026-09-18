@@ -5,16 +5,16 @@
 
 ## Active track
 
-- Current round: **Lượt 23**
-- Current step: **Bước 92 — PASS**
+- Current round: **Lượt 24**
+- Current step: **Bước 93 — IN_PROGRESS**
 - L22 closeout: **B88 + H1 — PASS**
-- Status: **PASS_L23_B89 · PASS_L23_H1 · PASS_L23_B90 · PASS_L23_B91 · PASS_L23_B92 · L23_COMPLETE**
+- Status: **L23_COMPLETE · L24_B93_MASTERY_CONTRACT_IN_PROGRESS**
 - Accepted head: `622e84aece7847b4179a8ff48937cb92717aaf3e`
 - Production/runtime activation by Roadmap V2: **disconnected**
 - Legacy/source destructive migration: **not executed**
 - Last completed: **L23/B92 — PASS**
 - Last hardening: **L23-H1 — PASS**
-- Current official step: **L23 complete — L24 READY_TO_START**
+- Current official step: **L24/B93 — Mastery / Evidence Contract**
 - L23 may start only after the L22 closeout snapshot remains green on the complete gate set.
 
 ## L22/B88 complete gate evidence
@@ -120,3 +120,17 @@ Accepted B92 head: `5c3229f9860bdcb7739abb236cdcb91e168b3e7d`
 - Whole System Integration — run `35333198945` — PASS
 
 L23 is complete. The next official project round is L24. Historical L24 artifacts remain evidence only until revalidated against the current baseline.
+
+
+## L24 opening
+
+L24 opened only after the documentation closeout head `9d1ddffec953ef6cedb56a117593fd125b7cc822` also passed the complete six-gate set:
+
+- Roadmap V2 Current Gate — run `35333497764` — PASS
+- Foundation Domain Model — run `35333497740` — PASS
+- Windows checkout safety — run `35333497780` — PASS
+- Russian Reference UI — run `35333497893` — PASS
+- Cloudflare Preview — run `35333497947` — PASS
+- Whole System Integration — run `35333497768` — PASS
+
+Current active step: L24/B93.
