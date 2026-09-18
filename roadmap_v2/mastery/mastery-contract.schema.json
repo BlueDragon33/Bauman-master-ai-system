@@ -1,0 +1,144 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "BAUMAN_ROADMAP_V2_MASTERY_CONTRACT_V1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema",
+    "version",
+    "scope",
+    "mode",
+    "upstreamSchemas",
+    "knowledgeStates",
+    "evidenceTypes",
+    "thresholds",
+    "diagnosticBoundary",
+    "masterReadyGate",
+    "prerequisiteGate",
+    "edgeTypePolicy",
+    "transitionPriority",
+    "capabilities",
+    "abortConditions",
+    "acceptance"
+  ],
+  "properties": {
+    "schema": {
+      "const": "BAUMAN_ROADMAP_V2_MASTERY_CONTRACT_V1"
+    },
+    "version": {
+      "const": 1
+    },
+    "scope": {
+      "type": "string",
+      "minLength": 1
+    },
+    "mode": {
+      "type": "object",
+      "required": [
+        "access",
+        "productionIntegration",
+        "failClosed",
+        "appendOnlyEvents",
+        "persistentStoreEnabled",
+        "legacyMutationAllowed"
+      ]
+    },
+    "upstreamSchemas": {
+      "type": "object",
+      "minProperties": 3
+    },
+    "knowledgeStates": {
+      "type": "array",
+      "minItems": 6,
+      "uniqueItems": true
+    },
+    "evidenceTypes": {
+      "type": "array",
+      "minItems": 8,
+      "uniqueItems": true
+    },
+    "thresholds": {
+      "type": "object",
+      "required": [
+        "chapterAssessmentPercent",
+        "criticalPrerequisiteFloorPercent",
+        "exercisePercent",
+        "labExplanationRequired",
+        "projectRubricMinimumPerDimension",
+        "projectRubricDimensions",
+        "retentionWindowDays",
+        "retentionPercent",
+        "russianTechnicalTermsInGD2GD3"
+      ]
+    },
+    "diagnosticBoundary": {
+      "type": "object",
+      "required": [
+        "passingStatus",
+        "gapStatuses",
+        "passingKnowledgeState",
+        "passingDiagnosticSatisfiesChapterAssessment",
+        "passingDiagnosticGrantsMasterReady",
+        "retentionStillRequiredForReviewOnDemand"
+      ]
+    },
+    "masterReadyGate": {
+      "type": "object",
+      "required": [
+        "requiredDimensions",
+        "russianTermsConditionalInGD2GD3",
+        "gapOverrideBlocks",
+        "allRequiredDimensionsMustPass"
+      ]
+    },
+    "prerequisiteGate": {
+      "type": "object",
+      "required": [
+        "satisfyingStates",
+        "blockingStates",
+        "recommendedEdgesDoNotBlock",
+        "externalGatesRemainExplicit"
+      ]
+    },
+    "edgeTypePolicy": {
+      "type": "object",
+      "required": [
+        "blocking",
+        "just_in_time",
+        "alternative",
+        "concurrent",
+        "recommended",
+        "contextual"
+      ]
+    },
+    "transitionPriority": {
+      "type": "array",
+      "minItems": 6,
+      "uniqueItems": true
+    },
+    "capabilities": {
+      "type": "object",
+      "minProperties": 9,
+      "additionalProperties": {
+        "type": "boolean"
+      }
+    },
+    "abortConditions": {
+      "type": "array",
+      "minItems": 10,
+      "uniqueItems": true
+    },
+    "acceptance": {
+      "type": "object",
+      "required": [
+        "step",
+        "existingCompetencyDistinctFromMasterReady",
+        "eventsAppendOnly",
+        "persistentStoreEnabled",
+        "priorityEngineEnabled",
+        "runtimeActivationAllowed",
+        "result"
+      ]
+    }
+  }
+}
