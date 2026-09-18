@@ -52,3 +52,10 @@ No runtime consumer is migrated until a later step has a separately green gate.
 `runtime-resource-resolver.js` is an isolated resolver that reads registry metadata and access policy and returns immutable runtime resource descriptors.
 
 It is not yet wired into existing Hub, Academic, subject, or packaging loaders.
+
+
+## Step 3 — Delivery plan boundary
+
+`runtime-delivery-plan.js` converts a resolved descriptor into an immutable delivery plan pinned to the registry checksum, media identity and locator.
+
+The plan does not retrieve bytes. Future adapters must verify bytes against the plan before returning them.
