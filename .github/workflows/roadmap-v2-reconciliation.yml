@@ -14,6 +14,7 @@ on:
       - 'scripts/validate-roadmap-v2-r2b.mjs'
       - 'scripts/validate-roadmap-v2-r2c0.mjs'
       - 'scripts/validate-roadmap-v2-r2c1.mjs'
+      - 'scripts/validate-roadmap-v2-r2c2a.mjs'
       - 'roadmap_v2/**'
       - '.github/workflows/roadmap-v2-reconciliation.yml'
 
@@ -43,6 +44,8 @@ jobs:
         run: node scripts/validate-roadmap-v2-r2c0.mjs
       - name: Validate R2C1 toolchain compatibility review
         run: node scripts/validate-roadmap-v2-r2c1.mjs
+      - name: Validate R2C2A parameterized recovery toolchain
+        run: node scripts/validate-roadmap-v2-r2c2a.mjs
       - name: Validate Foundation V2 L9
         run: node scripts/validate-foundation-domain-model.mjs
       - name: Validate current system integration
