@@ -109,3 +109,23 @@ Acceptance:
 - bytes still verified by the executor before consumer use.
 
 No existing loader authority changes in Step 5.
+
+
+## Step 6 — Active
+
+Validate the real Academic 2026 core resources in shadow mode.
+
+Resources:
+
+- official curriculum;
+- prerequisite registry;
+- prerequisite pack manifest.
+
+Acceptance:
+
+- exact parity with constants in `assets/js/academic-main.js`;
+- real files exist and parse;
+- dynamic diagnostic registry only;
+- resolver → delivery plan → executor verification succeeds for all three;
+- verified JSON equals direct JSON;
+- no runtime code or loader authority changes.
