@@ -2,7 +2,7 @@
 
 Current task: `CONTENT_RESOLUTION_RUNTIME_DELIVERY_FOUNDATION`
 
-Status: `STEP1_CONTRACT_ACTIVE`
+Status: `STEP2_PURE_RESOLVER_ACTIVE`
 
 Date: 2026-09-18
 Branch: `work/foundation-content-resolution-delivery`
@@ -30,7 +30,7 @@ Indirect dependency:
 
 - Foundation — Identity & Domain Model.
 
-## Current Step 1 boundary
+## Completed Step 1 boundary
 
 Step 1 is contract-only.
 
@@ -73,4 +73,10 @@ Required before Step 2:
 - content resolution contract validator PASS;
 - negative contract tests PASS.
 
-Step 2 must not begin before the dedicated Content Resolution & Runtime Delivery Gate is green.
+Step 1 and access-trust corrections are green.
+
+## Active Step 2 boundary
+
+The pure resolver runtime is present but isolated. It reads registry + access policy and returns immutable runtime descriptors. It performs no fetch/storage/route/UI mutation and is not wired into Hub, Academic, subject, or packaging loaders.
+
+Step 3 must not migrate a real loader until the Step 2 resolver gate is green.
