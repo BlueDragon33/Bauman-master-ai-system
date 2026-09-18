@@ -1,6 +1,6 @@
 # L25-H1 — Priority Result Schema Explainability Alignment
 
-Status: `PENDING_GATE`
+Status: `PASS`
 
 ## Trigger
 
@@ -41,3 +41,17 @@ No scoring engine is admitted to canonical `roadmap_v2/**`.
 Historical Priority manifest and executable remain quarantined. Production integration, persistence, scheduler write and runtime activation remain disabled.
 
 B98 remains blocked until H1 passes all six project gates.
+
+
+## Gate evidence
+
+Accepted H1 head: `9a2d5c2fec7b2a438ae6379ac7e3497e96fffc75`
+
+- Roadmap V2 Current Gate — run `35337468983` — PASS
+- Foundation Domain Model — run `35337469011` — PASS
+- Windows checkout safety — run `35337469107` — PASS
+- Russian Reference UI — run `35337468997` — PASS
+- Cloudflare Preview — run `35337469013` — PASS
+- Whole System Integration — run `35337468991` — PASS
+
+H1 is closed. B98 may proceed.
