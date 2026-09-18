@@ -8,7 +8,7 @@
 - Current round: **Lượt 24**
 - Current step: **Bước 95 — IN_PROGRESS**
 - L22 closeout: **B88 + H1 — PASS**
-- Status: **L23_COMPLETE · PASS_L24_B93 · PASS_L24_B94 · L24_B95_MASTERY_GATE_IN_PROGRESS**
+- Status: **L23_COMPLETE · PASS_L24_B93 · PASS_L24_B94 · L24_H1_PREREQUISITE_POLICY_IN_PROGRESS · B95_BLOCKED_ON_H1**
 - Accepted head: `622e84aece7847b4179a8ff48937cb92717aaf3e`
 - Production/runtime activation by Roadmap V2: **disconnected**
 - Legacy/source destructive migration: **not executed**
@@ -162,3 +162,12 @@ Accepted B94 head: `af0edd1814527c8066eca81c5de9f29526f05832`
 - Whole System Integration — run `35334427411` — PASS
 
 B95 is now active. B96 remains blocked.
+
+
+## L24-H1 hardening
+
+B95 prerequisite evaluation requires typed edge semantics not present in the L23 Consumer Blueprint.
+
+L24-H1 rebuilds those semantics read-only from current prerequisite text, with segment-scoped modifiers. Historical prerequisite graph data remains quarantined.
+
+B95 stays blocked until H1 passes the complete six-gate set.
