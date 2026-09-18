@@ -178,6 +178,7 @@
     },
     "statusSemantics": {
       "type": "object",
+      "additionalProperties": false,
       "required": [
         "pass",
         "fail",
@@ -185,10 +186,37 @@
         "blocked",
         "forbiddenOutcome",
         "rules"
-      ]
+      ],
+      "properties": {
+        "pass": {
+          "const": "existing_competency_verified"
+        },
+        "fail": {
+          "const": "gap"
+        },
+        "criticalFloorFail": {
+          "const": "critical_gap"
+        },
+        "blocked": {
+          "const": "diagnostic_blocked"
+        },
+        "forbiddenOutcome": {
+          "const": "master_ready"
+        },
+        "rules": {
+          "type": "array",
+          "minItems": 4,
+          "uniqueItems": true,
+          "items": {
+            "type": "string",
+            "minLength": 1
+          }
+        }
+      }
     },
     "itemBankGate": {
       "type": "object",
+      "additionalProperties": false,
       "required": [
         "schema",
         "reviewStatusRequired",
@@ -196,7 +224,27 @@
         "missingBankStatus",
         "invalidBankStatus",
         "allowGeneratedUnreviewedItems"
-      ]
+      ],
+      "properties": {
+        "schema": {
+          "const": "BAUMAN_ROADMAP_V2_DIAGNOSTIC_ITEM_BANK_V1"
+        },
+        "reviewStatusRequired": {
+          "const": "verified"
+        },
+        "catalogExecutionStatusRequired": {
+          "const": "ready_verified_item_bank"
+        },
+        "missingBankStatus": {
+          "const": "blocked_missing_verified_item_bank"
+        },
+        "invalidBankStatus": {
+          "const": "blocked_invalid_item_bank"
+        },
+        "allowGeneratedUnreviewedItems": {
+          "const": false
+        }
+      }
     },
     "sessionProjection": {
       "type": "object",
@@ -229,19 +277,86 @@
     },
     "attemptGate": {
       "type": "object",
+      "additionalProperties": false,
       "required": [
         "schema",
         "requiresAllItemsAnswered",
         "unknownResponseItemPolicy",
         "duplicateResponsePolicy",
         "unknownOptionPolicy"
-      ]
+      ],
+      "properties": {
+        "schema": {
+          "const": "BAUMAN_ROADMAP_V2_DIAGNOSTIC_ATTEMPT_V1"
+        },
+        "requiresAllItemsAnswered": {
+          "const": true
+        },
+        "unknownResponseItemPolicy": {
+          "const": "reject"
+        },
+        "duplicateResponsePolicy": {
+          "const": "reject"
+        },
+        "unknownOptionPolicy": {
+          "const": "reject"
+        }
+      }
     },
     "capabilities": {
       "type": "object",
-      "minProperties": 12,
-      "additionalProperties": {
-        "type": "boolean"
+      "additionalProperties": false,
+      "required": [
+        "catalogRead",
+        "planRead",
+        "readinessExplain",
+        "itemBankValidate",
+        "sessionProjection",
+        "attemptEvaluate",
+        "proposedBankHarnessOnly",
+        "masteryEvidenceWrite",
+        "learnerStateWrite",
+        "priorityEngineWrite",
+        "schedulerWrite",
+        "runtimeActivation"
+      ],
+      "properties": {
+        "catalogRead": {
+          "const": true
+        },
+        "planRead": {
+          "const": true
+        },
+        "readinessExplain": {
+          "const": true
+        },
+        "itemBankValidate": {
+          "const": true
+        },
+        "sessionProjection": {
+          "const": true
+        },
+        "attemptEvaluate": {
+          "const": true
+        },
+        "proposedBankHarnessOnly": {
+          "const": true
+        },
+        "masteryEvidenceWrite": {
+          "const": false
+        },
+        "learnerStateWrite": {
+          "const": false
+        },
+        "priorityEngineWrite": {
+          "const": false
+        },
+        "schedulerWrite": {
+          "const": false
+        },
+        "runtimeActivation": {
+          "const": false
+        }
       }
     },
     "reasonCodes": {
@@ -263,6 +378,7 @@
     },
     "acceptance": {
       "type": "object",
+      "additionalProperties": false,
       "required": [
         "step",
         "currentTrack",
@@ -275,7 +391,42 @@
         "learnerStatePersistenceEnabled",
         "runtimeActivationAllowed",
         "result"
-      ]
+      ],
+      "properties": {
+        "step": {
+          "const": 89
+        },
+        "currentTrack": {
+          "const": "L23"
+        },
+        "consumerBoundaryRevalidated": {
+          "const": true
+        },
+        "staleManifestDependencyRemoved": {
+          "const": true
+        },
+        "existingCompetencyDistinctFromMasterReady": {
+          "const": true
+        },
+        "activeSessionAnswerLeakageForbidden": {
+          "const": true
+        },
+        "unreviewedGenerationForbidden": {
+          "const": true
+        },
+        "masteryPersistenceEnabled": {
+          "const": false
+        },
+        "learnerStatePersistenceEnabled": {
+          "const": false
+        },
+        "runtimeActivationAllowed": {
+          "const": false
+        },
+        "result": {
+          "const": "PASS_CONTRACT_ONLY_PENDING_B89_GATE"
+        }
+      }
     }
   }
 }
