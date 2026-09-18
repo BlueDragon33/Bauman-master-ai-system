@@ -1,6 +1,6 @@
 # L25/B100 — Priority Closeout / Full Isolation Gate
 
-Status: `PENDING_GATE`
+Status: `PASS_FUNCTIONAL_HEAD`
 
 ## Purpose
 
@@ -45,3 +45,18 @@ B100 additionally proves:
 ## Promotion rule
 
 L25 may be marked complete only after this B100 validator and the full six project gates pass on the same head.
+
+
+## Full gate evidence
+
+Accepted B100/F5 functional head: `624b20cf53e26b193db01377fd83891d88fd0f4c`
+
+- Roadmap V2 Current Gate — run `35342688744` — PASS
+- Foundation Domain Model — run `35342688774` — PASS
+- Windows checkout safety — run `35342688509` — PASS
+- Russian Reference UI — run `35342688603` — PASS
+- Cloudflare Preview — run `35342688479` — PASS
+- Whole System Integration — run `35342688636` — PASS
+
+
+The functional closeout is green. L25 completion is still held until the documentation closeout head itself passes the same six gates.
