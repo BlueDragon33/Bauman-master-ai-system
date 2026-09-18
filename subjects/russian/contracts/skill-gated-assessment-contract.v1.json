@@ -1,0 +1,62 @@
+{
+  "schema": "RUSSIAN_SKILL_GATED_ASSESSMENT_CONTRACT_V1",
+  "contractVersion": 1,
+  "requiredSkills": [
+    "listening",
+    "speaking",
+    "print_recognition",
+    "cursive_recognition",
+    "reading",
+    "writing"
+  ],
+  "authority": {
+    "evidenceSourcesOnly": true,
+    "aggregateReadinessAdvisoryOnly": true,
+    "masteryOwner": "existing_learning_state",
+    "schedulerOwner": "RUSSIAN_VOCAB_SRS_V1",
+    "canonicalReviewQueueOwner": "RUSSIAN_LEARNING_STATE_V1",
+    "runtimeReadOnly": true
+  },
+  "thresholds": {
+    "listening": {
+      "minQualifiedItems": 5,
+      "minDetailAccuracy": 0.8,
+      "requiresGistEvidence": true
+    },
+    "speaking": {
+      "minQualifiedItems": 5,
+      "requiresRecorderBackedMemoryOrRoleplay": true,
+      "requiresSelfOk": true
+    },
+    "print_recognition": {
+      "minSeenLetters": 33,
+      "minAccuracy": 0.8
+    },
+    "cursive_recognition": {
+      "minSeenLetters": 33,
+      "minAccuracy": 0.8
+    },
+    "reading": {
+      "minQualifiedItems": 8,
+      "requiresSelfReadAttempt": true,
+      "requiresAudioCheck": true
+    },
+    "writing": {
+      "minQualifiedItems": 8,
+      "minShortDictationItems": 2,
+      "minAccuracy": 0.8
+    }
+  },
+  "aggregate": {
+    "requiresEverySkillGate": true,
+    "crossSkillInference": false,
+    "exposeBlockingSkills": true
+  },
+  "invariants": {
+    "noMasteryMutation": true,
+    "noCompletionMutation": true,
+    "noDueDateMutation": true,
+    "noReviewQueueMutation": true,
+    "noTranslationAnswer": true
+  }
+}
