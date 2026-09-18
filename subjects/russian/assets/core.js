@@ -1146,14 +1146,16 @@ function renderPractice(){
  const difficulty=A.dialogueDifficulty?.(active)||active?.difficulty||active?.level||'Dễ';
  const title=A.dialogueTitle?.(active)||active?.title||'Chọn bài nghe-nhại';
  const purpose=A.dialogueSubtitle?.(active)||active?.purpose||active?.context_title_vi||'Nghe mẫu trước, sau đó mới nhìn chữ và nhại lại.';
- const heard=practiceLineHeard(active,idx);
+ const heardCount=practiceLineHeardCount(active,idx);
+ const heard=heardCount>0;
+ const slowReady=heardCount>=2;
  const currentRu=heard?esc(targetText||'Chọn một tình huống ở cột trái để bắt đầu luyện nghe-nhại.'):'<span class="oral-first-mask">🎧 Nghe trước · chữ Nga sẽ hiện sau lượt nghe mẫu đầu tiên</span>';
  const currentVi=heard&&!hideVi?dialogueVi(line):'';
  const cueText=!heard?'Chỉ nghe · chưa nhìn chữ':(role==='all'?'Nghe mẫu rồi nhại câu hiện tại':(isMine?'Đến lượt bạn nhại câu này':'Nghe vai còn lại để giữ mạch'));
  const roleName=role==='all'?'Nghe + nhại toàn đoạn':`Nhại vai ${role}`;
  const hints=heard?lineTokenHints(targetText):[];
  const roleLine=(t,i)=>{const r=dialogueRoleOf(t,i), mine=role!=='all'&&role===r, res=speakingResultFor(active,i), lineHeard=practiceLineHeard(active,i); return `<button class="dialogue-line v1294-map-line ${i===idx?'active':''} ${mine?'my-role':''} ${res?.ok?'spoken-ok':res?'spoken-try':''}" data-line="${i}"><span class="speaker">${esc(r)}</span><b>${lineHeard?esc(dialogueText(t)):'••••••'}</b><small>${String(i+1).padStart(2,'0')} · ${lineHeard?(mine?'Câu cần nhại':(role==='all'?'Nghe + nhại':'Nghe cue')):'Chưa nghe'}</small></button>`};
- return `<section class="panel v1294-speech-room v1295-speech-room">
+ return `<section class="panel v1294-speech-room v1295-speech-room" data-listening-dialogue="${esc(active?.id||active?.title||'practice')}" data-listening-line="${idx}">
    <header class="v1294-speech-head v1295-speech-head">
      <div class="v1294-speech-title v1295-speech-title"><span class="chip">🎙️ NGHE/NHẠI · ${esc(ctx.id)} · ${esc(difficulty)}</span><small>${esc(title)}</small></div>
      <div class="v1294-speech-toolbar v1295-speech-toolbar"><button class="btn ${role==='all'?'active':''}" data-act="role-all">Nghe + nhại</button><button class="btn ${role==='A'?'active':''}" data-act="role-a">Vai A</button><button class="btn ${role==='B'?'active':''}" data-act="role-b">Vai B</button><button class="btn" data-act="toggle-vi">${hideVi?'Hiện nghĩa':'Ẩn nghĩa'}</button></div>
@@ -1164,7 +1166,7 @@ function renderPractice(){
      <div class="v1294-current-body"><label>Câu ${turns.length?idx+1:0}/${turns.length||0} · ${esc(cueText)}</label><div class="russian-line">${currentRu}</div>${currentVi?`<p>${esc(currentVi)}</p>`:''}${hints.length?`<div class="speech-hints">${hints.map(x=>`<span>${esc(x)}</span>`).join('')}</div>`:''}</div>
      <button class="btn green speech-ok-corner" data-act="mark-line-ok" ${heard?'':'disabled'}>✓ Đã nói ổn</button>
    </article>
-   <div class="v1294-speech-actions"><button class="btn" data-act="prev-line">← Câu trước</button><button class="btn green" data-act="speak-line">🔊 Nghe mẫu</button><button class="btn" data-act="speak-line-slow" ${heard?'':'disabled'}>🐢 Nghe chậm</button><button class="btn" data-act="record-line" ${heard?'':'disabled'}>🎙️ Nhại lại</button><button class="btn primary" data-act="next-line">Câu tiếp →</button></div>
+   <div class="v1294-speech-actions"><button class="btn" data-act="prev-line">← Câu trước</button><button class="btn green" data-act="speak-line">🔊 Nghe mẫu</button><button class="btn" data-act="speak-line-slow" ${slowReady?'':'disabled'} title="${slowReady?'Nghe chậm để sửa chi tiết':'Nghe tốc độ thường 2 lượt trước'}">🐢 Nghe chậm</button><button class="btn" data-act="record-line" ${heard?'':'disabled'}>🎙️ Nhại lại</button><button class="btn primary" data-act="next-line">Câu tiếp →</button></div>
    <div class="v1294-feedback-line"><b>${result?`Điểm nhại: ${result.score}%`:'Gợi ý luyện'}</b><span>${result?esc(speechFeedback(result.score)):(heard?'Chữ đã mở: nhại theo âm trước, chỉ dùng chữ để kiểm tra sau.':'Bước 1: bấm Nghe mẫu và chỉ tập trung vào âm, nhịp, trọng âm. Chưa đọc chữ.')}</span></div>
    <details class="v1294-speech-map"><summary>🧭 Bản đồ câu nói <span>${turns.length?idx+1:0}/${turns.length||0}</span></summary><div class="v1294-speech-map-grid">${turns.length?turns.map(roleLine).join(''):'<div class="note">Chưa có câu nói trong hội thoại đúng bài này.</div>'}</div></details>
  </section>`
@@ -1293,7 +1295,8 @@ function dialogueCoachChecklist(d,role=state.dialogueRole||'all'){
 function speakDialogue(d){return dialogueTurns(d).map((t,i)=>dialogueText(t)).filter(Boolean).join('. ')}
 function dialogueLineKey(d,i){return `${str(d?.id||d?.title||'dialogue')}__${Number(i)||0}`}
 function practiceHeardKey(d,i){return dialogueLineKey(d,i)}
-function practiceLineHeard(d,i){return Number(state.practiceHeard?.[practiceHeardKey(d,i)]||0)>0}
+function practiceLineHeardCount(d,i){return Number(state.practiceHeard?.[practiceHeardKey(d,i)]||0)}
+function practiceLineHeard(d,i){return practiceLineHeardCount(d,i)>0}
 function markPracticeLineHeard(d,i){state.practiceHeard={...(state.practiceHeard||{})};const k=practiceHeardKey(d,i);state.practiceHeard[k]=Number(state.practiceHeard[k]||0)+1;save();}
 function normalizeRuSpeech(v){return str(v).toLowerCase().replace(/ё/g,'е').replace(/[.,!?;:()"«»„“”\-–—]/g,' ').replace(/\s+/g,' ').trim()}
 function editDistance(a,b){a=normalizeRuSpeech(a);b=normalizeRuSpeech(b); const m=a.length,n=b.length; if(!m&&!n)return 0; const dp=Array.from({length:m+1},(_,i)=>[i]); for(let j=1;j<=n;j++)dp[0][j]=j; for(let i=1;i<=m;i++){for(let j=1;j<=n;j++){dp[i][j]=Math.min(dp[i-1][j]+1,dp[i][j-1]+1,dp[i-1][j-1]+(a[i-1]===b[j-1]?0:1));}} return dp[m][n]}
@@ -3181,7 +3184,7 @@ function handleClick(e){
 
  if(act==='open-speech-map')openModal(renderSpeakingMapModal(),'speech-map')
  if(act==='speak-line'){const d=currentDialogue(); const line=dialogueTurns(d)[activeLineIndex()]||{}; speak(line.ru||line.text||line.text_ru||line); if(inPracticeMode()){markPracticeLineHeard(d,activeLineIndex());render()}}
- if(act==='speak-line-slow'){const d=currentDialogue(); const line=dialogueTurns(d)[activeLineIndex()]||{}; speak(line.ru||line.text||line.text_ru||line,.62)}
+ if(act==='speak-line-slow'){const d=currentDialogue(), idx=activeLineIndex(); if(inPracticeMode()&&practiceLineHeardCount(d,idx)<2){toast('Nghe tốc độ thường 2 lượt trước khi dùng nghe chậm');return} const line=dialogueTurns(d)[idx]||{}; speak(line.ru||line.text||line.text_ru||line,.62)}
  if(act==='speak-dialogue'){speak(speakDialogue(currentDialogue()),.82)}
  if(act==='record-line')startLineRecording();
  if(act==='mark-line-ok'){const d=currentDialogue(), idx=activeLineIndex(), line=dialogueTurns(d)[idx]||{}; if(inPracticeMode()&&!practiceLineHeard(d,idx)){toast('Hãy nghe mẫu trước khi tự đánh dấu câu nói');return} const store=activeSpeechResults(); store[dialogueLineKey(d,idx)]={score:100,transcript:dialogueText(line),target:dialogueText(line),at:Date.now(),ok:true,manual:true}; save(); render(); if(state.speechAutoNext)setTimeout(()=>moveDialogueLine(1),420);}
