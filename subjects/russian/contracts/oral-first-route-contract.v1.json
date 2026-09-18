@@ -1,0 +1,33 @@
+{
+  "schema": "RUSSIAN_ORAL_FIRST_ROUTE_CONTRACT_V1",
+  "contractVersion": 1,
+  "stage": "vn",
+  "freshLearner": {
+    "initialView": "overview",
+    "learningTabDefault": "practice",
+    "firstSuggestedLessonStep": "speaking",
+    "continueFallback": {
+      "view": "learning",
+      "learnTab": "practice"
+    }
+  },
+  "dashboardPriority": [
+    "listening",
+    "speaking",
+    "cyrillic_literacy",
+    "visual_vocabulary",
+    "reading",
+    "handwriting",
+    "grammar"
+  ],
+  "preservation": {
+    "existingStoredView": true,
+    "existingStoredLearningTab": true,
+    "existingProgress": true,
+    "learnerStateSchema": true,
+    "subjectBridge": true
+  },
+  "planning": {
+    "existingListeningSpeakingPriorityPreserved": true
+  }
+}
