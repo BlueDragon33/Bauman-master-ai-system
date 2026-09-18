@@ -70,8 +70,13 @@ async function waitFailure(page){
   }));
 }
 
-function assertClean(state){
-  assert.deepEqual(state.consoleErrors,[]);
+function assertClean(state,{allowExpectedRegistry404=false}={}){
+  if(allowExpectedRegistry404){
+    assert.equal(state.consoleErrors.length,1,'Missing-registry scenario must emit exactly one browser 404 console error');
+    assert.match(state.consoleErrors[0],/404 \(Not Found\)/,'Missing-registry console error must be the injected 404');
+  }else{
+    assert.deepEqual(state.consoleErrors,[]);
+  }
   assert.deepEqual(state.pageErrors,[]);
   assert.deepEqual(state.failedRequests,[]);
   assert.deepEqual(state.httpErrors,[]);
@@ -120,7 +125,7 @@ try{
   assert.equal(missing.prerequisite,false);
   assert.equal(missingNet.requests[REGISTRY]||0,1);
   for(const resource of CORE_PATHS)assert.equal(missingNet.requests[resource]||0,0,`Unexpected core fallback request ${resource}`);
-  assertClean(missingNet);
+  assertClean(missingNet,{allowExpectedRegistry404:true});
   await missingPage.close();
 
   fs.writeFileSync(path.join(OUT,'summary.json'),JSON.stringify({
