@@ -269,11 +269,14 @@ function partLearningReadiness(part=gatePart(),stageId=currentStageId()){
 }
 function gateUnlockStatus(part=gatePart()){
  const examComplete=gatePartComplete(part),due=partDueReviewItems(part),readiness=partLearningReadiness(part);
+ const finalPart=Number(part)>=Number(gateTotalParts());
+ const stageExit=finalPart?window.RussianCapabilityProgression?.stageExitStatus?.(currentStageId()):null;
  const blockers=[];
  if(!examComplete)blockers.push('Chưa đủ yêu cầu kiểm tra của phần hiện tại.');
  if(!readiness.ok)blockers.push(`Bằng chứng học cốt lõi mới đủ ở ${readiness.ready}/${readiness.total} bài của phần này.`);
  if(due.length)blockers.push(`Còn ${due.length} mục Review Queue đến hạn trong phần này.`);
- return {allowed:examComplete&&readiness.ok&&due.length===0,examComplete,readiness,dueReviews:due,blockers};
+ if(stageExit&&!stageExit.allowed)blockers.push(stageExit.blockers?.[0]||'Stage chưa đủ bằng chứng học thật để chuyển tiếp.');
+ return {allowed:examComplete&&readiness.ok&&due.length===0&&(!stageExit||stageExit.allowed),examComplete,readiness,dueReviews:due,stageExit,finalPart,blockers};
 }
 function readinessStepRoute(lessonId,step){
  const id=str(lessonId||'');
@@ -461,7 +464,7 @@ function renderGateProgressPanel(){
  const cards=rows.map(r=>`<article class="gate-req ${r.done>=r.need?'done':'pending'}"><b>${esc(r.label)}</b><span>${r.done}/${r.need}</span></article>`).join('');
  const learningCards=arr(readiness.rows).map(r=>`<article class="gate-req ${r.ready?'done':'pending'}"><b>${esc(r.id)}</b><span>${r.done}/4 bằng chứng</span>${r.missing?.length?`<small>Thiếu: ${esc(r.missing.join(', '))}</small>`:''}</article>`).join('');
  const unlockLabel=g.currentPart>=g.totalParts?'Mở khóa giai đoạn tiếp theo':'Mở khóa phần tiếp theo';
- const gateText=unlock.allowed?'Đã đủ bằng chứng học, đủ đề và không còn lỗi đến hạn. Có thể mở khóa bước kế tiếp.':(unlock.blockers.join(' ')||'Cần hoàn thành điều kiện còn thiếu.');
+ const gateText=unlock.allowed?(unlock.finalPart?'Đã đủ bằng chứng học, đủ đề, Review Queue và điều kiện rời stage. Có thể chuyển tiếp.':'Đã đủ bằng chứng học, đủ đề và không còn lỗi đến hạn. Có thể mở khóa bước kế tiếp.'):(unlock.blockers.join(' ')||'Cần hoàn thành điều kiện còn thiếu.');
  const action=target.kind==='evidence'||target.kind==='review'
   ?`<button class="btn soft" data-route='${esc(JSON.stringify(target.route))}'>Đi đúng mục cần xử lý · ${esc(target.label)}</button>`
   :(target.kind==='exam'
@@ -485,6 +488,7 @@ function stageTransitionSnapshot(kind,toStage,toPart,unlock=gateUnlockStatus()){
    reviewDue:arr(unlock.dueReviews).length,
    examComplete:!!unlock.examComplete,
    readinessComplete:!!unlock.readiness?.ok,
+   capabilityStageExit:unlock.stageExit?{allowed:!!unlock.stageExit.allowed,lessonReady:Number(unlock.stageExit.lessonReady||0),lessonTotal:Number(unlock.stageExit.lessonTotal||0),dueCount:Number(unlock.stageExit.dueCount||0),writing:Number(unlock.stageExit.writing||0),rewrites:Number(unlock.stageExit.rewrites||0)}:null,
    exams,
    lessons:readiness
   },
