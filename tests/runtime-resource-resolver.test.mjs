@@ -55,8 +55,21 @@ const wrapperAllowedAssetDenied=resolver.resolve(registry,{
 assert.equal(wrapperAllowedAssetDenied.status,'blocked');
 assert.equal(wrapperAllowedAssetDenied.reason,'no_readable_asset');
 
+const httpsPolicyRegistry=(()=>{
+  let r=registryApi.emptyRegistry();
+  r=registryApi.appendRecord(r,{registryId:'bdr:checksum:test:r-https',algorithm:'sha256',digest:'e'.repeat(64),byteLength:1,recordVersion:1});
+  r=registryApi.appendRecord(r,{registryId:'bdr:asset:test:r-https',canonicalEntityId:'bd:artifact:test:r-https',assetType:'document',mediaType:'text/plain',checksumId:'bdr:checksum:test:r-https',locators:[{kind:'https_url',value:'https://allowed.example/resource.txt'}],state:'verified',recordVersion:1});
+  return r;
+})();
+const httpsNoOrigin=resolver.resolve(httpsPolicyRegistry,{mode:'learner_runtime',targetRegistryId:'bdr:asset:test:r-https',accessContext:{private:true},runtimePolicy:{allowRepositoryRelative:false,allowHttps:true,availableProviders:[]}});
+assert.equal(httpsNoOrigin.status,'blocked');
+const httpsWrongOrigin=resolver.resolve(httpsPolicyRegistry,{mode:'learner_runtime',targetRegistryId:'bdr:asset:test:r-https',accessContext:{private:true},runtimePolicy:{allowRepositoryRelative:false,allowHttps:true,allowedHttpsOrigins:['https://other.example'],availableProviders:[]}});
+assert.equal(httpsWrongOrigin.status,'blocked');
+const httpsRightOrigin=resolver.resolve(httpsPolicyRegistry,{mode:'learner_runtime',targetRegistryId:'bdr:asset:test:r-https',accessContext:{private:true},runtimePolicy:{allowRepositoryRelative:false,allowHttps:true,allowedHttpsOrigins:['https://allowed.example'],availableProviders:[]}});
+assert.equal(httpsRightOrigin.status,'resolved');
+
 assert.throws(()=>resolver.resolve(registry,{targetRegistryId:'bdr:asset:test:r-a',mode:'unknown',accessContext:{private:true},runtimePolicy:{}}),/INVALID_MODE/);
 assert.throws(()=>resolver.resolve(registry,{mode:'learner_runtime',accessContext:{private:true},runtimePolicy:{}}),/TARGET_REQUIRED/);
 
 console.log('RUNTIME_RESOURCE_RESOLVER_NEGATIVE_TEST=PASS');
-console.log(JSON.stringify({negativeCases:10,ambiguous:true,preferredAsset:true,doubleAccessCheck:true},null,2));
+console.log(JSON.stringify({negativeCases:13,ambiguous:true,preferredAsset:true,doubleAccessCheck:true},null,2));
