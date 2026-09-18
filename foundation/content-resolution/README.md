@@ -80,3 +80,10 @@ It is not yet authoritative for any existing application loader.
 CI now validates the three real Academic 2026 core JSON resources through the complete resolution/delivery chain while leaving `academic-main.js` untouched.
 
 The shadow registry is diagnostic and exists only during validation.
+
+
+## Step 7 — Browser shadow acceptance
+
+A Playwright-only harness validates the complete chain in Chromium using the real package-relative adapter and real Academic JSON resources.
+
+The production/root application does not load this harness or these Foundation modules yet.
