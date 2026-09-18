@@ -60,3 +60,19 @@ Preserve:
 ## Step 3 rule
 
 Do not migrate any real loader until Step 2 gate is green.
+
+
+## Step 3 — Active
+
+Build and gate an immutable delivery plan from a resolved descriptor.
+
+Required:
+
+- descriptor must already be `resolved`;
+- descriptor asset/checksum/locator must still match registry;
+- content-hash locator must equal referenced SHA-256 digest;
+- delivery plan carries exact digest and byte length;
+- transport/locator mismatch fails closed;
+- no I/O, route, storage or learner-state mutation.
+
+Step 4 may define injected adapters only after Step 3 is green.
