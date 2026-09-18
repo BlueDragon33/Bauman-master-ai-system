@@ -5,16 +5,16 @@
 
 ## Active track
 
-- Current round: **Lượt 25**
-- Current step: **Bước 100 — IN_PROGRESS**
+- Current round: **Lượt 25 — COMPLETE**
+- Current step: **Bước 100 — PASS · L26 NOT_STARTED**
 - L22 closeout: **B88 + H1 — PASS**
-- Status: **L23_COMPLETE · L24_COMPLETE · PASS_L25_F1 · PASS_L25_F2 · PASS_L25_B97 · PASS_L25_H1 · PASS_L25_F3 · PASS_L25_B98 · PASS_L25_F4 · PASS_L25_B99 · PASS_L25_F5 · PASS_L25_B100_FUNCTIONAL_HEAD · L25_CLOSEOUT_DOC_GATE_PENDING**
-- Accepted head: `622e84aece7847b4179a8ff48937cb92717aaf3e`
+- Status: **L23_COMPLETE · L24_COMPLETE · L25_COMPLETE · PASS_L25_F1 · PASS_L25_F2 · PASS_L25_F3 · PASS_L25_F4 · PASS_L25_F5 · PASS_L25_H1 · PASS_L25_B97_B100 · L26_NOT_STARTED · FINAL_STATE_GATE_PENDING**
+- Last recorded six-gate head: `a2b9a18fc5bda52364b983e35bfb86d6e067fd92`
 - Production/runtime activation by Roadmap V2: **disconnected**
 - Legacy/source destructive migration: **not executed**
-- Last completed: **L23/B92 — PASS**
-- Last hardening: **L23-H1 — PASS**
-- Current official step: **L25/B100 — Priority Closeout / Full Isolation Gate**
+- Last completed: **L25/B100 — PASS**
+- Last hardening: **L25-F5 — PASS**
+- Current official step: **L25 complete · L26 not started**
 - L23 may start only after the L22 closeout snapshot remains green on the complete gate set.
 
 ## L22/B88 complete gate evidence
@@ -326,3 +326,17 @@ Accepted B100/F5 functional head: `624b20cf53e26b193db01377fd83891d88fd0f4c`
 - Whole System Integration — run `35342688636` — PASS
 
 The functional closeout is complete. L26 remains blocked until this documentation closeout head itself passes the complete six-gate set.
+
+
+## L25 documentation closeout gate evidence
+
+Accepted documentation closeout head: `a2b9a18fc5bda52364b983e35bfb86d6e067fd92`
+
+- Roadmap V2 Current Gate — run `35342986610` — PASS
+- Foundation Domain Model — run `35342986773` — PASS
+- Windows checkout safety — run `35342986584` — PASS
+- Russian Reference UI — run `35342986726` — PASS
+- Cloudflare Preview — run `35342986611` — PASS
+- Whole System Integration — run `35342986533` — PASS
+
+L25 is complete through B100. The final state head itself must pass the same six gates before L26 may open.
