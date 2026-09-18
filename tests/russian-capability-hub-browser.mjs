@@ -58,7 +58,7 @@ try{
   const text=await card.innerText();
   assert.match(text,/R0/);
   assert.match(text,/R01/);
-  assert.match(text,/Snapshot từ Russian Sub Web App/);
+  assert.match(text,/Snapshot đã đồng bộ trong phiên hiện tại/);
 
   const health=await page.evaluate(()=>window.BAUMAN_HUB_SAFE?.selfCheck?.());
   assert.equal(health.capabilitySnapshot,true);
