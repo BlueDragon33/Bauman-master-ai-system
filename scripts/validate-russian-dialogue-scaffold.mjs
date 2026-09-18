@@ -37,16 +37,18 @@ export function validateHelper(js){
 }
 export function validateCore(core){
   const bridge=functionSlice(core,'dialogueScaffold','dialogueDirectTitle');
+  const ui=functionSlice(core,'dialogueScaffoldHtml','dialogueMeta');
   const meta=functionSlice(core,'dialogueMeta','roleInstruction');
   const dialogue=functionSlice(core,'renderDialogue','handwritingText');
   const practice=functionSlice(core,'renderPractice','speechMapLineButton');
   assert(bridge.includes('window.RussianDialogueScaffold?.describe?.'),'Core scaffold bridge does not point to canonical dialogue authority');
+  assert(ui.includes('dialogue-direct-scaffold'),'Dialogue scaffold UI helper missing direct scaffold class');
   assert(meta.includes('dialogueScaffold('),'dialogueMeta does not use scaffold bridge');
   for(const token of ['context_title_vi','communicative_functions_vi','dialogueVi('])assert(!meta.includes(token),`dialogueMeta still uses legacy gloss: ${token}`);
   for(const [name,src] of [['renderDialogue',dialogue],['renderPractice',practice]]){
     assert(src.includes('dialogueScaffold('),`${name} does not use direct scaffold bridge`);
     for(const token of ['dialogueVi(','currentVi','toggle-vi','context_title_vi','communicative_functions_vi'])assert(!src.includes(token),`${name} still exposes translation scaffold: ${token}`);
-    assert(src.includes('dialogue-direct-scaffold'),`${name} missing direct scaffold UI`);
+    assert(src.includes('dialogueScaffoldHtml(scaffold)'),`${name} does not render direct scaffold helper`);
   }
   assert(practice.includes("heard?dialogueScaffoldHtml(scaffold):''"),'Practice Russian scaffold is not hear-before-see gated');
   return true;
