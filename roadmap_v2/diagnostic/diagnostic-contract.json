@@ -1,16 +1,17 @@
 {
-  "schema": "BAUMAN_ROADMAP_V2_DIAGNOSTIC_CONTRACT_V1",
-  "version": 1,
-  "scope": "Lượt 23 / Bước 89–92 — diagnostic planning and deterministic scoring; no mastery persistence, Priority Engine activation or production integration",
+  "schema": "BAUMAN_ROADMAP_V2_DIAGNOSTIC_CONTRACT_V2",
+  "version": 2,
+  "scope": "Lượt 23 / Bước 89–92 — current diagnostic contract on the accepted L22 consumer boundary; planning, session projection and deterministic scoring only",
   "mode": {
     "access": "read_only",
     "productionIntegration": "disconnected",
     "failClosed": true,
     "writesMasteryEvidence": false,
+    "writesLearnerState": false,
     "writesLegacyRuntime": false
   },
   "upstream": {
-    "consumerManifestSchema": "BAUMAN_ROADMAP_V2_CONSUMER_MANIFEST_V1",
+    "consumerContractPath": "roadmap_v2/consumer/consumer-contract.json",
     "consumerContractSchema": "BAUMAN_ROADMAP_V2_CONSUMER_CONTRACT_V1",
     "requiredConsumerCapabilities": [
       "registryRead",
@@ -24,11 +25,14 @@
       "masteryEvidenceWrite",
       "priorityEngineRead",
       "priorityEngineWrite",
+      "schedulerWrite",
       "runtimeActivation"
-    ]
+    ],
+    "manifestDependencyRequired": false,
+    "staleHistoricalManifestAccepted": false
   },
   "assessmentPolicy": {
-    "id": "DIAG-20-V1",
+    "id": "DIAG-20-V2",
     "requiredItemCount": 20,
     "difficultyDistribution": {
       "easy": 8,
@@ -54,7 +58,7 @@
       "A passing diagnostic may skip redundant prerequisite review but never grants Master-ready.",
       "Master-ready requires later exercise, lab/project, assessment and retention evidence.",
       "A critical-item floor failure remains a gap even when the overall score passes.",
-      "No result is persisted before the Lượt 24 mastery/evidence contract passes."
+      "Diagnostic results remain in-memory only until a separately gated mastery/evidence persistence contract is admitted on the current track."
     ]
   },
   "itemBankGate": {
@@ -64,6 +68,17 @@
     "missingBankStatus": "blocked_missing_verified_item_bank",
     "invalidBankStatus": "blocked_invalid_item_bank",
     "allowGeneratedUnreviewedItems": false
+  },
+  "sessionProjection": {
+    "answerKeyFieldsExcluded": [
+      "correctOptionId",
+      "rationale"
+    ],
+    "reviewMetadataExcluded": [
+      "reviewedBy"
+    ],
+    "requiresStableItemOrder": true,
+    "allowsAnswerRevealDuringActiveSession": false
   },
   "attemptGate": {
     "schema": "BAUMAN_ROADMAP_V2_DIAGNOSTIC_ATTEMPT_V1",
@@ -81,6 +96,7 @@
     "attemptEvaluate": true,
     "proposedBankHarnessOnly": true,
     "masteryEvidenceWrite": false,
+    "learnerStateWrite": false,
     "priorityEngineWrite": false,
     "schedulerWrite": false,
     "runtimeActivation": false
@@ -92,11 +108,14 @@
     "INCOMPLETE_ATTEMPT": "Every verified diagnostic item must have exactly one valid response.",
     "CRITICAL_ITEM_FLOOR_NOT_MET": "Critical-item accuracy is below the required floor.",
     "DIAGNOSTIC_PASS_NOT_MASTER_READY": "A diagnostic pass verifies existing competency only and cannot grant Master-ready.",
-    "MASTERY_PERSISTENCE_DISABLED": "Diagnostic evidence is returned in memory only until Lượt 24 passes.",
+    "PERSISTENCE_DISABLED": "Diagnostic evidence is returned in memory only until a separately gated persistence contract is admitted.",
+    "ANSWER_LEAKAGE_FORBIDDEN": "Active-session projection must not expose correctOptionId, rationale or review metadata.",
+    "STALE_MANIFEST_DEPENDENCY_FORBIDDEN": "Historical consumer manifests and their pinned hashes are quarantined and cannot be an execution dependency.",
     "PRODUCTION_DISCONNECTED": "Diagnostic remains disconnected from production entrypoints."
   },
   "abortConditions": [
-    "consumer manifest or contract hash drift",
+    "consumer contract schema or capability mismatch",
+    "dependency on quarantined historical consumer manifest",
     "unknown or executable consumer blueprint",
     "missing diagnostic target or prerequisite reference",
     "duplicate plan, item or response ID",
@@ -104,15 +123,21 @@
     "item count or difficulty distribution mismatch",
     "item bank contains no critical item",
     "unknown option or incomplete attempt",
+    "active-session answer key or rationale leakage",
     "Master-ready outcome emitted by Diagnostic",
-    "mastery, Priority Engine, scheduler or runtime write attempted"
+    "mastery, learner-state, Priority Engine, scheduler or runtime write attempted"
   ],
   "acceptance": {
     "step": 89,
+    "currentTrack": "L23",
+    "consumerBoundaryRevalidated": true,
+    "staleManifestDependencyRemoved": true,
     "existingCompetencyDistinctFromMasterReady": true,
+    "activeSessionAnswerLeakageForbidden": true,
     "unreviewedGenerationForbidden": true,
     "masteryPersistenceEnabled": false,
+    "learnerStatePersistenceEnabled": false,
     "runtimeActivationAllowed": false,
-    "result": "PASS_CONTRACT_ONLY"
+    "result": "PASS_CONTRACT_ONLY_PENDING_B89_GATE"
   }
 }
