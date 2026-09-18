@@ -30,18 +30,18 @@ English is not the default translation bridge either.
 
 ## Current work
 
-Turns 1–5 are accepted.
+Turns 1–6 are accepted.
 
-Next: **Turn 6 — Sound ↔ letter mapping**.
+Next: **Turn 7 — Handwriting motor practice**.
 
-Turn 6 must:
+Turn 7 must:
 
-- cover all 33 Cyrillic letters;
-- connect letters to Russian sound examples;
-- distinguish letter name from usable sound where relevant;
-- use Russian-word anchors without Vietnamese semantic translation;
-- include stress/phonology cues where meaningful;
-- remain additive evidence, not mastery authority.
+- reuse the existing handwriting canvas rather than create a competing writing surface;
+- sequence practice as trace → copy → connect → free;
+- preserve existing stroke guidance and print/cursive references;
+- record real drawing attempts per letter and per motor stage;
+- keep evidence subject-local and additive;
+- never promote mastery automatically.
 
 ## Gate rule
 

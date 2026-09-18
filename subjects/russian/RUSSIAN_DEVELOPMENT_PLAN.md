@@ -34,8 +34,8 @@ If a gate fails, repair it before continuing. Never weaken an assertion merely t
 | 3 | Oral-first warm-up | GREEN | Normal listen unlocks text; slow-listen cannot unlock first |
 | 4 | Print Cyrillic recognition | GREEN | Exact 33 letters; case/confusable recognition; additive evidence |
 | 5 | Handwritten Cyrillic recognition | GREEN | Print↔cursive runtime + contract green; visual glyph proof deferred to Turn 23 |
-| 6 | Sound ↔ letter mapping | ACTIVE | Must cover all 33 letters without Vietnamese semantic translation |
-| 7 | Handwriting motor practice | PLANNED | Begins only after Turn 6 green |
+| 6 | Sound ↔ letter mapping | GREEN | 33-letter curated sound map; ru-RU audio; listen-gated sound→letter evidence |
+| 7 | Handwriting motor practice | ACTIVE | Reuse existing canvas; trace→copy→connect→free; additive motor evidence |
 | 8 | Listening ladder | PLANNED | Normal/focused/slow/gist/detail progression |
 | 9 | Speaking & shadowing ladder | PLANNED | Imitation→shadowing→memory→role-play→repair |
 | 10 | Visual vocabulary contract | PLANNED | Forbid Vietnamese/English meaning authority |
