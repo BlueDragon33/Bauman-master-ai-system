@@ -48,7 +48,7 @@ try{
 
   // Force a deliberately wrong remembered Russian location to prove the deep-link overrides it.
   await page.evaluate(()=>{
-    const key='bauman_russian_v11_clean_skeleton';
+    const key='bauman_russian_survival_master_v11_clean_skeleton';
     const saved=JSON.parse(localStorage.getItem(key)||'{}');
     Object.assign(saved,{view:'overview',learnTab:'exam',lessonId:'R02',stage:'prep',slide:7});
     localStorage.setItem(key,JSON.stringify(saved));
@@ -75,10 +75,10 @@ try{
   const frame=page.frames().find(f=>/subjects\/russian\/index\.html/.test(f.url()));
   assert.ok(frame,'Russian subject iframe missing after capability launch');
   await frame.waitForFunction(()=>{
-    const saved=JSON.parse(localStorage.getItem('bauman_russian_v11_clean_skeleton')||'{}');
+    const saved=JSON.parse(localStorage.getItem('bauman_russian_survival_master_v11_clean_skeleton')||'{}');
     return saved.view==='learning'&&saved.learnTab==='theory'&&saved.lessonId==='R01'&&saved.stage==='vn';
   },null,{timeout:30000});
-  const routed=await frame.evaluate(()=>JSON.parse(localStorage.getItem('bauman_russian_v11_clean_skeleton')||'{}'));
+  const routed=await frame.evaluate(()=>JSON.parse(localStorage.getItem('bauman_russian_survival_master_v11_clean_skeleton')||'{}'));
   assert.equal(routed.view,'learning');
   assert.equal(routed.learnTab,'theory');
   assert.equal(routed.lessonId,'R01');
