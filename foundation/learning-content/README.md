@@ -1,4 +1,4 @@
-# Bauman Web Lesson Standard — Foundation V1
+# Bauman Foundation — Learning Content Standard
 
 This directory defines the pedagogical authoring constraints for lessons rendered by Russian and future Bauman subject apps.
 
