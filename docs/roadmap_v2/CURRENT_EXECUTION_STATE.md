@@ -6,14 +6,15 @@
 ## Active track
 
 - Current round: **Lượt 23**
-- Current step: **L23-H1 — Consumer Blueprint · PENDING_FULL_GATE**
+- Current step: **Bước 90 — IN_PROGRESS**
 - L22 closeout: **B88 + H1 — PASS**
-- Status: **PASS_L23_B89 · L23_H1_CONSUMER_BLUEPRINT_PENDING_FULL_GATE**
+- Status: **PASS_L23_B89 · PASS_L23_H1 · B90_CATALOG_IN_PROGRESS**
 - Accepted head: `622e84aece7847b4179a8ff48937cb92717aaf3e`
 - Production/runtime activation by Roadmap V2: **disconnected**
 - Legacy/source destructive migration: **not executed**
 - Last completed: **L23/B89 — PASS**
-- Next official step: **L23/B90 — Diagnostic Catalog**, blocked until H1 full-gate PASS
+- Last hardening: **L23-H1 — PASS**
+- Current official step: **L23/B90 — Diagnostic Catalog**
 - L23 may start only after the L22 closeout snapshot remains green on the complete gate set.
 
 ## L22/B88 complete gate evidence
