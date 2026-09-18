@@ -84,6 +84,11 @@ on:
       - 'subjects/russian/assets/multimodal-review.css'
       - 'scripts/validate-russian-multimodal-review.mjs'
       - 'tests/russian-multimodal-review.test.mjs'
+      - 'subjects/russian/contracts/skill-gated-assessment-contract.v1.json'
+      - 'subjects/russian/assets/skill-gated-assessment.js'
+      - 'subjects/russian/assets/skill-gated-assessment.css'
+      - 'scripts/validate-russian-skill-gated-assessment.mjs'
+      - 'tests/russian-skill-gated-assessment.test.mjs'
       - '.github/workflows/russian-learning-architecture-gate.yml'
 
 permissions:
@@ -148,6 +153,9 @@ jobs:
           node --check subjects/russian/assets/multimodal-review.js
           node --check scripts/validate-russian-multimodal-review.mjs
           node --check tests/russian-multimodal-review.test.mjs
+          node --check subjects/russian/assets/skill-gated-assessment.js
+          node --check scripts/validate-russian-skill-gated-assessment.mjs
+          node --check tests/russian-skill-gated-assessment.test.mjs
       - name: Validate listen-speak literacy visual contract
         run: node scripts/validate-russian-learning-sequence-contract.mjs
       - name: Run contract negative tests
@@ -222,6 +230,10 @@ jobs:
         run: node scripts/validate-russian-multimodal-review.mjs
       - name: Run Russian multimodal review negative tests
         run: node tests/russian-multimodal-review.test.mjs
+      - name: Validate Russian skill-gated assessment
+        run: node scripts/validate-russian-skill-gated-assessment.mjs
+      - name: Run Russian skill-gated assessment negative tests
+        run: node tests/russian-skill-gated-assessment.test.mjs
       - name: Parse pedagogy contracts
         run: node -e "const fs=require('fs'); const a=JSON.parse(fs.readFileSync('subjects/russian/contracts/listen-speak-literacy-visual-contract.v1.json','utf8')); const b=JSON.parse(fs.readFileSync('subjects/russian/contracts/oral-first-route-contract.v1.json','utf8')); if(a.schema!=='RUSSIAN_LISTEN_SPEAK_LITERACY_VISUAL_CONTRACT_V1'||b.schema!=='RUSSIAN_ORAL_FIRST_ROUTE_CONTRACT_V1') process.exit(1); console.log('RUSSIAN_PEDAGOGY_JSON=PASS')"
 
