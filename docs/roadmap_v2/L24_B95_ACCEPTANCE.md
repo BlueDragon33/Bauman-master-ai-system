@@ -1,6 +1,6 @@
 # L24/B95 — Master-ready / Prerequisite Gates Acceptance
 
-Status: `PENDING_GATE`
+Status: `PASS`
 
 ## Master-ready behavior
 
@@ -39,3 +39,17 @@ Required behavior:
 - production integration remains disconnected.
 
 B96 remains blocked until B95 and all six project gates pass.
+
+
+## Gate evidence
+
+Accepted B95 head: `571e9bcd1e094ebc5f9531da1fd2caab82acf0bc`
+
+- Roadmap V2 Current Gate — run `35335611053` — PASS
+- Foundation Domain Model — run `35335611056` — PASS
+- Windows checkout safety — run `35335611140` — PASS
+- Russian Reference UI — run `35335611030` — PASS
+- Cloudflare Preview — run `35335611059` — PASS
+- Whole System Integration — run `35335611041` — PASS
+
+B95 is closed. B96 is now active.
