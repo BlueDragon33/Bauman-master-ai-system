@@ -238,7 +238,7 @@
       "classification": "acceptance_timing_race",
       "cause": "Math Reader marker became observable before packaged rerender stabilized its 22-slide DOM.",
       "correction": "Wait for matching lesson identity and exact 22-slide Reader DOM, then recheck after a short stability interval.",
-      "status": "applied_pending_gate"
+      "status": "pass"
     }
   ],
   "r2b": {
@@ -278,13 +278,40 @@
     }
   },
   "r2c": {
-    "currentSubround": "L27R2C0",
+    "currentSubround": "L27R2C1",
     "policy": "classify_before_transplant",
     "canonicalNewFilesThisSubround": 0,
     "historicalCanonicalFilesClassified": 75,
     "staleManifestsQuarantined": 7,
     "baselineBoundGeneratedArtifactsQuarantined": 24,
-    "next": "L27R2C1 only after R2C0 full gate pass",
-    "lastFailure": "packaged_math_reader_acceptance_timing_race"
+    "next": "Toolchain compatibility review; no canonical engine/data admission until its gate passes",
+    "lastFailure": "packaged_math_reader_acceptance_timing_race",
+    "r2c0": "pass"
+  },
+  "l27r2c0GateEvidence": {
+    "reconciliation": {
+      "runId": 35327164296,
+      "conclusion": "success"
+    },
+    "foundation": {
+      "runId": 35327164315,
+      "conclusion": "success"
+    },
+    "windows": {
+      "runId": 35327164288,
+      "conclusion": "success"
+    },
+    "russian": {
+      "runId": 35327164358,
+      "conclusion": "success"
+    },
+    "preview": {
+      "runId": 35327164355,
+      "conclusion": "success"
+    },
+    "wholeSystem": {
+      "runId": 35327164331,
+      "conclusion": "success"
+    }
   }
 }
