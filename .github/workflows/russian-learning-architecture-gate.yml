@@ -57,6 +57,12 @@ on:
       - 'subjects/russian/assets/visual-vocabulary-runtime.css'
       - 'scripts/validate-russian-visual-vocabulary-runtime.mjs'
       - 'tests/russian-visual-vocabulary-runtime.test.mjs'
+      - 'subjects/russian/data/reading-bridge.json'
+      - 'subjects/russian/contracts/reading-bridge-contract.v1.json'
+      - 'subjects/russian/assets/reading-bridge.js'
+      - 'subjects/russian/assets/reading-bridge.css'
+      - 'scripts/validate-russian-reading-bridge.mjs'
+      - 'tests/russian-reading-bridge.test.mjs'
       - '.github/workflows/russian-learning-architecture-gate.yml'
 
 permissions:
@@ -106,6 +112,9 @@ jobs:
           node --check subjects/russian/assets/visual-vocabulary-runtime.js
           node --check scripts/validate-russian-visual-vocabulary-runtime.mjs
           node --check tests/russian-visual-vocabulary-runtime.test.mjs
+          node --check subjects/russian/assets/reading-bridge.js
+          node --check scripts/validate-russian-reading-bridge.mjs
+          node --check tests/russian-reading-bridge.test.mjs
       - name: Validate listen-speak literacy visual contract
         run: node scripts/validate-russian-learning-sequence-contract.mjs
       - name: Run contract negative tests
@@ -160,6 +169,10 @@ jobs:
         run: node scripts/validate-russian-visual-vocabulary-runtime.mjs
       - name: Run Russian visual vocabulary runtime negative tests
         run: node tests/russian-visual-vocabulary-runtime.test.mjs
+      - name: Validate Russian reading bridge
+        run: node scripts/validate-russian-reading-bridge.mjs
+      - name: Run Russian reading bridge negative tests
+        run: node tests/russian-reading-bridge.test.mjs
       - name: Parse pedagogy contracts
         run: node -e "const fs=require('fs'); const a=JSON.parse(fs.readFileSync('subjects/russian/contracts/listen-speak-literacy-visual-contract.v1.json','utf8')); const b=JSON.parse(fs.readFileSync('subjects/russian/contracts/oral-first-route-contract.v1.json','utf8')); if(a.schema!=='RUSSIAN_LISTEN_SPEAK_LITERACY_VISUAL_CONTRACT_V1'||b.schema!=='RUSSIAN_ORAL_FIRST_ROUTE_CONTRACT_V1') process.exit(1); console.log('RUSSIAN_PEDAGOGY_JSON=PASS')"
 
