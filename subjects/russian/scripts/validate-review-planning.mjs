@@ -16,7 +16,7 @@ need("source:'live_review_queue'",'Overlay card provenance missing');
 need('reviewId:clean(item?.id)','Overlay card review id missing');
 need('reviewReason:reason','Overlay card review reason missing');
 need("target.cards=[...cards,...existing]",'Overlay must preserve original schedule cards');
-need('return applyLiveReviewOverlay(plan)','Generated plans must receive live review overlay');
+need('applyLiveReviewOverlay(plan)','Generated plans must receive live review overlay before any later overlay');
 if(!core.includes('BaumanPlanningBridge?.applyLiveReviewOverlay'))throw new Error('Today schedule must refresh live review overlay at render time');
 need("limit:'Ưu tiên ngắn · không tự nâng mastery'",'Truthful non-mastery wording missing');
 forbid('mastered:true','Planning overlay must not synthesize mastery');
