@@ -28,6 +28,7 @@ on:
       - 'foundation/content-resolution/shadow/academic-core-2026.v1.json'
       - 'scripts/validate-academic-shadow-resolution.mjs'
       - 'tests/academic-shadow-resolution.test.mjs'
+      - 'tests/content-resolution-shadow-browser.mjs'
       - 'assets/js/academic-main.js'
       - 'assets/data/official-curriculum-iu5-2026.json'
       - 'assets/data/prerequisite-registry-iu5-2026.json'
@@ -68,6 +69,7 @@ jobs:
           node --check tests/package-relative-fetch-adapter.test.mjs
           node --check scripts/validate-academic-shadow-resolution.mjs
           node --check tests/academic-shadow-resolution.test.mjs
+          node --check tests/content-resolution-shadow-browser.mjs
       - name: Validate frozen Content Asset Provenance foundation
         run: node scripts/validate-foundation-l10-promotion.mjs
       - name: Validate content resolution contract
@@ -97,3 +99,46 @@ jobs:
       - name: Parse resolution JSON
         run: |
           node -e "JSON.parse(require('fs').readFileSync('foundation/content-resolution/resolution-contract.v1.json','utf8')); JSON.parse(require('fs').readFileSync('foundation/content-resolution/examples/step1-resolution-request.v1.json','utf8')); JSON.parse(require('fs').readFileSync('foundation/content-resolution/delivery-plan-contract.v1.json','utf8')); JSON.parse(require('fs').readFileSync('foundation/content-resolution/delivery-executor-contract.v1.json','utf8')); JSON.parse(require('fs').readFileSync('foundation/content-resolution/package-relative-adapter-contract.v1.json','utf8')); JSON.parse(require('fs').readFileSync('foundation/content-resolution/shadow/academic-core-2026.v1.json','utf8')); console.log('CONTENT_RESOLUTION_JSON=PASS')"
+
+
+  browser-shadow-acceptance:
+    needs: validate-content-resolution-contract
+    runs-on: ubuntu-24.04
+    timeout-minutes: 20
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+      - name: Use Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: "22.13.0"
+      - name: Install Playwright Chromium
+        run: |
+          printf '{"private":true,"type":"module"}\n' > package.json
+          npm install --no-save --no-audit --no-fund playwright@1.55.0
+          npx playwright install --with-deps chromium
+      - name: Start content-resolution shadow server
+        run: |
+          python3 -m http.server 4175 --bind 127.0.0.1 > /tmp/bauman-content-resolution-http.log 2>&1 &
+          for i in {1..30}; do
+            if curl -fsS http://127.0.0.1:4175/foundation/content-resolution/examples/browser-shadow-harness.html >/dev/null; then exit 0; fi
+            sleep 1
+          done
+          cat /tmp/bauman-content-resolution-http.log
+          exit 1
+      - name: Run Content Resolution browser shadow acceptance
+        env:
+          BAUMAN_E2E_BASE_URL: http://127.0.0.1:4175/
+          BAUMAN_E2E_ARTIFACT_DIR: artifacts/content-resolution-shadow-browser
+        run: node tests/content-resolution-shadow-browser.mjs
+      - name: Show shadow server log on failure
+        if: failure()
+        run: cat /tmp/bauman-content-resolution-http.log || true
+      - name: Upload shadow browser evidence
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: content-resolution-shadow-browser-${{ github.run_id }}
+          path: artifacts/content-resolution-shadow-browser
+          if-no-files-found: warn
+          retention-days: 7
