@@ -1,6 +1,6 @@
 # L25/B100 — Priority Closeout / Full Isolation Gate
 
-Status: `PASS_FUNCTIONAL_HEAD`
+Status: `PASS`
 
 ## Purpose
 
@@ -60,3 +60,17 @@ Accepted B100/F5 functional head: `624b20cf53e26b193db01377fd83891d88fd0f4c`
 
 
 The functional closeout is green. L25 completion is still held until the documentation closeout head itself passes the same six gates.
+
+
+## Documentation closeout gate evidence
+
+Accepted documentation closeout head: `a2b9a18fc5bda52364b983e35bfb86d6e067fd92`
+
+- Roadmap V2 Current Gate — run `35342986610` — PASS
+- Foundation Domain Model — run `35342986773` — PASS
+- Windows checkout safety — run `35342986584` — PASS
+- Russian Reference UI — run `35342986726` — PASS
+- Cloudflare Preview — run `35342986611` — PASS
+- Whole System Integration — run `35342986533` — PASS
+
+L25/B100 is closed. L25 may be marked complete; L26 remains not started until the final state head is green.
