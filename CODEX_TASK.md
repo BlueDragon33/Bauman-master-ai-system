@@ -30,18 +30,18 @@ English is not the default translation bridge either.
 
 ## Current work
 
-Turns 1–6 are accepted.
+Turns 1–7 are accepted.
 
-Next: **Turn 7 — Handwriting motor practice**.
+Next: **Turn 8 — Listening ladder**.
 
-Turn 7 must:
+Turn 8 must:
 
-- reuse the existing handwriting canvas rather than create a competing writing surface;
-- sequence practice as trace → copy → connect → free;
-- preserve existing stroke guidance and print/cursive references;
-- record real drawing attempts per letter and per motor stage;
-- keep evidence subject-local and additive;
-- never promote mastery automatically.
+- reuse the existing normal and slow listening controls;
+- require normal-speed listening before focused replay;
+- keep slow listening as repair, not the default;
+- include gist and detail evidence without translation answers;
+- keep listening evidence subject-local and non-authoritative;
+- preserve Turn 3 hear-before-see behavior.
 
 ## Gate rule
 
