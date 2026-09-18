@@ -18,7 +18,9 @@ function gitBlobSha(buffer){
 const currentTrackOwned=new Set([
   'roadmap_v2/diagnostic/diagnostic-contract.json',
   'roadmap_v2/diagnostic/diagnostic-contract.schema.json',
-  'roadmap_v2/diagnostic/catalog.schema.json'
+  'roadmap_v2/diagnostic/catalog.schema.json',
+  'roadmap_v2/mastery/mastery-contract.json',
+  'roadmap_v2/mastery/mastery-contract.schema.json'
 ]);
 
 const baseline=new Set();
@@ -39,6 +41,14 @@ assert.equal(diagnostic.schema,'BAUMAN_ROADMAP_V2_DIAGNOSTIC_CONTRACT_V2','curre
 assert.equal(diagnosticSchema.$id,'BAUMAN_ROADMAP_V2_DIAGNOSTIC_CONTRACT_V2','current-track Diagnostic schema must be V2');
 assert.equal(diagnostic.mode.productionIntegration,'disconnected');
 assert.equal(diagnostic.capabilities.runtimeActivation,false);
+
+const mastery=JSON.parse(fs.readFileSync('roadmap_v2/mastery/mastery-contract.json','utf8'));
+const masterySchema=JSON.parse(fs.readFileSync('roadmap_v2/mastery/mastery-contract.schema.json','utf8'));
+assert.equal(mastery.schema,'BAUMAN_ROADMAP_V2_MASTERY_CONTRACT_V2','current-track Mastery contract must be V2');
+assert.equal(masterySchema.$id,'BAUMAN_ROADMAP_V2_MASTERY_CONTRACT_V2','current-track Mastery schema must be V2');
+assert.equal(mastery.mode.productionIntegration,'disconnected');
+assert.equal(mastery.capabilities.runtimeActivation,false);
+assert.equal(mastery.capabilities.persistentStoreWrite,false);
 
 function walk(dir){
   if(!fs.existsSync(dir)) return [];
