@@ -36,6 +36,7 @@
   function publish(){
     const resume=state.resume; const core=readCore(); const task=window.BaumanSubjectHost?.getTask?.()||window.BAUMAN_HOST_TASK||{};
     const due=dueReviews();
+    const transition=core.lastStageTransition?.schema==='RUSSIAN_STAGE_TRANSITION_V1'?core.lastStageTransition:null;
     const report={
       taskId:task.taskId||'',
       stage:core.stage||resume?.stage||'',
@@ -46,6 +47,8 @@
         reviewDue:due.length,
         reviewTotal:Object.keys(state.reviewQueue).length,
         reviewResolved:Object.keys(state.reviewHistory).length,
+        stageTransition:transition,
+        stageTransitionCount:Array.isArray(core.stageTransitions)?core.stageTransitions.length:0,
         canonicalState:SCHEMA
       }
     };
@@ -306,6 +309,7 @@
   window.addEventListener('scroll',schedulePositionSave,{passive:true});
   window.addEventListener('pagehide',refreshResumePosition);
   window.addEventListener('bauman:host-task',publish);
+  window.addEventListener('russian:stage-transition',publish);
   document.addEventListener('DOMContentLoaded',()=>{
     const changed=reconcileRealReviewSignals();
     const coreRoute=routeFromCore();
