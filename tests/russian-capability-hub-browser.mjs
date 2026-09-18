@@ -48,7 +48,6 @@ try{
   assert.equal(snap.currentBand?.id,'R0');
   assert.equal(snap.nextGap?.lessonId,'R01');
   assert.ok(Array.isArray(snap.bands)&&snap.bands.length===5);
-  assert.equal(Number(window.NaN),Number.NaN);
 
   const after=await page.evaluate(()=>Number(window.state?.progress?.russian||0));
   assert.equal(after,before,'Capability bridge must not mutate canonical subject progress');
