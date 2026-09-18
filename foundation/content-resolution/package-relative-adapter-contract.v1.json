@@ -1,0 +1,45 @@
+{
+  "schema": "BAUMAN_PACKAGE_RELATIVE_FETCH_ADAPTER_CONTRACT_V1",
+  "contractVersion": 1,
+  "architectureName": "Foundation — Content Resolution & Runtime Delivery",
+  "adapterId": "package-relative-resource",
+  "input": {
+    "planSchema": "BAUMAN_RUNTIME_DELIVERY_PLAN_V1",
+    "planStatus": "ready",
+    "transport": "package_relative",
+    "locatorKind": "repository_relative"
+  },
+  "configuration": {
+    "explicitBaseUrlRequired": true,
+    "allowedBaseProtocols": [
+      "http:",
+      "https:"
+    ],
+    "baseCredentialsForbidden": true,
+    "fetchImplementation": "injected_or_environment"
+  },
+  "requestPolicy": {
+    "method": "GET",
+    "sameOriginOnly": true,
+    "credentials": "same-origin",
+    "redirect": "error",
+    "cache": "no-cache",
+    "queryFragmentForbidden": true,
+    "parentTraversalForbidden": true,
+    "absolutePathForbidden": true,
+    "backslashForbidden": true
+  },
+  "responsePolicy": {
+    "httpOkRequired": true,
+    "returns": "Uint8Array",
+    "integrityVerificationOwnedByExecutor": true
+  },
+  "forbiddenAuthority": [
+    "registry_mutation",
+    "access_decision",
+    "learner_state",
+    "route_mutation",
+    "checksum_bypass",
+    "cross_origin_redirect"
+  ]
+}
