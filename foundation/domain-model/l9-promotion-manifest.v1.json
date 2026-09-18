@@ -2,7 +2,7 @@
   "schema": "BAUMAN_FOUNDATION_L9_PROMOTION_V1",
   "version": 1,
   "status": "promotion_candidate",
-  "scope": "L9 universal identity and domain foundation",
+  "scope": "Universal identity and domain foundation",
   "baseCompatibility": {
     "strategy": "additive",
     "legacyRuntimeAuthoritative": true,
@@ -103,5 +103,7 @@
     "infer identity from display text",
     "silently repair corrupt overlay",
     "ship source-only Foundation dependencies without package verification"
-  ]
+  ],
+  "architectureName": "Foundation — Identity & Domain Model",
+  "historicalCheckpoint": "L9"
 }

@@ -200,9 +200,32 @@
     modal(course.nameRu||id,`<div class="academic2026-modal-grid"><section class="academic2026-modal-card"><h4>Dữ liệu chính thức</h4><p><b>${h(itemMeta(course))}</b></p><p>Readiness: ${stateBadge(ready)} · ${riskBadge(risk)}</p><p class="academic2026-note">Risk là readiness risk để xếp thứ tự can thiệp; không phải xác suất điểm số.</p></section><section class="academic2026-modal-card"><h4>Gate critical</h4><div class="academic2026-tags">${critical.length?gateTags(critical):'<span class="academic2026-tag">Không có gate critical trong registry V1</span>'}</div><h4 style="margin-top:12px">Gate hỗ trợ</h4><div class="academic2026-tags">${support.length?gateTags(support):'<span class="academic2026-tag">—</span>'}</div></section></div><p class="academic2026-source">Nguồn chương trình: ${h(window.BAUMAN_CURRICULUM_2026?.source?.url||CURRICULUM_URL)}</p>`);
   }
 
+  function publishPackStatus(value){window.BAUMAN_PREREQ_PACKS_2026_STATUS=Object.freeze({ready:Boolean(value?.ready),expected:Number(value?.expected)||0,loaded:Number(value?.loaded)||0,failed:Number(value?.failed)||0})}
+  publishPackStatus({ready:false,expected:0,loaded:0,failed:0});
   async function fetchJson(url){const r=await fetch(url,{cache:'no-cache'});if(!r.ok)throw new Error(`${url} HTTP ${r.status}`);return r.json()}
   async function load(){
-    try{const [curriculum,prereq,manifest]=await Promise.all([fetchJson(CURRICULUM_URL),fetchJson(PREREQ_URL),fetchJson(PACK_MANIFEST_URL)]);window.BAUMAN_CURRICULUM_2026=curriculum;window.BAUMAN_PREREQ_2026=prereq;const results=await Promise.allSettled((manifest.packs||[]).map(async row=>[row.gateId,await fetchJson(row.path)])),packs={};for(const result of results)if(result.status==='fulfilled'){const [gateId,pack]=result.value;if(pack?.gateId===gateId)packs[gateId]=pack}window.BAUMAN_PREREQ_PACKS_2026=Object.freeze(packs);readStore();patchApp();console.info(VERSION,{curriculum:curriculum.version,prereq:prereq.version,packs:Object.keys(packs).length,storage:DIAGNOSTIC_STORAGE_KEY,schedulerMutation:SCHEDULER_MUTATION_ENABLED})}catch(err){console.warn('Academic 2026 runtime disabled safely:',err)}
+    publishPackStatus({ready:false,expected:0,loaded:0,failed:0});
+    try{
+      const [curriculum,prereq,manifest]=await Promise.all([fetchJson(CURRICULUM_URL),fetchJson(PREREQ_URL),fetchJson(PACK_MANIFEST_URL)]);
+      window.BAUMAN_CURRICULUM_2026=curriculum;window.BAUMAN_PREREQ_2026=prereq;
+      const rows=Array.isArray(manifest.packs)?manifest.packs:[];
+      publishPackStatus({ready:false,expected:rows.length,loaded:0,failed:0});
+      const results=await Promise.allSettled(rows.map(async row=>[row.gateId,await fetchJson(row.path)])),packs={};
+      let failed=0;
+      results.forEach((result,index)=>{
+        if(result.status!=='fulfilled'){failed++;return}
+        const [gateId,pack]=result.value;
+        if(gateId!==rows[index]?.gateId||pack?.gateId!==gateId){failed++;return}
+        packs[gateId]=pack;
+      });
+      window.BAUMAN_PREREQ_PACKS_2026=Object.freeze(packs);
+      publishPackStatus({ready:true,expected:rows.length,loaded:Object.keys(packs).length,failed});
+      readStore();patchApp();
+      console.info(VERSION,{curriculum:curriculum.version,prereq:prereq.version,packs:Object.keys(packs).length,packFailures:failed,storage:DIAGNOSTIC_STORAGE_KEY,schedulerMutation:SCHEDULER_MUTATION_ENABLED});
+    }catch(err){
+      publishPackStatus({ready:true,expected:0,loaded:0,failed:1});
+      console.warn('Academic 2026 runtime disabled safely:',err);
+    }
   }
 
   window.openAcademicGate=openGate;window.openPrerequisiteOverview2026=openPrereqOverview;window.openOfficialCourse2026=openCourse;window.saveAcademicDiagnostic2026=saveDiagnosticFromModal;window.clearAcademicDiagnostic2026=clearDiagnosticFromModal;

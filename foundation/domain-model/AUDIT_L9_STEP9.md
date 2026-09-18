@@ -1,4 +1,4 @@
-# L9 Step 9 — Promotion / Freeze Audit
+# Bauman Foundation — Identity & Domain Model — Step 9 — Promotion / Freeze Audit
 
 ## Goal
 

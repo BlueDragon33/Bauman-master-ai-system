@@ -129,7 +129,7 @@ jobs:
           BAUMAN_E2E_BASE_URL: http://127.0.0.1:4173/
           BAUMAN_E2E_ARTIFACT_DIR: artifacts/math-study-command-center
         run: node tests/math-study-command-center-browser.mjs
-      - name: Run Hub V2 responsive acceptance
+      - name: Run Hub Responsive Acceptance
         env:
           BAUMAN_E2E_BASE_URL: http://127.0.0.1:4173/
           BAUMAN_E2E_ARTIFACT_DIR: artifacts/hub-premium-responsive
@@ -174,7 +174,7 @@ jobs:
           BAUMAN_E2E_BASE_URL: http://127.0.0.1:4174/
           BAUMAN_E2E_ARTIFACT_DIR: artifacts/chatgpt-site-foundation-canonical-context
         run: node tests/foundation-canonical-context-browser.mjs
-      - name: Run packaged Hub V2 responsive acceptance
+      - name: Run Packaged Hub Responsive Acceptance
         env:
           BAUMAN_E2E_BASE_URL: http://127.0.0.1:4174/
           BAUMAN_E2E_ARTIFACT_DIR: artifacts/chatgpt-site-hub-responsive
