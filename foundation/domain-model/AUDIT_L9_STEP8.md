@@ -1,4 +1,4 @@
-# L9 Step 8 — Canonical Consumer Context Adapter
+# Bauman Foundation — Identity & Domain Model — Step 8 — Canonical Consumer Context Adapter
 
 ## Goal
 
