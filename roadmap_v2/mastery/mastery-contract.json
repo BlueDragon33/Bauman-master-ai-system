@@ -1,7 +1,7 @@
 {
-  "schema": "BAUMAN_ROADMAP_V2_MASTERY_CONTRACT_V1",
-  "version": 1,
-  "scope": "Lượt 24 / Bước 93–96 — append-only in-memory evidence reduction and Master-ready gates; no production persistence or Priority Engine activation",
+  "schema": "BAUMAN_ROADMAP_V2_MASTERY_CONTRACT_V2",
+  "version": 2,
+  "scope": "Lượt 24 / Bước 93–96 — current append-only in-memory mastery/evidence boundary on Consumer Blueprint + Diagnostic V2; no production persistence, Priority Engine, scheduler or runtime activation",
   "mode": {
     "access": "read_only_harness",
     "productionIntegration": "disconnected",
@@ -10,10 +10,19 @@
     "persistentStoreEnabled": false,
     "legacyMutationAllowed": false
   },
-  "upstreamSchemas": {
-    "consumerManifest": "BAUMAN_ROADMAP_V2_CONSUMER_MANIFEST_V1",
-    "diagnosticManifest": "BAUMAN_ROADMAP_V2_DIAGNOSTIC_MANIFEST_V1",
-    "diagnosticResult": "BAUMAN_ROADMAP_V2_DIAGNOSTIC_RESULT_V1"
+  "upstream": {
+    "consumerBlueprintPath": "roadmap_v2/consumer/blueprint.json",
+    "consumerBlueprintSchema": "BAUMAN_ROADMAP_V2_CONSUMER_BLUEPRINT_V1",
+    "consumerBlueprintValidationRequired": "PASS",
+    "diagnosticContractPath": "roadmap_v2/diagnostic/diagnostic-contract.json",
+    "diagnosticContractSchema": "BAUMAN_ROADMAP_V2_DIAGNOSTIC_CONTRACT_V2",
+    "diagnosticCatalogPath": "roadmap_v2/diagnostic/catalog.json",
+    "diagnosticCatalogSchema": "BAUMAN_ROADMAP_V2_DIAGNOSTIC_CATALOG_V2",
+    "diagnosticResultSchema": "BAUMAN_ROADMAP_V2_DIAGNOSTIC_RESULT_V2",
+    "evidenceEventSchema": "BAUMAN_ROADMAP_V2_EVIDENCE_EVENT_V1",
+    "masterySnapshotSchema": "BAUMAN_ROADMAP_V2_MASTERY_SNAPSHOT_V1",
+    "manifestDependencyRequired": false,
+    "staleHistoricalManifestAccepted": false
   },
   "knowledgeStates": [
     "chua_hoc",
@@ -65,6 +74,8 @@
     "passingKnowledgeState": "dat_prerequisite",
     "passingDiagnosticSatisfiesChapterAssessment": false,
     "passingDiagnosticGrantsMasterReady": false,
+    "diagnosticMasterReadyFieldRequiredFalse": true,
+    "diagnosticPersistableFieldRequiredFalse": true,
     "retentionStillRequiredForReviewOnDemand": true
   },
   "masterReadyGate": {
@@ -115,13 +126,26 @@
     "snapshotRead": true,
     "masterReadyEvaluate": true,
     "prerequisiteGateEvaluate": true,
+    "inMemoryHarnessOnly": true,
     "persistentStoreWrite": false,
     "priorityEngineWrite": false,
     "schedulerWrite": false,
     "runtimeActivation": false
   },
+  "reasonCodes": {
+    "DIAGNOSTIC_EXISTING_COMPETENCY_NOT_MASTER_READY": "A passing Diagnostic verifies prerequisite competency only and never grants Master-ready.",
+    "DIAGNOSTIC_PERSISTENCE_FORBIDDEN": "Diagnostic results consumed by the Mastery harness must remain non-persistable.",
+    "INCOMPLETE_MASTERY_EVIDENCE": "Master-ready requires every applicable evidence dimension to pass.",
+    "RETENTION_REVIEW_REQUIRED": "Retention evidence may demote a previously ready target to can_on.",
+    "RUSSIAN_TERMS_REQUIRED_GD2_GD3": "Applicable GD2/GD3 non-Russian targets require the configured Russian technical-term evidence.",
+    "EXTERNAL_GATE_UNRESOLVED": "External prerequisite gates remain explicit and cannot be silently satisfied.",
+    "STALE_MANIFEST_DEPENDENCY_FORBIDDEN": "Historical Consumer/Diagnostic manifests and pinned hashes are quarantined and cannot be an execution dependency.",
+    "PERSISTENCE_DISABLED": "All L24 evidence reduction remains in-memory only.",
+    "PRODUCTION_DISCONNECTED": "Mastery remains disconnected from production entrypoints."
+  },
   "abortConditions": [
-    "upstream manifest hash drift",
+    "current Consumer Blueprint or Diagnostic schema/capability mismatch",
+    "dependency on quarantined historical Consumer/Diagnostic manifest or baseline hash",
     "unknown target, phase, evidence type or knowledge state",
     "duplicate event ID or non-monotonic sequence",
     "event target or phase changes inside one stream",
@@ -134,11 +158,16 @@
   ],
   "acceptance": {
     "step": 93,
+    "currentTrack": "L24",
+    "consumerBlueprintBoundaryRevalidated": true,
+    "diagnosticV2BoundaryRevalidated": true,
+    "staleManifestDependencyRemoved": true,
     "existingCompetencyDistinctFromMasterReady": true,
     "eventsAppendOnly": true,
     "persistentStoreEnabled": false,
     "priorityEngineEnabled": false,
+    "schedulerEnabled": false,
     "runtimeActivationAllowed": false,
-    "result": "PASS_CONTRACT_ONLY"
+    "result": "PASS_CONTRACT_ONLY_PENDING_B93_GATE"
   }
 }
