@@ -1,0 +1,109 @@
+{
+  "schema": "BAUMAN_FOUNDATION_L10_PROMOTION_V1",
+  "version": 1,
+  "status": "promotion_candidate",
+  "scope": "L10 content asset provenance foundation",
+  "baseCompatibility": {
+    "strategy": "additive",
+    "l9DomainContractSchema": "BAUMAN_DOMAIN_CONTRACT_V1",
+    "l9DomainContractVersion": 1,
+    "l9DomainContractGitBlobSha": "0691acecbec6734cb746aa9cb745350880a98d59",
+    "legacyRuntimeAuthoritative": true,
+    "legacyPathsPreserved": true,
+    "legacyContentUntouched": true,
+    "runtimeIntegration": "none"
+  },
+  "schemas": [
+    "BAUMAN_CONTENT_ASSET_PROVENANCE_REGISTRY_V1",
+    "BAUMAN_CONTENT_ASSET_REGISTRY_RUNTIME_V1",
+    "BAUMAN_ASSET_INTEGRITY_V1",
+    "BAUMAN_PROVENANCE_CHAIN_V1",
+    "BAUMAN_ACCESS_POLICY_V1",
+    "BAUMAN_CONTENT_ASSET_REGISTRY_SNAPSHOT_V1",
+    "BAUMAN_CONTENT_ASSET_REGISTRY_SNAPSHOT_STORE_V1",
+    "BAUMAN_CONTENT_ASSET_REGISTRY_SNAPSHOT_INTEGRITY_V1"
+  ],
+  "runtimeRequired": [
+    "foundation/content-registry/registry-contract.v1.json",
+    "foundation/content-registry/content-asset-registry.js",
+    "foundation/content-registry/asset-integrity.js",
+    "foundation/content-registry/provenance-chain.js",
+    "foundation/content-registry/access-policy.js",
+    "foundation/content-registry/registry-snapshot.js",
+    "foundation/content-registry/registry-snapshot-store.js",
+    "foundation/content-registry/registry-snapshot-integrity.js"
+  ],
+  "validatorRequired": [
+    "scripts/validate-content-asset-provenance-registry.mjs",
+    "scripts/validate-content-asset-registry-runtime.mjs",
+    "scripts/validate-asset-integrity.mjs",
+    "scripts/validate-provenance-chain.mjs",
+    "scripts/validate-access-policy.mjs",
+    "scripts/validate-registry-snapshot.mjs",
+    "scripts/validate-registry-snapshot-store.mjs",
+    "scripts/validate-registry-snapshot-integrity.mjs",
+    "scripts/validate-foundation-l10-promotion.mjs"
+  ],
+  "testRequired": [
+    "tests/content-asset-provenance-contract.test.mjs",
+    "tests/content-asset-registry-runtime.test.mjs",
+    "tests/asset-integrity.test.mjs",
+    "tests/provenance-chain.test.mjs",
+    "tests/access-policy.test.mjs",
+    "tests/registry-snapshot.test.mjs",
+    "tests/registry-snapshot-store.test.mjs",
+    "tests/registry-snapshot-integrity.test.mjs"
+  ],
+  "requiredAudits": [
+    "AUDIT_L10_STEP1.md",
+    "AUDIT_L10_STEP2.md",
+    "AUDIT_L10_STEP3.md",
+    "AUDIT_L10_STEP4.md",
+    "AUDIT_L10_STEP5.md",
+    "AUDIT_L10_STEP6.md",
+    "AUDIT_L10_STEP7.md",
+    "AUDIT_L10_STEP8.md",
+    "AUDIT_L10_STEP9.md"
+  ],
+  "invariants": {
+    "registryIdsStable": true,
+    "displayLabelsNeverPermanentIdentity": true,
+    "canonicalDomainKindsNotExtendedByL10": true,
+    "provenanceAppendOnly": true,
+    "transformsRetainLineage": true,
+    "assetChecksumSha256Required": true,
+    "accessDefaultPrivate": true,
+    "unknownExtensionsPreserved": true,
+    "snapshotsCanonicalDeterministic": true,
+    "persistenceTransportOnly": true,
+    "persistenceTransactional": true,
+    "corruptPersistenceFailsClosed": true,
+    "snapshotIntegritySha256": true,
+    "snapshotChecksumIsNotAuthentication": true,
+    "legacyRuntimeNeverRewritten": true,
+    "browserStorageBindingDeferred": true,
+    "networkAuthorityDeferred": true,
+    "destructiveStorageResetForbidden": true
+  },
+  "promotionGates": [
+    "Content Asset Provenance Gate",
+    "Foundation Domain Model Gate",
+    "Academic 2026 Prerequisite Gate",
+    "Windows checkout safety",
+    "Bauman Cloudflare Preview CI",
+    "Whole System Integration Gate"
+  ],
+  "forbiddenPromotionShortcuts": [
+    "mutate the promoted L9 domain contract",
+    "derive registry identity from display text",
+    "drop transformed/generated provenance lineage",
+    "accept assets without SHA-256 checksum records",
+    "make public visibility the default",
+    "persist non-canonical snapshots",
+    "treat snapshot checksum as signer authentication",
+    "bind L10 core to localStorage, sessionStorage, IndexedDB, filesystem, cloud database, or network APIs",
+    "rewrite legacy content paths or learning state",
+    "clear user storage",
+    "merge to main without a separately approved promotion"
+  ]
+}
