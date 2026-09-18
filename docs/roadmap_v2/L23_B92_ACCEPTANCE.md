@@ -1,6 +1,6 @@
 # L23/B92 — Full-system Closeout Acceptance
 
-Status: `PENDING_GATE`
+Status: `PASS`
 
 ## Purpose
 
@@ -40,3 +40,17 @@ B92 is not PASS until the same closeout head passes all six project gates:
 6. Whole System Integration including browser/package/offline acceptance.
 
 Only after that may L24 be marked READY.
+
+
+## Gate evidence
+
+Accepted B92 head: `5c3229f9860bdcb7739abb236cdcb91e168b3e7d`
+
+- Roadmap V2 Current Gate — run `35333198950` — PASS
+- Foundation Domain Model — run `35333199061` — PASS
+- Windows checkout safety — run `35333198993` — PASS
+- Russian Reference UI — run `35333199032` — PASS
+- Cloudflare Preview — run `35333198937` — PASS
+- Whole System Integration — run `35333198945` — PASS
+
+L23 is closed. L24 may now be opened on the accepted current-runtime baseline.
