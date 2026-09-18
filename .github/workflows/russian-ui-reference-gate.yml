@@ -41,6 +41,8 @@ jobs:
         run: node subjects/russian/scripts/validate-evidence-bound-completion.mjs
       - name: Validate Russian R0-R4 capability progression
         run: node subjects/russian/scripts/validate-capability-progression.mjs
+      - name: Validate Russian capability-aware planning
+        run: node subjects/russian/scripts/validate-capability-planning.mjs
       - name: Validate Russian stage readiness
         run: node subjects/russian/scripts/validate-stage-readiness.mjs
       - name: Validate Russian stage transition handoff
