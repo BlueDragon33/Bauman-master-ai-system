@@ -1,0 +1,36 @@
+{
+  "schema": "RUSSIAN_LISTENING_LADDER_CONTRACT_V1",
+  "contractVersion": 1,
+  "stages": [
+    "normal_gist",
+    "focused_replay",
+    "repair_slow",
+    "detail_check"
+  ],
+  "policy": {
+    "normalBeforeFocused": true,
+    "minimumNormalPlaysBeforeSlow": 2,
+    "slowIsRepairOnly": true,
+    "gistEvidenceAfterFirstNormal": true,
+    "detailEvidenceAfterFirstNormal": true,
+    "translationAnswerForbidden": true,
+    "preserveHearBeforeSee": true
+  },
+  "runtime": {
+    "reuseCoreNormalListen": true,
+    "reuseCoreSlowListen": true,
+    "createSecondAudioPlayer": false,
+    "sourceOfLineTruth": "rendered_practice_context"
+  },
+  "evidence": {
+    "separateStorage": true,
+    "perDialogueLine": true,
+    "normalPlays": true,
+    "focusedPlays": true,
+    "slowRepairs": true,
+    "gistChecks": true,
+    "detailChecks": true,
+    "learnerStateAuthority": false,
+    "masteryMutation": false
+  }
+}
