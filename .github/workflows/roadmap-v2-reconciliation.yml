@@ -24,6 +24,7 @@ on:
       - 'scripts/validate-roadmap-v2-l23-b90.mjs'
       - 'scripts/validate-roadmap-v2-l23-b91.mjs'
       - 'scripts/validate-roadmap-v2-l23-b92.mjs'
+      - 'scripts/validate-roadmap-v2-l24-b93.mjs'
       - '.github/workflows/roadmap-v2-reconciliation.yml'
 
 permissions:
@@ -64,6 +65,8 @@ jobs:
         run: node scripts/validate-roadmap-v2-l23-b91.mjs
       - name: Validate current L23 B92 closeout
         run: node scripts/validate-roadmap-v2-l23-b92.mjs
+      - name: Validate current L24 B93 mastery contract
+        run: node scripts/validate-roadmap-v2-l24-b93.mjs
       - name: Validate Foundation V2 L9
         run: node scripts/validate-foundation-domain-model.mjs
       - name: Validate current system integration
