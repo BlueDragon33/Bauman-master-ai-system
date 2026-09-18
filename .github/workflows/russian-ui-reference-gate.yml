@@ -43,6 +43,8 @@ jobs:
         run: node subjects/russian/scripts/validate-stage-readiness.mjs
       - name: Validate Russian stage transition handoff
         run: node subjects/russian/scripts/validate-stage-transition-handoff.mjs
+      - name: Validate Russian stage readiness navigator
+        run: node subjects/russian/scripts/validate-readiness-navigator.mjs
       - name: Validate Russian listening speaking coach
         run: node subjects/russian/scripts/validate-speaking-coach.mjs
       - name: Validate Russian grammar reading writing academic bridge
