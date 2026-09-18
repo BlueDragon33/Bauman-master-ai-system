@@ -93,7 +93,10 @@
       "allowHttps",
       "availableProviders"
     ],
-    "defaultNetwork": "deny"
+    "defaultNetwork": "deny",
+    "providerNames": [
+      "content_hash"
+    ]
   },
   "output": {
     "schema": "BAUMAN_RUNTIME_RESOURCE_DESCRIPTOR_V1",
@@ -150,5 +153,16 @@
     "resolverMustEvaluateResolvedAsset": true,
     "externalDecisionTrusted": false,
     "failClosed": true
+  },
+  "selectionPolicy": {
+    "locatorPrecedence": [
+      "repository_relative",
+      "content_hash",
+      "https_url"
+    ],
+    "preferredAssetIdOptional": true,
+    "preferredAssetIdMustBeLinkedToContent": true,
+    "multipleViableAssetsWithoutPreference": "ambiguous",
+    "noDisplayNameSelection": true
   }
 }
