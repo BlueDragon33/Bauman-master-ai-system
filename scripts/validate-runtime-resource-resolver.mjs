@@ -35,7 +35,10 @@ const remoteBlocked=resolver.resolve(registry,{...base,targetRegistryId:'bdr:ass
 assert.equal(remoteBlocked.status,'blocked');
 assert.equal(remoteBlocked.reason,'no_allowed_locator');
 
-const remoteAllowed=resolver.resolve(registry,{...base,targetRegistryId:'bdr:asset:test:resolver-https-001',runtimePolicy:{allowRepositoryRelative:true,allowHttps:true,availableProviders:[]}});
+const remoteDeniedWithoutOrigin=resolver.resolve(registry,{...base,targetRegistryId:'bdr:asset:test:resolver-https-001',runtimePolicy:{allowRepositoryRelative:true,allowHttps:true,allowedHttpsOrigins:[],availableProviders:[]}});
+assert.equal(remoteDeniedWithoutOrigin.status,'blocked');
+
+const remoteAllowed=resolver.resolve(registry,{...base,targetRegistryId:'bdr:asset:test:resolver-https-001',runtimePolicy:{allowRepositoryRelative:true,allowHttps:true,allowedHttpsOrigins:['https://example.test'],availableProviders:[]}});
 assert.equal(remoteAllowed.status,'resolved');
 assert.equal(remoteAllowed.transport,'https');
 
