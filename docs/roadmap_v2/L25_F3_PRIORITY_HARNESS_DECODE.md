@@ -1,6 +1,6 @@
 # L25-F3 — Priority Harness Decode Integrity Repair
 
-Status: `FIX_APPLIED_PRE_GATE`
+Status: `PASS`
 
 ## Trigger
 
@@ -24,3 +24,15 @@ This restores valid JavaScript syntax and ensures callers cannot manually overri
 No formula, normalization, disposition rule, persistence, scheduler or runtime behavior changed.
 
 B98 remains in progress and must pass its own validator plus the complete project gate.
+
+
+## Gate evidence
+
+Accepted B98/F3 head: `18d3c772c19ebb912c6e4094ec3a4dab37cda55a`
+
+- Roadmap V2 Current Gate — run `35338425039` — PASS
+- Foundation Domain Model — run `35338424996` — PASS
+- Windows checkout safety — run `35338425029` — PASS
+- Russian Reference UI — run `35338424991` — PASS
+- Cloudflare Preview — run `35338425087` — PASS
+- Whole System Integration — run `35338425054` — PASS
