@@ -16,6 +16,7 @@ Ví dụ:
 
 - Foundation — Identity & Domain Model
 - Foundation — Content, Asset & Provenance Registry
+- Foundation — Content Resolution & Runtime Delivery
 - Foundation — Learning Content Standard
 - Hub Application Shell
 - Shared Subject Platform
