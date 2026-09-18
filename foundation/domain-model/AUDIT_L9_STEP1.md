@@ -1,4 +1,4 @@
-# L9 Step 1 — Baseline Audit
+# Bauman Foundation — Identity & Domain Model — Step 1 — Baseline Audit
 
 ## Scope
 
