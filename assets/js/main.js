@@ -468,7 +468,30 @@ function receiveSubjectRouteReceipt(msg={}){
  return true;
 }
 function handleSubjectBridgeMessage(event){if(!trustedSubjectEvent(event))return;const msg=event.data||{};if(!msg||typeof msg!=='object')return;const readyTypes=[BRIDGE_TYPES.ready,'BAUMAN_CHILD_READY'];const progressTypes=[BRIDGE_TYPES.progress,'BAUMAN_PROGRESS_REPORT','SUBJECT_FEEDBACK'];const activeSubjectId=state.activeTask?.subjectId||msg.subjectId||'';if(readyTypes.includes(msg.type)){if(state.activeTask)sendTaskToSubject(event.source,state.activeTask);sendCapabilityRequestToSubject(event.source,activeSubjectId);return}if(msg.type===BRIDGE_TYPES.capability){if(msg.subjectId&&activeSubjectId&&msg.subjectId!==activeSubjectId)return;receiveSubjectCapability({...msg,subjectId:msg.subjectId||activeSubjectId});return}if(msg.type===BRIDGE_TYPES.capabilityRouteReceipt){receiveSubjectRouteReceipt(msg);return}if(progressTypes.includes(msg.type)){if(msg.subjectId&&activeSubjectId&&msg.subjectId!==activeSubjectId)return;receiveSubjectProgress({...msg,subjectId:msg.subjectId||activeSubjectId})}}
-function receiveSubjectProgress(report){const subjectId=report.subjectId||report.subject||state.activeTask?.subjectId;if(!subjectId||!state.subjects[subjectId])return;const normalized={...report,subjectId,receivedAt:new Date().toISOString(),targetQuestions:Number(report.targetQuestions||state.schedule.targetQuestions||FINAL_TARGET_QUESTIONS),targetScore:Number(report.targetScore||state.schedule.targetScore||DEFAULT_TARGET_SCORE)};normalized.total=Number(normalized.total||normalized.questions||normalized.answered||0);normalized.correct=Number(normalized.correct||0);normalized.percent=Number(normalized.percent??normalized.progress??progressPct(normalized.correct,normalized.total));normalized.completed=!!normalized.completed || (normalized.total>=normalized.targetQuestions && normalized.percent>=normalized.targetScore);state.subjectReports[subjectId]=[...(state.subjectReports[subjectId]||[]),normalized].slice(-60);state.progress[subjectId]=normalized.completed?100:Math.max(Number(state.progress[subjectId]||0),Math.min(99,Math.round((normalized.total/normalized.targetQuestions)*60 + (normalized.percent/100)*39)));if(normalized.completed)markSubjectCourseComplete(subjectId,normalized);else scheduleAdaptiveReviews(normalized);state.activity.unshift({time:normalized.receivedAt,subjectId,text:`${subjectName(subjectId)} phản hồi ${normalized.percent}% (${normalized.correct}/${normalized.total})`});state.activity=state.activity.slice(0,80);save();app.home();app.schedule();toast(normalized.completed?'Đã hoàn thành mục tiêu kiểm tra 100 câu':'Đã nhận phản hồi và tự điều chỉnh ôn tập')}
+function finiteProgressNumber(value){
+ if(value===null||value===undefined||value===''||typeof value==='object')return null;
+ const n=Number(value);return Number.isFinite(n)?n:null;
+}
+function receiveSubjectProgress(report={}){
+ const subjectId=report.subjectId||report.subject||state.activeTask?.subjectId;
+ if(!subjectId||!state.subjects[subjectId])return false;
+ const activeTaskId=String(state.activeTask?.taskId||state.activeTask?.missionId||''),reportTaskId=String(report.taskId||report.missionId||'');
+ const normalized={...report,subjectId,receivedAt:new Date().toISOString(),targetQuestions:Number(report.targetQuestions||state.schedule.targetQuestions||FINAL_TARGET_QUESTIONS),targetScore:Number(report.targetScore||state.schedule.targetScore||DEFAULT_TARGET_SCORE)};
+ normalized.total=Math.max(0,finiteProgressNumber(report.total??report.questions??report.answered)??0);
+ normalized.correct=Math.max(0,finiteProgressNumber(report.correct)??0);
+ const directPercent=finiteProgressNumber(report.percent??((typeof report.progress==='number'||typeof report.progress==='string')?report.progress:null)??report.score);
+ normalized.percent=directPercent??(normalized.total>0?progressPct(normalized.correct,normalized.total):null);
+ normalized.reportKind=(normalized.total>0||normalized.percent!==null||report.completed===true)?'assessment':'state';
+ normalized.taskAccepted=!reportTaskId||!activeTaskId||reportTaskId===activeTaskId;
+ state.subjectReports[subjectId]=[...(state.subjectReports[subjectId]||[]),normalized].slice(-60);
+ if(normalized.reportKind!=='assessment'||!normalized.taskAccepted){save();return false;}
+ normalized.completed=report.completed===true||(normalized.total>=normalized.targetQuestions&&normalized.percent!==null&&normalized.percent>=normalized.targetScore);
+ const percent=normalized.percent??0;
+ state.progress[subjectId]=normalized.completed?100:Math.max(Number(state.progress[subjectId]||0),Math.min(99,Math.round((normalized.total/normalized.targetQuestions)*60+(percent/100)*39)));
+ if(normalized.completed)markSubjectCourseComplete(subjectId,normalized);else scheduleAdaptiveReviews(normalized);
+ state.activity.unshift({time:normalized.receivedAt,subjectId,text:`${subjectName(subjectId)} phản hồi ${percent}% (${normalized.correct}/${normalized.total})`});
+ state.activity=state.activity.slice(0,80);save();app.home();app.schedule();toast(normalized.completed?'Đã hoàn thành mục tiêu kiểm tra 100 câu':'Đã nhận phản hồi và tự điều chỉnh ôn tập');return true;
+}
 function markSubjectCourseComplete(subjectId,report){for(const [key,e] of Object.entries(state.schedule.entries||{})){if(e.subjectId===subjectId&&(e.itemId===report.courseId||!report.courseId)){e.status='completed';e.completedAt=report.receivedAt;}}
 }
 function scheduleAdaptiveReviews(report){const poor=Number(report.percent||0)<Number(report.targetScore||DEFAULT_TARGET_SCORE);const offsets=poor?[0,1,2,3,7]:[1,3,7,14];const subjectId=report.subjectId;const base=todayISO();offsets.forEach((off,i)=>{const day=iso(addDays(parseDate(base),off));const target=findReviewSlot(day,poor);if(!target)return;const key=target.date+'|'+target.slot.id;if(state.schedule.entries[key])return;state.schedule.entries[key]={subjectId,itemId:report.courseId||'',learningItem:poor?'Ôn tăng cường do kết quả còn yếu':'Ôn ghi nhớ gián đoạn',label:poor?'Ôn tập tăng cường':'Ôn tập gián đoạn',source:poor?'adaptive-review':'spaced-review',durationMinutes:slotDurationMinutes(target.slot),plannedEndDate:target.date,fromReportAt:report.receivedAt,reviewIndex:i+1};});}
