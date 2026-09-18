@@ -1,0 +1,38 @@
+{
+  "schema": "RUSSIAN_VISUAL_VOCABULARY_RUNTIME_CONTRACT_V1",
+  "contractVersion": 1,
+  "authority": {
+    "learnerFacingSemanticAuthority": "RUSSIAN_VISUAL_VOCABULARY_RUNTIME_V1",
+    "authoritySwitch": true,
+    "legacyTranslationFieldsRemainSourceCompatible": true,
+    "srsSchedulingAuthorityUnchanged": true,
+    "masteryAuthorityUnchanged": true
+  },
+  "learnerSurface": {
+    "semanticChannels": [
+      "explicit_visual_asset",
+      "russian_visual_label",
+      "russian_definition",
+      "russian_context",
+      "audio_recall"
+    ],
+    "prohibited": [
+      "vietnamese_translation_answer",
+      "english_translation_answer",
+      "flip_meaning",
+      "synthetic_translation_fallback"
+    ],
+    "contextRevealReplacesMeaningFlip": true,
+    "explicitMissingState": true
+  },
+  "sourceCompatibility": {
+    "deleteLegacyTranslationFields": false,
+    "mutateVocabCorpus": false
+  },
+  "invariants": {
+    "noVietnameseSemanticAnswer": true,
+    "noEnglishSemanticAnswer": true,
+    "noMasteryMutation": true,
+    "noSrsScheduleMigration": true
+  }
+}
