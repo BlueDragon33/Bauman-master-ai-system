@@ -2,6 +2,7 @@ import assert from 'node:assert/strict';
 import fs from 'node:fs';
 
 const main=fs.readFileSync('assets/js/main.js','utf8');
+const planning=fs.readFileSync('assets/js/planning-main.js','utf8');
 const host=fs.readFileSync('subjects/shared/host-bridge.js','utf8');
 const core=fs.readFileSync('subjects/russian/assets/core.js','utf8');
 const hub=fs.readFileSync('assets/js/hub-safe-shell.js','utf8');
@@ -14,6 +15,8 @@ assert.ok(main.includes('routeTab:route.learnTab'),'Capability route query tab m
 assert.ok(main.includes('routeLesson:route.lessonId'),'Capability route query lesson missing');
 assert.ok(main.includes("openSubjectCapabilityGap(id='russian')"),'Main capability gap launcher missing');
 assert.ok(hub.includes("a.openSubjectCapabilityGap?.('russian')"),'Hub CTA must use capability gap launcher');
+assert.ok(planning.includes("source:base.source==='capability-gap'?'capability-gap':'bauman-main-planning-v3'"),'PlanningBridge must preserve capability-gap provenance');
+assert.ok(planning.includes("originSource:base.source||'bauman-main'"),'PlanningBridge origin source trace missing');
 
 assert.ok(host.includes("params.get('routeLesson')"),'Host bridge deep-link lesson fallback missing');
 assert.ok(host.includes("params.get('routeView')"),'Host bridge deep-link view fallback missing');
