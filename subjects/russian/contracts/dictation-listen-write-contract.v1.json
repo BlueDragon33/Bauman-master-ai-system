@@ -1,0 +1,32 @@
+{
+  "schema": "RUSSIAN_DICTATION_LISTEN_WRITE_CONTRACT_V1",
+  "contractVersion": 1,
+  "stages": [
+    "sound_to_letter",
+    "sound_to_word",
+    "short_dictation"
+  ],
+  "sources": {
+    "letterMap": "data/cyrillic-sound-map.json",
+    "readingBridge": "data/reading-bridge.json",
+    "syntheticPromptData": false
+  },
+  "practice": {
+    "audioLanguage": "ru-RU",
+    "answerHiddenBeforeAttempt": true,
+    "revealAfterAttempts": 2,
+    "punctuationOptionalInShortDictation": true,
+    "caseInsensitive": true,
+    "preserveYoDistinct": true
+  },
+  "evidence": {
+    "perItem": true,
+    "listenCount": true,
+    "attempts": true,
+    "correct": true,
+    "reveals": true,
+    "separateStorage": true,
+    "learnerStateAuthority": false,
+    "masteryMutation": false
+  }
+}
