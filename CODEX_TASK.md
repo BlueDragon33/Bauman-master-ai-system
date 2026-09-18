@@ -26,23 +26,24 @@ Learner-facing vocabulary meaning must not be Vietnamese translation.
 
 Use visual, audio and context evidence. Vietnamese may remain in navigation/help text but is not semantic authority for vocabulary.
 
-English is not the default translation bridge either.
+English is not the default semantic bridge either.
 
 ## Current work
 
-Turns 1–18 are accepted.
+Turns 1–19 are accepted.
 
-Next: **Turn 19 — Skill-gated assessment**.
+Next: **Turn 20 — AI mentor direct explanation**.
 
-Turn 19 must:
+Turn 20 requires an architecture upgrade before implementation can continue:
 
-- assess listening, speaking, print recognition, cursive recognition, reading and writing as separate skill gates;
-- keep each skill result independently evidenced;
-- prohibit a strong result in one skill from silently proving another;
-- calculate aggregate readiness only from explicit per-skill gate states;
-- keep aggregate readiness read-only/advisory and never mutate mastery/completion;
-- preserve existing SRS scheduling, Review Queue and learner-state authority;
-- expose which required skill blocks aggregate readiness instead of hiding the reason.
+- add an explicit AI explanation-policy contract;
+- enforce explanation order: Russian/context/visual/action/contrast/analogy first;
+- prohibit Vietnamese/English vocabulary meaning as the default learner-facing answer;
+- allow meta-language support only as a secondary help layer, not semantic authority;
+- reuse direct-semantic vocabulary descriptors instead of legacy translation fields;
+- keep the AI layer read-only for mastery, completion, Review Queue and scheduling;
+- add negative tests proving translation fallback cannot re-enter the AI surface;
+- preserve current context/canonical identity integration.
 
 ## Gate rule
 
