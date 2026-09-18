@@ -33,6 +33,10 @@ function lessonEvidence(lessonId,steps){
  const detail=(steps||[]).map(step=>({step,ok:rowHas(step,ls.steps?.[step])}));
  return {lessonId,ready:detail.every(x=>x.ok),detail};
 }
+function routeForStep(lessonId,step){
+ const tab=step==='speaking'?'practice':step==='check'?'review':'theory';
+ return {view:'learning',learnTab:tab,lessonId:clean(lessonId)};
+}
 function dueForLessons(ids){
  const set=new Set(ids);
  return reviews().filter(item=>set.has(clean(item?.lessonId||item?.route?.lessonId)));
@@ -59,8 +63,9 @@ function bandStatus(indexOrId){
  const complete=lesson.total>0&&lesson.ready===lesson.total&&due.length===0&&writingOk;
  const previous=index<=0?null:bandStatus(index-1);
  const unlocked=index===0||!!previous?.complete;
- const missingLesson=lesson.lessons.find(x=>!x.ready)?.lessonId||'';
- return {...band,index,unlocked,complete,lessonReady:lesson.ready,lessonTotal:lesson.total,dueCount:due.length,writing:w.withSnapshot,rewrites:w.rewrites,writingOk,missingLesson};
+ const missing=lesson.lessons.map(row=>({lessonId:row.lessonId,step:row.detail.find(x=>!x.ok)?.step||''})).find(x=>x.step)||null;
+ const missingLesson=missing?.lessonId||'',missingStep=missing?.step||'';
+ return {...band,index,unlocked,complete,lessonReady:lesson.ready,lessonTotal:lesson.total,dueCount:due.length,writing:w.withSnapshot,rewrites:w.rewrites,writingOk,missingLesson,missingStep,missingRoute:missing?routeForStep(missing.lessonId,missing.step):null};
 }
 function allBands(){return BANDS.map((_,i)=>bandStatus(i))}
 function currentBand(){
@@ -80,12 +85,12 @@ function stageExitStatus(stageId){
  if(w.rewrites<rule.rewriteNeed)blockers.push(`Cần thêm ${rule.rewriteNeed-w.rewrites} lượt viết lại có bằng chứng.`);
  return {stage:id,allowed,lessonReady:lesson.ready,lessonTotal:lesson.total,dueCount:due.length,writing:w.withSnapshot,rewrites:w.rewrites,rule,blockers,lessonIds:ids};
 }
-function routeAttr(id){return esc(JSON.stringify({view:'learning',learnTab:'theory',lessonId:id}))}
+function routeAttr(id,step='theory'){return esc(JSON.stringify(routeForStep(id,step)))}
 function bandCard(x){
  const state=x.complete?'done':x.unlocked?'active':'locked';
  const writingBits=x.writingNeed?[`viết ${x.writing}/${x.writingNeed}`,x.rewriteNeed?`viết lại ${x.rewrites}/${x.rewriteNeed}`:''].filter(Boolean).join(' · '):'không bắt buộc viết';
  const action=x.complete?'Đã hoàn tất':x.unlocked?(x.missingLesson?`Mở ${x.missingLesson}`:'Tiếp tục củng cố'):'Hoàn tất cấp trước';
- const button=x.unlocked&&!x.complete&&x.missingLesson?`<button class="btn soft" data-route='${routeAttr(x.missingLesson)}'>${esc(action)}</button>`:`<button class="btn soft" disabled>${esc(action)}</button>`;
+ const button=x.unlocked&&!x.complete&&x.missingLesson?`<button class="btn soft" data-route='${routeAttr(x.missingLesson,x.missingStep)}'>${esc(action)} · ${esc(x.missingStep||'theory')}</button>`:`<button class="btn soft" disabled>${esc(action)}</button>`;
  return `<article class="ru-cap-band ${state}"><header><span>${esc(x.id)}</span><div><b>${esc(x.title)}</b><small>${esc(x.goal)}</small></div></header><div class="ru-cap-metrics"><span><b>${x.lessonReady}/${x.lessonTotal}</b><small>bài đủ evidence</small></span><span><b>${x.dueCount}</b><small>review đến hạn</small></span><span><b>${esc(writingBits)}</b><small>bằng chứng viết</small></span></div>${button}</article>`;
 }
 function panelHtml(){
@@ -94,7 +99,7 @@ function panelHtml(){
 }
 function bridgePayload(){
  const c=core(),bands=allBands(),cur=currentBand(),stage=stageExitStatus(clean(c.stage)||'vn');
- const nextGap=cur?.missingLesson?{lessonId:cur.missingLesson,route:{view:'learning',learnTab:'theory',lessonId:cur.missingLesson}}:null;
+ const nextGap=cur?.missingLesson?{lessonId:cur.missingLesson,step:cur.missingStep||'theory',route:cur.missingRoute||routeForStep(cur.missingLesson,cur.missingStep)}:null;
  return {
   type:'BAUMAN_SUBJECT_CAPABILITY_STATE',
   schema:'RUSSIAN_CAPABILITY_BRIDGE_V1',
@@ -147,5 +152,5 @@ window.addEventListener('message',event=>{
  if(event.data?.type==='BAUMAN_REQUEST_SUBJECT_CAPABILITY_STATE')publishBridge(true);
 });
 document.addEventListener('click',()=>setTimeout(schedule,30),true);
-window.RussianCapabilityProgression={bands:BANDS,stageRules:STAGE_RULES,bandStatus,allBands,currentBand,stageExitStatus,bridgePayload,publishBridge,schedule};
+window.RussianCapabilityProgression={bands:BANDS,stageRules:STAGE_RULES,bandStatus,allBands,currentBand,stageExitStatus,routeForStep,bridgePayload,publishBridge,schedule};
 })();
