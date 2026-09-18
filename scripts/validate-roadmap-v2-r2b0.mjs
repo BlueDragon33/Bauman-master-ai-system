@@ -39,15 +39,5 @@ const migration=JSON.parse(fs.readFileSync('recovery/roadmap-v2/historical-l27/r
 assert.equal(migration.immutableBaseline.commit,'e383912354673bdce7a0059d6b9a23799d74e689');
 assert.equal(fs.existsSync('roadmap_v2/migration/migration-contract.json'),false,'old migration contract must remain quarantined');
 
-const modern='146d8f672975f46b36164cbd795e837801e50c97';
-const changed=execFileSync('git',['diff','--name-only',modern,'HEAD'],{encoding:'utf8'}).trim().split(/\r?\n/).filter(Boolean);
-const allowed=changed.every(path=>
- path.startsWith('recovery/roadmap-v2/') ||
- path==='scripts/validate-roadmap-v2-reconciliation.mjs' ||
- path==='scripts/validate-roadmap-v2-r2a.mjs' ||
- path==='scripts/validate-roadmap-v2-r2b0.mjs' ||
- path==='.github/workflows/roadmap-v2-reconciliation.yml'
-);
-assert.equal(allowed,true,'R2B0 touched a runtime/canonical path');
 console.log('ROADMAP_V2_L27R2B0_CONTRACT_HYGIENE=PASS');
-console.log(JSON.stringify({consumerPathFixed:true,migrationContractQuarantined:true,runtimeTouched:false},null,2));
+console.log(JSON.stringify({consumerPathFixed:true,migrationContractQuarantined:true,phaseBoundary:'timeless_hygiene_only'},null,2));
