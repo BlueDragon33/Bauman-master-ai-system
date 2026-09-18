@@ -1,0 +1,126 @@
+{
+  "schema": "BAUMAN_ROADMAP_V2_READINESS_CONTRACT_V1",
+  "version": "2.7.0-l27-b105",
+  "purpose": "Read-only prerequisite, mastery and weekly-plan readiness projection for dependency and dashboard consumers",
+  "mode": {
+    "access": "read_only_projection_harness",
+    "productionIntegration": "disconnected",
+    "failClosed": true,
+    "persistentStoreEnabled": false,
+    "dashboardUiEnabled": false,
+    "runtimeWriteAllowed": false,
+    "notificationWriteAllowed": false
+  },
+  "upstreamSchemas": {
+    "consumerManifest": "BAUMAN_ROADMAP_V2_CONSUMER_MANIFEST_V1",
+    "masteryManifest": "BAUMAN_ROADMAP_V2_MASTERY_MANIFEST_V1",
+    "masterySnapshot": "BAUMAN_ROADMAP_V2_MASTERY_SNAPSHOT_V1",
+    "schedulerManifest": "BAUMAN_ROADMAP_V2_SCHEDULER_MANIFEST_V1",
+    "schedulerRequest": "BAUMAN_ROADMAP_V2_SCHEDULER_REQUEST_V1",
+    "schedulerResult": "BAUMAN_ROADMAP_V2_SCHEDULER_RESULT_V1"
+  },
+  "readinessDimensions": [
+    "evidence_availability",
+    "prerequisite_gate",
+    "mastery_state",
+    "critical_schedule_coverage",
+    "external_gate_provenance"
+  ],
+  "targetPolicy": {
+    "focusTargetsRequired": true,
+    "unknownTargetPolicy": "reject",
+    "missingSnapshotPolicy": "red_unknown",
+    "unverifiedMasterReadyClaimPolicy": "red_unknown",
+    "duplicateTargetPolicy": "reject",
+    "recommendedAndContextualEdgesBlock": false,
+    "externalGatesRemainExplicit": true
+  },
+  "statusPolicy": {
+    "red": {
+      "code": "blocked_or_unknown",
+      "whenAny": [
+        "focus target mastery snapshot missing",
+        "master_ready claim lacks a passed Master-ready evidence gate",
+        "blocking prerequisite unsatisfied",
+        "required external gate missing, false or unverified",
+        "Critical focus target not scheduled"
+      ]
+    },
+    "yellow": {
+      "code": "prerequisite_ready_not_master_ready",
+      "whenAll": [
+        "focus target mastery snapshot present",
+        "blocking prerequisites satisfied",
+        "Critical focus target scheduled when applicable",
+        "knowledge state is not master_ready"
+      ]
+    },
+    "green": {
+      "code": "master_ready",
+      "whenAll": [
+        "focus target mastery snapshot present",
+        "blocking prerequisites satisfied",
+        "Critical focus target scheduled when applicable",
+        "knowledge state is master_ready",
+        "Master-ready evidence gate is present and passed"
+      ]
+    }
+  },
+  "overallPolicy": {
+    "order": [
+      "red if any target is red",
+      "yellow if no target is red and any target is yellow",
+      "green only if every focus target is green"
+    ],
+    "emptyFocusSetAllowed": false,
+    "manualOverrideAllowed": false
+  },
+  "externalGatePolicy": {
+    "inputShape": "verified gate records",
+    "verifiedSourceRequired": true,
+    "unknownExternalGatePolicy": "reject",
+    "missingGateDefaultsToSatisfied": false,
+    "callerBooleanMapAccepted": false
+  },
+  "outputPolicy": {
+    "dependencyEvidenceIncluded": true,
+    "reasonCodesIncluded": true,
+    "deepFrozen": true,
+    "persistentSnapshot": false,
+    "uiModelOnly": true
+  },
+  "capabilities": {
+    "requestValidate": true,
+    "prerequisiteEvaluate": true,
+    "scheduleCoverageEvaluate": true,
+    "targetReadinessProject": true,
+    "overallReadinessProject": true,
+    "persistentStoreWrite": false,
+    "dashboardUiRender": false,
+    "runtimeActivation": false,
+    "notificationWrite": false
+  },
+  "abortConditions": [
+    "upstream manifest hash drift",
+    "unknown or duplicate focus target",
+    "phase mismatch across readiness and schedule request",
+    "caller-supplied scheduler result or readiness color",
+    "persisted mastery snapshot admitted",
+    "unknown, duplicate or unverified external gate",
+    "recommended or contextual edge treated as blocking",
+    "missing evidence silently treated as ready",
+    "unverified master_ready claim reported green",
+    "Critical focus target silently treated as covered when unscheduled",
+    "Existing Competency or prerequisite-ready state reported green",
+    "persistence, UI, runtime or notification write attempted"
+  ],
+  "acceptance": {
+    "step": 105,
+    "ragSemanticsPinned": true,
+    "missingEvidenceFailsClosed": true,
+    "masterReadyRequiredForGreen": true,
+    "productionDashboardConnected": false,
+    "runtimeActivationAllowed": false,
+    "result": "PASS_CONTRACT_ONLY"
+  }
+}
