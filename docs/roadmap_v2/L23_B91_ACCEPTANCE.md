@@ -1,6 +1,6 @@
 # L23/B91 — Diagnostic Harness Acceptance
 
-Status: `PENDING_GATE`
+Status: `PASS`
 
 ## Purpose
 
@@ -41,3 +41,17 @@ All must fail closed.
 - runtime activation: disabled.
 
 B92 remains blocked until B91 and the complete regression gate are green.
+
+
+## Gate evidence
+
+Accepted B91 head: `401f35dd2a6e1cec9d73631148bcf49778c78b20`
+
+- Roadmap V2 Current Gate — run `35332784841` — PASS
+- Foundation Domain Model — run `35332784834` — PASS
+- Windows checkout safety — run `35332784875` — PASS
+- Russian Reference UI — run `35332784933` — PASS
+- Cloudflare Preview — run `35332784891` — PASS
+- Whole System Integration — run `35332785143` — PASS
+
+B91 is closed. B92 is the only remaining L23 step.
