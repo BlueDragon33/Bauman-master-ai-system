@@ -1,4 +1,4 @@
-# Foundation V2 — L10 Step 7 Audit
+# Bauman Foundation — Content, Asset & Provenance Registry — Step 7 Audit
 
 ## Scope
 
