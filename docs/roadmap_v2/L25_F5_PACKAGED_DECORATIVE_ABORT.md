@@ -1,6 +1,6 @@
 # L25-F5 — Packaged Hub Decorative Image Navigation Abort
 
-Status: `FIX_APPLIED_PENDING_GATE`
+Status: `PASS`
 
 ## Trigger
 
@@ -45,3 +45,15 @@ The acceptance still fails on:
 No production runtime code or Roadmap logic is changed.
 
 B100 remains blocked until F5 and all six project gates pass.
+
+
+## Full gate evidence
+
+Accepted B100/F5 functional head: `624b20cf53e26b193db01377fd83891d88fd0f4c`
+
+- Roadmap V2 Current Gate — run `35342688744` — PASS
+- Foundation Domain Model — run `35342688774` — PASS
+- Windows checkout safety — run `35342688509` — PASS
+- Russian Reference UI — run `35342688603` — PASS
+- Cloudflare Preview — run `35342688479` — PASS
+- Whole System Integration — run `35342688636` — PASS
