@@ -17,13 +17,13 @@
     {keys:['lịch','lich','hôm nay','hom nay','kế hoạch','ke hoach'],label:'Lịch trình hôm nay',act:'route-modal'}
   ];
   const SKILLS=[
-    ['АБ','Bảng chữ Cyrillic','Nhìn · viết','writing','#3f8cff'],
-    ['◉','Phát âm','Nghe và nói','dialogue','#a879ff'],
-    ['▣','Từ vựng','Mở thẻ nhớ','vocab','#34d7a0'],
-    ['▤','Ngữ pháp','Nền tảng','grammar','#ff7089'],
-    ['◌','Giao tiếp','Hội thoại','dialogue','#e9b64e'],
-    ['◍','Nghe hiểu','Audio & Video','media','#31c8e5'],
-    ['▥','Luyện đọc','Bài học','learning','#7288ff'],
+    ['◍','Nghe hiểu','Audio · video · bắt nhịp','media','#31c8e5'],
+    ['◉','Nói & shadowing','Nghe · nhại · phản xạ','dialogue','#a879ff'],
+    ['АБ','Bảng chữ Cyrillic','Chữ in → chữ viết tay','writing','#3f8cff'],
+    ['▣','Từ vựng trực quan','Hình · âm · ngữ cảnh','vocab','#34d7a0'],
+    ['▥','Luyện đọc','Nhận mặt chữ trong từ/câu','learning','#7288ff'],
+    ['✍','Luyện viết','Tô · chép · viết tự do','writing','#e9b64e'],
+    ['▤','Ngữ pháp','Mẫu câu sau nghe/nói','grammar','#ff7089'],
     ['⌘','Mind map','Neo trí nhớ','mindmap','#b177ff']
   ];
 
@@ -67,7 +67,7 @@
   function latestRoute(state){
     const recent=Array.isArray(state.recentAccess)?state.recentAccess[0]:null;
     if(recent?.view)return {view:recent.view,learnTab:recent.view==='learning'?(state.learnTab||'theory'):undefined};
-    return {view:'learning',learnTab:'theory'};
+    return {view:'learning',learnTab:'practice'};
   }
   function skillHtml(){
     return SKILLS.map(s=>{
