@@ -398,6 +398,54 @@
     target.pedagogyNote=`Ưu tiên ${due.length} mục Review Queue đến hạn trước học mới. ${clean(target.pedagogyNote)}`.trim();
     return out;
   }
+  function capabilityFocus(){
+    const api=window.RussianCapabilityProgression;
+    if(!api||typeof api.currentBand!=='function')return null;
+    try{
+      const band=api.currentBand();
+      if(!band||!band.unlocked||band.complete)return null;
+      return {
+        schema:'RUSSIAN_CAPABILITY_FOCUS_V1',
+        bandId:clean(band.id),
+        title:clean(band.title),
+        lessonId:clean(band.missingLesson),
+        lessonReady:Number(band.lessonReady||0),
+        lessonTotal:Number(band.lessonTotal||0),
+        dueCount:Number(band.dueCount||0),
+        writing:Number(band.writing||0),
+        writingNeed:Number(band.writingNeed||0),
+        rewrites:Number(band.rewrites||0),
+        rewriteNeed:Number(band.rewriteNeed||0)
+      };
+    }catch(_){return null;}
+  }
+  function capabilityOverlayCard(focus){
+    const id=clean(focus?.lessonId);
+    return {
+      title:`${clean(focus?.bandId)||'R?'} · Bù evidence trước khi mở rộng`,
+      purpose:`Band ${clean(focus?.bandId)} còn thiếu bằng chứng ở ${id}. Học đúng bài này trước khi đẩy thêm nội dung mới.`,
+      limit:'1 bài trọng tâm · evidence thật',
+      route:{view:'learning',learnTab:'theory',lessonId:id},
+      button:`Mở ${id}`,
+      capabilityBand:clean(focus?.bandId),
+      lessonId:id,
+      source:'capability_gap'
+    };
+  }
+  function applyCapabilityOverlay(plan){
+    const out=clone(plan)||{},focus=capabilityFocus();
+    out.capabilityFocus=focus;
+    if(!focus?.lessonId||!arr(out.sessions).length)return out;
+    const today=new Date();today.setHours(0,0,0,0);
+    const target=out.sessions.find(s=>{const d=new Date(s?.date||'');return !Number.isNaN(d.getTime())&&d>=today;})||out.sessions[0];
+    const all=arr(target.cards),reviews=all.filter(x=>x?.source==='live_review_queue');
+    const existing=all.filter(x=>x?.source!=='live_review_queue'&&x?.source!=='capability_gap');
+    target.cards=[...reviews,capabilityOverlayCard(focus),...existing];
+    target.capabilityBand=focus.bandId;
+    target.capabilityLesson=focus.lessonId;
+    target.pedagogyNote=`${reviews.length?'Sau Review Queue, ':''}ưu tiên band ${focus.bandId}: bù evidence ở ${focus.lessonId}. ${clean(target.pedagogyNote)}`.trim();
+    return out;
+  }
   function buildInternalPlan(mission, analysis, ctx={}){
     const sessions = arr(mission.sessions).length ? arr(mission.sessions) : normalizeSessions(mission);
     const demand = analysis.demand || estimateDemand(mission, ctx);
@@ -480,7 +528,7 @@
         requirePostTestCorrection:true
       }
     };
-    return applyLiveReviewOverlay(plan);
+    return applyCapabilityOverlay(applyLiveReviewOverlay(plan));
   }
   function warningOptions(mission, analysis){
     if(analysis.feasible) return [];
@@ -582,5 +630,5 @@
       generatedAt:nowIso()
     };
   }
-  window.BaumanPlanningBridge = {VERSION, DEFAULT_POLICY, DEFAULT_TEST_POLICY, DEFAULT_ROUTE_LIMITS, normalizeMission, estimateDemand, analyzeFeasibility, testReadiness, unlockedTestLevel, classifySession, sessionBlocks, routeCards, liveReviewItems, reviewOverlayCard, applyLiveReviewOverlay, buildRepairPlan, buildInternalPlan, makeWarning, warningOptions, acceptMission, progressFromSession, buildMainActionRequest};
+  window.BaumanPlanningBridge = {VERSION, DEFAULT_POLICY, DEFAULT_TEST_POLICY, DEFAULT_ROUTE_LIMITS, normalizeMission, estimateDemand, analyzeFeasibility, testReadiness, unlockedTestLevel, classifySession, sessionBlocks, routeCards, liveReviewItems, reviewOverlayCard, applyLiveReviewOverlay, capabilityFocus, capabilityOverlayCard, applyCapabilityOverlay, buildRepairPlan, buildInternalPlan, makeWarning, warningOptions, acceptMission, progressFromSession, buildMainActionRequest};
 })();
