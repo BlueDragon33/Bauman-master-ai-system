@@ -60,3 +60,25 @@ Step 7 requires all prior L10 gates plus:
 - Foundation Domain Model, Windows checkout, and Whole System Integration remain green.
 
 Step 8 must not start until the expanded gate is green on GitHub Actions.
+
+
+## Repair 7.1 — packaged browser reload race
+
+Whole System Integration run `35345090191` exposed a deterministic acceptance race after the initial Step 7 implementation.
+
+Evidence:
+
+- all thirteen prerequisite-pack paths existed in the branch and runtime package;
+- the packaged HTTP server returned `200` for all thirteen pack files;
+- Chromium still reported all thirteen as `net::ERR_ABORTED`;
+- the aborts occurred because the acceptance flow reloaded the Hub while `academic-main.js` was still resolving its background `Promise.allSettled` pack load.
+
+Repair rule:
+
+1. Academic runtime publishes an explicit prerequisite-pack readiness status.
+2. The status records expected, loaded and failed pack counts only after every manifest request resolves.
+3. Browser acceptance must wait for `ready=true`, require `failed=0`, and require `loaded===expected` before intentional reload.
+4. The same readiness check is repeated after reload.
+5. No blanket `ERR_ABORTED` exception is added; genuine failed requests remain gate failures.
+
+Step 8 remains blocked until the repaired Step 7 head passes the complete gate set.
