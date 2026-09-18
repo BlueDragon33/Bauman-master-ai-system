@@ -17,6 +17,10 @@ on:
       - 'foundation/content-resolution/runtime-delivery-plan.js'
       - 'scripts/validate-runtime-delivery-plan.mjs'
       - 'tests/runtime-delivery-plan.test.mjs'
+      - 'foundation/content-resolution/delivery-executor-contract.v1.json'
+      - 'foundation/content-resolution/runtime-delivery-executor.js'
+      - 'scripts/validate-runtime-delivery-executor.mjs'
+      - 'tests/runtime-delivery-executor.test.mjs'
       - 'ARCHITECTURE.md'
       - 'CODEX_STATE.md'
       - 'CODEX_TASK.md'
@@ -45,6 +49,9 @@ jobs:
           node --check foundation/content-resolution/runtime-delivery-plan.js
           node --check scripts/validate-runtime-delivery-plan.mjs
           node --check tests/runtime-delivery-plan.test.mjs
+          node --check foundation/content-resolution/runtime-delivery-executor.js
+          node --check scripts/validate-runtime-delivery-executor.mjs
+          node --check tests/runtime-delivery-executor.test.mjs
       - name: Validate frozen Content Asset Provenance foundation
         run: node scripts/validate-foundation-l10-promotion.mjs
       - name: Validate content resolution contract
@@ -59,6 +66,10 @@ jobs:
         run: node scripts/validate-runtime-delivery-plan.mjs
       - name: Run delivery plan negative tests
         run: node tests/runtime-delivery-plan.test.mjs
+      - name: Validate injected runtime delivery executor
+        run: node scripts/validate-runtime-delivery-executor.mjs
+      - name: Run delivery executor negative tests
+        run: node tests/runtime-delivery-executor.test.mjs
       - name: Parse resolution JSON
         run: |
-          node -e "JSON.parse(require('fs').readFileSync('foundation/content-resolution/resolution-contract.v1.json','utf8')); JSON.parse(require('fs').readFileSync('foundation/content-resolution/examples/step1-resolution-request.v1.json','utf8')); JSON.parse(require('fs').readFileSync('foundation/content-resolution/delivery-plan-contract.v1.json','utf8')); console.log('CONTENT_RESOLUTION_JSON=PASS')"
+          node -e "JSON.parse(require('fs').readFileSync('foundation/content-resolution/resolution-contract.v1.json','utf8')); JSON.parse(require('fs').readFileSync('foundation/content-resolution/examples/step1-resolution-request.v1.json','utf8')); JSON.parse(require('fs').readFileSync('foundation/content-resolution/delivery-plan-contract.v1.json','utf8')); JSON.parse(require('fs').readFileSync('foundation/content-resolution/delivery-executor-contract.v1.json','utf8')); console.log('CONTENT_RESOLUTION_JSON=PASS')"
