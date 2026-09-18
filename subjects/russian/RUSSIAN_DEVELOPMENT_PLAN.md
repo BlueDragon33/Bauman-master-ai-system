@@ -47,8 +47,8 @@ If a gate fails, repair it before continuing. Never weaken an assertion merely t
 | 16 | Translation-free dialogue scaffolding | GREEN | Active dialogue/practice surfaces use scene/role/Russian context; hear-before-see preserved; legacy gloss fields source-only |
 | 17 | Grammar from patterns | GREEN | Heard pattern → spoken practice → Russian contrast → tiny rule → immediate reuse; no translation answer or mastery mutation |
 | 18 | Multimodal SRS & review | GREEN | Scheduler/Review Queue/mastery preserved; behavioral gate proves modality-isolated evidence writes only |
-| 19 | Skill-gated assessment | ACTIVE | Separate skill readiness before aggregate readiness |
-| 20 | AI mentor direct explanation | PLANNED | Russian-first/visual/analogy before meta-language help |
+| 19 | Skill-gated assessment | GREEN | Six read-only evidence gates remain isolated; aggregate ready only when all six meet explicit criteria |
+| 20 | AI mentor direct explanation | ACTIVE | Russian-first/visual/analogy before meta-language help |
 | 21 | Weakness repair routing | PLANNED | Focused repair without silent mastery changes |
 | 22 | Offline media & asset reliability | PLANNED | Explicit offline/missing-resource behavior |
 | 23 | Browser/package/accessibility/performance QA | PLANNED | Includes cursive visual-difference proof |
