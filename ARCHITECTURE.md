@@ -279,6 +279,34 @@ Avoid:
 
 The current historical branch `work/foundation-v2-l10-content-asset-provenance` predates this rule. Do not copy that naming pattern for future branches.
 
+## 8. Legacy names still present in the repository
+
+Some historical files still contain version-style names. They are not the primary architecture vocabulary.
+
+### Dormant Hub legacy files
+
+- `assets/js/hub-premium-v2.js`
+- `assets/css/hub-premium-v2.css`
+
+The root `index.html` does not load these files. Treat them as dormant historical artifacts, not the authoritative Hub architecture.
+
+Do not build new work on top of the `hub-premium-v2` name. If these files are later removed, renamed, or consolidated, do it as a dedicated cleanup change with responsive and packaged-runtime gates.
+
+### Historical reports
+
+Files such as `*_V2_REPORT.md`, `MATH_V2x_*.json`, and archived checkpoint reports are historical evidence. Their filenames may remain unchanged so old references stay traceable.
+
+Do not copy their version naming into new architecture documents.
+
+### Versioned datasets and contracts
+
+Files such as `*_v2.json`, `*.v1.json`, and schema constants ending in `_V1` may legitimately retain versions when the version identifies a data/contract format.
+
+The rule is:
+
+- **architecture responsibility:** descriptive name, no generation number;
+- **data/API/schema compatibility:** explicit technical version is allowed and often required.
+
 ## 7. Current frozen foundation checkpoints
 
 ### Foundation — Identity & Domain Model
