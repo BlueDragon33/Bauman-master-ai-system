@@ -30,18 +30,18 @@ English is not the default translation bridge either.
 
 ## Current work
 
-Turns 1–10 are accepted.
+Turns 1–11 are accepted.
 
-Next: **Turn 11 — Visual asset coverage**.
+Next: **Turn 12 — Direct-semantic explanation**.
 
-Turn 11 must:
+Turn 12 must:
 
-- audit all 8,000 vocabulary items against the Turn 10 semantic contract;
-- distinguish explicit visual assets from text labels/context only;
-- create deterministic visual semantic status without using Vietnamese or English meaning fields;
-- represent gaps as `missing_visual_semantics`;
-- keep the classifier non-authoritative until Turn 13;
-- preserve the existing source corpus and learner state.
+- build explanation strategies only from Russian/visual source evidence;
+- support scene, gesture, contrast, category/examples, analogy, and simple Russian definition;
+- never consult Vietnamese or English translation fields;
+- expose which strategy/evidence fields were used;
+- fail closed when a requested strategy lacks source evidence;
+- remain non-authoritative until the Turn 13 runtime switch.
 
 ## Gate rule
 

@@ -39,8 +39,8 @@ If a gate fails, repair it before continuing. Never weaken an assertion merely t
 | 8 | Listening ladder | GREEN | Normal→focused→repair-slow→gist/detail; slow gated after two normal plays |
 | 9 | Speaking & shadowing ladder | GREEN | Recorder-backed imitation→shadowing→memory→role-play→repair; Turn 8 retains listening ownership |
 | 10 | Visual vocabulary contract | GREEN | Direct-semantic target locked; translation fields migration-only; authority switch deferred to Turn 13 |
-| 11 | Visual asset coverage | ACTIVE | Classify all 8,000 items; explicit asset vs contextual evidence vs missing state |
-| 12 | Direct-semantic explanation | PLANNED | Scene/gesture/contrast/category/analogy |
+| 11 | Visual asset coverage | GREEN | 8,000/8,000 explicit source visual assets; classifier ignores translation fields |
+| 12 | Direct-semantic explanation | ACTIVE | Deterministic source-backed scene/gesture/contrast/category/analogy/Russian-definition strategies |
 | 13 | Visual vocabulary runtime | PLANNED | Remove learner-facing “flip meaning” authority |
 | 14 | Reading bridge | PLANNED | Letter→chunk→word→short real text |
 | 15 | Dictation & listen-to-write | PLANNED | Sound→letter/word/short dictation |

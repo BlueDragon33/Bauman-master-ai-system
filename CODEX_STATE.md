@@ -2,12 +2,12 @@
 
 Current task: `RUSSIAN_LISTEN_SPEAK_LITERACY_VISUAL_SEMANTICS`
 
-Status: `TURN10_GREEN_TURN11_ACTIVE`
+Status: `TURN11_GREEN_TURN12_ACTIVE`
 
 Date: 2026-09-18
 Branch: `work/russian-listen-speak-literacy-visual-semantics`
 Foundation base: content-resolution implementation through Step 14 is preserved from the accepted Foundation branch.
-Russian accepted head: `59f9c241173125a0f2a17ded7bd89d98872294c1`
+Russian accepted head: `13a72224af3a0f34be627c8db78c29150ce2d154`
 
 ## Single source of truth
 
@@ -23,7 +23,7 @@ Architecture principles and ownership are defined in:
 
 ## Accepted Russian turns
 
-Turns 1–10 are green.
+Turns 1–11 are green.
 
 - Turn 1 — baseline audit and pedagogy contract
 - Turn 2 — oral-first route priority
@@ -35,14 +35,15 @@ Turns 1–10 are green.
 - Turn 8 — listening ladder
 - Turn 9 — speaking & shadowing ladder
 - Turn 10 — visual vocabulary contract
+- Turn 11 — visual asset coverage
 
 Turn 5 retains one explicit deferred obligation: browser-level visual proof that the packaged cursive glyph differs from print. This is tracked for Turn 23 and blocks Turn 24 freeze if still open.
 
 ## Next turn
 
-Turn 11 — Visual asset coverage.
+Turn 12 — Direct-semantic explanation.
 
-Turn 12 does not begin until Turn 11 classifies all 8,000 items into explicit visual asset, contextual/label evidence, or missing visual semantics with no translation fallback.
+Turn 13 does not begin until Turn 12 defines deterministic scene/gesture/contrast/category/analogy/Russian-definition strategies and proves translation fields are not consulted.
 
 ## Protected authority
 
