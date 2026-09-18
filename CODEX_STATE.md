@@ -2,12 +2,12 @@
 
 Current task: `RUSSIAN_LISTEN_SPEAK_LITERACY_VISUAL_SEMANTICS`
 
-Status: `TURN18_GREEN_TURN19_ACTIVE`
+Status: `TURN19_GREEN_TURN20_ACTIVE`
 
 Date: 2026-09-18
 Branch: `work/russian-listen-speak-literacy-visual-semantics`
 Foundation base: content-resolution implementation through Step 14 is preserved from the accepted Foundation branch.
-Russian accepted head: `331b60a1d2e6dd9d7ccfd6f3bb9d2d8995780005`
+Russian accepted head: `c412b76c7332bdb106af1d89241e4d289bdad8e9`
 
 ## Single source of truth
 
@@ -23,7 +23,7 @@ Architecture principles and ownership are defined in:
 
 ## Accepted Russian turns
 
-Turns 1–18 are green.
+Turns 1–19 are green.
 
 - Turn 1 — baseline audit and pedagogy contract
 - Turn 2 — oral-first route priority
@@ -43,16 +43,29 @@ Turns 1–18 are green.
 - Turn 16 — translation-free dialogue scaffolding
 - Turn 17 — grammar from patterns
 - Turn 18 — multimodal SRS & review
+- Turn 19 — skill-gated assessment
 
-Turn 18 includes behavioral runtime acceptance proving evidence isolation and preservation of Core, SRS and canonical Learning State authority.
+Turn 18 includes behavioral runtime acceptance proving modality evidence isolation and preservation of Core, SRS and canonical Learning State authority.
+
+Turn 19 adds six independent, read-only readiness gates for listening, speaking, print recognition, cursive recognition, reading and writing. Aggregate readiness is advisory only and becomes ready only when every gate meets its explicit evidence threshold.
 
 Turn 5 retains one explicit deferred obligation: browser-level visual proof that the packaged cursive glyph differs from print. This is tracked for Turn 23 and blocks Turn 24 freeze if still open.
 
 ## Next turn
 
-Turn 19 — Skill-gated assessment.
+Turn 20 — AI mentor direct explanation.
 
-Aggregate readiness must not become green until the separately required Russian skills are individually evidenced. Turn 19 must remain assessment/readiness logic only and must not take mastery, scheduler, or learner-state mutation authority.
+## Turn 20 upgrade stop point
+
+Current AI Mentor runtime is not compatible with the direct-semantic policy already accepted in Turns 10–13:
+
+- `core.js::aiGenerate('lesson')` instructs the learner to restate the lesson in Vietnamese;
+- `core.js::aiGenerate('vocab')` still contains learner-facing fallback references to `meaningVi` and `english`;
+- the vocabulary AI output still exposes an explicit `English equivalent` field;
+- dialogue guidance still treats hiding Vietnamese meaning as a later-round option rather than the default semantic rule;
+- `ai-mentor-guard.js` currently protects canonical/mastery authority but does not enforce Russian-first / visual-context-first explanation order.
+
+This requires a new Turn 20 explanation-policy contract, negative tests and runtime migration. It is an architecture/capability upgrade, not a local defect fix.
 
 ## Protected authority
 
@@ -65,7 +78,7 @@ Preserve:
 - Foundation registry authority;
 - Academic scheduler authority.
 
-Subject-local drills may store additive evidence but must not silently promote mastery.
+Subject-local drills and AI help may read evidence and suggest actions but must not silently promote mastery or completion.
 
 ## Branch policy
 
