@@ -3556,7 +3556,19 @@ function bridge(){
    if(d.bundle||d.planningBundle)state.planningBundle=d.bundle||d.planningBundle;
    else if(window.BaumanPlanningBridge){try{state.planningBundle=window.BaumanPlanningBridge.acceptMission(state.hostTask,{adapter:A,db:DB})}catch(_){}}
    const routed=applyHostCapabilityRoute(state.hostTask);
-   save();render();toast(routed?'Đã mở đúng capability gap từ Main':'Đã nhận mission từ Main');
+   const appliedRoute=routed?normalizeHostCapabilityRoute(state.hostTask):null;
+   save();render();
+   if(appliedRoute)send({
+     type:'BAUMAN_SUBJECT_CAPABILITY_ROUTE_APPLIED',
+     schema:'RUSSIAN_CAPABILITY_ROUTE_RECEIPT_V1',
+     subjectId:A.id||'russian',
+     taskId:str(state.hostTask.taskId||state.hostTask.missionId).slice(0,180),
+     capabilityBand:str(state.hostTask.capabilityBand).slice(0,16),
+     route:appliedRoute,
+     stage:str(state.stage).slice(0,32),
+     source:'subjects/russian'
+   });
+   toast(routed?'Đã mở đúng capability gap từ Main':'Đã nhận mission từ Main');
  };
  window.BaumanSubjectHost?.onTask?.(acceptTask);
  window.addEventListener('message',e=>{
