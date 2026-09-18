@@ -25,7 +25,8 @@ need('.dueReviews()','Stage gate must use due-review lifecycle');
 need('function gateUnlockStatus','Unified stage unlock status missing');
 need('examComplete&&readiness.ok&&due.length===0','Stage unlock must require exams complete, lesson readiness and zero due reviews');
 need('const g=gateState(),unlock=gateUnlockStatus()','Unlock action must enforce unified gate status');
-need("Xử lý Review Queue trước",'Stage gate UI must direct learner to repair outstanding reviews');
+need('data-learn="review"','Stage gate UI must preserve review navigation');
+need("Bổ sung bằng chứng / xử lý ôn tập",'Stage gate UI must direct learner to repair evidence/review blockers');
 
 forbid('mastered:true','Stage progression guard must not synthesize mastery');
 console.log('RUSSIAN_STAGE_PROGRESSION_EVIDENCE_GATE=PASS');
