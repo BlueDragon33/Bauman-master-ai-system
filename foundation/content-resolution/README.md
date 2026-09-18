@@ -73,3 +73,10 @@ The executor itself contains no direct network or browser-storage implementation
 The first concrete adapter retrieves package-relative resources using same-origin GET only. It is environment-specific, but still sits behind the injected executor and its SHA-256 verification gate.
 
 It is not yet authoritative for any existing application loader.
+
+
+## Step 6 — Academic core shadow resolution
+
+CI now validates the three real Academic 2026 core JSON resources through the complete resolution/delivery chain while leaving `academic-main.js` untouched.
+
+The shadow registry is diagnostic and exists only during validation.
