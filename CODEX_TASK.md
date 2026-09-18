@@ -76,3 +76,19 @@ Required:
 - no I/O, route, storage or learner-state mutation.
 
 Step 4 may define injected adapters only after Step 3 is green.
+
+
+## Step 4 — Active
+
+Gate the injected delivery executor.
+
+Acceptance:
+
+- exact adapter ID lookup only;
+- adapter missing/error/invalid payload fail closed;
+- SHA-256 digest + byte length verified before consumer;
+- failed payload never reaches consumer;
+- consumer receives a copy isolated from adapter-owned bytes;
+- executor contains no direct network/storage APIs.
+
+No real application loader is migrated in Step 4.
