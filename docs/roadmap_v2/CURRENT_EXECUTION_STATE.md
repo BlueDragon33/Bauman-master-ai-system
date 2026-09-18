@@ -6,15 +6,15 @@
 ## Active track
 
 - Current round: **Lượt 23**
-- Current step: **Bước 91 — IN_PROGRESS**
+- Current step: **Bước 92 — IN_PROGRESS**
 - L22 closeout: **B88 + H1 — PASS**
-- Status: **PASS_L23_B89 · PASS_L23_H1 · PASS_L23_B90 · B91_HARNESS_IN_PROGRESS**
+- Status: **PASS_L23_B89 · PASS_L23_H1 · PASS_L23_B90 · PASS_L23_B91 · B92_CLOSEOUT_IN_PROGRESS**
 - Accepted head: `622e84aece7847b4179a8ff48937cb92717aaf3e`
 - Production/runtime activation by Roadmap V2: **disconnected**
 - Legacy/source destructive migration: **not executed**
-- Last completed: **L23/B90 — PASS**
+- Last completed: **L23/B91 — PASS**
 - Last hardening: **L23-H1 — PASS**
-- Current official step: **L23/B91 — Diagnostic Harness**
+- Current official step: **L23/B92 — Full-system closeout gate**
 - L23 may start only after the L22 closeout snapshot remains green on the complete gate set.
 
 ## L22/B88 complete gate evidence
@@ -92,3 +92,17 @@ Accepted B90 head: `a17ed1a22660768a1d25b111006a314b42dfba48`
 - Russian Reference UI — run `35332251387` — PASS
 - Cloudflare Preview — run `35332251384` — PASS
 - Whole System Integration — run `35332251443` — PASS
+
+
+## L23/B91 gate evidence
+
+Accepted B91 head: `401f35dd2a6e1cec9d73631148bcf49778c78b20`
+
+- Roadmap V2 Current Gate — run `35332784841` — PASS
+- Foundation Domain Model — run `35332784834` — PASS
+- Windows checkout safety — run `35332784875` — PASS
+- Russian Reference UI — run `35332784933` — PASS
+- Cloudflare Preview — run `35332784891` — PASS
+- Whole System Integration — run `35332785143` — PASS
+
+B92 is now the active L23 step. L24 remains blocked until the B92 closeout head passes the complete six-gate set.
