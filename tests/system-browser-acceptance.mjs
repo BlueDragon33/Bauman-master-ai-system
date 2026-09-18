@@ -41,7 +41,11 @@ function isConfirmedDecorativeNavigationAbort(request){
   try{
     const requestUrl=new URL(request.url());
     const baseUrl=new URL(BASE);
-    return requestUrl.origin===baseUrl.origin&&requestUrl.pathname==='/assets/media/hub-mountains.svg';
+    const decorativePaths=new Set([
+      '/assets/media/hub-mountains.svg',
+      '/assets/media/hub-ai-robot.svg'
+    ]);
+    return requestUrl.origin===baseUrl.origin&&decorativePaths.has(requestUrl.pathname);
   }catch{return false}
 }
 
