@@ -233,6 +233,30 @@ function gateNextNeededType(part=gatePart()){
  return EXAM_PAPER_ORDER.find(type=>gateExamCount(type,part)<gateNeedFor(type,part))||null;
 }
 function gatePartComplete(part=gatePart()){return !gateNextNeededType(part)}
+function strictPartLessonIds(part=gatePart(),stageId=currentStageId()){
+ const lessons=call('getLessons',[],DB).filter(l=>(stageOf(l)||stageId)===stageId);
+ const total=stagePartCount(stageId),chunk=Math.max(1,Math.ceil(lessons.length/total));
+ const base=lessons.slice((part-1)*chunk,part*chunk).map(l=>lessonKey(l)||l.id||l.title).filter(Boolean);
+ const extra=[];
+ try{
+  const s=normalizeRouteSession(planSession());
+  [...arr(s.blocks),...arr(s.cards)].forEach(x=>{['lessonId','lesson','chapterId','moduleId'].forEach(k=>{if(x&&x[k])extra.push(String(x[k]));});});
+ }catch(_){}
+ return uniq([...base,...extra]);
+}
+function partDueReviewItems(part=gatePart(),stageId=currentStageId()){
+ const api=window.RussianLearningState;if(!api||typeof api.dueReviews!=='function')return [];
+ const ids=new Set(strictPartLessonIds(part,stageId));
+ try{return api.dueReviews().filter(item=>ids.has(str(item?.lessonId||item?.route?.lessonId||'')));}
+ catch(_){return [];}
+}
+function gateUnlockStatus(part=gatePart()){
+ const examComplete=gatePartComplete(part),due=partDueReviewItems(part);
+ const blockers=[];
+ if(!examComplete)blockers.push('Chưa đủ yêu cầu kiểm tra của phần hiện tại.');
+ if(due.length)blockers.push(`Còn ${due.length} mục Review Queue đến hạn trong phần này.`);
+ return {allowed:examComplete&&due.length===0,examComplete,dueReviews:due,blockers};
+}
 function registerGateExamPass(type,sum){
  const g=gateState(); const keyName=gateKey();
  g.completedExamPapers[keyName]=arr(g.completedExamPapers[keyName]);
@@ -260,8 +284,26 @@ function sessionKey(s=planSession()){
  return [s.date||new Date().toISOString().slice(0,10),currentStageId(),gatePart(),s.phase||'today'].join('::');
 }
 function taskKey(step,s=planSession()){return `${sessionKey(s)}::step${Number(step)||0}`}
-function markScheduleTask(step,s=planSession()){if(!step)return; const g=gateState(); g.completedTasks[taskKey(step,s)]={at:Date.now(),stage:currentStageId(),part:gatePart()};}
-function isScheduleTaskDone(step,s=planSession()){return !!gateState().completedTasks?.[taskKey(step,s)]}
+function scheduleTaskRecord(step,s=planSession()){
+ const raw=gateState().completedTasks?.[taskKey(step,s)]||null;
+ if(!raw)return null;
+ return raw.openedAt?raw:{...raw,openedAt:raw.at||null,legacyOpen:!!raw.at,completed:false};
+}
+function markScheduleTaskOpened(step,s=planSession(),route={}){
+ if(!step)return false;
+ const g=gateState(),keyName=taskKey(step,s),prev=scheduleTaskRecord(step,s)||{},at=Date.now();
+ g.completedTasks[keyName]={...prev,openedAt:prev.openedAt||at,lastOpenedAt:at,route:{...(route||prev.route||{})},stage:currentStageId(),part:gatePart(),completed:prev.completed===true,completedAt:prev.completedAt||null,completionSource:prev.completionSource||''};
+ return true;
+}
+function markScheduleTask(step,s=planSession(),source='explicit_confirmation'){
+ if(!step)return false;
+ const g=gateState(),keyName=taskKey(step,s),prev=scheduleTaskRecord(step,s);
+ if(!prev?.openedAt)return false;
+ g.completedTasks[keyName]={...prev,completed:true,completedAt:Date.now(),completionSource:source,stage:currentStageId(),part:gatePart()};
+ return true;
+}
+function isScheduleTaskOpened(step,s=planSession()){return !!scheduleTaskRecord(step,s)?.openedAt}
+function isScheduleTaskDone(step,s=planSession()){return scheduleTaskRecord(step,s)?.completed===true}
 function scheduleExamStep(s=planSession()){
  s=normalizeRouteSession(s); const details=arr(s.blocks).map(routeBlockDetail); const cards=arr(s.cards);
  for(let i=0;i<details.length;i++){const route=scheduleStepRoute(s,details[i],cards[i]||{},i); if(route?.learnTab==='exam')return {index:i,step:i+1,block:details[i],card:cards[i]||{},route};}
@@ -298,13 +340,14 @@ function renderExamGateLock(){
  return `<section class="panel exam-gate-lock v1317-gate-lock"><span class="chip warn-chip">🔒 Cổng kiểm tra bị khóa</span><h3>Kiểm tra phải mở từ Lịch trình hôm nay</h3><p>Đang ở giai đoạn <b>${esc(stageTitle(g.currentStage))}</b>, phần <b>${g.currentPart}/${g.totalParts}</b>. Hoàn thành đúng các chặng học/ôn trong lịch, sau đó bấm chặng kiểm tra hôm nay.</p><div class="gate-req-grid">${reqRows}</div><ul>${blockers}</ul><div class="lesson-tools"><button class="btn primary" data-act="open-today-route">Mở Lịch trình hôm nay</button><button class="btn soft" data-learn="review">Ôn tập trước</button></div></section>`;
 }
 function renderGateProgressPanel(){
- const g=gateState(); const rows=partRequirementRows(); const complete=gatePartComplete();
+ const g=gateState(); const rows=partRequirementRows(); const unlock=gateUnlockStatus();
  const cards=rows.map(r=>`<article class="gate-req ${r.done>=r.need?'done':'pending'}"><b>${esc(r.label)}</b><span>${r.done}/${r.need}</span></article>`).join('');
  const next=gateNextNeededType(); const unlockLabel=g.currentPart>=g.totalParts?'Mở khóa giai đoạn tiếp theo':'Mở khóa phần tiếp theo';
- return `<section class="exam-stage-gate-panel v1317-stage-gate ${complete?'complete':'pending'}"><div><span class="chip">Cổng học thuật</span><h4>Phần ${g.currentPart}/${g.totalParts} · ${esc(stageTitle(g.currentStage))}</h4><p>${complete?'Đã đủ bài kiểm tra của phần này. Có thể mở khóa bước kế tiếp.':`Đề kế tiếp: ${esc(next?examPaperLabel(next):'đã đủ')}. Chỉ tính đề đạt từ 8.0/10.`}</p></div><div class="gate-req-grid">${cards}</div><div class="gate-actions">${complete?`<button class="btn primary gate-unlock-btn" data-act="unlock-stage-part">${esc(unlockLabel)}</button>`:`<button class="btn soft" data-act="next-gate-paper">Mở lượt kiểm tra kế tiếp</button>`}</div></section>`;
+ const gateText=unlock.allowed?'Đã đủ đề và không còn lỗi đến hạn trong phần này. Có thể mở khóa bước kế tiếp.':(unlock.blockers.join(' ')||`Đề kế tiếp: ${next?examPaperLabel(next):'đã đủ'}.`);
+ return `<section class="exam-stage-gate-panel v1317-stage-gate ${unlock.allowed?'complete':'pending'}"><div><span class="chip">Cổng học thuật</span><h4>Phần ${g.currentPart}/${g.totalParts} · ${esc(stageTitle(g.currentStage))}</h4><p>${esc(gateText)} Chỉ tính đề đạt từ 8.0/10.</p></div><div class="gate-req-grid">${cards}</div><div class="gate-actions">${unlock.allowed?`<button class="btn primary gate-unlock-btn" data-act="unlock-stage-part">${esc(unlockLabel)}</button>`:(next?`<button class="btn soft" data-act="next-gate-paper">Mở lượt kiểm tra kế tiếp</button>`:`<button class="btn soft" data-learn="review">Xử lý Review Queue trước</button>`)}</div></section>`;
 }
 function unlockStagePart(){
- const g=gateState(); if(!gatePartComplete()){toast('Chưa đủ yêu cầu kiểm tra của phần hiện tại'); return;}
+ const g=gateState(),unlock=gateUnlockStatus(); if(!unlock.allowed){toast(unlock.blockers[0]||'Chưa đủ điều kiện mở khóa phần hiện tại'); return;}
  const stagesList=curriculumStages().map(x=>x.id).filter(Boolean); const idx=stagesList.indexOf(g.currentStage);
  if(g.currentPart<g.totalParts){g.currentPart+=1; g.unlockedPart=Math.max(g.unlockedPart,g.currentPart); state.examGateSource=null; resetExamProgress(); save(); render(); toast('Đã mở khóa phần '+g.currentPart+'/'+g.totalParts); return;}
  const nextStage=idx>=0&&idx<stagesList.length-1?stagesList[idx+1]:null;
@@ -906,15 +949,17 @@ function renderRouteToday(s){
    const purpose=c.purpose||b.output||'Hoàn thành chặng học này rồi chuyển sang chặng kế tiếp.';
    const limit=c.limit||`${Number(b.minutes||0)} phút`;
    const isDone=isScheduleTaskDone(i+1,s);
+   const isOpened=isScheduleTaskOpened(i+1,s);
    const isExam=routeToday.learnTab==='exam';
    const prereq=isExam?schedulePrereqStatus(s,{index:i,step:i+1,block:b,card:c,route:routeToday}):{allowed:true,reason:''};
    return `<article class="route-unified-card v1261-route-step v1317-route-step ${isDone?'done':'pending'} ${isExam?'exam-step':''}" data-step="${i+1}">
      <div class="route-unified-top"><b>${Number(b.minutes||0)}'</b><em>${String(i+1).padStart(2,'0')}</em></div>
-     <span class="route-unified-limit">${esc(limit)} · ${isDone?'Đã mở-học':'Cần hoàn thành'}</span>
+     <span class="route-unified-limit">${esc(limit)} · ${isDone?'Đã hoàn thành':(isOpened?'Đã mở · cần xác nhận':'Cần học')}</span>
      <h4>${esc(b.label)}</h4>
      <strong>${esc(support)}</strong>
      <p>${esc(isExam&&!prereq.allowed?prereq.reason:purpose)}</p>
      <button class="btn ${isExam?'primary':'soft'}" data-route='${esc(JSON.stringify(routeToday))}' ${isExam&&!prereq.allowed?'disabled':''}>${esc(action)}</button>
+     ${!isExam&&isOpened&&!isDone?`<button class="btn soft" data-act="complete-schedule-step" data-schedule-step="${i+1}">Xác nhận đã hoàn thành chặng</button>`:''}
    </article>`;
  }).join('');
  return `<section class="route-today route-today-unified v1261-route-today v1286-route-today v1287-route-today">
@@ -3110,7 +3155,7 @@ function handleClick(e){
  if('examPage' in b.dataset){state.examPage=Number(b.dataset.examPage)||0;state.examIndex=state.examPage*examPageSize(activeExamLevel());save();render();return}
  if('examAnswer' in b.dataset){const level=activeExamLevel(); if(examPaperResult(level))return; const qs=getExamQuestions(level); const q=qs[state.examIndex]||{}; const id=examQuestionId(q,state.examIndex,level); state.examProgress.answers[id]=Number(b.dataset.examAnswer);save();render();return}
  if(b.dataset.examPaper){state.examPaperType=b.dataset.examPaper;state.examPaperLevel=b.dataset.examPaper;state.examIndex=0;state.examPage=0;save();render();return}
- if(b.dataset.route){const r=JSON.parse(b.dataset.route||'{}'); closeModal(); if(r.routeSource==='today_schedule'&&r.scheduleStep)markScheduleTask(Number(r.scheduleStep)); trackAccess(r.view||'overview'); state.view=r.view||'overview'; if(r.learnTab)state.learnTab=r.learnTab; if(r.view==='grammar'){if(r.grammarLevel)state.grammarLevel=r.grammarLevel; if(r.grammarTrack)state.grammarTrack=r.grammarTrack; state.grammarIndex=0;} if(r.view==='mindmap'){if(r.mindmapId)state.mindmapId=r.mindmapId; if(r.mindmapNode)state.mindmapNode=r.mindmapNode; else state.mindmapNode='';} if(r.view==='learning'&&r.learnTab==='exam'){const paper=scheduleExamPaperType(r); state.examPaperType=paper; state.examPaperLevel=paper; state.examIndex=0; state.examPage=0; state.examGateSource={routeSource:r.routeSource||'',stage:r.stage||currentStageId(),part:Number(r.part||gatePart()),sessionKey:r.sessionKey||sessionKey(),scheduleStep:Number(r.scheduleStep||0),paperType:paper,at:Date.now()};} if(r.view==='learning'&&r.learnTab==='review'&&r.reviewFilter){state.reviewFilter=r.reviewFilter; state.reviewIndex=0; state.reviewPage=0; state.reviewAnswer=null;} if(r.mode==='handwriting')state.writingMode='handwriting'; save();render();return}
+ if(b.dataset.route){const r=JSON.parse(b.dataset.route||'{}'); closeModal(); if(r.routeSource==='today_schedule'&&r.scheduleStep)markScheduleTaskOpened(Number(r.scheduleStep),planSession(),r); trackAccess(r.view||'overview'); state.view=r.view||'overview'; if(r.learnTab)state.learnTab=r.learnTab; if(r.view==='grammar'){if(r.grammarLevel)state.grammarLevel=r.grammarLevel; if(r.grammarTrack)state.grammarTrack=r.grammarTrack; state.grammarIndex=0;} if(r.view==='mindmap'){if(r.mindmapId)state.mindmapId=r.mindmapId; if(r.mindmapNode)state.mindmapNode=r.mindmapNode; else state.mindmapNode='';} if(r.view==='learning'&&r.learnTab==='exam'){const paper=scheduleExamPaperType(r); state.examPaperType=paper; state.examPaperLevel=paper; state.examIndex=0; state.examPage=0; state.examGateSource={routeSource:r.routeSource||'',stage:r.stage||currentStageId(),part:Number(r.part||gatePart()),sessionKey:r.sessionKey||sessionKey(),scheduleStep:Number(r.scheduleStep||0),paperType:paper,at:Date.now()};} if(r.view==='learning'&&r.learnTab==='review'&&r.reviewFilter){state.reviewFilter=r.reviewFilter; state.reviewIndex=0; state.reviewPage=0; state.reviewAnswer=null;} if(r.mode==='handwriting')state.writingMode='handwriting'; save();render();return}
  if(b.dataset.remedialCard){const id=b.dataset.remedialCard; const plan=normalizeRemedialPlan(); const card=plan.cards.find(x=>x.id===id); if(card){state.remedialPlan.completed[id]=Date.now(); state.view='learning'; state.learnTab='review'; state.reviewFilter='wrong'; state.reviewLesson='all'; const remaining=remedialCounts().remaining; if(remaining<=0)state.remedialPlan.active=false; save(); render(); toast(remaining<=0?'Đã hoàn thành toàn bộ lịch phụ đạo':'Đã hoàn thành 1 thẻ phụ đạo'); return}}
  if(b.dataset.uiTheme){state.interfaceTheme=b.dataset.uiTheme; applyInterface(); save(); openModal(renderInterfaceModal(),'interface'); return}
  if(b.dataset.uiDensity){state.interfaceDensity=b.dataset.uiDensity; applyInterface(); save(); openModal(renderInterfaceModal(),'interface'); return}
@@ -3160,6 +3205,7 @@ function handleClick(e){
  if(act==='check-review'){const q=getReviewQuestions()[state.reviewIndex]||{}; if(state.reviewAnswer==null){toast('Chọn một đáp án trước khi kiểm thử'); return} const id=questionId(q,state.reviewIndex,'review'); const ok=Number(answerIndex(q))===Number(state.reviewAnswer); if(ok){state.reviewProgress.done[id]={at:Date.now(),ok:true,answer:state.reviewAnswer,lessonId:q.lessonId||'',skill:q.skill||'',level:state.reviewLevel,attempts:reviewAttemptCount(id)}; delete state.reviewProgress.wrong[id]; delete state.reviewProgress.flagged[id]; toast('Đúng rồi, đã mở giải thích và đánh dấu xanh');} else {const prev=state.reviewProgress.wrong[id]||{}; const attempts=Number(prev.attempts||0)+1; state.reviewProgress.wrong[id]={at:Date.now(),attempts,answer:state.reviewAnswer,lessonId:q.lessonId||'',skill:q.skill||'',topic:q.topic||'',needsReview:attempts>2}; delete state.reviewProgress.done[id]; if(attempts>2)state.reviewProgress.flagged[id]=Date.now(); toast(attempts>2?'Sai quá 2 lần: đã đưa vào diện cần ôn tập lại':'Sai rồi, làm lại');} const filtered=getReviewQuestions(); const per=reviewPageSize(filtered); if(state.reviewIndex>=filtered.length)state.reviewIndex=Math.max(0,filtered.length-1); state.reviewPage=Math.floor(state.reviewIndex/per); save();render()}
  if(act==='open-review-target'){const q=getReviewQuestions()[state.reviewIndex]||{}; const lessonId=str(q.lessonId||q.chapterId||q.lesson||q.moduleId||''); state.view='learning'; state.learnTab='theory'; if(lessonId)state.lessonId=lessonId; state.slide=0; save(); render(); toast(lessonId?'Đã mở bài học liên quan để ôn lại':'Đã mở Lý thuyết để ôn lại phần liên quan'); return}
  if(act==='open-today-route'){openModal(renderRouteModal(),'route');return}
+ if(act==='complete-schedule-step'){const step=Number(b.dataset.scheduleStep)||0; if(markScheduleTask(step)){save();render();toast('Đã xác nhận hoàn thành chặng '+step);}else toast('Hãy mở nội dung của chặng trước khi xác nhận hoàn thành.'); return}
  if(act==='unlock-stage-part'){unlockStagePart();return}
  if(act==='next-gate-paper'){nextGatePaper();return}
  if(act==='prev-exam'){state.examIndex=Math.max(0,state.examIndex-1);state.examPage=Math.floor(state.examIndex/examPageSize(activeExamLevel()));save();render()}
