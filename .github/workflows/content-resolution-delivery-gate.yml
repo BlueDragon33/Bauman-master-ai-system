@@ -21,6 +21,10 @@ on:
       - 'foundation/content-resolution/runtime-delivery-executor.js'
       - 'scripts/validate-runtime-delivery-executor.mjs'
       - 'tests/runtime-delivery-executor.test.mjs'
+      - 'foundation/content-resolution/package-relative-adapter-contract.v1.json'
+      - 'foundation/content-resolution/adapters/package-relative-fetch-adapter.js'
+      - 'scripts/validate-package-relative-fetch-adapter.mjs'
+      - 'tests/package-relative-fetch-adapter.test.mjs'
       - 'ARCHITECTURE.md'
       - 'CODEX_STATE.md'
       - 'CODEX_TASK.md'
@@ -52,6 +56,9 @@ jobs:
           node --check foundation/content-resolution/runtime-delivery-executor.js
           node --check scripts/validate-runtime-delivery-executor.mjs
           node --check tests/runtime-delivery-executor.test.mjs
+          node --check foundation/content-resolution/adapters/package-relative-fetch-adapter.js
+          node --check scripts/validate-package-relative-fetch-adapter.mjs
+          node --check tests/package-relative-fetch-adapter.test.mjs
       - name: Validate frozen Content Asset Provenance foundation
         run: node scripts/validate-foundation-l10-promotion.mjs
       - name: Validate content resolution contract
@@ -70,6 +77,10 @@ jobs:
         run: node scripts/validate-runtime-delivery-executor.mjs
       - name: Run delivery executor negative tests
         run: node tests/runtime-delivery-executor.test.mjs
+      - name: Validate package-relative fetch adapter
+        run: node scripts/validate-package-relative-fetch-adapter.mjs
+      - name: Run package-relative adapter negative tests
+        run: node tests/package-relative-fetch-adapter.test.mjs
       - name: Parse resolution JSON
         run: |
-          node -e "JSON.parse(require('fs').readFileSync('foundation/content-resolution/resolution-contract.v1.json','utf8')); JSON.parse(require('fs').readFileSync('foundation/content-resolution/examples/step1-resolution-request.v1.json','utf8')); JSON.parse(require('fs').readFileSync('foundation/content-resolution/delivery-plan-contract.v1.json','utf8')); JSON.parse(require('fs').readFileSync('foundation/content-resolution/delivery-executor-contract.v1.json','utf8')); console.log('CONTENT_RESOLUTION_JSON=PASS')"
+          node -e "JSON.parse(require('fs').readFileSync('foundation/content-resolution/resolution-contract.v1.json','utf8')); JSON.parse(require('fs').readFileSync('foundation/content-resolution/examples/step1-resolution-request.v1.json','utf8')); JSON.parse(require('fs').readFileSync('foundation/content-resolution/delivery-plan-contract.v1.json','utf8')); JSON.parse(require('fs').readFileSync('foundation/content-resolution/delivery-executor-contract.v1.json','utf8')); JSON.parse(require('fs').readFileSync('foundation/content-resolution/package-relative-adapter-contract.v1.json','utf8')); console.log('CONTENT_RESOLUTION_JSON=PASS')"
