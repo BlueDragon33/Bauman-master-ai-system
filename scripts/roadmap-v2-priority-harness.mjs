@@ -222,6 +222,31 @@ export function loadCurrentPriorityHarness(options={}){
     return deepFreeze(result);
   };
 
+  const rankCandidates=inputs=>{
+    assert(Array.isArray(inputs),'Priority candidates must be an array');
+    const candidateIds=new Set();
+    const targetIds=new Set();
+    const results=inputs.map(input=>{
+      assert(input&&typeof input==='object'&&!Array.isArray(input),'Invalid Priority candidate');
+      assert(typeof input.candidateId==='string'&&input.candidateId.trim(),'Missing Priority candidate ID');
+      assert(typeof input.targetId==='string'&&input.targetId.trim(),'Missing Priority target ID');
+      assert(!candidateIds.has(input.candidateId),`Duplicate Priority candidate ID: ${input.candidateId}`);
+      assert(!targetIds.has(input.targetId),`Duplicate Priority target ID: ${input.targetId}`);
+      candidateIds.add(input.candidateId);
+      targetIds.add(input.targetId);
+      return scoreCandidate(input);
+    });
+    results.sort((a,b)=>{
+      if(a.criticalOverride!==b.criticalOverride)return a.criticalOverride?-1:1;
+      if(a.weightedScore!==b.weightedScore)return b.weightedScore-a.weightedScore;
+      const aWeeks=a.weeksUntilNeeded??Number.POSITIVE_INFINITY;
+      const bWeeks=b.weeksUntilNeeded??Number.POSITIVE_INFINITY;
+      if(aWeeks!==bWeeks)return aWeeks-bWeeks;
+      return a.targetId.localeCompare(b.targetId);
+    });
+    return deepFreeze(results.map((result,index)=>({rank:index+1,...result})));
+  };
+
   return Object.freeze({
     contract:cloneFrozen(contract),
     candidateSchema:cloneFrozen(candidateSchema),
@@ -230,6 +255,7 @@ export function loadCurrentPriorityHarness(options={}){
     mastery:cloneFrozen(mastery),
     prerequisitePolicy:cloneFrozen(prerequisitePolicy),
     validateCandidate,
-    scoreCandidate
+    scoreCandidate,
+    rankCandidates
   });
 }
