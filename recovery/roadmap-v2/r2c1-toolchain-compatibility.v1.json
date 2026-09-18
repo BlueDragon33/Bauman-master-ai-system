@@ -1,0 +1,198 @@
+{
+  "schema": "BAUMAN_ROADMAP_V2_R2C1_TOOLCHAIN_COMPATIBILITY_V1",
+  "phase": "L27R2C1_TOOLCHAIN_COMPATIBILITY_REVIEW",
+  "status": "review_complete_pending_gate",
+  "historicalHead": "0438b6f4256003e6f20c266c97d944ade7c52f83",
+  "policy": {
+    "asIsCanonicalAdmission": 0,
+    "productionIntegration": "disconnected",
+    "generatedDataAdmissionAllowed": false,
+    "staleManifestAdmissionAllowed": false,
+    "runtimeActivationAllowed": false
+  },
+  "tools": [
+    {
+      "path": "roadmap_v2/tools/build-registry.mjs",
+      "blobSha": "a133a11d5215663f80650d4885e40cd9483f4090",
+      "disposition": "refactor_required",
+      "findings": [
+        "hard-coded math-main-e383912 inventory path",
+        "hard-coded corrected syllabus SHA-256",
+        "writes canonical registry output"
+      ]
+    },
+    {
+      "path": "roadmap_v2/tools/build-prerequisite-graph.mjs",
+      "blobSha": "b1137fb1f13eaf72acc57422e1a5ba04b0793bd9",
+      "disposition": "refactor_required",
+      "findings": [
+        "hard-coded corrected syllabus SHA-256",
+        "writes canonical registry and graph outputs"
+      ]
+    },
+    {
+      "path": "roadmap_v2/tools/build-migration-contract.mjs",
+      "blobSha": "c94a40d10edd65358effe5b8f438659c2c6cd33e",
+      "disposition": "refactor_required",
+      "findings": [
+        "reads historical baseline filenames",
+        "writes migration mapping/contract/reports",
+        "must not admit old migration contract"
+      ]
+    },
+    {
+      "path": "roadmap_v2/tools/validate-baseline-inventory.mjs",
+      "blobSha": "6d98f0ec7e6c9ed53a201f3a5c3a63bb9a2cefc7",
+      "disposition": "replace_for_modern_baseline",
+      "findings": [
+        "hard-coded e383912 historical commit",
+        "hard-coded historical source blob identities"
+      ]
+    },
+    {
+      "path": "roadmap_v2/tools/validate-migration-contract.mjs",
+      "blobSha": "d855d3585d3dfa2b3998301a05430ecf20130b1d",
+      "disposition": "refactor_required",
+      "findings": [
+        "reads historical baseline filenames",
+        "writes validation-l19 report"
+      ]
+    },
+    {
+      "path": "roadmap_v2/tools/validate-registry.mjs",
+      "blobSha": "adc6b66ea3e6bb62fb8cd7a8d9b0c0aa4dfffa9f",
+      "disposition": "refactor_required",
+      "findings": [
+        "hard-coded math-main-e383912 inventory path",
+        "hard-coded corrected syllabus SHA-256"
+      ]
+    },
+    {
+      "path": "roadmap_v2/tools/validate-roadmap-v2.mjs",
+      "blobSha": "70897a00e6071641806a33936805946163971322",
+      "disposition": "refactor_required",
+      "findings": [
+        "orchestrates historical validators and filenames",
+        "writes historical validation report"
+      ]
+    },
+    {
+      "path": "roadmap_v2/tools/validate-prerequisite-graph.mjs",
+      "blobSha": "d2c3fd5f7e5e41ff8cae5071f58b094978c4f77a",
+      "disposition": "portable_after_modern_data_exists",
+      "findings": [
+        "no historical commit/hash literal found",
+        "depends on canonical registry and graph artifacts not yet regenerated"
+      ]
+    }
+  ],
+  "externalValidation": [
+    {
+      "path": "scripts/validate-roadmap-v2.mjs",
+      "blobSha": "11d2531a9164dea4e5441e5ced3f7a23780e0844",
+      "disposition": "quarantine_obsolete_duplicate",
+      "findings": [
+        "reads docs/roadmap_v2 duplicate artifacts",
+        "not the L27 canonical validator chain"
+      ]
+    }
+  ],
+  "engines": {
+    "count": 7,
+    "disposition": "stage_only_until_modern_manifests",
+    "reason": "engines are read-only/fail-closed but verify manifests and sidecar hashes that are still historical",
+    "files": [
+      {
+        "path": "roadmap_v2/loader.mjs",
+        "blobSha": "d771c03c4bd2370523cb6562435ac7837a335565"
+      },
+      {
+        "path": "roadmap_v2/consumer.mjs",
+        "blobSha": "e18951b37da50dc1ceeac97588ba52c42b428dc2"
+      },
+      {
+        "path": "roadmap_v2/diagnostic.mjs",
+        "blobSha": "b735012cac8a32e6c2342c24ce983c4c08973420"
+      },
+      {
+        "path": "roadmap_v2/mastery.mjs",
+        "blobSha": "12b53936507002be7974291f22e98140da305d41"
+      },
+      {
+        "path": "roadmap_v2/priority.mjs",
+        "blobSha": "0b67695cad89ac3dfa0587dac1ed72ca29452429"
+      },
+      {
+        "path": "roadmap_v2/scheduler.mjs",
+        "blobSha": "98be0cacc1806ef53ab01152aa11b7d0b460bf3e"
+      },
+      {
+        "path": "roadmap_v2/readiness.mjs",
+        "blobSha": "be88983ef7918b97843327b77b0ab81c91691647"
+      }
+    ]
+  },
+  "tests": {
+    "count": 7,
+    "disposition": "stage_only_until_engine_manifest_chain_modernized",
+    "files": [
+      {
+        "path": "tests/roadmap-v2-consumer.test.mjs",
+        "blobSha": "f572ceb671926d1fe14c8feece6e546e74e538f3"
+      },
+      {
+        "path": "tests/roadmap-v2-diagnostic.test.mjs",
+        "blobSha": "7fc2d51cf5c14ac345d0a4e96b2453b6615ef7c3"
+      },
+      {
+        "path": "tests/roadmap-v2-loader.test.mjs",
+        "blobSha": "b7dc7e9eba7a77d91a12aa59982bdea4482ae135"
+      },
+      {
+        "path": "tests/roadmap-v2-mastery.test.mjs",
+        "blobSha": "f7267e6992255febe3abd98e6de4ff85999dd126"
+      },
+      {
+        "path": "tests/roadmap-v2-priority.test.mjs",
+        "blobSha": "c30765c178d7d9c738954032368ec05ccb2c23fc"
+      },
+      {
+        "path": "tests/roadmap-v2-readiness.test.mjs",
+        "blobSha": "53e393201e66a4e61f06785c64c16a3047687e0c"
+      },
+      {
+        "path": "tests/roadmap-v2-scheduler.test.mjs",
+        "blobSha": "a2ecfb751baa508014e7c6ee6afcdf4440732346"
+      }
+    ]
+  },
+  "workflow": {
+    "path": ".github/workflows/roadmap-v2-contract.yml",
+    "disposition": "do_not_reuse_as_current_ci_without_rewrite"
+  },
+  "conclusions": {
+    "safeAsIsCanonicalTools": 0,
+    "toolsRequiringRefactorOrReplacement": 7,
+    "portableValidatorsBlockedOnModernData": 1,
+    "obsoleteExternalValidators": 1,
+    "enginesBlockedOnModernManifests": 7,
+    "testsBlockedOnModernDependencyChain": 7
+  },
+  "nextSubrounds": [
+    {
+      "id": "L27R2C2A",
+      "purpose": "Create recovery-only modern toolchain profile and parameterized builders/validators",
+      "status": "blocked_on_L27R2C1"
+    },
+    {
+      "id": "L27R2C2B",
+      "purpose": "Stage historical engines/tests against modernized manifests without runtime activation",
+      "status": "blocked_on_L27R2C2A"
+    },
+    {
+      "id": "L27R2C3",
+      "purpose": "Consolidation gate before R3 regeneration",
+      "status": "blocked_on_L27R2C2B"
+    }
+  ]
+}
