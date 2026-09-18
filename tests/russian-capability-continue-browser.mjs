@@ -145,7 +145,17 @@ try{
  assert.equal(staleAfterFresh.pending,false);
  assert.deepEqual(staleAfterFresh.route,{view:'learning',learnTab:'theory',lessonId:'R01'});
 
+ const abandoned=await page.evaluate(()=>{
+  app.closeStudy();
+  app.openSubjectCapabilityGap('russian');
+  const beforeClose=window.hasPendingCapabilityIntent?.('russian')===true;
+  app.closeStudy();
+  return {beforeClose,afterClose:window.hasPendingCapabilityIntent?.('russian')===true};
+ });
+ assert.equal(abandoned.beforeClose,true);
+ assert.equal(abandoned.afterClose,false,'Closing study must cancel an unconsumed capability intent');
+
  await page.screenshot({path:path.join(OUT,'continue-fresh-handshake.png'),fullPage:true});
- fs.writeFileSync(path.join(OUT,'summary.json'),JSON.stringify({status:'PASS',immediate,refreshed,tab,crossSubject,reviewImmediate,reviewBlocked,reviewContinueImmediate,reviewContinue,staleBeforeOpen,staleImmediate,staleAfterFresh,progressBefore,progressAfterReview},null,2));
+ fs.writeFileSync(path.join(OUT,'summary.json'),JSON.stringify({status:'PASS',immediate,refreshed,tab,crossSubject,reviewImmediate,reviewBlocked,reviewContinueImmediate,reviewContinue,staleBeforeOpen,staleImmediate,staleAfterFresh,abandoned,progressBefore,progressAfterReview},null,2));
  console.log('Russian capability continue browser acceptance PASS');
 }finally{await browser?.close()}
