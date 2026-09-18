@@ -2,12 +2,12 @@
 
 Current task: `RUSSIAN_LISTEN_SPEAK_LITERACY_VISUAL_SEMANTICS`
 
-Status: `TURN14_GREEN_TURN15_ACTIVE`
+Status: `TURN15_GREEN_TURN16_ACTIVE`
 
 Date: 2026-09-18
 Branch: `work/russian-listen-speak-literacy-visual-semantics`
 Foundation base: content-resolution implementation through Step 14 is preserved from the accepted Foundation branch.
-Russian accepted head: `0b8fac9ca4e4d48187a87de52a13dd2c1353d6e6`
+Russian accepted head: `c15448c46a5b82567ea8dd1e30753655993cb360`
 
 ## Single source of truth
 
@@ -23,7 +23,7 @@ Architecture principles and ownership are defined in:
 
 ## Accepted Russian turns
 
-Turns 1–14 are green.
+Turns 1–15 are green.
 
 - Turn 1 — baseline audit and pedagogy contract
 - Turn 2 — oral-first route priority
@@ -39,14 +39,15 @@ Turns 1–14 are green.
 - Turn 12 — direct-semantic explanation
 - Turn 13 — visual vocabulary runtime
 - Turn 14 — reading bridge
+- Turn 15 — dictation & listen-to-write
 
 Turn 5 retains one explicit deferred obligation: browser-level visual proof that the packaged cursive glyph differs from print. This is tracked for Turn 23 and blocks Turn 24 freeze if still open.
 
 ## Next turn
 
-Turn 15 — Dictation & listen-to-write.
+Turn 16 — Translation-free dialogue scaffolding.
 
-Turn 16 does not begin until Turn 15 provides sound→letter, sound→word, and short Russian dictation with source-backed audio prompts, explicit attempt evidence, and no translation answers.
+Turn 17 does not begin until learner-facing dialogue scaffolding defaults to scene/cue/role context and Vietnamese/English gloss is removed from the active dialogue/practice surfaces.
 
 ## Protected authority
 
