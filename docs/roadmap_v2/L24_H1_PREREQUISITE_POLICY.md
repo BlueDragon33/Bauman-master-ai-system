@@ -1,6 +1,6 @@
 # L24-H1 — Current Prerequisite Policy Projection
 
-Status: `PENDING_GATE`
+Status: `PASS`
 
 ## Trigger
 
@@ -48,3 +48,17 @@ H1 requires:
 - historical `roadmap_v2/graph/prerequisite-graph.json` remains quarantined.
 
 B95 remains blocked until H1 and all six project gates pass.
+
+
+## Gate evidence
+
+Accepted H1 head: `9eaaabae21df54633ff89a53a4a2f7f8cdb01b0b`
+
+- Roadmap V2 Current Gate — run `35334959203` — PASS
+- Foundation Domain Model — run `35334959215` — PASS
+- Windows checkout safety — run `35334959170` — PASS
+- Russian Reference UI — run `35334959163` — PASS
+- Cloudflare Preview — run `35334959217` — PASS
+- Whole System Integration — run `35334959193` — PASS
+
+H1 is closed. B95 may proceed.
