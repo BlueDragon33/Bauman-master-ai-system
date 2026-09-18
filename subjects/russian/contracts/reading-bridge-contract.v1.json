@@ -1,0 +1,40 @@
+{
+  "schema": "RUSSIAN_READING_BRIDGE_CONTRACT_V1",
+  "contractVersion": 1,
+  "stages": [
+    "letter_to_chunk",
+    "chunk_to_word",
+    "word_to_short_text"
+  ],
+  "prerequisites": {
+    "cyrillicPrintRecognition": true,
+    "soundLetterMapping": true,
+    "visualVocabularyAuthority": true
+  },
+  "material": {
+    "language": "ru-RU",
+    "translationFieldsForbidden": true,
+    "counts": {
+      "chunks": 20,
+      "words": 16,
+      "short_texts": 8
+    },
+    "realWordStageRequired": true,
+    "shortTextStageRequired": true
+  },
+  "practice": {
+    "selfReadAttemptBeforeAudioCheck": true,
+    "segmentationRevealOptional": true,
+    "audioLanguage": "ru-RU",
+    "deterministicOrder": true
+  },
+  "evidence": {
+    "perItem": true,
+    "readAttempts": true,
+    "audioChecks": true,
+    "segmentationReveals": true,
+    "separateStorage": true,
+    "learnerStateAuthority": false,
+    "masteryMutation": false
+  }
+}
