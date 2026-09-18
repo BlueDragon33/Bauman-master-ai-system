@@ -41,12 +41,14 @@ assert.equal(contract.capabilities.persistentStoreWrite,false);
 assert.equal(contract.capabilities.schedulerWrite,false);
 assert.equal(contract.capabilities.runtimeActivation,false);
 
-const historicalMismatch={
-  historicalEngineFields:['weeksUntilNeeded','weights'],
-  historicalSchemaAllowedFields:Object.keys(read('recovery/roadmap-v2/historical-l27/roadmap_v2/priority/priority-result.schema.json')?.properties||{})
-};
-for(const field of historicalMismatch.historicalEngineFields){
-  assert.equal(historicalMismatch.historicalSchemaAllowedFields.includes(field),false,`historical mismatch evidence unexpectedly changed: ${field}`);
+const historicalEvidence=read('recovery/roadmap-v2/l25-h1-priority-result-schema-evidence.v1.json');
+assert.equal(historicalEvidence.schema,'BAUMAN_ROADMAP_V2_L25_H1_PRIORITY_RESULT_SCHEMA_EVIDENCE_V1');
+assert.equal(historicalEvidence.historicalRef,'agent/roadmap-v2-l25-staging-b100');
+assert.equal(historicalEvidence.historicalEngine.gitBlobSha,'0b67695cad89ac3dfa0587dac1ed72ca29452429');
+assert.equal(historicalEvidence.historicalResultSchema.gitBlobSha,'42fe039721cc7cd37f5ea6c30374d18f4a259d1c');
+assert.equal(historicalEvidence.historicalResultSchema.additionalProperties,false);
+assert.deepEqual(historicalEvidence.historicalResultSchema.omittedFields,['weeksUntilNeeded','weights']);
+for(const field of historicalEvidence.historicalResultSchema.omittedFields){
   assert.equal(Object.hasOwn(resultSchema.properties,field),true,`current result schema did not repair historical mismatch: ${field}`);
 }
 
