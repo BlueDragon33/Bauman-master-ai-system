@@ -24,13 +24,20 @@
   function overall(){const ids=Object.keys(S().subjects||{});return ids.length?Math.round(ids.reduce((a,id)=>a+progress(id),0)/ids.length):0}
   function reviewCount(id){return (S().reviewQueue||[]).filter(x=>!id||x.subjectId===id).length}
   function capabilityState(id){const x=S().subjectCapabilities?.[id];return x&&typeof x==='object'?x:null}
+  function capabilityRouteReceipt(id,gap){
+    const receipt=S().subjectRouteReceipts?.[id],route=receipt?.route;
+    if(!receipt||!route||!gap?.lessonId)return null;
+    return route.lessonId===gap.lessonId&&route.view===(gap.route?.view||'')&&route.learnTab===(gap.route?.learnTab||'')?receipt:null;
+  }
   function capabilityHTML(sub){
     const x=capabilityState(sub?.id);if(!x||sub?.id!=='russian')return '';
-    const band=x.currentBand||{},gap=x.nextGap||{},exit=x.stageExit||{};
+    const band=x.currentBand||{},gap=x.nextGap||{},exit=x.stageExit||{},receipt=capabilityRouteReceipt(sub?.id,gap);
     const lessonBits=Number(band.lessonTotal||0)?`${Number(band.lessonReady||0)}/${Number(band.lessonTotal||0)} bài có evidence`:'Chưa có lesson evidence';
     const reviewBits=Number(band.reviewDue||0)?`${Number(band.reviewDue)} mục ôn đến hạn`:'Review Queue sạch';
     const exitText=exit.allowed?'Đủ điều kiện rời stage':(exit.blocker||'Stage còn điều kiện chưa đạt');
-    return `<article class="hub-safe-card hub-safe-capability" data-safe-capability="russian"><div class="hub-safe-section-head"><div><h2>Năng lực Tiếng Nga</h2><p>Snapshot từ Russian Sub Web App · Hub không đọc storage nội bộ.</p></div><span class="hub-safe-band-badge">${safe(band.id||'R0')}</span></div><div class="hub-safe-capability-grid"><span><b>${safe(band.title||'Năng lực hiện tại')}</b><small>${safe(lessonBits)}</small></span><span><b>${safe(gap.lessonId||'Không có gap mới')}</b><small>Evidence gap tiếp theo</small></span><span><b>${safe(reviewBits)}</b><small>Ưu tiên sửa trước học mới</small></span><span class="${exit.allowed?'ready':'blocked'}"><b>${exit.allowed?'Sẵn sàng':'Chưa sẵn sàng'}</b><small>${safe(exitText)}</small></span></div><button class="btn hub-safe-outline" data-safe-action="capability">Mở Tiếng Nga theo gap hiện tại →</button></article>`;
+    const receiptLine=receipt?`<div class="hub-safe-capability-receipt" data-safe-capability-receipt="confirmed"><b>✓ Russian đã xác nhận mở ${safe(receipt.route.lessonId)}</b><small>${safe(receipt.route.view)} · ${safe(receipt.route.learnTab)} · stage ${safe(receipt.stage||'')}</small></div>`:`<div class="hub-safe-capability-receipt pending" data-safe-capability-receipt="pending"><b>Chưa có biên nhận mở gap</b><small>Hub chỉ đánh dấu xác nhận sau ACK từ Russian Sub Web App.</small></div>`;
+    const actionLabel=receipt?`Mở lại ${safe(receipt.route.lessonId)} →`:'Mở Tiếng Nga theo gap hiện tại →';
+    return `<article class="hub-safe-card hub-safe-capability" data-safe-capability="russian"><div class="hub-safe-section-head"><div><h2>Năng lực Tiếng Nga</h2><p>Snapshot từ Russian Sub Web App · Hub không đọc storage nội bộ.</p></div><span class="hub-safe-band-badge">${safe(band.id||'R0')}</span></div><div class="hub-safe-capability-grid"><span><b>${safe(band.title||'Năng lực hiện tại')}</b><small>${safe(lessonBits)}</small></span><span><b>${safe(gap.lessonId||'Không có gap mới')}</b><small>Evidence gap tiếp theo</small></span><span><b>${safe(reviewBits)}</b><small>Ưu tiên sửa trước học mới</small></span><span class="${exit.allowed?'ready':'blocked'}"><b>${exit.allowed?'Sẵn sàng':'Chưa sẵn sàng'}</b><small>${safe(exitText)}</small></span></div>${receiptLine}<button class="btn hub-safe-outline" data-safe-action="capability">${actionLabel}</button></article>`;
   }
   function scheduleItems(){const out=[];for(const [key,val] of Object.entries(S().schedule?.entries||{})){const [date,slotId]=key.split('|');if(!date||date<today())continue;out.push({date,slotId,time:SLOT_TIMES[slotId]||val.time||'Theo lịch',...val})}return out.sort((a,b)=>(a.date+a.time).localeCompare(b.date+b.time)).slice(0,4)}
   function subjectCards(){const s=S(),order=['math','russian','programming','ai','systems','signal','research','foundation'];return order.map(id=>s.subjects?.[id]).filter(Boolean).slice(0,5).map(sub=>{const [line,accent,icon]=palette(sub.id),pct=progress(sub.id);return `<button class="hub-safe-subject" style="--subject-line:${line};--subject-bg:${line}33;--subject-accent:${accent}" data-safe-subject="${safe(sub.id)}"><span class="icon">${safe(icon||sub.icon)}</span><b>${safe(sub.name)}</b><small>${safe(sub.eq?.[0]||sub.main||'Bauman')}</small><span class="hub-safe-progress"><span class="hub-safe-progress-track"><i style="width:${pct}%"></i></span><em>${pct}%</em></span></button>`}).join('')}
@@ -60,9 +67,9 @@
     const dashboard=q('#page-home .hub-safe-dashboard');
     const detailButton=q('#page-home [data-safe-action="details"]');
     const appearancePresets=qa('[data-safe-appearance]').length;
-    const capability=capabilityState('russian');
+    const capability=capabilityState('russian'),receipt=S().subjectRouteReceipts?.russian;
     const shellComplete=canonical&&!!q('#appearanceBtn')&&!!q('#aiBtn')&&!!original&&!!dashboard&&!!detailButton&&appearancePresets===3;
-    return{release:RELEASE,ready:shellComplete,canonicalPages:canonical,authoritativeHome:AUTHORITATIVE_HOME?A()?.home===AUTHORITATIVE_HOME:true,originalHomePreserved:!!original,additiveDashboard:!!dashboard,capabilitySnapshot:!!capability,capabilitySurface:!capability||!!q('[data-safe-capability="russian"]'),canonicalDetailsAvailable:!!original&&!!detailButton,canonicalDetailsOpen:detailOpen(),appearancePresets,routesOwned:false,dataWrites:false}
+    return{release:RELEASE,ready:shellComplete,canonicalPages:canonical,authoritativeHome:AUTHORITATIVE_HOME?A()?.home===AUTHORITATIVE_HOME:true,originalHomePreserved:!!original,additiveDashboard:!!dashboard,capabilitySnapshot:!!capability,capabilitySurface:!capability||!!q('[data-safe-capability="russian"]'),capabilityRouteReceipt:!!receipt,capabilityRouteReceiptSurface:!receipt||!!q('[data-safe-capability-receipt="confirmed"]'),canonicalDetailsAvailable:!!original&&!!detailButton,canonicalDetailsOpen:detailOpen(),appearancePresets,routesOwned:false,dataWrites:false}
   }
   bind();setTimeout(ensureAll,0);setTimeout(ensureAll,350);setTimeout(ensureAll,1200);
   window.BAUMAN_HUB_SAFE={release:RELEASE,refresh:()=>{ensureAll();return selfCheck()},selfCheck,openDetails:()=>{localStorage.setItem(DETAIL_KEY,'1');applyDetailState();},closeDetails:()=>{localStorage.setItem(DETAIL_KEY,'0');applyDetailState();}};
