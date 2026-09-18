@@ -1,6 +1,6 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "$id": "BAUMAN_ROADMAP_V2_MASTERY_CONTRACT_V1",
+  "$id": "BAUMAN_ROADMAP_V2_MASTERY_CONTRACT_V2",
   "type": "object",
   "additionalProperties": false,
   "required": [
@@ -8,7 +8,7 @@
     "version",
     "scope",
     "mode",
-    "upstreamSchemas",
+    "upstream",
     "knowledgeStates",
     "evidenceTypes",
     "thresholds",
@@ -18,15 +18,16 @@
     "edgeTypePolicy",
     "transitionPriority",
     "capabilities",
+    "reasonCodes",
     "abortConditions",
     "acceptance"
   ],
   "properties": {
     "schema": {
-      "const": "BAUMAN_ROADMAP_V2_MASTERY_CONTRACT_V1"
+      "const": "BAUMAN_ROADMAP_V2_MASTERY_CONTRACT_V2"
     },
     "version": {
-      "const": 1
+      "const": 2
     },
     "scope": {
       "type": "string",
@@ -34,6 +35,7 @@
     },
     "mode": {
       "type": "object",
+      "additionalProperties": false,
       "required": [
         "access",
         "productionIntegration",
@@ -41,24 +43,109 @@
         "appendOnlyEvents",
         "persistentStoreEnabled",
         "legacyMutationAllowed"
-      ]
+      ],
+      "properties": {
+        "access": {
+          "const": "read_only_harness"
+        },
+        "productionIntegration": {
+          "const": "disconnected"
+        },
+        "failClosed": {
+          "const": true
+        },
+        "appendOnlyEvents": {
+          "const": true
+        },
+        "persistentStoreEnabled": {
+          "const": false
+        },
+        "legacyMutationAllowed": {
+          "const": false
+        }
+      }
     },
-    "upstreamSchemas": {
+    "upstream": {
       "type": "object",
-      "minProperties": 3
+      "additionalProperties": false,
+      "required": [
+        "consumerBlueprintPath",
+        "consumerBlueprintSchema",
+        "consumerBlueprintValidationRequired",
+        "diagnosticContractPath",
+        "diagnosticContractSchema",
+        "diagnosticCatalogPath",
+        "diagnosticCatalogSchema",
+        "diagnosticResultSchema",
+        "evidenceEventSchema",
+        "masterySnapshotSchema",
+        "manifestDependencyRequired",
+        "staleHistoricalManifestAccepted"
+      ],
+      "properties": {
+        "consumerBlueprintPath": {
+          "const": "roadmap_v2/consumer/blueprint.json"
+        },
+        "consumerBlueprintSchema": {
+          "const": "BAUMAN_ROADMAP_V2_CONSUMER_BLUEPRINT_V1"
+        },
+        "consumerBlueprintValidationRequired": {
+          "const": "PASS"
+        },
+        "diagnosticContractPath": {
+          "const": "roadmap_v2/diagnostic/diagnostic-contract.json"
+        },
+        "diagnosticContractSchema": {
+          "const": "BAUMAN_ROADMAP_V2_DIAGNOSTIC_CONTRACT_V2"
+        },
+        "diagnosticCatalogPath": {
+          "const": "roadmap_v2/diagnostic/catalog.json"
+        },
+        "diagnosticCatalogSchema": {
+          "const": "BAUMAN_ROADMAP_V2_DIAGNOSTIC_CATALOG_V2"
+        },
+        "diagnosticResultSchema": {
+          "const": "BAUMAN_ROADMAP_V2_DIAGNOSTIC_RESULT_V2"
+        },
+        "evidenceEventSchema": {
+          "const": "BAUMAN_ROADMAP_V2_EVIDENCE_EVENT_V1"
+        },
+        "masterySnapshotSchema": {
+          "const": "BAUMAN_ROADMAP_V2_MASTERY_SNAPSHOT_V1"
+        },
+        "manifestDependencyRequired": {
+          "const": false
+        },
+        "staleHistoricalManifestAccepted": {
+          "const": false
+        }
+      }
     },
     "knowledgeStates": {
-      "type": "array",
-      "minItems": 6,
-      "uniqueItems": true
+      "const": [
+        "chua_hoc",
+        "dang_hoc",
+        "dat_prerequisite",
+        "master_ready",
+        "can_on",
+        "gap"
+      ]
     },
     "evidenceTypes": {
-      "type": "array",
-      "minItems": 8,
-      "uniqueItems": true
+      "const": [
+        "diagnostic_result",
+        "chapter_assessment",
+        "exercise_set",
+        "lab_or_simulation",
+        "project_rubric",
+        "retention_check",
+        "russian_technical_terms",
+        "gap_override"
+      ]
     },
     "thresholds": {
       "type": "object",
+      "additionalProperties": false,
       "required": [
         "chapterAssessmentPercent",
         "criticalPrerequisiteFloorPercent",
@@ -69,39 +156,180 @@
         "retentionWindowDays",
         "retentionPercent",
         "russianTechnicalTermsInGD2GD3"
-      ]
+      ],
+      "properties": {
+        "chapterAssessmentPercent": {
+          "const": 80
+        },
+        "criticalPrerequisiteFloorPercent": {
+          "const": 70
+        },
+        "exercisePercent": {
+          "const": 80
+        },
+        "labExplanationRequired": {
+          "const": true
+        },
+        "projectRubricMinimumPerDimension": {
+          "const": 3
+        },
+        "projectRubricDimensions": {
+          "const": [
+            "correctness",
+            "clarity",
+            "verification",
+            "reproducibility"
+          ]
+        },
+        "retentionWindowDays": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "minimum",
+            "maximum"
+          ],
+          "properties": {
+            "minimum": {
+              "const": 14
+            },
+            "maximum": {
+              "const": 21
+            }
+          }
+        },
+        "retentionPercent": {
+          "const": 75
+        },
+        "russianTechnicalTermsInGD2GD3": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "minimum",
+            "maximum",
+            "appliesToNonRussianTargets"
+          ],
+          "properties": {
+            "minimum": {
+              "const": 5
+            },
+            "maximum": {
+              "const": 10
+            },
+            "appliesToNonRussianTargets": {
+              "const": true
+            }
+          }
+        }
+      }
     },
     "diagnosticBoundary": {
       "type": "object",
+      "additionalProperties": false,
       "required": [
         "passingStatus",
         "gapStatuses",
         "passingKnowledgeState",
         "passingDiagnosticSatisfiesChapterAssessment",
         "passingDiagnosticGrantsMasterReady",
+        "diagnosticMasterReadyFieldRequiredFalse",
+        "diagnosticPersistableFieldRequiredFalse",
         "retentionStillRequiredForReviewOnDemand"
-      ]
+      ],
+      "properties": {
+        "passingStatus": {
+          "const": "existing_competency_verified"
+        },
+        "gapStatuses": {
+          "const": [
+            "gap",
+            "critical_gap"
+          ]
+        },
+        "passingKnowledgeState": {
+          "const": "dat_prerequisite"
+        },
+        "passingDiagnosticSatisfiesChapterAssessment": {
+          "const": false
+        },
+        "passingDiagnosticGrantsMasterReady": {
+          "const": false
+        },
+        "diagnosticMasterReadyFieldRequiredFalse": {
+          "const": true
+        },
+        "diagnosticPersistableFieldRequiredFalse": {
+          "const": true
+        },
+        "retentionStillRequiredForReviewOnDemand": {
+          "const": true
+        }
+      }
     },
     "masterReadyGate": {
       "type": "object",
+      "additionalProperties": false,
       "required": [
         "requiredDimensions",
         "russianTermsConditionalInGD2GD3",
         "gapOverrideBlocks",
         "allRequiredDimensionsMustPass"
-      ]
+      ],
+      "properties": {
+        "requiredDimensions": {
+          "const": [
+            "chapterAssessment",
+            "exercise",
+            "labOrSimulation",
+            "projectRubric",
+            "retention"
+          ]
+        },
+        "russianTermsConditionalInGD2GD3": {
+          "const": true
+        },
+        "gapOverrideBlocks": {
+          "const": true
+        },
+        "allRequiredDimensionsMustPass": {
+          "const": true
+        }
+      }
     },
     "prerequisiteGate": {
       "type": "object",
+      "additionalProperties": false,
       "required": [
         "satisfyingStates",
         "blockingStates",
         "recommendedEdgesDoNotBlock",
         "externalGatesRemainExplicit"
-      ]
+      ],
+      "properties": {
+        "satisfyingStates": {
+          "const": [
+            "dat_prerequisite",
+            "master_ready"
+          ]
+        },
+        "blockingStates": {
+          "const": [
+            "chua_hoc",
+            "dang_hoc",
+            "can_on",
+            "gap"
+          ]
+        },
+        "recommendedEdgesDoNotBlock": {
+          "const": true
+        },
+        "externalGatesRemainExplicit": {
+          "const": true
+        }
+      }
     },
     "edgeTypePolicy": {
       "type": "object",
+      "additionalProperties": false,
       "required": [
         "blocking",
         "just_in_time",
@@ -109,36 +337,158 @@
         "concurrent",
         "recommended",
         "contextual"
-      ]
+      ],
+      "properties": {
+        "blocking": {
+          "const": "all_of_satisfied_state"
+        },
+        "just_in_time": {
+          "const": "all_of_satisfied_state"
+        },
+        "alternative": {
+          "const": "any_of_group"
+        },
+        "concurrent": {
+          "const": "source_at_least_in_progress"
+        },
+        "recommended": {
+          "const": "advisory_non_blocking"
+        },
+        "contextual": {
+          "const": "advisory_explicit_non_blocking"
+        }
+      }
     },
     "transitionPriority": {
-      "type": "array",
-      "minItems": 6,
-      "uniqueItems": true
+      "const": [
+        "gap_override",
+        "master_ready",
+        "retention_due",
+        "dat_prerequisite",
+        "dang_hoc",
+        "chua_hoc"
+      ]
     },
     "capabilities": {
       "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "eventValidate",
+        "streamReduce",
+        "snapshotRead",
+        "masterReadyEvaluate",
+        "prerequisiteGateEvaluate",
+        "inMemoryHarnessOnly",
+        "persistentStoreWrite",
+        "priorityEngineWrite",
+        "schedulerWrite",
+        "runtimeActivation"
+      ],
+      "properties": {
+        "eventValidate": {
+          "const": true
+        },
+        "streamReduce": {
+          "const": true
+        },
+        "snapshotRead": {
+          "const": true
+        },
+        "masterReadyEvaluate": {
+          "const": true
+        },
+        "prerequisiteGateEvaluate": {
+          "const": true
+        },
+        "inMemoryHarnessOnly": {
+          "const": true
+        },
+        "persistentStoreWrite": {
+          "const": false
+        },
+        "priorityEngineWrite": {
+          "const": false
+        },
+        "schedulerWrite": {
+          "const": false
+        },
+        "runtimeActivation": {
+          "const": false
+        }
+      }
+    },
+    "reasonCodes": {
+      "type": "object",
       "minProperties": 9,
       "additionalProperties": {
-        "type": "boolean"
+        "type": "string",
+        "minLength": 1
       }
     },
     "abortConditions": {
       "type": "array",
-      "minItems": 10,
-      "uniqueItems": true
+      "minItems": 11,
+      "uniqueItems": true,
+      "items": {
+        "type": "string",
+        "minLength": 1
+      }
     },
     "acceptance": {
       "type": "object",
+      "additionalProperties": false,
       "required": [
         "step",
+        "currentTrack",
+        "consumerBlueprintBoundaryRevalidated",
+        "diagnosticV2BoundaryRevalidated",
+        "staleManifestDependencyRemoved",
         "existingCompetencyDistinctFromMasterReady",
         "eventsAppendOnly",
         "persistentStoreEnabled",
         "priorityEngineEnabled",
+        "schedulerEnabled",
         "runtimeActivationAllowed",
         "result"
-      ]
+      ],
+      "properties": {
+        "step": {
+          "const": 93
+        },
+        "currentTrack": {
+          "const": "L24"
+        },
+        "consumerBlueprintBoundaryRevalidated": {
+          "const": true
+        },
+        "diagnosticV2BoundaryRevalidated": {
+          "const": true
+        },
+        "staleManifestDependencyRemoved": {
+          "const": true
+        },
+        "existingCompetencyDistinctFromMasterReady": {
+          "const": true
+        },
+        "eventsAppendOnly": {
+          "const": true
+        },
+        "persistentStoreEnabled": {
+          "const": false
+        },
+        "priorityEngineEnabled": {
+          "const": false
+        },
+        "schedulerEnabled": {
+          "const": false
+        },
+        "runtimeActivationAllowed": {
+          "const": false
+        },
+        "result": {
+          "const": "PASS_CONTRACT_ONLY_PENDING_B93_GATE"
+        }
+      }
     }
   }
 }
