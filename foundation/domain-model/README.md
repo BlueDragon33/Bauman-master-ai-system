@@ -1,4 +1,4 @@
-# Bauman Universal Domain Model — Foundation V1
+# Bauman Foundation — Identity & Domain Model
 
 This directory defines the long-lived domain foundation shared by learning, assessment, subject apps, AI capabilities, research workflows, and future doctoral tooling.
 
