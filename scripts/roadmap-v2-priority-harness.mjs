@@ -63,7 +63,7 @@ export function loadCurrentPriorityHarness(options={}){
   const phases=new Set(snapshotSchema.properties.phaseId.enum);
   const knowledgeStates=new Set(mastery.knowledgeStates);
   const satisfyingStates=new Set(mastery.prerequisiteGate.satisfyingStates);
-  const forbiddenDerivedFields=new Set(['KnowledgeGap','prerequisiteUrgency','forgettingRisk','weightedScore",'disposition','criticalOverride','reviewOnDemand','rank']);
+  const forbiddenDerivedFields=new Set(['knowledgeGap','prerequisiteUrgency','forgettingRisk','weightedScore','disposition','criticalOverride','reviewOnDemand','rank']);
 
   const validateSnapshot=(snapshot,candidate)=>{
     assert(snapshot&&typeof snapshot==='object'&&!Array.isArray(snapshot),`Missing mastery snapshot: ${candidate.candidateId}`);
