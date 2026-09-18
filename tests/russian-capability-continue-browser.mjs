@@ -45,6 +45,17 @@ try{
  assert.match(tab.url,/routeLesson=R01/);
  assert.match(tab.url,/routeTab=theory/);
 
+ const crossSubject=await page.evaluate(()=>{
+  window.__capturedTabUrl='';
+  window.open=url=>{window.__capturedTabUrl=String(url);return null;};
+  app.openSubjectTab('math');
+  return {url:window.__capturedTabUrl,subjectId:state.activeTask?.subjectId,source:state.activeTask?.source,route:state.activeTask?.capabilityRoute||null};
+ });
+ assert.equal(crossSubject.subjectId,'math');
+ assert.notEqual(crossSubject.source,'capability-gap');
+ assert.equal(crossSubject.route,null);
+ assert.doesNotMatch(crossSubject.url,/routeLesson=|routeTab=/,'Russian capability route must not leak into Math tab');
+
  await page.evaluate(()=>app.closeStudy());
  await page.evaluate(()=>{
   state.subjectCapabilities.russian.currentBand.reviewDue=2;
@@ -85,6 +96,6 @@ try{
  assert.notEqual(staleLaunch.source,'capability-gap','Stale persisted snapshot must not drive a direct capability mission');
  assert.equal(staleLaunch.route,null);
  await page.screenshot({path:path.join(OUT,'continue-review-safe.png'),fullPage:true});
- fs.writeFileSync(path.join(OUT,'summary.json'),JSON.stringify({status:'PASS',tab,directGapBlocked,result,staleBeforeOpen,staleLaunch,progressBefore},null,2));
+ fs.writeFileSync(path.join(OUT,'summary.json'),JSON.stringify({status:'PASS',tab,crossSubject,directGapBlocked,result,staleBeforeOpen,staleLaunch,progressBefore},null,2));
  console.log('Russian capability continue browser acceptance PASS');
 }finally{await browser?.close()}
