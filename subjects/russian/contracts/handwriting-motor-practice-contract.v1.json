@@ -1,0 +1,36 @@
+{
+  "schema": "RUSSIAN_HANDWRITING_MOTOR_PRACTICE_CONTRACT_V1",
+  "contractVersion": 1,
+  "stages": [
+    "trace",
+    "copy",
+    "connect",
+    "free"
+  ],
+  "existingRuntime": {
+    "reuseWritingCanvas": true,
+    "createSecondCanvas": false,
+    "preserveCoreStrokeGuidance": true,
+    "preserveCoreHandwritingState": true
+  },
+  "thresholds": {
+    "trace": 3,
+    "copy": 3,
+    "connect": 4,
+    "free": 4
+  },
+  "connection": {
+    "useAdjacentCyrillicLetters": true,
+    "lowercasePairDefault": true,
+    "renderAsCursive": true
+  },
+  "evidence": {
+    "perLetter": true,
+    "perStage": true,
+    "pointerStrokeCount": true,
+    "stageAttempts": true,
+    "separateStorage": true,
+    "learnerStateAuthority": false,
+    "masteryMutation": false
+  }
+}
