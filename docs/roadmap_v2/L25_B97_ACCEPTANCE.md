@@ -1,6 +1,6 @@
 # L25/B97 — Priority Contract Acceptance
 
-Status: `PENDING_GATE`
+Status: `PASS`
 
 ## Purpose
 
@@ -36,3 +36,18 @@ The Diagnostic 80% pass / 70% critical floor and Mastery 75% retention / 14–21
 - production integration disconnected.
 
 B98 remains blocked until B97 and all six project gates pass.
+
+
+## Full gate evidence
+
+Accepted repair/B97 head: `28e730595828b326ba0f7409cb79821460e02d76`
+
+- Roadmap V2 Current Gate — run `35336940531` — PASS
+- Foundation Domain Model — run `35336940521` — PASS
+- Windows checkout safety — run `35336940515` — PASS
+- Russian Reference UI — run `35336940503` — PASS
+- Cloudflare Preview — run `35336940527` — PASS
+- Whole System Integration — run `35336940529` — PASS
+
+
+B97 is closed. B98 may begin subject to any B98 pre-audit hardening.
