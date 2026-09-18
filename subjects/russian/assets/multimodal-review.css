@@ -1,0 +1,6 @@
+.ru-multimodal-review{margin:12px 0;padding:14px;border:1px solid rgba(148,163,184,.25);border-radius:16px;background:rgba(15,23,42,.55);display:grid;gap:12px}
+.ru-multimodal-review header span{font-size:10px;letter-spacing:.1em;opacity:.65}.ru-multimodal-review h4{margin:4px 0}.ru-multimodal-review p{margin:0;opacity:.72}
+.ru-mm-tabs{display:grid;grid-template-columns:repeat(5,1fr);gap:7px}.ru-mm-tabs button,.ru-mm-rate button{border:1px solid rgba(148,163,184,.28);background:rgba(30,41,59,.88);color:inherit;border-radius:11px;padding:9px;cursor:pointer}
+.ru-mm-tabs button.active{outline:2px solid currentColor}.ru-mm-tabs b,.ru-mm-tabs small{display:block}.ru-mm-tabs small{opacity:.62;margin-top:3px}
+.ru-mm-rate{display:flex;gap:8px;align-items:center;flex-wrap:wrap}.ru-mm-rate span{margin-right:auto}.ru-multimodal-review footer{display:flex;gap:12px;flex-wrap:wrap;font-size:11px;opacity:.66}
+@media(max-width:760px){.ru-mm-tabs{grid-template-columns:repeat(2,1fr)}}
