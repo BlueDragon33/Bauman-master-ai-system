@@ -1,6 +1,6 @@
 # L24/B94 — Append-only Evidence Stream / Reducer Acceptance
 
-Status: `PENDING_GATE`
+Status: `PASS`
 
 ## Purpose
 
@@ -44,3 +44,17 @@ The validator snapshots all canonical Mastery/Consumer/Diagnostic source files b
 Canonical `roadmap_v2/mastery/mastery.mjs` and historical `manifest.json` remain absent.
 
 B95 remains blocked until B94 and all six project gates pass.
+
+
+## Gate evidence
+
+Accepted B94 head: `af0edd1814527c8066eca81c5de9f29526f05832`
+
+- Roadmap V2 Current Gate — run `35334427442` — PASS
+- Foundation Domain Model — run `35334427401` — PASS
+- Windows checkout safety — run `35334427410` — PASS
+- Russian Reference UI — run `35334427408` — PASS
+- Cloudflare Preview — run `35334427464` — PASS
+- Whole System Integration — run `35334427411` — PASS
+
+B94 is closed. B95 is now active.
