@@ -1,0 +1,9 @@
+.ru-hand-motor{margin:0 0 16px;padding:16px;border:1px solid rgba(148,163,184,.25);border-radius:20px;background:rgba(15,23,42,.72);display:grid;gap:14px}
+.ru-hand-motor header{display:flex;justify-content:space-between;gap:18px;align-items:flex-start}.ru-hand-motor header span{font-size:11px;letter-spacing:.12em;opacity:.7}.ru-hand-motor header h3{margin:5px 0 4px;font-size:20px}.ru-hand-motor header p{margin:0;opacity:.76}
+.ru-hand-motor-score{text-align:right;min-width:110px}.ru-hand-motor-score b{display:block;font-size:25px}.ru-hand-motor-score small{opacity:.65}
+.ru-hand-motor-stages{display:grid;grid-template-columns:repeat(4,1fr);gap:8px}.ru-hand-motor-stages button{border:1px solid rgba(148,163,184,.3);background:rgba(30,41,59,.86);color:inherit;border-radius:12px;padding:10px;cursor:pointer}.ru-hand-motor-stages button.active{outline:2px solid currentColor}.ru-hand-motor-stages button.done::after{content:' ✓';font-weight:800}
+.ru-hand-motor-task{display:grid;grid-template-columns:180px minmax(0,1fr);gap:14px;align-items:center;padding:14px;border-radius:16px;background:rgba(2,6,23,.35)}
+.ru-hand-motor-sample{text-align:center}.ru-hand-motor-sample small{display:block;opacity:.65;margin-bottom:6px}.ru-hand-motor-script{font-family:'Segoe Script','Comic Sans MS',cursive;font-size:52px;font-weight:500;line-height:1.1}
+.ru-hand-motor-task p{margin:5px 0 10px;opacity:.75}.ru-hand-motor-progress{display:flex;gap:6px;flex-wrap:wrap}.ru-hand-motor-progress span{font-size:11px;padding:5px 8px;border-radius:999px;background:rgba(148,163,184,.14)}.ru-hand-motor-progress span.done{font-weight:800}
+.ru-hand-motor footer{display:flex;gap:14px;flex-wrap:wrap;font-size:12px;opacity:.72}
+@media(max-width:760px){.ru-hand-motor header{display:grid}.ru-hand-motor-score{text-align:left}.ru-hand-motor-stages{grid-template-columns:repeat(2,1fr)}.ru-hand-motor-task{grid-template-columns:1fr}.ru-hand-motor-script{font-size:46px}}
