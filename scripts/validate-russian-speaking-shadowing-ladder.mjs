@@ -25,7 +25,7 @@ export function validateRuntime(js,css,core){
   assert(js.includes("function startRoleplay(role)"),'Role-play stage missing');
   assert(js.includes("function startRepair()"),'Repair stage missing');
   assert(js.includes("heardCount(c)>=1"),'Imitation is not listening-gated');
-  assert(js.includes("heardCount(c)>=2"),'Shadowing is not two-listen gated');
+  assert(/function canShadow\([^]*?heardCount\(c\)>=2&&Number\(row\?\.imitationAttempts\|\|0\)>0;/.test(js),'Shadowing is not two-listen gated');
   assert(js.includes("clickCore('record-line')"),'Speaking ladder does not reuse core recorder');
   assert(js.includes("clickCore(role==='B'?'role-b':'role-a')"),'Role-play does not reuse core role controls');
   assert(js.includes("clickCore('speak-line-slow')"),'Repair does not reuse slow-listen repair control');
