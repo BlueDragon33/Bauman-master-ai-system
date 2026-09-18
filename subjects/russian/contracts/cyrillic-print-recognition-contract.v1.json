@@ -1,0 +1,24 @@
+{
+  "schema": "RUSSIAN_CYRILLIC_PRINT_RECOGNITION_CONTRACT_V1",
+  "contractVersion": 1,
+  "alphabet": {
+    "requiredLetterCount": 33,
+    "order": "АБВГДЕЁЖЗИЙКЛМНОПРСТУФХЦЧШЩЪЫЬЭЮЯ"
+  },
+  "modes": [
+    "uppercase_to_lowercase",
+    "lowercase_to_uppercase",
+    "confusable_discrimination"
+  ],
+  "evidence": {
+    "separateStorage": true,
+    "attempts": true,
+    "correct": true,
+    "masteryMutation": false,
+    "learnerStateAuthority": false
+  },
+  "semantics": {
+    "translationRequired": false,
+    "soundRequiredInLaterTurn": true
+  }
+}
