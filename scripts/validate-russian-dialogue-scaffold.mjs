@@ -37,8 +37,8 @@ export function validateHelper(js){
 }
 export function validateCore(core){
   const meta=functionSlice(core,'dialogueMeta','roleInstruction');
-  const dialogue=functionSlice(core,'renderDialogue','renderDeepSpeaking');
-  const practice=functionSlice(core,'renderPractice','renderReview');
+  const dialogue=functionSlice(core,'renderDialogue','handwritingText');
+  const practice=functionSlice(core,'renderPractice','speechMapLineButton');
   assert(meta.includes('RussianDialogueScaffold'),'dialogueMeta does not use scaffold authority');
   for(const token of ['context_title_vi','communicative_functions_vi','dialogueVi('])assert(!meta.includes(token),`dialogueMeta still uses legacy gloss: ${token}`);
   for(const [name,src] of [['renderDialogue',dialogue],['renderPractice',practice]]){
