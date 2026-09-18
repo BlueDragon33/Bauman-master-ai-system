@@ -4,143 +4,55 @@ Task: `CONTENT_RESOLUTION_RUNTIME_DELIVERY_FOUNDATION`
 
 Mode: `CHAT_FIRST / RESPONSIBILITY_BASED_ARCHITECTURE`
 
-## Architecture layer
-
-**Foundation — Content Resolution & Runtime Delivery**
-
 ## Goal
 
-Create a safe bridge from Content/Asset/Provenance Registry locators to runtime resource descriptors without replacing current loaders until each migration is separately proven.
+Provide a safe, pinned-integrity path from Content/Asset/Provenance Registry records to real runtime consumers while preserving existing application and learner-state authority until separately promoted.
 
-## Step 1 — Complete
+## Acceptance state
 
-Contract and trust boundary are gated.
+**Steps 1–14: COMPLETE / GREEN**
 
-## Step 2 — Active
+Validated capabilities:
 
-Implement and gate a pure resolver runtime only.
+- resolver-owned access evaluation;
+- deterministic locator selection;
+- exact HTTPS allowlist;
+- explicit provider requirement for content-hash locators;
+- immutable delivery plan;
+- injected adapter execution only;
+- SHA-256 + byte-length verification before consumer access;
+- package-relative same-origin fetch;
+- source and packaged browser parity;
+- pinned Academic core registry candidate;
+- reusable verified Academic loader;
+- opt-in authority trial with exact request-count checks;
+- fail-closed integrity/bootstrap failure behavior with zero legacy fallback.
 
-Required:
+## Current authority rule
 
-1. dependency on the frozen Content, Asset & Provenance Registry;
-2. explicit resolution modes;
-3. safe locator rules for repository-relative, HTTPS, and content-hash locators;
-4. access decision required before learner runtime delivery;
-5. checksum reference required before learner runtime delivery;
-6. default-deny network policy;
-7. immutable runtime resource descriptor;
-8. explicit blocked/provider-required/not-found/ambiguous outcomes;
-9. no learner-state or route authority;
-10. no runtime loader migration.
+Default Academic core loading remains the existing legacy path.
+
+The verified loader is an opt-in trial only:
+
+`?academicVerifiedLoader=1`
+
+No default promotion is authorized in this task.
 
 ## Protected contracts
 
 Preserve:
 
-- Foundation — Identity & Domain Model frozen baseline;
-- Foundation — Content, Asset & Provenance Registry promotion candidate;
+- Foundation — Identity & Domain Model;
+- Foundation — Content, Asset & Provenance Registry;
 - `BAUMAN_SUBJECT_BRIDGE_V1`;
-- existing Russian/Math learning contracts;
+- Russian/Math learning-state contracts;
+- Device Access Gate;
 - learner progress/state;
-- Hub and subject routes;
-- Device Gate and managed-access boundary;
-- current source/package parity.
+- routes and scheduler mutation policy;
+- source/package parity.
 
-## Step 2 acceptance
+## Next responsibility
 
-- asset/content target resolution;
-- resolver-owned access evaluation for target and final asset;
-- deterministic locator precedence;
-- default-deny network;
-- explicit provider requirement;
-- ambiguity instead of guessing;
-- registry immutability;
-- no current loader migration.
+Subject pedagogy changes belong to **Subject Web Apps**, not this Foundation layer.
 
-## Step 3 rule
-
-Do not migrate any real loader until Step 2 gate is green.
-
-
-## Step 3 — Active
-
-Build and gate an immutable delivery plan from a resolved descriptor.
-
-Required:
-
-- descriptor must already be `resolved`;
-- descriptor asset/checksum/locator must still match registry;
-- content-hash locator must equal referenced SHA-256 digest;
-- delivery plan carries exact digest and byte length;
-- transport/locator mismatch fails closed;
-- no I/O, route, storage or learner-state mutation.
-
-Step 4 may define injected adapters only after Step 3 is green.
-
-
-## Step 4 — Active
-
-Gate the injected delivery executor.
-
-Acceptance:
-
-- exact adapter ID lookup only;
-- adapter missing/error/invalid payload fail closed;
-- SHA-256 digest + byte length verified before consumer;
-- failed payload never reaches consumer;
-- consumer receives a copy isolated from adapter-owned bytes;
-- executor contains no direct network/storage APIs.
-
-No real application loader is migrated in Step 4.
-
-
-## Step 5 — Active
-
-Gate the first concrete delivery adapter: `package-relative-resource`.
-
-Acceptance:
-
-- explicit HTTP/HTTPS base URL;
-- repository-relative resource path only;
-- same-origin GET only;
-- redirects rejected;
-- query/fragment/traversal rejected;
-- HTTP failure rejected;
-- bytes still verified by the executor before consumer use.
-
-No existing loader authority changes in Step 5.
-
-
-## Step 6 — Active
-
-Validate the real Academic 2026 core resources in shadow mode.
-
-Resources:
-
-- official curriculum;
-- prerequisite registry;
-- prerequisite pack manifest.
-
-Acceptance:
-
-- exact parity with constants in `assets/js/academic-main.js`;
-- real files exist and parse;
-- dynamic diagnostic registry only;
-- resolver → delivery plan → executor verification succeeds for all three;
-- verified JSON equals direct JSON;
-- no runtime code or loader authority changes.
-
-
-## Step 7 — Active
-
-Run source-runtime browser shadow acceptance without editing the application entry point.
-
-Acceptance:
-
-- same-origin test-only harness;
-- Foundation scripts injected only by Playwright;
-- real package-relative fetch adapter used in Chromium;
-- browser WebCrypto SHA-256;
-- all three Academic core resources resolve, plan, verify, parse and match direct JSON;
-- no console/page/request/HTTP errors;
-- no runtime authority switch.
+The next requested development area is the Russian subject learning architecture and should be performed on a separate responsibility-named branch.

@@ -156,7 +156,7 @@ When writing new documents, put the responsibility name first. A checkpoint code
 - registry mutation;
 - implicit browser/network fetching in the core resolver.
 
-**Current state:** Step 7 browser shadow acceptance active. Node shadow parity is green; Chromium acceptance uses a test-only harness, while root Hub and Academic runtime remain unchanged and authoritative.
+**Current state:** Steps 1–14 are green. The layer now includes pinned registry-backed delivery, source/package Chromium parity, a reusable non-authoritative Academic verified loader, an opt-in authority trial, and failure-injection proof that checksum/bootstrap failures fail closed without hidden legacy fallback. Default Academic core authority remains the legacy loader unless explicitly promoted.
 
 ### G. Foundation — Learning Content Standard
 
@@ -357,8 +357,8 @@ State: promotion candidate with registry contract, immutable runtime, SHA-256 as
 
 ### Foundation — Content Resolution & Runtime Delivery
 
-State: Step 1 contract active on `work/foundation-content-resolution-delivery`.
+State: Steps 1–14 green on `work/foundation-content-resolution-delivery`.
 
-Current rule: contract-only; no existing loader migration yet.
+Accepted implementation checkpoint: `277d451ded3fa05746e1f6c821bc0ead9d52e8e7`.
 
-Future work must preserve the explicit authority boundary before any runtime consumer is migrated.
+Current rule: the verified Academic loader exists and is proven in an opt-in authority trial, but default Academic core authority remains the legacy loader. Integrity/bootstrap failures fail closed and do not fall back silently. Any default-authority promotion requires a separate explicit decision.

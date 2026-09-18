@@ -2,122 +2,73 @@
 
 Current task: `CONTENT_RESOLUTION_RUNTIME_DELIVERY_FOUNDATION`
 
-Status: `STEP7_BROWSER_SHADOW_ACTIVE`
+Status: `STEP14_FAILURE_INJECTION_GREEN`
 
 Date: 2026-09-18
 Branch: `work/foundation-content-resolution-delivery`
 Base checkpoint: `540126ba568b73b84cde3efeba02677ac089e437`
+Accepted implementation checkpoint: `277d451ded3fa05746e1f6c821bc0ead9d52e8e7`
 
-## Primary architecture reference
+## Architecture layer
 
-Use `ARCHITECTURE.md` as the first document for ownership, dependencies, and upgrade boundaries.
-
-## Active architecture layer
-
-### Foundation — Content Resolution & Runtime Delivery
+**Foundation — Content Resolution & Runtime Delivery**
 
 Purpose:
 
-- resolve canonical registry locators into safe runtime resource descriptors;
-- centralize locator/runtime policy without moving academic authority into the registry;
-- provide a future migration path away from scattered hard-coded loader paths.
+- resolve registry-backed content/assets into deterministic runtime resources;
+- bind runtime delivery to pinned SHA-256 integrity and access policy;
+- expose a reusable verified loader without silently taking learner-state or application authority.
 
-Direct dependency:
+## Completed development
 
-- Foundation — Content, Asset & Provenance Registry.
+Steps 1–14 are green.
 
-Indirect dependency:
+1. Resolution contract and access-trust boundary.
+2. Pure resolver runtime.
+3. Immutable delivery-plan boundary.
+4. Injected verified executor.
+5. Same-origin package-relative fetch adapter.
+6. Academic core Node shadow parity.
+7. Source Chromium shadow acceptance.
+8. Packaged Chromium shadow acceptance.
+9. Opt-in real-Hub runtime shadow bridge.
+10. Pinned Academic core registry promotion candidate.
+11. Pinned-checksum runtime shadow.
+12. Reusable non-authoritative Academic verified content loader.
+13. Opt-in Academic verified-loader authority trial.
+14. Failure injection proving checksum/registry failures fail closed with no hidden legacy fallback.
 
-- Foundation — Identity & Domain Model.
+## Current Academic authority
 
-## Completed Step 1 boundary
+Default behavior remains `legacy_fetch`.
 
-Step 1 is contract-only.
+Only `?academicVerifiedLoader=1` activates the verified core-loader authority trial.
 
-Existing loaders remain unchanged:
-
-- Hub subject path mapping;
-- Academic prerequisite JSON loading;
-- subject-local data loading;
-- packaging/runtime dependency checks.
-
-The new layer must not yet replace or intercept those paths.
+The trial is intentionally not the default yet.
 
 ## Protected authority
 
-The resolution layer must never silently own:
+This layer still does not own:
 
-- learner state;
-- mastery;
-- Review Queue;
-- SRS;
-- scheduling;
-- subject or Hub routing;
-- authentication;
-- network credentials;
+- learner state or mastery;
+- Review Queue / SRS;
+- schedules or scheduler mutation;
+- Hub/subject routing;
+- authentication or device authority;
 - registry mutation.
 
-## Network and persistence rule
+## Integrity result
 
-- Core resolution defaults to network deny.
-- No fetch/XHR/WebSocket in the core resolver.
-- No localStorage/sessionStorage/IndexedDB binding in the core resolver.
-- Content-hash locators require an explicit provider adapter.
-- Repository-relative paths remain package-relative and traversal-safe.
+Source and packaged Chromium both prove:
 
-## Step 1 gate
+- pinned SHA-256 + byte-length verification;
+- no double-load of Academic core files;
+- modified bytes are rejected;
+- missing registry candidate is rejected before core JSON fetch;
+- failures do not silently fall back to legacy core fetching.
 
-Required before Step 2:
+## Branch policy
 
-- frozen L10 promotion validator PASS;
-- content resolution contract validator PASS;
-- negative contract tests PASS.
+Do not merge to `main` without an explicit promotion decision.
 
-Step 1 and access-trust corrections are green.
-
-## Active Step 2 boundary
-
-The pure resolver runtime is present but isolated. It reads registry + access policy and returns immutable runtime descriptors. It performs no fetch/storage/route/UI mutation and is not wired into Hub, Academic, subject, or packaging loaders.
-
-Step 3 must not migrate a real loader until the Step 2 resolver gate is green.
-
-
-## Active Step 3 boundary
-
-The delivery-plan layer binds a resolved descriptor to the exact registry asset, locator, SHA-256 digest and byte length.
-
-No bytes are retrieved yet. No adapter is allowed to expose data before future integrity verification.
-
-
-## Active Step 4 boundary
-
-The executor may call only adapters explicitly injected by the caller.
-
-It verifies SHA-256 digest and byte length before any consumer callback receives payload bytes.
-
-The executor itself does not fetch, discover adapters globally, use browser storage, mutate routes, or mutate learner state.
-
-
-## Active Step 5 boundary
-
-The first concrete adapter is `package-relative-resource`.
-
-It may perform same-origin GET through an injected/environment fetch implementation, but only after the resolver and delivery-plan layers have selected and pinned the asset. Returned bytes still pass through the verified executor before any consumer sees them.
-
-No existing application loader uses this adapter yet.
-
-
-## Active Step 6 boundary
-
-Academic 2026 core data is now modeled in CI-only shadow mode.
-
-The validator reads the real loader constants and real JSON bytes, then runs them through the new resolution/delivery chain using an in-memory diagnostic registry.
-
-No browser/runtime loader has been changed. The existing Academic fetch path remains authoritative.
-
-
-## Active Step 7 boundary
-
-A Playwright-only same-origin harness exercises the complete resolver/delivery chain in Chromium against the three real Academic core JSON resources.
-
-The harness is not loaded by the application. Root `index.html` and `assets/js/academic-main.js` remain unchanged.
+New subject-learning work should use a responsibility-specific branch rather than extending Foundation ownership into subject pedagogy.

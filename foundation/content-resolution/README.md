@@ -87,3 +87,32 @@ The shadow registry is diagnostic and exists only during validation.
 A Playwright-only harness validates the complete chain in Chromium using the real package-relative adapter and real Academic JSON resources.
 
 The production/root application does not load this harness or these Foundation modules yet.
+
+
+## Step 8 — Packaged browser shadow acceptance
+
+The same Chromium shadow chain is validated against the final packaged `dist`, proving source/package parity.
+
+## Step 9 — Real-Hub runtime shadow bridge
+
+The real Hub can opt into read-only shadow verification with `?contentResolutionShadow=1`. Default runtime behavior remains unchanged.
+
+## Step 10 — Pinned Academic core registry candidate
+
+The three Academic core JSON resources now have committed repository source, SHA-256 checksum, byte length, asset/content linkage, provenance, and explicit access records. CI fails on byte drift without corresponding registry updates.
+
+## Step 11 — Pinned runtime shadow
+
+The runtime shadow no longer derives its expected checksum from the bytes it is testing. Expected integrity comes from the pinned registry candidate.
+
+## Step 12 — Academic verified content loader candidate
+
+`BaumanAcademicVerifiedContentLoader.loadCore()` centralizes pinned-registry resolution, delivery, integrity verification, and post-verification JSON parsing. It does not auto-run or write Academic/learner globals by itself.
+
+## Step 13 — Opt-in Academic verified-loader authority trial
+
+`?academicVerifiedLoader=1` lets the real Academic runtime consume the verified loader for its three core JSON resources. Default mode remains legacy fetch. Browser tests prove exact request counts and no double-loading in source and package.
+
+## Step 14 — Failure injection / no-fallback proof
+
+Browser tests intentionally alter core bytes and simulate a missing registry candidate. Both source and packaged runtime fail closed: Academic core globals are not published and no hidden legacy fallback occurs.
