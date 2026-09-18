@@ -1,6 +1,6 @@
 {
   "schema": "BAUMAN_ROADMAP_V2_RECONCILIATION_V1",
-  "phase": "L27R2B0_CONTRACT_HYGIENE",
+  "phase": "L27R2B_STATIC_CONTRACT_SCHEMA_TRANSPLANT",
   "status": "reconciliation_in_progress",
   "createdAt": "2026-09-18",
   "targetBranch": "stabilization/roadmap-v2-reconcile-current-runtime",
@@ -141,12 +141,12 @@
     {
       "id": "L27R2B0",
       "name": "Contract hygiene and admission audit",
-      "status": "in_progress"
+      "status": "pass"
     },
     {
       "id": "L27R2B",
       "name": "Static Roadmap contract/schema transplant",
-      "status": "blocked_on_L27R2B0"
+      "status": "in_progress"
     },
     {
       "id": "L27R2C",
@@ -213,7 +213,24 @@
       "classification": "gate_design_regression",
       "cause": "R2A validator incorrectly enforced phase-local no-new-recovery-files rules during later phases.",
       "correction": "Make R2A validator timeless: verify only byte-exact R2A archive and historical state evidence; enforce current-phase mutation boundaries in the current-phase validator.",
+      "status": "pass"
+    },
+    {
+      "id": "L27R2B0-F2",
+      "classification": "gate_design_regression_prevented",
+      "cause": "R2B0 validator retained a phase-local canonical-path prohibition after R2B began.",
+      "correction": "Make R2B0 timeless and move canonical admission/mutation boundaries to the R2B validator.",
       "status": "applied_pending_gate"
     }
-  ]
+  ],
+  "r2b": {
+    "admittedFiles": 23,
+    "contracts": 6,
+    "schemas": 17,
+    "migrationContract": "quarantined_until_L27R3",
+    "executableEngines": 0,
+    "generatedDataFiles": 0,
+    "runtimeUiChanges": 0,
+    "productionIntegration": "disconnected"
+  }
 }
