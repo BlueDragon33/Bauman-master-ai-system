@@ -1,6 +1,6 @@
 # L23-H1 — Current Consumer Blueprint Materialization
 
-Status: `PENDING_GATE`
+Status: `PASS`
 
 ## Why this hardening round exists
 
@@ -46,3 +46,15 @@ They remain blocked with `DYNAMIC_INSTANCE_REQUIRED` until real syllabus/course 
 ## Safety
 
 The builder is read-only and writes only to stdout. CI regenerates the blueprint and compares it byte-for-byte with the committed canonical artifact.
+
+
+## Full gate evidence
+
+- Roadmap V2 Current Gate — `35331798542` — PASS
+- Foundation Domain Model — `35331798431` — PASS
+- Windows checkout safety — `35331798483` — PASS
+- Russian Reference UI — `35331798439` — PASS
+- Cloudflare Preview — `35331798480` — PASS
+- Whole System Integration — `35331798429` — PASS
+
+L23-H1-F1 is incorporated and the current blueprint is accepted as B90 input.
