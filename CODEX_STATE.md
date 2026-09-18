@@ -2,12 +2,12 @@
 
 Current task: `RUSSIAN_LISTEN_SPEAK_LITERACY_VISUAL_SEMANTICS`
 
-Status: `TURN17_GREEN_TURN18_ACTIVE`
+Status: `TURN18_GREEN_TURN19_ACTIVE`
 
 Date: 2026-09-18
 Branch: `work/russian-listen-speak-literacy-visual-semantics`
 Foundation base: content-resolution implementation through Step 14 is preserved from the accepted Foundation branch.
-Russian accepted head: `2d6ab7e2873bfede63c3c26c659813c71a485d00`
+Russian accepted head: `331b60a1d2e6dd9d7ccfd6f3bb9d2d8995780005`
 
 ## Single source of truth
 
@@ -23,7 +23,7 @@ Architecture principles and ownership are defined in:
 
 ## Accepted Russian turns
 
-Turns 1–17 are green.
+Turns 1–18 are green.
 
 - Turn 1 — baseline audit and pedagogy contract
 - Turn 2 — oral-first route priority
@@ -42,14 +42,17 @@ Turns 1–17 are green.
 - Turn 15 — dictation & listen-to-write
 - Turn 16 — translation-free dialogue scaffolding
 - Turn 17 — grammar from patterns
+- Turn 18 — multimodal SRS & review
+
+Turn 18 includes behavioral runtime acceptance proving evidence isolation and preservation of Core, SRS and canonical Learning State authority.
 
 Turn 5 retains one explicit deferred obligation: browser-level visual proof that the packaged cursive glyph differs from print. This is tracked for Turn 23 and blocks Turn 24 freeze if still open.
 
 ## Next turn
 
-Turn 18 — Multimodal SRS & review.
+Turn 19 — Skill-gated assessment.
 
-Turn 19 does not begin until review evidence can represent audio, visual, recognition, speaking, and writing modalities without taking scheduler or mastery authority.
+Aggregate readiness must not become green until the separately required Russian skills are individually evidenced. Turn 19 must remain assessment/readiness logic only and must not take mastery, scheduler, or learner-state mutation authority.
 
 ## Protected authority
 
@@ -67,11 +70,3 @@ Subject-local drills may store additive evidence but must not silently promote m
 ## Branch policy
 
 Do not merge to `main` without an explicit promotion decision.
-
-
-## Turn 18 stop point
-
-- Fixed source-markup defect in `subjects/russian/index.html`: removed 10 literal `\\n` escape sequences from HTML markup.
-- Turn 18 remains ACTIVE; do not promote yet.
-- Next required development upgrade: add behavioral runtime acceptance for multimodal review evidence (real storage mutation/isolation checks), proving the evidence layer does not mutate SRS due dates, canonical Review Queue state, mastery, or completion.
-- This is an in-turn gate-strengthening substep, not a new responsibility/turn.
