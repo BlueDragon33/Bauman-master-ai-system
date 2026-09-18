@@ -1,5 +1,6 @@
 'use strict';
 (function(){
+const SUBJECT_ID=window.SUBJECT_ADAPTER?.id||'russian';
 const CORE_KEY=window.SUBJECT_ADAPTER?.storageKey||'bauman_russian_survival_master_v11_clean_skeleton';
 const BANDS=[
  {id:'R0',title:'Nền âm & sinh tồn',lessonIds:['R01','R02','R03','R04'],stages:['vn'],steps:['theory','speaking','check'],writingNeed:0,rewriteNeed:0,goal:'Nghe âm cơ bản, nói câu sinh tồn và tự sửa lỗi trước khi tăng tải học thuật.'},
@@ -19,7 +20,7 @@ const STAGE_RULES={
 const esc=v=>String(v??'').replace(/[&<>"']/g,m=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[m]));
 const clean=v=>String(v??'').trim();
 const parse=(raw,fallback)=>{try{return raw?JSON.parse(raw):fallback}catch(_){return fallback}};
-let curriculum={stages:[],modules:[]},writing=[],ready=false,queued=false,lastSig='';
+let curriculum={stages:[],modules:[]},writing=[],ready=false,queued=false,lastSig='',lastBridgeSig='';
 const core=()=>parse(localStorage.getItem(CORE_KEY),{});
 const flow=()=>window.RussianLearningFlow?.get?.()||{lessons:{}};
 const reviews=()=>{try{return window.RussianLearningState?.dueReviews?.()||[]}catch(_){return []}};
@@ -91,6 +92,29 @@ function panelHtml(){
  const bands=allBands(),cur=currentBand(),c=core(),stage=stageExitStatus(clean(c.stage)||'vn');
  return `<section class="panel ru-capability-roadmap"><header class="ru-cap-head"><div><span class="chip">R0 → R4 · NĂNG LỰC THẬT</span><h3>${esc(cur.id)} · ${esc(cur.title)}</h3><p>R0–R4 là trục năng lực xuyên suốt các học kỳ, không thay thế stage thời gian và không phải nhãn CEFR. Chỉ tiến khi có bằng chứng học thật.</p></div><aside><b>${stage.lessonReady}/${stage.lessonTotal}</b><span>bài đủ điều kiện rời stage</span><small>${stage.allowed?'Stage-exit sẵn sàng':esc(stage.blockers[0]||'Còn điều kiện chưa đạt')}</small></aside></header><div class="ru-cap-grid">${bands.map(bandCard).join('')}</div></section>`;
 }
+function bridgePayload(){
+ const c=core(),bands=allBands(),cur=currentBand(),stage=stageExitStatus(clean(c.stage)||'vn');
+ const nextGap=cur?.missingLesson?{lessonId:cur.missingLesson,route:{view:'learning',learnTab:'theory',lessonId:cur.missingLesson}}:null;
+ return {
+  type:'BAUMAN_SUBJECT_CAPABILITY_STATE',
+  schema:'RUSSIAN_CAPABILITY_BRIDGE_V1',
+  subjectId:SUBJECT_ID,
+  source:'subjects/russian',
+  currentBand:cur?{id:cur.id,title:cur.title,complete:!!cur.complete,lessonReady:Number(cur.lessonReady||0),lessonTotal:Number(cur.lessonTotal||0),reviewDue:Number(cur.dueCount||0),writing:Number(cur.writing||0),writingNeed:Number(cur.writingNeed||0),rewrites:Number(cur.rewrites||0),rewriteNeed:Number(cur.rewriteNeed||0)}:null,
+  nextGap,
+  stageExit:{stage:stage.stage,allowed:!!stage.allowed,lessonReady:Number(stage.lessonReady||0),lessonTotal:Number(stage.lessonTotal||0),reviewDue:Number(stage.dueCount||0),writing:Number(stage.writing||0),rewrites:Number(stage.rewrites||0),blocker:clean(stage.blockers?.[0]||'')},
+  bands:bands.map(x=>({id:x.id,unlocked:!!x.unlocked,complete:!!x.complete,lessonReady:Number(x.lessonReady||0),lessonTotal:Number(x.lessonTotal||0),reviewDue:Number(x.dueCount||0)}))
+ };
+}
+function publishBridge(force=false){
+ if(!ready)return false;
+ const payload=bridgePayload(),sig=JSON.stringify(payload);
+ if(!force&&sig===lastBridgeSig)return false;
+ lastBridgeSig=sig;
+ try{window.BaumanSubjectHost?.send?.(payload)}catch(_){}
+ window.dispatchEvent(new CustomEvent('russian:capability-state',{detail:payload}));
+ return true;
+}
 function signature(){
  const c=core(),f=flow(),r=window.RussianLearningState?.get?.()||{},a=academic();
  return JSON.stringify([c.view,c.stage,f.updatedAt,r.updatedAt,a.updatedAt,ready]);
@@ -105,7 +129,7 @@ function render(){
  if(!panel){panel=document.createElement('div');panel.id='ruCapabilityRoadmap';view.prepend(panel);}
  panel.innerHTML=panelHtml();
 }
-function schedule(){if(queued)return;queued=true;requestAnimationFrame(()=>{queued=false;render()})}
+function schedule(){if(queued)return;queued=true;requestAnimationFrame(()=>{queued=false;render();publishBridge(false)})}
 document.addEventListener('DOMContentLoaded',async()=>{
  try{
   const [c,w]=await Promise.all([
@@ -118,6 +142,10 @@ document.addEventListener('DOMContentLoaded',async()=>{
  const view=document.getElementById('view');if(view)new MutationObserver(schedule).observe(view,{childList:true,subtree:false});
 });
 window.addEventListener('russian:learning-state',schedule);
+window.addEventListener('message',event=>{
+ if(!window.BaumanSubjectHost?.trusted?.(event))return;
+ if(event.data?.type==='BAUMAN_REQUEST_SUBJECT_CAPABILITY_STATE')publishBridge(true);
+});
 document.addEventListener('click',()=>setTimeout(schedule,30),true);
-window.RussianCapabilityProgression={bands:BANDS,stageRules:STAGE_RULES,bandStatus,allBands,currentBand,stageExitStatus,schedule};
+window.RussianCapabilityProgression={bands:BANDS,stageRules:STAGE_RULES,bandStatus,allBands,currentBand,stageExitStatus,bridgePayload,publishBridge,schedule};
 })();
