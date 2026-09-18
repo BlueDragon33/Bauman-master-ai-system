@@ -1,6 +1,6 @@
 # L25-F4 — B99 Current-Blueprint Ranking Fixture Repair
 
-Status: `FIX_APPLIED_PENDING_GATE`
+Status: `PASS`
 
 ## Trigger
 
@@ -38,3 +38,15 @@ No target-validation rule is weakened.
 Unknown targets remain rejected. Priority formula, ranking order, persistence, scheduler write and runtime activation remain unchanged.
 
 B100 remains blocked until F4 and B99 pass the complete six-gate set.
+
+
+## Full gate evidence
+
+Accepted B99/F4 head: `601a5d4fb7ba0a62f37847ebbb27a2f9a4457da7`
+
+- Roadmap V2 Current Gate — run `35341919312` — PASS
+- Foundation Domain Model — run `35341919148` — PASS
+- Windows checkout safety — run `35341919160` — PASS
+- Russian Reference UI — run `35341919206` — PASS
+- Cloudflare Preview — run `35341919204` — PASS
+- Whole System Integration — run `35341919158` — PASS
