@@ -59,3 +59,10 @@ It is not yet wired into existing Hub, Academic, subject, or packaging loaders.
 `runtime-delivery-plan.js` converts a resolved descriptor into an immutable delivery plan pinned to the registry checksum, media identity and locator.
 
 The plan does not retrieve bytes. Future adapters must verify bytes against the plan before returning them.
+
+
+## Step 4 — Injected verified delivery executor
+
+`runtime-delivery-executor.js` calls only adapters explicitly supplied by the environment. It verifies SHA-256 digest and byte length before forwarding a copied payload to a consumer.
+
+The executor itself contains no direct network or browser-storage implementation.
