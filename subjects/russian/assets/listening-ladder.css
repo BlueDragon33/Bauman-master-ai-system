@@ -1,0 +1,8 @@
+.ru-listening-ladder{margin:12px 0;padding:14px;border:1px solid rgba(148,163,184,.24);border-radius:18px;background:rgba(15,23,42,.62);display:grid;gap:12px}
+.ru-listening-ladder header{display:flex;justify-content:space-between;gap:16px;align-items:flex-start}.ru-listening-ladder header span{font-size:10px;letter-spacing:.1em;opacity:.66}.ru-listening-ladder h3{margin:4px 0;font-size:18px}.ru-listening-ladder header p{margin:0;opacity:.72}
+.ru-listen-stage{text-align:right}.ru-listen-stage b{display:block}.ru-listen-stage small{opacity:.65}
+.ru-listen-actions{display:grid;grid-template-columns:repeat(4,1fr);gap:8px}.ru-listen-actions button,.ru-listen-detail button{border:1px solid rgba(148,163,184,.28);background:rgba(30,41,59,.9);color:inherit;border-radius:11px;padding:9px 10px;cursor:pointer}.ru-listen-actions button:disabled{opacity:.42;cursor:not-allowed}
+.ru-listen-evidence{display:flex;gap:6px;flex-wrap:wrap}.ru-listen-evidence span{font-size:11px;padding:4px 7px;border-radius:999px;background:rgba(148,163,184,.13)}
+.ru-listen-detail{display:grid;gap:8px;padding:11px;border-radius:13px;background:rgba(2,6,23,.3)}.ru-listen-detail>div{display:flex;gap:8px;flex-wrap:wrap}.ru-listen-detail small.ok{font-weight:800}.ru-listen-detail small.retry{font-weight:700}
+.ru-listening-ladder footer{display:flex;gap:12px;flex-wrap:wrap;font-size:11px;opacity:.68}
+@media(max-width:760px){.ru-listening-ladder header{display:grid}.ru-listen-stage{text-align:left}.ru-listen-actions{grid-template-columns:repeat(2,1fr)}}
