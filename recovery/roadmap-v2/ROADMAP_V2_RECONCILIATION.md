@@ -1,111 +1,57 @@
 # Roadmap V2 — Recovery and Reconciliation Plan
 
-## Decision
+## Source of truth
 
-Roadmap V2 is not being restarted and is not being downgraded to Foundation L10.
+Roadmap V2 historically reached **Lượt 27 / Bước 108** and passed its gates on baseline `e383912354673bdce7a0059d6b9a23799d74e689`.
 
-The historical Roadmap V2 line reached **Lượt 27 / Bước 108** with its production boundary intentionally disconnected. That work was validated on the old repository baseline `e383912354673bdce7a0059d6b9a23799d74e689`.
+The modern recovery lane starts from the fully green runtime candidate `146d8f672975f46b36164cbd795e837801e50c97`, which contains Foundation V2 L9 on current `main`.
 
-The current runtime has since advanced substantially. The recovery lane therefore starts from the green current Russian/runtime candidate `146d8f672975f46b36164cbd795e837801e50c97`, which already contains current `main@1a6dfa3f822a9b6c662bf01cad48b12334ab3aae`.
-
-A direct merge of the historical L27 branch is forbidden because the branch is hundreds of commits behind current `main` and contains 148 changed files, including runtime-facing assets.
+Direct merging of the historical L27 branch is forbidden.
 
 ## Quality policy
 
-The project now uses **stability-first sequencing**:
+Every discovered problem becomes an explicit recovery round or sub-round. No feature round may absorb unverified repair work. Historical PASS evidence is preserved, but modern PASS must be re-proven.
 
-1. An issue discovered during a round creates an explicit repair/recovery round.
-2. No repair is hidden inside the next feature round.
-3. Every round receives a machine-readable contract, validator and CI gate.
-4. A failed gate blocks all later rounds.
-5. Production wiring remains disconnected until a dedicated activation round proves rollback, offline and packaged-runtime behavior.
-6. Historical PASS evidence is preserved, but it is not automatically treated as PASS on the modern baseline.
-7. Foundation L10 remains a separate draft line until this recovery lane explicitly admits it.
+## Sequence
 
-## Recovery rounds
+### L27R1 — Baseline freeze — PASS
 
-### Lượt 27R1 — Baseline freeze and source-of-truth recovery
+All six gates passed: reconciliation, Foundation, Windows checkout, Russian UI, preview boundary and Whole System browser/package acceptance.
 
-Purpose: eliminate branch ambiguity.
+The fingerprint audit found 30/40 protected paths unchanged and 10 changed. The durable theory overlay remains 18 records but increased from 300 to 306 slides.
 
-Required invariants:
+### L27R2A — Historical evidence archive
 
-- current runtime candidate is an ancestor of the recovery branch;
-- current Foundation V2 L9 main is an ancestor;
-- Foundation identity runtime is present;
-- current Russian capability/evidence/offline runtime is present;
-- Foundation L10 content registry is not silently mixed into the lane;
-- Roadmap V2 has not yet been transplanted;
-- historical terminal state remains L27/B108, not L22 or L10.
+Archive L19–L27 state, acceptance and syllabus evidence byte-for-byte under `recovery/roadmap-v2/historical-l27/**`.
 
-### Lượt 27R2 — Non-runtime Roadmap transplant
+This sub-round does **not** create canonical `roadmap_v2/**` runtime/tooling paths.
 
-Transplant only the isolated Roadmap V2 surfaces first:
+### L27R2B — Static contract/schema transplant
 
-- `roadmap_v2/**`;
-- Roadmap-specific build/validation scripts;
-- Roadmap tests;
-- acceptance/evidence documents;
-- dedicated Roadmap workflow.
+After R2A passes, transplant only Roadmap contracts and schemas to their canonical isolated paths. No engines, generated data, UI or production entrypoints.
 
-Do **not** transplant historical modifications to `index.html`, current Hub JS/CSS or current Russian runtime during this round.
+### L27R2C — Toolchain/data/test transplant
 
-### Lượt 27R3 — Modern-baseline regeneration and drift audit
+After R2B passes, transplant executable Roadmap builders, validators, tests and generated sidecar data. Run them in disconnected mode first.
 
-Regenerate the Roadmap against the modern repository and compare:
+### L27R3 — Modern-baseline regeneration
 
-- lesson/source inventories;
-- canonical and legacy IDs;
-- fingerprints/checksums;
-- prerequisite graph;
-- mapping coverage;
-- dynamic/unmapped/quarantined records;
-- deterministic manifests.
+Rebuild inventories/fingerprints against the modern Math/runtime source, classify every drift and regenerate deterministic Roadmap artifacts. Never revert modern source merely to satisfy an old hash.
 
-Any drift is classified and resolved explicitly. Old baseline fingerprints are evidence, not authority over modern source files.
+### L27R4 — Foundation/Russian compatibility bridge
 
-### Lượt 27R4 — Foundation and Russian compatibility bridge
+Introduce explicit adapters for Roadmap identity/evidence to Foundation V2 L9 and the current Russian capability/evidence flow. No duplicate learner-state authority.
 
-Create explicit adapters rather than implicit coupling:
+### L27R5 — Offline/package/failure-mode hardening
 
-- Roadmap IDs ↔ Foundation canonical IDs;
-- mastery/readiness evidence ↔ current Russian evidence flow;
-- scheduler/readiness semantics ↔ current capability progression;
-- no duplicate authority for learner state.
+Exercise online/reload/offline, corrupted cache/artifacts, packaged ChatGPT Site, rollback and no-silent-migration invariants.
 
-### Lượt 27R5 — Offline, package and failure-mode hardening
+### L27R6 — Full promotion gate
 
-Required tests include:
-
-- online → reload → offline;
-- cold offline where supported;
-- stale/corrupt cache;
-- missing/tampered Roadmap artifacts;
-- package materialization;
-- ChatGPT Site packaged runtime;
-- rollback to pre-Roadmap runtime;
-- no silent storage migration.
-
-### Lượt 27R6 — Full promotion gate
-
-The reconciled line may be frozen only after all of these pass together:
-
-- Roadmap V2 L19–L27 validators on the modern baseline;
-- Foundation Domain Model;
-- Russian Reference UI;
-- Windows checkout safety;
-- Whole System Integration;
-- Hub/Math browser acceptance;
-- Russian capability/evidence/offline browser acceptance;
-- packaged ChatGPT Site acceptance;
-- recovery-specific provenance and production-boundary checks.
+Run Roadmap L19–L27, Foundation, Russian, Math, Hub, offline, preview and packaged browser gates together. Freeze only when all are green.
 
 Only then may **Lượt 28 / Bước 109** begin.
 
-## Branch policy
+## Separate work
 
-The recovery branch is:
-
-`stabilization/roadmap-v2-reconcile-current-runtime`
-
-Historical branches remain reference evidence and must not be force-updated. Foundation L10 remains on its own draft branch and is not part of the recovery baseline at L27R1.
+Foundation L10 / PR #52 remains a separate draft line and is not admitted into this recovery lane yet.

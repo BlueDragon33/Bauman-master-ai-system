@@ -1,7 +1,7 @@
 {
   "schema": "BAUMAN_ROADMAP_V2_RECONCILIATION_V1",
-  "phase": "L27R1_BASELINE_FREEZE",
-  "status": "stabilization_only",
+  "phase": "L27R2A_HISTORICAL_EVIDENCE_ARCHIVE",
+  "status": "reconciliation_in_progress",
   "createdAt": "2026-09-18",
   "targetBranch": "stabilization/roadmap-v2-reconcile-current-runtime",
   "currentRuntime": {
@@ -13,11 +13,105 @@
   "historicalRoadmap": {
     "baseline": "e383912354673bdce7a0059d6b9a23799d74e689",
     "terminalBranch": "agent/roadmap-v2-l27-finalize-b108",
+    "terminalHead": "0438b6f4256003e6f20c266c97d944ade7c52f83",
+    "terminalTree": "ea07bc56f721a32e882c557de2837f22f9ee4e83",
     "terminalRound": 27,
     "terminalStep": 108,
     "terminalStatus": "PASS_B105_B108_READINESS_PROJECTION_PRODUCTION_DISCONNECTED",
     "changedFilesAgainstCurrentMain": 148,
     "behindCurrentMainCommitsObserved": 566
+  },
+  "l27r1GateEvidence": {
+    "reconciliation": {
+      "runId": 35323433504,
+      "conclusion": "success"
+    },
+    "foundation": {
+      "runId": 35323433501,
+      "conclusion": "success"
+    },
+    "windows": {
+      "runId": 35323433514,
+      "conclusion": "success"
+    },
+    "russian": {
+      "runId": 35323433502,
+      "conclusion": "success"
+    },
+    "preview": {
+      "runId": 35323433651,
+      "conclusion": "success"
+    },
+    "wholeSystem": {
+      "runId": 35323433494,
+      "conclusion": "success"
+    }
+  },
+  "driftAudit": {
+    "checkedProtectedPaths": 40,
+    "unchangedProtectedPaths": 30,
+    "changedProtectedPaths": 10,
+    "theoryContent": {
+      "recordsOld": 18,
+      "recordsCurrent": 18,
+      "slidesOld": 300,
+      "slidesCurrent": 306,
+      "changedLesson": "MATH-VN-C01-vector_trong_khong_gian_-L06-vector-to-data-matrix-e140",
+      "slidesOldLesson": 16,
+      "slidesCurrentLesson": 22
+    },
+    "changed": [
+      {
+        "path": "CODEX_STATE.md",
+        "historicalBlob": "66cc5f91d6c150f3f5fbb0c0de20959b7a5acf20",
+        "currentBlob": "651da240b4d3c3e438d256df1a600986bf57cfd9"
+      },
+      {
+        "path": "subjects/math/assets/theory_skin/theory-artifact-reader-E241.js",
+        "historicalBlob": "30f726cebecb22708b571442c75368989f878b10",
+        "currentBlob": "66946f150fe80a464a846edf25398bb9b707857f"
+      },
+      {
+        "path": "subjects/math/assets/theory_skin/theory-artifact-registry-E244.js",
+        "historicalBlob": "996aab99055472d4adbc4e5b807809b777bc1be8",
+        "currentBlob": "4c3f94aabc7bc4b2921c5b11328258441340bb7e"
+      },
+      {
+        "path": "subjects/math/assets/theory_skin/theory-presenter-route-lock-E243.js",
+        "historicalBlob": "8c2cb13c9c1c8c06c054adec6c6074308d65ea93",
+        "currentBlob": "05ab993411ce646615e0896b931b87478b949d5e"
+      },
+      {
+        "path": "subjects/math/assets/theory_skin/theory-slideshow-E202.js",
+        "historicalBlob": "ccf69b7f9c89038cba8a90e547a29b0acd15cbb4",
+        "currentBlob": "a58a3a13a3d0f948989dd0ca65133b4249815fb1"
+      },
+      {
+        "path": "subjects/math/assets/theory_skin/theory-slideshow-reader-content-E211.js",
+        "historicalBlob": "4bfdeab862626b78ead65ffa7050b27f34925ad6",
+        "currentBlob": "35732340e2d6497c1a4b31465740357ee06ee489"
+      },
+      {
+        "path": "subjects/math/assets/theory_skin/theory-slideshow-reader-fit-E212.js",
+        "historicalBlob": "5b04e0bc978b0c90a86e2739301f6e895396e84f",
+        "currentBlob": "95f47e031f572d1846814067b3547bb43eaa412a"
+      },
+      {
+        "path": "subjects/math/assets/theory_skin/theory-slideshow-richness-E242.js",
+        "historicalBlob": "8d07a9d15db08236ed1db39cc644ec02e5f3c281",
+        "currentBlob": "cb48b3cb18c843edaa49b6fbfc9b3476359b5b8f"
+      },
+      {
+        "path": "subjects/math/data/theory_lecture_content.json",
+        "historicalBlob": "0a7c49c25c0546411717dc5c39308c0c71d2a2e1",
+        "currentBlob": "9e4a0a0b8d33c21b2e343c09f2152b5c53b5bb7e"
+      },
+      {
+        "path": "subjects/math/index.html",
+        "historicalBlob": "f3f98f53459d4ce46080ffdf7eebb6c32fcda3ef",
+        "currentBlob": "dccf7230fbfb37c37f06ff484f9544c005da6ff0"
+      }
+    ]
   },
   "separateWork": {
     "foundationL10Branch": "work/foundation-v2-l10-content-asset-provenance",
@@ -30,43 +124,48 @@
     "Preserve the current Foundation V2 L9 identity model and Russian runtime behavior.",
     "Preserve offline behavior and packaged ChatGPT Site behavior.",
     "Keep Roadmap V2 production-disconnected until a dedicated activation round passes.",
-    "Every recovery round must pass its own gate before the next round starts."
+    "Every recovery round and sub-round must pass its own gate before the next starts.",
+    "Historical fingerprints are evidence; changed modern files must be re-baselined rather than reverted automatically."
   ],
   "rounds": [
     {
       "id": "L27R1",
       "name": "Baseline freeze and source-of-truth recovery",
-      "goal": "Pin modern runtime, historical Roadmap terminal state, and protected boundaries.",
+      "status": "pass"
+    },
+    {
+      "id": "L27R2A",
+      "name": "Historical evidence archive",
       "status": "in_progress"
     },
     {
-      "id": "L27R2",
-      "name": "Non-runtime Roadmap transplant",
-      "goal": "Transplant isolated Roadmap V2 contracts, data, tools, tests and evidence without wiring production UI/runtime.",
-      "status": "blocked_on_L27R1"
+      "id": "L27R2B",
+      "name": "Static Roadmap contract/schema transplant",
+      "status": "blocked_on_L27R2A"
+    },
+    {
+      "id": "L27R2C",
+      "name": "Roadmap toolchain/data/test transplant",
+      "status": "blocked_on_L27R2B"
     },
     {
       "id": "L27R3",
-      "name": "Modern-baseline regeneration and drift audit",
-      "goal": "Regenerate inventories and detect ID, fingerprint, source and prerequisite drift against current main.",
-      "status": "blocked_on_L27R2"
+      "name": "Modern-baseline regeneration and drift resolution",
+      "status": "blocked_on_L27R2C"
     },
     {
       "id": "L27R4",
       "name": "Foundation and Russian compatibility bridge",
-      "goal": "Reconcile Roadmap identities/evidence with Foundation V2 L9 and current Russian capability/evidence contracts.",
       "status": "blocked_on_L27R3"
     },
     {
       "id": "L27R5",
       "name": "Offline, package and failure-mode hardening",
-      "goal": "Validate browser offline, reload, package materialization, tamper and rollback behavior with the reconciled Roadmap present.",
       "status": "blocked_on_L27R4"
     },
     {
       "id": "L27R6",
       "name": "Full promotion gate",
-      "goal": "Run combined Roadmap, Foundation, Russian, Math, Hub and packaged browser gates; freeze the reconciled baseline.",
       "status": "blocked_on_L27R5"
     }
   ],

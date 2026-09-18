@@ -9,13 +9,14 @@ on:
     paths:
       - 'recovery/roadmap-v2/**'
       - 'scripts/validate-roadmap-v2-reconciliation.mjs'
+      - 'scripts/validate-roadmap-v2-r2a.mjs'
       - '.github/workflows/roadmap-v2-reconciliation.yml'
 
 permissions:
   contents: read
 
 jobs:
-  l27r1-baseline-freeze:
+  reconciliation:
     runs-on: ubuntu-24.04
     timeout-minutes: 10
     steps:
@@ -25,8 +26,10 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: "22.13.0"
-      - name: Validate reconciliation contract
+      - name: Validate modern/historical reconciliation lock
         run: node scripts/validate-roadmap-v2-reconciliation.mjs
+      - name: Validate R2A byte-exact historical archive
+        run: node scripts/validate-roadmap-v2-r2a.mjs
       - name: Validate Foundation V2 L9
         run: node scripts/validate-foundation-domain-model.mjs
       - name: Validate current system integration
