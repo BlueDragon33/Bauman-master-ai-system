@@ -30,18 +30,18 @@ English is not the default translation bridge either.
 
 ## Current work
 
-Turns 1–12 are accepted.
+Turns 1–13 are accepted.
 
-Next: **Turn 13 — Visual vocabulary runtime**.
+Next: **Turn 14 — Reading bridge**.
 
-Turn 13 must:
+Turn 14 must:
 
-- make the direct-semantic descriptor authoritative for learner-facing vocabulary UI;
-- remove Vietnamese/English semantic answers and “flip meaning” behavior;
-- preserve Russian term, pronunciation/audio, explicit visual asset, Russian definition/context, and usage examples;
-- expose explicit missing-semantic state instead of translation fallback;
-- keep legacy translation fields source-compatible but non-authoritative;
-- preserve SRS/mastery authority until their dedicated later turns.
+- bridge recognized Cyrillic letters into pronounceable chunks, real words, and short Russian text;
+- use Russian-only reading material without Vietnamese/English semantic answers;
+- retain ru-RU audio as pronunciation checking rather than translation;
+- record reading attempts separately from mastery authority;
+- reuse the existing Cyrillic/writing learning surface instead of creating a competing subject route;
+- keep progression deterministic: chunk → word → short text.
 
 ## Gate rule
 
