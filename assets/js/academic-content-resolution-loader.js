@@ -25,9 +25,9 @@
     return value;
   };
   function fail(code){throw new Error(`ACADEMIC_VERIFIED_CONTENT_LOADER_${code}`)}
-  function loadScript(relative,globalName){
+  function loadScript(relative,globalName,baseUrl){
     if(root[globalName])return Promise.resolve();
-    const url=new URL(relative,root.document.baseURI).href;
+    const url=new URL(relative,baseUrl).href;
     return new Promise((resolve,reject)=>{
       const existing=Array.from(root.document.scripts).find(script=>script.src===url);
       if(existing){
@@ -45,8 +45,8 @@
       root.document.head.appendChild(script);
     });
   }
-  async function loadDependencies(){
-    for(const dependency of DEPENDENCIES)await loadScript(dependency.path,dependency.global);
+  async function loadDependencies(baseUrl){
+    for(const dependency of DEPENDENCIES)await loadScript(dependency.path,dependency.global,baseUrl);
   }
   async function loadRegistry(baseUrl,fetchFn){
     const response=await fetchFn(new URL(REGISTRY_CANDIDATE_PATH,baseUrl).href,{cache:'no-cache'});
@@ -70,7 +70,7 @@
     const fetchFn=hasFetch?options.fetchFn:(typeof root.fetch==='function'?root.fetch.bind(root):null);
     if(typeof fetchFn!=='function')fail('FETCH_UNAVAILABLE');
 
-    await loadDependencies();
+    await loadDependencies(parsedBase.href);
     const registry=await loadRegistry(parsedBase.href,fetchFn);
     const registryBefore=JSON.stringify(registry);
     const adapterOptions={baseUrl:parsedBase.href};
@@ -97,6 +97,9 @@
         contentRegistryId:row.contentId,
         assetRegistryId:descriptor.assetRegistryId,
         path:plan.resource.value,
+        descriptorStatus:descriptor.status,
+        planStatus:plan.status,
+        executionStatus:execution.status,
         digest:execution.integrity.digest,
         byteLength:execution.integrity.byteLength,
         status:execution.status
@@ -110,7 +113,8 @@
       candidateStatus:registry.extensions.academicCore2026.status,
       candidateAuthority:registry.extensions.academicCore2026.authority,
       data,
-      verification
+      verification,
+      registryUnchanged:true
     });
   }
   root.BaumanAcademicVerifiedContentLoader=Object.freeze({
