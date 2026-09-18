@@ -1,6 +1,6 @@
 # L25/B99 — Stable Priority Ranking / Strict Validation
 
-Status: `PENDING_GATE`
+Status: `PASS`
 
 ## Ranking order
 
@@ -33,3 +33,18 @@ Every ranked result:
 No canonical Priority executable or manifest is admitted. Production integration, persistence, scheduler write and runtime activation remain disabled.
 
 B100 remains blocked until B99 and all six project gates pass.
+
+
+## Full gate evidence
+
+Accepted B99/F4 head: `601a5d4fb7ba0a62f37847ebbb27a2f9a4457da7`
+
+- Roadmap V2 Current Gate — run `35341919312` — PASS
+- Foundation Domain Model — run `35341919148` — PASS
+- Windows checkout safety — run `35341919160` — PASS
+- Russian Reference UI — run `35341919206` — PASS
+- Cloudflare Preview — run `35341919204` — PASS
+- Whole System Integration — run `35341919158` — PASS
+
+
+B99 is closed. B100 closeout may begin.
