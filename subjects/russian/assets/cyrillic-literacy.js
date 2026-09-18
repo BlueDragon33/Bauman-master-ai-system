@@ -86,7 +86,7 @@
         <div class="ru-cyrillic-result ${result?(result.ok?'ok':'retry'):''}">${result?(result.ok?'✓ Đúng mặt chữ':'Chưa đúng · nhìn lại hình dáng chữ và thử tiếp'):'Nhìn hình dáng, chưa cần học nghĩa từ.'}</div>
         <button class="ru-cyrillic-next" data-cyr-next="1">Bỏ qua / chữ tiếp →</button>
       </div>
-      <footer><span>Chữ ${state.index+1}/${rows.length}</span><span>Đã chạm ${Object.keys(state.seen||{}).length}/33 chữ</span><span>Không tự đánh dấu mastered</span></footer>
+      <footer><span>Chữ ${state.index+1}/${rows.length}</span><span>Đã chạm ${Object.keys(state.seen||{}).length}/33 chữ</span><span>Không tự nâng trạng thái bài học</span></footer>
     </section>`;
   }
   function mount(){
