@@ -7,12 +7,17 @@ on:
       - "index.html"
       - "assets/**"
       - "subjects/**"
+      - "foundation/**"
       - "scripts/validate-system-integration.mjs"
       - "tests/system-browser-acceptance.mjs"
+      - "tests/foundation-identity-persistence-browser.mjs"
+      - "tests/foundation-identity-projection-browser.mjs"
+      - "tests/foundation-canonical-context-browser.mjs"
       - "tests/math-study-command-center-browser.mjs"
       - "tests/hub-premium-responsive-browser.mjs"
       - "tests/russian-capability-hub-static.mjs"
       - "tests/russian-capability-hub-browser.mjs"
+      - "scripts/prepare-cloudflare-preview.mjs"
       - "scripts/prepare-chatgpt-site.mjs"
       - ".openai/hosting.json"
       - ".github/workflows/system-integration-ci.yml"
@@ -22,12 +27,17 @@ on:
       - "index.html"
       - "assets/**"
       - "subjects/**"
+      - "foundation/**"
       - "scripts/validate-system-integration.mjs"
       - "tests/system-browser-acceptance.mjs"
+      - "tests/foundation-identity-persistence-browser.mjs"
+      - "tests/foundation-identity-projection-browser.mjs"
+      - "tests/foundation-canonical-context-browser.mjs"
       - "tests/math-study-command-center-browser.mjs"
       - "tests/hub-premium-responsive-browser.mjs"
       - "tests/russian-capability-hub-static.mjs"
       - "tests/russian-capability-hub-browser.mjs"
+      - "scripts/prepare-cloudflare-preview.mjs"
       - "scripts/prepare-chatgpt-site.mjs"
       - ".openai/hosting.json"
       - ".github/workflows/system-integration-ci.yml"
@@ -55,14 +65,26 @@ jobs:
           node --check assets/js/planning-main.js
           node --check assets/js/hub-premium-v2.js
           node --check subjects/shared/host-bridge.js
+          node --check subjects/shared/foundation-identity-bootstrap.js
+          node --check subjects/shared/foundation-identity-persistence.js
+          node --check subjects/shared/foundation-identity-projection.js
+          node --check subjects/shared/foundation-canonical-context.js
+          node --check foundation/domain-model/canonical-identity-runtime.js
+          node --check foundation/domain-model/identity-overlay-store.js
+          node --check foundation/domain-model/legacy-snapshot-extractor.js
+          node --check foundation/domain-model/canonical-read-projection.js
           node --check subjects/ai/assets/ai.js
           node --check subjects/foundation/assets/foundation.js
           node --check subjects/research/assets/research.js
           node --check subjects/signal/assets/signal.js
           node --check subjects/systems/assets/systems.js
           node --check subjects/russian/assets/core.js
+          node --check subjects/russian/assets/ai-mentor-guard.js
           node --check subjects/programming/assets/core.js
           node --check subjects/math/assets/math-study-command-center.js
+          node --check tests/foundation-identity-persistence-browser.mjs
+          node --check tests/foundation-identity-projection-browser.mjs
+          node --check tests/foundation-canonical-context-browser.mjs
           node --check tests/math-study-command-center-browser.mjs
           node --check tests/hub-premium-responsive-browser.mjs
           node --check tests/russian-capability-hub-static.mjs
@@ -96,6 +118,21 @@ jobs:
           BAUMAN_E2E_BASE_URL: http://127.0.0.1:4173/
           BAUMAN_E2E_ARTIFACT_DIR: artifacts/system-browser
         run: node tests/system-browser-acceptance.mjs
+      - name: Run Foundation identity persistence browser acceptance
+        env:
+          BAUMAN_E2E_BASE_URL: http://127.0.0.1:4173/
+          BAUMAN_E2E_ARTIFACT_DIR: artifacts/foundation-identity-persistence
+        run: node tests/foundation-identity-persistence-browser.mjs
+      - name: Run Foundation canonical projection browser acceptance
+        env:
+          BAUMAN_E2E_BASE_URL: http://127.0.0.1:4173/
+          BAUMAN_E2E_ARTIFACT_DIR: artifacts/foundation-identity-projection
+        run: node tests/foundation-identity-projection-browser.mjs
+      - name: Run Foundation canonical context browser acceptance
+        env:
+          BAUMAN_E2E_BASE_URL: http://127.0.0.1:4173/
+          BAUMAN_E2E_ARTIFACT_DIR: artifacts/foundation-canonical-context
+        run: node tests/foundation-canonical-context-browser.mjs
       - name: Run Math Study Command Center browser acceptance
         env:
           BAUMAN_E2E_BASE_URL: http://127.0.0.1:4173/
@@ -136,6 +173,21 @@ jobs:
           BAUMAN_E2E_ARTIFACT_DIR: artifacts/chatgpt-site-browser
           BAUMAN_E2E_EXPECT_PLATFORM_ACCESS: "1"
         run: node tests/system-browser-acceptance.mjs
+      - name: Run packaged Foundation identity persistence acceptance
+        env:
+          BAUMAN_E2E_BASE_URL: http://127.0.0.1:4174/
+          BAUMAN_E2E_ARTIFACT_DIR: artifacts/chatgpt-site-foundation-identity-persistence
+        run: node tests/foundation-identity-persistence-browser.mjs
+      - name: Run packaged Foundation canonical projection acceptance
+        env:
+          BAUMAN_E2E_BASE_URL: http://127.0.0.1:4174/
+          BAUMAN_E2E_ARTIFACT_DIR: artifacts/chatgpt-site-foundation-identity-projection
+        run: node tests/foundation-identity-projection-browser.mjs
+      - name: Run packaged Foundation canonical context acceptance
+        env:
+          BAUMAN_E2E_BASE_URL: http://127.0.0.1:4174/
+          BAUMAN_E2E_ARTIFACT_DIR: artifacts/chatgpt-site-foundation-canonical-context
+        run: node tests/foundation-canonical-context-browser.mjs
       - name: Run packaged Hub V2 responsive acceptance
         env:
           BAUMAN_E2E_BASE_URL: http://127.0.0.1:4174/
@@ -158,10 +210,16 @@ jobs:
           name: whole-system-browser-${{ github.run_id }}
           path: |
             artifacts/system-browser
+            artifacts/foundation-identity-persistence
+            artifacts/foundation-identity-projection
+            artifacts/foundation-canonical-context
             artifacts/math-study-command-center
             artifacts/hub-premium-responsive
             artifacts/russian-capability-hub
             artifacts/chatgpt-site-browser
+            artifacts/chatgpt-site-foundation-identity-persistence
+            artifacts/chatgpt-site-foundation-identity-projection
+            artifacts/chatgpt-site-foundation-canonical-context
             artifacts/chatgpt-site-hub-responsive
             artifacts/chatgpt-site-russian-capability-hub
           if-no-files-found: warn
