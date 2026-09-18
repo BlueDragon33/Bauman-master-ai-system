@@ -69,3 +69,20 @@ Step 2 requires:
 - input registry byte-equivalent before/after resolution PASS.
 
 Step 3 must not migrate a real loader until Step 2 is green.
+
+
+## Step 2.1 — HTTPS origin trust correction
+
+Enabling HTTPS is not sufficient authorization to contact an arbitrary remote origin.
+
+The runtime policy now requires an explicit `allowedHttpsOrigins` list in addition to `allowHttps: true`.
+
+Rules:
+
+- exact origin match only;
+- HTTPS origins only;
+- no wildcard origins;
+- empty allowlist means deny;
+- the core resolver still does not perform network I/O.
+
+This keeps network authority explicit before any delivery adapter is introduced.
