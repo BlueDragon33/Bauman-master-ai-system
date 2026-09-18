@@ -33,6 +33,7 @@ on:
       - 'assets/js/academic-content-resolution-shadow.js'
       - 'scripts/validate-academic-runtime-shadow-bridge.mjs'
       - 'tests/academic-runtime-shadow-bridge.test.mjs'
+      - 'tests/academic-runtime-shadow-browser.mjs'
       - 'index.html'
       - 'assets/js/academic-main.js'
       - 'assets/data/official-curriculum-iu5-2026.json'
@@ -78,6 +79,7 @@ jobs:
           node --check assets/js/academic-content-resolution-shadow.js
           node --check scripts/validate-academic-runtime-shadow-bridge.mjs
           node --check tests/academic-runtime-shadow-bridge.test.mjs
+          node --check tests/academic-runtime-shadow-browser.mjs
       - name: Validate frozen Content Asset Provenance foundation
         run: node scripts/validate-foundation-l10-promotion.mjs
       - name: Validate content resolution contract
@@ -143,6 +145,11 @@ jobs:
           BAUMAN_E2E_BASE_URL: http://127.0.0.1:4175/
           BAUMAN_E2E_ARTIFACT_DIR: artifacts/content-resolution-shadow-browser
         run: node tests/content-resolution-shadow-browser.mjs
+      - name: Run Academic runtime shadow acceptance on real Hub
+        env:
+          BAUMAN_E2E_BASE_URL: http://127.0.0.1:4175/
+          BAUMAN_E2E_ARTIFACT_DIR: artifacts/academic-runtime-shadow-browser
+        run: node tests/academic-runtime-shadow-browser.mjs
       - name: Materialize packaged runtime for shadow parity
         env:
           BAUMAN_CONTROL_PREVIEW_D1_DATABASE_ID: 11111111-1111-4111-8111-111111111111
@@ -168,6 +175,11 @@ jobs:
           BAUMAN_E2E_BASE_URL: http://127.0.0.1:4176/
           BAUMAN_E2E_ARTIFACT_DIR: artifacts/content-resolution-shadow-browser-packaged
         run: node tests/content-resolution-shadow-browser.mjs
+      - name: Run Packaged Academic runtime shadow acceptance on real Hub
+        env:
+          BAUMAN_E2E_BASE_URL: http://127.0.0.1:4176/
+          BAUMAN_E2E_ARTIFACT_DIR: artifacts/academic-runtime-shadow-browser-packaged
+        run: node tests/academic-runtime-shadow-browser.mjs
       - name: Show shadow server logs on failure
         if: failure()
         run: |
@@ -181,5 +193,7 @@ jobs:
           path: |
             artifacts/content-resolution-shadow-browser
             artifacts/content-resolution-shadow-browser-packaged
+            artifacts/academic-runtime-shadow-browser
+            artifacts/academic-runtime-shadow-browser-packaged
           if-no-files-found: warn
           retention-days: 7
