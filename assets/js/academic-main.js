@@ -4,6 +4,8 @@
   const CURRICULUM_URL='assets/data/official-curriculum-iu5-2026.json';
   const PREREQ_URL='assets/data/prerequisite-registry-iu5-2026.json';
   const PACK_MANIFEST_URL='assets/data/prerequisite-packs/manifest-2026.json';
+  const VERIFIED_LOADER_TRIAL_PARAM='academicVerifiedLoader';
+  const VERIFIED_LOADER_TRIAL_VALUE='1';
   const DIAGNOSTIC_STORAGE_KEY='bauman_academic_2026_diagnostics_v1';
   const MAIN_STORAGE_KEY='bauman_main_all_phases_subjects_v1';
   const CURRENT_USER_KEY='bauman_current_user_fullcode_v1';
@@ -201,12 +203,36 @@
   }
 
   function publishPackStatus(value){window.BAUMAN_PREREQ_PACKS_2026_STATUS=Object.freeze({ready:Boolean(value?.ready),expected:Number(value?.expected)||0,loaded:Number(value?.loaded)||0,failed:Number(value?.failed)||0})}
+  function publishCoreLoaderStatus(value){window.BAUMAN_ACADEMIC_CORE_LOADER_STATUS=Object.freeze({ready:Boolean(value?.ready),mode:String(value?.mode||'pending'),verified:Boolean(value?.verified),authority:String(value?.authority||'none'),candidateStatus:value?.candidateStatus||null,candidateAuthority:value?.candidateAuthority||null,error:value?.error?String(value.error):null})}
+  function verifiedLoaderTrialEnabled(){try{return new URLSearchParams(window.location.search).get(VERIFIED_LOADER_TRIAL_PARAM)===VERIFIED_LOADER_TRIAL_VALUE}catch{return false}}
   publishPackStatus({ready:false,expected:0,loaded:0,failed:0});
+  publishCoreLoaderStatus({ready:false,mode:'pending',verified:false,authority:'none'});
   async function fetchJson(url){const r=await fetch(url,{cache:'no-cache'});if(!r.ok)throw new Error(`${url} HTTP ${r.status}`);return r.json()}
+  async function loadCoreData(){
+    const trial=verifiedLoaderTrialEnabled();
+    const mode=trial?'verified_candidate':'legacy_fetch',authority=trial?'opt_in_trial':'legacy';
+    publishCoreLoaderStatus({ready:false,mode,verified:false,authority});
+    try{
+      if(!trial){
+        const [curriculum,prereq,manifest]=await Promise.all([fetchJson(CURRICULUM_URL),fetchJson(PREREQ_URL),fetchJson(PACK_MANIFEST_URL)]);
+        publishCoreLoaderStatus({ready:true,mode:'legacy_fetch',verified:false,authority:'legacy'});
+        return {curriculum,prereq,manifest};
+      }
+      const loader=window.BaumanAcademicVerifiedContentLoader;
+      if(!loader||typeof loader.loadCore!=='function')throw new Error('ACADEMIC_VERIFIED_LOADER_MISSING');
+      const result=await loader.loadCore({baseUrl:document.baseURI});
+      if(result?.status!=='verified')throw new Error('ACADEMIC_VERIFIED_LOADER_UNVERIFIED');
+      publishCoreLoaderStatus({ready:true,mode:'verified_candidate',verified:true,authority:'opt_in_trial',candidateStatus:result.candidateStatus,candidateAuthority:result.candidateAuthority});
+      return {curriculum:result.data.curriculum,prereq:result.data.prerequisite,manifest:result.data.manifest};
+    }catch(err){
+      publishCoreLoaderStatus({ready:true,mode,verified:false,authority,error:err?.message||String(err)});
+      throw err;
+    }
+  }
   async function load(){
     publishPackStatus({ready:false,expected:0,loaded:0,failed:0});
     try{
-      const [curriculum,prereq,manifest]=await Promise.all([fetchJson(CURRICULUM_URL),fetchJson(PREREQ_URL),fetchJson(PACK_MANIFEST_URL)]);
+      const {curriculum,prereq,manifest}=await loadCoreData();
       window.BAUMAN_CURRICULUM_2026=curriculum;window.BAUMAN_PREREQ_2026=prereq;
       const rows=Array.isArray(manifest.packs)?manifest.packs:[];
       publishPackStatus({ready:false,expected:rows.length,loaded:0,failed:0});
@@ -229,6 +255,6 @@
   }
 
   window.openAcademicGate=openGate;window.openPrerequisiteOverview2026=openPrereqOverview;window.openOfficialCourse2026=openCourse;window.saveAcademicDiagnostic2026=saveDiagnosticFromModal;window.clearAcademicDiagnostic2026=clearDiagnosticFromModal;
-  window.BAUMAN_ACADEMIC_2026_RUNTIME=Object.freeze({version:VERSION,load,scoreForGate,gateState,courseReadiness,currentStageId,currentCourseHorizon,gateActivation,courseRisk,courseRiskBoard,gateIntervention,activeRepairPlan,schedulerCompatibility,recordDiagnostic,clearDiagnostic,repairRoutesForGate,shouldStopGate,stopDecision,schedulerMutationEnabled:SCHEDULER_MUTATION_ENABLED,storageKey:DIAGNOSTIC_STORAGE_KEY});
+  window.BAUMAN_ACADEMIC_2026_RUNTIME=Object.freeze({version:VERSION,load,loadCoreData,verifiedLoaderTrialEnabled,scoreForGate,gateState,courseReadiness,currentStageId,currentCourseHorizon,gateActivation,courseRisk,courseRiskBoard,gateIntervention,activeRepairPlan,schedulerCompatibility,recordDiagnostic,clearDiagnostic,repairRoutesForGate,shouldStopGate,stopDecision,schedulerMutationEnabled:SCHEDULER_MUTATION_ENABLED,storageKey:DIAGNOSTIC_STORAGE_KEY});
   document.addEventListener('DOMContentLoaded',()=>setTimeout(load,0));
 })();
