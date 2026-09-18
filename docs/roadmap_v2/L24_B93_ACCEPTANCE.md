@@ -1,6 +1,6 @@
 # L24/B93 — Mastery / Evidence Contract Acceptance
 
-Status: `PENDING_GATE`
+Status: `PASS`
 
 ## Purpose
 
@@ -32,3 +32,17 @@ No event is persisted and no runtime feature is activated in B93.
 B93 is PASS only when the contract/schema/upstream boundary is internally consistent and the complete six project gates are green on the same head.
 
 B94 remains blocked until B93 passes.
+
+
+## Gate evidence
+
+Accepted B93 head: `b56dd3e9983c1c51903c5284188a427b3ec1a8b1`
+
+- Roadmap V2 Current Gate — run `35333982017` — PASS
+- Foundation Domain Model — run `35333982182` — PASS
+- Windows checkout safety — run `35333982125` — PASS
+- Russian Reference UI — run `35333982057` — PASS
+- Cloudflare Preview — run `35333982141` — PASS
+- Whole System Integration — run `35333982028` — PASS
+
+B93 is closed. B94 is the active L24 step.
