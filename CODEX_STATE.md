@@ -1,99 +1,76 @@
 # CODEX_STATE
 
-Current task: `BAUMAN_ARCHITECTURE_NAMING_AND_LAYER_MAP`
+Current task: `CONTENT_RESOLUTION_RUNTIME_DELIVERY_FOUNDATION`
 
-Status: `ARCHITECTURE_MAP_ACTIVE`
+Status: `STEP1_CONTRACT_ACTIVE`
 
 Date: 2026-09-18
-
-Current working branch: `work/foundation-v2-l10-content-asset-provenance`
-
-> The branch name is historical and predates the current naming rule. Do not reuse the `foundation-v2` naming pattern for future branches.
+Branch: `work/foundation-content-resolution-delivery`
+Base checkpoint: `540126ba568b73b84cde3efeba02677ac089e437`
 
 ## Primary architecture reference
 
-Use `ARCHITECTURE.md` as the first document for understanding ownership, dependencies, and where a future change belongs.
+Use `ARCHITECTURE.md` as the first document for ownership, dependencies, and upgrade boundaries.
 
-Architecture names are responsibility-based. Version numbers are reserved for technical compatibility contracts only.
+## Active architecture layer
 
-## Current foundation state
+### Foundation — Content Resolution & Runtime Delivery
 
-### Foundation — Identity & Domain Model
+Purpose:
 
-Historical checkpoint: L9.
+- resolve canonical registry locators into safe runtime resource descriptors;
+- centralize locator/runtime policy without moving academic authority into the registry;
+- provide a future migration path away from scattered hard-coded loader paths.
 
-State: frozen additive compatibility layer.
+Direct dependency:
 
-Responsibilities:
+- Foundation — Content, Asset & Provenance Registry.
 
-- canonical identity;
-- domain entities;
-- legacy mapping;
-- identity overlay;
-- durable canonical read projection;
-- read-only canonical consumer context.
+Indirect dependency:
 
-### Foundation — Content, Asset & Provenance Registry
+- Foundation — Identity & Domain Model.
 
-Historical checkpoint: L10.
+## Current Step 1 boundary
 
-State: `promotion_candidate`.
+Step 1 is contract-only.
 
-Freeze head before architecture naming cleanup: `e8987dba7aca3acff7df012cb5d58922e7149aa3`.
+Existing loaders remain unchanged:
 
-Responsibilities:
+- Hub subject path mapping;
+- Academic prerequisite JSON loading;
+- subject-local data loading;
+- packaging/runtime dependency checks.
 
-- content/asset registry;
-- SHA-256 asset integrity;
-- provenance lineage;
-- access metadata;
-- deterministic registry snapshots;
-- transactional storage-neutral snapshot transport;
-- SHA-256 snapshot integrity;
-- promotion/freeze invariants.
+The new layer must not yet replace or intercept those paths.
 
-All six final L10 system gates were green at the freeze head:
+## Protected authority
 
-- Content Asset Provenance Gate;
-- Foundation Domain Model Gate;
-- Academic 2026 Prerequisite Gate;
-- Windows checkout safety;
-- Bauman Cloudflare Preview CI;
-- Whole System Integration Gate.
+The resolution layer must never silently own:
 
-## Architecture naming policy
+- learner state;
+- mastery;
+- Review Queue;
+- SRS;
+- scheduling;
+- subject or Hub routing;
+- authentication;
+- network credentials;
+- registry mutation.
 
-Do not use V2/V3/New/Latest/Final as the primary name of an architecture layer.
+## Network and persistence rule
 
-Use descriptive names such as:
+- Core resolution defaults to network deny.
+- No fetch/XHR/WebSocket in the core resolver.
+- No localStorage/sessionStorage/IndexedDB binding in the core resolver.
+- Content-hash locators require an explicit provider adapter.
+- Repository-relative paths remain package-relative and traversal-safe.
 
-- Hub Application Shell;
-- Shared Subject Platform;
-- Foundation — Identity & Domain Model;
-- Foundation — Content, Asset & Provenance Registry;
-- Foundation — Learning Content Standard;
-- Learning State & Academic Planning;
-- Packaging & Deployment;
-- Verification & Quality Gates.
+## Step 1 gate
 
-Historical L9/L10 codes may remain for traceability, but the responsibility name comes first.
+Required before Step 2:
 
-## Authority rules
+- frozen L10 promotion validator PASS;
+- content resolution contract validator PASS;
+- negative contract tests PASS.
 
-- Existing learner/subject state remains authoritative until an explicit migration gate changes ownership.
-- Identity Foundation is additive and must not rewrite legacy state silently.
-- Content/Asset/Provenance Foundation is runtime-neutral and must not become a second academic database.
-- AI context remains policy-constrained and read-only for protected decisions.
-- Packaging does not create new application authority.
-- Tests must not be weakened simply to make CI green.
-
-## Next architecture work
-
-Before starting the next foundation layer:
-
-1. write its descriptive responsibility name;
-2. define owned data and non-owned data;
-3. define dependencies on existing layers;
-4. define expected runtime integration;
-5. define its gate;
-6. then create a descriptively named branch without generation labels.
+Step 2 must not begin before the dedicated Content Resolution & Runtime Delivery Gate is green.
