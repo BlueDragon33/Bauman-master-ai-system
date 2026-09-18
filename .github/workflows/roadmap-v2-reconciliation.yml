@@ -10,6 +10,7 @@ on:
       - 'recovery/roadmap-v2/**'
       - 'scripts/validate-roadmap-v2-reconciliation.mjs'
       - 'scripts/validate-roadmap-v2-r2a.mjs'
+      - 'scripts/validate-roadmap-v2-r2b0.mjs'
       - '.github/workflows/roadmap-v2-reconciliation.yml'
 
 permissions:
@@ -26,10 +27,12 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: "22.13.0"
-      - name: Validate modern/historical reconciliation lock
+      - name: Validate reconciliation state
         run: node scripts/validate-roadmap-v2-reconciliation.mjs
       - name: Validate R2A byte-exact historical archive
         run: node scripts/validate-roadmap-v2-r2a.mjs
+      - name: Validate R2B0 contract hygiene
+        run: node scripts/validate-roadmap-v2-r2b0.mjs
       - name: Validate Foundation V2 L9
         run: node scripts/validate-foundation-domain-model.mjs
       - name: Validate current system integration

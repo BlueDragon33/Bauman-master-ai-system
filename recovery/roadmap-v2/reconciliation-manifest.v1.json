@@ -1,6 +1,6 @@
 {
   "schema": "BAUMAN_ROADMAP_V2_RECONCILIATION_V1",
-  "phase": "L27R2A_HISTORICAL_EVIDENCE_ARCHIVE",
+  "phase": "L27R2B0_CONTRACT_HYGIENE",
   "status": "reconciliation_in_progress",
   "createdAt": "2026-09-18",
   "targetBranch": "stabilization/roadmap-v2-reconcile-current-runtime",
@@ -136,12 +136,17 @@
     {
       "id": "L27R2A",
       "name": "Historical evidence archive",
+      "status": "pass"
+    },
+    {
+      "id": "L27R2B0",
+      "name": "Contract hygiene and admission audit",
       "status": "in_progress"
     },
     {
       "id": "L27R2B",
       "name": "Static Roadmap contract/schema transplant",
-      "status": "blocked_on_L27R2A"
+      "status": "blocked_on_L27R2B0"
     },
     {
       "id": "L27R2C",
@@ -173,5 +178,31 @@
     "id": "L28",
     "step": 109,
     "allowedOnlyAfter": "L27R6_PASS"
+  },
+  "l27r2aGateEvidence": {
+    "reconciliation": {
+      "runId": 35324119592,
+      "conclusion": "success"
+    },
+    "foundation": {
+      "runId": 35324119613,
+      "conclusion": "success"
+    },
+    "windows": {
+      "runId": 35324119488,
+      "conclusion": "success"
+    },
+    "russian": {
+      "runId": 35324119485,
+      "conclusion": "success"
+    },
+    "preview": {
+      "runId": 35324119509,
+      "conclusion": "success"
+    },
+    "wholeSystem": {
+      "runId": 35324119494,
+      "conclusion": "success"
+    }
   }
 }

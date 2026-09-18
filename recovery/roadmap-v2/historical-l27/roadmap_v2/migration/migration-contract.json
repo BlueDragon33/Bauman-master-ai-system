@@ -1,0 +1,108 @@
+{
+  "schema": "BAUMAN_ROADMAP_V2_MIGRATION_CONTRACT_V2",
+  "version": 2,
+  "generatedAt": "2026-08-10T21:00:00+07:00",
+  "scope": "Lượt 19 / Bước 76 — contract and inventory-complete mapping only; no runtime activation",
+  "immutableBaseline": {
+    "repository": "BlueDragon33/Bauman-master-ai-system",
+    "branch": "main",
+    "commit": "e383912354673bdce7a0059d6b9a23799d74e689",
+    "inventories": {
+      "canonical": {
+        "path": "roadmap_v2/baseline/math-main-e383912-inventory.json",
+        "sha256": "792b215e7f8264c5529468a3083b8d1feb8e4de5dd9496cad51bc4f3a4bd9e6b"
+      },
+      "physical": {
+        "path": "roadmap_v2/baseline/math-physical-source-inventory.json",
+        "sha256": "afc49ae4db33b5706cd5f3537ef4b199df96d95115479b26aa2bd79aab508495"
+      },
+      "legacyLessons": {
+        "path": "roadmap_v2/baseline/math-legacy-lessons-inventory.json",
+        "sha256": "b1e014a3f944d756544678a24bfc04873a7ab2bbcb42e3c98094d595f27faa7e"
+      },
+      "theoryFramework": {
+        "path": "roadmap_v2/baseline/math-theory-framework-inventory.json",
+        "sha256": "9844e2976ce93bb5a7aa8bb956d26ed862d09ff061bc1fa90d556f063333b5eb"
+      }
+    }
+  },
+  "targetArtifacts": {
+    "registryPath": "roadmap_v2/registry/roadmap-v2.registry.json",
+    "registrySha256": "b504b89f7e473fca4a521665a5f32cc4d7831f4e92edfda5127eb68aa72e53c7",
+    "graphPath": "roadmap_v2/graph/prerequisite-graph.json",
+    "graphSha256": "1b14eb6ef099dcf3dcd16ed53b4e28d43b24e071702ba5dcde8de683eb22ffd4",
+    "mappingPath": "roadmap_v2/migration/legacy-to-roadmap-v2.mapping.json",
+    "mappingSha256": "bbf2d4d70c78a43c21970d465a666b7e82564d3f5eec77205417f1be6378354c"
+  },
+  "invariants": [
+    "Preserve all 347 physical lessons and all 18 theory overlay records at their existing IDs.",
+    "No legacy object, title, formula, exercise, simulation, test, route or runtime asset may be renamed, deleted or rewritten by migration.",
+    "Roadmap V2 metadata is additive and namespaced; physical legacy identity remains authoritative.",
+    "theory-framework is a secondary outline/checkpoint source and never substitutes for lessons.json.",
+    "Unmatched or ambiguous items remain quarantined and are never guessed or auto-activated.",
+    "MATH-L2-C07 has exactly five minimum verified legacy refs across source chapters 4, 10 and 15; m_p07 remains a secondary candidate only.",
+    "Empty standalone formula/exercise/application/simulation/test sources require new additive sidecars; nonexistent records cannot be described as reused.",
+    "Priority Engine activation requires exact mapping, content-readiness and runtime/browser regression gates.",
+    "E235 remains unchanged and E236/E237/E238 remain disabled."
+  ],
+  "transactionProtocol": {
+    "phase1": "Read immutable baseline and verify every inventory fingerprint.",
+    "phase2": "Build an additive mapping without mutating any legacy/runtime source.",
+    "phase3": "Validate source coverage, target existence, ID uniqueness, quarantine state, graph consistency and sidecar gaps.",
+    "phase4": "Activate selected records only in a later integration round after content-readiness and runtime/browser tests.",
+    "abortConditions": [
+      "baseline fingerprint drift",
+      "source inventory coverage gap",
+      "missing target node",
+      "duplicate source ID",
+      "unquarantined ambiguous mapping",
+      "unreported standalone sidecar gap",
+      "runtime regression"
+    ],
+    "rollback": "Remove the additive Roadmap V2 overlay artifacts/branch; the physical baseline needs no rollback because it is never mutated."
+  },
+  "gates": {
+    "contractGate": {
+      "status": "PASS",
+      "evidence": {
+        "legacyLessonsInventoried": 347,
+        "legacyLessonIdsUnique": 347,
+        "exactLegacyLessonMappingsVerified": 5,
+        "preservedLegacyLessonsUnmapped": 342,
+        "overlayRecordsInventoried": 18,
+        "overlayRecordsChapterVerified": 18,
+        "frameworkChaptersInventoried": 21,
+        "frameworkSubLessonsInventoried": 172,
+        "frameworkCandidatesQuarantined": 21,
+        "sidecarSourceGaps": 15,
+        "newTargetNodes": 82,
+        "confirmedMissingTargets": [],
+        "candidateMissingTargets": [],
+        "duplicateSourceIds": [],
+        "c07RegistryRefsMatchInventory": true,
+        "missingSidecarGapRecords": [],
+        "priorityEngineEligibleLegacyRecords": 0,
+        "inPlaceLegacyMutations": 0,
+        "mappingCompleteAsInventory": true,
+        "semanticMappingComplete": false,
+        "result": "PASS_CONTRACT_ONLY"
+      }
+    },
+    "runtimeActivationGate": {
+      "status": "BLOCKED_BY_DESIGN",
+      "earliestRound": 31,
+      "reason": "Dedicated Math integration must resolve selected lesson granularity, build sidecars and pass regression/browser tests."
+    }
+  },
+  "acceptance": {
+    "step": 76,
+    "baselinePinned": true,
+    "mappingCompleteAsInventory": true,
+    "semanticMappingComplete": false,
+    "ambiguityQuarantined": true,
+    "sourceMutations": 0,
+    "priorityEngineActivated": false,
+    "runtimeModified": false,
+    "result": "PASS_CONTRACT_ONLY"
+  }
+}
