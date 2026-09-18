@@ -9581,3 +9581,12 @@ body.presentation-active .toast{z-index:2147483003!important;}
 .gate-readiness-summary span{font-size:.8rem;opacity:.78}
 .gate-req small{display:block;margin-top:3px;font-size:.72rem;line-height:1.35;opacity:.72}
 @media(max-width:760px){.gate-readiness-summary{align-items:flex-start;flex-direction:column;gap:2px}}
+
+
+/* L17 readiness navigator */
+.stage-readiness-navigator{display:flex;align-items:center;justify-content:space-between;gap:16px;margin:14px 0}
+.stage-readiness-navigator>div{min-width:0}
+.stage-readiness-navigator h4{margin:6px 0 4px}
+.stage-readiness-navigator p{margin:0;opacity:.78}
+.stage-readiness-navigator .btn{flex:0 0 auto}
+@media(max-width:760px){.stage-readiness-navigator{align-items:stretch;flex-direction:column}.stage-readiness-navigator .btn{width:100%}}
