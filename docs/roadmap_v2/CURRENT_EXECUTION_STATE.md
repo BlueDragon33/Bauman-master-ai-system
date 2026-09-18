@@ -5,16 +5,16 @@
 
 ## Active track
 
-- Current round: **Lượt 24**
-- Current step: **Bước 96 — PASS**
+- Current round: **Lượt 25**
+- Current step: **Bước 97 — IN_PROGRESS**
 - L22 closeout: **B88 + H1 — PASS**
-- Status: **L23_COMPLETE · L24_COMPLETE · PASS_L24_B93 · PASS_L24_B94 · PASS_L24_H1 · PASS_L24_B95 · PASS_L24_B96**
+- Status: **L23_COMPLETE · L24_COMPLETE · L25_B97_PRIORITY_CONTRACT_IN_PROGRESS**
 - Accepted head: `622e84aece7847b4179a8ff48937cb92717aaf3e`
 - Production/runtime activation by Roadmap V2: **disconnected**
 - Legacy/source destructive migration: **not executed**
 - Last completed: **L23/B92 — PASS**
 - Last hardening: **L23-H1 — PASS**
-- Current official step: **L24 complete — L25 READY_TO_START**
+- Current official step: **L25/B97 — Priority Contract**
 - L23 may start only after the L22 closeout snapshot remains green on the complete gate set.
 
 ## L22/B88 complete gate evidence
@@ -213,3 +213,10 @@ Accepted B96 head: `bf4bb0c33d11b98372ef47e23c13842807d61d7e`
 - Whole System Integration — run `35335944564` — PASS
 
 L24 is complete. Historical L25 evidence may now be inspected for design intent only.
+
+
+## L25 opening
+
+L25 opened from accepted L24/B96 head `bf4bb0c33d11b98372ef47e23c13842807d61d7e`.
+
+Current active step: L25/B97. Historical L25 artifacts remain evidence only until current-track validation passes.
