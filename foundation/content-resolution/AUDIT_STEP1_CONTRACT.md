@@ -66,3 +66,17 @@ Step 1 requires:
 - negative tests for unsafe asset states, traversal, insecure URL policy, implicit content-hash resolution, implicit network enable, display-name fallback, and forbidden authority PASS.
 
 Step 2 must not start until this gate is green.
+
+
+## Step 1.1 — Access decision trust correction
+
+Before Step 2 runtime implementation, the contract was tightened so the resolver does not trust a precomputed external access decision.
+
+The resolver must receive an `accessContext` and evaluate access through `BAUMAN_ACCESS_POLICY_V1` itself.
+
+For a content record that resolves to an asset, access must be evaluated twice:
+
+1. target content record;
+2. resolved asset record.
+
+An external `accessDecision` is not an authority input. Resolution fails closed when either access evaluation denies the read.
