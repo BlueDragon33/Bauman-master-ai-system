@@ -30,18 +30,18 @@ English is not the default translation bridge either.
 
 ## Current work
 
-Turns 1–7 are accepted.
+Turns 1–8 are accepted.
 
-Next: **Turn 8 — Listening ladder**.
+Next: **Turn 9 — Speaking & shadowing ladder**.
 
-Turn 8 must:
+Turn 9 must:
 
-- reuse the existing normal and slow listening controls;
-- require normal-speed listening before focused replay;
-- keep slow listening as repair, not the default;
-- include gist and detail evidence without translation answers;
-- keep listening evidence subject-local and non-authoritative;
-- preserve Turn 3 hear-before-see behavior.
+- reuse the existing recording and pronunciation scoring path;
+- sequence imitation → shadowing → memory speaking → role-play → repair;
+- require heard text before recording;
+- record speaking evidence separately from mastery authority;
+- use pronunciation feedback without Vietnamese translation answers;
+- preserve Turn 3/8 oral-first listening constraints.
 
 ## Gate rule
 
