@@ -80,3 +80,14 @@ For a content record that resolves to an asset, access must be evaluated twice:
 2. resolved asset record.
 
 An external `accessDecision` is not an authority input. Resolution fails closed when either access evaluation denies the read.
+
+
+## Step 2 selection policy
+
+Before adding the pure resolver runtime, selection behavior is frozen:
+
+- locator precedence: `repository_relative` → explicit `content_hash` provider → `https_url`;
+- network remains opt-in;
+- `preferredAssetId` is optional, but when supplied for a content record it must already belong to that content;
+- multiple viable assets without an explicit preference return `ambiguous`;
+- display names are never used to choose an asset or locator.
