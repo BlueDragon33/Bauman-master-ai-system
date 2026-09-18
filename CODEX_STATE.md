@@ -2,7 +2,7 @@
 
 Current task: `CONTENT_RESOLUTION_RUNTIME_DELIVERY_FOUNDATION`
 
-Status: `STEP4_INJECTED_EXECUTOR_ACTIVE`
+Status: `STEP5_PACKAGE_ADAPTER_ACTIVE`
 
 Date: 2026-09-18
 Branch: `work/foundation-content-resolution-delivery`
@@ -96,3 +96,12 @@ The executor may call only adapters explicitly injected by the caller.
 It verifies SHA-256 digest and byte length before any consumer callback receives payload bytes.
 
 The executor itself does not fetch, discover adapters globally, use browser storage, mutate routes, or mutate learner state.
+
+
+## Active Step 5 boundary
+
+The first concrete adapter is `package-relative-resource`.
+
+It may perform same-origin GET through an injected/environment fetch implementation, but only after the resolver and delivery-plan layers have selected and pinned the asset. Returned bytes still pass through the verified executor before any consumer sees them.
+
+No existing application loader uses this adapter yet.
