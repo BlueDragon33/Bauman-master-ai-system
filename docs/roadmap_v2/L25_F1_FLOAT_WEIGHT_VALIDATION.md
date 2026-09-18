@@ -1,6 +1,6 @@
 # L25-F1 — Floating-point Formula Validation Hardening
 
-Status: `FIX_APPLIED_PENDING_GATE`
+Status: `PASS`
 
 ## Trigger
 
@@ -42,3 +42,15 @@ This is stricter and deterministic while avoiding false failures from binary flo
 No Priority formula, runtime, score behavior, persistence, scheduler or production boundary was changed.
 
 B97 remains blocked until L25-F1 and the complete six-gate set pass.
+
+
+## Full gate evidence
+
+Accepted repair/B97 head: `28e730595828b326ba0f7409cb79821460e02d76`
+
+- Roadmap V2 Current Gate — run `35336940531` — PASS
+- Foundation Domain Model — run `35336940521` — PASS
+- Windows checkout safety — run `35336940515` — PASS
+- Russian Reference UI — run `35336940503` — PASS
+- Cloudflare Preview — run `35336940527` — PASS
+- Whole System Integration — run `35336940529` — PASS
