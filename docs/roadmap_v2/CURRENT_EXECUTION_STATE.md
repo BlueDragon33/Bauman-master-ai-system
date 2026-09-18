@@ -6,15 +6,15 @@
 ## Active track
 
 - Current round: **Lượt 25**
-- Current step: **Bước 99 — IN_PROGRESS**
+- Current step: **Bước 100 — IN_PROGRESS**
 - L22 closeout: **B88 + H1 — PASS**
-- Status: **L23_COMPLETE · L24_COMPLETE · PASS_L25_F1 · PASS_L25_F2 · PASS_L25_B97 · PASS_L25_H1 · PASS_L25_F3 · PASS_L25_B98 · L25_F4_B99_BLUEPRINT_FIXTURE_REPAIR_IN_PROGRESS · B100_BLOCKED**
+- Status: **L23_COMPLETE · L24_COMPLETE · PASS_L25_F1 · PASS_L25_F2 · PASS_L25_B97 · PASS_L25_H1 · PASS_L25_F3 · PASS_L25_B98 · PASS_L25_F4 · PASS_L25_B99 · L25_B100_CLOSEOUT_IN_PROGRESS**
 - Accepted head: `622e84aece7847b4179a8ff48937cb92717aaf3e`
 - Production/runtime activation by Roadmap V2: **disconnected**
 - Legacy/source destructive migration: **not executed**
 - Last completed: **L23/B92 — PASS**
 - Last hardening: **L23-H1 — PASS**
-- Current official step: **L25/B99 — Stable Priority Ranking / Strict Validation**
+- Current official step: **L25/B100 — Priority Closeout / Full Isolation Gate**
 - L23 may start only after the L22 closeout snapshot remains green on the complete gate set.
 
 ## L22/B88 complete gate evidence
@@ -289,3 +289,17 @@ B99 Current Gate run `35338831853` failed because the ranking validator used non
 The Priority harness correctly rejected it as an unknown target.
 
 F4 replaces only that validator fixture with current Consumer Blueprint target `MATH-L2-C05`. Unknown-target validation remains strict. B100 stays blocked pending the complete six-gate pass.
+
+
+## L25/B99 gate evidence
+
+Accepted B99/F4 head: `601a5d4fb7ba0a62f37847ebbb27a2f9a4457da7`
+
+- Roadmap V2 Current Gate — run `35341919312` — PASS
+- Foundation Domain Model — run `35341919148` — PASS
+- Windows checkout safety — run `35341919160` — PASS
+- Russian Reference UI — run `35341919206` — PASS
+- Cloudflare Preview — run `35341919204` — PASS
+- Whole System Integration — run `35341919158` — PASS
+
+B99 and F4 are closed. B100 closeout is now active.
