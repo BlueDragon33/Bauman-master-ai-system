@@ -3517,6 +3517,29 @@ function handleKeys(e){
    if(e.key==='ArrowRight'){state.grammarIndex++;save();render();e.preventDefault();return}
  }
 }
+function normalizeHostCapabilityRoute(task={}){
+ const route=task?.capabilityRoute&&typeof task.capabilityRoute==='object'?task.capabilityRoute:null;
+ if(!route)return null;
+ const views=new Set(NAV.map(x=>x[0])),tabs=new Set(LEARN_TABS.map(x=>x[0]));
+ const view=str(route.view).slice(0,32),learnTab=str(route.learnTab).slice(0,32),lessonId=str(route.lessonId||task.capabilityLesson).slice(0,80);
+ if(!views.has(view)||!lessonId)return null;
+ return {view,learnTab:tabs.has(learnTab)?learnTab:'theory',lessonId};
+}
+function applyHostCapabilityRoute(task={}){
+ const route=normalizeHostCapabilityRoute(task);if(!route)return false;
+ const allLessons=arr(call('getLessons',[],DB));
+ const lesson=allLessons.find(x=>lessonKey(x)===route.lessonId);
+ if(!lesson)return false;
+ const lessonStage=stageOf(lesson);
+ if(lessonStage)state.stage=lessonStage;
+ const changingLesson=state.lessonId!==route.lessonId;
+ state.view=route.view;
+ state.learnTab=route.learnTab;
+ state.lessonId=route.lessonId;
+ state.lessonQuery='';
+ if(changingLesson){state.slide=0;state.exerciseIndex=0;state.reviewIndex=0;state.examIndex=0;}
+ return true;
+}
 function bridge(){
  const incoming=['BAUMAN_ASSIGN_TASK','BAUMAN_PLANNING_MISSION','BAUMAN_TODAY_TASK','BAUMAN_MAIN_TODAY','BAUMAN_TODAY_GOAL','BAUMAN_SCHEDULE_TODAY'];
  const status=A.exportSubjectStatus?A.exportSubjectStatus():{subjectId:A.id||'russian',version:VERSION,packageRoot:PACKAGE_ROOT,entry:'subjects/russian/index.html',dataFiles:DATA_FILES,selfContained:true};
@@ -3532,7 +3555,8 @@ function bridge(){
    state.hostTask=d.task||d.mission||d.today||d;
    if(d.bundle||d.planningBundle)state.planningBundle=d.bundle||d.planningBundle;
    else if(window.BaumanPlanningBridge){try{state.planningBundle=window.BaumanPlanningBridge.acceptMission(state.hostTask,{adapter:A,db:DB})}catch(_){}}
-   save();render();toast('Đã nhận mission từ Main');
+   const routed=applyHostCapabilityRoute(state.hostTask);
+   save();render();toast(routed?'Đã mở đúng capability gap từ Main':'Đã nhận mission từ Main');
  };
  window.BaumanSubjectHost?.onTask?.(acceptTask);
  window.addEventListener('message',e=>{
