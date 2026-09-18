@@ -30,18 +30,18 @@ English is not the default translation bridge either.
 
 ## Current work
 
-Turns 1–11 are accepted.
+Turns 1–12 are accepted.
 
-Next: **Turn 12 — Direct-semantic explanation**.
+Next: **Turn 13 — Visual vocabulary runtime**.
 
-Turn 12 must:
+Turn 13 must:
 
-- build explanation strategies only from Russian/visual source evidence;
-- support scene, gesture, contrast, category/examples, analogy, and simple Russian definition;
-- never consult Vietnamese or English translation fields;
-- expose which strategy/evidence fields were used;
-- fail closed when a requested strategy lacks source evidence;
-- remain non-authoritative until the Turn 13 runtime switch.
+- make the direct-semantic descriptor authoritative for learner-facing vocabulary UI;
+- remove Vietnamese/English semantic answers and “flip meaning” behavior;
+- preserve Russian term, pronunciation/audio, explicit visual asset, Russian definition/context, and usage examples;
+- expose explicit missing-semantic state instead of translation fallback;
+- keep legacy translation fields source-compatible but non-authoritative;
+- preserve SRS/mastery authority until their dedicated later turns.
 
 ## Gate rule
 
