@@ -8,7 +8,7 @@
 - Current round: **Lượt 24**
 - Current step: **Bước 95 — IN_PROGRESS**
 - L22 closeout: **B88 + H1 — PASS**
-- Status: **L23_COMPLETE · PASS_L24_B93 · PASS_L24_B94 · L24_H1_PREREQUISITE_POLICY_IN_PROGRESS · B95_BLOCKED_ON_H1**
+- Status: **L23_COMPLETE · PASS_L24_B93 · PASS_L24_B94 · PASS_L24_H1 · L24_B95_MASTERY_GATE_IN_PROGRESS**
 - Accepted head: `622e84aece7847b4179a8ff48937cb92717aaf3e`
 - Production/runtime activation by Roadmap V2: **disconnected**
 - Legacy/source destructive migration: **not executed**
@@ -171,3 +171,17 @@ B95 prerequisite evaluation requires typed edge semantics not present in the L23
 L24-H1 rebuilds those semantics read-only from current prerequisite text, with segment-scoped modifiers. Historical prerequisite graph data remains quarantined.
 
 B95 stays blocked until H1 passes the complete six-gate set.
+
+
+## L24-H1 gate evidence
+
+Accepted H1 head: `9eaaabae21df54633ff89a53a4a2f7f8cdb01b0b`
+
+- Roadmap V2 Current Gate — run `35334959203` — PASS
+- Foundation Domain Model — run `35334959215` — PASS
+- Windows checkout safety — run `35334959170` — PASS
+- Russian Reference UI — run `35334959163` — PASS
+- Cloudflare Preview — run `35334959217` — PASS
+- Whole System Integration — run `35334959193` — PASS
+
+B95 prerequisite semantics are now unblocked.
