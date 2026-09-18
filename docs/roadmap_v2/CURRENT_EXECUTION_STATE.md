@@ -8,7 +8,7 @@
 - Current round: **Lượt 25**
 - Current step: **Bước 97 — IN_PROGRESS**
 - L22 closeout: **B88 + H1 — PASS**
-- Status: **L23_COMPLETE · L24_COMPLETE · L25_F1_FLOAT_VALIDATION_REPAIR_IN_PROGRESS · B97_BLOCKED_ON_F1**
+- Status: **L23_COMPLETE · L24_COMPLETE · PASS_L25_F1 · L25_F2_PACKAGED_HUB_READINESS_REPAIR_IN_PROGRESS · B97_BLOCKED_ON_F2**
 - Accepted head: `622e84aece7847b4179a8ff48937cb92717aaf3e`
 - Production/runtime activation by Roadmap V2: **disconnected**
 - Legacy/source destructive migration: **not executed**
@@ -229,3 +229,12 @@ B97 gate run `35336375168` failed because the validator compared the floating-po
 The Priority formula itself is unchanged. F1 replaces the fragile float-sum assertion with exact integer percentage-basis-point validation (35/30/20/15 = 100).
 
 B98 remains blocked.
+
+
+## L25-F2 defect
+
+After F1 fixed the Priority validator, Whole System run `35336485020` failed only in packaged Hub responsive acceptance with `Canonical detail toggle missing`.
+
+Source acceptance passed. The packaged test was checking canonical detail content before Safe Shell reported its complete ready state.
+
+F2 now waits for Safe Shell `ready`, dashboard, detail toggle and all three appearance presets before canonical assertions. Assertions remain unchanged.
