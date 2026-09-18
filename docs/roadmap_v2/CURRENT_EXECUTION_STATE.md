@@ -6,13 +6,14 @@
 ## Active track
 
 - Current round: **Lượt 23**
-- Current step: **Bước 89 — PENDING_FULL_GATE**
+- Current step: **Bước 90 — IN_PROGRESS**
 - L22 closeout: **B88 + H1 — PASS**
-- Status: **L23_B89_DIAGNOSTIC_CONTRACT_PENDING_FULL_GATE**
+- Status: **PASS_L23_B89_DIAGNOSTIC_CONTRACT · B90_CATALOG_IN_PROGRESS**
 - Accepted head: `622e84aece7847b4179a8ff48937cb92717aaf3e`
 - Production/runtime activation by Roadmap V2: **disconnected**
 - Legacy/source destructive migration: **not executed**
-- Next official step: **L23/B90**, blocked until B89 full-gate PASS
+- Last completed: **L23/B89 — PASS**
+- Next official step: **L23/B90 — Diagnostic Catalog**
 - L23 may start only after the L22 closeout snapshot remains green on the complete gate set.
 
 ## L22/B88 complete gate evidence
@@ -64,3 +65,17 @@ These are L22 hardening activities for current progress tracking. Their old inte
 3. Open **L23** from the accepted current-runtime baseline.
 4. L23 uses B89–B92 as its current sequence: diagnostic contract → catalog → non-persistent harness → full-system gate.
 5. Historical L23 artifacts are evidence only; every current L23 output must be rebuilt or revalidated against the modern baseline.
+
+
+## L23/B89 gate evidence
+
+Accepted B89 head: `10031242d975822f68670b89a4d74a96c378fe0b`
+
+- Roadmap V2 Current Gate — run `35330792924` — PASS
+- Foundation Domain Model — run `35330792942` — PASS
+- Windows checkout safety — run `35330792965` — PASS
+- Russian Reference UI — run `35330792902` — PASS
+- Cloudflare Preview — run `35330793027` — PASS
+- Whole System Integration — run `35330792968` — PASS
+
+B89 repairs incorporated: L23-F1 stale manifest dependency removal, L23-F2 policy identity alignment, L23-F3 static-baseline gate forward compatibility.
