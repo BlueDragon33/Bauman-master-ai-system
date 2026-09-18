@@ -8,7 +8,7 @@
 - Current round: **Lượt 25**
 - Current step: **Bước 97 — IN_PROGRESS**
 - L22 closeout: **B88 + H1 — PASS**
-- Status: **L23_COMPLETE · L24_COMPLETE · L25_B97_PRIORITY_CONTRACT_IN_PROGRESS**
+- Status: **L23_COMPLETE · L24_COMPLETE · L25_F1_FLOAT_VALIDATION_REPAIR_IN_PROGRESS · B97_BLOCKED_ON_F1**
 - Accepted head: `622e84aece7847b4179a8ff48937cb92717aaf3e`
 - Production/runtime activation by Roadmap V2: **disconnected**
 - Legacy/source destructive migration: **not executed**
@@ -220,3 +220,12 @@ L24 is complete. Historical L25 evidence may now be inspected for design intent 
 L25 opened from accepted L24/B96 head `bf4bb0c33d11b98372ef47e23c13842807d61d7e`.
 
 Current active step: L25/B97. Historical L25 artifacts remain evidence only until current-track validation passes.
+
+
+## L25-F1 defect
+
+B97 gate run `35336375168` failed because the validator compared the floating-point sum of 0.35/0.30/0.20/0.15 to integer 1 with strict equality.
+
+The Priority formula itself is unchanged. F1 replaces the fragile float-sum assertion with exact integer percentage-basis-point validation (35/30/20/15 = 100).
+
+B98 remains blocked.
