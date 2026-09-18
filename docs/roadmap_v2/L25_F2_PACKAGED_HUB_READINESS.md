@@ -1,6 +1,6 @@
 # L25-F2 — Packaged Hub Safe-Shell Readiness Race
 
-Status: `FIX_APPLIED_PENDING_GATE`
+Status: `PASS`
 
 ## Trigger
 
@@ -41,3 +41,15 @@ The later assertions are unchanged.
 This does not weaken the UI contract and does not change production runtime code, canonical learning data, Roadmap contracts, Priority scoring, persistence, scheduler or runtime activation.
 
 B97 remains blocked until F2 passes the complete gate set.
+
+
+## Full gate evidence
+
+Accepted repair/B97 head: `28e730595828b326ba0f7409cb79821460e02d76`
+
+- Roadmap V2 Current Gate — run `35336940531` — PASS
+- Foundation Domain Model — run `35336940521` — PASS
+- Windows checkout safety — run `35336940515` — PASS
+- Russian Reference UI — run `35336940503` — PASS
+- Cloudflare Preview — run `35336940527` — PASS
+- Whole System Integration — run `35336940529` — PASS
