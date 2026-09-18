@@ -75,7 +75,9 @@
         "masterySnapshotSchema",
         "prerequisitePolicySchema",
         "manifestDependencyRequired",
-        "staleHistoricalManifestAccepted"
+        "staleHistoricalManifestAccepted",
+        "priorityCandidateSchema",
+        "priorityResultSchema"
       ],
       "properties": {
         "consumerBlueprintPath": {
@@ -104,6 +106,12 @@
         },
         "staleHistoricalManifestAccepted": {
           "const": false
+        },
+        "priorityCandidateSchema": {
+          "const": "BAUMAN_ROADMAP_V2_PRIORITY_CANDIDATE_V1"
+        },
+        "priorityResultSchema": {
+          "const": "BAUMAN_ROADMAP_V2_PRIORITY_RESULT_V2"
         }
       }
     },
