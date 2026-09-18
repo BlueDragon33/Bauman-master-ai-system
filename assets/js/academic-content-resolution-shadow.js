@@ -3,10 +3,11 @@
   const STATUS_SCHEMA='BAUMAN_ACADEMIC_CONTENT_RESOLUTION_SHADOW_V1';
   const ENABLE_PARAM='contentResolutionShadow';
   const ENABLE_VALUE='1';
+  const REGISTRY_CANDIDATE_PATH='foundation/content-resolution/registry-candidates/academic-core-2026.v1.json';
   const RESOURCES=Object.freeze([
-    Object.freeze({id:'official-curriculum',path:'assets/data/official-curriculum-iu5-2026.json',authoritativeGlobal:'BAUMAN_CURRICULUM_2026'}),
-    Object.freeze({id:'prerequisite-registry',path:'assets/data/prerequisite-registry-iu5-2026.json',authoritativeGlobal:'BAUMAN_PREREQ_2026'}),
-    Object.freeze({id:'prerequisite-pack-manifest',path:'assets/data/prerequisite-packs/manifest-2026.json',authoritativeGlobal:null})
+    Object.freeze({id:'official-curriculum',contentId:'bdr:content:academic-2026:official-curriculum',authoritativeGlobal:'BAUMAN_CURRICULUM_2026'}),
+    Object.freeze({id:'prerequisite-registry',contentId:'bdr:content:academic-2026:prerequisite-registry',authoritativeGlobal:'BAUMAN_PREREQ_2026'}),
+    Object.freeze({id:'prerequisite-pack-manifest',contentId:'bdr:content:academic-2026:prerequisite-pack-manifest',authoritativeGlobal:null})
   ]);
   const DEPENDENCIES=Object.freeze([
     Object.freeze({path:'foundation/domain-model/canonical-identity-runtime.js',global:'BaumanIdentityRuntime'}),
@@ -30,6 +31,7 @@
       enabled:false,
       ready:false,
       passed:null,
+      registryMode:null,
       resources:[],
       error:null,
       ...value
@@ -72,40 +74,24 @@
     }
     throw new Error('SHADOW_ACADEMIC_READY_TIMEOUT');
   }
-  async function directResource(row){
-    const url=new URL(row.path,root.document.baseURI).href;
+  async function loadPinnedRegistry(){
+    const url=new URL(REGISTRY_CANDIDATE_PATH,root.document.baseURI).href;
     const response=await root.fetch(url,{cache:'no-cache'});
-    if(!response.ok)throw new Error(`SHADOW_DIRECT_HTTP_${response.status}:${row.id}`);
-    const buffer=await response.arrayBuffer();
-    const bytes=new Uint8Array(buffer);
-    const digestBuffer=await root.crypto.subtle.digest('SHA-256',bytes);
-    const digest=Array.from(new Uint8Array(digestBuffer),byte=>byte.toString(16).padStart(2,'0')).join('');
-    return {bytes,digest,json:JSON.parse(new TextDecoder().decode(bytes))};
-  }
-  function appendDiagnosticAsset(registry,row,direct){
-    const checksumId=`bdr:checksum:academic-shadow-runtime:${row.id}`;
-    const assetId=`bdr:asset:academic-shadow-runtime:${row.id}`;
-    registry=root.BaumanContentAssetRegistry.appendRecord(registry,{
-      registryId:checksumId,algorithm:'sha256',digest:direct.digest,byteLength:direct.bytes.byteLength,recordVersion:1
-    });
-    registry=root.BaumanContentAssetRegistry.appendRecord(registry,{
-      registryId:assetId,
-      canonicalEntityId:`bd:artifact:academic-shadow-runtime:${row.id}`,
-      assetType:'document',
-      mediaType:'application/json',
-      checksumId,
-      locators:[{kind:'repository_relative',value:row.path}],
-      state:'verified',
-      recordVersion:1
-    });
-    return {registry,assetId};
+    if(!response.ok)throw new Error(`SHADOW_REGISTRY_HTTP_${response.status}`);
+    const registry=await response.json();
+    root.BaumanContentAssetRegistry.assertIntegrity(registry);
+    const meta=registry.extensions?.academicCore2026;
+    if(meta?.schema!=='BAUMAN_ACADEMIC_CORE_REGISTRY_CANDIDATE_V1')throw new Error('SHADOW_REGISTRY_CANDIDATE_SCHEMA');
+    if(meta.status!=='promotion_candidate'||meta.authority!=='candidate_only'||meta.runtimeAuthoritySwitch!==false)throw new Error('SHADOW_REGISTRY_CANDIDATE_AUTHORITY');
+    if(meta.resourceCount!==3||meta.checksumAlgorithm!=='sha256')throw new Error('SHADOW_REGISTRY_CANDIDATE_SCOPE');
+    return registry;
   }
   async function run(){
     if(!enabled()){
-      publish({enabled:false,ready:true,passed:null});
+      publish({enabled:false,ready:true,passed:null,registryMode:null});
       return;
     }
-    publish({enabled:true,ready:false,passed:null});
+    publish({enabled:true,ready:false,passed:null,registryMode:'pinned_candidate'});
     try{
       const packStatus=await waitForAcademicReady();
       const authoritativeBefore={
@@ -114,22 +100,14 @@
         packStatus:JSON.stringify(packStatus)
       };
       await loadDependencies();
-      let registry=root.BaumanContentAssetRegistry.emptyRegistry();
-      const directMap={};
-      const assets={};
-      for(const row of RESOURCES){
-        const direct=await directResource(row);
-        directMap[row.id]=direct;
-        const appended=appendDiagnosticAsset(registry,row,direct);
-        registry=appended.registry;
-        assets[row.id]=appended.assetId;
-      }
+      const registry=await loadPinnedRegistry();
       const registryBefore=JSON.stringify(registry);
       const adapter=root.BaumanPackageRelativeFetchAdapter.create({baseUrl:root.document.baseURI});
       const results=[];
+      const verifiedMap={};
       for(const row of RESOURCES){
         const descriptor=root.BaumanRuntimeResourceResolver.resolve(registry,{
-          targetRegistryId:assets[row.id],
+          targetRegistryId:row.contentId,
           mode:'learner_runtime',
           accessContext:{private:true},
           runtimePolicy:{allowRepositoryRelative:true,allowHttps:false,allowedHttpsOrigins:[],availableProviders:[]}
@@ -139,25 +117,26 @@
         const execution=await root.BaumanRuntimeDeliveryExecutor.execute(plan,{[adapter.adapterId]:adapter.load},async payload=>{
           verifiedJson=JSON.parse(new TextDecoder().decode(payload));
         });
-        const directJson=directMap[row.id].json;
-        const directParity=JSON.stringify(verifiedJson)===JSON.stringify(directJson);
+        verifiedMap[row.id]=verifiedJson;
         const authoritativeParity=row.authoritativeGlobal
           ? JSON.stringify(verifiedJson)===JSON.stringify(root[row.authoritativeGlobal])
           : true;
         results.push(freeze({
           id:row.id,
-          path:row.path,
+          contentRegistryId:row.contentId,
+          assetRegistryId:descriptor.assetRegistryId||null,
+          path:plan.resource?.value||null,
           descriptorStatus:descriptor.status,
           planStatus:plan.status,
           executionStatus:execution.status,
-          directParity,
+          pinnedVerification:execution.status==='verified',
           authoritativeParity,
           digest:execution.integrity?.digest||null,
           byteLength:execution.integrity?.byteLength||0
         }));
       }
       const currentPackStatus=root.BAUMAN_PREREQ_PACKS_2026_STATUS;
-      const manifest=directMap['prerequisite-pack-manifest'].json;
+      const manifest=verifiedMap['prerequisite-pack-manifest'];
       const expectedPacks=Array.isArray(manifest?.packs)?manifest.packs.length:0;
       const packParity=currentPackStatus?.ready===true&&currentPackStatus.failed===0&&currentPackStatus.expected===expectedPacks&&currentPackStatus.loaded===expectedPacks;
       const globalsUnchanged=
@@ -165,19 +144,22 @@
         JSON.stringify(root.BAUMAN_PREREQ_2026)===authoritativeBefore.prerequisite&&
         JSON.stringify(root.BAUMAN_PREREQ_PACKS_2026_STATUS)===authoritativeBefore.packStatus;
       const registryUnchanged=JSON.stringify(registry)===registryBefore;
-      const passed=results.every(row=>row.descriptorStatus==='resolved'&&row.planStatus==='ready'&&row.executionStatus==='verified'&&row.directParity&&row.authoritativeParity)&&packParity&&globalsUnchanged&&registryUnchanged;
+      const passed=results.every(row=>row.descriptorStatus==='resolved'&&row.planStatus==='ready'&&row.executionStatus==='verified'&&row.pinnedVerification&&row.authoritativeParity)&&packParity&&globalsUnchanged&&registryUnchanged;
       publish({
         enabled:true,
         ready:true,
         passed,
+        registryMode:'pinned_candidate',
+        candidateStatus:registry.extensions.academicCore2026.status,
+        candidateAuthority:registry.extensions.academicCore2026.authority,
         resources:results,
         packParity,
         globalsUnchanged,
         registryUnchanged,
-        error:passed?null:'SHADOW_PARITY_FAILED'
+        error:passed?null:'SHADOW_PINNED_PARITY_FAILED'
       });
     }catch(error){
-      publish({enabled:true,ready:true,passed:false,error:String(error?.message||error)});
+      publish({enabled:true,ready:true,passed:false,registryMode:'pinned_candidate',error:String(error?.message||error)});
     }
   }
   root.BaumanAcademicContentResolutionShadow=Object.freeze({
