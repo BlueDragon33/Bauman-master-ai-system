@@ -38,6 +38,9 @@ on:
       - 'subjects/russian/assets/listening-ladder.css'
       - 'scripts/validate-russian-listening-ladder.mjs'
       - 'tests/russian-listening-ladder.test.mjs'
+      - 'subjects/russian/contracts/speaking-shadowing-ladder-contract.v1.json'
+      - 'scripts/validate-russian-speaking-shadowing-ladder.mjs'
+      - 'tests/russian-speaking-shadowing-ladder.test.mjs'
       - '.github/workflows/russian-learning-architecture-gate.yml'
 
 permissions:
@@ -74,6 +77,8 @@ jobs:
           node --check subjects/russian/assets/listening-ladder.js
           node --check scripts/validate-russian-listening-ladder.mjs
           node --check tests/russian-listening-ladder.test.mjs
+          node --check scripts/validate-russian-speaking-shadowing-ladder.mjs
+          node --check tests/russian-speaking-shadowing-ladder.test.mjs
       - name: Validate listen-speak literacy visual contract
         run: node scripts/validate-russian-learning-sequence-contract.mjs
       - name: Run contract negative tests
@@ -108,6 +113,10 @@ jobs:
         run: node scripts/validate-russian-listening-ladder.mjs
       - name: Run Russian listening ladder negative tests
         run: node tests/russian-listening-ladder.test.mjs
+      - name: Validate Russian speaking shadowing ladder
+        run: node scripts/validate-russian-speaking-shadowing-ladder.mjs
+      - name: Run Russian speaking shadowing negative tests
+        run: node tests/russian-speaking-shadowing-ladder.test.mjs
       - name: Parse pedagogy contracts
         run: node -e "const fs=require('fs'); const a=JSON.parse(fs.readFileSync('subjects/russian/contracts/listen-speak-literacy-visual-contract.v1.json','utf8')); const b=JSON.parse(fs.readFileSync('subjects/russian/contracts/oral-first-route-contract.v1.json','utf8')); if(a.schema!=='RUSSIAN_LISTEN_SPEAK_LITERACY_VISUAL_CONTRACT_V1'||b.schema!=='RUSSIAN_ORAL_FIRST_ROUTE_CONTRACT_V1') process.exit(1); console.log('RUSSIAN_PEDAGOGY_JSON=PASS')"
 
