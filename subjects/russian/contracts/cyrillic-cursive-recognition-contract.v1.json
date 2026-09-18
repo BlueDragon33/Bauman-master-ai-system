@@ -1,0 +1,32 @@
+{
+  "schema": "RUSSIAN_CYRILLIC_CURSIVE_RECOGNITION_CONTRACT_V1",
+  "contractVersion": 1,
+  "alphabet": {
+    "requiredLetterCount": 33
+  },
+  "directions": [
+    "print_to_cursive",
+    "cursive_to_print"
+  ],
+  "representation": {
+    "sourceField": "cursive",
+    "unicodeMayMatchPrint": true,
+    "renderBased": true,
+    "fontStack": [
+      "Segoe Script",
+      "Comic Sans MS",
+      "cursive"
+    ],
+    "browserVisualDifferenceGateRequired": true
+  },
+  "evidence": {
+    "separateFromPrintStats": true,
+    "attempts": true,
+    "correct": true,
+    "learnerStateAuthority": false,
+    "masteryMutation": false
+  },
+  "semantics": {
+    "translationRequired": false
+  }
+}
