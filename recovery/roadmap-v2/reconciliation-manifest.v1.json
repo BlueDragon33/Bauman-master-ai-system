@@ -204,5 +204,16 @@
       "runId": 35324119494,
       "conclusion": "success"
     }
-  }
+  },
+  "repairs": [
+    {
+      "id": "L27R2B0-F1",
+      "triggerRunId": 35324553585,
+      "failedStep": "Validate R2A byte-exact historical archive",
+      "classification": "gate_design_regression",
+      "cause": "R2A validator incorrectly enforced phase-local no-new-recovery-files rules during later phases.",
+      "correction": "Make R2A validator timeless: verify only byte-exact R2A archive and historical state evidence; enforce current-phase mutation boundaries in the current-phase validator.",
+      "status": "applied_pending_gate"
+    }
+  ]
 }
