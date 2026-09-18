@@ -26,6 +26,13 @@ export function validateContentResolutionContract(value){
   assert(value.compatibility?.subjectRoutesUntouched===true,'Subject route protection disappeared');
   assert(value.compatibility?.browserStorageBinding==='none','Step 1 must remain browser-storage neutral');
   assert(value.compatibility?.networkFetchInCore===false,'Core resolver may fetch network resources');
+  assert((value.requiredInput?.fields||[]).includes('accessContext'),'Resolver input must require accessContext');
+  assert(!(value.requiredInput?.fields||[]).includes('accessDecision'),'Resolver must not trust an external accessDecision');
+  assert(value.accessEvaluation?.source==='BAUMAN_ACCESS_POLICY_V1','Resolver access source drifted');
+  assert(value.accessEvaluation?.resolverMustEvaluateTarget===true,'Target access evaluation is optional');
+  assert(value.accessEvaluation?.resolverMustEvaluateResolvedAsset===true,'Resolved asset access evaluation is optional');
+  assert(value.accessEvaluation?.externalDecisionTrusted===false,'External access decisions became trusted');
+  assert(value.accessEvaluation?.failClosed===true,'Access evaluation no longer fails closed');
 
   const modes=value.resolutionModes||{};
   assert(Array.isArray(modes.learner_runtime?.allowedAssetStates),'learner_runtime asset-state policy missing');
