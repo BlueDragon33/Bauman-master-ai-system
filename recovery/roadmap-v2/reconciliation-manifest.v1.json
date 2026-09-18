@@ -315,9 +315,22 @@
     },
     "r2c2a": {
       "status": "in_progress",
-      "purpose": "recovery-only parameterized modern baseline scanner/tool profile",
+      "profile": "recovery/roadmap-v2/toolchain-profile-r2c2a.v1.json",
+      "scanner": "recovery/roadmap-v2/tools/scan-modern-baseline.mjs",
+      "validator": "scripts/validate-roadmap-v2-r2c2a.mjs",
+      "sourceCount": 5,
+      "expectedModernFacts": {
+        "legacyLessons": 347,
+        "legacySlides": 5552,
+        "overlayRecords": 18,
+        "overlaySlides": 306,
+        "frameworkChapters": 21,
+        "frameworkSubLessons": 172,
+        "chapterSpineRecords": 56
+      },
       "canonicalWriteAllowed": false,
-      "canonicalGeneratedDataAdmission": 0
+      "deterministicOutputRequired": true,
+      "unsafeOutputNegativeCases": 3
     }
   },
   "l27r2c0GateEvidence": {
