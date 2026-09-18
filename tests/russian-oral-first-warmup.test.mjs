@@ -8,6 +8,7 @@ const copy=()=>structuredClone(original);
 
 assert.equal(validateContract(copy()),true);
 assert.equal(validateRuntime(core),true);
+
 {
  const x=copy();x.policy.russianTextHiddenBeforeFirstNormalListen=false;
  assert.throws(()=>validateContract(x),/policy disabled/);
@@ -16,8 +17,14 @@ assert.equal(validateRuntime(core),true);
  const x=copy();x.policy.slowListenDoesNotUnlockText=false;
  assert.throws(()=>validateContract(x),/policy disabled/);
 }
-assert.throws(()=>validateRuntime(core.replace("const currentRu=heard?esc(targetText","const currentRu=esc(targetText")),/not gated by heard state/);
-assert.throws(()=>validateRuntime(core.replace("const currentVi=heard&&!hideVi?dialogueVi(line):'';","const currentVi=hideVi?'':dialogueVi(line);")),/gloss is not hidden/);
+assert.throws(
+ ()=>validateRuntime(core.replace("const currentRu=heard?esc(targetText","const currentRu=esc(targetText")),
+ /not gated by heard state/
+);
+assert.throws(
+ ()=>validateRuntime(core.replace("const scaffoldUi=heard?dialogueScaffoldHtml(scaffold):'';","const scaffoldUi=dialogueScaffoldHtml(scaffold);")),
+ /scaffold is not hidden/
+);
 
 console.log('RUSSIAN_ORAL_FIRST_WARMUP_NEGATIVE_TEST=PASS');
 console.log(JSON.stringify({negativeCases:4},null,2));
