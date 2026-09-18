@@ -21,7 +21,7 @@ export function validateRuntime(core){
   assert(core.includes("const currentRu=heard?esc(targetText"),'Russian text is not gated by heard state');
   assert(core.includes("const currentVi=heard&&!hideVi?dialogueVi(line):'';"),'Vietnamese gloss is not hidden before listen');
   assert(core.includes("const hints=heard?lineTokenHints(targetText):[];"),'Token hints are not hidden before listen');
-  assert(core.includes("const lineHeard=practiceLineHeard(active,i);"),'Dialogue map does not gate each line');
+  assert(/lineHeard\s*=\s*practiceLineHeard\(active,i\)/.test(core),'Dialogue map does not gate each line');
   assert(core.includes("data-act=\"speak-line-slow\" ${heard?'':'disabled'}"),'Slow-listen button is not disabled before normal listen');
   assert(/if\(act==='speak-line'\)\{[^}]*markPracticeLineHeard\(d,activeLineIndex\(\)\)/.test(core),'Normal listen does not unlock text');
   const slow=core.match(/if\(act==='speak-line-slow'\)\{([^}]*)\}/);
