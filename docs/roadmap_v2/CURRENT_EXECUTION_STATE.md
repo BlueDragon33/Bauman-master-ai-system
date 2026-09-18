@@ -8,7 +8,7 @@
 - Current round: **Lượt 25**
 - Current step: **Bước 100 — IN_PROGRESS**
 - L22 closeout: **B88 + H1 — PASS**
-- Status: **L23_COMPLETE · L24_COMPLETE · PASS_L25_F1 · PASS_L25_F2 · PASS_L25_B97 · PASS_L25_H1 · PASS_L25_F3 · PASS_L25_B98 · PASS_L25_F4 · PASS_L25_B99 · L25_F5_PACKAGED_DECORATIVE_ABORT_REPAIR_IN_PROGRESS · B100_BLOCKED_ON_F5**
+- Status: **L23_COMPLETE · L24_COMPLETE · PASS_L25_F1 · PASS_L25_F2 · PASS_L25_B97 · PASS_L25_H1 · PASS_L25_F3 · PASS_L25_B98 · PASS_L25_F4 · PASS_L25_B99 · PASS_L25_F5 · PASS_L25_B100_FUNCTIONAL_HEAD · L25_CLOSEOUT_DOC_GATE_PENDING**
 - Accepted head: `622e84aece7847b4179a8ff48937cb92717aaf3e`
 - Production/runtime activation by Roadmap V2: **disconnected**
 - Legacy/source destructive migration: **not executed**
@@ -312,3 +312,17 @@ B100 Whole System run `35342379719` failed because Playwright classified a same-
 The packaged server log proves the asset returned HTTP 200 repeatedly. F5 extends the existing decorative-navigation-abort allowlist to the robot SVG while preserving failure behavior for HTTP errors, missing assets, connection failures and all non-allowlisted aborts.
 
 B100 stays blocked until the complete six-gate set passes.
+
+
+## L25/B100 functional closeout evidence
+
+Accepted B100/F5 functional head: `624b20cf53e26b193db01377fd83891d88fd0f4c`
+
+- Roadmap V2 Current Gate — run `35342688744` — PASS
+- Foundation Domain Model — run `35342688774` — PASS
+- Windows checkout safety — run `35342688509` — PASS
+- Russian Reference UI — run `35342688603` — PASS
+- Cloudflare Preview — run `35342688479` — PASS
+- Whole System Integration — run `35342688636` — PASS
+
+The functional closeout is complete. L26 remains blocked until this documentation closeout head itself passes the complete six-gate set.
