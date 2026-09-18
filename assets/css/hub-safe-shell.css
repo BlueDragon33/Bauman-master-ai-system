@@ -44,3 +44,18 @@ body[data-hub-density="fit1080"]{--hs-gap:8px}body[data-hub-density="fit1080"] .
 @media(max-width:720px){:root{--hs-topbar:98px}.app,.app.collapsed{display:block;max-width:100vw}.sidebar{position:fixed;z-index:85;left:7px;right:7px;top:auto;bottom:7px;height:58px;padding:5px;border:1px solid #25425f;border-radius:16px;display:block;overflow:hidden}.brand-row,.side-note,.hub-safe-nav-divider{display:none!important}.nav{height:100%;display:flex;align-items:center;gap:3px;overflow-x:auto}.nav button,.hub-safe-nav-action{flex:0 0 50px;width:50px;min-height:46px;padding:4px;justify-content:center}.nav button span,.hub-safe-nav-action span{display:none!important}.nav i,.hub-safe-nav-action i{width:30px;height:30px}.topbar{height:auto;min-height:98px;display:grid;grid-template-columns:minmax(0,1fr);gap:6px;padding:7px 8px}.top-title{display:none}.hub-safe-search{grid-row:1;width:100%;max-width:100%;min-width:0;height:38px}.top-actions{grid-row:2;width:100%;justify-content:flex-end;margin:0}.appearance-wrap{margin-right:auto}.main{padding:7px 7px 76px!important}.hub-safe-layout{grid-template-columns:minmax(0,1fr)}.hub-safe-dashboard,.hub-safe-main,.hub-safe-rail,.hub-safe-layout,.hub-safe-bottom{min-width:0;max-width:100%}.hub-safe-hero{min-height:224px}.hub-safe-hero-copy{width:92%;padding:18px 15px}.hub-safe-hero h1{font-size:clamp(24px,7.2vw,30px)}.hub-safe-subjects{display:flex;overflow-x:auto;gap:8px}.hub-safe-subject{flex:0 0 min(72vw,168px)}.hub-safe-continue{grid-template-columns:70px minmax(0,1fr);gap:8px;padding:9px}.hub-safe-art{grid-column:1/-1;min-height:155px}.hub-safe-stats{grid-column:1/-1;justify-content:flex-start;overflow-x:auto}.hub-safe-bottom,.hub-safe-rail{grid-template-columns:minmax(0,1fr)}.hub-safe-ach-grid{display:flex;overflow-x:auto}.hub-safe-ach{flex:0 0 88px}.hub-safe-overall-inner{grid-template-columns:76px minmax(0,1fr)}.hub-safe-bar{grid-template-columns:70px minmax(0,1fr) 26px}.hub-safe-assistant,.hub-safe-schedule{min-height:auto}.appearance-menu,.profile-menu{max-width:calc(100vw - 16px);right:0}.roadmap-layout,.subject-page{grid-template-columns:1fr}.study-viewer,.canva-study-viewer{max-width:100vw!important}.ai-panel,.canva-ai-panel{max-width:calc(100vw - 16px)!important}}
 
 @media(min-width:1600px) and (min-aspect-ratio:16/10){.main{padding:9px 11px 16px!important}.hub-safe-hero{min-height:200px}.hub-safe-subject{min-height:114px}.hub-safe-continue{min-height:248px}.hub-safe-art{min-height:208px}.hub-safe-achievements,.hub-safe-overall{min-height:136px}}
+
+
+/* L18 · Russian capability snapshot from Subject Bridge */
+.hub-safe-capability{display:grid;gap:12px}
+.hub-safe-capability .hub-safe-section-head{align-items:flex-start}
+.hub-safe-capability .hub-safe-section-head p{margin:4px 0 0;font-size:.76rem;opacity:.7;line-height:1.35}
+.hub-safe-band-badge{display:grid;place-items:center;min-width:48px;height:34px;padding:0 10px;border:1px solid rgba(124,153,255,.34);border-radius:999px;font-weight:800;letter-spacing:.04em;background:rgba(76,94,190,.16)}
+.hub-safe-capability-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.hub-safe-capability-grid>span{display:grid;gap:3px;padding:9px 10px;border:1px solid rgba(135,157,205,.18);border-radius:12px;background:rgba(7,16,31,.18);min-width:0}
+.hub-safe-capability-grid b{font-size:.8rem;overflow-wrap:anywhere}
+.hub-safe-capability-grid small{font-size:.68rem;opacity:.7;line-height:1.3}
+.hub-safe-capability-grid .ready{box-shadow:inset 0 0 0 1px rgba(68,214,152,.18)}
+.hub-safe-capability-grid .blocked{box-shadow:inset 0 0 0 1px rgba(244,183,76,.14)}
+.hub-safe-capability>.btn{width:100%;justify-content:center}
+@media(max-width:760px){.hub-safe-capability-grid{grid-template-columns:1fr}}
