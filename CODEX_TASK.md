@@ -30,18 +30,19 @@ English is not the default translation bridge either.
 
 ## Current work
 
-Turns 1–17 are accepted.
+Turns 1–18 are accepted.
 
-Next: **Turn 18 — Multimodal SRS & review**.
+Next: **Turn 19 — Skill-gated assessment**.
 
-Turn 18 must:
+Turn 19 must:
 
-- preserve the existing SRS scheduling and canonical Review Queue authority;
-- attach modality-specific review evidence for audio, visual, recognition, speaking, and writing;
-- allow one vocabulary/review item to accumulate multiple modality evidence records;
-- prevent a strong result in one modality from silently proving another modality;
-- keep due-date scheduling explicit and compatible with the current review gaps;
-- never synthesize mastery/completion from multimodal evidence.
+- assess listening, speaking, print recognition, cursive recognition, reading and writing as separate skill gates;
+- keep each skill result independently evidenced;
+- prohibit a strong result in one skill from silently proving another;
+- calculate aggregate readiness only from explicit per-skill gate states;
+- keep aggregate readiness read-only/advisory and never mutate mastery/completion;
+- preserve existing SRS scheduling, Review Queue and learner-state authority;
+- expose which required skill blocks aggregate readiness instead of hiding the reason.
 
 ## Gate rule
 
