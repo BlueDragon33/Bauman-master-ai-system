@@ -6,15 +6,15 @@
 ## Active track
 
 - Current round: **Lượt 24**
-- Current step: **Bước 93 — IN_PROGRESS**
+- Current step: **Bước 94 — IN_PROGRESS**
 - L22 closeout: **B88 + H1 — PASS**
-- Status: **L23_COMPLETE · L24_B93_MASTERY_CONTRACT_IN_PROGRESS**
+- Status: **L23_COMPLETE · PASS_L24_B93 · L24_B94_EVIDENCE_REDUCER_IN_PROGRESS**
 - Accepted head: `622e84aece7847b4179a8ff48937cb92717aaf3e`
 - Production/runtime activation by Roadmap V2: **disconnected**
 - Legacy/source destructive migration: **not executed**
 - Last completed: **L23/B92 — PASS**
 - Last hardening: **L23-H1 — PASS**
-- Current official step: **L24/B93 — Mastery / Evidence Contract**
+- Current official step: **L24/B94 — Append-only Evidence Stream / Reducer**
 - L23 may start only after the L22 closeout snapshot remains green on the complete gate set.
 
 ## L22/B88 complete gate evidence
@@ -134,3 +134,17 @@ L24 opened only after the documentation closeout head `9d1ddffec953ef6cedb56a117
 - Whole System Integration — run `35333497768` — PASS
 
 Current active step: L24/B93.
+
+
+## L24/B93 gate evidence
+
+Accepted B93 head: `b56dd3e9983c1c51903c5284188a427b3ec1a8b1`
+
+- Roadmap V2 Current Gate — run `35333982017` — PASS
+- Foundation Domain Model — run `35333982182` — PASS
+- Windows checkout safety — run `35333982125` — PASS
+- Russian Reference UI — run `35333982057` — PASS
+- Cloudflare Preview — run `35333982141` — PASS
+- Whole System Integration — run `35333982028` — PASS
+
+B94 is now active. B95 remains blocked.
