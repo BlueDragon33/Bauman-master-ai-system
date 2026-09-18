@@ -6,15 +6,15 @@
 ## Active track
 
 - Current round: **Lượt 24**
-- Current step: **Bước 95 — IN_PROGRESS**
+- Current step: **Bước 96 — IN_PROGRESS**
 - L22 closeout: **B88 + H1 — PASS**
-- Status: **L23_COMPLETE · PASS_L24_B93 · PASS_L24_B94 · PASS_L24_H1 · L24_B95_MASTERY_GATE_IN_PROGRESS**
+- Status: **L23_COMPLETE · PASS_L24_B93 · PASS_L24_B94 · PASS_L24_H1 · PASS_L24_B95 · L24_B96_CLOSEOUT_IN_PROGRESS**
 - Accepted head: `622e84aece7847b4179a8ff48937cb92717aaf3e`
 - Production/runtime activation by Roadmap V2: **disconnected**
 - Legacy/source destructive migration: **not executed**
 - Last completed: **L23/B92 — PASS**
 - Last hardening: **L23-H1 — PASS**
-- Current official step: **L24/B95 — Master-ready / Prerequisite Gates**
+- Current official step: **L24/B96 — Full-system Closeout**
 - L23 may start only after the L22 closeout snapshot remains green on the complete gate set.
 
 ## L22/B88 complete gate evidence
@@ -185,3 +185,17 @@ Accepted H1 head: `9eaaabae21df54633ff89a53a4a2f7f8cdb01b0b`
 - Whole System Integration — run `35334959193` — PASS
 
 B95 prerequisite semantics are now unblocked.
+
+
+## L24/B95 gate evidence
+
+Accepted B95 head: `571e9bcd1e094ebc5f9531da1fd2caab82acf0bc`
+
+- Roadmap V2 Current Gate — run `35335611053` — PASS
+- Foundation Domain Model — run `35335611056` — PASS
+- Windows checkout safety — run `35335611140` — PASS
+- Russian Reference UI — run `35335611030` — PASS
+- Cloudflare Preview — run `35335611059` — PASS
+- Whole System Integration — run `35335611041` — PASS
+
+B96 is now active. L25 remains blocked.
