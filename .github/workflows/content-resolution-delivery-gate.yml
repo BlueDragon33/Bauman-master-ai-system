@@ -42,6 +42,10 @@ on:
       - 'assets/js/academic-content-resolution-loader.js'
       - 'scripts/validate-academic-verified-content-loader.mjs'
       - 'tests/academic-verified-content-loader.test.mjs'
+      - 'foundation/content-resolution/academic-loader-authority-trial-contract.v1.json'
+      - 'scripts/validate-academic-loader-authority-trial.mjs'
+      - 'tests/academic-loader-authority-trial.test.mjs'
+      - 'tests/academic-verified-loader-authority-browser.mjs'
       - 'index.html'
       - 'assets/js/academic-main.js'
       - 'assets/data/official-curriculum-iu5-2026.json'
@@ -94,6 +98,10 @@ jobs:
           node --check assets/js/academic-content-resolution-loader.js
           node --check scripts/validate-academic-verified-content-loader.mjs
           node --check tests/academic-verified-content-loader.test.mjs
+          node --check assets/js/academic-main.js
+          node --check scripts/validate-academic-loader-authority-trial.mjs
+          node --check tests/academic-loader-authority-trial.test.mjs
+          node --check tests/academic-verified-loader-authority-browser.mjs
       - name: Validate frozen Content Asset Provenance foundation
         run: node scripts/validate-foundation-l10-promotion.mjs
       - name: Validate content resolution contract
@@ -134,9 +142,13 @@ jobs:
         run: node scripts/validate-academic-verified-content-loader.mjs
       - name: Run Academic verified content loader negative tests
         run: node tests/academic-verified-content-loader.test.mjs
+      - name: Validate Academic verified loader authority trial
+        run: node scripts/validate-academic-loader-authority-trial.mjs
+      - name: Run Academic verified loader authority trial negative tests
+        run: node tests/academic-loader-authority-trial.test.mjs
       - name: Parse resolution JSON
         run: |
-          node -e "JSON.parse(require('fs').readFileSync('foundation/content-resolution/resolution-contract.v1.json','utf8')); JSON.parse(require('fs').readFileSync('foundation/content-resolution/examples/step1-resolution-request.v1.json','utf8')); JSON.parse(require('fs').readFileSync('foundation/content-resolution/delivery-plan-contract.v1.json','utf8')); JSON.parse(require('fs').readFileSync('foundation/content-resolution/delivery-executor-contract.v1.json','utf8')); JSON.parse(require('fs').readFileSync('foundation/content-resolution/package-relative-adapter-contract.v1.json','utf8')); JSON.parse(require('fs').readFileSync('foundation/content-resolution/shadow/academic-core-2026.v1.json','utf8')); JSON.parse(require('fs').readFileSync('foundation/content-resolution/academic-runtime-shadow-contract.v1.json','utf8')); JSON.parse(require('fs').readFileSync('foundation/content-resolution/registry-candidates/academic-core-2026.v1.json','utf8')); JSON.parse(require('fs').readFileSync('foundation/content-resolution/academic-verified-loader-contract.v1.json','utf8')); console.log('CONTENT_RESOLUTION_JSON=PASS')"
+          node -e "JSON.parse(require('fs').readFileSync('foundation/content-resolution/resolution-contract.v1.json','utf8')); JSON.parse(require('fs').readFileSync('foundation/content-resolution/examples/step1-resolution-request.v1.json','utf8')); JSON.parse(require('fs').readFileSync('foundation/content-resolution/delivery-plan-contract.v1.json','utf8')); JSON.parse(require('fs').readFileSync('foundation/content-resolution/delivery-executor-contract.v1.json','utf8')); JSON.parse(require('fs').readFileSync('foundation/content-resolution/package-relative-adapter-contract.v1.json','utf8')); JSON.parse(require('fs').readFileSync('foundation/content-resolution/shadow/academic-core-2026.v1.json','utf8')); JSON.parse(require('fs').readFileSync('foundation/content-resolution/academic-runtime-shadow-contract.v1.json','utf8')); JSON.parse(require('fs').readFileSync('foundation/content-resolution/registry-candidates/academic-core-2026.v1.json','utf8')); JSON.parse(require('fs').readFileSync('foundation/content-resolution/academic-verified-loader-contract.v1.json','utf8')); JSON.parse(require('fs').readFileSync('foundation/content-resolution/academic-loader-authority-trial-contract.v1.json','utf8')); console.log('CONTENT_RESOLUTION_JSON=PASS')"
 
 
   browser-shadow-acceptance:
@@ -174,6 +186,11 @@ jobs:
           BAUMAN_E2E_BASE_URL: http://127.0.0.1:4175/
           BAUMAN_E2E_ARTIFACT_DIR: artifacts/academic-runtime-shadow-browser
         run: node tests/academic-runtime-shadow-browser.mjs
+      - name: Run Academic verified loader authority trial on real Hub
+        env:
+          BAUMAN_E2E_BASE_URL: http://127.0.0.1:4175/
+          BAUMAN_E2E_ARTIFACT_DIR: artifacts/academic-verified-loader-authority-browser
+        run: node tests/academic-verified-loader-authority-browser.mjs
       - name: Materialize packaged runtime for shadow parity
         env:
           BAUMAN_CONTROL_PREVIEW_D1_DATABASE_ID: 11111111-1111-4111-8111-111111111111
@@ -204,6 +221,11 @@ jobs:
           BAUMAN_E2E_BASE_URL: http://127.0.0.1:4176/
           BAUMAN_E2E_ARTIFACT_DIR: artifacts/academic-runtime-shadow-browser-packaged
         run: node tests/academic-runtime-shadow-browser.mjs
+      - name: Run Packaged Academic verified loader authority trial
+        env:
+          BAUMAN_E2E_BASE_URL: http://127.0.0.1:4176/
+          BAUMAN_E2E_ARTIFACT_DIR: artifacts/academic-verified-loader-authority-browser-packaged
+        run: node tests/academic-verified-loader-authority-browser.mjs
       - name: Show shadow server logs on failure
         if: failure()
         run: |
@@ -219,5 +241,7 @@ jobs:
             artifacts/content-resolution-shadow-browser-packaged
             artifacts/academic-runtime-shadow-browser
             artifacts/academic-runtime-shadow-browser-packaged
+            artifacts/academic-verified-loader-authority-browser
+            artifacts/academic-verified-loader-authority-browser-packaged
           if-no-files-found: warn
           retention-days: 7
