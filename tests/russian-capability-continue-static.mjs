@@ -1,0 +1,11 @@
+import assert from 'node:assert/strict';
+import fs from 'node:fs';
+const main=fs.readFileSync('assets/js/main.js','utf8');
+assert.ok(main.includes('function capabilityContinueContext'),'capability-aware continue helper missing');
+assert.ok(main.includes("if(!cap||subjectId!=='russian')return null"),'continue helper must stay Russian-scoped');
+assert.ok(main.includes('Math.max(Number(cap?.currentBand?.reviewDue||0),Number(cap?.stageExit?.reviewDue||0))'),'review due priority gate missing');
+assert.ok(main.includes('if(reviewDue>0)return null'),'Hub must not deep-link past due reviews');
+assert.ok(main.includes('const context=capabilityContinueContext(last.subjectId)'),'continueStudy must consult capability state');
+assert.ok(main.includes('this.openSubjectInPage(last.subjectId,context||{})'),'continueStudy capability context handoff missing');
+assert.doesNotMatch(main,/capabilityContinueContext[\s\S]{0,500}state\.progress\s*=/,'continue helper must not synthesize progress');
+console.log('RUSSIAN_CAPABILITY_CONTINUE_GATE=PASS');
