@@ -13,6 +13,8 @@ assert.ok(main.includes('const liveCapabilitySubjects=new Set()'),'Current-sessi
 assert.ok(main.includes('const pendingCapabilityIntents=new Map()'),'Fresh capability intent queue missing');
 assert.ok(main.includes('function requestFreshCapabilityIntent'),'Fresh capability request helper missing');
 assert.ok(main.includes('function consumeFreshCapabilityIntent'),'Fresh capability consume helper missing');
+assert.ok(main.includes('function clearPendingCapabilityIntent'),'Abandoned capability intent cleanup helper missing');
+assert.ok(main.includes("closeStudy(){clearPendingCapabilityIntent();"),'Closing study must clear pending capability intent');
 assert.ok(main.includes('liveCapabilitySubjects.delete(subjectId)'),'Capability intent must invalidate previously live snapshot before opening');
 assert.ok(main.includes('const rerouted=consumeFreshCapabilityIntent(subjectId)'),'Fresh snapshot receipt must resolve pending capability intent');
 assert.ok(main.includes('!liveCapabilitySubjects.has(subjectId)'),'Persisted capability snapshot must not be trusted for direct routing after reload');
@@ -23,5 +25,6 @@ assert.ok(main.includes("openSubjectCapabilityGap(id='russian'){if(id==='russian
 assert.ok(main.includes("const task=typeof planner==='function'?planner(subjectId,context):buildLearningTask(subjectId,context)"),'Fresh capability reroute must preserve PlanningBridge when available');
 assert.ok(main.includes('const context=capabilityContextFromTask(state.activeTask,id)||{};const task=buildLearningTask(id,context)'),'Main separate-tab launch must preserve only same-subject capability route');
 assert.ok(planning.includes("window.capabilityContextFromTask?.(window.state.activeTask,id)||{}"),'PlanningBridge separate-tab override must preserve only same-subject capability route');
+assert.ok(planning.includes("if(id!=='russian')window.clearPendingCapabilityIntent?.()"),'PlanningBridge subject switch must clear pending Russian capability intent');
 assert.doesNotMatch(main,/capabilityContinueContext[\s\S]{0,500}state\.progress\s*=/,'continue helper must not synthesize progress');
 console.log('RUSSIAN_CAPABILITY_CONTINUE_GATE=PASS');
