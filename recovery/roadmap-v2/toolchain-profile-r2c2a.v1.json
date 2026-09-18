@@ -1,0 +1,71 @@
+{
+  "schema": "BAUMAN_ROADMAP_V2_RECOVERY_TOOLCHAIN_PROFILE_V1",
+  "phase": "L27R2C2A_PARAMETERIZED_RECOVERY_TOOLCHAIN",
+  "status": "recovery_only",
+  "runtimeAnchor": {
+    "commit": "146d8f672975f46b36164cbd795e837801e50c97",
+    "rule": "Source files are evaluated from the reconciliation checkout; this commit is the accepted modern runtime ancestor, not a forced content rollback target."
+  },
+  "outputPolicy": {
+    "allowedRoot": "recovery/roadmap-v2/artifacts/r2c2a",
+    "canonicalWriteAllowed": false,
+    "absolutePathsAllowed": false,
+    "parentTraversalAllowed": false,
+    "deterministicSerialization": true
+  },
+  "sources": [
+    {
+      "id": "legacyLessons",
+      "role": "authoritative_existing_lesson_content",
+      "path": "subjects/math/data/lessons.json",
+      "expectedGitBlobSha": "caacdf2b0813c1300af215608c4222ca61669184",
+      "expected": {
+        "lessons": 347,
+        "slides": 5552
+      }
+    },
+    {
+      "id": "theoryOverlay",
+      "role": "authoritative_runtime_overlay",
+      "path": "subjects/math/data/theory_lecture_content.json",
+      "expectedGitBlobSha": "9e4a0a0b8d33c21b2e343c09f2152b5c53b5bb7e",
+      "expected": {
+        "records": 18,
+        "slides": 306
+      }
+    },
+    {
+      "id": "theoryFramework",
+      "role": "secondary_outline_candidate",
+      "path": "subjects/math/data/theory-framework.json",
+      "expectedGitBlobSha": "fb3a9a052e6c467c03bea5204dae10303ba73766",
+      "expected": {
+        "chapters": 21,
+        "subLessons": 172
+      }
+    },
+    {
+      "id": "chapterSpine",
+      "role": "navigation_curriculum_spine",
+      "path": "subjects/math/data/chapter_spine.json",
+      "expectedGitBlobSha": "db067682cce0389939048d5aabcaef38c6bad0e6",
+      "expected": {
+        "records": 56
+      }
+    },
+    {
+      "id": "roadmapSpec",
+      "role": "historical_logical_spec_evidence",
+      "path": "recovery/roadmap-v2/historical-l27/roadmap_v2/spec/Bauman_Roadmap_V2_Syllabus_Luot18.md",
+      "expectedGitBlobSha": "fd1c3f179d66922faf6ac9363772f3d072851d00"
+    }
+  ],
+  "invariants": [
+    "No source file is modified.",
+    "No canonical roadmap_v2 file is written.",
+    "All configured Git blob fingerprints must match the reconciled source-of-truth.",
+    "The modern theory overlay is 18 records / 306 slides; the historical 300-slide assumption is forbidden.",
+    "The legacy lesson source remains 347 lessons / 5,552 slides.",
+    "Output must be deterministic and recovery-scoped."
+  ]
+}
