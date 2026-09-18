@@ -34,8 +34,10 @@ function lessonEvidence(lessonId,steps){
  return {lessonId,ready:detail.every(x=>x.ok),detail};
 }
 function routeForStep(lessonId,step){
+ const id=clean(lessonId);
+ if(step==='writing'||step==='rewrite')return {view:'writing',learnTab:'theory',lessonId:id};
  const tab=step==='speaking'?'practice':step==='check'?'review':'theory';
- return {view:'learning',learnTab:tab,lessonId:clean(lessonId)};
+ return {view:'learning',learnTab:tab,lessonId:id};
 }
 function dueForLessons(ids){
  const set=new Set(ids);
@@ -63,7 +65,10 @@ function bandStatus(indexOrId){
  const complete=lesson.total>0&&lesson.ready===lesson.total&&due.length===0&&writingOk;
  const previous=index<=0?null:bandStatus(index-1);
  const unlocked=index===0||!!previous?.complete;
- const missing=lesson.lessons.map(row=>({lessonId:row.lessonId,step:row.detail.find(x=>!x.ok)?.step||''})).find(x=>x.step)||null;
+ const lessonGap=lesson.lessons.map(row=>({lessonId:row.lessonId,step:row.detail.find(x=>!x.ok)?.step||''})).find(x=>x.step)||null;
+ const writingStep=!lessonGap&&w.withSnapshot<band.writingNeed?'writing':(!lessonGap&&w.rewrites<band.rewriteNeed?'rewrite':'');
+ const anchorLesson=clean(band.lessonIds?.[band.lessonIds.length-1]||band.lessonIds?.[0]||'');
+ const missing=lessonGap||(writingStep&&anchorLesson?{lessonId:anchorLesson,step:writingStep}:null);
  const missingLesson=missing?.lessonId||'',missingStep=missing?.step||'';
  return {...band,index,unlocked,complete,lessonReady:lesson.ready,lessonTotal:lesson.total,dueCount:due.length,writing:w.withSnapshot,rewrites:w.rewrites,writingOk,missingLesson,missingStep,missingRoute:missing?routeForStep(missing.lessonId,missing.step):null};
 }
