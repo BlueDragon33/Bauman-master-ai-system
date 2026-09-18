@@ -30,18 +30,18 @@ English is not the default translation bridge either.
 
 ## Current work
 
-Turns 1–9 are accepted.
+Turns 1–10 are accepted.
 
-Next: **Turn 10 — Visual vocabulary contract**.
+Next: **Turn 11 — Visual asset coverage**.
 
-Turn 10 must:
+Turn 11 must:
 
-- define learner-facing vocabulary meaning authority before changing the runtime;
-- forbid Vietnamese and English translation as semantic answers;
-- require visual, audio and contextual meaning channels;
-- allow legacy translation fields to remain only for migration/authoring diagnostics;
-- define an explicit missing-visual state instead of translation fallback;
-- preserve existing vocabulary data until a later gated migration changes its schema.
+- audit all 8,000 vocabulary items against the Turn 10 semantic contract;
+- distinguish explicit visual assets from text labels/context only;
+- create deterministic visual semantic status without using Vietnamese or English meaning fields;
+- represent gaps as `missing_visual_semantics`;
+- keep the classifier non-authoritative until Turn 13;
+- preserve the existing source corpus and learner state.
 
 ## Gate rule
 
