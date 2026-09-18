@@ -2,7 +2,7 @@
 
 Current task: `CONTENT_RESOLUTION_RUNTIME_DELIVERY_FOUNDATION`
 
-Status: `STEP6_ACADEMIC_SHADOW_ACTIVE`
+Status: `STEP7_BROWSER_SHADOW_ACTIVE`
 
 Date: 2026-09-18
 Branch: `work/foundation-content-resolution-delivery`
@@ -114,3 +114,10 @@ Academic 2026 core data is now modeled in CI-only shadow mode.
 The validator reads the real loader constants and real JSON bytes, then runs them through the new resolution/delivery chain using an in-memory diagnostic registry.
 
 No browser/runtime loader has been changed. The existing Academic fetch path remains authoritative.
+
+
+## Active Step 7 boundary
+
+A Playwright-only same-origin harness exercises the complete resolver/delivery chain in Chromium against the three real Academic core JSON resources.
+
+The harness is not loaded by the application. Root `index.html` and `assets/js/academic-main.js` remain unchanged.
