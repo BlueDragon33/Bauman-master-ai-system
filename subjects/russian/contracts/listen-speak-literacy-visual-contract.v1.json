@@ -1,0 +1,78 @@
+{
+  "schema": "RUSSIAN_LISTEN_SPEAK_LITERACY_VISUAL_CONTRACT_V1",
+  "contractVersion": 1,
+  "architectureName": "Russian Subject — Listen, Speak, Literacy & Visual Semantics",
+  "stage": "vn",
+  "priorities": {
+    "listening": 0.28,
+    "speaking": 0.27,
+    "phonology": 0.1,
+    "printRecognition": 0.07,
+    "cursiveRecognition": 0.07,
+    "handwriting": 0.06,
+    "visualVocabulary": 0.08,
+    "reading": 0.04,
+    "grammar": 0.02,
+    "assessment": 0.01
+  },
+  "sequencing": {
+    "oralBeforeTranslation": true,
+    "listeningBeforeReadingPrompt": true,
+    "speakingBeforeGrammarExplanation": true,
+    "printBeforeCursiveProduction": true,
+    "printAndCursiveRecognitionRequired": true,
+    "soundLetterMappingRequired": true,
+    "readingBridgeRequired": true,
+    "handwritingRequired": true
+  },
+  "alphabet": {
+    "script": "Cyrillic",
+    "requiredLetterCount": 33,
+    "requiredRepresentations": [
+      "uppercase_print",
+      "lowercase_print",
+      "uppercase_cursive",
+      "lowercase_cursive"
+    ],
+    "recognitionDirections": [
+      "print_to_cursive",
+      "cursive_to_print"
+    ],
+    "requireSoundAssociation": true,
+    "requireConfusablePractice": true
+  },
+  "vocabulary": {
+    "learnerFacingVietnameseTranslation": false,
+    "learnerFacingEnglishTranslationDefault": false,
+    "translationFallbackForMissingVisual": false,
+    "requiredSemanticChannels": [
+      "visual",
+      "audio",
+      "context"
+    ],
+    "visualStrategies": [
+      "photo",
+      "illustration",
+      "pictogram",
+      "scene",
+      "gesture",
+      "contrast",
+      "category_examples"
+    ],
+    "russianDefinitionAllowedAfterFoundation": true
+  },
+  "beginnerGrammar": {
+    "maxPriorityWeight": 0.02,
+    "patternBeforeRule": true,
+    "immediateReuseRequired": true
+  },
+  "uiLanguage": {
+    "vietnameseNavigationAllowed": true,
+    "vietnameseSafetyHelpAllowed": true,
+    "vietnameseVocabularyMeaningAllowed": false
+  },
+  "protectedContracts": [
+    "BAUMAN_SUBJECT_BRIDGE_V1",
+    "RUSSIAN_LEARNING_STATE_V1"
+  ]
+}
