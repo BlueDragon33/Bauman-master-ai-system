@@ -12,9 +12,13 @@ Mode: `CHAT_FIRST / RESPONSIBILITY_BASED_ARCHITECTURE`
 
 Create a safe bridge from Content/Asset/Provenance Registry locators to runtime resource descriptors without replacing current loaders until each migration is separately proven.
 
-## Step 1
+## Step 1 — Complete
 
-Define and gate the contract only.
+Contract and trust boundary are gated.
+
+## Step 2 — Active
+
+Implement and gate a pure resolver runtime only.
 
 Required:
 
@@ -42,8 +46,17 @@ Preserve:
 - Device Gate and managed-access boundary;
 - current source/package parity.
 
-## Step 2 rule
+## Step 2 acceptance
 
-Do not migrate any real loader until Step 1 gate is green.
+- asset/content target resolution;
+- resolver-owned access evaluation for target and final asset;
+- deterministic locator precedence;
+- default-deny network;
+- explicit provider requirement;
+- ambiguity instead of guessing;
+- registry immutability;
+- no current loader migration.
 
-Step 2 should introduce a pure resolver runtime in isolation, still without fetching or changing current subject/Hub behavior.
+## Step 3 rule
+
+Do not migrate any real loader until Step 2 gate is green.
