@@ -23,10 +23,10 @@ need('function partDueReviewItems','Stage gate must inspect due Review Queue ite
 need('RussianLearningState','Stage gate must use real Review Queue state');
 need('.dueReviews()','Stage gate must use due-review lifecycle');
 need('function gateUnlockStatus','Unified stage unlock status missing');
-need('examComplete&&due.length===0','Stage unlock must require exams complete and zero due reviews');
+need('examComplete&&readiness.ok&&due.length===0','Stage unlock must require exams complete, lesson readiness and zero due reviews');
 need('const g=gateState(),unlock=gateUnlockStatus()','Unlock action must enforce unified gate status');
 need("Xử lý Review Queue trước",'Stage gate UI must direct learner to repair outstanding reviews');
 
 forbid('mastered:true','Stage progression guard must not synthesize mastery');
 console.log('RUSSIAN_STAGE_PROGRESSION_EVIDENCE_GATE=PASS');
-console.log('Checks: open != complete, evidence-bound completion provenance, legacy open not trusted, due-review stage blockers, no synthetic mastery.');
+console.log('Checks: open != complete, evidence-bound completion provenance, legacy open not trusted, lesson-readiness + due-review stage blockers, no synthetic mastery.');
