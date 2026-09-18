@@ -2,7 +2,7 @@
 
 Current task: `CONTENT_RESOLUTION_RUNTIME_DELIVERY_FOUNDATION`
 
-Status: `STEP2_PURE_RESOLVER_ACTIVE`
+Status: `STEP3_DELIVERY_PLAN_ACTIVE`
 
 Date: 2026-09-18
 Branch: `work/foundation-content-resolution-delivery`
@@ -80,3 +80,10 @@ Step 1 and access-trust corrections are green.
 The pure resolver runtime is present but isolated. It reads registry + access policy and returns immutable runtime descriptors. It performs no fetch/storage/route/UI mutation and is not wired into Hub, Academic, subject, or packaging loaders.
 
 Step 3 must not migrate a real loader until the Step 2 resolver gate is green.
+
+
+## Active Step 3 boundary
+
+The delivery-plan layer binds a resolved descriptor to the exact registry asset, locator, SHA-256 digest and byte length.
+
+No bytes are retrieved yet. No adapter is allowed to expose data before future integrity verification.
