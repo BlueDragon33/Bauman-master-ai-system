@@ -1,0 +1,59 @@
+{
+  "schema": "RUSSIAN_GRAMMAR_PATTERN_CONTRACT_V1",
+  "contractVersion": 1,
+  "stages": [
+    "hear_pattern",
+    "speak_pattern",
+    "notice_contrast",
+    "tiny_rule",
+    "immediate_reuse"
+  ],
+  "source": {
+    "bridge": "data/grammar-pattern-bridge.json",
+    "grammarSources": [
+      "data/grammar-path.json",
+      "data/grammar.json"
+    ],
+    "orphanMappingsForbidden": true
+  },
+  "policy": {
+    "audioLanguage": "ru-RU",
+    "hearBeforeSpeak": true,
+    "speakBeforeContrast": true,
+    "contrastBeforeRule": true,
+    "ruleBeforeReuse": true,
+    "detailedLegacyTheoryLockedUntilTinyRule": true,
+    "translationAnswerForbidden": true
+  },
+  "bridgeFields": {
+    "required": [
+      "id",
+      "grammar_id",
+      "level",
+      "title_ru",
+      "heard_pattern",
+      "contrast",
+      "tiny_rule_ru",
+      "reuse_prompt_ru"
+    ],
+    "prohibited": [
+      "vi",
+      "meaning_vi",
+      "translation_vi",
+      "clue_en",
+      "meaning_en",
+      "translation_en",
+      "en"
+    ]
+  },
+  "evidence": {
+    "heard": true,
+    "spokenSelfAttempt": true,
+    "contrastNoticed": true,
+    "ruleOpened": true,
+    "reuseAttempt": true,
+    "separateStorage": true,
+    "learnerStateAuthority": false,
+    "masteryMutation": false
+  }
+}
