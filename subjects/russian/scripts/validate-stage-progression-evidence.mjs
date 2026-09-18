@@ -8,9 +8,10 @@ const forbid=(token,msg)=>{if(core.includes(token))throw new Error(msg||`Forbidd
 
 need('function markScheduleTaskOpened','Schedule open state must be distinct from completion');
 need("completed:prev.completed===true",'Opening a route must preserve, not synthesize, completion');
-need("function markScheduleTask(step,s=planSession(),source='explicit_confirmation')",'Explicit completion function missing');
+need("function markScheduleTask(step,s=planSession(),source='evidence_confirmation')",'Evidence-bound completion function missing');
 need('if(!prev?.openedAt)return false','Schedule completion must require prior opening');
 need("completionSource:source",'Completion provenance missing');
+need('const evidence=scheduleTaskEvidence(step,s);if(!evidence.ok)return false','Completion must require post-open learning evidence');
 need('function isScheduleTaskOpened','Opened-state query missing');
 need("scheduleTaskRecord(step,s)?.completed===true",'Done state must require explicit completed=true');
 need("markScheduleTaskOpened(Number(r.scheduleStep),planSession(),r)",'Today route click must record open only');
@@ -28,4 +29,4 @@ need("Xử lý Review Queue trước",'Stage gate UI must direct learner to repa
 
 forbid('mastered:true','Stage progression guard must not synthesize mastery');
 console.log('RUSSIAN_STAGE_PROGRESSION_EVIDENCE_GATE=PASS');
-console.log('Checks: open != complete, explicit completion provenance, legacy open not trusted, due-review stage blockers, no synthetic mastery.');
+console.log('Checks: open != complete, evidence-bound completion provenance, legacy open not trusted, due-review stage blockers, no synthetic mastery.');
