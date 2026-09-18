@@ -68,9 +68,8 @@ try{
   const frameEl=page.locator('#subjectFrame');
   await frameEl.waitFor({state:'attached',timeout:10000});
   const frameSrc=await frameEl.getAttribute('src');
-  assert.match(frameSrc,/routeView=learning/);
-  assert.match(frameSrc,/routeTab=theory/);
-  assert.match(frameSrc,/routeLesson=R01/);
+  assert.doesNotMatch(frameSrc,/routeLesson=/,'Fresh-handshake must open Russian safely before routing');
+  assert.equal(await page.evaluate(()=>window.hasPendingCapabilityIntent?.('russian')===true),false,'Fresh capability intent must be consumed after reroute');
 
   const frame=page.frames().find(f=>/subjects\/russian\/index\.html/.test(f.url()));
   assert.ok(frame,'Russian subject iframe missing after capability launch');
