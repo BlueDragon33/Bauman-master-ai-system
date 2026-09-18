@@ -31,6 +31,8 @@ jobs:
         run: node subjects/russian/scripts/validate-learning-flow.mjs
       - name: Validate Russian vocabulary SRS runtime
         run: node subjects/russian/scripts/validate-vocab-srs.mjs
+      - name: Validate Russian live review planning overlay
+        run: node subjects/russian/scripts/validate-review-planning.mjs
       - name: Validate Russian listening speaking coach
         run: node subjects/russian/scripts/validate-speaking-coach.mjs
       - name: Validate Russian grammar reading writing academic bridge
@@ -48,6 +50,7 @@ jobs:
           node --check subjects/russian/assets/russian-reference-ui.js
           node --check subjects/russian/assets/learning-state.js
           node --check subjects/russian/assets/learning-flow.js
+          node --check subjects/russian/assets/planning-bridge.js
           node --check subjects/russian/assets/vocab-srs.js
           node --check subjects/russian/assets/speaking-coach.js
           node --check subjects/russian/assets/academic-language.js
