@@ -44,7 +44,7 @@ export function validateRuntime(js,index){
   assert(js.includes("data-cyr-section=\"sound\""),'Sound section control missing');
   assert(js.includes("data-cyr-sound-action=\"letter-name\""),'Letter-name audio control missing');
   assert(js.includes("data-cyr-sound-action=\"anchor\""),'Anchor-word audio control missing');
-  assert(js.includes("if(state.soundMode==='sound_to_letter'&&!soundWasHeard(row))return;"),'Sound-to-letter answer is not listen-gated');
+  assert(/if\([^\n]*state\.soundMode==='sound_to_letter'[^\n]*!soundWasHeard\(row\)\)return;/.test(js),'Sound-to-letter answer is not listen-gated');
   assert(js.includes("u.lang='ru-RU'"),'Speech synthesis language is not pinned to ru-RU');
   assert(index.includes('assets/cyrillic-literacy.js'),'Literacy runtime must remain loaded');
   return true;
