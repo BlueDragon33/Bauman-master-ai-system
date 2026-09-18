@@ -1,0 +1,78 @@
+{
+  "schema": "BAUMAN_ROADMAP_V2_RECONCILIATION_V1",
+  "phase": "L27R1_BASELINE_FREEZE",
+  "status": "stabilization_only",
+  "createdAt": "2026-09-18",
+  "targetBranch": "stabilization/roadmap-v2-reconcile-current-runtime",
+  "currentRuntime": {
+    "sourceBranch": "work/math-presenter-runtime-gate",
+    "sourceHead": "146d8f672975f46b36164cbd795e837801e50c97",
+    "mainAncestor": "1a6dfa3f822a9b6c662bf01cad48b12334ab3aae",
+    "requiredGateState": "all_green"
+  },
+  "historicalRoadmap": {
+    "baseline": "e383912354673bdce7a0059d6b9a23799d74e689",
+    "terminalBranch": "agent/roadmap-v2-l27-finalize-b108",
+    "terminalRound": 27,
+    "terminalStep": 108,
+    "terminalStatus": "PASS_B105_B108_READINESS_PROJECTION_PRODUCTION_DISCONNECTED",
+    "changedFilesAgainstCurrentMain": 148,
+    "behindCurrentMainCommitsObserved": 566
+  },
+  "separateWork": {
+    "foundationL10Branch": "work/foundation-v2-l10-content-asset-provenance",
+    "foundationL10Pr": 52,
+    "mergeIntoRecoveryNow": false
+  },
+  "hardRules": [
+    "Do not merge the historical L27 branch wholesale into the current runtime.",
+    "Do not merge Foundation L10 into this recovery lane until reconciliation gates explicitly admit it.",
+    "Preserve the current Foundation V2 L9 identity model and Russian runtime behavior.",
+    "Preserve offline behavior and packaged ChatGPT Site behavior.",
+    "Keep Roadmap V2 production-disconnected until a dedicated activation round passes.",
+    "Every recovery round must pass its own gate before the next round starts."
+  ],
+  "rounds": [
+    {
+      "id": "L27R1",
+      "name": "Baseline freeze and source-of-truth recovery",
+      "goal": "Pin modern runtime, historical Roadmap terminal state, and protected boundaries.",
+      "status": "in_progress"
+    },
+    {
+      "id": "L27R2",
+      "name": "Non-runtime Roadmap transplant",
+      "goal": "Transplant isolated Roadmap V2 contracts, data, tools, tests and evidence without wiring production UI/runtime.",
+      "status": "blocked_on_L27R1"
+    },
+    {
+      "id": "L27R3",
+      "name": "Modern-baseline regeneration and drift audit",
+      "goal": "Regenerate inventories and detect ID, fingerprint, source and prerequisite drift against current main.",
+      "status": "blocked_on_L27R2"
+    },
+    {
+      "id": "L27R4",
+      "name": "Foundation and Russian compatibility bridge",
+      "goal": "Reconcile Roadmap identities/evidence with Foundation V2 L9 and current Russian capability/evidence contracts.",
+      "status": "blocked_on_L27R3"
+    },
+    {
+      "id": "L27R5",
+      "name": "Offline, package and failure-mode hardening",
+      "goal": "Validate browser offline, reload, package materialization, tamper and rollback behavior with the reconciled Roadmap present.",
+      "status": "blocked_on_L27R4"
+    },
+    {
+      "id": "L27R6",
+      "name": "Full promotion gate",
+      "goal": "Run combined Roadmap, Foundation, Russian, Math, Hub and packaged browser gates; freeze the reconciled baseline.",
+      "status": "blocked_on_L27R5"
+    }
+  ],
+  "nextOfficialRound": {
+    "id": "L28",
+    "step": 109,
+    "allowedOnlyAfter": "L27R6_PASS"
+  }
+}
