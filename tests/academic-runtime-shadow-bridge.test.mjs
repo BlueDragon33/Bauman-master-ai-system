@@ -28,7 +28,7 @@ assert.equal(validateSource(source,indexHtml),true);
 }
 {
   const x=copy(); x.dependencies=x.dependencies.slice(0,7);
-  assert.throws(()=>validateContract(x),/dependency chain drifted/);
+  assert.throws(()=>validateContract(x),/dependency.*drifted/);
 }
 assert.throws(()=>validateSource(source.replace("if(!enabled())","if(enabled())"),indexHtml),/Default-disabled fast path/);
 assert.throws(()=>validateSource(source+"\nlocalStorage.setItem('x','1');",indexHtml),/persist browser storage/);
