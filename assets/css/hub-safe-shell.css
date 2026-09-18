@@ -59,3 +59,10 @@ body[data-hub-density="fit1080"]{--hs-gap:8px}body[data-hub-density="fit1080"] .
 .hub-safe-capability-grid .blocked{box-shadow:inset 0 0 0 1px rgba(244,183,76,.14)}
 .hub-safe-capability>.btn{width:100%;justify-content:center}
 @media(max-width:760px){.hub-safe-capability-grid{grid-template-columns:1fr}}
+
+
+/* L20 · verified Russian capability route receipt */
+.hub-safe-capability-receipt{display:grid;gap:3px;padding:9px 10px;border:1px solid rgba(68,214,152,.24);border-radius:12px;background:rgba(40,164,115,.08)}
+.hub-safe-capability-receipt b{font-size:.78rem}
+.hub-safe-capability-receipt small{font-size:.68rem;opacity:.72;line-height:1.3}
+.hub-safe-capability-receipt.pending{border-color:rgba(244,183,76,.18);background:rgba(244,183,76,.05)}
