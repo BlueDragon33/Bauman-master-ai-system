@@ -127,7 +127,38 @@ When writing new documents, put the responsibility name first. A checkpoint code
 
 **Authority rule:** runtime-neutral metadata and lineage foundation. It must not silently become learner-state authority, browser-storage authority, or a second academic database.
 
-### F. Foundation — Learning Content Standard
+### F. Foundation — Content Resolution & Runtime Delivery
+
+**Responsibility:** convert registry-backed content/asset locators into safe, deterministic runtime resource descriptors without owning academic state or transport authority.
+
+**Primary location:**
+
+- `foundation/content-resolution/`
+
+**Depends on:**
+
+- Foundation — Content, Asset & Provenance Registry;
+- indirectly, Foundation — Identity & Domain Model.
+
+**Owns:**
+
+- locator selection rules;
+- runtime resource descriptor contract;
+- asset-state eligibility;
+- access/integrity preconditions;
+- provider requirements for content-addressed resources.
+
+**Must not own:**
+
+- learner state, mastery, Review Queue, SRS, schedules;
+- Hub or subject routes;
+- authentication or network credentials;
+- registry mutation;
+- implicit browser/network fetching in the core resolver.
+
+**Current state:** Step 1 contract active. Existing Hub, Academic, subject, and packaging loaders remain unchanged.
+
+### G. Foundation — Learning Content Standard
 
 **Responsibility:** reusable authoring and lesson-quality rules independent from a specific renderer.
 
@@ -139,7 +170,7 @@ When writing new documents, put the responsibility name first. A checkpoint code
 
 **Does not own:** route state, mastery state, or subject-specific runtime behavior.
 
-### G. Subject Web Apps
+### H. Subject Web Apps
 
 **Responsibility:** subject-specific learning experiences, content rendering, exercises, simulations, review behavior, and subject-local academic logic.
 
@@ -153,7 +184,7 @@ When writing new documents, put the responsibility name first. A checkpoint code
 
 Each subject app must remain independently understandable and must communicate with the Hub through explicit shared contracts.
 
-### H. Learning State & Academic Planning
+### I. Learning State & Academic Planning
 
 **Responsibility:** current learner state, planning, prerequisite diagnostics, scheduling, progress, and academic roadmap behavior.
 
@@ -167,7 +198,7 @@ Each subject app must remain independently understandable and must communicate w
 
 **Current authority rule:** existing learning-state contracts remain authoritative unless a dedicated migration gate explicitly promotes another model.
 
-### I. AI Read Context & Assistance
+### J. AI Read Context & Assistance
 
 **Responsibility:** provide AI features with explicit, policy-constrained context.
 
@@ -179,7 +210,7 @@ Each subject app must remain independently understandable and must communicate w
 
 **Rule:** AI may explain, suggest, critique, draft, or simulate within policy. AI does not silently become authoritative for mastery, provenance acceptance, publication approval, or protected academic decisions.
 
-### J. Packaging & Deployment
+### K. Packaging & Deployment
 
 **Responsibility:** materialize accepted source runtime into deployable/packageable forms without changing application authority.
 
@@ -191,7 +222,7 @@ Each subject app must remain independently understandable and must communicate w
 
 Packaging must preserve the dependency chain proven in source runtime.
 
-### K. Verification & Quality Gates
+### L. Verification & Quality Gates
 
 **Responsibility:** prevent architectural drift and regression.
 
@@ -211,6 +242,8 @@ Preferred dependency direction:
 Identity & Domain Model
         ↓
 Content, Asset & Provenance Registry
+        ↓
+Content Resolution & Runtime Delivery
         ↓
 Learning Content Standard / adapters
         ↓
@@ -236,6 +269,7 @@ Cross-layer dependencies must be explicit. Do not create hidden dependencies thr
 | Device/access behavior | `assets/js/platform/`, managed-access modules | authorization, owner-private boundary, regression |
 | Canonical IDs/domain entities | `foundation/domain-model/` | stable IDs, compatibility, legacy preservation |
 | Asset metadata/checksum/provenance | `foundation/content-registry/` | lineage, integrity, access, deterministic snapshots |
+| Registry locator → runtime resource resolution | `foundation/content-resolution/` | access/integrity preconditions, locator policy, no hidden transport authority |
 | Lesson-authoring standard | `foundation/learning-content/` | pedagogy, accessibility, renderer independence |
 | Russian learning behavior | `subjects/russian/` | Russian contracts, SRS/review/mastery preservation |
 | Math learning behavior | `subjects/math/` | accepted lesson/runtime gates, academic content |
@@ -321,4 +355,10 @@ Historical checkpoint: L10.
 
 State: promotion candidate with registry contract, immutable runtime, SHA-256 asset integrity, provenance, access policy, deterministic snapshot, transactional transport, snapshot integrity, and promotion freeze.
 
-No new foundation layer should be started until its **responsibility name, ownership boundary, dependencies, and acceptance gate** are written first.
+### Foundation — Content Resolution & Runtime Delivery
+
+State: Step 1 contract active on `work/foundation-content-resolution-delivery`.
+
+Current rule: contract-only; no existing loader migration yet.
+
+Future work must preserve the explicit authority boundary before any runtime consumer is migrated.
