@@ -67,7 +67,24 @@ try{
  const result=await page.evaluate(()=>({source:state.activeTask.source,route:state.activeTask.capabilityRoute||null,progress:Number(state.progress?.russian||0)}));
  assert.equal(result.route,null);
  assert.equal(result.progress,progressBefore,'Capability navigation must not mutate canonical progress');
+
+ await page.evaluate(()=>{
+  app.closeStudy();
+  state.subjectCapabilities.russian={schema:'RUSSIAN_CAPABILITY_BRIDGE_V1',subjectId:'russian',currentBand:{id:'R0',reviewDue:0},nextGap:{lessonId:'R01',route:{view:'learning',learnTab:'theory',lessonId:'R01'}},stageExit:{reviewDue:0}};
+  save();
+ });
+ await page.reload({waitUntil:'domcontentloaded',timeout:30000});
+ await page.waitForFunction(()=>document.documentElement.dataset.baumanDeviceAccess==='authorized',null,{timeout:30000});
+ await page.waitForFunction(()=>!document.getElementById('appRoot')?.classList.contains('hidden'),null,{timeout:30000});
+ const staleBeforeOpen=await page.evaluate(()=>({live:window.isSubjectCapabilityLive?.('russian')===true,hasSnapshot:!!state.subjectCapabilities?.russian}));
+ assert.equal(staleBeforeOpen.hasSnapshot,true);
+ assert.equal(staleBeforeOpen.live,false,'Persisted snapshot must start untrusted after Hub reload');
+ await page.evaluate(()=>app.continueStudy());
+ await page.waitForFunction(()=>!!state.activeTask,null,{timeout:10000});
+ const staleLaunch=await page.evaluate(()=>({source:state.activeTask.source,route:state.activeTask.capabilityRoute||null}));
+ assert.notEqual(staleLaunch.source,'capability-gap','Stale persisted snapshot must not drive a direct capability mission');
+ assert.equal(staleLaunch.route,null);
  await page.screenshot({path:path.join(OUT,'continue-review-safe.png'),fullPage:true});
- fs.writeFileSync(path.join(OUT,'summary.json'),JSON.stringify({status:'PASS',tab,directGapBlocked,result,progressBefore},null,2));
+ fs.writeFileSync(path.join(OUT,'summary.json'),JSON.stringify({status:'PASS',tab,directGapBlocked,result,staleBeforeOpen,staleLaunch,progressBefore},null,2));
  console.log('Russian capability continue browser acceptance PASS');
 }finally{await browser?.close()}
