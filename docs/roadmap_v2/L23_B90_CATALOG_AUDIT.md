@@ -1,6 +1,6 @@
 # L23 / B90 — Current Diagnostic Catalog
 
-Status: `PENDING_GATE`
+Status: `PASS`
 
 ## Source boundary
 
@@ -35,3 +35,13 @@ Every plan is fail-closed with `blocked_missing_verified_item_bank`.
 ## Determinism
 
 The B90 validator rebuilds the full catalog and requires byte-for-byte equality with the committed artifact.
+
+
+## Full gate evidence
+
+- Roadmap V2 Current Gate — `35332251609` — PASS
+- Foundation Domain Model — `35332251539` — PASS
+- Windows checkout safety — `35332251440` — PASS
+- Russian Reference UI — `35332251387` — PASS
+- Cloudflare Preview — `35332251384` — PASS
+- Whole System Integration — `35332251443` — PASS
