@@ -29,6 +29,11 @@ on:
       - 'scripts/validate-academic-shadow-resolution.mjs'
       - 'tests/academic-shadow-resolution.test.mjs'
       - 'tests/content-resolution-shadow-browser.mjs'
+      - 'foundation/content-resolution/academic-runtime-shadow-contract.v1.json'
+      - 'assets/js/academic-content-resolution-shadow.js'
+      - 'scripts/validate-academic-runtime-shadow-bridge.mjs'
+      - 'tests/academic-runtime-shadow-bridge.test.mjs'
+      - 'index.html'
       - 'assets/js/academic-main.js'
       - 'assets/data/official-curriculum-iu5-2026.json'
       - 'assets/data/prerequisite-registry-iu5-2026.json'
@@ -70,6 +75,9 @@ jobs:
           node --check scripts/validate-academic-shadow-resolution.mjs
           node --check tests/academic-shadow-resolution.test.mjs
           node --check tests/content-resolution-shadow-browser.mjs
+          node --check assets/js/academic-content-resolution-shadow.js
+          node --check scripts/validate-academic-runtime-shadow-bridge.mjs
+          node --check tests/academic-runtime-shadow-bridge.test.mjs
       - name: Validate frozen Content Asset Provenance foundation
         run: node scripts/validate-foundation-l10-promotion.mjs
       - name: Validate content resolution contract
@@ -96,9 +104,13 @@ jobs:
         run: node scripts/validate-academic-shadow-resolution.mjs
       - name: Run Academic shadow negative tests
         run: node tests/academic-shadow-resolution.test.mjs
+      - name: Validate Academic runtime shadow bridge
+        run: node scripts/validate-academic-runtime-shadow-bridge.mjs
+      - name: Run Academic runtime shadow bridge negative tests
+        run: node tests/academic-runtime-shadow-bridge.test.mjs
       - name: Parse resolution JSON
         run: |
-          node -e "JSON.parse(require('fs').readFileSync('foundation/content-resolution/resolution-contract.v1.json','utf8')); JSON.parse(require('fs').readFileSync('foundation/content-resolution/examples/step1-resolution-request.v1.json','utf8')); JSON.parse(require('fs').readFileSync('foundation/content-resolution/delivery-plan-contract.v1.json','utf8')); JSON.parse(require('fs').readFileSync('foundation/content-resolution/delivery-executor-contract.v1.json','utf8')); JSON.parse(require('fs').readFileSync('foundation/content-resolution/package-relative-adapter-contract.v1.json','utf8')); JSON.parse(require('fs').readFileSync('foundation/content-resolution/shadow/academic-core-2026.v1.json','utf8')); console.log('CONTENT_RESOLUTION_JSON=PASS')"
+          node -e "JSON.parse(require('fs').readFileSync('foundation/content-resolution/resolution-contract.v1.json','utf8')); JSON.parse(require('fs').readFileSync('foundation/content-resolution/examples/step1-resolution-request.v1.json','utf8')); JSON.parse(require('fs').readFileSync('foundation/content-resolution/delivery-plan-contract.v1.json','utf8')); JSON.parse(require('fs').readFileSync('foundation/content-resolution/delivery-executor-contract.v1.json','utf8')); JSON.parse(require('fs').readFileSync('foundation/content-resolution/package-relative-adapter-contract.v1.json','utf8')); JSON.parse(require('fs').readFileSync('foundation/content-resolution/shadow/academic-core-2026.v1.json','utf8')); JSON.parse(require('fs').readFileSync('foundation/content-resolution/academic-runtime-shadow-contract.v1.json','utf8')); console.log('CONTENT_RESOLUTION_JSON=PASS')"
 
 
   browser-shadow-acceptance:
