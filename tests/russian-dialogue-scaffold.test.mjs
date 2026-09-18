@@ -19,5 +19,9 @@ assert.throws(
  ()=>validateCore(core.replace("window.RussianDialogueScaffold?.describe?.","window.OtherDialogueAuthority?.describe?.")),
  /canonical dialogue authority/
 );
+assert.throws(
+ ()=>validateCore(core.replace('dialogue-direct-scaffold','dialogue-scaffold-missing')),
+ /UI helper missing direct scaffold class/
+);
 console.log('RUSSIAN_DIALOGUE_SCAFFOLD_NEGATIVE_TEST=PASS');
-console.log(JSON.stringify({negativeCases:5},null,2));
+console.log(JSON.stringify({negativeCases:6},null,2));
