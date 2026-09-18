@@ -92,7 +92,7 @@ const mixed=[
   candidate('MATH-L1-C03','dang_hoc',{masterRelevance:0.5,weeksUntilNeeded:8,candidateId:'A'}),
   candidate('MATH-L1-C04','master_ready',{masterRelevance:0.1,weeksUntilNeeded:null,candidateId:'B'}),
   candidate('MATH-L2-C07','gap',{masterRelevance:0.2,weeksUntilNeeded:4,candidateId:'C'}),
-  candidate('MATH-L1-C02','dang_hoc',{masterRelevance:0.9,weeksUntilNeeded:5,candidateId:'D'})
+  candidate('MATH-L2-C05','dang_hoc',{masterRelevance:0.9,weeksUntilNeeded:5,candidateId:'D'})
 ];
 const mixedA=priority.rankCandidates(mixed);
 const mixedB=priority.rankCandidates([...mixed].reverse());
