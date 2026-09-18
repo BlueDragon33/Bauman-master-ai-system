@@ -6,15 +6,15 @@
 ## Active track
 
 - Current round: **Lượt 23**
-- Current step: **Bước 90 — PENDING_FULL_GATE**
+- Current step: **Bước 91 — IN_PROGRESS**
 - L22 closeout: **B88 + H1 — PASS**
-- Status: **PASS_L23_B89 · PASS_L23_H1 · B90_CATALOG_PENDING_FULL_GATE**
+- Status: **PASS_L23_B89 · PASS_L23_H1 · PASS_L23_B90 · B91_HARNESS_IN_PROGRESS**
 - Accepted head: `622e84aece7847b4179a8ff48937cb92717aaf3e`
 - Production/runtime activation by Roadmap V2: **disconnected**
 - Legacy/source destructive migration: **not executed**
-- Last completed: **L23/B89 — PASS**
+- Last completed: **L23/B90 — PASS**
 - Last hardening: **L23-H1 — PASS**
-- Current official step: **L23/B90 — Diagnostic Catalog**
+- Current official step: **L23/B91 — Diagnostic Harness**
 - L23 may start only after the L22 closeout snapshot remains green on the complete gate set.
 
 ## L22/B88 complete gate evidence
@@ -80,3 +80,15 @@ Accepted B89 head: `10031242d975822f68670b89a4d74a96c378fe0b`
 - Whole System Integration — run `35330792968` — PASS
 
 B89 repairs incorporated: L23-F1 stale manifest dependency removal, L23-F2 policy identity alignment, L23-F3 static-baseline gate forward compatibility.
+
+
+## L23/B90 gate evidence
+
+Accepted B90 head: `a17ed1a22660768a1d25b111006a314b42dfba48`
+
+- Roadmap V2 Current Gate — run `35332251609` — PASS
+- Foundation Domain Model — run `35332251539` — PASS
+- Windows checkout safety — run `35332251440` — PASS
+- Russian Reference UI — run `35332251387` — PASS
+- Cloudflare Preview — run `35332251384` — PASS
+- Whole System Integration — run `35332251443` — PASS
