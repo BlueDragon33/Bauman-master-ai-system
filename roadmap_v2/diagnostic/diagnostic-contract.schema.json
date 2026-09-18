@@ -1,6 +1,7 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "$id": "BAUMAN_ROADMAP_V2_DIAGNOSTIC_CONTRACT_V1",
+  "$id": "BAUMAN_ROADMAP_V2_DIAGNOSTIC_CONTRACT_V2",
+  "title": "Bauman Roadmap V2 current diagnostic contract",
   "type": "object",
   "additionalProperties": false,
   "required": [
@@ -12,6 +13,7 @@
     "assessmentPolicy",
     "statusSemantics",
     "itemBankGate",
+    "sessionProjection",
     "attemptGate",
     "capabilities",
     "reasonCodes",
@@ -20,10 +22,10 @@
   ],
   "properties": {
     "schema": {
-      "const": "BAUMAN_ROADMAP_V2_DIAGNOSTIC_CONTRACT_V1"
+      "const": "BAUMAN_ROADMAP_V2_DIAGNOSTIC_CONTRACT_V2"
     },
     "version": {
-      "const": 1
+      "const": 2
     },
     "scope": {
       "type": "string",
@@ -31,25 +33,83 @@
     },
     "mode": {
       "type": "object",
+      "additionalProperties": false,
       "required": [
         "access",
         "productionIntegration",
         "failClosed",
         "writesMasteryEvidence",
+        "writesLearnerState",
         "writesLegacyRuntime"
-      ]
+      ],
+      "properties": {
+        "access": {
+          "const": "read_only"
+        },
+        "productionIntegration": {
+          "const": "disconnected"
+        },
+        "failClosed": {
+          "const": true
+        },
+        "writesMasteryEvidence": {
+          "const": false
+        },
+        "writesLearnerState": {
+          "const": false
+        },
+        "writesLegacyRuntime": {
+          "const": false
+        }
+      }
     },
     "upstream": {
       "type": "object",
+      "additionalProperties": false,
       "required": [
-        "consumerManifestSchema",
+        "consumerContractPath",
         "consumerContractSchema",
         "requiredConsumerCapabilities",
-        "forbiddenConsumerCapabilities"
-      ]
+        "forbiddenConsumerCapabilities",
+        "manifestDependencyRequired",
+        "staleHistoricalManifestAccepted"
+      ],
+      "properties": {
+        "consumerContractPath": {
+          "const": "roadmap_v2/consumer/consumer-contract.json"
+        },
+        "consumerContractSchema": {
+          "const": "BAUMAN_ROADMAP_V2_CONSUMER_CONTRACT_V1"
+        },
+        "requiredConsumerCapabilities": {
+          "type": "array",
+          "minItems": 5,
+          "uniqueItems": true,
+          "items": {
+            "type": "string",
+            "minLength": 1
+          }
+        },
+        "forbiddenConsumerCapabilities": {
+          "type": "array",
+          "minItems": 6,
+          "uniqueItems": true,
+          "items": {
+            "type": "string",
+            "minLength": 1
+          }
+        },
+        "manifestDependencyRequired": {
+          "const": false
+        },
+        "staleHistoricalManifestAccepted": {
+          "const": false
+        }
+      }
     },
     "assessmentPolicy": {
       "type": "object",
+      "additionalProperties": false,
       "required": [
         "id",
         "requiredItemCount",
@@ -61,7 +121,60 @@
         "requiresCriticalItems",
         "requiresExactTargetMatch",
         "requiresPrerequisiteRefsToExist"
-      ]
+      ],
+      "properties": {
+        "id": {
+          "const": "DIAG-20-V2"
+        },
+        "requiredItemCount": {
+          "const": 20
+        },
+        "difficultyDistribution": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "easy",
+            "medium",
+            "hard",
+            "expert"
+          ],
+          "properties": {
+            "easy": {
+              "const": 8
+            },
+            "medium": {
+              "const": 6
+            },
+            "hard": {
+              "const": 4
+            },
+            "expert": {
+              "const": 2
+            }
+          }
+        },
+        "passPercent": {
+          "const": 80
+        },
+        "criticalItemFloorPercent": {
+          "const": 70
+        },
+        "requiresUniqueItemIds": {
+          "const": true
+        },
+        "requiresReviewedItems": {
+          "const": true
+        },
+        "requiresCriticalItems": {
+          "const": true
+        },
+        "requiresExactTargetMatch": {
+          "const": true
+        },
+        "requiresPrerequisiteRefsToExist": {
+          "const": true
+        }
+      }
     },
     "statusSemantics": {
       "type": "object",
@@ -85,6 +198,35 @@
         "allowGeneratedUnreviewedItems"
       ]
     },
+    "sessionProjection": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "answerKeyFieldsExcluded",
+        "reviewMetadataExcluded",
+        "requiresStableItemOrder",
+        "allowsAnswerRevealDuringActiveSession"
+      ],
+      "properties": {
+        "answerKeyFieldsExcluded": {
+          "const": [
+            "correctOptionId",
+            "rationale"
+          ]
+        },
+        "reviewMetadataExcluded": {
+          "const": [
+            "reviewedBy"
+          ]
+        },
+        "requiresStableItemOrder": {
+          "const": true
+        },
+        "allowsAnswerRevealDuringActiveSession": {
+          "const": false
+        }
+      }
+    },
     "attemptGate": {
       "type": "object",
       "required": [
@@ -97,14 +239,14 @@
     },
     "capabilities": {
       "type": "object",
-      "minProperties": 10,
+      "minProperties": 12,
       "additionalProperties": {
         "type": "boolean"
       }
     },
     "reasonCodes": {
       "type": "object",
-      "minProperties": 8,
+      "minProperties": 10,
       "additionalProperties": {
         "type": "string",
         "minLength": 1
@@ -112,7 +254,7 @@
     },
     "abortConditions": {
       "type": "array",
-      "minItems": 9,
+      "minItems": 12,
       "uniqueItems": true,
       "items": {
         "type": "string",
@@ -123,9 +265,14 @@
       "type": "object",
       "required": [
         "step",
+        "currentTrack",
+        "consumerBoundaryRevalidated",
+        "staleManifestDependencyRemoved",
         "existingCompetencyDistinctFromMasterReady",
+        "activeSessionAnswerLeakageForbidden",
         "unreviewedGenerationForbidden",
         "masteryPersistenceEnabled",
+        "learnerStatePersistenceEnabled",
         "runtimeActivationAllowed",
         "result"
       ]
