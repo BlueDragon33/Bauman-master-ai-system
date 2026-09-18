@@ -4,6 +4,7 @@ interface AutomationEnv {
   BAUMAN_CONTROL_SERVICE_SECRET?: string;
   APPLICATION_MANAGEMENT_ORIGIN?: string;
   BAUMAN_APP_ORIGIN?: string;
+  BAUMAN_REGISTRY_INSTANCE_ID?: string;
   DB?: D1Database;
 }
 
@@ -17,6 +18,11 @@ const TOKEN_APP = "bauman-master-ai";
 
 function record(value: unknown): UnknownRecord {
   return value && typeof value === "object" && !Array.isArray(value) ? value as UnknownRecord : {};
+}
+
+function registryInstanceId(env: AutomationEnv) {
+  const configured = (env.BAUMAN_REGISTRY_INSTANCE_ID ?? "").trim();
+  return configured && /^[a-z0-9][a-z0-9._:-]{5,95}$/i.test(configured) ? configured : "bauman-control-unidentified";
 }
 
 function base64Url(bytes: Uint8Array) {
@@ -94,7 +100,7 @@ function json(data: unknown, status = 200, headers?: HeadersInit) {
 async function automationReady(env: AutomationEnv) {
   if (!env.DB) return false;
   try {
-    await env.DB.prepare("SELECT auto_approve_devices FROM bm_automation_policy WHERE id=1").first();
+    await env.DB.prepare("SELECT auto_approve_devices, auto_reject_devices FROM bm_automation_policy WHERE id=1").first();
     return true;
   } catch {
     return false;
@@ -103,44 +109,85 @@ async function automationReady(env: AutomationEnv) {
 
 async function readAutomation(database: D1Database) {
   const row = await database.prepare(
-    "SELECT auto_approve_devices, updated_at, updated_by FROM bm_automation_policy WHERE id=1",
-  ).first<{ auto_approve_devices: number; updated_at: string; updated_by: string | null }>();
+    "SELECT auto_approve_devices, auto_reject_devices, updated_at, updated_by FROM bm_automation_policy WHERE id=1",
+  ).first<{ auto_approve_devices: number; auto_reject_devices: number; updated_at: string; updated_by: string | null }>();
   if (!row) throw new Error("AUTOMATION_POLICY_NOT_MIGRATED");
   return {
     autoApproveDevices: Number(row.auto_approve_devices) === 1,
+    autoRejectDevices: Number(row.auto_reject_devices) === 1,
     updatedAt: row.updated_at,
     updatedBy: row.updated_by,
   };
 }
 
-async function writeAutomation(database: D1Database, enabled: boolean, actor: string) {
-  await database.prepare(
-    `INSERT INTO bm_automation_policy (id, auto_approve_devices, updated_at, updated_by)
-     VALUES (1, ?, CURRENT_TIMESTAMP, ?)
-     ON CONFLICT(id) DO UPDATE SET auto_approve_devices=excluded.auto_approve_devices, updated_at=CURRENT_TIMESTAMP, updated_by=excluded.updated_by`,
-  ).bind(enabled ? 1 : 0, actor || "application-management").run();
-  await database.prepare(
-    "INSERT INTO bm_audit_log (actor, action, target, detail_json) VALUES (?, 'automation_auto_approval_updated', 'policy:device-auto-approval', ?)",
-  ).bind(actor || "application-management", JSON.stringify({ enabled })).run();
-  return readAutomation(database);
+async function applyPolicyToPending(database: D1Database, policy: { autoApproveDevices: boolean; autoRejectDevices: boolean }, actor: string) {
+  if (!policy.autoApproveDevices && !policy.autoRejectDevices) return { changed: 0, resultStatus: "pending" };
+  const resultStatus = policy.autoRejectDevices ? "blocked" : "approved";
+  const result = resultStatus === "approved"
+    ? await database.prepare(
+      `UPDATE bm_devices
+          SET status='approved', edit_enabled=0, approved_at=COALESCE(approved_at, CURRENT_TIMESTAMP),
+              approved_by=?, blocked_at=NULL, updated_at=CURRENT_TIMESTAMP
+        WHERE status='pending'`,
+    ).bind(actor).run()
+    : await database.prepare(
+      `UPDATE bm_devices
+          SET status='blocked', edit_enabled=0, blocked_at=CURRENT_TIMESTAMP, updated_at=CURRENT_TIMESTAMP
+        WHERE status='pending'`,
+    ).run();
+  const changed = Number(result.meta.changes ?? 0);
+  if (changed > 0) {
+    await database.prepare(
+      "INSERT INTO bm_audit_log (actor, action, target, detail_json) VALUES (?, ?, 'policy:automation', ?)",
+    ).bind(actor, resultStatus === "approved" ? "pending_devices_auto_approved" : "pending_devices_auto_rejected", JSON.stringify({ count: changed })).run();
+  }
+  return { changed, resultStatus };
 }
 
-async function maybeAutoApprove(database: D1Database, deviceId: string) {
+async function writeAutomation(database: D1Database, payload: UnknownRecord, actor: string) {
+  const current = await readAutomation(database);
+  let autoApproveDevices = typeof payload.autoApproveDevices === "boolean" ? payload.autoApproveDevices : current.autoApproveDevices;
+  let autoRejectDevices = typeof payload.autoRejectDevices === "boolean" ? payload.autoRejectDevices : current.autoRejectDevices;
+  if (payload.autoApproveDevices === true) autoRejectDevices = false;
+  if (payload.autoRejectDevices === true) autoApproveDevices = false;
+
+  await database.prepare(
+    `INSERT INTO bm_automation_policy (id, auto_approve_devices, auto_reject_devices, updated_at, updated_by)
+     VALUES (1, ?, ?, CURRENT_TIMESTAMP, ?)
+     ON CONFLICT(id) DO UPDATE SET auto_approve_devices=excluded.auto_approve_devices,
+       auto_reject_devices=excluded.auto_reject_devices, updated_at=CURRENT_TIMESTAMP, updated_by=excluded.updated_by`,
+  ).bind(autoApproveDevices ? 1 : 0, autoRejectDevices ? 1 : 0, actor || "application-management").run();
+  await database.prepare(
+    "INSERT INTO bm_audit_log (actor, action, target, detail_json) VALUES (?, 'automation_policy_updated', 'policy:device-automation', ?)",
+  ).bind(actor || "application-management", JSON.stringify({ autoApproveDevices, autoRejectDevices })).run();
+  const automation = await readAutomation(database);
+  const applied = await applyPolicyToPending(database, automation, actor || "application-management");
+  return { ...automation, appliedPendingCount: applied.changed };
+}
+
+async function maybeAutomateDevice(database: D1Database, deviceId: string) {
   const policy = await readAutomation(database).catch(() => null);
-  if (!policy?.autoApproveDevices) return false;
-  const result = await database.prepare(
-    `UPDATE bm_devices
-        SET status='approved', edit_enabled=0, approved_at=COALESCE(approved_at, CURRENT_TIMESTAMP),
-            approved_by='automation:application-management', blocked_at=NULL, updated_at=CURRENT_TIMESTAMP
-      WHERE device_id=? AND status='pending'`,
-  ).bind(deviceId).run();
+  if (!policy || (!policy.autoApproveDevices && !policy.autoRejectDevices)) return null;
+  const resultStatus = policy.autoRejectDevices ? "blocked" : "approved";
+  const result = resultStatus === "approved"
+    ? await database.prepare(
+      `UPDATE bm_devices
+          SET status='approved', edit_enabled=0, approved_at=COALESCE(approved_at, CURRENT_TIMESTAMP),
+              approved_by='automation:application-management', blocked_at=NULL, updated_at=CURRENT_TIMESTAMP
+        WHERE device_id=? AND status='pending'`,
+    ).bind(deviceId).run()
+    : await database.prepare(
+      `UPDATE bm_devices
+          SET status='blocked', edit_enabled=0, blocked_at=CURRENT_TIMESTAMP, updated_at=CURRENT_TIMESTAMP
+        WHERE device_id=? AND status='pending'`,
+    ).bind(deviceId).run();
   const changed = Number(result.meta.changes ?? 0) === 1;
   if (changed) {
     await database.prepare(
-      "INSERT INTO bm_audit_log (actor, action, target, detail_json) VALUES ('automation:application-management', 'device_auto_approved', ?, ?)",
-    ).bind(deviceId, JSON.stringify({ policy: "device-auto-approval" })).run();
+      "INSERT INTO bm_audit_log (actor, action, target, detail_json) VALUES ('automation:application-management', ?, ?, ?)",
+    ).bind(resultStatus === "approved" ? "device_auto_approved" : "device_auto_rejected", deviceId, JSON.stringify({ policy: resultStatus === "approved" ? "device-auto-approval" : "device-auto-reject" })).run();
   }
-  return changed;
+  return changed ? resultStatus : null;
 }
 
 async function automationEndpoint(request: Request, env: AutomationEnv) {
@@ -154,17 +201,17 @@ async function automationEndpoint(request: Request, env: AutomationEnv) {
   if (!(await automationReady(env))) return json({ ok: false, error: "Bauman automation policy chưa được migrate.", code: "BAUMAN_AUTOMATION_NOT_MIGRATED" }, 503);
 
   if (request.method === "GET") {
-    return json({ ok: true, application: TOKEN_APP, automation: await readAutomation(env.DB) });
+    return json({ ok: true, application: TOKEN_APP, registryInstanceId: registryInstanceId(env), automation: await readAutomation(env.DB) });
   }
   if (request.method !== "POST") return json({ ok: false, code: "METHOD_NOT_ALLOWED" }, 405);
-  if (identity.role !== "owner") return json({ ok: false, error: "Chỉ Chủ hệ thống được đổi duyệt tự động Bauman.", code: "OWNER_REQUIRED" }, 403);
+  if (identity.role !== "owner") return json({ ok: false, error: "Chỉ Chủ hệ thống được đổi tự động xử lý Bauman.", code: "OWNER_REQUIRED" }, 403);
 
   const payload = record(await request.json().catch(() => null));
-  if (typeof payload.autoApproveDevices !== "boolean") {
-    return json({ ok: false, error: "Trạng thái duyệt tự động không hợp lệ.", code: "INVALID_AUTO_APPROVAL_STATE" }, 400);
+  if (typeof payload.autoApproveDevices !== "boolean" && typeof payload.autoRejectDevices !== "boolean") {
+    return json({ ok: false, error: "Trạng thái tự động xử lý không hợp lệ.", code: "INVALID_AUTOMATION_STATE" }, 400);
   }
-  const automation = await writeAutomation(env.DB, payload.autoApproveDevices, identity.actor);
-  return json({ ok: true, application: TOKEN_APP, automation });
+  const automation = await writeAutomation(env.DB, payload, identity.actor);
+  return json({ ok: true, application: TOKEN_APP, registryInstanceId: registryInstanceId(env), automation });
 }
 
 async function augmentStatus(response: Response, env: AutomationEnv) {
@@ -176,33 +223,45 @@ async function augmentStatus(response: Response, env: AutomationEnv) {
   const ready = await automationReady(env);
   return json({
     ...payload,
-    readiness: { ...readiness, deviceAutoApproval: ready ? "available" : "configuration-required" },
-    capabilities: { ...capabilities, deviceAutoApproval: ready },
+    registryInstanceId: registryInstanceId(env),
+    readiness: { ...readiness, deviceAutoApproval: ready ? "available" : "configuration-required", deviceAutoReject: ready ? "available" : "configuration-required" },
+    capabilities: { ...capabilities, deviceAutoApproval: ready, deviceAutoReject: ready },
     endpoints: { ...endpoints, automation: "/api/control/automation" },
   }, response.status, response.headers);
 }
 
 async function augmentRegistration(response: Response, env: AutomationEnv) {
-  if (!response.ok || !env.DB || !(await automationReady(env))) return response;
+  if (!response.ok) return response;
   const payload = await response.json().catch(() => null) as UnknownRecord | null;
   if (!payload) return response;
+  const instanceId = registryInstanceId(env);
+  if (!env.DB || !(await automationReady(env))) return json({ ...payload, registryInstanceId: instanceId }, response.status, response.headers);
   const device = record(payload.device);
   const deviceId = typeof device.deviceId === "string" ? device.deviceId : "";
-  if (!/^[a-f0-9]{64}$/.test(deviceId) || device.status !== "pending") return json(payload, response.status, response.headers);
-  if (!(await maybeAutoApprove(env.DB, deviceId))) return json(payload, response.status, response.headers);
+  if (!/^[a-f0-9]{64}$/.test(deviceId) || device.status !== "pending") return json({ ...payload, registryInstanceId: instanceId }, response.status, response.headers);
+  const resultStatus = await maybeAutomateDevice(env.DB, deviceId);
+  if (!resultStatus) return json({ ...payload, registryInstanceId: instanceId }, response.status, response.headers);
   const updated = await env.DB.prepare(
-    "SELECT status, approved_at, approved_by, updated_at FROM bm_devices WHERE device_id=?",
-  ).bind(deviceId).first<{ status: string; approved_at: string | null; approved_by: string | null; updated_at: string }>();
+    "SELECT status, approved_at, approved_by, blocked_at, updated_at FROM bm_devices WHERE device_id=?",
+  ).bind(deviceId).first<{ status: string; approved_at: string | null; approved_by: string | null; blocked_at: string | null; updated_at: string }>();
   return json({
     ...payload,
+    registryInstanceId: instanceId,
     device: {
       ...device,
-      status: updated?.status ?? "approved",
+      status: updated?.status ?? resultStatus,
       approvedAt: updated?.approved_at ?? null,
-      approvedBy: updated?.approved_by ?? "automation:application-management",
+      approvedBy: updated?.approved_by ?? (resultStatus === "approved" ? "automation:application-management" : null),
+      blockedAt: updated?.blocked_at ?? null,
       updatedAt: updated?.updated_at ?? device.updatedAt,
     },
   }, response.status, response.headers);
+}
+
+async function augmentDeviceStatus(response: Response, env: AutomationEnv) {
+  if (!response.ok) return response;
+  const payload = await response.json().catch(() => null) as UnknownRecord | null;
+  return payload ? json({ ...payload, registryInstanceId: registryInstanceId(env) }, response.status, response.headers) : response;
 }
 
 export default {
@@ -213,6 +272,7 @@ export default {
     const response = await controlService.fetch(request, env);
     if (request.method === "GET" && url.pathname === "/api/control/status") return augmentStatus(response, env);
     if (request.method === "POST" && url.pathname === "/api/device/register") return augmentRegistration(response, env);
+    if (request.method === "GET" && url.pathname === "/api/device/status") return augmentDeviceStatus(response, env);
     return response;
   },
 } satisfies ExportedHandler<AutomationEnv>;
