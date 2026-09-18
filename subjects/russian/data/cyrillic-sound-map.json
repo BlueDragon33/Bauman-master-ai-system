@@ -1,0 +1,523 @@
+{
+  "schema": "RUSSIAN_CYRILLIC_SOUND_MAP_V1",
+  "language": "ru-RU",
+  "sourcePolicy": "curated_phonology_map",
+  "entries": [
+    {
+      "letter": "А",
+      "lower": "а",
+      "name_ru": "а",
+      "category": "vowel",
+      "primary_ipa": "/a/",
+      "variants": [
+        "/a/"
+      ],
+      "anchor": {
+        "display": "ма́ма",
+        "speech": "мама"
+      },
+      "behavior": "plain_vowel"
+    },
+    {
+      "letter": "Б",
+      "lower": "б",
+      "name_ru": "бэ",
+      "category": "consonant",
+      "primary_ipa": "/b/",
+      "variants": [
+        "/b/",
+        "/bʲ/"
+      ],
+      "anchor": {
+        "display": "ба́нк",
+        "speech": "банк"
+      },
+      "behavior": "paired_hard_soft"
+    },
+    {
+      "letter": "В",
+      "lower": "в",
+      "name_ru": "вэ",
+      "category": "consonant",
+      "primary_ipa": "/v/",
+      "variants": [
+        "/v/",
+        "/vʲ/"
+      ],
+      "anchor": {
+        "display": "во́да",
+        "speech": "вода"
+      },
+      "behavior": "paired_hard_soft"
+    },
+    {
+      "letter": "Г",
+      "lower": "г",
+      "name_ru": "гэ",
+      "category": "consonant",
+      "primary_ipa": "/g/",
+      "variants": [
+        "/g/",
+        "/gʲ/"
+      ],
+      "anchor": {
+        "display": "го́род",
+        "speech": "город"
+      },
+      "behavior": "paired_hard_soft"
+    },
+    {
+      "letter": "Д",
+      "lower": "д",
+      "name_ru": "дэ",
+      "category": "consonant",
+      "primary_ipa": "/d/",
+      "variants": [
+        "/d/",
+        "/dʲ/"
+      ],
+      "anchor": {
+        "display": "до́м",
+        "speech": "дом"
+      },
+      "behavior": "paired_hard_soft"
+    },
+    {
+      "letter": "Е",
+      "lower": "е",
+      "name_ru": "е",
+      "category": "vowel",
+      "primary_ipa": "/je/",
+      "variants": [
+        "/je/",
+        "/e/"
+      ],
+      "anchor": {
+        "display": "е́хать",
+        "speech": "ехать"
+      },
+      "behavior": "iotated_vowel"
+    },
+    {
+      "letter": "Ё",
+      "lower": "ё",
+      "name_ru": "ё",
+      "category": "vowel",
+      "primary_ipa": "/jo/",
+      "variants": [
+        "/jo/",
+        "/o/"
+      ],
+      "anchor": {
+        "display": "ёлка",
+        "speech": "ёлка"
+      },
+      "behavior": "iotated_vowel"
+    },
+    {
+      "letter": "Ж",
+      "lower": "ж",
+      "name_ru": "жэ",
+      "category": "consonant",
+      "primary_ipa": "/ʐ/",
+      "variants": [
+        "/ʐ/"
+      ],
+      "anchor": {
+        "display": "журна́л",
+        "speech": "журнал"
+      },
+      "behavior": "always_hard_core"
+    },
+    {
+      "letter": "З",
+      "lower": "з",
+      "name_ru": "зэ",
+      "category": "consonant",
+      "primary_ipa": "/z/",
+      "variants": [
+        "/z/",
+        "/zʲ/"
+      ],
+      "anchor": {
+        "display": "за́л",
+        "speech": "зал"
+      },
+      "behavior": "paired_hard_soft"
+    },
+    {
+      "letter": "И",
+      "lower": "и",
+      "name_ru": "и",
+      "category": "vowel",
+      "primary_ipa": "/i/",
+      "variants": [
+        "/i/"
+      ],
+      "anchor": {
+        "display": "и́мя",
+        "speech": "имя"
+      },
+      "behavior": "softening_vowel"
+    },
+    {
+      "letter": "Й",
+      "lower": "й",
+      "name_ru": "и краткое",
+      "category": "consonant",
+      "primary_ipa": "/j/",
+      "variants": [
+        "/j/"
+      ],
+      "anchor": {
+        "display": "йо́га",
+        "speech": "йога"
+      },
+      "behavior": "glide"
+    },
+    {
+      "letter": "К",
+      "lower": "к",
+      "name_ru": "ка",
+      "category": "consonant",
+      "primary_ipa": "/k/",
+      "variants": [
+        "/k/",
+        "/kʲ/"
+      ],
+      "anchor": {
+        "display": "ко́т",
+        "speech": "кот"
+      },
+      "behavior": "paired_hard_soft"
+    },
+    {
+      "letter": "Л",
+      "lower": "л",
+      "name_ru": "эл",
+      "category": "consonant",
+      "primary_ipa": "/l/",
+      "variants": [
+        "/l/",
+        "/lʲ/"
+      ],
+      "anchor": {
+        "display": "ла́мпа",
+        "speech": "лампа"
+      },
+      "behavior": "paired_hard_soft"
+    },
+    {
+      "letter": "М",
+      "lower": "м",
+      "name_ru": "эм",
+      "category": "consonant",
+      "primary_ipa": "/m/",
+      "variants": [
+        "/m/",
+        "/mʲ/"
+      ],
+      "anchor": {
+        "display": "ма́ма",
+        "speech": "мама"
+      },
+      "behavior": "paired_hard_soft"
+    },
+    {
+      "letter": "Н",
+      "lower": "н",
+      "name_ru": "эн",
+      "category": "consonant",
+      "primary_ipa": "/n/",
+      "variants": [
+        "/n/",
+        "/nʲ/"
+      ],
+      "anchor": {
+        "display": "но́мер",
+        "speech": "номер"
+      },
+      "behavior": "paired_hard_soft"
+    },
+    {
+      "letter": "О",
+      "lower": "о",
+      "name_ru": "о",
+      "category": "vowel",
+      "primary_ipa": "/o/",
+      "variants": [
+        "/o/",
+        "reduced_unstressed"
+      ],
+      "anchor": {
+        "display": "о́кна",
+        "speech": "окна"
+      },
+      "behavior": "stress_sensitive_vowel"
+    },
+    {
+      "letter": "П",
+      "lower": "п",
+      "name_ru": "пэ",
+      "category": "consonant",
+      "primary_ipa": "/p/",
+      "variants": [
+        "/p/",
+        "/pʲ/"
+      ],
+      "anchor": {
+        "display": "па́па",
+        "speech": "папа"
+      },
+      "behavior": "paired_hard_soft"
+    },
+    {
+      "letter": "Р",
+      "lower": "р",
+      "name_ru": "эр",
+      "category": "consonant",
+      "primary_ipa": "/r/",
+      "variants": [
+        "/r/",
+        "/rʲ/"
+      ],
+      "anchor": {
+        "display": "ро́бот",
+        "speech": "робот"
+      },
+      "behavior": "paired_hard_soft"
+    },
+    {
+      "letter": "С",
+      "lower": "с",
+      "name_ru": "эс",
+      "category": "consonant",
+      "primary_ipa": "/s/",
+      "variants": [
+        "/s/",
+        "/sʲ/"
+      ],
+      "anchor": {
+        "display": "су́мка",
+        "speech": "сумка"
+      },
+      "behavior": "paired_hard_soft"
+    },
+    {
+      "letter": "Т",
+      "lower": "т",
+      "name_ru": "тэ",
+      "category": "consonant",
+      "primary_ipa": "/t/",
+      "variants": [
+        "/t/",
+        "/tʲ/"
+      ],
+      "anchor": {
+        "display": "такси́",
+        "speech": "такси"
+      },
+      "behavior": "paired_hard_soft"
+    },
+    {
+      "letter": "У",
+      "lower": "у",
+      "name_ru": "у",
+      "category": "vowel",
+      "primary_ipa": "/u/",
+      "variants": [
+        "/u/"
+      ],
+      "anchor": {
+        "display": "у́тро",
+        "speech": "утро"
+      },
+      "behavior": "plain_vowel"
+    },
+    {
+      "letter": "Ф",
+      "lower": "ф",
+      "name_ru": "эф",
+      "category": "consonant",
+      "primary_ipa": "/f/",
+      "variants": [
+        "/f/",
+        "/fʲ/"
+      ],
+      "anchor": {
+        "display": "фо́то",
+        "speech": "фото"
+      },
+      "behavior": "paired_hard_soft"
+    },
+    {
+      "letter": "Х",
+      "lower": "х",
+      "name_ru": "ха",
+      "category": "consonant",
+      "primary_ipa": "/x/",
+      "variants": [
+        "/x/",
+        "/xʲ/"
+      ],
+      "anchor": {
+        "display": "хле́б",
+        "speech": "хлеб"
+      },
+      "behavior": "paired_hard_soft"
+    },
+    {
+      "letter": "Ц",
+      "lower": "ц",
+      "name_ru": "цэ",
+      "category": "consonant",
+      "primary_ipa": "/t͡s/",
+      "variants": [
+        "/t͡s/"
+      ],
+      "anchor": {
+        "display": "центр",
+        "speech": "центр"
+      },
+      "behavior": "always_hard_core"
+    },
+    {
+      "letter": "Ч",
+      "lower": "ч",
+      "name_ru": "че",
+      "category": "consonant",
+      "primary_ipa": "/t͡ɕ/",
+      "variants": [
+        "/t͡ɕ/"
+      ],
+      "anchor": {
+        "display": "чай",
+        "speech": "чай"
+      },
+      "behavior": "always_soft_core"
+    },
+    {
+      "letter": "Ш",
+      "lower": "ш",
+      "name_ru": "ша",
+      "category": "consonant",
+      "primary_ipa": "/ʂ/",
+      "variants": [
+        "/ʂ/"
+      ],
+      "anchor": {
+        "display": "шко́ла",
+        "speech": "школа"
+      },
+      "behavior": "always_hard_core"
+    },
+    {
+      "letter": "Щ",
+      "lower": "щ",
+      "name_ru": "ща",
+      "category": "consonant",
+      "primary_ipa": "/ɕː/",
+      "variants": [
+        "/ɕː/"
+      ],
+      "anchor": {
+        "display": "щётка",
+        "speech": "щётка"
+      },
+      "behavior": "always_soft_core"
+    },
+    {
+      "letter": "Ъ",
+      "lower": "ъ",
+      "name_ru": "твёрдый знак",
+      "category": "sign",
+      "primary_ipa": "∅",
+      "variants": [
+        "separator"
+      ],
+      "anchor": {
+        "display": "объе́кт",
+        "speech": "объект"
+      },
+      "behavior": "hard_sign"
+    },
+    {
+      "letter": "Ы",
+      "lower": "ы",
+      "name_ru": "ы",
+      "category": "vowel",
+      "primary_ipa": "/ɨ/",
+      "variants": [
+        "/ɨ/"
+      ],
+      "anchor": {
+        "display": "мы",
+        "speech": "мы"
+      },
+      "behavior": "plain_vowel"
+    },
+    {
+      "letter": "Ь",
+      "lower": "ь",
+      "name_ru": "мягкий знак",
+      "category": "sign",
+      "primary_ipa": "∅",
+      "variants": [
+        "softener",
+        "separator"
+      ],
+      "anchor": {
+        "display": "письмо́",
+        "speech": "письмо"
+      },
+      "behavior": "soft_sign"
+    },
+    {
+      "letter": "Э",
+      "lower": "э",
+      "name_ru": "э",
+      "category": "vowel",
+      "primary_ipa": "/e/",
+      "variants": [
+        "/e/"
+      ],
+      "anchor": {
+        "display": "э́то",
+        "speech": "это"
+      },
+      "behavior": "plain_vowel"
+    },
+    {
+      "letter": "Ю",
+      "lower": "ю",
+      "name_ru": "ю",
+      "category": "vowel",
+      "primary_ipa": "/ju/",
+      "variants": [
+        "/ju/",
+        "/u/"
+      ],
+      "anchor": {
+        "display": "ю́мор",
+        "speech": "юмор"
+      },
+      "behavior": "iotated_vowel"
+    },
+    {
+      "letter": "Я",
+      "lower": "я",
+      "name_ru": "я",
+      "category": "vowel",
+      "primary_ipa": "/ja/",
+      "variants": [
+        "/ja/",
+        "/a/"
+      ],
+      "anchor": {
+        "display": "я́блоко",
+        "speech": "яблоко"
+      },
+      "behavior": "iotated_vowel"
+    }
+  ]
+}
