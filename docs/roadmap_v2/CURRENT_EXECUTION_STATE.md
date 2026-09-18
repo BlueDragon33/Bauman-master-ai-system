@@ -5,14 +5,14 @@
 
 ## Active track
 
-- Current round: **Lượt 22**
-- Current step: **Bước 88 — PASS**
-- L22 hardening closeout: **L22-H1 — PASS**
-- Status: **PASS_L22_B88_CURRENT_RUNTIME_HARDENED**
+- Current round: **Lượt 23**
+- Current step: **Bước 89 — PENDING_FULL_GATE**
+- L22 closeout: **B88 + H1 — PASS**
+- Status: **L23_B89_DIAGNOSTIC_CONTRACT_PENDING_FULL_GATE**
 - Accepted head: `622e84aece7847b4179a8ff48937cb92717aaf3e`
 - Production/runtime activation by Roadmap V2: **disconnected**
 - Legacy/source destructive migration: **not executed**
-- Next official round: **Lượt 23**
+- Next official step: **L23/B90**, blocked until B89 full-gate PASS
 - L23 may start only after the L22 closeout snapshot remains green on the complete gate set.
 
 ## L22/B88 complete gate evidence
