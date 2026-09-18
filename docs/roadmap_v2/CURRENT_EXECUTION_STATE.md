@@ -6,15 +6,15 @@
 ## Active track
 
 - Current round: **Lượt 25**
-- Current step: **Bước 98 — IN_PROGRESS**
+- Current step: **Bước 99 — IN_PROGRESS**
 - L22 closeout: **B88 + H1 — PASS**
-- Status: **L23_COMPLETE · L24_COMPLETE · PASS_L25_F1 · PASS_L25_F2 · PASS_L25_B97 · PASS_L25_H1 · L25_B98_PRIORITY_SCORING_IN_PROGRESS**
+- Status: **L23_COMPLETE · L24_COMPLETE · PASS_L25_F1 · PASS_L25_F2 · PASS_L25_B97 · PASS_L25_H1 · PASS_L25_F3 · PASS_L25_B98 · L25_B99_PRIORITY_RANKING_IN_PROGRESS**
 - Accepted head: `622e84aece7847b4179a8ff48937cb92717aaf3e`
 - Production/runtime activation by Roadmap V2: **disconnected**
 - Legacy/source destructive migration: **not executed**
 - Last completed: **L23/B92 — PASS**
 - Last hardening: **L23-H1 — PASS**
-- Current official step: **L25/B98 — Deterministic Priority Scoring Harness**
+- Current official step: **L25/B99 — Stable Priority Ranking / Strict Validation**
 - L23 may start only after the L22 closeout snapshot remains green on the complete gate set.
 
 ## L22/B88 complete gate evidence
@@ -266,3 +266,17 @@ Accepted H1 head: `9a2d5c2fec7b2a438ae6379ac7e3497e96fffc75`
 - Whole System Integration — run `35337468991` — PASS
 
 B98 is unblocked and active.
+
+
+## L25/B98 gate evidence
+
+Accepted B98/F3 head: `18d3c772c19ebb912c6e4094ec3a4dab37cda55a`
+
+- Roadmap V2 Current Gate — run `35338425039` — PASS
+- Foundation Domain Model — run `35338424996` — PASS
+- Windows checkout safety — run `35338425029` — PASS
+- Russian Reference UI — run `35338424991` — PASS
+- Cloudflare Preview — run `35338425087` — PASS
+- Whole System Integration — run `35338425054` — PASS
+
+B99 is now active. B100 remains blocked.
