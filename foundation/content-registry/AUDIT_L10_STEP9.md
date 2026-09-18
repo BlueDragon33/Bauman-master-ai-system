@@ -1,4 +1,4 @@
-# Foundation V2 — L10 Step 9 Promotion / Freeze Audit
+# Bauman Foundation — Content, Asset & Provenance Registry — Step 9 Promotion / Freeze Audit
 
 ## Goal
 
