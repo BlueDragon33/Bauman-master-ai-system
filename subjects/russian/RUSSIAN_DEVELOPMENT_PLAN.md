@@ -41,8 +41,8 @@ If a gate fails, repair it before continuing. Never weaken an assertion merely t
 | 10 | Visual vocabulary contract | GREEN | Direct-semantic target locked; translation fields migration-only; authority switch deferred to Turn 13 |
 | 11 | Visual asset coverage | GREEN | 8,000/8,000 explicit source visual assets; classifier ignores translation fields |
 | 12 | Direct-semantic explanation | GREEN | 8,000/8,000 direct-semantic ready via visual/category/Russian-definition/audio; gesture/contrast/analogy remain source-gated |
-| 13 | Visual vocabulary runtime | ACTIVE | Switch learner-facing vocab to visual/Russian direct semantics; remove translation-style flip authority |
-| 14 | Reading bridge | PLANNED | Letter→chunk→word→short real text |
+| 13 | Visual vocabulary runtime | GREEN | Learner-facing authority switched to visual/Russian direct semantics; translation flip removed; SRS/mastery authority preserved |
+| 14 | Reading bridge | ACTIVE | Cyrillic→chunk→real word→short Russian text; additive reading evidence |
 | 15 | Dictation & listen-to-write | PLANNED | Sound→letter/word/short dictation |
 | 16 | Translation-free dialogue scaffolding | PLANNED | Scene/cue/role replaces default Vietnamese gloss |
 | 17 | Grammar from patterns | PLANNED | Heard/spoken pattern before minimal rule |
