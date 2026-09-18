@@ -2,7 +2,7 @@
 
 Current task: `CONTENT_RESOLUTION_RUNTIME_DELIVERY_FOUNDATION`
 
-Status: `STEP5_PACKAGE_ADAPTER_ACTIVE`
+Status: `STEP6_ACADEMIC_SHADOW_ACTIVE`
 
 Date: 2026-09-18
 Branch: `work/foundation-content-resolution-delivery`
@@ -105,3 +105,12 @@ The first concrete adapter is `package-relative-resource`.
 It may perform same-origin GET through an injected/environment fetch implementation, but only after the resolver and delivery-plan layers have selected and pinned the asset. Returned bytes still pass through the verified executor before any consumer sees them.
 
 No existing application loader uses this adapter yet.
+
+
+## Active Step 6 boundary
+
+Academic 2026 core data is now modeled in CI-only shadow mode.
+
+The validator reads the real loader constants and real JSON bytes, then runs them through the new resolution/delivery chain using an in-memory diagnostic registry.
+
+No browser/runtime loader has been changed. The existing Academic fetch path remains authoritative.
