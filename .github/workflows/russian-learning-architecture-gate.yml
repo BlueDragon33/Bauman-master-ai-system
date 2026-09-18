@@ -63,6 +63,11 @@ on:
       - 'subjects/russian/assets/reading-bridge.css'
       - 'scripts/validate-russian-reading-bridge.mjs'
       - 'tests/russian-reading-bridge.test.mjs'
+      - 'subjects/russian/contracts/dictation-listen-write-contract.v1.json'
+      - 'subjects/russian/assets/dictation-listen-write.js'
+      - 'subjects/russian/assets/dictation-listen-write.css'
+      - 'scripts/validate-russian-dictation-listen-write.mjs'
+      - 'tests/russian-dictation-listen-write.test.mjs'
       - '.github/workflows/russian-learning-architecture-gate.yml'
 
 permissions:
@@ -115,6 +120,9 @@ jobs:
           node --check subjects/russian/assets/reading-bridge.js
           node --check scripts/validate-russian-reading-bridge.mjs
           node --check tests/russian-reading-bridge.test.mjs
+          node --check subjects/russian/assets/dictation-listen-write.js
+          node --check scripts/validate-russian-dictation-listen-write.mjs
+          node --check tests/russian-dictation-listen-write.test.mjs
       - name: Validate listen-speak literacy visual contract
         run: node scripts/validate-russian-learning-sequence-contract.mjs
       - name: Run contract negative tests
@@ -173,6 +181,10 @@ jobs:
         run: node scripts/validate-russian-reading-bridge.mjs
       - name: Run Russian reading bridge negative tests
         run: node tests/russian-reading-bridge.test.mjs
+      - name: Validate Russian dictation listen-to-write
+        run: node scripts/validate-russian-dictation-listen-write.mjs
+      - name: Run Russian dictation negative tests
+        run: node tests/russian-dictation-listen-write.test.mjs
       - name: Parse pedagogy contracts
         run: node -e "const fs=require('fs'); const a=JSON.parse(fs.readFileSync('subjects/russian/contracts/listen-speak-literacy-visual-contract.v1.json','utf8')); const b=JSON.parse(fs.readFileSync('subjects/russian/contracts/oral-first-route-contract.v1.json','utf8')); if(a.schema!=='RUSSIAN_LISTEN_SPEAK_LITERACY_VISUAL_CONTRACT_V1'||b.schema!=='RUSSIAN_ORAL_FIRST_ROUTE_CONTRACT_V1') process.exit(1); console.log('RUSSIAN_PEDAGOGY_JSON=PASS')"
 
