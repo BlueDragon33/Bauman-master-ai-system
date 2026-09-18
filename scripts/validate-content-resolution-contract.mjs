@@ -56,6 +56,12 @@ export function validateContentResolutionContract(value){
   for(const state of ['staged','quarantined','missing'])assert(blocked.has(state),`Blocked asset state missing: ${state}`);
 
   assert(value.runtimePolicy?.defaultNetwork==='deny','Network default must remain deny');
+  assert((value.runtimePolicy?.fields||[]).includes('allowedHttpsOrigins'),'HTTPS origin allowlist field is missing');
+  assert(value.runtimePolicy?.httpsOriginPolicy?.requiredWhenHttpsEnabled===true,'HTTPS origin allowlist is optional');
+  assert(value.runtimePolicy?.httpsOriginPolicy?.exactOriginMatch===true,'HTTPS origin matching is not exact');
+  assert(value.runtimePolicy?.httpsOriginPolicy?.wildcardOriginsForbidden===true,'Wildcard HTTPS origins became allowed');
+  assert(value.runtimePolicy?.httpsOriginPolicy?.nonHttpsOriginsForbidden===true,'Non-HTTPS origins became allowed');
+  assert(value.runtimePolicy?.httpsOriginPolicy?.emptyAllowlistMeansDeny===true,'Empty HTTPS allowlist no longer denies');
   assert(JSON.stringify(value.selectionPolicy?.locatorPrecedence)===JSON.stringify(['repository_relative','content_hash','https_url']),'Locator precedence drifted');
   assert(value.selectionPolicy?.preferredAssetIdOptional===true,'preferredAssetId contract drifted');
   assert(value.selectionPolicy?.preferredAssetIdMustBeLinkedToContent===true,'preferred asset may escape content linkage');
