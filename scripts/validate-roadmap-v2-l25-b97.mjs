@@ -47,7 +47,9 @@ assert.deepEqual(priority.formula.weights,{
   prerequisiteUrgency:0.2,
   forgettingRisk:0.15
 });
-assert.equal(Object.values(priority.formula.weights).reduce((a,b)=>a+b,0),1);
+const weightBasisPoints=Object.values(priority.formula.weights).map(value=>Math.round(value*100));
+assert.deepEqual(weightBasisPoints,[35,30,20,15],'Priority weight basis-points drift');
+assert.equal(weightBasisPoints.reduce((a,b)=>a+b,0),100,'Priority weights must total 100 basis points');
 assert.deepEqual(priority.formula.inputRange,{minimum:0,maximum:1});
 assert.deepEqual(priority.formula.outputRange,{minimum:0,maximum:100});
 
