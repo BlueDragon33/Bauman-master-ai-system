@@ -13,11 +13,14 @@ on:
       - 'scripts/validate-content-asset-registry-runtime.mjs'
       - 'scripts/validate-asset-integrity.mjs'
       - 'scripts/validate-provenance-chain.mjs'
+      - 'foundation/content-registry/access-policy.js'
+      - 'scripts/validate-access-policy.mjs'
       - 'scripts/validate-foundation-domain-model.mjs'
       - 'tests/content-asset-provenance-contract.test.mjs'
       - 'tests/content-asset-registry-runtime.test.mjs'
       - 'tests/asset-integrity.test.mjs'
       - 'tests/provenance-chain.test.mjs'
+      - 'tests/access-policy.test.mjs'
       - '.github/workflows/content-asset-provenance-gate.yml'
 
 permissions:
@@ -39,14 +42,17 @@ jobs:
           node --check foundation/content-registry/content-asset-registry.js
           node --check foundation/content-registry/asset-integrity.js
           node --check foundation/content-registry/provenance-chain.js
+          node --check foundation/content-registry/access-policy.js
           node --check scripts/validate-content-asset-provenance-registry.mjs
           node --check scripts/validate-content-asset-registry-runtime.mjs
           node --check scripts/validate-asset-integrity.mjs
           node --check scripts/validate-provenance-chain.mjs
+          node --check scripts/validate-access-policy.mjs
           node --check tests/content-asset-provenance-contract.test.mjs
           node --check tests/content-asset-registry-runtime.test.mjs
           node --check tests/asset-integrity.test.mjs
           node --check tests/provenance-chain.test.mjs
+          node --check tests/access-policy.test.mjs
       - name: Validate promoted L9 domain foundation
         run: node scripts/validate-foundation-domain-model.mjs
       - name: Validate content asset provenance contract
@@ -65,6 +71,10 @@ jobs:
         run: node scripts/validate-provenance-chain.mjs
       - name: Run provenance lineage negative tests
         run: node tests/provenance-chain.test.mjs
+      - name: Validate access policy decisions
+        run: node scripts/validate-access-policy.mjs
+      - name: Run access policy negative tests
+        run: node tests/access-policy.test.mjs
       - name: Parse registry JSON
         run: |
           node -e "JSON.parse(require('fs').readFileSync('foundation/content-registry/registry-contract.v1.json','utf8')); console.log('CONTENT_REGISTRY_JSON_PARSE=PASS')"
