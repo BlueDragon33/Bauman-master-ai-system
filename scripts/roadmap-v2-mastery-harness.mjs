@@ -1,5 +1,6 @@
 import assert from 'node:assert/strict';
 import fs from 'node:fs';
+import {buildCurrentPrerequisitePolicy} from './roadmap-v2-prerequisite-policy.mjs';
 
 function deepFreeze(value,seen=new WeakSet()){
   if(!value||typeof value!=='object'||seen.has(value))return value;
@@ -60,6 +61,12 @@ export function loadCurrentMasteryHarness(options={}){
     for(const lesson of chapter.lessons)knownTargets.add(lesson.id);
   }
   const planTargets=new Set(catalog.plans.map(p=>p.targetId));
+  const prerequisitePolicy=buildCurrentPrerequisitePolicy({rootDir:root});
+  assert.equal(prerequisitePolicy.validation.result,'PASS','Current prerequisite policy projection is not PASS');
+  assert.equal(prerequisitePolicy.mode.productionIntegration,'disconnected','Prerequisite policy production boundary widened');
+  assert.equal(prerequisitePolicy.mode.persistenceEnabled,false,'Prerequisite policy persistence unexpectedly enabled');
+  assert.equal(prerequisitePolicy.mode.runtimeActivation,false,'Prerequisite policy runtime activation enabled');
+  const policyTargets=new Set(prerequisitePolicy.resolutions.map(x=>x.targetId));
   const phases=new Set(eventSchema.properties.phaseId.enum);
   const evidenceTypes=new Set(contract.evidenceTypes);
 
@@ -246,12 +253,127 @@ export function loadCurrentMasteryHarness(options={}){
     });
   };
 
+
+  const evaluatePrerequisiteGate=(targetId,snapshots=[],externalGateStates={})=>{
+    assert(policyTargets.has(targetId),`Unknown prerequisite target: ${targetId}`);
+    assert(Array.isArray(snapshots),'Mastery snapshots must be an array');
+    assert(externalGateStates&&typeof externalGateStates==='object'&&!Array.isArray(externalGateStates),'External gate states must be an object');
+
+    const snapshotByTargetId=new Map();
+    for(const snapshot of snapshots){
+      assert(snapshot&&typeof snapshot==='object'&&!Array.isArray(snapshot),'Invalid mastery snapshot');
+      assert.equal(snapshot.schema,snapshotSchema.$id,`Mastery snapshot schema mismatch: ${snapshot.targetId||'unknown'}`);
+      assert(knownTargets.has(snapshot.targetId),`Unknown mastery snapshot target: ${snapshot.targetId}`);
+      assert(contract.knowledgeStates.includes(snapshot.knowledgeState),`Unknown snapshot knowledge state: ${snapshot.knowledgeState}`);
+      assert.equal(snapshot.persisted,false,`Persisted snapshot admitted before store gate: ${snapshot.targetId}`);
+      assert(!snapshotByTargetId.has(snapshot.targetId),`Duplicate mastery snapshot target: ${snapshot.targetId}`);
+      snapshotByTargetId.set(snapshot.targetId,snapshot);
+    }
+
+    const satisfying=new Set(contract.prerequisiteGate.satisfyingStates);
+    const concurrentSatisfying=new Set(['dang_hoc',...contract.prerequisiteGate.satisfyingStates]);
+    const edges=prerequisitePolicy.edges.filter(e=>e.to===targetId);
+    const inspect=edge=>{
+      const external=edge.external===true;
+      const supplied=external?Object.hasOwn(externalGateStates,edge.from):snapshotByTargetId.has(edge.from);
+      const snapshot=external?null:(snapshotByTargetId.get(edge.from)||null);
+      let sourceSatisfied=false;
+      if(external){
+        sourceSatisfied=externalGateStates[edge.from]===true;
+      }else if(edge.type==='concurrent'){
+        sourceSatisfied=concurrentSatisfying.has(snapshot?.knowledgeState);
+      }else{
+        sourceSatisfied=satisfying.has(snapshot?.knowledgeState);
+      }
+      return {
+        edge,
+        external,
+        supplied,
+        snapshot,
+        sourceSatisfied
+      };
+    };
+
+    const inspected=edges.map(inspect);
+    const blockers=[];
+    const satisfied=[];
+    const advisory=[];
+    const external=[];
+    const grouped=new Map();
+    const individual=[];
+
+    for(const item of inspected){
+      if(item.edge.groupId){
+        if(!grouped.has(item.edge.groupId))grouped.set(item.edge.groupId,[]);
+        grouped.get(item.edge.groupId).push(item);
+      }else{
+        individual.push(item);
+      }
+    }
+
+    const summarize=item=>({
+      from:item.edge.from,
+      to:item.edge.to,
+      type:item.edge.type,
+      logic:item.edge.logic,
+      groupId:item.edge.groupId||null,
+      sourceRaw:item.edge.sourceRaw,
+      external:item.external,
+      supplied:item.supplied,
+      sourceSatisfied:item.sourceSatisfied,
+      knowledgeState:item.snapshot?.knowledgeState||null,
+      externalState:item.external&&item.supplied?externalGateStates[item.edge.from]:null
+    });
+
+    for(const item of individual){
+      const summary=summarize(item);
+      if(item.external)external.push(summary);
+      if(['recommended','contextual'].includes(item.edge.type)){
+        advisory.push(summary);
+      }else if(item.sourceSatisfied){
+        satisfied.push(summary);
+      }else{
+        blockers.push(summary);
+      }
+    }
+
+    for(const [groupId,items] of grouped){
+      const alternatives=items.map(summarize);
+      for(let i=0;i<items.length;i++)if(items[i].external)external.push(alternatives[i]);
+      const groupSatisfied=items.some(item=>item.sourceSatisfied);
+      const summary={groupId,logic:'any_of',satisfied:groupSatisfied,alternatives};
+      if(groupSatisfied)satisfied.push(summary);
+      else blockers.push(summary);
+    }
+
+    const unresolvedExternalGateIds=[...new Set(
+      external.filter(item=>!item.supplied||item.externalState!==true).map(item=>item.from)
+    )].sort();
+
+    return deepFreeze({
+      targetId,
+      ready:blockers.length===0,
+      edgeCount:edges.length,
+      blockers,
+      satisfied,
+      advisory,
+      external,
+      unresolvedExternalGateIds,
+      recommendedEdgesBlock:false,
+      contextualEdgesBlock:false,
+      persisted:false,
+      policySchema:prerequisitePolicy.schema
+    });
+  };
+
   return Object.freeze({
     contract:cloneFrozen(contract),
     blueprint:cloneFrozen(blueprint),
     diagnostic:cloneFrozen(diagnostic),
     catalog:cloneFrozen(catalog),
+    prerequisitePolicy:cloneFrozen(prerequisitePolicy),
     validateEvent,
-    reduceEvidenceStream
+    reduceEvidenceStream,
+    evaluatePrerequisiteGate
   });
 }
