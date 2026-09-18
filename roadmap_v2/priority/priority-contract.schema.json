@@ -1,6 +1,6 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "$id": "BAUMAN_ROADMAP_V2_PRIORITY_CONTRACT_V1",
+  "$id": "BAUMAN_ROADMAP_V2_PRIORITY_CONTRACT_V2",
   "type": "object",
   "additionalProperties": false,
   "required": [
@@ -8,7 +8,7 @@
     "version",
     "scope",
     "mode",
-    "upstreamSchemas",
+    "upstream",
     "formula",
     "normalization",
     "criticalOverride",
@@ -16,69 +16,392 @@
     "weightedBands",
     "ranking",
     "capabilities",
+    "reasonCodes",
     "abortConditions",
     "acceptance"
   ],
   "properties": {
     "schema": {
-      "const": "BAUMAN_ROADMAP_V2_PRIORITY_CONTRACT_V1"
+      "const": "BAUMAN_ROADMAP_V2_PRIORITY_CONTRACT_V2"
     },
     "version": {
-      "const": 1
+      "const": 2
     },
     "scope": {
-      "type": "string"
+      "type": "string",
+      "minLength": 1
     },
     "mode": {
-      "type": "object"
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "access",
+        "productionIntegration",
+        "failClosed",
+        "persistentStoreEnabled",
+        "schedulerWriteAllowed",
+        "runtimeWriteAllowed"
+      ],
+      "properties": {
+        "access": {
+          "const": "read_only_harness"
+        },
+        "productionIntegration": {
+          "const": "disconnected"
+        },
+        "failClosed": {
+          "const": true
+        },
+        "persistentStoreEnabled": {
+          "const": false
+        },
+        "schedulerWriteAllowed": {
+          "const": false
+        },
+        "runtimeWriteAllowed": {
+          "const": false
+        }
+      }
     },
-    "upstreamSchemas": {
-      "type": "object"
+    "upstream": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "consumerBlueprintPath",
+        "consumerBlueprintSchema",
+        "consumerBlueprintValidationRequired",
+        "masteryContractPath",
+        "masteryContractSchema",
+        "masterySnapshotSchema",
+        "prerequisitePolicySchema",
+        "manifestDependencyRequired",
+        "staleHistoricalManifestAccepted"
+      ],
+      "properties": {
+        "consumerBlueprintPath": {
+          "const": "roadmap_v2/consumer/blueprint.json"
+        },
+        "consumerBlueprintSchema": {
+          "const": "BAUMAN_ROADMAP_V2_CONSUMER_BLUEPRINT_V1"
+        },
+        "consumerBlueprintValidationRequired": {
+          "const": "PASS"
+        },
+        "masteryContractPath": {
+          "const": "roadmap_v2/mastery/mastery-contract.json"
+        },
+        "masteryContractSchema": {
+          "const": "BAUMAN_ROADMAP_V2_MASTERY_CONTRACT_V2"
+        },
+        "masterySnapshotSchema": {
+          "const": "BAUMAN_ROADMAP_V2_MASTERY_SNAPSHOT_V1"
+        },
+        "prerequisitePolicySchema": {
+          "const": "BAUMAN_ROADMAP_V2_CURRENT_PREREQUISITE_POLICY_V1"
+        },
+        "manifestDependencyRequired": {
+          "const": false
+        },
+        "staleHistoricalManifestAccepted": {
+          "const": false
+        }
+      }
     },
     "formula": {
       "type": "object",
+      "additionalProperties": false,
       "required": [
         "expression",
         "weights",
         "inputRange",
         "outputRange"
-      ]
+      ],
+      "properties": {
+        "expression": {
+          "const": "0.35*masterRelevance + 0.30*knowledgeGap + 0.20*prerequisiteUrgency + 0.15*forgettingRisk"
+        },
+        "weights": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "masterRelevance",
+            "knowledgeGap",
+            "prerequisiteUrgency",
+            "forgettingRisk"
+          ],
+          "properties": {
+            "masterRelevance": {
+              "const": 0.35
+            },
+            "knowledgeGap": {
+              "const": 0.3
+            },
+            "prerequisiteUrgency": {
+              "const": 0.2
+            },
+            "forgettingRisk": {
+              "const": 0.15
+            }
+          }
+        },
+        "inputRange": {
+          "const": {
+            "minimum": 0,
+            "maximum": 1
+          }
+        },
+        "outputRange": {
+          "const": {
+            "minimum": 0,
+            "maximum": 100
+          }
+        }
+      }
     },
     "normalization": {
       "type": "object",
+      "additionalProperties": false,
       "required": [
         "knowledgeGapByState",
         "prerequisiteUrgencyByWeeks",
         "missingNeededDateUrgency",
         "forgettingRiskRules"
-      ]
+      ],
+      "properties": {
+        "knowledgeGapByState": {
+          "const": {
+            "gap": 1,
+            "chua_hoc": 0.85,
+            "dang_hoc": 0.6,
+            "can_on": 0.45,
+            "dat_prerequisite": 0.2,
+            "master_ready": 0
+          }
+        },
+        "prerequisiteUrgencyByWeeks": {
+          "const": [
+            {
+              "maximumWeeks": 4,
+              "value": 1
+            },
+            {
+              "maximumWeeks": 8,
+              "value": 0.75
+            },
+            {
+              "maximumWeeks": 12,
+              "value": 0.5
+            },
+            {
+              "maximumWeeks": 24,
+              "value": 0.25
+            },
+            {
+              "maximumWeeks": null,
+              "value": 0.1
+            }
+          ]
+        },
+        "missingNeededDateUrgency": {
+          "const": 0
+        },
+        "forgettingRiskRules": {
+          "const": {
+            "can_on": 1,
+            "retentionBelowThreshold": 1,
+            "retentionOutsideWindow": 1,
+            "retentionPassed": 0.15,
+            "datPrerequisiteWithoutRetention": 0.6,
+            "dangHocWithoutRetention": 0.45,
+            "gapWithoutRetention": 0.25,
+            "chuaHocWithoutRetention": 0
+          }
+        }
+      }
     },
     "criticalOverride": {
-      "type": "object"
+      "const": {
+        "requiredKnowledgeState": "gap",
+        "maximumWeeksUntilNeeded": 4,
+        "disposition": "critical",
+        "bypassesWeightedBand": true
+      }
     },
     "existingCompetencyRule": {
-      "type": "object"
+      "const": {
+        "requiresExistingCompetencyVerified": true,
+        "diagnosticPercentMinimum": 80,
+        "diagnosticCriticalPercentMinimum": 70,
+        "retentionPercentMinimum": 75,
+        "retentionWindowDays": {
+          "minimum": 14,
+          "maximum": 21
+        },
+        "disposition": "review_on_demand",
+        "grantsMasterReady": false
+      }
     },
     "weightedBands": {
-      "type": "array",
-      "minItems": 3
+      "const": [
+        {
+          "minimumScore": 70,
+          "disposition": "high"
+        },
+        {
+          "minimumScore": 40,
+          "disposition": "medium"
+        },
+        {
+          "minimumScore": 0,
+          "disposition": "low"
+        }
+      ]
     },
     "ranking": {
-      "type": "object"
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "order",
+        "stable",
+        "duplicateTargetPolicy"
+      ],
+      "properties": {
+        "order": {
+          "const": [
+            "critical first",
+            "weighted score descending",
+            "weeks until needed ascending with null last",
+            "target ID ascending"
+          ]
+        },
+        "stable": {
+          "const": true
+        },
+        "duplicateTargetPolicy": {
+          "const": "reject"
+        }
+      }
     },
     "capabilities": {
       "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "candidateValidate",
+        "featureExtract",
+        "score",
+        "explain",
+        "rank",
+        "inMemoryHarnessOnly",
+        "persistentStoreWrite",
+        "schedulerWrite",
+        "runtimeActivation"
+      ],
+      "properties": {
+        "candidateValidate": {
+          "const": true
+        },
+        "featureExtract": {
+          "const": true
+        },
+        "score": {
+          "const": true
+        },
+        "explain": {
+          "const": true
+        },
+        "rank": {
+          "const": true
+        },
+        "inMemoryHarnessOnly": {
+          "const": true
+        },
+        "persistentStoreWrite": {
+          "const": false
+        },
+        "schedulerWrite": {
+          "const": false
+        },
+        "runtimeActivation": {
+          "const": false
+        }
+      }
+    },
+    "reasonCodes": {
+      "type": "object",
+      "minProperties": 9,
       "additionalProperties": {
-        "type": "boolean"
+        "type": "string",
+        "minLength": 1
       }
     },
     "abortConditions": {
       "type": "array",
-      "minItems": 10,
-      "uniqueItems": true
+      "minItems": 11,
+      "uniqueItems": true,
+      "items": {
+        "type": "string",
+        "minLength": 1
+      }
     },
     "acceptance": {
-      "type": "object"
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "step",
+        "currentTrack",
+        "consumerBlueprintBoundaryRevalidated",
+        "masteryV2BoundaryRevalidated",
+        "staleManifestDependencyRemoved",
+        "registryFormulaExact",
+        "criticalOverrideExact",
+        "existingCompetencyReviewOnDemand",
+        "existingCompetencyGrantsMasterReady",
+        "schedulerEnabled",
+        "persistenceEnabled",
+        "runtimeActivationAllowed",
+        "result"
+      ],
+      "properties": {
+        "step": {
+          "const": 97
+        },
+        "currentTrack": {
+          "const": "L25"
+        },
+        "consumerBlueprintBoundaryRevalidated": {
+          "const": true
+        },
+        "masteryV2BoundaryRevalidated": {
+          "const": true
+        },
+        "staleManifestDependencyRemoved": {
+          "const": true
+        },
+        "registryFormulaExact": {
+          "const": true
+        },
+        "criticalOverrideExact": {
+          "const": true
+        },
+        "existingCompetencyReviewOnDemand": {
+          "const": true
+        },
+        "existingCompetencyGrantsMasterReady": {
+          "const": false
+        },
+        "schedulerEnabled": {
+          "const": false
+        },
+        "persistenceEnabled": {
+          "const": false
+        },
+        "runtimeActivationAllowed": {
+          "const": false
+        },
+        "result": {
+          "const": "PASS_CONTRACT_ONLY_PENDING_B97_GATE"
+        }
+      }
     }
   }
 }
