@@ -74,7 +74,8 @@
       antiCramming:true,
       mainRole:'schedule_orchestrator_only',
       subjectRole:'build_route_cards_and_decide_weekly_test',
-      source:'bauman-main-planning-v3'
+      source:base.source==='capability-gap'?'capability-gap':'bauman-main-planning-v3',
+      originSource:base.source||'bauman-main'
     };
     window.state.planningMissions[mission.missionId]=mission; safeSave();
     return mission;
