@@ -279,7 +279,7 @@ Avoid:
 
 The current historical branch `work/foundation-v2-l10-content-asset-provenance` predates this rule. Do not copy that naming pattern for future branches.
 
-## 8. Legacy names still present in the repository
+## 7. Legacy names still present in the repository
 
 Some historical files still contain version-style names. They are not the primary architecture vocabulary.
 
@@ -307,7 +307,7 @@ The rule is:
 - **architecture responsibility:** descriptive name, no generation number;
 - **data/API/schema compatibility:** explicit technical version is allowed and often required.
 
-## 7. Current frozen foundation checkpoints
+## 8. Current frozen foundation checkpoints
 
 ### Foundation — Identity & Domain Model
 
