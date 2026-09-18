@@ -10,6 +10,9 @@
     user_flagged:'Đã đánh dấu để ôn',
     user_marked:'Đã đánh dấu để ôn',
     speaking_retry:'Phát âm / phản xạ cần luyện lại',
+    pronunciation_error:'Phát âm cần luyện lại',
+    stress_error:'Trọng âm cần luyện lại',
+    abandoned:'Lượt luyện nói bỏ dở',
     legacy_review:'Mục ôn từ dữ liệu cũ'
   };
   const now=()=>new Date().toISOString();
@@ -201,9 +204,11 @@
       id:key,reason:evidence.reason||'wrong_answer',label:evidence.label||'Câu trả lời sai cần sửa',
       route:{...(evidence.route||{view:'learning',learnTab:'review'})},dueAt:at,addedAt:at,scheduledAt:at,attempts:0
     };
+    Object.assign(review,evidence);
     review.reason=evidence.reason||review.reason||'wrong_answer';
     review.label=evidence.label||review.label||'Câu trả lời sai cần sửa';
     review.route={...(evidence.route||review.route||{view:'learning',learnTab:'review'})};
+    if(evidence.lessonId&&!review.route.lessonId)review.route.lessonId=evidence.lessonId;
     review.attempts=Number(review.attempts||0)+1;
     review.lastResult='wrong';review.lastAttemptAt=at;review.dueAt=at;review.scheduledAt=at;
     state.reviewQueue[key]=review;
