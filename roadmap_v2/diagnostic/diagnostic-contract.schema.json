@@ -1,0 +1,134 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "BAUMAN_ROADMAP_V2_DIAGNOSTIC_CONTRACT_V1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema",
+    "version",
+    "scope",
+    "mode",
+    "upstream",
+    "assessmentPolicy",
+    "statusSemantics",
+    "itemBankGate",
+    "attemptGate",
+    "capabilities",
+    "reasonCodes",
+    "abortConditions",
+    "acceptance"
+  ],
+  "properties": {
+    "schema": {
+      "const": "BAUMAN_ROADMAP_V2_DIAGNOSTIC_CONTRACT_V1"
+    },
+    "version": {
+      "const": 1
+    },
+    "scope": {
+      "type": "string",
+      "minLength": 1
+    },
+    "mode": {
+      "type": "object",
+      "required": [
+        "access",
+        "productionIntegration",
+        "failClosed",
+        "writesMasteryEvidence",
+        "writesLegacyRuntime"
+      ]
+    },
+    "upstream": {
+      "type": "object",
+      "required": [
+        "consumerManifestSchema",
+        "consumerContractSchema",
+        "requiredConsumerCapabilities",
+        "forbiddenConsumerCapabilities"
+      ]
+    },
+    "assessmentPolicy": {
+      "type": "object",
+      "required": [
+        "id",
+        "requiredItemCount",
+        "difficultyDistribution",
+        "passPercent",
+        "criticalItemFloorPercent",
+        "requiresUniqueItemIds",
+        "requiresReviewedItems",
+        "requiresCriticalItems",
+        "requiresExactTargetMatch",
+        "requiresPrerequisiteRefsToExist"
+      ]
+    },
+    "statusSemantics": {
+      "type": "object",
+      "required": [
+        "pass",
+        "fail",
+        "criticalFloorFail",
+        "blocked",
+        "forbiddenOutcome",
+        "rules"
+      ]
+    },
+    "itemBankGate": {
+      "type": "object",
+      "required": [
+        "schema",
+        "reviewStatusRequired",
+        "catalogExecutionStatusRequired",
+        "missingBankStatus",
+        "invalidBankStatus",
+        "allowGeneratedUnreviewedItems"
+      ]
+    },
+    "attemptGate": {
+      "type": "object",
+      "required": [
+        "schema",
+        "requiresAllItemsAnswered",
+        "unknownResponseItemPolicy",
+        "duplicateResponsePolicy",
+        "unknownOptionPolicy"
+      ]
+    },
+    "capabilities": {
+      "type": "object",
+      "minProperties": 10,
+      "additionalProperties": {
+        "type": "boolean"
+      }
+    },
+    "reasonCodes": {
+      "type": "object",
+      "minProperties": 8,
+      "additionalProperties": {
+        "type": "string",
+        "minLength": 1
+      }
+    },
+    "abortConditions": {
+      "type": "array",
+      "minItems": 9,
+      "uniqueItems": true,
+      "items": {
+        "type": "string",
+        "minLength": 1
+      }
+    },
+    "acceptance": {
+      "type": "object",
+      "required": [
+        "step",
+        "existingCompetencyDistinctFromMasterReady",
+        "unreviewedGenerationForbidden",
+        "masteryPersistenceEnabled",
+        "runtimeActivationAllowed",
+        "result"
+      ]
+    }
+  }
+}
