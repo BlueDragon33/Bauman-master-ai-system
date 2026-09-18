@@ -1,7 +1,7 @@
 {
-  "schema": "BAUMAN_ROADMAP_V2_PRIORITY_CONTRACT_V1",
-  "version": 1,
-  "scope": "Lượt 25 / Bước 97–100 — explainable in-memory Priority Engine scoring/ranking; no scheduler, persistence or runtime activation",
+  "schema": "BAUMAN_ROADMAP_V2_PRIORITY_CONTRACT_V2",
+  "version": 2,
+  "scope": "Lượt 25 / Bước 97–100 — current explainable in-memory Priority Engine on Consumer Blueprint + Mastery V2; no persistence, scheduler write or runtime activation",
   "mode": {
     "access": "read_only_harness",
     "productionIntegration": "disconnected",
@@ -10,10 +10,16 @@
     "schedulerWriteAllowed": false,
     "runtimeWriteAllowed": false
   },
-  "upstreamSchemas": {
-    "consumerManifest": "BAUMAN_ROADMAP_V2_CONSUMER_MANIFEST_V1",
-    "masteryManifest": "BAUMAN_ROADMAP_V2_MASTERY_MANIFEST_V1",
-    "masterySnapshot": "BAUMAN_ROADMAP_V2_MASTERY_SNAPSHOT_V1"
+  "upstream": {
+    "consumerBlueprintPath": "roadmap_v2/consumer/blueprint.json",
+    "consumerBlueprintSchema": "BAUMAN_ROADMAP_V2_CONSUMER_BLUEPRINT_V1",
+    "consumerBlueprintValidationRequired": "PASS",
+    "masteryContractPath": "roadmap_v2/mastery/mastery-contract.json",
+    "masteryContractSchema": "BAUMAN_ROADMAP_V2_MASTERY_CONTRACT_V2",
+    "masterySnapshotSchema": "BAUMAN_ROADMAP_V2_MASTERY_SNAPSHOT_V1",
+    "prerequisitePolicySchema": "BAUMAN_ROADMAP_V2_CURRENT_PREREQUISITE_POLICY_V1",
+    "manifestDependencyRequired": false,
+    "staleHistoricalManifestAccepted": false
   },
   "formula": {
     "expression": "0.35*masterRelevance + 0.30*knowledgeGap + 0.20*prerequisiteUrgency + 0.15*forgettingRisk",
@@ -123,30 +129,48 @@
     "score": true,
     "explain": true,
     "rank": true,
+    "inMemoryHarnessOnly": true,
     "persistentStoreWrite": false,
     "schedulerWrite": false,
     "runtimeActivation": false
   },
+  "reasonCodes": {
+    "CRITICAL_GAP_OVERRIDE": "A gap needed within four weeks is always critical regardless of weighted band.",
+    "REVIEW_ON_DEMAND_NOT_MASTER_READY": "Existing Competency with valid retention may reduce review priority but never grants Master-ready.",
+    "MASTERY_SNAPSHOT_REQUIRED": "Priority candidates require an explicit current non-persisted Mastery snapshot.",
+    "MANUAL_DERIVED_FEATURE_OVERRIDE_FORBIDDEN": "Knowledge gap and forgetting-risk features must be derived from current Mastery state/evidence.",
+    "DUPLICATE_TARGET_FORBIDDEN": "Priority ranking rejects duplicate candidate or target IDs.",
+    "STALE_MANIFEST_DEPENDENCY_FORBIDDEN": "Historical Consumer/Mastery manifests and pinned hashes are quarantined.",
+    "PERSISTENCE_DISABLED": "Priority results remain in memory only.",
+    "SCHEDULER_DISCONNECTED": "Priority ranking does not write or activate the scheduler.",
+    "PRODUCTION_DISCONNECTED": "Priority remains disconnected from production entrypoints."
+  },
   "abortConditions": [
-    "upstream manifest hash drift",
+    "current Consumer Blueprint, Mastery contract or prerequisite policy schema mismatch",
+    "dependency on quarantined historical Consumer/Mastery manifest or baseline hash",
     "unknown target, phase or knowledge state",
-    "mastery snapshot target mismatch or persisted snapshot",
-    "manual override of derived gap, urgency or forgetting features",
-    "feature or score outside normalized range",
-    "duplicate candidate or target ID",
-    "Critical override not applied to a <=4-week gap",
-    "Existing Competency converted to Master-ready",
+    "missing, target-mismatched or persisted Mastery snapshot",
+    "manual override of derived knowledge-gap or forgetting-risk feature",
+    "Master relevance, derived feature or final score outside normalized range",
+    "duplicate candidate ID or target ID",
+    "Critical override not applied to a gap needed within four weeks",
+    "Existing Competency review-on-demand converted to Master-ready",
     "non-deterministic ranking",
     "scheduler, persistence or runtime write attempted"
   ],
   "acceptance": {
     "step": 97,
+    "currentTrack": "L25",
+    "consumerBlueprintBoundaryRevalidated": true,
+    "masteryV2BoundaryRevalidated": true,
+    "staleManifestDependencyRemoved": true,
     "registryFormulaExact": true,
     "criticalOverrideExact": true,
     "existingCompetencyReviewOnDemand": true,
     "existingCompetencyGrantsMasterReady": false,
     "schedulerEnabled": false,
+    "persistenceEnabled": false,
     "runtimeActivationAllowed": false,
-    "result": "PASS_CONTRACT_ONLY"
+    "result": "PASS_CONTRACT_ONLY_PENDING_B97_GATE"
   }
 }
