@@ -101,6 +101,9 @@ try{
   assert.equal(enabled.status.ready,true);
   assert.equal(enabled.status.passed,true,`Runtime shadow failed: ${JSON.stringify(enabled.status)}`);
   assert.equal(enabled.status.resources.length,3);
+  assert.equal(enabled.status.registryMode,'pinned_candidate');
+  assert.equal(enabled.status.candidateStatus,'promotion_candidate');
+  assert.equal(enabled.status.candidateAuthority,'candidate_only');
   assert.equal(enabled.status.packParity,true);
   assert.equal(enabled.status.globalsUnchanged,true);
   assert.equal(enabled.status.registryUnchanged,true);
@@ -108,7 +111,7 @@ try{
     assert.equal(row.descriptorStatus,'resolved',`${row.id}: descriptor not resolved`);
     assert.equal(row.planStatus,'ready',`${row.id}: plan not ready`);
     assert.equal(row.executionStatus,'verified',`${row.id}: execution not verified`);
-    assert.equal(row.directParity,true,`${row.id}: direct parity failed`);
+    assert.equal(row.pinnedVerification,true,`${row.id}: pinned verification failed`);
     assert.equal(row.authoritativeParity,true,`${row.id}: authoritative parity failed`);
     assert.match(row.digest,/^[0-9a-f]{64}$/);
     assert.ok(row.byteLength>0);
@@ -128,7 +131,7 @@ try{
   const evidence={status:'PASS',base:BASE,disabled:disabledSummary,enabled:enabledSummary};
   fs.writeFileSync(path.join(OUT,'summary.json'),JSON.stringify(evidence,null,2));
   console.log('ACADEMIC_RUNTIME_SHADOW_BROWSER_GATE=PASS');
-  console.log(JSON.stringify({defaultDisabled:true,optInVerified:true,resources:3,dependencyScripts:8,authorityUnchanged:true},null,2));
+  console.log(JSON.stringify({defaultDisabled:true,optInPinnedVerified:true,registryMode:'pinned_candidate',resources:3,dependencyScripts:8,authorityUnchanged:true},null,2));
 }catch(error){
   const evidence={status:'FAIL',base:BASE,error:String(error?.stack||error)};
   fs.writeFileSync(path.join(OUT,'summary.json'),JSON.stringify(evidence,null,2));
