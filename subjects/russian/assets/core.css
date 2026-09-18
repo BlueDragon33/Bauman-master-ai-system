@@ -9573,3 +9573,11 @@ body.presentation-active .toast{z-index:2147483003!important;}
 .route-evidence-note{display:block;margin-top:8px;font-size:.78rem;line-height:1.45;opacity:.82}
 .route-unified-card .btn[disabled][data-act="complete-schedule-step"]{cursor:not-allowed;opacity:.5}
 @media(max-width:760px){.route-evidence-note{font-size:.76rem}}
+
+
+/* L15 stage readiness */
+.gate-readiness-summary{display:flex;align-items:baseline;gap:8px;margin:10px 0 6px}
+.gate-readiness-summary b{font-size:1.1rem}
+.gate-readiness-summary span{font-size:.8rem;opacity:.78}
+.gate-req small{display:block;margin-top:3px;font-size:.72rem;line-height:1.35;opacity:.72}
+@media(max-width:760px){.gate-readiness-summary{align-items:flex-start;flex-direction:column;gap:2px}}
