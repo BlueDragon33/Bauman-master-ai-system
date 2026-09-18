@@ -57,3 +57,16 @@ Step 5 requires:
 - invalid base protocol/credentials/path/query/fragment/HTTP/body failures PASS.
 
 A later step may integrate this adapter in shadow mode with one existing loader before any authority switch.
+
+
+## Repair 5.1 — Explicit fetch injection semantics
+
+The first Step 5 CI run exposed an ambiguity under Node 22, where a caller that explicitly passed `fetchFn: null` silently fell back to the environment's global `fetch`.
+
+The adapter now distinguishes:
+
+- `fetchFn` omitted → environment fetch may be used;
+- `fetchFn` explicitly supplied → it must be a function;
+- `fetchFn: null` or another invalid explicit value → fail closed with `FETCH_UNAVAILABLE`.
+
+This prevents caller configuration errors from silently changing transport authority.
