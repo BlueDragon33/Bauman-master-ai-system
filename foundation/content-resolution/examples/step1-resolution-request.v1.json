@@ -2,11 +2,6 @@
   "schema": "BAUMAN_CONTENT_RESOLUTION_REQUEST_V1",
   "targetRegistryId": "bdr:asset:russian:lesson-01-dialogue-audio",
   "mode": "learner_runtime",
-  "accessDecision": {
-    "schema": "BAUMAN_ACCESS_POLICY_DECISION_V1",
-    "allowed": true,
-    "visibility": "private"
-  },
   "runtimePolicy": {
     "allowRepositoryRelative": true,
     "allowHttps": false,
@@ -15,5 +10,10 @@
   "expected": {
     "outcome": "resolved_or_not_found_without_side_effects",
     "mutationAllowed": false
+  },
+  "accessContext": {
+    "private": true,
+    "course": false,
+    "organization": false
   }
 }
