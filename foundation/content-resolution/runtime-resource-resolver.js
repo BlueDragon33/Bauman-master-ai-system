@@ -49,9 +49,13 @@
     const context=request.accessContext&&typeof request.accessContext==='object'&&!Array.isArray(request.accessContext)?request.accessContext:{};
     const rawPolicy=request.runtimePolicy&&typeof request.runtimePolicy==='object'&&!Array.isArray(request.runtimePolicy)?request.runtimePolicy:{};
     const availableProviders=[...new Set((Array.isArray(rawPolicy.availableProviders)?rawPolicy.availableProviders:[]).map(clean).filter(Boolean))].sort();
+    const allowedHttpsOrigins=[...new Set((Array.isArray(rawPolicy.allowedHttpsOrigins)?rawPolicy.allowedHttpsOrigins:[]).map(clean).filter(Boolean).map(value=>{
+      try{const url=new URL(value);return url.protocol==='https:'&&url.origin===value?url.origin:''}catch{return ''}
+    }).filter(Boolean))].sort();
     const runtimePolicy=Object.freeze({
       allowRepositoryRelative:rawPolicy.allowRepositoryRelative===true,
       allowHttps:rawPolicy.allowHttps===true,
+      allowedHttpsOrigins:Object.freeze(allowedHttpsOrigins),
       availableProviders:Object.freeze(availableProviders)
     });
     return Object.freeze({
@@ -109,7 +113,9 @@
       }
       if(kind==='https_url'){
         if(!request.runtimePolicy.allowHttps)continue;
-        const items=byKind(kind);
+        const items=byKind(kind).filter(item=>{
+          try{return request.runtimePolicy.allowedHttpsOrigins.includes(new URL(item.value).origin)}catch{return false}
+        });
         if(items.length)return Object.freeze({status:'resolved',locator:items[0],transport:'https'});
       }
     }
