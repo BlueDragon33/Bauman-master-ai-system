@@ -22,7 +22,8 @@ assert.ok(hub.includes('function capabilityHTML'),'Hub capability surface missin
 assert.ok(hub.includes('S().subjectCapabilities?.[id]'),'Hub must read Main summary state');
 assert.ok(hub.includes("sub?.id!=='russian'"),'Russian capability card must stay subject-scoped');
 assert.ok(hub.includes('data-safe-capability="russian"'),'Hub Russian capability marker missing');
-assert.ok(hub.includes('Snapshot từ Russian Sub Web App'),'Hub provenance disclosure missing');
+assert.ok(hub.includes('Snapshot đã đồng bộ trong phiên hiện tại'),'Hub live provenance disclosure missing');
+assert.ok(hub.includes('Snapshot lưu từ phiên trước'),'Hub stale-snapshot disclosure missing');
 assert.ok(hub.includes("if(id==='capability')return a.openSubjectCapabilityGap?.('russian')"),'Capability CTA must open the exact Russian capability gap');
 assert.ok(css.includes('.hub-safe-capability'),'Capability Hub styling missing');
 
