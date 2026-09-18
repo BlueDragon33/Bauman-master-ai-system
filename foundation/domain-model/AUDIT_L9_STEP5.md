@@ -1,4 +1,4 @@
-# L9 Step 5 — Browser Bootstrap Integration
+# Bauman Foundation — Identity & Domain Model — Step 5 — Browser Bootstrap Integration
 
 ## Goal
 
