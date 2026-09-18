@@ -30,18 +30,18 @@ English is not the default translation bridge either.
 
 ## Current work
 
-Turns 1–13 are accepted.
+Turns 1–14 are accepted.
 
-Next: **Turn 14 — Reading bridge**.
+Next: **Turn 15 — Dictation & listen-to-write**.
 
-Turn 14 must:
+Turn 15 must:
 
-- bridge recognized Cyrillic letters into pronounceable chunks, real words, and short Russian text;
-- use Russian-only reading material without Vietnamese/English semantic answers;
-- retain ru-RU audio as pronunciation checking rather than translation;
-- record reading attempts separately from mastery authority;
-- reuse the existing Cyrillic/writing learning surface instead of creating a competing subject route;
-- keep progression deterministic: chunk → word → short text.
+- reuse the 33-letter sound map and curated Reading Bridge words/texts as source material;
+- progress sound→letter → sound→word → short dictation;
+- hide the Russian answer until the learner submits attempts;
+- use ru-RU audio only;
+- allow correction/reveal only after real attempts;
+- record dictation evidence separately from mastery authority.
 
 ## Gate rule
 
