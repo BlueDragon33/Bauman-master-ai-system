@@ -1,0 +1,53 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "BAUMAN_ROADMAP_V2_DIAGNOSTIC_ATTEMPT_V1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema",
+    "attemptId",
+    "planId",
+    "bankId",
+    "responses"
+  ],
+  "properties": {
+    "schema": {
+      "const": "BAUMAN_ROADMAP_V2_DIAGNOSTIC_ATTEMPT_V1"
+    },
+    "attemptId": {
+      "type": "string",
+      "minLength": 1
+    },
+    "planId": {
+      "type": "string",
+      "minLength": 1
+    },
+    "bankId": {
+      "type": "string",
+      "minLength": 1
+    },
+    "responses": {
+      "type": "array",
+      "minItems": 20,
+      "maxItems": 20,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "itemId",
+          "selectedOptionId"
+        ],
+        "properties": {
+          "itemId": {
+            "type": "string",
+            "minLength": 1
+          },
+          "selectedOptionId": {
+            "type": "string",
+            "minLength": 1
+          }
+        }
+      }
+    }
+  }
+}
