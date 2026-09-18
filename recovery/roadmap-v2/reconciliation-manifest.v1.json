@@ -239,6 +239,15 @@
       "cause": "Math Reader marker became observable before packaged rerender stabilized its 22-slide DOM.",
       "correction": "Wait for matching lesson identity and exact 22-slide Reader DOM, then recheck after a short stability interval.",
       "status": "pass"
+    },
+    {
+      "id": "L27R2C1-F1",
+      "triggerRunId": 35327548390,
+      "failedStep": "Validate R2C1 toolchain compatibility review",
+      "classification": "validator_evidence_shape",
+      "cause": "Validator expected full historical baseline SHA inside descriptive finding text that intentionally used abbreviated e383912...",
+      "correction": "Store full baseline SHA in a structured historicalBaseline field and validate it directly.",
+      "status": "applied_pending_gate"
     }
   ],
   "r2b": {
