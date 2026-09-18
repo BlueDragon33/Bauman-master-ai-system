@@ -275,6 +275,33 @@ function gateUnlockStatus(part=gatePart()){
  if(due.length)blockers.push(`Còn ${due.length} mục Review Queue đến hạn trong phần này.`);
  return {allowed:examComplete&&readiness.ok&&due.length===0,examComplete,readiness,dueReviews:due,blockers};
 }
+function readinessStepRoute(lessonId,step){
+ const id=str(lessonId||'');
+ const map={
+  theory:{view:'learning',learnTab:'theory',lessonId:id},
+  speaking:{view:'learning',learnTab:'practice',lessonId:id},
+  exercises:{view:'learning',learnTab:'exercises',lessonId:id},
+  check:{view:'learning',learnTab:'review',lessonId:id,reviewLesson:id,reviewFilter:'all'}
+ };
+ return map[step]||map.theory;
+}
+function readinessStepLabel(step){
+ return ({theory:'Bài học',speaking:'Nghe & nói',exercises:'Bài tập',check:'Kiểm tra theo bài'})[step]||step;
+}
+function stageReadinessNextTarget(part=gatePart()){
+ const unlock=gateUnlockStatus(part);
+ const row=arr(unlock.readiness?.rows).find(x=>!x.ready&&arr(x.missing).length);
+ if(row){
+  const step=row.missing[0];
+  return {kind:'evidence',lessonId:row.id,step,label:`${row.id} · ${readinessStepLabel(step)}`,route:readinessStepRoute(row.id,step),unlock};
+ }
+ const due=arr(unlock.dueReviews)[0];
+ if(due)return {kind:'review',label:due.label||'Mục ôn đến hạn',route:{...(due.route||{view:'learning',learnTab:'review'})},reviewId:due.id,unlock};
+ const next=gateNextNeededType(part);
+ if(next)return {kind:'exam',paperType:next,label:examPaperLabel(next),unlock};
+ if(unlock.allowed)return {kind:'unlock',label:'Đủ điều kiện mở khóa',unlock};
+ return {kind:'blocked',label:unlock.blockers?.[0]||'Cần bổ sung bằng chứng',unlock};
+}
 function registerGateExamPass(type,sum){
  const g=gateState(); const keyName=gateKey();
  g.completedExamPapers[keyName]=arr(g.completedExamPapers[keyName]);
@@ -430,12 +457,19 @@ function renderExamGateLock(){
  return `<section class="panel exam-gate-lock v1317-gate-lock"><span class="chip warn-chip">🔒 Cổng kiểm tra bị khóa</span><h3>Kiểm tra phải mở từ Lịch trình hôm nay</h3><p>Đang ở giai đoạn <b>${esc(stageTitle(g.currentStage))}</b>, phần <b>${g.currentPart}/${g.totalParts}</b>. Hoàn thành đúng các chặng học/ôn trong lịch, sau đó bấm chặng kiểm tra hôm nay.</p><div class="gate-req-grid">${reqRows}</div><ul>${blockers}</ul><div class="lesson-tools"><button class="btn primary" data-act="open-today-route">Mở Lịch trình hôm nay</button><button class="btn soft" data-learn="review">Ôn tập trước</button></div></section>`;
 }
 function renderGateProgressPanel(){
- const g=gateState(); const rows=partRequirementRows(); const unlock=gateUnlockStatus(),readiness=unlock.readiness||{ready:0,total:0,rows:[]};
+ const g=gateState(); const rows=partRequirementRows(); const unlock=gateUnlockStatus(),readiness=unlock.readiness||{ready:0,total:0,rows:[]},target=stageReadinessNextTarget();
  const cards=rows.map(r=>`<article class="gate-req ${r.done>=r.need?'done':'pending'}"><b>${esc(r.label)}</b><span>${r.done}/${r.need}</span></article>`).join('');
  const learningCards=arr(readiness.rows).map(r=>`<article class="gate-req ${r.ready?'done':'pending'}"><b>${esc(r.id)}</b><span>${r.done}/4 bằng chứng</span>${r.missing?.length?`<small>Thiếu: ${esc(r.missing.join(', '))}</small>`:''}</article>`).join('');
- const next=gateNextNeededType(); const unlockLabel=g.currentPart>=g.totalParts?'Mở khóa giai đoạn tiếp theo':'Mở khóa phần tiếp theo';
- const gateText=unlock.allowed?'Đã đủ bằng chứng học, đủ đề và không còn lỗi đến hạn. Có thể mở khóa bước kế tiếp.':(unlock.blockers.join(' ')||`Đề kế tiếp: ${next?examPaperLabel(next):'đã đủ'}.`);
- return `<section class="exam-stage-gate-panel v1317-stage-gate ${unlock.allowed?'complete':'pending'}"><div><span class="chip">Cổng học thuật</span><h4>Phần ${g.currentPart}/${g.totalParts} · ${esc(stageTitle(g.currentStage))}</h4><p>${esc(gateText)} Chỉ tính đề đạt từ 8.0/10.</p></div><div class="gate-readiness-summary"><b>${Number(readiness.ready||0)}/${Number(readiness.total||0)}</b><span>bài đủ 4 bằng chứng cốt lõi</span></div><div class="gate-req-grid">${learningCards}${cards}</div><div class="gate-actions">${unlock.allowed?`<button class="btn primary gate-unlock-btn" data-act="unlock-stage-part">${esc(unlockLabel)}</button>`:(next?`<button class="btn soft" data-act="next-gate-paper">Mở lượt kiểm tra kế tiếp</button>`:`<button class="btn soft" data-learn="review">Bổ sung bằng chứng / xử lý ôn tập</button>`)}</div></section>`;
+ const unlockLabel=g.currentPart>=g.totalParts?'Mở khóa giai đoạn tiếp theo':'Mở khóa phần tiếp theo';
+ const gateText=unlock.allowed?'Đã đủ bằng chứng học, đủ đề và không còn lỗi đến hạn. Có thể mở khóa bước kế tiếp.':(unlock.blockers.join(' ')||'Cần hoàn thành điều kiện còn thiếu.');
+ const action=target.kind==='evidence'||target.kind==='review'
+  ?`<button class="btn soft" data-route='${esc(JSON.stringify(target.route))}'>Đi đúng mục cần xử lý · ${esc(target.label)}</button>`
+  :(target.kind==='exam'
+    ?`<button class="btn soft" data-act="next-gate-paper">Mở lượt kiểm tra kế tiếp · ${esc(target.label)}</button>`
+    :(target.kind==='unlock'
+      ?`<button class="btn primary gate-unlock-btn" data-act="unlock-stage-part">${esc(unlockLabel)}</button>`
+      :`<button class="btn soft" data-learn="review">Bổ sung bằng chứng / xử lý ôn tập</button>`));
+ return `<section class="exam-stage-gate-panel v1317-stage-gate ${unlock.allowed?'complete':'pending'}"><div><span class="chip">Cổng học thuật</span><h4>Phần ${g.currentPart}/${g.totalParts} · ${esc(stageTitle(g.currentStage))}</h4><p>${esc(gateText)} Chỉ tính đề đạt từ 8.0/10.</p></div><div class="gate-readiness-summary"><b>${Number(readiness.ready||0)}/${Number(readiness.total||0)}</b><span>bài đủ 4 bằng chứng cốt lõi</span></div><div class="gate-req-grid">${learningCards}${cards}</div><div class="gate-actions">${action}</div></section>`;
 }
 function stageTransitionSnapshot(kind,toStage,toPart,unlock=gateUnlockStatus()){
  const g=gateState(); if(!unlock?.allowed)return null;
@@ -871,6 +905,18 @@ function renderOverviewReminderPanel(){
    <div class="overview-status-row">${status.map(x=>`<button class="overview-status-pill" data-route='${esc(JSON.stringify(x[3]))}'><b>${esc(x[1])}</b><span>${esc(x[0])}</span><small>${esc(x[2])}</small></button>`).join('')}</div>
  </section>`
 }
+function renderStageReadinessNavigator(){
+ const g=gateState(),target=stageReadinessNextTarget(),r=target.unlock?.readiness||partLearningReadiness();
+ const title=target.kind==='unlock'?'Sẵn sàng mở khóa':(target.kind==='exam'?'Đến lượt kiểm tra':(target.kind==='review'?'Sửa lỗi đến hạn':'Bổ sung bằng chứng tiếp theo'));
+ const action=target.kind==='evidence'||target.kind==='review'
+  ?`<button class="btn primary" data-route='${esc(JSON.stringify(target.route))}'>${esc(target.label)} →</button>`
+  :(target.kind==='exam'
+    ?`<button class="btn primary" data-act="next-gate-paper">${esc(target.label)} →</button>`
+    :(target.kind==='unlock'
+      ?`<button class="btn primary" data-act="unlock-stage-part">Mở khóa bước kế tiếp →</button>`
+      :`<button class="btn soft" data-act="route-modal">Mở lịch trình →</button>`));
+ return `<section class="panel stage-readiness-navigator"><div><span class="chip">READINESS NAVIGATOR</span><h4>${esc(title)}</h4><p>Phần ${g.currentPart}/${g.totalParts} · ${Number(r.ready||0)}/${Number(r.total||0)} bài đủ 4 bằng chứng cốt lõi.</p></div>${action}</section>`;
+}
 function renderOverview(){
  const mission=todayMissionText();
  const reality=stageReality().replace(/^Bối cảnh thực tế:\s*/,'').trim();
@@ -890,6 +936,7 @@ function renderOverview(){
       <span>📅</span><b>Lịch trình hôm nay</b><small>Mở bảng học đủ chặng, không khuyết nội dung</small>
     </button>
   </section>
+  ${renderStageReadinessNavigator()}
   <section class="overview-canva-lower v1261-overview-board">
     <div class="canva-kpi-grid v1261-kpi-row">${overviewKpiCards()}</div>
     <div class="v1261-overview-grid v1262-overview-grid">
@@ -3286,7 +3333,7 @@ function handleClick(e){
  if('examPage' in b.dataset){state.examPage=Number(b.dataset.examPage)||0;state.examIndex=state.examPage*examPageSize(activeExamLevel());save();render();return}
  if('examAnswer' in b.dataset){const level=activeExamLevel(); if(examPaperResult(level))return; const qs=getExamQuestions(level); const q=qs[state.examIndex]||{}; const id=examQuestionId(q,state.examIndex,level); state.examProgress.answers[id]=Number(b.dataset.examAnswer);save();render();return}
  if(b.dataset.examPaper){state.examPaperType=b.dataset.examPaper;state.examPaperLevel=b.dataset.examPaper;state.examIndex=0;state.examPage=0;save();render();return}
- if(b.dataset.route){const r=JSON.parse(b.dataset.route||'{}'); closeModal(); if(r.routeSource==='today_schedule'&&r.scheduleStep)markScheduleTaskOpened(Number(r.scheduleStep),planSession(),r); trackAccess(r.view||'overview'); state.view=r.view||'overview'; if(r.lessonId)state.lessonId=r.lessonId; if(r.learnTab)state.learnTab=r.learnTab; if(r.view==='grammar'){if(r.grammarLevel)state.grammarLevel=r.grammarLevel; if(r.grammarTrack)state.grammarTrack=r.grammarTrack; state.grammarIndex=0;} if(r.view==='mindmap'){if(r.mindmapId)state.mindmapId=r.mindmapId; if(r.mindmapNode)state.mindmapNode=r.mindmapNode; else state.mindmapNode='';} if(r.view==='learning'&&r.learnTab==='exam'){const paper=scheduleExamPaperType(r); state.examPaperType=paper; state.examPaperLevel=paper; state.examIndex=0; state.examPage=0; state.examGateSource={routeSource:r.routeSource||'',stage:r.stage||currentStageId(),part:Number(r.part||gatePart()),sessionKey:r.sessionKey||sessionKey(),scheduleStep:Number(r.scheduleStep||0),paperType:paper,at:Date.now()};} if(r.view==='learning'&&r.learnTab==='review'&&r.reviewFilter){state.reviewFilter=r.reviewFilter; state.reviewIndex=0; state.reviewPage=0; state.reviewAnswer=null;} if(r.mode==='handwriting')state.writingMode='handwriting'; save();render();return}
+ if(b.dataset.route){const r=JSON.parse(b.dataset.route||'{}'); closeModal(); if(r.routeSource==='today_schedule'&&r.scheduleStep)markScheduleTaskOpened(Number(r.scheduleStep),planSession(),r); trackAccess(r.view||'overview'); state.view=r.view||'overview'; if(r.lessonId)state.lessonId=r.lessonId; if(r.learnTab)state.learnTab=r.learnTab; if(r.reviewLesson)state.reviewLesson=r.reviewLesson; if(r.view==='grammar'){if(r.grammarLevel)state.grammarLevel=r.grammarLevel; if(r.grammarTrack)state.grammarTrack=r.grammarTrack; state.grammarIndex=0;} if(r.view==='mindmap'){if(r.mindmapId)state.mindmapId=r.mindmapId; if(r.mindmapNode)state.mindmapNode=r.mindmapNode; else state.mindmapNode='';} if(r.view==='learning'&&r.learnTab==='exam'){const paper=scheduleExamPaperType(r); state.examPaperType=paper; state.examPaperLevel=paper; state.examIndex=0; state.examPage=0; state.examGateSource={routeSource:r.routeSource||'',stage:r.stage||currentStageId(),part:Number(r.part||gatePart()),sessionKey:r.sessionKey||sessionKey(),scheduleStep:Number(r.scheduleStep||0),paperType:paper,at:Date.now()};} if(r.view==='learning'&&r.learnTab==='review'&&r.reviewFilter){state.reviewFilter=r.reviewFilter; state.reviewIndex=0; state.reviewPage=0; state.reviewAnswer=null;} if(r.mode==='handwriting')state.writingMode='handwriting'; save();render();return}
  if(b.dataset.remedialCard){const id=b.dataset.remedialCard; const plan=normalizeRemedialPlan(); const card=plan.cards.find(x=>x.id===id); if(card){state.remedialPlan.completed[id]=Date.now(); state.view='learning'; state.learnTab='review'; state.reviewFilter='wrong'; state.reviewLesson='all'; const remaining=remedialCounts().remaining; if(remaining<=0)state.remedialPlan.active=false; save(); render(); toast(remaining<=0?'Đã hoàn thành toàn bộ lịch phụ đạo':'Đã hoàn thành 1 thẻ phụ đạo'); return}}
  if(b.dataset.uiTheme){state.interfaceTheme=b.dataset.uiTheme; applyInterface(); save(); openModal(renderInterfaceModal(),'interface'); return}
  if(b.dataset.uiDensity){state.interfaceDensity=b.dataset.uiDensity; applyInterface(); save(); openModal(renderInterfaceModal(),'interface'); return}
