@@ -30,18 +30,18 @@ English is not the default translation bridge either.
 
 ## Current work
 
-Turns 1–15 are accepted.
+Turns 1–16 are accepted.
 
-Next: **Turn 16 — Translation-free dialogue scaffolding**.
+Next: **Turn 17 — Grammar from patterns**.
 
-Turn 16 must:
+Turn 17 must:
 
-- keep Russian dialogue text/audio authoritative;
-- replace learner-facing Vietnamese/English gloss with scene, role, communicative cue, and Russian context;
-- preserve hear-before-see and role-play behavior from Turns 3/8/9;
-- retain legacy translation fields only for migration/authoring diagnostics;
-- fail closed when scene/cue context is missing rather than translating;
-- keep dialogue/speaking mastery authority unchanged.
+- start grammar practice from a heard Russian pattern, not a rule paragraph;
+- require a spoken/self-practice step before exposing the tiny rule;
+- provide a Russian contrast pair before rule reveal;
+- keep the rule minimal and immediately reuse it in a Russian prompt;
+- avoid Vietnamese/English semantic answers;
+- record pattern-practice evidence without taking mastery authority.
 
 ## Gate rule
 
