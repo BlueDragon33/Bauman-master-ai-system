@@ -31,3 +31,9 @@ Expected:
 ## Why this gate is required
 
 An integrity/bootstrap failure must remain visible. The verified path must not silently convert that failure into ordinary success by switching back to an unverified core loader.
+
+## Repair evidence
+
+The first integrated gate run (#126) exposed a validator return-value defect after the contract assertions had already passed. `loadAndValidate()` returned the boolean result of `validateContract()`, then the CLI summary attempted to read `contract.scenarios.length` from that boolean.
+
+Repair: validate the contract, then return the validated contract object. No acceptance rule was weakened.
