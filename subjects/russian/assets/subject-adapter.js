@@ -85,7 +85,7 @@ window.SUBJECT_ADAPTER = {
   defaultState: {
     stage: 'vn',
     view: 'overview',
-    learnTab: 'theory',
+    learnTab: 'practice',
     lessonQuery: '',
     conceptQuery: '',
     grammarQuery: '',
