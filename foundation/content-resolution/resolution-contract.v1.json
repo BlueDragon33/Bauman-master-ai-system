@@ -83,7 +83,7 @@
     "fields": [
       "targetRegistryId",
       "mode",
-      "accessDecision",
+      "accessContext",
       "runtimePolicy"
     ]
   },
@@ -115,7 +115,8 @@
       "checksumId",
       "locator",
       "transport",
-      "mode"
+      "mode",
+      "access"
     ],
     "blockedRequired": [
       "schema",
@@ -142,5 +143,12 @@
     "authentication",
     "network_credentials",
     "registry_mutation"
-  ]
+  ],
+  "accessEvaluation": {
+    "source": "BAUMAN_ACCESS_POLICY_V1",
+    "resolverMustEvaluateTarget": true,
+    "resolverMustEvaluateResolvedAsset": true,
+    "externalDecisionTrusted": false,
+    "failClosed": true
+  }
 }
