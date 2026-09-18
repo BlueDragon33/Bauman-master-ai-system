@@ -2,7 +2,7 @@
 
 Current task: `CONTENT_RESOLUTION_RUNTIME_DELIVERY_FOUNDATION`
 
-Status: `STEP3_DELIVERY_PLAN_ACTIVE`
+Status: `STEP4_INJECTED_EXECUTOR_ACTIVE`
 
 Date: 2026-09-18
 Branch: `work/foundation-content-resolution-delivery`
@@ -87,3 +87,12 @@ Step 3 must not migrate a real loader until the Step 2 resolver gate is green.
 The delivery-plan layer binds a resolved descriptor to the exact registry asset, locator, SHA-256 digest and byte length.
 
 No bytes are retrieved yet. No adapter is allowed to expose data before future integrity verification.
+
+
+## Active Step 4 boundary
+
+The executor may call only adapters explicitly injected by the caller.
+
+It verifies SHA-256 digest and byte length before any consumer callback receives payload bytes.
+
+The executor itself does not fetch, discover adapters globally, use browser storage, mutate routes, or mutate learner state.
