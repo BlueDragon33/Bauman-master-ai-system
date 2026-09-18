@@ -893,6 +893,7 @@ function renderRouteAcademicGate(s=planSession()){
 
 function renderRouteToday(s){
  s=normalizeRouteSession(s);
+ s=window.BaumanPlanningBridge?.applyLiveReviewOverlay?.({sessions:[s]})?.sessions?.[0]||s;
  const details=arr(s.blocks).map(routeBlockDetail);
  const cards=arr(s.cards);
  const total=Number(s.minutes||details.reduce((a,b)=>a+(Number(b.minutes)||0),0)||90);
