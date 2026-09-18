@@ -1,0 +1,43 @@
+name: Content Resolution & Runtime Delivery Gate
+
+on:
+  push:
+    branches:
+      - work/foundation-content-resolution-delivery
+  pull_request:
+    paths:
+      - 'foundation/content-resolution/**'
+      - 'foundation/content-registry/**'
+      - 'scripts/validate-content-resolution-contract.mjs'
+      - 'tests/content-resolution-contract.test.mjs'
+      - 'ARCHITECTURE.md'
+      - 'CODEX_STATE.md'
+      - 'CODEX_TASK.md'
+      - '.github/workflows/content-resolution-delivery-gate.yml'
+
+permissions:
+  contents: read
+
+jobs:
+  validate-content-resolution-contract:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+      - name: Use Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Check syntax
+        run: |
+          node --check scripts/validate-content-resolution-contract.mjs
+          node --check tests/content-resolution-contract.test.mjs
+      - name: Validate frozen Content Asset Provenance foundation
+        run: node scripts/validate-foundation-l10-promotion.mjs
+      - name: Validate content resolution contract
+        run: node scripts/validate-content-resolution-contract.mjs
+      - name: Run content resolution negative tests
+        run: node tests/content-resolution-contract.test.mjs
+      - name: Parse resolution JSON
+        run: |
+          node -e "JSON.parse(require('fs').readFileSync('foundation/content-resolution/resolution-contract.v1.json','utf8')); JSON.parse(require('fs').readFileSync('foundation/content-resolution/examples/step1-resolution-request.v1.json','utf8')); console.log('CONTENT_RESOLUTION_JSON=PASS')"
