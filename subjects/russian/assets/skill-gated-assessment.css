@@ -1,0 +1,20 @@
+.ru-skill-gate{margin:0 0 16px;padding:16px;border:1px solid var(--line,#dbe4ee);border-radius:18px;background:var(--panel,#fff)}
+.ru-skill-gate>header{display:flex;gap:16px;align-items:flex-start;justify-content:space-between}
+.ru-skill-gate>header span{font-size:11px;font-weight:800;letter-spacing:.08em;opacity:.68}
+.ru-skill-gate>header h3{margin:5px 0 6px;font-size:18px}
+.ru-skill-gate>header p{margin:0;max-width:760px;font-size:13px;line-height:1.55;opacity:.78}
+.ru-skill-gate-total{min-width:120px;padding:10px 12px;border-radius:14px;text-align:center;border:1px solid currentColor}
+.ru-skill-gate-total b,.ru-skill-gate-total small{display:block}
+.ru-skill-gate-total small{margin-top:3px;font-size:11px;opacity:.72}
+.ru-skill-gate-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px;margin-top:14px}
+.ru-skill-gate-card{padding:12px;border:1px solid var(--line,#dbe4ee);border-radius:14px;min-width:0}
+.ru-skill-gate-card>div{display:flex;align-items:center;gap:7px}
+.ru-skill-gate-card>div span{font-weight:900}
+.ru-skill-gate-card strong,.ru-skill-gate-card small{display:block}
+.ru-skill-gate-card strong{margin-top:8px;font-size:13px}
+.ru-skill-gate-card small{margin-top:5px;font-size:11px;line-height:1.45;opacity:.72}
+.ru-skill-gate-card.ready,.ru-skill-gate-total.ready{box-shadow:inset 0 0 0 1px rgba(30,140,90,.12)}
+.ru-skill-gate-card.blocked,.ru-skill-gate-total.blocked{box-shadow:inset 0 0 0 1px rgba(190,120,30,.12)}
+.ru-skill-gate>footer{display:flex;gap:12px;justify-content:space-between;margin-top:12px;padding-top:10px;border-top:1px solid var(--line,#dbe4ee);font-size:11px;line-height:1.45;opacity:.76}
+@media(max-width:900px){.ru-skill-gate-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media(max-width:620px){.ru-skill-gate>header,.ru-skill-gate>footer{display:block}.ru-skill-gate-total{margin-top:10px}.ru-skill-gate-grid{grid-template-columns:1fr}.ru-skill-gate>footer span{display:block;margin-top:5px}}
