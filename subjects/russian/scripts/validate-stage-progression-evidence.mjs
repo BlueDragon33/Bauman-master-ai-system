@@ -15,7 +15,7 @@ need('function isScheduleTaskOpened','Opened-state query missing');
 need("scheduleTaskRecord(step,s)?.completed===true",'Done state must require explicit completed=true');
 need("markScheduleTaskOpened(Number(r.scheduleStep),planSession(),r)",'Today route click must record open only');
 forbid("r.scheduleStep)markScheduleTask(Number(r.scheduleStep)",'Opening a route must not immediately complete it');
-need("data-act="complete-schedule-step"",'Explicit schedule completion control missing');
+need('data-act="complete-schedule-step"','Explicit schedule completion control missing');
 need("act==='complete-schedule-step'",'Explicit schedule completion handler missing');
 
 need('function partDueReviewItems','Stage gate must inspect due Review Queue items');
