@@ -1,0 +1,77 @@
+name: Foundation Domain Model Gate
+
+on:
+  push:
+    branches:
+      - work/foundation-v2-l9-domain-model
+  pull_request:
+    paths:
+      - 'foundation/**'
+      - 'subjects/shared/**'
+      - 'subjects/russian/index.html'
+      - 'subjects/russian/assets/learning-state.js'
+      - 'subjects/russian/assets/content-contract.js'
+      - 'subjects/russian/assets/learning-flow.js'
+      - 'subjects/russian/assets/vocab-srs.js'
+      - 'subjects/russian/assets/academic-language.js'
+      - 'subjects/russian/assets/ai-mentor-guard.js'
+      - 'scripts/validate-foundation-domain-model.mjs'
+      - 'scripts/validate-web-lesson-standard.mjs'
+      - 'scripts/validate-russian-lesson1-golden-template.mjs'
+      - 'scripts/validate-learning-component-capabilities.mjs'
+      - 'scripts/validate-foundation-identity-runtime.mjs'
+      - 'scripts/validate-foundation-identity-overlay-store.mjs'
+      - 'scripts/validate-foundation-legacy-snapshot-extractor.mjs'
+      - 'scripts/validate-foundation-browser-bootstrap.mjs'
+      - 'scripts/validate-foundation-identity-persistence.mjs'
+      - 'scripts/validate-foundation-canonical-projection.mjs'
+      - 'scripts/validate-foundation-canonical-context.mjs'
+      - 'scripts/validate-foundation-l9-promotion.mjs'
+      - '.github/workflows/foundation-domain-model-gate.yml'
+
+permissions:
+  contents: read
+
+jobs:
+  validate-foundation-domain-model:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+      - name: Use Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Validate universal domain foundation
+        run: node scripts/validate-foundation-domain-model.mjs
+      - name: Validate web lesson authoring standard
+        run: node scripts/validate-web-lesson-standard.mjs
+      - name: Validate Russian Lesson 1 golden template
+        run: node scripts/validate-russian-lesson1-golden-template.mjs
+      - name: Validate reusable learning component capabilities
+        run: node scripts/validate-learning-component-capabilities.mjs
+      - name: Validate canonical identity runtime overlay
+        run: node scripts/validate-foundation-identity-runtime.mjs
+      - name: Validate transactional identity overlay store
+        run: node scripts/validate-foundation-identity-overlay-store.mjs
+      - name: Validate legacy snapshot extraction dry run
+        run: node scripts/validate-foundation-legacy-snapshot-extractor.mjs
+      - name: Validate silent browser identity bootstrap
+        run: node scripts/validate-foundation-browser-bootstrap.mjs
+      - name: Validate verified browser overlay persistence
+        run: node scripts/validate-foundation-identity-persistence.mjs
+      - name: Validate canonical read projection
+        run: node scripts/validate-foundation-canonical-projection.mjs
+      - name: Validate canonical consumer context adapter
+        run: node scripts/validate-foundation-canonical-context.mjs
+      - name: Validate L9 promotion freeze
+        run: node scripts/validate-foundation-l9-promotion.mjs
+      - name: Parse foundation JSON
+        run: |
+          node -e "JSON.parse(require('fs').readFileSync('foundation/domain-model/domain-contract.v1.json','utf8')); console.log('FOUNDATION_JSON_PARSE=PASS')"
+          node -e "JSON.parse(require('fs').readFileSync('foundation/domain-model/legacy-mapping-registry.v1.json','utf8')); console.log('LEGACY_MAPPING_REGISTRY_JSON_PARSE=PASS')"
+          node -e "JSON.parse(require('fs').readFileSync('foundation/domain-model/l9-promotion-manifest.v1.json','utf8')); console.log('FOUNDATION_L9_PROMOTION_JSON_PARSE=PASS')"
+          node -e "JSON.parse(require('fs').readFileSync('foundation/learning-content/web-lesson-standard.v1.json','utf8')); console.log('WEB_LESSON_STANDARD_JSON_PARSE=PASS')"
+          node -e "JSON.parse(require('fs').readFileSync('foundation/learning-content/examples/russian-lesson-01.template.v1.json','utf8')); console.log('RUSSIAN_LESSON1_TEMPLATE_JSON_PARSE=PASS')"
+          node -e "JSON.parse(require('fs').readFileSync('foundation/learning-content/component-capabilities.v1.json','utf8')); console.log('LEARNING_COMPONENT_CAPABILITIES_JSON_PARSE=PASS')"

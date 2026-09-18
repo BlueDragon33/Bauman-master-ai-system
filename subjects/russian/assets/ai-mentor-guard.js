@@ -17,19 +17,31 @@
     const academic=window.RussianAcademicLanguage?.context?.()||null;
     const lessonId=clean(core.lessonId)||clean(window.RussianLearningFlow?.activeLessonId?.());
     const reviewQueue=Object.values(learning.reviewQueue||{});
+    const reviewIds=Object.keys(learning.reviewQueue||{});
     const reviewDue=reviewQueue.filter(x=>!x?.dueAt||Date.parse(x.dueAt)<=Date.now()).length;
+    const route={view:clean(core.view)||'overview',learnTab:clean(core.learnTab),stage:clean(core.stage)||'vn',lessonId,slide:Math.max(0,Number(core.slide)||0)};
+    const resume=clone(learning.resume||null);
+    const canonical=window.BaumanFoundationCanonicalContext?.current?.({
+      subjectId:'russian',
+      route,
+      resume,
+      reviewIds,
+      lessonId,
+      hostTask:window.BaumanSubjectHost?.getTask?.()||window.BAUMAN_HOST_TASK||null
+    })||null;
     return {
       schema:SCHEMA,
       subjectId:'russian',
       generatedAt:new Date().toISOString(),
-      route:{view:clean(core.view)||'overview',learnTab:clean(core.learnTab),stage:clean(core.stage)||'vn',lessonId,slide:Math.max(0,Number(core.slide)||0)},
-      resume:clone(learning.resume||null),
+      route,
+      resume,
       reviewDue,
       lessonEvidence:lessonId?clone(flow.lessons?.[lessonId]||null):null,
       vocab:clone(vocab),
       speaking:clone(speaking),
       academic:clone(academic),
-      policy:{canonicalStateReadOnly:true,masteryReadOnly:true,aiMaySuggest:true,aiMayExplain:true,aiMayGeneratePractice:true,aiMayModifyMastery:false,aiMayCompleteTasks:false}
+      canonical:clone(canonical),
+      policy:{canonicalStateReadOnly:true,canonicalIdentityReadOnly:true,masteryReadOnly:true,aiMaySuggest:true,aiMayExplain:true,aiMayGeneratePractice:true,aiMayModifyMastery:false,aiMayCompleteTasks:false}
     };
   }
 

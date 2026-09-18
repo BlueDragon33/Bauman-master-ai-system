@@ -1,0 +1,203 @@
+{
+  "schema": "BAUMAN_GOLDEN_LESSON_TEMPLATE_V1",
+  "templateVersion": 1,
+  "lessonId": "bd:workflow:russian:lesson-01-russian-today",
+  "domain": "russian",
+  "title": "Урок 1 — Русский язык сегодня",
+  "source": {
+    "sourceId": "bd:source:russian:lesson-01-russian-today-2026-09-17",
+    "title": "17_9_Урок 1 - РЯ сегодня.pptx",
+    "provenanceRequired": true,
+    "locatorPolicy": "slide_or_activity_locator_required_during_ingestion"
+  },
+  "authoringStandard": "BAUMAN_WEB_LESSON_STANDARD_V1",
+  "designIntent": "Re-encounter the same vocabulary and possessive/gender patterns through reading, visual recognition, listening, manipulation, dialogue, contextual reading, retrieval, and production.",
+  "knowledgeClusters": [
+    {
+      "knowledgeId": "bd:knowledge:russian:lesson-01-core-vocabulary",
+      "title": "Core people, place and object vocabulary",
+      "examples": [
+        "друг / подруга",
+        "город / парк / фонтан",
+        "комната / стол / лампа / ноутбук / окно / сумка / зонт"
+      ],
+      "representationPlan": ["text", "meaningful_visual", "audio_when_available", "context_example"]
+    },
+    {
+      "knowledgeId": "bd:knowledge:russian:possessive-my-your-gender",
+      "title": "Possessive forms мой / моя / моё and твой / твоя / твоё",
+      "examples": [
+        "мой дом",
+        "моя собака",
+        "моё фото"
+      ],
+      "representationPlan": ["text", "visual_object_context", "contrastive_examples", "phrase_building"]
+    },
+    {
+      "knowledgeId": "bd:knowledge:russian:identity-dialogue-photo",
+      "title": "Identity and possession dialogue",
+      "examples": [
+        "Иван, это ты? — Да, это я.",
+        "Это твоё фото? — Да, это моё фото."
+      ],
+      "representationPlan": ["dialogue", "people_visual", "photo_object_context", "audio_when_available"]
+    },
+    {
+      "knowledgeId": "bd:knowledge:russian:room-context-reading",
+      "title": "Contextual reading: Комната Ивана",
+      "examples": [
+        "моя комната",
+        "моё окно",
+        "мой кактус",
+        "мой стол",
+        "моя лампа",
+        "мой ноутбук",
+        "мой попугай",
+        "моя собака"
+      ],
+      "representationPlan": ["room_scene", "text", "object_hotspots", "retrieval"]
+    }
+  ],
+  "activities": [
+    {
+      "id": "bd:task:russian:lesson-01-read-word-groups",
+      "phase": "observe",
+      "sourceActivity": "Задание 21. Прочитайте слова",
+      "taskType": "guided_reading",
+      "targets": ["bd:knowledge:russian:lesson-01-core-vocabulary"],
+      "presentation": {
+        "groupWordsByMeaning": true,
+        "stressFromSourceOnly": true,
+        "visuals": {
+          "mode": "meaningful_visual_when_picturable",
+          "examples": ["person", "city/place", "room/object"],
+          "provenanceRequired": true
+        }
+      },
+      "evidence": "reading_opened_not_mastery"
+    },
+    {
+      "id": "bd:task:russian:lesson-01-vocab-visual-game",
+      "phase": "interact",
+      "sourceActivity": "Игра",
+      "taskType": "image_word_retrieval",
+      "targets": ["bd:knowledge:russian:lesson-01-core-vocabulary"],
+      "allowedVariants": ["image_to_word", "word_to_image", "pair_match"],
+      "feedback": {
+        "preserveFirstAttempt": true,
+        "retryAllowed": true,
+        "wrongAnswerCreatesLearningSignal": true
+      }
+    },
+    {
+      "id": "bd:task:russian:lesson-01-listen-write-21v",
+      "phase": "retrieve",
+      "sourceActivity": "Задание 21в. Слушайте слова, и пишите",
+      "taskType": "listen_and_write",
+      "targets": ["bd:knowledge:russian:lesson-01-core-vocabulary"],
+      "media": {
+        "sourceAudioPreferred": true,
+        "ttsFallbackMustBeLabelled": true
+      },
+      "evidence": "typed_response_and_correction"
+    },
+    {
+      "id": "bd:task:russian:lesson-01-dialogue-photo",
+      "phase": "example",
+      "sourceActivity": "Диалог Иван / Инна",
+      "taskType": "dialogue_context",
+      "targets": [
+        "bd:knowledge:russian:identity-dialogue-photo",
+        "bd:knowledge:russian:possessive-my-your-gender"
+      ],
+      "visualScene": {
+        "required": true,
+        "entities": ["person", "photo", "house", "dog"],
+        "use": ["reference_resolution", "meaning", "speaking_prompt"]
+      },
+      "followUp": ["dialogue_match", "picture_speak", "hidden_text_role_play"]
+    },
+    {
+      "id": "bd:task:russian:lesson-01-build-phrases",
+      "phase": "interact",
+      "sourceActivity": "Составьте словосочетания",
+      "taskType": "phrase_building",
+      "targets": ["bd:knowledge:russian:possessive-my-your-gender"],
+      "allowedVariants": ["drag_drop", "pair_match", "gap_fill"],
+      "exampleSet": ["мой дом", "моя собака", "моё фото"],
+      "evidence": "first_attempt_pairing_and_correction"
+    },
+    {
+      "id": "bd:task:russian:lesson-01-possessive-game",
+      "phase": "retrieve",
+      "sourceActivity": "Игра",
+      "taskType": "classification_or_retrieval_game",
+      "targets": ["bd:knowledge:russian:possessive-my-your-gender"],
+      "allowedVariants": ["sort", "image_to_word", "word_to_image"],
+      "rule": "Game mechanics must test the possessive/gender relation, not unrelated speed clicking."
+    },
+    {
+      "id": "bd:task:russian:lesson-01-room-reading",
+      "phase": "apply",
+      "sourceActivity": "Комната Ивана",
+      "taskType": "contextual_reading_scene",
+      "targets": [
+        "bd:knowledge:russian:room-context-reading",
+        "bd:knowledge:russian:possessive-my-your-gender"
+      ],
+      "scene": {
+        "required": true,
+        "entities": ["room", "window", "cactus", "table", "lamp", "laptop", "photo", "parrot", "dog"],
+        "interactionCandidates": ["hotspot", "spot_missing", "image_to_word", "picture_speak"]
+      },
+      "retrieval": [
+        "identify_object_from_text",
+        "identify_possessive_form",
+        "reconstruct_sentence",
+        "describe_room_without_full_text"
+      ]
+    },
+    {
+      "id": "bd:task:russian:lesson-01-short-transfer-check",
+      "phase": "review",
+      "sourceActivity": "web_extension_from_source_material",
+      "taskType": "short_transfer_check",
+      "targets": [
+        "bd:knowledge:russian:lesson-01-core-vocabulary",
+        "bd:knowledge:russian:possessive-my-your-gender",
+        "bd:knowledge:russian:room-context-reading"
+      ],
+      "rules": {
+        "newItemsMustComeFromApprovedLessonVocabularyOrAuthorApprovedExtensions": true,
+        "noFakeMastery": true,
+        "reviewQueueOnlyFromRealEvidence": true
+      }
+    }
+  ],
+  "visualAssetRequirements": {
+    "decorativeOnlyAssetsDoNotCount": true,
+    "meaningfulVisualTargets": [
+      "people",
+      "house",
+      "dog",
+      "photo",
+      "room",
+      "window",
+      "cactus",
+      "table",
+      "lamp",
+      "laptop",
+      "parrot",
+      "common_picturable_vocabulary"
+    ],
+    "altTextRequired": true,
+    "sourceOrGeneratedMetadataRequired": true
+  },
+  "nonGoals": [
+    "do_not_copy_ppt_layout_slide_by_slide",
+    "do_not_mark_mastery_from_viewing",
+    "do_not_invent_stress_or_source_audio",
+    "do_not_add_decorative_images_that_compete_with_learning",
+    "do_not_hardcode_interaction_logic_into_this_template"
+  ]
+}

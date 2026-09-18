@@ -1,0 +1,107 @@
+{
+  "schema": "BAUMAN_FOUNDATION_L9_PROMOTION_V1",
+  "version": 1,
+  "status": "promotion_candidate",
+  "scope": "L9 universal identity and domain foundation",
+  "baseCompatibility": {
+    "strategy": "additive",
+    "legacyRuntimeAuthoritative": true,
+    "legacyIdsPreserved": true,
+    "legacyStoragePreserved": true,
+    "hostBridgeProtocolPreserved": "BAUMAN_SUBJECT_BRIDGE_V1",
+    "russianLearningStatePreserved": "RUSSIAN_LEARNING_STATE_V1",
+    "russianContentContractPreserved": "RUSSIAN_CONTENT_CONTRACT_V1"
+  },
+  "schemas": [
+    "BAUMAN_DOMAIN_CONTRACT_V1",
+    "BAUMAN_LEGACY_MAPPING_REGISTRY_V1",
+    "BAUMAN_CANONICAL_IDENTITY_RUNTIME_V1",
+    "BAUMAN_IDENTITY_OVERLAY_V1",
+    "BAUMAN_IDENTITY_OVERLAY_STORE_V1",
+    "BAUMAN_LEGACY_SNAPSHOT_EXTRACTOR_V1",
+    "BAUMAN_FOUNDATION_IDENTITY_BOOTSTRAP_V1",
+    "BAUMAN_FOUNDATION_IDENTITY_PERSISTENCE_V1",
+    "BAUMAN_CANONICAL_READ_PROJECTION_V1",
+    "BAUMAN_FOUNDATION_IDENTITY_PROJECTION_BRIDGE_V1",
+    "BAUMAN_FOUNDATION_CANONICAL_CONTEXT_V1",
+    "BAUMAN_WEB_LESSON_STANDARD_V1",
+    "BAUMAN_LEARNING_COMPONENT_CAPABILITIES_V1"
+  ],
+  "legacyStorageKeys": [
+    "bauman_russian_survival_master_v11_clean_skeleton",
+    "bauman_russian_learning_state_v1",
+    "bauman_russian_learning_flow_v1",
+    "bauman_russian_vocab_srs_v1",
+    "bauman_russian_academic_language_v1"
+  ],
+  "foundationStorageKeys": [
+    "bauman_identity_overlay_v1",
+    "bauman_identity_overlay_v1_staging"
+  ],
+  "runtimeRequired": [
+    "foundation/domain-model/canonical-identity-runtime.js",
+    "foundation/domain-model/identity-overlay-store.js",
+    "foundation/domain-model/legacy-snapshot-extractor.js",
+    "foundation/domain-model/canonical-read-projection.js",
+    "foundation/domain-model/legacy-mapping-registry.v1.json",
+    "subjects/shared/foundation-identity-bootstrap.js",
+    "subjects/shared/foundation-identity-persistence.js",
+    "subjects/shared/foundation-identity-projection.js",
+    "subjects/shared/foundation-canonical-context.js"
+  ],
+  "consumerIntegrations": [
+    {
+      "consumer": "RUSSIAN_AI_MENTOR_CONTEXT_V1",
+      "mode": "read_only_canonical_context",
+      "protocolChanges": false,
+      "legacyWrites": false,
+      "masteryWrites": false
+    }
+  ],
+  "invariants": {
+    "canonicalIdsStable": true,
+    "displayLabelsNeverPermanentIdentity": true,
+    "mappingDeterministic": true,
+    "mappingIdempotent": true,
+    "overlayOnlyMigration": true,
+    "corruptOverlayFailsClosed": true,
+    "durableProjectionRequiresChecksumMatch": true,
+    "canonicalContextReadOnly": true,
+    "legacyStorageNeverRewrittenByFoundation": true,
+    "masteryNeverModifiedByFoundation": true,
+    "reviewQueueNeverMigratedByFoundation": true,
+    "srsNeverMigratedByFoundation": true,
+    "resumeNeverMigratedByFoundation": true,
+    "unknownExtensionsPreserved": true,
+    "destructiveStorageResetForbidden": true,
+    "packagedRuntimeMustContainFoundation": true
+  },
+  "promotionGates": [
+    "Foundation Domain Model Gate",
+    "Russian Reference UI Gate",
+    "Windows checkout safety",
+    "Bauman Cloudflare Preview CI",
+    "Whole System Integration Gate"
+  ],
+  "requiredAudits": [
+    "AUDIT_L9_STEP1.md",
+    "AUDIT_L9_STEP2.md",
+    "AUDIT_L9_STEP3.md",
+    "AUDIT_L9_STEP4.md",
+    "AUDIT_L9_STEP5.md",
+    "AUDIT_L9_STEP6.md",
+    "AUDIT_L9_STEP7.md",
+    "AUDIT_L9_STEP8.md",
+    "AUDIT_L9_STEP9.md"
+  ],
+  "forbiddenPromotionShortcuts": [
+    "rewrite legacy IDs",
+    "rename legacy storage keys",
+    "clear user storage",
+    "make AI authoritative for mastery",
+    "replace BAUMAN_SUBJECT_BRIDGE_V1",
+    "infer identity from display text",
+    "silently repair corrupt overlay",
+    "ship source-only Foundation dependencies without package verification"
+  ]
+}

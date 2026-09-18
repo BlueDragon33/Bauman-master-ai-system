@@ -139,6 +139,9 @@ fs.mkdirSync(runtimeDist, { recursive: true });
 fs.copyFileSync(path.join(root, 'index.html'), path.join(runtimeDist, 'index.html'));
 fs.cpSync(path.join(root, 'assets'), path.join(runtimeDist, 'assets'), { recursive: true });
 fs.cpSync(path.join(root, 'subjects'), path.join(runtimeDist, 'subjects'), { recursive: true });
+// Foundation is runtime infrastructure, not build-only source. Subject pages may reference it
+// directly, so every accepted runtime/package must carry the same versioned Foundation tree.
+fs.cpSync(path.join(root, 'foundation'), path.join(runtimeDist, 'foundation'), { recursive: true });
 
 for (const relativePath of [
   'subjects/russian/data/dialogue-bauman-az.json',
@@ -172,6 +175,15 @@ for (const resource of [
   'subjects/russian/assets/russian-reference-ui.js',
   'subjects/russian/assets/russian-reference-ui-polish.css',
   'subjects/russian/assets/russian-optional-data-loader.js',
+  'subjects/shared/foundation-identity-bootstrap.js',
+  'subjects/shared/foundation-identity-persistence.js',
+  'subjects/shared/foundation-identity-projection.js',
+  'subjects/shared/foundation-canonical-context.js',
+  'foundation/domain-model/canonical-identity-runtime.js',
+  'foundation/domain-model/identity-overlay-store.js',
+  'foundation/domain-model/legacy-snapshot-extractor.js',
+  'foundation/domain-model/canonical-read-projection.js',
+  'foundation/domain-model/legacy-mapping-registry.v1.json',
   'subjects/russian/data/chunks/dialogue-bauman-az/manifest.json',
   'subjects/russian/data/chunks/deep-speaking-bauman/manifest.json',
 ]) {
@@ -186,10 +198,24 @@ for (const oversizedOriginal of [
 if (!html.includes('assets/js/platform/runtime-config.js') || !html.includes('assets/js/platform/device-access-gate.js')) {
   throw new Error('Bauman runtime is missing the device-access bootstrap scripts.');
 }
+const russianHtml = fs.readFileSync(path.join(runtimeDist, 'subjects/russian/index.html'), 'utf8');
+for (const resource of [
+  '../../foundation/domain-model/canonical-identity-runtime.js',
+  '../../foundation/domain-model/identity-overlay-store.js',
+  '../../foundation/domain-model/legacy-snapshot-extractor.js',
+  '../../foundation/domain-model/canonical-read-projection.js',
+  '../shared/foundation-identity-bootstrap.js',
+  '../shared/foundation-identity-persistence.js',
+  '../shared/foundation-identity-projection.js',
+  '../shared/foundation-canonical-context.js',
+]) {
+  if (!russianHtml.includes(resource)) throw new Error(`Russian runtime is missing Foundation script reference: ${resource}`);
+}
 
 console.log('Bauman Cloudflare preview materialized safely.');
 console.log(`Control Worker: bauman-control-preview -> ${controlOrigin}`);
 console.log(`Learning Worker: bauman-master-ai-preview -> ${runtimeOrigin}`);
-console.log('Subject Web Apps: packaged under /subjects/* inside the Learning Runtime.');
+console.log('Subject Web Apps and versioned Foundation runtime are packaged together inside the Learning Runtime.');
+console.log('Canonical identity persistence, projection, and consumer context dependencies are packaged with Russian runtime.');
 console.log('Russian optional datasets: oversized lazy JSON converted to chunk manifests below Worker asset limits.');
 console.log('D1: bauman-control-preview-db (isolated preview database).');

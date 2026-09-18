@@ -1,0 +1,114 @@
+{
+  "schema": "BAUMAN_DOMAIN_CONTRACT_V1",
+  "contractVersion": 1,
+  "status": "foundation",
+  "compatibility": {
+    "strategy": "additive",
+    "breakingChangesForbidden": true,
+    "legacyIdsPreserved": true,
+    "legacyStoragePreserved": true
+  },
+  "identity": {
+    "canonicalPattern": "bd:<kind>:<namespace>:<localId>",
+    "separator": ":",
+    "allowedKinds": [
+      "source",
+      "knowledge",
+      "competency",
+      "task",
+      "evidence",
+      "artifact",
+      "workflow",
+      "research",
+      "person",
+      "agent"
+    ],
+    "rules": {
+      "stable": true,
+      "opaque": true,
+      "neverDerivedFromDisplayName": true,
+      "immutableAfterPublication": true
+    }
+  },
+  "entities": {
+    "source": {
+      "required": ["id", "kind", "title", "provenance"],
+      "purpose": "Origin of learning or research material"
+    },
+    "knowledge": {
+      "required": ["id", "kind", "title", "domain"],
+      "purpose": "Concept independent from presentation or activity"
+    },
+    "competency": {
+      "required": ["id", "kind", "title", "domain"],
+      "purpose": "Observable capability that can be supported by evidence"
+    },
+    "task": {
+      "required": ["id", "kind", "taskType", "targets"],
+      "purpose": "Learning, assessment, laboratory, or research action"
+    },
+    "evidence": {
+      "required": ["id", "kind", "evidenceType", "createdAt", "actor"],
+      "purpose": "Immutable observation; may support but never silently rewrite mastery"
+    },
+    "artifact": {
+      "required": ["id", "kind", "artifactType", "createdAt", "lineage"],
+      "purpose": "Learner or researcher output with traceable lineage"
+    },
+    "workflow": {
+      "required": ["id", "kind", "workflowType", "state"],
+      "purpose": "Versioned process connecting tasks, evidence, and artifacts"
+    },
+    "research": {
+      "required": ["id", "kind", "researchType", "state"],
+      "purpose": "Future-safe research object: question, claim, hypothesis, experiment, result, publication, dissertation"
+    }
+  },
+  "relations": {
+    "allowed": [
+      "derived_from",
+      "references",
+      "targets",
+      "supports",
+      "contradicts",
+      "produced_by",
+      "part_of",
+      "prerequisite_of",
+      "assesses",
+      "evidences",
+      "implements",
+      "supersedes"
+    ],
+    "rule": "Relations must reference canonical IDs; display labels are never foreign keys"
+  },
+  "provenance": {
+    "requiredFields": ["sourceId", "locator", "capturedAt"],
+    "optionalFields": ["license", "author", "publisher", "checksum", "externalUrl", "notes"],
+    "rule": "Generated or transformed content must retain lineage to original sources"
+  },
+  "evidencePolicy": {
+    "appendOnly": true,
+    "aiMayCreateSuggestionEvidence": true,
+    "aiMayModifyCanonicalMastery": false,
+    "aiMayAcceptResearchClaim": false,
+    "humanAuthorizationRequiredFor": [
+      "mastery_confirmation",
+      "research_claim_acceptance",
+      "publication_release",
+      "dissertation_milestone"
+    ]
+  },
+  "extensionPolicy": {
+    "coreFieldsStable": true,
+    "extensionsNamespaced": true,
+    "unknownExtensionsMustBePreserved": true,
+    "adaptersPreferredOverCoreChanges": true
+  },
+  "migration": {
+    "mode": "additive",
+    "mustBeIdempotent": true,
+    "mustBeReversibleWhenPossible": true,
+    "mustNeverClearUserStorage": true,
+    "mustRecord": ["fromSchema", "toSchema", "migratedAt", "migrationId"]
+  }
+}
