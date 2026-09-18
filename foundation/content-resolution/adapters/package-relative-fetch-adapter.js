@@ -33,7 +33,8 @@
   function create(optionsValue={}){
     const options=optionsValue&&typeof optionsValue==='object'&&!Array.isArray(optionsValue)?optionsValue:{};
     const baseUrl=normalizeBaseUrl(options.baseUrl);
-    const fetchFn=typeof options.fetchFn==='function'?options.fetchFn:fetchProvider();
+    const hasExplicitFetch=Object.prototype.hasOwnProperty.call(options,'fetchFn');
+    const fetchFn=hasExplicitFetch?options.fetchFn:fetchProvider();
     if(typeof fetchFn!=='function')fail('FETCH_UNAVAILABLE');
     async function load(plan){
       const path=validatePlan(plan);
