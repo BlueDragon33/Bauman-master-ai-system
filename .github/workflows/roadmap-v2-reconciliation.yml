@@ -20,6 +20,8 @@ on:
       - 'scripts/validate-roadmap-v2-l23-b89.mjs'
       - 'scripts/build-roadmap-v2-consumer-blueprint.mjs'
       - 'scripts/validate-roadmap-v2-l23-h1-consumer-blueprint.mjs'
+      - 'scripts/build-roadmap-v2-diagnostic-catalog.mjs'
+      - 'scripts/validate-roadmap-v2-l23-b90.mjs'
       - '.github/workflows/roadmap-v2-reconciliation.yml'
 
 permissions:
@@ -54,6 +56,8 @@ jobs:
         run: node scripts/validate-roadmap-v2-l23-b89.mjs
       - name: Validate L23 H1 current consumer blueprint
         run: node scripts/validate-roadmap-v2-l23-h1-consumer-blueprint.mjs
+      - name: Validate current L23 B90 diagnostic catalog
+        run: node scripts/validate-roadmap-v2-l23-b90.mjs
       - name: Validate Foundation V2 L9
         run: node scripts/validate-foundation-domain-model.mjs
       - name: Validate current system integration
