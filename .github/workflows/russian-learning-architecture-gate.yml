@@ -1,0 +1,81 @@
+name: Russian Listen Speak Literacy Visual Gate
+
+on:
+  push:
+    branches:
+      - work/russian-listen-speak-literacy-visual-semantics
+  pull_request:
+    paths:
+      - 'subjects/russian/**'
+      - 'scripts/audit-russian-learning-architecture.mjs'
+      - 'scripts/validate-russian-learning-sequence-contract.mjs'
+      - 'tests/russian-learning-sequence-contract.test.mjs'
+      - '.github/workflows/russian-learning-architecture-gate.yml'
+
+permissions:
+  contents: read
+
+jobs:
+  russian-learning-contract:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22.13.0'
+      - name: Check new architecture scripts
+        run: |
+          node --check scripts/audit-russian-learning-architecture.mjs
+          node --check scripts/validate-russian-learning-sequence-contract.mjs
+          node --check tests/russian-learning-sequence-contract.test.mjs
+      - name: Validate listen-speak literacy visual contract
+        run: node scripts/validate-russian-learning-sequence-contract.mjs
+      - name: Run contract negative tests
+        run: node tests/russian-learning-sequence-contract.test.mjs
+      - name: Run Russian learning baseline audit
+        run: node scripts/audit-russian-learning-architecture.mjs
+      - name: Parse pedagogy contract
+        run: node -e "const x=JSON.parse(require('fs').readFileSync('subjects/russian/contracts/listen-speak-literacy-visual-contract.v1.json','utf8')); if(x.schema!=='RUSSIAN_LISTEN_SPEAK_LITERACY_VISUAL_CONTRACT_V1') process.exit(1); console.log('RUSSIAN_PEDAGOGY_JSON=PASS')"
+
+  russian-existing-regression:
+    needs: russian-learning-contract
+    runs-on: ubuntu-24.04
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22.13.0'
+      - name: Parse Russian runtime JavaScript
+        run: |
+          node --check subjects/russian/assets/core.js
+          node --check subjects/russian/assets/subject-adapter.js
+          node --check subjects/russian/assets/russian-reference-ui.js
+          node --check subjects/russian/assets/learning-state.js
+          node --check subjects/russian/assets/learning-flow.js
+          node --check subjects/russian/assets/vocab-srs.js
+          node --check subjects/russian/assets/speaking-coach.js
+          node --check subjects/russian/assets/academic-language.js
+          node --check subjects/russian/assets/ai-mentor-guard.js
+          node --check subjects/russian/assets/runtime-optimizer.js
+          node --check subjects/russian/sw.js
+      - name: Validate existing Russian learning contracts
+        run: |
+          node subjects/russian/scripts/validate-reference-ui.mjs
+          node subjects/russian/scripts/validate-learning-flow.mjs
+          node subjects/russian/scripts/validate-vocab-srs.mjs
+          node subjects/russian/scripts/validate-speaking-coach.mjs
+          node subjects/russian/scripts/validate-academic-language.mjs
+          node subjects/russian/scripts/validate-ai-runtime.mjs
+          node subjects/russian/scripts/validate-promotion-candidate.mjs
+      - name: Audit existing Russian learning data
+        run: |
+          node subjects/russian/scripts/audit-learning-data.mjs
+          node subjects/russian/scripts/audit-content-contract.mjs
+          node subjects/russian/scripts/audit-learning-flow.mjs
+          node subjects/russian/scripts/audit-vocab-srs.mjs
+          node subjects/russian/scripts/audit-speaking-coach.mjs
+          node subjects/russian/scripts/audit-academic-language.mjs
+          node subjects/russian/scripts/audit-runtime-offline.mjs
+          node subjects/russian/scripts/audit-promotion-candidate.mjs
