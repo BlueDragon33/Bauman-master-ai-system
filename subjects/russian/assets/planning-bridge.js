@@ -442,11 +442,13 @@
     const target=out.sessions.find(s=>{const d=new Date(s?.date||'');return !Number.isNaN(d.getTime())&&d>=today;})||out.sessions[0];
     const all=arr(target.cards),reviews=all.filter(x=>x?.source==='live_review_queue');
     const existing=all.filter(x=>x?.source!=='live_review_queue'&&x?.source!=='capability_gap');
-    target.cards=[...reviews,capabilityOverlayCard(focus),...existing];
+    const capabilityCards=reviews.length?[]:[capabilityOverlayCard(focus)];
+    target.cards=[...reviews,...capabilityCards,...existing];
     target.capabilityBand=focus.bandId;
     target.capabilityLesson=focus.lessonId;
     target.capabilityStep=focus.step;
-    target.pedagogyNote=`${reviews.length?'Sau Review Queue, ':''}ưu tiên band ${focus.bandId}: bù evidence ${focus.step} ở ${focus.lessonId}. ${clean(target.pedagogyNote)}`.trim();
+    target.capabilityBlockedByReview=reviews.length;
+    target.pedagogyNote=`${reviews.length?`Đang chặn capability gap vì còn ${reviews.length} Review Queue đến hạn. `:`Ưu tiên band ${focus.bandId}: bù evidence ${focus.step} ở ${focus.lessonId}. `}${clean(target.pedagogyNote)}`.trim();
     return out;
   }
   function buildInternalPlan(mission, analysis, ctx={}){
