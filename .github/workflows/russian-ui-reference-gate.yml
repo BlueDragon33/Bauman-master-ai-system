@@ -33,6 +33,8 @@ jobs:
         run: node subjects/russian/scripts/validate-vocab-srs.mjs
       - name: Validate Russian live review planning overlay
         run: node subjects/russian/scripts/validate-review-planning.mjs
+      - name: Validate Russian adaptive next step
+        run: node subjects/russian/scripts/validate-adaptive-next-step.mjs
       - name: Validate Russian listening speaking coach
         run: node subjects/russian/scripts/validate-speaking-coach.mjs
       - name: Validate Russian grammar reading writing academic bridge
