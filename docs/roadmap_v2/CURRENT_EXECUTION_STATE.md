@@ -8,7 +8,7 @@
 - Current round: **Lượt 25**
 - Current step: **Bước 99 — IN_PROGRESS**
 - L22 closeout: **B88 + H1 — PASS**
-- Status: **L23_COMPLETE · L24_COMPLETE · PASS_L25_F1 · PASS_L25_F2 · PASS_L25_B97 · PASS_L25_H1 · PASS_L25_F3 · PASS_L25_B98 · L25_B99_PRIORITY_RANKING_IN_PROGRESS**
+- Status: **L23_COMPLETE · L24_COMPLETE · PASS_L25_F1 · PASS_L25_F2 · PASS_L25_B97 · PASS_L25_H1 · PASS_L25_F3 · PASS_L25_B98 · L25_F4_B99_BLUEPRINT_FIXTURE_REPAIR_IN_PROGRESS · B100_BLOCKED**
 - Accepted head: `622e84aece7847b4179a8ff48937cb92717aaf3e`
 - Production/runtime activation by Roadmap V2: **disconnected**
 - Legacy/source destructive migration: **not executed**
@@ -280,3 +280,12 @@ Accepted B98/F3 head: `18d3c772c19ebb912c6e4094ec3a4dab37cda55a`
 - Whole System Integration — run `35338425054` — PASS
 
 B99 is now active. B100 remains blocked.
+
+
+## L25-F4 defect
+
+B99 Current Gate run `35338831853` failed because the ranking validator used non-current target `MATH-L1-C02`.
+
+The Priority harness correctly rejected it as an unknown target.
+
+F4 replaces only that validator fixture with current Consumer Blueprint target `MATH-L2-C05`. Unknown-target validation remains strict. B100 stays blocked pending the complete six-gate pass.
