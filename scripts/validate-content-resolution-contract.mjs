@@ -56,6 +56,12 @@ export function validateContentResolutionContract(value){
   for(const state of ['staged','quarantined','missing'])assert(blocked.has(state),`Blocked asset state missing: ${state}`);
 
   assert(value.runtimePolicy?.defaultNetwork==='deny','Network default must remain deny');
+  assert(JSON.stringify(value.selectionPolicy?.locatorPrecedence)===JSON.stringify(['repository_relative','content_hash','https_url']),'Locator precedence drifted');
+  assert(value.selectionPolicy?.preferredAssetIdOptional===true,'preferredAssetId contract drifted');
+  assert(value.selectionPolicy?.preferredAssetIdMustBeLinkedToContent===true,'preferred asset may escape content linkage');
+  assert(value.selectionPolicy?.multipleViableAssetsWithoutPreference==='ambiguous','Multi-asset resolution must remain ambiguous');
+  assert(value.selectionPolicy?.noDisplayNameSelection===true,'Display names may influence asset selection');
+  assert((value.runtimePolicy?.providerNames||[]).includes('content_hash'),'content_hash provider name is missing');
   const output=value.output||{};
   assert(output.schema==='BAUMAN_RUNTIME_RESOURCE_DESCRIPTOR_V1','Runtime descriptor schema drifted');
   for(const status of ['resolved','blocked','provider_required','not_found','ambiguous'])assert((output.statuses||[]).includes(status),`Missing output status: ${status}`);
