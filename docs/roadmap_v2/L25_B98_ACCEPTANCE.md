@@ -1,6 +1,6 @@
 # L25/B98 — Deterministic Priority Scoring Acceptance
 
-Status: `PENDING_GATE`
+Status: `PASS`
 
 ## Purpose
 
@@ -42,3 +42,18 @@ B98 rejects:
 - persistence, scheduler write and runtime activation remain disabled.
 
 B99 remains blocked until B98 and all six project gates pass.
+
+
+## Gate evidence
+
+Accepted B98/F3 head: `18d3c772c19ebb912c6e4094ec3a4dab37cda55a`
+
+- Roadmap V2 Current Gate — run `35338425039` — PASS
+- Foundation Domain Model — run `35338424996` — PASS
+- Windows checkout safety — run `35338425029` — PASS
+- Russian Reference UI — run `35338424991` — PASS
+- Cloudflare Preview — run `35338425087` — PASS
+- Whole System Integration — run `35338425054` — PASS
+
+
+B98 is closed. B99 is now active.
