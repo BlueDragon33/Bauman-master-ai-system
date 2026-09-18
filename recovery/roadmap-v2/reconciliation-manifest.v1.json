@@ -284,9 +284,17 @@
     "historicalCanonicalFilesClassified": 75,
     "staleManifestsQuarantined": 7,
     "baselineBoundGeneratedArtifactsQuarantined": 24,
-    "next": "Toolchain compatibility review; no canonical engine/data admission until its gate passes",
+    "next": "L27R2C2A only after R2C1 full gate pass",
     "lastFailure": "packaged_math_reader_acceptance_timing_race",
-    "r2c0": "pass"
+    "r2c0": "pass",
+    "r2c1": {
+      "status": "in_progress",
+      "asIsCanonicalToolAdmission": 0,
+      "refactorOrReplace": 7,
+      "portableBlockedOnModernData": 1,
+      "enginesBlockedOnModernManifests": 7,
+      "testsBlockedOnModernDependencyChain": 7
+    }
   },
   "l27r2c0GateEvidence": {
     "reconciliation": {
