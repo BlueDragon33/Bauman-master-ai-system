@@ -20,7 +20,8 @@ export function validateContract(contract){
 }
 export function loadAndValidate(){
   const contract=JSON.parse(read('foundation/content-resolution/academic-loader-failure-injection-contract.v1.json'));
-  return validateContract(contract);
+  validateContract(contract);
+  return contract;
 }
 if(import.meta.url===pathToFileURL(process.argv[1]).href){
   const contract=loadAndValidate();
