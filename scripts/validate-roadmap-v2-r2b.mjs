@@ -17,7 +17,8 @@ function gitBlobSha(buffer){
 
 const currentTrackOwned=new Set([
   'roadmap_v2/diagnostic/diagnostic-contract.json',
-  'roadmap_v2/diagnostic/diagnostic-contract.schema.json'
+  'roadmap_v2/diagnostic/diagnostic-contract.schema.json',
+  'roadmap_v2/diagnostic/catalog.schema.json'
 ]);
 
 const baseline=new Set();
