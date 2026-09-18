@@ -1,6 +1,7 @@
 import assert from 'node:assert/strict';
 import fs from 'node:fs';
 import path from 'node:path';
+import crypto from 'node:crypto';
 import {spawnSync} from 'node:child_process';
 
 const scanner='recovery/roadmap-v2/tools/scan-modern-baseline.mjs';
@@ -8,11 +9,24 @@ const profile='recovery/roadmap-v2/toolchain-profile-r2c2a.v1.json';
 const outA='recovery/roadmap-v2/artifacts/r2c2a/scan-a.json';
 const outB='recovery/roadmap-v2/artifacts/r2c2a/scan-b.json';
 
+function walk(dir){
+  if(!fs.existsSync(dir))return [];
+  return fs.readdirSync(dir,{withFileTypes:true}).flatMap(entry=>{
+    const p=path.posix.join(dir,entry.name);
+    return entry.isDirectory()?walk(p):[p];
+  });
+}
+function canonicalSnapshot(){
+  const out={};
+  for(const p of walk('roadmap_v2').sort())out[p]=crypto.createHash('sha256').update(fs.readFileSync(p)).digest('hex');
+  return out;
+}
 function run(output){
   const r=spawnSync(process.execPath,[scanner,'--profile',profile,'--output',output],{encoding:'utf8'});
   if(r.status!==0)throw new Error(`R2C2A_SCAN_FAILED:${output}\n${r.stdout}\n${r.stderr}`);
   return r;
 }
+const canonicalBefore=canonicalSnapshot();
 fs.rmSync('recovery/roadmap-v2/artifacts/r2c2a',{recursive:true,force:true});
 run(outA);
 run(outB);
@@ -49,16 +63,8 @@ for(const bad of ['roadmap_v2/forbidden.json','../outside.json','/tmp/absolute.j
   assert.notEqual(r.status,0,`unsafe output accepted: ${bad}`);
 }
 
-function walk(dir){
-  if(!fs.existsSync(dir))return [];
-  return fs.readdirSync(dir,{withFileTypes:true}).flatMap(entry=>{
-    const p=path.posix.join(dir,entry.name);
-    return entry.isDirectory()?walk(p):[p];
-  });
-}
-const canonical=walk('roadmap_v2').sort();
-const admitted=JSON.parse(fs.readFileSync('recovery/roadmap-v2/r2b-static-admission.v1.json','utf8')).files.map(x=>x.path).sort();
-assert.deepEqual(canonical,admitted,'R2C2A changed canonical Roadmap surface');
+const canonicalAfter=canonicalSnapshot();
+assert.deepEqual(canonicalAfter,canonicalBefore,'recovery scanner modified canonical Roadmap tree');
 
 console.log('ROADMAP_V2_L27R2C2A_PARAMETERIZED_TOOLCHAIN=PASS');
 console.log(JSON.stringify({deterministic:true,sources:5,canonicalWrites:0,unsafeOutputCases:3,summary:report.summary},null,2));
