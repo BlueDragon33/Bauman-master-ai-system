@@ -1,0 +1,1507 @@
+{
+  "schema": "BAUMAN_ROADMAP_V2_MATH_BASELINE_INVENTORY_V1",
+  "generatedAt": "2026-08-10T21:00:00+07:00",
+  "step": {
+    "round": 19,
+    "step": 73,
+    "status": "PASS_RESOLVED_LARGE_BLOB_SUPPRESSION_AND_40_41_SEGMENTATION"
+  },
+  "repository": {
+    "fullName": "BlueDragon33/Bauman-master-ai-system",
+    "visibility": "private",
+    "defaultBranch": "main",
+    "headCommit": "e383912354673bdce7a0059d6b9a23799d74e689",
+    "headCommitMessage": "docs(state): record E215 browser smoke acceptance"
+  },
+  "baselineResolution": {
+    "decision": "Use current main HEAD as the authoritative physical baseline. Preserve all 347 legacy lessons, all 18 theory overlay records, and the accepted E215/E242/E245 runtime without rewriting physical IDs.",
+    "evidence": [
+      "Current index loads E243/E244/E245/E242 and keeps E235 protected.",
+      "lessons.json blob caacdf2b0813c1300af215608c4222ca61669184 decodes to 347 unique lessons and 5,552 slides; the connector's empty inline content was only large-blob suppression.",
+      "theory_lecture_content.json contributes 18 overlay records and 300 slides for C01-C03; it coexists with, rather than replaces, the 347 legacy lessons.",
+      "The logical Roadmap V2 node MATH-L2-C07 maps to verified covariance/correlation/PCA lessons in physical source chapters 4, 10, and 15; theory-framework m_p07 is a secondary outline candidate only.",
+      "Standalone formulas.json, exercises.json, applications.json, and simulations.json are [] and tests.json has zero questions, so Roadmap V2 must add sidecars instead of claiming those sources are populated.",
+      "All 23 extant branches share the same fingerprints: the 347-lesson blob is invariant while the standalone sidecar blobs remain empty or shell-only."
+    ],
+    "prohibition": "Do not rewrite, backfill, rename, or delete legacy/runtime math objects during Roadmap V2 registry migration. Add a separate roadmapV2 namespace and explicit mappings only."
+  },
+  "protectedRuntimeConstraints": {
+    "currentTask": "THEORY_C01_L06_CORE_CONTENT_PASS_07",
+    "preserve": [
+      "E235 unchanged",
+      "E236/E237/E238 disabled",
+      "accepted §1.4 and §1.5 runtime/browser history",
+      "§1.6 academic Pass 1–6 artifacts",
+      "stage → discipline → chapter routes",
+      "all existing physical IDs and titles"
+    ],
+    "doNotEnable": [
+      "E190",
+      "E191",
+      "E192",
+      "E193",
+      "E195"
+    ]
+  },
+  "coreFiles": [
+    {
+      "path": "CODEX_STATE.md",
+      "chars": 11649,
+      "gitBlobSha": "66cc5f91d6c150f3f5fbb0c0de20959b7a5acf20"
+    },
+    {
+      "path": "subjects/math/index.html",
+      "chars": 3233,
+      "gitBlobSha": "f3f98f53459d4ce46080ffdf7eebb6c32fcda3ef"
+    },
+    {
+      "path": "subjects/math/subject-manifest.json",
+      "chars": 30570,
+      "gitBlobSha": "776827795cb3dbc7f81dfb6cf4f869d9c1dd0029"
+    },
+    {
+      "path": "subjects/math/subject-manifest.js",
+      "chars": 30597,
+      "gitBlobSha": "01f3358433a618d24b7f2453b70e570ddc3dcdba"
+    }
+  ],
+  "referencedRuntimeAssets": [
+    {
+      "path": "subjects/math/assets/core.css",
+      "chars": 949299,
+      "gitBlobSha": "b60adcee9a3c41dabab7b0473378f4a5af86a97e"
+    },
+    {
+      "path": "subjects/math/assets/math.css",
+      "chars": 154658,
+      "gitBlobSha": "8668e0e0351f8e9433f6dac95bea70e4f2c1c1b5"
+    },
+    {
+      "path": "subjects/math/assets/program_frame/program-frame-E130.js",
+      "chars": 3667,
+      "gitBlobSha": "feab4a476635478f0c9ffff1c4c33f5ac34a156d"
+    },
+    {
+      "path": "subjects/math/assets/subject-adapter.js",
+      "chars": 49319,
+      "gitBlobSha": "6f80e4a70b0a2ab6911e2caf88e91856eb0dcd53"
+    },
+    {
+      "path": "subjects/math/assets/theory_skin/theory-artifact-authoritative-route-E245.js",
+      "chars": 3239,
+      "gitBlobSha": "1a357ca7c5477b4b9d0b2e6e78c45f2febdac062"
+    },
+    {
+      "path": "subjects/math/assets/theory_skin/theory-artifact-reader-E241.js",
+      "chars": 24331,
+      "gitBlobSha": "30f726cebecb22708b571442c75368989f878b10"
+    },
+    {
+      "path": "subjects/math/assets/theory_skin/theory-artifact-registry-E244.js",
+      "chars": 5630,
+      "gitBlobSha": "996aab99055472d4adbc4e5b807809b777bc1be8"
+    },
+    {
+      "path": "subjects/math/assets/theory_skin/theory-content-source-E240.js",
+      "chars": 4501,
+      "gitBlobSha": "59d4952472bd081b807293935efd7f1d6203d7ad"
+    },
+    {
+      "path": "subjects/math/assets/theory_skin/theory-formula-fraction-align-E235.js",
+      "chars": 7651,
+      "gitBlobSha": "0a041b808473309f2bf58091ae690a7298b7c9eb"
+    },
+    {
+      "path": "subjects/math/assets/theory_skin/theory-formula-typeset-E234.js",
+      "chars": 8102,
+      "gitBlobSha": "274fbd8e1aa368eca3188a3b5786d2f24cbd8f89"
+    },
+    {
+      "path": "subjects/math/assets/theory_skin/theory-learning-final-labels-E187.js",
+      "chars": 3771,
+      "gitBlobSha": "7ef8f3df4d0b1d2291c2c9c187a1b3c588086b96"
+    },
+    {
+      "path": "subjects/math/assets/theory_skin/theory-learning-path-E186.js",
+      "chars": 17879,
+      "gitBlobSha": "8226407d1943fc5c50dcb37985460b8deb78db8d"
+    },
+    {
+      "path": "subjects/math/assets/theory_skin/theory-min-slide-contract-E239.js",
+      "chars": 4342,
+      "gitBlobSha": "49ee64d0b2fa3850c65b81ad1b6a5e7f629edad6"
+    },
+    {
+      "path": "subjects/math/assets/theory_skin/theory-presenter-route-lock-E243.js",
+      "chars": 6220,
+      "gitBlobSha": "8c2cb13c9c1c8c06c054adec6c6074308d65ea93"
+    },
+    {
+      "path": "subjects/math/assets/theory_skin/theory-slideshow-E132.css",
+      "chars": 7386,
+      "gitBlobSha": "b1c42031d6f5dbff141f73f7ee149e9d08b5aaeb"
+    },
+    {
+      "path": "subjects/math/assets/theory_skin/theory-slideshow-E202.js",
+      "chars": 29291,
+      "gitBlobSha": "ccf69b7f9c89038cba8a90e547a29b0acd15cbb4"
+    },
+    {
+      "path": "subjects/math/assets/theory_skin/theory-slideshow-identity-E210.js",
+      "chars": 7900,
+      "gitBlobSha": "6353a5c93e87643933603d848c1783225e0f7a00"
+    },
+    {
+      "path": "subjects/math/assets/theory_skin/theory-slideshow-reader-content-E211.js",
+      "chars": 32909,
+      "gitBlobSha": "4bfdeab862626b78ead65ffa7050b27f34925ad6"
+    },
+    {
+      "path": "subjects/math/assets/theory_skin/theory-slideshow-reader-fit-E212.js",
+      "chars": 15644,
+      "gitBlobSha": "5b04e0bc978b0c90a86e2739301f6e895396e84f"
+    },
+    {
+      "path": "subjects/math/assets/theory_skin/theory-slideshow-reader-formula-accuracy-E224.js",
+      "chars": 25467,
+      "gitBlobSha": "7ab0aee583d71f17a6cd9359c2aa6640d2df7ddc"
+    },
+    {
+      "path": "subjects/math/assets/theory_skin/theory-slideshow-richness-E242.js",
+      "chars": 13497,
+      "gitBlobSha": "8d07a9d15db08236ed1db39cc644ec02e5f3c281"
+    },
+    {
+      "path": "subjects/math/assets/theory_skin/theory-tab-E129.css",
+      "chars": 22856,
+      "gitBlobSha": "a6ea2f0a4f6aa5bd59051c195c413e6465505cf9"
+    },
+    {
+      "path": "subjects/math/assets/theory_skin/theory-tab-E129.js",
+      "chars": 55247,
+      "gitBlobSha": "8073e276fdc64500d816ecc3912e0d27817673c0"
+    },
+    {
+      "path": "subjects/math/assets/theory_skin/theory-title-clean-E183.css",
+      "chars": 586,
+      "gitBlobSha": "2c7b61de1711e0ec0fe9b262d418904ec8719a96"
+    },
+    {
+      "path": "subjects/math/assets/theory_skin/theory-title-clean-E183.js",
+      "chars": 1427,
+      "gitBlobSha": "8d872fdaf9b9c2a359b3e3016e42996946a70ec5"
+    },
+    {
+      "path": "subjects/math/assets/theory_skin/theory-ui-tokens-E132.css",
+      "chars": 4734,
+      "gitBlobSha": "79d9735011102f5adbbd1aca21efad8e15549800"
+    }
+  ],
+  "externalDataSources": [
+    {
+      "id": "application_content",
+      "path": "subjects/math/data/application_content.json",
+      "required": false,
+      "lazy": false,
+      "plannedCount": 0,
+      "actualPrimaryCount": 0,
+      "topLevelArrayCounts": {
+        "records": 0
+      },
+      "chars": 1843,
+      "gitBlobSha": "5b481cc1d4299dd3f05c812d644310c061c47aba",
+      "parseError": null,
+      "status": "empty_by_design_or_placeholder",
+      "planningMismatch": false
+    },
+    {
+      "id": "application_frame",
+      "path": "subjects/math/data/application_frame.json",
+      "required": false,
+      "lazy": false,
+      "plannedCount": 56,
+      "actualPrimaryCount": 56,
+      "topLevelArrayCounts": {
+        "searchKeys": 7,
+        "chapters": 56
+      },
+      "chars": 52853,
+      "gitBlobSha": "e3c27303f15a3f68088ba331815982bb676862db",
+      "parseError": null,
+      "status": "populated",
+      "planningMismatch": false
+    },
+    {
+      "id": "applications",
+      "path": "subjects/math/data/applications.json",
+      "required": true,
+      "lazy": false,
+      "plannedCount": 520,
+      "actualPrimaryCount": 0,
+      "topLevelArrayCounts": {},
+      "chars": 2,
+      "gitBlobSha": "0637a088a01e8ddab3bf3fa98dbe804cbde1a0dc",
+      "parseError": null,
+      "status": "empty_by_design_or_placeholder",
+      "planningMismatch": true
+    },
+    {
+      "id": "chapter_lecture_content",
+      "path": "subjects/math/data/chapter_lecture_content.json",
+      "required": false,
+      "lazy": false,
+      "plannedCount": 0,
+      "actualPrimaryCount": 0,
+      "topLevelArrayCounts": {
+        "records": 0
+      },
+      "chars": 1636,
+      "gitBlobSha": "58276c48f436eedd3c465dbb7b9a262efcfd779d",
+      "parseError": null,
+      "status": "empty_by_design_or_placeholder",
+      "planningMismatch": false
+    },
+    {
+      "id": "chapter_lecture_frame",
+      "path": "subjects/math/data/chapter_lecture_frame.json",
+      "required": false,
+      "lazy": false,
+      "plannedCount": 56,
+      "actualPrimaryCount": 56,
+      "topLevelArrayCounts": {
+        "searchKeys": 7,
+        "chapters": 56
+      },
+      "chars": 53132,
+      "gitBlobSha": "a39bd8bcc3ea10efed361f625878745757e56c1f",
+      "parseError": null,
+      "status": "populated",
+      "planningMismatch": false
+    },
+    {
+      "id": "chapter_lectures",
+      "path": "subjects/math/data/chapter_lectures.json",
+      "required": false,
+      "lazy": false,
+      "plannedCount": 32,
+      "actualPrimaryCount": 0,
+      "topLevelArrayCounts": {},
+      "chars": 2,
+      "gitBlobSha": "0637a088a01e8ddab3bf3fa98dbe804cbde1a0dc",
+      "parseError": null,
+      "status": "empty_by_design_or_placeholder",
+      "planningMismatch": true
+    },
+    {
+      "id": "concept_map_content",
+      "path": "subjects/math/data/concept_map_content.json",
+      "required": false,
+      "lazy": false,
+      "plannedCount": 0,
+      "actualPrimaryCount": 0,
+      "topLevelArrayCounts": {
+        "records": 0
+      },
+      "chars": 1568,
+      "gitBlobSha": "487cc19453e1646011a9345158d4d5ea2c4d6705",
+      "parseError": null,
+      "status": "empty_by_design_or_placeholder",
+      "planningMismatch": false
+    },
+    {
+      "id": "concept_map_frame",
+      "path": "subjects/math/data/concept_map_frame.json",
+      "required": false,
+      "lazy": false,
+      "plannedCount": 56,
+      "actualPrimaryCount": 56,
+      "topLevelArrayCounts": {
+        "searchKeys": 7,
+        "chapters": 56
+      },
+      "chars": 52862,
+      "gitBlobSha": "3454e0949cadf0956d4c2bf2844dcdaef98d7cd0",
+      "parseError": null,
+      "status": "populated",
+      "planningMismatch": false
+    },
+    {
+      "id": "concept-map",
+      "path": "subjects/math/data/concept-map.json",
+      "required": true,
+      "lazy": false,
+      "plannedCount": 451,
+      "actualPrimaryCount": 0,
+      "topLevelArrayCounts": {},
+      "chars": 2,
+      "gitBlobSha": "0637a088a01e8ddab3bf3fa98dbe804cbde1a0dc",
+      "parseError": null,
+      "status": "empty_by_design_or_placeholder",
+      "planningMismatch": true
+    },
+    {
+      "id": "content_vault_manifest",
+      "path": "subjects/math/data/content_vault_manifest.json",
+      "required": false,
+      "lazy": false,
+      "plannedCount": 0,
+      "actualPrimaryCount": 13,
+      "topLevelArrayCounts": {
+        "rules": 6,
+        "domains": 13
+      },
+      "chars": 13649,
+      "gitBlobSha": "c36f0006561e62cc5005cefb460cc6021c3c3b35",
+      "parseError": null,
+      "status": "populated",
+      "planningMismatch": true
+    },
+    {
+      "id": "content-index",
+      "path": "subjects/math/data/content-index.json",
+      "required": true,
+      "lazy": false,
+      "plannedCount": 260,
+      "actualPrimaryCount": 0,
+      "topLevelArrayCounts": {},
+      "chars": 2,
+      "gitBlobSha": "0637a088a01e8ddab3bf3fa98dbe804cbde1a0dc",
+      "parseError": null,
+      "status": "empty_by_design_or_placeholder",
+      "planningMismatch": true
+    },
+    {
+      "id": "content-manifest",
+      "path": "subjects/math/data/content-manifest.json",
+      "required": true,
+      "lazy": false,
+      "plannedCount": 12,
+      "actualPrimaryCount": 30,
+      "topLevelArrayCounts": {
+        "dataSources": 30
+      },
+      "chars": 11033,
+      "gitBlobSha": "e7b593cde15bc01db6a24bf632cb463befe45154",
+      "parseError": null,
+      "status": "populated",
+      "planningMismatch": true
+    },
+    {
+      "id": "curriculum",
+      "path": "subjects/math/data/curriculum.json",
+      "required": true,
+      "lazy": false,
+      "plannedCount": 6,
+      "actualPrimaryCount": 56,
+      "topLevelArrayCounts": {
+        "principles": 4,
+        "outcomes": 3,
+        "stages": 10,
+        "modules": 27,
+        "chapterSpine": 56
+      },
+      "chars": 108546,
+      "gitBlobSha": "02965e126b1b0661032dcb6a9c91428f6148c24b",
+      "parseError": null,
+      "status": "populated",
+      "planningMismatch": true
+    },
+    {
+      "id": "deep-speaking-bauman",
+      "path": "subjects/math/data/deep-speaking-bauman.json",
+      "required": false,
+      "lazy": true,
+      "plannedCount": 48,
+      "actualPrimaryCount": 48,
+      "topLevelArrayCounts": {},
+      "chars": 39256,
+      "gitBlobSha": "c34b445a753784c0ffb18997d4db3d6b3f1f62d4",
+      "parseError": null,
+      "status": "populated",
+      "planningMismatch": false
+    },
+    {
+      "id": "dialogue-bauman-az",
+      "path": "subjects/math/data/dialogue-bauman-az.json",
+      "required": false,
+      "lazy": true,
+      "plannedCount": 520,
+      "actualPrimaryCount": 520,
+      "topLevelArrayCounts": {
+        "records": 520
+      },
+      "chars": 1497884,
+      "gitBlobSha": "87a12bce84bb2c31b9df9b0687b62cd4a8edad88",
+      "parseError": null,
+      "status": "populated",
+      "planningMismatch": false
+    },
+    {
+      "id": "discipline_spine",
+      "path": "subjects/math/data/discipline_spine.json",
+      "required": true,
+      "lazy": false,
+      "plannedCount": 12,
+      "actualPrimaryCount": 12,
+      "topLevelArrayCounts": {
+        "disciplines": 12
+      },
+      "chars": 8312,
+      "gitBlobSha": "2de04bb0c29085254a44d611b6e4ea03223879c6",
+      "parseError": null,
+      "status": "populated",
+      "planningMismatch": false
+    },
+    {
+      "id": "exercise_content",
+      "path": "subjects/math/data/exercise_content.json",
+      "required": false,
+      "lazy": false,
+      "plannedCount": 0,
+      "actualPrimaryCount": 0,
+      "topLevelArrayCounts": {
+        "records": 0
+      },
+      "chars": 1776,
+      "gitBlobSha": "4152f6a0218f4c69309729043d8c6d06491d9aee",
+      "parseError": null,
+      "status": "empty_by_design_or_placeholder",
+      "planningMismatch": false
+    },
+    {
+      "id": "exercise_frame",
+      "path": "subjects/math/data/exercise_frame.json",
+      "required": false,
+      "lazy": false,
+      "plannedCount": 56,
+      "actualPrimaryCount": 56,
+      "topLevelArrayCounts": {
+        "searchKeys": 7,
+        "chapters": 56
+      },
+      "chars": 52662,
+      "gitBlobSha": "aa7009630cc7de3f6ab9fbe344081b970ae7f72c",
+      "parseError": null,
+      "status": "populated",
+      "planningMismatch": false
+    },
+    {
+      "id": "exercises",
+      "path": "subjects/math/data/exercises.json",
+      "required": true,
+      "lazy": false,
+      "plannedCount": 1040,
+      "actualPrimaryCount": 0,
+      "topLevelArrayCounts": {},
+      "chars": 2,
+      "gitBlobSha": "0637a088a01e8ddab3bf3fa98dbe804cbde1a0dc",
+      "parseError": null,
+      "status": "empty_by_design_or_placeholder",
+      "planningMismatch": true
+    },
+    {
+      "id": "formula_content",
+      "path": "subjects/math/data/formula_content.json",
+      "required": false,
+      "lazy": false,
+      "plannedCount": 0,
+      "actualPrimaryCount": 0,
+      "topLevelArrayCounts": {
+        "records": 0
+      },
+      "chars": 1846,
+      "gitBlobSha": "1cc69258313a19fe191b7237b51d164386b33701",
+      "parseError": null,
+      "status": "empty_by_design_or_placeholder",
+      "planningMismatch": false
+    },
+    {
+      "id": "formula_frame",
+      "path": "subjects/math/data/formula_frame.json",
+      "required": false,
+      "lazy": false,
+      "plannedCount": 56,
+      "actualPrimaryCount": 56,
+      "topLevelArrayCounts": {
+        "searchKeys": 7,
+        "chapters": 56
+      },
+      "chars": 52609,
+      "gitBlobSha": "4f8466a5bf08735086771cdd08b906b9167e7d96",
+      "parseError": null,
+      "status": "populated",
+      "planningMismatch": false
+    },
+    {
+      "id": "formulas",
+      "path": "subjects/math/data/formulas.json",
+      "required": true,
+      "lazy": false,
+      "plannedCount": 780,
+      "actualPrimaryCount": 0,
+      "topLevelArrayCounts": {},
+      "chars": 2,
+      "gitBlobSha": "0637a088a01e8ddab3bf3fa98dbe804cbde1a0dc",
+      "parseError": null,
+      "status": "empty_by_design_or_placeholder",
+      "planningMismatch": true
+    },
+    {
+      "id": "grammar-path",
+      "path": "subjects/math/data/grammar-path.json",
+      "required": true,
+      "lazy": false,
+      "plannedCount": 48,
+      "actualPrimaryCount": 48,
+      "topLevelArrayCounts": {},
+      "chars": 161039,
+      "gitBlobSha": "0c677ff82edcb1627c20ba6f53869fd094e0505e",
+      "parseError": null,
+      "status": "populated",
+      "planningMismatch": false
+    },
+    {
+      "id": "grammar",
+      "path": "subjects/math/data/grammar.json",
+      "required": true,
+      "lazy": false,
+      "plannedCount": 48,
+      "actualPrimaryCount": 48,
+      "topLevelArrayCounts": {},
+      "chars": 161039,
+      "gitBlobSha": "0c677ff82edcb1627c20ba6f53869fd094e0505e",
+      "parseError": null,
+      "status": "populated",
+      "planningMismatch": false
+    },
+    {
+      "id": "handwriting",
+      "path": "subjects/math/data/handwriting.json",
+      "required": false,
+      "lazy": true,
+      "plannedCount": 32,
+      "actualPrimaryCount": 32,
+      "topLevelArrayCounts": {},
+      "chars": 18422,
+      "gitBlobSha": "10b17987d50c77d7ff0c2279e8b845523510a9ff",
+      "parseError": null,
+      "status": "populated",
+      "planningMismatch": false
+    },
+    {
+      "id": "knowledge-index",
+      "path": "subjects/math/data/knowledge-index.json",
+      "required": true,
+      "lazy": false,
+      "plannedCount": 260,
+      "actualPrimaryCount": 0,
+      "topLevelArrayCounts": {},
+      "chars": 2,
+      "gitBlobSha": "0637a088a01e8ddab3bf3fa98dbe804cbde1a0dc",
+      "parseError": null,
+      "status": "empty_by_design_or_placeholder",
+      "planningMismatch": true
+    },
+    {
+      "id": "learning_rules",
+      "path": "subjects/math/data/learning_rules.json",
+      "required": true,
+      "lazy": false,
+      "plannedCount": 2,
+      "actualPrimaryCount": 2,
+      "topLevelArrayCounts": {
+        "rules": 2
+      },
+      "chars": 305,
+      "gitBlobSha": "658bef96d5016fc71ef2f44ddcecb4fb6b01e9fa",
+      "parseError": null,
+      "status": "populated",
+      "planningMismatch": false
+    },
+    {
+      "id": "lessons",
+      "path": "subjects/math/data/lessons.json",
+      "required": true,
+      "lazy": false,
+      "plannedCount": 260,
+      "actualPrimaryCount": 347,
+      "topLevelArrayCounts": {
+        "records": 347
+      },
+      "chars": 6893775,
+      "gitBlobSha": "caacdf2b0813c1300af215608c4222ca61669184",
+      "parseError": null,
+      "status": "populated",
+      "planningMismatch": true
+    },
+    {
+      "id": "mastery-map",
+      "path": "subjects/math/data/mastery-map.json",
+      "required": true,
+      "lazy": false,
+      "plannedCount": 260,
+      "actualPrimaryCount": 0,
+      "topLevelArrayCounts": {},
+      "chars": 2,
+      "gitBlobSha": "0637a088a01e8ddab3bf3fa98dbe804cbde1a0dc",
+      "parseError": null,
+      "status": "empty_by_design_or_placeholder",
+      "planningMismatch": true
+    },
+    {
+      "id": "media_content",
+      "path": "subjects/math/data/media_content.json",
+      "required": false,
+      "lazy": false,
+      "plannedCount": 0,
+      "actualPrimaryCount": 0,
+      "topLevelArrayCounts": {
+        "records": 0
+      },
+      "chars": 1551,
+      "gitBlobSha": "3b3e77214eeedff8db7d8abe81abe2da79a25c7a",
+      "parseError": null,
+      "status": "empty_by_design_or_placeholder",
+      "planningMismatch": false
+    },
+    {
+      "id": "media_frame",
+      "path": "subjects/math/data/media_frame.json",
+      "required": false,
+      "lazy": false,
+      "plannedCount": 56,
+      "actualPrimaryCount": 56,
+      "topLevelArrayCounts": {
+        "searchKeys": 7,
+        "chapters": 56
+      },
+      "chars": 52497,
+      "gitBlobSha": "d5287cb0610b78922e61da6da147e41a1d3e4dc1",
+      "parseError": null,
+      "status": "populated",
+      "planningMismatch": false
+    },
+    {
+      "id": "mindmap_content",
+      "path": "subjects/math/data/mindmap_content.json",
+      "required": false,
+      "lazy": false,
+      "plannedCount": 0,
+      "actualPrimaryCount": 0,
+      "topLevelArrayCounts": {
+        "records": 0
+      },
+      "chars": 1520,
+      "gitBlobSha": "c7cad6c5ac995b72979454baee1e952f7a0349e6",
+      "parseError": null,
+      "status": "empty_by_design_or_placeholder",
+      "planningMismatch": false
+    },
+    {
+      "id": "mindmap_frame",
+      "path": "subjects/math/data/mindmap_frame.json",
+      "required": false,
+      "lazy": false,
+      "plannedCount": 56,
+      "actualPrimaryCount": 56,
+      "topLevelArrayCounts": {
+        "searchKeys": 7,
+        "chapters": 56
+      },
+      "chars": 52595,
+      "gitBlobSha": "42184b25f33fc5133fd7a32ced130979e3304cf0",
+      "parseError": null,
+      "status": "populated",
+      "planningMismatch": false
+    },
+    {
+      "id": "mindmap",
+      "path": "subjects/math/data/mindmap.json",
+      "required": true,
+      "lazy": false,
+      "plannedCount": 5,
+      "actualPrimaryCount": 0,
+      "topLevelArrayCounts": {},
+      "chars": 2,
+      "gitBlobSha": "0637a088a01e8ddab3bf3fa98dbe804cbde1a0dc",
+      "parseError": null,
+      "status": "empty_by_design_or_placeholder",
+      "planningMismatch": true
+    },
+    {
+      "id": "professor_qa_content",
+      "path": "subjects/math/data/professor_qa_content.json",
+      "required": false,
+      "lazy": false,
+      "plannedCount": 0,
+      "actualPrimaryCount": 0,
+      "topLevelArrayCounts": {
+        "records": 0
+      },
+      "chars": 1781,
+      "gitBlobSha": "51476d257c64c07377c1d2867c53d3807385024f",
+      "parseError": null,
+      "status": "empty_by_design_or_placeholder",
+      "planningMismatch": false
+    },
+    {
+      "id": "professor_qa_frame",
+      "path": "subjects/math/data/professor_qa_frame.json",
+      "required": false,
+      "lazy": false,
+      "plannedCount": 56,
+      "actualPrimaryCount": 56,
+      "topLevelArrayCounts": {
+        "searchKeys": 7,
+        "chapters": 56
+      },
+      "chars": 52885,
+      "gitBlobSha": "e589923d1b3762b8b9f44764977639efd0086820",
+      "parseError": null,
+      "status": "populated",
+      "planningMismatch": false
+    },
+    {
+      "id": "professor_qa",
+      "path": "subjects/math/data/professor_qa.json",
+      "required": true,
+      "lazy": false,
+      "plannedCount": 260,
+      "actualPrimaryCount": 0,
+      "topLevelArrayCounts": {},
+      "chars": 2,
+      "gitBlobSha": "0637a088a01e8ddab3bf3fa98dbe804cbde1a0dc",
+      "parseError": null,
+      "status": "empty_by_design_or_placeholder",
+      "planningMismatch": true
+    },
+    {
+      "id": "question_bank_content",
+      "path": "subjects/math/data/question_bank_content.json",
+      "required": false,
+      "lazy": false,
+      "plannedCount": 0,
+      "actualPrimaryCount": 0,
+      "topLevelArrayCounts": {
+        "records": 0
+      },
+      "chars": 1900,
+      "gitBlobSha": "451a3f6822cc66daaf23d657c1cc830e4770d571",
+      "parseError": null,
+      "status": "empty_by_design_or_placeholder",
+      "planningMismatch": false
+    },
+    {
+      "id": "question_bank_frame",
+      "path": "subjects/math/data/question_bank_frame.json",
+      "required": false,
+      "lazy": false,
+      "plannedCount": 56,
+      "actualPrimaryCount": 56,
+      "topLevelArrayCounts": {
+        "searchKeys": 7,
+        "chapters": 56
+      },
+      "chars": 52973,
+      "gitBlobSha": "012ed8984d0bb5fd42f489c3e6d35cffe7f1b22a",
+      "parseError": null,
+      "status": "populated",
+      "planningMismatch": false
+    },
+    {
+      "id": "question_bank",
+      "path": "subjects/math/data/question_bank.json",
+      "required": false,
+      "lazy": true,
+      "plannedCount": 1040,
+      "actualPrimaryCount": 0,
+      "topLevelArrayCounts": {},
+      "chars": 2,
+      "gitBlobSha": "0637a088a01e8ddab3bf3fa98dbe804cbde1a0dc",
+      "parseError": null,
+      "status": "empty_by_design_or_placeholder",
+      "planningMismatch": true
+    },
+    {
+      "id": "review_pack_content",
+      "path": "subjects/math/data/review_pack_content.json",
+      "required": false,
+      "lazy": false,
+      "plannedCount": 0,
+      "actualPrimaryCount": 0,
+      "topLevelArrayCounts": {
+        "records": 0
+      },
+      "chars": 1760,
+      "gitBlobSha": "4cd1564064f6a77942b9fc7757d0ff9c2e55e854",
+      "parseError": null,
+      "status": "empty_by_design_or_placeholder",
+      "planningMismatch": false
+    },
+    {
+      "id": "review_pack_frame",
+      "path": "subjects/math/data/review_pack_frame.json",
+      "required": false,
+      "lazy": false,
+      "plannedCount": 56,
+      "actualPrimaryCount": 56,
+      "topLevelArrayCounts": {
+        "searchKeys": 7,
+        "chapters": 56
+      },
+      "chars": 52848,
+      "gitBlobSha": "eeb9dd37c6a13747489e214c2d7af835153adebb",
+      "parseError": null,
+      "status": "populated",
+      "planningMismatch": false
+    },
+    {
+      "id": "review_packs",
+      "path": "subjects/math/data/review_packs.json",
+      "required": false,
+      "lazy": true,
+      "plannedCount": 260,
+      "actualPrimaryCount": 0,
+      "topLevelArrayCounts": {},
+      "chars": 2,
+      "gitBlobSha": "0637a088a01e8ddab3bf3fa98dbe804cbde1a0dc",
+      "parseError": null,
+      "status": "empty_by_design_or_placeholder",
+      "planningMismatch": true
+    },
+    {
+      "id": "simulation_content",
+      "path": "subjects/math/data/simulation_content.json",
+      "required": false,
+      "lazy": false,
+      "plannedCount": 0,
+      "actualPrimaryCount": 0,
+      "topLevelArrayCounts": {
+        "records": 0
+      },
+      "chars": 2014,
+      "gitBlobSha": "f62dad307ccf70972446c24ae2d4f3ce1a916817",
+      "parseError": null,
+      "status": "empty_by_design_or_placeholder",
+      "planningMismatch": false
+    },
+    {
+      "id": "simulation_frame",
+      "path": "subjects/math/data/simulation_frame.json",
+      "required": false,
+      "lazy": false,
+      "plannedCount": 56,
+      "actualPrimaryCount": 56,
+      "topLevelArrayCounts": {
+        "searchKeys": 7,
+        "chapters": 56
+      },
+      "chars": 52796,
+      "gitBlobSha": "784f18941eb2d971e0aeb2d99a6c315f3d811739",
+      "parseError": null,
+      "status": "populated",
+      "planningMismatch": false
+    },
+    {
+      "id": "simulations",
+      "path": "subjects/math/data/simulations.json",
+      "required": true,
+      "lazy": false,
+      "plannedCount": 260,
+      "actualPrimaryCount": 0,
+      "topLevelArrayCounts": {},
+      "chars": 2,
+      "gitBlobSha": "0637a088a01e8ddab3bf3fa98dbe804cbde1a0dc",
+      "parseError": null,
+      "status": "empty_by_design_or_placeholder",
+      "planningMismatch": true
+    },
+    {
+      "id": "speaking-link-index",
+      "path": "subjects/math/data/speaking-link-index.json",
+      "required": false,
+      "lazy": true,
+      "plannedCount": 2,
+      "actualPrimaryCount": 48,
+      "topLevelArrayCounts": {
+        "items": 48
+      },
+      "chars": 11079,
+      "gitBlobSha": "335d77861fadee6c31cf6bc36bdb81d3d7621109",
+      "parseError": null,
+      "status": "populated",
+      "planningMismatch": true
+    },
+    {
+      "id": "speaking",
+      "path": "subjects/math/data/speaking.json",
+      "required": false,
+      "lazy": true,
+      "plannedCount": 260,
+      "actualPrimaryCount": 260,
+      "topLevelArrayCounts": {
+        "records": 260
+      },
+      "chars": 3838176,
+      "gitBlobSha": "5b03f27bb3057e33248fb558da24e557698df652",
+      "parseError": null,
+      "status": "populated",
+      "planningMismatch": false
+    },
+    {
+      "id": "test_blueprint_content",
+      "path": "subjects/math/data/test_blueprint_content.json",
+      "required": false,
+      "lazy": false,
+      "plannedCount": 0,
+      "actualPrimaryCount": 0,
+      "topLevelArrayCounts": {
+        "records": 0
+      },
+      "chars": 1676,
+      "gitBlobSha": "89072ee2e07ca790e1fcaf0b46dd99ef615e93c7",
+      "parseError": null,
+      "status": "empty_by_design_or_placeholder",
+      "planningMismatch": false
+    },
+    {
+      "id": "test_blueprint_frame",
+      "path": "subjects/math/data/test_blueprint_frame.json",
+      "required": false,
+      "lazy": false,
+      "plannedCount": 56,
+      "actualPrimaryCount": 56,
+      "topLevelArrayCounts": {
+        "searchKeys": 7,
+        "chapters": 56
+      },
+      "chars": 53046,
+      "gitBlobSha": "9b668cb0557002b8860c0453cefa59ddcf76f8f1",
+      "parseError": null,
+      "status": "populated",
+      "planningMismatch": false
+    },
+    {
+      "id": "test_blueprints",
+      "path": "subjects/math/data/test_blueprints.json",
+      "required": false,
+      "lazy": true,
+      "plannedCount": 32,
+      "actualPrimaryCount": 0,
+      "topLevelArrayCounts": {},
+      "chars": 2,
+      "gitBlobSha": "0637a088a01e8ddab3bf3fa98dbe804cbde1a0dc",
+      "parseError": null,
+      "status": "empty_by_design_or_placeholder",
+      "planningMismatch": true
+    },
+    {
+      "id": "tests",
+      "path": "subjects/math/data/tests.json",
+      "required": false,
+      "lazy": true,
+      "plannedCount": 4,
+      "actualPrimaryCount": 0,
+      "topLevelArrayCounts": {
+        "levels": 4,
+        "questions": 0
+      },
+      "chars": 268,
+      "gitBlobSha": "9d048963479d0ea6e77d6b13c5fb555f68eaf2ca",
+      "parseError": null,
+      "status": "empty_by_design_or_placeholder",
+      "planningMismatch": true
+    },
+    {
+      "id": "theory_lecture_content",
+      "path": "subjects/math/data/theory_lecture_content.json",
+      "required": true,
+      "lazy": false,
+      "plannedCount": 18,
+      "actualPrimaryCount": 18,
+      "topLevelArrayCounts": {
+        "records": 18
+      },
+      "chars": 233985,
+      "gitBlobSha": "0a7c49c25c0546411717dc5c39308c0c71d2a2e1",
+      "parseError": null,
+      "status": "populated",
+      "planningMismatch": false
+    },
+    {
+      "id": "theory_lecture_frame",
+      "path": "subjects/math/data/theory_lecture_frame.json",
+      "required": true,
+      "lazy": false,
+      "plannedCount": 56,
+      "actualPrimaryCount": 56,
+      "topLevelArrayCounts": {
+        "stages": 10,
+        "chapters": 56,
+        "searchKeys": 5
+      },
+      "chars": 169334,
+      "gitBlobSha": "09b45ec03c119b3b72500ad2683bccd6cc6d11d3",
+      "parseError": null,
+      "status": "populated",
+      "planningMismatch": false
+    },
+    {
+      "id": "theory-framework",
+      "path": "subjects/math/data/theory-framework.json",
+      "required": true,
+      "lazy": false,
+      "plannedCount": 13,
+      "actualPrimaryCount": 8,
+      "topLevelArrayCounts": {
+        "faculties": 5,
+        "checkpointHistory": 8
+      },
+      "chars": 397661,
+      "gitBlobSha": "fb3a9a052e6c467c03bea5204dae10303ba73766",
+      "parseError": null,
+      "status": "populated",
+      "planningMismatch": true
+    },
+    {
+      "id": "videos",
+      "path": "subjects/math/data/videos.json",
+      "required": true,
+      "lazy": false,
+      "plannedCount": 18,
+      "actualPrimaryCount": 18,
+      "topLevelArrayCounts": {},
+      "chars": 9755,
+      "gitBlobSha": "681a0d1ee30a2e205484aed7d56cd25eb312f638",
+      "parseError": null,
+      "status": "populated",
+      "planningMismatch": false
+    },
+    {
+      "id": "vocab",
+      "path": "subjects/math/data/vocab.json",
+      "required": true,
+      "lazy": false,
+      "plannedCount": 852,
+      "actualPrimaryCount": 852,
+      "topLevelArrayCounts": {},
+      "chars": 792271,
+      "gitBlobSha": "523cd17db6215ff26b3e33f1c980d2ba7d54eb8c",
+      "parseError": null,
+      "status": "populated",
+      "planningMismatch": false
+    },
+    {
+      "id": "writing",
+      "path": "subjects/math/data/writing.json",
+      "required": false,
+      "lazy": true,
+      "plannedCount": 48,
+      "actualPrimaryCount": 48,
+      "topLevelArrayCounts": {},
+      "chars": 53721,
+      "gitBlobSha": "9690bbcc5261636ed7ef197044d0fdbba11b5b06",
+      "parseError": null,
+      "status": "populated",
+      "planningMismatch": false
+    }
+  ],
+  "dataAudit": {
+    "totalSources": 58,
+    "populated": 31,
+    "emptyOrPlaceholder": 27,
+    "invalidJson": 0,
+    "requiredEmpty": [
+      "applications",
+      "concept-map",
+      "content-index",
+      "exercises",
+      "formulas",
+      "knowledge-index",
+      "mastery-map",
+      "mindmap",
+      "professor_qa",
+      "simulations"
+    ],
+    "manifestPlanningMismatches": [
+      {
+        "id": "applications",
+        "planned": 520,
+        "actual": 0
+      },
+      {
+        "id": "chapter_lectures",
+        "planned": 32,
+        "actual": 0
+      },
+      {
+        "id": "concept-map",
+        "planned": 451,
+        "actual": 0
+      },
+      {
+        "id": "content_vault_manifest",
+        "planned": 0,
+        "actual": 13
+      },
+      {
+        "id": "content-index",
+        "planned": 260,
+        "actual": 0
+      },
+      {
+        "id": "content-manifest",
+        "planned": 12,
+        "actual": 30
+      },
+      {
+        "id": "curriculum",
+        "planned": 6,
+        "actual": 56
+      },
+      {
+        "id": "exercises",
+        "planned": 1040,
+        "actual": 0
+      },
+      {
+        "id": "formulas",
+        "planned": 780,
+        "actual": 0
+      },
+      {
+        "id": "knowledge-index",
+        "planned": 260,
+        "actual": 0
+      },
+      {
+        "id": "lessons",
+        "planned": 260,
+        "actual": 347
+      },
+      {
+        "id": "mastery-map",
+        "planned": 260,
+        "actual": 0
+      },
+      {
+        "id": "mindmap",
+        "planned": 5,
+        "actual": 0
+      },
+      {
+        "id": "professor_qa",
+        "planned": 260,
+        "actual": 0
+      },
+      {
+        "id": "question_bank",
+        "planned": 1040,
+        "actual": 0
+      },
+      {
+        "id": "review_packs",
+        "planned": 260,
+        "actual": 0
+      },
+      {
+        "id": "simulations",
+        "planned": 260,
+        "actual": 0
+      },
+      {
+        "id": "speaking-link-index",
+        "planned": 2,
+        "actual": 48
+      },
+      {
+        "id": "test_blueprints",
+        "planned": 32,
+        "actual": 0
+      },
+      {
+        "id": "tests",
+        "planned": 4,
+        "actual": 0
+      },
+      {
+        "id": "theory-framework",
+        "planned": 13,
+        "actual": 8
+      }
+    ]
+  },
+  "protectedMathChaptersFromCurriculum": [
+    {
+      "chapterId": "MATH-VN-C01-vector_trong_khong_gian_",
+      "globalChapterNo": 1,
+      "chapterTitle": "Chương 1 · Vector trong không gian dữ liệu",
+      "stageId": "vn",
+      "disciplineId": "dept_vn_linear_vn",
+      "contentStatus": "planned_empty"
+    },
+    {
+      "chapterId": "MATH-VN-C02-ma_tran_va_phep_bien_oi_",
+      "globalChapterNo": 2,
+      "chapterTitle": "Chương 2 · Ma trận và phép biến đổi tuyến tính",
+      "stageId": "vn",
+      "disciplineId": "dept_vn_linear_vn",
+      "contentStatus": "planned_empty"
+    },
+    {
+      "chapterId": "MATH-VN-C03-ham_so_ao_ham_va_gradien",
+      "globalChapterNo": 3,
+      "chapterTitle": "Chương 1 · Hàm số, đạo hàm và gradient cơ bản",
+      "stageId": "vn",
+      "disciplineId": "dept_vn_calculus_data_vn",
+      "contentStatus": "planned_empty"
+    },
+    {
+      "chapterId": "MATH-VN-C04-xac_suat_co_ban_va_bien_",
+      "globalChapterNo": 4,
+      "chapterTitle": "Chương 2 · Xác suất cơ bản và biến ngẫu nhiên",
+      "stageId": "vn",
+      "disciplineId": "dept_vn_calculus_data_vn",
+      "contentStatus": "planned_empty"
+    },
+    {
+      "chapterId": "MATH-VN-C05-thong_ke_mo_ta_va_du_lie",
+      "globalChapterNo": 5,
+      "chapterTitle": "Chương 3 · Thống kê mô tả và dữ liệu thực nghiệm",
+      "stageId": "vn",
+      "disciplineId": "dept_vn_calculus_data_vn",
+      "contentStatus": "planned_empty"
+    },
+    {
+      "chapterId": "MATH-VN-C06-python_numpy_cho_tinh_to",
+      "globalChapterNo": 6,
+      "chapterTitle": "Chương 1 · Python/Numpy cho tính toán toán học",
+      "stageId": "vn",
+      "disciplineId": "dept_vn_computing_vn",
+      "contentStatus": "planned_empty"
+    },
+    {
+      "chapterId": "MATH-PREP-C07-ngon_ngu_toan_ky_thuat_n",
+      "globalChapterNo": 7,
+      "chapterTitle": "Chương 1 · Ngôn ngữ toán kỹ thuật Nga: ký hiệu, câu lệnh và cách đọc công thức",
+      "stageId": "prep",
+      "disciplineId": "dept_prep_russian_math_language",
+      "contentStatus": "planned_empty"
+    }
+  ],
+  "frameworkOutlineCovarianceCorrelationPcaCandidates": [
+    {
+      "jsonPath": "$.faculties[0].departments[0].chapters[2]",
+      "id": "m_p07",
+      "title": "Chương 3 · Hiệp phương sai, tương quan và PCA nhập môn",
+      "chapterNumber": 7,
+      "order": 7,
+      "week": "W7",
+      "minimumTotalSlides": 64,
+      "recommendedTotalSlides": 80,
+      "arrayCounts": {
+        "subLessons": 8
+      },
+      "subLessons": [
+        {
+          "id": "m_p07_t01",
+          "title": "§3.1. Dữ liệu đa chiều và ma trận dữ liệu X",
+          "minimumSlides": 8,
+          "recommendedSlides": 10,
+          "contentStatus": "outline_only_waiting_for_full_content"
+        },
+        {
+          "id": "m_p07_t02",
+          "title": "§3.2. Trung tâm hóa và chuẩn hóa đặc trưng trước khi phân tích",
+          "minimumSlides": 8,
+          "recommendedSlides": 10,
+          "contentStatus": "outline_only_waiting_for_full_content"
+        },
+        {
+          "id": "m_p07_t03",
+          "title": "§3.3. Hiệp phương sai: cùng tăng, cùng giảm và độ lệch khỏi trung bình",
+          "minimumSlides": 8,
+          "recommendedSlides": 10,
+          "contentStatus": "outline_only_waiting_for_full_content"
+        },
+        {
+          "id": "m_p07_t04",
+          "title": "§3.4. Tương quan Pearson và giới hạn của việc đọc tương quan",
+          "minimumSlides": 8,
+          "recommendedSlides": 10,
+          "contentStatus": "outline_only_waiting_for_full_content"
+        },
+        {
+          "id": "m_p07_t05",
+          "title": "§3.5. Ma trận hiệp phương sai và ý nghĩa từng ô",
+          "minimumSlides": 8,
+          "recommendedSlides": 10,
+          "contentStatus": "outline_only_waiting_for_full_content"
+        },
+        {
+          "id": "m_p07_t06",
+          "title": "§3.6. Trị riêng, vector riêng của covariance matrix",
+          "minimumSlides": 8,
+          "recommendedSlides": 10,
+          "contentStatus": "outline_only_waiting_for_full_content"
+        },
+        {
+          "id": "m_p07_t07",
+          "title": "§3.7. PCA nhập môn: phương sai giải thích và trục chính",
+          "minimumSlides": 8,
+          "recommendedSlides": 10,
+          "contentStatus": "outline_only_waiting_for_full_content"
+        },
+        {
+          "id": "m_p07_t08",
+          "title": "§3.8. Tái tạo dữ liệu và sai số khi giảm chiều",
+          "minimumSlides": 8,
+          "recommendedSlides": 10,
+          "contentStatus": "outline_only_waiting_for_full_content"
+        }
+      ]
+    }
+  ],
+  "legacyCompositeCovarianceCorrelationPca": {
+    "logicalChapterId": "MATH-L2-C07",
+    "physicalSource": "subjects/math/data/lessons.json",
+    "physicalSourceGitBlobSha": "caacdf2b0813c1300af215608c4222ca61669184",
+    "mappingPolicy": "minimum_verified_legacy_refs_preserve_physical_ids",
+    "lessons": [
+      {
+        "id": "MATH-VN-PS-C05-L05",
+        "chapterId": "MATH-VN-PS-C05",
+        "sourceChapterNo": 4,
+        "title": "§2.5 · Hiệp phương sai của hai biến ngẫu nhiên",
+        "slideCount": 16
+      },
+      {
+        "id": "MATH-PREP-LA2-C10-L05",
+        "chapterId": "MATH-PREP-LA2-C10",
+        "sourceChapterNo": 10,
+        "title": "§10.5 · Ma trận hiệp phương sai và hướng phương sai lớn nhất",
+        "slideCount": 16
+      },
+      {
+        "id": "MATH-PREP-LA2-C10-L06",
+        "chapterId": "MATH-PREP-LA2-C10",
+        "sourceChapterNo": 10,
+        "title": "§10.6 · PCA: giảm chiều bằng phương sai giải thích",
+        "slideCount": 16
+      },
+      {
+        "id": "MATH-PREP-LA2-C10-L07",
+        "chapterId": "MATH-PREP-LA2-C10",
+        "sourceChapterNo": 10,
+        "title": "§10.7 · SVD: phân rã ma trận dữ liệu và liên hệ với PCA",
+        "slideCount": 16
+      },
+      {
+        "id": "MATH-PREP-PS2-C15-L06",
+        "chapterId": "MATH-PREP-PS2-C15",
+        "sourceChapterNo": 15,
+        "title": "§15.6 · Hiệp phương sai, tương quan và nhiễu cảm biến nhiều chiều",
+        "slideCount": 16
+      }
+    ],
+    "sidecarGaps": ["formula", "exercise", "simulation", "test"]
+  },
+  "durableTheoryContent": {
+    "path": "subjects/math/data/theory_lecture_content.json",
+    "gitBlobSha": "0a7c49c25c0546411717dc5c39308c0c71d2a2e1",
+    "recordCount": 18,
+    "totalSlides": 300,
+    "distribution": {
+      "MATH-VN-C01-vector_trong_khong_gian_": {
+        "records": 6,
+        "slides": 108,
+        "lessonIds": [
+          "MATH-VN-C01-vector_trong_khong_gian_-L01-vector-as-engineering-data-e130",
+          "MATH-VN-C01-vector_trong_khong_gian_-L02-norm-distance-metric-e139",
+          "MATH-VN-C01-vector_trong_khong_gian_-L03-dot-angle-projection-e139",
+          "MATH-VN-C01-vector_trong_khong_gian_-L04-basis-span-coordinate-e140",
+          "MATH-VN-C01-vector_trong_khong_gian_-L05-subspace-data-representation-e140",
+          "MATH-VN-C01-vector_trong_khong_gian_-L06-vector-to-data-matrix-e140"
+        ]
+      },
+      "MATH-VN-C02-ma_tran_va_phep_bien_oi_": {
+        "records": 6,
+        "slides": 96,
+        "lessonIds": [
+          "MATH-VN-C02-ma_tran_va_phep_bien_oi_-L01-matrix-as-data-and-transform-e142",
+          "MATH-VN-C02-ma_tran_va_phep_bien_oi_-L02-matrix-multiplication-pipeline-e142",
+          "MATH-VN-C02-ma_tran_va_phep_bien_oi_-L03-rank-column-space-independent-information-e142",
+          "MATH-VN-C02-ma_tran_va_phep_bien_oi_-L04-inverse-linear-system-solution-e143",
+          "MATH-VN-C02-ma_tran_va_phep_bien_oi_-L05-linear-transform-geometry-data-e143",
+          "MATH-VN-C02-ma_tran_va_phep_bien_oi_-L06-matrix-to-pca-linear-model-e143"
+        ]
+      },
+      "MATH-VN-C03-giai_tich_dao_ham_gradient": {
+        "records": 6,
+        "slides": 96,
+        "lessonIds": [
+          "MATH-VN-C03-giai_tich_dao_ham_gradient-L01-function-as-input-output-model-e145",
+          "MATH-VN-C03-giai_tich_dao_ham_gradient-L02-derivative-system-sensitivity-e145",
+          "MATH-VN-C03-giai_tich_dao_ham_gradient-L03-gradient-direction-fastest-change-e145",
+          "MATH-VN-C03-giai_tich_dao_ham_gradient-L04-gradient-descent-learning-rate-e146",
+          "MATH-VN-C03-giai_tich_dao_ham_gradient-L05-loss-extrema-optimality-e146",
+          "MATH-VN-C03-giai_tich_dao_ham_gradient-L06-gradient-backprop-ml-optimization-e146"
+        ]
+      }
+    }
+  },
+  "crossBranchLegacyCheck": {
+    "checkedBranches": [
+      "academic/l06-pass01-baseline-audit",
+      "academic/l06-pass02-learning-contract",
+      "academic/l06-pass03-source-map-terminology",
+      "academic/l06-pass04-formula-registry",
+      "academic/l06-pass05-engineering-case",
+      "academic/l06-pass06-misconception-map",
+      "codex/e146-merge-c03-l04-l06",
+      "codex/e147-c04-staged-content",
+      "codex/e149-c01-l01-content-depth",
+      "codex/e150-c01-l01-clean-replacement",
+      "codex/main-system-audit",
+      "e215-browser-smoke",
+      "main",
+      "runtime/l05-pass15-durable-merge",
+      "runtime/l05-pass17-static-validation",
+      "runtime/l05-pass17-static-verify",
+      "runtime/l05-pass18-static-verify",
+      "runtime/l05-pass19-chromium-final",
+      "runtime/l05-pass19-chromium-qa",
+      "runtime/l05-pass19-chromium-qa-v2",
+      "runtime/l05-pass19-revalidate-v3",
+      "runtime/l05-pass19-revalidate-v4",
+      "runtime/l05-pass19-revalidate-v5"
+    ],
+    "checkedCount": 23,
+    "commonFingerprints": {
+      "subjects/math/data/lessons.json": "caacdf2b0813c1300af215608c4222ca61669184",
+      "subjects/math/data/formulas.json": "0637a088a01e8ddab3bf3fa98dbe804cbde1a0dc",
+      "subjects/math/data/exercises.json": "0637a088a01e8ddab3bf3fa98dbe804cbde1a0dc",
+      "subjects/math/data/simulations.json": "0637a088a01e8ddab3bf3fa98dbe804cbde1a0dc",
+      "subjects/math/data/tests.json": "9d048963479d0ea6e77d6b13c5fb555f68eaf2ca"
+    },
+    "result": "The same populated 347-lesson blob is present on all checked branches; formula/exercise/simulation arrays and the test-question set remain empty. No branch drift was detected."
+  },
+  "fingerprintContract": {
+    "algorithm": "Git object blob SHA-1 per file, anchored to immutable HEAD commit",
+    "compositeInput": "Sorted path + gitBlobSha + char count for core, runtime assets, and all external data sources",
+    "note": "A separate SHA-256 checksum is generated for this canonical inventory JSON."
+  },
+  "acceptance": {
+    "repositoryResolved": true,
+    "headPinned": true,
+    "manifestParsed": true,
+    "runtimeAssetsFingerprinted": true,
+    "allExternalDataParsed": true,
+    "legacyCompositeLocated": true,
+    "legacyLessonBlobDecoded": true,
+    "standaloneSidecarGapsExplained": true,
+    "branchDriftExcluded": true,
+    "runtimeModified": false,
+    "result": "PASS"
+  }
+}

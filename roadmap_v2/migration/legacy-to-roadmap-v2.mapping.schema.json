@@ -1,0 +1,90 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://bauman.local/schemas/legacy-to-roadmap-v2.mapping.schema.json",
+  "title": "Bauman Roadmap V2 Legacy Mapping",
+  "type": "object",
+  "required": [
+    "schema",
+    "version",
+    "source",
+    "target",
+    "mappingRules",
+    "legacyLessonMappings",
+    "overlayMappings",
+    "frameworkMappings",
+    "sidecarSourceGaps",
+    "newTargetNodes",
+    "validation"
+  ],
+  "properties": {
+    "schema": { "const": "BAUMAN_ROADMAP_V2_LEGACY_MAPPING_V2" },
+    "version": { "const": 2 },
+    "source": { "type": "object" },
+    "target": { "type": "object" },
+    "mappingRules": { "type": "object" },
+    "legacyLessonMappings": {
+      "type": "array",
+      "minItems": 347,
+      "maxItems": 347,
+      "items": { "$ref": "#/$defs/sourceMapping" }
+    },
+    "overlayMappings": {
+      "type": "array",
+      "minItems": 18,
+      "maxItems": 18,
+      "items": { "$ref": "#/$defs/sourceMapping" }
+    },
+    "frameworkMappings": {
+      "type": "array",
+      "minItems": 21,
+      "maxItems": 21,
+      "items": { "$ref": "#/$defs/sourceMapping" }
+    },
+    "sidecarSourceGaps": { "type": "array", "minItems": 5 },
+    "newTargetNodes": { "type": "array" },
+    "validation": {
+      "type": "object",
+      "required": [
+        "legacyLessonsInventoried",
+        "legacyLessonIdsUnique",
+        "exactLegacyLessonMappingsVerified",
+        "preservedLegacyLessonsUnmapped",
+        "overlayRecordsInventoried",
+        "frameworkChaptersInventoried",
+        "frameworkSubLessonsInventoried",
+        "priorityEngineEligibleLegacyRecords",
+        "inPlaceLegacyMutations",
+        "mappingCompleteAsInventory",
+        "semanticMappingComplete",
+        "result"
+      ],
+      "properties": {
+        "legacyLessonsInventoried": { "const": 347 },
+        "legacyLessonIdsUnique": { "const": 347 },
+        "exactLegacyLessonMappingsVerified": { "const": 5 },
+        "preservedLegacyLessonsUnmapped": { "const": 342 },
+        "overlayRecordsInventoried": { "const": 18 },
+        "frameworkChaptersInventoried": { "const": 21 },
+        "frameworkSubLessonsInventoried": { "const": 172 },
+        "priorityEngineEligibleLegacyRecords": { "const": 0 },
+        "inPlaceLegacyMutations": { "const": 0 },
+        "mappingCompleteAsInventory": { "const": true },
+        "semanticMappingComplete": { "const": false },
+        "result": { "const": "PASS_CONTRACT_ONLY" }
+      }
+    }
+  },
+  "$defs": {
+    "sourceMapping": {
+      "type": "object",
+      "required": ["sourceType", "legacyId", "mappingStatus"],
+      "properties": {
+        "sourceType": { "type": "string", "minLength": 1 },
+        "legacyId": { "type": "string", "minLength": 1 },
+        "mappingStatus": { "type": "string", "minLength": 1 },
+        "inPlaceMutationAllowed": { "const": false },
+        "priorityEngineEligible": { "const": false }
+      }
+    }
+  }
+}
