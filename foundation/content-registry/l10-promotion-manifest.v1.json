@@ -2,7 +2,7 @@
   "schema": "BAUMAN_FOUNDATION_L10_PROMOTION_V1",
   "version": 1,
   "status": "promotion_candidate",
-  "scope": "L10 content asset provenance foundation",
+  "scope": "Content, asset, provenance, integrity, access, and snapshot foundation",
   "baseCompatibility": {
     "strategy": "additive",
     "l9DomainContractSchema": "BAUMAN_DOMAIN_CONTRACT_V1",
@@ -105,5 +105,7 @@
     "rewrite legacy content paths or learning state",
     "clear user storage",
     "merge to main without a separately approved promotion"
-  ]
+  ],
+  "architectureName": "Foundation — Content, Asset & Provenance Registry",
+  "historicalCheckpoint": "L10"
 }
