@@ -1,0 +1,67 @@
+{
+  "schema": "RUSSIAN_DIALOGUE_SCAFFOLD_CONTRACT_V1",
+  "contractVersion": 1,
+  "authority": {
+    "learnerFacingScaffold": "RUSSIAN_DIALOGUE_SCAFFOLD_V1",
+    "legacyTranslationFieldsSourceCompatible": true,
+    "masteryAuthorityUnchanged": true,
+    "speakingEvidenceAuthorityUnchanged": true
+  },
+  "channels": [
+    "scene_icon",
+    "russian_context",
+    "russian_purpose",
+    "role_cue",
+    "vocabulary_seed_ru",
+    "russian_line"
+  ],
+  "sourceFields": {
+    "russianContext": [
+      "context_title_ru",
+      "title_ru",
+      "scene_ru",
+      "situation_ru"
+    ],
+    "russianPurpose": [
+      "purpose_ru",
+      "communicative_functions_ru",
+      "goal_ru"
+    ],
+    "vocabularySeed": [
+      "vocabulary_seed_ru"
+    ],
+    "lineRussian": [
+      "ru",
+      "text_ru",
+      "text"
+    ]
+  },
+  "prohibitedLearnerFacingFields": [
+    "context_title_vi",
+    "communicative_functions_vi",
+    "purpose_vi",
+    "vi",
+    "meaning_vi",
+    "translation_vi",
+    "clue_en",
+    "meaning_en",
+    "translation_en",
+    "en"
+  ],
+  "missingContext": {
+    "status": "missing_dialogue_context",
+    "translationFallback": false,
+    "lineRussianStillAllowed": true
+  },
+  "practice": {
+    "preserveHearBeforeSee": true,
+    "russianContextHiddenBeforeFirstListen": true,
+    "roleCueMayRemainOperational": true
+  },
+  "invariants": {
+    "noVietnameseSemanticGloss": true,
+    "noEnglishSemanticGloss": true,
+    "learnerStateAuthority": false,
+    "masteryMutation": false
+  }
+}
