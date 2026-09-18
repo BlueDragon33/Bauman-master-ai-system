@@ -29,6 +29,7 @@ on:
       - 'scripts/validate-roadmap-v2-l24-h1-prerequisite-policy.mjs'
       - 'scripts/validate-roadmap-v2-l24-b95.mjs'
       - 'scripts/validate-roadmap-v2-l24-b96.mjs'
+      - 'scripts/validate-roadmap-v2-l25-b97.mjs'
       - '.github/workflows/roadmap-v2-reconciliation.yml'
 
 permissions:
@@ -79,6 +80,8 @@ jobs:
         run: node scripts/validate-roadmap-v2-l24-b95.mjs
       - name: Validate current L24 B96 closeout
         run: node scripts/validate-roadmap-v2-l24-b96.mjs
+      - name: Validate current L25 B97 priority contract
+        run: node scripts/validate-roadmap-v2-l25-b97.mjs
       - name: Validate Foundation V2 L9
         run: node scripts/validate-foundation-domain-model.mjs
       - name: Validate current system integration
