@@ -1,51 +1,99 @@
 # CODEX_STATE
 
-Current task: `BAUMAN_CHAT_FIRST_PRESERVATION_AND_SAFE_REDESIGN`
+Current task: `BAUMAN_ARCHITECTURE_NAMING_AND_LAYER_MAP`
 
-Status: `SAFE_REDESIGN_R1_ACTIVE`
+Status: `ARCHITECTURE_MAP_ACTIVE`
 
-Date: 2026-09-17
-Branch: `work/math-presenter-runtime-gate`
-Base main: `f86c8ac3c68177d873c4bf702c621b5cb560c247`
+Date: 2026-09-18
 
-## Operating policy
-- CHAT FIRST. Use normal chat/GitHub tools for repo inspection, diffs, code/data/UI fixes, CI and review whenever possible.
-- WORK LAST. Work is allowed only when a required GUI/live-browser workflow cannot be completed from chat.
-- Work must be surgical: one narrow task, minimum files, no whole-project rewrite.
-- Keep one active working branch plus `main`; do not create extra working branches unless explicitly requested.
+Current working branch: `work/foundation-v2-l10-content-asset-provenance`
 
-## Preservation baseline — GREEN
-- Windows checkout: PASS.
-- Cloudflare Preview boundary: PASS.
-- Whole-system static validation + changed JavaScript parse: PASS.
-- Whole-system browser acceptance: PASS.
-- Math Study Command Center browser acceptance: PASS.
-- Hub V2 responsive acceptance, including 1536x864: PASS.
-- Packaged owner-private ChatGPT Site browser acceptance: PASS.
-- Packaged Hub V2 responsive acceptance: PASS.
-- The transient `hub-mountains.svg net::ERR_ABORTED` request did not reproduce on rerun or post-merge main validation and was not masked by weakening the test.
+> The branch name is historical and predates the current naming rule. Do not reuse the `foundation-v2` naming pattern for future branches.
 
-## Current safe redesign state
-- The preservation baseline requirement is satisfied; premium Hub redesign may proceed.
-- Authoritative runtime remains `assets/js/main.js` + Planning + Academic 2026 + Scheduler + Device Gate.
-- `hub-safe-shell.js` remains additive and does not replace `app.home()`, route ownership or canonical state.
-- Dormant legacy V2 orchestration files remain non-authoritative and are not booted by root `index.html`.
-- Safe Redesign R1 adds only a presentation stylesheet: `assets/css/hub-safe-redesign-r1.css`.
-- R1 improves premium depth, subject-card hierarchy, focus visibility and reduced-motion behavior without changing dashboard heights or hiding functions.
+## Primary architecture reference
 
-## Gate state for R1
-- R1 CI/regression validation: pending current branch run.
-- W4 publication: BLOCKED until the safe redesign sequence is completed and receives a fresh W3 acceptance lineage.
+Use `ARCHITECTURE.md` as the first document for understanding ownership, dependencies, and where a future change belongs.
 
-## Protected contracts
-- Preserve all existing learning content, JSON/data, progress/state, schedule, routes and subject apps.
-- Preserve §1.4, §1.5, §1.6 accepted Math runtime behavior.
-- §1.6 remains 22 source slides -> 22 runtime slides, one-to-one, `compression: false`.
-- No new slideshow engine.
-- E235 unchanged; E236/E237/E238 disabled.
-- Preserve `UGV_TELEMETRY_8X6 / CASE_C01_L06_V1_LOCKED`.
-- Do not weaken Device Gate outside the explicit owner-private ChatGPT Site package boundary.
-- No simulation changes unless explicitly requested.
+Architecture names are responsibility-based. Version numbers are reserved for technical compatibility contracts only.
 
-## Safe redesign rule
-Continue in small additive/presentational slices. Do not replace `app.home`, route ownership, canonical state stores, subject registries or existing learning content. Each slice must pass whole-system, Math, Hub responsive and packaged ChatGPT Site gates before merge.
+## Current foundation state
+
+### Foundation — Identity & Domain Model
+
+Historical checkpoint: L9.
+
+State: frozen additive compatibility layer.
+
+Responsibilities:
+
+- canonical identity;
+- domain entities;
+- legacy mapping;
+- identity overlay;
+- durable canonical read projection;
+- read-only canonical consumer context.
+
+### Foundation — Content, Asset & Provenance Registry
+
+Historical checkpoint: L10.
+
+State: `promotion_candidate`.
+
+Freeze head before architecture naming cleanup: `e8987dba7aca3acff7df012cb5d58922e7149aa3`.
+
+Responsibilities:
+
+- content/asset registry;
+- SHA-256 asset integrity;
+- provenance lineage;
+- access metadata;
+- deterministic registry snapshots;
+- transactional storage-neutral snapshot transport;
+- SHA-256 snapshot integrity;
+- promotion/freeze invariants.
+
+All six final L10 system gates were green at the freeze head:
+
+- Content Asset Provenance Gate;
+- Foundation Domain Model Gate;
+- Academic 2026 Prerequisite Gate;
+- Windows checkout safety;
+- Bauman Cloudflare Preview CI;
+- Whole System Integration Gate.
+
+## Architecture naming policy
+
+Do not use V2/V3/New/Latest/Final as the primary name of an architecture layer.
+
+Use descriptive names such as:
+
+- Hub Application Shell;
+- Shared Subject Platform;
+- Foundation — Identity & Domain Model;
+- Foundation — Content, Asset & Provenance Registry;
+- Foundation — Learning Content Standard;
+- Learning State & Academic Planning;
+- Packaging & Deployment;
+- Verification & Quality Gates.
+
+Historical L9/L10 codes may remain for traceability, but the responsibility name comes first.
+
+## Authority rules
+
+- Existing learner/subject state remains authoritative until an explicit migration gate changes ownership.
+- Identity Foundation is additive and must not rewrite legacy state silently.
+- Content/Asset/Provenance Foundation is runtime-neutral and must not become a second academic database.
+- AI context remains policy-constrained and read-only for protected decisions.
+- Packaging does not create new application authority.
+- Tests must not be weakened simply to make CI green.
+
+## Next architecture work
+
+Before starting the next foundation layer:
+
+1. write its descriptive responsibility name;
+2. define owned data and non-owned data;
+3. define dependencies on existing layers;
+4. define expected runtime integration;
+5. define its gate;
+6. then create a descriptively named branch without generation labels.
