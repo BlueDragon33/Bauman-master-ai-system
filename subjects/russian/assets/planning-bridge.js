@@ -1,6 +1,6 @@
 'use strict';
 (function(){
-  const VERSION = 'PlanningBridge V11 RouteBoundExam';
+  const VERSION = 'PlanningBridge V12 ReviewQueueOverlay';
   const LEVEL_ORDER = ['zero','A0','A1','A2','B1','B2','C1','C2'];
   const DEFAULT_TEST_POLICY = {
     noOfficialTestBeforeSessions: 3,
@@ -363,6 +363,41 @@
       {title:'Từ vựng/ngữ pháp phụ trợ', purpose:'Chỉ chọn cụm và mẫu câu cần cho hội thoại hôm nay.', limit:`tối đa ${Math.min(L.maxVocabCards||15,15)} thẻ + 1 mẫu`, route:{view:'vocab'}, button:'Học phụ trợ'}
     ];
   }
+  function liveReviewItems(limit=3){
+    const api=window.RussianLearningState;
+    if(!api||typeof api.dueReviews!=='function')return [];
+    try{return arr(api.dueReviews()).slice(0,Math.max(1,Number(limit)||3)).map(x=>clone(x));}
+    catch(_){return [];}
+  }
+  function reviewOverlayCard(item,index){
+    const reason=clean(item?.reason)||'review_due';
+    const label=clean(item?.label)||`Mục ôn đến hạn ${index+1}`;
+    return {
+      title:`Sửa trước khi học mới · ${label}`,
+      purpose:'Mục này đến trực tiếp từ Review Queue theo thao tác/kết quả học thật. Mở đúng nơi phát sinh lỗi, luyện lại rồi xác nhận kết quả.',
+      limit:'Ưu tiên ngắn · không tự nâng mastery',
+      route:clone(item?.route||{view:'learning',learnTab:'review'}),
+      button:'Sửa lỗi này',
+      reviewId:clean(item?.id),
+      reviewReason:reason,
+      source:'live_review_queue'
+    };
+  }
+  function applyLiveReviewOverlay(plan){
+    const out=clone(plan)||{};
+    const due=liveReviewItems(3);
+    out.liveReview={schema:'RUSSIAN_LIVE_REVIEW_OVERLAY_V1',due:due.length,items:due.map(x=>({id:clean(x?.id),reason:clean(x?.reason),label:clean(x?.label),route:clone(x?.route||{})}))};
+    if(!due.length||!arr(out.sessions).length)return out;
+    const today=new Date();today.setHours(0,0,0,0);
+    const target=out.sessions.find(s=>{const d=new Date(s?.date||'');return !Number.isNaN(d.getTime())&&d>=today;})||out.sessions[0];
+    const cards=due.map(reviewOverlayCard);
+    const existing=arr(target.cards).filter(x=>x?.source!=='live_review_queue');
+    target.cards=[...cards,...existing];
+    target.liveReviewDue=due.length;
+    target.repairFlow=[...new Set(['xử lý Review Queue đến hạn',...arr(target.repairFlow)])];
+    target.pedagogyNote=`Ưu tiên ${due.length} mục Review Queue đến hạn trước học mới. ${clean(target.pedagogyNote)}`.trim();
+    return out;
+  }
   function buildInternalPlan(mission, analysis, ctx={}){
     const sessions = arr(mission.sessions).length ? arr(mission.sessions) : normalizeSessions(mission);
     const demand = analysis.demand || estimateDemand(mission, ctx);
@@ -416,7 +451,7 @@
               : 'Ưu tiên hiểu sâu và phản xạ, không nhồi.'))
       };
     });
-    return {
+    const plan = {
       missionId: mission.id,
       courseId: mission.courseId,
       target: mission.target,
@@ -445,6 +480,7 @@
         requirePostTestCorrection:true
       }
     };
+    return applyLiveReviewOverlay(plan);
   }
   function warningOptions(mission, analysis){
     if(analysis.feasible) return [];
@@ -546,5 +582,5 @@
       generatedAt:nowIso()
     };
   }
-  window.BaumanPlanningBridge = {VERSION, DEFAULT_POLICY, DEFAULT_TEST_POLICY, DEFAULT_ROUTE_LIMITS, normalizeMission, estimateDemand, analyzeFeasibility, testReadiness, unlockedTestLevel, classifySession, sessionBlocks, routeCards, buildRepairPlan, buildInternalPlan, makeWarning, warningOptions, acceptMission, progressFromSession, buildMainActionRequest};
+  window.BaumanPlanningBridge = {VERSION, DEFAULT_POLICY, DEFAULT_TEST_POLICY, DEFAULT_ROUTE_LIMITS, normalizeMission, estimateDemand, analyzeFeasibility, testReadiness, unlockedTestLevel, classifySession, sessionBlocks, routeCards, liveReviewItems, reviewOverlayCard, applyLiveReviewOverlay, buildRepairPlan, buildInternalPlan, makeWarning, warningOptions, acceptMission, progressFromSession, buildMainActionRequest};
 })();
