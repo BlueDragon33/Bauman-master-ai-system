@@ -1,0 +1,20 @@
+{
+  "schema": "RUSSIAN_ORAL_FIRST_WARMUP_CONTRACT_V1",
+  "contractVersion": 1,
+  "scope": "learning.practice",
+  "policy": {
+    "russianTextHiddenBeforeFirstNormalListen": true,
+    "tokenHintsHiddenBeforeFirstNormalListen": true,
+    "translationGlossHiddenBeforeFirstNormalListen": true,
+    "dialogueMapTextHiddenPerUnheardLine": true,
+    "normalListenUnlocksText": true,
+    "slowListenDoesNotUnlockText": true,
+    "slowListenDisabledBeforeNormalListen": true,
+    "speakingAttemptAllowedAfterNormalListen": true
+  },
+  "persistence": {
+    "heardEvidenceAdditive": true,
+    "existingLearnerStatePreserved": true,
+    "masteryNotChangedByListening": true
+  }
+}
