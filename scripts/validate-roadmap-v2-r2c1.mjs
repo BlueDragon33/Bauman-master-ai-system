@@ -23,12 +23,9 @@ assert.equal(m.conclusions.toolsRequiringRefactorOrReplacement,7);
 assert.equal(m.conclusions.portableValidatorsBlockedOnModernData,1);
 assert.equal(m.nextSubrounds[0].status,'blocked_on_L27R2C1');
 
-const forbidden=[
- 'e383912354673bdce7a0059d6b9a23799d74e689',
- 'math-main-e383912-inventory.json'
-];
+assert.equal(m.historicalBaseline,'e383912354673bdce7a0059d6b9a23799d74e689','historical baseline evidence drift');
 const findings=JSON.stringify(m.tools);
-for(const token of forbidden)assert.equal(findings.includes(token),true,`audit lost required historical coupling evidence: ${token}`);
+assert.equal(findings.includes('math-main-e383912-inventory.json'),true,'audit lost historical filename coupling evidence');
 
 function walk(dir){
  if(!fs.existsSync(dir))return [];
