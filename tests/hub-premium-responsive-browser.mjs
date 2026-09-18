@@ -46,7 +46,13 @@ async function openHub(page){
   assert.equal(access.academicWrites,false);
   await page.waitForFunction(()=>!document.getElementById('appRoot')?.classList.contains('hidden'),null,{timeout:30000});
   await page.waitForFunction(()=>!!window.BAUMAN_HUB_SAFE?.selfCheck,null,{timeout:10000});
-  await page.waitForFunction(()=>!!document.querySelector('.hub-safe-dashboard'),null,{timeout:10000});
+  await page.waitForFunction(()=>{
+    const safe=window.BAUMAN_HUB_SAFE?.selfCheck?.();
+    return safe?.ready===true
+      && !!document.querySelector('.hub-safe-dashboard')
+      && !!document.querySelector('[data-safe-action="details"]')
+      && document.querySelectorAll('[data-safe-appearance]').length===3;
+  },null,{timeout:15000});
 }
 
 async function checkCanonicalContent(page){
