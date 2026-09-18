@@ -1,0 +1,42 @@
+{
+  "schema": "RUSSIAN_SPEAKING_SHADOWING_LADDER_CONTRACT_V1",
+  "contractVersion": 1,
+  "stages": [
+    "imitation",
+    "shadowing",
+    "memory",
+    "roleplay",
+    "repair"
+  ],
+  "prerequisites": {
+    "normalListenBeforeImitation": 1,
+    "normalListensBeforeShadowing": 2,
+    "imitationBeforeShadowing": true,
+    "shadowingBeforeMemory": true,
+    "memoryBeforeRoleplay": true,
+    "pronunciationFlagBeforeRepair": true
+  },
+  "runtime": {
+    "reuseCoreRecorder": true,
+    "reuseCoreRoleControls": true,
+    "slowListenOwnedByRepairOnly": true,
+    "listeningLadderOwnedByTurn8": true,
+    "roleplayEvidenceRequiresRecording": true
+  },
+  "feedback": {
+    "explicitPronunciationRepair": true,
+    "translationAnswerForbidden": true,
+    "autoMasteryFromSimilarityScore": false
+  },
+  "evidence": {
+    "perDialogueLine": true,
+    "imitationAttempts": true,
+    "shadowAttempts": true,
+    "memoryAttempts": true,
+    "roleplayAttempts": true,
+    "repairAttempts": true,
+    "abandonedSessions": true,
+    "learnerStateAuthority": false,
+    "masteryMutation": false
+  }
+}
