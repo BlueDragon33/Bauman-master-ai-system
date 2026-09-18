@@ -13,3 +13,10 @@
 .ru-cyrillic-result{min-height:22px}.ru-cyrillic-result.ok{font-weight:700}.ru-cyrillic-result.retry{font-weight:600}
 .ru-cyrillic-literacy footer{display:flex;gap:14px;flex-wrap:wrap;font-size:12px;opacity:.72}
 @media(max-width:700px){.ru-cyrillic-literacy header{display:grid}.ru-cyrillic-score{text-align:left}.ru-cyrillic-options{grid-template-columns:repeat(2,1fr)}.ru-cyrillic-prompt{font-size:60px}}
+
+.ru-cyrillic-sections{display:flex;gap:8px;flex-wrap:wrap}
+.ru-cyrillic-sections button{border:1px solid rgba(148,163,184,.3);background:rgba(30,41,59,.85);color:inherit;border-radius:12px;padding:9px 12px;cursor:pointer}
+.ru-cyrillic-sections button.active{outline:2px solid currentColor}
+.ru-cyr-cursive,.ru-cyr-cursive-option{font-family:'Segoe Script','Comic Sans MS',cursive!important;font-weight:500!important;letter-spacing:.02em}
+.ru-cyr-cursive{font-size:78px}
+.ru-cyr-cursive-option{font-size:34px!important}
