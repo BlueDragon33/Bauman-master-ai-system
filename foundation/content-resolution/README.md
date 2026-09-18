@@ -66,3 +66,10 @@ The plan does not retrieve bytes. Future adapters must verify bytes against the 
 `runtime-delivery-executor.js` calls only adapters explicitly supplied by the environment. It verifies SHA-256 digest and byte length before forwarding a copied payload to a consumer.
 
 The executor itself contains no direct network or browser-storage implementation.
+
+
+## Step 5 — Package-relative fetch adapter
+
+The first concrete adapter retrieves package-relative resources using same-origin GET only. It is environment-specific, but still sits behind the injected executor and its SHA-256 verification gate.
+
+It is not yet authoritative for any existing application loader.
