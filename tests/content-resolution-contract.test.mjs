@@ -8,6 +8,15 @@ const copy=()=>structuredClone(original);
 assert.equal(validateContentResolutionContract(copy()),true);
 
 {
+  const x=copy(); x.requiredInput.fields=x.requiredInput.fields.filter(v=>v!=='accessContext');
+  assert.throws(()=>validateContentResolutionContract(x),/require accessContext/);
+}
+{
+  const x=copy(); x.accessEvaluation.externalDecisionTrusted=true;
+  assert.throws(()=>validateContentResolutionContract(x),/External access decisions/);
+}
+
+{
   const x=copy(); x.compatibility.runtimeMigration='replace_existing_loaders';
   assert.throws(()=>validateContentResolutionContract(x),/runtime loaders/);
 }
@@ -49,4 +58,4 @@ assert.equal(validateContentResolutionContract(copy()),true);
 }
 
 console.log('CONTENT_RESOLUTION_CONTRACT_NEGATIVE_TEST=PASS');
-console.log(JSON.stringify({negativeCases:10,step1RuntimeMigration:'none'},null,2));
+console.log(JSON.stringify({negativeCases:12,step1RuntimeMigration:'none'},null,2));
