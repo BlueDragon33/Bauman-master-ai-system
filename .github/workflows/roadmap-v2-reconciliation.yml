@@ -31,6 +31,7 @@ on:
       - 'scripts/validate-roadmap-v2-l24-b96.mjs'
       - 'scripts/validate-roadmap-v2-l25-b97.mjs'
       - 'scripts/validate-roadmap-v2-l25-h1-priority-result-schema.mjs'
+      - 'scripts/validate-roadmap-v2-l25-b98.mjs'
       - '.github/workflows/roadmap-v2-reconciliation.yml'
 
 permissions:
@@ -85,6 +86,8 @@ jobs:
         run: node scripts/validate-roadmap-v2-l25-b97.mjs
       - name: Validate L25 H1 Priority result schema alignment
         run: node scripts/validate-roadmap-v2-l25-h1-priority-result-schema.mjs
+      - name: Validate current L25 B98 Priority scoring
+        run: node scripts/validate-roadmap-v2-l25-b98.mjs
       - name: Validate Foundation V2 L9
         run: node scripts/validate-foundation-domain-model.mjs
       - name: Validate current system integration
