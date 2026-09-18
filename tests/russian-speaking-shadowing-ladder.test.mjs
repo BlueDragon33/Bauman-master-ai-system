@@ -13,7 +13,7 @@ assert.equal(validateRuntime(js,css,core),true);
 
 {const x=copy();x.prerequisites.normalListensBeforeShadowing=1;assert.throws(()=>validateContract(x),/two normal listens/)}
 {const x=copy();x.runtime.roleplayEvidenceRequiresRecording=false;assert.throws(()=>validateContract(x),/real recorder use/)}
-assert.throws(()=>validateRuntime(js.replace("heardCount(c)>=2","heardCount(c)>=1"),css,core),/not two-listen gated/);
+assert.throws(()=>validateRuntime(js.replace("return heardCount(c)>=2&&Number(row?.imitationAttempts||0)>0;","return heardCount(c)>=1&&Number(row?.imitationAttempts||0)>0;"),css,core),/not two-listen gated/);
 assert.throws(()=>validateRuntime(js.replace("if(mode==='roleplay')bump('roleplayAttempts'","if(mode==='roleplay')bump('freeAttempts'"),css,core),/not recorder-backed/);
 
 console.log('RUSSIAN_SPEAKING_LADDER_NEGATIVE_TEST=PASS');
