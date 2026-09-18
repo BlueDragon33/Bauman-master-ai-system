@@ -15,14 +15,17 @@ export function validateContract(c){
 export function validateRuntime(core){
   assert(core.includes("practiceHeard:{}"),'Practice heard evidence missing from default state');
   assert(core.includes("function practiceHeardKey("),'Practice heard key helper missing');
+  assert(core.includes("function practiceLineHeardCount("),'Practice heard-count lookup missing');
   assert(core.includes("function practiceLineHeard("),'Practice heard lookup missing');
   assert(core.includes("function markPracticeLineHeard("),'Normal-listen evidence writer missing');
-  assert(core.includes("const heard=practiceLineHeard(active,idx);"),'Practice render does not derive heard state');
+  assert(core.includes("const heardCount=practiceLineHeardCount(active,idx);"),'Practice render does not derive heard count');
+  assert(core.includes("const heard=heardCount>0;"),'Practice render does not derive heard state');
   assert(core.includes("const currentRu=heard?esc(targetText"),'Russian text is not gated by heard state');
   assert(core.includes("const currentVi=heard&&!hideVi?dialogueVi(line):'';"),'Vietnamese gloss is not hidden before listen');
   assert(core.includes("const hints=heard?lineTokenHints(targetText):[];"),'Token hints are not hidden before listen');
   assert(/lineHeard\s*=\s*practiceLineHeard\(active,i\)/.test(core),'Dialogue map does not gate each line');
-  assert(core.includes("data-act=\"speak-line-slow\" ${heard?'':'disabled'}"),'Slow-listen button is not disabled before normal listen');
+  assert(core.includes("const slowReady=heardCount>=2;"),'Slow-listen readiness must be stricter than first-listen unlock');
+  assert(core.includes("data-act=\"speak-line-slow\" ${slowReady?'':'disabled'}"),'Slow-listen button is not disabled until repair readiness');
   assert(core.includes("if(inPracticeMode()){markPracticeLineHeard(d,activeLineIndex());render()}"),'Normal listen does not unlock text');
   const slow=core.match(/if\(act==='speak-line-slow'\)\{([^}]*)\}/);
   assert(slow&&!slow[1].includes('markPracticeLineHeard'),'Slow listen must not unlock text');
