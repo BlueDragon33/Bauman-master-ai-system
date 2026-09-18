@@ -21,6 +21,8 @@ on:
       - 'scripts/validate-registry-snapshot-store.mjs'
       - 'foundation/content-registry/registry-snapshot-integrity.js'
       - 'scripts/validate-registry-snapshot-integrity.mjs'
+      - 'foundation/content-registry/l10-promotion-manifest.v1.json'
+      - 'scripts/validate-foundation-l10-promotion.mjs'
       - 'scripts/validate-foundation-domain-model.mjs'
       - 'tests/content-asset-provenance-contract.test.mjs'
       - 'tests/content-asset-registry-runtime.test.mjs'
@@ -63,6 +65,7 @@ jobs:
           node --check scripts/validate-registry-snapshot.mjs
           node --check scripts/validate-registry-snapshot-store.mjs
           node --check scripts/validate-registry-snapshot-integrity.mjs
+          node --check scripts/validate-foundation-l10-promotion.mjs
           node --check tests/content-asset-provenance-contract.test.mjs
           node --check tests/content-asset-registry-runtime.test.mjs
           node --check tests/asset-integrity.test.mjs
@@ -105,6 +108,8 @@ jobs:
         run: node scripts/validate-registry-snapshot-integrity.mjs
       - name: Run registry snapshot integrity negative tests
         run: node tests/registry-snapshot-integrity.test.mjs
+      - name: Validate L10 promotion freeze
+        run: node scripts/validate-foundation-l10-promotion.mjs
       - name: Parse registry JSON
         run: |
           node -e "JSON.parse(require('fs').readFileSync('foundation/content-registry/registry-contract.v1.json','utf8')); console.log('CONTENT_REGISTRY_JSON_PARSE=PASS')"
