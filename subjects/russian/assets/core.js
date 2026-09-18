@@ -1356,18 +1356,36 @@ function makeVietnamVocabDisplay(v,base){
  return {displayMeaning:meaning,displayMeaningNote:meaningNote,displayWhenUse:meaningNote,displayApplication:app,displayVisualLabel:visual};
 }
 function vocabInfo(v){
- const term=A.vocabTerm?.(v)||v?.ru||v?.phrase_ru||v?.front||v?.word||'';
- const pron=A.vocabPron?.(v)||v?.pronunciation||v?.pron||v?.transcription||'';
- const meaningRu=v?.meaning_ru||v?.meaning||A.vocabMeaning?.(v)||v?.definition||'';
- const meaningVi=v?.meaning_vi||v?.vi_vi||'';
- const english=v?.clue_en||v?.en||(/^[A-Za-z ,;:'"()\-\/]+$/.test(str(v?.vi||''))?v.vi:'');
- const example=A.vocabExample?.(v)||v?.example||v?.voice_text||term;
- const whenUse=v?.usage_note||v?.when_use||meaningRu||v?.illustration_label_ru||'';
- const application=[v?.stage_title_vi||stageTitle(stageOf(v)||state.stage), v?.illustration_label_ru, arr(v?.tags).join(' · ')].filter(Boolean).join(' · ');
- const tags=arr(v?.tags);
- const base={term,pron,meaningRu,meaningVi,english,example,whenUse,application,tags,emoji:v?.image_emoji||v?.emoji||'',image:v?.image||v?.image_url||v?.picture||'',visualLabel:v?.illustration_label_ru||v?.visual_label||v?.semantic_label||''};
- const display=isVietnamVocab(v)?makeVietnamVocabDisplay(v,base):{displayMeaning:meaningVi||english||meaningRu,displayWhenUse:whenUse,displayApplication:application,displayVisualLabel:base.visualLabel};
- return {...base,...display,...inferVocabVisual({...base,...display,visualLabel:display.displayVisualLabel||base.visualLabel})};
+ const R=window.RussianVisualVocabularyRuntime;
+ const direct=R?.describe?.(v)||{
+  term_ru:A.vocabTerm?.(v)||v?.ru||v?.phrase_ru||v?.front||v?.word||'',
+  pronunciation:A.vocabPron?.(v)||v?.pronunciation||v?.pron||v?.transcription||'',
+  semantic_status:'missing_visual_semantics',
+  image_url:'',
+  visual_symbol:'',
+  scene:'',
+  visual_label_ru:'',
+  definition_ru:'',
+  context_ru:'',
+  audio_url:'',
+  audio_text_ru:A.vocabTerm?.(v)||v?.ru||v?.phrase_ru||v?.front||v?.word||'',
+  source_fields:[]
+ };
+ return {
+  term:direct.term_ru||'',
+  pron:direct.pronunciation||'',
+  semanticStatus:direct.semantic_status||'missing_visual_semantics',
+  image:direct.image_url||'',
+  emoji:direct.visual_symbol||'',
+  scene:direct.scene||'',
+  visualLabelRu:direct.visual_label_ru||'',
+  definitionRu:direct.definition_ru||'',
+  contextRu:direct.context_ru||'',
+  audioUrl:direct.audio_url||'',
+  audioTextRu:direct.audio_text_ru||direct.term_ru||'',
+  sourceFields:arr(direct.source_fields),
+  tags:arr(v?.tags)
+ };
 }
 function inferVocabVisual(info){
  const hay=lower([info.term,info.meaningRu,info.meaningVi,info.english,info.application,arr(info.tags).join(' ')].join(' '));
@@ -2053,51 +2071,59 @@ function renderVocab(){
  try{
   const list=getVocab();
   if(!list.length){
-   return `<section class="panel vocab-empty learning-recovery-card"><span class="chip">🗂️ Từ vựng</span><h3>Chưa có thẻ từ vựng phù hợp</h3><p>Đổi giai đoạn hoặc xóa từ khóa tìm kiếm để xem lại dữ liệu.</p></section>`;
+   return '<section class="panel vocab-empty learning-recovery-card"><span class="chip">🗂️ Từ vựng</span><h3>Chưa có thẻ từ vựng phù hợp</h3><p>Đổi giai đoạn hoặc xóa từ khóa tìm kiếm để xem lại dữ liệu.</p></section>';
   }
   state.vocabIndex=Math.min(Math.max(0,Number(state.vocabIndex)||0),Math.max(0,list.length-1));
   const pageSize=VOCAB_PAGE_SIZE||20;
   state.vocabPage=Math.floor(state.vocabIndex/pageSize);
   const v=list[state.vocabIndex]||{};
   const info=vocabInfo(v);
-  const flipped=!!state.vocabFlipped;
+  const contextOpen=!!state.vocabFlipped;
   const pageStart=state.vocabPage*pageSize;
   const rows=list.slice(pageStart,pageStart+pageSize);
   const term=info.term||'—';
   const termLen=[...str(term)].length;
   const termSizeClass=termLen>24?'term-xxlong':termLen>15?'term-xlong':termLen>9?'term-long':'term-normal';
-  const meaning=info.displayMeaning||info.meaningVi||info.english||info.meaningRu||'Chưa có nghĩa mô tả.';
-  const example=info.example||'';
-  const meaningNote=vocabMeaningNoteText(info);
-  const application=vocabApplicationText(info);
-  const sideRows=rows.map((item,i)=>{const idx=pageStart+i; const vi=vocabInfo(item); const rowMeaning=vi.displayMeaning||vi.meaningVi||vi.english||vi.meaningRu||''; const rowEmoji=vi.emoji||'•'; return `<button class="vocab-mini-row v1310-vocab-row ${idx===state.vocabIndex?'active':''}" data-vocab="${idx}"><span>${String(idx+1).padStart(2,'0')}</span><div><b><i class="v1312-row-emoji">${esc(rowEmoji)}</i>${esc(clip(vi.term||'—',34))}</b><small>${esc(clip(rowMeaning,42))}</small></div></button>`}).join('');
-  const visual=vocabVisualHtml(info,false);
-  const visualBack=vocabVisualHtml(info,true);
-  const dialogueExample=vocabDialogueExampleHtml(info);
-  const front=`<div class="v1310-flash-face v1312-flash-face"><div class="v1312-flash-visual">${visual}</div><div class="term ${termSizeClass}">${esc(term)}</div><div class="v1310-pron">${esc(info.pron||'Bấm để lật nghĩa')}</div></div>`;
-  const back=`<div class="v1310-flash-face v1312-flash-face flipped"><div class="v1312-flash-visual back">${visualBack}</div><span>Nghĩa</span><div class="meaning">${esc(meaning)}</div>${example?`<small>${esc(example)}</small>`:''}</div>`;
-  return `<div class="vocab-studio step37-vocab-safe canva3-vocab canva3-vocab-no-hero v1303-vocab-safe v1310-vocab-polish v1311-vocab-luxe v1312-vocab-chibi">
-   <div class="vocab-desk step37-vocab-desk canva3-vocab-desk v1303-vocab-desk v1310-vocab-desk">
-     <aside class="panel vocab-page-list v1303-vocab-list v1310-vocab-list" aria-label="Danh sách 20 thẻ từ hiện tại">
-       <div class="vocab-list-head v1310-vocab-list-head"><span class="chip">20 thẻ/lượt</span><b>${pageStart+1}-${Math.min(list.length,pageStart+rows.length)}/${list.length}</b></div>
-       <div class="vocab-list-scroll clean-scroll v1310-vocab-scroll">${sideRows}</div>
-     </aside>
-     <main class="panel vocab-card-panel canva3-card-panel canva3-card-panel-actions v1303-vocab-card-panel v1310-vocab-main">
-       <header class="v1310-vocab-top v1311-vocab-top"><div><span class="chip">Thẻ ${state.vocabIndex+1}/${list.length}</span><h3>${esc(term)}</h3></div><small>${esc(info.pron||'Bấm thẻ để lật nghĩa')}</small></header>
-       <button class="flash visual-flash canva3-flash v1303-flash v1310-flash ${flipped?'flipped':''}" data-act="toggle-vocab-flip"><div class="flash-inner v1303-flash-inner v1310-flash-inner">${flipped?back:front}</div></button>
-       <div class="vocab-actions canva3-card-actions v1310-vocab-actions" aria-label="Điều khiển flashcard"><button class="btn" data-act="prev-vocab">← Trước</button><button class="btn green" data-act="speak-vocab">🔊 Nghe</button><button class="btn primary" data-act="toggle-vocab-flip">${flipped?'Mặt từ':'Lật nghĩa'}</button><button class="btn" data-act="next-vocab">Sau →</button></div>
-       <section class="v1310-vocab-detail v1313-vocab-detail v1314-vocab-detail" aria-label="Chi tiết thẻ từ"><article><b>Nghĩa</b><p>${esc(meaning)}</p></article><article><b>Ý nghĩa</b><p>${esc(meaningNote)}</p></article><article><b>Ứng dụng</b><p>${esc(application)}</p></article></section>
-       ${dialogueExample}
-     </main>
-   </div>
- </div>`;
+  const directReady=info.semanticStatus!=='missing_visual_semantics';
+  const visualAsset=info.image
+   ?'<img src="'+esc(info.image)+'" alt="'+esc(info.visualLabelRu||term)+'">'
+   :(info.emoji?'<span class="direct-visual-symbol">'+esc(info.emoji)+'</span>':'<span class="direct-visual-missing">?</span>');
+  const russianCue=info.visualLabelRu||info.definitionRu||info.contextRu||term;
+  const sideRows=rows.map((item,i)=>{
+   const idx=pageStart+i,vi=vocabInfo(item);
+   const rowCue=vi.visualLabelRu||vi.definitionRu||vi.contextRu||(vi.semanticStatus==='missing_visual_semantics'?'missing_visual_semantics':'контекст');
+   const rowEmoji=vi.emoji||'◉';
+   return '<button class="vocab-mini-row v1310-vocab-row '+(idx===state.vocabIndex?'active':'')+'" data-vocab="'+idx+'"><span>'+String(idx+1).padStart(2,'0')+'</span><div><b><i class="v1312-row-emoji">'+esc(rowEmoji)+'</i>'+esc(clip(vi.term||'—',34))+'</b><small lang="ru">'+esc(clip(rowCue,42))+'</small></div></button>';
+  }).join('');
+  const sourceBadges=info.sourceFields.slice(0,5).map(x=>'<span>'+esc(x)+'</span>').join('');
+  const contextBody=contextOpen
+   ?'<div class="direct-semantic-context"><article><b>Метка / образ</b><p lang="ru">'+esc(info.visualLabelRu||term)+'</p></article><article><b>Объяснение по-русски</b><p lang="ru">'+esc(info.definitionRu||'—')+'</p></article><article><b>Контекст</b><p lang="ru">'+esc(info.contextRu||'—')+'</p></article></div>'
+   :'';
+  const missing='<div class="direct-semantic-missing"><b>missing_visual_semantics</b><p>Không có đủ bằng chứng trực quan trực tiếp. Hệ thống không chuyển sang bản dịch Việt/Anh.</p></div>';
+  return '<div class="vocab-studio step37-vocab-safe canva3-vocab canva3-vocab-no-hero v1303-vocab-safe v1310-vocab-polish v1311-vocab-luxe v1312-vocab-chibi direct-semantic-vocab">'+
+   '<div class="vocab-desk step37-vocab-desk canva3-vocab-desk v1303-vocab-desk v1310-vocab-desk">'+
+    '<aside class="panel vocab-page-list v1303-vocab-list v1310-vocab-list" aria-label="Danh sách 20 thẻ từ hiện tại">'+
+     '<div class="vocab-list-head v1310-vocab-list-head"><span class="chip">20 thẻ/lượt</span><b>'+(pageStart+1)+'-'+Math.min(list.length,pageStart+rows.length)+'/'+list.length+'</b></div>'+
+     '<div class="vocab-list-scroll clean-scroll v1310-vocab-scroll">'+sideRows+'</div>'+
+    '</aside>'+
+    '<main class="panel vocab-card-panel canva3-card-panel canva3-card-panel-actions v1303-vocab-card-panel v1310-vocab-main">'+
+     '<header class="v1310-vocab-top v1311-vocab-top"><div><span class="chip">Thẻ '+(state.vocabIndex+1)+'/'+list.length+'</span><h3 lang="ru">'+esc(term)+'</h3></div><small>'+esc(info.pron||'Nghe âm trước, dùng hình và ngữ cảnh Nga để hiểu')+'</small></header>'+
+     '<div class="flash visual-flash canva3-flash v1303-flash v1310-flash direct-semantic-card"><div class="flash-inner v1303-flash-inner v1310-flash-inner"><div class="v1310-flash-face v1312-flash-face">'+
+      '<div class="v1312-flash-visual"><div class="visual-meaning"><div class="visual-symbols">'+visualAsset+'</div><b lang="ru">'+esc(russianCue)+'</b></div></div>'+
+      '<div class="term '+termSizeClass+'" lang="ru">'+esc(term)+'</div><div class="v1310-pron">'+esc(info.pron||'🔊 nghe mẫu')+'</div>'+
+     '</div></div></div>'+
+     (directReady?contextBody:missing)+
+     '<div class="vocab-actions canva3-card-actions v1310-vocab-actions" aria-label="Điều khiển thẻ trực quan"><button class="btn" data-act="prev-vocab">← Trước</button><button class="btn green" data-act="speak-vocab">🔊 Nghe</button><button class="btn primary" data-act="toggle-vocab-flip">'+(contextOpen?'Ẩn ngữ cảnh Nga':'Mở ngữ cảnh Nga')+'</button><button class="btn" data-act="next-vocab">Sau →</button></div>'+
+     '<section class="v1310-vocab-detail v1313-vocab-detail v1314-vocab-detail" aria-label="Chi tiết trực tiếp bằng Nga và hình"><article><b>Visual</b><p lang="ru">'+esc(info.visualLabelRu||term)+'</p></article><article><b>Giải thích Nga</b><p lang="ru">'+esc(info.definitionRu||'—')+'</p></article><article><b>Câu/ngữ cảnh Nga</b><p lang="ru">'+esc(info.contextRu||'—')+'</p></article></section>'+
+     '<div class="direct-semantic-source-fields" aria-label="Nguồn semantic"><small>Source evidence</small><div>'+sourceBadges+'</div></div>'+
+    '</main>'+
+   '</div>'+
+  '</div>';
  }catch(e){
   console.error('VOCAB_RENDER_GUARD',e);
-  return `<section class="panel learning-recovery-card"><span class="chip danger-chip">LỖI TỪ VỰNG</span><h3>Đã chặn lỗi render từ vựng</h3><p>${esc(e?.message||e)}</p><button class="btn primary" data-view="overview">Về Tổng quan</button></section>`;
+  return '<section class="panel learning-recovery-card"><span class="chip danger-chip">LỖI TỪ VỰNG</span><h3>Đã chặn lỗi render từ vựng</h3><p>'+esc(e?.message||e)+'</p><button class="btn primary" data-view="overview">Về Tổng quan</button></section>';
  }
-
 }
-
 function grammarLevelOrder(v){const order={A0:0,A1:1,A2:2,B1:3,B2:4,C1:5,'Chuyên sâu':6}; return order[str(v)] ?? 99}
 function grammarAllModules(){
  const path=arr(DB['grammar-path']).map((x,i)=>({...x,_source:'grammar-path',_idx:i}));
