@@ -1,0 +1,49 @@
+{
+  "schema": "RUSSIAN_CYRILLIC_SOUND_LETTER_CONTRACT_V1",
+  "contractVersion": 1,
+  "requiredLetterCount": 33,
+  "modes": [
+    "sound_to_letter",
+    "letter_to_sound"
+  ],
+  "data": {
+    "path": "data/cyrillic-sound-map.json",
+    "requiredFields": [
+      "letter",
+      "lower",
+      "name_ru",
+      "category",
+      "primary_ipa",
+      "variants",
+      "anchor",
+      "behavior"
+    ],
+    "prohibitedSemanticFields": [
+      "vi",
+      "meaning_vi",
+      "translation_vi",
+      "en",
+      "meaning_en",
+      "translation_en"
+    ]
+  },
+  "audio": {
+    "language": "ru-RU",
+    "letterNameSpeech": true,
+    "anchorWordSpeech": true,
+    "answerRequiresListenInSoundToLetter": true
+  },
+  "phonology": {
+    "signsMayUseNullSoundSymbol": "∅",
+    "contextVariantsPreserved": true,
+    "stressMarkedAnchorDisplay": true
+  },
+  "evidence": {
+    "separateStorage": true,
+    "heard": true,
+    "attempts": true,
+    "correct": true,
+    "learnerStateAuthority": false,
+    "masteryMutation": false
+  }
+}
