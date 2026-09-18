@@ -1,0 +1,48 @@
+{
+  "schema": "BAUMAN_ACADEMIC_VERIFIED_CONTENT_LOADER_CONTRACT_V1",
+  "contractVersion": 1,
+  "architectureName": "Foundation — Content Resolution & Runtime Delivery",
+  "integrationOwner": "Learning State & Academic Planning",
+  "runtime": "assets/js/academic-content-resolution-loader.js",
+  "behavior": {
+    "autoRun": false,
+    "writesAcademicGlobals": false,
+    "writesLearnerState": false,
+    "changesRoutes": false,
+    "persistsRegistry": false,
+    "loaderAuthority": "candidate_only",
+    "pinnedRegistryRequired": true,
+    "integrityVerificationRequired": true
+  },
+  "registryCandidate": {
+    "path": "foundation/content-resolution/registry-candidates/academic-core-2026.v1.json",
+    "schema": "BAUMAN_ACADEMIC_CORE_REGISTRY_CANDIDATE_V1",
+    "status": "promotion_candidate",
+    "authority": "candidate_only"
+  },
+  "resources": [
+    {
+      "key": "curriculum",
+      "contentId": "bdr:content:academic-2026:official-curriculum"
+    },
+    {
+      "key": "prerequisite",
+      "contentId": "bdr:content:academic-2026:prerequisite-registry"
+    },
+    {
+      "key": "manifest",
+      "contentId": "bdr:content:academic-2026:prerequisite-pack-manifest"
+    }
+  ],
+  "output": {
+    "schema": "BAUMAN_ACADEMIC_VERIFIED_CONTENT_RESULT_V1",
+    "status": "verified",
+    "dataKeys": [
+      "curriculum",
+      "prerequisite",
+      "manifest"
+    ],
+    "verificationRequiredForEveryResource": true,
+    "immutable": true
+  }
+}
