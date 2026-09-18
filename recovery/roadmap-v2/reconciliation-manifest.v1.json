@@ -256,7 +256,7 @@
       "classification": "validator_evidence_shape",
       "cause": "Validator searched free-text findings for an exact historical filename.",
       "correction": "Promote baseline/path/hash/report coupling into a structured couplingEvidence object and validate exact fields.",
-      "status": "applied_pending_gate"
+      "status": "pass"
     }
   ],
   "r2b": {
@@ -296,22 +296,28 @@
     }
   },
   "r2c": {
-    "currentSubround": "L27R2C1",
+    "currentSubround": "L27R2C2A",
     "policy": "classify_before_transplant",
     "canonicalNewFilesThisSubround": 0,
     "historicalCanonicalFilesClassified": 75,
     "staleManifestsQuarantined": 7,
     "baselineBoundGeneratedArtifactsQuarantined": 24,
-    "next": "L27R2C2A only after R2C1 full gate pass",
+    "next": "L27R2C2B only after R2C2A full gate pass",
     "lastFailure": "packaged_math_reader_acceptance_timing_race",
     "r2c0": "pass",
     "r2c1": {
-      "status": "in_progress",
+      "status": "pass",
       "asIsCanonicalToolAdmission": 0,
       "refactorOrReplace": 7,
       "portableBlockedOnModernData": 1,
       "enginesBlockedOnModernManifests": 7,
       "testsBlockedOnModernDependencyChain": 7
+    },
+    "r2c2a": {
+      "status": "in_progress",
+      "purpose": "recovery-only parameterized modern baseline scanner/tool profile",
+      "canonicalWriteAllowed": false,
+      "canonicalGeneratedDataAdmission": 0
     }
   },
   "l27r2c0GateEvidence": {
@@ -337,6 +343,32 @@
     },
     "wholeSystem": {
       "runId": 35327164331,
+      "conclusion": "success"
+    }
+  },
+  "l27r2c1GateEvidence": {
+    "reconciliation": {
+      "runId": 35327929454,
+      "conclusion": "success"
+    },
+    "foundation": {
+      "runId": 35327929411,
+      "conclusion": "success"
+    },
+    "windows": {
+      "runId": 35327929484,
+      "conclusion": "success"
+    },
+    "russian": {
+      "runId": 35327929492,
+      "conclusion": "success"
+    },
+    "preview": {
+      "runId": 35327929425,
+      "conclusion": "success"
+    },
+    "wholeSystem": {
+      "runId": 35327929422,
       "conclusion": "success"
     }
   }
