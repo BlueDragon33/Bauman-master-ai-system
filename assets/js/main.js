@@ -407,7 +407,7 @@ function normalizeSubjectCapability(msg={}){
   subjectId,
   receivedAt:new Date().toISOString(),
   currentBand:band?{id:String(band.id||''),title:String(band.title||''),complete:!!band.complete,lessonReady:Number(band.lessonReady||0),lessonTotal:Number(band.lessonTotal||0),reviewDue:Number(band.reviewDue||0),writing:Number(band.writing||0),writingNeed:Number(band.writingNeed||0),rewrites:Number(band.rewrites||0),rewriteNeed:Number(band.rewriteNeed||0)}:null,
-  nextGap:gap?{lessonId:String(gap.lessonId||''),route:{view:String(gap.route?.view||''),learnTab:String(gap.route?.learnTab||''),lessonId:String(gap.route?.lessonId||gap.lessonId||'')}}:null,
+  nextGap:gap?{lessonId:String(gap.lessonId||''),step:String(gap.step||''),route:{view:String(gap.route?.view||''),learnTab:String(gap.route?.learnTab||''),lessonId:String(gap.route?.lessonId||gap.lessonId||'')}}:null,
   stageExit:exit?{stage:String(exit.stage||''),allowed:!!exit.allowed,lessonReady:Number(exit.lessonReady||0),lessonTotal:Number(exit.lessonTotal||0),reviewDue:Number(exit.reviewDue||0),writing:Number(exit.writing||0),rewrites:Number(exit.rewrites||0),blocker:String(exit.blocker||'')}:null,
   bands
  };
