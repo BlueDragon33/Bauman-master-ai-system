@@ -3,7 +3,7 @@
   const CORE_KEY=(window.SUBJECT_ADAPTER&&window.SUBJECT_ADAPTER.storageKey)||'bauman_russian_survival_master_v11_clean_skeleton';
   const FLOW_KEY='bauman_russian_learning_flow_v1';
   const SCHEMA='RUSSIAN_LEARNING_FLOW_V1';
-  const STEP_ORDER=['theory','speaking','vocab','grammar','exercises','check'];
+  const STEP_ORDER=['speaking','theory','vocab','grammar','exercises','check'];
   const META={
     theory:{icon:'📘',label:'Bài học',scope:'lesson',detail:'Nội dung và ví dụ của đúng bài đang chọn.'},
     speaking:{icon:'🎧',label:'Nghe & nói',scope:'lesson',detail:'Speaking liên kết trực tiếp với lessonId của bài.'},
