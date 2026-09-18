@@ -15,6 +15,15 @@ on:
       - "tests/foundation-canonical-context-browser.mjs"
       - "tests/math-study-command-center-browser.mjs"
       - "tests/hub-premium-responsive-browser.mjs"
+      - "tests/russian-capability-hub-static.mjs"
+      - "tests/russian-capability-hub-browser.mjs"
+      - "tests/russian-capability-deeplink-browser.mjs"
+      - "tests/russian-capability-route-receipt-browser.mjs"
+      - "tests/russian-capability-continue-static.mjs"
+      - "tests/russian-capability-continue-browser.mjs"
+      - "tests/russian-offline-shell-browser.mjs"
+      - "tests/subject-progress-contract-static.mjs"
+      - "tests/subject-progress-contract-browser.mjs"
       - "scripts/prepare-cloudflare-preview.mjs"
       - "scripts/prepare-chatgpt-site.mjs"
       - ".openai/hosting.json"
@@ -33,6 +42,15 @@ on:
       - "tests/foundation-canonical-context-browser.mjs"
       - "tests/math-study-command-center-browser.mjs"
       - "tests/hub-premium-responsive-browser.mjs"
+      - "tests/russian-capability-hub-static.mjs"
+      - "tests/russian-capability-hub-browser.mjs"
+      - "tests/russian-capability-deeplink-browser.mjs"
+      - "tests/russian-capability-route-receipt-browser.mjs"
+      - "tests/russian-capability-continue-static.mjs"
+      - "tests/russian-capability-continue-browser.mjs"
+      - "tests/russian-offline-shell-browser.mjs"
+      - "tests/subject-progress-contract-static.mjs"
+      - "tests/subject-progress-contract-browser.mjs"
       - "scripts/prepare-cloudflare-preview.mjs"
       - "scripts/prepare-chatgpt-site.mjs"
       - ".openai/hosting.json"
@@ -52,9 +70,20 @@ jobs:
           node-version: "22.13.0"
       - name: Validate Hub, subject packages, bridge and locked Math runtime
         run: node scripts/validate-system-integration.mjs
+      - name: Validate Russian capability Hub consumer
+        run: node tests/russian-capability-hub-static.mjs
+      - name: Validate Russian capability deep link
+        run: node subjects/russian/scripts/validate-capability-deeplink.mjs
+      - name: Validate Russian capability route receipt
+        run: node subjects/russian/scripts/validate-capability-route-receipt.mjs
+      - name: Validate Russian capability-aware continue
+        run: node tests/russian-capability-continue-static.mjs
+      - name: Validate subject progress report contract
+        run: node tests/subject-progress-contract-static.mjs
       - name: Parse changed runtime JavaScript
         run: |
           node --check assets/js/main.js
+          node --check assets/js/hub-safe-shell.js
           node --check assets/js/planning-main.js
           node --check assets/js/hub-premium-v2.js
           node --check subjects/shared/host-bridge.js
@@ -80,6 +109,15 @@ jobs:
           node --check tests/foundation-canonical-context-browser.mjs
           node --check tests/math-study-command-center-browser.mjs
           node --check tests/hub-premium-responsive-browser.mjs
+          node --check tests/russian-capability-hub-static.mjs
+          node --check tests/russian-capability-hub-browser.mjs
+          node --check tests/russian-capability-deeplink-browser.mjs
+          node --check tests/russian-capability-route-receipt-browser.mjs
+          node --check tests/russian-capability-continue-static.mjs
+          node --check tests/russian-capability-continue-browser.mjs
+          node --check tests/russian-offline-shell-browser.mjs
+          node --check tests/subject-progress-contract-static.mjs
+          node --check tests/subject-progress-contract-browser.mjs
 
   browser-system-acceptance:
     needs: validate-system-integration
@@ -134,6 +172,36 @@ jobs:
           BAUMAN_E2E_BASE_URL: http://127.0.0.1:4173/
           BAUMAN_E2E_ARTIFACT_DIR: artifacts/hub-premium-responsive
         run: node tests/hub-premium-responsive-browser.mjs
+      - name: Run Russian capability Hub acceptance
+        env:
+          BAUMAN_E2E_BASE_URL: http://127.0.0.1:4173/
+          BAUMAN_E2E_ARTIFACT_DIR: artifacts/russian-capability-hub
+        run: node tests/russian-capability-hub-browser.mjs
+      - name: Run Russian capability deep-link acceptance
+        env:
+          BAUMAN_E2E_BASE_URL: http://127.0.0.1:4173/
+          BAUMAN_E2E_ARTIFACT_DIR: artifacts/russian-capability-deeplink
+        run: node tests/russian-capability-deeplink-browser.mjs
+      - name: Run Russian capability route receipt acceptance
+        env:
+          BAUMAN_E2E_BASE_URL: http://127.0.0.1:4173/
+          BAUMAN_E2E_ARTIFACT_DIR: artifacts/russian-capability-route-receipt
+        run: node tests/russian-capability-route-receipt-browser.mjs
+      - name: Run Russian capability-aware continue acceptance
+        env:
+          BAUMAN_E2E_BASE_URL: http://127.0.0.1:4173/
+          BAUMAN_E2E_ARTIFACT_DIR: artifacts/russian-capability-continue
+        run: node tests/russian-capability-continue-browser.mjs
+      - name: Run subject progress contract acceptance
+        env:
+          BAUMAN_E2E_BASE_URL: http://127.0.0.1:4173/
+          BAUMAN_E2E_ARTIFACT_DIR: artifacts/subject-progress-contract
+        run: node tests/subject-progress-contract-browser.mjs
+      - name: Run Russian true-offline shell acceptance
+        env:
+          BAUMAN_E2E_BASE_URL: http://127.0.0.1:4173/
+          BAUMAN_E2E_ARTIFACT_DIR: artifacts/russian-offline-shell
+        run: node tests/russian-offline-shell-browser.mjs
       - name: Materialize owner-private ChatGPT Site package
         env:
           BAUMAN_CONTROL_PREVIEW_D1_DATABASE_ID: 11111111-1111-4111-8111-111111111111
@@ -179,6 +247,36 @@ jobs:
           BAUMAN_E2E_BASE_URL: http://127.0.0.1:4174/
           BAUMAN_E2E_ARTIFACT_DIR: artifacts/chatgpt-site-hub-responsive
         run: node tests/hub-premium-responsive-browser.mjs
+      - name: Run packaged Russian capability Hub acceptance
+        env:
+          BAUMAN_E2E_BASE_URL: http://127.0.0.1:4174/
+          BAUMAN_E2E_ARTIFACT_DIR: artifacts/chatgpt-site-russian-capability-hub
+        run: node tests/russian-capability-hub-browser.mjs
+      - name: Run packaged Russian capability deep-link acceptance
+        env:
+          BAUMAN_E2E_BASE_URL: http://127.0.0.1:4174/
+          BAUMAN_E2E_ARTIFACT_DIR: artifacts/chatgpt-site-russian-capability-deeplink
+        run: node tests/russian-capability-deeplink-browser.mjs
+      - name: Run packaged Russian capability route receipt acceptance
+        env:
+          BAUMAN_E2E_BASE_URL: http://127.0.0.1:4174/
+          BAUMAN_E2E_ARTIFACT_DIR: artifacts/chatgpt-site-russian-capability-route-receipt
+        run: node tests/russian-capability-route-receipt-browser.mjs
+      - name: Run packaged Russian capability-aware continue acceptance
+        env:
+          BAUMAN_E2E_BASE_URL: http://127.0.0.1:4174/
+          BAUMAN_E2E_ARTIFACT_DIR: artifacts/chatgpt-site-russian-capability-continue
+        run: node tests/russian-capability-continue-browser.mjs
+      - name: Run packaged subject progress contract acceptance
+        env:
+          BAUMAN_E2E_BASE_URL: http://127.0.0.1:4174/
+          BAUMAN_E2E_ARTIFACT_DIR: artifacts/chatgpt-site-subject-progress-contract
+        run: node tests/subject-progress-contract-browser.mjs
+      - name: Run packaged Russian true-offline shell acceptance
+        env:
+          BAUMAN_E2E_BASE_URL: http://127.0.0.1:4174/
+          BAUMAN_E2E_ARTIFACT_DIR: artifacts/chatgpt-site-russian-offline-shell
+        run: node tests/russian-offline-shell-browser.mjs
       - name: Show server log on failure
         if: failure()
         run: |
@@ -196,10 +294,22 @@ jobs:
             artifacts/foundation-canonical-context
             artifacts/math-study-command-center
             artifacts/hub-premium-responsive
+            artifacts/russian-capability-hub
+            artifacts/russian-capability-deeplink
+            artifacts/russian-capability-route-receipt
+            artifacts/russian-capability-continue
+            artifacts/russian-offline-shell
+            artifacts/subject-progress-contract
             artifacts/chatgpt-site-browser
             artifacts/chatgpt-site-foundation-identity-persistence
             artifacts/chatgpt-site-foundation-identity-projection
             artifacts/chatgpt-site-foundation-canonical-context
             artifacts/chatgpt-site-hub-responsive
+            artifacts/chatgpt-site-russian-capability-hub
+            artifacts/chatgpt-site-russian-capability-deeplink
+            artifacts/chatgpt-site-russian-capability-route-receipt
+            artifacts/chatgpt-site-russian-capability-continue
+            artifacts/chatgpt-site-russian-offline-shell
+            artifacts/chatgpt-site-subject-progress-contract
           if-no-files-found: warn
           retention-days: 7

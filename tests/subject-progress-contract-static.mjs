@@ -1,0 +1,12 @@
+import assert from 'node:assert/strict';
+import fs from 'node:fs';
+const main=fs.readFileSync('assets/js/main.js','utf8');
+assert.ok(main.includes('function finiteProgressNumber'),'Numeric progress sanitizer missing');
+assert.ok(main.includes("typeof value==='object'"),'Object-shaped progress must be rejected as numeric evidence');
+assert.ok(main.includes("normalized.reportKind=(normalized.total>0||normalized.percent!==null||report.completed===true)?'assessment':'state'"),'State/assessment report classification missing');
+assert.ok(main.includes('normalized.taskAccepted=!reportTaskId||!activeTaskId||reportTaskId===activeTaskId'),'Task-bound progress acceptance missing');
+assert.ok(main.includes("if(normalized.reportKind!=='assessment'||!normalized.taskAccepted){save();return false;}"),'Non-assessment or stale-task report must not mutate canonical progress');
+const guard=main.indexOf("if(normalized.reportKind!=='assessment'||!normalized.taskAccepted)");
+const mutation=main.indexOf('state.progress[subjectId]=',guard);
+assert.ok(guard>=0&&mutation>guard,'Progress mutation must occur only after report contract guard');
+console.log('SUBJECT_PROGRESS_CONTRACT_STATIC_GATE=PASS');
