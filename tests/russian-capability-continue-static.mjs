@@ -9,6 +9,9 @@ assert.ok(main.includes("if(!cap||subjectId!=='russian')return null"),'continue 
 assert.ok(main.includes('Math.max(Number(cap?.currentBand?.reviewDue||0),Number(cap?.stageExit?.reviewDue||0))'),'review due priority gate missing');
 assert.ok(main.includes('if(reviewDue>0)return null'),'Hub must not deep-link past due reviews');
 assert.ok(main.includes('function capabilityGapContext'),'capability CTA helper missing');
+assert.ok(main.includes('const liveCapabilitySubjects=new Set()'),'Current-session capability freshness tracker missing');
+assert.ok(main.includes('!liveCapabilitySubjects.has(subjectId)'),'Persisted capability snapshot must not be trusted for direct routing after reload');
+assert.ok(main.includes('liveCapabilitySubjects.add(subjectId)'),'Fresh Russian capability snapshot must mark current-session trust');
 assert.match(main,/function capabilityGapContext[\s\S]*?if\(reviewDue>0\)return null/,'Capability CTA must also respect due review priority');
 assert.ok(main.includes('const context=capabilityContinueContext(last.subjectId)'),'continueStudy must consult capability state');
 assert.ok(main.includes('this.openSubjectInPage(last.subjectId,context||{})'),'continueStudy capability context handoff missing');
