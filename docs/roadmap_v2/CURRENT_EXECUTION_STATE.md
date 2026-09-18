@@ -8,13 +8,13 @@
 - Current round: **Lượt 25**
 - Current step: **Bước 98 — IN_PROGRESS**
 - L22 closeout: **B88 + H1 — PASS**
-- Status: **L23_COMPLETE · L24_COMPLETE · PASS_L25_F1 · PASS_L25_F2 · PASS_L25_B97 · L25_H1_PRIORITY_RESULT_SCHEMA_IN_PROGRESS · B98_BLOCKED_ON_H1**
+- Status: **L23_COMPLETE · L24_COMPLETE · PASS_L25_F1 · PASS_L25_F2 · PASS_L25_B97 · PASS_L25_H1 · L25_B98_PRIORITY_SCORING_IN_PROGRESS**
 - Accepted head: `622e84aece7847b4179a8ff48937cb92717aaf3e`
 - Production/runtime activation by Roadmap V2: **disconnected**
 - Legacy/source destructive migration: **not executed**
 - Last completed: **L23/B92 — PASS**
 - Last hardening: **L23-H1 — PASS**
-- Current official step: **L25/B98 — Deterministic Priority Scoring Harness (blocked on H1)**
+- Current official step: **L25/B98 — Deterministic Priority Scoring Harness**
 - L23 may start only after the L22 closeout snapshot remains green on the complete gate set.
 
 ## L22/B88 complete gate evidence
@@ -252,3 +252,17 @@ Accepted B97/F1/F2 head: `28e730595828b326ba0f7409cb79821460e02d76`
 - Whole System Integration — run `35336940529` — PASS
 
 B98 pre-audit found a Priority result-schema explainability mismatch; L25-H1 must close before scoring harness implementation proceeds.
+
+
+## L25-H1 gate evidence
+
+Accepted H1 head: `9a2d5c2fec7b2a438ae6379ac7e3497e96fffc75`
+
+- Roadmap V2 Current Gate — run `35337468983` — PASS
+- Foundation Domain Model — run `35337469011` — PASS
+- Windows checkout safety — run `35337469107` — PASS
+- Russian Reference UI — run `35337468997` — PASS
+- Cloudflare Preview — run `35337469013` — PASS
+- Whole System Integration — run `35337468991` — PASS
+
+B98 is unblocked and active.
