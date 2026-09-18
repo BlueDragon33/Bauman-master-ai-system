@@ -91,12 +91,20 @@
     "fields": [
       "allowRepositoryRelative",
       "allowHttps",
-      "availableProviders"
+      "availableProviders",
+      "allowedHttpsOrigins"
     ],
     "defaultNetwork": "deny",
     "providerNames": [
       "content_hash"
-    ]
+    ],
+    "httpsOriginPolicy": {
+      "requiredWhenHttpsEnabled": true,
+      "exactOriginMatch": true,
+      "wildcardOriginsForbidden": true,
+      "nonHttpsOriginsForbidden": true,
+      "emptyAllowlistMeansDeny": true
+    }
   },
   "output": {
     "schema": "BAUMAN_RUNTIME_RESOURCE_DESCRIPTOR_V1",
