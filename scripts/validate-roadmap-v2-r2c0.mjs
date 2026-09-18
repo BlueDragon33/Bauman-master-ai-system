@@ -37,8 +37,22 @@ function walk(dir){
   });
 }
 const actual=walk('roadmap_v2').sort();
-const approved=[...inv.categories.alreadyAdmittedR2B.files].sort();
-assert.deepEqual(actual,approved,'R2C0 must not add canonical Roadmap files');
+const baseline=[...inv.categories.alreadyAdmittedR2B.files].sort();
+for(const p of baseline)assert.equal(actual.includes(p),true,`historical static baseline missing: ${p}`);
+
+for(const p of inv.categories.staleHashPinnedManifests.files){
+  assert.equal(fs.existsSync(p),false,`stale historical manifest re-admitted: ${p}`);
+}
+for(const p of [
+  'roadmap_v2/migration/migration-contract.json',
+  'roadmap_v2/migration/legacy-to-roadmap-v2.mapping.json'
+]){
+  assert.equal(fs.existsSync(p),false,`historical migration artifact re-admitted: ${p}`);
+}
+for(const prefix of ['roadmap_v2/baseline/','roadmap_v2/data/','roadmap_v2/reports/']){
+  assert.equal(actual.some(p=>p.startsWith(prefix)),false,`historical baseline-bound namespace re-admitted: ${prefix}`);
+}
+for(const p of actual)assert.equal(/\.(js|mjs|cjs|html|css)$/.test(p),false,`executable/UI file in canonical Roadmap tree: ${p}`);
 
 assert.equal(inv.categories.staleHashPinnedManifests.count,7);
 assert.equal(inv.categories.baselineBoundGeneratedArtifacts.count,24);
@@ -49,4 +63,4 @@ assert.equal(inv.proposedSubrounds[0].status,'in_progress');
 assert.equal(inv.proposedSubrounds.slice(1).every(x=>String(x.status).startsWith('blocked_on_')),true);
 
 console.log('ROADMAP_V2_L27R2C0_ADMISSION_AUDIT=PASS');
-console.log(JSON.stringify({canonicalHistorical:75,currentCanonical:actual.length,quarantinedManifests:7,quarantinedGenerated:24},null,2));
+console.log(JSON.stringify({canonicalHistorical:75,currentCanonical:actual.length,currentTrackExpansion:actual.length-baseline.length,quarantinedManifests:7,quarantinedGenerated:24},null,2));
