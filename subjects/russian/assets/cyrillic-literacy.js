@@ -176,7 +176,8 @@
   }
 
   function speakText(text,rate=.82){
-    if(!text||!('speechSynthesis' in window))return false;
+    if(window.RussianBrowserCapabilities?.speak)return window.RussianBrowserCapabilities.speak(text,rate);
+    if(!text||!('speechSynthesis' in window)||!window.SpeechSynthesisUtterance)return false;
     const u=new SpeechSynthesisUtterance(String(text));
     u.lang='ru-RU';
     u.rate=rate;
