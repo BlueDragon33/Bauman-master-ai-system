@@ -56,3 +56,20 @@ Promotion candidate gates cover:
 ## CI observation note
 
 The GitHub connector available during the freeze did not expose branch-push workflow runs/status checks for the latest commits. Acceptance therefore uses the repository validators, negative-test definitions, direct source-level behavioral/package checks and existing regression wiring. A later promotion decision may additionally require an observable GitHub Actions run without changing the frozen responsibilities.
+
+
+## Post-freeze regression hardening
+
+A post-freeze audit found two gaps inside Turn 24 rather than a new responsibility:
+
+1. the promotion candidate had a positive validator but no dedicated negative freeze suite;
+2. stale translation-era learner guidance and unused helper functions remained in `core.js` even though their execution paths were already disconnected.
+
+Resolution:
+
+- CI now executes `tests/russian-promotion-freeze.test.mjs` with 14 negative cases;
+- stale `V ẩn/hiện nghĩa` guidance was removed;
+- dead translation-era vocab/dialogue helpers were removed;
+- promotion validators explicitly forbid those helpers and shortcuts from returning.
+
+Legacy source/editor translation fields and inert saved-state compatibility fields remain allowed exactly as documented above.
