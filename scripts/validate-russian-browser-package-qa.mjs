@@ -14,7 +14,7 @@ export function validateContract(c){
   assert(c?.schema==='RUSSIAN_BROWSER_PACKAGE_QA_CONTRACT_V1','Unexpected browser/package QA contract');
   assert(JSON.stringify(Object.keys(c.substeps||{}))===JSON.stringify(ORDER),'Turn 23 substep set/order drifted');
   assert(c.targets?.desktop?.aspectRatio==='16:9'&&c.targets?.tablet?.aspectRatio==='3:2'&&c.targets?.phone?.aspectRatio==='19.5:9','Responsive target ratios drifted');
-  assert(c.accessibility?.criticalInteractiveElementsNamed===true&&c.accessibility?.modalSemanticsRequired===true&&c.accessibility?.statusLiveRegionsRequired===true&&c.accessibility?.focusVisibilityRequired===true,'Accessibility contract weakened');
+  assert(c.accessibility?.criticalInteractiveElementsNamed===true&&c.accessibility?.modalSemanticsRequired===true&&c.accessibility?.statusLiveRegionsRequired===true&&c.accessibility?.focusVisibilityRequired===true&&c.accessibility?.modalAriaLifecycleRequired===true&&c.accessibility?.modalFocusLifecycleRequired===true,'Accessibility contract weakened');
   assert(c.performance?.largeOptionalDataLazy===true&&c.performance?.storageSizeGuardRequired===true&&c.performance?.renderMutationGuardRequired===true&&c.performance?.pagedLargeCollectionsRequired===true,'Performance contract weakened');
   assert(c.browserCapabilities?.speechFallbackExplicit===true&&c.browserCapabilities?.externalMediaOfflineStateExplicit===true&&c.browserCapabilities?.missingVisualStateExplicit===true,'Browser capability fallback contract weakened');
   assert(c.cursive?.obligationId==='RUS-CURSIVE-VISUAL-001'&&c.cursive?.mustDifferFromPrint===true&&c.cursive?.fontOnlyProofAllowed===false&&c.cursive?.explicitShapeFallbackAllowed===true,'Cursive proof contract weakened');
@@ -69,7 +69,7 @@ export function validatePackage({index,sw,runtime}){
   return {entryRefs:refs.length,shellEntries:expected.length};
 }
 
-export function validateAccessibility({index,css,capability}){
+export function validateAccessibility({index,css,capability,core}){
   assert(index.includes('role="dialog"')&&index.includes('aria-modal="true"')&&index.includes('aria-hidden="true"'),'Modal semantics incomplete');
   assert(index.includes('id="toast"')&&index.includes('role="status"')&&index.includes('aria-live="polite"'),'Toast live-status semantics missing');
   assert(index.includes('id="saveState"')&&index.includes('aria-live="polite"'),'Save status live region missing');
@@ -79,6 +79,11 @@ export function validateAccessibility({index,css,capability}){
   assert(index.includes('id="modalClose"')&&index.includes('aria-label="Đóng hộp thoại"'),'Modal close accessible name missing');
   assert(css.includes(':focus-visible'),'Keyboard focus-visible styling missing');
   assert(capability.includes("el.setAttribute('role','status')")&&capability.includes("el.setAttribute('aria-live','polite')"),'Browser capability status is not announced accessibly');
+  assert(core.includes("modal.setAttribute('aria-hidden','false')"),'Opening modal must expose dialog to assistive technology');
+  assert(core.includes("modal.setAttribute('aria-hidden','true')"),'Closing modal must hide dialog from assistive technology');
+  assert(core.includes('modalReturnFocus=document.activeElement'),'Opening modal must remember prior focus');
+  assert(core.includes('if(back&&back.isConnected)'),'Closing modal must restore prior focus when available');
+  assert(core.includes("first?.focus?.({preventScroll:true})"),'Opening non-presentation modal must move focus into dialog');
   return true;
 }
 
