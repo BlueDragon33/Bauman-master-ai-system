@@ -2,6 +2,8 @@ import fs from 'node:fs';
 
 const flow=fs.readFileSync('subjects/russian/assets/learning-flow.js','utf8');
 const core=fs.readFileSync('subjects/russian/assets/core.js','utf8');
+const handwriting=JSON.parse(fs.readFileSync('subjects/russian/data/handwriting.json','utf8'));
+const alphabet=handwriting.filter(x=>x?.mode==='alphabet');
 
 const checks=[
   ['listening/speaking is first learning step', flow.includes("const STEP_ORDER=['speaking','alphabet','theory','vocab','grammar','exercises','check'];")],
@@ -14,7 +16,10 @@ const checks=[
   ['vocab UI uses contextual hint wording', core.includes("Lật gợi ý") && core.includes("Hiểu qua ngữ cảnh")],
   ['vocab detail labels Russian explanation', core.includes("Giải thích tiếng Nga")],
   ['AI vocab helper does not expose English equivalent', !core.includes('English equivalent:')],
-  ['legacy direct flip label removed', !core.includes('Lật nghĩa')]
+  ['legacy direct flip label removed', !core.includes('Lật nghĩa')],
+  ['Russian alphabet dataset has all 33 letters', alphabet.length===33],
+  ['font-rendered handwriting preview is explicitly non-canonical when Unicode matches print', core.includes("kind:encodedDistinct?'encoded-cursive':'font-rendered-preview'") && core.includes('Chuỗi Unicode hiện trùng chữ in; hình dáng chữ tay phụ thuộc font/asset hiển thị và không được coi là dữ liệu nét chính xác.')],
+  ['generic stroke family is labeled as reference rather than exact stroke truth', core.includes('Khung nét tham khảo') && !core.includes('<span class="chip">Hình nét đang luyện</span>')]
 ];
 
 const failed=checks.filter(([,ok])=>!ok);
