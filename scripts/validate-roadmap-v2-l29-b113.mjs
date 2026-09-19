@@ -60,6 +60,7 @@ assert.deepEqual(contract.decisionPolicy,{
 for(const key of ['productionConsumerConnect','persistentStoreWrite','dashboardUiRender','scheduleWrite','calendarWrite','runtimeActivation','notificationWrite','automaticAction']){
   assert.equal(contract.capabilities[key],false,`Forbidden B113 capability enabled: ${key}`);
 }
+
 assert.equal(contract.acceptance.step,113);
 assert.equal(contract.acceptance.currentTrack,'L29');
 assert.equal(contract.acceptance.productionConsumersConnected,0);
@@ -70,10 +71,13 @@ assert.equal(contract.acceptance.requestSchemaPinned,true);
 
 assert.equal(requestSchema.additionalProperties,false);
 assert.deepEqual(requestSchema.required,['schema','consumerId','consumerClass','readinessRequest']);
+assert.equal(requestSchema.properties.schema.const,requestSchema.$id);
 assert.equal(requestSchema.properties.consumerId.pattern,'^SHADOW::[A-Z0-9_-]+$');
 assert.equal(requestSchema.properties.consumerClass.const,'human_review_shadow');
-assert.equal(resultSchema.properties.consumerClass.const,'human_review_shadow');
+
+assert.equal(resultSchema.additionalProperties,false);
 assert.equal(resultSchema.properties.consumerId.pattern,'^SHADOW::[A-Z0-9_-]+$');
+assert.equal(resultSchema.properties.consumerClass.const,'human_review_shadow');
 for(const key of ['persisted','productionConsumerConnected','runtimeActionAuthorized','scheduleWriteAllowed','notificationWriteAllowed']){
   assert.equal(resultSchema.properties[key].const,false,`B113 result schema widened authority: ${key}`);
 }
@@ -85,9 +89,11 @@ function walk(dir){
     return entry.isDirectory()?walk(p):[p];
   });
 }
+
 for(const p of walk('roadmap_v2')){
   assert.equal(/\.(?:js|mjs|cjs|html|css)$/i.test(p),false,`B113 executable/UI leaked into canonical Roadmap tree: ${p}`);
 }
+
 for(const file of [
   ...(fs.existsSync('index.html')?['index.html']:[]),
   ...walk('assets'),
@@ -96,56 +102,13 @@ for(const file of [
   const text=fs.readFileSync(file,'utf8');
   assert.equal(text.includes('roadmap_v2/consumer-admission/current-contract.json'),false,`B113 consumer-admission contract wired into runtime: ${file}`);
   assert.equal(text.includes('BAUMAN_ROADMAP_V2_CONSUMER_ADMISSION_CONTRACT_V1'),false,`B113 consumer-admission activation leaked into runtime: ${file}`);
+  assert.equal(text.includes('BAUMAN_ROADMAP_V2_CONSUMER_ADMISSION_REQUEST_V1'),false,`B113 consumer-admission request activation leaked into runtime: ${file}`);
 }
 
 console.log('ROADMAP_V2_L29_B113_CONSUMER_ADMISSION_CONTRACT=PASS');
 console.log(JSON.stringify({
   consumerAdmission:contract.schema,
-  upstreamAdmission:admission.schema,
-  allowedShadowConsumerClasses:contract.candidatePolicy.allowedShadowConsumerClasses,
-  productionConsumers:0,
-  planningBridge:false,
-  safeShell:false,
-  subjectRuntime:false,
-  persistence:false,
-  dashboardUi:false,
-  scheduleWrite:false,
-  calendarWrite:false,
-  runtimeActivation:false,
-  notificationWrite:false,
-  automaticAction:false
-},null,2));
-);
-assert.equal(requestSchema.properties.consumerClass.const,'human_review_shadow');
-assert.equal(resultSchema.properties.consumerClass.const,'human_review_shadow');
-assert.equal(resultSchema.properties.consumerId.pattern,'^SHADOW::[A-Z0-9_-]+$');
-for(const key of ['persisted','productionConsumerConnected','runtimeActionAuthorized','scheduleWriteAllowed','notificationWriteAllowed']){
-  assert.equal(resultSchema.properties[key].const,false,`B113 result schema widened authority: ${key}`);
-}
-
-function walk(dir){
-  if(!fs.existsSync(dir))return [];
-  return fs.readdirSync(dir,{withFileTypes:true}).flatMap(entry=>{
-    const p=path.posix.join(dir,entry.name);
-    return entry.isDirectory()?walk(p):[p];
-  });
-}
-for(const p of walk('roadmap_v2')){
-  assert.equal(/\.(?:js|mjs|cjs|html|css)$/i.test(p),false,`B113 executable/UI leaked into canonical Roadmap tree: ${p}`);
-}
-for(const file of [
-  ...(fs.existsSync('index.html')?['index.html']:[]),
-  ...walk('assets'),
-  ...walk('subjects')
-].filter(p=>/\.(?:html|js|mjs|cjs|json)$/i.test(p))){
-  const text=fs.readFileSync(file,'utf8');
-  assert.equal(text.includes('roadmap_v2/consumer-admission/current-contract.json'),false,`B113 consumer-admission contract wired into runtime: ${file}`);
-  assert.equal(text.includes('BAUMAN_ROADMAP_V2_CONSUMER_ADMISSION_CONTRACT_V1'),false,`B113 consumer-admission activation leaked into runtime: ${file}`);
-}
-
-console.log('ROADMAP_V2_L29_B113_CONSUMER_ADMISSION_CONTRACT=PASS');
-console.log(JSON.stringify({
-  consumerAdmission:contract.schema,
+  requestSchema:requestSchema.$id,
   upstreamAdmission:admission.schema,
   allowedShadowConsumerClasses:contract.candidatePolicy.allowedShadowConsumerClasses,
   productionConsumers:0,
