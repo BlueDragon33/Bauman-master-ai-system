@@ -181,6 +181,10 @@ Turn 23 execution substeps:
 
 Remove obsolete translation-first runtime authority, document compatibility, close all deferred obligations, run cross-system gates and freeze a promotion candidate.
 
+Turn 24 post-freeze hardening:
+
+- **24.1 — Promotion freeze negative gate:** prove CI rejects automatic main merge, translation-toggle reactivation, destructive storage reset, bridge/protocol drift, direct-semantic regression, cross-skill inference and other frozen-authority violations.
+
 Turn 24 execution substeps:
 
 - **24.1 — Migration freeze contract:** preserve storage/bridge compatibility while prohibiting legacy translation state from regaining learner-facing authority.
