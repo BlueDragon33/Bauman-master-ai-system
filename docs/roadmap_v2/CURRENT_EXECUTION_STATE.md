@@ -6,16 +6,16 @@
 ## Active track
 
 - Current round: **Lượt 31**
-- Current step: **L31/B122 — PROMOTION ELIGIBILITY PROJECTOR · IN_PROGRESS**
+- Current step: **L31/B123 — ADVERSARIAL PROMOTION ELIGIBILITY · IN_PROGRESS**
 - L22 closeout: **B88 + H1 — PASS**
-- Status: **L23_COMPLETE · L24_COMPLETE · L25_COMPLETE · L26_COMPLETE · L27_COMPLETE · L28_COMPLETE · L29_COMPLETE_THROUGH_B116 · L30_COMPLETE_THROUGH_B120 · L31_B121_COMPLETE · L31_B122_ACTIVE**
+- Status: **L23_COMPLETE · L24_COMPLETE · L25_COMPLETE · L26_COMPLETE · L27_COMPLETE · L28_COMPLETE · L29_COMPLETE_THROUGH_B116 · L30_COMPLETE_THROUGH_B120 · L31_B121_COMPLETE · L31_B122_COMPLETE · L31_B123_ACTIVE**
 - Last recorded six-gate head: `d17f690b25c7b8e05f8183fe2223b1c9622cc38d`
 - Production/runtime activation by Roadmap V2: **disconnected**
 - Legacy/source destructive migration: **not executed**
 - Last completed: **L30 final-state marker — PASS on complete six-gate set**
 - Last hardening: **L29-F2 validator/harness syntax repair — PASS; no gate weakening**
-- Current official step: **L31/B122 — deterministic Promotion Eligibility projector**
-- B123–B124 remain blocked until B122 passes the complete six-gate set.
+- Current official step: **L31/B123 — adversarial Promotion Eligibility validation**
+- B124 remains blocked until B123 passes the complete six-gate set.
 
 ## L22/B88 complete gate evidence
 
