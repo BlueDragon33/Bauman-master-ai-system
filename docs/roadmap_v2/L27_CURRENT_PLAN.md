@@ -1,6 +1,6 @@
 # Lượt 27 — Current Plan · Bước 105–108
 
-Status: `PASS_B105 · PASS_L27_F1_H1 · B106_IN_PROGRESS`
+Status: `PASS_B105 · PASS_L27_F1_H1 · PASS_B106 · PASS_B107 · B108_IN_PROGRESS`
 
 Prerequisite: L26/B104 documentation/final-state head `999dd9910c4d2d87c7e947aa5d9b8d04b60f2555` passed the complete six-gate set.
 
@@ -23,17 +23,17 @@ Locked rules:
 
 ## B106 — Read-only readiness projector
 
-**ACTIVE.** Build an in-memory projector that recomputes current Scheduler coverage and evaluates current Mastery prerequisite semantics. No manual colors/results.
+**PASS.** Build an in-memory projector that recomputes current Scheduler coverage and evaluates current Mastery prerequisite semantics. No manual colors/results.
 
 B105/F1/H1 accepted head: `f87d6a1e528c764c432981750030a5adc9d35466` (6/6 gates PASS).
 
 ## B107 — Adversarial readiness validation
 
-Validate forged Master-ready claims, missing evidence, external gates, advisory edges, Critical schedule coverage, aggregation, duplicate/malformed input and fail-closed behavior.
+**PASS.** Validate forged Master-ready claims, missing evidence, external gates, advisory edges, Critical schedule coverage, aggregation, duplicate/malformed input and fail-closed behavior.
 
 ## B108 — Full-system closeout
 
-Compose B105–B107 and run the complete six-gate set.
+**ACTIVE.** Compose B105–B107 and run the complete six-gate set.
 
 L28 remains blocked until B108 and its documentation/final-state closeout are green.
 
