@@ -1,7 +1,7 @@
 import assert from 'node:assert/strict';
 import fs from 'node:fs';
 import {classifyVisualVocabulary,summarizeVisualCoverage} from '../subjects/russian/lib/visual-vocabulary-coverage.mjs';
-import {validateContract,validateClassifier} from '../scripts/validate-russian-visual-vocabulary-coverage.mjs';
+import {validateContract,validateClassifier,profileCorpus} from '../scripts/validate-russian-visual-vocabulary-coverage.mjs';
 
 const c=JSON.parse(fs.readFileSync('subjects/russian/contracts/visual-vocabulary-coverage-contract.v1.json','utf8'));
 const copy=()=>structuredClone(c);
@@ -29,9 +29,13 @@ assert.deepEqual(
   {concreteVisual:mixed.concreteVisual,symbolicVisual:mixed.symbolicVisual,bySourceField:mixed.bySourceField},
   {concreteVisual:1,symbolicVisual:2,bySourceField:{image_url:1,emoji:1,gesture:1}}
 );
+const profile=profileCorpus([{ru:'книга',pos:'noun',stage:'A0',topic:'учёба',meaning_ru:'предмет для чтения',example_ru:'Это книга.',image_emoji:'📘'}]);
+assert.equal(profile.fieldPresence.ru,1);
+assert.equal(profile.fieldPresence.meaning_ru,1);
+assert.equal(profile.samples[0].topic,'учёба');
 
 {const x=copy();x.rules.syntheticEmojiFallbackIsNotSourceCoverage=false;assert.throws(()=>validateContract(x),/must not count/)}
 {const x=copy();x.rules.runtimeAuthoritySwitch=true;assert.throws(()=>validateContract(x),/must not switch/)}
 
 console.log('RUSSIAN_VISUAL_COVERAGE_NEGATIVE_TEST=PASS');
-console.log(JSON.stringify({negativeCases:4,diagnosticCases:2},null,2));
+console.log(JSON.stringify({negativeCases:4,diagnosticCases:3},null,2));
