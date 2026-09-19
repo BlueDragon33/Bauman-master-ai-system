@@ -49,7 +49,7 @@ Create Turn 25+ only if a genuinely new responsibility appears that cannot safel
 
 Continue auditing the frozen candidate. If a defect belongs to an existing responsibility, reopen/add a numbered substep inside that owning turn, fix it, extend the relevant negative/promotion gate, and restore GREEN. Create Turn 25+ only for a genuinely new responsibility.
 
-Current post-freeze additions accepted: Turn 1.1, Turn 2.1, Turn 2.2, Turn 3.1, Turn 8.1, Turn 8.2, Turn 9.1, Turn 9.2, Turn 9.3, Turn 9.4, Turn 9.5, Turn 9.6, Turn 9.7, Turn 10.1, Turn 10.2, Turn 11.1, Turn 11.2, Turn 13.1, Turn 13.2, Turn 16.1, Turn 16.2, Turn 16.3, Turn 16.4, Turn 18.1, Turn 18.2, Turn 21.7, Turn 22.7, Turn 22.8, Turn 23.8, Turn 23.9, Turn 23.10, Turn 23.11, Turn 23.12, Turn 24.7, Turn 24.8, Turn 24.9, Turn 24.10, Turn 24.11, Turn 24.12, Turn 24.13, Turn 24.14, Turn 24.15 and Turn 24.16.
+Current post-freeze additions accepted: Turn 1.1, Turn 2.1, Turn 2.2, Turn 3.1, Turn 8.1, Turn 8.2, Turn 9.1, Turn 9.2, Turn 9.3, Turn 9.4, Turn 9.5, Turn 9.6, Turn 9.7, Turn 10.1, Turn 10.2, Turn 11.1, Turn 11.2, Turn 13.1, Turn 13.2, Turn 16.1, Turn 16.2, Turn 16.3, Turn 16.4, Turn 16.5, Turn 16.6, Turn 18.1, Turn 18.2, Turn 21.7, Turn 22.7, Turn 22.8, Turn 23.8, Turn 23.9, Turn 23.10, Turn 23.11, Turn 23.12, Turn 24.7, Turn 24.8, Turn 24.9, Turn 24.10, Turn 24.11, Turn 24.12, Turn 24.13, Turn 24.14, Turn 24.15 and Turn 24.16.
 
 
 ## Post-freeze gate status
@@ -149,8 +149,10 @@ Post-freeze audit extended Turn 16/24 without creating Turn 25:
 - dialogue search/group/deep-link/scene routing is constrained to Russian-labelled direct context or inert IDs;
 - stale legacy dialogue-group state recovers to `all`;
 - dialogue turn projection now strips the complete prohibited Vietnamese/English translation-field set rather than only four legacy fields;
-- the dedicated dialogue negative suite now contains 22 cases, including incomplete-sanitizer rejection.
+- the dedicated dialogue negative suite now contains 28 cases, including incomplete-sanitizer, generic difficulty fallback, object-turn bypass and non-Cyrillic generic-text rejection.
+- dialogue difficulty/filter routing is inert-ID/Russian-label only.
+- both `utterances` and fallback `turns` use the same sanitizer projector; generic fallback text must contain Cyrillic.
 
-Targeted branch validation after the sanitizer repair: PASS at code checkpoint `cb0bcd6b9fe01ccf11adabbccae1bcd0ca58473c`.
+Latest source-level checkpoint before documentation sync: `ecc984d1c057c9bd75da8e0e67fbeab68a0613df`; static invariant recheck PASS.
 
 The last full GitHub Actions checkpoint remains `c0e2413b5ec34e86e6ad83fb0c907dcea1417aa4` / workflow `35422889144` until the newer post-freeze commits receive equivalent full CI evidence.
