@@ -172,6 +172,7 @@ for (const resource of [
   'assets/js/planning-main.js',
   'subjects/russian/index.html',
   'subjects/russian/assets/core.js',
+  'subjects/russian/assets/handwriting-recognition.js',
   'subjects/russian/assets/russian-reference-ui.js',
   'subjects/russian/assets/russian-reference-ui-polish.css',
   'subjects/russian/assets/russian-optional-data-loader.js',
