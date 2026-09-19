@@ -72,7 +72,7 @@
           verifiedRussianVoice:Boolean(voice)
         });
       };
-      u.onend=event=>hooks?.onEnd?.({event,lang:u.lang,voiceName:String(voice?.name||'')});
+      u.onend=event=>hooks?.onEnd?.({event,lang:u.lang,voiceName:String(voice?.name||''),verifiedRussianVoice:Boolean(voice)});
       u.onerror=event=>{
         hooks?.onError?.({event,lang:u.lang,voiceName:String(voice?.name||'')});
         paint();
