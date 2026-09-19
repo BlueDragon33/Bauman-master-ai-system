@@ -115,6 +115,20 @@ try{
   assert.equal(missed.learning.resume?.route?.view,'writing');
   assert.ok(Number.isInteger(Number(missed.learning.resume?.route?.handwritingIndex)),'Forced scoring miss did not preserve handwriting index');
 
+  await scoringPage.reload({waitUntil:'domcontentloaded',timeout:30000});
+  await scoringPage.waitForFunction(()=>window.RussianHandwritingRecognition?.getCapability?.().canScore===true&&window.RussianHandwritingRecognition?.getState?.().attempts===1,null,{timeout:15000});
+  await scoringPage.locator('[data-view="writing"]').first().click();
+  await scoringPage.waitForFunction(()=>document.querySelector('.ru-handwriting-recognition')?.dataset.ruRecognitionState==='ready'&&document.querySelectorAll('[data-ru-handwriting-choice]').length===4,null,{timeout:15000});
+  const persisted=await scoringPage.evaluate(()=>({
+    recognition:window.RussianHandwritingRecognition.getState(),
+    learning:window.RussianLearningState.get()
+  }));
+  assert.equal(persisted.recognition.lastLetterId,missed.recognition.lastLetterId,'Recognition letter changed across reload after miss');
+  assert.equal(persisted.recognition.lastCorrect,false,'Recognition miss state did not persist across reload');
+  assert.ok(persisted.learning.reviewQueue[reviewId],'Handwriting Review Queue item did not persist across reload');
+  assert.equal(persisted.learning.resume?.route?.view,'writing','Writing resume route did not persist across reload');
+  assert.equal(Number(persisted.learning.resume?.route?.handwritingIndex),Number(missed.learning.resume?.route?.handwritingIndex),'Handwriting resume index drifted across reload');
+
   await scoringPage.locator(`[data-ru-handwriting-choice="${missed.recognition.lastLetterId}"]`).click();
   await scoringPage.waitForFunction(()=>window.RussianHandwritingRecognition.getState().attempts===2&&window.RussianHandwritingRecognition.getState().correct===1&&window.RussianHandwritingRecognition.getState().lastCorrect===true);
   const recovered=await scoringPage.evaluate(()=>({
