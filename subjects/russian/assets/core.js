@@ -1235,8 +1235,6 @@ function activeLineIndex(){return inPracticeMode()?Number(state.practiceLineInde
 function setActiveLineIndex(i){if(inPracticeMode())state.practiceLineIndex=Math.max(0,Number(i)||0); else state.dialogueLineIndex=Math.max(0,Number(i)||0)}
 function activeRole(){return inPracticeMode()?(state.practiceRole||'all'):(state.dialogueRole||'all')}
 function setActiveRole(role){if(inPracticeMode())state.practiceRole=role; else state.dialogueRole=role}
-function activeHideVi(){return inPracticeMode()?!!state.practiceHideVi:!!state.dialogueHideVi}
-function toggleActiveHideVi(){if(inPracticeMode())state.practiceHideVi=!state.practiceHideVi; else state.dialogueHideVi=!state.dialogueHideVi}
 function activeSpeechResults(){const k=inPracticeMode()?'practiceSpeechResults':'dialogueSpeechResults'; state[k]=state[k]||{}; return state[k]}
 function currentDialogue(){const list=currentDialogueList(); return list.find(x=>(x.id||x.title)===currentDialogueId())||list[0]||{};}
 function dialogueTurns(d){return arr(A.dialogueTurns?.(d)||d?.utterances||d?.turns)}
