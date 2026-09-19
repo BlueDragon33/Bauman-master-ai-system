@@ -6,15 +6,15 @@
 ## Active track
 
 - Current round: **Lượt 27**
-- Current step: **Bước 106 — IN_PROGRESS**
+- Current step: **Bước 107 — IN_PROGRESS**
 - L22 closeout: **B88 + H1 — PASS**
-- Status: **L23_COMPLETE · L24_COMPLETE · L25_COMPLETE · L26_COMPLETE · PASS_L27_B105 · PASS_L27_F1_H1 · L27_B106_IN_PROGRESS**
-- Last recorded six-gate head: `4d2bd743f0977d3a8202564549eb51a37164056e`
+- Status: **L23_COMPLETE · L24_COMPLETE · L25_COMPLETE · L26_COMPLETE · PASS_L27_B105 · PASS_L27_F1_H1 · PASS_L27_B106 · L27_B107_IN_PROGRESS**
+- Last recorded six-gate head: `9b0d5abddac052037f98c4f653015c3b3b451e02`
 - Production/runtime activation by Roadmap V2: **disconnected**
 - Legacy/source destructive migration: **not executed**
-- Last completed: **L27/B105 — PASS (current readiness contract)**
+- Last completed: **L27/B106 — PASS (read-only readiness projector)**
 - Last hardening: **L27-F1/H1 stale manifest removal + additive readiness overlay — PASS**
-- Current official step: **L27/B106 — read-only readiness projector**
+- Current official step: **L27/B107 — adversarial readiness validation**
 - L26 opened only after the L25 final-state head passed the complete six-gate set.
 
 ## L22/B88 complete gate evidence
@@ -478,3 +478,17 @@ Accepted B105/F1/H1 head: `f87d6a1e528c764c432981750030a5adc9d35466`
 - Whole System Integration — run `35436877126` — PASS
 
 B105 is closed. B106 is active.
+
+
+## L27/B106 gate evidence
+
+Accepted B106/H2/H3 head: `9b0d5abddac052037f98c4f653015c3b3b451e02`
+
+- Roadmap V2 Current Gate — run `35437244971` — PASS
+- Foundation Domain Model — run `35437244962` — PASS
+- Windows checkout safety — run `35437244872` — PASS
+- Russian Reference UI — run `35437244968` — PASS
+- Cloudflare Preview — run `35437244925` — PASS
+- Whole System Integration — run `35437244977` — PASS
+
+B106 is closed. B107 adversarial readiness validation is active. B108 remains blocked until the B107 head passes the complete six-gate set.
