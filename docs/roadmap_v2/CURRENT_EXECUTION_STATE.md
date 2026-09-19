@@ -6,16 +6,16 @@
 ## Active track
 
 - Current round: **Lượt 31**
-- Current step: **L31/B121 — PROMOTION ELIGIBILITY CONTRACT · IN_PROGRESS**
+- Current step: **L31/B122 — PROMOTION ELIGIBILITY PROJECTOR · IN_PROGRESS**
 - L22 closeout: **B88 + H1 — PASS**
-- Status: **L23_COMPLETE · L24_COMPLETE · L25_COMPLETE · L26_COMPLETE · L27_COMPLETE · L28_COMPLETE · L29_COMPLETE_THROUGH_B116 · L30_COMPLETE_THROUGH_B120 · L31_B121_ACTIVE**
+- Status: **L23_COMPLETE · L24_COMPLETE · L25_COMPLETE · L26_COMPLETE · L27_COMPLETE · L28_COMPLETE · L29_COMPLETE_THROUGH_B116 · L30_COMPLETE_THROUGH_B120 · L31_B121_COMPLETE · L31_B122_ACTIVE**
 - Last recorded six-gate head: `d17f690b25c7b8e05f8183fe2223b1c9622cc38d`
 - Production/runtime activation by Roadmap V2: **disconnected**
 - Legacy/source destructive migration: **not executed**
 - Last completed: **L30 final-state marker — PASS on complete six-gate set**
 - Last hardening: **L29-F2 validator/harness syntax repair — PASS; no gate weakening**
-- Current official step: **L31/B121 — canonical Promotion Eligibility boundary**
-- B122–B124 remain blocked until B121 passes the complete six-gate set.
+- Current official step: **L31/B122 — deterministic Promotion Eligibility projector**
+- B123–B124 remain blocked until B122 passes the complete six-gate set.
 
 ## L22/B88 complete gate evidence
 
@@ -810,3 +810,17 @@ Pre-audit found a current-track architecture gap: L30 can produce a Human Review
 L31 therefore opens as a data-only Promotion Eligibility Boundary. It does **not** authorize release review, production promotion, a production consumer, persistence or runtime action.
 
 Current active step: **L31/B121**.
+
+
+## L31/B121 gate evidence
+
+Accepted B121 head: `bf7908e67624f35604206280df91f3f7a9268bc0`
+
+- Roadmap V2 Current Gate — run `35453928329` — PASS
+- Foundation Domain Model — run `35453928313` — PASS
+- Windows checkout safety — run `35453928354` — PASS
+- Russian Reference UI — run `35453928319` — PASS
+- Cloudflare Preview — run `35453928297` — PASS
+- Whole System Integration — run `35453928301` — PASS
+
+B121 is closed. B122 is active.
