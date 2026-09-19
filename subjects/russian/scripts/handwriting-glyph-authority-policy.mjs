@@ -54,11 +54,13 @@ export function validateHandwritingGlyphAuthorityPolicy({
 
   if(authority.source!=='bundled-vetted')fail('ready authority source must be bundled-vetted');
   if(!uniqueStrings(authority.trustedFamilies))fail('ready authority requires unique trusted font families');
-  const assetRoot=path.resolve(root,'subjects/russian/assets');
+  const authorityPrefix='subjects/russian/assets/handwriting-authority/';
+  const assetRoot=path.resolve(root,'subjects/russian/assets/handwriting-authority');
   const requireAsset=(repoPath,label)=>{
     if(!localRelative(repoPath))fail('ready authority '+label+' must be a local relative repo path');
+    if(!String(repoPath).startsWith(authorityPrefix))fail('ready authority '+label+' must live under subjects/russian/assets/handwriting-authority');
     const full=path.resolve(root,repoPath);
-    if(!full.startsWith(assetRoot+path.sep))fail('ready authority '+label+' must live under subjects/russian/assets');
+    if(!full.startsWith(assetRoot+path.sep))fail('ready authority '+label+' must live under subjects/russian/assets/handwriting-authority');
     if(!fs.statSync(full,{throwIfNoEntry:false})?.isFile())fail('ready authority '+label+' file does not exist under subjects/russian/assets');
     return full;
   };
@@ -88,6 +90,8 @@ export function validateHandwritingGlyphAuthorityPolicy({
   for(const requiredOffline of [authority.asset,authority.license,authority.coverageManifest]){
     if(!shellContains(serviceWorker,requiredOffline))fail('ready authority asset must be precached by Russian Service Worker: '+requiredOffline);
   }
+  if(!serviceWorker.includes("const isAuthorityAsset=url.pathname.includes('/subjects/russian/assets/handwriting-authority/')"))fail('Russian Service Worker must detect the dedicated handwriting authority asset namespace');
+  if(!serviceWorker.includes('if(isAuthority||isAuthorityAsset)')||!serviceWorker.includes("fetch(req,{cache:'no-store'})"))fail('handwriting authority assets must refresh network-first with offline cache fallback');
   if(!previewBuild.includes("fs.cpSync(path.join(root, 'subjects'), path.join(runtimeDist, 'subjects'), { recursive: true })"))fail('Cloudflare runtime build must copy the complete subjects tree for authority assets');
   if(!siteBuild.includes("fs.cpSync(source,output,{recursive:true})"))fail('ChatGPT Site build must preserve the complete accepted runtime tree');
 
