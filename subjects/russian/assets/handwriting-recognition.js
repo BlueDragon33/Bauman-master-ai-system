@@ -77,7 +77,7 @@
     return times.length?new Date(Math.min(...times)).toISOString():null;
   }
 
-  let capability=null,alphabet=[],renderQueued=false;
+  let capability=null,alphabet=[],renderQueued=false,reviewTimer=null;
   function getCapability(){if(!capability)capability=detect();return {...capability};}
   function currentQuestion(state=readState()){
     if(!alphabet.length)return null;
@@ -105,8 +105,15 @@
     if(!q)return '<section class="ru-handwriting-recognition disabled" data-ru-recognition-state="loading"><b>Đang nạp bảng chữ cái…</b></section>';
     const choices=choiceIndexes(q.index,state.attempts).map(i=>{const x=alphabet[i];return '<button type="button" data-ru-handwriting-choice="'+esc(x.id)+'" lang="ru"><span>'+esc(x.cursive||x.text||x.print||'')+'</span></button>';}).join('');
     const score=state.attempts?Math.round((Number(state.correct||0)/Number(state.attempts||1))*100):0;
-    const feedback=state.lastCorrect===true?'<em class="ok">Đúng · tiếp tục chữ kế tiếp</em>':state.lastCorrect===false?'<em class="retry">Chưa đúng · thử lại cùng chữ</em>':'';
-    return '<section class="ru-handwriting-recognition ready" data-ru-recognition-state="ready"><header><div><span>NHẬN DIỆN CHỮ IN → CHỮ TAY</span><b>Chọn cùng một chữ</b><p>Không dùng bản dịch nghĩa; chỉ đối chiếu hình dạng chữ Nga.</p></div><small>'+Number(state.correct||0)+'/'+Number(state.attempts||0)+' · '+score+'%</small></header><div class="ru-handwriting-question"><strong lang="ru">'+esc(q.item.print||q.item.text||'')+'</strong><div class="ru-handwriting-choices">'+choices+'</div></div>'+feedback+'</section>';
+    const weakOpen=openWeakIds(state).length;
+    const lastProfile=state.lastLetterId?normalizeProfile(state.profiles?.[state.lastLetterId]):null;
+    let feedback='';
+    if(state.lastCorrect===false)feedback='<em class="retry">Chưa đúng · thử lại cùng chữ</em>';
+    else if(state.lastCorrect===true&&lastProfile?.wrong>0&&!lastProfile?.resolvedAt)feedback='<em class="scheduled">Đúng 1 lần · đã hẹn ôn lại để xác nhận lần 2</em>';
+    else if(state.lastCorrect===true&&lastProfile?.resolvedAt)feedback='<em class="ok">Đúng ổn định · đã gỡ chữ này khỏi hàng ôn</em>';
+    else if(state.lastCorrect===true)feedback='<em class="ok">Đúng · tiếp tục chữ kế tiếp</em>';
+    const reviewTag=q.source==='review_due'?'<i class="ru-recognition-review-tag">Ôn chữ yếu</i>':'';
+    return '<section class="ru-handwriting-recognition ready" data-ru-recognition-state="ready" data-ru-question-source="'+esc(q.source)+'"><header><div><span>NHẬN DIỆN CHỮ IN → CHỮ TAY</span><b>Chọn cùng một chữ '+reviewTag+'</b><p>Không dùng bản dịch nghĩa; chỉ đối chiếu hình dạng chữ Nga. Chữ từng sai cần 2 lần đúng liên tiếp qua lịch ôn mới được gỡ khỏi hàng ôn.</p></div><small>'+Number(state.correct||0)+'/'+Number(state.attempts||0)+' · '+score+'%'+(weakOpen?' · '+weakOpen+' chữ cần ôn':'')+'</small></header><div class="ru-handwriting-question"><strong lang="ru">'+esc(q.item.print||q.item.text||'')+'</strong><div class="ru-handwriting-choices">'+choices+'</div></div>'+feedback+'</section>';
   }
   function render(){
     const host=document.querySelector('.writing-studio');
@@ -119,10 +126,17 @@
     let banner=document.querySelector('.ru-handwriting-capability');
     if(!banner){const hero=host.querySelector('.writing-hero');if(hero)hero.insertAdjacentHTML('afterend',capHtml);else host.insertAdjacentHTML('afterbegin',capHtml);banner=document.querySelector('.ru-handwriting-capability');if(banner)banner.dataset.renderSig=capSig;}
     else if(banner.dataset.renderSig!==capSig){banner.outerHTML=capHtml;banner=document.querySelector('.ru-handwriting-capability');if(banner)banner.dataset.renderSig=capSig;}
-    const drill=drillHtml(cap,state),drillSig=[cap.mode,state.attempts,state.correct,state.questionIndex,state.lastCorrect,alphabet.length].join('|');
+    const lastProfile=state.lastLetterId?state.profiles?.[state.lastLetterId]:null;
+    const drill=drillHtml(cap,state),drillSig=[cap.mode,state.attempts,state.correct,state.questionIndex,state.lastCorrect,state.lastLetterId,lastProfile?.correctStreak||0,lastProfile?.dueAt||'',lastProfile?.resolvedAt||'',openWeakIds(state).length,alphabet.length].join('|');
     let box=document.querySelector('.ru-handwriting-recognition');
     if(!box){banner?.insertAdjacentHTML('afterend',drill);box=document.querySelector('.ru-handwriting-recognition');if(box)box.dataset.renderSig=drillSig;}
     else if(box.dataset.renderSig!==drillSig){box.outerHTML=drill;box=document.querySelector('.ru-handwriting-recognition');if(box)box.dataset.renderSig=drillSig;}
+    armReviewWake(state);
+  }
+  function armReviewWake(state){
+    if(reviewTimer){clearTimeout(reviewTimer);reviewTimer=null;}
+    const at=nextReviewAt(state),when=at?Date.parse(at):NaN,delay=when-Date.now();
+    if(Number.isFinite(delay)&&delay>0)reviewTimer=setTimeout(()=>{reviewTimer=null;schedule();},Math.min(delay+75,2147483000));
   }
   function schedule(){if(renderQueued)return;renderQueued=true;requestAnimationFrame(()=>{renderQueued=false;render();});}
   async function loadAlphabet(){
@@ -132,21 +146,48 @@
   function answer(id){
     const cap=getCapability();if(!cap.canScore||!alphabet.length)return false;
     const state=readState(),q=currentQuestion(state);if(!q)return false;
-    const correct=clean(id)===clean(q.item.id);
-    state.attempts=Number(state.attempts||0)+1;state.lastAnswerId=clean(id);state.lastCorrect=correct;state.lastLetterId=clean(q.item.id);
-    if(correct){state.correct=Number(state.correct||0)+1;state.questionIndex=(q.index+1)%alphabet.length;}
-    else state.weak[q.item.id]=Number(state.weak[q.item.id]||0)+1;
+    const letterId=clean(q.item.id),correct=clean(id)===letterId,stamp=new Date().toISOString();
+    const profile=normalizeProfile(state.profiles?.[letterId]);
+    state.attempts=Number(state.attempts||0)+1;state.lastAnswerId=clean(id);state.lastCorrect=correct;state.lastLetterId=letterId;
+    profile.attempts+=1;profile.lastCorrect=correct;profile.lastAt=stamp;
+    if(correct){
+      state.correct=Number(state.correct||0)+1;
+      profile.correct+=1;profile.correctStreak+=1;
+      if(profile.wrong>0&&profile.correctStreak>=2){
+        profile.resolvedAt=stamp;profile.dueAt=null;delete state.weak[letterId];
+      }else if(profile.wrong>0){
+        profile.resolvedAt=null;profile.dueAt=new Date(Date.now()+REVIEW_DELAY_MS).toISOString();
+      }else{
+        profile.resolvedAt=null;profile.dueAt=null;
+      }
+      state.questionIndex=(q.index+1)%alphabet.length;
+    }else{
+      profile.wrong+=1;profile.correctStreak=0;profile.resolvedAt=null;profile.dueAt=stamp;
+      state.weak[letterId]=Number(state.weak[letterId]||0)+1;
+    }
+    state.profiles[letterId]=profile;
     writeState(state);
     const route={view:'writing',handwritingIndex:Number(q.item.__sourceIndex??q.index)||0,handwritingStep:0};
+    const reviewId='handwriting:'+letterId,label='Nhận diện chữ tay · '+clean(q.item.print||q.item.text||q.item.id);
     window.RussianLearningState?.setResume?.(route,'handwriting_recognition');
-    if(correct)window.RussianLearningState?.removeReview?.('handwriting:'+clean(q.item.id));
-    else window.RussianLearningState?.addReview?.('handwriting:'+clean(q.item.id),'handwriting_recognition_miss',route,'Nhận diện chữ tay · '+clean(q.item.print||q.item.text||q.item.id));
-    window.RussianLearningFlow?.touch?.('alphabet',{recognitionAttempts:state.attempts,recognitionCorrect:state.correct,recognitionLastLetterId:state.lastLetterId,recognitionLastCorrect:correct,recognitionAuthority:cap.mode});
+    if(correct&&profile.wrong>0&&profile.resolvedAt)window.RussianLearningState?.removeReview?.(reviewId);
+    else if(profile.wrong>0)window.RussianLearningState?.addReview?.(reviewId,correct?'handwriting_recognition_confirm':'handwriting_recognition_miss',route,label,profile.dueAt||stamp);
+    window.RussianLearningFlow?.touch?.('alphabet',{
+      recognitionAttempts:state.attempts,
+      recognitionCorrect:state.correct,
+      recognitionLastLetterId:state.lastLetterId,
+      recognitionLastCorrect:correct,
+      recognitionAuthority:cap.mode,
+      recognitionWeakOpen:openWeakIds(state).length,
+      recognitionRecoveryStreak:profile.correctStreak,
+      recognitionDueAt:profile.dueAt||'',
+      recognitionQuestionSource:q.source
+    });
     schedule();return correct;
   }
 
   document.addEventListener('click',event=>{const choice=event.target.closest?.('[data-ru-handwriting-choice]');if(choice){event.preventDefault();answer(choice.dataset.ruHandwritingChoice);}},true);
   document.addEventListener('DOMContentLoaded',()=>{capability=detect();loadAlphabet();schedule();const view=document.getElementById('view');if(view)new MutationObserver(schedule).observe(view,{childList:true,subtree:true});});
   window.addEventListener('russian:learning-state',schedule);
-  window.RussianHandwritingRecognition={schema:SCHEMA,detect,getCapability,canScore:()=>getCapability().canScore===true,getState:()=>JSON.parse(JSON.stringify(readState())),answer,refresh:()=>{capability=detect();schedule();return getCapability();}};
+  window.RussianHandwritingRecognition={schema:SCHEMA,detect,getCapability,canScore:()=>getCapability().canScore===true,getState:()=>JSON.parse(JSON.stringify(readState())),dueReviewIds:()=>dueWeakIds(readState()),nextReviewAt:()=>nextReviewAt(readState()),answer,refresh:()=>{capability=detect();schedule();return getCapability();}};
 })();
