@@ -119,6 +119,7 @@ A full branch-push audit exposed stale/over-broad gate logic inside already-owne
 - Turn 21.7: aligned the opened-state assertion with the real repair lifecycle and added a dedicated negative case.
 - Turn 22.7: separated asset-runtime existence from the required `missing_visual_asset` fallback invariant.
 - Turn 23.9: hardened Browser/Package negative tests for all 760px breakpoints and made load-order diagnostics precede shell-inventory masking.
+- Turn 23.10: upgraded both Russian CI jobs to `actions/checkout@v7` and `actions/setup-node@v7`; workflow `35416194155` passed both architecture and existing-regression jobs at `0609c85f512909374fc0ba346a71a9e65f3c061d`.
 - Turn 24.9: hardened the promotion-freeze bridge negative case across both READY and PROGRESS contract markers.
 
 Accepted executable checkpoint before this documentation update:
