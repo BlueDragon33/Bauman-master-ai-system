@@ -130,3 +130,25 @@ Accepted executable checkpoint before this documentation update:
 - `russian-existing-regression`: SUCCESS
 
 The promotion candidate remains frozen. Do not merge to `main` automatically.
+
+
+## Post-freeze visual-semantics quality repair — 2026-09-19
+
+A deeper audit of the frozen candidate found that the old visual-coverage gate was too coarse: all 8,000 vocabulary rows were classified as visual-ready, but CI evidence showed `concreteVisual=0` and `symbolicVisual=8000`, entirely through `image_emoji`.
+
+The repair remained inside existing responsibilities, so no Turn 25 was created:
+
+- Turn 11.1: split concrete image/illustration evidence from symbolic emoji/pictogram/scene/gesture evidence.
+- Turn 11.2: added corpus-shape profiling; all 8,000 rows have Russian term/phrase, `meaning_ru`, example, tags, stage, pronunciation and `image_emoji`.
+- Turn 13.1: added verified, on-demand Wikimedia Commons image enrichment using Russian-only semantic queries and relevance ranking; no Vietnamese/English translation fields participate in lookup.
+- Turn 13.2: added stale-request cancellation, in-flight deduplication, listener-before-`src` ordering, attribution including artist when available, and fallback preservation.
+- Turn 22.8: bound external image enrichment to online/non-Save-Data operation and kept it outside offline package-asset claims.
+
+Executable checkpoint before this documentation update:
+
+- commit: `4f76eba50f1c10a4308e86c4f5104d7d90769e4e`
+- workflow: `35416859395`
+- `russian-learning-contract`: SUCCESS
+- `russian-existing-regression`: SUCCESS
+
+The promotion candidate remains frozen and must not merge to `main` automatically.
