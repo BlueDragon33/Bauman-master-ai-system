@@ -30,7 +30,8 @@
     "recognitionSessionTokenRequired": true,
     "staleRecognitionCallbacksIgnored": true,
     "recognitionContextCapturedAtStart": true,
-    "delayedAutoAdvanceContextGuarded": true
+    "delayedAutoAdvanceContextGuarded": true,
+    "singleRecognitionResultPerSession": true
   },
   "feedback": {
     "explicitPronunciationRepair": true,
@@ -52,6 +53,7 @@
     "selfAssessmentStoredSeparately": true,
     "deepSpeakingAttemptsRecognitionConfirmed": true,
     "staleRecognitionCannotCreateEvidence": true,
-    "recognitionWritesOriginalStore": true
+    "recognitionWritesOriginalStore": true,
+    "duplicateRecognitionCallbacksDoNotDuplicateAttempts": true
   }
 }
