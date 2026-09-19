@@ -70,7 +70,9 @@ assert.equal(contract.acceptance.requestSchemaPinned,true);
 
 assert.equal(requestSchema.additionalProperties,false);
 assert.deepEqual(requestSchema.required,['schema','consumerId','consumerClass','readinessRequest']);
-assert.equal(requestSchema.properties.consumerId.pattern,'^SHADOW::[A-Z0-9_-]+
+assert.equal(requestSchema.properties.consumerId.pattern,'^SHADOW::[A-Z0-9_-]+$');
+assert.equal(requestSchema.properties.consumerClass.const,'human_review_shadow');
+assert.equal(resultSchema.properties.consumerClass.const,'human_review_shadow');
 assert.equal(resultSchema.properties.consumerId.pattern,'^SHADOW::[A-Z0-9_-]+$');
 for(const key of ['persisted','productionConsumerConnected','runtimeActionAuthorized','scheduleWriteAllowed','notificationWriteAllowed']){
   assert.equal(resultSchema.properties[key].const,false,`B113 result schema widened authority: ${key}`);
