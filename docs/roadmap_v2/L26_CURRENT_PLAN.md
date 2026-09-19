@@ -1,6 +1,6 @@
 # Lượt 26 — Current Plan · Bước 101–104
 
-Status: `B101_IN_PROGRESS`
+Status: `B102_IN_PROGRESS · L26-H2_ACTIVE`
 
 Prerequisite: L25/B100 final-state head `fa8d9b811080aec22a9d7b61dcc7791f55266dac` passed the complete six-gate set.
 
@@ -50,3 +50,8 @@ L27 remains blocked until B104 and its documentation closeout are green.
 ## Quality rule
 
 Any defect or missing architecture discovered inside L26 creates an `L26-Fx` or `L26-Hx` step. The next main step stays blocked until that subordinate step and the complete current gate are green.
+
+
+### H2 dynamic-target boundary
+
+B102 preserves the current Consumer rule that dynamic `CUR-L4-*` / Russian dynamic templates remain uninstantiated. Verified Current Bauman provenance does not bypass Priority V2 target eligibility. The projector may prioritize admitted prerequisite knowledge targets sourced from verified current Bauman material; it may not schedule an uninstantiated dynamic template ID.
