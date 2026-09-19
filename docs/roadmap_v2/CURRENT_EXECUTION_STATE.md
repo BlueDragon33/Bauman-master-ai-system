@@ -5,17 +5,17 @@
 
 ## Active track
 
-- Current round: **Lượt 25 — COMPLETE**
-- Current step: **Bước 100 — PASS · L26 NOT_STARTED**
+- Current round: **Lượt 26**
+- Current step: **Bước 101 — IN_PROGRESS · L26-F1 FIX_APPLIED_PENDING_GATE**
 - L22 closeout: **B88 + H1 — PASS**
-- Status: **L23_COMPLETE · L24_COMPLETE · L25_COMPLETE · PASS_L25_F1 · PASS_L25_F2 · PASS_L25_F3 · PASS_L25_F4 · PASS_L25_F5 · PASS_L25_H1 · PASS_L25_B97_B100 · L26_NOT_STARTED · FINAL_STATE_GATE_PENDING**
-- Last recorded six-gate head: `a2b9a18fc5bda52364b983e35bfb86d6e067fd92`
+- Status: **L23_COMPLETE · L24_COMPLETE · L25_COMPLETE · PASS_L25_B97_B100 · L25_FINAL_STATE_GATE_PASS · L26_B101_IN_PROGRESS · L26_F1_FIX_APPLIED_PENDING_GATE**
+- Last recorded six-gate head: `fa8d9b811080aec22a9d7b61dcc7791f55266dac`
 - Production/runtime activation by Roadmap V2: **disconnected**
 - Legacy/source destructive migration: **not executed**
 - Last completed: **L25/B100 — PASS**
 - Last hardening: **L25-F5 — PASS**
-- Current official step: **L25 complete · L26 not started**
-- L23 may start only after the L22 closeout snapshot remains green on the complete gate set.
+- Current official step: **L26/B101 — Scheduler / Master Mode contract**
+- L26 opened only after the L25 final-state head passed the complete six-gate set.
 
 ## L22/B88 complete gate evidence
 
@@ -340,3 +340,29 @@ Accepted documentation closeout head: `a2b9a18fc5bda52364b983e35bfb86d6e067fd92`
 - Whole System Integration — run `35342986533` — PASS
 
 L25 is complete through B100. The final state head itself must pass the same six gates before L26 may open.
+
+
+## L25 final-state gate evidence
+
+Accepted final-state head: `fa8d9b811080aec22a9d7b61dcc7791f55266dac`
+
+- Roadmap V2 Current Gate — run `35343262824` — PASS
+- Foundation Domain Model — run `35343262897` — PASS
+- Windows checkout safety — run `35343262847` — PASS
+- Russian Reference UI — run `35343262911` — PASS
+- Cloudflare Preview — run `35343262797` — PASS
+- Whole System Integration — run `35343262771` — PASS
+
+The final L25 state head is green. L26 is allowed to open.
+
+## L26 opening
+
+Current active step: **L26/B101**.
+
+Historical L26 is evidence only. Current-track admission must use Consumer Blueprint + Priority V2 and keep production/runtime/calendar integration disconnected.
+
+## L26-F1 defect
+
+The canonical static scheduler contract still referenced quarantined historical Consumer/Priority manifest schemas. The B101 repair replaces those stale upstream identities with the current Consumer Blueprint V1 and Priority V2 boundaries.
+
+B102 remains blocked until the B101/F1 head passes the complete current gate set.
