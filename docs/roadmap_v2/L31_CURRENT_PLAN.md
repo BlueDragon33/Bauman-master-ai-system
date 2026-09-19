@@ -1,6 +1,6 @@
 # Lượt 31 — Current Plan · Bước 121–124
 
-Status: `B121_ACTIVE · B122_BLOCKED · B123_BLOCKED · B124_BLOCKED`
+Status: `B121_PASS · B122_ACTIVE · B123_BLOCKED · B124_BLOCKED`
 
 Prerequisite: L30 final marker head `d17f690b25c7b8e05f8183fe2223b1c9622cc38d` passed the complete six-gate set.
 
@@ -14,7 +14,7 @@ L31 adds a data-only Promotion Eligibility layer. It does **not** authorize rele
 
 ## B121 — Promotion Eligibility contract and canonical request/result schemas
 
-**ACTIVE.** Pin a fail-closed contract for:
+**PASS.** Pinned a fail-closed contract for:
 
 - candidate references in the `CANDIDATE::...` namespace;
 - recomputation of the L30 Human Review receipt from its canonical request;
@@ -25,7 +25,7 @@ L31 adds a data-only Promotion Eligibility layer. It does **not** authorize rele
 
 ## B122 — Deterministic in-memory Promotion Eligibility projector
 
-Build a scripts-only, side-effect-free projector that revalidates the B121 request, recomputes L30 Human Review and returns a deeply frozen eligibility projection.
+**ACTIVE.** Build a scripts-only, side-effect-free projector that revalidates the B121 request, recomputes L30 Human Review and returns a deeply frozen eligibility projection.
 
 ## B123 — Adversarial Promotion Eligibility validation
 
