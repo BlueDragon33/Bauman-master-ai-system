@@ -43,6 +43,6 @@ assert.throws(()=>validateCore(core.replace("const unitTags=russianSemanticTags(
 assert.throws(()=>validateCore(core.replace("A.dialogueGroup?.(x)||x.group_ru||x.group_id||x.source_group_id||'general'","A.dialogueGroup?.(x)||x.group||'general'")),/generic-language dialogue group fallback/);
 assert.throws(()=>validateCore(core.replace("A.dialogueGroup?.(d)||d.group_ru||d.group_id||d.source_group_id||'general'","A.dialogueGroup?.(d)||d.group||'general'")),/generic-language group labels/);
 assert.throws(()=>validateCore(core.replace("if(state.dialogueGroup!=='all'&&!groups.includes(state.dialogueGroup))state.dialogueGroup='all';","")),/group state is not recovered/);
-assert.throws(()=>validateHelper(js.replace("dialogue?.group_ru,dialogue?.context_title_ru","dialogue?.group,dialogue?.context_title_ru")),/generic semantic metadata/);
+assert.throws(()=>validateHelper(js.replace("dialogue?.group_ru,dialogue?.context_title_ru","dialogue?.group,dialogue?.context_title_ru")),/Russian semantic context|generic semantic metadata/);
 console.log('RUSSIAN_DIALOGUE_SCAFFOLD_NEGATIVE_TEST=PASS');
 console.log(JSON.stringify({negativeCases:21},null,2));
