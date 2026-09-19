@@ -49,7 +49,7 @@ Create Turn 25+ only if a genuinely new responsibility appears that cannot safel
 
 Continue auditing the frozen candidate. If a defect belongs to an existing responsibility, reopen/add a numbered substep inside that owning turn, fix it, extend the relevant negative/promotion gate, and restore GREEN. Create Turn 25+ only for a genuinely new responsibility.
 
-Current post-freeze additions accepted: Turn 10.1, Turn 16.1, Turn 24.10, plus previously accepted: Turn 1.1, Turn 3.1, Turn 8.2, Turn 9.1, Turn 9.2, Turn 23.11, Turn 23.12, plus previously accepted: Turn 8.1, Turn 11.1, Turn 11.2, Turn 13.1, Turn 13.2, Turn 18.1, Turn 21.7, Turn 22.7, Turn 22.8, Turn 23.8, Turn 23.9, Turn 23.10, Turn 24.7, Turn 24.8 and Turn 24.9.
+Current post-freeze additions accepted: Turn 9.3, Turn 16.2, Turn 24.11, plus previously accepted: Turn 10.1, Turn 16.1, Turn 24.10, plus previously accepted: Turn 1.1, Turn 3.1, Turn 8.2, Turn 9.1, Turn 9.2, Turn 23.11, Turn 23.12, plus previously accepted: Turn 8.1, Turn 11.1, Turn 11.2, Turn 13.1, Turn 13.2, Turn 18.1, Turn 21.7, Turn 22.7, Turn 22.8, Turn 23.8, Turn 23.9, Turn 23.10, Turn 24.7, Turn 24.8 and Turn 24.9.
 
 
 ## Post-freeze gate status
@@ -97,3 +97,13 @@ Additional invariants:
 - vocab semantic adapter/new-item templates cannot use Vietnamese/English translation authority;
 - dialogue, Deep Speaking and AI dialogue context cannot read learner-facing `*_vi` semantic fields;
 - legacy translation fields may remain only as migration/source compatibility data or explicit sanitizer inputs.
+
+
+## Latest Deep Speaking checkpoint
+
+Run `35420972649` at `f5b49e56f276752ee2db9a3c5c33011574b0d3ba` is GREEN for both architecture and existing regression.
+
+Additional invariants:
+- Deep Speaking learner text fails closed to Russian-labelled semantics; generic object/string fallbacks are forbidden.
+- Deep Speaking attempts require a non-empty Russian recognition result.
+- Deep Speaking self-assessment remains separate from recognized speaking evidence and cannot create mastery.
