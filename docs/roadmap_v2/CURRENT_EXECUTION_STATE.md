@@ -6,9 +6,9 @@
 ## Active track
 
 - Current round: **Lượt 26**
-- Current step: **Bước 101 — IN_PROGRESS · L26-F1 FIX_APPLIED_PENDING_GATE**
+- Current step: **Bước 101 — IN_PROGRESS · L26-H1 FIX_APPLIED_PENDING_GATE**
 - L22 closeout: **B88 + H1 — PASS**
-- Status: **L23_COMPLETE · L24_COMPLETE · L25_COMPLETE · PASS_L25_B97_B100 · L25_FINAL_STATE_GATE_PASS · L26_B101_IN_PROGRESS · L26_F1_FIX_APPLIED_PENDING_GATE**
+- Status: **L23_COMPLETE · L24_COMPLETE · L25_COMPLETE · PASS_L25_B97_B100 · L25_FINAL_STATE_GATE_PASS · L26_B101_IN_PROGRESS · L26_F1_ROOT_CAUSE_CONFIRMED · L26_H1_FIX_APPLIED_PENDING_GATE**
 - Last recorded six-gate head: `fa8d9b811080aec22a9d7b61dcc7791f55266dac`
 - Production/runtime activation by Roadmap V2: **disconnected**
 - Legacy/source destructive migration: **not executed**
@@ -366,3 +366,16 @@ Historical L26 is evidence only. Current-track admission must use Consumer Bluep
 The canonical static scheduler contract still referenced quarantined historical Consumer/Priority manifest schemas. The B101 repair replaces those stale upstream identities with the current Consumer Blueprint V1 and Priority V2 boundaries.
 
 B102 remains blocked until the B101/F1 head passes the complete current gate set.
+
+
+## L26-H1 hardening
+
+Roadmap V2 Current Gate run `35435252436` correctly rejected direct mutation of the frozen R2B Scheduler contract blob.
+
+The repair is additive:
+
+- frozen `roadmap_v2/scheduler/scheduler-contract.json` restored;
+- current L26 boundary moved to `roadmap_v2/scheduler/current-contract.json`;
+- B101 validator checks the historical baseline and current overlay separately.
+
+B102 remains blocked until this H1/B101 head passes the complete gate set.
