@@ -44,3 +44,9 @@ Create Turn 25+ only if a genuinely new responsibility appears that cannot safel
 - Browser speech failure remains explicit.
 - Storage, Review Queue, SRS, Foundation and bridge authority remain unchanged.
 - User-facing module identity remains `Tiếng Nga Bauman` without legacy build/version labels.
+
+## Post-freeze rule
+
+Continue auditing the frozen candidate. If a defect belongs to an existing responsibility, reopen/add a numbered substep inside that owning turn, fix it, extend the relevant negative/promotion gate, and restore GREEN. Create Turn 25+ only for a genuinely new responsibility.
+
+Current post-freeze additions accepted: Turn 23.8, Turn 24.7 and Turn 24.8.
