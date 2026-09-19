@@ -43,3 +43,23 @@ B3. Ghi riêng stroke gesture trên canvas để phân biệt mở màn hình v�
 B4. Audit lớp hiển thị chữ in ↔ chữ viết tay: dữ liệu Unicode có thể giống nhau nên hình dáng viết tay phải do presentation/asset authority đảm nhiệm, không bịa ký tự mới trong JSON.
 B5. Bổ sung kiểm thử cho fallback font/asset và khả năng offline trên Windows/mobile.
 B6. Chỉ sau khi toàn bộ Russian + whole-system gates xanh mới mở lượt nhận diện mặt chữ in → chữ viết tay.
+
+
+## R-HW1 — Deterministic Handwriting Recognition Layer
+
+Accepted predecessor: `5db5f02b5ab00be71f0786697d38c965110b2d26` (9/9 gates green).
+
+### Sequence
+1. B1 capability/presentation authority runtime.
+2. B2 print → handwriting recognition drill.
+3. B3 evidence-only attempts/correct contract.
+4. B4 Review Queue + exact resume for weak letters.
+5. B5 offline/package/mobile/Windows parity.
+6. B6 adversarial closeout.
+
+### Non-negotiable boundary
+- Do not invent cursive glyph data.
+- `font-rendered-preview` is not canonical handwritten shape data.
+- If a reliable Cyrillic script presentation is unavailable, recognition scoring fails closed and the learner remains in reference/stroke practice mode.
+- No Vietnamese translation is used as the recognition answer.
+- Recognition evidence must never auto-set mastery.
