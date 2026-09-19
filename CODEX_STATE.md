@@ -260,3 +260,17 @@ Executable checkpoint before documentation normalization:
 - `russian-existing-regression`: SUCCESS
 
 The promotion candidate remains frozen and must not merge to `main` automatically.
+
+
+## Post-freeze oral-first primary CTA repair — 2026-09-19
+
+Turn 2.2 closes the remaining learner-entry inconsistency: overview and route-focus primary CTAs no longer hard-code `theory`; they enter `practice`/Nghe-Nói first. Theory routes remain available for explicit review/repair/supporting contexts.
+
+Executable checkpoint:
+
+- commit: `7c730fed3b3b0b3970a05ed4a3e9910252c894c1`
+- workflow: `35422236260`
+- `russian-learning-contract`: SUCCESS
+- `russian-existing-regression`: SUCCESS
+
+No Turn 25 was created. The promotion candidate remains frozen and must not merge to `main` automatically.
