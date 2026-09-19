@@ -41,7 +41,8 @@
     if(step==='check'&&Number(s.wrong||0)>0&&(!s.lastCorrectAt||Date.parse(s.lastWrongAt||0)>Date.parse(s.lastCorrectAt||0)))return {key:'review',label:'Cần ôn'};
     if(step==='check'&&Number(s.correct||0)>0)return {key:'evidence',label:`${s.correct} câu đúng`};
     if(step==='speaking'&&Number(s.ok||0)>0)return {key:'evidence',label:`${s.ok} câu nói ổn`};
-    if(step==='alphabet'&&Number(s.practiceActions||0)>0)return {key:'active',label:'Đã luyện chữ'};
+    if(step==='alphabet'&&Number(s.strokeActions||0)>0)return {key:'evidence',label:`${s.strokeActions} lượt luyện nét`};
+    if(step==='alphabet'&&Number(s.practiceActions||0)>0)return {key:'opened',label:'Đã thao tác, chưa luyện nét'};
     if(step==='speaking'&&Number(s.attempts||0)>0)return {key:'active',label:'Đã luyện nói'};
     if(step==='vocab'||step==='grammar')return {key:'support',label:'Đã dùng hỗ trợ'};
     if(step==='exercises'&&Number(s.moves||0)>0)return {key:'active',label:'Đang làm bài'};
@@ -51,7 +52,7 @@
   function hasActivityEvidence(step,s){
     if(!s)return false;
     if(step==='speaking')return Number(s.attempts||0)>0||Number(s.ok||0)>0;
-    if(step==='alphabet')return Number(s.practiceActions||0)>0||Number(s.strokeActions||0)>0;
+    if(step==='alphabet')return Number(s.strokeActions||0)>0;
     if(step==='theory')return Number(s.slideMoves||0)>0;
     if(step==='vocab'||step==='grammar')return Number(s.supportActions||0)>0;
     if(step==='exercises')return Number(s.moves||0)>0;
