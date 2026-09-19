@@ -68,6 +68,10 @@ Post-freeze quality substep:
 
 Make the fresh Vietnam-stage route prioritize listening, speaking and literacy. Existing saved learner state must remain authoritative.
 
+Post-freeze quality substep:
+
+- **2.1 — Visible oral-first navigation & recovery:** put `Nghe/Nói` first in the learner-facing Học tập tab order and make invalid-tab, hard-render-recovery and tab-action fallbacks return to `practice` rather than `theory`, while preserving valid stored learner tabs.
+
 ### Turn 3 — Oral-first warm-up
 
 Hear before see: hide Russian text/hints/gloss until the learner completes the first normal-speed listen.
@@ -110,6 +114,8 @@ Post-freeze quality substep:
 - **9.1 — Recognition-confirmed speaking evidence:** recorder start only indicates microphone readiness; imitation/shadowing/memory/role-play/repair attempts are counted only after SpeechRecognition returns a non-empty Russian transcript, so failed/no-speech sessions do not become speaking evidence.
 - **9.2 — Self-assessment/evidence isolation:** `✓ Đã nói ổn` remains a subjective self-rating only; it cannot fabricate `score:100`/transcript evidence, clear pronunciation-repair flags, mark a speaking session attempted, or increment learning-flow speaking attempts. Learning-flow speaking evidence now comes only from `russian:speaking-recording-result`.
 - **9.3 — Deep Speaking recognition evidence:** Rapid/Substitution/Shadowing/Monologue/Q&A deep modes now expose an actual Russian SpeechRecognition action. `deepSpeakingProgress.attempts` increments only after a non-empty recognition result; manual “Tự đánh giá: ổn” remains separate and cannot create recognition evidence or mastery.
+- **9.4 — Recognition-session race isolation:** both normal and Deep Speaking recorders increment a shared session token before stopping/replacing the prior recorder; stale `onstart/onresult/onerror/onend` callbacks are ignored and cannot create evidence or alter the new recorder state.
+- **9.5 — Recognition start-context binding:** capture result store, dialogue id and lesson id when recording starts; recognition results are written back to that original context, and delayed auto-next advances only if token, surface, dialogue and line still match.
 
 ### Turn 10 — Visual vocabulary contract
 
@@ -244,6 +250,7 @@ Turn 24 execution substeps:
 - **24.9 — Promotion negative-test fidelity:** mutate every `BAUMAN_SUBJECT_BRIDGE_V1` marker in the negative case so both READY and PROGRESS bridge paths must remain contract-correct; full workflow run `35416011837` passed at commit `ae26de6b1f2d24f1e1b5bc4874ea705b68f1d5bf`, including existing-regression checks.
 - **24.10 — Translation-path migration freeze:** extend migration/dialogue/vocabulary negative gates across adapter helpers, Deep Speaking, AI context and new-item templates so legacy Vietnamese/English fields may remain in archived source data but cannot regain learner-facing semantic authority. Final executable proof: workflow `35418691089` GREEN at `15e7b4f61198c5d268ea03f7fdd68d0b8d48cfa9`.
 - **24.11 — Deep semantic/evidence freeze:** migration/dialogue/speaking negative gates now reject generic-language Deep Speaking fallback and reject click/self-rating as recognition evidence. Workflow `35420972649` is GREEN for architecture and existing regression at commit `f5b49e56f276752ee2db9a3c5c33011574b0d3ba`.
+- **24.12 — Continuation-state normalization:** canonical continuation docs maintain a single deduplicated post-freeze substep inventory after repeated resume cycles; latest executable proof for Turns 2.1/9.4/9.5 is workflow `35422110343` GREEN at `b4922ae73c292de4c3129c1fdb2c484789ff3057`.
 
 Result: all canonical 24 turns are GREEN. No further turn is created because no new responsibility remains unresolved inside this rebuild. Promotion to `main` is deliberately outside automatic execution.
 
