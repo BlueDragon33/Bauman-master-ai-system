@@ -140,6 +140,15 @@ Constrain AI help to Russian-first, visual/contextual and analogy-based explanat
 
 Route missed sounds, letters, words and dialogue turns to focused repair without silently changing mastery.
 
+Turn 21 execution substeps:
+
+- **21.1 — Weakness signal contract:** normalize exam, listening, speaking, literacy, dictation, multimodal and skill-gate weakness signals without changing source authority.
+- **21.2 — Focused target APIs:** add explicit open/repair targeting for Cyrillic, reading and dictation surfaces.
+- **21.3 — Additive repair router:** derive active signals, persist only repair-session lifecycle, and map each signal to a focused route.
+- **21.4 — Evidence-gated resolution:** distinguish detected → opened → attempted → repair evidence present → resolved; opening a card never resolves it.
+- **21.5 — Legacy remedial migration:** remove click-equals-complete behavior from the old exam remedial panel and route exam failures through the new repair layer.
+- **21.6 — Behavioral/negative gates:** prove repair routing cannot mutate mastery, completion, SRS due dates or canonical Review Queue authority.
+
 ### Turn 22 — Offline media & asset reliability
 
 Ensure audio/visual/literacy assets work in PWA/offline packaging with explicit missing-resource behavior.
