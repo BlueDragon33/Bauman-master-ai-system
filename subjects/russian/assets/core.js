@@ -366,7 +366,7 @@ function finalQaSnapshot(){
 
 function getDialogues(){let xs=byStage(getBaumanDialogueAZ()); if(state.dialogueGroup!=='all')xs=xs.filter(x=>(A.dialogueGroup?.(x)||x.group||'general')===state.dialogueGroup); if(state.dialogueDifficulty!=='all')xs=xs.filter(x=>(A.dialogueDifficulty?.(x)||x.difficulty||x.level||'all')===state.dialogueDifficulty); if(state.dialogueQuery)xs=xs.filter(x=>lower(textOf(x)).includes(lower(state.dialogueQuery))); return xs}
 function getMedia(){let xs=byStage(call('getMedia',[],DB)); if(state.mediaCat!=='all')xs=xs.filter(x=>mediaCategoryLabel(x)===state.mediaCat); if(state.mediaQuery)xs=xs.filter(x=>lower(JSON.stringify(x)).includes(lower(state.mediaQuery))); return xs}
-function getVocab(){let xs=byStage(call('getVocabulary',[],DB)); if(state.vocabQuery)xs=xs.filter(x=>lower(A.vocabSearchText?.(x)||JSON.stringify(x)).includes(lower(state.vocabQuery))); return xs}
+function getVocab(){let xs=byStage(call('getVocabulary',[],DB)); if(state.vocabQuery)xs=xs.filter(x=>lower(A.vocabSearchText?.(x)||A.vocabTerm?.(x)||x?.ru||x?.phrase_ru||'').includes(lower(state.vocabQuery))); return xs}
 function getHandwriting(){return byStage(call('getHandwriting',[],DB))}
 function getWriting(){return byStage(call('getWriting',[],DB))}
 function title(){const route=NAV.find(n=>n[0]===state.view); $('#pageTitle').textContent=route?route[2]:'Tổng quan'; const ui=A.ui||{}; const subs={overview:ui.overviewSubtitle,learning:ui.learningSubtitle,dialogue:ui.dialogueSubtitle,writing:ui.writingSubtitle,media:ui.mediaSubtitle,vocab:ui.vocabSubtitle,grammar:ui.grammarSubtitle,mindmap:ui.mindmapSubtitle,storage:ui.storageSubtitle}; $('#pageSub').textContent=subs[state.view]||ui.subtitle||''}
