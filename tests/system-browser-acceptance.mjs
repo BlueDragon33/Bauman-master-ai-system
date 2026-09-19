@@ -45,6 +45,15 @@ function isConfirmedDecorativeNavigationAbort(request){
   }catch{return false}
 }
 
+async function waitForAcademicPrerequisitePacks(page,label){
+  await page.waitForFunction(()=>window.BAUMAN_PREREQ_PACKS_2026_STATUS?.ready===true,null,{timeout:30000});
+  const status=await page.evaluate(()=>window.BAUMAN_PREREQ_PACKS_2026_STATUS);
+  assert.ok(status.expected>0,`${label}: prerequisite pack manifest is empty`);
+  assert.equal(status.failed,0,`${label}: prerequisite pack load failed ${JSON.stringify(status)}`);
+  assert.equal(status.loaded,status.expected,`${label}: prerequisite pack readiness mismatch ${JSON.stringify(status)}`);
+  return status;
+}
+
 async function openSubject(page,id){
   await page.evaluate(subjectId=>window.app.openSubjectInPage(subjectId),id);
   await page.waitForFunction(subjectId=>{try{return new URL(document.getElementById('subjectFrame')?.src||'').pathname===`/subjects/${subjectId}/index.html`}catch{return false}},id);
@@ -100,6 +109,7 @@ try{
   assert.equal(managedAccess.routeOwnership,false);
   assert.equal(managedAccess.academicWrites,false);
   await page.waitForFunction(()=>!document.getElementById('appRoot')?.classList.contains('hidden'));
+  summary.academicPacks={initial:await waitForAcademicPrerequisitePacks(page,'initial load')};
 
   await page.reload({waitUntil:'domcontentloaded'});
   await page.waitForFunction(()=>document.documentElement.dataset.baumanDeviceAccess==='authorized',null,{timeout:15000});
@@ -110,6 +120,7 @@ try{
   assert.equal(managedReload.authScreenHidden,true);
   assert.equal(managedReload.currentManagedBy,'app-manager');
   await page.waitForFunction(()=>!document.getElementById('appRoot')?.classList.contains('hidden'));
+  summary.academicPacks.reload=await waitForAcademicPrerequisitePacks(page,'reload');
 
   const unsafeRejected=await page.evaluate(()=>{const old=window.state.subjects.ai.mainPath;window.state.subjects.ai.mainPath='javascript:alert(1)';document.getElementById('studyRoot').innerHTML='';window.app.openSubjectInPage('ai');const rejected=!document.getElementById('subjectFrame');window.state.subjects.ai.mainPath=old;return rejected});
   assert.ok(unsafeRejected,'Unsafe subject route was accepted');
@@ -179,6 +190,7 @@ try{
     },lesson.id);
     assert.deepEqual(selected,{lessonId:lesson.id,chapterId:selected?.chapterId,slides:22},`${lesson.key}: durable source registration drift`);
     await queryPage.waitForSelector(`[data-current-lesson="${lesson.id}"]`,{timeout:30000});
+    await queryPage.waitForFunction(({lessonId,count})=>document.querySelectorAll(`[data-current-lesson="${lessonId}"] .e129-slide`).length===count,{lessonId:lesson.id,count:22},{timeout:30000});
     assert.equal(await queryPage.locator(`[data-current-lesson="${lesson.id}"] .e129-slide`).count(),22,`${lesson.key}: Reader slide count drift`);
     if(lesson.key==='l04'){
       await queryPage.waitForFunction(()=>window.BAUMAN_MATH_FORMULA_LIBRARY?.selfCheck?.().loaded===true&&window.BAUMAN_MATH_SIMULATION_SOURCE?.selfCheck?.().loaded===true&&window.BAUMAN_MATH_ACTIVITY_STUDIO&&window.BAUMAN_MATH_INTEGRATION_SYNC&&window.BAUMAN_MATH_REGRESSION_GATE&&window.BAUMAN_MATH_RUNTIME_HEALTH,null,{timeout:30000});

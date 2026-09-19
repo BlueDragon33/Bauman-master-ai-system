@@ -1,4 +1,4 @@
-# L9 Step 6 — Verified Overlay Persistence in Browser
+# Bauman Foundation — Identity & Domain Model — Step 6 — Verified Overlay Persistence in Browser
 
 ## Goal
 

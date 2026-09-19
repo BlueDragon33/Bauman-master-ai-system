@@ -1,0 +1,270 @@
+name: Content Resolution & Runtime Delivery Gate
+
+on:
+  push:
+    branches:
+      - work/foundation-content-resolution-delivery
+  pull_request:
+    paths:
+      - 'foundation/content-resolution/**'
+      - 'foundation/content-registry/**'
+      - 'scripts/validate-content-resolution-contract.mjs'
+      - 'foundation/content-resolution/runtime-resource-resolver.js'
+      - 'scripts/validate-runtime-resource-resolver.mjs'
+      - 'tests/content-resolution-contract.test.mjs'
+      - 'tests/runtime-resource-resolver.test.mjs'
+      - 'foundation/content-resolution/delivery-plan-contract.v1.json'
+      - 'foundation/content-resolution/runtime-delivery-plan.js'
+      - 'scripts/validate-runtime-delivery-plan.mjs'
+      - 'tests/runtime-delivery-plan.test.mjs'
+      - 'foundation/content-resolution/delivery-executor-contract.v1.json'
+      - 'foundation/content-resolution/runtime-delivery-executor.js'
+      - 'scripts/validate-runtime-delivery-executor.mjs'
+      - 'tests/runtime-delivery-executor.test.mjs'
+      - 'foundation/content-resolution/package-relative-adapter-contract.v1.json'
+      - 'foundation/content-resolution/adapters/package-relative-fetch-adapter.js'
+      - 'scripts/validate-package-relative-fetch-adapter.mjs'
+      - 'tests/package-relative-fetch-adapter.test.mjs'
+      - 'foundation/content-resolution/shadow/academic-core-2026.v1.json'
+      - 'scripts/validate-academic-shadow-resolution.mjs'
+      - 'tests/academic-shadow-resolution.test.mjs'
+      - 'tests/content-resolution-shadow-browser.mjs'
+      - 'foundation/content-resolution/academic-runtime-shadow-contract.v1.json'
+      - 'assets/js/academic-content-resolution-shadow.js'
+      - 'scripts/validate-academic-runtime-shadow-bridge.mjs'
+      - 'scripts/print-academic-core-pinned-metadata.mjs'
+      - 'tests/academic-runtime-shadow-bridge.test.mjs'
+      - 'tests/academic-runtime-shadow-browser.mjs'
+      - 'foundation/content-resolution/registry-candidates/academic-core-2026.v1.json'
+      - 'scripts/validate-academic-core-registry-candidate.mjs'
+      - 'tests/academic-core-registry-candidate.test.mjs'
+      - 'foundation/content-resolution/academic-verified-loader-contract.v1.json'
+      - 'assets/js/academic-content-resolution-loader.js'
+      - 'scripts/validate-academic-verified-content-loader.mjs'
+      - 'tests/academic-verified-content-loader.test.mjs'
+      - 'foundation/content-resolution/academic-loader-authority-trial-contract.v1.json'
+      - 'scripts/validate-academic-loader-authority-trial.mjs'
+      - 'tests/academic-loader-authority-trial.test.mjs'
+      - 'tests/academic-verified-loader-authority-browser.mjs'
+      - 'foundation/content-resolution/academic-loader-failure-injection-contract.v1.json'
+      - 'scripts/validate-academic-loader-failure-injection.mjs'
+      - 'tests/academic-loader-failure-injection.test.mjs'
+      - 'tests/academic-verified-loader-failure-browser.mjs'
+      - 'index.html'
+      - 'assets/js/academic-main.js'
+      - 'assets/data/official-curriculum-iu5-2026.json'
+      - 'assets/data/prerequisite-registry-iu5-2026.json'
+      - 'assets/data/prerequisite-packs/manifest-2026.json'
+      - 'ARCHITECTURE.md'
+      - 'CODEX_STATE.md'
+      - 'CODEX_TASK.md'
+      - '.github/workflows/content-resolution-delivery-gate.yml'
+
+permissions:
+  contents: read
+
+jobs:
+  validate-content-resolution-contract:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+      - name: Use Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Check syntax
+        run: |
+          node --check scripts/validate-content-resolution-contract.mjs
+          node --check tests/content-resolution-contract.test.mjs
+          node --check foundation/content-resolution/runtime-resource-resolver.js
+          node --check scripts/validate-runtime-resource-resolver.mjs
+          node --check tests/runtime-resource-resolver.test.mjs
+          node --check foundation/content-resolution/runtime-delivery-plan.js
+          node --check scripts/validate-runtime-delivery-plan.mjs
+          node --check tests/runtime-delivery-plan.test.mjs
+          node --check foundation/content-resolution/runtime-delivery-executor.js
+          node --check scripts/validate-runtime-delivery-executor.mjs
+          node --check tests/runtime-delivery-executor.test.mjs
+          node --check foundation/content-resolution/adapters/package-relative-fetch-adapter.js
+          node --check scripts/validate-package-relative-fetch-adapter.mjs
+          node --check tests/package-relative-fetch-adapter.test.mjs
+          node --check scripts/validate-academic-shadow-resolution.mjs
+          node --check tests/academic-shadow-resolution.test.mjs
+          node --check tests/content-resolution-shadow-browser.mjs
+          node --check assets/js/academic-content-resolution-shadow.js
+          node --check scripts/validate-academic-runtime-shadow-bridge.mjs
+          node --check scripts/print-academic-core-pinned-metadata.mjs
+          node --check tests/academic-runtime-shadow-bridge.test.mjs
+          node --check tests/academic-runtime-shadow-browser.mjs
+          node --check scripts/validate-academic-core-registry-candidate.mjs
+          node --check tests/academic-core-registry-candidate.test.mjs
+          node --check assets/js/academic-content-resolution-loader.js
+          node --check scripts/validate-academic-verified-content-loader.mjs
+          node --check tests/academic-verified-content-loader.test.mjs
+          node --check assets/js/academic-main.js
+          node --check scripts/validate-academic-loader-authority-trial.mjs
+          node --check tests/academic-loader-authority-trial.test.mjs
+          node --check tests/academic-verified-loader-authority-browser.mjs
+          node --check scripts/validate-academic-loader-failure-injection.mjs
+          node --check tests/academic-loader-failure-injection.test.mjs
+          node --check tests/academic-verified-loader-failure-browser.mjs
+      - name: Validate frozen Content Asset Provenance foundation
+        run: node scripts/validate-foundation-l10-promotion.mjs
+      - name: Validate content resolution contract
+        run: node scripts/validate-content-resolution-contract.mjs
+      - name: Run content resolution negative tests
+        run: node tests/content-resolution-contract.test.mjs
+      - name: Validate pure runtime resource resolver
+        run: node scripts/validate-runtime-resource-resolver.mjs
+      - name: Run pure resolver negative tests
+        run: node tests/runtime-resource-resolver.test.mjs
+      - name: Validate runtime delivery plan
+        run: node scripts/validate-runtime-delivery-plan.mjs
+      - name: Run delivery plan negative tests
+        run: node tests/runtime-delivery-plan.test.mjs
+      - name: Validate injected runtime delivery executor
+        run: node scripts/validate-runtime-delivery-executor.mjs
+      - name: Run delivery executor negative tests
+        run: node tests/runtime-delivery-executor.test.mjs
+      - name: Validate package-relative fetch adapter
+        run: node scripts/validate-package-relative-fetch-adapter.mjs
+      - name: Run package-relative adapter negative tests
+        run: node tests/package-relative-fetch-adapter.test.mjs
+      - name: Validate Academic core shadow resolution
+        run: node scripts/validate-academic-shadow-resolution.mjs
+      - name: Run Academic shadow negative tests
+        run: node tests/academic-shadow-resolution.test.mjs
+      - name: Validate Academic runtime shadow bridge
+        run: node scripts/validate-academic-runtime-shadow-bridge.mjs
+      - name: Run Academic runtime shadow bridge negative tests
+        run: node tests/academic-runtime-shadow-bridge.test.mjs
+      - name: Print Academic core pinned metadata candidate
+        run: node scripts/print-academic-core-pinned-metadata.mjs
+      - name: Validate Academic core registry candidate
+        run: node scripts/validate-academic-core-registry-candidate.mjs
+      - name: Run Academic core registry candidate negative tests
+        run: node tests/academic-core-registry-candidate.test.mjs
+      - name: Validate Academic verified content loader candidate
+        run: node scripts/validate-academic-verified-content-loader.mjs
+      - name: Run Academic verified content loader negative tests
+        run: node tests/academic-verified-content-loader.test.mjs
+      - name: Validate Academic verified loader authority trial
+        run: node scripts/validate-academic-loader-authority-trial.mjs
+      - name: Run Academic verified loader authority trial negative tests
+        run: node tests/academic-loader-authority-trial.test.mjs
+      - name: Validate Academic verified loader failure injection
+        run: node scripts/validate-academic-loader-failure-injection.mjs
+      - name: Run Academic verified loader failure injection negative tests
+        run: node tests/academic-loader-failure-injection.test.mjs
+      - name: Parse resolution JSON
+        run: |
+          node -e "JSON.parse(require('fs').readFileSync('foundation/content-resolution/resolution-contract.v1.json','utf8')); JSON.parse(require('fs').readFileSync('foundation/content-resolution/examples/step1-resolution-request.v1.json','utf8')); JSON.parse(require('fs').readFileSync('foundation/content-resolution/delivery-plan-contract.v1.json','utf8')); JSON.parse(require('fs').readFileSync('foundation/content-resolution/delivery-executor-contract.v1.json','utf8')); JSON.parse(require('fs').readFileSync('foundation/content-resolution/package-relative-adapter-contract.v1.json','utf8')); JSON.parse(require('fs').readFileSync('foundation/content-resolution/shadow/academic-core-2026.v1.json','utf8')); JSON.parse(require('fs').readFileSync('foundation/content-resolution/academic-runtime-shadow-contract.v1.json','utf8')); JSON.parse(require('fs').readFileSync('foundation/content-resolution/registry-candidates/academic-core-2026.v1.json','utf8')); JSON.parse(require('fs').readFileSync('foundation/content-resolution/academic-verified-loader-contract.v1.json','utf8')); JSON.parse(require('fs').readFileSync('foundation/content-resolution/academic-loader-authority-trial-contract.v1.json','utf8')); JSON.parse(require('fs').readFileSync('foundation/content-resolution/academic-loader-failure-injection-contract.v1.json','utf8')); console.log('CONTENT_RESOLUTION_JSON=PASS')"
+
+
+  browser-shadow-acceptance:
+    needs: validate-content-resolution-contract
+    runs-on: ubuntu-24.04
+    timeout-minutes: 20
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+      - name: Use Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: "22.13.0"
+      - name: Install Playwright Chromium
+        run: |
+          printf '{"private":true,"type":"module"}\n' > package.json
+          npm install --no-save --no-audit --no-fund playwright@1.55.0
+          npx playwright install --with-deps chromium
+      - name: Start content-resolution shadow server
+        run: |
+          python3 -m http.server 4175 --bind 127.0.0.1 > /tmp/bauman-content-resolution-http.log 2>&1 &
+          for i in {1..30}; do
+            if curl -fsS http://127.0.0.1:4175/foundation/content-resolution/examples/browser-shadow-harness.html >/dev/null; then exit 0; fi
+            sleep 1
+          done
+          cat /tmp/bauman-content-resolution-http.log
+          exit 1
+      - name: Run Content Resolution browser shadow acceptance
+        env:
+          BAUMAN_E2E_BASE_URL: http://127.0.0.1:4175/
+          BAUMAN_E2E_ARTIFACT_DIR: artifacts/content-resolution-shadow-browser
+        run: node tests/content-resolution-shadow-browser.mjs
+      - name: Run Academic runtime shadow acceptance on real Hub
+        env:
+          BAUMAN_E2E_BASE_URL: http://127.0.0.1:4175/
+          BAUMAN_E2E_ARTIFACT_DIR: artifacts/academic-runtime-shadow-browser
+        run: node tests/academic-runtime-shadow-browser.mjs
+      - name: Run Academic verified loader authority trial on real Hub
+        env:
+          BAUMAN_E2E_BASE_URL: http://127.0.0.1:4175/
+          BAUMAN_E2E_ARTIFACT_DIR: artifacts/academic-verified-loader-authority-browser
+        run: node tests/academic-verified-loader-authority-browser.mjs
+      - name: Run Academic verified loader failure injection on real Hub
+        env:
+          BAUMAN_E2E_BASE_URL: http://127.0.0.1:4175/
+          BAUMAN_E2E_ARTIFACT_DIR: artifacts/academic-verified-loader-failure-browser
+        run: node tests/academic-verified-loader-failure-browser.mjs
+      - name: Materialize packaged runtime for shadow parity
+        env:
+          BAUMAN_CONTROL_PREVIEW_D1_DATABASE_ID: 11111111-1111-4111-8111-111111111111
+          BAUMAN_CONTROL_PRODUCTION_D1_DATABASE_ID: 22222222-2222-4222-8222-222222222222
+          APPLICATION_MANAGEMENT_PREVIEW_ORIGIN: https://application-management-preview.example.com
+          BAUMAN_CONTROL_PREVIEW_ORIGIN: https://bauman-control-preview.example.com
+          BAUMAN_RUNTIME_PREVIEW_ORIGIN: https://bauman-runtime-preview.example.com
+          BAUMAN_BUILD_REVISION: ${{ github.sha }}
+        run: |
+          node scripts/prepare-cloudflare-preview.mjs
+          node scripts/prepare-chatgpt-site.mjs
+      - name: Start packaged content-resolution shadow server
+        run: |
+          node scripts/serve-local-runtime.mjs --root dist --port 4176 > /tmp/bauman-content-resolution-packaged-http.log 2>&1 &
+          for i in {1..30}; do
+            if curl -fsS http://127.0.0.1:4176/foundation/content-resolution/examples/browser-shadow-harness.html >/dev/null; then exit 0; fi
+            sleep 1
+          done
+          cat /tmp/bauman-content-resolution-packaged-http.log
+          exit 1
+      - name: Run Packaged Content Resolution browser shadow acceptance
+        env:
+          BAUMAN_E2E_BASE_URL: http://127.0.0.1:4176/
+          BAUMAN_E2E_ARTIFACT_DIR: artifacts/content-resolution-shadow-browser-packaged
+        run: node tests/content-resolution-shadow-browser.mjs
+      - name: Run Packaged Academic runtime shadow acceptance on real Hub
+        env:
+          BAUMAN_E2E_BASE_URL: http://127.0.0.1:4176/
+          BAUMAN_E2E_ARTIFACT_DIR: artifacts/academic-runtime-shadow-browser-packaged
+        run: node tests/academic-runtime-shadow-browser.mjs
+      - name: Run Packaged Academic verified loader authority trial
+        env:
+          BAUMAN_E2E_BASE_URL: http://127.0.0.1:4176/
+          BAUMAN_E2E_ARTIFACT_DIR: artifacts/academic-verified-loader-authority-browser-packaged
+        run: node tests/academic-verified-loader-authority-browser.mjs
+      - name: Run Packaged Academic verified loader failure injection
+        env:
+          BAUMAN_E2E_BASE_URL: http://127.0.0.1:4176/
+          BAUMAN_E2E_ARTIFACT_DIR: artifacts/academic-verified-loader-failure-browser-packaged
+        run: node tests/academic-verified-loader-failure-browser.mjs
+      - name: Show shadow server logs on failure
+        if: failure()
+        run: |
+          cat /tmp/bauman-content-resolution-http.log || true
+          cat /tmp/bauman-content-resolution-packaged-http.log || true
+      - name: Upload shadow browser evidence
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: content-resolution-shadow-browser-${{ github.run_id }}
+          path: |
+            artifacts/content-resolution-shadow-browser
+            artifacts/content-resolution-shadow-browser-packaged
+            artifacts/academic-runtime-shadow-browser
+            artifacts/academic-runtime-shadow-browser-packaged
+            artifacts/academic-verified-loader-authority-browser
+            artifacts/academic-verified-loader-authority-browser-packaged
+            artifacts/academic-verified-loader-failure-browser
+            artifacts/academic-verified-loader-failure-browser-packaged
+          if-no-files-found: warn
+          retention-days: 7

@@ -1,0 +1,51 @@
+{
+  "schema": "BAUMAN_RUNTIME_DELIVERY_PLAN_CONTRACT_V1",
+  "contractVersion": 1,
+  "architectureName": "Foundation — Content Resolution & Runtime Delivery",
+  "input": {
+    "descriptorSchema": "BAUMAN_RUNTIME_RESOURCE_DESCRIPTOR_V1",
+    "requiredStatus": "resolved",
+    "registryRequired": true
+  },
+  "output": {
+    "schema": "BAUMAN_RUNTIME_DELIVERY_PLAN_V1",
+    "status": "ready",
+    "immutable": true,
+    "verificationRequired": true
+  },
+  "adapters": {
+    "package_relative": {
+      "adapterId": "package-relative-resource",
+      "locatorKind": "repository_relative",
+      "requiresNetwork": false
+    },
+    "https": {
+      "adapterId": "https-resource",
+      "locatorKind": "https_url",
+      "requiresNetwork": true,
+      "exactOriginPreserved": true
+    },
+    "content_addressed_provider": {
+      "adapterId": "content-hash-resource",
+      "locatorKind": "content_hash",
+      "requiresNetwork": "provider_defined",
+      "provider": "content_hash",
+      "contentHashMustMatchChecksum": true
+    }
+  },
+  "integrity": {
+    "algorithm": "sha256",
+    "includeDigest": true,
+    "includeByteLength": true,
+    "checksumRecordMustMatchDescriptor": true,
+    "deliveredBytesMustBeVerifiedByConsumerAdapter": true
+  },
+  "safety": {
+    "corePerformsIO": false,
+    "coreFetchesNetwork": false,
+    "coreWritesStorage": false,
+    "coreMutatesRegistry": false,
+    "coreChangesRoutes": false,
+    "coreChangesLearnerState": false
+  }
+}

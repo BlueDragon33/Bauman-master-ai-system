@@ -1,0 +1,35 @@
+{
+  "schema": "BAUMAN_ACADEMIC_VERIFIED_LOADER_FAILURE_INJECTION_CONTRACT_V1",
+  "contractVersion": 1,
+  "architectureName": "Foundation — Content Resolution & Runtime Delivery",
+  "mode": "opt_in_verified_trial",
+  "scenarios": [
+    {
+      "id": "tampered_core_bytes",
+      "expected": {
+        "coreLoaderVerified": false,
+        "academicGlobalsPublished": false,
+        "packStatusFailed": 1,
+        "legacyCoreFallback": false,
+        "coreRequestCount": 1
+      }
+    },
+    {
+      "id": "registry_candidate_missing",
+      "expected": {
+        "coreLoaderVerified": false,
+        "academicGlobalsPublished": false,
+        "packStatusFailed": 1,
+        "legacyCoreFallback": false,
+        "registryRequestCount": 1,
+        "coreRequestCount": 0
+      }
+    }
+  ],
+  "safety": {
+    "defaultLegacyModeUntouched": true,
+    "learnerStateUntouched": true,
+    "schedulerMutationUntouched": true,
+    "routesUntouched": true
+  }
+}

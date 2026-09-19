@@ -1,0 +1,252 @@
+{
+  "schema": "BAUMAN_CONTENT_ASSET_REGISTRY_RUNTIME_V1",
+  "version": 1,
+  "records": {
+    "source": {
+      "bdr:source:academic-2026:official-curriculum": {
+        "registryId": "bdr:source:academic-2026:official-curriculum",
+        "canonicalEntityId": "bd:source:academic-2026:official-curriculum",
+        "sourceType": "repository",
+        "title": "BMSTU IU5 2026 official curriculum mirror",
+        "locator": {
+          "kind": "repository_relative",
+          "value": "assets/data/official-curriculum-iu5-2026.json"
+        },
+        "capturedAt": "2026-09-18T00:00:00Z",
+        "recordVersion": 1
+      },
+      "bdr:source:academic-2026:prerequisite-registry": {
+        "registryId": "bdr:source:academic-2026:prerequisite-registry",
+        "canonicalEntityId": "bd:source:academic-2026:prerequisite-registry",
+        "sourceType": "repository",
+        "title": "BMSTU IU5 2026 prerequisite registry",
+        "locator": {
+          "kind": "repository_relative",
+          "value": "assets/data/prerequisite-registry-iu5-2026.json"
+        },
+        "capturedAt": "2026-09-18T00:00:00Z",
+        "recordVersion": 1
+      },
+      "bdr:source:academic-2026:prerequisite-pack-manifest": {
+        "registryId": "bdr:source:academic-2026:prerequisite-pack-manifest",
+        "canonicalEntityId": "bd:source:academic-2026:prerequisite-pack-manifest",
+        "sourceType": "repository",
+        "title": "BMSTU IU5 2026 prerequisite pack manifest",
+        "locator": {
+          "kind": "repository_relative",
+          "value": "assets/data/prerequisite-packs/manifest-2026.json"
+        },
+        "capturedAt": "2026-09-18T00:00:00Z",
+        "recordVersion": 1
+      }
+    },
+    "asset": {
+      "bdr:asset:academic-2026:official-curriculum-json": {
+        "registryId": "bdr:asset:academic-2026:official-curriculum-json",
+        "canonicalEntityId": "bd:source:academic-2026:official-curriculum",
+        "assetType": "document",
+        "mediaType": "application/json",
+        "checksumId": "bdr:checksum:academic-2026:official-curriculum-sha256",
+        "locators": [
+          {
+            "kind": "repository_relative",
+            "value": "assets/data/official-curriculum-iu5-2026.json"
+          }
+        ],
+        "state": "verified",
+        "recordVersion": 1
+      },
+      "bdr:asset:academic-2026:prerequisite-registry-json": {
+        "registryId": "bdr:asset:academic-2026:prerequisite-registry-json",
+        "canonicalEntityId": "bd:source:academic-2026:prerequisite-registry",
+        "assetType": "document",
+        "mediaType": "application/json",
+        "checksumId": "bdr:checksum:academic-2026:prerequisite-registry-sha256",
+        "locators": [
+          {
+            "kind": "repository_relative",
+            "value": "assets/data/prerequisite-registry-iu5-2026.json"
+          }
+        ],
+        "state": "verified",
+        "recordVersion": 1
+      },
+      "bdr:asset:academic-2026:prerequisite-pack-manifest-json": {
+        "registryId": "bdr:asset:academic-2026:prerequisite-pack-manifest-json",
+        "canonicalEntityId": "bd:source:academic-2026:prerequisite-pack-manifest",
+        "assetType": "document",
+        "mediaType": "application/json",
+        "checksumId": "bdr:checksum:academic-2026:prerequisite-pack-manifest-sha256",
+        "locators": [
+          {
+            "kind": "repository_relative",
+            "value": "assets/data/prerequisite-packs/manifest-2026.json"
+          }
+        ],
+        "state": "verified",
+        "recordVersion": 1
+      }
+    },
+    "content": {
+      "bdr:content:academic-2026:official-curriculum": {
+        "registryId": "bdr:content:academic-2026:official-curriculum",
+        "canonicalEntityId": "bd:source:academic-2026:official-curriculum",
+        "contentType": "reference",
+        "title": "BMSTU IU5 2026 official curriculum mirror",
+        "assetIds": [
+          "bdr:asset:academic-2026:official-curriculum-json"
+        ],
+        "sourceIds": [
+          "bdr:source:academic-2026:official-curriculum"
+        ],
+        "provenanceEventIds": [
+          "bdr:provenance:academic-2026:official-curriculum-verified"
+        ],
+        "recordVersion": 1
+      },
+      "bdr:content:academic-2026:prerequisite-registry": {
+        "registryId": "bdr:content:academic-2026:prerequisite-registry",
+        "canonicalEntityId": "bd:source:academic-2026:prerequisite-registry",
+        "contentType": "dataset",
+        "title": "BMSTU IU5 2026 prerequisite registry",
+        "assetIds": [
+          "bdr:asset:academic-2026:prerequisite-registry-json"
+        ],
+        "sourceIds": [
+          "bdr:source:academic-2026:prerequisite-registry"
+        ],
+        "provenanceEventIds": [
+          "bdr:provenance:academic-2026:prerequisite-registry-verified"
+        ],
+        "recordVersion": 1
+      },
+      "bdr:content:academic-2026:prerequisite-pack-manifest": {
+        "registryId": "bdr:content:academic-2026:prerequisite-pack-manifest",
+        "canonicalEntityId": "bd:source:academic-2026:prerequisite-pack-manifest",
+        "contentType": "dataset",
+        "title": "BMSTU IU5 2026 prerequisite pack manifest",
+        "assetIds": [
+          "bdr:asset:academic-2026:prerequisite-pack-manifest-json"
+        ],
+        "sourceIds": [
+          "bdr:source:academic-2026:prerequisite-pack-manifest"
+        ],
+        "provenanceEventIds": [
+          "bdr:provenance:academic-2026:prerequisite-pack-manifest-verified"
+        ],
+        "recordVersion": 1
+      }
+    },
+    "provenance": {
+      "bdr:provenance:academic-2026:official-curriculum-verified": {
+        "registryId": "bdr:provenance:academic-2026:official-curriculum-verified",
+        "eventType": "verified",
+        "subjectId": "bdr:asset:academic-2026:official-curriculum-json",
+        "sourceIds": [
+          "bdr:source:academic-2026:official-curriculum"
+        ],
+        "checksumId": "bdr:checksum:academic-2026:official-curriculum-sha256",
+        "at": "2026-09-18T00:00:00Z",
+        "actor": "bauman-foundation-academic-core-promotion",
+        "recordVersion": 1
+      },
+      "bdr:provenance:academic-2026:prerequisite-registry-verified": {
+        "registryId": "bdr:provenance:academic-2026:prerequisite-registry-verified",
+        "eventType": "verified",
+        "subjectId": "bdr:asset:academic-2026:prerequisite-registry-json",
+        "sourceIds": [
+          "bdr:source:academic-2026:prerequisite-registry"
+        ],
+        "checksumId": "bdr:checksum:academic-2026:prerequisite-registry-sha256",
+        "at": "2026-09-18T00:00:00Z",
+        "actor": "bauman-foundation-academic-core-promotion",
+        "recordVersion": 1
+      },
+      "bdr:provenance:academic-2026:prerequisite-pack-manifest-verified": {
+        "registryId": "bdr:provenance:academic-2026:prerequisite-pack-manifest-verified",
+        "eventType": "verified",
+        "subjectId": "bdr:asset:academic-2026:prerequisite-pack-manifest-json",
+        "sourceIds": [
+          "bdr:source:academic-2026:prerequisite-pack-manifest"
+        ],
+        "checksumId": "bdr:checksum:academic-2026:prerequisite-pack-manifest-sha256",
+        "at": "2026-09-18T00:00:00Z",
+        "actor": "bauman-foundation-academic-core-promotion",
+        "recordVersion": 1
+      }
+    },
+    "checksum": {
+      "bdr:checksum:academic-2026:official-curriculum-sha256": {
+        "registryId": "bdr:checksum:academic-2026:official-curriculum-sha256",
+        "algorithm": "sha256",
+        "digest": "d8a5018549ea8dca2dfcf283d4ef3880d9032cac39dc70d496f60e5c56c1495c",
+        "byteLength": 9645,
+        "recordVersion": 1
+      },
+      "bdr:checksum:academic-2026:prerequisite-registry-sha256": {
+        "registryId": "bdr:checksum:academic-2026:prerequisite-registry-sha256",
+        "algorithm": "sha256",
+        "digest": "f4066f40e8d82fee2f3c98b4f2d96fdec2b41ae03dbcda55b7f055fb97c83071",
+        "byteLength": 9046,
+        "recordVersion": 1
+      },
+      "bdr:checksum:academic-2026:prerequisite-pack-manifest-sha256": {
+        "registryId": "bdr:checksum:academic-2026:prerequisite-pack-manifest-sha256",
+        "algorithm": "sha256",
+        "digest": "6fff9f0ac598dc0bb9d76cdb9761bc6dea37a6a2e267da2014e4f3e4db3b1bea",
+        "byteLength": 1527,
+        "recordVersion": 1
+      }
+    },
+    "access": {
+      "bdr:access:academic-2026:official-curriculum-asset": {
+        "registryId": "bdr:access:academic-2026:official-curriculum-asset",
+        "scope": "bdr:asset:academic-2026:official-curriculum-json",
+        "visibility": "private",
+        "recordVersion": 1
+      },
+      "bdr:access:academic-2026:official-curriculum-content": {
+        "registryId": "bdr:access:academic-2026:official-curriculum-content",
+        "scope": "bdr:content:academic-2026:official-curriculum",
+        "visibility": "private",
+        "recordVersion": 1
+      },
+      "bdr:access:academic-2026:prerequisite-registry-asset": {
+        "registryId": "bdr:access:academic-2026:prerequisite-registry-asset",
+        "scope": "bdr:asset:academic-2026:prerequisite-registry-json",
+        "visibility": "private",
+        "recordVersion": 1
+      },
+      "bdr:access:academic-2026:prerequisite-registry-content": {
+        "registryId": "bdr:access:academic-2026:prerequisite-registry-content",
+        "scope": "bdr:content:academic-2026:prerequisite-registry",
+        "visibility": "private",
+        "recordVersion": 1
+      },
+      "bdr:access:academic-2026:prerequisite-pack-manifest-asset": {
+        "registryId": "bdr:access:academic-2026:prerequisite-pack-manifest-asset",
+        "scope": "bdr:asset:academic-2026:prerequisite-pack-manifest-json",
+        "visibility": "private",
+        "recordVersion": 1
+      },
+      "bdr:access:academic-2026:prerequisite-pack-manifest-content": {
+        "registryId": "bdr:access:academic-2026:prerequisite-pack-manifest-content",
+        "scope": "bdr:content:academic-2026:prerequisite-pack-manifest",
+        "visibility": "private",
+        "recordVersion": 1
+      }
+    }
+  },
+  "extensions": {
+    "academicCore2026": {
+      "schema": "BAUMAN_ACADEMIC_CORE_REGISTRY_CANDIDATE_V1",
+      "status": "promotion_candidate",
+      "architectureName": "Foundation — Content Resolution & Runtime Delivery",
+      "authority": "candidate_only",
+      "resourceCount": 3,
+      "checksumAlgorithm": "sha256",
+      "sourceLoader": "assets/js/academic-main.js",
+      "runtimeAuthoritySwitch": false
+    }
+  }
+}

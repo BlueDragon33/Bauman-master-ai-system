@@ -1,0 +1,67 @@
+{
+  "schema": "BAUMAN_ACADEMIC_RUNTIME_SHADOW_BRIDGE_CONTRACT_V1",
+  "contractVersion": 1,
+  "architectureName": "Foundation — Content Resolution & Runtime Delivery",
+  "integration": "Academic 2026 runtime shadow",
+  "activation": {
+    "queryParameter": "contentResolutionShadow",
+    "enabledValue": "1",
+    "defaultEnabled": false,
+    "dependenciesLoadedOnlyWhenEnabled": true
+  },
+  "authority": {
+    "existingAcademicLoaderRemainsAuthoritative": true,
+    "shadowMayReplaceFetch": false,
+    "shadowMayWriteAcademicGlobals": false,
+    "shadowMayWriteLearnerState": false,
+    "shadowMayChangeRoutes": false,
+    "shadowMayPersistRegistry": false
+  },
+  "resources": [
+    "assets/data/official-curriculum-iu5-2026.json",
+    "assets/data/prerequisite-registry-iu5-2026.json",
+    "assets/data/prerequisite-packs/manifest-2026.json"
+  ],
+  "dependencies": [
+    "foundation/domain-model/canonical-identity-runtime.js",
+    "foundation/content-registry/content-asset-registry.js",
+    "foundation/content-registry/access-policy.js",
+    "foundation/content-registry/asset-integrity.js",
+    "foundation/content-resolution/runtime-resource-resolver.js",
+    "foundation/content-resolution/runtime-delivery-plan.js",
+    "foundation/content-resolution/runtime-delivery-executor.js",
+    "foundation/content-resolution/adapters/package-relative-fetch-adapter.js"
+  ],
+  "status": {
+    "global": "BAUMAN_CONTENT_RESOLUTION_SHADOW_STATUS",
+    "schema": "BAUMAN_ACADEMIC_CONTENT_RESOLUTION_SHADOW_V1",
+    "fields": [
+      "schema",
+      "enabled",
+      "ready",
+      "passed",
+      "resources",
+      "error"
+    ]
+  },
+  "verification": {
+    "browserWebCryptoSha256": true,
+    "packageRelativeAdapter": true,
+    "executorIntegrityVerification": true,
+    "curriculumParityWithAuthoritativeGlobal": true,
+    "prerequisiteParityWithAuthoritativeGlobal": true,
+    "packManifestCountParityWithAuthoritativeStatus": true,
+    "failOpenForApplicationAvailability": true,
+    "registryCandidatePath": "foundation/content-resolution/registry-candidates/academic-core-2026.v1.json",
+    "registryCandidateSchema": "BAUMAN_ACADEMIC_CORE_REGISTRY_CANDIDATE_V1",
+    "registryCandidateStatus": "promotion_candidate",
+    "registryCandidateAuthority": "candidate_only",
+    "selfDerivedChecksums": false,
+    "directDiagnosticChecksumDerivation": false,
+    "pinnedRegistryChecksumVerification": true,
+    "delegatedLoader": "assets/js/academic-content-resolution-loader.js",
+    "shadowOwnsResolutionImplementation": false,
+    "shadowOwnsRegistryLoading": false,
+    "shadowOwnsTransportAdapter": false
+  }
+}

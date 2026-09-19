@@ -1,4 +1,4 @@
-# L9 Step 2 — Canonical Identity Runtime + Legacy Mapping Registry
+# Bauman Foundation — Identity & Domain Model — Step 2 — Canonical Identity Runtime + Legacy Mapping Registry
 
 ## Goal
 

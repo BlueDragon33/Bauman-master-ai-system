@@ -1,0 +1,37 @@
+{
+  "schema": "BAUMAN_CONTENT_RESOLUTION_SHADOW_PROFILE_V1",
+  "profileId": "academic-core-2026",
+  "architectureName": "Foundation — Content Resolution & Runtime Delivery",
+  "consumer": "Academic 2026 core data loader",
+  "loaderSource": "assets/js/academic-main.js",
+  "mode": "shadow_only",
+  "authoritySwitch": false,
+  "runtimeMutation": false,
+  "promotedRegistryAuthority": false,
+  "resources": [
+    {
+      "id": "official-curriculum",
+      "constant": "CURRICULUM_URL",
+      "path": "assets/data/official-curriculum-iu5-2026.json"
+    },
+    {
+      "id": "prerequisite-registry",
+      "constant": "PREREQ_URL",
+      "path": "assets/data/prerequisite-registry-iu5-2026.json"
+    },
+    {
+      "id": "prerequisite-pack-manifest",
+      "constant": "PACK_MANIFEST_URL",
+      "path": "assets/data/prerequisite-packs/manifest-2026.json"
+    }
+  ],
+  "acceptance": {
+    "loaderConstantsMustMatchProfile": true,
+    "realFilesMustExist": true,
+    "jsonMustParse": true,
+    "resolutionMustBePackageRelative": true,
+    "deliveryPlanIntegrityRequired": true,
+    "executorMustVerifyBeforeConsumer": true,
+    "existingLoaderRemainsAuthoritative": true
+  }
+}

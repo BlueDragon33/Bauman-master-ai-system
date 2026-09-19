@@ -1,4 +1,4 @@
-# L9 Step 7 — Durable Canonical Read Projection
+# Bauman Foundation — Identity & Domain Model — Step 7 — Durable Canonical Read Projection
 
 ## Goal
 
