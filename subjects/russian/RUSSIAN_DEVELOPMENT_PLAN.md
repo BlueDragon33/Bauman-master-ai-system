@@ -181,9 +181,6 @@ Turn 23 execution substeps:
 
 Remove obsolete translation-first runtime authority, document compatibility, close all deferred obligations, run cross-system gates and freeze a promotion candidate.
 
-Turn 24 post-freeze hardening:
-
-- **24.1 — Promotion freeze negative gate:** prove CI rejects automatic main merge, translation-toggle reactivation, destructive storage reset, bridge/protocol drift, direct-semantic regression, cross-skill inference and other frozen-authority violations.
 
 Turn 24 execution substeps:
 
@@ -191,10 +188,10 @@ Turn 24 execution substeps:
 - **24.2 — Legacy-runtime audit:** remove dead translation-toggle execution paths while retaining inert saved-state fields for old snapshots.
 - **24.3 — Package/load-order freeze:** retain exact entry-derived app shell and freeze ordering for direct-semantic, browser-capability, cursive, literacy, repair and offline runtimes.
 - **24.4 — Authority/bridge freeze:** preserve `BAUMAN_SUBJECT_BRIDGE_V1`, planning protocol, Learning State mastery/Review Queue ownership and Vocab SRS scheduler ownership.
-- **24.5 — Negative/promotion gates:** reject automatic main merge, destructive storage reset, translation fallback, invalid bridge/storage changes and cursive upper/lower collapse.
+- **24.5 — Negative/promotion gates:** reject automatic main merge, destructive storage reset, translation fallback, invalid bridge/storage changes, cursive upper/lower collapse, stale translation shortcuts and reintroduction of dead translation-era helpers; current freeze suite includes 14 explicit negative cases.
 - **24.6 — Promotion candidate documentation:** record compatibility, version-free display policy, OFL cursive provenance and the requirement for a separate promotion decision.
 - **24.7 — Version-free fallback freeze:** remove versioned learner-facing fallback labels from the adapter/core themselves, not only from the cleanup override; internal protocol/build metadata may remain non-visual.
-- **24.8 — Post-freeze regression revalidation:** rerun Turn 23/24 source gates after any frozen-candidate defect fix and retain GREEN only when browser, migration and promotion assertions all include the fix.
+- **24.8 — Post-freeze regression revalidation:** rerun Turn 23/24 source gates after any frozen-candidate defect fix; the post-freeze audit removed stale `V ẩn/hiện nghĩa` guidance and unused translation-era vocab/dialogue helpers, with promotion assertions updated before retaining GREEN.
 
 Result: all canonical 24 turns are GREEN. No further turn is created because no new responsibility remains unresolved inside this rebuild. Promotion to `main` is deliberately outside automatic execution.
 
