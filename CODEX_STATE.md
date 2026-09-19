@@ -82,7 +82,7 @@ This branch is a promotion candidate only.
 
 Do not merge to `main` automatically. A separate explicit promotion decision is required.
 
-The available GitHub connector did not expose branch-push workflow runs/status checks for the latest commits. Source-level validators, negative-test definitions, package/load-order checks and regression wiring are accepted; an observable GitHub Actions run may be required by a later explicit promotion decision.
+Observable GitHub Actions evidence is now available. Workflow run `35416011837` completed successfully on commit `ae26de6b1f2d24f1e1b5bc4874ea705b68f1d5bf`: both `russian-learning-contract` and `russian-existing-regression` passed. Later documentation-only commits must preserve the same gates before any explicit promotion decision.
 
 ## Post-freeze defect fixes
 
@@ -108,3 +108,24 @@ Fixed inside existing Turn 24 responsibility:
 - folded the hardening into canonical Turn 24.5/24.8 rather than creating a duplicate substep or unjustified Turn 25.
 
 The promotion candidate remains frozen and must not merge to `main` without an explicit promotion decision.
+
+
+## Post-freeze gate-regression repair — 2026-09-19
+
+A full branch-push audit exposed stale/over-broad gate logic inside already-owned responsibilities. No Turn 25 was created.
+
+- Turn 8.1: corrected the listening tokenizer validator and negative mutation to match the real whitespace tokenizer.
+- Turn 18.1: narrowed multimodal authority-token detection to executable references while preserving strict scheduler/mastery isolation.
+- Turn 21.7: aligned the opened-state assertion with the real repair lifecycle and added a dedicated negative case.
+- Turn 22.7: separated asset-runtime existence from the required `missing_visual_asset` fallback invariant.
+- Turn 23.9: hardened Browser/Package negative tests for all 760px breakpoints and made load-order diagnostics precede shell-inventory masking.
+- Turn 24.9: hardened the promotion-freeze bridge negative case across both READY and PROGRESS contract markers.
+
+Accepted executable checkpoint before this documentation update:
+
+- commit: `ae26de6b1f2d24f1e1b5bc4874ea705b68f1d5bf`
+- workflow: `35416011837`
+- `russian-learning-contract`: SUCCESS
+- `russian-existing-regression`: SUCCESS
+
+The promotion candidate remains frozen. Do not merge to `main` automatically.
