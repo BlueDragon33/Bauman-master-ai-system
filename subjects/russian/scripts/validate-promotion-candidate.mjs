@@ -16,13 +16,24 @@ const runtime=read('assets/runtime-optimizer.js');
 const runtimeCss=read('assets/runtime-optimizer.css');
 const adapter=read('assets/subject-adapter.js');
 const cleanup=read('assets/ui-cleanup-contract.js');
+const visual=read('assets/visual-vocabulary-runtime.js');
+const aiDirect=read('assets/ai-direct-explanation.js');
+const dialogue=read('assets/dialogue-scaffold.js');
+const browser=read('assets/browser-capabilities.js');
+const cursive=read('assets/cursive-glyphs.js');
+const cyrillic=read('assets/cyrillic-literacy.js');
+const repair=read('assets/weakness-repair-router.js');
+const skillGate=read('assets/skill-gated-assessment.js');
+const hostBridge=read('../shared/host-bridge.js');
+const manifest=JSON.parse(read('subject-manifest.json'));
+const freezeContract=JSON.parse(read('contracts/migration-freeze-contract.v1.json'));
 
 for(const p of ['assets/core.css.bak','assets/core.js.bak']){
   if(fs.existsSync(path.join(root,p)))throw new Error(`Legacy backup still present: ${p}`);
   forbid(html,p,'Index must not reference backup assets');
 }
-const cssOrder=['assets/core.css','assets/russian.css','assets/russian-reference-ui.css','assets/russian-reference-ui-polish.css','assets/learning-state.css','assets/content-contract.css','assets/learning-flow.css','assets/vocab-srs.css','assets/speaking-coach.css','assets/academic-language.css','assets/runtime-optimizer.css'];
-const jsOrder=['assets/subject-adapter.js','assets/ui-cleanup-contract.js','assets/content-contract.js','../shared/host-bridge.js','assets/planning-bridge.js','assets/russian-optional-data-loader.js','assets/core.js','assets/learning-state.js','assets/learning-flow.js','assets/vocab-srs.js','assets/speaking-coach.js','assets/academic-language.js','assets/ai-mentor-guard.js','assets/runtime-optimizer.js','assets/russian-reference-ui.js'];
+const cssOrder=['assets/core.css','assets/browser-capabilities.css','assets/russian.css','assets/russian-reference-ui.css','assets/russian-reference-ui-polish.css','assets/learning-state.css','assets/content-contract.css','assets/learning-flow.css','assets/cyrillic-literacy.css','assets/cursive-glyphs.css','assets/handwriting-motor-coach.css','assets/reading-bridge.css','assets/dictation-listen-write.css','assets/vocab-srs.css','assets/multimodal-review.css','assets/skill-gated-assessment.css','assets/weakness-repair-router.css','assets/visual-vocabulary-runtime.css','assets/speaking-coach.css','assets/listening-ladder.css','assets/dialogue-scaffold.css','assets/academic-language.css','assets/grammar-pattern-coach.css','assets/runtime-optimizer.css','assets/asset-reliability.css'];
+const jsOrder=['assets/subject-adapter.js','assets/ui-cleanup-contract.js','assets/content-contract.js','../shared/host-bridge.js','assets/planning-bridge.js','assets/russian-optional-data-loader.js','assets/visual-vocabulary-runtime.js','assets/ai-direct-explanation.js','assets/dialogue-scaffold.js','assets/browser-capabilities.js','assets/core.js','assets/learning-state.js','assets/learning-flow.js','assets/cursive-glyphs.js','assets/cyrillic-literacy.js','assets/handwriting-motor-coach.js','assets/reading-bridge.js','assets/dictation-listen-write.js','assets/vocab-srs.js','assets/multimodal-review.js','assets/skill-gated-assessment.js','assets/listening-ladder.js','assets/speaking-coach.js','assets/academic-language.js','assets/grammar-pattern-coach.js','assets/ai-mentor-guard.js','assets/weakness-repair-router.js','assets/asset-reliability.js','assets/runtime-optimizer.js','assets/russian-reference-ui.js'];
 function assertOrder(list,label){let prev=-1;for(const item of list){const pos=html.indexOf(item);if(pos<0)throw new Error(`${label} missing ${item}`);if(pos<=prev)throw new Error(`${label} order invalid at ${item}`);prev=pos;}}
 assertOrder(cssOrder,'CSS');assertOrder(jsOrder,'JS');
 for(const item of [...cssOrder.filter(x=>x!=='assets/core.css'),...jsOrder.filter(x=>x.startsWith('assets/'))])need(sw,`./${item}`,`Service worker shell missing ${item}`);
@@ -31,10 +42,23 @@ need(runtime,'prepareOfflineCore');need(runtime,'navigator.connection?.saveData'
 need(learning,'bauman_russian_learning_state_v1');need(vocab,'bauman_russian_vocab_srs_v1');need(academic,'bauman_russian_academic_language_v1');need(adapter,'bauman_russian_survival_master_v11_clean_skeleton');
 need(learning,'setResume');need(learning,'addReview');need(vocab,'RussianLearningState');need(speaking,'RussianLearningState');need(academic,'RussianLearningState');
 need(cleanup,"A.ui.coreLabel='TIẾNG NGA BAUMAN'");need(cleanup,"A.ui.heroBadge='LỘ TRÌNH TIẾNG NGA BAUMAN'");need(cleanup,'hideLegacyVersionLabels:true');need(cleanup,'preserveInternalStorageAndBridgeIds:true');
-need(ai,'canonicalStateReadOnly:true');need(ai,'aiMayModifyMastery:false');need(ai,'aiMayCompleteTasks:false');forbid(ai,'RussianLearningState?.set');forbid(ai,'.addReview');
-const runtimeJs=['assets/core.js','assets/learning-state.js','assets/learning-flow.js','assets/vocab-srs.js','assets/speaking-coach.js','assets/academic-language.js','assets/ai-mentor-guard.js','assets/runtime-optimizer.js','assets/russian-reference-ui.js','assets/ui-cleanup-contract.js'].map(read).join('\n');
+need(ai,'canonicalStateReadOnly:true');need(ai,'aiMayModifyMastery:false');need(ai,'aiMayCompleteTasks:false');need(ai,'translationSemanticAuthority:false');forbid(ai,'RussianLearningState?.set');forbid(ai,'.addReview');
+need(visual,'RUSSIAN_VISUAL_VOCABULARY_RUNTIME_V1');forbid(visual,'meaning_vi');forbid(visual,'translation_vi');forbid(visual,'.english');
+need(aiDirect,'RUSSIAN_AI_DIRECT_EXPLANATION_V1');need(aiDirect,'translationSemanticAuthority:false');
+need(dialogue,'RUSSIAN_DIALOGUE_SCAFFOLD_V1');forbid(dialogue,'vi_turns');
+need(browser,'RUSSIAN_BROWSER_CAPABILITY_V1');need(browser,'speechReady');
+need(cursive,'RUSSIAN_CURSIVE_GLYPH_SHAPES_V1');need(cyrillic,'RussianCursiveGlyphs');
+need(repair,'RUSSIAN_WEAKNESS_REPAIR_ROUTER_V1');need(repair,'repair_evidence_present');
+need(skillGate,'advisoryOnly:true');need(skillGate,'crossSkillInference:false');
+need(hostBridge,"contract:'BAUMAN_SUBJECT_BRIDGE_V1'");
+need(adapter,"protocol: 'BAUMAN_PLANNING_BRIDGE_V3_ROUTE_CARDS'");
+if(manifest.title!=='Tiếng Nga Bauman'||manifest.ui?.coreLabel!=='TIẾNG NGA BAUMAN'||manifest.ui?.hideVersionLabels!==true)throw new Error('Manifest display labels are not frozen version-free');
+if(freezeContract.schema!=='RUSSIAN_MIGRATION_FREEZE_CONTRACT_V1'||freezeContract.promotion?.mergeToMainAutomatic!==false)throw new Error('Migration freeze contract missing or unsafe');
+const runtimeJs=['assets/core.js','assets/learning-state.js','assets/learning-flow.js','assets/vocab-srs.js','assets/speaking-coach.js','assets/academic-language.js','assets/ai-mentor-guard.js','assets/ai-direct-explanation.js','assets/visual-vocabulary-runtime.js','assets/dialogue-scaffold.js','assets/cursive-glyphs.js','assets/cyrillic-literacy.js','assets/weakness-repair-router.js','assets/skill-gated-assessment.js','assets/browser-capabilities.js','assets/runtime-optimizer.js','assets/russian-reference-ui.js','assets/ui-cleanup-contract.js'].map(read).join('\n');
+forbid(read('assets/core.js'),'toggleActiveHideVi','Dead translation toggle must not survive promotion freeze');
+forbid(read('assets/core.js'),"act==='toggle-vi'",'Dead translation action must not survive promotion freeze');
 forbid(runtimeJs,'localStorage.clear(','Promotion candidate must not wipe existing learner storage');
 forbid(html,'PASS','Gate status must not be visible in app shell');forbid(html,'DEBUG','Debug status must not be visible in app shell');
 if(!html.includes('name="viewport"'))throw new Error('Viewport metadata missing');
 console.log('RUSSIAN_PROMOTION_RUNTIME_GATE=PASS');
-console.log('Checks: no runtime backups, stable additive load order, legacy UI version labels neutralized before core render, canonical resume/review/SRS/academic storage preserved, AI read-only, Russian-scoped offline shell, responsive runtime status, no destructive storage reset.');
+console.log('Checks: no runtime backups, frozen additive load order, version-free display labels, direct-semantic vocabulary/dialogue/AI, explicit cursive vectors, evidence-gated repair, browser fallback, canonical storage/bridge/SRS authority preserved, Russian-scoped offline shell, no destructive storage reset, no automatic main merge.');
