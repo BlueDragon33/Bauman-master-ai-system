@@ -364,7 +364,17 @@ function finalQaSnapshot(){
 }
 
 
-function getDialogues(){let xs=byStage(getBaumanDialogueAZ()); if(state.dialogueGroup!=='all')xs=xs.filter(x=>(A.dialogueGroup?.(x)||x.group_ru||x.group_id||x.source_group_id||'general')===state.dialogueGroup); if(state.dialogueDifficulty!=='all')xs=xs.filter(x=>(A.dialogueDifficulty?.(x)||x.difficulty||x.level||'all')===state.dialogueDifficulty); if(state.dialogueQuery)xs=xs.filter(x=>lower(A.dialogueSearchText?.(x)||'').includes(lower(state.dialogueQuery))); return xs}
+function getDialogues(){
+ let xs=byStage(getBaumanDialogueAZ());
+ const groups=uniq(xs.map(x=>A.dialogueGroup?.(x)||x.group_ru||x.group_id||x.source_group_id||'general'));
+ const diffs=uniq(xs.map(x=>A.dialogueDifficulty?.(x)||x.difficulty||x.level||'all'));
+ if(state.dialogueGroup!=='all'&&!groups.includes(state.dialogueGroup))state.dialogueGroup='all';
+ if(state.dialogueDifficulty!=='all'&&!diffs.includes(state.dialogueDifficulty))state.dialogueDifficulty='all';
+ if(state.dialogueGroup!=='all')xs=xs.filter(x=>(A.dialogueGroup?.(x)||x.group_ru||x.group_id||x.source_group_id||'general')===state.dialogueGroup);
+ if(state.dialogueDifficulty!=='all')xs=xs.filter(x=>(A.dialogueDifficulty?.(x)||x.difficulty||x.level||'all')===state.dialogueDifficulty);
+ if(state.dialogueQuery)xs=xs.filter(x=>lower(A.dialogueSearchText?.(x)||'').includes(lower(state.dialogueQuery)));
+ return xs
+}
 function getMedia(){let xs=byStage(call('getMedia',[],DB)); if(state.mediaCat!=='all')xs=xs.filter(x=>mediaCategoryLabel(x)===state.mediaCat); if(state.mediaQuery)xs=xs.filter(x=>lower(JSON.stringify(x)).includes(lower(state.mediaQuery))); return xs}
 function getVocab(){let xs=byStage(call('getVocabulary',[],DB)); if(state.vocabQuery)xs=xs.filter(x=>lower(A.vocabSearchText?.(x)||A.vocabTerm?.(x)||x?.ru||x?.phrase_ru||'').includes(lower(state.vocabQuery))); return xs}
 function getHandwriting(){return byStage(call('getHandwriting',[],DB))}
