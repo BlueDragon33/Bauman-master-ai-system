@@ -10,16 +10,16 @@ function deepFreeze(value,seen=new WeakSet()){
 }
 function clone(value){return value===undefined?undefined:structuredClone(value);}
 function readJson(file,label){
-  if(!fs.existsSync(file))throw new Error(\`Missing current Consumer Admission file: \${label}\`);
-  try{return JSON.parse(fs.readFileSync(file,'utf8'));}catch{throw new Error(\`Invalid current Consumer Admission JSON: \${label}\`);}
+  if(!fs.existsSync(file))throw new Error(`Missing current Consumer Admission file: ${label}`);
+  try{return JSON.parse(fs.readFileSync(file,'utf8'));}catch{throw new Error(`Invalid current Consumer Admission JSON: ${label}`);}
 }
 
 export function loadCurrentConsumerAdmissionHarness(options={}){
   const root=options.rootDir||process.cwd();
-  const contract=readJson(\`\${root}/roadmap_v2/consumer-admission/current-contract.json\`,'Consumer Admission contract');
-  const contractSchema=readJson(\`\${root}/roadmap_v2/consumer-admission/consumer-admission-contract.schema.json\`,'Consumer Admission contract schema');
-  const requestSchema=readJson(\`\${root}/roadmap_v2/consumer-admission/consumer-admission-request.schema.json\`,'Consumer Admission request schema');
-  const resultSchema=readJson(\`\${root}/roadmap_v2/consumer-admission/consumer-admission-result.schema.json\`,'Consumer Admission result schema');
+  const contract=readJson(`${root}/roadmap_v2/consumer-admission/current-contract.json`,'Consumer Admission contract');
+  const contractSchema=readJson(`${root}/roadmap_v2/consumer-admission/consumer-admission-contract.schema.json`,'Consumer Admission contract schema');
+  const requestSchema=readJson(`${root}/roadmap_v2/consumer-admission/consumer-admission-request.schema.json`,'Consumer Admission request schema');
+  const resultSchema=readJson(`${root}/roadmap_v2/consumer-admission/consumer-admission-result.schema.json`,'Consumer Admission result schema');
   const admission=loadCurrentAdmissionHarness({rootDir:root});
 
   assert.equal(contract.schema,contractSchema.$id,'Consumer Admission contract/schema mismatch');
@@ -42,7 +42,7 @@ export function loadCurrentConsumerAdmissionHarness(options={}){
   const validateRequest=input=>{
     assert(input&&typeof input==='object'&&!Array.isArray(input),'Invalid Consumer Admission request');
     const unexpected=Object.keys(input).filter(key=>!allowedKeys.has(key));
-    assert.equal(unexpected.length,0,\`Consumer Admission request contains unsupported fields: \${unexpected.join(', ')}\`);
+    assert.equal(unexpected.length,0,`Consumer Admission request contains unsupported fields: ${unexpected.join(', ')}`);
     assert.equal(input.schema,requestSchema.$id,'Consumer Admission request schema mismatch');
     assert.match(input.consumerId,/^SHADOW::[A-Z0-9_-]+$/,'Consumer Admission consumer ID outside SHADOW namespace');
     assert.equal(input.consumerClass,'human_review_shadow','Unsupported Consumer Admission class');
@@ -63,12 +63,12 @@ export function loadCurrentConsumerAdmissionHarness(options={}){
     const consumerDecision=contract.decisionPolicy[advisory.advisoryState];
     assert(
       ['shadow_review_blocked','shadow_review_caution','shadow_review_ready_for_human_review'].includes(consumerDecision),
-      \`Unsupported Consumer Admission advisory state: \${advisory.advisoryState}\`
+      `Unsupported Consumer Admission advisory state: ${advisory.advisoryState}`
     );
 
     const result={
       schema:resultSchema.$id,
-      projectionId:\`CONSUMER_ADMISSION::\${request.consumerId}::\${advisory.projectionId}\`,
+      projectionId:`CONSUMER_ADMISSION::${request.consumerId}::${advisory.projectionId}`,
       consumerId:request.consumerId,
       consumerClass:request.consumerClass,
       admissionProjectionId:advisory.projectionId,
