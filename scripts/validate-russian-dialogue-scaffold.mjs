@@ -60,6 +60,7 @@ export function validateCore(core){
   assert(!deep.includes('JSON.stringify(x)')&&!deep.includes('Object.values(v).flatMap(deepLines)'),'Deep speaking must fail closed instead of serializing unknown semantic fields');
   assert(!deep.includes('p.question||')&&!deep.includes('p.answer||'),'Deep speaking Q&A must not fall back to generic-language question/answer fields');
   assert(!deep.includes("unit.scenario_ru||unit.domain"),'Deep speaking overview must not fall back to generic-language domain text');
+  assert(!deep.includes("unit.domain||unit.scenario_ru")&&!deep.includes("u.domain||''"),'Deep speaking learner metadata must not read generic-language domain fields');
   for(const [name,src] of [['renderDialogue',dialogue],['renderPractice',practice]]){
     assert(src.includes('dialogueScaffold('),`${name} does not use direct scaffold bridge`);
     for(const token of ['dialogueVi(','currentVi','toggle-vi','context_title_vi','communicative_functions_vi','vi_turns','prompt_vi','unit_title_vi','scenario_vi','title_vi'])assert(!src.includes(token),`${name} still exposes translation scaffold: ${token}`);
