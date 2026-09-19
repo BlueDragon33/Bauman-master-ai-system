@@ -63,5 +63,11 @@
     "noEnglishSemanticGloss": true,
     "learnerStateAuthority": false,
     "masteryMutation": false
+  },
+  "semanticRouting": {
+    "dialogueSearchAuthority": "russian_direct_context_only",
+    "deepLinkNaturalLanguageTags": "cyrillic_only",
+    "legacyGenericVietnameseFieldsMayInfluenceRouting": false,
+    "inertIdsMayStillLink": true
   }
 }
