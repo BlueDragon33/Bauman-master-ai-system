@@ -37,7 +37,7 @@ assert.throws(()=>validateRuntime(js,css,core.replace("p.attempts[id]=Number(p.a
 assert.throws(()=>validateRuntime(js.replace("return heardCount(c)>=2&&Number(row?.imitationAttempts||0)>0;","return heardCount(c)>=1&&Number(row?.imitationAttempts||0)>0;"),css,core,learningFlow),/not two-listen gated/);
 assert.throws(()=>validateRuntime(js.replace("if(mode==='roleplay')bump('roleplayAttempts'","if(mode==='roleplay')bump('freeAttempts'"),css,core,learningFlow),/not recorder-backed/);
 assert.throws(()=>validateRuntime(js.replace("russian:speaking-recording-result","russian:speaking-recording-clicked"),css,core,learningFlow),/recognition-result evidence/);
-assert.throws(()=>validateRuntime(js,css,core.replace("notifySpeakingRecordingResult(d,idx,transcript,score)","void score"),learningFlow),/does not emit evidence on recognition result/);
+assert.throws(()=>validateRuntime(js,css,core.replace("notifySpeakingRecordingResult(d,idx,transcript,score,lessonIdAtStart)","void score"),learningFlow),/does not emit evidence on recognition result/);
 
 
 assert.throws(()=>validateRuntime(js,css,core.replace("try{window.dispatchEvent(new CustomEvent('russian:speaking-self-assessed'","try{window.dispatchEvent(new CustomEvent('russian:speaking-manual-rating'"),learningFlow),/self-assessment event missing/);
