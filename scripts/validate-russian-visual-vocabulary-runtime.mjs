@@ -68,6 +68,7 @@ export function validateHelper(js){
   assert(js.includes("Wikimedia Commons · "),'Image enrichment attribution UI missing');
   assert(js.includes('activeHydrationController')&&js.includes('.abort()'),'Stale image lookup cancellation missing');
   assert(js.includes("result.artist||''"),'Artist attribution path missing');
+  assert(js.includes("upload\\.wikimedia\\.org")&&js.includes("commons\\.wikimedia\\.org"),'Trusted Wikimedia host allowlist missing');
   const loadListener=js.indexOf("img.addEventListener('load'");
   const srcAssign=js.indexOf('img.src=result.thumb_url');
   assert(loadListener>=0&&srcAssign>loadListener,'Image load/error listeners must be attached before assigning src');
