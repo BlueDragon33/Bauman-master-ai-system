@@ -62,8 +62,8 @@ function rejected(fn,pattern){
   cases+=1;
 }
 
-assert.equal(readiness.contract.acceptance.step,106);
-assert.equal(readiness.contract.acceptance.result,'PASS_PROJECTOR_PENDING_B107_GATE');
+assert.equal(readiness.contract.acceptance.step,107);
+assert.equal(readiness.contract.acceptance.result,'PASS_ADVERSARIAL_READY_FOR_B108_CLOSEOUT');
 assert.equal(readiness.contract.mode.productionIntegration,'disconnected');
 
 // Caller cannot smuggle a readiness decision.
