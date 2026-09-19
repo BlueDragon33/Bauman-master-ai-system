@@ -2,7 +2,7 @@
 
 Task: `RUSSIAN_LISTEN_SPEAK_LITERACY_VISUAL_SEMANTICS`
 
-Mode: `SEQUENTIAL_GATED_DEVELOPMENT`
+Mode: `FROZEN_PROMOTION_CANDIDATE`
 
 ## Canonical plan
 
@@ -10,36 +10,37 @@ Use only:
 
 `subjects/russian/RUSSIAN_DEVELOPMENT_PLAN.md`
 
-for turn status and substeps.
+for Russian rebuild turn status.
 
 ## Current work
 
-Turns 1–22 are accepted.
+All canonical Turns 1–24 are GREEN.
 
-Next: **Turn 23 — Browser/package/accessibility/performance QA**.
+There is no active implementation turn and no justified Turn 25 at this point.
 
-Turn 23 must:
+The rebuild is frozen on:
 
-- verify packaged runtime/static dependencies and load order;
-- verify keyboard operation and accessible names/status semantics on critical controls;
-- verify responsive containment for desktop, tablet and phone target ratios;
-- stress state persistence, large vocabulary/test data, storage guards and render-loop protections;
-- verify speech/audio/media browser-capability fallbacks;
-- close `RUS-CURSIVE-VISUAL-001` with actual browser evidence that cursive/handwritten rendering differs from print, or replace font-dependent cursive with an explicit handwriting asset/shape representation;
-- add integrated regression gates and keep all earlier authority boundaries intact.
+`work/russian-listen-speak-literacy-visual-semantics`
 
-## Automatic expansion rule
+## Promotion boundary
 
-If a defect or missing capability appears, create a numbered substep inside Turn 23 and fix it immediately. Add a new turn beyond the canonical 24 only if the responsibility genuinely cannot fit Turn 23 or Turn 24.
+Do not merge to `main` without an explicit promotion decision.
 
-## Gate rule
+If future QA reveals a defect inside an already accepted responsibility, reopen the owning turn/substep, fix it, rerun its gate and then restore GREEN. Do not create a new turn merely to patch an existing responsibility.
 
-For each substep:
+Create Turn 25+ only if a genuinely new responsibility appears that cannot safely fit Turns 1–24.
 
-1. freeze the assertion;
-2. create/extend validator;
-3. add negative coverage;
-4. make the smallest runtime/package change;
-5. run available behavioral/browser verification;
-6. preserve prior regression;
-7. update canonical status only after green.
+## Frozen requirements
+
+- Listening/speaking remain the recurring priority.
+- Print and handwriting recognition remain distinct.
+- Cursive uses 66 distinct OFL-derived vector outlines, not font-only rendering.
+- Vocabulary meaning remains direct-semantic; Vietnamese/English translation is not learner semantic authority.
+- Dialogue remains translation-free by default.
+- AI remains Russian-first/direct-semantic and read-only.
+- Skill-gate aggregation remains advisory.
+- Weakness repair remains additive and evidence-gated.
+- Offline ready remains cache-verified.
+- Browser speech failure remains explicit.
+- Storage, Review Queue, SRS, Foundation and bridge authority remain unchanged.
+- User-facing module identity remains `Tiếng Nga Bauman` without legacy build/version labels.
