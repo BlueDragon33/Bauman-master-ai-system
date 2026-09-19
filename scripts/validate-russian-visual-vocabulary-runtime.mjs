@@ -20,6 +20,8 @@ export function validateContract(c){
   assert(c.learnerSurface?.contextRevealReplacesMeaningFlip===true,'Context reveal must replace translation-style flip');
   assert(c.learnerSurface?.explicitMissingState===true,'Missing semantic state must remain explicit');
   assert(c.invariants?.noVietnameseSemanticAnswer===true&&c.invariants?.noEnglishSemanticAnswer===true,'Translation answers are still permitted');
+  assert(c.learnerSurface?.translationFreeSearch===true&&c.invariants?.translationFieldsExcludedFromSearch===true,'Vocabulary search must exclude translation fields');
+  assert(c.invariants?.sentenceMiningRequiresCyrillicContext===true&&c.invariants?.speakingLinkTitlesRussianOnly===true,'SRS semantic links must remain Russian-only');
   const image=c.imageEnrichment||{};
   assert(image.provider==='wikimedia_commons'&&image.mode==='on_demand','Verified image provider contract missing');
   assert(image.queryLanguage==='ru'&&image.usesRussianSemanticContext===true&&image.translationQueryForbidden===true,'Image lookup must remain Russian-semantic only');
@@ -96,6 +98,21 @@ export function validateSrs(srs){
   return true;
 }
 
+
+export function validateSearchIsolation(contentContract,adapter,core,srs){
+  assert(contentContract.includes('const meaningRu=russian(')&&contentContract.includes('const example=russian('),'Content contract Russian semantic filter missing');
+  assert(!contentContract.includes('v.meaningVi,v.english'),'Content contract search still includes translation fields');
+  assert(contentContract.includes('v.meaningRu,v.example'),'Content contract search lost Russian semantic fields');
+  assert(!core.includes('A.vocabSearchText?.(x)||JSON.stringify(x)'),'Core vocabulary search can fall back to raw source JSON');
+  assert(adapter.includes("vocabExample(item){ const v=item?.example_ru || item?.context_ru || item?.voice_text || item?.usage_ru || ''; return /[А-Яа-яЁё]/.test(String(v)) ? v : this.vocabTerm(item); }"),'Adapter vocabulary example is not Russian-filtered');
+  assert(!srs.includes('context_title_vi'),'SRS speaking-link title reads Vietnamese metadata');
+  assert(srs.includes("title:russian(item.title_ru||item.context_title_ru)||clean(item.id||item.source_id||'')"),'SRS speaking-link title is not Russian-only');
+  assert(srs.includes('!cyr.test(sentence)'),'Sentence Mining does not reject non-Cyrillic source context');
+  assert(srs.includes('meaningRu:russian(direct.definition_ru||item?.meaning_ru||item?.definition_ru)'),'SRS meaning fallback is not Russian-filtered');
+  assert(srs.includes('contextRu:russian(direct.context_ru||item?.example_ru||item?.context_ru||item?.voice_text||item?.example)'),'SRS context fallback is not Russian-filtered');
+  return true;
+}
+
 export function validateIndex(index){
   const helper=index.indexOf('assets/visual-vocabulary-runtime.js');
   const core=index.indexOf('assets/core.js');
@@ -108,7 +125,14 @@ export function loadAndValidate(){
   validateContract(c);
   validateHelper(fs.readFileSync('subjects/russian/assets/visual-vocabulary-runtime.js','utf8'));
   validateCore(fs.readFileSync('subjects/russian/assets/core.js','utf8'));
-  validateSrs(fs.readFileSync('subjects/russian/assets/vocab-srs.js','utf8'));
+  const srs=fs.readFileSync('subjects/russian/assets/vocab-srs.js','utf8');
+  validateSrs(srs);
+  validateSearchIsolation(
+    fs.readFileSync('subjects/russian/assets/content-contract.js','utf8'),
+    fs.readFileSync('subjects/russian/assets/subject-adapter.js','utf8'),
+    fs.readFileSync('subjects/russian/assets/core.js','utf8'),
+    srs
+  );
   validateIndex(fs.readFileSync('subjects/russian/index.html','utf8'));
   return c;
 }
