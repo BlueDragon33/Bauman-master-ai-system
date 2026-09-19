@@ -25,7 +25,7 @@ assert.throws(()=>validateRuntime(js.replace("russian:speaking-recording-result"
 assert.throws(()=>validateRuntime(js,css,core.replace("notifySpeakingRecordingResult(d,idx,transcript,score)","void score"),learningFlow),/does not emit evidence on recognition result/);
 
 
-assert.throws(()=>validateRuntime(js,css,core.replace("try{window.dispatchEvent(new CustomEvent('russian:speaking-self-assessed'","try{window.dispatchEvent(new CustomEvent('russian:speaking-self-assessed-missing'"),learningFlow),/self-assessment event missing/);
+assert.throws(()=>validateRuntime(js,css,core.replace("try{window.dispatchEvent(new CustomEvent('russian:speaking-self-assessed'","try{window.dispatchEvent(new CustomEvent('russian:speaking-manual-rating'"),learningFlow),/self-assessment event missing/);
 assert.throws(()=>validateRuntime(js,css,core,learningFlow.replace("window.addEventListener('russian:speaking-recording-result'","window.addEventListener('russian:speaking-recording-clicked'")),/not recognition-result driven/);
 assert.throws(()=>validateRuntime(js,css,core,learningFlow.replace("selfAssessments:Number(old.selfAssessments||0)+1","attempts:Number(old.attempts||0)+1")),/Self-assessment still increments speaking attempts/);
 
