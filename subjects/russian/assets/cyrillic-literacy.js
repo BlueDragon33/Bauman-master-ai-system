@@ -463,6 +463,19 @@
     if(view)new MutationObserver(()=>mount()).observe(view,{childList:true,subtree:true});
   });
 
+  function openRepair(section,letter){
+    if(!['print','cursive','sound'].includes(section))return false;
+    const key=String(letter||'').toUpperCase();
+    const idx=rows.findIndex(row=>row.upper===key);
+    if(idx<0)return false;
+    state.section=section;
+    state.index=idx;
+    state.lastResult=null;
+    if(section==='sound')state.soundMode='sound_to_letter';
+    if(section==='cursive')state.cursiveDirection='cursive_to_print';
+    save();render();return true;
+  }
+
   root.RussianCyrillicLiteracy=Object.freeze({
     schema:SCHEMA,
     letterCount:()=>rows.length,
@@ -472,6 +485,7 @@
     setSection,
     setCursiveDirection,
     setSoundMode,
-    next
+    next,
+    openRepair
   });
 })(window);
