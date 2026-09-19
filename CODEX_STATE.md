@@ -1,74 +1,42 @@
 # CODEX_STATE
 
-Current task: `CONTENT_RESOLUTION_RUNTIME_DELIVERY_FOUNDATION`
+Current task: `RUSSIAN_LISTENING_VISUAL_FIRST_ARCHITECTURE`
 
-Status: `STEP14_FAILURE_INJECTION_GREEN`
+Status: `RUSSIAN_GATE_GREEN_SYSTEM_GATES_RUNNING`
 
-Date: 2026-09-18
-Branch: `work/foundation-content-resolution-delivery`
-Base checkpoint: `540126ba568b73b84cde3efeba02677ac089e437`
-Accepted implementation checkpoint: `277d451ded3fa05746e1f6c821bc0ead9d52e8e7`
+Date: 2026-09-19
+Branch: `work/russian-listening-visual-first-architecture`
+Parent checkpoint: `676fe08d05e6d92ff4479620ad9bf00abe5f8da6`
 
-## Architecture layer
+## Responsibility
 
-**Foundation — Content Resolution & Runtime Delivery**
+**Subject Web App — Russian learning architecture**
 
-Purpose:
+This branch does not expand Foundation authority.
 
-- resolve registry-backed content/assets into deterministic runtime resources;
-- bind runtime delivery to pinned SHA-256 integrity and access policy;
-- expose a reusable verified loader without silently taking learner-state or application authority.
+## Completed slice
 
-## Completed development
+1. Reordered lesson flow to listening/speaking first.
+2. Added alphabet + handwriting as an explicit early learning step.
+3. Preserved existing lesson, speaking, vocabulary, grammar, assessment and learner-state data.
+4. Enforced visual-first vocabulary for Vietnam stage:
+   - no learner-facing direct Vietnamese translation as the flashcard answer;
+   - no English-equivalent answer;
+   - image/symbol + Russian explanation + situational usage instead.
+5. Removed learner-facing “Lật nghĩa” wording in favor of contextual hints.
+6. Removed English-equivalent output from AI vocabulary helper.
+7. Added `validate-listening-visual-first.mjs` and wired it into Russian Reference UI Gate.
+8. Added architecture contract documentation.
 
-Steps 1–14 are green.
+## Validation
 
-1. Resolution contract and access-trust boundary.
-2. Pure resolver runtime.
-3. Immutable delivery-plan boundary.
-4. Injected verified executor.
-5. Same-origin package-relative fetch adapter.
-6. Academic core Node shadow parity.
-7. Source Chromium shadow acceptance.
-8. Packaged Chromium shadow acceptance.
-9. Opt-in real-Hub runtime shadow bridge.
-10. Pinned Academic core registry promotion candidate.
-11. Pinned-checksum runtime shadow.
-12. Reusable non-authoritative Academic verified content loader.
-13. Opt-in Academic verified-loader authority trial.
-14. Failure injection proving checksum/registry failures fail closed with no hidden legacy fallback.
+Russian Reference UI Gate: GREEN on PR #55 head `f2259364657eda339d79b1c33e5a99cad6780bf8`.
 
-## Current Academic authority
+Whole-system dependent browser/device/preview jobs were still running when this state file was prepared.
 
-Default behavior remains `legacy_fetch`.
+## Branch/merge rule
 
-Only `?academicVerifiedLoader=1` activates the verified core-loader authority trial.
-
-The trial is intentionally not the default yet.
-
-## Protected authority
-
-This layer still does not own:
-
-- learner state or mastery;
-- Review Queue / SRS;
-- schedules or scheduler mutation;
-- Hub/subject routing;
-- authentication or device authority;
-- registry mutation.
-
-## Integrity result
-
-Source and packaged Chromium both prove:
-
-- pinned SHA-256 + byte-length verification;
-- no double-load of Academic core files;
-- modified bytes are rejected;
-- missing registry candidate is rejected before core JSON fetch;
-- failures do not silently fall back to legacy core fetching.
-
-## Branch policy
-
-Do not merge to `main` without an explicit promotion decision.
-
-New subject-learning work should use a responsibility-specific branch rather than extending Foundation ownership into subject pedagogy.
+Do not merge to `main` until:
+- remaining whole-system checks are green;
+- branch history is reconciled so the Russian slice is not accidentally used to merge all unpromoted Foundation commits;
+- explicit promotion decision is made.
