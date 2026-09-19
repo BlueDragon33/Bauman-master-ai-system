@@ -6,7 +6,7 @@ Status: `ALL_24_TURNS_GREEN_PROMOTION_CANDIDATE_FROZEN`
 
 Date: 2026-09-19
 Branch: `work/russian-listen-speak-literacy-visual-semantics`
-Russian accepted head: `90e797c6dda4c42bddea71fb0ad14316c82f67ce`
+Russian accepted full-CI head: `c0e2413b5ec34e86e6ad83fb0c907dcea1417aa4`
 
 ## Single source of truth
 
@@ -297,5 +297,20 @@ Executable checkpoint before documentation update:
 - `russian-existing-regression`: SUCCESS
 
 The broader runtime scan found Vietnamese writing-task metadata in academic writing helpers; it was retained because it is task/instruction metadata rather than vocabulary/dialogue translation-answer authority. Internal package/version identifiers also remain where non-visual compatibility requires them.
+
+The promotion candidate remains frozen and must not merge to `main` automatically.
+
+
+## Post-freeze dialogue routing/sanitizer repair — 2026-09-19
+
+A continuation audit after the last full-CI checkpoint found further defects inside existing Turn 16/24 responsibilities; no Turn 25 was created.
+
+- Turn 16.3 / 24.15: learner-facing dialogue search, grouping, deep-link tags and scene-icon selection are constrained to Russian-labelled direct context or inert IDs; stale legacy group filters recover safely.
+- Turn 16.4 / 24.16: `dialogueTurns()` previously stripped only `vi/vi_text/translation_vi/gloss_vi`, leaving other prohibited translation fields in the projected runtime object. It now strips `meaning_vi`, `purpose_vi`, `clue_en`, `meaning_en`, `translation_en` and `en` as well.
+- Dialogue negative coverage increased to 22 cases and now rejects regression to the incomplete sanitizer.
+
+Targeted validation after the runtime/gate repair: PASS at `cb0bcd6b9fe01ccf11adabbccae1bcd0ca58473c`.
+
+Full GitHub Actions proof is still anchored at `c0e2413b5ec34e86e6ad83fb0c907dcea1417aa4` / workflow `35422889144` until equivalent CI evidence is available for the newer post-freeze commits.
 
 The promotion candidate remains frozen and must not merge to `main` automatically.
