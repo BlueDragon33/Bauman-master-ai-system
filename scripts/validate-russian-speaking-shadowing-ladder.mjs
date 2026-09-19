@@ -13,9 +13,11 @@ export function validateContract(c){
   assert(c.runtime?.reuseCoreRecorder===true&&c.runtime?.roleplayEvidenceRequiresRecording===true,'Speaking evidence must come from real recorder use');
   assert(c.runtime?.recognitionResultEvidenceRequired===true&&c.runtime?.failedOrEmptyRecognitionDoesNotCountAttempt===true,'Speaking evidence must require non-empty recognition result');
   assert(c.runtime?.deepSpeakingRecognitionRequired===true&&c.runtime?.deepSpeakingSelfAssessmentSeparate===true,'Deep Speaking must require recognition evidence and keep self-assessment separate');
+  assert(c.runtime?.recognitionSessionTokenRequired===true&&c.runtime?.staleRecognitionCallbacksIgnored===true,'Speech recognition sessions must reject stale callbacks');
   assert(c.runtime?.manualSelfAssessmentDoesNotCreateSpeakingEvidence===true,'Manual self-assessment must remain non-evidence');
   assert(c.evidence?.recognitionConfirmedAttempts===true,'Speaking attempts must remain recognition-confirmed');
   assert(c.evidence?.deepSpeakingAttemptsRecognitionConfirmed===true,'Deep Speaking attempts must remain recognition-confirmed');
+  assert(c.evidence?.staleRecognitionCannotCreateEvidence===true,'Stale recognition callbacks must not create evidence');
   assert(c.evidence?.learningFlowRecognitionOnly===true&&c.evidence?.selfAssessmentStoredSeparately===true,'Learning-flow speaking evidence must remain recognition-only');
   assert(c.runtime?.listeningLadderOwnedByTurn8===true&&c.runtime?.slowListenOwnedByRepairOnly===true,'Listening/speaking ownership drifted');
   assert(c.feedback?.translationAnswerForbidden===true&&c.feedback?.autoMasteryFromSimilarityScore===false,'Speaking feedback policy weakened');
@@ -63,6 +65,9 @@ export function validateRuntime(js,css,core,learningFlow){
   assert(core.includes("russian:deep-speaking-recording-result"),'Deep Speaking recognition result event missing');
   assert(core.includes('Tự đánh giá: ổn'),'Deep Speaking self-assessment is not explicitly separated from recognition evidence');
   assert(!/deep-mark-ok[^\n]{0,600}p\.attempts\[/.test(core),'Deep Speaking self-assessment must not create recognition attempts');
+  assert(core.includes('speechRecognitionToken=0'),'Speech recognition session token missing');
+  assert((core.match(/const token=\+\+speechRecognitionToken;/g)||[]).length>=2,'Both recorders must start a fresh recognition session token');
+  assert((core.match(/if\(token!==speechRecognitionToken\)return;/g)||[]).length>=8,'Recognition callbacks are not fully protected from stale sessions');
   return true;
 }
 
