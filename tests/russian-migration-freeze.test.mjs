@@ -38,6 +38,8 @@ assert.equal(validateNoDestructiveReset({core:bundle.core,repair:bundle.repair})
 
 {const x=copy();x.promotion.mergeToMainAutomatic=true;assert.throws(()=>validateContract(x),/Promotion safety weakened/)}
 {const x=copy();x.compatibility.legacySavedStateFieldsMayExecuteTranslationUI=true;assert.throws(()=>validateContract(x),/Legacy translation state regained/)}
+{const x=copy();x.runtimeFreeze.learnerFacingExportFilenamesVersionFree=false;assert.throws(()=>validateContract(x),/Learner export\/version compatibility boundary/)}
+assert.throws(()=>validateCompatibility({...bundle,core:bundle.core.replace("exportJson('russian_route_plan.json'","exportJson('russian_route_plan_v99.json'")}),/export filenames must be version-free|Versioned learner export filename/);
 assert.throws(()=>validatePlan(plan.replace('| 23 | Browser/package/accessibility/performance QA | GREEN |','| 23 | Browser/package/accessibility/performance QA | ACTIVE |')),/Turn 23 is not GREEN/);
 assert.throws(()=>validateCompatibility({...bundle,core:bundle.core+"\nfunction toggleActiveHideVi(){}"}),/Dead translation toggle/);
 assert.throws(()=>validateCompatibility({...bundle,hostBridge:bundle.hostBridge.replace(/BAUMAN_SUBJECT_BRIDGE_V1/g,'BAUMAN_SUBJECT_BRIDGE_V2')}),/BAUMAN_SUBJECT_BRIDGE_V1/);
