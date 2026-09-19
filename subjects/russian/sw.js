@@ -18,7 +18,23 @@ self.addEventListener('fetch',event=>{
   if(!isRussian&&!isSharedHost)return;
   const file=url.pathname.split('/').pop()||'';
   const isDataPath=url.pathname.includes('/subjects/russian/data/');
+  const isAuthority=url.pathname.endsWith('/subjects/russian/assets/handwriting-glyph-authority.js');
   const isOptionalLarge=isDataPath&&OPTIONAL_LARGE.has(file);
+
+  if(isAuthority){
+    event.respondWith(caches.open(CACHE).then(async cache=>{
+      try{
+        const res=await fetch(req,{cache:'no-store'});
+        if(res&&res.ok){await cache.put(req,res.clone());return res;}
+        const hit=await cache.match(req);
+        return hit||res;
+      }catch(_){
+        const hit=await cache.match(req);
+        return hit||Response.error();
+      }
+    }));
+    return;
+  }
 
   if(isOptionalLarge){
     event.respondWith(fetch(req).catch(()=>new Response(JSON.stringify({offline:true,optional:true,source:file}),{status:503,statusText:'Optional source unavailable offline',headers:{'Content-Type':'application/json'}})));
