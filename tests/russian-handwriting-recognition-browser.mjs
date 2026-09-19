@@ -39,7 +39,10 @@ try{
   assert.equal(initial.drillCount,1,'Handwriting recognition drill duplicated');
   assert.equal(initial.flowSchema,'RUSSIAN_LEARNING_FLOW_V1');
   assert.equal(initial.learningSchema,'RUSSIAN_LEARNING_STATE_V1');
-  assert.ok(['local-script-font','reference-only'].includes(initial.capability.mode));
+  assert.ok(['local-script-preview','reference-only'].includes(initial.capability.mode));
+  assert.equal(initial.capability.canScore,false,'Blocked production glyph authority unexpectedly enabled scoring');
+  assert.equal(initial.capability.authority?.status,'blocked');
+  assert.equal(initial.capability.authority?.trusted,false);
 
   if(initial.capability.canScore){
     assert.equal(initial.recognitionState,'ready');
@@ -83,6 +86,11 @@ try{
   await page.screenshot({path:`${OUT}/russian-handwriting-recognition.png`,fullPage:true});
 
   const scoringContext=await browser.newContext({viewport:{width:1280,height:800}});
+  await scoringContext.route('**/assets/handwriting-glyph-authority.js',route=>route.fulfill({
+    status:200,
+    contentType:'application/javascript; charset=utf-8',
+    body:"'use strict';window.RUSSIAN_HANDWRITING_GLYPH_AUTHORITY=Object.freeze({schema:'RUSSIAN_HANDWRITING_GLYPH_AUTHORITY_V1',status:'ready',source:'bundled-vetted',trustedFamilies:Object.freeze(['Segoe Script']),asset:'e2e-approved-cyrillic-handwriting',license:'E2E-AUTHORITY',verifiedAt:'2026-09-19T00:00:00.000Z',note:'Deterministic E2E authority fixture'});"
+  }));
   await scoringContext.addInitScript(()=>{
     const original=CanvasRenderingContext2D.prototype.measureText;
     CanvasRenderingContext2D.prototype.measureText=function(text){
@@ -101,8 +109,11 @@ try{
   await scoringPage.waitForFunction(()=>document.querySelector('.ru-handwriting-recognition')?.dataset.ruRecognitionState==='ready'&&document.querySelectorAll('[data-ru-handwriting-choice]').length===4,null,{timeout:15000});
 
   const forcedCapability=await scoringPage.evaluate(()=>window.RussianHandwritingRecognition.getCapability());
-  assert.equal(forcedCapability.mode,'local-script-font');
+  assert.equal(forcedCapability.mode,'approved-handwriting-authority');
   assert.equal(forcedCapability.font,'Segoe Script');
+  assert.equal(forcedCapability.authority?.trusted,true);
+  assert.equal(forcedCapability.authority?.source,'bundled-vetted');
+  assert.equal(forcedCapability.authority?.asset,'e2e-approved-cyrillic-handwriting');
 
   await scoringPage.locator('[data-ru-handwriting-choice]').nth(1).click();
   await scoringPage.waitForFunction(()=>window.RussianHandwritingRecognition.getState().attempts===1&&window.RussianHandwritingRecognition.getState().lastCorrect===false);
