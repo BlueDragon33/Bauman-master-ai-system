@@ -1,0 +1,62 @@
+{
+  "schema": "RUSSIAN_WEAKNESS_REPAIR_ROUTING_CONTRACT_V1",
+  "contractVersion": 1,
+  "sources": [
+    "exam_wrong",
+    "listening_detail",
+    "speaking_pronunciation",
+    "speaking_abandoned",
+    "deep_speaking",
+    "cyrillic_print",
+    "cyrillic_cursive",
+    "cyrillic_sound",
+    "dictation",
+    "multimodal_review",
+    "skill_gate"
+  ],
+  "lifecycle": [
+    "detected",
+    "opened",
+    "attempted",
+    "repair_evidence_present",
+    "resolved"
+  ],
+  "authority": {
+    "sourceEvidenceReadOnly": true,
+    "repairStoreAdditiveOnly": true,
+    "repairStoreKey": "bauman_russian_weakness_repair_v1",
+    "masteryOwner": "existing_learning_state",
+    "completionOwner": "existing_learning_state",
+    "schedulerOwner": "RUSSIAN_VOCAB_SRS_V1",
+    "canonicalReviewQueueOwner": "RUSSIAN_LEARNING_STATE_V1",
+    "skillGateOwner": "RUSSIAN_SKILL_GATED_ASSESSMENT_V1"
+  },
+  "resolution": {
+    "openDoesNotResolve": true,
+    "requiresEvidenceAfterOpen": true,
+    "requiresEvidenceAfterWeakness": true,
+    "skillGateSignalsAdvisory": true,
+    "crossSignalInference": false
+  },
+  "routes": {
+    "exam_wrong": "learning.review.wrong",
+    "listening_detail": "learning.practice.listening_line",
+    "speaking_pronunciation": "learning.practice.speaking_repair",
+    "speaking_abandoned": "learning.practice.speaking_line",
+    "deep_speaking": "dialogue.deep_speaking",
+    "cyrillic_print": "writing.cyrillic.print",
+    "cyrillic_cursive": "writing.cyrillic.cursive",
+    "cyrillic_sound": "writing.cyrillic.sound",
+    "dictation": "writing.dictation",
+    "multimodal_review": "vocab.multimodal",
+    "skill_gate": "skill_specific_focus"
+  },
+  "invariants": {
+    "noMasteryMutation": true,
+    "noCompletionMutation": true,
+    "noDueDateMutation": true,
+    "noCanonicalReviewQueueMutation": true,
+    "noTranslationAnswer": true,
+    "noOpenEqualsComplete": true
+  }
+}
