@@ -29,7 +29,11 @@
       source:clean(raw.source)||'none',
       trustedFamilies:Array.isArray(raw.trustedFamilies)?raw.trustedFamilies.map(clean).filter(Boolean):[],
       asset:clean(raw.asset)||null,
+      assetSha256:clean(raw.assetSha256)||null,
       license:clean(raw.license)||null,
+      licenseSha256:clean(raw.licenseSha256)||null,
+      coverageManifest:clean(raw.coverageManifest)||null,
+      coverageSha256:clean(raw.coverageSha256)||null,
       verifiedAt:clean(raw.verifiedAt)||null,
       note:clean(raw.note)
     };
@@ -39,7 +43,15 @@
     const families=[...new Set([...authority.trustedFamilies,...PREVIEW_CANDIDATES])];
     const font=families.find(supportsCyrillicScriptFont)||'';
     const available=!!font;
-    const trusted=available&&authority.status==='ready'&&authority.source==='bundled-vetted'&&!!authority.asset&&!!authority.license&&!!authority.verifiedAt&&authority.trustedFamilies.includes(font);
+    const digest=/^[a-f0-9]{64}$/i;
+    const trusted=available
+      &&authority.status==='ready'
+      &&authority.source==='bundled-vetted'
+      &&!!authority.asset&&digest.test(authority.assetSha256||'')
+      &&!!authority.license&&digest.test(authority.licenseSha256||'')
+      &&!!authority.coverageManifest&&digest.test(authority.coverageSha256||'')
+      &&!!authority.verifiedAt
+      &&authority.trustedFamilies.includes(font);
     const mode=trusted?'approved-handwriting-authority':available?'local-script-preview':'reference-only';
     const reason=trusted
       ?'Nguồn chữ tay Cyrillic offline đã được duyệt và đóng gói; bài nhận diện có thể chấm theo authority này.'
