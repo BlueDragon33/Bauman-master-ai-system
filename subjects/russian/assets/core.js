@@ -1332,6 +1332,7 @@ function speechSupport(){return !!(window.SpeechRecognition||window.webkitSpeech
 function speechFeedback(score){if(score>=86)return 'Rất tốt: nhịp và từ khóa đã khá sát mẫu.'; if(score>=70)return 'Ổn: nói lại một lượt chậm hơn để chắc trọng âm.'; if(score>=45)return 'Chưa vững: nghe chậm, tách từng cụm rồi nhại lại.'; return 'Cần luyện lại: nghe mẫu 2 lần, nói từng nửa câu trước.'}
 function lineTokenHints(text){return normalizeRuSpeech(text).split(' ').filter(Boolean).slice(0,7)}
 function notifySpeakingRecordingStarted(d,i){try{window.dispatchEvent(new CustomEvent('russian:speaking-recording-started',{detail:{lessonId:str(state.lessonId||''),dialogueId:str(d?.id||d?.title||'dialogue'),lineIndex:Number(i)||0,key:dialogueLineKey(d,i),lang:'ru-RU'}}))}catch(_){}}
+function notifySpeakingRecordingResult(d,i,transcript,score){try{window.dispatchEvent(new CustomEvent('russian:speaking-recording-result',{detail:{lessonId:str(state.lessonId||''),dialogueId:str(d?.id||d?.title||'dialogue'),lineIndex:Number(i)||0,key:dialogueLineKey(d,i),lang:'ru-RU',transcript:str(transcript),score:Number(score)||0}}))}catch(_){}}
 function startLineRecording(){
  const SR=window.SpeechRecognition||window.webkitSpeechRecognition;
  const d=currentDialogue(), turns=dialogueTurns(d), idx=Math.min(activeLineIndex(),Math.max(0,turns.length-1));
@@ -1340,7 +1341,7 @@ function startLineRecording(){
  try{if(speechRecognizer)speechRecognizer.stop()}catch(_){ }
  const rec=new SR(); speechRecognizer=rec; rec.lang='ru-RU'; rec.interimResults=false; rec.maxAlternatives=1; rec.continuous=false;
  rec.onstart=()=>{state.speechRecording=true;save();render();notifySpeakingRecordingStarted(d,idx);toast('Đang nghe tiếng Nga của bạn...')};
- rec.onresult=ev=>{const transcript=ev.results?.[0]?.[0]?.transcript||''; const score=Math.round(speechSimilarity(transcript,target)*100); const store=activeSpeechResults(); store[dialogueLineKey(d,idx)]={score,transcript,target,at:Date.now(),ok:score>=70}; state.speechRecording=false; save(); render(); toast(score>=70?'Đạt câu này, có thể qua câu tiếp':'Chưa đạt, luyện lại câu này'); if(score>=70&&state.speechAutoNext)setTimeout(()=>moveDialogueLine(1),520)};
+ rec.onresult=ev=>{const transcript=str(ev.results?.[0]?.[0]?.transcript||'').trim(); if(!transcript){state.speechRecording=false;save();render();toast('Không nhận được câu nói tiếng Nga; attempt chưa được tính.');return} const score=Math.round(speechSimilarity(transcript,target)*100); const store=activeSpeechResults(); store[dialogueLineKey(d,idx)]={score,transcript,target,at:Date.now(),ok:score>=70}; notifySpeakingRecordingResult(d,idx,transcript,score); state.speechRecording=false; save(); render(); toast(score>=70?'Đạt câu này, có thể qua câu tiếp':'Chưa đạt, luyện lại câu này'); if(score>=70&&state.speechAutoNext)setTimeout(()=>moveDialogueLine(1),520)};
  rec.onerror=()=>{state.speechRecording=false; save(); render(); toast('Không nghe rõ. Kiểm tra micro rồi thử lại')};
  rec.onend=()=>{if(state.speechRecording){state.speechRecording=false; save(); render();}}
  try{rec.start();toast('Đang mở micro tiếng Nga...');return true}catch(_){state.speechRecording=false; save(); render(); toast('Micro chưa sẵn sàng');return false}
