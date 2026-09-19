@@ -120,7 +120,7 @@ Replace translation-style “flip meaning” behavior with image/context discove
 Post-freeze quality substeps:
 
 - **13.1 — Verified image enrichment:** when a source row has no concrete image, perform an on-demand Wikimedia Commons lookup using only Russian term/semantic context; rank candidates through a relevance gate, preserve emoji/Russian-context fallback, expose source/license/artist attribution, and never mutate mastery or SRS authority.
-- **13.2 — Image hydration race/network hardening:** cancel stale lookups when the learner changes cards, deduplicate in-flight requests, attach load/error listeners before assigning `img.src`, skip lookup offline or under Save-Data, and retain the original symbolic/Russian fallback whenever lookup fails or relevance is insufficient.
+- **13.2 — Image hydration race/network hardening:** cancel stale lookups when the learner changes cards, deduplicate in-flight requests, attach load/error listeners before assigning `img.src`, skip lookup offline or under Save-Data, restrict thumbnails/source pages to trusted Wikimedia hosts, and retain the original symbolic/Russian fallback whenever lookup fails or relevance is insufficient. Final proof: workflow `35416968142` GREEN at `a9a813bb788c23775ee0b55356a27931d8d950c4`.
 
 ### Turn 14 — Reading bridge
 
