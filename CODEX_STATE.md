@@ -2,12 +2,12 @@
 
 Current task: `RUSSIAN_LISTEN_SPEAK_LITERACY_VISUAL_SEMANTICS`
 
-Status: `TURN19_GREEN_TURN20_ACTIVE`
+Status: `TURN20_GREEN_TURN21_ACTIVE`
 
-Date: 2026-09-18
+Date: 2026-09-19
 Branch: `work/russian-listen-speak-literacy-visual-semantics`
 Foundation base: content-resolution implementation through Step 14 is preserved from the accepted Foundation branch.
-Russian accepted head: `c412b76c7332bdb106af1d89241e4d289bdad8e9`
+Russian accepted head: `7948278d3d33d2e53c33afc4dac6e8a92648fd4f`
 
 ## Single source of truth
 
@@ -23,7 +23,7 @@ Architecture principles and ownership are defined in:
 
 ## Accepted Russian turns
 
-Turns 1–19 are green.
+Turns 1–20 are green.
 
 - Turn 1 — baseline audit and pedagogy contract
 - Turn 2 — oral-first route priority
@@ -44,28 +44,34 @@ Turns 1–19 are green.
 - Turn 17 — grammar from patterns
 - Turn 18 — multimodal SRS & review
 - Turn 19 — skill-gated assessment
+- Turn 20 — AI mentor direct explanation
 
 Turn 18 includes behavioral runtime acceptance proving modality evidence isolation and preservation of Core, SRS and canonical Learning State authority.
 
 Turn 19 adds six independent, read-only readiness gates for listening, speaking, print recognition, cursive recognition, reading and writing. Aggregate readiness is advisory only and becomes ready only when every gate meets its explicit evidence threshold.
 
+Turn 20 moves AI Mentor to a Russian-first direct-semantic explanation runtime. Visual/scene and Russian context precede optional meta-language help; Vietnamese/English meaning fallback is blocked. AI remains read-only for canonical state, mastery, Review Queue and scheduling. The AI guard also now reads the real `RussianVocabSrs.get()` API instead of the previous nonexistent `RussianVocabSRS.context()` path.
+
 Turn 5 retains one explicit deferred obligation: browser-level visual proof that the packaged cursive glyph differs from print. This is tracked for Turn 23 and blocks Turn 24 freeze if still open.
 
 ## Next turn
 
-Turn 20 — AI mentor direct explanation.
+Turn 21 — Weakness repair routing.
 
-## Turn 20 upgrade stop point
+## Turn 21 upgrade stop point
 
-Current AI Mentor runtime is not compatible with the direct-semantic policy already accepted in Turns 10–13:
+The current system has multiple weakness/evidence sources but no unified repair-routing authority:
 
-- `core.js::aiGenerate('lesson')` instructs the learner to restate the lesson in Vietnamese;
-- `core.js::aiGenerate('vocab')` still contains learner-facing fallback references to `meaningVi` and `english`;
-- the vocabulary AI output still exposes an explicit `English equivalent` field;
-- dialogue guidance still treats hiding Vietnamese meaning as a later-round option rather than the default semantic rule;
-- `ai-mentor-guard.js` currently protects canonical/mastery authority but does not enforce Russian-first / visual-context-first explanation order.
+- exam remediation is built only from wrong exam questions in `core.js::createRemedialPlan()`;
+- clicking a current remedial card marks it complete immediately before any repair evidence is produced;
+- pronunciation flags enter the canonical Review Queue through Speaking Coach but are not represented in the exam remedial plan;
+- `deepSpeakingProgress.weak` is a separate weakness bucket;
+- Listening Ladder detail misses, Cyrillic recognition errors, Reading Bridge evidence, Dictation errors and multimodal review ratings are not normalized into one repair signal model;
+- Turn 19 skill-gate blockers are read-only readiness signals and currently have no focused route mapping.
 
-This requires a new Turn 20 explanation-policy contract, negative tests and runtime migration. It is an architecture/capability upgrade, not a local defect fix.
+Turn 21 therefore needs a new additive weakness-signal and repair-routing layer. It must consume existing evidence read-only, normalize signals, map each signal to a focused learning route, and only close a repair item after new repair evidence exists. It must not mutate mastery/completion or take scheduler/Review Queue authority.
+
+This is an architecture/capability upgrade, not a local defect fix.
 
 ## Protected authority
 
@@ -76,9 +82,12 @@ Preserve:
 - saved progress/state;
 - Hub and Device Access boundaries;
 - Foundation registry authority;
-- Academic scheduler authority.
+- Academic scheduler authority;
+- Turn 18 SRS/Review Queue authority boundaries;
+- Turn 19 advisory skill-gate semantics;
+- Turn 20 AI read-only direct-semantic policy.
 
-Subject-local drills and AI help may read evidence and suggest actions but must not silently promote mastery or completion.
+Subject-local repair routing may derive and store additive repair state, but must not silently promote mastery or completion.
 
 ## Branch policy
 
