@@ -29,7 +29,12 @@ const checks=[
   ['generic stroke family is labeled as reference rather than exact stroke truth', core.includes('Khung nét tham khảo') && !core.includes('<span class="chip">Hình nét đang luyện</span>')],
   ['handwriting recognition capability fails closed without reliable Cyrillic script font', recognition.includes("mode:available?'local-script-font':'reference-only'") && recognition.includes("canScore:available")],
   ['handwriting capability probe checks Cyrillic glyph metrics against fallbacks', recognition.includes("PROBE='ДдЖжФфЯяШш'") && recognition.includes("Math.abs(candidate-baseline)>0.5")],
-  ['handwriting capability runtime is loaded and offline-cached', russianIndex.includes('assets/handwriting-recognition.js') && serviceWorker.includes('./assets/handwriting-recognition.js')]
+  ['handwriting capability runtime is loaded and offline-cached', russianIndex.includes('assets/handwriting-recognition.js') && serviceWorker.includes('./assets/handwriting-recognition.js')],
+  ['recognition drill is Russian-only and does not use translation answers', recognition.includes('NHẬN DIỆN CHỮ IN → CHỮ TAY') && recognition.includes('Không dùng bản dịch nghĩa') && !recognition.includes('.vi') && !recognition.includes('meaning')],
+  ['recognition scoring is capability-gated and fail-closed', recognition.includes("if(!cap.canScore||!alphabet.length)return false")],
+  ['recognition evidence never advances alphabet without handwriting strokes', recognition.includes("RussianLearningFlow?.touch?.('alphabet'") && flow.includes("if(step==='alphabet')return Number(s.strokeActions||0)>0")],
+  ['recognition state records attempts/correct without mastery writes', recognition.includes('recognitionAttempts:state.attempts') && recognition.includes('recognitionCorrect:state.correct') && !recognition.includes('mastery')],
+  ['recognition render is idempotent under MutationObserver', recognition.includes('dataset.renderSig') && recognition.includes('if(banner.dataset.renderSig!==capSig)') && recognition.includes('if(box.dataset.renderSig!==drillSig)')]
 ];
 
 const failed=checks.filter(([,ok])=>!ok);
