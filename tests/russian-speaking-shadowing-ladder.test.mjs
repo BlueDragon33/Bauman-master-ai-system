@@ -23,6 +23,11 @@ assert.equal(validateRuntime(js,css,core,learningFlow),true);
 {const x=copy();x.runtime.recognitionSessionTokenRequired=false;assert.throws(()=>validateContract(x),/reject stale callbacks/)}
 {const x=copy();x.runtime.staleRecognitionCallbacksIgnored=false;assert.throws(()=>validateContract(x),/reject stale callbacks/)}
 {const x=copy();x.evidence.staleRecognitionCannotCreateEvidence=false;assert.throws(()=>validateContract(x),/Stale recognition callbacks/)}
+{const x=copy();x.runtime.recognitionContextCapturedAtStart=false;assert.throws(()=>validateContract(x),/preserve its start context/)}
+{const x=copy();x.runtime.delayedAutoAdvanceContextGuarded=false;assert.throws(()=>validateContract(x),/preserve its start context/)}
+{const x=copy();x.evidence.recognitionWritesOriginalStore=false;assert.throws(()=>validateContract(x),/store captured at recorder start/)}
+assert.throws(()=>validateRuntime(js,css,core.replace("const store=state[resultStoreKey]","const store=activeSpeechResults()"),learningFlow),/writes through active\/current surface state|result store/);
+assert.throws(()=>validateRuntime(js,css,core.replace("token===speechRecognitionToken&&sameSurface&&currentDialogueId()===dialogueIdAtStart&&activeLineIndex()===idx","token===speechRecognitionToken"),learningFlow),/auto-advance is not context guarded/);
 assert.throws(()=>validateRuntime(js,css,core.replace('speechRecognitionToken=0','speechRecognitionTokenMissing=0'),learningFlow),/session token missing/);
 assert.throws(()=>validateRuntime(js,css,core.replaceAll('if(token!==speechRecognitionToken)return;',''),learningFlow),/not fully protected from stale sessions/);
 assert.throws(()=>validateRuntime(js,css,core.replace('function startDeepSpeakingRecording()','function startDeepSpeakingRecorderMissing()'),learningFlow),/Deep Speaking recognition recorder missing/);
@@ -40,4 +45,4 @@ assert.throws(()=>validateRuntime(js,css,core,learningFlow.replace("window.addEv
 assert.throws(()=>validateRuntime(js,css,core,learningFlow.replace("selfAssessments:Number(old.selfAssessments||0)+1","attempts:Number(old.attempts||0)+1")),/Self-assessment still increments speaking attempts/);
 
 console.log('RUSSIAN_SPEAKING_LADDER_NEGATIVE_TEST=PASS');
-console.log(JSON.stringify({negativeCases:19},null,2));
+console.log(JSON.stringify({negativeCases:24},null,2));
