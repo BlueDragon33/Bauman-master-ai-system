@@ -78,7 +78,9 @@ export function validateLearnerRuntime({core,visual,dialogue,aiDirect,aiGuard,cu
     assert(!vocabSlice.includes(token),'Learner vocabulary surface regained translation path: '+token);
   }
   const dialogueSlice=slice(core,'function renderDialogue()','function handwritingText(');
-  assert(!dialogueSlice.includes('vi_turns')&&!dialogueSlice.includes('toggle-vi'),'Learner dialogue surface regained translation UI');
+  for(const token of ['vi_turns','toggle-vi','context_title_vi','communicative_functions_vi','prompt_vi','unit_title_vi','scenario_vi','title_vi'])assert(!dialogueSlice.includes(token),'Learner dialogue surface regained translation path: '+token);
+  const aiContextSlice=slice(core,'function aiContext()','function aiDirectHtml(');
+  for(const token of ['context_title_vi','communicative_functions_vi','vi_turns','meaning_vi','clue_en'])assert(!aiContextSlice.includes(token),'AI context regained translation semantic field: '+token);
 
   assert(cursive.includes("RUSSIAN_CURSIVE_GLYPH_SHAPES_V2"),'Explicit cursive vector runtime missing');
   assert(cursive.includes('function glyphCoverage(){return Object.keys(UPPER).length+Object.keys(LOWER).length;}')&&cursive.includes('function pairDistinct(letter)'),'Cursive freeze must retain 66-glyph distinct-pair checks');
