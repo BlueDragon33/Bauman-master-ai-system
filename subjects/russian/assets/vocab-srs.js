@@ -10,6 +10,8 @@
   const parse=(raw,fallback)=>{try{return raw?JSON.parse(raw):fallback}catch(_){return fallback}};
   const clean=v=>String(v??'').trim();
   const lower=v=>clean(v).toLocaleLowerCase('ru-RU');
+  const cyr=/[А-Яа-яЁё]/;
+  const russian=v=>{const s=clean(v);return cyr.test(s)?s:'';};
   const now=()=>new Date().toISOString();
   const readCore=()=>parse(localStorage.getItem(CORE_KEY),{});
   const empty=()=>({schema:SCHEMA,cards:{},sentences:{},updatedAt:null});
@@ -92,8 +94,8 @@
  const direct=window.RussianVisualVocabularyRuntime?.describe?.(item)||{};
  return {
   term:clean(direct.term_ru||item?.ru||item?.phrase_ru||item?.front),
-  meaningRu:clean(direct.definition_ru||item?.meaning_ru||item?.meaning),
-  contextRu:clean(direct.context_ru||item?.example_ru||item?.context_ru||item?.voice_text||item?.example),
+  meaningRu:russian(direct.definition_ru||item?.meaning_ru||item?.definition_ru),
+  contextRu:russian(direct.context_ru||item?.example_ru||item?.context_ru||item?.voice_text||item?.example),
   stage:clean(item?.stage),
   tags:Array.isArray(item?.tags)?item.tags:[]
  };
@@ -124,7 +126,7 @@ function saveSentence(entry){state.sentences[entry.id]=entry;write();markLearnin
     const index=indexNow(), key=keyFor(index), card=state.cards[key]||{}, term=lower(termNow());if(!term)return;
     setNotice('Đang kiểm tra exact vocabulary seed trong kho Nghe/Nói…');
     try{
-      const data=await loadSpeaking();const matches=(Array.isArray(data)?data:[]).filter(item=>Array.isArray(item?.vocabulary_seed_ru)&&item.vocabulary_seed_ru.some(x=>lower(x)===term)).slice(0,20).map(item=>({id:clean(item.id||item.title),lessonId:clean(item.lessonId||item.lesson_id||item.routeId||item.chapterId),title:clean(item.title||item.context_title_vi||item.title_ru||item.id)})).filter(x=>x.id&&x.lessonId);
+      const data=await loadSpeaking();const matches=(Array.isArray(data)?data:[]).filter(item=>Array.isArray(item?.vocabulary_seed_ru)&&item.vocabulary_seed_ru.some(x=>lower(x)===term)).slice(0,20).map(item=>({id:clean(item.id||item.source_id||''),lessonId:clean(item.lessonId||item.lesson_id||item.routeId||item.chapterId),title:russian(item.title_ru||item.context_title_ru)||clean(item.id||item.source_id||'')})).filter(x=>x.id&&x.lessonId);
       state.cards[key]={...card,key,index,term:termNow(),speakingCheckedAt:now(),speakingMatches:matches};write();
       setNotice(matches.length?`Tìm thấy ${matches.length} mục Nghe/Nói khai báo chính xác từ/cụm này trong vocabulary seed.`:'Không có exact seed match. Hệ thống không tự ghép hội thoại chỉ vì cùng tag/chủ đề.');
     }catch(e){setNotice('Không kiểm tra được kho Nghe/Nói: '+clean(e?.message||e));}
