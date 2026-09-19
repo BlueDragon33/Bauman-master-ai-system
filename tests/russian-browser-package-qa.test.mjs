@@ -44,8 +44,9 @@ assert.throws(()=>validateAccessibility({...bundle,index:bundle.index.replace('a
 assert.throws(()=>validateResponsive(bundle.css.replace('@media(max-width:760px)','@media(max-width:761px)')),/Phone responsive breakpoint missing/);
 assert.throws(()=>validatePerformance({...bundle,core:bundle.core.replace('safeLocalJson(key,{},1600000)','safeLocalJson(key,{})')}),/Primary learner-state size guard missing/);
 assert.throws(()=>validateBrowserCapability({...bundle,capability:bundle.capability.replace('Âm Nga: trình duyệt không hỗ trợ','')}),/Speech-unavailable learner status missing/);
-assert.throws(()=>validateCursive({...bundle,glyphs:bundle.glyphs.replace("'Я':'M60 18 Q40 12 29 20 Q17 28 25 38 Q34 46 53 40 M52 18 Q51 39 52 58 M50 40 Q37 46 27 58'",""),css:bundle.glyphCss}),/coverage must be exactly 33|Missing\/invalid explicit cursive path/);
+assert.throws(()=>validateCursive({...bundle,glyphs:bundle.glyphs.replace("function glyphCoverage(){return Object.keys(UPPER).length+Object.keys(LOWER).length;}","function glyphCoverage(){return 65;}"),css:bundle.glyphCss}),/exactly 66/);
+assert.throws(()=>validateCursive({...bundle,glyphs:bundle.glyphs.replace("function pairDistinct(letter){","function pairDistinct(letter){return false;}\n  function unusedPairDistinct(letter){"),css:bundle.glyphCss}),/must be distinct/);
 assert.throws(()=>validatePackage({...bundle,index:bundle.index.replace('<script src="assets/cursive-glyphs.js"></script>','').replace('<script src="assets/cyrillic-literacy.js"></script>','<script src="assets/cyrillic-literacy.js"></script>\n<script src="assets/cursive-glyphs.js"></script>')}),/must load before Cyrillic literacy/);
 
 console.log('RUSSIAN_BROWSER_PACKAGE_QA_NEGATIVE_TEST=PASS');
-console.log(JSON.stringify({negativeCases:8},null,2));
+console.log(JSON.stringify({negativeCases:9},null,2));
