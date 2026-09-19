@@ -106,7 +106,7 @@ function saveSentence(entry){state.sentences[entry.id]=entry;write();markLearnin
     try{
       const item=await loadVocabItem(index);if(!item){setNotice('Không tìm thấy dữ liệu nguồn của thẻ này.');return;}
       const n=normalized(item), sentence=clean(n.contextRu), term=clean(n.term||termNow());
-      if(!sentence||lower(sentence)===lower(term)){setNotice('Nguồn của thẻ này chỉ lặp lại chính từ/cụm, nên không lưu như một câu ngữ cảnh.');return;}
+      if(!sentence||!cyr.test(sentence)||lower(sentence)===lower(term)){setNotice('Nguồn chưa có câu ngữ cảnh tiếng Nga hợp lệ, nên không lưu vào Sentence Mining.');return;}
       const id=`source:${key}`;saveSentence({id,vocabKey:key,index,term,sentence,meaning:clean(n.meaningRu),source:'vocab.example',stage:clean(n.stage),tags:Array.isArray(n.tags)?n.tags:[],savedAt:state.sentences[id]?.savedAt||now()});
       setNotice('Đã lưu câu ví dụ thật từ dữ liệu nguồn vào Sentence Mining.');
     }catch(e){setNotice('Không thể đọc câu nguồn: '+clean(e?.message||e));}
