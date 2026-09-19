@@ -27,6 +27,7 @@ const SHELL=[
   './assets/academic-language.css',
   './assets/grammar-pattern-coach.css',
   './assets/runtime-optimizer.css',
+  './assets/asset-reliability.css',
   './assets/subject-adapter.js',
   './assets/ui-cleanup-contract.js',
   './assets/content-contract.js',
@@ -60,6 +61,7 @@ const SHELL=[
   './assets/grammar-pattern-coach.js',
   './assets/ai-mentor-guard.js',
   './assets/weakness-repair-router.js',
+  './assets/asset-reliability.js',
   './assets/runtime-optimizer.js',
   './assets/russian-reference-ui.js'
 ];
