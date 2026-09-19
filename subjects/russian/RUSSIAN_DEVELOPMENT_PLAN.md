@@ -187,6 +187,7 @@ Turn 23 execution substeps:
 - **23.7 — Integrated browser/package gate:** run combined package/accessibility/performance checks and update deferred-obligation status only after evidence is green.
 - **23.8 — Modal accessibility lifecycle regression:** require `aria-hidden=false` on open, `aria-hidden=true` on close, move focus into the dialog and restore the opener after close; negative gates prevent regression.
 - **23.9 — Browser/package negative-test fidelity:** mutate every phone breakpoint declaration when proving the 760px guard and prioritize dependency load-order diagnostics before shell-inventory diagnostics, so the negative suite tests the intended invariant rather than a partial mutation or masking error.
+- **23.10 — CI action runtime compatibility:** upgrade the Russian architecture/regression workflow from `actions/checkout@v4` and `actions/setup-node@v4` to current Node-24-based v7 majors after runner deprecation warnings; workflow `35416194155` passed both jobs at commit `0609c85f512909374fc0ba346a71a9e65f3c061d`.
 
 ### Turn 24 — Migration freeze & promotion candidate
 
