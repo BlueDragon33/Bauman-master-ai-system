@@ -16,6 +16,8 @@ const bundle={
   hostBridge:read('subjects/shared/host-bridge.js'),
   manifest:read('subjects/russian/subject-manifest.json'),
   cleanup:read('subjects/russian/assets/ui-cleanup-contract.js'),
+  contentContract:read('subjects/russian/assets/content-contract.js'),
+  srs:read('subjects/russian/assets/vocab-srs.js'),
   visual:read('subjects/russian/assets/visual-vocabulary-runtime.js'),
   dialogue:read('subjects/russian/assets/dialogue-scaffold.js'),
   aiDirect:read('subjects/russian/assets/ai-direct-explanation.js'),
@@ -39,6 +41,9 @@ assert.equal(validateNoDestructiveReset({core:bundle.core,repair:bundle.repair})
 {const x=copy();x.promotion.mergeToMainAutomatic=true;assert.throws(()=>validateContract(x),/Promotion safety weakened/)}
 {const x=copy();x.compatibility.legacySavedStateFieldsMayExecuteTranslationUI=true;assert.throws(()=>validateContract(x),/Legacy translation state regained/)}
 {const x=copy();x.runtimeFreeze.learnerFacingExportFilenamesVersionFree=false;assert.throws(()=>validateContract(x),/Learner export\/version compatibility boundary/)}
+{const x=copy();x.runtimeFreeze.translationFreeVocabularySearchFrozen=false;assert.throws(()=>validateContract(x),/Vocabulary search\/SRS semantic freeze/)}
+assert.throws(()=>validateLearnerRuntime({...bundle,contentContract:bundle.contentContract.replace('v.meaningRu,v.example','v.meaningVi,v.english,v.meaningRu,v.example')}),/Vocabulary search regained translation fields/);
+assert.throws(()=>validateLearnerRuntime({...bundle,srs:bundle.srs.replace("title:russian(item.title_ru||item.context_title_ru)||clean(item.id||item.source_id||'')","title:clean(item.context_title_vi||item.title_ru||item.id)")}),/Vietnamese title fallback/);
 assert.throws(()=>validateCompatibility({...bundle,core:bundle.core.replace("exportJson('russian_route_plan.json'","exportJson('russian_route_plan_v99.json'")}),/export filenames must be version-free|Versioned learner export filename/);
 assert.throws(()=>validatePlan(plan.replace('| 23 | Browser/package/accessibility/performance QA | GREEN |','| 23 | Browser/package/accessibility/performance QA | ACTIVE |')),/Turn 23 is not GREEN/);
 assert.throws(()=>validateCompatibility({...bundle,core:bundle.core+"\nfunction toggleActiveHideVi(){}"}),/Dead translation toggle/);
@@ -53,4 +58,4 @@ assert.throws(()=>validateLearnerRuntime({...bundle,index:bundle.index.replace('
 assert.throws(()=>validateNoDestructiveReset({core:bundle.core+"\nlocalStorage.clear();"}),/Destructive localStorage.clear/);
 
 console.log('RUSSIAN_MIGRATION_FREEZE_NEGATIVE_TEST=PASS');
-console.log(JSON.stringify({negativeCases:11},null,2));
+console.log(JSON.stringify({negativeCases:14},null,2));
