@@ -16,6 +16,7 @@ on:
       - 'scripts/validate-roadmap-v2-r2c1.mjs'
       - 'scripts/validate-roadmap-v2-r2c2a.mjs'
       - 'roadmap_v2/**'
+      - 'roadmap_v2/admission/**'
       - 'docs/roadmap_v2/**'
       - 'scripts/validate-roadmap-v2-l23-b89.mjs'
       - 'scripts/build-roadmap-v2-consumer-blueprint.mjs'
@@ -42,6 +43,7 @@ on:
       - 'scripts/validate-roadmap-v2-l27-b106.mjs'
       - 'scripts/validate-roadmap-v2-l27-b107.mjs'
       - 'scripts/validate-roadmap-v2-l27-b108.mjs'
+      - 'scripts/validate-roadmap-v2-l28-b109.mjs'
       - '.github/workflows/roadmap-v2-reconciliation.yml'
 
 permissions:
@@ -116,6 +118,8 @@ jobs:
         run: node scripts/validate-roadmap-v2-l27-b107.mjs
       - name: Validate current L27 B108 readiness closeout
         run: node scripts/validate-roadmap-v2-l27-b108.mjs
+      - name: Validate current L28 B109 admission contract
+        run: node scripts/validate-roadmap-v2-l28-b109.mjs
       - name: Validate Foundation V2 L9
         run: node scripts/validate-foundation-domain-model.mjs
       - name: Validate current system integration
