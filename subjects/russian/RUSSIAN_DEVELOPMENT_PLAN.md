@@ -108,6 +108,7 @@ Standardize imitation, shadowing, memory speaking, role-play and pronunciation r
 Post-freeze quality substep:
 
 - **9.1 — Recognition-confirmed speaking evidence:** recorder start only indicates microphone readiness; imitation/shadowing/memory/role-play/repair attempts are counted only after SpeechRecognition returns a non-empty Russian transcript, so failed/no-speech sessions do not become speaking evidence.
+- **9.2 — Self-assessment/evidence isolation:** `✓ Đã nói ổn` remains a subjective self-rating only; it cannot fabricate `score:100`/transcript evidence, clear pronunciation-repair flags, mark a speaking session attempted, or increment learning-flow speaking attempts. Learning-flow speaking evidence now comes only from `russian:speaking-recording-result`.
 
 ### Turn 10 — Visual vocabulary contract
 
@@ -213,6 +214,7 @@ Turn 23 execution substeps:
 - **23.9 — Browser/package negative-test fidelity:** mutate every phone breakpoint declaration when proving the 760px guard and prioritize dependency load-order diagnostics before shell-inventory diagnostics, so the negative suite tests the intended invariant rather than a partial mutation or masking error.
 - **23.10 — CI action runtime compatibility:** upgrade the Russian architecture/regression workflow from `actions/checkout@v4` and `actions/setup-node@v4` to current Node-24-based v7 majors after runner deprecation warnings; workflow `35416194155` passed both jobs at commit `0609c85f512909374fc0ba346a71a9e65f3c061d`.
 - **23.11 — Russian speech lifecycle integrity:** select a Russian TTS voice when available, preserve voice proof through playback start and completion callbacks, and require browser/package QA to prove completion-based listening evidence.
+- **23.12 — Interrupted-playback exclusion:** guard TTS callbacks with an active speech token so an utterance cancelled by a newer playback request cannot emit completion evidence; Browser/Package behavior tests simulate cancellation and require interrupted completion count to remain zero.
 
 ### Turn 24 — Migration freeze & promotion candidate
 
