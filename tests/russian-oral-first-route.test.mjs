@@ -18,6 +18,10 @@ assert.equal(validateRuntime(core,adapter,ui,flow,planning),true);
   assert.throws(()=>validateContract(x),/default to practice/);
 }
 {
+  const x=copy();x.freshLearner.visibleLearningTabOrder=['theory','practice','exercises','review','exam'];
+  assert.throws(()=>validateContract(x),/Visible learning tabs/);
+}
+{
   const x=copy();x.dashboardPriority=['visual_vocabulary','listening','speaking','cyrillic_literacy','reading','handwriting','grammar'];
   assert.throws(()=>validateContract(x),/start with listening then speaking/);
 }
@@ -26,8 +30,10 @@ assert.equal(validateRuntime(core,adapter,ui,flow,planning),true);
   assert.throws(()=>validateContract(x),/Preservation invariant/);
 }
 assert.throws(()=>validateRuntime(core.replace("learnTab:'practice'","learnTab:'theory'"),adapter,ui,flow,planning),/Core fresh default/);
+assert.throws(()=>validateRuntime(core,adapter.replace("['practice','🎙️','Nghe/Nói']","['theory','📘','Lý thuyết']"),ui,flow,planning),/Adapter visible learning-tab order/);
+assert.throws(()=>validateRuntime(core.replace("state.learnTab=allowed.includes(tab)?tab:'practice'","state.learnTab=allowed.includes(tab)?tab:'theory'"),adapter,ui,flow,planning),/action fallback/);
 assert.throws(()=>validateRuntime(core,adapter,ui,flow.replace("['speaking','theory'","['theory','speaking'"),planning),/suggest speaking first/);
 assert.throws(()=>validateRuntime(core,adapter,ui,flow,planning.replace('listening:0.32, speaking:0.30','listening:0.20, speaking:0.20')),/planning listening\/speaking weights/);
 
 console.log('RUSSIAN_ORAL_FIRST_ROUTE_NEGATIVE_TEST=PASS');
-console.log(JSON.stringify({negativeCases:6},null,2));
+console.log(JSON.stringify({negativeCases:9},null,2));
