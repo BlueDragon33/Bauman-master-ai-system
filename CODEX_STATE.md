@@ -2,9 +2,10 @@
 
 Current task: `RUSSIAN_LISTENING_VISUAL_FIRST_ARCHITECTURE`
 
-Status: `RUSSIAN_READY_FOR_EXPLICIT_PROMOTION_DECISION`
+Status: `RUSSIAN_RP3_MERGE_PREVIEW_VERIFIED_AWAITING_PROMOTION_DECISION`
 
 Project phase: `5/5 — RECONCILIATION & PROMOTION DECISION`
+Dynamic round progress: `18/20 — R-P3 complete; R-P4/R-P5 pending explicit promotion decision`
 
 Date: 2026-09-19
 Branch: `work/russian-listening-visual-first-architecture`
@@ -164,9 +165,32 @@ Status: `READY FOR EXPLICIT PROMOTION DECISION`
 - PR #56 is mergeable but remains Draft;
 - PR #55 is source/history evidence only and must not be merged.
 
+### R-P3 — Merge Preview Reproducibility Audit
+
+Status: `PASS`
+
+- PR #56 head tree: `8069c1b6e7124df601d876e667e08ef7681a8c89`;
+- GitHub merge-preview tree: `8069c1b6e7124df601d876e667e08ef7681a8c89`;
+- trees are byte-identical;
+- merge preview parents are current `main` plus PR #56 head;
+- no hidden merge-only file changes are introduced;
+- PR #56 remains Draft and mergeable.
+
+### Remaining generated rounds
+
+#### R-P4 — Explicit Promotion Execution
+Blocked until an explicit promotion decision authorizes merging PR #56 into `main`.
+
+#### R-P5 — Post-Merge Verification
+After R-P4 only:
+- verify merged `main` SHA and tree;
+- run/check all applicable post-merge workflows;
+- confirm Russian source/package/offline parity on `main`;
+- close promotion cycle only if all post-merge evidence is green.
+
 ### Current boundary
 
-No further automatic merge action is authorized. The next state transition is an explicit promotion decision on PR #56.
+Automatic non-destructive validation is complete through R-P3. No automatic merge action is authorized. The next state transition is an explicit promotion decision on PR #56.
 
 ## Validation policy
 
@@ -188,7 +212,7 @@ The branch uses fail-closed behavior: missing, stale, malformed, unlicensed, unh
 
 Current position is **Phase 5/5: Reconciliation & Promotion Decision**.
 
-Phase 5 reconciliation and candidate validation are complete. The project is now at the explicit promotion-decision boundary. PR #56 is the only eligible clean promotion candidate; no merge is authorized until an explicit decision is made.
+Phase 5 reconciliation, candidate validation and merge-preview reproducibility are complete through R-P3. The current dynamic plan is 18/20 rounds complete. R-P4 requires an explicit promotion decision; R-P5 is mandatory post-merge verification.
 
 ## Branch/merge rule
 
