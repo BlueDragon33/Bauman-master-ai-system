@@ -29,13 +29,63 @@
       :'Không xác nhận được font chữ tay Cyrillic tin cậy. Chỉ dùng khung nét tham khảo; không chấm nhận diện.'};
   }
 
-  function emptyState(){return {schema:SCHEMA,attempts:0,correct:0,questionIndex:0,lastAnswerId:'',lastCorrect:null,lastLetterId:'',weak:{},updatedAt:null};}
-  function readState(){try{const x=JSON.parse(localStorage.getItem(STORE_KEY)||'{}');return {...emptyState(),...x,weak:x&&typeof x.weak==='object'?x.weak:{}};}catch(_){return emptyState();}}
+  const REVIEW_DELAY_MS=10*60*1000;
+  function emptyState(){return {schema:SCHEMA,attempts:0,correct:0,questionIndex:0,lastAnswerId:'',lastCorrect:null,lastLetterId:'',weak:{},profiles:{},updatedAt:null};}
+  function normalizeProfile(value={}){
+    return {
+      attempts:Number(value.attempts||0),
+      correct:Number(value.correct||0),
+      wrong:Number(value.wrong||0),
+      correctStreak:Number(value.correctStreak||0),
+      lastCorrect:value.lastCorrect===true?true:value.lastCorrect===false?false:null,
+      lastAt:value.lastAt||null,
+      dueAt:value.dueAt||null,
+      resolvedAt:value.resolvedAt||null
+    };
+  }
+  function readState(){
+    try{
+      const x=JSON.parse(localStorage.getItem(STORE_KEY)||'{}');
+      const weak=x&&typeof x.weak==='object'?x.weak:{};
+      const profiles={};
+      if(x&&typeof x.profiles==='object')for(const [id,value] of Object.entries(x.profiles))profiles[id]=normalizeProfile(value);
+      for(const [id,count] of Object.entries(weak)){
+        if(profiles[id]||Number(count||0)<=0)continue;
+        profiles[id]=normalizeProfile({attempts:Number(count||0),wrong:Number(count||0),lastCorrect:false,lastAt:x?.updatedAt||null,dueAt:x?.updatedAt||'1970-01-01T00:00:00.000Z'});
+      }
+      return {...emptyState(),...x,weak,profiles};
+    }catch(_){return emptyState();}
+  }
   function writeState(s){s.updatedAt=new Date().toISOString();try{localStorage.setItem(STORE_KEY,JSON.stringify(s));}catch(_){}return s;}
+  function openWeakIds(state){
+    return Object.entries(state?.profiles||{}).filter(([,p])=>Number(p?.wrong||0)>0&&!p?.resolvedAt).map(([id])=>id);
+  }
+  function dueWeakIds(state,at=Date.now()){
+    return openWeakIds(state).filter(id=>{
+      const due=state.profiles[id]?.dueAt;
+      return !due||!Number.isFinite(Date.parse(due))||Date.parse(due)<=at;
+    }).sort((a,b)=>{
+      const pa=state.profiles[a],pb=state.profiles[b];
+      const debtA=Number(pa?.wrong||0)-Number(pa?.correct||0);
+      const debtB=Number(pb?.wrong||0)-Number(pb?.correct||0);
+      if(debtA!==debtB)return debtB-debtA;
+      return Date.parse(pa?.lastAt||0)-Date.parse(pb?.lastAt||0);
+    });
+  }
+  function nextReviewAt(state){
+    const times=openWeakIds(state).map(id=>Date.parse(state.profiles[id]?.dueAt||'')).filter(Number.isFinite);
+    return times.length?new Date(Math.min(...times)).toISOString():null;
+  }
 
   let capability=null,alphabet=[],renderQueued=false;
   function getCapability(){if(!capability)capability=detect();return {...capability};}
-  function currentQuestion(state=readState()){if(!alphabet.length)return null;const i=Math.max(0,Number(state.questionIndex)||0)%alphabet.length;return {item:alphabet[i],index:i};}
+  function currentQuestion(state=readState()){
+    if(!alphabet.length)return null;
+    const dueId=dueWeakIds(state)[0];
+    const dueIndex=dueId?alphabet.findIndex(x=>clean(x.id)===clean(dueId)):-1;
+    const i=dueIndex>=0?dueIndex:Math.max(0,Number(state.questionIndex)||0)%alphabet.length;
+    return {item:alphabet[i],index:i,source:dueIndex>=0?'review_due':'sequence'};
+  }
   function choiceIndexes(index,attempts){
     if(!alphabet.length)return [];
     const base=[index,(index+7)%alphabet.length,(index+14)%alphabet.length,(index+21)%alphabet.length];
