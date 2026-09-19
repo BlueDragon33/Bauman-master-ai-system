@@ -120,6 +120,7 @@ on:
       - 'tests/russian-migration-freeze.test.mjs'
       - 'subjects/russian/subject-manifest.json'
       - 'subjects/russian/scripts/validate-promotion-candidate.mjs'
+      - 'tests/russian-promotion-freeze.test.mjs'
       - '.github/workflows/russian-learning-architecture-gate.yml'
 
 permissions:
@@ -200,6 +201,7 @@ jobs:
           node --check subjects/russian/assets/cursive-glyphs.js
           node --check scripts/validate-russian-browser-package-qa.mjs
           node --check tests/russian-browser-package-qa.test.mjs
+          node --check tests/russian-promotion-freeze.test.mjs
           node --check scripts/validate-russian-migration-freeze.mjs
           node --check tests/russian-migration-freeze.test.mjs
       - name: Validate listen-speak literacy visual contract
@@ -334,6 +336,7 @@ jobs:
           node subjects/russian/scripts/validate-academic-language.mjs
           node subjects/russian/scripts/validate-ai-runtime.mjs
           node subjects/russian/scripts/validate-promotion-candidate.mjs
+          node tests/russian-promotion-freeze.test.mjs
       - name: Audit existing Russian learning data
         run: |
           node subjects/russian/scripts/audit-learning-data.mjs
