@@ -11,16 +11,27 @@
     "23.7": "integrated_browser_package_gate"
   },
   "targets": {
-    "desktop": {"aspectRatio": "16:9", "minWidth": 1181},
-    "tablet": {"aspectRatio": "3:2", "maxWidth": 1180},
-    "phone": {"aspectRatio": "19.5:9", "maxWidth": 760}
+    "desktop": {
+      "aspectRatio": "16:9",
+      "minWidth": 1181
+    },
+    "tablet": {
+      "aspectRatio": "3:2",
+      "maxWidth": 1180
+    },
+    "phone": {
+      "aspectRatio": "19.5:9",
+      "maxWidth": 760
+    }
   },
   "accessibility": {
     "criticalInteractiveElementsNamed": true,
     "modalSemanticsRequired": true,
     "statusLiveRegionsRequired": true,
     "keyboardSearchShortcutRequired": true,
-    "focusVisibilityRequired": true
+    "focusVisibilityRequired": true,
+    "modalAriaLifecycleRequired": true,
+    "modalFocusLifecycleRequired": true
   },
   "performance": {
     "largeOptionalDataLazy": true,
