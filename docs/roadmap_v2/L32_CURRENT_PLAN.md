@@ -1,6 +1,6 @@
 # Lượt 32 — Current Plan · Bước 125–128
 
-Status: `B125_PASS · H1_ACTIVE · B126_BLOCKED · B127_BLOCKED · B128_BLOCKED`
+Status: `B125_PASS · H1_ACTIVE · F1_REPAIR_ACTIVE · B126_BLOCKED · B127_BLOCKED · B128_BLOCKED`
 
 Prerequisite: L31 final marker head `369df7fcc7f9e79c2ad3426651918608cc56bcc1` passed the complete six-gate set.
 
@@ -37,3 +37,9 @@ Blocked until B126 passes the complete six-gate set.
 Blocked until B127 passes the complete six-gate set.
 
 Any defect creates `L32-Fx`; any missing architecture creates `L32-Hx`. Later steps remain blocked until the repair/hardening head passes the complete six-gate set.
+
+## L32-F1 — B125 validator syntax repair
+
+H1 gate exposed a generated-source syntax defect in the B125 validator: the added audit-field assertions were spliced into the source-eligibility assertion and produced `SyntaxError: missing ) after argument list` before B125 logic could execute.
+
+F1 reconstructs only that assertion block. No schema, identity-binding rule, fail-closed rule, production boundary or runtime-isolation assertion is weakened. H1 and B126 remain blocked until the repaired head passes the complete six-gate set.

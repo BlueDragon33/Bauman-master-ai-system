@@ -6,15 +6,15 @@
 ## Active track
 
 - Current round: **Lượt 32**
-- Current step: **L32-H1 — RELEASE REVIEW IDENTITY/AUDIT BINDING · IN_PROGRESS**
+- Current step: **L32-F1 — B125 VALIDATOR SYNTAX REPAIR · IN_PROGRESS**
 - L22 closeout: **B88 + H1 — PASS**
-- Status: **L23_COMPLETE · L24_COMPLETE · L25_COMPLETE · L26_COMPLETE · L27_COMPLETE · L28_COMPLETE · L29_COMPLETE_THROUGH_B116 · L30_COMPLETE_THROUGH_B120 · L31_COMPLETE_THROUGH_B124 · L32_B125_COMPLETE · L32_H1_ACTIVE**
+- Status: **L23_COMPLETE · L24_COMPLETE · L25_COMPLETE · L26_COMPLETE · L27_COMPLETE · L28_COMPLETE · L29_COMPLETE_THROUGH_B116 · L30_COMPLETE_THROUGH_B120 · L31_COMPLETE_THROUGH_B124 · L32_B125_COMPLETE · L32_H1_ACTIVE · L32_F1_ACTIVE**
 - Last recorded six-gate head: `59e7fba97b2d8c839ddddae0c09fcab391840511`
 - Production/runtime activation by Roadmap V2: **disconnected**
 - Legacy/source destructive migration: **not executed**
 - Last completed: **L32/B125 Release Review contract — PASS on complete six-gate set**
 - Last hardening: **L29-F2 validator/harness syntax repair — PASS; no gate weakening**
-- Current official step: **L32-H1 — Release Review identity/audit binding hardening**
+- Current official step: **L32-F1 — repair generated B125 validator syntax without weakening gates**
 - B125 is closed. H1 is active; B126 remains blocked until H1 passes the complete six-gate set.
 
 ## L22/B88 complete gate evidence
@@ -906,3 +906,10 @@ Accepted B125 head: `59e7fba97b2d8c839ddddae0c09fcab391840511`
 - Whole System Integration — run `35456123723` — PASS
 
 B125 is closed. Pre-B126 audit found L32-H1: bind the outer Release Review candidate exactly to the nested Promotion Eligibility candidate and preserve reviewer/decision/reason audit fields in the result schema. No authority is widened.
+
+
+## L32-F1 defect
+
+The first H1 gate attempt failed in Roadmap V2 Current Gate while parsing `scripts/validate-roadmap-v2-l32-b125.mjs`: line 66 had a generated string-splice defect and raised `SyntaxError: missing ) after argument list` before Release Review validation executed.
+
+F1 rebuilds the result-schema assertion block only. H1 identity binding, receipt audit fields, authority-denial rules and runtime isolation remain unchanged. B126 stays blocked pending a complete six-gate pass.

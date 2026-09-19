@@ -63,7 +63,11 @@ assert.equal(requestSchema.properties.releaseReviewerRef.pattern,'^RELEASE_REVIE
 assert.deepEqual(requestSchema.properties.reviewDecision.enum,['approve_for_promotion_review','needs_revision','rejected']);
 
 assert.equal(resultSchema.additionalProperties,false);
-assert.equal(resultSchema.properties.releaseReviewerRef.pattern,'^RELEASE_REVIEWER::[A-Z0-9_-]+,['not_eligible_upstream_blocked','not_eligible_needs_revision','not_eligible_rejected','eligible_for_release_review']);
+assert.equal(resultSchema.properties.releaseReviewerRef.pattern,'^RELEASE_REVIEWER::[A-Z0-9_-]+$');
+assert.deepEqual(resultSchema.properties.submittedReviewDecision.enum,['approve_for_promotion_review','needs_revision','rejected']);
+assert.equal(resultSchema.properties.reasonCodes.minItems,1);
+assert.equal(resultSchema.properties.reasonCodes.maxItems,12);
+assert.deepEqual(resultSchema.properties.sourceEligibilityState.enum,['not_eligible_upstream_blocked','not_eligible_needs_revision','not_eligible_rejected','eligible_for_release_review']);
 assert.deepEqual(resultSchema.properties.effectiveReleaseReviewState.enum,['release_review_blocked_upstream','release_review_needs_revision','release_review_rejected','release_review_approved_shadow_only']);
 for(const key of ['persisted','productionPromotionAuthorized','productionConsumerConnected','runtimeActionAuthorized','scheduleWriteAllowed','notificationWriteAllowed'])assert.equal(resultSchema.properties[key].const,false,'B125 result authority widened: '+key);
 
