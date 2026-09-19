@@ -18,7 +18,7 @@ assert.equal(historical.upstreamSchemas.masteryManifest,'BAUMAN_ROADMAP_V2_MASTE
 assert.equal(historical.upstreamSchemas.schedulerManifest,'BAUMAN_ROADMAP_V2_SCHEDULER_MANIFEST_V1');
 
 assert.equal(current.schema,'BAUMAN_ROADMAP_V2_READINESS_CONTRACT_V1');
-assert.equal(current.version,'2.7.1-l27-b105-current');
+assert.equal(current.version,'2.7.2-l27-b105-h2-current');
 assert.equal(current.upstreamSchemas.consumerBlueprint,blueprint.schema);
 assert.equal(current.upstreamSchemas.masteryContract,mastery.schema);
 assert.equal(current.upstreamSchemas.masterySnapshot,masterySnapshot.$id);
@@ -28,6 +28,8 @@ assert.equal(current.upstreamSchemas.schedulerResult,schedulerResult.$id);
 assert.equal(JSON.stringify(current.upstreamSchemas).includes('MANIFEST'),false);
 assert.equal(current.acceptance.currentTrack,'L27');
 assert.equal(current.acceptance.staleManifestDependencyRemoved,true);
+assert.equal(current.acceptance.lessonPrerequisiteInheritancePinned,true);
+assert.equal(current.targetPolicy.prerequisiteResolution,'chapter_policy_inherited_by_lessons');
 
 for(const key of ['readinessDimensions','targetPolicy','statusPolicy','overallPolicy','externalGatePolicy','outputPolicy','capabilities']){
   assert.deepEqual(current[key],historical[key],`Readiness policy drift: ${key}`);
