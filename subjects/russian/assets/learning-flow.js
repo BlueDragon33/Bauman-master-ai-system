@@ -44,7 +44,7 @@
     if(step==='alphabet'&&Number(s.strokeActions||0)>0)return {key:'evidence',label:`${s.strokeActions} lượt luyện nét`};
     if(step==='alphabet'&&Number(s.practiceActions||0)>0)return {key:'opened',label:'Đã thao tác, chưa luyện nét'};
     if(step==='speaking'&&Number(s.attempts||0)>0)return {key:'active',label:'Đã luyện nói'};
-    if(step==='vocab'||step==='grammar')return {key:'support',label:'Đã dùng hỗ trợ'};
+    if((step==='vocab'||step==='grammar')&&Number(s.supportActions||0)>0)return {key:'support',label:'Đã dùng hỗ trợ'};
     if(step==='exercises'&&Number(s.moves||0)>0)return {key:'active',label:'Đang làm bài'};
     if(step==='theory'&&Number(s.slideMoves||0)>0)return {key:'active',label:'Đang học'};
     return {key:'opened',label:'Đã mở'};
