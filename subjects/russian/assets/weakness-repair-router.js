@@ -320,7 +320,7 @@
       return true;
     }
     const newer=num(sig.detectedAt)>num(old.resolvedSourceAt||old.detectedAt);
-    if(old.resolvedAt&&newer&&!sig.advisory){
+    if(old.resolvedAt&&(sig.advisory||newer)){
       state.items[sig.id]={
         ...sig,
         status:'detected',
@@ -354,15 +354,15 @@
         item.repairEvidenceAt=p.evidenceAt||now();
         item.status='repair_evidence_present';
         changed=true;
+        return;
       }
-      if(item.openedAt&&p.evidence&&!item.advisory){
-        item.resolvedAt=p.evidenceAt||now();
-        item.resolvedSourceAt=Math.max(num(item.detectedAt),num(p.evidenceAt));
+      if(item.openedAt&&p.evidence&&item.repairEvidenceAt&&!item.advisory){
+        item.resolvedAt=item.repairEvidenceAt;
+        item.resolvedSourceAt=Math.max(num(item.detectedAt),num(item.repairEvidenceAt));
         item.status='resolved';
         changed=true;
       }
-      if(item.advisory&&item.source==='skill_gate'&&!activeSignalIds.has(item.id)){
-        item.repairEvidenceAt=now();
+      if(item.advisory&&item.source==='skill_gate'&&!activeSignalIds.has(item.id)&&item.repairEvidenceAt){
         item.resolvedAt=item.repairEvidenceAt;
         item.resolvedSourceAt=item.resolvedAt;
         item.status='resolved';
