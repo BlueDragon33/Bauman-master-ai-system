@@ -1,6 +1,6 @@
 # Lượt 31 — Current Plan · Bước 121–124
 
-Status: `B121_PASS · B122_ACTIVE · B123_BLOCKED · B124_BLOCKED`
+Status: `B121_PASS · B122_PASS · B123_ACTIVE · B124_BLOCKED`
 
 Prerequisite: L30 final marker head `d17f690b25c7b8e05f8183fe2223b1c9622cc38d` passed the complete six-gate set.
 
@@ -25,11 +25,11 @@ L31 adds a data-only Promotion Eligibility layer. It does **not** authorize rele
 
 ## B122 — Deterministic in-memory Promotion Eligibility projector
 
-**ACTIVE.** Build a scripts-only, side-effect-free projector that revalidates the B121 request, recomputes L30 Human Review and returns a deeply frozen eligibility projection.
+**PASS.** Scripts-only, side-effect-free projector revalidates B121 input, recomputes L30 Human Review and returns a deeply frozen eligibility projection.
 
 ## B123 — Adversarial Promotion Eligibility validation
 
-Attack forged candidate identity, forged Human Review result/state, upstream authority injection, manual override, mutation escalation, persistence, release authorization, production promotion and runtime wiring leaks.
+**ACTIVE — 24 adversarial cases prepared.** Attack forged candidate identity, forged Human Review result/state, upstream authority injection, manual override, mutation escalation, persistence, release authorization, production promotion and runtime wiring leaks.
 
 ## B124 — Full-system closeout
 
