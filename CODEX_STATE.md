@@ -6,7 +6,7 @@ Status: `ALL_24_TURNS_GREEN_PROMOTION_CANDIDATE_FROZEN`
 
 Date: 2026-09-19
 Branch: `work/russian-listen-speak-literacy-visual-semantics`
-Russian accepted head: `667309790a9a2a56883976c4e5f674b074a89cf6`
+Russian accepted head: `90e797c6dda4c42bddea71fb0ad14316c82f67ce`
 
 ## Single source of truth
 
@@ -93,3 +93,18 @@ The frozen candidate was re-audited after Turn 24 and two defects were found ins
 - Turn 24.8: post-freeze source validation confirms the new assertions are wired into negative/promotion gates.
 
 All canonical Turns 1–24 remain GREEN after these fixes.
+
+
+## Post-freeze hardening
+
+The frozen candidate was re-audited after Turn 24 acceptance.
+
+Fixed inside existing Turn 24 responsibility:
+
+- added `tests/russian-promotion-freeze.test.mjs` with 14 explicit negative cases and wired it into CI;
+- removed stale learner guidance `V ẩn/hiện nghĩa`;
+- removed unused translation-era helpers from `core.js` so Vietnamese/English legacy semantic helpers cannot be accidentally reconnected;
+- preserved `dialogueHideVi` and `practiceHideVi` only as inert saved-state compatibility fields;
+- folded the hardening into canonical Turn 24.5/24.8 rather than creating a duplicate substep or unjustified Turn 25.
+
+The promotion candidate remains frozen and must not merge to `main` without an explicit promotion decision.
