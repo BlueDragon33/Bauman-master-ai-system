@@ -15,7 +15,7 @@ function functionSlice(src,name,nextName){
 export function validateContract(c){
   assert(c?.schema==='RUSSIAN_ORAL_FIRST_WARMUP_CONTRACT_V1','Unexpected warmup contract schema');
   const p=c.policy||{};
-  for(const key of ['russianTextHiddenBeforeFirstNormalListen','tokenHintsHiddenBeforeFirstNormalListen','translationGlossHiddenBeforeFirstNormalListen','dialogueMapTextHiddenPerUnheardLine','normalListenUnlocksText','slowListenDoesNotUnlockText','slowListenDisabledBeforeNormalListen','speakingAttemptAllowedAfterNormalListen','normalListenEvidenceRequiresPlaybackStart','failedPlaybackKeepsTextHidden'])assert(p[key]===true,`Oral-first policy disabled: ${key}`);
+  for(const key of ['russianTextHiddenBeforeFirstNormalListen','tokenHintsHiddenBeforeFirstNormalListen','translationGlossHiddenBeforeFirstNormalListen','dialogueMapTextHiddenPerUnheardLine','normalListenUnlocksText','slowListenDoesNotUnlockText','slowListenDisabledBeforeNormalListen','speakingAttemptAllowedAfterNormalListen','normalListenEvidenceRequiresPlaybackCompletion','failedPlaybackKeepsTextHidden'])assert(p[key]===true,`Oral-first policy disabled: ${key}`);
   for(const [key,value] of Object.entries(c.persistence||{}))assert(value===true,`Persistence invariant changed: ${key}`);
   return true;
 }
@@ -40,8 +40,8 @@ export function validateRuntime(core){
   assert(/lineHeard\s*=\s*practiceLineHeard\(active,i\)/.test(practice),'Dialogue map does not gate each line');
   assert(practice.includes("const slowReady=heardCount>=2;"),'Slow-listen readiness must be stricter than first-listen unlock');
   assert(practice.includes('data-act="speak-line-slow"')&&practice.includes("(slowReady?'':'disabled')"),'Slow-listen button is not disabled until repair readiness');
-  assert(core.includes("onStart:meta=>{if(inPracticeMode()){markPracticeLineHeard(d,idx);render()}"),'Normal listen does not unlock text after playback start');
-  assert(core.includes("const played=speak(line.ru||line.text||line.text_ru||line,.85,{onStart:"),'Normal listen does not expose playback-start evidence');
+  assert(core.includes("onEnd:meta=>{if(inPracticeMode()){markPracticeLineHeard(d,idx);render()}"),'Normal listen does not unlock text after playback completion');
+  assert(core.includes("const played=speak(line.ru||line.text||line.text_ru||line,.85,{onStart:"),'Normal listen does not expose playback-completion evidence');
   assert(core.includes("if(!played)toast('Chưa phát được âm tiếng Nga; lượt nghe không được tính.')"),'Failed playback does not preserve locked hear-before-see state');
   assert(!core.includes("speak(line.ru||line.text||line.text_ru||line); if(inPracticeMode()){markPracticeLineHeard"),'Click-equals-heard behavior returned');
   const slow=core.match(/if\(act==='speak-line-slow'\)\{([^}]*)\}/);
@@ -60,5 +60,5 @@ export function loadAndValidate(){
 if(import.meta.url===pathToFileURL(process.argv[1]).href){
   loadAndValidate();
   console.log('RUSSIAN_ORAL_FIRST_WARMUP_GATE=PASS');
-  console.log(JSON.stringify({hearBeforeSee:true,normalListenUnlocks:true,playbackStartRequired:true,failedPlaybackKeepsTextHidden:true,slowListenUnlocks:false,translationGlossAbsent:true,masteryMutation:false},null,2));
+  console.log(JSON.stringify({hearBeforeSee:true,normalListenUnlocks:true,playbackCompletionRequired:true,failedPlaybackKeepsTextHidden:true,slowListenUnlocks:false,translationGlossAbsent:true,masteryMutation:false},null,2));
 }
