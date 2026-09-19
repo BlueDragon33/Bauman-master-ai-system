@@ -1028,7 +1028,7 @@ function learningListForMode(){
  }
  if(mode==='practice'){
    const ds=getPracticeDialogues().slice(0,160); const active=ds.find(d=>(d.id||d.title)===state.practiceDialogueId)||ds[0];
-   const item=d=>{const turns=dialogueTurns(d).length; const group=A.dialogueGroup?.(d)||d.group||'general'; const diff=A.dialogueDifficulty?.(d)||d.difficulty||d.level||'all'; return {turns,group,diff,title:A.dialogueTitle?.(d)||d.title||'Bài nghe-nhại',sub:A.dialogueSubtitle?.(d)||d.purpose_ru||d.context_title_ru||''};};
+   const item=d=>{const turns=dialogueTurns(d).length; const group=A.dialogueGroup?.(d)||d.group_ru||d.group_id||d.source_group_id||'general'; const diff=A.dialogueDifficulty?.(d)||d.difficulty||d.level||'all'; return {turns,group,diff,title:A.dialogueTitle?.(d)||d.title||'Bài nghe-nhại',sub:A.dialogueSubtitle?.(d)||d.purpose_ru||d.context_title_ru||''};};
    return {title:'Nghe và nhại '+ctx.id, hint:'Chọn tình huống, nghe mẫu rồi nhại từng câu.', items:ds.map((d,i)=>{const it=item(d); return `<button class="learn-item v1293-dialogue-item v1295-dialogue-list-item clean-left-item ${active===d?'active':''}" data-practice-dialogue="${esc(d.id||d.title)}"><span>${String(i+1).padStart(2,'0')}</span><b>${esc(it.title)}</b><em>${it.turns} câu nghe-nhại</em></button>`}).join('')||'<div class="note">Bài này chưa có hội thoại đúng lessonId hoặc bộ lọc đang quá hẹp.</div>'};
  }
  if(mode==='review')return {title:'Ôn tập', hint:'Các bộ lọc và câu hỏi nằm trong khung chính.', items:'<div class="note">Ôn tập hiển thị ở khung bên phải. Hàng nút phía trên giữ cùng bố cục với Lý thuyết, Bài tập và Nghe/Nói.</div>'};
@@ -1661,7 +1661,7 @@ function renderDialogueSetupModal(){
  const groups=uniq(all.map(x=>A.dialogueGroup?.(x)||x.group_ru||x.group_id||x.source_group_id||'general'));
  const diffs=uniq(all.map(x=>A.dialogueDifficulty?.(x)||x.difficulty||x.level||'all'));
  const filtered=all.filter(d=>{
-  const g=A.dialogueGroup?.(d)||d.group||'general'; const df=A.dialogueDifficulty?.(d)||d.difficulty||d.level||'all';
+  const g=A.dialogueGroup?.(d)||d.group_ru||d.group_id||d.source_group_id||'general'; const df=A.dialogueDifficulty?.(d)||d.difficulty||d.level||'all';
   return (state.dialogueGroup==='all'||g===state.dialogueGroup)&&(state.dialogueDifficulty==='all'||df===state.dialogueDifficulty);
  });
  const active=currentDialogue(); const plan=dialogueSetupMicroPlan(active);
@@ -1743,7 +1743,7 @@ function renderDialogue(){
  const scaffold=dialogueScaffold(active,line,idx,role);
  const title=dialogueDirectTitle(active)||'Диалог';
  const purpose=scaffold.purpose_ru||'Nghe mẫu, chọn vai và đối đáp trong tình huống thật.';
- const group=A.dialogueGroup?.(active)||active?.group||'Đối thoại';
+ const group=A.dialogueGroup?.(active)||active?.group_ru||active?.group_id||active?.source_group_id||'general';
  const cueText=scaffold.role_cue;
  const roleName=role==='all'?'Nghe + đối đáp toàn đoạn':'Đối đáp vai '+role;
  const hints=arr(scaffold.vocabulary_seed_ru).length?arr(scaffold.vocabulary_seed_ru).slice(0,5):lineTokenHints(targetText);
@@ -1765,7 +1765,7 @@ function renderDialogue(){
      '<div class="v1294-speech-actions dialogue-nine-actions"><button class="btn" data-act="prev-line">← Câu trước</button><button class="btn green" data-act="speak-line">🔊 Câu mẫu</button><button class="btn" data-act="speak-line-slow">🐢 Chậm</button><button class="btn blue" data-act="speak-dialogue">Nghe cả đoạn</button><button class="btn" data-act="record-line">🎙️ Đối đáp</button><button class="btn" data-act="next-role-line">Câu của tôi →</button><button class="btn primary" data-act="next-line">Câu tiếp →</button></div>'+
      '<div class="v1294-feedback-line dialogue-nine-feedback"><b>'+(result?'Điểm nói: '+result.score+'%':'Gợi ý đối đáp')+'</b><span>'+(result?esc(speechFeedback(result.score)):'Nghe câu mẫu, dùng scene/cue Nga, nói lại chậm, sau đó tự đối đáp theo vai.')+'</span></div>'+
      '<details class="v1294-speech-map dialogue-nine-map"><summary>🧭 Bản đồ câu đối thoại <span>'+(turns.length?idx+1:0)+'/'+(turns.length||0)+'</span></summary><div class="v1294-speech-map-grid">'+(turns.length?turns.map(roleLine).join(''):'<div class="note">Chưa có câu hội thoại.</div>')+'</div></details>'+
-     '<details class="dialogue-picker compact-picker dialogue-nine-picker"><summary>Đổi tình huống luyện nói <span>'+list.length+'/'+all.length+'</span></summary><div class="dialogue-picker-body"><div class="dialogue-picker-tools"><select class="input" data-input="dialogueGroup"><option value="all">Tất cả nhóm</option>'+groups.map(g=>'<option value="'+esc(g)+'" '+(state.dialogueGroup===g?'selected':'')+'>'+esc(g)+'</option>').join('')+'</select><select class="input" data-input="dialogueDifficulty"><option value="all">Tất cả mức</option>'+diffs.map(g=>'<option value="'+esc(g)+'" '+(state.dialogueDifficulty===g?'selected':'')+'>'+esc(g)+'</option>').join('')+'</select><input class="input" data-input="dialogueQuery" value="'+esc(state.dialogueQuery)+'" placeholder="Tìm tình huống..."></div><div class="dialogue-picker-list">'+(list.slice(0,120).map(d=>'<button class="item-card '+(active===d?'active':'')+'" data-dialogue="'+esc(d.id||d.title)+'"><b lang="ru">'+esc(dialogueDirectTitle(d)||'Диалог')+'</b><small>'+esc((A.dialogueGroup?.(d)||d.group||'')+' · '+(A.dialogueDifficulty?.(d)||d.difficulty||d.level||''))+'</small></button>').join('')||'<div class="note">Chưa có hội thoại.</div>')+'</div></div></details>'+
+     '<details class="dialogue-picker compact-picker dialogue-nine-picker"><summary>Đổi tình huống luyện nói <span>'+list.length+'/'+all.length+'</span></summary><div class="dialogue-picker-body"><div class="dialogue-picker-tools"><select class="input" data-input="dialogueGroup"><option value="all">Tất cả nhóm</option>'+groups.map(g=>'<option value="'+esc(g)+'" '+(state.dialogueGroup===g?'selected':'')+'>'+esc(g)+'</option>').join('')+'</select><select class="input" data-input="dialogueDifficulty"><option value="all">Tất cả mức</option>'+diffs.map(g=>'<option value="'+esc(g)+'" '+(state.dialogueDifficulty===g?'selected':'')+'>'+esc(g)+'</option>').join('')+'</select><input class="input" data-input="dialogueQuery" value="'+esc(state.dialogueQuery)+'" placeholder="Tìm tình huống..."></div><div class="dialogue-picker-list">'+(list.slice(0,120).map(d=>'<button class="item-card '+(active===d?'active':'')+'" data-dialogue="'+esc(d.id||d.title)+'"><b lang="ru">'+esc(dialogueDirectTitle(d)||'Диалог')+'</b><small>'+esc((A.dialogueGroup?.(d)||d.group_ru||d.group_id||d.source_group_id||'')+' · '+(A.dialogueDifficulty?.(d)||d.difficulty||d.level||''))+'</small></button>').join('')||'<div class="note">Chưa có hội thoại.</div>')+'</div></div></details>'+
    '</section>'+
    renderDeepDialoguePanel(active)+
  '</div>';
