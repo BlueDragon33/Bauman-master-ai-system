@@ -105,8 +105,14 @@ export function loadCurrentSchedulerHarness(options={}){
       assert(masterModeRelations.has(item.source.masterModeRelation),`Unknown Master Mode relation: ${item.scheduleItemId}`);
 
       const currentActivity=['current_subject_preview','current_subject_weekly','assessment_readiness'].includes(item.activityKind);
-      if(currentActivity)assert.equal(item.source.kind,contract.sourcePolicy.currentBaumanSourceKind,`Current-subject activity lacks official source: ${item.scheduleItemId}`);
-      if(item.activityKind==='nir_thesis')assert.equal(item.source.kind,contract.sourcePolicy.nirSourceKind,`NIR activity lacks verified plan: ${item.scheduleItemId}`);
+      if(currentActivity){
+        assert.equal(item.source.kind,contract.sourcePolicy.currentBaumanSourceKind,`Current-subject activity lacks official source: ${item.scheduleItemId}`);
+        assert.equal(item.source.masterModeRelation,'current_subject_prerequisite',`Current-subject activity lacks verified Master Mode relation: ${item.scheduleItemId}`);
+      }
+      if(item.activityKind==='nir_thesis'){
+        assert.equal(item.source.kind,contract.sourcePolicy.nirSourceKind,`NIR activity lacks verified plan: ${item.scheduleItemId}`);
+        assert.equal(item.source.masterModeRelation,'nir_thesis_prerequisite',`NIR activity lacks verified Master Mode relation: ${item.scheduleItemId}`);
+      }
       if([contract.sourcePolicy.currentBaumanSourceKind,contract.sourcePolicy.nirSourceKind].includes(item.source.kind)){
         assert.equal(input.phaseId,'GD3',`Dynamic Master Mode source outside GD3: ${item.scheduleItemId}`);
       }
