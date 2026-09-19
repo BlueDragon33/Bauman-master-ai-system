@@ -60,6 +60,10 @@ If a gate fails, repair it before continuing. Never weaken an assertion merely t
 
 Measure real runtime/data gaps and freeze the target learning policy.
 
+Post-freeze quality substep:
+
+- **1.1 — Source-gap vs runtime-readiness audit:** keep source asset gaps separate from learner-facing runtime readiness; Russian TTS, playback-completed listening and recognition-confirmed speaking are measured from executable runtime evidence rather than raw source-asset presence.
+
 ### Turn 2 — Learning-route priority
 
 Make the fresh Vietnam-stage route prioritize listening, speaking and literacy. Existing saved learner state must remain authoritative.
@@ -67,6 +71,10 @@ Make the fresh Vietnam-stage route prioritize listening, speaking and literacy. 
 ### Turn 3 — Oral-first warm-up
 
 Hear before see: hide Russian text/hints/gloss until the learner completes the first normal-speed listen.
+
+Post-freeze quality substep:
+
+- **3.1 — Completed-listen unlock:** first-listen text/scaffold unlock now requires successful normal-speed playback completion (`onEnd`), not merely playback start or button click; failed/interrupted playback remains locked.
 
 ### Turn 4 — Print Cyrillic recognition
 
@@ -91,10 +99,15 @@ Standardize normal-speed listening, focused replay, slow replay only after need 
 Post-freeze regression substep:
 
 - **8.1 — Listening tokenizer gate fidelity:** align the static validator/negative mutation with the real `.split(/\s+/)` tokenizer so valid whitespace tokenization passes while broken tokenization still fails.
+- **8.2 — Playback-completion evidence:** normal/focused/slow listening evidence is emitted only after TTS playback completes; two completed normal listens are required before slow repair, and interrupted playback cannot unlock hear-before-see.
 
 ### Turn 9 — Speaking & shadowing ladder
 
 Standardize imitation, shadowing, memory speaking, role-play and pronunciation repair evidence.
+
+Post-freeze quality substep:
+
+- **9.1 — Recognition-confirmed speaking evidence:** recorder start only indicates microphone readiness; imitation/shadowing/memory/role-play/repair attempts are counted only after SpeechRecognition returns a non-empty Russian transcript, so failed/no-speech sessions do not become speaking evidence.
 
 ### Turn 10 — Visual vocabulary contract
 
@@ -199,6 +212,7 @@ Turn 23 execution substeps:
 - **23.8 — Modal accessibility lifecycle regression:** require `aria-hidden=false` on open, `aria-hidden=true` on close, move focus into the dialog and restore the opener after close; negative gates prevent regression.
 - **23.9 — Browser/package negative-test fidelity:** mutate every phone breakpoint declaration when proving the 760px guard and prioritize dependency load-order diagnostics before shell-inventory diagnostics, so the negative suite tests the intended invariant rather than a partial mutation or masking error.
 - **23.10 — CI action runtime compatibility:** upgrade the Russian architecture/regression workflow from `actions/checkout@v4` and `actions/setup-node@v4` to current Node-24-based v7 majors after runner deprecation warnings; workflow `35416194155` passed both jobs at commit `0609c85f512909374fc0ba346a71a9e65f3c061d`.
+- **23.11 — Russian speech lifecycle integrity:** select a Russian TTS voice when available, preserve voice proof through playback start and completion callbacks, and require browser/package QA to prove completion-based listening evidence.
 
 ### Turn 24 — Migration freeze & promotion candidate
 
