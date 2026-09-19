@@ -5,17 +5,17 @@
 
 ## Active track
 
-- Current round: **Lượt 29**
-- Current step: **L29 documentation/final-state closeout — IN_PROGRESS**
+- Current round: **Lượt 29 — COMPLETE**
+- Current step: **L29 final-state marker — REVALIDATION**
 - L22 closeout: **B88 + H1 — PASS**
-- Status: **L23_COMPLETE · L24_COMPLETE · L25_COMPLETE · L26_COMPLETE · L27_COMPLETE · L28_COMPLETE · L29_B113_COMPLETE · L29_H1_COMPLETE · L29_B114_COMPLETE · L29_B115_COMPLETE · L29_B116_FUNCTIONAL_PASS**
-- Last recorded six-gate head: `dd73c3c62b6403fb8cd3e559a77ecd0f870370d3`
+- Status: **L23_COMPLETE · L24_COMPLETE · L25_COMPLETE · L26_COMPLETE · L27_COMPLETE · L28_COMPLETE · L29_COMPLETE_THROUGH_B116 · L30_PERMITTED_NOT_OPEN**
+- Last recorded six-gate head: `04e79df816da90cd32979432c215803c124e1d56`
 - Production/runtime activation by Roadmap V2: **disconnected**
 - Legacy/source destructive migration: **not executed**
-- Last completed: **L29/B116 functional closeout — PASS on complete six-gate set**
+- Last completed: **L29 documentation/final-state closeout — PASS on complete six-gate set**
 - Last hardening: **L29-F2 validator/harness syntax repair — PASS; no gate weakening**
-- Current official step: **L29 documentation/final-state closeout**
-- L30 remains blocked until the L29 documentation/final-state head itself passes the complete six-gate set.
+- Current official step: **L29 final-state marker revalidation**
+- L30 is permitted to open only after this final-state marker head itself passes the complete six-gate set.
 
 ## L22/B88 complete gate evidence
 
@@ -676,3 +676,17 @@ Accepted B116 functional head: `dd73c3c62b6403fb8cd3e559a77ecd0f870370d3`
 B116 functional closeout is green. Roadmap V2 still has **zero production consumers**; PlanningBridge, Safe Shell and subject runtimes remain unadmitted. No persistence, dashboard rendering, schedule/calendar write, runtime activation, notification write or automatic action has been enabled.
 
 L30 remains blocked until the documentation/final-state closeout head itself passes the complete six-gate set.
+
+
+## L29 documentation/final-state gate evidence
+
+Accepted documentation/final-state closeout head: `04e79df816da90cd32979432c215803c124e1d56`
+
+- Roadmap V2 Current Gate — run `35451640557` — PASS
+- Foundation Domain Model — run `35451640441` — PASS
+- Windows checkout safety — run `35451640359` — PASS
+- Russian Reference UI — run `35451640371` — PASS
+- Cloudflare Preview — run `35451640487` — PASS
+- Whole System Integration — run `35451640394` — PASS
+
+The L29 documentation closeout is green. L29 is complete through B116. This marker commit is the final revalidation checkpoint before L30 may open.
