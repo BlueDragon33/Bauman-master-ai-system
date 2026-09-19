@@ -6,7 +6,7 @@
   const CORE_DATA=["curriculum","lessons","grammar","grammar-path","vocab","mindmap","exercises","tests","simulations","speaking","handwriting","writing","videos","knowledge-index","cyrillic-sound-map","reading-bridge","grammar-pattern-bridge"];
   const LIGHT_DATA=['curriculum','grammar','grammar-path','handwriting','writing','videos','knowledge-index'];
   const DATA_CACHE='russian-learning-data-v2';
-  let preparing=false, prepared=Number(localStorage.getItem('ru_offline_core_count')||0), shellPrepared=Number(localStorage.getItem('ru_offline_shell_count')||0);
+  let preparing=false, prepared=0, shellPrepared=0, verified=false;
 
   function statusButton(){
     const host=document.querySelector('.ru-top-actions');if(!host)return null;
@@ -16,7 +16,7 @@
   }
   function paint(){
     const btn=statusButton();if(!btn)return;
-    const online=navigator.onLine;const dataReady=prepared>=CORE_DATA.length;const shellReady=shellPrepared>=SHELL_REQUIRED.length;const ready=dataReady&&shellReady;
+    const online=navigator.onLine;const dataReady=prepared>=CORE_DATA.length;const shellReady=shellPrepared>=SHELL_REQUIRED.length;const ready=verified&&dataReady&&shellReady;
     btn.dataset.online=online?'1':'0';btn.dataset.ready=ready?'1':'0';
     const label=preparing?'Đang chuẩn bị offline…':ready?(online?'Offline sẵn sàng':'Đang dùng offline'):(online?`Online · shell ${shellPrepared}/${SHELL_REQUIRED.length} · data ${prepared}/${CORE_DATA.length}`:`Offline chưa đủ · shell ${shellPrepared}/${SHELL_REQUIRED.length} · data ${prepared}/${CORE_DATA.length}`);
     const span=btn.querySelector('span');if(span)span.textContent=label;btn.title=ready?'App shell và dữ liệu học bắt buộc đã đủ trong Cache Storage.':'Bấm để chuẩn bị đầy đủ app shell và dữ liệu bắt buộc cho offline.';
@@ -53,8 +53,9 @@
       [shellPrepared,prepared]=await Promise.all([countCachedShell(SHELL_REQUIRED),countCached(CORE_DATA)]);
       localStorage.setItem('ru_offline_shell_count',String(shellPrepared));
       localStorage.setItem('ru_offline_core_count',String(prepared));
-    }catch(_){shellPrepared=0;prepared=0;}
-    paint();return {shellPrepared,prepared};
+      verified=true;
+    }catch(_){shellPrepared=0;prepared=0;verified=false;}
+    paint();return {shellPrepared,prepared,verified};
   }
   async function cacheNames(names,{refresh=false}={}){
     if(!('caches'in window))return 0;
@@ -80,6 +81,7 @@
       prepared=await cacheNames(CORE_DATA,{refresh:true});
       localStorage.setItem('ru_offline_shell_count',String(shellPrepared));
       localStorage.setItem('ru_offline_core_count',String(prepared));
+      verified=true;
     }finally{preparing=false;paint();}
   }
   function idleWarm(){
@@ -94,5 +96,5 @@
   }
   window.addEventListener('online',()=>{paint();reconcileOfflineCore();});window.addEventListener('offline',()=>{paint();reconcileOfflineCore();});
   document.addEventListener('DOMContentLoaded',()=>{paint();register();});
-  window.RussianRuntimeOptimizer={schema:SCHEMA,prepareOfflineCore,reconcileOfflineCore,status:()=>({online:navigator.onLine,shellPrepared,shellTotal:SHELL_REQUIRED.length,prepared,total:CORE_DATA.length,ready:shellPrepared>=SHELL_REQUIRED.length&&prepared>=CORE_DATA.length}),coreData:[...CORE_DATA],shellRequired:[...SHELL_REQUIRED]};
+  window.RussianRuntimeOptimizer={schema:SCHEMA,prepareOfflineCore,reconcileOfflineCore,status:()=>({online:navigator.onLine,verified,shellPrepared,shellTotal:SHELL_REQUIRED.length,prepared,total:CORE_DATA.length,ready:verified&&shellPrepared>=SHELL_REQUIRED.length&&prepared>=CORE_DATA.length}),coreData:[...CORE_DATA],shellRequired:[...SHELL_REQUIRED]};
 })();
