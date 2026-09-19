@@ -31,8 +31,11 @@ assert.equal(current.acceptance.staleManifestDependencyRemoved,true);
 assert.equal(current.acceptance.lessonPrerequisiteInheritancePinned,true);
 assert.equal(current.targetPolicy.prerequisiteResolution,'chapter_policy_inherited_by_lessons');
 
-for(const key of ['readinessDimensions','targetPolicy','statusPolicy','overallPolicy','externalGatePolicy','outputPolicy','capabilities']){
+for(const key of ['readinessDimensions','statusPolicy','overallPolicy','externalGatePolicy','outputPolicy','capabilities']){
   assert.deepEqual(current[key],historical[key],`Readiness policy drift: ${key}`);
+}
+for(const [key,value] of Object.entries(historical.targetPolicy)){
+  assert.deepEqual(current.targetPolicy[key],value,`Readiness target policy drift: ${key}`);
 }
 
 assert.equal(current.mode.productionIntegration,'disconnected');
