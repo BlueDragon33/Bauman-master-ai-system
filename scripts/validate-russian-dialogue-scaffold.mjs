@@ -73,6 +73,8 @@ export function validateCore(core){
   assert(meta.includes('dialogueScaffold('),'dialogueMeta does not use scaffold bridge');
   assert(practiceSearch.includes("lower(A.dialogueSearchText?.(x)||'')"),'Practice dialogue search does not use fail-closed Russian/direct-context authority');
   assert(dialogueSearch.includes("lower(A.dialogueSearchText?.(x)||'')"),'Dialogue search does not use fail-closed Russian/direct-context authority');
+  assert(dialogueSearch.includes("if(state.dialogueGroup!=='all'&&!groups.includes(state.dialogueGroup))state.dialogueGroup='all';"),'Dialogue group state is not recovered when legacy filter labels become invalid');
+  assert(dialogueSearch.includes("if(state.dialogueDifficulty!=='all'&&!diffs.includes(state.dialogueDifficulty))state.dialogueDifficulty='all';"),'Dialogue difficulty state is not recovered when stored filters become invalid');
   assert(!practiceSearch.includes('lower(textOf(x))')&&!dialogueSearch.includes('lower(textOf(x))'),'Dialogue search may still fall back to generic-language itemText');
   assert(!core.includes("A.dialogueGroup?.(x)||x.group||'general'"),'Core reintroduced generic-language dialogue group fallback');
   assert(!/A\.dialogueGroup\?\.\([^)]+\)\|\|[^;\n]*?\.group(?!_ru|_id)\b/.test(core),'Core dialogue surfaces must not fall back to generic-language group labels');
