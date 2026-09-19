@@ -46,6 +46,7 @@ async function openHub(page){
   assert.equal(access.academicWrites,false);
   await page.waitForFunction(()=>!document.getElementById('appRoot')?.classList.contains('hidden'),null,{timeout:30000});
   await page.waitForFunction(()=>!!window.BAUMAN_HUB_SAFE?.selfCheck,null,{timeout:10000});
+  await page.waitForFunction(()=>window.BAUMAN_HUB_SAFE?.selfCheck?.().ready===true,null,{timeout:10000});
   await page.waitForFunction(()=>!!document.querySelector('.hub-safe-dashboard'),null,{timeout:10000});
 }
 
