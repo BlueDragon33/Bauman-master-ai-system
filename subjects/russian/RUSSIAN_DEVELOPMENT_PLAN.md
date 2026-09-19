@@ -169,6 +169,8 @@ Post-freeze quality substep:
 - **16.2 — Deep Speaking semantic allowlist:** remove generic `question/answer/domain`, `Object.values(...)` and `JSON.stringify(...)` fallback paths from learner-facing Deep Speaking. Object extraction now fails closed to Russian-labelled semantic fields and nested Russian collections only.
 - **16.3 — Dialogue direct-semantic routing hardening:** dialogue search, grouping, deep-link tags and scene-icon selection use Russian-labelled semantic context or inert IDs only; legacy generic/Vietnamese metadata cannot steer learner-facing routing, and stale stored dialogue-group filters recover to `all`.
 - **16.4 — Complete dialogue-turn translation sanitization:** `dialogueTurns()` strips the full prohibited Vietnamese/English translation-field set before projecting learner runtime turns; the negative gate rejects any regression back to the previous partial sanitizer.
+- **16.5 — Dialogue difficulty semantic isolation:** dialogue difficulty/filter routing now accepts only inert `difficulty_id` or Russian `difficulty_ru`; generic `difficulty/level` fallbacks cannot reintroduce Vietnamese/English learner labels.
+- **16.6 — Dialogue turn-shape projection hardening:** both `utterances` and fallback `turns` pass through the same sanitizer projector, and generic `text`/string fallbacks must contain Cyrillic before becoming learner-facing Russian lines.
 
 ### Turn 17 — Grammar from patterns
 
@@ -262,6 +264,8 @@ Turn 24 execution substeps:
 - **24.14 — Vocabulary search/SRS semantic freeze:** migration and visual-vocabulary gates reject translation fields in search, raw-source JSON search fallback, Vietnamese speaking-link titles and non-Cyrillic Sentence Mining source context. Full executable proof: workflow `35422889144` GREEN at `c0e2413b5ec34e86e6ad83fb0c907dcea1417aa4`.
 - **24.15 — Dialogue semantic-routing freeze:** dialogue-scaffold contract/gates freeze Russian-only search authority, Cyrillic deep-link tags, Russian-label-or-inert-ID group display, Russian direct-context scene visuals and recovery from stale legacy group filters.
 - **24.16 — Dialogue sanitizer completeness freeze:** learner turn projection must discard all prohibited Vietnamese/English translation fields, with a dedicated negative mutation proving an incomplete sanitizer is rejected.
+- **24.17 — Dialogue difficulty-routing freeze:** negative gates reject restoration of generic `difficulty/level` learner-facing fallback in adapter/core dialogue filters.
+- **24.18 — Dialogue projection-shape freeze:** negative gates require both utterance and turn-object paths to share the sanitizer and reject non-Cyrillic generic text fallback.
 
 Result: all canonical 24 turns are GREEN. No further turn is created because no new responsibility remains unresolved inside this rebuild. Promotion to `main` is deliberately outside automatic execution.
 
