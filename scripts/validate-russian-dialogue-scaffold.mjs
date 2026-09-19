@@ -19,6 +19,9 @@ export function validateContract(c){
   assert(c.missingContext?.translationFallback===false,'Missing dialogue context must fail closed');
   assert(c.practice?.preserveHearBeforeSee===true&&c.practice?.russianContextHiddenBeforeFirstListen===true,'Hear-before-see invariant weakened');
   assert(c.invariants?.noVietnameseSemanticGloss===true&&c.invariants?.noEnglishSemanticGloss===true,'Translation gloss still permitted');
+  assert(c.semanticRouting?.dialogueSearchAuthority==='russian_direct_context_only','Dialogue search authority must remain Russian/direct-context only');
+  assert(c.semanticRouting?.deepLinkNaturalLanguageTags==='cyrillic_only','Deep-link natural-language routing must remain Cyrillic-only');
+  assert(c.semanticRouting?.legacyGenericVietnameseFieldsMayInfluenceRouting===false,'Legacy generic Vietnamese fields must not influence dialogue routing');
   return true;
 }
 export function loadHelper(js){
@@ -43,6 +46,14 @@ export function validateAdapter(adapter){
   for(const token of ['context_title_vi','communicative_functions_vi','vi_turns'])assert(!block.includes(token),`Adapter dialogue helper references prohibited translation field: ${token}`);
   assert(block.includes('const {vi,vi_text,translation_vi,gloss_vi,...safe}=turn||{};'),'Adapter dialogue turns must explicitly sanitize legacy translation fields');
   assert(block.includes('title_ru')&&block.includes('context_title_ru'),'Adapter dialogue title is not Russian/direct-context first');
+  const searchStart=adapter.indexOf('dialogueSearchText(item){',start);
+  const searchEnd=adapter.indexOf('dialogueTurns(item){',searchStart);
+  assert(searchStart>=0&&searchEnd>searchStart,'Adapter dialogueSearchText helper missing');
+  const search=adapter.slice(searchStart,searchEnd);
+  assert(search.includes('title_ru')&&search.includes('context_title_ru')&&search.includes('group_ru'),'Dialogue search is not Russian/direct-context first');
+  assert(search.includes('/[А-Яа-яЁё]/'),'Dialogue search must Cyrillic-filter natural-language semantic tags');
+  assert(!/item\?\.(title|summary|prompt|answer|question|purpose|group)(?!_ru)\b/.test(search),'Dialogue search reintroduced generic-language semantic fields');
+  for(const token of ['context_title_vi','communicative_functions_vi','vi_turns','translation_vi','gloss_vi','meaning_vi','clue_en'])assert(!search.includes(token),`Dialogue search references prohibited semantic field: ${token}`);
   return true;
 }
 export function validateCore(core){
@@ -52,9 +63,18 @@ export function validateCore(core){
   const deep=functionSlice(core,'deepUnitTitle','renderDialogue');
   const dialogue=functionSlice(core,'renderDialogue','handwritingText');
   const practice=functionSlice(core,'renderPractice','speechMapLineButton');
+  const practiceSearch=functionSlice(core,'getPracticeDialogues','getTests');
+  const dialogueSearch=functionSlice(core,'getDialogues','getMedia');
   assert(bridge.includes('window.RussianDialogueScaffold?.describe?.'),'Core scaffold bridge does not point to canonical dialogue authority');
   assert(ui.includes('dialogue-direct-scaffold'),'Dialogue scaffold UI helper missing direct scaffold class');
   assert(meta.includes('dialogueScaffold('),'dialogueMeta does not use scaffold bridge');
+  assert(practiceSearch.includes("lower(A.dialogueSearchText?.(x)||'')"),'Practice dialogue search does not use fail-closed Russian/direct-context authority');
+  assert(dialogueSearch.includes("lower(A.dialogueSearchText?.(x)||'')"),'Dialogue search does not use fail-closed Russian/direct-context authority');
+  assert(!practiceSearch.includes('lower(textOf(x))')&&!dialogueSearch.includes('lower(textOf(x))'),'Dialogue search may still fall back to generic-language itemText');
+  assert(deep.includes('function russianSemanticTags('),'Deep speaking Russian semantic-tag filter missing');
+  assert(deep.includes('dialogue.group_ru')&&!/dialogue\.group(?!_ru|_id)/.test(deep),'Deep link routing reads generic dialogue.group instead of group_ru');
+  assert(deep.includes('const unitTags=russianSemanticTags('),'Deep link unit tags are not Cyrillic-filtered');
+  assert(deep.includes('unit.linked_speaking?.group_ru')&&deep.includes('unit.linked_speaking?.context_title_ru'),'Deep link routing is missing Russian linked-speaking context fields');
   for(const token of ['context_title_vi','communicative_functions_vi','dialogueVi('])assert(!meta.includes(token),`dialogueMeta still uses legacy gloss: ${token}`);
   for(const token of ['context_title_vi','communicative_functions_vi','vi_turns','prompt_vi','unit_title_vi','scenario_vi','title_vi'])assert(!deep.includes(token),`Deep speaking still exposes translation scaffold: ${token}`);
   assert(!deep.includes('JSON.stringify(x)')&&!deep.includes('Object.values(v).flatMap(deepLines)'),'Deep speaking must fail closed instead of serializing unknown semantic fields');
