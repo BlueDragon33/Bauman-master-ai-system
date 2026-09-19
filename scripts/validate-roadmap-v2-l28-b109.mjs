@@ -58,7 +58,7 @@ for(const key of ['productionConsumerConnect','persistentStoreWrite','dashboardU
 assert.equal(contract.acceptance.step,109);
 assert.equal(contract.acceptance.currentTrack,'L28');
 assert.equal(contract.acceptance.productionConsumersConnected,0);
-assert.equal(contract.acceptance.result,'PASS_CONTRACT_ONLY_PENDING_B109_GATE');
+assert.equal(contract.acceptance.result,'PASS_B109_CONTRACT');
 
 const serialized=JSON.stringify(contract);
 for(const forbidden of [
