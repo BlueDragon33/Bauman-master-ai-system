@@ -26,6 +26,7 @@ for(const relative of [
   'assets/js/platform/device-access-gate.js',
   'subjects/math/index.html',
   'subjects/russian/index.html',
+  'subjects/russian/assets/handwriting-recognition.js',
   ...foundationRuntime,
   'subjects/russian/data/chunks/dialogue-bauman-az/manifest.json',
   'subjects/russian/data/chunks/deep-speaking-bauman/manifest.json'
