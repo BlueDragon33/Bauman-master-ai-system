@@ -1,6 +1,6 @@
 # L26-F1 — Scheduler boundary modernization
 
-Status: `FIX_APPLIED_PENDING_GATE`
+Status: `ROOT_CAUSE_CONFIRMED · HANDOFF_TO_L26_H1`
 
 ## Defect
 
@@ -27,3 +27,16 @@ The scheduler remains contract-only and disconnected. No historical scheduler en
 `scripts/validate-roadmap-v2-l26-b101.mjs` rejects stale manifest identities and pins the read-only/no-write safety boundary.
 
 B102 remains blocked until this repair passes the complete current gate set.
+
+
+## Failed current gate evidence
+
+Roadmap V2 Current Gate run `35435252436` failed at `Validate static baseline invariants`.
+
+The failure was intentional protection, not a scheduler semantic failure:
+
+- expected frozen blob: `29a6975b9ecefe578a0d68eea62efcdda5b77919`;
+- mutated blob: `552c5fa13a57329fa29763249952bbe6b79c7fb9`;
+- protected path: `roadmap_v2/scheduler/scheduler-contract.json`.
+
+Therefore the historical static contract must remain byte-identical. Modernization moves to L26-H1 as an additive current-track overlay.
