@@ -19,9 +19,10 @@ self.addEventListener('fetch',event=>{
   const file=url.pathname.split('/').pop()||'';
   const isDataPath=url.pathname.includes('/subjects/russian/data/');
   const isAuthority=url.pathname.endsWith('/subjects/russian/assets/handwriting-glyph-authority.js');
+  const isAuthorityAsset=url.pathname.includes('/subjects/russian/assets/handwriting-authority/');
   const isOptionalLarge=isDataPath&&OPTIONAL_LARGE.has(file);
 
-  if(isAuthority){
+  if(isAuthority||isAuthorityAsset){
     event.respondWith(caches.open(CACHE).then(async cache=>{
       try{
         const res=await fetch(req,{cache:'no-store'});
