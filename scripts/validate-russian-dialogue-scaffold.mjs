@@ -21,6 +21,7 @@ export function validateContract(c){
   assert(c.invariants?.noVietnameseSemanticGloss===true&&c.invariants?.noEnglishSemanticGloss===true,'Translation gloss still permitted');
   assert(c.semanticRouting?.dialogueSearchAuthority==='russian_direct_context_only','Dialogue search authority must remain Russian/direct-context only');
   assert(c.semanticRouting?.deepLinkNaturalLanguageTags==='cyrillic_only','Deep-link natural-language routing must remain Cyrillic-only');
+  assert(c.semanticRouting?.dialogueGroupDisplayAuthority==='russian_label_or_inert_id','Dialogue group display authority must remain Russian-label or inert-id only');
   assert(c.semanticRouting?.legacyGenericVietnameseFieldsMayInfluenceRouting===false,'Legacy generic Vietnamese fields must not influence dialogue routing');
   return true;
 }
@@ -46,6 +47,8 @@ export function validateAdapter(adapter){
   for(const token of ['context_title_vi','communicative_functions_vi','vi_turns'])assert(!block.includes(token),`Adapter dialogue helper references prohibited translation field: ${token}`);
   assert(block.includes('const {vi,vi_text,translation_vi,gloss_vi,...safe}=turn||{};'),'Adapter dialogue turns must explicitly sanitize legacy translation fields');
   assert(block.includes('title_ru')&&block.includes('context_title_ru'),'Adapter dialogue title is not Russian/direct-context first');
+  assert(block.includes("dialogueGroup(item){ return item?.group_ru || item?.group_id || item?.source_group_id || 'general'; }"),'Adapter dialogue group must prefer Russian label and fail closed to inert IDs');
+  assert(!block.includes("dialogueGroup(item){ return item?.group ||"),'Adapter dialogue group reintroduced generic-language group display');
   const searchStart=adapter.indexOf('dialogueSearchText(item){',start);
   const searchEnd=adapter.indexOf('dialogueTurns(item){',searchStart);
   assert(searchStart>=0&&searchEnd>searchStart,'Adapter dialogueSearchText helper missing');
@@ -71,6 +74,7 @@ export function validateCore(core){
   assert(practiceSearch.includes("lower(A.dialogueSearchText?.(x)||'')"),'Practice dialogue search does not use fail-closed Russian/direct-context authority');
   assert(dialogueSearch.includes("lower(A.dialogueSearchText?.(x)||'')"),'Dialogue search does not use fail-closed Russian/direct-context authority');
   assert(!practiceSearch.includes('lower(textOf(x))')&&!dialogueSearch.includes('lower(textOf(x))'),'Dialogue search may still fall back to generic-language itemText');
+  assert(!core.includes("A.dialogueGroup?.(x)||x.group||'general'"),'Core reintroduced generic-language dialogue group fallback');
   assert(deep.includes('function russianSemanticTags('),'Deep speaking Russian semantic-tag filter missing');
   assert(deep.includes('dialogue.group_ru')&&!/dialogue\.group(?!_ru|_id)/.test(deep),'Deep link routing reads generic dialogue.group instead of group_ru');
   assert(deep.includes('const unitTags=russianSemanticTags('),'Deep link unit tags are not Cyrillic-filtered');
