@@ -1,0 +1,48 @@
+{
+  "schema": "RUSSIAN_BROWSER_PACKAGE_QA_CONTRACT_V1",
+  "contractVersion": 1,
+  "substeps": {
+    "23.1": "package_static_dependency",
+    "23.2": "keyboard_accessibility",
+    "23.3": "responsive_containment",
+    "23.4": "state_persistence_performance",
+    "23.5": "audio_media_browser_capability",
+    "23.6": "cursive_visual_proof",
+    "23.7": "integrated_browser_package_gate"
+  },
+  "targets": {
+    "desktop": {"aspectRatio": "16:9", "minWidth": 1181},
+    "tablet": {"aspectRatio": "3:2", "maxWidth": 1180},
+    "phone": {"aspectRatio": "19.5:9", "maxWidth": 760}
+  },
+  "accessibility": {
+    "criticalInteractiveElementsNamed": true,
+    "modalSemanticsRequired": true,
+    "statusLiveRegionsRequired": true,
+    "keyboardSearchShortcutRequired": true,
+    "focusVisibilityRequired": true
+  },
+  "performance": {
+    "largeOptionalDataLazy": true,
+    "storageSizeGuardRequired": true,
+    "renderMutationGuardRequired": true,
+    "pagedLargeCollectionsRequired": true
+  },
+  "browserCapabilities": {
+    "speechFallbackExplicit": true,
+    "externalMediaOfflineStateExplicit": true,
+    "missingVisualStateExplicit": true
+  },
+  "cursive": {
+    "obligationId": "RUS-CURSIVE-VISUAL-001",
+    "mustDifferFromPrint": true,
+    "fontOnlyProofAllowed": false,
+    "explicitShapeFallbackAllowed": true
+  },
+  "authority": {
+    "noMasteryMutation": true,
+    "noCompletionMutation": true,
+    "noReviewQueueMutation": true,
+    "noSchedulerMutation": true
+  }
+}
