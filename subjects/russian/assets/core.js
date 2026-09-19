@@ -532,6 +532,11 @@ function normalizeRemedialPlan(){
  const plan=state.remedialPlan||{};
  plan.cards=arr(plan.cards);
  plan.completed=plan.completed&&typeof plan.completed==='object'?plan.completed:{};
+ plan.cards.forEach(card=>{
+  const doneAt=Number(state.reviewProgress?.done?.[card.reviewKey]?.at)||0;
+  const createdAt=Number(card.createdAt||plan.createdAt)||0;
+  if(doneAt>createdAt)plan.completed[card.id]=doneAt;
+ });
  const remaining=plan.cards.filter(c=>!plan.completed[c.id]).length;
  plan.active=!!plan.active && plan.cards.length>0 && remaining>0;
  if(plan.cards.length&&remaining===0)plan.active=false;
@@ -543,7 +548,7 @@ function remedialTitle(card,i){return card.title||`Câu sai ${Number(card.index|
 function renderRemedialOverview(){
  const plan=normalizeRemedialPlan(); if(!plan.active)return '';
  const c=remedialCounts(); const cards=plan.cards.filter(x=>!plan.completed[x.id]).slice(0,6);
- return `<section class="panel remedial-overview-panel"><div class="remedial-head"><div><span class="chip warn-chip">LỊCH TRÌNH PHỤ ĐẠO</span><h3>Ôn lại trọng điểm từ bài kiểm tra</h3><p>Còn ${c.remaining}/${c.total} thẻ. Bấm vào một thẻ để mở ôn tập; thẻ được xem là đã hoàn thành và tự ẩn khi xong toàn bộ.</p></div><div class="remedial-score"><b>${Number(plan.lastScore||0).toFixed(1)}</b><span>/10</span></div></div><div class="remedial-card-grid">${cards.map((card,i)=>`<button class="remedial-card" data-remedial-card="${esc(card.id)}"><span>Phụ đạo ${i+1}</span><b>${esc(clip(remedialTitle(card,i),78))}</b><small>${esc([card.levelLabel||card.level,card.skill,card.lessonId].filter(Boolean).join(' · ')||'Câu sai trọng điểm')}</small></button>`).join('')}</div><div class="remedial-foot"><button class="btn primary" data-act="open-remedial-review">Mở toàn bộ câu sai</button><button class="btn soft" data-act="clear-remedial">Ẩn phụ đạo</button></div></section>`;
+ return `<section class="panel remedial-overview-panel"><div class="remedial-head"><div><span class="chip warn-chip">LỊCH TRÌNH PHỤ ĐẠO</span><h3>Ôn lại trọng điểm từ bài kiểm tra</h3><p>Còn ${c.remaining}/${c.total} thẻ. Bấm chỉ để mở đúng câu cần sửa; thẻ chỉ hoàn thành sau khi có kết quả ôn đúng mới.</p></div><div class="remedial-score"><b>${Number(plan.lastScore||0).toFixed(1)}</b><span>/10</span></div></div><div class="remedial-card-grid">${cards.map((card,i)=>`<button class="remedial-card" data-remedial-card="${esc(card.id)}"><span>Phụ đạo ${i+1}</span><b>${esc(clip(remedialTitle(card,i),78))}</b><small>${esc([card.levelLabel||card.level,card.skill,card.lessonId].filter(Boolean).join(' · ')||'Câu sai trọng điểm')}</small></button>`).join('')}</div><div class="remedial-foot"><button class="btn primary" data-act="open-remedial-review">Mở toàn bộ câu sai</button><button class="btn soft" data-act="clear-remedial">Ẩn phụ đạo</button></div></section>`;
 }
 function remedialReviewKey(w){return questionId(w.question||{},Number(w.index)||0,'review')}
 function createRemedialPlan(sum){
@@ -3177,7 +3182,7 @@ function handleClick(e){
  if('examAnswer' in b.dataset){const level=activeExamLevel(); if(examPaperResult(level))return; const qs=getExamQuestions(level); const q=qs[state.examIndex]||{}; const id=examQuestionId(q,state.examIndex,level); state.examProgress.answers[id]=Number(b.dataset.examAnswer);save();render();return}
  if(b.dataset.examPaper){state.examPaperType=b.dataset.examPaper;state.examPaperLevel=b.dataset.examPaper;state.examIndex=0;state.examPage=0;save();render();return}
  if(b.dataset.route){const r=JSON.parse(b.dataset.route||'{}'); closeModal(); if(r.routeSource==='today_schedule'&&r.scheduleStep)markScheduleTask(Number(r.scheduleStep)); trackAccess(r.view||'overview'); state.view=r.view||'overview'; if(r.learnTab)state.learnTab=r.learnTab; if(r.view==='grammar'){if(r.grammarLevel)state.grammarLevel=r.grammarLevel; if(r.grammarTrack)state.grammarTrack=r.grammarTrack; state.grammarIndex=0;} if(r.view==='mindmap'){if(r.mindmapId)state.mindmapId=r.mindmapId; if(r.mindmapNode)state.mindmapNode=r.mindmapNode; else state.mindmapNode='';} if(r.view==='learning'&&r.learnTab==='exam'){const paper=scheduleExamPaperType(r); state.examPaperType=paper; state.examPaperLevel=paper; state.examIndex=0; state.examPage=0; state.examGateSource={routeSource:r.routeSource||'',stage:r.stage||currentStageId(),part:Number(r.part||gatePart()),sessionKey:r.sessionKey||sessionKey(),scheduleStep:Number(r.scheduleStep||0),paperType:paper,at:Date.now()};} if(r.view==='learning'&&r.learnTab==='review'&&r.reviewFilter){state.reviewFilter=r.reviewFilter; state.reviewIndex=0; state.reviewPage=0; state.reviewAnswer=null;} if(r.mode==='handwriting')state.writingMode='handwriting'; save();render();return}
- if(b.dataset.remedialCard){const id=b.dataset.remedialCard; const plan=normalizeRemedialPlan(); const card=plan.cards.find(x=>x.id===id); if(card){state.remedialPlan.completed[id]=Date.now(); state.view='learning'; state.learnTab='review'; state.reviewFilter='wrong'; state.reviewLesson='all'; const remaining=remedialCounts().remaining; if(remaining<=0)state.remedialPlan.active=false; save(); render(); toast(remaining<=0?'Đã hoàn thành toàn bộ lịch phụ đạo':'Đã hoàn thành 1 thẻ phụ đạo'); return}}
+ if(b.dataset.remedialCard){const id=b.dataset.remedialCard; const plan=normalizeRemedialPlan(); const card=plan.cards.find(x=>x.id===id); if(card){state.view='learning'; state.learnTab='review'; state.reviewFilter='wrong'; state.reviewLesson=card.lessonId||'all'; save(); render(); toast('Đã mở thẻ phụ đạo; chưa tính hoàn thành cho tới khi có kết quả ôn đúng mới'); return}}
  if(b.dataset.uiTheme){state.interfaceTheme=b.dataset.uiTheme; applyInterface(); save(); openModal(renderInterfaceModal(),'interface'); return}
  if(b.dataset.uiDensity){state.interfaceDensity=b.dataset.uiDensity; applyInterface(); save(); openModal(renderInterfaceModal(),'interface'); return}
  if(b.dataset.aiQuick){state.aiOutput=aiGenerate(b.dataset.aiQuick,''); save(); openModal(renderAiMentor(),'ai'); return}
@@ -3354,6 +3359,28 @@ function handleKeys(e){
    if(e.key==='ArrowRight'){state.grammarIndex++;save();render();e.preventDefault();return}
  }
 }
+function handleRepairRoute(event){
+ const detail=event?.detail||{}, route=detail.route||{}, target=route.repairTarget||detail.target||{};
+ if(route.view)state.view=route.view;
+ if(route.learnTab)state.learnTab=route.learnTab;
+ ['lessonId','practiceDialogueId','practiceLineIndex','dialogueId','dialogueLineIndex','deepSpeakingId','deepSpeakingStep','reviewFilter','reviewLesson','vocabIndex','vocabPage','writingMode'].forEach(k=>{
+  if(route[k]!==undefined&&route[k]!==null&&route[k]!=='')state[k]=route[k];
+ });
+ if(state.view==='vocab'&&route.vocabIndex!==undefined)state.vocabPage=Math.floor((Number(route.vocabIndex)||0)/(VOCAB_PAGE_SIZE||20));
+ save();render();
+ setTimeout(()=>{
+  if(target.kind==='cyrillic')window.RussianCyrillicLiteracy?.openRepair?.(target.section,target.letter);
+  if(target.kind==='dictation')window.RussianDictation?.openRepair?.(target.stage,target.key);
+  if(target.kind==='dictation-stage')window.RussianDictation?.setStage?.(target.stage);
+  if(target.kind==='reading'){
+   if(target.id)window.RussianReadingBridge?.openRepair?.(target.stage,target.id);
+   else window.RussianReadingBridge?.setStage?.(target.stage);
+  }
+  if(target.kind==='multimodal')window.RussianMultimodalReview?.focusRepair?.(target.modality);
+  if(target.kind==='speaking_repair')window.RussianSpeakingCoach?.startRepair?.();
+ },60);
+}
+
 function bridge(){
  const incoming=['BAUMAN_ASSIGN_TASK','BAUMAN_PLANNING_MISSION','BAUMAN_TODAY_TASK','BAUMAN_MAIN_TODAY','BAUMAN_TODAY_GOAL','BAUMAN_SCHEDULE_TODAY'];
  const status=A.exportSubjectStatus?A.exportSubjectStatus():{subjectId:A.id||'russian',version:VERSION,packageRoot:PACKAGE_ROOT,entry:'subjects/russian/index.html',dataFiles:DATA_FILES,selfContained:true};
@@ -3383,6 +3410,6 @@ function bridge(){
  });
  ready();
 }
-async function init(){loadState(); await loadData(); buildShell(); document.addEventListener('pointerdown',handleMindMapDrag,{passive:true}); document.addEventListener('pointerover',handleMindMapHover,{passive:true}); document.addEventListener('pointerout',handleMindMapHoverOut,{passive:true}); document.addEventListener('dblclick',handleMindMapDoubleClick); document.addEventListener('click',handleClick); document.addEventListener('change',handleChange); document.addEventListener('input',handleInput); document.addEventListener('keydown',handleKeys); window.addEventListener('resize',()=>{if(state.view==='mindmap')requestAnimationFrame(()=>updateMindMapConnectors(document.querySelector('[data-mindmap-canvas=\"1\"]')));},{passive:true}); $('#modalClose').addEventListener('click',closeModal); $('#modal').addEventListener('click',e=>{if(e.target.id==='modal')closeModal()}); $('#themeBtn').addEventListener('click',()=>openModal(renderInterfaceModal(),'interface')); $('#aiBtn').addEventListener('click',()=>openModal(renderAiMentor(),'ai')); bridge(); render(); }
+async function init(){loadState(); await loadData(); buildShell(); document.addEventListener('pointerdown',handleMindMapDrag,{passive:true}); document.addEventListener('pointerover',handleMindMapHover,{passive:true}); document.addEventListener('pointerout',handleMindMapHoverOut,{passive:true}); document.addEventListener('dblclick',handleMindMapDoubleClick); document.addEventListener('click',handleClick); document.addEventListener('change',handleChange); document.addEventListener('input',handleInput); document.addEventListener('keydown',handleKeys); window.addEventListener('resize',()=>{if(state.view==='mindmap')requestAnimationFrame(()=>updateMindMapConnectors(document.querySelector('[data-mindmap-canvas=\"1\"]')));},{passive:true}); window.addEventListener('russian:repair-route',handleRepairRoute); $('#modalClose').addEventListener('click',closeModal); $('#modal').addEventListener('click',e=>{if(e.target.id==='modal')closeModal()}); $('#themeBtn').addEventListener('click',()=>openModal(renderInterfaceModal(),'interface')); $('#aiBtn').addEventListener('click',()=>openModal(renderAiMentor(),'ai')); bridge(); render(); }
 init();
 })();
