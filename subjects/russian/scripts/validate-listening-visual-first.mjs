@@ -34,7 +34,10 @@ const checks=[
   ['recognition scoring is capability-gated and fail-closed', recognition.includes("if(!cap.canScore||!alphabet.length)return false")],
   ['recognition evidence never advances alphabet without handwriting strokes', recognition.includes("RussianLearningFlow?.touch?.('alphabet'") && flow.includes("if(step==='alphabet')return Number(s.strokeActions||0)>0")],
   ['recognition state records attempts/correct without mastery writes', recognition.includes('recognitionAttempts:state.attempts') && recognition.includes('recognitionCorrect:state.correct') && !recognition.includes('mastery')],
-  ['recognition render is idempotent under MutationObserver', recognition.includes('dataset.renderSig') && recognition.includes('if(banner.dataset.renderSig!==capSig)') && recognition.includes('if(box.dataset.renderSig!==drillSig)')]
+  ['recognition render is idempotent under MutationObserver', recognition.includes('dataset.renderSig') && recognition.includes('if(banner.dataset.renderSig!==capSig)') && recognition.includes('if(box.dataset.renderSig!==drillSig)')],
+  ['handwriting misses enter Review Queue with exact writing resume route', recognition.includes("setResume?.(route,'handwriting_recognition')") && recognition.includes("addReview?.('handwriting:'") && recognition.includes("'handwriting_recognition_miss'") && recognition.includes("handwritingIndex:Number(q.item.__sourceIndex??q.index)||0")],
+  ['correct recognition may clear only its handwriting review item', recognition.includes("removeReview?.('handwriting:'+clean(q.item.id))")],
+  ['Review Queue integration still has no mastery write', !recognition.includes('mastery')]
 ];
 
 const failed=checks.filter(([,ok])=>!ok);
