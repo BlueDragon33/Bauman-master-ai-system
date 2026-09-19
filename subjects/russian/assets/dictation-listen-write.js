@@ -41,7 +41,8 @@
     return s;
   }
   function speak(text){
-    if(!text||!('speechSynthesis' in window))return false;
+    if(window.RussianBrowserCapabilities?.speak)return window.RussianBrowserCapabilities.speak(text,.76);
+    if(!text||!('speechSynthesis' in window)||!window.SpeechSynthesisUtterance)return false;
     const u=new SpeechSynthesisUtterance(String(text));u.lang='ru-RU';u.rate=.76;speechSynthesis.cancel();speechSynthesis.speak(u);return true;
   }
   function listen(){
