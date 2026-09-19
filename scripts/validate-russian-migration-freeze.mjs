@@ -84,6 +84,8 @@ export function validateLearnerRuntime({core,visual,dialogue,aiDirect,aiGuard,cu
   assert(skillGate.includes('advisoryOnly:true')&&skillGate.includes('crossSkillInference:false'),'Skill-gate advisory/isolation freeze weakened');
   assert(runtime.includes('verified&&shellPrepared>=SHELL_REQUIRED.length&&prepared>=CORE_DATA.length'),'Offline verified readiness freeze weakened');
   assert(capability.includes("RUSSIAN_BROWSER_CAPABILITY_V1")&&capability.includes('speechReady'),'Browser capability fallback missing');
+  assert(core.includes("modal.setAttribute('aria-hidden','false')")&&core.includes("modal.setAttribute('aria-hidden','true')"),'Modal ARIA lifecycle missing from frozen runtime');
+  assert(core.includes('modalReturnFocus=document.activeElement')&&core.includes('if(back&&back.isConnected)'),'Modal focus lifecycle missing from frozen runtime');
 
   const order=['assets/visual-vocabulary-runtime.js','assets/ai-direct-explanation.js','assets/dialogue-scaffold.js','assets/browser-capabilities.js','assets/core.js','assets/cursive-glyphs.js','assets/cyrillic-literacy.js','assets/weakness-repair-router.js','assets/runtime-optimizer.js'];
   let prev=-1;
