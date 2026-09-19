@@ -11,7 +11,7 @@ const site=fs.readFileSync('scripts/prepare-chatgpt-site.mjs','utf8');
 
 const checks=[
   ['schema exists', recognition.includes("RUSSIAN_HANDWRITING_RECOGNITION_V1")],
-  ['capability fail-closed', recognition.includes("trusted?'approved-handwriting-authority':available?'local-script-preview':'reference-only'") && recognition.includes("if(!cap.canScore||!alphabet.length)return false")],
+  ['capability fail-closed', recognition.includes("const mode=trusted?'approved-handwriting-authority'") && recognition.includes("metadataReady&&authorityRuntime.status==='verifying'?'authority-verifying'") && recognition.includes("metadataReady&&authorityRuntime.status==='failed'?'authority-invalid'") && recognition.includes("if(!cap.canScore||!alphabet.length)return false")],
   ['Cyrillic metric probe exists', recognition.includes("PROBE='ДдЖжФфЯяШш'") && recognition.includes('Math.abs(candidate-baseline)>0.5')],
   ['no remote font/runtime dependency', !/https?:\/\//i.test(recognition+authority)],
   ['local handwriting source only', recognition.includes("fetch('data/handwriting.json')")],
