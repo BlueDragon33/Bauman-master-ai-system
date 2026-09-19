@@ -1,6 +1,6 @@
 # Lượt 27 — Current Plan · Bước 105–108
 
-Status: `B105_BLOCKED · L27-F1_ACTIVE · L27-H1_ACTIVE`
+Status: `PASS_B105 · PASS_L27_F1_H1 · B106_IN_PROGRESS`
 
 Prerequisite: L26/B104 documentation/final-state head `999dd9910c4d2d87c7e947aa5d9b8d04b60f2555` passed the complete six-gate set.
 
@@ -23,7 +23,9 @@ Locked rules:
 
 ## B106 — Read-only readiness projector
 
-Build an in-memory projector that recomputes current Scheduler coverage and evaluates current Mastery prerequisite semantics. No manual colors/results.
+**ACTIVE.** Build an in-memory projector that recomputes current Scheduler coverage and evaluates current Mastery prerequisite semantics. No manual colors/results.
+
+B105/F1/H1 accepted head: `f87d6a1e528c764c432981750030a5adc9d35466` (6/6 gates PASS).
 
 ## B107 — Adversarial readiness validation
 
