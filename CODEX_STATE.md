@@ -2,7 +2,7 @@
 
 Current task: `RUSSIAN_LISTENING_VISUAL_FIRST_ARCHITECTURE`
 
-Status: `RUSSIAN_RUNTIME_HARDENING_IN_PROGRESS`
+Status: `RUSSIAN_HANDWRITING_RECOGNITION_ROUND_ACTIVE`
 
 Date: 2026-09-19
 Branch: `work/russian-listening-visual-first-architecture`
@@ -30,24 +30,38 @@ This branch does not expand Foundation authority.
 
 ## Validation
 
-Baseline head `628e97dee043ee926366cf884750efb4bb94b7f8`: 9/9 workflows GREEN.
+Accepted hardening checkpoint: `5db5f02b5ab00be71f0786697d38c965110b2d26`.
 
-Post-baseline hardening:
-- fixed 7-step progress denominator;
-- prevented generic clicks in Writing view from creating handwriting evidence;
-- added gesture-based canvas stroke evidence;
-- added regression checks for all three fixes.
+Gate result on accepted checkpoint:
+- Russian Reference UI Gate — PASS
+- Whole System Integration Gate — PASS
+- Packaged Hub Responsive Acceptance — PASS
+- Academic 2026 Prerequisite Gate — PASS
+- Bauman Runtime Device Gate CI — PASS
+- Bauman Cloudflare Preview CI — PASS
+- Windows checkout safety — PASS
+- Foundation Domain Model Gate — PASS
+- Content Asset Provenance + Content Resolution/Delivery — PASS
 
-Latest hardening head: `24f3630e52039cd318e8052805cd3d10b14a0886`.
-CI for this new head must be green before promotion.
+Repairs included:
+- seven-step progress denominator;
+- gesture-only handwriting stroke evidence;
+- real-activity next-step suggestion;
+- real-evidence progress counter;
+- support-view status truthfulness;
+- packaged Hub safe-shell readiness race;
+- explicit handwriting presentation authority.
 
 ## Auto-generated next work
 
-1. Audit print ↔ cursive presentation authority and offline-safe handwriting assets.
-2. Add deterministic fallback behavior when script fonts are unavailable.
-3. Add recognition drill for printed form → handwritten form without Vietnamese translation.
-4. Re-run Russian Reference UI + Whole System + Windows + Preview gates.
-5. Keep promotion blocked until branch-history reconciliation prevents unrelated unpromoted Foundation commits from entering the Russian promotion path.
+### R-HW1 — Deterministic Handwriting Recognition Layer
+
+1. B1 — capability + presentation authority runtime; fail closed when no reliable Cyrillic script rendering is available.
+2. B2 — print → handwriting recognition drill; Russian-only visual choices, no Vietnamese answer translation.
+3. B3 — recognition evidence contract; attempts/correct are evidence only and never auto-master a letter.
+4. B4 — exact resume + Review Queue integration for weak/missed letters.
+5. B5 — offline/package/mobile/Windows parity and deterministic fallback.
+6. B6 — adversarial audit + closeout; keep promotion blocked until all gates are green.
 
 ## Branch/merge rule
 
