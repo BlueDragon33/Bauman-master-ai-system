@@ -137,7 +137,8 @@ export function validateAssetBehavior(asset){
   const sandbox={window:root,document,console};
   vm.createContext(sandbox);
   vm.runInContext(asset,sandbox,{filename:'asset-reliability.js'});
-  assert(root.RussianAssetReliability?.fallback==='missing_visual_asset','Asset reliability API missing');
+  assert(root.RussianAssetReliability?.schema==='RUSSIAN_ASSET_RELIABILITY_V1','Asset reliability API missing');
+  assert(root.RussianAssetReliability?.fallback==='missing_visual_asset','Asset reliability fallback must remain missing_visual_asset');
   const img={
     tagName:'IMG',dataset:{},
     matches:()=>true,closest:()=>null,
