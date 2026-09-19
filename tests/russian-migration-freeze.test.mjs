@@ -1,0 +1,49 @@
+import assert from 'node:assert/strict';
+import fs from 'node:fs';
+import {
+  validateContract,
+  validatePlan,
+  validateCompatibility,
+  validateLearnerRuntime,
+  validateNoDestructiveReset
+} from '../scripts/validate-russian-migration-freeze.mjs';
+
+const read=p=>fs.readFileSync(p,'utf8');
+const contract=JSON.parse(read('subjects/russian/contracts/migration-freeze-contract.v1.json'));
+const bundle={
+  core:read('subjects/russian/assets/core.js'),
+  adapter:read('subjects/russian/assets/subject-adapter.js'),
+  hostBridge:read('subjects/shared/host-bridge.js'),
+  manifest:read('subjects/russian/subject-manifest.json'),
+  cleanup:read('subjects/russian/assets/ui-cleanup-contract.js'),
+  visual:read('subjects/russian/assets/visual-vocabulary-runtime.js'),
+  dialogue:read('subjects/russian/assets/dialogue-scaffold.js'),
+  aiDirect:read('subjects/russian/assets/ai-direct-explanation.js'),
+  aiGuard:read('subjects/russian/assets/ai-mentor-guard.js'),
+  cursive:read('subjects/russian/assets/cursive-glyphs.js'),
+  repair:read('subjects/russian/assets/weakness-repair-router.js'),
+  skillGate:read('subjects/russian/assets/skill-gated-assessment.js'),
+  runtime:read('subjects/russian/assets/runtime-optimizer.js'),
+  capability:read('subjects/russian/assets/browser-capabilities.js'),
+  index:read('subjects/russian/index.html')
+};
+const plan=read('subjects/russian/RUSSIAN_DEVELOPMENT_PLAN.md');
+const copy=()=>structuredClone(contract);
+
+assert.equal(validateContract(copy()),true);
+assert.equal(validatePlan(plan),true);
+assert.equal(validateCompatibility(bundle),true);
+assert.equal(validateLearnerRuntime(bundle),true);
+assert.equal(validateNoDestructiveReset({core:bundle.core,repair:bundle.repair}),true);
+
+{const x=copy();x.promotion.mergeToMainAutomatic=true;assert.throws(()=>validateContract(x),/Promotion safety weakened/)}
+{const x=copy();x.compatibility.legacySavedStateFieldsMayExecuteTranslationUI=true;assert.throws(()=>validateContract(x),/Legacy translation state regained/)}
+assert.throws(()=>validatePlan(plan.replace('| 23 | Browser/package/accessibility/performance QA | GREEN |','| 23 | Browser/package/accessibility/performance QA | ACTIVE |')),/Turn 23 is not GREEN/);
+assert.throws(()=>validateCompatibility({...bundle,core:bundle.core+"\nfunction toggleActiveHideVi(){}"}),/Dead translation toggle/);
+assert.throws(()=>validateCompatibility({...bundle,hostBridge:bundle.hostBridge.replace(/BAUMAN_SUBJECT_BRIDGE_V1/g,'BAUMAN_SUBJECT_BRIDGE_V2')}),/BAUMAN_SUBJECT_BRIDGE_V1/);
+assert.throws(()=>validateLearnerRuntime({...bundle,visual:bundle.visual+"\nconst meaning_vi='legacy';"}),/translation field/);
+assert.throws(()=>validateLearnerRuntime({...bundle,index:bundle.index.replace('<script src="assets/cursive-glyphs.js"></script>','').replace('<script src="assets/cyrillic-literacy.js"></script>','<script src="assets/cyrillic-literacy.js"></script>\n<script src="assets/cursive-glyphs.js"></script>')}),/load order invalid/);
+assert.throws(()=>validateNoDestructiveReset({core:bundle.core+"\nlocalStorage.clear();"}),/Destructive localStorage.clear/);
+
+console.log('RUSSIAN_MIGRATION_FREEZE_NEGATIVE_TEST=PASS');
+console.log(JSON.stringify({negativeCases:8},null,2));
