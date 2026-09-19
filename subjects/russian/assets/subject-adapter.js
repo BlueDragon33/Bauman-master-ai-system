@@ -285,13 +285,20 @@ window.SUBJECT_ADAPTER = {
   },
   dialogueTurns(item){
     const speakers = Array.isArray(item?.speakers) ? item.speakers : [];
-    if(Array.isArray(item?.utterances) && item.utterances.length) return item.utterances.map((turn,i)=>{
-      if(typeof turn==='string') return {speaker:speakers[i]||(i%2?'B':'A'),ru:turn};
+    const project=(turn,i)=>{
+      const fallbackSpeaker=speakers[i]||(i%2?'B':'A');
+      if(typeof turn==='string'){
+        const text=String(turn||'').trim();
+        return {speaker:fallbackSpeaker,ru:/[А-Яа-яЁё]/.test(text)?text:''};
+      }
       const {vi,vi_text,translation_vi,gloss_vi,meaning_vi,purpose_vi,clue_en,meaning_en,translation_en,en,...safe}=turn||{};
-      return {...safe,speaker:safe.speaker||speakers[i]||(i%2?'B':'A'),ru:safe.ru||safe.text_ru||safe.text||''};
-    });
+      const candidate=safe.ru||safe.text_ru||safe.text||'';
+      const text=String(candidate||'').trim();
+      return {...safe,speaker:safe.speaker||fallbackSpeaker,ru:/[А-Яа-яЁё]/.test(text)?text:''};
+    };
+    if(Array.isArray(item?.utterances) && item.utterances.length) return item.utterances.map(project);
     const turns = Array.isArray(item?.turns) ? item.turns : [];
-    return turns.map((ru,i)=>({speaker: speakers[i] || (i % 2 ? 'B' : 'A'), ru}));
+    return turns.map(project);
   },
   mediaTitle(item){ return item?.title || item?.id || 'Media'; },
   mediaCategory(item){ return item?.category || item?.genre || item?.sourceType || 'general'; },
