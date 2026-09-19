@@ -26,7 +26,9 @@
     "failedOrEmptyRecognitionDoesNotCountAttempt": true,
     "manualSelfAssessmentDoesNotCreateSpeakingEvidence": true,
     "deepSpeakingRecognitionRequired": true,
-    "deepSpeakingSelfAssessmentSeparate": true
+    "deepSpeakingSelfAssessmentSeparate": true,
+    "recognitionSessionTokenRequired": true,
+    "staleRecognitionCallbacksIgnored": true
   },
   "feedback": {
     "explicitPronunciationRepair": true,
@@ -46,6 +48,7 @@
     "recognitionConfirmedAttempts": true,
     "learningFlowRecognitionOnly": true,
     "selfAssessmentStoredSeparately": true,
-    "deepSpeakingAttemptsRecognitionConfirmed": true
+    "deepSpeakingAttemptsRecognitionConfirmed": true,
+    "staleRecognitionCannotCreateEvidence": true
   }
 }
