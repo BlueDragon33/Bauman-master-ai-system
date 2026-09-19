@@ -41,7 +41,7 @@ export function validateRuntime(core){
   assert(practice.includes("const slowReady=heardCount>=2;"),'Slow-listen readiness must be stricter than first-listen unlock');
   assert(practice.includes('data-act="speak-line-slow"')&&practice.includes("(slowReady?'':'disabled')"),'Slow-listen button is not disabled until repair readiness');
   assert(core.includes("onEnd:meta=>{if(inPracticeMode()){markPracticeLineHeard(d,idx);render()}"),'Normal listen does not unlock text after playback completion');
-  assert(core.includes("const played=speak(line.ru||line.text||line.text_ru||line,.85,{onStart:"),'Normal listen does not expose playback-completion evidence');
+  assert(core.includes("const played=speak(line.ru||line.text||line.text_ru||line,.85,{onEnd:"),'Normal listen does not expose playback-completion evidence');
   assert(core.includes("if(!played)toast('Chưa phát được âm tiếng Nga; lượt nghe không được tính.')"),'Failed playback does not preserve locked hear-before-see state');
   assert(!core.includes("speak(line.ru||line.text||line.text_ru||line); if(inPracticeMode()){markPracticeLineHeard"),'Click-equals-heard behavior returned');
   const slow=core.match(/if\(act==='speak-line-slow'\)\{([^}]*)\}/);
