@@ -31,6 +31,7 @@ assert.throws(
 assert.throws(()=>validateAdapter(adapter.replace("dialogueTitle(item){ return item?.title_ru","dialogueTitle(item){ return item?.context_title_vi || item?.title_ru")),/prohibited translation field/);
 assert.throws(()=>validateAdapter(adapter.replace("item?.id,item?.title_ru,item?.context_title_ru","item?.id,item?.title,item?.title_ru,item?.context_title_ru")),/generic-language semantic fields/);
 assert.throws(()=>validateAdapter(adapter.replace("dialogueGroup(item){ return item?.group_ru || item?.group_id || item?.source_group_id || 'general'; }","dialogueGroup(item){ return item?.group || item?.group_ru || 'general'; }")),/group|generic-language/);
+assert.throws(()=>validateAdapter(adapter.replace("const {vi,vi_text,translation_vi,gloss_vi,meaning_vi,purpose_vi,clue_en,meaning_en,translation_en,en,...safe}=turn||{};","const {vi,vi_text,translation_vi,gloss_vi,...safe}=turn||{};")),/sanitize all prohibited translation fields/);
 assert.throws(()=>validateCore(core.replace("unit?.unit_title_ru","unit?.unit_title_vi||unit?.unit_title_ru")),/translation scaffold/);
 assert.throws(()=>validateCore(core.replace("return Object.entries(v).filter(([k,val])=>val&&typeof val==='object'&&(/_ru$|^ru_|russian/i.test(k)||Array.isArray(val))).flatMap(([,val])=>deepLines(val));","return Object.values(v).flatMap(deepLines);")),/fail closed|serializing unknown semantic fields/);
 assert.throws(()=>validateCore(core.replace("p.question_ru||p.q_ru||p.ru||'Как вы ответите?'", "p.question_ru||p.q_ru||p.ru||p.question||'Как вы ответите?'")),/generic-language question\/answer/);
@@ -45,4 +46,4 @@ assert.throws(()=>validateCore(core.replace("A.dialogueGroup?.(d)||d.group_ru||d
 assert.throws(()=>validateCore(core.replace("if(state.dialogueGroup!=='all'&&!groups.includes(state.dialogueGroup))state.dialogueGroup='all';","")),/group state is not recovered/);
 assert.throws(()=>validateHelper(js.replace("dialogue?.group_ru,dialogue?.context_title_ru","dialogue?.group,dialogue?.context_title_ru")),/Russian semantic context|generic semantic metadata/);
 console.log('RUSSIAN_DIALOGUE_SCAFFOLD_NEGATIVE_TEST=PASS');
-console.log(JSON.stringify({negativeCases:21},null,2));
+console.log(JSON.stringify({negativeCases:22},null,2));
