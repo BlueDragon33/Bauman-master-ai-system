@@ -2,7 +2,7 @@
 
 Current task: `RUSSIAN_LISTENING_VISUAL_FIRST_ARCHITECTURE`
 
-Status: `RUSSIAN_GATE_GREEN_SYSTEM_GATES_RUNNING`
+Status: `RUSSIAN_RUNTIME_HARDENING_IN_PROGRESS`
 
 Date: 2026-09-19
 Branch: `work/russian-listening-visual-first-architecture`
@@ -30,9 +30,24 @@ This branch does not expand Foundation authority.
 
 ## Validation
 
-Russian Reference UI Gate: GREEN on PR #55 head `f2259364657eda339d79b1c33e5a99cad6780bf8`.
+Baseline head `628e97dee043ee926366cf884750efb4bb94b7f8`: 9/9 workflows GREEN.
 
-Whole-system dependent browser/device/preview jobs were still running when this state file was prepared.
+Post-baseline hardening:
+- fixed 7-step progress denominator;
+- prevented generic clicks in Writing view from creating handwriting evidence;
+- added gesture-based canvas stroke evidence;
+- added regression checks for all three fixes.
+
+Latest hardening head: `24f3630e52039cd318e8052805cd3d10b14a0886`.
+CI for this new head must be green before promotion.
+
+## Auto-generated next work
+
+1. Audit print ↔ cursive presentation authority and offline-safe handwriting assets.
+2. Add deterministic fallback behavior when script fonts are unavailable.
+3. Add recognition drill for printed form → handwritten form without Vietnamese translation.
+4. Re-run Russian Reference UI + Whole System + Windows + Preview gates.
+5. Keep promotion blocked until branch-history reconciliation prevents unrelated unpromoted Foundation commits from entering the Russian promotion path.
 
 ## Branch/merge rule
 
