@@ -287,7 +287,7 @@ window.SUBJECT_ADAPTER = {
     const speakers = Array.isArray(item?.speakers) ? item.speakers : [];
     if(Array.isArray(item?.utterances) && item.utterances.length) return item.utterances.map((turn,i)=>{
       if(typeof turn==='string') return {speaker:speakers[i]||(i%2?'B':'A'),ru:turn};
-      const {vi,vi_text,translation_vi,gloss_vi,...safe}=turn||{};
+      const {vi,vi_text,translation_vi,gloss_vi,meaning_vi,purpose_vi,clue_en,meaning_en,translation_en,en,...safe}=turn||{};
       return {...safe,speaker:safe.speaker||speakers[i]||(i%2?'B':'A'),ru:safe.ru||safe.text_ru||safe.text||''};
     });
     const turns = Array.isArray(item?.turns) ? item.turns : [];
