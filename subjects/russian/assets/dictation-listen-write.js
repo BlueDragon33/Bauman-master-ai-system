@@ -117,5 +117,14 @@
     }catch(error){console.warn('Dictation unavailable:',error);letters=[];words=[];texts=[];}
     mount();const view=document.getElementById('view');if(view)new MutationObserver(()=>mount()).observe(view,{childList:true,subtree:true});
   });
-  root.RussianDictation=Object.freeze({schema:SCHEMA,stages:Object.freeze([...STAGES]),get:()=>JSON.parse(JSON.stringify(state)),setStage});
+  function openRepair(stage,key){
+    if(!STAGES.includes(stage))return false;
+    state.stage=stage;
+    const list=rows();
+    const idx=list.findIndex((item,i)=>(stage+':'+(item?.id||item?.letter||i))===String(key||''));
+    if(idx<0)return false;
+    state.index=idx;state.draft='';state.feedback=null;save();render();return true;
+  }
+
+  root.RussianDictation=Object.freeze({schema:SCHEMA,stages:Object.freeze([...STAGES]),get:()=>JSON.parse(JSON.stringify(state)),setStage,openRepair});
 })(window);
