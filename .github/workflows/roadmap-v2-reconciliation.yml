@@ -63,6 +63,7 @@ on:
       - 'scripts/roadmap-v2-promotion-eligibility-harness.mjs'
       - 'scripts/validate-roadmap-v2-l31-b122.mjs'
       - 'scripts/validate-roadmap-v2-l31-b123.mjs'
+      - 'scripts/validate-roadmap-v2-l31-b124.mjs'
       - '.github/workflows/roadmap-v2-reconciliation.yml'
 
 permissions:
@@ -169,6 +170,8 @@ jobs:
         run: node scripts/validate-roadmap-v2-l31-b122.mjs
       - name: Validate current L31 B123 adversarial promotion eligibility
         run: node scripts/validate-roadmap-v2-l31-b123.mjs
+      - name: Validate current L31 B124 full-system closeout
+        run: node scripts/validate-roadmap-v2-l31-b124.mjs
       - name: Validate Foundation V2 L9
         run: node scripts/validate-foundation-domain-model.mjs
       - name: Validate current system integration

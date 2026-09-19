@@ -1,6 +1,6 @@
 # Lượt 31 — Current Plan · Bước 121–124
 
-Status: `B121_PASS · B122_PASS · B123_ACTIVE · B124_BLOCKED`
+Status: `B121_PASS · B122_PASS · B123_PASS · B124_ACTIVE`
 
 Prerequisite: L30 final marker head `d17f690b25c7b8e05f8183fe2223b1c9622cc38d` passed the complete six-gate set.
 
@@ -29,10 +29,10 @@ L31 adds a data-only Promotion Eligibility layer. It does **not** authorize rele
 
 ## B123 — Adversarial Promotion Eligibility validation
 
-**ACTIVE — 24 adversarial cases prepared.** Attack forged candidate identity, forged Human Review result/state, upstream authority injection, manual override, mutation escalation, persistence, release authorization, production promotion and runtime wiring leaks.
+**PASS — 24/24 adversarial cases.** Forged candidate identity, forged Human Review result/state, upstream authority injection, manual override, mutation escalation, persistence, release authorization, production promotion and runtime wiring leaks all fail closed.
 
 ## B124 — Full-system closeout
 
-Compose B121–B123 and rerun the complete six-gate set.
+**ACTIVE.** Compose B121–B123, re-check canonical/runtime isolation and rerun the complete six-gate set.
 
 Any defect creates `L31-Fx`; any newly discovered missing architecture creates `L31-Hx`. Later steps remain blocked until the repair/hardening head passes the complete six-gate set.

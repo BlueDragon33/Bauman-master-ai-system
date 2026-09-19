@@ -6,16 +6,16 @@
 ## Active track
 
 - Current round: **Lượt 31**
-- Current step: **L31/B123 — ADVERSARIAL PROMOTION ELIGIBILITY · IN_PROGRESS**
+- Current step: **L31/B124 — FULL-SYSTEM PROMOTION ELIGIBILITY CLOSEOUT · IN_PROGRESS**
 - L22 closeout: **B88 + H1 — PASS**
-- Status: **L23_COMPLETE · L24_COMPLETE · L25_COMPLETE · L26_COMPLETE · L27_COMPLETE · L28_COMPLETE · L29_COMPLETE_THROUGH_B116 · L30_COMPLETE_THROUGH_B120 · L31_B121_COMPLETE · L31_B122_COMPLETE · L31_B123_ACTIVE**
-- Last recorded six-gate head: `d17f690b25c7b8e05f8183fe2223b1c9622cc38d`
+- Status: **L23_COMPLETE · L24_COMPLETE · L25_COMPLETE · L26_COMPLETE · L27_COMPLETE · L28_COMPLETE · L29_COMPLETE_THROUGH_B116 · L30_COMPLETE_THROUGH_B120 · L31_B121_COMPLETE · L31_B122_COMPLETE · L31_B123_COMPLETE · L31_B124_ACTIVE**
+- Last recorded six-gate head: `89f347de52c595849a5a0b4ccb7117e2f20fe412`
 - Production/runtime activation by Roadmap V2: **disconnected**
 - Legacy/source destructive migration: **not executed**
-- Last completed: **L30 final-state marker — PASS on complete six-gate set**
+- Last completed: **L31/B123 adversarial Promotion Eligibility — 24/24 PASS on complete six-gate set**
 - Last hardening: **L29-F2 validator/harness syntax repair — PASS; no gate weakening**
-- Current official step: **L31/B123 — adversarial Promotion Eligibility validation**
-- B124 remains blocked until B123 passes the complete six-gate set.
+- Current official step: **L31/B124 — full-system Promotion Eligibility closeout**
+- B123 is closed. B124 functional closeout is active; later-round opening remains blocked until B124 and its documentation/final-state markers pass the complete six-gate set.
 
 ## L22/B88 complete gate evidence
 
@@ -824,3 +824,19 @@ Accepted B121 head: `bf7908e67624f35604206280df91f3f7a9268bc0`
 - Whole System Integration — run `35453928301` — PASS
 
 B121 is closed. B122 is active.
+
+
+## L31/B123 gate evidence
+
+Accepted B123 head: `89f347de52c595849a5a0b4ccb7117e2f20fe412`
+
+- Roadmap V2 Current Gate — run `35455249051` — PASS
+- Foundation Domain Model — run `35455249041` — PASS
+- Windows checkout safety — run `35455249039` — PASS
+- Russian Reference UI — run `35455249047` — PASS
+- Cloudflare Preview — run `35455249025` — PASS
+- Whole System Integration — run `35455249061` — PASS
+
+B123 adversarial Promotion Eligibility validation: **24/24 PASS**. Candidate/reviewer/consumer impersonation, caller-supplied eligibility or Human Review result, nested authority injection, persisted mastery, manual override and post-projection privilege escalation all fail closed.
+
+B124 full-system closeout is active. No release-review authorization, production promotion, production consumer, persistence, dashboard, schedule/calendar write, runtime activation, notification write or automatic action has been enabled.
