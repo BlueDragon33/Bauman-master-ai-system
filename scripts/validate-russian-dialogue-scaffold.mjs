@@ -55,7 +55,7 @@ export function validateAdapter(adapter){
   assert(start>=0&&end>start,'Adapter dialogue helper block missing');
   const block=adapter.slice(start,end);
   for(const token of ['context_title_vi','communicative_functions_vi','vi_turns'])assert(!block.includes(token),`Adapter dialogue helper references prohibited translation field: ${token}`);
-  assert(block.includes('const {vi,vi_text,translation_vi,gloss_vi,...safe}=turn||{};'),'Adapter dialogue turns must explicitly sanitize legacy translation fields');
+  assert(block.includes('const {vi,vi_text,translation_vi,gloss_vi,meaning_vi,purpose_vi,clue_en,meaning_en,translation_en,en,...safe}=turn||{};'),'Adapter dialogue turns must explicitly sanitize all prohibited translation fields');
   assert(block.includes('title_ru')&&block.includes('context_title_ru'),'Adapter dialogue title is not Russian/direct-context first');
   assert(block.includes("dialogueGroup(item){ return item?.group_ru || item?.group_id || item?.source_group_id || 'general'; }"),'Adapter dialogue group must prefer Russian label and fail closed to inert IDs');
   assert(!block.includes("dialogueGroup(item){ return item?.group ||"),'Adapter dialogue group reintroduced generic-language group display');
