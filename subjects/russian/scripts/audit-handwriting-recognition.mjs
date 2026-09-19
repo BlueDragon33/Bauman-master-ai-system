@@ -16,7 +16,7 @@ const checks=[
   ['local handwriting source only', recognition.includes("fetch('data/handwriting.json')")],
   ['no translation answer fields', !recognition.includes('.vi') && !recognition.includes('meaning')],
   ['no mastery/completed write', !recognition.includes('mastery') && !recognition.includes('completed')],
-  ['wrong recognition enters review queue', recognition.includes("'handwriting_recognition_miss'") && recognition.includes("addReview?.('handwriting:'")],
+  ['wrong recognition enters review queue', recognition.includes("'handwriting_recognition_miss'") && recognition.includes("addReview?.(reviewId")],
   ['exact writing resume route retained', recognition.includes("view:'writing',handwritingIndex:Number(q.item.__sourceIndex??q.index)||0,handwritingStep:0")],
   ['recognition evidence cannot replace handwriting stroke evidence', flow.includes("if(step==='alphabet')return Number(s.strokeActions||0)>0")],
   ['runtime loaded after learning flow', index.indexOf('assets/handwriting-recognition.js')>index.indexOf('assets/learning-flow.js')],
