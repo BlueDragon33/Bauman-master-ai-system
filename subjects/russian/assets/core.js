@@ -656,7 +656,7 @@ function overviewLearningFlow(){
  ];
  const flow=items.map(x=>`<button class="canva-flow-step" data-route='${esc(JSON.stringify(x[3]))}'><i>${x[0]}</i><b>${esc(x[1])}</b><span>${esc(x[2])}</span></button>`).join('');
  const quick=[
-  ['Mở bài học chính','Đi thẳng vào bài đang học, không lạc qua bảng phụ.',{view:'learning',learnTab:'theory'},'Vào học'],
+  ['Mở Nghe/Nói chính','Đi thẳng vào phần nghe/nói của bài đang học, không lạc qua bảng phụ.',{view:'learning',learnTab:'practice'},'Luyện ngay'],
   ['Ghép video với nói','Xem/nghe xong chuyển ngay sang nhại và đóng vai.',{view:'media'},'Xem video'],
   ['Sửa lỗi cuối buổi','Gom câu sai/câu yếu để ngày mai luyện lại.',{view:'learning',learnTab:'review'},'Ôn lỗi']
  ];
@@ -710,7 +710,7 @@ function renderOverview(){
  const mission=todayMissionText();
  const reality=stageReality().replace(/^Bối cảnh thực tế:\s*/,'').trim();
  const quick=[
-  ['Mở bài theo lịch','Bắt đầu đúng bài hoặc hoạt động hôm nay, không mở lan man.',{view:'learning',learnTab:'theory'},'Vào học'],
+  ['Mở Nghe/Nói theo lịch','Bắt đầu bằng phần nghe/nói của bài hôm nay, sau đó mới dùng lý thuyết hỗ trợ.',{view:'learning',learnTab:'practice'},'Luyện ngay'],
   ['Xem/nghe trước','Dùng video/audio làm trung tâm mở tai trước khi học chữ.',{view:'media'},'Mở video'],
   ['Nói lại ngay','Chuyển nhanh sang nhại câu và đóng vai ngắn.',{view:'dialogue'},'Luyện nói']
  ];
@@ -943,7 +943,7 @@ function saveRouteManual(){const s=normalizeRouteSession(JSON.parse(JSON.stringi
 function requestMainSchedule(action){const payload={type:'BAUMAN_SUBJECT_SCHEDULE_REQUEST',subjectId:A.id||'russian',action,session:planSession()};window.BaumanSubjectHost?.send?.(payload);toast(action==='regenerate'?'Đã gửi yêu cầu tạo lại lịch':'Đã gửi yêu cầu học bù thêm giờ')}
 function renderRouteFocusPanel(s){
  s=normalizeRouteSession(s);
- return `<section class="panel route-focus-panel"><div class="route-focus-copy"><span class="chip">Trọng tâm buổi học</span><h4>${esc(s.phase||'Buổi học hôm nay')}</h4><p>${esc(stageReality())}</p></div><div class="route-focus-actions"><button class="btn dark" data-route='{"view":"learning","learnTab":"theory"}'>Bắt đầu học</button><button class="btn soft" data-route='{"view":"dialogue"}'>Luyện nói</button><button class="btn soft" data-act="route-edit">Xem / chỉnh</button></div></section>`
+ return `<section class="panel route-focus-panel"><div class="route-focus-copy"><span class="chip">Trọng tâm buổi học</span><h4>${esc(s.phase||'Buổi học hôm nay')}</h4><p>${esc(stageReality())}</p></div><div class="route-focus-actions"><button class="btn dark" data-route='{"view":"learning","learnTab":"practice"}'>Bắt đầu Nghe/Nói</button><button class="btn soft" data-route='{"view":"dialogue"}'>Luyện đối thoại</button><button class="btn soft" data-act="route-edit">Xem / chỉnh</button></div></section>`
 }
 function renderRouteContinuePanel(){
  return `<section class="panel route-continue-panel"><div class="route-section-title"><h4>Tiếp tục học</h4><span>Quay lại điểm đã mở gần nhất hoặc theo lịch hôm nay.</span></div><div class="resume-list compact-resume-list">${renderRecentAccess()}</div></section>`
