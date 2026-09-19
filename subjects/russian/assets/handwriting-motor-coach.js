@@ -150,6 +150,14 @@
     }));
   }
 
+  function explicitSampleHtml(sample){
+    const G=window.RussianCursiveGlyphs;
+    if(!G?.render)return '<strong class="ru-hand-motor-script">'+esc(sample)+'</strong>';
+    const chars=String(sample||'').match(/[А-ЯЁа-яё]/g)||[];
+    if(!chars.length)return '<strong class="ru-hand-motor-script">'+esc(sample)+'</strong>';
+    return '<strong class="ru-hand-motor-vector" aria-label="Mẫu vector viết tay">'+chars.map(ch=>G.render(ch,{variant:'lower',label:false})).join('<i aria-hidden="true">→</i>')+'</strong>';
+  }
+
   function html(){
     const row=currentRow();
     if(!row)return '<section class="ru-hand-motor"><b>Chưa đọc được dữ liệu luyện chữ.</b></section>';
@@ -166,7 +174,7 @@
       STAGES.map(stage=>'<button data-hand-motor-stage="'+stage+'" class="'+(state.stage===stage?'active ':'')+(completed(letter,stage)?'done':'')+'">'+esc(STAGE_LABELS[stage])+'</button>').join('')+
       '</div>'+
       '<div class="ru-hand-motor-task">'+
-      '<div class="ru-hand-motor-sample"><small>Mẫu thao tác</small><strong class="ru-hand-motor-script">'+esc(sample)+'</strong></div>'+
+      '<div class="ru-hand-motor-sample"><small>Mẫu thao tác</small>'+explicitSampleHtml(sample)+'</div>'+
       '<div><b>'+esc(STAGE_LABELS[state.stage])+'</b><p>'+esc(HELP[state.stage])+'</p>'+
       '<div class="ru-hand-motor-progress">'+progress.map(x=>'<span class="'+(x.done?'done':'')+'">'+esc(STAGE_LABELS[x.stage])+' · '+x.strokes+'/'+x.threshold+'</span>').join('')+'</div></div>'+
       '</div>'+
