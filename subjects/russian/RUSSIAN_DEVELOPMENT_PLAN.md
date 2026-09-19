@@ -50,8 +50,8 @@ If a gate fails, repair it before continuing. Never weaken an assertion merely t
 | 19 | Skill-gated assessment | GREEN | Six read-only evidence gates remain isolated; aggregate ready only when all six meet explicit criteria |
 | 20 | AI mentor direct explanation | GREEN | Russian-first direct-semantic helper; translation fallback blocked; AI context remains read-only |
 | 21 | Weakness repair routing | GREEN | Unified additive repair router; focused routes; evidence-gated resolution; legacy click-equals-complete removed |
-| 22 | Offline media & asset reliability | ACTIVE | Explicit offline/missing-resource behavior |
-| 23 | Browser/package/accessibility/performance QA | PLANNED | Includes cursive visual-difference proof |
+| 22 | Offline media & asset reliability | GREEN | 62-entry shell + 17 required data sources verified; false-ready blocked; external media/visual failures explicit |
+| 23 | Browser/package/accessibility/performance QA | ACTIVE | Includes cursive visual-difference proof |
 | 24 | Migration freeze & promotion candidate | PLANNED | Cannot freeze with open deferred obligations |
 
 ## Turn definitions
