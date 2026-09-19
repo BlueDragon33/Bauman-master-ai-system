@@ -166,6 +166,16 @@ Turn 22 execution substeps:
 
 Test desktop/tablet/mobile, keyboard, audio controls, packaged runtime, state persistence, large-data performance, and real cursive-vs-print glyph difference.
 
+Turn 23 execution substeps:
+
+- **23.1 — Package/static dependency QA:** verify entry/runtime/package dependencies, load order, local paths and no malformed markup/runtime wiring.
+- **23.2 — Keyboard & accessibility QA:** verify focusable controls, accessible names, keyboard operation, live/status semantics and modal/panel behavior.
+- **23.3 — Responsive containment QA:** verify desktop 16:9, tablet 3:2 and phone 19.5:9 layouts do not overflow critical learning surfaces.
+- **23.4 — State/persistence/performance QA:** stress large vocabulary/test data, local-state bounds, render-loop guards and storage recovery behavior.
+- **23.5 — Audio/media browser QA:** verify speech/audio controls, network-sensitive media behavior and browser capability fallbacks.
+- **23.6 — Cursive visual proof:** close `RUS-CURSIVE-VISUAL-001` with real browser glyph-difference evidence, or replace font-dependent cursive with an explicit handwriting asset/shape representation.
+- **23.7 — Integrated browser/package gate:** run combined package/accessibility/performance checks and update deferred-obligation status only after evidence is green.
+
 ### Turn 24 — Migration freeze & promotion candidate
 
 Remove obsolete translation-first runtime authority, document compatibility, close all deferred obligations, run cross-system gates and freeze a promotion candidate.
