@@ -15,7 +15,7 @@
     "detailEvidenceAfterFirstNormal": true,
     "translationAnswerForbidden": true,
     "preserveHearBeforeSee": true,
-    "playbackStartEvidenceRequired": true,
+    "playbackCompletionEvidenceRequired": true,
     "failedPlaybackDoesNotUnlock": true
   },
   "runtime": {
@@ -23,7 +23,7 @@
     "reuseCoreSlowListen": true,
     "createSecondAudioPlayer": false,
     "sourceOfLineTruth": "rendered_practice_context",
-    "playbackStartedEvent": "russian:listening-playback-started"
+    "playbackCompletedEvent": "russian:listening-playback-completed"
   },
   "evidence": {
     "separateStorage": true,
@@ -35,6 +35,6 @@
     "detailChecks": true,
     "learnerStateAuthority": false,
     "masteryMutation": false,
-    "playbackStartConfirmed": true
+    "playbackCompletionConfirmed": true
   }
 }
