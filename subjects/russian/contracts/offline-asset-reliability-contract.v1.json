@@ -1,0 +1,53 @@
+{
+  "schema": "RUSSIAN_OFFLINE_ASSET_RELIABILITY_CONTRACT_V1",
+  "contractVersion": 1,
+  "readiness": {
+    "requiresCompleteAppShell": true,
+    "requiresCompleteRequiredData": true,
+    "optionalLargeExcludedFromReady": true,
+    "falseReadyForbidden": true
+  },
+  "requiredData": [
+    "curriculum",
+    "lessons",
+    "grammar",
+    "grammar-path",
+    "vocab",
+    "mindmap",
+    "exercises",
+    "tests",
+    "simulations",
+    "speaking",
+    "handwriting",
+    "writing",
+    "videos",
+    "knowledge-index",
+    "cyrillic-sound-map",
+    "reading-bridge",
+    "grammar-pattern-bridge"
+  ],
+  "optionalLarge": [
+    "dialogue-bauman-az",
+    "deep-speaking-bauman",
+    "speaking-link-index"
+  ],
+  "media": {
+    "externalNetworkOnlyExplicit": true,
+    "offlineExternalEmbedForbidden": true,
+    "offlineExternalOpenDisabled": true,
+    "blankPlayerForbidden": true
+  },
+  "visualAssets": {
+    "failedImageExplicitState": "missing_visual_asset",
+    "translationFallbackForbidden": true,
+    "retainRussianCue": true
+  },
+  "serviceWorker": {
+    "navigationOnlyHtmlFallback": true,
+    "requiredDataMissingStatus": 503,
+    "requiredDataMissingJson": true,
+    "optionalLargeMissingStatus": 503,
+    "cacheAllLocalEntryDependencies": true,
+    "supportFoundationAndSharedDependencies": true
+  }
+}
