@@ -18,7 +18,7 @@ assert.equal(validateRuntime(core),true);
  assert.throws(()=>validateContract(x),/policy disabled/);
 }
 {
- const x=copy();x.policy.normalListenEvidenceRequiresPlaybackStart=false;
+ const x=copy();x.policy.normalListenEvidenceRequiresPlaybackCompletion=false;
  assert.throws(()=>validateContract(x),/policy disabled/);
 }
 {
@@ -34,8 +34,8 @@ assert.throws(
  /scaffold is not hidden/
 );
 assert.throws(
- ()=>validateRuntime(core.replace("onStart:meta=>{if(inPracticeMode()){markPracticeLineHeard(d,idx);render()}","onStart:meta=>{if(inPracticeMode()){render()}")),
- /does not unlock text after playback start/
+ ()=>validateRuntime(core.replace("onEnd:meta=>{if(inPracticeMode()){markPracticeLineHeard(d,idx);render()}","onStart:meta=>{if(inPracticeMode()){render()}")),
+ /does not unlock text after playback completion/
 );
 
 console.log('RUSSIAN_ORAL_FIRST_WARMUP_NEGATIVE_TEST=PASS');
