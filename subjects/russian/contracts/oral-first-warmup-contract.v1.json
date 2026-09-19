@@ -10,7 +10,9 @@
     "normalListenUnlocksText": true,
     "slowListenDoesNotUnlockText": true,
     "slowListenDisabledBeforeNormalListen": true,
-    "speakingAttemptAllowedAfterNormalListen": true
+    "speakingAttemptAllowedAfterNormalListen": true,
+    "normalListenEvidenceRequiresPlaybackStart": true,
+    "failedPlaybackKeepsTextHidden": true
   },
   "persistence": {
     "heardEvidenceAdditive": true,
