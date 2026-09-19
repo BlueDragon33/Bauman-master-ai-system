@@ -1,6 +1,6 @@
 # Lượt 29 — Current Plan · Bước 113–116
 
-Status: `B113_IN_PROGRESS · B114_BLOCKED · B115_BLOCKED · B116_BLOCKED`
+Status: `PASS_B113_FUNCTIONAL · H1_IN_PROGRESS · B114_BLOCKED · B115_BLOCKED · B116_BLOCKED`
 
 Prerequisite: L28 documentation/final-state head `c9451fe957ccfc7d610483688da76b004c20c83e` passed the complete six-gate set.
 
@@ -19,6 +19,10 @@ Locked rules:
 - no PlanningBridge, Safe Shell or subject-runtime admission;
 - green remains human-review readiness only and never runtime/action authorization;
 - no persistence, dashboard render, schedule/calendar write, runtime activation, notification write or automatic action.
+
+## L29-H1 — Canonical consumer-admission request envelope
+
+**ACTIVE.** B114 pre-audit found that the B113 contract/result boundary lacked a canonical caller request schema. H1 pins `consumerId + consumerClass + readinessRequest` with `additionalProperties:false`, SHADOW-only identity and `human_review_shadow` class. B114 remains blocked until H1 passes the complete six-gate set.
 
 ## B114 — Deterministic in-memory shadow adapter
 
