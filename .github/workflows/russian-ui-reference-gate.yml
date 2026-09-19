@@ -31,6 +31,8 @@ jobs:
         run: node subjects/russian/scripts/validate-learning-flow.mjs
       - name: Validate Russian listening and visual-first architecture
         run: node subjects/russian/scripts/validate-listening-visual-first.mjs
+      - name: Audit deterministic handwriting recognition
+        run: node subjects/russian/scripts/audit-handwriting-recognition.mjs
       - name: Validate Russian vocabulary SRS runtime
         run: node subjects/russian/scripts/validate-vocab-srs.mjs
       - name: Validate Russian listening speaking coach
@@ -91,6 +93,7 @@ jobs:
           test -f subjects/russian/assets/content-contract.css
           test -f subjects/russian/assets/learning-flow.js
           test -f subjects/russian/assets/handwriting-recognition.js
+          test -f subjects/russian/scripts/audit-handwriting-recognition.mjs
           test -f subjects/russian/assets/learning-flow.css
           test -f subjects/russian/assets/vocab-srs.js
           test -f subjects/russian/assets/vocab-srs.css
