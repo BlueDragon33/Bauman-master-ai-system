@@ -3137,7 +3137,7 @@ function handleClick(e){
  if(act==='route-edit'){state.routeEdit=true;openModal(renderRouteModal(),'route')}
  if(act==='route-cancel'){state.routeEdit=false;openModal(renderRouteModal(),'route')}
  if(act==='route-save')saveRouteManual();
- if(act==='route-export')exportJson('russian_route_plan_v12_15.json',{session:planSession(),allSessions:allRouteSessions(),version:VERSION});
+ if(act==='route-export')exportJson('russian_route_plan.json',{session:planSession(),allSessions:allRouteSessions(),version:VERSION});
  if(act==='route-request-regen'){if(routeResetLocked()){toast(routeResetLockMessage()); return;} confirmAction('route-request-regen-do','Reset lịch trình','Reset sẽ gửi yêu cầu tạo lại lịch trình hiện tại.'); return}
  if(act==='route-extra-time')requestMainSchedule('extra_time');
  if(act==='open-present'){closeFloatingLearningMenus();openModal(renderPresentation(),'presentation');return;}
@@ -3216,7 +3216,7 @@ function handleClick(e){
  if(act==='media-new')openModal(mediaForm({}));
  if(act==='media-edit'){const id=b.dataset.mediaEdit; const m=byStage(call('getMedia',[],DB)).find(x=>(x.id||x.title)===id)||{}; openModal(mediaForm(m));}
  if(act==='media-save'){const id=b.dataset.id; const list=Array.isArray(DB.videos)?DB.videos:[]; let m=list.find(x=>(x.id||x.title)===id); if(!m){m={id:'media_'+Date.now(),stage:state.stage==='all'?'vn':state.stage}; list.push(m); DB.videos=list;} Object.assign(m,{title:$('#mfTitle').value,category:$('#mfCat').value,genre:$('#mfCat').value,url:$('#mfUrl').value,iframe:$('#mfIframe').value,purpose:$('#mfPurpose').value,editableSource:true}); addMediaGroup($('#mfCat').value); saveDB(); closeModal(); render(); toast('Đã lưu media');}
- if(act==='export-db')exportJson('russian_db_v12_10.json',DB);
+ if(act==='export-db')exportJson('russian_db.json',DB);
  if(act==='export-source')exportJson(`${state.storageFile}.json`,DB[state.storageFile]);
  if(act==='export-source-plan')exportJson(`${state.storageFile}_plan.json`,{id:state.storageFile,label:sourceLabel(state.storageFile),path:sourceFilePath(state.storageFile),plannedCount:sourcePlannedCount(state.storageFile),description:sourceDescription(state.storageFile),status:sourceStatus(state.storageFile,DB[state.storageFile])[0]});
  if(act==='modal-close')closeModal();
