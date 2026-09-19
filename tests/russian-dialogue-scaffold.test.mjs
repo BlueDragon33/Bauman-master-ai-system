@@ -1,12 +1,14 @@
 import assert from 'node:assert/strict';
 import fs from 'node:fs';
-import {validateContract,validateHelper,loadHelper,validateCore} from '../scripts/validate-russian-dialogue-scaffold.mjs';
+import {validateContract,validateHelper,loadHelper,validateAdapter,validateCore} from '../scripts/validate-russian-dialogue-scaffold.mjs';
 const c=JSON.parse(fs.readFileSync('subjects/russian/contracts/dialogue-scaffold-contract.v1.json','utf8'));
 const js=fs.readFileSync('subjects/russian/assets/dialogue-scaffold.js','utf8');
 const core=fs.readFileSync('subjects/russian/assets/core.js','utf8');
+const adapter=fs.readFileSync('subjects/russian/assets/subject-adapter.js','utf8');
 const copy=()=>structuredClone(c);
 assert.equal(validateContract(copy()),true);
 assert.equal(validateHelper(js),true);
+assert.equal(validateAdapter(adapter),true);
 assert.equal(validateCore(core),true);
 const api=loadHelper(js);
 const x=api.describe({context_title_vi:'Trong lớp',communicative_functions_vi:['hỏi bài']},{ru:'Повторите, пожалуйста.',meaning_vi:'Xin hãy nhắc lại.'},0,'all');
@@ -23,5 +25,7 @@ assert.throws(
  ()=>validateCore(core.replaceAll('dialogue-direct-scaffold','dialogue-scaffold-missing')),
  /UI helper missing direct scaffold class/
 );
+assert.throws(()=>validateAdapter(adapter.replace("dialogueTitle(item){ return item?.title_ru","dialogueTitle(item){ return item?.context_title_vi || item?.title_ru")),/prohibited translation field/);
+assert.throws(()=>validateCore(core.replace("unit?.unit_title_ru","unit?.unit_title_vi||unit?.unit_title_ru")),/translation scaffold/);
 console.log('RUSSIAN_DIALOGUE_SCAFFOLD_NEGATIVE_TEST=PASS');
-console.log(JSON.stringify({negativeCases:6},null,2));
+console.log(JSON.stringify({negativeCases:8},null,2));
