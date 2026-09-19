@@ -1,6 +1,6 @@
 # L31/B124 — Promotion Eligibility Full-System Closeout
 
-Status: **ACTIVE**
+Status: **PASS — functional closeout 6/6 gates green**
 
 B124 composes and revalidates B121–B123 without widening authority.
 
@@ -18,3 +18,16 @@ B124 composes and revalidates B121–B123 without widening authority.
 ## Gate
 
 `scripts/validate-roadmap-v2-l31-b124.mjs` composes B121/B122/B123, verifies isolation and fail-closed output, and must pass the complete six-gate set before documentation/final-state closeout.
+
+## Functional gate evidence
+
+Accepted functional head: `3284742a6b8fa96898c6ab762f4aa416c0e80421`
+
+- Roadmap V2 Current Gate — `35455523816` — PASS
+- Foundation Domain Model — `35455523808` — PASS
+- Windows checkout safety — `35455523807` — PASS
+- Russian Reference UI — `35455523819` — PASS
+- Cloudflare Preview — `35455523825` — PASS
+- Whole System Integration — `35455523915` — PASS
+
+Documentation/final-state revalidation must still pass the same six gates before L31 is considered complete.

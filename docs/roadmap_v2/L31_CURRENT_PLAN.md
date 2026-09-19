@@ -1,6 +1,6 @@
 # Lượt 31 — Current Plan · Bước 121–124
 
-Status: `B121_PASS · B122_PASS · B123_PASS · B124_ACTIVE`
+Status: `B121_PASS · B122_PASS · B123_PASS · B124_PASS · FINAL_STATE_REVALIDATION_ACTIVE`
 
 Prerequisite: L30 final marker head `d17f690b25c7b8e05f8183fe2223b1c9622cc38d` passed the complete six-gate set.
 
@@ -33,6 +33,6 @@ L31 adds a data-only Promotion Eligibility layer. It does **not** authorize rele
 
 ## B124 — Full-system closeout
 
-**ACTIVE.** Compose B121–B123, re-check canonical/runtime isolation and rerun the complete six-gate set.
+**PASS.** B121–B123 compose cleanly; canonical/runtime isolation remains intact and the complete six-gate set passed on the B124 functional head. Documentation/final-state revalidation is now active.
 
 Any defect creates `L31-Fx`; any newly discovered missing architecture creates `L31-Hx`. Later steps remain blocked until the repair/hardening head passes the complete six-gate set.
