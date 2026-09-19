@@ -49,7 +49,7 @@ Create Turn 25+ only if a genuinely new responsibility appears that cannot safel
 
 Continue auditing the frozen candidate. If a defect belongs to an existing responsibility, reopen/add a numbered substep inside that owning turn, fix it, extend the relevant negative/promotion gate, and restore GREEN. Create Turn 25+ only for a genuinely new responsibility.
 
-Current post-freeze additions accepted: Turn 8.1, Turn 18.1, Turn 21.7, Turn 22.7, Turn 23.8, Turn 23.9, Turn 23.10, Turn 24.7, Turn 24.8 and Turn 24.9.
+Current post-freeze additions accepted: Turn 8.1, Turn 11.1, Turn 11.2, Turn 13.1, Turn 13.2, Turn 18.1, Turn 21.7, Turn 22.7, Turn 22.8, Turn 23.8, Turn 23.9, Turn 23.10, Turn 24.7, Turn 24.8 and Turn 24.9.
 
 
 ## Post-freeze gate status
@@ -63,5 +63,6 @@ Turn 24.5/24.8 now include:
 - full workflow proof at executable checkpoint `ae26de6b1f2d24f1e1b5bc4874ea705b68f1d5bf`, run `35416011837`, with both architecture and existing-regression jobs successful;
 - post-freeze gate-regression repairs remain assigned to their existing owning turns.
 - CI maintenance is also owned by Turn 23: both workflow jobs now use Node-24-based `actions/checkout@v7` and `actions/setup-node@v7`; run `35416194155` is GREEN.
+- Visual-semantics quality audit is owned by Turns 11/13/22: the old 8,000/8,000 “visual ready” result was decomposed into 0 concrete images and 8,000 symbolic `image_emoji` entries; verified Russian-semantic Commons enrichment plus online-only/offline fallback guards are now GREEN at run `35416859395`.
 
 No Turn 25 is justified by these fixes because none introduces a genuinely new responsibility.
