@@ -6,20 +6,27 @@ const c=JSON.parse(fs.readFileSync('subjects/russian/contracts/speaking-shadowin
 const js=fs.readFileSync('subjects/russian/assets/speaking-coach.js','utf8');
 const css=fs.readFileSync('subjects/russian/assets/speaking-coach.css','utf8');
 const core=fs.readFileSync('subjects/russian/assets/core.js','utf8');
+const learningFlow=fs.readFileSync('subjects/russian/assets/learning-flow.js','utf8');
 const copy=()=>structuredClone(c);
 
 assert.equal(validateContract(copy()),true);
-assert.equal(validateRuntime(js,css,core),true);
+assert.equal(validateRuntime(js,css,core,learningFlow),true);
 
 {const x=copy();x.prerequisites.normalListensBeforeShadowing=1;assert.throws(()=>validateContract(x),/two normal listens/)}
 {const x=copy();x.runtime.roleplayEvidenceRequiresRecording=false;assert.throws(()=>validateContract(x),/real recorder use/)}
 {const x=copy();x.runtime.recognitionResultEvidenceRequired=false;assert.throws(()=>validateContract(x),/require non-empty recognition result/)}
 {const x=copy();x.runtime.failedOrEmptyRecognitionDoesNotCountAttempt=false;assert.throws(()=>validateContract(x),/require non-empty recognition result/)}
 {const x=copy();x.evidence.recognitionConfirmedAttempts=false;assert.throws(()=>validateContract(x),/recognition-confirmed/)}
-assert.throws(()=>validateRuntime(js.replace("return heardCount(c)>=2&&Number(row?.imitationAttempts||0)>0;","return heardCount(c)>=1&&Number(row?.imitationAttempts||0)>0;"),css,core),/not two-listen gated/);
-assert.throws(()=>validateRuntime(js.replace("if(mode==='roleplay')bump('roleplayAttempts'","if(mode==='roleplay')bump('freeAttempts'"),css,core),/not recorder-backed/);
-assert.throws(()=>validateRuntime(js.replace("russian:speaking-recording-result","russian:speaking-recording-clicked"),css,core),/recognition-result evidence/);
-assert.throws(()=>validateRuntime(js,css,core.replace("notifySpeakingRecordingResult(d,idx,transcript,score)","void score")),/does not emit evidence on recognition result/);
+{const x=copy();x.runtime.manualSelfAssessmentDoesNotCreateSpeakingEvidence=false;assert.throws(()=>validateContract(x),/self-assessment/)}
+{const x=copy();x.evidence.learningFlowRecognitionOnly=false;assert.throws(()=>validateContract(x),/recognition-only/)}
+assert.throws(()=>validateRuntime(js.replace("return heardCount(c)>=2&&Number(row?.imitationAttempts||0)>0;","return heardCount(c)>=1&&Number(row?.imitationAttempts||0)>0;"),css,core,learningFlow),/not two-listen gated/);
+assert.throws(()=>validateRuntime(js.replace("if(mode==='roleplay')bump('roleplayAttempts'","if(mode==='roleplay')bump('freeAttempts'"),css,core,learningFlow),/not recorder-backed/);
+assert.throws(()=>validateRuntime(js.replace("russian:speaking-recording-result","russian:speaking-recording-clicked"),css,core,learningFlow),/recognition-result evidence/);
+assert.throws(()=>validateRuntime(js,css,core.replace("notifySpeakingRecordingResult(d,idx,transcript,score)","void score"),learningFlow),/does not emit evidence on recognition result/);
 
 console.log('RUSSIAN_SPEAKING_LADDER_NEGATIVE_TEST=PASS');
-console.log(JSON.stringify({negativeCases:9},null,2));
+console.log(JSON.stringify({negativeCases:14},null,2));
+
+assert.throws(()=>validateRuntime(js,css,core.replace("try{window.dispatchEvent(new CustomEvent('russian:speaking-self-assessed'","try{window.dispatchEvent(new CustomEvent('russian:speaking-self-assessed-missing'"),learningFlow),/self-assessment event missing/);
+assert.throws(()=>validateRuntime(js,css,core,learningFlow.replace("window.addEventListener('russian:speaking-recording-result'","window.addEventListener('russian:speaking-recording-clicked'")),/not recognition-result driven/);
+assert.throws(()=>validateRuntime(js,css,core,learningFlow.replace("selfAssessments:Number(old.selfAssessments||0)+1","attempts:Number(old.attempts||0)+1")),/Self-assessment still increments speaking attempts/);
