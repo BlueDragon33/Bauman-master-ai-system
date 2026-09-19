@@ -41,16 +41,40 @@ export function auditCoverage(vocab,contract){
   return summary;
 }
 
+export function profileCorpus(vocab){
+  const rows=Array.isArray(vocab)?vocab:[];
+  const fields=['ru','word','phrase_ru','pos','part_of_speech','stage','level','topic','category','theme','meaning_ru','definition_ru','definition','example_ru','example','context_ru','usage_note','when_use','tags','image_emoji','emoji','image_url','image','illustration','illustration_url','audio','audio_url','pronunciation'];
+  const fieldPresence={};
+  for(const field of fields)fieldPresence[field]=rows.reduce((n,row)=>{
+    const value=row?.[field];
+    const present=Array.isArray(value)?value.length>0:(value!==undefined&&value!==null&&String(value).trim()!=='');
+    return n+(present?1:0);
+  },0);
+  const samples=rows.slice(0,5).map(row=>({
+    ru:row?.ru||row?.word||row?.phrase_ru||'',
+    pos:row?.pos||row?.part_of_speech||'',
+    stage:row?.stage||row?.level||'',
+    topic:row?.topic||row?.category||row?.theme||'',
+    meaning_ru:row?.meaning_ru||row?.definition_ru||row?.definition||'',
+    example_ru:row?.example_ru||row?.context_ru||row?.example||'',
+    image_emoji:row?.image_emoji||row?.emoji||''
+  }));
+  return {fieldPresence,samples};
+}
+
 export function loadAndValidate(){
   const contract=JSON.parse(fs.readFileSync('subjects/russian/contracts/visual-vocabulary-coverage-contract.v1.json','utf8'));
   validateContract(contract);
   validateClassifier(contract);
-  const summary=auditCoverage(JSON.parse(fs.readFileSync('subjects/russian/data/vocab.json','utf8')),contract);
-  return {contract,summary};
+  const vocab=JSON.parse(fs.readFileSync('subjects/russian/data/vocab.json','utf8'));
+  const summary=auditCoverage(vocab,contract);
+  const profile=profileCorpus(vocab);
+  return {contract,summary,profile};
 }
 
 if(import.meta.url===pathToFileURL(process.argv[1]).href){
-  const {summary}=loadAndValidate();
+  const {summary,profile}=loadAndValidate();
   console.log('RUSSIAN_VISUAL_COVERAGE_GATE=PASS');
   console.log('RUSSIAN_VISUAL_COVERAGE_AUDIT='+JSON.stringify(summary));
+  console.log('RUSSIAN_VISUAL_CORPUS_PROFILE='+JSON.stringify(profile));
 }
