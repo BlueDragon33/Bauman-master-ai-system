@@ -13,14 +13,14 @@ assert.equal(validateRuntime(js,core,index),true);
 
 {const x=copy();x.policy.minimumNormalPlaysBeforeSlow=1;assert.throws(()=>validateContract(x),/must require two/)}
 {const x=copy();x.runtime.createSecondAudioPlayer=true;assert.throws(()=>validateContract(x),/must reuse core audio controls/)}
-{const x=copy();x.policy.playbackCompletionEvidenceRequired=false;assert.throws(()=>validateContract(x),/successful playback start/)}
-{const x=copy();x.policy.failedPlaybackDoesNotUnlock=false;assert.throws(()=>validateContract(x),/successful playback start/)}
+{const x=copy();x.policy.playbackCompletionEvidenceRequired=false;assert.throws(()=>validateContract(x),/successful playback completion/)}
+{const x=copy();x.policy.failedPlaybackDoesNotUnlock=false;assert.throws(()=>validateContract(x),/successful playback completion/)}
 {const x=copy();x.evidence.playbackCompletionConfirmed=false;assert.throws(()=>validateContract(x),/playback-confirmed/)}
 assert.throws(()=>validateRuntime(js.replaceAll("ctx.heardCount>=2","ctx.heardCount>=1"),core,index),/not gated by two normal plays/);
 assert.throws(()=>validateRuntime(js,core.replace("const slowReady=heardCount>=2;","const slowReady=heard;"),index),/readiness is not two-listen gated/);
 assert.throws(()=>validateRuntime(js.replace('.split(/\\s+/)','.split(/s+/)'),core,index),/whitespace|literal-s/);
 assert.throws(()=>validateRuntime(js.replace("russian:listening-playback-completed","russian:listening-playback-missing"),core,index),/playback-completion evidence/);
-assert.throws(()=>validateRuntime(js,core.replace("onStart:meta=>{if(inPracticeMode()){markPracticeLineHeard(d,idx);render()}","onStart:meta=>{if(inPracticeMode()){render()}"),index),/counts listening before playback starts/);
+assert.throws(()=>validateRuntime(js,core.replace("onEnd:meta=>{if(inPracticeMode()){markPracticeLineHeard(d,idx);render()}","onEnd:meta=>{if(inPracticeMode()){render()}"),index),/count listening only after playback completion/);
 
 console.log('RUSSIAN_LISTENING_LADDER_NEGATIVE_TEST=PASS');
 console.log(JSON.stringify({negativeCases:10},null,2));
