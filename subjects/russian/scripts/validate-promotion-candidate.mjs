@@ -47,7 +47,7 @@ need(visual,'RUSSIAN_VISUAL_VOCABULARY_RUNTIME_V1');forbid(visual,'meaning_vi');
 need(aiDirect,'RUSSIAN_AI_DIRECT_EXPLANATION_V1');need(aiDirect,'translationSemanticAuthority:false');
 need(dialogue,'RUSSIAN_DIALOGUE_SCAFFOLD_V1');forbid(dialogue,'vi_turns');
 need(browser,'RUSSIAN_BROWSER_CAPABILITY_V1');need(browser,'speechReady');
-need(cursive,'RUSSIAN_CURSIVE_GLYPH_SHAPES_V1');need(cyrillic,'RussianCursiveGlyphs');
+need(cursive,'RUSSIAN_CURSIVE_GLYPH_SHAPES_V2');need(cursive,'function glyphCoverage(){return Object.keys(UPPER).length+Object.keys(LOWER).length;}');need(cursive,'function pairDistinct(letter)');need(cyrillic,'RussianCursiveGlyphs');
 need(repair,'RUSSIAN_WEAKNESS_REPAIR_ROUTER_V1');need(repair,'repair_evidence_present');
 need(skillGate,'advisoryOnly:true');need(skillGate,'crossSkillInference:false');
 need(hostBridge,"contract:'BAUMAN_SUBJECT_BRIDGE_V1'");
