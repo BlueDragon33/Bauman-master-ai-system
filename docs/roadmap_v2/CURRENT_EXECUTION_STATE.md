@@ -6,15 +6,15 @@
 ## Active track
 
 - Current round: **Lượt 28**
-- Current step: **Bước 109 — IN_PROGRESS**
+- Current step: **Bước 110 — IN_PROGRESS**
 - L22 closeout: **B88 + H1 — PASS**
-- Status: **L23_COMPLETE · L24_COMPLETE · L25_COMPLETE · L26_COMPLETE · L27_COMPLETE · L28_B109_IN_PROGRESS**
-- Last recorded six-gate head: `0b9705e1a1267f35b53dccefc8abb850af8bff5e`
+- Status: **L23_COMPLETE · L24_COMPLETE · L25_COMPLETE · L26_COMPLETE · L27_COMPLETE · PASS_L28_B109 · L28_B110_IN_PROGRESS**
+- Last recorded six-gate head: `023c6d162b3d8e8cca1f28645701a21ae5373b1a`
 - Production/runtime activation by Roadmap V2: **disconnected**
 - Legacy/source destructive migration: **not executed**
-- Last completed: **L27/B108 — PASS (functional + documentation/final-state closeout)**
+- Last completed: **L28/B109 — PASS (read-only admission contract)**
 - Last hardening: **L27-F1/H1 stale manifest removal + additive readiness overlay — PASS**
-- Current official step: **L28/B109 — read-only admission contract**
+- Current official step: **L28/B110 — in-memory advisory projector**
 - L26 opened only after the L25 final-state head passed the complete six-gate set.
 
 ## L22/B88 complete gate evidence
@@ -544,3 +544,17 @@ L27 is complete. L28/B109 is permitted to open.
 L28 is a new current-track admission/integration-safety round. It does not activate Roadmap V2 in production.
 
 B109 introduces only a read-only admission contract between current Readiness and any future consumer. Existing Hub, PlanningBridge, Safe Shell, Math and Russian runtimes remain outside this Roadmap execution lane.
+
+
+## L28/B109 gate evidence
+
+Accepted B109 head: `023c6d162b3d8e8cca1f28645701a21ae5373b1a`
+
+- Roadmap V2 Current Gate — run `35439012574` — PASS
+- Foundation Domain Model — run `35439012516` — PASS
+- Windows checkout safety — run `35439012481` — PASS
+- Russian Reference UI — run `35439012459` — PASS
+- Cloudflare Preview — run `35439012506` — PASS
+- Whole System Integration — run `35439012510` — PASS
+
+B109 is closed. B110 is active. Production consumers remain disconnected.
