@@ -1,0 +1,51 @@
+{
+  "schema": "RUSSIAN_AI_DIRECT_EXPLANATION_CONTRACT_V1",
+  "contractVersion": 1,
+  "explanationOrder": [
+    "visual_or_scene",
+    "russian_definition",
+    "russian_context",
+    "contrast_or_analogy",
+    "optional_meta_help"
+  ],
+  "semanticAuthority": {
+    "vocabularyRuntime": "RUSSIAN_VISUAL_VOCABULARY_RUNTIME_V1",
+    "russianFirst": true,
+    "visualContextFirst": true,
+    "translationSemanticAuthority": false,
+    "englishBridgeDefault": false,
+    "metaLanguageSecondaryOnly": true,
+    "explicitMissingSemanticState": true
+  },
+  "learnerSurface": {
+    "allowVietnameseNavigationHelp": true,
+    "allowVietnameseMetaInstructions": true,
+    "allowVietnameseVocabularyMeaningAnswer": false,
+    "allowEnglishVocabularyMeaningAnswer": false,
+    "dialogueTranslationFreeByDefault": true
+  },
+  "authority": {
+    "canonicalStateReadOnly": true,
+    "canonicalIdentityReadOnly": true,
+    "masteryReadOnly": true,
+    "reviewQueueReadOnly": true,
+    "schedulerReadOnly": true,
+    "aiMaySuggest": true,
+    "aiMayExplain": true,
+    "aiMayGeneratePractice": true,
+    "aiMayModifyMastery": false,
+    "aiMayModifyCompletion": false,
+    "aiMayModifyReviewQueue": false,
+    "aiMayModifyDueDate": false
+  },
+  "invariants": {
+    "noMeaningViFallback": true,
+    "noEnglishFallback": true,
+    "noTranslationFlipInstruction": true,
+    "noSilentSemanticGuess": true,
+    "noMasteryMutation": true,
+    "noCompletionMutation": true,
+    "noReviewQueueMutation": true,
+    "noDueDateMutation": true
+  }
+}
