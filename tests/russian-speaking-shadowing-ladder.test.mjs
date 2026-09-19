@@ -20,6 +20,11 @@ assert.equal(validateRuntime(js,css,core,learningFlow),true);
 {const x=copy();x.runtime.deepSpeakingRecognitionRequired=false;assert.throws(()=>validateContract(x),/Deep Speaking/)}
 {const x=copy();x.runtime.deepSpeakingSelfAssessmentSeparate=false;assert.throws(()=>validateContract(x),/Deep Speaking/)}
 {const x=copy();x.evidence.deepSpeakingAttemptsRecognitionConfirmed=false;assert.throws(()=>validateContract(x),/Deep Speaking attempts/)}
+{const x=copy();x.runtime.recognitionSessionTokenRequired=false;assert.throws(()=>validateContract(x),/reject stale callbacks/)}
+{const x=copy();x.runtime.staleRecognitionCallbacksIgnored=false;assert.throws(()=>validateContract(x),/reject stale callbacks/)}
+{const x=copy();x.evidence.staleRecognitionCannotCreateEvidence=false;assert.throws(()=>validateContract(x),/Stale recognition callbacks/)}
+assert.throws(()=>validateRuntime(js,css,core.replace('speechRecognitionToken=0','speechRecognitionTokenMissing=0'),learningFlow),/session token missing/);
+assert.throws(()=>validateRuntime(js,css,core.replaceAll('if(token!==speechRecognitionToken)return;',''),learningFlow),/not fully protected from stale sessions/);
 assert.throws(()=>validateRuntime(js,css,core.replace('function startDeepSpeakingRecording()','function startDeepSpeakingRecorderMissing()'),learningFlow),/Deep Speaking recognition recorder missing/);
 assert.throws(()=>validateRuntime(js,css,core.replace("p.attempts[id]=Number(p.attempts[id]||0)+1","p.attempts[id]=Number(p.attempts[id]||0)"),learningFlow),/Deep Speaking recognition attempt counter missing/);
 {const x=copy();x.runtime.manualSelfAssessmentDoesNotCreateSpeakingEvidence=false;assert.throws(()=>validateContract(x),/self-assessment/)}
@@ -35,4 +40,4 @@ assert.throws(()=>validateRuntime(js,css,core,learningFlow.replace("window.addEv
 assert.throws(()=>validateRuntime(js,css,core,learningFlow.replace("selfAssessments:Number(old.selfAssessments||0)+1","attempts:Number(old.attempts||0)+1")),/Self-assessment still increments speaking attempts/);
 
 console.log('RUSSIAN_SPEAKING_LADDER_NEGATIVE_TEST=PASS');
-console.log(JSON.stringify({negativeCases:14},null,2));
+console.log(JSON.stringify({negativeCases:19},null,2));
