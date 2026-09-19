@@ -41,7 +41,8 @@
     const ev=itemEvidence(item.id);ev.attempts++;ev.lastAt=new Date().toISOString();save();render();
   }
   function speak(text){
-    if(!text||!('speechSynthesis' in window))return false;
+    if(window.RussianBrowserCapabilities?.speak)return window.RussianBrowserCapabilities.speak(text,.78);
+    if(!text||!('speechSynthesis' in window)||!window.SpeechSynthesisUtterance)return false;
     const u=new SpeechSynthesisUtterance(String(text));u.lang='ru-RU';u.rate=.78;
     speechSynthesis.cancel();speechSynthesis.speak(u);return true;
   }
