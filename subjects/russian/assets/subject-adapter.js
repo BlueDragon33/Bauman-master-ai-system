@@ -240,10 +240,9 @@ window.SUBJECT_ADAPTER = {
     return [
       item?.id, item?.title, item?.ruTitle, item?.summary, item?.rule, item?.focus,
       item?.prompt, item?.answer, item?.question, item?.purpose, item?.title_ru,
-      item?.context_title_vi, item?.context_title_ru,
+      item?.context_title_ru,
       Array.isArray(item?.tags) ? item.tags.join(' ') : '',
-      Array.isArray(item?.turns) ? item.turns.join(' ') : '',
-      Array.isArray(item?.vi_turns) ? item.vi_turns.join(' ') : ''
+      Array.isArray(item?.turns) ? item.turns.join(' ') : ''
     ].filter(Boolean).join(' ');
   },
   lessonTitle(item){ return item?.title || item?.ruTitle || item?.id || 'Bài học'; },
@@ -268,23 +267,26 @@ window.SUBJECT_ADAPTER = {
   practiceSubtitle(item){ return item?.purpose || item?.assistantRole || ''; },
   practiceGroup(item){ return item?.group || item?.group_id || item?.type || 'general'; },
   practiceDifficulty(item){ return item?.difficulty_id || item?.difficulty || item?.level || 'all'; },
-  dialogueTitle(item){ return item?.title || item?.context_title_vi || item?.title_ru || item?.id || 'Hội thoại'; },
-  dialogueSubtitle(item){ return item?.purpose || item?.context_title_ru || ''; },
+  dialogueTitle(item){ return item?.title_ru || item?.context_title_ru || item?.ruTitle || item?.id || 'Диалог'; },
+  dialogueSubtitle(item){ return item?.purpose_ru || item?.context_title_ru || ''; },
   dialogueGroup(item){ return item?.group || item?.group_ru || 'general'; },
   dialogueDifficulty(item){ return item?.difficulty_id || item?.difficulty || item?.level || 'all'; },
   dialogueTurns(item){
-    if(Array.isArray(item?.utterances) && item.utterances.length) return item.utterances;
-    const turns = Array.isArray(item?.turns) ? item.turns : [];
-    const vi = Array.isArray(item?.vi_turns) ? item.vi_turns : [];
     const speakers = Array.isArray(item?.speakers) ? item.speakers : [];
-    return turns.map((ru,i)=>({speaker: speakers[i] || (i % 2 ? 'B' : 'A'), ru, vi: vi[i] || ''}));
+    if(Array.isArray(item?.utterances) && item.utterances.length) return item.utterances.map((turn,i)=>{
+      if(typeof turn==='string') return {speaker:speakers[i]||(i%2?'B':'A'),ru:turn};
+      const {vi,vi_text,translation_vi,gloss_vi,...safe}=turn||{};
+      return {...safe,speaker:safe.speaker||speakers[i]||(i%2?'B':'A'),ru:safe.ru||safe.text_ru||safe.text||''};
+    });
+    const turns = Array.isArray(item?.turns) ? item.turns : [];
+    return turns.map((ru,i)=>({speaker: speakers[i] || (i % 2 ? 'B' : 'A'), ru}));
   },
   mediaTitle(item){ return item?.title || item?.id || 'Media'; },
   mediaCategory(item){ return item?.category || item?.genre || item?.sourceType || 'general'; },
   mediaPurpose(item){ return item?.purpose || item?.sourceStatus || ''; },
   mediaUrl(item){ return item?.iframe || item?.url || ''; },
   vocabTerm(item){ return item?.ru || item?.phrase_ru || item?.front || item?.word || item?.term || ''; },
-  vocabMeaning(item){ return item?.vi || item?.meaning || item?.meaning_ru || item?.clue_en || item?.definition || ''; },
+  vocabMeaning(item){ return item?.meaning_ru || item?.definition_ru || item?.context_ru || item?.illustration_label_ru || item?.scene_ru || ''; },
   vocabPron(item){ return item?.pronunciation || item?.pron || item?.transcription || ''; },
   vocabExample(item){ return item?.example || item?.voice_text || item?.usage || this.vocabTerm(item); },
   vocabUsage(item){ return item?.stage_method || item?.illustration_label_ru || ''; },
