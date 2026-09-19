@@ -49,7 +49,7 @@ Create Turn 25+ only if a genuinely new responsibility appears that cannot safel
 
 Continue auditing the frozen candidate. If a defect belongs to an existing responsibility, reopen/add a numbered substep inside that owning turn, fix it, extend the relevant negative/promotion gate, and restore GREEN. Create Turn 25+ only for a genuinely new responsibility.
 
-Current post-freeze additions accepted: Turn 1.1, Turn 2.1, Turn 2.2, Turn 3.1, Turn 8.1, Turn 8.2, Turn 9.1, Turn 9.2, Turn 9.3, Turn 9.4, Turn 9.5, Turn 10.1, Turn 11.1, Turn 11.2, Turn 13.1, Turn 13.2, Turn 16.1, Turn 16.2, Turn 18.1, Turn 21.7, Turn 22.7, Turn 22.8, Turn 23.8, Turn 23.9, Turn 23.10, Turn 23.11, Turn 23.12, Turn 24.7, Turn 24.8, Turn 24.9, Turn 24.10, Turn 24.11 and Turn 24.12.
+Current post-freeze additions accepted: Turn 1.1, Turn 2.1, Turn 2.2, Turn 3.1, Turn 8.1, Turn 8.2, Turn 9.1, Turn 9.2, Turn 9.3, Turn 9.4, Turn 9.5, Turn 9.6, Turn 9.7, Turn 10.1, Turn 10.2, Turn 11.1, Turn 11.2, Turn 13.1, Turn 13.2, Turn 16.1, Turn 16.2, Turn 18.1, Turn 18.2, Turn 21.7, Turn 22.7, Turn 22.8, Turn 23.8, Turn 23.9, Turn 23.10, Turn 23.11, Turn 23.12, Turn 24.7, Turn 24.8, Turn 24.9, Turn 24.10, Turn 24.11, Turn 24.12, Turn 24.13 and Turn 24.14.
 
 
 ## Post-freeze gate status
@@ -127,3 +127,16 @@ Run `35422236260` at `7c730fed3b3b0b3970a05ed4a3e9910252c894c1` is GREEN for bot
 
 Additional invariant:
 - primary overview/route-focus start CTAs enter `practice`/Nghe-Nói; `theory` is supporting/review context rather than the default learner start action.
+
+
+## Latest recognition / vocabulary-SRS semantic checkpoint
+
+Run `35422889144` at `c0e2413b5ec34e86e6ad83fb0c907dcea1417aa4` is GREEN for both architecture and existing regression.
+
+Additional invariants:
+- one SpeechRecognition session cannot create duplicate speaking attempts from repeated callbacks;
+- Deep Speaking `Cần ôn` resolution requires a newer recognition-backed attempt;
+- vocabulary search cannot use Vietnamese/English meaning fields or raw source JSON fallback;
+- Sentence Mining source context must contain Cyrillic;
+- SRS speaking-link labels cannot use Vietnamese title metadata;
+- learner-facing exported route/database filenames contain no build/version labels.
