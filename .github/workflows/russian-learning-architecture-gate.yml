@@ -100,6 +100,14 @@ on:
       - 'subjects/russian/assets/weakness-repair-router.css'
       - 'scripts/validate-russian-weakness-repair-routing.mjs'
       - 'tests/russian-weakness-repair-routing.test.mjs'
+      - 'subjects/russian/contracts/offline-asset-reliability-contract.v1.json'
+      - 'subjects/russian/assets/asset-reliability.js'
+      - 'subjects/russian/assets/asset-reliability.css'
+      - 'subjects/russian/assets/runtime-optimizer.js'
+      - 'subjects/russian/sw.js'
+      - 'subjects/russian/manifest.webmanifest'
+      - 'scripts/validate-russian-offline-asset-reliability.mjs'
+      - 'tests/russian-offline-asset-reliability.test.mjs'
       - '.github/workflows/russian-learning-architecture-gate.yml'
 
 permissions:
@@ -173,6 +181,9 @@ jobs:
           node --check subjects/russian/assets/weakness-repair-router.js
           node --check scripts/validate-russian-weakness-repair-routing.mjs
           node --check tests/russian-weakness-repair-routing.test.mjs
+          node --check subjects/russian/assets/asset-reliability.js
+          node --check scripts/validate-russian-offline-asset-reliability.mjs
+          node --check tests/russian-offline-asset-reliability.test.mjs
       - name: Validate listen-speak literacy visual contract
         run: node scripts/validate-russian-learning-sequence-contract.mjs
       - name: Run contract negative tests
@@ -259,6 +270,10 @@ jobs:
         run: node scripts/validate-russian-weakness-repair-routing.mjs
       - name: Run Russian weakness repair negative tests
         run: node tests/russian-weakness-repair-routing.test.mjs
+      - name: Validate Russian offline asset reliability
+        run: node scripts/validate-russian-offline-asset-reliability.mjs
+      - name: Run Russian offline asset reliability negative tests
+        run: node tests/russian-offline-asset-reliability.test.mjs
       - name: Parse pedagogy contracts
         run: node -e "const fs=require('fs'); const a=JSON.parse(fs.readFileSync('subjects/russian/contracts/listen-speak-literacy-visual-contract.v1.json','utf8')); const b=JSON.parse(fs.readFileSync('subjects/russian/contracts/oral-first-route-contract.v1.json','utf8')); if(a.schema!=='RUSSIAN_LISTEN_SPEAK_LITERACY_VISUAL_CONTRACT_V1'||b.schema!=='RUSSIAN_ORAL_FIRST_ROUTE_CONTRACT_V1') process.exit(1); console.log('RUSSIAN_PEDAGOGY_JSON=PASS')"
 
