@@ -5,17 +5,17 @@
 
 ## Active track
 
-- Current round: **Lượt 29 — COMPLETE**
-- Current step: **L29 final-state marker — REVALIDATION**
+- Current round: **Lượt 30**
+- Current step: **L30/B117 — HUMAN REVIEW RECEIPT CONTRACT · IN_PROGRESS**
 - L22 closeout: **B88 + H1 — PASS**
-- Status: **L23_COMPLETE · L24_COMPLETE · L25_COMPLETE · L26_COMPLETE · L27_COMPLETE · L28_COMPLETE · L29_COMPLETE_THROUGH_B116 · L30_PERMITTED_NOT_OPEN**
-- Last recorded six-gate head: `04e79df816da90cd32979432c215803c124e1d56`
+- Status: **L23_COMPLETE · L24_COMPLETE · L25_COMPLETE · L26_COMPLETE · L27_COMPLETE · L28_COMPLETE · L29_COMPLETE_THROUGH_B116 · L30_B117_ACTIVE**
+- Last recorded six-gate head: `6483313072de9c2f190851a27f825464a7109917`
 - Production/runtime activation by Roadmap V2: **disconnected**
 - Legacy/source destructive migration: **not executed**
-- Last completed: **L29 documentation/final-state closeout — PASS on complete six-gate set**
+- Last completed: **L29 final-state marker — PASS on complete six-gate set**
 - Last hardening: **L29-F2 validator/harness syntax repair — PASS; no gate weakening**
-- Current official step: **L29 final-state marker revalidation**
-- L30 is permitted to open only after this final-state marker head itself passes the complete six-gate set.
+- Current official step: **L30/B117 — canonical Human Review receipt boundary**
+- B118–B120 remain blocked until B117 passes the complete six-gate set.
 
 ## L22/B88 complete gate evidence
 
@@ -690,3 +690,25 @@ Accepted documentation/final-state closeout head: `04e79df816da90cd32979432c2158
 - Whole System Integration — run `35451640394` — PASS
 
 The L29 documentation closeout is green. L29 is complete through B116. This marker commit is the final revalidation checkpoint before L30 may open.
+
+
+## L29 final marker gate evidence
+
+Accepted L29 final marker head: `6483313072de9c2f190851a27f825464a7109917`
+
+- Roadmap V2 Current Gate — run `35451820863` — PASS
+- Foundation Domain Model — run `35451820842` — PASS
+- Windows checkout safety — run `35451820829` — PASS
+- Russian Reference UI — run `35451820836` — PASS
+- Cloudflare Preview — run `35451820856` — PASS
+- Whole System Integration — run `35451820902` — PASS
+
+L29 is fully complete through B116. L30 is permitted to open.
+
+## L30 opening
+
+Pre-audit found a current-track architecture gap: L29 can emit `ready_for_human_review` / `shadow_review_ready_for_human_review`, but the canonical Roadmap tree has no current Human Review receipt contract for recording the review decision without widening authority.
+
+L30 therefore opens as a data-only Human Review Receipt Boundary. Production integration remains disconnected.
+
+Current active step: **L30/B117**.
