@@ -95,6 +95,8 @@ export function validateGuard(guard){
   assert(guard.includes('aiMayModifyMastery:false')&&guard.includes('aiMayCompleteTasks:false'),'AI guard lost mastery/completion protection');
   assert(!guard.includes('RussianLearningState?.set'),'AI guard must not mutate canonical state');
   assert(!guard.includes('.addReview'),'AI guard must not enqueue review');
+  assert(guard.includes('RussianVocabSrs?.get'),'AI guard must read the real read-only vocab SRS API');
+  assert(!guard.includes('RussianVocabSRS?.context'),'Legacy/nonexistent vocab SRS API reference remains');
   return true;
 }
 
