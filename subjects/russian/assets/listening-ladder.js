@@ -170,7 +170,7 @@
     if(event.target.closest?.('[data-act="next-line"],[data-act="prev-line"],[data-line]'))setTimeout(render,50);
   },true);
 
-  root.addEventListener('russian:listening-playback-started',event=>{
+  root.addEventListener('russian:listening-playback-completed',event=>{
     const ctx=context();
     const detail=event?.detail||{};
     if(!ctx||detail.key!==ctx.key)return;
