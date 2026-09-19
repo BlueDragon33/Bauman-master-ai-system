@@ -36,6 +36,8 @@ function validateFreeze({contract,core,adapter,hostBridge,visual,dialogue,ai,rep
 
   forbid(core,'toggleActiveHideVi','dead translation toggle');
   forbid(core,"act==='toggle-vi'",'dead translation action');
+  forbid(core,'V ẩn/hiện nghĩa','stale translation shortcut');
+  for(const helper of ['dialogueVi','makeVietnamVocabDisplay','inferVocabVisual','vocabMeaningNoteText','vocabApplicationText','vocabDialogueExampleLines','vocabDialogueExampleHtml','vocabVisualHtml'])forbid(core,helper,'dead translation-era helper');
   forbid(core,'localStorage.clear(','destructive storage wipe');
   need(core,"modal.setAttribute('aria-hidden','false')",'modal open aria lifecycle');
   need(core,"modal.setAttribute('aria-hidden','true')",'modal close aria lifecycle');
@@ -71,6 +73,8 @@ assert.equal(validateFreeze(bundle),true);
 {const x=structuredClone(contract);x.compatibility.sourceTranslationFieldsAreLearnerSemanticAuthority=true;assert.throws(()=>validateFreeze({...bundle,contract:x}),/translation semantic authority/)}
 {const x=structuredClone(contract);x.compatibility.preservePrimaryStorageKey='new_key';assert.throws(()=>validateFreeze({...bundle,contract:x}),/primary storage key/)}
 assert.throws(()=>validateFreeze({...bundle,core:core+"\nfunction toggleActiveHideVi(){}"}),/dead translation toggle/);
+assert.throws(()=>validateFreeze({...bundle,core:core+"\nconst shortcut='V ẩn/hiện nghĩa';"}),/stale translation shortcut/);
+assert.throws(()=>validateFreeze({...bundle,core:core+"\nfunction makeVietnamVocabDisplay(){}"}),/dead translation-era helper/);
 assert.throws(()=>validateFreeze({...bundle,core:core+"\nlocalStorage.clear();"}),/destructive storage wipe/);
 assert.throws(()=>validateFreeze({...bundle,adapter:adapter.replace("protocol: 'BAUMAN_PLANNING_BRIDGE_V3_ROUTE_CARDS'","protocol: 'BROKEN'")}),/adapter planning protocol/);
 assert.throws(()=>validateFreeze({...bundle,hostBridge:hostBridge.replace("contract:'BAUMAN_SUBJECT_BRIDGE_V1'","contract:'BROKEN'")}),/host bridge contract/);
@@ -80,4 +84,4 @@ assert.throws(()=>validateFreeze({...bundle,ai:ai.replace('translationSemanticAu
 assert.throws(()=>validateFreeze({...bundle,skill:skill.replace('crossSkillInference:false','crossSkillInference:true')}),/cross-skill inference disabled/);
 
 console.log('RUSSIAN_PROMOTION_FREEZE_NEGATIVE_TEST=PASS');
-console.log(JSON.stringify({negativeCases:12,turn:'24.1'},null,2));
+console.log(JSON.stringify({negativeCases:14,turn:'24.1'},null,2));
