@@ -271,6 +271,18 @@ window.SUBJECT_ADAPTER = {
   dialogueSubtitle(item){ return item?.purpose_ru || item?.context_title_ru || ''; },
   dialogueGroup(item){ return item?.group || item?.group_ru || 'general'; },
   dialogueDifficulty(item){ return item?.difficulty_id || item?.difficulty || item?.level || 'all'; },
+  dialogueSearchText(item){
+    const turns=this.dialogueTurns(item).map(turn=>turn?.ru||'').filter(v=>/[А-Яа-яЁё]/.test(String(v))).join(' ');
+    const semanticTags=[
+      ...(Array.isArray(item?.communicative_functions_ru)?item.communicative_functions_ru:[]),
+      ...(Array.isArray(item?.az_tags)?item.az_tags:[]),
+      ...(Array.isArray(item?.vocabulary_seed_ru)?item.vocabulary_seed_ru:[])
+    ].filter(v=>/[А-Яа-яЁё]/.test(String(v))).join(' ');
+    return [
+      item?.id,item?.title_ru,item?.context_title_ru,item?.purpose_ru,item?.goal_ru,
+      item?.scene_ru,item?.situation_ru,item?.group_ru,semanticTags,turns
+    ].filter(Boolean).join(' ');
+  },
   dialogueTurns(item){
     const speakers = Array.isArray(item?.speakers) ? item.speakers : [];
     if(Array.isArray(item?.utterances) && item.utterances.length) return item.utterances.map((turn,i)=>{
