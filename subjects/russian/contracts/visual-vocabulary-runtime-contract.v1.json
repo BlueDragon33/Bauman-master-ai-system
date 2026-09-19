@@ -23,7 +23,8 @@
       "synthetic_translation_fallback"
     ],
     "contextRevealReplacesMeaningFlip": true,
-    "explicitMissingState": true
+    "explicitMissingState": true,
+    "translationFreeSearch": true
   },
   "sourceCompatibility": {
     "deleteLegacyTranslationFields": false,
@@ -33,7 +34,10 @@
     "noVietnameseSemanticAnswer": true,
     "noEnglishSemanticAnswer": true,
     "noMasteryMutation": true,
-    "noSrsScheduleMigration": true
+    "noSrsScheduleMigration": true,
+    "translationFieldsExcludedFromSearch": true,
+    "sentenceMiningRequiresCyrillicContext": true,
+    "speakingLinkTitlesRussianOnly": true
   },
   "imageEnrichment": {
     "provider": "wikimedia_commons",
