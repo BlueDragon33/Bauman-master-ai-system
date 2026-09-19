@@ -52,7 +52,7 @@ If a gate fails, repair it before continuing. Never weaken an assertion merely t
 | 21 | Weakness repair routing | GREEN | Unified additive repair router; focused routes; evidence-gated resolution; legacy click-equals-complete removed |
 | 22 | Offline media & asset reliability | GREEN | Entry-derived shell + 17 required data sources verified; false-ready blocked; external media/visual failures explicit |
 | 23 | Browser/package/accessibility/performance QA | GREEN | 64 entry dependencies / 66 shell entries exact; accessibility/responsive/performance/browser fallbacks gated; cursive obligation closed by 66 distinct OFL upper/lower outlines |
-| 24 | Migration freeze & promotion candidate | ACTIVE | Freeze compatibility only after cross-system promotion gates pass |
+| 24 | Migration freeze & promotion candidate | GREEN | 24-turn rebuild frozen; compatibility/promotion gates pass at source level; explicit promotion decision required before main merge |
 
 ## Turn definitions
 
@@ -179,6 +179,17 @@ Turn 23 execution substeps:
 ### Turn 24 — Migration freeze & promotion candidate
 
 Remove obsolete translation-first runtime authority, document compatibility, close all deferred obligations, run cross-system gates and freeze a promotion candidate.
+
+Turn 24 execution substeps:
+
+- **24.1 — Migration freeze contract:** preserve storage/bridge compatibility while prohibiting legacy translation state from regaining learner-facing authority.
+- **24.2 — Legacy-runtime audit:** remove dead translation-toggle execution paths while retaining inert saved-state fields for old snapshots.
+- **24.3 — Package/load-order freeze:** retain exact entry-derived app shell and freeze ordering for direct-semantic, browser-capability, cursive, literacy, repair and offline runtimes.
+- **24.4 — Authority/bridge freeze:** preserve `BAUMAN_SUBJECT_BRIDGE_V1`, planning protocol, Learning State mastery/Review Queue ownership and Vocab SRS scheduler ownership.
+- **24.5 — Negative/promotion gates:** reject automatic main merge, destructive storage reset, translation fallback, invalid bridge/storage changes and cursive upper/lower collapse.
+- **24.6 — Promotion candidate documentation:** record compatibility, version-free display policy, OFL cursive provenance and the requirement for a separate promotion decision.
+
+Result: all canonical 24 turns are GREEN. No further turn is created because no new responsibility remains unresolved inside this rebuild. Promotion to `main` is deliberately outside automatic execution.
 
 ## Deferred obligations
 
