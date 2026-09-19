@@ -1,0 +1,85 @@
+{
+  "schema": "BAUMAN_ROADMAP_V2_PROMOTION_ELIGIBILITY_CONTRACT_V1",
+  "version": "2.11.0-l31-b121",
+  "purpose": "Data-only promotion-eligibility boundary that recomputes the L30 Human Review receipt and determines only whether a candidate may proceed to a separate release-review stage, without granting release, production, persistence, or runtime authority",
+  "mode": {
+    "access": "read_only_promotion_eligibility",
+    "productionIntegration": "disconnected",
+    "releaseReviewIntegration": "disconnected",
+    "productionPromotionEnabled": false,
+    "persistentStoreEnabled": false,
+    "dashboardUiEnabled": false,
+    "scheduleWriteAllowed": false,
+    "calendarWriteAllowed": false,
+    "runtimeWriteAllowed": false,
+    "notificationWriteAllowed": false,
+    "automaticActionAllowed": false
+  },
+  "upstreamSchemas": {
+    "humanReviewContract": "BAUMAN_ROADMAP_V2_HUMAN_REVIEW_CONTRACT_V1",
+    "humanReviewRequest": "BAUMAN_ROADMAP_V2_HUMAN_REVIEW_REQUEST_V1",
+    "humanReviewResult": "BAUMAN_ROADMAP_V2_HUMAN_REVIEW_RESULT_V1",
+    "promotionEligibilityRequest": "BAUMAN_ROADMAP_V2_PROMOTION_ELIGIBILITY_REQUEST_V1",
+    "promotionEligibilityResult": "BAUMAN_ROADMAP_V2_PROMOTION_ELIGIBILITY_RESULT_V1"
+  },
+  "candidatePolicy": {
+    "candidateRefPattern": "^CANDIDATE::[A-Z0-9_-]+$",
+    "recomputeHumanReviewFromRequest": true,
+    "acceptCallerSuppliedHumanReviewResult": false,
+    "acceptCallerSuppliedEligibilityState": false,
+    "manualEligibilityOverrideAllowed": false
+  },
+  "eligibilityPolicy": {
+    "review_blocked_upstream": "not_eligible_upstream_blocked",
+    "review_needs_revision": "not_eligible_needs_revision",
+    "review_rejected": "not_eligible_rejected",
+    "review_accepted_shadow_only": "eligible_for_release_review",
+    "eligibleStateAuthorizesReleaseReview": false,
+    "eligibleStateAuthorizesProduction": false
+  },
+  "outputPolicy": {
+    "deepFrozen": true,
+    "persisted": false,
+    "includesHumanReviewReceiptId": true,
+    "includesReleaseCommand": false,
+    "includesProductionPromotionCommand": false,
+    "includesRuntimeCommand": false,
+    "includesScheduleMutation": false,
+    "includesNotificationCommand": false
+  },
+  "capabilities": {
+    "candidateValidate": true,
+    "humanReviewRecompute": true,
+    "promotionEligibilityProject": true,
+    "releaseReviewAuthorize": false,
+    "productionPromotion": false,
+    "productionConsumerConnect": false,
+    "persistentStoreWrite": false,
+    "dashboardUiRender": false,
+    "scheduleWrite": false,
+    "calendarWrite": false,
+    "runtimeActivation": false,
+    "notificationWrite": false,
+    "automaticAction": false
+  },
+  "abortConditions": [
+    "Promotion Eligibility request schema mismatch or unsupported caller fields",
+    "Human Review request/result schema mismatch",
+    "caller-supplied Human Review result or eligibility state",
+    "candidate reference outside CANDIDATE namespace",
+    "Human Review receipt carries persistence or production authority",
+    "eligible_for_release_review interpreted as release authorization or production promotion",
+    "persistence, dashboard, release, schedule, calendar, runtime, notification, production-promotion or automatic-action write attempted"
+  ],
+  "acceptance": {
+    "step": 121,
+    "currentTrack": "L31",
+    "productionConsumersConnected": 0,
+    "releaseReviewIntegration": "disconnected",
+    "productionIntegration": "disconnected",
+    "releaseReviewAuthorizationAllowed": false,
+    "productionPromotionAllowed": false,
+    "runtimeActivationAllowed": false,
+    "result": "PASS_B121_CONTRACT"
+  }
+}
