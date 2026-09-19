@@ -76,7 +76,7 @@
   }
   function schedule(){if(renderQueued)return;renderQueued=true;requestAnimationFrame(()=>{renderQueued=false;render();});}
   async function loadAlphabet(){
-    try{const data=await fetch('data/handwriting.json').then(r=>r.ok?r.json():[]);alphabet=Array.isArray(data)?data.filter(x=>x&&x.mode==='alphabet'&&x.id):[];}catch(_){alphabet=[];}
+    try{const data=await fetch('data/handwriting.json').then(r=>r.ok?r.json():[]);alphabet=Array.isArray(data)?data.map((x,sourceIndex)=>({...x,__sourceIndex:sourceIndex})).filter(x=>x&&x.mode==='alphabet'&&x.id):[];}catch(_){alphabet=[];}
     schedule();
   }
   function answer(id){
@@ -87,6 +87,10 @@
     if(correct){state.correct=Number(state.correct||0)+1;state.questionIndex=(q.index+1)%alphabet.length;}
     else state.weak[q.item.id]=Number(state.weak[q.item.id]||0)+1;
     writeState(state);
+    const route={view:'writing',handwritingIndex:Number(q.item.__sourceIndex??q.index)||0,handwritingStep:0};
+    window.RussianLearningState?.setResume?.(route,'handwriting_recognition');
+    if(correct)window.RussianLearningState?.removeReview?.('handwriting:'+clean(q.item.id));
+    else window.RussianLearningState?.addReview?.('handwriting:'+clean(q.item.id),'handwriting_recognition_miss',route,'Nhận diện chữ tay · '+clean(q.item.print||q.item.text||q.item.id));
     window.RussianLearningFlow?.touch?.('alphabet',{recognitionAttempts:state.attempts,recognitionCorrect:state.correct,recognitionLastLetterId:state.lastLetterId,recognitionLastCorrect:correct,recognitionAuthority:cap.mode});
     schedule();return correct;
   }
