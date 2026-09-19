@@ -33,9 +33,9 @@ export function validateRuntime(js,core,index){
   assert(!js.includes('meaning_vi')&&!js.includes('translation_vi'),'Translation semantic answer leaked into listening ladder');
   assert(!js.includes('mastered'),'Listening ladder must not promote mastery');
   assert(core.includes('practiceLineHeardCount'),'Core heard-count helper missing');
-  assert(core.includes("onStart:meta=>{if(inPracticeMode()){markPracticeLineHeard(d,idx);render()}"),'Core still counts listening before playback starts');
-  assert(core.includes("notifyListeningPlayback(d,idx,'normal',meta)"),'Core normal playback-completion event missing');
-  assert(core.includes("notifyListeningPlayback(d,idx,'slow',meta)"),'Core slow playback-completion event missing');
+  assert(core.includes("onEnd:meta=>{if(inPracticeMode()){markPracticeLineHeard(d,idx);render()}"),'Core must count listening only after playback completion');
+  assert(core.includes("notifyListeningPlaybackCompleted(d,idx,'normal',meta)"),'Core normal playback-completion event missing');
+  assert(core.includes("notifyListeningPlaybackCompleted(d,idx,'slow',meta)"),'Core slow playback-completion event missing');
   assert(core.includes("const slowReady=heardCount>=2;"),'Core slow-listen readiness is not two-listen gated');
   assert(index.includes('<script src="assets/listening-ladder.js"></script>'),'Listening ladder is not loaded');
   return true;
