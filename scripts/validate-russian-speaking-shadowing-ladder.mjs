@@ -12,14 +12,16 @@ export function validateContract(c){
   assert(c.prerequisites?.pronunciationFlagBeforeRepair===true,'Repair must require explicit pronunciation flag');
   assert(c.runtime?.reuseCoreRecorder===true&&c.runtime?.roleplayEvidenceRequiresRecording===true,'Speaking evidence must come from real recorder use');
   assert(c.runtime?.recognitionResultEvidenceRequired===true&&c.runtime?.failedOrEmptyRecognitionDoesNotCountAttempt===true,'Speaking evidence must require non-empty recognition result');
+  assert(c.runtime?.manualSelfAssessmentDoesNotCreateSpeakingEvidence===true,'Manual self-assessment must remain non-evidence');
   assert(c.evidence?.recognitionConfirmedAttempts===true,'Speaking attempts must remain recognition-confirmed');
+  assert(c.evidence?.learningFlowRecognitionOnly===true&&c.evidence?.selfAssessmentStoredSeparately===true,'Learning-flow speaking evidence must remain recognition-only');
   assert(c.runtime?.listeningLadderOwnedByTurn8===true&&c.runtime?.slowListenOwnedByRepairOnly===true,'Listening/speaking ownership drifted');
   assert(c.feedback?.translationAnswerForbidden===true&&c.feedback?.autoMasteryFromSimilarityScore===false,'Speaking feedback policy weakened');
   assert(c.evidence?.learnerStateAuthority===false&&c.evidence?.masteryMutation===false,'Speaking ladder may not own mastery');
   return true;
 }
 
-export function validateRuntime(js,css,core){
+export function validateRuntime(js,css,core,learningFlow){
   assert(js.includes("const STAGES=['imitation','shadowing','memory','roleplay','repair']"),'Runtime speaking stage sequence missing');
   assert(js.includes("function startImitation()"),'Imitation stage missing');
   assert(js.includes("function startShadow()"),'Shadowing stage missing');
@@ -44,6 +46,14 @@ export function validateRuntime(js,css,core){
   assert(css.includes('.ru-speaking-memory-mode')&&css.includes('.russian-line'),'Memory mode must hide the actual Russian line');
   assert(core.includes("if(act==='record-line')startLineRecording();"),'Core recorder action missing');
   assert(core.includes("notifySpeakingRecordingResult(d,idx,transcript,score)"),'Core recorder does not emit evidence on recognition result');
+  assert(core.includes("russian:speaking-self-assessed"),'Core self-assessment event missing');
+  assert(!/if\(act==='mark-line-ok'\)[^\n]*activeSpeechResults\(/.test(core),'Manual self-assessment writes speaking-result evidence');
+  assert(!/if\(act==='mark-line-ok'\)[^\n]*(score:100|transcript:dialogueText)/.test(core),'Manual self-assessment fabricates recognition evidence');
+  assert(!/else if\(act==='mark-line-ok'\)\{[^}]*markSessionAttempt\(\)/.test(js),'Self-assessment still marks a speaking session attempt');
+  assert(!/else if\(act==='mark-line-ok'\)\{[^}]*clearPronunciationReview\(\)/.test(js),'Self-assessment still clears pronunciation repair evidence');
+  assert(learningFlow.includes("window.addEventListener('russian:speaking-recording-result'"),'Learning flow is not recognition-result driven');
+  assert(!learningFlow.includes("['record-line','speak-line','speak-line-slow','speak-dialogue']"),'Listening/recorder clicks still count as speaking attempts');
+  assert(!/act==='mark-line-ok'[^\n]*attempts/.test(learningFlow),'Self-assessment still increments speaking attempts');
   assert(core.includes("try{rec.start();toast('Đang mở micro tiếng Nga...');return true}catch(_)"),'Core recorder start failure is not explicit');
   return true;
 }
@@ -54,7 +64,8 @@ export function loadAndValidate(){
   validateRuntime(
     fs.readFileSync('subjects/russian/assets/speaking-coach.js','utf8'),
     fs.readFileSync('subjects/russian/assets/speaking-coach.css','utf8'),
-    fs.readFileSync('subjects/russian/assets/core.js','utf8')
+    fs.readFileSync('subjects/russian/assets/core.js','utf8'),
+    fs.readFileSync('subjects/russian/assets/learning-flow.js','utf8')
   );
   return c;
 }
@@ -62,5 +73,5 @@ export function loadAndValidate(){
 if(import.meta.url===pathToFileURL(process.argv[1]).href){
   loadAndValidate();
   console.log('RUSSIAN_SPEAKING_LADDER_GATE=PASS');
-  console.log(JSON.stringify({stages:5,roleplayRecorderBacked:true,recognitionResultEvidence:true,failedOrEmptyRecognitionDoesNotCount:true,repairExplicit:true,listeningOwner:'Turn8'},null,2));
+  console.log(JSON.stringify({stages:5,roleplayRecorderBacked:true,recognitionResultEvidence:true,manualSelfAssessmentIsEvidence:false,learningFlowRecognitionOnly:true,failedOrEmptyRecognitionDoesNotCount:true,repairExplicit:true,listeningOwner:'Turn8'},null,2));
 }
