@@ -2,15 +2,15 @@
 
 Current task: `RUSSIAN_LISTENING_VISUAL_FIRST_ARCHITECTURE`
 
-Status: `RUSSIAN_HANDWRITING_HARDENING_PROMOTION_READINESS`
+Status: `RUSSIAN_RECONCILIATION_PROMOTION_DECISION`
 
-Project phase: `4/5 — HARDENING & PROMOTION READINESS`
+Project phase: `5/5 — RECONCILIATION & PROMOTION DECISION`
 
 Date: 2026-09-19
 Branch: `work/russian-listening-visual-first-architecture`
 PR: `#55 — Draft`
 Parent checkpoint: `676fe08d05e6d92ff4479620ad9bf00abe5f8da6`
-Latest accepted 9/9 checkpoint: `4010e23c527adeda9950b20a4452bf21c1a0f5c8`
+Latest accepted 9/9 checkpoint: `1d0c75e72acb8f0b23f250afc54a4278671d8949`
 
 ## Responsibility
 
@@ -120,21 +120,33 @@ Accepted checkpoint: `4010e23c527adeda9950b20a4452bf21c1a0f5c8`
 - separate source and packaged offline evidence are retained;
 - full checkpoint: 9/9 workflows PASS.
 
-## Active auto-generated work
+## Phase 4 closure
 
 ### R-HW14 — Phase-4 Closure & Promotion-Slice Audit
+Accepted checkpoint: `1d0c75e72acb8f0b23f250afc54a4278671d8949`
 
-Goal: close hardening without merging unrelated repository history.
+- promotion slice is computed from parent checkpoint `676fe08d05e6d92ff4479620ad9bf00abe5f8da6`;
+- closure audit runs with full Git history;
+- no `foundation/**`, Academic or Content Resolution authority path exists in the Russian slice;
+- source + packaged recognition and ready-authority offline parity remain green;
+- full checkpoint: 9/9 workflows PASS;
+- Phase 4/5 is CLOSED.
 
-1. Diff the Russian branch from parent checkpoint `676fe08d05e6d92ff4479620ad9bf00abe5f8da6`.
-2. Allow only Russian runtime/docs/audits plus explicitly required packaging, CI and browser tests.
-3. Reject any `foundation/**`, Academic or Content Resolution authority path in the Russian promotion slice.
-4. Keep production handwriting authority `blocked` until a real vetted asset is explicitly promoted.
-5. Confirm R-HW1–R-HW13 acceptance tests remain mandatory CI.
-6. Record that current branch history is ahead of `main` by unrelated work and must not be merged wholesale.
-7. Run Phase-4 closure audit in Russian gate.
-8. Require Whole-System source/package/offline parity.
-9. If all repository workflows are green, transition state to Phase 5/5 — Reconciliation & Promotion Decision, keeping PR Draft and not merging `main`.
+## Active auto-generated work
+
+### R-P1 — Clean Main-Based Promotion Candidate
+
+Goal: reconstruct the accepted Russian promotion slice on top of current `main` without inheriting unrelated branch history.
+
+1. Start a separate candidate branch from current `main`.
+2. Copy only files whose `main` version equals the parent checkpoint or which were newly added after the parent.
+3. Exclude working-state metadata (`CODEX_STATE.md`, `CODEX_TASK.md`) from the promotion candidate.
+4. For `.github/workflows/system-integration-ci.yml`, reapply only Russian post-parent CI additions onto the current `main` file.
+5. For `tests/system-browser-acceptance.mjs`, reapply only the Russian post-parent assertion onto current `main`.
+6. Compare candidate against `main` and reject any Foundation/Academic/Content Resolution path.
+7. Run candidate CI without changing PR #55 or merging `main`.
+8. Resolve any candidate-only compatibility failures.
+9. Produce an explicit promotion decision checkpoint; merge remains a separate explicit action.
 
 ## Validation policy
 
