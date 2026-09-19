@@ -221,3 +221,23 @@ Executable checkpoint:
 Targeted runtime scan at this checkpoint found no prohibited translation tokens in the learner-facing vocab, Deep Speaking, dialogue or AI-context slices. Adapter dialogue references to `translation_vi/gloss_vi` remain only in an explicit destructuring sanitizer that discards them.
 
 The promotion candidate remains frozen and must not merge to `main` automatically.
+
+
+## Post-freeze Deep Speaking semantic/evidence repair — 2026-09-19
+
+A deeper Deep Speaking audit found two defects inside existing responsibilities, so no Turn 25 was created:
+
+- Turn 16.2: `deepLines()` previously had permissive generic-object fallbacks (`Object.values`, `JSON.stringify`, generic `question/answer/domain`) that could surface non-Russian legacy text. Deep learner rendering now fails closed to Russian-labelled fields/collections, and learner metadata uses `scenario_ru` rather than generic `domain`.
+- Turn 9.3: Deep Speaking had `attempts/lastMode` storage but no runtime writer; “Đã nói ổn” was only self-marking. Rapid/Substitution/Shadowing/Monologue/Q&A now provide real `ru-RU` SpeechRecognition. Attempts increment only after a non-empty transcript; self-assessment remains separate.
+- Turn 24.11: dialogue/migration/speaking gates and negative tests freeze both properties.
+
+Executable checkpoint:
+
+- commit: `f5b49e56f276752ee2db9a3c5c33011574b0d3ba`
+- workflow: `35420972649`
+- `russian-learning-contract`: SUCCESS
+- `russian-existing-regression`: SUCCESS
+
+Targeted Deep Speaking learner-slice scan at this checkpoint contains no generic `.domain`, `p.question`, `p.answer`, `JSON.stringify`, `Object.values` or prohibited `*_vi` semantic fallback.
+
+The promotion candidate remains frozen and must not merge to `main` automatically.
