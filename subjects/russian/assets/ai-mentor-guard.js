@@ -41,7 +41,7 @@
       speaking:clone(speaking),
       academic:clone(academic),
       canonical:clone(canonical),
-      policy:{canonicalStateReadOnly:true,canonicalIdentityReadOnly:true,masteryReadOnly:true,aiMaySuggest:true,aiMayExplain:true,aiMayGeneratePractice:true,aiMayModifyMastery:false,aiMayCompleteTasks:false}
+      policy:{canonicalStateReadOnly:true,canonicalIdentityReadOnly:true,masteryReadOnly:true,reviewQueueReadOnly:true,schedulerReadOnly:true,russianFirst:true,visualContextFirst:true,translationSemanticAuthority:false,englishBridgeDefault:false,metaLanguageSecondaryOnly:true,dialogueTranslationFreeByDefault:true,aiMaySuggest:true,aiMayExplain:true,aiMayGeneratePractice:true,aiMayModifyMastery:false,aiMayCompleteTasks:false}
     };
   }
 
@@ -52,7 +52,7 @@
     const note=document.createElement('section');
     note.dataset.ruAiGuard='1';
     note.className='ru-ai-guard';
-    note.innerHTML=`<b>AI dùng ngữ cảnh hiện tại, không sửa tiến độ</b><span>${ctx.route.lessonId?`Bài ${ctx.route.lessonId} · `:''}${ctx.route.view}${ctx.route.learnTab?` / ${ctx.route.learnTab}`:''} · ${ctx.reviewDue} mục ôn đến hạn</span><small>Gợi ý của AI tách khỏi canonical learning state. Chỉ thao tác học thật hoặc xác nhận của bạn mới được ghi vào tiến độ.</small>`;
+    note.innerHTML=`<b>AI ưu tiên tiếng Nga/ngữ cảnh trước, không sửa tiến độ</b><span>${ctx.route.lessonId?`Bài ${ctx.route.lessonId} · `:''}${ctx.route.view}${ctx.route.learnTab?` / ${ctx.route.learnTab}`:''} · ${ctx.reviewDue} mục ôn đến hạn</span><small>Hình/scene → giải thích Nga → ngữ cảnh → so sánh/analogy → meta-help. Bản dịch Việt/Anh không phải semantic authority; AI không thay đổi mastery, lịch ôn hay canonical state.</small>`;
     const head=mentor.querySelector('.ai-head');
     if(head)head.after(note);else mentor.prepend(note);
   }
