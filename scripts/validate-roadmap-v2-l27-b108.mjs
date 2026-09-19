@@ -16,8 +16,8 @@ run('scripts/validate-roadmap-v2-l27-b107.mjs',/ROADMAP_V2_L27_B107_ADVERSARIAL_
 
 const readiness=loadCurrentReadinessHarness();
 assert.equal(readiness.contract.schema,'BAUMAN_ROADMAP_V2_READINESS_CONTRACT_V1');
-assert.equal(readiness.contract.acceptance.step,107);
-assert.equal(readiness.contract.acceptance.result,'PASS_ADVERSARIAL_READY_FOR_B108_CLOSEOUT');
+assert.equal(readiness.contract.acceptance.step,108);
+assert.equal(readiness.contract.acceptance.result,'PASS_CLOSEOUT_PENDING_FINAL_STATE_GATE');
 assert.equal(readiness.contract.mode.productionIntegration,'disconnected');
 assert.equal(readiness.contract.mode.persistentStoreEnabled,false);
 assert.equal(readiness.contract.mode.dashboardUiEnabled,false);
