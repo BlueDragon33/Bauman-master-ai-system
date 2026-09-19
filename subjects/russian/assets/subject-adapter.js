@@ -270,7 +270,7 @@ window.SUBJECT_ADAPTER = {
   dialogueTitle(item){ return item?.title_ru || item?.context_title_ru || item?.ruTitle || item?.id || 'Диалог'; },
   dialogueSubtitle(item){ return item?.purpose_ru || item?.context_title_ru || ''; },
   dialogueGroup(item){ return item?.group_ru || item?.group_id || item?.source_group_id || 'general'; },
-  dialogueDifficulty(item){ return item?.difficulty_id || item?.difficulty || item?.level || 'all'; },
+  dialogueDifficulty(item){ return item?.difficulty_id || item?.difficulty_ru || 'all'; },
   dialogueSearchText(item){
     const turns=this.dialogueTurns(item).map(turn=>turn?.ru||'').filter(v=>/[А-Яа-яЁё]/.test(String(v))).join(' ');
     const semanticTags=[
