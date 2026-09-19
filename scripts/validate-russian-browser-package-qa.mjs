@@ -53,18 +53,18 @@ export function validatePackage({index,sw,runtime}){
   const refs=localEntryRefs(index);
   assert(refs.length>=40,'Russian entry dependency inventory unexpectedly small');
   for(const ref of refs)assert(fs.existsSync(resolveEntryRef(ref)),'Missing packaged entry dependency: '+ref);
-  const expected=['./','./index.html',...refs.map(shellValue)];
-  const shell=quotedArray(sw,'SHELL');
-  const runtimeShell=jsonArray(runtime,'SHELL_REQUIRED');
-  assert(JSON.stringify(shell)===JSON.stringify(expected),'Service-worker shell must exactly match current entry dependencies');
-  assert(JSON.stringify(runtimeShell)===JSON.stringify(expected),'Runtime offline shell inventory must exactly match current entry dependencies');
-
   const cap=index.indexOf('assets/browser-capabilities.js');
   const core=index.indexOf('assets/core.js');
   const cursive=index.indexOf('assets/cursive-glyphs.js');
   const literacy=index.indexOf('assets/cyrillic-literacy.js');
   assert(cap>=0&&cap<core,'Browser capability runtime must load before core.js');
   assert(cursive>=0&&cursive<literacy,'Explicit cursive glyph runtime must load before Cyrillic literacy');
+
+  const expected=['./','./index.html',...refs.map(shellValue)];
+  const shell=quotedArray(sw,'SHELL');
+  const runtimeShell=jsonArray(runtime,'SHELL_REQUIRED');
+  assert(JSON.stringify(shell)===JSON.stringify(expected),'Service-worker shell must exactly match current entry dependencies');
+  assert(JSON.stringify(runtimeShell)===JSON.stringify(expected),'Runtime offline shell inventory must exactly match current entry dependencies');
   assert(!index.includes('\\n'),'Entry markup contains literal newline escape');
   return {entryRefs:refs.length,shellEntries:expected.length};
 }
