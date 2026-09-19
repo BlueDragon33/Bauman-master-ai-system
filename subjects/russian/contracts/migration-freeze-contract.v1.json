@@ -12,12 +12,16 @@
   },
   "compatibility": {
     "preservePrimaryStorageKey": "bauman_russian_survival_master_v11_clean_skeleton",
-    "preserveLegacySavedStateFields": ["dialogueHideVi", "practiceHideVi"],
+    "preserveLegacySavedStateFields": [
+      "dialogueHideVi",
+      "practiceHideVi"
+    ],
     "legacySavedStateFieldsMayExecuteTranslationUI": false,
     "sourceTranslationFieldsMayRemainForMigration": true,
     "sourceTranslationFieldsAreLearnerSemanticAuthority": false,
     "preserveBridgeContract": "BAUMAN_SUBJECT_BRIDGE_V1",
-    "preservePlanningProtocol": "BAUMAN_PLANNING_BRIDGE_V3_ROUTE_CARDS"
+    "preservePlanningProtocol": "BAUMAN_PLANNING_BRIDGE_V3_ROUTE_CARDS",
+    "internalVersionMetadataMayRemain": true
   },
   "runtimeFreeze": {
     "directSemanticVocabularyRequired": true,
@@ -27,7 +31,8 @@
     "cursiveExplicitVectorRequired": true,
     "weaknessRepairEvidenceGated": true,
     "offlineReadinessVerified": true,
-    "browserCapabilityFallbackRequired": true
+    "browserCapabilityFallbackRequired": true,
+    "learnerFacingExportFilenamesVersionFree": true
   },
   "authority": {
     "masteryOwner": "RUSSIAN_LEARNING_STATE_V1",
