@@ -21,7 +21,8 @@ assert.equal(validateIndex(index),true);
 assert.throws(()=>validateHelper(helper+"\nconst meaningVi='x';"),/prohibited translation field/);
 assert.throws(()=>validateCore(core.replace('RussianAIDirectExplanation','LegacyTranslator')),/does not delegate/);
 assert.throws(()=>validateGuard(guard.replace('translationSemanticAuthority:false','translationSemanticAuthority:true')),/still permits translation semantic authority/);
+assert.throws(()=>validateGuard(guard.replace('RussianVocabSrs?.get','RussianVocabSRS?.context')),/real read-only vocab SRS API|Legacy\/nonexistent/);
 assert.throws(()=>validateIndex(index.replace('<script src="assets/ai-direct-explanation.js"></script>','').replace('<script src="assets/core.js"></script>','<script src="assets/core.js"></script>\n<script src="assets/ai-direct-explanation.js"></script>')),/must load before core/);
 
 console.log('RUSSIAN_AI_DIRECT_EXPLANATION_NEGATIVE_TEST=PASS');
-console.log(JSON.stringify({negativeCases:7},null,2));
+console.log(JSON.stringify({negativeCases:8},null,2));
