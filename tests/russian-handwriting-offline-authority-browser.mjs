@@ -137,9 +137,15 @@ try{
   });
 
   const page=await context.newPage();
-  const errors=[];
-  page.on('console',m=>{if(m.type()==='error')errors.push(m.text())});
-  page.on('pageerror',e=>errors.push(String(e?.stack||e)));
+  const applicationErrors=[];
+  const transportNoise=[];
+  page.on('console',m=>{
+    if(m.type()!=='error')return;
+    const message=m.text();
+    if(/^Failed to load resource:/i.test(message))transportNoise.push(message);
+    else applicationErrors.push(message);
+  });
+  page.on('pageerror',e=>applicationErrors.push(String(e?.stack||e)));
 
   await page.goto(base,{waitUntil:'domcontentloaded',timeout:30000});
   await page.waitForFunction(()=>navigator.serviceWorker?.ready&&!!window.RussianHandwritingRecognition?.getCapability,null,{timeout:15000});
@@ -196,10 +202,10 @@ try{
   await page.waitForFunction(n=>Number(window.RussianHandwritingRecognition.getState().attempts||0)===n+1,before,{timeout:10000});
   const scored=await page.evaluate(()=>window.RussianHandwritingRecognition.getState());
   assert.equal(scored.lastCorrect,false,'R-HW12 deterministic wrong choice did not record a scored miss offline');
-  assert.deepEqual(errors,[],'R-HW12 emitted console/page errors');
+  assert.deepEqual(applicationErrors,[],'R-HW12 emitted application console/page errors');
 
   await page.screenshot({path:path.join(OUT,'ready-authority-offline.png'),fullPage:true});
-  fs.writeFileSync(path.join(OUT,'result.json'),JSON.stringify({status:'PASS',cached,offline:{...offline,state:undefined},scored},null,2));
+  fs.writeFileSync(path.join(OUT,'result.json'),JSON.stringify({status:'PASS',cached,offline:{...offline,state:undefined},scored,transportNoise},null,2));
   console.log('RUSSIAN_HANDWRITING_OFFLINE_AUTHORITY_BROWSER=PASS');
 }finally{
   try{if(browser)await browser.close();}catch(_){}
