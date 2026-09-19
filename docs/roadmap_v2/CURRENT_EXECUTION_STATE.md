@@ -6,16 +6,16 @@
 ## Active track
 
 - Current round: **Lượt 30**
-- Current step: **L30/B119 — ADVERSARIAL HUMAN REVIEW VALIDATION · IN_PROGRESS**
+- Current step: **L30/B120 — FULL-SYSTEM CLOSEOUT · IN_PROGRESS**
 - L22 closeout: **B88 + H1 — PASS**
-- Status: **L23_COMPLETE · L24_COMPLETE · L25_COMPLETE · L26_COMPLETE · L27_COMPLETE · L28_COMPLETE · L29_COMPLETE_THROUGH_B116 · L30_B117_COMPLETE · L30_B118_COMPLETE · L30_B119_ACTIVE**
-- Last recorded six-gate head: `009fbae50f7d62c23f10dbc570ca121fcdc5815a`
+- Status: **L23_COMPLETE · L24_COMPLETE · L25_COMPLETE · L26_COMPLETE · L27_COMPLETE · L28_COMPLETE · L29_COMPLETE_THROUGH_B116 · L30_B117_COMPLETE · L30_B118_COMPLETE · L30_B119_COMPLETE · L30_B120_ACTIVE**
+- Last recorded six-gate head: `ead487d53e575225fb641527ba9df178ab016249`
 - Production/runtime activation by Roadmap V2: **disconnected**
 - Legacy/source destructive migration: **not executed**
-- Last completed: **L30/B118 Human Review projector — PASS on complete six-gate set**
+- Last completed: **L30/B119 adversarial Human Review validation — 23/23 PASS on complete six-gate set**
 - Last hardening: **L29-F2 validator/harness syntax repair — PASS; no gate weakening**
-- Current official step: **L30/B119 — adversarial Human Review validation**
-- B120 remains blocked until B119 passes the complete six-gate set.
+- Current official step: **L30/B120 — full-system Human Review closeout**
+- L31 remains blocked until B120 and its documentation/final-state closeout pass the complete six-gate set.
 
 ## L22/B88 complete gate evidence
 
@@ -742,3 +742,19 @@ Accepted B118 head: `009fbae50f7d62c23f10dbc570ca121fcdc5815a`
 B118 is closed. Human Review receipt projection is deterministic, deeply frozen, side-effect free, and cannot promote shadow acceptance into production authority.
 
 B119 adversarial validation is permitted to open.
+
+
+## L30/B119 gate evidence
+
+Accepted B119 head: `ead487d53e575225fb641527ba9df178ab016249`
+
+- Roadmap V2 Current Gate — run `35452616105` — PASS
+- Foundation Domain Model — run `35452616119` — PASS
+- Windows checkout safety — run `35452616108` — PASS
+- Russian Reference UI — run `35452616113` — PASS
+- Cloudflare Preview — run `35452616106` — PASS
+- Whole System Integration — run `35452616126` — PASS
+
+B119 adversarial Human Review validation: **23/23 PASS**. Reviewer impersonation, schema drift, reason-code abuse, production-promotion injection, nested Consumer/Readiness forgery, persisted mastery and post-review mutation escalation all fail closed.
+
+B120 full-system closeout is permitted to open.
