@@ -5,16 +5,16 @@
 
 ## Active track
 
-- Current round: **Lượt 27**
-- Current step: **Bước 108 — FUNCTIONAL_PASS · FINAL_STATE_GATE_PENDING**
+- Current round: **Lượt 28**
+- Current step: **Bước 109 — IN_PROGRESS**
 - L22 closeout: **B88 + H1 — PASS**
-- Status: **L23_COMPLETE · L24_COMPLETE · L25_COMPLETE · L26_COMPLETE · PASS_L27_B105 · PASS_L27_F1_H1 · PASS_L27_B106 · PASS_L27_B107 · PASS_L27_B108_FUNCTIONAL · L27_FINAL_STATE_GATE_PENDING**
-- Last recorded six-gate head: `f8e5d732b9976af027a244478335f2aee39bb30d`
+- Status: **L23_COMPLETE · L24_COMPLETE · L25_COMPLETE · L26_COMPLETE · L27_COMPLETE · L28_B109_IN_PROGRESS**
+- Last recorded six-gate head: `0b9705e1a1267f35b53dccefc8abb850af8bff5e`
 - Production/runtime activation by Roadmap V2: **disconnected**
 - Legacy/source destructive migration: **not executed**
-- Last completed: **L27/B108 — FUNCTIONAL PASS (full-system readiness closeout)**
+- Last completed: **L27/B108 — PASS (functional + documentation/final-state closeout)**
 - Last hardening: **L27-F1/H1 stale manifest removal + additive readiness overlay — PASS**
-- Current official step: **L27 documentation/final-state closeout gate**
+- Current official step: **L28/B109 — read-only admission contract**
 - L26 opened only after the L25 final-state head passed the complete six-gate set.
 
 ## L22/B88 complete gate evidence
@@ -524,3 +524,23 @@ Accepted B108 functional head: `f8e5d732b9976af027a244478335f2aee39bb30d`
 B108 closeout composition is green. Production integration, persistence, dashboard rendering, runtime activation and notification writes remain disconnected/disabled.
 
 L28/B109 remains blocked until the documentation/final-state closeout head itself passes the same complete six-gate set.
+
+
+## L27 documentation/final-state gate evidence
+
+Accepted L27 final-state head: `0b9705e1a1267f35b53dccefc8abb850af8bff5e`
+
+- Roadmap V2 Current Gate — run `35438831959` — PASS
+- Foundation Domain Model — run `35438831858` — PASS
+- Windows checkout safety — run `35438831875` — PASS
+- Russian Reference UI — run `35438831849` — PASS
+- Cloudflare Preview — run `35438831904` — PASS
+- Whole System Integration — run `35438831845` — PASS
+
+L27 is complete. L28/B109 is permitted to open.
+
+## L28 opening
+
+L28 is a new current-track admission/integration-safety round. It does not activate Roadmap V2 in production.
+
+B109 introduces only a read-only admission contract between current Readiness and any future consumer. Existing Hub, PlanningBridge, Safe Shell, Math and Russian runtimes remain outside this Roadmap execution lane.
