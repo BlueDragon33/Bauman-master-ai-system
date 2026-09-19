@@ -25,12 +25,14 @@ export function validateContract(c){
   assert(image.queryLanguage==='ru'&&image.usesRussianSemanticContext===true&&image.translationQueryForbidden===true,'Image lookup must remain Russian-semantic only');
   assert(image.requiresRelevanceGate===true&&image.attributionRequired===true,'Image lookup relevance/attribution safeguards missing');
   assert(image.offlineLookup===false&&image.saveDataLookup===false,'Image lookup must not run offline or under Save-Data');
+  assert(image.cancelStaleLookup===true,'Stale image lookup cancellation is required');
+  assert(image.artistAttributionWhenAvailable===true,'Commons artist attribution must be preserved when available');
   assert(image.learnerStateAuthority===false&&image.srsAuthority===false,'Image enrichment must not gain learner/SRS authority');
   return true;
 }
 
 export function loadRuntimeHelper(js){
-  const sandbox={globalThis:{}};
+  const sandbox={globalThis:{},URLSearchParams,AbortController};
   sandbox.window=sandbox.globalThis;
   vm.createContext(sandbox);
   vm.runInContext(js,sandbox);
@@ -64,6 +66,8 @@ export function validateHelper(js){
   assert(Array.isArray(ranked)&&ranked.length===1&&ranked[0].title.includes('Книга'),'Image relevance gate did not reject unrelated Commons candidate');
   assert(js.includes("navigator.onLine!==false")&&js.includes("navigator.connection?.saveData"),'Image enrichment must honor offline and Save-Data state');
   assert(js.includes("Wikimedia Commons · "),'Image enrichment attribution UI missing');
+  assert(js.includes('activeHydrationController')&&js.includes('.abort()'),'Stale image lookup cancellation missing');
+  assert(js.includes("result.artist||''"),'Artist attribution path missing');
   return true;
 }
 
