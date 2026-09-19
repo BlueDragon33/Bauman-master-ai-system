@@ -51,6 +51,9 @@ export function validateCompatibility({core,adapter,hostBridge,manifest,cleanup}
   assert(manifestJson.title==='Tiếng Nga Bauman','Manifest display title must remain version-free');
   assert(manifestJson.ui?.coreLabel==='TIẾNG NGA BAUMAN'&&manifestJson.ui?.hideVersionLabels===true,'Manifest display UI must hide legacy version labels');
   assert(cleanup.includes('hideLegacyVersionLabels:true')&&cleanup.includes('preserveInternalStorageAndBridgeIds:true'),'UI cleanup compatibility contract weakened');
+  assert(adapter.includes("coreLabel: 'TIẾNG NGA BAUMAN'"),'Adapter fallback core label is versioned');
+  assert(adapter.includes("heroBadge: 'LỘ TRÌNH TIẾNG NGA BAUMAN'"),'Adapter fallback hero badge is versioned');
+  assert(core.includes("A.ui?.coreLabel||'TIẾNG NGA BAUMAN'"),'Core fallback label is versioned');
   return true;
 }
 
