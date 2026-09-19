@@ -59,6 +59,8 @@ if(freezeContract.schema!=='RUSSIAN_MIGRATION_FREEZE_CONTRACT_V1'||freezeContrac
 const runtimeJs=['assets/core.js','assets/learning-state.js','assets/learning-flow.js','assets/vocab-srs.js','assets/speaking-coach.js','assets/academic-language.js','assets/ai-mentor-guard.js','assets/ai-direct-explanation.js','assets/visual-vocabulary-runtime.js','assets/dialogue-scaffold.js','assets/cursive-glyphs.js','assets/cyrillic-literacy.js','assets/weakness-repair-router.js','assets/skill-gated-assessment.js','assets/browser-capabilities.js','assets/runtime-optimizer.js','assets/russian-reference-ui.js','assets/ui-cleanup-contract.js'].map(read).join('\n');
 forbid(read('assets/core.js'),'toggleActiveHideVi','Dead translation toggle must not survive promotion freeze');
 forbid(read('assets/core.js'),"act==='toggle-vi'",'Dead translation action must not survive promotion freeze');
+forbid(read('assets/core.js'),'V ẩn/hiện nghĩa','Stale translation shortcut must not survive promotion freeze');
+for(const legacyHelper of ['dialogueVi','makeVietnamVocabDisplay','inferVocabVisual','vocabMeaningNoteText','vocabApplicationText','vocabDialogueExampleLines','vocabDialogueExampleHtml','vocabVisualHtml'])forbid(read('assets/core.js'),legacyHelper,'Dead translation-era helper must not survive promotion freeze: '+legacyHelper);
 need(read('assets/core.js'),"modal.setAttribute('aria-hidden','false')",'Modal ARIA lifecycle must expose opened dialog');
 need(read('assets/core.js'),"modal.setAttribute('aria-hidden','true')",'Modal ARIA lifecycle must hide closed dialog');
 need(read('assets/core.js'),'modalReturnFocus=document.activeElement','Modal focus lifecycle must remember opener');
