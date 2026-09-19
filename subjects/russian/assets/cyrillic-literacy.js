@@ -83,6 +83,10 @@
 
   function printPair(row){return [row?.upper||'',row?.lower||''].filter(Boolean).join(' ')}
   function cursivePair(row){return String(row?.cursive||row?.handwriting||row?.write||row?.print||printPair(row)).trim()}
+  function cursiveHtml(row){
+    const G=window.RussianCursiveGlyphs;
+    return G?.renderPair?.(cursivePair(row))||'<span class="ru-cursive-font-fallback">'+esc(cursivePair(row))+'</span>';
+  }
 
   function distractorLetters(target){
     const explicit=CONFUSABLE[target]||[];
@@ -117,6 +121,7 @@
       return pool.map(candidate=>({
         key:candidate.upper,
         label:state.cursiveDirection==='print_to_cursive'?cursivePair(candidate):printPair(candidate),
+        row:candidate,
         cursive:state.cursiveDirection==='print_to_cursive'
       }));
     }
@@ -297,9 +302,11 @@
     return {attempts,correct,seen:Object.keys(state.seen||{}).length,score:attempts?Math.round(correct*100/attempts):0};
   }
 
-  function optionHtml(option,disabled){
+  function optionHtml(option,disabled,index=0){
     const cls=option.cursive?' class="ru-cyr-cursive-option"':'';
-    return '<button data-cyr-answer="'+esc(option.key)+'"'+cls+(disabled?' disabled':'')+'>'+esc(option.label)+'</button>';
+    const body=option.cursive?cursiveHtml(option.row):esc(option.label);
+    const aria=option.cursive?' aria-label="Phương án viết tay '+(Number(index)+1)+'"':'';
+    return '<button data-cyr-answer="'+esc(option.key)+'"'+cls+aria+(disabled?' disabled':'')+'>'+body+'</button>';
   }
 
   function soundPanel(row){
@@ -364,7 +371,7 @@
         :'Nhìn/nghe tín hiệu chính, chưa cần dịch nghĩa.');
 
     const footerNote=state.section==='cursive'
-      ?'Browser QA ở Turn 23 sẽ xác minh glyph viết tay khác chữ in'
+      ?'Mẫu viết tay dùng vector shape riêng, không phụ thuộc font hệ điều hành'
       :(state.section==='sound'?'Âm là bằng chứng luyện tập riêng; không tự nâng trạng thái học':'Không tự nâng trạng thái bài học');
 
     return '<section class="ru-cyrillic-literacy" data-cyrillic-literacy="print">'+
@@ -377,9 +384,9 @@
       '</div>'+
       modes+
       '<div class="ru-cyrillic-card">'+
-      '<div class="'+promptClass+'" aria-label="Tín hiệu cần nhận diện">'+esc(prompt(row))+'</div>'+
+      '<div class="'+promptClass+'" aria-label="Tín hiệu cần nhận diện">'+(promptIsCursive()?cursiveHtml(row):esc(prompt(row)))+'</div>'+
       (state.section==='sound'?soundPanel(row):'')+
-      '<div class="ru-cyrillic-options">'+options.map(x=>optionHtml(x,!heard)).join('')+'</div>'+
+      '<div class="ru-cyrillic-options">'+options.map((x,i)=>optionHtml(x,!heard,i)).join('')+'</div>'+
       '<div class="ru-cyrillic-result '+(result&&result.section===state.section?(result.ok?'ok':'retry'):'')+'">'+esc(resultText)+'</div>'+
       '<button class="ru-cyrillic-next" data-cyr-next="1">Bỏ qua / chữ tiếp →</button>'+
       '</div>'+
