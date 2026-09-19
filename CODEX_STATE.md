@@ -166,13 +166,14 @@ The branch uses fail-closed behavior: missing, stale, malformed, unlicensed, unh
 
 ## Remaining phase before merge
 
-Current position is **Phase 4/5: Hardening & Promotion Readiness**.
+Current position is **Phase 5/5: Reconciliation & Promotion Decision**.
 
-Phase 5 is not feature development. It consists of:
-1. finish remaining hardening gaps found by audits/browser tests;
-2. reconcile branch history so this Russian slice cannot accidentally promote unrelated Foundation commits;
-3. make an explicit promotion decision;
-4. only then merge the accepted Russian slice into `main`.
+Phase 5 is active. It consists of:
+1. freeze a deterministic, hashed Russian promotion manifest;
+2. construct a clean promotion branch from current `main` using only that manifest;
+3. run full source/package/offline CI on the clean branch;
+4. make an explicit promotion decision;
+5. only then merge the accepted clean Russian slice into `main`.
 
 ## Branch/merge rule
 
