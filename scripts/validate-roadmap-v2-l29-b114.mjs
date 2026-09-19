@@ -9,7 +9,7 @@ const satisfying=new Set(consumer.admission.readiness.mastery.contract.prerequis
 function snapshot(targetId,state,phaseId='GD2',options={}){
   return {
     schema:'BAUMAN_ROADMAP_V2_MASTERY_SNAPSHOT_V1',
-    streamId:options.streamId||\`B114::\${phaseId}::\${targetId}\`,
+    streamId:options.streamId||`B114::${phaseId}::${targetId}`,
     targetId,phaseId,eventCount:options.eventCount??1,lastSequence:options.lastSequence??1,
     knowledgeState:state,existingCompetencyVerified:false,
     dimensions:options.dimensions||{},
@@ -23,7 +23,7 @@ function item(id,snap,options={}){
     scheduleItemId:id,
     priorityCandidate:{
       schema:'BAUMAN_ROADMAP_V2_PRIORITY_CANDIDATE_V1',
-      candidateId:\`B114::CANDIDATE::\${id}\`,
+      candidateId:`B114::CANDIDATE::${id}`,
       targetId:snap.targetId,phaseId:snap.phaseId,
       masterRelevance:0.8,masterRelevanceSource:'L29/B114 shadow adapter fixture',
       weeksUntilNeeded:8,snapshot:snap
@@ -33,14 +33,14 @@ function item(id,snap,options={}){
     technicalTrack,
     russianTwinMinutes:technicalTrack===null?null:30,
     dueDate:null,reviewRequested:false,
-    source:{kind:'registry_static',ref:\`registry://\${snap.targetId}\`,verified:true,masterModeRelation:'not_applicable'}
+    source:{kind:'registry_static',ref:`registry://${snap.targetId}`,verified:true,masterModeRelation:'not_applicable'}
   };
 }
 function schedule(phaseId,items){
-  return {schema:'BAUMAN_ROADMAP_V2_SCHEDULER_REQUEST_V1',requestId:\`B114::SCHEDULE::\${phaseId}\`,phaseId,weekStart:'2026-09-21',weeklyCapacityMinutes:600,items};
+  return {schema:'BAUMAN_ROADMAP_V2_SCHEDULER_REQUEST_V1',requestId:`B114::SCHEDULE::${phaseId}`,phaseId,weekStart:'2026-09-21',weeklyCapacityMinutes:600,items};
 }
 function readinessRequest(phaseId,focusTargetIds,items){
-  return {schema:'BAUMAN_ROADMAP_V2_READINESS_REQUEST_V1',reportId:\`B114::READINESS::\${phaseId}::\${focusTargetIds.join('+')}\`,phaseId,focusTargetIds,scheduleRequest:schedule(phaseId,items),externalGates:[]};
+  return {schema:'BAUMAN_ROADMAP_V2_READINESS_REQUEST_V1',reportId:`B114::READINESS::${phaseId}::${focusTargetIds.join('+')}`,phaseId,focusTargetIds,scheduleRequest:schedule(phaseId,items),externalGates:[]};
 }
 function consumerRequest(readiness,overrides={}){
   return {
@@ -52,7 +52,7 @@ function consumerRequest(readiness,overrides={}){
   };
 }
 function event(sequence,evidenceType,payload,targetId,phaseId='GD2'){
-  return {schema:'BAUMAN_ROADMAP_V2_EVIDENCE_EVENT_V1',eventId:\`\${targetId}-B114-\${sequence}\`,streamId:\`B114::STREAM::\${targetId}\`,sequence,targetId,phaseId,evidenceType,occurredAt:'2026-09-19T00:00:00Z',source:{kind:'b114_fixture',ref:\`\${targetId}/\${sequence}\`},payload};
+  return {schema:'BAUMAN_ROADMAP_V2_EVIDENCE_EVENT_V1',eventId:`${targetId}-B114-${sequence}`,streamId:`B114::STREAM::${targetId}`,sequence,targetId,phaseId,evidenceType,occurredAt:'2026-09-19T00:00:00Z',source:{kind:'b114_fixture',ref:`${targetId}/${sequence}`},payload};
 }
 function fullEvidence(targetId,phaseId='GD2'){
   return [
@@ -140,13 +140,13 @@ assert.equal(consumer.contract.candidatePolicy.subjectRuntimeAdmitted,false);
 {
   const source=fs.readFileSync('scripts/roadmap-v2-consumer-admission-harness.mjs','utf8');
   for(const forbidden of [/writeFileSync\s*\(/,/appendFileSync\s*\(/,/writeFile\s*\(/,/localStorage/,/sessionStorage/,/fetch\s*\(/,/XMLHttpRequest/,/child_process/,/spawn\s*\(/,/exec\s*\(/]){
-    assert.doesNotMatch(source,forbidden,\`Consumer Admission harness gained forbidden side effect: \${forbidden}\`);
+    assert.doesNotMatch(source,forbidden,`Consumer Admission harness gained forbidden side effect: ${forbidden}`);
   }
   function walk(dir){return fs.existsSync(dir)?fs.readdirSync(dir,{withFileTypes:true}).flatMap(e=>{const p=path.posix.join(dir,e.name);return e.isDirectory()?walk(p):[p];}):[];}
   for(const file of [...(fs.existsSync('index.html')?['index.html']:[]),...walk('assets'),...walk('subjects')].filter(p=>/\.(?:html|js|mjs|cjs|json)$/i.test(p))){
     const text=fs.readFileSync(file,'utf8');
-    assert.equal(text.includes('roadmap-v2-consumer-admission-harness.mjs'),false,\`Consumer Admission harness wired into runtime: \${file}\`);
-    assert.equal(text.includes('loadCurrentConsumerAdmissionHarness'),false,\`Consumer Admission activation leaked into runtime: \${file}\`);
+    assert.equal(text.includes('roadmap-v2-consumer-admission-harness.mjs'),false,`Consumer Admission harness wired into runtime: ${file}`);
+    assert.equal(text.includes('loadCurrentConsumerAdmissionHarness'),false,`Consumer Admission activation leaked into runtime: ${file}`);
   }
 }
 
