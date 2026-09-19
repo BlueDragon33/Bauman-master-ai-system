@@ -19,7 +19,7 @@ export function validateContract(c){
   assert(c.browserCapabilities?.speechFallbackExplicit===true&&c.browserCapabilities?.externalMediaOfflineStateExplicit===true&&c.browserCapabilities?.missingVisualStateExplicit===true,'Browser capability fallback contract weakened');
   assert(c.browserCapabilities?.russianSpeechLanguage==='ru-RU','Russian speech language must remain ru-RU');
   assert(c.browserCapabilities?.russianVoiceSelectionRequired===true&&c.browserCapabilities?.voicesChangedRefreshRequired===true,'Russian voice selection/refresh contract weakened');
-  assert(c.browserCapabilities?.playbackStartHookRequired===true&&c.browserCapabilities?.playbackCompletionHookRequired===true&&c.browserCapabilities?.failedPlaybackMustNotCountListening===true,'Playback evidence contract weakened');
+  assert(c.browserCapabilities?.playbackStartHookRequired===true&&c.browserCapabilities?.playbackCompletionHookRequired===true&&c.browserCapabilities?.failedPlaybackMustNotCountListening===true&&c.browserCapabilities?.interruptedPlaybackMustNotCountListening===true,'Playback evidence contract weakened');
   assert(c.cursive?.obligationId==='RUS-CURSIVE-VISUAL-001'&&c.cursive?.mustDifferFromPrint===true&&c.cursive?.fontOnlyProofAllowed===false&&c.cursive?.explicitShapeFallbackAllowed===true,'Cursive proof contract weakened');
   assert(c.authority?.noMasteryMutation===true&&c.authority?.noCompletionMutation===true&&c.authority?.noReviewQueueMutation===true&&c.authority?.noSchedulerMutation===true,'Turn 23 must remain QA-only authority');
   return true;
@@ -120,6 +120,8 @@ export function validateBrowserCapability({capability,core,cyrillic,reading,dict
   assert(capability.includes('if(voice)u.voice=voice'),'Selected Russian voice is not assigned to utterance');
   assert(capability.includes('u.onstart=event=>'),'Playback-start hook missing from Russian speech runtime');
   assert(capability.includes('u.onend=event=>'),'Playback-completion hook missing from Russian speech runtime');
+  assert(capability.includes('let activeSpeechToken=0')&&capability.includes('const token=++activeSpeechToken'),'Speech cancellation token guard missing');
+  assert(/u\.onend=event=>\{[\s\S]{0,120}if\(token!==activeSpeechToken\)return;/.test(capability),'Cancelled playback can still emit completion evidence');
   assert(capability.includes("'voiceschanged',paint"),'Russian voice list refresh on voiceschanged missing');
   assert(capability.includes('Âm Nga: trình duyệt không hỗ trợ'),'Speech-unavailable learner status missing');
   assert(capability.includes('ru-RU dự phòng'),'Explicit ru-RU fallback status missing');
@@ -135,7 +137,7 @@ export function validateBrowserCapability({capability,core,cyrillic,reading,dict
 }
 
 export function validateBrowserCapabilityBehavior(capability){
-  let spoken=null,started=null,ended=null;
+  let spoken=null,started=null,ended=null,activeUtterance=null,interruptedCompletions=0;
   class SpeechSynthesisUtterance{
     constructor(text){this.text=text;this.lang='';this.rate=1;this.voice=null;this.onstart=null;this.onend=null;this.onerror=null;}
   }
@@ -145,8 +147,8 @@ export function validateBrowserCapabilityBehavior(capability){
   ];
   const speechSynthesis={
     getVoices:()=>voices,
-    cancel:()=>{},
-    speak:u=>{spoken=u;u.onstart?.({type:'start'});u.onend?.({type:'end'});},
+    cancel:()=>{const old=activeUtterance;activeUtterance=null;old?.onend?.({type:'end',cancelled:true});},
+    speak:u=>{spoken=u;activeUtterance=u;u.onstart?.({type:'start'});},
     addEventListener:()=>{}
   };
   const document={querySelector:()=>null,getElementById:()=>null,createElement:()=>({setAttribute(){},dataset:{}}),addEventListener:()=>{}};
@@ -157,10 +159,14 @@ export function validateBrowserCapabilityBehavior(capability){
   const api=root.RussianBrowserCapabilities;
   assert(api?.schema==='RUSSIAN_BROWSER_CAPABILITY_V1','Browser capability runtime API missing');
   assert(api.preferredRussianVoice?.()?.lang==='ru-RU','Browser capability did not select Russian voice');
-  const queued=api.speak?.('Привет',.82,{onStart:meta=>{started=meta},onEnd:meta=>{ended=meta}});
+  const firstQueued=api.speak?.('Привет',.82,{onEnd:()=>{interruptedCompletions++;}});
+  assert(firstQueued===true,'First Russian speech was not queued');
+  const queued=api.speak?.('Пока',.82,{onStart:meta=>{started=meta},onEnd:meta=>{ended=meta}});
   assert(queued===true,'Russian speech was not queued');
+  assert(interruptedCompletions===0,'Interrupted playback emitted completion evidence');
   assert(spoken?.voice?.lang==='ru-RU'&&spoken?.lang==='ru-RU','Russian utterance did not use selected Russian voice');
   assert(started?.verifiedRussianVoice===true&&started?.lang==='ru-RU','Playback-start callback did not preserve Russian voice evidence');
+  spoken?.onend?.({type:'end'});
   assert(ended?.verifiedRussianVoice===true&&ended?.lang==='ru-RU','Playback-completion callback did not preserve Russian voice evidence');
   return true;
 }
