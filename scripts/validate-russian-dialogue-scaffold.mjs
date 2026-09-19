@@ -22,6 +22,7 @@ export function validateContract(c){
   assert(c.semanticRouting?.dialogueSearchAuthority==='russian_direct_context_only','Dialogue search authority must remain Russian/direct-context only');
   assert(c.semanticRouting?.deepLinkNaturalLanguageTags==='cyrillic_only','Deep-link natural-language routing must remain Cyrillic-only');
   assert(c.semanticRouting?.dialogueGroupDisplayAuthority==='russian_label_or_inert_id','Dialogue group display authority must remain Russian-label or inert-id only');
+  assert(c.semanticRouting?.sceneVisualAuthority==='russian_direct_context_only','Scene visual authority must remain Russian/direct-context only');
   assert(c.semanticRouting?.legacyGenericVietnameseFieldsMayInfluenceRouting===false,'Legacy generic Vietnamese fields must not influence dialogue routing');
   return true;
 }
@@ -30,11 +31,20 @@ export function loadHelper(js){
 }
 export function validateHelper(js){
   for(const token of ['context_title_vi','communicative_functions_vi','meaning_vi','clue_en'])assert(!js.includes(token),`Helper references prohibited translation field: ${token}`);
+  const sceneStart=js.indexOf('function sceneIcon(dialogue){');
+  const sceneEnd=js.indexOf('function lineText(line){',sceneStart);
+  assert(sceneStart>=0&&sceneEnd>sceneStart,'Scene icon helper missing');
+  const scene=js.slice(sceneStart,sceneEnd);
+  assert(scene.includes('dialogue?.group_ru')&&scene.includes('dialogue?.context_title_ru'),'Scene icon does not use Russian semantic context');
+  for(const token of ['dialogue?.group,','dialogue?.domain','dialogue?.category','dialogue?.tags'])assert(!scene.includes(token),`Scene icon reads generic semantic metadata: ${token}`);
+  assert(scene.indexOf('/еда|столов|кафе|ресторан|обед|завтрак|ужин/')<scene.indexOf('/универс|бауман|заняти|урок|лекци|семинар|экзамен|учеб/'),'Concrete food scene matching must precede broad academic matching');
   const api=loadHelper(js);assert(api?.schema==='RUSSIAN_DIALOGUE_SCAFFOLD_V1','Dialogue scaffold API missing');
   const d=api.describe({context_title_ru:'В метро',purpose_ru:'Спросить дорогу',vocabulary_seed_ru:['метро','станция']},{ru:'Где метро?',vi:'Metro ở đâu?'},0,'A');
   const payload=JSON.stringify(d);
   assert(d.status==='ready'&&d.context_ru==='В метро'&&d.line_ru==='Где метро?','Russian scaffold descriptor failed');
   assert(!payload.includes('Metro ở đâu'),'Vietnamese line leaked into scaffold');
+  const food=api.describe({group_ru:'Еда и столовая',context_title_ru:'Заказ в университетской столовой'},{ru:'Я хочу обед.'},0,'all');
+  assert(food.scene_icon==='🍽️','Russian scene semantics did not select the concrete food icon before academic context');
   const missing=api.describe({context_title_vi:'Ở ga'},{ru:'Здравствуйте.'},0,'all');
   assert(missing.status==='missing_dialogue_context','Translation-only context must fail closed');
   return true;
