@@ -9,6 +9,7 @@
   const esc=v=>String(v??'').replace(/[&<>"']/g,m=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[m]));
   const initial=()=>({schema:SCHEMA,lines:{},updatedAt:null});
   let state={...initial(),...parse(localStorage.getItem(STORAGE_KEY),{})};
+  let pendingFocused=null;
 
   function save(){
     state.updatedAt=new Date().toISOString();
@@ -144,17 +145,22 @@
   document.addEventListener('click',event=>{
     const action=event.target.closest?.('[data-listen-ladder]')?.dataset.listenLadder;
     if(action==='normal'){
-      if(clickCore('speak-line'))setTimeout(()=>{record('normal')},30);
+      clickCore('speak-line');
       return;
     }
     if(action==='gist'){record('gist');return;}
     if(action==='focused'){
-      if(clickCore('speak-line'))setTimeout(()=>{record('focused')},30);
+      const ctx=context();
+      if(ctx){
+        pendingFocused={key:ctx.key,at:Date.now()};
+        setTimeout(()=>{if(pendingFocused?.key===ctx.key)pendingFocused=null},5000);
+      }
+      if(!clickCore('speak-line'))pendingFocused=null;
       return;
     }
     if(action==='slow'){
       const ctx=context();
-      if(ctx&&ctx.heardCount>=2&&clickCore('speak-line-slow'))setTimeout(()=>record('slow'),20);
+      if(ctx&&ctx.heardCount>=2)clickCore('speak-line-slow');
       return;
     }
 
@@ -163,6 +169,16 @@
 
     if(event.target.closest?.('[data-act="next-line"],[data-act="prev-line"],[data-line]'))setTimeout(render,50);
   },true);
+
+  root.addEventListener('russian:listening-playback-started',event=>{
+    const ctx=context();
+    const detail=event?.detail||{};
+    if(!ctx||detail.key!==ctx.key)return;
+    if(detail.kind==='slow'){record('slow');return;}
+    const focused=Boolean(pendingFocused&&pendingFocused.key===ctx.key&&Date.now()-Number(pendingFocused.at||0)<5000);
+    if(focused)pendingFocused=null;
+    record(focused?'focused':'normal');
+  });
 
   document.addEventListener('DOMContentLoaded',()=>{
     mount();
