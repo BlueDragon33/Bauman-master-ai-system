@@ -85,7 +85,7 @@ try{
   assert.deepEqual(errors,[],'Russian handwriting browser emitted console/page errors');
   await page.screenshot({path:`${OUT}/russian-handwriting-recognition.png`,fullPage:true});
 
-  const scoringContext=await browser.newContext({viewport:{width:1280,height:800}});
+  const scoringContext=await browser.newContext({viewport:{width:1280,height:800},serviceWorkers:'block'});
   await scoringContext.route('**/assets/handwriting-glyph-authority.js',route=>route.fulfill({
     status:200,
     contentType:'application/javascript; charset=utf-8',
