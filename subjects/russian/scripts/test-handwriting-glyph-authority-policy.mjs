@@ -4,8 +4,8 @@ import crypto from 'node:crypto';
 import {validateHandwritingGlyphAuthorityPolicy} from './handwriting-glyph-authority-policy.mjs';
 
 const root=process.cwd();
-const fixtureDir=path.join(root,'subjects/russian/assets/__authority-policy-fixture__');
-const rel=name=>'subjects/russian/assets/__authority-policy-fixture__/'+name;
+const fixtureDir=path.join(root,'subjects/russian/assets/handwriting-authority/__policy-fixture__');
+const rel=name=>'subjects/russian/assets/handwriting-authority/__policy-fixture__/'+name;
 const alphabetIds=Array.from({length:33},(_,i)=>'HW_AZ_'+String(i+1).padStart(2,'0'));
 const previewBuild="fs.cpSync(path.join(root, 'subjects'), path.join(runtimeDist, 'subjects'), { recursive: true })";
 const siteBuild="fs.cpSync(source,output,{recursive:true})";
@@ -54,10 +54,13 @@ try{
     verifiedAt:'2026-09-19T00:00:00.000Z'
   };
   const shell=[
-    "'./assets/__authority-policy-fixture__/fixture.woff2'",
-    "'./assets/__authority-policy-fixture__/LICENSE.txt'",
-    "'./assets/__authority-policy-fixture__/coverage.json'"
-  ].join(',');
+    "const isAuthorityAsset=url.pathname.includes('/subjects/russian/assets/handwriting-authority/')",
+    "if(isAuthority||isAuthorityAsset)",
+    "fetch(req,{cache:'no-store'})",
+    "'./assets/handwriting-authority/__policy-fixture__/fixture.woff2'",
+    "'./assets/handwriting-authority/__policy-fixture__/LICENSE.txt'",
+    "'./assets/handwriting-authority/__policy-fixture__/coverage.json'"
+  ].join(';');
 
   expectPass('ready authority fixture passes complete promotion policy',()=>validateHandwritingGlyphAuthorityPolicy({
     authority:ready,root,alphabetIds,serviceWorker:shell,previewBuild,siteBuild
@@ -76,8 +79,12 @@ try{
   fs.writeFileSync(coveragePath,JSON.stringify(coverage));
 
   expectFail('missing offline precache is rejected',()=>validateHandwritingGlyphAuthorityPolicy({
-    authority:{...ready,coverageSha256:digest(coveragePath)},root,alphabetIds,serviceWorker:"'./assets/__authority-policy-fixture__/fixture.woff2'",previewBuild,siteBuild
+    authority:{...ready,coverageSha256:digest(coveragePath)},root,alphabetIds,serviceWorker:"const isAuthorityAsset=url.pathname.includes('/subjects/russian/assets/handwriting-authority/');if(isAuthority||isAuthorityAsset);fetch(req,{cache:'no-store'});'./assets/handwriting-authority/__policy-fixture__/fixture.woff2'",previewBuild,siteBuild
   }),/precache/);
+
+  expectFail('asset outside dedicated authority namespace is rejected',()=>validateHandwritingGlyphAuthorityPolicy({
+    authority:{...ready,asset:'subjects/russian/assets/not-authority/font.woff2'},root,alphabetIds,serviceWorker:shell,previewBuild,siteBuild
+  }),/handwriting-authority/);
 
   expectFail('remote authority asset is rejected',()=>validateHandwritingGlyphAuthorityPolicy({
     authority:{...ready,asset:'https://example.com/font.woff2'},root,alphabetIds,serviceWorker:shell,previewBuild,siteBuild
