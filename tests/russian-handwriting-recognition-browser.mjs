@@ -81,6 +81,56 @@ try{
   for(const box of [mobile.cap,mobile.drill]){if(box){assert.ok(box.left>=-2,'Recognition UI overflows left on phone');assert.ok(box.right<=mobile.innerWidth+2,'Recognition UI overflows right on phone');}}
   assert.deepEqual(errors,[],'Russian handwriting browser emitted console/page errors');
   await page.screenshot({path:`${OUT}/russian-handwriting-recognition.png`,fullPage:true});
-  fs.writeFileSync(`${OUT}/result.json`,JSON.stringify({status:'PASS',initial,mobile,url:russianUrl()},null,2));
+
+  const scoringContext=await browser.newContext({viewport:{width:1280,height:800}});
+  await scoringContext.addInitScript(()=>{
+    const original=CanvasRenderingContext2D.prototype.measureText;
+    CanvasRenderingContext2D.prototype.measureText=function(text){
+      const metrics=original.call(this,text);
+      if(String(text)==='ДдЖжФфЯяШш'&&String(this.font).includes('Segoe Script'))return {width:Number(metrics.width||0)+37};
+      return metrics;
+    };
+  });
+  const scoringPage=await scoringContext.newPage();
+  const scoringErrors=[];
+  scoringPage.on('console',m=>{if(m.type()==='error')scoringErrors.push(m.text())});
+  scoringPage.on('pageerror',e=>scoringErrors.push(String(e?.stack||e)));
+  await scoringPage.goto(russianUrl(),{waitUntil:'domcontentloaded',timeout:30000});
+  await scoringPage.waitForFunction(()=>window.RussianHandwritingRecognition?.getCapability?.().canScore===true,null,{timeout:15000});
+  await scoringPage.locator('[data-view="writing"]').first().click();
+  await scoringPage.waitForFunction(()=>document.querySelector('.ru-handwriting-recognition')?.dataset.ruRecognitionState==='ready'&&document.querySelectorAll('[data-ru-handwriting-choice]').length===4,null,{timeout:15000});
+
+  const forcedCapability=await scoringPage.evaluate(()=>window.RussianHandwritingRecognition.getCapability());
+  assert.equal(forcedCapability.mode,'local-script-font');
+  assert.equal(forcedCapability.font,'Segoe Script');
+
+  await scoringPage.locator('[data-ru-handwriting-choice]').nth(1).click();
+  await scoringPage.waitForFunction(()=>window.RussianHandwritingRecognition.getState().attempts===1&&window.RussianHandwritingRecognition.getState().lastCorrect===false);
+  const missed=await scoringPage.evaluate(()=>({
+    recognition:window.RussianHandwritingRecognition.getState(),
+    learning:window.RussianLearningState.get()
+  }));
+  const reviewId='handwriting:'+missed.recognition.lastLetterId;
+  assert.ok(missed.learning.reviewQueue[reviewId],'Forced scoring miss did not enter Review Queue');
+  assert.equal(missed.learning.resume?.route?.view,'writing');
+  assert.ok(Number.isInteger(Number(missed.learning.resume?.route?.handwritingIndex)),'Forced scoring miss did not preserve handwriting index');
+
+  await scoringPage.locator(`[data-ru-handwriting-choice="${missed.recognition.lastLetterId}"]`).click();
+  await scoringPage.waitForFunction(()=>window.RussianHandwritingRecognition.getState().attempts===2&&window.RussianHandwritingRecognition.getState().correct===1&&window.RussianHandwritingRecognition.getState().lastCorrect===true);
+  const recovered=await scoringPage.evaluate(()=>({
+    recognition:window.RussianHandwritingRecognition.getState(),
+    learning:window.RussianLearningState.get(),
+    flow:window.RussianLearningFlow.get()
+  }));
+  assert.ok(!recovered.learning.reviewQueue[reviewId],'Correct recognition did not clear its handwriting Review Queue item');
+  const scoringAlphabetSteps=Object.values(recovered.flow.lessons||{}).map(x=>x?.steps?.alphabet).filter(Boolean);
+  assert.ok(scoringAlphabetSteps.some(x=>Number(x.recognitionAttempts||0)>=2&&Number(x.recognitionCorrect||0)>=1),'Scored recognition evidence missing from learning flow');
+  assert.ok(scoringAlphabetSteps.every(x=>Number(x.strokeActions||0)===0),'Scored recognition fabricated handwriting stroke evidence');
+  assert.ok(scoringAlphabetSteps.every(x=>x.mastery===undefined&&x.completed===undefined),'Scored recognition wrote mastery/completed state');
+  assert.deepEqual(scoringErrors,[],'Forced scoring browser emitted console/page errors');
+  await scoringPage.screenshot({path:`${OUT}/russian-handwriting-recognition-scoring.png`,fullPage:true});
+  await scoringContext.close();
+
+  fs.writeFileSync(`${OUT}/result.json`,JSON.stringify({status:'PASS',initial,mobile,forcedCapability,scoredState:recovered.recognition,url:russianUrl()},null,2));
   console.log('RUSSIAN_HANDWRITING_RECOGNITION_BROWSER=PASS');
 }finally{if(browser)await browser.close();}
