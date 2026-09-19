@@ -47,6 +47,9 @@ export function validateCompatibility({core,adapter,hostBridge,manifest,cleanup}
   assert(hostBridge.includes("contract:'BAUMAN_SUBJECT_BRIDGE_V1'"),'BAUMAN_SUBJECT_BRIDGE_V1 no longer emitted by host bridge');
   assert(adapter.includes("protocol: 'BAUMAN_PLANNING_BRIDGE_V3_ROUTE_CARDS'"),'Planning bridge protocol changed');
   assert(manifest.includes('"bridgeProtocol": "BAUMAN_PLANNING_BRIDGE_V3_ROUTE_CARDS"'),'Manifest planning protocol drifted');
+  const manifestJson=JSON.parse(manifest);
+  assert(manifestJson.title==='Tiếng Nga Bauman','Manifest display title must remain version-free');
+  assert(manifestJson.ui?.coreLabel==='TIẾNG NGA BAUMAN'&&manifestJson.ui?.hideVersionLabels===true,'Manifest display UI must hide legacy version labels');
   assert(cleanup.includes('hideLegacyVersionLabels:true')&&cleanup.includes('preserveInternalStorageAndBridgeIds:true'),'UI cleanup compatibility contract weakened');
   return true;
 }
