@@ -77,7 +77,7 @@ assert.throws(()=>validateFreeze({...bundle,core:core+"\nconst shortcut='V ẩn/
 assert.throws(()=>validateFreeze({...bundle,core:core+"\nfunction makeVietnamVocabDisplay(){}"}),/dead translation-era helper/);
 assert.throws(()=>validateFreeze({...bundle,core:core+"\nlocalStorage.clear();"}),/destructive storage wipe/);
 assert.throws(()=>validateFreeze({...bundle,adapter:adapter.replace("protocol: 'BAUMAN_PLANNING_BRIDGE_V3_ROUTE_CARDS'","protocol: 'BROKEN'")}),/adapter planning protocol/);
-assert.throws(()=>validateFreeze({...bundle,hostBridge:hostBridge.replace("contract:'BAUMAN_SUBJECT_BRIDGE_V1'","contract:'BROKEN'")}),/host bridge contract/);
+assert.throws(()=>validateFreeze({...bundle,hostBridge:hostBridge.replaceAll("contract:'BAUMAN_SUBJECT_BRIDGE_V1'","contract:'BROKEN'")}),/host bridge contract/);
 assert.throws(()=>validateFreeze({...bundle,visual:visual+"\nconst meaning_vi='x';"}),/visual Vietnamese fallback/);
 assert.throws(()=>validateFreeze({...bundle,dialogue:dialogue+"\nconst vi_turns=[];"}),/dialogue Vietnamese semantic runtime/);
 assert.throws(()=>validateFreeze({...bundle,ai:ai.replace('translationSemanticAuthority:false','translationSemanticAuthority:true')}),/AI translation authority/);
