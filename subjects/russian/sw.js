@@ -5,7 +5,7 @@ const SHELL=[
   './','./index.html','./manifest.webmanifest','../shared/host-bridge.js',
   './assets/core.css','./assets/russian.css','./assets/russian-reference-ui.css','./assets/russian-reference-ui-polish.css',
   './assets/learning-state.css','./assets/content-contract.css','./assets/learning-flow.css','./assets/vocab-srs.css','./assets/speaking-coach.css','./assets/academic-language.css','./assets/runtime-optimizer.css',
-  './assets/subject-adapter.js','./assets/ui-cleanup-contract.js','./assets/content-contract.js','./assets/planning-bridge.js','./assets/russian-optional-data-loader.js','./assets/core.js','./assets/learning-state.js','./assets/learning-flow.js','./assets/vocab-srs.js','./assets/speaking-coach.js','./assets/academic-language.js','./assets/ai-mentor-guard.js','./assets/runtime-optimizer.js','./assets/russian-reference-ui.js'
+  './assets/subject-adapter.js','./assets/ui-cleanup-contract.js','./assets/content-contract.js','./assets/planning-bridge.js','./assets/russian-optional-data-loader.js','./assets/core.js','./assets/learning-state.js','./assets/learning-flow.js','./assets/handwriting-recognition.js','./assets/vocab-srs.js','./assets/speaking-coach.js','./assets/academic-language.js','./assets/ai-mentor-guard.js','./assets/runtime-optimizer.js','./assets/russian-reference-ui.js'
 ];
 const OPTIONAL_LARGE=new Set(['dialogue-bauman-az.json','deep-speaking-bauman.json','speaking-link-index.json']);
 self.addEventListener('install',event=>{event.waitUntil(caches.open(CACHE).then(c=>c.addAll(SHELL)).then(()=>self.skipWaiting()));});
