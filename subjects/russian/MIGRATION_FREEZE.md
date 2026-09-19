@@ -28,7 +28,7 @@ Promotion is a separate decision. This branch must not merge to `main` automatic
 - Vocabulary scheduling: `RUSSIAN_VOCAB_SRS_V1`.
 - Skill-gated assessment: advisory only; no cross-skill inference.
 - Weakness repair: additive `RUSSIAN_WEAKNESS_REPAIR_ROUTER_V1`; resolution requires new repair evidence.
-- Cursive recognition: explicit `RUSSIAN_CURSIVE_GLYPH_SHAPES_V1` vector shapes for all 33 Cyrillic letters.
+- Cursive recognition: explicit `RUSSIAN_CURSIVE_GLYPH_SHAPES_V2` vector shapes for all 33 Cyrillic letters.
 - Browser speech fallback: `RUSSIAN_BROWSER_CAPABILITY_V1`.
 - Offline readiness: requires verified current app shell and all required learning-data sources.
 
@@ -47,7 +47,7 @@ Promotion candidate gates cover:
 5. exact package/load-order checks retained from Turn 23;
 6. bridge/storage/SRS/mastery authority unchanged;
 7. direct-semantic vocabulary/dialogue/AI runtime frozen;
-8. explicit cursive vector layer retained;
+8. 66-glyph OFL cursive outline layer retained;
 9. weakness repair remains evidence-gated;
 10. browser/offline fallbacks retained;
 11. no destructive local-storage reset;
