@@ -14,6 +14,8 @@ const api=loadHelper(js);
 const x=api.describe({context_title_vi:'Trong lớp',communicative_functions_vi:['hỏi bài']},{ru:'Повторите, пожалуйста.',meaning_vi:'Xin hãy nhắc lại.'},0,'all');
 assert.equal(x.status,'missing_dialogue_context');
 assert.equal(x.line_ru,'Повторите, пожалуйста.');
+const food=api.describe({group_ru:'Еда и столовая',context_title_ru:'Заказ в университетской столовой'},{ru:'Я хочу обед.'},0,'all');
+assert.equal(food.scene_icon,'🍽️');
 assert(!JSON.stringify(x).includes('Trong lớp'));
 {const y=copy();y.missingContext.translationFallback=true;assert.throws(()=>validateContract(y),/must fail closed/)}
 {const y=copy();y.practice.russianContextHiddenBeforeFirstListen=false;assert.throws(()=>validateContract(y),/Hear-before-see invariant weakened/)}
@@ -41,5 +43,6 @@ assert.throws(()=>validateCore(core.replace("const unitTags=russianSemanticTags(
 assert.throws(()=>validateCore(core.replace("A.dialogueGroup?.(x)||x.group_ru||x.group_id||x.source_group_id||'general'","A.dialogueGroup?.(x)||x.group||'general'")),/generic-language dialogue group fallback/);
 assert.throws(()=>validateCore(core.replace("A.dialogueGroup?.(d)||d.group_ru||d.group_id||d.source_group_id||'general'","A.dialogueGroup?.(d)||d.group||'general'")),/generic-language group labels/);
 assert.throws(()=>validateCore(core.replace("if(state.dialogueGroup!=='all'&&!groups.includes(state.dialogueGroup))state.dialogueGroup='all';","")),/group state is not recovered/);
+assert.throws(()=>validateHelper(js.replace("dialogue?.group_ru,dialogue?.context_title_ru","dialogue?.group,dialogue?.context_title_ru")),/generic semantic metadata/);
 console.log('RUSSIAN_DIALOGUE_SCAFFOLD_NEGATIVE_TEST=PASS');
-console.log(JSON.stringify({negativeCases:20},null,2));
+console.log(JSON.stringify({negativeCases:21},null,2));
