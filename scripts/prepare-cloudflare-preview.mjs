@@ -172,6 +172,7 @@ for (const resource of [
   'assets/js/planning-main.js',
   'subjects/russian/index.html',
   'subjects/russian/assets/core.js',
+  'subjects/russian/assets/handwriting-glyph-authority.js',
   'subjects/russian/assets/handwriting-recognition.js',
   'subjects/russian/assets/russian-reference-ui.js',
   'subjects/russian/assets/russian-reference-ui-polish.css',
@@ -200,7 +201,9 @@ if (!html.includes('assets/js/platform/runtime-config.js') || !html.includes('as
   throw new Error('Bauman runtime is missing the device-access bootstrap scripts.');
 }
 const russianHtml = fs.readFileSync(path.join(runtimeDist, 'subjects/russian/index.html'), 'utf8');
+if (!russianHtml.includes('assets/handwriting-glyph-authority.js')) throw new Error('Russian runtime is missing handwriting glyph authority script reference.');
 if (!russianHtml.includes('assets/handwriting-recognition.js')) throw new Error('Russian runtime is missing handwriting recognition script reference.');
+if (russianHtml.indexOf('assets/handwriting-glyph-authority.js') > russianHtml.indexOf('assets/handwriting-recognition.js')) throw new Error('Russian glyph authority must load before handwriting recognition.');
 for (const resource of [
   '../../foundation/domain-model/canonical-identity-runtime.js',
   '../../foundation/domain-model/identity-overlay-store.js',
