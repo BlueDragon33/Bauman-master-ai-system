@@ -5,16 +5,16 @@
 
 ## Active track
 
-- Current round: **Lượt 26**
-- Current step: **Bước 104 — DOCUMENTATION CLOSEOUT ACTIVE**
+- Current round: **Lượt 27**
+- Current step: **Bước 105 — BLOCKED · L27-F1/L27-H1 ACTIVE**
 - L22 closeout: **B88 + H1 — PASS**
-- Status: **L23_COMPLETE · L24_COMPLETE · L25_COMPLETE · PASS_L26_B101_B103 · PASS_L26_H1_H2 · PASS_L26_F2 · L26_B104_FUNCTIONAL_PASS · L26_B104_DOCUMENTATION_CLOSEOUT_ACTIVE**
+- Status: **L23_COMPLETE · L24_COMPLETE · L25_COMPLETE · L26_COMPLETE · PASS_L26_B101_B104 · PASS_L26_F2_H2 · L27_B105_BLOCKED · L27_F1_H1_ACTIVE**
 - Last recorded six-gate head: `4d2bd743f0977d3a8202564549eb51a37164056e`
 - Production/runtime activation by Roadmap V2: **disconnected**
 - Legacy/source destructive migration: **not executed**
-- Last completed: **L26/B103 — PASS (16/16 adversarial checks)**
+- Last completed: **L26/B104 — PASS (functional + documentation/final-state six-gate closeout)**
 - Last hardening: **L26-F2 provenance relation fail-closed — PASS**
-- Current official step: **L26/B104 — documentation/final-state closeout**
+- Current official step: **L27/B105 — current readiness contract (blocked by stale manifest boundary)**
 - L26 opened only after the L25 final-state head passed the complete six-gate set.
 
 ## L22/B88 complete gate evidence
@@ -442,3 +442,25 @@ B103 adversarial Scheduler validation: **16/16 PASS**.
 Whole System verified source runtime, Foundation identity/projection/context, Math Study Command Center, Hub responsive behavior, Russian capability Hub/deep-link/route/continue/progress, true-offline shell, packaged ChatGPT Site and the equivalent packaged acceptance chain.
 
 B104 is functionally green. L27 remains blocked until this documentation/final-state closeout head itself passes the complete six-gate set.
+
+
+## L26/B104 documentation/final-state gate evidence
+
+Accepted documentation/final-state head: `999dd9910c4d2d87c7e947aa5d9b8d04b60f2555`
+
+- Roadmap V2 Current Gate — run `35436678298` — PASS
+- Foundation Domain Model — run `35436678303` — PASS
+- Windows checkout safety — run `35436678253` — PASS
+- Russian Reference UI — run `35436678269` — PASS
+- Cloudflare Preview — run `35436678378` — PASS
+- Whole System Integration — run `35436678336` — PASS
+
+L26 is complete. L27 is permitted to open.
+
+## L27 opening
+
+Current active boundary: **B105**, with **L27-F1/L27-H1 active**.
+
+Pre-audit found that the frozen historical Readiness contract still names historical Consumer/Mastery/Scheduler manifests. Those stale package identities may remain provenance evidence but cannot be execution dependencies on the current track.
+
+Repair policy: additive current readiness overlay only; the frozen historical Readiness contract is not mutated.
