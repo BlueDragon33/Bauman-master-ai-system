@@ -38,27 +38,100 @@
       note:clean(raw.note)
     };
   }
+  const DIGEST=/^[a-f0-9]{64}$/i;
+  let authorityRuntime={status:'idle',family:null,error:null,verifiedAt:null},authorityPromise=null;
+  function authorityMetadataReady(authority){
+    return authority.status==='ready'
+      &&authority.source==='bundled-vetted'
+      &&authority.trustedFamilies.length>0
+      &&!!authority.asset&&DIGEST.test(authority.assetSha256||'')
+      &&!!authority.license&&DIGEST.test(authority.licenseSha256||'')
+      &&!!authority.coverageManifest&&DIGEST.test(authority.coverageSha256||'')
+      &&!!authority.verifiedAt;
+  }
+  function runtimeUrl(value){
+    const v=clean(value),prefix='subjects/russian/';
+    return v.startsWith(prefix)?'./'+v.slice(prefix.length):v;
+  }
+  function bytesHex(buffer){return [...new Uint8Array(buffer)].map(x=>x.toString(16).padStart(2,'0')).join('');}
+  async function sha256Hex(buffer){
+    if(!window.crypto?.subtle)throw new Error('Web Crypto SHA-256 unavailable');
+    return bytesHex(await window.crypto.subtle.digest('SHA-256',buffer));
+  }
+  async function fetchBytes(value){
+    const res=await fetch(runtimeUrl(value),{cache:'no-store'});
+    if(!res.ok)throw new Error('Authority asset fetch failed: '+res.status);
+    return res.arrayBuffer();
+  }
+  function sameSet(a,b){
+    if(a.length!==b.length)return false;
+    const left=[...a].map(clean).sort(),right=[...b].map(clean).sort();
+    return left.every((v,i)=>v===right[i]);
+  }
+  async function verifyAuthority(){
+    const authority=authoritySnapshot();
+    if(!authorityMetadataReady(authority)){
+      authorityRuntime={status:authority.status==='ready'?'invalid':'blocked',family:null,error:authority.status==='ready'?'Authority metadata incomplete':null,verifiedAt:null};
+      capability=null;schedule();return false;
+    }
+    if(authorityPromise)return authorityPromise;
+    authorityRuntime={status:'verifying',family:null,error:null,verifiedAt:null};capability=null;schedule();
+    authorityPromise=(async()=>{
+      if(typeof window.FontFace!=='function'||!document.fonts)throw new Error('FontFace API unavailable');
+      if(alphabet.length!==33)throw new Error('Alphabet dataset must contain exactly 33 letters before authority verification');
+      const [fontBytes,licenseBytes,coverageBytes]=await Promise.all([
+        fetchBytes(authority.asset),fetchBytes(authority.license),fetchBytes(authority.coverageManifest)
+      ]);
+      const [fontHash,licenseHash,coverageHash]=await Promise.all([
+        sha256Hex(fontBytes),sha256Hex(licenseBytes),sha256Hex(coverageBytes)
+      ]);
+      if(fontHash!==authority.assetSha256.toLowerCase())throw new Error('Bundled font SHA-256 mismatch');
+      if(licenseHash!==authority.licenseSha256.toLowerCase())throw new Error('Bundled license SHA-256 mismatch');
+      if(coverageHash!==authority.coverageSha256.toLowerCase())throw new Error('Coverage manifest SHA-256 mismatch');
+      let coverage;
+      try{coverage=JSON.parse(new TextDecoder().decode(coverageBytes));}catch(_){throw new Error('Coverage manifest is invalid JSON');}
+      const alphabetIds=alphabet.map(x=>clean(x.id));
+      if(coverage?.schema!=='RUSSIAN_HANDWRITING_GLYPH_COVERAGE_V1')throw new Error('Coverage schema mismatch');
+      if(!Array.isArray(coverage.alphabetIds)||coverage.alphabetIds.length!==33||!sameSet(coverage.alphabetIds,alphabetIds))throw new Error('Coverage does not match all 33 alphabet IDs');
+      if(!Array.isArray(coverage.fontFamilies)||!sameSet(coverage.fontFamilies,authority.trustedFamilies))throw new Error('Coverage font families do not match authority');
+      let verifiedFamily='';
+      for(const family of authority.trustedFamilies){
+        const face=new FontFace(family,fontBytes.slice(0));
+        const loaded=await face.load();
+        document.fonts.add(loaded);
+        if(document.fonts.check('64px "'+family+'"',PROBE)&&supportsCyrillicScriptFont(family)){verifiedFamily=family;break;}
+      }
+      if(!verifiedFamily)throw new Error('Bundled Cyrillic handwriting font failed runtime probe');
+      authorityRuntime={status:'verified',family:verifiedFamily,error:null,verifiedAt:new Date().toISOString()};
+      return true;
+    })().catch(error=>{
+      authorityRuntime={status:'failed',family:null,error:clean(error?.message||error),verifiedAt:null};
+      return false;
+    }).finally(()=>{authorityPromise=null;capability=null;schedule();});
+    return authorityPromise;
+  }
   function detect(){
     const authority=authoritySnapshot();
-    const families=[...new Set([...authority.trustedFamilies,...PREVIEW_CANDIDATES])];
-    const font=families.find(supportsCyrillicScriptFont)||'';
+    const previewFont=PREVIEW_CANDIDATES.find(supportsCyrillicScriptFont)||'';
+    const metadataReady=authorityMetadataReady(authority);
+    const verifiedFamily=authorityRuntime.status==='verified'?clean(authorityRuntime.family):'';
+    const trusted=metadataReady&&!!verifiedFamily&&authority.trustedFamilies.includes(verifiedFamily)&&supportsCyrillicScriptFont(verifiedFamily);
+    const font=trusted?verifiedFamily:previewFont;
     const available=!!font;
-    const digest=/^[a-f0-9]{64}$/i;
-    const trusted=available
-      &&authority.status==='ready'
-      &&authority.source==='bundled-vetted'
-      &&!!authority.asset&&digest.test(authority.assetSha256||'')
-      &&!!authority.license&&digest.test(authority.licenseSha256||'')
-      &&!!authority.coverageManifest&&digest.test(authority.coverageSha256||'')
-      &&!!authority.verifiedAt
-      &&authority.trustedFamilies.includes(font);
-    const mode=trusted?'approved-handwriting-authority':available?'local-script-preview':'reference-only';
+    const mode=trusted?'approved-handwriting-authority'
+      :metadataReady&&authorityRuntime.status==='verifying'?'authority-verifying'
+      :metadataReady&&authorityRuntime.status==='failed'?'authority-invalid'
+      :available?'local-script-preview':'reference-only';
     const reason=trusted
-      ?'Nguồn chữ tay Cyrillic offline đã được duyệt và đóng gói; bài nhận diện có thể chấm theo authority này.'
-      :available
-        ?'Thiết bị có font script cục bộ nhưng repo chưa có authority chữ tay Cyrillic đã được duyệt. Font này chỉ dùng làm preview, không chấm đúng/sai.'
-        :'Không có authority chữ tay Cyrillic đã được duyệt. Chỉ dùng khung nét tham khảo; không chấm nhận diện.';
-    return {schema:SCHEMA,available,canScore:trusted,font:font||null,mode,reason,authority:{...authority,trusted}};
+      ?'Bundled font, license và coverage 33 chữ đã được xác minh SHA-256 tại runtime; bài nhận diện có thể chấm.'
+      :mode==='authority-verifying'
+        ?'Đang xác minh bundled handwriting authority trước khi mở chấm nhận diện.'
+        :mode==='authority-invalid'
+          ?'Handwriting authority không qua xác minh runtime; hệ thống khóa chấm và chỉ giữ chế độ tham khảo.'
+          :available
+            ?'Thiết bị có font script cục bộ nhưng chưa có bundled authority đã xác minh. Font này chỉ dùng làm preview, không chấm đúng/sai.'
+            :'Không có handwriting authority đã xác minh. Chỉ dùng khung nét tham khảo; không chấm nhận diện.';
+    return {schema:SCHEMA,available,canScore:trusted,font:font||null,mode,reason,authority:{...authority,trusted,runtimeStatus:authorityRuntime.status,runtimeVerifiedAt:authorityRuntime.verifiedAt,runtimeError:authorityRuntime.error}};
   }
 
   const REVIEW_DELAY_MS=10*60*1000;
@@ -126,7 +199,7 @@
     return unique.slice(shift).concat(unique.slice(0,shift));
   }
   function bannerHtml(cap){
-    const state=cap.canScore?'Sẵn sàng nhận diện':'Chế độ tham khảo';
+    const state=cap.canScore?'Sẵn sàng nhận diện':cap.mode==='authority-verifying'?'Đang xác minh authority':cap.mode==='authority-invalid'?'Authority không hợp lệ':'Chế độ tham khảo';
     const cls=cap.canScore?'ready':'reference';
     const small=cap.canScore
       ?('Authority: '+clean(cap.font)+' · '+clean(cap.authority?.asset||'asset chưa rõ'))
@@ -136,7 +209,7 @@
     return '<section class="ru-handwriting-capability '+cls+'" data-ru-handwriting-capability="'+esc(cap.mode)+'"><div><span>HANDWRITING AUTHORITY</span><b>'+esc(state)+'</b><p>'+esc(cap.reason)+'</p></div><small>'+esc(small)+'</small></section>';
   }
   function drillHtml(cap,state){
-    if(!cap.canScore)return '<section class="ru-handwriting-recognition disabled" data-ru-recognition-state="disabled"><div><span>NHẬN DIỆN CHỮ TAY</span><b>Chưa chấm trên thiết bị này</b><p>Tiếp tục nhìn chữ in, khung nét tham khảo và luyện viết. Bài chọn đúng/sai chỉ mở khi capability probe xác nhận font chữ tay Cyrillic.</p></div></section>';
+    if(!cap.canScore)return '<section class="ru-handwriting-recognition disabled" data-ru-recognition-state="disabled"><div><span>NHẬN DIỆN CHỮ TAY</span><b>Chưa chấm trên thiết bị này</b><p>Tiếp tục nhìn chữ in, khung nét tham khảo và luyện viết. Bài chọn đúng/sai chỉ mở sau khi bundled font, license và coverage 33 chữ đều qua xác minh authority.</p></div></section>';
     const q=currentQuestion(state);
     if(!q)return '<section class="ru-handwriting-recognition disabled" data-ru-recognition-state="loading"><b>Đang nạp bảng chữ cái…</b></section>';
     const choices=choiceIndexes(q.index,state.attempts).map(i=>{const x=alphabet[i];return '<button type="button" data-ru-handwriting-choice="'+esc(x.id)+'" lang="ru"><span>'+esc(x.cursive||x.text||x.print||'')+'</span></button>';}).join('');
@@ -223,7 +296,7 @@
   }
 
   document.addEventListener('click',event=>{const choice=event.target.closest?.('[data-ru-handwriting-choice]');if(choice){event.preventDefault();answer(choice.dataset.ruHandwritingChoice);}},true);
-  document.addEventListener('DOMContentLoaded',()=>{capability=detect();loadAlphabet();schedule();const view=document.getElementById('view');if(view)new MutationObserver(schedule).observe(view,{childList:true,subtree:true});});
+  document.addEventListener('DOMContentLoaded',()=>{capability=detect();schedule();loadAlphabet().then(()=>verifyAuthority());const view=document.getElementById('view');if(view)new MutationObserver(schedule).observe(view,{childList:true,subtree:true});});
   window.addEventListener('russian:learning-state',schedule);
-  window.RussianHandwritingRecognition={schema:SCHEMA,detect,getCapability,canScore:()=>getCapability().canScore===true,getState:()=>JSON.parse(JSON.stringify(readState())),dueReviewIds:()=>dueWeakIds(readState()),nextReviewAt:()=>nextReviewAt(readState()),answer,refresh:()=>{capability=detect();schedule();return getCapability();}};
+  window.RussianHandwritingRecognition={schema:SCHEMA,detect,getCapability,canScore:()=>getCapability().canScore===true,getAuthorityVerification:()=>({...authorityRuntime}),verifyAuthority,getState:()=>JSON.parse(JSON.stringify(readState())),dueReviewIds:()=>dueWeakIds(readState()),nextReviewAt:()=>nextReviewAt(readState()),answer,refresh:()=>{capability=detect();verifyAuthority();schedule();return getCapability();}};
 })();
