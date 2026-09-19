@@ -37,6 +37,8 @@ jobs:
         run: node subjects/russian/scripts/audit-handwriting-glyph-authority.mjs
       - name: Self-test handwriting glyph authority promotion policy
         run: node subjects/russian/scripts/test-handwriting-glyph-authority-policy.mjs
+      - name: Audit Russian Phase 4 promotion slice closure
+        run: node subjects/russian/scripts/audit-phase4-closure.mjs
       - name: Validate Russian vocabulary SRS runtime
         run: node subjects/russian/scripts/validate-vocab-srs.mjs
       - name: Validate Russian listening speaking coach
@@ -103,6 +105,7 @@ jobs:
           test -f subjects/russian/scripts/audit-handwriting-glyph-authority.mjs
           test -f subjects/russian/scripts/handwriting-glyph-authority-policy.mjs
           test -f subjects/russian/scripts/test-handwriting-glyph-authority-policy.mjs
+          test -f subjects/russian/scripts/audit-phase4-closure.mjs
           test -f subjects/russian/assets/learning-flow.css
           test -f subjects/russian/assets/vocab-srs.js
           test -f subjects/russian/assets/vocab-srs.css
