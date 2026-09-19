@@ -11,7 +11,7 @@ const html=fs.readFileSync(path.join(root,'index.html'),'utf8');
 const manifest=JSON.parse(fs.readFileSync(path.join(root,'manifest.webmanifest'),'utf8'));
 const need=(text,token,msg)=>{if(!text.includes(token))throw new Error(msg||`Missing token: ${token}`);};
 const forbid=(text,token,msg)=>{if(text.includes(token))throw new Error(msg||`Forbidden token: ${token}`);};
-need(ai,'RUSSIAN_AI_MENTOR_CONTEXT_V1');need(ai,'canonicalStateReadOnly:true');need(ai,'aiMayModifyMastery:false');need(ai,'RussianLearningState?.get');need(ai,'RussianLearningFlow?.get');
+need(ai,'RUSSIAN_AI_MENTOR_CONTEXT_V1');need(ai,'canonicalStateReadOnly:true');need(ai,'aiMayModifyMastery:false');need(ai,'RussianLearningState?.get');need(ai,'RussianLearningFlow?.get');need(ai,'RussianVocabSrs?.get');forbid(ai,'RussianVocabSRS?.context','AI guard references nonexistent vocab SRS API');
 need(ai,'russianFirst:true');need(ai,'visualContextFirst:true');need(ai,'translationSemanticAuthority:false');need(ai,'englishBridgeDefault:false');need(ai,'metaLanguageSecondaryOnly:true');
 need(direct,'RUSSIAN_AI_DIRECT_EXPLANATION_V1');need(direct,'translationSemanticAuthority:false');need(direct,"const ORDER=['visual_or_scene','russian_definition','russian_context','contrast_or_analogy','optional_meta_help']");
 forbid(direct,'meaningVi','AI direct explanation must not read Vietnamese meaning fallback');forbid(direct,'.english','AI direct explanation must not read English fallback');forbid(direct,'displayMeaning','AI direct explanation must not reuse legacy display meaning');
