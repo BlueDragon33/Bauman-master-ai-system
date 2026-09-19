@@ -153,6 +153,15 @@ Turn 21 execution substeps:
 
 Ensure audio/visual/literacy assets work in PWA/offline packaging with explicit missing-resource behavior.
 
+Turn 22 execution substeps:
+
+- **22.1 — Runtime dependency inventory:** derive app-shell dependencies from the actual Russian entry page and fail if a required local JS/CSS dependency is not cacheable.
+- **22.2 — Required learning-data inventory:** include all data fetched by literacy, reading, dictation and grammar-pattern runtimes in offline readiness.
+- **22.3 — External media policy:** mark YouTube/external sources as network-only and show an explicit offline-unavailable state instead of a blank/broken embed.
+- **22.4 — Asset failure UX:** provide explicit fallback for failed learner-facing visual assets without switching to Vietnamese/English translation.
+- **22.5 — Offline readiness truthfulness:** report ready only when both package shell and required learning data are actually present in Cache Storage.
+- **22.6 — Behavioral/package gates:** validate shell/data coverage, navigation-only HTML fallback, explicit 503 JSON for missing required data and no false offline-ready state.
+
 ### Turn 23 — Browser/package/accessibility/performance QA
 
 Test desktop/tablet/mobile, keyboard, audio controls, packaged runtime, state persistence, large-data performance, and real cursive-vs-print glyph difference.
