@@ -22,6 +22,8 @@ export function validateContract(c){
   assert(c.semanticRouting?.dialogueSearchAuthority==='russian_direct_context_only','Dialogue search authority must remain Russian/direct-context only');
   assert(c.semanticRouting?.deepLinkNaturalLanguageTags==='cyrillic_only','Deep-link natural-language routing must remain Cyrillic-only');
   assert(c.semanticRouting?.dialogueGroupDisplayAuthority==='russian_label_or_inert_id','Dialogue group display authority must remain Russian-label or inert-id only');
+  assert(c.semanticRouting?.dialogueDifficultyDisplayAuthority==='russian_label_or_inert_id','Dialogue difficulty display authority must remain Russian-label or inert-id only');
+  assert(c.semanticRouting?.legacyGenericDifficultyFieldsMayInfluenceRouting===false,'Legacy generic difficulty fields must not influence dialogue routing');
   assert(c.semanticRouting?.sceneVisualAuthority==='russian_direct_context_only','Scene visual authority must remain Russian/direct-context only');
   assert(c.semanticRouting?.legacyGenericVietnameseFieldsMayInfluenceRouting===false,'Legacy generic Vietnamese fields must not influence dialogue routing');
   return true;
@@ -59,6 +61,8 @@ export function validateAdapter(adapter){
   assert(block.includes('title_ru')&&block.includes('context_title_ru'),'Adapter dialogue title is not Russian/direct-context first');
   assert(block.includes("dialogueGroup(item){ return item?.group_ru || item?.group_id || item?.source_group_id || 'general'; }"),'Adapter dialogue group must prefer Russian label and fail closed to inert IDs');
   assert(!block.includes("dialogueGroup(item){ return item?.group ||"),'Adapter dialogue group reintroduced generic-language group display');
+  assert(block.includes("dialogueDifficulty(item){ return item?.difficulty_id || item?.difficulty_ru || 'all'; }"),'Adapter dialogue difficulty must use inert ID or Russian label only');
+  assert(!block.includes("item?.difficulty ||")&&!block.includes("item?.level ||"),'Adapter dialogue difficulty reintroduced generic-language fallback');
   const searchStart=adapter.indexOf('dialogueSearchText(item){',start);
   const searchEnd=adapter.indexOf('dialogueTurns(item){',searchStart);
   assert(searchStart>=0&&searchEnd>searchStart,'Adapter dialogueSearchText helper missing');
@@ -87,6 +91,7 @@ export function validateCore(core){
   assert(dialogueSearch.includes("if(state.dialogueDifficulty!=='all'&&!diffs.includes(state.dialogueDifficulty))state.dialogueDifficulty='all';"),'Dialogue difficulty state is not recovered when stored filters become invalid');
   assert(!practiceSearch.includes('lower(textOf(x))')&&!dialogueSearch.includes('lower(textOf(x))'),'Dialogue search may still fall back to generic-language itemText');
   assert(!core.includes("A.dialogueGroup?.(x)||x.group||'general'"),'Core reintroduced generic-language dialogue group fallback');
+  assert(!core.includes("A.dialogueDifficulty?.(x)||x.difficulty||x.level||'all'")&&!core.includes("A.dialogueDifficulty?.(d)||d.difficulty||d.level||'all'"),'Core reintroduced generic-language dialogue difficulty fallback');
   assert(!/A\.dialogueGroup\?\.\([^)]+\)\|\|[^;\n]*?\.group(?!_ru|_id)\b/.test(core),'Core dialogue surfaces must not fall back to generic-language group labels');
   assert(deep.includes('function russianSemanticTags('),'Deep speaking Russian semantic-tag filter missing');
   assert(deep.includes('dialogue.group_ru')&&!/dialogue\.group(?!_ru|_id)/.test(deep),'Deep link routing reads generic dialogue.group instead of group_ru');
