@@ -389,7 +389,7 @@ function render(){
   }catch(e2){console.error('RECOVERY_RENDER_FAILED',e2)}
  }
 }
-function afterRender(){clampVisibleState(); if(state.view==='mindmap') requestAnimationFrame(()=>updateMindMapConnectors(document.querySelector('[data-mindmap-canvas=\"1\"]'))); if(state.view==='writing') setTimeout(initCanvas,30); if(state.view==='learning') setTimeout(()=>{const sb=$('.slidebox'); if(sb) sb.focus({preventScroll:true})},30);}
+function afterRender(){clampVisibleState(); if(state.view==='mindmap') requestAnimationFrame(()=>updateMindMapConnectors(document.querySelector('[data-mindmap-canvas=\"1\"]'))); if(state.view==='writing') setTimeout(initCanvas,30); if(state.view==='learning') setTimeout(()=>{const sb=$('.slidebox'); if(sb) sb.focus({preventScroll:true})},30); if(state.view==='vocab') requestAnimationFrame(()=>window.RussianVisualVocabularyRuntime?.hydrate?.(document));}
 function toast(m){const t=$('#toast'); t.textContent=m; t.classList.add('show'); clearTimeout(toast.t); toast.t=setTimeout(()=>t.classList.remove('show'),1800)}
 function closeFloatingLearningMenus(){
  try{document.querySelectorAll('.learn-structure-menu[open], .storage-group-menu[open], details[open]').forEach(el=>{
@@ -2009,9 +2009,11 @@ function renderVocab(){
   const termLen=[...str(term)].length;
   const termSizeClass=termLen>24?'term-xxlong':termLen>15?'term-xlong':termLen>9?'term-long':'term-normal';
   const directReady=info.semanticStatus!=='missing_visual_semantics';
+  const tagsAttr=esc(JSON.stringify(info.tags.slice(0,6)));
+  const fallbackSymbol=info.emoji?'<span class="direct-visual-symbol">'+esc(info.emoji)+'</span>':'<span class="direct-visual-missing">?</span>';
   const visualAsset=info.image
    ?'<img src="'+esc(info.image)+'" alt="'+esc(info.visualLabelRu||term)+'" data-ru-visual-asset="vocab">'
-   :(info.emoji?'<span class="direct-visual-symbol">'+esc(info.emoji)+'</span>':'<span class="direct-visual-missing">?</span>');
+   :'<span class="direct-visual-shell" data-ru-visual-lookup="1" data-term-ru="'+esc(term)+'" data-definition-ru="'+esc(info.definitionRu||'')+'" data-context-ru="'+esc(info.contextRu||'')+'" data-tags-ru="'+tagsAttr+'">'+fallbackSymbol+'</span>';
   const russianCue=info.visualLabelRu||info.definitionRu||info.contextRu||term;
   const sideRows=rows.map((item,i)=>{
    const idx=pageStart+i,vi=vocabInfo(item);
