@@ -3269,7 +3269,6 @@ function handleClick(e){
  if(act==='role-all'){setActiveRole('all');save();render()}
  if(act==='role-a'){setActiveRole('A');save();render()}
  if(act==='role-b'){setActiveRole('B');save();render()}
- if(act==='toggle-vi'){toggleActiveHideVi();save();render()}
  if(act==='prev-line')moveDialogueLine(-1);
  if(act==='next-line')moveDialogueLine(1);
  if(act==='next-role-line'){const d=currentDialogue(); setActiveLineIndex(nextRoleLineIndex(d,activeLineIndex(),1)); save(); render();}
@@ -3361,7 +3360,6 @@ function handleKeys(e){
    if(k==='l'){const d=currentDialogue(); const line=dialogueTurns(d)[activeLineIndex()]||{}; speak(line.ru||line.text||line.text_ru||line);e.preventDefault();return}
    if(k==='s'){const d=currentDialogue(); const line=dialogueTurns(d)[activeLineIndex()]||{}; speak(line.ru||line.text||line.text_ru||line,.62);e.preventDefault();return}
    if(k==='n'){const d=currentDialogue(); setActiveLineIndex(nextRoleLineIndex(d,activeLineIndex(),1)); save(); render();e.preventDefault();return}
-   if(k==='v'){toggleActiveHideVi(); save(); render();e.preventDefault();return}
    if(k==='a'){setActiveRole('A'); save(); render();e.preventDefault();return}
    if(k==='b'){setActiveRole('B'); save(); render();e.preventDefault();return}
    if(k==='0'){setActiveRole('all'); save(); render();e.preventDefault();return}
