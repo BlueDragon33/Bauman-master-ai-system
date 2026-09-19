@@ -46,7 +46,7 @@
     "speaking-link-index"
   ],
   "release": "V13.42 · Full module · Presentation overlay fix + clean slide renderer",
-  "focus": "Bản chuẩn cuối của module Tiếng Nga: giữ nội dung gốc, giữ vá trình chiếu, ẩn metadata/từ khóa/bài liên quan khỏi vùng slide, giữ metadata cho tìm kiếm/lọc.",
+  "focus": "Nghe/Nói trước; Cyrillic in→viết tay; direct-semantic vocabulary; đọc/viết; repair theo evidence; offline/browser QA.",
   "bridge": {
     "protocol": "BAUMAN_PLANNING_BRIDGE_V3_ROUTE_CARDS",
     "packageProtocol": "RUSSIAN_PACK_SELF_CONTAINED_V1_FINAL",
@@ -85,7 +85,7 @@
     "learningSubtitle": "Học tập ổn định: Nghe/Nói và Đối thoại tinh gọn; nút nói ổn hòa trong bảng nội dung, chữ canh đều và không tách dòng thô.",
     "hideVersionLabels": true
   },
-  "updated": "2026-06-13",
+  "updated": "2026-09-19",
   "package": "A1 Russian Bauman StandardFinal RenderClean V13.42",
   "paths": {
     "assets": "assets/",
@@ -346,10 +346,10 @@
   "qa": {
     "mainPathMap": "subjects/russian/index.html",
     "mainEditorMap": "subjects/russian/editor.html",
-    "checked": "2026-06-07",
+    "checked": "2026-09-19",
     "requiredDataFilesChecked": true,
     "runtimePathScan": "no parent-folder dependency in runtime html/js/css core files",
-    "learningIntegrity": "locked theory/exercises/practice by active lessonId; speaking.json mapped to lessonId; source answers only for exercises"
+    "learningIntegrity": "listen/speak/literacy/direct-semantic authority frozen; six skill gates isolated; weakness repair evidence-gated; explicit 33-letter cursive vectors; verified offline readiness"
   },
   "notes": "Dedicated vertical scroll for Exercise/Speaking tabs and richer exercise answer guidance.",
   "storagePlan": {
@@ -408,5 +408,12 @@
       }
     ]
   },
-  "metadataPolicy": "metadata kept for search/filter; hidden from lesson/presentation slide body"
+  "metadataPolicy": "metadata kept for search/filter; hidden from lesson/presentation slide body",
+  "promotion": {
+    "status": "candidate",
+    "branch": "work/russian-listen-speak-literacy-visual-semantics",
+    "automaticMainMerge": false,
+    "decisionRequired": true,
+    "migrationFreezeContract": "RUSSIAN_MIGRATION_FREEZE_CONTRACT_V1"
+  }
 }
