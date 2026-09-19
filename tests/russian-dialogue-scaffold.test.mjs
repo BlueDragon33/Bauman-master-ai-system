@@ -21,6 +21,7 @@ assert(!JSON.stringify(x).includes('Trong lớp'));
 {const y=copy();y.practice.russianContextHiddenBeforeFirstListen=false;assert.throws(()=>validateContract(y),/Hear-before-see invariant weakened/)}
 {const y=copy();y.semanticRouting.legacyGenericVietnameseFieldsMayInfluenceRouting=true;assert.throws(()=>validateContract(y),/must not influence dialogue routing/)}
 {const y=copy();y.semanticRouting.legacyGenericDifficultyFieldsMayInfluenceRouting=true;assert.throws(()=>validateContract(y),/difficulty fields must not influence dialogue routing/)}
+{const y=copy();y.invariants.turnProjectionAllShapesSanitized=false;assert.throws(()=>validateContract(y),/sanitize every shape/)}
 assert.throws(
  ()=>validateCore(core.replace("window.RussianDialogueScaffold?.describe?.","window.OtherDialogueAuthority?.describe?.")),
  /canonical dialogue authority/
@@ -34,6 +35,8 @@ assert.throws(()=>validateAdapter(adapter.replace("item?.id,item?.title_ru,item?
 assert.throws(()=>validateAdapter(adapter.replace("dialogueGroup(item){ return item?.group_ru || item?.group_id || item?.source_group_id || 'general'; }","dialogueGroup(item){ return item?.group || item?.group_ru || 'general'; }")),/group|generic-language/);
 assert.throws(()=>validateAdapter(adapter.replace("dialogueDifficulty(item){ return item?.difficulty_id || item?.difficulty_ru || 'all'; }","dialogueDifficulty(item){ return item?.difficulty_id || item?.difficulty || item?.level || 'all'; }")),/difficulty|generic-language/);
 assert.throws(()=>validateAdapter(adapter.replace("const {vi,vi_text,translation_vi,gloss_vi,meaning_vi,purpose_vi,clue_en,meaning_en,translation_en,en,...safe}=turn||{};","const {vi,vi_text,translation_vi,gloss_vi,...safe}=turn||{};")),/sanitize all prohibited translation fields/);
+assert.throws(()=>validateAdapter(adapter.replace("return turns.map(project);","return turns.map((ru,i)=>({speaker:speakers[i]||(i%2?'B':'A'),ru}));")),/same sanitizer projector/);
+assert.throws(()=>validateAdapter(adapter.replace("ru:/[А-Яа-яЁё]/.test(text)?text:''","ru:text")),/reject non-Cyrillic generic text/);
 assert.throws(()=>validateCore(core.replace("unit?.unit_title_ru","unit?.unit_title_vi||unit?.unit_title_ru")),/translation scaffold/);
 assert.throws(()=>validateCore(core.replace("return Object.entries(v).filter(([k,val])=>val&&typeof val==='object'&&(/_ru$|^ru_|russian/i.test(k)||Array.isArray(val))).flatMap(([,val])=>deepLines(val));","return Object.values(v).flatMap(deepLines);")),/fail closed|serializing unknown semantic fields/);
 assert.throws(()=>validateCore(core.replace("p.question_ru||p.q_ru||p.ru||'Как вы ответите?'", "p.question_ru||p.q_ru||p.ru||p.question||'Как вы ответите?'")),/generic-language question\/answer/);
@@ -49,4 +52,4 @@ assert.throws(()=>validateCore(core.replace("A.dialogueDifficulty?.(d)||d.diffic
 assert.throws(()=>validateCore(core.replace("if(state.dialogueGroup!=='all'&&!groups.includes(state.dialogueGroup))state.dialogueGroup='all';","")),/group state is not recovered/);
 assert.throws(()=>validateHelper(js.replace("dialogue?.group_ru,dialogue?.context_title_ru","dialogue?.group,dialogue?.context_title_ru")),/Russian semantic context|generic semantic metadata/);
 console.log('RUSSIAN_DIALOGUE_SCAFFOLD_NEGATIVE_TEST=PASS');
-console.log(JSON.stringify({negativeCases:25},null,2));
+console.log(JSON.stringify({negativeCases:28},null,2));
