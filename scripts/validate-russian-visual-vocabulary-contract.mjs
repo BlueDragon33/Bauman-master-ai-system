@@ -31,7 +31,7 @@ export function validateContract(c){
   return true;
 }
 
-export function auditVocabulary(vocab,core){
+export function auditVocabulary(vocab,core,adapter=''){
   const visualKeys=['image','image_url','picture','image_emoji','emoji','illustration','illustration_url','illustration_label_ru','visual_label','semantic_label','scene','scene_id','pictogram','gesture'];
   const audioKeys=['audio','audio_url','voice','voice_url','voice_text','pronunciation','pron','transcription'];
   const contextKeys=['example','example_ru','voice_text','usage_note','when_use','context','context_ru','illustration_label_ru','tags'];
@@ -39,6 +39,9 @@ export function auditVocabulary(vocab,core){
   const legacyEn=['clue_en','meaning_en','translation_en','definition_en','en'];
   const rows=arr(vocab);
   const count=pred=>rows.reduce((n,x)=>n+(pred(x)?1:0),0);
+  const adapterMeaning=(adapter.match(/vocabMeaning\(item\)\{([^}]*)\}/)||[])[1]||'';
+  const storageSlice=core.slice(core.indexOf('function storageSkeleton('),core.indexOf('function storageItemForm('));
+  const vocabSkeleton=(storageSlice.match(/vocab:\{([^}]*)\},\s*speaking:/)||[])[1]||'';
   const result={
     total:rows.length,
     withVisualEvidence:count(x=>has(x,visualKeys)),
@@ -49,12 +52,17 @@ export function auditVocabulary(vocab,core){
     runtimeDebt:{
       translationFallback:Boolean(core.includes("meaningVi||english||meaningRu")||core.includes("displayMeaning||info.meaningVi||info.english")),
       flipMeaningLabel:core.includes('Lật nghĩa'),
-      vietnamVisualInference:/['"](?:thời điểm|cảm ơn|xin lỗi|xác nhận|câu hỏi|học thuật|đồ học tập|ký túc xá|giấy tờ|di chuyển|mua sắm|ăn uống|sức khỏe|liên lạc|công nghệ|nghiên cứu)['"]/.test(core)
+      vietnamVisualInference:/['"](?:thời điểm|cảm ơn|xin lỗi|xác nhận|câu hỏi|học thuật|đồ học tập|ký túc xá|giấy tờ|di chuyển|mua sắm|ăn uống|sức khỏe|liên lạc|công nghệ|nghiên cứu)['"]/.test(core),
+      adapterTranslationFallback:/(item\?\.(?:vi|meaning_vi|clue_en|meaning_en)|translation_vi|translation_en)/.test(adapterMeaning),
+      newItemTranslationFields:/(?:meaning_vi|\bvi\s*:|clue_en|meaning_en|translation_vi|translation_en)/.test(vocabSkeleton)
     }
   };
   assert(result.total===8000,`Vocabulary corpus size drifted: ${result.total}`);
   assert(result.withAudioEvidence>0,'Vocabulary corpus has no audio/pronunciation evidence');
   assert(result.withContextEvidence>0,'Vocabulary corpus has no context evidence');
+  assert(adapterMeaning&&result.runtimeDebt.adapterTranslationFallback===false,'Adapter vocabulary meaning helper regained Vietnamese/English fallback');
+  assert(vocabSkeleton&&result.runtimeDebt.newItemTranslationFields===false,'New vocabulary skeleton must remain direct-semantic without translation fields');
+  assert(/meaning_ru/.test(vocabSkeleton)&&/(image_emoji|image_url|illustration|scene)/.test(vocabSkeleton),'New vocabulary skeleton lacks Russian/direct visual semantic evidence');
   return result;
 }
 
@@ -63,7 +71,8 @@ export function loadAndValidate(){
   validateContract(contract);
   const audit=auditVocabulary(
     JSON.parse(fs.readFileSync('subjects/russian/data/vocab.json','utf8')),
-    fs.readFileSync('subjects/russian/assets/core.js','utf8')
+    fs.readFileSync('subjects/russian/assets/core.js','utf8'),
+    fs.readFileSync('subjects/russian/assets/subject-adapter.js','utf8')
   );
   return {contract,audit};
 }
