@@ -6,15 +6,15 @@
 ## Active track
 
 - Current round: **Lượt 26**
-- Current step: **Bước 101 — IN_PROGRESS · L26-H1 FIX_APPLIED_PENDING_GATE**
+- Current step: **Bước 101 — PASS · B102 BLOCKED_ON_B101_DOC_GATE**
 - L22 closeout: **B88 + H1 — PASS**
-- Status: **L23_COMPLETE · L24_COMPLETE · L25_COMPLETE · PASS_L25_B97_B100 · L25_FINAL_STATE_GATE_PASS · L26_B101_IN_PROGRESS · L26_F1_ROOT_CAUSE_CONFIRMED · L26_H1_FIX_APPLIED_PENDING_GATE**
+- Status: **L23_COMPLETE · L24_COMPLETE · L25_COMPLETE · PASS_L25_B97_B100 · L25_FINAL_STATE_GATE_PASS · PASS_L26_B101_FUNCTIONAL · PASS_L26_H1 · L26_B101_DOC_GATE_PENDING · B102_BLOCKED**
 - Last recorded six-gate head: `fa8d9b811080aec22a9d7b61dcc7791f55266dac`
 - Production/runtime activation by Roadmap V2: **disconnected**
 - Legacy/source destructive migration: **not executed**
 - Last completed: **L25/B100 — PASS**
 - Last hardening: **L25-F5 — PASS**
-- Current official step: **L26/B101 — Scheduler / Master Mode contract**
+- Current official step: **L26/B101 documentation closeout; B102 not started**
 - L26 opened only after the L25 final-state head passed the complete six-gate set.
 
 ## L22/B88 complete gate evidence
@@ -379,3 +379,17 @@ The repair is additive:
 - B101 validator checks the historical baseline and current overlay separately.
 
 B102 remains blocked until this H1/B101 head passes the complete gate set.
+
+
+## L26/B101 functional gate evidence
+
+Accepted functional head: `3b3828c8176380b754e6bd3c897aed46e4780987`
+
+- Roadmap V2 Current Gate — run `35435321959` — PASS
+- Foundation Domain Model — run `35435321942` — PASS
+- Windows checkout safety — run `35435321854` — PASS
+- Russian Reference UI — run `35435321919` — PASS
+- Cloudflare Preview — run `35435321875` — PASS
+- Whole System Integration — run `35435322007` — PASS
+
+B101/H1 is functionally closed. B102 stays blocked until this documentation closeout head passes the same complete six-gate set.
