@@ -194,6 +194,11 @@ jobs:
           BAUMAN_E2E_BASE_URL: http://127.0.0.1:4174/
           BAUMAN_E2E_ARTIFACT_DIR: artifacts/chatgpt-site-russian-handwriting-recognition
         run: node tests/russian-handwriting-recognition-browser.mjs
+      - name: Run Packaged Ready Russian Handwriting Authority Offline Acceptance
+        env:
+          BAUMAN_OFFLINE_FIXTURE_ROOT: dist
+          BAUMAN_E2E_ARTIFACT_DIR: artifacts/chatgpt-site-russian-handwriting-offline-authority
+        run: node tests/russian-handwriting-offline-authority-browser.mjs
       - name: Run Packaged Hub Responsive Acceptance
         env:
           BAUMAN_E2E_BASE_URL: http://127.0.0.1:4174/
@@ -224,5 +229,6 @@ jobs:
             artifacts/chatgpt-site-foundation-canonical-context
             artifacts/chatgpt-site-hub-responsive
             artifacts/chatgpt-site-russian-handwriting-recognition
+            artifacts/chatgpt-site-russian-handwriting-offline-authority
           if-no-files-found: warn
           retention-days: 7
