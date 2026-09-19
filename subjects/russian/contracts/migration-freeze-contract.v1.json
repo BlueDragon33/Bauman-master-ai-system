@@ -1,0 +1,47 @@
+{
+  "schema": "RUSSIAN_MIGRATION_FREEZE_CONTRACT_V1",
+  "contractVersion": 1,
+  "turn": 24,
+  "freezeScope": {
+    "learnerRuntime": true,
+    "packageLoadOrder": true,
+    "offlineInventory": true,
+    "storageCompatibility": true,
+    "bridgeCompatibility": true,
+    "pedagogyAuthority": true
+  },
+  "compatibility": {
+    "preservePrimaryStorageKey": "bauman_russian_survival_master_v11_clean_skeleton",
+    "preserveLegacySavedStateFields": ["dialogueHideVi", "practiceHideVi"],
+    "legacySavedStateFieldsMayExecuteTranslationUI": false,
+    "sourceTranslationFieldsMayRemainForMigration": true,
+    "sourceTranslationFieldsAreLearnerSemanticAuthority": false,
+    "preserveBridgeContract": "BAUMAN_SUBJECT_BRIDGE_V1",
+    "preservePlanningProtocol": "BAUMAN_PLANNING_BRIDGE_V3_ROUTE_CARDS"
+  },
+  "runtimeFreeze": {
+    "directSemanticVocabularyRequired": true,
+    "translationFreeDialogueRequired": true,
+    "aiDirectSemanticRequired": true,
+    "deadTranslationToggleForbidden": true,
+    "cursiveExplicitVectorRequired": true,
+    "weaknessRepairEvidenceGated": true,
+    "offlineReadinessVerified": true,
+    "browserCapabilityFallbackRequired": true
+  },
+  "authority": {
+    "masteryOwner": "RUSSIAN_LEARNING_STATE_V1",
+    "reviewQueueOwner": "RUSSIAN_LEARNING_STATE_V1",
+    "schedulerOwner": "RUSSIAN_VOCAB_SRS_V1",
+    "skillGateAdvisoryOnly": true,
+    "repairStoreAdditiveOnly": true,
+    "aiReadOnly": true
+  },
+  "promotion": {
+    "allTurnsMustBeGreen": true,
+    "openDeferredObligationsAllowed": false,
+    "destructiveStorageResetAllowed": false,
+    "mergeToMainAutomatic": false,
+    "promotionDecisionRequired": true
+  }
+}
