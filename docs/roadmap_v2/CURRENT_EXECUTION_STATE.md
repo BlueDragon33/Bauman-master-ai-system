@@ -6,15 +6,15 @@
 ## Active track
 
 - Current round: **Lượt 27**
-- Current step: **Bước 107 — IN_PROGRESS**
+- Current step: **Bước 108 — IN_PROGRESS**
 - L22 closeout: **B88 + H1 — PASS**
-- Status: **L23_COMPLETE · L24_COMPLETE · L25_COMPLETE · L26_COMPLETE · PASS_L27_B105 · PASS_L27_F1_H1 · PASS_L27_B106 · L27_B107_IN_PROGRESS**
-- Last recorded six-gate head: `9b0d5abddac052037f98c4f653015c3b3b451e02`
+- Status: **L23_COMPLETE · L24_COMPLETE · L25_COMPLETE · L26_COMPLETE · PASS_L27_B105 · PASS_L27_F1_H1 · PASS_L27_B106 · PASS_L27_B107 · L27_B108_IN_PROGRESS**
+- Last recorded six-gate head: `d9639ae24d48a0c00a3a499676861f532b4e79a6`
 - Production/runtime activation by Roadmap V2: **disconnected**
 - Legacy/source destructive migration: **not executed**
-- Last completed: **L27/B106 — PASS (read-only readiness projector)**
+- Last completed: **L27/B107 — PASS (adversarial readiness validation)**
 - Last hardening: **L27-F1/H1 stale manifest removal + additive readiness overlay — PASS**
-- Current official step: **L27/B107 — adversarial readiness validation**
+- Current official step: **L27/B108 — full-system readiness closeout**
 - L26 opened only after the L25 final-state head passed the complete six-gate set.
 
 ## L22/B88 complete gate evidence
@@ -492,3 +492,19 @@ Accepted B106/H2/H3 head: `9b0d5abddac052037f98c4f653015c3b3b451e02`
 - Whole System Integration — run `35437244977` — PASS
 
 B106 is closed. B107 adversarial readiness validation is active. B108 remains blocked until the B107 head passes the complete six-gate set.
+
+
+## L27/B107 gate evidence
+
+Accepted B107 head: `d9639ae24d48a0c00a3a499676861f532b4e79a6`
+
+- Roadmap V2 Current Gate — run `35438543725` — PASS
+- Foundation Domain Model — run `35438543708` — PASS
+- Windows checkout safety — run `35438543772` — PASS
+- Russian Reference UI — run `35438543694` — PASS
+- Cloudflare Preview — run `35438543674` — PASS
+- Whole System Integration — run `35438543659` — PASS
+
+B107 adversarial readiness validation: **9/9 PASS**.
+
+B108 full-system closeout is active. L28 remains blocked until B108 and its documentation/final-state closeout are green.
