@@ -410,10 +410,11 @@
   },
   "metadataPolicy": "metadata kept for search/filter; hidden from lesson/presentation slide body",
   "promotion": {
-    "status": "candidate",
+    "status": "frozen-candidate",
     "branch": "work/russian-listen-speak-literacy-visual-semantics",
     "automaticMainMerge": false,
     "decisionRequired": true,
-    "migrationFreezeContract": "RUSSIAN_MIGRATION_FREEZE_CONTRACT_V1"
+    "migrationFreezeContract": "RUSSIAN_MIGRATION_FREEZE_CONTRACT_V1",
+    "acceptedPlanHead": "3d8ee02b75716b266ae87cd2f63388e14f27657e"
   }
 }
