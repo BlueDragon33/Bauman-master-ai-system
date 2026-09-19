@@ -28,6 +28,7 @@ assert.throws(
 );
 assert.throws(()=>validateAdapter(adapter.replace("dialogueTitle(item){ return item?.title_ru","dialogueTitle(item){ return item?.context_title_vi || item?.title_ru")),/prohibited translation field/);
 assert.throws(()=>validateAdapter(adapter.replace("item?.id,item?.title_ru,item?.context_title_ru","item?.id,item?.title,item?.title_ru,item?.context_title_ru")),/generic-language semantic fields/);
+assert.throws(()=>validateAdapter(adapter.replace("dialogueGroup(item){ return item?.group_ru || item?.group_id || item?.source_group_id || 'general'; }","dialogueGroup(item){ return item?.group || item?.group_ru || 'general'; }")),/group|generic-language/);
 assert.throws(()=>validateCore(core.replace("unit?.unit_title_ru","unit?.unit_title_vi||unit?.unit_title_ru")),/translation scaffold/);
 assert.throws(()=>validateCore(core.replace("return Object.entries(v).filter(([k,val])=>val&&typeof val==='object'&&(/_ru$|^ru_|russian/i.test(k)||Array.isArray(val))).flatMap(([,val])=>deepLines(val));","return Object.values(v).flatMap(deepLines);")),/fail closed|serializing unknown semantic fields/);
 assert.throws(()=>validateCore(core.replace("p.question_ru||p.q_ru||p.ru||'Как вы ответите?'", "p.question_ru||p.q_ru||p.ru||p.question||'Как вы ответите?'")),/generic-language question\/answer/);
@@ -37,5 +38,6 @@ assert.throws(()=>validateCore(core.replace("u.scenario_ru||''","u.domain||''"))
 assert.throws(()=>validateCore(core.replaceAll("lower(A.dialogueSearchText?.(x)||'')","lower(textOf(x))")),/Dialogue search|Practice dialogue search|generic-language itemText/);
 assert.throws(()=>validateCore(core.replace("dialogue.group_ru,dialogue.context_title_ru","dialogue.group,dialogue.context_title_ru")),/generic dialogue\.group|group_ru/);
 assert.throws(()=>validateCore(core.replace("const unitTags=russianSemanticTags(","const unitTags=arr(")),/Cyrillic-filtered|semantic-tag filter/);
+assert.throws(()=>validateCore(core.replace("A.dialogueGroup?.(x)||x.group_ru||x.group_id||x.source_group_id||'general'","A.dialogueGroup?.(x)||x.group||'general'")),/generic-language dialogue group fallback/);
 console.log('RUSSIAN_DIALOGUE_SCAFFOLD_NEGATIVE_TEST=PASS');
-console.log(JSON.stringify({negativeCases:16},null,2));
+console.log(JSON.stringify({negativeCases:18},null,2));
