@@ -131,14 +131,59 @@ try{
 
   await scoringPage.locator(`[data-ru-handwriting-choice="${missed.recognition.lastLetterId}"]`).click();
   await scoringPage.waitForFunction(()=>window.RussianHandwritingRecognition.getState().attempts===2&&window.RussianHandwritingRecognition.getState().correct===1&&window.RussianHandwritingRecognition.getState().lastCorrect===true);
+  const confirmedOnce=await scoringPage.evaluate(()=>({
+    recognition:window.RussianHandwritingRecognition.getState(),
+    learning:window.RussianLearningState.get(),
+    dueIds:window.RussianHandwritingRecognition.dueReviewIds(),
+    nextReviewAt:window.RussianHandwritingRecognition.nextReviewAt()
+  }));
+  assert.ok(confirmedOnce.learning.reviewQueue[reviewId],'First correct confirmation cleared Review Queue too early');
+  assert.equal(Number(confirmedOnce.recognition.profiles[missed.recognition.lastLetterId]?.correctStreak),1,'First recovery confirmation streak drift');
+  assert.ok(Number.isFinite(Date.parse(confirmedOnce.recognition.profiles[missed.recognition.lastLetterId]?.dueAt||'')),'First recovery confirmation did not schedule a due time');
+  assert.ok(Date.parse(confirmedOnce.recognition.profiles[missed.recognition.lastLetterId].dueAt)>Date.now(),'First recovery confirmation did not schedule a future review');
+  assert.ok(!confirmedOnce.dueIds.includes(missed.recognition.lastLetterId),'Future recovery item was treated as already due');
+  assert.equal(confirmedOnce.nextReviewAt,confirmedOnce.recognition.profiles[missed.recognition.lastLetterId].dueAt,'Next review timestamp drift');
+
+  await scoringPage.reload({waitUntil:'domcontentloaded',timeout:30000});
+  await scoringPage.waitForFunction(()=>window.RussianHandwritingRecognition?.getState?.().attempts===2&&window.RussianHandwritingRecognition?.getCapability?.().canScore===true,null,{timeout:15000});
+  const scheduledPersisted=await scoringPage.evaluate(id=>({
+    recognition:window.RussianHandwritingRecognition.getState(),
+    learning:window.RussianLearningState.get(),
+    reviewExists:Boolean(window.RussianLearningState.get().reviewQueue['handwriting:'+id])
+  }),missed.recognition.lastLetterId);
+  assert.equal(Number(scheduledPersisted.recognition.profiles[missed.recognition.lastLetterId]?.correctStreak),1,'Recovery streak did not persist across reload');
+  assert.ok(scheduledPersisted.reviewExists,'Scheduled handwriting Review Queue item did not persist across reload');
+
+  await scoringPage.evaluate(id=>{
+    const key='bauman_russian_handwriting_recognition_v1';
+    const state=JSON.parse(localStorage.getItem(key)||'{}');
+    state.profiles=state.profiles||{};
+    state.profiles[id]=state.profiles[id]||{};
+    state.profiles[id].dueAt=new Date(Date.now()-1000).toISOString();
+    localStorage.setItem(key,JSON.stringify(state));
+  },missed.recognition.lastLetterId);
+  await scoringPage.reload({waitUntil:'domcontentloaded',timeout:30000});
+  await scoringPage.waitForFunction(()=>window.RussianHandwritingRecognition?.getCapability?.().canScore===true&&window.RussianHandwritingRecognition?.dueReviewIds?.().length>0,null,{timeout:15000});
+  await scoringPage.locator('[data-view="writing"]').first().click();
+  await scoringPage.waitForFunction(()=>document.querySelector('.ru-handwriting-recognition')?.dataset.ruQuestionSource==='review_due',null,{timeout:15000});
+  const dueQuestionId=await scoringPage.evaluate(()=>window.RussianHandwritingRecognition.dueReviewIds()[0]);
+  assert.equal(dueQuestionId,missed.recognition.lastLetterId,'Due weak letter was not prioritized for recovery');
+
+  await scoringPage.locator(`[data-ru-handwriting-choice="${missed.recognition.lastLetterId}"]`).click();
+  await scoringPage.waitForFunction(()=>window.RussianHandwritingRecognition.getState().attempts===3&&window.RussianHandwritingRecognition.getState().correct===2&&window.RussianHandwritingRecognition.getState().lastCorrect===true);
   const recovered=await scoringPage.evaluate(()=>({
     recognition:window.RussianHandwritingRecognition.getState(),
     learning:window.RussianLearningState.get(),
-    flow:window.RussianLearningFlow.get()
+    flow:window.RussianLearningFlow.get(),
+    dueIds:window.RussianHandwritingRecognition.dueReviewIds()
   }));
-  assert.ok(!recovered.learning.reviewQueue[reviewId],'Correct recognition did not clear its handwriting Review Queue item');
+  assert.ok(!recovered.learning.reviewQueue[reviewId],'Second consecutive correct confirmation did not clear handwriting Review Queue item');
+  assert.equal(Number(recovered.recognition.profiles[missed.recognition.lastLetterId]?.correctStreak),2,'Recovery streak did not reach two confirmations');
+  assert.ok(recovered.recognition.profiles[missed.recognition.lastLetterId]?.resolvedAt,'Recovered letter was not marked resolved');
+  assert.ok(!recovered.dueIds.includes(missed.recognition.lastLetterId),'Resolved handwriting letter remained due');
+  assert.ok(!Object.prototype.hasOwnProperty.call(recovered.recognition.weak,missed.recognition.lastLetterId),'Resolved handwriting letter remained in weak map');
   const scoringAlphabetSteps=Object.values(recovered.flow.lessons||{}).map(x=>x?.steps?.alphabet).filter(Boolean);
-  assert.ok(scoringAlphabetSteps.some(x=>Number(x.recognitionAttempts||0)>=2&&Number(x.recognitionCorrect||0)>=1),'Scored recognition evidence missing from learning flow');
+  assert.ok(scoringAlphabetSteps.some(x=>Number(x.recognitionAttempts||0)>=3&&Number(x.recognitionCorrect||0)>=2),'Scored recognition evidence missing from learning flow');
   assert.ok(scoringAlphabetSteps.every(x=>Number(x.strokeActions||0)===0),'Scored recognition fabricated handwriting stroke evidence');
   assert.ok(scoringAlphabetSteps.every(x=>x.mastery===undefined&&x.completed===undefined),'Scored recognition wrote mastery/completed state');
   assert.deepEqual(scoringErrors,[],'Forced scoring browser emitted console/page errors');
