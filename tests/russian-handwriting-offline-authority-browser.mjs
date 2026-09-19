@@ -8,6 +8,7 @@ import {fileURLToPath} from 'node:url';
 
 const {chromium}=await import(process.env.BAUMAN_PLAYWRIGHT_MODULE||'playwright');
 const ROOT=process.cwd();
+const SOURCE_ROOT=path.resolve(process.env.BAUMAN_OFFLINE_FIXTURE_ROOT||ROOT);
 const OUT=process.env.BAUMAN_E2E_ARTIFACT_DIR||'artifacts/russian-handwriting-offline-authority';
 fs.mkdirSync(OUT,{recursive:true});
 
@@ -39,9 +40,9 @@ function safeFile(urlPath){
 }
 
 fs.mkdirSync(path.dirname(russianRoot),{recursive:true});
-fs.cpSync(path.join(ROOT,'subjects','russian'),russianRoot,{recursive:true});
+fs.cpSync(path.join(SOURCE_ROOT,'subjects','russian'),russianRoot,{recursive:true});
 fs.mkdirSync(path.dirname(sharedRoot),{recursive:true});
-fs.cpSync(path.join(ROOT,'subjects','shared'),sharedRoot,{recursive:true});
+fs.cpSync(path.join(SOURCE_ROOT,'subjects','shared'),sharedRoot,{recursive:true});
 fs.mkdirSync(authorityDir,{recursive:true});
 
 const handwriting=JSON.parse(fs.readFileSync(path.join(russianRoot,'data','handwriting.json'),'utf8'));
@@ -205,7 +206,7 @@ try{
   assert.deepEqual(applicationErrors,[],'R-HW12 emitted application console/page errors');
 
   await page.screenshot({path:path.join(OUT,'ready-authority-offline.png'),fullPage:true});
-  fs.writeFileSync(path.join(OUT,'result.json'),JSON.stringify({status:'PASS',cached,offline:{...offline,state:undefined},scored,transportNoise},null,2));
+  fs.writeFileSync(path.join(OUT,'result.json'),JSON.stringify({status:'PASS',sourceRoot:SOURCE_ROOT,cached,offline:{...offline,state:undefined},scored,transportNoise},null,2));
   console.log('RUSSIAN_HANDWRITING_OFFLINE_AUTHORITY_BROWSER=PASS');
 }finally{
   try{if(browser)await browser.close();}catch(_){}
