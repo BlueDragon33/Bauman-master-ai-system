@@ -21,6 +21,8 @@ export function validateRuntime(js,core,index){
   assert(!js.includes('<audio'),'Listening ladder must not create a second audio player');
   assert(js.includes("ctx.heardCount>=2"),'Slow repair is not gated by two normal plays');
   assert(js.includes("data-listen-detail"),'Detail check missing');
+  assert(js.includes(".split(/\\\\s+/)"),'Listening detail tokenizer must split on whitespace');
+  assert(!js.includes(".split(/s+/)"),'Broken literal-s tokenizer returned');
   assert(!js.includes('meaning_vi')&&!js.includes('translation_vi'),'Translation semantic answer leaked into listening ladder');
   assert(!js.includes('mastered'),'Listening ladder must not promote mastery');
   assert(core.includes('practiceLineHeardCount'),'Core heard-count helper missing');
