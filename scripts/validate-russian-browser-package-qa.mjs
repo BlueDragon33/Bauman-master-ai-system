@@ -17,6 +17,9 @@ export function validateContract(c){
   assert(c.accessibility?.criticalInteractiveElementsNamed===true&&c.accessibility?.modalSemanticsRequired===true&&c.accessibility?.statusLiveRegionsRequired===true&&c.accessibility?.focusVisibilityRequired===true&&c.accessibility?.modalAriaLifecycleRequired===true&&c.accessibility?.modalFocusLifecycleRequired===true,'Accessibility contract weakened');
   assert(c.performance?.largeOptionalDataLazy===true&&c.performance?.storageSizeGuardRequired===true&&c.performance?.renderMutationGuardRequired===true&&c.performance?.pagedLargeCollectionsRequired===true,'Performance contract weakened');
   assert(c.browserCapabilities?.speechFallbackExplicit===true&&c.browserCapabilities?.externalMediaOfflineStateExplicit===true&&c.browserCapabilities?.missingVisualStateExplicit===true,'Browser capability fallback contract weakened');
+  assert(c.browserCapabilities?.russianSpeechLanguage==='ru-RU','Russian speech language must remain ru-RU');
+  assert(c.browserCapabilities?.russianVoiceSelectionRequired===true&&c.browserCapabilities?.voicesChangedRefreshRequired===true,'Russian voice selection/refresh contract weakened');
+  assert(c.browserCapabilities?.playbackStartHookRequired===true&&c.browserCapabilities?.failedPlaybackMustNotCountListening===true,'Playback evidence contract weakened');
   assert(c.cursive?.obligationId==='RUS-CURSIVE-VISUAL-001'&&c.cursive?.mustDifferFromPrint===true&&c.cursive?.fontOnlyProofAllowed===false&&c.cursive?.explicitShapeFallbackAllowed===true,'Cursive proof contract weakened');
   assert(c.authority?.noMasteryMutation===true&&c.authority?.noCompletionMutation===true&&c.authority?.noReviewQueueMutation===true&&c.authority?.noSchedulerMutation===true,'Turn 23 must remain QA-only authority');
   return true;
@@ -110,13 +113,53 @@ export function validatePerformance({core,cyrillic,reading,dictation,skillGate})
 
 export function validateBrowserCapability({capability,core,cyrillic,reading,dictation,assetReliability}){
   assert(capability.includes("const SCHEMA='RUSSIAN_BROWSER_CAPABILITY_V1'"),'Browser capability schema missing');
+  assert(capability.includes("const RU_LANG='ru-RU'"),'Russian speech language marker missing');
   assert(capability.includes('speechReady')&&capability.includes('SpeechSynthesisUtterance'),'Speech capability detection missing');
+  assert(capability.includes('function russianVoices()')&&capability.includes('function preferredRussianVoice()'),'Russian voice selection missing');
+  assert(capability.includes("/^ru(?:-|$)/i"),'Russian voice language filter missing');
+  assert(capability.includes('if(voice)u.voice=voice'),'Selected Russian voice is not assigned to utterance');
+  assert(capability.includes('u.onstart=event=>'),'Playback-start hook missing from Russian speech runtime');
+  assert(capability.includes("'voiceschanged',paint"),'Russian voice list refresh on voiceschanged missing');
   assert(capability.includes('Âm Nga: trình duyệt không hỗ trợ'),'Speech-unavailable learner status missing');
+  assert(capability.includes('ru-RU dự phòng'),'Explicit ru-RU fallback status missing');
   for(const [name,src] of [['core',core],['cyrillic',cyrillic],['reading',reading],['dictation',dictation]]){
     assert(src.includes('RussianBrowserCapabilities'),'Runtime does not delegate browser speech capability: '+name);
   }
+  assert(core.includes("function speak(text,rate=.85,hooks={})"),'Core speech wrapper does not preserve playback hooks');
+  assert(core.includes("onStart:meta=>{if(inPracticeMode()){markPracticeLineHeard(d,idx);render()}"),'Core listening evidence is not playback-start confirmed');
+  assert(!core.includes("speak(line.ru||line.text||line.text_ru||line); if(inPracticeMode()){markPracticeLineHeard"),'Failed playback can still count as listening');
   assert(core.includes('Nguồn external chưa dùng được khi offline'),'External media offline state missing');
   assert(assetReliability.includes('missing_visual_asset'),'Explicit missing visual asset state missing');
+  return true;
+}
+
+export function validateBrowserCapabilityBehavior(capability){
+  let spoken=null,started=null;
+  class SpeechSynthesisUtterance{
+    constructor(text){this.text=text;this.lang='';this.rate=1;this.voice=null;this.onstart=null;this.onend=null;this.onerror=null;}
+  }
+  const voices=[
+    {name:'English Default',lang:'en-US',localService:true,default:true},
+    {name:'Русский Голос',lang:'ru-RU',localService:true,default:false}
+  ];
+  const speechSynthesis={
+    getVoices:()=>voices,
+    cancel:()=>{},
+    speak:u=>{spoken=u;u.onstart?.({type:'start'});},
+    addEventListener:()=>{}
+  };
+  const document={querySelector:()=>null,getElementById:()=>null,createElement:()=>({setAttribute(){},dataset:{}}),addEventListener:()=>{}};
+  const root={speechSynthesis,SpeechSynthesisUtterance,navigator:{onLine:true},addEventListener:()=>{}};
+  const sandbox={window:root,document,console};
+  vm.createContext(sandbox);
+  vm.runInContext(capability,sandbox,{filename:'browser-capabilities.js'});
+  const api=root.RussianBrowserCapabilities;
+  assert(api?.schema==='RUSSIAN_BROWSER_CAPABILITY_V1','Browser capability runtime API missing');
+  assert(api.preferredRussianVoice?.()?.lang==='ru-RU','Browser capability did not select Russian voice');
+  const queued=api.speak?.('Привет',.82,{onStart:meta=>{started=meta}});
+  assert(queued===true,'Russian speech was not queued');
+  assert(spoken?.voice?.lang==='ru-RU'&&spoken?.lang==='ru-RU','Russian utterance did not use selected Russian voice');
+  assert(started?.verifiedRussianVoice===true&&started?.lang==='ru-RU','Playback-start callback did not preserve Russian voice evidence');
   return true;
 }
 
@@ -176,8 +219,9 @@ export function loadAndValidate(){
   validateResponsive(bundle.css);
   validatePerformance(bundle);
   validateBrowserCapability(bundle);
+  validateBrowserCapabilityBehavior(bundle.capability);
   validateCursive({...bundle,css:bundle.glyphCss});
-  return {packageResult,cursivePairCoverage:33,cursiveGlyphCoverage:66};
+  return {packageResult,cursivePairCoverage:33,cursiveGlyphCoverage:66,russianVoiceBehavior:true,playbackStartEvidence:true};
 }
 
 if(import.meta.url===pathToFileURL(process.argv[1]).href){
