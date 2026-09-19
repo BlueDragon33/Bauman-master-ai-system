@@ -46,6 +46,7 @@ assert.throws(()=>validateLearnerRuntime({...bundle,visual:bundle.visual+"\ncons
 assert.throws(()=>validateLearnerRuntime({...bundle,core:bundle.core.replace("dialogueTitle:dialogueDirectTitle(dialogue)||''","dialogueTitle:dialogue?.context_title_vi||dialogueDirectTitle(dialogue)||''")}),/AI context regained translation semantic field/);
 assert.throws(()=>validateLearnerRuntime({...bundle,core:bundle.core.replace("unit?.unit_title_ru","unit?.unit_title_vi||unit?.unit_title_ru")}),/Learner dialogue surface regained translation path/);
 assert.throws(()=>validateLearnerRuntime({...bundle,core:bundle.core.replace("unit.scenario_ru||''","unit.scenario_ru||unit.domain||''")}),/generic-language domain fallback/);
+assert.throws(()=>validateLearnerRuntime({...bundle,core:bundle.core.replace("u.scenario_ru||''","u.domain||''")}),/generic-language metadata fallback/);
 assert.throws(()=>validateLearnerRuntime({...bundle,index:bundle.index.replace('<script src="assets/cursive-glyphs.js"></script>','').replace('<script src="assets/cyrillic-literacy.js"></script>','<script src="assets/cyrillic-literacy.js"></script>\n<script src="assets/cursive-glyphs.js"></script>')}),/load order invalid/);
 assert.throws(()=>validateNoDestructiveReset({core:bundle.core+"\nlocalStorage.clear();"}),/Destructive localStorage.clear/);
 
