@@ -19,6 +19,7 @@ export function validateContract(c){
   assert(c.compatibility?.preservePlanningProtocol==='BAUMAN_PLANNING_BRIDGE_V3_ROUTE_CARDS','Planning protocol drifted');
   assert(c.runtimeFreeze?.directSemanticVocabularyRequired===true&&c.runtimeFreeze?.translationFreeDialogueRequired===true&&c.runtimeFreeze?.aiDirectSemanticRequired===true,'Direct-semantic runtime freeze weakened');
   assert(c.runtimeFreeze?.deadTranslationToggleForbidden===true&&c.runtimeFreeze?.cursiveExplicitVectorRequired===true&&c.runtimeFreeze?.weaknessRepairEvidenceGated===true&&c.runtimeFreeze?.offlineReadinessVerified===true&&c.runtimeFreeze?.browserCapabilityFallbackRequired===true,'Turn 20-23 freeze responsibilities incomplete');
+  assert(c.runtimeFreeze?.learnerFacingExportFilenamesVersionFree===true&&c.compatibility?.internalVersionMetadataMayRemain===true,'Learner export/version compatibility boundary weakened');
   assert(c.authority?.masteryOwner==='RUSSIAN_LEARNING_STATE_V1'&&c.authority?.reviewQueueOwner==='RUSSIAN_LEARNING_STATE_V1'&&c.authority?.schedulerOwner==='RUSSIAN_VOCAB_SRS_V1','Learning authority owners drifted');
   assert(c.authority?.skillGateAdvisoryOnly===true&&c.authority?.repairStoreAdditiveOnly===true&&c.authority?.aiReadOnly===true,'Derived/helper authority escaped freeze');
   assert(c.promotion?.allTurnsMustBeGreen===true&&c.promotion?.openDeferredObligationsAllowed===false&&c.promotion?.destructiveStorageResetAllowed===false&&c.promotion?.mergeToMainAutomatic===false&&c.promotion?.promotionDecisionRequired===true,'Promotion safety weakened');
@@ -54,6 +55,8 @@ export function validateCompatibility({core,adapter,hostBridge,manifest,cleanup}
   assert(adapter.includes("coreLabel: 'TIẾNG NGA BAUMAN'"),'Adapter fallback core label is versioned');
   assert(adapter.includes("heroBadge: 'LỘ TRÌNH TIẾNG NGA BAUMAN'"),'Adapter fallback hero badge is versioned');
   assert(core.includes("A.ui?.coreLabel||'TIẾNG NGA BAUMAN'"),'Core fallback label is versioned');
+  assert(core.includes("exportJson('russian_route_plan.json'")&&core.includes("exportJson('russian_db.json',DB)"),'Learner-facing export filenames must be version-free');
+  assert(!/exportJson\('russian_(route_plan|db)_v\d/i.test(core),'Versioned learner export filename returned');
   return true;
 }
 
