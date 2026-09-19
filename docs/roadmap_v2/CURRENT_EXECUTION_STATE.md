@@ -6,16 +6,16 @@
 ## Active track
 
 - Current round: **Lượt 30**
-- Current step: **L30/B120 — FULL-SYSTEM CLOSEOUT · IN_PROGRESS**
+- Current step: **L30 documentation/final-state closeout — IN_PROGRESS**
 - L22 closeout: **B88 + H1 — PASS**
-- Status: **L23_COMPLETE · L24_COMPLETE · L25_COMPLETE · L26_COMPLETE · L27_COMPLETE · L28_COMPLETE · L29_COMPLETE_THROUGH_B116 · L30_B117_COMPLETE · L30_B118_COMPLETE · L30_B119_COMPLETE · L30_B120_ACTIVE**
-- Last recorded six-gate head: `ead487d53e575225fb641527ba9df178ab016249`
+- Status: **L23_COMPLETE · L24_COMPLETE · L25_COMPLETE · L26_COMPLETE · L27_COMPLETE · L28_COMPLETE · L29_COMPLETE_THROUGH_B116 · L30_B117_COMPLETE · L30_B118_COMPLETE · L30_B119_COMPLETE · L30_B120_FUNCTIONAL_PASS**
+- Last recorded six-gate head: `a0bf4fe500d31c4b6ca91fe346ae8600f513cdae`
 - Production/runtime activation by Roadmap V2: **disconnected**
 - Legacy/source destructive migration: **not executed**
-- Last completed: **L30/B119 adversarial Human Review validation — 23/23 PASS on complete six-gate set**
+- Last completed: **L30/B120 functional closeout — PASS on complete six-gate set**
 - Last hardening: **L29-F2 validator/harness syntax repair — PASS; no gate weakening**
-- Current official step: **L30/B120 — full-system Human Review closeout**
-- L31 remains blocked until B120 and its documentation/final-state closeout pass the complete six-gate set.
+- Current official step: **L30 documentation/final-state closeout**
+- L31 remains blocked until the documentation/final-state head itself passes the complete six-gate set.
 
 ## L22/B88 complete gate evidence
 
@@ -758,3 +758,19 @@ Accepted B119 head: `ead487d53e575225fb641527ba9df178ab016249`
 B119 adversarial Human Review validation: **23/23 PASS**. Reviewer impersonation, schema drift, reason-code abuse, production-promotion injection, nested Consumer/Readiness forgery, persisted mastery and post-review mutation escalation all fail closed.
 
 B120 full-system closeout is permitted to open.
+
+
+## L30/B120 functional closeout gate evidence
+
+Accepted B120 functional head: `a0bf4fe500d31c4b6ca91fe346ae8600f513cdae`
+
+- Roadmap V2 Current Gate — run `35452810210` — PASS
+- Foundation Domain Model — run `35452810225` — PASS
+- Windows checkout safety — run `35452810248` — PASS
+- Russian Reference UI — run `35452810233` — PASS
+- Cloudflare Preview — run `35452810215` — PASS
+- Whole System Integration — run `35452810219` — PASS
+
+B120 functional closeout is green. Human Review remains data-only and shadow-only: production promotion, production consumers, persistence, dashboard rendering, schedule/calendar writes, runtime activation, notification writes and automatic actions remain disabled.
+
+L31 remains blocked until the documentation/final-state closeout head itself passes the complete six-gate set.
