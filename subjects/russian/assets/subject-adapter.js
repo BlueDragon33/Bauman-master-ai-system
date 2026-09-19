@@ -288,7 +288,7 @@ window.SUBJECT_ADAPTER = {
   vocabTerm(item){ return item?.ru || item?.phrase_ru || item?.front || item?.word || item?.term || ''; },
   vocabMeaning(item){ return item?.meaning_ru || item?.definition_ru || item?.context_ru || item?.illustration_label_ru || item?.scene_ru || ''; },
   vocabPron(item){ return item?.pronunciation || item?.pron || item?.transcription || ''; },
-  vocabExample(item){ return item?.example || item?.voice_text || item?.usage || this.vocabTerm(item); },
+  vocabExample(item){ const v=item?.example_ru || item?.context_ru || item?.voice_text || item?.usage_ru || ''; return /[А-Яа-яЁё]/.test(String(v)) ? v : this.vocabTerm(item); },
   vocabUsage(item){ return item?.stage_method || item?.illustration_label_ru || ''; },
   vocabSearchText(item){
     return [this.vocabTerm(item), this.vocabMeaning(item), this.vocabPron(item), this.vocabExample(item), this.vocabUsage(item), Array.isArray(item?.tags) ? item.tags.join(' ') : ''].filter(Boolean).join(' ');
