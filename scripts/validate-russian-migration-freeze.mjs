@@ -86,6 +86,7 @@ export function validateLearnerRuntime({core,visual,dialogue,aiDirect,aiGuard,cu
   assert(!deepSlice.includes('JSON.stringify(x)')&&!deepSlice.includes('Object.values(v).flatMap(deepLines)'),'Deep speaking migration freeze allows unknown semantic-field serialization');
   assert(!deepSlice.includes('p.question||')&&!deepSlice.includes('p.answer||'),'Deep speaking migration freeze allows generic-language Q&A fallback');
   assert(!deepSlice.includes("unit.scenario_ru||unit.domain"),'Deep speaking migration freeze allows generic-language domain fallback');
+  assert(!deepSlice.includes("unit.domain||unit.scenario_ru")&&!deepSlice.includes("u.domain||''"),'Deep speaking migration freeze allows generic-language metadata fallback');
   const aiContextSlice=slice(core,'function aiContext()','function aiDirectHtml(');
   for(const token of ['context_title_vi','communicative_functions_vi','vi_turns','meaning_vi','clue_en'])assert(!aiContextSlice.includes(token),'AI context regained translation semantic field: '+token);
 
