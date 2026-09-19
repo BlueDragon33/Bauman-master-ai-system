@@ -6,6 +6,7 @@
   const online=()=>root.navigator?.onLine!==false;
   const voiceList=()=>{try{return Array.from(root.speechSynthesis?.getVoices?.()||[])}catch(_){return []}};
   const isRussianVoice=v=>/^ru(?:-|$)/i.test(String(v?.lang||''));
+  let activeSpeechToken=0;
 
   function russianVoices(){
     return voiceList().filter(isRussianVoice).sort((a,b)=>{
@@ -61,10 +62,12 @@
     try{
       const u=new root.SpeechSynthesisUtterance(value);
       const voice=preferredRussianVoice();
+      const token=++activeSpeechToken;
       if(voice)u.voice=voice;
       u.lang=voice?.lang||RU_LANG;
       u.rate=Math.max(.45,Math.min(1.15,Number(rate)||.82));
       u.onstart=event=>{
+        if(token!==activeSpeechToken)return;
         hooks?.onStart?.({
           event,
           lang:u.lang,
@@ -72,8 +75,12 @@
           verifiedRussianVoice:Boolean(voice)
         });
       };
-      u.onend=event=>hooks?.onEnd?.({event,lang:u.lang,voiceName:String(voice?.name||''),verifiedRussianVoice:Boolean(voice)});
+      u.onend=event=>{
+        if(token!==activeSpeechToken)return;
+        hooks?.onEnd?.({event,lang:u.lang,voiceName:String(voice?.name||''),verifiedRussianVoice:Boolean(voice)});
+      };
       u.onerror=event=>{
+        if(token!==activeSpeechToken)return;
         hooks?.onError?.({event,lang:u.lang,voiceName:String(voice?.name||'')});
         paint();
       };
