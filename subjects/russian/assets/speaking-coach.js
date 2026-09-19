@@ -333,13 +333,7 @@
     const c=context();if(!c.active)return;
 
     if(act==='record-line'){
-      const mode=sessionModeFor(c)||'free';
-      markSessionAttempt();
-      if(mode==='imitation')bump('imitationAttempts',{lastMode:mode,lastAttemptAt:now()});
-      else if(mode==='shadowing')bump('shadowAttempts',{lastMode:mode,lastAttemptAt:now()});
-      else if(mode==='memory')bump('memoryAttempts',{lastMode:mode,lastAttemptAt:now()});
-      else if(mode==='roleplay')bump('roleplayAttempts',{lastMode:mode,lastAttemptAt:now()});
-      else if(mode==='repair')bump('repairAttempts',{lastMode:mode,lastAttemptAt:now()});
+      setNotice('Đang chờ micro bắt đầu; attempt chỉ được tính khi recorder xác nhận onstart.');
     }else if(act==='mark-line-ok'){
       bump('selfOk',{lastSelfOkAt:now()});
       clearPronunciationReview();
@@ -348,6 +342,20 @@
 
     scheduleRender();
   },true);
+
+  window.addEventListener('russian:speaking-recording-started',event=>{
+    const c=context(),detail=event?.detail||{};
+    if(!c.active||detail.dialogueId!==c.dialogueId||Number(detail.lineIndex)!==Number(c.lineIndex))return;
+    const mode=sessionModeFor(c)||'free';
+    if(!STAGES.includes(mode))return;
+    markSessionAttempt();
+    if(mode==='imitation')bump('imitationAttempts',{lastMode:mode,lastAttemptAt:now(),recorderConfirmed:true});
+    else if(mode==='shadowing')bump('shadowAttempts',{lastMode:mode,lastAttemptAt:now(),recorderConfirmed:true});
+    else if(mode==='memory')bump('memoryAttempts',{lastMode:mode,lastAttemptAt:now(),recorderConfirmed:true});
+    else if(mode==='roleplay')bump('roleplayAttempts',{lastMode:mode,lastAttemptAt:now(),recorderConfirmed:true});
+    else if(mode==='repair')bump('repairAttempts',{lastMode:mode,lastAttemptAt:now(),recorderConfirmed:true});
+    setNotice('Recorder đã bắt đầu · attempt được ghi nhận.');
+  });
 
   window.addEventListener('beforeunload',()=>abandonIfNeeded(null));
   document.addEventListener('DOMContentLoaded',()=>{
