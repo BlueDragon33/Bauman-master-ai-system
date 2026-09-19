@@ -10,7 +10,7 @@ Date: 2026-09-19
 Branch: `work/russian-listening-visual-first-architecture`
 PR: `#55 — Draft`
 Parent checkpoint: `676fe08d05e6d92ff4479620ad9bf00abe5f8da6`
-Latest accepted 9/9 checkpoint: `8d05924dfd04f11403f47a14e4f03ee4fac708b6`
+Latest accepted 9/9 checkpoint: `3187b4e1e7f967c862d5b63deb5709073983ed0e`
 
 ## Responsibility
 
@@ -88,21 +88,32 @@ Accepted checkpoint: `8d05924dfd04f11403f47a14e4f03ee4fac708b6`
 - direct and packaged Russian Handwriting Recognition Acceptance PASS;
 - full checkpoint: 9/9 workflows PASS.
 
+### R-HW11 — Offline Promotion Completeness
+Accepted checkpoint: `3187b4e1e7f967c862d5b63deb5709073983ed0e`
+
+- ready authority font/license/coverage must live under `assets/handwriting-authority/`;
+- all three assets must be Service Worker precached;
+- authority namespace stays network-first with offline cache fallback;
+- Cloudflare build must copy the complete `subjects/` tree;
+- ChatGPT Site build must preserve the accepted runtime tree;
+- policy self-tests reject tampered digests, 32/33 coverage, missing precache, wrong namespace and remote assets;
+- full checkpoint: 9/9 workflows PASS.
+
 ## Active auto-generated work
 
-### R-HW11 — Offline Promotion Completeness
+### R-HW12 — Ready Authority Offline Browser Acceptance
 
-Goal: a future `ready` authority must work after an accepted offline installation, not only while online.
+Goal: prove in a real browser that an accepted `ready` authority remains runtime-verified and usable after the device goes fully offline.
 
-1. Require authority font asset in Russian Service Worker `SHELL`.
-2. Require authority license in `SHELL`.
-3. Require 33-letter coverage manifest in `SHELL`.
-4. Confirm Cloudflare runtime build copies the complete `subjects/` tree.
-5. Confirm ChatGPT Site build preserves the complete accepted runtime tree.
-6. Run Russian static/audit gate.
-7. Run direct browser recognition.
-8. Run packaged recognition + responsive acceptance.
-9. Accept checkpoint only when all 9 repository workflows are green.
+1. Build an isolated temporary Russian runtime fixture; never modify production authority/assets.
+2. Inject a test-only ready font/license/33-letter coverage authority with real SHA-256 metadata.
+3. Install the real Russian Service Worker and verify authority assets are actually cached.
+4. Reload under Service Worker control while online.
+5. Force the browser context fully offline.
+6. Reload the Russian runtime from cache.
+7. Require `runtimeStatus=verified`, `canScore=true` and four recognition choices offline.
+8. Perform a scored recognition interaction offline and reject console/page errors.
+9. Add direct CI acceptance and accept only after all 9 repository workflows are green.
 
 ## Validation policy
 
