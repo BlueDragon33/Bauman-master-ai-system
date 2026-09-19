@@ -104,6 +104,11 @@ Define a visual semantic schema and prohibit Vietnamese/English meaning answers 
 
 Measure and validate photo/illustration/pictogram/scene coverage with explicit missing-visual states instead of translation fallback.
 
+Post-freeze quality substeps:
+
+- **11.1 — Visual evidence tier audit:** distinguish concrete image/illustration fields from symbolic evidence such as emoji/pictogram/scene/gesture instead of reporting both as one undifferentiated “visual ready” number.
+- **11.2 — Corpus-shape audit:** profile the 8,000-item corpus before enrichment. CI proved `concreteVisual=0`, `symbolicVisual=8000`, with all 8,000 rows carrying Russian term/phrase, `meaning_ru`, example, tags, stage, pronunciation and `image_emoji`; therefore the old 100% visual-ready metric was technically true but too weak for the intended image-first pedagogy.
+
 ### Turn 12 — Direct-semantic explanation
 
 Use scene, gesture, contrast, category, examples and analogy to communicate meaning directly.
@@ -111,6 +116,11 @@ Use scene, gesture, contrast, category, examples and analogy to communicate mean
 ### Turn 13 — Visual vocabulary runtime
 
 Replace translation-style “flip meaning” behavior with image/context discovery, audio recall and Russian usage.
+
+Post-freeze quality substeps:
+
+- **13.1 — Verified image enrichment:** when a source row has no concrete image, perform an on-demand Wikimedia Commons lookup using only Russian term/semantic context; rank candidates through a relevance gate, preserve emoji/Russian-context fallback, expose source/license/artist attribution, and never mutate mastery or SRS authority.
+- **13.2 — Image hydration race/network hardening:** cancel stale lookups when the learner changes cards, deduplicate in-flight requests, attach load/error listeners before assigning `img.src`, skip lookup offline or under Save-Data, and retain the original symbolic/Russian fallback whenever lookup fails or relevance is insufficient.
 
 ### Turn 14 — Reading bridge
 
@@ -171,6 +181,7 @@ Turn 22 execution substeps:
 - **22.5 — Offline readiness truthfulness:** report ready only when both package shell and required learning data are actually present in Cache Storage.
 - **22.6 — Behavioral/package gates:** validate shell/data coverage, navigation-only HTML fallback, explicit 503 JSON for missing required data and no false offline-ready state.
 - **22.7 — Asset-fallback diagnostic fidelity:** separate asset API existence from the required `missing_visual_asset` fallback value so negative tests fail for the precise broken invariant without weakening runtime behavior.
+- **22.8 — Network visual enrichment boundary:** treat verified Commons thumbnails as network-only enrichment, require explicit offline/Save-Data guards, and forbid claiming external images as packaged offline assets.
 
 ### Turn 23 — Browser/package/accessibility/performance QA
 
