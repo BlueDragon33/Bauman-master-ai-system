@@ -6,15 +6,15 @@
 ## Active track
 
 - Current round: **Lượt 32**
-- Current step: **L32-F1 — B125 VALIDATOR SYNTAX REPAIR · IN_PROGRESS**
+- Current step: **L32-F2 — CLEAN B125 VALIDATOR REBUILD · IN_PROGRESS**
 - L22 closeout: **B88 + H1 — PASS**
-- Status: **L23_COMPLETE · L24_COMPLETE · L25_COMPLETE · L26_COMPLETE · L27_COMPLETE · L28_COMPLETE · L29_COMPLETE_THROUGH_B116 · L30_COMPLETE_THROUGH_B120 · L31_COMPLETE_THROUGH_B124 · L32_B125_COMPLETE · L32_H1_ACTIVE · L32_F1_ACTIVE**
+- Status: **L23_COMPLETE · L24_COMPLETE · L25_COMPLETE · L26_COMPLETE · L27_COMPLETE · L28_COMPLETE · L29_COMPLETE_THROUGH_B116 · L30_COMPLETE_THROUGH_B120 · L31_COMPLETE_THROUGH_B124 · L32_B125_COMPLETE · L32_H1_ACTIVE · L32_F1_REPAIR_ATTEMPTED · L32_F2_ACTIVE**
 - Last recorded six-gate head: `59e7fba97b2d8c839ddddae0c09fcab391840511`
 - Production/runtime activation by Roadmap V2: **disconnected**
 - Legacy/source destructive migration: **not executed**
 - Last completed: **L32/B125 Release Review contract — PASS on complete six-gate set**
 - Last hardening: **L29-F2 validator/harness syntax repair — PASS; no gate weakening**
-- Current official step: **L32-F1 — repair generated B125 validator syntax without weakening gates**
+- Current official step: **L32-F2 — rebuild B125 validator cleanly without weakening gates**
 - B125 is closed. H1 is active; B126 remains blocked until H1 passes the complete six-gate set.
 
 ## L22/B88 complete gate evidence
@@ -913,3 +913,10 @@ B125 is closed. Pre-B126 audit found L32-H1: bind the outer Release Review candi
 The first H1 gate attempt failed in Roadmap V2 Current Gate while parsing `scripts/validate-roadmap-v2-l32-b125.mjs`: line 66 had a generated string-splice defect and raised `SyntaxError: missing ) after argument list` before Release Review validation executed.
 
 F1 rebuilds the result-schema assertion block only. H1 identity binding, receipt audit fields, authority-denial rules and runtime isolation remain unchanged. B126 stays blocked pending a complete six-gate pass.
+
+
+## L32-F2 defect
+
+The F1 head still failed B125 parsing because a duplicated stale assertion tail remained after the validator's terminal output, producing `SyntaxError: Unexpected token ')'` at line 84.
+
+F2 replaces the entire B125 validator source with a clean reconstruction. All B125 contract/schema/isolation checks and all H1 candidate-binding/audit-field checks remain present. B126 remains blocked pending six-gate PASS.

@@ -1,6 +1,6 @@
 # Lượt 32 — Current Plan · Bước 125–128
 
-Status: `B125_PASS · H1_ACTIVE · F1_REPAIR_ACTIVE · B126_BLOCKED · B127_BLOCKED · B128_BLOCKED`
+Status: `B125_PASS · H1_ACTIVE · F1_REPAIR_ACTIVE · F2_REBUILD_ACTIVE · B126_BLOCKED · B127_BLOCKED · B128_BLOCKED`
 
 Prerequisite: L31 final marker head `369df7fcc7f9e79c2ad3426651918608cc56bcc1` passed the complete six-gate set.
 
@@ -43,3 +43,9 @@ Any defect creates `L32-Fx`; any missing architecture creates `L32-Hx`. Later st
 H1 gate exposed a generated-source syntax defect in the B125 validator: the added audit-field assertions were spliced into the source-eligibility assertion and produced `SyntaxError: missing ) after argument list` before B125 logic could execute.
 
 F1 reconstructs only that assertion block. No schema, identity-binding rule, fail-closed rule, production boundary or runtime-isolation assertion is weakened. H1 and B126 remain blocked until the repaired head passes the complete six-gate set.
+
+## L32-F2 — Clean rebuild of B125 validator
+
+The F1 patch removed the first malformed splice but a stale duplicated assertion tail remained after the validator's final `console.log`, causing `SyntaxError: Unexpected token ')'` at line 84.
+
+F2 replaces the complete B125 validator with one clean source file containing all original B125 checks plus H1 identity/audit assertions. No gate or policy is removed.

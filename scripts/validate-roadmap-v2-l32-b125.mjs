@@ -26,7 +26,9 @@ assert.equal(contract.mode.productionIntegration,'disconnected');
 assert.equal(contract.mode.promotionReviewIntegration,'disconnected');
 assert.equal(contract.mode.releaseReviewOnly,true);
 assert.equal(contract.mode.productionPromotionEnabled,false);
-for(const key of ['persistentStoreEnabled','dashboardUiEnabled','scheduleWriteAllowed','calendarWriteAllowed','runtimeWriteAllowed','notificationWriteAllowed','automaticActionAllowed'])assert.equal(contract.mode[key],false,'B125 forbidden mode enabled: '+key);
+for(const key of ['persistentStoreEnabled','dashboardUiEnabled','scheduleWriteAllowed','calendarWriteAllowed','runtimeWriteAllowed','notificationWriteAllowed','automaticActionAllowed']){
+  assert.equal(contract.mode[key],false,'B125 forbidden mode enabled: '+key);
+}
 
 assert.equal(contract.candidatePolicy.candidateRefPattern,'^CANDIDATE::[A-Z0-9_-]+$');
 assert.equal(contract.candidatePolicy.recomputePromotionEligibilityFromRequest,true);
@@ -45,7 +47,13 @@ assert.equal(contract.reviewPolicy.rejectedState,'release_review_rejected');
 assert.equal(contract.reviewPolicy.approvedDecisionAuthorizesProduction,false);
 assert.equal(contract.reviewPolicy.manualProductionOverrideAllowed,false);
 
-for(const key of ['productionPromotion','productionConsumerConnect','persistentStoreWrite','dashboardUiRender','scheduleWrite','calendarWrite','runtimeActivation','notificationWrite','automaticAction'])assert.equal(contract.capabilities[key],false,'B125 forbidden capability enabled: '+key);
+assert.equal(contract.outputPolicy.includesReleaseReviewerRef,true);
+assert.equal(contract.outputPolicy.includesSubmittedReviewDecision,true);
+assert.equal(contract.outputPolicy.includesReasonCodes,true);
+
+for(const key of ['productionPromotion','productionConsumerConnect','persistentStoreWrite','dashboardUiRender','scheduleWrite','calendarWrite','runtimeActivation','notificationWrite','automaticAction']){
+  assert.equal(contract.capabilities[key],false,'B125 forbidden capability enabled: '+key);
+}
 assert.equal(contract.acceptance.step,125);
 assert.equal(contract.acceptance.currentTrack,'L32');
 assert.equal(contract.acceptance.productionConsumersConnected,0);
@@ -63,16 +71,29 @@ assert.equal(requestSchema.properties.releaseReviewerRef.pattern,'^RELEASE_REVIE
 assert.deepEqual(requestSchema.properties.reviewDecision.enum,['approve_for_promotion_review','needs_revision','rejected']);
 
 assert.equal(resultSchema.additionalProperties,false);
+for(const field of ['releaseReviewerRef','submittedReviewDecision','reasonCodes']){
+  assert(resultSchema.required.includes(field),'B125 H1 audit field missing: '+field);
+}
 assert.equal(resultSchema.properties.releaseReviewerRef.pattern,'^RELEASE_REVIEWER::[A-Z0-9_-]+$');
 assert.deepEqual(resultSchema.properties.submittedReviewDecision.enum,['approve_for_promotion_review','needs_revision','rejected']);
 assert.equal(resultSchema.properties.reasonCodes.minItems,1);
 assert.equal(resultSchema.properties.reasonCodes.maxItems,12);
 assert.deepEqual(resultSchema.properties.sourceEligibilityState.enum,['not_eligible_upstream_blocked','not_eligible_needs_revision','not_eligible_rejected','eligible_for_release_review']);
 assert.deepEqual(resultSchema.properties.effectiveReleaseReviewState.enum,['release_review_blocked_upstream','release_review_needs_revision','release_review_rejected','release_review_approved_shadow_only']);
-for(const key of ['persisted','productionPromotionAuthorized','productionConsumerConnected','runtimeActionAuthorized','scheduleWriteAllowed','notificationWriteAllowed'])assert.equal(resultSchema.properties[key].const,false,'B125 result authority widened: '+key);
+for(const key of ['persisted','productionPromotionAuthorized','productionConsumerConnected','runtimeActionAuthorized','scheduleWriteAllowed','notificationWriteAllowed']){
+  assert.equal(resultSchema.properties[key].const,false,'B125 result authority widened: '+key);
+}
 
-function walk(dir){if(!fs.existsSync(dir))return [];return fs.readdirSync(dir,{withFileTypes:true}).flatMap(entry=>{const p=path.posix.join(dir,entry.name);return entry.isDirectory()?walk(p):[p];});}
-for(const p of walk('roadmap_v2'))assert.equal(/\.(?:js|mjs|cjs|html|css)$/i.test(p),false,'B125 executable/UI leaked into canonical Roadmap tree: '+p);
+function walk(dir){
+  if(!fs.existsSync(dir))return [];
+  return fs.readdirSync(dir,{withFileTypes:true}).flatMap(entry=>{
+    const p=path.posix.join(dir,entry.name);
+    return entry.isDirectory()?walk(p):[p];
+  });
+}
+for(const p of walk('roadmap_v2')){
+  assert.equal(/\.(?:js|mjs|cjs|html|css)$/i.test(p),false,'B125 executable/UI leaked into canonical Roadmap tree: '+p);
+}
 for(const file of [...(fs.existsSync('index.html')?['index.html']:[]),...walk('assets'),...walk('subjects')].filter(p=>/\.(?:html|js|mjs|cjs|json)$/i.test(p))){
   const text=fs.readFileSync(file,'utf8');
   assert.equal(text.includes('roadmap_v2/release-review/current-contract.json'),false,'B125 release review wired into runtime: '+file);
@@ -80,22 +101,15 @@ for(const file of [...(fs.existsSync('index.html')?['index.html']:[]),...walk('a
 }
 
 console.log('ROADMAP_V2_L32_B125_RELEASE_REVIEW_CONTRACT=PASS');
-console.log(JSON.stringify({releaseReview:contract.schema,upstreamPromotionEligibility:promotionContract.schema,promotionReviewIntegration:'disconnected',productionConsumers:0,productionPromotion:false,persistence:false,runtimeActivation:false,automaticAction:false},null,2));
-);
-assert.deepEqual(resultSchema.properties.submittedReviewDecision.enum,['approve_for_promotion_review','needs_revision','rejected']);
-assert.equal(resultSchema.properties.reasonCodes.minItems,1);
-assert.equal(resultSchema.properties.reasonCodes.maxItems,12);
-assert.deepEqual(resultSchema.properties.sourceEligibilityState.enum,['not_eligible_upstream_blocked','not_eligible_needs_revision','not_eligible_rejected','eligible_for_release_review']);
-assert.deepEqual(resultSchema.properties.effectiveReleaseReviewState.enum,['release_review_blocked_upstream','release_review_needs_revision','release_review_rejected','release_review_approved_shadow_only']);
-for(const key of ['persisted','productionPromotionAuthorized','productionConsumerConnected','runtimeActionAuthorized','scheduleWriteAllowed','notificationWriteAllowed'])assert.equal(resultSchema.properties[key].const,false,'B125 result authority widened: '+key);
-
-function walk(dir){if(!fs.existsSync(dir))return [];return fs.readdirSync(dir,{withFileTypes:true}).flatMap(entry=>{const p=path.posix.join(dir,entry.name);return entry.isDirectory()?walk(p):[p];});}
-for(const p of walk('roadmap_v2'))assert.equal(/\.(?:js|mjs|cjs|html|css)$/i.test(p),false,'B125 executable/UI leaked into canonical Roadmap tree: '+p);
-for(const file of [...(fs.existsSync('index.html')?['index.html']:[]),...walk('assets'),...walk('subjects')].filter(p=>/\.(?:html|js|mjs|cjs|json)$/i.test(p))){
-  const text=fs.readFileSync(file,'utf8');
-  assert.equal(text.includes('roadmap_v2/release-review/current-contract.json'),false,'B125 release review wired into runtime: '+file);
-  assert.equal(text.includes('BAUMAN_ROADMAP_V2_RELEASE_REVIEW_CONTRACT_V1'),false,'B125 release review activation leaked into runtime: '+file);
-}
-
-console.log('ROADMAP_V2_L32_B125_RELEASE_REVIEW_CONTRACT=PASS');
-console.log(JSON.stringify({releaseReview:contract.schema,upstreamPromotionEligibility:promotionContract.schema,promotionReviewIntegration:'disconnected',productionConsumers:0,productionPromotion:false,persistence:false,runtimeActivation:false,automaticAction:false},null,2));
+console.log(JSON.stringify({
+  releaseReview:contract.schema,
+  upstreamPromotionEligibility:promotionContract.schema,
+  promotionReviewIntegration:'disconnected',
+  nestedCandidateBinding:true,
+  auditFields:true,
+  productionConsumers:0,
+  productionPromotion:false,
+  persistence:false,
+  runtimeActivation:false,
+  automaticAction:false
+},null,2));
