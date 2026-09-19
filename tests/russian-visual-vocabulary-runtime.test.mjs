@@ -51,8 +51,9 @@ const mocked=await api.resolveImage(
   }
 );
 assert.equal(mocked.status,'resolved');
-assert.match(requestedUrl,/origin=%2A/);
-assert.match(requestedUrl,/gsrnamespace=6/);
+const requested=new URL(requestedUrl);
+assert.equal(requested.searchParams.get('origin'),'*');
+assert.equal(requested.searchParams.get('gsrnamespace'),'6');
 assert.equal(mocked.artist,'Автор');
 
 {const x=copy();x.authority.authoritySwitch=false;assert.throws(()=>validateContract(x),/must explicitly switch/)}
