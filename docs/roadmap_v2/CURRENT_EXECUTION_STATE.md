@@ -6,15 +6,15 @@
 ## Active track
 
 - Current round: **Lượt 27**
-- Current step: **Bước 105 — BLOCKED · L27-F1/L27-H1 ACTIVE**
+- Current step: **Bước 106 — IN_PROGRESS**
 - L22 closeout: **B88 + H1 — PASS**
-- Status: **L23_COMPLETE · L24_COMPLETE · L25_COMPLETE · L26_COMPLETE · PASS_L26_B101_B104 · PASS_L26_F2_H2 · L27_B105_BLOCKED · L27_F1_H1_ACTIVE**
+- Status: **L23_COMPLETE · L24_COMPLETE · L25_COMPLETE · L26_COMPLETE · PASS_L27_B105 · PASS_L27_F1_H1 · L27_B106_IN_PROGRESS**
 - Last recorded six-gate head: `4d2bd743f0977d3a8202564549eb51a37164056e`
 - Production/runtime activation by Roadmap V2: **disconnected**
 - Legacy/source destructive migration: **not executed**
-- Last completed: **L26/B104 — PASS (functional + documentation/final-state six-gate closeout)**
-- Last hardening: **L26-F2 provenance relation fail-closed — PASS**
-- Current official step: **L27/B105 — current readiness contract (blocked by stale manifest boundary)**
+- Last completed: **L27/B105 — PASS (current readiness contract)**
+- Last hardening: **L27-F1/H1 stale manifest removal + additive readiness overlay — PASS**
+- Current official step: **L27/B106 — read-only readiness projector**
 - L26 opened only after the L25 final-state head passed the complete six-gate set.
 
 ## L22/B88 complete gate evidence
@@ -464,3 +464,17 @@ Current active boundary: **B105**, with **L27-F1/L27-H1 active**.
 Pre-audit found that the frozen historical Readiness contract still names historical Consumer/Mastery/Scheduler manifests. Those stale package identities may remain provenance evidence but cannot be execution dependencies on the current track.
 
 Repair policy: additive current readiness overlay only; the frozen historical Readiness contract is not mutated.
+
+
+## L27/B105 gate evidence
+
+Accepted B105/F1/H1 head: `f87d6a1e528c764c432981750030a5adc9d35466`
+
+- Roadmap V2 Current Gate — run `35436877111` — PASS
+- Foundation Domain Model — run `35436877115` — PASS
+- Windows checkout safety — run `35436877132` — PASS
+- Russian Reference UI — run `35436877112` — PASS
+- Cloudflare Preview — run `35436877151` — PASS
+- Whole System Integration — run `35436877126` — PASS
+
+B105 is closed. B106 is active.
