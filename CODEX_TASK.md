@@ -30,20 +30,21 @@ English is not the default semantic bridge either.
 
 ## Current work
 
-Turns 1–19 are accepted.
+Turns 1–20 are accepted.
 
-Next: **Turn 20 — AI mentor direct explanation**.
+Next: **Turn 21 — Weakness repair routing**.
 
-Turn 20 requires an architecture upgrade before implementation can continue:
+Turn 21 requires an architecture upgrade before implementation can continue:
 
-- add an explicit AI explanation-policy contract;
-- enforce explanation order: Russian/context/visual/action/contrast/analogy first;
-- prohibit Vietnamese/English vocabulary meaning as the default learner-facing answer;
-- allow meta-language support only as a secondary help layer, not semantic authority;
-- reuse direct-semantic vocabulary descriptors instead of legacy translation fields;
-- keep the AI layer read-only for mastery, completion, Review Queue and scheduling;
-- add negative tests proving translation fallback cannot re-enter the AI surface;
-- preserve current context/canonical identity integration.
+- define one normalized weakness-signal contract across exam, listening, speaking, print/cursive recognition, reading, writing and multimodal review evidence;
+- keep source evidence read-only and preserve each source's authority;
+- map each weakness type to a focused repair route instead of sending everything to generic `review/wrong`;
+- preserve pronunciation Review Queue ownership and SRS scheduling ownership;
+- distinguish `opened`, `attempted`, `repair_evidence_present` and `resolved`; opening a repair card must not count as completion;
+- allow Turn 19 skill blockers to suggest repair categories without converting readiness into mastery;
+- store only additive repair-session state;
+- require new evidence after the weakness timestamp before a repair can be marked resolved;
+- add negative tests proving no repair route can silently change mastery, completion, due dates or canonical Review Queue state.
 
 ## Gate rule
 
