@@ -49,7 +49,7 @@ Create Turn 25+ only if a genuinely new responsibility appears that cannot safel
 
 Continue auditing the frozen candidate. If a defect belongs to an existing responsibility, reopen/add a numbered substep inside that owning turn, fix it, extend the relevant negative/promotion gate, and restore GREEN. Create Turn 25+ only for a genuinely new responsibility.
 
-Current post-freeze additions accepted: Turn 1.1, Turn 2.1, Turn 3.1, Turn 8.1, Turn 8.2, Turn 9.1, Turn 9.2, Turn 9.3, Turn 9.4, Turn 9.5, Turn 10.1, Turn 11.1, Turn 11.2, Turn 13.1, Turn 13.2, Turn 16.1, Turn 16.2, Turn 18.1, Turn 21.7, Turn 22.7, Turn 22.8, Turn 23.8, Turn 23.9, Turn 23.10, Turn 23.11, Turn 23.12, Turn 24.7, Turn 24.8, Turn 24.9, Turn 24.10, Turn 24.11 and Turn 24.12.
+Current post-freeze additions accepted: Turn 1.1, Turn 2.1, Turn 2.2, Turn 3.1, Turn 8.1, Turn 8.2, Turn 9.1, Turn 9.2, Turn 9.3, Turn 9.4, Turn 9.5, Turn 10.1, Turn 11.1, Turn 11.2, Turn 13.1, Turn 13.2, Turn 16.1, Turn 16.2, Turn 18.1, Turn 21.7, Turn 22.7, Turn 22.8, Turn 23.8, Turn 23.9, Turn 23.10, Turn 23.11, Turn 23.12, Turn 24.7, Turn 24.8, Turn 24.9, Turn 24.10, Turn 24.11 and Turn 24.12.
 
 
 ## Post-freeze gate status
@@ -119,3 +119,11 @@ Additional invariants:
 - delayed auto-next cannot advance a different surface/dialogue/line;
 - learner-facing Học tập navigation and failure recovery put `Nghe/Nói` before theory/exercises;
 - the accepted post-freeze substep inventory is maintained as one deduplicated canonical list.
+
+
+## Latest oral-first CTA checkpoint
+
+Run `35422236260` at `7c730fed3b3b0b3970a05ed4a3e9910252c894c1` is GREEN for both architecture and existing regression.
+
+Additional invariant:
+- primary overview/route-focus start CTAs enter `practice`/Nghe-Nói; `theory` is supporting/review context rather than the default learner start action.
