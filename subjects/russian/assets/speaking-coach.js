@@ -78,6 +78,10 @@
       selfOk:Number(old.selfOk||0),
       pronunciationFlags:Number(old.pronunciationFlags||0),
       abandoned:Number(old.abandoned||0),
+      recognizedAttempts:Number(old.recognizedAttempts||0),
+      recorderConfirmed:Boolean(old.recorderConfirmed),
+      recognitionConfirmed:Boolean(old.recognitionConfirmed),
+      lastRecognitionScore:Number(old.lastRecognitionScore||0),
       lastAt:old.lastAt||null,
       lastMode:old.lastMode||''
     };
@@ -117,6 +121,7 @@
   function bump(field,extra={}){
     const c=context(),row=lineState(c);if(!row)return;
     row[field]=Number(row[field]||0)+1;
+    if(extra?.recognitionConfirmed)row.recognizedAttempts=Number(row.recognizedAttempts||0)+1;
     row.lastAt=now();
     Object.assign(row,extra);
     write();
