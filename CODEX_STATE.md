@@ -10,7 +10,7 @@ Date: 2026-09-19
 Branch: `work/russian-listening-visual-first-architecture`
 PR: `#55 — Draft`
 Parent checkpoint: `676fe08d05e6d92ff4479620ad9bf00abe5f8da6`
-Latest accepted 9/9 checkpoint: `3187b4e1e7f967c862d5b63deb5709073983ed0e`
+Latest accepted 9/9 checkpoint: `58a0414dd0287bf2407190ac967c926b4ea20f78`
 
 ## Responsibility
 
@@ -99,21 +99,32 @@ Accepted checkpoint: `3187b4e1e7f967c862d5b63deb5709073983ed0e`
 - policy self-tests reject tampered digests, 32/33 coverage, missing precache, wrong namespace and remote assets;
 - full checkpoint: 9/9 workflows PASS.
 
+### R-HW12 — Ready Authority Offline Browser Acceptance
+Accepted checkpoint: `58a0414dd0287bf2407190ac967c926b4ea20f78`
+
+- isolated temporary ready-authority fixture; production authority/assets remain untouched;
+- real Service Worker installs and controls the Russian runtime;
+- font/license/coverage are verified present in the app-shell cache;
+- browser is forced fully offline and reloaded from Service Worker/cache;
+- runtime remains `verified`, `canScore=true`, exposes four choices and records a scored miss offline;
+- transport-level offline resource noise is retained as evidence but application/page errors remain forbidden;
+- full checkpoint: 9/9 workflows PASS.
+
 ## Active auto-generated work
 
-### R-HW12 — Ready Authority Offline Browser Acceptance
+### R-HW13 — Packaged Ready Authority Offline Parity
 
-Goal: prove in a real browser that an accepted `ready` authority remains runtime-verified and usable after the device goes fully offline.
+Goal: prove the same ready-authority offline behavior from the materialized ChatGPT Site `dist/` tree.
 
-1. Build an isolated temporary Russian runtime fixture; never modify production authority/assets.
-2. Inject a test-only ready font/license/33-letter coverage authority with real SHA-256 metadata.
-3. Install the real Russian Service Worker and verify authority assets are actually cached.
-4. Reload under Service Worker control while online.
-5. Force the browser context fully offline.
-6. Reload the Russian runtime from cache.
-7. Require `runtimeStatus=verified`, `canScore=true` and four recognition choices offline.
-8. Perform a scored recognition interaction offline and reject console/page errors.
-9. Add direct CI acceptance and accept only after all 9 repository workflows are green.
+1. Parameterize the R-HW12 fixture builder so its source runtime can be repo source or packaged `dist`.
+2. Keep all fixture mutation inside a temporary copy.
+3. Run source offline authority acceptance as before.
+4. Materialize Cloudflare + ChatGPT Site package.
+5. Build the isolated ready-authority fixture from `dist/subjects/russian` and `dist/subjects/shared`.
+6. Install the packaged Russian Service Worker in a real browser.
+7. Force full offline reload and require runtime verification + scoring.
+8. Preserve separate packaged offline evidence.
+9. Accept only when all 9 repository workflows are green.
 
 ## Validation policy
 
