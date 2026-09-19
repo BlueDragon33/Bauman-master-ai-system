@@ -6,7 +6,7 @@ Status: `ALL_24_TURNS_GREEN_PROMOTION_CANDIDATE_FROZEN`
 
 Date: 2026-09-19
 Branch: `work/russian-listen-speak-literacy-visual-semantics`
-Russian accepted head: `3d8ee02b75716b266ae87cd2f63388e14f27657e`
+Russian accepted head: `667309790a9a2a56883976c4e5f674b074a89cf6`
 
 ## Single source of truth
 
@@ -83,3 +83,13 @@ This branch is a promotion candidate only.
 Do not merge to `main` automatically. A separate explicit promotion decision is required.
 
 The available GitHub connector did not expose branch-push workflow runs/status checks for the latest commits. Source-level validators, negative-test definitions, package/load-order checks and regression wiring are accepted; an observable GitHub Actions run may be required by a later explicit promotion decision.
+
+## Post-freeze defect fixes
+
+The frozen candidate was re-audited after Turn 24 and two defects were found inside existing responsibilities, so no Turn 25 was created:
+
+- Turn 23.8: modal accessibility lifecycle now sets `aria-hidden=false` on open, restores `true` on close, moves focus into the dialog and restores the opener. Browser QA, migration freeze and promotion gates all enforce this.
+- Turn 24.7: versioned learner-facing fallback labels were removed directly from `subject-adapter.js` and `core.js`; the UI no longer relies only on cleanup overrides to hide legacy build labels.
+- Turn 24.8: post-freeze source validation confirms the new assertions are wired into negative/promotion gates.
+
+All canonical Turns 1–24 remain GREEN after these fixes.
