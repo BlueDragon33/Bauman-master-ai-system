@@ -1,6 +1,6 @@
 # Lượt 26 — Current Plan · Bước 101–104
 
-Status: `B102_IN_PROGRESS · L26-H2_ACTIVE`
+Status: `PASS_B101_B103 · PASS_L26_F2 · PASS_L26_H2 · B104_DOCUMENTATION_CLOSEOUT_ACTIVE`
 
 Prerequisite: L25/B100 final-state head `fa8d9b811080aec22a9d7b61dcc7791f55266dac` passed the complete six-gate set.
 
@@ -43,9 +43,11 @@ Validate deterministic projection, provenance, phase rules, preview bounds, GD1 
 
 ## B104 — Full-system closeout
 
-Compose B101–B103 and run the complete six-gate set: Roadmap V2, Foundation, Windows checkout, Russian Reference UI, Cloudflare Preview/package and Whole System Integration.
+Functional closeout on head `4d2bd743f0977d3a8202564549eb51a37164056e`: **PASS** across the complete six-gate set.
 
-L27 remains blocked until B104 and its documentation closeout are green.
+The documentation closeout/final-state head must now pass the same six gates before L27 may open.
+
+L27 remains blocked until that final documentation state is green.
 
 ## Quality rule
 
@@ -55,3 +57,8 @@ Any defect or missing architecture discovered inside L26 creates an `L26-Fx` or 
 ### H2 dynamic-target boundary
 
 B102 preserves the current Consumer rule that dynamic `CUR-L4-*` / Russian dynamic templates remain uninstantiated. Verified Current Bauman provenance does not bypass Priority V2 target eligibility. The projector may prioritize admitted prerequisite knowledge targets sourced from verified current Bauman material; it may not schedule an uninstantiated dynamic template ID.
+
+
+### F2 provenance-relation repair
+
+B103 found and repaired a fail-open semantic provenance gap: verified Current Bauman and NIR sources must also carry the correct Master Mode relation. The current harness now rejects missing/wrong relations before projection. See `L26_F2_PROVENANCE_RELATION_FAIL_CLOSED.md` and `L26_B103_ACCEPTANCE.md`.
