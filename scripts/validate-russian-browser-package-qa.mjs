@@ -96,9 +96,9 @@ export function validatePerformance({core,cyrillic,reading,dictation,skillGate})
   assert(core.includes('safeLocalJson(key,{},1600000)'),'Primary learner-state size guard missing');
   assert(core.includes('const OPTIONAL_DATA_FILES=')&&core.includes('loadOptionalData'),'Large optional data is not lazy-loaded');
   assert(core.includes('VOCAB_PAGE_SIZE')&&core.includes('list.slice(pageStart,pageStart+pageSize)'),'Large vocabulary surface is not paged');
-  assert(cyrillic.includes("if(document.querySelector('[data-cyrillic-literacy="print"]'))return"),'Cyrillic MutationObserver mount is not idempotent');
-  assert(reading.includes("if(document.querySelector('[data-reading-bridge="1"]'))return"),'Reading MutationObserver mount is not idempotent');
-  assert(dictation.includes("if(document.querySelector('[data-dictation="1"]'))return"),'Dictation MutationObserver mount is not idempotent');
+  assert(cyrillic.includes(`if(document.querySelector('[data-cyrillic-literacy="print"]'))return`),'Cyrillic MutationObserver mount is not idempotent');
+  assert(reading.includes(`if(document.querySelector('[data-reading-bridge="1"]'))return`),'Reading MutationObserver mount is not idempotent');
+  assert(dictation.includes(`if(document.querySelector('[data-dictation="1"]'))return`),'Dictation MutationObserver mount is not idempotent');
   assert(skillGate.includes('let queued=false')&&skillGate.includes('if(queued)return'),'Skill-gate mutation/render scheduling lacks queue guard');
   return true;
 }
