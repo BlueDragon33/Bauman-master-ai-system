@@ -35,6 +35,15 @@ export function validateHelper(js){
   assert(missing.status==='missing_dialogue_context','Translation-only context must fail closed');
   return true;
 }
+export function validateAdapter(adapter){
+  const start=adapter.indexOf('dialogueTitle(item){');
+  const end=adapter.indexOf('mediaTitle(item){',start);
+  assert(start>=0&&end>start,'Adapter dialogue helper block missing');
+  const block=adapter.slice(start,end);
+  for(const token of ['context_title_vi','communicative_functions_vi','vi_turns','translation_vi','gloss_vi'])assert(!block.includes(token),`Adapter dialogue helper references prohibited translation field: ${token}`);
+  assert(block.includes('title_ru')&&block.includes('context_title_ru'),'Adapter dialogue title is not Russian/direct-context first');
+  return true;
+}
 export function validateCore(core){
   const bridge=functionSlice(core,'dialogueScaffold','dialogueDirectTitle');
   const ui=functionSlice(core,'dialogueScaffoldHtml','dialogueMeta');
@@ -47,7 +56,7 @@ export function validateCore(core){
   for(const token of ['context_title_vi','communicative_functions_vi','dialogueVi('])assert(!meta.includes(token),`dialogueMeta still uses legacy gloss: ${token}`);
   for(const [name,src] of [['renderDialogue',dialogue],['renderPractice',practice]]){
     assert(src.includes('dialogueScaffold('),`${name} does not use direct scaffold bridge`);
-    for(const token of ['dialogueVi(','currentVi','toggle-vi','context_title_vi','communicative_functions_vi'])assert(!src.includes(token),`${name} still exposes translation scaffold: ${token}`);
+    for(const token of ['dialogueVi(','currentVi','toggle-vi','context_title_vi','communicative_functions_vi','vi_turns','prompt_vi','unit_title_vi','scenario_vi','title_vi'])assert(!src.includes(token),`${name} still exposes translation scaffold: ${token}`);
     assert(src.includes('dialogueScaffoldHtml(scaffold)'),`${name} does not render direct scaffold helper`);
   }
   assert(practice.includes("heard?dialogueScaffoldHtml(scaffold):''"),'Practice Russian scaffold is not hear-before-see gated');
@@ -62,6 +71,7 @@ export function validateIndex(index){
 export function loadAndValidate(){
   const c=JSON.parse(fs.readFileSync('subjects/russian/contracts/dialogue-scaffold-contract.v1.json','utf8'));
   validateContract(c);validateHelper(fs.readFileSync('subjects/russian/assets/dialogue-scaffold.js','utf8'));
+  validateAdapter(fs.readFileSync('subjects/russian/assets/subject-adapter.js','utf8'));
   validateCore(fs.readFileSync('subjects/russian/assets/core.js','utf8'));
   validateIndex(fs.readFileSync('subjects/russian/index.html','utf8'));return c;
 }
