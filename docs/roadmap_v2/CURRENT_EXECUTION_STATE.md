@@ -6,15 +6,15 @@
 ## Active track
 
 - Current round: **Lượt 27**
-- Current step: **Bước 108 — IN_PROGRESS**
+- Current step: **Bước 108 — FUNCTIONAL_PASS · FINAL_STATE_GATE_PENDING**
 - L22 closeout: **B88 + H1 — PASS**
-- Status: **L23_COMPLETE · L24_COMPLETE · L25_COMPLETE · L26_COMPLETE · PASS_L27_B105 · PASS_L27_F1_H1 · PASS_L27_B106 · PASS_L27_B107 · L27_B108_IN_PROGRESS**
-- Last recorded six-gate head: `d9639ae24d48a0c00a3a499676861f532b4e79a6`
+- Status: **L23_COMPLETE · L24_COMPLETE · L25_COMPLETE · L26_COMPLETE · PASS_L27_B105 · PASS_L27_F1_H1 · PASS_L27_B106 · PASS_L27_B107 · PASS_L27_B108_FUNCTIONAL · L27_FINAL_STATE_GATE_PENDING**
+- Last recorded six-gate head: `f8e5d732b9976af027a244478335f2aee39bb30d`
 - Production/runtime activation by Roadmap V2: **disconnected**
 - Legacy/source destructive migration: **not executed**
-- Last completed: **L27/B107 — PASS (adversarial readiness validation)**
+- Last completed: **L27/B108 — FUNCTIONAL PASS (full-system readiness closeout)**
 - Last hardening: **L27-F1/H1 stale manifest removal + additive readiness overlay — PASS**
-- Current official step: **L27/B108 — full-system readiness closeout**
+- Current official step: **L27 documentation/final-state closeout gate**
 - L26 opened only after the L25 final-state head passed the complete six-gate set.
 
 ## L22/B88 complete gate evidence
@@ -508,3 +508,19 @@ Accepted B107 head: `d9639ae24d48a0c00a3a499676861f532b4e79a6`
 B107 adversarial readiness validation: **9/9 PASS**.
 
 B108 full-system closeout is active. L28 remains blocked until B108 and its documentation/final-state closeout are green.
+
+
+## L27/B108 functional gate evidence
+
+Accepted B108 functional head: `f8e5d732b9976af027a244478335f2aee39bb30d`
+
+- Roadmap V2 Current Gate — run `35438682381` — PASS
+- Foundation Domain Model — run `35438682370` — PASS
+- Windows checkout safety — run `35438682389` — PASS
+- Russian Reference UI — run `35438682450` — PASS
+- Cloudflare Preview — run `35438682391` — PASS
+- Whole System Integration — run `35438682399` — PASS
+
+B108 closeout composition is green. Production integration, persistence, dashboard rendering, runtime activation and notification writes remain disconnected/disabled.
+
+L28/B109 remains blocked until the documentation/final-state closeout head itself passes the same complete six-gate set.
