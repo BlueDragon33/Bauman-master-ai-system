@@ -1,6 +1,6 @@
 {
   "schema": "BAUMAN_ROADMAP_V2_READINESS_CONTRACT_V1",
-  "version": "2.7.2-l27-b105-h2-current",
+  "version": "2.7.3-l27-b106-h3-current",
   "purpose": "Read-only readiness projection contract for the current Consumer Blueprint V1 + Mastery V2 + current Scheduler boundary, without persistence, dashboard rendering, runtime or notification writes",
   "mode": {
     "access": "read_only_projection_harness",
@@ -30,7 +30,7 @@
     "focusTargetsRequired": true,
     "unknownTargetPolicy": "reject",
     "missingSnapshotPolicy": "red_unknown",
-    "unverifiedMasterReadyClaimPolicy": "red_unknown",
+    "unverifiedMasterReadyClaimPolicy": "reject_upstream_or_red_unknown_defense_in_depth",
     "duplicateTargetPolicy": "reject",
     "recommendedAndContextualEdgesBlock": false,
     "externalGatesRemainExplicit": true,
@@ -116,7 +116,8 @@
     "unverified master_ready claim reported green",
     "Critical focus target silently treated as covered when unscheduled",
     "Existing Competency or prerequisite-ready state reported green",
-    "persistence, UI, runtime or notification write attempted"
+    "persistence, UI, runtime or notification write attempted",
+    "forged master_ready snapshot rejected by current Priority/Scheduler before readiness projection"
   ],
   "acceptance": {
     "step": 105,
@@ -130,7 +131,8 @@
     "staleManifestDependencyRemoved": true,
     "productionDashboardConnected": false,
     "runtimeActivationAllowed": false,
-    "result": "PASS_CONTRACT_ONLY_PENDING_L27_H2_GATE",
-    "lessonPrerequisiteInheritancePinned": true
+    "result": "PASS_CONTRACT_HARDENED_PENDING_B106_GATE",
+    "lessonPrerequisiteInheritancePinned": true,
+    "forgedMasterReadyUpstreamRejectionPinned": true
   }
 }
