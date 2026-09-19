@@ -23,6 +23,7 @@ const browserCapability=read('subjects/russian/assets/browser-capabilities.js');
 const visualRuntime=read('subjects/russian/assets/visual-vocabulary-runtime.js');
 const dialogueScaffold=read('subjects/russian/assets/dialogue-scaffold.js');
 const cursiveGlyphs=read('subjects/russian/assets/cursive-glyphs.js');
+const speakingCoach=read('subjects/russian/assets/speaking-coach.js');
 
 const vietnameseKeys=['meaning_vi','vi_vi','translation_vi','gloss_vi','definition_vi','context_title_vi','prompt_vi'];
 const broadLegacyViKeys=[...vietnameseKeys,'vi'];
@@ -63,7 +64,8 @@ const runtimeTtsContractReady=
   browserCapability.includes("const RU_LANG='ru-RU'")&&
   browserCapability.includes('function preferredRussianVoice()')&&
   browserCapability.includes('u.onstart=event=>')&&
-  core.includes("onStart:meta=>{if(inPracticeMode()){markPracticeLineHeard(d,idx);render()}");
+  browserCapability.includes('u.onend=event=>')&&
+  core.includes("onEnd:meta=>{if(inPracticeMode()){markPracticeLineHeard(d,idx);render()}");
 const speakingStats={
   total:speaking.length,
   withRussianText:speakingRussianText,
@@ -74,7 +76,8 @@ const speakingStats={
   runtimeTtsEligiblePercent:pct(runtimeTtsContractReady?speakingRussianText:0,speaking.length),
   runtimeTtsContractReady,
   russianVoiceSelection:browserCapability.includes('function russianVoices()')&&browserCapability.includes('if(voice)u.voice=voice'),
-  playbackStartEvidence:core.includes("russian:listening-playback-started")&&core.includes("onStart:meta=>{if(inPracticeMode()){markPracticeLineHeard(d,idx);render()}"),
+  playbackCompletionEvidence:core.includes("russian:listening-playback-completed")&&core.includes("onEnd:meta=>{if(inPracticeMode()){markPracticeLineHeard(d,idx);render()}"),
+  recognitionConfirmedSpeaking:speakingCoach.includes("russian:speaking-recording-result")&&speakingCoach.includes('recognitionConfirmed:true'),
   withVocabularySeed:count(speaking,x=>Array.isArray(x?.vocabulary_seed_ru)&&x.vocabulary_seed_ru.length>0)
 };
 
@@ -106,7 +109,8 @@ const runtimeReadiness={
     dialogueScaffold.includes('RUSSIAN_DIALOGUE_SCAFFOLD_V1')&&!dialogueScaffold.includes('vi_turns'),
   oralFirstDefault:core.includes("learnTab:'practice'"),
   russianTtsRuntime:runtimeTtsContractReady,
-  playbackConfirmedListening:speakingStats.playbackStartEvidence
+  playbackConfirmedListening:speakingStats.playbackCompletionEvidence,
+  recognitionConfirmedSpeaking:speakingStats.recognitionConfirmedSpeaking
 };
 
 const stages=arr(curriculum?.stages).map(x=>({id:x.id,title:x.title,goal:x.goal}));
@@ -125,6 +129,7 @@ const unresolvedRuntimeGaps={
   defaultLearningRouteNotOralFirst:!runtimeReadiness.oralFirstDefault,
   russianTtsRuntimeMissing:!runtimeReadiness.russianTtsRuntime,
   playbackConfirmedListeningMissing:!runtimeReadiness.playbackConfirmedListening,
+  recognitionConfirmedSpeakingMissing:!runtimeReadiness.recognitionConfirmedSpeaking,
   referenceUiPriorityNeedsReorder:codeDebt.referenceUiVocabBeforeListening
 };
 const result={
