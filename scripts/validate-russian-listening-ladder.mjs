@@ -9,7 +9,7 @@ export function validateContract(c){
   assert(c.policy?.minimumNormalPlaysBeforeSlow===2,'Slow repair must require two normal-speed plays');
   assert(c.policy?.slowIsRepairOnly===true&&c.policy?.preserveHearBeforeSee===true,'Listening repair/hear-before-see policy weakened');
   assert(c.policy?.translationAnswerForbidden===true,'Translation answers must remain forbidden');
-  assert(c.policy?.playbackCompletionEvidenceRequired===true&&c.policy?.failedPlaybackDoesNotUnlock===true,'Listening evidence must require successful playback start');
+  assert(c.policy?.playbackCompletionEvidenceRequired===true&&c.policy?.failedPlaybackDoesNotUnlock===true,'Listening evidence must require successful playback completion');
   assert(c.runtime?.reuseCoreNormalListen===true&&c.runtime?.reuseCoreSlowListen===true&&c.runtime?.createSecondAudioPlayer===false,'Listening ladder must reuse core audio controls');
   assert(c.runtime?.playbackCompletedEvent==='russian:listening-playback-completed','Listening playback event contract drifted');
   assert(c.evidence?.playbackCompletionConfirmed===true,'Listening evidence must be playback-confirmed');
@@ -55,5 +55,5 @@ export function loadAndValidate(){
 if(import.meta.url===pathToFileURL(process.argv[1]).href){
   loadAndValidate();
   console.log('RUSSIAN_LISTENING_LADDER_GATE=PASS');
-  console.log(JSON.stringify({normalBeforeSlow:2,gist:true,detail:true,translationAnswers:false,playbackStartEvidence:true},null,2));
+  console.log(JSON.stringify({normalBeforeSlow:2,gist:true,detail:true,translationAnswers:false,playbackCompletionEvidence:true},null,2));
 }
