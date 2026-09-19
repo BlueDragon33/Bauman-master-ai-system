@@ -124,6 +124,16 @@ export function validateMediaAndVisual(core,asset,css){
   return true;
 }
 
+export function validateNetworkVisualEnrichment(visualRuntime){
+  assert(visualRuntime.includes("const COMMONS_ENDPOINT='https://commons.wikimedia.org/w/api.php'"),'Verified visual provider endpoint missing');
+  assert(visualRuntime.includes("origin:'*'"),'Commons CORS origin marker missing');
+  assert(visualRuntime.includes("navigator.onLine!==false"),'Verified image enrichment lacks offline guard');
+  assert(visualRuntime.includes("navigator.connection?.saveData"),'Verified image enrichment lacks Save-Data guard');
+  assert(visualRuntime.includes("status:'offline'")&&visualRuntime.includes("status:'save_data'"),'Verified image enrichment lacks explicit network fallback states');
+  assert(!visualRuntime.includes('caches.open('),'External verified images must not be claimed as offline package assets');
+  return true;
+}
+
 export function validateAssetBehavior(asset){
   let errorHandler=null,replaced=null;
   const document={
@@ -157,12 +167,14 @@ export async function loadAndValidate(){
   const core=fs.readFileSync(path.join(ROOT,'assets','core.js'),'utf8');
   const asset=fs.readFileSync(path.join(ROOT,'assets','asset-reliability.js'),'utf8');
   const css=fs.readFileSync(path.join(ROOT,'assets','asset-reliability.css'),'utf8');
+  const visualRuntime=fs.readFileSync(path.join(ROOT,'assets','visual-vocabulary-runtime.js'),'utf8');
   validateContract(c);
   validateInventory(html,sw,runtime,c);
   validateServiceWorker(sw,c);
   validateRuntime(runtime);
   await validateRuntimeBehavior(runtime);
   validateMediaAndVisual(core,asset,css);
+  validateNetworkVisualEnrichment(visualRuntime);
   validateAssetBehavior(asset);
   return c;
 }
