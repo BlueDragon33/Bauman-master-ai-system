@@ -9,7 +9,7 @@ const DATA_ROOT=A.dataRoot||'data/';
 const EXTERNAL_DATA_ROOT=A.externalDataRoot||'external-data/';
 const PACKAGE_ROOT=A.packageRoot||'subjects/russian/';
 const NAV=A.nav||[['overview','🧭','Tổng quan'],['learning','🎓','Học tập'],['dialogue','💬','Đối thoại'],['writing','✍️','Viết'],['media','🎬','Video/Audio'],['vocab','🗂️','Từ vựng'],['grammar','🧩','Ngữ pháp'],['mindmap','🧠','Mind map'],['storage','🗄️','Lưu trữ']];
-const LEARN_TABS=A.learningTabs||[['theory','📘','Lý thuyết'],['exercises','📝','Bài tập'],['practice','🎙️','Nghe/Nói'],['review','🔁','Ôn tập'],['exam','🧪','Kiểm tra']];
+const LEARN_TABS=A.learningTabs||[['practice','🎙️','Nghe/Nói'],['theory','📘','Lý thuyết'],['exercises','📝','Bài tập'],['review','🔁','Ôn tập'],['exam','🧪','Kiểm tra']];
 const DEFAULT={stage:'vn',view:'overview',learnTab:'practice',lessonId:'',slide:0,lessonQuery:'',conceptQuery:'',exerciseLevel:'all',exerciseIndex:0,testLevel:'easy',testIndex:0,testAnswer:null,reviewLevel:'easy',reviewFilter:'all',reviewLesson:'all',reviewIndex:0,reviewPage:0,reviewAnswer:null,reviewProgress:{done:{},flagged:{},wrong:{}},examLevel:'easy',examCycle:'auto',examPaperLevel:'easy',examPaperType:'standard',examIndex:0,examPage:0,examAnswer:null,examProgress:{answers:{},marked:{},submitted:false,submittedAt:null,result:null,wrong:{},paperResults:{}},examHistory:[],remedialPlan:{active:false,cards:[],completed:{},createdAt:null,lastExamAt:null,lastScore:null},dialogueId:'',dialogueGroup:'all',dialogueDifficulty:'all',dialogueQuery:'',dialogueLineIndex:0,dialogueRole:'all',dialogueHideVi:false,dialoguePeople:'2',dialogueMinutes:'10',dialogueMode:'shadow_roleplay',dialogueScenario:'classroom',practiceDialogueId:'',practiceGroup:'all',practiceDifficulty:'all',practiceQuery:'',practiceLineIndex:0,practiceRole:'all',practiceHideVi:false,practiceSpeechResults:{},practiceHeard:{},dialogueSpeechResults:{},deepSpeakingId:'',deepSpeakingMode:'overview',deepSpeakingStep:0,deepSpeakingProgress:{done:{},weak:{},attempts:{},lastMode:{}},optionalDataLoading:{},optionalDataError:{},speechResults:{},speechRecording:false,speechAutoNext:false,mediaCat:'all',mediaQuery:'',mediaView:'list',mediaId:'',vocabQuery:'',vocabIndex:0,vocabPage:0,vocabFlipped:false,grammarLevel:'all',grammarTrack:'all',grammarQuery:'',grammarIndex:0,mindmapId:'roadmap-map',mindmapNode:'',mindmapFontScale:14,mindmapDrag:{},mindmapLayoutVersion:'v13_32_clean',writingMode:'handwriting',handwritingIndex:0,handwritingQuery:'',handwritingStep:0,handwritingPractice:'trace',handwritingShowGuide:true,handwritingShowLines:true,writingIndex:0,writingQuery:'',writingDraft:'',storageFile:'curriculum',storageGroup:'all',storageText:'',storagePreviewLimit:0,storagePreviewAutoCollapsedV1322:false,storageQuery:'',storageTreeOpen:{},aiDraft:'',aiOutput:'',interfaceTheme:'clean',interfaceDensity:'normal',hostTask:null,planningBundle:null,routeEdit:false,routeManual:null,routeFocus:'today',testSession:{answered:0,correct:0,targetQuestions:100,targetScore:80,seen:{}},recentAccess:[],stageGate:null,examGateSource:null};
 let DB={},state={...DEFAULT},canvas=null,ctx=null,drawing=false,strokes=[],currentStroke=null,penColor='#111827',penSize=6,speechRecognizer=null,speechRecognitionToken=0,modalReturnFocus=null;
 const $=(s,r=document)=>r.querySelector(s), $$=(s,r=document)=>Array.from(r.querySelectorAll(s));
@@ -372,7 +372,7 @@ function getWriting(){return byStage(call('getWriting',[],DB))}
 function title(){const route=NAV.find(n=>n[0]===state.view); $('#pageTitle').textContent=route?route[2]:'Tổng quan'; const ui=A.ui||{}; const subs={overview:ui.overviewSubtitle,learning:ui.learningSubtitle,dialogue:ui.dialogueSubtitle,writing:ui.writingSubtitle,media:ui.mediaSubtitle,vocab:ui.vocabSubtitle,grammar:ui.grammarSubtitle,mindmap:ui.mindmapSubtitle,storage:ui.storageSubtitle}; $('#pageSub').textContent=subs[state.view]||ui.subtitle||''}
 function buildShell(){ applyInterface(); $('#subjectLogo').textContent=A.ui?.logo||'Я'; $('#subjectTitle').textContent=A.ui?.title||'Tiếng Nga Bauman'; $('#subjectSubtitle').textContent=A.ui?.subtitle||''; $('#coreLabel').textContent=A.ui?.coreLabel||'TIẾNG NGA BAUMAN'; $('#stageLabel').textContent=A.ui?.stageLabel||'Giai đoạn'; $('#stageSelect').innerHTML=stages().map(s=>`<option value="${esc(s.id)}">${esc(s.title)}</option>`).join(''); $('#stageSelect').value=state.stage; $('#nav').innerHTML=NAV.map(n=>`<button data-view="${esc(n[0])}" class="${state.view===n[0]?'active':''}"><b>${n[1]}</b><span>${esc(n[2])}</span></button>`).join(''); const tb=$('#themeBtn'); if(tb){tb.textContent='☀️ Giao diện';tb.classList.add('theme-light-button');} }
 function trackAccess(view,label){state.recentAccess=arr(state.recentAccess); const item={view:view||state.view,label:label||NAV.find(n=>n[0]===view)?.[2]||view||'Mục học',stage:state.stage,at:new Date().toLocaleString('vi-VN')}; state.recentAccess=[item,...state.recentAccess.filter(x=>x.view!==item.view||x.stage!==item.stage)].slice(0,6)}
-function setView(v){trackAccess(v);state.view=v; if(v==='learning'&&!LEARN_TABS.map(x=>x[0]).includes(state.learnTab))state.learnTab='theory'; save(); render()}
+function setView(v){trackAccess(v);state.view=v; if(v==='learning'&&!LEARN_TABS.map(x=>x[0]).includes(state.learnTab))state.learnTab='practice'; save(); render()}
 function render(){
  try{
   sanitize(); buildShell(); title();
@@ -382,10 +382,10 @@ function render(){
  }catch(e){
   console.error('FULL_RENDER_GUARD',e);
   try{
-   state={...DEFAULT,view:'learning',learnTab:'theory',stage:state?.stage||DEFAULT.stage,interfaceTheme:state?.interfaceTheme||DEFAULT.interfaceTheme,interfaceDensity:state?.interfaceDensity||DEFAULT.interfaceDensity};
+   state={...DEFAULT,view:'learning',learnTab:'practice',stage:state?.stage||DEFAULT.stage,interfaceTheme:state?.interfaceTheme||DEFAULT.interfaceTheme,interfaceDensity:state?.interfaceDensity||DEFAULT.interfaceDensity};
    buildShell(); title();
    const v=$('#view');
-   if(v)v.innerHTML=`<section class="panel learning-recovery-card hard-recovery"><span class="chip danger-chip">KHÔI PHỤC TAB HỌC TẬP</span><h3>Đã chặn lỗi render và mở lại Lý thuyết</h3><p>${esc(e?.message||e)}</p><div class="recovery-actions"><button class="btn primary" data-learn="theory">Mở Lý thuyết</button><button class="btn" data-learn="exercises">Bài tập</button><button class="btn" data-learn="practice">Nghe/Nói</button><button class="btn" data-learn="review">Ôn tập</button><button class="btn" data-learn="exam">Kiểm tra</button></div><p class="note">Nếu lỗi lặp lại sau khi tải lại, hãy xóa cache/localStorage của module hoặc dùng bản này để hệ thống tự bỏ qua dữ liệu lưu cũ quá lớn.</p></section>`;
+   if(v)v.innerHTML=`<section class="panel learning-recovery-card hard-recovery"><span class="chip danger-chip">KHÔI PHỤC TAB HỌC TẬP</span><h3>Đã chặn lỗi render và mở lại Nghe/Nói</h3><p>${esc(e?.message||e)}</p><div class="recovery-actions"><button class="btn primary" data-learn="practice">Mở Nghe/Nói</button><button class="btn" data-learn="theory">Lý thuyết</button><button class="btn" data-learn="exercises">Bài tập</button><button class="btn" data-learn="review">Ôn tập</button><button class="btn" data-learn="exam">Kiểm tra</button></div><p class="note">Nếu lỗi lặp lại sau khi tải lại, hãy xóa cache/localStorage của module hoặc dùng bản này để hệ thống tự bỏ qua dữ liệu lưu cũ quá lớn.</p></section>`;
   }catch(e2){console.error('RECOVERY_RENDER_FAILED',e2)}
  }
 }
@@ -1049,7 +1049,7 @@ function renderLearning(){
   if(state.learnTab==='exam') body=renderExam();
  }catch(e){
   console.error('Learning tab render error',state.learnTab,e);
-  body=`<section class="panel learn-work-card learning-recovery-card"><span class="chip danger-chip">LỖI TAB HỌC TẬP</span><h3>Không render được mục ${esc(state.learnTab||'học tập')}</h3><p>${esc(e?.message||e)}</p><button class="btn primary" data-learn="theory">Quay lại Lý thuyết</button></section>`;
+  body=`<section class="panel learn-work-card learning-recovery-card"><span class="chip danger-chip">LỖI TAB HỌC TẬP</span><h3>Không render được mục ${esc(state.learnTab||'học tập')}</h3><p>${esc(e?.message||e)}</p><button class="btn primary" data-learn="practice">Quay lại Nghe/Nói</button></section>`;
  }
  const modeMeta={
   theory:{label:'Lý thuyết',kicker:'Đọc gọn, hiểu nhanh',hint:'Danh sách bài học nằm full bảng bên trái; nội dung bài là trung tâm.'},
@@ -2939,7 +2939,7 @@ function resetCurrentSource(){
 }
 function setLearnTab(tab){
  const allowed=LEARN_TABS.map(x=>x[0]);
- state.view='learning'; state.learnTab=allowed.includes(tab)?tab:'theory';
+ state.view='learning'; state.learnTab=allowed.includes(tab)?tab:'practice';
  const ctx=activeLessonContext(); if(!state.lessonId&&ctx.id)state.lessonId=ctx.id;
  if(state.learnTab==='theory')state.slide=0;
  if(state.learnTab==='exercises')state.exerciseIndex=0;
