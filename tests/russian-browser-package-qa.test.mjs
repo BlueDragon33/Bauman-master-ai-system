@@ -43,7 +43,7 @@ assert.equal(validateCursive({...bundle,css:bundle.glyphCss}),true);
 assert.throws(()=>validateAccessibility({...bundle,index:bundle.index.replace('aria-label="Mở AI Mentor"','')}),/AI icon button accessible name missing/);
 assert.throws(()=>validateAccessibility({...bundle,core:bundle.core.replace("modal.setAttribute('aria-hidden','false')","")}),/Opening modal must expose dialog/);
 assert.throws(()=>validateAccessibility({...bundle,core:bundle.core.replace('modalReturnFocus=document.activeElement','modalReturnFocus=null')}),/remember prior focus/);
-assert.throws(()=>validateResponsive(bundle.css.replace('@media(max-width:760px)','@media(max-width:761px)')),/Phone responsive breakpoint missing/);
+assert.throws(()=>validateResponsive(bundle.css.replaceAll('@media(max-width:760px)','@media(max-width:761px)')),/Phone responsive breakpoint missing/);
 assert.throws(()=>validatePerformance({...bundle,core:bundle.core.replace('safeLocalJson(key,{},1600000)','safeLocalJson(key,{})')}),/Primary learner-state size guard missing/);
 assert.throws(()=>validateBrowserCapability({...bundle,capability:bundle.capability.replace('Âm Nga: trình duyệt không hỗ trợ','')}),/Speech-unavailable learner status missing/);
 assert.throws(()=>validateCursive({...bundle,glyphs:bundle.glyphs.replace("function glyphCoverage(){return Object.keys(UPPER).length+Object.keys(LOWER).length;}","function glyphCoverage(){return 65;}"),css:bundle.glyphCss}),/exactly 66/);
