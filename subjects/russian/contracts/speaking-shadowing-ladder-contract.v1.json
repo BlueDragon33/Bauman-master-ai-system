@@ -23,7 +23,8 @@
     "listeningLadderOwnedByTurn8": true,
     "roleplayEvidenceRequiresRecording": true,
     "recognitionResultEvidenceRequired": true,
-    "failedOrEmptyRecognitionDoesNotCountAttempt": true
+    "failedOrEmptyRecognitionDoesNotCountAttempt": true,
+    "manualSelfAssessmentDoesNotCreateSpeakingEvidence": true
   },
   "feedback": {
     "explicitPronunciationRepair": true,
@@ -40,6 +41,8 @@
     "abandonedSessions": true,
     "learnerStateAuthority": false,
     "masteryMutation": false,
-    "recognitionConfirmedAttempts": true
+    "recognitionConfirmedAttempts": true,
+    "learningFlowRecognitionOnly": true,
+    "selfAssessmentStoredSeparately": true
   }
 }
