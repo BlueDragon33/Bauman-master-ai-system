@@ -11,6 +11,8 @@ export function validateContract(c){
   assert(c.prerequisites?.imitationBeforeShadowing===true&&c.prerequisites?.shadowingBeforeMemory===true&&c.prerequisites?.memoryBeforeRoleplay===true,'Speaking stage prerequisites weakened');
   assert(c.prerequisites?.pronunciationFlagBeforeRepair===true,'Repair must require explicit pronunciation flag');
   assert(c.runtime?.reuseCoreRecorder===true&&c.runtime?.roleplayEvidenceRequiresRecording===true,'Speaking evidence must come from real recorder use');
+  assert(c.runtime?.recordingStartEvidenceRequired===true&&c.runtime?.failedRecorderDoesNotCountAttempt===true,'Speaking evidence must require recorder onstart');
+  assert(c.evidence?.recorderConfirmedAttempts===true,'Speaking attempts must remain recorder-confirmed');
   assert(c.runtime?.listeningLadderOwnedByTurn8===true&&c.runtime?.slowListenOwnedByRepairOnly===true,'Listening/speaking ownership drifted');
   assert(c.feedback?.translationAnswerForbidden===true&&c.feedback?.autoMasteryFromSimilarityScore===false,'Speaking feedback policy weakened');
   assert(c.evidence?.learnerStateAuthority===false&&c.evidence?.masteryMutation===false,'Speaking ladder may not own mastery');
@@ -27,6 +29,9 @@ export function validateRuntime(js,css,core){
   assert(js.includes("heardCount(c)>=1"),'Imitation is not listening-gated');
   assert(/function canShadow\([^]*?heardCount\(c\)>=2&&Number\(row\?\.imitationAttempts\|\|0\)>0;/.test(js),'Shadowing is not two-listen gated');
   assert(js.includes("clickCore('record-line')"),'Speaking ladder does not reuse core recorder');
+  assert(js.includes("russian:speaking-recording-started"),'Speaking coach is not bound to recorder-start evidence');
+  assert(js.includes('recorderConfirmed:true'),'Speaking attempts lack recorder-confirmed evidence marker');
+  assert(!/if\(act==='record-line'\)[\s\S]{0,500}bump\('(imitationAttempts|shadowAttempts|memoryAttempts|roleplayAttempts|repairAttempts)'/.test(js),'Click-equals-speaking-attempt behavior returned');
   assert(js.includes("clickCore(role==='B'?'role-b':'role-a')"),'Role-play does not reuse core role controls');
   assert(js.includes("clickCore('speak-line-slow')"),'Repair does not reuse slow-listen repair control');
   assert(!js.includes('Listening ladder'),'Speaking coach still duplicates Turn 8 ownership');
@@ -38,6 +43,8 @@ export function validateRuntime(js,css,core){
   assert(!/score\s*[><]=?/.test(js),'Speaking ladder must not auto-classify by score threshold');
   assert(css.includes('.ru-speaking-memory-mode')&&css.includes('.russian-line'),'Memory mode must hide the actual Russian line');
   assert(core.includes("if(act==='record-line')startLineRecording();"),'Core recorder action missing');
+  assert(core.includes("rec.onstart=()=>{state.speechRecording=true;save();render();notifySpeakingRecordingStarted(d,idx);"),'Core recorder does not emit evidence on actual onstart');
+  assert(core.includes("try{rec.start();toast('Đang mở micro tiếng Nga...');return true}catch(_)"),'Core recorder start failure is not explicit');
   return true;
 }
 
@@ -55,5 +62,5 @@ export function loadAndValidate(){
 if(import.meta.url===pathToFileURL(process.argv[1]).href){
   loadAndValidate();
   console.log('RUSSIAN_SPEAKING_LADDER_GATE=PASS');
-  console.log(JSON.stringify({stages:5,roleplayRecorderBacked:true,repairExplicit:true,listeningOwner:'Turn8'},null,2));
+  console.log(JSON.stringify({stages:5,roleplayRecorderBacked:true,recorderStartEvidence:true,failedRecorderDoesNotCount:true,repairExplicit:true,listeningOwner:'Turn8'},null,2));
 }
