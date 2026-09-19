@@ -63,6 +63,6 @@ Turn 24.5/24.8 now include:
 - full workflow proof at executable checkpoint `ae26de6b1f2d24f1e1b5bc4874ea705b68f1d5bf`, run `35416011837`, with both architecture and existing-regression jobs successful;
 - post-freeze gate-regression repairs remain assigned to their existing owning turns.
 - CI maintenance is also owned by Turn 23: both workflow jobs now use Node-24-based `actions/checkout@v7` and `actions/setup-node@v7`; run `35416194155` is GREEN.
-- Visual-semantics quality audit is owned by Turns 11/13/22: the old 8,000/8,000 “visual ready” result was decomposed into 0 concrete images and 8,000 symbolic `image_emoji` entries; verified Russian-semantic Commons enrichment plus online-only/offline fallback guards are now GREEN at run `35416859395`.
+- Visual-semantics quality audit is owned by Turns 11/13/22: the old 8,000/8,000 “visual ready” result was decomposed into 0 concrete images and 8,000 symbolic `image_emoji` entries; verified Russian-semantic Commons enrichment plus online-only/offline fallback guards are GREEN, with final trusted-host proof at run `35416968142` / `a9a813bb788c23775ee0b55356a27931d8d950c4`.
 
 No Turn 25 is justified by these fixes because none introduces a genuinely new responsibility.
