@@ -16,10 +16,22 @@ const summary=summarizeVisualCoverage([
   {ru:'учиться',context_ru:'Я учусь в университете.'},
   {ru:'абстракция',meaning_vi:'trừu tượng'}
 ],c);
-assert.deepEqual({ready:summary.ready,partial:summary.partial,missing:summary.missing},{ready:1,partial:1,missing:1});
+assert.deepEqual(
+  {ready:summary.ready,partial:summary.partial,missing:summary.missing,concreteVisual:summary.concreteVisual,symbolicVisual:summary.symbolicVisual},
+  {ready:1,partial:1,missing:1,concreteVisual:0,symbolicVisual:1}
+);
+const mixed=summarizeVisualCoverage([
+  {ru:'книга',image_url:'assets/vocab/book.webp'},
+  {ru:'дом',emoji:'🏠'},
+  {ru:'идти',gesture:'жест движения'}
+],c);
+assert.deepEqual(
+  {concreteVisual:mixed.concreteVisual,symbolicVisual:mixed.symbolicVisual,bySourceField:mixed.bySourceField},
+  {concreteVisual:1,symbolicVisual:2,bySourceField:{image_url:1,emoji:1,gesture:1}}
+);
 
 {const x=copy();x.rules.syntheticEmojiFallbackIsNotSourceCoverage=false;assert.throws(()=>validateContract(x),/must not count/)}
 {const x=copy();x.rules.runtimeAuthoritySwitch=true;assert.throws(()=>validateContract(x),/must not switch/)}
 
 console.log('RUSSIAN_VISUAL_COVERAGE_NEGATIVE_TEST=PASS');
-console.log(JSON.stringify({negativeCases:4},null,2));
+console.log(JSON.stringify({negativeCases:4,diagnosticCases:2},null,2));
