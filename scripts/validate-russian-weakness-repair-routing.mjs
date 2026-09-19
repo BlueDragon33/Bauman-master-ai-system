@@ -31,6 +31,7 @@ export function validateRuntime(js){
   assert(js.includes("item.status='repair_evidence_present'"),'Repair-evidence lifecycle state missing');
   assert(js.includes("item.status='resolved'"),'Resolved lifecycle state missing');
   assert(js.includes("root.dispatchEvent?.(new CustomEvent('russian:repair-route'"),'Focused route event missing');
+  assert(js.includes("lastRenderSignature"),'Repair panel must guard against MutationObserver render loops');
   assert(!js.includes('bauman_russian_learning_state_v1'),'Repair router must not access canonical Learning State storage directly');
   assert(!js.includes('bauman_russian_vocab_srs_v1'),'Repair router must not access SRS storage directly');
   assert(!js.includes('RussianLearningState?.addReview'),'Repair router must not enqueue canonical review');
@@ -174,12 +175,18 @@ export function validateBehavior(js){
   rt.data.set('bauman_russian_speaking_coach_v1',JSON.stringify(speak2));
   rt.api.refresh(true);
   state=rt.api.get();
-  assert(state.items['pron:R01:dlg:2'].status==='resolved'&&state.items['pron:R01:dlg:2'].repairEvidenceAt,'Pronunciation repair did not resolve after new repair evidence');
+  assert(state.items['pron:R01:dlg:2'].status==='repair_evidence_present'&&state.items['pron:R01:dlg:2'].repairEvidenceAt,'Pronunciation repair evidence stage missing');
+  rt.api.refresh(true);
+  state=rt.api.get();
+  assert(state.items['pron:R01:dlg:2'].status==='resolved','Pronunciation repair did not resolve after persisted repair evidence');
 
   assert(rt.api.open('exam:q1')===true,'Exam repair item did not open');
   const core=JSON.parse(rt.data.get(CORE));
   core.reviewProgress.done.q1={at:Date.now()+3000,ok:true};
   rt.data.set(CORE,JSON.stringify(core));
+  rt.api.refresh(true);
+  state=rt.api.get();
+  assert(state.items['exam:q1'].status==='repair_evidence_present','Exam repair evidence stage missing');
   rt.api.refresh(true);
   state=rt.api.get();
   assert(state.items['exam:q1'].status==='resolved','Exam weakness did not resolve from later correct review evidence');
@@ -188,6 +195,9 @@ export function validateBehavior(js){
   state=rt.api.get();
   assert(!state.items['skill:listening'].resolvedAt,'Opening advisory skill blocker must not resolve it');
   rt.setSkillReport({skills:{listening:{meetsGate:true},speaking:{meetsGate:true},print_recognition:{meetsGate:true},cursive_recognition:{meetsGate:true},reading:{meetsGate:true},writing:{meetsGate:true}}});
+  rt.api.refresh(true);
+  state=rt.api.get();
+  assert(state.items['skill:listening'].status==='repair_evidence_present','Skill blocker evidence stage missing');
   rt.api.refresh(true);
   state=rt.api.get();
   assert(state.items['skill:listening'].status==='resolved','Skill blocker did not resolve when its own gate became green');
