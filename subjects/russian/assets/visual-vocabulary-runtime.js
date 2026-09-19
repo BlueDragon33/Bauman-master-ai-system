@@ -4,6 +4,8 @@
   const COMMONS_ENDPOINT='https://commons.wikimedia.org/w/api.php';
   const CYR=/[А-Яа-яЁё]/;
   const memo=new Map();
+  const pending=new Map();
+  let activeHydrationController=null;
 
   const clean=v=>String(v??'').trim();
   const nonEmpty=v=>Array.isArray(v)?v.length>0:clean(v)!=='';
@@ -125,8 +127,10 @@
     if(saveData)return Object.freeze({status:'save_data',provider:'wikimedia_commons',query});
     const key=norm(query)+'|'+norm(semanticContext(row));
     if(memo.has(key))return memo.get(key);
+    if(pending.has(key))return pending.get(key);
     const fetchImpl=options.fetchImpl||root.fetch;
     if(typeof fetchImpl!=='function')return Object.freeze({status:'unsupported',provider:'wikimedia_commons',query});
+    const task=(async()=>{
     try{
       const params=new URLSearchParams({
         origin:'*',
@@ -143,7 +147,7 @@
         iiextmetadatafilter:'ImageDescription|ObjectName|Categories|LicenseShortName|LicenseUrl|Artist|Credit'
       });
       const url=COMMONS_ENDPOINT+'?'+params.toString();
-      const response=await fetchImpl(url,{credentials:'omit',headers:{Accept:'application/json'}});
+      const response=await fetchImpl(url,{credentials:'omit',headers:{Accept:'application/json'},signal:options.signal});
       if(!response?.ok)throw new Error('commons_http_'+clean(response?.status||'error'));
       const data=await response.json();
       const ranked=rankCommonsPages(data?.query?.pages,row);
@@ -163,8 +167,14 @@
       memo.set(key,result);
       return result;
     }catch(error){
+      if(clean(error?.name)==='AbortError')return Object.freeze({status:'aborted',provider:'wikimedia_commons',query});
       return Object.freeze({status:'error',provider:'wikimedia_commons',query,error:clean(error?.message||error)});
+    }finally{
+      pending.delete(key);
     }
+    })();
+    pending.set(key,task);
+    return task;
   }
 
   function rowFromNode(node){
@@ -182,7 +192,11 @@
     if(!node||node.dataset.ruVisualStatus)return false;
     node.dataset.ruVisualStatus='loading';
     const row=rowFromNode(node);
-    const result=await resolveImage(row);
+    if(activeHydrationController)activeHydrationController.abort();
+    const controller=typeof AbortController!=='undefined'?new AbortController():null;
+    activeHydrationController=controller;
+    const result=await resolveImage(row,{signal:controller?.signal});
+    if(activeHydrationController===controller)activeHydrationController=null;
     if(!node.isConnected)return false;
     if(result.status!=='resolved'){
       node.dataset.ruVisualStatus=result.status||'fallback';
@@ -202,7 +216,8 @@
     attribution.href=result.description_url||'https://commons.wikimedia.org/';
     attribution.target='_blank';
     attribution.rel='noopener noreferrer';
-    attribution.textContent='Wikimedia Commons · '+clean(result.license||'source');
+    const credit=clean(result.artist||'').slice(0,90);
+    attribution.textContent='Wikimedia Commons · '+clean(result.license||'source')+(credit?' · '+credit:'');
 
     img.addEventListener('load',()=>{
       if(!node.isConnected)return;
