@@ -18,10 +18,10 @@ forbid(direct,'meaningVi','AI direct explanation must not read Vietnamese meanin
 need(ai,'Object.values(learning.reviewQueue||{})','AI context must read canonical object-shaped Review Queue');forbid(ai,'Array.isArray(learning.reviewQueue)','AI context must not treat canonical Review Queue as an array');
 forbid(ai,'RussianLearningState?.set','AI guard must not write canonical learning state');forbid(ai,'.addReview','AI guard must not enqueue review by itself');forbid(ai,"status:'mastered'",'AI guard must not write mastery');
 need(runtime,'RUSSIAN_RUNTIME_OPTIMIZER_V1');need(runtime,'prepareOfflineCore');need(runtime,'reconcileOfflineCore');need(runtime,'countCached');need(runtime,'{refresh:true}');need(runtime,"navigator.connection?.saveData");need(runtime,"serviceWorker.register('./sw.js'");
-need(sw,'OPTIONAL_LARGE');need(sw,'dialogue-bauman-az.json');need(sw,'deep-speaking-bauman.json');need(sw,'speaking-link-index.json');need(sw,'russian-app-shell-v1');
+need(sw,'OPTIONAL_LARGE');need(sw,'dialogue-bauman-az.json');need(sw,'deep-speaking-bauman.json');need(sw,'speaking-link-index.json');need(sw,'russian-app-shell-v2');need(sw,'russian-learning-data-v2');
 need(sw,'isOptionalLarge');need(sw,'Optional source unavailable offline');need(sw,"req.mode==='navigate'");forbid(sw,"catch(()=>caches.match('./index.html'))",'HTML fallback must not be returned for arbitrary failed asset/data requests');
 need(css,'@media(max-width:1080px)');need(css,'@media(max-width:760px)');
-need(html,'manifest.webmanifest');need(html,'assets/runtime-optimizer.css');need(html,'assets/ai-mentor-guard.js');need(html,'assets/runtime-optimizer.js');
+need(html,'manifest.webmanifest');need(html,'assets/runtime-optimizer.css');need(html,'assets/ai-mentor-guard.js');need(html,'assets/runtime-optimizer.js');need(html,'assets/asset-reliability.js');need(html,'assets/asset-reliability.css');
 if(manifest.display!=='standalone'||manifest.scope!=='./')throw new Error('Web manifest must stay standalone and Russian-scoped');
 const visual=html.indexOf('assets/visual-vocabulary-runtime.js'), directRuntime=html.indexOf('assets/ai-direct-explanation.js'), coreRuntime=html.indexOf('assets/core.js');
 if(!(visual>=0&&directRuntime>visual&&coreRuntime>directRuntime))throw new Error('Turn 20 direct-explanation load order invalid');
