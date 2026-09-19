@@ -6,16 +6,16 @@
 ## Active track
 
 - Current round: **Lượt 30**
-- Current step: **L30/B118 — DETERMINISTIC HUMAN REVIEW PROJECTOR · IN_PROGRESS**
+- Current step: **L30/B119 — ADVERSARIAL HUMAN REVIEW VALIDATION · IN_PROGRESS**
 - L22 closeout: **B88 + H1 — PASS**
-- Status: **L23_COMPLETE · L24_COMPLETE · L25_COMPLETE · L26_COMPLETE · L27_COMPLETE · L28_COMPLETE · L29_COMPLETE_THROUGH_B116 · L30_B117_COMPLETE · L30_B118_ACTIVE**
-- Last recorded six-gate head: `a7eade6db2de8783cedd642144fddd0a039ed2ac`
+- Status: **L23_COMPLETE · L24_COMPLETE · L25_COMPLETE · L26_COMPLETE · L27_COMPLETE · L28_COMPLETE · L29_COMPLETE_THROUGH_B116 · L30_B117_COMPLETE · L30_B118_COMPLETE · L30_B119_ACTIVE**
+- Last recorded six-gate head: `009fbae50f7d62c23f10dbc570ca121fcdc5815a`
 - Production/runtime activation by Roadmap V2: **disconnected**
 - Legacy/source destructive migration: **not executed**
-- Last completed: **L30/B117 Human Review contract — PASS on complete six-gate set**
+- Last completed: **L30/B118 Human Review projector — PASS on complete six-gate set**
 - Last hardening: **L29-F2 validator/harness syntax repair — PASS; no gate weakening**
-- Current official step: **L30/B118 — deterministic in-memory Human Review receipt projector**
-- B119–B120 remain blocked until B118 passes the complete six-gate set.
+- Current official step: **L30/B119 — adversarial Human Review validation**
+- B120 remains blocked until B119 passes the complete six-gate set.
 
 ## L22/B88 complete gate evidence
 
@@ -726,3 +726,19 @@ Accepted B117 head: `a7eade6db2de8783cedd642144fddd0a039ed2ac`
 - Whole System Integration — run `35452063094` — PASS
 
 B117 is closed. The Human Review contract remains data-only, production promotion is disabled, and B118 is permitted to open.
+
+
+## L30/B118 gate evidence
+
+Accepted B118 head: `009fbae50f7d62c23f10dbc570ca121fcdc5815a`
+
+- Roadmap V2 Current Gate — run `35452421282` — PASS
+- Foundation Domain Model — run `35452421293` — PASS
+- Windows checkout safety — run `35452421285` — PASS
+- Russian Reference UI — run `35452421277` — PASS
+- Cloudflare Preview — run `35452421328` — PASS
+- Whole System Integration — run `35452421254` — PASS
+
+B118 is closed. Human Review receipt projection is deterministic, deeply frozen, side-effect free, and cannot promote shadow acceptance into production authority.
+
+B119 adversarial validation is permitted to open.
