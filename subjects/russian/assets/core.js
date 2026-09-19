@@ -93,7 +93,7 @@ function getPracticeDialogues(){
  let xs=base;
  if(state.practiceGroup!=='all')xs=xs.filter(x=>(A.dialogueGroup?.(x)||x.group||'general')===state.practiceGroup);
  if(state.practiceDifficulty!=='all')xs=xs.filter(x=>(A.dialogueDifficulty?.(x)||x.difficulty||x.level||'all')===state.practiceDifficulty);
- if(state.practiceQuery)xs=xs.filter(x=>lower(textOf(x)).includes(lower(state.practiceQuery)));
+ if(state.practiceQuery)xs=xs.filter(x=>lower(A.dialogueSearchText?.(x)||'').includes(lower(state.practiceQuery)));
  return xs;
 }
 function getTests(level=state.reviewLevel||state.testLevel||'easy'){return byStage(call('getTests',[],DB)).filter(x=>(A.testLevel?.(x)||x.difficulty||x.level||'easy')===level)}
@@ -364,7 +364,7 @@ function finalQaSnapshot(){
 }
 
 
-function getDialogues(){let xs=byStage(getBaumanDialogueAZ()); if(state.dialogueGroup!=='all')xs=xs.filter(x=>(A.dialogueGroup?.(x)||x.group||'general')===state.dialogueGroup); if(state.dialogueDifficulty!=='all')xs=xs.filter(x=>(A.dialogueDifficulty?.(x)||x.difficulty||x.level||'all')===state.dialogueDifficulty); if(state.dialogueQuery)xs=xs.filter(x=>lower(textOf(x)).includes(lower(state.dialogueQuery))); return xs}
+function getDialogues(){let xs=byStage(getBaumanDialogueAZ()); if(state.dialogueGroup!=='all')xs=xs.filter(x=>(A.dialogueGroup?.(x)||x.group||'general')===state.dialogueGroup); if(state.dialogueDifficulty!=='all')xs=xs.filter(x=>(A.dialogueDifficulty?.(x)||x.difficulty||x.level||'all')===state.dialogueDifficulty); if(state.dialogueQuery)xs=xs.filter(x=>lower(A.dialogueSearchText?.(x)||'').includes(lower(state.dialogueQuery))); return xs}
 function getMedia(){let xs=byStage(call('getMedia',[],DB)); if(state.mediaCat!=='all')xs=xs.filter(x=>mediaCategoryLabel(x)===state.mediaCat); if(state.mediaQuery)xs=xs.filter(x=>lower(JSON.stringify(x)).includes(lower(state.mediaQuery))); return xs}
 function getVocab(){let xs=byStage(call('getVocabulary',[],DB)); if(state.vocabQuery)xs=xs.filter(x=>lower(A.vocabSearchText?.(x)||A.vocabTerm?.(x)||x?.ru||x?.phrase_ru||'').includes(lower(state.vocabQuery))); return xs}
 function getHandwriting(){return byStage(call('getHandwriting',[],DB))}
@@ -1689,13 +1689,14 @@ function applyDialogueSetup(){
 
 function deepUnitKey(unit){return str(unit?.id||unit?.deep_id||unit?.title||'').trim()}
 function deepUnitTitle(unit){return unit?.unit_title_ru||unit?.scenario_ru||unit?.title_ru||unit?.id||'Deep Speaking'}
+function russianSemanticTags(values){return arr(values).map(x=>str(x).trim()).filter(x=>x&&/[А-Яа-яЁё]/.test(x)).map(x=>lower(x))}
 function deepUnitsForDialogue(dialogue){
  const units=getDeepSpeakingUnits(); if(!dialogue||!units.length)return [];
  const contextId=dialogue.context_id||dialogue.source_context_id;
  const lessonId=dialogue.lessonId;
  const stage=dialogue.stage;
- const tags=[...(dialogue.az_tags||[]),...(dialogue.communicative_functions_ru||[]),dialogue.group,dialogue.context_title_ru].filter(Boolean).map(x=>lower(x));
- return units.filter(unit=>{const link=unit.linked_speaking||unit.link||{}; const unitTags=arr(unit.integration_tags||unit.az_tags).map(x=>lower(x)); const baseIds=arr(link.base_item_ids||unit.base_item_ids).map(String); const activeId=str(dialogue.id||dialogue.title); return baseIds.includes(activeId)||link.context_id===contextId||link.source_context_id===contextId||link.lessonId===lessonId||unit.linked_speaking_context_id===contextId||unit.linked_speaking_context_key===`${stage}|${dialogue.group_id||dialogue.source_group_id||''}|${contextId}`||(unit.stage===stage&&unitTags.some(tag=>tags.includes(tag)));});
+ const tags=russianSemanticTags([...arr(dialogue.az_tags),...arr(dialogue.communicative_functions_ru),dialogue.group_ru,dialogue.context_title_ru,dialogue.purpose_ru]);
+ return units.filter(unit=>{const link=unit.linked_speaking||unit.link||{}; const unitTags=russianSemanticTags([...arr(unit.integration_tags),...arr(unit.az_tags),...arr(unit.communicative_functions_ru),unit.group_ru,unit.context_title_ru,unit.scenario_ru,unit.unit_title_ru,unit.linked_speaking?.group_ru,unit.linked_speaking?.context_title_ru]); const baseIds=arr(link.base_item_ids||unit.base_item_ids).map(String); const activeId=str(dialogue.id||dialogue.title); return baseIds.includes(activeId)||link.context_id===contextId||link.source_context_id===contextId||link.lessonId===lessonId||unit.linked_speaking_context_id===contextId||unit.linked_speaking_context_key===`${stage}|${dialogue.group_id||dialogue.source_group_id||''}|${contextId}`||(unit.stage===stage&&unitTags.some(tag=>tags.includes(tag)));});
 }
 function currentDeepUnit(activeDialogue){const direct=getDeepSpeakingUnits().find(u=>deepUnitKey(u)===state.deepSpeakingId); if(direct)return direct; return deepUnitsForDialogue(activeDialogue)[0]||getDeepSpeakingUnits()[0]||null;}
 function deepLines(v){if(!v)return []; if(Array.isArray(v))return v.flatMap(x=>typeof x==='string'?[x]:deepLines(x)).filter(Boolean); if(typeof v==='object'){const direct=v.ru||v.target_ru||v.pattern_ru||v.q_ru||v.a_ru||v.question_ru||v.answer_ru||v.pushback_ru||v.model_answer_ru||v.text_ru||v.prompt_ru; if(direct)return [direct]; return Object.entries(v).filter(([k,val])=>val&&typeof val==='object'&&(/_ru$|^ru_|russian/i.test(k)||Array.isArray(val))).flatMap(([,val])=>deepLines(val));} return [];}
