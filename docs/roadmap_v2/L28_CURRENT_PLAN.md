@@ -1,6 +1,6 @@
 # Lượt 28 — Current Plan · Bước 109–112
 
-Status: `B109_IN_PROGRESS · B110_BLOCKED · B111_BLOCKED · B112_BLOCKED`
+Status: `PASS_B109 · B110_IN_PROGRESS · B111_BLOCKED · B112_BLOCKED`
 
 Prerequisite: L27 documentation/final-state head `0b9705e1a1267f35b53dccefc8abb850af8bff5e` passed the complete six-gate set.
 
@@ -8,7 +8,7 @@ L28 is a new admission/integration-safety round. It exists because Readiness is 
 
 ## B109 — Read-only admission contract
 
-**ACTIVE.** Define the least-privilege boundary for future consumers.
+**PASS.** Define the least-privilege boundary for future consumers.
 
 Locked rules:
 
@@ -21,7 +21,7 @@ Locked rules:
 
 ## B110 — In-memory advisory projector
 
-Build a deterministic, deeply frozen projector under `scripts/` that composes the current Readiness harness and emits only `BAUMAN_ROADMAP_V2_ADMISSION_RESULT_V1`.
+**ACTIVE.** Build a deterministic, deeply frozen projector under `scripts/` that composes the current Readiness harness and emits only `BAUMAN_ROADMAP_V2_ADMISSION_RESULT_V1`.
 
 B110 remains blocked until the B109 head passes all six gates.
 
