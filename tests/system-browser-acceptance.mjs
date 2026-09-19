@@ -190,6 +190,7 @@ try{
     },lesson.id);
     assert.deepEqual(selected,{lessonId:lesson.id,chapterId:selected?.chapterId,slides:22},`${lesson.key}: durable source registration drift`);
     await queryPage.waitForSelector(`[data-current-lesson="${lesson.id}"]`,{timeout:30000});
+    await queryPage.waitForFunction(({lessonId,count})=>document.querySelectorAll(`[data-current-lesson="${lessonId}"] .e129-slide`).length===count,{lessonId:lesson.id,count:22},{timeout:30000});
     assert.equal(await queryPage.locator(`[data-current-lesson="${lesson.id}"] .e129-slide`).count(),22,`${lesson.key}: Reader slide count drift`);
     if(lesson.key==='l04'){
       await queryPage.waitForFunction(()=>window.BAUMAN_MATH_FORMULA_LIBRARY?.selfCheck?.().loaded===true&&window.BAUMAN_MATH_SIMULATION_SOURCE?.selfCheck?.().loaded===true&&window.BAUMAN_MATH_ACTIVITY_STUDIO&&window.BAUMAN_MATH_INTEGRATION_SYNC&&window.BAUMAN_MATH_REGRESSION_GATE&&window.BAUMAN_MATH_RUNTIME_HEALTH,null,{timeout:30000});
