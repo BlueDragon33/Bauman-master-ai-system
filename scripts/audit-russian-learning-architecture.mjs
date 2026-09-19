@@ -19,6 +19,10 @@ const core=read('subjects/russian/assets/core.js');
 const planning=read('subjects/russian/assets/planning-bridge.js');
 const adapter=read('subjects/russian/assets/subject-adapter.js');
 const referenceUi=read('subjects/russian/assets/russian-reference-ui.js');
+const browserCapability=read('subjects/russian/assets/browser-capabilities.js');
+const visualRuntime=read('subjects/russian/assets/visual-vocabulary-runtime.js');
+const dialogueScaffold=read('subjects/russian/assets/dialogue-scaffold.js');
+const cursiveGlyphs=read('subjects/russian/assets/cursive-glyphs.js');
 
 const vietnameseKeys=['meaning_vi','vi_vi','translation_vi','gloss_vi','definition_vi','context_title_vi','prompt_vi'];
 const broadLegacyViKeys=[...vietnameseKeys,'vi'];
@@ -53,11 +57,24 @@ const handwritingStats={
 };
 handwritingStats.cursiveDifferentPercent=pct(handwritingStats.cursiveTextDifferentFromPrint,handwritingStats.alphabetRows);
 
+const sourceAudioCount=count(speaking,x=>has(x,['audio','audio_url','voice','voice_url']));
+const speakingRussianText=count(speaking,x=>has(x,['ru','text_ru','phrase_ru','utterances','turns','lines']));
+const runtimeTtsContractReady=
+  browserCapability.includes("const RU_LANG='ru-RU'")&&
+  browserCapability.includes('function preferredRussianVoice()')&&
+  browserCapability.includes('u.onstart=event=>')&&
+  core.includes("onStart:meta=>{if(inPracticeMode()){markPracticeLineHeard(d,idx);render()}");
 const speakingStats={
   total:speaking.length,
-  withRussianText:count(speaking,x=>has(x,['ru','text_ru','phrase_ru','utterances','turns','lines'])),
+  withRussianText:speakingRussianText,
   withVietnameseScaffolding:count(speaking,x=>has(x,['vi','meaning_vi','context_title_vi','purpose_vi','communicative_functions_vi'])),
-  withAudioEvidence:count(speaking,x=>has(x,['audio','audio_url','voice','voice_url','tts','voice_text'])),
+  withAudioEvidence:sourceAudioCount,
+  withSourceAudioAssets:sourceAudioCount,
+  runtimeTtsEligibleRows:runtimeTtsContractReady?speakingRussianText:0,
+  runtimeTtsEligiblePercent:pct(runtimeTtsContractReady?speakingRussianText:0,speaking.length),
+  runtimeTtsContractReady,
+  russianVoiceSelection:browserCapability.includes('function russianVoices()')&&browserCapability.includes('if(voice)u.voice=voice'),
+  playbackStartEvidence:core.includes("russian:listening-playback-started")&&core.includes("onStart:meta=>{if(inPracticeMode()){markPracticeLineHeard(d,idx);render()}"),
   withVocabularySeed:count(speaking,x=>Array.isArray(x?.vocabulary_seed_ru)&&x.vocabulary_seed_ru.length>0)
 };
 
@@ -73,7 +90,43 @@ const codeDebt={
   adapterHasListeningSpeakingWeights:/listening/.test(adapter)&&/speaking/.test(adapter)
 };
 
+const runtimeReadiness={
+  learnerFacingVocabularyTranslationBlocked:
+    visualRuntime.includes("RUSSIAN_VISUAL_VOCABULARY_RUNTIME_V1")&&
+    !visualRuntime.includes('meaning_vi')&&!visualRuntime.includes('translation_vi')&&
+    core.includes('RussianVisualVocabularyRuntime'),
+  verifiedImageEnrichment:
+    visualRuntime.includes("https://commons.wikimedia.org/w/api.php")&&
+    visualRuntime.includes("upload\\.wikimedia\\.org")&&
+    visualRuntime.includes('scoreCommonsPage'),
+  explicitCursiveVectorRuntime:
+    cursiveGlyphs.includes('RUSSIAN_CURSIVE_GLYPH_SHAPES_V2')&&
+    cursiveGlyphs.includes('function glyphCoverage(){return Object.keys(UPPER).length+Object.keys(LOWER).length;}'),
+  dialogueTranslationFreeRuntime:
+    dialogueScaffold.includes('RUSSIAN_DIALOGUE_SCAFFOLD_V1')&&!dialogueScaffold.includes('vi_turns'),
+  oralFirstDefault:core.includes("learnTab:'practice'"),
+  russianTtsRuntime:runtimeTtsContractReady,
+  playbackConfirmedListening:speakingStats.playbackStartEvidence
+};
+
 const stages=arr(curriculum?.stages).map(x=>({id:x.id,title:x.title,goal:x.goal}));
+const sourceGaps={
+  legacyVietnameseFieldsPresent:vocabStats.withAnyLegacyViField>0,
+  concreteVisualCorpusIncomplete:count(vocab,x=>has(x,['image','image_url','picture','illustration','illustration_url']))<vocab.length,
+  sourceSpeakingAudioAssetsIncomplete:speakingStats.withSourceAudioAssets<speakingStats.total,
+  cursiveSourceTextNotDistinct:handwritingStats.alphabetRows<33||handwritingStats.cursiveTextDifferentFromPrint<33,
+  legacyDialogueHideStatePresent:codeDebt.dialogueHideViState
+};
+const unresolvedRuntimeGaps={
+  learnerFacingVietnameseVocabularyMeaning:!runtimeReadiness.learnerFacingVocabularyTranslationBlocked,
+  verifiedVisualEnrichmentMissing:!runtimeReadiness.verifiedImageEnrichment,
+  cursiveRuntimeProofMissing:!runtimeReadiness.explicitCursiveVectorRuntime,
+  dialogueTranslationRuntimePresent:!runtimeReadiness.dialogueTranslationFreeRuntime,
+  defaultLearningRouteNotOralFirst:!runtimeReadiness.oralFirstDefault,
+  russianTtsRuntimeMissing:!runtimeReadiness.russianTtsRuntime,
+  playbackConfirmedListeningMissing:!runtimeReadiness.playbackConfirmedListening,
+  referenceUiPriorityNeedsReorder:codeDebt.referenceUiVocabBeforeListening
+};
 const result={
   schema:'RUSSIAN_LEARNING_BASELINE_AUDIT_V1',
   vocab:vocabStats,
@@ -82,14 +135,9 @@ const result={
   lessons:{total:lessons.length},
   curriculum:{stages},
   codeDebt,
-  targetGaps:{
-    removeLearnerFacingVietnameseVocabularyMeaning:codeDebt.vietnamVocabDisplayFunction||codeDebt.vocabFlipMeaningLabel||vocabStats.withExplicitVietnameseFields>0,
-    visualVocabularyCoverageIncomplete:vocabStats.withVisualEvidence<vocabStats.total,
-    cursiveRepresentationNeedsVerification:handwritingStats.alphabetRows<33||handwritingStats.cursiveTextDifferentFromPrint<33,
-    dialogueTranslationScaffoldStillPresent:codeDebt.dialogueVietnameseGlossFunction||codeDebt.dialogueHideViState,
-    defaultLearningRouteNotOralFirst:codeDebt.legacyTheoryDefault,
-    referenceUiPriorityNeedsReorder:codeDebt.referenceUiVocabBeforeListening
-  }
+  sourceGaps,
+  runtimeReadiness,
+  targetGaps:unresolvedRuntimeGaps
 };
 
 console.log('RUSSIAN_LEARNING_BASELINE_AUDIT=PASS');
