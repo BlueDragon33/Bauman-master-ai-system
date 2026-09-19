@@ -1,13 +1,18 @@
 import assert from 'node:assert/strict';
 import fs from 'node:fs';
-import {validateContract,validateHelper,loadRuntimeHelper} from '../scripts/validate-russian-visual-vocabulary-runtime.mjs';
+import {validateContract,validateHelper,loadRuntimeHelper,validateSearchIsolation} from '../scripts/validate-russian-visual-vocabulary-runtime.mjs';
 
 const c=JSON.parse(fs.readFileSync('subjects/russian/contracts/visual-vocabulary-runtime-contract.v1.json','utf8'));
 const js=fs.readFileSync('subjects/russian/assets/visual-vocabulary-runtime.js','utf8');
+const contentContract=fs.readFileSync('subjects/russian/assets/content-contract.js','utf8');
+const adapter=fs.readFileSync('subjects/russian/assets/subject-adapter.js','utf8');
+const core=fs.readFileSync('subjects/russian/assets/core.js','utf8');
+const srs=fs.readFileSync('subjects/russian/assets/vocab-srs.js','utf8');
 const copy=()=>structuredClone(c);
 
 assert.equal(validateContract(copy()),true);
 assert.equal(validateHelper(js),true);
+assert.equal(validateSearchIsolation(contentContract,adapter,core,srs),true);
 
 const api=loadRuntimeHelper(js);
 const missing=api.describe({ru:'абстракция',meaning_vi:'trừu tượng',en:'abstraction'});
@@ -67,6 +72,11 @@ assert.equal(mocked.artist,'Автор');
 {const x=copy();x.imageEnrichment.attributionRequired=false;assert.throws(()=>validateContract(x),/relevance\/attribution safeguards/)}
 {const x=copy();x.imageEnrichment.cancelStaleLookup=false;assert.throws(()=>validateContract(x),/cancellation is required/)}
 {const x=copy();x.imageEnrichment.artistAttributionWhenAvailable=false;assert.throws(()=>validateContract(x),/artist attribution/)}
+{const x=copy();x.learnerSurface.translationFreeSearch=false;assert.throws(()=>validateContract(x),/search must exclude translation fields/)}
+assert.throws(()=>validateSearchIsolation(contentContract.replace('v.meaningRu,v.example','v.meaningVi,v.english,v.meaningRu,v.example'),adapter,core,srs),/search still includes translation fields/);
+assert.throws(()=>validateSearchIsolation(contentContract,adapter,core.replace("A.vocabSearchText?.(x)||A.vocabTerm?.(x)||x?.ru||x?.phrase_ru||''","A.vocabSearchText?.(x)||JSON.stringify(x)"),srs),/raw source JSON/);
+assert.throws(()=>validateSearchIsolation(contentContract,adapter,core,srs.replace("title:russian(item.title_ru||item.context_title_ru)||clean(item.id||item.source_id||'')","title:clean(item.context_title_vi||item.title_ru||item.id)")),/Vietnamese metadata|Russian-only/);
+assert.throws(()=>validateSearchIsolation(contentContract,adapter,core,srs.replace('!cyr.test(sentence)||','')),/does not reject non-Cyrillic/);
 
 console.log('RUSSIAN_VISUAL_VOCAB_RUNTIME_NEGATIVE_TEST=PASS');
-console.log(JSON.stringify({negativeCases:9,rankingCases:3,networkGuardCases:3},null,2));
+console.log(JSON.stringify({negativeCases:14,rankingCases:3,networkGuardCases:3},null,2));
