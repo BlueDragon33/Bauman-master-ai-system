@@ -31,3 +31,15 @@ Legacy fields such as `vi`, `clue_en`, or imported bilingual dialogue metadata a
 ## Gate
 
 `subjects/russian/scripts/validate-listening-visual-first.mjs` is required by the Russian UI gate.
+
+
+## Auto-generated next round
+
+### Lượt tiếp theo — Handwriting recognition hardening
+
+B1. Khóa logic tiến độ theo 7 bước bằng denominator động, không hard-code.
+B2. Chỉ ghi bằng chứng luyện chữ từ tương tác viết thật; không tính click chung trong màn Viết.
+B3. Ghi riêng stroke gesture trên canvas để phân biệt mở màn hình với thực hành.
+B4. Audit lớp hiển thị chữ in ↔ chữ viết tay: dữ liệu Unicode có thể giống nhau nên hình dáng viết tay phải do presentation/asset authority đảm nhiệm, không bịa ký tự mới trong JSON.
+B5. Bổ sung kiểm thử cho fallback font/asset và khả năng offline trên Windows/mobile.
+B6. Chỉ sau khi toàn bộ Russian + whole-system gates xanh mới mở lượt nhận diện mặt chữ in → chữ viết tay.
