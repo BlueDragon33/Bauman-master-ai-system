@@ -17,6 +17,10 @@ for(const step of ['theory','speaking','vocab','grammar','exercises','check'])mu
 must(!/status\s*:\s*['"]mastered['"]/.test(js),'Learning flow must not synthesize mastered status');
 must(!/status\s*:\s*['"]completed['"]/.test(js),'Learning flow must not synthesize completed status');
 must(!js.includes('masteryPercent'),'Learning flow must not invent mastery percentage');
+must(js.includes("window.addEventListener('russian:speaking-recording-result'"),'Learning flow speaking evidence must come from recognition result');
+must(!js.includes("['record-line','speak-line','speak-line-slow','speak-dialogue']"),'Listening/recorder clicks must not count as speaking attempts');
+must(!/act==='mark-line-ok'[^\n]*attempts/.test(js),'Manual self-assessment must not count as speaking attempt');
+must(js.includes('selfAssessments'),'Manual speaking self-assessment must stay separate from recognition evidence');
 must(js.includes("scope:'lesson'")&&js.includes("scope:'stage'"),'Learning flow must distinguish lesson-bound from stage-support sources');
 for(const token of ['.ru-lesson-flow','.ru-flow-steps','.ru-flow-step.review','@media (max-width:760px)','@media (max-width:430px)','prefers-reduced-motion'])must(css.includes(token),`Learning flow CSS missing: ${token}`);
 must((css.match(/{/g)||[]).length===(css.match(/}/g)||[]).length,'Learning flow CSS brace imbalance');
