@@ -241,3 +241,22 @@ Executable checkpoint:
 Targeted Deep Speaking learner-slice scan at this checkpoint contains no generic `.domain`, `p.question`, `p.answer`, `JSON.stringify`, `Object.values` or prohibited `*_vi` semantic fallback.
 
 The promotion candidate remains frozen and must not merge to `main` automatically.
+
+
+## Post-freeze recognition-race and oral-first navigation repair — 2026-09-19
+
+Further runtime/UX audit found issues inside existing responsibilities; no Turn 25 was created.
+
+- Turn 9.4: normal and Deep Speaking SpeechRecognition now share a monotonically increasing session token. Starting a new recorder invalidates callbacks from the previous recorder before `stop()`, so stale `onstart/onresult/onerror/onend` cannot write evidence or clear the active recorder state.
+- Turn 9.5: normal speaking captures its result store, dialogue identity and lesson identity when recording starts. Recognition results write to the original store even if the learner changes surface before the callback arrives; delayed auto-next is guarded by token + surface + dialogue + line identity.
+- Turn 2.1: visible Học tập navigation is now oral-first (`Nghe/Nói` first), and invalid-tab/render-recovery/action fallbacks return to `practice` instead of `theory`, while valid stored tabs remain preserved.
+- Turn 24.12: continuation state/documentation is normalized so repeated resume cycles do not accumulate duplicated accepted-substep text.
+
+Executable checkpoint before documentation normalization:
+
+- commit: `b4922ae73c292de4c3129c1fdb2c484789ff3057`
+- workflow: `35422110343`
+- `russian-learning-contract`: SUCCESS
+- `russian-existing-regression`: SUCCESS
+
+The promotion candidate remains frozen and must not merge to `main` automatically.
