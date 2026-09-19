@@ -57,6 +57,10 @@ if(freezeContract.schema!=='RUSSIAN_MIGRATION_FREEZE_CONTRACT_V1'||freezeContrac
 const runtimeJs=['assets/core.js','assets/learning-state.js','assets/learning-flow.js','assets/vocab-srs.js','assets/speaking-coach.js','assets/academic-language.js','assets/ai-mentor-guard.js','assets/ai-direct-explanation.js','assets/visual-vocabulary-runtime.js','assets/dialogue-scaffold.js','assets/cursive-glyphs.js','assets/cyrillic-literacy.js','assets/weakness-repair-router.js','assets/skill-gated-assessment.js','assets/browser-capabilities.js','assets/runtime-optimizer.js','assets/russian-reference-ui.js','assets/ui-cleanup-contract.js'].map(read).join('\n');
 forbid(read('assets/core.js'),'toggleActiveHideVi','Dead translation toggle must not survive promotion freeze');
 forbid(read('assets/core.js'),"act==='toggle-vi'",'Dead translation action must not survive promotion freeze');
+need(read('assets/core.js'),"modal.setAttribute('aria-hidden','false')",'Modal ARIA lifecycle must expose opened dialog');
+need(read('assets/core.js'),"modal.setAttribute('aria-hidden','true')",'Modal ARIA lifecycle must hide closed dialog');
+need(read('assets/core.js'),'modalReturnFocus=document.activeElement','Modal focus lifecycle must remember opener');
+need(read('assets/core.js'),'if(back&&back.isConnected)','Modal focus lifecycle must restore opener');
 forbid(runtimeJs,'localStorage.clear(','Promotion candidate must not wipe existing learner storage');
 forbid(html,'PASS','Gate status must not be visible in app shell');forbid(html,'DEBUG','Debug status must not be visible in app shell');
 if(!html.includes('name="viewport"'))throw new Error('Viewport metadata missing');
