@@ -1,58 +1,32 @@
 # CODEX_TASK
 
-Task: `CONTENT_RESOLUTION_RUNTIME_DELIVERY_FOUNDATION`
+Task: `RUSSIAN_LISTENING_VISUAL_FIRST_ARCHITECTURE`
 
-Mode: `CHAT_FIRST / RESPONSIBILITY_BASED_ARCHITECTURE`
+Mode: `CHAT_FIRST / SUBJECT_RESPONSIBILITY`
 
 ## Goal
 
-Provide a safe, pinned-integrity path from Content/Asset/Provenance Registry records to real runtime consumers while preserving existing application and learner-state authority until separately promoted.
+Make the Russian Subject Web App follow a stable learning sequence for the Vietnam-first phase:
 
-## Acceptance state
+`listen/speak → alphabet/handwriting → lesson analysis → visual vocabulary → grammar → exercises → check`
 
-**Steps 1–14: COMPLETE / GREEN**
+## Non-negotiable vocabulary rule
 
-Validated capabilities:
+For stage `vn`:
+- do not teach vocabulary by showing a direct Vietnamese translation as the answer;
+- do not substitute an English gloss as the answer;
+- prefer image/symbol, Russian explanation, pronunciation/audio, usage context and Russian example dialogue.
 
-- resolver-owned access evaluation;
-- deterministic locator selection;
-- exact HTTPS allowlist;
-- explicit provider requirement for content-hash locators;
-- immutable delivery plan;
-- injected adapter execution only;
-- SHA-256 + byte-length verification before consumer access;
-- package-relative same-origin fetch;
-- source and packaged browser parity;
-- pinned Academic core registry candidate;
-- reusable verified Academic loader;
-- opt-in authority trial with exact request-count checks;
-- fail-closed integrity/bootstrap failure behavior with zero legacy fallback.
+Legacy bilingual metadata may remain in source data for migration/authoring/search, but must not be the primary learner-facing vocabulary answer.
 
-## Current authority rule
+## Current gate
 
-Default Academic core loading remains the existing legacy path.
+Russian Reference UI Gate is green.
 
-The verified loader is an opt-in trial only:
+## Next automatic substeps
 
-`?academicVerifiedLoader=1`
-
-No default promotion is authorized in this task.
-
-## Protected contracts
-
-Preserve:
-
-- Foundation — Identity & Domain Model;
-- Foundation — Content, Asset & Provenance Registry;
-- `BAUMAN_SUBJECT_BRIDGE_V1`;
-- Russian/Math learning-state contracts;
-- Device Access Gate;
-- learner progress/state;
-- routes and scheduler mutation policy;
-- source/package parity.
-
-## Next responsibility
-
-Subject pedagogy changes belong to **Subject Web Apps**, not this Foundation layer.
-
-The next requested development area is the Russian subject learning architecture and should be performed on a separate responsibility-named branch.
+1. Finish whole-system CI acceptance.
+2. If any system gate fails, create a focused fix substep and re-run gates.
+3. After all gates are green, audit the first Vietnam lessons R01–R06 for actual media/listening-first sequencing and alphabet coverage.
+4. Add a focused browser acceptance check for the learner-facing no-translation rule if current browser tests do not cover the rendered vocabulary card.
+5. Keep this branch unmerged until promotion is explicitly approved.
