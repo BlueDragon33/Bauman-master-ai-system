@@ -19,6 +19,7 @@ export function validateContract(c){
   assert(c.missingContext?.translationFallback===false,'Missing dialogue context must fail closed');
   assert(c.practice?.preserveHearBeforeSee===true&&c.practice?.russianContextHiddenBeforeFirstListen===true,'Hear-before-see invariant weakened');
   assert(c.invariants?.noVietnameseSemanticGloss===true&&c.invariants?.noEnglishSemanticGloss===true,'Translation gloss still permitted');
+  assert(c.invariants?.turnProjectionAllShapesSanitized===true&&c.invariants?.genericTextFallbackRequiresCyrillic===true,'Dialogue turn projection must sanitize every shape and require Cyrillic text');
   assert(c.semanticRouting?.dialogueSearchAuthority==='russian_direct_context_only','Dialogue search authority must remain Russian/direct-context only');
   assert(c.semanticRouting?.deepLinkNaturalLanguageTags==='cyrillic_only','Deep-link natural-language routing must remain Cyrillic-only');
   assert(c.semanticRouting?.dialogueGroupDisplayAuthority==='russian_label_or_inert_id','Dialogue group display authority must remain Russian-label or inert-id only');
@@ -58,6 +59,8 @@ export function validateAdapter(adapter){
   const block=adapter.slice(start,end);
   for(const token of ['context_title_vi','communicative_functions_vi','vi_turns'])assert(!block.includes(token),`Adapter dialogue helper references prohibited translation field: ${token}`);
   assert(block.includes('const {vi,vi_text,translation_vi,gloss_vi,meaning_vi,purpose_vi,clue_en,meaning_en,translation_en,en,...safe}=turn||{};'),'Adapter dialogue turns must explicitly sanitize all prohibited translation fields');
+  assert(block.includes('return turns.map(project);'),'Adapter fallback turns must use the same sanitizer projector');
+  assert(block.includes('/[А-Яа-яЁё]/.test(text)?text:\'\''),'Adapter dialogue line projection must reject non-Cyrillic generic text');
   assert(block.includes('title_ru')&&block.includes('context_title_ru'),'Adapter dialogue title is not Russian/direct-context first');
   assert(block.includes("dialogueGroup(item){ return item?.group_ru || item?.group_id || item?.source_group_id || 'general'; }"),'Adapter dialogue group must prefer Russian label and fail closed to inert IDs');
   assert(!block.includes("dialogueGroup(item){ return item?.group ||"),'Adapter dialogue group reintroduced generic-language group display');
