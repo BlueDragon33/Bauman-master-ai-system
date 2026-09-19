@@ -201,3 +201,23 @@ Executable checkpoint:
 - `russian-existing-regression`: SUCCESS
 
 The promotion candidate remains frozen and must not merge to `main` automatically.
+
+
+## Post-freeze translation-path isolation — 2026-09-19
+
+A deeper learner-runtime audit found live legacy translation fallbacks outside the canonical visual/dialogue helpers. The repair remains inside Turns 10/16/24; no Turn 25 was created.
+
+- Turn 10.1: `subject-adapter.vocabMeaning()` no longer falls back to `vi/meaning/clue_en`; vocabulary search inherits Russian/direct-semantic meaning only; newly created vocabulary records use Russian explanation plus visual/context evidence and never generate translation fields.
+- Turn 16.1: dialogue titles/subtitles and turn projection are Russian/direct-context only; legacy turn translation properties are sanitized; Deep Speaking no longer reads Vietnamese titles/prompts/tags; AI dialogue context no longer falls back to Vietnamese dialogue metadata.
+- Turn 24.10: migration/dialogue/vocabulary gates and negative tests now prove that legacy translation fields may remain in archive/source data for compatibility but cannot flow into learner runtime semantic authority.
+
+Executable checkpoint:
+
+- commit: `15e7b4f61198c5d268ea03f7fdd68d0b8d48cfa9`
+- workflow: `35418691089`
+- `russian-learning-contract`: SUCCESS
+- `russian-existing-regression`: SUCCESS
+
+Targeted runtime scan at this checkpoint found no prohibited translation tokens in the learner-facing vocab, Deep Speaking, dialogue or AI-context slices. Adapter dialogue references to `translation_vi/gloss_vi` remain only in an explicit destructuring sanitizer that discards them.
+
+The promotion candidate remains frozen and must not merge to `main` automatically.
