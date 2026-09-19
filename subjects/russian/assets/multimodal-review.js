@@ -56,6 +56,11 @@
     return true;
   }
 
+  function focusRepair(modality){
+    if(!MODALITIES.includes(modality))return false;
+    selected=modality;render();return true;
+  }
+
   function modalitySummary(modality){
     const ev=evidence(keyFor(),modality);
     return ev.attempts?ev.lastRating:'chưa có';
@@ -104,6 +109,7 @@
     ratings:Object.freeze([...RATINGS]),
     get:()=>JSON.parse(JSON.stringify(state)),
     evidence,
-    record
+    record,
+    focusRepair
   });
 })(window);
