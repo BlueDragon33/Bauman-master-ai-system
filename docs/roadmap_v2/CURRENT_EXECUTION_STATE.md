@@ -5,17 +5,17 @@
 
 ## Active track
 
-- Current round: **Lượt 30**
-- Current step: **L30 final-state marker — REVALIDATION**
+- Current round: **Lượt 31**
+- Current step: **L31/B121 — PROMOTION ELIGIBILITY CONTRACT · IN_PROGRESS**
 - L22 closeout: **B88 + H1 — PASS**
-- Status: **L23_COMPLETE · L24_COMPLETE · L25_COMPLETE · L26_COMPLETE · L27_COMPLETE · L28_COMPLETE · L29_COMPLETE_THROUGH_B116 · L30_COMPLETE_THROUGH_B120 · L31_PERMITTED_NOT_OPEN**
-- Last recorded six-gate head: `237a0c74d30c9f8932a5cff9ac56d0b3e8e5861f`
+- Status: **L23_COMPLETE · L24_COMPLETE · L25_COMPLETE · L26_COMPLETE · L27_COMPLETE · L28_COMPLETE · L29_COMPLETE_THROUGH_B116 · L30_COMPLETE_THROUGH_B120 · L31_B121_ACTIVE**
+- Last recorded six-gate head: `d17f690b25c7b8e05f8183fe2223b1c9622cc38d`
 - Production/runtime activation by Roadmap V2: **disconnected**
 - Legacy/source destructive migration: **not executed**
-- Last completed: **L30 documentation/final-state closeout — PASS on complete six-gate set**
+- Last completed: **L30 final-state marker — PASS on complete six-gate set**
 - Last hardening: **L29-F2 validator/harness syntax repair — PASS; no gate weakening**
-- Current official step: **L30 final-state marker revalidation**
-- L31 is permitted to open only after this final-state marker head itself passes the complete six-gate set.
+- Current official step: **L31/B121 — canonical Promotion Eligibility boundary**
+- B122–B124 remain blocked until B121 passes the complete six-gate set.
 
 ## L22/B88 complete gate evidence
 
@@ -788,3 +788,25 @@ Accepted documentation/final-state closeout head: `237a0c74d30c9f8932a5cff9ac56d
 - Whole System Integration — run `35452986618` — PASS
 
 L30 is complete through B120. This marker commit is the final revalidation checkpoint before L31 may open.
+
+
+## L30 final marker gate evidence
+
+Accepted L30 final marker head: `d17f690b25c7b8e05f8183fe2223b1c9622cc38d`
+
+- Roadmap V2 Current Gate — run `35453656433` — PASS
+- Foundation Domain Model — run `35453656435` — PASS
+- Windows checkout safety — run `35453656462` — PASS
+- Russian Reference UI — run `35453656438` — PASS
+- Cloudflare Preview — run `35453656468` — PASS
+- Whole System Integration — run `35453656537` — PASS
+
+L30 is fully complete through B120.
+
+## L31 opening
+
+Pre-audit found a current-track architecture gap: L30 can produce a Human Review receipt with `review_accepted_shadow_only`, but the canonical Roadmap tree had no Promotion Eligibility boundary to distinguish “accepted for shadow analysis” from “eligible to enter a separate release-review stage”.
+
+L31 therefore opens as a data-only Promotion Eligibility Boundary. It does **not** authorize release review, production promotion, a production consumer, persistence or runtime action.
+
+Current active step: **L31/B121**.
