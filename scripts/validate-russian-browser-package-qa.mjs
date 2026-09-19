@@ -125,14 +125,20 @@ export function loadCursiveGlyphs(js){
 
 export function validateCursive({glyphs,cyrillic,motor,index,css}){
   const api=loadCursiveGlyphs(glyphs);
-  assert(api?.schema==='RUSSIAN_CURSIVE_GLYPH_SHAPES_V1','Explicit cursive glyph API missing');
-  assert(api.coverage()===33,'Explicit cursive glyph coverage must be exactly 33 letters');
+  assert(api?.schema==='RUSSIAN_CURSIVE_GLYPH_SHAPES_V2','Explicit cursive glyph API missing');
+  assert(api.coverage()===33,'Explicit cursive pair coverage must be exactly 33 letters');
+  assert(api.glyphCoverage()===66,'Explicit cursive glyph coverage must be exactly 66 uppercase/lowercase glyphs');
   assert(api.letters===LETTERS,'Explicit cursive glyph alphabet drifted');
   for(const ch of LETTERS){
-    const d=api.pathFor(ch);
-    assert(typeof d==='string'&&d.startsWith('M')&&d.length>=20,'Missing/invalid explicit cursive path for '+ch);
-    const svg=api.render(ch,{variant:'lower',label:false});
-    assert(svg.includes('<svg')&&svg.includes('<path')&&!svg.includes('<text'),'Cursive glyph must render as explicit SVG path: '+ch);
+    const upper=api.pathFor(ch,'upper');
+    const lower=api.pathFor(ch,'lower');
+    assert(typeof upper==='string'&&upper.startsWith('M')&&upper.length>=20,'Missing/invalid uppercase cursive path for '+ch);
+    assert(typeof lower==='string'&&lower.startsWith('M')&&lower.length>=20,'Missing/invalid lowercase cursive path for '+ch);
+    assert(upper!==lower&&api.pairDistinct(ch)===true,'Upper/lower cursive outlines must be distinct for '+ch);
+    const upperSvg=api.render(ch,{variant:'upper',label:false});
+    const lowerSvg=api.render(ch,{variant:'lower',label:false});
+    assert(upperSvg.includes('<svg')&&upperSvg.includes('<path')&&!upperSvg.includes('<text'),'Upper cursive glyph must render as explicit SVG path: '+ch);
+    assert(lowerSvg.includes('<svg')&&lowerSvg.includes('<path')&&!lowerSvg.includes('<text'),'Lower cursive glyph must render as explicit SVG path: '+ch);
   }
   assert(cyrillic.includes('RussianCursiveGlyphs')&&cyrillic.includes('cursiveHtml'),'Cyrillic recognition does not use explicit cursive shapes');
   assert(motor.includes('RussianCursiveGlyphs')&&motor.includes('explicitSampleHtml'),'Handwriting motor coach does not use explicit cursive shapes');
@@ -166,11 +172,11 @@ export function loadAndValidate(){
   validatePerformance(bundle);
   validateBrowserCapability(bundle);
   validateCursive({...bundle,css:bundle.glyphCss});
-  return {packageResult,cursiveCoverage:33};
+  return {packageResult,cursivePairCoverage:33,cursiveGlyphCoverage:66};
 }
 
 if(import.meta.url===pathToFileURL(process.argv[1]).href){
   const result=loadAndValidate();
   console.log('RUSSIAN_BROWSER_PACKAGE_QA_GATE=PASS');
-  console.log(JSON.stringify({...result,substeps:ORDER,cursiveObligation:'CLOSED_BY_EXPLICIT_VECTOR_SHAPES'},null,2));
+  console.log(JSON.stringify({...result,substeps:ORDER,cursiveObligation:'CLOSED_BY_66_DISTINCT_OFL_VECTOR_OUTLINES'},null,2));
 }
