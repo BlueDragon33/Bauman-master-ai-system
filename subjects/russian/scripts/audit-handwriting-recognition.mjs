@@ -24,7 +24,11 @@ const checks=[
   ['Cloudflare package requires runtime', preview.includes("'subjects/russian/assets/handwriting-recognition.js'") && preview.includes('handwriting recognition script reference')],
   ['ChatGPT Site package requires runtime', site.includes("'subjects/russian/assets/handwriting-recognition.js'") && site.includes('handwriting recognition script reference')],
   ['responsive recognition layout exists', css.includes('.ru-handwriting-recognition') && css.includes('@media(max-width:720px)')],
-  ['idempotent MutationObserver render guard exists', recognition.includes('dataset.renderSig') && recognition.includes('banner.dataset.renderSig!==capSig') && recognition.includes('box.dataset.renderSig!==drillSig')]
+  ['idempotent MutationObserver render guard exists', recognition.includes('dataset.renderSig') && recognition.includes('banner.dataset.renderSig!==capSig') && recognition.includes('box.dataset.renderSig!==drillSig')],
+  ['weak-letter recovery requires two consecutive correct confirmations', recognition.includes('profile.correctStreak>=2') && recognition.includes('REVIEW_DELAY_MS=10*60*1000')],
+  ['first recovery confirmation remains scheduled in Review Queue', recognition.includes("correct?'handwriting_recognition_confirm':'handwriting_recognition_miss'") && recognition.includes('profile.dueAt||stamp')],
+  ['due weak letters are prioritized over sequential questions', recognition.includes("source:dueIndex>=0?'review_due':'sequence'") && recognition.includes('dueWeakIds(state)[0]')],
+  ['resolved weak letters are removed without mastery writes', recognition.includes('delete state.weak[letterId]') && recognition.includes('removeReview?.(reviewId)') && !recognition.includes('mastery') && !recognition.includes('completed')]
 ];
 
 const failed=checks.filter(([,ok])=>!ok);
