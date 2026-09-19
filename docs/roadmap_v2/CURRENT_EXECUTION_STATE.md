@@ -6,15 +6,15 @@
 ## Active track
 
 - Current round: **Lượt 26**
-- Current step: **Bước 102 — IN_PROGRESS · L26-H2 ACTIVE**
+- Current step: **Bước 104 — DOCUMENTATION CLOSEOUT ACTIVE**
 - L22 closeout: **B88 + H1 — PASS**
-- Status: **L23_COMPLETE · L24_COMPLETE · L25_COMPLETE · PASS_L25_B97_B100 · L25_FINAL_STATE_GATE_PASS · PASS_L26_B101 · PASS_L26_H1 · PASS_L26_B101_DOC_GATE · L26_B102_IN_PROGRESS · L26_H2_ACTIVE**
-- Last recorded six-gate head: `fa8d9b811080aec22a9d7b61dcc7791f55266dac`
+- Status: **L23_COMPLETE · L24_COMPLETE · L25_COMPLETE · PASS_L26_B101_B103 · PASS_L26_H1_H2 · PASS_L26_F2 · L26_B104_FUNCTIONAL_PASS · L26_B104_DOCUMENTATION_CLOSEOUT_ACTIVE**
+- Last recorded six-gate head: `4d2bd743f0977d3a8202564549eb51a37164056e`
 - Production/runtime activation by Roadmap V2: **disconnected**
 - Legacy/source destructive migration: **not executed**
-- Last completed: **L25/B100 — PASS**
-- Last hardening: **L25-F5 — PASS**
-- Current official step: **L26/B102 — Current weekly projector**
+- Last completed: **L26/B103 — PASS (16/16 adversarial checks)**
+- Last hardening: **L26-F2 provenance relation fail-closed — PASS**
+- Current official step: **L26/B104 — documentation/final-state closeout**
 - L26 opened only after the L25 final-state head passed the complete six-gate set.
 
 ## L22/B88 complete gate evidence
@@ -413,3 +413,32 @@ B102 is allowed to open.
 B102 implements only an in-memory weekly projection harness under `scripts/`; no executable is admitted into the canonical `roadmap_v2` tree and no runtime wiring is allowed.
 
 L26-H2 keeps uninstantiated dynamic Consumer targets fail-closed while preserving verified Current Bauman prerequisite override behavior for Priority-admitted knowledge targets.
+
+
+## L26-F2 defect and repair
+
+B103 adversarial review found a semantic provenance gap: verified `current_bauman_official` and `nir_plan_verified` sources could carry `masterModeRelation: not_applicable`.
+
+F2 closes the boundary:
+
+- Current Bauman subject work requires `current_subject_prerequisite`;
+- NIR/thesis work requires `nir_thesis_prerequisite`;
+- wrong or missing relations fail closed before weekly projection;
+- no calendar, persistence, runtime write, dynamic generation or production wiring was enabled.
+
+## L26/B103 + B104 functional gate evidence
+
+Accepted functional head: `4d2bd743f0977d3a8202564549eb51a37164056e`
+
+- Roadmap V2 Current Gate — run `35436538205` — PASS
+- Foundation Domain Model — run `35436538257` — PASS
+- Windows checkout safety — run `35436538208` — PASS
+- Russian Reference UI — run `35436538165` — PASS
+- Cloudflare Preview — run `35436538355` — PASS
+- Whole System Integration — run `35436538204` — PASS
+
+B103 adversarial Scheduler validation: **16/16 PASS**.
+
+Whole System verified source runtime, Foundation identity/projection/context, Math Study Command Center, Hub responsive behavior, Russian capability Hub/deep-link/route/continue/progress, true-offline shell, packaged ChatGPT Site and the equivalent packaged acceptance chain.
+
+B104 is functionally green. L27 remains blocked until this documentation/final-state closeout head itself passes the complete six-gate set.
