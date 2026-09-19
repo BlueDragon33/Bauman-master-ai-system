@@ -27,6 +27,10 @@ const ranked=api.rankCommonsPages([
 ],{ru:'книга',meaning_ru:'печатное издание',tags:['библиотека']});
 assert.equal(ranked.length,1);
 assert.match(ranked[0].title,/Книга/);
+const untrusted=api.rankCommonsPages([
+  {title:'File:Книга.jpg',imageinfo:[{thumburl:'https://example.com/book.jpg',descriptionurl:'https://example.com/source',extmetadata:{ImageDescription:{value:'Книга'},LicenseShortName:{value:'CC0'}}}]}
+],{ru:'книга',meaning_ru:'печатное издание'});
+assert.equal(untrusted.length,0);
 
 const offline=await api.resolveImage({ru:'книга',meaning_ru:'печатное издание'},{online:false,fetchImpl:()=>{throw new Error('network must not run');}});
 assert.equal(offline.status,'offline');
@@ -65,4 +69,4 @@ assert.equal(mocked.artist,'Автор');
 {const x=copy();x.imageEnrichment.artistAttributionWhenAvailable=false;assert.throws(()=>validateContract(x),/artist attribution/)}
 
 console.log('RUSSIAN_VISUAL_VOCAB_RUNTIME_NEGATIVE_TEST=PASS');
-console.log(JSON.stringify({negativeCases:9,rankingCases:2,networkGuardCases:3},null,2));
+console.log(JSON.stringify({negativeCases:9,rankingCases:3,networkGuardCases:3},null,2));
