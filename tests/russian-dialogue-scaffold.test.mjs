@@ -27,5 +27,8 @@ assert.throws(
 );
 assert.throws(()=>validateAdapter(adapter.replace("dialogueTitle(item){ return item?.title_ru","dialogueTitle(item){ return item?.context_title_vi || item?.title_ru")),/prohibited translation field/);
 assert.throws(()=>validateCore(core.replace("unit?.unit_title_ru","unit?.unit_title_vi||unit?.unit_title_ru")),/translation scaffold/);
+assert.throws(()=>validateCore(core.replace("return [];}", "return [JSON.stringify(v)];}")),/fail closed|serializing unknown semantic fields/);
+assert.throws(()=>validateCore(core.replace("p.question_ru||p.q_ru||p.ru||'Как вы ответите?'", "p.question_ru||p.q_ru||p.ru||p.question||'Как вы ответите?'")),/generic-language question\/answer/);
+assert.throws(()=>validateCore(core.replace("unit.scenario_ru||''","unit.scenario_ru||unit.domain||''")),/generic-language domain/);
 console.log('RUSSIAN_DIALOGUE_SCAFFOLD_NEGATIVE_TEST=PASS');
 console.log(JSON.stringify({negativeCases:8},null,2));
