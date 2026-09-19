@@ -104,10 +104,7 @@
     const core=readCore(), id=activeLessonId();if(!id)return;
     const act=target.closest?.('[data-act]')?.dataset.act||'';
     if(core.view==='learning'&&core.learnTab==='theory'&&(act==='next-slide'||act==='prev-slide'||target.closest?.('[data-slide]'))){const old=lessonState(id)?.steps?.theory||{};touch('theory',{slideMoves:Number(old.slideMoves||0)+1},id);}
-    if(core.view==='learning'&&core.learnTab==='practice'){
-      if(['record-line','speak-line','speak-line-slow','speak-dialogue'].includes(act)){const old=lessonState(id)?.steps?.speaking||{};touch('speaking',{attempts:Number(old.attempts||0)+1},id);}
-      if(act==='mark-line-ok'){const old=lessonState(id)?.steps?.speaking||{};touch('speaking',{attempts:Number(old.attempts||0)+1,ok:Number(old.ok||0)+1,lastOkAt:now()},id);}
-    }
+    if(core.view==='learning'&&core.learnTab==='practice'&&act==='mark-line-ok'){const old=lessonState(id)?.steps?.speaking||{};touch('speaking',{selfAssessments:Number(old.selfAssessments||0)+1,lastSelfAssessmentAt:now()},id);}
     if(core.view==='learning'&&core.learnTab==='exercises'&&(act==='next-exercise'||act==='prev-exercise'||target.closest?.('[data-exercise-focus]'))){const old=lessonState(id)?.steps?.exercises||{};touch('exercises',{moves:Number(old.moves||0)+1},id);}
     if(core.view==='vocab'&&(['speak-vocab','toggle-vocab-flip','next-vocab','prev-vocab'].includes(act)||target.closest?.('[data-vocab]'))){const old=lessonState(id)?.steps?.vocab||{};touch('vocab',{supportActions:Number(old.supportActions||0)+1,provenance:'stage_support'},id);}
     if(core.view==='grammar'&&(target.closest?.('[data-grammar-index]')||act)){const old=lessonState(id)?.steps?.grammar||{};touch('grammar',{supportActions:Number(old.supportActions||0)+1,provenance:'stage_support'},id);}
@@ -124,6 +121,14 @@
   },true);
   document.addEventListener('change',event=>{if(event.target?.id==='stageSelect')after(40,scheduleRender);},true);
   window.addEventListener('russian:learning-state',scheduleRender);
+  window.addEventListener('russian:speaking-recording-result',event=>{
+    const detail=event?.detail||{},id=clean(detail.lessonId)||activeLessonId();
+    if(!id||!clean(detail.transcript))return;
+    const old=lessonState(id)?.steps?.speaking||{};
+    const patch={attempts:Number(old.attempts||0)+1,recognizedAttempts:Number(old.recognizedAttempts||0)+1,lastRecognitionAt:now()};
+    if(Number(detail.score)>=70){patch.ok=Number(old.ok||0)+1;patch.lastOkAt=now();}
+    touch('speaking',patch,id);
+  });
   document.addEventListener('DOMContentLoaded',async()=>{
     try{const data=await fetch('data/knowledge-index.json').then(r=>r.ok?r.json():[]);knowledge=Array.isArray(data)?data.map(x=>({id:clean(x.id),title:clean(x.title),stage:clean(x.stage)})).filter(x=>x.id):[];}catch(_){knowledge=[];}
     scheduleRender();const view=document.getElementById('view');if(view)new MutationObserver(scheduleRender).observe(view,{childList:true,subtree:true});
