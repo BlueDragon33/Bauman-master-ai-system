@@ -115,6 +115,11 @@ on:
       - 'subjects/russian/assets/cursive-glyphs.css'
       - 'scripts/validate-russian-browser-package-qa.mjs'
       - 'tests/russian-browser-package-qa.test.mjs'
+      - 'subjects/russian/contracts/migration-freeze-contract.v1.json'
+      - 'scripts/validate-russian-migration-freeze.mjs'
+      - 'tests/russian-migration-freeze.test.mjs'
+      - 'subjects/russian/subject-manifest.json'
+      - 'subjects/russian/scripts/validate-promotion-candidate.mjs'
       - '.github/workflows/russian-learning-architecture-gate.yml'
 
 permissions:
@@ -195,6 +200,8 @@ jobs:
           node --check subjects/russian/assets/cursive-glyphs.js
           node --check scripts/validate-russian-browser-package-qa.mjs
           node --check tests/russian-browser-package-qa.test.mjs
+          node --check scripts/validate-russian-migration-freeze.mjs
+          node --check tests/russian-migration-freeze.test.mjs
       - name: Validate listen-speak literacy visual contract
         run: node scripts/validate-russian-learning-sequence-contract.mjs
       - name: Run contract negative tests
@@ -289,6 +296,10 @@ jobs:
         run: node scripts/validate-russian-browser-package-qa.mjs
       - name: Run Russian browser/package QA negative tests
         run: node tests/russian-browser-package-qa.test.mjs
+      - name: Validate Russian migration freeze
+        run: node scripts/validate-russian-migration-freeze.mjs
+      - name: Run Russian migration freeze negative tests
+        run: node tests/russian-migration-freeze.test.mjs
       - name: Parse pedagogy contracts
         run: node -e "const fs=require('fs'); const a=JSON.parse(fs.readFileSync('subjects/russian/contracts/listen-speak-literacy-visual-contract.v1.json','utf8')); const b=JSON.parse(fs.readFileSync('subjects/russian/contracts/oral-first-route-contract.v1.json','utf8')); if(a.schema!=='RUSSIAN_LISTEN_SPEAK_LITERACY_VISUAL_CONTRACT_V1'||b.schema!=='RUSSIAN_ORAL_FIRST_ROUTE_CONTRACT_V1') process.exit(1); console.log('RUSSIAN_PEDAGOGY_JSON=PASS')"
 
