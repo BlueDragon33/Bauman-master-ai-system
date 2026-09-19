@@ -17,6 +17,11 @@ assert.equal(validateRuntime(js,css,core,learningFlow),true);
 {const x=copy();x.runtime.recognitionResultEvidenceRequired=false;assert.throws(()=>validateContract(x),/require non-empty recognition result/)}
 {const x=copy();x.runtime.failedOrEmptyRecognitionDoesNotCountAttempt=false;assert.throws(()=>validateContract(x),/require non-empty recognition result/)}
 {const x=copy();x.evidence.recognitionConfirmedAttempts=false;assert.throws(()=>validateContract(x),/recognition-confirmed/)}
+{const x=copy();x.runtime.deepSpeakingRecognitionRequired=false;assert.throws(()=>validateContract(x),/Deep Speaking/)}
+{const x=copy();x.runtime.deepSpeakingSelfAssessmentSeparate=false;assert.throws(()=>validateContract(x),/Deep Speaking/)}
+{const x=copy();x.evidence.deepSpeakingAttemptsRecognitionConfirmed=false;assert.throws(()=>validateContract(x),/Deep Speaking attempts/)}
+assert.throws(()=>validateRuntime(js,css,core.replace('function startDeepSpeakingRecording()','function startDeepSpeakingRecorderMissing()')),/Deep Speaking recognition recorder missing/);
+assert.throws(()=>validateRuntime(js,css,core.replace("p.attempts[id]=Number(p.attempts[id]||0)+1","p.attempts[id]=Number(p.attempts[id]||0)")),/Deep Speaking recognition attempt counter missing/);
 {const x=copy();x.runtime.manualSelfAssessmentDoesNotCreateSpeakingEvidence=false;assert.throws(()=>validateContract(x),/self-assessment/)}
 {const x=copy();x.evidence.learningFlowRecognitionOnly=false;assert.throws(()=>validateContract(x),/recognition-only/)}
 assert.throws(()=>validateRuntime(js.replace("return heardCount(c)>=2&&Number(row?.imitationAttempts||0)>0;","return heardCount(c)>=1&&Number(row?.imitationAttempts||0)>0;"),css,core,learningFlow),/not two-listen gated/);
