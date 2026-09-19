@@ -42,7 +42,12 @@
   "browserCapabilities": {
     "speechFallbackExplicit": true,
     "externalMediaOfflineStateExplicit": true,
-    "missingVisualStateExplicit": true
+    "missingVisualStateExplicit": true,
+    "russianSpeechLanguage": "ru-RU",
+    "russianVoiceSelectionRequired": true,
+    "voicesChangedRefreshRequired": true,
+    "playbackStartHookRequired": true,
+    "failedPlaybackMustNotCountListening": true
   },
   "cursive": {
     "obligationId": "RUS-CURSIVE-VISUAL-001",
