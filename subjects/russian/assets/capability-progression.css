@@ -1,0 +1,25 @@
+/* L15 · R0→R4 capability progression */
+.ru-capability-roadmap{display:grid;gap:16px;margin-bottom:18px}
+.ru-cap-head{display:grid;grid-template-columns:minmax(0,1fr) minmax(190px,260px);gap:18px;align-items:start}
+.ru-cap-head h3{margin:8px 0 6px}
+.ru-cap-head p{margin:0;line-height:1.55}
+.ru-cap-head aside{display:grid;gap:4px;padding:14px;border:1px solid var(--line,#d8dee9);border-radius:16px;background:var(--panel-soft,#f8fafc)}
+.ru-cap-head aside b{font-size:1.5rem}
+.ru-cap-head aside span,.ru-cap-head aside small{font-size:.8rem;opacity:.8}
+.ru-cap-grid{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:10px}
+.ru-cap-band{display:grid;gap:12px;padding:14px;border:1px solid var(--line,#d8dee9);border-radius:16px;background:var(--panel,#fff);min-width:0}
+.ru-cap-band header{display:flex;gap:10px;align-items:flex-start}
+.ru-cap-band header>span{display:grid;place-items:center;min-width:42px;height:42px;border-radius:12px;font-weight:800;border:1px solid var(--line,#d8dee9)}
+.ru-cap-band header div{display:grid;gap:4px;min-width:0}
+.ru-cap-band header b{font-size:.92rem}
+.ru-cap-band header small{font-size:.75rem;line-height:1.4;opacity:.76}
+.ru-cap-band.active{box-shadow:0 0 0 2px rgba(59,130,246,.18) inset}
+.ru-cap-band.done{box-shadow:0 0 0 2px rgba(34,197,94,.15) inset}
+.ru-cap-band.locked{opacity:.62}
+.ru-cap-metrics{display:grid;gap:7px}
+.ru-cap-metrics span{display:grid;grid-template-columns:auto 1fr;gap:8px;align-items:baseline}
+.ru-cap-metrics b{font-size:.8rem}
+.ru-cap-metrics small{font-size:.72rem;opacity:.72}
+.ru-cap-band .btn{width:100%;justify-content:center}
+@media(max-width:1180px){.ru-cap-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media(max-width:760px){.ru-cap-head{grid-template-columns:1fr}.ru-cap-grid{grid-template-columns:1fr}}

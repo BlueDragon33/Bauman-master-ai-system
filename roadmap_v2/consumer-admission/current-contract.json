@@ -1,0 +1,92 @@
+{
+  "schema": "BAUMAN_ROADMAP_V2_CONSUMER_ADMISSION_CONTRACT_V1",
+  "version": "2.9.1-l29-b113-h1",
+  "purpose": "Data-only least-privilege boundary for modeling a non-production human-review shadow consumer of freshly recomputed L28 Admission advisory output without connecting any production runtime",
+  "mode": {
+    "access": "read_only_shadow_consumer_admission",
+    "productionIntegration": "disconnected",
+    "shadowConsumerOnly": true,
+    "productionConsumerAdapterEnabled": false,
+    "persistentStoreEnabled": false,
+    "dashboardUiEnabled": false,
+    "scheduleWriteAllowed": false,
+    "calendarWriteAllowed": false,
+    "runtimeWriteAllowed": false,
+    "notificationWriteAllowed": false,
+    "automaticActionAllowed": false
+  },
+  "upstreamSchemas": {
+    "admissionContract": "BAUMAN_ROADMAP_V2_ADMISSION_CONTRACT_V1",
+    "admissionResult": "BAUMAN_ROADMAP_V2_ADMISSION_RESULT_V1",
+    "readinessRequest": "BAUMAN_ROADMAP_V2_READINESS_REQUEST_V1",
+    "consumerAdmissionResult": "BAUMAN_ROADMAP_V2_CONSUMER_ADMISSION_RESULT_V1",
+    "consumerAdmissionRequest": "BAUMAN_ROADMAP_V2_CONSUMER_ADMISSION_REQUEST_V1"
+  },
+  "candidatePolicy": {
+    "recomputeAdmissionFromReadinessRequest": true,
+    "acceptCallerSuppliedAdmissionResult": false,
+    "acceptCallerSuppliedAdmissionState": false,
+    "acceptCallerSuppliedConsumerDecision": false,
+    "allowedShadowConsumerClasses": [
+      "human_review_shadow"
+    ],
+    "consumerIdPattern": "^SHADOW::[A-Z0-9_-]+$",
+    "productionConsumerIds": [],
+    "planningBridgeAdmitted": false,
+    "safeShellAdmitted": false,
+    "subjectRuntimeAdmitted": false,
+    "directUiRenderAdmitted": false,
+    "manualOverrideAllowed": false,
+    "requestSchemaRequired": true
+  },
+  "decisionPolicy": {
+    "blocked": "shadow_review_blocked",
+    "caution": "shadow_review_caution",
+    "ready_for_human_review": "shadow_review_ready_for_human_review",
+    "greenAuthorizesAutomaticAction": false,
+    "greenAuthorizesRuntimeActivation": false,
+    "consumerDecisionAuthorizesWrite": false
+  },
+  "outputPolicy": {
+    "deepFrozen": true,
+    "persisted": false,
+    "includesAdmissionProjectionId": true,
+    "includesRuntimeCommand": false,
+    "includesScheduleMutation": false,
+    "includesNotificationCommand": false
+  },
+  "capabilities": {
+    "candidateValidate": true,
+    "admissionRecompute": true,
+    "shadowConsumerProject": true,
+    "productionConsumerConnect": false,
+    "persistentStoreWrite": false,
+    "dashboardUiRender": false,
+    "scheduleWrite": false,
+    "calendarWrite": false,
+    "runtimeActivation": false,
+    "notificationWrite": false,
+    "automaticAction": false
+  },
+  "abortConditions": [
+    "Consumer Admission request schema mismatch or unsupported caller fields",
+    "L28 Admission contract/result or current Readiness request schema mismatch",
+    "caller-supplied Admission result, advisory state or consumer decision",
+    "consumer class outside human_review_shadow",
+    "consumer ID outside SHADOW namespace",
+    "any production consumer ID admitted",
+    "PlanningBridge, Safe Shell or subject runtime admitted",
+    "green advisory interpreted as automatic execution authorization",
+    "persistence, dashboard, schedule, calendar, runtime, notification or automatic-action write attempted"
+  ],
+  "acceptance": {
+    "step": 113,
+    "currentTrack": "L29",
+    "shadowConsumerClassPinned": true,
+    "productionConsumersConnected": 0,
+    "productionIntegration": "disconnected",
+    "runtimeActivationAllowed": false,
+    "result": "PASS_B113_CONTRACT",
+    "requestSchemaPinned": true
+  }
+}

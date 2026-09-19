@@ -9567,3 +9567,26 @@ body.presentation-active #modal .presentation-modal{
   z-index:2147483001!important;
 }
 body.presentation-active .toast{z-index:2147483003!important;}
+
+
+/* L14 evidence-bound schedule completion */
+.route-evidence-note{display:block;margin-top:8px;font-size:.78rem;line-height:1.45;opacity:.82}
+.route-unified-card .btn[disabled][data-act="complete-schedule-step"]{cursor:not-allowed;opacity:.5}
+@media(max-width:760px){.route-evidence-note{font-size:.76rem}}
+
+
+/* L15 stage readiness */
+.gate-readiness-summary{display:flex;align-items:baseline;gap:8px;margin:10px 0 6px}
+.gate-readiness-summary b{font-size:1.1rem}
+.gate-readiness-summary span{font-size:.8rem;opacity:.78}
+.gate-req small{display:block;margin-top:3px;font-size:.72rem;line-height:1.35;opacity:.72}
+@media(max-width:760px){.gate-readiness-summary{align-items:flex-start;flex-direction:column;gap:2px}}
+
+
+/* L17 readiness navigator */
+.stage-readiness-navigator{display:flex;align-items:center;justify-content:space-between;gap:16px;margin:14px 0}
+.stage-readiness-navigator>div{min-width:0}
+.stage-readiness-navigator h4{margin:6px 0 4px}
+.stage-readiness-navigator p{margin:0;opacity:.78}
+.stage-readiness-navigator .btn{flex:0 0 auto}
+@media(max-width:760px){.stage-readiness-navigator{align-items:stretch;flex-direction:column}.stage-readiness-navigator .btn{width:100%}}

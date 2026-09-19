@@ -1,0 +1,152 @@
+{
+  "schema": "BAUMAN_ROADMAP_V2_PRIORITY_CONTRACT_V1",
+  "version": 1,
+  "scope": "Lượt 25 / Bước 97–100 — explainable in-memory Priority Engine scoring/ranking; no scheduler, persistence or runtime activation",
+  "mode": {
+    "access": "read_only_harness",
+    "productionIntegration": "disconnected",
+    "failClosed": true,
+    "persistentStoreEnabled": false,
+    "schedulerWriteAllowed": false,
+    "runtimeWriteAllowed": false
+  },
+  "upstreamSchemas": {
+    "consumerManifest": "BAUMAN_ROADMAP_V2_CONSUMER_MANIFEST_V1",
+    "masteryManifest": "BAUMAN_ROADMAP_V2_MASTERY_MANIFEST_V1",
+    "masterySnapshot": "BAUMAN_ROADMAP_V2_MASTERY_SNAPSHOT_V1"
+  },
+  "formula": {
+    "expression": "0.35*masterRelevance + 0.30*knowledgeGap + 0.20*prerequisiteUrgency + 0.15*forgettingRisk",
+    "weights": {
+      "masterRelevance": 0.35,
+      "knowledgeGap": 0.3,
+      "prerequisiteUrgency": 0.2,
+      "forgettingRisk": 0.15
+    },
+    "inputRange": {
+      "minimum": 0,
+      "maximum": 1
+    },
+    "outputRange": {
+      "minimum": 0,
+      "maximum": 100
+    }
+  },
+  "normalization": {
+    "knowledgeGapByState": {
+      "gap": 1,
+      "chua_hoc": 0.85,
+      "dang_hoc": 0.6,
+      "can_on": 0.45,
+      "dat_prerequisite": 0.2,
+      "master_ready": 0
+    },
+    "prerequisiteUrgencyByWeeks": [
+      {
+        "maximumWeeks": 4,
+        "value": 1
+      },
+      {
+        "maximumWeeks": 8,
+        "value": 0.75
+      },
+      {
+        "maximumWeeks": 12,
+        "value": 0.5
+      },
+      {
+        "maximumWeeks": 24,
+        "value": 0.25
+      },
+      {
+        "maximumWeeks": null,
+        "value": 0.1
+      }
+    ],
+    "missingNeededDateUrgency": 0,
+    "forgettingRiskRules": {
+      "can_on": 1,
+      "retentionBelowThreshold": 1,
+      "retentionOutsideWindow": 1,
+      "retentionPassed": 0.15,
+      "datPrerequisiteWithoutRetention": 0.6,
+      "dangHocWithoutRetention": 0.45,
+      "gapWithoutRetention": 0.25,
+      "chuaHocWithoutRetention": 0
+    }
+  },
+  "criticalOverride": {
+    "requiredKnowledgeState": "gap",
+    "maximumWeeksUntilNeeded": 4,
+    "disposition": "critical",
+    "bypassesWeightedBand": true
+  },
+  "existingCompetencyRule": {
+    "requiresExistingCompetencyVerified": true,
+    "diagnosticPercentMinimum": 80,
+    "diagnosticCriticalPercentMinimum": 70,
+    "retentionPercentMinimum": 75,
+    "retentionWindowDays": {
+      "minimum": 14,
+      "maximum": 21
+    },
+    "disposition": "review_on_demand",
+    "grantsMasterReady": false
+  },
+  "weightedBands": [
+    {
+      "minimumScore": 70,
+      "disposition": "high"
+    },
+    {
+      "minimumScore": 40,
+      "disposition": "medium"
+    },
+    {
+      "minimumScore": 0,
+      "disposition": "low"
+    }
+  ],
+  "ranking": {
+    "order": [
+      "critical first",
+      "weighted score descending",
+      "weeks until needed ascending with null last",
+      "target ID ascending"
+    ],
+    "stable": true,
+    "duplicateTargetPolicy": "reject"
+  },
+  "capabilities": {
+    "candidateValidate": true,
+    "featureExtract": true,
+    "score": true,
+    "explain": true,
+    "rank": true,
+    "persistentStoreWrite": false,
+    "schedulerWrite": false,
+    "runtimeActivation": false
+  },
+  "abortConditions": [
+    "upstream manifest hash drift",
+    "unknown target, phase or knowledge state",
+    "mastery snapshot target mismatch or persisted snapshot",
+    "manual override of derived gap, urgency or forgetting features",
+    "feature or score outside normalized range",
+    "duplicate candidate or target ID",
+    "Critical override not applied to a <=4-week gap",
+    "Existing Competency converted to Master-ready",
+    "non-deterministic ranking",
+    "scheduler, persistence or runtime write attempted"
+  ],
+  "acceptance": {
+    "step": 97,
+    "registryFormulaExact": true,
+    "criticalOverrideExact": true,
+    "existingCompetencyReviewOnDemand": true,
+    "existingCompetencyGrantsMasterReady": false,
+    "schedulerEnabled": false,
+    "runtimeActivationAllowed": false,
+    "result": "PASS_CONTRACT_ONLY"
+  }
+}

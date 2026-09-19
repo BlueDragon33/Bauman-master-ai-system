@@ -1,0 +1,87 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "BAUMAN_ROADMAP_V2_ADMISSION_RESULT_V1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema",
+    "projectionId",
+    "reportId",
+    "phaseId",
+    "weekStart",
+    "readinessColor",
+    "advisoryState",
+    "targetSummaries",
+    "counts",
+    "scheduleReadiness",
+    "persisted",
+    "productionConsumerConnected",
+    "runtimeActionAuthorized",
+    "scheduleWriteAllowed",
+    "notificationWriteAllowed"
+  ],
+  "properties": {
+    "schema": {
+      "const": "BAUMAN_ROADMAP_V2_ADMISSION_RESULT_V1"
+    },
+    "projectionId": {
+      "type": "string",
+      "minLength": 1
+    },
+    "reportId": {
+      "type": "string",
+      "minLength": 1
+    },
+    "phaseId": {
+      "enum": [
+        "GD0",
+        "GD1",
+        "GD2",
+        "GD3"
+      ]
+    },
+    "weekStart": {
+      "type": "string",
+      "format": "date"
+    },
+    "readinessColor": {
+      "enum": [
+        "red",
+        "yellow",
+        "green"
+      ]
+    },
+    "advisoryState": {
+      "enum": [
+        "blocked",
+        "caution",
+        "ready_for_human_review"
+      ]
+    },
+    "targetSummaries": {
+      "type": "array",
+      "minItems": 1
+    },
+    "counts": {
+      "type": "object"
+    },
+    "scheduleReadiness": {
+      "type": "object"
+    },
+    "persisted": {
+      "const": false
+    },
+    "productionConsumerConnected": {
+      "const": false
+    },
+    "runtimeActionAuthorized": {
+      "const": false
+    },
+    "scheduleWriteAllowed": {
+      "const": false
+    },
+    "notificationWriteAllowed": {
+      "const": false
+    }
+  }
+}

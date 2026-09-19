@@ -1,11 +1,13 @@
 'use strict';
-const CACHE='russian-app-shell-v1';
+const CACHE='russian-app-shell-v2-foundation';
 const DATA_CACHE='russian-learning-data-v1';
 const SHELL=[
   './','./index.html','./manifest.webmanifest','../shared/host-bridge.js',
+  '../../foundation/domain-model/canonical-identity-runtime.js','../../foundation/domain-model/identity-overlay-store.js','../../foundation/domain-model/legacy-snapshot-extractor.js','../../foundation/domain-model/canonical-read-projection.js','../../foundation/domain-model/legacy-mapping-registry.v1.json',
+  '../shared/foundation-identity-bootstrap.js','../shared/foundation-identity-persistence.js','../shared/foundation-identity-projection.js','../shared/foundation-canonical-context.js',
   './assets/core.css','./assets/russian.css','./assets/russian-reference-ui.css','./assets/russian-reference-ui-polish.css',
-  './assets/learning-state.css','./assets/content-contract.css','./assets/learning-flow.css','./assets/vocab-srs.css','./assets/speaking-coach.css','./assets/academic-language.css','./assets/runtime-optimizer.css',
-  './assets/subject-adapter.js','./assets/ui-cleanup-contract.js','./assets/content-contract.js','./assets/planning-bridge.js','./assets/russian-optional-data-loader.js','./assets/core.js','./assets/learning-state.js','./assets/learning-flow.js','./assets/vocab-srs.js','./assets/speaking-coach.js','./assets/academic-language.js','./assets/ai-mentor-guard.js','./assets/runtime-optimizer.js','./assets/russian-reference-ui.js'
+  './assets/learning-state.css','./assets/content-contract.css','./assets/learning-flow.css','./assets/vocab-srs.css','./assets/speaking-coach.css','./assets/academic-language.css','./assets/capability-progression.css','./assets/runtime-optimizer.css',
+  './assets/subject-adapter.js','./assets/ui-cleanup-contract.js','./assets/content-contract.js','./assets/planning-bridge.js','./assets/russian-optional-data-loader.js','./assets/core.js','./assets/learning-state.js','./assets/learning-flow.js','./assets/vocab-srs.js','./assets/speaking-coach.js','./assets/academic-language.js','./assets/capability-progression.js','./assets/ai-mentor-guard.js','./assets/runtime-optimizer.js','./assets/russian-reference-ui.js'
 ];
 const OPTIONAL_LARGE=new Set(['dialogue-bauman-az.json','deep-speaking-bauman.json','speaking-link-index.json']);
 self.addEventListener('install',event=>{event.waitUntil(caches.open(CACHE).then(c=>c.addAll(SHELL)).then(()=>self.skipWaiting()));});
@@ -14,8 +16,9 @@ self.addEventListener('fetch',event=>{
   const req=event.request;if(req.method!=='GET')return;
   const url=new URL(req.url);if(url.origin!==self.location.origin)return;
   const isRussian=url.pathname.includes('/subjects/russian/');
-  const isSharedHost=url.pathname.endsWith('/subjects/shared/host-bridge.js');
-  if(!isRussian&&!isSharedHost)return;
+  const isSharedRuntime=url.pathname.startsWith('/subjects/shared/')&&(url.pathname.endsWith('/host-bridge.js')||url.pathname.includes('/foundation-'));
+  const isFoundationIdentity=url.pathname.startsWith('/foundation/domain-model/')&&(url.pathname.endsWith('.js')||url.pathname.endsWith('/legacy-mapping-registry.v1.json'));
+  if(!isRussian&&!isSharedRuntime&&!isFoundationIdentity)return;
   const file=url.pathname.split('/').pop()||'';
   const isDataPath=url.pathname.includes('/subjects/russian/data/');
   const isOptionalLarge=isDataPath&&OPTIONAL_LARGE.has(file);

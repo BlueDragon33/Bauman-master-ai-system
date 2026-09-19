@@ -1,0 +1,194 @@
+name: Roadmap V2 Current Gate
+
+on:
+  push:
+    branches:
+      - stabilization/roadmap-v2-reconcile-current-runtime
+  pull_request:
+    branches: [main]
+    paths:
+      - 'recovery/roadmap-v2/**'
+      - 'scripts/validate-roadmap-v2-reconciliation.mjs'
+      - 'scripts/validate-roadmap-v2-r2a.mjs'
+      - 'scripts/validate-roadmap-v2-r2b0.mjs'
+      - 'scripts/validate-roadmap-v2-r2b.mjs'
+      - 'scripts/validate-roadmap-v2-r2c0.mjs'
+      - 'scripts/validate-roadmap-v2-r2c1.mjs'
+      - 'scripts/validate-roadmap-v2-r2c2a.mjs'
+      - 'roadmap_v2/**'
+      - 'roadmap_v2/admission/**'
+      - 'docs/roadmap_v2/**'
+      - 'scripts/validate-roadmap-v2-l23-b89.mjs'
+      - 'scripts/build-roadmap-v2-consumer-blueprint.mjs'
+      - 'scripts/validate-roadmap-v2-l23-h1-consumer-blueprint.mjs'
+      - 'scripts/build-roadmap-v2-diagnostic-catalog.mjs'
+      - 'scripts/validate-roadmap-v2-l23-b90.mjs'
+      - 'scripts/validate-roadmap-v2-l23-b91.mjs'
+      - 'scripts/validate-roadmap-v2-l23-b92.mjs'
+      - 'scripts/validate-roadmap-v2-l24-b93.mjs'
+      - 'scripts/validate-roadmap-v2-l24-b94.mjs'
+      - 'scripts/validate-roadmap-v2-l24-h1-prerequisite-policy.mjs'
+      - 'scripts/validate-roadmap-v2-l24-b95.mjs'
+      - 'scripts/validate-roadmap-v2-l24-b96.mjs'
+      - 'scripts/validate-roadmap-v2-l25-b97.mjs'
+      - 'scripts/validate-roadmap-v2-l25-h1-priority-result-schema.mjs'
+      - 'scripts/validate-roadmap-v2-l25-b98.mjs'
+      - 'scripts/validate-roadmap-v2-l25-b99.mjs'
+      - 'scripts/validate-roadmap-v2-l25-b100.mjs'
+      - 'scripts/validate-roadmap-v2-l26-b101.mjs'
+      - 'scripts/roadmap-v2-scheduler-harness.mjs'
+      - 'scripts/validate-roadmap-v2-l26-b102.mjs'
+      - 'scripts/validate-roadmap-v2-l26-b103.mjs'
+      - 'scripts/validate-roadmap-v2-l27-b105.mjs'
+      - 'scripts/validate-roadmap-v2-l27-b106.mjs'
+      - 'scripts/validate-roadmap-v2-l27-b107.mjs'
+      - 'scripts/validate-roadmap-v2-l27-b108.mjs'
+      - 'scripts/validate-roadmap-v2-l28-b109.mjs'
+      - 'scripts/roadmap-v2-admission-harness.mjs'
+      - 'scripts/validate-roadmap-v2-l28-b110.mjs'
+      - 'scripts/validate-roadmap-v2-l28-b111.mjs'
+      - 'scripts/validate-roadmap-v2-l28-b112.mjs'
+      - 'scripts/validate-roadmap-v2-l29-b113.mjs'
+      - 'scripts/validate-roadmap-v2-l29-h1-consumer-admission-request.mjs'
+      - 'scripts/roadmap-v2-consumer-admission-harness.mjs'
+      - 'scripts/validate-roadmap-v2-l29-b114.mjs'
+      - 'scripts/validate-roadmap-v2-l29-b115.mjs'
+      - 'scripts/validate-roadmap-v2-l29-b116.mjs'
+      - 'scripts/validate-roadmap-v2-l30-b117.mjs'
+      - 'scripts/roadmap-v2-human-review-harness.mjs'
+      - 'scripts/validate-roadmap-v2-l30-b118.mjs'
+      - 'scripts/validate-roadmap-v2-l30-b119.mjs'
+      - 'scripts/validate-roadmap-v2-l30-b120.mjs'
+      - 'scripts/validate-roadmap-v2-l31-b121.mjs'
+      - 'scripts/roadmap-v2-promotion-eligibility-harness.mjs'
+      - 'scripts/validate-roadmap-v2-l31-b122.mjs'
+      - 'scripts/validate-roadmap-v2-l31-b123.mjs'
+      - 'scripts/validate-roadmap-v2-l31-b124.mjs'
+      - 'scripts/validate-roadmap-v2-l32-b125.mjs'
+      - 'scripts/validate-roadmap-v2-l32-h1-release-review-binding.mjs'
+      - '.github/workflows/roadmap-v2-reconciliation.yml'
+
+permissions:
+  contents: read
+
+jobs:
+  current-roadmap:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22.13.0"
+      - name: Validate current Roadmap state
+        run: node scripts/validate-roadmap-v2-reconciliation.mjs
+      - name: Validate historical archive integrity
+        run: node scripts/validate-roadmap-v2-r2a.mjs
+      - name: Validate historical contract hygiene
+        run: node scripts/validate-roadmap-v2-r2b0.mjs
+      - name: Validate static baseline invariants
+        run: node scripts/validate-roadmap-v2-r2b.mjs
+      - name: Validate historical tool/data classification
+        run: node scripts/validate-roadmap-v2-r2c0.mjs
+      - name: Validate legacy toolchain quarantine
+        run: node scripts/validate-roadmap-v2-r2c1.mjs
+      - name: Validate recovery tool safety
+        run: node scripts/validate-roadmap-v2-r2c2a.mjs
+      - name: Validate current L23 B89 diagnostic contract
+        run: node scripts/validate-roadmap-v2-l23-b89.mjs
+      - name: Validate L23 H1 current consumer blueprint
+        run: node scripts/validate-roadmap-v2-l23-h1-consumer-blueprint.mjs
+      - name: Validate current L23 B90 diagnostic catalog
+        run: node scripts/validate-roadmap-v2-l23-b90.mjs
+      - name: Validate current L23 B91 diagnostic harness
+        run: node scripts/validate-roadmap-v2-l23-b91.mjs
+      - name: Validate current L23 B92 closeout
+        run: node scripts/validate-roadmap-v2-l23-b92.mjs
+      - name: Validate current L24 B93 mastery contract
+        run: node scripts/validate-roadmap-v2-l24-b93.mjs
+      - name: Validate current L24 B94 evidence reducer
+        run: node scripts/validate-roadmap-v2-l24-b94.mjs
+      - name: Validate L24 H1 prerequisite policy projection
+        run: node scripts/validate-roadmap-v2-l24-h1-prerequisite-policy.mjs
+      - name: Validate current L24 B95 mastery/prerequisite gates
+        run: node scripts/validate-roadmap-v2-l24-b95.mjs
+      - name: Validate current L24 B96 closeout
+        run: node scripts/validate-roadmap-v2-l24-b96.mjs
+      - name: Validate current L25 B97 priority contract
+        run: node scripts/validate-roadmap-v2-l25-b97.mjs
+      - name: Validate L25 H1 Priority result schema alignment
+        run: node scripts/validate-roadmap-v2-l25-h1-priority-result-schema.mjs
+      - name: Validate current L25 B98 Priority scoring
+        run: node scripts/validate-roadmap-v2-l25-b98.mjs
+      - name: Validate current L25 B99 Priority ranking
+        run: node scripts/validate-roadmap-v2-l25-b99.mjs
+      - name: Validate current L25 B100 Priority closeout
+        run: node scripts/validate-roadmap-v2-l25-b100.mjs
+      - name: Validate current L26 B101 scheduler contract
+        run: node scripts/validate-roadmap-v2-l26-b101.mjs
+      - name: Validate current L26 B102 weekly projector
+        run: node scripts/validate-roadmap-v2-l26-b102.mjs
+      - name: Validate current L26 B103 adversarial scheduler
+        run: node scripts/validate-roadmap-v2-l26-b103.mjs
+      - name: Validate current L27 B105 readiness contract
+        run: node scripts/validate-roadmap-v2-l27-b105.mjs
+      - name: Validate current L27 B106 readiness projector
+        run: node scripts/validate-roadmap-v2-l27-b106.mjs
+      - name: Validate current L27 B107 adversarial readiness
+        run: node scripts/validate-roadmap-v2-l27-b107.mjs
+      - name: Validate current L27 B108 readiness closeout
+        run: node scripts/validate-roadmap-v2-l27-b108.mjs
+      - name: Validate current L28 B109 admission contract
+        run: node scripts/validate-roadmap-v2-l28-b109.mjs
+      - name: Validate current L28 B110 advisory projector
+        run: node scripts/validate-roadmap-v2-l28-b110.mjs
+      - name: Validate current L28 B111 adversarial admission
+        run: node scripts/validate-roadmap-v2-l28-b111.mjs
+      - name: Validate current L28 B112 closeout
+        run: node scripts/validate-roadmap-v2-l28-b112.mjs
+      - name: Validate current L29 B113 consumer admission contract
+        run: node scripts/validate-roadmap-v2-l29-b113.mjs
+      - name: Validate L29 H1 consumer admission request boundary
+        run: node scripts/validate-roadmap-v2-l29-h1-consumer-admission-request.mjs
+      - name: Validate current L29 B114 shadow consumer adapter
+        run: node scripts/validate-roadmap-v2-l29-b114.mjs
+      - name: Validate current L29 B115 adversarial consumer admission
+        run: node scripts/validate-roadmap-v2-l29-b115.mjs
+      - name: Validate current L29 B116 full-system closeout
+        run: node scripts/validate-roadmap-v2-l29-b116.mjs
+      - name: Validate current L30 B117 human review contract
+        run: node scripts/validate-roadmap-v2-l30-b117.mjs
+      - name: Validate current L30 B118 human review projector
+        run: node scripts/validate-roadmap-v2-l30-b118.mjs
+      - name: Validate current L30 B119 adversarial human review
+        run: node scripts/validate-roadmap-v2-l30-b119.mjs
+      - name: Validate current L30 B120 full-system closeout
+        run: node scripts/validate-roadmap-v2-l30-b120.mjs
+      - name: Validate current L31 B121 promotion eligibility contract
+        run: node scripts/validate-roadmap-v2-l31-b121.mjs
+      - name: Validate current L31 B122 promotion eligibility projector
+        run: node scripts/validate-roadmap-v2-l31-b122.mjs
+      - name: Validate current L31 B123 adversarial promotion eligibility
+        run: node scripts/validate-roadmap-v2-l31-b123.mjs
+      - name: Validate current L31 B124 full-system closeout
+        run: node scripts/validate-roadmap-v2-l31-b124.mjs
+      - name: Validate current L32 B125 release review contract
+        run: node scripts/validate-roadmap-v2-l32-b125.mjs
+      - name: Validate L32 H1 release review identity and audit binding
+        run: node scripts/validate-roadmap-v2-l32-h1-release-review-binding.mjs
+      - name: Validate Foundation V2 L9
+        run: node scripts/validate-foundation-domain-model.mjs
+      - name: Validate current system integration
+        run: node scripts/validate-system-integration.mjs
+      - name: Validate current Russian promotion candidate
+        run: node subjects/russian/scripts/validate-promotion-candidate.mjs
+      - name: Audit current Russian offline runtime
+        run: node subjects/russian/scripts/audit-runtime-offline.mjs
+      - name: Validate current Russian capability progression
+        run: node subjects/russian/scripts/validate-capability-progression.mjs
+      - name: Validate current Russian readiness navigator
+        run: node subjects/russian/scripts/validate-readiness-navigator.mjs
+      - name: Validate subject progress static contract
+        run: node tests/subject-progress-contract-static.mjs

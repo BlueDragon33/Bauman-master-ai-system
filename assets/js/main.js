@@ -17,7 +17,7 @@ const REVIEW_SLOTS = [
 ];
 const FINAL_TARGET_QUESTIONS = 100;
 const DEFAULT_TARGET_SCORE = 80;
-const BRIDGE_TYPES = {ready:'BAUMAN_SUBJECT_READY', task:'BAUMAN_ASSIGN_TASK', progress:'BAUMAN_SUBJECT_PROGRESS'};
+const BRIDGE_TYPES = {ready:'BAUMAN_SUBJECT_READY', task:'BAUMAN_ASSIGN_TASK', progress:'BAUMAN_SUBJECT_PROGRESS', capability:'BAUMAN_SUBJECT_CAPABILITY_STATE', capabilityRequest:'BAUMAN_REQUEST_SUBJECT_CAPABILITY_STATE', capabilityRouteReceipt:'BAUMAN_SUBJECT_CAPABILITY_ROUTE_APPLIED'};
 function pad2(n){return String(n).padStart(2,'0')}
 function iso(d){return d.getFullYear()+'-'+pad2(d.getMonth()+1)+'-'+pad2(d.getDate())}
 function parseDate(s){const m=String(s||'2026-06-08').match(/^(\d{4})-(\d{2})-(\d{2})/);return m?new Date(Number(m[1]),Number(m[2])-1,Number(m[3])):new Date(2026,5,8)}
@@ -52,7 +52,7 @@ function getCurrentUser(){try{return JSON.parse(localStorage.getItem(CURRENT_USE
 function setCurrentUser(user){localStorage.setItem(CURRENT_USER_KEY,JSON.stringify(user))}
 function defaultState(){
   const pathMap={russian:'subjects/russian/index.html',math:'subjects/math/index.html',programming:'subjects/programming/index.html',ai:'subjects/ai/index.html',systems:'subjects/systems/index.html',signal:'subjects/signal/index.html',research:'subjects/research/index.html',foundation:'subjects/foundation/index.html'}; const editorMap={russian:'subjects/russian/editor.html',math:'subjects/math/editor.html',programming:'subjects/programming/editor.html',ai:'subjects/ai/editor.html',systems:'subjects/systems/editor.html',signal:'subjects/signal/editor.html',research:'subjects/research/editor.html',foundation:'subjects/foundation/editor.html'}; const subjects=Object.fromEntries(DATA.subjects.map(s=>[s.id,{...s,mainPath:pathMap[s.id]||'',editorPath:editorMap[s.id]||'',priority:['russian','math','programming','ai'].includes(s.id)?'q1':(['systems','signal','research'].includes(s.id)?'q2':'q4')}]))
-  return {page:'home',homePanel:'matrix',roadmapStage:'prepare',subject:'russian',subjectStage:'prepare',schedule:{view:'main',weekStart:'2026-06-08',edit:false,entries:{},timezone:'utc7',autoStage:'prepare',autoFrom:'2026-06-08',autoTo:'2026-10-31',targetQuestions:FINAL_TARGET_QUESTIONS,targetScore:DEFAULT_TARGET_SCORE},progress:{},subjectReports:{},reviewQueue:[],activeTask:null,activity:[],theme:'academic',font:'system',fontSize:'normal',lastStudy:{subjectId:'russian',path:'subjects/russian/index.html'},researchTopic:'ugv',researchChecks:{},researchFiles:{},subjects};
+  return {page:'home',homePanel:'matrix',roadmapStage:'prepare',subject:'russian',subjectStage:'prepare',schedule:{view:'main',weekStart:'2026-06-08',edit:false,entries:{},timezone:'utc7',autoStage:'prepare',autoFrom:'2026-06-08',autoTo:'2026-10-31',targetQuestions:FINAL_TARGET_QUESTIONS,targetScore:DEFAULT_TARGET_SCORE},progress:{},subjectReports:{},subjectCapabilities:{},subjectRouteReceipts:{},reviewQueue:[],activeTask:null,activity:[],theme:'academic',font:'system',fontSize:'normal',lastStudy:{subjectId:'russian',path:'subjects/russian/index.html'},researchTopic:'ugv',researchChecks:{},researchFiles:{},subjects};
 }
 function normalizeState(raw){
   const base=defaultState(); const src=raw&&typeof raw==='object'?raw:{}; const out={...base,...src};
@@ -70,6 +70,8 @@ function normalizeState(raw){
   }
   out.schedule={...base.schedule,...(src.schedule||{})}; out.schedule.entries={...(src.schedule?.entries||{})}; if(!['utc7','utc3'].includes(out.schedule.timezone))out.schedule.timezone='utc7'; if(!['prepare','preparatory','bauman','m1','m2','m3','m4'].includes(out.schedule.autoStage))out.schedule.autoStage='prepare'; if(!out.schedule.autoFrom)out.schedule.autoFrom='2026-06-08'; if(!out.schedule.autoTo)out.schedule.autoTo='2026-10-31'; out.schedule.targetQuestions=Number(out.schedule.targetQuestions)||FINAL_TARGET_QUESTIONS; out.schedule.targetScore=Number(out.schedule.targetScore)||DEFAULT_TARGET_SCORE;
   out.subjectReports = (src.subjectReports && typeof src.subjectReports==='object') ? src.subjectReports : {};
+  out.subjectCapabilities = (src.subjectCapabilities && typeof src.subjectCapabilities==='object') ? src.subjectCapabilities : {};
+  out.subjectRouteReceipts = (src.subjectRouteReceipts && typeof src.subjectRouteReceipts==='object') ? src.subjectRouteReceipts : {};
   out.reviewQueue = Array.isArray(src.reviewQueue) ? src.reviewQueue : [];
   out.activeTask = (src.activeTask && typeof src.activeTask==='object') ? src.activeTask : null;
   if(!out.subjects[out.subject])out.subject='russian';
@@ -84,6 +86,8 @@ function normalizeState(raw){
 function readState(){try{return normalizeState(JSON.parse(localStorage.getItem(KEY)||'{}'))}catch{return defaultState()}}
 function save(){localStorage.setItem(KEY,JSON.stringify(state))}
 let state=readState();
+const liveCapabilitySubjects=new Set();
+const pendingCapabilityIntents=new Map();
 function applyAppearance(){document.body.dataset.theme=state.theme||'academic';document.body.dataset.font=state.font||'system';document.body.dataset.size=state.fontSize||'normal'}
 
 const auth={
@@ -136,7 +140,7 @@ const app={
   homePanelHTML(mode){if(mode==='progress'){const rows=Object.values(state.subjects).map(s=>`<tr><td><b>${esc(s.name)}</b></td><td>${state.progress[s.id]||0}%</td><td>${state.lastStudy?.subjectId===s.id?'Đang học gần nhất':'-'}</td></tr>`).join('');return `<div class="section-head"><div><h2>Tiến độ</h2><p>Theo dõi tổng quan, không ghi mã kỹ thuật.</p></div></div><div class="matrix-table"><table><thead><tr><th>Môn</th><th>Tiến độ</th><th>Ghi chú</th></tr></thead><tbody>${rows}</tbody></table></div>`}if(mode==='current'){const st=roadmapItem(state.roadmapStage);const count=this.coursesForStage(st.id).length;return `<div class="section-head"><div><h2>Lộ trình hiện tại</h2><p>${esc(st.subtitle)}</p></div><button class="btn" onclick="closeModal();app.page('roadmap')">Xem đầy đủ</button></div><div class="time-item"><h3>${esc(st.title)}</h3><p>${esc(st.detail)}</p><div class="course-tags"><span class="tag">${esc(st.meta)}</span><span class="tag">${count} học phần liên quan</span></div></div>`}const rows=Object.values(state.subjects).map(s=>`<tr><td><b>${esc(s.name)}</b><br><small>${esc(s.main||'')}</small></td><td>${esc(s.eq?.[0]||'')}</td><td>${esc(s.eq?.[1]||'')}</td><td>${esc(s.eq?.[2]||'')}</td></tr>`).join('');return `<div class="section-head"><div><h2>Giai đoạn môn học</h2><p>Mỗi môn phát triển xuyên suốt từ chuẩn bị, dự bị đến chính khóa.</p></div></div><div class="matrix-table"><table><thead><tr><th>Môn</th><th>GĐ1</th><th>GĐ2</th><th>GĐ3</th></tr></thead><tbody>${rows}</tbody></table></div>`},
   openHomeFrame(mode){const titles={matrix:'Giai đoạn môn học',progress:'Tiến độ',current:'Lộ trình hiện tại'};openModal(titles[mode]||'Tổng quan',`<div class="home-frame-box">${this.homePanelHTML(mode)}</div>`,true)},
   renderHomePanel(){const box=$('homePanel');if(!box)return;box.innerHTML=this.homePanelHTML(state.homePanel||'matrix')},
-  continueStudy(){const last=state.lastStudy||{subjectId:state.subject};this.openSubjectInPage(last.subjectId)},
+  continueStudy(){const last=state.lastStudy||{subjectId:state.subject};if(last.subjectId==='russian')requestFreshCapabilityIntent('russian','continue');this.openSubjectInPage(last.subjectId,{})},
   roadmap(){
     const item=roadmapItem(state.roadmapStage);
     const courses=this.coursesForStage(item.id);
@@ -159,10 +163,11 @@ const app={
   subjectCourses(subjectId,stage){return DATA.courses.filter(c=>c.subject===subjectId&&(stage==='all'||c.stage===stage||(stage==='bauman'&&/^m\d/.test(c.stage))))},
   subjectDetailHTML(s){const filter=this.subjectStageOptions().includes(state.subjectStage)?state.subjectStage:'prepare';const courses=this.subjectCourses(s.id,filter);const task=findBestLearningTask(s.id);const report=latestSubjectReport(s.id);const comp=[...new Set(courses.flatMap(c=>c.competencies||[]))].slice(0,6);const tracks=[...new Set(courses.map(c=>courseTrackLabel(c.trackUse)))].filter(Boolean);return `<div class="subject-head compact"><span class="subject-icon">${esc(s.icon)}</span><div><h2>${esc(s.name)}</h2><p>${esc(s.desc)}</p></div></div><div class="subject-actions compact-actions"><button class="launch primary compact-launch" onclick="app.openSubjectInPage('${s.id}')"><strong>Học trong trang này</strong><small>Nhận nhiệm vụ từ Main</small></button><button class="launch compact-launch" onclick="app.openSubjectTab('${s.id}')"><strong>Mở tab riêng</strong><small>Vẫn truyền nhiệm vụ qua URL</small></button><button class="btn compact-data" onclick="app.openSubjectEditor('${s.id}')">Dữ liệu môn</button></div><div class="subject-content"><div class="current-stage-note"><span class="pill">${stageShort(filter)}</span><b>Main điều phối lộ trình. Môn học chỉ thực hiện nhiệm vụ được giao và phản hồi kết quả.</b></div><div class="route-subject-summary"><div><b>Năng lực giai đoạn</b><div class="course-tags">${chipsHTML(comp)}</div></div><div><b>Vai trò đề tài</b><div class="course-tags">${chipsHTML(tracks)}</div></div></div><div class="section-head"><div><h2>Nhiệm vụ gần nhất từ thời khóa biểu</h2><p>${task?`${esc(task.learningItem||'Học theo lịch')} · ${esc(task.date)} · ${task.durationMinutes||90} phút · kết thúc dự kiến ${esc(task.plannedEndDate||task.date)}`:'Chưa có ca học cho môn này trong lịch hiện tại.'}</p></div></div><div class="course-list subject-course-list"><article class="course critical"><h4>${task?esc(task.learningItem||'Học theo lịch'):'Chưa có nhiệm vụ'}</h4><p>${report?`Phản hồi gần nhất: ${Number(report.percent||0)}% · ${Number(report.total||0)}/${Number(report.targetQuestions||FINAL_TARGET_QUESTIONS)} câu`:'Chưa có phản hồi từ môn học.'}</p><div class="course-tags"><span class="tag">Mục tiêu: ${DEFAULT_TARGET_SCORE}%</span><span class="tag">Bài kết thúc: ${FINAL_TARGET_QUESTIONS} câu</span><span class="tag">${courses.length} học phần trong Main</span></div></article>${courses.slice(0,5).map(c=>this.courseHTML(c)).join('')}</div></div>`},
   courseHTML(c){return `<article class="course ${c.priority||''} ${c.type||''} route-course-card"><div class="course-type-line"><span class="tag strong">${esc(courseTypeLabel(c.type))}</span><span class="tag">${esc(confidenceLabel(c))}</span><span class="tag route-track">${esc(courseTrackLabel(c.trackUse))}</span></div><h4>${esc(c.name||c.vi)}</h4><p><b>${esc(c.ru||'')}</b><br>${esc(c.note||c.vi||'')}</p>${c.routeRole?`<p class="course-role"><b>Vai trò:</b> ${esc(c.routeRole)}</p>`:''}${c.competencies?.length?`<div class="route-competency-box"><b>Năng lực đầu ra</b><div class="course-tags">${chipsHTML(c.competencies)}</div></div>`:''}${c.projectUse?`<p class="course-project"><b>Gắn với UGV/USV:</b> ${esc(c.projectUse)}</p>`:''}${c.deliverable?`<p class="course-output"><b>Sản phẩm:</b> ${esc(c.deliverable)}</p>`:''}<div class="course-tags"><span class="tag">${stageShort(c.stage)}</span>${c.credits?`<span class="tag">${esc(c.credits)}</span>`:''}<span class="tag">${esc(c.hours||'')}</span><span class="tag">${esc(c.assessment||'')}</span></div></article>`},
-  openSubjectInPage(id,context={}){const s=state.subjects[id];if(!s?.mainPath)return toast('Môn này chưa có file học. Quản trị có thể thêm đường dẫn trong phần Quản trị.');const task=buildLearningTask(id,context);const src=withTaskQuery(s.mainPath,task);if(!src)return toast('Đường dẫn môn học không an toàn hoặc không hợp lệ.');state.lastStudy={subjectId:id,path:s.mainPath};state.activeTask=task;save();$('studyRoot').innerHTML=`<div class="study-viewer canva-study-viewer"><div class="study-head canva-study-head"><div><h2>${esc(s.name)}</h2><small>Nhiệm vụ từ Main: ${esc(task.learningItem||'Học theo lịch')} · ${task.durationMinutes} phút · kết thúc ${esc(task.plannedEndDate||task.date)}</small></div><div class="tools"><button class="btn" data-action="close-study">Đóng</button><button class="btn" onclick="app.openSubjectTab('${id}')">Mở tab riêng</button></div></div><iframe id="subjectFrame" src="${esc(src)}"></iframe></div>`;const iframe=$('subjectFrame');if(iframe)iframe.addEventListener('load',()=>sendTaskToSubject(iframe.contentWindow,task));},
-  openSubjectTab(id){const s=state.subjects[id];if(!s?.mainPath)return toast('Môn này chưa có file học.');const task=buildLearningTask(id,{});const src=withTaskQuery(s.mainPath,task);if(!src)return toast('Đường dẫn môn học không an toàn hoặc không hợp lệ.');state.lastStudy={subjectId:id,path:s.mainPath};state.activeTask=task;save();window.open(src,'_blank','noopener')},
+  openSubjectCapabilityGap(id='russian'){if(id==='russian')requestFreshCapabilityIntent(id,'capability');return this.openSubjectInPage(id,{})},
+  openSubjectInPage(id,context={}){if(id!=='russian')clearPendingCapabilityIntent();const s=state.subjects[id];if(!s?.mainPath)return toast('Môn này chưa có file học. Quản trị có thể thêm đường dẫn trong phần Quản trị.');const task=buildLearningTask(id,context);const src=withTaskQuery(s.mainPath,task);if(!src)return toast('Đường dẫn môn học không an toàn hoặc không hợp lệ.');state.lastStudy={subjectId:id,path:s.mainPath};state.activeTask=task;save();$('studyRoot').innerHTML=`<div class="study-viewer canva-study-viewer"><div class="study-head canva-study-head"><div><h2>${esc(s.name)}</h2><small>Nhiệm vụ từ Main: ${esc(task.learningItem||'Học theo lịch')} · ${task.durationMinutes} phút · kết thúc ${esc(task.plannedEndDate||task.date)}</small></div><div class="tools"><button class="btn" data-action="close-study">Đóng</button><button class="btn" onclick="app.openSubjectTab('${id}')">Mở tab riêng</button></div></div><iframe id="subjectFrame" src="${esc(src)}"></iframe></div>`;const iframe=$('subjectFrame');if(iframe)iframe.addEventListener('load',()=>sendTaskToSubject(iframe.contentWindow,task));},
+  openSubjectTab(id){const s=state.subjects[id];if(!s?.mainPath)return toast('Môn này chưa có file học.');const context=capabilityContextFromTask(state.activeTask,id)||{};const task=buildLearningTask(id,context);const src=withTaskQuery(s.mainPath,task);if(!src)return toast('Đường dẫn môn học không an toàn hoặc không hợp lệ.');state.lastStudy={subjectId:id,path:s.mainPath};state.activeTask=task;save();window.open(src,'_blank','noopener')},
   openSubjectEditor(id){const s=state.subjects[id];const url=subjectUrl(s?.editorPath);if(url)window.open(url.href,'_blank','noopener');else toast('Đường dẫn dữ liệu môn chưa có hoặc không hợp lệ')},
-  closeStudy(){$('studyRoot').innerHTML='';this.home()},
+  closeStudy(){clearPendingCapabilityIntent();$('studyRoot').innerHTML='';this.home()},
   sortedSubjectsForSlot(slotType){const arr=Object.values(state.subjects).sort((a,b)=>['q1','q2','q3','q4'].indexOf(a.priority)-['q1','q2','q3','q4'].indexOf(b.priority));const pref=arr.filter(s=>slotType==='technical'?isTechnicalSubject(s.id):isMemorizeSubject(s.id));return [...pref,...arr.filter(s=>!pref.includes(s))]},
   scheduleBounds(stage){
     const map={
@@ -359,14 +364,138 @@ function findBestLearningTask(subjectId){const entries=allEntriesForSubject(subj
 function latestSubjectReport(subjectId){const arr=state.subjectReports?.[subjectId]||[];return arr[arr.length-1]||null}
 function estimateCourseEndDate(subjectId,courseId,startDate){const c=courseById(courseId);const needed=parseHoursValue(c?.hours);if(!needed)return state.schedule.autoTo||startDate;let sum=0,last=startDate;for(const e of allEntriesForSubject(subjectId)){if(e.date<startDate)continue;const slot=[...MAIN_SLOTS,...REVIEW_SLOTS].find(x=>x.id===e.slotId);sum+=slotDurationMinutes(slot)/60;last=e.date;if(sum>=needed)return last;}return state.schedule.autoTo||last||startDate}
 function slotTaskMeta(e,slot,dateStr){const minutes=e.durationMinutes||slotDurationMinutes(slot);const end=e.plannedEndDate||estimateCourseEndDate(e.subjectId,e.itemId,dateStr);return `${minutes} phút · kết thúc dự kiến ${end}`}
-function buildLearningTask(subjectId,context={}){const taskEntry=context.date&&context.slotId?{...state.schedule.entries[context.date+'|'+context.slotId],date:context.date,slotId:context.slotId}:findBestLearningTask(subjectId);const s=state.subjects[subjectId]||{};const slot=[...MAIN_SLOTS,...REVIEW_SLOTS].find(x=>x.id===(taskEntry?.slotId||context.slotId))||MAIN_SLOTS[0];const course=entryCourse(taskEntry)||courseById(taskEntry?.itemId)||null;const date=taskEntry?.date||todayISO();const duration=taskEntry?.durationMinutes||slotDurationMinutes(slot);const task={type:BRIDGE_TYPES.task,taskId:[subjectId,taskEntry?.itemId||'general',date,taskEntry?.slotId||slot.id].join('::'),subjectId,subjectName:s.name||subjectId,courseId:taskEntry?.itemId||course?.id||'',courseName:course?.name||taskEntry?.learningItem||'Học theo lịch',learningItem:taskEntry?.learningItem||course?.name||'Học theo lịch',stage:course?.stage||state.schedule.autoStage||state.subjectStage||'prepare',date,slotId:taskEntry?.slotId||slot.id,slotLabel:slot.label,durationMinutes:duration,plannedEndDate:taskEntry?.plannedEndDate||estimateCourseEndDate(subjectId,taskEntry?.itemId||course?.id,date),targetQuestions:Number(state.schedule.targetQuestions)||FINAL_TARGET_QUESTIONS,targetScore:Number(state.schedule.targetScore)||DEFAULT_TARGET_SCORE,source:'bauman-main'};return task}
+function compactSubjectRoute(route={}){
+ const view=String(route?.view||'').slice(0,32),learnTab=String(route?.learnTab||'').slice(0,32),lessonId=String(route?.lessonId||'').slice(0,80);
+ if(!view||!lessonId)return null;
+ return {view,learnTab,lessonId};
+}
+function capabilityGapContext(subjectId){
+ const cap=state.subjectCapabilities?.[subjectId];
+ if(!cap||subjectId!=='russian'||!liveCapabilitySubjects.has(subjectId))return null;
+ const reviewDue=Math.max(Number(cap?.currentBand?.reviewDue||0),Number(cap?.stageExit?.reviewDue||0));
+ if(reviewDue>0)return null;
+ const route=compactSubjectRoute(cap?.nextGap?.route);
+ if(!route)return null;
+ return {capabilityRoute:route,capabilityBand:String(cap?.currentBand?.id||'').slice(0,16),capabilityLesson:route.lessonId};
+}
+function capabilityContextFromTask(task=state.activeTask,subjectId=task?.subjectId){
+ const route=compactSubjectRoute(task?.capabilityRoute);
+ if(!task||task.subjectId!=='russian'||subjectId!==task.subjectId||task.source!=='capability-gap'||!route)return null;
+ return {capabilityRoute:route,capabilityBand:String(task.capabilityBand||'').slice(0,16),capabilityLesson:route.lessonId};
+}
+function capabilityContinueContext(subjectId){
+ const cap=state.subjectCapabilities?.[subjectId];
+ if(!cap||subjectId!=='russian')return null;
+ const reviewDue=Math.max(Number(cap?.currentBand?.reviewDue||0),Number(cap?.stageExit?.reviewDue||0));
+ if(reviewDue>0)return null;
+ return capabilityGapContext(subjectId);
+}
+function requestFreshCapabilityIntent(subjectId,intent='continue'){
+ if(subjectId!=='russian')return false;
+ pendingCapabilityIntents.set(subjectId,{intent:String(intent||'continue').slice(0,24),requestedAt:Date.now()});
+ liveCapabilitySubjects.delete(subjectId);
+ return true;
+}
+function clearPendingCapabilityIntent(subjectId){
+ if(subjectId)pendingCapabilityIntents.delete(String(subjectId));
+ else pendingCapabilityIntents.clear();
+}
+function consumeFreshCapabilityIntent(subjectId){
+ const pending=pendingCapabilityIntents.get(subjectId);
+ if(!pending)return false;
+ pendingCapabilityIntents.delete(subjectId);
+ const context=capabilityContinueContext(subjectId);
+ if(!context)return false;
+ const frame=activeSubjectFrame();
+ if(!frame?.contentWindow||state.activeTask?.subjectId!==subjectId)return false;
+ const planner=window.BaumanMainPlanningBridge?.buildPlanningMission;
+ const task=typeof planner==='function'?planner(subjectId,context):buildLearningTask(subjectId,context);
+ state.activeTask=task;save();
+ return sendTaskToSubject(frame.contentWindow,task);
+}
+function buildLearningTask(subjectId,context={}){const taskEntry=context.date&&context.slotId?{...state.schedule.entries[context.date+'|'+context.slotId],date:context.date,slotId:context.slotId}:findBestLearningTask(subjectId);const s=state.subjects[subjectId]||{};const slot=[...MAIN_SLOTS,...REVIEW_SLOTS].find(x=>x.id===(taskEntry?.slotId||context.slotId))||MAIN_SLOTS[0];const course=entryCourse(taskEntry)||courseById(taskEntry?.itemId)||null;const date=taskEntry?.date||todayISO();const duration=taskEntry?.durationMinutes||slotDurationMinutes(slot);const capabilityRoute=compactSubjectRoute(context.capabilityRoute);const task={type:BRIDGE_TYPES.task,taskId:[subjectId,taskEntry?.itemId||'general',date,taskEntry?.slotId||slot.id].join('::'),subjectId,subjectName:s.name||subjectId,courseId:taskEntry?.itemId||course?.id||'',courseName:course?.name||taskEntry?.learningItem||'Học theo lịch',learningItem:taskEntry?.learningItem||course?.name||'Học theo lịch',stage:course?.stage||state.schedule.autoStage||state.subjectStage||'prepare',date,slotId:taskEntry?.slotId||slot.id,slotLabel:slot.label,durationMinutes:duration,plannedEndDate:taskEntry?.plannedEndDate||estimateCourseEndDate(subjectId,taskEntry?.itemId||course?.id,date),targetQuestions:Number(state.schedule.targetQuestions)||FINAL_TARGET_QUESTIONS,targetScore:Number(state.schedule.targetScore)||DEFAULT_TARGET_SCORE,source:capabilityRoute?'capability-gap':'bauman-main',...(capabilityRoute?{capabilityRoute,capabilityBand:String(context.capabilityBand||'').slice(0,16),capabilityLesson:capabilityRoute.lessonId}:{})};return task}
 function subjectUrl(path){try{const url=new URL(String(path||''),location.href);if(!['http:','https:'].includes(url.protocol)||url.username||url.password)return null;return url}catch{return null}}
-function withTaskQuery(path,task){const url=subjectUrl(path);if(!url)return '';const fields={host:'main',hostOrigin:location.origin,subjectId:task.subjectId||'',courseId:task.courseId||'',taskId:task.taskId||task.missionId||'',missionId:task.missionId||task.taskId||'',stage:task.stage||'',learningItem:task.learningItem||task.target||'',durationMinutes:task.durationMinutes||'',targetQuestions:task.targetQuestions||FINAL_TARGET_QUESTIONS,targetScore:task.targetScore||DEFAULT_TARGET_SCORE,protocol:'planning-v3'};Object.entries(fields).forEach(([key,value])=>url.searchParams.set(key,String(value)));return url.href}
+function withTaskQuery(path,task){const url=subjectUrl(path);if(!url)return '';const route=compactSubjectRoute(task.capabilityRoute);const fields={host:'main',hostOrigin:location.origin,subjectId:task.subjectId||'',courseId:task.courseId||'',taskId:task.taskId||task.missionId||'',missionId:task.missionId||task.taskId||'',stage:task.stage||'',learningItem:task.learningItem||task.target||'',durationMinutes:task.durationMinutes||'',targetQuestions:task.targetQuestions||FINAL_TARGET_QUESTIONS,targetScore:task.targetScore||DEFAULT_TARGET_SCORE,protocol:'planning-v3',...(route?{routeView:route.view,routeTab:route.learnTab,routeLesson:route.lessonId,capabilityBand:task.capabilityBand||''}:{})};Object.entries(fields).forEach(([key,value])=>url.searchParams.set(key,String(value)));return url.href}
 function activeSubjectFrame(){return $('subjectFrame')}
 function trustedSubjectEvent(event){const frame=activeSubjectFrame();if(!frame||event.source!==frame.contentWindow)return false;const url=subjectUrl(frame.src);return !!url&&event.origin===url.origin}
 function sendTaskToSubject(win,task){const frame=activeSubjectFrame();const url=frame&&subjectUrl(frame.src);if(!frame||frame.contentWindow!==win||!url)return false;try{win.postMessage(task,url.origin);return true}catch(err){console.warn('Không gửi được nhiệm vụ sang môn',err);return false}}
-function handleSubjectBridgeMessage(event){if(!trustedSubjectEvent(event))return;const msg=event.data||{};if(!msg||typeof msg!=='object')return;const readyTypes=[BRIDGE_TYPES.ready,'BAUMAN_CHILD_READY'];const progressTypes=[BRIDGE_TYPES.progress,'BAUMAN_PROGRESS_REPORT','SUBJECT_FEEDBACK'];if(readyTypes.includes(msg.type)&&state.activeTask){sendTaskToSubject(event.source,state.activeTask);return}if(progressTypes.includes(msg.type)){const activeSubjectId=state.activeTask?.subjectId;if(msg.subjectId&&activeSubjectId&&msg.subjectId!==activeSubjectId)return;receiveSubjectProgress({...msg,subjectId:msg.subjectId||activeSubjectId})}}
-function receiveSubjectProgress(report){const subjectId=report.subjectId||report.subject||state.activeTask?.subjectId;if(!subjectId||!state.subjects[subjectId])return;const normalized={...report,subjectId,receivedAt:new Date().toISOString(),targetQuestions:Number(report.targetQuestions||state.schedule.targetQuestions||FINAL_TARGET_QUESTIONS),targetScore:Number(report.targetScore||state.schedule.targetScore||DEFAULT_TARGET_SCORE)};normalized.total=Number(normalized.total||normalized.questions||normalized.answered||0);normalized.correct=Number(normalized.correct||0);normalized.percent=Number(normalized.percent??normalized.progress??progressPct(normalized.correct,normalized.total));normalized.completed=!!normalized.completed || (normalized.total>=normalized.targetQuestions && normalized.percent>=normalized.targetScore);state.subjectReports[subjectId]=[...(state.subjectReports[subjectId]||[]),normalized].slice(-60);state.progress[subjectId]=normalized.completed?100:Math.max(Number(state.progress[subjectId]||0),Math.min(99,Math.round((normalized.total/normalized.targetQuestions)*60 + (normalized.percent/100)*39)));if(normalized.completed)markSubjectCourseComplete(subjectId,normalized);else scheduleAdaptiveReviews(normalized);state.activity.unshift({time:normalized.receivedAt,subjectId,text:`${subjectName(subjectId)} phản hồi ${normalized.percent}% (${normalized.correct}/${normalized.total})`});state.activity=state.activity.slice(0,80);save();app.home();app.schedule();toast(normalized.completed?'Đã hoàn thành mục tiêu kiểm tra 100 câu':'Đã nhận phản hồi và tự điều chỉnh ôn tập')}
+function sendCapabilityRequestToSubject(win,subjectId){const frame=activeSubjectFrame();const url=frame&&subjectUrl(frame.src);if(!frame||frame.contentWindow!==win||!url)return false;try{win.postMessage({type:BRIDGE_TYPES.capabilityRequest,subjectId:subjectId||state.activeTask?.subjectId||''},url.origin);return true}catch(err){console.warn('Không yêu cầu được capability state từ môn',err);return false}}
+function normalizeSubjectCapability(msg={}){
+ const subjectId=String(msg.subjectId||state.activeTask?.subjectId||'').trim();
+ const band=msg.currentBand&&typeof msg.currentBand==='object'?msg.currentBand:null;
+ const gap=msg.nextGap&&typeof msg.nextGap==='object'?msg.nextGap:null;
+ const exit=msg.stageExit&&typeof msg.stageExit==='object'?msg.stageExit:null;
+ const bands=Array.isArray(msg.bands)?msg.bands.slice(0,8).map(x=>({id:String(x?.id||''),unlocked:!!x?.unlocked,complete:!!x?.complete,lessonReady:Number(x?.lessonReady||0),lessonTotal:Number(x?.lessonTotal||0),reviewDue:Number(x?.reviewDue||0)})).filter(x=>x.id):[];
+ return {
+  schema:String(msg.schema||''),
+  subjectId,
+  receivedAt:new Date().toISOString(),
+  currentBand:band?{id:String(band.id||''),title:String(band.title||''),complete:!!band.complete,lessonReady:Number(band.lessonReady||0),lessonTotal:Number(band.lessonTotal||0),reviewDue:Number(band.reviewDue||0),writing:Number(band.writing||0),writingNeed:Number(band.writingNeed||0),rewrites:Number(band.rewrites||0),rewriteNeed:Number(band.rewriteNeed||0)}:null,
+  nextGap:gap?{lessonId:String(gap.lessonId||''),step:String(gap.step||''),route:{view:String(gap.route?.view||''),learnTab:String(gap.route?.learnTab||''),lessonId:String(gap.route?.lessonId||gap.lessonId||'')}}:null,
+  stageExit:exit?{stage:String(exit.stage||''),allowed:!!exit.allowed,lessonReady:Number(exit.lessonReady||0),lessonTotal:Number(exit.lessonTotal||0),reviewDue:Number(exit.reviewDue||0),writing:Number(exit.writing||0),rewrites:Number(exit.rewrites||0),blocker:String(exit.blocker||'')}:null,
+  bands
+ };
+}
+function receiveSubjectCapability(msg={}){
+ const normalized=normalizeSubjectCapability(msg),subjectId=normalized.subjectId;
+ if(!subjectId||!state.subjects[subjectId]||normalized.schema!=='RUSSIAN_CAPABILITY_BRIDGE_V1')return false;
+ state.subjectCapabilities[subjectId]=normalized;
+ liveCapabilitySubjects.add(subjectId);
+ save();
+ const rerouted=consumeFreshCapabilityIntent(subjectId);
+ app.home();
+ window.BAUMAN_HUB_SAFE?.refresh?.();
+ return rerouted||true;
+}
+function normalizeSubjectRouteReceipt(msg={}){
+ const route=compactSubjectRoute(msg.route),subjectId=String(msg.subjectId||'').trim();
+ return {
+  schema:String(msg.schema||''),
+  subjectId,
+  taskId:String(msg.taskId||msg.missionId||'').slice(0,180),
+  capabilityBand:String(msg.capabilityBand||'').slice(0,16),
+  route,
+  stage:String(msg.stage||'').slice(0,32),
+  receivedAt:new Date().toISOString()
+ };
+}
+function receiveSubjectRouteReceipt(msg={}){
+ const receipt=normalizeSubjectRouteReceipt(msg),task=state.activeTask||{},expected=compactSubjectRoute(task.capabilityRoute);
+ const activeTaskId=String(task.taskId||task.missionId||'');
+ if(receipt.schema!=='RUSSIAN_CAPABILITY_ROUTE_RECEIPT_V1'||!receipt.subjectId||!state.subjects[receipt.subjectId]||!receipt.route||!expected)return false;
+ if(task.subjectId!==receipt.subjectId||task.source!=='capability-gap'||!activeTaskId||receipt.taskId!==activeTaskId)return false;
+ if(receipt.route.view!==expected.view||receipt.route.learnTab!==expected.learnTab||receipt.route.lessonId!==expected.lessonId)return false;
+ state.subjectRouteReceipts[receipt.subjectId]=receipt;
+ save();
+ app.home();
+ window.BAUMAN_HUB_SAFE?.refresh?.();
+ return true;
+}
+function handleSubjectBridgeMessage(event){if(!trustedSubjectEvent(event))return;const msg=event.data||{};if(!msg||typeof msg!=='object')return;const readyTypes=[BRIDGE_TYPES.ready,'BAUMAN_CHILD_READY'];const progressTypes=[BRIDGE_TYPES.progress,'BAUMAN_PROGRESS_REPORT','SUBJECT_FEEDBACK'];const activeSubjectId=state.activeTask?.subjectId||msg.subjectId||'';if(readyTypes.includes(msg.type)){if(state.activeTask)sendTaskToSubject(event.source,state.activeTask);sendCapabilityRequestToSubject(event.source,activeSubjectId);return}if(msg.type===BRIDGE_TYPES.capability){if(msg.subjectId&&activeSubjectId&&msg.subjectId!==activeSubjectId)return;receiveSubjectCapability({...msg,subjectId:msg.subjectId||activeSubjectId});return}if(msg.type===BRIDGE_TYPES.capabilityRouteReceipt){receiveSubjectRouteReceipt(msg);return}if(progressTypes.includes(msg.type)){if(msg.subjectId&&activeSubjectId&&msg.subjectId!==activeSubjectId)return;receiveSubjectProgress({...msg,subjectId:msg.subjectId||activeSubjectId})}}
+function finiteProgressNumber(value){
+ if(value===null||value===undefined||value===''||typeof value==='object')return null;
+ const n=Number(value);return Number.isFinite(n)?n:null;
+}
+function receiveSubjectProgress(report={}){
+ const subjectId=report.subjectId||report.subject||state.activeTask?.subjectId;
+ if(!subjectId||!state.subjects[subjectId])return false;
+ const activeTaskId=String(state.activeTask?.taskId||state.activeTask?.missionId||''),reportTaskId=String(report.taskId||report.missionId||'');
+ const normalized={...report,subjectId,receivedAt:new Date().toISOString(),targetQuestions:Number(report.targetQuestions||state.schedule.targetQuestions||FINAL_TARGET_QUESTIONS),targetScore:Number(report.targetScore||state.schedule.targetScore||DEFAULT_TARGET_SCORE)};
+ normalized.total=Math.max(0,finiteProgressNumber(report.total??report.questions??report.answered)??0);
+ normalized.correct=Math.max(0,finiteProgressNumber(report.correct)??0);
+ const directPercent=finiteProgressNumber(report.percent??((typeof report.progress==='number'||typeof report.progress==='string')?report.progress:null)??report.score);
+ normalized.percent=directPercent??(normalized.total>0?progressPct(normalized.correct,normalized.total):null);
+ normalized.reportKind=(normalized.total>0||normalized.percent!==null||report.completed===true)?'assessment':'state';
+ normalized.taskAccepted=!reportTaskId||!activeTaskId||reportTaskId===activeTaskId;
+ state.subjectReports[subjectId]=[...(state.subjectReports[subjectId]||[]),normalized].slice(-60);
+ if(normalized.reportKind!=='assessment'||!normalized.taskAccepted){save();return false;}
+ normalized.completed=report.completed===true||(normalized.total>=normalized.targetQuestions&&normalized.percent!==null&&normalized.percent>=normalized.targetScore);
+ const percent=normalized.percent??0;
+ state.progress[subjectId]=normalized.completed?100:Math.max(Number(state.progress[subjectId]||0),Math.min(99,Math.round((normalized.total/normalized.targetQuestions)*60+(percent/100)*39)));
+ if(normalized.completed)markSubjectCourseComplete(subjectId,normalized);else scheduleAdaptiveReviews(normalized);
+ state.activity.unshift({time:normalized.receivedAt,subjectId,text:`${subjectName(subjectId)} phản hồi ${percent}% (${normalized.correct}/${normalized.total})`});
+ state.activity=state.activity.slice(0,80);save();app.home();app.schedule();toast(normalized.completed?'Đã hoàn thành mục tiêu kiểm tra 100 câu':'Đã nhận phản hồi và tự điều chỉnh ôn tập');return true;
+}
 function markSubjectCourseComplete(subjectId,report){for(const [key,e] of Object.entries(state.schedule.entries||{})){if(e.subjectId===subjectId&&(e.itemId===report.courseId||!report.courseId)){e.status='completed';e.completedAt=report.receivedAt;}}
 }
 function scheduleAdaptiveReviews(report){const poor=Number(report.percent||0)<Number(report.targetScore||DEFAULT_TARGET_SCORE);const offsets=poor?[0,1,2,3,7]:[1,3,7,14];const subjectId=report.subjectId;const base=todayISO();offsets.forEach((off,i)=>{const day=iso(addDays(parseDate(base),off));const target=findReviewSlot(day,poor);if(!target)return;const key=target.date+'|'+target.slot.id;if(state.schedule.entries[key])return;state.schedule.entries[key]={subjectId,itemId:report.courseId||'',learningItem:poor?'Ôn tăng cường do kết quả còn yếu':'Ôn ghi nhớ gián đoạn',label:poor?'Ôn tập tăng cường':'Ôn tập gián đoạn',source:poor?'adaptive-review':'spaced-review',durationMinutes:slotDurationMinutes(target.slot),plannedEndDate:target.date,fromReportAt:report.receivedAt,reviewIndex:i+1};});}
@@ -426,5 +555,5 @@ function attachResearchFile(itemId){document.getElementById(fileInputId(itemId))
 function handleResearchFile(input,itemId){const file=input.files&&input.files[0];if(!file)return;const reader=new FileReader();reader.onload=()=>{state.researchFiles=state.researchFiles||{};const arr=state.researchFiles[itemId]||[];const ext=(file.name.split('.').pop()||'').toLowerCase();const typeLabel=file.type.startsWith('video/')?'Video':ext==='json'?'JSON':'HTML';arr.push({name:file.name,mime:file.type||'',typeLabel,content:reader.result,addedAt:new Date().toISOString()});state.researchFiles[itemId]=arr.slice(-8);save();app.research();toast('Đã đính kèm '+file.name)};reader.readAsDataURL(file)}
 function openResearchFile(itemId,idx){const f=(state.researchFiles?.[itemId]||[])[idx];if(!f)return;let body='';if((f.mime||'').startsWith('video/')){body=`<video controls style="width:100%;max-height:70vh" src="${f.content}"></video>`}else if((f.mime||'').includes('json')||f.name.toLowerCase().endsWith('.json')){body=`<iframe style="width:100%;height:70vh;border:0;background:#fff" src="${f.content}"></iframe>`}else{body=`<iframe style="width:100%;height:70vh;border:0;background:#fff" src="${f.content}"></iframe>`}openModal(f.name,body,true)}
 function selectResearch(id){state.researchTopic=id;save();app.research()}function BAUMAN_AUDIT(){const issues=[];['page-home','page-roadmap','page-subjects','page-schedule','page-research'].forEach(id=>{if(!$(id))issues.push('Thiếu '+id)});if(!DATA?.courses?.length)issues.push('Thiếu DATA.courses');if(!Object.keys(state.subjects||{}).length)issues.push('Thiếu state.subjects');console.table({issues:issues.length,courses:DATA.courses.length,subjects:Object.keys(state.subjects).length,page:state.page});if(issues.length)console.warn('BAUMAN_AUDIT',issues);return issues}
-window.app=app;window.auth=auth;window.mentor=mentor;window.closeModal=closeModal;window.save=save;window.state=state;window.buildLearningTask=buildLearningTask;window.receiveSubjectProgress=receiveSubjectProgress;window.setHomePanel=setHomePanel;window.showHomeFrame=showHomeFrame;window.selectRoadmapStage=selectRoadmapStage;window.pickSubject=pickSubject;window.setSubjectStage=setSubjectStage;window.setScheduleView=setScheduleView;window.changeWeek=changeWeek;window.editScheduleSlot=editScheduleSlot;window.saveScheduleSlot=saveScheduleSlot;window.openScheduleSlot=openScheduleSlot;window.toggleScheduleSettingsMenu=toggleScheduleSettingsMenu;window.startManualScheduleMode=startManualScheduleMode;window.finishManualScheduleMode=finishManualScheduleMode;window.showAutoScheduleSettings=showAutoScheduleSettings;window.applyAutoScheduleSettings=applyAutoScheduleSettings;window.useFullStageRange=useFullStageRange;window.useCurrentWeekRange=useCurrentWeekRange;window.cyclePriority=cyclePriority;window.learningOptionsHTML=learningOptionsHTML;window.findNextFreeSlot=findNextFreeSlot;window.selectResearch=selectResearch;window.toggleResearchCheck=toggleResearchCheck;window.attachResearchFile=attachResearchFile;window.handleResearchFile=handleResearchFile;window.openResearchFile=openResearchFile;window.BAUMAN_AUDIT=BAUMAN_AUDIT;window.BaumanSubjectRuntime={subjectUrl,withTaskQuery,sendTaskToSubject,trustedSubjectEvent};
+window.app=app;window.auth=auth;window.mentor=mentor;window.closeModal=closeModal;window.save=save;window.state=state;window.buildLearningTask=buildLearningTask;window.receiveSubjectProgress=receiveSubjectProgress;window.receiveSubjectCapability=receiveSubjectCapability;window.capabilityContextFromTask=capabilityContextFromTask;window.isSubjectCapabilityLive=id=>liveCapabilitySubjects.has(String(id||''));window.hasPendingCapabilityIntent=id=>pendingCapabilityIntents.has(String(id||''));window.clearPendingCapabilityIntent=clearPendingCapabilityIntent;window.receiveSubjectRouteReceipt=receiveSubjectRouteReceipt;window.setHomePanel=setHomePanel;window.showHomeFrame=showHomeFrame;window.selectRoadmapStage=selectRoadmapStage;window.pickSubject=pickSubject;window.setSubjectStage=setSubjectStage;window.setScheduleView=setScheduleView;window.changeWeek=changeWeek;window.editScheduleSlot=editScheduleSlot;window.saveScheduleSlot=saveScheduleSlot;window.openScheduleSlot=openScheduleSlot;window.toggleScheduleSettingsMenu=toggleScheduleSettingsMenu;window.startManualScheduleMode=startManualScheduleMode;window.finishManualScheduleMode=finishManualScheduleMode;window.showAutoScheduleSettings=showAutoScheduleSettings;window.applyAutoScheduleSettings=applyAutoScheduleSettings;window.useFullStageRange=useFullStageRange;window.useCurrentWeekRange=useCurrentWeekRange;window.cyclePriority=cyclePriority;window.learningOptionsHTML=learningOptionsHTML;window.findNextFreeSlot=findNextFreeSlot;window.selectResearch=selectResearch;window.toggleResearchCheck=toggleResearchCheck;window.attachResearchFile=attachResearchFile;window.handleResearchFile=handleResearchFile;window.openResearchFile=openResearchFile;window.BAUMAN_AUDIT=BAUMAN_AUDIT;window.BaumanSubjectRuntime={subjectUrl,withTaskQuery,sendTaskToSubject,sendCapabilityRequestToSubject,trustedSubjectEvent};
 document.addEventListener('DOMContentLoaded',()=>app.init());
