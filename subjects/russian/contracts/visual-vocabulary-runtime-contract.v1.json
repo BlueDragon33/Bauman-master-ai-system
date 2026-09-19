@@ -34,5 +34,19 @@
     "noEnglishSemanticAnswer": true,
     "noMasteryMutation": true,
     "noSrsScheduleMigration": true
+  },
+  "imageEnrichment": {
+    "provider": "wikimedia_commons",
+    "mode": "on_demand",
+    "queryLanguage": "ru",
+    "usesRussianSemanticContext": true,
+    "translationQueryForbidden": true,
+    "requiresRelevanceGate": true,
+    "fallback": "source_visual_symbol_and_russian_context",
+    "offlineLookup": false,
+    "saveDataLookup": false,
+    "attributionRequired": true,
+    "learnerStateAuthority": false,
+    "srsAuthority": false
   }
 }
