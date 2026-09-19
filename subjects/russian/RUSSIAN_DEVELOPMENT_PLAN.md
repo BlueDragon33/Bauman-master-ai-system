@@ -114,6 +114,10 @@ Post-freeze quality substep:
 
 Define a visual semantic schema and prohibit Vietnamese/English meaning answers on vocabulary learning surfaces.
 
+Post-freeze quality substep:
+
+- **10.1 — Adapter/new-item direct-semantic freeze:** `subject-adapter.vocabMeaning()` now returns only Russian/direct-semantic fields; vocabulary search inherits the same authority; `storageSkeleton('vocab')` creates Russian explanation + visual/context evidence and cannot create `vi/clue_en/translation_*` fields.
+
 ### Turn 11 — Visual asset coverage
 
 Measure and validate photo/illustration/pictogram/scene coverage with explicit missing-visual states instead of translation fallback.
@@ -147,6 +151,10 @@ Add sound→letter, sound→word and short dictation activities before longer co
 ### Turn 16 — Translation-free dialogue scaffolding
 
 Default beginner dialogue support to scene/cue/gesture/role context instead of Vietnamese gloss.
+
+Post-freeze quality substep:
+
+- **16.1 — Adapter/Deep/AI translation isolation:** dialogue adapter titles/subtitles are Russian/direct-context first, legacy turn translation fields are sanitized instead of exposed, Deep Speaking no longer reads `*_vi` titles/prompts/tags, custom dialogue creation no longer emits `vi_turns`, and AI dialogue context receives only Russian/direct scaffold metadata.
 
 ### Turn 17 — Grammar from patterns
 
@@ -232,6 +240,7 @@ Turn 24 execution substeps:
 - **24.7 — Version-free fallback freeze:** remove versioned learner-facing fallback labels from the adapter/core themselves, not only from the cleanup override; internal protocol/build metadata may remain non-visual.
 - **24.8 — Post-freeze regression revalidation:** rerun Turn 23/24 source gates after any frozen-candidate defect fix; the post-freeze audit removed stale `V ẩn/hiện nghĩa` guidance and unused translation-era vocab/dialogue helpers, with promotion assertions updated before retaining GREEN.
 - **24.9 — Promotion negative-test fidelity:** mutate every `BAUMAN_SUBJECT_BRIDGE_V1` marker in the negative case so both READY and PROGRESS bridge paths must remain contract-correct; full workflow run `35416011837` passed at commit `ae26de6b1f2d24f1e1b5bc4874ea705b68f1d5bf`, including existing-regression checks.
+- **24.10 — Translation-path migration freeze:** extend migration/dialogue/vocabulary negative gates across adapter helpers, Deep Speaking, AI context and new-item templates so legacy Vietnamese/English fields may remain in archived source data but cannot regain learner-facing semantic authority. Final executable proof: workflow `35418691089` GREEN at `15e7b4f61198c5d268ea03f7fdd68d0b8d48cfa9`.
 
 Result: all canonical 24 turns are GREEN. No further turn is created because no new responsibility remains unresolved inside this rebuild. Promotion to `main` is deliberately outside automatic execution.
 
