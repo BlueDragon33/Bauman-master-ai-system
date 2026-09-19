@@ -71,6 +71,7 @@ Make the fresh Vietnam-stage route prioritize listening, speaking and literacy. 
 Post-freeze quality substep:
 
 - **2.1 — Visible oral-first navigation & recovery:** put `Nghe/Nói` first in the learner-facing Học tập tab order and make invalid-tab, hard-render-recovery and tab-action fallbacks return to `practice` rather than `theory`, while preserving valid stored learner tabs.
+- **2.2 — Oral-first primary CTA:** overview and route-focus primary start actions now enter `practice`/Nghe-Nói rather than hard-coded `theory`; theory routes remain available where explicitly used for review/repair or scheduled supporting study.
 
 ### Turn 3 — Oral-first warm-up
 
