@@ -11,6 +11,9 @@ vm.createContext(sandbox);
 vm.runInContext(source,sandbox,{filename:relative,timeout:1000});
 const authority=sandbox.window.RUSSIAN_HANDWRITING_GLYPH_AUTHORITY;
 const handwriting=JSON.parse(fs.readFileSync('subjects/russian/data/handwriting.json','utf8'));
+const serviceWorker=fs.readFileSync('subjects/russian/sw.js','utf8');
+const previewBuild=fs.readFileSync('scripts/prepare-cloudflare-preview.mjs','utf8');
+const siteBuild=fs.readFileSync('scripts/prepare-chatgpt-site.mjs','utf8');
 const alphabetIds=handwriting.filter(x=>x?.mode==='alphabet'&&x?.id).map(x=>String(x.id));
 
 function fail(message){console.error('HANDWRITING_GLYPH_AUTHORITY_AUDIT=FAIL · '+message);process.exit(1);}
@@ -35,6 +38,16 @@ function sameSet(a,b){
   if(a.length!==b.length)return false;
   const left=[...a].sort(),right=[...b].sort();
   return left.every((v,i)=>v===right[i]);
+}
+function russianRuntimePath(repoPath){
+  const prefix='subjects/russian/';
+  const value=String(repoPath||'');
+  if(!value.startsWith(prefix))fail('authority runtime asset must live under subjects/russian');
+  return './'+value.slice(prefix.length);
+}
+function shellContains(repoPath){
+  const runtime=russianRuntimePath(repoPath);
+  return serviceWorker.includes("'"+runtime+"'")||serviceWorker.includes('"'+runtime+'"');
 }
 
 if(!authority||authority.schema!=='RUSSIAN_HANDWRITING_GLYPH_AUTHORITY_V1')fail('missing or invalid schema');
@@ -77,8 +90,13 @@ if(!sameSet(coverage.alphabetIds.map(String),alphabetIds))fail('coverage manifes
 if(!uniqueStrings(coverage.fontFamilies)||!sameSet(coverage.fontFamilies.map(String),authority.trustedFamilies.map(String)))fail('coverage manifest fontFamilies must exactly match trustedFamilies');
 if(!Number.isFinite(Date.parse(String(coverage.reviewedAt||''))))fail('coverage manifest reviewedAt must be a valid date');
 if(!String(coverage.reviewedBy||'').trim())fail('coverage manifest reviewedBy is required');
+for(const requiredOffline of [authority.asset,authority.license,authority.coverageManifest]){
+  if(!shellContains(requiredOffline))fail('ready authority asset must be precached by Russian Service Worker: '+requiredOffline);
+}
+if(!previewBuild.includes("fs.cpSync(path.join(root, 'subjects'), path.join(runtimeDist, 'subjects'), { recursive: true })"))fail('Cloudflare runtime build must copy the complete subjects tree for authority assets');
+if(!siteBuild.includes("fs.cpSync(source,output,{recursive:true})"))fail('ChatGPT Site build must preserve the complete accepted runtime tree');
 if(!Number.isFinite(Date.parse(String(authority.verifiedAt||''))))fail('ready authority verifiedAt must be a valid date');
 if(Date.parse(authority.verifiedAt)>Date.now()+300000)fail('ready authority verifiedAt cannot be materially in the future');
 if(/https?:\/\//i.test(source))fail('authority source must not depend on remote assets');
-console.log('PASS · ready authority asset/license/coverage digests match repo files and cover all 33 alphabet IDs');
+console.log('PASS · ready authority is hashed, covers all 33 letters, is precached offline, and survives both runtime package builders');
 console.log('HANDWRITING_GLYPH_AUTHORITY_AUDIT=PASS');
