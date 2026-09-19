@@ -57,7 +57,7 @@
   }
 
   function normalizedTokens(text){
-    return String(text||'').toLowerCase().replace(/ё/g,'е').replace(/[.,!?;:()"«»„“”—–-]/g,' ').split(/s+/).filter(x=>/^[а-я]+$/i.test(x)&&x.length>=3);
+    return String(text||'').toLowerCase().replace(/ё/g,'е').replace(/[.,!?;:()"«»„“”—–-]/g,' ').split(/\s+/).filter(x=>/^[а-я]+$/i.test(x)&&x.length>=3);
   }
 
   function detailTarget(ctx=context()){
