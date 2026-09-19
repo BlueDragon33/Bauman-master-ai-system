@@ -21,14 +21,21 @@
     return {field:'',values:[]};
   };
   function sceneIcon(dialogue){
-    const hay=clean([dialogue?.group,dialogue?.domain,dialogue?.category,dialogue?.tags].flat().join(' ')).toLowerCase();
-    if(/dorm|общеж/.test(hay))return '🏢';
-    if(/academic|class|study|универс|бауман|lesson/.test(hay))return '🎓';
-    if(/transport|metro|route|метро|дорог/.test(hay))return '🚇';
-    if(/food|canteen|cafe|еда|столов/.test(hay))return '🍽️';
-    if(/health|doctor|аптек|врач/.test(hay))return '🏥';
-    if(/office|document|visa|паспорт|регистрац/.test(hay))return '📄';
-    if(/shop|price|магазин|рубл/.test(hay))return '🛒';
+    const ruTags=[
+      ...arr(dialogue?.communicative_functions_ru),
+      ...arr(dialogue?.az_tags).filter(x=>CYR.test(clean(x)))
+    ];
+    const hay=clean([
+      dialogue?.group_ru,dialogue?.context_title_ru,dialogue?.title_ru,dialogue?.purpose_ru,
+      dialogue?.goal_ru,dialogue?.scene_ru,dialogue?.situation_ru,...ruTags
+    ].filter(Boolean).join(' ')).toLowerCase();
+    if(/общеж|комнат|кампус/.test(hay))return '🏢';
+    if(/метро|транспорт|дорог|маршрут|вокзал|автобус|такси/.test(hay))return '🚇';
+    if(/еда|столов|кафе|ресторан|обед|завтрак|ужин/.test(hay))return '🍽️';
+    if(/аптек|врач|больниц|здоров|лекарств/.test(hay))return '🏥';
+    if(/паспорт|регистрац|виз|документ|миграц/.test(hay))return '📄';
+    if(/магазин|покуп|цен|рубл|касс/.test(hay))return '🛒';
+    if(/универс|бауман|заняти|урок|лекци|семинар|экзамен|учеб/.test(hay))return '🎓';
     return '💬';
   }
   function lineText(line){
