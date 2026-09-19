@@ -208,9 +208,9 @@ window.SUBJECT_ADAPTER = {
     ['storage','🗄️','Lưu trữ']
   ],
   learningTabs: [
+    ['practice','🎙️','Nghe/Nói'],
     ['theory','📘','Lý thuyết'],
     ['exercises','📝','Bài tập'],
-    ['practice','🎙️','Nghe/Nói'],
     ['review','🔁','Ôn tập'],
     ['exam','🧪','Kiểm tra']
   ],
