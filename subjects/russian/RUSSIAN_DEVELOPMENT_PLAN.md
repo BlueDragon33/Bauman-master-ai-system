@@ -167,6 +167,8 @@ Post-freeze quality substep:
 
 - **16.1 — Adapter/Deep/AI translation isolation:** dialogue adapter titles/subtitles are Russian/direct-context first, legacy turn translation fields are sanitized instead of exposed, Deep Speaking no longer reads `*_vi` titles/prompts/tags, custom dialogue creation no longer emits `vi_turns`, and AI dialogue context receives only Russian/direct scaffold metadata.
 - **16.2 — Deep Speaking semantic allowlist:** remove generic `question/answer/domain`, `Object.values(...)` and `JSON.stringify(...)` fallback paths from learner-facing Deep Speaking. Object extraction now fails closed to Russian-labelled semantic fields and nested Russian collections only.
+- **16.3 — Dialogue direct-semantic routing hardening:** dialogue search, grouping, deep-link tags and scene-icon selection use Russian-labelled semantic context or inert IDs only; legacy generic/Vietnamese metadata cannot steer learner-facing routing, and stale stored dialogue-group filters recover to `all`.
+- **16.4 — Complete dialogue-turn translation sanitization:** `dialogueTurns()` strips the full prohibited Vietnamese/English translation-field set before projecting learner runtime turns; the negative gate rejects any regression back to the previous partial sanitizer.
 
 ### Turn 17 — Grammar from patterns
 
@@ -258,6 +260,8 @@ Turn 24 execution substeps:
 - **24.12 — Continuation-state normalization:** canonical continuation docs maintain a single deduplicated post-freeze substep inventory after repeated resume cycles; latest executable proof for Turns 2.1/9.4/9.5 is workflow `35422110343` GREEN at `b4922ae73c292de4c3129c1fdb2c484789ff3057`.
 - **24.13 — Version-free learner export artifacts:** exported learner filenames are `russian_route_plan.json` and `russian_db.json`; internal VERSION/storage/bridge metadata may remain for compatibility but must not leak into learner-facing download names.
 - **24.14 — Vocabulary search/SRS semantic freeze:** migration and visual-vocabulary gates reject translation fields in search, raw-source JSON search fallback, Vietnamese speaking-link titles and non-Cyrillic Sentence Mining source context. Full executable proof: workflow `35422889144` GREEN at `c0e2413b5ec34e86e6ad83fb0c907dcea1417aa4`.
+- **24.15 — Dialogue semantic-routing freeze:** dialogue-scaffold contract/gates freeze Russian-only search authority, Cyrillic deep-link tags, Russian-label-or-inert-ID group display, Russian direct-context scene visuals and recovery from stale legacy group filters.
+- **24.16 — Dialogue sanitizer completeness freeze:** learner turn projection must discard all prohibited Vietnamese/English translation fields, with a dedicated negative mutation proving an incomplete sanitizer is rejected.
 
 Result: all canonical 24 turns are GREEN. No further turn is created because no new responsibility remains unresolved inside this rebuild. Promotion to `main` is deliberately outside automatic execution.
 
