@@ -134,6 +134,11 @@ jobs:
           BAUMAN_E2E_BASE_URL: http://127.0.0.1:4173/
           BAUMAN_E2E_ARTIFACT_DIR: artifacts/hub-premium-responsive
         run: node tests/hub-premium-responsive-browser.mjs
+      - name: Run Russian Handwriting Recognition Acceptance
+        env:
+          BAUMAN_E2E_BASE_URL: http://127.0.0.1:4173/
+          BAUMAN_E2E_ARTIFACT_DIR: artifacts/russian-handwriting-recognition
+        run: node tests/russian-handwriting-recognition-browser.mjs
       - name: Materialize owner-private ChatGPT Site package
         env:
           BAUMAN_CONTROL_PREVIEW_D1_DATABASE_ID: 11111111-1111-4111-8111-111111111111
@@ -174,6 +179,11 @@ jobs:
           BAUMAN_E2E_BASE_URL: http://127.0.0.1:4174/
           BAUMAN_E2E_ARTIFACT_DIR: artifacts/chatgpt-site-foundation-canonical-context
         run: node tests/foundation-canonical-context-browser.mjs
+      - name: Run Packaged Russian Handwriting Recognition Acceptance
+        env:
+          BAUMAN_E2E_BASE_URL: http://127.0.0.1:4174/
+          BAUMAN_E2E_ARTIFACT_DIR: artifacts/chatgpt-site-russian-handwriting-recognition
+        run: node tests/russian-handwriting-recognition-browser.mjs
       - name: Run Packaged Hub Responsive Acceptance
         env:
           BAUMAN_E2E_BASE_URL: http://127.0.0.1:4174/
@@ -196,10 +206,12 @@ jobs:
             artifacts/foundation-canonical-context
             artifacts/math-study-command-center
             artifacts/hub-premium-responsive
+            artifacts/russian-handwriting-recognition
             artifacts/chatgpt-site-browser
             artifacts/chatgpt-site-foundation-identity-persistence
             artifacts/chatgpt-site-foundation-identity-projection
             artifacts/chatgpt-site-foundation-canonical-context
             artifacts/chatgpt-site-hub-responsive
+            artifacts/chatgpt-site-russian-handwriting-recognition
           if-no-files-found: warn
           retention-days: 7
