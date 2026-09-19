@@ -1,6 +1,6 @@
 # Lượt 30 — Current Plan · Bước 117–120
 
-Status: `B117_PASS · B118_PASS · B119_PASS_23_OF_23 · B120_FUNCTIONAL_PASS · DOCUMENTATION_CLOSEOUT_IN_PROGRESS`
+Status: `B117_PASS · B118_PASS · B119_PASS_23_OF_23 · B120_PASS · DOCUMENTATION_CLOSEOUT_PASS · L30_COMPLETE · FINAL_MARKER_REVALIDATION`
 
 Prerequisite: L29 final marker head `6483313072de9c2f190851a27f825464a7109917` passed the complete six-gate set.
 
@@ -42,4 +42,4 @@ Any defect creates `L30-Fx`; any newly discovered missing architecture creates `
 
 ## Documentation/final-state closeout
 
-**ACTIVE.** The B120 functional head passed the complete six-gate set. L31 remains blocked until the documentation/final-state head containing the recorded evidence also passes all six gates.
+**PASS.** The documentation/final-state closeout head also passed all six gates. L30 is complete; only the final marker revalidation remains before L31 may open.
