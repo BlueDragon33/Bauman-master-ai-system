@@ -314,3 +314,20 @@ Targeted validation after the runtime/gate repair: PASS at `cb0bcd6b9fe01ccf11ad
 Full GitHub Actions proof is still anchored at `c0e2413b5ec34e86e6ad83fb0c907dcea1417aa4` / workflow `35422889144` until equivalent CI evidence is available for the newer post-freeze commits.
 
 The promotion candidate remains frozen and must not merge to `main` automatically.
+
+
+## Post-freeze dialogue difficulty/turn-shape hardening — 2026-09-19
+
+Continuation audit found two additional defects inside existing Turn 16/24 responsibilities; no Turn 25 was created.
+
+- Turn 16.5 / 24.17: dialogue difficulty/filter routing no longer falls back to generic `difficulty/level` metadata. Learner-facing routing accepts only inert `difficulty_id` or Russian `difficulty_ru`.
+- Turn 16.6 / 24.18: both `utterances` and fallback `turns` now pass through the same sanitizer projector; generic string/text fallback must contain Cyrillic before becoming a learner-facing Russian line.
+- Dialogue negative coverage increased from 22 to 28 cases, including generic difficulty fallback, fallback-turn sanitizer bypass and non-Cyrillic generic-text regressions.
+
+Source-level executable checkpoint before documentation sync:
+
+- commit: `ecc984d1c057c9bd75da8e0e67fbeab68a0613df`
+- static invariant recheck: PASS
+- GitHub combined status for the new head exposed no check/status records through the connector, so the last independently observed full Actions proof remains `c0e2413b5ec34e86e6ad83fb0c907dcea1417aa4` / workflow `35422889144`.
+
+The promotion candidate remains frozen. Do not merge to `main` automatically.
