@@ -47,7 +47,7 @@ assert.equal(current.mode.dashboardUiEnabled,false);
 assert.equal(current.mode.runtimeWriteAllowed,false);
 assert.equal(current.mode.notificationWriteAllowed,false);
 assert.equal(current.targetPolicy.missingSnapshotPolicy,'red_unknown');
-assert.equal(current.targetPolicy.unverifiedMasterReadyClaimPolicy,'red_unknown');
+assert.equal(current.targetPolicy.unverifiedMasterReadyClaimPolicy,'reject_upstream_or_red_unknown_defense_in_depth');
 assert.equal(current.overallPolicy.manualOverrideAllowed,false);
 assert.equal(current.externalGatePolicy.verifiedSourceRequired,true);
 assert.equal(current.externalGatePolicy.missingGateDefaultsToSatisfied,false);
