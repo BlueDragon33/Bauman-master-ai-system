@@ -41,6 +41,7 @@ on:
       - 'scripts/validate-roadmap-v2-l27-b105.mjs'
       - 'scripts/validate-roadmap-v2-l27-b106.mjs'
       - 'scripts/validate-roadmap-v2-l27-b107.mjs'
+      - 'scripts/validate-roadmap-v2-l27-b108.mjs'
       - '.github/workflows/roadmap-v2-reconciliation.yml'
 
 permissions:
@@ -113,6 +114,8 @@ jobs:
         run: node scripts/validate-roadmap-v2-l27-b106.mjs
       - name: Validate current L27 B107 adversarial readiness
         run: node scripts/validate-roadmap-v2-l27-b107.mjs
+      - name: Validate current L27 B108 readiness closeout
+        run: node scripts/validate-roadmap-v2-l27-b108.mjs
       - name: Validate Foundation V2 L9
         run: node scripts/validate-foundation-domain-model.mjs
       - name: Validate current system integration
