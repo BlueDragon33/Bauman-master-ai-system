@@ -89,7 +89,7 @@ try{
   await scoringContext.route('**/assets/handwriting-glyph-authority.js',route=>route.fulfill({
     status:200,
     contentType:'application/javascript; charset=utf-8',
-    body:"'use strict';window.RUSSIAN_HANDWRITING_GLYPH_AUTHORITY=Object.freeze({schema:'RUSSIAN_HANDWRITING_GLYPH_AUTHORITY_V1',status:'ready',source:'bundled-vetted',trustedFamilies:Object.freeze(['Segoe Script']),asset:'e2e-approved-cyrillic-handwriting',license:'E2E-AUTHORITY',verifiedAt:'2026-09-19T00:00:00.000Z',note:'Deterministic E2E authority fixture'});"
+    body:"'use strict';window.RUSSIAN_HANDWRITING_GLYPH_AUTHORITY=Object.freeze({schema:'RUSSIAN_HANDWRITING_GLYPH_AUTHORITY_V1',status:'ready',source:'bundled-vetted',trustedFamilies:Object.freeze(['Segoe Script']),asset:'subjects/russian/assets/fonts/e2e-approved-cyrillic-handwriting.woff2',assetSha256:'aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa',license:'subjects/russian/assets/fonts/e2e-license.txt',licenseSha256:'bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb',coverageManifest:'subjects/russian/assets/fonts/e2e-coverage.json',coverageSha256:'cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc',verifiedAt:'2026-09-19T00:00:00.000Z',note:'Deterministic E2E authority fixture'});"
   }));
   await scoringContext.addInitScript(()=>{
     const original=CanvasRenderingContext2D.prototype.measureText;
@@ -113,7 +113,10 @@ try{
   assert.equal(forcedCapability.font,'Segoe Script');
   assert.equal(forcedCapability.authority?.trusted,true);
   assert.equal(forcedCapability.authority?.source,'bundled-vetted');
-  assert.equal(forcedCapability.authority?.asset,'e2e-approved-cyrillic-handwriting');
+  assert.equal(forcedCapability.authority?.asset,'subjects/russian/assets/fonts/e2e-approved-cyrillic-handwriting.woff2');
+  assert.equal(forcedCapability.authority?.assetSha256?.length,64);
+  assert.equal(forcedCapability.authority?.licenseSha256?.length,64);
+  assert.equal(forcedCapability.authority?.coverageSha256?.length,64);
 
   await scoringPage.locator('[data-ru-handwriting-choice]').nth(1).click();
   await scoringPage.waitForFunction(()=>window.RussianHandwritingRecognition.getState().attempts===1&&window.RussianHandwritingRecognition.getState().lastCorrect===false);
