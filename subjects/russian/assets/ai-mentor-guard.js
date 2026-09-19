@@ -12,7 +12,7 @@
     const core=readCore();
     const learning=window.RussianLearningState?.get?.()||{};
     const flow=window.RussianLearningFlow?.get?.()||{};
-    const vocab=window.RussianVocabSRS?.context?.()||null;
+    const vocab=window.RussianVocabSrs?.get?.()||null;
     const speaking=window.RussianSpeakingCoach?.context?.()||null;
     const academic=window.RussianAcademicLanguage?.context?.()||null;
     const lessonId=clean(core.lessonId)||clean(window.RussianLearningFlow?.activeLessonId?.());
