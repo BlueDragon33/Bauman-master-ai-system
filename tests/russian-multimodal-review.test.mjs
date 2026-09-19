@@ -15,10 +15,12 @@ assert.equal(validateBehavior(js),true);
 
 {const x=copy();x.evidence.crossModalityInference=true;assert.throws(()=>validateContract(x),/isolation missing/)}
 {const x=copy();x.invariants.noDueDateMutation=false;assert.throws(()=>validateContract(x),/mutation forbidden/)}
-assert.throws(()=>validateRuntime(js+'\nconst dueAt=1;',index,srs,state),/must not reference authority token/);
+assert.throws(()=>validateRuntime(js+'\nconst dueAt=1;',index,srs,state),/authority token: dueAt/);
+assert.throws(()=>validateRuntime(js+'\nvoid card.dueAt;',index,srs,state),/authority token: dueAt/);
+assert.throws(()=>validateRuntime(js+'\naddReview("vocab:7","repair");',index,srs,state),/authority token: addReview/);
 assert.throws(()=>validateRuntime(js,index,srs,state.replace('function addReview(id,reason,route,label,dueAt)','function addReviewLegacy(id,reason,route,label,dueAt)')),/Canonical Review Queue missing/);
 assert.throws(()=>validateBehavior(js.replace("modalities:{...(card.modalities||{}),[modality]:ev}","modalities:{...(card.modalities||{}),audio:ev,recognition:ev}")),/Audio evidence leaked into recognition|Unexpected cross-modality synthesis occurred/);
 assert.throws(()=>validateBehavior(js.replace("save();\n    render();","localStorage.setItem('bauman_russian_vocab_srs_v1','tampered');\n    save();\n    render();")),/mutated SRS scheduler\/due-date authority/);
 
 console.log('RUSSIAN_MULTIMODAL_REVIEW_NEGATIVE_TEST=PASS');
-console.log(JSON.stringify({negativeCases:6},null,2));
+console.log(JSON.stringify({negativeCases:8},null,2));
