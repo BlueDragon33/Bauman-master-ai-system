@@ -131,7 +131,7 @@ export function loadAndValidate(){
     manifest:read('subjects/russian/subject-manifest.json'),
     cleanup:read('subjects/russian/assets/ui-cleanup-contract.js'),
     contentContract:read('subjects/russian/assets/content-contract.js'),
-    srs:bundle.srs,
+    srs:read('subjects/russian/assets/vocab-srs.js'),
     visual:read('subjects/russian/assets/visual-vocabulary-runtime.js'),
     dialogue:read('subjects/russian/assets/dialogue-scaffold.js'),
     aiDirect:read('subjects/russian/assets/ai-direct-explanation.js'),
@@ -150,7 +150,7 @@ export function loadAndValidate(){
   validateNoDestructiveReset({
     core:bundle.core,
     learning:read('subjects/russian/assets/learning-state.js'),
-    srs:read('subjects/russian/assets/vocab-srs.js'),
+    srs:bundle.srs,
     repair:bundle.repair,
     ai:bundle.aiGuard
   });
