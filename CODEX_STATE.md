@@ -2,7 +2,7 @@
 
 Current task: `BAUMAN_ROADMAP_V2_CURRENT_TRACK`
 
-Status: `L26_B101_ACTIVE`
+Status: `L26_B102_ACTIVE`
 
 Date: 2026-09-19
 Branch: `stabilization/roadmap-v2-reconcile-current-runtime`
@@ -14,7 +14,7 @@ The single authoritative progress marker is:
 
 `docs/roadmap_v2/CURRENT_EXECUTION_STATE.md`
 
-Current official round is L26. L25/B100 and the L25 final-state head are green. B101 is active and L26-F1 repairs the stale Scheduler upstream boundary before any projector/harness work is admitted.
+Current official round is L26. L25/B100 and the L25 final-state head are green. B101/H1 and its documentation gate are accepted. B102 is active with L26-H2 enforcing fail-closed dynamic target admission.
 
 ## Safety boundary
 
