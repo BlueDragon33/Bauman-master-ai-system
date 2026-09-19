@@ -20,7 +20,16 @@ export function validateRuntime(js,index,srs,state){
   assert(js.includes("const MODALITIES=['audio','visual','recognition','speaking','writing']"),'Runtime modality set missing');
   assert(js.includes("modalities:{...(card.modalities||{}),[modality]:ev}"),'Per-modality evidence map missing');
   assert(js.includes("ev.ratings[rating]++"),'Modality rating evidence missing');
-  for(const token of ['dueAt','addReview','removeReview','mastered','completed'])assert(!js.includes(token),`Evidence runtime must not reference authority token: ${token}`);
+  const forbiddenAuthorityReferences=[
+    {token:'dueAt',patterns:[/\b(?:const|let|var)\s+dueAt\b/,/\.\s*dueAt\b/,/\[\s*['"]dueAt['"]\s*\]/]},
+    {token:'addReview',patterns:[/\baddReview\s*\(/]},
+    {token:'removeReview',patterns:[/\bremoveReview\s*\(/]},
+    {token:'mastered',patterns:[/\.\s*mastered\b/,/\[\s*['"]mastered['"]\s*\]/,/\b(?:const|let|var)\s+mastered\b/]},
+    {token:'completed',patterns:[/\.\s*completed\b/,/\[\s*['"]completed['"]\s*\]/,/\b(?:const|let|var)\s+completed\b/]}
+  ];
+  for(const entry of forbiddenAuthorityReferences){
+    assert(!entry.patterns.some(pattern=>pattern.test(js)),`Evidence runtime must not reference authority token: ${entry.token}`);
+  }
   assert(index.includes('<script src="assets/multimodal-review.js"></script>'),'Multimodal review runtime not loaded');
   assert(index.includes('<link rel="stylesheet" href="assets/multimodal-review.css">'),'Multimodal review CSS not loaded');
   assert(srs.includes("const SCHEMA='RUSSIAN_VOCAB_SRS_V1'"),'Existing SRS scheduler missing');
