@@ -49,7 +49,7 @@ Create Turn 25+ only if a genuinely new responsibility appears that cannot safel
 
 Continue auditing the frozen candidate. If a defect belongs to an existing responsibility, reopen/add a numbered substep inside that owning turn, fix it, extend the relevant negative/promotion gate, and restore GREEN. Create Turn 25+ only for a genuinely new responsibility.
 
-Current post-freeze additions accepted: Turn 1.1, Turn 3.1, Turn 8.2, Turn 9.1, Turn 23.11, plus previously accepted: Turn 8.1, Turn 11.1, Turn 11.2, Turn 13.1, Turn 13.2, Turn 18.1, Turn 21.7, Turn 22.7, Turn 22.8, Turn 23.8, Turn 23.9, Turn 23.10, Turn 24.7, Turn 24.8 and Turn 24.9.
+Current post-freeze additions accepted: Turn 1.1, Turn 3.1, Turn 8.2, Turn 9.1, Turn 9.2, Turn 23.11, Turn 23.12, plus previously accepted: Turn 8.1, Turn 11.1, Turn 11.2, Turn 13.1, Turn 13.2, Turn 18.1, Turn 21.7, Turn 22.7, Turn 22.8, Turn 23.8, Turn 23.9, Turn 23.10, Turn 24.7, Turn 24.8 and Turn 24.9.
 
 
 ## Post-freeze gate status
@@ -77,3 +77,13 @@ Current invariants additionally require:
 - listening evidence only after playback completion;
 - speaking attempt evidence only after non-empty recognition result;
 - Russian TTS lifecycle metadata preserved through start and completion callbacks.
+
+
+## Latest self-assessment/cancellation checkpoint
+
+Run `35418330563` at `eb01610a6de4e0c849832a55591b8d272b1afbd8` is GREEN for both architecture and existing regression.
+
+Additional invariants:
+- subjective `mark-line-ok` remains separate from recognized speaking evidence;
+- learning-flow speaking attempts are recognition-result driven only;
+- interrupted/cancelled TTS playback cannot emit listening-completion evidence.
