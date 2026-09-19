@@ -1,6 +1,6 @@
 {
   "schema": "BAUMAN_ROADMAP_V2_READINESS_CONTRACT_V1",
-  "version": "2.7.1-l27-b105-current",
+  "version": "2.7.2-l27-b105-h2-current",
   "purpose": "Read-only readiness projection contract for the current Consumer Blueprint V1 + Mastery V2 + current Scheduler boundary, without persistence, dashboard rendering, runtime or notification writes",
   "mode": {
     "access": "read_only_projection_harness",
@@ -33,7 +33,9 @@
     "unverifiedMasterReadyClaimPolicy": "red_unknown",
     "duplicateTargetPolicy": "reject",
     "recommendedAndContextualEdgesBlock": false,
-    "externalGatesRemainExplicit": true
+    "externalGatesRemainExplicit": true,
+    "prerequisiteResolution": "chapter_policy_inherited_by_lessons",
+    "lessonFocusAllowed": true
   },
   "statusPolicy": {
     "red": {
@@ -104,6 +106,7 @@
     "current Consumer Blueprint, Mastery V2 or Scheduler current-boundary schema mismatch",
     "dependency on quarantined historical Consumer/Mastery/Scheduler manifest or baseline hash",
     "unknown or duplicate focus target",
+    "lesson focus target without an unambiguous current parent chapter",
     "phase mismatch across readiness and schedule request",
     "caller-supplied scheduler result or readiness color",
     "persisted mastery snapshot admitted",
@@ -127,6 +130,7 @@
     "staleManifestDependencyRemoved": true,
     "productionDashboardConnected": false,
     "runtimeActivationAllowed": false,
-    "result": "PASS_CONTRACT_ONLY_PENDING_B105_GATE"
+    "result": "PASS_CONTRACT_ONLY_PENDING_L27_H2_GATE",
+    "lessonPrerequisiteInheritancePinned": true
   }
 }
