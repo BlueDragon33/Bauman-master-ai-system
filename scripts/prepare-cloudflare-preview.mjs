@@ -200,6 +200,7 @@ if (!html.includes('assets/js/platform/runtime-config.js') || !html.includes('as
   throw new Error('Bauman runtime is missing the device-access bootstrap scripts.');
 }
 const russianHtml = fs.readFileSync(path.join(runtimeDist, 'subjects/russian/index.html'), 'utf8');
+if (!russianHtml.includes('assets/handwriting-recognition.js')) throw new Error('Russian runtime is missing handwriting recognition script reference.');
 for (const resource of [
   '../../foundation/domain-model/canonical-identity-runtime.js',
   '../../foundation/domain-model/identity-overlay-store.js',
