@@ -2548,8 +2548,14 @@ function renderMedia(){
   ['02','Nhại','Lặp 3-5 câu ngắn.'],
   ['03','Nói lại','Chuyển sang đối thoại.']
  ];
- const openButton=url?`<a class="btn" href="${esc(url)}" target="_blank" rel="noopener">Mở ngoài</a>`:`<button class="btn disabled" disabled>Mở ngoài</button>`;
- const player=embed?`<iframe src="${esc(embed)}" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>`:`<div class="media-empty-player v1256-empty-player"><b>${mediaIcon(active)}</b><h3>${esc(activeTitle)}</h3><p>${esc(url?'Nguồn này nên mở ngoài, sau đó quay lại nói lại.':'Chưa có iframe. Bấm “Sửa nguồn” để thêm link nhúng.')}</p></div>`;
+  const networkOnly=mediaNetworkOnly(active);
+  const networkUnavailable=networkOnly&&navigator.onLine===false;
+  const openButton=networkUnavailable
+   ?`<button class="btn disabled" disabled title="Nguồn external cần kết nối mạng">Cần mạng</button>`
+   :(url?`<a class="btn" href="${esc(url)}" target="_blank" rel="noopener">Mở ngoài</a>`:`<button class="btn disabled" disabled>Mở ngoài</button>`);
+  const player=networkUnavailable
+   ?`<div class="media-empty-player media-offline-unavailable v1256-empty-player"><b>⌁</b><h3>Nguồn external chưa dùng được khi offline</h3><p>Video/audio này không nằm trong gói offline. Kết nối mạng để mở nguồn, hoặc tiếp tục bằng audio/text/cue Nga đã có trong app.</p></div>`
+   :(embed?`<iframe src="${esc(embed)}" data-ru-network-media="${networkOnly?'1':'0'}" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>`:`<div class="media-empty-player v1256-empty-player"><b>${mediaIcon(active)}</b><h3>${esc(activeTitle)}</h3><p>${esc(url?'Nguồn này nên mở ngoài, sau đó quay lại nói lại.':'Chưa có iframe. Bấm “Sửa nguồn” để thêm link nhúng.')}</p></div>`);
  return `<div class="media-hub step54-media-hub v1256-media-hub">
    <div class="media-layout step54-media-layout v1256-media-layout">
      <aside class="panel media-side step54-media-side v1256-media-side">
