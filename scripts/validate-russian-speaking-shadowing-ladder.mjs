@@ -14,10 +14,12 @@ export function validateContract(c){
   assert(c.runtime?.recognitionResultEvidenceRequired===true&&c.runtime?.failedOrEmptyRecognitionDoesNotCountAttempt===true,'Speaking evidence must require non-empty recognition result');
   assert(c.runtime?.deepSpeakingRecognitionRequired===true&&c.runtime?.deepSpeakingSelfAssessmentSeparate===true,'Deep Speaking must require recognition evidence and keep self-assessment separate');
   assert(c.runtime?.recognitionSessionTokenRequired===true&&c.runtime?.staleRecognitionCallbacksIgnored===true,'Speech recognition sessions must reject stale callbacks');
+  assert(c.runtime?.recognitionContextCapturedAtStart===true&&c.runtime?.delayedAutoAdvanceContextGuarded===true,'Speech recognition must preserve its start context through delayed callbacks');
   assert(c.runtime?.manualSelfAssessmentDoesNotCreateSpeakingEvidence===true,'Manual self-assessment must remain non-evidence');
   assert(c.evidence?.recognitionConfirmedAttempts===true,'Speaking attempts must remain recognition-confirmed');
   assert(c.evidence?.deepSpeakingAttemptsRecognitionConfirmed===true,'Deep Speaking attempts must remain recognition-confirmed');
   assert(c.evidence?.staleRecognitionCannotCreateEvidence===true,'Stale recognition callbacks must not create evidence');
+  assert(c.evidence?.recognitionWritesOriginalStore===true,'Recognition evidence must be written to the store captured at recorder start');
   assert(c.evidence?.learningFlowRecognitionOnly===true&&c.evidence?.selfAssessmentStoredSeparately===true,'Learning-flow speaking evidence must remain recognition-only');
   assert(c.runtime?.listeningLadderOwnedByTurn8===true&&c.runtime?.slowListenOwnedByRepairOnly===true,'Listening/speaking ownership drifted');
   assert(c.feedback?.translationAnswerForbidden===true&&c.feedback?.autoMasteryFromSimilarityScore===false,'Speaking feedback policy weakened');
@@ -68,6 +70,10 @@ export function validateRuntime(js,css,core,learningFlow){
   assert(core.includes('speechRecognitionToken=0'),'Speech recognition session token missing');
   assert((core.match(/const token=\+\+speechRecognitionToken;/g)||[]).length>=2,'Both recorders must start a fresh recognition session token');
   assert((core.match(/if\(token!==speechRecognitionToken\)return;/g)||[]).length>=8,'Recognition callbacks are not fully protected from stale sessions');
+  assert(core.includes("const resultStoreKey=inPracticeMode()?'practiceSpeechResults':'dialogueSpeechResults'"),'Recorder does not capture its result store at start');
+  assert(core.includes("dialogueIdAtStart=str(d?.id||d?.title||'dialogue')")&&core.includes("lessonIdAtStart=str(state.lessonId||'')"),'Recorder does not capture dialogue/lesson identity at start');
+  assert(core.includes('state[resultStoreKey]=state[resultStoreKey]||{}; const store=state[resultStoreKey]'),'Recognition result still writes through active/current surface state');
+  assert(core.includes('token===speechRecognitionToken&&sameSurface&&currentDialogueId()===dialogueIdAtStart&&activeLineIndex()===idx'),'Delayed speaking auto-advance is not context guarded');
   return true;
 }
 
