@@ -175,6 +175,7 @@ Turn 23 execution substeps:
 - **23.5 — Audio/media browser QA:** verify speech/audio controls, network-sensitive media behavior and browser capability fallbacks.
 - **23.6 — Cursive visual proof:** close `RUS-CURSIVE-VISUAL-001` with real browser glyph-difference evidence, or replace font-dependent cursive with an explicit handwriting asset/shape representation.
 - **23.7 — Integrated browser/package gate:** run combined package/accessibility/performance checks and update deferred-obligation status only after evidence is green.
+- **23.8 — Modal accessibility lifecycle regression:** require `aria-hidden=false` on open, `aria-hidden=true` on close, move focus into the dialog and restore the opener after close; negative gates prevent regression.
 
 ### Turn 24 — Migration freeze & promotion candidate
 
@@ -188,6 +189,8 @@ Turn 24 execution substeps:
 - **24.4 — Authority/bridge freeze:** preserve `BAUMAN_SUBJECT_BRIDGE_V1`, planning protocol, Learning State mastery/Review Queue ownership and Vocab SRS scheduler ownership.
 - **24.5 — Negative/promotion gates:** reject automatic main merge, destructive storage reset, translation fallback, invalid bridge/storage changes and cursive upper/lower collapse.
 - **24.6 — Promotion candidate documentation:** record compatibility, version-free display policy, OFL cursive provenance and the requirement for a separate promotion decision.
+- **24.7 — Version-free fallback freeze:** remove versioned learner-facing fallback labels from the adapter/core themselves, not only from the cleanup override; internal protocol/build metadata may remain non-visual.
+- **24.8 — Post-freeze regression revalidation:** rerun Turn 23/24 source gates after any frozen-candidate defect fix and retain GREEN only when browser, migration and promotion assertions all include the fix.
 
 Result: all canonical 24 turns are GREEN. No further turn is created because no new responsibility remains unresolved inside this rebuild. Promotion to `main` is deliberately outside automatic execution.
 
