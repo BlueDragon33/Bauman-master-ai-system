@@ -123,7 +123,13 @@
 
   function customPlan(context={},prompt=''){
     const p=clean(prompt);
-    const base=context.vocab&&clean(context.vocab.term)?vocabPlan(context):lessonPlan(context);
+    const view=clean(context.view);
+    const tab=clean(context.learnTab);
+    const base=view==='vocab'?vocabPlan(context)
+      :view==='dialogue'?dialoguePlan(context)
+      :view==='writing'?writingPlan(context)
+      :(view==='learning'&&tab==='review')?reviewPlan(context)
+      :lessonPlan(context);
     return {
       ...base,
       title:'AI Mentor · câu hỏi theo ngữ cảnh',
