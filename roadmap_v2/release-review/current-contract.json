@@ -1,6 +1,6 @@
 {
   "schema": "BAUMAN_ROADMAP_V2_RELEASE_REVIEW_CONTRACT_V1",
-  "version": "2.12.0-l32-b125",
+  "version": "2.12.1-l32-b125-h1",
   "purpose": "Data-only release-review receipt boundary that recomputes current Promotion Eligibility, permits review only for eligible_for_release_review candidates, and records a separate release-review decision without granting production promotion, persistence, runtime, or production-consumer authority",
   "mode": {
     "access": "read_only_release_review",
@@ -29,7 +29,8 @@
     "acceptCallerSuppliedPromotionEligibilityResult": false,
     "acceptCallerSuppliedEligibilityState": false,
     "requireEligibleForReleaseReview": true,
-    "manualEligibilityOverrideAllowed": false
+    "manualEligibilityOverrideAllowed": false,
+    "requireNestedCandidateMatch": true
   },
   "reviewPolicy": {
     "reviewerRefPattern": "^RELEASE_REVIEWER::[A-Z0-9_-]+$",
@@ -53,7 +54,10 @@
     "includesProductionPromotionCommand": false,
     "includesRuntimeCommand": false,
     "includesScheduleMutation": false,
-    "includesNotificationCommand": false
+    "includesNotificationCommand": false,
+    "includesReleaseReviewerRef": true,
+    "includesSubmittedReviewDecision": true,
+    "includesReasonCodes": true
   },
   "capabilities": {
     "releaseReviewEvaluate": true,
@@ -72,6 +76,7 @@
     "Release Review request schema mismatch or unsupported caller fields",
     "candidate reference outside CANDIDATE namespace",
     "release reviewer reference outside RELEASE_REVIEWER namespace",
+    "outer candidate reference does not exactly match nested Promotion Eligibility candidate reference",
     "caller-supplied Promotion Eligibility result or eligibility state",
     "Promotion Eligibility recomputation does not yield eligible_for_release_review",
     "caller attempts production promotion, persistence, runtime, schedule, notification or automatic action authority"

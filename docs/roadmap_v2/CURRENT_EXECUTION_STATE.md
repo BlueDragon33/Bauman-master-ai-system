@@ -6,16 +6,16 @@
 ## Active track
 
 - Current round: **Lượt 32**
-- Current step: **L32/B125 — RELEASE REVIEW CONTRACT · IN_PROGRESS**
+- Current step: **L32-H1 — RELEASE REVIEW IDENTITY/AUDIT BINDING · IN_PROGRESS**
 - L22 closeout: **B88 + H1 — PASS**
-- Status: **L23_COMPLETE · L24_COMPLETE · L25_COMPLETE · L26_COMPLETE · L27_COMPLETE · L28_COMPLETE · L29_COMPLETE_THROUGH_B116 · L30_COMPLETE_THROUGH_B120 · L31_COMPLETE_THROUGH_B124 · L32_B125_ACTIVE**
-- Last recorded six-gate head: `369df7fcc7f9e79c2ad3426651918608cc56bcc1`
+- Status: **L23_COMPLETE · L24_COMPLETE · L25_COMPLETE · L26_COMPLETE · L27_COMPLETE · L28_COMPLETE · L29_COMPLETE_THROUGH_B116 · L30_COMPLETE_THROUGH_B120 · L31_COMPLETE_THROUGH_B124 · L32_B125_COMPLETE · L32_H1_ACTIVE**
+- Last recorded six-gate head: `59e7fba97b2d8c839ddddae0c09fcab391840511`
 - Production/runtime activation by Roadmap V2: **disconnected**
 - Legacy/source destructive migration: **not executed**
-- Last completed: **L31 final marker — PASS on complete six-gate set**
+- Last completed: **L32/B125 Release Review contract — PASS on complete six-gate set**
 - Last hardening: **L29-F2 validator/harness syntax repair — PASS; no gate weakening**
-- Current official step: **L32/B125 — canonical Release Review boundary**
-- L31 is fully closed. B125 is active; B126 remains blocked until B125 passes the complete six-gate set.
+- Current official step: **L32-H1 — Release Review identity/audit binding hardening**
+- B125 is closed. H1 is active; B126 remains blocked until H1 passes the complete six-gate set.
 
 ## L22/B88 complete gate evidence
 
@@ -892,3 +892,17 @@ Pre-audit found a current-track architecture gap: L31 can emit `eligible_for_rel
 L32 therefore opens as a data-only Release Review Boundary. Production promotion and production integration remain disconnected.
 
 Current active step: **L32/B125**.
+
+
+## L32/B125 gate evidence
+
+Accepted B125 head: `59e7fba97b2d8c839ddddae0c09fcab391840511`
+
+- Roadmap V2 Current Gate — run `35456123727` — PASS
+- Foundation Domain Model — run `35456123699` — PASS
+- Windows checkout safety — run `35456123705` — PASS
+- Russian Reference UI — run `35456123730` — PASS
+- Cloudflare Preview — run `35456123725` — PASS
+- Whole System Integration — run `35456123723` — PASS
+
+B125 is closed. Pre-B126 audit found L32-H1: bind the outer Release Review candidate exactly to the nested Promotion Eligibility candidate and preserve reviewer/decision/reason audit fields in the result schema. No authority is widened.
