@@ -50,9 +50,9 @@ If a gate fails, repair it before continuing. Never weaken an assertion merely t
 | 19 | Skill-gated assessment | GREEN | Six read-only evidence gates remain isolated; aggregate ready only when all six meet explicit criteria |
 | 20 | AI mentor direct explanation | GREEN | Russian-first direct-semantic helper; translation fallback blocked; AI context remains read-only |
 | 21 | Weakness repair routing | GREEN | Unified additive repair router; focused routes; evidence-gated resolution; legacy click-equals-complete removed |
-| 22 | Offline media & asset reliability | GREEN | 62-entry shell + 17 required data sources verified; false-ready blocked; external media/visual failures explicit |
-| 23 | Browser/package/accessibility/performance QA | ACTIVE | Includes cursive visual-difference proof |
-| 24 | Migration freeze & promotion candidate | PLANNED | Cannot freeze with open deferred obligations |
+| 22 | Offline media & asset reliability | GREEN | Entry-derived shell + 17 required data sources verified; false-ready blocked; external media/visual failures explicit |
+| 23 | Browser/package/accessibility/performance QA | GREEN | 64 entry dependencies / 66 shell entries exact; accessibility/responsive/performance/browser fallbacks gated; cursive obligation closed by explicit 33-letter vector shapes |
+| 24 | Migration freeze & promotion candidate | ACTIVE | Freeze compatibility only after cross-system promotion gates pass |
 
 ## Turn definitions
 
@@ -182,15 +182,19 @@ Remove obsolete translation-first runtime authority, document compatibility, clo
 
 ## Deferred obligations
 
-### RUS-CURSIVE-VISUAL-001
+### RUS-CURSIVE-VISUAL-001 — CLOSED
 
 Created by: Turn 5.
 
-Requirement: browser/package QA must prove the selected handwriting font stack produces a visibly different cursive/handwritten glyph presentation from print for the literacy experience, or replace it with an explicit handwriting asset/shape representation.
+Closed by: Turn 23.
 
-Due: Turn 23.
+Resolution: the literacy and handwriting-motor surfaces now use `RUSSIAN_CURSIVE_GLYPH_SHAPES_V1`, an explicit 33-letter SVG path layer loaded before Cyrillic literacy. Recognition no longer depends on Segoe Script/Comic Sans or another installed handwriting font to distinguish the cursive presentation from print.
 
-Blocks: Turn 24 freeze.
+Evidence: Turn 23 integrated browser/package gate verifies 33/33 explicit path coverage, SVG path rendering without `<text>`, literacy/motor integration, package load order and offline-shell inclusion.
+
+Due: Turn 23 — satisfied.
+
+Blocks Turn 24: no.
 
 ## Expansion rule
 
