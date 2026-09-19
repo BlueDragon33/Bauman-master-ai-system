@@ -13,6 +13,7 @@ export function validateContract(contract){
   assert(contract.freshLearner?.continueFallback?.view==='learning'&&contract.freshLearner?.continueFallback?.learnTab==='practice','Continue fallback must lead to listening/speaking practice');
   assert(JSON.stringify(contract.freshLearner?.visibleLearningTabOrder)===JSON.stringify(['practice','theory','exercises','review','exam']),'Visible learning tabs must put Nghe/Nói first');
   assert(contract.freshLearner?.invalidLearningTabFallback==='practice'&&contract.freshLearner?.renderRecoveryFallback==='practice','Learning fallback/recovery must remain oral-first');
+  assert(contract.freshLearner?.primaryLearningCta==='practice'&&contract.freshLearner?.routeFocusCta==='practice','Primary learning CTAs must remain oral-first');
   const priority=contract.dashboardPriority||[];
   assert(priority[0]==='listening'&&priority[1]==='speaking','Dashboard must start with listening then speaking');
   assert(priority.indexOf('cyrillic_literacy')<priority.indexOf('visual_vocabulary'),'Cyrillic literacy must appear before vocabulary');
@@ -30,6 +31,8 @@ export function validateRuntime(core,adapter,referenceUi,learningFlow,planning){
   assert(adapter.includes("learningTabs: [\n    ['practice','🎙️','Nghe/Nói']"),'Adapter visible learning-tab order is not oral-first');
   assert(core.includes("state.learnTab=allowed.includes(tab)?tab:'practice'"),'Learning-tab action fallback is not oral-first');
   assert(core.includes("view:'learning',learnTab:'practice'")&&core.includes('Đã chặn lỗi render và mở lại Nghe/Nói'),'Learning render recovery is not oral-first');
+  assert(core.includes("['Mở Nghe/Nói chính'")&&core.includes("['Mở Nghe/Nói theo lịch'"),'Overview primary CTAs do not start with listening/speaking');
+  assert(core.includes(`data-route='{"view":"learning","learnTab":"practice"}'>Bắt đầu Nghe/Nói`),'Route-focus primary CTA is not listening/speaking');
   assert(referenceUi.includes("return {view:'learning',learnTab:'practice'}"),'Reference UI continue fallback is not oral-first');
   assert(learningFlow.includes("const STEP_ORDER=['speaking','theory','vocab','grammar','exercises','check']"),'Learning flow does not suggest speaking first');
   const skillStart=referenceUi.indexOf('const SKILLS=[');
