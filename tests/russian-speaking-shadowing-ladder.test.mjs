@@ -28,6 +28,10 @@ assert.equal(validateRuntime(js,css,core,learningFlow),true);
 {const x=copy();x.evidence.recognitionWritesOriginalStore=false;assert.throws(()=>validateContract(x),/store captured at recorder start/)}
 {const x=copy();x.runtime.singleRecognitionResultPerSession=false;assert.throws(()=>validateContract(x),/at most once/)}
 {const x=copy();x.evidence.duplicateRecognitionCallbacksDoNotDuplicateAttempts=false;assert.throws(()=>validateContract(x),/at most once/)}
+{const x=copy();x.runtime.deepWeakResolutionRequiresNewRecognition=false;assert.throws(()=>validateContract(x),/weak resolution/)}
+{const x=copy();x.evidence.deepWeakResolutionEvidenceGated=false;assert.throws(()=>validateContract(x),/weak resolution/)}
+assert.throws(()=>validateRuntime(js,css,core.replace('p.lastAttemptAt[id]=Date.now();',''),learningFlow),/does not persist attempt time/);
+assert.throws(()=>validateRuntime(js,css,core.replace("if(weakAt&&attemptAt<=weakAt){toast('Hãy ghi âm ít nhất một lượt mới trước khi gỡ mục Cần ôn.');return}","if(false){return}"),learningFlow),/clear weak state without newer recognition evidence/);
 assert.throws(()=>validateRuntime(js,css,core.replaceAll('let resultConsumed=false;',''),learningFlow),/track recognition-result consumption/);
 assert.throws(()=>validateRuntime(js,css,core.replaceAll('||resultConsumed',''),learningFlow),/single-consumption guarded/);
 assert.throws(()=>validateRuntime(js,css,core.replace("const store=state[resultStoreKey]","const store=activeSpeechResults()"),learningFlow),/writes through active\/current surface state|result store/);
@@ -49,4 +53,4 @@ assert.throws(()=>validateRuntime(js,css,core,learningFlow.replace("window.addEv
 assert.throws(()=>validateRuntime(js,css,core,learningFlow.replace("selfAssessments:Number(old.selfAssessments||0)+1","attempts:Number(old.attempts||0)+1")),/Self-assessment still increments speaking attempts/);
 
 console.log('RUSSIAN_SPEAKING_LADDER_NEGATIVE_TEST=PASS');
-console.log(JSON.stringify({negativeCases:28},null,2));
+console.log(JSON.stringify({negativeCases:32},null,2));
