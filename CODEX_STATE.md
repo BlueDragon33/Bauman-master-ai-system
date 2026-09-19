@@ -2,7 +2,7 @@
 
 Current task: `RUSSIAN_LISTENING_VISUAL_FIRST_ARCHITECTURE`
 
-Status: `RUSSIAN_RECONCILIATION_PROMOTION_DECISION`
+Status: `RUSSIAN_READY_FOR_EXPLICIT_PROMOTION_DECISION`
 
 Project phase: `5/5 — RECONCILIATION & PROMOTION DECISION`
 
@@ -10,7 +10,8 @@ Date: 2026-09-19
 Branch: `work/russian-listening-visual-first-architecture`
 PR: `#55 — Draft`
 Parent checkpoint: `676fe08d05e6d92ff4479620ad9bf00abe5f8da6`
-Latest accepted 9/9 checkpoint: `1d0c75e72acb8f0b23f250afc54a4278671d8949`
+Latest accepted source-branch checkpoint: `fa89fd40a1a7a30e23f671749658dfb631078dec`
+Clean promotion candidate: `PR #56 / 31b35c21a4248a6af32c39d442c5363606a400f2`
 
 ## Responsibility
 
@@ -132,21 +133,40 @@ Accepted checkpoint: `1d0c75e72acb8f0b23f250afc54a4278671d8949`
 - full checkpoint: 9/9 workflows PASS;
 - Phase 4/5 is CLOSED.
 
-## Active auto-generated work
+## Phase 5 promotion reconciliation
+
+### R-HW15 — Reconciliation Manifest
+Accepted source checkpoint: `fa89fd40a1a7a30e23f671749658dfb631078dec`
+
+- Source PR #55 remains history-contaminated and MUST NOT be merged wholesale.
+- Phase-5 manifest/whitelist audit PASS.
+- Full source branch checkpoint: 9/9 workflows PASS.
 
 ### R-P1 — Clean Main-Based Promotion Candidate
+Candidate: `PR #56`
+Head: `31b35c21a4248a6af32c39d442c5363606a400f2`
 
-Goal: reconstruct the accepted Russian promotion slice on top of current `main` without inheriting unrelated branch history.
+- reconstructed directly from current `main`;
+- 4 commits ahead, 0 behind;
+- 21 changed files;
+- no Foundation/Academic/Content Resolution paths;
+- no CODEX working-state files;
+- no unrelated Math system-browser wait fix;
+- source/package/offline Russian handwriting acceptance PASS;
+- all 5 workflows triggered by the clean responsibility slice PASS.
 
-1. Start a separate candidate branch from current `main`.
-2. Copy only files whose `main` version equals the parent checkpoint or which were newly added after the parent.
-3. Exclude working-state metadata (`CODEX_STATE.md`, `CODEX_TASK.md`) from the promotion candidate.
-4. For `.github/workflows/system-integration-ci.yml`, reapply only Russian post-parent CI additions onto the current `main` file.
-5. For `tests/system-browser-acceptance.mjs`, reapply only the Russian post-parent assertion onto current `main`.
-6. Compare candidate against `main` and reject any Foundation/Academic/Content Resolution path.
-7. Run candidate CI without changing PR #55 or merging `main`.
-8. Resolve any candidate-only compatibility failures.
-9. Produce an explicit promotion decision checkpoint; merge remains a separate explicit action.
+### R-P2 — Promotion Decision Audit
+Status: `READY FOR EXPLICIT PROMOTION DECISION`
+
+- 19/20 non-system-CI promotable files are byte-identical to the accepted source slice;
+- Russian UI workflow differs only by removal of source-history Phase-4/5 audits;
+- system integration workflow is rebuilt from `main` with Russian-only additions: 29 additions, 0 deletions;
+- PR #56 is mergeable but remains Draft;
+- PR #55 is source/history evidence only and must not be merged.
+
+### Current boundary
+
+No further automatic merge action is authorized. The next state transition is an explicit promotion decision on PR #56.
 
 ## Validation policy
 
@@ -168,12 +188,7 @@ The branch uses fail-closed behavior: missing, stale, malformed, unlicensed, unh
 
 Current position is **Phase 5/5: Reconciliation & Promotion Decision**.
 
-Phase 5 is active. It consists of:
-1. freeze a deterministic, hashed Russian promotion manifest;
-2. construct a clean promotion branch from current `main` using only that manifest;
-3. run full source/package/offline CI on the clean branch;
-4. make an explicit promotion decision;
-5. only then merge the accepted clean Russian slice into `main`.
+Phase 5 reconciliation and candidate validation are complete. The project is now at the explicit promotion-decision boundary. PR #56 is the only eligible clean promotion candidate; no merge is authorized until an explicit decision is made.
 
 ## Branch/merge rule
 
