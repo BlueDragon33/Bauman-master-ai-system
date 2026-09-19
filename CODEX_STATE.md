@@ -152,3 +152,15 @@ Executable checkpoint before this documentation update:
 - `russian-existing-regression`: SUCCESS
 
 The promotion candidate remains frozen and must not merge to `main` automatically.
+
+
+### Trusted-host image enrichment proof
+
+The verified-image path now accepts thumbnails only from `https://upload.wikimedia.org/` and source pages only from `https://commons.wikimedia.org/`. Untrusted image hosts are rejected by the ranking layer before rendering.
+
+Final executable checkpoint for this repair:
+
+- commit: `a9a813bb788c23775ee0b55356a27931d8d950c4`
+- workflow: `35416968142`
+- architecture job: SUCCESS
+- existing regression job: SUCCESS
