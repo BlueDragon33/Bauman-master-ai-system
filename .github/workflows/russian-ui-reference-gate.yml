@@ -29,6 +29,8 @@ jobs:
         run: node subjects/russian/scripts/validate-reference-ui.mjs
       - name: Validate Russian lesson learning flow
         run: node subjects/russian/scripts/validate-learning-flow.mjs
+      - name: Validate Russian listening and visual-first architecture
+        run: node subjects/russian/scripts/validate-listening-visual-first.mjs
       - name: Validate Russian vocabulary SRS runtime
         run: node subjects/russian/scripts/validate-vocab-srs.mjs
       - name: Validate Russian listening speaking coach
