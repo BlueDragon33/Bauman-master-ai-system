@@ -274,3 +274,28 @@ Executable checkpoint:
 - `russian-existing-regression`: SUCCESS
 
 No Turn 25 was created. The promotion candidate remains frozen and must not merge to `main` automatically.
+
+
+## Post-freeze recognition de-duplication and vocabulary/SRS semantic isolation — 2026-09-19
+
+A broader runtime audit found additional defects inside existing responsibilities; no Turn 25 was created.
+
+- Turn 9.6: each SpeechRecognition session now consumes one result/error path only. Duplicate callbacks cannot increment Learning Flow or Deep Speaking attempts multiple times.
+- Turn 9.7: Deep Speaking stores `lastAttemptAt`; a `Cần ôn` flag cannot be cleared by self-assessment unless a newer recognition-backed attempt exists after the weak timestamp.
+- Turn 10.2: vocabulary search no longer indexes `meaningVi/english` and cannot fall back to raw `JSON.stringify(source)`; content-contract examples/definitions are Russian/Cyrillic filtered.
+- Turn 18.2: SRS Sentence Mining rejects non-Cyrillic source context; exact speaking-link titles use Russian-labelled metadata or inert IDs, never `context_title_vi`.
+- Turn 24.13: learner-facing route/database export filenames are version-free while internal compatibility metadata remains intact.
+- Turn 24.14: visual-vocabulary and migration gates freeze the new search/SRS semantic boundaries.
+
+During this repair CI correctly caught two issues and they were repaired before the final checkpoint: the speaking validator initially failed to count combined stale/session-consumption guards, and the Sentence Mining runtime initially missed the intended Cyrillic source guard. A migration-bundle patch was also inspected and corrected before CI after an accidental self-reference (`srs:bundle.srs`) was found during source verification.
+
+Executable checkpoint before documentation update:
+
+- commit: `c0e2413b5ec34e86e6ad83fb0c907dcea1417aa4`
+- workflow: `35422889144`
+- `russian-learning-contract`: SUCCESS
+- `russian-existing-regression`: SUCCESS
+
+The broader runtime scan found Vietnamese writing-task metadata in academic writing helpers; it was retained because it is task/instruction metadata rather than vocabulary/dialogue translation-answer authority. Internal package/version identifiers also remain where non-visual compatibility requires them.
+
+The promotion candidate remains frozen and must not merge to `main` automatically.
