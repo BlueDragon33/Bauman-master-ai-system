@@ -11,7 +11,7 @@ const PACKAGE_ROOT=A.packageRoot||'subjects/russian/';
 const NAV=A.nav||[['overview','🧭','Tổng quan'],['learning','🎓','Học tập'],['dialogue','💬','Đối thoại'],['writing','✍️','Viết'],['media','🎬','Video/Audio'],['vocab','🗂️','Từ vựng'],['grammar','🧩','Ngữ pháp'],['mindmap','🧠','Mind map'],['storage','🗄️','Lưu trữ']];
 const LEARN_TABS=A.learningTabs||[['theory','📘','Lý thuyết'],['exercises','📝','Bài tập'],['practice','🎙️','Nghe/Nói'],['review','🔁','Ôn tập'],['exam','🧪','Kiểm tra']];
 const DEFAULT={stage:'vn',view:'overview',learnTab:'practice',lessonId:'',slide:0,lessonQuery:'',conceptQuery:'',exerciseLevel:'all',exerciseIndex:0,testLevel:'easy',testIndex:0,testAnswer:null,reviewLevel:'easy',reviewFilter:'all',reviewLesson:'all',reviewIndex:0,reviewPage:0,reviewAnswer:null,reviewProgress:{done:{},flagged:{},wrong:{}},examLevel:'easy',examCycle:'auto',examPaperLevel:'easy',examPaperType:'standard',examIndex:0,examPage:0,examAnswer:null,examProgress:{answers:{},marked:{},submitted:false,submittedAt:null,result:null,wrong:{},paperResults:{}},examHistory:[],remedialPlan:{active:false,cards:[],completed:{},createdAt:null,lastExamAt:null,lastScore:null},dialogueId:'',dialogueGroup:'all',dialogueDifficulty:'all',dialogueQuery:'',dialogueLineIndex:0,dialogueRole:'all',dialogueHideVi:false,dialoguePeople:'2',dialogueMinutes:'10',dialogueMode:'shadow_roleplay',dialogueScenario:'classroom',practiceDialogueId:'',practiceGroup:'all',practiceDifficulty:'all',practiceQuery:'',practiceLineIndex:0,practiceRole:'all',practiceHideVi:false,practiceSpeechResults:{},practiceHeard:{},dialogueSpeechResults:{},deepSpeakingId:'',deepSpeakingMode:'overview',deepSpeakingStep:0,deepSpeakingProgress:{done:{},weak:{},attempts:{},lastMode:{}},optionalDataLoading:{},optionalDataError:{},speechResults:{},speechRecording:false,speechAutoNext:false,mediaCat:'all',mediaQuery:'',mediaView:'list',mediaId:'',vocabQuery:'',vocabIndex:0,vocabPage:0,vocabFlipped:false,grammarLevel:'all',grammarTrack:'all',grammarQuery:'',grammarIndex:0,mindmapId:'roadmap-map',mindmapNode:'',mindmapFontScale:14,mindmapDrag:{},mindmapLayoutVersion:'v13_32_clean',writingMode:'handwriting',handwritingIndex:0,handwritingQuery:'',handwritingStep:0,handwritingPractice:'trace',handwritingShowGuide:true,handwritingShowLines:true,writingIndex:0,writingQuery:'',writingDraft:'',storageFile:'curriculum',storageGroup:'all',storageText:'',storagePreviewLimit:0,storagePreviewAutoCollapsedV1322:false,storageQuery:'',storageTreeOpen:{},aiDraft:'',aiOutput:'',interfaceTheme:'clean',interfaceDensity:'normal',hostTask:null,planningBundle:null,routeEdit:false,routeManual:null,routeFocus:'today',testSession:{answered:0,correct:0,targetQuestions:100,targetScore:80,seen:{}},recentAccess:[],stageGate:null,examGateSource:null};
-let DB={},state={...DEFAULT},canvas=null,ctx=null,drawing=false,strokes=[],currentStroke=null,penColor='#111827',penSize=6,speechRecognizer=null;
+let DB={},state={...DEFAULT},canvas=null,ctx=null,drawing=false,strokes=[],currentStroke=null,penColor='#111827',penSize=6,speechRecognizer=null,modalReturnFocus=null;
 const $=(s,r=document)=>r.querySelector(s), $$=(s,r=document)=>Array.from(r.querySelectorAll(s));
 const arr=v=>Array.isArray(v)?v:[], str=v=>String(v??''), esc=v=>str(v).replace(/[&<>"']/g,m=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[m])), lower=v=>str(v).toLowerCase();
 const uniq=a=>Array.from(new Set(arr(a).filter(Boolean))); const key=A.storageKey||'bauman_russian_v11_clean_skeleton';
@@ -419,7 +419,7 @@ function openModal(html,type='generic'){
  if(type==='route')setTimeout(()=>{const card=$('#modal .modal-card'); const body=$('#modalBody'); if(card)card.scrollTop=0; if(body)body.scrollTop=0;},30);
  if(isPresentation)setTimeout(()=>{closeFloatingLearningMenus(); const ps=presentationScroller(); if(ps){ps.scrollTop=0; ps.focus({preventScroll:true});}},40);
 }
-function closeModal(){ state.modalType=''; setPresentationOverlayLock(false); const modal=$('#modal'); if(modal){modal.classList.add('hidden'); modal.classList.remove('presentation-modal-root');} const body=$('#modalBody'); body.innerHTML=''; body.classList.remove('presentation-body'); const card=$('#modal .modal-card'); if(card){card.classList.remove('presentation-card','route-card-modal','exam-result-card-modal','confirm-card-modal');} }
+function closeModal(){ state.modalType=''; setPresentationOverlayLock(false); const modal=$('#modal'); if(modal){modal.classList.add('hidden'); modal.classList.remove('presentation-modal-root'); modal.setAttribute('aria-hidden','true');} const body=$('#modalBody'); body.innerHTML=''; body.classList.remove('presentation-body'); const card=$('#modal .modal-card'); if(card){card.classList.remove('presentation-card','route-card-modal','exam-result-card-modal','confirm-card-modal');} const back=modalReturnFocus; modalReturnFocus=null; if(back&&back.isConnected)setTimeout(()=>back.focus?.({preventScroll:true}),0); }
 
 function confirmAction(action,label='hành động này',detail=''){
  const meta={action,label,detail};
@@ -2074,8 +2074,8 @@ function renderWriting(){
      </aside>
      <main class="panel handwriting-sheet hand-right-practice step4-right-board step36-right-board">
        <div class="practice-head step4-practice-head step36-practice-head v1285-practice-head"><div><span class="chip">Bảng phải · Tập viết</span><h3>${esc(handSample)}</h3><p>Viết theo mẫu chữ tay đã chọn. Tập trung nét sạch, khoảng cách đều, không cần xem thẻ thứ tự nét.</p></div><div class="mini-copy-line"><b>Chép vở:</b><span>${esc(item.copy||handSample)}</span></div></div>
-       <div class="writing-tools compact-tools step4-writing-tools step36-writing-tools"><label>Nét <input id="penSize" type="range" min="2" max="18" value="${penSize}"></label><button class="dot active" data-pen-color="#111827" title="Đen"></button><button class="dot red" data-pen-color="#9f1239" title="Đỏ"></button><button class="dot blue-dot" data-pen-color="#1d4ed8" title="Xanh"></button><button class="btn" data-act="undo-canvas">↶ Hoàn tác</button><button class="btn" data-act="clear-line">Xóa dòng luyện</button><button class="btn" data-act="clear-canvas">Xóa bảng</button><button class="btn" data-act="toggle-guide">${showGuide?'Tắt mẫu mờ':'Bật mẫu mờ'}</button><button class="btn" data-act="toggle-lines">${showLines?'Tắt đường kẻ':'Bật đường kẻ'}</button><button class="btn blue" data-act="download-canvas">Tải ảnh</button></div>
-       <div class="paper pro-paper step4-paper step36-paper"><canvas id="writingCanvas" class="writingCanvas" width="2048" height="1180"></canvas></div>
+       <div class="writing-tools compact-tools step4-writing-tools step36-writing-tools"><label>Nét <input id="penSize" type="range" min="2" max="18" value="${penSize}"></label><button class="dot active" data-pen-color="#111827" title="Đen" aria-label="Chọn bút màu đen"></button><button class="dot red" data-pen-color="#9f1239" title="Đỏ" aria-label="Chọn bút màu đỏ"></button><button class="dot blue-dot" data-pen-color="#1d4ed8" title="Xanh" aria-label="Chọn bút màu xanh"></button><button class="btn" data-act="undo-canvas">↶ Hoàn tác</button><button class="btn" data-act="clear-line">Xóa dòng luyện</button><button class="btn" data-act="clear-canvas">Xóa bảng</button><button class="btn" data-act="toggle-guide">${showGuide?'Tắt mẫu mờ':'Bật mẫu mờ'}</button><button class="btn" data-act="toggle-lines">${showLines?'Tắt đường kẻ':'Bật đường kẻ'}</button><button class="btn blue" data-act="download-canvas">Tải ảnh</button></div>
+       <div class="paper pro-paper step4-paper step36-paper"><canvas id="writingCanvas" class="writingCanvas" width="2048" height="1180" tabindex="0" aria-label="Bảng luyện viết Cyrillic bằng chuột hoặc bút cảm ứng"></canvas></div>
        <div class="step4-footnote step36-footnote v1285-writing-footnote"><span>Quy trình gọn: nhìn mẫu → viết trên bảng → chép lại vào vở thật.</span><span>Phím tắt: ←/→ đổi mẫu, Backspace hoàn tác.</span></div>
      </main>
    </div>`:`<div class="writing-workbench compact-writing academic-mode final-academic-layout">
@@ -3322,7 +3322,20 @@ function handleInput(e){
  if(k==='writingDraft'){state[k]=e.target.value; save(); return;}
  clearTimeout(handleInput.t); handleInput.t=setTimeout(()=>applyInput(e.target),180)
 }
+function trapModalFocus(e){
+ const modal=$('#modal');
+ if(!modal||modal.classList.contains('hidden'))return false;
+ if(e.key==='Escape'){closeModal();e.preventDefault();return true;}
+ if(e.key!=='Tab')return false;
+ const focusable=Array.from(modal.querySelectorAll('button:not([disabled]), [href], input:not([disabled]), select:not([disabled]), textarea:not([disabled]), [tabindex]:not([tabindex="-1"])')).filter(el=>el.offsetParent!==null);
+ if(!focusable.length){e.preventDefault();return true;}
+ const first=focusable[0],last=focusable[focusable.length-1],active=document.activeElement;
+ if(e.shiftKey&&(active===first||!modal.contains(active))){last.focus();e.preventDefault();return true;}
+ if(!e.shiftKey&&(active===last||!modal.contains(active))){first.focus();e.preventDefault();return true;}
+ return false;
+}
 function handleKeys(e){
+  if(state.modalType!=='presentation'&&trapModalFocus(e))return;
  const tag=(e.target?.tagName||'').toLowerCase(); const typing=['input','textarea','select'].includes(tag);
  if(state.modalType==='presentation'){
    if(e.key==='Escape'){closeModal();e.preventDefault();return}
