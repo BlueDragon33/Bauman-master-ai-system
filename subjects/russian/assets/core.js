@@ -2113,7 +2113,7 @@ function renderVocab(){
   const termSizeClass=termLen>24?'term-xxlong':termLen>15?'term-xlong':termLen>9?'term-long':'term-normal';
   const directReady=info.semanticStatus!=='missing_visual_semantics';
   const visualAsset=info.image
-   ?'<img src="'+esc(info.image)+'" alt="'+esc(info.visualLabelRu||term)+'">'
+   ?'<img src="'+esc(info.image)+'" alt="'+esc(info.visualLabelRu||term)+'" data-ru-visual-asset="vocab">'
    :(info.emoji?'<span class="direct-visual-symbol">'+esc(info.emoji)+'</span>':'<span class="direct-visual-missing">?</span>');
   const russianCue=info.visualLabelRu||info.definitionRu||info.contextRu||term;
   const sideRows=rows.map((item,i)=>{
@@ -2492,6 +2492,13 @@ function mediaCategoryLabel(m){return mediaSmartCategory(m)}
 function mediaTitle(m){return m?.title||m?.name||m?.id||'Nguồn Video/Audio'}
 function mediaPurpose(m){return m?.purpose||m?.summary||m?.description||'Xem/nghe để mở tai, ghi lại từ khóa và nói lại một câu ngắn.'}
 function mediaUrl(m){return m?.url||m?.link||m?.href||''}
+function mediaNetworkOnly(m){
+ const raw=str(m?.iframe||m?.embed||mediaUrl(m)).trim();
+ if(m?.offlineMapping===true)return false;
+ if(m?.offlineMapping===false)return true;
+ if(!raw)return false;
+ try{return new URL(raw,location.href).origin!==location.origin}catch(_){return /^https?:/i.test(raw)}
+}
 function mediaEmbed(m){
  const raw=str(m?.iframe||m?.embed||'').trim();
  if(raw.includes('<iframe')){const mm=raw.match(/src=["']([^"']+)/i); return mm?mm[1]:'';}
@@ -2903,7 +2910,7 @@ function aiDirectHtml(plan){
  if(!plan)return '<h4>AI Mentor</h4><p>Direct-semantic runtime chưa sẵn sàng.</p>';
  const media=plan.media||{};
  const visual=media.image_url
-  ?'<div class="ai-direct-visual"><img src="'+esc(media.image_url)+'" alt="'+esc(plan.title||'visual context')+'"></div>'
+  ?'<div class="ai-direct-visual"><img src="'+esc(media.image_url)+'" alt="'+esc(plan.title||'visual context')+'" data-ru-visual-asset="ai"></div>'
   :(media.visual_symbol?'<div class="ai-direct-symbol">'+esc(media.visual_symbol)+'</div>':'');
  const scene=media.scene?'<small class="ai-direct-scene">'+esc(media.scene)+'</small>':'';
  const steps=arr(plan.steps).map((row,i)=>{
@@ -3381,6 +3388,9 @@ function handleRepairRoute(event){
  },60);
 }
 
+function refreshNetworkSensitiveView(){
+ if(state.view==='media')render();
+}
 function bridge(){
  const incoming=['BAUMAN_ASSIGN_TASK','BAUMAN_PLANNING_MISSION','BAUMAN_TODAY_TASK','BAUMAN_MAIN_TODAY','BAUMAN_TODAY_GOAL','BAUMAN_SCHEDULE_TODAY'];
  const status=A.exportSubjectStatus?A.exportSubjectStatus():{subjectId:A.id||'russian',version:VERSION,packageRoot:PACKAGE_ROOT,entry:'subjects/russian/index.html',dataFiles:DATA_FILES,selfContained:true};
@@ -3410,6 +3420,6 @@ function bridge(){
  });
  ready();
 }
-async function init(){loadState(); await loadData(); buildShell(); document.addEventListener('pointerdown',handleMindMapDrag,{passive:true}); document.addEventListener('pointerover',handleMindMapHover,{passive:true}); document.addEventListener('pointerout',handleMindMapHoverOut,{passive:true}); document.addEventListener('dblclick',handleMindMapDoubleClick); document.addEventListener('click',handleClick); document.addEventListener('change',handleChange); document.addEventListener('input',handleInput); document.addEventListener('keydown',handleKeys); window.addEventListener('resize',()=>{if(state.view==='mindmap')requestAnimationFrame(()=>updateMindMapConnectors(document.querySelector('[data-mindmap-canvas=\"1\"]')));},{passive:true}); window.addEventListener('russian:repair-route',handleRepairRoute); $('#modalClose').addEventListener('click',closeModal); $('#modal').addEventListener('click',e=>{if(e.target.id==='modal')closeModal()}); $('#themeBtn').addEventListener('click',()=>openModal(renderInterfaceModal(),'interface')); $('#aiBtn').addEventListener('click',()=>openModal(renderAiMentor(),'ai')); bridge(); render(); }
+async function init(){loadState(); await loadData(); buildShell(); document.addEventListener('pointerdown',handleMindMapDrag,{passive:true}); document.addEventListener('pointerover',handleMindMapHover,{passive:true}); document.addEventListener('pointerout',handleMindMapHoverOut,{passive:true}); document.addEventListener('dblclick',handleMindMapDoubleClick); document.addEventListener('click',handleClick); document.addEventListener('change',handleChange); document.addEventListener('input',handleInput); document.addEventListener('keydown',handleKeys); window.addEventListener('resize',()=>{if(state.view==='mindmap')requestAnimationFrame(()=>updateMindMapConnectors(document.querySelector('[data-mindmap-canvas=\"1\"]')));},{passive:true}); window.addEventListener('online',refreshNetworkSensitiveView); window.addEventListener('offline',refreshNetworkSensitiveView); window.addEventListener('russian:repair-route',handleRepairRoute); $('#modalClose').addEventListener('click',closeModal); $('#modal').addEventListener('click',e=>{if(e.target.id==='modal')closeModal()}); $('#themeBtn').addEventListener('click',()=>openModal(renderInterfaceModal(),'interface')); $('#aiBtn').addEventListener('click',()=>openModal(renderAiMentor(),'ai')); bridge(); render(); }
 init();
 })();
