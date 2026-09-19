@@ -77,8 +77,12 @@ export function validateLearnerRuntime({core,visual,dialogue,aiDirect,aiGuard,cu
   for(const token of ['meaningVi','displayMeaning','English equivalent','.english']){
     assert(!vocabSlice.includes(token),'Learner vocabulary surface regained translation path: '+token);
   }
+  const deepSlice=slice(core,'function deepUnitTitle(','function renderDialogue(');
   const dialogueSlice=slice(core,'function renderDialogue()','function handwritingText(');
-  for(const token of ['vi_turns','toggle-vi','context_title_vi','communicative_functions_vi','prompt_vi','unit_title_vi','scenario_vi','title_vi'])assert(!dialogueSlice.includes(token),'Learner dialogue surface regained translation path: '+token);
+  for(const token of ['vi_turns','toggle-vi','context_title_vi','communicative_functions_vi','prompt_vi','unit_title_vi','scenario_vi','title_vi']){
+    assert(!deepSlice.includes(token),'Learner dialogue surface regained translation path: '+token);
+    assert(!dialogueSlice.includes(token),'Learner dialogue surface regained translation path: '+token);
+  }
   const aiContextSlice=slice(core,'function aiContext()','function aiDirectHtml(');
   for(const token of ['context_title_vi','communicative_functions_vi','vi_turns','meaning_vi','clue_en'])assert(!aiContextSlice.includes(token),'AI context regained translation semantic field: '+token);
 
