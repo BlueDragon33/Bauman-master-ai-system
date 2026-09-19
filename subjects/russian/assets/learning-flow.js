@@ -48,7 +48,17 @@
     if(step==='theory'&&Number(s.slideMoves||0)>0)return {key:'active',label:'Đang học'};
     return {key:'opened',label:'Đã mở'};
   }
-  function nextSuggested(ls){for(const step of STEP_ORDER){if(!ls?.steps?.[step])return step;}return 'check';}
+  function hasActivityEvidence(step,s){
+    if(!s)return false;
+    if(step==='speaking')return Number(s.attempts||0)>0||Number(s.ok||0)>0;
+    if(step==='alphabet')return Number(s.practiceActions||0)>0||Number(s.strokeActions||0)>0;
+    if(step==='theory')return Number(s.slideMoves||0)>0;
+    if(step==='vocab'||step==='grammar')return Number(s.supportActions||0)>0;
+    if(step==='exercises')return Number(s.moves||0)>0;
+    if(step==='check')return Number(s.correct||0)>0||Number(s.wrong||0)>0;
+    return false;
+  }
+  function nextSuggested(ls){for(const step of STEP_ORDER){if(!hasActivityEvidence(step,ls?.steps?.[step]))return step;}return 'check';}
   function esc(v){return clean(v).replace(/[&<>"']/g,m=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[m]));}
   function scopeLabel(scope){return scope==='lesson'?'Gắn bài':'Theo giai đoạn';}
   function panelHtml(ls){
