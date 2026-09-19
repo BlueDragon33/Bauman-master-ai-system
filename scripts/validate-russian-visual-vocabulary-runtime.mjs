@@ -20,6 +20,12 @@ export function validateContract(c){
   assert(c.learnerSurface?.contextRevealReplacesMeaningFlip===true,'Context reveal must replace translation-style flip');
   assert(c.learnerSurface?.explicitMissingState===true,'Missing semantic state must remain explicit');
   assert(c.invariants?.noVietnameseSemanticAnswer===true&&c.invariants?.noEnglishSemanticAnswer===true,'Translation answers are still permitted');
+  const image=c.imageEnrichment||{};
+  assert(image.provider==='wikimedia_commons'&&image.mode==='on_demand','Verified image provider contract missing');
+  assert(image.queryLanguage==='ru'&&image.usesRussianSemanticContext===true&&image.translationQueryForbidden===true,'Image lookup must remain Russian-semantic only');
+  assert(image.requiresRelevanceGate===true&&image.attributionRequired===true,'Image lookup relevance/attribution safeguards missing');
+  assert(image.offlineLookup===false&&image.saveDataLookup===false,'Image lookup must not run offline or under Save-Data');
+  assert(image.learnerStateAuthority===false&&image.srsAuthority===false,'Image enrichment must not gain learner/SRS authority');
   return true;
 }
 
@@ -50,6 +56,14 @@ export function validateHelper(js){
   const payload=JSON.stringify(d);
   assert(!payload.includes('sách')&&!payload.includes('book'),'Translation leaked into learner-facing descriptor');
   assert(payload.includes('печатное издание')&&payload.includes('Я читаю книгу.'),'Russian direct semantics missing');
+  assert(api.buildImageQuery?.({ru:'книга',meaning_ru:'печатное издание',tags:['чтение']})==='книга','Image query must use the Russian term');
+  const ranked=api.rankCommonsPages?.([
+    {title:'File:Книга в библиотеке.jpg',imageinfo:[{thumburl:'https://upload.wikimedia.org/book.jpg',descriptionurl:'https://commons.wikimedia.org/wiki/File:Book.jpg',extmetadata:{ImageDescription:{value:'Книга в университетской библиотеке'},LicenseShortName:{value:'CC BY-SA 4.0'}}}]},
+    {title:'File:Автомобиль.jpg',imageinfo:[{thumburl:'https://upload.wikimedia.org/car.jpg',descriptionurl:'https://commons.wikimedia.org/wiki/File:Car.jpg',extmetadata:{ImageDescription:{value:'Автомобиль на дороге'},LicenseShortName:{value:'CC BY-SA 4.0'}}}]}
+  ],{ru:'книга',meaning_ru:'печатное издание для чтения',tags:['библиотека']});
+  assert(Array.isArray(ranked)&&ranked.length===1&&ranked[0].title.includes('Книга'),'Image relevance gate did not reject unrelated Commons candidate');
+  assert(js.includes("navigator.onLine!==false")&&js.includes("navigator.connection?.saveData"),'Image enrichment must honor offline and Save-Data state');
+  assert(js.includes("Wikimedia Commons · "),'Image enrichment attribution UI missing');
   return true;
 }
 
@@ -62,6 +76,8 @@ export function validateCore(core){
   assert(render.includes('Mở ngữ cảnh Nga'),'Russian context reveal control missing');
   assert(render.includes('missing_visual_semantics'),'Explicit missing-semantic state missing');
   assert(render.includes('definitionRu')&&render.includes('contextRu'),'Russian definition/context not rendered');
+  assert(render.includes('data-ru-visual-lookup="1"')&&render.includes('data-definition-ru')&&render.includes('data-context-ru'),'Verified image lookup payload missing from vocab card');
+  assert(core.includes("RussianVisualVocabularyRuntime?.hydrate?.(document)"),'Vocab render does not hydrate verified image enrichment');
   return true;
 }
 
@@ -92,5 +108,5 @@ export function loadAndValidate(){
 if(import.meta.url===pathToFileURL(process.argv[1]).href){
   loadAndValidate();
   console.log('RUSSIAN_VISUAL_VOCAB_RUNTIME_GATE=PASS');
-  console.log(JSON.stringify({authority:'direct_semantic',translationAnswers:false,contextReveal:true,srsAuthorityUnchanged:true},null,2));
+  console.log(JSON.stringify({authority:'direct_semantic',translationAnswers:false,contextReveal:true,verifiedImageEnrichment:true,imageProvider:'wikimedia_commons',srsAuthorityUnchanged:true},null,2));
 }
