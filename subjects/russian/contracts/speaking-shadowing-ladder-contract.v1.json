@@ -31,7 +31,8 @@
     "staleRecognitionCallbacksIgnored": true,
     "recognitionContextCapturedAtStart": true,
     "delayedAutoAdvanceContextGuarded": true,
-    "singleRecognitionResultPerSession": true
+    "singleRecognitionResultPerSession": true,
+    "deepWeakResolutionRequiresNewRecognition": true
   },
   "feedback": {
     "explicitPronunciationRepair": true,
@@ -54,6 +55,7 @@
     "deepSpeakingAttemptsRecognitionConfirmed": true,
     "staleRecognitionCannotCreateEvidence": true,
     "recognitionWritesOriginalStore": true,
-    "duplicateRecognitionCallbacksDoNotDuplicateAttempts": true
+    "duplicateRecognitionCallbacksDoNotDuplicateAttempts": true,
+    "deepWeakResolutionEvidenceGated": true
   }
 }
