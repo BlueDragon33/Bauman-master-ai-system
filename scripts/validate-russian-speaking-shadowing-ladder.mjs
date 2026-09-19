@@ -16,6 +16,7 @@ export function validateContract(c){
   assert(c.runtime?.recognitionSessionTokenRequired===true&&c.runtime?.staleRecognitionCallbacksIgnored===true,'Speech recognition sessions must reject stale callbacks');
   assert(c.runtime?.recognitionContextCapturedAtStart===true&&c.runtime?.delayedAutoAdvanceContextGuarded===true,'Speech recognition must preserve its start context through delayed callbacks');
   assert(c.runtime?.singleRecognitionResultPerSession===true&&c.evidence?.duplicateRecognitionCallbacksDoNotDuplicateAttempts===true,'Each recognition session must create evidence at most once');
+  assert(c.runtime?.deepWeakResolutionRequiresNewRecognition===true&&c.evidence?.deepWeakResolutionEvidenceGated===true,'Deep Speaking weak resolution must require new recognition evidence');
   assert(c.runtime?.manualSelfAssessmentDoesNotCreateSpeakingEvidence===true,'Manual self-assessment must remain non-evidence');
   assert(c.evidence?.recognitionConfirmedAttempts===true,'Speaking attempts must remain recognition-confirmed');
   assert(c.evidence?.deepSpeakingAttemptsRecognitionConfirmed===true,'Deep Speaking attempts must remain recognition-confirmed');
@@ -78,6 +79,11 @@ export function validateRuntime(js,css,core,learningFlow){
   assert((core.match(/let resultConsumed=false;/g)||[]).length>=2,'Both recorders must track recognition-result consumption');
   assert((core.match(/token!==speechRecognitionToken\|\|resultConsumed/g)||[]).length>=4,'Recognition result/error callbacks are not single-consumption guarded');
   assert((core.match(/resultConsumed=true;const transcript=/g)||[]).length>=2,'Recognition result is not consumed before evidence creation');
+  assert(core.includes('lastAttemptAt:{}'),'Deep Speaking attempt timestamp state missing');
+  assert(core.includes('p.lastAttemptAt[id]=Date.now()'),'Deep Speaking recognition result does not persist attempt time');
+  assert(core.includes('weakAt=Number(state.deepSpeakingProgress?.weak?.[id]||0)')&&core.includes('attemptAt=Number(state.deepSpeakingProgress?.lastAttemptAt?.[id]||0)'),'Deep Speaking weak/self-rating does not compare evidence timestamps');
+  assert(core.includes("if(weakAt&&attemptAt<=weakAt){toast('Hãy ghi âm ít nhất một lượt mới trước khi gỡ mục Cần ôn.');return}"),'Deep Speaking can clear weak state without newer recognition evidence');
+  assert(core.includes('if(weakAt&&attemptAt>weakAt)delete state.deepSpeakingProgress.weak[id]'),'Deep Speaking weak resolution is not gated by newer recognition evidence');
   return true;
 }
 
