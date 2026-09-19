@@ -26,6 +26,7 @@ for(const relative of [
   'assets/js/platform/device-access-gate.js',
   'subjects/math/index.html',
   'subjects/russian/index.html',
+  'subjects/russian/assets/handwriting-glyph-authority.js',
   'subjects/russian/assets/handwriting-recognition.js',
   ...foundationRuntime,
   'subjects/russian/data/chunks/dialogue-bauman-az/manifest.json',
@@ -50,7 +51,9 @@ for(const relative of foundationRuntime){
 }
 
 const russianHtml=fs.readFileSync(path.join(output,'subjects/russian/index.html'),'utf8');
+if(!russianHtml.includes('assets/handwriting-glyph-authority.js'))throw new Error('Packaged Russian runtime is missing handwriting glyph authority script reference.');
 if(!russianHtml.includes('assets/handwriting-recognition.js'))throw new Error('Packaged Russian runtime is missing handwriting recognition script reference.');
+if(russianHtml.indexOf('assets/handwriting-glyph-authority.js')>russianHtml.indexOf('assets/handwriting-recognition.js'))throw new Error('Packaged Russian glyph authority must load before handwriting recognition.');
 for(const resource of [
   '../../foundation/domain-model/canonical-identity-runtime.js',
   '../../foundation/domain-model/identity-overlay-store.js',
