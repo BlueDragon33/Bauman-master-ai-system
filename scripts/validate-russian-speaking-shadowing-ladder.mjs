@@ -51,7 +51,7 @@ export function validateRuntime(js,css,core,learningFlow){
   assert(!/score\s*[><]=?/.test(js),'Speaking ladder must not auto-classify by score threshold');
   assert(css.includes('.ru-speaking-memory-mode')&&css.includes('.russian-line'),'Memory mode must hide the actual Russian line');
   assert(core.includes("if(act==='record-line')startLineRecording();"),'Core recorder action missing');
-  assert(core.includes("notifySpeakingRecordingResult(d,idx,transcript,score)"),'Core recorder does not emit evidence on recognition result');
+  assert(core.includes("notifySpeakingRecordingResult(d,idx,transcript,score,lessonIdAtStart)"),'Core recorder does not emit evidence on recognition result with captured lesson identity');
   assert(core.includes("russian:speaking-self-assessed"),'Core self-assessment event missing');
   assert(!/if\(act==='mark-line-ok'\)[^\n]*activeSpeechResults\(/.test(core),'Manual self-assessment writes speaking-result evidence');
   assert(!/if\(act==='mark-line-ok'\)[^\n]*(score:100|transcript:dialogueText)/.test(core),'Manual self-assessment fabricates recognition evidence');
