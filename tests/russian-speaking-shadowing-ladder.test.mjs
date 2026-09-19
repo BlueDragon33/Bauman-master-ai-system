@@ -24,9 +24,10 @@ assert.throws(()=>validateRuntime(js.replace("if(mode==='roleplay')bump('rolepla
 assert.throws(()=>validateRuntime(js.replace("russian:speaking-recording-result","russian:speaking-recording-clicked"),css,core,learningFlow),/recognition-result evidence/);
 assert.throws(()=>validateRuntime(js,css,core.replace("notifySpeakingRecordingResult(d,idx,transcript,score)","void score"),learningFlow),/does not emit evidence on recognition result/);
 
-console.log('RUSSIAN_SPEAKING_LADDER_NEGATIVE_TEST=PASS');
-console.log(JSON.stringify({negativeCases:14},null,2));
 
 assert.throws(()=>validateRuntime(js,css,core.replace("try{window.dispatchEvent(new CustomEvent('russian:speaking-self-assessed'","try{window.dispatchEvent(new CustomEvent('russian:speaking-self-assessed-missing'"),learningFlow),/self-assessment event missing/);
 assert.throws(()=>validateRuntime(js,css,core,learningFlow.replace("window.addEventListener('russian:speaking-recording-result'","window.addEventListener('russian:speaking-recording-clicked'")),/not recognition-result driven/);
 assert.throws(()=>validateRuntime(js,css,core,learningFlow.replace("selfAssessments:Number(old.selfAssessments||0)+1","attempts:Number(old.attempts||0)+1")),/Self-assessment still increments speaking attempts/);
+
+console.log('RUSSIAN_SPEAKING_LADDER_NEGATIVE_TEST=PASS');
+console.log(JSON.stringify({negativeCases:14},null,2));
