@@ -15,6 +15,7 @@ export function validateContract(c){
   assert(c.runtime?.deepSpeakingRecognitionRequired===true&&c.runtime?.deepSpeakingSelfAssessmentSeparate===true,'Deep Speaking must require recognition evidence and keep self-assessment separate');
   assert(c.runtime?.recognitionSessionTokenRequired===true&&c.runtime?.staleRecognitionCallbacksIgnored===true,'Speech recognition sessions must reject stale callbacks');
   assert(c.runtime?.recognitionContextCapturedAtStart===true&&c.runtime?.delayedAutoAdvanceContextGuarded===true,'Speech recognition must preserve its start context through delayed callbacks');
+  assert(c.runtime?.singleRecognitionResultPerSession===true&&c.evidence?.duplicateRecognitionCallbacksDoNotDuplicateAttempts===true,'Each recognition session must create evidence at most once');
   assert(c.runtime?.manualSelfAssessmentDoesNotCreateSpeakingEvidence===true,'Manual self-assessment must remain non-evidence');
   assert(c.evidence?.recognitionConfirmedAttempts===true,'Speaking attempts must remain recognition-confirmed');
   assert(c.evidence?.deepSpeakingAttemptsRecognitionConfirmed===true,'Deep Speaking attempts must remain recognition-confirmed');
@@ -74,6 +75,9 @@ export function validateRuntime(js,css,core,learningFlow){
   assert(core.includes("dialogueIdAtStart=str(d?.id||d?.title||'dialogue')")&&core.includes("lessonIdAtStart=str(state.lessonId||'')"),'Recorder does not capture dialogue/lesson identity at start');
   assert(core.includes('state[resultStoreKey]=state[resultStoreKey]||{}; const store=state[resultStoreKey]'),'Recognition result still writes through active/current surface state');
   assert(core.includes('token===speechRecognitionToken&&sameSurface&&currentDialogueId()===dialogueIdAtStart&&activeLineIndex()===idx'),'Delayed speaking auto-advance is not context guarded');
+  assert((core.match(/let resultConsumed=false;/g)||[]).length>=2,'Both recorders must track recognition-result consumption');
+  assert((core.match(/token!==speechRecognitionToken\|\|resultConsumed/g)||[]).length>=4,'Recognition result/error callbacks are not single-consumption guarded');
+  assert((core.match(/resultConsumed=true;const transcript=/g)||[]).length>=2,'Recognition result is not consumed before evidence creation');
   return true;
 }
 
