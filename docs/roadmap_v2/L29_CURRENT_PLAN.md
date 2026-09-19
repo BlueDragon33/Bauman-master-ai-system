@@ -1,6 +1,6 @@
 # Lượt 29 — Current Plan · Bước 113–116
 
-Status: `PASS_B113_FUNCTIONAL · H1_IN_PROGRESS · B114_BLOCKED · B115_BLOCKED · B116_BLOCKED`
+Status: `B113_PASS · H1_PASS · B114_PASS · B115_PASS_20_OF_20 · B116_FUNCTIONAL_PASS · DOCUMENTATION_CLOSEOUT_IN_PROGRESS`
 
 Prerequisite: L28 documentation/final-state head `c9451fe957ccfc7d610483688da76b004c20c83e` passed the complete six-gate set.
 
@@ -8,7 +8,7 @@ L29 introduces a separate least-privilege admission boundary for any future cons
 
 ## B113 — Shadow consumer admission contract
 
-**ACTIVE.** Define a data-only contract and result schema for a non-production shadow reviewer.
+**PASS.** Data-only contract and result schema for a non-production shadow reviewer are pinned and green.
 
 Locked rules:
 
@@ -22,22 +22,18 @@ Locked rules:
 
 ## L29-H1 — Canonical consumer-admission request envelope
 
-**ACTIVE.** B114 pre-audit found that the B113 contract/result boundary lacked a canonical caller request schema. H1 pins `consumerId + consumerClass + readinessRequest` with `additionalProperties:false`, SHADOW-only identity and `human_review_shadow` class. B114 remains blocked until H1 passes the complete six-gate set.
+**PASS.** H1 pins `consumerId + consumerClass + readinessRequest` with `additionalProperties:false`, SHADOW-only identity and `human_review_shadow` class. The H1 head passed the complete six-gate set.
 
 ## B114 — Deterministic in-memory shadow adapter
 
-Build a scripts-only deterministic projector that turns a verified L28 Admission projection into a deeply frozen shadow-consumer preview.
-
-B114 stays blocked until B113 passes the complete six-gate set.
+**PASS.** A scripts-only deterministic projector recomputes verified L28 Admission from the nested Readiness request and returns a deeply frozen shadow-consumer preview. L29-F2 repaired an accidental source-escaping syntax defect without weakening any gate.
 
 ## B115 — Adversarial consumer-admission validation
 
-Attack forged Admission payloads, forged consumer identity/class, production-consumer impersonation, persisted state, schema drift, mutation, automatic-action escalation and runtime wiring leaks.
-
-B115 stays blocked until B114 passes the complete six-gate set.
+**PASS — 20/20 adversarial cases.** Forged Admission payloads, consumer identity/class, production-consumer impersonation, persisted state, schema drift, mutation, automatic-action escalation and runtime wiring leaks are rejected or remain non-authoritative.
 
 ## B116 — Full-system closeout
 
-Compose B113–B115 and rerun the complete six-gate set. Production integration remains disconnected.
+**FUNCTIONAL PASS.** B113–B115 are composed and the B116 functional head passed the complete six-gate set. Production integration remains disconnected, with zero production consumers and zero write authority.
 
-L30 remains blocked until B116 and its documentation/final-state closeout are green.
+The documentation/final-state closeout is now active. L30 remains blocked until that head also passes the complete six-gate set.
