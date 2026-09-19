@@ -62,7 +62,7 @@ function fullEvidence(targetId,phaseId='GD2'){
   return xs;
 }
 
-assert.equal(readiness.contract.version,'2.7.2-l27-b105-h2-current');
+assert.equal(readiness.contract.version,'2.7.3-l27-b106-h3-current');
 assert.equal(readiness.contract.targetPolicy.prerequisiteResolution,'chapter_policy_inherited_by_lessons');
 assert.equal(readiness.contract.mode.productionIntegration,'disconnected');
 
@@ -94,14 +94,12 @@ assert.equal(readiness.contract.mode.productionIntegration,'disconnected');
   assert.equal(result.targets[0].masterReady,true);
 }
 
-// Bare forged Master-ready remains red.
+// H3: forged Master-ready is rejected upstream before Readiness projection.
 {
   const forged=snapshot('RU-R0-C01','master_ready','GD2',{masterReadyGate:{passed:false,checks:{}}});
-  const result=readiness.projectReadiness(request('GD2',['RU-R0-C01'],[
+  assert.throws(()=>readiness.projectReadiness(request('GD2',['RU-R0-C01'],[
     item('RU-FORGED',forged,{technicalTrack:null,activityKind:'russian_foundation'})
-  ]));
-  assert.equal(result.overallColor,'red');
-  assert(result.targets[0].reasonCodes.includes('MASTER_READY_GATE_UNVERIFIED'));
+  ])),/Master-ready state\/gate mismatch/);
 }
 
 // Verified external gate is required and missing/false gate fails closed.
@@ -175,6 +173,7 @@ console.log('ROADMAP_V2_L27_B106_READINESS_PROJECTOR=PASS');
 console.log(JSON.stringify({
   missingEvidenceFailsClosed:true,
   reducerMasterReadyRequired:true,
+  forgedMasterReadyRejectedUpstream:true,
   verifiedExternalGates:true,
   lessonPrerequisiteInheritance:true,
   manualOverride:false,
