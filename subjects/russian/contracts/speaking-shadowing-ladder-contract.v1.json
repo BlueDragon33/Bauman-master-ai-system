@@ -22,8 +22,8 @@
     "slowListenOwnedByRepairOnly": true,
     "listeningLadderOwnedByTurn8": true,
     "roleplayEvidenceRequiresRecording": true,
-    "recordingStartEvidenceRequired": true,
-    "failedRecorderDoesNotCountAttempt": true
+    "recognitionResultEvidenceRequired": true,
+    "failedOrEmptyRecognitionDoesNotCountAttempt": true
   },
   "feedback": {
     "explicitPronunciationRepair": true,
@@ -40,6 +40,6 @@
     "abandonedSessions": true,
     "learnerStateAuthority": false,
     "masteryMutation": false,
-    "recorderConfirmedAttempts": true
+    "recognitionConfirmedAttempts": true
   }
 }
