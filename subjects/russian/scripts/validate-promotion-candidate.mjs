@@ -42,6 +42,8 @@ need(runtime,'prepareOfflineCore');need(runtime,'navigator.connection?.saveData'
 need(learning,'bauman_russian_learning_state_v1');need(vocab,'bauman_russian_vocab_srs_v1');need(academic,'bauman_russian_academic_language_v1');need(adapter,'bauman_russian_survival_master_v11_clean_skeleton');
 need(learning,'setResume');need(learning,'addReview');need(vocab,'RussianLearningState');need(speaking,'RussianLearningState');need(academic,'RussianLearningState');
 need(cleanup,"A.ui.coreLabel='TIẾNG NGA BAUMAN'");need(cleanup,"A.ui.heroBadge='LỘ TRÌNH TIẾNG NGA BAUMAN'");need(cleanup,'hideLegacyVersionLabels:true');need(cleanup,'preserveInternalStorageAndBridgeIds:true');
+need(adapter,"coreLabel: 'TIẾNG NGA BAUMAN'",'Adapter UI fallbacks must remain version-free');need(adapter,"heroBadge: 'LỘ TRÌNH TIẾNG NGA BAUMAN'",'Adapter UI fallbacks must remain version-free');forbid(adapter,"coreLabel: 'RUSSIAN SURVIVAL MASTER",'Legacy versioned core label must not survive in adapter UI');forbid(adapter,"heroBadge: 'Russian Bauman Survival Master",'Legacy versioned hero badge must not survive in adapter UI');
+need(read('assets/core.js'),"A.ui?.coreLabel||'TIẾNG NGA BAUMAN'",'Core label fallback must remain version-free');
 need(ai,'canonicalStateReadOnly:true');need(ai,'aiMayModifyMastery:false');need(ai,'aiMayCompleteTasks:false');need(ai,'translationSemanticAuthority:false');forbid(ai,'RussianLearningState?.set');forbid(ai,'.addReview');
 need(visual,'RUSSIAN_VISUAL_VOCABULARY_RUNTIME_V1');forbid(visual,'meaning_vi');forbid(visual,'translation_vi');forbid(visual,'.english');
 need(aiDirect,'RUSSIAN_AI_DIRECT_EXPLANATION_V1');need(aiDirect,'translationSemanticAuthority:false');
