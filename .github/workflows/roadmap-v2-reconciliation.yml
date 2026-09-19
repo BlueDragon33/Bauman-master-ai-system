@@ -57,6 +57,7 @@ on:
       - 'scripts/validate-roadmap-v2-l30-b117.mjs'
       - 'scripts/roadmap-v2-human-review-harness.mjs'
       - 'scripts/validate-roadmap-v2-l30-b118.mjs'
+      - 'scripts/validate-roadmap-v2-l30-b119.mjs'
       - '.github/workflows/roadmap-v2-reconciliation.yml'
 
 permissions:
@@ -153,6 +154,8 @@ jobs:
         run: node scripts/validate-roadmap-v2-l30-b117.mjs
       - name: Validate current L30 B118 human review projector
         run: node scripts/validate-roadmap-v2-l30-b118.mjs
+      - name: Validate current L30 B119 adversarial human review
+        run: node scripts/validate-roadmap-v2-l30-b119.mjs
       - name: Validate Foundation V2 L9
         run: node scripts/validate-foundation-domain-model.mjs
       - name: Validate current system integration
