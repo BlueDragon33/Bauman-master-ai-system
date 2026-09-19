@@ -9,7 +9,16 @@
     "continueFallback": {
       "view": "learning",
       "learnTab": "practice"
-    }
+    },
+    "visibleLearningTabOrder": [
+      "practice",
+      "theory",
+      "exercises",
+      "review",
+      "exam"
+    ],
+    "invalidLearningTabFallback": "practice",
+    "renderRecoveryFallback": "practice"
   },
   "dashboardPriority": [
     "listening",
