@@ -98,17 +98,26 @@
     return Object.freeze({score,relevant:true});
   }
 
+  function trustedThumbUrl(value){
+    return /^https:\/\/upload\.wikimedia\.org\//i.test(clean(value));
+  }
+  function trustedDescriptionUrl(value){
+    return /^https:\/\/commons\.wikimedia\.org\//i.test(clean(value));
+  }
+
   function rankCommonsPages(pages,row){
     const list=Array.isArray(pages)?pages:Object.values(pages||{});
     return list.map(page=>{
       const quality=scoreCommonsPage(page,row);
       const info=page?.imageinfo?.[0]||{};
+      const thumb=clean(info.thumburl);
+      const description=clean(info.descriptionurl);
       return {
         page,
         score:quality.score,
         relevant:quality.relevant,
-        thumb_url:clean(info.thumburl),
-        description_url:clean(info.descriptionurl),
+        thumb_url:trustedThumbUrl(thumb)?thumb:'',
+        description_url:trustedDescriptionUrl(description)?description:'',
         title:stripHtml(page?.title||'').replace(/^File:/i,''),
         license:metadata(info,'LicenseShortName')||'Wikimedia Commons',
         license_url:clean(info?.extmetadata?.LicenseUrl?.value||''),
