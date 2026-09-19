@@ -126,12 +126,21 @@
     if(view)new MutationObserver(()=>mount()).observe(view,{childList:true,subtree:true});
   });
 
+  function openRepair(stage,id){
+    if(!STAGES.includes(stage))return false;
+    const list=Array.isArray(data?.[DATA_KEYS[stage]])?data[DATA_KEYS[stage]]:[];
+    const idx=list.findIndex(item=>String(item?.id||'')===String(id||''));
+    if(idx<0)return false;
+    state.stage=stage;state.index=idx;save();render();return true;
+  }
+
   root.RussianReadingBridge=Object.freeze({
     schema:SCHEMA,
     stages:Object.freeze([...STAGES]),
     get:()=>JSON.parse(JSON.stringify(state)),
     setStage,
     next,
-    previous
+    previous,
+    openRepair
   });
 })(window);
