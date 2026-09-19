@@ -1332,7 +1332,7 @@ function speechSupport(){return !!(window.SpeechRecognition||window.webkitSpeech
 function speechFeedback(score){if(score>=86)return 'Rất tốt: nhịp và từ khóa đã khá sát mẫu.'; if(score>=70)return 'Ổn: nói lại một lượt chậm hơn để chắc trọng âm.'; if(score>=45)return 'Chưa vững: nghe chậm, tách từng cụm rồi nhại lại.'; return 'Cần luyện lại: nghe mẫu 2 lần, nói từng nửa câu trước.'}
 function lineTokenHints(text){return normalizeRuSpeech(text).split(' ').filter(Boolean).slice(0,7)}
 function notifySpeakingRecordingStarted(d,i){try{window.dispatchEvent(new CustomEvent('russian:speaking-recording-started',{detail:{lessonId:str(state.lessonId||''),dialogueId:str(d?.id||d?.title||'dialogue'),lineIndex:Number(i)||0,key:dialogueLineKey(d,i),lang:'ru-RU'}}))}catch(_){}}
-function notifySpeakingRecordingResult(d,i,transcript,score){try{window.dispatchEvent(new CustomEvent('russian:speaking-recording-result',{detail:{lessonId:str(state.lessonId||''),dialogueId:str(d?.id||d?.title||'dialogue'),lineIndex:Number(i)||0,key:dialogueLineKey(d,i),lang:'ru-RU',transcript:str(transcript),score:Number(score)||0}}))}catch(_){}}
+function notifySpeakingRecordingResult(d,i,transcript,score){try{window.dispatchEvent(new CustomEvent('russian:speaking-recording-result',{detail:{lessonId:str(state.lessonId||''),dialogueId:str(d?.id||d?.title||'dialogue'),lineIndex:Number(i)||0,key:dialogueLineKey(d,i),lang:'ru-RU',transcript:str(transcript),score:Number(score)||0,ok:Number(score)>=70}}))}catch(_){}}
 function startLineRecording(){
  const SR=window.SpeechRecognition||window.webkitSpeechRecognition;
  const d=currentDialogue(), turns=dialogueTurns(d), idx=Math.min(activeLineIndex(),Math.max(0,turns.length-1));
