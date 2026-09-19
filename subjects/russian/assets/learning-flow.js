@@ -126,7 +126,7 @@
     if(!id||!clean(detail.transcript))return;
     const old=lessonState(id)?.steps?.speaking||{};
     const patch={attempts:Number(old.attempts||0)+1,recognizedAttempts:Number(old.recognizedAttempts||0)+1,lastRecognitionAt:now()};
-    if(Number(detail.score)>=70){patch.ok=Number(old.ok||0)+1;patch.lastOkAt=now();}
+    if(detail.ok===true){patch.ok=Number(old.ok||0)+1;patch.lastOkAt=now();}
     touch('speaking',patch,id);
   });
   document.addEventListener('DOMContentLoaded',async()=>{
