@@ -30,5 +30,7 @@ assert.throws(()=>validateCore(core.replace("unit?.unit_title_ru","unit?.unit_ti
 assert.throws(()=>validateCore(core.replace("return Object.entries(v).filter(([k,val])=>val&&typeof val==='object'&&(/_ru$|^ru_|russian/i.test(k)||Array.isArray(val))).flatMap(([,val])=>deepLines(val));","return Object.values(v).flatMap(deepLines);")),/fail closed|serializing unknown semantic fields/);
 assert.throws(()=>validateCore(core.replace("p.question_ru||p.q_ru||p.ru||'Как вы ответите?'", "p.question_ru||p.q_ru||p.ru||p.question||'Как вы ответите?'")),/generic-language question\/answer/);
 assert.throws(()=>validateCore(core.replace("unit.scenario_ru||''","unit.scenario_ru||unit.domain||''")),/generic-language domain/);
+assert.throws(()=>validateCore(core.replace("unit.scenario_ru||'Luyện phản xạ nói sâu theo tình huống đang mở.'","unit.domain||unit.scenario_ru||'Luyện phản xạ nói sâu theo tình huống đang mở.'")),/learner metadata|generic-language domain/);
+assert.throws(()=>validateCore(core.replace("u.scenario_ru||''","u.domain||''")),/learner metadata/);
 console.log('RUSSIAN_DIALOGUE_SCAFFOLD_NEGATIVE_TEST=PASS');
 console.log(JSON.stringify({negativeCases:8},null,2));
