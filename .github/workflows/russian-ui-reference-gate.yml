@@ -52,6 +52,7 @@ jobs:
           node --check subjects/russian/assets/russian-reference-ui.js
           node --check subjects/russian/assets/learning-state.js
           node --check subjects/russian/assets/learning-flow.js
+          node --check subjects/russian/assets/handwriting-glyph-authority.js
           node --check subjects/russian/assets/handwriting-recognition.js
           node --check subjects/russian/assets/vocab-srs.js
           node --check subjects/russian/assets/speaking-coach.js
@@ -92,6 +93,7 @@ jobs:
           test -f subjects/russian/assets/content-contract.js
           test -f subjects/russian/assets/content-contract.css
           test -f subjects/russian/assets/learning-flow.js
+          test -f subjects/russian/assets/handwriting-glyph-authority.js
           test -f subjects/russian/assets/handwriting-recognition.js
           test -f subjects/russian/scripts/audit-handwriting-recognition.mjs
           test -f subjects/russian/assets/learning-flow.css
