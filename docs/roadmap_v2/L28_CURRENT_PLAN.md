@@ -1,6 +1,6 @@
 # Lượt 28 — Current Plan · Bước 109–112
 
-Status: `PASS_B109 · PASS_B110 · PASS_B111 · B112_IN_PROGRESS`
+Status: `PASS_B109 · PASS_B110 · PASS_B111 · PASS_B112_FUNCTIONAL · FINAL_STATE_GATE_IN_PROGRESS`
 
 Prerequisite: L27 documentation/final-state head `0b9705e1a1267f35b53dccefc8abb850af8bff5e` passed the complete six-gate set.
 
@@ -33,6 +33,6 @@ B111 accepted on head `34835a415bc2fbce8cb8746e3dfe3a1d72cb1a79` with the comple
 
 ## B112 — Full-system closeout
 
-**ACTIVE.** Compose B109–B111 and rerun the complete six-gate set. Production integration remains disconnected. Canonical Roadmap must remain data/contracts only, with zero executable/UI/consumer wiring.
+**FUNCTIONAL PASS.** B112 composes B109–B111 and the complete six-gate set passed on head `5003d6932caa37c518662626aaaac6575893a350`.
 
-L29 remains blocked until B112 and its documentation/final-state closeout are green.
+Production integration remains disconnected. Canonical Roadmap remains data/contracts only, with zero executable/UI/consumer wiring. This documentation/final-state closeout head must itself pass the same six-gate set before L29 may open.
