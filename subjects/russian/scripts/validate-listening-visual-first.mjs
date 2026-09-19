@@ -15,6 +15,7 @@ const checks=[
   ['next-step suggestion requires real activity rather than navigation-only state', flow.includes("function hasActivityEvidence(step,s)") && flow.includes("if(!hasActivityEvidence(step,ls?.steps?.[step]))return step")],
   ['alphabet progression requires real canvas stroke evidence', flow.includes("if(step==='alphabet')return Number(s.strokeActions||0)>0") && flow.includes("Đã thao tác, chưa luyện nét")],
   ['flow progress counter uses the same real-activity evidence rule', flow.includes("STEP_ORDER.filter(x=>hasActivityEvidence(x,ls.steps[x])).length")],
+  ['support status requires real vocabulary or grammar interaction', flow.includes("(step==='vocab'||step==='grammar')&&Number(s.supportActions||0)>0")],
   ['Vietnam visual-first vocab ignores direct English/Vietnamese gloss in display meaning', core.includes("const meaning=str(base.meaningRu||v?.meaning_ru||'').trim()||str(base.visualLabel||v?.illustration_label_ru||'').trim()")],
   ['vocab UI uses contextual hint wording', core.includes("Lật gợi ý") && core.includes("Hiểu qua ngữ cảnh")],
   ['vocab detail labels Russian explanation', core.includes("Giải thích tiếng Nga")],
