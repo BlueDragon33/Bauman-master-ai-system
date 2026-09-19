@@ -29,6 +29,7 @@ assert.equal(validateBehavior(js),true);
 {const x=copy();x.resolution.openDoesNotResolve=false;assert.throws(()=>validateContract(x),/Evidence-gated resolution weakened/)}
 {const x=copy();x.authority.sourceEvidenceReadOnly=false;assert.throws(()=>validateContract(x),/additive\/read-only/)}
 {const x=copy();x.invariants.noCanonicalReviewQueueMutation=false;assert.throws(()=>validateContract(x),/Scheduler\/Review Queue mutation forbidden/)}
+assert.throws(()=>validateRuntime(js.replace("item.status='opened'","item.status='detected'")),/Opened lifecycle state missing/);
 assert.throws(()=>validateRuntime(js+"\nconst x='bauman_russian_learning_state_v1';"),/must not access canonical Learning State storage/);
 assert.throws(()=>validateIndex(index.replace(/\n/g,'\\n')),/Literal newline escape remains/);
 assert.throws(()=>validateCore(core.replace("if(doneAt>createdAt)plan.completed[card.id]=doneAt","plan.completed[card.id]=Date.now()")),/later correct review evidence/);
@@ -36,4 +37,4 @@ assert.throws(()=>validateCore(core.replace("toast('Đã mở thẻ phụ đạo
 assert.throws(()=>validateFocusedApis(cyr.replace('function openRepair(section,letter)','function openLegacy(section,letter)'),reading,dictation,multimodal),/Cyrillic focused repair API missing/);
 
 console.log('RUSSIAN_WEAKNESS_REPAIR_ROUTING_NEGATIVE_TEST=PASS');
-console.log(JSON.stringify({negativeCases:8},null,2));
+console.log(JSON.stringify({negativeCases:9},null,2));
