@@ -164,3 +164,23 @@ Final executable checkpoint for this repair:
 - workflow: `35416968142`
 - architecture job: SUCCESS
 - existing regression job: SUCCESS
+
+
+## Post-freeze listen/speak evidence fidelity — 2026-09-19
+
+A deeper runtime audit found that successful API start was being treated as completed learner evidence in places where the pedagogy requires completed listening or actual recognized speech. The fixes remain inside Turns 1/3/8/9/23, so no Turn 25 was created.
+
+- Turn 1.1: baseline audit now separates source-asset gaps from executable runtime readiness and recognizes TTS/listening/speaking evidence from the current runtime contracts.
+- Turn 3.1: hear-before-see unlock requires normal-speed playback completion, not playback start.
+- Turn 8.2: listening evidence uses `russian:listening-playback-completed`; interrupted/failed playback does not count.
+- Turn 9.1: speaking attempts require a non-empty SpeechRecognition result; recorder `onstart` alone is not evidence.
+- Turn 23.11: Russian voice selection and start/end playback lifecycle are both verified by Browser/Package QA.
+
+Executable checkpoint:
+
+- commit: `a7e60fac48d4da654894b4b82480f0dbcb60713a`
+- workflow: `35417808764`
+- `russian-learning-contract`: SUCCESS
+- `russian-existing-regression`: SUCCESS
+
+The promotion candidate remains frozen and must not merge to `main` automatically.
