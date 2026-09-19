@@ -9567,3 +9567,10 @@ body.presentation-active #modal .presentation-modal{
   z-index:2147483001!important;
 }
 body.presentation-active .toast{z-index:2147483003!important;}
+
+
+/* R-HW1 B1 · fail-closed handwriting capability */
+.ru-handwriting-capability{display:flex;justify-content:space-between;gap:14px;align-items:center;border:1px solid #cbd5e1;background:#fff;border-radius:18px;padding:12px 14px;margin:0 0 12px;box-shadow:0 8px 20px rgba(15,23,42,.05)}
+.ru-handwriting-capability>div{display:grid;gap:3px}.ru-handwriting-capability span{font-size:10px;font-weight:1000;letter-spacing:.08em;color:#64748b}.ru-handwriting-capability b{font-size:14px}.ru-handwriting-capability p,.ru-handwriting-capability small{margin:0;color:#475569;font-size:12px;line-height:1.45;font-weight:700}
+.ru-handwriting-capability.ready{border-color:#86efac;background:#f0fdf4}.ru-handwriting-capability.reference{border-color:#fed7aa;background:#fff7ed}
+@media(max-width:720px){.ru-handwriting-capability{display:grid}.ru-handwriting-capability small{display:block}}
