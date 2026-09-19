@@ -6,16 +6,16 @@
 ## Active track
 
 - Current round: **Lượt 31**
-- Current step: **L31 — DOCUMENTATION/FINAL-STATE REVALIDATION · IN_PROGRESS**
+- Current step: **L31 — FINAL MARKER REVALIDATION · IN_PROGRESS**
 - L22 closeout: **B88 + H1 — PASS**
-- Status: **L23_COMPLETE · L24_COMPLETE · L25_COMPLETE · L26_COMPLETE · L27_COMPLETE · L28_COMPLETE · L29_COMPLETE_THROUGH_B116 · L30_COMPLETE_THROUGH_B120 · L31_B121_COMPLETE · L31_B122_COMPLETE · L31_B123_COMPLETE · L31_B124_COMPLETE · L31_FINAL_STATE_REVALIDATION_ACTIVE**
-- Last recorded six-gate head: `3284742a6b8fa96898c6ab762f4aa416c0e80421`
+- Status: **L23_COMPLETE · L24_COMPLETE · L25_COMPLETE · L26_COMPLETE · L27_COMPLETE · L28_COMPLETE · L29_COMPLETE_THROUGH_B116 · L30_COMPLETE_THROUGH_B120 · L31_B121_COMPLETE · L31_B122_COMPLETE · L31_B123_COMPLETE · L31_B124_COMPLETE · L31_DOCUMENTATION_CLOSEOUT_COMPLETE · L31_FINAL_MARKER_REVALIDATION_ACTIVE**
+- Last recorded six-gate head: `d55b72891f35e55998953f6b64be8d17491c7984`
 - Production/runtime activation by Roadmap V2: **disconnected**
 - Legacy/source destructive migration: **not executed**
-- Last completed: **L31/B124 functional closeout — PASS on complete six-gate set**
+- Last completed: **L31 documentation/final-state closeout — PASS on complete six-gate set**
 - Last hardening: **L29-F2 validator/harness syntax repair — PASS; no gate weakening**
-- Current official step: **L31 documentation/final-state revalidation**
-- B124 functional closeout is closed. L32 remains blocked until this documentation/final-state marker passes the complete six-gate set.
+- Current official step: **L31 final marker revalidation**
+- Documentation/final-state closeout is closed. L32 remains blocked until this final marker commit itself passes the complete six-gate set.
 
 ## L22/B88 complete gate evidence
 
@@ -856,3 +856,17 @@ Accepted B124 functional head: `3284742a6b8fa96898c6ab762f4aa416c0e80421`
 B124 functional closeout is green. Promotion Eligibility remains data-only: release-review authorization, production promotion, production consumers, persistence, dashboard rendering, schedule/calendar writes, runtime activation, notification writes and automatic actions remain disabled.
 
 L32 remains blocked until this documentation/final-state marker head itself passes the complete six-gate set.
+
+
+## L31 documentation/final-state gate evidence
+
+Accepted documentation/final-state head: `d55b72891f35e55998953f6b64be8d17491c7984`
+
+- Roadmap V2 Current Gate — run `35455702692` — PASS
+- Foundation Domain Model — run `35455702706` — PASS
+- Windows checkout safety — run `35455702719` — PASS
+- Russian Reference UI — run `35455702701` — PASS
+- Cloudflare Preview — run `35455702697` — PASS
+- Whole System Integration — run `35455702749` — PASS
+
+L31 is complete through B124 functionally and in documentation. This final marker commit is the last revalidation checkpoint before L32 may open.

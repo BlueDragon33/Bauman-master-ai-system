@@ -31,3 +31,16 @@ Accepted functional head: `3284742a6b8fa96898c6ab762f4aa416c0e80421`
 - Whole System Integration — `35455523915` — PASS
 
 Documentation/final-state revalidation must still pass the same six gates before L31 is considered complete.
+
+## Documentation/final-state gate evidence
+
+Accepted documentation/final-state head: `d55b72891f35e55998953f6b64be8d17491c7984`
+
+- Roadmap V2 Current Gate — `35455702692` — PASS
+- Foundation Domain Model — `35455702706` — PASS
+- Windows checkout safety — `35455702719` — PASS
+- Russian Reference UI — `35455702701` — PASS
+- Cloudflare Preview — `35455702697` — PASS
+- Whole System Integration — `35455702749` — PASS
+
+A final marker revalidation remains required before L32 may open.

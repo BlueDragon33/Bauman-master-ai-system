@@ -1,6 +1,6 @@
 # Lượt 31 — Current Plan · Bước 121–124
 
-Status: `B121_PASS · B122_PASS · B123_PASS · B124_PASS · FINAL_STATE_REVALIDATION_ACTIVE`
+Status: `B121_PASS · B122_PASS · B123_PASS · B124_PASS · DOCUMENTATION_CLOSEOUT_PASS · FINAL_MARKER_REVALIDATION_ACTIVE`
 
 Prerequisite: L30 final marker head `d17f690b25c7b8e05f8183fe2223b1c9622cc38d` passed the complete six-gate set.
 
