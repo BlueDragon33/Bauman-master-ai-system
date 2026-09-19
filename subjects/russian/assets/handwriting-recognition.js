@@ -3,7 +3,7 @@
   const SCHEMA='RUSSIAN_HANDWRITING_RECOGNITION_V1';
   const STORE_KEY='bauman_russian_handwriting_recognition_v1';
   const PROBE='ДдЖжФфЯяШш';
-  const CANDIDATES=['Segoe Script','Segoe Print','Comic Sans MS'];
+  const PREVIEW_CANDIDATES=['Segoe Script','Segoe Print','Comic Sans MS'];
   const FALLBACKS=['monospace','serif','sans-serif'];
   const clean=v=>String(v??'').trim();
   const esc=v=>clean(v).replace(/[&<>"']/g,m=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[m]));
@@ -21,12 +21,32 @@
       });
     }catch(_){return false;}
   }
+  function authoritySnapshot(){
+    const raw=window.RUSSIAN_HANDWRITING_GLYPH_AUTHORITY||{};
+    return {
+      schema:clean(raw.schema),
+      status:clean(raw.status)||'blocked',
+      source:clean(raw.source)||'none',
+      trustedFamilies:Array.isArray(raw.trustedFamilies)?raw.trustedFamilies.map(clean).filter(Boolean):[],
+      asset:clean(raw.asset)||null,
+      license:clean(raw.license)||null,
+      verifiedAt:clean(raw.verifiedAt)||null,
+      note:clean(raw.note)
+    };
+  }
   function detect(){
-    const font=CANDIDATES.find(supportsCyrillicScriptFont)||'';
+    const authority=authoritySnapshot();
+    const families=[...new Set([...authority.trustedFamilies,...PREVIEW_CANDIDATES])];
+    const font=families.find(supportsCyrillicScriptFont)||'';
     const available=!!font;
-    return {schema:SCHEMA,available,canScore:available,font:font||null,mode:available?'local-script-font':'reference-only',reason:available
-      ?'Thiết bị có font chữ tay Cyrillic đủ khác fallback để dùng cho bài nhận diện.'
-      :'Không xác nhận được font chữ tay Cyrillic tin cậy. Chỉ dùng khung nét tham khảo; không chấm nhận diện.'};
+    const trusted=available&&authority.status==='ready'&&authority.source==='bundled-vetted'&&!!authority.asset&&!!authority.license&&!!authority.verifiedAt&&authority.trustedFamilies.includes(font);
+    const mode=trusted?'approved-handwriting-authority':available?'local-script-preview':'reference-only';
+    const reason=trusted
+      ?'Nguồn chữ tay Cyrillic offline đã được duyệt và đóng gói; bài nhận diện có thể chấm theo authority này.'
+      :available
+        ?'Thiết bị có font script cục bộ nhưng repo chưa có authority chữ tay Cyrillic đã được duyệt. Font này chỉ dùng làm preview, không chấm đúng/sai.'
+        :'Không có authority chữ tay Cyrillic đã được duyệt. Chỉ dùng khung nét tham khảo; không chấm nhận diện.';
+    return {schema:SCHEMA,available,canScore:trusted,font:font||null,mode,reason,authority:{...authority,trusted}};
   }
 
   const REVIEW_DELAY_MS=10*60*1000;
@@ -96,7 +116,11 @@
   function bannerHtml(cap){
     const state=cap.canScore?'Sẵn sàng nhận diện':'Chế độ tham khảo';
     const cls=cap.canScore?'ready':'reference';
-    const small=cap.font?('Font cục bộ: '+clean(cap.font)):'Không chấm đúng/sai theo hình chữ tay trên thiết bị này.';
+    const small=cap.canScore
+      ?('Authority: '+clean(cap.font)+' · '+clean(cap.authority?.asset||'asset chưa rõ'))
+      :cap.font
+        ?('Font preview cục bộ: '+clean(cap.font)+' · không dùng để chấm')
+        :'Không chấm đúng/sai theo hình chữ tay trên thiết bị này.';
     return '<section class="ru-handwriting-capability '+cls+'" data-ru-handwriting-capability="'+esc(cap.mode)+'"><div><span>HANDWRITING AUTHORITY</span><b>'+esc(state)+'</b><p>'+esc(cap.reason)+'</p></div><small>'+esc(small)+'</small></section>';
   }
   function drillHtml(cap,state){
