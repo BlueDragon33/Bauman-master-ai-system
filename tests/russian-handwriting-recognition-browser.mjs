@@ -89,8 +89,11 @@ try{
   await scoringContext.route('**/assets/handwriting-glyph-authority.js',route=>route.fulfill({
     status:200,
     contentType:'application/javascript; charset=utf-8',
-    body:"'use strict';window.RUSSIAN_HANDWRITING_GLYPH_AUTHORITY=Object.freeze({schema:'RUSSIAN_HANDWRITING_GLYPH_AUTHORITY_V1',status:'ready',source:'bundled-vetted',trustedFamilies:Object.freeze(['Segoe Script']),asset:'subjects/russian/assets/fonts/e2e-approved-cyrillic-handwriting.woff2',assetSha256:'aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa',license:'subjects/russian/assets/fonts/e2e-license.txt',licenseSha256:'bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb',coverageManifest:'subjects/russian/assets/fonts/e2e-coverage.json',coverageSha256:'cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc',verifiedAt:'2026-09-19T00:00:00.000Z',note:'Deterministic E2E authority fixture'});"
+    body:"'use strict';window.RUSSIAN_HANDWRITING_GLYPH_AUTHORITY=Object.freeze({schema:'RUSSIAN_HANDWRITING_GLYPH_AUTHORITY_V1',status:'ready',source:'bundled-vetted',trustedFamilies:Object.freeze(['Segoe Script']),asset:'subjects/russian/assets/fonts/e2e-approved-cyrillic-handwriting.woff2',assetSha256:'ba7816bf8f01cfea414140de5dae2223b00361a396177a9cb410ff61f20015ad',license:'subjects/russian/assets/fonts/e2e-license.txt',licenseSha256:'cc1d3b0234846714b0aeda6cc34b057b4305bb83dd447fb88f816efeb59a4e96',coverageManifest:'subjects/russian/assets/fonts/e2e-coverage.json',coverageSha256:'379ed2d7d8884c0bc30ded4bb76757e9961ad082f0aa103dfbeb6bbf8945d0b3',verifiedAt:'2026-09-19T00:00:00.000Z',note:'Deterministic E2E authority fixture'});"
   }));
+  await scoringContext.route('**/assets/fonts/e2e-approved-cyrillic-handwriting.woff2',route=>route.fulfill({status:200,contentType:'font/woff2',body:'abc'}));
+  await scoringContext.route('**/assets/fonts/e2e-license.txt',route=>route.fulfill({status:200,contentType:'text/plain; charset=utf-8',body:'license'}));
+  await scoringContext.route('**/assets/fonts/e2e-coverage.json',route=>route.fulfill({status:200,contentType:'application/json; charset=utf-8',body:"{\"schema\":\"RUSSIAN_HANDWRITING_GLYPH_COVERAGE_V1\",\"alphabetIds\":[\"HW_AZ_01\",\"HW_AZ_02\",\"HW_AZ_03\",\"HW_AZ_04\",\"HW_AZ_05\",\"HW_AZ_06\",\"HW_AZ_07\",\"HW_AZ_08\",\"HW_AZ_09\",\"HW_AZ_10\",\"HW_AZ_11\",\"HW_AZ_12\",\"HW_AZ_13\",\"HW_AZ_14\",\"HW_AZ_15\",\"HW_AZ_16\",\"HW_AZ_17\",\"HW_AZ_18\",\"HW_AZ_19\",\"HW_AZ_20\",\"HW_AZ_21\",\"HW_AZ_22\",\"HW_AZ_23\",\"HW_AZ_24\",\"HW_AZ_25\",\"HW_AZ_26\",\"HW_AZ_27\",\"HW_AZ_28\",\"HW_AZ_29\",\"HW_AZ_30\",\"HW_AZ_31\",\"HW_AZ_32\",\"HW_AZ_33\"],\"fontFamilies\":[\"Segoe Script\"],\"reviewedAt\":\"2026-09-19T00:00:00.000Z\",\"reviewedBy\":\"E2E\"}"}));
   await scoringContext.addInitScript(()=>{
     const original=CanvasRenderingContext2D.prototype.measureText;
     CanvasRenderingContext2D.prototype.measureText=function(text){
@@ -98,6 +101,17 @@ try{
       if(String(text)==='ДдЖжФфЯяШш'&&String(this.font).includes('Segoe Script'))return {width:Number(metrics.width||0)+37};
       return metrics;
     };
+    class E2EFontFace{
+      constructor(family,source){this.family=family;this.source=source;this.status='unloaded';}
+      async load(){this.status='loaded';return this;}
+    }
+    try{Object.defineProperty(window,'FontFace',{configurable:true,value:E2EFontFace});}catch(_){window.FontFace=E2EFontFace;}
+    const fonts=document.fonts,proto=Object.getPrototypeOf(fonts);
+    const originalCheck=fonts.check.bind(fonts);
+    const fakeAdd=()=>fonts;
+    const fakeCheck=(font,text)=>String(font).includes('Segoe Script')?true:originalCheck(font,text);
+    try{Object.defineProperty(fonts,'add',{configurable:true,value:fakeAdd});}catch(_){try{Object.defineProperty(proto,'add',{configurable:true,value:fakeAdd});}catch(__){}}
+    try{Object.defineProperty(fonts,'check',{configurable:true,value:fakeCheck});}catch(_){try{Object.defineProperty(proto,'check',{configurable:true,value:fakeCheck});}catch(__){}}
   });
   const scoringPage=await scoringContext.newPage();
   const scoringErrors=[];
@@ -117,6 +131,8 @@ try{
   assert.equal(forcedCapability.authority?.assetSha256?.length,64);
   assert.equal(forcedCapability.authority?.licenseSha256?.length,64);
   assert.equal(forcedCapability.authority?.coverageSha256?.length,64);
+  assert.equal(forcedCapability.authority?.runtimeStatus,'verified');
+  assert.ok(forcedCapability.authority?.runtimeVerifiedAt,'Runtime authority verification timestamp missing');
 
   await scoringPage.locator('[data-ru-handwriting-choice]').nth(1).click();
   await scoringPage.waitForFunction(()=>window.RussianHandwritingRecognition.getState().attempts===1&&window.RussianHandwritingRecognition.getState().lastCorrect===false);
