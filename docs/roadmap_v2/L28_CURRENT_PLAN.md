@@ -1,6 +1,6 @@
 # Lượt 28 — Current Plan · Bước 109–112
 
-Status: `PASS_B109 · B110_IN_PROGRESS · B111_BLOCKED · B112_BLOCKED`
+Status: `PASS_B109 · PASS_B110 · PASS_B111 · B112_IN_PROGRESS`
 
 Prerequisite: L27 documentation/final-state head `0b9705e1a1267f35b53dccefc8abb850af8bff5e` passed the complete six-gate set.
 
@@ -21,18 +21,18 @@ Locked rules:
 
 ## B110 — In-memory advisory projector
 
-**ACTIVE.** Build a deterministic, deeply frozen projector under `scripts/` that composes the current Readiness harness and emits only `BAUMAN_ROADMAP_V2_ADMISSION_RESULT_V1`.
+**PASS.** Deterministic, deeply frozen projector under `scripts/` composes the current Readiness harness and emits only `BAUMAN_ROADMAP_V2_ADMISSION_RESULT_V1`.
 
-B110 remains blocked until the B109 head passes all six gates.
+Accepted B110/B111 prerequisite head: `34835a415bc2fbce8cb8746e3dfe3a1d72cb1a79` — complete six-gate set PASS.
 
 ## B111 — Adversarial admission validation
 
-Test forged readiness results/colors, persisted input, schema drift, malformed targets, attempted automatic action, consumer wiring leaks, mutation attempts and deterministic aggregation.
+**PASS.** 18/18 adversarial checks cover forged readiness results/colors, persisted input, schema drift, malformed targets, attempted automatic action, consumer wiring leaks, mutation attempts and deterministic aggregation.
 
-B111 remains blocked until B110 passes all six gates.
+B111 accepted on head `34835a415bc2fbce8cb8746e3dfe3a1d72cb1a79` with the complete six-gate set green.
 
 ## B112 — Full-system closeout
 
-Compose B109–B111 and rerun the complete six-gate set. Production integration remains disconnected.
+**ACTIVE.** Compose B109–B111 and rerun the complete six-gate set. Production integration remains disconnected. Canonical Roadmap must remain data/contracts only, with zero executable/UI/consumer wiring.
 
 L29 remains blocked until B112 and its documentation/final-state closeout are green.
