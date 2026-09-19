@@ -6,6 +6,7 @@
   const latin=/[A-Za-z]/;
   const clean=v=>String(v??'').trim();
   const arr=v=>Array.isArray(v)?v:[];
+  const russian=v=>{const s=clean(v);return cyr.test(s)?s:'';};
   const first=(item,keys)=>{for(const key of keys){const value=item?.[key];if(value!==undefined&&value!==null&&value!==''&&(Array.isArray(value)?value.length:true))return value;}return '';};
   const TERM_KEYS=['ru','phrase_ru','front','word','term'];
   const STRESSED_TERM_KEYS=['stressed_ru','stressed','accented_ru','accented'];
@@ -25,10 +26,10 @@
     const legacyVi=clean(item?.vi||'');
     const legacyViLooksEnglish=legacyVi&&/^[A-Za-z0-9 ,;:'"()!?./\-]+$/.test(legacyVi);
     const english=clean(item?.clue_en||item?.en||(legacyViLooksEnglish?legacyVi:''));
-    const meaningRu=clean(item?.meaning_ru||item?.meaning||item?.definition||'');
+    const meaningRu=russian(item?.meaning_ru||item?.definition_ru||item?.context_ru||item?.illustration_label_ru||item?.scene_ru||'');
     const partOfSpeech=clean(item?.part_of_speech||item?.partOfSpeech||item?.pos||item?.word_type||'');
     const forms=item?.forms||item?.inflections||item?.declension||item?.conjugation||null;
-    const example=clean(item?.example||item?.voice_text||item?.usage||item?.example_ru||'');
+    const example=russian(item?.example_ru||item?.context_ru||item?.voice_text||item?.usage_ru||'');
     const stressStatus=hasMarkedStress?'marked':hasYo?'yo_cue':'missing';
     return {
       id:clean(item?.id||item?.source_id||''),
@@ -67,7 +68,7 @@
   A.vocabPron=item=>normalizeVocab(item).transliteration;
   A.vocabSearchText=item=>{
     const v=normalizeVocab(item);
-    return [v.term,v.displayTerm,v.transliteration,v.meaningVi,v.english,v.meaningRu,v.example,v.partOfSpeech,v.stage,v.tags.join(' ')].filter(Boolean).join(' ');
+    return [v.term,v.displayTerm,v.transliteration,v.meaningRu,v.example,v.partOfSpeech,v.stage,v.tags.join(' ')].filter(Boolean).join(' ');
   };
   A.speech=A.speech||{};
   A.speech.lang='ru-RU';
