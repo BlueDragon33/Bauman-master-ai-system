@@ -50,6 +50,7 @@ for(const relative of foundationRuntime){
 }
 
 const russianHtml=fs.readFileSync(path.join(output,'subjects/russian/index.html'),'utf8');
+if(!russianHtml.includes('assets/handwriting-recognition.js'))throw new Error('Packaged Russian runtime is missing handwriting recognition script reference.');
 for(const resource of [
   '../../foundation/domain-model/canonical-identity-runtime.js',
   '../../foundation/domain-model/identity-overlay-store.js',
