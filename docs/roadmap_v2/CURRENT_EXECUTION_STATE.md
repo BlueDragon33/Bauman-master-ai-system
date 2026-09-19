@@ -5,16 +5,16 @@
 
 ## Active track
 
-- Current round: **Lượt 28**
-- Current step: **Bước 112 — DOCUMENTATION / FINAL-STATE GATE IN_PROGRESS**
+- Current round: **Lượt 29**
+- Current step: **Bước 113 — IN_PROGRESS**
 - L22 closeout: **B88 + H1 — PASS**
-- Status: **L23_COMPLETE · L24_COMPLETE · L25_COMPLETE · L26_COMPLETE · L27_COMPLETE · PASS_L28_B109 · PASS_L28_B110 · PASS_L28_B111 · PASS_L28_B112_FUNCTIONAL · L28_FINAL_STATE_GATE_IN_PROGRESS**
-- Last recorded six-gate head: `5003d6932caa37c518662626aaaac6575893a350`
+- Status: **L23_COMPLETE · L24_COMPLETE · L25_COMPLETE · L26_COMPLETE · L27_COMPLETE · L28_COMPLETE · L29_B113_IN_PROGRESS**
+- Last recorded six-gate head: `c9451fe957ccfc7d610483688da76b004c20c83e`
 - Production/runtime activation by Roadmap V2: **disconnected**
 - Legacy/source destructive migration: **not executed**
-- Last completed: **L28/B112 functional closeout — PASS (6/6 gates)**
+- Last completed: **L28/B112 documentation/final-state closeout — PASS (6/6 gates)**
 - Last hardening: **L27-F1/H1 stale manifest removal + additive readiness overlay — PASS**
-- Current official step: **L28/B112 — documentation/final-state closeout gate**
+- Current official step: **L29/B113 — shadow consumer admission contract**
 - L26 opened only after the L25 final-state head passed the complete six-gate set.
 
 ## L22/B88 complete gate evidence
@@ -590,3 +590,19 @@ Accepted B112 functional head: `5003d6932caa37c518662626aaaac6575893a350`
 B112 functional closeout is green. Admission remains read-only advisory only; production consumers remain zero and all persistence/UI/schedule/calendar/runtime/notification/automatic-action writes remain disabled.
 
 L29 remains blocked until this documentation/final-state closeout head itself passes the complete six-gate set.
+
+
+## L28 documentation/final-state closeout gate evidence
+
+Accepted L28 final-state head: `c9451fe957ccfc7d610483688da76b004c20c83e`
+
+- Roadmap V2 Current Gate — run `35449940675` — PASS
+- Foundation Domain Model — run `35449940672` — PASS
+- Windows checkout safety — run `35449940680` — PASS
+- Russian Reference UI — run `35449940694` — PASS
+- Cloudflare Preview — run `35449940691` — PASS
+- Whole System Integration — run `35449940665` — PASS
+
+L28 is complete through B112. Production integration remains disconnected and production consumer count remains zero.
+
+L29/B113 is permitted to open.
