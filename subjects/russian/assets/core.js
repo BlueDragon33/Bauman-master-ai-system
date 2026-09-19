@@ -87,12 +87,12 @@ function getPracticeDialogues(){
  const ctx=activeLessonContext();
  const base=byStage(getBasicSpeakingDialogues()).filter(x=>ctx.id&&sameLesson(x,ctx.id));
  const groups=uniq(base.map(x=>A.dialogueGroup?.(x)||x.group_ru||x.group_id||x.source_group_id||'general'));
- const diffs=uniq(base.map(x=>A.dialogueDifficulty?.(x)||x.difficulty||x.level||'all'));
+ const diffs=uniq(base.map(x=>A.dialogueDifficulty?.(x)||x.difficulty_id||x.difficulty_ru||'all'));
  if(state.practiceGroup!=='all'&&!groups.includes(state.practiceGroup))state.practiceGroup='all';
  if(state.practiceDifficulty!=='all'&&!diffs.includes(state.practiceDifficulty))state.practiceDifficulty='all';
  let xs=base;
  if(state.practiceGroup!=='all')xs=xs.filter(x=>(A.dialogueGroup?.(x)||x.group_ru||x.group_id||x.source_group_id||'general')===state.practiceGroup);
- if(state.practiceDifficulty!=='all')xs=xs.filter(x=>(A.dialogueDifficulty?.(x)||x.difficulty||x.level||'all')===state.practiceDifficulty);
+ if(state.practiceDifficulty!=='all')xs=xs.filter(x=>(A.dialogueDifficulty?.(x)||x.difficulty_id||x.difficulty_ru||'all')===state.practiceDifficulty);
  if(state.practiceQuery)xs=xs.filter(x=>lower(A.dialogueSearchText?.(x)||'').includes(lower(state.practiceQuery)));
  return xs;
 }
@@ -367,11 +367,11 @@ function finalQaSnapshot(){
 function getDialogues(){
  let xs=byStage(getBaumanDialogueAZ());
  const groups=uniq(xs.map(x=>A.dialogueGroup?.(x)||x.group_ru||x.group_id||x.source_group_id||'general'));
- const diffs=uniq(xs.map(x=>A.dialogueDifficulty?.(x)||x.difficulty||x.level||'all'));
+ const diffs=uniq(xs.map(x=>A.dialogueDifficulty?.(x)||x.difficulty_id||x.difficulty_ru||'all'));
  if(state.dialogueGroup!=='all'&&!groups.includes(state.dialogueGroup))state.dialogueGroup='all';
  if(state.dialogueDifficulty!=='all'&&!diffs.includes(state.dialogueDifficulty))state.dialogueDifficulty='all';
  if(state.dialogueGroup!=='all')xs=xs.filter(x=>(A.dialogueGroup?.(x)||x.group_ru||x.group_id||x.source_group_id||'general')===state.dialogueGroup);
- if(state.dialogueDifficulty!=='all')xs=xs.filter(x=>(A.dialogueDifficulty?.(x)||x.difficulty||x.level||'all')===state.dialogueDifficulty);
+ if(state.dialogueDifficulty!=='all')xs=xs.filter(x=>(A.dialogueDifficulty?.(x)||x.difficulty_id||x.difficulty_ru||'all')===state.dialogueDifficulty);
  if(state.dialogueQuery)xs=xs.filter(x=>lower(A.dialogueSearchText?.(x)||'').includes(lower(state.dialogueQuery)));
  return xs
 }
@@ -1038,7 +1038,7 @@ function learningListForMode(){
  }
  if(mode==='practice'){
    const ds=getPracticeDialogues().slice(0,160); const active=ds.find(d=>(d.id||d.title)===state.practiceDialogueId)||ds[0];
-   const item=d=>{const turns=dialogueTurns(d).length; const group=A.dialogueGroup?.(d)||d.group_ru||d.group_id||d.source_group_id||'general'; const diff=A.dialogueDifficulty?.(d)||d.difficulty||d.level||'all'; return {turns,group,diff,title:A.dialogueTitle?.(d)||d.title||'Bài nghe-nhại',sub:A.dialogueSubtitle?.(d)||d.purpose_ru||d.context_title_ru||''};};
+   const item=d=>{const turns=dialogueTurns(d).length; const group=A.dialogueGroup?.(d)||d.group_ru||d.group_id||d.source_group_id||'general'; const diff=A.dialogueDifficulty?.(d)||d.difficulty_id||d.difficulty_ru||'all'; return {turns,group,diff,title:A.dialogueTitle?.(d)||d.title||'Bài nghe-nhại',sub:A.dialogueSubtitle?.(d)||d.purpose_ru||d.context_title_ru||''};};
    return {title:'Nghe và nhại '+ctx.id, hint:'Chọn tình huống, nghe mẫu rồi nhại từng câu.', items:ds.map((d,i)=>{const it=item(d); return `<button class="learn-item v1293-dialogue-item v1295-dialogue-list-item clean-left-item ${active===d?'active':''}" data-practice-dialogue="${esc(d.id||d.title)}"><span>${String(i+1).padStart(2,'0')}</span><b>${esc(it.title)}</b><em>${it.turns} câu nghe-nhại</em></button>`}).join('')||'<div class="note">Bài này chưa có hội thoại đúng lessonId hoặc bộ lọc đang quá hẹp.</div>'};
  }
  if(mode==='review')return {title:'Ôn tập', hint:'Các bộ lọc và câu hỏi nằm trong khung chính.', items:'<div class="note">Ôn tập hiển thị ở khung bên phải. Hàng nút phía trên giữ cùng bố cục với Lý thuyết, Bài tập và Nghe/Nói.</div>'};
@@ -1068,7 +1068,7 @@ function renderLearning(){
  }[state.learnTab]||{label:list.title||'Học tập',kicker:'Học theo nhịp',hint:'Chọn đúng chế độ ở thanh trên.'};
  const ctxDialogues=byStage(getBasicSpeakingDialogues()).filter(x=>ctx.id&&sameLesson(x,ctx.id));
  const groups=uniq(ctxDialogues.map(x=>A.dialogueGroup?.(x)||x.group_ru||x.group_id||x.source_group_id||'general'));
- const diffs=uniq(ctxDialogues.map(x=>A.dialogueDifficulty?.(x)||x.difficulty||x.level||'all'));
+ const diffs=uniq(ctxDialogues.map(x=>A.dialogueDifficulty?.(x)||x.difficulty_id||x.difficulty_ru||'all'));
  const exerciseLevels=uniq(byStage(call('getExercises',[],DB)).map(x=>A.exerciseLevel?.(x)||x.level||x.difficulty||'all'));
  const searchBox=state.learnTab==='theory'
   ? `<input class="input learn-canva-search" data-input="lessonQuery" value="${esc(state.lessonQuery)}" placeholder="Tìm bài học, chủ đề...">`
@@ -1669,9 +1669,9 @@ function dialogueSetupMicroPlan(active){
 function renderDialogueSetupModal(){
  const all=byStage(optionalReady('dialogue-bauman-az')?getBaumanDialogueAZ():getBasicSpeakingDialogues());
  const groups=uniq(all.map(x=>A.dialogueGroup?.(x)||x.group_ru||x.group_id||x.source_group_id||'general'));
- const diffs=uniq(all.map(x=>A.dialogueDifficulty?.(x)||x.difficulty||x.level||'all'));
+ const diffs=uniq(all.map(x=>A.dialogueDifficulty?.(x)||x.difficulty_id||x.difficulty_ru||'all'));
  const filtered=all.filter(d=>{
-  const g=A.dialogueGroup?.(d)||d.group_ru||d.group_id||d.source_group_id||'general'; const df=A.dialogueDifficulty?.(d)||d.difficulty||d.level||'all';
+  const g=A.dialogueGroup?.(d)||d.group_ru||d.group_id||d.source_group_id||'general'; const df=A.dialogueDifficulty?.(d)||d.difficulty_id||d.difficulty_ru||'all';
   return (state.dialogueGroup==='all'||g===state.dialogueGroup)&&(state.dialogueDifficulty==='all'||df===state.dialogueDifficulty);
  });
  const active=currentDialogue(); const plan=dialogueSetupMicroPlan(active);
@@ -1736,7 +1736,7 @@ function renderDialogue(){
  if(!optionalReady('dialogue-bauman-az'))return renderOptionalDataGate('dialogue-bauman-az','Đối thoại Bauman A-Z','Bộ hội thoại đầy đủ khá lớn nên chỉ tải khi mở tab Đối thoại. Tab Nghe/Nói vẫn dùng bộ cơ bản và không bị ảnh hưởng.');
  const all=byStage(getBaumanDialogueAZ());
  const groups=uniq(all.map(x=>A.dialogueGroup?.(x)||x.group_ru||x.group_id||x.source_group_id||'general'));
- const diffs=uniq(all.map(x=>A.dialogueDifficulty?.(x)||x.difficulty||x.level||'all'));
+ const diffs=uniq(all.map(x=>A.dialogueDifficulty?.(x)||x.difficulty_id||x.difficulty_ru||'all'));
  const list=getDialogues();
  const active=list.find(x=>(x.id||x.title)===state.dialogueId)||list[0]||{};
  const turns=dialogueTurns(active);
