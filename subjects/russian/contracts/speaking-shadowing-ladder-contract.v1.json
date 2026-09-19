@@ -24,7 +24,9 @@
     "roleplayEvidenceRequiresRecording": true,
     "recognitionResultEvidenceRequired": true,
     "failedOrEmptyRecognitionDoesNotCountAttempt": true,
-    "manualSelfAssessmentDoesNotCreateSpeakingEvidence": true
+    "manualSelfAssessmentDoesNotCreateSpeakingEvidence": true,
+    "deepSpeakingRecognitionRequired": true,
+    "deepSpeakingSelfAssessmentSeparate": true
   },
   "feedback": {
     "explicitPronunciationRepair": true,
@@ -43,6 +45,7 @@
     "masteryMutation": false,
     "recognitionConfirmedAttempts": true,
     "learningFlowRecognitionOnly": true,
-    "selfAssessmentStoredSeparately": true
+    "selfAssessmentStoredSeparately": true,
+    "deepSpeakingAttemptsRecognitionConfirmed": true
   }
 }
