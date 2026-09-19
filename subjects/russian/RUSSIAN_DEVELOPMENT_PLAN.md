@@ -109,6 +109,7 @@ Post-freeze quality substep:
 
 - **9.1 — Recognition-confirmed speaking evidence:** recorder start only indicates microphone readiness; imitation/shadowing/memory/role-play/repair attempts are counted only after SpeechRecognition returns a non-empty Russian transcript, so failed/no-speech sessions do not become speaking evidence.
 - **9.2 — Self-assessment/evidence isolation:** `✓ Đã nói ổn` remains a subjective self-rating only; it cannot fabricate `score:100`/transcript evidence, clear pronunciation-repair flags, mark a speaking session attempted, or increment learning-flow speaking attempts. Learning-flow speaking evidence now comes only from `russian:speaking-recording-result`.
+- **9.3 — Deep Speaking recognition evidence:** Rapid/Substitution/Shadowing/Monologue/Q&A deep modes now expose an actual Russian SpeechRecognition action. `deepSpeakingProgress.attempts` increments only after a non-empty recognition result; manual “Tự đánh giá: ổn” remains separate and cannot create recognition evidence or mastery.
 
 ### Turn 10 — Visual vocabulary contract
 
@@ -155,6 +156,7 @@ Default beginner dialogue support to scene/cue/gesture/role context instead of V
 Post-freeze quality substep:
 
 - **16.1 — Adapter/Deep/AI translation isolation:** dialogue adapter titles/subtitles are Russian/direct-context first, legacy turn translation fields are sanitized instead of exposed, Deep Speaking no longer reads `*_vi` titles/prompts/tags, custom dialogue creation no longer emits `vi_turns`, and AI dialogue context receives only Russian/direct scaffold metadata.
+- **16.2 — Deep Speaking semantic allowlist:** remove generic `question/answer/domain`, `Object.values(...)` and `JSON.stringify(...)` fallback paths from learner-facing Deep Speaking. Object extraction now fails closed to Russian-labelled semantic fields and nested Russian collections only.
 
 ### Turn 17 — Grammar from patterns
 
@@ -241,6 +243,7 @@ Turn 24 execution substeps:
 - **24.8 — Post-freeze regression revalidation:** rerun Turn 23/24 source gates after any frozen-candidate defect fix; the post-freeze audit removed stale `V ẩn/hiện nghĩa` guidance and unused translation-era vocab/dialogue helpers, with promotion assertions updated before retaining GREEN.
 - **24.9 — Promotion negative-test fidelity:** mutate every `BAUMAN_SUBJECT_BRIDGE_V1` marker in the negative case so both READY and PROGRESS bridge paths must remain contract-correct; full workflow run `35416011837` passed at commit `ae26de6b1f2d24f1e1b5bc4874ea705b68f1d5bf`, including existing-regression checks.
 - **24.10 — Translation-path migration freeze:** extend migration/dialogue/vocabulary negative gates across adapter helpers, Deep Speaking, AI context and new-item templates so legacy Vietnamese/English fields may remain in archived source data but cannot regain learner-facing semantic authority. Final executable proof: workflow `35418691089` GREEN at `15e7b4f61198c5d268ea03f7fdd68d0b8d48cfa9`.
+- **24.11 — Deep semantic/evidence freeze:** migration/dialogue/speaking negative gates now reject generic-language Deep Speaking fallback and reject click/self-rating as recognition evidence. Workflow `35420972649` is GREEN for architecture and existing regression at commit `f5b49e56f276752ee2db9a3c5c33011574b0d3ba`.
 
 Result: all canonical 24 turns are GREEN. No further turn is created because no new responsibility remains unresolved inside this rebuild. Promotion to `main` is deliberately outside automatic execution.
 
