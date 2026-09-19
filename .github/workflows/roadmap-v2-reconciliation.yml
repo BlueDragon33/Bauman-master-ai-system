@@ -37,6 +37,7 @@ on:
       - 'scripts/validate-roadmap-v2-l26-b101.mjs'
       - 'scripts/roadmap-v2-scheduler-harness.mjs'
       - 'scripts/validate-roadmap-v2-l26-b102.mjs'
+      - 'scripts/validate-roadmap-v2-l26-b103.mjs'
       - '.github/workflows/roadmap-v2-reconciliation.yml'
 
 permissions:
@@ -101,6 +102,8 @@ jobs:
         run: node scripts/validate-roadmap-v2-l26-b101.mjs
       - name: Validate current L26 B102 weekly projector
         run: node scripts/validate-roadmap-v2-l26-b102.mjs
+      - name: Validate current L26 B103 adversarial scheduler
+        run: node scripts/validate-roadmap-v2-l26-b103.mjs
       - name: Validate Foundation V2 L9
         run: node scripts/validate-foundation-domain-model.mjs
       - name: Validate current system integration
