@@ -70,7 +70,7 @@ export function validateRuntime(js,css,core,learningFlow){
   assert(!/deep-mark-ok[^\n]{0,600}p\.attempts\[/.test(core),'Deep Speaking self-assessment must not create recognition attempts');
   assert(core.includes('speechRecognitionToken=0'),'Speech recognition session token missing');
   assert((core.match(/const token=\+\+speechRecognitionToken;/g)||[]).length>=2,'Both recorders must start a fresh recognition session token');
-  assert((core.match(/if\(token!==speechRecognitionToken\)return;/g)||[]).length>=8,'Recognition callbacks are not fully protected from stale sessions');
+  const staleOnlyGuards=(core.match(/if\(token!==speechRecognitionToken\)return;/g)||[]).length; const staleConsumedGuards=(core.match(/if\(token!==speechRecognitionToken\|\|resultConsumed\)return;/g)||[]).length; assert(staleOnlyGuards+staleConsumedGuards>=8,'Recognition callbacks are not fully protected from stale sessions');
   assert(core.includes("const resultStoreKey=inPracticeMode()?'practiceSpeechResults':'dialogueSpeechResults'"),'Recorder does not capture its result store at start');
   assert(core.includes("dialogueIdAtStart=str(d?.id||d?.title||'dialogue')")&&core.includes("lessonIdAtStart=str(state.lessonId||'')"),'Recorder does not capture dialogue/lesson identity at start');
   assert(core.includes('state[resultStoreKey]=state[resultStoreKey]||{}; const store=state[resultStoreKey]'),'Recognition result still writes through active/current surface state');
