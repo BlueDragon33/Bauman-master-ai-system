@@ -1,6 +1,6 @@
 # Lượt 30 — Current Plan · Bước 117–120
 
-Status: `B117_PASS · B118_PASS · B119_ACTIVE · B120_BLOCKED`
+Status: `B117_PASS · B118_PASS · B119_PASS_23_OF_23 · B120_ACTIVE`
 
 Prerequisite: L29 final marker head `6483313072de9c2f190851a27f825464a7109917` passed the complete six-gate set.
 
@@ -31,10 +31,10 @@ An `accepted_for_shadow_analysis` submission must fail closed to `review_blocked
 
 ## B119 — Adversarial Human Review validation
 
-**ACTIVE.** Attack forged reviewer identity, forged upstream projection/decision, empty or duplicate reason codes, schema drift, upstream-not-ready acceptance, mutation escalation, persistence, production-promotion escalation and runtime wiring leaks.
+**PASS — 23/23 adversarial cases.** Forged reviewer identity, forged upstream projection/decision, empty or duplicate reason codes, schema drift, upstream-not-ready acceptance, mutation escalation, persistence, production-promotion escalation and runtime wiring leaks.
 
 ## B120 — Full-system closeout
 
-Compose B117–B119 and rerun the complete six-gate set. Production integration and production promotion remain disconnected.
+**ACTIVE.** Compose B117–B119 and rerun the complete six-gate set. Production integration and production promotion remain disconnected.
 
 Any defect creates `L30-Fx`; any newly discovered missing architecture creates `L30-Hx`. Later steps remain blocked until the repair/hardening head passes the complete six-gate set.
