@@ -77,7 +77,8 @@ export function validateLearnerRuntime({core,visual,dialogue,aiDirect,aiGuard,cu
   const dialogueSlice=slice(core,'function renderDialogue()','function handwritingText(');
   assert(!dialogueSlice.includes('vi_turns')&&!dialogueSlice.includes('toggle-vi'),'Learner dialogue surface regained translation UI');
 
-  assert(cursive.includes("RUSSIAN_CURSIVE_GLYPH_SHAPES_V1"),'Explicit cursive vector runtime missing');
+  assert(cursive.includes("RUSSIAN_CURSIVE_GLYPH_SHAPES_V2"),'Explicit cursive vector runtime missing');
+  assert(cursive.includes('function glyphCoverage(){return Object.keys(UPPER).length+Object.keys(LOWER).length;}')&&cursive.includes('function pairDistinct(letter)'),'Cursive freeze must retain 66-glyph distinct-pair checks');
   assert(repair.includes("RUSSIAN_WEAKNESS_REPAIR_ROUTER_V1"),'Weakness repair router missing');
   assert(repair.includes('repair_evidence_present')&&repair.includes('resolved'),'Repair lifecycle evidence gate missing');
   assert(skillGate.includes('advisoryOnly:true')&&skillGate.includes('crossSkillInference:false'),'Skill-gate advisory/isolation freeze weakened');
