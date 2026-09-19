@@ -400,8 +400,7 @@
     return item.status==='opened'?'Đã mở sửa':item.status==='attempted'?'Đã thử sửa':item.status==='repair_evidence_present'?'Đã có evidence':item.status==='resolved'?'Đã xử lý':'Cần sửa';
   }
 
-  function html(){
-    const items=activeItems().slice(0,8);
+  function html(items=activeItems().slice(0,8)){
     if(!items.length)return '';
     return '<section id="ruWeaknessRepair" class="ru-weakness-repair" data-weakness-repair="1">'+
       '<header><div><span>WEAKNESS REPAIR · TURN 21</span><h3>Vá đúng điểm yếu, không đánh dấu xong khi chỉ mới mở</h3><p>Mỗi thẻ đi tới đúng bài sửa lỗi. Chỉ evidence mới sau thời điểm mở mới được tính là xử lý.</p></div><b>'+items.length+' mục</b></header>'+
@@ -417,13 +416,18 @@
   }
 
   let queued=false;
+  let lastRenderSignature='';
   function render(){
     const core=parse(localStorage.getItem(CORE_KEY),{});
     const visible=core.view==='overview'||(core.view==='learning'&&core.learnTab==='review');
     const existing=document.getElementById('ruWeaknessRepair');
-    if(!visible){existing?.remove();return;}
-    const markup=html();
-    if(!markup){existing?.remove();return;}
+    if(!visible){existing?.remove();lastRenderSignature='';return;}
+    const items=activeItems().slice(0,8);
+    const signature=JSON.stringify(items.map(x=>[x.id,x.status,x.openedAt,x.attemptedAt,x.repairEvidenceAt,x.resolvedAt,x.detectedAt]));
+    if(!items.length){existing?.remove();lastRenderSignature='';return;}
+    if(existing&&signature===lastRenderSignature)return;
+    const markup=html(items);
+    lastRenderSignature=signature;
     if(existing){existing.outerHTML=markup;return;}
     const host=document.getElementById('view');
     if(host)host.insertAdjacentHTML('afterbegin',markup);
