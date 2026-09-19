@@ -49,7 +49,7 @@ Create Turn 25+ only if a genuinely new responsibility appears that cannot safel
 
 Continue auditing the frozen candidate. If a defect belongs to an existing responsibility, reopen/add a numbered substep inside that owning turn, fix it, extend the relevant negative/promotion gate, and restore GREEN. Create Turn 25+ only for a genuinely new responsibility.
 
-Current post-freeze additions accepted: Turn 23.8, Turn 24.7 and Turn 24.8.
+Current post-freeze additions accepted: Turn 8.1, Turn 18.1, Turn 21.7, Turn 22.7, Turn 23.8, Turn 23.9, Turn 24.7, Turn 24.8 and Turn 24.9.
 
 
 ## Post-freeze gate status
@@ -59,6 +59,8 @@ Turn 24.5/24.8 now include:
 - 14 promotion-freeze negative cases;
 - stale translation-shortcut rejection;
 - dead translation-era helper rejection;
-- CI execution of the promotion-freeze negative suite.
+- CI execution of the promotion-freeze negative suite;
+- full workflow proof at executable checkpoint `ae26de6b1f2d24f1e1b5bc4874ea705b68f1d5bf`, run `35416011837`, with both architecture and existing-regression jobs successful;
+- post-freeze gate-regression repairs remain assigned to their existing owning turns.
 
-No Turn 25 is justified by these fixes because they remain inside the existing migration-freeze responsibility.
+No Turn 25 is justified by these fixes because none introduces a genuinely new responsibility.
