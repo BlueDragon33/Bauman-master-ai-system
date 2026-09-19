@@ -88,6 +88,10 @@ Improve trace/free-write/copy flow, stroke guidance, letter connections and prac
 
 Standardize normal-speed listening, focused replay, slow replay only after need is established, and gist/detail tasks.
 
+Post-freeze regression substep:
+
+- **8.1 — Listening tokenizer gate fidelity:** align the static validator/negative mutation with the real `.split(/\s+/)` tokenizer so valid whitespace tokenization passes while broken tokenization still fails.
+
 ### Turn 9 — Speaking & shadowing ladder
 
 Standardize imitation, shadowing, memory speaking, role-play and pronunciation repair evidence.
@@ -128,6 +132,10 @@ Use `heard pattern → spoken pattern → noticed contrast → tiny rule → imm
 
 Schedule review using audio, image, recognition, speaking and writing evidence rather than translation flashcards alone.
 
+Post-freeze regression substep:
+
+- **18.1 — Authority-token guard fidelity:** scope scheduler/mastery authority checks to executable references rather than learner-facing prose, while negative tests still reject `dueAt` property access/declarations and review-queue mutations.
+
 ### Turn 19 — Skill-gated assessment
 
 Assess listening, speaking, print recognition, cursive recognition, reading and writing separately before aggregate readiness.
@@ -148,6 +156,7 @@ Turn 21 execution substeps:
 - **21.4 — Evidence-gated resolution:** distinguish detected → opened → attempted → repair evidence present → resolved; opening a card never resolves it.
 - **21.5 — Legacy remedial migration:** remove click-equals-complete behavior from the old exam remedial panel and route exam failures through the new repair layer.
 - **21.6 — Behavioral/negative gates:** prove repair routing cannot mutate mastery, completion, SRS due dates or canonical Review Queue authority.
+- **21.7 — Opened-state gate fidelity:** lock the actual `item.status='opened'` lifecycle transition in the validator and add a negative mutation proving that opening remains distinct from attempted/evidence/resolved.
 
 ### Turn 22 — Offline media & asset reliability
 
@@ -161,6 +170,7 @@ Turn 22 execution substeps:
 - **22.4 — Asset failure UX:** provide explicit fallback for failed learner-facing visual assets without switching to Vietnamese/English translation.
 - **22.5 — Offline readiness truthfulness:** report ready only when both package shell and required learning data are actually present in Cache Storage.
 - **22.6 — Behavioral/package gates:** validate shell/data coverage, navigation-only HTML fallback, explicit 503 JSON for missing required data and no false offline-ready state.
+- **22.7 — Asset-fallback diagnostic fidelity:** separate asset API existence from the required `missing_visual_asset` fallback value so negative tests fail for the precise broken invariant without weakening runtime behavior.
 
 ### Turn 23 — Browser/package/accessibility/performance QA
 
@@ -176,6 +186,7 @@ Turn 23 execution substeps:
 - **23.6 — Cursive visual proof:** close `RUS-CURSIVE-VISUAL-001` with real browser glyph-difference evidence, or replace font-dependent cursive with an explicit handwriting asset/shape representation.
 - **23.7 — Integrated browser/package gate:** run combined package/accessibility/performance checks and update deferred-obligation status only after evidence is green.
 - **23.8 — Modal accessibility lifecycle regression:** require `aria-hidden=false` on open, `aria-hidden=true` on close, move focus into the dialog and restore the opener after close; negative gates prevent regression.
+- **23.9 — Browser/package negative-test fidelity:** mutate every phone breakpoint declaration when proving the 760px guard and prioritize dependency load-order diagnostics before shell-inventory diagnostics, so the negative suite tests the intended invariant rather than a partial mutation or masking error.
 
 ### Turn 24 — Migration freeze & promotion candidate
 
@@ -192,6 +203,7 @@ Turn 24 execution substeps:
 - **24.6 — Promotion candidate documentation:** record compatibility, version-free display policy, OFL cursive provenance and the requirement for a separate promotion decision.
 - **24.7 — Version-free fallback freeze:** remove versioned learner-facing fallback labels from the adapter/core themselves, not only from the cleanup override; internal protocol/build metadata may remain non-visual.
 - **24.8 — Post-freeze regression revalidation:** rerun Turn 23/24 source gates after any frozen-candidate defect fix; the post-freeze audit removed stale `V ẩn/hiện nghĩa` guidance and unused translation-era vocab/dialogue helpers, with promotion assertions updated before retaining GREEN.
+- **24.9 — Promotion negative-test fidelity:** mutate every `BAUMAN_SUBJECT_BRIDGE_V1` marker in the negative case so both READY and PROGRESS bridge paths must remain contract-correct; full workflow run `35416011837` passed at commit `ae26de6b1f2d24f1e1b5bc4874ea705b68f1d5bf`, including existing-regression checks.
 
 Result: all canonical 24 turns are GREEN. No further turn is created because no new responsibility remains unresolved inside this rebuild. Promotion to `main` is deliberately outside automatic execution.
 
