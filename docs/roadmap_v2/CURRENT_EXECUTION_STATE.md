@@ -6,16 +6,16 @@
 ## Active track
 
 - Current round: **Lượt 30**
-- Current step: **L30/B117 — HUMAN REVIEW RECEIPT CONTRACT · IN_PROGRESS**
+- Current step: **L30/B118 — DETERMINISTIC HUMAN REVIEW PROJECTOR · IN_PROGRESS**
 - L22 closeout: **B88 + H1 — PASS**
-- Status: **L23_COMPLETE · L24_COMPLETE · L25_COMPLETE · L26_COMPLETE · L27_COMPLETE · L28_COMPLETE · L29_COMPLETE_THROUGH_B116 · L30_B117_ACTIVE**
-- Last recorded six-gate head: `6483313072de9c2f190851a27f825464a7109917`
+- Status: **L23_COMPLETE · L24_COMPLETE · L25_COMPLETE · L26_COMPLETE · L27_COMPLETE · L28_COMPLETE · L29_COMPLETE_THROUGH_B116 · L30_B117_COMPLETE · L30_B118_ACTIVE**
+- Last recorded six-gate head: `a7eade6db2de8783cedd642144fddd0a039ed2ac`
 - Production/runtime activation by Roadmap V2: **disconnected**
 - Legacy/source destructive migration: **not executed**
-- Last completed: **L29 final-state marker — PASS on complete six-gate set**
+- Last completed: **L30/B117 Human Review contract — PASS on complete six-gate set**
 - Last hardening: **L29-F2 validator/harness syntax repair — PASS; no gate weakening**
-- Current official step: **L30/B117 — canonical Human Review receipt boundary**
-- B118–B120 remain blocked until B117 passes the complete six-gate set.
+- Current official step: **L30/B118 — deterministic in-memory Human Review receipt projector**
+- B119–B120 remain blocked until B118 passes the complete six-gate set.
 
 ## L22/B88 complete gate evidence
 
@@ -712,3 +712,17 @@ Pre-audit found a current-track architecture gap: L29 can emit `ready_for_human_
 L30 therefore opens as a data-only Human Review Receipt Boundary. Production integration remains disconnected.
 
 Current active step: **L30/B117**.
+
+
+## L30/B117 gate evidence
+
+Accepted B117 head: `a7eade6db2de8783cedd642144fddd0a039ed2ac`
+
+- Roadmap V2 Current Gate — run `35452063091` — PASS
+- Foundation Domain Model — run `35452063116` — PASS
+- Windows checkout safety — run `35452063110` — PASS
+- Russian Reference UI — run `35452063084` — PASS
+- Cloudflare Preview — run `35452063087` — PASS
+- Whole System Integration — run `35452063094` — PASS
+
+B117 is closed. The Human Review contract remains data-only, production promotion is disabled, and B118 is permitted to open.
