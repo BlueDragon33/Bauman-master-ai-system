@@ -50,6 +50,8 @@ on:
       - 'scripts/validate-roadmap-v2-l28-b112.mjs'
       - 'scripts/validate-roadmap-v2-l29-b113.mjs'
       - 'scripts/validate-roadmap-v2-l29-h1-consumer-admission-request.mjs'
+      - 'scripts/roadmap-v2-consumer-admission-harness.mjs'
+      - 'scripts/validate-roadmap-v2-l29-b114.mjs'
       - '.github/workflows/roadmap-v2-reconciliation.yml'
 
 permissions:
@@ -136,6 +138,8 @@ jobs:
         run: node scripts/validate-roadmap-v2-l29-b113.mjs
       - name: Validate L29 H1 consumer admission request boundary
         run: node scripts/validate-roadmap-v2-l29-h1-consumer-admission-request.mjs
+      - name: Validate current L29 B114 shadow consumer adapter
+        run: node scripts/validate-roadmap-v2-l29-b114.mjs
       - name: Validate Foundation V2 L9
         run: node scripts/validate-foundation-domain-model.mjs
       - name: Validate current system integration
