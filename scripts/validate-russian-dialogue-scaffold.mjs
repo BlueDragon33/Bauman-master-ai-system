@@ -75,6 +75,7 @@ export function validateCore(core){
   assert(dialogueSearch.includes("lower(A.dialogueSearchText?.(x)||'')"),'Dialogue search does not use fail-closed Russian/direct-context authority');
   assert(!practiceSearch.includes('lower(textOf(x))')&&!dialogueSearch.includes('lower(textOf(x))'),'Dialogue search may still fall back to generic-language itemText');
   assert(!core.includes("A.dialogueGroup?.(x)||x.group||'general'"),'Core reintroduced generic-language dialogue group fallback');
+  assert(!/A\.dialogueGroup\?\.\([^)]+\)\|\|[^;\n]*?\.group(?!_ru|_id)\b/.test(core),'Core dialogue surfaces must not fall back to generic-language group labels');
   assert(deep.includes('function russianSemanticTags('),'Deep speaking Russian semantic-tag filter missing');
   assert(deep.includes('dialogue.group_ru')&&!/dialogue\.group(?!_ru|_id)/.test(deep),'Deep link routing reads generic dialogue.group instead of group_ru');
   assert(deep.includes('const unitTags=russianSemanticTags('),'Deep link unit tags are not Cyrillic-filtered');
