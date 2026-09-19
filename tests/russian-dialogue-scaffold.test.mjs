@@ -36,7 +36,7 @@ assert.throws(()=>validateAdapter(adapter.replace("dialogueGroup(item){ return i
 assert.throws(()=>validateAdapter(adapter.replace("dialogueDifficulty(item){ return item?.difficulty_id || item?.difficulty_ru || 'all'; }","dialogueDifficulty(item){ return item?.difficulty_id || item?.difficulty || item?.level || 'all'; }")),/difficulty|generic-language/);
 assert.throws(()=>validateAdapter(adapter.replace("const {vi,vi_text,translation_vi,gloss_vi,meaning_vi,purpose_vi,clue_en,meaning_en,translation_en,en,...safe}=turn||{};","const {vi,vi_text,translation_vi,gloss_vi,...safe}=turn||{};")),/sanitize all prohibited translation fields/);
 assert.throws(()=>validateAdapter(adapter.replace("return turns.map(project);","return turns.map((ru,i)=>({speaker:speakers[i]||(i%2?'B':'A'),ru}));")),/same sanitizer projector/);
-assert.throws(()=>validateAdapter(adapter.replace("ru:/[А-Яа-яЁё]/.test(text)?text:''","ru:text")),/reject non-Cyrillic generic text/);
+assert.throws(()=>validateAdapter(adapter.replaceAll("ru:/[А-Яа-яЁё]/.test(text)?text:''","ru:text")),/reject non-Cyrillic generic text/);
 assert.throws(()=>validateCore(core.replace("unit?.unit_title_ru","unit?.unit_title_vi||unit?.unit_title_ru")),/translation scaffold/);
 assert.throws(()=>validateCore(core.replace("return Object.entries(v).filter(([k,val])=>val&&typeof val==='object'&&(/_ru$|^ru_|russian/i.test(k)||Array.isArray(val))).flatMap(([,val])=>deepLines(val));","return Object.values(v).flatMap(deepLines);")),/fail closed|serializing unknown semantic fields/);
 assert.throws(()=>validateCore(core.replace("p.question_ru||p.q_ru||p.ru||'Как вы ответите?'", "p.question_ru||p.q_ru||p.ru||p.question||'Как вы ответите?'")),/generic-language question\/answer/);
