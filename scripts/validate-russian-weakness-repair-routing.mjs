@@ -26,7 +26,7 @@ export function validateContract(c){
 export function validateRuntime(js){
   assert(js.includes("const SCHEMA='RUSSIAN_WEAKNESS_REPAIR_ROUTER_V1'"),'Repair router schema missing');
   assert(js.includes("const STORAGE_KEY='bauman_russian_weakness_repair_v1'"),'Dedicated repair store missing');
-  assert(js.includes("status:'opened'"),'Opened lifecycle state missing');
+  assert(js.includes("item.status='opened'"),'Opened lifecycle state missing');
   assert(js.includes("item.status='attempted'"),'Attempted lifecycle state missing');
   assert(js.includes("item.status='repair_evidence_present'"),'Repair-evidence lifecycle state missing');
   assert(js.includes("item.status='resolved'"),'Resolved lifecycle state missing');
