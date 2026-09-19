@@ -12,8 +12,10 @@ export function validateContract(c){
   assert(c.prerequisites?.pronunciationFlagBeforeRepair===true,'Repair must require explicit pronunciation flag');
   assert(c.runtime?.reuseCoreRecorder===true&&c.runtime?.roleplayEvidenceRequiresRecording===true,'Speaking evidence must come from real recorder use');
   assert(c.runtime?.recognitionResultEvidenceRequired===true&&c.runtime?.failedOrEmptyRecognitionDoesNotCountAttempt===true,'Speaking evidence must require non-empty recognition result');
+  assert(c.runtime?.deepSpeakingRecognitionRequired===true&&c.runtime?.deepSpeakingSelfAssessmentSeparate===true,'Deep Speaking must require recognition evidence and keep self-assessment separate');
   assert(c.runtime?.manualSelfAssessmentDoesNotCreateSpeakingEvidence===true,'Manual self-assessment must remain non-evidence');
   assert(c.evidence?.recognitionConfirmedAttempts===true,'Speaking attempts must remain recognition-confirmed');
+  assert(c.evidence?.deepSpeakingAttemptsRecognitionConfirmed===true,'Deep Speaking attempts must remain recognition-confirmed');
   assert(c.evidence?.learningFlowRecognitionOnly===true&&c.evidence?.selfAssessmentStoredSeparately===true,'Learning-flow speaking evidence must remain recognition-only');
   assert(c.runtime?.listeningLadderOwnedByTurn8===true&&c.runtime?.slowListenOwnedByRepairOnly===true,'Listening/speaking ownership drifted');
   assert(c.feedback?.translationAnswerForbidden===true&&c.feedback?.autoMasteryFromSimilarityScore===false,'Speaking feedback policy weakened');
@@ -55,6 +57,12 @@ export function validateRuntime(js,css,core,learningFlow){
   assert(!learningFlow.includes("['record-line','speak-line','speak-line-slow','speak-dialogue']"),'Listening/recorder clicks still count as speaking attempts');
   assert(!/act==='mark-line-ok'[^\n]*attempts/.test(learningFlow),'Self-assessment still increments speaking attempts');
   assert(core.includes("try{rec.start();toast('Đang mở micro tiếng Nga...');return true}catch(_)"),'Core recorder start failure is not explicit');
+  assert(core.includes('function startDeepSpeakingRecording()'),'Deep Speaking recognition recorder missing');
+  assert(core.includes("if(act==='deep-record'){startDeepSpeakingRecording();return}"),'Deep Speaking record action missing');
+  assert(core.includes("p.attempts[id]=Number(p.attempts[id]||0)+1"),'Deep Speaking recognition attempt counter missing');
+  assert(core.includes("russian:deep-speaking-recording-result"),'Deep Speaking recognition result event missing');
+  assert(core.includes('Tự đánh giá: ổn'),'Deep Speaking self-assessment is not explicitly separated from recognition evidence');
+  assert(!/deep-mark-ok[^\n]{0,600}p\.attempts\[/.test(core),'Deep Speaking self-assessment must not create recognition attempts');
   return true;
 }
 
