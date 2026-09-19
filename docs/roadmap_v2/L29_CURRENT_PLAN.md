@@ -1,6 +1,6 @@
 # Lượt 29 — Current Plan · Bước 113–116
 
-Status: `B113_PASS · H1_PASS · B114_PASS · B115_PASS_20_OF_20 · B116_FUNCTIONAL_PASS · DOCUMENTATION_CLOSEOUT_IN_PROGRESS`
+Status: `B113_PASS · H1_PASS · B114_PASS · B115_PASS_20_OF_20 · B116_PASS · DOCUMENTATION_CLOSEOUT_PASS · L29_COMPLETE · FINAL_MARKER_REVALIDATION`
 
 Prerequisite: L28 documentation/final-state head `c9451fe957ccfc7d610483688da76b004c20c83e` passed the complete six-gate set.
 
@@ -34,6 +34,6 @@ Locked rules:
 
 ## B116 — Full-system closeout
 
-**FUNCTIONAL PASS.** B113–B115 are composed and the B116 functional head passed the complete six-gate set. Production integration remains disconnected, with zero production consumers and zero write authority.
+**PASS.** B113–B115 are composed; both the B116 functional head and the documentation/final-state closeout head passed the complete six-gate set. Production integration remains disconnected, with zero production consumers and zero write authority.
 
-The documentation/final-state closeout is now active. L30 remains blocked until that head also passes the complete six-gate set.
+L29 is complete. The final marker revalidation is the only remaining checkpoint before L30 may open.
