@@ -20,6 +20,7 @@ export function validateContract(c){
   assert(c.runtimeFreeze?.directSemanticVocabularyRequired===true&&c.runtimeFreeze?.translationFreeDialogueRequired===true&&c.runtimeFreeze?.aiDirectSemanticRequired===true,'Direct-semantic runtime freeze weakened');
   assert(c.runtimeFreeze?.deadTranslationToggleForbidden===true&&c.runtimeFreeze?.cursiveExplicitVectorRequired===true&&c.runtimeFreeze?.weaknessRepairEvidenceGated===true&&c.runtimeFreeze?.offlineReadinessVerified===true&&c.runtimeFreeze?.browserCapabilityFallbackRequired===true,'Turn 20-23 freeze responsibilities incomplete');
   assert(c.runtimeFreeze?.learnerFacingExportFilenamesVersionFree===true&&c.compatibility?.internalVersionMetadataMayRemain===true,'Learner export/version compatibility boundary weakened');
+  assert(c.runtimeFreeze?.translationFreeVocabularySearchFrozen===true&&c.runtimeFreeze?.srsRussianSemanticLinksFrozen===true,'Vocabulary search/SRS semantic freeze weakened');
   assert(c.authority?.masteryOwner==='RUSSIAN_LEARNING_STATE_V1'&&c.authority?.reviewQueueOwner==='RUSSIAN_LEARNING_STATE_V1'&&c.authority?.schedulerOwner==='RUSSIAN_VOCAB_SRS_V1','Learning authority owners drifted');
   assert(c.authority?.skillGateAdvisoryOnly===true&&c.authority?.repairStoreAdditiveOnly===true&&c.authority?.aiReadOnly===true,'Derived/helper authority escaped freeze');
   assert(c.promotion?.allTurnsMustBeGreen===true&&c.promotion?.openDeferredObligationsAllowed===false&&c.promotion?.destructiveStorageResetAllowed===false&&c.promotion?.mergeToMainAutomatic===false&&c.promotion?.promotionDecisionRequired===true,'Promotion safety weakened');
@@ -66,8 +67,12 @@ function slice(src,startToken,endToken){
   return src.slice(a,b);
 }
 
-export function validateLearnerRuntime({core,visual,dialogue,aiDirect,aiGuard,cursive,repair,skillGate,runtime,capability,index}){
+export function validateLearnerRuntime({core,contentContract,srs,visual,dialogue,aiDirect,aiGuard,cursive,repair,skillGate,runtime,capability,index}){
   assert(visual.includes("RUSSIAN_VISUAL_VOCABULARY_RUNTIME_V1"),'Direct-semantic vocabulary runtime missing');
+  assert(!contentContract.includes('v.meaningVi,v.english'),'Vocabulary search regained translation fields');
+  assert(!core.includes('A.vocabSearchText?.(x)||JSON.stringify(x)'),'Vocabulary search regained raw-source fallback');
+  assert(!srs.includes('context_title_vi'),'Vocab SRS speaking links regained Vietnamese title fallback');
+  assert(srs.includes('!cyr.test(sentence)'),'Vocab SRS Sentence Mining lost Cyrillic source guard');
   for(const token of ['meaning_vi','translation_vi','meaning_en','translation_en','.english']){
     assert(!visual.includes(token),'Visual vocabulary runtime reads translation field: '+token);
   }
@@ -125,6 +130,8 @@ export function loadAndValidate(){
     hostBridge:read('subjects/shared/host-bridge.js'),
     manifest:read('subjects/russian/subject-manifest.json'),
     cleanup:read('subjects/russian/assets/ui-cleanup-contract.js'),
+    contentContract:read('subjects/russian/assets/content-contract.js'),
+    srs:bundle.srs,
     visual:read('subjects/russian/assets/visual-vocabulary-runtime.js'),
     dialogue:read('subjects/russian/assets/dialogue-scaffold.js'),
     aiDirect:read('subjects/russian/assets/ai-direct-explanation.js'),
