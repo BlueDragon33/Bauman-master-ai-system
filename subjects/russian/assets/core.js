@@ -2643,7 +2643,7 @@ function storageSkeleton(source){
   grammar:{id,stage,title:'Mẫu ngữ pháp mới',rule:'Quy tắc ngắn gọn',examples:['Пример.'],practice:'Tạo 2 câu dùng mẫu này'},
   'grammar-path':{id,level:'A1',track:'Cách',title:'Mục ngữ pháp mới',why:'Vì sao cần học',core:'Quy tắc lõi',pattern:'Mẫu câu',examples:[{ru:'Пример.',vi:'Ví dụ'}],practice:['Tạo 3 câu'],mistakes:['Lỗi thường gặp'],bauman:'Ứng dụng Bauman'},
   mindmap:{id,title:'Mind map mới',subtitle:'Mục tiêu sơ đồ',type:'custom',branches:[{id:'branch_1',icon:'🧩',title:'Nhánh 1',summary:'Tóm tắt',children:[{id:'node_1',title:'Node 1',detail:'Chi tiết'}]}]},
-  vocab:{id,stage,phrase_ru:'новая фраза',meaning_ru:'nghĩa/mô tả',clue_en:'English clue',pronunciation:'',tags:['custom']},
+  vocab:{id,stage,phrase_ru:'новая фраза',meaning_ru:'краткое объяснение по-русски',pronunciation:'',image_emoji:'🖼️',example_ru:'Пример в контексте.',tags:['custom']},
   speaking:{id,stage,group:'custom',context_title_ru:'Новая ситуация',difficulty:'Dễ',difficulty_id:'easy',turns:['Здравствуйте.','Здравствуйте.'],speakers:['A','B']},
   handwriting:{id,stage,mode:'alphabet',print:'А а',cursive:'А а',note:'Mẫu chữ mới',strokes:[{title:'Nét 1',guide:'Quan sát và tô'}]},
   writing:{id,stage,mode:'sentence',title:'Nhiệm vụ viết mới',purpose:'Viết câu ngắn',prompt_vi:'Viết 4 câu',model_ru:'',model_vi:''},
