@@ -53,6 +53,7 @@ on:
       - 'scripts/roadmap-v2-consumer-admission-harness.mjs'
       - 'scripts/validate-roadmap-v2-l29-b114.mjs'
       - 'scripts/validate-roadmap-v2-l29-b115.mjs'
+      - 'scripts/validate-roadmap-v2-l29-b116.mjs'
       - '.github/workflows/roadmap-v2-reconciliation.yml'
 
 permissions:
@@ -143,6 +144,8 @@ jobs:
         run: node scripts/validate-roadmap-v2-l29-b114.mjs
       - name: Validate current L29 B115 adversarial consumer admission
         run: node scripts/validate-roadmap-v2-l29-b115.mjs
+      - name: Validate current L29 B116 full-system closeout
+        run: node scripts/validate-roadmap-v2-l29-b116.mjs
       - name: Validate Foundation V2 L9
         run: node scripts/validate-foundation-domain-model.mjs
       - name: Validate current system integration
