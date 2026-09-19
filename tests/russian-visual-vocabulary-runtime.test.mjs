@@ -28,11 +28,40 @@ const ranked=api.rankCommonsPages([
 assert.equal(ranked.length,1);
 assert.match(ranked[0].title,/Книга/);
 
+const offline=await api.resolveImage({ru:'книга',meaning_ru:'печатное издание'},{online:false,fetchImpl:()=>{throw new Error('network must not run');}});
+assert.equal(offline.status,'offline');
+const saveData=await api.resolveImage({ru:'книга',meaning_ru:'печатное издание'},{online:true,saveData:true,fetchImpl:()=>{throw new Error('network must not run');}});
+assert.equal(saveData.status,'save_data');
+
+let requestedUrl='';
+const mocked=await api.resolveImage(
+  {ru:'книга',meaning_ru:'печатное издание',tags:['библиотека']},
+  {
+    online:true,
+    saveData:false,
+    fetchImpl:async url=>{
+      requestedUrl=String(url);
+      return {
+        ok:true,
+        json:async()=>({query:{pages:{
+          1:{title:'File:Книга в библиотеке.jpg',imageinfo:[{thumburl:'https://upload.wikimedia.org/book2.jpg',descriptionurl:'https://commons.wikimedia.org/wiki/File:Book2.jpg',extmetadata:{ImageDescription:{value:'Книга в библиотеке'},LicenseShortName:{value:'CC BY-SA 4.0'},Artist:{value:'Автор'}}}]}
+        }}})
+      };
+    }
+  }
+);
+assert.equal(mocked.status,'resolved');
+assert.match(requestedUrl,/origin=%2A/);
+assert.match(requestedUrl,/gsrnamespace=6/);
+assert.equal(mocked.artist,'Автор');
+
 {const x=copy();x.authority.authoritySwitch=false;assert.throws(()=>validateContract(x),/must explicitly switch/)}
 {const x=copy();x.authority.masteryAuthorityUnchanged=false;assert.throws(()=>validateContract(x),/must not take SRS\/mastery/)}
 {const x=copy();x.imageEnrichment.translationQueryForbidden=false;assert.throws(()=>validateContract(x),/Russian-semantic only/)}
 {const x=copy();x.imageEnrichment.offlineLookup=true;assert.throws(()=>validateContract(x),/must not run offline/)}
 {const x=copy();x.imageEnrichment.attributionRequired=false;assert.throws(()=>validateContract(x),/relevance\/attribution safeguards/)}
+{const x=copy();x.imageEnrichment.cancelStaleLookup=false;assert.throws(()=>validateContract(x),/cancellation is required/)}
+{const x=copy();x.imageEnrichment.artistAttributionWhenAvailable=false;assert.throws(()=>validateContract(x),/artist attribution/)}
 
 console.log('RUSSIAN_VISUAL_VOCAB_RUNTIME_NEGATIVE_TEST=PASS');
-console.log(JSON.stringify({negativeCases:7,rankingCases:2},null,2));
+console.log(JSON.stringify({negativeCases:9,rankingCases:2,networkGuardCases:3},null,2));
