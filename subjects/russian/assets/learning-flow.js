@@ -3,10 +3,11 @@
   const CORE_KEY=(window.SUBJECT_ADAPTER&&window.SUBJECT_ADAPTER.storageKey)||'bauman_russian_survival_master_v11_clean_skeleton';
   const FLOW_KEY='bauman_russian_learning_flow_v1';
   const SCHEMA='RUSSIAN_LEARNING_FLOW_V1';
-  const STEP_ORDER=['theory','speaking','vocab','grammar','exercises','check'];
+  const STEP_ORDER=['speaking','alphabet','theory','vocab','grammar','exercises','check'];
   const META={
-    theory:{icon:'📘',label:'Bài học',scope:'lesson',detail:'Nội dung và ví dụ của đúng bài đang chọn.'},
-    speaking:{icon:'🎧',label:'Nghe & nói',scope:'lesson',detail:'Speaking liên kết trực tiếp với lessonId của bài.'},
+    speaking:{icon:'🎧',label:'Nghe & nói',scope:'lesson',detail:'Bước vào chính: nghe mẫu, nhại, shadowing và đóng vai trước khi phân tích.'},
+    alphabet:{icon:'✍️',label:'Chữ cái & viết tay',scope:'stage',detail:'Nhận mặt chữ in → đối chiếu chữ viết tay → luyện nét và viết lại.'},
+    theory:{icon:'📘',label:'Bài học',scope:'lesson',detail:'Phân tích nội dung sau khi đã nghe/nói và nhận mặt chữ.'},
     vocab:{icon:'🗂️',label:'Từ vựng hỗ trợ',scope:'stage',detail:'Kho hiện liên kết theo giai đoạn, chưa gắn lessonId.'},
     grammar:{icon:'🧩',label:'Ngữ pháp hỗ trợ',scope:'stage',detail:'Kho hiện liên kết theo giai đoạn/chủ điểm, chưa gắn lessonId.'},
     exercises:{icon:'📝',label:'Bài tập',scope:'lesson',detail:'Bài tập liên kết trực tiếp với lessonId.'},
@@ -40,6 +41,7 @@
     if(step==='check'&&Number(s.wrong||0)>0&&(!s.lastCorrectAt||Date.parse(s.lastWrongAt||0)>Date.parse(s.lastCorrectAt||0)))return {key:'review',label:'Cần ôn'};
     if(step==='check'&&Number(s.correct||0)>0)return {key:'evidence',label:`${s.correct} câu đúng`};
     if(step==='speaking'&&Number(s.ok||0)>0)return {key:'evidence',label:`${s.ok} câu nói ổn`};
+    if(step==='alphabet'&&Number(s.practiceActions||0)>0)return {key:'active',label:'Đã luyện chữ'};
     if(step==='speaking'&&Number(s.attempts||0)>0)return {key:'active',label:'Đã luyện nói'};
     if(step==='vocab'||step==='grammar')return {key:'support',label:'Đã dùng hỗ trợ'};
     if(step==='exercises'&&Number(s.moves||0)>0)return {key:'active',label:'Đang làm bài'};
@@ -88,6 +90,7 @@
     touch(step,{lastNavigationAt:now()},id);
     if(step==='theory')openLearningTab('theory',id);
     else if(step==='speaking')openLearningTab('practice',id);
+    else if(step==='alphabet')click('[data-view="writing"]');
     else if(step==='exercises')openLearningTab('exercises',id);
     else if(step==='check'){openLearningTab('review',id);configureReviewLesson(id);}
     else if(step==='vocab')click('[data-view="vocab"]');
@@ -108,6 +111,7 @@
       if(['record-line','speak-line','speak-line-slow','speak-dialogue'].includes(act)){const old=lessonState(id)?.steps?.speaking||{};touch('speaking',{attempts:Number(old.attempts||0)+1},id);}
       if(act==='mark-line-ok'){const old=lessonState(id)?.steps?.speaking||{};touch('speaking',{attempts:Number(old.attempts||0)+1,ok:Number(old.ok||0)+1,lastOkAt:now()},id);}
     }
+    if(core.view==='writing'){const old=lessonState(id)?.steps?.alphabet||{};touch('alphabet',{practiceActions:Number(old.practiceActions||0)+1,provenance:'print_to_cursive_practice'},id);}
     if(core.view==='learning'&&core.learnTab==='exercises'&&(act==='next-exercise'||act==='prev-exercise'||target.closest?.('[data-exercise-focus]'))){const old=lessonState(id)?.steps?.exercises||{};touch('exercises',{moves:Number(old.moves||0)+1},id);}
     if(core.view==='vocab'&&(['speak-vocab','toggle-vocab-flip','next-vocab','prev-vocab'].includes(act)||target.closest?.('[data-vocab]'))){const old=lessonState(id)?.steps?.vocab||{};touch('vocab',{supportActions:Number(old.supportActions||0)+1,provenance:'stage_support'},id);}
     if(core.view==='grammar'&&(target.closest?.('[data-grammar-index]')||act)){const old=lessonState(id)?.steps?.grammar||{};touch('grammar',{supportActions:Number(old.supportActions||0)+1,provenance:'stage_support'},id);}
