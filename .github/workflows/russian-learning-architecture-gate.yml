@@ -108,6 +108,13 @@ on:
       - 'subjects/russian/manifest.webmanifest'
       - 'scripts/validate-russian-offline-asset-reliability.mjs'
       - 'tests/russian-offline-asset-reliability.test.mjs'
+      - 'subjects/russian/contracts/browser-package-qa-contract.v1.json'
+      - 'subjects/russian/assets/browser-capabilities.js'
+      - 'subjects/russian/assets/browser-capabilities.css'
+      - 'subjects/russian/assets/cursive-glyphs.js'
+      - 'subjects/russian/assets/cursive-glyphs.css'
+      - 'scripts/validate-russian-browser-package-qa.mjs'
+      - 'tests/russian-browser-package-qa.test.mjs'
       - '.github/workflows/russian-learning-architecture-gate.yml'
 
 permissions:
@@ -184,6 +191,10 @@ jobs:
           node --check subjects/russian/assets/asset-reliability.js
           node --check scripts/validate-russian-offline-asset-reliability.mjs
           node --check tests/russian-offline-asset-reliability.test.mjs
+          node --check subjects/russian/assets/browser-capabilities.js
+          node --check subjects/russian/assets/cursive-glyphs.js
+          node --check scripts/validate-russian-browser-package-qa.mjs
+          node --check tests/russian-browser-package-qa.test.mjs
       - name: Validate listen-speak literacy visual contract
         run: node scripts/validate-russian-learning-sequence-contract.mjs
       - name: Run contract negative tests
