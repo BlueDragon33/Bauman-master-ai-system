@@ -1871,6 +1871,19 @@ function handwritingCursiveSample(item){
  const raw=str(item?.cursive||item?.handwriting||item?.write||item?.copy||item?.print||item?.text||'А а').trim();
  return raw.replace(/\s{2,}/g,' ')||'А а';
 }
+function handwritingPresentationAuthority(item){
+ const print=handwritingPrintSample(item).replace(/\s+/g,' ').trim();
+ const cursive=handwritingCursiveSample(item).replace(/\s+/g,' ').trim();
+ const encodedDistinct=!!print&&!!cursive&&print!==cursive;
+ return {
+  kind:encodedDistinct?'encoded-cursive':'font-rendered-preview',
+  encodedDistinct,
+  label:encodedDistinct?'Mẫu viết tay từ dữ liệu':'Preview chữ tay bằng font',
+  note:encodedDistinct
+   ?'Dữ liệu có mẫu chữ tay tách biệt với chữ in.'
+   :'Chuỗi Unicode hiện trùng chữ in; hình dáng chữ tay phụ thuộc font/asset hiển thị và không được coi là dữ liệu nét chính xác.'
+ };
+}
 function handwritingSafeMarkerId(item,step,kind='s'){
  const ch=primaryHandwritingChar(item); const code=ch?ch.charCodeAt(0):1040;
  return `hw_arr_${code}_${Number(step)||0}_${kind}`;
@@ -1888,8 +1901,8 @@ function strokeMiniSvg(item,step=0,kind='small'){
 }
 function handwritingVisualPanel(item,step=0){
  const steps=handwritingStrokeSteps(item); const current=steps[step]||steps[0]||{};
- const print=handwritingPrintSample(item); const cursive=handwritingCursiveSample(item);
- return `<div class="step36-visual-panel"><div class="step36-visual-main"><div>${strokeMiniSvg(item,step,'large')}</div><div><span class="chip">Hình nét đang luyện</span><b>${esc(current.title||'Luyện nét')}</b><p>${esc(current.detail||'Nhìn chấm đặt bút, kéo theo mũi tên, sau đó viết lại xuống vở.')}</p></div></div><small>Nhận mặt chữ in: <b>${esc(print)}</b>. Mẫu viết tay cần luyện: <b>${esc(cursive)}</b>. Hãy nhìn hình, tô theo trên bảng phải rồi chép lại vào vở thật.</small></div>`;
+ const print=handwritingPrintSample(item); const cursive=handwritingCursiveSample(item); const authority=handwritingPresentationAuthority(item);
+ return `<div class="step36-visual-panel" data-handwriting-authority="${esc(authority.kind)}"><div class="step36-visual-main"><div>${strokeMiniSvg(item,step,'large')}</div><div><span class="chip">Khung nét tham khảo</span><b>${esc(current.title||'Luyện nét')}</b><p>${esc(current.detail||'Nhìn chấm đặt bút, kéo theo mũi tên, sau đó viết lại xuống vở.')}</p></div></div><small>Nhận mặt chữ in: <b>${esc(print)}</b>. ${esc(authority.label)}: <b>${esc(cursive)}</b>. ${esc(authority.note)}</small></div>`;
 }
 function drawGuidePath(points,color,width,dash=[]){
  if(!ctx||!points?.length)return;
@@ -1943,7 +1956,7 @@ function drawHandwritingOverlay(item){
  ctx.fillText(itemHand||'А а',250,305);
  ctx.fillStyle='rgba(29,78,216,.72)';
  ctx.font='24px system-ui, -apple-system, Segoe UI, sans-serif';
- ctx.fillText('Mẫu viết tay mới là phần cần luyện',250,350);
+ ctx.fillText(handwritingPresentationAuthority(item).encodedDistinct?'Mẫu viết tay từ dữ liệu':'Preview chữ tay bằng font',250,350);
  if(state.handwritingPractice!=='view')guides.forEach((pts,idx)=>drawGuidePath(pts, idx===active?'rgba(37,99,235,.92)':'rgba(148,163,184,.45)', idx===active?7:4, idx===active?[]:[8,10]));
  const current=steps[active]||steps[0];
  ctx.fillStyle='rgba(15,23,42,.70)';
@@ -2011,7 +2024,7 @@ function renderWriting(){
        <div class="step4-left-actions"><button class="btn primary" data-act="open-hand-grid">🔤 Mẫu chữ viết tay</button><input class="input compact-input" data-input="handwritingQuery" value="${esc(state.handwritingQuery||'')}" placeholder="Tìm chữ/từ/câu..."></div>
        <div class="step36-print-hand-card">
          <div class="print-ref"><span>Chữ in để nhìn</span><b>${esc(printSample)}</b></div>
-         <div class="hand-ref"><span>Mẫu viết tay cần luyện</span><strong>${esc(handSample)}</strong></div>
+         <div class="hand-ref" data-handwriting-authority="${esc(handwritingPresentationAuthority(item).kind)}"><span>${esc(handwritingPresentationAuthority(item).label)}</span><strong>${esc(handSample)}</strong><small>${esc(handwritingPresentationAuthority(item).note)}</small></div>
          <p>${esc(A.handwritingNote?.(item)||item.note||'Tập chữ viết tay, chữ in chỉ dùng để nhận diện khi đọc.')}</p>
        </div>
        <div class="step4-mode-card step36-mode-card v1285-mode-card"><h4>Chế độ luyện</h4><div class="step4-mode-grid">
