@@ -2,7 +2,8 @@ import assert from 'node:assert/strict';
 import fs from 'node:fs';
 
 const read=p=>JSON.parse(fs.readFileSync(p,'utf8'));
-const scheduler=read('roadmap_v2/scheduler/scheduler-contract.json');
+const historicalScheduler=read('roadmap_v2/scheduler/scheduler-contract.json');
+const scheduler=read('roadmap_v2/scheduler/current-contract.json');
 const schedulerSchema=read('roadmap_v2/scheduler/scheduler-contract.schema.json');
 const requestSchema=read('roadmap_v2/scheduler/scheduler-request.schema.json');
 const resultSchema=read('roadmap_v2/scheduler/scheduler-result.schema.json');
@@ -11,6 +12,9 @@ const priority=read('roadmap_v2/priority/priority-contract.json');
 const priorityCandidate=read('roadmap_v2/priority/priority-candidate.schema.json');
 const priorityResult=read('roadmap_v2/priority/priority-result.schema.json');
 
+assert.equal(historicalScheduler.version,'2.6.0-l26-b101');
+assert.equal(historicalScheduler.upstreamSchemas.consumerManifest,'BAUMAN_ROADMAP_V2_CONSUMER_MANIFEST_V1');
+assert.equal(historicalScheduler.upstreamSchemas.priorityManifest,'BAUMAN_ROADMAP_V2_PRIORITY_MANIFEST_V1');
 assert.equal(scheduler.schema,'BAUMAN_ROADMAP_V2_SCHEDULER_CONTRACT_V1');
 assert.equal(schedulerSchema.$id,scheduler.schema);
 assert.equal(scheduler.version,'2.6.1-l26-b101-current');
