@@ -2894,21 +2894,33 @@ function aiContext(){
  const lesson=currentLesson(); const vocab=getVocab()[state.vocabIndex]||{}; const dialogue=currentDialogue(); const writing=getWriting()[state.writingIndex]||{};
  return {stage:stageTitle(),goal:todayMissionText(),view:state.view,learnTab:state.learnTab,lessonTitle:A.lessonTitle?.(lesson)||lesson?.title||'',lessonSummary:A.lessonSubtitle?.(lesson)||lesson?.summary||'',vocab:vocabInfo(vocab),dialogueTitle:A.dialogueTitle?.(dialogue)||dialogue?.title||dialogue?.context_title_vi||'',dialoguePurpose:A.dialogueSubtitle?.(dialogue)||dialogue?.purpose||'',writingTitle:A.writingTitle?.(writing)||writing?.title||''};
 }
-function aiBullets(items){return '<ul>'+items.filter(Boolean).map(x=>`<li>${esc(x)}</li>`).join('')+'</ul>'}
+function aiDirectHtml(plan){
+ if(!plan)return '<h4>AI Mentor</h4><p>Direct-semantic runtime chưa sẵn sàng.</p>';
+ const media=plan.media||{};
+ const visual=media.image_url
+  ?'<div class="ai-direct-visual"><img src="'+esc(media.image_url)+'" alt="'+esc(plan.title||'visual context')+'"></div>'
+  :(media.visual_symbol?'<div class="ai-direct-symbol">'+esc(media.visual_symbol)+'</div>':'');
+ const scene=media.scene?'<small class="ai-direct-scene">'+esc(media.scene)+'</small>':'';
+ const steps=arr(plan.steps).map((row,i)=>{
+  const label={visual_or_scene:'1 · Hình / scene',russian_definition:'2 · Giải thích Nga',russian_context:'3 · Ngữ cảnh Nga',contrast_or_analogy:'4 · So sánh / analogy',optional_meta_help:'5 · Meta-help tùy chọn'}[row.kind]||('Bước '+(i+1));
+  const body=row.text?'<p'+(row.lang==='ru'?' lang="ru"':'')+'>'+esc(row.text)+'</p>':'<p class="muted">Chưa có dữ liệu nguồn cho bước này.</p>';
+  return '<article class="ai-direct-step '+esc(row.kind||'step')+'"><b>'+esc(label)+'</b>'+body+'</article>';
+ }).join('');
+ const status=plan.status==='missing_visual_semantics'
+  ?'<div class="ai-direct-status missing">missing_visual_semantics · không dùng bản dịch làm fallback</div>'
+  :'<div class="ai-direct-status ready">Russian-first · direct semantic · read-only</div>';
+ return '<h4>'+esc(plan.title||'AI Mentor')+'</h4>'+status+visual+scene+'<div class="ai-direct-steps">'+steps+'</div>';
+}
 function aiGenerate(mode,prompt=''){
  const c=aiContext();
- if(mode==='lesson')return `<h4>Giải thích bài đang học</h4>${aiBullets([`Giai đoạn: ${c.stage}`,`Bài: ${c.lessonTitle||'Chưa chọn bài'}`,`Ý chính: ${c.lessonSummary||'Chưa có tóm tắt'}`])}<p>Hãy học theo 3 nhịp: đọc ý chính, nói lại bằng tiếng Việt, rồi tạo 2 câu tiếng Nga ngắn dùng từ khóa của bài.</p>`;
- if(mode==='vocab')return `<h4>Giải thích từ vựng đang chọn</h4>${aiBullets([`Từ/cụm: ${c.vocab.term||'Chưa chọn'}`,`Nghĩa: ${c.vocab.displayMeaning||c.vocab.meaningVi||c.vocab.english||c.vocab.meaningRu||'Chưa có'}`,`English equivalent: ${c.vocab.english||'Chưa có'}`,`Ứng dụng: ${c.vocab.displayApplication||c.vocab.application||'Chưa có'}`])}<p>Mẹo nhớ: đặt từ này vào một câu ở ký túc xá, một câu trong lớp dự bị và một câu trong bối cảnh Bauman.</p>`;
- if(mode==='dialogue')return `<h4>Tạo bài đóng vai nhanh</h4><p><b>Bối cảnh:</b> ${esc(c.dialogueTitle||'hội thoại học tập')}</p>${aiBullets(['Vai A: hỏi bằng câu ngắn, rõ mục đích.','Vai B: trả lời, xác nhận lại thông tin.','Lượt 3: đổi vai và nói nhanh hơn 10%.','Ẩn nghĩa tiếng Việt ở vòng cuối để luyện phản xạ.'])}`;
- if(mode==='review')return `<h4>Ôn tập hôm nay</h4>${aiBullets([`Mục tiêu hôm nay: ${c.goal}`,`Tiếp tục từ tab: ${c.view}`,`Bài hiện tại: ${c.lessonTitle||'chưa chọn'}`,'Ôn 10 từ, 1 hội thoại, 5 câu ôn tập, 1 đoạn viết ngắn.'])}`;
- if(mode==='writing')return `<h4>Gợi ý viết</h4>${aiBullets([`Nhiệm vụ: ${c.writingTitle||'Chưa chọn nhiệm vụ'}`,'Viết 4 câu: giới thiệu mục đích, nêu dữ kiện, hỏi/xác nhận, kết luận lịch sự.','Sau khi viết, tự kiểm tra giống, số, cách và động từ.'])}`;
- const p=prompt.trim();
- if(!p)return '<h4>AI Mentor</h4><p>Nhập câu hỏi hoặc chọn một nút gợi ý để AI dùng ngữ cảnh hiện tại của môn học.</p>';
- return `<h4>Gợi ý theo câu hỏi</h4><p><b>Câu hỏi:</b> ${esc(p)}</p>${aiBullets([`Ngữ cảnh: ${c.stage} · ${c.view}`,`Bài hiện tại: ${c.lessonTitle||'chưa chọn'}`,`Mục tiêu hôm nay: ${c.goal}`])}<p>Hướng xử lý: tách vấn đề thành từ vựng cần biết, mẫu câu cần dùng, ngữ pháp liên quan và một nhiệm vụ thực hành 5 phút.</p>`;
+ const runtime=window.RussianAIDirectExplanation;
+ if(!runtime?.build)return '<h4>AI Mentor</h4><p>Direct-semantic runtime chưa sẵn sàng.</p>';
+ const normalizedMode=mode==='intro'?'lesson':mode;
+ return aiDirectHtml(runtime.build(normalizedMode,c,prompt));
 }
 function renderAiMentor(){
  const c=aiContext(); const out=state.aiOutput||aiGenerate('intro','');
- return `<div class="modal-body ai-mentor"><header class="ai-head"><div><span class="chip">AI MENTOR</span><h3>Trợ lý Tiếng Nga Bauman</h3><p>Dùng ngữ cảnh đang học: bài, từ vựng, hội thoại, viết, lịch hôm nay.</p></div><div class="ai-context-card"><b>${esc(c.stage)}</b><span>${esc(c.goal)}</span></div></header><section class="ai-context-grid"><article><b>Bài học</b><span>${esc(c.lessonTitle||'Chưa chọn')}</span></article><article><b>Từ vựng</b><span>${esc(c.vocab.term||'Chưa chọn')}</span></article><article><b>Đối thoại</b><span>${esc(c.dialogueTitle||'Chưa chọn')}</span></article><article><b>Viết</b><span>${esc(c.writingTitle||'Chưa chọn')}</span></article></section><div class="ai-quickbar"><button class="btn" data-ai-quick="lesson">Giải thích bài</button><button class="btn" data-ai-quick="vocab">Giải thích từ</button><button class="btn" data-ai-quick="dialogue">Tạo đóng vai</button><button class="btn" data-ai-quick="writing">Gợi ý viết</button><button class="btn primary" data-ai-quick="review">Ôn hôm nay</button></div><div class="ai-chat-grid"><textarea id="aiPrompt" class="textarea ai-prompt" placeholder="Hỏi AI theo bài đang học, ví dụ: giải thích cách dùng cụm này trong lớp dự bị...">${esc(state.aiDraft||'')}</textarea><article class="ai-output">${out}</article></div><div class="modal-actions"><button class="btn" data-act="ai-clear">Xóa kết quả</button><button class="btn primary" data-act="ai-run">Hỏi theo ngữ cảnh</button></div></div>`
+ return `<div class="modal-body ai-mentor"><header class="ai-head"><div><span class="chip">AI MENTOR</span><h3>Trợ lý Tiếng Nga Bauman</h3><p>Ưu tiên hình/scene, ngữ cảnh và tiếng Nga trước; meta-help chỉ dùng sau khi đã thử hiểu trực tiếp.</p></div><div class="ai-context-card"><b>${esc(c.stage)}</b><span>${esc(c.goal)}</span></div></header><section class="ai-context-grid"><article><b>Bài học</b><span>${esc(c.lessonTitle||'Chưa chọn')}</span></article><article><b>Từ vựng</b><span>${esc(c.vocab.term||'Chưa chọn')}</span></article><article><b>Đối thoại</b><span>${esc(c.dialogueTitle||'Chưa chọn')}</span></article><article><b>Viết</b><span>${esc(c.writingTitle||'Chưa chọn')}</span></article></section><div class="ai-quickbar"><button class="btn" data-ai-quick="lesson">Giải thích bài</button><button class="btn" data-ai-quick="vocab">Giải thích từ</button><button class="btn" data-ai-quick="dialogue">Tạo đóng vai</button><button class="btn" data-ai-quick="writing">Gợi ý viết</button><button class="btn primary" data-ai-quick="review">Ôn hôm nay</button></div><div class="ai-chat-grid"><textarea id="aiPrompt" class="textarea ai-prompt" placeholder="Hỏi theo bài đang học; hệ thống sẽ ưu tiên tiếng Nga/ngữ cảnh trước...">${esc(state.aiDraft||'')}</textarea><article class="ai-output">${out}</article></div><div class="modal-actions"><button class="btn" data-act="ai-clear">Xóa kết quả</button><button class="btn primary" data-act="ai-run">Hỏi theo ngữ cảnh</button></div></div>`;
 }
 function mediaForm(item={}){
  const groups=getMediaGroups();
