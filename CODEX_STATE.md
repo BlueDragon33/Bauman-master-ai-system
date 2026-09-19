@@ -184,3 +184,20 @@ Executable checkpoint:
 - `russian-existing-regression`: SUCCESS
 
 The promotion candidate remains frozen and must not merge to `main` automatically.
+
+
+## Post-freeze evidence-isolation and cancellation repair — 2026-09-19
+
+Two additional defects were found inside existing responsibilities; no Turn 25 was created.
+
+- Turn 9.2: manual `mark-line-ok` no longer writes a synthetic score/transcript into speaking results, no longer clears pronunciation repair, and no longer marks an active speaking session attempted. Learning-flow speaking attempts are now driven only by non-empty `russian:speaking-recording-result` evidence; listening buttons and recorder clicks do not count as speaking attempts.
+- Turn 23.12: Russian TTS now uses an active speech token. When a newer utterance cancels an older one, any late/cancelled `onend` from the old utterance is ignored and cannot become listening-completion evidence.
+
+Executable checkpoint:
+
+- commit: `eb01610a6de4e0c849832a55591b8d272b1afbd8`
+- workflow: `35418330563`
+- `russian-learning-contract`: SUCCESS
+- `russian-existing-regression`: SUCCESS
+
+The promotion candidate remains frozen and must not merge to `main` automatically.
