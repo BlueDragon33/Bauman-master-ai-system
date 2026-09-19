@@ -10,7 +10,7 @@ Date: 2026-09-19
 Branch: `work/russian-listening-visual-first-architecture`
 PR: `#55 — Draft`
 Parent checkpoint: `676fe08d05e6d92ff4479620ad9bf00abe5f8da6`
-Latest accepted 9/9 checkpoint: `58a0414dd0287bf2407190ac967c926b4ea20f78`
+Latest accepted 9/9 checkpoint: `4010e23c527adeda9950b20a4452bf21c1a0f5c8`
 
 ## Responsibility
 
@@ -110,21 +110,31 @@ Accepted checkpoint: `58a0414dd0287bf2407190ac967c926b4ea20f78`
 - transport-level offline resource noise is retained as evidence but application/page errors remain forbidden;
 - full checkpoint: 9/9 workflows PASS.
 
+### R-HW13 — Packaged Ready Authority Offline Parity
+Accepted checkpoint: `4010e23c527adeda9950b20a4452bf21c1a0f5c8`
+
+- R-HW12 fixture can source either repository runtime or materialized `dist/`;
+- packaged fixture mutation remains isolated in a temporary tree;
+- packaged Russian Service Worker installs and controls the test runtime;
+- packaged authority remains runtime-verified and score-capable after a fully offline reload;
+- separate source and packaged offline evidence are retained;
+- full checkpoint: 9/9 workflows PASS.
+
 ## Active auto-generated work
 
-### R-HW13 — Packaged Ready Authority Offline Parity
+### R-HW14 — Phase-4 Closure & Promotion-Slice Audit
 
-Goal: prove the same ready-authority offline behavior from the materialized ChatGPT Site `dist/` tree.
+Goal: close hardening without merging unrelated repository history.
 
-1. Parameterize the R-HW12 fixture builder so its source runtime can be repo source or packaged `dist`.
-2. Keep all fixture mutation inside a temporary copy.
-3. Run source offline authority acceptance as before.
-4. Materialize Cloudflare + ChatGPT Site package.
-5. Build the isolated ready-authority fixture from `dist/subjects/russian` and `dist/subjects/shared`.
-6. Install the packaged Russian Service Worker in a real browser.
-7. Force full offline reload and require runtime verification + scoring.
-8. Preserve separate packaged offline evidence.
-9. Accept only when all 9 repository workflows are green.
+1. Diff the Russian branch from parent checkpoint `676fe08d05e6d92ff4479620ad9bf00abe5f8da6`.
+2. Allow only Russian runtime/docs/audits plus explicitly required packaging, CI and browser tests.
+3. Reject any `foundation/**`, Academic or Content Resolution authority path in the Russian promotion slice.
+4. Keep production handwriting authority `blocked` until a real vetted asset is explicitly promoted.
+5. Confirm R-HW1–R-HW13 acceptance tests remain mandatory CI.
+6. Record that current branch history is ahead of `main` by unrelated work and must not be merged wholesale.
+7. Run Phase-4 closure audit in Russian gate.
+8. Require Whole-System source/package/offline parity.
+9. If all repository workflows are green, transition state to Phase 5/5 — Reconciliation & Promotion Decision, keeping PR Draft and not merging `main`.
 
 ## Validation policy
 
