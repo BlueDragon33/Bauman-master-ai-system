@@ -1,6 +1,6 @@
 # L29/B116 — Functional Closeout
 
-Status: **FUNCTIONAL PASS · DOCUMENTATION/FINAL-STATE GATE PENDING**
+Status: **FUNCTIONAL PASS · DOCUMENTATION/FINAL-STATE PASS · FINAL MARKER REVALIDATION**
 
 Accepted functional head: `dd73c3c62b6403fb8cd3e559a77ecd0f870370d3`
 
@@ -35,4 +35,13 @@ Accepted functional head: `dd73c3c62b6403fb8cd3e559a77ecd0f870370d3`
 - notification writes: **false**;
 - automatic action: **false**.
 
-L30 is not permitted to open until the documentation/final-state head containing this closeout also passes the complete six-gate set.
+Documentation/final-state closeout head `04e79df816da90cd32979432c215803c124e1d56` passed all six gates:
+
+- Roadmap V2 Current Gate — `35451640557` — PASS
+- Foundation Domain Model — `35451640441` — PASS
+- Windows checkout safety — `35451640359` — PASS
+- Russian Reference UI — `35451640371` — PASS
+- Cloudflare Preview — `35451640487` — PASS
+- Whole System Integration — `35451640394` — PASS
+
+L29 is complete. L30 may open only after the final marker head containing this recorded evidence also passes the complete six-gate set.
