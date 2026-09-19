@@ -40,7 +40,8 @@ export function validateAdapter(adapter){
   const end=adapter.indexOf('mediaTitle(item){',start);
   assert(start>=0&&end>start,'Adapter dialogue helper block missing');
   const block=adapter.slice(start,end);
-  for(const token of ['context_title_vi','communicative_functions_vi','vi_turns','translation_vi','gloss_vi'])assert(!block.includes(token),`Adapter dialogue helper references prohibited translation field: ${token}`);
+  for(const token of ['context_title_vi','communicative_functions_vi','vi_turns'])assert(!block.includes(token),`Adapter dialogue helper references prohibited translation field: ${token}`);
+  assert(block.includes('const {vi,vi_text,translation_vi,gloss_vi,...safe}=turn||{};'),'Adapter dialogue turns must explicitly sanitize legacy translation fields');
   assert(block.includes('title_ru')&&block.includes('context_title_ru'),'Adapter dialogue title is not Russian/direct-context first');
   return true;
 }
