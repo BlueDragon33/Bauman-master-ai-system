@@ -1,0 +1,102 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "BAUMAN_ROADMAP_V2_PROMOTION_ELIGIBILITY_RESULT_V1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema",
+    "projectionId",
+    "candidateRef",
+    "humanReviewReceiptId",
+    "reportId",
+    "phaseId",
+    "weekStart",
+    "sourceReadinessColor",
+    "sourceHumanReviewState",
+    "eligibilityState",
+    "persisted",
+    "releaseReviewAuthorized",
+    "productionPromotionAuthorized",
+    "productionConsumerConnected",
+    "runtimeActionAuthorized",
+    "scheduleWriteAllowed",
+    "notificationWriteAllowed"
+  ],
+  "properties": {
+    "schema": {
+      "const": "BAUMAN_ROADMAP_V2_PROMOTION_ELIGIBILITY_RESULT_V1"
+    },
+    "projectionId": {
+      "type": "string",
+      "minLength": 1
+    },
+    "candidateRef": {
+      "type": "string",
+      "pattern": "^CANDIDATE::[A-Z0-9_-]+$"
+    },
+    "humanReviewReceiptId": {
+      "type": "string",
+      "minLength": 1
+    },
+    "reportId": {
+      "type": "string",
+      "minLength": 1
+    },
+    "phaseId": {
+      "enum": [
+        "GD0",
+        "GD1",
+        "GD2",
+        "GD3"
+      ]
+    },
+    "weekStart": {
+      "type": "string",
+      "format": "date"
+    },
+    "sourceReadinessColor": {
+      "enum": [
+        "red",
+        "yellow",
+        "green"
+      ]
+    },
+    "sourceHumanReviewState": {
+      "enum": [
+        "review_blocked_upstream",
+        "review_needs_revision",
+        "review_accepted_shadow_only",
+        "review_rejected"
+      ]
+    },
+    "eligibilityState": {
+      "enum": [
+        "not_eligible_upstream_blocked",
+        "not_eligible_needs_revision",
+        "not_eligible_rejected",
+        "eligible_for_release_review"
+      ]
+    },
+    "persisted": {
+      "const": false
+    },
+    "releaseReviewAuthorized": {
+      "const": false
+    },
+    "productionPromotionAuthorized": {
+      "const": false
+    },
+    "productionConsumerConnected": {
+      "const": false
+    },
+    "runtimeActionAuthorized": {
+      "const": false
+    },
+    "scheduleWriteAllowed": {
+      "const": false
+    },
+    "notificationWriteAllowed": {
+      "const": false
+    }
+  }
+}
