@@ -117,6 +117,8 @@ Post-freeze quality substep:
 - **9.3 — Deep Speaking recognition evidence:** Rapid/Substitution/Shadowing/Monologue/Q&A deep modes now expose an actual Russian SpeechRecognition action. `deepSpeakingProgress.attempts` increments only after a non-empty recognition result; manual “Tự đánh giá: ổn” remains separate and cannot create recognition evidence or mastery.
 - **9.4 — Recognition-session race isolation:** both normal and Deep Speaking recorders increment a shared session token before stopping/replacing the prior recorder; stale `onstart/onresult/onerror/onend` callbacks are ignored and cannot create evidence or alter the new recorder state.
 - **9.5 — Recognition start-context binding:** capture result store, dialogue id and lesson id when recording starts; recognition results are written back to that original context, and delayed auto-next advances only if token, surface, dialogue and line still match.
+- **9.6 — Single-result recognition evidence:** each SpeechRecognition session consumes at most one result/error path; duplicate/late result callbacks cannot increment Learning Flow or Deep Speaking attempts more than once.
+- **9.7 — Evidence-gated Deep Speaking weak resolution:** Deep Speaking records `lastAttemptAt` for recognized speech. A `Cần ôn` flag can be cleared by self-assessment only after a newer recognition-backed attempt than the weak timestamp; self-rating alone cannot silently resolve the weak item.
 
 ### Turn 10 — Visual vocabulary contract
 
@@ -125,6 +127,7 @@ Define a visual semantic schema and prohibit Vietnamese/English meaning answers 
 Post-freeze quality substep:
 
 - **10.1 — Adapter/new-item direct-semantic freeze:** `subject-adapter.vocabMeaning()` now returns only Russian/direct-semantic fields; vocabulary search inherits the same authority; `storageSkeleton('vocab')` creates Russian explanation + visual/context evidence and cannot create `vi/clue_en/translation_*` fields.
+- **10.2 — Translation-free vocabulary search:** learner search no longer indexes `meaningVi/english` or raw `JSON.stringify(source)` fallbacks. Search uses Russian term/direct semantic fields plus pronunciation/metadata only; Russian example/context fallbacks are Cyrillic-filtered.
 
 ### Turn 11 — Visual asset coverage
 
@@ -176,6 +179,7 @@ Schedule review using audio, image, recognition, speaking and writing evidence r
 Post-freeze regression substep:
 
 - **18.1 — Authority-token guard fidelity:** scope scheduler/mastery authority checks to executable references rather than learner-facing prose, while negative tests still reject `dueAt` property access/declarations and review-queue mutations.
+- **18.2 — Russian-only SRS semantic links:** Sentence Mining accepts source context only when it contains Cyrillic, Russian meaning/context fallbacks are filtered, and exact speaking-link titles use `title_ru/context_title_ru` (or inert ID) instead of Vietnamese metadata.
 
 ### Turn 19 — Skill-gated assessment
 
@@ -252,6 +256,8 @@ Turn 24 execution substeps:
 - **24.10 — Translation-path migration freeze:** extend migration/dialogue/vocabulary negative gates across adapter helpers, Deep Speaking, AI context and new-item templates so legacy Vietnamese/English fields may remain in archived source data but cannot regain learner-facing semantic authority. Final executable proof: workflow `35418691089` GREEN at `15e7b4f61198c5d268ea03f7fdd68d0b8d48cfa9`.
 - **24.11 — Deep semantic/evidence freeze:** migration/dialogue/speaking negative gates now reject generic-language Deep Speaking fallback and reject click/self-rating as recognition evidence. Workflow `35420972649` is GREEN for architecture and existing regression at commit `f5b49e56f276752ee2db9a3c5c33011574b0d3ba`.
 - **24.12 — Continuation-state normalization:** canonical continuation docs maintain a single deduplicated post-freeze substep inventory after repeated resume cycles; latest executable proof for Turns 2.1/9.4/9.5 is workflow `35422110343` GREEN at `b4922ae73c292de4c3129c1fdb2c484789ff3057`.
+- **24.13 — Version-free learner export artifacts:** exported learner filenames are `russian_route_plan.json` and `russian_db.json`; internal VERSION/storage/bridge metadata may remain for compatibility but must not leak into learner-facing download names.
+- **24.14 — Vocabulary search/SRS semantic freeze:** migration and visual-vocabulary gates reject translation fields in search, raw-source JSON search fallback, Vietnamese speaking-link titles and non-Cyrillic Sentence Mining source context. Full executable proof: workflow `35422889144` GREEN at `c0e2413b5ec34e86e6ad83fb0c907dcea1417aa4`.
 
 Result: all canonical 24 turns are GREEN. No further turn is created because no new responsibility remains unresolved inside this rebuild. Promotion to `main` is deliberately outside automatic execution.
 
