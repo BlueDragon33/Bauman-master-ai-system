@@ -21,7 +21,9 @@
     "reuseCoreRoleControls": true,
     "slowListenOwnedByRepairOnly": true,
     "listeningLadderOwnedByTurn8": true,
-    "roleplayEvidenceRequiresRecording": true
+    "roleplayEvidenceRequiresRecording": true,
+    "recordingStartEvidenceRequired": true,
+    "failedRecorderDoesNotCountAttempt": true
   },
   "feedback": {
     "explicitPronunciationRepair": true,
@@ -37,6 +39,7 @@
     "repairAttempts": true,
     "abandonedSessions": true,
     "learnerStateAuthority": false,
-    "masteryMutation": false
+    "masteryMutation": false,
+    "recorderConfirmedAttempts": true
   }
 }
