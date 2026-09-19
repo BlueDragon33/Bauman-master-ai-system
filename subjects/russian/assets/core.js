@@ -407,17 +407,19 @@ function openModal(html,type='generic'){
  const isPresentation=type==='presentation';
  if(isPresentation)closeFloatingLearningMenus();
  state.modalType=type;
+ const modal=$('#modal');
+ const wasHidden=!modal||modal.classList.contains('hidden');
+ if(wasHidden)modalReturnFocus=document.activeElement&&document.activeElement!==document.body?document.activeElement:null;
  const body=$('#modalBody');
  body.innerHTML=html;
  body.classList.toggle('presentation-body',isPresentation);
- const modal=$('#modal');
- if(modal)modal.classList.toggle('presentation-modal-root',isPresentation);
+ if(modal){modal.classList.toggle('presentation-modal-root',isPresentation);modal.classList.remove('hidden');modal.setAttribute('aria-hidden','false');}
  const card=$('#modal .modal-card');
  if(card){card.classList.toggle('presentation-card',isPresentation);card.classList.toggle('route-card-modal',type==='route');card.classList.toggle('exam-result-card-modal',type==='exam-result');card.classList.toggle('confirm-card-modal',type==='confirm');card.scrollTop=0;}
  setPresentationOverlayLock(isPresentation);
- $('#modal').classList.remove('hidden');
  if(type==='route')setTimeout(()=>{const card=$('#modal .modal-card'); const body=$('#modalBody'); if(card)card.scrollTop=0; if(body)body.scrollTop=0;},30);
  if(isPresentation)setTimeout(()=>{closeFloatingLearningMenus(); const ps=presentationScroller(); if(ps){ps.scrollTop=0; ps.focus({preventScroll:true});}},40);
+ else setTimeout(()=>{const first=$('#modal .modal-close, #modal button:not([disabled]), #modal [href], #modal input:not([disabled]), #modal select:not([disabled]), #modal textarea:not([disabled]), #modal [tabindex]:not([tabindex="-1"])');first?.focus?.({preventScroll:true});},0);
 }
 function closeModal(){ state.modalType=''; setPresentationOverlayLock(false); const modal=$('#modal'); if(modal){modal.classList.add('hidden'); modal.classList.remove('presentation-modal-root'); modal.setAttribute('aria-hidden','true');} const body=$('#modalBody'); body.innerHTML=''; body.classList.remove('presentation-body'); const card=$('#modal .modal-card'); if(card){card.classList.remove('presentation-card','route-card-modal','exam-result-card-modal','confirm-card-modal');} const back=modalReturnFocus; modalReturnFocus=null; if(back&&back.isConnected)setTimeout(()=>back.focus?.({preventScroll:true}),0); }
 
