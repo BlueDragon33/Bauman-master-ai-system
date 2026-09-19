@@ -62,7 +62,9 @@
     "noVietnameseSemanticGloss": true,
     "noEnglishSemanticGloss": true,
     "learnerStateAuthority": false,
-    "masteryMutation": false
+    "masteryMutation": false,
+    "turnProjectionAllShapesSanitized": true,
+    "genericTextFallbackRequiresCyrillic": true
   },
   "semanticRouting": {
     "dialogueSearchAuthority": "russian_direct_context_only",
