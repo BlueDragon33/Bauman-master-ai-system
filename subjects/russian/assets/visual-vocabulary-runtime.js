@@ -208,7 +208,6 @@
     img.decoding='async';
     img.referrerPolicy='no-referrer';
     img.alt=clean(row.ru);
-    img.src=result.thumb_url;
     img.dataset.ruVisualAsset='vocab';
 
     const attribution=document.createElement('a');
@@ -228,6 +227,7 @@
       node.dataset.ruVisualStatus='image_error';
       img.remove();
     },{once:true});
+    img.src=result.thumb_url;
     node.append(img);
     return true;
   }
