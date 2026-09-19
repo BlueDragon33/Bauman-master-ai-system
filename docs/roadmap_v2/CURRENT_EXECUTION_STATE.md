@@ -6,16 +6,16 @@
 ## Active track
 
 - Current round: **Lượt 30**
-- Current step: **L30 documentation/final-state closeout — IN_PROGRESS**
+- Current step: **L30 final-state marker — REVALIDATION**
 - L22 closeout: **B88 + H1 — PASS**
-- Status: **L23_COMPLETE · L24_COMPLETE · L25_COMPLETE · L26_COMPLETE · L27_COMPLETE · L28_COMPLETE · L29_COMPLETE_THROUGH_B116 · L30_B117_COMPLETE · L30_B118_COMPLETE · L30_B119_COMPLETE · L30_B120_FUNCTIONAL_PASS**
-- Last recorded six-gate head: `a0bf4fe500d31c4b6ca91fe346ae8600f513cdae`
+- Status: **L23_COMPLETE · L24_COMPLETE · L25_COMPLETE · L26_COMPLETE · L27_COMPLETE · L28_COMPLETE · L29_COMPLETE_THROUGH_B116 · L30_COMPLETE_THROUGH_B120 · L31_PERMITTED_NOT_OPEN**
+- Last recorded six-gate head: `237a0c74d30c9f8932a5cff9ac56d0b3e8e5861f`
 - Production/runtime activation by Roadmap V2: **disconnected**
 - Legacy/source destructive migration: **not executed**
-- Last completed: **L30/B120 functional closeout — PASS on complete six-gate set**
+- Last completed: **L30 documentation/final-state closeout — PASS on complete six-gate set**
 - Last hardening: **L29-F2 validator/harness syntax repair — PASS; no gate weakening**
-- Current official step: **L30 documentation/final-state closeout**
-- L31 remains blocked until the documentation/final-state head itself passes the complete six-gate set.
+- Current official step: **L30 final-state marker revalidation**
+- L31 is permitted to open only after this final-state marker head itself passes the complete six-gate set.
 
 ## L22/B88 complete gate evidence
 
@@ -774,3 +774,17 @@ Accepted B120 functional head: `a0bf4fe500d31c4b6ca91fe346ae8600f513cdae`
 B120 functional closeout is green. Human Review remains data-only and shadow-only: production promotion, production consumers, persistence, dashboard rendering, schedule/calendar writes, runtime activation, notification writes and automatic actions remain disabled.
 
 L31 remains blocked until the documentation/final-state closeout head itself passes the complete six-gate set.
+
+
+## L30 documentation/final-state gate evidence
+
+Accepted documentation/final-state closeout head: `237a0c74d30c9f8932a5cff9ac56d0b3e8e5861f`
+
+- Roadmap V2 Current Gate — run `35452986681` — PASS
+- Foundation Domain Model — run `35452986617` — PASS
+- Windows checkout safety — run `35452986634` — PASS
+- Russian Reference UI — run `35452986633` — PASS
+- Cloudflare Preview — run `35452986625` — PASS
+- Whole System Integration — run `35452986618` — PASS
+
+L30 is complete through B120. This marker commit is the final revalidation checkpoint before L31 may open.
