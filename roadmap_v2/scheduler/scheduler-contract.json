@@ -1,7 +1,7 @@
 {
   "schema": "BAUMAN_ROADMAP_V2_SCHEDULER_CONTRACT_V1",
-  "version": "2.6.0-l26-b101",
-  "purpose": "Deterministic weekly schedule projection for Roadmap phases and Master Mode without calendar, persistence or runtime writes",
+  "version": "2.6.1-l26-b101-current",
+  "purpose": "Deterministic weekly schedule projection contract for the current Consumer Blueprint + Priority V2 baseline, without calendar, persistence or runtime writes",
   "mode": {
     "access": "in_memory_projection_harness",
     "productionIntegration": "disconnected",
@@ -13,10 +13,10 @@
     "dynamicContentGenerationAllowed": false
   },
   "upstreamSchemas": {
-    "consumerManifest": "BAUMAN_ROADMAP_V2_CONSUMER_MANIFEST_V1",
-    "priorityManifest": "BAUMAN_ROADMAP_V2_PRIORITY_MANIFEST_V1",
+    "consumerBlueprint": "BAUMAN_ROADMAP_V2_CONSUMER_BLUEPRINT_V1",
+    "priorityContract": "BAUMAN_ROADMAP_V2_PRIORITY_CONTRACT_V2",
     "priorityCandidate": "BAUMAN_ROADMAP_V2_PRIORITY_CANDIDATE_V1",
-    "priorityResult": "BAUMAN_ROADMAP_V2_PRIORITY_RESULT_V1"
+    "priorityResult": "BAUMAN_ROADMAP_V2_PRIORITY_RESULT_V2"
   },
   "phasePolicies": {
     "GD0": {
@@ -105,7 +105,8 @@
     "dynamicContentGenerate": false
   },
   "abortConditions": [
-    "upstream manifest hash drift",
+    "current Consumer Blueprint or Priority V2 schema mismatch",
+    "dependency on quarantined historical Consumer/Priority manifest or baseline hash",
     "unknown phase, target, knowledge state or activity kind",
     "caller-supplied Priority result or derived Priority override",
     "duplicate schedule item, Priority candidate or target ID",
@@ -121,11 +122,15 @@
   ],
   "acceptance": {
     "step": 101,
+    "currentTrack": "L26",
     "phasePoliciesPinned": true,
     "masterModePreviewWindowPinned": true,
+    "consumerBlueprintBoundaryRevalidated": true,
+    "priorityV2BoundaryRevalidated": true,
+    "staleManifestDependencyRemoved": true,
     "priorityResultsRecomputed": true,
     "productionCalendarConnected": false,
     "runtimeActivationAllowed": false,
-    "result": "PASS_CONTRACT_ONLY"
+    "result": "PASS_CONTRACT_ONLY_PENDING_B101_GATE"
   }
 }
