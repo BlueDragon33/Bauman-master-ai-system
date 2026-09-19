@@ -58,7 +58,7 @@
     const context=(active.view==='vocab'||active.view==='grammar')?'Bạn đang dùng tài nguyên hỗ trợ theo giai đoạn; việc mở phần này không tự nâng trạng thái bài học.':'Các nút chỉ điều hướng và ghi bằng chứng thao tác thật; không tự đánh dấu mastered/completed.';
     return `<header class="ru-flow-head"><div><span>LEARNING FLOW · ${esc(ls.id)}</span><h3>${esc(ls.title)}</h3><p>${esc(context)}</p></div><div class="ru-flow-evidence"><b>${evidence}/${STEP_ORDER.length}</b><small>bước đã có hoạt động</small></div></header><div class="ru-flow-steps">${rows}</div><footer class="ru-flow-foot"><span><b>Tiếp theo gợi ý:</b> ${esc(META[next].label)}</span><button type="button" data-ru-flow-step="${next}" class="btn primary">Mở bước tiếp theo →</button></footer>`;
   }
-  let renderQueued=false,lastSig='';
+  let renderQueued=false,lastSig='',writingStrokeActive=false,writingStrokeMoved=false;
   function scheduleRender(){if(renderQueued)return;renderQueued=true;requestAnimationFrame(()=>{renderQueued=false;renderPanel();});}
   function renderPanel(){
     const view=document.getElementById('view');if(!view)return;
@@ -111,7 +111,7 @@
       if(['record-line','speak-line','speak-line-slow','speak-dialogue'].includes(act)){const old=lessonState(id)?.steps?.speaking||{};touch('speaking',{attempts:Number(old.attempts||0)+1},id);}
       if(act==='mark-line-ok'){const old=lessonState(id)?.steps?.speaking||{};touch('speaking',{attempts:Number(old.attempts||0)+1,ok:Number(old.ok||0)+1,lastOkAt:now()},id);}
     }
-    if(core.view==='writing'&&(['next-hand','prev-hand','open-hand-grid','clear-line','clear-canvas','undo-canvas','download-canvas'].includes(act)||target.closest?.('#writingCanvas')||target.closest?.('[data-hand-index]')||target.closest?.('[data-hand-practice]')||target.closest?.('[data-write-index]'))){const old=lessonState(id)?.steps?.alphabet||{};touch('alphabet',{practiceActions:Number(old.practiceActions||0)+1,provenance:'print_to_cursive_practice'},id);}
+    if(core.view==='writing'&&(['next-hand','prev-hand','open-hand-grid','clear-line','clear-canvas','undo-canvas','download-canvas'].includes(act)||target.closest?.('[data-hand-index]')||target.closest?.('[data-hand-practice]')||target.closest?.('[data-write-index]'))){const old=lessonState(id)?.steps?.alphabet||{};touch('alphabet',{practiceActions:Number(old.practiceActions||0)+1,provenance:'print_to_cursive_practice'},id);}
     if(core.view==='learning'&&core.learnTab==='exercises'&&(act==='next-exercise'||act==='prev-exercise'||target.closest?.('[data-exercise-focus]'))){const old=lessonState(id)?.steps?.exercises||{};touch('exercises',{moves:Number(old.moves||0)+1},id);}
     if(core.view==='vocab'&&(['speak-vocab','toggle-vocab-flip','next-vocab','prev-vocab'].includes(act)||target.closest?.('[data-vocab]'))){const old=lessonState(id)?.steps?.vocab||{};touch('vocab',{supportActions:Number(old.supportActions||0)+1,provenance:'stage_support'},id);}
     if(core.view==='grammar'&&(target.closest?.('[data-grammar-index]')||act)){const old=lessonState(id)?.steps?.grammar||{};touch('grammar',{supportActions:Number(old.supportActions||0)+1,provenance:'stage_support'},id);}
@@ -125,6 +125,17 @@
   document.addEventListener('click',event=>{
     const flowButton=event.target.closest?.('[data-ru-flow-step]');if(flowButton){event.preventDefault();event.stopPropagation();navigate(flowButton.dataset.ruFlowStep);return;}
     captureRealEvidence(event.target);
+  },true);
+  document.addEventListener('pointerdown',event=>{if(readCore().view==='writing'&&event.target?.closest?.('#writingCanvas')){writingStrokeActive=true;writingStrokeMoved=false;}},true);
+  document.addEventListener('pointermove',event=>{if(writingStrokeActive&&event.target?.closest?.('#writingCanvas'))writingStrokeMoved=true;},true);
+  document.addEventListener('pointerup',event=>{
+    if(!writingStrokeActive)return;
+    const moved=writingStrokeMoved&&event.target?.closest?.('#writingCanvas');
+    writingStrokeActive=false;writingStrokeMoved=false;
+    if(!moved)return;
+    const id=activeLessonId();if(!id)return;
+    const old=lessonState(id)?.steps?.alphabet||{};
+    touch('alphabet',{practiceActions:Number(old.practiceActions||0)+1,strokeActions:Number(old.strokeActions||0)+1,provenance:'print_to_cursive_stroke'},id);
   },true);
   document.addEventListener('change',event=>{if(event.target?.id==='stageSelect')after(40,scheduleRender);},true);
   window.addEventListener('russian:learning-state',scheduleRender);
