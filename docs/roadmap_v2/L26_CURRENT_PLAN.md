@@ -4,7 +4,7 @@ Status: `B101_IN_PROGRESS`
 
 Prerequisite: L25/B100 final-state head `fa8d9b811080aec22a9d7b61dcc7791f55266dac` passed the complete six-gate set.
 
-Historical L26 is design evidence only. Current Scheduler artifacts must be rebuilt or revalidated against Consumer Blueprint + Priority V2; historical Consumer/Priority manifests remain quarantined.
+Historical L26 is design evidence only. The frozen static Scheduler contract remains provenance evidence. Current B101 uses additive `roadmap_v2/scheduler/current-contract.json`, rebuilt/revalidated against Consumer Blueprint + Priority V2; historical Consumer/Priority manifests remain quarantined.
 
 ## B101 — Scheduler / Master Mode contract
 
