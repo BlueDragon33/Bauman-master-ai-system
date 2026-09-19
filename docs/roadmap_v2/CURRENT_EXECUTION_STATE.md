@@ -6,15 +6,15 @@
 ## Active track
 
 - Current round: **Lượt 29**
-- Current step: **Bước 113 — IN_PROGRESS**
+- Current step: **L29-H1 — IN_PROGRESS**
 - L22 closeout: **B88 + H1 — PASS**
-- Status: **L23_COMPLETE · L24_COMPLETE · L25_COMPLETE · L26_COMPLETE · L27_COMPLETE · L28_COMPLETE · L29_B113_IN_PROGRESS**
+- Status: **L23_COMPLETE · L24_COMPLETE · L25_COMPLETE · L26_COMPLETE · L27_COMPLETE · L28_COMPLETE · PASS_L29_B113_FUNCTIONAL · L29_H1_IN_PROGRESS**
 - Last recorded six-gate head: `c9451fe957ccfc7d610483688da76b004c20c83e`
 - Production/runtime activation by Roadmap V2: **disconnected**
 - Legacy/source destructive migration: **not executed**
-- Last completed: **L28/B112 documentation/final-state closeout — PASS (6/6 gates)**
+- Last completed: **L29/B113 functional contract gate — PASS; H1 request hardening active**
 - Last hardening: **L27-F1/H1 stale manifest removal + additive readiness overlay — PASS**
-- Current official step: **L29/B113 — shadow consumer admission contract**
+- Current official step: **L29-H1 — canonical consumer-admission request envelope**
 - L26 opened only after the L25 final-state head passed the complete six-gate set.
 
 ## L22/B88 complete gate evidence
@@ -606,3 +606,12 @@ Accepted L28 final-state head: `c9451fe957ccfc7d610483688da76b004c20c83e`
 L28 is complete through B112. Production integration remains disconnected and production consumer count remains zero.
 
 L29/B113 is permitted to open.
+
+
+## L29/B113 opening and H1 hardening
+
+B113 defines a data-only shadow consumer admission contract. Its functional contract validator passed before B114 pre-audit.
+
+B114 pre-audit identified a missing canonical request envelope. L29-H1 therefore adds `BAUMAN_ROADMAP_V2_CONSUMER_ADMISSION_REQUEST_V1` with exact keys, SHADOW-only consumer IDs, `human_review_shadow` class and nested current Readiness request. No production consumer or runtime wiring is enabled.
+
+B114 remains blocked until the H1 head passes the complete six-gate set.
