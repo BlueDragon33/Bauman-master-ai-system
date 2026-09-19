@@ -1,6 +1,6 @@
 # L26-H1 — Additive current Scheduler contract overlay
 
-Status: `FIX_APPLIED_PENDING_GATE`
+Status: `PASS`
 
 ## Why this hardening exists
 
@@ -27,3 +27,17 @@ Roadmap V2 Current Gate run `35435252436` rejected that change because the file 
 - no change to Hub/Math/Russian/Device Gate runtime.
 
 B102 stays blocked until the complete gate set is green on this additive overlay.
+
+
+## Accepted gate evidence
+
+Accepted functional head: `3b3828c8176380b754e6bd3c897aed46e4780987`.
+
+- Roadmap V2 Current Gate `35435321959` — PASS
+- Foundation Domain Model `35435321942` — PASS
+- Windows checkout safety `35435321854` — PASS
+- Russian Reference UI `35435321919` — PASS
+- Cloudflare Preview `35435321875` — PASS
+- Whole System Integration `35435322007` — PASS
+
+The frozen Scheduler baseline and additive current overlay coexist without widening production/runtime boundaries.
