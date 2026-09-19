@@ -5,17 +5,17 @@
 
 ## Active track
 
-- Current round: **Lượt 31**
-- Current step: **L31 — FINAL MARKER REVALIDATION · IN_PROGRESS**
+- Current round: **Lượt 32**
+- Current step: **L32/B125 — RELEASE REVIEW CONTRACT · IN_PROGRESS**
 - L22 closeout: **B88 + H1 — PASS**
-- Status: **L23_COMPLETE · L24_COMPLETE · L25_COMPLETE · L26_COMPLETE · L27_COMPLETE · L28_COMPLETE · L29_COMPLETE_THROUGH_B116 · L30_COMPLETE_THROUGH_B120 · L31_B121_COMPLETE · L31_B122_COMPLETE · L31_B123_COMPLETE · L31_B124_COMPLETE · L31_DOCUMENTATION_CLOSEOUT_COMPLETE · L31_FINAL_MARKER_REVALIDATION_ACTIVE**
-- Last recorded six-gate head: `d55b72891f35e55998953f6b64be8d17491c7984`
+- Status: **L23_COMPLETE · L24_COMPLETE · L25_COMPLETE · L26_COMPLETE · L27_COMPLETE · L28_COMPLETE · L29_COMPLETE_THROUGH_B116 · L30_COMPLETE_THROUGH_B120 · L31_COMPLETE_THROUGH_B124 · L32_B125_ACTIVE**
+- Last recorded six-gate head: `369df7fcc7f9e79c2ad3426651918608cc56bcc1`
 - Production/runtime activation by Roadmap V2: **disconnected**
 - Legacy/source destructive migration: **not executed**
-- Last completed: **L31 documentation/final-state closeout — PASS on complete six-gate set**
+- Last completed: **L31 final marker — PASS on complete six-gate set**
 - Last hardening: **L29-F2 validator/harness syntax repair — PASS; no gate weakening**
-- Current official step: **L31 final marker revalidation**
-- Documentation/final-state closeout is closed. L32 remains blocked until this final marker commit itself passes the complete six-gate set.
+- Current official step: **L32/B125 — canonical Release Review boundary**
+- L31 is fully closed. B125 is active; B126 remains blocked until B125 passes the complete six-gate set.
 
 ## L22/B88 complete gate evidence
 
@@ -870,3 +870,25 @@ Accepted documentation/final-state head: `d55b72891f35e55998953f6b64be8d17491c79
 - Whole System Integration — run `35455702749` — PASS
 
 L31 is complete through B124 functionally and in documentation. This final marker commit is the last revalidation checkpoint before L32 may open.
+
+
+## L31 final marker gate evidence
+
+Accepted L31 final marker head: `369df7fcc7f9e79c2ad3426651918608cc56bcc1`
+
+- Roadmap V2 Current Gate — run `35455889926` — PASS
+- Foundation Domain Model — run `35455889780` — PASS
+- Windows checkout safety — run `35455889762` — PASS
+- Russian Reference UI — run `35455889772` — PASS
+- Cloudflare Preview — run `35455889774` — PASS
+- Whole System Integration — run `35455889759` — PASS
+
+L31 is fully complete through B124. L32 is permitted to open.
+
+## L32 opening
+
+Pre-audit found a current-track architecture gap: L31 can emit `eligible_for_release_review` while explicitly keeping `releaseReviewAuthorized=false`, but the canonical Roadmap tree has no Release Review receipt boundary.
+
+L32 therefore opens as a data-only Release Review Boundary. Production promotion and production integration remain disconnected.
+
+Current active step: **L32/B125**.

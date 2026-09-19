@@ -1,0 +1,99 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "BAUMAN_ROADMAP_V2_RELEASE_REVIEW_RESULT_V1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema",
+    "receiptId",
+    "candidateRef",
+    "promotionEligibilityProjectionId",
+    "humanReviewReceiptId",
+    "reportId",
+    "phaseId",
+    "weekStart",
+    "sourceEligibilityState",
+    "effectiveReleaseReviewState",
+    "promotionReviewEligible",
+    "persisted",
+    "productionPromotionAuthorized",
+    "productionConsumerConnected",
+    "runtimeActionAuthorized",
+    "scheduleWriteAllowed",
+    "notificationWriteAllowed"
+  ],
+  "properties": {
+    "schema": {
+      "const": "BAUMAN_ROADMAP_V2_RELEASE_REVIEW_RESULT_V1"
+    },
+    "receiptId": {
+      "type": "string",
+      "minLength": 1
+    },
+    "candidateRef": {
+      "type": "string",
+      "pattern": "^CANDIDATE::[A-Z0-9_-]+$"
+    },
+    "promotionEligibilityProjectionId": {
+      "type": "string",
+      "minLength": 1
+    },
+    "humanReviewReceiptId": {
+      "type": "string",
+      "minLength": 1
+    },
+    "reportId": {
+      "type": "string",
+      "minLength": 1
+    },
+    "phaseId": {
+      "enum": [
+        "GD0",
+        "GD1",
+        "GD2",
+        "GD3"
+      ]
+    },
+    "weekStart": {
+      "type": "string",
+      "format": "date"
+    },
+    "sourceEligibilityState": {
+      "enum": [
+        "not_eligible_upstream_blocked",
+        "not_eligible_needs_revision",
+        "not_eligible_rejected",
+        "eligible_for_release_review"
+      ]
+    },
+    "effectiveReleaseReviewState": {
+      "enum": [
+        "release_review_blocked_upstream",
+        "release_review_needs_revision",
+        "release_review_rejected",
+        "release_review_approved_shadow_only"
+      ]
+    },
+    "promotionReviewEligible": {
+      "type": "boolean"
+    },
+    "persisted": {
+      "const": false
+    },
+    "productionPromotionAuthorized": {
+      "const": false
+    },
+    "productionConsumerConnected": {
+      "const": false
+    },
+    "runtimeActionAuthorized": {
+      "const": false
+    },
+    "scheduleWriteAllowed": {
+      "const": false
+    },
+    "notificationWriteAllowed": {
+      "const": false
+    }
+  }
+}

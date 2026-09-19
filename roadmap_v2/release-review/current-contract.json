@@ -1,0 +1,89 @@
+{
+  "schema": "BAUMAN_ROADMAP_V2_RELEASE_REVIEW_CONTRACT_V1",
+  "version": "2.12.0-l32-b125",
+  "purpose": "Data-only release-review receipt boundary that recomputes current Promotion Eligibility, permits review only for eligible_for_release_review candidates, and records a separate release-review decision without granting production promotion, persistence, runtime, or production-consumer authority",
+  "mode": {
+    "access": "read_only_release_review",
+    "productionIntegration": "disconnected",
+    "promotionReviewIntegration": "disconnected",
+    "releaseReviewOnly": true,
+    "productionPromotionEnabled": false,
+    "persistentStoreEnabled": false,
+    "dashboardUiEnabled": false,
+    "scheduleWriteAllowed": false,
+    "calendarWriteAllowed": false,
+    "runtimeWriteAllowed": false,
+    "notificationWriteAllowed": false,
+    "automaticActionAllowed": false
+  },
+  "upstreamSchemas": {
+    "promotionEligibilityContract": "BAUMAN_ROADMAP_V2_PROMOTION_ELIGIBILITY_CONTRACT_V1",
+    "promotionEligibilityRequest": "BAUMAN_ROADMAP_V2_PROMOTION_ELIGIBILITY_REQUEST_V1",
+    "promotionEligibilityResult": "BAUMAN_ROADMAP_V2_PROMOTION_ELIGIBILITY_RESULT_V1",
+    "releaseReviewRequest": "BAUMAN_ROADMAP_V2_RELEASE_REVIEW_REQUEST_V1",
+    "releaseReviewResult": "BAUMAN_ROADMAP_V2_RELEASE_REVIEW_RESULT_V1"
+  },
+  "candidatePolicy": {
+    "candidateRefPattern": "^CANDIDATE::[A-Z0-9_-]+$",
+    "recomputePromotionEligibilityFromRequest": true,
+    "acceptCallerSuppliedPromotionEligibilityResult": false,
+    "acceptCallerSuppliedEligibilityState": false,
+    "requireEligibleForReleaseReview": true,
+    "manualEligibilityOverrideAllowed": false
+  },
+  "reviewPolicy": {
+    "reviewerRefPattern": "^RELEASE_REVIEWER::[A-Z0-9_-]+$",
+    "allowedDecisions": [
+      "approve_for_promotion_review",
+      "needs_revision",
+      "rejected"
+    ],
+    "upstreamBlockedState": "release_review_blocked_upstream",
+    "approvedState": "release_review_approved_shadow_only",
+    "needsRevisionState": "release_review_needs_revision",
+    "rejectedState": "release_review_rejected",
+    "approvedDecisionAuthorizesProduction": false,
+    "manualProductionOverrideAllowed": false
+  },
+  "outputPolicy": {
+    "deepFrozen": true,
+    "persisted": false,
+    "includesPromotionEligibilityProjectionId": true,
+    "includesHumanReviewReceiptId": true,
+    "includesProductionPromotionCommand": false,
+    "includesRuntimeCommand": false,
+    "includesScheduleMutation": false,
+    "includesNotificationCommand": false
+  },
+  "capabilities": {
+    "releaseReviewEvaluate": true,
+    "promotionReviewEligibilityProject": true,
+    "productionPromotion": false,
+    "productionConsumerConnect": false,
+    "persistentStoreWrite": false,
+    "dashboardUiRender": false,
+    "scheduleWrite": false,
+    "calendarWrite": false,
+    "runtimeActivation": false,
+    "notificationWrite": false,
+    "automaticAction": false
+  },
+  "abortConditions": [
+    "Release Review request schema mismatch or unsupported caller fields",
+    "candidate reference outside CANDIDATE namespace",
+    "release reviewer reference outside RELEASE_REVIEWER namespace",
+    "caller-supplied Promotion Eligibility result or eligibility state",
+    "Promotion Eligibility recomputation does not yield eligible_for_release_review",
+    "caller attempts production promotion, persistence, runtime, schedule, notification or automatic action authority"
+  ],
+  "acceptance": {
+    "step": 125,
+    "currentTrack": "L32",
+    "productionConsumersConnected": 0,
+    "promotionReviewIntegration": "disconnected",
+    "productionIntegration": "disconnected",
+    "productionPromotionAllowed": false,
+    "runtimeActivationAllowed": false,
+    "result": "PASS_B125_CONTRACT"
+  }
+}
