@@ -6,16 +6,16 @@
 ## Active track
 
 - Current round: **Lượt 29**
-- Current step: **L29-H1 — IN_PROGRESS**
+- Current step: **L29 documentation/final-state closeout — IN_PROGRESS**
 - L22 closeout: **B88 + H1 — PASS**
-- Status: **L23_COMPLETE · L24_COMPLETE · L25_COMPLETE · L26_COMPLETE · L27_COMPLETE · L28_COMPLETE · PASS_L29_B113_FUNCTIONAL · L29_H1_IN_PROGRESS**
-- Last recorded six-gate head: `c9451fe957ccfc7d610483688da76b004c20c83e`
+- Status: **L23_COMPLETE · L24_COMPLETE · L25_COMPLETE · L26_COMPLETE · L27_COMPLETE · L28_COMPLETE · L29_B113_COMPLETE · L29_H1_COMPLETE · L29_B114_COMPLETE · L29_B115_COMPLETE · L29_B116_FUNCTIONAL_PASS**
+- Last recorded six-gate head: `dd73c3c62b6403fb8cd3e559a77ecd0f870370d3`
 - Production/runtime activation by Roadmap V2: **disconnected**
 - Legacy/source destructive migration: **not executed**
-- Last completed: **L29/B113 functional contract gate — PASS; H1 request hardening active**
-- Last hardening: **L27-F1/H1 stale manifest removal + additive readiness overlay — PASS**
-- Current official step: **L29-H1 — canonical consumer-admission request envelope**
-- L26 opened only after the L25 final-state head passed the complete six-gate set.
+- Last completed: **L29/B116 functional closeout — PASS on complete six-gate set**
+- Last hardening: **L29-F2 validator/harness syntax repair — PASS; no gate weakening**
+- Current official step: **L29 documentation/final-state closeout**
+- L30 remains blocked until the L29 documentation/final-state head itself passes the complete six-gate set.
 
 ## L22/B88 complete gate evidence
 
@@ -615,3 +615,64 @@ B113 defines a data-only shadow consumer admission contract. Its functional cont
 B114 pre-audit identified a missing canonical request envelope. L29-H1 therefore adds `BAUMAN_ROADMAP_V2_CONSUMER_ADMISSION_REQUEST_V1` with exact keys, SHADOW-only consumer IDs, `human_review_shadow` class and nested current Readiness request. No production consumer or runtime wiring is enabled.
 
 B114 remains blocked until the H1 head passes the complete six-gate set.
+
+
+## L29/H1 gate evidence
+
+Accepted H1 head: `afab626b2e28192266eb76258430b720400e26ca`
+
+- Roadmap V2 Current Gate — run `35450586870` — PASS
+- Foundation Domain Model — run `35450587061` — PASS
+- Windows checkout safety — run `35450586901` — PASS
+- Russian Reference UI — run `35450587063` — PASS
+- Cloudflare Preview — run `35450586966` — PASS
+- Whole System Integration — run `35450586915` — PASS
+
+H1 is closed. The canonical Consumer Admission request envelope is pinned to SHADOW-only IDs and the `human_review_shadow` class.
+
+## L29-F2 defect and repair
+
+The first B114 gate attempt failed during JavaScript parsing because generated source contained literal escape characters before template literals. The defect was source syntax only; no Consumer Admission logic had executed.
+
+F2 removed only the accidental escape characters. No assertion, fail-closed rule, identity boundary, or runtime-isolation gate was weakened.
+
+## L29/B114 gate evidence
+
+Accepted B114/F2 head: `4953b882a72d66b76dd8d449d13eaa825734df8b`
+
+- Roadmap V2 Current Gate — run `35451046777` — PASS
+- Foundation Domain Model — run `35451046788` — PASS
+- Windows checkout safety — run `35451046814` — PASS
+- Russian Reference UI — run `35451046786` — PASS
+- Cloudflare Preview — run `35451046864` — PASS
+- Whole System Integration — run `35451046826` — PASS
+
+B114 deterministic in-memory shadow adapter is closed. The output is deterministic and deeply frozen; persistence, production consumers, runtime actions, schedule writes and notification writes remain disabled.
+
+## L29/B115 gate evidence
+
+Accepted B115 head: `7d0b1220e49a90dd38d04a2355031ad0d4762023`
+
+- Roadmap V2 Current Gate — run `35451236044` — PASS
+- Foundation Domain Model — run `35451236089` — PASS
+- Windows checkout safety — run `35451236068` — PASS
+- Russian Reference UI — run `35451236092` — PASS
+- Cloudflare Preview — run `35451236093` — PASS
+- Whole System Integration — run `35451236088` — PASS
+
+B115 adversarial Consumer Admission validation: **20/20 PASS**. Production-consumer impersonation, forged advisory/decision authority, persistence injection, nested Readiness forgery, schema drift and post-projection privilege escalation all fail closed.
+
+## L29/B116 functional closeout gate evidence
+
+Accepted B116 functional head: `dd73c3c62b6403fb8cd3e559a77ecd0f870370d3`
+
+- Roadmap V2 Current Gate — run `35451416022` — PASS
+- Foundation Domain Model — run `35451416135` — PASS
+- Windows checkout safety — run `35451415991` — PASS
+- Russian Reference UI — run `35451416032` — PASS
+- Cloudflare Preview — run `35451415907` — PASS
+- Whole System Integration — run `35451415981` — PASS
+
+B116 functional closeout is green. Roadmap V2 still has **zero production consumers**; PlanningBridge, Safe Shell and subject runtimes remain unadmitted. No persistence, dashboard rendering, schedule/calendar write, runtime activation, notification write or automatic action has been enabled.
+
+L30 remains blocked until the documentation/final-state closeout head itself passes the complete six-gate set.
