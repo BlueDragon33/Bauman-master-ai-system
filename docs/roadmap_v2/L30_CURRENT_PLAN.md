@@ -1,6 +1,6 @@
 # Lượt 30 — Current Plan · Bước 117–120
 
-Status: `B117_PASS · B118_PASS · B119_PASS_23_OF_23 · B120_ACTIVE`
+Status: `B117_PASS · B118_PASS · B119_PASS_23_OF_23 · B120_FUNCTIONAL_PASS · DOCUMENTATION_CLOSEOUT_IN_PROGRESS`
 
 Prerequisite: L29 final marker head `6483313072de9c2f190851a27f825464a7109917` passed the complete six-gate set.
 
@@ -35,6 +35,11 @@ An `accepted_for_shadow_analysis` submission must fail closed to `review_blocked
 
 ## B120 — Full-system closeout
 
-**ACTIVE.** Compose B117–B119 and rerun the complete six-gate set. Production integration and production promotion remain disconnected.
+**FUNCTIONAL PASS.** B117–B119 are composed and rerun the complete six-gate set. Production integration and production promotion remain disconnected.
 
 Any defect creates `L30-Fx`; any newly discovered missing architecture creates `L30-Hx`. Later steps remain blocked until the repair/hardening head passes the complete six-gate set.
+
+
+## Documentation/final-state closeout
+
+**ACTIVE.** The B120 functional head passed the complete six-gate set. L31 remains blocked until the documentation/final-state head containing the recorded evidence also passes all six gates.
