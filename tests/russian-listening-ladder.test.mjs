@@ -15,6 +15,7 @@ assert.equal(validateRuntime(js,core,index),true);
 {const x=copy();x.runtime.createSecondAudioPlayer=true;assert.throws(()=>validateContract(x),/must reuse core audio controls/)}
 assert.throws(()=>validateRuntime(js.replaceAll("ctx.heardCount>=2","ctx.heardCount>=1"),core,index),/not gated by two normal plays/);
 assert.throws(()=>validateRuntime(js,core.replace("const slowReady=heardCount>=2;","const slowReady=heard;"),index),/readiness is not two-listen gated/);
+assert.throws(()=>validateRuntime(js.replace('.split(/\\\\s+/)','.split(/s+/)'),core,index),/whitespace|literal-s/);
 
 console.log('RUSSIAN_LISTENING_LADDER_NEGATIVE_TEST=PASS');
-console.log(JSON.stringify({negativeCases:4},null,2));
+console.log(JSON.stringify({negativeCases:5},null,2));
