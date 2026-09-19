@@ -1,0 +1,16 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "BAUMAN_ROADMAP_V2_CONSUMER_ADMISSION_REQUEST_V1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schema","consumerId","consumerClass","readinessRequest"],
+  "properties": {
+    "schema": {"const":"BAUMAN_ROADMAP_V2_CONSUMER_ADMISSION_REQUEST_V1"},
+    "consumerId": {"type":"string","pattern":"^SHADOW::[A-Z0-9_-]+$"},
+    "consumerClass": {"const":"human_review_shadow"},
+    "readinessRequest": {
+      "type":"object",
+      "description":"Current BAUMAN_ROADMAP_V2_READINESS_REQUEST_V1 object; revalidated and recomputed by the L28/L29 harness chain"
+    }
+  }
+}
