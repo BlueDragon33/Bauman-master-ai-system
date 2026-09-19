@@ -41,9 +41,10 @@ assert.equal(validateNoDestructiveReset({core:bundle.core,repair:bundle.repair})
 assert.throws(()=>validatePlan(plan.replace('| 23 | Browser/package/accessibility/performance QA | GREEN |','| 23 | Browser/package/accessibility/performance QA | ACTIVE |')),/Turn 23 is not GREEN/);
 assert.throws(()=>validateCompatibility({...bundle,core:bundle.core+"\nfunction toggleActiveHideVi(){}"}),/Dead translation toggle/);
 assert.throws(()=>validateCompatibility({...bundle,hostBridge:bundle.hostBridge.replace(/BAUMAN_SUBJECT_BRIDGE_V1/g,'BAUMAN_SUBJECT_BRIDGE_V2')}),/BAUMAN_SUBJECT_BRIDGE_V1/);
+assert.throws(()=>validateCompatibility({...bundle,manifest:bundle.manifest.replace('"title": "Tiếng Nga Bauman"','"title": "Tiếng Nga Bauman V99"')}),/Manifest display title/);
 assert.throws(()=>validateLearnerRuntime({...bundle,visual:bundle.visual+"\nconst meaning_vi='legacy';"}),/translation field/);
 assert.throws(()=>validateLearnerRuntime({...bundle,index:bundle.index.replace('<script src="assets/cursive-glyphs.js"></script>','').replace('<script src="assets/cyrillic-literacy.js"></script>','<script src="assets/cyrillic-literacy.js"></script>\n<script src="assets/cursive-glyphs.js"></script>')}),/load order invalid/);
 assert.throws(()=>validateNoDestructiveReset({core:bundle.core+"\nlocalStorage.clear();"}),/Destructive localStorage.clear/);
 
 console.log('RUSSIAN_MIGRATION_FREEZE_NEGATIVE_TEST=PASS');
-console.log(JSON.stringify({negativeCases:8},null,2));
+console.log(JSON.stringify({negativeCases:9},null,2));
