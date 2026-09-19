@@ -338,11 +338,10 @@
     const c=context();if(!c.active)return;
 
     if(act==='record-line'){
-      setNotice('Đang chờ micro bắt đầu; attempt chỉ được tính khi recorder xác nhận onstart.');
+      setNotice('Đang chờ nhận diện câu nói; chỉ transcript thực mới được tính attempt.');
     }else if(act==='mark-line-ok'){
-      bump('selfOk',{lastSelfOkAt:now()});
-      clearPronunciationReview();
-      markSessionAttempt();
+      bump('selfOk',{lastSelfOkAt:now(),selfAssessmentOnly:true});
+      setNotice('Tự đánh giá đã lưu riêng · không tính attempt và không xóa cờ sửa phát âm.');
     }
 
     scheduleRender();
