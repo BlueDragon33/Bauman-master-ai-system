@@ -4,6 +4,9 @@ const flow=fs.readFileSync('subjects/russian/assets/learning-flow.js','utf8');
 const core=fs.readFileSync('subjects/russian/assets/core.js','utf8');
 const handwriting=JSON.parse(fs.readFileSync('subjects/russian/data/handwriting.json','utf8'));
 const alphabet=handwriting.filter(x=>x?.mode==='alphabet');
+const recognition=fs.readFileSync('subjects/russian/assets/handwriting-recognition.js','utf8');
+const russianIndex=fs.readFileSync('subjects/russian/index.html','utf8');
+const serviceWorker=fs.readFileSync('subjects/russian/sw.js','utf8');
 
 const checks=[
   ['listening/speaking is first learning step', flow.includes("const STEP_ORDER=['speaking','alphabet','theory','vocab','grammar','exercises','check'];")],
@@ -23,7 +26,10 @@ const checks=[
   ['legacy direct flip label removed', !core.includes('Lật nghĩa')],
   ['Russian alphabet dataset has all 33 letters', alphabet.length===33],
   ['font-rendered handwriting preview is explicitly non-canonical when Unicode matches print', core.includes("kind:encodedDistinct?'encoded-cursive':'font-rendered-preview'") && core.includes('Chuỗi Unicode hiện trùng chữ in; hình dáng chữ tay phụ thuộc font/asset hiển thị và không được coi là dữ liệu nét chính xác.')],
-  ['generic stroke family is labeled as reference rather than exact stroke truth', core.includes('Khung nét tham khảo') && !core.includes('<span class="chip">Hình nét đang luyện</span>')]
+  ['generic stroke family is labeled as reference rather than exact stroke truth', core.includes('Khung nét tham khảo') && !core.includes('<span class="chip">Hình nét đang luyện</span>')],
+  ['handwriting recognition capability fails closed without reliable Cyrillic script font', recognition.includes("mode:available?'local-script-font':'reference-only'") && recognition.includes("canScore:available")],
+  ['handwriting capability probe checks Cyrillic glyph metrics against fallbacks', recognition.includes("PROBE='ДдЖжФфЯяШш'") && recognition.includes("Math.abs(candidate-baseline)>0.5")],
+  ['handwriting capability runtime is loaded and offline-cached', russianIndex.includes('assets/handwriting-recognition.js') && serviceWorker.includes('./assets/handwriting-recognition.js')]
 ];
 
 const failed=checks.filter(([,ok])=>!ok);
