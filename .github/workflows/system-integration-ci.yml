@@ -15,6 +15,7 @@ on:
       - "tests/foundation-canonical-context-browser.mjs"
       - "tests/math-study-command-center-browser.mjs"
       - "tests/hub-premium-responsive-browser.mjs"
+      - "tests/hub-learning-cluster-static.mjs"
       - "tests/russian-handwriting-recognition-browser.mjs"
       - "tests/russian-handwriting-offline-authority-browser.mjs"
       - "tests/russian-capability-hub-static.mjs"
@@ -44,6 +45,7 @@ on:
       - "tests/foundation-canonical-context-browser.mjs"
       - "tests/math-study-command-center-browser.mjs"
       - "tests/hub-premium-responsive-browser.mjs"
+      - "tests/hub-learning-cluster-static.mjs"
       - "tests/russian-handwriting-recognition-browser.mjs"
       - "tests/russian-handwriting-offline-authority-browser.mjs"
       - "tests/russian-capability-hub-static.mjs"
@@ -74,6 +76,8 @@ jobs:
           node-version: "22.13.0"
       - name: Validate Hub, subject packages, bridge and locked Math runtime
         run: node scripts/validate-system-integration.mjs
+      - name: Validate Hub learning navigation contract
+        run: node tests/hub-learning-cluster-static.mjs
       - name: Validate Russian capability Hub consumer
         run: node tests/russian-capability-hub-static.mjs
       - name: Validate Russian capability deep link
@@ -88,6 +92,8 @@ jobs:
         run: |
           node --check assets/js/main.js
           node --check assets/js/hub-safe-shell.js
+          node --check assets/js/hub-safe-ux.js
+          node --check assets/js/hub-learning-cluster.js
           node --check assets/js/planning-main.js
           node --check assets/js/hub-premium-v2.js
           node --check subjects/shared/host-bridge.js
@@ -113,6 +119,7 @@ jobs:
           node --check tests/foundation-canonical-context-browser.mjs
           node --check tests/math-study-command-center-browser.mjs
           node --check tests/hub-premium-responsive-browser.mjs
+          node --check tests/hub-learning-cluster-static.mjs
           node --check tests/russian-handwriting-recognition-browser.mjs
           node --check tests/russian-handwriting-offline-authority-browser.mjs
           node --check tests/russian-capability-hub-static.mjs
