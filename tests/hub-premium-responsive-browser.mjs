@@ -46,8 +46,8 @@ async function openHub(page){
   assert.equal(access.academicWrites,false);
   await page.waitForFunction(()=>!document.getElementById('appRoot')?.classList.contains('hidden'),null,{timeout:30000});
   await page.waitForFunction(()=>!!window.BAUMAN_HUB_SAFE?.selfCheck,null,{timeout:10000});
-  await page.waitForFunction(()=>window.BAUMAN_HUB_LEARNING_CLUSTER?.selfCheck?.().visibleLearningClones?.length===5,null,{timeout:10000});
-  await page.waitForFunction(()=>window.BAUMAN_HUB_OVERVIEW_SEARCH_V2?.selfCheck?.().homeSummary===true,null,{timeout:10000});
+  await page.waitForFunction(()=>window.BAUMAN_HUB_LEARNING_CLUSTER?.selfCheck?.().flatLayout===true&&window.BAUMAN_HUB_LEARNING_CLUSTER?.selfCheck?.().visibleActions?.length===10,null,{timeout:10000});
+  await page.waitForFunction(()=>window.BAUMAN_HUB_OVERVIEW_SEARCH_V2?.selfCheck?.().referenceHome===true,null,{timeout:10000});
   await page.waitForFunction(()=>{
     const safe=window.BAUMAN_HUB_SAFE?.selfCheck?.();
     return safe?.ready===true
