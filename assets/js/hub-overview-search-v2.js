@@ -4,7 +4,7 @@
  */
 (()=>{
 'use strict';
-const RELEASE='HUB_SEARCH_HOME_SUMMARY_V3_2026_09';
+const RELEASE='HUB_SEARCH_REFERENCE_HOME_V4_2026_09';
 const q=(s,r=document)=>r.querySelector(s);
 const safe=s=>String(s??'').replace(/[&<>"']/g,m=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#039;'}[m]));
 const S=()=>typeof state!=='undefined'&&state?state:{};
@@ -70,14 +70,15 @@ function homeHTML(){
 }
 function compactHome(){
   const host=q('#page-home');
-  if(!host||!host.classList.contains('active'))return false;
+  if(!host||!host.classList.contains('active')){document.body.dataset.hubReferenceHome='0';return false}
   const dashboard=q('.hub-safe-dashboard',host),original=q('.canva-dashboard-page',host),label=q('.hub-safe-preserved-label',host);
   if(!dashboard||!original)return false;
-  dashboard.innerHTML=homeHTML();
-  dashboard.dataset.homeSummaryV2=RELEASE;
+  dashboard.removeAttribute('data-home-summary-v2');
+  dashboard.dataset.homeReferenceV4=RELEASE;
   original.classList.add('hub-safe-preserved-collapsed','hub-v2-canonical-hidden');
   if(label)label.classList.add('hub-v2-canonical-hidden');
-  host.dataset.homeMode='summary-v2';
+  host.dataset.homeMode='reference-v4';
+  document.body.dataset.hubReferenceHome='1';
   return true;
 }
 
@@ -270,8 +271,8 @@ function install(){
   compactSubjectCapability();
   const host=q('#page-home');
   if(host&&!observer){
-    observer=new MutationObserver(()=>{if(host.classList.contains('active'))setTimeout(compactHome,0)});
-    observer.observe(host,{childList:true,subtree:false});
+    observer=new MutationObserver(()=>{if(host.classList.contains('active'))setTimeout(compactHome,0);else document.body.dataset.hubReferenceHome='0'});
+    observer.observe(host,{childList:true,subtree:false,attributes:true,attributeFilter:['class']});
   }
   const subjects=q('#page-subjects');
   if(subjects&&!subjectObserver){
@@ -281,7 +282,9 @@ function install(){
 }
 function selfCheck(){
   const results=searchCatalog('toan');
-  return{release:RELEASE,homeSummary:q('#page-home .hub-safe-dashboard')?.dataset.homeSummaryV2===RELEASE,canonicalHomeHidden:!!q('#page-home .hub-v2-canonical-hidden'),searchInstalled:q('#hubSafeSearch')?.dataset.searchV2==='1',accentInsensitive:results.some(x=>x.subjectId==='math'),legacyHomePanelsVisible:!!q('#page-home .hub-safe-assistant,#page-home .hub-safe-schedule,#page-home .hub-safe-achievements,#page-home .hub-safe-overall,#page-home .hub-safe-subjects')};
+  const selectors=['.hub-safe-hero','.hub-safe-subjects','.hub-safe-continue','.hub-safe-assistant','.hub-safe-schedule','.hub-safe-achievements','.hub-safe-overall'];
+  const referencePanelsVisible=selectors.every(sel=>{const el=q('#page-home '+sel);return !!el&&getComputedStyle(el).display!=='none'});
+  return{release:RELEASE,referenceHome:q('#page-home .hub-safe-dashboard')?.dataset.homeReferenceV4===RELEASE,canonicalHomeHidden:!!q('#page-home .hub-v2-canonical-hidden'),searchInstalled:q('#hubSafeSearch')?.dataset.searchV2==='1',accentInsensitive:results.some(x=>x.subjectId==='math'),referencePanelsVisible,homeSummary:false};
 }
 bind();
 setTimeout(install,0);setTimeout(install,350);setTimeout(install,1200);
