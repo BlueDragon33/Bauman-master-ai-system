@@ -1,0 +1,73 @@
+{
+  "schema": "BAUMAN_ROADMAP_V2_R2B0_CONTRACT_HYGIENE_V1",
+  "phase": "L27R2B0_CONTRACT_HYGIENE",
+  "source": {
+    "branch": "agent/roadmap-v2-l27-finalize-b108",
+    "head": "0438b6f4256003e6f20c266c97d944ade7c52f83"
+  },
+  "findings": {
+    "invalidHistoricalPath": {
+      "contract": "roadmap_v2/consumer/consumer-contract.json",
+      "historical": "subjects/math/theory-framework.json",
+      "corrected": "subjects/math/data/theory-framework.json",
+      "historicalPathExists": false,
+      "currentPathExists": true,
+      "impact": "metadata_provenance_only"
+    },
+    "migrationBaseline": {
+      "contract": "roadmap_v2/migration/migration-contract.json",
+      "historicalBaseline": "e383912354673bdce7a0059d6b9a23799d74e689",
+      "action": "quarantine_until_L27R3_rebaseline"
+    }
+  },
+  "contracts": [
+    {
+      "path": "roadmap_v2/consumer/consumer-contract.json",
+      "sha": "0358318030487b5aaafad8ee29ee87dec419e4a9",
+      "status": "repair_metadata_path",
+      "canonicalAdmission": "candidate_after_r2b0"
+    },
+    {
+      "path": "roadmap_v2/diagnostic/diagnostic-contract.json",
+      "sha": "6c4e5b8cec85ef02cff88b416d991111e6bf1fab",
+      "status": "safe_byte_exact",
+      "canonicalAdmission": "r2b"
+    },
+    {
+      "path": "roadmap_v2/mastery/mastery-contract.json",
+      "sha": "54fe8ae5abe1d0876f694d32c456d0899d1ea12b",
+      "status": "safe_byte_exact",
+      "canonicalAdmission": "r2b"
+    },
+    {
+      "path": "roadmap_v2/priority/priority-contract.json",
+      "sha": "14aa83c3b2c4673a4a18f9027bb317f10acfbf40",
+      "status": "safe_byte_exact",
+      "canonicalAdmission": "r2b"
+    },
+    {
+      "path": "roadmap_v2/scheduler/scheduler-contract.json",
+      "sha": "29a6975b9ecefe578a0d68eea62efcdda5b77919",
+      "status": "safe_byte_exact",
+      "canonicalAdmission": "r2b"
+    },
+    {
+      "path": "roadmap_v2/readiness/readiness-contract.json",
+      "sha": "66f04bd738b62a36bcc6dec6f55a49da3cac1781",
+      "status": "safe_byte_exact",
+      "canonicalAdmission": "r2b"
+    },
+    {
+      "path": "roadmap_v2/migration/migration-contract.json",
+      "sha": "9dbbd0f7f8e9b5866d42eba4db4466486f3b5056",
+      "status": "quarantine_old_baseline",
+      "canonicalAdmission": "r3_after_rebaseline"
+    }
+  ],
+  "policy": {
+    "canonicalRoadmapActivated": false,
+    "runtimeMutationAllowed": false,
+    "migrationContractAdmission": "blocked_until_rebaseline",
+    "consumerCandidateMustRemainProductionDisconnected": true
+  }
+}

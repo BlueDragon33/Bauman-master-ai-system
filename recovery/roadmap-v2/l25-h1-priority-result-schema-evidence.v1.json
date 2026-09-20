@@ -1,0 +1,32 @@
+{
+  "schema": "BAUMAN_ROADMAP_V2_L25_H1_PRIORITY_RESULT_SCHEMA_EVIDENCE_V1",
+  "historicalRef": "agent/roadmap-v2-l25-staging-b100",
+  "historicalEngine": {
+    "path": "roadmap_v2/priority.mjs",
+    "gitBlobSha": "0b67695cad89ac3dfa0587dac1ed72ca29452429",
+    "emittedFields": [
+      "weeksUntilNeeded",
+      "weights"
+    ]
+  },
+  "historicalResultSchema": {
+    "path": "roadmap_v2/priority/priority-result.schema.json",
+    "gitBlobSha": "42fe039721cc7cd37f5ea6c30374d18f4a259d1c",
+    "omittedFields": [
+      "weeksUntilNeeded",
+      "weights"
+    ],
+    "additionalProperties": false
+  },
+  "currentRepair": {
+    "schemaId": "BAUMAN_ROADMAP_V2_PRIORITY_RESULT_V2",
+    "requiredExplainabilityFields": [
+      "weeksUntilNeeded",
+      "features",
+      "weights",
+      "contributions",
+      "weightedScore"
+    ],
+    "optionalRankingField": "rank"
+  }
+}

@@ -1,0 +1,118 @@
+{
+  "schema": "BAUMAN_ROADMAP_V2_DIAGNOSTIC_CONTRACT_V1",
+  "version": 1,
+  "scope": "Lượt 23 / Bước 89–92 — diagnostic planning and deterministic scoring; no mastery persistence, Priority Engine activation or production integration",
+  "mode": {
+    "access": "read_only",
+    "productionIntegration": "disconnected",
+    "failClosed": true,
+    "writesMasteryEvidence": false,
+    "writesLegacyRuntime": false
+  },
+  "upstream": {
+    "consumerManifestSchema": "BAUMAN_ROADMAP_V2_CONSUMER_MANIFEST_V1",
+    "consumerContractSchema": "BAUMAN_ROADMAP_V2_CONSUMER_CONTRACT_V1",
+    "requiredConsumerCapabilities": [
+      "registryRead",
+      "prerequisiteRead",
+      "provenanceRead",
+      "eligibilityRead",
+      "diagnosticBlueprintRead"
+    ],
+    "forbiddenConsumerCapabilities": [
+      "diagnosticExecution",
+      "masteryEvidenceWrite",
+      "priorityEngineRead",
+      "priorityEngineWrite",
+      "runtimeActivation"
+    ]
+  },
+  "assessmentPolicy": {
+    "id": "DIAG-20-V1",
+    "requiredItemCount": 20,
+    "difficultyDistribution": {
+      "easy": 8,
+      "medium": 6,
+      "hard": 4,
+      "expert": 2
+    },
+    "passPercent": 80,
+    "criticalItemFloorPercent": 70,
+    "requiresUniqueItemIds": true,
+    "requiresReviewedItems": true,
+    "requiresCriticalItems": true,
+    "requiresExactTargetMatch": true,
+    "requiresPrerequisiteRefsToExist": true
+  },
+  "statusSemantics": {
+    "pass": "existing_competency_verified",
+    "fail": "gap",
+    "criticalFloorFail": "critical_gap",
+    "blocked": "diagnostic_blocked",
+    "forbiddenOutcome": "master_ready",
+    "rules": [
+      "A passing diagnostic may skip redundant prerequisite review but never grants Master-ready.",
+      "Master-ready requires later exercise, lab/project, assessment and retention evidence.",
+      "A critical-item floor failure remains a gap even when the overall score passes.",
+      "No result is persisted before the Lượt 24 mastery/evidence contract passes."
+    ]
+  },
+  "itemBankGate": {
+    "schema": "BAUMAN_ROADMAP_V2_DIAGNOSTIC_ITEM_BANK_V1",
+    "reviewStatusRequired": "verified",
+    "catalogExecutionStatusRequired": "ready_verified_item_bank",
+    "missingBankStatus": "blocked_missing_verified_item_bank",
+    "invalidBankStatus": "blocked_invalid_item_bank",
+    "allowGeneratedUnreviewedItems": false
+  },
+  "attemptGate": {
+    "schema": "BAUMAN_ROADMAP_V2_DIAGNOSTIC_ATTEMPT_V1",
+    "requiresAllItemsAnswered": true,
+    "unknownResponseItemPolicy": "reject",
+    "duplicateResponsePolicy": "reject",
+    "unknownOptionPolicy": "reject"
+  },
+  "capabilities": {
+    "catalogRead": true,
+    "planRead": true,
+    "readinessExplain": true,
+    "itemBankValidate": true,
+    "sessionProjection": true,
+    "attemptEvaluate": true,
+    "proposedBankHarnessOnly": true,
+    "masteryEvidenceWrite": false,
+    "priorityEngineWrite": false,
+    "schedulerWrite": false,
+    "runtimeActivation": false
+  },
+  "reasonCodes": {
+    "MISSING_VERIFIED_ITEM_BANK": "No verified item bank is attached to this diagnostic plan.",
+    "INVALID_ITEM_BANK": "The item bank does not satisfy schema, target, count, difficulty or review gates.",
+    "DYNAMIC_INSTANCE_REQUIRED": "The dynamic Bauman subject needs a real syllabus instance before a diagnostic plan can be compiled.",
+    "INCOMPLETE_ATTEMPT": "Every verified diagnostic item must have exactly one valid response.",
+    "CRITICAL_ITEM_FLOOR_NOT_MET": "Critical-item accuracy is below the required floor.",
+    "DIAGNOSTIC_PASS_NOT_MASTER_READY": "A diagnostic pass verifies existing competency only and cannot grant Master-ready.",
+    "MASTERY_PERSISTENCE_DISABLED": "Diagnostic evidence is returned in memory only until Lượt 24 passes.",
+    "PRODUCTION_DISCONNECTED": "Diagnostic remains disconnected from production entrypoints."
+  },
+  "abortConditions": [
+    "consumer manifest or contract hash drift",
+    "unknown or executable consumer blueprint",
+    "missing diagnostic target or prerequisite reference",
+    "duplicate plan, item or response ID",
+    "unreviewed or generated item admitted as verified",
+    "item count or difficulty distribution mismatch",
+    "item bank contains no critical item",
+    "unknown option or incomplete attempt",
+    "Master-ready outcome emitted by Diagnostic",
+    "mastery, Priority Engine, scheduler or runtime write attempted"
+  ],
+  "acceptance": {
+    "step": 89,
+    "existingCompetencyDistinctFromMasterReady": true,
+    "unreviewedGenerationForbidden": true,
+    "masteryPersistenceEnabled": false,
+    "runtimeActivationAllowed": false,
+    "result": "PASS_CONTRACT_ONLY"
+  }
+}

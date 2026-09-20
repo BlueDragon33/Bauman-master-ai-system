@@ -1,0 +1,130 @@
+{
+  "schema": "BAUMAN_ROADMAP_V2_R2B_STATIC_ADMISSION_V1",
+  "phase": "L27R2B_STATIC_CONTRACT_SCHEMA_TRANSPLANT",
+  "status": "candidate",
+  "policy": {
+    "productionIntegration": "disconnected",
+    "runtimeUiChangesAllowed": false,
+    "executableEnginesAllowed": false,
+    "generatedDataAllowed": false,
+    "historicalMigrationContractAdmitted": false,
+    "consumerRepair": "approved provenance path correction only"
+  },
+  "files": [
+    {
+      "path": "roadmap_v2/consumer/consumer-contract.json",
+      "blobSha": "dd17c18f00ebcd3816ce0a1a81e016884d153aae",
+      "admission": "repaired_candidate"
+    },
+    {
+      "path": "roadmap_v2/consumer/consumer-contract.schema.json",
+      "blobSha": "e478c3f8ed7b9fac83da08f4cc521d2339f89cb9",
+      "admission": "historical_exact"
+    },
+    {
+      "path": "roadmap_v2/diagnostic/diagnostic-contract.json",
+      "blobSha": "6c4e5b8cec85ef02cff88b416d991111e6bf1fab",
+      "admission": "historical_exact"
+    },
+    {
+      "path": "roadmap_v2/diagnostic/diagnostic-contract.schema.json",
+      "blobSha": "53d7e9c83960735e079e066abbd22103654d1257",
+      "admission": "historical_exact"
+    },
+    {
+      "path": "roadmap_v2/diagnostic/attempt.schema.json",
+      "blobSha": "77eef1c8ce5f3725fccfe94e3ef3f1d8d6112df9",
+      "admission": "historical_exact"
+    },
+    {
+      "path": "roadmap_v2/diagnostic/catalog.schema.json",
+      "blobSha": "ba0e693da7440a8e0f519db23e97e11c32477557",
+      "admission": "historical_exact"
+    },
+    {
+      "path": "roadmap_v2/diagnostic/item-bank.schema.json",
+      "blobSha": "99a83ac10fddbf630dbaf6339a0dbd767c73f072",
+      "admission": "historical_exact"
+    },
+    {
+      "path": "roadmap_v2/mastery/mastery-contract.json",
+      "blobSha": "54fe8ae5abe1d0876f694d32c456d0899d1ea12b",
+      "admission": "historical_exact"
+    },
+    {
+      "path": "roadmap_v2/mastery/mastery-contract.schema.json",
+      "blobSha": "353ce4fc6883cab36257c3adccfb2f68458296f0",
+      "admission": "historical_exact"
+    },
+    {
+      "path": "roadmap_v2/mastery/evidence-event.schema.json",
+      "blobSha": "6dd869f2f345c86038f9c66a2b32bf7d5a55394b",
+      "admission": "historical_exact"
+    },
+    {
+      "path": "roadmap_v2/mastery/mastery-snapshot.schema.json",
+      "blobSha": "010e9efc54801cbb536445954a904ccc585e9e09",
+      "admission": "historical_exact"
+    },
+    {
+      "path": "roadmap_v2/priority/priority-contract.json",
+      "blobSha": "14aa83c3b2c4673a4a18f9027bb317f10acfbf40",
+      "admission": "historical_exact"
+    },
+    {
+      "path": "roadmap_v2/priority/priority-contract.schema.json",
+      "blobSha": "7cca24957e55eee59d37990e0071219667ed4f3e",
+      "admission": "historical_exact"
+    },
+    {
+      "path": "roadmap_v2/priority/priority-candidate.schema.json",
+      "blobSha": "5be6bf68defd7e64efd5f96839b4458301ddb044",
+      "admission": "historical_exact"
+    },
+    {
+      "path": "roadmap_v2/priority/priority-result.schema.json",
+      "blobSha": "42fe039721cc7cd37f5ea6c30374d18f4a259d1c",
+      "admission": "historical_exact"
+    },
+    {
+      "path": "roadmap_v2/scheduler/scheduler-contract.json",
+      "blobSha": "29a6975b9ecefe578a0d68eea62efcdda5b77919",
+      "admission": "historical_exact"
+    },
+    {
+      "path": "roadmap_v2/scheduler/scheduler-contract.schema.json",
+      "blobSha": "032b9dfe392a9c3a08735abe0671fc08934f83c5",
+      "admission": "historical_exact"
+    },
+    {
+      "path": "roadmap_v2/scheduler/scheduler-request.schema.json",
+      "blobSha": "b492b5515625a1bfa3ee01ba00fd7702036b8df6",
+      "admission": "historical_exact"
+    },
+    {
+      "path": "roadmap_v2/scheduler/scheduler-result.schema.json",
+      "blobSha": "3e6b409a723da624f966696ddfc9e6bf04483027",
+      "admission": "historical_exact"
+    },
+    {
+      "path": "roadmap_v2/readiness/readiness-contract.json",
+      "blobSha": "66f04bd738b62a36bcc6dec6f55a49da3cac1781",
+      "admission": "historical_exact"
+    },
+    {
+      "path": "roadmap_v2/readiness/readiness-contract.schema.json",
+      "blobSha": "5d6cf687a033f669c836aa3ebb7b5affb75500cf",
+      "admission": "historical_exact"
+    },
+    {
+      "path": "roadmap_v2/readiness/readiness-request.schema.json",
+      "blobSha": "c6fe4b5547f818c9f1cc0a39410600e9a54321ff",
+      "admission": "historical_exact"
+    },
+    {
+      "path": "roadmap_v2/readiness/readiness-result.schema.json",
+      "blobSha": "c0a49c9df98395c269bb060a9535174c01b09c68",
+      "admission": "historical_exact"
+    }
+  ]
+}

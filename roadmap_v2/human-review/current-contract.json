@@ -1,0 +1,89 @@
+{
+  "schema": "BAUMAN_ROADMAP_V2_HUMAN_REVIEW_CONTRACT_V1",
+  "version": "2.10.0-l30-b117",
+  "purpose": "Data-only human-review receipt boundary that recomputes the L29 shadow Consumer Admission projection and records a non-production review decision without granting production authority",
+  "mode": {
+    "access": "read_only_human_review_receipt",
+    "productionIntegration": "disconnected",
+    "humanReviewOnly": true,
+    "productionPromotionEnabled": false,
+    "persistentStoreEnabled": false,
+    "dashboardUiEnabled": false,
+    "scheduleWriteAllowed": false,
+    "calendarWriteAllowed": false,
+    "runtimeWriteAllowed": false,
+    "notificationWriteAllowed": false,
+    "automaticActionAllowed": false
+  },
+  "upstreamSchemas": {
+    "consumerAdmissionContract": "BAUMAN_ROADMAP_V2_CONSUMER_ADMISSION_CONTRACT_V1",
+    "consumerAdmissionRequest": "BAUMAN_ROADMAP_V2_CONSUMER_ADMISSION_REQUEST_V1",
+    "consumerAdmissionResult": "BAUMAN_ROADMAP_V2_CONSUMER_ADMISSION_RESULT_V1",
+    "humanReviewRequest": "BAUMAN_ROADMAP_V2_HUMAN_REVIEW_REQUEST_V1",
+    "humanReviewResult": "BAUMAN_ROADMAP_V2_HUMAN_REVIEW_RESULT_V1"
+  },
+  "reviewPolicy": {
+    "recomputeConsumerAdmissionFromRequest": true,
+    "acceptCallerSuppliedConsumerAdmissionResult": false,
+    "acceptCallerSuppliedConsumerDecision": false,
+    "reviewerRefPattern": "^REVIEWER::[A-Z0-9_-]+$",
+    "allowedSubmittedDecisions": [
+      "needs_revision",
+      "accepted_for_shadow_analysis",
+      "rejected"
+    ],
+    "reasonCodesRequired": true,
+    "acceptanceRequiresUpstreamReady": true,
+    "acceptedDecisionAuthorizesProduction": false,
+    "manualProductionOverrideAllowed": false
+  },
+  "decisionPolicy": {
+    "upstreamNotReady": "review_blocked_upstream",
+    "needs_revision": "review_needs_revision",
+    "accepted_for_shadow_analysis": "review_accepted_shadow_only",
+    "rejected": "review_rejected",
+    "acceptedShadowOnlyAuthorizesProduction": false
+  },
+  "outputPolicy": {
+    "deepFrozen": true,
+    "persisted": false,
+    "includesConsumerAdmissionProjectionId": true,
+    "includesRuntimeCommand": false,
+    "includesScheduleMutation": false,
+    "includesNotificationCommand": false,
+    "includesProductionPromotionCommand": false
+  },
+  "capabilities": {
+    "candidateValidate": true,
+    "consumerAdmissionRecompute": true,
+    "humanReviewReceiptProject": true,
+    "productionPromotion": false,
+    "productionConsumerConnect": false,
+    "persistentStoreWrite": false,
+    "dashboardUiRender": false,
+    "scheduleWrite": false,
+    "calendarWrite": false,
+    "runtimeActivation": false,
+    "notificationWrite": false,
+    "automaticAction": false
+  },
+  "abortConditions": [
+    "Human Review request schema mismatch or unsupported caller fields",
+    "L29 Consumer Admission request/result schema mismatch",
+    "caller-supplied Consumer Admission result or decision",
+    "reviewer reference outside REVIEWER namespace",
+    "unsupported review decision or missing reason codes",
+    "accepted_for_shadow_analysis submitted while upstream is not ready for human review",
+    "human-review acceptance interpreted as production promotion authorization",
+    "persistence, dashboard, schedule, calendar, runtime, notification, production-promotion or automatic-action write attempted"
+  ],
+  "acceptance": {
+    "step": 117,
+    "currentTrack": "L30",
+    "productionConsumersConnected": 0,
+    "productionIntegration": "disconnected",
+    "productionPromotionAllowed": false,
+    "runtimeActivationAllowed": false,
+    "result": "PASS_B117_CONTRACT"
+  }
+}

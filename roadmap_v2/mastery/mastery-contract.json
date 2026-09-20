@@ -1,0 +1,173 @@
+{
+  "schema": "BAUMAN_ROADMAP_V2_MASTERY_CONTRACT_V2",
+  "version": 2,
+  "scope": "Lượt 24 / Bước 93–96 — current append-only in-memory mastery/evidence boundary on Consumer Blueprint + Diagnostic V2; no production persistence, Priority Engine, scheduler or runtime activation",
+  "mode": {
+    "access": "read_only_harness",
+    "productionIntegration": "disconnected",
+    "failClosed": true,
+    "appendOnlyEvents": true,
+    "persistentStoreEnabled": false,
+    "legacyMutationAllowed": false
+  },
+  "upstream": {
+    "consumerBlueprintPath": "roadmap_v2/consumer/blueprint.json",
+    "consumerBlueprintSchema": "BAUMAN_ROADMAP_V2_CONSUMER_BLUEPRINT_V1",
+    "consumerBlueprintValidationRequired": "PASS",
+    "diagnosticContractPath": "roadmap_v2/diagnostic/diagnostic-contract.json",
+    "diagnosticContractSchema": "BAUMAN_ROADMAP_V2_DIAGNOSTIC_CONTRACT_V2",
+    "diagnosticCatalogPath": "roadmap_v2/diagnostic/catalog.json",
+    "diagnosticCatalogSchema": "BAUMAN_ROADMAP_V2_DIAGNOSTIC_CATALOG_V2",
+    "diagnosticResultSchema": "BAUMAN_ROADMAP_V2_DIAGNOSTIC_RESULT_V2",
+    "evidenceEventSchema": "BAUMAN_ROADMAP_V2_EVIDENCE_EVENT_V1",
+    "masterySnapshotSchema": "BAUMAN_ROADMAP_V2_MASTERY_SNAPSHOT_V1",
+    "manifestDependencyRequired": false,
+    "staleHistoricalManifestAccepted": false
+  },
+  "knowledgeStates": [
+    "chua_hoc",
+    "dang_hoc",
+    "dat_prerequisite",
+    "master_ready",
+    "can_on",
+    "gap"
+  ],
+  "evidenceTypes": [
+    "diagnostic_result",
+    "chapter_assessment",
+    "exercise_set",
+    "lab_or_simulation",
+    "project_rubric",
+    "retention_check",
+    "russian_technical_terms",
+    "gap_override"
+  ],
+  "thresholds": {
+    "chapterAssessmentPercent": 80,
+    "criticalPrerequisiteFloorPercent": 70,
+    "exercisePercent": 80,
+    "labExplanationRequired": true,
+    "projectRubricMinimumPerDimension": 3,
+    "projectRubricDimensions": [
+      "correctness",
+      "clarity",
+      "verification",
+      "reproducibility"
+    ],
+    "retentionWindowDays": {
+      "minimum": 14,
+      "maximum": 21
+    },
+    "retentionPercent": 75,
+    "russianTechnicalTermsInGD2GD3": {
+      "minimum": 5,
+      "maximum": 10,
+      "appliesToNonRussianTargets": true
+    }
+  },
+  "diagnosticBoundary": {
+    "passingStatus": "existing_competency_verified",
+    "gapStatuses": [
+      "gap",
+      "critical_gap"
+    ],
+    "passingKnowledgeState": "dat_prerequisite",
+    "passingDiagnosticSatisfiesChapterAssessment": false,
+    "passingDiagnosticGrantsMasterReady": false,
+    "diagnosticMasterReadyFieldRequiredFalse": true,
+    "diagnosticPersistableFieldRequiredFalse": true,
+    "retentionStillRequiredForReviewOnDemand": true
+  },
+  "masterReadyGate": {
+    "requiredDimensions": [
+      "chapterAssessment",
+      "exercise",
+      "labOrSimulation",
+      "projectRubric",
+      "retention"
+    ],
+    "russianTermsConditionalInGD2GD3": true,
+    "gapOverrideBlocks": true,
+    "allRequiredDimensionsMustPass": true
+  },
+  "prerequisiteGate": {
+    "satisfyingStates": [
+      "dat_prerequisite",
+      "master_ready"
+    ],
+    "blockingStates": [
+      "chua_hoc",
+      "dang_hoc",
+      "can_on",
+      "gap"
+    ],
+    "recommendedEdgesDoNotBlock": true,
+    "externalGatesRemainExplicit": true
+  },
+  "edgeTypePolicy": {
+    "blocking": "all_of_satisfied_state",
+    "just_in_time": "all_of_satisfied_state",
+    "alternative": "any_of_group",
+    "concurrent": "source_at_least_in_progress",
+    "recommended": "advisory_non_blocking",
+    "contextual": "advisory_explicit_non_blocking"
+  },
+  "transitionPriority": [
+    "gap_override",
+    "master_ready",
+    "retention_due",
+    "dat_prerequisite",
+    "dang_hoc",
+    "chua_hoc"
+  ],
+  "capabilities": {
+    "eventValidate": true,
+    "streamReduce": true,
+    "snapshotRead": true,
+    "masterReadyEvaluate": true,
+    "prerequisiteGateEvaluate": true,
+    "inMemoryHarnessOnly": true,
+    "persistentStoreWrite": false,
+    "priorityEngineWrite": false,
+    "schedulerWrite": false,
+    "runtimeActivation": false
+  },
+  "reasonCodes": {
+    "DIAGNOSTIC_EXISTING_COMPETENCY_NOT_MASTER_READY": "A passing Diagnostic verifies prerequisite competency only and never grants Master-ready.",
+    "DIAGNOSTIC_PERSISTENCE_FORBIDDEN": "Diagnostic results consumed by the Mastery harness must remain non-persistable.",
+    "INCOMPLETE_MASTERY_EVIDENCE": "Master-ready requires every applicable evidence dimension to pass.",
+    "RETENTION_REVIEW_REQUIRED": "Retention evidence may demote a previously ready target to can_on.",
+    "RUSSIAN_TERMS_REQUIRED_GD2_GD3": "Applicable GD2/GD3 non-Russian targets require the configured Russian technical-term evidence.",
+    "EXTERNAL_GATE_UNRESOLVED": "External prerequisite gates remain explicit and cannot be silently satisfied.",
+    "STALE_MANIFEST_DEPENDENCY_FORBIDDEN": "Historical Consumer/Diagnostic manifests and pinned hashes are quarantined and cannot be an execution dependency.",
+    "PERSISTENCE_DISABLED": "All L24 evidence reduction remains in-memory only.",
+    "PRODUCTION_DISCONNECTED": "Mastery remains disconnected from production entrypoints."
+  },
+  "abortConditions": [
+    "current Consumer Blueprint or Diagnostic schema/capability mismatch",
+    "dependency on quarantined historical Consumer/Diagnostic manifest or baseline hash",
+    "unknown target, phase, evidence type or knowledge state",
+    "duplicate event ID or non-monotonic sequence",
+    "event target or phase changes inside one stream",
+    "diagnostic result marked persistable or Master-ready",
+    "invalid score, rubric, retention window or term count",
+    "Master-ready emitted without every applicable gate",
+    "recommended prerequisite treated as blocking",
+    "external prerequisite gate silently treated as satisfied",
+    "production persistence, Priority Engine, scheduler or runtime write attempted"
+  ],
+  "acceptance": {
+    "step": 93,
+    "currentTrack": "L24",
+    "consumerBlueprintBoundaryRevalidated": true,
+    "diagnosticV2BoundaryRevalidated": true,
+    "staleManifestDependencyRemoved": true,
+    "existingCompetencyDistinctFromMasterReady": true,
+    "eventsAppendOnly": true,
+    "persistentStoreEnabled": false,
+    "priorityEngineEnabled": false,
+    "schedulerEnabled": false,
+    "runtimeActivationAllowed": false,
+    "result": "PASS_CONTRACT_ONLY_PENDING_B93_GATE"
+  }
+}

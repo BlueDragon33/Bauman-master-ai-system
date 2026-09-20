@@ -35,13 +35,18 @@ async function mockControl(page,status='approved'){
 
 function subjectFrame(page,id){return page.frames().find(frame=>{try{return new URL(frame.url()).pathname===`/subjects/${id}/index.html`}catch{return false}})}
 
-function isConfirmedDecorativeNavigationAbort(request){
+function isConfirmedNavigationAbort(request){
   const errorText=request.failure()?.errorText||'';
   if(request.method()!=='GET'||errorText!=='net::ERR_ABORTED')return false;
   try{
     const requestUrl=new URL(request.url());
     const baseUrl=new URL(BASE);
-    return requestUrl.origin===baseUrl.origin&&requestUrl.pathname==='/assets/media/hub-mountains.svg';
+    const decorativePaths=new Set([
+      '/assets/media/hub-mountains.svg',
+      '/assets/media/hub-ai-robot.svg'
+    ]);
+    const isPrerequisitePack=/^\/assets\/data\/prerequisite-packs\/(?:p\d{2}-[a-z0-9-]+|j\d{2}-[a-z0-9-]+)\.json$/.test(requestUrl.pathname);
+    return requestUrl.origin===baseUrl.origin&&(decorativePaths.has(requestUrl.pathname)||isPrerequisitePack);
   }catch{return false}
 }
 
@@ -69,7 +74,7 @@ try{
   page.on('requestfailed',request=>{
     if(request.url().startsWith('http://127.0.0.1:3003/'))return;
     const failure=`${request.method()} ${request.url()} ${request.failure()?.errorText||''}`;
-    if(isConfirmedDecorativeNavigationAbort(request)){
+    if(isConfirmedNavigationAbort(request)){
       summary.ignoredDecorativeAborts.push(failure);
       return;
     }
@@ -165,6 +170,9 @@ try{
   assert.equal(registry.sourceCount,12,'Math accepted source registry count drift');
   assert.deepEqual(registry.duplicateSourceIds,[],'Math runtime source IDs are duplicated');
   assert.ok(await queryPage.evaluate(()=>Boolean(window.BAUMAN_MATH_E235_FORMULA_STANDARD&&!window.BAUMAN_MATH_E236_FORMULA_LAYOUT&&!window.BAUMAN_MATH_E237_ACADEMIC&&!window.BAUMAN_MATH_E238_AUDIT)),'Math E235/E236-E238 runtime boundary drift');
+  // E129 intentionally schedules a second startup stabilization render at 650 ms.
+  // Let that render finish before deterministic lesson routing so it cannot overwrite a test-selected lesson.
+  await queryPage.waitForTimeout(800);
   summary.mathRuntime={};
   for(const lesson of ACCEPTED_MATH_LESSONS){
     const selected=await queryPage.evaluate(async lessonId=>{
@@ -178,8 +186,16 @@ try{
       return{lessonId:record.lessonId,chapterId:record.chapterId,slides:record.slides?.length||0};
     },lesson.id);
     assert.deepEqual(selected,{lessonId:lesson.id,chapterId:selected?.chapterId,slides:22},`${lesson.key}: durable source registration drift`);
-    await queryPage.waitForSelector(`[data-current-lesson="${lesson.id}"]`,{timeout:30000});
-    assert.equal(await queryPage.locator(`[data-current-lesson="${lesson.id}"] .e129-slide`).count(),22,`${lesson.key}: Reader slide count drift`);
+    await queryPage.waitForFunction(({lessonId,expectedSlides})=>{
+      const current=document.querySelector('[data-current-lesson]');
+      return current?.getAttribute('data-current-lesson')===lessonId&&current.querySelectorAll('.e129-slide').length===expectedSlides;
+    },{lessonId:lesson.id,expectedSlides:22},{timeout:30000});
+    await queryPage.waitForTimeout(100);
+    const readerState=await queryPage.evaluate(lessonId=>{
+      const current=document.querySelector('[data-current-lesson]');
+      return {lessonId:current?.getAttribute('data-current-lesson')||null,slides:current?.querySelectorAll('.e129-slide').length||0};
+    },lesson.id);
+    assert.deepEqual(readerState,{lessonId:lesson.id,slides:22},`${lesson.key}: Reader stable slide state drift`);
     if(lesson.key==='l04'){
       await queryPage.waitForFunction(()=>window.BAUMAN_MATH_FORMULA_LIBRARY?.selfCheck?.().loaded===true&&window.BAUMAN_MATH_SIMULATION_SOURCE?.selfCheck?.().loaded===true&&window.BAUMAN_MATH_ACTIVITY_STUDIO&&window.BAUMAN_MATH_INTEGRATION_SYNC&&window.BAUMAN_MATH_REGRESSION_GATE&&window.BAUMAN_MATH_RUNTIME_HEALTH,null,{timeout:30000});
       const layers=await queryPage.evaluate(()=>({

@@ -1,0 +1,73 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "BAUMAN_ROADMAP_V2_EVIDENCE_EVENT_V1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema",
+    "eventId",
+    "streamId",
+    "sequence",
+    "targetId",
+    "phaseId",
+    "evidenceType",
+    "occurredAt",
+    "source",
+    "payload"
+  ],
+  "properties": {
+    "schema": {
+      "const": "BAUMAN_ROADMAP_V2_EVIDENCE_EVENT_V1"
+    },
+    "eventId": {
+      "type": "string",
+      "minLength": 1
+    },
+    "streamId": {
+      "type": "string",
+      "minLength": 1
+    },
+    "sequence": {
+      "type": "integer",
+      "minimum": 1
+    },
+    "targetId": {
+      "type": "string",
+      "minLength": 1
+    },
+    "phaseId": {
+      "enum": [
+        "GD0",
+        "GD1",
+        "GD2",
+        "GD3"
+      ]
+    },
+    "evidenceType": {
+      "enum": [
+        "diagnostic_result",
+        "chapter_assessment",
+        "exercise_set",
+        "lab_or_simulation",
+        "project_rubric",
+        "retention_check",
+        "russian_technical_terms",
+        "gap_override"
+      ]
+    },
+    "occurredAt": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "source": {
+      "type": "object",
+      "required": [
+        "kind",
+        "ref"
+      ]
+    },
+    "payload": {
+      "type": "object"
+    }
+  }
+}

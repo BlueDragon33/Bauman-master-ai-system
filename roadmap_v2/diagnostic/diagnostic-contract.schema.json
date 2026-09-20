@@ -1,0 +1,432 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "BAUMAN_ROADMAP_V2_DIAGNOSTIC_CONTRACT_V2",
+  "title": "Bauman Roadmap V2 current diagnostic contract",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema",
+    "version",
+    "scope",
+    "mode",
+    "upstream",
+    "assessmentPolicy",
+    "statusSemantics",
+    "itemBankGate",
+    "sessionProjection",
+    "attemptGate",
+    "capabilities",
+    "reasonCodes",
+    "abortConditions",
+    "acceptance"
+  ],
+  "properties": {
+    "schema": {
+      "const": "BAUMAN_ROADMAP_V2_DIAGNOSTIC_CONTRACT_V2"
+    },
+    "version": {
+      "const": 2
+    },
+    "scope": {
+      "type": "string",
+      "minLength": 1
+    },
+    "mode": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "access",
+        "productionIntegration",
+        "failClosed",
+        "writesMasteryEvidence",
+        "writesLearnerState",
+        "writesLegacyRuntime"
+      ],
+      "properties": {
+        "access": {
+          "const": "read_only"
+        },
+        "productionIntegration": {
+          "const": "disconnected"
+        },
+        "failClosed": {
+          "const": true
+        },
+        "writesMasteryEvidence": {
+          "const": false
+        },
+        "writesLearnerState": {
+          "const": false
+        },
+        "writesLegacyRuntime": {
+          "const": false
+        }
+      }
+    },
+    "upstream": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "consumerContractPath",
+        "consumerContractSchema",
+        "requiredConsumerCapabilities",
+        "forbiddenConsumerCapabilities",
+        "manifestDependencyRequired",
+        "staleHistoricalManifestAccepted"
+      ],
+      "properties": {
+        "consumerContractPath": {
+          "const": "roadmap_v2/consumer/consumer-contract.json"
+        },
+        "consumerContractSchema": {
+          "const": "BAUMAN_ROADMAP_V2_CONSUMER_CONTRACT_V1"
+        },
+        "requiredConsumerCapabilities": {
+          "type": "array",
+          "minItems": 5,
+          "uniqueItems": true,
+          "items": {
+            "type": "string",
+            "minLength": 1
+          }
+        },
+        "forbiddenConsumerCapabilities": {
+          "type": "array",
+          "minItems": 6,
+          "uniqueItems": true,
+          "items": {
+            "type": "string",
+            "minLength": 1
+          }
+        },
+        "manifestDependencyRequired": {
+          "const": false
+        },
+        "staleHistoricalManifestAccepted": {
+          "const": false
+        }
+      }
+    },
+    "assessmentPolicy": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "id",
+        "requiredItemCount",
+        "difficultyDistribution",
+        "passPercent",
+        "criticalItemFloorPercent",
+        "requiresUniqueItemIds",
+        "requiresReviewedItems",
+        "requiresCriticalItems",
+        "requiresExactTargetMatch",
+        "requiresPrerequisiteRefsToExist"
+      ],
+      "properties": {
+        "id": {
+          "const": "DIAG-20-V1"
+        },
+        "requiredItemCount": {
+          "const": 20
+        },
+        "difficultyDistribution": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "easy",
+            "medium",
+            "hard",
+            "expert"
+          ],
+          "properties": {
+            "easy": {
+              "const": 8
+            },
+            "medium": {
+              "const": 6
+            },
+            "hard": {
+              "const": 4
+            },
+            "expert": {
+              "const": 2
+            }
+          }
+        },
+        "passPercent": {
+          "const": 80
+        },
+        "criticalItemFloorPercent": {
+          "const": 70
+        },
+        "requiresUniqueItemIds": {
+          "const": true
+        },
+        "requiresReviewedItems": {
+          "const": true
+        },
+        "requiresCriticalItems": {
+          "const": true
+        },
+        "requiresExactTargetMatch": {
+          "const": true
+        },
+        "requiresPrerequisiteRefsToExist": {
+          "const": true
+        }
+      }
+    },
+    "statusSemantics": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "pass",
+        "fail",
+        "criticalFloorFail",
+        "blocked",
+        "forbiddenOutcome",
+        "rules"
+      ],
+      "properties": {
+        "pass": {
+          "const": "existing_competency_verified"
+        },
+        "fail": {
+          "const": "gap"
+        },
+        "criticalFloorFail": {
+          "const": "critical_gap"
+        },
+        "blocked": {
+          "const": "diagnostic_blocked"
+        },
+        "forbiddenOutcome": {
+          "const": "master_ready"
+        },
+        "rules": {
+          "type": "array",
+          "minItems": 4,
+          "uniqueItems": true,
+          "items": {
+            "type": "string",
+            "minLength": 1
+          }
+        }
+      }
+    },
+    "itemBankGate": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "schema",
+        "reviewStatusRequired",
+        "catalogExecutionStatusRequired",
+        "missingBankStatus",
+        "invalidBankStatus",
+        "allowGeneratedUnreviewedItems"
+      ],
+      "properties": {
+        "schema": {
+          "const": "BAUMAN_ROADMAP_V2_DIAGNOSTIC_ITEM_BANK_V1"
+        },
+        "reviewStatusRequired": {
+          "const": "verified"
+        },
+        "catalogExecutionStatusRequired": {
+          "const": "ready_verified_item_bank"
+        },
+        "missingBankStatus": {
+          "const": "blocked_missing_verified_item_bank"
+        },
+        "invalidBankStatus": {
+          "const": "blocked_invalid_item_bank"
+        },
+        "allowGeneratedUnreviewedItems": {
+          "const": false
+        }
+      }
+    },
+    "sessionProjection": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "answerKeyFieldsExcluded",
+        "reviewMetadataExcluded",
+        "requiresStableItemOrder",
+        "allowsAnswerRevealDuringActiveSession"
+      ],
+      "properties": {
+        "answerKeyFieldsExcluded": {
+          "const": [
+            "correctOptionId",
+            "rationale"
+          ]
+        },
+        "reviewMetadataExcluded": {
+          "const": [
+            "reviewedBy"
+          ]
+        },
+        "requiresStableItemOrder": {
+          "const": true
+        },
+        "allowsAnswerRevealDuringActiveSession": {
+          "const": false
+        }
+      }
+    },
+    "attemptGate": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "schema",
+        "requiresAllItemsAnswered",
+        "unknownResponseItemPolicy",
+        "duplicateResponsePolicy",
+        "unknownOptionPolicy"
+      ],
+      "properties": {
+        "schema": {
+          "const": "BAUMAN_ROADMAP_V2_DIAGNOSTIC_ATTEMPT_V1"
+        },
+        "requiresAllItemsAnswered": {
+          "const": true
+        },
+        "unknownResponseItemPolicy": {
+          "const": "reject"
+        },
+        "duplicateResponsePolicy": {
+          "const": "reject"
+        },
+        "unknownOptionPolicy": {
+          "const": "reject"
+        }
+      }
+    },
+    "capabilities": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "catalogRead",
+        "planRead",
+        "readinessExplain",
+        "itemBankValidate",
+        "sessionProjection",
+        "attemptEvaluate",
+        "proposedBankHarnessOnly",
+        "masteryEvidenceWrite",
+        "learnerStateWrite",
+        "priorityEngineWrite",
+        "schedulerWrite",
+        "runtimeActivation"
+      ],
+      "properties": {
+        "catalogRead": {
+          "const": true
+        },
+        "planRead": {
+          "const": true
+        },
+        "readinessExplain": {
+          "const": true
+        },
+        "itemBankValidate": {
+          "const": true
+        },
+        "sessionProjection": {
+          "const": true
+        },
+        "attemptEvaluate": {
+          "const": true
+        },
+        "proposedBankHarnessOnly": {
+          "const": true
+        },
+        "masteryEvidenceWrite": {
+          "const": false
+        },
+        "learnerStateWrite": {
+          "const": false
+        },
+        "priorityEngineWrite": {
+          "const": false
+        },
+        "schedulerWrite": {
+          "const": false
+        },
+        "runtimeActivation": {
+          "const": false
+        }
+      }
+    },
+    "reasonCodes": {
+      "type": "object",
+      "minProperties": 10,
+      "additionalProperties": {
+        "type": "string",
+        "minLength": 1
+      }
+    },
+    "abortConditions": {
+      "type": "array",
+      "minItems": 12,
+      "uniqueItems": true,
+      "items": {
+        "type": "string",
+        "minLength": 1
+      }
+    },
+    "acceptance": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "step",
+        "currentTrack",
+        "consumerBoundaryRevalidated",
+        "staleManifestDependencyRemoved",
+        "existingCompetencyDistinctFromMasterReady",
+        "activeSessionAnswerLeakageForbidden",
+        "unreviewedGenerationForbidden",
+        "masteryPersistenceEnabled",
+        "learnerStatePersistenceEnabled",
+        "runtimeActivationAllowed",
+        "result"
+      ],
+      "properties": {
+        "step": {
+          "const": 89
+        },
+        "currentTrack": {
+          "const": "L23"
+        },
+        "consumerBoundaryRevalidated": {
+          "const": true
+        },
+        "staleManifestDependencyRemoved": {
+          "const": true
+        },
+        "existingCompetencyDistinctFromMasterReady": {
+          "const": true
+        },
+        "activeSessionAnswerLeakageForbidden": {
+          "const": true
+        },
+        "unreviewedGenerationForbidden": {
+          "const": true
+        },
+        "masteryPersistenceEnabled": {
+          "const": false
+        },
+        "learnerStatePersistenceEnabled": {
+          "const": false
+        },
+        "runtimeActivationAllowed": {
+          "const": false
+        },
+        "result": {
+          "const": "PASS_CONTRACT_ONLY_PENDING_B89_GATE"
+        }
+      }
+    }
+  }
+}

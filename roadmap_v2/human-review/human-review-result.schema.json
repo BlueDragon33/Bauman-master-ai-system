@@ -1,0 +1,116 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "BAUMAN_ROADMAP_V2_HUMAN_REVIEW_RESULT_V1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema",
+    "receiptId",
+    "reviewerRef",
+    "consumerAdmissionProjectionId",
+    "reportId",
+    "phaseId",
+    "weekStart",
+    "sourceReadinessColor",
+    "sourceConsumerDecision",
+    "submittedReviewDecision",
+    "effectiveReviewState",
+    "reasonCodes",
+    "persisted",
+    "productionPromotionAuthorized",
+    "productionConsumerConnected",
+    "runtimeActionAuthorized",
+    "scheduleWriteAllowed",
+    "notificationWriteAllowed"
+  ],
+  "properties": {
+    "schema": {
+      "const": "BAUMAN_ROADMAP_V2_HUMAN_REVIEW_RESULT_V1"
+    },
+    "receiptId": {
+      "type": "string",
+      "minLength": 1
+    },
+    "reviewerRef": {
+      "type": "string",
+      "pattern": "^REVIEWER::[A-Z0-9_-]+$"
+    },
+    "consumerAdmissionProjectionId": {
+      "type": "string",
+      "minLength": 1
+    },
+    "reportId": {
+      "type": "string",
+      "minLength": 1
+    },
+    "phaseId": {
+      "enum": [
+        "GD0",
+        "GD1",
+        "GD2",
+        "GD3"
+      ]
+    },
+    "weekStart": {
+      "type": "string",
+      "format": "date"
+    },
+    "sourceReadinessColor": {
+      "enum": [
+        "red",
+        "yellow",
+        "green"
+      ]
+    },
+    "sourceConsumerDecision": {
+      "enum": [
+        "shadow_review_blocked",
+        "shadow_review_caution",
+        "shadow_review_ready_for_human_review"
+      ]
+    },
+    "submittedReviewDecision": {
+      "enum": [
+        "needs_revision",
+        "accepted_for_shadow_analysis",
+        "rejected"
+      ]
+    },
+    "effectiveReviewState": {
+      "enum": [
+        "review_blocked_upstream",
+        "review_needs_revision",
+        "review_accepted_shadow_only",
+        "review_rejected"
+      ]
+    },
+    "reasonCodes": {
+      "type": "array",
+      "minItems": 1,
+      "maxItems": 16,
+      "uniqueItems": true,
+      "items": {
+        "type": "string",
+        "pattern": "^[A-Z0-9_:-]+$"
+      }
+    },
+    "persisted": {
+      "const": false
+    },
+    "productionPromotionAuthorized": {
+      "const": false
+    },
+    "productionConsumerConnected": {
+      "const": false
+    },
+    "runtimeActionAuthorized": {
+      "const": false
+    },
+    "scheduleWriteAllowed": {
+      "const": false
+    },
+    "notificationWriteAllowed": {
+      "const": false
+    }
+  }
+}

@@ -1,0 +1,178 @@
+{
+  "schema": "BAUMAN_ROADMAP_V2_PRIORITY_CONTRACT_V2",
+  "version": 2,
+  "scope": "Lượt 25 / Bước 97–100 — current explainable in-memory Priority Engine on Consumer Blueprint + Mastery V2; no persistence, scheduler write or runtime activation",
+  "mode": {
+    "access": "read_only_harness",
+    "productionIntegration": "disconnected",
+    "failClosed": true,
+    "persistentStoreEnabled": false,
+    "schedulerWriteAllowed": false,
+    "runtimeWriteAllowed": false
+  },
+  "upstream": {
+    "consumerBlueprintPath": "roadmap_v2/consumer/blueprint.json",
+    "consumerBlueprintSchema": "BAUMAN_ROADMAP_V2_CONSUMER_BLUEPRINT_V1",
+    "consumerBlueprintValidationRequired": "PASS",
+    "masteryContractPath": "roadmap_v2/mastery/mastery-contract.json",
+    "masteryContractSchema": "BAUMAN_ROADMAP_V2_MASTERY_CONTRACT_V2",
+    "masterySnapshotSchema": "BAUMAN_ROADMAP_V2_MASTERY_SNAPSHOT_V1",
+    "prerequisitePolicySchema": "BAUMAN_ROADMAP_V2_CURRENT_PREREQUISITE_POLICY_V1",
+    "manifestDependencyRequired": false,
+    "staleHistoricalManifestAccepted": false,
+    "priorityCandidateSchema": "BAUMAN_ROADMAP_V2_PRIORITY_CANDIDATE_V1",
+    "priorityResultSchema": "BAUMAN_ROADMAP_V2_PRIORITY_RESULT_V2"
+  },
+  "formula": {
+    "expression": "0.35*masterRelevance + 0.30*knowledgeGap + 0.20*prerequisiteUrgency + 0.15*forgettingRisk",
+    "weights": {
+      "masterRelevance": 0.35,
+      "knowledgeGap": 0.3,
+      "prerequisiteUrgency": 0.2,
+      "forgettingRisk": 0.15
+    },
+    "inputRange": {
+      "minimum": 0,
+      "maximum": 1
+    },
+    "outputRange": {
+      "minimum": 0,
+      "maximum": 100
+    }
+  },
+  "normalization": {
+    "knowledgeGapByState": {
+      "gap": 1,
+      "chua_hoc": 0.85,
+      "dang_hoc": 0.6,
+      "can_on": 0.45,
+      "dat_prerequisite": 0.2,
+      "master_ready": 0
+    },
+    "prerequisiteUrgencyByWeeks": [
+      {
+        "maximumWeeks": 4,
+        "value": 1
+      },
+      {
+        "maximumWeeks": 8,
+        "value": 0.75
+      },
+      {
+        "maximumWeeks": 12,
+        "value": 0.5
+      },
+      {
+        "maximumWeeks": 24,
+        "value": 0.25
+      },
+      {
+        "maximumWeeks": null,
+        "value": 0.1
+      }
+    ],
+    "missingNeededDateUrgency": 0,
+    "forgettingRiskRules": {
+      "can_on": 1,
+      "retentionBelowThreshold": 1,
+      "retentionOutsideWindow": 1,
+      "retentionPassed": 0.15,
+      "datPrerequisiteWithoutRetention": 0.6,
+      "dangHocWithoutRetention": 0.45,
+      "gapWithoutRetention": 0.25,
+      "chuaHocWithoutRetention": 0
+    }
+  },
+  "criticalOverride": {
+    "requiredKnowledgeState": "gap",
+    "maximumWeeksUntilNeeded": 4,
+    "disposition": "critical",
+    "bypassesWeightedBand": true
+  },
+  "existingCompetencyRule": {
+    "requiresExistingCompetencyVerified": true,
+    "diagnosticPercentMinimum": 80,
+    "diagnosticCriticalPercentMinimum": 70,
+    "retentionPercentMinimum": 75,
+    "retentionWindowDays": {
+      "minimum": 14,
+      "maximum": 21
+    },
+    "disposition": "review_on_demand",
+    "grantsMasterReady": false
+  },
+  "weightedBands": [
+    {
+      "minimumScore": 70,
+      "disposition": "high"
+    },
+    {
+      "minimumScore": 40,
+      "disposition": "medium"
+    },
+    {
+      "minimumScore": 0,
+      "disposition": "low"
+    }
+  ],
+  "ranking": {
+    "order": [
+      "critical first",
+      "weighted score descending",
+      "weeks until needed ascending with null last",
+      "target ID ascending"
+    ],
+    "stable": true,
+    "duplicateTargetPolicy": "reject"
+  },
+  "capabilities": {
+    "candidateValidate": true,
+    "featureExtract": true,
+    "score": true,
+    "explain": true,
+    "rank": true,
+    "inMemoryHarnessOnly": true,
+    "persistentStoreWrite": false,
+    "schedulerWrite": false,
+    "runtimeActivation": false
+  },
+  "reasonCodes": {
+    "CRITICAL_GAP_OVERRIDE": "A gap needed within four weeks is always critical regardless of weighted band.",
+    "REVIEW_ON_DEMAND_NOT_MASTER_READY": "Existing Competency with valid retention may reduce review priority but never grants Master-ready.",
+    "MASTERY_SNAPSHOT_REQUIRED": "Priority candidates require an explicit current non-persisted Mastery snapshot.",
+    "MANUAL_DERIVED_FEATURE_OVERRIDE_FORBIDDEN": "Knowledge gap and forgetting-risk features must be derived from current Mastery state/evidence.",
+    "DUPLICATE_TARGET_FORBIDDEN": "Priority ranking rejects duplicate candidate or target IDs.",
+    "STALE_MANIFEST_DEPENDENCY_FORBIDDEN": "Historical Consumer/Mastery manifests and pinned hashes are quarantined.",
+    "PERSISTENCE_DISABLED": "Priority results remain in memory only.",
+    "SCHEDULER_DISCONNECTED": "Priority ranking does not write or activate the scheduler.",
+    "PRODUCTION_DISCONNECTED": "Priority remains disconnected from production entrypoints."
+  },
+  "abortConditions": [
+    "current Consumer Blueprint, Mastery contract or prerequisite policy schema mismatch",
+    "dependency on quarantined historical Consumer/Mastery manifest or baseline hash",
+    "unknown target, phase or knowledge state",
+    "missing, target-mismatched or persisted Mastery snapshot",
+    "manual override of derived knowledge-gap or forgetting-risk feature",
+    "Master relevance, derived feature or final score outside normalized range",
+    "duplicate candidate ID or target ID",
+    "Critical override not applied to a gap needed within four weeks",
+    "Existing Competency review-on-demand converted to Master-ready",
+    "non-deterministic ranking",
+    "scheduler, persistence or runtime write attempted"
+  ],
+  "acceptance": {
+    "step": 97,
+    "currentTrack": "L25",
+    "consumerBlueprintBoundaryRevalidated": true,
+    "masteryV2BoundaryRevalidated": true,
+    "staleManifestDependencyRemoved": true,
+    "registryFormulaExact": true,
+    "criticalOverrideExact": true,
+    "existingCompetencyReviewOnDemand": true,
+    "existingCompetencyGrantsMasterReady": false,
+    "schedulerEnabled": false,
+    "persistenceEnabled": false,
+    "runtimeActivationAllowed": false,
+    "result": "PASS_CONTRACT_ONLY_PENDING_B97_GATE"
+  }
+}

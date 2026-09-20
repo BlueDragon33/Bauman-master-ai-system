@@ -31,6 +31,32 @@ jobs:
         run: node subjects/russian/scripts/validate-learning-flow.mjs
       - name: Validate Russian vocabulary SRS runtime
         run: node subjects/russian/scripts/validate-vocab-srs.mjs
+      - name: Validate Russian live review planning overlay
+        run: node subjects/russian/scripts/validate-review-planning.mjs
+      - name: Validate Russian adaptive next step
+        run: node subjects/russian/scripts/validate-adaptive-next-step.mjs
+      - name: Validate Russian stage progression evidence
+        run: node subjects/russian/scripts/validate-stage-progression-evidence.mjs
+      - name: Validate Russian evidence-bound schedule completion
+        run: node subjects/russian/scripts/validate-evidence-bound-completion.mjs
+      - name: Validate Russian R0-R4 capability progression
+        run: node subjects/russian/scripts/validate-capability-progression.mjs
+      - name: Validate Russian capability-aware planning
+        run: node subjects/russian/scripts/validate-capability-planning.mjs
+      - name: Validate Russian capability bridge
+        run: node subjects/russian/scripts/validate-capability-bridge.mjs
+      - name: Validate Russian capability exact step routing
+        run: node subjects/russian/scripts/validate-capability-step-routing.mjs
+      - name: Validate Russian capability deep link
+        run: node subjects/russian/scripts/validate-capability-deeplink.mjs
+      - name: Validate Russian capability route receipt
+        run: node subjects/russian/scripts/validate-capability-route-receipt.mjs
+      - name: Validate Russian stage readiness
+        run: node subjects/russian/scripts/validate-stage-readiness.mjs
+      - name: Validate Russian stage transition handoff
+        run: node subjects/russian/scripts/validate-stage-transition-handoff.mjs
+      - name: Validate Russian stage readiness navigator
+        run: node subjects/russian/scripts/validate-readiness-navigator.mjs
       - name: Validate Russian listening speaking coach
         run: node subjects/russian/scripts/validate-speaking-coach.mjs
       - name: Validate Russian grammar reading writing academic bridge
@@ -48,6 +74,7 @@ jobs:
           node --check subjects/russian/assets/russian-reference-ui.js
           node --check subjects/russian/assets/learning-state.js
           node --check subjects/russian/assets/learning-flow.js
+          node --check subjects/russian/assets/planning-bridge.js
           node --check subjects/russian/assets/vocab-srs.js
           node --check subjects/russian/assets/speaking-coach.js
           node --check subjects/russian/assets/academic-language.js

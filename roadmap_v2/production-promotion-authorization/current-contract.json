@@ -1,0 +1,96 @@
+{
+  "schema": "BAUMAN_ROADMAP_V2_PRODUCTION_PROMOTION_AUTHORIZATION_CONTRACT_V1",
+  "version": "2.15.0-l35-b137",
+  "purpose": "Data-only Production Promotion Authorization receipt boundary that recomputes current Production Readiness Review, permits receipt issuance only when upstream shadowProductionReady is true, and records an explicit non-executing authorization decision without connecting production consumers, deploying code, persisting state, activating runtime behavior, or executing automatic actions",
+  "mode": {
+    "access": "read_only_production_promotion_authorization",
+    "productionIntegration": "disconnected",
+    "authorizationReceiptOnly": true,
+    "productionPromotionExecutionEnabled": false,
+    "deploymentEnabled": false,
+    "persistentStoreEnabled": false,
+    "dashboardUiEnabled": false,
+    "scheduleWriteAllowed": false,
+    "calendarWriteAllowed": false,
+    "runtimeWriteAllowed": false,
+    "notificationWriteAllowed": false,
+    "automaticActionAllowed": false
+  },
+  "upstreamSchemas": {
+    "productionReadinessReviewContract": "BAUMAN_ROADMAP_V2_PRODUCTION_READINESS_REVIEW_CONTRACT_V1",
+    "productionReadinessReviewRequest": "BAUMAN_ROADMAP_V2_PRODUCTION_READINESS_REVIEW_REQUEST_V1",
+    "productionReadinessReviewResult": "BAUMAN_ROADMAP_V2_PRODUCTION_READINESS_REVIEW_RESULT_V1",
+    "productionPromotionAuthorizationRequest": "BAUMAN_ROADMAP_V2_PRODUCTION_PROMOTION_AUTHORIZATION_REQUEST_V1",
+    "productionPromotionAuthorizationResult": "BAUMAN_ROADMAP_V2_PRODUCTION_PROMOTION_AUTHORIZATION_RESULT_V1"
+  },
+  "candidatePolicy": {
+    "candidateRefPattern": "^CANDIDATE::[A-Z0-9_-]+$",
+    "recomputeProductionReadinessReviewFromRequest": true,
+    "acceptCallerSuppliedProductionReadinessReviewResult": false,
+    "acceptCallerSuppliedShadowProductionReady": false,
+    "requireShadowProductionReady": true,
+    "manualEligibilityOverrideAllowed": false,
+    "requireNestedCandidateMatch": true
+  },
+  "authorizationPolicy": {
+    "authorizerRefPattern": "^PRODUCTION_PROMOTION_AUTHORIZER::[A-Z0-9_-]+$",
+    "allowedDecisions": ["authorize_receipt_only","needs_revision","rejected"],
+    "upstreamBlockedState": "production_promotion_authorization_blocked_upstream",
+    "authorizedState": "production_promotion_authorization_receipt_granted",
+    "needsRevisionState": "production_promotion_authorization_needs_revision",
+    "rejectedState": "production_promotion_authorization_rejected",
+    "authorizationScope": "receipt_only_no_execution",
+    "authorizedDecisionExecutesPromotion": false,
+    "manualProductionOverrideAllowed": false
+  },
+  "outputPolicy": {
+    "deepFrozen": true,
+    "persisted": false,
+    "includesProductionReadinessReviewReceiptId": true,
+    "includesPromotionReviewReceiptId": true,
+    "includesReleaseReviewReceiptId": true,
+    "includesPromotionEligibilityProjectionId": true,
+    "includesHumanReviewReceiptId": true,
+    "includesProductionPromotionCommand": false,
+    "includesDeploymentCommand": false,
+    "includesRuntimeCommand": false,
+    "includesScheduleMutation": false,
+    "includesNotificationCommand": false,
+    "includesAuthorizerRef": true,
+    "includesSubmittedAuthorizationDecision": true,
+    "includesReasonCodes": true
+  },
+  "capabilities": {
+    "productionPromotionAuthorizationEvaluate": true,
+    "shadowAuthorizationReceiptProject": true,
+    "productionPromotionExecute": false,
+    "deploymentExecute": false,
+    "productionConsumerConnect": false,
+    "persistentStoreWrite": false,
+    "dashboardUiRender": false,
+    "scheduleWrite": false,
+    "calendarWrite": false,
+    "runtimeActivation": false,
+    "notificationWrite": false,
+    "automaticAction": false
+  },
+  "abortConditions": [
+    "Production Promotion Authorization request schema mismatch or unsupported caller fields",
+    "candidate reference outside CANDIDATE namespace",
+    "authorizer reference outside PRODUCTION_PROMOTION_AUTHORIZER namespace",
+    "outer candidate reference does not exactly match nested Production Readiness Review candidate reference",
+    "caller-supplied Production Readiness Review result or shadow-production-ready value",
+    "Production Readiness Review recomputation does not yield shadowProductionReady=true",
+    "caller attempts production execution, deployment, persistence, runtime, schedule, notification or automatic-action authority"
+  ],
+  "acceptance": {
+    "step": 137,
+    "currentTrack": "L35",
+    "productionConsumersConnected": 0,
+    "productionIntegration": "disconnected",
+    "productionPromotionExecutionAllowed": false,
+    "deploymentAllowed": false,
+    "runtimeActivationAllowed": false,
+    "result": "PASS_B137_CONTRACT"
+  }
+}

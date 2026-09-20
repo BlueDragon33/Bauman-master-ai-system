@@ -1,0 +1,103 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "BAUMAN_ROADMAP_V2_DIAGNOSTIC_CATALOG_V2",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema",
+    "version",
+    "source",
+    "mode",
+    "policy",
+    "counts",
+    "plans",
+    "blockedDynamicTargets",
+    "validation"
+  ],
+  "properties": {
+    "schema": {
+      "const": "BAUMAN_ROADMAP_V2_DIAGNOSTIC_CATALOG_V2"
+    },
+    "version": {
+      "const": 2
+    },
+    "source": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "consumerBlueprintPath",
+        "consumerBlueprintGitBlobSha",
+        "consumerBlueprintSchema",
+        "diagnosticContractPath",
+        "diagnosticContractGitBlobSha",
+        "diagnosticContractSchema"
+      ]
+    },
+    "mode": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "productionIntegration",
+        "executionEnabled",
+        "persistenceEnabled"
+      ],
+      "properties": {
+        "productionIntegration": {
+          "const": "disconnected"
+        },
+        "executionEnabled": {
+          "const": false
+        },
+        "persistenceEnabled": {
+          "const": false
+        }
+      }
+    },
+    "policy": {
+      "type": "object",
+      "required": [
+        "id",
+        "requiredItemCount",
+        "difficultyDistribution",
+        "passPercent",
+        "criticalItemFloorPercent"
+      ]
+    },
+    "counts": {
+      "type": "object",
+      "required": [
+        "plans",
+        "chapterPlans",
+        "lessonPlans",
+        "blockedDynamicTargets",
+        "verifiedItemBanks",
+        "executablePlans",
+        "generatedQuestionItems"
+      ]
+    },
+    "plans": {
+      "type": "array",
+      "minItems": 381,
+      "maxItems": 381
+    },
+    "blockedDynamicTargets": {
+      "type": "array",
+      "minItems": 8,
+      "maxItems": 8
+    },
+    "validation": {
+      "type": "object",
+      "required": [
+        "uniquePlanIds",
+        "uniqueTargetIds",
+        "missingTargets",
+        "missingPrerequisiteRefs",
+        "masterReadyOutcomes",
+        "executablePlansWithoutVerifiedBank",
+        "answerLeakingPlans",
+        "persistenceEnabledPlans",
+        "result"
+      ]
+    }
+  }
+}

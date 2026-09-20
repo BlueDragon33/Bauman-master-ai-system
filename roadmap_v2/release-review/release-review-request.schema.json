@@ -1,0 +1,47 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "BAUMAN_ROADMAP_V2_RELEASE_REVIEW_REQUEST_V1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema",
+    "candidateRef",
+    "releaseReviewerRef",
+    "reviewDecision",
+    "reasonCodes",
+    "promotionEligibilityRequest"
+  ],
+  "properties": {
+    "schema": {
+      "const": "BAUMAN_ROADMAP_V2_RELEASE_REVIEW_REQUEST_V1"
+    },
+    "candidateRef": {
+      "type": "string",
+      "pattern": "^CANDIDATE::[A-Z0-9_-]+$"
+    },
+    "releaseReviewerRef": {
+      "type": "string",
+      "pattern": "^RELEASE_REVIEWER::[A-Z0-9_-]+$"
+    },
+    "reviewDecision": {
+      "enum": [
+        "approve_for_promotion_review",
+        "needs_revision",
+        "rejected"
+      ]
+    },
+    "reasonCodes": {
+      "type": "array",
+      "minItems": 1,
+      "maxItems": 12,
+      "items": {
+        "type": "string",
+        "pattern": "^[A-Z0-9_-]{1,64}$"
+      }
+    },
+    "promotionEligibilityRequest": {
+      "type": "object",
+      "description": "Current BAUMAN_ROADMAP_V2_PROMOTION_ELIGIBILITY_REQUEST_V1; recomputed by the L31/L32 harness chain"
+    }
+  }
+}

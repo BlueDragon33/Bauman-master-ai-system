@@ -1,0 +1,76 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "BAUMAN_ROADMAP_V2_MASTERY_SNAPSHOT_V1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema",
+    "streamId",
+    "targetId",
+    "phaseId",
+    "eventCount",
+    "lastSequence",
+    "knowledgeState",
+    "existingCompetencyVerified",
+    "dimensions",
+    "masterReadyGate",
+    "prerequisiteEligible",
+    "persisted",
+    "transitions"
+  ],
+  "properties": {
+    "schema": {
+      "const": "BAUMAN_ROADMAP_V2_MASTERY_SNAPSHOT_V1"
+    },
+    "streamId": {
+      "type": "string"
+    },
+    "targetId": {
+      "type": "string"
+    },
+    "phaseId": {
+      "enum": [
+        "GD0",
+        "GD1",
+        "GD2",
+        "GD3"
+      ]
+    },
+    "eventCount": {
+      "type": "integer",
+      "minimum": 0
+    },
+    "lastSequence": {
+      "type": "integer",
+      "minimum": 0
+    },
+    "knowledgeState": {
+      "enum": [
+        "chua_hoc",
+        "dang_hoc",
+        "dat_prerequisite",
+        "master_ready",
+        "can_on",
+        "gap"
+      ]
+    },
+    "existingCompetencyVerified": {
+      "type": "boolean"
+    },
+    "dimensions": {
+      "type": "object"
+    },
+    "masterReadyGate": {
+      "type": "object"
+    },
+    "prerequisiteEligible": {
+      "type": "boolean"
+    },
+    "persisted": {
+      "const": false
+    },
+    "transitions": {
+      "type": "array"
+    }
+  }
+}

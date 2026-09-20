@@ -1,0 +1,91 @@
+{
+  "schema": "BAUMAN_ROADMAP_V2_ADMISSION_CONTRACT_V1",
+  "version": "2.8.0-l28-b109",
+  "purpose": "Read-only admission boundary that can turn a freshly recomputed current Readiness projection into an advisory model without connecting Roadmap V2 to production consumers or authorizing writes/actions",
+  "mode": {
+    "access": "read_only_advisory_projection",
+    "productionIntegration": "disconnected",
+    "failClosed": true,
+    "consumerAdapterEnabled": false,
+    "persistentStoreEnabled": false,
+    "dashboardUiEnabled": false,
+    "scheduleWriteAllowed": false,
+    "calendarWriteAllowed": false,
+    "runtimeWriteAllowed": false,
+    "notificationWriteAllowed": false,
+    "automaticActionAllowed": false
+  },
+  "upstreamSchemas": {
+    "readinessContract": "BAUMAN_ROADMAP_V2_READINESS_CONTRACT_V1",
+    "readinessRequest": "BAUMAN_ROADMAP_V2_READINESS_REQUEST_V1",
+    "readinessResult": "BAUMAN_ROADMAP_V2_READINESS_RESULT_V1",
+    "admissionResult": "BAUMAN_ROADMAP_V2_ADMISSION_RESULT_V1"
+  },
+  "admissionPolicy": {
+    "recomputeReadinessFromRequest": true,
+    "acceptCallerSuppliedReadinessResult": false,
+    "acceptCallerSuppliedReadinessColor": false,
+    "verifiedCurrentReadinessBoundaryRequired": true,
+    "persistedReadinessAccepted": false,
+    "emptyTargetSetAccepted": false,
+    "manualOverrideAllowed": false
+  },
+  "decisionPolicy": {
+    "red": "blocked",
+    "yellow": "caution",
+    "green": "ready_for_human_review",
+    "greenAuthorizesAutomaticAction": false,
+    "greenAuthorizesRuntimeActivation": false,
+    "redOrYellowMutatesSchedule": false
+  },
+  "consumerPolicy": {
+    "projectionKind": "advisory_preview",
+    "productionConsumerIds": [],
+    "planningBridgeAdmitted": false,
+    "safeShellAdmitted": false,
+    "subjectRuntimeAdmitted": false,
+    "directUiRenderAdmitted": false,
+    "futureConsumerRequiresSeparateAdmissionGate": true
+  },
+  "outputPolicy": {
+    "deepFrozen": true,
+    "persisted": false,
+    "includesReadinessReasonCodes": true,
+    "includesScheduleReadinessSummary": true,
+    "includesRuntimeCommand": false,
+    "includesScheduleMutation": false,
+    "includesNotificationCommand": false
+  },
+  "capabilities": {
+    "requestValidate": true,
+    "readinessRecompute": true,
+    "advisoryProject": true,
+    "productionConsumerConnect": false,
+    "persistentStoreWrite": false,
+    "dashboardUiRender": false,
+    "scheduleWrite": false,
+    "calendarWrite": false,
+    "runtimeActivation": false,
+    "notificationWrite": false,
+    "automaticAction": false
+  },
+  "abortConditions": [
+    "current Readiness contract/request/result schema mismatch",
+    "dependency on historical Readiness manifest, baseline hash or caller-supplied Readiness result",
+    "caller-supplied Readiness color or advisory state",
+    "persisted Readiness snapshot/result admitted",
+    "unknown or empty current Readiness target set",
+    "green Readiness interpreted as automatic execution authorization",
+    "PlanningBridge, Safe Shell or subject runtime wired before a separate admission gate",
+    "persistence, dashboard, schedule, calendar, runtime, notification or automatic-action write attempted"
+  ],
+  "acceptance": {
+    "step": 109,
+    "currentTrack": "L28",
+    "readinessBoundaryRevalidated": true,
+    "advisoryOnly": true,
+    "productionConsumersConnected": 0,
+    "runtimeActivationAllowed": false,
+    "result": "PASS_B109_CONTRACT"
+  }
+}
