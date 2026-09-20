@@ -71,7 +71,8 @@ async function checkCanonicalContent(page){
     safeCheck:window.BAUMAN_HUB_SAFE?.selfCheck?.(),
     managedAccess:window.BAUMAN_APP_MANAGER_ACCESS?.selfCheck?.(),
     learningCluster:window.BAUMAN_HUB_LEARNING_CLUSTER?.selfCheck?.(),
-    overviewSearch:window.BAUMAN_HUB_OVERVIEW_SEARCH_V2?.selfCheck?.()
+    overviewSearch:window.BAUMAN_HUB_OVERVIEW_SEARCH_V2?.selfCheck?.(),
+    referenceV5:window.BAUMAN_HUB_REFERENCE_V5?.selfCheck?.()
   }));
   assert.deepEqual(content.subjectIds,['ai','foundation','math','programming','research','russian','signal','systems']);
   assert.equal(content.pages.length,5,'canonical Hub pages were removed');
@@ -101,6 +102,10 @@ async function checkCanonicalContent(page){
   assert.equal(content.overviewSearch?.searchInstalled,true,'Global search V3 is not installed');
   assert.equal(content.overviewSearch?.accentInsensitive,true,'Search is not accent-insensitive');
   assert.equal(content.overviewSearch?.referencePanelsVisible,true,'Reference Home panels are incomplete');
+  assert.equal(content.referenceV5?.active,true,'Precision Reference V5 is not active');
+  assert.equal(content.referenceV5?.primaryPanels,true,'Precision Reference V5 primary panels are incomplete');
+  assert.equal(content.referenceV5?.secondaryHomeHidden,true,'Secondary academic Home content leaked below the reference dashboard');
+  assert.equal(content.referenceV5?.profileCopy,true,'Top profile copy is missing from the reference topbar');
   return content;
 }
 
