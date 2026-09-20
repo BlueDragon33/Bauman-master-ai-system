@@ -49,7 +49,7 @@ async function openHub(page){
   await page.waitForFunction(()=>window.BAUMAN_HUB_LEARNING_CLUSTER?.selfCheck?.().flatLayout===true&&window.BAUMAN_HUB_LEARNING_CLUSTER?.selfCheck?.().visibleActions?.length===10,null,{timeout:10000});
   await page.waitForFunction(()=>window.BAUMAN_HUB_OVERVIEW_SEARCH_V2?.selfCheck?.().referenceHome===true,null,{timeout:10000});
   await page.waitForFunction(()=>window.BAUMAN_HUB_REFERENCE_V5?.selfCheck?.().active===true,null,{timeout:10000});
-  await page.waitForFunction(()=>window.BAUMAN_HUB_ROADMAP_V1?.selfCheck?.().active===true,null,{timeout:10000});
+  await page.waitForFunction(()=>window.BAUMAN_HUB_ROADMAP_V2?.selfCheck?.().active===true,null,{timeout:10000});
   await page.waitForFunction(()=>{
     const safe=window.BAUMAN_HUB_SAFE?.selfCheck?.();
     return safe?.ready===true
@@ -74,7 +74,7 @@ async function checkCanonicalContent(page){
     learningCluster:window.BAUMAN_HUB_LEARNING_CLUSTER?.selfCheck?.(),
     overviewSearch:window.BAUMAN_HUB_OVERVIEW_SEARCH_V2?.selfCheck?.(),
     referenceV5:window.BAUMAN_HUB_REFERENCE_V5?.selfCheck?.(),
-    roadmapV1:window.BAUMAN_HUB_ROADMAP_V1?.selfCheck?.()
+    roadmapV2:window.BAUMAN_HUB_ROADMAP_V2?.selfCheck?.()
   }));
   assert.deepEqual(content.subjectIds,['ai','foundation','math','programming','research','russian','signal','systems']);
   assert.equal(content.pages.length,5,'canonical Hub pages were removed');
@@ -108,12 +108,12 @@ async function checkCanonicalContent(page){
   assert.equal(content.referenceV5?.primaryPanels,true,'Precision Reference V5 primary panels are incomplete');
   assert.equal(content.referenceV5?.secondaryHomeHidden,true,'Secondary academic Home content leaked below the reference dashboard');
   assert.equal(content.referenceV5?.profileCopy,true,'Top profile copy is missing from the reference topbar');
-  assert.equal(content.roadmapV1?.active,true,'Comprehensive Roadmap V1 is not active');
-  assert.equal(content.roadmapV1?.stageCards,4,'Roadmap must expose four reference stage cards');
-  assert.equal(content.roadmapV1?.filters,5,'Roadmap must expose five subject-group filters');
-  assert.equal(content.roadmapV1?.levels,4,'Roadmap must expose four subject progression levels');
-  assert.equal(content.roadmapV1?.sideCards,4,'Roadmap right rail must expose four summary cards');
-  assert.equal(content.roadmapV1?.canonicalHidden,true,'Canonical roadmap sources should be preserved but hidden behind the reference UI');
+  assert.equal(content.roadmapV2?.active,true,'Comprehensive Roadmap V1 is not active');
+  assert.equal(content.roadmapV2?.stageCards,4,'Roadmap must expose four reference stage cards');
+  assert.equal(content.roadmapV2?.filters,5,'Roadmap must expose five subject-group filters');
+  assert.equal(content.roadmapV2?.levels,4,'Roadmap must expose four subject progression levels');
+  assert.equal(content.roadmapV2?.sideCards,4,'Roadmap right rail must expose four summary cards');
+  assert.equal(content.roadmapV2?.canonicalHidden,true,'Canonical roadmap sources should be preserved but hidden behind the reference UI');
   return content;
 }
 
@@ -235,7 +235,7 @@ try{
 
   await page.setViewportSize({width:1920,height:1080});
   await page.evaluate(()=>window.app?.page?.('roadmap',false));
-  await page.waitForFunction(()=>document.getElementById('page-roadmap')?.classList.contains('active')===true&&window.BAUMAN_HUB_ROADMAP_V1?.selfCheck?.().active===true,null,{timeout:10000});
+  await page.waitForFunction(()=>document.getElementById('page-roadmap')?.classList.contains('active')===true&&window.BAUMAN_HUB_ROADMAP_V2?.selfCheck?.().active===true,null,{timeout:10000});
   const roadmapAudit=await page.evaluate(()=>({
     stages:document.querySelectorAll('#page-roadmap .hub-rm-stage-card').length,
     filters:document.querySelectorAll('#page-roadmap [data-rm-filter]').length,
@@ -247,13 +247,19 @@ try{
     heroTitle:document.querySelector('#page-roadmap .hub-rm-hero h1')?.textContent?.trim()||''
   }));
   assert.deepEqual([roadmapAudit.stages,roadmapAudit.filters,roadmapAudit.levels,roadmapAudit.sideCards],[4,5,4,4],'Roadmap reference structure drift');
+  const roadmapChrome=await page.evaluate(()=>window.BAUMAN_HUB_ROADMAP_V2?.selfCheck?.());
+  assert.equal(roadmapChrome?.topNav,7,'Roadmap V2 top navigation must expose seven reference actions');
+  assert.equal(roadmapChrome?.journey,true,'Roadmap V2 journey card is missing');
+  assert.equal(roadmapChrome?.chromeActive,true,'Roadmap V2 route chrome is not active');
   assert.equal(roadmapAudit.canonicalVisible,false,'Canonical roadmap leaked below the reference roadmap');
   assert.equal(roadmapAudit.heroTitle,'Lộ trình học tập tổng hợp','Roadmap hero title drift');
   assert.ok(roadmapAudit.scroll<=roadmapAudit.client+2,`Roadmap desktop horizontal overflow ${roadmapAudit.scroll}/${roadmapAudit.client}`);
+  await page.locator('#page-roadmap [data-rm-filter="russian"]').click();
+  await page.waitForFunction(()=>document.querySelector('#page-roadmap [data-rm-filter="russian"]')?.classList.contains('active')===true);
+  await page.screenshot({path:path.join(OUT,'roadmap-reference-v2-1920x1080.png'),fullPage:true});
   await page.locator('#page-roadmap [data-rm-filter="technical"]').click();
   await page.waitForFunction(()=>document.querySelector('#page-roadmap [data-rm-filter="technical"]')?.classList.contains('active')===true);
   assert.ok(await page.locator('#page-roadmap [data-rm-course]').count()>0,'Technical roadmap filter returned no courses');
-  await page.screenshot({path:path.join(OUT,'roadmap-comprehensive-1920x1080.png'),fullPage:true});
 
   const cases=[['tuf-f15-1920x1080',1920,1080],['laptop-1536x864',1536,864],['ipad-3x2',1180,787],['iphone-19_5x9',390,844]];
   for(const [label,width,height] of cases){

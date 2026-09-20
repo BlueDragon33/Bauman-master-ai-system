@@ -91,9 +91,9 @@ async function approvedFlow(browser){
   await page.locator('button[data-page="roadmap"]').click();
   await page.waitForSelector('#page-roadmap.active [data-academic2026="roadmap"]',{state:'attached'});
   assert.equal(await page.locator('#page-roadmap .academic2026-semester').count(),4);
-  assert.equal(await page.locator('#page-roadmap [data-academic2026="roadmap"]').evaluate(el=>getComputedStyle(el).display),'none','Academic roadmap source must remain attached but hidden behind Roadmap V1');
-  assert.equal(await page.locator('#page-roadmap .hub-roadmap-v1').count(),1,'Roadmap V1 presentation missing');
-  assert.equal(await page.locator('#page-roadmap .hub-rm-stage-card').count(),4,'Roadmap V1 must show four visual stages');
+  assert.equal(await page.locator('#page-roadmap [data-academic2026="roadmap"]').evaluate(el=>getComputedStyle(el).display),'none','Academic roadmap source must remain attached but hidden behind Roadmap V2');
+  assert.equal(await page.locator('#page-roadmap .hub-roadmap-v2').count(),1,'Roadmap V2 presentation missing');
+  assert.equal(await page.locator('#page-roadmap .hub-rm-stage-card').count(),4,'Roadmap V2 must show four visual stages');
   ok('roadmap_4_semesters');
 
   const diag=await page.evaluate(()=>{
