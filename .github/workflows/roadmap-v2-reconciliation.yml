@@ -79,6 +79,7 @@ on:
       - 'scripts/roadmap-v2-production-readiness-review-harness.mjs'
       - 'scripts/validate-roadmap-v2-l34-b134.mjs'
       - 'scripts/validate-roadmap-v2-l34-b135.mjs'
+      - 'scripts/validate-roadmap-v2-l34-b136.mjs'
       - '.github/workflows/roadmap-v2-reconciliation.yml'
 
 permissions:
@@ -211,6 +212,8 @@ jobs:
         run: node scripts/validate-roadmap-v2-l34-b134.mjs
       - name: Validate current L34 B135 adversarial production readiness review
         run: node scripts/validate-roadmap-v2-l34-b135.mjs
+      - name: Validate current L34 B136 full-system closeout
+        run: node scripts/validate-roadmap-v2-l34-b136.mjs
       - name: Validate Foundation V2 L9
         run: node scripts/validate-foundation-domain-model.mjs
       - name: Validate current system integration
