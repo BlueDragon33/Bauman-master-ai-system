@@ -6,16 +6,16 @@
 ## Active track
 
 - Current round: **Lượt 33**
-- Current step: **L33/B129 — PROMOTION REVIEW CONTRACT · IN_PROGRESS**
+- Current step: **L33/B130 — DETERMINISTIC IN-MEMORY PROMOTION REVIEW PROJECTOR · IN_PROGRESS**
 - L22 closeout: **B88 + H1 — PASS**
-- Status: **L23_COMPLETE · L24_COMPLETE · L25_COMPLETE · L26_COMPLETE · L27_COMPLETE · L28_COMPLETE · L29_COMPLETE_THROUGH_B116 · L30_COMPLETE_THROUGH_B120 · L31_COMPLETE_THROUGH_B124 · L32_B125_COMPLETE · L32_H1_COMPLETE · L32_F2_COMPLETE · L32_B126_COMPLETE · L32_B127_COMPLETE · L32_F3_COMPLETE · L32_B128_COMPLETE · L32_F4_COMPLETE · L32_COMPLETE · L33_B129_ACTIVE**
+- Status: **L23_COMPLETE · L24_COMPLETE · L25_COMPLETE · L26_COMPLETE · L27_COMPLETE · L28_COMPLETE · L29_COMPLETE_THROUGH_B116 · L30_COMPLETE_THROUGH_B120 · L31_COMPLETE_THROUGH_B124 · L32_B125_COMPLETE · L32_H1_COMPLETE · L32_F2_COMPLETE · L32_B126_COMPLETE · L32_B127_COMPLETE · L32_F3_COMPLETE · L32_B128_COMPLETE · L32_F4_COMPLETE · L32_COMPLETE · L33_B129_COMPLETE · L33_B130_ACTIVE**
 - Last recorded six-gate head: `a5ff445a05ee4726ff058d293b4ce4c492955b06`
 - Production/runtime activation by Roadmap V2: **disconnected**
 - Legacy/source destructive migration: **not executed**
 - Last completed: **L32 final-state closeout — PASS on complete six-gate set**
 - Last hardening: **L29-F2 validator/harness syntax repair — PASS; no gate weakening**
-- Current official step: **L33/B129 — canonical Promotion Review boundary**
-- L32 is fully closed. Pre-L33 audit found that `promotionReviewEligible=true` has no canonical Promotion Review boundary. L33/B129 is active.
+- Current official step: **L33/B130 — deterministic in-memory Promotion Review projector**
+- L32 is fully closed. L33/B129 is closed on a complete six-gate PASS. L33/B130 is active.
 
 ## L22/B88 complete gate evidence
 
@@ -1023,3 +1023,17 @@ L32 is fully complete through B128 plus F4 stabilization. The branch is at a tec
 L32 can emit `promotionReviewEligible=true` only when Release Review is `release_review_approved_shadow_only`, while `promotionReviewIntegration` remains `disconnected`. No canonical `roadmap_v2/promotion-review/` boundary exists. L33 therefore adds a separate data-only Promotion Review receipt boundary. It must not authorize production promotion, persistence, production consumers, runtime activation, schedule/calendar writes, notifications, or automatic actions.
 
 Current active step: **L33/B129**.
+
+
+## L33/B129 gate evidence
+
+Accepted B129 head: `9c108ccc38ae21edb455979007b87dda382c7e2b`
+
+- Roadmap V2 Current Gate — run `35489191793` — PASS
+- Foundation Domain Model — run `35489191829` — PASS
+- Windows checkout safety — run `35489191827` — PASS
+- Russian Reference UI — run `35489191780` — PASS
+- Cloudflare Preview — run `35489191761` — PASS
+- Whole System Integration — run `35489191772` — PASS
+
+B129 is closed. The Promotion Review contract is data-only and fail-closed; production-readiness review integration remains disconnected and no production/runtime authority is enabled. B130 is permitted to open.
