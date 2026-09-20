@@ -6,16 +6,16 @@
 ## Active track
 
 - Current round: **Lượt 33**
-- Current step: **L33/B131 — ADVERSARIAL PROMOTION REVIEW VALIDATION · IN_PROGRESS**
+- Current step: **L33/B132 — FULL-SYSTEM PROMOTION REVIEW CLOSEOUT · IN_PROGRESS**
 - L22 closeout: **B88 + H1 — PASS**
-- Status: **L23_COMPLETE · L24_COMPLETE · L25_COMPLETE · L26_COMPLETE · L27_COMPLETE · L28_COMPLETE · L29_COMPLETE_THROUGH_B116 · L30_COMPLETE_THROUGH_B120 · L31_COMPLETE_THROUGH_B124 · L32_B125_COMPLETE · L32_H1_COMPLETE · L32_F2_COMPLETE · L32_B126_COMPLETE · L32_B127_COMPLETE · L32_F3_COMPLETE · L32_B128_COMPLETE · L32_F4_COMPLETE · L32_COMPLETE · L33_B129_COMPLETE · L33_B130_COMPLETE · L33_F1_COMPLETE · L33_B131_ACTIVE**
+- Status: **L23_COMPLETE · L24_COMPLETE · L25_COMPLETE · L26_COMPLETE · L27_COMPLETE · L28_COMPLETE · L29_COMPLETE_THROUGH_B116 · L30_COMPLETE_THROUGH_B120 · L31_COMPLETE_THROUGH_B124 · L32_B125_COMPLETE · L32_H1_COMPLETE · L32_F2_COMPLETE · L32_B126_COMPLETE · L32_B127_COMPLETE · L32_F3_COMPLETE · L32_B128_COMPLETE · L32_F4_COMPLETE · L32_COMPLETE · L33_B129_COMPLETE · L33_B130_COMPLETE · L33_F1_COMPLETE · L33_B131_COMPLETE · L33_B132_ACTIVE**
 - Last recorded six-gate head: `a5ff445a05ee4726ff058d293b4ce4c492955b06`
 - Production/runtime activation by Roadmap V2: **disconnected**
 - Legacy/source destructive migration: **not executed**
 - Last completed: **L32 final-state closeout — PASS on complete six-gate set**
 - Last hardening: **L29-F2 validator/harness syntax repair — PASS; no gate weakening**
-- Current official step: **L33/B131 — adversarial Promotion Review validation**
-- L32 is fully closed. L33/B129, B130 and F1 are closed. B131 adversarial Promotion Review validation is active; B132 remains blocked.
+- Current official step: **L33/B132 — full-system Promotion Review closeout**
+- L32 is fully closed. L33/B129, B130, F1 and B131 are closed. B132 full-system Promotion Review closeout is active.
 
 ## L22/B88 complete gate evidence
 
@@ -1058,3 +1058,17 @@ Accepted repaired B130/F1 head: `a185e35e8c327979e19c3c3e84a50906d1d9401c`
 - Whole System Integration — run `35489522524` — PASS
 
 The packaged Hub Safe Shell rehydration defect is closed. B130 deterministic Promotion Review projection is accepted. B131 is permitted to open; B132 remains blocked until B131 passes the complete six-gate set.
+
+
+## L33/B131 gate evidence
+
+Accepted B131 head: `c2647cd3bfd92a07ff00c4ca8c32373732c6c547`
+
+- Roadmap V2 Current Gate — run `35489926013` — PASS
+- Foundation Domain Model — run `35489926010` — PASS
+- Windows checkout safety — run `35489926057` — PASS
+- Russian Reference UI — run `35489926011` — PASS
+- Cloudflare Preview — run `35489926020` — PASS
+- Whole System Integration — run `35489926008` — PASS
+
+B131 adversarial Promotion Review validation is accepted. B132 full-system closeout is permitted to open.
