@@ -176,6 +176,9 @@ body[data-hub-reference-v5="1"] .hub-safe-icon-btn{
   font-size:21px!important;
   box-shadow:none!important;
 }
+
+body[data-hub-reference-v5="1"] .hub-v5-bell{display:grid;place-items:center;width:24px;height:24px}
+body[data-hub-reference-v5="1"] .hub-v5-bell svg{width:24px;height:24px}
 body[data-hub-reference-v5="1"] .hub-safe-alert-btn{
   order:11;
   margin-right:12px!important;
