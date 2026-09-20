@@ -33,3 +33,9 @@ After merge, the resulting `main` commit must again trigger and pass the same si
 ## Safety
 
 This is CI coverage hardening only. It does not reopen L10 architecture or enable deferred runtime integration.
+
+## H4-F1 — trigger YAML structure repair
+
+The first H4 edit accidentally concatenated the final push-path entry with the `pull_request:` key, preventing GitHub from recognizing the Foundation workflow. The malformed boundary was repaired without changing job logic or validation assertions.
+
+Acceptance remains the same six-gate set on one head.
