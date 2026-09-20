@@ -35,7 +35,7 @@ async function mockControl(page,status='approved'){
 
 function subjectFrame(page,id){return page.frames().find(frame=>{try{return new URL(frame.url()).pathname===`/subjects/${id}/index.html`}catch{return false}})}
 
-function isConfirmedDecorativeNavigationAbort(request){
+function isConfirmedNavigationAbort(request){
   const errorText=request.failure()?.errorText||'';
   if(request.method()!=='GET'||errorText!=='net::ERR_ABORTED')return false;
   try{
@@ -45,7 +45,8 @@ function isConfirmedDecorativeNavigationAbort(request){
       '/assets/media/hub-mountains.svg',
       '/assets/media/hub-ai-robot.svg'
     ]);
-    return requestUrl.origin===baseUrl.origin&&decorativePaths.has(requestUrl.pathname);
+    const isPrerequisitePack=/^\/assets\/data\/prerequisite-packs\/(?:p\d{2}-[a-z0-9-]+|j\d{2}-[a-z0-9-]+)\.json$/.test(requestUrl.pathname);
+    return requestUrl.origin===baseUrl.origin&&(decorativePaths.has(requestUrl.pathname)||isPrerequisitePack);
   }catch{return false}
 }
 
@@ -73,7 +74,7 @@ try{
   page.on('requestfailed',request=>{
     if(request.url().startsWith('http://127.0.0.1:3003/'))return;
     const failure=`${request.method()} ${request.url()} ${request.failure()?.errorText||''}`;
-    if(isConfirmedDecorativeNavigationAbort(request)){
+    if(isConfirmedNavigationAbort(request)){
       summary.ignoredDecorativeAborts.push(failure);
       return;
     }
