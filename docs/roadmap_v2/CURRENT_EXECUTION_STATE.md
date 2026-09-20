@@ -6,16 +6,16 @@
 ## Active track
 
 - Current round: **Lượt 35**
-- Current step: **ROADMAP V2 TERMINAL CLOSEOUT · MERGE-CANDIDATE REVALIDATION**
+- Current step: **ROADMAP V2 COMPLETE · MERGED TO MAIN**
 - L22 closeout: **B88 + H1 — PASS**
 - Status: **L23_COMPLETE · L24_COMPLETE · L25_COMPLETE · L26_COMPLETE · L27_COMPLETE · L28_COMPLETE · L29_COMPLETE_THROUGH_B116 · L30_COMPLETE_THROUGH_B120 · L31_COMPLETE_THROUGH_B124 · L32_B125_COMPLETE · L32_H1_COMPLETE · L32_F2_COMPLETE · L32_B126_COMPLETE · L32_B127_COMPLETE · L32_F3_COMPLETE · L32_B128_COMPLETE · L32_F4_COMPLETE · L32_COMPLETE · L33_B129_COMPLETE · L33_B130_COMPLETE · L33_F1_COMPLETE · L33_B131_COMPLETE · L33_B132_COMPLETE · L33_DOC_FINAL_COMPLETE · L33_FINAL_MARKER_COMPLETE · L33_COMPLETE · L34_B133_COMPLETE · L34_F1_COMPLETE · L34_B134_COMPLETE · L34_B135_COMPLETE · L34_B136_COMPLETE · L34_DOC_FINAL_COMPLETE · L34_FINAL_MARKER_COMPLETE · L34_COMPLETE · L35_B137_COMPLETE · L35_F1_COMPLETE · L35_B138_COMPLETE · L35_B139_COMPLETE · L35_B140_COMPLETE · L35_DOC_FINAL_COMPLETE · L35_FINAL_MARKER_COMPLETE · L35_H1_COMPLETE · POST_L35_ARCHITECTURE_AUDIT_COMPLETE · L35_COMPLETE · ROADMAP_V2_COMPLETE**
-- Last recorded six-gate head: `5b5e5bb968e10f48304087199dffaa521da03da5`
+- Last recorded six-gate head: `bb8431c7a6c561e1361207bcf6166cc17cdde1ee`
 - Production/runtime activation by Roadmap V2: **disconnected**
 - Legacy/source destructive migration: **not executed**
 - Last completed: **L35-H1 authorization-receipt terminology alignment + post-L35 architecture audit — PASS on complete six-gate set**
 - Last hardening: **L35-H1 receipt-only authorization terminology alignment — PASS; documentation-only, no gate or authority weakening**
-- Current official step: **terminal closeout head revalidation; no L36 required by current architecture**
-- L32, L33 and L34 are fully closed. L35 B137–B140, F1, documentation/final-state, final marker and H1 are green. Post-L35 architecture audit is complete: the final internal Roadmap boundary is an auditable `receipt_only_no_execution` Production Promotion Authorization handoff. Production execution/deployment is external operational work and is not admitted as L36.
+- Current official step: **complete and merged to main; no L36 required by current architecture**
+- L32, L33, L34 and L35 are fully closed. Post-L35 architecture audit is complete: the final internal Roadmap boundary is an auditable `receipt_only_no_execution` Production Promotion Authorization handoff. Production execution/deployment is external operational work and is not admitted as L36. PR #54 was merged to `main` at `c45d34b6fbf1815952674d5d93848138eb006370`; post-merge main workflows are green.
 
 ## L22/B88 complete gate evidence
 
@@ -1337,3 +1337,26 @@ Creating L36 solely to execute deployment would cross the safety boundary L35 wa
 ## Terminal merge-candidate rule
 
 Roadmap V2 is complete through L35 after this terminal closeout head passes the complete six-gate set. PR #54 may then be treated as a merge candidate only if it remains mergeable, is not behind `main`, and the production/runtime safety boundaries above remain unchanged.
+
+
+## Roadmap V2 terminal merge evidence
+
+Terminal branch head `bb8431c7a6c561e1361207bcf6166cc17cdde1ee` passed the complete six-gate set:
+
+- Roadmap V2 Current Gate — run `35501726032` — PASS
+- Foundation Domain Model — run `35501726061` — PASS
+- Windows checkout safety — run `35501726129` — PASS
+- Russian Reference UI — run `35501726029` — PASS
+- Cloudflare Preview — run `35501726013` — PASS
+- Whole System Integration — run `35501726017` — PASS
+
+PR #54 was then merged to `main` as `c45d34b6fbf1815952674d5d93848138eb006370`.
+
+Post-merge workflows triggered on `main` are green:
+
+- Windows checkout safety — run `35504573367` — PASS
+- Russian Reference UI — run `35504573404` — PASS
+- Cloudflare Preview — run `35504573390` — PASS
+- Whole System Integration — run `35504573394` — PASS
+
+Roadmap V2 is terminally closed. No L36 is required. Production promotion execution/deployment remains outside the Roadmap V2 authority boundary.
