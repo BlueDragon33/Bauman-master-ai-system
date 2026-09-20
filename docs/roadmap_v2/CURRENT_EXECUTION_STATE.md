@@ -6,16 +6,16 @@
 ## Active track
 
 - Current round: **Lượt 35**
-- Current step: **L35 final marker revalidation · IN_PROGRESS**
+- Current step: **ROADMAP V2 TERMINAL CLOSEOUT · MERGE-CANDIDATE REVALIDATION**
 - L22 closeout: **B88 + H1 — PASS**
-- Status: **L23_COMPLETE · L24_COMPLETE · L25_COMPLETE · L26_COMPLETE · L27_COMPLETE · L28_COMPLETE · L29_COMPLETE_THROUGH_B116 · L30_COMPLETE_THROUGH_B120 · L31_COMPLETE_THROUGH_B124 · L32_B125_COMPLETE · L32_H1_COMPLETE · L32_F2_COMPLETE · L32_B126_COMPLETE · L32_B127_COMPLETE · L32_F3_COMPLETE · L32_B128_COMPLETE · L32_F4_COMPLETE · L32_COMPLETE · L33_B129_COMPLETE · L33_B130_COMPLETE · L33_F1_COMPLETE · L33_B131_COMPLETE · L33_B132_COMPLETE · L33_DOC_FINAL_COMPLETE · L33_FINAL_MARKER_COMPLETE · L33_COMPLETE · L34_B133_COMPLETE · L34_F1_COMPLETE · L34_B134_COMPLETE · L34_B135_COMPLETE · L34_B136_COMPLETE · L34_DOC_FINAL_COMPLETE · L34_FINAL_MARKER_COMPLETE · L34_COMPLETE · L35_B137_COMPLETE · L35_F1_COMPLETE · L35_B138_COMPLETE · L35_B139_COMPLETE · L35_B140_COMPLETE · L35_DOC_FINAL_COMPLETE · L35_FINAL_MARKER_ACTIVE**
-- Last recorded six-gate head: `fa341ccb69352cc9e778be978ad4351195c5aee1`
+- Status: **L23_COMPLETE · L24_COMPLETE · L25_COMPLETE · L26_COMPLETE · L27_COMPLETE · L28_COMPLETE · L29_COMPLETE_THROUGH_B116 · L30_COMPLETE_THROUGH_B120 · L31_COMPLETE_THROUGH_B124 · L32_B125_COMPLETE · L32_H1_COMPLETE · L32_F2_COMPLETE · L32_B126_COMPLETE · L32_B127_COMPLETE · L32_F3_COMPLETE · L32_B128_COMPLETE · L32_F4_COMPLETE · L32_COMPLETE · L33_B129_COMPLETE · L33_B130_COMPLETE · L33_F1_COMPLETE · L33_B131_COMPLETE · L33_B132_COMPLETE · L33_DOC_FINAL_COMPLETE · L33_FINAL_MARKER_COMPLETE · L33_COMPLETE · L34_B133_COMPLETE · L34_F1_COMPLETE · L34_B134_COMPLETE · L34_B135_COMPLETE · L34_B136_COMPLETE · L34_DOC_FINAL_COMPLETE · L34_FINAL_MARKER_COMPLETE · L34_COMPLETE · L35_B137_COMPLETE · L35_F1_COMPLETE · L35_B138_COMPLETE · L35_B139_COMPLETE · L35_B140_COMPLETE · L35_DOC_FINAL_COMPLETE · L35_FINAL_MARKER_COMPLETE · L35_H1_COMPLETE · POST_L35_ARCHITECTURE_AUDIT_COMPLETE · L35_COMPLETE · ROADMAP_V2_COMPLETE**
+- Last recorded six-gate head: `5b5e5bb968e10f48304087199dffaa521da03da5`
 - Production/runtime activation by Roadmap V2: **disconnected**
 - Legacy/source destructive migration: **not executed**
-- Last completed: **L35 documentation/final-state closeout — PASS on complete six-gate set**
-- Last hardening: **L29-F2 validator/harness syntax repair — PASS; no gate weakening**
-- Current official step: **L35 final marker revalidation**
-- L32, L33 and L34 are fully closed. L35 functional work through B140 and documentation/final-state closeout are green; the L35 final marker is under complete six-gate revalidation before post-L35 architecture audit.
+- Last completed: **L35-H1 authorization-receipt terminology alignment + post-L35 architecture audit — PASS on complete six-gate set**
+- Last hardening: **L35-H1 receipt-only authorization terminology alignment — PASS; documentation-only, no gate or authority weakening**
+- Current official step: **terminal closeout head revalidation; no L36 required by current architecture**
+- L32, L33 and L34 are fully closed. L35 B137–B140, F1, documentation/final-state, final marker and H1 are green. Post-L35 architecture audit is complete: the final internal Roadmap boundary is an auditable `receipt_only_no_execution` Production Promotion Authorization handoff. Production execution/deployment is external operational work and is not admitted as L36.
 
 ## L22/B88 complete gate evidence
 
@@ -1286,3 +1286,54 @@ Accepted documentation/final-state head: `fa341ccb69352cc9e778be978ad4351195c5ae
 - Whole System Integration — run `35501223163` — PASS
 
 L35 documentation/final-state is green. The final marker head itself must now pass the same six gates before L35 is fully closed and the post-L35 architecture audit may determine whether another Roadmap round is required.
+
+
+## L35 final marker gate evidence
+
+Accepted L35 final marker head: `c25cacb3c8820af15f17674ba51d0febbcab75f8`
+
+- Roadmap V2 Current Gate — run `35501376498` — PASS
+- Foundation Domain Model — run `35501376478` — PASS
+- Windows checkout safety — run `35501376489` — PASS
+- Russian Reference UI — run `35501376474` — PASS
+- Cloudflare Preview — run `35501376477` — PASS
+- Whole System Integration — run `35501376476` — PASS
+
+The L35 final marker is green. Post-L35 architecture audit may proceed.
+
+
+## L35-H1 gate evidence
+
+Post-final-marker audit found one documentation-only terminology mismatch in `L35_CURRENT_PLAN.md`: the B138 plan text used `productionPromotionAuthorized=true`, while the accepted canonical L35 result deliberately exposes `authorizationReceiptGranted=true` with `authorizationScope=receipt_only_no_execution`.
+
+H1 aligned the plan with the accepted contract/result schema without changing runtime code, projector behavior, schemas, deployment, persistence or authority.
+
+Accepted H1 head: `5b5e5bb968e10f48304087199dffaa521da03da5`
+
+- Roadmap V2 Current Gate — run `35501550069` — PASS
+- Foundation Domain Model — run `35501550060` — PASS
+- Windows checkout safety — run `35501550070` — PASS
+- Russian Reference UI — run `35501550071` — PASS
+- Cloudflare Preview — run `35501550059` — PASS
+- Whole System Integration — run `35501550066` — PASS
+
+L35-H1 is closed.
+
+
+## Post-L35 architecture audit
+
+**Result: COMPLETE — no L36 required.**
+
+Evidence and boundary decision:
+
+1. The original PR #54 merge rule allowed a further L35 only if L34 showed a missing final Production Promotion Authorization boundary. L35 now supplies exactly that separately gated boundary.
+2. The canonical L35 contract explicitly defines `authorizationReceiptOnly=true`, `authorizationScope=receipt_only_no_execution`, `productionPromotionExecutionEnabled=false` and `deploymentEnabled=false`.
+3. L35 output intentionally contains no production-promotion command, deployment command or runtime command, and all production-consumer/persistence/runtime/schedule/notification/automatic-action authority remains false.
+4. The canonical `roadmap_v2/**` tree remains data/contracts only; B140 verified zero runtime wiring and zero canonical executable/UI files for this boundary.
+5. No current Roadmap plan or contract requires automatic deployment/activation after the authorization receipt. Converting an auditable authorization receipt into real production execution is therefore an external operational handoff, not a missing Roadmap V2 architecture layer.
+
+Creating L36 solely to execute deployment would cross the safety boundary L35 was explicitly designed to preserve and would turn an audit/governance track into a production actuator. Therefore L36 is not opened.
+
+## Terminal merge-candidate rule
+
+Roadmap V2 is complete through L35 after this terminal closeout head passes the complete six-gate set. PR #54 may then be treated as a merge candidate only if it remains mergeable, is not behind `main`, and the production/runtime safety boundaries above remain unchanged.
