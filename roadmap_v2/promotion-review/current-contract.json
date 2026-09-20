@@ -1,0 +1,95 @@
+{
+  "schema": "BAUMAN_ROADMAP_V2_PROMOTION_REVIEW_CONTRACT_V1",
+  "version": "2.13.0-l33-b129",
+  "purpose": "Data-only promotion-review receipt boundary that recomputes current Release Review, permits review only when upstream promotionReviewEligible is true, and records a separate promotion-review decision without granting production promotion, persistence, runtime, or production-consumer authority",
+  "mode": {
+    "access": "read_only_promotion_review",
+    "productionIntegration": "disconnected",
+    "productionReadinessReviewIntegration": "disconnected",
+    "promotionReviewOnly": true,
+    "productionPromotionEnabled": false,
+    "persistentStoreEnabled": false,
+    "dashboardUiEnabled": false,
+    "scheduleWriteAllowed": false,
+    "calendarWriteAllowed": false,
+    "runtimeWriteAllowed": false,
+    "notificationWriteAllowed": false,
+    "automaticActionAllowed": false
+  },
+  "upstreamSchemas": {
+    "releaseReviewContract": "BAUMAN_ROADMAP_V2_RELEASE_REVIEW_CONTRACT_V1",
+    "releaseReviewRequest": "BAUMAN_ROADMAP_V2_RELEASE_REVIEW_REQUEST_V1",
+    "releaseReviewResult": "BAUMAN_ROADMAP_V2_RELEASE_REVIEW_RESULT_V1",
+    "promotionReviewRequest": "BAUMAN_ROADMAP_V2_PROMOTION_REVIEW_REQUEST_V1",
+    "promotionReviewResult": "BAUMAN_ROADMAP_V2_PROMOTION_REVIEW_RESULT_V1"
+  },
+  "candidatePolicy": {
+    "candidateRefPattern": "^CANDIDATE::[A-Z0-9_-]+$",
+    "recomputeReleaseReviewFromRequest": true,
+    "acceptCallerSuppliedReleaseReviewResult": false,
+    "acceptCallerSuppliedPromotionReviewEligibility": false,
+    "requirePromotionReviewEligible": true,
+    "manualEligibilityOverrideAllowed": false,
+    "requireNestedCandidateMatch": true
+  },
+  "reviewPolicy": {
+    "reviewerRefPattern": "^PROMOTION_REVIEWER::[A-Z0-9_-]+$",
+    "allowedDecisions": [
+      "approve_for_production_readiness_review",
+      "needs_revision",
+      "rejected"
+    ],
+    "upstreamBlockedState": "promotion_review_blocked_upstream",
+    "approvedState": "promotion_review_approved_shadow_only",
+    "needsRevisionState": "promotion_review_needs_revision",
+    "rejectedState": "promotion_review_rejected",
+    "approvedDecisionAuthorizesProduction": false,
+    "manualProductionOverrideAllowed": false
+  },
+  "outputPolicy": {
+    "deepFrozen": true,
+    "persisted": false,
+    "includesReleaseReviewReceiptId": true,
+    "includesPromotionEligibilityProjectionId": true,
+    "includesHumanReviewReceiptId": true,
+    "includesProductionPromotionCommand": false,
+    "includesRuntimeCommand": false,
+    "includesScheduleMutation": false,
+    "includesNotificationCommand": false,
+    "includesPromotionReviewerRef": true,
+    "includesSubmittedReviewDecision": true,
+    "includesReasonCodes": true
+  },
+  "capabilities": {
+    "promotionReviewEvaluate": true,
+    "productionReadinessEligibilityProject": true,
+    "productionPromotion": false,
+    "productionConsumerConnect": false,
+    "persistentStoreWrite": false,
+    "dashboardUiRender": false,
+    "scheduleWrite": false,
+    "calendarWrite": false,
+    "runtimeActivation": false,
+    "notificationWrite": false,
+    "automaticAction": false
+  },
+  "abortConditions": [
+    "Promotion Review request schema mismatch or unsupported caller fields",
+    "candidate reference outside CANDIDATE namespace",
+    "promotion reviewer reference outside PROMOTION_REVIEWER namespace",
+    "outer candidate reference does not exactly match nested Release Review candidate reference",
+    "caller-supplied Release Review result or promotion-review eligibility",
+    "Release Review recomputation does not yield promotionReviewEligible=true",
+    "caller attempts production promotion, persistence, runtime, schedule, notification or automatic action authority"
+  ],
+  "acceptance": {
+    "step": 129,
+    "currentTrack": "L33",
+    "productionConsumersConnected": 0,
+    "productionReadinessReviewIntegration": "disconnected",
+    "productionIntegration": "disconnected",
+    "productionPromotionAllowed": false,
+    "runtimeActivationAllowed": false,
+    "result": "PASS_B129_CONTRACT"
+  }
+}
