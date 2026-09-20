@@ -6,16 +6,16 @@
 ## Active track
 
 - Current round: **Lượt 33**
-- Current step: **L33-F1 — PACKAGED HUB SAFE-SHELL REHYDRATION STABILIZATION · IN_PROGRESS**
+- Current step: **L33/B131 — ADVERSARIAL PROMOTION REVIEW VALIDATION · IN_PROGRESS**
 - L22 closeout: **B88 + H1 — PASS**
-- Status: **L23_COMPLETE · L24_COMPLETE · L25_COMPLETE · L26_COMPLETE · L27_COMPLETE · L28_COMPLETE · L29_COMPLETE_THROUGH_B116 · L30_COMPLETE_THROUGH_B120 · L31_COMPLETE_THROUGH_B124 · L32_B125_COMPLETE · L32_H1_COMPLETE · L32_F2_COMPLETE · L32_B126_COMPLETE · L32_B127_COMPLETE · L32_F3_COMPLETE · L32_B128_COMPLETE · L32_F4_COMPLETE · L32_COMPLETE · L33_B129_COMPLETE · L33_B130_IMPLEMENTED · L33_F1_ACTIVE**
+- Status: **L23_COMPLETE · L24_COMPLETE · L25_COMPLETE · L26_COMPLETE · L27_COMPLETE · L28_COMPLETE · L29_COMPLETE_THROUGH_B116 · L30_COMPLETE_THROUGH_B120 · L31_COMPLETE_THROUGH_B124 · L32_B125_COMPLETE · L32_H1_COMPLETE · L32_F2_COMPLETE · L32_B126_COMPLETE · L32_B127_COMPLETE · L32_F3_COMPLETE · L32_B128_COMPLETE · L32_F4_COMPLETE · L32_COMPLETE · L33_B129_COMPLETE · L33_B130_COMPLETE · L33_F1_COMPLETE · L33_B131_ACTIVE**
 - Last recorded six-gate head: `a5ff445a05ee4726ff058d293b4ce4c492955b06`
 - Production/runtime activation by Roadmap V2: **disconnected**
 - Legacy/source destructive migration: **not executed**
 - Last completed: **L32 final-state closeout — PASS on complete six-gate set**
 - Last hardening: **L29-F2 validator/harness syntax repair — PASS; no gate weakening**
-- Current official step: **L33-F1 — stabilize additive Hub Safe Shell after packaged App Manager rehydration**
-- L32 is fully closed. L33/B129 is closed. B130 projector validation passed in Roadmap Current Gate, but Whole System packaged Hub acceptance exposed L33-F1; B130 remains unclosed pending repaired 6/6.
+- Current official step: **L33/B131 — adversarial Promotion Review validation**
+- L32 is fully closed. L33/B129, B130 and F1 are closed. B131 adversarial Promotion Review validation is active; B132 remains blocked.
 
 ## L22/B88 complete gate evidence
 
@@ -1044,3 +1044,17 @@ B129 is closed. The Promotion Review contract is data-only and fail-closed; prod
 The first B130 full-system gate exposed a package-only race in `tests/hub-premium-responsive-browser.mjs`: source Hub responsive acceptance passed, but packaged Hub later lost the additive `[data-safe-action="details"]` control after App Manager/device-access rehydration and failed with `Canonical detail toggle missing`.
 
 The canonical Hub content and Safe Shell were both present earlier in startup; the defect is a late canonical home rerender replacing additive Safe Shell nodes after the initial safe-shell readiness check. F1 adds a narrow MutationObserver-based repair hook on `#page-home`: when canonical home is active and a canonical `.canva-dashboard-page` exists but the additive dashboard/detail control is absent, Safe Shell re-applies its additive enhancement. It does not replace routes, write academic data, or weaken the browser assertion. B130 remains blocked until the repair head passes the complete six-gate set.
+
+
+## L33-F1/B130 gate evidence
+
+Accepted repaired B130/F1 head: `a185e35e8c327979e19c3c3e84a50906d1d9401c`
+
+- Roadmap V2 Current Gate — run `35489522539` — PASS
+- Foundation Domain Model — run `35489522560` — PASS
+- Windows checkout safety — run `35489522544` — PASS
+- Russian Reference UI — run `35489522563` — PASS
+- Cloudflare Preview — run `35489522542` — PASS
+- Whole System Integration — run `35489522524` — PASS
+
+The packaged Hub Safe Shell rehydration defect is closed. B130 deterministic Promotion Review projection is accepted. B131 is permitted to open; B132 remains blocked until B131 passes the complete six-gate set.
