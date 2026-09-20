@@ -92,3 +92,40 @@ body[data-hub-reference-home="1"] .hub-safe-search{max-width:700px;margin-right:
   #page-home .hub-safe-dashboard[data-home-reference-v4] .hub-safe-assistant,
   #page-home .hub-safe-dashboard[data-home-reference-v4] .hub-safe-schedule{min-height:auto}
 }
+
+@media(min-width:1500px) and (min-height:901px) and (max-height:1100px){
+  body[data-hub-reference-home="1"] .main{padding-top:8px!important;padding-bottom:12px!important}
+  #page-home .hub-safe-dashboard[data-home-reference-v4] .hub-safe-layout,
+  #page-home .hub-safe-dashboard[data-home-reference-v4] .hub-safe-main,
+  #page-home .hub-safe-dashboard[data-home-reference-v4] .hub-safe-rail{gap:8px}
+  #page-home .hub-safe-dashboard[data-home-reference-v4] .hub-safe-hero{min-height:198px}
+  #page-home .hub-safe-dashboard[data-home-reference-v4] .hub-safe-hero-copy{padding:21px 27px}
+  #page-home .hub-safe-dashboard[data-home-reference-v4] .hub-safe-subject{min-height:108px;padding:11px}
+  #page-home .hub-safe-dashboard[data-home-reference-v4] .hub-safe-subject .icon{font-size:29px;margin-bottom:8px}
+  #page-home .hub-safe-dashboard[data-home-reference-v4] .hub-safe-continue{min-height:232px;padding:11px}
+  #page-home .hub-safe-dashboard[data-home-reference-v4] .hub-safe-art{min-height:196px}
+  #page-home .hub-safe-dashboard[data-home-reference-v4] .hub-safe-achievements,
+  #page-home .hub-safe-dashboard[data-home-reference-v4] .hub-safe-overall{min-height:124px}
+  #page-home .hub-safe-dashboard[data-home-reference-v4] .hub-safe-assistant{min-height:280px}
+  #page-home .hub-safe-dashboard[data-home-reference-v4] .hub-safe-schedule{min-height:218px}
+  #page-home .hub-safe-dashboard[data-home-reference-v4] .hub-safe-motivation{min-height:104px}
+}
+@media(min-width:1500px) and (max-height:900px){
+  body[data-hub-reference-home="1"] .main{padding-top:6px!important;padding-bottom:8px!important}
+  #page-home .hub-safe-dashboard[data-home-reference-v4] .hub-safe-layout,
+  #page-home .hub-safe-dashboard[data-home-reference-v4] .hub-safe-main,
+  #page-home .hub-safe-dashboard[data-home-reference-v4] .hub-safe-rail{gap:6px}
+  #page-home .hub-safe-dashboard[data-home-reference-v4] .hub-safe-hero{min-height:160px}
+  #page-home .hub-safe-dashboard[data-home-reference-v4] .hub-safe-hero-copy{padding:16px 24px}
+  #page-home .hub-safe-dashboard[data-home-reference-v4] .hub-safe-hero h1{font-size:31px}
+  #page-home .hub-safe-dashboard[data-home-reference-v4] .hub-safe-hero-actions{margin-top:10px}
+  #page-home .hub-safe-dashboard[data-home-reference-v4] .hub-safe-subject{min-height:92px;padding:9px}
+  #page-home .hub-safe-dashboard[data-home-reference-v4] .hub-safe-subject .icon{font-size:25px;margin-bottom:6px}
+  #page-home .hub-safe-dashboard[data-home-reference-v4] .hub-safe-continue{min-height:192px;padding:9px}
+  #page-home .hub-safe-dashboard[data-home-reference-v4] .hub-safe-art{min-height:165px}
+  #page-home .hub-safe-dashboard[data-home-reference-v4] .hub-safe-achievements,
+  #page-home .hub-safe-dashboard[data-home-reference-v4] .hub-safe-overall{min-height:104px;padding:9px}
+  #page-home .hub-safe-dashboard[data-home-reference-v4] .hub-safe-assistant{min-height:244px;padding:10px}
+  #page-home .hub-safe-dashboard[data-home-reference-v4] .hub-safe-schedule{min-height:190px;padding:10px}
+  #page-home .hub-safe-dashboard[data-home-reference-v4] .hub-safe-motivation{min-height:90px;padding:11px}
+}
