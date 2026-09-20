@@ -750,3 +750,33 @@ body[data-hub-reference-v5="1"] #page-home [data-academic2026="home"]{
   body[data-hub-reference-v5="1"] #page-home .hub-safe-assistant,
   body[data-hub-reference-v5="1"] #page-home .hub-safe-schedule{height:auto!important;min-height:240px!important}
 }
+
+body[data-hub-reference-v5="1"] #page-home .hub-safe-subject{
+  background:
+    radial-gradient(circle at 18% 0%,color-mix(in srgb,var(--subject-line,#536aa0) 36%,transparent),transparent 55%),
+    linear-gradient(145deg,var(--subject-bg,#161c3d),#07111e)!important;
+}
+body[data-hub-reference-v5="1"] #page-home .hub-safe-assistant{
+  display:flex!important;
+  flex-direction:column!important;
+}
+body[data-hub-reference-v5="1"] #page-home .hub-safe-ai-input{
+  margin-top:auto!important;
+}
+body[data-hub-reference-v5="1"] .hub-top-profile-copy,
+body[data-hub-reference-v5="1"] .hub-top-profile-copy small,
+body[data-hub-reference-v5="1"] .hub-top-profile-copy b{
+  opacity:1!important;
+  filter:none!important;
+}
+body[data-hub-reference-v5="1"] .hub-top-profile-copy small{color:#b9c9dc!important}
+body[data-hub-reference-v5="1"] .hub-top-profile-copy b{color:#f7fbff!important}
+body[data-hub-reference-v5="1"] #page-home .hub-safe-schedule-row.suggested{opacity:.76}
+body[data-hub-reference-v5="1"] #page-home .hub-safe-schedule-row.suggested time{
+  color:#d5b66b!important;
+  font-weight:800;
+}
+body[data-hub-reference-v5="1"] #page-home .hub-safe-schedule-row.suggested div{
+  border-left-style:dashed!important;
+  background:rgba(14,29,48,.58)!important;
+}
