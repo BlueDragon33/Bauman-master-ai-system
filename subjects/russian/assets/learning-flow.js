@@ -4,11 +4,12 @@
   const FLOW_KEY='bauman_russian_learning_flow_v1';
   const SCHEMA='RUSSIAN_LEARNING_FLOW_V2';
   const LEGACY_SCHEMA='RUSSIAN_LEARNING_FLOW_V1';
-  const STEP_ORDER=['theory','speaking','vocab','grammar','exercises','check'];
-  const CORE_STEPS=['theory','speaking','exercises','check'];
+  const STEP_ORDER=['speaking','alphabet','theory','vocab','grammar','exercises','check'];
+  const CORE_STEPS=['speaking','alphabet','theory','exercises','check'];
   const META={
-    theory:{icon:'📘',label:'Bài học',scope:'lesson',detail:'Nội dung và ví dụ của đúng bài đang chọn.'},
-    speaking:{icon:'🎧',label:'Nghe & nói',scope:'lesson',detail:'Speaking liên kết trực tiếp với lessonId của bài.'},
+    speaking:{icon:'🎧',label:'Nghe & nói',scope:'lesson',detail:'Bước vào chính: nghe mẫu, nhại, shadowing và đóng vai trước khi phân tích.'},
+    alphabet:{icon:'✍️',label:'Chữ cái & viết tay',scope:'stage',detail:'Nhận mặt chữ in → đối chiếu chữ viết tay → luyện nét và viết lại.'},
+    theory:{icon:'📘',label:'Bài học',scope:'lesson',detail:'Phân tích nội dung sau khi đã nghe/nói và nhận mặt chữ.'},
     vocab:{icon:'🗂️',label:'Từ vựng hỗ trợ',scope:'stage',detail:'Tài nguyên hỗ trợ theo giai đoạn; không phải cổng hoàn thành bài.'},
     grammar:{icon:'🧩',label:'Ngữ pháp hỗ trợ',scope:'stage',detail:'Tài nguyên hỗ trợ theo giai đoạn/chủ điểm; không tự nâng tiến độ bài.'},
     exercises:{icon:'📝',label:'Bài tập',scope:'lesson',detail:'Bài tập liên kết trực tiếp với lessonId.'},
@@ -67,8 +68,9 @@
   }
   function hasMeaningfulEvidence(step,s){
     if(!s)return false;
-    if(step==='theory')return Number(s.slideMoves||0)>0;
     if(step==='speaking')return Number(s.ok||0)>0;
+    if(step==='alphabet')return Number(s.strokeActions||0)>0;
+    if(step==='theory')return Number(s.slideMoves||0)>0;
     if(step==='vocab'||step==='grammar')return Number(s.supportActions||0)>0;
     if(step==='exercises')return Number(s.moves||0)>0;
     if(step==='check')return Number(s.correct||0)>0&&!latestCheckNeedsReview(s);
@@ -79,6 +81,8 @@
     if(step==='check'&&latestCheckNeedsReview(s))return {key:'review',label:'Cần sửa câu sai'};
     if(step==='check'&&Number(s.correct||0)>0)return {key:'evidence',label:`${s.correct} câu đúng`};
     if(step==='speaking'&&Number(s.ok||0)>0)return {key:'evidence',label:`${s.ok} câu nói ổn`};
+    if(step==='alphabet'&&Number(s.strokeActions||0)>0)return {key:'evidence',label:`${s.strokeActions} lượt luyện nét`};
+    if(step==='alphabet'&&Number(s.practiceActions||0)>0)return {key:'opened',label:'Đã thao tác · chưa có nét viết thật'};
     if(step==='speaking'&&Number(s.attempts||0)>0)return {key:'active',label:'Đã thử · chưa xác nhận ổn'};
     if((step==='vocab'||step==='grammar')&&Number(s.supportActions||0)>0)return {key:'support',label:'Đã dùng hỗ trợ'};
     if(step==='exercises'&&Number(s.moves||0)>0)return {key:'active',label:'Có thao tác bài tập'};
@@ -101,6 +105,8 @@
     }
     if(route.view==='vocab')return 'vocab';
     if(route.view==='grammar')return 'grammar';
+    if(route.view==='writing')return 'alphabet';
+    if(/^handwriting:/.test(clean(item?.id)))return 'alphabet';
     if(/^(pron:|stress:|speak-abandoned:)/.test(clean(item?.id)))return 'speaking';
     return 'check';
   }
@@ -146,10 +152,10 @@
       ?`<span><b>Ưu tiên sửa trước:</b> ${esc(adaptive.label)} · Review Queue đang đến hạn.</span><button type="button" data-route='${routeAttr(adaptive.route)}' data-ru-adaptive-review="${esc(adaptive.item?.id)}" class="btn primary">Mở đúng lỗi →</button>`
       :(adaptive?.kind==='step'
         ?`<span><b>Tiếp theo gợi ý:</b> ${esc(META[next].label)}</span><button type="button" data-ru-flow-step="${next}" class="btn primary">Mở bước tiếp theo →</button>`
-        :`<span><b>Đã có bằng chứng ở 4 bước cốt lõi.</b> Không còn lỗi đến hạn của bài này; chuyển sang củng cố.</span><button type="button" data-ru-flow-step="check" class="btn primary">Luyện kiểm tra tiếp →</button>`);
-    return `<header class="ru-flow-head"><div><span>LEARNING FLOW · ${esc(ls.id)}</span><h3>${esc(ls.title)}</h3><p>${esc(context)}</p></div><div class="ru-flow-evidence"><b>${evidence}/4</b><small>bước cốt lõi có bằng chứng</small></div></header><div class="ru-flow-steps">${rows}</div><footer class="ru-flow-foot">${foot}</footer>`;
+        :`<span><b>Đã có bằng chứng ở ${CORE_STEPS.length} bước cốt lõi.</b> Không còn lỗi đến hạn của bài này; chuyển sang củng cố.</span><button type="button" data-ru-flow-step="check" class="btn primary">Luyện kiểm tra tiếp →</button>`);
+    return `<header class="ru-flow-head"><div><span>LEARNING FLOW · ${esc(ls.id)}</span><h3>${esc(ls.title)}</h3><p>${esc(context)}</p></div><div class="ru-flow-evidence"><b>${evidence}/${CORE_STEPS.length}</b><small>bước cốt lõi có bằng chứng</small></div></header><div class="ru-flow-steps">${rows}</div><footer class="ru-flow-foot">${foot}</footer>`;
   }
-  let renderQueued=false,lastSig='';
+  let renderQueued=false,lastSig='',writingStrokeActive=false,writingStrokeMoved=false;
   function scheduleRender(){
     if(renderQueued)return;renderQueued=true;
     requestAnimationFrame(()=>{renderQueued=false;renderPanel();});
@@ -191,6 +197,7 @@
     touch(step,{lastNavigationAt:now()},id);
     if(step==='theory')openLearningTab('theory',id);
     else if(step==='speaking')openLearningTab('practice',id);
+    else if(step==='alphabet')click('[data-view="writing"]');
     else if(step==='exercises')openLearningTab('exercises',id);
     else if(step==='check'){openLearningTab('review',id);configureReviewLesson(id);}
     else if(step==='vocab')click('[data-view="vocab"]');
@@ -224,6 +231,10 @@
         const old=lessonState(id)?.steps?.speaking||{};
         touch('speaking',{attempts:Number(old.attempts||0)+1,ok:Number(old.ok||0)+1,lastOkAt:now(),lastSurface:core.view==='dialogue'?'dialogue':'practice'},id);
       }
+    }
+    if(core.view==='writing'&&(['next-hand','prev-hand','open-hand-grid','clear-line','clear-canvas','undo-canvas','download-canvas'].includes(act)||target.closest?.('[data-hand-index]')||target.closest?.('[data-hand-practice]')||target.closest?.('[data-write-index]'))){
+      const old=lessonState(id)?.steps?.alphabet||{};
+      touch('alphabet',{practiceActions:Number(old.practiceActions||0)+1,provenance:'print_to_cursive_practice'},id);
     }
     if(core.view==='learning'&&core.learnTab==='exercises'&&(act==='next-exercise'||act==='prev-exercise'||target.closest?.('[data-exercise-focus]'))){
       const old=lessonState(id)?.steps?.exercises||{};
@@ -261,6 +272,17 @@
     const flowButton=event.target.closest?.('[data-ru-flow-step]');
     if(flowButton){event.preventDefault();event.stopPropagation();navigate(flowButton.dataset.ruFlowStep);return;}
     captureRealEvidence(event.target);
+  },true);
+  document.addEventListener('pointerdown',event=>{if(readCore().view==='writing'&&event.target?.closest?.('#writingCanvas')){writingStrokeActive=true;writingStrokeMoved=false;}},true);
+  document.addEventListener('pointermove',event=>{if(writingStrokeActive&&event.target?.closest?.('#writingCanvas'))writingStrokeMoved=true;},true);
+  document.addEventListener('pointerup',event=>{
+    if(!writingStrokeActive)return;
+    const moved=writingStrokeMoved&&event.target?.closest?.('#writingCanvas');
+    writingStrokeActive=false;writingStrokeMoved=false;
+    if(!moved)return;
+    const id=activeLessonId();if(!id)return;
+    const old=lessonState(id)?.steps?.alphabet||{};
+    touch('alphabet',{practiceActions:Number(old.practiceActions||0)+1,strokeActions:Number(old.strokeActions||0)+1,provenance:'print_to_cursive_stroke'},id);
   },true);
   document.addEventListener('change',event=>{if(event.target?.id==='stageSelect')after(40,scheduleRender);},true);
   window.addEventListener('russian:learning-state',scheduleRender);
