@@ -6,16 +6,16 @@
 ## Active track
 
 - Current round: **Lượt 34**
-- Current step: **L34/B134 — PRODUCTION READINESS REVIEW PROJECTOR · IN_PROGRESS**
+- Current step: **L34/B135 — ADVERSARIAL PRODUCTION READINESS REVIEW · IN_PROGRESS**
 - L22 closeout: **B88 + H1 — PASS**
-- Status: **L23_COMPLETE · L24_COMPLETE · L25_COMPLETE · L26_COMPLETE · L27_COMPLETE · L28_COMPLETE · L29_COMPLETE_THROUGH_B116 · L30_COMPLETE_THROUGH_B120 · L31_COMPLETE_THROUGH_B124 · L32_B125_COMPLETE · L32_H1_COMPLETE · L32_F2_COMPLETE · L32_B126_COMPLETE · L32_B127_COMPLETE · L32_F3_COMPLETE · L32_B128_COMPLETE · L32_F4_COMPLETE · L32_COMPLETE · L33_B129_COMPLETE · L33_B130_COMPLETE · L33_F1_COMPLETE · L33_B131_COMPLETE · L33_B132_COMPLETE · L33_DOC_FINAL_COMPLETE · L33_FINAL_MARKER_COMPLETE · L33_COMPLETE · L34_B133_COMPLETE · L34_F1_COMPLETE · L34_B134_ACTIVE**
-- Last recorded six-gate head: `95290ce2704908ad88a6132f5ed1f2c2b720f3e8`
+- Status: **L23_COMPLETE · L24_COMPLETE · L25_COMPLETE · L26_COMPLETE · L27_COMPLETE · L28_COMPLETE · L29_COMPLETE_THROUGH_B116 · L30_COMPLETE_THROUGH_B120 · L31_COMPLETE_THROUGH_B124 · L32_B125_COMPLETE · L32_H1_COMPLETE · L32_F2_COMPLETE · L32_B126_COMPLETE · L32_B127_COMPLETE · L32_F3_COMPLETE · L32_B128_COMPLETE · L32_F4_COMPLETE · L32_COMPLETE · L33_B129_COMPLETE · L33_B130_COMPLETE · L33_F1_COMPLETE · L33_B131_COMPLETE · L33_B132_COMPLETE · L33_DOC_FINAL_COMPLETE · L33_FINAL_MARKER_COMPLETE · L33_COMPLETE · L34_B133_COMPLETE · L34_F1_COMPLETE · L34_B134_COMPLETE · L34_B135_ACTIVE**
+- Last recorded six-gate head: `ef484c485701b645c1de2d146a048818ad4fb4bc`
 - Production/runtime activation by Roadmap V2: **disconnected**
 - Legacy/source destructive migration: **not executed**
 - Last completed: **L32 final-state closeout — PASS on complete six-gate set**
 - Last hardening: **L29-F2 validator/harness syntax repair — PASS; no gate weakening**
-- Current official step: **L34/B134 — deterministic in-memory Production Readiness Review projector**
-- L32 and L33 are fully closed. L34/B133 is active after pre-merge architecture audit confirmed a missing Production Readiness Review boundary.
+- Current official step: **L34/B135 — adversarial Production Readiness Review validation**
+- L32 and L33 are fully closed. L34/B134 is accepted; L34/B135 adversarial validation is active.
 
 ## L22/B88 complete gate evidence
 
@@ -1135,3 +1135,17 @@ Accepted B133/F1 head: `95290ce2704908ad88a6132f5ed1f2c2b720f3e8`
 - Whole System Integration — run `35493596041` — PASS
 
 F1 closed the missing CI invocation for the B133 validator without weakening any assertion. B133 is fully accepted and B134 deterministic in-memory projection is permitted to open. Production integration, production promotion, production consumers, persistence and runtime activation remain disconnected.
+
+
+## L34/B134 gate evidence
+
+Accepted B134 head: `ef484c485701b645c1de2d146a048818ad4fb4bc`
+
+- Roadmap V2 Current Gate — run `35493764439` — PASS
+- Foundation Domain Model — run `35493764408` — PASS
+- Windows checkout safety — run `35493764371` — PASS
+- Russian Reference UI — run `35493764468` — PASS
+- Cloudflare Preview — run `35493764403` — PASS
+- Whole System Integration — run `35493764455` — PASS
+
+B134 deterministic Production Readiness Review projection is accepted. The result remains shadow-only and deeply frozen; production promotion, production consumers, persistence, dashboard rendering, schedule/calendar writes, runtime activation, notification writes and automatic actions remain disabled. B135 adversarial validation is permitted to open.
