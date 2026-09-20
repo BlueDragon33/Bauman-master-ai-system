@@ -100,6 +100,29 @@ try{
   await openHub(page);
   const content=await checkCanonicalContent(page);
 
+  // User-journey regressions: metrics, global search navigation, and AI suggestion handoff.
+  const selectedSubjectId=await page.evaluate(()=>window.state?.subject);
+  await page.evaluate(subjectId=>{
+    window.state.subjectReports=window.state.subjectReports||{};
+    window.state.subjectReports[subjectId]=[{percent:61},{percent:84}];
+    window.BAUMAN_HUB_SAFE?.refresh?.();
+  },selectedSubjectId);
+  await page.waitForFunction(()=>document.querySelector('.hub-safe-stats span:nth-child(4) b')?.textContent?.trim()==='2');
+
+  await page.locator('#hubSafeSearch').fill('Tiếng Nga');
+  await page.locator('#hubSafeSearch').press('Enter');
+  await page.waitForSelector('#modalRoot [data-safe-subject="russian"]',{timeout:10000});
+  await page.locator('#modalRoot [data-safe-subject="russian"]').first().click();
+  await page.waitForFunction(()=>window.state?.subject==='russian'&&document.getElementById('page-subjects')?.classList.contains('active')===true);
+
+  await page.evaluate(()=>{window.app?.page?.('home',false);window.BAUMAN_HUB_SAFE?.refresh?.()});
+  await page.waitForSelector('[data-safe-ask]',{timeout:10000});
+  const suggestion=await page.locator('[data-safe-ask]').first().getAttribute('data-safe-ask');
+  await page.locator('[data-safe-ask]').first().click();
+  await page.waitForSelector('#aiInput',{timeout:10000});
+  assert.equal(await page.locator('#aiInput').inputValue(),suggestion,'AI suggestion did not hand the prompt into the assistant input');
+  await page.evaluate(()=>window.mentor?.close?.());
+
   // Canonical home is still present in DOM, but folded by default for a clean 16:9 first screen.
   await page.evaluate(()=>localStorage.removeItem('bauman_hub_canonical_details_open_v1'));
   await page.evaluate(()=>window.BAUMAN_HUB_SAFE?.refresh?.());
