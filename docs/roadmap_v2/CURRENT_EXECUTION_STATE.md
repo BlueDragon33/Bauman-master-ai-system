@@ -6,16 +6,16 @@
 ## Active track
 
 - Current round: **Lượt 35**
-- Current step: **L35 documentation/final-state closeout · IN_PROGRESS**
+- Current step: **L35 final marker revalidation · IN_PROGRESS**
 - L22 closeout: **B88 + H1 — PASS**
-- Status: **L23_COMPLETE · L24_COMPLETE · L25_COMPLETE · L26_COMPLETE · L27_COMPLETE · L28_COMPLETE · L29_COMPLETE_THROUGH_B116 · L30_COMPLETE_THROUGH_B120 · L31_COMPLETE_THROUGH_B124 · L32_B125_COMPLETE · L32_H1_COMPLETE · L32_F2_COMPLETE · L32_B126_COMPLETE · L32_B127_COMPLETE · L32_F3_COMPLETE · L32_B128_COMPLETE · L32_F4_COMPLETE · L32_COMPLETE · L33_B129_COMPLETE · L33_B130_COMPLETE · L33_F1_COMPLETE · L33_B131_COMPLETE · L33_B132_COMPLETE · L33_DOC_FINAL_COMPLETE · L33_FINAL_MARKER_COMPLETE · L33_COMPLETE · L34_B133_COMPLETE · L34_F1_COMPLETE · L34_B134_COMPLETE · L34_B135_COMPLETE · L34_B136_COMPLETE · L34_DOC_FINAL_COMPLETE · L34_FINAL_MARKER_COMPLETE · L34_COMPLETE · L35_B137_COMPLETE · L35_F1_COMPLETE · L35_B138_COMPLETE · L35_B139_COMPLETE · L35_B140_COMPLETE · L35_DOC_FINAL_ACTIVE**
-- Last recorded six-gate head: `a708d7499352ef30319dbeaa5475f9696305daf5`
+- Status: **L23_COMPLETE · L24_COMPLETE · L25_COMPLETE · L26_COMPLETE · L27_COMPLETE · L28_COMPLETE · L29_COMPLETE_THROUGH_B116 · L30_COMPLETE_THROUGH_B120 · L31_COMPLETE_THROUGH_B124 · L32_B125_COMPLETE · L32_H1_COMPLETE · L32_F2_COMPLETE · L32_B126_COMPLETE · L32_B127_COMPLETE · L32_F3_COMPLETE · L32_B128_COMPLETE · L32_F4_COMPLETE · L32_COMPLETE · L33_B129_COMPLETE · L33_B130_COMPLETE · L33_F1_COMPLETE · L33_B131_COMPLETE · L33_B132_COMPLETE · L33_DOC_FINAL_COMPLETE · L33_FINAL_MARKER_COMPLETE · L33_COMPLETE · L34_B133_COMPLETE · L34_F1_COMPLETE · L34_B134_COMPLETE · L34_B135_COMPLETE · L34_B136_COMPLETE · L34_DOC_FINAL_COMPLETE · L34_FINAL_MARKER_COMPLETE · L34_COMPLETE · L35_B137_COMPLETE · L35_F1_COMPLETE · L35_B138_COMPLETE · L35_B139_COMPLETE · L35_B140_COMPLETE · L35_DOC_FINAL_COMPLETE · L35_FINAL_MARKER_ACTIVE**
+- Last recorded six-gate head: `fa341ccb69352cc9e778be978ad4351195c5aee1`
 - Production/runtime activation by Roadmap V2: **disconnected**
 - Legacy/source destructive migration: **not executed**
-- Last completed: **L35/B140 functional closeout — PASS on complete six-gate set**
+- Last completed: **L35 documentation/final-state closeout — PASS on complete six-gate set**
 - Last hardening: **L29-F2 validator/harness syntax repair — PASS; no gate weakening**
-- Current official step: **L35 documentation/final-state closeout**
-- L32, L33 and L34 are fully closed. L35 functional work through B140 is green; documentation/final-state revalidation is active before the final marker and post-L35 architecture audit.
+- Current official step: **L35 final marker revalidation**
+- L32, L33 and L34 are fully closed. L35 functional work through B140 and documentation/final-state closeout are green; the L35 final marker is under complete six-gate revalidation before post-L35 architecture audit.
 
 ## L22/B88 complete gate evidence
 
@@ -1272,3 +1272,17 @@ Accepted B140 functional head: `a708d7499352ef30319dbeaa5475f9696305daf5`
 - Whole System Integration — run `35501062937` — PASS
 
 B140 functional closeout is green. The L35 boundary remains receipt-only and data-only with zero production consumers and no production-promotion execution, deployment, persistence, dashboard, schedule/calendar write, runtime, notification or automatic-action authority. L35 documentation/final-state revalidation is active before the final marker and architecture audit.
+
+
+## L35 documentation/final-state gate evidence
+
+Accepted documentation/final-state head: `fa341ccb69352cc9e778be978ad4351195c5aee1`
+
+- Roadmap V2 Current Gate — run `35501223159` — PASS
+- Foundation Domain Model — run `35501223156` — PASS
+- Windows checkout safety — run `35501223151` — PASS
+- Russian Reference UI — run `35501223152` — PASS
+- Cloudflare Preview — run `35501223160` — PASS
+- Whole System Integration — run `35501223163` — PASS
+
+L35 documentation/final-state is green. The final marker head itself must now pass the same six gates before L35 is fully closed and the post-L35 architecture audit may determine whether another Roadmap round is required.
