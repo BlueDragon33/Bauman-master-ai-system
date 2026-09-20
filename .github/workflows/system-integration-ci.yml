@@ -15,6 +15,8 @@ on:
       - "tests/foundation-canonical-context-browser.mjs"
       - "tests/math-study-command-center-browser.mjs"
       - "tests/hub-premium-responsive-browser.mjs"
+      - "tests/russian-handwriting-recognition-browser.mjs"
+      - "tests/russian-handwriting-offline-authority-browser.mjs"
       - "tests/russian-capability-hub-static.mjs"
       - "tests/russian-capability-hub-browser.mjs"
       - "tests/russian-capability-deeplink-browser.mjs"
@@ -42,6 +44,8 @@ on:
       - "tests/foundation-canonical-context-browser.mjs"
       - "tests/math-study-command-center-browser.mjs"
       - "tests/hub-premium-responsive-browser.mjs"
+      - "tests/russian-handwriting-recognition-browser.mjs"
+      - "tests/russian-handwriting-offline-authority-browser.mjs"
       - "tests/russian-capability-hub-static.mjs"
       - "tests/russian-capability-hub-browser.mjs"
       - "tests/russian-capability-deeplink-browser.mjs"
@@ -109,6 +113,8 @@ jobs:
           node --check tests/foundation-canonical-context-browser.mjs
           node --check tests/math-study-command-center-browser.mjs
           node --check tests/hub-premium-responsive-browser.mjs
+          node --check tests/russian-handwriting-recognition-browser.mjs
+          node --check tests/russian-handwriting-offline-authority-browser.mjs
           node --check tests/russian-capability-hub-static.mjs
           node --check tests/russian-capability-hub-browser.mjs
           node --check tests/russian-capability-deeplink-browser.mjs
@@ -172,6 +178,15 @@ jobs:
           BAUMAN_E2E_BASE_URL: http://127.0.0.1:4173/
           BAUMAN_E2E_ARTIFACT_DIR: artifacts/hub-premium-responsive
         run: node tests/hub-premium-responsive-browser.mjs
+      - name: Run Russian Handwriting Recognition Acceptance
+        env:
+          BAUMAN_E2E_BASE_URL: http://127.0.0.1:4173/
+          BAUMAN_E2E_ARTIFACT_DIR: artifacts/russian-handwriting-recognition
+        run: node tests/russian-handwriting-recognition-browser.mjs
+      - name: Run Ready Russian Handwriting Authority Offline Acceptance
+        env:
+          BAUMAN_E2E_ARTIFACT_DIR: artifacts/russian-handwriting-offline-authority
+        run: node tests/russian-handwriting-offline-authority-browser.mjs
       - name: Run Russian capability Hub acceptance
         env:
           BAUMAN_E2E_BASE_URL: http://127.0.0.1:4173/
@@ -242,6 +257,16 @@ jobs:
           BAUMAN_E2E_BASE_URL: http://127.0.0.1:4174/
           BAUMAN_E2E_ARTIFACT_DIR: artifacts/chatgpt-site-foundation-canonical-context
         run: node tests/foundation-canonical-context-browser.mjs
+      - name: Run Packaged Russian Handwriting Recognition Acceptance
+        env:
+          BAUMAN_E2E_BASE_URL: http://127.0.0.1:4174/
+          BAUMAN_E2E_ARTIFACT_DIR: artifacts/chatgpt-site-russian-handwriting-recognition
+        run: node tests/russian-handwriting-recognition-browser.mjs
+      - name: Run Packaged Ready Russian Handwriting Authority Offline Acceptance
+        env:
+          BAUMAN_OFFLINE_FIXTURE_ROOT: dist
+          BAUMAN_E2E_ARTIFACT_DIR: artifacts/chatgpt-site-russian-handwriting-offline-authority
+        run: node tests/russian-handwriting-offline-authority-browser.mjs
       - name: Run packaged Hub V2 responsive acceptance
         env:
           BAUMAN_E2E_BASE_URL: http://127.0.0.1:4174/
@@ -294,6 +319,8 @@ jobs:
             artifacts/foundation-canonical-context
             artifacts/math-study-command-center
             artifacts/hub-premium-responsive
+            artifacts/russian-handwriting-recognition
+            artifacts/russian-handwriting-offline-authority
             artifacts/russian-capability-hub
             artifacts/russian-capability-deeplink
             artifacts/russian-capability-route-receipt
@@ -304,6 +331,8 @@ jobs:
             artifacts/chatgpt-site-foundation-identity-persistence
             artifacts/chatgpt-site-foundation-identity-projection
             artifacts/chatgpt-site-foundation-canonical-context
+            artifacts/chatgpt-site-russian-handwriting-recognition
+            artifacts/chatgpt-site-russian-handwriting-offline-authority
             artifacts/chatgpt-site-hub-responsive
             artifacts/chatgpt-site-russian-capability-hub
             artifacts/chatgpt-site-russian-capability-deeplink

@@ -1548,10 +1548,9 @@ function tagViLabel(tags){
  return arr(tags)[0]||'giao tiếp';
 }
 function makeVietnamVocabDisplay(v,base){
- const eng=str(base.english||base.meaningVi||v?.vi||v?.clue_en||'').trim();
  const tag=tagViLabel(base.tags);
  const term=str(base.term||'từ này');
- const meaning=eng?`${eng}`:`Cụm/từ thuộc nhóm ${tag}.`;
+ const meaning=str(base.meaningRu||v?.meaning_ru||'').trim()||str(base.visualLabel||v?.illustration_label_ru||'').trim()||`Контекст: ${term}`;
  const meaningNote=base.tags.includes('greeting')?'Ý nghĩa giao tiếp: mở kênh đối thoại, thể hiện thái độ lịch sự và bắt đầu cuộc nói chuyện đúng nghi thức.'
   :base.tags.includes('time')?'Ý nghĩa: chỉ mốc thời gian hoặc nhịp sinh hoạt để người nghe hiểu khi nào việc học, gặp gỡ hoặc di chuyển diễn ra.'
   :base.tags.includes('academic')?'Ý nghĩa học thuật: gắn với hoạt động trong lớp, hỏi bài, nghe giảng, ghi chú hoặc trao đổi với giáo viên/bạn học.'
@@ -2101,6 +2100,19 @@ function handwritingCursiveSample(item){
  const raw=str(item?.cursive||item?.handwriting||item?.write||item?.copy||item?.print||item?.text||'А а').trim();
  return raw.replace(/\s{2,}/g,' ')||'А а';
 }
+function handwritingPresentationAuthority(item){
+ const print=handwritingPrintSample(item).replace(/\s+/g,' ').trim();
+ const cursive=handwritingCursiveSample(item).replace(/\s+/g,' ').trim();
+ const encodedDistinct=!!print&&!!cursive&&print!==cursive;
+ return {
+  kind:encodedDistinct?'encoded-cursive':'font-rendered-preview',
+  encodedDistinct,
+  label:encodedDistinct?'Mẫu viết tay từ dữ liệu':'Preview chữ tay bằng font',
+  note:encodedDistinct
+   ?'Dữ liệu có mẫu chữ tay tách biệt với chữ in.'
+   :'Chuỗi Unicode hiện trùng chữ in; hình dáng chữ tay phụ thuộc font/asset hiển thị và không được coi là dữ liệu nét chính xác.'
+ };
+}
 function handwritingSafeMarkerId(item,step,kind='s'){
  const ch=primaryHandwritingChar(item); const code=ch?ch.charCodeAt(0):1040;
  return `hw_arr_${code}_${Number(step)||0}_${kind}`;
@@ -2118,8 +2130,8 @@ function strokeMiniSvg(item,step=0,kind='small'){
 }
 function handwritingVisualPanel(item,step=0){
  const steps=handwritingStrokeSteps(item); const current=steps[step]||steps[0]||{};
- const print=handwritingPrintSample(item); const cursive=handwritingCursiveSample(item);
- return `<div class="step36-visual-panel"><div class="step36-visual-main"><div>${strokeMiniSvg(item,step,'large')}</div><div><span class="chip">Hình nét đang luyện</span><b>${esc(current.title||'Luyện nét')}</b><p>${esc(current.detail||'Nhìn chấm đặt bút, kéo theo mũi tên, sau đó viết lại xuống vở.')}</p></div></div><small>Nhận mặt chữ in: <b>${esc(print)}</b>. Mẫu viết tay cần luyện: <b>${esc(cursive)}</b>. Hãy nhìn hình, tô theo trên bảng phải rồi chép lại vào vở thật.</small></div>`;
+ const print=handwritingPrintSample(item); const cursive=handwritingCursiveSample(item); const authority=handwritingPresentationAuthority(item);
+ return `<div class="step36-visual-panel" data-handwriting-authority="${esc(authority.kind)}"><div class="step36-visual-main"><div>${strokeMiniSvg(item,step,'large')}</div><div><span class="chip">Khung nét tham khảo</span><b>${esc(current.title||'Luyện nét')}</b><p>${esc(current.detail||'Nhìn chấm đặt bút, kéo theo mũi tên, sau đó viết lại xuống vở.')}</p></div></div><small>Nhận mặt chữ in: <b>${esc(print)}</b>. ${esc(authority.label)}: <b>${esc(cursive)}</b>. ${esc(authority.note)}</small></div>`;
 }
 function drawGuidePath(points,color,width,dash=[]){
  if(!ctx||!points?.length)return;
@@ -2173,7 +2185,7 @@ function drawHandwritingOverlay(item){
  ctx.fillText(itemHand||'А а',250,305);
  ctx.fillStyle='rgba(29,78,216,.72)';
  ctx.font='24px system-ui, -apple-system, Segoe UI, sans-serif';
- ctx.fillText('Mẫu viết tay mới là phần cần luyện',250,350);
+ ctx.fillText(handwritingPresentationAuthority(item).encodedDistinct?'Mẫu viết tay từ dữ liệu':'Preview chữ tay bằng font',250,350);
  if(state.handwritingPractice!=='view')guides.forEach((pts,idx)=>drawGuidePath(pts, idx===active?'rgba(37,99,235,.92)':'rgba(148,163,184,.45)', idx===active?7:4, idx===active?[]:[8,10]));
  const current=steps[active]||steps[0];
  ctx.fillStyle='rgba(15,23,42,.70)';
@@ -2241,7 +2253,7 @@ function renderWriting(){
        <div class="step4-left-actions"><button class="btn primary" data-act="open-hand-grid">🔤 Mẫu chữ viết tay</button><input class="input compact-input" data-input="handwritingQuery" value="${esc(state.handwritingQuery||'')}" placeholder="Tìm chữ/từ/câu..."></div>
        <div class="step36-print-hand-card">
          <div class="print-ref"><span>Chữ in để nhìn</span><b>${esc(printSample)}</b></div>
-         <div class="hand-ref"><span>Mẫu viết tay cần luyện</span><strong>${esc(handSample)}</strong></div>
+         <div class="hand-ref" data-handwriting-authority="${esc(handwritingPresentationAuthority(item).kind)}"><span>${esc(handwritingPresentationAuthority(item).label)}</span><strong>${esc(handSample)}</strong><small>${esc(handwritingPresentationAuthority(item).note)}</small></div>
          <p>${esc(A.handwritingNote?.(item)||item.note||'Tập chữ viết tay, chữ in chỉ dùng để nhận diện khi đọc.')}</p>
        </div>
        <div class="step4-mode-card step36-mode-card v1285-mode-card"><h4>Chế độ luyện</h4><div class="step4-mode-grid">
@@ -2288,16 +2300,16 @@ function renderVocab(){
   const term=info.term||'—';
   const termLen=[...str(term)].length;
   const termSizeClass=termLen>24?'term-xxlong':termLen>15?'term-xlong':termLen>9?'term-long':'term-normal';
-  const meaning=info.displayMeaning||info.meaningVi||info.english||info.meaningRu||'Chưa có nghĩa mô tả.';
+  const meaning=info.displayMeaning||info.meaningRu||info.displayVisualLabel||'Giải thích bằng ngữ cảnh trực quan.';
   const example=info.example||'';
   const meaningNote=vocabMeaningNoteText(info);
   const application=vocabApplicationText(info);
-  const sideRows=rows.map((item,i)=>{const idx=pageStart+i; const vi=vocabInfo(item); const rowMeaning=vi.displayMeaning||vi.meaningVi||vi.english||vi.meaningRu||''; const rowEmoji=vi.emoji||'•'; return `<button class="vocab-mini-row v1310-vocab-row ${idx===state.vocabIndex?'active':''}" data-vocab="${idx}"><span>${String(idx+1).padStart(2,'0')}</span><div><b><i class="v1312-row-emoji">${esc(rowEmoji)}</i>${esc(clip(vi.term||'—',34))}</b><small>${esc(clip(rowMeaning,42))}</small></div></button>`}).join('');
+  const sideRows=rows.map((item,i)=>{const idx=pageStart+i; const vi=vocabInfo(item); const rowMeaning=vi.displayVisualLabel||vi.meaningRu||''; const rowEmoji=vi.emoji||'•'; return `<button class="vocab-mini-row v1310-vocab-row ${idx===state.vocabIndex?'active':''}" data-vocab="${idx}"><span>${String(idx+1).padStart(2,'0')}</span><div><b><i class="v1312-row-emoji">${esc(rowEmoji)}</i>${esc(clip(vi.term||'—',34))}</b><small>${esc(clip(rowMeaning,42))}</small></div></button>`}).join('');
   const visual=vocabVisualHtml(info,false);
   const visualBack=vocabVisualHtml(info,true);
   const dialogueExample=vocabDialogueExampleHtml(info);
-  const front=`<div class="v1310-flash-face v1312-flash-face"><div class="v1312-flash-visual">${visual}</div><div class="term ${termSizeClass}">${esc(term)}</div><div class="v1310-pron">${esc(info.pron||'Bấm để lật nghĩa')}</div></div>`;
-  const back=`<div class="v1310-flash-face v1312-flash-face flipped"><div class="v1312-flash-visual back">${visualBack}</div><span>Nghĩa</span><div class="meaning">${esc(meaning)}</div>${example?`<small>${esc(example)}</small>`:''}</div>`;
+  const front=`<div class="v1310-flash-face v1312-flash-face"><div class="v1312-flash-visual">${visual}</div><div class="term ${termSizeClass}">${esc(term)}</div><div class="v1310-pron">${esc(info.pron||'Bấm để xem gợi ý')}</div></div>`;
+  const back=`<div class="v1310-flash-face v1312-flash-face flipped"><div class="v1312-flash-visual back">${visualBack}</div><span>Hiểu qua ngữ cảnh</span><div class="meaning" lang="ru">${esc(meaning)}</div>${example?`<small>${esc(example)}</small>`:''}</div>`;
   return `<div class="vocab-studio step37-vocab-safe canva3-vocab canva3-vocab-no-hero v1303-vocab-safe v1310-vocab-polish v1311-vocab-luxe v1312-vocab-chibi">
    <div class="vocab-desk step37-vocab-desk canva3-vocab-desk v1303-vocab-desk v1310-vocab-desk">
      <aside class="panel vocab-page-list v1303-vocab-list v1310-vocab-list" aria-label="Danh sách 20 thẻ từ hiện tại">
@@ -2307,8 +2319,8 @@ function renderVocab(){
      <main class="panel vocab-card-panel canva3-card-panel canva3-card-panel-actions v1303-vocab-card-panel v1310-vocab-main">
        <header class="v1310-vocab-top v1311-vocab-top"><div><span class="chip">Thẻ ${state.vocabIndex+1}/${list.length}</span><h3>${esc(term)}</h3></div><small>${esc(info.pron||'Bấm thẻ để lật nghĩa')}</small></header>
        <button class="flash visual-flash canva3-flash v1303-flash v1310-flash ${flipped?'flipped':''}" data-act="toggle-vocab-flip"><div class="flash-inner v1303-flash-inner v1310-flash-inner">${flipped?back:front}</div></button>
-       <div class="vocab-actions canva3-card-actions v1310-vocab-actions" aria-label="Điều khiển flashcard"><button class="btn" data-act="prev-vocab">← Trước</button><button class="btn green" data-act="speak-vocab">🔊 Nghe</button><button class="btn primary" data-act="toggle-vocab-flip">${flipped?'Mặt từ':'Lật nghĩa'}</button><button class="btn" data-act="next-vocab">Sau →</button></div>
-       <section class="v1310-vocab-detail v1313-vocab-detail v1314-vocab-detail" aria-label="Chi tiết thẻ từ"><article><b>Nghĩa</b><p>${esc(meaning)}</p></article><article><b>Ý nghĩa</b><p>${esc(meaningNote)}</p></article><article><b>Ứng dụng</b><p>${esc(application)}</p></article></section>
+       <div class="vocab-actions canva3-card-actions v1310-vocab-actions" aria-label="Điều khiển flashcard"><button class="btn" data-act="prev-vocab">← Trước</button><button class="btn green" data-act="speak-vocab">🔊 Nghe</button><button class="btn primary" data-act="toggle-vocab-flip">${flipped?'Mặt từ':'Lật gợi ý'}</button><button class="btn" data-act="next-vocab">Sau →</button></div>
+       <section class="v1310-vocab-detail v1313-vocab-detail v1314-vocab-detail" aria-label="Chi tiết thẻ từ"><article><b>Giải thích tiếng Nga</b><p lang="ru">${esc(meaning)}</p></article><article><b>Ý nghĩa</b><p>${esc(meaningNote)}</p></article><article><b>Ứng dụng</b><p>${esc(application)}</p></article></section>
        ${dialogueExample}
      </main>
    </div>
@@ -3072,7 +3084,7 @@ function aiBullets(items){return '<ul>'+items.filter(Boolean).map(x=>`<li>${esc(
 function aiGenerate(mode,prompt=''){
  const c=aiContext();
  if(mode==='lesson')return `<h4>Giải thích bài đang học</h4>${aiBullets([`Giai đoạn: ${c.stage}`,`Bài: ${c.lessonTitle||'Chưa chọn bài'}`,`Ý chính: ${c.lessonSummary||'Chưa có tóm tắt'}`])}<p>Hãy học theo 3 nhịp: đọc ý chính, nói lại bằng tiếng Việt, rồi tạo 2 câu tiếng Nga ngắn dùng từ khóa của bài.</p>`;
- if(mode==='vocab')return `<h4>Giải thích từ vựng đang chọn</h4>${aiBullets([`Từ/cụm: ${c.vocab.term||'Chưa chọn'}`,`Nghĩa: ${c.vocab.displayMeaning||c.vocab.meaningVi||c.vocab.english||c.vocab.meaningRu||'Chưa có'}`,`English equivalent: ${c.vocab.english||'Chưa có'}`,`Ứng dụng: ${c.vocab.displayApplication||c.vocab.application||'Chưa có'}`])}<p>Mẹo nhớ: đặt từ này vào một câu ở ký túc xá, một câu trong lớp dự bị và một câu trong bối cảnh Bauman.</p>`;
+ if(mode==='vocab')return `<h4>Giải thích từ vựng đang chọn</h4>${aiBullets([`Từ/cụm: ${c.vocab.term||'Chưa chọn'}`,`Giải thích tiếng Nga: ${c.vocab.displayMeaning||c.vocab.meaningRu||'Chưa có'}`,`Gợi ý trực quan: ${c.vocab.displayVisualLabel||c.vocab.visualLabel||c.vocab.emoji||'ngữ cảnh'}`,`Ứng dụng: ${c.vocab.displayApplication||c.vocab.application||'Chưa có'}`])}<p>Mẹo nhớ: đặt từ này vào một câu ở ký túc xá, một câu trong lớp dự bị và một câu trong bối cảnh Bauman.</p>`;
  if(mode==='dialogue')return `<h4>Tạo bài đóng vai nhanh</h4><p><b>Bối cảnh:</b> ${esc(c.dialogueTitle||'hội thoại học tập')}</p>${aiBullets(['Vai A: hỏi bằng câu ngắn, rõ mục đích.','Vai B: trả lời, xác nhận lại thông tin.','Lượt 3: đổi vai và nói nhanh hơn 10%.','Ẩn nghĩa tiếng Việt ở vòng cuối để luyện phản xạ.'])}`;
  if(mode==='review')return `<h4>Ôn tập hôm nay</h4>${aiBullets([`Mục tiêu hôm nay: ${c.goal}`,`Tiếp tục từ tab: ${c.view}`,`Bài hiện tại: ${c.lessonTitle||'chưa chọn'}`,'Ôn 10 từ, 1 hội thoại, 5 câu ôn tập, 1 đoạn viết ngắn.'])}`;
  if(mode==='writing')return `<h4>Gợi ý viết</h4>${aiBullets([`Nhiệm vụ: ${c.writingTitle||'Chưa chọn nhiệm vụ'}`,'Viết 4 câu: giới thiệu mục đích, nêu dữ kiện, hỏi/xác nhận, kết luận lịch sự.','Sau khi viết, tự kiểm tra giống, số, cách và động từ.'])}`;
