@@ -6,7 +6,7 @@
 'use strict';
 const RELEASE='HUB_SEARCH_HOME_SUMMARY_V2_2026_09';
 const q=(s,r=document)=>r.querySelector(s);
-const safe=s=>String(s??'').replace(/[&<>"']/g,m=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot',"'":'&#039;'}[m]));
+const safe=s=>String(s??'').replace(/[&<>"']/g,m=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#039;'}[m]));
 const S=()=>typeof state!=='undefined'&&state?state:{};
 const D=()=>typeof DATA!=='undefined'&&DATA?DATA:(window.BAUMAN_DATA||{});
 const A=()=>typeof app!=='undefined'?app:null;
@@ -152,7 +152,7 @@ function openSearchResult(el){
   if(kind==='page'){closeSearch();a.page?.(el.dataset.hubSearchPage);return true}
   if(kind==='subject'){
     const id=el.dataset.hubSearchSubject,sub=s.subjects?.[id];if(!sub)return false;
-    s.subject=id;
+    s.subject=id;s.searchFocusCourseId='';
     const allowed=sub.stages||[];
     if(allowed.length&&!allowed.includes(s.subjectStage))s.subjectStage=allowed[0];
     saveState();closeSearch();a.page?.('subjects');a.subjects?.();return true;
@@ -160,7 +160,7 @@ function openSearchResult(el){
   if(kind==='course'){
     const id=el.dataset.hubSearchSubject,stage=el.dataset.hubSearchCourseStage,courseId=el.dataset.hubSearchCourse;
     if(!s.subjects?.[id])return false;
-    s.subject=id;if(stage)s.subjectStage=stage;saveState();closeSearch();a.page?.('subjects');a.subjects?.();
+    s.subject=id;s.searchFocusCourseId=courseId;if(stage)s.subjectStage=stage;saveState();closeSearch();a.page?.('subjects');a.subjects?.();
     setTimeout(()=>{const card=q('[data-course-id="'+CSS.escape(courseId)+'"]');if(card){card.classList.add('hub-v2-search-hit');card.scrollIntoView({behavior:'smooth',block:'center'});setTimeout(()=>card.classList.remove('hub-v2-search-hit'),1800)}},30);
     return true;
   }
