@@ -157,13 +157,17 @@ try{
   assert.ok(naturalSearch.schedule.some(x=>x[0]==='page'&&x[1]==='schedule'),'Natural schedule query did not surface Schedule');
   assert.ok(naturalSearch.thesis.some(x=>x[0]==='research'||x[1]==='research'),'Natural thesis/UGV query did not surface Research');
   const homeAudit=await page.evaluate(()=>({
-    summaryButtons:document.querySelectorAll('#page-home .hub-v2-system-strip>button').length,
-    researchCard:!!document.querySelector('#page-home [data-hub-v2-action="research"]'),
-    legacy:window.BAUMAN_HUB_OVERVIEW_SEARCH_V2.selfCheck().legacyHomePanelsVisible
+    reference:window.BAUMAN_HUB_OVERVIEW_SEARCH_V2.selfCheck().referenceHome,
+    panels:window.BAUMAN_HUB_OVERVIEW_SEARCH_V2.selfCheck().referencePanelsVisible,
+    assistantTitle:document.querySelector('#page-home .hub-safe-assistant h2')?.textContent?.trim()||'',
+    scheduleTitle:document.querySelector('#page-home .hub-safe-schedule h2')?.textContent?.trim()||'',
+    achievementTitle:document.querySelector('#page-home .hub-safe-achievements h2')?.textContent?.trim()||''
   }));
-  assert.equal(homeAudit.summaryButtons,3,'Home summary should contain only three high-signal quick indicators');
-  assert.equal(homeAudit.researchCard,false,'Research detail should not be promoted as a Home summary card');
-  assert.equal(homeAudit.legacy,false,'Legacy detailed Home panels leaked back into the overview');
+  assert.equal(homeAudit.reference,true,'Reference Home self-check failed');
+  assert.equal(homeAudit.panels,true,'Reference Home panel set is incomplete');
+  assert.equal(homeAudit.assistantTitle,'♙ AI Study Assistant','AI panel title no longer matches reference UI');
+  assert.equal(homeAudit.scheduleTitle,'Lịch học hôm nay','Schedule panel title no longer matches reference UI');
+  assert.equal(homeAudit.achievementTitle,'Thành tựu gần đây','Achievement panel title no longer matches reference UI');
 
   await page.evaluate(()=>{
     window.state.lastStudy={subjectId:'russian',path:window.state.subjects.russian.mainPath};
