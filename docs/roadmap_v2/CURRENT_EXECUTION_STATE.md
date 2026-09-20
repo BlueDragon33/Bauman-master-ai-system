@@ -6,16 +6,16 @@
 ## Active track
 
 - Current round: **Lượt 34**
-- Current step: **L34/B136 — FULL-SYSTEM CLOSEOUT · IN_PROGRESS**
+- Current step: **L34 — DOCUMENTATION/FINAL-STATE REVALIDATION · IN_PROGRESS**
 - L22 closeout: **B88 + H1 — PASS**
-- Status: **L23_COMPLETE · L24_COMPLETE · L25_COMPLETE · L26_COMPLETE · L27_COMPLETE · L28_COMPLETE · L29_COMPLETE_THROUGH_B116 · L30_COMPLETE_THROUGH_B120 · L31_COMPLETE_THROUGH_B124 · L32_B125_COMPLETE · L32_H1_COMPLETE · L32_F2_COMPLETE · L32_B126_COMPLETE · L32_B127_COMPLETE · L32_F3_COMPLETE · L32_B128_COMPLETE · L32_F4_COMPLETE · L32_COMPLETE · L33_B129_COMPLETE · L33_B130_COMPLETE · L33_F1_COMPLETE · L33_B131_COMPLETE · L33_B132_COMPLETE · L33_DOC_FINAL_COMPLETE · L33_FINAL_MARKER_COMPLETE · L33_COMPLETE · L34_B133_COMPLETE · L34_F1_COMPLETE · L34_B134_COMPLETE · L34_B135_COMPLETE · L34_B136_ACTIVE**
-- Last recorded six-gate head: `3fd704dbd13976419c594aefc3b93b6c4be3ae50`
+- Status: **L23_COMPLETE · L24_COMPLETE · L25_COMPLETE · L26_COMPLETE · L27_COMPLETE · L28_COMPLETE · L29_COMPLETE_THROUGH_B116 · L30_COMPLETE_THROUGH_B120 · L31_COMPLETE_THROUGH_B124 · L32_B125_COMPLETE · L32_H1_COMPLETE · L32_F2_COMPLETE · L32_B126_COMPLETE · L32_B127_COMPLETE · L32_F3_COMPLETE · L32_B128_COMPLETE · L32_F4_COMPLETE · L32_COMPLETE · L33_B129_COMPLETE · L33_B130_COMPLETE · L33_F1_COMPLETE · L33_B131_COMPLETE · L33_B132_COMPLETE · L33_DOC_FINAL_COMPLETE · L33_FINAL_MARKER_COMPLETE · L33_COMPLETE · L34_B133_COMPLETE · L34_F1_COMPLETE · L34_B134_COMPLETE · L34_B135_COMPLETE · L34_B136_COMPLETE · L34_DOC_FINAL_ACTIVE**
+- Last recorded six-gate head: `2af9627bfec1319c98f2d561f447a8a6f5ea2f36`
 - Production/runtime activation by Roadmap V2: **disconnected**
 - Legacy/source destructive migration: **not executed**
 - Last completed: **L32 final-state closeout — PASS on complete six-gate set**
 - Last hardening: **L29-F2 validator/harness syntax repair — PASS; no gate weakening**
-- Current official step: **L34/B136 — Production Readiness Review full-system closeout**
-- L32 and L33 are fully closed. L34/B135 is accepted; L34/B136 full-system closeout is active.
+- Current official step: **L34 documentation/final-state revalidation after B136 functional closeout**
+- L32 and L33 are fully closed. L34 is functionally complete through B136; documentation/final-state revalidation is active.
 
 ## L22/B88 complete gate evidence
 
@@ -1163,3 +1163,17 @@ Accepted B135 head: `3fd704dbd13976419c594aefc3b93b6c4be3ae50`
 - Whole System Integration — run `35493937191` — PASS
 
 B135 adversarial Production Readiness Review validation: **31/31 PASS**. Identity/namespace impersonation, authority/result injection, schema/decision drift, reason-code abuse, nested Promotion Review forgery, upstream escalation attempts and post-projection privilege escalation all fail closed. B136 full-system closeout is permitted to open.
+
+
+## L34/B136 functional closeout gate evidence
+
+Accepted B136 functional head: `2af9627bfec1319c98f2d561f447a8a6f5ea2f36`
+
+- Roadmap V2 Current Gate — run `35494103959` — PASS
+- Foundation Domain Model — run `35494103914` — PASS
+- Windows checkout safety — run `35494103908` — PASS
+- Russian Reference UI — run `35494103919` — PASS
+- Cloudflare Preview — run `35494103952` — PASS
+- Whole System Integration — run `35494103968` — PASS
+
+B136 functional closeout is green. Production Readiness Review remains a data-only, shadow-only boundary with zero production consumers and no production-promotion, persistence, dashboard, schedule/calendar write, runtime, notification or automatic-action authority. L34 documentation/final-state revalidation is active before architecture audit.
