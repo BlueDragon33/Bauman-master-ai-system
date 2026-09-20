@@ -2,7 +2,7 @@
    Presentation-only: preserves canonical nav nodes and handlers in-place. */
 (()=>{
   'use strict';
-  const RELEASE='HUB_LEARNING_CLUSTER_2026_09_R3';
+  const RELEASE='HUB_LEARNING_CLUSTER_2026_09_R4';
   const LEARNING_IDS=['study','simulation','exercise','exam','review'];
   const REMOVE_IDS=new Set(['achievement','settings']);
   const q=(s,r=document)=>r.querySelector(s);
@@ -91,7 +91,9 @@
     ensureCluster(nav);
     nav.dataset.learningCluster='1';
     document.documentElement.dataset.hubLearningCluster=RELEASE;
-    return LEARNING_IDS.filter(id=>Boolean(canonicalActionButton(nav,id))).length>=4;
+    const learningActions=LEARNING_IDS.filter(id=>Boolean(canonicalActionButton(nav,id)));
+    const progress=canonicalActionButton(nav,'progress');
+    return learningActions.length===LEARNING_IDS.length&&Boolean(progress);
   }
 
   function bind(){
@@ -123,10 +125,12 @@
       release:RELEASE,
       installed:Boolean(cluster),
       learningActions:LEARNING_IDS.filter(id=>Boolean(canonicalActionButton(nav,id))),
+      completeLearningCluster:LEARNING_IDS.every(id=>Boolean(canonicalActionButton(nav,id))),
       visibleLearningClones:cluster?qa('[data-learning-action]',cluster).map(el=>el.dataset.learningAction):[],
       canonicalSelectorsIsolated:cluster?qa('[data-safe-nav],[data-hub-action]',cluster).length===0:false,
       achievementHidden:Boolean(canonicalActionButton(nav,'achievement')?.classList.contains('hub-nav-hidden-by-policy')),
       settingsHidden:Boolean(canonicalActionButton(nav,'settings')?.classList.contains('hub-nav-hidden-by-policy')),
+      progressPresent:Boolean(canonicalActionButton(nav,'progress')),
       progressLabel:q('span',canonicalActionButton(nav,'progress'))?.textContent?.trim()||''
     };
   }};
