@@ -1,6 +1,6 @@
 # Lượt 32 — Current Plan · Bước 125–128
 
-Status: `B125_PASS · H1_PASS · F1_SUPERSEDED · F2_PASS · B126_ACTIVE · B127_BLOCKED · B128_BLOCKED`
+Status: `B125_PASS · H1_PASS · F1_SUPERSEDED · F2_PASS · B126_PASS · B127_ACTIVE · B128_BLOCKED`
 
 Prerequisite: L31 final marker head `369df7fcc7f9e79c2ad3426651918608cc56bcc1` passed the complete six-gate set.
 
@@ -26,11 +26,11 @@ L32 adds a separate data-only Release Review layer. It does **not** authorize pr
 
 ## B126 — Deterministic in-memory Release Review projector
 
-**ACTIVE.** Implements a scripts-only, deterministic, deeply frozen projector that recomputes Promotion Eligibility, preserves candidate/reviewer/decision/reason audit identity, maps non-eligible upstream states to a blocked receipt, and allows only `release_review_approved_shadow_only` to set `promotionReviewEligible=true`. Production promotion and all runtime/persistence side effects remain disabled.
+**PASS.** Scripts-only deterministic/deeply-frozen projector passed the complete six-gate set at head `3b57c144c9c078b4e8270d0625fed8eb254525cd`. It recomputes Promotion Eligibility, preserves candidate/reviewer/decision/reason audit identity, maps non-eligible upstream states to a blocked receipt, and allows only `release_review_approved_shadow_only` to set `promotionReviewEligible=true`. Production promotion and all runtime/persistence side effects remain disabled.
 
 ## B127 — Adversarial Release Review validation
 
-Blocked until B126 passes the complete six-gate set.
+**ACTIVE.** Exercises schema drift, namespace impersonation, reviewer/candidate mismatch, unsupported decisions, reason-code abuse, caller-supplied authority/results, nested Promotion Eligibility/Human Review/Consumer forgery, persisted mastery, decision-state mapping, deterministic audit preservation, deep-freeze escalation resistance, and runtime wiring/side-effect leakage.
 
 ## B128 — Full-system closeout
 
