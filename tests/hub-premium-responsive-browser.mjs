@@ -127,6 +127,19 @@ try{
   assert.equal(await page.locator('#aiInput').inputValue(),suggestion,'AI suggestion did not hand the prompt into the assistant input');
   await page.evaluate(()=>window.mentor?.close?.());
 
+  // Selecting a subject for preview must not corrupt the canonical last-study resume pointer.
+  await page.evaluate(()=>{
+    window.state.lastStudy={subjectId:'russian',path:window.state.subjects.russian.mainPath};
+    window.state.subject='russian';
+    window.BAUMAN_HUB_SAFE?.refresh?.();
+  });
+  await page.locator('[data-safe-subject="math"]').first().click();
+  await page.waitForFunction(()=>window.state?.subject==='math');
+  assert.equal(await page.evaluate(()=>window.state?.lastStudy?.subjectId),'russian','Subject preview incorrectly overwrote lastStudy');
+  await page.locator('[data-safe-action="open-selected"]').click();
+  await page.waitForFunction(()=>window.state?.lastStudy?.subjectId==='math'&&!!document.getElementById('subjectFrame'),null,{timeout:10000});
+  await page.evaluate(()=>window.app?.closeStudy?.());
+
   // Canonical home is still present in DOM, but folded by default for a clean 16:9 first screen.
   await page.evaluate(()=>localStorage.removeItem('bauman_hub_canonical_details_open_v1'));
   await page.evaluate(()=>window.BAUMAN_HUB_SAFE?.refresh?.());
