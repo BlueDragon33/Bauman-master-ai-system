@@ -4,6 +4,9 @@ on:
   push:
     paths:
       - 'assets/data/official-curriculum-iu5-2026.json'
+      - 'foundation/content-registry/**'
+      - 'scripts/validate-foundation-l10-promotion.mjs'
+      - '.github/workflows/content-asset-provenance-gate.yml'
       - 'assets/data/prerequisite-registry-iu5-2026.json'
       - 'assets/data/prerequisite-content-coverage-2026.json'
       - 'assets/data/prerequisite-packs/**'
@@ -35,6 +38,9 @@ on:
   pull_request:
     paths:
       - 'assets/data/official-curriculum-iu5-2026.json'
+      - 'foundation/content-registry/**'
+      - 'scripts/validate-foundation-l10-promotion.mjs'
+      - '.github/workflows/content-asset-provenance-gate.yml'
       - 'assets/data/prerequisite-registry-iu5-2026.json'
       - 'assets/data/prerequisite-content-coverage-2026.json'
       - 'assets/data/prerequisite-packs/**'
