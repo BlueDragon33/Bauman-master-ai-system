@@ -6,16 +6,16 @@
 ## Active track
 
 - Current round: **Lượt 32**
-- Current step: **L32-F4 — MATH READER STARTUP RACE STABILIZATION · IN_PROGRESS**
+- Current step: **L32 DOCUMENTATION / FINAL-STATE CLOSEOUT · IN_PROGRESS**
 - L22 closeout: **B88 + H1 — PASS**
-- Status: **L23_COMPLETE · L24_COMPLETE · L25_COMPLETE · L26_COMPLETE · L27_COMPLETE · L28_COMPLETE · L29_COMPLETE_THROUGH_B116 · L30_COMPLETE_THROUGH_B120 · L31_COMPLETE_THROUGH_B124 · L32_B125_COMPLETE · L32_H1_COMPLETE · L32_F2_COMPLETE · L32_B126_COMPLETE · L32_B127_COMPLETE · L32_F3_COMPLETE · L32_B128_COMPLETE · L32_F4_ACTIVE · L32_DOC_FINAL_BLOCKED**
+- Status: **L23_COMPLETE · L24_COMPLETE · L25_COMPLETE · L26_COMPLETE · L27_COMPLETE · L28_COMPLETE · L29_COMPLETE_THROUGH_B116 · L30_COMPLETE_THROUGH_B120 · L31_COMPLETE_THROUGH_B124 · L32_B125_COMPLETE · L32_H1_COMPLETE · L32_F2_COMPLETE · L32_B126_COMPLETE · L32_B127_COMPLETE · L32_F3_COMPLETE · L32_B128_COMPLETE · L32_F4_COMPLETE · L32_DOC_FINAL_ACTIVE**
 - Last recorded six-gate head: `a10171ec4578efdfc245b3b5968694fc50f99809`
 - Production/runtime activation by Roadmap V2: **disconnected**
 - Legacy/source destructive migration: **not executed**
 - Last completed: **L32/B128 functional full-system closeout — PASS on complete six-gate set**
 - Last hardening: **L29-F2 validator/harness syntax repair — PASS; no gate weakening**
-- Current official step: **L32-F4 — stabilize deterministic Math Reader browser acceptance before final-state revalidation**
-- B125, H1/F2, B126, B127/F3 and B128 functional closeout are closed. Documentation/final-state revalidation exposed L32-F4 and is blocked until the repaired head passes 6/6; L33 remains blocked.
+- Current official step: **L32 documentation/final-state closeout revalidation**
+- B125, H1/F2, B126, B127/F3, B128 and F4 are closed. Documentation/final-state revalidation is active; L33 remains blocked until this marker head passes 6/6.
 
 ## L22/B88 complete gate evidence
 
@@ -989,3 +989,17 @@ B128 functional closeout is green. Release Review remains data-only and disconne
 The first documentation/final-state Whole System revalidation failed in `tests/system-browser-acceptance.mjs` with `l05: Reader stable slide state drift`: expected L05/22 slides but observed default L01/16 slides. The same runtime had passed the immediately preceding B128 functional head, and the documentation-only changes did not touch runtime code.
 
 Root cause audit found `theory-tab-E129.js` intentionally schedules a second startup stabilization render at 650 ms after DOM readiness. The browser gate could begin deterministic lesson routing before that scheduled render fired, allowing the delayed startup render to overwrite the selected test lesson. F4 adds an 800 ms settle barrier before deterministic L04/L05/L06 routing. Assertions and runtime authority boundaries are unchanged.
+
+
+## L32-F4 gate evidence
+
+Accepted F4 head: `08b2c4c9a6099733b2717c567ae48d7222a25725`
+
+- Roadmap V2 Current Gate — run `35483642371` — PASS
+- Foundation Domain Model — run `35483642296` — PASS
+- Windows checkout safety — run `35483642283` — PASS
+- Russian Reference UI — run `35483642301` — PASS
+- Cloudflare Preview — run `35483642251` — PASS
+- Whole System Integration — run `35483642271` — PASS
+
+F4 is closed. The Math Reader deterministic browser acceptance startup race is stabilized without weakening content assertions or runtime boundaries. L32 documentation/final-state closeout is active; L33 remains blocked pending this marker head's complete six-gate PASS.
