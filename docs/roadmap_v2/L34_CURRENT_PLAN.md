@@ -1,6 +1,6 @@
 # Lượt 34 — Current Plan · Bước 133–136
 
-Status: `B133_COMPLETE · L34-F1_COMPLETE · B134_COMPLETE · B135_COMPLETE · B136_COMPLETE · DOCUMENTATION_FINAL_STATE_ACTIVE`
+Status: `B133_COMPLETE · L34-F1_COMPLETE · B134_COMPLETE · B135_COMPLETE · B136_COMPLETE · DOCUMENTATION_FINAL_STATE_COMPLETE · FINAL_MARKER_ACTIVE`
 
 Prerequisite: L33 final marker head `c961a46fbed064bc84a3b763516cae41d2bccff1` passed the complete six-gate set.
 
@@ -74,3 +74,17 @@ Accepted B136 functional head: `2af9627bfec1319c98f2d561f447a8a6f5ea2f36`
 - Whole System Integration — run `35494103968` — PASS
 
 L34 is functionally complete through B136. Documentation/final-state revalidation is active; architecture audit and any subsequent round remain blocked until that marker head passes the same complete six-gate set.
+
+
+## L34 documentation/final-state gate evidence
+
+Accepted documentation/final-state head: `4eb2e75a806289e4998773a6ac9eb032a10660c8`
+
+- Roadmap V2 Current Gate — run `35494251108` — PASS
+- Foundation Domain Model — run `35494251122` — PASS
+- Windows checkout safety — run `35494251114` — PASS
+- Russian Reference UI — run `35494251115` — PASS
+- Cloudflare Preview — run `35494251134` — PASS
+- Whole System Integration — run `35494251111` — PASS
+
+The L34 documentation/final-state head is green. A final marker revalidation is required before L34 may be declared fully closed or L35 may open.
