@@ -28,7 +28,8 @@ on:
       - 'scripts/validate-foundation-canonical-projection.mjs'
       - 'scripts/validate-foundation-canonical-context.mjs'
       - 'scripts/validate-foundation-l9-promotion.mjs'
-      - '.github/workflows/foundation-domain-model-gate.yml'  pull_request:
+      - '.github/workflows/foundation-domain-model-gate.yml'
+  pull_request:
     paths:
       - 'foundation/**'
       - 'subjects/shared/**'
