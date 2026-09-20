@@ -1,0 +1,90 @@
+{
+  "schema": "BAUMAN_ROADMAP_V2_PRODUCTION_READINESS_REVIEW_CONTRACT_V1",
+  "version": "2.14.0-l34-b133",
+  "purpose": "Data-only Production Readiness Review receipt boundary that recomputes current Promotion Review, permits review only when upstream productionReadinessReviewEligible is true, and records a separate shadow-readiness decision without granting production promotion, persistence, runtime, or production-consumer authority",
+  "mode": {
+    "access": "read_only_production_readiness_review",
+    "productionIntegration": "disconnected",
+    "productionReadinessReviewOnly": true,
+    "productionPromotionEnabled": false,
+    "persistentStoreEnabled": false,
+    "dashboardUiEnabled": false,
+    "scheduleWriteAllowed": false,
+    "calendarWriteAllowed": false,
+    "runtimeWriteAllowed": false,
+    "notificationWriteAllowed": false,
+    "automaticActionAllowed": false
+  },
+  "upstreamSchemas": {
+    "promotionReviewContract": "BAUMAN_ROADMAP_V2_PROMOTION_REVIEW_CONTRACT_V1",
+    "promotionReviewRequest": "BAUMAN_ROADMAP_V2_PROMOTION_REVIEW_REQUEST_V1",
+    "promotionReviewResult": "BAUMAN_ROADMAP_V2_PROMOTION_REVIEW_RESULT_V1",
+    "productionReadinessReviewRequest": "BAUMAN_ROADMAP_V2_PRODUCTION_READINESS_REVIEW_REQUEST_V1",
+    "productionReadinessReviewResult": "BAUMAN_ROADMAP_V2_PRODUCTION_READINESS_REVIEW_RESULT_V1"
+  },
+  "candidatePolicy": {
+    "candidateRefPattern": "^CANDIDATE::[A-Z0-9_-]+$",
+    "recomputePromotionReviewFromRequest": true,
+    "acceptCallerSuppliedPromotionReviewResult": false,
+    "acceptCallerSuppliedProductionReadinessReviewEligibility": false,
+    "requireProductionReadinessReviewEligible": true,
+    "manualEligibilityOverrideAllowed": false,
+    "requireNestedCandidateMatch": true
+  },
+  "reviewPolicy": {
+    "reviewerRefPattern": "^PRODUCTION_READINESS_REVIEWER::[A-Z0-9_-]+$",
+    "allowedDecisions": ["approve_shadow_readiness","needs_revision","rejected"],
+    "upstreamBlockedState": "production_readiness_review_blocked_upstream",
+    "approvedState": "production_readiness_review_approved_shadow_only",
+    "needsRevisionState": "production_readiness_review_needs_revision",
+    "rejectedState": "production_readiness_review_rejected",
+    "approvedDecisionAuthorizesProduction": false,
+    "manualProductionOverrideAllowed": false
+  },
+  "outputPolicy": {
+    "deepFrozen": true,
+    "persisted": false,
+    "includesPromotionReviewReceiptId": true,
+    "includesReleaseReviewReceiptId": true,
+    "includesPromotionEligibilityProjectionId": true,
+    "includesHumanReviewReceiptId": true,
+    "includesProductionPromotionCommand": false,
+    "includesRuntimeCommand": false,
+    "includesScheduleMutation": false,
+    "includesNotificationCommand": false,
+    "includesProductionReadinessReviewerRef": true,
+    "includesSubmittedReviewDecision": true,
+    "includesReasonCodes": true
+  },
+  "capabilities": {
+    "productionReadinessReviewEvaluate": true,
+    "shadowProductionReadinessProject": true,
+    "productionPromotion": false,
+    "productionConsumerConnect": false,
+    "persistentStoreWrite": false,
+    "dashboardUiRender": false,
+    "scheduleWrite": false,
+    "calendarWrite": false,
+    "runtimeActivation": false,
+    "notificationWrite": false,
+    "automaticAction": false
+  },
+  "abortConditions": [
+    "Production Readiness Review request schema mismatch or unsupported caller fields",
+    "candidate reference outside CANDIDATE namespace",
+    "production readiness reviewer reference outside PRODUCTION_READINESS_REVIEWER namespace",
+    "outer candidate reference does not exactly match nested Promotion Review candidate reference",
+    "caller-supplied Promotion Review result or production-readiness-review eligibility",
+    "Promotion Review recomputation does not yield productionReadinessReviewEligible=true",
+    "caller attempts production promotion, persistence, runtime, schedule, notification or automatic action authority"
+  ],
+  "acceptance": {
+    "step": 133,
+    "currentTrack": "L34",
+    "productionConsumersConnected": 0,
+    "productionIntegration": "disconnected",
+    "productionPromotionAllowed": false,
+    "runtimeActivationAllowed": false,
+    "result": "PASS_B133_CONTRACT"
+  }
+}
