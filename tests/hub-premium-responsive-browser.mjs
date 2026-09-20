@@ -46,6 +46,7 @@ async function openHub(page){
   assert.equal(access.academicWrites,false);
   await page.waitForFunction(()=>!document.getElementById('appRoot')?.classList.contains('hidden'),null,{timeout:30000});
   await page.waitForFunction(()=>!!window.BAUMAN_HUB_SAFE?.selfCheck,null,{timeout:10000});
+  await page.waitForFunction(()=>window.BAUMAN_HUB_LEARNING_CLUSTER?.selfCheck?.().visibleLearningClones?.length===5,null,{timeout:10000});
   await page.waitForFunction(()=>{
     const safe=window.BAUMAN_HUB_SAFE?.selfCheck?.();
     return safe?.ready===true
@@ -66,7 +67,8 @@ async function checkCanonicalContent(page){
     detailToggle:!!document.querySelector('[data-safe-action="details"]'),
     appearancePresets:document.querySelectorAll('[data-safe-appearance]').length,
     safeCheck:window.BAUMAN_HUB_SAFE?.selfCheck?.(),
-    managedAccess:window.BAUMAN_APP_MANAGER_ACCESS?.selfCheck?.()
+    managedAccess:window.BAUMAN_APP_MANAGER_ACCESS?.selfCheck?.(),
+    learningCluster:window.BAUMAN_HUB_LEARNING_CLUSTER?.selfCheck?.()
   }));
   assert.deepEqual(content.subjectIds,['ai','foundation','math','programming','research','russian','signal','systems']);
   assert.equal(content.pages.length,5,'canonical Hub pages were removed');
@@ -85,6 +87,8 @@ async function checkCanonicalContent(page){
   assert.equal(content.safeCheck?.dataWrites,false,'Safe Hub must not own academic data');
   assert.equal(content.managedAccess?.ready,true,'App Manager managed access is not healthy');
   assert.equal(content.managedAccess?.credentialStorePresent,false,'Local credential store must stay empty');
+  assert.deepEqual(content.learningCluster?.visibleLearningClones,['study','simulation','exercise','exam','review'],'Learning cluster lost a required user action');
+  assert.equal(content.learningCluster?.progressLabel,'Tiến độ','Progress action is missing or was not renamed');
   return content;
 }
 
