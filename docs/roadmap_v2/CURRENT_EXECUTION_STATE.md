@@ -5,17 +5,17 @@
 
 ## Active track
 
-- Current round: **Lượt 32**
-- Current step: **L32 DOCUMENTATION / FINAL-STATE CLOSEOUT · IN_PROGRESS**
+- Current round: **Lượt 33**
+- Current step: **L33/B129 — PROMOTION REVIEW CONTRACT · IN_PROGRESS**
 - L22 closeout: **B88 + H1 — PASS**
-- Status: **L23_COMPLETE · L24_COMPLETE · L25_COMPLETE · L26_COMPLETE · L27_COMPLETE · L28_COMPLETE · L29_COMPLETE_THROUGH_B116 · L30_COMPLETE_THROUGH_B120 · L31_COMPLETE_THROUGH_B124 · L32_B125_COMPLETE · L32_H1_COMPLETE · L32_F2_COMPLETE · L32_B126_COMPLETE · L32_B127_COMPLETE · L32_F3_COMPLETE · L32_B128_COMPLETE · L32_F4_COMPLETE · L32_DOC_FINAL_ACTIVE**
-- Last recorded six-gate head: `a10171ec4578efdfc245b3b5968694fc50f99809`
+- Status: **L23_COMPLETE · L24_COMPLETE · L25_COMPLETE · L26_COMPLETE · L27_COMPLETE · L28_COMPLETE · L29_COMPLETE_THROUGH_B116 · L30_COMPLETE_THROUGH_B120 · L31_COMPLETE_THROUGH_B124 · L32_B125_COMPLETE · L32_H1_COMPLETE · L32_F2_COMPLETE · L32_B126_COMPLETE · L32_B127_COMPLETE · L32_F3_COMPLETE · L32_B128_COMPLETE · L32_F4_COMPLETE · L32_COMPLETE · L33_B129_ACTIVE**
+- Last recorded six-gate head: `a5ff445a05ee4726ff058d293b4ce4c492955b06`
 - Production/runtime activation by Roadmap V2: **disconnected**
 - Legacy/source destructive migration: **not executed**
-- Last completed: **L32/B128 functional full-system closeout — PASS on complete six-gate set**
+- Last completed: **L32 final-state closeout — PASS on complete six-gate set**
 - Last hardening: **L29-F2 validator/harness syntax repair — PASS; no gate weakening**
-- Current official step: **L32 documentation/final-state closeout revalidation**
-- B125, H1/F2, B126, B127/F3, B128 and F4 are closed. Documentation/final-state revalidation is active; L33 remains blocked until this marker head passes 6/6.
+- Current official step: **L33/B129 — canonical Promotion Review boundary**
+- L32 is fully closed. Pre-L33 audit found that `promotionReviewEligible=true` has no canonical Promotion Review boundary. L33/B129 is active.
 
 ## L22/B88 complete gate evidence
 
@@ -1003,3 +1003,23 @@ Accepted F4 head: `08b2c4c9a6099733b2717c567ae48d7222a25725`
 - Whole System Integration — run `35483642271` — PASS
 
 F4 is closed. The Math Reader deterministic browser acceptance startup race is stabilized without weakening content assertions or runtime boundaries. L32 documentation/final-state closeout is active; L33 remains blocked pending this marker head's complete six-gate PASS.
+
+
+## L32 final marker gate evidence
+
+Accepted L32 final-state head: `a5ff445a05ee4726ff058d293b4ce4c492955b06`
+
+- Roadmap V2 Current Gate — run `35488685353` — PASS
+- Foundation Domain Model — run `35488685369` — PASS
+- Windows checkout safety — run `35488685356` — PASS
+- Russian Reference UI — run `35488685378` — PASS
+- Cloudflare Preview — run `35488685317` — PASS
+- Whole System Integration — run `35488685400` — PASS
+
+L32 is fully complete through B128 plus F4 stabilization. The branch is at a technically mergeable checkpoint, but pre-merge architecture audit identified the next missing boundary: Promotion Review. L33 is opened before merge under the project rule that missing architecture creates a new round.
+
+## L33 opening
+
+L32 can emit `promotionReviewEligible=true` only when Release Review is `release_review_approved_shadow_only`, while `promotionReviewIntegration` remains `disconnected`. No canonical `roadmap_v2/promotion-review/` boundary exists. L33 therefore adds a separate data-only Promotion Review receipt boundary. It must not authorize production promotion, persistence, production consumers, runtime activation, schedule/calendar writes, notifications, or automatic actions.
+
+Current active step: **L33/B129**.
