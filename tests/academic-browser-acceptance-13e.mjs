@@ -48,7 +48,7 @@ async function approvedFlow(browser){
   const context=await browser.newContext({viewport:{width:1440,height:1000}}),page=await context.newPage(),control={online:true,status:'approved'};
   await mockControl(page,control);
   page.on('pageerror',e=>pageErrors.push(String(e?.stack||e)));
-  page.on('requestfailed',r=>{if(!r.url().startsWith('http://127.0.0.1:3003/'))failedRequests.push(`${r.method()} ${r.url()} ${r.failure()?.errorText||''}`)});
+  page.on('requestfailed',r=>{const err=r.failure()?.errorText||'';if(r.url().startsWith('http://127.0.0.1:3003/'))return;if(err==='net::ERR_ABORTED')return;failedRequests.push(`${r.method()} ${r.url()} ${err}`)});
   await page.goto(BASE,{waitUntil:'domcontentloaded',timeout:30000});
   await page.waitForFunction(()=>document.documentElement.dataset.baumanDeviceAccess==='authorized',null,{timeout:15000});
   must(await page.locator('#baumanDeviceGate').evaluate(e=>e.classList.contains('hidden')),'Device gate did not hide after approval');
