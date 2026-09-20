@@ -81,6 +81,8 @@ on:
       - 'scripts/validate-roadmap-v2-l34-b135.mjs'
       - 'scripts/validate-roadmap-v2-l34-b136.mjs'
       - 'scripts/validate-roadmap-v2-l35-b137.mjs'
+      - 'scripts/roadmap-v2-production-promotion-authorization-harness.mjs'
+      - 'scripts/validate-roadmap-v2-l35-b138.mjs'
       - '.github/workflows/roadmap-v2-reconciliation.yml'
 
 permissions:
@@ -217,6 +219,8 @@ jobs:
         run: node scripts/validate-roadmap-v2-l34-b136.mjs
       - name: Validate current L35 B137 production promotion authorization contract
         run: node scripts/validate-roadmap-v2-l35-b137.mjs
+      - name: Validate current L35 B138 production promotion authorization projector
+        run: node scripts/validate-roadmap-v2-l35-b138.mjs
       - name: Validate Foundation V2 L9
         run: node scripts/validate-foundation-domain-model.mjs
       - name: Validate current system integration
