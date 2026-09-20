@@ -186,7 +186,16 @@ body[data-hub-reference-v5="1"] .hub-safe-alert-btn::after{
   width:1px;
   background:rgba(91,111,137,.26);
 }
-body[data-hub-reference-v5="1"] .appearance-wrap,
+body[data-hub-reference-v5="1"] .appearance-wrap{
+  position:relative!important;
+  display:block!important;
+  flex:0 0 0!important;
+  width:0!important;
+  height:0!important;
+  margin:0!important;
+  overflow:visible!important;
+}
+body[data-hub-reference-v5="1"] #appearanceBtn,
 body[data-hub-reference-v5="1"] #aiBtn{display:none!important}
 body[data-hub-reference-v5="1"] .profile-wrap{
   order:20;
