@@ -257,7 +257,7 @@ try{
   await page.locator('#page-roadmap [data-rm-filter="technical"]').click();
   await page.waitForFunction(()=>document.querySelector('#page-roadmap [data-rm-filter="technical"]')?.classList.contains('active')===true);
   assert.ok(await page.locator('#page-roadmap [data-rm-course]').count()>0,'Technical roadmap filter returned no courses');
-  await page.screenshot({path:path.join(OUT,'roadmap-comprehensive-1920x1080.png'),fullPage:true});
+  await page.screenshot({path:path.join(OUT,'roadmap-reference-v2-1920x1080.png'),fullPage:true});
 
   const cases=[['tuf-f15-1920x1080',1920,1080],['laptop-1536x864',1536,864],['ipad-3x2',1180,787],['iphone-19_5x9',390,844]];
   for(const [label,width,height] of cases){
