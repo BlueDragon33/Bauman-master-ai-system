@@ -34,7 +34,21 @@ assert.equal(manifest.driftAudit.checkedProtectedPaths,40);
 assert.equal(manifest.driftAudit.changedProtectedPaths,10);
 assert.equal(manifest.driftAudit.theoryContent.recordsCurrent,18);
 assert.equal(manifest.driftAudit.theoryContent.slidesCurrent,306);
-assert.equal(fs.existsSync('foundation/content-registry'),false,'Foundation L10 must stay outside recovery');
+assert.equal(manifest.separateWork?.mergeIntoRecoveryNow,false,'Foundation L10 must remain outside Roadmap recovery ownership');
+assert.equal(
+  (manifest.hardRules||[]).some(rule=>String(rule).includes('Do not merge Foundation L10 into this recovery lane')),
+  true,
+  'Roadmap reconciliation lost the explicit Foundation L10 separation rule'
+);
+const roadmapHarnessFiles=fs.readdirSync('scripts').filter(name=>/^roadmap-v2-.*\.mjs$/.test(name));
+for(const file of roadmapHarnessFiles){
+  const source=fs.readFileSync(`scripts/${file}`,'utf8');
+  assert.equal(
+    source.includes('foundation/content-registry'),
+    false,
+    `Roadmap harness must not import or own Foundation L10: ${file}`
+  );
+}
 assert.equal(manifest.nextOfficialRound.id,'L28');
 assert.equal(manifest.nextOfficialRound.step,109);
 assert.equal(manifest.nextOfficialRound.allowedOnlyAfter,'L27R6_PASS');
