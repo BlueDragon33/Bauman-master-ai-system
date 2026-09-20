@@ -6,16 +6,16 @@
 ## Active track
 
 - Current round: **Lượt 35**
-- Current step: **L35/B137 — PRODUCTION PROMOTION AUTHORIZATION CONTRACT · IN_PROGRESS**
+- Current step: **L35 documentation/final-state closeout · IN_PROGRESS**
 - L22 closeout: **B88 + H1 — PASS**
-- Status: **L23_COMPLETE · L24_COMPLETE · L25_COMPLETE · L26_COMPLETE · L27_COMPLETE · L28_COMPLETE · L29_COMPLETE_THROUGH_B116 · L30_COMPLETE_THROUGH_B120 · L31_COMPLETE_THROUGH_B124 · L32_B125_COMPLETE · L32_H1_COMPLETE · L32_F2_COMPLETE · L32_B126_COMPLETE · L32_B127_COMPLETE · L32_F3_COMPLETE · L32_B128_COMPLETE · L32_F4_COMPLETE · L32_COMPLETE · L33_B129_COMPLETE · L33_B130_COMPLETE · L33_F1_COMPLETE · L33_B131_COMPLETE · L33_B132_COMPLETE · L33_DOC_FINAL_COMPLETE · L33_FINAL_MARKER_COMPLETE · L33_COMPLETE · L34_B133_COMPLETE · L34_F1_COMPLETE · L34_B134_COMPLETE · L34_B135_COMPLETE · L34_B136_COMPLETE · L34_DOC_FINAL_COMPLETE · L34_FINAL_MARKER_COMPLETE · L34_COMPLETE · L35_B137_ACTIVE**
-- Last recorded six-gate head: `b5fc0094e703e09928c141e05839172b51a90d41`
+- Status: **L23_COMPLETE · L24_COMPLETE · L25_COMPLETE · L26_COMPLETE · L27_COMPLETE · L28_COMPLETE · L29_COMPLETE_THROUGH_B116 · L30_COMPLETE_THROUGH_B120 · L31_COMPLETE_THROUGH_B124 · L32_B125_COMPLETE · L32_H1_COMPLETE · L32_F2_COMPLETE · L32_B126_COMPLETE · L32_B127_COMPLETE · L32_F3_COMPLETE · L32_B128_COMPLETE · L32_F4_COMPLETE · L32_COMPLETE · L33_B129_COMPLETE · L33_B130_COMPLETE · L33_F1_COMPLETE · L33_B131_COMPLETE · L33_B132_COMPLETE · L33_DOC_FINAL_COMPLETE · L33_FINAL_MARKER_COMPLETE · L33_COMPLETE · L34_B133_COMPLETE · L34_F1_COMPLETE · L34_B134_COMPLETE · L34_B135_COMPLETE · L34_B136_COMPLETE · L34_DOC_FINAL_COMPLETE · L34_FINAL_MARKER_COMPLETE · L34_COMPLETE · L35_B137_COMPLETE · L35_F1_COMPLETE · L35_B138_COMPLETE · L35_B139_COMPLETE · L35_B140_COMPLETE · L35_DOC_FINAL_ACTIVE**
+- Last recorded six-gate head: `a708d7499352ef30319dbeaa5475f9696305daf5`
 - Production/runtime activation by Roadmap V2: **disconnected**
 - Legacy/source destructive migration: **not executed**
-- Last completed: **L32 final-state closeout — PASS on complete six-gate set**
+- Last completed: **L35/B140 functional closeout — PASS on complete six-gate set**
 - Last hardening: **L29-F2 validator/harness syntax repair — PASS; no gate weakening**
-- Current official step: **L35/B137 — Production Promotion Authorization contract and canonical schemas**
-- L32, L33 and L34 are fully closed. Post-L34 architecture audit requires L35 as a separate Production Promotion Authorization boundary; B137 is active.
+- Current official step: **L35 documentation/final-state closeout**
+- L32, L33 and L34 are fully closed. L35 functional work through B140 is green; documentation/final-state revalidation is active before the final marker and post-L35 architecture audit.
 
 ## L22/B88 complete gate evidence
 
@@ -1213,3 +1213,62 @@ L34 is fully closed.
 The canonical `roadmap_v2/` tree ends at `production-readiness-review/`. L34 can establish an auditable shadow-ready result but deliberately leaves `productionPromotionAuthorized=false`, production integration disconnected, zero production consumers, and all persistence/runtime/deployment authority disabled.
 
 A separate Production Promotion Authorization boundary is therefore required. L35/B137 opens that boundary as data-only. It may eventually emit an explicit promotion-authorization receipt, but it must not connect a production consumer, persist state, deploy code, activate runtime behavior, write schedules/calendars, send notifications, or execute automatic actions.
+
+
+## L35-F1 packaged prerequisite navigation-abort defect
+
+The first B137 full-system head `69b92302b2f4862513d208515a6974017079a224` passed five gates but Whole System Integration run `35500098409` failed in packaged ChatGPT Site browser acceptance because same-origin read-only prerequisite-pack GETs were reported by Chromium as `net::ERR_ABORTED` while the packaged server log showed HTTP 200 responses.
+
+F1 narrows the existing confirmed-navigation-abort handling to same-origin GET requests with exactly `net::ERR_ABORTED` and canonical prerequisite-pack JSON paths. HTTP errors, connection failures, unknown paths and all non-aborted failures remain fatal. No academic/runtime authority boundary was weakened.
+
+## L35/B137 + F1 gate evidence
+
+Accepted B137/F1 head: `9744afa2041e227cf0115efd17dd5a4ccd62c542`
+
+- Roadmap V2 Current Gate — run `35500597418` — PASS
+- Foundation Domain Model — run `35500597415` — PASS
+- Windows checkout safety — run `35500597419` — PASS
+- Russian Reference UI — run `35500597442` — PASS
+- Cloudflare Preview — run `35500597431` — PASS
+- Whole System Integration — run `35500597429` — PASS
+
+B137 is fully accepted. The Production Promotion Authorization boundary is canonical and fail-closed, but it can issue only a receipt-scoped decision; production promotion execution, deployment, persistence, production consumers and runtime activation remain disabled.
+
+## L35/B138 gate evidence
+
+Accepted B138 head: `cb3271745482d309ab452abfb3dafcf5ea493186`
+
+- Roadmap V2 Current Gate — run `35500772897` — PASS
+- Foundation Domain Model — run `35500772871` — PASS
+- Windows checkout safety — run `35500772902` — PASS
+- Russian Reference UI — run `35500772846` — PASS
+- Cloudflare Preview — run `35500772925` — PASS
+- Whole System Integration — run `35500772873` — PASS
+
+B138 deterministic Production Promotion Authorization projection is accepted. An eligible shadow-ready upstream result plus `authorize_receipt_only` can produce a deeply frozen authorization receipt, but never an execution/deployment command.
+
+## L35/B139 gate evidence
+
+Accepted B139 head: `b3b884caaeaa82eb1e3d01cefbe77f6af4a85572`
+
+- Roadmap V2 Current Gate — run `35500917078` — PASS
+- Foundation Domain Model — run `35500917052` — PASS
+- Windows checkout safety — run `35500917060` — PASS
+- Russian Reference UI — run `35500917059` — PASS
+- Cloudflare Preview — run `35500917066` — PASS
+- Whole System Integration — run `35500917129` — PASS
+
+B139 adversarial Production Promotion Authorization validation: **34/34 PASS**. Identity/namespace impersonation, caller-supplied authority/results, schema/decision drift, reason-code abuse, nested Production Readiness Review forgery, upstream escalation attempts and post-projection privilege escalation all fail closed.
+
+## L35/B140 functional closeout gate evidence
+
+Accepted B140 functional head: `a708d7499352ef30319dbeaa5475f9696305daf5`
+
+- Roadmap V2 Current Gate — run `35501062949` — PASS
+- Foundation Domain Model — run `35501062939` — PASS
+- Windows checkout safety — run `35501062936` — PASS
+- Russian Reference UI — run `35501062933` — PASS
+- Cloudflare Preview — run `35501062935` — PASS
+- Whole System Integration — run `35501062937` — PASS
+
+B140 functional closeout is green. The L35 boundary remains receipt-only and data-only with zero production consumers and no production-promotion execution, deployment, persistence, dashboard, schedule/calendar write, runtime, notification or automatic-action authority. L35 documentation/final-state revalidation is active before the final marker and architecture audit.
