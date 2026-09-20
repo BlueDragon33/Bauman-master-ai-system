@@ -10,15 +10,18 @@ const russianIndex=fs.readFileSync('subjects/russian/index.html','utf8');
 const serviceWorker=fs.readFileSync('subjects/russian/sw.js','utf8');
 
 const checks=[
+  ['V2 adaptive flow schema is preserved', flow.includes("const SCHEMA='RUSSIAN_LEARNING_FLOW_V2';") && flow.includes("const LEGACY_SCHEMA='RUSSIAN_LEARNING_FLOW_V1';")],
   ['listening/speaking is first learning step', flow.includes("const STEP_ORDER=['speaking','alphabet','theory','vocab','grammar','exercises','check'];")],
   ['alphabet handwriting follows listening/speaking', flow.includes("alphabet:{icon:'✍️',label:'Chữ cái & viết tay'")],
   ['alphabet route opens writing surface', flow.includes("else if(step==='alphabet')click('[data-view=\"writing\"]');")],
-  ['flow evidence denominator follows seven-step order', flow.includes('<b>${evidence}/${STEP_ORDER.length}</b>')],
+  ['seven-step learning surface remains explicit', flow.includes("const STEP_ORDER=['speaking','alphabet','theory','vocab','grammar','exercises','check'];")],
+  ['five-step core progression excludes support-only vocab and grammar', flow.includes("const CORE_STEPS=['speaking','alphabet','theory','exercises','check'];")],
+  ['flow evidence denominator follows five-step core progression', flow.includes('<b>${evidence}/${CORE_STEPS.length}</b>')],
   ['writing evidence is limited to writing interactions', flow.includes("core.view==='writing'&&(['next-hand','prev-hand','open-hand-grid'") && !flow.includes("||target.closest?.('#writingCanvas')||")],
   ['canvas evidence requires an actual stroke gesture', flow.includes("writingStrokeActive=true;writingStrokeMoved=false") && flow.includes("provenance:'print_to_cursive_stroke'")],
-  ['next-step suggestion requires real activity rather than navigation-only state', flow.includes("function hasActivityEvidence(step,s)") && flow.includes("if(!hasActivityEvidence(step,ls?.steps?.[step]))return step")],
-  ['alphabet progression requires real canvas stroke evidence', flow.includes("if(step==='alphabet')return Number(s.strokeActions||0)>0") && flow.includes("Đã thao tác, chưa luyện nét")],
-  ['flow progress counter uses the same real-activity evidence rule', flow.includes("STEP_ORDER.filter(x=>hasActivityEvidence(x,ls.steps[x])).length")],
+  ['next-step suggestion requires meaningful evidence rather than navigation-only state', flow.includes("function hasMeaningfulEvidence(step,s)") && flow.includes("if(!hasMeaningfulEvidence(step,ls?.steps?.[step]))return step")],
+  ['alphabet progression requires real canvas stroke evidence', flow.includes("if(step==='alphabet')return Number(s.strokeActions||0)>0") && flow.includes("practiceActions") && flow.includes("chưa có nét viết thật")],
+  ['flow progress counter uses the same meaningful-evidence rule on core steps', flow.includes("CORE_STEPS.filter(x=>hasMeaningfulEvidence(x,ls.steps[x])).length")],
   ['support status requires real vocabulary or grammar interaction', flow.includes("(step==='vocab'||step==='grammar')&&Number(s.supportActions||0)>0")],
   ['Vietnam visual-first vocab ignores direct English/Vietnamese gloss in display meaning', core.includes("const meaning=str(base.meaningRu||v?.meaning_ru||'').trim()||str(base.visualLabel||v?.illustration_label_ru||'').trim()")],
   ['vocab UI uses contextual hint wording', core.includes("Lật gợi ý") && core.includes("Hiểu qua ngữ cảnh")],
