@@ -1,0 +1,37 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "BAUMAN_ROADMAP_V2_PRODUCTION_READINESS_REVIEW_RESULT_V1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema","receiptId","candidateRef","productionReadinessReviewerRef","submittedReviewDecision","reasonCodes",
+    "promotionReviewReceiptId","releaseReviewReceiptId","promotionEligibilityProjectionId","humanReviewReceiptId",
+    "reportId","phaseId","weekStart","sourcePromotionReviewState","effectiveProductionReadinessReviewState",
+    "shadowProductionReady","persisted","productionPromotionAuthorized","productionConsumerConnected",
+    "runtimeActionAuthorized","scheduleWriteAllowed","notificationWriteAllowed"
+  ],
+  "properties": {
+    "schema": {"const": "BAUMAN_ROADMAP_V2_PRODUCTION_READINESS_REVIEW_RESULT_V1"},
+    "receiptId": {"type": "string","minLength": 1},
+    "candidateRef": {"type": "string","pattern": "^CANDIDATE::[A-Z0-9_-]+$"},
+    "productionReadinessReviewerRef": {"type": "string","pattern": "^PRODUCTION_READINESS_REVIEWER::[A-Z0-9_-]+$"},
+    "submittedReviewDecision": {"enum": ["approve_shadow_readiness","needs_revision","rejected"]},
+    "reasonCodes": {"type": "array","minItems": 1,"maxItems": 12,"items": {"type": "string","pattern": "^[A-Z0-9_-]{1,64}$"}},
+    "promotionReviewReceiptId": {"type": "string","minLength": 1},
+    "releaseReviewReceiptId": {"type": "string","minLength": 1},
+    "promotionEligibilityProjectionId": {"type": "string","minLength": 1},
+    "humanReviewReceiptId": {"type": "string","minLength": 1},
+    "reportId": {"type": "string","minLength": 1},
+    "phaseId": {"enum": ["GD0","GD1","GD2","GD3"]},
+    "weekStart": {"type": "string","format": "date"},
+    "sourcePromotionReviewState": {"enum": ["promotion_review_blocked_upstream","promotion_review_needs_revision","promotion_review_rejected","promotion_review_approved_shadow_only"]},
+    "effectiveProductionReadinessReviewState": {"enum": ["production_readiness_review_blocked_upstream","production_readiness_review_needs_revision","production_readiness_review_rejected","production_readiness_review_approved_shadow_only"]},
+    "shadowProductionReady": {"type": "boolean"},
+    "persisted": {"const": false},
+    "productionPromotionAuthorized": {"const": false},
+    "productionConsumerConnected": {"const": false},
+    "runtimeActionAuthorized": {"const": false},
+    "scheduleWriteAllowed": {"const": false},
+    "notificationWriteAllowed": {"const": false}
+  }
+}
