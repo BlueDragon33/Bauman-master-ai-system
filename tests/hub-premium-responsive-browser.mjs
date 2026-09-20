@@ -222,8 +222,8 @@ try{
         dashboard:!!document.querySelector('.hub-safe-dashboard'),
         original:!!document.querySelector('#page-home .canva-dashboard-page'),
         originalFolded:document.querySelector('#page-home .canva-dashboard-page')?.classList.contains('hub-safe-preserved-collapsed')===true,
-        summary:!!document.querySelector('.hub-v2-home'),
-        legacyPanels:!!document.querySelector('#page-home .hub-safe-assistant,#page-home .hub-safe-schedule,#page-home .hub-safe-achievements,#page-home .hub-safe-overall,#page-home .hub-safe-subjects'),
+        reference:!!document.querySelector('#page-home .hub-safe-dashboard[data-home-reference-v4]'),
+        referencePanels:['.hub-safe-subjects','.hub-safe-assistant','.hub-safe-schedule','.hub-safe-achievements','.hub-safe-overall'].every(sel=>{const el=document.querySelector('#page-home '+sel);return !!el&&getComputedStyle(el).display!=='none'}),
         page:document.getElementById('page-home')?.classList.contains('active')===true,
         dashboardBottom:dash?.bottom??null,
         goldBackground:gold.backgroundImage,
@@ -232,8 +232,8 @@ try{
     });
     assert.ok(snap.app&&snap.appearance&&snap.dashboard&&snap.original&&snap.page,`${label}: safe/preserved Hub content missing`);
     assert.ok(snap.originalFolded,`${label}: canonical home should stay folded by default`);
-    assert.ok(snap.summary,`${label}: concise Home summary missing`);
-    assert.equal(snap.legacyPanels,false,`${label}: legacy detailed Home panels leaked into summary`);
+    assert.ok(snap.reference,`${label}: reference Home marker missing`);
+    assert.equal(snap.referencePanels,true,`${label}: reference Home panels are incomplete`);
     assert.ok(snap.scroll<=snap.client+2,`${label}: horizontal overflow ${snap.scroll}/${snap.client}`);
     assert.match(snap.goldBackground,/gradient/i,`${label}: primary CTA lost premium gold background`);
     if(width>=1500)assert.ok(snap.dashboardBottom<=height+40,`${label}: premium dashboard no longer fits the first 16:9 screen (${snap.dashboardBottom}/${height})`);
@@ -241,7 +241,7 @@ try{
   }
 
   assert.deepEqual(errors,[],'Hub emitted console/page errors');
-  fs.writeFileSync(path.join(OUT,'summary.json'),JSON.stringify({status:'PASS',mode:'safe-additive-shell+app-manager-access',subjects:content.subjectIds.length,viewports:cases.map(x=>x[0]),planningWrapper:content.planningWrapper,safeCheck:content.safeCheck,managedAccess:content.managedAccess,staticOwnershipGate:'PASS',homeSummaryV2:'PASS',appearancePresets:'PASS',errors},null,2));
+  fs.writeFileSync(path.join(OUT,'summary.json'),JSON.stringify({status:'PASS',mode:'safe-additive-shell+app-manager-access',subjects:content.subjectIds.length,viewports:cases.map(x=>x[0]),planningWrapper:content.planningWrapper,safeCheck:content.safeCheck,managedAccess:content.managedAccess,staticOwnershipGate:'PASS',referenceHomeV4:'PASS',appearancePresets:'PASS',errors},null,2));
   console.log('Hub safe additive responsive acceptance PASS');
 }finally{
   await browser?.close();
