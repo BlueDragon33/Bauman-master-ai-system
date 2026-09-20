@@ -4,7 +4,7 @@
  */
 (()=>{
 'use strict';
-const RELEASE='HUB_SEARCH_HOME_SUMMARY_V2_2026_09';
+const RELEASE='HUB_SEARCH_HOME_SUMMARY_V3_2026_09';
 const q=(s,r=document)=>r.querySelector(s);
 const safe=s=>String(s??'').replace(/[&<>"']/g,m=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#039;'}[m]));
 const S=()=>typeof state!=='undefined'&&state?state:{};
@@ -61,11 +61,10 @@ function homeHTML(){
       +'<div class="hub-v2-resume-progress"><div class="hub-v2-progress-ring" style="--pct:'+pct+'"><b>'+pct+'%</b></div><span>Tiến độ môn</span></div>'
       +'<button class="btn hub-safe-gold" data-hub-v2-action="continue">Mở lại</button>'
     +'</section>'
-    +'<section class="hub-v2-system-strip" aria-label="Tổng quan hệ thống">'
-      +'<button data-hub-v2-action="progress"><small>Tiến độ chung</small><b>'+overall+'%</b><span>Xem chi tiết</span></button>'
-      +'<button data-hub-v2-action="review"><small>Cần ôn</small><b>'+reviews+'</b><span>'+(reviews?'Ưu tiên xử lý':'Không có tồn đọng')+'</span></button>'
-      +'<button data-hub-v2-action="schedule"><small>Ca kế tiếp</small><b>'+safe(next?.date||'—')+'</b><span>'+safe(nextText)+'</span></button>'
-      +'<button data-hub-v2-action="research"><small>НИР / ВКР</small><b>'+safe(researchFocus())+'</b><span>Mở hướng nghiên cứu</span></button>'
+    +'<section class="hub-v2-system-strip" aria-label="Tóm tắt nhanh">'
+      +'<button data-hub-v2-action="progress"><small>Tiến độ chung</small><b>'+overall+'%</b><span>Xem khi cần</span></button>'
+      +'<button data-hub-v2-action="review"><small>Cần ôn</small><b>'+reviews+'</b><span>'+(reviews?'Ưu tiên xử lý':'Đang sạch')+'</span></button>'
+      +'<button data-hub-v2-action="schedule"><small>Ca tiếp theo</small><b>'+safe(next?.date||'—')+'</b><span>'+safe(nextText)+'</span></button>'
     +'</section>'
   +'</div>';
 }
@@ -111,30 +110,60 @@ function compactSubjectCapability(){
   return true;
 }
 
-function scoreItem(item,query){
-  const nq=normalize(query),tokens=nq.split(/\s+/).filter(Boolean);
-  if(!tokens.length)return 0;
-  const title=normalize(item.title),id=normalize(item.id),keywords=normalize(item.keywords),hay=(title+' '+id+' '+keywords).trim();
-  if(!tokens.every(t=>hay.includes(t)))return 0;
-  let score=10;
-  if(id===nq)score+=900;
-  if(title===nq)score+=850;
-  else if(title.startsWith(nq))score+=500;
-  else if(title.includes(nq))score+=320;
-  for(const t of tokens){
-    if(title.split(' ').includes(t))score+=110;
-    else if(title.includes(t))score+=70;
-    if(id.includes(t))score+=80;
-    if(keywords.includes(t))score+=25;
+const QUERY_ALIASES={
+  'toan':['math','matematika','đại số','xác suất','thống kê'],
+  'tieng nga':['russian','русский','nga'],
+  'nga':['russian','русский','tiếng nga'],
+  'lap trinh':['programming','python','sql','oop','git'],
+  'code':['programming','python','sql','oop','git'],
+  'lich':['schedule','thời khóa biểu','ca học'],
+  'thoi khoa bieu':['schedule','lịch','ca học'],
+  'lo trinh':['roadmap','giai đoạn','học kỳ'],
+  'luan van':['research','нир','вкр','thesis','nghiên cứu'],
+  'nghien cuu':['research','нир','вкр','luận văn'],
+  'ai':['machine learning','ml','neural'],
+  'cam bien':['signal','telemetry','sensor','chuỗi thời gian']
+};
+const STOP_WORDS=new Set(['hoc','mon','tim','kiem','xem','cho','toi','muon','can','ve','cua','trong','phan','noi','dung']);
+function queryTokens(query){
+  const nq=normalize(query),base=nq.split(/\s+/).filter(Boolean),tokens=base.filter(t=>!STOP_WORDS.has(t));
+  const expanded=new Set(tokens.length?tokens:base);
+  for(const [key,values] of Object.entries(QUERY_ALIASES)){
+    const nk=normalize(key);
+    if(nq.includes(nk))values.forEach(v=>normalize(v).split(/\s+/).filter(Boolean).forEach(t=>expanded.add(t)));
   }
+  return {nq,tokens:[...expanded]};
+}
+function scoreItem(item,query){
+  const {nq,tokens}=queryTokens(query);
+  if(!tokens.length)return 0;
+  const title=normalize(item.title),id=normalize(item.id),keywords=normalize(item.keywords),subtitle=normalize(item.subtitle),hay=(title+' '+id+' '+subtitle+' '+keywords).trim();
+  let matched=0,score=0;
+  if(id===nq)score+=1200;
+  if(title===nq)score+=1100;
+  else if(title.startsWith(nq))score+=700;
+  else if(title.includes(nq))score+=500;
+  if(hay.includes(nq)&&nq.length>=3)score+=260;
+  for(const t of tokens){
+    if(!t)continue;
+    if(title.split(' ').includes(t)){score+=180;matched+=1;continue}
+    if(title.includes(t)){score+=125;matched+=1;continue}
+    if(id===t||id.startsWith(t)){score+=150;matched+=1;continue}
+    if(subtitle.includes(t)){score+=70;matched+=1;continue}
+    if(keywords.includes(t)){score+=45;matched+=1;continue}
+  }
+  if(!matched&&score===0)return 0;
+  const coverage=matched/Math.max(1,tokens.length);
+  score+=Math.round(coverage*220);
+  if(coverage<0.34&&score<500)return 0;
   score+=Number(item.weight||0);
   return score;
 }
 function searchIndex(){
   const s=S(),d=D(),items=[];
   const pages=[
-    {id:'home',title:'Trang chủ',keywords:'tong quan dashboard bat dau',weight:10},
-    {id:'roadmap',title:'Lộ trình',keywords:'lo trinh roadmap giai doan hoc ky bauman',weight:40},
+    {id:'home',title:'Trang chủ',keywords:'tong quan dashboard bat dau home',weight:10},
+    {id:'roadmap',title:'Lộ trình',keywords:'lo trinh roadmap giai doan hoc ky bauman ke hoach hoc',weight:40},
     {id:'subjects',title:'Môn học',keywords:'mon hoc khoa hoc module',weight:30},
     {id:'schedule',title:'Lịch học',keywords:'lich thoi khoa bieu schedule ca hoc tu dong',weight:30},
     {id:'research',title:'НИР & Luận văn',keywords:'nir vkr luan van nghien cuu thesis research',weight:30}
