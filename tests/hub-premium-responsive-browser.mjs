@@ -115,23 +115,23 @@ try{
   await openHub(page);
   const content=await checkCanonicalContent(page);
 
-  // Home must stay concise and global search must route across the system.
+  // The attached reference image is the canonical Home composition.
   const homeIA=await page.evaluate(()=>({
-    summary:!!document.querySelector('.hub-v2-home'),
-    stage:!!document.querySelector('.hub-v2-overview-hero'),
-    resume:!!document.querySelector('.hub-v2-resume-card'),
-    metrics:document.querySelectorAll('.hub-v2-system-strip>button').length,
-    legacyVisible:['.hub-safe-subjects','.hub-safe-assistant','.hub-safe-schedule','.hub-safe-achievements','.hub-safe-overall'].some(sel=>{
-      const el=document.querySelector('#page-home '+sel);
-      return !!el&&getComputedStyle(el).display!=='none';
-    }),
+    reference:document.querySelector('#page-home .hub-safe-dashboard')?.dataset.homeReferenceV4||'',
+    hero:!!document.querySelector('#page-home .hub-safe-hero'),
+    subjectCards:document.querySelectorAll('#page-home .hub-safe-subject').length,
+    continueCard:!!document.querySelector('#page-home .hub-safe-continue'),
+    assistant:!!document.querySelector('#page-home .hub-safe-assistant'),
+    schedule:!!document.querySelector('#page-home .hub-safe-schedule'),
+    achievements:!!document.querySelector('#page-home .hub-safe-achievements'),
+    overall:!!document.querySelector('#page-home .hub-safe-overall'),
+    capabilityOnHome:!!document.querySelector('#page-home .hub-safe-capability,#page-home .hub-v2-subject-capability'),
     canonicalHidden:getComputedStyle(document.querySelector('#page-home .canva-dashboard-page')).display==='none'
   }));
-  assert.equal(homeIA.summary,true,'Concise Home summary missing');
-  assert.equal(homeIA.stage,true,'Current-stage overview missing');
-  assert.equal(homeIA.resume,true,'Resume block missing');
-  assert.equal(homeIA.metrics,3,'Home should expose exactly three high-signal indicators; Research stays in its dedicated tab');
-  assert.equal(homeIA.legacyVisible,false,'Detailed panels leaked onto Home');
+  assert.match(homeIA.reference,/HUB_SEARCH_REFERENCE_HOME_V4/,'Reference Home marker missing');
+  assert.ok(homeIA.hero&&homeIA.continueCard&&homeIA.assistant&&homeIA.schedule&&homeIA.achievements&&homeIA.overall,'Reference Home lost a primary panel');
+  assert.equal(homeIA.subjectCards,5,'Reference Home must expose exactly five subject cards in the first row');
+  assert.equal(homeIA.capabilityOnHome,false,'Subject-specific capability detail must not be promoted onto Home');
   assert.equal(homeIA.canonicalHidden,true,'Canonical detail dashboard should be preserved but hidden from Home');
 
   const searchAudit=await page.evaluate(()=>({
