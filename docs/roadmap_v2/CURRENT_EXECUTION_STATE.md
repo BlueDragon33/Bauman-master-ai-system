@@ -6,16 +6,16 @@
 ## Active track
 
 - Current round: **Lượt 33**
-- Current step: **L33 DOCUMENTATION / FINAL-STATE CLOSEOUT · IN_PROGRESS**
+- Current step: **L33 FINAL MARKER · IN_PROGRESS**
 - L22 closeout: **B88 + H1 — PASS**
-- Status: **L23_COMPLETE · L24_COMPLETE · L25_COMPLETE · L26_COMPLETE · L27_COMPLETE · L28_COMPLETE · L29_COMPLETE_THROUGH_B116 · L30_COMPLETE_THROUGH_B120 · L31_COMPLETE_THROUGH_B124 · L32_B125_COMPLETE · L32_H1_COMPLETE · L32_F2_COMPLETE · L32_B126_COMPLETE · L32_B127_COMPLETE · L32_F3_COMPLETE · L32_B128_COMPLETE · L32_F4_COMPLETE · L32_COMPLETE · L33_B129_COMPLETE · L33_B130_COMPLETE · L33_F1_COMPLETE · L33_B131_COMPLETE · L33_B132_COMPLETE · L33_DOC_FINAL_ACTIVE**
-- Last recorded six-gate head: `a5ff445a05ee4726ff058d293b4ce4c492955b06`
+- Status: **L23_COMPLETE · L24_COMPLETE · L25_COMPLETE · L26_COMPLETE · L27_COMPLETE · L28_COMPLETE · L29_COMPLETE_THROUGH_B116 · L30_COMPLETE_THROUGH_B120 · L31_COMPLETE_THROUGH_B124 · L32_B125_COMPLETE · L32_H1_COMPLETE · L32_F2_COMPLETE · L32_B126_COMPLETE · L32_B127_COMPLETE · L32_F3_COMPLETE · L32_B128_COMPLETE · L32_F4_COMPLETE · L32_COMPLETE · L33_B129_COMPLETE · L33_B130_COMPLETE · L33_F1_COMPLETE · L33_B131_COMPLETE · L33_B132_COMPLETE · L33_DOC_FINAL_COMPLETE · L33_FINAL_MARKER_ACTIVE**
+- Last recorded six-gate head: `552227d029d927aec5cfa783d1a9895a9aff14c3`
 - Production/runtime activation by Roadmap V2: **disconnected**
 - Legacy/source destructive migration: **not executed**
 - Last completed: **L32 final-state closeout — PASS on complete six-gate set**
 - Last hardening: **L29-F2 validator/harness syntax repair — PASS; no gate weakening**
-- Current official step: **L33 documentation/final-state closeout revalidation**
-- L32 is fully closed. L33/B129, B130, F1, B131 and B132 are closed. L33 documentation/final-state revalidation is active; L34 remains blocked pending final-state 6/6 and architecture audit.
+- Current official step: **L33 final marker revalidation**
+- L32 is fully closed. L33/B129, B130, F1, B131, B132 and documentation/final-state revalidation are closed. L33 final marker revalidation is active; L34 remains blocked until this marker head passes 6/6.
 
 ## L22/B88 complete gate evidence
 
@@ -1086,3 +1086,17 @@ Accepted B132 functional head: `e7752375d8add491e5477d42af749b1ef578025d`
 - Whole System Integration — run `35490580176` — PASS
 
 B132 functional closeout is green. Promotion Review remains data-only; Production Readiness Review and production integration remain disconnected. L33 documentation/final-state revalidation is active.
+
+
+## L33 documentation/final-state gate evidence
+
+Accepted documentation/final-state head: `552227d029d927aec5cfa783d1a9895a9aff14c3`
+
+- Roadmap V2 Current Gate — run `35490728739` — PASS
+- Foundation Domain Model — run `35490728738` — PASS
+- Windows checkout safety — run `35490728726` — PASS
+- Russian Reference UI — run `35490728752` — PASS
+- Cloudflare Preview — run `35490728733` — PASS
+- Whole System Integration — run `35490728722` — PASS
+
+L33 final marker is now under revalidation. No production integration, persistence, runtime activation, schedule/calendar write, notification write or automatic action has been enabled.
