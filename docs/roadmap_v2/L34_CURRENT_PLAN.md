@@ -1,6 +1,6 @@
 # Lượt 34 — Current Plan · Bước 133–136
 
-Status: `B133_COMPLETE · L34-F1_COMPLETE · B134_COMPLETE · B135_COMPLETE · B136_ACTIVE`
+Status: `B133_COMPLETE · L34-F1_COMPLETE · B134_COMPLETE · B135_COMPLETE · B136_COMPLETE · DOCUMENTATION_FINAL_STATE_ACTIVE`
 
 Prerequisite: L33 final marker head `c961a46fbed064bc84a3b763516cae41d2bccff1` passed the complete six-gate set.
 
@@ -24,7 +24,7 @@ L34 adds a separate data-only Production Readiness Review boundary. It remains s
 
 ## B136 — Full-system closeout
 
-**ACTIVE.** Re-run B133/B134/B135 as dependencies, validate canonical-tree/runtime isolation, verify the Production Readiness Review harness remains side-effect free, and confirm blocked upstream input cannot gain production authority.
+**COMPLETE.** Accepted functional head `2af9627bfec1319c98f2d561f447a8a6f5ea2f36` passed the complete six-gate set. The closeout re-ran B133/B134/B135, validated canonical-tree/runtime isolation, verified the harness remained side-effect free, and confirmed blocked upstream input cannot gain production authority.
 
 Any defect creates `L34-Fx`; any missing architecture creates `L34-Hx`. Later steps remain blocked until the predecessor head passes the complete six-gate set.
 
@@ -60,3 +60,17 @@ Accepted B135 head: `3fd704dbd13976419c594aefc3b93b6c4be3ae50`
 - Whole System Integration — run `35493937191` — PASS
 
 B135 adversarial validation: **31/31 PASS**. B136 is permitted to open.
+
+
+## B136 functional gate evidence
+
+Accepted B136 functional head: `2af9627bfec1319c98f2d561f447a8a6f5ea2f36`
+
+- Roadmap V2 Current Gate — run `35494103959` — PASS
+- Foundation Domain Model — run `35494103914` — PASS
+- Windows checkout safety — run `35494103908` — PASS
+- Russian Reference UI — run `35494103919` — PASS
+- Cloudflare Preview — run `35494103952` — PASS
+- Whole System Integration — run `35494103968` — PASS
+
+L34 is functionally complete through B136. Documentation/final-state revalidation is active; architecture audit and any subsequent round remain blocked until that marker head passes the same complete six-gate set.
