@@ -478,3 +478,32 @@ body[data-hub-roadmap-v2="1"] #page-roadmap .hub-rm-side-card{padding:9px}
 @media(max-width:720px){
   body[data-hub-roadmap-v2="1"] .hub-rm-topnav{display:none!important}
 }
+
+body[data-hub-roadmap-v2="1"] .topbar{
+  background:linear-gradient(180deg,#0a2340 0%,#071a31 100%)!important;
+  border-bottom:1px solid rgba(77,112,151,.36)!important;
+  box-shadow:0 4px 18px rgba(0,20,44,.14)!important;
+}
+body[data-hub-roadmap-v2="1"] .hub-rm-topnav{
+  background:transparent!important;
+}
+body[data-hub-roadmap-v2="1"] .hub-rm-topnav button{
+  color:#d7e3f0!important;
+}
+body[data-hub-roadmap-v2="1"] .hub-rm-topnav button i{color:#abc1d9!important}
+body[data-hub-roadmap-v2="1"] .hub-rm-topnav button.active{
+  color:#fff!important;
+  background:linear-gradient(180deg,rgba(37,139,255,.28),rgba(20,89,168,.10))!important;
+}
+body[data-hub-roadmap-v2="1"] .hub-rm-topnav button.active i{color:#54adff!important}
+body[data-hub-roadmap-v2="1"] .main{
+  min-height:calc(100dvh - 62px)!important;
+}
+body[data-hub-roadmap-v2="1"] #page-roadmap{
+  min-height:calc(100dvh - 80px)!important;
+  background:#f4f8fd!important;
+}
+body[data-hub-roadmap-v2="1"] #profileBtn{
+  width:188px!important;
+  min-width:188px!important;
+}
