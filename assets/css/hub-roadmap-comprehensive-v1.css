@@ -1,7 +1,7 @@
 /* Bauman Master Hub · Comprehensive Roadmap V1
    Direct web implementation based on the user-supplied comprehensive roadmap reference. */
-#page-roadmap>.canva-roadmap-page[data-rm-canonical="preserved"],
-#page-roadmap>[data-academic2026="roadmap"][data-rm-canonical="preserved"]{display:none!important}
+#page-roadmap .canva-roadmap-page,
+#page-roadmap [data-academic2026="roadmap"]{display:none!important}
 
 #page-roadmap{min-width:0}
 #page-roadmap .hub-roadmap-v1{
