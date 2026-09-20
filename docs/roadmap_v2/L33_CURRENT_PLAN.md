@@ -1,6 +1,6 @@
 # Lượt 33 — Current Plan · Bước 129–132
 
-Status: `B129_PASS · B130_ACTIVE · B131_BLOCKED · B132_BLOCKED`
+Status: `B129_PASS · B130_IMPLEMENTED · F1_ACTIVE · B131_BLOCKED · B132_BLOCKED`
 
 Prerequisite: L32 final-state head `a5ff445a05ee4726ff058d293b4ce4c492955b06` passed the complete six-gate set.
 
@@ -27,3 +27,8 @@ Blocked until B130 passes the complete six-gate set.
 Blocked until B131 passes the complete six-gate set.
 
 Any defect creates `L33-Fx`; any missing architecture creates `L33-Hx`. Later steps remain blocked until the predecessor head passes the complete six-gate set.
+
+
+## L33-F1 — Packaged Hub Safe Shell rehydration stabilization
+
+B130 Roadmap validation passed, but Whole System packaged Hub responsive acceptance failed with `Canonical detail toggle missing` after the package-specific App Manager/device-access startup path. Source Hub acceptance remained green. F1 adds an additive-only observer that re-applies Safe Shell after a late canonical home rerender. Assertions, route ownership and data-write boundaries remain unchanged. B130 stays blocked until F1 passes 6/6.
