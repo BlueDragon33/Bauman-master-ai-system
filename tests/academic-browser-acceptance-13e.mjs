@@ -79,8 +79,9 @@ async function approvedFlow(browser){
   must(runtime.automaticSchedulerMutation===false&&runtime.directPreviewApply===false&&runtime.explicitApply===true,'Apply policy drift: automatic/direct path must stay off; explicit transactional path must be on');
   ok('runtime_coexistence',JSON.stringify(runtime));
 
-  await page.waitForSelector('[data-academic2026="home"]');
+  await page.waitForSelector('[data-academic2026="home"]',{state:'attached'});
   assert.equal(await page.locator('[data-academic2026="home"]').count(),1);
+  assert.equal(await page.locator('[data-academic2026="home"]').evaluate(el=>getComputedStyle(el).display),'none','Academic diagnostic shell must remain attached but off the primary Home in Reference V5');
   assert.equal(await page.getByText('Course Risk + Active Repair',{exact:true}).count(),1);
   assert.equal(await page.getByText('Scheduler Integration Preview',{exact:true}).count(),1);
   assert.equal(await page.locator('[data-academic13f="apply"]').count(),1);
@@ -108,7 +109,7 @@ async function approvedFlow(browser){
     window.state.schedule.entries['2026-06-09|morning1']={subjectId:'research',learningItem:'External E2E',source:'external_sync'};
     window.save();window.app.home();
   });
-  await page.waitForSelector('[data-academic13d="preview"]');
+  await page.waitForSelector('[data-academic13d="preview"]',{state:'attached'});
   const preview=await page.evaluate(()=>{
     const pv=window.BAUMAN_ACADEMIC_SCHEDULER_PREVIEW_2026,before=JSON.stringify(window.state.schedule.entries),p=pv.generateSchedulePreview(),after=JSON.stringify(window.state.schedule.entries);
     let directApplyError='';try{pv.applySchedulePreview()}catch(e){directApplyError=String(e?.message||e)}
@@ -158,9 +159,9 @@ async function approvedFlow(browser){
   const duplicates=await page.evaluate(()=>({home:document.querySelectorAll('[data-academic2026="home"]').length,preview:document.querySelectorAll('[data-academic13d="preview"]').length,apply:document.querySelectorAll('[data-academic13f="apply"]').length}));
   assert.deepEqual(duplicates,{home:1,preview:1,apply:1});ok('no_duplicate_patches');
 
-  await page.setViewportSize({width:390,height:844});await page.evaluate(()=>{window.app.page('home',false);window.app.home()});await page.waitForSelector('[data-academic2026="home"]');
-  const mobile=await page.evaluate(()=>{const home=document.getElementById('page-home'),risk=document.querySelector('.academic2026-risk-grid'),action=document.querySelector('.academic2026-action-row'),apply=document.querySelector('.academic2026-apply-panel');return{client:home?.clientWidth||0,scroll:home?.scrollWidth||0,risk:risk?getComputedStyle(risk).gridTemplateColumns:'',action:action?getComputedStyle(action).gridTemplateColumns:'',apply:apply?getComputedStyle(apply).gridTemplateColumns:''}});
-  must(mobile.scroll<=mobile.client+2,`Mobile horizontal overflow ${JSON.stringify(mobile)}`);if(mobile.risk)must(mobile.risk.trim().split(/\s+/).length===1,`Risk grid not one column: ${mobile.risk}`);if(mobile.action)must(mobile.action.trim().split(/\s+/).length===1,`Action grid not one column: ${mobile.action}`);if(mobile.apply)must(mobile.apply.trim().split(/\s+/).length===1,`Apply panel not one column: ${mobile.apply}`);
+  await page.setViewportSize({width:390,height:844});await page.evaluate(()=>{window.app.page('home',false);window.app.home()});await page.waitForSelector('[data-academic2026="home"]',{state:'attached'});
+  const mobile=await page.evaluate(()=>{const home=document.getElementById('page-home'),academic=document.querySelector('[data-academic2026="home"]'),risk=document.querySelector('.academic2026-risk-grid'),action=document.querySelector('.academic2026-action-row'),apply=document.querySelector('.academic2026-apply-panel');const visible=academic?getComputedStyle(academic).display!=='none':false;return{client:home?.clientWidth||0,scroll:home?.scrollWidth||0,academicVisible:visible,risk:risk?getComputedStyle(risk).gridTemplateColumns:'',action:action?getComputedStyle(action).gridTemplateColumns:'',apply:apply?getComputedStyle(apply).gridTemplateColumns:''}});
+  must(mobile.scroll<=mobile.client+2,`Mobile horizontal overflow ${JSON.stringify(mobile)}`);if(mobile.academicVisible){if(mobile.risk)must(mobile.risk.trim().split(/\s+/).length===1,`Risk grid not one column: ${mobile.risk}`);if(mobile.action)must(mobile.action.trim().split(/\s+/).length===1,`Action grid not one column: ${mobile.action}`);if(mobile.apply)must(mobile.apply.trim().split(/\s+/).length===1,`Apply panel not one column: ${mobile.apply}`)}else must(mobile.academicVisible===false,'Academic Home detail should stay hidden in Reference V5');
   await page.screenshot({path:path.join(OUT,'mobile-home.png'),fullPage:true});ok('responsive_390px',JSON.stringify(mobile));
 
   await page.setViewportSize({width:1440,height:1000});

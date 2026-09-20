@@ -48,6 +48,7 @@ async function openHub(page){
   await page.waitForFunction(()=>!!window.BAUMAN_HUB_SAFE?.selfCheck,null,{timeout:10000});
   await page.waitForFunction(()=>window.BAUMAN_HUB_LEARNING_CLUSTER?.selfCheck?.().flatLayout===true&&window.BAUMAN_HUB_LEARNING_CLUSTER?.selfCheck?.().visibleActions?.length===10,null,{timeout:10000});
   await page.waitForFunction(()=>window.BAUMAN_HUB_OVERVIEW_SEARCH_V2?.selfCheck?.().referenceHome===true,null,{timeout:10000});
+  await page.waitForFunction(()=>window.BAUMAN_HUB_REFERENCE_V5?.selfCheck?.().active===true,null,{timeout:10000});
   await page.waitForFunction(()=>{
     const safe=window.BAUMAN_HUB_SAFE?.selfCheck?.();
     return safe?.ready===true
@@ -70,7 +71,8 @@ async function checkCanonicalContent(page){
     safeCheck:window.BAUMAN_HUB_SAFE?.selfCheck?.(),
     managedAccess:window.BAUMAN_APP_MANAGER_ACCESS?.selfCheck?.(),
     learningCluster:window.BAUMAN_HUB_LEARNING_CLUSTER?.selfCheck?.(),
-    overviewSearch:window.BAUMAN_HUB_OVERVIEW_SEARCH_V2?.selfCheck?.()
+    overviewSearch:window.BAUMAN_HUB_OVERVIEW_SEARCH_V2?.selfCheck?.(),
+    referenceV5:window.BAUMAN_HUB_REFERENCE_V5?.selfCheck?.()
   }));
   assert.deepEqual(content.subjectIds,['ai','foundation','math','programming','research','russian','signal','systems']);
   assert.equal(content.pages.length,5,'canonical Hub pages were removed');
@@ -100,6 +102,10 @@ async function checkCanonicalContent(page){
   assert.equal(content.overviewSearch?.searchInstalled,true,'Global search V3 is not installed');
   assert.equal(content.overviewSearch?.accentInsensitive,true,'Search is not accent-insensitive');
   assert.equal(content.overviewSearch?.referencePanelsVisible,true,'Reference Home panels are incomplete');
+  assert.equal(content.referenceV5?.active,true,'Precision Reference V5 is not active');
+  assert.equal(content.referenceV5?.primaryPanels,true,'Precision Reference V5 primary panels are incomplete');
+  assert.equal(content.referenceV5?.secondaryHomeHidden,true,'Secondary academic Home content leaked below the reference dashboard');
+  assert.equal(content.referenceV5?.profileCopy,true,'Top profile copy is missing from the reference topbar');
   return content;
 }
 
@@ -156,18 +162,31 @@ try{
   assert.ok(naturalSearch.math.some(x=>x[1]==='math'),'Natural Math query did not surface Math');
   assert.ok(naturalSearch.schedule.some(x=>x[0]==='page'&&x[1]==='schedule'),'Natural schedule query did not surface Schedule');
   assert.ok(naturalSearch.thesis.some(x=>x[0]==='research'||x[1]==='research'),'Natural thesis/UGV query did not surface Research');
-  const homeAudit=await page.evaluate(()=>({
-    reference:window.BAUMAN_HUB_OVERVIEW_SEARCH_V2.selfCheck().referenceHome,
-    panels:window.BAUMAN_HUB_OVERVIEW_SEARCH_V2.selfCheck().referencePanelsVisible,
-    assistantTitle:document.querySelector('#page-home .hub-safe-assistant h2')?.textContent?.trim()||'',
-    scheduleTitle:document.querySelector('#page-home .hub-safe-schedule h2')?.textContent?.trim()||'',
-    achievementTitle:document.querySelector('#page-home .hub-safe-achievements h2')?.textContent?.trim()||''
-  }));
+  const homeAudit=await page.evaluate(()=>{
+    const offset=(parentSel,childSel)=>{const p=document.querySelector(parentSel)?.getBoundingClientRect(),c=document.querySelector(childSel)?.getBoundingClientRect();return p&&c?Math.round(c.top-p.top):999};
+    return {
+      reference:window.BAUMAN_HUB_OVERVIEW_SEARCH_V2.selfCheck().referenceHome,
+      panels:window.BAUMAN_HUB_OVERVIEW_SEARCH_V2.selfCheck().referencePanelsVisible,
+      assistantTitle:document.querySelector('#page-home .hub-safe-assistant h2')?.textContent?.trim()||'',
+      scheduleTitle:document.querySelector('#page-home .hub-safe-schedule h2')?.textContent?.trim()||'',
+      achievementTitle:document.querySelector('#page-home .hub-safe-achievements h2')?.textContent?.trim()||'',
+      scheduleHeaderOffset:offset('#page-home .hub-safe-schedule','#page-home .hub-safe-schedule .hub-safe-section-head'),
+      achievementHeaderOffset:offset('#page-home .hub-safe-achievements','#page-home .hub-safe-achievements .hub-safe-section-head'),
+      overallHeaderOffset:offset('#page-home .hub-safe-overall','#page-home .hub-safe-overall .hub-safe-section-head'),
+      achievementBodyOffset:offset('#page-home .hub-safe-achievements','#page-home .hub-safe-achievements .hub-safe-ach-grid'),
+      overallBodyOffset:offset('#page-home .hub-safe-overall','#page-home .hub-safe-overall .hub-safe-overall-inner')
+    };
+  });
   assert.equal(homeAudit.reference,true,'Reference Home self-check failed');
   assert.equal(homeAudit.panels,true,'Reference Home panel set is incomplete');
   assert.equal(homeAudit.assistantTitle,'♙ AI Study Assistant','AI panel title no longer matches reference UI');
   assert.equal(homeAudit.scheduleTitle,'Lịch học hôm nay','Schedule panel title no longer matches reference UI');
   assert.equal(homeAudit.achievementTitle,'Thành tựu gần đây','Achievement panel title no longer matches reference UI');
+  assert.ok(homeAudit.scheduleHeaderOffset<45,'Schedule header was pushed down inside its card');
+  assert.ok(homeAudit.achievementHeaderOffset<45,'Achievement header was pushed down inside its card');
+  assert.ok(homeAudit.overallHeaderOffset<45,'Overall-progress header was pushed down inside its card');
+  assert.ok(homeAudit.achievementBodyOffset<80,'Achievement content is not directly below its header');
+  assert.ok(homeAudit.overallBodyOffset<80,'Overall progress content is not directly below its header');
 
   await page.evaluate(()=>{
     window.state.lastStudy={subjectId:'russian',path:window.state.subjects.russian.mainPath};
@@ -192,13 +211,13 @@ try{
   assert.equal(await page.evaluate(()=>window.state?.searchFocusCourseId),courseId,'Exact searched course was not focused');
 
   // Premium appearance control center must drive the existing canonical appearance state, not create another theme engine.
-  await page.locator('#appearanceBtn').click();
+  await page.locator('[data-safe-ux="appearance"]').click();
   await page.waitForFunction(()=>!document.getElementById('appearanceMenu')?.classList.contains('hidden'));
   await page.locator('[data-safe-appearance="focus"]').click();
   await page.waitForFunction(()=>document.body.dataset.theme==='night'&&document.body.dataset.size==='compact'&&document.body.dataset.hubWallpaper==='plain'&&document.body.dataset.hubDensity==='fit1080');
   await page.locator('[data-safe-appearance="bauman"]').click();
   await page.waitForFunction(()=>document.body.dataset.theme==='academic'&&document.body.dataset.font==='system'&&document.body.dataset.size==='normal'&&document.body.dataset.hubWallpaper==='mountain'&&document.body.dataset.hubDensity==='fit1080');
-  await page.locator('#appearanceBtn').click();
+  await page.locator('[data-safe-ux="appearance"]').click();
 
   for(const id of ['roadmap','subjects','schedule','research','home']){
     await page.evaluate(id=>window.app?.page?.(id,false),id);
