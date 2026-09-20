@@ -1,6 +1,6 @@
 # Lượt 33 — Current Plan · Bước 129–132
 
-Status: `B129_PASS · B130_PASS · F1_PASS · B131_PASS · B132_ACTIVE`
+Status: `B129_PASS · B130_PASS · F1_PASS · B131_PASS · B132_PASS · FINAL_STATE_ACTIVE`
 
 Prerequisite: L32 final-state head `a5ff445a05ee4726ff058d293b4ce4c492955b06` passed the complete six-gate set.
 
@@ -24,7 +24,9 @@ L33 adds a separate data-only Promotion Review layer. It does **not** authorize 
 
 ## B132 — Full-system closeout
 
-**ACTIVE.** Compose B129/B130/B131, verify canonical/runtime isolation and all production authority remains disconnected before L33 final-state closeout.
+**PASS.** B129/B130/B131 compose cleanly; canonical/runtime isolation holds and all production authority remains disconnected. Functional head `e7752375d8add491e5477d42af749b1ef578025d` passed 6/6 gates.
+
+L33 documentation/final-state revalidation is active. L34 remains blocked until the final-state head passes the complete six-gate set and the architecture audit is recorded.
 
 Any defect creates `L33-Fx`; any missing architecture creates `L33-Hx`. Later steps remain blocked until the predecessor head passes the complete six-gate set.
 
