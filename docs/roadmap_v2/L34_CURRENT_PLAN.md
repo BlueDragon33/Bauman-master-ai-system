@@ -1,6 +1,6 @@
 # Lượt 34 — Current Plan · Bước 133–136
 
-Status: `B133_COMPLETE · L34-F1_COMPLETE · B134_ACTIVE · B135_BLOCKED · B136_BLOCKED`
+Status: `B133_COMPLETE · L34-F1_COMPLETE · B134_COMPLETE · B135_ACTIVE · B136_BLOCKED`
 
 Prerequisite: L33 final marker head `c961a46fbed064bc84a3b763516cae41d2bccff1` passed the complete six-gate set.
 
@@ -16,11 +16,11 @@ L34 adds a separate data-only Production Readiness Review boundary. It remains s
 
 ## B134 — Deterministic in-memory Production Readiness Review projector
 
-**ACTIVE.** B133/L34-F1 passed the complete six-gate set at head `95290ce2704908ad88a6132f5ed1f2c2b720f3e8`. Implement a scripts-only deterministic projector that recomputes Promotion Review, preserves audit identity, deeply freezes its result, and keeps production promotion/runtime/persistence disconnected.
+**COMPLETE.** Accepted head `ef484c485701b645c1de2d146a048818ad4fb4bc` passed the complete six-gate set. The scripts-only projector recomputes Promotion Review, preserves audit identity, deeply freezes its result, and keeps production promotion/runtime/persistence disconnected.
 
 ## B135 — Adversarial Production Readiness Review validation
 
-Blocked until B134 passes the complete six-gate set.
+**ACTIVE.** Exercise identity/namespace attacks, unsupported authority/result injection, schema and decision drift, reason-code abuse, nested Promotion Review forgery, upstream-blocked escalation attempts, post-projection privilege escalation, and deterministic receipt identity.
 
 ## B136 — Full-system closeout
 
@@ -32,4 +32,17 @@ Any defect creates `L34-Fx`; any missing architecture creates `L34-Hx`. Later st
 
 The first B133 head exposed a CI coverage defect: `scripts/validate-roadmap-v2-l34-b133.mjs` existed but the Roadmap V2 Current Gate workflow did not invoke it. This means the prior green Roadmap workflow did not constitute complete B133 contract evidence.
 
-F1 wires the B133 validator into `.github/workflows/roadmap-v2-reconciliation.yml` without weakening any assertion or authority boundary. Repaired head `95290ce2704908ad88a6132f5ed1f2c2b720f3e8` passed the complete six-gate set; F1 is closed and B134 is active.
+F1 wires the B133 validator into `.github/workflows/roadmap-v2-reconciliation.yml` without weakening any assertion or authority boundary. Repaired head `95290ce2704908ad88a6132f5ed1f2c2b720f3e8` passed the complete six-gate set; F1 is closed.
+
+## B134 gate evidence
+
+Accepted B134 head: `ef484c485701b645c1de2d146a048818ad4fb4bc`
+
+- Roadmap V2 Current Gate — run `35493764439` — PASS
+- Foundation Domain Model — run `35493764408` — PASS
+- Windows checkout safety — run `35493764371` — PASS
+- Russian Reference UI — run `35493764468` — PASS
+- Cloudflare Preview — run `35493764403` — PASS
+- Whole System Integration — run `35493764455` — PASS
+
+B135 is permitted to open.
