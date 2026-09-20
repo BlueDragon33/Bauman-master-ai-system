@@ -1,6 +1,6 @@
 # Lượt 32 — Current Plan · Bước 125–128
 
-Status: `B125_PASS · H1_PASS · F1_SUPERSEDED · F2_PASS · B126_PASS · B127_PASS · F3_PASS · B128_PASS · DOC_FINAL_ACTIVE`
+Status: `B125_PASS · H1_PASS · F1_SUPERSEDED · F2_PASS · B126_PASS · B127_PASS · F3_PASS · B128_PASS · F4_ACTIVE · DOC_FINAL_BLOCKED`
 
 Prerequisite: L31 final marker head `369df7fcc7f9e79c2ad3426651918608cc56bcc1` passed the complete six-gate set.
 
@@ -54,3 +54,8 @@ F2 replaces the complete B125 validator with one clean source file containing al
 ## L32-F3 — B127 nested Human Review test syntax repair
 
 The first B127 gate attempt failed before adversarial logic executed because one nested Human Review test expression was missing a closing parenthesis. F3 rewrote only that test invocation as an explicit block. No assertion, schema rule, fail-closed boundary, audit requirement, or authority denial was removed. The repaired head passed all 28/28 B127 checks and the complete six-gate set.
+
+
+## L32-F4 — Whole-system Math Reader startup race stabilization
+
+Documentation/final-state revalidation exposed a nondeterministic browser race: E129 intentionally schedules a second startup render at 650 ms, while the system browser test could begin deterministic L04/L05/L06 routing before that render fired. The delayed startup render could therefore overwrite a selected lesson with the default L01 state. F4 adds an 800 ms startup-settle barrier before deterministic Math lesson routing. All Reader slide-count, identity, presenter, richness, navigation and runtime assertions remain unchanged.
