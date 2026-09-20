@@ -123,6 +123,17 @@ try{
       && !document.querySelector('[data-safe-action="details"]');
   });
 
+  await page.waitForFunction(()=>!!document.querySelector('[data-academic2026="home"]'),null,{timeout:10000});
+  const academicHome=await page.evaluate(()=>{const node=document.querySelector('[data-academic2026="home"]');return{present:!!node,display:node?getComputedStyle(node).display:null}});
+  assert.equal(academicHome.present,true,'Academic 2026 Home compatibility surface missing');
+  assert.equal(academicHome.display,'none','Deep Academic 2026 diagnostics must not extend the user-facing Home');
+
+  // Progress remains the compact entry point to deep prerequisite diagnostics.
+  await page.locator('[data-safe-nav="progress"]').click();
+  await page.waitForFunction(()=>document.getElementById('modalRoot')?.textContent?.includes('Cổng tiên quyết'),null,{timeout:10000});
+  await page.locator('#modalRoot button').filter({hasText:'Cổng tiên quyết'}).click();
+  await page.waitForFunction(()=>document.getElementById('modalRoot')?.textContent?.includes('Cổng tiên quyết')||document.getElementById('modalRoot')?.textContent?.includes('Chưa chẩn đoán'),null,{timeout:10000});
+  await page.evaluate(()=>window.closeModal?.());
   // AI suggestions must carry the clicked prompt into the assistant and return a contextual response.
   const suggestion=page.locator('[data-safe-ask]').first();
   const suggestionPrompt=await suggestion.getAttribute('data-safe-ask');
@@ -154,7 +165,7 @@ try{
     if(id==='home')await page.evaluate(()=>window.BAUMAN_HUB_SAFE?.refresh?.());
   }
 
-  const cases=[['tuf-f15-1920x1080',1920,1080],['laptop-1536x864',1536,864],['ipad-3x2',1180,787],['iphone-19_5x9',390,844]];
+  const cases=[['tuf-f15-1920x1080',1920,1080],['laptop-1536x864',1536,864],['laptop-short-1366x768',1366,768],['ipad-3x2',1180,787],['iphone-19_5x9',390,844]];
   for(const [label,width,height] of cases){
     await page.setViewportSize({width,height});
     await page.waitForTimeout(120);
@@ -179,7 +190,8 @@ try{
         goldColor:gold.color,
         learningCount:learning.length,
         learningVerticalSafe:sidebar?learning.every(rect=>rect.top>=sidebar.top-1&&rect.bottom<=sidebar.bottom+1):false,
-        clusterTitleDisplay:clusterTitle?getComputedStyle(clusterTitle).display:null
+        clusterTitleDisplay:clusterTitle?getComputedStyle(clusterTitle).display:null,
+        academicHomeVisible:(()=>{const node=document.querySelector('[data-academic2026="home"]');return !!node&&getComputedStyle(node).display!=='none'})()
       };
     });
     assert.ok(snap.app&&snap.appearance&&snap.dashboard&&snap.original&&snap.page,`${label}: safe/preserved Hub content missing`);
@@ -187,13 +199,14 @@ try{
     assert.ok(snap.scroll<=snap.client+2,`${label}: horizontal overflow ${snap.scroll}/${snap.client}`);
     assert.match(snap.goldBackground,/gradient/i,`${label}: primary CTA lost premium gold background`);
     assert.equal(snap.learningCount,5,`${label}: learning navigation count drift`);
+    assert.equal(snap.academicHomeVisible,false,`${label}: deep Academic 2026 diagnostics leaked back into Home`);
     if(width<=720){assert.ok(snap.learningVerticalSafe,`${label}: learning actions are clipped vertically in the mobile nav`);assert.equal(snap.clusterTitleDisplay,'none',`${label}: learning cluster title must be hidden inside the mobile bottom bar`)}
-    if(width>=1500)assert.ok(snap.dashboardBottom<=height+40,`${label}: premium dashboard no longer fits the first 16:9 screen (${snap.dashboardBottom}/${height})`);
+    if(width>=1280)assert.ok(snap.dashboardBottom<=height+16,`${label}: summary dashboard no longer fits the first screen (${snap.dashboardBottom}/${height})`);
     await page.screenshot({path:path.join(OUT,`${label}.png`),fullPage:true});
   }
 
   assert.deepEqual(errors,[],'Hub emitted console/page errors');
-  fs.writeFileSync(path.join(OUT,'summary.json'),JSON.stringify({status:'PASS',mode:'safe-additive-shell+app-manager-access',subjects:content.subjectIds.length,viewports:cases.map(x=>x[0]),planningWrapper:content.planningWrapper,safeCheck:content.safeCheck,managedAccess:content.managedAccess,staticOwnershipGate:'PASS',singleHomeSurface:'PASS',learningCluster:'PASS',searchFlow:'PASS',aiSuggestionFlow:'PASS',appearancePresets:'PASS',errors},null,2));
+  fs.writeFileSync(path.join(OUT,'summary.json'),JSON.stringify({status:'PASS',mode:'safe-additive-shell+app-manager-access',subjects:content.subjectIds.length,viewports:cases.map(x=>x[0]),planningWrapper:content.planningWrapper,safeCheck:content.safeCheck,managedAccess:content.managedAccess,staticOwnershipGate:'PASS',singleHomeSurface:'PASS',academicHomeSummaryBoundary:'PASS',prerequisiteEntry:'PASS',learningCluster:'PASS',searchFlow:'PASS',aiSuggestionFlow:'PASS',appearancePresets:'PASS',errors},null,2));
   console.log('Hub consolidated user-facing responsive acceptance PASS');
 }finally{
   await browser?.close();
