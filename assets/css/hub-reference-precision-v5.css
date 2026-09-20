@@ -7,7 +7,7 @@
   --hub-v5-topbar:78px;
   --hub-v5-gap:12px;
   --hub-v5-radius:15px;
-  --hub-v5-rail:400px;
+  --hub-v5-rail:434px;
 }
 
 body[data-hub-reference-v5="1"]{
@@ -607,13 +607,13 @@ body[data-hub-reference-v5="1"] #page-home .hub-safe-assistant h2{
   font-size:17px!important;
 }
 body[data-hub-reference-v5="1"] #page-home .hub-safe-assistant-intro{
-  grid-template-columns:102px minmax(0,1fr)!important;
+  grid-template-columns:112px minmax(0,1fr)!important;
   gap:10px!important;
   padding:0 0 10px!important;
 }
 body[data-hub-reference-v5="1"] #page-home .hub-safe-assistant-intro img{
-  width:98px!important;
-  height:86px!important;
+  width:108px!important;
+  height:94px!important;
 }
 body[data-hub-reference-v5="1"] #page-home .hub-safe-assistant-intro p{
   font-size:10px!important;
