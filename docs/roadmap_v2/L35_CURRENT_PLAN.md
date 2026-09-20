@@ -1,6 +1,6 @@
 # Lượt 35 — Current Plan · Bước 137–140
 
-Status: `B137_COMPLETE · L35-F1_COMPLETE · B138_COMPLETE · B139_COMPLETE · B140_COMPLETE · L35-H1_ACTIVE`
+Status: `B137_COMPLETE · L35-F1_COMPLETE · B138_COMPLETE · B139_COMPLETE · B140_COMPLETE · L35-H1_COMPLETE · FINAL_MARKER_COMPLETE · L35_COMPLETE`
 
 Prerequisite: L34 final marker head `b5fc0094e703e09928c141e05839172b51a90d41` passed the complete six-gate set.
 
@@ -37,4 +37,13 @@ Post-L35 architecture audit found a documentation-only semantic mismatch in the 
 
 H1 aligns the plan with the accepted canonical contract and result schema. It does not change the projector, request/result schemas, runtime, deployment, persistence or any authority boundary.
 
-Post-H1 architecture conclusion: L35 is the final internal Roadmap V2 governance boundary. Production execution/deployment remains an external operational handoff and is not admitted as an automatic downstream Roadmap round.
+Accepted H1 head: `5b5e5bb968e10f48304087199dffaa521da03da5`
+
+- Roadmap V2 Current Gate — run `35501550069` — PASS
+- Foundation Domain Model — run `35501550060` — PASS
+- Windows checkout safety — run `35501550070` — PASS
+- Russian Reference UI — run `35501550071` — PASS
+- Cloudflare Preview — run `35501550059` — PASS
+- Whole System Integration — run `35501550066` — PASS
+
+Post-H1 architecture conclusion: L35 is the final internal Roadmap V2 governance boundary. Production execution/deployment remains an external operational handoff and is not admitted as an automatic downstream Roadmap round. No L36 is required by the current architecture.
