@@ -162,6 +162,9 @@ try{
     const snap=await page.evaluate(()=>{
       const dash=document.querySelector('.hub-safe-dashboard')?.getBoundingClientRect();
       const gold=getComputedStyle(document.querySelector('.hub-safe-gold'));
+      const sidebar=document.querySelector('.sidebar')?.getBoundingClientRect();
+      const learning=[...document.querySelectorAll('[data-learning-action]')].map(node=>node.getBoundingClientRect());
+      const clusterTitle=document.querySelector('.hub-learning-cluster-title');
       return{
         client:document.documentElement.clientWidth,
         scroll:document.documentElement.scrollWidth,
@@ -173,13 +176,18 @@ try{
         page:document.getElementById('page-home')?.classList.contains('active')===true,
         dashboardBottom:dash?.bottom??null,
         goldBackground:gold.backgroundImage,
-        goldColor:gold.color
+        goldColor:gold.color,
+        learningCount:learning.length,
+        learningVerticalSafe:sidebar?learning.every(rect=>rect.top>=sidebar.top-1&&rect.bottom<=sidebar.bottom+1):false,
+        clusterTitleDisplay:clusterTitle?getComputedStyle(clusterTitle).display:null
       };
     });
     assert.ok(snap.app&&snap.appearance&&snap.dashboard&&snap.original&&snap.page,`${label}: safe/preserved Hub content missing`);
     assert.ok(snap.originalHidden,`${label}: canonical Home mirror should remain hidden from the user`);
     assert.ok(snap.scroll<=snap.client+2,`${label}: horizontal overflow ${snap.scroll}/${snap.client}`);
     assert.match(snap.goldBackground,/gradient/i,`${label}: primary CTA lost premium gold background`);
+    assert.equal(snap.learningCount,5,`${label}: learning navigation count drift`);
+    if(width<=720){assert.ok(snap.learningVerticalSafe,`${label}: learning actions are clipped vertically in the mobile nav`);assert.equal(snap.clusterTitleDisplay,'none',`${label}: learning cluster title must be hidden inside the mobile bottom bar`)}
     if(width>=1500)assert.ok(snap.dashboardBottom<=height+40,`${label}: premium dashboard no longer fits the first 16:9 screen (${snap.dashboardBottom}/${height})`);
     await page.screenshot({path:path.join(OUT,`${label}.png`),fullPage:true});
   }
