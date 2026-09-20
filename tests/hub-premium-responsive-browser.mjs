@@ -49,9 +49,17 @@ async function openHub(page){
   await page.waitForFunction(()=>{
     const safe=window.BAUMAN_HUB_SAFE?.selfCheck?.();
     return safe?.ready===true
+      && safe?.canonicalMirrorHidden===true
       && !!document.querySelector('.hub-safe-dashboard')
-      && !!document.querySelector('[data-safe-action="details"]')
+      && !document.querySelector('[data-safe-action="details"]')
       && document.querySelectorAll('[data-safe-appearance]').length===3;
+  },null,{timeout:15000});
+  await page.waitForFunction(()=>{
+    const cluster=window.BAUMAN_HUB_LEARNING_CLUSTER?.selfCheck?.();
+    return cluster?.completeLearningCluster===true
+      && cluster?.visibleLearningClones?.length===5
+      && cluster?.progressPresent===true
+      && cluster?.progressLabel==='Tiến độ';
   },null,{timeout:15000});
 }
 
@@ -66,6 +74,7 @@ async function checkCanonicalContent(page){
     detailToggle:!!document.querySelector('[data-safe-action="details"]'),
     appearancePresets:document.querySelectorAll('[data-safe-appearance]').length,
     safeCheck:window.BAUMAN_HUB_SAFE?.selfCheck?.(),
+    clusterCheck:window.BAUMAN_HUB_LEARNING_CLUSTER?.selfCheck?.(),
     managedAccess:window.BAUMAN_APP_MANAGER_ACCESS?.selfCheck?.()
   }));
   assert.deepEqual(content.subjectIds,['ai','foundation','math','programming','research','russian','signal','systems']);
@@ -73,14 +82,18 @@ async function checkCanonicalContent(page){
   assert.ok(content.appearance,'Giao diện control missing');
   assert.ok(content.ai,'AI control missing');
   assert.ok(content.safeSkin,'Safe Hub shell missing');
-  assert.ok(content.detailToggle,'Canonical detail toggle missing');
+  assert.equal(content.detailToggle,false,'Duplicate canonical Home detail toggle should not be user-facing');
   assert.equal(content.appearancePresets,3,'Appearance quick presets missing');
   assert.equal(content.safeCheck?.ready,true,'Safe Hub shell is not healthy');
   assert.equal(content.safeCheck?.canonicalPages,true,'Safe Hub removed canonical pages');
   assert.equal(content.safeCheck?.originalHomePreserved,true,'Original home content was lost');
-  assert.equal(content.safeCheck?.additiveDashboard,true,'Additive premium dashboard missing');
-  assert.equal(content.safeCheck?.canonicalDetailsAvailable,true,'Canonical detail fold is unavailable');
+  assert.equal(content.safeCheck?.additiveDashboard,true,'Premium dashboard missing');
+  assert.equal(content.safeCheck?.canonicalMirrorHidden,true,'Canonical Home mirror must remain hidden from the user');
   assert.equal(content.safeCheck?.appearancePresets,3,'Appearance preset self-check drift');
+  assert.equal(content.clusterCheck?.completeLearningCluster,true,'Learning cluster is incomplete');
+  assert.deepEqual(content.clusterCheck?.visibleLearningClones,['study','simulation','exercise','exam','review'],'Learning cluster action order drift');
+  assert.equal(content.clusterCheck?.progressPresent,true,'Tiến độ navigation action missing');
+  assert.equal(content.clusterCheck?.progressLabel,'Tiến độ','Tiến độ navigation label drift');
   assert.equal(content.safeCheck?.routesOwned,false,'Safe Hub must not own routes');
   assert.equal(content.safeCheck?.dataWrites,false,'Safe Hub must not own academic data');
   assert.equal(content.managedAccess?.ready,true,'App Manager managed access is not healthy');
@@ -100,18 +113,32 @@ try{
   await openHub(page);
   const content=await checkCanonicalContent(page);
 
-  // Canonical home is still present in DOM, but folded by default for a clean 16:9 first screen.
-  await page.evaluate(()=>localStorage.removeItem('bauman_hub_canonical_details_open_v1'));
+  // Canonical Home remains as a compatibility mirror only; users see one Home surface.
   await page.evaluate(()=>window.BAUMAN_HUB_SAFE?.refresh?.());
-  await page.waitForFunction(()=>document.querySelector('#page-home .canva-dashboard-page')?.classList.contains('hub-safe-preserved-collapsed')===true);
-  const detailButton=page.locator('[data-safe-action="details"]');
-  assert.equal(await detailButton.getAttribute('aria-expanded'),'false');
-  await detailButton.click();
-  await page.waitForFunction(()=>document.querySelector('#page-home .canva-dashboard-page')?.classList.contains('hub-safe-preserved-collapsed')===false);
-  assert.equal(await page.locator('[data-safe-action="details"]').getAttribute('aria-expanded'),'true');
-  await page.locator('[data-safe-action="details"]').click();
-  await page.waitForFunction(()=>document.querySelector('#page-home .canva-dashboard-page')?.classList.contains('hub-safe-preserved-collapsed')===true);
+  await page.waitForFunction(()=>{
+    const original=document.querySelector('#page-home .canva-dashboard-page');
+    return original?.classList.contains('hub-safe-preserved-hidden')===true
+      && original?.getAttribute('aria-hidden')==='true'
+      && getComputedStyle(original).display==='none'
+      && !document.querySelector('[data-safe-action="details"]');
+  });
 
+  // AI suggestions must carry the clicked prompt into the assistant and return a contextual response.
+  const suggestion=page.locator('[data-safe-ask]').first();
+  const suggestionPrompt=await suggestion.getAttribute('data-safe-ask');
+  await suggestion.click();
+  await page.waitForFunction(prompt=>Array.from(document.querySelectorAll('#aiLog .bubble.user')).some(node=>node.textContent?.trim()===prompt),suggestionPrompt,{timeout:10000});
+  assert.ok((await page.locator('#aiLog').innerText()).includes('Mở bài đang học'),'AI suggestion did not return an actionable contextual response');
+  await page.evaluate(()=>window.mentor?.close?.());
+
+  // Search must close the modal and navigate to the chosen course context.
+  const searchTerm=await page.evaluate(()=>window.BAUMAN_DATA?.courses?.find(course=>course.subject==='math')?.name||'Đại số');
+  await page.locator('#hubSafeSearch').fill(searchTerm);
+  await page.locator('#hubSafeSearch').press('Enter');
+  await page.waitForSelector('[data-safe-search-course]',{timeout:10000});
+  await page.locator('[data-safe-search-course]').first().click();
+  await page.waitForFunction(()=>document.getElementById('modalRoot')?.children.length===0&&document.getElementById('page-roadmap')?.classList.contains('active')===true,null,{timeout:10000});
+  await page.evaluate(()=>{window.app?.page?.('home',false);window.BAUMAN_HUB_SAFE?.refresh?.()});
   // Premium appearance control center must drive the existing canonical appearance state, not create another theme engine.
   await page.locator('#appearanceBtn').click();
   await page.waitForFunction(()=>!document.getElementById('appearanceMenu')?.classList.contains('hidden'));
@@ -142,7 +169,7 @@ try{
         appearance:!!document.getElementById('appearanceBtn'),
         dashboard:!!document.querySelector('.hub-safe-dashboard'),
         original:!!document.querySelector('#page-home .canva-dashboard-page'),
-        originalFolded:document.querySelector('#page-home .canva-dashboard-page')?.classList.contains('hub-safe-preserved-collapsed')===true,
+        originalHidden:document.querySelector('#page-home .canva-dashboard-page')?.classList.contains('hub-safe-preserved-hidden')===true&&getComputedStyle(document.querySelector('#page-home .canva-dashboard-page')).display==='none',
         page:document.getElementById('page-home')?.classList.contains('active')===true,
         dashboardBottom:dash?.bottom??null,
         goldBackground:gold.backgroundImage,
@@ -150,7 +177,7 @@ try{
       };
     });
     assert.ok(snap.app&&snap.appearance&&snap.dashboard&&snap.original&&snap.page,`${label}: safe/preserved Hub content missing`);
-    assert.ok(snap.originalFolded,`${label}: canonical home should stay folded by default`);
+    assert.ok(snap.originalHidden,`${label}: canonical Home mirror should remain hidden from the user`);
     assert.ok(snap.scroll<=snap.client+2,`${label}: horizontal overflow ${snap.scroll}/${snap.client}`);
     assert.match(snap.goldBackground,/gradient/i,`${label}: primary CTA lost premium gold background`);
     if(width>=1500)assert.ok(snap.dashboardBottom<=height+40,`${label}: premium dashboard no longer fits the first 16:9 screen (${snap.dashboardBottom}/${height})`);
@@ -158,8 +185,8 @@ try{
   }
 
   assert.deepEqual(errors,[],'Hub emitted console/page errors');
-  fs.writeFileSync(path.join(OUT,'summary.json'),JSON.stringify({status:'PASS',mode:'safe-additive-shell+app-manager-access',subjects:content.subjectIds.length,viewports:cases.map(x=>x[0]),planningWrapper:content.planningWrapper,safeCheck:content.safeCheck,managedAccess:content.managedAccess,staticOwnershipGate:'PASS',canonicalDetailsFold:'PASS',appearancePresets:'PASS',errors},null,2));
-  console.log('Hub safe additive responsive acceptance PASS');
+  fs.writeFileSync(path.join(OUT,'summary.json'),JSON.stringify({status:'PASS',mode:'safe-additive-shell+app-manager-access',subjects:content.subjectIds.length,viewports:cases.map(x=>x[0]),planningWrapper:content.planningWrapper,safeCheck:content.safeCheck,managedAccess:content.managedAccess,staticOwnershipGate:'PASS',singleHomeSurface:'PASS',learningCluster:'PASS',searchFlow:'PASS',aiSuggestionFlow:'PASS',appearancePresets:'PASS',errors},null,2));
+  console.log('Hub consolidated user-facing responsive acceptance PASS');
 }finally{
   await browser?.close();
 }
