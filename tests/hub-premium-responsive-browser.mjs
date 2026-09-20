@@ -89,13 +89,17 @@ async function checkCanonicalContent(page){
   assert.equal(content.safeCheck?.dataWrites,false,'Safe Hub must not own academic data');
   assert.equal(content.managedAccess?.ready,true,'App Manager managed access is not healthy');
   assert.equal(content.managedAccess?.credentialStorePresent,false,'Local credential store must stay empty');
-  assert.deepEqual(content.learningCluster?.visibleLearningClones,['study','simulation','exercise','exam','review'],'Learning cluster lost a required user action');
-  assert.equal(content.learningCluster?.progressLabel,'Tiến độ','Progress action is missing or was not renamed');
-  assert.equal(content.overviewSearch?.homeSummary,true,'Concise Home summary is not active');
+  assert.equal(content.learningCluster?.flatLayout,true,'Reference sidebar is not using the flat layout');
+  assert.deepEqual(content.learningCluster?.visibleActions,['study','simulation','exercise','ai','exam','review','progress','achievement','community','settings'],'Reference sidebar lost a required action');
+  assert.equal(content.learningCluster?.progressLabel,'Bản đồ năng lực','Reference progress label drift');
+  assert.equal(content.learningCluster?.achievementLabel,'Thành tích','Reference achievement label drift');
+  assert.equal(content.learningCluster?.scheduleHidden,true,'Schedule route should not be duplicated in the reference sidebar');
+  assert.equal(content.learningCluster?.researchHidden,true,'Research route should not be duplicated in the reference sidebar');
+  assert.equal(content.overviewSearch?.referenceHome,true,'Reference dashboard Home is not active');
   assert.equal(content.overviewSearch?.canonicalHomeHidden,true,'Legacy canonical Home is still user-facing');
-  assert.equal(content.overviewSearch?.searchInstalled,true,'Global search V2 is not installed');
+  assert.equal(content.overviewSearch?.searchInstalled,true,'Global search V3 is not installed');
   assert.equal(content.overviewSearch?.accentInsensitive,true,'Search is not accent-insensitive');
-  assert.equal(content.overviewSearch?.legacyHomePanelsVisible,false,'Legacy detail panels leaked back onto Home');
+  assert.equal(content.overviewSearch?.referencePanelsVisible,true,'Reference Home panels are incomplete');
   return content;
 }
 
