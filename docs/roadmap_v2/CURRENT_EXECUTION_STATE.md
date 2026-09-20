@@ -6,16 +6,16 @@
 ## Active track
 
 - Current round: **Lượt 32**
-- Current step: **L32/B128 — FULL-SYSTEM CLOSEOUT · IN_PROGRESS**
+- Current step: **L32 DOCUMENTATION / FINAL-STATE CLOSEOUT · IN_PROGRESS**
 - L22 closeout: **B88 + H1 — PASS**
-- Status: **L23_COMPLETE · L24_COMPLETE · L25_COMPLETE · L26_COMPLETE · L27_COMPLETE · L28_COMPLETE · L29_COMPLETE_THROUGH_B116 · L30_COMPLETE_THROUGH_B120 · L31_COMPLETE_THROUGH_B124 · L32_B125_COMPLETE · L32_H1_COMPLETE · L32_F2_COMPLETE · L32_B126_COMPLETE · L32_B127_COMPLETE · L32_F3_COMPLETE · L32_B128_ACTIVE**
-- Last recorded six-gate head: `5faf29a78afa019eac1e38c44ca0051ee37781d4`
+- Status: **L23_COMPLETE · L24_COMPLETE · L25_COMPLETE · L26_COMPLETE · L27_COMPLETE · L28_COMPLETE · L29_COMPLETE_THROUGH_B116 · L30_COMPLETE_THROUGH_B120 · L31_COMPLETE_THROUGH_B124 · L32_B125_COMPLETE · L32_H1_COMPLETE · L32_F2_COMPLETE · L32_B126_COMPLETE · L32_B127_COMPLETE · L32_F3_COMPLETE · L32_B128_COMPLETE · L32_DOC_FINAL_ACTIVE**
+- Last recorded six-gate head: `a10171ec4578efdfc245b3b5968694fc50f99809`
 - Production/runtime activation by Roadmap V2: **disconnected**
 - Legacy/source destructive migration: **not executed**
-- Last completed: **L32/B127 adversarial Release Review validation — 28/28 PASS on complete six-gate set**
+- Last completed: **L32/B128 functional full-system closeout — PASS on complete six-gate set**
 - Last hardening: **L29-F2 validator/harness syntax repair — PASS; no gate weakening**
-- Current official step: **L32/B128 — full-system closeout**
-- B125, H1/F2, B126 and B127/F3 are closed. B128 full-system closeout is active.
+- Current official step: **L32 documentation/final-state closeout revalidation**
+- B125, H1/F2, B126, B127/F3 and B128 functional closeout are closed. Documentation/final-state revalidation is active; L33 remains blocked.
 
 ## L22/B88 complete gate evidence
 
@@ -968,3 +968,17 @@ Accepted B127/F3 head: `5faf29a78afa019eac1e38c44ca0051ee37781d4`
 - Whole System Integration — run `35483194742` — PASS
 
 B127 adversarial Release Review validation: **28/28 PASS**. Schema drift, namespace/identity mismatch, reason abuse, caller-supplied authority/results, nested upstream forgery, persisted mastery and post-projection escalation all fail closed. B128 is permitted to open.
+
+
+## L32/B128 functional closeout gate evidence
+
+Accepted B128 functional head: `a10171ec4578efdfc245b3b5968694fc50f99809`
+
+- Roadmap V2 Current Gate — run `35483353340` — PASS
+- Foundation Domain Model — run `35483353335` — PASS
+- Windows checkout safety — run `35483353374` — PASS
+- Russian Reference UI — run `35483353366` — PASS
+- Cloudflare Preview — run `35483353373` — PASS
+- Whole System Integration — run `35483353354` — PASS
+
+B128 functional closeout is green. Release Review remains data-only and disconnected from promotion-review execution and production. Documentation/final-state revalidation is required before the L32 final marker may be written.
