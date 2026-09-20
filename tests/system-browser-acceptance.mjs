@@ -169,6 +169,9 @@ try{
   assert.equal(registry.sourceCount,12,'Math accepted source registry count drift');
   assert.deepEqual(registry.duplicateSourceIds,[],'Math runtime source IDs are duplicated');
   assert.ok(await queryPage.evaluate(()=>Boolean(window.BAUMAN_MATH_E235_FORMULA_STANDARD&&!window.BAUMAN_MATH_E236_FORMULA_LAYOUT&&!window.BAUMAN_MATH_E237_ACADEMIC&&!window.BAUMAN_MATH_E238_AUDIT)),'Math E235/E236-E238 runtime boundary drift');
+  // E129 intentionally schedules a second startup stabilization render at 650 ms.
+  // Let that render finish before deterministic lesson routing so it cannot overwrite a test-selected lesson.
+  await queryPage.waitForTimeout(800);
   summary.mathRuntime={};
   for(const lesson of ACCEPTED_MATH_LESSONS){
     const selected=await queryPage.evaluate(async lessonId=>{
