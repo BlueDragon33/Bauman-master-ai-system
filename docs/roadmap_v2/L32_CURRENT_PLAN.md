@@ -1,6 +1,6 @@
 # Lượt 32 — Current Plan · Bước 125–128
 
-Status: `B125_PASS · H1_PASS · F1_SUPERSEDED · F2_PASS · B126_PASS · B127_PASS · F3_PASS · B128_PASS · F4_ACTIVE · DOC_FINAL_BLOCKED`
+Status: `B125_PASS · H1_PASS · F1_SUPERSEDED · F2_PASS · B126_PASS · B127_PASS · F3_PASS · B128_PASS · F4_PASS · FINAL_STATE_ACTIVE`
 
 Prerequisite: L31 final marker head `369df7fcc7f9e79c2ad3426651918608cc56bcc1` passed the complete six-gate set.
 
@@ -59,3 +59,10 @@ The first B127 gate attempt failed before adversarial logic executed because one
 ## L32-F4 — Whole-system Math Reader startup race stabilization
 
 Documentation/final-state revalidation exposed a nondeterministic browser race: E129 intentionally schedules a second startup render at 650 ms, while the system browser test could begin deterministic L04/L05/L06 routing before that render fired. The delayed startup render could therefore overwrite a selected lesson with the default L01 state. F4 adds an 800 ms startup-settle barrier before deterministic Math lesson routing. All Reader slide-count, identity, presenter, richness, navigation and runtime assertions remain unchanged.
+
+
+## L32-F4 — Math Reader startup race stabilization
+
+**PASS.** The documentation/final-state revalidation exposed a deterministic browser startup race in Math Reader acceptance. An 800 ms settle barrier prevents the scheduled 650 ms startup stabilization render from overwriting deterministic L04/L05/L06 routing. Head `08b2c4c9a6099733b2717c567ae48d7222a25725` passed the complete six-gate set. Assertions and runtime authority boundaries were not weakened.
+
+L32 final-state revalidation is active. L33 remains blocked until the marker head passes 6/6.
