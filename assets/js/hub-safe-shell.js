@@ -61,8 +61,25 @@
   function selectSubject(id){const a=A(),s=S();if(!a||!s.subjects?.[id])return;s.subject=id;s.lastStudy={subjectId:id,path:s.subjects[id].mainPath};saveState();enhanceHome()}
   function openReview(){const s=S(),a=A(),item=(s.reviewQueue||[])[0];if(item?.subjectId&&s.subjects?.[item.subjectId]){s.subject=item.subjectId;saveState();a.openSubjectInPage?.(item.subjectId);return}a.page?.('subjects')}
   function handleAction(id){const a=A();if(!a)return;if(id==='details')return toggleDetails();if(id==='continue'||id==='study')return a.continueStudy?.();if(id==='capability')return a.openSubjectCapabilityGap?.('russian');if(id==='roadmap')return a.page?.('roadmap');if(id==='subjects')return a.page?.('subjects');if(id==='schedule')return a.page?.('schedule');if(id==='ai')return q('#aiBtn')?.click();if(['simulation','exercise'].includes(id))return a.openSubjectInPage?.(selectedSubject().id);if(id==='review')return openReview();if(id==='progress')return a.openHomeFrame?.('progress');if(id==='achievement'){a.page?.('home');setTimeout(()=>q('.hub-safe-achievements')?.scrollIntoView({behavior:'smooth',block:'center'}),60);return}if(id==='settings')return q('#appearanceBtn')?.click()}
+  let homeObserver=null,homeRepairTimer=null;
+  function ensureHomeObserver(){
+    const host=q('#page-home');
+    if(!host||homeObserver)return;
+    homeObserver=new MutationObserver(()=>{
+      if(!host.classList.contains('active'))return;
+      const canonical=q('.canva-dashboard-page',host);
+      const additive=q('.hub-safe-dashboard',host);
+      const detail=q('[data-safe-action="details"]',host);
+      if(!canonical||additive&&detail)return;
+      clearTimeout(homeRepairTimer);
+      homeRepairTimer=setTimeout(()=>{
+        if(host.classList.contains('active')&&q('.canva-dashboard-page',host)&&(!q('.hub-safe-dashboard',host)||!q('[data-safe-action="details"]',host)))enhanceHome();
+      },80);
+    });
+    homeObserver.observe(host,{childList:true,subtree:false});
+  }
   function bind(){document.addEventListener('click',e=>{const preset=e.target.closest('[data-safe-appearance]');if(preset){e.preventDefault();applyAppearancePreset(preset.dataset.safeAppearance);return}const sub=e.target.closest('[data-safe-subject]');if(sub){selectSubject(sub.dataset.safeSubject);return}const course=e.target.closest('[data-safe-course-subject]');if(course){selectSubject(course.dataset.safeCourseSubject);return}const act=e.target.closest('[data-safe-action]');if(act){handleAction(act.dataset.safeAction);return}const nav=e.target.closest('[data-safe-nav]');if(nav){handleAction(nav.dataset.safeNav);return}const ask=e.target.closest('[data-safe-ask]');if(ask){q('#aiBtn')?.click();return}if(e.target.closest('[data-page="home"]'))setTimeout(enhanceHome,80);if(e.target.closest('#loginBtn'))setTimeout(()=>{ensureAll();enhanceHome()},350)},true);window.addEventListener('resize',()=>document.body.dataset.hubScreen=innerWidth>=1500?'wide':innerWidth>=721?'mid':'phone')}
-  function ensureAll(){ensureSearch();ensureAppearance();ensureNavExtras();document.body.dataset.hubWallpaper=localStorage.getItem(BG_KEY)||document.body.dataset.hubWallpaper||'mountain';document.body.dataset.hubDensity=localStorage.getItem(DENSITY_KEY)||document.body.dataset.hubDensity||'fit1080';document.body.dataset.hubScreen=innerWidth>=1500?'wide':innerWidth>=721?'mid':'phone';enhanceHome()}
+  function ensureAll(){ensureHomeObserver();ensureSearch();ensureAppearance();ensureNavExtras();document.body.dataset.hubWallpaper=localStorage.getItem(BG_KEY)||document.body.dataset.hubWallpaper||'mountain';document.body.dataset.hubDensity=localStorage.getItem(DENSITY_KEY)||document.body.dataset.hubDensity||'fit1080';document.body.dataset.hubScreen=innerWidth>=1500?'wide':innerWidth>=721?'mid':'phone';enhanceHome()}
   function selfCheck(){
     const canonical=['home','roadmap','subjects','schedule','research'].every(id=>!!q(`#page-${id}`));
     const original=q('#page-home .canva-dashboard-page');
