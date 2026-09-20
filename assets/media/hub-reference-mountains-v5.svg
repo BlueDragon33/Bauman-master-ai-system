@@ -1,0 +1,30 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 520" preserveAspectRatio="xMidYMid slice">
+<defs>
+  <linearGradient id="sky" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#071321"/><stop offset=".45" stop-color="#18304b"/><stop offset=".72" stop-color="#7d4d46"/><stop offset="1" stop-color="#d48856"/></linearGradient>
+  <radialGradient id="sun" cx=".72" cy=".23" r=".3"><stop offset="0" stop-color="#fff4bd" stop-opacity=".98"/><stop offset=".18" stop-color="#ffd46a" stop-opacity=".88"/><stop offset=".48" stop-color="#e69b58" stop-opacity=".34"/><stop offset="1" stop-color="#c66e55" stop-opacity="0"/></radialGradient>
+  <linearGradient id="ridge1" x1="0" y1="0" x2="0" y2="1"><stop stop-color="#45617d"/><stop offset="1" stop-color="#15283d"/></linearGradient>
+  <linearGradient id="ridge2" x1="0" y1="0" x2="0" y2="1"><stop stop-color="#263c58"/><stop offset="1" stop-color="#0b1828"/></linearGradient>
+  <linearGradient id="ridge3" x1="0" y1="0" x2="0" y2="1"><stop stop-color="#17283e"/><stop offset="1" stop-color="#050c15"/></linearGradient>
+  <filter id="blur"><feGaussianBlur stdDeviation="18"/></filter>
+</defs>
+<rect width="1600" height="520" fill="url(#sky)"/>
+<rect width="1600" height="520" fill="url(#sun)"/>
+<g opacity=".38" fill="#d9e4ef" filter="url(#blur)">
+  <ellipse cx="360" cy="245" rx="250" ry="42"/><ellipse cx="670" cy="286" rx="300" ry="48"/><ellipse cx="1010" cy="246" rx="260" ry="36"/><ellipse cx="1325" cy="298" rx="270" ry="42"/>
+</g>
+<path d="M0 408 150 292 250 356 380 210 510 362 630 248 740 354 865 176 1000 348 1142 230 1262 344 1408 215 1600 392V520H0Z" fill="url(#ridge1)" opacity=".78"/>
+<g fill="#dce7ef" opacity=".68">
+  <path d="m327 278 53-68 46 78-44-31-24 25-17-20z"/><path d="m822 232 43-56 41 69-38-26-18 20-15-16z"/><path d="m1368 262 40-47 43 64-39-23-20 21-13-15z"/>
+</g>
+<path d="M0 444 185 333 313 409 474 286 618 425 764 315 900 425 1044 307 1180 417 1322 327 1458 417 1600 344V520H0Z" fill="url(#ridge2)" opacity=".93"/>
+<path d="M0 476 170 404 305 454 432 374 594 470 725 401 884 465 1028 390 1178 472 1326 412 1475 474 1600 416V520H0Z" fill="url(#ridge3)"/>
+<g opacity=".42" stroke="#6b91b4" stroke-width="2">
+  <path d="M580 438 768 316M734 458 899 425M1005 458 1180 417M1284 468 1455 417"/>
+</g>
+<g transform="translate(1244 365)">
+  <path d="M0 66c44-34 90-48 146-26l66 48H-30Z" fill="#050a12"/>
+  <circle cx="104" cy="5" r="10" fill="#050a12"/>
+  <path d="M102 16 94 57M105 18l14 35M98 36l-22 28M109 37l21 27" fill="none" stroke="#050a12" stroke-width="8" stroke-linecap="round"/>
+</g>
+<rect width="1600" height="520" fill="url(#fade)" opacity=".18"/>
+</svg>
