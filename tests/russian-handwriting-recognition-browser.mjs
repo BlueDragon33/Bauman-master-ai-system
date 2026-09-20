@@ -33,11 +33,13 @@ try{
     choiceCount:document.querySelectorAll('[data-ru-handwriting-choice]').length,
     recognitionState:document.querySelector('.ru-handwriting-recognition')?.dataset.ruRecognitionState||'',
     flowSchema:window.RussianLearningFlow?.schema||'',
+    legacyFlowSchema:window.RussianLearningFlow?.legacySchema||'',
     learningSchema:window.RussianLearningState?.get?.()?.schema||''
   }));
   assert.equal(initial.bannerCount,1,'Handwriting capability banner duplicated');
   assert.equal(initial.drillCount,1,'Handwriting recognition drill duplicated');
-  assert.equal(initial.flowSchema,'RUSSIAN_LEARNING_FLOW_V1');
+  assert.equal(initial.flowSchema,'RUSSIAN_LEARNING_FLOW_V2');
+  assert.equal(initial.legacyFlowSchema,'RUSSIAN_LEARNING_FLOW_V1');
   assert.equal(initial.learningSchema,'RUSSIAN_LEARNING_STATE_V1');
   assert.ok(['local-script-preview','reference-only'].includes(initial.capability.mode));
   assert.equal(initial.capability.canScore,false,'Blocked production glyph authority unexpectedly enabled scoring');
