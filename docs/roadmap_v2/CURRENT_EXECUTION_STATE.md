@@ -6,16 +6,16 @@
 ## Active track
 
 - Current round: **Lượt 32**
-- Current step: **L32/B127 — ADVERSARIAL RELEASE REVIEW VALIDATION · IN_PROGRESS**
+- Current step: **L32/B128 — FULL-SYSTEM CLOSEOUT · IN_PROGRESS**
 - L22 closeout: **B88 + H1 — PASS**
-- Status: **L23_COMPLETE · L24_COMPLETE · L25_COMPLETE · L26_COMPLETE · L27_COMPLETE · L28_COMPLETE · L29_COMPLETE_THROUGH_B116 · L30_COMPLETE_THROUGH_B120 · L31_COMPLETE_THROUGH_B124 · L32_B125_COMPLETE · L32_H1_COMPLETE · L32_F2_COMPLETE · L32_B126_COMPLETE · L32_B127_ACTIVE**
-- Last recorded six-gate head: `3b57c144c9c078b4e8270d0625fed8eb254525cd`
+- Status: **L23_COMPLETE · L24_COMPLETE · L25_COMPLETE · L26_COMPLETE · L27_COMPLETE · L28_COMPLETE · L29_COMPLETE_THROUGH_B116 · L30_COMPLETE_THROUGH_B120 · L31_COMPLETE_THROUGH_B124 · L32_B125_COMPLETE · L32_H1_COMPLETE · L32_F2_COMPLETE · L32_B126_COMPLETE · L32_B127_COMPLETE · L32_F3_COMPLETE · L32_B128_ACTIVE**
+- Last recorded six-gate head: `5faf29a78afa019eac1e38c44ca0051ee37781d4`
 - Production/runtime activation by Roadmap V2: **disconnected**
 - Legacy/source destructive migration: **not executed**
-- Last completed: **L32/B126 deterministic Release Review projector — PASS on complete six-gate set**
+- Last completed: **L32/B127 adversarial Release Review validation — 28/28 PASS on complete six-gate set**
 - Last hardening: **L29-F2 validator/harness syntax repair — PASS; no gate weakening**
-- Current official step: **L32/B127 — adversarial Release Review validation**
-- B125, H1/F2 and B126 are closed. B127 is active; B128 remains blocked until B127 passes the complete six-gate set.
+- Current official step: **L32/B128 — full-system closeout**
+- B125, H1/F2, B126 and B127/F3 are closed. B128 full-system closeout is active.
 
 ## L22/B88 complete gate evidence
 
@@ -950,3 +950,21 @@ Accepted B126 head: `3b57c144c9c078b4e8270d0625fed8eb254525cd`
 B126 deterministic Release Review projection is closed. The result is deterministic and deeply frozen, preserves candidate/reviewer/decision/reason audit identity, and does not enable production promotion, production consumers, persistence, dashboard rendering, schedule/calendar writes, runtime activation, notification writes or automatic actions.
 
 B127 adversarial validation is permitted to open.
+
+
+## L32-F3 defect and B127 gate evidence
+
+The first B127 run failed at parse time in one nested Human Review adversarial fixture (`SyntaxError: missing ) after argument list`). No adversarial Release Review logic executed in that failed attempt.
+
+F3 rewrote only the malformed test invocation as an explicit block; no gate or authority boundary was weakened.
+
+Accepted B127/F3 head: `5faf29a78afa019eac1e38c44ca0051ee37781d4`
+
+- Roadmap V2 Current Gate — run `35483194732` — PASS
+- Foundation Domain Model — run `35483194725` — PASS
+- Windows checkout safety — run `35483194729` — PASS
+- Russian Reference UI — run `35483194731` — PASS
+- Cloudflare Preview — run `35483194738` — PASS
+- Whole System Integration — run `35483194742` — PASS
+
+B127 adversarial Release Review validation: **28/28 PASS**. Schema drift, namespace/identity mismatch, reason abuse, caller-supplied authority/results, nested upstream forgery, persisted mastery and post-projection escalation all fail closed. B128 is permitted to open.
