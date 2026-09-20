@@ -1,0 +1,84 @@
+{
+  "schema": "BAUMAN_CONTENT_ASSET_PROVENANCE_REGISTRY_FIXTURE_V1",
+  "records": {
+    "sources": [
+      {
+        "registryId": "bdr:source:russian:bauman-grammar-reference-001",
+        "canonicalEntityId": "bd:source:russian:bauman-grammar-reference-001",
+        "sourceType": "repository",
+        "title": "Bauman Russian grammar reference",
+        "locator": {
+          "kind": "repository_relative",
+          "value": "subjects/russian/content/grammar/reference.pdf"
+        },
+        "capturedAt": "2026-09-17T00:00:00Z",
+        "recordVersion": 1
+      }
+    ],
+    "checksums": [
+      {
+        "registryId": "bdr:checksum:russian:reference-pdf-sha256",
+        "algorithm": "sha256",
+        "digest": "0123456789abcdef0123456789abcdef0123456789abcdef0123456789abcdef",
+        "byteLength": 1048576,
+        "recordVersion": 1
+      }
+    ],
+    "assets": [
+      {
+        "registryId": "bdr:asset:russian:reference-pdf-001",
+        "canonicalEntityId": "bd:source:russian:bauman-grammar-reference-001",
+        "assetType": "pdf",
+        "mediaType": "application/pdf",
+        "checksumId": "bdr:checksum:russian:reference-pdf-sha256",
+        "locators": [
+          {
+            "kind": "repository_relative",
+            "value": "subjects/russian/content/grammar/reference.pdf"
+          }
+        ],
+        "state": "verified",
+        "recordVersion": 1
+      }
+    ],
+    "contents": [
+      {
+        "registryId": "bdr:content:russian:grammar-reference-001",
+        "canonicalEntityId": "bd:source:russian:bauman-grammar-reference-001",
+        "contentType": "reference",
+        "title": "Russian grammar reference",
+        "assetIds": [
+          "bdr:asset:russian:reference-pdf-001"
+        ],
+        "sourceIds": [
+          "bdr:source:russian:bauman-grammar-reference-001"
+        ],
+        "provenanceEventIds": [
+          "bdr:provenance:russian:reference-import-001"
+        ],
+        "recordVersion": 1
+      }
+    ],
+    "provenance": [
+      {
+        "registryId": "bdr:provenance:russian:reference-import-001",
+        "eventType": "imported",
+        "subjectId": "bdr:asset:russian:reference-pdf-001",
+        "sourceIds": [
+          "bdr:source:russian:bauman-grammar-reference-001"
+        ],
+        "at": "2026-09-17T00:00:00Z",
+        "actor": "bd:person:system:maintainer",
+        "recordVersion": 1
+      }
+    ],
+    "access": [
+      {
+        "registryId": "bdr:access:russian:reference-pdf-001",
+        "scope": "bdr:asset:russian:reference-pdf-001",
+        "visibility": "private",
+        "recordVersion": 1
+      }
+    ]
+  }
+}
