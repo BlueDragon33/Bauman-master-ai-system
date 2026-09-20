@@ -6,16 +6,16 @@
 ## Active track
 
 - Current round: **Lượt 32**
-- Current step: **L32-F2 — CLEAN B125 VALIDATOR REBUILD · IN_PROGRESS**
+- Current step: **L32/B126 — DETERMINISTIC IN-MEMORY RELEASE REVIEW PROJECTOR · IN_PROGRESS**
 - L22 closeout: **B88 + H1 — PASS**
-- Status: **L23_COMPLETE · L24_COMPLETE · L25_COMPLETE · L26_COMPLETE · L27_COMPLETE · L28_COMPLETE · L29_COMPLETE_THROUGH_B116 · L30_COMPLETE_THROUGH_B120 · L31_COMPLETE_THROUGH_B124 · L32_B125_COMPLETE · L32_H1_ACTIVE · L32_F1_REPAIR_ATTEMPTED · L32_F2_ACTIVE**
+- Status: **L23_COMPLETE · L24_COMPLETE · L25_COMPLETE · L26_COMPLETE · L27_COMPLETE · L28_COMPLETE · L29_COMPLETE_THROUGH_B116 · L30_COMPLETE_THROUGH_B120 · L31_COMPLETE_THROUGH_B124 · L32_B125_COMPLETE · L32_H1_COMPLETE · L32_F2_COMPLETE · L32_B126_ACTIVE**
 - Last recorded six-gate head: `59e7fba97b2d8c839ddddae0c09fcab391840511`
 - Production/runtime activation by Roadmap V2: **disconnected**
 - Legacy/source destructive migration: **not executed**
 - Last completed: **L32/B125 Release Review contract — PASS on complete six-gate set**
 - Last hardening: **L29-F2 validator/harness syntax repair — PASS; no gate weakening**
-- Current official step: **L32-F2 — rebuild B125 validator cleanly without weakening gates**
-- B125 is closed. H1 is active; B126 remains blocked until H1 passes the complete six-gate set.
+- Current official step: **L32/B126 — deterministic in-memory Release Review projector**
+- B125 and H1/F2 are closed. B126 is active; B127 remains blocked until B126 passes the complete six-gate set.
 
 ## L22/B88 complete gate evidence
 
@@ -920,3 +920,17 @@ F1 rebuilds the result-schema assertion block only. H1 identity binding, receipt
 The F1 head still failed B125 parsing because a duplicated stale assertion tail remained after the validator's terminal output, producing `SyntaxError: Unexpected token ')'` at line 84.
 
 F2 replaces the entire B125 validator source with a clean reconstruction. All B125 contract/schema/isolation checks and all H1 candidate-binding/audit-field checks remain present. B126 remains blocked pending six-gate PASS.
+
+
+## L32 H1/F2 gate evidence
+
+Accepted H1/F2 repair head: `536b368876c0b45e7a6a66daaab30d605664a9e1`
+
+- Roadmap V2 Current Gate — run `35456482913` — PASS
+- Foundation Domain Model — run `35456482936` — PASS
+- Windows checkout safety — run `35456482906` — PASS
+- Russian Reference UI — run `35456482942` — PASS
+- Cloudflare Preview — run `35456482911` — PASS
+- Whole System Integration — run `35456482898` — PASS
+
+The clean B125 validator reconstruction is green with H1 identity/audit binding preserved. B126 is permitted to open. Production integration, promotion-review integration, persistence and runtime activation remain disconnected.
