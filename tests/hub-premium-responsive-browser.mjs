@@ -162,18 +162,31 @@ try{
   assert.ok(naturalSearch.math.some(x=>x[1]==='math'),'Natural Math query did not surface Math');
   assert.ok(naturalSearch.schedule.some(x=>x[0]==='page'&&x[1]==='schedule'),'Natural schedule query did not surface Schedule');
   assert.ok(naturalSearch.thesis.some(x=>x[0]==='research'||x[1]==='research'),'Natural thesis/UGV query did not surface Research');
-  const homeAudit=await page.evaluate(()=>({
-    reference:window.BAUMAN_HUB_OVERVIEW_SEARCH_V2.selfCheck().referenceHome,
-    panels:window.BAUMAN_HUB_OVERVIEW_SEARCH_V2.selfCheck().referencePanelsVisible,
-    assistantTitle:document.querySelector('#page-home .hub-safe-assistant h2')?.textContent?.trim()||'',
-    scheduleTitle:document.querySelector('#page-home .hub-safe-schedule h2')?.textContent?.trim()||'',
-    achievementTitle:document.querySelector('#page-home .hub-safe-achievements h2')?.textContent?.trim()||''
-  }));
+  const homeAudit=await page.evaluate(()=>{
+    const offset=(parentSel,childSel)=>{const p=document.querySelector(parentSel)?.getBoundingClientRect(),c=document.querySelector(childSel)?.getBoundingClientRect();return p&&c?Math.round(c.top-p.top):999};
+    return {
+      reference:window.BAUMAN_HUB_OVERVIEW_SEARCH_V2.selfCheck().referenceHome,
+      panels:window.BAUMAN_HUB_OVERVIEW_SEARCH_V2.selfCheck().referencePanelsVisible,
+      assistantTitle:document.querySelector('#page-home .hub-safe-assistant h2')?.textContent?.trim()||'',
+      scheduleTitle:document.querySelector('#page-home .hub-safe-schedule h2')?.textContent?.trim()||'',
+      achievementTitle:document.querySelector('#page-home .hub-safe-achievements h2')?.textContent?.trim()||'',
+      scheduleHeaderOffset:offset('#page-home .hub-safe-schedule','#page-home .hub-safe-schedule .hub-safe-section-head'),
+      achievementHeaderOffset:offset('#page-home .hub-safe-achievements','#page-home .hub-safe-achievements .hub-safe-section-head'),
+      overallHeaderOffset:offset('#page-home .hub-safe-overall','#page-home .hub-safe-overall .hub-safe-section-head'),
+      achievementBodyOffset:offset('#page-home .hub-safe-achievements','#page-home .hub-safe-achievements .hub-safe-ach-grid'),
+      overallBodyOffset:offset('#page-home .hub-safe-overall','#page-home .hub-safe-overall .hub-safe-overall-inner')
+    };
+  });
   assert.equal(homeAudit.reference,true,'Reference Home self-check failed');
   assert.equal(homeAudit.panels,true,'Reference Home panel set is incomplete');
   assert.equal(homeAudit.assistantTitle,'♙ AI Study Assistant','AI panel title no longer matches reference UI');
   assert.equal(homeAudit.scheduleTitle,'Lịch học hôm nay','Schedule panel title no longer matches reference UI');
   assert.equal(homeAudit.achievementTitle,'Thành tựu gần đây','Achievement panel title no longer matches reference UI');
+  assert.ok(homeAudit.scheduleHeaderOffset<45,'Schedule header was pushed down inside its card');
+  assert.ok(homeAudit.achievementHeaderOffset<45,'Achievement header was pushed down inside its card');
+  assert.ok(homeAudit.overallHeaderOffset<45,'Overall-progress header was pushed down inside its card');
+  assert.ok(homeAudit.achievementBodyOffset<80,'Achievement content is not directly below its header');
+  assert.ok(homeAudit.overallBodyOffset<80,'Overall progress content is not directly below its header');
 
   await page.evaluate(()=>{
     window.state.lastStudy={subjectId:'russian',path:window.state.subjects.russian.mainPath};
