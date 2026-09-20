@@ -47,7 +47,10 @@ expectReject('manual override rejected',()=>release.projectReleaseReview(request
 // 17-21: nested Promotion Eligibility / Human Review / Consumer authority.
 expectReject('nested promotion schema drift rejected',()=>release.projectReleaseReview(request(eligibility(human(),'CANDIDATE::B127',{schema:'BAUMAN_ROADMAP_V2_PROMOTION_ELIGIBILITY_REQUEST_V0'}))),/schema mismatch/);
 expectReject('nested eligibility state rejected',()=>release.projectReleaseReview(request(eligibility(human(),'CANDIDATE::B127',{eligibilityState:'eligible_for_release_review'}))),/unsupported fields/);
-expectReject('nested human schema drift rejected',()=>release.projectReleaseReview(request(eligibility(human(readiness(),'accepted_for_shadow_analysis',['OK'],{schema:'BAUMAN_ROADMAP_V2_HUMAN_REVIEW_REQUEST_V0'}))),/schema mismatch/);
+expectReject('nested human schema drift rejected',()=>{
+  const nestedHuman=human(readiness(),'accepted_for_shadow_analysis',['OK'],{schema:'BAUMAN_ROADMAP_V2_HUMAN_REVIEW_REQUEST_V0'});
+  release.projectReleaseReview(request(eligibility(nestedHuman)));
+},/schema mismatch/);
 expectReject('production consumer impersonation rejected',()=>{const h=human();h.consumerAdmissionRequest.consumerId='PLANNING_BRIDGE';release.projectReleaseReview(request(eligibility(h)));},/SHADOW namespace/);
 expectReject('persisted mastery rejected',()=>{const s=snapshot('RU-R0-C01','dang_hoc','GD2',{persisted:true});release.projectReleaseReview(request(eligibility(human(readiness('GD2',['RU-R0-C01'],[item('PERSISTED',s,{technicalTrack:null,activityKind:'russian_foundation'})])))));},/Persisted mastery snapshot admitted/);
 
