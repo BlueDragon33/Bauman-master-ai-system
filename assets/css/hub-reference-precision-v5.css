@@ -354,14 +354,24 @@ body[data-hub-reference-v5="1"] #page-home .hub-safe-quote{
 }
 
 /* Subject strip */
-body[data-hub-reference-v5="1"] #page-home .hub-safe-section-head{
+body[data-hub-reference-v5="1"] #page-home .hub-safe-main>.hub-safe-section-head{
   min-height:0!important;
   height:100%!important;
   align-items:end!important;
 }
-body[data-hub-reference-v5="1"] #page-home .hub-safe-section-head h2{
+body[data-hub-reference-v5="1"] #page-home .hub-safe-main>.hub-safe-section-head h2{
   font-size:17px!important;
   line-height:1!important;
+}
+body[data-hub-reference-v5="1"] #page-home :is(.hub-safe-achievements,.hub-safe-overall,.hub-safe-schedule)>.hub-safe-section-head{
+  height:auto!important;
+  min-height:24px!important;
+  align-items:center!important;
+  flex:0 0 auto!important;
+}
+body[data-hub-reference-v5="1"] #page-home :is(.hub-safe-achievements,.hub-safe-overall,.hub-safe-schedule)>.hub-safe-section-head h2{
+  font-size:16px!important;
+  line-height:1.15!important;
 }
 body[data-hub-reference-v5="1"] #page-home .hub-safe-link{
   padding-bottom:2px;
