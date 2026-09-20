@@ -6,15 +6,15 @@
 ## Active track
 
 - Current round: **Lượt 34**
-- Current step: **L34/B133 — PRODUCTION READINESS REVIEW CONTRACT · IN_PROGRESS**
+- Current step: **L34-F1 — B133 CI gate wiring repair · IN_PROGRESS**
 - L22 closeout: **B88 + H1 — PASS**
-- Status: **L23_COMPLETE · L24_COMPLETE · L25_COMPLETE · L26_COMPLETE · L27_COMPLETE · L28_COMPLETE · L29_COMPLETE_THROUGH_B116 · L30_COMPLETE_THROUGH_B120 · L31_COMPLETE_THROUGH_B124 · L32_B125_COMPLETE · L32_H1_COMPLETE · L32_F2_COMPLETE · L32_B126_COMPLETE · L32_B127_COMPLETE · L32_F3_COMPLETE · L32_B128_COMPLETE · L32_F4_COMPLETE · L32_COMPLETE · L33_B129_COMPLETE · L33_B130_COMPLETE · L33_F1_COMPLETE · L33_B131_COMPLETE · L33_B132_COMPLETE · L33_DOC_FINAL_COMPLETE · L33_FINAL_MARKER_COMPLETE · L33_COMPLETE · L34_B133_ACTIVE**
+- Status: **L23_COMPLETE · L24_COMPLETE · L25_COMPLETE · L26_COMPLETE · L27_COMPLETE · L28_COMPLETE · L29_COMPLETE_THROUGH_B116 · L30_COMPLETE_THROUGH_B120 · L31_COMPLETE_THROUGH_B124 · L32_B125_COMPLETE · L32_H1_COMPLETE · L32_F2_COMPLETE · L32_B126_COMPLETE · L32_B127_COMPLETE · L32_F3_COMPLETE · L32_B128_COMPLETE · L32_F4_COMPLETE · L32_COMPLETE · L33_B129_COMPLETE · L33_B130_COMPLETE · L33_F1_COMPLETE · L33_B131_COMPLETE · L33_B132_COMPLETE · L33_DOC_FINAL_COMPLETE · L33_FINAL_MARKER_COMPLETE · L33_COMPLETE · L34_B133_ACTIVE · L34_F1_ACTIVE**
 - Last recorded six-gate head: `c961a46fbed064bc84a3b763516cae41d2bccff1`
 - Production/runtime activation by Roadmap V2: **disconnected**
 - Legacy/source destructive migration: **not executed**
 - Last completed: **L32 final-state closeout — PASS on complete six-gate set**
 - Last hardening: **L29-F2 validator/harness syntax repair — PASS; no gate weakening**
-- Current official step: **L34/B133 — Production Readiness Review contract and schemas**
+- Current official step: **L34-F1 — wire the B133 validator into the authoritative Roadmap V2 Current Gate; B134 remains blocked**
 - L32 and L33 are fully closed. L34/B133 is active after pre-merge architecture audit confirmed a missing Production Readiness Review boundary.
 
 ## L22/B88 complete gate evidence
@@ -1114,3 +1114,10 @@ Accepted final marker head: `c961a46fbed064bc84a3b763516cae41d2bccff1`
 - Whole System Integration — run `35490871107` — PASS
 
 L33 is fully closed. Pre-merge architecture audit requires L34 Production Readiness Review as a separate data-only boundary before PR #54 can become a merge candidate.
+
+
+## L34-F1 gate wiring defect
+
+The first L34/B133 head contained `scripts/validate-roadmap-v2-l34-b133.mjs`, but `.github/workflows/roadmap-v2-reconciliation.yml` did not invoke that validator. Therefore the prior Roadmap V2 Current Gate success was incomplete evidence for B133.
+
+F1 adds the missing path trigger and validator step only. No contract assertion, production/runtime safety boundary, or authority denial is weakened. B134 remains blocked until the repaired head passes the complete six-gate set.
