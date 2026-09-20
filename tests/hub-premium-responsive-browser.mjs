@@ -126,7 +126,7 @@ try{
   assert.equal(homeIA.summary,true,'Concise Home summary missing');
   assert.equal(homeIA.stage,true,'Current-stage overview missing');
   assert.equal(homeIA.resume,true,'Resume block missing');
-  assert.equal(homeIA.metrics,4,'Home should expose exactly four compact system indicators');
+  assert.equal(homeIA.metrics,3,'Home should expose exactly three high-signal indicators; Research stays in its dedicated tab');
   assert.equal(homeIA.legacyVisible,false,'Detailed panels leaked onto Home');
   assert.equal(homeIA.canonicalHidden,true,'Canonical detail dashboard should be preserved but hidden from Home');
 
@@ -142,6 +142,24 @@ try{
   assert.ok(searchAudit.m1.some(x=>x[0]==='stage'&&x[1]==='m1'),'M1 did not find semester M1');
   assert.ok(searchAudit.ugv.some(x=>x[0]==='research'&&x[1]==='ugv'),'UGV did not find research topic');
   assert.ok(searchAudit.lich.some(x=>x[0]==='page'&&x[1]==='schedule'),'Unaccented "lich" did not find Schedule');
+  const naturalSearch=await page.evaluate(()=>({
+    russian:window.BAUMAN_HUB_OVERVIEW_SEARCH_V2.search('học tiếng Nga nghe nói').slice(0,5).map(x=>[x.kind,x.subjectId||x.id,x.title]),
+    math:window.BAUMAN_HUB_OVERVIEW_SEARCH_V2.search('học toán xác suất').slice(0,5).map(x=>[x.kind,x.subjectId||x.id,x.title]),
+    schedule:window.BAUMAN_HUB_OVERVIEW_SEARCH_V2.search('xem lịch tuần này').slice(0,5).map(x=>[x.kind,x.id,x.title]),
+    thesis:window.BAUMAN_HUB_OVERVIEW_SEARCH_V2.search('luận văn UGV').slice(0,8).map(x=>[x.kind,x.researchId||x.subjectId||x.id,x.title])
+  }));
+  assert.ok(naturalSearch.russian.some(x=>x[1]==='russian'),'Natural Russian query did not surface Russian');
+  assert.ok(naturalSearch.math.some(x=>x[1]==='math'),'Natural Math query did not surface Math');
+  assert.ok(naturalSearch.schedule.some(x=>x[0]==='page'&&x[1]==='schedule'),'Natural schedule query did not surface Schedule');
+  assert.ok(naturalSearch.thesis.some(x=>x[0]==='research'||x[1]==='research'),'Natural thesis/UGV query did not surface Research');
+  const homeAudit=await page.evaluate(()=>({
+    summaryButtons:document.querySelectorAll('#page-home .hub-v2-system-strip>button').length,
+    researchCard:!!document.querySelector('#page-home [data-hub-v2-action="research"]'),
+    legacy:window.BAUMAN_HUB_OVERVIEW_SEARCH_V2.selfCheck().legacyHomePanelsVisible
+  }));
+  assert.equal(homeAudit.summaryButtons,3,'Home summary should contain only three high-signal quick indicators');
+  assert.equal(homeAudit.researchCard,false,'Research detail should not be promoted as a Home summary card');
+  assert.equal(homeAudit.legacy,false,'Legacy detailed Home panels leaked back into the overview');
 
   await page.evaluate(()=>{
     window.state.lastStudy={subjectId:'russian',path:window.state.subjects.russian.mainPath};
