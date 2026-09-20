@@ -1,6 +1,6 @@
 # Lượt 32 — Current Plan · Bước 125–128
 
-Status: `B125_PASS · H1_ACTIVE · F1_REPAIR_ACTIVE · F2_REBUILD_ACTIVE · B126_BLOCKED · B127_BLOCKED · B128_BLOCKED`
+Status: `B125_PASS · H1_PASS · F1_SUPERSEDED · F2_PASS · B126_ACTIVE · B127_BLOCKED · B128_BLOCKED`
 
 Prerequisite: L31 final marker head `369df7fcc7f9e79c2ad3426651918608cc56bcc1` passed the complete six-gate set.
 
@@ -22,11 +22,11 @@ L32 adds a separate data-only Release Review layer. It does **not** authorize pr
 
 ## L32-H1 — Release Review identity/audit binding
 
-**ACTIVE.** Pre-B126 audit requires exact binding between outer and nested candidate identities, plus explicit reviewer/decision/reason fields in the release-review receipt. B126 remains blocked until H1 passes the complete six-gate set.
+**PASS.** Exact outer/nested candidate binding plus explicit reviewer/decision/reason audit fields are enforced. The F2 clean validator rebuild passed the complete six-gate set at head `536b368876c0b45e7a6a66daaab30d605664a9e1`.
 
 ## B126 — Deterministic in-memory Release Review projector
 
-Blocked until H1 passes the complete six-gate set.
+**ACTIVE.** Implements a scripts-only, deterministic, deeply frozen projector that recomputes Promotion Eligibility, preserves candidate/reviewer/decision/reason audit identity, maps non-eligible upstream states to a blocked receipt, and allows only `release_review_approved_shadow_only` to set `promotionReviewEligible=true`. Production promotion and all runtime/persistence side effects remain disabled.
 
 ## B127 — Adversarial Release Review validation
 
