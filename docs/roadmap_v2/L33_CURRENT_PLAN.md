@@ -1,6 +1,6 @@
 # Lượt 33 — Current Plan · Bước 129–132
 
-Status: `B129_PASS · B130_PASS · F1_PASS · B131_ACTIVE · B132_BLOCKED`
+Status: `B129_PASS · B130_PASS · F1_PASS · B131_PASS · B132_ACTIVE`
 
 Prerequisite: L32 final-state head `a5ff445a05ee4726ff058d293b4ce4c492955b06` passed the complete six-gate set.
 
@@ -20,11 +20,11 @@ L33 adds a separate data-only Promotion Review layer. It does **not** authorize 
 
 ## B131 — Adversarial Promotion Review validation
 
-**ACTIVE.** Validate identity mismatch, caller-supplied authority/results, schema drift, reason-code abuse, nested Release Review forgery, persistence/runtime injection and post-projection privilege escalation. All invalid paths must fail closed.
+**PASS.** Identity mismatch, caller-supplied authority/results, schema drift, reason-code abuse, nested Release Review forgery, persistence/runtime injection and post-projection privilege escalation all fail closed.
 
 ## B132 — Full-system closeout
 
-Blocked until B131 passes the complete six-gate set.
+**ACTIVE.** Compose B129/B130/B131, verify canonical/runtime isolation and all production authority remains disconnected before L33 final-state closeout.
 
 Any defect creates `L33-Fx`; any missing architecture creates `L33-Hx`. Later steps remain blocked until the predecessor head passes the complete six-gate set.
 
