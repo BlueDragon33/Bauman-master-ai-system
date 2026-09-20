@@ -1,6 +1,6 @@
 # Lượt 32 — Current Plan · Bước 125–128
 
-Status: `B125_PASS · H1_PASS · F1_SUPERSEDED · F2_PASS · B126_PASS · B127_ACTIVE · B128_BLOCKED`
+Status: `B125_PASS · H1_PASS · F1_SUPERSEDED · F2_PASS · B126_PASS · B127_PASS · F3_PASS · B128_ACTIVE`
 
 Prerequisite: L31 final marker head `369df7fcc7f9e79c2ad3426651918608cc56bcc1` passed the complete six-gate set.
 
@@ -30,11 +30,11 @@ L32 adds a separate data-only Release Review layer. It does **not** authorize pr
 
 ## B127 — Adversarial Release Review validation
 
-**ACTIVE.** Exercises schema drift, namespace impersonation, reviewer/candidate mismatch, unsupported decisions, reason-code abuse, caller-supplied authority/results, nested Promotion Eligibility/Human Review/Consumer forgery, persisted mastery, decision-state mapping, deterministic audit preservation, deep-freeze escalation resistance, and runtime wiring/side-effect leakage.
+**PASS.** 28/28 adversarial checks passed after L32-F3 repaired a test-source parenthesis defect without weakening any assertion. Accepted six-gate head: `5faf29a78afa019eac1e38c44ca0051ee37781d4`.
 
 ## B128 — Full-system closeout
 
-Blocked until B127 passes the complete six-gate set.
+**ACTIVE.** Re-runs B125/H1/B126/B127 as prerequisites, audits canonical/runtime isolation, rechecks all forbidden capabilities and side-effect APIs, and validates a fail-closed end-to-end Release Review receipt before L32 may close.
 
 Any defect creates `L32-Fx`; any missing architecture creates `L32-Hx`. Later steps remain blocked until the repair/hardening head passes the complete six-gate set.
 
@@ -49,3 +49,8 @@ F1 reconstructs only that assertion block. No schema, identity-binding rule, fai
 The F1 patch removed the first malformed splice but a stale duplicated assertion tail remained after the validator's final `console.log`, causing `SyntaxError: Unexpected token ')'` at line 84.
 
 F2 replaces the complete B125 validator with one clean source file containing all original B125 checks plus H1 identity/audit assertions. No gate or policy is removed.
+
+
+## L32-F3 — B127 nested Human Review test syntax repair
+
+The first B127 gate attempt failed before adversarial logic executed because one nested Human Review test expression was missing a closing parenthesis. F3 rewrote only that test invocation as an explicit block. No assertion, schema rule, fail-closed boundary, audit requirement, or authority denial was removed. The repaired head passed all 28/28 B127 checks and the complete six-gate set.
