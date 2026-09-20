@@ -5,17 +5,17 @@
 
 ## Active track
 
-- Current round: **Lượt 34**
-- Current step: **L34 — FINAL MARKER REVALIDATION · IN_PROGRESS**
+- Current round: **Lượt 35**
+- Current step: **L35/B137 — PRODUCTION PROMOTION AUTHORIZATION CONTRACT · IN_PROGRESS**
 - L22 closeout: **B88 + H1 — PASS**
-- Status: **L23_COMPLETE · L24_COMPLETE · L25_COMPLETE · L26_COMPLETE · L27_COMPLETE · L28_COMPLETE · L29_COMPLETE_THROUGH_B116 · L30_COMPLETE_THROUGH_B120 · L31_COMPLETE_THROUGH_B124 · L32_B125_COMPLETE · L32_H1_COMPLETE · L32_F2_COMPLETE · L32_B126_COMPLETE · L32_B127_COMPLETE · L32_F3_COMPLETE · L32_B128_COMPLETE · L32_F4_COMPLETE · L32_COMPLETE · L33_B129_COMPLETE · L33_B130_COMPLETE · L33_F1_COMPLETE · L33_B131_COMPLETE · L33_B132_COMPLETE · L33_DOC_FINAL_COMPLETE · L33_FINAL_MARKER_COMPLETE · L33_COMPLETE · L34_B133_COMPLETE · L34_F1_COMPLETE · L34_B134_COMPLETE · L34_B135_COMPLETE · L34_B136_COMPLETE · L34_DOC_FINAL_COMPLETE · L34_FINAL_MARKER_ACTIVE**
-- Last recorded six-gate head: `4eb2e75a806289e4998773a6ac9eb032a10660c8`
+- Status: **L23_COMPLETE · L24_COMPLETE · L25_COMPLETE · L26_COMPLETE · L27_COMPLETE · L28_COMPLETE · L29_COMPLETE_THROUGH_B116 · L30_COMPLETE_THROUGH_B120 · L31_COMPLETE_THROUGH_B124 · L32_B125_COMPLETE · L32_H1_COMPLETE · L32_F2_COMPLETE · L32_B126_COMPLETE · L32_B127_COMPLETE · L32_F3_COMPLETE · L32_B128_COMPLETE · L32_F4_COMPLETE · L32_COMPLETE · L33_B129_COMPLETE · L33_B130_COMPLETE · L33_F1_COMPLETE · L33_B131_COMPLETE · L33_B132_COMPLETE · L33_DOC_FINAL_COMPLETE · L33_FINAL_MARKER_COMPLETE · L33_COMPLETE · L34_B133_COMPLETE · L34_F1_COMPLETE · L34_B134_COMPLETE · L34_B135_COMPLETE · L34_B136_COMPLETE · L34_DOC_FINAL_COMPLETE · L34_FINAL_MARKER_COMPLETE · L34_COMPLETE · L35_B137_ACTIVE**
+- Last recorded six-gate head: `b5fc0094e703e09928c141e05839172b51a90d41`
 - Production/runtime activation by Roadmap V2: **disconnected**
 - Legacy/source destructive migration: **not executed**
 - Last completed: **L32 final-state closeout — PASS on complete six-gate set**
 - Last hardening: **L29-F2 validator/harness syntax repair — PASS; no gate weakening**
-- Current official step: **L34 final marker revalidation**
-- L32 and L33 are fully closed. L34 is functionally and documentation-complete through B136; final marker revalidation is active.
+- Current official step: **L35/B137 — Production Promotion Authorization contract and canonical schemas**
+- L32, L33 and L34 are fully closed. Post-L34 architecture audit requires L35 as a separate Production Promotion Authorization boundary; B137 is active.
 
 ## L22/B88 complete gate evidence
 
@@ -1193,3 +1193,23 @@ Accepted documentation/final-state head: `4eb2e75a806289e4998773a6ac9eb032a10660
 L34 documentation/final-state is green. The final marker head itself must now pass the same six gates before L34 is fully closed.
 
 Preliminary post-L34 architecture audit: the canonical `roadmap_v2/` tree currently ends at `production-readiness-review/`; there is no separate Production Promotion Authorization boundary. This audit finding does not open L35 until the L34 final marker is green.
+
+
+## L34 final marker gate evidence
+
+Accepted final marker head: `b5fc0094e703e09928c141e05839172b51a90d41`
+
+- Roadmap V2 Current Gate — run `35494387299` — PASS
+- Foundation Domain Model — run `35494387294` — PASS
+- Windows checkout safety — run `35494387336` — PASS
+- Russian Reference UI — run `35494387291` — PASS
+- Cloudflare Preview — run `35494387298` — PASS
+- Whole System Integration — run `35494387297` — PASS
+
+L34 is fully closed.
+
+## Post-L34 architecture audit
+
+The canonical `roadmap_v2/` tree ends at `production-readiness-review/`. L34 can establish an auditable shadow-ready result but deliberately leaves `productionPromotionAuthorized=false`, production integration disconnected, zero production consumers, and all persistence/runtime/deployment authority disabled.
+
+A separate Production Promotion Authorization boundary is therefore required. L35/B137 opens that boundary as data-only. It may eventually emit an explicit promotion-authorization receipt, but it must not connect a production consumer, persist state, deploy code, activate runtime behavior, write schedules/calendars, send notifications, or execute automatic actions.
