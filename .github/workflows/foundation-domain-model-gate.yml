@@ -3,7 +3,32 @@ name: Foundation Domain Model Gate
 on:
   push:
     branches:
+      - main
       - work/foundation-v2-l9-domain-model
+      - hardening/foundation-l10-post-merge-gate-coverage
+    paths:
+      - 'foundation/**'
+      - 'subjects/shared/**'
+      - 'subjects/russian/index.html'
+      - 'subjects/russian/assets/learning-state.js'
+      - 'subjects/russian/assets/content-contract.js'
+      - 'subjects/russian/assets/learning-flow.js'
+      - 'subjects/russian/assets/vocab-srs.js'
+      - 'subjects/russian/assets/academic-language.js'
+      - 'subjects/russian/assets/ai-mentor-guard.js'
+      - 'scripts/validate-foundation-domain-model.mjs'
+      - 'scripts/validate-web-lesson-standard.mjs'
+      - 'scripts/validate-russian-lesson1-golden-template.mjs'
+      - 'scripts/validate-learning-component-capabilities.mjs'
+      - 'scripts/validate-foundation-identity-runtime.mjs'
+      - 'scripts/validate-foundation-identity-overlay-store.mjs'
+      - 'scripts/validate-foundation-legacy-snapshot-extractor.mjs'
+      - 'scripts/validate-foundation-browser-bootstrap.mjs'
+      - 'scripts/validate-foundation-identity-persistence.mjs'
+      - 'scripts/validate-foundation-canonical-projection.mjs'
+      - 'scripts/validate-foundation-canonical-context.mjs'
+      - 'scripts/validate-foundation-l9-promotion.mjs'
+      - '.github/workflows/foundation-domain-model-gate.yml'
   pull_request:
     paths:
       - 'foundation/**'
