@@ -6,8 +6,8 @@ const js=fs.readFileSync('assets/js/hub-learning-cluster.js','utf8');
 const css=fs.readFileSync('assets/css/hub-learning-cluster.css','utf8');
 const shell=fs.readFileSync('assets/js/hub-safe-shell.js','utf8');
 
-assert.ok(index.includes('assets/js/hub-learning-cluster.js?v=1'),'reference navigation runtime is not loaded');
-assert.ok(index.includes('assets/css/hub-learning-cluster.css?v=1'),'reference navigation CSS is not loaded');
+assert.ok(index.includes('assets/js/hub-learning-cluster.js?v=4'),'reference navigation runtime is not loaded');
+assert.ok(index.includes('assets/css/hub-learning-cluster.css?v=4'),'reference navigation CSS is not loaded');
 for(const id of ['study','simulation','exercise','ai','exam','review','progress','achievement','community','settings']){
   assert.ok(js.includes(`'${id}'`),`missing reference sidebar action ${id}`);
 }
