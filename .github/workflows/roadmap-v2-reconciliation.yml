@@ -66,6 +66,8 @@ on:
       - 'scripts/validate-roadmap-v2-l31-b124.mjs'
       - 'scripts/validate-roadmap-v2-l32-b125.mjs'
       - 'scripts/validate-roadmap-v2-l32-h1-release-review-binding.mjs'
+      - 'scripts/roadmap-v2-release-review-harness.mjs'
+      - 'scripts/validate-roadmap-v2-l32-b126.mjs'
       - '.github/workflows/roadmap-v2-reconciliation.yml'
 
 permissions:
@@ -178,6 +180,8 @@ jobs:
         run: node scripts/validate-roadmap-v2-l32-b125.mjs
       - name: Validate L32 H1 release review identity and audit binding
         run: node scripts/validate-roadmap-v2-l32-h1-release-review-binding.mjs
+      - name: Validate current L32 B126 release review projector
+        run: node scripts/validate-roadmap-v2-l32-b126.mjs
       - name: Validate Foundation V2 L9
         run: node scripts/validate-foundation-domain-model.mjs
       - name: Validate current system integration
