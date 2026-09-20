@@ -247,6 +247,10 @@ try{
     heroTitle:document.querySelector('#page-roadmap .hub-rm-hero h1')?.textContent?.trim()||''
   }));
   assert.deepEqual([roadmapAudit.stages,roadmapAudit.filters,roadmapAudit.levels,roadmapAudit.sideCards],[4,5,4,4],'Roadmap reference structure drift');
+  const roadmapChrome=await page.evaluate(()=>window.BAUMAN_HUB_ROADMAP_V2?.selfCheck?.());
+  assert.equal(roadmapChrome?.topNav,7,'Roadmap V2 top navigation must expose seven reference actions');
+  assert.equal(roadmapChrome?.journey,true,'Roadmap V2 journey card is missing');
+  assert.equal(roadmapChrome?.chromeActive,true,'Roadmap V2 route chrome is not active');
   assert.equal(roadmapAudit.canonicalVisible,false,'Canonical roadmap leaked below the reference roadmap');
   assert.equal(roadmapAudit.heroTitle,'Lộ trình học tập tổng hợp','Roadmap hero title drift');
   assert.ok(roadmapAudit.scroll<=roadmapAudit.client+2,`Roadmap desktop horizontal overflow ${roadmapAudit.scroll}/${roadmapAudit.client}`);
