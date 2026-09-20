@@ -126,7 +126,7 @@ try{
   assert.equal(homeIA.summary,true,'Concise Home summary missing');
   assert.equal(homeIA.stage,true,'Current-stage overview missing');
   assert.equal(homeIA.resume,true,'Resume block missing');
-  assert.equal(homeIA.metrics,4,'Home should expose exactly four compact system indicators');
+  assert.equal(homeIA.metrics,3,'Home should expose exactly three high-signal indicators; Research stays in its dedicated tab');
   assert.equal(homeIA.legacyVisible,false,'Detailed panels leaked onto Home');
   assert.equal(homeIA.canonicalHidden,true,'Canonical detail dashboard should be preserved but hidden from Home');
 
