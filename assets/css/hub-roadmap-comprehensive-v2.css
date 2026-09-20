@@ -605,3 +605,33 @@ body[data-hub-roadmap-v3="1"] #page-roadmap .hub-roadmap-v3{
     grid-template-columns:minmax(0,1fr) 342px;
   }
 }
+
+/* V3 final desktop fill after screenshot comparison. */
+@media(min-width:1500px) and (min-height:900px){
+  body[data-hub-roadmap-v3="1"] #page-roadmap .hub-rm-content{
+    min-height:530px;
+    align-items:stretch;
+  }
+  body[data-hub-roadmap-v3="1"] #page-roadmap .hub-rm-main,
+  body[data-hub-roadmap-v3="1"] #page-roadmap .hub-rm-subject-panel{
+    min-height:530px;
+  }
+  body[data-hub-roadmap-v3="1"] #page-roadmap .hub-rm-rail{
+    min-height:530px;
+    grid-template-rows:128px 112px minmax(158px,1fr) 118px;
+    align-content:stretch;
+  }
+  body[data-hub-roadmap-v3="1"] #page-roadmap .hub-rm-side-card{
+    min-height:0;
+    overflow:hidden;
+  }
+}
+body[data-hub-roadmap-v3="1"] .hub-rm-journey-card{
+  color:#f2f7fd;
+  background:
+    linear-gradient(180deg,rgba(4,16,31,.08),rgba(4,16,31,.68) 52%,rgba(4,16,31,.94) 100%),
+    url('../media/hub-reference-mountains-v5.svg') center 44%/cover no-repeat;
+  box-shadow:inset 0 0 28px rgba(0,0,0,.12);
+}
+body[data-hub-roadmap-v3="1"] .hub-rm-journey-card>span{color:#d0e3f6}
+body[data-hub-roadmap-v3="1"] .hub-rm-journey-card>small{color:#d7e2ee}
