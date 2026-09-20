@@ -3,7 +3,7 @@
    Uses only existing BAUMAN_DATA/state; does not replace canonical roadmap semantics. */
 (()=>{
   'use strict';
-  const RELEASE='HUB_ROADMAP_COMPREHENSIVE_V2_2026_09';
+  const RELEASE='HUB_ROADMAP_COMPREHENSIVE_V3_2026_09';
   const STORAGE_FILTER='bauman.roadmap.v1.filter';
   const STORAGE_OPEN='bauman.roadmap.v1.open';
   const q=(s,r=document)=>r.querySelector(s);
@@ -16,15 +16,15 @@
 
   const PHASES=[
     {id:'foundation',n:1,title:'Giai đoạn 1: Nền tảng',short:'Nền tảng',subtitle:'Xây dựng nền tảng vững chắc',source:['prepare'],tone:'green'},
-    {id:'preparatory',n:2,title:'Giai đoạn 2: Dự bị',short:'Dự bị',subtitle:'Tiếng Nga và khoa học nền tại Nga',source:['preparatory'],tone:'blue'},
+    {id:'preparatory',n:2,title:'Giai đoạn 2: Củng cố',short:'Củng cố',subtitle:'Dự bị tiếng Nga và khoa học nền tại Nga',source:['preparatory'],tone:'blue'},
     {id:'deep',n:3,title:'Giai đoạn 3: Chuyên sâu',short:'Chuyên sâu',subtitle:'Chính khóa Bauman · HK1–HK2',source:['m1','m2','bauman'],tone:'violet'},
-    {id:'application',n:4,title:'Giai đoạn 4: Ứng dụng & ВКР',short:'Ứng dụng',subtitle:'НИР sâu · thực nghiệm · ВКР',source:['m3','m4'],tone:'red'}
+    {id:'application',n:4,title:'Giai đoạn 4: Ứng dụng',short:'Ứng dụng',subtitle:'НИР sâu · thực nghiệm · ВКР',source:['m3','m4'],tone:'red'}
   ];
   const FILTERS=[
     {id:'all',label:'Tất cả',icon:'▦',subjects:null},
     {id:'russian',label:'Tiếng Nga',icon:'Я',subjects:['russian']},
     {id:'math',label:'Toán',icon:'∑',subjects:['math']},
-    {id:'foundation',label:'Dự bị',icon:'▤',subjects:['foundation']},
+    {id:'foundation',label:'Hòa nhập Nga',icon:'▤',subjects:['foundation']},
     {id:'technical',label:'Chuyên ngành',icon:'✦',subjects:['programming','ai','systems','signal','research']}
   ];
   const SUBJECT_ICON={russian:'Я',math:'∑',foundation:'▤',programming:'</>',ai:'◎',systems:'⚙',signal:'≈',research:'✦'};
@@ -37,7 +37,7 @@
 
   function subjectObj(id){return S().subjects?.[id]||D().subjects.find(x=>x.id===id)||{id,name:id}}
   function subjectName(id){
-    const concise={russian:'Tiếng Nga',math:'Toán',foundation:'Dự bị',programming:'Lập trình',ai:'AI/ML',systems:'АСОИУ',signal:'Dữ liệu',research:'НИР/ВКР'};
+    const concise={russian:'Tiếng Nga',math:'Toán',foundation:'Hòa nhập Nga',programming:'Lập trình',ai:'AI/ML',systems:'АСОИУ',signal:'Dữ liệu',research:'НИР/ВКР'};
     return concise[id]||subjectObj(id).name||id;
   }
   function subjectIcon(id){return SUBJECT_ICON[id]||subjectObj(id).icon||'•'}
@@ -64,9 +64,12 @@
   }
 
   function phaseSubjectChips(phase){
-    const ids=subjectsForPhase(phase);
-    const preferred=['russian','math','foundation','programming','ai','systems','research'];
-    return preferred.filter(x=>ids.includes(x)).slice(0,4).map(id=>'<span class="hub-rm-stage-subject '+(SUBJECT_TONE[id]||'blue')+'"><i>'+esc(subjectIcon(id))+'</i>'+esc(subjectName(id))+'</span>').join('');
+    const ids=subjectsForPhase(phase),chips=[];
+    if(ids.includes('russian'))chips.push({id:'russian',label:'Tiếng Nga',icon:'Я'});
+    if(ids.includes('math'))chips.push({id:'math',label:'Toán',icon:'∑'});
+    if(ids.includes('foundation'))chips.push({id:'foundation',label:'Hòa nhập Nga',icon:'▤'});
+    if(ids.some(id=>['programming','ai','systems','signal','research'].includes(id)))chips.push({id:'research',label:'Chuyên ngành',icon:'✦'});
+    return chips.slice(0,4).map(x=>'<span class="hub-rm-stage-subject '+(SUBJECT_TONE[x.id]||'blue')+'"><i>'+esc(x.icon)+'</i>'+esc(x.label)+'</span>').join('');
   }
 
   function stageCards(){
@@ -125,6 +128,7 @@
   function selectedTitle(){
     const f=FILTERS.find(x=>x.id===activeFilter())||FILTERS[0];
     if(f.id==='all')return ['Lộ trình tổng hợp','Theo dõi các môn xuyên suốt toàn bộ hành trình Bauman'];
+    if(f.id==='foundation')return ['Lộ trình Hòa nhập Nga','Dự bị, khoa học nền và kỹ năng học trong môi trường Nga'];
     return ['Lộ trình '+f.label,'Nội dung thật từ lộ trình hiện có · không tạo thêm môn/học phần giả'];
   }
 
@@ -143,19 +147,20 @@
 
   function rightRail(){
     const pct=overall(),current=phaseForState(),cp=phaseProgress(current),courseCount=coursesForPhase(current,'all').length;
+    const ids=Object.keys(S().subjects||{}),values=ids.map(subjectProgress),done=values.filter(v=>v>=100).length,active=values.filter(v=>v>0&&v<100).length,todo=values.filter(v=>v<=0).length;
     return '<aside class="hub-rm-rail">'+
       '<article class="hub-rm-side-card hub-rm-overall">'+
         '<div class="hub-rm-side-head"><h3>Tiến độ học tập tổng thể</h3><button data-rm-action="progress">Xem chi tiết →</button></div>'+
         '<div class="hub-rm-overall-body">'+
           '<div class="hub-rm-donut" style="--pct:'+pct+'"><b>'+pct+'%</b></div>'+
-          '<div><span>Tiến độ trung bình</span><strong>'+Object.keys(S().subjects||{}).length+' môn đang quản lý</strong><div class="hub-rm-legend"><i class="done"></i>Đã học <i class="active"></i>Đang học <i class="todo"></i>Chưa học</div></div>'+
+          '<div><span>Đã hoàn thành</span><strong>'+done+'/'+ids.length+' môn</strong><div class="hub-rm-legend"><i class="done"></i>Hoàn thành '+done+' <i class="active"></i>Đang học '+active+' <i class="todo"></i>Chưa học '+todo+'</div></div>'+
         '</div>'+
       '</article>'+
       '<article class="hub-rm-side-card">'+
         '<div class="hub-rm-side-head"><h3>Giai đoạn hiện tại</h3><button data-rm-action="current">Xem lộ trình →</button></div>'+
         '<div class="hub-rm-current">'+
           '<span class="hub-rm-current-icon '+current.tone+'">'+current.n+'</span>'+
-          '<div><b>'+esc(current.title)+'</b><small>'+esc(current.subtitle)+'</small><div class="hub-rm-mini-progress"><i><u style="width:'+cp+'%"></u></i><b>'+cp+'%</b><em>'+courseCount+' học phần</em></div></div>'+
+          '<div><b>'+esc(current.title)+'</b><small>'+esc(current.subtitle)+'</small><span class="hub-rm-doing">Đang thực hiện</span><div class="hub-rm-mini-progress"><i><u style="width:'+cp+'%"></u></i><b>'+cp+'%</b><em>'+courseCount+' học phần</em></div></div>'+
         '</div>'+
       '</article>'+
       '<article class="hub-rm-side-card">'+
@@ -192,14 +197,15 @@
       const card=document.createElement('section');
       card.id='hubRoadmapJourney';
       card.className='hub-rm-journey-card';
-      card.innerHTML='<button type="button" data-rm-journey-close title="Ẩn thẻ">×</button><b>Hành trình của bạn</b><span>Bauman Master · Học sâu, đi xa</span><small>Tiến độ và lộ trình hiện tại được đồng bộ từ dữ liệu Hub.</small>';
+      const current=subjectObj(S().subject||S().lastStudy?.subjectId||'russian');
+      card.innerHTML='<button type="button" data-rm-journey-close title="Ẩn thẻ">×</button><b>Hành trình của bạn</b><span>'+esc(subjectName(current.id))+' · Mở tương lai</span><small>Tiến độ và lộ trình hiện tại được đồng bộ từ dữ liệu Hub.</small>';
       side.insertBefore(card,q('#nav',side));
     }
     return true;
   }
 
   function setRoadmapChrome(active){
-    document.body.dataset.hubRoadmapV2=active?'1':'0';
+    document.body.dataset.hubRoadmapV3=active?'1':'0';
     q('#hubRoadmapTopNav')?.classList.toggle('hidden',!active);
     q('#hubRoadmapJourney')?.classList.toggle('hidden',!active);
   }
@@ -208,10 +214,10 @@
     const host=q('#page-roadmap');
     if(!host)return false;
     qa('.canva-roadmap-page,[data-academic2026="roadmap"]',host).forEach(el=>{el.dataset.rmCanonical='preserved';el.setAttribute('aria-hidden','true')});
-    q('.hub-roadmap-v2',host)?.remove();
+    q('.hub-roadmap-v3',host)?.remove();
     const [title,subtitle]=selectedTitle();
     const active=FILTERS.find(x=>x.id===activeFilter())||FILTERS[0];
-    host.insertAdjacentHTML('afterbegin','<section class="hub-roadmap-v2" data-roadmap-reference="'+RELEASE+'">'+
+    host.insertAdjacentHTML('afterbegin','<section class="hub-roadmap-v3" data-roadmap-reference="'+RELEASE+'">'+
       '<header class="hub-rm-hero">'+
         '<div><h1>Lộ trình học tập tổng hợp</h1><p>Theo dõi tiến độ học tập theo từng giai đoạn và từng nhóm môn học</p></div>'+
         '<blockquote>“Маленькие шаги<br>приводят к большим целям.”<small>— Bauman Master Hub</small></blockquote>'+
@@ -252,18 +258,18 @@
   }
 
   function patch(){
-    if(!window.app||window.app.__roadmapReferenceV2)return false;
+    if(!window.app||window.app.__roadmapReferenceV3)return false;
     const oldPage=window.app.page.bind(window.app);
     window.app.page=function(id,persist=true){const out=oldPage(id,persist);setRoadmapChrome(id==='roadmap');return out};
     const old=window.app.roadmap.bind(window.app);
     window.app.roadmap=function(){old();render()};
-    window.app.__roadmapReferenceV2=true;
+    window.app.__roadmapReferenceV3=true;
     render();
     return true;
   }
 
   function selfCheck(){
-    const root=q('.hub-roadmap-v2');
+    const root=q('.hub-roadmap-v3');
     return{
       release:RELEASE,
       active:!!root,
@@ -274,7 +280,7 @@
       canonicalHidden:qa('#page-roadmap .canva-roadmap-page,#page-roadmap [data-academic2026="roadmap"]').every(el=>getComputedStyle(el).display==='none'),
       topNav:qa('#hubRoadmapTopNav [data-rm-top]').length,
       journey:!!q('#hubRoadmapJourney'),
-      chromeActive:document.body.dataset.hubRoadmapV2==='1'
+      chromeActive:document.body.dataset.hubRoadmapV3==='1'
     };
   }
 
@@ -294,5 +300,6 @@
   let attempts=0;
   const boot=()=>{attempts++;if(!patch()&&attempts<30)setTimeout(boot,120)};
   if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',boot,{once:true});else boot();
-  window.BAUMAN_HUB_ROADMAP_V2={release:RELEASE,render,selfCheck,setFilter};
+  window.BAUMAN_HUB_ROADMAP_V3={release:RELEASE,render,selfCheck,setFilter};
+  window.BAUMAN_HUB_ROADMAP_V2=window.BAUMAN_HUB_ROADMAP_V3;
 })();

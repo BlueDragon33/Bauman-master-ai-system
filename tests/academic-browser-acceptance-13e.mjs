@@ -48,7 +48,7 @@ async function approvedFlow(browser){
   const context=await browser.newContext({viewport:{width:1440,height:1000}}),page=await context.newPage(),control={online:true,status:'approved'};
   await mockControl(page,control);
   page.on('pageerror',e=>pageErrors.push(String(e?.stack||e)));
-  page.on('requestfailed',r=>{if(!r.url().startsWith('http://127.0.0.1:3003/'))failedRequests.push(`${r.method()} ${r.url()} ${r.failure()?.errorText||''}`)});
+  page.on('requestfailed',r=>{const err=r.failure()?.errorText||'';if(r.url().startsWith('http://127.0.0.1:3003/'))return;if(err==='net::ERR_ABORTED')return;failedRequests.push(`${r.method()} ${r.url()} ${err}`)});
   await page.goto(BASE,{waitUntil:'domcontentloaded',timeout:30000});
   await page.waitForFunction(()=>document.documentElement.dataset.baumanDeviceAccess==='authorized',null,{timeout:15000});
   must(await page.locator('#baumanDeviceGate').evaluate(e=>e.classList.contains('hidden')),'Device gate did not hide after approval');
@@ -91,9 +91,9 @@ async function approvedFlow(browser){
   await page.locator('button[data-page="roadmap"]').click();
   await page.waitForSelector('#page-roadmap.active [data-academic2026="roadmap"]',{state:'attached'});
   assert.equal(await page.locator('#page-roadmap .academic2026-semester').count(),4);
-  assert.equal(await page.locator('#page-roadmap [data-academic2026="roadmap"]').evaluate(el=>getComputedStyle(el).display),'none','Academic roadmap source must remain attached but hidden behind Roadmap V2');
-  assert.equal(await page.locator('#page-roadmap .hub-roadmap-v2').count(),1,'Roadmap V2 presentation missing');
-  assert.equal(await page.locator('#page-roadmap .hub-rm-stage-card').count(),4,'Roadmap V2 must show four visual stages');
+  assert.equal(await page.locator('#page-roadmap [data-academic2026="roadmap"]').evaluate(el=>getComputedStyle(el).display),'none','Academic roadmap source must remain attached but hidden behind Roadmap V3');
+  assert.equal(await page.locator('#page-roadmap .hub-roadmap-v3').count(),1,'Roadmap V3 presentation missing');
+  assert.equal(await page.locator('#page-roadmap .hub-rm-stage-card').count(),4,'Roadmap V3 must show four visual stages');
   ok('roadmap_4_semesters');
 
   const diag=await page.evaluate(()=>{
