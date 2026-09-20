@@ -53,12 +53,15 @@ try{
     Object.assign(saved,{view:'overview',learnTab:'exam',lessonId:'R02',stage:'prep',slide:7});
     localStorage.setItem(key,JSON.stringify(saved));
     window.app?.closeStudy?.();
-    window.app?.page?.('home',false);
+    window.state.subject='russian';
+    window.app?.page?.('subjects',false);
+    window.app?.subjects?.();
+    window.BAUMAN_HUB_OVERVIEW_SEARCH_V2?.compactSubjectCapability?.();
     window.BAUMAN_HUB_SAFE?.refresh?.();
   });
   await page.waitForFunction(()=>!!document.querySelector('[data-safe-capability="russian"]'),null,{timeout:10000});
 
-  await page.locator('[data-safe-capability="russian"] [data-safe-action="capability"]').click();
+  await page.locator('[data-safe-capability="russian"] [data-hub-v2-action="capability"]').click();
   await page.waitForFunction(()=>window.state?.activeTask?.source==='capability-gap',null,{timeout:10000});
   const activeTask=await page.evaluate(()=>window.state.activeTask);
   assert.deepEqual(activeTask.capabilityRoute,{view:'learning',learnTab:'theory',lessonId:'R01'});

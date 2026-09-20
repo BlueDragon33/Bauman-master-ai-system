@@ -88,6 +88,7 @@ jobs:
         run: |
           node --check assets/js/main.js
           node --check assets/js/hub-safe-shell.js
+          node --check assets/js/hub-overview-search-v2.js
           node --check assets/js/planning-main.js
           node --check assets/js/hub-premium-v2.js
           node --check subjects/shared/host-bridge.js

@@ -47,13 +47,16 @@ try{
 
   await page.evaluate(()=>{
     window.app?.closeStudy?.();
-    window.app?.page?.('home',false);
+    window.state.subject='russian';
+    window.app?.page?.('subjects',false);
+    window.app?.subjects?.();
+    window.BAUMAN_HUB_OVERVIEW_SEARCH_V2?.compactSubjectCapability?.();
     window.BAUMAN_HUB_SAFE?.refresh?.();
   });
   await page.waitForFunction(()=>document.querySelector('[data-safe-capability-receipt="pending"]')?.textContent?.includes('Chưa có biên nhận mở gap')===true,null,{timeout:10000});
 
   // Open through capability CTA and require an ACK from the real Russian iframe.
-  await page.locator('[data-safe-capability="russian"] [data-safe-action="capability"]').click();
+  await page.locator('[data-safe-capability="russian"] [data-hub-v2-action="capability"]').click();
   await page.waitForFunction(()=>window.state?.activeTask?.source==='capability-gap',null,{timeout:10000});
   await page.waitForFunction(()=>window.state?.subjectRouteReceipts?.russian?.schema==='RUSSIAN_CAPABILITY_ROUTE_RECEIPT_V1',null,{timeout:30000});
   const receipt=await page.evaluate(()=>window.state.subjectRouteReceipts.russian);
@@ -91,7 +94,7 @@ try{
   await page.evaluate(()=>{
     const cap=window.state.subjectCapabilities.russian;
     cap.nextGap={lessonId:'R02',route:{view:'learning',learnTab:'theory',lessonId:'R02'}};
-    window.app?.home?.();
+    window.BAUMAN_HUB_OVERVIEW_SEARCH_V2?.compactSubjectCapability?.();
     window.BAUMAN_HUB_SAFE?.refresh?.();
   });
   await page.waitForFunction(()=>document.querySelector('[data-safe-capability-receipt="pending"]')?.textContent?.includes('Chưa có biên nhận mở gap')===true,null,{timeout:10000});
