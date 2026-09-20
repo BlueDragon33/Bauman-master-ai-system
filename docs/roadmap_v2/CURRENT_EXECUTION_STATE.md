@@ -59,7 +59,9 @@ The current L22 closeout includes the stabilization work already completed on th
 
 These are L22 hardening activities for current progress tracking. Their old internal recovery labels remain only as repository provenance.
 
-## Next
+## Historical L22 next-step record — superseded by ROADMAP_V2_COMPLETE
+
+> The numbered instructions below record what was next when L22 was current. They are historical provenance only and MUST NOT be executed as present-day work. The authoritative current state is the terminal L35 / ROADMAP_V2_COMPLETE block at the top of this file.
 
 1. L22-H1 branch-diff provenance audit: **PASS**; no unidentified runtime/data mutation was introduced by stabilization.
 2. Keep stale historical generated manifests/data quarantined.
