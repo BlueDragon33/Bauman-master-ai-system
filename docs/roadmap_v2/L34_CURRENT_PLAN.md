@@ -1,6 +1,6 @@
 # Lượt 34 — Current Plan · Bước 133–136
 
-Status: `B133_COMPLETE · L34-F1_COMPLETE · B134_COMPLETE · B135_COMPLETE · B136_COMPLETE · DOCUMENTATION_FINAL_STATE_COMPLETE · FINAL_MARKER_ACTIVE`
+Status: `B133_COMPLETE · L34-F1_COMPLETE · B134_COMPLETE · B135_COMPLETE · B136_COMPLETE · DOCUMENTATION_FINAL_STATE_COMPLETE · FINAL_MARKER_COMPLETE · L34_COMPLETE`
 
 Prerequisite: L33 final marker head `c961a46fbed064bc84a3b763516cae41d2bccff1` passed the complete six-gate set.
 
@@ -88,3 +88,17 @@ Accepted documentation/final-state head: `4eb2e75a806289e4998773a6ac9eb032a10660
 - Whole System Integration — run `35494251111` — PASS
 
 The L34 documentation/final-state head is green. A final marker revalidation is required before L34 may be declared fully closed or L35 may open.
+
+
+## L34 final marker gate evidence
+
+Accepted final marker head: `b5fc0094e703e09928c141e05839172b51a90d41`
+
+- Roadmap V2 Current Gate — run `35494387299` — PASS
+- Foundation Domain Model — run `35494387294` — PASS
+- Windows checkout safety — run `35494387336` — PASS
+- Russian Reference UI — run `35494387291` — PASS
+- Cloudflare Preview — run `35494387298` — PASS
+- Whole System Integration — run `35494387297` — PASS
+
+L34 is fully closed. Post-L34 architecture audit found no canonical Production Promotion Authorization boundary after the data-only Production Readiness Review stage. L35 is therefore required as a separately gated, data-only authorization boundary. Runtime/deployment integration remains disconnected.
