@@ -1,6 +1,6 @@
 # L33/B132 — Promotion Review Full-System Closeout
 
-Status: **ACTIVE — awaiting complete six-gate validation**
+Status: **PASS — functional closeout 6/6 gates green**
 
 B132 composes and revalidates B129/B130/B131 without widening authority.
 
@@ -21,6 +21,17 @@ B132 composes and revalidates B129/B130/B131 without widening authority.
 ## Gate
 
 `scripts/validate-roadmap-v2-l33-b132.mjs` composes B129/B130/B131, verifies isolation and a fail-closed end-to-end receipt, and must pass the complete six-gate set before L33 documentation/final-state closeout.
+
+## Functional gate evidence
+
+Accepted functional head: `e7752375d8add491e5477d42af749b1ef578025d`
+
+- Roadmap V2 Current Gate — `35490580188` — PASS
+- Foundation Domain Model — `35490580182` — PASS
+- Windows checkout safety — `35490580173` — PASS
+- Russian Reference UI — `35490580172` — PASS
+- Cloudflare Preview — `35490580215` — PASS
+- Whole System Integration — `35490580176` — PASS
 
 ## Merge boundary
 
