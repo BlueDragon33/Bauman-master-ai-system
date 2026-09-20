@@ -1,6 +1,6 @@
 # Lượt 32 — Current Plan · Bước 125–128
 
-Status: `B125_PASS · H1_PASS · F1_SUPERSEDED · F2_PASS · B126_PASS · B127_PASS · F3_PASS · B128_ACTIVE`
+Status: `B125_PASS · H1_PASS · F1_SUPERSEDED · F2_PASS · B126_PASS · B127_PASS · F3_PASS · B128_PASS · DOC_FINAL_ACTIVE`
 
 Prerequisite: L31 final marker head `369df7fcc7f9e79c2ad3426651918608cc56bcc1` passed the complete six-gate set.
 
@@ -34,7 +34,7 @@ L32 adds a separate data-only Release Review layer. It does **not** authorize pr
 
 ## B128 — Full-system closeout
 
-**ACTIVE.** Re-runs B125/H1/B126/B127 as prerequisites, audits canonical/runtime isolation, rechecks all forbidden capabilities and side-effect APIs, and validates a fail-closed end-to-end Release Review receipt before L32 may close.
+**PASS.** Functional closeout passed the complete six-gate set at head `a10171ec4578efdfc245b3b5968694fc50f99809`. Documentation/final-state revalidation is now active; L32 is not final until that head and a subsequent final marker head both pass 6/6.
 
 Any defect creates `L32-Fx`; any missing architecture creates `L32-Hx`. Later steps remain blocked until the repair/hardening head passes the complete six-gate set.
 
