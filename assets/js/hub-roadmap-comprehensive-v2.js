@@ -197,14 +197,15 @@
       const card=document.createElement('section');
       card.id='hubRoadmapJourney';
       card.className='hub-rm-journey-card';
-      card.innerHTML='<button type="button" data-rm-journey-close title="Ẩn thẻ">×</button><b>Hành trình của bạn</b><span>Bauman Master · Học sâu, đi xa</span><small>Tiến độ và lộ trình hiện tại được đồng bộ từ dữ liệu Hub.</small>';
+      const current=subjectObj(S().subject||S().lastStudy?.subjectId||'russian');
+      card.innerHTML='<button type="button" data-rm-journey-close title="Ẩn thẻ">×</button><b>Hành trình của bạn</b><span>'+esc(subjectName(current.id))+' · Mở tương lai</span><small>Tiến độ và lộ trình hiện tại được đồng bộ từ dữ liệu Hub.</small>';
       side.insertBefore(card,q('#nav',side));
     }
     return true;
   }
 
   function setRoadmapChrome(active){
-    document.body.dataset.hubRoadmapV2=active?'1':'0';
+    document.body.dataset.hubRoadmapV3=active?'1':'0';
     q('#hubRoadmapTopNav')?.classList.toggle('hidden',!active);
     q('#hubRoadmapJourney')?.classList.toggle('hidden',!active);
   }
@@ -213,10 +214,10 @@
     const host=q('#page-roadmap');
     if(!host)return false;
     qa('.canva-roadmap-page,[data-academic2026="roadmap"]',host).forEach(el=>{el.dataset.rmCanonical='preserved';el.setAttribute('aria-hidden','true')});
-    q('.hub-roadmap-v2',host)?.remove();
+    q('.hub-roadmap-v3',host)?.remove();
     const [title,subtitle]=selectedTitle();
     const active=FILTERS.find(x=>x.id===activeFilter())||FILTERS[0];
-    host.insertAdjacentHTML('afterbegin','<section class="hub-roadmap-v2" data-roadmap-reference="'+RELEASE+'">'+
+    host.insertAdjacentHTML('afterbegin','<section class="hub-roadmap-v3" data-roadmap-reference="'+RELEASE+'">'+
       '<header class="hub-rm-hero">'+
         '<div><h1>Lộ trình học tập tổng hợp</h1><p>Theo dõi tiến độ học tập theo từng giai đoạn và từng nhóm môn học</p></div>'+
         '<blockquote>“Маленькие шаги<br>приводят к большим целям.”<small>— Bauman Master Hub</small></blockquote>'+
@@ -257,18 +258,18 @@
   }
 
   function patch(){
-    if(!window.app||window.app.__roadmapReferenceV2)return false;
+    if(!window.app||window.app.__roadmapReferenceV3)return false;
     const oldPage=window.app.page.bind(window.app);
     window.app.page=function(id,persist=true){const out=oldPage(id,persist);setRoadmapChrome(id==='roadmap');return out};
     const old=window.app.roadmap.bind(window.app);
     window.app.roadmap=function(){old();render()};
-    window.app.__roadmapReferenceV2=true;
+    window.app.__roadmapReferenceV3=true;
     render();
     return true;
   }
 
   function selfCheck(){
-    const root=q('.hub-roadmap-v2');
+    const root=q('.hub-roadmap-v3');
     return{
       release:RELEASE,
       active:!!root,
@@ -279,7 +280,7 @@
       canonicalHidden:qa('#page-roadmap .canva-roadmap-page,#page-roadmap [data-academic2026="roadmap"]').every(el=>getComputedStyle(el).display==='none'),
       topNav:qa('#hubRoadmapTopNav [data-rm-top]').length,
       journey:!!q('#hubRoadmapJourney'),
-      chromeActive:document.body.dataset.hubRoadmapV2==='1'
+      chromeActive:document.body.dataset.hubRoadmapV3==='1'
     };
   }
 
@@ -299,5 +300,6 @@
   let attempts=0;
   const boot=()=>{attempts++;if(!patch()&&attempts<30)setTimeout(boot,120)};
   if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',boot,{once:true});else boot();
-  window.BAUMAN_HUB_ROADMAP_V2={release:RELEASE,render,selfCheck,setFilter};
+  window.BAUMAN_HUB_ROADMAP_V3={release:RELEASE,render,selfCheck,setFilter};
+  window.BAUMAN_HUB_ROADMAP_V2=window.BAUMAN_HUB_ROADMAP_V3;
 })();
