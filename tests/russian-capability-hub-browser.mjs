@@ -52,7 +52,7 @@ try{
   const after=await page.evaluate(()=>Number(window.state?.progress?.russian||0));
   assert.equal(after,before,'Capability bridge must not mutate canonical subject progress');
 
-  await page.evaluate(()=>{window.app?.closeStudy?.();window.app?.page?.('home',false);window.BAUMAN_HUB_SAFE?.refresh?.()});
+  await page.evaluate(()=>{window.app?.closeStudy?.();window.state.subject='russian';window.app?.page?.('subjects',false);window.app?.subjects?.();window.BAUMAN_HUB_OVERVIEW_SEARCH_V2?.compactSubjectCapability?.();window.BAUMAN_HUB_SAFE?.refresh?.()});
   await page.waitForFunction(()=>!!document.querySelector('[data-safe-capability="russian"]'),null,{timeout:10000});
   const card=page.locator('[data-safe-capability="russian"]');
   const text=await card.innerText();
