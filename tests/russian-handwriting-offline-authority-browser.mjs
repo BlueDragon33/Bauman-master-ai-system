@@ -161,13 +161,16 @@ try{
 
   const cached=await page.evaluate(async paths=>{
     const names=await caches.keys();
-    const cache=await caches.open('russian-app-shell-v1');
+    const shellNames=names.filter(name=>name.startsWith('russian-app-shell-'));
+    if(shellNames.length!==1)throw new Error('Expected exactly one active Russian app-shell cache, found: '+shellNames.join(','));
+    const cacheName=shellNames[0];
+    const cache=await caches.open(cacheName);
     const checks={};
     for(const p of paths){
       const url=new URL(p,location.href).href;
       checks[p]=Boolean(await cache.match(url));
     }
-    return {names,checks,controller:Boolean(navigator.serviceWorker.controller)};
+    return {names,shellNames,cacheName,checks,controller:Boolean(navigator.serviceWorker.controller)};
   },[
     './assets/handwriting-glyph-authority.js',
     './assets/handwriting-authority/offline-e2e/fixture.woff2',
@@ -175,6 +178,8 @@ try{
     './assets/handwriting-authority/offline-e2e/coverage.json'
   ]);
   assert.ok(cached.controller,'R-HW12 page is not controlled by the Russian Service Worker');
+  assert.equal(cached.shellNames.length,1,'R-HW12 must retain exactly one active Russian shell cache after activation');
+  assert.match(cached.cacheName,/^russian-app-shell-/,'R-HW12 did not inspect the active Russian shell cache');
   for(const [asset,ok] of Object.entries(cached.checks))assert.equal(ok,true,'R-HW12 authority asset not cached: '+asset);
 
   await context.setOffline(true);
