@@ -46,8 +46,8 @@ async function openHub(page){
   assert.equal(access.academicWrites,false);
   await page.waitForFunction(()=>!document.getElementById('appRoot')?.classList.contains('hidden'),null,{timeout:30000});
   await page.waitForFunction(()=>!!window.BAUMAN_HUB_SAFE?.selfCheck,null,{timeout:10000});
-  await page.waitForFunction(()=>window.BAUMAN_HUB_LEARNING_CLUSTER?.selfCheck?.().visibleLearningClones?.length===5,null,{timeout:10000});
-  await page.waitForFunction(()=>window.BAUMAN_HUB_OVERVIEW_SEARCH_V2?.selfCheck?.().homeSummary===true,null,{timeout:10000});
+  await page.waitForFunction(()=>window.BAUMAN_HUB_LEARNING_CLUSTER?.selfCheck?.().flatLayout===true&&window.BAUMAN_HUB_LEARNING_CLUSTER?.selfCheck?.().visibleActions?.length===10,null,{timeout:10000});
+  await page.waitForFunction(()=>window.BAUMAN_HUB_OVERVIEW_SEARCH_V2?.selfCheck?.().referenceHome===true,null,{timeout:10000});
   await page.waitForFunction(()=>{
     const safe=window.BAUMAN_HUB_SAFE?.selfCheck?.();
     return safe?.ready===true
@@ -89,13 +89,17 @@ async function checkCanonicalContent(page){
   assert.equal(content.safeCheck?.dataWrites,false,'Safe Hub must not own academic data');
   assert.equal(content.managedAccess?.ready,true,'App Manager managed access is not healthy');
   assert.equal(content.managedAccess?.credentialStorePresent,false,'Local credential store must stay empty');
-  assert.deepEqual(content.learningCluster?.visibleLearningClones,['study','simulation','exercise','exam','review'],'Learning cluster lost a required user action');
-  assert.equal(content.learningCluster?.progressLabel,'Tiến độ','Progress action is missing or was not renamed');
-  assert.equal(content.overviewSearch?.homeSummary,true,'Concise Home summary is not active');
+  assert.equal(content.learningCluster?.flatLayout,true,'Reference sidebar is not using the flat layout');
+  assert.deepEqual(content.learningCluster?.visibleActions,['study','simulation','exercise','ai','exam','review','progress','achievement','community','settings'],'Reference sidebar lost a required action');
+  assert.equal(content.learningCluster?.progressLabel,'Bản đồ năng lực','Reference progress label drift');
+  assert.equal(content.learningCluster?.achievementLabel,'Thành tích','Reference achievement label drift');
+  assert.equal(content.learningCluster?.scheduleHidden,true,'Schedule route should not be duplicated in the reference sidebar');
+  assert.equal(content.learningCluster?.researchHidden,true,'Research route should not be duplicated in the reference sidebar');
+  assert.equal(content.overviewSearch?.referenceHome,true,'Reference dashboard Home is not active');
   assert.equal(content.overviewSearch?.canonicalHomeHidden,true,'Legacy canonical Home is still user-facing');
-  assert.equal(content.overviewSearch?.searchInstalled,true,'Global search V2 is not installed');
+  assert.equal(content.overviewSearch?.searchInstalled,true,'Global search V3 is not installed');
   assert.equal(content.overviewSearch?.accentInsensitive,true,'Search is not accent-insensitive');
-  assert.equal(content.overviewSearch?.legacyHomePanelsVisible,false,'Legacy detail panels leaked back onto Home');
+  assert.equal(content.overviewSearch?.referencePanelsVisible,true,'Reference Home panels are incomplete');
   return content;
 }
 
@@ -111,23 +115,23 @@ try{
   await openHub(page);
   const content=await checkCanonicalContent(page);
 
-  // Home must stay concise and global search must route across the system.
+  // The attached reference image is the canonical Home composition.
   const homeIA=await page.evaluate(()=>({
-    summary:!!document.querySelector('.hub-v2-home'),
-    stage:!!document.querySelector('.hub-v2-overview-hero'),
-    resume:!!document.querySelector('.hub-v2-resume-card'),
-    metrics:document.querySelectorAll('.hub-v2-system-strip>button').length,
-    legacyVisible:['.hub-safe-subjects','.hub-safe-assistant','.hub-safe-schedule','.hub-safe-achievements','.hub-safe-overall'].some(sel=>{
-      const el=document.querySelector('#page-home '+sel);
-      return !!el&&getComputedStyle(el).display!=='none';
-    }),
+    reference:document.querySelector('#page-home .hub-safe-dashboard')?.dataset.homeReferenceV4||'',
+    hero:!!document.querySelector('#page-home .hub-safe-hero'),
+    subjectCards:document.querySelectorAll('#page-home .hub-safe-subject').length,
+    continueCard:!!document.querySelector('#page-home .hub-safe-continue'),
+    assistant:!!document.querySelector('#page-home .hub-safe-assistant'),
+    schedule:!!document.querySelector('#page-home .hub-safe-schedule'),
+    achievements:!!document.querySelector('#page-home .hub-safe-achievements'),
+    overall:!!document.querySelector('#page-home .hub-safe-overall'),
+    capabilityOnHome:!!document.querySelector('#page-home .hub-safe-capability,#page-home .hub-v2-subject-capability'),
     canonicalHidden:getComputedStyle(document.querySelector('#page-home .canva-dashboard-page')).display==='none'
   }));
-  assert.equal(homeIA.summary,true,'Concise Home summary missing');
-  assert.equal(homeIA.stage,true,'Current-stage overview missing');
-  assert.equal(homeIA.resume,true,'Resume block missing');
-  assert.equal(homeIA.metrics,3,'Home should expose exactly three high-signal indicators; Research stays in its dedicated tab');
-  assert.equal(homeIA.legacyVisible,false,'Detailed panels leaked onto Home');
+  assert.match(homeIA.reference,/HUB_SEARCH_REFERENCE_HOME_V4/,'Reference Home marker missing');
+  assert.ok(homeIA.hero&&homeIA.continueCard&&homeIA.assistant&&homeIA.schedule&&homeIA.achievements&&homeIA.overall,'Reference Home lost a primary panel');
+  assert.equal(homeIA.subjectCards,5,'Reference Home must expose exactly five subject cards in the first row');
+  assert.equal(homeIA.capabilityOnHome,false,'Subject-specific capability detail must not be promoted onto Home');
   assert.equal(homeIA.canonicalHidden,true,'Canonical detail dashboard should be preserved but hidden from Home');
 
   const searchAudit=await page.evaluate(()=>({
@@ -153,13 +157,17 @@ try{
   assert.ok(naturalSearch.schedule.some(x=>x[0]==='page'&&x[1]==='schedule'),'Natural schedule query did not surface Schedule');
   assert.ok(naturalSearch.thesis.some(x=>x[0]==='research'||x[1]==='research'),'Natural thesis/UGV query did not surface Research');
   const homeAudit=await page.evaluate(()=>({
-    summaryButtons:document.querySelectorAll('#page-home .hub-v2-system-strip>button').length,
-    researchCard:!!document.querySelector('#page-home [data-hub-v2-action="research"]'),
-    legacy:window.BAUMAN_HUB_OVERVIEW_SEARCH_V2.selfCheck().legacyHomePanelsVisible
+    reference:window.BAUMAN_HUB_OVERVIEW_SEARCH_V2.selfCheck().referenceHome,
+    panels:window.BAUMAN_HUB_OVERVIEW_SEARCH_V2.selfCheck().referencePanelsVisible,
+    assistantTitle:document.querySelector('#page-home .hub-safe-assistant h2')?.textContent?.trim()||'',
+    scheduleTitle:document.querySelector('#page-home .hub-safe-schedule h2')?.textContent?.trim()||'',
+    achievementTitle:document.querySelector('#page-home .hub-safe-achievements h2')?.textContent?.trim()||''
   }));
-  assert.equal(homeAudit.summaryButtons,3,'Home summary should contain only three high-signal quick indicators');
-  assert.equal(homeAudit.researchCard,false,'Research detail should not be promoted as a Home summary card');
-  assert.equal(homeAudit.legacy,false,'Legacy detailed Home panels leaked back into the overview');
+  assert.equal(homeAudit.reference,true,'Reference Home self-check failed');
+  assert.equal(homeAudit.panels,true,'Reference Home panel set is incomplete');
+  assert.equal(homeAudit.assistantTitle,'♙ AI Study Assistant','AI panel title no longer matches reference UI');
+  assert.equal(homeAudit.scheduleTitle,'Lịch học hôm nay','Schedule panel title no longer matches reference UI');
+  assert.equal(homeAudit.achievementTitle,'Thành tựu gần đây','Achievement panel title no longer matches reference UI');
 
   await page.evaluate(()=>{
     window.state.lastStudy={subjectId:'russian',path:window.state.subjects.russian.mainPath};
@@ -214,8 +222,8 @@ try{
         dashboard:!!document.querySelector('.hub-safe-dashboard'),
         original:!!document.querySelector('#page-home .canva-dashboard-page'),
         originalFolded:document.querySelector('#page-home .canva-dashboard-page')?.classList.contains('hub-safe-preserved-collapsed')===true,
-        summary:!!document.querySelector('.hub-v2-home'),
-        legacyPanels:!!document.querySelector('#page-home .hub-safe-assistant,#page-home .hub-safe-schedule,#page-home .hub-safe-achievements,#page-home .hub-safe-overall,#page-home .hub-safe-subjects'),
+        reference:!!document.querySelector('#page-home .hub-safe-dashboard[data-home-reference-v4]'),
+        referencePanels:['.hub-safe-subjects','.hub-safe-assistant','.hub-safe-schedule','.hub-safe-achievements','.hub-safe-overall'].every(sel=>{const el=document.querySelector('#page-home '+sel);return !!el&&getComputedStyle(el).display!=='none'}),
         page:document.getElementById('page-home')?.classList.contains('active')===true,
         dashboardBottom:dash?.bottom??null,
         goldBackground:gold.backgroundImage,
@@ -224,8 +232,8 @@ try{
     });
     assert.ok(snap.app&&snap.appearance&&snap.dashboard&&snap.original&&snap.page,`${label}: safe/preserved Hub content missing`);
     assert.ok(snap.originalFolded,`${label}: canonical home should stay folded by default`);
-    assert.ok(snap.summary,`${label}: concise Home summary missing`);
-    assert.equal(snap.legacyPanels,false,`${label}: legacy detailed Home panels leaked into summary`);
+    assert.ok(snap.reference,`${label}: reference Home marker missing`);
+    assert.equal(snap.referencePanels,true,`${label}: reference Home panels are incomplete`);
     assert.ok(snap.scroll<=snap.client+2,`${label}: horizontal overflow ${snap.scroll}/${snap.client}`);
     assert.match(snap.goldBackground,/gradient/i,`${label}: primary CTA lost premium gold background`);
     if(width>=1500)assert.ok(snap.dashboardBottom<=height+40,`${label}: premium dashboard no longer fits the first 16:9 screen (${snap.dashboardBottom}/${height})`);
@@ -233,7 +241,7 @@ try{
   }
 
   assert.deepEqual(errors,[],'Hub emitted console/page errors');
-  fs.writeFileSync(path.join(OUT,'summary.json'),JSON.stringify({status:'PASS',mode:'safe-additive-shell+app-manager-access',subjects:content.subjectIds.length,viewports:cases.map(x=>x[0]),planningWrapper:content.planningWrapper,safeCheck:content.safeCheck,managedAccess:content.managedAccess,staticOwnershipGate:'PASS',homeSummaryV2:'PASS',appearancePresets:'PASS',errors},null,2));
+  fs.writeFileSync(path.join(OUT,'summary.json'),JSON.stringify({status:'PASS',mode:'safe-additive-shell+app-manager-access',subjects:content.subjectIds.length,viewports:cases.map(x=>x[0]),planningWrapper:content.planningWrapper,safeCheck:content.safeCheck,managedAccess:content.managedAccess,staticOwnershipGate:'PASS',referenceHomeV4:'PASS',appearancePresets:'PASS',errors},null,2));
   console.log('Hub safe additive responsive acceptance PASS');
 }finally{
   await browser?.close();
