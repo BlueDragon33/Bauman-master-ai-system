@@ -208,10 +208,10 @@
     const host=q('#page-roadmap');
     if(!host)return false;
     qa('.canva-roadmap-page,[data-academic2026="roadmap"]',host).forEach(el=>{el.dataset.rmCanonical='preserved';el.setAttribute('aria-hidden','true')});
-    q('.hub-roadmap-v1',host)?.remove();
+    q('.hub-roadmap-v2',host)?.remove();
     const [title,subtitle]=selectedTitle();
     const active=FILTERS.find(x=>x.id===activeFilter())||FILTERS[0];
-    host.insertAdjacentHTML('afterbegin','<section class="hub-roadmap-v1" data-roadmap-reference="'+RELEASE+'">'+
+    host.insertAdjacentHTML('afterbegin','<section class="hub-roadmap-v2" data-roadmap-reference="'+RELEASE+'">'+
       '<header class="hub-rm-hero">'+
         '<div><h1>Lộ trình học tập tổng hợp</h1><p>Theo dõi tiến độ học tập theo từng giai đoạn và từng nhóm môn học</p></div>'+
         '<blockquote>“Маленькие шаги<br>приводят к большим целям.”<small>— Bauman Master Hub</small></blockquote>'+
@@ -231,7 +231,7 @@
         rightRail()+
       '</div>'+
     '</section>');
-    ensureReferenceChrome();setRoadmapChrome(true);
+    ensureReferenceChrome();setRoadmapChrome(host.classList.contains('active'));
     return true;
   }
 
@@ -263,7 +263,7 @@
   }
 
   function selfCheck(){
-    const root=q('.hub-roadmap-v1');
+    const root=q('.hub-roadmap-v2');
     return{
       release:RELEASE,
       active:!!root,
