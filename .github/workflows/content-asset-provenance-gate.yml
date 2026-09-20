@@ -3,7 +3,31 @@ name: Content Asset Provenance Gate
 on:
   push:
     branches:
+      - main
       - work/foundation-v2-l10-content-asset-provenance
+      - promotion/foundation-content-provenance-main-reconciled
+    paths:
+      - 'foundation/content-registry/**'
+      - 'foundation/domain-model/domain-contract.v1.json'
+      - 'foundation/domain-model/canonical-identity-runtime.js'
+      - 'scripts/validate-content-asset-provenance-registry.mjs'
+      - 'scripts/validate-content-asset-registry-runtime.mjs'
+      - 'scripts/validate-asset-integrity.mjs'
+      - 'scripts/validate-provenance-chain.mjs'
+      - 'scripts/validate-access-policy.mjs'
+      - 'scripts/validate-registry-snapshot.mjs'
+      - 'scripts/validate-registry-snapshot-store.mjs'
+      - 'scripts/validate-registry-snapshot-integrity.mjs'
+      - 'scripts/validate-foundation-l10-promotion.mjs'
+      - 'tests/content-asset-provenance-contract.test.mjs'
+      - 'tests/content-asset-registry-runtime.test.mjs'
+      - 'tests/asset-integrity.test.mjs'
+      - 'tests/provenance-chain.test.mjs'
+      - 'tests/access-policy.test.mjs'
+      - 'tests/registry-snapshot.test.mjs'
+      - 'tests/registry-snapshot-store.test.mjs'
+      - 'tests/registry-snapshot-integrity.test.mjs'
+      - '.github/workflows/content-asset-provenance-gate.yml'
   pull_request:
     paths:
       - 'foundation/content-registry/**'
