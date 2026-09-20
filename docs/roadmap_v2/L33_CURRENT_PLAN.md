@@ -1,6 +1,6 @@
 # Lượt 33 — Current Plan · Bước 129–132
 
-Status: `B129_PASS · B130_IMPLEMENTED · F1_ACTIVE · B131_BLOCKED · B132_BLOCKED`
+Status: `B129_PASS · B130_PASS · F1_PASS · B131_ACTIVE · B132_BLOCKED`
 
 Prerequisite: L32 final-state head `a5ff445a05ee4726ff058d293b4ce4c492955b06` passed the complete six-gate set.
 
@@ -16,11 +16,11 @@ L33 adds a separate data-only Promotion Review layer. It does **not** authorize 
 
 ## B130 — Deterministic in-memory Promotion Review projector
 
-**ACTIVE.** Implement a scripts-only deterministic, deeply frozen projector that recomputes Release Review, preserves audit identity and maps only an approved Promotion Review to `productionReadinessReviewEligible=true`, without authorizing production.
+**PASS.** Scripts-only deterministic, deeply frozen projector recomputes Release Review, preserves audit identity and maps only an approved Promotion Review to `productionReadinessReviewEligible=true`, without authorizing production.
 
 ## B131 — Adversarial Promotion Review validation
 
-Blocked until B130 passes the complete six-gate set.
+**ACTIVE.** Validate identity mismatch, caller-supplied authority/results, schema drift, reason-code abuse, nested Release Review forgery, persistence/runtime injection and post-projection privilege escalation. All invalid paths must fail closed.
 
 ## B132 — Full-system closeout
 
