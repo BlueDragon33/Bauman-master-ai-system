@@ -1,6 +1,6 @@
 # Lượt 34 — Current Plan · Bước 133–136
 
-Status: `B133_ACTIVE · B134_BLOCKED · B135_BLOCKED · B136_BLOCKED`
+Status: `B133_ACTIVE · L34-F1_ACTIVE · B134_BLOCKED · B135_BLOCKED · B136_BLOCKED`
 
 Prerequisite: L33 final marker head `c961a46fbed064bc84a3b763516cae41d2bccff1` passed the complete six-gate set.
 
@@ -27,3 +27,9 @@ Blocked until B134 passes the complete six-gate set.
 Blocked until B135 passes the complete six-gate set.
 
 Any defect creates `L34-Fx`; any missing architecture creates `L34-Hx`. Later steps remain blocked until the predecessor head passes the complete six-gate set.
+
+## L34-F1 — B133 gate wiring defect
+
+The first B133 head exposed a CI coverage defect: `scripts/validate-roadmap-v2-l34-b133.mjs` existed but the Roadmap V2 Current Gate workflow did not invoke it. This means the prior green Roadmap workflow did not constitute complete B133 contract evidence.
+
+F1 wires the B133 validator into `.github/workflows/roadmap-v2-reconciliation.yml` without weakening any assertion or authority boundary. B134 remains blocked until the repaired head passes the complete six-gate set.
