@@ -507,3 +507,17 @@ body[data-hub-roadmap-v2="1"] #profileBtn{
   width:188px!important;
   min-width:188px!important;
 }
+
+body[data-hub-roadmap-v2="1"] .hub-rm-topnav{
+  background:#0a2340!important;
+}
+body[data-hub-roadmap-v2="1"] .hub-rm-topnav button{
+  background:#0a2340!important;
+  color:#d9e5f2!important;
+}
+body[data-hub-roadmap-v2="1"] .hub-rm-topnav button:hover{
+  background:#0e2c50!important;
+}
+body[data-hub-roadmap-v2="1"] .hub-rm-topnav button.active{
+  background:linear-gradient(180deg,#145aa5 0%,#0d3d72 100%)!important;
+}
