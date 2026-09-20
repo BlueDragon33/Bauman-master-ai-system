@@ -46,6 +46,7 @@ async function openHub(page){
   assert.equal(access.academicWrites,false);
   await page.waitForFunction(()=>!document.getElementById('appRoot')?.classList.contains('hidden'),null,{timeout:30000});
   await page.waitForFunction(()=>!!window.BAUMAN_HUB_SAFE?.selfCheck,null,{timeout:10000});
+  await page.waitForFunction(()=>window.BAUMAN_HUB_LEARNING_CLUSTER?.selfCheck?.().visibleLearningClones?.length===5,null,{timeout:10000});
   await page.waitForFunction(()=>{
     const safe=window.BAUMAN_HUB_SAFE?.selfCheck?.();
     return safe?.ready===true
@@ -66,7 +67,8 @@ async function checkCanonicalContent(page){
     detailToggle:!!document.querySelector('[data-safe-action="details"]'),
     appearancePresets:document.querySelectorAll('[data-safe-appearance]').length,
     safeCheck:window.BAUMAN_HUB_SAFE?.selfCheck?.(),
-    managedAccess:window.BAUMAN_APP_MANAGER_ACCESS?.selfCheck?.()
+    managedAccess:window.BAUMAN_APP_MANAGER_ACCESS?.selfCheck?.(),
+    learningCluster:window.BAUMAN_HUB_LEARNING_CLUSTER?.selfCheck?.()
   }));
   assert.deepEqual(content.subjectIds,['ai','foundation','math','programming','research','russian','signal','systems']);
   assert.equal(content.pages.length,5,'canonical Hub pages were removed');
@@ -85,6 +87,8 @@ async function checkCanonicalContent(page){
   assert.equal(content.safeCheck?.dataWrites,false,'Safe Hub must not own academic data');
   assert.equal(content.managedAccess?.ready,true,'App Manager managed access is not healthy');
   assert.equal(content.managedAccess?.credentialStorePresent,false,'Local credential store must stay empty');
+  assert.deepEqual(content.learningCluster?.visibleLearningClones,['study','simulation','exercise','exam','review'],'Learning cluster lost a required user action');
+  assert.equal(content.learningCluster?.progressLabel,'Tiến độ','Progress action is missing or was not renamed');
   return content;
 }
 
@@ -99,6 +103,42 @@ try{
   page.on('pageerror',e=>errors.push(String(e?.stack||e)));
   await openHub(page);
   const content=await checkCanonicalContent(page);
+
+  // User-journey regressions: metrics, global search navigation, and AI suggestion handoff.
+  const selectedSubjectId=await page.evaluate(()=>window.state?.subject);
+  await page.evaluate(subjectId=>{
+    window.state.subjectReports=window.state.subjectReports||{};
+    window.state.subjectReports[subjectId]=[{percent:61},{percent:84}];
+    window.BAUMAN_HUB_SAFE?.refresh?.();
+  },selectedSubjectId);
+  await page.waitForFunction(()=>document.querySelector('.hub-safe-stats span:nth-child(4) b')?.textContent?.trim()==='2');
+
+  await page.locator('#hubSafeSearch').fill('Tiếng Nga');
+  await page.locator('#hubSafeSearch').press('Enter');
+  await page.waitForSelector('#modalRoot [data-safe-subject="russian"]',{timeout:10000});
+  await page.locator('#modalRoot [data-safe-subject="russian"]').first().click();
+  await page.waitForFunction(()=>window.state?.subject==='russian'&&document.getElementById('page-subjects')?.classList.contains('active')===true);
+
+  await page.evaluate(()=>{window.app?.page?.('home',false);window.BAUMAN_HUB_SAFE?.refresh?.()});
+  await page.waitForSelector('[data-safe-ask]',{timeout:10000});
+  const suggestion=await page.locator('[data-safe-ask]').first().getAttribute('data-safe-ask');
+  await page.locator('[data-safe-ask]').first().click();
+  await page.waitForSelector('#aiInput',{timeout:10000});
+  assert.equal(await page.locator('#aiInput').inputValue(),suggestion,'AI suggestion did not hand the prompt into the assistant input');
+  await page.evaluate(()=>window.mentor?.close?.());
+
+  // Selecting a subject for preview must not corrupt the canonical last-study resume pointer.
+  await page.evaluate(()=>{
+    window.state.lastStudy={subjectId:'russian',path:window.state.subjects.russian.mainPath};
+    window.state.subject='russian';
+    window.BAUMAN_HUB_SAFE?.refresh?.();
+  });
+  await page.locator('[data-safe-subject="math"]').first().click();
+  await page.waitForFunction(()=>window.state?.subject==='math');
+  assert.equal(await page.evaluate(()=>window.state?.lastStudy?.subjectId),'russian','Subject preview incorrectly overwrote lastStudy');
+  await page.locator('[data-safe-action="open-selected"]').click();
+  await page.waitForFunction(()=>window.state?.lastStudy?.subjectId==='math'&&!!document.getElementById('subjectFrame'),null,{timeout:10000});
+  await page.evaluate(()=>window.app?.closeStudy?.());
 
   // Canonical home is still present in DOM, but folded by default for a clean 16:9 first screen.
   await page.evaluate(()=>localStorage.removeItem('bauman_hub_canonical_details_open_v1'));
