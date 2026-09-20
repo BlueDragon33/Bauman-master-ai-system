@@ -1,6 +1,6 @@
 # Lượt 34 — Current Plan · Bước 133–136
 
-Status: `B133_COMPLETE · L34-F1_COMPLETE · B134_COMPLETE · B135_ACTIVE · B136_BLOCKED`
+Status: `B133_COMPLETE · L34-F1_COMPLETE · B134_COMPLETE · B135_COMPLETE · B136_ACTIVE`
 
 Prerequisite: L33 final marker head `c961a46fbed064bc84a3b763516cae41d2bccff1` passed the complete six-gate set.
 
@@ -20,11 +20,11 @@ L34 adds a separate data-only Production Readiness Review boundary. It remains s
 
 ## B135 — Adversarial Production Readiness Review validation
 
-**ACTIVE.** Exercise identity/namespace attacks, unsupported authority/result injection, schema and decision drift, reason-code abuse, nested Promotion Review forgery, upstream-blocked escalation attempts, post-projection privilege escalation, and deterministic receipt identity.
+**COMPLETE.** Accepted head `3fd704dbd13976419c594aefc3b93b6c4be3ae50` passed the complete six-gate set. 31/31 adversarial cases passed fail-closed.
 
 ## B136 — Full-system closeout
 
-Blocked until B135 passes the complete six-gate set.
+**ACTIVE.** Re-run B133/B134/B135 as dependencies, validate canonical-tree/runtime isolation, verify the Production Readiness Review harness remains side-effect free, and confirm blocked upstream input cannot gain production authority.
 
 Any defect creates `L34-Fx`; any missing architecture creates `L34-Hx`. Later steps remain blocked until the predecessor head passes the complete six-gate set.
 
@@ -46,3 +46,17 @@ Accepted B134 head: `ef484c485701b645c1de2d146a048818ad4fb4bc`
 - Whole System Integration — run `35493764455` — PASS
 
 B135 is permitted to open.
+
+
+## B135 gate evidence
+
+Accepted B135 head: `3fd704dbd13976419c594aefc3b93b6c4be3ae50`
+
+- Roadmap V2 Current Gate — run `35493937157` — PASS
+- Foundation Domain Model — run `35493937390` — PASS
+- Windows checkout safety — run `35493937140` — PASS
+- Russian Reference UI — run `35493937300` — PASS
+- Cloudflare Preview — run `35493937173` — PASS
+- Whole System Integration — run `35493937191` — PASS
+
+B135 adversarial validation: **31/31 PASS**. B136 is permitted to open.
