@@ -82,6 +82,35 @@ function compactHome(){
   return true;
 }
 
+function russianCapabilityHTML(){
+  const cap=S().subjectCapabilities?.russian;if(!cap)return '';
+  const band=cap.currentBand||{},gap=cap.nextGap||{},exit=cap.stageExit||{};
+  const live=window.isSubjectCapabilityLive?.('russian')===true;
+  const reviewDue=Math.max(Number(band.reviewDue||0),Number(exit.reviewDue||0));
+  const receipt=S().subjectRouteReceipts?.russian;
+  const route=receipt?.route;
+  const confirmed=!!(receipt&&route&&gap?.lessonId&&route.lessonId===gap.lessonId&&route.view===(gap.route?.view||'')&&route.learnTab===(gap.route?.learnTab||''));
+  const receiptLine=confirmed
+    ?'<div class="hub-v2-cap-receipt" data-safe-capability-receipt="confirmed"><b>✓ Russian đã xác nhận mở '+safe(route.lessonId)+'</b><small>'+safe(route.view)+' · '+safe(route.learnTab)+' · stage '+safe(receipt.stage||'')+'</small></div>'
+    :'<div class="hub-v2-cap-receipt pending" data-safe-capability-receipt="pending"><b>Chưa có biên nhận mở gap</b><small>Biên nhận chỉ xuất hiện sau khi Russian xác nhận đúng route.</small></div>';
+  return '<section class="hub-v2-subject-capability" data-safe-capability="russian">'
+    +'<div><span class="hub-v2-eyebrow">NĂNG LỰC TIẾNG NGA</span><h3>'+safe(band.id||'R0')+' · '+safe(band.title||'Năng lực hiện tại')+'</h3><p>'+(live?'Snapshot đã đồng bộ trong phiên hiện tại':'Snapshot lưu từ phiên trước · mở Russian để đồng bộ lại')+'</p></div>'
+    +'<div class="hub-v2-cap-grid"><span><b>'+safe(gap.lessonId||'—')+'</b><small>Gap tiếp theo</small></span><span><b>'+reviewDue+'</b><small>Cần ôn</small></span><span><b>'+(exit.allowed?'Sẵn sàng':'Chưa sẵn sàng')+'</b><small>Rời stage</small></span></div>'
+    +receiptLine
+    +'<button class="btn hub-safe-outline" data-hub-v2-action="capability">Mở Tiếng Nga theo gap hiện tại →</button>'
+  +'</section>';
+}
+function compactSubjectCapability(){
+  const host=q('#page-subjects'),detail=q('.canva-subject-detail',host);
+  if(!host||!detail)return false;
+  q('.hub-v2-subject-capability',detail)?.remove();
+  if(S().subject!=='russian'||!S().subjectCapabilities?.russian)return true;
+  const head=q('.subject-head',detail);
+  if(head)head.insertAdjacentHTML('afterend',russianCapabilityHTML());
+  else detail.insertAdjacentHTML('afterbegin',russianCapabilityHTML());
+  return true;
+}
+
 function scoreItem(item,query){
   const nq=normalize(query),tokens=nq.split(/\s+/).filter(Boolean);
   if(!tokens.length)return 0;
@@ -190,6 +219,7 @@ function handleHomeAction(id){
   if(id==='roadmap')return a.page?.('roadmap');
   if(id==='schedule')return a.page?.('schedule');
   if(id==='research')return a.page?.('research');
+  if(id==='capability')return a.openSubjectCapabilityGap?.('russian');
   if(id==='review'){
     const item=(S().reviewQueue||[])[0];
     if(item?.subjectId&&S().subjects?.[item.subjectId])return a.openSubjectInPage?.(item.subjectId);
@@ -204,14 +234,20 @@ function bind(){
     const action=e.target.closest('[data-hub-v2-action]');if(action){e.preventDefault();e.stopImmediatePropagation();handleHomeAction(action.dataset.hubV2Action);return}
   },true);
 }
-let observer=null;
+let observer=null,subjectObserver=null;
 function install(){
   installSearch();
   compactHome();
+  compactSubjectCapability();
   const host=q('#page-home');
   if(host&&!observer){
     observer=new MutationObserver(()=>{if(host.classList.contains('active'))setTimeout(compactHome,0)});
     observer.observe(host,{childList:true,subtree:false});
+  }
+  const subjects=q('#page-subjects');
+  if(subjects&&!subjectObserver){
+    subjectObserver=new MutationObserver(()=>setTimeout(compactSubjectCapability,0));
+    subjectObserver.observe(subjects,{childList:true,subtree:false});
   }
 }
 function selfCheck(){
@@ -222,5 +258,5 @@ bind();
 setTimeout(install,0);setTimeout(install,350);setTimeout(install,1200);
 const oldRefresh=window.BAUMAN_HUB_SAFE?.refresh;
 if(typeof oldRefresh==='function')window.BAUMAN_HUB_SAFE.refresh=()=>{const result=oldRefresh();install();return result};
-window.BAUMAN_HUB_OVERVIEW_SEARCH_V2={release:RELEASE,install,compactHome,search:searchCatalog,openSearch:showSearch,selfCheck};
+window.BAUMAN_HUB_OVERVIEW_SEARCH_V2={release:RELEASE,install,compactHome,compactSubjectCapability,search:searchCatalog,openSearch:showSearch,selfCheck};
 })();
