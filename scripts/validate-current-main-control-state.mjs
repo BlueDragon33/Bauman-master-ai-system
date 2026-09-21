@@ -1,5 +1,6 @@
 import assert from 'node:assert/strict';
 import fs from 'node:fs';
+import {execFileSync} from 'node:child_process';
 
 const read = path => fs.readFileSync(path, 'utf8');
 const state = read('CODEX_STATE.md');
@@ -19,6 +20,18 @@ assert.match(state, /^Base:\s+`main`$/m, 'CODEX_STATE must identify main as the 
 assert.ok(state.includes('ROADMAP_V2_COMPLETE'), 'CODEX_STATE must preserve ROADMAP_V2_COMPLETE.');
 assert.ok(state.includes('CURRENT_MAIN_CLEAN'), 'CODEX_STATE must preserve CURRENT_MAIN_CLEAN.');
 assert.ok(task.includes('CHAT_FIRST / CURRENT_MAIN / FAIL_CLOSED'), 'CODEX_TASK must preserve current-main fail-closed mode.');
+
+const promotedSection = state.match(/Promoted current-main capabilities:\n([\s\S]*?)\n## /)?.[1] || '';
+const promotedShas = [...promotedSection.matchAll(/`([0-9a-f]{40})`/gi)].map(match => match[1].toLowerCase());
+assert.ok(promotedShas.length > 0, 'CODEX_STATE promoted current-main capability SHAs are missing.');
+assert.equal(new Set(promotedShas).size, promotedShas.length, 'CODEX_STATE promoted current-main capability SHAs must be unique.');
+for (const sha of promotedShas) {
+  try {
+    execFileSync('git', ['merge-base', '--is-ancestor', sha, 'HEAD'], {stdio: 'ignore'});
+  } catch {
+    assert.fail(`Promoted current-main SHA is not an ancestor of HEAD: ${sha}`);
+  }
+}
 
 assert.ok(roadmap.includes('Current round: **Lượt 35**'), 'Authoritative Roadmap marker must remain at Lượt 35.');
 assert.ok(roadmap.includes('ROADMAP V2 COMPLETE · MERGED TO MAIN'), 'Authoritative Roadmap marker must remain complete and merged.');
@@ -42,7 +55,7 @@ assert.ok(state.includes('non-authoritative learner reflection'), 'CODEX_STATE m
 assert.ok(task.includes('reflection-only learner state'), 'CODEX_TASK must preserve the Deep Study Journal reflection-only boundary.');
 assert.ok(task.includes('no mastery/diagnostic/prerequisite/scheduler/progress mutation'), 'CODEX_TASK must preserve Deep Study Journal no-mutation authority.');
 
-console.log('CURRENT_MAIN_CONTROL_STATE_GATE_V1=PASS');
+console.log('CURRENT_MAIN_CONTROL_STATE_GATE_V1_1=PASS');
 console.log(JSON.stringify({
   task: stateTask,
   roadmapRound: 35,
@@ -50,5 +63,7 @@ console.log(JSON.stringify({
   productionRuntimeActivation: 'disconnected',
   applicationManagementContractVersion: control.contractVersion,
   explicitMissingCapabilities: explicitMissing.length,
+  promotedShaCount: promotedShas.length,
+  promotedShaAncestryVerified: true,
   failClosed: true
 }, null, 2));
