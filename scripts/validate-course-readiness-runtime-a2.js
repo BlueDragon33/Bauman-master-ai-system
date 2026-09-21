@@ -14,7 +14,7 @@ const required=['d01','d02','d03','d04','d05','d06','d15','p02'];
 assert(arch.version==='PHASE2_CURRENT_MAIN_A1_S1_COURSE_ARCHITECTURE_V3','A2 must consume current-main A1 architecture');
 assert(JSON.stringify(arch.courses.map(x=>x.courseId))===JSON.stringify(required),'A2 course order drifted');
 for(const token of [
-  'A2 Course Readiness Runtime','function prereqAxis(','function lifecycleAxis(','function eventAxis(',
+  'A2 Course Readiness + A3 Evidence Bridge','function prereqAxis(','function lifecycleAxis(','function eventAxis(',
   'function fallbackEventAxis(','function nextAction(','function patchProgressFrame(',
   'data-course14b-progress="s1"','course_local_readiness_unassessed','PREREQ_REPAIR','COURSE_READY',
   "surface:'progress-modal'","mode==='progress'?base+renderProgressSummary():base"
@@ -53,4 +53,4 @@ assert(d04.eventModel.events.every(x=>x.internalTarget===90),'d04 graded-event i
 
 if(errors.length){console.error(`A2_COURSE_READINESS_FAIL (${errors.length})`);for(const e of errors)console.error(`- ${e}`);process.exit(1)}
 console.log('A2_COURSE_READINESS_VALID');
-console.log(JSON.stringify({courses:8,readOnly:true,surface:'progress-modal',homeSurfaceAdded:false,d01:'course-local-English',a3Bootstrap:false},null,2));
+console.log(JSON.stringify({courses:8,readOnly:true,surface:'progress-modal',homeSurfaceAdded:false,d01:'course-local-English',a3Bootstrap:true},null,2));
