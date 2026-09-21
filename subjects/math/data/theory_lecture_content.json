@@ -1,7 +1,7 @@
 {
   "id": "bauman_math_theory_lecture_content_e146_c03_complete",
   "schema": "bauman_math_content_records_v1",
-  "version": "E173_C03_CHAPTER_ID_RECONCILED",
+  "version": "E174_C03_L01_CONTENT_FACTORY_C1_C5",
   "title": "Bài giảng lý thuyết Toán · Nội dung học tập",
   "role": "content",
   "frameSource": "theory_lecture_frame.json",
@@ -6793,222 +6793,654 @@
       "chapterId": "MATH-VN-C03-ham_so_ao_ham_va_gradien",
       "lessonTitle": "§3.1 · Hàm số như mô hình đầu vào–đầu ra",
       "title": "§3.1 · Hàm số như mô hình đầu vào–đầu ra",
-      "programLectureId": "MATH-PROG-L03-calculus-gradient-optimization",
+      "orderInChapter": 1,
+      "programLectureId": "MATH-PROG-L05-calculus-gradient",
       "programLectureIds": [
-        "MATH-PROG-L03-calculus-gradient-optimization",
+        "MATH-PROG-L05-calculus-gradient",
         "MATH-PROG-L17-ai-machine-learning-math-foundations",
-        "MATH-PROG-L02-vector-spaces-linear-maps"
+        "MATH-PROG-L06-optimization"
       ],
       "programAnchorTitle": "Giải tích, gradient và tối ưu",
       "roadmapRole": "foundation_before_prep",
-      "baumanFocus": "Hiểu hàm số như mô hình ánh xạ đầu vào–đầu ra, nền để học đạo hàm, gradient, tối ưu, mô hình dự đoán và hệ động lực.",
+      "baumanFocus": "Khôi phục hàm số như mapping có domain/codomain, input/output, parameters và units; nối scalar/vector functions với code evaluation để chuẩn bị đạo hàm, gradient, loss và optimization.",
+      "pureLayer": [
+        "hàm số",
+        "domain/codomain",
+        "scalar/vector functions",
+        "parameters",
+        "composition",
+        "units"
+      ],
+      "appliedLayer": [
+        "sensor model",
+        "loss function",
+        "Python function",
+        "NumPy evaluation",
+        "AI/optimization bridge"
+      ],
+      "bridgeQuestion": "Trước khi lấy đạo hàm, ta đã xác định đúng input, output, parameter, domain và ý nghĩa vật lý của hàm chưa?",
+      "auditStatus": "REVIEW",
       "sourceAnchors": {
         "stageId": "vn",
-        "disciplineId": "calculus_optimization",
+        "disciplineId": "calculus_multivariable",
         "chapterId": "MATH-VN-C03-ham_so_ao_ham_va_gradien",
-        "programLectureId": "MATH-PROG-L03-calculus-gradient-optimization"
+        "programLectureId": "MATH-PROG-L05-calculus-gradient",
+        "officialCurriculum": "bmstu_iu5_2026_curriculum"
       },
       "tags": [
         "function",
+        "mapping",
         "input-output",
-        "model",
-        "calculus",
-        "machine learning"
+        "domain",
+        "parameter",
+        "multivariable",
+        "Python",
+        "gradient preparation"
       ],
+      "learningContract": {
+        "governingQuestion": "Một hàm số trong kỹ thuật/AI là mapping nào, nhận input gì, trả output gì và điều kiện nào phải rõ trước khi nói tới đạo hàm/gradient?",
+        "whyNeeded": "Đạo hàm và gradient chỉ có nghĩa khi object cần vi phân đã được xác định rõ; đây là nền để học sensitivity, loss, gradient descent và backpropagation.",
+        "prerequisiteGates": [
+          "Nhận biết biến và biểu thức đại số cơ bản.",
+          "Hiểu vector/matrix như input structure từ C01–C02.",
+          "Không yêu cầu nhớ đạo hàm; phần đạo hàm sẽ được kích hoạt lại từ §3.2.",
+          "Python/NumPy được dạy ở mức beginner entry, không giả định code fluency."
+        ],
+        "measurableLearningOutcomes": [
+          "LO1: Viết được function contract gồm input, output, domain/codomain, units và parameters cho ít nhất 4/5 tình huống.",
+          "LO2: Phân biệt function definition với tập sample/data points và giải thích vì sao bảng giá trị không tự nó là toàn bộ hàm.",
+          "LO3: Phân biệt scalar→scalar, vector→scalar và vector→vector bằng shape/input-output examples.",
+          "LO4: Phân biệt input variable với fixed parameter trong một model f(x;θ).",
+          "LO5: Evaluate đúng các hàm deterministic đơn giản bằng tay và bằng Python/NumPy rồi đối chiếu output.",
+          "LO6: Nhận diện domain/units violation dù code vẫn chạy.",
+          "LO7: Giải thích vì sao loss J(w) cũng là một function và vì sao đó là cầu sang derivative/gradient."
+        ],
+        "exactScope": [
+          "function as mapping",
+          "domain/codomain",
+          "input/output",
+          "parameters",
+          "scalar/vector-valued functions",
+          "evaluation",
+          "composition preview"
+        ],
+        "explicitDeferrals": [
+          "Limits/continuity formalism → only as needed later.",
+          "Derivative definition → §3.2.",
+          "Partial derivative/gradient → §3.3.",
+          "Gradient descent → §3.4.",
+          "Optimization conditions → §3.5.",
+          "Backpropagation → §3.6."
+        ],
+        "canonicalTerminology": {
+          "function": "hàm số/mapping",
+          "input": "đầu vào",
+          "output": "đầu ra",
+          "domain": "miền xác định",
+          "codomain": "không gian đích",
+          "parameter": "tham số",
+          "variable": "biến",
+          "scalarValued": "hàm giá trị vô hướng",
+          "vectorValued": "hàm giá trị vector",
+          "composition": "hợp thành"
+        },
+        "symbols": {
+          "f:X→Y": "function from domain X to codomain Y",
+          "y=f(x)": "output from input x",
+          "f(x;θ)": "x varies as input; θ denotes model parameters held fixed during one evaluation",
+          "J(w)": "loss/objective as a function of parameter vector w"
+        },
+        "continuity": {
+          "previous": "§2.6 · Từ ma trận sang PCA và mô hình tuyến tính",
+          "next": "§3.2 · Đạo hàm và độ nhạy của hệ thống"
+        }
+      },
+      "technicalRussian": {
+        "terms": [
+          [
+            "функция",
+            "hàm số"
+          ],
+          [
+            "аргумент",
+            "đối số/input"
+          ],
+          [
+            "значение функции",
+            "giá trị hàm"
+          ],
+          [
+            "область определения",
+            "miền xác định"
+          ],
+          [
+            "область значений",
+            "miền giá trị"
+          ],
+          [
+            "параметр",
+            "tham số"
+          ],
+          [
+            "скалярная функция",
+            "hàm vô hướng"
+          ],
+          [
+            "вектор-функция",
+            "hàm vector"
+          ],
+          [
+            "композиция функций",
+            "hợp thành hàm"
+          ]
+        ],
+        "commandVerbs": [
+          [
+            "вычислите",
+            "hãy tính"
+          ],
+          [
+            "определите",
+            "hãy xác định"
+          ],
+          [
+            "подставьте",
+            "hãy thế vào"
+          ],
+          [
+            "объясните",
+            "hãy giải thích"
+          ]
+        ],
+        "oralFrames": [
+          "Функция отображает вход x из области определения в выход y.",
+          "Параметр фиксируется при одном вычислении, а аргумент изменяется.",
+          "Перед дифференцированием нужно определить переменные, параметры и область определения."
+        ]
+      },
+      "sourceProvenance": [
+        {
+          "id": "bmstu_iu5_2026_curriculum",
+          "kind": "official_curriculum",
+          "url": "https://home.science.iu5.bmstu.ru/study-plans/iu5-master-program.pdf",
+          "supports": [
+            "preparation context for analytical models, multidimensional data analysis and machine learning"
+          ]
+        },
+        {
+          "id": "mit_multivariable_partial_derivatives",
+          "kind": "authoritative_university_material",
+          "url": "https://ocw.mit.edu/courses/18-02sc-multivariable-calculus-fall-2010/pages/2.-partial-derivatives/",
+          "supports": [
+            "functions of several variables lead to partial derivatives/gradient",
+            "derivatives measure rates of change and support approximation/optimization"
+          ]
+        },
+        {
+          "id": "numpy_polynomial",
+          "kind": "official_documentation",
+          "url": "https://numpy.org/doc/stable/reference/routines.polynomials.polynomial.html",
+          "supports": [
+            "programmatic polynomial evaluation/differentiation utilities for computational examples"
+          ]
+        }
+      ],
+      "generatedMaterial": {
+        "status": "AI_DRAFT_REVIEWED_IN_CONTENT_FACTORY",
+        "lineage": "Generated reactivation lesson anchored to multivariable-calculus learning context, BMSTU preparation scope and NumPy computational examples.",
+        "canonicalSourceReplacement": false
+      },
+      "contentFactory": {
+        "C1": "PASS",
+        "C2": "PASS",
+        "C3": "PASS",
+        "C4": "PASS",
+        "C5": "PASS",
+        "C6": {
+          "software": "STATIC_QA_PENDING",
+          "user": "PENDING",
+          "blockers": 0,
+          "majors": 0,
+          "inheritedDeferredGate": "E164",
+          "acceptance": "PENDING_C6"
+        }
+      },
       "slides": [
         {
           "role": "problem_framing",
-          "title": "Hàm số mô tả cách hệ thống biến đầu vào thành đầu ra",
+          "title": "ORIENT · Trước đạo hàm, phải biết hàm đang mô tả cái gì",
+          "sourceRefs": [
+            "mit_multivariable_partial_derivatives",
+            "bmstu_iu5_2026_curriculum"
+          ],
           "blocks": [
             {
               "type": "text",
-              "title": "Ý chính",
-              "body": "Trong Toán kỹ thuật, hàm số không chỉ là biểu thức trên giấy. Nó là mô hình liên hệ giữa dữ liệu đầu vào, tham số hệ thống và đầu ra cần dự đoán hoặc điều khiển."
+              "title": "Câu hỏi điều khiển",
+              "body": "Khi thấy y=f(x), câu hỏi đầu tiên không phải «đạo hàm thế nào?» mà là: x là gì, y là gì, domain/codomain nào, units nào và tham số nào đang được giữ cố định?"
+            },
+            {
+              "type": "text",
+              "title": "Vì sao cần",
+              "body": "Gradient descent và backpropagation đều vi phân một function. Nếu function contract mơ hồ, đạo hàm có thể đúng ký hiệu nhưng sai đối tượng hoặc sai ý nghĩa kỹ thuật."
+            },
+            {
+              "type": "formula",
+              "title": "Function contract",
+              "body": "f:X→Y\nx∈X → y=f(x)∈Y\nmodel form: y=f(x;θ)"
+            },
+            {
+              "type": "qa",
+              "title": "Retrieval",
+              "body": "Trong y=Xw của §2.6, nếu X cố định và ta tối ưu w, object nào là input variable của loss J(w)?"
             }
           ]
         },
         {
           "role": "deep_essence",
-          "title": "Một hàm là một quy luật ánh xạ",
+          "title": "REACTIVATION · Hàm số không chỉ là một công thức trên giấy",
           "blocks": [
             {
               "type": "text",
-              "title": "Bản chất",
-              "body": "Hàm f nhận một đầu vào x trong miền xác định và trả về một đầu ra y. Trong kỹ thuật, x có thể là vector đặc trưng, tín hiệu, trạng thái hoặc tham số."
+              "title": "Kiến thức đã từng học",
+              "body": "Ở phổ thông/đại học, hàm thường xuất hiện như y=f(x). Bản chất rộng hơn: function là quy tắc mapping mỗi input hợp lệ tới một output xác định."
+            },
+            {
+              "type": "text",
+              "title": "Formula chỉ là một representation",
+              "body": "Function có thể được mô tả bằng formula, code, lookup table + interpolation, simulation hoặc physical model. Điều quan trọng là mapping contract."
+            },
+            {
+              "type": "formula",
+              "title": "Ba kiểu sẽ gặp",
+              "body": "scalar→scalar: f:R→R\nvector→scalar: J:R^n→R\nvector→vector: g:R^n→R^m"
+            },
+            {
+              "type": "qa",
+              "title": "Tự nói lại",
+              "body": "Loss J(w) của ML thuộc kiểu nào nếu w có n parameters và loss là một số?"
             }
           ]
         },
         {
           "role": "counter_intuition",
-          "title": "Không phải mọi quan hệ đều là hàm tốt để tính toán",
+          "title": "COUNTER-INTUITION · Data points không phải toàn bộ function",
           "blocks": [
             {
               "type": "text",
-              "title": "Điểm dễ nhầm",
-              "body": "Một công thức có thể tồn tại nhưng không ổn định, không liên tục, không đo được hoặc không phù hợp dữ liệu. Mô hình dùng được phải rõ đầu vào, đầu ra, miền giá trị và giả định."
+              "title": "Sample vs rule",
+              "body": "Bảng (x_i,y_i) chỉ cho biết function/measurement tại vài input. Nhiều functions khác nhau có thể đi qua cùng finite samples."
+            },
+            {
+              "type": "text",
+              "title": "Interpolation/model assumption",
+              "body": "Muốn dự đoán giữa hoặc ngoài sample points, ta phải thêm model/regularity assumption; dữ liệu tự nó không quyết định duy nhất mapping liên tục."
+            },
+            {
+              "type": "text",
+              "title": "Code cũng không đủ",
+              "body": "Một Python function chạy được nhưng có thể nhận input ngoài physical domain hoặc mix units. Runtime success không thay semantic validation."
+            },
+            {
+              "type": "qa",
+              "title": "Diagnostic",
+              "body": "Ba điểm (0,0),(1,1),(2,4) có bắt buộc function phải là x^2 không? Không. Hãy nêu lý do."
             }
           ]
         },
         {
           "role": "real_bridge",
-          "title": "Hàm trong AI, điều khiển và tín hiệu",
+          "title": "CONTEXT · Sensor model, loss model và state update đều là functions",
           "blocks": [
             {
               "type": "text",
-              "title": "Ví dụ",
-              "body": "Mô hình AI là hàm y=f(x;theta). Bộ điều khiển là hàm u=g(x). Bộ lọc tín hiệu là hàm biến tín hiệu thô thành tín hiệu sạch hơn."
+              "title": "Sensor calibration",
+              "body": "y=0.98x+0.4 có thể map raw sensor reading x sang calibrated value y."
+            },
+            {
+              "type": "text",
+              "title": "Loss",
+              "body": "J(w)=(w-3)^2 map parameter w sang một scalar đo error."
+            },
+            {
+              "type": "text",
+              "title": "State update",
+              "body": "x_next=g(x,u) map current state + control input thành next state; đây là vector-valued function nhiều input."
+            },
+            {
+              "type": "qa",
+              "title": "Decision question",
+              "body": "Trong ba examples, function nào có output scalar? Function nào có thể vector-valued? Function nào ta sẽ tối ưu ở §3.4–§3.5?"
             }
           ]
         },
         {
           "role": "notation",
-          "title": "Ký hiệu hàm vô hướng và hàm vector",
+          "title": "FORMALIZE · Input, output, parameter và units",
           "blocks": [
             {
               "type": "formula",
-              "title": "Hàm một biến",
-              "body": "y = f(x)"
+              "title": "Parameter notation",
+              "body": "y=f(x;θ)\nx: input variable\nθ: parameters held fixed during evaluation"
             },
             {
-              "type": "formula",
-              "title": "Hàm nhiều biến",
-              "body": "y = f(x_1, x_2, ..., x_n)"
+              "type": "text",
+              "title": "Units",
+              "body": "Nếu x có unit seconds và y meters, f must map time to position. Cộng trực tiếp meters với seconds trong một formula là semantic error dù Python vẫn tính số."
             },
             {
-              "type": "formula",
-              "title": "Hàm vector",
-              "body": "y = f(x), x in R^n, y in R^m"
+              "type": "text",
+              "title": "Domain",
+              "body": "sqrt(x) trên real numbers cần x≥0; log(x) cần x>0. Physical model còn có domain constraints riêng."
+            },
+            {
+              "type": "qa",
+              "title": "Quick check",
+              "body": "f(x)=sqrt(x-2) trên R có domain nào? Code với complex dtype có thể chạy ngoài domain real, nhưng model contract đã đổi."
             }
           ]
         },
         {
           "role": "core_formula",
-          "title": "Miền xác định, ảnh và tham số",
+          "title": "CORE · Composition tạo pipeline functions",
           "blocks": [
             {
-              "type": "text",
-              "title": "Domain",
-              "body": "Miền xác định cho biết đầu vào nào hợp lệ."
-            },
-            {
-              "type": "text",
-              "title": "Range",
-              "body": "Tập giá trị đầu ra cho biết hàm có thể tạo ra những kết quả nào."
-            },
-            {
               "type": "formula",
-              "title": "Tham số mô hình",
-              "body": "y = f(x; theta)"
+              "title": "Composition",
+              "body": "h(x)=f(g(x)) = (f∘g)(x)"
+            },
+            {
+              "type": "text",
+              "title": "Domain/codomain match",
+              "body": "Output space của g phải phù hợp input domain của f, tương tự inner dimensions khi nhân matrix."
+            },
+            {
+              "type": "text",
+              "title": "Cầu từ C02",
+              "body": "Linear composition A(Bx) là special case của function composition. Calculus sẽ mở rộng chain rule cho composition tổng quát."
+            },
+            {
+              "type": "qa",
+              "title": "Retrieve",
+              "body": "Nếu g:R^3→R^2 và f:R^2→R, composition f∘g map từ không gian nào tới không gian nào?"
             }
           ]
         },
         {
           "role": "assumption_gate",
-          "title": "Điều kiện dùng một hàm làm mô hình",
+          "title": "ASSUMPTION GATE · Định nghĩa function trước khi đạo hàm",
           "blocks": [
             {
               "type": "text",
-              "title": "Điều kiện",
-              "body": "Cần xác định đơn vị đo, miền dữ liệu, giả định tuyến tính/phi tuyến, mức nhiễu và cách đo sai số giữa đầu ra mô hình với đầu ra thật."
+              "title": "Gate 1 · Variable",
+              "body": "Biến nào đang thay đổi? Parameter nào fixed? Nếu đổi vai trò, derivative meaning đổi."
+            },
+            {
+              "type": "text",
+              "title": "Gate 2 · Domain",
+              "body": "Derivative chỉ xét ở points nơi function/domain cho phép local variation phù hợp."
+            },
+            {
+              "type": "text",
+              "title": "Gate 3 · Output type",
+              "body": "Scalar output dẫn tới derivative/gradient khác vector output dẫn tới Jacobian."
+            },
+            {
+              "type": "qa",
+              "title": "Gate",
+              "body": "Nếu f(x;θ) nhưng ta không nói đang vi phân theo x hay θ, câu 'gradient of f' đã đủ rõ chưa? Chưa."
             }
           ]
         },
         {
           "role": "mini_case",
-          "title": "Mini case: dự đoán nhiệt độ thiết bị",
+          "title": "E1 SIMPLE · Scalar function input-output",
           "blocks": [
             {
+              "type": "formula",
+              "title": "Function",
+              "body": "f(x)=2x+3"
+            },
+            {
               "type": "text",
-              "title": "Case",
-              "body": "Đầu vào x=[dòng điện, tốc độ quay, nhiệt độ môi trường]. Đầu ra y là nhiệt độ lõi máy. Hàm f học hoặc mô phỏng quan hệ giữa x và y để cảnh báo quá nhiệt."
+              "title": "Evaluate",
+              "body": "f(0)=3; f(1)=5; f(-2)=-1."
+            },
+            {
+              "type": "text",
+              "title": "Contract",
+              "body": "Nếu không có constraint khác, có thể lấy f:R→R. Parameter 2 và 3 fixed; x là variable."
+            },
+            {
+              "type": "qa",
+              "title": "Sanity",
+              "body": "Thay x tăng 1 thì output tăng bao nhiêu? Đây mới là intuition chuẩn bị cho rate of change, chưa cần viết derivative."
             }
           ]
         },
         {
           "role": "interpretation",
-          "title": "Hàm là bản đồ của không gian dữ liệu",
+          "title": "E2 CONTEXTUAL · Loss function là một mapping cần tối ưu",
           "blocks": [
             {
+              "type": "formula",
+              "title": "Loss",
+              "body": "J(w)=(w-3)^2"
+            },
+            {
               "type": "text",
-              "title": "Diễn giải",
-              "body": "Hàm chia không gian đầu vào thành các vùng có đầu ra khác nhau. Học mô hình nghĩa là tìm bản đồ đủ đúng để dự đoán, điều khiển hoặc tối ưu."
+              "title": "Evaluate",
+              "body": "J(0)=9; J(3)=0; J(5)=4."
+            },
+            {
+              "type": "text",
+              "title": "Interpretation",
+              "body": "Input w là parameter candidate; output J là error scalar. Optimization sẽ tìm w làm J nhỏ."
+            },
+            {
+              "type": "qa",
+              "title": "Transfer nhẹ",
+              "body": "Nếu w trở thành vector nhiều parameters, J:R^n→R. Công cụ rate-of-change nào tự nhiên xuất hiện? Gradient."
             }
           ]
         },
         {
           "role": "simulation",
-          "title": "Thí nghiệm mô hình hàm bằng Python",
+          "title": "BEGINNER ENTRY · Viết function và evaluate grid bằng Python",
+          "sourceRefs": [
+            "numpy_polynomial"
+          ],
           "blocks": [
             {
               "type": "code",
-              "title": "Công cụ",
-              "body": "def f(x, theta):\n    return theta[0]*x + theta[1]\n\ny_pred = f(x, theta)\nerror = y_pred - y_true"
+              "title": "Deterministic code",
+              "body": "import numpy as np\n\ndef f(x):\n    return 2*x + 3\n\ndef J(w):\n    return (w - 3)**2\n\nxs = np.linspace(-2, 2, 5)\nys = f(xs)\nassert np.allclose(xs, [-2,-1,0,1,2])\nassert np.allclose(ys, [-1,1,3,5,7])\nassert J(0) == 9 and J(3) == 0 and J(5) == 4"
+            },
+            {
+              "type": "text",
+              "title": "BEGINNER ENTRY · vectorization",
+              "body": "NumPy cho cùng function expression chạy trên array inputs. Đây là convenience computation; mathematical function contract vẫn phải định nghĩa input meaning/domain."
+            },
+            {
+              "type": "text",
+              "title": "Software trust",
+              "body": "Test vài points chứng minh implementation đúng ở các points đó, không chứng minh formula/model đúng cho toàn physical domain."
+            },
+            {
+              "type": "qa",
+              "title": "Experiment",
+              "body": "Thêm function g(x1,x2)=x1**2+2*x2; evaluate g(2,3). Hãy dự đoán trước khi chạy."
             }
           ]
         },
         {
           "role": "common_mistakes",
-          "title": "Lỗi thường gặp",
+          "title": "MISCONCEPTION MAP · 5 lỗi trước calculus",
           "blocks": [
             {
               "type": "text",
-              "title": "Lỗi",
-              "body": "Không xác định domain; nhầm biến đầu vào với tham số; dùng hàm ngoài miền dữ liệu; đánh giá mô hình chỉ bằng công thức mà không kiểm sai số thực nghiệm."
+              "title": "MAJOR · «Function = formula»",
+              "body": "Formula là một representation; mapping contract mới là object."
+            },
+            {
+              "type": "text",
+              "title": "MAJOR · «Data table xác định duy nhất function»",
+              "body": "Finite samples không xác định duy nhất behavior giữa/ngoài samples."
+            },
+            {
+              "type": "text",
+              "title": "MAJOR · «Parameter và input giống nhau»",
+              "body": "Role depends on question. Vi phân theo variable nào phải nói rõ."
+            },
+            {
+              "type": "text",
+              "title": "MAJOR · «Code chạy = domain hợp lệ»",
+              "body": "Runtime không tự kiểm units/physical domain."
+            },
+            {
+              "type": "text",
+              "title": "MAJOR · «Mọi function trả scalar»",
+              "body": "State dynamics, transforms và many ML models có vector output."
             }
           ]
         },
         {
           "role": "application",
-          "title": "Ứng dụng lập trình",
+          "title": "E3 TRANSFER · Viết function contract cho hệ mới",
           "blocks": [
             {
-              "type": "text",
-              "title": "Nhiệm vụ",
-              "body": "Viết hàm nhận vector đặc trưng và tham số, trả về dự đoán. Thêm kiểm tra shape, domain và cảnh báo nếu đầu vào ngoài khoảng huấn luyện."
+              "type": "qa",
+              "title": "Task 1",
+              "body": "Battery model: remaining_time=f(current_draw,capacity;temperature). Xác định inputs, parameter/context, output và units."
+            },
+            {
+              "type": "qa",
+              "title": "Task 2",
+              "body": "Robot dynamics: x_next=g(x,u). Xác định input space/output space nếu x∈R^6,u∈R^2."
+            },
+            {
+              "type": "qa",
+              "title": "Task 3",
+              "body": "ML loss J(w;X,y). Trong một training step, object nào thay đổi để optimize? Data nào fixed?"
+            },
+            {
+              "type": "qa",
+              "title": "Task 4",
+              "body": "Nêu một domain/unit error mà Python có thể không bắt nhưng software tester học thuật phải bắt."
             }
           ]
         },
         {
           "role": "practice",
-          "title": "Bài luyện tập",
+          "title": "PRACTICE LADDER · P0 → P3",
           "blocks": [
             {
-              "type": "text",
-              "title": "Bài tập",
-              "body": "Chọn một hệ kỹ thuật quen thuộc và xác định: đầu vào, đầu ra, tham số, domain, sai số đo. Viết dạng y=f(x;theta) tương ứng."
+              "type": "qa",
+              "title": "P0 · Recognition",
+              "body": "6 examples: phân loại scalar→scalar / vector→scalar / vector→vector và input/output."
+            },
+            {
+              "type": "qa",
+              "title": "P1 · Guided",
+              "body": "Cho f(x;a,b)=ax+b với a=2,b=3. Tách variable/parameters, evaluate 4 inputs, ghi domain/codomain."
+            },
+            {
+              "type": "qa",
+              "title": "P2 · Independent",
+              "body": "Tự viết một function kỹ thuật có units, code deterministic evaluator, tạo 5 test points và nêu domain."
+            },
+            {
+              "type": "qa",
+              "title": "P3 · Transfer",
+              "body": "Tạo J(w1,w2) scalar loss; giải thích vì sao next step cần partial derivatives thay vì derivative một biến."
             }
           ]
         },
         {
           "role": "professor_qa",
-          "title": "Vấn đáp kiểm tra hiểu sâu",
+          "title": "ASSESSMENT · D0 / D1 / D2",
           "blocks": [
             {
               "type": "qa",
-              "title": "Câu hỏi",
-              "body": "Vì sao cùng một công thức có thể là mô hình tốt trong miền này nhưng nguy hiểm ở miền khác? Khác biệt giữa biến và tham số là gì?"
+              "title": "D0 RECALL",
+              "body": "Định nghĩa function contract, domain/codomain, parameter và ba output-shape categories."
+            },
+            {
+              "type": "qa",
+              "title": "D1 APPLICATION",
+              "body": "Nhận một code function 2 inputs + 2 constants. Tái dựng mathematical contract, units/domain, rồi viết 5 deterministic tests."
+            },
+            {
+              "type": "qa",
+              "title": "D2 EXPLAIN / ORAL",
+              "body": "Giải thích 60–90 giây: «Vì sao trước khi lấy derivative phải xác định variable, parameter, domain và output type?»"
+            },
+            {
+              "type": "text",
+              "title": "Mastery evidence",
+              "body": "Đạt khi learner có thể model một tình huống mới thành function contract và không đồng nhất code/data samples với function."
             }
           ]
         },
         {
           "role": "bridge",
-          "title": "Cầu sang đạo hàm",
+          "title": "TECHNICAL RUSSIAN + NEXT · function sang sensitivity",
           "blocks": [
             {
               "type": "text",
-              "title": "Liên kết",
-              "body": "Khi đã có hàm, câu hỏi tiếp theo là đầu ra thay đổi nhanh thế nào khi đầu vào thay đổi. Đó chính là vai trò của đạo hàm."
+              "title": "9 thuật ngữ",
+              "body": "функция · аргумент · значение функции · область определения · область значений · параметр · скалярная функция · вектор-функция · композиция функций"
+            },
+            {
+              "type": "text",
+              "title": "4 động từ",
+              "body": "вычислите — tính; определите — xác định; подставьте — thế; объясните — giải thích."
+            },
+            {
+              "type": "text",
+              "title": "Khung vấn đáp",
+              "body": "«Функция отображает вход x из области определения в выход y.»\n«Перед дифференцированием нужно определить переменные, параметры и область определения.»"
+            },
+            {
+              "type": "text",
+              "title": "Cầu sang §3.2",
+              "body": "Khi function đã rõ, câu hỏi kế tiếp là: output thay đổi nhanh bao nhiêu khi input đổi rất nhỏ? Đó là derivative và sensitivity."
             }
           ]
         },
         {
           "role": "takeaway",
-          "title": "Kết luận cần nhớ",
+          "title": "REVIEW · 6 điều phải rõ trước derivative",
           "blocks": [
             {
               "type": "text",
-              "title": "Cốt lõi",
-              "body": "Hàm số là mô hình đầu vào–đầu ra. Muốn dùng hàm trong kỹ thuật phải biết domain, giả định, tham số và sai số."
+              "title": "1",
+              "body": "Function là mapping, không chỉ formula."
+            },
+            {
+              "type": "text",
+              "title": "2",
+              "body": "Ghi domain/codomain và units."
+            },
+            {
+              "type": "text",
+              "title": "3",
+              "body": "Tách variable khỏi parameters."
+            },
+            {
+              "type": "text",
+              "title": "4",
+              "body": "Biết output scalar hay vector."
+            },
+            {
+              "type": "text",
+              "title": "5",
+              "body": "Data samples/code execution không thay semantic contract."
+            },
+            {
+              "type": "text",
+              "title": "6",
+              "body": "Loss J(w) là function — cầu trực tiếp sang derivative, gradient và optimization."
             }
           ]
         }
@@ -8175,9 +8607,9 @@
     }
   ],
   "lastContentPass": {
-    "id": "E171",
-    "lessonId": "MATH-VN-C02-ma_tran_va_phep_bien_oi_-L06-matrix-to-pca-linear-model-e143",
-    "status": "LOCAL_CONTENT_QA_PASS_GLOBAL_BROWSER_BASELINE_PENDING",
+    "id": "E174",
+    "lessonId": "MATH-VN-C03-giai_tich_dao_ham_gradient-L01-function-as-input-output-model-e145",
+    "status": "C1_C5_PASS_C6_PENDING",
     "generatedAt": "2026-09-21",
     "inheritedRuntimeGate": "E164"
   },
