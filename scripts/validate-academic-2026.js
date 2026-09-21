@@ -58,6 +58,10 @@ for (const dep of prereq.courseDependencies) {
     assert(gateSet.has(gate), `dependency ${dep.courseId} references missing gate ${gate}`);
   }
 }
+const d01Dependency = prereq.courseDependencies.find(x => x.courseId === 'd01');
+assert(d01Dependency && d01Dependency.critical.length === 0 && d01Dependency.support.length === 0, 'd01 Foreign Language must not depend on P0 Technical Russian');
+assert(/English|Л2/.test(d01Dependency?.note || ''), 'd01 must preserve English/L2 ownership note');
+
 for (const stage of prereq.stageActivationPolicy) {
   for (const gate of [...(stage.active || []), ...(stage.secondary || []), ...(stage.locked || [])]) {
     assert(gateSet.has(gate), `stage ${stage.stage} references missing gate ${gate}`);
