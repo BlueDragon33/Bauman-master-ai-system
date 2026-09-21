@@ -1,7 +1,7 @@
 {
   "id": "bauman_math_theory_lecture_content_e146_c03_complete",
   "schema": "bauman_math_content_records_v1",
-  "version": "E184_C04_L02_CONTENT_FACTORY_C1_C6_PASS",
+  "version": "E185_C04_L03_CONTENT_FACTORY_C1_C5",
   "title": "Bài giảng lý thuyết Toán · Nội dung học tập",
   "role": "content",
   "frameSource": "theory_lecture_frame.json",
@@ -12218,12 +12218,671 @@
         "softwareOutputTrustExplanation": "PASS",
         "browserBaseline": "PENDING_E164"
       }
+    },
+    {
+      "lessonId": "MATH-VN-C04-xac_suat_co_ban_va_bien_-L03-bernoulli-binomial-e185",
+      "chapterId": "MATH-VN-C04-xac_suat_co_ban_va_bien_",
+      "lessonTitle": "§4.3 · Biến ngẫu nhiên rời rạc: Bernoulli và Binomial",
+      "title": "§4.3 · Biến ngẫu nhiên rời rạc: Bernoulli và Binomial",
+      "orderInChapter": 3,
+      "identityDecision": {
+        "status": "NEW_CANONICAL_CONTENT_ID",
+        "reason": "C04 canonical sequence has no legacy lesson records.",
+        "chapterIdStable": true,
+        "parallelIdentitySystemCreated": false
+      },
+      "programLectureId": "MATH-PROG-L12-probability-random-variables",
+      "programLectureIds": [
+        "MATH-PROG-L12-probability-random-variables",
+        "MATH-PROG-L13-mathematical-statistics",
+        "MATH-PROG-L17-ai-machine-learning-math-foundations"
+      ],
+      "programAnchorTitle": "Xác suất và biến ngẫu nhiên",
+      "roadmapRole": "probability_foundation_for_data_networks_and_ai",
+      "baumanFocus": "Hiểu Bernoulli như one-trial indicator và Binomial như tổng n Bernoulli độc lập cùng p; đọc đúng PMF, assumptions và seeded simulation cho reliability/count-success problems.",
+      "pureLayer": [
+        "Bernoulli random variable",
+        "Binomial random variable",
+        "PMF",
+        "independent trials",
+        "combinations"
+      ],
+      "appliedLayer": [
+        "packet success",
+        "component reliability",
+        "quality pass/fail",
+        "count of successes",
+        "simulation"
+      ],
+      "bridgeQuestion": "Khi nào một bài toán đếm số lần thành công thực sự là Binomial và khi nào assumptions bị phá?",
+      "auditStatus": "REVIEW",
+      "sourceAnchors": {
+        "stageId": "vn",
+        "disciplineId": "probability_statistics_inference",
+        "chapterId": "MATH-VN-C04-xac_suat_co_ban_va_bien_",
+        "programLectureId": "MATH-PROG-L12-probability-random-variables",
+        "officialCurriculum": "bmstu_iu5_2026_curriculum"
+      },
+      "tags": [
+        "Bernoulli",
+        "Binomial",
+        "PMF",
+        "independent trials",
+        "count successes",
+        "simulation"
+      ],
+      "learningContract": {
+        "governingQuestion": "Bernoulli và Binomial mô tả binary trials thế nào, PMF đến từ đâu, và assumptions nào phải đúng trước khi áp dụng?",
+        "whyNeeded": "Binary success/failure và count-of-successes xuất hiện trong reliability, packet delivery, quality testing, A/B outcomes và ML labels.",
+        "prerequisiteGates": [
+          "Biết random variable/distribution từ §4.1.",
+          "Biết independence từ §4.2.",
+          "Biết combination C(n,k) ở mức có thể khôi phục bằng ví dụ.",
+          "Không yêu cầu expectation/variance; để §4.5."
+        ],
+        "measurableLearningOutcomes": [
+          "LO1: Viết Bernoulli PMF và phân biệt parameter p với observed sample 0/1.",
+          "LO2: Nhận ra Binomial X là tổng n Bernoulli trials độc lập có cùng p.",
+          "LO3: Tính P(X=k)=C(n,k)p^k(1-p)^(n-k) và giải thích từng factor.",
+          "LO4: Kiểm 4 assumptions: fixed n, binary outcome, independent trials, constant p.",
+          "LO5: Tính exactly/at-least probabilities trong reliability case.",
+          "LO6: Dùng seeded NumPy binomial simulation và so empirical histogram với exact PMF.",
+          "LO7: Chẩn đoán khi dependence hoặc varying p làm Binomial model không phù hợp."
+        ],
+        "exactScope": [
+          "Bernoulli PMF",
+          "Binomial PMF",
+          "combinatorial factor",
+          "model assumptions",
+          "exact/at-least probabilities",
+          "seeded simulation"
+        ],
+        "explicitDeferrals": [
+          "Expectation/variance formulas → §4.5.",
+          "Poisson/geometric distributions → later probability.",
+          "Dependent Bernoulli sequences → stochastic-process chapter.",
+          "Inference for p → statistics chapter."
+        ],
+        "canonicalTerminology": {
+          "Bernoulli": "Bernoulli",
+          "Binomial": "Binomial/nhị thức",
+          "trial": "phép thử",
+          "success": "thành công",
+          "failure": "thất bại",
+          "pmf": "hàm khối xác suất",
+          "combination": "tổ hợp",
+          "iidTrials": "các phép thử độc lập cùng phân phối"
+        },
+        "symbols": {
+          "B~Bernoulli(p)": "single 0/1 trial",
+          "P(B=1)=p": "success probability",
+          "X~Binomial(n,p)": "number of successes in n valid trials",
+          "P(X=k)=C(n,k)p^k(1-p)^(n-k)": "Binomial PMF"
+        },
+        "continuity": {
+          "previous": "§4.2 · Xác suất có điều kiện, độc lập và Bayes",
+          "next": "§4.4 · Biến ngẫu nhiên liên tục, CDF/PDF và phân phối chuẩn"
+        }
+      },
+      "technicalRussian": {
+        "terms": [
+          [
+            "распределение Бернулли",
+            "phân phối Bernoulli"
+          ],
+          [
+            "биномиальное распределение",
+            "phân phối Binomial"
+          ],
+          [
+            "испытание",
+            "phép thử"
+          ],
+          [
+            "успех",
+            "thành công"
+          ],
+          [
+            "неудача",
+            "thất bại"
+          ],
+          [
+            "число успехов",
+            "số lần thành công"
+          ],
+          [
+            "независимые испытания",
+            "các phép thử độc lập"
+          ],
+          [
+            "параметр вероятности",
+            "tham số xác suất"
+          ],
+          [
+            "функция вероятности",
+            "PMF"
+          ]
+        ],
+        "commandVerbs": [
+          [
+            "посчитайте",
+            "hãy đếm/tính"
+          ],
+          [
+            "вычислите",
+            "hãy tính"
+          ],
+          [
+            "проверьте",
+            "hãy kiểm tra"
+          ],
+          [
+            "объясните",
+            "hãy giải thích"
+          ]
+        ],
+        "oralFrames": [
+          "Бернуллиевская случайная величина принимает значения ноль или один.",
+          "Биномиальная случайная величина считает число успехов в n независимых испытаниях с одинаковой вероятностью p.",
+          "Если вероятность меняется между испытаниями или испытания зависимы, биномиальная модель может быть неверной."
+        ]
+      },
+      "sourceProvenance": [
+        {
+          "id": "bmstu_iu5_2026_curriculum",
+          "kind": "official_curriculum",
+          "url": "https://home.science.iu5.bmstu.ru/study-plans/iu5-master-program.pdf",
+          "supports": [
+            "probability foundation for data/AI systems"
+          ]
+        },
+        {
+          "id": "mit_res6012_discrete_rv",
+          "kind": "authoritative_university_material",
+          "url": "https://ocw.mit.edu/courses/res-6-012-introduction-to-probability-spring-2018/pages/part-i-the-fundamentals/",
+          "supports": [
+            "Bernoulli/indicator and Binomial random variables in discrete probability"
+          ]
+        },
+        {
+          "id": "scipy_bernoulli",
+          "kind": "official_documentation",
+          "url": "https://docs.scipy.org/doc/scipy/reference/generated/scipy.stats.bernoulli.html",
+          "supports": [
+            "Bernoulli discrete random variable and PMF interface"
+          ]
+        },
+        {
+          "id": "numpy_rng_binomial",
+          "kind": "official_documentation",
+          "url": "https://numpy.org/doc/stable/reference/random/generated/numpy.random.Generator.binomial.html",
+          "supports": [
+            "Binomial random variate simulation with n and p"
+          ]
+        }
+      ],
+      "generatedMaterial": {
+        "status": "AI_DRAFT_REVIEWED_IN_CONTENT_FACTORY",
+        "lineage": "Generated Bernoulli/Binomial foundation lesson from MIT discrete probability and official SciPy/NumPy documentation.",
+        "canonicalSourceReplacement": false
+      },
+      "contentFactory": {
+        "C1": "PASS",
+        "C2": "PASS",
+        "C3": "PASS",
+        "C4": "PASS",
+        "C5": "PASS",
+        "C6": {
+          "software": "STATIC_QA_PENDING",
+          "user": "PENDING",
+          "blockers": 0,
+          "majors": 0,
+          "inheritedDeferredGate": "E164",
+          "acceptance": "PENDING_C6"
+        }
+      },
+      "slides": [
+        {
+          "role": "problem_framing",
+          "title": "ORIENT · Một trial hay số successes trong nhiều trials?",
+          "blocks": [
+            {
+              "type": "text",
+              "title": "Câu hỏi điều khiển",
+              "body": "Bernoulli mô tả một binary trial. Binomial mô tả số successes trong n trials thỏa assumptions. Nhầm hai object làm sai cả support và PMF."
+            },
+            {
+              "type": "formula",
+              "title": "Hai levels",
+              "body": "B~Bernoulli(p), B∈{0,1}\nX=Σ_{i=1}^n B_i ~ Binomial(n,p) khi B_i independent cùng p"
+            },
+            {
+              "type": "text",
+              "title": "Vì sao cần",
+              "body": "Packet delivery, component pass/fail và quality checks thường bắt đầu bằng Bernoulli rồi aggregate thành counts."
+            },
+            {
+              "type": "qa",
+              "title": "Retrieval",
+              "body": "Một packet success indicator thuộc Bernoulli hay Binomial? Số successes trong 10 packets thuộc gì nếu assumptions đúng?"
+            }
+          ]
+        },
+        {
+          "role": "deep_essence",
+          "title": "REACTIVATION · Indicator từ §4.1 trở thành Bernoulli",
+          "blocks": [
+            {
+              "type": "formula",
+              "title": "Bernoulli PMF",
+              "body": "P(B=1)=p\nP(B=0)=1-p"
+            },
+            {
+              "type": "text",
+              "title": "Parameter vs observation",
+              "body": "p là property/model parameter; observed B là 0 hoặc 1. Một sample B=1 không có nghĩa p=1."
+            },
+            {
+              "type": "text",
+              "title": "Support",
+              "body": "Bernoulli support chỉ {0,1}; labels có thể đổi tên nhưng numerical encoding giữ binary structure."
+            },
+            {
+              "type": "qa",
+              "title": "Tự nói lại",
+              "body": "100 observed Bernoulli samples là distribution hay sample từ distribution?"
+            }
+          ]
+        },
+        {
+          "role": "counter_intuition",
+          "title": "COUNTER-INTUITION · Binomial không chỉ là 'đếm binary data'",
+          "blocks": [
+            {
+              "type": "text",
+              "title": "Need independence",
+              "body": "Shared failures/correlated packets phá Binomial variance/PMF structure."
+            },
+            {
+              "type": "text",
+              "title": "Need constant p",
+              "body": "Nếu p_i khác nhau theo trial, count distribution không còn ordinary Binomial."
+            },
+            {
+              "type": "text",
+              "title": "Need fixed n",
+              "body": "Nếu số trials ngẫu nhiên hoặc dừng theo success, model khác."
+            },
+            {
+              "type": "qa",
+              "title": "Diagnostic",
+              "body": "10 packets qua cùng một fading burst làm successes correlated. Có được dùng Binomial(10,p) mặc định không?"
+            }
+          ]
+        },
+        {
+          "role": "real_bridge",
+          "title": "CONTEXT · Network reliability count",
+          "blocks": [
+            {
+              "type": "text",
+              "title": "Scenario",
+              "body": "Gửi n=10 packets độc lập; mỗi packet success probability p=0.9."
+            },
+            {
+              "type": "formula",
+              "title": "Exactly 9",
+              "body": "P(X=9)=C(10,9)0.9^9 0.1"
+            },
+            {
+              "type": "formula",
+              "title": "At least 9",
+              "body": "P(X≥9)=P(X=9)+P(X=10)"
+            },
+            {
+              "type": "qa",
+              "title": "Interpretation",
+              "body": "Nếu packet success probabilities khác nhau theo channel state, assumption nào fail?"
+            }
+          ]
+        },
+        {
+          "role": "notation",
+          "title": "FORMALIZE · Binomial PMF từng factor",
+          "blocks": [
+            {
+              "type": "formula",
+              "title": "PMF",
+              "body": "P(X=k)=C(n,k)p^k(1-p)^(n-k), k=0,...,n"
+            },
+            {
+              "type": "text",
+              "title": "C(n,k)",
+              "body": "Số cách chọn k trial positions thành successes."
+            },
+            {
+              "type": "text",
+              "title": "p^k(1-p)^(n-k)",
+              "body": "Probability của một specific success/failure pattern dưới independence + constant p."
+            },
+            {
+              "type": "qa",
+              "title": "Quick check",
+              "body": "Tại sao support của X là integers 0...n chứ không phải mọi real number?"
+            }
+          ]
+        },
+        {
+          "role": "core_formula",
+          "title": "CORE · PMF phải normalize",
+          "blocks": [
+            {
+              "type": "formula",
+              "title": "Normalization",
+              "body": "Σ_{k=0}^n C(n,k)p^k(1-p)^(n-k)=(p+1-p)^n=1"
+            },
+            {
+              "type": "text",
+              "title": "Binomial theorem",
+              "body": "Normalization đến trực tiếp từ binomial expansion."
+            },
+            {
+              "type": "text",
+              "title": "Boundary p",
+              "body": "p=0 ⇒ X=0 chắc chắn; p=1 ⇒ X=n chắc chắn."
+            },
+            {
+              "type": "qa",
+              "title": "Retrieve",
+              "body": "Nếu p=0.5,n=2, PMF phải trở lại distribution nào của #heads ở §4.1?"
+            }
+          ]
+        },
+        {
+          "role": "assumption_gate",
+          "title": "ASSUMPTION GATE · 4 câu hỏi trước khi dùng Binomial",
+          "blocks": [
+            {
+              "type": "text",
+              "title": "1 · Fixed n",
+              "body": "Có đúng n trials không?"
+            },
+            {
+              "type": "text",
+              "title": "2 · Binary",
+              "body": "Mỗi trial được phân loại success/failure rõ không?"
+            },
+            {
+              "type": "text",
+              "title": "3–4 · Independence + same p",
+              "body": "Trials independent đủ theo model? Success probability constant?"
+            },
+            {
+              "type": "qa",
+              "title": "Gate",
+              "body": "Nếu chỉ một trong bốn điều kiện fail, ordinary Binomial còn là exact model không?"
+            }
+          ]
+        },
+        {
+          "role": "mini_case",
+          "title": "E1 SIMPLE · n=3,p=0.5",
+          "blocks": [
+            {
+              "type": "formula",
+              "title": "PMF",
+              "body": "P(X=0)=1/8\nP(X=1)=3/8\nP(X=2)=3/8\nP(X=3)=1/8"
+            },
+            {
+              "type": "text",
+              "title": "Symmetry",
+              "body": "Fair binary trials tạo symmetric count distribution quanh n/2."
+            },
+            {
+              "type": "text",
+              "title": "Normalization",
+              "body": "1/8+3/8+3/8+1/8=1."
+            },
+            {
+              "type": "qa",
+              "title": "Sanity",
+              "body": "P(X≥2)=bao nhiêu?"
+            }
+          ]
+        },
+        {
+          "role": "interpretation",
+          "title": "E2 CONTEXTUAL · 10 packets p=0.9",
+          "blocks": [
+            {
+              "type": "formula",
+              "title": "Exactly 9",
+              "body": "10×0.9^9×0.1 ≈ 0.387420489"
+            },
+            {
+              "type": "formula",
+              "title": "All 10",
+              "body": "0.9^10 ≈ 0.3486784401"
+            },
+            {
+              "type": "formula",
+              "title": "At least 9",
+              "body": "≈0.7360989291"
+            },
+            {
+              "type": "qa",
+              "title": "Operational",
+              "body": "Nếu requirement là ≥9 successful packets, reliability theo model này khoảng 73.61%."
+            }
+          ]
+        },
+        {
+          "role": "simulation",
+          "title": "BEGINNER ENTRY · Exact PMF vs seeded simulation",
+          "sourceRefs": [
+            "numpy_rng_binomial"
+          ],
+          "blocks": [
+            {
+              "type": "code",
+              "title": "Deterministic simulation",
+              "body": "import math\nimport numpy as np\n\nn,p=10,0.9\npmf=np.array([math.comb(n,k)*p**k*(1-p)**(n-k) for k in range(n+1)])\nassert np.allclose(pmf.sum(),1.0)\n\nrng=np.random.default_rng(20260921)\nsamples=rng.binomial(n=n,p=p,size=50000)\nfreq=np.bincount(samples,minlength=n+1)/len(samples)\nprint(pmf)\nprint(freq)"
+            },
+            {
+              "type": "text",
+              "title": "BEGINNER ENTRY · exact vs empirical",
+              "body": "Exact PMF đến từ model formula; histogram đến từ finite simulation."
+            },
+            {
+              "type": "text",
+              "title": "Software trust",
+              "body": "Đừng assert empirical freq bằng exact PMF từng ô. Dùng tolerance/statistical reasoning và reproducible seed cho test học tập."
+            },
+            {
+              "type": "qa",
+              "title": "Experiment",
+              "body": "Giảm sample size từ 50000 xuống 50. Histogram trông 'xấu' hơn nhưng model PMF có đổi không?"
+            }
+          ]
+        },
+        {
+          "role": "common_mistakes",
+          "title": "MISCONCEPTION MAP · 5 lỗi Bernoulli/Binomial",
+          "blocks": [
+            {
+              "type": "text",
+              "title": "MAJOR · «Observed 1 ⇒ p=1»",
+              "body": "Observation và parameter khác nhau."
+            },
+            {
+              "type": "text",
+              "title": "MAJOR · «Any count of binary events is Binomial»",
+              "body": "Cần fixed n, independence, constant p."
+            },
+            {
+              "type": "text",
+              "title": "MAJOR · «C(n,k) là probability»",
+              "body": "Đó là count of patterns; phải nhân pattern probability."
+            },
+            {
+              "type": "text",
+              "title": "MAJOR · «simulation histogram = exact PMF»",
+              "body": "Finite-sample variation luôn có."
+            },
+            {
+              "type": "text",
+              "title": "MAJOR · «independence không quan trọng»",
+              "body": "Dependence làm count distribution khác."
+            }
+          ]
+        },
+        {
+          "role": "application",
+          "title": "E3 TRANSFER · Model audit cho reliability",
+          "blocks": [
+            {
+              "type": "qa",
+              "title": "Task 1",
+              "body": "20 components independent p_fail=0.02. Tính probability exactly 0 failures và at most 1 failure."
+            },
+            {
+              "type": "qa",
+              "title": "Task 2",
+              "body": "p_fail tăng theo temperature across sequence. Ordinary Binomial assumption nào fail?"
+            },
+            {
+              "type": "qa",
+              "title": "Task 3",
+              "body": "Failures share one power supply. Independence có hợp lý không? Nêu alternative modeling need."
+            },
+            {
+              "type": "qa",
+              "title": "Task 4",
+              "body": "Tạo seeded simulation và compare exact probability of ≥18 successes trong n=20,p=.95."
+            }
+          ]
+        },
+        {
+          "role": "practice",
+          "title": "PRACTICE LADDER · P0 → P3",
+          "blocks": [
+            {
+              "type": "qa",
+              "title": "P0 · Recognition",
+              "body": "8 scenarios: chọn Bernoulli / Binomial / not Binomial và nêu assumption."
+            },
+            {
+              "type": "qa",
+              "title": "P1 · Guided",
+              "body": "n=5,p=.8: tính PMF k=0..5, normalization và P(X≥4)."
+            },
+            {
+              "type": "qa",
+              "title": "P2 · Independent",
+              "body": "Tự chọn n,p; code exact PMF bằng math.comb; simulate 10000 samples; compare."
+            },
+            {
+              "type": "qa",
+              "title": "P3 · Transfer",
+              "body": "Tạo scenario varying p_i hoặc dependence và giải thích vì sao Binomial exact PMF hỏng."
+            }
+          ]
+        },
+        {
+          "role": "professor_qa",
+          "title": "ASSESSMENT · D0 / D1 / D2",
+          "blocks": [
+            {
+              "type": "qa",
+              "title": "D0 RECALL",
+              "body": "Viết Bernoulli/Binomial PMFs và 4 assumptions."
+            },
+            {
+              "type": "qa",
+              "title": "D1 APPLICATION",
+              "body": "Giải network reliability problem exactly + simulation; kiểm assumptions trước formula."
+            },
+            {
+              "type": "qa",
+              "title": "D2 EXPLAIN / ORAL",
+              "body": "Giải thích 60–90 giây: «Vì sao một count of successes chưa đủ để gọi là Binomial?»"
+            },
+            {
+              "type": "text",
+              "title": "Mastery evidence",
+              "body": "Đạt khi learner kiểm assumptions trước khi tính và phân biệt exact PMF với simulation frequency."
+            }
+          ]
+        },
+        {
+          "role": "bridge",
+          "title": "TECHNICAL RUSSIAN + NEXT · discrete sang continuous",
+          "blocks": [
+            {
+              "type": "text",
+              "title": "9 thuật ngữ",
+              "body": "распределение Бернулли · биномиальное распределение · испытание · успех · неудача · число успехов · независимые испытания · параметр вероятности · функция вероятности"
+            },
+            {
+              "type": "text",
+              "title": "4 động từ",
+              "body": "посчитайте — đếm/tính; вычислите — tính; проверьте — kiểm tra; объясните — giải thích."
+            },
+            {
+              "type": "text",
+              "title": "Khung vấn đáp",
+              "body": "«Биномиальная случайная величина считает число успехов в n независимых испытаниях с одинаковой вероятностью p.»"
+            },
+            {
+              "type": "text",
+              "title": "Cầu sang §4.4",
+              "body": "Bernoulli/Binomial có discrete support. Sensor noise/measurement thường continuous; §4.4 chuyển sang CDF/PDF và Normal distribution."
+            }
+          ]
+        },
+        {
+          "role": "takeaway",
+          "title": "REVIEW · 6 facts trước continuous RV",
+          "blocks": [
+            {
+              "type": "text",
+              "title": "1",
+              "body": "Bernoulli = one binary trial."
+            },
+            {
+              "type": "text",
+              "title": "2",
+              "body": "Binomial = count successes across valid repeated trials."
+            },
+            {
+              "type": "text",
+              "title": "3",
+              "body": "PMF includes C(n,k) and pattern probability."
+            },
+            {
+              "type": "text",
+              "title": "4",
+              "body": "Fixed n + binary + independent + same p are model gates."
+            },
+            {
+              "type": "text",
+              "title": "5",
+              "body": "Exact PMF normalizes to 1."
+            },
+            {
+              "type": "text",
+              "title": "6",
+              "body": "Simulation samples approximate distribution; they do not define it."
+            }
+          ]
+        }
+      ]
     }
   ],
   "lastContentPass": {
-    "id": "E184",
-    "lessonId": "MATH-VN-C04-xac_suat_co_ban_va_bien_-L02-conditioning-independence-bayes-e183",
-    "status": "LOCAL_CONTENT_QA_PASS_GLOBAL_BROWSER_BASELINE_PENDING",
+    "id": "E185",
+    "lessonId": "MATH-VN-C04-xac_suat_co_ban_va_bien_-L03-bernoulli-binomial-e185",
+    "status": "C1_C5_PASS_C6_PENDING",
     "generatedAt": "2026-09-21",
     "inheritedRuntimeGate": "E164"
   },
