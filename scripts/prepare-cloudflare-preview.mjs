@@ -201,7 +201,8 @@ for (const oversizedOriginal of [
 }
 if (!html.includes('assets/js/platform/runtime-config.js') || !html.includes('assets/js/platform/device-access-gate.js')) {
   throw new Error('Bauman runtime is missing the device-access bootstrap scripts.');
-}for (const resource of ['assets/css/deep-study-journal-v1.css', 'assets/js/deep-study-journal-v1.js']) {
+}
+for (const resource of ['assets/css/deep-study-journal-v1.css', 'assets/js/deep-study-journal-v1.js']) {
   if (!html.includes(resource)) throw new Error(`Bauman runtime is missing Deep Study Journal reference: ${resource}`);
 }
 
