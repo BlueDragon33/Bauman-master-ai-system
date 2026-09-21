@@ -1,26 +1,36 @@
 # CODEX_TASK
 
-Task: `BAUMAN_ROADMAP_V2_CURRENT_TRACK`
-Mode: `CHAT_FIRST / ADDITIVE / FAIL_CLOSED`
+Task: `BAUMAN_PROJECT_STATE_RECONCILIATION`
+Mode: `CHAT_FIRST / CURRENT_MAIN / FAIL_CLOSED`
+
+## Current objective
+
+Keep project control-state aligned with the repository that is actually promoted to `main`.
+
+Roadmap V2 is complete through L35. Russian Listen+Write has been promoted. There is no active Roadmap B101→B104 sequence and no L36 requirement in the accepted Roadmap architecture.
 
 ## Mandatory sequence
 
-1. Treat `docs/roadmap_v2/CURRENT_EXECUTION_STATE.md` as the only current round marker.
-2. Complete L26/B101 Scheduler contract revalidation on Consumer Blueprint + Priority V2.
-3. If B101/F1 gates are green, open B102 current in-memory weekly projector.
-4. Then B103 adversarial/deterministic scheduler harness.
-5. Then B104 full-system closeout.
-6. Do not open L27 until B104 and its documentation closeout pass the complete six-gate set.
-
-## Current defect rule
-
-Never reuse historical PASS status as current PASS. Historical L26/L27 artifacts are design evidence only. Any stale manifest/hash, runtime write, persistence, calendar connection, generated dynamic content or hidden production wiring must fail closed and create an L26-Fx/Hx step.
+1. Use current `main` as the baseline for all new work.
+2. Treat `docs/roadmap_v2/CURRENT_EXECUTION_STATE.md` as the only authoritative Roadmap progress/history marker.
+3. Do not reopen completed Roadmap rounds from stale branches, docs, PR descriptions, or historical PASS artifacts.
+4. Audit open PRs before reuse:
+   - compare them with current `main`;
+   - reject scope contamination and behind-main candidates;
+   - reconstruct a clean promotion branch when responsibility boundaries are mixed.
+5. Preserve the promoted Russian Listen+Write runtime/data/offline/package behavior.
+6. When a new defect is found, create a scoped Fx hardening step and run the relevant current gates.
+7. When a genuinely missing architecture capability is found, create a new named track/round rather than extending Roadmap V2 past its terminal boundary by default.
 
 ## Protected contracts
 
-- Preserve existing Hub, Math, Russian and subject runtime behavior.
+- Preserve Hub, Math, Russian, Foundation and subject runtime behavior.
 - Preserve Device Gate and offline/package acceptance.
-- Preserve L23 Consumer Blueprint, L24 Mastery V2 and L25 Priority V2 boundaries.
-- Keep Roadmap production integration disconnected.
+- Preserve Roadmap V2 terminal receipt-only/no-execution production boundary.
 - No destructive source migration.
-- No production publish.
+- No implicit production deploy/publish.
+- No automatic promotion of stale historical PRs.
+
+## Completion condition for this hardening
+
+The control files no longer identify L26/B102 as active, no historical Roadmap sequence is presented as current work, and future sessions are directed to current `main` plus an explicit scoped task.
