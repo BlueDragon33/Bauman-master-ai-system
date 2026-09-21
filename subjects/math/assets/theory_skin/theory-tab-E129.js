@@ -62,7 +62,7 @@
     {id:'review',tab:'review',label:'Ôn tập',name:'Hệ thống hóa kiến thức',summary:'Mindmap, cheat sheet, flashcard và thuật ngữ song ngữ.'},
     {id:'exam',tab:'exam',label:'Kiểm tra',name:'Đánh giá năng lực',summary:'Bài thi tổng hợp, trắc nghiệm + tự luận, time-box; giữ logic đề hiện có.'}
   ];
-  var E169_TAB_ROUTES = {theory:'theory',exercises:'exercises',practice:'practice',application:'application',review:'review',exam:'exam'};
+  var E169_TAB_ROUTES = {theory:'theory',exercises:'exercises',practice:'practice',review:'review',exam:'exam'};
   var E169_HIERARCHY = [
     {id:'pure',code:'I',title:'Toán học Thuần túy',en:'Pure Mathematics Module',courses:[
       {id:'pure-algebra',no:1,title:'Đại số và Cấu trúc số',en:'Algebra & Structures',chapters:[
@@ -140,12 +140,7 @@
   function e169Chapter(moduleId,courseId,chapterId){ var c=e169Course(moduleId,courseId); return arr(c&&c.chapters).find(function(ch){return ch.id===chapterId;})||arr(c&&c.chapters)[0]||null; }
   function e169Activity(id){ return E169_ACTIVITIES.find(function(a){return a.id===id;})||E169_ACTIVITIES[0]; }
   function chapterByNo(no){ return cache.chapters.find(function(ch){return Number(ch.chapterNo)===Number(no);})||null; }
-  function e169FrameChapter(){
-    var st=state(), directId=S(st.e186Path&&st.e186Path.chapterId||'').trim();
-    if(directId){ var direct=chapterById(directId); if(direct) return direct; }
-    var p=e169Path(), ch=e169Chapter(p.moduleId,p.courseId,p.chapterId);
-    return chapterByNo(ch&&ch.no);
-  }
+  function e169FrameChapter(){ var p=e169Path(); var ch=e169Chapter(p.moduleId,p.courseId,p.chapterId); return chapterByNo(ch&&ch.no); }
   function e169Records(){ var f=e169FrameChapter(); return f?recordsForChapter(f):[]; }
   function e169LessonLabel(rec){ return rec?S(rec.title||rec.lessonTitle||rec.lessonId).replace(/^§/,'Bài '):'Bài giảng'; }
   function isE169ActivityState(){ var st=state(); return S(st.view)==='learning' && !!st.e169Path && S(st.learnTab||'theory')!=='theory'; }
@@ -220,20 +215,11 @@
     if(raw && raw.data) return extractRecords(raw.data);
     return [];
   }
-  function uniqueChapters(list){
-    var seen={};
-    return arr(list).filter(Boolean).filter(function(ch){
-      var id=S(ch.chapterId||'').trim();
-      if(!id||seen[id]) return false;
-      seen[id]=1;
-      return true;
-    });
-  }
   function normalizeFrame(raw){
     var out=[];
     if(Array.isArray(raw)){
       raw.forEach(function(ch){ out.push(normalizeChapter(ch, ch.stageId||ch.stage||'vn', ch.stageTitle||'', ch.disciplineId||'', ch.disciplineTitle||'')); });
-      return uniqueChapters(out);
+      return out.filter(Boolean);
     }
     arr(raw && raw.stages).forEach(function(stage){
       arr(stage.disciplines).forEach(function(disc){
@@ -241,7 +227,7 @@
       });
     });
     arr(raw && raw.chapters).forEach(function(ch){ out.push(normalizeChapter(ch, ch.stageId||ch.stage||'vn', ch.stageTitle||'', ch.disciplineId||'', ch.disciplineTitle||'')); });
-    return uniqueChapters(out);
+    return out.filter(Boolean);
   }
   function normalizeChapter(ch,stageId,stageTitle,disciplineId,disciplineTitle){
     if(!ch) return null;
@@ -552,10 +538,10 @@
     rebuildFromDb();
     var p=e169Path(), frame=e169FrameChapter(), localChapter=e169Chapter(p.moduleId,p.courseId,p.chapterId), act=e169Activity(p.activityId);
     var known=!!E169_TAB_ROUTES[p.activityId];
-    setHeader(act.label, 'E169 · Learning path router · '+(known?'route nội bộ đã map':'route chưa được công nhận'));
+    setHeader(act.label, 'E169 · Learning path router · '+(known?'route nội bộ đã map':'placeholder an toàn'));
     var detail=e169SpecialDetail(localChapter,act)||act.summary;
-    var routeLabel=known?('learnTab = '+E169_TAB_ROUTES[p.activityId]):'Route chưa được công nhận';
-    view.innerHTML='<main class="e129-theory-shell e169-activity-shell" data-e129-release="'+RELEASE+'"><section class="e129-panel e129-reader"><header class="e129-reader-head e169-reader-head"><div>'+e169SelectorHtml()+'</div></header><section class="e169-activity-card" data-e169-activity-fallback="1"><span class="e129-badge">'+H(routeLabel)+'</span><h2>'+H(act.label+' · '+act.name)+'</h2><p>'+H(detail)+'</p><div class="e169-activity-meta"><span>'+H(localChapter?('Chương '+localChapter.no):'Chưa chọn chương')+'</span><span>'+H(frame?frame.chapterId:'Chưa có frame/content tương ứng')+'</span></div><div class="e169-placeholder-grid"><article><b>Trạng thái route</b><p>Khung điều hướng đã sẵn sàng. Activity Studio sẽ ưu tiên dữ liệu companion canonical theo lessonId/chapterId.</p></article><article><b>Fallback có nguồn</b><p>Nếu companion source chưa có record, chỉ dùng các slide semantic đã tồn tại trong theory_lecture_content; không tự sinh nội dung học thuật.</p></article><article><b>Đi tiếp</b><p>Dùng breadcrumb hoặc nút Khối kiến thức để đổi cấp chọn. Khi Activity Studio tải xong, khung fallback này sẽ tự ẩn.</p></article></div></section></section></main>';
+    var routeLabel=known?('learnTab = '+E169_TAB_ROUTES[p.activityId]):'Chưa có tab route riêng, hiển thị placeholder trong khu Học tập';
+    view.innerHTML='<main class="e129-theory-shell e169-activity-shell" data-e129-release="'+RELEASE+'"><section class="e129-panel e129-reader"><header class="e129-reader-head e169-reader-head"><div>'+e169SelectorHtml()+'</div></header><section class="e169-activity-card"><span class="e129-badge">'+H(routeLabel)+'</span><h2>'+H(act.label+' · '+act.name)+'</h2><p>'+H(detail)+'</p><div class="e169-activity-meta"><span>'+H(localChapter?('Chương '+localChapter.no):'Chưa chọn chương')+'</span><span>'+H(frame?frame.chapterId:'Chưa có frame/content tương ứng')+'</span></div><div class="e169-placeholder-grid"><article><b>Trạng thái</b><p>Khung hoạt động đã route an toàn, chưa sinh nội dung học thuật dài.</p></article><article><b>Reader</b><p>E129 Reader vẫn giữ full content ở tab Lý thuyết.</p></article><article><b>Đi tiếp</b><p>Dùng breadcrumb hoặc nút Khối kiến thức để đổi cấp chọn.</p></article></div></section></section></main>';
     document.body.classList.remove('e129-presenting','e129-theory-storage');
     return true;
   }
@@ -589,14 +575,7 @@
     return false;
   }
   function scheduleRender(delay){ setTimeout(function(){ loadData().then(render); },delay||0); }
-  function selfCheck(){
-    rebuildFromDb();
-    var status=sourceStatus(), active=cache.chapters.filter(function(ch){return ch.chapterNo>=1&&ch.chapterNo<=40;}), framework=cache.chapters.filter(function(ch){return ch.chapterNo>=41&&ch.chapterNo<=56;});
-    var activeCovered=active.filter(function(ch){return recordsForChapter(ch).length||legacyForChapter(ch).length;}).length;
-    var frameworkWithContent=framework.filter(function(ch){return recordsForChapter(ch).length||legacyForChapter(ch).length;}).length;
-    var healthy=cache.chapters.length===56&&active.length===40&&activeCovered===40&&framework.length===16&&frameworkWithContent===0;
-    return { ok:healthy, ready:cache.loaded&&healthy, loaded:cache.loaded, release:RELEASE, contractDoc:CONTRACT.contractDoc, adapterMarked:!!(window.SUBJECT_ADAPTER&&window.SUBJECT_ADAPTER.theoryContract), sources:status, chapterCount:cache.chapters.length, expectedChapterCount:56, activeChapters:active.length, activeCovered:activeCovered, expectedActiveCovered:40, frameworkOnlyChapters:framework.length, frameworkWithContent:frameworkWithContent, primaryFrameSource:CONTRACT.primaryFrameSource, primaryContentSource:CONTRACT.primaryContentSource, legacySource:CONTRACT.legacySource, renderReplacement:true, importerTarget:'theory_lecture_content', legacyImporterSuppressedOnTheoryStorage:true, frameOnlyRenderable:cache.chapters.length>0, activityRoutes:Object.keys(E169_TAB_ROUTES), applicationRoute:E169_TAB_ROUTES.application==='application', note:'E129 shell/importer is active. E126/E128 remain compatibility layers outside E129 Theory storage.' };
-  }
+  function selfCheck(){ var status=sourceStatus(); return { ok:!!(cache.chapters.length||status.frame), release:RELEASE, contractDoc:CONTRACT.contractDoc, adapterMarked:!!(window.SUBJECT_ADAPTER&&window.SUBJECT_ADAPTER.theoryContract), sources:status, primaryFrameSource:CONTRACT.primaryFrameSource, primaryContentSource:CONTRACT.primaryContentSource, legacySource:CONTRACT.legacySource, renderReplacement:true, importerTarget:'theory_lecture_content', legacyImporterSuppressedOnTheoryStorage:true, frameOnlyRenderable:cache.chapters.length>0, note:'E129 shell/importer is active. E126/E128 remain compatibility layers outside E129 Theory storage.' }; }
 
   document.addEventListener('change',function(e){
     if(e.target&&e.target.id==='e129ImportFile'){
@@ -639,23 +618,7 @@
   function startSuppressor(){ if(obs) return; try{ obs=new MutationObserver(suppressLegacyImporter); obs.observe(document.body,{childList:true,subtree:true}); }catch(_){ } }
 
   window.BAUMAN_MATH_THEORY_E129_CONTRACT = CONTRACT;
-  function routeChapters(){ rebuildFromDb(); return cache.chapters.map(function(ch){ return Object.assign({},ch); }); }
-  function lessonOptionsForChapter(chapterId){
-    rebuildFromDb();
-    var ch=chapterById(chapterId); if(!ch) return [];
-    var primary=recordsForChapter(ch);
-    if(primary.length) return primary.map(function(r){ return {id:r.lessonId,label:r.title||r.lessonTitle||r.lessonId,source:'theory_lecture_content'}; });
-    return legacyForChapter(ch).map(function(r){ return {id:r.lessonId,label:r.title||r.lessonTitle||r.lessonId,source:'lessons'}; });
-  }
-  function lessonRecord(lessonId){
-    rebuildFromDb();
-    var id=S(lessonId||'').trim(); if(!id) return null;
-    var rec=cache.records.find(function(r){return S(r.lessonId||r.id)===id;});
-    if(rec) return {source:'theory_lecture_content',record:clone(rec)};
-    rec=cache.legacyLessons.find(function(r){return S(r.lessonId||r.id)===id;});
-    return rec?{source:'lessons',record:clone(rec)}:null;
-  }
-  window.BAUMAN_MATH_THEORY_E129 = { release:RELEASE, contract:CONTRACT, applyAdapterMetadata:applyAdapterMetadata, sourceStatus:sourceStatus, openTheoryVault:openTheoryVault, render:render, commitContent:commitContent, exportContent:exportContent, clearContentOverlay:clearContentOverlay, routeChapters:routeChapters, lessonOptionsForChapter:lessonOptionsForChapter, lessonRecord:lessonRecord, whenReady:function(){return loadData().then(function(){return true;});}, selfCheck:selfCheck };
+  window.BAUMAN_MATH_THEORY_E129 = { release:RELEASE, contract:CONTRACT, applyAdapterMetadata:applyAdapterMetadata, sourceStatus:sourceStatus, openTheoryVault:openTheoryVault, render:render, commitContent:commitContent, exportContent:exportContent, clearContentOverlay:clearContentOverlay, selfCheck:selfCheck };
   window.BAUMAN_MATH_E129_OWNS_THEORY = true;
 
   applyAdapterMetadata();
