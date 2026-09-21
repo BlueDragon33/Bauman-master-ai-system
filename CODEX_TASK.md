@@ -1,13 +1,13 @@
 # CODEX_TASK
 
-Task: `BAUMAN_PROJECT_STATE_POST_CONTROL_STATE_GATE_V1_RECONCILIATION`
+Task: `BAUMAN_PROJECT_STATE_POST_RUSSIAN_FUTURE_UI_RECONCILIATION`
 Mode: `CHAT_FIRST / CURRENT_MAIN / FAIL_CLOSED`
 
 ## Current objective
 
-Keep future work aligned with the true current-main baseline after Deep Study Journal v1, packaged-readiness Fx #88 and Current-Main Control-State Gate v1.
+Keep future work aligned with the true current-main baseline after Deep Study Journal v1, packaged-readiness Fx #88, Current-Main Control-State Gate v1.1 and the promoted Russian Future Reference UI.
 
-Roadmap V2 is complete through L35. Russian Listen+Write, Academic Phase2 A1→A6, Device Contract v6, Content Review API v1, Deep Study Journal v1, its packaged-readiness Fx #88 and Current-Main Control-State Gate v1 are promoted.
+Roadmap V2 is complete through L35. Russian Listen+Write, Academic Phase2 A1→A6, Device Contract v6, Content Review API v1, Deep Study Journal v1, its packaged-readiness Fx #88, Current-Main Control-State Gate v1.1 and Russian Future Reference UI are promoted.
 
 ## Mandatory sequence
 
@@ -27,7 +27,8 @@ Roadmap V2 is complete through L35. Russian Listen+Write, Academic Phase2 A1→A
 9. Do not invent a next round merely to continue numbering. Audit first.
 10. For a real defect, create a scoped Fx hardening step.
 11. For a genuinely missing capability, create a separately named current-main track.
-12. Preserve Current-Main Control-State Gate v1 and ensure future CODEX_STATE/CODEX_TASK reconciliations pass it.
+12. Preserve Current-Main Control-State Gate v1.1 and ensure future CODEX_STATE/CODEX_TASK reconciliations pass promoted-SHA ancestry validation.
+13. Preserve the Russian Future Reference UI geometry and packaging invariants: 220px desktop sidebar, wide main canvas, no fixed right rail, no horizontal overflow, and direct + packaged browser acceptance.
 
 ## Protected contracts
 
@@ -41,7 +42,8 @@ Roadmap V2 is complete through L35. Russian Listen+Write, Academic Phase2 A1→A
 - No destructive migration.
 - No implicit production deploy/publish.
 - No automatic stale-branch promotion.
-- CODEX_STATE/CODEX_TASK divergence must fail closed through Current-Main Control-State Gate v1.
+- CODEX_STATE/CODEX_TASK divergence and stale/non-ancestor promoted SHAs must fail closed through Current-Main Control-State Gate v1.1.
+- Russian Future Reference UI must preserve existing Russian routes/data/state ownership and direct + packaged offline/runtime behavior.
 
 ## Completion condition
 
@@ -49,5 +51,6 @@ Roadmap V2 is complete through L35. Russian Listen+Write, Academic Phase2 A1→A
 - Issues #81 and #84 are completed/promoted;
 - application-management contract v7 has no explicit `missing` readiness capability;
 - post-merge current-main Whole System, Cloudflare Preview and Windows checkout gates for PR #88 are recorded as SUCCESS;
-- Current-Main Control-State Gate v1 (PR #90) is promoted and its post-merge control-state + Windows gates are recorded as SUCCESS;
+- Current-Main Control-State Gate v1 (PR #90) and v1.1 hardening (PR #93) are promoted;
+- Russian Future Reference UI (PR #92) is promoted and its pre-merge + post-merge Whole System/direct/packaged gates are recorded as SUCCESS;
 - future work resumes from current `main` only when a concrete defect, missing capability or explicit feature request exists.
