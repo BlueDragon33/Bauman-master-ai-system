@@ -1,5 +1,5 @@
 {
-  "contractVersion": 5,
+  "contractVersion": 6,
   "application": {
     "id": "bauman-master-ai",
     "name": "Bauman Master AI",
@@ -24,7 +24,11 @@
     "p256ChallengeProof": "implemented-requires-d1-and-app-origin",
     "revocableDeviceSessions": "implemented-requires-d1-and-app-origin",
     "learningAccessGate": "implemented-e2e-verified-requires-d1-and-app-origin",
-    "contentReviewApi": "missing"
+    "contentReviewApi": "missing",
+    "deviceMetadata": "implemented-requires-d1",
+    "deviceUnblock": "implemented-requires-d1",
+    "deviceEditPermission": "implemented-requires-d1",
+    "serverSideLearningDataGate": "implemented-runtime-worker-live-session-validation"
   },
   "controlService": {
     "location": "control-service/",
@@ -49,13 +53,24 @@
       "optimisticConcurrency": "expectedStatus",
       "blockPreservesRegistry": true,
       "blockRevokesDeviceSessions": true,
-      "ownerOnlyMutations": true
+      "ownerOnlyMutations": true,
+      "operations": [
+        "approve",
+        "block",
+        "unblock",
+        "set_edit_permission"
+      ]
     }
   },
   "requiredDeviceContract": {
     "namespace": "BM-",
     "identity": "sha256-canonical-p256-public-key",
-    "classes": ["desktop", "tablet", "phone", "unknown"],
+    "classes": [
+      "desktop",
+      "tablet",
+      "phone",
+      "unknown"
+    ],
     "accessAndEditSeparated": true,
     "privateKeyLocation": "endpoint-only",
     "challengeTtlSeconds": 120,
@@ -63,7 +78,15 @@
     "proofSigningInput": "bauman-device:v1:<deviceId>:<challengeId>:<challenge>",
     "challengeSingleUse": true,
     "blockedDeviceSessionsRevoked": true,
-    "offlineGraceMilliseconds": 86400000
+    "offlineGraceMilliseconds": 86400000,
+    "displayCodeFormat": "BM-xxxx-xxxx-xxxx-xxxx",
+    "metadata": [
+      "deviceType",
+      "platform",
+      "browser"
+    ],
+    "serverSideLearningDataGate": true,
+    "blockedDeviceCannotReadProtectedLearningAssets": true
   },
   "localRuntime": {
     "controlConfig": "control-service/wrangler.local.jsonc",
@@ -83,14 +106,62 @@
     "applicationManagementRemainsCanonical": true
   },
   "subclients": [
-    { "id": "math", "name": "Toán Bauman", "kind": "subject-site", "repository": "BlueDragon33/Math_Bauman", "state": "independent" },
-    { "id": "programming", "name": "Lập trình", "kind": "module", "sourcePath": "subjects/programming", "state": "module" },
-    { "id": "ai", "name": "AI", "kind": "module", "sourcePath": "subjects/ai", "state": "module" },
-    { "id": "signal", "name": "Tín hiệu", "kind": "module", "sourcePath": "subjects/signal", "state": "module" },
-    { "id": "systems", "name": "Hệ thống", "kind": "module", "sourcePath": "subjects/systems", "state": "module" },
-    { "id": "foundation", "name": "Nền tảng", "kind": "module", "sourcePath": "subjects/foundation", "state": "module" },
-    { "id": "research", "name": "Nghiên cứu", "kind": "module", "sourcePath": "subjects/research", "state": "module" },
-    { "id": "russian", "name": "Tiếng Nga", "kind": "module", "sourcePath": "subjects/russian", "state": "module" }
+    {
+      "id": "math",
+      "name": "Toán Bauman",
+      "kind": "subject-site",
+      "repository": "BlueDragon33/Math_Bauman",
+      "state": "independent"
+    },
+    {
+      "id": "programming",
+      "name": "Lập trình",
+      "kind": "module",
+      "sourcePath": "subjects/programming",
+      "state": "module"
+    },
+    {
+      "id": "ai",
+      "name": "AI",
+      "kind": "module",
+      "sourcePath": "subjects/ai",
+      "state": "module"
+    },
+    {
+      "id": "signal",
+      "name": "Tín hiệu",
+      "kind": "module",
+      "sourcePath": "subjects/signal",
+      "state": "module"
+    },
+    {
+      "id": "systems",
+      "name": "Hệ thống",
+      "kind": "module",
+      "sourcePath": "subjects/systems",
+      "state": "module"
+    },
+    {
+      "id": "foundation",
+      "name": "Nền tảng",
+      "kind": "module",
+      "sourcePath": "subjects/foundation",
+      "state": "module"
+    },
+    {
+      "id": "research",
+      "name": "Nghiên cứu",
+      "kind": "module",
+      "sourcePath": "subjects/research",
+      "state": "module"
+    },
+    {
+      "id": "russian",
+      "name": "Tiếng Nga",
+      "kind": "module",
+      "sourcePath": "subjects/russian",
+      "state": "module"
+    }
   ],
   "policy": {
     "applicationManagementMayOpenLearningRuntimeDirectly": false,
