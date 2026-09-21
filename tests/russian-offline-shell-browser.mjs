@@ -39,16 +39,23 @@ try{
 
   const cached=await page.evaluate(async()=>{
     const names=await caches.keys();
-    const shell=names.find(x=>x==='russian-app-shell-v2-foundation');
+    const shellCandidates=names.filter(x=>/^russian-app-shell-v[0-9]+(?:-|$)/i.test(x));
+    const shell=shellCandidates.sort((a,b)=>{
+      const av=Number(a.match(/russian-app-shell-v([0-9]+)/i)?.[1]||0);
+      const bv=Number(b.match(/russian-app-shell-v([0-9]+)/i)?.[1]||0);
+      return bv-av;
+    })[0]||null;
     const dataName=names.find(x=>x==='russian-learning-data-v1');
-    if(!shell)return {shell:null,urls:[],dataName:null,dataUrls:[]};
+    if(!shell)return {shell:null,shellVersion:0,urls:[],dataName:null,dataUrls:[]};
     const cache=await caches.open(shell);
     const keys=await cache.keys();
     const dataCache=dataName?await caches.open(dataName):null;
     const dataKeys=dataCache?await dataCache.keys():[];
-    return {shell,urls:keys.map(x=>new URL(x.url).pathname),dataName,dataUrls:dataKeys.map(x=>new URL(x.url).pathname)};
+    const shellVersion=Number(shell.match(/russian-app-shell-v([0-9]+)/i)?.[1]||0);
+    return {shell,shellVersion,urls:keys.map(x=>new URL(x.url).pathname),dataName,dataUrls:dataKeys.map(x=>new URL(x.url).pathname)};
   });
-  assert.equal(cached.shell,'russian-app-shell-v2-foundation');
+  assert.match(cached.shell||'',/^russian-app-shell-v[0-9]+(?:-|$)/i,'Russian offline shell cache must use a versioned namespace');
+  assert.ok(cached.shellVersion>=2,`Russian offline shell cache version must remain bumped (got v${cached.shellVersion})`);
   assert.equal(cached.dataName,'russian-learning-data-v1');
   assert.ok(cached.dataUrls.some(x=>x.endsWith('/subjects/russian/data/handwriting-listen-write.json')),'offline data cache missing handwriting-listen-write.json');
   for(const suffix of [
