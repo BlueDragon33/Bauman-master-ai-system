@@ -692,3 +692,31 @@ body[data-hub-roadmap-v4="1"] #page-roadmap .hub-rm-side-card{
     grid-template-rows:138px 120px minmax(180px,1fr) 124px!important;
   }
 }
+
+
+/* V4.2 final visual cleanup after 1920x1080 screenshot review. */
+#page-roadmap .hub-rm-filters button.active{
+  color:#fff!important;
+  border-color:#1476ef!important;
+  background:linear-gradient(180deg,#2b92ff 0%,#1678ee 100%)!important;
+  box-shadow:0 5px 14px rgba(25,119,236,.24)!important;
+}
+#page-roadmap .hub-rm-filters button.active i{color:#fff!important}
+
+body[data-hub-roadmap-v4="1"] #page-roadmap .hub-rm-levels{
+  display:grid!important;
+  grid-template-rows:none!important;
+  align-content:start!important;
+  flex:0 0 auto!important;
+}
+body[data-hub-roadmap-v4="1"] #page-roadmap .hub-rm-level,
+body[data-hub-roadmap-v4="1"] #page-roadmap .hub-rm-level.open,
+body[data-hub-roadmap-v4="1"] #page-roadmap .hub-rm-level:not(.open){
+  flex:none!important;
+}
+body[data-hub-roadmap-v4="1"] #page-roadmap .hub-rm-level.open{
+  min-height:0!important;
+}
+body[data-hub-roadmap-v4="1"] #page-roadmap .hub-rm-subject-panel{
+  justify-content:flex-start!important;
+}
