@@ -1,6 +1,6 @@
 # Academic Phase2 · Current-Main Reconstruction
 
-Status: `A3_IMPLEMENTED · GATE_PENDING`
+Status: `A4_IMPLEMENTED · GATE_PENDING`
 
 Baseline: `main@2be2db9ade895d4ec9ba21b0cf1143aef8635e13`
 
@@ -47,4 +47,15 @@ A1 remains pending until the current branch passes its triggered gate set.
 - Grade rows retain `supplementEntryVerified:false` and `supplementEntryCounted:null`; A4 transcript/honors bootstrap remains disabled.
 - A3 browser/static gates cover timing locks, user isolation, 89/92 internal-target distinction, pass/fail credit, score/grade mismatch rejection, persistence, mobile layout, and Home-surface non-regression.
 
-A3 remains pending until the current branch passes its triggered gate set.
+A3 gate passed on head `76a3182a3e83dbfffe80b20c52fb3bbea6b1878a` with Whole System, Windows checkout, Cloudflare Preview CI and Academic 2026 Prerequisite Gate all SUCCESS.
+
+## A4 implementation
+
+- `assets/js/academic-transcript-runtime.js`: user-scoped verified supplement-entry registry with separate discipline/elective/practice/GIA rows.
+- Federal Order 670 rules remain the authoritative baseline; assessment events never auto-promote into diploma-supplement rows.
+- The current 27-row / 22 grade-bearing / 17 grade-5 requirement remains explicitly a projection because IU5 local supplement mapping and any additional course-work rows are not yet verified.
+- A4-F1 hardens honors evaluation so `finalEligibilityClaimed` cannot become true while the denominator/mapping caveat is active, even when the currently verified projected ledger satisfies federal honors rules.
+- A4-H1 adds static and real browser acceptance for user isolation, 17/22 vs 16/22, blocking grade 3, credit-row exclusion, persistence, mobile layout, no Home ledger, and no scheduler/course-completion mutation.
+- A4 remains read-only and does not bootstrap A5 automatically.
+
+A4 remains pending until the current branch passes its triggered gate set.
