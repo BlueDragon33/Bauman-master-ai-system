@@ -1,5 +1,42 @@
 # CODEX_STATE
 
+Current task: E180 C03 content factory complete + staged/frame reconciliation.
+
+Status: C03_LOCAL_CHAPTER_QA_PASS_GLOBAL_BROWSER_BASELINE_PENDING
+
+Branch: `codex/e150-c01-l01-clean-replacement`
+Base branch: `codex/e146-merge-c03-l04-l06`
+Main sync status: `stacked_branch`
+
+Completed chapter:
+- C03 · Hàm số, đạo hàm và gradient cơ bản
+- §3.1 → §3.6: C1→C6 PASS locally
+- 6/6 lessons · 16 preferred roles each
+- BLOCKER: 0
+- MAJOR: 0
+
+Structural repairs:
+- E173 reconciled canonical C03 chapterId across runtime/staged records.
+- E180 synchronized stale E145/E146 staged packages to accepted runtime content.
+- E180 reconciled both C03 frame copies to `content_factory_complete_runtime_pending`.
+
+Runtime/UI inheritance:
+- E166 code-block semantics repair: PASS static.
+- E164 browser/runtime selector + E132 visual baseline: PENDING.
+- Therefore global browser acceptance remains pending.
+
+Main sync:
+- NOT RUN.
+- Do not merge/pull main from this checkpoint.
+
+Next:
+- C04 · Xác suất cơ bản và biến ngẫu nhiên.
+- Create exactly one canonical lesson first (§4.1) and run C1→C6.
+- Do not create a new framework; use existing chapter/frame/content contracts.
+- If C04 has no pre-existing content IDs, derive the lesson identity from canonical C04 chapterId and record the naming decision explicitly.
+
+---
+
 Current task: E165 C02 §2.1 content factory + E166 local code-block structural repair.
 
 Status: LOCAL_CONTENT_QA_PASS_GLOBAL_BROWSER_BASELINE_PENDING
