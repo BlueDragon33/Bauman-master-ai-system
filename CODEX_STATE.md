@@ -1,8 +1,8 @@
 # CODEX_STATE
 
-Current task: `BAUMAN_PROJECT_STATE_POST_DEEP_STUDY_RECONCILIATION`
+Current task: `BAUMAN_PROJECT_STATE_POST_DSJ_PACKAGED_READINESS_RECONCILIATION`
 
-Status: `ROADMAP_V2_COMPLETE · RUSSIAN_LISTEN_WRITE_PROMOTED · ACADEMIC_PHASE2_A1_A6_PROMOTED · DEVICE_CONTRACT_V6_PROMOTED · CONTENT_REVIEW_V1_PROMOTED · DEEP_STUDY_JOURNAL_V1_PROMOTED · CURRENT_MAIN_CLEAN`
+Status: `ROADMAP_V2_COMPLETE · RUSSIAN_LISTEN_WRITE_PROMOTED · ACADEMIC_PHASE2_A1_A6_PROMOTED · DEVICE_CONTRACT_V6_PROMOTED · CONTENT_REVIEW_V1_PROMOTED · DEEP_STUDY_JOURNAL_V1_PROMOTED · DSJ_PACKAGED_READINESS_FX_PROMOTED · CURRENT_MAIN_CLEAN`
 
 Date: 2026-09-21
 Branch: `main`
@@ -23,6 +23,7 @@ Promoted current-main capabilities:
 - Device Contract v6 — PR #79 merged as `0d603a979a7952697d5d612fd9de5f8106a0e609`.
 - Content Review API v1 — PR #82 merged as `eac09a5005bda44371ee26aed784bccfc50877a8`.
 - Deep Study Journal v1 — Issue #84 promoted as `a2e642867ba99ea34c1b49eb378f78f927e563bb`.
+- Deep Study Journal packaged-readiness Fx — PR #88 merged as `9b32c56dd10dff379231da201fd1970e781ed2f0`.
 
 ## Device Contract v6
 
@@ -76,6 +77,25 @@ Preserve the promoted Issue #84 behavior:
 
 Issue #84 is promoted current-main behavior. Any future change must preserve the non-authoritative reflection boundary unless a separately approved evidence architecture track is opened.
 
+## Deep Study Journal packaged-readiness Fx
+
+PR #88 closed the concrete post-promotion integration defect observed in Whole System run `35601172574`: direct Deep Study Journal acceptance passed, while the packaged ChatGPT Site acceptance timed out waiting for `[data-dsj-open]`.
+
+Root cause and hardening:
+
+- the Progress action is owned by the asynchronously bootstrapped Academic Phase2 course runtime;
+- packaged acceptance could open Progress before the existing `app.__course14bPatched` readiness marker was true;
+- browser acceptance now waits for that deterministic marker before asserting the Progress action;
+- Cloudflare preview and owner-private ChatGPT Site packaging now require the Deep Study Journal CSS/JS assets and HTML references;
+- the Deep Study Journal static validator locks both readiness and packaging invariants;
+- no mastery, diagnostic, prerequisite, scheduler, progress or content-ownership authority changed.
+
+Validated after merge on current `main`:
+
+- Whole System Integration Gate run `35619956810` — SUCCESS, including packaged Deep Study Journal, Russian offline shell and Listen+Write;
+- Bauman Cloudflare Preview CI run `35619956696` — SUCCESS;
+- Windows checkout safety run `35619956691` — SUCCESS.
+
 ## Intentional capability layering
 
 The base control worker intentionally keeps `learningAccessGate: false` until the deployment/preview wrapper verifies D1 + app-origin readiness. Do not flatten this fail-closed layering.
@@ -99,7 +119,7 @@ This does **not** authorize production deployment. Runtime capabilities that req
 
 1. Start all new work from current `main`.
 2. Treat `docs/roadmap_v2/CURRENT_EXECUTION_STATE.md` as authoritative for Roadmap history.
-3. Treat PRs #72, #76, #79, #82 and Deep Study Journal v1 commit `a2e642867ba99ea34c1b49eb378f78f927e563bb` as promoted current-main behavior.
+3. Treat PRs #72, #76, #79, #82, #88 and Deep Study Journal v1 commit `a2e642867ba99ea34c1b49eb378f78f927e563bb` as promoted current-main behavior.
 4. Do not reconstruct completed Issues #28 or #81 from stale branches.
 5. Preserve Content Review metadata-only ownership and role boundaries.
 6. Preserve Deep Study Journal as non-authoritative learner reflection; it must not become mastery/diagnostic/scheduler/progress evidence implicitly.
