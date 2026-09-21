@@ -9,7 +9,7 @@ body.ru-reference-ui.ru-future-ui{
   margin:0!important;background:var(--rf-bg)!important;color:var(--rf-text)!important;
 }
 .ru-future-ui .ru-app-shell{display:grid!important;grid-template-columns:220px minmax(0,1fr)!important;min-height:100vh!important;background:var(--rf-bg)!important}
-.ru-future-ui .ru-sidebar{position:sticky!important;top:0!important;height:100vh!important;padding:18px 14px 18px!important;box-sizing:border-box!important;background:
+.ru-future-ui .ru-sidebar{position:sticky!important;top:0!important;height:100vh!important;width:220px!important;min-width:220px!important;max-width:220px!important;padding:18px 14px 18px!important;box-sizing:border-box!important;background:
  radial-gradient(circle at 15% 12%,rgba(56,129,255,.32),transparent 25%),
  linear-gradient(180deg,#102b64 0%,#071b42 58%,#07152f 100%)!important;border-right:0!important;box-shadow:12px 0 34px rgba(19,51,103,.12)!important;overflow:auto!important}
 .ru-future-ui .ru-brand{display:flex!important;align-items:center!important;gap:11px!important;padding:0 7px 10px!important;border:0!important}
@@ -128,12 +128,14 @@ body.ru-reference-ui.ru-future-ui .modal-close{background:#edf3fb!important;colo
 /* Responsive */
 @media(max-width:1180px){
  .ru-future-ui .ru-app-shell{grid-template-columns:190px minmax(0,1fr)!important}
+ .ru-future-ui .ru-sidebar{width:190px!important;min-width:190px!important;max-width:190px!important}
+ .ru-future-ui .ru-brand h1,.ru-future-ui .ru-brand p,.ru-future-ui .ru-nav span,.ru-future-ui .select-label,.ru-future-ui .ru-sidebar .input{display:block!important}
  .ru-future-ui .rf-module-grid{grid-template-columns:repeat(3,1fr)}.ru-future-ui .rf-module-card:nth-child(4),.ru-future-ui .rf-module-card:nth-child(5){grid-column:auto}
  .ru-future-ui .rf-dashboard-lower{grid-template-columns:1fr 1fr}.ru-future-ui .rf-roadmap{grid-column:1/-1}.ru-future-ui .rf-dashboard-card:first-child{grid-row:span 2}
  .ru-future-ui .rf-skyline{width:34%;opacity:.65}
 }
 @media(max-width:860px){
- .ru-future-ui .ru-app-shell{grid-template-columns:1fr!important}.ru-future-ui .ru-sidebar{position:relative!important;height:auto!important;max-height:none!important;padding:12px!important}.ru-future-ui .ru-nav{grid-template-columns:repeat(3,1fr)!important}.ru-future-ui .ru-sidebar-quote,.ru-future-ui .ru-stage-box{display:none!important}
+ .ru-future-ui .ru-app-shell{grid-template-columns:1fr!important}.ru-future-ui .ru-sidebar{position:relative!important;height:auto!important;width:100%!important;min-width:0!important;max-width:none!important;max-height:none!important;padding:12px!important}.ru-future-ui .ru-nav{grid-template-columns:repeat(3,1fr)!important}.ru-future-ui .ru-sidebar-quote,.ru-future-ui .ru-stage-box{display:none!important}
  .ru-future-ui .ru-topbar{grid-template-columns:1fr auto!important;height:auto!important;min-height:64px!important}.ru-future-ui .ru-page-context{display:none!important}.ru-future-ui .ru-view{padding:10px!important}
  .ru-future-ui .overview-top-only-hero{min-height:260px!important;padding:23px!important}.ru-future-ui .rf-hero h2{font-size:28px!important}.ru-future-ui .rf-skyline{opacity:.28;width:50%}.ru-future-ui .rf-hero-cta{left:23px;bottom:20px}
  .ru-future-ui .rf-progress-strip{grid-template-columns:1fr 1fr}.ru-future-ui .rf-progress-item:nth-child(2){border-right:0}.ru-future-ui .rf-progress-item{border-bottom:1px solid #e5edf7}.ru-future-ui .rf-progress-item:nth-child(3),.ru-future-ui .rf-progress-item:nth-child(4){border-bottom:0}
