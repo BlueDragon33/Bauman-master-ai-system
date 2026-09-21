@@ -47,8 +47,8 @@ function isConfirmedNavigationAbort(request){
       '/assets/media/hub-ai-robot.svg'
     ]);
     const isPrerequisitePack=/^\/assets\/data\/prerequisite-packs\/(?:p\d{2}-[a-z0-9-]+|j\d{2}-[a-z0-9-]+)\.json$/.test(requestUrl.pathname);
-    const isAcademicLazyRuntime=/^\/assets\/js\/academic-(?:course|event|grade|transcript|command-center)-runtime\.js$/.test(requestUrl.pathname);
-    return requestUrl.origin===baseUrl.origin&&(decorativePaths.has(requestUrl.pathname)||isPrerequisitePack||(explicitReloadInProgress&&isAcademicLazyRuntime));
+    const isAcademicLazyAsset=/^\/assets\/(?:js\/academic-(?:course|event|grade|transcript|command-center)-runtime\.js|css\/academic-(?:course|event|grade|transcript|command-center)-2026\.css)$/.test(requestUrl.pathname);
+    return requestUrl.origin===baseUrl.origin&&(decorativePaths.has(requestUrl.pathname)||isPrerequisitePack||(explicitReloadInProgress&&isAcademicLazyAsset));
   }catch{return false}
 }
 
