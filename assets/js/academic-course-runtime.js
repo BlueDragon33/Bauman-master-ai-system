@@ -107,13 +107,13 @@
     return map[block.evidenceClass]||block.evidenceClass||'—';
   }
   function eventRows(course){
-    const axis=eventAxis(course.courseId),eventReady=Boolean(window.BAUMAN_EVENT_READINESS_2026),gradeReady=Boolean(window.BAUMAN_GRADE_CONTROL_2026);
+    const axis=eventAxis(course.courseId),eventReady=Boolean(window.BAUMAN_EVENT_READINESS_2026);
     return (axis.events||[]).map(e=>{
       const unresolved=/^unresolved/.test(e.timing||'')||e.reason==='timing_unresolved',stateLabel=e.label||e.state||'EVENT_UNASSESSED';
       const content=`<span class="course14b-event-copy"><b>${h(e.code)}</b><span>${e.gradingNature==='graded'?`Có điểm · target nội bộ ${h(e.internalTarget)}`:'Pass/fail · không gán target 90'}</span><small>${h(stateLabel)}</small></span>`;
       if(unresolved)return `<div class="course14b-event course14b-event-a3 locked">${content}<span class="course14b-event-lock">Timing chưa khóa</span></div>`;
       const readiness=eventReady?`<button class="btn" onclick="openAcademicEventReadiness2026('${h(course.courseId)}','${h(e.code)}')">Readiness</button>`:'<span class="course14b-event-lock">A3 đang tải</span>';
-      const grade=gradeReady?`<button class="btn" onclick="openAcademicGradeResult2026('${h(course.courseId)}','${h(e.code)}')">Kết quả</button>`:'';
+      const grade=eventReady?`<button class="btn" onclick="openAcademicGradeEvidenceA3('${h(course.courseId)}','${h(e.code)}')">Kết quả</button>`:'';
       return `<div class="course14b-event course14b-event-a3">${content}<span class="course14b-event-actions">${readiness}${grade}</span></div>`;
     }).join('');
   }
@@ -129,6 +129,16 @@
     const body=`<div class="course14b-modal"><section><h4>Ba trục trạng thái</h4><div class="course14b-axis-row">${axisChip(p,'Prereq')}${axisChip(life,'Lifecycle')}${axisChip(event,'Event')}</div><p class="academic2026-note">${h(allocationText(course))}. Assessment timing nhiều học kỳ giữ unresolved nếu curriculum không phân bổ.</p></section><section><h4>Blocker / readiness evidence</h4><div class="course14b-gates">${blockersHtml(course)}</div></section><section><h4>Competency blocks</h4><ul class="course14b-blocks">${blocks}</ul><p class="academic2026-note">Các block là planning inference trừ khi được gắn public evidence; không phải syllabus chính thức.</p></section><section><h4>Assessment events</h4><div class="course14b-events">${eventRows(course)}</div></section><section class="course14b-next"><h4>Việc tiếp theo</h4><p>${h(action.label)}</p>${action.gateId?`<button class="btn primary" onclick="openAcademicGate('${h(action.gateId)}')">Mở ${h(action.gateId)}</button>`:''}</section></div>`;
     if(typeof window.openModal==='function')return window.openModal(`${course.courseId} · ${course.nameRu}`,body,true);
     const root=document.getElementById('modalRoot');if(root)root.innerHTML=`<div class="modal-backdrop"><div class="dialog wide"><div class="dialog-head"><h2>${h(course.nameRu)}</h2><button class="btn" onclick="document.getElementById('modalRoot').innerHTML=''">Đóng</button></div><div class="dialog-body">${body}</div></div></div>`;
+  }
+
+  async function openGradeEvidence(courseId,code){
+    try{
+      const eventRuntime=window.BAUMAN_EVENT_READINESS_2026;
+      if(!eventRuntime?.ensureGradeRuntime)throw new Error('A3 Event runtime chưa sẵn sàng.');
+      await eventRuntime.ensureGradeRuntime();
+      if(typeof window.openAcademicGradeResult2026!=='function')throw new Error('A3 Grade runtime chưa sẵn sàng.');
+      return window.openAcademicGradeResult2026(courseId,code);
+    }catch(err){if(typeof window.alert==='function')window.alert(err.message||String(err));return null}
   }
 
   function openOverview(){
@@ -169,6 +179,7 @@
   }
   window.openOfficialCoursePhase2=openCourse;
   window.openCourseReadinessOverview2026=openOverview;
+  window.openAcademicGradeEvidenceA3=openGradeEvidence;
   window.BAUMAN_COURSE_READINESS_2026=Object.freeze({version:VERSION,load,prereqAxis,lifecycleAxis,eventAxis,fallbackEventAxis,gateRows,nextAction,courseById,renderProgressSummary,readOnly:true,architectureUrl:ARCH_URL,surface:'progress-modal',a3EvidenceBridge:true});
   if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',()=>setTimeout(load,0),{once:true});
   else setTimeout(load,0)
