@@ -31,7 +31,11 @@ try{
   page.on('requestfailed',r=>{if(!r.url().startsWith('http://127.0.0.1:3003/'))failed.push(`${r.method()} ${r.url()} ${r.failure()?.errorText||''}`)});
   await page.goto(BASE,{waitUntil:'domcontentloaded',timeout:30000});
   await page.waitForFunction(()=>document.documentElement.dataset.baumanDeviceAccess==='authorized',null,{timeout:15000});
-  await page.locator('#loginBtn').click();
+  const appOpen=await page.evaluate(()=>!document.getElementById('appRoot')?.classList.contains('hidden'));
+  if(!appOpen){
+    const login=page.locator('#loginBtn');
+    if(await login.isVisible())await login.click();
+  }
   await page.waitForFunction(()=>!document.getElementById('appRoot')?.classList.contains('hidden'),null,{timeout:10000});
   await page.waitForFunction(()=>Boolean(window.BAUMAN_COURSE_READINESS_2026&&window.BAUMAN_COURSE_ARCHITECTURE_S1_2026&&window.app?.__course14bPatched),null,{timeout:15000});
 
