@@ -1,7 +1,7 @@
 {
   "id": "bauman_math_theory_lecture_content_e146_c03_complete",
   "schema": "bauman_math_content_records_v1",
-  "version": "E167_C02_L02_CONTENT_FACTORY_C1_C6",
+  "version": "E167_C02_L02_CONTENT_FACTORY_C1_C6_PASS",
   "title": "Bài giảng lý thuyết Toán · Nội dung học tập",
   "role": "content",
   "frameSource": "theory_lecture_frame.json",
@@ -3574,12 +3574,13 @@
         "C4": "PASS",
         "C5": "PASS",
         "C6": {
-          "software": "STATIC_QA_PENDING",
-          "user": "PENDING",
+          "software": "PASS_STATIC_AFTER_E166",
+          "user": "PASS",
           "blockers": 0,
           "majors": 0,
+          "evaluatorCorrection": "old/new split check now accepts slide title or block title; prior false negative was test-only",
           "inheritedDeferredGate": "E164",
-          "acceptance": "PENDING_C6"
+          "acceptance": "LOCAL_CONTENT_QA_PASS_GLOBAL_BROWSER_BASELINE_PENDING"
         }
       },
       "slides": [
@@ -4026,7 +4027,22 @@
             }
           ]
         }
-      ]
+      ],
+      "qaEvidence": {
+        "numericalExamples": "PASS",
+        "compositionIdentity": "PASS",
+        "nonCommutativityExample": "PASS",
+        "schemaAndIds": "PASS",
+        "adjacentContinuity": "PASS",
+        "representationChannels": "PASS",
+        "practiceP0P3": "PASS",
+        "assessmentD0D1D2": "PASS",
+        "misconceptionDiagnostics": "PASS",
+        "technicalRussian": "PASS",
+        "softwareOutputTrustExplanation": "PASS",
+        "reactivationVsBeginner": "PASS",
+        "browserBaseline": "PENDING_E164"
+      }
     },
     {
       "lessonId": "MATH-VN-C02-ma_tran_va_phep_bien_oi_-L03-rank-column-space-independent-information-e142",
@@ -6306,7 +6322,7 @@
   "lastContentPass": {
     "id": "E167",
     "lessonId": "MATH-VN-C02-ma_tran_va_phep_bien_oi_-L02-matrix-multiplication-pipeline-e142",
-    "status": "C1_C5_PASS_C6_PENDING",
+    "status": "LOCAL_CONTENT_QA_PASS_GLOBAL_BROWSER_BASELINE_PENDING",
     "generatedAt": "2026-09-21",
     "inheritedRuntimeGate": "E164"
   }
