@@ -59,6 +59,7 @@ on:
       - 'tests/event-grade-browser-a3.mjs'
       - 'tests/transcript-honors-browser-a4.mjs'
       - 'tests/academic-command-center-browser-a5.mjs'
+      - 'tests/phase2-current-main-browser-a6.mjs'
       - '.github/workflows/academic-2026-prerequisite-gate.yml'
   pull_request:
     paths:
@@ -118,6 +119,7 @@ on:
       - 'tests/event-grade-browser-a3.mjs'
       - 'tests/transcript-honors-browser-a4.mjs'
       - 'tests/academic-command-center-browser-a5.mjs'
+      - 'tests/phase2-current-main-browser-a6.mjs'
       - '.github/workflows/academic-2026-prerequisite-gate.yml'
 
 jobs:
@@ -192,6 +194,7 @@ jobs:
           node --check tests/event-grade-browser-a3.mjs
           node --check tests/transcript-honors-browser-a4.mjs
           node --check tests/academic-command-center-browser-a5.mjs
+          node --check tests/phase2-current-main-browser-a6.mjs
           node --check assets/js/academic-main.js
           node --check assets/js/academic-scheduler-preview.js
           node --check assets/js/academic-scheduler-apply.js
@@ -260,6 +263,11 @@ jobs:
           BAUMAN_E2E_BASE_URL: http://127.0.0.1:4173/
           BAUMAN_E2E_ARTIFACT_DIR: artifacts/browser-a5
         run: node tests/academic-command-center-browser-a5.mjs
+      - name: Run A6 current-main offline integration browser acceptance
+        env:
+          BAUMAN_E2E_BASE_URL: http://127.0.0.1:4173/
+          BAUMAN_E2E_ARTIFACT_DIR: artifacts/browser-a6
+        run: node tests/phase2-current-main-browser-a6.mjs
       - name: Show static server log on failure
         if: failure()
         run: cat /tmp/bauman-http.log || true
@@ -274,5 +282,6 @@ jobs:
             artifacts/browser-a3
             artifacts/browser-a4
             artifacts/browser-a5
+            artifacts/browser-a6
           if-no-files-found: warn
           retention-days: 7
