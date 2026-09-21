@@ -1,7 +1,7 @@
 {
   "id": "bauman_math_theory_lecture_frame_e109",
   "schema": "bauman_math_theory_lecture_frame_v1",
-  "version": "E172_C02_CONTENT_STATUS_RECONCILED",
+  "version": "E180_C02_C03_CONTENT_STATUS_RECONCILED",
   "subject": "math",
   "title": "Bài giảng lý thuyết · Khung",
   "purpose": "Khung quản lý bài giảng lý thuyết. Từ E110 toàn bộ nguồn phụ cũng tách khung/nội dung tương tự.",
@@ -135,10 +135,16 @@
               "bridgeQuestion": "Gradient nói gì về hướng thay đổi của sai số?",
               "targetOutcome": "Khôi phục trực giác đạo hàm và gradient cho tối ưu và học máy.",
               "suggestedLessonCount": 6,
-              "contentStatus": "empty_waiting_for_theory_lecture_content",
+              "contentStatus": "content_factory_complete_runtime_pending",
               "contentSource": "theory_lecture_content.json",
               "chapterScope": "bauman_core_active",
-              "locked": false
+              "locked": false,
+              "contentRecordCount": 6,
+              "contentFactoryVersion": "E179",
+              "contentAuditStatus": "LOCAL_PASS_GLOBAL_BROWSER_PENDING",
+              "runtimeGate": "E164",
+              "lastContentFactoryPass": "2026-09-21",
+              "stagedContentSync": "E180"
             }
           ]
         },
@@ -2487,10 +2493,16 @@
       "bridgeQuestion": "Gradient nói gì về hướng thay đổi của sai số?",
       "targetOutcome": "Khôi phục trực giác đạo hàm và gradient cho tối ưu và học máy.",
       "suggestedLessonCount": 6,
-      "contentStatus": "empty_waiting_for_theory_lecture_content",
+      "contentStatus": "content_factory_complete_runtime_pending",
       "contentSource": "theory_lecture_content.json",
       "chapterScope": "bauman_core_active",
-      "locked": false
+      "locked": false,
+      "contentRecordCount": 6,
+      "contentFactoryVersion": "E179",
+      "contentAuditStatus": "LOCAL_PASS_GLOBAL_BROWSER_PENDING",
+      "runtimeGate": "E164",
+      "lastContentFactoryPass": "2026-09-21",
+      "stagedContentSync": "E180"
     },
     {
       "chapterId": "MATH-VN-C04-xac_suat_co_ban_va_bien_",
