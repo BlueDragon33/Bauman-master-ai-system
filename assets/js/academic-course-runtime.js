@@ -1,6 +1,6 @@
 'use strict';
 (function(){
-  const VERSION='Academic Phase2 Current-Main · A2 Course Readiness + A3→A5 Evidence Bridge';
+  const VERSION='Academic Phase2 Current-Main · A2 Course Readiness + A3 Evidence Bridge';
   const ARCH_URL='assets/data/course-learning-architecture-s1-2026.json';
   const COURSE_ORDER=['d01','d02','d03','d04','d05','d06','d15','p02'];
   let architecture=null;
