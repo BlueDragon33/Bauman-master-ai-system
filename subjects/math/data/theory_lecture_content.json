@@ -1,7 +1,7 @@
 {
   "id": "bauman_math_theory_lecture_content_e146_c03_complete",
   "schema": "bauman_math_content_records_v1",
-  "version": "E176_C03_L03_CONTENT_FACTORY_C1_C6_PASS",
+  "version": "E177_C03_L04_CONTENT_FACTORY_C1_C5",
   "title": "Bài giảng lý thuyết Toán · Nội dung học tập",
   "role": "content",
   "frameSource": "theory_lecture_frame.json",
@@ -8814,232 +8814,645 @@
       "chapterId": "MATH-VN-C03-ham_so_ao_ham_va_gradien",
       "lessonTitle": "§3.4 · Gradient descent và learning rate",
       "title": "§3.4 · Gradient descent và learning rate",
-      "programLectureId": "MATH-PROG-L03-calculus-gradient-optimization",
+      "orderInChapter": 4,
+      "programLectureId": "MATH-PROG-L06-optimization",
       "programLectureIds": [
-        "MATH-PROG-L03-calculus-gradient-optimization",
-        "MATH-PROG-L17-ai-machine-learning-math-foundations",
-        "MATH-PROG-L02-vector-spaces-linear-maps"
+        "MATH-PROG-L06-optimization",
+        "MATH-PROG-L05-calculus-gradient",
+        "MATH-PROG-L17-ai-machine-learning-math-foundations"
       ],
-      "programAnchorTitle": "Giải tích, gradient và tối ưu",
+      "programAnchorTitle": "Tối ưu và phương pháp gradient",
       "roadmapRole": "foundation_before_prep",
-      "baumanFocus": "Nắm gradient descent như quy trình cập nhật tham số để giảm sai số, hiểu vai trò learning rate, hội tụ, dao động và lỗi triển khai thường gặp trong mô hình AI/kỹ thuật.",
+      "baumanFocus": "Hiểu gradient descent như lặp local descent direction với learning rate; phân tích quadratic 1D/2D để thấy convergence, oscillation và divergence; theo dõi objective/gradient norm thay vì tin một trajectory mù.",
+      "pureLayer": [
+        "gradient descent",
+        "step size",
+        "learning rate",
+        "quadratic objective",
+        "convergence",
+        "descent direction"
+      ],
+      "appliedLayer": [
+        "loss minimization",
+        "parameter update",
+        "optimization trace",
+        "NumPy simulation",
+        "ML training intuition"
+      ],
+      "bridgeQuestion": "Biết hướng -gradient rồi, phải đi bao xa mỗi bước để giảm objective mà không overshoot hoặc diverge?",
+      "auditStatus": "REVIEW",
       "sourceAnchors": {
         "stageId": "vn",
-        "disciplineId": "calculus_optimization",
+        "disciplineId": "calculus_multivariable",
         "chapterId": "MATH-VN-C03-ham_so_ao_ham_va_gradien",
-        "programLectureId": "MATH-PROG-L03-calculus-gradient-optimization"
+        "programLectureId": "MATH-PROG-L06-optimization",
+        "officialCurriculum": "bmstu_iu5_2026_curriculum"
       },
       "tags": [
         "gradient descent",
         "learning rate",
         "optimization",
-        "loss",
-        "convergence"
+        "convergence",
+        "quadratic loss",
+        "NumPy"
       ],
+      "learningContract": {
+        "governingQuestion": "Gradient descent update hoạt động thế nào và learning rate kiểm soát tốc độ, dao động, divergence ra sao?",
+        "whyNeeded": "Đây là thuật toán nền cho tối ưu tham số trong ML và nhiều bài toán fitting; cần hiểu trước khi học optimality và backprop.",
+        "prerequisiteGates": [
+          "Hiểu gradient là local steepest Euclidean ascent direction từ §3.3.",
+          "Hiểu -gradient là local descent direction first-order.",
+          "Biết local linear approximation và scalar/vector arithmetic.",
+          "Biết Python loop/NumPy ở mức beginner entry."
+        ],
+        "measurableLearningOutcomes": [
+          "LO1: Viết đúng update x_{k+1}=x_k-α∇f(x_k) và giải thích vai trò từng thành phần.",
+          "LO2: Với quadratic 1D, suy recurrence của error và xác định miền α gây convergence/oscillation/divergence.",
+          "LO3: Tự chạy deterministic gradient-descent trace và đọc objective, gradient norm, step norm.",
+          "LO4: Phân biệt learning rate quá nhỏ, phù hợp và quá lớn bằng trajectory evidence.",
+          "LO5: Giải thích vì sao -gradient là local descent direction nhưng một bước hữu hạn vẫn có thể tăng loss nếu α quá lớn.",
+          "LO6: Nhận biết ill-scaled quadratic gây zig-zag và nối vấn đề này với scaling/preconditioning.",
+          "LO7: Nêu stopping criteria tối thiểu dựa trên gradient norm, objective change, step norm và iteration budget."
+        ],
+        "exactScope": [
+          "basic gradient descent",
+          "constant learning rate",
+          "quadratic analysis",
+          "convergence trace",
+          "stopping signals",
+          "scale sensitivity"
+        ],
+        "explicitDeferrals": [
+          "Momentum/Adam/RMSProp → later ML optimization.",
+          "Line search convergence theory → later optimization.",
+          "Stochastic/minibatch gradients → later ML.",
+          "Convex convergence rates/proofs → advanced optimization."
+        ],
+        "canonicalTerminology": {
+          "gradientDescent": "hạ gradient/gradient descent",
+          "learningRate": "learning rate/bước học",
+          "stepSize": "độ dài bước",
+          "iteration": "lần lặp",
+          "convergence": "hội tụ",
+          "oscillation": "dao động",
+          "divergence": "phân kỳ",
+          "stoppingCriterion": "tiêu chí dừng"
+        },
+        "symbols": {
+          "x_k": "parameter vector at iteration k",
+          "α": "learning rate/step size",
+          "g_k": "∇f(x_k)",
+          "x_{k+1}=x_k-αg_k": "gradient-descent update",
+          "||g_k||": "gradient norm used as one stopping signal"
+        },
+        "continuity": {
+          "previous": "§3.3 · Gradient như hướng thay đổi nhanh nhất",
+          "next": "§3.5 · Hàm mất mát, cực trị và điều kiện tối ưu"
+        }
+      },
+      "technicalRussian": {
+        "terms": [
+          [
+            "градиентный спуск",
+            "gradient descent"
+          ],
+          [
+            "скорость обучения",
+            "learning rate"
+          ],
+          [
+            "шаг",
+            "bước"
+          ],
+          [
+            "итерация",
+            "lần lặp"
+          ],
+          [
+            "сходимость",
+            "hội tụ"
+          ],
+          [
+            "колебание",
+            "dao động"
+          ],
+          [
+            "расходимость",
+            "phân kỳ"
+          ],
+          [
+            "норма градиента",
+            "gradient norm"
+          ],
+          [
+            "критерий остановки",
+            "tiêu chí dừng"
+          ]
+        ],
+        "commandVerbs": [
+          [
+            "обновите",
+            "hãy cập nhật"
+          ],
+          [
+            "выберите",
+            "hãy chọn"
+          ],
+          [
+            "проследите",
+            "hãy theo dõi"
+          ],
+          [
+            "объясните",
+            "hãy giải thích"
+          ]
+        ],
+        "oralFrames": [
+          "Градиентный спуск обновляет параметры в направлении отрицательного градиента.",
+          "Слишком большой шаг может увеличить функцию и вызвать расходимость.",
+          "Сходимость нужно контролировать по значению функции, норме градиента и размеру шага."
+        ]
+      },
+      "sourceProvenance": [
+        {
+          "id": "bmstu_iu5_2026_curriculum",
+          "kind": "official_curriculum",
+          "url": "https://home.science.iu5.bmstu.ru/study-plans/iu5-master-program.pdf",
+          "supports": [
+            "preparation context for optimization, AI and machine-learning coursework"
+          ]
+        },
+        {
+          "id": "mit_18065_gradient_descent",
+          "kind": "authoritative_university_material",
+          "url": "https://ocw.mit.edu/courses/18-065-matrix-methods-in-data-analysis-signal-processing-and-machine-learning-spring-2018/resources/lecture-22-gradient-descent-downhill-to-a-minimum/",
+          "supports": [
+            "gradient descent update as movement downhill using first derivatives",
+            "quadratic examples and zig-zag behavior"
+          ]
+        },
+        {
+          "id": "mit_67220_gradient_descent",
+          "kind": "authoritative_university_material",
+          "url": "https://ocw.mit.edu/courses/6-7220j-nonlinear-optimization-spring-2025/pages/calendar/",
+          "supports": [
+            "gradient descent as a first-order optimization method",
+            "descent lemmas and first-order algorithm context"
+          ]
+        }
+      ],
+      "generatedMaterial": {
+        "status": "AI_DRAFT_REVIEWED_IN_CONTENT_FACTORY",
+        "lineage": "Generated foundation lesson anchored to MIT gradient-descent/optimization material and prior gradient lesson.",
+        "canonicalSourceReplacement": false
+      },
+      "contentFactory": {
+        "C1": "PASS",
+        "C2": "PASS",
+        "C3": "PASS",
+        "C4": "PASS",
+        "C5": "PASS",
+        "C6": {
+          "software": "STATIC_QA_PENDING",
+          "user": "PENDING",
+          "blockers": 0,
+          "majors": 0,
+          "inheritedDeferredGate": "E164",
+          "acceptance": "PENDING_C6"
+        }
+      },
       "slides": [
         {
           "role": "problem_framing",
-          "title": "Gradient descent biến đạo hàm thành cách tự cải thiện mô hình",
+          "title": "ORIENT · Biết hướng giảm vẫn chưa biết nên đi bao xa",
+          "sourceRefs": [
+            "mit_18065_gradient_descent"
+          ],
           "blocks": [
             {
               "type": "text",
-              "title": "Ý chính",
-              "body": "Sau khi biết gradient chỉ hướng tăng nhanh nhất, ta đi ngược hướng đó để giảm sai số. Gradient descent là vòng lặp: đo sai số, tính hướng sửa, bước một bước nhỏ, rồi kiểm tra lại."
+              "title": "Câu hỏi điều khiển",
+              "body": "-∇f cho hướng giảm cục bộ, nhưng update thực tế cần một độ dài bước α. Chọn α sai có thể làm loss giảm rất chậm, dao động hoặc tăng."
+            },
+            {
+              "type": "formula",
+              "title": "Update",
+              "body": "x_{k+1}=x_k-α∇f(x_k)"
+            },
+            {
+              "type": "text",
+              "title": "Learning contract",
+              "body": "Bài này tập trung vào constant learning rate trên quadratic để thấy cơ chế rõ trước khi gặp optimizer phức tạp."
+            },
+            {
+              "type": "qa",
+              "title": "Retrieval",
+              "body": "Nếu α=0 thì update làm gì? Nếu ∇f=0 thì update làm gì?"
             }
           ]
         },
         {
           "role": "deep_essence",
-          "title": "Tối ưu là điều khiển chuyển động trong không gian tham số",
+          "title": "REACTIVATION · -gradient là local direction, α biến direction thành step",
           "blocks": [
             {
               "type": "text",
-              "title": "Bản chất",
-              "body": "Tham số theta của mô hình tạo thành một điểm trong không gian nhiều chiều. Mỗi lần cập nhật theta là một bước di chuyển trên bề mặt hàm mất mát để tìm vùng có lỗi nhỏ hơn."
+              "title": "Từ §3.3",
+              "body": "Gradient mô tả first-order sensitivity. Step -α∇f kết hợp direction với magnitude."
+            },
+            {
+              "type": "formula",
+              "title": "First-order change",
+              "body": "f(x-αg)≈f(x)-α||g||^2, g=∇f(x)"
+            },
+            {
+              "type": "text",
+              "title": "Nhưng approximation chỉ local",
+              "body": "Với α đủ nhỏ, first-order model gợi ý loss giảm. α lớn có thể đi ra khỏi vùng approximation."
+            },
+            {
+              "type": "qa",
+              "title": "Tự nói lại",
+              "body": "Vì sao 'negative gradient' đúng hướng không đồng nghĩa 'bất kỳ step size nào' cũng giảm loss?"
             }
           ]
         },
         {
           "role": "counter_intuition",
-          "title": "Bước nhanh chưa chắc học nhanh",
+          "title": "COUNTER-INTUITION · Bước lớn hơn không luôn nhanh hơn",
           "blocks": [
             {
               "type": "text",
-              "title": "Điểm dễ nhầm",
-              "body": "Learning rate lớn có thể nhảy qua nghiệm tốt hoặc làm loss dao động. Learning rate quá nhỏ thì quá trình học lê bước, giống một robot đi dò đường nhưng mỗi lần chỉ dịch một hạt bụi."
+              "title": "Too small",
+              "body": "α quá nhỏ: loss thường giảm nhưng cần rất nhiều iterations."
+            },
+            {
+              "type": "text",
+              "title": "Too large",
+              "body": "α quá lớn: overshoot qua minimum, oscillate hoặc diverge."
+            },
+            {
+              "type": "text",
+              "title": "Sweet region",
+              "body": "Một α phù hợp cân bằng progress mỗi bước với local model validity."
+            },
+            {
+              "type": "qa",
+              "title": "Diagnostic",
+              "body": "Nếu loss xen kẽ hai phía minimum với amplitude giảm dần, đó có thể là convergence kiểu nào?"
             }
           ]
         },
         {
           "role": "real_bridge",
-          "title": "Gradient descent trong AI, điều khiển và nhận dạng hệ thống",
+          "title": "CONTEXT · Loss training là một trajectory, không phải một phép tính",
           "blocks": [
             {
               "type": "text",
-              "title": "Ví dụ",
-              "body": "Huấn luyện mạng neural, fitting đường cong cảm biến, hiệu chỉnh tham số bộ điều khiển và nhận dạng mô hình động lực đều dùng cùng ý tưởng: giảm sai số bằng các bước cập nhật có hướng."
+              "title": "Training view",
+              "body": "Optimizer tạo sequence w0,w1,... chứ không nhảy thẳng tới optimum."
+            },
+            {
+              "type": "text",
+              "title": "Logs",
+              "body": "Mỗi iteration nên có ít nhất objective, gradient norm và step norm để biết đang tiến triển hay hỏng."
+            },
+            {
+              "type": "text",
+              "title": "Stop vs fail",
+              "body": "Gradient nhỏ có thể là near-stationary; loss tăng nhanh hoặc NaN là failure signal, không phải 'training khó' bình thường."
+            },
+            {
+              "type": "qa",
+              "title": "Decision question",
+              "body": "Nếu loss giảm nhưng gradient norm vẫn lớn, nên kết luận đã hội tụ chưa?"
             }
           ]
         },
         {
           "role": "notation",
-          "title": "Ký hiệu cập nhật tham số",
+          "title": "FORMALIZE · Quadratic 1D cho phép nhìn toàn bộ recurrence",
           "blocks": [
             {
               "type": "formula",
-              "title": "Cập nhật một chiều",
-              "body": "theta_{k+1} = theta_k - alpha dJ/dtheta"
+              "title": "Objective",
+              "body": "f(w)=1/2 (w-3)^2\nf'(w)=w-3"
             },
             {
               "type": "formula",
-              "title": "Cập nhật nhiều chiều",
-              "body": "theta_{k+1} = theta_k - alpha grad J(theta_k)"
+              "title": "Update",
+              "body": "w_{k+1}=w_k-α(w_k-3)"
             },
             {
-              "type": "text",
-              "title": "Tên gọi",
-              "body": "alpha là learning rate; J(theta) là hàm mất mát; grad J là vector đạo hàm riêng theo các tham số."
+              "type": "formula",
+              "title": "Error recurrence",
+              "body": "e_k=w_k-3 ⇒ e_{k+1}=(1-α)e_k"
+            },
+            {
+              "type": "qa",
+              "title": "Quick check",
+              "body": "Convergence cần |1-α|<1. Suy ra interval α nào?"
             }
           ]
         },
         {
           "role": "core_formula",
-          "title": "Vòng lặp gradient descent tối thiểu",
+          "title": "CORE · α điều khiển contraction factor",
           "blocks": [
             {
               "type": "formula",
-              "title": "Thuật toán",
-              "body": "1. y_hat = f(x; theta)\n2. J = loss(y_hat, y)\n3. g = grad J(theta)\n4. theta = theta - alpha g"
+              "title": "Convergent interval",
+              "body": "0<α<2 cho f(w)=1/2(w-3)^2"
             },
             {
               "type": "text",
-              "title": "Ý nghĩa",
-              "body": "Bước 1 dự đoán, bước 2 đo sai, bước 3 tìm hướng làm sai số tăng, bước 4 đi ngược hướng đó."
+              "title": "0<α<1",
+              "body": "Error giữ sign và co dần về 0."
+            },
+            {
+              "type": "text",
+              "title": "1<α<2",
+              "body": "Error đổi sign mỗi bước nhưng magnitude vẫn co: oscillatory convergence."
+            },
+            {
+              "type": "qa",
+              "title": "Boundaries",
+              "body": "α=1 cho gì? α=2 cho gì? α>2 cho gì?"
             }
           ]
         },
         {
           "role": "assumption_gate",
-          "title": "Điều kiện để bước gradient đáng tin",
+          "title": "ASSUMPTION GATE · Một α tốt phụ thuộc curvature/scale",
           "blocks": [
             {
               "type": "text",
-              "title": "Điều kiện",
-              "body": "Hàm mất mát cần đủ trơn ở vùng đang học, gradient phải tính đúng hoặc xấp xỉ đủ ổn, dữ liệu không quá nhiễu, và learning rate phải phù hợp với độ cong của bề mặt loss."
+              "title": "1D lesson",
+              "body": "Interval ổn định trên phụ thuộc curvature của quadratic, không có một α universal."
+            },
+            {
+              "type": "formula",
+              "title": "General quadratic intuition",
+              "body": "f(x)=1/2 x^T H x\nlargest curvature direction chi phối upper stable step."
+            },
+            {
+              "type": "text",
+              "title": "Scaling effect",
+              "body": "Ill-scaled coordinates tạo curvature rất khác nhau, gây zig-zag hoặc ép α nhỏ."
+            },
+            {
+              "type": "qa",
+              "title": "Gate",
+              "body": "Nếu rescale một variable 1000×, có nên kỳ vọng α cũ vẫn tốt?"
             }
           ]
         },
         {
           "role": "mini_case",
-          "title": "Mini case: fitting đường thẳng cho dữ liệu cảm biến",
+          "title": "E1 SIMPLE · α=0.5 hội tụ đều",
           "blocks": [
             {
+              "type": "formula",
+              "title": "Start",
+              "body": "w0=0, optimum w*=3, α=0.5"
+            },
+            {
               "type": "text",
-              "title": "Case",
-              "body": "Mô hình y_hat = ax + b dự đoán nhiệt độ từ dòng điện. Gradient descent chỉnh a và b để giảm sai số giữa y_hat và y đo được. Nếu alpha hợp lý, đường thẳng dần ôm dữ liệu tốt hơn."
+              "title": "Trace",
+              "body": "w1=1.5, w2=2.25, w3=2.625, ..."
+            },
+            {
+              "type": "formula",
+              "title": "Loss",
+              "body": "f(w0)=4.5; f(w1)=1.125; f(w2)=0.28125"
+            },
+            {
+              "type": "qa",
+              "title": "Sanity",
+              "body": "Error mỗi bước nhân với factor nào?"
             }
           ]
         },
         {
           "role": "interpretation",
-          "title": "Learning rate là tay ga của thuật toán",
+          "title": "E2 CONTEXTUAL · α=1.5 oscillate nhưng vẫn hội tụ",
           "blocks": [
             {
-              "type": "text",
-              "title": "Quá nhỏ",
-              "body": "Loss giảm đều nhưng rất chậm, tốn nhiều vòng lặp."
+              "type": "formula",
+              "title": "Error factor",
+              "body": "1-α=-0.5"
             },
             {
               "type": "text",
-              "title": "Vừa đủ",
-              "body": "Loss giảm ổn định và nhanh."
+              "title": "Trace",
+              "body": "w0=0 → w1=4.5 → w2=2.25 → w3=3.375 → ..."
             },
             {
               "type": "text",
-              "title": "Quá lớn",
-              "body": "Loss nhảy loạn, tăng trở lại hoặc không hội tụ."
+              "title": "Interpretation",
+              "body": "Đi qua lại hai phía optimum nhưng distance giảm một nửa mỗi bước."
+            },
+            {
+              "type": "qa",
+              "title": "Transfer nhẹ",
+              "body": "α=2.2 cho factor -1.2. Magnitude error sẽ làm gì?"
             }
           ]
         },
         {
           "role": "simulation",
-          "title": "Thí nghiệm gradient descent bằng Python",
+          "title": "BEGINNER ENTRY · Trace objective, gradient norm và step norm",
           "blocks": [
             {
               "type": "code",
-              "title": "Công cụ",
-              "body": "theta = theta - alpha * grad\nloss_history.append(loss)\n\n# kiểm tra hội tụ\nif abs(loss_history[-1]-loss_history[-2]) < eps:\n    stop = True"
+              "title": "Deterministic code",
+              "body": "def f(w):\n    return 0.5*(w-3.0)**2\n\ndef grad(w):\n    return w-3.0\n\ndef run(alpha, w=0.0, steps=8):\n    trace=[]\n    for k in range(steps):\n        g=grad(w)\n        step=-alpha*g\n        trace.append((k,w,f(w),abs(g),abs(step)))\n        w=w+step\n    return trace\n\nfor a in (0.1,0.5,1.5,2.2):\n    print(a, run(a, steps=5))"
             },
             {
               "type": "text",
-              "title": "Mục tiêu",
-              "body": "Vẽ loss theo vòng lặp với alpha nhỏ, vừa, lớn để thấy ba kiểu: chậm, hội tụ tốt, dao động."
+              "title": "BEGINNER ENTRY · đừng chỉ print final w",
+              "body": "Trajectory mới cho biết slow/oscillatory/divergent behavior."
+            },
+            {
+              "type": "text",
+              "title": "Software trust",
+              "body": "Một final value gần optimum sau ít steps không đủ đánh giá optimizer; cần trace, tolerances và reproducible initial condition."
+            },
+            {
+              "type": "qa",
+              "title": "Experiment",
+              "body": "So sánh α=0.1,0.5,1.5,2.2 về monotonic loss, oscillation và divergence."
             }
           ]
         },
         {
           "role": "common_mistakes",
-          "title": "Lỗi thường gặp khi dùng gradient descent",
+          "title": "MISCONCEPTION MAP · 5 lỗi về gradient descent",
           "blocks": [
             {
               "type": "text",
-              "title": "Lỗi",
-              "body": "Không chuẩn hóa đặc trưng; chọn alpha theo cảm tính; không theo dõi loss; nhầm dấu cộng/trừ trong cập nhật; kết luận mô hình sai trong khi chỉ là learning rate sai."
+              "title": "MAJOR · «-gradient luôn giảm loss»",
+              "body": "Direction đúng local; step hữu hạn quá lớn có thể tăng loss."
+            },
+            {
+              "type": "text",
+              "title": "MAJOR · «learning rate lớn hơn luôn nhanh hơn»",
+              "body": "Có stability limit."
+            },
+            {
+              "type": "text",
+              "title": "MAJOR · «loss giảm là đã hội tụ»",
+              "body": "Cần xem gradient/step/objective change và criterion."
+            },
+            {
+              "type": "text",
+              "title": "MAJOR · «một α dùng tốt cho mọi scaling»",
+              "body": "Coordinate scale/curvature thay đổi stable range."
+            },
+            {
+              "type": "text",
+              "title": "MAJOR · «gradient descent đảm bảo global minimum»",
+              "body": "Không với objective nonconvex nói chung."
             }
           ]
         },
         {
           "role": "application",
-          "title": "Ứng dụng lập trình cho mô hình nhỏ",
+          "title": "E3 TRANSFER · Audit một training trace",
           "blocks": [
             {
-              "type": "text",
-              "title": "Nhiệm vụ",
-              "body": "Viết vòng lặp train tuyến tính y_hat = ax+b. In loss mỗi 10 epoch, lưu best theta, dừng sớm khi loss không giảm, và kiểm tra dữ liệu đầu vào đã normalize chưa."
+              "type": "qa",
+              "title": "Task 1",
+              "body": "Trace A: loss giảm chậm 1% mỗi 100 steps, gradient còn lớn. Chẩn đoán khả năng α quá nhỏ."
+            },
+            {
+              "type": "qa",
+              "title": "Task 2",
+              "body": "Trace B: loss xen kẽ tăng/giảm và amplitude phình ra. Chẩn đoán learning rate."
+            },
+            {
+              "type": "qa",
+              "title": "Task 3",
+              "body": "Trace C: gradient norm <1e-8, step norm <1e-10, loss gần như không đổi. Nêu lý do hợp lý để stop và caveat."
+            },
+            {
+              "type": "qa",
+              "title": "Task 4",
+              "body": "Quadratic 2D có curvature 1 và 100. Vì sao một α phù hợp direction 1 có thể quá lớn direction 2?"
             }
           ]
         },
         {
           "role": "practice",
-          "title": "Bài luyện tập",
+          "title": "PRACTICE LADDER · P0 → P3",
           "blocks": [
             {
-              "type": "text",
-              "title": "Bài tập",
-              "body": "Cho J(theta)=theta^2. Bắt đầu theta=10. Tính 5 bước cập nhật với alpha=0.1 và alpha=1.1. So sánh quỹ đạo theta và giải thích vì sao một trường hợp ổn định hơn."
+              "type": "qa",
+              "title": "P0 · Recognition",
+              "body": "Nhìn 5 traces và phân loại slow/convergent oscillation/divergent/stationary."
+            },
+            {
+              "type": "qa",
+              "title": "P1 · Guided",
+              "body": "Với f=0.5(w-3)^2, chạy tay 4 steps cho α=0.5 và α=1.5."
+            },
+            {
+              "type": "qa",
+              "title": "P2 · Independent",
+              "body": "Viết optimizer loop deterministic, log objective/grad/step và implement 2 stopping criteria."
+            },
+            {
+              "type": "qa",
+              "title": "P3 · Transfer",
+              "body": "Tạo quadratic 2D ill-scaled, thử 3 learning rates và giải thích zig-zag bằng curvature."
             }
           ]
         },
         {
           "role": "professor_qa",
-          "title": "Vấn đáp kiểm tra hiểu sâu",
+          "title": "ASSESSMENT · D0 / D1 / D2",
           "blocks": [
             {
               "type": "qa",
-              "title": "Câu hỏi",
-              "body": "Vì sao gradient descent đi theo -grad J chứ không phải grad J? Learning rate liên quan thế nào đến độ cong của hàm mất mát? Khi loss không giảm, cần kiểm tra những gì trước khi đổi mô hình?"
+              "title": "D0 RECALL",
+              "body": "Viết update rule, giải thích α và nêu ít nhất 3 stopping signals."
+            },
+            {
+              "type": "qa",
+              "title": "D1 APPLICATION",
+              "body": "Phân tích exact recurrence của 1D quadratic, xác định stable α interval và verify bằng code."
+            },
+            {
+              "type": "qa",
+              "title": "D2 EXPLAIN / ORAL",
+              "body": "Giải thích 60–90 giây: «Vì sao negative gradient đúng hướng nhưng learning rate vẫn quyết định convergence?»"
+            },
+            {
+              "type": "text",
+              "title": "Mastery evidence",
+              "body": "Đạt khi learner đọc được trace, chọn/biện minh α trên quadratic và không hứa global convergence."
             }
           ]
         },
         {
           "role": "bridge",
-          "title": "Cầu sang hàm mất mát và cực trị",
+          "title": "TECHNICAL RUSSIAN + NEXT · descent sang optimality",
           "blocks": [
             {
               "type": "text",
-              "title": "Liên kết",
-              "body": "Gradient descent cần một bề mặt để đi trên đó. Bề mặt ấy chính là hàm mất mát. Bài sau làm rõ loss, cực tiểu, cực đại, điểm yên ngựa và điều kiện tối ưu."
+              "title": "9 thuật ngữ",
+              "body": "градиентный спуск · скорость обучения · шаг · итерация · сходимость · колебание · расходимость · норма градиента · критерий остановки"
+            },
+            {
+              "type": "text",
+              "title": "4 động từ",
+              "body": "обновите — cập nhật; выберите — chọn; проследите — theo dõi; объясните — giải thích."
+            },
+            {
+              "type": "text",
+              "title": "Khung vấn đáp",
+              "body": "«Слишком большой шаг может увеличить функцию и вызвать расходимость.»\n«Сходимость нужно контролировать по значению функции, норме градиента и размеру шага.»"
+            },
+            {
+              "type": "text",
+              "title": "Cầu sang §3.5",
+              "body": "Gradient descent tìm stationary region. §3.5 hỏi: stationary point nào là minimum, maximum hay saddle, và Hessian/convexity nói gì?"
             }
           ]
         },
         {
           "role": "takeaway",
-          "title": "Kết luận cần nhớ",
+          "title": "REVIEW · 6 điều trước optimality",
           "blocks": [
             {
               "type": "text",
-              "title": "Cốt lõi",
-              "body": "Gradient descent là cơ chế cập nhật tham số theo hướng giảm loss. Learning rate quyết định bước đi, và bước đi đúng quan trọng không kém hướng đi đúng."
+              "title": "1",
+              "body": "Update = current point - learning rate × gradient."
+            },
+            {
+              "type": "text",
+              "title": "2",
+              "body": "Negative gradient là local descent direction, không bảo đảm finite step giảm loss."
+            },
+            {
+              "type": "text",
+              "title": "3",
+              "body": "Learning rate quá nhỏ chậm; quá lớn oscillate/diverge."
+            },
+            {
+              "type": "text",
+              "title": "4",
+              "body": "Quadratic cho phép phân tích stability bằng error recurrence."
+            },
+            {
+              "type": "text",
+              "title": "5",
+              "body": "Scale/curvature quyết định step-size difficulty."
+            },
+            {
+              "type": "text",
+              "title": "6",
+              "body": "Theo dõi objective + gradient norm + step norm, không chỉ final parameter."
             }
           ]
         }
@@ -9519,9 +9932,9 @@
     }
   ],
   "lastContentPass": {
-    "id": "E176",
-    "lessonId": "MATH-VN-C03-giai_tich_dao_ham_gradient-L03-gradient-direction-fastest-change-e145",
-    "status": "LOCAL_CONTENT_QA_PASS_GLOBAL_BROWSER_BASELINE_PENDING",
+    "id": "E177",
+    "lessonId": "MATH-VN-C03-giai_tich_dao_ham_gradient-L04-gradient-descent-learning-rate-e146",
+    "status": "C1_C5_PASS_C6_PENDING",
     "generatedAt": "2026-09-21",
     "inheritedRuntimeGate": "E164"
   },
