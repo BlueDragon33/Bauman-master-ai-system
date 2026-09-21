@@ -1,5 +1,46 @@
 # CODEX_STATE
 
+Current task: E163 visible lesson selector UI repair.
+
+Status: STATIC_PATCH_PASS_BROWSER_RETEST_REQUIRED
+
+Branch: `codex/e150-c01-l01-clean-replacement`
+Base branch: `codex/e146-merge-c03-l04-l06`
+Main sync status: `stacked_branch`
+
+Main sync / pull instruction:
+- Do not pull `main` for this result.
+- E163 is a local UI-only repair on the stacked content branch.
+- No learning-content JSON was changed.
+
+Files changed:
+- `subjects/math/assets/theory_skin/theory-tab-E129.css`
+- `subjects/math/index.html`
+- `subjects/math/E163_VISIBLE_LESSON_SELECTOR_PATCH.md`
+- `CODEX_STATE.md`
+
+Verification:
+- E162 root cause identified: PASS.
+- Normal learner-view lesson selector restored statically: PASS.
+- Raw slide list remains hidden in normal learner view: PASS.
+- Existing `data-e129-lesson` state/rerender handler preserved: PASS.
+- E129 stylesheet cache key bumped to v163: PASS.
+- Content JSON untouched: PASS.
+- Browser/runtime E162 re-smoke: REQUIRED.
+- Main sync: NOT RUN.
+
+Next recommended task:
+- Re-run E162 browser smoke against E163 patch.
+- If runtime PASS, mark the C01 display baseline ready and then resume the content-production pipeline.
+
+Next actor:
+- Browser/runtime tester.
+
+Protocol reference:
+- `CODEX_CHATGPT_SYNC_PROTOCOL.md`
+
+---
+
 Current task: E162 runtime browser smoke test.
 
 Status: FAIL
