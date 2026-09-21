@@ -7,7 +7,8 @@ on:
       - "subjects/russian/**"
       - ".github/workflows/russian-ui-reference-gate.yml"
   push:
-    branches: ["main"]
+    branches:
+      - "main"
     paths:
       - "subjects/russian/**"
       - ".github/workflows/russian-ui-reference-gate.yml"
