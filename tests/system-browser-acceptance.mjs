@@ -15,6 +15,7 @@ const ACCEPTED_MATH_LESSONS=[
   {key:'l06',id:'MATH-VN-C01-vector_trong_khong_gian_-L06-vector-to-data-matrix-e140',diagrams:11,retrievalChecks:22,misconceptions:22}
 ];
 const summary={status:'RUNNING',subjects:{},responsive:{},consoleErrors:[],pageErrors:[],failedRequests:[],httpErrors:[],ignoredDecorativeAborts:[]};
+let explicitReloadInProgress=false;
 fs.mkdirSync(OUT,{recursive:true});
 
 async function mockControl(page,status='approved'){
@@ -46,7 +47,8 @@ function isConfirmedNavigationAbort(request){
       '/assets/media/hub-ai-robot.svg'
     ]);
     const isPrerequisitePack=/^\/assets\/data\/prerequisite-packs\/(?:p\d{2}-[a-z0-9-]+|j\d{2}-[a-z0-9-]+)\.json$/.test(requestUrl.pathname);
-    return requestUrl.origin===baseUrl.origin&&(decorativePaths.has(requestUrl.pathname)||isPrerequisitePack);
+    const isAcademicLazyRuntime=/^\/assets\/js\/academic-(?:course|event|grade|transcript|command-center)-runtime\.js$/.test(requestUrl.pathname);
+    return requestUrl.origin===baseUrl.origin&&(decorativePaths.has(requestUrl.pathname)||isPrerequisitePack||(explicitReloadInProgress&&isAcademicLazyRuntime));
   }catch{return false}
 }
 
@@ -106,6 +108,7 @@ try{
   assert.equal(managedAccess.academicWrites,false);
   await page.waitForFunction(()=>!document.getElementById('appRoot')?.classList.contains('hidden'));
 
+  explicitReloadInProgress=true;
   await page.reload({waitUntil:'domcontentloaded'});
   await page.waitForFunction(()=>document.documentElement.dataset.baumanDeviceAccess==='authorized',null,{timeout:15000});
   await page.waitForFunction(()=>window.BAUMAN_APP_MANAGER_ACCESS?.selfCheck?.().ready===true,null,{timeout:15000});
@@ -115,6 +118,7 @@ try{
   assert.equal(managedReload.authScreenHidden,true);
   assert.equal(managedReload.currentManagedBy,'app-manager');
   await page.waitForFunction(()=>!document.getElementById('appRoot')?.classList.contains('hidden'));
+  explicitReloadInProgress=false;
 
   const unsafeRejected=await page.evaluate(()=>{const old=window.state.subjects.ai.mainPath;window.state.subjects.ai.mainPath='javascript:alert(1)';document.getElementById('studyRoot').innerHTML='';window.app.openSubjectInPage('ai');const rejected=!document.getElementById('subjectFrame');window.state.subjects.ai.mainPath=old;return rejected});
   assert.ok(unsafeRejected,'Unsafe subject route was accepted');
