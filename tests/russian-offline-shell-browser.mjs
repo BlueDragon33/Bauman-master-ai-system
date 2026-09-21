@@ -28,15 +28,29 @@ try{
   await page.waitForFunction(()=>!!navigator.serviceWorker.controller,null,{timeout:15000});
   await page.waitForFunction(()=>window.BAUMAN_FOUNDATION_IDENTITY_REPORT!==undefined,null,{timeout:15000});
 
+  // Explicitly exercise the product's "prepare offline core" flow before asserting
+  // that all required learning data is available without a network.
+  const offlinePreparation=await page.evaluate(async()=>{
+    await window.RussianRuntimeOptimizer.prepareOfflineCore();
+    return window.RussianRuntimeOptimizer.status();
+  });
+  assert.equal(offlinePreparation.ready,true,'Russian offline core did not become ready');
+  assert.equal(offlinePreparation.prepared,offlinePreparation.total,'Russian offline core count mismatch');
+
   const cached=await page.evaluate(async()=>{
     const names=await caches.keys();
     const shell=names.find(x=>x==='russian-app-shell-v2-foundation');
-    if(!shell)return {shell:null,urls:[]};
+    const dataName=names.find(x=>x==='russian-learning-data-v1');
+    if(!shell)return {shell:null,urls:[],dataName:null,dataUrls:[]};
     const cache=await caches.open(shell);
     const keys=await cache.keys();
-    return {shell,urls:keys.map(x=>new URL(x.url).pathname)};
+    const dataCache=dataName?await caches.open(dataName):null;
+    const dataKeys=dataCache?await dataCache.keys():[];
+    return {shell,urls:keys.map(x=>new URL(x.url).pathname),dataName,dataUrls:dataKeys.map(x=>new URL(x.url).pathname)};
   });
   assert.equal(cached.shell,'russian-app-shell-v2-foundation');
+  assert.equal(cached.dataName,'russian-learning-data-v1');
+  assert.ok(cached.dataUrls.some(x=>x.endsWith('/subjects/russian/data/handwriting-listen-write.json')),'offline data cache missing handwriting-listen-write.json');
   for(const suffix of [
     '/foundation/domain-model/canonical-identity-runtime.js',
     '/foundation/domain-model/identity-overlay-store.js',

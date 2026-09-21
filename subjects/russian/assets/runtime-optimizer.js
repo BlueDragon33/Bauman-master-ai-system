@@ -1,8 +1,8 @@
 'use strict';
 (function(){
   const SCHEMA='RUSSIAN_RUNTIME_OPTIMIZER_V1';
-  const CORE_DATA=['curriculum','lessons','grammar','grammar-path','vocab','mindmap','exercises','tests','simulations','speaking','handwriting','writing','videos','knowledge-index'];
-  const LIGHT_DATA=['curriculum','grammar','grammar-path','handwriting','writing','videos','knowledge-index'];
+  const CORE_DATA=['curriculum','lessons','grammar','grammar-path','vocab','mindmap','exercises','tests','simulations','speaking','handwriting','handwriting-listen-write','listen-write-lessons','listen-write-level-rules','writing','videos','knowledge-index'];
+  const LIGHT_DATA=['curriculum','grammar','grammar-path','handwriting','handwriting-listen-write','writing','videos','knowledge-index'];
   const DATA_CACHE='russian-learning-data-v1';
   let preparing=false, prepared=Number(localStorage.getItem('ru_offline_core_count')||0);
 
