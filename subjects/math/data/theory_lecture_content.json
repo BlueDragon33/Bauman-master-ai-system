@@ -1,7 +1,7 @@
 {
   "id": "bauman_math_theory_lecture_content_e146_c03_complete",
   "schema": "bauman_math_content_records_v1",
-  "version": "E177_C03_L04_CONTENT_FACTORY_C1_C6_PASS",
+  "version": "E178_C03_L05_CONTENT_FACTORY_C1_C5",
   "title": "Bài giảng lý thuyết Toán · Nội dung học tập",
   "role": "content",
   "frameSource": "theory_lecture_frame.json",
@@ -9479,237 +9479,665 @@
       "chapterId": "MATH-VN-C03-ham_so_ao_ham_va_gradien",
       "lessonTitle": "§3.5 · Hàm mất mát, cực trị và điều kiện tối ưu",
       "title": "§3.5 · Hàm mất mát, cực trị và điều kiện tối ưu",
-      "programLectureId": "MATH-PROG-L03-calculus-gradient-optimization",
+      "orderInChapter": 5,
+      "programLectureId": "MATH-PROG-L06-optimization",
       "programLectureIds": [
-        "MATH-PROG-L03-calculus-gradient-optimization",
-        "MATH-PROG-L17-ai-machine-learning-math-foundations",
-        "MATH-PROG-L02-vector-spaces-linear-maps"
+        "MATH-PROG-L06-optimization",
+        "MATH-PROG-L05-calculus-gradient",
+        "MATH-PROG-L17-ai-machine-learning-math-foundations"
       ],
-      "programAnchorTitle": "Giải tích, gradient và tối ưu",
+      "programAnchorTitle": "Tối ưu và điều kiện cực trị",
       "roadmapRole": "foundation_before_prep",
-      "baumanFocus": "Hiểu hàm mất mát như mục tiêu tối ưu, phân biệt cực tiểu/cực đại/điểm yên ngựa, điều kiện tối ưu và rủi ro khi loss không phản ánh đúng yêu cầu kỹ thuật.",
+      "baumanFocus": "Phân biệt stationary point, local/global minimum, maximum và saddle; dùng gradient + Hessian/eigenvalue sign để phân loại quadratic examples; hiểu convexity như trường hợp làm local/global reasoning dễ hơn.",
+      "pureLayer": [
+        "stationary point",
+        "local minimum",
+        "global minimum",
+        "maximum",
+        "saddle point",
+        "Hessian",
+        "convexity"
+      ],
+      "appliedLayer": [
+        "loss landscape",
+        "optimization diagnostics",
+        "quadratic models",
+        "Hessian eigenvalues",
+        "NumPy eigvalsh"
+      ],
+      "bridgeQuestion": "Gradient bằng 0 nói được điều gì, chưa nói được điều gì, và curvature/Hessian giúp phân loại stationary point ra sao?",
+      "auditStatus": "REVIEW",
       "sourceAnchors": {
         "stageId": "vn",
-        "disciplineId": "calculus_optimization",
+        "disciplineId": "calculus_multivariable",
         "chapterId": "MATH-VN-C03-ham_so_ao_ham_va_gradien",
-        "programLectureId": "MATH-PROG-L03-calculus-gradient-optimization"
+        "programLectureId": "MATH-PROG-L06-optimization",
+        "officialCurriculum": "bmstu_iu5_2026_curriculum"
       },
       "tags": [
-        "loss function",
-        "extrema",
-        "optimality",
+        "loss",
+        "stationary point",
+        "minimum",
+        "maximum",
+        "saddle",
         "Hessian",
-        "validation"
+        "convexity",
+        "optimality"
       ],
+      "learningContract": {
+        "governingQuestion": "Khi gradient bằng 0, làm sao quyết định đó là minimum, maximum hay saddle, và khi nào local optimum cũng là global optimum?",
+        "whyNeeded": "Gradient descent thường tìm vùng gradient nhỏ; cần biết cách diễn giải stationary point và curvature trước khi nối sang loss landscape/backprop.",
+        "prerequisiteGates": [
+          "Hiểu gradient và stationary point từ §3.3.",
+          "Hiểu gradient descent trace từ §3.4.",
+          "Biết matrix eigenvalue/rank ở mức nền từ C02.",
+          "Không yêu cầu nhớ Hessian trước; Hessian được giới thiệu như matrix của second partial derivatives."
+        ],
+        "measurableLearningOutcomes": [
+          "LO1: Phân biệt local minimum, global minimum, local maximum và saddle bằng định nghĩa/geometry.",
+          "LO2: Nêu first-order necessary condition ∇f(x*)=0 cho interior differentiable unconstrained local optimum và giải thích vì sao không sufficient.",
+          "LO3: Lập Hessian 2×2 cho quadratic đơn giản và dùng eigenvalue signs để phân loại stationary point.",
+          "LO4: Nhận diện positive definite/negative definite/indefinite Hessian ở mức applied interpretation.",
+          "LO5: Giải thích convexity ở mức nền: với differentiable convex objective, mọi local minimum là global; với twice-differentiable convex objective, Hessian PSD trên domain.",
+          "LO6: Dùng NumPy eigvalsh để kiểm eigenvalue signs của symmetric Hessian và đối chiếu với analytical classification.",
+          "LO7: Không nhầm small gradient, exact stationary point và solved optimization problem."
+        ],
+        "exactScope": [
+          "stationary points",
+          "first-order necessary condition",
+          "Hessian",
+          "second-order classification",
+          "convexity intuition",
+          "loss landscape interpretation"
+        ],
+        "explicitDeferrals": [
+          "KKT/constrained optimization → later optimization.",
+          "Newton/quasi-Newton methods → later numerical optimization.",
+          "Convex-analysis proofs/duality → advanced optimization.",
+          "High-dimensional Hessian-free methods → later ML."
+        ],
+        "canonicalTerminology": {
+          "stationaryPoint": "điểm dừng/stationary point",
+          "localMinimum": "cực tiểu địa phương",
+          "globalMinimum": "cực tiểu toàn cục",
+          "localMaximum": "cực đại địa phương",
+          "saddlePoint": "điểm yên ngựa",
+          "Hessian": "ma trận Hessian",
+          "positiveDefinite": "xác định dương",
+          "negativeDefinite": "xác định âm",
+          "indefinite": "không xác định dấu",
+          "convex": "lồi"
+        },
+        "symbols": {
+          "∇f(x*)=0": "first-order stationary condition",
+          "H(x)=∇²f(x)": "Hessian",
+          "λ_i(H)": "Hessian eigenvalues",
+          "H≻0": "positive definite",
+          "H≺0": "negative definite",
+          "H indefinite": "mixed-sign curvature"
+        },
+        "continuity": {
+          "previous": "§3.4 · Gradient descent và learning rate",
+          "next": "§3.6 · Từ gradient sang backpropagation và tối ưu ML"
+        }
+      },
+      "technicalRussian": {
+        "terms": [
+          [
+            "точка стационарности",
+            "stationary point"
+          ],
+          [
+            "локальный минимум",
+            "local minimum"
+          ],
+          [
+            "глобальный минимум",
+            "global minimum"
+          ],
+          [
+            "локальный максимум",
+            "local maximum"
+          ],
+          [
+            "седловая точка",
+            "saddle point"
+          ],
+          [
+            "матрица Гессе",
+            "Hessian"
+          ],
+          [
+            "положительно определённая",
+            "positive definite"
+          ],
+          [
+            "выпуклая функция",
+            "convex function"
+          ],
+          [
+            "условие оптимальности",
+            "điều kiện tối ưu"
+          ]
+        ],
+        "commandVerbs": [
+          [
+            "найдите",
+            "hãy tìm"
+          ],
+          [
+            "классифицируйте",
+            "hãy phân loại"
+          ],
+          [
+            "проверьте",
+            "hãy kiểm tra"
+          ],
+          [
+            "объясните",
+            "hãy giải thích"
+          ]
+        ],
+        "oralFrames": [
+          "Нулевой градиент является необходимым условием внутреннего локального экстремума, но не достаточным.",
+          "Знак собственных значений матрицы Гессе описывает локальную кривизну.",
+          "Для выпуклой функции любой локальный минимум является глобальным."
+        ]
+      },
+      "sourceProvenance": [
+        {
+          "id": "bmstu_iu5_2026_curriculum",
+          "kind": "official_curriculum",
+          "url": "https://home.science.iu5.bmstu.ru/study-plans/iu5-master-program.pdf",
+          "supports": [
+            "preparation context for optimization and machine-learning coursework"
+          ]
+        },
+        {
+          "id": "mit_67220_first_order_optimality",
+          "kind": "authoritative_university_material",
+          "url": "https://ocw.mit.edu/courses/6-7220j-nonlinear-optimization-spring-2025/resources/mit6_7220_s25_lec02_pdf/",
+          "supports": [
+            "first-order optimality conditions for unconstrained optimization",
+            "stationary points as necessary local-optimum candidates"
+          ]
+        },
+        {
+          "id": "mit_67220_hessian_second_order",
+          "kind": "authoritative_university_material",
+          "url": "https://ocw.mit.edu/courses/6-7220j-nonlinear-optimization-spring-2025/mit6_7220_s25_lec17.pdf",
+          "supports": [
+            "Hessian and second-order Taylor approximation",
+            "second-order curvature information"
+          ]
+        },
+        {
+          "id": "numpy_eigvalsh",
+          "kind": "official_documentation",
+          "url": "https://numpy.org/doc/stable/reference/generated/numpy.linalg.eigvalsh.html",
+          "supports": [
+            "eigenvalues of real symmetric/Hermitian matrices for Hessian sign checks"
+          ]
+        }
+      ],
+      "generatedMaterial": {
+        "status": "AI_DRAFT_REVIEWED_IN_CONTENT_FACTORY",
+        "lineage": "Generated foundation lesson anchored to MIT first/second-order optimization materials and NumPy symmetric-eigenvalue tooling.",
+        "canonicalSourceReplacement": false
+      },
+      "contentFactory": {
+        "C1": "PASS",
+        "C2": "PASS",
+        "C3": "PASS",
+        "C4": "PASS",
+        "C5": "PASS",
+        "C6": {
+          "software": "STATIC_QA_PENDING",
+          "user": "PENDING",
+          "blockers": 0,
+          "majors": 0,
+          "inheritedDeferredGate": "E164",
+          "acceptance": "PENDING_C6"
+        }
+      },
       "slides": [
         {
           "role": "problem_framing",
-          "title": "Hàm mất mát biến mục tiêu học thành một con số cần giảm",
+          "title": "ORIENT · Gradient nhỏ chưa có nghĩa đã tìm đúng minimum",
+          "sourceRefs": [
+            "mit_67220_first_order_optimality"
+          ],
           "blocks": [
             {
               "type": "text",
-              "title": "Ý chính",
-              "body": "Mô hình không tự biết mình tốt hay kém. Hàm mất mát J đo độ sai giữa dự đoán và thực tế, rồi biến mục tiêu kỹ thuật thành bài toán tìm cực trị."
+              "title": "Câu hỏi điều khiển",
+              "body": "Optimizer dừng khi gradient nhỏ. Nhưng point đó là minimum, maximum, saddle hay chỉ gần stationary vì tolerance?"
+            },
+            {
+              "type": "text",
+              "title": "Vì sao cần",
+              "body": "Trong nonconvex loss, stationary points có nhiều loại. Muốn diễn giải training result cần tách first-order condition khỏi curvature/global claims."
+            },
+            {
+              "type": "formula",
+              "title": "Candidate condition",
+              "body": "∇f(x*)=0"
+            },
+            {
+              "type": "qa",
+              "title": "Retrieval",
+              "body": "Từ §3.3: f(x,y)=x^2-y^2 tại (0,0) có gradient zero. Nó có phải minimum không?"
             }
           ]
         },
         {
           "role": "deep_essence",
-          "title": "Loss là la bàn, nhưng cũng có thể là mê cung",
+          "title": "REACTIVATION · Stationary chỉ là ứng viên first-order",
           "blocks": [
             {
               "type": "text",
-              "title": "Bản chất",
-              "body": "Một loss tốt phải phản ánh đúng điều ta cần tối ưu. Nếu loss lệch mục tiêu thật, thuật toán vẫn tối ưu rất chăm chỉ, chỉ là chăm chỉ đi nhầm hành lang."
+              "title": "Local minimum",
+              "body": "Có neighborhood quanh x* sao cho f(x*)≤f(x) trong neighborhood."
+            },
+            {
+              "type": "text",
+              "title": "Global minimum",
+              "body": "f(x*)≤f(x) cho mọi x trong domain."
+            },
+            {
+              "type": "text",
+              "title": "Stationary",
+              "body": "∇f(x*)=0 nói local first-order slope vanish; chưa phân loại curvature."
+            },
+            {
+              "type": "qa",
+              "title": "Tự nói lại",
+              "body": "Vì sao 'stationary' là tên trung tính tốt hơn 'minimum candidate' trong nonconvex landscape?"
             }
           ]
         },
         {
           "role": "counter_intuition",
-          "title": "Loss nhỏ không luôn đồng nghĩa hệ thống tốt trong đời thật",
+          "title": "COUNTER-INTUITION · Gradient zero xuất hiện ở cả min, max và saddle",
           "blocks": [
             {
-              "type": "text",
-              "title": "Điểm dễ nhầm",
-              "body": "Mô hình có thể loss thấp trên dữ liệu huấn luyện nhưng kém trên dữ liệu mới. Có thể tối ưu đúng con số nhưng sai yêu cầu kỹ thuật như an toàn, độ trễ, năng lượng hoặc độ bền."
+              "type": "formula",
+              "title": "Minimum",
+              "body": "f1=x^2+y^2, ∇f1(0,0)=0"
+            },
+            {
+              "type": "formula",
+              "title": "Maximum",
+              "body": "f2=-(x^2+y^2), ∇f2(0,0)=0"
+            },
+            {
+              "type": "formula",
+              "title": "Saddle",
+              "body": "f3=x^2-y^2, ∇f3(0,0)=0"
+            },
+            {
+              "type": "qa",
+              "title": "Diagnostic",
+              "body": "Một first-order checker chỉ nhìn gradient có phân biệt được ba functions này tại origin không?"
             }
           ]
         },
         {
           "role": "real_bridge",
-          "title": "Loss trong dự đoán, phân loại và điều khiển",
+          "title": "CONTEXT · Loss landscape cần curvature evidence",
           "blocks": [
             {
               "type": "text",
-              "title": "Ví dụ",
-              "body": "Hồi quy thường dùng MSE hoặc MAE. Phân loại dùng cross-entropy. Điều khiển có thể cộng sai lệch vị trí, năng lượng điều khiển và mức vi phạm ràng buộc vào cùng một cost."
+              "title": "Training stop",
+              "body": "Gradient norm nhỏ là stopping signal nhưng không là certification của good optimum."
+            },
+            {
+              "type": "text",
+              "title": "Flat directions",
+              "body": "Một loss có thể rất phẳng theo vài directions; parameter có thể không xác định tốt dù gradient nhỏ."
+            },
+            {
+              "type": "text",
+              "title": "Saddle directions",
+              "body": "Curvature dương ở direction này và âm ở direction khác tạo saddle."
+            },
+            {
+              "type": "qa",
+              "title": "Decision question",
+              "body": "Nếu loss value thấp, gradient nhỏ nhưng Hessian có negative eigenvalue, point đó có là strict local minimum không?"
             }
           ]
         },
         {
           "role": "notation",
-          "title": "Ký hiệu loss, risk và cực trị",
+          "title": "FORMALIZE · Hessian là matrix second partial derivatives",
+          "sourceRefs": [
+            "mit_67220_hessian_second_order"
+          ],
           "blocks": [
             {
               "type": "formula",
-              "title": "MSE",
-              "body": "J(theta) = (1/m) sum_{i=1}^m (f(x_i;theta)-y_i)^2"
+              "title": "Definition",
+              "body": "H_ij(x)=∂²f/(∂x_i∂x_j)"
             },
             {
               "type": "formula",
-              "title": "Điểm cực tiểu cục bộ",
-              "body": "theta* is local minimum if J(theta*) <= J(theta) near theta*"
+              "title": "Quadratic local model",
+              "body": "f(x+Δ)≈f(x)+∇f(x)^TΔ + 1/2 Δ^T H(x) Δ"
             },
             {
-              "type": "formula",
-              "title": "Điểm dừng",
-              "body": "grad J(theta*) = 0"
+              "type": "text",
+              "title": "At stationary point",
+              "body": "Khi ∇f=0, quadratic curvature term trở thành local classifier chính."
+            },
+            {
+              "type": "qa",
+              "title": "Quick check",
+              "body": "Hessian của f=x^2+3y^2 là matrix nào?"
             }
           ]
         },
         {
           "role": "core_formula",
-          "title": "Điều kiện tối ưu bậc một và bậc hai",
+          "title": "CORE · Eigenvalue signs phân loại strict quadratic curvature",
           "blocks": [
             {
-              "type": "formula",
-              "title": "Bậc một",
-              "body": "grad J(theta*) = 0"
+              "type": "text",
+              "title": "Positive definite",
+              "body": "Tất cả eigenvalues >0 ⇒ mọi nonzero direction có positive curvature ⇒ strict local minimum candidate."
             },
             {
-              "type": "formula",
-              "title": "Bậc hai một biến",
-              "body": "f''(x*) > 0: local minimum\nf''(x*) < 0: local maximum"
+              "type": "text",
+              "title": "Negative definite",
+              "body": "Tất cả eigenvalues <0 ⇒ strict local maximum candidate."
             },
             {
-              "type": "formula",
-              "title": "Nhiều biến",
-              "body": "Hessian H positive definite suggests local minimum"
+              "type": "text",
+              "title": "Indefinite",
+              "body": "Có cả positive và negative eigenvalues ⇒ saddle."
+            },
+            {
+              "type": "qa",
+              "title": "Zero eigenvalues",
+              "body": "Nếu có eigenvalue=0 thì second-order test có thể inconclusive; cần higher-order/problem structure."
             }
           ]
         },
         {
           "role": "assumption_gate",
-          "title": "Điều kiện dùng điều kiện tối ưu",
+          "title": "ASSUMPTION GATE · Second-order test có điều kiện",
           "blocks": [
             {
               "type": "text",
-              "title": "Điều kiện",
-              "body": "Hàm cần khả vi quanh điểm xét. Điều kiện grad J=0 chỉ cho điểm dừng, không tự đảm bảo cực tiểu. Với hàm không lồi, có thể gặp cực tiểu cục bộ, điểm yên ngựa hoặc vùng phẳng."
+              "title": "Interior + smoothness",
+              "body": "Các statements chuẩn giả định point interior và function đủ differentiable quanh point."
+            },
+            {
+              "type": "text",
+              "title": "Semidefinite is weaker",
+              "body": "H PSD tại một stationary point không tự động chứng minh strict minimum nếu zero-curvature directions tồn tại."
+            },
+            {
+              "type": "text",
+              "title": "Constraints change conditions",
+              "body": "Nếu có constraints, ∇f=0 không còn là general necessary condition; KKT/normal cones để sau."
+            },
+            {
+              "type": "qa",
+              "title": "Gate",
+              "body": "f(x)=x^4 tại x=0 có f''(0)=0 nhưng vẫn minimum. Điều này minh họa gì?"
             }
           ]
         },
         {
           "role": "mini_case",
-          "title": "Mini case: chọn loss cho cảm biến nhiễu",
+          "title": "E1 SIMPLE · Minimum quadratic",
           "blocks": [
             {
+              "type": "formula",
+              "title": "Function",
+              "body": "f=x^2+2y^2"
+            },
+            {
+              "type": "formula",
+              "title": "Gradient/Hessian",
+              "body": "∇f=[2x,4y]^T\nH=[[2,0],[0,4]]"
+            },
+            {
               "type": "text",
-              "title": "Case",
-              "body": "Nếu dữ liệu có vài outlier rất lớn, MSE phạt outlier mạnh và có thể kéo mô hình lệch. MAE ít nhạy outlier hơn. Chọn loss phụ thuộc bản chất nhiễu và mục tiêu sử dụng."
+              "title": "Classification",
+              "body": "Eigenvalues 2,4 >0 ⇒ origin strict local minimum; vì function convex quadratic, đây cũng là global minimum."
+            },
+            {
+              "type": "qa",
+              "title": "Sanity",
+              "body": "Nếu đổi coefficient y² từ +2 thành -2, classification đổi thế nào?"
             }
           ]
         },
         {
           "role": "interpretation",
-          "title": "Cực trị dưới góc nhìn bề mặt loss",
+          "title": "E2 CONTEXTUAL · Saddle có descent direction dù gradient zero",
           "blocks": [
             {
-              "type": "text",
-              "title": "Cực tiểu",
-              "body": "Vùng xung quanh đều có loss cao hơn."
+              "type": "formula",
+              "title": "Function",
+              "body": "g=x^2-y^2\nH=[[2,0],[0,-2]]"
             },
             {
               "type": "text",
-              "title": "Cực đại",
-              "body": "Vùng xung quanh đều có loss thấp hơn, thường không phải mục tiêu khi train."
+              "title": "Directions",
+              "body": "Theo x-axis function tăng từ 0; theo y-axis function giảm từ 0."
             },
             {
               "type": "text",
-              "title": "Điểm yên ngựa",
-              "body": "Một hướng giống cực tiểu, hướng khác giống cực đại; mạng neural lớn gặp điểm yên ngựa thường xuyên."
+              "title": "Classification",
+              "body": "Eigenvalues mixed signs ⇒ indefinite Hessian ⇒ saddle."
+            },
+            {
+              "type": "qa",
+              "title": "Transfer nhẹ",
+              "body": "Gradient descent exactly khởi tạo tại saddle với exact gradient zero sẽ làm gì nếu không có noise/perturbation?"
             }
           ]
         },
         {
           "role": "simulation",
-          "title": "Thí nghiệm so sánh loss bằng Python",
+          "title": "BEGINNER ENTRY · Dùng eigvalsh kiểm symmetric Hessian",
+          "sourceRefs": [
+            "numpy_eigvalsh"
+          ],
           "blocks": [
             {
               "type": "code",
-              "title": "Công cụ",
-              "body": "mse = ((y_pred - y_true)**2).mean()\nmae = abs(y_pred - y_true).mean()\n\n# quét theta để xem bề mặt loss\nloss_grid = [loss(theta) for theta in theta_values]"
+              "title": "Deterministic classifier",
+              "body": "import numpy as np\n\nHs = {\n    'min': np.array([[2.,0.],[0.,4.]]),\n    'max': np.array([[-2.,0.],[0.,-4.]]),\n    'saddle': np.array([[2.,0.],[0.,-2.]])\n}\nfor name,H in Hs.items():\n    lam=np.linalg.eigvalsh(H)\n    print(name, lam)\n\nassert np.all(np.linalg.eigvalsh(Hs['min']) > 0)\nassert np.all(np.linalg.eigvalsh(Hs['max']) < 0)\nls=np.linalg.eigvalsh(Hs['saddle'])\nassert np.any(ls>0) and np.any(ls<0)"
             },
             {
               "type": "text",
-              "title": "Mục tiêu",
-              "body": "Tạo một bộ dữ liệu có outlier, so sánh nghiệm khi tối ưu MSE và MAE để thấy loss ảnh hưởng trực tiếp đến tham số học được."
+              "title": "BEGINNER ENTRY · eigvalsh",
+              "body": "Hessian của smooth scalar function thường symmetric dưới regularity phù hợp; eigvalsh tận dụng cấu trúc symmetric."
+            },
+            {
+              "type": "text",
+              "title": "Software trust",
+              "body": "Eigenvalues phụ thuộc Hessian tại point. Nếu Hessian được tính sai hoặc point chưa thật stationary, classifier cũng sai."
+            },
+            {
+              "type": "qa",
+              "title": "Experiment",
+              "body": "Thử H=diag(2,0). Second-order classifier có đủ để kết luận strict minimum không?"
             }
           ]
         },
         {
           "role": "common_mistakes",
-          "title": "Lỗi thường gặp với hàm mất mát",
+          "title": "MISCONCEPTION MAP · 5 lỗi về optimality",
           "blocks": [
             {
               "type": "text",
-              "title": "Lỗi",
-              "body": "Chọn loss vì quen tay; chỉ xem train loss mà bỏ validation loss; quên đơn vị vật lý của sai số; nhầm cực tiểu cục bộ với nghiệm toàn cục; bỏ qua ràng buộc an toàn."
+              "title": "MAJOR · «gradient=0 ⇒ minimum»",
+              "body": "Sai: max/saddle cũng stationary."
+            },
+            {
+              "type": "text",
+              "title": "MAJOR · «PSD Hessian tại point ⇒ strict minimum»",
+              "body": "Zero eigenvalues có thể làm test inconclusive."
+            },
+            {
+              "type": "text",
+              "title": "MAJOR · «local minimum = global minimum»",
+              "body": "Chỉ trong special structure như convexity mới có guarantee phù hợp."
+            },
+            {
+              "type": "text",
+              "title": "MAJOR · «low loss + small gradient = solved»",
+              "body": "Cần task tolerance, curvature, constraints và validation."
+            },
+            {
+              "type": "text",
+              "title": "MAJOR · «unconstrained rules áp dụng nguyên xi khi có constraints»",
+              "body": "Constraints thay đổi optimality conditions."
             }
           ]
         },
         {
           "role": "application",
-          "title": "Ứng dụng lập trình: log đúng thứ cần tối ưu",
+          "title": "E3 TRANSFER · Classify loss surfaces bằng evidence",
           "blocks": [
             {
-              "type": "text",
-              "title": "Nhiệm vụ",
-              "body": "Khi train, lưu train loss, validation loss, metric kỹ thuật và tham số tốt nhất. Với bài toán điều khiển, tách từng thành phần cost để biết hệ đang sai do vị trí, năng lượng hay ràng buộc."
+              "type": "qa",
+              "title": "Task 1",
+              "body": "H eigenvalues [0.2,3,10], gradient≈0. Classify local curvature và nêu điều gì chưa biết global."
+            },
+            {
+              "type": "qa",
+              "title": "Task 2",
+              "body": "H eigenvalues [-1,-0.1,-5], gradient=0. Classification?"
+            },
+            {
+              "type": "qa",
+              "title": "Task 3",
+              "body": "H eigenvalues [-2,0.5,4], gradient=0. Classification?"
+            },
+            {
+              "type": "qa",
+              "title": "Task 4",
+              "body": "H eigenvalues [0,2,3]. Nêu vì sao second-order test không đủ cho strict classification along zero direction."
             }
           ]
         },
         {
           "role": "practice",
-          "title": "Bài luyện tập",
+          "title": "PRACTICE LADDER · P0 → P3",
           "blocks": [
             {
-              "type": "text",
-              "title": "Bài tập",
-              "body": "Cho dữ liệu dự đoán nhiệt có một điểm đo lỗi rất lớn. Giải thích khi nào nên dùng MSE, khi nào nên dùng MAE, và khi nào cần Huber loss. Liên hệ với yêu cầu cảnh báo quá nhiệt."
+              "type": "qa",
+              "title": "P0 · Recognition",
+              "body": "5 stationary points với Hessian spectra: phân loại min/max/saddle/inconclusive."
+            },
+            {
+              "type": "qa",
+              "title": "P1 · Guided",
+              "body": "Tính gradient + Hessian cho x²+xy+y²; giải stationary point và classify bằng eigenvalues."
+            },
+            {
+              "type": "qa",
+              "title": "P2 · Independent",
+              "body": "Tự tạo 3 quadratic forms có min/max/saddle, verify bằng eigvalsh và sample directions."
+            },
+            {
+              "type": "qa",
+              "title": "P3 · Transfer",
+              "body": "Tạo function với Hessian zero ở stationary point nhưng vẫn minimum, giải thích vì sao second-order test inconclusive."
             }
           ]
         },
         {
           "role": "professor_qa",
-          "title": "Vấn đáp kiểm tra hiểu sâu",
+          "title": "ASSESSMENT · D0 / D1 / D2",
           "blocks": [
             {
               "type": "qa",
-              "title": "Câu hỏi",
-              "body": "Vì sao grad J=0 chưa đủ để kết luận cực tiểu? Một loss tối ưu trên dữ liệu huấn luyện có thể thất bại ngoài thực tế vì những nguyên nhân nào? Chọn loss có phải là quyết định kỹ thuật không?"
+              "title": "D0 RECALL",
+              "body": "Nêu first-order necessary condition, Hessian và sign patterns cho strict min/max/saddle."
+            },
+            {
+              "type": "qa",
+              "title": "D1 APPLICATION",
+              "body": "Cho một 2D polynomial. Tìm stationary points, tính Hessian tại từng point, classify bằng eigenvalues và verify numerically."
+            },
+            {
+              "type": "qa",
+              "title": "D2 EXPLAIN / ORAL",
+              "body": "Giải thích 60–90 giây: «Vì sao gradient zero chưa đủ và Hessian/convexity bổ sung thông tin gì?»"
+            },
+            {
+              "type": "text",
+              "title": "Mastery evidence",
+              "body": "Đạt khi learner phân biệt candidate/classification/global guarantee và biết lúc nào second-order test inconclusive."
             }
           ]
         },
         {
           "role": "bridge",
-          "title": "Cầu sang backpropagation",
+          "title": "TECHNICAL RUSSIAN + NEXT · optimality sang backprop",
           "blocks": [
             {
               "type": "text",
-              "title": "Liên kết",
-              "body": "Khi loss phụ thuộc vào hàng nghìn hoặc hàng triệu tham số trong mạng neural, ta cần cách tính gradient hiệu quả. Backpropagation chính là kỹ thuật truyền đạo hàm qua chuỗi phép toán."
+              "title": "9 thuật ngữ",
+              "body": "точка стационарности · локальный минимум · глобальный минимум · локальный максимум · седловая точка · матрица Гессе · положительно определённая · выпуклая функция · условие оптимальности"
+            },
+            {
+              "type": "text",
+              "title": "4 động từ",
+              "body": "найдите — tìm; классифицируйте — phân loại; проверьте — kiểm tra; объясните — giải thích."
+            },
+            {
+              "type": "text",
+              "title": "Khung vấn đáp",
+              "body": "«Нулевой градиент является необходимым условием, но не достаточным.»\n«Знак собственных значений матрицы Гессе описывает локальную кривизну.»"
+            },
+            {
+              "type": "text",
+              "title": "Cầu sang §3.6",
+              "body": "Từ đây câu hỏi còn lại là: với computation graph/layered model rất lớn, làm sao tính gradient hiệu quả cho mọi parameters? Đó là chain rule và backpropagation."
             }
           ]
         },
         {
           "role": "takeaway",
-          "title": "Kết luận cần nhớ",
+          "title": "REVIEW · 6 facts trước backprop",
           "blocks": [
             {
               "type": "text",
-              "title": "Cốt lõi",
-              "body": "Hàm mất mát định nghĩa điều mô hình đang cố giảm. Cực trị và điều kiện tối ưu giúp hiểu nơi thuật toán dừng, nhưng chất lượng thật còn phụ thuộc dữ liệu, ràng buộc và metric kỹ thuật."
+              "title": "1",
+              "body": "Stationary = gradient zero; không đồng nghĩa minimum."
+            },
+            {
+              "type": "text",
+              "title": "2",
+              "body": "Hessian captures local second-order curvature."
+            },
+            {
+              "type": "text",
+              "title": "3",
+              "body": "Positive definite ⇒ strict local min candidate at stationary point."
+            },
+            {
+              "type": "text",
+              "title": "4",
+              "body": "Indefinite ⇒ saddle."
+            },
+            {
+              "type": "text",
+              "title": "5",
+              "body": "Zero eigenvalues có thể làm second-order test inconclusive."
+            },
+            {
+              "type": "text",
+              "title": "6",
+              "body": "Convex structure biến local minimum thành global minimum; nonconvex thì không."
             }
           ]
         }
@@ -9948,9 +10376,9 @@
     }
   ],
   "lastContentPass": {
-    "id": "E177",
-    "lessonId": "MATH-VN-C03-giai_tich_dao_ham_gradient-L04-gradient-descent-learning-rate-e146",
-    "status": "LOCAL_CONTENT_QA_PASS_GLOBAL_BROWSER_BASELINE_PENDING",
+    "id": "E178",
+    "lessonId": "MATH-VN-C03-giai_tich_dao_ham_gradient-L05-loss-extrema-optimality-e146",
+    "status": "C1_C5_PASS_C6_PENDING",
     "generatedAt": "2026-09-21",
     "inheritedRuntimeGate": "E164"
   },
