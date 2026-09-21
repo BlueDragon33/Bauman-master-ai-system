@@ -1,7 +1,7 @@
 {
   "id": "bauman_math_theory_lecture_content_e146_c03_complete",
   "schema": "bauman_math_content_records_v1",
-  "version": "E168_C02_L03_CONTENT_FACTORY_C1_C6_PASS",
+  "version": "E169_C02_L04_CONTENT_FACTORY_C1_C5",
   "title": "Bài giảng lý thuyết Toán · Nội dung học tập",
   "role": "content",
   "frameSource": "theory_lecture_frame.json",
@@ -4733,6 +4733,7 @@
       "chapterId": "MATH-VN-C02-ma_tran_va_phep_bien_oi_",
       "lessonTitle": "§2.4 · Nghịch đảo, giải hệ và điều kiện tồn tại nghiệm",
       "title": "§2.4 · Nghịch đảo, giải hệ và điều kiện tồn tại nghiệm",
+      "orderInChapter": 4,
       "programLectureId": "MATH-PROG-L02-vector-spaces-linear-maps",
       "programLectureIds": [
         "MATH-PROG-L02-vector-spaces-linear-maps",
@@ -4741,204 +4742,662 @@
       ],
       "programAnchorTitle": "Không gian vectơ và ánh xạ tuyến tính",
       "roadmapRole": "foundation_before_prep",
-      "baumanFocus": "Hiểu nghịch đảo ma trận, điều kiện nghiệm của hệ tuyến tính và rủi ro số học khi giải hệ trong mô hình kỹ thuật.",
+      "baumanFocus": "Hiểu Ax=b như bài toán suy ngược; phân loại vô nghiệm/duy nhất/vô số nghiệm bằng rank và column space; phân biệt invertibility với numerical conditioning; ưu tiên solve/lstsq theo cấu trúc bài toán.",
+      "pureLayer": [
+        "hệ tuyến tính",
+        "nghịch đảo",
+        "khả nghịch",
+        "rank",
+        "column space",
+        "condition number"
+      ],
+      "appliedLayer": [
+        "ước lượng trạng thái",
+        "sensor calibration",
+        "np.linalg.solve",
+        "np.linalg.lstsq",
+        "numerical stability"
+      ],
+      "bridgeQuestion": "Khi nào Ax=b có nghiệm duy nhất, khi nào chỉ có nghiệm xấp xỉ, và vì sao ma trận có inverse vẫn có thể nguy hiểm về số học?",
+      "auditStatus": "REVIEW",
       "sourceAnchors": {
         "stageId": "vn",
         "disciplineId": "linear_algebra_data_space",
         "chapterId": "MATH-VN-C02-ma_tran_va_phep_bien_oi_",
-        "programLectureId": "MATH-PROG-L02-vector-spaces-linear-maps"
+        "programLectureId": "MATH-PROG-L02-vector-spaces-linear-maps",
+        "officialCurriculum": "bmstu_iu5_2026_curriculum"
       },
       "tags": [
-        "inverse",
         "linear system",
-        "rank",
+        "inverse",
+        "solve",
+        "least squares",
         "condition number",
-        "solve"
+        "rank",
+        "NumPy",
+        "IU-5"
       ],
+      "learningContract": {
+        "governingQuestion": "Từ A và b, làm sao quyết định Ax=b có nghiệm gì, chọn công cụ giải nào và đánh giá nghiệm có ổn định hay không?",
+        "whyNeeded": "Nền cho state estimation, regression/least squares, inverse problems, numerical linear algebra và các mô hình kỹ thuật ở IU-5.",
+        "prerequisiteGates": [
+          "Hiểu Ax và column space từ §2.1.",
+          "Hiểu rank và b∈Col(A) từ §2.3.",
+          "Phân biệt full rank với rank deficient.",
+          "Biết matrix multiplication/composition để kiểm A x."
+        ],
+        "measurableLearningOutcomes": [
+          "LO1: Phân loại đúng hệ Ax=b thành vô nghiệm, nghiệm duy nhất hoặc vô số nghiệm bằng rank/column-space reasoning.",
+          "LO2: Với ma trận vuông A, giải thích các điều kiện tương đương cơ bản của khả nghịch: full rank, null(A)={0}, inverse tồn tại.",
+          "LO3: Giải đúng một hệ 2×2 bằng tay và kiểm residual ||Ax-b||.",
+          "LO4: Giải thích vì sao np.linalg.solve phù hợp cho hệ vuông full-rank và vì sao không cần tính inv(A)@b để giải số.",
+          "LO5: Dùng np.linalg.lstsq cho hệ không vuông/không nhất quán và giải thích residual/minimum-norm ở mức nhập môn.",
+          "LO6: Dùng condition number để phân biệt invertible với numerically well-conditioned.",
+          "LO7: Chẩn đoán một hệ gần suy biến khi perturbation nhỏ trong b gây thay đổi lớn ở x."
+        ],
+        "exactScope": [
+          "Ax=b classification",
+          "invertibility",
+          "solve vs inverse",
+          "least squares entry",
+          "condition number",
+          "residual and sensitivity"
+        ],
+        "explicitDeferrals": [
+          "LU/QR decomposition chi tiết → numerical methods chapter.",
+          "Moore-Penrose pseudoinverse chứng minh sâu → later numerical/ML chapter.",
+          "Regularization/Tikhonov → optimization/ML chapter.",
+          "Eigen/SVD theory sâu → later chapters."
+        ],
+        "canonicalTerminology": {
+          "linearSystem": "hệ tuyến tính",
+          "invertible": "khả nghịch",
+          "inverse": "ma trận nghịch đảo",
+          "uniqueSolution": "nghiệm duy nhất",
+          "inconsistent": "không tương thích/vô nghiệm",
+          "leastSquares": "bình phương tối thiểu",
+          "residual": "phần dư",
+          "conditionNumber": "số điều kiện",
+          "illConditioned": "điều kiện kém"
+        },
+        "symbols": {
+          "Ax=b": "hệ tuyến tính",
+          "A^{-1}": "inverse nếu tồn tại",
+          "r=rank(A)": "hạng coefficient matrix",
+          "r_aug=rank([A|b])": "hạng augmented matrix",
+          "κ(A)": "condition number",
+          "r=b-Ax": "residual"
+        },
+        "continuity": {
+          "previous": "§2.3 · Hạng ma trận, không gian cột và thông tin độc lập",
+          "next": "§2.5 · Phép biến đổi tuyến tính trong hình học và dữ liệu"
+        }
+      },
+      "technicalRussian": {
+        "terms": [
+          [
+            "система линейных уравнений",
+            "hệ phương trình tuyến tính"
+          ],
+          [
+            "обратная матрица",
+            "ma trận nghịch đảo"
+          ],
+          [
+            "невырожденная матрица",
+            "ma trận không suy biến"
+          ],
+          [
+            "единственное решение",
+            "nghiệm duy nhất"
+          ],
+          [
+            "несовместная система",
+            "hệ vô nghiệm"
+          ],
+          [
+            "бесконечно много решений",
+            "vô số nghiệm"
+          ],
+          [
+            "метод наименьших квадратов",
+            "phương pháp bình phương tối thiểu"
+          ],
+          [
+            "невязка",
+            "residual/phần dư"
+          ],
+          [
+            "число обусловленности",
+            "condition number"
+          ]
+        ],
+        "commandVerbs": [
+          [
+            "решите",
+            "hãy giải"
+          ],
+          [
+            "проверьте",
+            "hãy kiểm tra"
+          ],
+          [
+            "оцените",
+            "hãy đánh giá"
+          ],
+          [
+            "объясните",
+            "hãy giải thích"
+          ]
+        ],
+        "oralFrames": [
+          "Система Ax=b имеет решение тогда, когда b принадлежит пространству столбцов A.",
+          "Обратимость не гарантирует хорошую численную обусловленность.",
+          "Для численного решения лучше использовать solve, а не явно вычислять обратную матрицу."
+        ]
+      },
+      "sourceProvenance": [
+        {
+          "id": "bmstu_iu5_2026_curriculum",
+          "kind": "official_curriculum",
+          "url": "https://home.science.iu5.bmstu.ru/study-plans/iu5-master-program.pdf",
+          "supports": [
+            "IU-5 preparation context for analytical models, AI/data analysis and computational methods"
+          ]
+        },
+        {
+          "id": "numpy_solve",
+          "kind": "official_documentation",
+          "url": "https://numpy.org/doc/stable/reference/generated/numpy.linalg.solve",
+          "supports": [
+            "solve targets well-determined full-rank square systems",
+            "singular/non-square cases require a different method"
+          ]
+        },
+        {
+          "id": "numpy_lstsq",
+          "kind": "official_documentation",
+          "url": "https://numpy.org/doc/stable/reference/generated/numpy.linalg.lstsq.html",
+          "supports": [
+            "least-squares solution for under/over/well-determined systems",
+            "minimizes Euclidean residual and returns minimum-norm solution among minimizers"
+          ]
+        },
+        {
+          "id": "numpy_cond",
+          "kind": "official_documentation",
+          "url": "https://numpy.org/doc/stable/reference/generated/numpy.linalg.cond.html",
+          "supports": [
+            "condition number computation",
+            "2-norm condition uses singular-value information"
+          ]
+        }
+      ],
+      "generatedMaterial": {
+        "status": "AI_DRAFT_REVIEWED_IN_CONTENT_FACTORY",
+        "lineage": "Generated lesson anchored to prior rank lesson and official NumPy solve/lstsq/cond documentation, within BMSTU IU-5 preparation scope.",
+        "canonicalSourceReplacement": false
+      },
+      "contentFactory": {
+        "C1": "PASS",
+        "C2": "PASS",
+        "C3": "PASS",
+        "C4": "PASS",
+        "C5": "PASS",
+        "C6": {
+          "software": "STATIC_QA_PENDING",
+          "user": "PENDING",
+          "blockers": 0,
+          "majors": 0,
+          "inheritedDeferredGate": "E164",
+          "acceptance": "PENDING_C6"
+        }
+      },
       "slides": [
         {
           "role": "problem_framing",
-          "title": "Giải hệ tuyến tính là tìm nguyên nhân từ kết quả đo",
+          "title": "ORIENT · Ax=b là bài toán đi ngược từ kết quả về nguyên nhân",
+          "sourceRefs": [
+            "numpy_solve",
+            "bmstu_iu5_2026_curriculum"
+          ],
           "blocks": [
             {
               "type": "text",
-              "title": "Ý chính",
-              "body": "Hệ Ax=b xuất hiện khi ta biết đầu ra b và muốn tìm vector x đã tạo ra nó qua ma trận A. Đây là bài toán ngược cơ bản trong kỹ thuật, điều khiển và ước lượng trạng thái."
+              "title": "Câu hỏi điều khiển",
+              "body": "Biết A và output b, liệu có duy nhất một x tạo ra b, có nhiều x, hay không có x nào? Đây là câu hỏi trung tâm của linear system."
+            },
+            {
+              "type": "text",
+              "title": "Vì sao cần",
+              "body": "Calibration, state estimation, regression và nhiều inverse problem đều có dạng 'đo được b, cần suy ra x'. Trước khi bấm solve, phải biết hệ thuộc loại nào."
+            },
+            {
+              "type": "formula",
+              "title": "Bài toán",
+              "body": "A∈R^(m×n), x∈R^n, b∈R^m\nTìm x sao cho Ax=b."
+            },
+            {
+              "type": "qa",
+              "title": "Retrieval",
+              "body": "Từ §2.3: điều kiện hình học tối thiểu để Ax=b có nghiệm là gì?"
             }
           ]
         },
         {
           "role": "deep_essence",
-          "title": "Nghịch đảo hoàn tác một phép biến đổi tuyến tính",
+          "title": "REACTIVATION · Rank quyết định mức độ mất thông tin của transform",
           "blocks": [
             {
               "type": "text",
-              "title": "Bản chất",
-              "body": "Nếu A biến x thành b, thì A^{-1} biến b trở lại x. Nghịch đảo chỉ tồn tại khi phép biến đổi không làm mất hướng thông tin độc lập."
+              "title": "Kiến thức cũ",
+              "body": "Mọi Ax nằm trong Col(A). Nếu b nằm ngoài Col(A), không có nghiệm chính xác. Nếu A làm mất direction, nhiều x có thể cho cùng output."
+            },
+            {
+              "type": "formula",
+              "title": "Consistency",
+              "body": "Ax=b solvable ⇔ b∈Col(A) ⇔ rank(A)=rank([A|b])"
+            },
+            {
+              "type": "text",
+              "title": "Uniqueness",
+              "body": "Nếu hệ consistent và null(A) chỉ có zero vector thì nghiệm là duy nhất. Với A vuông n×n, điều này tương đương rank(A)=n."
+            },
+            {
+              "type": "qa",
+              "title": "Tự nói lại",
+              "body": "Vì sao một nonzero vector trong Null(A) làm mất uniqueness? Gợi ý: nếu Ax=b thì A(x+z)=?"
             }
           ]
         },
         {
           "role": "counter_intuition",
-          "title": "Không phải ma trận vuông nào cũng nghịch đảo được",
+          "title": "COUNTER-INTUITION · Có inverse chưa chắc đã 'an toàn'",
           "blocks": [
             {
               "type": "text",
-              "title": "Điểm dễ nhầm",
-              "body": "Ma trận vuông nhưng rank thiếu sẽ làm nhiều vector khác nhau rơi vào cùng một đầu ra. Khi thông tin đã mất, không thể hoàn tác duy nhất."
+              "title": "Khả nghịch là câu hỏi exact",
+              "body": "A có inverse nghĩa transform một-một và onto trên không gian cùng chiều; về đại số, x=A^{-1}b."
+            },
+            {
+              "type": "text",
+              "title": "Ổn định là câu hỏi numerical",
+              "body": "Một matrix gần suy biến có thể vẫn full rank và có inverse, nhưng inverse rất nhạy: thay đổi nhỏ trong b hoặc rounding có thể làm x thay đổi lớn."
+            },
+            {
+              "type": "formula",
+              "title": "Condition lens",
+              "body": "κ(A)=||A||·||A^{-1}||\nκ lớn ⇒ sensitivity lớn hơn đối với perturbations."
+            },
+            {
+              "type": "qa",
+              "title": "Diagnostic",
+              "body": "Hai matrix đều invertible; một matrix có κ≈2, matrix kia κ≈10^8. Bạn tin nghiệm của matrix nào hơn khi dữ liệu có noise?"
             }
           ]
         },
         {
           "role": "real_bridge",
-          "title": "Hệ tuyến tính trong kỹ thuật",
+          "title": "CONTEXT · Sensor calibration và state estimation",
           "blocks": [
             {
               "type": "text",
-              "title": "Ví dụ",
-              "body": "Trong sensor fusion, b là vector đo, x là trạng thái cần ước lượng, A mô tả cách trạng thái tạo ra đo lường. Nếu A suy biến, trạng thái không thể xác định duy nhất."
+              "title": "Bối cảnh",
+              "body": "b là vector đo, x là parameters/state cần suy ra, A mô tả cách x tạo ra measurement."
+            },
+            {
+              "type": "text",
+              "title": "Nếu sensor không đủ độc lập",
+              "body": "A rank-deficient: một số direction của x không quan sát được. Có thể có vô số state phù hợp cùng measurement."
+            },
+            {
+              "type": "text",
+              "title": "Nếu measurement có noise",
+              "body": "b có thể không nằm chính xác trong Col(A). Khi đó exact solve không phù hợp; least squares tìm x làm residual nhỏ nhất."
+            },
+            {
+              "type": "qa",
+              "title": "Decision question",
+              "body": "Một hệ 100 measurements, 3 unknown parameters thường là square solve hay least squares? Vì sao?"
             }
           ]
         },
         {
           "role": "notation",
-          "title": "Ký hiệu nghịch đảo và hệ tuyến tính",
+          "title": "FORMALIZE · Ba lớp kiểm: existence, uniqueness, stability",
           "blocks": [
             {
               "type": "formula",
-              "title": "Hệ tuyến tính",
-              "body": "Ax=b"
+              "title": "Existence",
+              "body": "rank(A)=rank([A|b])"
             },
             {
               "type": "formula",
-              "title": "Nghịch đảo",
-              "body": "A^{-1}A = I và AA^{-1}=I"
+              "title": "Uniqueness",
+              "body": "consistent + rank(A)=n ⇒ unique x\nconsistent + rank(A)<n ⇒ infinitely many x"
             },
             {
               "type": "formula",
-              "title": "Nghiệm nếu A khả nghịch",
-              "body": "x = A^{-1}b"
+              "title": "Stability",
+              "body": "κ(A) nhỏ/vừa: perturbation được kiểm soát hơn\nκ(A) rất lớn: ill-conditioned"
+            },
+            {
+              "type": "qa",
+              "title": "Quick classification",
+              "body": "A có 4 unknowns, rank(A)=3, rank([A|b])=3. Hệ thuộc loại nào?"
             }
           ]
         },
         {
           "role": "core_formula",
-          "title": "Điều kiện khả nghịch",
+          "title": "CORE · Invertibility theorem ở mức cần dùng",
           "blocks": [
             {
               "type": "text",
-              "title": "Tương đương",
-              "body": "Với A vuông n x n, A khả nghịch khi rank(A)=n, det(A) khác 0, các cột độc lập tuyến tính và Ax=0 chỉ có nghiệm x=0."
+              "title": "Với A vuông n×n",
+              "body": "Các phát biểu sau đi cùng nhau: A invertible; rank(A)=n; columns độc lập; Null(A)={0}; Ax=b có unique solution cho mọi b∈R^n."
+            },
+            {
+              "type": "formula",
+              "title": "Inverse identities",
+              "body": "A^{-1}A=I, AA^{-1}=I\nNếu tồn tại: x=A^{-1}b"
+            },
+            {
+              "type": "text",
+              "title": "Nhưng khi tính số",
+              "body": "Công thức x=A^{-1}b hữu ích để hiểu; implementation thường dùng linear solver trực tiếp thay vì tạo inverse rồi nhân."
+            },
+            {
+              "type": "qa",
+              "title": "Retrieve",
+              "body": "Nếu rank(A)<n với A vuông, phát biểu nào ở trên thất bại đầu tiên? Thực ra tất cả equivalences cùng thất bại."
             }
           ]
         },
         {
           "role": "assumption_gate",
-          "title": "Điều kiện tồn tại nghiệm",
+          "title": "ASSUMPTION GATE · Chọn solve, lstsq hay dừng lại",
+          "sourceRefs": [
+            "numpy_solve",
+            "numpy_lstsq"
+          ],
           "blocks": [
             {
               "type": "text",
-              "title": "Hệ tổng quát",
-              "body": "Ax=b có nghiệm khi b thuộc không gian cột Col(A). Nếu b không thuộc Col(A), hệ vô nghiệm và cần dùng xấp xỉ least squares."
+              "title": "Square + full rank",
+              "body": "Dùng np.linalg.solve(A,b). Đây là đường trực tiếp cho hệ well-determined."
+            },
+            {
+              "type": "text",
+              "title": "Non-square hoặc inconsistent/noisy",
+              "body": "Dùng np.linalg.lstsq(A,b,rcond=None) như entry point. Nó tìm x giảm ||b-Ax||_2."
+            },
+            {
+              "type": "text",
+              "title": "Rank-deficient",
+              "body": "Phải đọc rank/singular values. Least squares có thể vẫn trả solution, nhưng uniqueness/interpretation cần kiểm riêng."
+            },
+            {
+              "type": "qa",
+              "title": "Gate",
+              "body": "Không vuông nhưng measurements nhiều hơn unknowns: vì sao inverse không phải khái niệm phù hợp để gọi trực tiếp?"
             }
           ]
         },
         {
           "role": "mini_case",
-          "title": "Mini case: hiệu chuẩn cảm biến",
+          "title": "E1 SIMPLE · Hệ 2×2 unique solution",
+          "sourceRefs": [
+            "numpy_solve"
+          ],
           "blocks": [
             {
+              "type": "formula",
+              "title": "Hệ",
+              "body": "A=[[3,1],[1,2]], b=[9,8]^T"
+            },
+            {
               "type": "text",
-              "title": "Case",
-              "body": "Một bộ cảm biến tạo b từ trạng thái x. Nếu hai cảm biến đo gần như cùng thông tin, A gần suy biến. Nghiệm có thể cực kỳ nhạy với nhiễu đo."
+              "title": "Nghiệm",
+              "body": "3x1+x2=9; x1+2x2=8 ⇒ x=[2,3]^T."
+            },
+            {
+              "type": "formula",
+              "title": "Residual",
+              "body": "Ax-b=[0,0]^T"
+            },
+            {
+              "type": "qa",
+              "title": "Sanity",
+              "body": "Kiểm trực tiếp: 3·2+3=9; 2+2·3=8. Nếu b2 đổi từ 8 thành 8.01, nghiệm có thay đổi không? Có, nhưng mức thay đổi phụ thuộc conditioning."
             }
           ]
         },
         {
           "role": "interpretation",
-          "title": "Điều kiện số và độ nhạy nghiệm",
+          "title": "E2 CONTEXTUAL · Singular system: infinite vs inconsistent",
           "blocks": [
             {
+              "type": "formula",
+              "title": "Coefficient matrix",
+              "body": "A=[[1,2],[2,4]], rank(A)=1"
+            },
+            {
               "type": "text",
-              "title": "Ý nghĩa",
-              "body": "Ma trận có condition number lớn khiến sai số nhỏ trong b có thể tạo sai số lớn trong x. Vì vậy không nên chỉ hỏi có nghịch đảo hay không, mà còn phải hỏi nghịch đảo có ổn định không."
+              "title": "Case A · b=[3,6]",
+              "body": "Hàng 2 đúng bằng 2×hàng 1 cả phía b. Hệ consistent nhưng rank<n ⇒ vô số nghiệm."
+            },
+            {
+              "type": "text",
+              "title": "Case B · b=[3,7]",
+              "body": "Coefficient row 2 vẫn 2×row1 nhưng b2≠2b1. Augmented rank tăng ⇒ inconsistent, vô nghiệm exact."
+            },
+            {
+              "type": "qa",
+              "title": "Transfer",
+              "body": "Nếu dùng lstsq cho case B, output có phải 'nghiệm exact' không? Phải gọi nó là gì?"
             }
           ]
         },
         {
           "role": "simulation",
-          "title": "Thí nghiệm giải hệ bằng Python",
+          "title": "BEGINNER ENTRY · solve + residual + cond + lstsq",
+          "sourceRefs": [
+            "numpy_solve",
+            "numpy_cond",
+            "numpy_lstsq"
+          ],
           "blocks": [
             {
               "type": "code",
-              "title": "Công cụ",
-              "body": "np.linalg.solve(A,b)\nnp.linalg.matrix_rank(A)\nnp.linalg.cond(A)\nnp.linalg.lstsq(A,b,rcond=None)"
+              "title": "Deterministic check",
+              "body": "import numpy as np\n\nA = np.array([[3.,1.],[1.,2.]])\nb = np.array([9.,8.])\nx = np.linalg.solve(A,b)\nres = b - A @ x\nprint(x, np.linalg.norm(res), np.linalg.cond(A))\nassert np.allclose(x, [2.,3.], rtol=1e-12, atol=1e-12)\n\nAs = np.array([[1.,2.],[2.,4.]])\nbs = np.array([3.,7.])\nxl, residuals, rank, s = np.linalg.lstsq(As, bs, rcond=None)\nprint(xl, residuals, rank, s)"
+            },
+            {
+              "type": "text",
+              "title": "BEGINNER ENTRY · đọc output",
+              "body": "solve trả x cho square full-rank system. lstsq trả approximation, residual information, effective rank và singular values; đừng gọi chúng là cùng một loại nghiệm."
+            },
+            {
+              "type": "text",
+              "title": "Software trust",
+              "body": "Residual nhỏ là bằng chứng Ax gần b, nhưng chưa đủ chứng minh x ổn định. Luôn nhìn thêm condition number khi sensitivity quan trọng."
+            },
+            {
+              "type": "qa",
+              "title": "Experiment",
+              "body": "Tạo Aε=[[1,1],[1,1+1e-8]], chọn x_true=[1,1], tạo b=Aε@x_true; rồi perturb b rất nhỏ và xem x thay đổi."
             }
           ]
         },
         {
           "role": "common_mistakes",
-          "title": "Lỗi thường gặp",
+          "title": "MISCONCEPTION MAP · 5 lỗi khi giải hệ",
           "blocks": [
             {
               "type": "text",
-              "title": "Lỗi",
-              "body": "Dùng inverse trực tiếp thay vì solve; bỏ qua rank; không kiểm condition number; diễn giải nghiệm duy nhất khi hệ thiếu rank hoặc dữ liệu nhiễu."
+              "title": "MAJOR · «Có inverse thì nghiệm luôn đáng tin»",
+              "body": "Sai vì conditioning. Full rank chỉ là exact property."
+            },
+            {
+              "type": "text",
+              "title": "MAJOR · «Muốn solve phải tính inv(A)@b»",
+              "body": "Trong numerical work, dùng solver trực tiếp. Inverse explicit không cần thiết cho bài solve đơn lẻ."
+            },
+            {
+              "type": "text",
+              "title": "MAJOR · «lstsq trả exact solution»",
+              "body": "Chỉ nếu system cho phép; nói chung nó tối thiểu hóa residual."
+            },
+            {
+              "type": "text",
+              "title": "MAJOR · «rank(A)=rank([A|b]) là unique»",
+              "body": "Đó mới là consistency. Unique còn cần rank(A)=n."
+            },
+            {
+              "type": "text",
+              "title": "MAJOR · «residual≈0 ⇒ condition tốt»",
+              "body": "Residual và sensitivity là hai câu hỏi khác."
             }
           ]
         },
         {
           "role": "application",
-          "title": "Ứng dụng lập trình",
+          "title": "E3 TRANSFER · Chọn solver theo tình huống",
           "blocks": [
             {
-              "type": "text",
-              "title": "Nhiệm vụ",
-              "body": "Viết solve_system(A,b): kiểm shape, rank, condition number; dùng solve nếu ổn định, dùng least squares nếu hệ không vuông hoặc không nhất quán."
+              "type": "qa",
+              "title": "Task 1",
+              "body": "A:5×5 full rank, κ≈12. Chọn solve/lstsq/inverse explicit? Giải thích."
+            },
+            {
+              "type": "qa",
+              "title": "Task 2",
+              "body": "A:200×4 measurements noisy. Chọn công cụ nào? Output nào cần kiểm thêm ngoài x?"
+            },
+            {
+              "type": "qa",
+              "title": "Task 3",
+              "body": "A:4×4 full rank nhưng κ≈10^10. Về exact algebra và numerical trust, hãy đưa hai kết luận khác nhau."
+            },
+            {
+              "type": "qa",
+              "title": "Task 4",
+              "body": "A rank-deficient, b nằm trong Col(A). Có unique x không? Nếu cần một representative solution, cần nêu rõ tiêu chí nào?"
             }
           ]
         },
         {
           "role": "practice",
-          "title": "Bài luyện tập",
+          "title": "PRACTICE LADDER · P0 → P3",
           "blocks": [
             {
-              "type": "text",
-              "title": "Bài tập",
-              "body": "Cho A=[[1,2],[2,4]] và b=[3,6]. Kiểm rank và giải thích vì sao hệ có vô số nghiệm hoặc phụ thuộc. Thay b=[3,7] rồi giải thích vì sao vô nghiệm."
+              "type": "qa",
+              "title": "P0 · Recognition",
+              "body": "5 hệ: phân loại unique/infinite/inconsistent từ rank(A), rank([A|b]), n."
+            },
+            {
+              "type": "qa",
+              "title": "P1 · Guided",
+              "body": "Giải A=[[3,1],[1,2]], b=[9,8], kiểm residual và determinant/rank."
+            },
+            {
+              "type": "qa",
+              "title": "P2 · Independent",
+              "body": "Tạo một system 3×3 full-rank có x_true nguyên; sinh b=A@x_true; recover bằng solve; báo residual và cond."
+            },
+            {
+              "type": "qa",
+              "title": "P3 · Transfer",
+              "body": "Tạo near-singular 2×2, perturb b, đo relative change của x và giải thích bằng condition number."
             }
           ]
         },
         {
           "role": "professor_qa",
-          "title": "Vấn đáp kiểm tra hiểu sâu",
+          "title": "ASSESSMENT · D0 / D1 / D2",
           "blocks": [
             {
               "type": "qa",
-              "title": "Câu hỏi",
-              "body": "Vì sao rank đầy đủ là điều kiện để có nghiệm duy nhất? Tại sao trong tính toán số nên ưu tiên solve hơn tính A^{-1} rồi nhân b?"
+              "title": "D0 RECALL",
+              "body": "Nêu conditions cho consistency, uniqueness và invertibility; phân biệt residual với condition number."
+            },
+            {
+              "type": "qa",
+              "title": "D1 APPLICATION",
+              "body": "Cho một square matrix, một overdetermined matrix và một rank-deficient matrix. Chọn solve/lstsq, chạy kiểm chứng, báo rank/cond/residual phù hợp."
+            },
+            {
+              "type": "qa",
+              "title": "D2 EXPLAIN / ORAL",
+              "body": "Giải thích 60–90 giây: «Vì sao x=A^{-1}b đúng về toán nhưng không phải cách mặc định để solve số, và vì sao invertible không đồng nghĩa stable?»"
+            },
+            {
+              "type": "text",
+              "title": "Mastery evidence",
+              "body": "Đạt khi learner chọn solver đúng trước khi chạy, phân loại system đúng và giải thích sensitivity; không tính mastery chỉ vì solver trả vector."
             }
           ]
         },
         {
           "role": "bridge",
-          "title": "Cầu sang biến đổi hình học và dữ liệu",
+          "title": "TECHNICAL RUSSIAN + NEXT · từ solve sang hình học của transform",
           "blocks": [
             {
               "type": "text",
-              "title": "Liên kết",
-              "body": "Nghịch đảo cho biết khi nào biến đổi tuyến tính có thể hoàn tác. Bài tiếp theo nhìn ma trận như phép xoay, co giãn, chiếu và đổi hệ tọa độ trong hình học dữ liệu."
+              "title": "9 thuật ngữ",
+              "body": "система линейных уравнений · обратная матрица · невырожденная матрица · единственное решение · несовместная система · бесконечно много решений · метод наименьших квадратов · невязка · число обусловленности"
+            },
+            {
+              "type": "text",
+              "title": "4 động từ",
+              "body": "решите — giải; проверьте — kiểm tra; оцените — đánh giá; объясните — giải thích."
+            },
+            {
+              "type": "text",
+              "title": "Khung vấn đáp",
+              "body": "«Обратимость не гарантирует хорошую численную обусловленность.»\n«Для численного решения лучше использовать solve, а не явно вычислять обратную матрицу.»"
+            },
+            {
+              "type": "text",
+              "title": "Cầu sang §2.5",
+              "body": "Sau khi biết transform có thể đảo/giải thế nào, §2.5 nhìn hình học: rotation, scaling, projection, change of coordinates và việc transform làm biến dạng không gian dữ liệu."
             }
           ]
         },
         {
           "role": "takeaway",
-          "title": "Kết luận cần nhớ",
+          "title": "REVIEW · 6 quyết định trước khi gọi solver",
           "blocks": [
             {
               "type": "text",
-              "title": "Cốt lõi",
-              "body": "Giải hệ tuyến tính không chỉ là tìm x; đó là kiểm xem dữ liệu có đủ thông tin, nghiệm có duy nhất và tính toán có ổn định hay không."
+              "title": "1",
+              "body": "Existence: b∈Col(A), tương đương rank(A)=rank([A|b])."
+            },
+            {
+              "type": "text",
+              "title": "2",
+              "body": "Unique: consistent và rank(A)=n."
+            },
+            {
+              "type": "text",
+              "title": "3",
+              "body": "Square full-rank: solve là entry point."
+            },
+            {
+              "type": "text",
+              "title": "4",
+              "body": "Non-square/noisy: least squares là entry point, không phải exact inverse."
+            },
+            {
+              "type": "text",
+              "title": "5",
+              "body": "Residual kiểm fit; condition number kiểm sensitivity."
+            },
+            {
+              "type": "text",
+              "title": "6",
+              "body": "Invertible là exact property; stable là numerical property."
             }
           ]
         }
@@ -6778,9 +7237,9 @@
     }
   ],
   "lastContentPass": {
-    "id": "E168",
-    "lessonId": "MATH-VN-C02-ma_tran_va_phep_bien_oi_-L03-rank-column-space-independent-information-e142",
-    "status": "LOCAL_CONTENT_QA_PASS_GLOBAL_BROWSER_BASELINE_PENDING",
+    "id": "E169",
+    "lessonId": "MATH-VN-C02-ma_tran_va_phep_bien_oi_-L04-inverse-linear-system-solution-e143",
+    "status": "C1_C5_PASS_C6_PENDING",
     "generatedAt": "2026-09-21",
     "inheritedRuntimeGate": "E164"
   }
