@@ -1,6 +1,6 @@
 # Academic Phase2 · Current-Main Reconstruction
 
-Status: `A1_IMPLEMENTED · GATE_PENDING`
+Status: `A3_IMPLEMENTED · GATE_PENDING`
 
 Baseline: `main@2be2db9ade895d4ec9ba21b0cf1143aef8635e13`
 
@@ -36,3 +36,15 @@ Any defect discovered inside a step uses `Ax-Fn`; any missing architecture requi
 - Academic prerequisite CI invokes the new architecture validator.
 
 A1 remains pending until the current branch passes its triggered gate set.
+
+
+## A3 implementation
+
+- `assets/js/academic-event-runtime.js`: user-scoped readiness evidence for resolved assessment events; unresolved multi-semester timing remains hard-locked.
+- `assets/js/academic-grade-runtime.js`: explicit confirmed-result ledger backed by the locked BMSTU 2024 grading reference; no result is inferred from rehearsal evidence.
+- Event and grade controls are exposed only through Course Readiness / Progress modal flow. A3 does not append a new Home ledger.
+- Event evidence and grade results do not mutate scheduler entries or course lifecycle and never manufacture `COMPLETED`.
+- Grade rows retain `supplementEntryVerified:false` and `supplementEntryCounted:null`; A4 transcript/honors bootstrap remains disabled.
+- A3 browser/static gates cover timing locks, user isolation, 89/92 internal-target distinction, pass/fail credit, score/grade mismatch rejection, persistence, mobile layout, and Home-surface non-regression.
+
+A3 remains pending until the current branch passes its triggered gate set.
