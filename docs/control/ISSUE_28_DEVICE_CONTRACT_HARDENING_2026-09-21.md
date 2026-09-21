@@ -1,7 +1,7 @@
 # Issue #28 · Site Device Contract hardening
 
 Date: 2026-09-21
-Branch: `hardening/issue-28-device-contract-20260921`
+Branch: `hardening/issue-28-device-contract-current-main`
 Base: `main`
 
 ## Why this round exists
