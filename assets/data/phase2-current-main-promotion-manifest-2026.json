@@ -1,0 +1,94 @@
+{
+  "version": "PHASE2_CURRENT_MAIN_A6_PROMOTION_CANDIDATE_V1",
+  "baseBranch": "main",
+  "candidateBranch": "academic/phase2-current-main-rebuild",
+  "baselineMain": "2be2db9ade895d4ec9ba21b0cf1143aef8635e13",
+  "scope": "Current-main reconstruction only. Historical PR #38 is evidence/reference and must not be merged.",
+  "promotionPolicy": {
+    "autoMerge": false,
+    "autoDeploy": false,
+    "productionMutationAllowed": false,
+    "previewDeploymentAllowedOnlyByExplicitWorkflowDispatch": true,
+    "previewConfirmationToken": "DEPLOY_PREVIEW"
+  },
+  "highRiskBoundaries": {
+    "mustRemainUnchanged": [
+      "index.html",
+      "assets/js/main.js",
+      "assets/js/data.js",
+      "assets/js/platform/runtime-config.js",
+      "assets/js/platform/device-access-gate.js"
+    ],
+    "forbiddenChangedPrefixes": [
+      "control-service/",
+      "migrations/",
+      "worker/",
+      "workers/"
+    ],
+    "forbiddenChangedBasenames": [
+      "wrangler.toml",
+      "wrangler.json",
+      "wrangler.jsonc",
+      "wrangler.production.toml",
+      "wrangler.production.jsonc"
+    ]
+  },
+  "requiredValidationScripts": [
+    "scripts/validate-academic-2026.js",
+    "scripts/validate-course-learning-architecture-s1-2026.js",
+    "scripts/validate-course-readiness-runtime-a2.js",
+    "scripts/validate-event-grade-runtime-a3.js",
+    "scripts/validate-transcript-honors-runtime-a4.js",
+    "scripts/validate-academic-command-center-a5.js",
+    "scripts/validate-phase2-current-main-integration-a6.js",
+    "scripts/validate-phase2-current-main-promotion-a6.js"
+  ],
+  "requiredBrowserTests": [
+    "tests/academic-browser-acceptance-13e.mjs",
+    "tests/course-readiness-browser-a2.mjs",
+    "tests/event-grade-browser-a3.mjs",
+    "tests/transcript-honors-browser-a4.mjs",
+    "tests/academic-command-center-browser-a5.mjs"
+  ],
+  "approvedChangedPaths": [
+    ".github/workflows/academic-2026-prerequisite-gate.yml",
+    "assets/css/academic-command-center-2026.css",
+    "assets/css/academic-course-2026.css",
+    "assets/css/academic-event-2026.css",
+    "assets/css/academic-grade-2026.css",
+    "assets/css/academic-transcript-2026.css",
+    "assets/data/course-learning-architecture-s1-2026.json",
+    "assets/data/diploma-supplement-honors-policy-rf-2021.json",
+    "assets/data/grading-policy-bauman-2024.json",
+    "assets/data/phase2-current-main-promotion-manifest-2026.json",
+    "assets/data/prerequisite-packs/p00-technical-russian.json",
+    "assets/data/prerequisite-registry-iu5-2026.json",
+    "assets/js/academic-command-center-runtime.js",
+    "assets/js/academic-course-runtime.js",
+    "assets/js/academic-event-runtime.js",
+    "assets/js/academic-grade-runtime.js",
+    "assets/js/academic-main.js",
+    "assets/js/academic-scheduler-apply.js",
+    "assets/js/academic-transcript-runtime.js",
+    "docs/academic/PHASE2_CURRENT_MAIN_RECONSTRUCTION.md",
+    "scripts/validate-academic-2026.js",
+    "scripts/validate-academic-command-center-a5.js",
+    "scripts/validate-course-learning-architecture-s1-2026.js",
+    "scripts/validate-course-readiness-runtime-a2.js",
+    "scripts/validate-event-grade-runtime-a3.js",
+    "scripts/validate-p00-technical-russian.js",
+    "scripts/validate-phase2-current-main-integration-a6.js",
+    "scripts/validate-phase2-current-main-promotion-a6.js",
+    "scripts/validate-transcript-honors-runtime-a4.js",
+    "tests/academic-command-center-browser-a5.mjs",
+    "tests/course-readiness-browser-a2.mjs",
+    "tests/event-grade-browser-a3.mjs",
+    "tests/transcript-honors-browser-a4.mjs"
+  ],
+  "decision": {
+    "state": "CANDIDATE_ONLY",
+    "mergeToMainAuthorized": false,
+    "deployAuthorized": false,
+    "notes": "A6 validates promotion readiness only; it does not authorize merge or deployment."
+  }
+}
