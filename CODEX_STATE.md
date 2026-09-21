@@ -1,11 +1,11 @@
 # CODEX_STATE
 
-Current task: `BAUMAN_PROJECT_STATE_POST_CONTENT_REVIEW_RECONCILIATION`
+Current task: `BAUMAN_PROJECT_STATE_POST_DEEP_STUDY_RECONCILIATION`
 
-Status: `ROADMAP_V2_COMPLETE · RUSSIAN_LISTEN_WRITE_PROMOTED · ACADEMIC_PHASE2_A1_A6_PROMOTED · DEVICE_CONTRACT_V6_PROMOTED · CONTENT_REVIEW_V1_PROMOTED · CONTROL_STATE_RECONCILIATION`
+Status: `ROADMAP_V2_COMPLETE · RUSSIAN_LISTEN_WRITE_PROMOTED · ACADEMIC_PHASE2_A1_A6_PROMOTED · DEVICE_CONTRACT_V6_PROMOTED · CONTENT_REVIEW_V1_PROMOTED · DEEP_STUDY_JOURNAL_V1_PROMOTED · CONTROL_STATE_RECONCILIATION`
 
 Date: 2026-09-21
-Branch: `hardening/post-content-review-state-reconcile-20260921`
+Branch: `hardening/post-deep-study-state-reconcile-20260921`
 Base: `main`
 
 ## Authoritative progress
@@ -22,6 +22,7 @@ Promoted current-main capabilities:
 - Academic Phase2 A1→A6 — PR #76 merged as `30092c01cf8ce41cf612823299195aaff240b3f0`.
 - Device Contract v6 — PR #79 merged as `0d603a979a7952697d5d612fd9de5f8106a0e609`.
 - Content Review API v1 — PR #82 merged as `eac09a5005bda44371ee26aed784bccfc50877a8`.
+- Deep Study Journal v1 — Issue #84 promoted as `a2e642867ba99ea34c1b49eb378f78f927e563bb`.
 
 ## Device Contract v6
 
@@ -61,6 +62,20 @@ Validated PR #82 gates:
 - Bauman Cloudflare Preview CI — SUCCESS;
 - Windows checkout safety — SUCCESS.
 
+## Deep Study Journal v1
+
+Preserve the promoted Issue #84 behavior:
+
+- learner reflection only: Feynman checkpoint, Error Notebook, Closed-AI session and Oral-defense note;
+- stored inside Hub learner state and inherited backup/restore;
+- no separate storage owner;
+- no authoritative mastery evidence;
+- no mastery, diagnostic, prerequisite, scheduler or progress mutation;
+- surfaced from Progress/Academic flow without adding a new sidebar/page navigation item;
+- direct and packaged Whole System regression coverage remains required.
+
+Issue #84 is promoted current-main behavior. Any future change must preserve the non-authoritative reflection boundary unless a separately approved evidence architecture track is opened.
+
 ## Intentional capability layering
 
 The base control worker intentionally keeps `learningAccessGate: false` until the deployment/preview wrapper verifies D1 + app-origin readiness. Do not flatten this fail-closed layering.
@@ -74,7 +89,7 @@ This does **not** authorize production deployment. Runtime capabilities that req
 ## Safety boundary
 
 - Roadmap V2 remains terminally closed unless a separately approved architecture track is opened.
-- Preserve Hub, Math, Russian, Foundation, Device Gate, Academic and Content Review behavior already promoted to current `main`.
+- Preserve Hub, Math, Russian, Foundation, Device Gate, Academic, Content Review and Deep Study Journal behavior already promoted to current `main`.
 - Do not merge stale historical candidate branches.
 - No implicit production deploy/publish.
 - Any future defect starts as a scoped Fx hardening step from current `main`.
@@ -84,8 +99,9 @@ This does **not** authorize production deployment. Runtime capabilities that req
 
 1. Start all new work from current `main`.
 2. Treat `docs/roadmap_v2/CURRENT_EXECUTION_STATE.md` as authoritative for Roadmap history.
-3. Treat PRs #72, #76, #79 and #82 as promoted current-main behavior.
+3. Treat PRs #72, #76, #79, #82 and Deep Study Journal v1 commit `a2e642867ba99ea34c1b49eb378f78f927e563bb` as promoted current-main behavior.
 4. Do not reconstruct completed Issues #28 or #81 from stale branches.
 5. Preserve Content Review metadata-only ownership and role boundaries.
-6. Audit open issues/PRs and current contracts before creating new work.
-7. Create a new round only for a concrete defect, explicit missing capability or newly requested feature.
+6. Preserve Deep Study Journal as non-authoritative learner reflection; it must not become mastery/diagnostic/scheduler/progress evidence implicitly.
+7. Audit open issues/PRs and current contracts before creating new work.
+8. Create a new round only for a concrete defect, explicit missing capability or newly requested feature.
