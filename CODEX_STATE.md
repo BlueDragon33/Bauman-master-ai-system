@@ -1,5 +1,46 @@
 # CODEX_STATE
 
+Current task: E164 runtime selector probe hardening.
+
+Status: STATIC_PROBE_PASS_BROWSER_EXECUTION_REQUIRED
+
+Branch: `codex/e150-c01-l01-clean-replacement`
+Base branch: `codex/e146-merge-c03-l04-l06`
+Main sync status: `stacked_branch`
+
+Main sync / pull instruction:
+- Do not pull `main` for this result.
+- E164 adds only local runtime observability for the unresolved E162/E163 browser gate.
+- No learning-content JSON was changed.
+
+Files changed:
+- `subjects/math/assets/theory_skin/theory-tab-E129.js`
+- `subjects/math/index.html`
+- `subjects/math/E164_RUNTIME_SELECTOR_PROBE.md`
+- `CODEX_STATE.md`
+
+Verification:
+- E163 CSS cascade repair still present: PASS.
+- Existing lesson click/rerender flow unchanged: PASS.
+- Runtime probe distinguishes DOM presence from non-zero visible layout: PASS by inspection.
+- E129 JS cache key bumped to v164: PASS.
+- Content JSON untouched: PASS.
+- Browser execution of probe + E132 smoke: REQUIRED.
+- Main sync: NOT RUN.
+
+Next recommended task:
+- Browser-open C01, run `BAUMAN_MATH_THEORY_E129.selfCheck()`.
+- Require `lessonSelectorRuntimeReady:true`, then smoke §1.1/§1.4/§1.5/§1.6.
+- Only after browser PASS mark C01 display baseline ready and resume the content-production pipeline.
+
+Next actor:
+- Browser/runtime tester.
+
+Protocol reference:
+- `CODEX_CHATGPT_SYNC_PROTOCOL.md`
+
+---
+
 Current task: E163 visible lesson selector UI repair.
 
 Status: STATIC_PATCH_PASS_BROWSER_RETEST_REQUIRED
