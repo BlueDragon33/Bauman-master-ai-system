@@ -196,6 +196,15 @@ try{
   assert.ok(homeAudit.achievementBodyOffset<80,'Achievement content is not directly below its header');
   assert.ok(homeAudit.overallBodyOffset<80,'Overall progress content is not directly below its header');
 
+  const aiSuggestion=page.locator('#page-home [data-safe-ask]').first();
+  const aiPrompt=await aiSuggestion.getAttribute('data-safe-ask');
+  await aiSuggestion.click();
+  await page.waitForFunction(prompt=>Array.from(document.querySelectorAll('#aiLog .bubble.user')).some(node=>node.textContent?.trim()===prompt),aiPrompt,{timeout:10000});
+  const aiSuggestionReply=await page.locator('#aiLog').innerText();
+  assert.ok(aiSuggestionReply.includes('Mở bài đang học'),'AI suggestion did not return an actionable contextual response');
+  await page.locator('#aiRoot button').filter({hasText:'Đóng'}).click();
+
+
   await page.evaluate(()=>{
     window.state.lastStudy={subjectId:'russian',path:window.state.subjects.russian.mainPath};
     window.state.subject='russian';
