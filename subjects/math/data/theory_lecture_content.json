@@ -1,7 +1,7 @@
 {
   "id": "bauman_math_theory_lecture_content_e146_c03_complete",
   "schema": "bauman_math_content_records_v1",
-  "version": "E190_C04_L05_CONTENT_FACTORY_C1_C6_PASS",
+  "version": "E191_C04_L06_CONTENT_FACTORY_C1_C5",
   "title": "Bài giảng lý thuyết Toán · Nội dung học tập",
   "role": "content",
   "frameSource": "theory_lecture_frame.json",
@@ -14257,12 +14257,674 @@
         "softwareOutputTrustExplanation": "PASS",
         "browserBaseline": "PENDING_E164"
       }
+    },
+    {
+      "lessonId": "MATH-VN-C04-xac_suat_co_ban_va_bien_-L06-sensor-uncertainty-monte-carlo-e191",
+      "chapterId": "MATH-VN-C04-xac_suat_co_ban_va_bien_",
+      "lessonTitle": "§4.6 · Nhiễu cảm biến, bất định và Monte Carlo nhập môn",
+      "title": "§4.6 · Nhiễu cảm biến, bất định và Monte Carlo nhập môn",
+      "orderInChapter": 6,
+      "identityDecision": {
+        "status": "NEW_CANONICAL_CONTENT_ID",
+        "reason": "C04 canonical content sequence, no legacy lesson identity.",
+        "chapterIdStable": true,
+        "parallelIdentitySystemCreated": false
+      },
+      "programLectureId": "MATH-PROG-L12-probability-random-variables",
+      "programLectureIds": [
+        "MATH-PROG-L12-probability-random-variables",
+        "MATH-PROG-L13-mathematical-statistics",
+        "MATH-PROG-L14-stochastic-processes-time-series",
+        "MATH-PROG-L17-ai-machine-learning-math-foundations"
+      ],
+      "programAnchorTitle": "Xác suất ứng dụng cho bất định dữ liệu",
+      "roadmapRole": "probability_foundation_for_data_networks_and_ai",
+      "baumanFocus": "Dùng Monte Carlo như pipeline sample uncertain inputs→deterministic model→output distribution summary; nhấn mạnh dependence/model assumptions, reproducible RNG và giới hạn rare-event/sample-size.",
+      "pureLayer": [
+        "Monte Carlo",
+        "uncertainty propagation",
+        "sampling",
+        "law-of-large-numbers intuition",
+        "joint input model"
+      ],
+      "appliedLayer": [
+        "sensor noise",
+        "derived quantity uncertainty",
+        "threshold risk",
+        "reproducible simulation",
+        "model validation caveats"
+      ],
+      "bridgeQuestion": "Khi output là hàm phi tuyến của nhiều input bất định, làm sao truyền uncertainty qua model mà vẫn giữ rõ assumptions và reproducibility?",
+      "auditStatus": "REVIEW",
+      "sourceAnchors": {
+        "stageId": "vn",
+        "disciplineId": "probability_statistics_inference",
+        "chapterId": "MATH-VN-C04-xac_suat_co_ban_va_bien_",
+        "programLectureId": "MATH-PROG-L12-probability-random-variables",
+        "officialCurriculum": "bmstu_iu5_2026_curriculum"
+      },
+      "tags": [
+        "Monte Carlo",
+        "uncertainty propagation",
+        "sensor noise",
+        "simulation",
+        "random sampling",
+        "reproducibility"
+      ],
+      "learningContract": {
+        "governingQuestion": "Monte Carlo biến input distributions thành output samples như thế nào, và evidence nào cần có trước khi tin simulation result?",
+        "whyNeeded": "Nhiều sensor/AI models phi tuyến hoặc nhiều nguồn bất định khiến analytic propagation khó; Monte Carlo là công cụ trực quan và phổ biến.",
+        "prerequisiteGates": [
+          "Hiểu distributions, Normal model từ §4.4.",
+          "Hiểu expectation/variance/covariance từ §4.5.",
+          "Biết function/model y=g(x) từ C03.",
+          "Biết seeded NumPy RNG từ các bài C04 trước."
+        ],
+        "measurableLearningOutcomes": [
+          "LO1: Viết Monte Carlo pipeline gồm input model, sampling, deterministic transform, output summary và diagnostic.",
+          "LO2: Tính analytical mean/variance của product V·T trong independent example để làm benchmark cho simulation.",
+          "LO3: Dùng seeded NumPy sampling và báo mean/std/quantile/event frequency của output.",
+          "LO4: Giải thích vì sao tăng sample size giảm Monte Carlo noise nhưng không sửa model misspecification.",
+          "LO5: Nhận ra dependence/covariance giữa inputs phải nằm trong joint sampling model.",
+          "LO6: Nêu limitations của naive Monte Carlo cho rare events và tail-risk estimation.",
+          "LO7: Phân biệt reproducibility seed, stochastic uncertainty và empirical validation against real data."
+        ],
+        "exactScope": [
+          "basic Monte Carlo pipeline",
+          "seeded sampling",
+          "independent-input example",
+          "output moments/event frequency",
+          "dependence caveat",
+          "rare-event caveat"
+        ],
+        "explicitDeferrals": [
+          "Variance reduction/importance sampling → later computational statistics.",
+          "Bayesian Monte Carlo/MCMC → later statistics.",
+          "Kalman filtering → state-estimation subject.",
+          "Formal uncertainty quantification → advanced research bridge."
+        ],
+        "canonicalTerminology": {
+          "MonteCarlo": "phương pháp Monte Carlo",
+          "sampling": "lấy mẫu",
+          "uncertaintyPropagation": "lan truyền bất định",
+          "randomSeed": "hạt giống RNG",
+          "jointDistribution": "phân phối đồng thời",
+          "rareEvent": "biến cố hiếm",
+          "empiricalFrequency": "tần suất thực nghiệm",
+          "reproducibility": "khả năng tái lập"
+        },
+        "symbols": {
+          "X~P_X": "uncertain input model",
+          "Y=g(X)": "derived uncertain output",
+          "{X_i}_{i=1}^N": "Monte Carlo input samples",
+          "Y_i=g(X_i)": "propagated output samples",
+          "P(Y>τ)≈#(Y_i>τ)/N": "event-frequency estimate"
+        },
+        "continuity": {
+          "previous": "§4.5 · Kỳ vọng, phương sai, hiệp phương sai và tương quan",
+          "next": "Chương 5 · Thống kê mô tả và dữ liệu thực nghiệm"
+        }
+      },
+      "technicalRussian": {
+        "terms": [
+          [
+            "метод Монте-Карло",
+            "phương pháp Monte Carlo"
+          ],
+          [
+            "моделирование",
+            "mô phỏng"
+          ],
+          [
+            "выборка",
+            "mẫu/lấy mẫu"
+          ],
+          [
+            "неопределённость",
+            "bất định"
+          ],
+          [
+            "распространение неопределённости",
+            "lan truyền bất định"
+          ],
+          [
+            "генератор случайных чисел",
+            "bộ sinh số ngẫu nhiên"
+          ],
+          [
+            "совместное распределение",
+            "phân phối đồng thời"
+          ],
+          [
+            "редкое событие",
+            "biến cố hiếm"
+          ],
+          [
+            "воспроизводимость",
+            "tái lập"
+          ]
+        ],
+        "commandVerbs": [
+          [
+            "смоделируйте",
+            "hãy mô phỏng"
+          ],
+          [
+            "сгенерируйте",
+            "hãy sinh"
+          ],
+          [
+            "оцените",
+            "hãy ước lượng"
+          ],
+          [
+            "объясните",
+            "hãy giải thích"
+          ]
+        ],
+        "oralFrames": [
+          "Метод Монте-Карло распространяет неопределённость через модель с помощью случайных выборок.",
+          "Увеличение числа выборок уменьшает шум моделирования, но не исправляет неверную вероятностную модель.",
+          "Зависимость между входами должна быть отражена в совместном распределении."
+        ]
+      },
+      "sourceProvenance": [
+        {
+          "id": "bmstu_iu5_2026_curriculum",
+          "kind": "official_curriculum",
+          "url": "https://home.science.iu5.bmstu.ru/study-plans/iu5-master-program.pdf",
+          "supports": [
+            "probability/statistics and modeling preparation for data/AI systems"
+          ]
+        },
+        {
+          "id": "mit_907_monte_carlo",
+          "kind": "authoritative_university_material",
+          "url": "https://ocw.mit.edu/courses/9-07-statistics-for-brain-and-cognitive-science-fall-2016/pages/lecture-notes/",
+          "supports": [
+            "Monte Carlo methods within applied statistics curriculum"
+          ]
+        },
+        {
+          "id": "numpy_rng_normal",
+          "kind": "official_documentation",
+          "url": "https://numpy.org/doc/stable/reference/random/generated/numpy.random.Generator.normal.html",
+          "supports": [
+            "seeded Normal random sampling"
+          ]
+        },
+        {
+          "id": "numpy_default_rng",
+          "kind": "official_documentation",
+          "url": "https://numpy.org/doc/stable/reference/random/generator.html",
+          "supports": [
+            "Generator-based reproducible random sampling API"
+          ]
+        }
+      ],
+      "generatedMaterial": {
+        "status": "AI_DRAFT_REVIEWED_IN_CONTENT_FACTORY",
+        "lineage": "Generated Monte Carlo bridge lesson from C04 probability foundations, MIT statistics context and NumPy RNG docs.",
+        "canonicalSourceReplacement": false
+      },
+      "contentFactory": {
+        "C1": "PASS",
+        "C2": "PASS",
+        "C3": "PASS",
+        "C4": "PASS",
+        "C5": "PASS",
+        "C6": {
+          "software": "STATIC_QA_PENDING",
+          "user": "PENDING",
+          "blockers": 0,
+          "majors": 0,
+          "inheritedDeferredGate": "E164",
+          "acceptance": "PENDING_C6"
+        }
+      },
+      "slides": [
+        {
+          "role": "problem_framing",
+          "title": "ORIENT · Distribution in, distribution out",
+          "blocks": [
+            {
+              "type": "text",
+              "title": "Câu hỏi điều khiển",
+              "body": "Nếu V và T bất định, D=V·T cũng bất định. Monte Carlo lấy nhiều input samples, chạy model và xem output distribution."
+            },
+            {
+              "type": "formula",
+              "title": "Pipeline",
+              "body": "X_i~P_X → Y_i=g(X_i) → summaries/events of {Y_i}"
+            },
+            {
+              "type": "text",
+              "title": "Vì sao cần",
+              "body": "Nonlinear transforms và nhiều uncertain inputs có thể làm analytic propagation khó; simulation cho một đường kiểm tra trực quan."
+            },
+            {
+              "type": "qa",
+              "title": "Retrieval",
+              "body": "Monte Carlo samples đến từ distribution model. Nếu input distribution model sai, tăng N có sửa output truth không?"
+            }
+          ]
+        },
+        {
+          "role": "deep_essence",
+          "title": "REACTIVATION · Sampling không thay probability model",
+          "blocks": [
+            {
+              "type": "text",
+              "title": "Model first",
+              "body": "Chọn distributions/joint dependence trước khi lấy mẫu."
+            },
+            {
+              "type": "text",
+              "title": "Transform",
+              "body": "Deterministic model g được áp lên từng sample; randomness của Y đến từ uncertain inputs."
+            },
+            {
+              "type": "text",
+              "title": "Aggregate",
+              "body": "Output samples được dùng để estimate mean/std/quantiles/event frequencies."
+            },
+            {
+              "type": "qa",
+              "title": "Tự nói lại",
+              "body": "Monte Carlo là model evaluator hay model creator? Nó không tự tạo một probability model đúng từ không khí."
+            }
+          ]
+        },
+        {
+          "role": "counter_intuition",
+          "title": "COUNTER-INTUITION · More samples cannot repair wrong assumptions",
+          "blocks": [
+            {
+              "type": "text",
+              "title": "Sampling error",
+              "body": "Finite N tạo Monte Carlo noise; tăng N thường giảm noise của estimate."
+            },
+            {
+              "type": "text",
+              "title": "Model error",
+              "body": "Sai μ,σ, tails, dependence hoặc missing failure mode là model misspecification; N→∞ chỉ converge tới answer của model sai."
+            },
+            {
+              "type": "text",
+              "title": "Seed",
+              "body": "Fixed seed giúp reproducibility, không làm samples 'more random' hay more correct."
+            },
+            {
+              "type": "qa",
+              "title": "Diagnostic",
+              "body": "1 triệu iid Gaussian samples có mô phỏng đúng sensor có burst outliers không nếu model không chứa outliers?"
+            }
+          ]
+        },
+        {
+          "role": "real_bridge",
+          "title": "CONTEXT · Distance = uncertain speed × uncertain time",
+          "blocks": [
+            {
+              "type": "formula",
+              "title": "Input model",
+              "body": "V~N(10,0.5²) m/s\nT~N(2,0.1²) s\nAssume V,T independent"
+            },
+            {
+              "type": "formula",
+              "title": "Output",
+              "body": "D=VT [m]"
+            },
+            {
+              "type": "text",
+              "title": "Question",
+              "body": "Distribution of product không còn Normal exactly in general; Monte Carlo có thể estimate output shape/moments/thresholds."
+            },
+            {
+              "type": "qa",
+              "title": "Assumption",
+              "body": "Nếu V và T measured by same clock/control loop and correlated, independent sampling có còn valid không?"
+            }
+          ]
+        },
+        {
+          "role": "notation",
+          "title": "FORMALIZE · Benchmark analytical moments under independence",
+          "blocks": [
+            {
+              "type": "formula",
+              "title": "Mean",
+              "body": "E[VT]=E[V]E[T]=10·2=20 m"
+            },
+            {
+              "type": "formula",
+              "title": "Variance product",
+              "body": "Var(VT)=Var(V)Var(T)+Var(V)E[T]^2+Var(T)E[V]^2"
+            },
+            {
+              "type": "formula",
+              "title": "Numbers",
+              "body": "=0.25·0.01 + 0.25·4 + 0.01·100 = 2.0025 m²"
+            },
+            {
+              "type": "qa",
+              "title": "Std",
+              "body": "σ_D=√2.0025≈1.4151 m."
+            }
+          ]
+        },
+        {
+          "role": "core_formula",
+          "title": "CORE · Monte Carlo estimates are sample summaries of model-generated Y",
+          "blocks": [
+            {
+              "type": "formula",
+              "title": "Mean estimate",
+              "body": "ȳ_N=(1/N)Σ_i Y_i"
+            },
+            {
+              "type": "formula",
+              "title": "Event estimate",
+              "body": "P(Y>τ)≈(1/N)Σ_i 1[Y_i>τ]"
+            },
+            {
+              "type": "text",
+              "title": "Convergence intuition",
+              "body": "Với finite variance, average Monte Carlo noise typically shrinks on order 1/√N, not 1/N."
+            },
+            {
+              "type": "qa",
+              "title": "Scaling",
+              "body": "Muốn Monte Carlo standard error của a mean estimate giảm khoảng 10× thường cần sample size tăng khoảng bao nhiêu lần?"
+            }
+          ]
+        },
+        {
+          "role": "assumption_gate",
+          "title": "ASSUMPTION GATE · Joint distribution matters",
+          "blocks": [
+            {
+              "type": "text",
+              "title": "Independent sampling",
+              "body": "Sampling V,T separately implies independence."
+            },
+            {
+              "type": "text",
+              "title": "Correlated inputs",
+              "body": "Nếu covariance/dependence exists, need joint model (e.g. multivariate distribution or shared latent source)."
+            },
+            {
+              "type": "text",
+              "title": "Physical constraints",
+              "body": "Normal model can generate physically impossible negative values if mean/σ context permits; may need truncation/other distribution."
+            },
+            {
+              "type": "qa",
+              "title": "Gate",
+              "body": "Speed modeled N(0.2,1²) can be negative often. Is that automatically acceptable physical model?"
+            }
+          ]
+        },
+        {
+          "role": "mini_case",
+          "title": "E1 SIMPLE · Linear uncertainty has analytic benchmark",
+          "blocks": [
+            {
+              "type": "formula",
+              "title": "Model",
+              "body": "Y=2X+3, E[X]=1, Var(X)=0.5"
+            },
+            {
+              "type": "formula",
+              "title": "Analytic",
+              "body": "E[Y]=5\nVar(Y)=4·0.5=2"
+            },
+            {
+              "type": "text",
+              "title": "Monte Carlo role",
+              "body": "Simulation should recover near these values; analytic formula is stronger benchmark here."
+            },
+            {
+              "type": "qa",
+              "title": "Sanity",
+              "body": "Why use analytic result when available? It helps validate simulation implementation."
+            }
+          ]
+        },
+        {
+          "role": "interpretation",
+          "title": "E2 CONTEXTUAL · Product uncertainty",
+          "blocks": [
+            {
+              "type": "text",
+              "title": "Expected distance",
+              "body": "Independent-product model gives E[D]=20 m."
+            },
+            {
+              "type": "text",
+              "title": "Spread",
+              "body": "σ_D≈1.4151 m by exact moment formula."
+            },
+            {
+              "type": "text",
+              "title": "Beyond moments",
+              "body": "Monte Carlo also estimates nonlinear threshold events, quantiles and output shape without deriving full product density."
+            },
+            {
+              "type": "qa",
+              "title": "Transfer nhẹ",
+              "body": "P(D>23) is a tail event. Why might more samples be needed than just estimating mean?"
+            }
+          ]
+        },
+        {
+          "role": "simulation",
+          "title": "BEGINNER ENTRY · Seeded uncertainty propagation",
+          "sourceRefs": [
+            "numpy_rng_normal",
+            "numpy_default_rng"
+          ],
+          "blocks": [
+            {
+              "type": "code",
+              "title": "Deterministic Monte Carlo",
+              "body": "import numpy as np\n\nrng=np.random.default_rng(20260921)\nN=100_000\nV=rng.normal(10.0,0.5,size=N)\nT=rng.normal(2.0,0.1,size=N)\nD=V*T\n\nmean=float(D.mean())\nstd=float(D.std(ddof=0))\np_gt_23=float(np.mean(D>23.0))\nprint(mean,std,p_gt_23)\n\nassert np.isfinite(D).all()\nassert abs(mean-20.0) < 0.1\nassert abs(std-(2.0025**0.5)) < 0.1"
+            },
+            {
+              "type": "text",
+              "title": "BEGINNER ENTRY · seeded reproducibility",
+              "body": "Same NumPy/version/platform algorithm should reproduce stream behavior; seed mainly helps debugging/lesson repeatability."
+            },
+            {
+              "type": "text",
+              "title": "Software trust",
+              "body": "Compare simulation moments against analytical benchmark where possible; then use simulation for quantities without easy closed form."
+            },
+            {
+              "type": "qa",
+              "title": "Experiment",
+              "body": "Run N=100,1000,100000. Track mean/std/tail estimate variability; do not judge by one lucky seed."
+            }
+          ]
+        },
+        {
+          "role": "common_mistakes",
+          "title": "MISCONCEPTION MAP · 5 lỗi Monte Carlo",
+          "blocks": [
+            {
+              "type": "text",
+              "title": "MAJOR · «More N fixes wrong model»",
+              "body": "Only reduces simulation noise around model answer."
+            },
+            {
+              "type": "text",
+              "title": "MAJOR · «Seed makes model statistically valid»",
+              "body": "Seed only controls reproducibility."
+            },
+            {
+              "type": "text",
+              "title": "MAJOR · «Inputs can always be sampled independently»",
+              "body": "Dependence must be modeled."
+            },
+            {
+              "type": "text",
+              "title": "MAJOR · «Mean/std tell all risk»",
+              "body": "Tail/multimodality can matter."
+            },
+            {
+              "type": "text",
+              "title": "MAJOR · «Rare-event probability is easy with naive Monte Carlo»",
+              "body": "Very small probabilities may need huge N or variance-reduction methods."
+            }
+          ]
+        },
+        {
+          "role": "application",
+          "title": "E3 TRANSFER · Sensor uncertainty propagation contract",
+          "blocks": [
+            {
+              "type": "qa",
+              "title": "Task 1",
+              "body": "Define two uncertain sensor inputs, units, marginal distributions and dependence assumption."
+            },
+            {
+              "type": "qa",
+              "title": "Task 2",
+              "body": "Define deterministic output function g and at least mean/std + one safety-threshold event."
+            },
+            {
+              "type": "qa",
+              "title": "Task 3",
+              "body": "Build seeded simulation and compare against any analytic invariant/moment available."
+            },
+            {
+              "type": "qa",
+              "title": "Task 4",
+              "body": "List model-mismatch risks that more samples cannot solve."
+            }
+          ]
+        },
+        {
+          "role": "practice",
+          "title": "PRACTICE LADDER · P0 → P3",
+          "blocks": [
+            {
+              "type": "qa",
+              "title": "P0 · Recognition",
+              "body": "Classify model assumption / random sample / output transform / statistic / validation evidence."
+            },
+            {
+              "type": "qa",
+              "title": "P1 · Guided",
+              "body": "Simulate linear Y=2X+3 and verify analytic mean/variance."
+            },
+            {
+              "type": "qa",
+              "title": "P2 · Independent",
+              "body": "Implement V,T→D example with seed, three N values, moments and threshold frequency."
+            },
+            {
+              "type": "qa",
+              "title": "P3 · Transfer",
+              "body": "Add correlated inputs through a shared latent variable and compare with independent simulation."
+            }
+          ]
+        },
+        {
+          "role": "professor_qa",
+          "title": "ASSESSMENT · D0 / D1 / D2",
+          "blocks": [
+            {
+              "type": "qa",
+              "title": "D0 RECALL",
+              "body": "State Monte Carlo pipeline, role of seed, joint dependence and event-frequency estimate."
+            },
+            {
+              "type": "qa",
+              "title": "D1 APPLICATION",
+              "body": "Given uncertainty model + nonlinear g, build seeded simulation, choose metrics and validate against one analytical benchmark."
+            },
+            {
+              "type": "qa",
+              "title": "D2 EXPLAIN / ORAL",
+              "body": "Explain 60–90 seconds: «Why does increasing Monte Carlo sample size reduce sampling noise but not model error?»"
+            },
+            {
+              "type": "text",
+              "title": "Mastery evidence",
+              "body": "Pass when learner separates stochastic sampling uncertainty, input-model assumptions and real-data validation."
+            }
+          ]
+        },
+        {
+          "role": "bridge",
+          "title": "TECHNICAL RUSSIAN + NEXT · probability foundation sang statistics",
+          "blocks": [
+            {
+              "type": "text",
+              "title": "9 thuật ngữ",
+              "body": "метод Монте-Карло · моделирование · выборка · неопределённость · распространение неопределённости · генератор случайных чисел · совместное распределение · редкое событие · воспроизводимость"
+            },
+            {
+              "type": "text",
+              "title": "4 động từ",
+              "body": "смоделируйте — mô phỏng; сгенерируйте — sinh; оцените — ước lượng; объясните — giải thích."
+            },
+            {
+              "type": "text",
+              "title": "Khung vấn đáp",
+              "body": "«Увеличение числа выборок уменьшает шум моделирования, но не исправляет неверную модель.»"
+            },
+            {
+              "type": "text",
+              "title": "Cầu sang Chương 5",
+              "body": "C04 đã định nghĩa population distributions/moments. C05 chuyển sang data samples thực nghiệm: mô tả data, sample statistics, outliers, missing data và estimator uncertainty."
+            }
+          ]
+        },
+        {
+          "role": "takeaway",
+          "title": "REVIEW · 6 rules cho uncertainty simulation",
+          "blocks": [
+            {
+              "type": "text",
+              "title": "1",
+              "body": "Model distributions/dependence before sampling."
+            },
+            {
+              "type": "text",
+              "title": "2",
+              "body": "Monte Carlo propagates samples through deterministic model."
+            },
+            {
+              "type": "text",
+              "title": "3",
+              "body": "Seed supports reproducibility, not validity."
+            },
+            {
+              "type": "text",
+              "title": "4",
+              "body": "Compare against analytical benchmarks when available."
+            },
+            {
+              "type": "text",
+              "title": "5",
+              "body": "More N reduces Monte Carlo noise, not model misspecification."
+            },
+            {
+              "type": "text",
+              "title": "6",
+              "body": "Rare events and correlated inputs need special care."
+            }
+          ]
+        }
+      ]
     }
   ],
   "lastContentPass": {
-    "id": "E190",
-    "lessonId": "MATH-VN-C04-xac_suat_co_ban_va_bien_-L05-expectation-variance-covariance-correlation-e189",
-    "status": "LOCAL_CONTENT_QA_PASS_GLOBAL_BROWSER_BASELINE_PENDING",
+    "id": "E191",
+    "lessonId": "MATH-VN-C04-xac_suat_co_ban_va_bien_-L06-sensor-uncertainty-monte-carlo-e191",
+    "status": "C1_C5_PASS_C6_PENDING",
     "generatedAt": "2026-09-21",
     "inheritedRuntimeGate": "E164"
   },
