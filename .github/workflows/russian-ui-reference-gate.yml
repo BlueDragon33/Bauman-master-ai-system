@@ -7,9 +7,7 @@ on:
       - "subjects/russian/**"
       - ".github/workflows/russian-ui-reference-gate.yml"
   push:
-    branches:
-      - "main"
-      - stabilization/roadmap-v2-reconcile-current-runtime
+    branches: ["main"]
     paths:
       - "subjects/russian/**"
       - ".github/workflows/russian-ui-reference-gate.yml"
