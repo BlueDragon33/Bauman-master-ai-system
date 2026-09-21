@@ -71,6 +71,18 @@ jobs:
         run: node subjects/russian/scripts/validate-speaking-coach.mjs
       - name: Validate Russian grammar reading writing academic bridge
         run: node subjects/russian/scripts/validate-academic-language.mjs
+      - name: Validate Russian RHW1 handwriting listen-write contract
+        run: node subjects/russian/scripts/validate-handwriting-listen-write-contract.mjs
+      - name: Validate Russian RHW2 handwriting pronunciation runtime
+        run: node subjects/russian/scripts/validate-handwriting-pronunciation.mjs
+      - name: Validate Russian RHW3 listen-write exercise engine
+        run: node subjects/russian/scripts/validate-handwriting-listen-write-exercises.mjs
+      - name: Validate Russian RHW4 handwriting progress and adaptive review
+        run: node subjects/russian/scripts/validate-handwriting-progress-adaptive.mjs
+      - name: Validate Russian RHW6 generic listen-write factory
+        run: node subjects/russian/scripts/validate-listen-write-factory.mjs
+      - name: Validate Russian RHW7 lesson expansion and binding
+        run: node subjects/russian/scripts/validate-listen-write-expansion.mjs
       - name: Validate Russian AI mentor and offline runtime
         run: node subjects/russian/scripts/validate-ai-runtime.mjs
       - name: Validate Russian promotion candidate
@@ -86,6 +98,7 @@ jobs:
           node --check subjects/russian/assets/learning-flow.js
           node --check subjects/russian/assets/handwriting-glyph-authority.js
           node --check subjects/russian/assets/handwriting-recognition.js
+          node --check subjects/russian/assets/listen-write-factory.js
           node --check subjects/russian/assets/planning-bridge.js
           node --check subjects/russian/assets/vocab-srs.js
           node --check subjects/russian/assets/speaking-coach.js
@@ -119,6 +132,9 @@ jobs:
           test -f subjects/russian/data/grammar.json
           test -f subjects/russian/data/grammar-path.json
           test -f subjects/russian/data/writing.json
+          test -f subjects/russian/data/handwriting-listen-write.json
+          test -f subjects/russian/data/listen-write-lessons.json
+          test -f subjects/russian/data/listen-write-level-rules.json
           test -f subjects/russian/data/knowledge-index.json
           test -f subjects/russian/data/tests.json
           test -f subjects/russian/data/speaking.json
