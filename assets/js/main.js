@@ -52,7 +52,7 @@ function getCurrentUser(){try{return JSON.parse(localStorage.getItem(CURRENT_USE
 function setCurrentUser(user){localStorage.setItem(CURRENT_USER_KEY,JSON.stringify(user))}
 function defaultState(){
   const pathMap={russian:'subjects/russian/index.html',math:'subjects/math/index.html',programming:'subjects/programming/index.html',ai:'subjects/ai/index.html',systems:'subjects/systems/index.html',signal:'subjects/signal/index.html',research:'subjects/research/index.html',foundation:'subjects/foundation/index.html'}; const editorMap={russian:'subjects/russian/editor.html',math:'subjects/math/editor.html',programming:'subjects/programming/editor.html',ai:'subjects/ai/editor.html',systems:'subjects/systems/editor.html',signal:'subjects/signal/editor.html',research:'subjects/research/editor.html',foundation:'subjects/foundation/editor.html'}; const subjects=Object.fromEntries(DATA.subjects.map(s=>[s.id,{...s,mainPath:pathMap[s.id]||'',editorPath:editorMap[s.id]||'',priority:['russian','math','programming','ai'].includes(s.id)?'q1':(['systems','signal','research'].includes(s.id)?'q2':'q4')}]))
-  return {page:'home',homePanel:'matrix',roadmapStage:'prepare',subject:'russian',subjectStage:'prepare',schedule:{view:'main',weekStart:'2026-06-08',edit:false,entries:{},timezone:'utc7',autoStage:'prepare',autoFrom:'2026-06-08',autoTo:'2026-10-31',targetQuestions:FINAL_TARGET_QUESTIONS,targetScore:DEFAULT_TARGET_SCORE},progress:{},subjectReports:{},subjectCapabilities:{},subjectRouteReceipts:{},reviewQueue:[],activeTask:null,activity:[],theme:'academic',font:'system',fontSize:'normal',lastStudy:{subjectId:'russian',path:'subjects/russian/index.html'},researchTopic:'ugv',researchChecks:{},researchFiles:{},searchFocusCourseId:'',subjects};
+  return {page:'home',homePanel:'matrix',roadmapStage:'prepare',subject:'russian',subjectStage:'prepare',schedule:{view:'main',weekStart:'2026-06-08',edit:false,entries:{},timezone:'utc7',autoStage:'prepare',autoFrom:'2026-06-08',autoTo:'2026-10-31',targetQuestions:FINAL_TARGET_QUESTIONS,targetScore:DEFAULT_TARGET_SCORE},progress:{},deepStudyJournal:{version:1,entries:[]},subjectReports:{},subjectCapabilities:{},subjectRouteReceipts:{},reviewQueue:[],activeTask:null,activity:[],theme:'academic',font:'system',fontSize:'normal',lastStudy:{subjectId:'russian',path:'subjects/russian/index.html'},researchTopic:'ugv',researchChecks:{},researchFiles:{},searchFocusCourseId:'',subjects};
 }
 function normalizeState(raw){
   const base=defaultState(); const src=raw&&typeof raw==='object'?raw:{}; const out={...base,...src};
@@ -81,6 +81,17 @@ function normalizeState(raw){
   if(out.subjectStage==='all')out.subjectStage='prepare';
   out.researchChecks = (src.researchChecks && typeof src.researchChecks==='object') ? src.researchChecks : {};
   out.researchFiles = (src.researchFiles && typeof src.researchFiles==='object') ? src.researchFiles : {};
+  const dsj=src.deepStudyJournal&&typeof src.deepStudyJournal==='object'?src.deepStudyJournal:{};
+  out.deepStudyJournal={version:1,entries:Array.isArray(dsj.entries)?dsj.entries.filter(x=>x&&typeof x==='object').map(x=>({
+    id:String(x.id||'').slice(0,120),
+    type:['feynman','error','closed_ai','oral_defense'].includes(x.type)?x.type:'feynman',
+    title:String(x.title||'').slice(0,160),
+    body:String(x.body||'').slice(0,5000),
+    subjectId:String(x.subjectId||'').slice(0,80),
+    courseId:String(x.courseId||'').slice(0,80),
+    createdAt:String(x.createdAt||'').slice(0,40),
+    updatedAt:String(x.updatedAt||'').slice(0,40)
+  })).slice(-500):[]};
   return out;
 }
 function readState(){try{return normalizeState(JSON.parse(localStorage.getItem(KEY)||'{}'))}catch{return defaultState()}}
