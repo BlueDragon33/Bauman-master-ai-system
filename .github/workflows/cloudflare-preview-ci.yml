@@ -26,9 +26,7 @@ on:
       - "scripts/validate-foundation-l10-promotion.mjs"
       - ".github/workflows/content-asset-provenance-gate.yml"
   push:
-    branches:
-      - main
-      - stabilization/roadmap-v2-reconcile-current-runtime
+    branches: [main]
     paths:
       - ".github/workflows/cloudflare-preview-ci.yml"
       - ".github/workflows/deploy-bauman-preview.yml"
