@@ -1,0 +1,68 @@
+{
+  "schema": "rf_higher_education_diploma_supplement_honors_policy_v1",
+  "version": "RF_ORDER_670_2021_REV_2023_VERIFIED_2026_PASS14E_V1",
+  "verifiedAt": "2026-09-12",
+  "validity": {
+    "effectiveFrom": "2022-09-01",
+    "statedValidUntil": "2028-09-01",
+    "statusAtVerification": "current"
+  },
+  "primarySource": {
+    "authority": "Министерство науки и высшего образования Российской Федерации",
+    "order": "Приказ Минобрнауки России от 27.07.2021 N 670, ред. от 22.02.2023",
+    "justiceRegistration": "25.08.2021 N 64759",
+    "url": "https://www.consultant.ru/document/cons_doc_LAW_393664/",
+    "supplementSectionUrl": "https://www.consultant.ru/document/cons_doc_LAW_393664/4a6c8ef498bdca91c18392d9b39cbf0bdcd590a9/",
+    "honorsSectionUrl": "https://www.consultant.ru/document/cons_doc_LAW_393664/708094cf16a9cc27becd6da01f9b3fabf16f8af4/"
+  },
+  "supplementRowRules": {
+    "discipline": {
+      "rule": "Each studied discipline/module is represented as a separate row with one intermediate-attestation grade in the third column.",
+      "federalParagraph": "11(1)",
+      "onePrimaryRowPerDiscipline": true,
+      "assessmentEventsAreNotAutomaticallyRows": true
+    },
+    "practice": {
+      "rule": "Each practice is represented on a separate row with its intermediate-attestation grade; the aggregate Practices row has x instead of a grade.",
+      "federalParagraph": "11(2)",
+      "onePrimaryRowPerPractice": true
+    },
+    "gia": {
+      "rule": "Each state-final-attestation test is represented on a separate row with its grade; the aggregate GIA row has x instead of a grade.",
+      "federalParagraph": "11(3)",
+      "oneRowPerAttestationTest": true
+    },
+    "courseWork": {
+      "rule": "Each course work/project is represented separately with its grade.",
+      "federalParagraph": "11(6)",
+      "separateFromDisciplineRow": true
+    },
+    "facultative": {
+      "rule": "Facultative disciplines may be included in the supplement with graduate consent; honors-percentage treatment depends on organization policy.",
+      "federalParagraphs": ["11(7)", "27"],
+      "baselineProjectionMode": "exclude_until_organization_policy_verified"
+    },
+    "gradeWriting": {
+      "rule": "Grades are written in words: отлично, хорошо, удовлетворительно, зачтено.",
+      "federalParagraph": "14"
+    }
+  },
+  "honorsRules": {
+    "federalParagraph": "27",
+    "allNonCreditDisciplineCourseworkPracticeGradesAllowed": [5, 4],
+    "allGiaGradesMustEqual": 5,
+    "minimumExcellentShare": 0.75,
+    "creditGradesExcludedFromPercentage": true,
+    "facultyOptionalCountingRequiresOrganizationPolicy": true,
+    "electivePhysicalEducationCountingRequiresOrganizationPolicy": true
+  },
+  "hubInterpretation": {
+    "assessmentEventToSupplementAutoPromotion": "forbidden",
+    "multipleAssessmentEventsPerDiscipline": "do_not_count_separately_without_verified_supplement_row_evidence",
+    "currentIU5CourseWorkRows": "not_present_in_locked_curriculum_mirror; do not invent",
+    "currentIU5Facultatives": "present but pure credit; excluded from baseline projection until organization policy is verified",
+    "eligibilityCalculation": "allowed_only_from_explicitly_verified_supplement-entry evidence",
+    "projectionCalculation": "allowed_if_labeled_projection_not_official_transcript_count",
+    "bmstuIU5LocalSupplementMapping": "not_yet_verified_for_2026; federal row structure is authoritative baseline"
+  }
+}
