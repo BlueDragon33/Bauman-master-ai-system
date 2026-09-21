@@ -9,6 +9,8 @@ const must=(cond,m)=>{if(!cond)fail(m)};
 const index=read('index.html');
 const css=read('assets/russian-reference-ui.css');
 const polish=read('assets/russian-reference-ui-polish.css');
+const futureCss=read('assets/russian-future-ui.css');
+const futureJs=read('assets/russian-future-ui.js');
 const js=read('assets/russian-reference-ui.js');
 const optionalLoader=read('assets/russian-optional-data-loader.js');
 const contentContract=read('assets/content-contract.js');
@@ -19,7 +21,7 @@ const adapter=read('assets/subject-adapter.js');
 for(const id of ['app','nav','stageSelect','view','modal','modalBody','toast','themeBtn','aiBtn','pageTitle','pageSub','coreLabel','saveState']){
   must(index.includes(`id="${id}"`),`Missing required runtime id: ${id}`);
 }
-for(const ref of ['assets/core.css','assets/russian.css','assets/russian-reference-ui.css','assets/russian-reference-ui-polish.css','assets/learning-state.css','assets/content-contract.css','assets/subject-adapter.js','assets/content-contract.js','assets/planning-bridge.js','assets/russian-optional-data-loader.js','assets/core.js','assets/russian-reference-ui.js']){
+for(const ref of ['assets/core.css','assets/russian.css','assets/russian-reference-ui.css','assets/russian-reference-ui-polish.css','assets/russian-future-ui.css','assets/learning-state.css','assets/content-contract.css','assets/subject-adapter.js','assets/content-contract.js','assets/planning-bridge.js','assets/russian-optional-data-loader.js','assets/core.js','assets/russian-reference-ui.js','assets/russian-future-ui.js']){
   must(index.includes(ref),`Missing asset reference: ${ref}`);
 }
 must(index.indexOf('assets/russian-reference-ui.css')<index.indexOf('assets/russian-reference-ui-polish.css'),'Polish CSS must load after reference UI CSS');
@@ -27,6 +29,8 @@ must(index.indexOf('assets/subject-adapter.js')<index.indexOf('assets/content-co
 must(index.indexOf('assets/content-contract.js')<index.indexOf('assets/core.js'),'Content contract must normalize adapter before core.js');
 must(index.indexOf('assets/russian-optional-data-loader.js')<index.indexOf('assets/core.js'),'Optional chunk loader must bootstrap before core.js');
 must(index.indexOf('assets/core.js')<index.indexOf('assets/russian-reference-ui.js'),'Reference UI JS must load after core.js');
+must(index.indexOf('assets/russian-reference-ui.js')<index.indexOf('assets/russian-future-ui.js'),'Future UI must load after reference UI enhancer');
+must(index.indexOf('assets/russian-reference-ui-polish.css')<index.indexOf('assets/russian-future-ui.css'),'Future CSS must load last among Russian presentation layers');
 must(index.includes('id="russianRightRail"'),'Missing right AI rail');
 must(index.includes('id="russianGlobalSearch"'),'Missing global search');
 must(index.includes('data-ai-quick='),'AI rail must expose core AI Mentor quick-action contract');
@@ -44,12 +48,14 @@ for(const token of ['.ru-language-contract','.ru-language-contract-row','.stress
 must((css.match(/{/g)||[]).length===(css.match(/}/g)||[]).length,'Reference CSS brace imbalance');
 must((polish.match(/{/g)||[]).length===(polish.match(/}/g)||[]).length,'Polish CSS brace imbalance');
 must((contentContractCss.match(/{/g)||[]).length===(contentContractCss.match(/}/g)||[]).length,'Content contract CSS brace imbalance');
+must((futureCss.match(/{/g)||[]).length===(futureCss.match(/}/g)||[]).length,'Future UI CSS brace imbalance');
 must(!css.includes("url('./subject-header.jpg')"),'Reference UI must not depend on missing subject-header.jpg');
 must(!css.includes("url('./bauman-logo.png')"),'Reference UI must not depend on missing bauman-logo.png');
 
 new Function(js);
 new Function(optionalLoader);
 new Function(contentContract);
+new Function(futureJs);
 must(js.includes("window.SUBJECT_ADAPTER?.storageKey"),'Dashboard must use adapter storage key');
 must(js.includes('MutationObserver'),'Dashboard enhancer must follow core renders');
 must(js.includes("getElementById('aiBtn')"),'AI rail custom prompt must open existing AI Mentor');
@@ -62,6 +68,11 @@ must(js.includes('collapseLegacyOverview'),'Overview must preserve legacy tools 
 must(js.includes('navigator.platform'),'Shortcut hint must adapt to the user platform');
 must(!js.includes('base+Math.round'),'Skill cards must not synthesize fake per-skill progress');
 must(!js.includes('mini-progress'),'Skill cards must not display invented per-skill progress bars');
+for(const token of ['ru-future-ui','rf-progress-strip','rf-module-grid','rf-dashboard-lower','rf-tab-intro','grid-template-columns:220px minmax(0,1fr)','display:none!important']) must(futureCss.includes(token),`Future UI CSS missing ${token}`);
+for(const token of ['RUSSIAN_FUTURE_REFERENCE_UI_V1','upgradeOverview','upgradeTabIntro','data-rf-speak','Nghe & Nói','Bảng chữ cái','Lộ trình kỹ năng']) must(futureJs.includes(token),`Future UI runtime missing ${token}`);
+must(futureJs.includes("title.textContent='Tiếng Nga'"),'Future UI must expose Russian-only visible brand');
+must(!futureJs.includes('Bauman Hub'),'Future UI must not restore Bauman Hub branding');
+must(futureJs.includes('MutationObserver'),'Future UI must survive core rerenders');
 
 for(const token of ['RUSSIAN_CONTENT_CONTRACT_V1','normalizeVocab','latin_transliteration','orthographic_yo','missing','Hệ thống không tự đoán','textForVocab']){
   must(contentContract.includes(token),`Content contract missing truthful-language token: ${token}`);
