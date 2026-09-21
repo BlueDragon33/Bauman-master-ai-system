@@ -17,6 +17,7 @@ const unique = values => new Set(values).size === values.length;
 
 assert(pack.schema === 'bauman_prerequisite_pack_v1', 'unexpected P0 pack schema');
 assert(pack.gateId === 'P0', 'pack gateId must be P0');
+assert(pack.version === 'P0_TECHNICAL_RUSSIAN_IU5_2026_V2_D01_INTEGRITY', 'P0 d01-integrity version missing');
 assert(pack.notOfficialAdministrativePrerequisite === true, 'P0 must be explicitly non-administrative prerequisite');
 assert(pack.mastery?.target === 90, 'P0 target must match registry target 90');
 assert(pack.mastery?.applicationMinimum === 85, 'P0 application minimum must be 85');
@@ -28,6 +29,7 @@ assert(pack.implementationPolicy?.newTopLevelSubject === false, 'P0 must reuse t
 assert(pack.implementationPolicy?.overwritesExistingRussianLessons === false, 'Pass12 must not overwrite Russian lessons');
 assert(pack.implementationPolicy?.duplicatesGeneralRussianCurriculum === false, 'Pass12 must not create a duplicate general-Russian curriculum');
 assert(pack.implementationPolicy?.courseSpecificMappingOnly === true, 'P0 must remain a course-specific mapping layer');
+assert(pack.implementationPolicy?.excludesForeignLanguageCourseD01 === true, 'P0 must explicitly exclude d01 Foreign Language');
 assert(pack.implementationPolicy?.officialCourseNamesComeOnlyFromLockedCurriculum === true, 'official course identity policy missing');
 assert(pack.implementationPolicy?.glossaryTermsAreLearningSupportNotOfficialSyllabusClaims === true, 'glossary evidence label missing');
 assert(pack.implementationPolicy?.mainBranchMutation === false, 'Pass12 must not mutate main');
@@ -39,6 +41,9 @@ assert(gate?.target === 90, 'P0 registry target must remain 90');
 for (const topic of ['đọc đề kỹ thuật','nghe chỉ dẫn lớp/lab','thuật ngữ toán-CNTT-AI-CSDL','trình bày lời giải','vấn đáp học thuật']) {
   assert((gate?.topics || []).includes(topic), `P0 registry lost topic ${topic}`);
 }
+const d01dep = prereq.courseDependencies.find(x => x.courseId === 'd01');
+assert(d01dep && d01dep.critical.length === 0 && d01dep.support.length === 0, 'd01 must not depend on P0 Russian');
+assert(/English|Л2/.test(d01dep?.note || ''), 'd01 English/L2 correction note missing');
 
 assert(manifest.id === 'russian', 'Russian subject manifest identity drifted');
 for (const cap of ['learningSpeakingPractice','dialogueStudio','vocabFlashcards','mainPlanningBridge']) {
@@ -85,8 +90,9 @@ const officialIdentities = {
 };
 for (const [id,name] of Object.entries(officialIdentities)) assert(allOfficial.get(id)?.nameRu === name, `${id} official identity drifted`);
 for (const target of pack.officialTargets || []) assert(allOfficial.has(target.courseId), `P0 references unknown official target ${target.courseId}`);
-for (const id of Object.keys(officialIdentities)) assert((pack.officialTargets || []).some(x => x.courseId === id), `P0 must map to ${id}`);
-for (const id of ['d01','p04','g01']) assert((pack.officialTargets || []).find(x=>x.courseId===id)?.role === 'primary', `${id} must remain primary P0 target`);
+for (const id of ['d02','d03','d04','d05','d06','d15','p02','p04','g01']) assert((pack.officialTargets || []).some(x => x.courseId === id), `P0 must map to intended Russian-support target ${id}`);
+assert(!(pack.officialTargets || []).some(x => x.courseId === 'd01'), 'P0 officialTargets must exclude d01 Foreign Language');
+for (const id of ['p04','g01']) assert((pack.officialTargets || []).find(x=>x.courseId===id)?.role === 'primary', `${id} must remain primary P0 target`);
 
 // P0 must not replace exact curriculum assessment codes with invented course grading rules.
 assert(JSON.stringify(allOfficial.get('d01')?.assessment) === JSON.stringify(['Зчт']), 'd01 assessment drifted');
@@ -103,6 +109,7 @@ for (const ru of ['найдите','вычислите','определите','
 
 const glossaries = pack.courseMiniGlossaries || [];
 assert(glossaries.length === 6, `P0 expected 6 course mini-glossaries, got ${glossaries.length}`);
+assert(!glossaries.some(g => (g.courseIds || []).includes('d01')), 'P0 Russian glossary must not target d01');
 for (const g of glossaries) {
   assert((g.courseIds || []).length > 0, 'P0 glossary missing courseIds');
   for (const id of g.courseIds || []) assert(allOfficial.has(id), `P0 glossary references unknown course ${id}`);
@@ -185,6 +192,8 @@ for (const item of ['technical prompt reading','class and lab listening','course
   assert(scope.has(item), `P0 scope missing ${item}`);
 }
 assert(/does not replace STANKIN Russian/i.test(pack.scopeGuard?.rule || ''), 'P0 must not replace STANKIN Russian');
+assert(/does not replace the Л2 English Foreign Language course d01/i.test(pack.scopeGuard?.rule || ''), 'P0 must not replace d01 English');
+assert((pack.externalEvidence || []).some(x => x.url === 'https://e-learning.bmstu.ru/l/'), 'P0 must retain public Л2 English evidence');
 assert(/does not.*official course syllabus item/i.test(pack.scopeGuard?.rule || ''), 'P0 must not present learning glossary as official syllabus');
 
 // Independent mastery sanity: overall >=90 is not enough if application is below 85.
