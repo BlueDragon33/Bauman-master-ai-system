@@ -63,11 +63,12 @@
       if(n.tagName==='H3'){
         var next=nodes[i+1];
         var b={title:text(n),body:'',kind:'text'};
-        if(next && (next.tagName==='P'||next.tagName==='PRE')){b.body=rawText(next);b.kind=next.tagName==='PRE'?'formula':'text';i++;}
+        if(next && (next.tagName==='P'||next.tagName==='PRE')){b.body=rawText(next);b.kind=next.tagName==='PRE'?(next.getAttribute('data-e129-block-type')==='code'?'code':'formula'):'text';i++;}
         blocks.push(b);
       }else if(n.tagName==='PRE'){
         var raw=rawText(n); var parts=raw.split('\n');
-        blocks.push({title:compact(parts.shift()||'Công thức',90),body:parts.join('\n')||raw,kind:'formula'});
+        var preKind=n.getAttribute('data-e129-block-type')==='code'?'code':'formula';
+        blocks.push({title:compact(parts.shift()||(preKind==='code'?'Code':'Công thức'),90),body:parts.join('\n')||raw,kind:preKind});
       }else if(n.tagName==='P'){
         blocks.push({title:'Ý chính',body:rawText(n),kind:'text'});
       }
@@ -78,7 +79,7 @@
     return blocks.map(function(b){
       return {
         title:compact(b.title||'Ý chính',120),
-        kind:b.kind==='formula'?'formula':'text',
+        kind:b.kind==='formula'?'formula':(b.kind==='code'?'code':'text'),
         body:String(b.body||'').trim()
       };
     });
@@ -86,7 +87,7 @@
   function compactBlocks(blocks,role){
     var max=LIMIT[role]||2;
     return blocks.slice(0,max).map(function(b){
-      var kind=b.kind==='formula'?'formula':'text';
+      var kind=b.kind==='formula'?'formula':(b.kind==='code'?'code':'text');
       var bullets=kind==='formula'?[compact(b.body,260)]:sentenceBits(b.body,2);
       return {title:compact(b.title||'Ý chính',64),kind:kind,bullets:bullets};
     });
@@ -128,11 +129,12 @@
   function fullBlockHtml(b){
     var body=b.body||'Chưa có nội dung chi tiết.';
     if(b.kind==='formula') return '<article class="e132-clean-card formula"><h3>'+esc(b.title)+'</h3><pre>'+esc(body)+'</pre></article>';
+    if(b.kind==='code') return '<article class="e132-clean-card code"><h3>'+esc(b.title)+'</h3><pre>'+esc(body)+'</pre></article>';
     return '<article class="e132-clean-card text"><h3>'+esc(b.title)+'</h3><p class="e132-full-body">'+esc(body)+'</p></article>';
   }
   function compactBlockHtml(b){
     var items=b.bullets&&b.bullets.length?b.bullets:['Chưa có ý chính.'];
-    var body=b.kind==='formula'?'<pre>'+esc(items.join('\n'))+'</pre>':'<ul>'+items.map(function(x){return '<li>'+esc(x)+'</li>';}).join('')+'</ul>';
+    var body=(b.kind==='formula'||b.kind==='code')?'<pre>'+esc(items.join('\n'))+'</pre>':'<ul>'+items.map(function(x){return '<li>'+esc(x)+'</li>';}).join('')+'</ul>';
     return '<article class="e132-clean-card '+esc(b.kind)+'"><h3>'+esc(b.title)+'</h3>'+body+'</article>';
   }
   function render(){
@@ -190,5 +192,5 @@
   function boot(){try{obs.observe(document.body,{childList:true,subtree:true,attributes:true,attributeFilter:['class']});}catch(_){} enhance();}
   if(document.readyState==='loading') document.addEventListener('DOMContentLoaded',boot); else boot();
 
-  window.BAUMAN_MATH_THEORY_E132={release:RELEASE,enhance:enhance,openDeck:openDeck,closeDeck:closeDeck,setMode:function(next){mode=next==='compact'?'compact':'full'; render(); return mode;},selfCheck:function(){var open=document.body.classList.contains('e132-overlay-open');var slides=model.length||sourceSlides().length;var current=model[idx]||null;return {ok:!!window.BAUMAN_MATH_THEORY_E129&&css('theory-slideshow-E132.css'),release:RELEASE,e129Detected:!!window.BAUMAN_MATH_THEORY_E129,importTargetUnchanged:'theory_lecture_content',isolatedOverlay:true,keyboardCaptured:true,fullLectureModeDefault:true,compactContent:false,compactModeOptional:true,overlayOpen:open,slidesDetected:slides,currentSlide:idx+1,currentRawBlockCount:current?current.rawBlockCount:0,displayedBlocks:current?(mode==='compact'?current.compactBlocks.length:current.fullBlocks.length):0,canvaReference:true};}};
+  window.BAUMAN_MATH_THEORY_E132={release:RELEASE,enhance:enhance,openDeck:openDeck,closeDeck:closeDeck,setMode:function(next){mode=next==='compact'?'compact':'full'; render(); return mode;},selfCheck:function(){var open=document.body.classList.contains('e132-overlay-open');var slides=model.length||sourceSlides().length;var current=model[idx]||null;return {ok:!!window.BAUMAN_MATH_THEORY_E129&&css('theory-slideshow-E132.css'),release:RELEASE,e129Detected:!!window.BAUMAN_MATH_THEORY_E129,importTargetUnchanged:'theory_lecture_content',isolatedOverlay:true,keyboardCaptured:true,fullLectureModeDefault:true,compactContent:false,compactModeOptional:true,codeBlockSemantics:true,overlayOpen:open,slidesDetected:slides,currentSlide:idx+1,currentRawBlockCount:current?current.rawBlockCount:0,displayedBlocks:current?(mode==='compact'?current.compactBlocks.length:current.fullBlocks.length):0,canvaReference:true};}};
 })();
