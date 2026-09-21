@@ -27,6 +27,8 @@ on:
       - "tests/russian-handwriting-listen-write-browser.mjs"
       - "tests/subject-progress-contract-static.mjs"
       - "tests/subject-progress-contract-browser.mjs"
+      - "tests/deep-study-journal-browser.mjs"
+      - "scripts/validate-deep-study-journal-v1.js"
       - "scripts/prepare-cloudflare-preview.mjs"
       - "scripts/prepare-chatgpt-site.mjs"
       - ".openai/hosting.json"
@@ -56,6 +58,8 @@ on:
       - "tests/russian-offline-shell-browser.mjs"
       - "tests/subject-progress-contract-static.mjs"
       - "tests/subject-progress-contract-browser.mjs"
+      - "tests/deep-study-journal-browser.mjs"
+      - "scripts/validate-deep-study-journal-v1.js"
       - "scripts/prepare-cloudflare-preview.mjs"
       - "scripts/prepare-chatgpt-site.mjs"
       - ".openai/hosting.json"
@@ -85,9 +89,13 @@ jobs:
         run: node tests/russian-capability-continue-static.mjs
       - name: Validate subject progress report contract
         run: node tests/subject-progress-contract-static.mjs
+      - name: Validate Deep Study Journal boundaries
+        run: node scripts/validate-deep-study-journal-v1.js
       - name: Parse changed runtime JavaScript
         run: |
           node --check assets/js/main.js
+          node --check assets/js/deep-study-journal-v1.js
+          node --check scripts/validate-deep-study-journal-v1.js
           node --check assets/js/hub-safe-shell.js
           node --check assets/js/hub-overview-search-v2.js
           node --check assets/js/planning-main.js
@@ -128,6 +136,7 @@ jobs:
           node --check tests/russian-handwriting-listen-write-browser.mjs
           node --check tests/subject-progress-contract-static.mjs
           node --check tests/subject-progress-contract-browser.mjs
+          node --check tests/deep-study-journal-browser.mjs
 
   browser-system-acceptance:
     needs: validate-system-integration
@@ -216,6 +225,11 @@ jobs:
           BAUMAN_E2E_BASE_URL: http://127.0.0.1:4173/
           BAUMAN_E2E_ARTIFACT_DIR: artifacts/subject-progress-contract
         run: node tests/subject-progress-contract-browser.mjs
+      - name: Run Deep Study Journal browser acceptance
+        env:
+          BAUMAN_E2E_BASE_URL: http://127.0.0.1:4173/
+          BAUMAN_E2E_ARTIFACT_DIR: artifacts/deep-study-journal
+        run: node tests/deep-study-journal-browser.mjs
       - name: Run Russian true-offline shell acceptance
         env:
           BAUMAN_E2E_BASE_URL: http://127.0.0.1:4173/
@@ -306,6 +320,11 @@ jobs:
           BAUMAN_E2E_BASE_URL: http://127.0.0.1:4174/
           BAUMAN_E2E_ARTIFACT_DIR: artifacts/chatgpt-site-subject-progress-contract
         run: node tests/subject-progress-contract-browser.mjs
+      - name: Run packaged Deep Study Journal browser acceptance
+        env:
+          BAUMAN_E2E_BASE_URL: http://127.0.0.1:4174/
+          BAUMAN_E2E_ARTIFACT_DIR: artifacts/chatgpt-site-deep-study-journal
+        run: node tests/deep-study-journal-browser.mjs
       - name: Run packaged Russian true-offline shell acceptance
         env:
           BAUMAN_E2E_BASE_URL: http://127.0.0.1:4174/
@@ -342,6 +361,7 @@ jobs:
             artifacts/russian-offline-shell
             artifacts/russian-handwriting-listen-write
             artifacts/subject-progress-contract
+            artifacts/deep-study-journal
             artifacts/chatgpt-site-browser
             artifacts/chatgpt-site-foundation-identity-persistence
             artifacts/chatgpt-site-foundation-identity-projection
@@ -356,5 +376,6 @@ jobs:
             artifacts/chatgpt-site-russian-offline-shell
             artifacts/chatgpt-site-russian-handwriting-listen-write
             artifacts/chatgpt-site-subject-progress-contract
+            artifacts/chatgpt-site-deep-study-journal
           if-no-files-found: warn
           retention-days: 7
