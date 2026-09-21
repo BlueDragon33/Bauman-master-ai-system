@@ -7,7 +7,7 @@ const stat=name=>{const p=path.join(root,'data',`${name}.json`);return {name,byt
 const req=required.map(stat), opt=optional.map(stat);
 const sum=xs=>xs.reduce((a,x)=>a+x.bytes,0);
 const sw=fs.readFileSync(path.join(root,'sw.js'),'utf8');
-const cacheVersionMatch=sw.match(/const CACHE='russian-app-shell-v(\\d+)[^']*'/i);
+const cacheVersionMatch=sw.match(/const CACHE='russian-app-shell-v([0-9]+)[^']*'/i);
 const cacheVersion=Number(cacheVersionMatch?.[1]||0);
 const optimizer=fs.readFileSync(path.join(root,'assets','runtime-optimizer.js'),'utf8');
 const index=fs.readFileSync(path.join(root,'index.html'),'utf8');
