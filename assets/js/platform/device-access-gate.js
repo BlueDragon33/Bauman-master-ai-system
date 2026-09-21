@@ -46,11 +46,26 @@
     return 'desktop';
   }
 
+  function detectPlatform() {
+    return String(
+      navigator.userAgentData && navigator.userAgentData.platform
+        ? navigator.userAgentData.platform
+        : navigator.platform || 'unknown',
+    ).slice(0, 120);
+  }
+
+  function detectBrowser() {
+    const ua = navigator.userAgent || '';
+    if (/Edg\//.test(ua)) return 'Microsoft Edge';
+    if (/OPR\//.test(ua)) return 'Opera';
+    if (/Chrome\//.test(ua) && !/Edg\//.test(ua)) return 'Chrome';
+    if (/Firefox\//.test(ua)) return 'Firefox';
+    if (/Safari\//.test(ua) && !/Chrome\//.test(ua)) return 'Safari';
+    return 'unknown';
+  }
+
   function deviceLabel() {
-    const platform = navigator.userAgentData && navigator.userAgentData.platform
-      ? navigator.userAgentData.platform
-      : navigator.platform || 'Thiết bị';
-    return `${platform} · ${detectDeviceType()}`.slice(0, 100);
+    return `${detectPlatform()} · ${detectDeviceType()}`.slice(0, 100);
   }
 
   function openDb() {
@@ -157,6 +172,28 @@
 
   function clearSession() {
     sessionStorage.removeItem(SESSION_KEY);
+    if (global.location && global.location.protocol === 'https:') {
+      void fetch('/api/runtime/session', { method: 'DELETE', credentials: 'same-origin', cache: 'no-store' }).catch(() => {});
+    }
+  }
+
+  async function bindRuntimeSession(token) {
+    if (!global.location || global.location.protocol !== 'https:') return;
+    const response = await fetch('/api/runtime/session', {
+      method: 'POST',
+      headers: { authorization: `Bearer ${token}` },
+      credentials: 'same-origin',
+      cache: 'no-store',
+    });
+    const payload = await response.json().catch(() => ({}));
+    if (!response.ok || payload.ok !== true) {
+      throw new ApiError(
+        payload.error || 'Learning Runtime chưa xác nhận được phiên thiết bị phía server.',
+        response.status || 503,
+        payload.code || 'RUNTIME_SESSION_BIND_FAILED',
+        payload,
+      );
+    }
   }
 
   function connectivityFailure(error) {
@@ -228,6 +265,8 @@
       body: {
         publicJwk: identity.publicJwk,
         deviceType: detectDeviceType(),
+        platform: detectPlatform(),
+        browser: detectBrowser(),
         displayName: deviceLabel(),
         label: document.title || 'Bauman Master AI',
       },
@@ -252,6 +291,8 @@
       body: {
         publicJwk: identity.publicJwk,
         deviceType: detectDeviceType(),
+        platform: detectPlatform(),
+        browser: detectBrowser(),
         displayName: deviceLabel(),
         label: document.title || 'Bauman Master AI',
       },
@@ -294,6 +335,7 @@
       throw new ApiError('Bauman chưa cấp phiên thiết bị hợp lệ.', 502, 'INVALID_DEVICE_SESSION_RESPONSE');
     }
     saveSession({ token: verified.sessionToken, expiresAt: Number(verified.expiresAt || 0) });
+    await bindRuntimeSession(verified.sessionToken);
     const next = { ...identity, lastKnownStatus: 'approved', lastVerifiedAt: Date.now() };
     await writeIdentity(next);
     return next;
@@ -301,6 +343,7 @@
 
   async function heartbeat(identity, token) {
     const response = await api('/api/device/heartbeat', { method: 'POST', token });
+    await bindRuntimeSession(token);
     const device = response.device || {};
     const next = { ...identity, lastKnownStatus: device.status || 'approved', lastVerifiedAt: Date.now() };
     await writeIdentity(next);
