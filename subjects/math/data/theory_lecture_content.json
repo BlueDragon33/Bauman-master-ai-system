@@ -1,7 +1,7 @@
 {
   "id": "bauman_math_theory_lecture_content_e146_c03_complete",
   "schema": "bauman_math_content_records_v1",
-  "version": "E165_C02_L01_CONTENT_FACTORY_C1_C6",
+  "version": "E167_C02_L02_CONTENT_FACTORY_C1_C6",
   "title": "Bài giảng lý thuyết Toán · Nội dung học tập",
   "role": "content",
   "frameSource": "theory_lecture_frame.json",
@@ -3364,6 +3364,7 @@
       "chapterId": "MATH-VN-C02-ma_tran_va_phep_bien_oi_",
       "lessonTitle": "§2.2 · Phép nhân ma trận và pipeline tuyến tính",
       "title": "§2.2 · Phép nhân ma trận và pipeline tuyến tính",
+      "orderInChapter": 2,
       "programLectureId": "MATH-PROG-L02-vector-spaces-linear-maps",
       "programLectureIds": [
         "MATH-PROG-L02-vector-spaces-linear-maps",
@@ -3372,214 +3373,656 @@
       ],
       "programAnchorTitle": "Không gian vectơ và ánh xạ tuyến tính",
       "roadmapRole": "foundation_before_prep",
-      "baumanFocus": "Hiểu phép nhân ma trận như ghép biến đổi tuyến tính và như lõi của pipeline tính toán trong dữ liệu, đồ họa, điều khiển, mạng neural tuyến tính.",
+      "baumanFocus": "Hiểu phép nhân ma trận như composition của các ánh xạ tuyến tính; đọc đúng thứ tự AB, suy shape toàn pipeline, phân biệt matrix product với elementwise product, và kiểm chứng A@(B@x)==(A@B)@x bằng NumPy.",
+      "pureLayer": [
+        "phép nhân ma trận",
+        "composition ánh xạ tuyến tính",
+        "tính kết hợp",
+        "không giao hoán",
+        "shape/domain/codomain"
+      ],
+      "appliedLayer": [
+        "pipeline biến đổi đặc trưng",
+        "chuỗi lớp tuyến tính",
+        "đổi biểu diễn dữ liệu",
+        "NumPy matmul",
+        "kiểm tra shape pipeline"
+      ],
+      "bridgeQuestion": "Vì sao AB nghĩa là làm B trước rồi làm A, và làm sao kiểm một pipeline nhiều ma trận mà không bị lẫn thứ tự hoặc shape?",
+      "auditStatus": "REVIEW",
       "sourceAnchors": {
         "stageId": "vn",
         "disciplineId": "linear_algebra_data_space",
         "chapterId": "MATH-VN-C02-ma_tran_va_phep_bien_oi_",
-        "programLectureId": "MATH-PROG-L02-vector-spaces-linear-maps"
+        "programLectureId": "MATH-PROG-L02-vector-spaces-linear-maps",
+        "officialCurriculum": "bmstu_iu5_2026_curriculum"
       },
       "tags": [
         "matrix multiplication",
-        "linear pipeline",
         "composition",
+        "pipeline",
+        "noncommutative",
         "shape",
-        "transform"
+        "NumPy",
+        "IU-5"
       ],
+      "learningContract": {
+        "governingQuestion": "Một pipeline tuyến tính nhiều bước được ghép bằng matrix multiplication như thế nào, và thứ tự/shape nào bảo đảm phép ghép có nghĩa?",
+        "whyNeeded": "Nền để đọc chuỗi biến đổi trong mô hình tuyến tính, preprocessing, giảm chiều, state-space reasoning và machine-learning pipelines trước khi học rank, inverse, PCA và mô hình sâu hơn.",
+        "prerequisiteGates": [
+          "Phân biệt data matrix và operator matrix từ §2.1.",
+          "Biết A∈R^(m×n), x∈R^n thì Ax∈R^m.",
+          "Hiểu Ax theo hàng và theo tổ hợp cột.",
+          "Nhớ additivity/homogeneity của phép biến đổi tuyến tính."
+        ],
+        "measurableLearningOutcomes": [
+          "LO1: Với A∈R^(m×n), B∈R^(n×p), dự đoán đúng shape AB∈R^(m×p) và phát hiện ít nhất 4/5 pipeline shape hợp lệ/không hợp lệ.",
+          "LO2: Giải thích đúng dưới column-vector convention rằng ABx = A(Bx), tức B tác động trước A.",
+          "LO3: Tính đúng một tích ma trận nhỏ theo row-by-column và kiểm lại bằng cách tác động lên một vector.",
+          "LO4: Chứng minh bằng ví dụ số rằng matrix multiplication thường không giao hoán: AB≠BA.",
+          "LO5: Phân biệt associativity (AB)C=A(BC) với commutativity AB=BA và giải thích hậu quả cho pipeline.",
+          "LO6: Viết NumPy kiểm shape, tính intermediate B@x, A@(B@x), composite A@B và xác nhận hai đường tính bằng allclose.",
+          "LO7: Nhận ra khi nào không nên gộp pipeline thành một matrix duy nhất vì có nonlinear/affine/data-dependent step xen giữa."
+        ],
+        "exactScope": [
+          "điều kiện shape của AB",
+          "row-by-column product",
+          "composition A∘B",
+          "associativity vs noncommutativity",
+          "pipeline dimensions",
+          "NumPy @ verification"
+        ],
+        "explicitDeferrals": [
+          "Rank và mất/giữ hướng thông tin → §2.3.",
+          "Inverse/solve/condition number → §2.4.",
+          "Biến đổi hình học sâu và basis change → §2.5.",
+          "PCA/eigen/SVD → §2.6 và các chương sau.",
+          "Neural-network nonlinear activations chỉ dùng làm counterexample, không dạy kiến trúc mạng ở đây."
+        ],
+        "canonicalTerminology": {
+          "matrixMultiplication": "phép nhân ma trận",
+          "matrixProduct": "tích ma trận",
+          "composition": "hợp thành/composition",
+          "pipeline": "chuỗi/pipeline biến đổi",
+          "intermediate": "biểu diễn trung gian",
+          "associative": "kết hợp",
+          "commutative": "giao hoán",
+          "elementwiseProduct": "nhân theo phần tử"
+        },
+        "symbols": {
+          "B": "B ∈ R^(n×p): biến đổi đầu tiên R^p→R^n",
+          "A": "A ∈ R^(m×n): biến đổi thứ hai R^n→R^m",
+          "AB": "AB ∈ R^(m×p): biến đổi tổng hợp R^p→R^m",
+          "x": "x ∈ R^p: input",
+          "h": "h=Bx ∈ R^n: intermediate",
+          "y": "y=Ah=(AB)x ∈ R^m: output"
+        },
+        "continuity": {
+          "previous": "§2.1 · Ma trận như dữ liệu và phép biến đổi",
+          "next": "§2.3 · Hạng ma trận, không gian cột và thông tin độc lập"
+        }
+      },
+      "technicalRussian": {
+        "terms": [
+          [
+            "умножение матриц",
+            "phép nhân ma trận"
+          ],
+          [
+            "произведение матриц",
+            "tích ma trận"
+          ],
+          [
+            "композиция преобразований",
+            "hợp thành các phép biến đổi"
+          ],
+          [
+            "порядок умножения",
+            "thứ tự nhân"
+          ],
+          [
+            "согласованные размерности",
+            "các kích thước tương thích"
+          ],
+          [
+            "промежуточное представление",
+            "biểu diễn trung gian"
+          ],
+          [
+            "ассоциативность",
+            "tính kết hợp"
+          ],
+          [
+            "коммутативность",
+            "tính giao hoán"
+          ],
+          [
+            "поэлементное умножение",
+            "nhân theo phần tử"
+          ]
+        ],
+        "commandVerbs": [
+          [
+            "вычислите",
+            "hãy tính"
+          ],
+          [
+            "сравните",
+            "hãy so sánh"
+          ],
+          [
+            "проверьте",
+            "hãy kiểm tra"
+          ],
+          [
+            "объясните",
+            "hãy giải thích"
+          ]
+        ],
+        "oralFrames": [
+          "Произведение AB соответствует композиции: сначала действует B, затем A.",
+          "Размерности согласованы: внутренние размерности совпадают.",
+          "Умножение матриц ассоциативно, но в общем случае некоммутативно."
+        ]
+      },
+      "sourceProvenance": [
+        {
+          "id": "bmstu_iu5_2026_curriculum",
+          "kind": "official_curriculum",
+          "url": "https://home.science.iu5.bmstu.ru/study-plans/iu5-master-program.pdf",
+          "supports": [
+            "IU-5 master preparation context for analytical models, multidimensional data analysis and machine learning",
+            "linear-algebra pipeline skills as prerequisite support rather than replacement for the official courses"
+          ]
+        },
+        {
+          "id": "mit_1806_linear_transformations",
+          "kind": "authoritative_university_material",
+          "url": "https://ocw.mit.edu/courses/18-06sc-linear-algebra-fall-2011/pages/positive-definite-matrices-and-applications/linear-transformations-and-their-matrices/",
+          "supports": [
+            "matrices as representations of linear transformations",
+            "composition of linear maps represented by matrix products under the column-vector convention"
+          ]
+        },
+        {
+          "id": "numpy_matmul",
+          "kind": "official_documentation",
+          "url": "https://numpy.org/doc/stable/reference/generated/numpy.matmul.html",
+          "supports": [
+            "NumPy @/matmul semantics for matrix products",
+            "core-dimension compatibility for matrix multiplication"
+          ]
+        },
+        {
+          "id": "numpy_allclose",
+          "kind": "official_documentation",
+          "url": "https://numpy.org/doc/stable/reference/generated/numpy.allclose.html",
+          "supports": [
+            "numerical equality checks with explicit tolerances"
+          ]
+        }
+      ],
+      "generatedMaterial": {
+        "status": "AI_DRAFT_REVIEWED_IN_CONTENT_FACTORY",
+        "lineage": "Generated examples and assessments derived from the lesson contract, prior §2.1 contract and source anchors to BMSTU curriculum + MIT linear algebra + NumPy docs.",
+        "canonicalSourceReplacement": false
+      },
+      "contentFactory": {
+        "C1": "PASS",
+        "C2": "PASS",
+        "C3": "PASS",
+        "C4": "PASS",
+        "C5": "PASS",
+        "C6": {
+          "software": "STATIC_QA_PENDING",
+          "user": "PENDING",
+          "blockers": 0,
+          "majors": 0,
+          "inheritedDeferredGate": "E164",
+          "acceptance": "PENDING_C6"
+        }
+      },
       "slides": [
         {
           "role": "problem_framing",
-          "title": "Nhân ma trận là ghép nhiều bước biến đổi",
+          "title": "ORIENT · Một pipeline nhiều bước có thể thu gọn thành một biến đổi",
+          "sourceRefs": [
+            "bmstu_iu5_2026_curriculum",
+            "mit_1806_linear_transformations"
+          ],
           "blocks": [
             {
               "type": "text",
-              "title": "Ý chính",
-              "body": "Trong pipeline kỹ thuật, dữ liệu thường đi qua nhiều phép biến đổi liên tiếp. Phép nhân ma trận cho phép gộp các bước tuyến tính thành một biến đổi duy nhất."
+              "title": "Câu hỏi điều khiển",
+              "body": "Nếu dữ liệu x đi qua B rồi qua A, ta có cần giữ hai bước khi phân tích toán học, hay có thể tạo một ma trận duy nhất? Câu trả lời nằm ở phép nhân ma trận: y=A(Bx)=(AB)x."
+            },
+            {
+              "type": "text",
+              "title": "Vì sao quan trọng",
+              "body": "Các pipeline kỹ thuật thường đổi biểu diễn nhiều lần: feature→latent→score, state→measurement→estimate, hoặc coordinate→normalized coordinate. Biết ghép các bước tuyến tính giúp đọc mô hình, kiểm shape và phát hiện thứ tự sai trước khi code."
+            },
+            {
+              "type": "formula",
+              "title": "Pipeline tối thiểu",
+              "body": "x ∈ R^p --B∈R^(n×p)--> h=Bx ∈ R^n --A∈R^(m×n)--> y=Ah ∈ R^m\nComposite: y=(AB)x, AB∈R^(m×p)"
+            },
+            {
+              "type": "qa",
+              "title": "Retrieval",
+              "body": "Nếu B biến R^100→R^20 và A biến R^20→R^5, composite AB biến không gian nào sang không gian nào?"
             }
           ]
         },
         {
           "role": "deep_essence",
-          "title": "AB nghĩa là làm B trước rồi làm A",
+          "title": "REACTIVATION · §2.1 đã cho một matrix-vector transform; giờ ta ghép hai transform",
           "blocks": [
             {
               "type": "text",
-              "title": "Bản chất",
-              "body": "Nếu y = Bx và z = Ay, thì z = A(Bx) = (AB)x. Tích AB là phép biến đổi tổng hợp của hai bước."
+              "title": "Kiến thức cũ cần bật lại",
+              "body": "§2.1: A∈R^(m×n) nhận vector n chiều và tạo vector m chiều. Bây giờ intermediate của bước trước trở thành input của bước sau. Shape chung ở giữa phải khớp."
+            },
+            {
+              "type": "formula",
+              "title": "Hợp thành",
+              "body": "h=Bx\ny=Ah=A(Bx)\nDo tính kết hợp của matrix-vector multiplication: A(Bx)=(AB)x"
+            },
+            {
+              "type": "text",
+              "title": "Điểm mới thật sự",
+              "body": "Không phải «học thêm một phép tính bảng số», mà là học cách đọc pipeline. AB mã hóa hai bước thành một operator tổng hợp, nhưng thứ tự ký hiệu nhìn từ phải sang trái theo column-vector convention."
+            },
+            {
+              "type": "qa",
+              "title": "Tự nói lại",
+              "body": "Hãy giải thích bằng một câu tại sao trong ABx thì B làm trước dù chữ A đứng trước B."
             }
           ]
         },
         {
           "role": "counter_intuition",
-          "title": "AB thường không bằng BA",
+          "title": "COUNTER-INTUITION · AB không có nghĩa làm A trước",
           "blocks": [
             {
               "type": "text",
-              "title": "Điểm dễ nhầm",
-              "body": "Thứ tự biến đổi rất quan trọng. Xoay rồi co giãn có thể khác co giãn rồi xoay. Trong pipeline dữ liệu, đổi thứ tự có thể làm sai hoàn toàn ý nghĩa."
+              "title": "Bẫy thứ tự",
+              "body": "Với column vectors, ABx=A(Bx). Vì vậy operator gần x nhất tác động trước. Cách đọc này giống composition A∘B: B trước, A sau."
+            },
+            {
+              "type": "formula",
+              "title": "Ví dụ shape",
+              "body": "B∈R^(20×100), A∈R^(5×20)\nBx∈R^20\nA(Bx)∈R^5\nAB∈R^(5×100)"
+            },
+            {
+              "type": "text",
+              "title": "Không thể đảo chỉ vì thích",
+              "body": "BA thậm chí có thể không tồn tại nếu shape không khớp. Ngay cả khi cả AB và BA đều tồn tại, chúng thường là hai transform khác nhau."
+            },
+            {
+              "type": "qa",
+              "title": "Diagnostic",
+              "body": "A∈R^(5×20), B∈R^(20×100). AB tồn tại; BA có tồn tại không? Hãy kiểm bằng inner dimensions, không đoán."
             }
           ]
         },
         {
           "role": "real_bridge",
-          "title": "Pipeline tuyến tính trong AI và điều khiển",
+          "title": "CONTEXT · Pipeline feature → hidden → score",
           "blocks": [
             {
               "type": "text",
-              "title": "Ví dụ",
-              "body": "Chuẩn hóa, chiếu đặc trưng, đổi hệ tọa độ và tính score có thể được xem là chuỗi biến đổi tuyến tính hoặc affine. Phần tuyến tính được mô tả bằng nhân ma trận."
+              "title": "Bối cảnh",
+              "body": "Giả sử x là vector 100 feature. B∈R^(20×100) tạo representation h 20 chiều. A∈R^(5×20) tạo 5 score. Nếu cả hai bước thuần tuyến tính, AB là operator 5×100 cho cùng output."
+            },
+            {
+              "type": "text",
+              "title": "Ý nghĩa intermediate",
+              "body": "h không chỉ là «kết quả tạm». Nó có semantic riêng: representation 20 chiều. Nếu ta gộp AB để chạy nhanh, ta có thể mất khả năng quan sát h trong debugging hoặc phân tích."
+            },
+            {
+              "type": "text",
+              "title": "Khi không được gộp",
+              "body": "Nếu giữa B và A có ReLU, clipping, normalization phụ thuộc dữ liệu, hoặc logic điều kiện, pipeline không còn bằng một matrix product duy nhất. Khi đó A(ReLU(Bx)) không thể viết thành (AB)x."
+            },
+            {
+              "type": "qa",
+              "title": "Decision question",
+              "body": "Một pipeline B → ReLU → A có thể precompute AB để thay toàn bộ không? Vì sao?"
             }
           ]
         },
         {
           "role": "notation",
-          "title": "Điều kiện nhân ma trận",
+          "title": "FORMALIZE · Shape của AB đến từ domain/codomain",
+          "sourceRefs": [
+            "mit_1806_linear_transformations",
+            "numpy_matmul"
+          ],
           "blocks": [
             {
               "type": "formula",
-              "title": "Shape",
-              "body": "A in R^{m x n}, B in R^{n x p} => AB in R^{m x p}"
+              "title": "Quy tắc shape",
+              "body": "A∈R^(m×n), B∈R^(n×p) ⇒ AB∈R^(m×p)\nHai inner dimensions n phải khớp."
             },
             {
               "type": "formula",
               "title": "Phần tử",
-              "body": "(AB)_{ij} = sum_k A_{ik} B_{kj}"
+              "body": "(AB)_ij = Σ_(k=1)^n A_ik B_kj\nHàng i của A dot với cột j của B."
+            },
+            {
+              "type": "text",
+              "title": "Outer dimensions sống sót",
+              "body": "m đến từ output của A; p đến từ input của B. n là không gian trung gian và bị «contract» trong phép tổng theo k."
+            },
+            {
+              "type": "qa",
+              "title": "Quick shape",
+              "body": "A: 7×3, B: 3×11. AB shape? Nếu C: 4×7, C(AB) shape? Hãy đọc pipeline từ phải sang trái."
             }
           ]
         },
         {
           "role": "core_formula",
-          "title": "Ba cách hiểu AB",
+          "title": "CORE · Ba cách hiểu một matrix product",
           "blocks": [
             {
-              "type": "text",
-              "title": "Theo phần tử",
-              "body": "Mỗi phần tử là dot product giữa hàng của A và cột của B."
+              "type": "formula",
+              "title": "1 · Row-by-column",
+              "body": "(AB)_ij = row_i(A) · col_j(B)"
             },
             {
-              "type": "text",
-              "title": "Theo cột",
-              "body": "Cột j của AB là A nhân với cột j của B."
+              "type": "formula",
+              "title": "2 · Theo cột",
+              "body": "col_j(AB) = A · col_j(B)\nMỗi cột của B được A biến đổi."
             },
             {
-              "type": "text",
-              "title": "Theo biến đổi",
-              "body": "AB là A sau B trong chuỗi biến đổi vector."
+              "type": "formula",
+              "title": "3 · Theo transform",
+              "body": "T_A∘T_B có ma trận AB\nx --B--> Bx --A--> A(Bx)"
+            },
+            {
+              "type": "qa",
+              "title": "Retrieve",
+              "body": "Nếu cột thứ j của B bằng vector 0, cột thứ j của AB là gì? Trả lời bằng cách hiểu theo cột."
             }
           ]
         },
         {
           "role": "assumption_gate",
-          "title": "Điều kiện đúng và ổn định",
+          "title": "ASSUMPTION GATE · Associative không có nghĩa commutative",
           "blocks": [
             {
+              "type": "formula",
+              "title": "Associativity",
+              "body": "(AB)C = A(BC)\nKhi các shape tương thích, có thể đổi cách đặt ngoặc mà không đổi transform tổng hợp."
+            },
+            {
+              "type": "formula",
+              "title": "Non-commutativity",
+              "body": "AB ≠ BA nói chung\nĐổi thứ tự operator là đổi pipeline."
+            },
+            {
               "type": "text",
-              "title": "Điều kiện",
-              "body": "Số cột của A phải bằng số hàng của B. Ngoài đúng shape, cần kiểm kích thước dữ liệu để tránh pipeline tốn bộ nhớ hoặc tính toán vô nghĩa."
+              "title": "Ý nghĩa triển khai",
+              "body": "Associativity cho phép chọn cách tính hiệu quả hoặc ổn định hơn mà vẫn giữ thứ tự operator. Nhưng không cho phép hoán đổi operator."
+            },
+            {
+              "type": "qa",
+              "title": "Diagnostic",
+              "body": "Câu «matrix multiplication associative nên A và B đổi chỗ được» sai ở đâu? Hãy chỉ đúng tên tính chất bị nhầm."
             }
           ]
         },
         {
           "role": "mini_case",
-          "title": "Mini case: hai bước xử lý đặc trưng",
+          "title": "E1 SIMPLE · Tính một composite nhỏ bằng hai đường",
           "blocks": [
             {
+              "type": "formula",
+              "title": "Dữ liệu",
+              "body": "B=[[1,2,0],[0,-1,1]]\nA=[[2,0],[1,3]]\nx=[1,2,-1]^T"
+            },
+            {
               "type": "text",
-              "title": "Case",
-              "body": "B giảm chiều dữ liệu từ 100 xuống 20 đặc trưng, A tính 5 score đầu ra. Khi đó AB biến trực tiếp vector 100 chiều thành 5 score."
+              "title": "Đường 1 · qua intermediate",
+              "body": "Bx=[5,-3]^T. Sau đó A(Bx)=[10,-4]^T."
+            },
+            {
+              "type": "formula",
+              "title": "Đường 2 · precompute AB",
+              "body": "AB=[[2,4,0],[1,-1,3]]\n(AB)x=[10,-4]^T"
+            },
+            {
+              "type": "qa",
+              "title": "Sanity check",
+              "body": "Nếu thay x_3 từ -1 thành 0, output đổi đúng bằng cột thứ 3 của AB. Cột đó là gì?"
             }
           ]
         },
         {
           "role": "interpretation",
-          "title": "Nhân ma trận là dot product có tổ chức",
+          "title": "E2 CONTEXTUAL · Khi precompute composite giúp ích và khi làm mất quan sát",
           "blocks": [
             {
               "type": "text",
-              "title": "Diễn giải",
-              "body": "Mỗi ô của AB đo mức tương tác giữa một hàng của A và một cột của B. Điều này giải thích vì sao nhân ma trận là lõi của nhiều thuật toán học máy."
+              "title": "Bài toán",
+              "body": "B nén vector 100 chiều xuống 20 chiều; A tạo 5 score. Với inference lặp lại trên nhiều x và A,B cố định, AB có thể precompute để giảm một intermediate multiplication."
+            },
+            {
+              "type": "text",
+              "title": "Trade-off",
+              "body": "Precompute AB giúp đơn giản hóa đường tính tuyến tính, nhưng nếu bạn cần inspect h=Bx để debug representation hoặc A/B thay đổi riêng, giữ hai bước có giá trị hơn."
+            },
+            {
+              "type": "text",
+              "title": "Shape audit",
+              "body": "B:20×100, A:5×20 ⇒ AB:5×100. Với batch X theo rows shape N×100, column-vector formula tương ứng batch thường là X @ (AB).T, shape N×5."
+            },
+            {
+              "type": "qa",
+              "title": "Transfer nhẹ",
+              "body": "Nếu X có 64 samples, X shape (64,100), output batch sau X@(AB).T có shape gì?"
             }
           ]
         },
         {
           "role": "simulation",
-          "title": "Thí nghiệm shape bằng Python",
+          "title": "BEGINNER ENTRY · NumPy kiểm cả pipeline và composite",
+          "sourceRefs": [
+            "numpy_matmul",
+            "numpy_allclose"
+          ],
           "blocks": [
             {
               "type": "code",
-              "title": "Công cụ",
-              "body": "A.shape\nB.shape\nC = A @ B\nassert A.shape[1] == B.shape[0]"
+              "title": "Deterministic check",
+              "body": "import numpy as np\n\nB = np.array([[1., 2., 0.], [0., -1., 1.]])\nA = np.array([[2., 0.], [1., 3.]])\nx = np.array([1., 2., -1.])\n\nh = B @ x\ny_step = A @ h\nC = A @ B\ny_comp = C @ x\n\nassert B.shape == (2, 3)\nassert A.shape == (2, 2)\nassert C.shape == (2, 3)\nassert np.allclose(h, [5., -3.], rtol=1e-12, atol=1e-12)\nassert np.allclose(y_step, [10., -4.], rtol=1e-12, atol=1e-12)\nassert np.allclose(y_step, y_comp, rtol=1e-12, atol=1e-12)"
             },
             {
               "type": "text",
-              "title": "Mục tiêu",
-              "body": "Kiểm tra shape trước khi nhân và so sánh (AB)x với A(Bx)."
+              "title": "BEGINNER ENTRY · đọc từng shape",
+              "body": "Đừng viết một dòng A@B@x ngay. Lần đầu hãy giữ h, y_step và C để nhìn rõ input/intermediate/output. Khi hiểu rồi mới rút gọn."
+            },
+            {
+              "type": "text",
+              "title": "Software trust",
+              "body": "allclose xác nhận hai đường tính khớp trong tolerance. Nó không xác nhận bạn đã đặt A,B theo đúng thứ tự nghiệp vụ; thứ tự sai có thể vẫn tạo shape hợp lệ trong trường hợp ma trận vuông."
+            },
+            {
+              "type": "qa",
+              "title": "Experiment",
+              "body": "Đổi A và B thành hai ma trận 2×2 để cả AB và BA tồn tại. So sánh hai kết quả và giải thích vì sao khác."
             }
           ]
         },
         {
           "role": "common_mistakes",
-          "title": "Lỗi thường gặp",
+          "title": "MISCONCEPTION MAP · 5 bẫy của matrix pipeline",
           "blocks": [
             {
               "type": "text",
-              "title": "Lỗi",
-              "body": "Nhân ngược thứ tự; nhầm elementwise multiplication với matrix multiplication; bỏ qua shape; diễn giải AB như BA."
+              "title": "MAJOR · «AB nghĩa A trước B»",
+              "body": "Sửa: với column-vector convention, B gần x hơn nên B làm trước. Diagnostic: yêu cầu vẽ x→?→? theo shape."
+            },
+            {
+              "type": "text",
+              "title": "MAJOR · «AB=BA vì số thường giao hoán»",
+              "body": "Matrix product không giao hoán nói chung. Diagnostic: dùng shear và scale 2×2; learner phải tính cả hai."
+            },
+            {
+              "type": "text",
+              "title": "MAJOR · «* và @ giống nhau»",
+              "body": "Trong NumPy ndarray, * là elementwise multiplication còn @ là matrix product. Diagnostic: cho hai matrix 2×2 và yêu cầu dự đoán khác biệt."
+            },
+            {
+              "type": "text",
+              "title": "MAJOR · «Associative nên được đổi thứ tự»",
+              "body": "Associativity chỉ đổi ngoặc, không đổi thứ tự. (AB)C=A(BC), nhưng ABC không cho phép CAB."
+            },
+            {
+              "type": "text",
+              "title": "MAJOR · «Có thể gộp mọi pipeline»",
+              "body": "Chỉ chuỗi operator tuyến tính cố định mới gộp sạch thành một matrix. Nonlinear/data-dependent step phá phép rút gọn."
             }
           ]
         },
         {
           "role": "application",
-          "title": "Ứng dụng lập trình",
+          "title": "E3 TRANSFER · Audit một pipeline chưa biết trước",
           "blocks": [
             {
-              "type": "text",
-              "title": "Nhiệm vụ",
-              "body": "Viết hàm compose(A,B) kiểm shape và trả về AB. Thêm mô tả pipeline: input dimension, hidden dimension, output dimension."
+              "type": "qa",
+              "title": "Task 1 · shape graph",
+              "body": "Pipeline: x∈R^12 → B:8×12 → C:3×8 → A:2×3. Hãy ghi shape của mỗi intermediate và composite ACB."
+            },
+            {
+              "type": "qa",
+              "title": "Task 2 · order",
+              "body": "Viết expression đúng cho output và giải thích operator nào chạy đầu tiên. Nếu ai đó viết BCAx, chỉ ra lỗi bằng domain/codomain."
+            },
+            {
+              "type": "qa",
+              "title": "Task 3 · nonlinear interruption",
+              "body": "Chèn clipping giữa C và A. Có còn precompute ACB để thay toàn pipeline không? Nêu chính xác phần nào vẫn có thể gộp."
+            },
+            {
+              "type": "qa",
+              "title": "Task 4 · batch",
+              "body": "Nếu X có shape (256,12) với rows=samples, viết biểu thức batch dùng transpose thích hợp để nhận output shape (256,2)."
             }
           ]
         },
         {
           "role": "practice",
-          "title": "Bài luyện tập",
+          "title": "PRACTICE LADDER · P0 → P3",
           "blocks": [
             {
-              "type": "text",
-              "title": "Bài tập",
-              "body": "Cho A kích thước 5x20, B kích thước 20x100. AB có kích thước gì? Nếu x có 100 chiều, vì sao (AB)x hợp lệ còn (BA)x không hợp lệ?"
+              "type": "qa",
+              "title": "P0 · Recognition",
+              "body": "5 cặp shape A,B: chọn cặp nào nhân được theo AB và nêu output shape. Evidence đạt: ≥4/5."
+            },
+            {
+              "type": "qa",
+              "title": "P1 · Guided",
+              "body": "Tính A@B cho A=[[1,1],[0,1]], B=[[2,0],[0,1]]. Sau đó tính B@A và so sánh từng ô."
+            },
+            {
+              "type": "qa",
+              "title": "P2 · Independent",
+              "body": "Tự tạo B:3×4, A:2×3 và x:4. Không dùng số ngẫu nhiên. Tính A@(B@x), (A@B)@x, kiểm allclose, rồi giải thích toàn bộ shape bằng lời."
+            },
+            {
+              "type": "qa",
+              "title": "P3 · Transfer",
+              "body": "Thiết kế pipeline 3 matrix có một intermediate 6 chiều. Tự chọn dimensions hợp lệ, viết composite, rồi thêm một nonlinear step và chỉ ra phần nào không còn gộp được."
             }
           ]
         },
         {
           "role": "professor_qa",
-          "title": "Vấn đáp kiểm tra hiểu sâu",
+          "title": "ASSESSMENT · D0 / D1 / D2",
           "blocks": [
             {
               "type": "qa",
-              "title": "Câu hỏi",
-              "body": "Vì sao nhân ma trận không giao hoán? Khi nào nên gộp nhiều biến đổi thành một ma trận, khi nào không nên?"
+              "title": "D0 RECALL",
+              "body": "Nêu điều kiện shape cho AB, công thức (AB)_ij, định nghĩa associativity và phát biểu rằng multiplication không giao hoán nói chung."
+            },
+            {
+              "type": "qa",
+              "title": "D1 APPLICATION · trọng số cao nhất",
+              "body": "Cho B∈R^(3×4), A∈R^(2×3), x∈R^4. Tự chọn số nguyên nhỏ, tính pipeline bằng hai đường, kiểm bằng NumPy, và mô tả đúng input/intermediate/output."
+            },
+            {
+              "type": "qa",
+              "title": "D2 EXPLAIN / ORAL",
+              "body": "Giải thích 60–90 giây: «Vì sao ABx nghĩa B trước A, associativity giúp tối ưu cách tính nhưng không cho phép đổi thứ tự, và vì sao code shape-valid vẫn có thể sai semantic?»"
+            },
+            {
+              "type": "text",
+              "title": "Mastery evidence",
+              "body": "Đạt khi D1 độc lập đúng và D2 không nhầm associativity/commutativity. Chạy được một dòng @ hoặc nhớ công thức đơn lẻ không đủ."
             }
           ]
         },
         {
           "role": "bridge",
-          "title": "Cầu sang hạng ma trận",
+          "title": "TECHNICAL RUSSIAN + NEXT · từ composition sang rank",
           "blocks": [
             {
               "type": "text",
-              "title": "Liên kết",
-              "body": "Khi ma trận biến đổi dữ liệu, câu hỏi quan trọng là nó giữ được bao nhiêu hướng thông tin độc lập. Đó là vai trò của hạng ma trận."
+              "title": "9 thuật ngữ",
+              "body": "умножение матриц · произведение матриц · композиция преобразований · порядок умножения · согласованные размерности · промежуточное представление · ассоциативность · коммутативность · поэлементное умножение"
+            },
+            {
+              "type": "text",
+              "title": "4 động từ lệnh",
+              "body": "вычислите — tính; сравните — so sánh; проверьте — kiểm tra; объясните — giải thích."
+            },
+            {
+              "type": "text",
+              "title": "Khung vấn đáp",
+              "body": "«Произведение AB соответствует композиции: сначала действует B, затем A.»\n«Умножение матриц ассоциативно, но в общем случае некоммутативно.»"
+            },
+            {
+              "type": "text",
+              "title": "Cầu sang §2.3",
+              "body": "Composition cho biết cách ghép operator. Câu hỏi kế tiếp: qua mỗi operator, bao nhiêu hướng thông tin độc lập được giữ lại? Đó là rank và column space."
             }
           ]
         },
         {
           "role": "takeaway",
-          "title": "Kết luận cần nhớ",
+          "title": "REVIEW · 6 điều không được nhầm ở bài sau",
           "blocks": [
             {
               "type": "text",
-              "title": "Cốt lõi",
-              "body": "Nhân ma trận là cách ghép các phép biến đổi tuyến tính; thứ tự và shape quyết định ý nghĩa của toàn bộ pipeline."
+              "title": "1 · Shape",
+              "body": "A:m×n, B:n×p ⇒ AB:m×p. Inner dimensions phải khớp; outer dimensions là input/output của composite."
+            },
+            {
+              "type": "text",
+              "title": "2 · Order",
+              "body": "ABx=A(Bx): B trước, A sau theo column-vector convention."
+            },
+            {
+              "type": "text",
+              "title": "3 · Meaning",
+              "body": "Matrix product vừa là row-by-column calculation, vừa là transform composition."
+            },
+            {
+              "type": "text",
+              "title": "4 · Associativity",
+              "body": "Đổi ngoặc được khi shape hợp lệ: (AB)C=A(BC)."
+            },
+            {
+              "type": "text",
+              "title": "5 · Non-commutativity",
+              "body": "Không được tự đổi thứ tự: AB≠BA nói chung."
+            },
+            {
+              "type": "text",
+              "title": "6 · Trust",
+              "body": "NumPy kiểm số học; bạn vẫn phải kiểm semantic order, dimensions và xem có nonlinear step phá phép gộp hay không."
             }
           ]
         }
@@ -5861,11 +6304,10 @@
     }
   ],
   "lastContentPass": {
-    "id": "E165+E166",
-    "lessonId": "MATH-VN-C02-ma_tran_va_phep_bien_oi_-L01-matrix-as-data-and-transform-e142",
-    "status": "LOCAL_CONTENT_QA_PASS_GLOBAL_BROWSER_BASELINE_PENDING",
+    "id": "E167",
+    "lessonId": "MATH-VN-C02-ma_tran_va_phep_bien_oi_-L02-matrix-multiplication-pipeline-e142",
+    "status": "C1_C5_PASS_C6_PENDING",
     "generatedAt": "2026-09-21",
-    "inheritedRuntimeGate": "E164",
-    "localStructuralRepair": "E166"
+    "inheritedRuntimeGate": "E164"
   }
 }
