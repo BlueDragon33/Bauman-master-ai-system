@@ -1,5 +1,5 @@
 {
-  "contractVersion": 6,
+  "contractVersion": 7,
   "application": {
     "id": "bauman-master-ai",
     "name": "Bauman Master AI",
@@ -24,7 +24,7 @@
     "p256ChallengeProof": "implemented-requires-d1-and-app-origin",
     "revocableDeviceSessions": "implemented-requires-d1-and-app-origin",
     "learningAccessGate": "implemented-e2e-verified-requires-d1-and-app-origin",
-    "contentReviewApi": "missing",
+    "contentReviewApi": "implemented-requires-d1",
     "deviceMetadata": "implemented-requires-d1",
     "deviceUnblock": "implemented-requires-d1",
     "deviceEditPermission": "implemented-requires-d1",
@@ -40,6 +40,8 @@
       "/api/control/subclients",
       "/api/control/devices",
       "/api/control/device-commands",
+      "/api/control/content-reviews",
+      "/api/control/content-review-commands",
       "/api/control/audit",
       "/api/device/register",
       "/api/device/challenge",
@@ -169,6 +171,76 @@
     "subclientsRemainUnderBaumanUntilIndependentContractExists": true,
     "centralMayEnableDeviceMutationOnlyAfterLiveCapabilityProbe": true,
     "centralMayClaimLearningGateOnlyAfterLiveCapabilityProbe": true,
-    "productionDeployRequiresExplicitPromotionAfterPreview": true
+    "productionDeployRequiresExplicitPromotionAfterPreview": true,
+    "applicationManagementMayEditLearningContent": false,
+    "contentReviewStoresLearningContent": false,
+    "contentReviewPublishRequiresPublisherOrOwner": true
+  },
+  "contentReview": {
+    "owner": "Bauman-master-ai-system",
+    "metadataOnly": true,
+    "learningContentStoredInControlDatabase": false,
+    "immutableReferenceFields": [
+      "subjectId",
+      "resourceType",
+      "resourceId",
+      "revision",
+      "contentHash",
+      "sourcePath"
+    ],
+    "statuses": [
+      "pending",
+      "approved",
+      "rejected",
+      "published"
+    ],
+    "submissionRoles": [
+      "publisher",
+      "owner"
+    ],
+    "readRoles": [
+      "reviewer",
+      "publisher",
+      "owner"
+    ],
+    "operations": {
+      "approve": {
+        "roles": [
+          "reviewer",
+          "publisher",
+          "owner"
+        ],
+        "expectedStatus": "pending",
+        "resultStatus": "approved"
+      },
+      "reject": {
+        "roles": [
+          "reviewer",
+          "publisher",
+          "owner"
+        ],
+        "expectedStatus": "pending",
+        "resultStatus": "rejected"
+      },
+      "publish": {
+        "roles": [
+          "publisher",
+          "owner"
+        ],
+        "expectedStatus": "approved",
+        "resultStatus": "published"
+      }
+    },
+    "commandSemantics": {
+      "idempotencyKey": "commandId",
+      "optimisticConcurrency": "expectedStatus",
+      "blindReplayForbidden": true
+    },
+    "auditActions": [
+      "content_review_submitted",
+      "content_review_approved",
+      "content_review_rejected",
+      "content_review_published"
+    ]
   }
 }
