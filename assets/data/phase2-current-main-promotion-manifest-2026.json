@@ -52,6 +52,7 @@
     "tests/phase2-current-main-browser-a6.mjs"
   ],
   "approvedChangedPaths": [
+    ".github/workflows/academic-2026-phase2-current-main-promotion-gate.yml",
     ".github/workflows/academic-2026-prerequisite-gate.yml",
     "assets/css/academic-command-center-2026.css",
     "assets/css/academic-course-2026.css",
@@ -92,5 +93,7 @@
     "mergeToMainAuthorized": false,
     "deployAuthorized": false,
     "notes": "A6 validates promotion readiness only; it does not authorize merge or deployment."
-  }
+  },
+  "validatedA5Head": "8068535b1f81c80061d9f935e350b00ab57b47c4",
+  "auditCurrentHead": "e33bdb1435e44805404127aba405d423bc678643"
 }
