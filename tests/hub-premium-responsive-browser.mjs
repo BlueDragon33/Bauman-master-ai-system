@@ -258,6 +258,28 @@ try{
   assert.deepEqual(roadmapAudit.stageTitles,['Giai đoạn 1: Nền tảng','Giai đoạn 2: Củng cố','Giai đoạn 3: Chuyên sâu','Giai đoạn 4: Ứng dụng'],'Roadmap V3 stage semantics drift');
   assert.ok(roadmapAudit.filterLabels.some(x=>x.includes('Hòa nhập Nga')),'Roadmap V3 missing Hòa nhập Nga filter');
   assert.ok(roadmapAudit.scroll<=roadmapAudit.client+2,`Roadmap desktop horizontal overflow ${roadmapAudit.scroll}/${roadmapAudit.client}`);
+  const roadmapGeometry=await page.evaluate(()=>{
+    const rect=s=>{const r=document.querySelector(s)?.getBoundingClientRect();return r?{x:r.x,y:r.y,w:r.width,h:r.height,b:r.bottom}:null};
+    return {
+      vw:innerWidth,vh:innerHeight,
+      sidebar:rect('.sidebar'),
+      topbar:rect('.topbar'),
+      hero:rect('#page-roadmap .hub-rm-hero'),
+      stages:rect('#page-roadmap .hub-rm-stages'),
+      stageCards:[...document.querySelectorAll('#page-roadmap .hub-rm-stage-card')].map(el=>{const r=el.getBoundingClientRect();return {w:r.width,h:r.height,y:r.y}}),
+      content:rect('#page-roadmap .hub-rm-content'),
+      main:rect('#page-roadmap .hub-rm-main'),
+      rail:rect('#page-roadmap .hub-rm-rail')
+    };
+  });
+  assert.ok(roadmapGeometry.sidebar.w/roadmapGeometry.vw>0.10&&roadmapGeometry.sidebar.w/roadmapGeometry.vw<0.14,'Roadmap sidebar width drifted from reference');
+  assert.ok(roadmapGeometry.topbar.h/roadmapGeometry.vh>0.04&&roadmapGeometry.topbar.h/roadmapGeometry.vh<0.07,'Roadmap topbar height drifted from reference');
+  assert.ok(roadmapGeometry.hero.h>78&&roadmapGeometry.hero.h<125,'Roadmap hero height drifted from reference');
+  assert.equal(roadmapGeometry.stageCards.length,4,'Roadmap stage geometry missing cards');
+  assert.ok(roadmapGeometry.stageCards.every(x=>x.h>150&&x.h<210),'Roadmap stage card height drifted from reference');
+  assert.ok(Math.max(...roadmapGeometry.stageCards.map(x=>x.y))-Math.min(...roadmapGeometry.stageCards.map(x=>x.y))<3,'Roadmap stage cards are vertically misaligned');
+  assert.ok(roadmapGeometry.rail.w/roadmapGeometry.content.w>0.20&&roadmapGeometry.rail.w/roadmapGeometry.content.w<0.30,'Roadmap right rail width drifted from reference');
+  assert.ok(Math.abs(roadmapGeometry.main.y-roadmapGeometry.rail.y)<3,'Roadmap main and right rail are not top-aligned');
   await page.locator('#page-roadmap [data-rm-filter="russian"]').click();
   await page.waitForFunction(()=>document.querySelector('#page-roadmap [data-rm-filter="russian"]')?.classList.contains('active')===true);
   await page.screenshot({path:path.join(OUT,'roadmap-reference-v3-1920x1080.png'),fullPage:true});
