@@ -74,7 +74,7 @@ async function checkCanonicalContent(page){
     learningCluster:window.BAUMAN_HUB_LEARNING_CLUSTER?.selfCheck?.(),
     overviewSearch:window.BAUMAN_HUB_OVERVIEW_SEARCH_V2?.selfCheck?.(),
     referenceV5:window.BAUMAN_HUB_REFERENCE_V5?.selfCheck?.(),
-    roadmapV3:window.BAUMAN_HUB_ROADMAP_V3?.selfCheck?.()||window.BAUMAN_HUB_ROADMAP_V2?.selfCheck?.()
+    roadmapV3:window.BAUMAN_HUB_ROADMAP_V4?.selfCheck?.()||window.BAUMAN_HUB_ROADMAP_V3?.selfCheck?.()||window.BAUMAN_HUB_ROADMAP_V2?.selfCheck?.()
   }));
   assert.deepEqual(content.subjectIds,['ai','foundation','math','programming','research','russian','signal','systems']);
   assert.equal(content.pages.length,5,'canonical Hub pages were removed');
@@ -249,7 +249,7 @@ try{
     filterLabels:[...document.querySelectorAll('#page-roadmap [data-rm-filter]')].map(x=>x.textContent.replace(/\s+/g,' ').trim())
   }));
   assert.deepEqual([roadmapAudit.stages,roadmapAudit.filters,roadmapAudit.levels,roadmapAudit.sideCards],[4,5,4,4],'Roadmap reference structure drift');
-  const roadmapChrome=await page.evaluate(()=>window.BAUMAN_HUB_ROADMAP_V3?.selfCheck?.()||window.BAUMAN_HUB_ROADMAP_V2?.selfCheck?.());
+  const roadmapChrome=await page.evaluate(()=>window.BAUMAN_HUB_ROADMAP_V4?.selfCheck?.()||window.BAUMAN_HUB_ROADMAP_V3?.selfCheck?.()||window.BAUMAN_HUB_ROADMAP_V2?.selfCheck?.());
   assert.equal(roadmapChrome?.topNav,7,'Roadmap V3 top navigation must expose seven reference actions');
   assert.equal(roadmapChrome?.journey,true,'Roadmap V3 journey card is missing');
   assert.equal(roadmapChrome?.chromeActive,true,'Roadmap V3 route chrome is not active');
@@ -258,12 +258,36 @@ try{
   assert.deepEqual(roadmapAudit.stageTitles,['Giai đoạn 1: Nền tảng','Giai đoạn 2: Củng cố','Giai đoạn 3: Chuyên sâu','Giai đoạn 4: Ứng dụng'],'Roadmap V3 stage semantics drift');
   assert.ok(roadmapAudit.filterLabels.some(x=>x.includes('Hòa nhập Nga')),'Roadmap V3 missing Hòa nhập Nga filter');
   assert.ok(roadmapAudit.scroll<=roadmapAudit.client+2,`Roadmap desktop horizontal overflow ${roadmapAudit.scroll}/${roadmapAudit.client}`);
+  const roadmapLayout=await page.evaluate(()=>{
+    const rect=s=>{const r=document.querySelector(s)?.getBoundingClientRect();return r?{x:r.x,y:r.y,w:r.width,h:r.height,b:r.bottom}:null};
+    return {
+      stageRects:[...document.querySelectorAll('#page-roadmap .hub-rm-stage-card')].map(x=>{const r=x.getBoundingClientRect();return{x:r.x,y:r.y,w:r.width,h:r.height}}),
+      content:rect('#page-roadmap .hub-rm-content'),
+      main:rect('#page-roadmap .hub-rm-main'),
+      rail:rect('#page-roadmap .hub-rm-rail'),
+      hero:rect('#page-roadmap .hub-rm-hero'),
+      openLevels:[...document.querySelectorAll('#page-roadmap .hub-rm-level.open')].map(x=>x.dataset.rmLevel)
+    };
+  });
+  assert.deepEqual(roadmapLayout.openLevels,['foundation','preparatory'],'Roadmap default expansion must match the reference: first two open, last two collapsed');
+  assert.ok(roadmapLayout.stageRects.every((r,i,a)=>i===0||Math.abs(r.y-a[0].y)<3),'Four roadmap phase cards must remain on one row at desktop');
+  assert.ok(roadmapLayout.rail.w/roadmapLayout.content.w>=0.20&&roadmapLayout.rail.w/roadmapLayout.content.w<=0.27,'Roadmap right rail width drifted from reference');
+  assert.ok(roadmapLayout.main.w>roadmapLayout.rail.w*2,'Roadmap main track must remain visually dominant');
   await page.locator('#page-roadmap [data-rm-filter="russian"]').click();
   await page.waitForFunction(()=>document.querySelector('#page-roadmap [data-rm-filter="russian"]')?.classList.contains('active')===true);
   await page.screenshot({path:path.join(OUT,'roadmap-reference-v3-1920x1080.png'),fullPage:true});
   await page.locator('#page-roadmap [data-rm-filter="technical"]').click();
   await page.waitForFunction(()=>document.querySelector('#page-roadmap [data-rm-filter="technical"]')?.classList.contains('active')===true);
   assert.ok(await page.locator('#page-roadmap [data-rm-course]').count()>0,'Technical roadmap filter returned no courses');
+  await page.evaluate(()=>{window.__rmScrollTarget='';const orig=Element.prototype.scrollIntoView;window.__rmOrigScrollIntoView=orig;Element.prototype.scrollIntoView=function(){window.__rmScrollTarget=this?.dataset?.rmLevel||this?.className||''}});
+  await page.locator('#page-roadmap [data-rm-action="current"]').click();
+  await page.waitForFunction(()=>!!window.__rmScrollTarget);
+  assert.equal(await page.evaluate(()=>window.__rmScrollTarget),'foundation','Current-stage action did not target the actual current roadmap level');
+  await page.evaluate(()=>{if(window.__rmOrigScrollIntoView)Element.prototype.scrollIntoView=window.__rmOrigScrollIntoView;delete window.__rmOrigScrollIntoView});
+  await page.locator('#page-roadmap [data-rm-action="autoschedule"]').click();
+  await page.waitForSelector('#modalRoot .schedule-settings-modal.auto-mode',{state:'visible',timeout:10000});
+  assert.match(await page.locator('#modalRoot').innerText(),/Cài đặt lịch tự động/,'Roadmap auto-plan action did not open Auto Scheduler settings');
+  await page.locator('#modalRoot [data-action="close-modal"]').click();
 
   const cases=[['tuf-f15-1920x1080',1920,1080],['laptop-1536x864',1536,864],['ipad-3x2',1180,787],['iphone-19_5x9',390,844]];
   for(const [label,width,height] of cases){
@@ -300,7 +324,7 @@ try{
   }
 
   assert.deepEqual(errors,[],'Hub emitted console/page errors');
-  fs.writeFileSync(path.join(OUT,'summary.json'),JSON.stringify({status:'PASS',mode:'safe-additive-shell+app-manager-access',subjects:content.subjectIds.length,viewports:cases.map(x=>x[0]),planningWrapper:content.planningWrapper,safeCheck:content.safeCheck,managedAccess:content.managedAccess,staticOwnershipGate:'PASS',referenceHomeV4:'PASS',roadmapReferenceV3:'PASS',appearancePresets:'PASS',errors},null,2));
+  fs.writeFileSync(path.join(OUT,'summary.json'),JSON.stringify({status:'PASS',mode:'safe-additive-shell+app-manager-access',subjects:content.subjectIds.length,viewports:cases.map(x=>x[0]),planningWrapper:content.planningWrapper,safeCheck:content.safeCheck,managedAccess:content.managedAccess,staticOwnershipGate:'PASS',referenceHomeV4:'PASS',roadmapReferenceV4:'PASS',appearancePresets:'PASS',errors},null,2));
   console.log('Hub safe additive responsive acceptance PASS');
 }finally{
   await browser?.close();
