@@ -6,6 +6,7 @@ on:
       - 'assets/data/official-curriculum-iu5-2026.json'
       - 'assets/data/course-learning-architecture-s1-2026.json'
       - 'assets/data/grading-policy-bauman-2024.json'
+      - 'assets/data/diploma-supplement-honors-policy-rf-2021.json'
       - 'foundation/content-registry/**'
       - 'scripts/validate-foundation-l10-promotion.mjs'
       - '.github/workflows/content-asset-provenance-gate.yml'
@@ -16,6 +17,7 @@ on:
       - 'assets/js/academic-course-runtime.js'
       - 'assets/js/academic-event-runtime.js'
       - 'assets/js/academic-grade-runtime.js'
+      - 'assets/js/academic-transcript-runtime.js'
       - 'assets/js/academic-scheduler-preview.js'
       - 'assets/js/academic-scheduler-apply.js'
       - 'assets/js/platform/runtime-config.js'
@@ -24,12 +26,14 @@ on:
       - 'assets/css/academic-course-2026.css'
       - 'assets/css/academic-event-2026.css'
       - 'assets/css/academic-grade-2026.css'
+      - 'assets/css/academic-transcript-2026.css'
       - 'assets/css/device-access-gate.css'
       - 'index.html'
       - 'scripts/validate-academic-2026.js'
       - 'scripts/validate-course-learning-architecture-s1-2026.js'
       - 'scripts/validate-course-readiness-runtime-a2.js'
       - 'scripts/validate-event-grade-runtime-a3.js'
+      - 'scripts/validate-transcript-honors-runtime-a4.js'
       - 'scripts/validate-prerequisite-coverage-2026.js'
       - 'scripts/validate-p09-markov-queueing.js'
       - 'scripts/validate-p06-database-fundamentals.js'
@@ -47,12 +51,14 @@ on:
       - 'tests/academic-browser-acceptance-13e.mjs'
       - 'tests/course-readiness-browser-a2.mjs'
       - 'tests/event-grade-browser-a3.mjs'
+      - 'tests/transcript-honors-browser-a4.mjs'
       - '.github/workflows/academic-2026-prerequisite-gate.yml'
   pull_request:
     paths:
       - 'assets/data/official-curriculum-iu5-2026.json'
       - 'assets/data/course-learning-architecture-s1-2026.json'
       - 'assets/data/grading-policy-bauman-2024.json'
+      - 'assets/data/diploma-supplement-honors-policy-rf-2021.json'
       - 'foundation/content-registry/**'
       - 'scripts/validate-foundation-l10-promotion.mjs'
       - '.github/workflows/content-asset-provenance-gate.yml'
@@ -63,6 +69,7 @@ on:
       - 'assets/js/academic-course-runtime.js'
       - 'assets/js/academic-event-runtime.js'
       - 'assets/js/academic-grade-runtime.js'
+      - 'assets/js/academic-transcript-runtime.js'
       - 'assets/js/academic-scheduler-preview.js'
       - 'assets/js/academic-scheduler-apply.js'
       - 'assets/js/platform/runtime-config.js'
@@ -71,12 +78,14 @@ on:
       - 'assets/css/academic-course-2026.css'
       - 'assets/css/academic-event-2026.css'
       - 'assets/css/academic-grade-2026.css'
+      - 'assets/css/academic-transcript-2026.css'
       - 'assets/css/device-access-gate.css'
       - 'index.html'
       - 'scripts/validate-academic-2026.js'
       - 'scripts/validate-course-learning-architecture-s1-2026.js'
       - 'scripts/validate-course-readiness-runtime-a2.js'
       - 'scripts/validate-event-grade-runtime-a3.js'
+      - 'scripts/validate-transcript-honors-runtime-a4.js'
       - 'scripts/validate-prerequisite-coverage-2026.js'
       - 'scripts/validate-p09-markov-queueing.js'
       - 'scripts/validate-p06-database-fundamentals.js'
@@ -94,6 +103,7 @@ on:
       - 'tests/academic-browser-acceptance-13e.mjs'
       - 'tests/course-readiness-browser-a2.mjs'
       - 'tests/event-grade-browser-a3.mjs'
+      - 'tests/transcript-honors-browser-a4.mjs'
       - '.github/workflows/academic-2026-prerequisite-gate.yml'
 
 jobs:
@@ -112,6 +122,8 @@ jobs:
         run: node scripts/validate-course-readiness-runtime-a2.js
       - name: Validate A3 event and grade evidence runtime
         run: node scripts/validate-event-grade-runtime-a3.js
+      - name: Validate A4 transcript and honors evidence runtime
+        run: node scripts/validate-transcript-honors-runtime-a4.js
       - name: Validate prerequisite content coverage audit
         run: node scripts/validate-prerequisite-coverage-2026.js
       - name: Validate P9 Markov / Queueing / Simulation pack
@@ -145,11 +157,14 @@ jobs:
           node --check scripts/validate-course-learning-architecture-s1-2026.js
           node --check scripts/validate-course-readiness-runtime-a2.js
           node --check scripts/validate-event-grade-runtime-a3.js
+          node --check scripts/validate-transcript-honors-runtime-a4.js
           node --check assets/js/academic-course-runtime.js
           node --check assets/js/academic-event-runtime.js
           node --check assets/js/academic-grade-runtime.js
+          node --check assets/js/academic-transcript-runtime.js
           node --check tests/course-readiness-browser-a2.mjs
           node --check tests/event-grade-browser-a3.mjs
+          node --check tests/transcript-honors-browser-a4.mjs
           node --check assets/js/academic-main.js
           node --check assets/js/academic-scheduler-preview.js
           node --check assets/js/academic-scheduler-apply.js
@@ -208,6 +223,11 @@ jobs:
           BAUMAN_E2E_BASE_URL: http://127.0.0.1:4173/
           BAUMAN_E2E_ARTIFACT_DIR: artifacts/browser-a3
         run: node tests/event-grade-browser-a3.mjs
+      - name: Run A4 Transcript and Honors browser acceptance
+        env:
+          BAUMAN_E2E_BASE_URL: http://127.0.0.1:4173/
+          BAUMAN_E2E_ARTIFACT_DIR: artifacts/browser-a4
+        run: node tests/transcript-honors-browser-a4.mjs
       - name: Show static server log on failure
         if: failure()
         run: cat /tmp/bauman-http.log || true
@@ -220,5 +240,6 @@ jobs:
             artifacts/browser-13e
             artifacts/browser-a2
             artifacts/browser-a3
+            artifacts/browser-a4
           if-no-files-found: warn
           retention-days: 7
