@@ -1,7 +1,7 @@
 {
   "id": "bauman_math_theory_lecture_content_e146_c03_complete",
   "schema": "bauman_math_content_records_v1",
-  "version": "E178_C03_L05_CONTENT_FACTORY_C1_C6_PASS",
+  "version": "E179_C03_L06_CONTENT_FACTORY_C1_C5",
   "title": "Bài giảng lý thuyết Toán · Nội dung học tập",
   "role": "content",
   "frameSource": "theory_lecture_frame.json",
@@ -10164,227 +10164,668 @@
       "chapterId": "MATH-VN-C03-ham_so_ao_ham_va_gradien",
       "lessonTitle": "§3.6 · Từ gradient sang backpropagation và tối ưu ML",
       "title": "§3.6 · Từ gradient sang backpropagation và tối ưu ML",
-      "programLectureId": "MATH-PROG-L03-calculus-gradient-optimization",
+      "orderInChapter": 6,
+      "programLectureId": "MATH-PROG-L17-ai-machine-learning-math-foundations",
       "programLectureIds": [
-        "MATH-PROG-L03-calculus-gradient-optimization",
         "MATH-PROG-L17-ai-machine-learning-math-foundations",
-        "MATH-PROG-L02-vector-spaces-linear-maps"
+        "MATH-PROG-L05-calculus-gradient",
+        "MATH-PROG-L06-optimization"
       ],
-      "programAnchorTitle": "Giải tích, gradient và tối ưu",
+      "programAnchorTitle": "Nền tảng toán cho AI và học máy",
       "roadmapRole": "foundation_before_prep",
-      "baumanFocus": "Liên kết gradient, chain rule, backpropagation và training loop ML để hiểu cách mô hình nhiều tầng tính gradient, cập nhật trọng số và kiểm soát lỗi train thực tế.",
+      "baumanFocus": "Nối function composition + chain rule + gradient thành computation graph/backprop; tính gradient của scalar loss theo parameters bằng local derivatives; phân biệt backprop/autodiff với optimizer update.",
+      "pureLayer": [
+        "chain rule",
+        "computation graph",
+        "local derivative",
+        "reverse-mode differentiation",
+        "gradient accumulation",
+        "Jacobian preview"
+      ],
+      "appliedLayer": [
+        "backpropagation",
+        "autograd",
+        "loss gradient",
+        "parameter update",
+        "gradient check",
+        "ML optimization"
+      ],
+      "bridgeQuestion": "Làm sao tính gradient của một scalar loss theo rất nhiều parameters mà không khai triển toàn bộ đạo hàm bằng tay?",
+      "auditStatus": "REVIEW",
       "sourceAnchors": {
         "stageId": "vn",
-        "disciplineId": "calculus_optimization",
+        "disciplineId": "calculus_multivariable",
         "chapterId": "MATH-VN-C03-ham_so_ao_ham_va_gradien",
-        "programLectureId": "MATH-PROG-L03-calculus-gradient-optimization"
+        "programLectureId": "MATH-PROG-L17-ai-machine-learning-math-foundations",
+        "officialCurriculum": "bmstu_iu5_2026_curriculum"
       },
       "tags": [
-        "backpropagation",
         "chain rule",
+        "backpropagation",
         "autograd",
-        "optimizer",
-        "machine learning"
+        "computational graph",
+        "gradient",
+        "PyTorch",
+        "ML optimization"
       ],
+      "learningContract": {
+        "governingQuestion": "Backpropagation dùng chain rule trên computation graph thế nào để tính gradients, và gradients đó khác parameter-update algorithm ra sao?",
+        "whyNeeded": "Đây là cầu cuối từ calculus foundation sang machine learning: loss gradient phải được tính hiệu quả trước khi optimizer có thể cập nhật weights.",
+        "prerequisiteGates": [
+          "Hiểu function composition từ §3.1.",
+          "Hiểu derivative/local sensitivity từ §3.2.",
+          "Hiểu gradient/vector sensitivity từ §3.3.",
+          "Hiểu gradient descent update từ §3.4.",
+          "Hiểu loss/stationary point từ §3.5."
+        ],
+        "measurableLearningOutcomes": [
+          "LO1: Áp dụng scalar chain rule cho composition 2–4 nodes và ghi đúng local derivatives.",
+          "LO2: Vẽ/đọc computation graph đơn giản gồm inputs, parameters, intermediate, prediction và scalar loss.",
+          "LO3: Tính backward gradients cho model ŷ=wx+b, L=0.5(ŷ-y)^2 và kiểm bằng tính tay.",
+          "LO4: Giải thích reverse-mode/backprop truyền incoming gradient từ loss về leaves bằng local chain-rule products.",
+          "LO5: Phân biệt backprop/autograd (gradient computation) với optimizer/gradient descent (parameter update).",
+          "LO6: Dùng PyTorch autograd example tối thiểu và kiểm w.grad/b.grad bằng expected analytical values.",
+          "LO7: Nhận biết gradient accumulation/zeroing và dùng finite-difference gradient check như diagnostic độc lập."
+        ],
+        "exactScope": [
+          "scalar chain rule",
+          "computation graph",
+          "reverse propagation",
+          "parameter gradients",
+          "autograd beginner entry",
+          "optimizer separation",
+          "gradient checking"
+        ],
+        "explicitDeferrals": [
+          "Full Jacobian calculus and vector-Jacobian products → later matrix-calculus/NN chapter.",
+          "Deep network architectures → later AI subject.",
+          "Vanishing/exploding gradients → later neural-net training.",
+          "Momentum/Adam and schedulers → later ML optimization.",
+          "Custom autograd functions → later software/ML engineering."
+        ],
+        "canonicalTerminology": {
+          "chainRule": "quy tắc dây chuyền",
+          "computationGraph": "đồ thị tính toán",
+          "forwardPass": "lan truyền xuôi/forward pass",
+          "backwardPass": "lan truyền ngược/backward pass",
+          "backpropagation": "backpropagation",
+          "automaticDifferentiation": "vi phân tự động",
+          "localDerivative": "đạo hàm cục bộ",
+          "incomingGradient": "gradient truyền vào",
+          "gradientAccumulation": "tích lũy gradient",
+          "optimizer": "bộ tối ưu"
+        },
+        "symbols": {
+          "ŷ": "model prediction",
+          "L": "scalar loss",
+          "∂L/∂w": "loss gradient w.r.t. parameter w",
+          "g_out": "incoming gradient from downstream node",
+          "g_in=g_out·local_derivative": "scalar chain-rule backward step"
+        },
+        "continuity": {
+          "previous": "§3.5 · Hàm mất mát, cực trị và điều kiện tối ưu",
+          "next": "Chương 4 · Tích phân và phương trình vi phân nền"
+        }
+      },
+      "technicalRussian": {
+        "terms": [
+          [
+            "правило цепочки",
+            "chain rule"
+          ],
+          [
+            "вычислительный граф",
+            "computation graph"
+          ],
+          [
+            "прямой проход",
+            "forward pass"
+          ],
+          [
+            "обратное распространение",
+            "backpropagation"
+          ],
+          [
+            "автоматическое дифференцирование",
+            "automatic differentiation"
+          ],
+          [
+            "локальная производная",
+            "local derivative"
+          ],
+          [
+            "градиент параметра",
+            "parameter gradient"
+          ],
+          [
+            "накопление градиента",
+            "gradient accumulation"
+          ],
+          [
+            "оптимизатор",
+            "optimizer"
+          ]
+        ],
+        "commandVerbs": [
+          [
+            "вычислите",
+            "hãy tính"
+          ],
+          [
+            "распространите",
+            "hãy truyền"
+          ],
+          [
+            "сравните",
+            "hãy so sánh"
+          ],
+          [
+            "объясните",
+            "hãy giải thích"
+          ]
+        ],
+        "oralFrames": [
+          "Обратное распространение применяет правило цепочки от функции потерь к параметрам.",
+          "Backprop вычисляет градиенты, а оптимизатор использует их для обновления параметров.",
+          "Численная проверка градиента полезна как независимый диагностический тест."
+        ]
+      },
+      "sourceProvenance": [
+        {
+          "id": "bmstu_iu5_2026_curriculum",
+          "kind": "official_curriculum",
+          "url": "https://home.science.iu5.bmstu.ru/study-plans/iu5-master-program.pdf",
+          "supports": [
+            "preparation context for machine-learning and AI coursework"
+          ]
+        },
+        {
+          "id": "stanford_cs231n_backprop_2026",
+          "kind": "authoritative_university_material",
+          "url": "https://cs231n.stanford.edu/slides/2026/section_2_backprop.pdf",
+          "supports": [
+            "backpropagation computes gradients through a chain of operations",
+            "chain rule and modular computation-graph interpretation"
+          ]
+        },
+        {
+          "id": "pytorch_autograd_tutorial",
+          "kind": "official_documentation",
+          "url": "https://docs.pytorch.org/tutorials/beginner/basics/autograd_tutorial.html",
+          "supports": [
+            "autograd records computational operations and computes gradients using the chain rule",
+            "loss.backward and parameter grad access"
+          ]
+        },
+        {
+          "id": "pytorch_autograd_mechanics",
+          "kind": "official_documentation",
+          "url": "https://docs.pytorch.org/docs/stable/notes/autograd",
+          "supports": [
+            "reverse automatic differentiation over a recorded computation graph",
+            "gradient propagation from outputs toward graph leaves"
+          ]
+        }
+      ],
+      "generatedMaterial": {
+        "status": "AI_DRAFT_REVIEWED_IN_CONTENT_FACTORY",
+        "lineage": "Generated bridge lesson anchored to Stanford CS231N backprop material and PyTorch autograd documentation, reusing C03 calculus foundations.",
+        "canonicalSourceReplacement": false
+      },
+      "contentFactory": {
+        "C1": "PASS",
+        "C2": "PASS",
+        "C3": "PASS",
+        "C4": "PASS",
+        "C5": "PASS",
+        "C6": {
+          "software": "STATIC_QA_PENDING",
+          "user": "PENDING",
+          "blockers": 0,
+          "majors": 0,
+          "inheritedDeferredGate": "E164",
+          "acceptance": "PENDING_C6"
+        }
+      },
       "slides": [
         {
           "role": "problem_framing",
-          "title": "Backpropagation là cách tính gradient cho mô hình nhiều tầng",
+          "title": "ORIENT · Gradient của loss phải đi qua cả chuỗi tính toán",
+          "sourceRefs": [
+            "stanford_cs231n_backprop_2026",
+            "pytorch_autograd_tutorial"
+          ],
           "blocks": [
             {
               "type": "text",
-              "title": "Ý chính",
-              "body": "Khi mô hình là chuỗi nhiều phép biến đổi, gradient của loss theo tham số sâu bên trong không thể tính thủ công từng cái. Backpropagation dùng quy tắc dây chuyền để truyền sai số từ đầu ra ngược về các lớp trước."
+              "title": "Câu hỏi điều khiển",
+              "body": "Nếu loss L phụ thuộc prediction, prediction phụ thuộc nhiều layers/parameters, làm sao lấy ∂L/∂parameter mà không khai triển biểu thức khổng lồ?"
+            },
+            {
+              "type": "text",
+              "title": "Câu trả lời",
+              "body": "Tách computation thành local operations; forward tính values, backward dùng chain rule truyền gradients từ loss ngược về parameters."
+            },
+            {
+              "type": "formula",
+              "title": "Core pattern",
+              "body": "forward: input → intermediate → output → loss\nbackward: ∂L/∂loss → ... → ∂L/∂parameter"
+            },
+            {
+              "type": "qa",
+              "title": "Retrieval",
+              "body": "Backprop tạo parameter update hay chỉ tạo gradients? Parameter update thuộc optimizer."
             }
           ]
         },
         {
           "role": "deep_essence",
-          "title": "Backprop không phải phép màu, chỉ là chain rule có tổ chức",
+          "title": "REACTIVATION · Chain rule nối các local sensitivities",
           "blocks": [
             {
+              "type": "formula",
+              "title": "Scalar chain",
+              "body": "z=g(x), y=f(z)\ndy/dx = (dy/dz)(dz/dx)"
+            },
+            {
               "type": "text",
-              "title": "Bản chất",
-              "body": "Mạng neural là hàm hợp: đầu vào đi xuôi để tạo dự đoán, loss đo sai số, đạo hàm đi ngược để biết mỗi trọng số chịu trách nhiệm bao nhiêu trong sai số đó."
+              "title": "Local view",
+              "body": "Mỗi node chỉ cần biết local derivative của operation mình và incoming gradient từ downstream."
+            },
+            {
+              "type": "formula",
+              "title": "Backward message",
+              "body": "g_in = g_out × local_derivative"
+            },
+            {
+              "type": "qa",
+              "title": "Tự nói lại",
+              "body": "Vì sao modular local derivatives tốt hơn tự khai triển derivative toàn model bằng tay?"
             }
           ]
         },
         {
           "role": "counter_intuition",
-          "title": "Sai số đi ngược, dữ liệu không đi ngược",
+          "title": "COUNTER-INTUITION · Backprop không phải gradient descent",
           "blocks": [
             {
               "type": "text",
-              "title": "Điểm dễ nhầm",
-              "body": "Backprop không đảo ngược quá trình dự đoán. Nó truyền gradient của loss qua các phép toán đã lưu từ forward pass. Cái quay về là thông tin đạo hàm, không phải mẫu dữ liệu."
+              "title": "Backprop/autodiff",
+              "body": "Tính ∂L/∂parameters."
+            },
+            {
+              "type": "text",
+              "title": "Optimizer",
+              "body": "Dùng gradients để quyết định update, ví dụ w←w-α∂L/∂w."
+            },
+            {
+              "type": "text",
+              "title": "Separation matters",
+              "body": "Cùng gradients có thể dùng với SGD, momentum, Adam hoặc chỉ để sensitivity analysis."
+            },
+            {
+              "type": "qa",
+              "title": "Diagnostic",
+              "body": "Nếu gọi loss.backward() nhưng không gọi optimizer step, parameters tự đổi không?"
             }
           ]
         },
         {
           "role": "real_bridge",
-          "title": "Từ perceptron nhỏ đến mạng sâu",
+          "title": "CONTEXT · Một linear neuron đủ để thấy toàn backprop",
           "blocks": [
             {
-              "type": "text",
-              "title": "Ví dụ",
-              "body": "Một mạng nhận vector cảm biến, qua nhiều lớp tạo dự đoán lỗi thiết bị. Loss ở đầu ra được truyền ngược để cập nhật từng trọng số, từ lớp cuối đến lớp đầu."
+              "type": "formula",
+              "title": "Forward",
+              "body": "ŷ = wx+b\nL = 1/2(ŷ-y)^2"
+            },
+            {
+              "type": "formula",
+              "title": "Local derivatives",
+              "body": "∂L/∂ŷ=ŷ-y\n∂ŷ/∂w=x\n∂ŷ/∂b=1"
+            },
+            {
+              "type": "formula",
+              "title": "Backprop",
+              "body": "∂L/∂w=(ŷ-y)x\n∂L/∂b=ŷ-y"
+            },
+            {
+              "type": "qa",
+              "title": "Decision question",
+              "body": "Nếu x=0, gradient theo w là gì dù prediction error khác zero?"
             }
           ]
         },
         {
           "role": "notation",
-          "title": "Ký hiệu hàm hợp và chain rule",
+          "title": "FORMALIZE · Computation graph là DAG của values và operations",
+          "sourceRefs": [
+            "pytorch_autograd_mechanics"
+          ],
           "blocks": [
             {
-              "type": "formula",
-              "title": "Hàm hợp",
-              "body": "y = f_3(f_2(f_1(x)))"
+              "type": "text",
+              "title": "Leaves",
+              "body": "Inputs/parameters ở leaves; scalar loss thường ở root/output side của differentiation task."
             },
             {
-              "type": "formula",
-              "title": "Quy tắc dây chuyền",
-              "body": "dJ/dw = dJ/da · da/dz · dz/dw"
+              "type": "text",
+              "title": "Forward pass",
+              "body": "Tính intermediate values và ghi operations cần cho derivative."
             },
             {
-              "type": "formula",
-              "title": "Cập nhật",
-              "body": "w = w - alpha dJ/dw"
+              "type": "text",
+              "title": "Backward pass",
+              "body": "Bắt đầu gradient 1 tại scalar loss rồi propagate bằng chain rule về leaves."
+            },
+            {
+              "type": "qa",
+              "title": "Quick check",
+              "body": "Tại sao scalar loss thuận tiện cho backward() mặc định hơn arbitrary vector output?"
             }
           ]
         },
         {
           "role": "core_formula",
-          "title": "Quy trình forward, backward, update",
+          "title": "CORE · Example số hoàn chỉnh bằng tay",
           "blocks": [
             {
               "type": "formula",
-              "title": "Forward",
-              "body": "x -> z1 -> a1 -> z2 -> y_hat -> J"
+              "title": "Values",
+              "body": "x=2, y=5, w=1, b=0\nŷ=2\nL=1/2(2-5)^2=4.5"
             },
             {
               "type": "formula",
-              "title": "Backward",
-              "body": "dJ/dy_hat -> dJ/dz2 -> dJ/dw2 -> dJ/da1 -> dJ/dw1"
+              "title": "Gradients",
+              "body": "∂L/∂ŷ=-3\n∂L/∂w=(-3)(2)=-6\n∂L/∂b=-3"
             },
             {
-              "type": "text",
-              "title": "Update",
-              "body": "Optimizer dùng gradient để cập nhật trọng số. SGD, Momentum, RMSProp và Adam khác nhau ở cách dùng lịch sử gradient."
+              "type": "formula",
+              "title": "One GD step α=0.1",
+              "body": "w_new=1-0.1(-6)=1.6\nb_new=0-0.1(-3)=0.3"
+            },
+            {
+              "type": "qa",
+              "title": "Result",
+              "body": "New prediction at x=2 is 3.5; new loss 1.125. Gradient step giảm loss trong example này."
             }
           ]
         },
         {
           "role": "assumption_gate",
-          "title": "Điều kiện để gradient truyền được",
+          "title": "ASSUMPTION GATE · Computation graph và differentiability",
           "blocks": [
             {
               "type": "text",
-              "title": "Điều kiện",
-              "body": "Các phép toán cần khả vi hoặc có đạo hàm gần đúng/subgradient. Cần lưu giá trị trung gian của forward pass. Hàm kích hoạt, chuẩn hóa dữ liệu và khởi tạo trọng số ảnh hưởng mạnh đến gradient."
+              "title": "Differentiable operations",
+              "body": "Backprop cần derivative rules cho operations trên path đang dùng; non-differentiable points cần convention/subgradient/special handling tùy operator."
+            },
+            {
+              "type": "text",
+              "title": "Scalar loss",
+              "body": "Training thường tối ưu scalar objective; vector outputs phải được reduced/paired with upstream vector for backward products."
+            },
+            {
+              "type": "text",
+              "title": "Graph correctness",
+              "body": "Autograd differentiates graph bạn thực sự coded, không graph bạn intended."
+            },
+            {
+              "type": "qa",
+              "title": "Gate",
+              "body": "Nếu data preprocessing vô tình detach/copy làm mất gradient path, autograd có thể tính đúng trên graph còn lại nhưng training logic vẫn sai không?"
             }
           ]
         },
         {
           "role": "mini_case",
-          "title": "Mini case: một mạng hai lớp dự đoán lỗi cảm biến",
+          "title": "E1 SIMPLE · Chain rule ba nodes",
           "blocks": [
             {
+              "type": "formula",
+              "title": "Graph",
+              "body": "x → z=x^2 → y=3z → L=(y-12)^2"
+            },
+            {
+              "type": "formula",
+              "title": "At x=2",
+              "body": "z=4, y=12, L=0 ⇒ dL/dx=0"
+            },
+            {
               "type": "text",
-              "title": "Case",
-              "body": "Input x là vector đặc trưng. Lớp ẩn tạo biểu diễn a1. Đầu ra y_hat dự đoán xác suất lỗi. Cross-entropy tạo loss, backprop tính gradient cho W2 rồi W1 để cả bộ trích đặc trưng và bộ phân loại cùng được sửa."
+              "title": "Perturbed point",
+              "body": "At x=1: z=1,y=3,L=81; dL/dy=2(3-12)=-18, dy/dz=3, dz/dx=2 ⇒ dL/dx=-108."
+            },
+            {
+              "type": "qa",
+              "title": "Sanity",
+              "body": "Sign negative tại x=1 nói tăng x nhỏ làm L tăng hay giảm?"
             }
           ]
         },
         {
           "role": "interpretation",
-          "title": "Gradient nói tham số nào cần chịu trách nhiệm",
+          "title": "E2 CONTEXTUAL · Branching graph phải cộng gradient contributions",
           "blocks": [
             {
+              "type": "formula",
+              "title": "Branch",
+              "body": "L = a(x)+b(x) ⇒ dL/dx = da/dx + db/dx"
+            },
+            {
               "type": "text",
-              "title": "Diễn giải",
-              "body": "Nếu dJ/dw lớn, thay đổi nhỏ ở w ảnh hưởng mạnh đến loss. Nếu gradient gần 0, w ít được cập nhật, có thể vì mô hình đã ổn, vùng bão hòa, learning rate/activation không phù hợp hoặc gradient bị biến mất."
+              "title": "Graph meaning",
+              "body": "Nếu một variable ảnh hưởng loss qua nhiều downstream paths, reverse-mode phải accumulate contributions từ mọi path."
+            },
+            {
+              "type": "text",
+              "title": "Framework behavior",
+              "body": "Autograd systems accumulate gradient contributions at shared leaves/nodes."
+            },
+            {
+              "type": "qa",
+              "title": "Transfer nhẹ",
+              "body": "Nếu x được dùng hai lần trong y=x^2+3x, derivative có một hay hai contributions?"
             }
           ]
         },
         {
           "role": "simulation",
-          "title": "Thí nghiệm autograd tối giản",
+          "title": "BEGINNER ENTRY · PyTorch autograd đối chiếu analytical gradient",
+          "sourceRefs": [
+            "pytorch_autograd_tutorial"
+          ],
           "blocks": [
             {
               "type": "code",
-              "title": "Công cụ",
-              "body": "loss.backward()\noptimizer.step()\noptimizer.zero_grad()\n\n# kiểm tra gradient\nfor name, p in model.named_parameters():\n    print(name, p.grad.norm())"
+              "title": "Deterministic PyTorch check",
+              "body": "import torch\n\nx = torch.tensor(2.0)\ny = torch.tensor(5.0)\nw = torch.tensor(1.0, requires_grad=True)\nb = torch.tensor(0.0, requires_grad=True)\n\npred = w*x + b\nloss = 0.5*(pred-y)**2\nloss.backward()\n\nassert torch.allclose(w.grad, torch.tensor(-6.0))\nassert torch.allclose(b.grad, torch.tensor(-3.0))\nprint(pred.item(), loss.item(), w.grad.item(), b.grad.item())"
             },
             {
               "type": "text",
-              "title": "Mục tiêu",
-              "body": "Theo dõi norm gradient từng lớp để phát hiện lớp học quá chậm, gradient nổ hoặc gradient biến mất."
+              "title": "BEGINNER ENTRY · read grads",
+              "body": "w.grad và b.grad chứa loss derivatives với respect to leaves sau backward."
+            },
+            {
+              "type": "text",
+              "title": "Software trust",
+              "body": "Autograd gradient nên được spot-check bằng analytical hoặc finite differences trên model nhỏ; framework correctness không thay model/graph correctness."
+            },
+            {
+              "type": "qa",
+              "title": "Gradient accumulation",
+              "body": "Nếu backward lần nữa mà không zero grad, nhiều frameworks/PyTorch sẽ accumulate. Vì sao training loop cần zero gradients?"
             }
           ]
         },
         {
           "role": "common_mistakes",
-          "title": "Lỗi thường gặp khi train mạng",
+          "title": "MISCONCEPTION MAP · 5 lỗi về backprop",
           "blocks": [
             {
               "type": "text",
-              "title": "Lỗi",
-              "body": "Quên zero_grad; cập nhật trước khi backward; learning rate quá lớn; activation bão hòa; dữ liệu chưa normalize; chỉ nhìn accuracy mà không nhìn loss và gradient norm."
+              "title": "MAJOR · «Backprop cập nhật weights»",
+              "body": "Backprop computes gradients; optimizer updates weights."
+            },
+            {
+              "type": "text",
+              "title": "MAJOR · «Chain rule chỉ nhân một path»",
+              "body": "Branching graph cần sum contributions từ paths."
+            },
+            {
+              "type": "text",
+              "title": "MAJOR · «Autograd đúng nghĩa model đúng»",
+              "body": "Autograd differentiates coded graph, kể cả semantic model sai."
+            },
+            {
+              "type": "text",
+              "title": "MAJOR · «grad tự reset sau backward»",
+              "body": "PyTorch accumulates gradients unless zeroed/cleared."
+            },
+            {
+              "type": "text",
+              "title": "MAJOR · «Phải tạo full Jacobian»",
+              "body": "Reverse-mode cho scalar loss có thể propagate gradient products mà không materialize full Jacobians."
             }
           ]
         },
         {
           "role": "application",
-          "title": "Ứng dụng lập trình cho tối ưu ML",
+          "title": "E3 TRANSFER · Audit một training step",
           "blocks": [
             {
-              "type": "text",
-              "title": "Nhiệm vụ",
-              "body": "Tạo training loop có forward, loss, backward, step, zero_grad. Log loss, validation metric, gradient norm và learning rate. Thêm gradient clipping nếu gradient nổ."
+              "type": "qa",
+              "title": "Task 1",
+              "body": "Model ŷ=w1x1+w2x2+b, MSE scalar loss. Viết local derivatives và parameter gradients cho một sample."
+            },
+            {
+              "type": "qa",
+              "title": "Task 2",
+              "body": "Vẽ computation graph và đánh dấu forward values/backward gradient messages."
+            },
+            {
+              "type": "qa",
+              "title": "Task 3",
+              "body": "Thiết kế finite-difference check cho w1 và so với autograd w1.grad."
+            },
+            {
+              "type": "qa",
+              "title": "Task 4",
+              "body": "Tách rõ thứ tự training step: zero grad → forward → loss → backward → optimizer step. Giải thích nếu đảo sai."
             }
           ]
         },
         {
           "role": "practice",
-          "title": "Bài luyện tập",
+          "title": "PRACTICE LADDER · P0 → P3",
           "blocks": [
             {
-              "type": "text",
-              "title": "Bài tập",
-              "body": "Vẽ sơ đồ forward/backward cho mô hình y_hat = sigmoid(w2 * relu(w1*x + b1) + b2). Ghi rõ gradient cần đi qua những phép toán nào trước khi cập nhật w1."
+              "type": "qa",
+              "title": "P0 · Recognition",
+              "body": "Trong 6 statements, phân loại forward computation / local derivative / backward propagation / optimizer update."
+            },
+            {
+              "type": "qa",
+              "title": "P1 · Guided",
+              "body": "Tính tay full gradients cho ŷ=wx+b, squared loss với một sample, rồi chạy one gradient step."
+            },
+            {
+              "type": "qa",
+              "title": "P2 · Independent",
+              "body": "Tự tạo scalar computation graph 4 operations, derive gradient by chain rule, verify finite difference."
+            },
+            {
+              "type": "qa",
+              "title": "P3 · Transfer",
+              "body": "Tạo branching graph có shared variable, chứng minh gradient cần sum path contributions, verify autograd."
             }
           ]
         },
         {
           "role": "professor_qa",
-          "title": "Vấn đáp kiểm tra hiểu sâu",
+          "title": "ASSESSMENT · D0 / D1 / D2",
           "blocks": [
             {
               "type": "qa",
-              "title": "Câu hỏi",
-              "body": "Backprop khác gradient descent ở điểm nào? Vì sao cần lưu intermediate values từ forward pass? Khi gradient của lớp đầu gần 0 liên tục, em sẽ kiểm tra những nguyên nhân nào?"
+              "title": "D0 RECALL",
+              "body": "Nêu scalar chain rule, forward/backward pass, gradient accumulation và optimizer separation."
+            },
+            {
+              "type": "qa",
+              "title": "D1 APPLICATION",
+              "body": "Cho computation graph nhỏ có branch. Tính forward values, every local derivative, backward gradients, rồi verify bằng code."
+            },
+            {
+              "type": "qa",
+              "title": "D2 EXPLAIN / ORAL",
+              "body": "Giải thích 60–90 giây: «Backprop khác gradient descent thế nào và vì sao reverse-mode hiệu quả cho scalar loss với nhiều parameters?»"
+            },
+            {
+              "type": "text",
+              "title": "Mastery evidence",
+              "body": "Đạt khi learner có thể làm chain rule trên graph mới, kiểm gradient độc lập và không nhầm gradient computation với parameter update."
             }
           ]
         },
         {
           "role": "bridge",
-          "title": "Cầu sang tối ưu nâng cao và mô hình lớn",
+          "title": "TECHNICAL RUSSIAN + NEXT · kết thúc C03",
           "blocks": [
             {
               "type": "text",
-              "title": "Liên kết",
-              "body": "Sau backprop, câu hỏi thực tế là làm sao train ổn định hơn: mini-batch, momentum, Adam, scheduler, regularization, batch normalization và kiểm soát overfitting."
+              "title": "9 thuật ngữ",
+              "body": "правило цепочки · вычислительный граф · прямой проход · обратное распространение · автоматическое дифференцирование · локальная производная · градиент параметра · накопление градиента · оптимизатор"
+            },
+            {
+              "type": "text",
+              "title": "4 động từ",
+              "body": "вычислите — tính; распространите — truyền; сравните — so sánh; объясните — giải thích."
+            },
+            {
+              "type": "text",
+              "title": "Khung vấn đáp",
+              "body": "«Обратное распространение применяет правило цепочки от функции потерь к параметрам.»\n«Backprop вычисляет градиенты, а оптимизатор использует их для обновления параметров.»"
+            },
+            {
+              "type": "text",
+              "title": "Cầu sang Chương 4",
+              "body": "C03 đã phục hồi function→derivative→gradient→descent→optimality→backprop. Chương kế tiếp chuyển sang tích phân/phương trình vi phân để mô tả tích lũy và dynamics liên tục."
             }
           ]
         },
         {
           "role": "takeaway",
-          "title": "Kết luận cần nhớ",
+          "title": "REVIEW · 6 cầu nối từ calculus sang ML",
           "blocks": [
             {
               "type": "text",
-              "title": "Cốt lõi",
-              "body": "Backpropagation tính gradient hiệu quả cho mô hình nhiều tầng. Gradient descent dùng các gradient đó để cập nhật tham số; optimizer quyết định cách bước đi trên bề mặt loss."
+              "title": "1",
+              "body": "Computation graph tách model thành local operations."
+            },
+            {
+              "type": "text",
+              "title": "2",
+              "body": "Backprop là chain rule chạy ngược để tính gradients."
+            },
+            {
+              "type": "text",
+              "title": "3",
+              "body": "Shared paths cần gradient accumulation."
+            },
+            {
+              "type": "text",
+              "title": "4",
+              "body": "Autograd computes gradients; optimizer updates parameters."
+            },
+            {
+              "type": "text",
+              "title": "5",
+              "body": "Gradient checking là diagnostic độc lập hữu ích trên model nhỏ."
+            },
+            {
+              "type": "text",
+              "title": "6",
+              "body": "Framework có thể differentiate graph sai về semantics; software evidence không thay model validation."
             }
           ]
         }
@@ -10392,9 +10833,9 @@
     }
   ],
   "lastContentPass": {
-    "id": "E178",
-    "lessonId": "MATH-VN-C03-giai_tich_dao_ham_gradient-L05-loss-extrema-optimality-e146",
-    "status": "LOCAL_CONTENT_QA_PASS_GLOBAL_BROWSER_BASELINE_PENDING",
+    "id": "E179",
+    "lessonId": "MATH-VN-C03-giai_tich_dao_ham_gradient-L06-gradient-backprop-ml-optimization-e146",
+    "status": "C1_C5_PASS_C6_PENDING",
     "generatedAt": "2026-09-21",
     "inheritedRuntimeGate": "E164"
   },
