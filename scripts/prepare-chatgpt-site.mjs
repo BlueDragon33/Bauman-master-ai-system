@@ -24,6 +24,8 @@ const foundationRuntime=[
 for(const relative of [
   'assets/js/platform/runtime-config.js',
   'assets/js/platform/device-access-gate.js',
+  'assets/css/deep-study-journal-v1.css',
+  'assets/js/deep-study-journal-v1.js',
   'subjects/math/index.html',
   'subjects/russian/index.html',
   'subjects/russian/assets/handwriting-glyph-authority.js',
@@ -71,6 +73,9 @@ const indexPath=path.join(output,'index.html');
 const sourceHtml=fs.readFileSync(indexPath,'utf8');
 if(sourceHtml.includes('bauman-platform-access'))throw new Error('Source runtime already contains a platform access marker.');
 if(!sourceHtml.includes('assets/js/platform/device-access-gate.js'))throw new Error('Device Gate v4 must remain loaded in the Site package.');
+for(const resource of ['assets/css/deep-study-journal-v1.css','assets/js/deep-study-journal-v1.js']){
+  if(!sourceHtml.includes(resource))throw new Error(`Deep Study Journal package reference missing: ${resource}`);
+}
 const metadata=[
   `  <meta name="bauman-platform-access" content="chatgpt-site-owner-private">`,
   `  <meta name="bauman-deployment-channel" content="chatgpt-site">`,
