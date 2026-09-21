@@ -1,7 +1,7 @@
 {
   "id": "bauman_math_theory_lecture_content_e146_c03_complete",
   "schema": "bauman_math_content_records_v1",
-  "version": "E169_C02_L04_CONTENT_FACTORY_C1_C6_PASS",
+  "version": "E170_C02_L05_CONTENT_FACTORY_C1_C5",
   "title": "Bài giảng lý thuyết Toán · Nội dung học tập",
   "role": "content",
   "frameSource": "theory_lecture_frame.json",
@@ -5422,6 +5422,7 @@
       "chapterId": "MATH-VN-C02-ma_tran_va_phep_bien_oi_",
       "lessonTitle": "§2.5 · Phép biến đổi tuyến tính trong hình học và dữ liệu",
       "title": "§2.5 · Phép biến đổi tuyến tính trong hình học và dữ liệu",
+      "orderInChapter": 5,
       "programLectureId": "MATH-PROG-L02-vector-spaces-linear-maps",
       "programLectureIds": [
         "MATH-PROG-L02-vector-spaces-linear-maps",
@@ -5430,214 +5431,650 @@
       ],
       "programAnchorTitle": "Không gian vectơ và ánh xạ tuyến tính",
       "roadmapRole": "foundation_before_prep",
-      "baumanFocus": "Hiểu ma trận như phép biến đổi hình học và dữ liệu: xoay, co giãn, chiếu, đổi cơ sở, giữ/mất thông tin.",
+      "baumanFocus": "Đọc ma trận như hành động hình học trên không gian dữ liệu: rotation, scaling, projection và change of coordinates; nhận biết transform giữ norm/angle, làm mất dimension hoặc chỉ đổi hệ biểu diễn.",
+      "pureLayer": [
+        "linear transformation",
+        "rotation",
+        "scaling",
+        "projection",
+        "orthogonal matrix",
+        "basis coordinates"
+      ],
+      "appliedLayer": [
+        "feature transform",
+        "coordinate change",
+        "sensor frame",
+        "projection/compression",
+        "NumPy geometry checks"
+      ],
+      "bridgeQuestion": "Một ma trận đang xoay, kéo, chiếu hay chỉ đổi hệ tọa độ, và từ các invariant nào ta biết transform đã giữ hay làm mất thông tin?",
+      "auditStatus": "REVIEW",
       "sourceAnchors": {
         "stageId": "vn",
         "disciplineId": "linear_algebra_data_space",
         "chapterId": "MATH-VN-C02-ma_tran_va_phep_bien_oi_",
-        "programLectureId": "MATH-PROG-L02-vector-spaces-linear-maps"
+        "programLectureId": "MATH-PROG-L02-vector-spaces-linear-maps",
+        "officialCurriculum": "bmstu_iu5_2026_curriculum"
       },
       "tags": [
         "linear transform",
-        "geometry",
+        "rotation",
+        "scaling",
         "projection",
+        "orthogonal",
         "basis change",
-        "data transform"
+        "data geometry",
+        "IU-5"
       ],
+      "learningContract": {
+        "governingQuestion": "Làm sao đọc tác động hình học của một matrix lên vector/data và phân biệt biến đổi giữ thông tin với biến đổi làm mất dimension?",
+        "whyNeeded": "Nền hình học cho PCA, embedding, sensor-frame transforms, feature scaling và interpretation của linear models.",
+        "prerequisiteGates": [
+          "Hiểu matrix-vector transform §2.1.",
+          "Hiểu composition §2.2.",
+          "Hiểu rank và information directions §2.3.",
+          "Hiểu invertibility và information loss §2.4."
+        ],
+        "measurableLearningOutcomes": [
+          "LO1: Nhận diện rotation, anisotropic scaling và projection từ matrix 2×2 đơn giản và mô tả tác động lên basis vectors.",
+          "LO2: Kiểm Q^TQ=I để nhận biết orthogonal transform và giải thích vì sao norm/dot product được bảo toàn.",
+          "LO3: Kiểm P^2=P cho projection matrix và liên hệ rank(P) với dimension còn giữ.",
+          "LO4: Phân biệt physical transform với change of coordinates; giải thích x=B[x]_B.",
+          "LO5: Dùng NumPy kiểm norm preservation, projection idempotence, rank và invertibility trên ví dụ deterministic.",
+          "LO6: Giải thích transform nào phù hợp để đổi frame, transform nào là compression và transform nào làm méo scale.",
+          "LO7: Chuẩn bị cầu nối từ projection/change of coordinates sang covariance/PCA và linear models ở §2.6."
+        ],
+        "exactScope": [
+          "2D rotation",
+          "diagonal scaling",
+          "orthogonal transforms",
+          "projection",
+          "basis-coordinate map",
+          "geometry/data interpretation"
+        ],
+        "explicitDeferrals": [
+          "General affine transforms và homogeneous coordinates → graphics/robotics specialized material.",
+          "Eigenvectors/eigenvalues → §2.6/later chapter.",
+          "SVD/PCA derivation sâu → §2.6 và PCA chapter.",
+          "Nonlinear manifolds → later AI/data analysis."
+        ],
+        "canonicalTerminology": {
+          "rotation": "phép quay",
+          "scaling": "phép co giãn",
+          "projection": "phép chiếu",
+          "orthogonalMatrix": "ma trận trực giao",
+          "basisChange": "đổi hệ cơ sở",
+          "coordinates": "tọa độ",
+          "invariant": "đại lượng bất biến",
+          "idempotent": "lũy đẳng"
+        },
+        "symbols": {
+          "R(θ)": "rotation matrix",
+          "S": "scaling matrix",
+          "P": "projection matrix",
+          "Q^TQ=I": "orthogonality condition",
+          "P^2=P": "projection idempotence",
+          "x=Bz": "physical vector x represented by basis-coordinate vector z"
+        },
+        "continuity": {
+          "previous": "§2.4 · Nghịch đảo, giải hệ và điều kiện tồn tại nghiệm",
+          "next": "§2.6 · Từ ma trận sang PCA và mô hình tuyến tính"
+        }
+      },
+      "technicalRussian": {
+        "terms": [
+          [
+            "линейное преобразование",
+            "phép biến đổi tuyến tính"
+          ],
+          [
+            "поворот",
+            "phép quay"
+          ],
+          [
+            "масштабирование",
+            "co giãn/scale"
+          ],
+          [
+            "проекция",
+            "phép chiếu"
+          ],
+          [
+            "ортогональная матрица",
+            "ma trận trực giao"
+          ],
+          [
+            "базис",
+            "cơ sở"
+          ],
+          [
+            "координаты",
+            "tọa độ"
+          ],
+          [
+            "смена базиса",
+            "đổi cơ sở"
+          ],
+          [
+            "сохранять норму",
+            "bảo toàn norm"
+          ]
+        ],
+        "commandVerbs": [
+          [
+            "преобразуйте",
+            "hãy biến đổi"
+          ],
+          [
+            "проверьте",
+            "hãy kiểm tra"
+          ],
+          [
+            "изобразите",
+            "hãy biểu diễn"
+          ],
+          [
+            "объясните",
+            "hãy giải thích"
+          ]
+        ],
+        "oralFrames": [
+          "Ортогональное преобразование сохраняет скалярные произведения и нормы.",
+          "Проекция уменьшает число независимых направлений и обычно необратима.",
+          "Смена координат не обязана менять сам геометрический вектор."
+        ]
+      },
+      "sourceProvenance": [
+        {
+          "id": "bmstu_iu5_2026_curriculum",
+          "kind": "official_curriculum",
+          "url": "https://home.science.iu5.bmstu.ru/study-plans/iu5-master-program.pdf",
+          "supports": [
+            "IU-5 preparation context for multidimensional data analysis, analytical models and machine learning"
+          ]
+        },
+        {
+          "id": "mit_1806_linear_transformations",
+          "kind": "authoritative_university_material",
+          "url": "https://ocw.mit.edu/courses/18-06sc-linear-algebra-fall-2011/pages/positive-definite-matrices-and-applications/linear-transformations-and-their-matrices/",
+          "supports": [
+            "matrices represent linear transformations",
+            "geometric interpretation through basis-vector images"
+          ]
+        },
+        {
+          "id": "numpy_matmul",
+          "kind": "official_documentation",
+          "url": "https://numpy.org/doc/stable/reference/generated/numpy.matmul.html",
+          "supports": [
+            "matrix-vector/matrix-matrix product semantics used in transform checks"
+          ]
+        },
+        {
+          "id": "numpy_norm",
+          "kind": "official_documentation",
+          "url": "https://numpy.org/doc/stable/reference/generated/numpy.linalg.norm.html",
+          "supports": [
+            "vector norm computation used to check norm preservation"
+          ]
+        }
+      ],
+      "generatedMaterial": {
+        "status": "AI_DRAFT_REVIEWED_IN_CONTENT_FACTORY",
+        "lineage": "Generated lesson anchored to MIT linear-transformation material, NumPy operations and prior C02 rank/invertibility lessons.",
+        "canonicalSourceReplacement": false
+      },
+      "contentFactory": {
+        "C1": "PASS",
+        "C2": "PASS",
+        "C3": "PASS",
+        "C4": "PASS",
+        "C5": "PASS",
+        "C6": {
+          "software": "STATIC_QA_PENDING",
+          "user": "PENDING",
+          "blockers": 0,
+          "majors": 0,
+          "inheritedDeferredGate": "E164",
+          "acceptance": "PENDING_C6"
+        }
+      },
       "slides": [
         {
           "role": "problem_framing",
-          "title": "Ma trận biến đổi hình dạng của không gian dữ liệu",
+          "title": "ORIENT · Matrix không chỉ tính số; nó biến dạng không gian",
+          "sourceRefs": [
+            "mit_1806_linear_transformations"
+          ],
           "blocks": [
             {
               "type": "text",
-              "title": "Ý chính",
-              "body": "Một ma trận không chỉ tính số; nó kéo, xoay, nén, chiếu hoặc đổi cách đọc vector. Hiểu hình học của ma trận giúp nhìn được dữ liệu bị biến đổi như thế nào."
+              "title": "Câu hỏi điều khiển",
+              "body": "Khi x→Ax, điều gì xảy ra với hướng, độ dài, góc và dimension? Nhìn matrix bằng hình học giúp trả lời trước khi nhìn output bằng code."
+            },
+            {
+              "type": "text",
+              "title": "Vì sao cần",
+              "body": "PCA, feature transform, đổi frame cảm biến và projection đều dựa trên cùng ngôn ngữ: matrix biến một không gian biểu diễn thành một không gian khác."
+            },
+            {
+              "type": "formula",
+              "title": "Cách đọc basis",
+              "body": "A e1 = c1, A e2 = c2, ...\nCác cột của A chính là ảnh của basis vectors chuẩn."
+            },
+            {
+              "type": "qa",
+              "title": "Retrieval",
+              "body": "Nếu một cột của A bằng zero, direction basis tương ứng đi đâu sau transform?"
             }
           ]
         },
         {
           "role": "deep_essence",
-          "title": "Tuyến tính nghĩa là bảo toàn cộng và nhân vô hướng",
+          "title": "REACTIVATION · Columns nói transform làm gì với basis",
           "blocks": [
             {
+              "type": "text",
+              "title": "Kiến thức cũ",
+              "body": "§2.1 đọc Ax như tổ hợp các cột. Vì x=Σ xj ej, nên Ax=Σ xj Aej. Do đó biết ảnh của basis là biết toàn bộ transform."
+            },
+            {
               "type": "formula",
-              "title": "Tuyến tính",
-              "body": "A(u+v)=Au+Av\nA(alpha u)=alpha Au"
+              "title": "Column view",
+              "body": "A=[c1 c2 ... cn]\nAx=x1 c1+...+xn cn"
             },
             {
               "type": "text",
-              "title": "Ý nghĩa",
-              "body": "Tính tuyến tính đảm bảo biến đổi xử lý cấu trúc vector nhất quán, không làm méo quy luật cộng và scale."
+              "title": "Ý nghĩa hình học",
+              "body": "Nếu c1,c2 vuông góc và cùng độ dài 1, transform 2D có thể là rotation/reflection. Nếu độ dài khác 1, có scaling. Nếu columns mất independence, dimension bị collapse."
+            },
+            {
+              "type": "qa",
+              "title": "Tự nói lại",
+              "body": "Tại sao chỉ cần xem A e1 và A e2 để hiểu một linear transform trên R^2?"
             }
           ]
         },
         {
           "role": "counter_intuition",
-          "title": "Biến đổi tuyến tính không phải lúc nào cũng giữ khoảng cách",
+          "title": "COUNTER-INTUITION · Đổi tọa độ không nhất thiết đổi vector hình học",
           "blocks": [
             {
               "type": "text",
-              "title": "Điểm dễ nhầm",
-              "body": "Một ma trận có thể co giãn khác nhau theo từng hướng, làm khoảng cách và góc thay đổi. Chỉ một số biến đổi đặc biệt như trực giao mới giữ độ dài và góc."
+              "title": "Physical transform",
+              "body": "y=Ax có thể thật sự đổi vector: xoay, scale hoặc project."
+            },
+            {
+              "type": "text",
+              "title": "Coordinate change",
+              "body": "Cùng một vector hình học có thể có coordinate vector khác khi đổi basis. Nếu B chứa basis vectors, x=Bz; z là coordinates của x trong basis B."
+            },
+            {
+              "type": "formula",
+              "title": "Hai đối tượng",
+              "body": "physical vector: x\ncoordinate vector in basis B: z=[x]_B\nrelation: x=Bz"
+            },
+            {
+              "type": "qa",
+              "title": "Diagnostic",
+              "body": "Khi z thay đổi vì ta chọn basis khác nhưng x vật lý giữ nguyên, đây là transform vật lý hay change of representation?"
             }
           ]
         },
         {
           "role": "real_bridge",
-          "title": "Biến đổi dữ liệu trong pipeline AI",
+          "title": "CONTEXT · Sensor frame, feature scale và compression",
           "blocks": [
             {
               "type": "text",
-              "title": "Ví dụ",
-              "body": "Chuẩn hóa tuyến tính, chiếu PCA, đổi embedding hoặc chuyển hệ tọa độ robot đều có thể được xem như biến đổi dữ liệu bằng ma trận."
+              "title": "Sensor frame",
+              "body": "Rotation matrix có thể đổi vector từ frame cảm biến sang frame thân robot nếu convention được xác định đúng."
+            },
+            {
+              "type": "text",
+              "title": "Feature scaling",
+              "body": "Diagonal matrix có thể rescale feature để cân bằng đơn vị hoặc weighting; đây là transform làm đổi geometry của distance."
+            },
+            {
+              "type": "text",
+              "title": "Projection",
+              "body": "Projection giữ component trong một subspace và loại component orthogonal; đây là information reduction có chủ đích."
+            },
+            {
+              "type": "qa",
+              "title": "Decision question",
+              "body": "Trong ba loại trên, loại nào thường invertible, loại nào chắc chắn có thể làm mất information direction?"
             }
           ]
         },
         {
           "role": "notation",
-          "title": "Các biến đổi cơ bản",
+          "title": "FORMALIZE · Ba matrix mẫu",
           "blocks": [
             {
               "type": "formula",
-              "title": "Scale 2D",
-              "body": "S = [[s_x,0],[0,s_y]]"
+              "title": "Rotation",
+              "body": "R(θ)=[[cosθ,-sinθ],[sinθ,cosθ]]"
             },
             {
               "type": "formula",
-              "title": "Rotation 2D",
-              "body": "R = [[cos(theta),-sin(theta)],[sin(theta),cos(theta)]]"
+              "title": "Scaling",
+              "body": "S=diag(s1,s2)"
             },
             {
               "type": "formula",
-              "title": "Projection lên trục x",
-              "body": "P = [[1,0],[0,0]]"
+              "title": "Projection lên x-axis",
+              "body": "P=[[1,0],[0,0]]"
+            },
+            {
+              "type": "qa",
+              "title": "Quick check",
+              "body": "rank(R)=? rank(P)=? Với θ bất kỳ, R có inverse không? P có inverse không?"
             }
           ]
         },
         {
           "role": "core_formula",
-          "title": "Đổi cơ sở bằng ma trận",
+          "title": "CORE · Orthogonal transform giữ dot product và norm",
           "blocks": [
             {
               "type": "formula",
-              "title": "Tọa độ và vector thật",
-              "body": "x = B c"
+              "title": "Orthogonality",
+              "body": "Q^TQ=I ⇒ Q^{-1}=Q^T"
             },
             {
-              "type": "text",
-              "title": "Diễn giải",
-              "body": "B chứa các vector cơ sở làm cột. Vector c là tọa độ trong cơ sở B; x là vector trong hệ tọa độ gốc."
+              "type": "formula",
+              "title": "Dot-product preservation",
+              "body": "(Qx)^T(Qy)=x^TQ^TQy=x^Ty"
+            },
+            {
+              "type": "formula",
+              "title": "Norm preservation",
+              "body": "||Qx||_2=||x||_2"
+            },
+            {
+              "type": "qa",
+              "title": "Interpretation",
+              "body": "Nếu dot product được giữ, angle giữa hai nonzero vectors có được giữ không? Vì sao?"
             }
           ]
         },
         {
           "role": "assumption_gate",
-          "title": "Điều kiện đọc đúng biến đổi",
+          "title": "ASSUMPTION GATE · Projection có signature khác rotation",
           "blocks": [
             {
+              "type": "formula",
+              "title": "Idempotence",
+              "body": "P^2=P"
+            },
+            {
               "type": "text",
-              "title": "Điều kiện",
-              "body": "Phải biết quy ước vector cột/hàng, cơ sở đang dùng và thứ tự nhân ma trận. Nếu thiếu quy ước, cùng một công thức có thể bị hiểu ngược."
+              "title": "Information loss",
+              "body": "Projection onto a strict subspace has rank smaller than input dimension, nên không thể invert toàn bộ input."
+            },
+            {
+              "type": "text",
+              "title": "Orthogonal projection extra condition",
+              "body": "Orthogonal projection còn thỏa P^T=P. Idempotence đơn thuần mô tả projection, symmetry phân biệt orthogonal projection."
+            },
+            {
+              "type": "qa",
+              "title": "Gate",
+              "body": "P^2=P nhưng rank(P)<n. Từ hai facts này, bạn kết luận gì về repeated application và invertibility?"
             }
           ]
         },
         {
           "role": "mini_case",
-          "title": "Mini case: đổi hệ tọa độ robot",
+          "title": "E1 SIMPLE · Rotation 90° giữ norm",
           "blocks": [
             {
+              "type": "formula",
+              "title": "Matrix và vector",
+              "body": "R=[[0,-1],[1,0]], x=[2,1]^T"
+            },
+            {
               "type": "text",
-              "title": "Case",
-              "body": "Robot đo vector vận tốc trong hệ tọa độ thân robot, nhưng bản đồ dùng hệ tọa độ thế giới. Ma trận quay chuyển vector từ hệ robot sang hệ thế giới."
+              "title": "Output",
+              "body": "Rx=[-1,2]^T."
+            },
+            {
+              "type": "formula",
+              "title": "Norm check",
+              "body": "||x||^2=2^2+1^2=5\n||Rx||^2=(-1)^2+2^2=5"
+            },
+            {
+              "type": "qa",
+              "title": "Sanity",
+              "body": "R e1 bằng vector nào? R e2 bằng vector nào? Dùng hai ảnh basis để mô tả rotation."
             }
           ]
         },
         {
           "role": "interpretation",
-          "title": "Mất thông tin khi chiếu",
+          "title": "E2 CONTEXTUAL · Scaling và projection thay geometry theo cách khác nhau",
           "blocks": [
             {
+              "type": "formula",
+              "title": "Scaling",
+              "body": "S=[[2,0],[0,0.5]], x=[2,1] ⇒ Sx=[4,0.5]"
+            },
+            {
               "type": "text",
-              "title": "Ý nghĩa",
-              "body": "Projection giảm chiều bằng cách giữ thành phần theo một không gian con và bỏ phần vuông góc. Nó hữu ích để lọc nhiễu nhưng cũng có thể loại bỏ thông tin cần thiết."
+              "title": "Scaling effect",
+              "body": "Direction và norm có thể đổi; transform vẫn invertible vì cả scale factors khác zero."
+            },
+            {
+              "type": "formula",
+              "title": "Projection",
+              "body": "P=[[1,0],[0,0]], x=[2,1] ⇒ Px=[2,0]"
+            },
+            {
+              "type": "qa",
+              "title": "Compare",
+              "body": "S và P đều thay norm. Nhưng transform nào làm mất khả năng recover x? Hãy trả lời bằng rank/invertibility."
             }
           ]
         },
         {
           "role": "simulation",
-          "title": "Thí nghiệm biến đổi điểm dữ liệu",
+          "title": "BEGINNER ENTRY · NumPy kiểm invariant thay vì chỉ nhìn hình",
+          "sourceRefs": [
+            "numpy_matmul",
+            "numpy_norm"
+          ],
           "blocks": [
             {
               "type": "code",
-              "title": "Công cụ",
-              "body": "Y = X @ A.T\n# compare scatter before/after transform\nnp.linalg.matrix_rank(A)"
+              "title": "Deterministic check",
+              "body": "import numpy as np\n\nR = np.array([[0.,-1.],[1.,0.]])\nS = np.array([[2.,0.],[0.,0.5]])\nP = np.array([[1.,0.],[0.,0.]])\nx = np.array([2.,1.])\n\nassert np.allclose(R.T @ R, np.eye(2))\nassert np.allclose(np.linalg.norm(R @ x), np.linalg.norm(x))\nassert np.allclose(P @ P, P)\nassert np.linalg.matrix_rank(P) == 1\nprint(R@x, S@x, P@x)"
+            },
+            {
+              "type": "text",
+              "title": "BEGINNER ENTRY · invariant checks",
+              "body": "Rotation: check Q^TQ=I và norm. Projection: check P^2=P và rank. Đây là tests có ý nghĩa hơn chỉ nhìn một output sample."
+            },
+            {
+              "type": "text",
+              "title": "Software trust",
+              "body": "Một test sample pass chưa chứng minh toàn matrix property nếu bạn chỉ so số thủ công. Matrix identities như Q^TQ=I hoặc P^2=P kiểm property ở cấp operator."
+            },
+            {
+              "type": "qa",
+              "title": "Experiment",
+              "body": "Đổi R thành [[1,1],[0,1]]. Norm có còn preserved? Q^TQ có còn I?"
             }
           ]
         },
         {
           "role": "common_mistakes",
-          "title": "Lỗi thường gặp",
+          "title": "MISCONCEPTION MAP · 5 bẫy hình học",
           "blocks": [
             {
               "type": "text",
-              "title": "Lỗi",
-              "body": "Nhầm xoay với đổi cơ sở; dùng sai thứ tự nhân; nghĩ projection luôn tốt; không kiểm rank sau biến đổi nên không biết dữ liệu bị mất chiều."
+              "title": "MAJOR · «Invertible = preserve distance»",
+              "body": "Sai. Scaling với factors khác zero invertible nhưng không preserve norm."
+            },
+            {
+              "type": "text",
+              "title": "MAJOR · «Projection là rotation đặc biệt»",
+              "body": "Sai. Strict projection giảm rank và không invertible."
+            },
+            {
+              "type": "text",
+              "title": "MAJOR · «Q^TQ=I chỉ là công thức»",
+              "body": "Đây là structural invariant kéo theo dot/norm preservation."
+            },
+            {
+              "type": "text",
+              "title": "MAJOR · «Coordinates đổi nghĩa là vector vật lý đổi»",
+              "body": "Change of basis có thể chỉ đổi representation."
+            },
+            {
+              "type": "text",
+              "title": "MAJOR · «Xem một vector là đủ hiểu transform»",
+              "body": "Cần basis images hoặc matrix-level invariants; một sample có thể gây ngộ nhận."
             }
           ]
         },
         {
           "role": "application",
-          "title": "Ứng dụng lập trình",
+          "title": "E3 TRANSFER · Chẩn đoán transform từ properties",
           "blocks": [
             {
-              "type": "text",
-              "title": "Nhiệm vụ",
-              "body": "Tạo tập điểm 2D, áp dụng scale, rotation và projection. So sánh rank, khoảng cách và góc trước/sau biến đổi."
+              "type": "qa",
+              "title": "Task 1",
+              "body": "Q 3×3 thỏa Q^TQ=I. Nêu 3 quantities/properties được bảo toàn hoặc suy ra."
+            },
+            {
+              "type": "qa",
+              "title": "Task 2",
+              "body": "P 4×4 có P^2=P và rank=2. Input dimension 4 nhưng output sống trong subspace dimension bao nhiêu? Recover unique input được không?"
+            },
+            {
+              "type": "qa",
+              "title": "Task 3",
+              "body": "B có columns là một basis. Với coordinate z và x=Bz, giải thích ai là vector hình học, ai là representation."
+            },
+            {
+              "type": "qa",
+              "title": "Task 4",
+              "body": "Feature scaling làm distance-based model đổi behavior. Đây là bug hay expected geometry change? Cần thêm context nào để quyết định?"
             }
           ]
         },
         {
           "role": "practice",
-          "title": "Bài luyện tập",
+          "title": "PRACTICE LADDER · P0 → P3",
           "blocks": [
             {
-              "type": "text",
-              "title": "Bài tập",
-              "body": "Cho R là ma trận quay 90 độ và P là projection lên trục x. So sánh RP và PR bằng một vector ví dụ; giải thích vì sao thứ tự quan trọng."
+              "type": "qa",
+              "title": "P0 · Recognition",
+              "body": "5 matrix 2×2: nhận diện rotation-like orthogonal / diagonal scaling / projection / generic transform."
+            },
+            {
+              "type": "qa",
+              "title": "P1 · Guided",
+              "body": "Với R90,S,P ở bài, tính image của e1,e2 và một vector x; báo norm/rank."
+            },
+            {
+              "type": "qa",
+              "title": "P2 · Independent",
+              "body": "Tạo một rotation θ=30° bằng NumPy; kiểm Q^TQ≈I, norm preservation cho 3 vectors deterministic."
+            },
+            {
+              "type": "qa",
+              "title": "P3 · Transfer",
+              "body": "Tự tạo projection onto span([1,1]) theo công thức uu^T/(u^Tu); kiểm P^2≈P, rank=1 và mô tả information bị bỏ."
             }
           ]
         },
         {
           "role": "professor_qa",
-          "title": "Vấn đáp kiểm tra hiểu sâu",
+          "title": "ASSESSMENT · D0 / D1 / D2",
           "blocks": [
             {
               "type": "qa",
-              "title": "Câu hỏi",
-              "body": "Tại sao projection thường làm mất thông tin? Vì sao đổi cơ sở không nhất thiết làm thay đổi vector thật nhưng làm thay đổi tọa độ?"
+              "title": "D0 RECALL",
+              "body": "Nêu conditions Q^TQ=I, P^2=P và relation x=B[x]_B."
+            },
+            {
+              "type": "qa",
+              "title": "D1 APPLICATION",
+              "body": "Cho ba matrix 2×2 không gắn nhãn. Dùng NumPy tests + rank/norm để phân loại transform và giải thích bằng basis images."
+            },
+            {
+              "type": "qa",
+              "title": "D2 EXPLAIN / ORAL",
+              "body": "Giải thích 60–90 giây: «Khác nhau giữa physical transform, projection làm mất dimension và change of coordinates là gì?»"
+            },
+            {
+              "type": "text",
+              "title": "Mastery evidence",
+              "body": "Đạt khi learner dùng property-level evidence, không chỉ đoán từ appearance matrix."
             }
           ]
         },
         {
           "role": "bridge",
-          "title": "Cầu sang PCA và mô hình tuyến tính",
+          "title": "TECHNICAL RUSSIAN + NEXT · geometry sang PCA/linear model",
           "blocks": [
             {
               "type": "text",
-              "title": "Liên kết",
-              "body": "PCA là phép đổi cơ sở và chiếu dữ liệu lên các hướng phương sai lớn. Mô hình tuyến tính cũng dùng ma trận/trọng số để biến đặc trưng thành score."
+              "title": "9 thuật ngữ",
+              "body": "линейное преобразование · поворот · масштабирование · проекция · ортогональная матрица · базис · координаты · смена базиса · сохранять норму"
+            },
+            {
+              "type": "text",
+              "title": "4 động từ",
+              "body": "преобразуйте — biến đổi; проверьте — kiểm tra; изобразите — biểu diễn; объясните — giải thích."
+            },
+            {
+              "type": "text",
+              "title": "Khung vấn đáp",
+              "body": "«Ортогональное преобразование сохраняет скалярные произведения и нормы.»\n«Проекция уменьшает число независимых направлений и обычно необратима.»"
+            },
+            {
+              "type": "text",
+              "title": "Cầu sang §2.6",
+              "body": "PCA sẽ chọn một basis đặc biệt từ dữ liệu rồi project lên vài directions quan trọng. Linear model lại dùng matrix/vector để tạo score. §2.6 nối hai nhánh này."
             }
           ]
         },
         {
           "role": "takeaway",
-          "title": "Kết luận cần nhớ",
+          "title": "REVIEW · 6 signatures của transform",
           "blocks": [
             {
               "type": "text",
-              "title": "Cốt lõi",
-              "body": "Ma trận cho biết dữ liệu bị xoay, co giãn, chiếu hoặc đổi hệ tọa độ; rank và hình học cho biết thông tin được giữ hay mất."
+              "title": "1",
+              "body": "Columns = images của basis vectors."
+            },
+            {
+              "type": "text",
+              "title": "2",
+              "body": "Q^TQ=I ⇒ preserve dot products/norms."
+            },
+            {
+              "type": "text",
+              "title": "3",
+              "body": "Diagonal nonzero scaling invertible nhưng không nhất thiết preserve distance."
+            },
+            {
+              "type": "text",
+              "title": "4",
+              "body": "P^2=P; strict projection giảm rank và làm mất information."
+            },
+            {
+              "type": "text",
+              "title": "5",
+              "body": "x=Bz có thể chỉ là đổi coordinates, không đổi physical vector."
+            },
+            {
+              "type": "text",
+              "title": "6",
+              "body": "Hãy kiểm operator-level invariant, không kết luận từ một sample output."
             }
           ]
         }
@@ -7251,9 +7688,9 @@
     }
   ],
   "lastContentPass": {
-    "id": "E169",
-    "lessonId": "MATH-VN-C02-ma_tran_va_phep_bien_oi_-L04-inverse-linear-system-solution-e143",
-    "status": "LOCAL_CONTENT_QA_PASS_GLOBAL_BROWSER_BASELINE_PENDING",
+    "id": "E170",
+    "lessonId": "MATH-VN-C02-ma_tran_va_phep_bien_oi_-L05-linear-transform-geometry-data-e143",
+    "status": "C1_C5_PASS_C6_PENDING",
     "generatedAt": "2026-09-21",
     "inheritedRuntimeGate": "E164"
   }
