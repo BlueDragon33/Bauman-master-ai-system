@@ -1,7 +1,7 @@
 {
   "id": "bauman_math_theory_lecture_content_c03_e145_staged",
   "schema": "bauman_math_content_records_v1",
-  "version": "E145_C03_L01_L03_STAGED",
+  "version": "E180_C03_L01_L03_SYNCED_TO_CONTENT_FACTORY",
   "title": "C03 · Giải tích, đạo hàm và gradient · Nội dung staged",
   "role": "content_staged_for_merge",
   "targetFile": "subjects/math/data/theory_lecture_content.json",
@@ -13,683 +13,2029 @@
       "chapterId": "MATH-VN-C03-ham_so_ao_ham_va_gradien",
       "lessonTitle": "§3.1 · Hàm số như mô hình đầu vào–đầu ra",
       "title": "§3.1 · Hàm số như mô hình đầu vào–đầu ra",
-      "programLectureId": "MATH-PROG-L03-calculus-gradient-optimization",
+      "orderInChapter": 1,
+      "programLectureId": "MATH-PROG-L05-calculus-gradient",
       "programLectureIds": [
-        "MATH-PROG-L03-calculus-gradient-optimization",
+        "MATH-PROG-L05-calculus-gradient",
         "MATH-PROG-L17-ai-machine-learning-math-foundations",
-        "MATH-PROG-L02-vector-spaces-linear-maps"
+        "MATH-PROG-L06-optimization"
       ],
       "programAnchorTitle": "Giải tích, gradient và tối ưu",
       "roadmapRole": "foundation_before_prep",
-      "baumanFocus": "Hiểu hàm số như mô hình ánh xạ đầu vào–đầu ra, nền để học đạo hàm, gradient, tối ưu, mô hình dự đoán và hệ động lực.",
+      "baumanFocus": "Khôi phục hàm số như mapping có domain/codomain, input/output, parameters và units; nối scalar/vector functions với code evaluation để chuẩn bị đạo hàm, gradient, loss và optimization.",
+      "pureLayer": [
+        "hàm số",
+        "domain/codomain",
+        "scalar/vector functions",
+        "parameters",
+        "composition",
+        "units"
+      ],
+      "appliedLayer": [
+        "sensor model",
+        "loss function",
+        "Python function",
+        "NumPy evaluation",
+        "AI/optimization bridge"
+      ],
+      "bridgeQuestion": "Trước khi lấy đạo hàm, ta đã xác định đúng input, output, parameter, domain và ý nghĩa vật lý của hàm chưa?",
+      "auditStatus": "REVIEW",
       "sourceAnchors": {
         "stageId": "vn",
-        "disciplineId": "calculus_optimization",
+        "disciplineId": "calculus_multivariable",
         "chapterId": "MATH-VN-C03-ham_so_ao_ham_va_gradien",
-        "programLectureId": "MATH-PROG-L03-calculus-gradient-optimization"
+        "programLectureId": "MATH-PROG-L05-calculus-gradient",
+        "officialCurriculum": "bmstu_iu5_2026_curriculum"
       },
       "tags": [
         "function",
+        "mapping",
         "input-output",
-        "model",
-        "calculus",
-        "machine learning"
+        "domain",
+        "parameter",
+        "multivariable",
+        "Python",
+        "gradient preparation"
       ],
+      "learningContract": {
+        "governingQuestion": "Một hàm số trong kỹ thuật/AI là mapping nào, nhận input gì, trả output gì và điều kiện nào phải rõ trước khi nói tới đạo hàm/gradient?",
+        "whyNeeded": "Đạo hàm và gradient chỉ có nghĩa khi object cần vi phân đã được xác định rõ; đây là nền để học sensitivity, loss, gradient descent và backpropagation.",
+        "prerequisiteGates": [
+          "Nhận biết biến và biểu thức đại số cơ bản.",
+          "Hiểu vector/matrix như input structure từ C01–C02.",
+          "Không yêu cầu nhớ đạo hàm; phần đạo hàm sẽ được kích hoạt lại từ §3.2.",
+          "Python/NumPy được dạy ở mức beginner entry, không giả định code fluency."
+        ],
+        "measurableLearningOutcomes": [
+          "LO1: Viết được function contract gồm input, output, domain/codomain, units và parameters cho ít nhất 4/5 tình huống.",
+          "LO2: Phân biệt function definition với tập sample/data points và giải thích vì sao bảng giá trị không tự nó là toàn bộ hàm.",
+          "LO3: Phân biệt scalar→scalar, vector→scalar và vector→vector bằng shape/input-output examples.",
+          "LO4: Phân biệt input variable với fixed parameter trong một model f(x;θ).",
+          "LO5: Evaluate đúng các hàm deterministic đơn giản bằng tay và bằng Python/NumPy rồi đối chiếu output.",
+          "LO6: Nhận diện domain/units violation dù code vẫn chạy.",
+          "LO7: Giải thích vì sao loss J(w) cũng là một function và vì sao đó là cầu sang derivative/gradient."
+        ],
+        "exactScope": [
+          "function as mapping",
+          "domain/codomain",
+          "input/output",
+          "parameters",
+          "scalar/vector-valued functions",
+          "evaluation",
+          "composition preview"
+        ],
+        "explicitDeferrals": [
+          "Limits/continuity formalism → only as needed later.",
+          "Derivative definition → §3.2.",
+          "Partial derivative/gradient → §3.3.",
+          "Gradient descent → §3.4.",
+          "Optimization conditions → §3.5.",
+          "Backpropagation → §3.6."
+        ],
+        "canonicalTerminology": {
+          "function": "hàm số/mapping",
+          "input": "đầu vào",
+          "output": "đầu ra",
+          "domain": "miền xác định",
+          "codomain": "không gian đích",
+          "parameter": "tham số",
+          "variable": "biến",
+          "scalarValued": "hàm giá trị vô hướng",
+          "vectorValued": "hàm giá trị vector",
+          "composition": "hợp thành"
+        },
+        "symbols": {
+          "f:X→Y": "function from domain X to codomain Y",
+          "y=f(x)": "output from input x",
+          "f(x;θ)": "x varies as input; θ denotes model parameters held fixed during one evaluation",
+          "J(w)": "loss/objective as a function of parameter vector w"
+        },
+        "continuity": {
+          "previous": "§2.6 · Từ ma trận sang PCA và mô hình tuyến tính",
+          "next": "§3.2 · Đạo hàm và độ nhạy của hệ thống"
+        }
+      },
+      "technicalRussian": {
+        "terms": [
+          [
+            "функция",
+            "hàm số"
+          ],
+          [
+            "аргумент",
+            "đối số/input"
+          ],
+          [
+            "значение функции",
+            "giá trị hàm"
+          ],
+          [
+            "область определения",
+            "miền xác định"
+          ],
+          [
+            "область значений",
+            "miền giá trị"
+          ],
+          [
+            "параметр",
+            "tham số"
+          ],
+          [
+            "скалярная функция",
+            "hàm vô hướng"
+          ],
+          [
+            "вектор-функция",
+            "hàm vector"
+          ],
+          [
+            "композиция функций",
+            "hợp thành hàm"
+          ]
+        ],
+        "commandVerbs": [
+          [
+            "вычислите",
+            "hãy tính"
+          ],
+          [
+            "определите",
+            "hãy xác định"
+          ],
+          [
+            "подставьте",
+            "hãy thế vào"
+          ],
+          [
+            "объясните",
+            "hãy giải thích"
+          ]
+        ],
+        "oralFrames": [
+          "Функция отображает вход x из области определения в выход y.",
+          "Параметр фиксируется при одном вычислении, а аргумент изменяется.",
+          "Перед дифференцированием нужно определить переменные, параметры и область определения."
+        ]
+      },
+      "sourceProvenance": [
+        {
+          "id": "bmstu_iu5_2026_curriculum",
+          "kind": "official_curriculum",
+          "url": "https://home.science.iu5.bmstu.ru/study-plans/iu5-master-program.pdf",
+          "supports": [
+            "preparation context for analytical models, multidimensional data analysis and machine learning"
+          ]
+        },
+        {
+          "id": "mit_multivariable_partial_derivatives",
+          "kind": "authoritative_university_material",
+          "url": "https://ocw.mit.edu/courses/18-02sc-multivariable-calculus-fall-2010/pages/2.-partial-derivatives/",
+          "supports": [
+            "functions of several variables lead to partial derivatives/gradient",
+            "derivatives measure rates of change and support approximation/optimization"
+          ]
+        },
+        {
+          "id": "numpy_polynomial",
+          "kind": "official_documentation",
+          "url": "https://numpy.org/doc/stable/reference/routines.polynomials.polynomial.html",
+          "supports": [
+            "programmatic polynomial evaluation/differentiation utilities for computational examples"
+          ]
+        }
+      ],
+      "generatedMaterial": {
+        "status": "AI_DRAFT_REVIEWED_IN_CONTENT_FACTORY",
+        "lineage": "Generated reactivation lesson anchored to multivariable-calculus learning context, BMSTU preparation scope and NumPy computational examples.",
+        "canonicalSourceReplacement": false
+      },
+      "contentFactory": {
+        "C1": "PASS",
+        "C2": "PASS",
+        "C3": "PASS",
+        "C4": "PASS",
+        "C5": "PASS",
+        "C6": {
+          "software": "PASS_STATIC_AFTER_E166_E173",
+          "user": "PASS",
+          "blockers": 0,
+          "majors": 0,
+          "inheritedDeferredGate": "E164",
+          "acceptance": "LOCAL_CONTENT_QA_PASS_GLOBAL_BROWSER_BASELINE_PENDING"
+        }
+      },
       "slides": [
         {
           "role": "problem_framing",
-          "title": "Hàm số mô tả cách hệ thống biến đầu vào thành đầu ra",
+          "title": "ORIENT · Trước đạo hàm, phải biết hàm đang mô tả cái gì",
+          "sourceRefs": [
+            "mit_multivariable_partial_derivatives",
+            "bmstu_iu5_2026_curriculum"
+          ],
           "blocks": [
             {
               "type": "text",
-              "title": "Ý chính",
-              "body": "Trong Toán kỹ thuật, hàm số không chỉ là biểu thức trên giấy. Nó là mô hình liên hệ giữa dữ liệu đầu vào, tham số hệ thống và đầu ra cần dự đoán hoặc điều khiển."
+              "title": "Câu hỏi điều khiển",
+              "body": "Khi thấy y=f(x), câu hỏi đầu tiên không phải «đạo hàm thế nào?» mà là: x là gì, y là gì, domain/codomain nào, units nào và tham số nào đang được giữ cố định?"
+            },
+            {
+              "type": "text",
+              "title": "Vì sao cần",
+              "body": "Gradient descent và backpropagation đều vi phân một function. Nếu function contract mơ hồ, đạo hàm có thể đúng ký hiệu nhưng sai đối tượng hoặc sai ý nghĩa kỹ thuật."
+            },
+            {
+              "type": "formula",
+              "title": "Function contract",
+              "body": "f:X→Y\nx∈X → y=f(x)∈Y\nmodel form: y=f(x;θ)"
+            },
+            {
+              "type": "qa",
+              "title": "Retrieval",
+              "body": "Trong y=Xw của §2.6, nếu X cố định và ta tối ưu w, object nào là input variable của loss J(w)?"
             }
           ]
         },
         {
           "role": "deep_essence",
-          "title": "Một hàm là một quy luật ánh xạ",
+          "title": "REACTIVATION · Hàm số không chỉ là một công thức trên giấy",
           "blocks": [
             {
               "type": "text",
-              "title": "Bản chất",
-              "body": "Hàm f nhận một đầu vào x trong miền xác định và trả về một đầu ra y. Trong kỹ thuật, x có thể là vector đặc trưng, tín hiệu, trạng thái hoặc tham số."
+              "title": "Kiến thức đã từng học",
+              "body": "Ở phổ thông/đại học, hàm thường xuất hiện như y=f(x). Bản chất rộng hơn: function là quy tắc mapping mỗi input hợp lệ tới một output xác định."
+            },
+            {
+              "type": "text",
+              "title": "Formula chỉ là một representation",
+              "body": "Function có thể được mô tả bằng formula, code, lookup table + interpolation, simulation hoặc physical model. Điều quan trọng là mapping contract."
+            },
+            {
+              "type": "formula",
+              "title": "Ba kiểu sẽ gặp",
+              "body": "scalar→scalar: f:R→R\nvector→scalar: J:R^n→R\nvector→vector: g:R^n→R^m"
+            },
+            {
+              "type": "qa",
+              "title": "Tự nói lại",
+              "body": "Loss J(w) của ML thuộc kiểu nào nếu w có n parameters và loss là một số?"
             }
           ]
         },
         {
           "role": "counter_intuition",
-          "title": "Không phải mọi quan hệ đều là hàm tốt để tính toán",
+          "title": "COUNTER-INTUITION · Data points không phải toàn bộ function",
           "blocks": [
             {
               "type": "text",
-              "title": "Điểm dễ nhầm",
-              "body": "Một công thức có thể tồn tại nhưng không ổn định, không liên tục, không đo được hoặc không phù hợp dữ liệu. Mô hình dùng được phải rõ đầu vào, đầu ra, miền giá trị và giả định."
+              "title": "Sample vs rule",
+              "body": "Bảng (x_i,y_i) chỉ cho biết function/measurement tại vài input. Nhiều functions khác nhau có thể đi qua cùng finite samples."
+            },
+            {
+              "type": "text",
+              "title": "Interpolation/model assumption",
+              "body": "Muốn dự đoán giữa hoặc ngoài sample points, ta phải thêm model/regularity assumption; dữ liệu tự nó không quyết định duy nhất mapping liên tục."
+            },
+            {
+              "type": "text",
+              "title": "Code cũng không đủ",
+              "body": "Một Python function chạy được nhưng có thể nhận input ngoài physical domain hoặc mix units. Runtime success không thay semantic validation."
+            },
+            {
+              "type": "qa",
+              "title": "Diagnostic",
+              "body": "Ba điểm (0,0),(1,1),(2,4) có bắt buộc function phải là x^2 không? Không. Hãy nêu lý do."
             }
           ]
         },
         {
           "role": "real_bridge",
-          "title": "Hàm trong AI, điều khiển và tín hiệu",
+          "title": "CONTEXT · Sensor model, loss model và state update đều là functions",
           "blocks": [
             {
               "type": "text",
-              "title": "Ví dụ",
-              "body": "Mô hình AI là hàm y=f(x;theta). Bộ điều khiển là hàm u=g(x). Bộ lọc tín hiệu là hàm biến tín hiệu thô thành tín hiệu sạch hơn."
+              "title": "Sensor calibration",
+              "body": "y=0.98x+0.4 có thể map raw sensor reading x sang calibrated value y."
+            },
+            {
+              "type": "text",
+              "title": "Loss",
+              "body": "J(w)=(w-3)^2 map parameter w sang một scalar đo error."
+            },
+            {
+              "type": "text",
+              "title": "State update",
+              "body": "x_next=g(x,u) map current state + control input thành next state; đây là vector-valued function nhiều input."
+            },
+            {
+              "type": "qa",
+              "title": "Decision question",
+              "body": "Trong ba examples, function nào có output scalar? Function nào có thể vector-valued? Function nào ta sẽ tối ưu ở §3.4–§3.5?"
             }
           ]
         },
         {
           "role": "notation",
-          "title": "Ký hiệu hàm vô hướng và hàm vector",
+          "title": "FORMALIZE · Input, output, parameter và units",
           "blocks": [
             {
               "type": "formula",
-              "title": "Hàm một biến",
-              "body": "y = f(x)"
+              "title": "Parameter notation",
+              "body": "y=f(x;θ)\nx: input variable\nθ: parameters held fixed during evaluation"
             },
             {
-              "type": "formula",
-              "title": "Hàm nhiều biến",
-              "body": "y = f(x_1, x_2, ..., x_n)"
+              "type": "text",
+              "title": "Units",
+              "body": "Nếu x có unit seconds và y meters, f must map time to position. Cộng trực tiếp meters với seconds trong một formula là semantic error dù Python vẫn tính số."
             },
             {
-              "type": "formula",
-              "title": "Hàm vector",
-              "body": "y = f(x), x in R^n, y in R^m"
+              "type": "text",
+              "title": "Domain",
+              "body": "sqrt(x) trên real numbers cần x≥0; log(x) cần x>0. Physical model còn có domain constraints riêng."
+            },
+            {
+              "type": "qa",
+              "title": "Quick check",
+              "body": "f(x)=sqrt(x-2) trên R có domain nào? Code với complex dtype có thể chạy ngoài domain real, nhưng model contract đã đổi."
             }
           ]
         },
         {
           "role": "core_formula",
-          "title": "Miền xác định, ảnh và tham số",
+          "title": "CORE · Composition tạo pipeline functions",
           "blocks": [
             {
-              "type": "text",
-              "title": "Domain",
-              "body": "Miền xác định cho biết đầu vào nào hợp lệ."
-            },
-            {
-              "type": "text",
-              "title": "Range",
-              "body": "Tập giá trị đầu ra cho biết hàm có thể tạo ra những kết quả nào."
-            },
-            {
               "type": "formula",
-              "title": "Tham số mô hình",
-              "body": "y = f(x; theta)"
+              "title": "Composition",
+              "body": "h(x)=f(g(x)) = (f∘g)(x)"
+            },
+            {
+              "type": "text",
+              "title": "Domain/codomain match",
+              "body": "Output space của g phải phù hợp input domain của f, tương tự inner dimensions khi nhân matrix."
+            },
+            {
+              "type": "text",
+              "title": "Cầu từ C02",
+              "body": "Linear composition A(Bx) là special case của function composition. Calculus sẽ mở rộng chain rule cho composition tổng quát."
+            },
+            {
+              "type": "qa",
+              "title": "Retrieve",
+              "body": "Nếu g:R^3→R^2 và f:R^2→R, composition f∘g map từ không gian nào tới không gian nào?"
             }
           ]
         },
         {
           "role": "assumption_gate",
-          "title": "Điều kiện dùng một hàm làm mô hình",
+          "title": "ASSUMPTION GATE · Định nghĩa function trước khi đạo hàm",
           "blocks": [
             {
               "type": "text",
-              "title": "Điều kiện",
-              "body": "Cần xác định đơn vị đo, miền dữ liệu, giả định tuyến tính/phi tuyến, mức nhiễu và cách đo sai số giữa đầu ra mô hình với đầu ra thật."
+              "title": "Gate 1 · Variable",
+              "body": "Biến nào đang thay đổi? Parameter nào fixed? Nếu đổi vai trò, derivative meaning đổi."
+            },
+            {
+              "type": "text",
+              "title": "Gate 2 · Domain",
+              "body": "Derivative chỉ xét ở points nơi function/domain cho phép local variation phù hợp."
+            },
+            {
+              "type": "text",
+              "title": "Gate 3 · Output type",
+              "body": "Scalar output dẫn tới derivative/gradient khác vector output dẫn tới Jacobian."
+            },
+            {
+              "type": "qa",
+              "title": "Gate",
+              "body": "Nếu f(x;θ) nhưng ta không nói đang vi phân theo x hay θ, câu 'gradient of f' đã đủ rõ chưa? Chưa."
             }
           ]
         },
         {
           "role": "mini_case",
-          "title": "Mini case: dự đoán nhiệt độ thiết bị",
+          "title": "E1 SIMPLE · Scalar function input-output",
           "blocks": [
             {
+              "type": "formula",
+              "title": "Function",
+              "body": "f(x)=2x+3"
+            },
+            {
               "type": "text",
-              "title": "Case",
-              "body": "Đầu vào x=[dòng điện, tốc độ quay, nhiệt độ môi trường]. Đầu ra y là nhiệt độ lõi máy. Hàm f học hoặc mô phỏng quan hệ giữa x và y để cảnh báo quá nhiệt."
+              "title": "Evaluate",
+              "body": "f(0)=3; f(1)=5; f(-2)=-1."
+            },
+            {
+              "type": "text",
+              "title": "Contract",
+              "body": "Nếu không có constraint khác, có thể lấy f:R→R. Parameter 2 và 3 fixed; x là variable."
+            },
+            {
+              "type": "qa",
+              "title": "Sanity",
+              "body": "Thay x tăng 1 thì output tăng bao nhiêu? Đây mới là intuition chuẩn bị cho rate of change, chưa cần viết derivative."
             }
           ]
         },
         {
           "role": "interpretation",
-          "title": "Hàm là bản đồ của không gian dữ liệu",
+          "title": "E2 CONTEXTUAL · Loss function là một mapping cần tối ưu",
           "blocks": [
             {
+              "type": "formula",
+              "title": "Loss",
+              "body": "J(w)=(w-3)^2"
+            },
+            {
               "type": "text",
-              "title": "Diễn giải",
-              "body": "Hàm chia không gian đầu vào thành các vùng có đầu ra khác nhau. Học mô hình nghĩa là tìm bản đồ đủ đúng để dự đoán, điều khiển hoặc tối ưu."
+              "title": "Evaluate",
+              "body": "J(0)=9; J(3)=0; J(5)=4."
+            },
+            {
+              "type": "text",
+              "title": "Interpretation",
+              "body": "Input w là parameter candidate; output J là error scalar. Optimization sẽ tìm w làm J nhỏ."
+            },
+            {
+              "type": "qa",
+              "title": "Transfer nhẹ",
+              "body": "Nếu w trở thành vector nhiều parameters, J:R^n→R. Công cụ rate-of-change nào tự nhiên xuất hiện? Gradient."
             }
           ]
         },
         {
           "role": "simulation",
-          "title": "Thí nghiệm mô hình hàm bằng Python",
+          "title": "BEGINNER ENTRY · Viết function và evaluate grid bằng Python",
+          "sourceRefs": [
+            "numpy_polynomial"
+          ],
           "blocks": [
             {
               "type": "code",
-              "title": "Công cụ",
-              "body": "def f(x, theta):\n    return theta[0]*x + theta[1]\n\ny_pred = f(x, theta)\nerror = y_pred - y_true"
+              "title": "Deterministic code",
+              "body": "import numpy as np\n\ndef f(x):\n    return 2*x + 3\n\ndef J(w):\n    return (w - 3)**2\n\nxs = np.linspace(-2, 2, 5)\nys = f(xs)\nassert np.allclose(xs, [-2,-1,0,1,2])\nassert np.allclose(ys, [-1,1,3,5,7])\nassert J(0) == 9 and J(3) == 0 and J(5) == 4"
+            },
+            {
+              "type": "text",
+              "title": "BEGINNER ENTRY · vectorization",
+              "body": "NumPy cho cùng function expression chạy trên array inputs. Đây là convenience computation; mathematical function contract vẫn phải định nghĩa input meaning/domain."
+            },
+            {
+              "type": "text",
+              "title": "Software trust",
+              "body": "Test vài points chứng minh implementation đúng ở các points đó, không chứng minh formula/model đúng cho toàn physical domain."
+            },
+            {
+              "type": "qa",
+              "title": "Experiment",
+              "body": "Thêm function g(x1,x2)=x1**2+2*x2; evaluate g(2,3). Hãy dự đoán trước khi chạy."
             }
           ]
         },
         {
           "role": "common_mistakes",
-          "title": "Lỗi thường gặp",
+          "title": "MISCONCEPTION MAP · 5 lỗi trước calculus",
           "blocks": [
             {
               "type": "text",
-              "title": "Lỗi",
-              "body": "Không xác định domain; nhầm biến đầu vào với tham số; dùng hàm ngoài miền dữ liệu; đánh giá mô hình chỉ bằng công thức mà không kiểm sai số thực nghiệm."
+              "title": "MAJOR · «Function = formula»",
+              "body": "Formula là một representation; mapping contract mới là object."
+            },
+            {
+              "type": "text",
+              "title": "MAJOR · «Data table xác định duy nhất function»",
+              "body": "Finite samples không xác định duy nhất behavior giữa/ngoài samples."
+            },
+            {
+              "type": "text",
+              "title": "MAJOR · «Parameter và input giống nhau»",
+              "body": "Role depends on question. Vi phân theo variable nào phải nói rõ."
+            },
+            {
+              "type": "text",
+              "title": "MAJOR · «Code chạy = domain hợp lệ»",
+              "body": "Runtime không tự kiểm units/physical domain."
+            },
+            {
+              "type": "text",
+              "title": "MAJOR · «Mọi function trả scalar»",
+              "body": "State dynamics, transforms và many ML models có vector output."
             }
           ]
         },
         {
           "role": "application",
-          "title": "Ứng dụng lập trình",
+          "title": "E3 TRANSFER · Viết function contract cho hệ mới",
           "blocks": [
             {
-              "type": "text",
-              "title": "Nhiệm vụ",
-              "body": "Viết hàm nhận vector đặc trưng và tham số, trả về dự đoán. Thêm kiểm tra shape, domain và cảnh báo nếu đầu vào ngoài khoảng huấn luyện."
+              "type": "qa",
+              "title": "Task 1",
+              "body": "Battery model: remaining_time=f(current_draw,capacity;temperature). Xác định inputs, parameter/context, output và units."
+            },
+            {
+              "type": "qa",
+              "title": "Task 2",
+              "body": "Robot dynamics: x_next=g(x,u). Xác định input space/output space nếu x∈R^6,u∈R^2."
+            },
+            {
+              "type": "qa",
+              "title": "Task 3",
+              "body": "ML loss J(w;X,y). Trong một training step, object nào thay đổi để optimize? Data nào fixed?"
+            },
+            {
+              "type": "qa",
+              "title": "Task 4",
+              "body": "Nêu một domain/unit error mà Python có thể không bắt nhưng software tester học thuật phải bắt."
             }
           ]
         },
         {
           "role": "practice",
-          "title": "Bài luyện tập",
+          "title": "PRACTICE LADDER · P0 → P3",
           "blocks": [
             {
-              "type": "text",
-              "title": "Bài tập",
-              "body": "Chọn một hệ kỹ thuật quen thuộc và xác định: đầu vào, đầu ra, tham số, domain, sai số đo. Viết dạng y=f(x;theta) tương ứng."
+              "type": "qa",
+              "title": "P0 · Recognition",
+              "body": "6 examples: phân loại scalar→scalar / vector→scalar / vector→vector và input/output."
+            },
+            {
+              "type": "qa",
+              "title": "P1 · Guided",
+              "body": "Cho f(x;a,b)=ax+b với a=2,b=3. Tách variable/parameters, evaluate 4 inputs, ghi domain/codomain."
+            },
+            {
+              "type": "qa",
+              "title": "P2 · Independent",
+              "body": "Tự viết một function kỹ thuật có units, code deterministic evaluator, tạo 5 test points và nêu domain."
+            },
+            {
+              "type": "qa",
+              "title": "P3 · Transfer",
+              "body": "Tạo J(w1,w2) scalar loss; giải thích vì sao next step cần partial derivatives thay vì derivative một biến."
             }
           ]
         },
         {
           "role": "professor_qa",
-          "title": "Vấn đáp kiểm tra hiểu sâu",
+          "title": "ASSESSMENT · D0 / D1 / D2",
           "blocks": [
             {
               "type": "qa",
-              "title": "Câu hỏi",
-              "body": "Vì sao cùng một công thức có thể là mô hình tốt trong miền này nhưng nguy hiểm ở miền khác? Khác biệt giữa biến và tham số là gì?"
+              "title": "D0 RECALL",
+              "body": "Định nghĩa function contract, domain/codomain, parameter và ba output-shape categories."
+            },
+            {
+              "type": "qa",
+              "title": "D1 APPLICATION",
+              "body": "Nhận một code function 2 inputs + 2 constants. Tái dựng mathematical contract, units/domain, rồi viết 5 deterministic tests."
+            },
+            {
+              "type": "qa",
+              "title": "D2 EXPLAIN / ORAL",
+              "body": "Giải thích 60–90 giây: «Vì sao trước khi lấy derivative phải xác định variable, parameter, domain và output type?»"
+            },
+            {
+              "type": "text",
+              "title": "Mastery evidence",
+              "body": "Đạt khi learner có thể model một tình huống mới thành function contract và không đồng nhất code/data samples với function."
             }
           ]
         },
         {
           "role": "bridge",
-          "title": "Cầu sang đạo hàm",
+          "title": "TECHNICAL RUSSIAN + NEXT · function sang sensitivity",
           "blocks": [
             {
               "type": "text",
-              "title": "Liên kết",
-              "body": "Khi đã có hàm, câu hỏi tiếp theo là đầu ra thay đổi nhanh thế nào khi đầu vào thay đổi. Đó chính là vai trò của đạo hàm."
+              "title": "9 thuật ngữ",
+              "body": "функция · аргумент · значение функции · область определения · область значений · параметр · скалярная функция · вектор-функция · композиция функций"
+            },
+            {
+              "type": "text",
+              "title": "4 động từ",
+              "body": "вычислите — tính; определите — xác định; подставьте — thế; объясните — giải thích."
+            },
+            {
+              "type": "text",
+              "title": "Khung vấn đáp",
+              "body": "«Функция отображает вход x из области определения в выход y.»\n«Перед дифференцированием нужно определить переменные, параметры и область определения.»"
+            },
+            {
+              "type": "text",
+              "title": "Cầu sang §3.2",
+              "body": "Khi function đã rõ, câu hỏi kế tiếp là: output thay đổi nhanh bao nhiêu khi input đổi rất nhỏ? Đó là derivative và sensitivity."
             }
           ]
         },
         {
           "role": "takeaway",
-          "title": "Kết luận cần nhớ",
+          "title": "REVIEW · 6 điều phải rõ trước derivative",
           "blocks": [
             {
               "type": "text",
-              "title": "Cốt lõi",
-              "body": "Hàm số là mô hình đầu vào–đầu ra. Muốn dùng hàm trong kỹ thuật phải biết domain, giả định, tham số và sai số."
+              "title": "1",
+              "body": "Function là mapping, không chỉ formula."
+            },
+            {
+              "type": "text",
+              "title": "2",
+              "body": "Ghi domain/codomain và units."
+            },
+            {
+              "type": "text",
+              "title": "3",
+              "body": "Tách variable khỏi parameters."
+            },
+            {
+              "type": "text",
+              "title": "4",
+              "body": "Biết output scalar hay vector."
+            },
+            {
+              "type": "text",
+              "title": "5",
+              "body": "Data samples/code execution không thay semantic contract."
+            },
+            {
+              "type": "text",
+              "title": "6",
+              "body": "Loss J(w) là function — cầu trực tiếp sang derivative, gradient và optimization."
             }
           ]
         }
-      ]
+      ],
+      "qaEvidence": {
+        "functionContracts": "PASS",
+        "scalarVectorFunctionShapes": "PASS",
+        "deterministicPythonEvaluation": "PASS",
+        "chapterIdCanonical": "PASS",
+        "schemaAndIds": "PASS",
+        "adjacentContinuity": "PASS",
+        "representationChannels": "PASS",
+        "practiceP0P3": "PASS",
+        "assessmentD0D1D2": "PASS",
+        "misconceptionDiagnostics": "PASS",
+        "technicalRussian": "PASS",
+        "softwareOutputTrustExplanation": "PASS",
+        "browserBaseline": "PENDING_E164"
+      }
     },
     {
       "lessonId": "MATH-VN-C03-giai_tich_dao_ham_gradient-L02-derivative-system-sensitivity-e145",
       "chapterId": "MATH-VN-C03-ham_so_ao_ham_va_gradien",
       "lessonTitle": "§3.2 · Đạo hàm và độ nhạy của hệ thống",
       "title": "§3.2 · Đạo hàm và độ nhạy của hệ thống",
-      "programLectureId": "MATH-PROG-L03-calculus-gradient-optimization",
+      "orderInChapter": 2,
+      "programLectureId": "MATH-PROG-L05-calculus-gradient",
       "programLectureIds": [
-        "MATH-PROG-L03-calculus-gradient-optimization",
+        "MATH-PROG-L05-calculus-gradient",
+        "MATH-PROG-L06-optimization",
         "MATH-PROG-L17-ai-machine-learning-math-foundations"
       ],
       "programAnchorTitle": "Giải tích, gradient và tối ưu",
       "roadmapRole": "foundation_before_prep",
-      "baumanFocus": "Hiểu đạo hàm như độ nhạy cục bộ của đầu ra theo đầu vào, nền cho điều khiển, tối ưu, gradient descent và phân tích sai số.",
+      "baumanFocus": "Khôi phục derivative như local rate of change và local linear approximation; đọc đúng units/sign/magnitude, dùng finite differences để verify và hiểu numerical sensitivity trước khi sang partial derivative/gradient.",
+      "pureLayer": [
+        "đạo hàm",
+        "rate of change",
+        "tangent",
+        "local linearization",
+        "finite difference",
+        "differentiability"
+      ],
+      "appliedLayer": [
+        "system sensitivity",
+        "sensor response",
+        "velocity",
+        "numerical derivative",
+        "gradient preparation"
+      ],
+      "bridgeQuestion": "Một thay đổi rất nhỏ ở input sẽ làm output đổi bao nhiêu, và khi nào derivative là mô hình tuyến tính cục bộ đáng tin?",
+      "auditStatus": "REVIEW",
       "sourceAnchors": {
         "stageId": "vn",
-        "disciplineId": "calculus_optimization",
+        "disciplineId": "calculus_multivariable",
         "chapterId": "MATH-VN-C03-ham_so_ao_ham_va_gradien",
-        "programLectureId": "MATH-PROG-L03-calculus-gradient-optimization"
+        "programLectureId": "MATH-PROG-L05-calculus-gradient",
+        "officialCurriculum": "bmstu_iu5_2026_curriculum"
       },
       "tags": [
         "derivative",
+        "rate of change",
         "sensitivity",
-        "local linearization",
-        "optimization",
-        "control"
+        "linear approximation",
+        "finite difference",
+        "NumPy"
       ],
+      "learningContract": {
+        "governingQuestion": "Derivative đo sensitivity cục bộ thế nào, dùng đơn vị và dấu ra sao, và làm sao kiểm analytical derivative bằng numerical finite differences?",
+        "whyNeeded": "Derivative là building block của gradient, local approximation, optimization, control sensitivity và backpropagation.",
+        "prerequisiteGates": [
+          "Xác định được function contract từ §3.1.",
+          "Biết input variable nào đang thay đổi và parameter nào fixed.",
+          "Không yêu cầu nhớ derivative rules đầy đủ; reactivation bắt đầu từ slope/rate.",
+          "Biết Python function evaluation ở mức beginner."
+        ],
+        "measurableLearningOutcomes": [
+          "LO1: Giải thích derivative tại một điểm như instantaneous/local rate of change và slope của local linear approximation.",
+          "LO2: Tính derivative của polynomial/basic functions đơn giản và đọc đúng sign/magnitude.",
+          "LO3: Ghi đúng units của derivative là output-unit/input-unit.",
+          "LO4: Dùng f(x+Δx)≈f(x)+f'(x)Δx để dự đoán local change và đánh giá approximation error.",
+          "LO5: Dùng central finite difference để kiểm analytical derivative với h hợp lý.",
+          "LO6: Giải thích vì sao h quá lớn gây truncation error và h quá nhỏ có thể gây floating-point cancellation.",
+          "LO7: Nhận ra khi function nhiều variables thì sensitivity theo từng coordinate dẫn tới partial derivatives/gradient."
+        ],
+        "exactScope": [
+          "single-variable derivative",
+          "rate of change",
+          "local linear approximation",
+          "units",
+          "central finite difference",
+          "sensitivity"
+        ],
+        "explicitDeferrals": [
+          "Partial derivatives/gradient → §3.3.",
+          "Gradient descent → §3.4.",
+          "Second derivative/Hessian optimization conditions → §3.5.",
+          "Chain rule/backprop → §3.6.",
+          "Rigorous epsilon-delta limits → not required in this preparation lesson."
+        ],
+        "canonicalTerminology": {
+          "derivative": "đạo hàm",
+          "rateOfChange": "tốc độ thay đổi",
+          "sensitivity": "độ nhạy",
+          "tangent": "tiếp tuyến",
+          "linearApproximation": "xấp xỉ tuyến tính cục bộ",
+          "finiteDifference": "sai phân hữu hạn",
+          "stepSize": "bước h",
+          "differentiable": "khả vi"
+        },
+        "symbols": {
+          "f'(x)": "derivative at x",
+          "Δx": "finite input perturbation",
+          "Δf": "finite output change",
+          "df≈f'(x)dx": "local linear relation",
+          "D_h f(x)": "finite-difference approximation"
+        },
+        "continuity": {
+          "previous": "§3.1 · Hàm số như mô hình đầu vào–đầu ra",
+          "next": "§3.3 · Gradient như hướng thay đổi nhanh nhất"
+        }
+      },
+      "technicalRussian": {
+        "terms": [
+          [
+            "производная",
+            "đạo hàm"
+          ],
+          [
+            "скорость изменения",
+            "tốc độ thay đổi"
+          ],
+          [
+            "чувствительность",
+            "độ nhạy"
+          ],
+          [
+            "касательная",
+            "tiếp tuyến"
+          ],
+          [
+            "линейное приближение",
+            "xấp xỉ tuyến tính"
+          ],
+          [
+            "приращение",
+            "gia số"
+          ],
+          [
+            "конечная разность",
+            "sai phân hữu hạn"
+          ],
+          [
+            "шаг",
+            "bước"
+          ],
+          [
+            "дифференцируемость",
+            "tính khả vi"
+          ]
+        ],
+        "commandVerbs": [
+          [
+            "найдите",
+            "hãy tìm"
+          ],
+          [
+            "оцените",
+            "hãy ước lượng"
+          ],
+          [
+            "сравните",
+            "hãy so sánh"
+          ],
+          [
+            "объясните",
+            "hãy giải thích"
+          ]
+        ],
+        "oralFrames": [
+          "Производная измеряет локальную скорость изменения функции.",
+          "Единицы производной равны единицам выхода, делённым на единицы входа.",
+          "Конечная разность используется для численной проверки аналитической производной."
+        ]
+      },
+      "sourceProvenance": [
+        {
+          "id": "bmstu_iu5_2026_curriculum",
+          "kind": "official_curriculum",
+          "url": "https://home.science.iu5.bmstu.ru/study-plans/iu5-master-program.pdf",
+          "supports": [
+            "preparation context for analytical models, data analysis, machine learning and optimization"
+          ]
+        },
+        {
+          "id": "mit_derivative_rate_change",
+          "kind": "authoritative_university_material",
+          "url": "https://ocw.mit.edu/courses/18-01sc-single-variable-calculus-fall-2010/pages/1.-differentiation/part-a-definition-and-basic-rules/session-3-derivative-as-rate-of-change/",
+          "supports": [
+            "derivative as rate of change",
+            "physical interpretation and sensitivity to measurement changes"
+          ]
+        },
+        {
+          "id": "mit_tangent_linear_approx",
+          "kind": "authoritative_university_material",
+          "url": "https://www.ocw.mit.edu/ans7870/18/18.013a/textbook/HTML/chapter06/section01.html",
+          "supports": [
+            "derivative as tangent slope",
+            "local linear approximation"
+          ]
+        },
+        {
+          "id": "numpy_gradient",
+          "kind": "official_documentation",
+          "url": "https://numpy.org/doc/stable/reference/generated/numpy.gradient.html",
+          "supports": [
+            "sampled numerical gradients use finite-difference formulas",
+            "spacing affects derivative estimates"
+          ]
+        }
+      ],
+      "generatedMaterial": {
+        "status": "AI_DRAFT_REVIEWED_IN_CONTENT_FACTORY",
+        "lineage": "Generated reactivation lesson anchored to MIT derivative/rate and tangent approximation material plus NumPy finite-difference documentation.",
+        "canonicalSourceReplacement": false
+      },
+      "contentFactory": {
+        "C1": "PASS",
+        "C2": "PASS",
+        "C3": "PASS",
+        "C4": "PASS",
+        "C5": "PASS",
+        "C6": {
+          "software": "PASS_STATIC_AFTER_E166_E173",
+          "user": "PASS",
+          "blockers": 0,
+          "majors": 0,
+          "inheritedDeferredGate": "E164",
+          "acceptance": "LOCAL_CONTENT_QA_PASS_GLOBAL_BROWSER_BASELINE_PENDING"
+        }
+      },
       "slides": [
         {
           "role": "problem_framing",
-          "title": "Đạo hàm đo độ nhạy của đầu ra",
+          "title": "ORIENT · Derivative trả lời 'output nhạy tới input đến mức nào?'",
+          "sourceRefs": [
+            "mit_derivative_rate_change",
+            "mit_tangent_linear_approx"
+          ],
           "blocks": [
             {
               "type": "text",
-              "title": "Ý chính",
-              "body": "Khi đầu vào thay đổi một lượng nhỏ, đầu ra thay đổi bao nhiêu? Đạo hàm trả lời câu hỏi này ở mức cục bộ, quanh một điểm đang xét."
+              "title": "Câu hỏi điều khiển",
+              "body": "Nếu input đổi một lượng rất nhỏ quanh x0, output f(x) đổi bao nhiêu? Derivative f'(x0) là hệ số sensitivity cục bộ."
+            },
+            {
+              "type": "text",
+              "title": "Vì sao cần",
+              "body": "Trong control, sensing và ML, ta thường cần biết error/output nhạy tới parameter/input nào. Derivative biến câu hỏi đó thành con số có dấu, magnitude và units."
+            },
+            {
+              "type": "formula",
+              "title": "Local relation",
+              "body": "f(x0+Δx) ≈ f(x0) + f'(x0)Δx"
+            },
+            {
+              "type": "qa",
+              "title": "Retrieval",
+              "body": "Nếu f'(x0)=0, có chắc f đang constant quanh x0 không? Không; chỉ nói local first-order slope bằng 0."
             }
           ]
         },
         {
           "role": "deep_essence",
-          "title": "Đạo hàm là tốc độ thay đổi tức thời",
+          "title": "REACTIVATION · Từ slope trung bình tới slope tức thời",
           "blocks": [
             {
               "type": "formula",
-              "title": "Định nghĩa",
-              "body": "f'(x) = lim_{h -> 0} (f(x+h)-f(x))/h"
+              "title": "Average rate",
+              "body": "[f(x+h)-f(x)]/h"
+            },
+            {
+              "type": "formula",
+              "title": "Derivative idea",
+              "body": "f'(x)=lim_(h→0) [f(x+h)-f(x)]/h"
             },
             {
               "type": "text",
-              "title": "Diễn giải",
-              "body": "Đạo hàm là tỷ lệ thay đổi của đầu ra trên thay đổi rất nhỏ của đầu vào."
+              "title": "Trực giác",
+              "body": "Average slope dùng một khoảng hữu hạn. Derivative là slope mà function tiến gần tới khi khoảng quan sát co lại quanh point."
+            },
+            {
+              "type": "qa",
+              "title": "Tự nói lại",
+              "body": "Tại sao derivative là local property chứ không mô tả toàn bộ graph?"
             }
           ]
         },
         {
           "role": "counter_intuition",
-          "title": "Đạo hàm không mô tả toàn bộ hàm",
+          "title": "COUNTER-INTUITION · Derivative không phải 'Δy/Δx' với bất kỳ bước nào",
           "blocks": [
             {
               "type": "text",
-              "title": "Điểm dễ nhầm",
-              "body": "Đạo hàm tại một điểm chỉ là thông tin cục bộ. Với hàm phi tuyến, độ nhạy có thể thay đổi mạnh ở vùng khác."
+              "title": "Finite change",
+              "body": "Δf/Δx trên một bước lớn là average rate, không nhất thiết bằng derivative tại endpoint hay midpoint."
+            },
+            {
+              "type": "text",
+              "title": "Curvature matters",
+              "body": "Khi function cong, local slope thay đổi theo x. Một secant slope có thể che mất sensitivity thật tại point."
+            },
+            {
+              "type": "text",
+              "title": "Numerical check",
+              "body": "Finite difference chỉ xấp xỉ derivative; quality phụ thuộc h, smoothness và floating-point."
+            },
+            {
+              "type": "qa",
+              "title": "Diagnostic",
+              "body": "Với f=x^2, slope từ x=0 tới x=2 là 2. Derivative tại x=2 là 4. Vì sao không mâu thuẫn?"
             }
           ]
         },
         {
           "role": "real_bridge",
-          "title": "Độ nhạy trong kỹ thuật",
+          "title": "CONTEXT · Position→velocity và model input→sensitivity",
           "blocks": [
             {
+              "type": "formula",
+              "title": "Motion",
+              "body": "p(t)=2t^2+3t [m]\nv(t)=p'(t)=4t+3 [m/s]"
+            },
+            {
               "type": "text",
-              "title": "Ví dụ",
-              "body": "Nếu tăng dòng điện một chút làm nhiệt độ tăng rất nhanh, hệ có độ nhạy cao. Nếu đạo hàm nhỏ, hệ ít phản ứng với thay đổi nhỏ của đầu vào."
+              "title": "At t=2 s",
+              "body": "p(2)=14 m; v(2)=11 m/s. Local time increase 0.01 s predicts position increase ≈0.11 m."
+            },
+            {
+              "type": "text",
+              "title": "Engineering reading",
+              "body": "Derivative units m/s tell physical meaning directly. A raw number '11' without units is incomplete."
+            },
+            {
+              "type": "qa",
+              "title": "Decision question",
+              "body": "Nếu output là voltage [V] và input temperature [°C], derivative units là gì?"
             }
           ]
         },
         {
           "role": "notation",
-          "title": "Ký hiệu đạo hàm",
+          "title": "FORMALIZE · Derivative value, sign, magnitude, units",
           "blocks": [
             {
-              "type": "formula",
-              "title": "Ký hiệu",
-              "body": "dy/dx = f'(x)"
+              "type": "text",
+              "title": "Sign",
+              "body": "f'>0: output locally increases with input; f'<0: locally decreases; f'=0: first-order flat."
+            },
+            {
+              "type": "text",
+              "title": "Magnitude",
+              "body": "|f'| lớn nghĩa output nhạy hơn cho cùng small input perturbation, nhưng phải đọc cùng units/scales."
             },
             {
               "type": "formula",
-              "title": "Vi phân gần đúng",
-              "body": "Delta y ≈ f'(x) Delta x"
+              "title": "Units",
+              "body": "units(f') = units(output) / units(input)"
+            },
+            {
+              "type": "qa",
+              "title": "Quick check",
+              "body": "Một sensor calibration có f'=0.02 V/kPa. Pressure tăng 5 kPa nhỏ quanh operating point dự đoán voltage đổi khoảng bao nhiêu?"
             }
           ]
         },
         {
           "role": "core_formula",
-          "title": "Tuyến tính hóa cục bộ",
+          "title": "CORE · Tangent/local linear approximation",
+          "sourceRefs": [
+            "mit_tangent_linear_approx"
+          ],
           "blocks": [
             {
               "type": "formula",
-              "title": "Xấp xỉ tuyến tính",
-              "body": "f(x+h) ≈ f(x) + f'(x)h"
+              "title": "Approximation",
+              "body": "f(x0+Δx) ≈ f(x0)+f'(x0)Δx"
             },
             {
               "type": "text",
-              "title": "Ý nghĩa",
-              "body": "Quanh một điểm nhỏ, hàm phi tuyến có thể được xấp xỉ bằng đường thẳng tiếp tuyến."
+              "title": "Meaning",
+              "body": "Gần x0, differentiable function được thay bằng đường thẳng có cùng value và slope tại x0."
+            },
+            {
+              "type": "text",
+              "title": "Error behavior",
+              "body": "Approximation tốt khi Δx đủ nhỏ và curvature không quá lớn; derivative chỉ giữ first-order effect."
+            },
+            {
+              "type": "qa",
+              "title": "Retrieve",
+              "body": "Nếu Δx gấp đôi nhưng vẫn đủ nhỏ, first-order predicted Δf thay đổi thế nào?"
             }
           ]
         },
         {
           "role": "assumption_gate",
-          "title": "Điều kiện dùng tuyến tính hóa",
+          "title": "ASSUMPTION GATE · Derivative có thể không tồn tại hoặc không hữu ích",
           "blocks": [
             {
               "type": "text",
-              "title": "Điều kiện",
-              "body": "Tuyến tính hóa chỉ đáng tin khi h nhỏ, hàm đủ trơn và điểm đang xét không nằm gần ngưỡng gián đoạn, bão hòa hoặc vùng nhiễu mạnh."
+              "title": "Nondifferentiable points",
+              "body": "Corners, discontinuities hoặc domain boundaries có thể phá two-sided derivative."
+            },
+            {
+              "type": "text",
+              "title": "Operating region",
+              "body": "Một physical model có thể differentiable về công thức nhưng không valid ngoài operating range."
+            },
+            {
+              "type": "text",
+              "title": "Local vs global",
+              "body": "Derivative đúng local không đảm bảo extrapolation xa. Sensitivity có thể thay đổi mạnh theo state."
+            },
+            {
+              "type": "qa",
+              "title": "Gate",
+              "body": "|x| tại x=0 có derivative hai phía không? Left/right slopes nói gì?"
             }
           ]
         },
         {
           "role": "mini_case",
-          "title": "Mini case: cảm biến nhiệt",
+          "title": "E1 SIMPLE · f(x)=x² tại x=3",
           "blocks": [
             {
+              "type": "formula",
+              "title": "Analytical",
+              "body": "f(x)=x^2 ⇒ f'(x)=2x ⇒ f'(3)=6"
+            },
+            {
               "type": "text",
-              "title": "Case",
-              "body": "Nếu T=f(I), đạo hàm dT/dI cho biết nhiệt độ nhạy thế nào với dòng điện. Độ nhạy lớn gợi ý cần giới hạn dòng hoặc tăng làm mát."
+              "title": "Meaning",
+              "body": "Quanh x=3, tăng input 0.01 dự đoán output tăng ≈0.06."
+            },
+            {
+              "type": "formula",
+              "title": "Exact comparison",
+              "body": "f(3.01)-f(3)=9.0601-9=0.0601"
+            },
+            {
+              "type": "qa",
+              "title": "Error",
+              "body": "First-order prediction sai 0.0001. Error đến từ term bậc hai nào?"
             }
           ]
         },
         {
           "role": "interpretation",
-          "title": "Dấu và độ lớn của đạo hàm",
+          "title": "E2 CONTEXTUAL · Local prediction cho motion model",
           "blocks": [
             {
-              "type": "text",
-              "title": "Dương",
-              "body": "Đầu ra tăng khi đầu vào tăng."
+              "type": "formula",
+              "title": "Model",
+              "body": "p(t)=2t^2+3t\np'(t)=4t+3"
             },
             {
               "type": "text",
-              "title": "Âm",
-              "body": "Đầu ra giảm khi đầu vào tăng."
+              "title": "At t=2",
+              "body": "p(2)=14; p'(2)=11."
             },
             {
-              "type": "text",
-              "title": "Gần 0",
-              "body": "Đầu ra ít nhạy tại điểm đang xét hoặc hệ đang ở vùng bão hòa."
+              "type": "formula",
+              "title": "Predict t=2.01",
+              "body": "p(2.01)≈14+11(0.01)=14.11\nExact=14.1102"
+            },
+            {
+              "type": "qa",
+              "title": "Transfer nhẹ",
+              "body": "Nếu Δt=0.5 s, local approximation còn tốt như Δt=0.01 không? Không nhất thiết; cần check error."
             }
           ]
         },
         {
           "role": "simulation",
-          "title": "Thí nghiệm đạo hàm số bằng Python",
+          "title": "BEGINNER ENTRY · Central finite difference để verify derivative",
+          "sourceRefs": [
+            "numpy_gradient"
+          ],
           "blocks": [
             {
               "type": "code",
-              "title": "Công cụ",
-              "body": "def numerical_derivative(f,x,h=1e-5):\n    return (f(x+h)-f(x))/h"
+              "title": "Deterministic check",
+              "body": "import numpy as np\n\ndef f(x):\n    return x**2\n\ndef central_diff(f, x, h=1e-5):\n    return (f(x+h)-f(x-h))/(2*h)\n\nanalytic = 2*3.0\nnumeric = central_diff(f, 3.0, 1e-5)\nassert np.allclose(numeric, analytic, rtol=1e-9, atol=1e-9)\n\nxs = np.linspace(-2,2,101)\nys = xs**2\ndy = np.gradient(ys, xs)"
+            },
+            {
+              "type": "text",
+              "title": "BEGINNER ENTRY · central difference",
+              "body": "Central difference dùng points hai phía và thường chính xác hơn forward difference cùng step cho smooth function."
+            },
+            {
+              "type": "text",
+              "title": "Software trust",
+              "body": "h không càng nhỏ càng tốt vô hạn. Quá lớn → truncation; quá nhỏ → subtraction cancellation/round-off. Verify trên nhiều h."
+            },
+            {
+              "type": "qa",
+              "title": "Experiment",
+              "body": "Thử h=1e-1,1e-3,1e-6,1e-10. Ghi absolute error thay vì chỉ nhìn numeric derivative."
             }
           ]
         },
         {
           "role": "common_mistakes",
-          "title": "Lỗi thường gặp",
+          "title": "MISCONCEPTION MAP · 5 lỗi về derivative",
           "blocks": [
             {
               "type": "text",
-              "title": "Lỗi",
-              "body": "Dùng h quá lớn khi tính đạo hàm số; dùng h quá nhỏ gây lỗi làm tròn; áp dụng tuyến tính hóa quá xa điểm đang xét; quên đơn vị của đạo hàm."
+              "title": "MAJOR · «Derivative = finite Δy/Δx bất kỳ»",
+              "body": "Finite ratio là average slope; derivative là local limit/slope."
+            },
+            {
+              "type": "text",
+              "title": "MAJOR · «f'=0 nghĩa f constant»",
+              "body": "Chỉ first-order slope zero tại point; có thể là extremum hoặc flat inflection."
+            },
+            {
+              "type": "text",
+              "title": "MAJOR · «Derivative không có units»",
+              "body": "Sensitivity units rất quan trọng trong engineering."
+            },
+            {
+              "type": "text",
+              "title": "MAJOR · «h càng nhỏ càng chính xác»",
+              "body": "Floating-point cancellation tạo lower bound thực tế."
+            },
+            {
+              "type": "text",
+              "title": "MAJOR · «Local derivative cho phép extrapolate xa»",
+              "body": "Local linearization có region of validity."
             }
           ]
         },
         {
           "role": "application",
-          "title": "Ứng dụng lập trình",
+          "title": "E3 TRANSFER · Sensitivity audit cho model mới",
           "blocks": [
             {
-              "type": "text",
-              "title": "Nhiệm vụ",
-              "body": "Viết hàm tính đạo hàm số và so sánh với đạo hàm giải tích của f(x)=x^2, sin(x), exp(x). Ghi nhận sai số theo h."
+              "type": "qa",
+              "title": "Task 1",
+              "body": "Sensor y=0.5T+2 [V], T [°C]. Nêu derivative và units; dự đoán change khi T tăng 0.2°C."
+            },
+            {
+              "type": "qa",
+              "title": "Task 2",
+              "body": "Cost C(q)=q^2+10q. Tại q=20, derivative nói gì về marginal cost? Đơn vị là gì nếu C USD và q units?"
+            },
+            {
+              "type": "qa",
+              "title": "Task 3",
+              "body": "Một code function có kink tại x=0. Thiết kế left/right finite-difference diagnostic để phát hiện non-differentiability."
+            },
+            {
+              "type": "qa",
+              "title": "Task 4",
+              "body": "Nêu một tình huống derivative analytic đúng nhưng physical model không còn valid vì ra ngoài domain."
             }
           ]
         },
         {
           "role": "practice",
-          "title": "Bài luyện tập",
+          "title": "PRACTICE LADDER · P0 → P3",
           "blocks": [
             {
-              "type": "text",
-              "title": "Bài tập",
-              "body": "Cho f(x)=x^3-2x. Tính f'(x), đánh giá tại x=1 và giải thích độ nhạy của đầu ra quanh điểm này."
+              "type": "qa",
+              "title": "P0 · Recognition",
+              "body": "5 graphs/descriptions: nhận sign của derivative và units từ context."
+            },
+            {
+              "type": "qa",
+              "title": "P1 · Guided",
+              "body": "f(x)=3x^2-2x: tính f'(x), f'(2), local prediction tại 2.01, compare exact."
+            },
+            {
+              "type": "qa",
+              "title": "P2 · Independent",
+              "body": "Tự chọn smooth polynomial, derive analytic derivative, viết central_diff và tạo error table theo 4 h."
+            },
+            {
+              "type": "qa",
+              "title": "P3 · Transfer",
+              "body": "Tạo physical function với units, chọn operating point, dùng derivative dự đoán sensitivity và xác định safe Δx range bằng error threshold."
             }
           ]
         },
         {
           "role": "professor_qa",
-          "title": "Vấn đáp kiểm tra hiểu sâu",
+          "title": "ASSESSMENT · D0 / D1 / D2",
           "blocks": [
             {
               "type": "qa",
-              "title": "Câu hỏi",
-              "body": "Vì sao đạo hàm là thông tin cục bộ? Khi nào tuyến tính hóa có thể gây kết luận sai trong hệ kỹ thuật?"
+              "title": "D0 RECALL",
+              "body": "Định nghĩa derivative như local rate, viết local linear approximation và derivative units."
+            },
+            {
+              "type": "qa",
+              "title": "D1 APPLICATION",
+              "body": "Cho một nonlinear scalar model. Derive f', verify finite difference trên 3 points + 3 h, báo approximation error và units."
+            },
+            {
+              "type": "qa",
+              "title": "D2 EXPLAIN / ORAL",
+              "body": "Giải thích 60–90 giây: «Derivative khác average finite change thế nào, và vì sao numerical derivative cần chọn h?»"
+            },
+            {
+              "type": "text",
+              "title": "Mastery evidence",
+              "body": "Đạt khi learner có thể nối analytical derivative, physical sensitivity và numerical verification; nhớ rule đơn lẻ không đủ."
             }
           ]
         },
         {
           "role": "bridge",
-          "title": "Cầu sang gradient",
+          "title": "TECHNICAL RUSSIAN + NEXT · derivative sang gradient",
           "blocks": [
             {
               "type": "text",
-              "title": "Liên kết",
-              "body": "Với nhiều biến đầu vào, mỗi biến có một độ nhạy riêng. Gom các độ nhạy đó thành vector ta có gradient."
+              "title": "9 thuật ngữ",
+              "body": "производная · скорость изменения · чувствительность · касательная · линейное приближение · приращение · конечная разность · шаг · дифференцируемость"
+            },
+            {
+              "type": "text",
+              "title": "4 động từ",
+              "body": "найдите — tìm; оцените — ước lượng; сравните — so sánh; объясните — giải thích."
+            },
+            {
+              "type": "text",
+              "title": "Khung vấn đáp",
+              "body": "«Производная измеряет локальную скорость изменения функции.»\n«Единицы производной равны единицам выхода, делённым на единицы входа.»"
+            },
+            {
+              "type": "text",
+              "title": "Cầu sang §3.3",
+              "body": "Một input variable có một derivative. Khi x có nhiều coordinates, ta hỏi sensitivity theo từng coordinate; các partial derivatives được gom thành gradient."
             }
           ]
         },
         {
           "role": "takeaway",
-          "title": "Kết luận cần nhớ",
+          "title": "REVIEW · 6 điều mang sang multivariable calculus",
           "blocks": [
             {
               "type": "text",
-              "title": "Cốt lõi",
-              "body": "Đạo hàm là độ nhạy cục bộ của đầu ra theo đầu vào và là viên gạch đầu tiên của tối ưu."
+              "title": "1",
+              "body": "Derivative = local rate/slope, không phải arbitrary secant."
+            },
+            {
+              "type": "text",
+              "title": "2",
+              "body": "f(x+Δx)≈f(x)+f'(x)Δx cho local linearization."
+            },
+            {
+              "type": "text",
+              "title": "3",
+              "body": "Sign và magnitude phải đọc cùng units."
+            },
+            {
+              "type": "text",
+              "title": "4",
+              "body": "Derivative có thể không tồn tại ở kink/discontinuity."
+            },
+            {
+              "type": "text",
+              "title": "5",
+              "body": "Finite differences verify implementation nhưng phụ thuộc h/floating-point."
+            },
+            {
+              "type": "text",
+              "title": "6",
+              "body": "Nhiều inputs ⇒ partial derivatives ⇒ gradient."
             }
           ]
         }
-      ]
+      ],
+      "qaEvidence": {
+        "derivativeRateUnits": "PASS",
+        "localLinearApproximation": "PASS",
+        "finiteDifferenceVerification": "PASS",
+        "stepSizeCaveat": "PASS",
+        "chapterIdCanonical": "PASS",
+        "schemaAndIds": "PASS",
+        "adjacentContinuity": "PASS",
+        "representationChannels": "PASS",
+        "practiceP0P3": "PASS",
+        "assessmentD0D1D2": "PASS",
+        "misconceptionDiagnostics": "PASS",
+        "technicalRussian": "PASS",
+        "softwareOutputTrustExplanation": "PASS",
+        "browserBaseline": "PENDING_E164"
+      }
     },
     {
       "lessonId": "MATH-VN-C03-giai_tich_dao_ham_gradient-L03-gradient-direction-fastest-change-e145",
       "chapterId": "MATH-VN-C03-ham_so_ao_ham_va_gradien",
       "lessonTitle": "§3.3 · Gradient như hướng thay đổi nhanh nhất",
       "title": "§3.3 · Gradient như hướng thay đổi nhanh nhất",
-      "programLectureId": "MATH-PROG-L03-calculus-gradient-optimization",
+      "orderInChapter": 3,
+      "programLectureId": "MATH-PROG-L05-calculus-gradient",
       "programLectureIds": [
-        "MATH-PROG-L03-calculus-gradient-optimization",
-        "MATH-PROG-L17-ai-machine-learning-math-foundations",
-        "MATH-PROG-L02-vector-spaces-linear-maps"
+        "MATH-PROG-L05-calculus-gradient",
+        "MATH-PROG-L06-optimization",
+        "MATH-PROG-L17-ai-machine-learning-math-foundations"
       ],
       "programAnchorTitle": "Giải tích, gradient và tối ưu",
       "roadmapRole": "foundation_before_prep",
-      "baumanFocus": "Hiểu gradient như vector độ nhạy nhiều chiều và hướng tăng nhanh nhất của hàm mất mát hoặc hàm mục tiêu.",
+      "baumanFocus": "Từ partial derivatives sang gradient; hiểu directional derivative, local linearization nhiều biến và vì sao ∇f chỉ hướng tăng nhanh nhất theo Euclidean coordinates hiện tại.",
+      "pureLayer": [
+        "partial derivative",
+        "gradient",
+        "directional derivative",
+        "local linearization",
+        "steepest ascent",
+        "norm"
+      ],
+      "appliedLayer": [
+        "loss sensitivity",
+        "parameter sensitivity",
+        "finite-difference gradient check",
+        "optimization bridge",
+        "feature scaling awareness"
+      ],
+      "bridgeQuestion": "Khi input có nhiều coordinates, hướng nào làm output tăng nhanh nhất và vì sao negative gradient trở thành hướng giảm cục bộ tự nhiên?",
+      "auditStatus": "REVIEW",
       "sourceAnchors": {
         "stageId": "vn",
-        "disciplineId": "calculus_optimization",
+        "disciplineId": "calculus_multivariable",
         "chapterId": "MATH-VN-C03-ham_so_ao_ham_va_gradien",
-        "programLectureId": "MATH-PROG-L03-calculus-gradient-optimization"
+        "programLectureId": "MATH-PROG-L05-calculus-gradient",
+        "officialCurriculum": "bmstu_iu5_2026_curriculum"
       },
       "tags": [
         "gradient",
         "partial derivative",
-        "loss function",
-        "optimization",
-        "machine learning"
+        "directional derivative",
+        "steepest ascent",
+        "sensitivity",
+        "optimization"
       ],
+      "learningContract": {
+        "governingQuestion": "Gradient gom sensitivity theo từng coordinate như thế nào, và quan hệ ∇f·u giải thích hướng tăng/giảm cục bộ ra sao?",
+        "whyNeeded": "Gradient là object cốt lõi cho gradient descent, loss optimization, sensitivity analysis và backpropagation.",
+        "prerequisiteGates": [
+          "Hiểu function contract §3.1.",
+          "Hiểu single-variable derivative/local linearization §3.2.",
+          "Biết dot product/norm từ C01.",
+          "Biết vector coordinates và units có ý nghĩa."
+        ],
+        "measurableLearningOutcomes": [
+          "LO1: Tính đúng partial derivatives và gradient của scalar function hai/ba biến đơn giản.",
+          "LO2: Viết local approximation f(x+Δx)≈f(x)+∇f(x)^TΔx.",
+          "LO3: Tính directional derivative D_u f=∇f·u cho unit direction u.",
+          "LO4: Giải thích bằng Cauchy–Schwarz trực giác rằng maximum directional derivative bằng ||∇f|| theo hướng ∇f/||∇f||.",
+          "LO5: Dùng negative gradient để dự đoán local decrease nhưng không nhầm với guarantee global optimum.",
+          "LO6: Verify analytical gradient bằng coordinate-wise central differences.",
+          "LO7: Giải thích coordinate scaling/units ảnh hưởng Euclidean gradient direction và vì sao normalization/preconditioning có thể cần sau này."
+        ],
+        "exactScope": [
+          "partial derivatives",
+          "gradient vector",
+          "directional derivative",
+          "steepest local direction",
+          "first-order multivariable approximation",
+          "finite-difference gradient check"
+        ],
+        "explicitDeferrals": [
+          "Gradient descent algorithm details → §3.4.",
+          "Hessian/second-order optimality → §3.5.",
+          "Chain rule/backprop → §3.6.",
+          "Natural gradient/preconditioning theory → later optimization."
+        ],
+        "canonicalTerminology": {
+          "partialDerivative": "đạo hàm riêng",
+          "gradient": "gradient",
+          "directionalDerivative": "đạo hàm theo hướng",
+          "steepestAscent": "hướng tăng nhanh nhất",
+          "steepestDescent": "hướng giảm nhanh nhất",
+          "localLinearization": "xấp xỉ tuyến tính nhiều biến",
+          "unitDirection": "vector hướng đơn vị"
+        },
+        "symbols": {
+          "∂f/∂x_i": "partial derivative w.r.t. coordinate i",
+          "∇f": "column vector of partial derivatives",
+          "u": "unit direction, ||u||=1",
+          "D_u f": "∇f^T u",
+          "Δf": "≈∇f^T Δx"
+        },
+        "continuity": {
+          "previous": "§3.2 · Đạo hàm và độ nhạy của hệ thống",
+          "next": "§3.4 · Gradient descent và learning rate"
+        }
+      },
+      "technicalRussian": {
+        "terms": [
+          [
+            "частная производная",
+            "đạo hàm riêng"
+          ],
+          [
+            "градиент",
+            "gradient"
+          ],
+          [
+            "направленная производная",
+            "đạo hàm theo hướng"
+          ],
+          [
+            "направление",
+            "hướng"
+          ],
+          [
+            "единичный вектор",
+            "vector đơn vị"
+          ],
+          [
+            "скорость изменения",
+            "tốc độ thay đổi"
+          ],
+          [
+            "локальное приближение",
+            "xấp xỉ cục bộ"
+          ],
+          [
+            "наискорейший рост",
+            "tăng nhanh nhất"
+          ],
+          [
+            "наискорейший спад",
+            "giảm nhanh nhất"
+          ]
+        ],
+        "commandVerbs": [
+          [
+            "найдите",
+            "hãy tìm"
+          ],
+          [
+            "вычислите",
+            "hãy tính"
+          ],
+          [
+            "нормируйте",
+            "hãy chuẩn hóa"
+          ],
+          [
+            "объясните",
+            "hãy giải thích"
+          ]
+        ],
+        "oralFrames": [
+          "Градиент состоит из частных производных по всем координатам.",
+          "Направленная производная равна скалярному произведению градиента и единичного направления.",
+          "Отрицательный градиент задаёт локальное направление наискорейшего спада в выбранных евклидовых координатах."
+        ]
+      },
+      "sourceProvenance": [
+        {
+          "id": "bmstu_iu5_2026_curriculum",
+          "kind": "official_curriculum",
+          "url": "https://home.science.iu5.bmstu.ru/study-plans/iu5-master-program.pdf",
+          "supports": [
+            "preparation context for analytical models, AI/data analysis and optimization"
+          ]
+        },
+        {
+          "id": "mit_multivariable_partial_derivatives",
+          "kind": "authoritative_university_material",
+          "url": "https://ocw.mit.edu/courses/18-02sc-multivariable-calculus-fall-2010/pages/2.-partial-derivatives/",
+          "supports": [
+            "partial derivatives measure rates of change",
+            "gradient and tangent approximation organize multivariable derivatives and optimization"
+          ]
+        },
+        {
+          "id": "numpy_gradient",
+          "kind": "official_documentation",
+          "url": "https://numpy.org/doc/stable/reference/generated/numpy.gradient.html",
+          "supports": [
+            "finite-difference numerical gradient concepts and spacing dependence"
+          ]
+        }
+      ],
+      "generatedMaterial": {
+        "status": "AI_DRAFT_REVIEWED_IN_CONTENT_FACTORY",
+        "lineage": "Generated multivariable-gradient lesson anchored to MIT partial-derivative/gradient teaching and numerical finite-difference verification.",
+        "canonicalSourceReplacement": false
+      },
+      "contentFactory": {
+        "C1": "PASS",
+        "C2": "PASS",
+        "C3": "PASS",
+        "C4": "PASS",
+        "C5": "PASS",
+        "C6": {
+          "software": "PASS_STATIC_AFTER_E166_E173",
+          "user": "PASS",
+          "blockers": 0,
+          "majors": 0,
+          "inheritedDeferredGate": "E164",
+          "acceptance": "LOCAL_CONTENT_QA_PASS_GLOBAL_BROWSER_BASELINE_PENDING"
+        }
+      },
       "slides": [
         {
           "role": "problem_framing",
-          "title": "Gradient mở rộng đạo hàm sang nhiều chiều",
+          "title": "ORIENT · Một derivative không đủ khi input là vector",
+          "sourceRefs": [
+            "mit_multivariable_partial_derivatives"
+          ],
           "blocks": [
             {
               "type": "text",
-              "title": "Ý chính",
-              "body": "Khi hàm phụ thuộc nhiều biến, ta cần biết đầu ra nhạy với từng biến thế nào. Gradient gom các đạo hàm riêng thành một vector."
+              "title": "Câu hỏi điều khiển",
+              "body": "Nếu loss phụ thuộc vào hàng nghìn parameters, thay đổi coordinate nào làm loss tăng/giảm mạnh nhất? Gradient gom local sensitivities thành một vector để trả lời."
+            },
+            {
+              "type": "text",
+              "title": "Vì sao cần",
+              "body": "Optimization cần một direction trong parameter space, không chỉ một slope. Gradient là cầu nối từ scalar loss sang update vector."
+            },
+            {
+              "type": "formula",
+              "title": "Definition",
+              "body": "f:R^n→R\n∇f(x)=[∂f/∂x1,...,∂f/∂xn]^T"
+            },
+            {
+              "type": "qa",
+              "title": "Retrieval",
+              "body": "Nếu f:R^5→R, gradient có bao nhiêu components và sống trong không gian nào?"
             }
           ]
         },
         {
           "role": "deep_essence",
-          "title": "Gradient là vector độ nhạy",
+          "title": "REACTIVATION · Partial derivative = sensitivity theo một coordinate",
           "blocks": [
             {
+              "type": "text",
+              "title": "Hold others fixed",
+              "body": "∂f/∂x_i hỏi output đổi thế nào khi chỉ x_i đổi nhỏ còn các coordinates khác giữ cố định."
+            },
+            {
               "type": "formula",
-              "title": "Gradient",
-              "body": "grad f(x) = [partial f/partial x_1, ..., partial f/partial x_n]^T"
+              "title": "Example form",
+              "body": "f(x,y)=x^2+2y^2\n∂f/∂x=2x\n∂f/∂y=4y"
             },
             {
               "type": "text",
-              "title": "Diễn giải",
-              "body": "Mỗi thành phần cho biết nếu thay đổi một biến một chút, hàm sẽ thay đổi theo hướng nào và mạnh bao nhiêu."
+              "title": "Gradient",
+              "body": "Tại (1,2): ∇f=[2,8]^T. Hai numbers là sensitivities theo axes hiện tại."
+            },
+            {
+              "type": "qa",
+              "title": "Tự nói lại",
+              "body": "Component gradient lớn hơn có luôn nghĩa variable đó 'quan trọng hơn' không? Chưa chắc nếu units/scales khác."
             }
           ]
         },
         {
           "role": "counter_intuition",
-          "title": "Gradient không phải hướng đi tốt nhất cho mọi mục tiêu",
+          "title": "COUNTER-INTUITION · Gradient direction phụ thuộc coordinate scaling",
           "blocks": [
             {
               "type": "text",
-              "title": "Điểm dễ nhầm",
-              "body": "Gradient là hướng tăng nhanh nhất. Nếu muốn giảm hàm mất mát, ta đi theo hướng âm gradient. Nếu có ràng buộc hoặc scale lệch, hướng tốt thực tế có thể cần điều chỉnh."
+              "title": "Euclidean coordinates",
+              "body": "'Steepest' được định nghĩa theo notion of unit step ||u||=1 trong coordinates đang dùng."
+            },
+            {
+              "type": "text",
+              "title": "Rescaling",
+              "body": "Đổi variable từ meters sang millimeters làm numerical partial derivative thay scale; raw gradient components/direction có thể đổi."
+            },
+            {
+              "type": "text",
+              "title": "Interpretation",
+              "body": "Gradient vẫn đúng trong coordinates mới, nhưng so components across units mà không normalize/precondition có thể gây hiểu sai."
+            },
+            {
+              "type": "qa",
+              "title": "Diagnostic",
+              "body": "Parameter1 đo volts, parameter2 đo microseconds. Có nên so trực tiếp 2 gradient components chỉ bằng magnitude không?"
             }
           ]
         },
         {
           "role": "real_bridge",
-          "title": "Gradient trong học máy",
+          "title": "CONTEXT · Loss landscape và parameter sensitivity",
           "blocks": [
             {
               "type": "text",
-              "title": "Ví dụ",
-              "body": "Loss L(theta) đo mô hình sai bao nhiêu. Gradient grad L(theta) cho biết thay đổi từng tham số theta sẽ làm loss tăng/giảm ra sao."
+              "title": "Loss",
+              "body": "J(w1,w2) là scalar error surface. Gradient tại một point là local sensitivity vector trong parameter plane."
+            },
+            {
+              "type": "text",
+              "title": "Positive direction",
+              "body": "Move theo +∇J làm J tăng nhanh nhất cục bộ cho unit Euclidean step."
+            },
+            {
+              "type": "text",
+              "title": "Negative direction",
+              "body": "Move theo -∇J làm first-order change âm mạnh nhất. Đây là intuition của gradient descent."
+            },
+            {
+              "type": "qa",
+              "title": "Decision question",
+              "body": "-∇J đảm bảo đi tới global minimum không? Không; nó chỉ là local first-order direction."
             }
           ]
         },
         {
           "role": "notation",
-          "title": "Đạo hàm riêng và gradient",
+          "title": "FORMALIZE · Local linearization nhiều biến",
           "blocks": [
             {
               "type": "formula",
-              "title": "Đạo hàm riêng",
-              "body": "partial f/partial x_i"
+              "title": "First-order approximation",
+              "body": "f(x+Δx) ≈ f(x) + ∇f(x)^T Δx"
+            },
+            {
+              "type": "text",
+              "title": "Dot product meaning",
+              "body": "Gradient projects onto chosen perturbation Δx. Only component of Δx aligned with gradient contributes maximally to first-order change."
             },
             {
               "type": "formula",
-              "title": "Gradient descent",
-              "body": "x_{k+1} = x_k - eta grad f(x_k)"
+              "title": "Directional derivative",
+              "body": "D_u f(x)=∇f(x)^T u, ||u||=1"
+            },
+            {
+              "type": "qa",
+              "title": "Quick check",
+              "body": "Nếu u orthogonal với ∇f, first-order directional derivative bằng bao nhiêu?"
             }
           ]
         },
         {
           "role": "core_formula",
-          "title": "Đạo hàm theo hướng",
+          "title": "CORE · Vì sao gradient là hướng tăng nhanh nhất",
           "blocks": [
             {
               "type": "formula",
-              "title": "Directional derivative",
-              "body": "D_u f(x) = grad f(x) · u, với ||u||=1"
+              "title": "Cauchy–Schwarz",
+              "body": "D_u f=∇f^T u ≤ ||∇f||·||u|| = ||∇f||"
             },
             {
               "type": "text",
-              "title": "Ý nghĩa",
-              "body": "Hàm tăng nhanh nhất khi u cùng hướng gradient và giảm nhanh nhất khi u ngược hướng gradient."
+              "title": "Equality",
+              "body": "Maximum đạt khi u cùng hướng gradient: u*=∇f/||∇f|| nếu gradient khác zero."
+            },
+            {
+              "type": "formula",
+              "title": "Steepest decrease",
+              "body": "min_(||u||=1) D_u f = -||∇f|| tại u=-∇f/||∇f||"
+            },
+            {
+              "type": "qa",
+              "title": "Retrieve",
+              "body": "Nếu ∇f=0, công thức 'normalize gradient' gặp vấn đề gì và first-order information nói gì?"
             }
           ]
         },
         {
           "role": "assumption_gate",
-          "title": "Điều kiện dùng gradient descent",
+          "title": "ASSUMPTION GATE · Gradient zero không tự động là minimum",
           "blocks": [
             {
               "type": "text",
-              "title": "Điều kiện",
-              "body": "Hàm cần đủ trơn hoặc có gradient xấp xỉ được. Learning rate eta phải phù hợp; quá lớn gây dao động, quá nhỏ làm học chậm."
+              "title": "Stationary point",
+              "body": "∇f=0 chỉ nói first-order slope zero theo mọi direction."
+            },
+            {
+              "type": "text",
+              "title": "Có thể là gì",
+              "body": "Local minimum, local maximum hoặc saddle point đều có thể stationary."
+            },
+            {
+              "type": "text",
+              "title": "Need second-order/context",
+              "body": "Phân loại stationary point cần curvature/Hessian hoặc problem structure; để §3.5."
+            },
+            {
+              "type": "qa",
+              "title": "Gate",
+              "body": "f(x,y)=x^2-y^2 tại (0,0) có gradient zero. Đây có phải minimum không?"
             }
           ]
         },
         {
           "role": "mini_case",
-          "title": "Mini case: tối ưu tham số mô hình tuyến tính",
+          "title": "E1 SIMPLE · f=x²+2y² tại (1,2)",
           "blocks": [
             {
+              "type": "formula",
+              "title": "Gradient",
+              "body": "∇f=[2x,4y]^T ⇒ ∇f(1,2)=[2,8]^T"
+            },
+            {
+              "type": "formula",
+              "title": "Gradient norm",
+              "body": "||∇f||=√(2^2+8^2)=√68"
+            },
+            {
               "type": "text",
-              "title": "Case",
-              "body": "Với y_hat = Xw, loss = mean((Xw-y)^2). Gradient theo w cho biết mỗi trọng số cần tăng hay giảm để giảm sai số."
+              "title": "Direction",
+              "body": "Steepest ascent unit direction=[2,8]/√68. Steepest descent là vector đối dấu."
+            },
+            {
+              "type": "qa",
+              "title": "Sanity",
+              "body": "Tại point này, y-coordinate sensitivity lớn hơn x-coordinate theo current units bao nhiêu lần?"
             }
           ]
         },
         {
           "role": "interpretation",
-          "title": "Đọc gradient như bản đồ địa hình",
+          "title": "E2 CONTEXTUAL · Directional derivative theo hướng cụ thể",
           "blocks": [
             {
+              "type": "formula",
+              "title": "Direction",
+              "body": "u=[3/5,4/5], ||u||=1"
+            },
+            {
+              "type": "formula",
+              "title": "Directional derivative",
+              "body": "D_u f=[2,8]·[3/5,4/5]=6/5+32/5=38/5=7.6"
+            },
+            {
               "type": "text",
-              "title": "Diễn giải",
-              "body": "Nếu loss là độ cao trên địa hình tham số, gradient chỉ hướng lên dốc nhanh nhất. Tối ưu là đi xuống dốc có kiểm soát."
+              "title": "Compare maximum",
+              "body": "Maximum possible unit directional derivative là √68≈8.246, nên hướng u tăng nhanh nhưng chưa tối đa."
+            },
+            {
+              "type": "qa",
+              "title": "Transfer nhẹ",
+              "body": "Hướng -u cho directional derivative bao nhiêu? Ý nghĩa sign?"
             }
           ]
         },
         {
           "role": "simulation",
-          "title": "Thí nghiệm gradient bằng Python",
+          "title": "BEGINNER ENTRY · Verify gradient bằng central differences",
+          "sourceRefs": [
+            "numpy_gradient"
+          ],
           "blocks": [
             {
               "type": "code",
-              "title": "Công cụ",
-              "body": "grad = 2 * X.T @ (X @ w - y) / len(y)\nw = w - eta * grad"
+              "title": "Deterministic gradient check",
+              "body": "import numpy as np\n\ndef f(v):\n    x, y = v\n    return x*x + 2*y*y\n\ndef grad_analytic(v):\n    x, y = v\n    return np.array([2*x, 4*y], dtype=float)\n\ndef grad_fd(f, v, h=1e-5):\n    v = np.array(v, dtype=float)\n    g = np.zeros_like(v)\n    for i in range(len(v)):\n        e = np.zeros_like(v); e[i] = 1.0\n        g[i] = (f(v+h*e)-f(v-h*e))/(2*h)\n    return g\n\nv = np.array([1.,2.])\nassert np.allclose(grad_fd(f,v), grad_analytic(v), rtol=1e-9, atol=1e-9)"
+            },
+            {
+              "type": "text",
+              "title": "BEGINNER ENTRY · coordinate checks",
+              "body": "Finite-difference mỗi coordinate giữ others fixed, đúng với definition partial derivative."
+            },
+            {
+              "type": "text",
+              "title": "Software trust",
+              "body": "Gradient check cần scale-aware tolerance và nhiều h/points. Pass ở một point không chứng minh symbolic formula đúng toàn domain."
+            },
+            {
+              "type": "qa",
+              "title": "Experiment",
+              "body": "Thay function thành f=x^2-y^2. Verify gradient tại (1,1), rồi kiểm point (0,0) có gradient zero nhưng saddle."
             }
           ]
         },
         {
           "role": "common_mistakes",
-          "title": "Lỗi thường gặp",
+          "title": "MISCONCEPTION MAP · 5 lỗi về gradient",
           "blocks": [
             {
               "type": "text",
-              "title": "Lỗi",
-              "body": "Nhầm gradient với âm gradient; chọn learning rate tùy tiện; không scale đặc trưng; nghĩ gradient bằng 0 luôn là cực tiểu tốt."
+              "title": "MAJOR · «Gradient là một số»",
+              "body": "Với scalar function nhiều variables, gradient là vector."
+            },
+            {
+              "type": "text",
+              "title": "MAJOR · «Partial derivative đổi tất cả variables»",
+              "body": "Một partial derivative thay một coordinate, giữ others fixed."
+            },
+            {
+              "type": "text",
+              "title": "MAJOR · «Gradient zero = minimum»",
+              "body": "Có thể maximum/saddle."
+            },
+            {
+              "type": "text",
+              "title": "MAJOR · «-gradient luôn tới global optimum»",
+              "body": "Chỉ local descent direction first-order."
+            },
+            {
+              "type": "text",
+              "title": "MAJOR · «Component lớn nhất = parameter quan trọng nhất»",
+              "body": "Units/scales/coordinate metric ảnh hưởng magnitude."
             }
           ]
         },
         {
           "role": "application",
-          "title": "Ứng dụng lập trình",
+          "title": "E3 TRANSFER · Gradient sensitivity audit",
           "blocks": [
             {
-              "type": "text",
-              "title": "Nhiệm vụ",
-              "body": "Cài đặt gradient descent cho hồi quy tuyến tính một biến và nhiều biến. Vẽ loss theo số bước để kiểm tra hội tụ."
+              "type": "qa",
+              "title": "Task 1",
+              "body": "J(w1,w2)=w1^2+10w2^2 tại (1,1). Tính gradient, normalized steepest direction và giải thích scale."
+            },
+            {
+              "type": "qa",
+              "title": "Task 2",
+              "body": "Dùng direction u=[1,1]/√2. Tính D_u J và compare ||∇J||."
+            },
+            {
+              "type": "qa",
+              "title": "Task 3",
+              "body": "Rescale coordinate z2=100w2. Raw gradient components đổi ra sao về units/magnitude? Điều gì không nên kết luận vội?"
+            },
+            {
+              "type": "qa",
+              "title": "Task 4",
+              "body": "Tạo scalar function 3 variables, viết analytical gradient và finite-difference checker."
             }
           ]
         },
         {
           "role": "practice",
-          "title": "Bài luyện tập",
+          "title": "PRACTICE LADDER · P0 → P3",
           "blocks": [
             {
-              "type": "text",
-              "title": "Bài tập",
-              "body": "Cho f(x,y)=x^2+3y^2. Tính gradient tại (1,2), xác định hướng tăng nhanh nhất và bước giảm đầu tiên với eta=0.1."
+              "type": "qa",
+              "title": "P0 · Recognition",
+              "body": "5 scalar functions: identify number of gradient components and partial-variable names."
+            },
+            {
+              "type": "qa",
+              "title": "P1 · Guided",
+              "body": "f=x^2+xy+y^2: tính partials, gradient tại (1,2), directional derivative theo [1,0] và [0,1]."
+            },
+            {
+              "type": "qa",
+              "title": "P2 · Independent",
+              "body": "Tự chọn quadratic 3 variables, derive gradient, verify finite differences trên 3 deterministic points."
+            },
+            {
+              "type": "qa",
+              "title": "P3 · Transfer",
+              "body": "Tạo same physical model với two coordinate scalings; compare raw gradients và giải thích metric/scaling effect."
             }
           ]
         },
         {
           "role": "professor_qa",
-          "title": "Vấn đáp kiểm tra hiểu sâu",
+          "title": "ASSESSMENT · D0 / D1 / D2",
           "blocks": [
             {
               "type": "qa",
-              "title": "Câu hỏi",
-              "body": "Vì sao gradient phụ thuộc scale của biến? Tại sao chuẩn hóa đặc trưng giúp gradient descent ổn định hơn?"
+              "title": "D0 RECALL",
+              "body": "Định nghĩa partial derivative, gradient, directional derivative và local linearization."
+            },
+            {
+              "type": "qa",
+              "title": "D1 APPLICATION",
+              "body": "Cho scalar function 3 variables. Tính analytical gradient, verify numerically, tìm steepest unit direction và dự đoán Δf cho small Δx."
+            },
+            {
+              "type": "qa",
+              "title": "D2 EXPLAIN / ORAL",
+              "body": "Giải thích 60–90 giây: «Vì sao gradient là steepest Euclidean direction và vì sao scaling variables có thể đổi raw gradient direction?»"
+            },
+            {
+              "type": "text",
+              "title": "Mastery evidence",
+              "body": "Đạt khi learner nối partials→gradient→directional derivative→local change và hiểu coordinate caveat."
             }
           ]
         },
         {
           "role": "bridge",
-          "title": "Cầu sang tối ưu hóa",
+          "title": "TECHNICAL RUSSIAN + NEXT · gradient sang descent",
           "blocks": [
             {
               "type": "text",
-              "title": "Liên kết",
-              "body": "Gradient cho biết hướng. Bài sau học cách chọn bước đi, điều kiện hội tụ, cực tiểu địa phương và các biến thể tối ưu."
+              "title": "9 thuật ngữ",
+              "body": "частная производная · градиент · направленная производная · направление · единичный вектор · скорость изменения · локальное приближение · наискорейший рост · наискорейший спад"
+            },
+            {
+              "type": "text",
+              "title": "4 động từ",
+              "body": "найдите — tìm; вычислите — tính; нормируйте — chuẩn hóa; объясните — giải thích."
+            },
+            {
+              "type": "text",
+              "title": "Khung vấn đáp",
+              "body": "«Направленная производная равна скалярному произведению градиента и единичного направления.»\n«Отрицательный градиент задаёт локальное направление наискорейшего спада.»"
+            },
+            {
+              "type": "text",
+              "title": "Cầu sang §3.4",
+              "body": "Biết hướng giảm mới là nửa bài toán. §3.4 thêm learning rate: đi bao xa theo -gradient để giảm loss mà không overshoot/diverge?"
             }
           ]
         },
         {
           "role": "takeaway",
-          "title": "Kết luận cần nhớ",
+          "title": "REVIEW · 6 facts trước gradient descent",
           "blocks": [
             {
               "type": "text",
-              "title": "Cốt lõi",
-              "body": "Gradient là vector độ nhạy nhiều chiều; âm gradient là hướng giảm nhanh nhất của hàm mục tiêu trong mô hình trơn."
+              "title": "1",
+              "body": "Gradient là vector partial derivatives."
+            },
+            {
+              "type": "text",
+              "title": "2",
+              "body": "Δf≈∇f^TΔx là local first-order model."
+            },
+            {
+              "type": "text",
+              "title": "3",
+              "body": "D_u f=∇f·u với unit u."
+            },
+            {
+              "type": "text",
+              "title": "4",
+              "body": "+gradient steepest ascent; -gradient steepest descent locally."
+            },
+            {
+              "type": "text",
+              "title": "5",
+              "body": "∇f=0 không đủ phân loại optimum."
+            },
+            {
+              "type": "text",
+              "title": "6",
+              "body": "Gradient magnitude/direction phụ thuộc coordinate scaling/metric."
             }
           ]
         }
-      ]
+      ],
+      "qaEvidence": {
+        "gradientAnalytic": "PASS",
+        "directionalDerivative": "PASS",
+        "finiteDifferenceGradientCheck": "PASS",
+        "coordinateScalingCaveat": "PASS",
+        "chapterIdCanonical": "PASS",
+        "schemaAndIds": "PASS",
+        "adjacentContinuity": "PASS",
+        "representationChannels": "PASS",
+        "practiceP0P3": "PASS",
+        "assessmentD0D1D2": "PASS",
+        "misconceptionDiagnostics": "PASS",
+        "technicalRussian": "PASS",
+        "softwareOutputTrustExplanation": "PASS",
+        "browserBaseline": "PENDING_E164"
+      }
     }
   ],
   "reconciledChapterId": {
     "id": "E173",
-    "legacyChapterId": "MATH-VN-C03-giai_tich_dao_ham_gradient",
     "canonicalChapterId": "MATH-VN-C03-ham_so_ao_ham_va_gradien",
     "lessonIdsPreserved": true
-  }
+  },
+  "supersedes": "E145_STAGED_CONTENT",
+  "syncStatus": "SYNCED_TO_RUNTIME_CONTENT_E174_E176",
+  "syncedAt": "2026-09-21"
 }
