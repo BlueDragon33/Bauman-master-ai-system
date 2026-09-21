@@ -171,10 +171,11 @@
   }
 
   function clearSession() {
+    // Do not race an asynchronous cookie DELETE against a subsequent successful
+    // proof/session bind. A stale HttpOnly cookie has no authority by itself:
+    // the Runtime Worker live-validates it before every protected data read and
+    // clears it on any rejected heartbeat.
     sessionStorage.removeItem(SESSION_KEY);
-    if (global.location && global.location.protocol === 'https:') {
-      void fetch('/api/runtime/session', { method: 'DELETE', credentials: 'same-origin', cache: 'no-store' }).catch(() => {});
-    }
   }
 
   async function bindRuntimeSession(token) {
