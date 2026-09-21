@@ -25,6 +25,9 @@ try{
   await page.goto(new URL('subjects/russian/index.html',BASE).href,{waitUntil:'domcontentloaded',timeout:30000});
   await page.waitForSelector('body.ru-future-ui',{timeout:15000});
   await page.waitForSelector('.rf-dashboard .rf-module-card',{timeout:15000});
+  // Core can finish one last render after the future enhancer first paints.
+  // Wait for the MutationObserver/RAF presentation layer to settle before asserting visible branding.
+  await page.waitForFunction(()=>document.getElementById('subjectTitle')?.textContent?.trim()==='Tiếng Nga',null,{timeout:10000});
 
   assert.equal((await page.locator('#subjectTitle').innerText()).trim(),'Tiếng Nga','Russian-only visible brand drifted');
   assert.match(await page.locator('#subjectSubtitle').innerText(),/Nghe.*Nói.*Đọc.*Viết/);
