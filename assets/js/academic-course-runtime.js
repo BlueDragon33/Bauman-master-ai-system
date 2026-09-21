@@ -1,6 +1,6 @@
 'use strict';
 (function(){
-  const VERSION='Academic Phase2 Current-Main · A2 Course Readiness + A3 Evidence Bridge';
+  const VERSION='Academic Phase2 Current-Main · A2 Course Readiness + A3→A5 Evidence Bridge';
   const ARCH_URL='assets/data/course-learning-architecture-s1-2026.json';
   const COURSE_ORDER=['d01','d02','d03','d04','d05','d06','d15','p02'];
   let architecture=null;
@@ -99,7 +99,7 @@
   }
   function renderProgressSummary(){
     if(!architecture)return '';
-    return `<section class="course14b-shell course14b-progress" data-course14b-progress="s1"><div class="course14b-progress-head"><div><span class="academic2026-badge">PHASE2 · A2→A4 · READ-ONLY</span><h3>Course Readiness · Học kỳ 1</h3><p>Ba trục độc lập: prerequisite · lifecycle · event. Transcript/Honors là evidence riêng, không suy ra từ assessment event.</p></div><div class="course14b-progress-actions"><button class="btn" onclick="openCourseReadinessOverview2026()">Mở 8 học phần</button><button class="btn" data-a4-transcript-open onclick="openAcademicTranscriptEvidenceA4()">Phụ lục / Honors</button></div></div><div class="course14b-grid course14b-grid-compact">${COURSE_ORDER.map(id=>courseById(id)).filter(Boolean).map(courseCard).join('')}</div></section>`;
+    return `<section class="course14b-shell course14b-progress" data-course14b-progress="s1"><div class="course14b-progress-head"><div><span class="academic2026-badge">PHASE2 · A2→A4 · READ-ONLY</span><h3>Course Readiness · Học kỳ 1</h3><p>Ba trục độc lập: prerequisite · lifecycle · event. Transcript/Honors là evidence riêng, không suy ra từ assessment event.</p></div><div class="course14b-progress-actions"><button class="btn" onclick="openCourseReadinessOverview2026()">Mở 8 học phần</button><button class="btn" data-a4-transcript-open onclick="openAcademicTranscriptEvidenceA4()">Phụ lục / Honors</button><button class="btn primary" data-a5-command-open onclick="openAcademicCommandCenterA5()">Academic Command Center</button></div></div><div class="course14b-grid course14b-grid-compact">${COURSE_ORDER.map(id=>courseById(id)).filter(Boolean).map(courseCard).join('')}</div></section>`;
   }
 
   function evidenceLabel(block){
@@ -153,6 +153,20 @@
     }catch(err){if(typeof window.alert==='function')window.alert(err.message||String(err));return null}
   }
 
+  async function openCommandCenter(){
+    try{
+      const eventRuntime=window.BAUMAN_EVENT_READINESS_2026;
+      if(!eventRuntime?.ensureGradeRuntime)throw new Error('A3 Event runtime chưa sẵn sàng.');
+      const gradeRuntime=await eventRuntime.ensureGradeRuntime();
+      if(!gradeRuntime?.ensureTranscriptRuntime)throw new Error('A4 Transcript bridge chưa sẵn sàng.');
+      const transcript=await gradeRuntime.ensureTranscriptRuntime();
+      if(!transcript?.ensureCommandCenterRuntime)throw new Error('A5 Command Center bridge chưa sẵn sàng.');
+      const command=await transcript.ensureCommandCenterRuntime();
+      if(typeof command?.openOverview!=='function')throw new Error('A5 Command Center runtime chưa sẵn sàng.');
+      return command.openOverview();
+    }catch(err){if(typeof window.alert==='function')window.alert(err.message||String(err));return null}
+  }
+
   function openOverview(){
     if(!architecture)return;
     const body=`<div class="course14b-modal course14b-overview"><p class="academic2026-note">A2 chỉ tổng hợp evidence hiện có. Runtime không ghi diagnostic, không sửa scheduler và không tự đánh dấu course completion.</p><div class="course14b-grid">${COURSE_ORDER.map(id=>courseById(id)).filter(Boolean).map(courseCard).join('')}</div></div>`;
@@ -193,7 +207,8 @@
   window.openCourseReadinessOverview2026=openOverview;
   window.openAcademicGradeEvidenceA3=openGradeEvidence;
   window.openAcademicTranscriptEvidenceA4=openTranscriptEvidence;
-  window.BAUMAN_COURSE_READINESS_2026=Object.freeze({version:VERSION,load,prereqAxis,lifecycleAxis,eventAxis,fallbackEventAxis,gateRows,nextAction,courseById,renderProgressSummary,readOnly:true,architectureUrl:ARCH_URL,surface:'progress-modal',a3EvidenceBridge:true,a4TranscriptBridge:true});
+  window.openAcademicCommandCenterA5=openCommandCenter;
+  window.BAUMAN_COURSE_READINESS_2026=Object.freeze({version:VERSION,load,prereqAxis,lifecycleAxis,eventAxis,fallbackEventAxis,gateRows,nextAction,courseById,renderProgressSummary,openCommandCenter,readOnly:true,architectureUrl:ARCH_URL,surface:'progress-modal',a3EvidenceBridge:true,a4TranscriptBridge:true,a5CommandBridge:true});
   if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',()=>setTimeout(load,0),{once:true});
   else setTimeout(load,0)
 })();
