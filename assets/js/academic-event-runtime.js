@@ -81,13 +81,21 @@
   function refreshUi(){return true}
   async function waitBase(timeout=15000){const start=Date.now();while(Date.now()-start<timeout){if(courseRuntime()&&architecture()&&window.app?.__course14bPatched)return true;await new Promise(r=>setTimeout(r,50))}return false}
   async function load(){try{if(!(await waitBase()))throw new Error('A2 course runtime did not become ready');console.info(VERSION,{storageKey:STORE_KEY,userScoped:true,schedulerMutation:false,officialResultMutation:false,gradeBridge:true,surface:'course-progress-modal',homeSurfaceAdded:false})}catch(err){console.warn('A3 event runtime disabled safely:',err)}}
-  function bootstrapGradeRuntime(){
-    if(!document.querySelector('link[data-phase2-grade-style]')){const link=document.createElement('link');link.rel='stylesheet';link.href='assets/css/academic-grade-2026.css';link.dataset.phase2GradeStyle='1';document.head.appendChild(link)}
-    if(window.BAUMAN_GRADE_CONTROL_2026||document.querySelector('script[data-phase2-grade-runtime]'))return;
-    const script=document.createElement('script');script.src='assets/js/academic-grade-runtime.js';script.dataset.phase2GradeRuntime='1';script.async=false;document.body.appendChild(script);
+  let gradeLoadPromise=null;
+  function ensureGradeRuntime(){
+    if(window.BAUMAN_GRADE_CONTROL_2026&&window.BAUMAN_GRADING_POLICY_2024)return Promise.resolve(window.BAUMAN_GRADE_CONTROL_2026);
+    if(gradeLoadPromise)return gradeLoadPromise;
+    gradeLoadPromise=new Promise((resolve,reject)=>{
+      if(!document.querySelector('link[data-phase2-grade-style]')){const link=document.createElement('link');link.rel='stylesheet';link.href='assets/css/academic-grade-2026.css';link.dataset.phase2GradeStyle='1';document.head.appendChild(link)}
+      const waitReady=()=>{const started=Date.now();(function poll(){if(window.BAUMAN_GRADE_CONTROL_2026&&window.BAUMAN_GRADING_POLICY_2024)return resolve(window.BAUMAN_GRADE_CONTROL_2026);if(Date.now()-started>15000)return reject(new Error('A3 Grade runtime/policy did not become ready'));setTimeout(poll,50)})()};
+      let script=document.querySelector('script[data-phase2-grade-runtime]');
+      if(script){waitReady();return}
+      script=document.createElement('script');script.src='assets/js/academic-grade-runtime.js';script.dataset.phase2GradeRuntime='1';script.async=false;script.addEventListener('load',waitReady,{once:true});script.addEventListener('error',()=>reject(new Error('A3 Grade runtime failed to load')),{once:true});document.body.appendChild(script);
+    }).catch(err=>{gradeLoadPromise=null;throw err});
+    return gradeLoadPromise;
   }
 
   window.openAcademicEventReadiness2026=openEvent;window.saveAcademicEventReadiness2026=saveFromUi;window.clearAcademicEventReadiness2026=clearFromUi;
-  window.BAUMAN_EVENT_READINESS_2026=Object.freeze({version:VERSION,load,eventState,courseEventAxis,recordEvidence,clearEvidence,evidenceFor,readinessCounts,currentResolvedEvents,storageKey:STORE_KEY,userScoped:true,schedulerMutation:false,officialResultMutation:false,surface:'course-progress-modal',homeSurfaceAdded:false,gradeBridge:true});
-  if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',()=>{setTimeout(load,0);setTimeout(bootstrapGradeRuntime,0)},{once:true});else {setTimeout(load,0);setTimeout(bootstrapGradeRuntime,0)}
+  window.BAUMAN_EVENT_READINESS_2026=Object.freeze({version:VERSION,load,eventState,courseEventAxis,recordEvidence,clearEvidence,evidenceFor,readinessCounts,currentResolvedEvents,ensureGradeRuntime,storageKey:STORE_KEY,userScoped:true,schedulerMutation:false,officialResultMutation:false,surface:'course-progress-modal',homeSurfaceAdded:false,gradeBridge:true,lazyGradeLoad:true});
+  if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',()=>setTimeout(load,0),{once:true});else setTimeout(load,0)
 })();
