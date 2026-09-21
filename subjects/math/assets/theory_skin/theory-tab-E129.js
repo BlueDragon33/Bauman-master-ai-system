@@ -425,7 +425,39 @@
     return false;
   }
   function scheduleRender(delay){ setTimeout(function(){ loadData().then(render); },delay||0); }
-  function selfCheck(){ var status=sourceStatus(); return { ok:!!(cache.chapters.length||status.frame), release:RELEASE, contractDoc:CONTRACT.contractDoc, adapterMarked:!!(window.SUBJECT_ADAPTER&&window.SUBJECT_ADAPTER.theoryContract), sources:status, primaryFrameSource:CONTRACT.primaryFrameSource, primaryContentSource:CONTRACT.primaryContentSource, legacySource:CONTRACT.legacySource, renderReplacement:true, importerTarget:'theory_lecture_content', legacyImporterSuppressedOnTheoryStorage:true, frameOnlyRenderable:cache.chapters.length>0, note:'E129 shell/importer is active. E126/E128 remain compatibility layers outside E129 Theory storage.' }; }
+  function selfCheck(){
+    var status=sourceStatus();
+    var buttons=Array.prototype.slice.call(document.querySelectorAll('[data-e129-lesson]'));
+    var visibleButtons=buttons.filter(function(btn){
+      var r=btn.getBoundingClientRect();
+      var cs=window.getComputedStyle?window.getComputedStyle(btn):null;
+      return r.width>0&&r.height>0&&(!cs||cs.display!=='none')&&(!cs||cs.visibility!=='hidden');
+    });
+    var active=document.querySelector('[data-e129-lesson].active');
+    var activeRect=active&&active.getBoundingClientRect?active.getBoundingClientRect():null;
+    var activeVisible=!!(activeRect&&activeRect.width>0&&activeRect.height>0);
+    return {
+      ok:!!(cache.chapters.length||status.frame),
+      release:RELEASE,
+      contractDoc:CONTRACT.contractDoc,
+      adapterMarked:!!(window.SUBJECT_ADAPTER&&window.SUBJECT_ADAPTER.theoryContract),
+      sources:status,
+      primaryFrameSource:CONTRACT.primaryFrameSource,
+      primaryContentSource:CONTRACT.primaryContentSource,
+      legacySource:CONTRACT.legacySource,
+      renderReplacement:true,
+      importerTarget:'theory_lecture_content',
+      legacyImporterSuppressedOnTheoryStorage:true,
+      frameOnlyRenderable:cache.chapters.length>0,
+      selectedLessonId:S(state().e129LessonId||''),
+      lessonButtonCount:buttons.length,
+      visibleLessonButtonCount:visibleButtons.length,
+      activeLessonVisible:activeVisible,
+      lessonSelectorRuntimeReady:buttons.length>0&&visibleButtons.length===buttons.length&&activeVisible,
+      presenting:!!state().e129Present,
+      note:'E164 probe reports real layout visibility for lesson selector buttons; E129 shell/importer behavior is otherwise unchanged.'
+    };
+  }
 
   document.addEventListener('change',function(e){
     if(e.target&&e.target.id==='e129ImportFile'){
