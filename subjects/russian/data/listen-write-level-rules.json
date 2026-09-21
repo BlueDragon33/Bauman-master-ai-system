@@ -1,0 +1,61 @@
+{
+  "schema": "RUSSIAN_LISTEN_WRITE_LEVEL_RULES_V1",
+  "version": "1.0.0-rhw7",
+  "bands": [
+    {
+      "level": "A0",
+      "lessonIds": [
+        "R01",
+        "R02",
+        "R03"
+      ],
+      "allowedContentTypes": [
+        "letter",
+        "syllable",
+        "word",
+        "phrase",
+        "sentence"
+      ],
+      "defaultSessionMode": "learn"
+    },
+    {
+      "level": "A1",
+      "lessonIds": [
+        "R04",
+        "R05",
+        "R06",
+        "R07"
+      ],
+      "allowedContentTypes": [
+        "word",
+        "phrase",
+        "sentence",
+        "dictation"
+      ],
+      "defaultSessionMode": "practice"
+    },
+    {
+      "level": "A2",
+      "lessonIds": [
+        "R08",
+        "R09",
+        "R10"
+      ],
+      "allowedContentTypes": [
+        "word",
+        "phrase",
+        "sentence",
+        "dictation"
+      ],
+      "defaultSessionMode": "dictation"
+    }
+  ],
+  "futurePrepPolicy": {
+    "stage": "prep",
+    "requireExplicitLessonBinding": true,
+    "requireExplicitLevel": true,
+    "dataOnlyExpansion": true,
+    "javascriptChangeRequiredForNewLesson": false,
+    "fallbackWhenNoBinding": "hide_listen_write_panel"
+  }
+}
