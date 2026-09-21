@@ -1,50 +1,47 @@
 # CODEX_TASK
 
-Task: `BAUMAN_PROJECT_STATE_POST_DEVICE_CONTRACT_RECONCILIATION`
+Task: `BAUMAN_PROJECT_STATE_POST_CONTENT_REVIEW_RECONCILIATION`
 Mode: `CHAT_FIRST / CURRENT_MAIN / FAIL_CLOSED`
 
 ## Current objective
 
-Keep project control-state aligned with the repository that is actually promoted to `main`.
+Keep future work aligned with the true current-main baseline after Content Review API v1 promotion.
 
-Roadmap V2 is complete through L35. Russian Listen+Write, Academic Phase2 A1→A6 and Device Contract v6 are promoted. There is no active historical Roadmap sequence and no need to reconstruct Device Contract Issue #28 from stale branches.
+Roadmap V2 is complete through L35. Russian Listen+Write, Academic Phase2 A1→A6, Device Contract v6 and Content Review API v1 are promoted.
 
 ## Mandatory sequence
 
-1. Use current `main` as the baseline for all new work.
-2. Treat `docs/roadmap_v2/CURRENT_EXECUTION_STATE.md` as the only authoritative Roadmap progress/history marker.
-3. Do not reopen completed Roadmap rounds from stale branches, docs, PR descriptions or historical PASS artifacts.
-4. Preserve promoted Russian Listen+Write runtime/data/offline/package behavior.
-5. Preserve promoted Academic Phase2 A1→A6 semantics and unresolved-evidence boundaries.
-6. Preserve Device Contract v6 semantics from PR #79:
-   - Bauman-owned isolated device registry;
-   - P-256 challenge/proof;
-   - revocable device sessions;
-   - device type/platform/browser metadata;
-   - approve/block/unblock/edit-permission commands with audit;
-   - 16-character BM display code;
-   - server-side protected learning-data gate in the Runtime Worker.
-7. Preserve fail-closed capability layering: the base control worker does not advertise learning access as live until the deployment/preview wrapper verifies D1 + app-origin readiness.
-8. Close Issue #28 after this state reconciliation is promoted.
-9. Do not treat `contentReviewApi: missing` as part of Issue #28. If it is needed, create a separate current-main capability track with explicit ownership, permissions, API contract and tests.
-10. When a new defect is found, create a scoped Fx hardening step and run the relevant current gates.
-11. When a genuinely missing architecture capability is found, create a new named track rather than extending Roadmap V2 past L35 by default.
+1. Use current `main` as the baseline.
+2. Do not reopen historical Roadmap rounds or stale candidate branches as current work.
+3. Preserve Russian Listen+Write, Academic Phase2, Device Contract v6 and Content Review API v1.
+4. Preserve fail-closed learning-gate layering; the base worker must not advertise the learning gate as live before deployment/preview readiness.
+5. Preserve Content Review ownership:
+   - review DB stores metadata/reference/hash only;
+   - Application Management does not store or edit learning-content bodies;
+   - reviewer may approve/reject;
+   - publish requires publisher/owner;
+   - mutations remain idempotent and expected-state protected.
+6. Treat Issue #28 as completed.
+7. Close Issue #81 after this reconciliation is promoted.
+8. Do not invent a next round merely to continue numbering. Audit first.
+9. For a real defect, create a scoped Fx hardening step.
+10. For a genuinely missing capability, create a separately named current-main track.
 
 ## Protected contracts
 
-- Preserve Hub, Math, Russian, Foundation and subject runtime behavior.
-- Preserve Device Gate and offline/package acceptance.
-- Preserve Academic Phase2 A1→A6 current-main contracts.
-- Preserve Roadmap V2 terminal receipt-only/no-execution production boundary.
-- Preserve Device Contract v6 ownership and server-side enforcement.
-- No destructive source migration.
+- Hub, Math, Russian, Foundation and subject runtime behavior.
+- Device Gate and offline/package acceptance.
+- Academic Phase2 A1→A6 boundaries.
+- Device Contract v6 ownership and server-side enforcement.
+- Content Review API v1 metadata-only boundary.
+- Roadmap V2 terminal no-execution production boundary.
+- No destructive migration.
 - No implicit production deploy/publish.
-- No automatic promotion of stale historical PRs.
+- No automatic stale-branch promotion.
 
-## Completion condition for this reconciliation
+## Completion condition
 
-- `CODEX_STATE.md` and `CODEX_TASK.md` record PR #79 / Device Contract v6 as promoted;
-- future sessions do not reconstruct Issue #28;
-- intentional fail-closed learning-gate layering is documented;
-- Issue #28 can be closed as completed after promotion;
-- `contentReviewApi` remains explicitly separated as a possible next capability track.
+- control-state records PR #82 / Content Review v1 as promoted;
+- Issue #81 can be closed as completed;
+- application-management contract v7 has no explicit `missing` readiness capability;
+- future work resumes from current `main` only when a concrete defect, missing capability or explicit feature request exists.
