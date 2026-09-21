@@ -1,13 +1,13 @@
 # CODEX_TASK
 
-Task: `BAUMAN_PROJECT_STATE_POST_DEEP_STUDY_RECONCILIATION`
+Task: `BAUMAN_PROJECT_STATE_POST_DSJ_PACKAGED_READINESS_RECONCILIATION`
 Mode: `CHAT_FIRST / CURRENT_MAIN / FAIL_CLOSED`
 
 ## Current objective
 
-Keep future work aligned with the true current-main baseline after Deep Study Journal v1 promotion.
+Keep future work aligned with the true current-main baseline after Deep Study Journal v1 promotion and packaged-readiness Fx #88.
 
-Roadmap V2 is complete through L35. Russian Listen+Write, Academic Phase2 A1→A6, Device Contract v6, Content Review API v1 and Deep Study Journal v1 are promoted.
+Roadmap V2 is complete through L35. Russian Listen+Write, Academic Phase2 A1→A6, Device Contract v6, Content Review API v1, Deep Study Journal v1 and its packaged-readiness Fx #88 are promoted.
 
 ## Mandatory sequence
 
@@ -23,7 +23,7 @@ Roadmap V2 is complete through L35. Russian Listen+Write, Academic Phase2 A1→A
    - mutations remain idempotent and expected-state protected.
 6. Treat Issue #28 as completed.
 7. Treat Issue #81 and Issue #84 as completed/promoted current-main capability history.
-8. Preserve Deep Study Journal as reflection-only learner state; no mastery/diagnostic/prerequisite/scheduler/progress mutation.
+8. Preserve Deep Study Journal as reflection-only learner state; no mastery/diagnostic/prerequisite/scheduler/progress mutation, and preserve the packaged readiness/asset invariants promoted by PR #88.
 9. Do not invent a next round merely to continue numbering. Audit first.
 10. For a real defect, create a scoped Fx hardening step.
 11. For a genuinely missing capability, create a separately named current-main track.
@@ -43,7 +43,8 @@ Roadmap V2 is complete through L35. Russian Listen+Write, Academic Phase2 A1→A
 
 ## Completion condition
 
-- control-state records PR #82 / Content Review v1 and Deep Study Journal v1 as promoted;
+- control-state records PR #82 / Content Review v1, Deep Study Journal v1 and PR #88 packaged-readiness hardening as promoted;
 - Issues #81 and #84 are completed/promoted;
 - application-management contract v7 has no explicit `missing` readiness capability;
+- post-merge current-main Whole System, Cloudflare Preview and Windows checkout gates for PR #88 are recorded as SUCCESS;
 - future work resumes from current `main` only when a concrete defect, missing capability or explicit feature request exists.
