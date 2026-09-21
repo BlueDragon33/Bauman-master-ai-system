@@ -1,11 +1,11 @@
 # CODEX_STATE
 
-Current task: `BAUMAN_PROJECT_STATE_POST_PHASE2_RECONCILIATION`
+Current task: `BAUMAN_PROJECT_STATE_POST_DEVICE_CONTRACT_RECONCILIATION`
 
-Status: `ROADMAP_V2_COMPLETE · RUSSIAN_LISTEN_WRITE_PROMOTED · ACADEMIC_PHASE2_A1_A6_PROMOTED · CONTROL_STATE_HARDENING`
+Status: `ROADMAP_V2_COMPLETE · RUSSIAN_LISTEN_WRITE_PROMOTED · ACADEMIC_PHASE2_A1_A6_PROMOTED · DEVICE_CONTRACT_V6_PROMOTED · CONTROL_STATE_RECONCILIATION`
 
 Date: 2026-09-21
-Branch: `hardening/project-state-post-phase2-20260921`
+Branch: `hardening/post-issue-28-state-reconcile-20260921`
 Base: `main`
 
 ## Authoritative progress
@@ -22,39 +22,73 @@ That marker records:
 - PR #54 merged to `main` as `c45d34b6fbf1815952674d5d93848138eb006370`;
 - Roadmap production execution/deployment remains outside the Roadmap V2 authority boundary.
 
-Russian Handwriting Listen+Write is also promoted:
+Russian Handwriting Listen+Write is promoted:
 
 - PR #72 merged to `main` as `4c2e9c7c85edaabbea036b2953f670710f2fe67b`;
-- promotion occurred only after the cleaned PR head passed Russian Reference UI, Foundation Domain Model, Windows checkout safety, Cloudflare Preview and Whole System Integration, including direct and packaged browser/offline Listen+Write acceptance.
+- the cleaned Listen+Write implementation passed the current Russian Reference UI, Foundation Domain Model, Windows checkout safety, Cloudflare Preview and Whole System Integration gates, including direct and packaged browser/offline acceptance.
 
-## Academic Phase2 current-main reconstruction is also promoted
+Academic Phase2 current-main reconstruction is promoted:
 
 - PR #76 merged to `main` as `30092c01cf8ce41cf612823299195aaff240b3f0`;
 - A1→A6 completed on current-main architecture rather than merging stale historical PR #38;
-- final candidate head `89739ccfbcd83b1aaa4271cbe71d0bdfcbce041b` passed Windows checkout safety, Cloudflare Preview CI, Academic 2026 Prerequisite Gate, dedicated Phase2 Current-Main Promotion Gate and Whole System Integration;
-- direct and packaged browser/offline regressions passed, including Foundation, Hub, Russian offline and Listen+Write;
-- d01 remains English-owned; P0 Technical Russian does not gate d01;
-- multi-semester allocation/timing for d01/d15/p02 remains unresolved unless authoritative evidence is added;
-- transcript/honors denominator remains projection-only until IU5-local mapping is verified.
+- d01 remains English-owned; P0 Technical Russian remains separate and does not gate d01;
+- unresolved multi-semester allocation/timing and honors-denominator caveats remain preserved until authoritative evidence exists.
 
-## Control-state defect repaired by this branch
+## Device Contract v6 is also promoted
 
-The previous `CODEX_STATE.md` still declared `L26_B102_ACTIVE`, and `CODEX_TASK.md` still instructed B101→B104 execution. Those instructions were stale relative to the authoritative terminal Roadmap marker and could cause duplicate or conflicting work.
+Issue #28 implementation was reconstructed from current `main` and promoted through PR #79:
 
-This branch removes that stale active-round instruction. It does not reopen Roadmap V2 and does not create L36.
+- PR #79 merged to `main` as `0d603a979a7952697d5d612fd9de5f8106a0e609`;
+- final candidate head: `d423f788843f2f53bb54a3d37784d29650087dd9`;
+- contract version: **6**;
+- device registry remains Bauman-owned and isolated;
+- P-256 challenge/proof, revocable sessions, device metadata, unblock/edit-permission mutations and audit are implemented;
+- new device display code format is `BM-xxxx-xxxx-xxxx-xxxx`;
+- protected learning assets are gated server-side by the Runtime Worker using a live approved device session;
+- blocked/revoked/pending devices fail closed for protected learning data;
+- no production deployment or automatic production promotion was performed.
+
+The validated PR #79 head passed:
+
+- Bauman Control Service CI;
+- Bauman Runtime Device Gate CI;
+- Bauman Cloudflare Preview CI;
+- Academic 2026 Prerequisite Gate;
+- Windows checkout safety;
+- Whole System Integration Gate.
+
+## Reconciliation defect repaired by this branch
+
+After PR #79 merged, the control files still stopped at the post-Phase2 state and did not record the promoted Device Contract v6 work. Issue #28 also remained open even though its implementation scope and acceptance gates were complete.
+
+This branch updates the control-state so future sessions start from the true current-main baseline instead of reconstructing or duplicating Device Contract work.
+
+## Intentional capability layering preserved
+
+The base control worker intentionally does **not** self-promote the learning access gate. The preview/deployment wrapper promotes `learningAccessGate` only after the required D1 and app-origin conditions are ready.
+
+Do not change that layering merely because `control-service/src/index.ts` contains a base `learningAccessGate: false`; the contract tests explicitly preserve this fail-closed behavior.
+
+## Remaining capability gap
+
+`contentReviewApi` remains explicitly marked `missing` in the application-management contract. It is **not** part of Issue #28 and must not be silently bundled into Device Contract closure.
+
+If content review / approval / publish control is required, open a separate named capability track from current `main`, define ownership and permissions, add migrations/contracts/tests as needed, and pass the relevant current gates before promotion.
 
 ## Safety boundary
 
-- Roadmap V2 is terminally closed unless a separately approved new architecture track is explicitly opened.
-- No production deployment or production-promotion execution is authorized by the Roadmap V2 receipt boundary.
-- Preserve existing Hub, Math, Russian, Foundation, Device Gate and subject runtime behavior.
+- Roadmap V2 remains terminally closed unless a separately approved new architecture track is explicitly opened.
+- Preserve promoted Hub, Math, Russian, Foundation, Device Gate and Academic behavior.
 - Do not merge stale historical candidate branches merely because they contain older PASS evidence.
-- Any future project lane must start from current `main`, state its responsibility boundary, and pass the relevant current gate set before promotion.
+- No production deployment or production-promotion execution is authorized by this reconciliation.
+- Any new capability lane must start from current `main`, state its ownership boundary and pass the relevant current gate set before promotion.
 
 ## Execution rule
 
 1. Treat `docs/roadmap_v2/CURRENT_EXECUTION_STATE.md` as authoritative for Roadmap history and terminal status.
-2. Do not execute L26/B101-B104, L27, or any other historical Roadmap step as current work.
-3. Treat Academic Phase2 A1→A6 as promoted current-main behavior; do not reconstruct or re-merge historical PR #38.
-4. Audit remaining open PRs/branches against current `main`; close, supersede, or reconstruct stale candidates instead of merging contaminated history.
-5. Open a new implementation round only when a real missing capability, defect, or explicitly requested feature is identified.
+2. Do not execute historical Roadmap rounds as current work.
+3. Treat Russian Listen+Write, Academic Phase2 A1→A6 and Device Contract v6 as promoted current-main behavior.
+4. Close Issue #28 as completed after this reconciliation is promoted; any production activation remains a separate explicit operation.
+5. Audit new work against current `main`.
+6. When a new defect is found, create a scoped Fx hardening step and run the relevant current gates.
+7. When a genuinely missing capability is found, create a new named track rather than extending Roadmap V2 by default.
