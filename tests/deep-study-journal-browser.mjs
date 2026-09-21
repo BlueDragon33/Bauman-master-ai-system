@@ -35,6 +35,10 @@ try{
   await page.waitForFunction(()=>document.documentElement.dataset.baumanDeviceAccess==='authorized',null,{timeout:15000});
   await page.waitForFunction(()=>!document.getElementById('appRoot')?.classList.contains('hidden'),null,{timeout:10000});
   await page.waitForFunction(()=>Boolean(window.BAUMAN_DEEP_STUDY_JOURNAL_V1),null,{timeout:10000});
+  // The Progress action is owned by the asynchronously bootstrapped Phase2 course runtime.
+  // Direct and packaged runtimes can reach this point at different speeds, so wait for the
+  // existing deterministic patch marker instead of racing the modal render.
+  await page.waitForFunction(()=>window.app?.__course14bPatched===true,null,{timeout:15000});
 
   const before=await page.evaluate(()=>({progress:JSON.stringify(window.state.progress),schedule:JSON.stringify(window.state.schedule),journal:window.state.deepStudyJournal}));
   await page.evaluate(()=>window.app.openHomeFrame('progress'));

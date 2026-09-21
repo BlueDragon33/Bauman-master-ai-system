@@ -6,6 +6,9 @@ const runtime=read('assets/js/deep-study-journal-v1.js');
 const course=read('assets/js/academic-course-runtime.js');
 const index=read('index.html');
 const css=read('assets/css/deep-study-journal-v1.css');
+const browser=read('tests/deep-study-journal-browser.mjs');
+const previewPrep=read('scripts/prepare-cloudflare-preview.mjs');
+const sitePrep=read('scripts/prepare-chatgpt-site.mjs');
 const errors=[];const assert=(c,m)=>{if(!c)errors.push(m)};
 
 for(const token of ["deepStudyJournal:{version:1,entries:[]}","out.deepStudyJournal={version:1,entries:"] )assert(main.includes(token),`Hub learner-state schema missing ${token}`);
@@ -30,6 +33,8 @@ assert(course.includes('data-dsj-open')&&course.includes('openDeepStudyJournalV1
 assert(index.includes('assets/js/deep-study-journal-v1.js')&&index.includes('assets/css/deep-study-journal-v1.css'),'Hub must load DSJ assets');
 assert(!index.includes('data-page="journal"'),'DSJ must not add a sidebar/page navigation item');
 assert(css.includes('@media(max-width:800px)')&&css.includes('@media(max-width:480px)'),'DSJ responsive CSS gates missing');
+assert(browser.includes('__course14bPatched===true'),'DSJ browser acceptance must wait for the async Progress integration readiness marker');
+for(const prep of [previewPrep,sitePrep])for(const resource of ['assets/css/deep-study-journal-v1.css','assets/js/deep-study-journal-v1.js'])assert(prep.includes(resource),`DSJ packaging invariant missing ${resource}`);
 
 if(errors.length){console.error(`DEEP_STUDY_JOURNAL_V1_FAIL (${errors.length})`);for(const e of errors)console.error('- '+e);process.exit(1)}
 console.log('DEEP_STUDY_JOURNAL_V1_VALID');
