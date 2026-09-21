@@ -10,7 +10,7 @@
   "records": [
     {
       "lessonId": "MATH-VN-C03-giai_tich_dao_ham_gradient-L04-gradient-descent-learning-rate-e146",
-      "chapterId": "MATH-VN-C03-giai_tich_dao_ham_gradient",
+      "chapterId": "MATH-VN-C03-ham_so_ao_ham_va_gradien",
       "lessonTitle": "§3.4 · Gradient descent và learning rate",
       "title": "§3.4 · Gradient descent và learning rate",
       "programLectureId": "MATH-PROG-L03-calculus-gradient-optimization",
@@ -25,7 +25,7 @@
       "sourceAnchors": {
         "stageId": "vn",
         "disciplineId": "calculus_optimization",
-        "chapterId": "MATH-VN-C03-giai_tich_dao_ham_gradient",
+        "chapterId": "MATH-VN-C03-ham_so_ao_ham_va_gradien",
         "programLectureId": "MATH-PROG-L03-calculus-gradient-optimization"
       },
       "tags": [
@@ -246,7 +246,7 @@
     },
     {
       "lessonId": "MATH-VN-C03-giai_tich_dao_ham_gradient-L05-loss-extrema-optimality-e146",
-      "chapterId": "MATH-VN-C03-giai_tich_dao_ham_gradient",
+      "chapterId": "MATH-VN-C03-ham_so_ao_ham_va_gradien",
       "lessonTitle": "§3.5 · Hàm mất mát, cực trị và điều kiện tối ưu",
       "title": "§3.5 · Hàm mất mát, cực trị và điều kiện tối ưu",
       "programLectureId": "MATH-PROG-L03-calculus-gradient-optimization",
@@ -261,7 +261,7 @@
       "sourceAnchors": {
         "stageId": "vn",
         "disciplineId": "calculus_optimization",
-        "chapterId": "MATH-VN-C03-giai_tich_dao_ham_gradient",
+        "chapterId": "MATH-VN-C03-ham_so_ao_ham_va_gradien",
         "programLectureId": "MATH-PROG-L03-calculus-gradient-optimization"
       },
       "tags": [
@@ -487,7 +487,7 @@
     },
     {
       "lessonId": "MATH-VN-C03-giai_tich_dao_ham_gradient-L06-gradient-backprop-ml-optimization-e146",
-      "chapterId": "MATH-VN-C03-giai_tich_dao_ham_gradient",
+      "chapterId": "MATH-VN-C03-ham_so_ao_ham_va_gradien",
       "lessonTitle": "§3.6 · Từ gradient sang backpropagation và tối ưu ML",
       "title": "§3.6 · Từ gradient sang backpropagation và tối ưu ML",
       "programLectureId": "MATH-PROG-L03-calculus-gradient-optimization",
@@ -502,7 +502,7 @@
       "sourceAnchors": {
         "stageId": "vn",
         "disciplineId": "calculus_optimization",
-        "chapterId": "MATH-VN-C03-giai_tich_dao_ham_gradient",
+        "chapterId": "MATH-VN-C03-ham_so_ao_ham_va_gradien",
         "programLectureId": "MATH-PROG-L03-calculus-gradient-optimization"
       },
       "tags": [
@@ -716,5 +716,11 @@
         }
       ]
     }
-  ]
+  ],
+  "reconciledChapterId": {
+    "id": "E173",
+    "legacyChapterId": "MATH-VN-C03-giai_tich_dao_ham_gradient",
+    "canonicalChapterId": "MATH-VN-C03-ham_so_ao_ham_va_gradien",
+    "lessonIdsPreserved": true
+  }
 }
