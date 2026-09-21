@@ -79,7 +79,21 @@
   async function waitBase(timeout=15000){const start=Date.now();while(Date.now()-start<timeout){if(eventRuntime()&&courseRuntime()&&architecture())return true;await new Promise(r=>setTimeout(r,50))}return false}
   async function load(){try{policy=await fetchJson(POLICY_URL);window.BAUMAN_GRADING_POLICY_2024=policy;if(!(await waitBase()))throw new Error('A3 event runtime did not become ready');console.info(VERSION,{policy:policy.version,storageKey:STORE_KEY,supplementCounting:false,courseCompletionMutation:false,surface:'course-progress-modal',homeSurfaceAdded:false,transcriptBootstrap:false})}catch(err){console.warn('A3 grade runtime disabled safely:',err)}}
 
+  let transcriptLoadPromise=null;
+  function ensureTranscriptRuntime(){
+    if(window.BAUMAN_TRANSCRIPT_HONORS_2026&&window.BAUMAN_DIPLOMA_HONORS_POLICY_2026)return Promise.resolve(window.BAUMAN_TRANSCRIPT_HONORS_2026);
+    if(transcriptLoadPromise)return transcriptLoadPromise;
+    transcriptLoadPromise=new Promise((resolve,reject)=>{
+      if(!document.querySelector('link[data-phase2-transcript-style]')){const link=document.createElement('link');link.rel='stylesheet';link.href='assets/css/academic-transcript-2026.css';link.dataset.phase2TranscriptStyle='1';document.head.appendChild(link)}
+      const waitReady=()=>{const started=Date.now();(function poll(){if(window.BAUMAN_TRANSCRIPT_HONORS_2026&&window.BAUMAN_DIPLOMA_HONORS_POLICY_2026)return resolve(window.BAUMAN_TRANSCRIPT_HONORS_2026);if(Date.now()-started>15000)return reject(new Error('A4 Transcript runtime/policy did not become ready'));setTimeout(poll,50)})()};
+      let script=document.querySelector('script[data-phase2-transcript-runtime]');
+      if(script){waitReady();return}
+      script=document.createElement('script');script.src='assets/js/academic-transcript-runtime.js';script.dataset.phase2TranscriptRuntime='1';script.async=false;script.addEventListener('load',waitReady,{once:true});script.addEventListener('error',()=>reject(new Error('A4 Transcript runtime failed to load')),{once:true});document.body.appendChild(script);
+    }).catch(err=>{transcriptLoadPromise=null;throw err});
+    return transcriptLoadPromise;
+  }
+
   window.openAcademicGradeResult2026=openResult;window.saveAcademicGradeResult2026=saveFromUi;window.clearAcademicGradeResult2026=clearFromUi;
-  window.BAUMAN_GRADE_CONTROL_2026=Object.freeze({version:VERSION,load,resultState,recordResult,clearResult,rawResult,policyBand,resolvedEvents,summary,storageKey:STORE_KEY,userScoped:true,schedulerMutation:false,courseCompletionMutation:false,supplementCounting:false,policyUrl:POLICY_URL,surface:'course-progress-modal',homeSurfaceAdded:false,transcriptBootstrap:false});
+  window.BAUMAN_GRADE_CONTROL_2026=Object.freeze({version:VERSION,load,resultState,recordResult,clearResult,rawResult,policyBand,resolvedEvents,summary,ensureTranscriptRuntime,storageKey:STORE_KEY,userScoped:true,schedulerMutation:false,courseCompletionMutation:false,supplementCounting:false,policyUrl:POLICY_URL,surface:'course-progress-modal',homeSurfaceAdded:false,transcriptBootstrap:false,lazyTranscriptLoad:true});
   if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',()=>setTimeout(load,0),{once:true});else setTimeout(load,0)
 })();
