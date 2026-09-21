@@ -1,6 +1,6 @@
 # Academic Phase2 · Current-Main Reconstruction
 
-Status: `A4_IMPLEMENTED · GATE_PENDING`
+Status: `A5_IMPLEMENTED · GATE_PENDING`
 
 Baseline: `main@2be2db9ade895d4ec9ba21b0cf1143aef8635e13`
 
@@ -58,4 +58,17 @@ A3 gate passed on head `76a3182a3e83dbfffe80b20c52fb3bbea6b1878a` with Whole Sys
 - A4-H1 adds static and real browser acceptance for user isolation, 17/22 vs 16/22, blocking grade 3, credit-row exclusion, persistence, mobile layout, no Home ledger, and no scheduler/course-completion mutation.
 - A4 remains read-only and does not bootstrap A5 automatically.
 
-A4 remains pending until the current branch passes its triggered gate set.
+A4 initially exposed A4-F2 in the browser test harness: its mock device ID/CORS contract drifted from the current Device Gate, so the A4 browser job timed out before product runtime initialization. The mock was aligned to the validated 64-character device identity and current CORS contract; no A4 product semantics changed.
+
+A4 gate passed on head `13c25203939b3cb5bf11b91cc6315c4a8ec36510`: Windows checkout, Cloudflare Preview CI, Academic 2026 Prerequisite Gate including A4 browser acceptance, and Whole System Integration Gate all SUCCESS.
+
+## A5 implementation
+
+- `assets/js/academic-command-center-runtime.js`: read-only decision-support orchestration over prerequisite/course readiness, event readiness, confirmed grade evidence, and transcript/honors evidence.
+- Exact Semester-1 scope remains `d01,d02,d03,d04,d05,d06,d15,p02`; severity precedence keeps verified transcript blockers and confirmed assessment failures above lower-confidence readiness gaps.
+- A5 does not write diagnostics, event evidence, grade results, transcript evidence, scheduler entries, or course-completion state.
+- A5-H1 adapts the historical Pass14F idea to current-main UI ownership: **no Home injection**. The Command Center is lazy-loaded only from the existing Progress/Academic flow so Hub Reference Home V5 remains untouched.
+- `assets/js/academic-transcript-runtime.js` exposes the lazy A5 asset bridge without automatic bootstrap; `assets/js/academic-course-runtime.js` exposes the explicit Progress action.
+- Static and browser gates cover exact 8-course scope, decision precedence, read-only boundaries, honors projection caveat, user isolation, schedule non-mutation, mobile layout, and Home non-regression.
+
+A5 remains pending until the current branch passes its triggered gate set.
