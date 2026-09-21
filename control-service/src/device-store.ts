@@ -25,6 +25,8 @@ type DeviceRow = {
   display_code: string;
   public_jwk_json: string;
   device_type: string;
+  platform: string | null;
+  browser: string | null;
   display_name: string | null;
   label: string | null;
   status: string;
@@ -127,8 +129,8 @@ function randomToken(bytes = 32) {
 }
 
 function displayCodeFor(deviceId: string) {
-  const key = deviceId.slice(0, 12).toUpperCase();
-  return `BM-${key.slice(0, 4)}-${key.slice(4, 8)}-${key.slice(8, 12)}`;
+  const key = deviceId.slice(0, 16).toUpperCase();
+  return `BM-${key.slice(0, 4)}-${key.slice(4, 8)}-${key.slice(8, 12)}-${key.slice(12, 16)}`;
 }
 
 async function canonicalPublicJwk(value: unknown) {
@@ -159,6 +161,8 @@ function publicDevice(row: DeviceRow) {
     deviceId: row.device_id,
     deviceCode: row.display_code,
     deviceType: normalizeDeviceType(row.device_type),
+    platform: row.platform,
+    browser: row.browser,
     displayName: row.display_name,
     label: row.label,
     status,
@@ -175,7 +179,7 @@ function publicDevice(row: DeviceRow) {
 
 async function deviceRow(database: D1Database, deviceId: string) {
   return database.prepare(
-    `SELECT device_id, display_code, public_jwk_json, device_type, display_name, label, status, edit_enabled,
+    `SELECT device_id, display_code, public_jwk_json, device_type, platform, browser, display_name, label, status, edit_enabled,
             created_at, updated_at, last_seen_at, approved_at, approved_by, blocked_at
        FROM bm_devices WHERE device_id = ?`,
   ).bind(deviceId).first<DeviceRow>();
@@ -210,22 +214,25 @@ export async function registerBaumanDevice(database: D1Database, payload: Record
   const displayCode = displayCodeFor(deviceId);
   const now = Date.now();
   const deviceType = normalizeDeviceType(payload.deviceType);
+  const platform = text(payload.platform, 120) || null;
+  const browser = text(payload.browser, 160) || null;
   const displayName = text(payload.displayName, 120) || null;
   const label = text(payload.label, 100) || null;
 
   await database.prepare(
     `INSERT OR IGNORE INTO bm_devices
-       (device_id, display_code, public_jwk_json, device_type, display_name, label, status, edit_enabled, last_seen_at)
-     VALUES (?, ?, ?, ?, ?, ?, 'pending', 0, ?)`,
-  ).bind(deviceId, displayCode, JSON.stringify(key.jwk), deviceType, displayName, label, now).run();
+       (device_id, display_code, public_jwk_json, device_type, platform, browser, display_name, label, status, edit_enabled, last_seen_at)
+     VALUES (?, ?, ?, ?, ?, ?, ?, ?, 'pending', 0, ?)`,
+  ).bind(deviceId, displayCode, JSON.stringify(key.jwk), deviceType, platform, browser, displayName, label, now).run();
 
   await database.prepare(
     `UPDATE bm_devices
         SET device_type = CASE WHEN ?='unknown' THEN device_type ELSE ? END,
+            platform = COALESCE(?, platform), browser = COALESCE(?, browser),
             display_name = COALESCE(?, display_name), label = COALESCE(?, label),
             last_seen_at = ?, updated_at = CURRENT_TIMESTAMP
       WHERE device_id = ?`,
-  ).bind(deviceType, deviceType, displayName, label, now, deviceId).run();
+  ).bind(deviceType, deviceType, platform, browser, displayName, label, now, deviceId).run();
 
   const row = await deviceRow(database, deviceId);
   if (!row) throw new BaumanDeviceError("Không thể tạo registry thiết bị Bauman.", 500, "DEVICE_REGISTRY_WRITE_FAILED");
@@ -391,7 +398,7 @@ export async function readBaumanDeviceStatus(database: D1Database, deviceIdValue
 
 export async function listBaumanDevices(database: D1Database) {
   const rows = await database.prepare(
-    `SELECT device_id, display_code, public_jwk_json, device_type, display_name, label, status, edit_enabled,
+    `SELECT device_id, display_code, public_jwk_json, device_type, platform, browser, display_name, label, status, edit_enabled,
             created_at, updated_at, last_seen_at, approved_at, approved_by, blocked_at
        FROM bm_devices ORDER BY created_at DESC LIMIT 500`,
   ).all<DeviceRow>();
@@ -409,8 +416,11 @@ export async function executeBaumanDeviceCommand(
 
   const commandId = text(payload.commandId, 64).toLowerCase();
   const deviceId = text(payload.deviceId, 64).toLowerCase();
-  const operation = payload.operation === "approve" || payload.operation === "block" ? payload.operation : "";
+  const operation = payload.operation === "approve" || payload.operation === "block" || payload.operation === "unblock" || payload.operation === "set_edit_permission"
+    ? payload.operation
+    : "";
   const expectedStatus = normalizeStatus(payload.expectedStatus);
+  const requestedEditEnabled = typeof payload.editEnabled === "boolean" ? payload.editEnabled : null;
   if (!validCommandId(commandId)) throw new BaumanDeviceError("commandId không hợp lệ.", 400, "INVALID_COMMAND_ID");
   if (!validDeviceId(deviceId)) throw new BaumanDeviceError("Mã thiết bị không hợp lệ.", 400, "INVALID_DEVICE_ID");
   if (!operation) throw new BaumanDeviceError("Thao tác thiết bị không hợp lệ.", 400, "INVALID_DEVICE_OPERATION");
@@ -421,8 +431,14 @@ export async function executeBaumanDeviceCommand(
   if (operation === "block" && expectedStatus !== "pending" && expectedStatus !== "approved") {
     throw new BaumanDeviceError("Thiết bị đã bị khóa hoặc trạng thái không cho phép.", 409, "DEVICE_STATE_CONFLICT");
   }
+  if (operation === "unblock" && expectedStatus !== "blocked") {
+    throw new BaumanDeviceError("Chỉ thiết bị blocked mới được mở khóa.", 409, "DEVICE_STATE_CONFLICT");
+  }
+  if (operation === "set_edit_permission" && (expectedStatus !== "approved" || requestedEditEnabled === null)) {
+    throw new BaumanDeviceError("Quyền sửa chỉ thay đổi trên thiết bị approved và phải có editEnabled boolean.", 409, "DEVICE_EDIT_PERMISSION_CONFLICT");
+  }
 
-  const payloadHash = await sha256Hex(JSON.stringify({ deviceId, expectedStatus, operation }));
+  const payloadHash = await sha256Hex(JSON.stringify({ deviceId, expectedStatus, operation, editEnabled: requestedEditEnabled }));
   const existing = await commandRow(database, commandId);
   if (existing) {
     if (existing.payload_hash !== payloadHash) {
@@ -467,20 +483,37 @@ export async function executeBaumanDeviceCommand(
     throw new BaumanDeviceError("Lệnh cùng commandId đang được xử lý.", 409, "COMMAND_IN_PROGRESS");
   }
 
-  const targetStatus: BaumanDeviceStatus = operation === "approve" ? "approved" : "blocked";
+  const targetStatus: BaumanDeviceStatus =
+    operation === "block" ? "blocked" : operation === "set_edit_permission" ? expectedStatus : "approved";
   try {
-    const mutation = operation === "approve"
-      ? await database.prepare(
+    let mutation;
+    if (operation === "approve") {
+      mutation = await database.prepare(
         `UPDATE bm_devices
             SET status='approved', approved_at=CURRENT_TIMESTAMP, approved_by=?, blocked_at=NULL,
                 updated_at=CURRENT_TIMESTAMP
           WHERE device_id=? AND status=?`,
-      ).bind(identity.actor, deviceId, expectedStatus).run()
-      : await database.prepare(
+      ).bind(identity.actor, deviceId, expectedStatus).run();
+    } else if (operation === "block") {
+      mutation = await database.prepare(
         `UPDATE bm_devices
             SET status='blocked', edit_enabled=0, blocked_at=CURRENT_TIMESTAMP, updated_at=CURRENT_TIMESTAMP
           WHERE device_id=? AND status=?`,
       ).bind(deviceId, expectedStatus).run();
+    } else if (operation === "unblock") {
+      mutation = await database.prepare(
+        `UPDATE bm_devices
+            SET status='approved', blocked_at=NULL, approved_at=COALESCE(approved_at, CURRENT_TIMESTAMP),
+                approved_by=COALESCE(approved_by, ?), updated_at=CURRENT_TIMESTAMP
+          WHERE device_id=? AND status='blocked'`,
+      ).bind(identity.actor, deviceId).run();
+    } else {
+      mutation = await database.prepare(
+        `UPDATE bm_devices
+            SET edit_enabled=?, updated_at=CURRENT_TIMESTAMP
+          WHERE device_id=? AND status='approved'`,
+      ).bind(requestedEditEnabled ? 1 : 0, deviceId).run();
+    }
 
     if (Number(mutation.meta.changes ?? 0) !== 1) {
       await database.prepare(
@@ -490,12 +523,18 @@ export async function executeBaumanDeviceCommand(
     }
 
     const revokedSessions = operation === "block" ? await revokeDeviceSessions(database, deviceId, identity.actor) : 0;
-    await audit(database, identity.actor, operation === "approve" ? "device_approved" : "device_blocked", deviceId, {
+    const auditAction =
+      operation === "approve" ? "device_approved"
+        : operation === "block" ? "device_blocked"
+          : operation === "unblock" ? "device_unblocked"
+            : "device_edit_permission_changed";
+    await audit(database, identity.actor, auditAction, deviceId, {
       commandId,
       expectedStatus,
       resultStatus: targetStatus,
       registryPreserved: true,
       editDisabled: operation === "block",
+      editEnabled: operation === "set_edit_permission" ? requestedEditEnabled : undefined,
       revokedSessions,
     });
 
@@ -504,7 +543,8 @@ export async function executeBaumanDeviceCommand(
     ).bind(targetStatus, commandId, executionNonce).run();
 
     const updated = await deviceRow(database, deviceId);
-    if (!updated || normalizeStatus(updated.status) !== targetStatus) {
+    if (!updated || normalizeStatus(updated.status) !== targetStatus
+      || (operation === "set_edit_permission" && (updated.edit_enabled === 1) !== requestedEditEnabled)) {
       throw new BaumanDeviceError("Registry Bauman chưa xác nhận kết quả lệnh.", 502, "DEVICE_COMMAND_READBACK_MISMATCH");
     }
     return { commandId, deviceId, operation, status: targetStatus, replayed: false, device: publicDevice(updated), revokedSessions };
