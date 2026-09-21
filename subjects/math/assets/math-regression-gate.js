@@ -1,9 +1,9 @@
-/* Bauman Math Regression Gate V3
+/* Bauman Math Regression Gate V5
  * Runtime/static-DOM gate only. It does NOT claim browser/Chromium QA or CI.
  */
 (function mathRegressionGate(global){
   'use strict';
-  const RELEASE='MATH_REGRESSION_GATE_V3';
+  const RELEASE='MATH_REGRESSION_GATE_V5';
   const $=(s,r=document)=>r.querySelector(s);
   const $$=(s,r=document)=>Array.from(r.querySelectorAll(s));
   const esc=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
@@ -27,6 +27,7 @@
     rows.push(row('ids','DOM ID uniqueness',dupes.length?'fail':'pass',dupes.length?`ID trùng: ${dupes.slice(0,10).join(', ')}`:'Không phát hiện ID trùng trong DOM hiện tại.'));
     rows.push(currentSlideGate());
     rows.push(moduleCheck('E129 Theory',global.BAUMAN_MATH_THEORY_E129));
+    rows.push(moduleCheck('E186 Canonical Route',global.BAUMAN_MATH_E186_LESSON_FIRST));
     rows.push(moduleCheck('Workspace',global.BAUMAN_MATH_WORKSPACE));
     rows.push(moduleCheck('Premium UI',global.BAUMAN_MATH_PREMIUM));
     rows.push(moduleCheck('Dashboard V2',global.BAUMAN_MATH_DASHBOARD_V2));
@@ -42,6 +43,9 @@
     rows.push(moduleCheck('Simulation Source',global.BAUMAN_MATH_SIMULATION_SOURCE));
     rows.push(moduleCheck('Professor Drill',global.BAUMAN_MATH_PROFESSOR_DRILL));
     rows.push(moduleCheck('Integration Sync',global.BAUMAN_MATH_INTEGRATION_SYNC));
+    const theory=global.BAUMAN_MATH_THEORY_E129?.selfCheck?.();if(theory){const theoryState=!theory.loaded?'warn':theory.ok?'pass':'fail';rows.push(row('theory-coverage','Canonical frame + active lesson coverage',theoryState,`loaded=${theory.loaded} · chapters=${theory.chapterCount}/${theory.expectedChapterCount} · active=${theory.activeCovered}/${theory.expectedActiveCovered} · frameworkContent=${theory.frameworkWithContent}`));}
+    const route=global.BAUMAN_MATH_E186_LESSON_FIRST?.selfCheck?.();if(route){const routeState=route.canonicalHierarchy&&route.mappedChapters===route.expectedChapters?'pass':'fail';rows.push(row('canonical-route','Canonical learning hierarchy',routeState,`flow=${route.flow} · canonical=${route.canonicalHierarchy} · chapters=${route.mappedChapters}/${route.expectedChapters}`));}
+    const ast=global.BAUMAN_MATH_ACTIVITY_STUDIO?.selfCheck?.();if(ast){const astState=ast.routeFallbackVisible||ast.noContentAvailable?'fail':ast.degradedMode?'warn':'pass';rows.push(row('activity-source','Activity route + source integrity',astState,`activity=${ast.activity} · companion=${ast.companionMatches} · embedded=${ast.embeddedFallbackSlides} · degraded=${ast.degradedMode} · fallbackVisible=${ast.routeFallbackVisible} · noContent=${ast.noContentAvailable}`));}
     const sim=global.BAUMAN_MATH_SIMULATION_SOURCE?.selfCheck?.();if(sim)rows.push(row('sim-source','Simulation canonical-source policy',sim.sampleRecordUsed?'fail':'pass',`canonical=${sim.canonicalRecords} · currentMatch=${sim.currentMatches} · embedded=${sim.embeddedSimulationSlides} · sampleRecordUsed=${sim.sampleRecordUsed}`));
     const fl=global.BAUMAN_MATH_FORMULA_LIBRARY?.selfCheck?.();if(fl)rows.push(row('formula-source','Formula Library source policy',fl.formulaContentSampleRecordUsed?'fail':fl.total?'pass':'warn',`source=${fl.source} · total=${fl.total} · sampleRecordUsed=${fl.formulaContentSampleRecordUsed}`));
     const pd=global.BAUMAN_MATH_PROFESSOR_DRILL?.selfCheck?.();if(pd)rows.push(row('professor-source','Professor Drill source policy',(pd.sampleRecordsRendered||pd.generatedQuestions||pd.gradingAuthority)?'fail':'pass',`source=${pd.source} · items=${pd.items} · generatedQuestions=${pd.generatedQuestions} · gradingAuthority=${pd.gradingAuthority}`));

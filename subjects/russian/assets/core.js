@@ -10,7 +10,7 @@ const EXTERNAL_DATA_ROOT=A.externalDataRoot||'external-data/';
 const PACKAGE_ROOT=A.packageRoot||'subjects/russian/';
 const NAV=A.nav||[['overview','🧭','Tổng quan'],['learning','🎓','Học tập'],['dialogue','💬','Đối thoại'],['writing','✍️','Viết'],['media','🎬','Video/Audio'],['vocab','🗂️','Từ vựng'],['grammar','🧩','Ngữ pháp'],['mindmap','🧠','Mind map'],['storage','🗄️','Lưu trữ']];
 const LEARN_TABS=A.learningTabs||[['theory','📘','Lý thuyết'],['exercises','📝','Bài tập'],['practice','🎙️','Nghe/Nói'],['review','🔁','Ôn tập'],['exam','🧪','Kiểm tra']];
-const DEFAULT={stage:'vn',view:'overview',learnTab:'theory',lessonId:'',slide:0,lessonQuery:'',conceptQuery:'',exerciseLevel:'all',exerciseIndex:0,testLevel:'easy',testIndex:0,testAnswer:null,reviewLevel:'easy',reviewFilter:'all',reviewLesson:'all',reviewIndex:0,reviewPage:0,reviewAnswer:null,reviewProgress:{done:{},flagged:{},wrong:{}},examLevel:'easy',examCycle:'auto',examPaperLevel:'easy',examPaperType:'standard',examIndex:0,examPage:0,examAnswer:null,examProgress:{answers:{},marked:{},submitted:false,submittedAt:null,result:null,wrong:{},paperResults:{}},examHistory:[],remedialPlan:{active:false,cards:[],completed:{},createdAt:null,lastExamAt:null,lastScore:null},dialogueId:'',dialogueGroup:'all',dialogueDifficulty:'all',dialogueQuery:'',dialogueLineIndex:0,dialogueRole:'all',dialogueHideVi:false,dialoguePeople:'2',dialogueMinutes:'10',dialogueMode:'shadow_roleplay',dialogueScenario:'classroom',practiceDialogueId:'',practiceGroup:'all',practiceDifficulty:'all',practiceQuery:'',practiceLineIndex:0,practiceRole:'all',practiceHideVi:false,practiceSpeechResults:{},dialogueSpeechResults:{},deepSpeakingId:'',deepSpeakingMode:'overview',deepSpeakingStep:0,deepSpeakingProgress:{done:{},weak:{},attempts:{},lastMode:{}},optionalDataLoading:{},optionalDataError:{},speechResults:{},speechRecording:false,speechAutoNext:false,mediaCat:'all',mediaQuery:'',mediaView:'list',mediaId:'',vocabQuery:'',vocabIndex:0,vocabPage:0,vocabFlipped:false,grammarLevel:'all',grammarTrack:'all',grammarQuery:'',grammarIndex:0,mindmapId:'roadmap-map',mindmapNode:'',mindmapFontScale:14,mindmapDrag:{},mindmapLayoutVersion:'v13_32_clean',writingMode:'handwriting',handwritingIndex:0,handwritingQuery:'',handwritingStep:0,handwritingPractice:'trace',handwritingShowGuide:true,handwritingShowLines:true,writingIndex:0,writingQuery:'',writingDraft:'',storageFile:'curriculum',storageGroup:'all',storageText:'',storagePreviewLimit:0,storagePreviewAutoCollapsedV1322:false,storageQuery:'',storageTreeOpen:{},aiDraft:'',aiOutput:'',interfaceTheme:'clean',interfaceDensity:'normal',hostTask:null,planningBundle:null,routeEdit:false,routeManual:null,routeFocus:'today',testSession:{answered:0,correct:0,targetQuestions:100,targetScore:80,seen:{}},recentAccess:[],stageGate:null,examGateSource:null,stageTransitions:[],lastStageTransition:null};
+const DEFAULT={stage:'vn',view:'overview',learnTab:'theory',lessonId:'',slide:0,lessonQuery:'',conceptQuery:'',exerciseLevel:'all',exerciseIndex:0,testLevel:'easy',testIndex:0,testAnswer:null,reviewLevel:'easy',reviewFilter:'all',reviewLesson:'all',reviewIndex:0,reviewPage:0,reviewAnswer:null,reviewProgress:{done:{},flagged:{},wrong:{}},examLevel:'easy',examCycle:'auto',examPaperLevel:'easy',examPaperType:'standard',examIndex:0,examPage:0,examAnswer:null,examProgress:{answers:{},marked:{},submitted:false,submittedAt:null,result:null,wrong:{},paperResults:{}},examHistory:[],remedialPlan:{active:false,cards:[],completed:{},createdAt:null,lastExamAt:null,lastScore:null},dialogueId:'',dialogueGroup:'all',dialogueDifficulty:'all',dialogueQuery:'',dialogueLineIndex:0,dialogueRole:'all',dialogueHideVi:false,dialoguePeople:'2',dialogueMinutes:'10',dialogueMode:'shadow_roleplay',dialogueScenario:'classroom',practiceDialogueId:'',practiceGroup:'all',practiceDifficulty:'all',practiceQuery:'',practiceLineIndex:0,practiceRole:'all',practiceHideVi:false,practiceSpeechResults:{},dialogueSpeechResults:{},deepSpeakingId:'',deepSpeakingMode:'overview',deepSpeakingStep:0,deepSpeakingProgress:{done:{},weak:{},attempts:{},lastMode:{}},optionalDataLoading:{},optionalDataError:{},speechResults:{},speechRecording:false,speechAutoNext:false,mediaCat:'all',mediaQuery:'',mediaView:'list',mediaId:'',vocabQuery:'',vocabIndex:0,vocabPage:0,vocabFlipped:false,grammarLevel:'all',grammarTrack:'all',grammarQuery:'',grammarIndex:0,mindmapId:'roadmap-map',mindmapNode:'',mindmapFontScale:14,mindmapDrag:{},mindmapLayoutVersion:'v13_32_clean',writingMode:'handwriting',handwritingIndex:0,handwritingQuery:'',handwritingStep:0,handwritingPractice:'trace',handwritingShowGuide:true,handwritingShowLines:true,handwritingExerciseIndex:0,handwritingExerciseInput:'',handwritingExerciseChoice:'',handwritingExerciseAttempted:false,handwritingExerciseReveal:false,handwritingExerciseResult:null,handwritingSessionMode:'learn',handwritingListenWriteProgress:{byLetter:{}},lessonListenWrite:{lessonId:'',itemIndex:0,drillIndex:0,mode:'',input:'',choice:'',attempted:false,result:null},writingIndex:0,writingQuery:'',writingDraft:'',storageFile:'curriculum',storageGroup:'all',storageText:'',storagePreviewLimit:0,storagePreviewAutoCollapsedV1322:false,storageQuery:'',storageTreeOpen:{},aiDraft:'',aiOutput:'',interfaceTheme:'clean',interfaceDensity:'normal',hostTask:null,planningBundle:null,routeEdit:false,routeManual:null,routeFocus:'today',testSession:{answered:0,correct:0,targetQuestions:100,targetScore:80,seen:{}},recentAccess:[],stageGate:null,examGateSource:null,stageTransitions:[],lastStageTransition:null};
 let DB={},state={...DEFAULT},canvas=null,ctx=null,drawing=false,strokes=[],currentStroke=null,penColor='#111827',penSize=6,speechRecognizer=null;
 const $=(s,r=document)=>r.querySelector(s), $$=(s,r=document)=>Array.from(r.querySelectorAll(s));
 const arr=v=>Array.isArray(v)?v:[], str=v=>String(v??''), esc=v=>str(v).replace(/[&<>"']/g,m=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[m])), lower=v=>str(v).toLowerCase();
@@ -578,6 +578,88 @@ function getDialogues(){let xs=byStage(getBaumanDialogueAZ()); if(state.dialogue
 function getMedia(){let xs=byStage(call('getMedia',[],DB)); if(state.mediaCat!=='all')xs=xs.filter(x=>mediaCategoryLabel(x)===state.mediaCat); if(state.mediaQuery)xs=xs.filter(x=>lower(JSON.stringify(x)).includes(lower(state.mediaQuery))); return xs}
 function getVocab(){let xs=byStage(call('getVocabulary',[],DB)); if(state.vocabQuery)xs=xs.filter(x=>lower(A.vocabSearchText?.(x)||JSON.stringify(x)).includes(lower(state.vocabQuery))); return xs}
 function getHandwriting(){return byStage(call('getHandwriting',[],DB))}
+function getHandwritingListenWrite(){return call('getHandwritingListenWrite',[],DB)}
+function getListenWriteLessons(){return call('getListenWriteLessons',[],DB)}
+function getListenWriteLevelRules(){return call('getListenWriteLevelRules',{},DB)}
+function listenWriteLessonFor(lessonId){return getListenWriteLessons().find(x=>str(x?.lessonId)===str(lessonId))||null}
+function listenWriteRuleFor(level){
+ const bands=arr(getListenWriteLevelRules()?.bands);
+ return bands.find(x=>str(x?.level)===str(level))||null;
+}
+function ensureLessonListenWriteState(lesson){
+ const lw=state.lessonListenWrite&&typeof state.lessonListenWrite==='object'?state.lessonListenWrite:(state.lessonListenWrite={});
+ const id=str(lesson?.lessonId||'');
+ if(lw.lessonId!==id){
+   state.lessonListenWrite={lessonId:id,itemIndex:0,drillIndex:0,mode:listenWriteRuleFor(lesson?.level)?.defaultSessionMode||'learn',input:'',choice:'',attempted:false,result:null};
+ }
+ const current=state.lessonListenWrite;
+ if(!['learn','practice','dictation','review'].includes(current.mode))current.mode=listenWriteRuleFor(lesson?.level)?.defaultSessionMode||'learn';
+ return current;
+}
+function resetLessonListenWriteResponse(){
+ const lw=state.lessonListenWrite||{};
+ lw.input='';lw.choice='';lw.attempted=false;lw.result=null;
+}
+function lessonListenWriteModel(lesson){
+ if(!lesson||!window.RussianListenWriteFactory)return null;
+ const lw=ensureLessonListenWriteState(lesson);
+ return window.RussianListenWriteFactory.exerciseModel(lesson,lw.itemIndex,lw.drillIndex,lw.mode);
+}
+function lessonListenWritePlay(lesson,slow=false){
+ const model=lessonListenWriteModel(lesson);
+ if(!model?.drill)return;
+ if(!handwritingSpeechAvailable()){toast('Thiết bị chưa hỗ trợ phát âm. Bạn vẫn có thể luyện viết.');return}
+ window.RussianListenWriteFactory.play(model.drill,(text,rate)=>speak(text,rate),{slow});
+}
+function lessonListenWriteCheck(lesson){
+ const model=lessonListenWriteModel(lesson);
+ if(!model?.drill)return;
+ const lw=ensureLessonListenWriteState(lesson);
+ if(model.drill.kind==='hear_trace'){
+   lw.attempted=true;lw.result='self';save();render();return;
+ }
+ const response=arr(model.drill.choices).length?lw.choice:lw.input;
+ if(!str(response).trim()){toast('Hãy chọn hoặc nhập đáp án trước khi kiểm tra.');return}
+ const scored=window.RussianListenWriteFactory.score(model.drill,response);
+ lw.attempted=true;lw.result=scored.correct?'correct':'wrong';save();render();
+}
+function lessonListenWriteMove(lesson,kind,delta){
+ const lw=ensureLessonListenWriteState(lesson);
+ if(kind==='item'){
+   const len=arr(lesson?.items).length;
+   if(!len)return;
+   lw.itemIndex=(Number(lw.itemIndex||0)+delta+len)%len;
+   lw.drillIndex=0;
+ }else{
+   const item=lesson?.items?.[Math.max(0,Math.min(Number(lw.itemIndex)||0,Math.max(0,arr(lesson?.items).length-1)))];
+   const drills=window.RussianListenWriteFactory?.drillsForItem(item,lw.mode)||[];
+   if(!drills.length)return;
+   lw.drillIndex=(Number(lw.drillIndex||0)+delta+drills.length)%drills.length;
+ }
+ resetLessonListenWriteResponse();save();render();
+}
+function renderLessonListenWritePanel(lessonId){
+ const lesson=listenWriteLessonFor(lessonId);
+ if(!lesson||!window.RussianListenWriteFactory)return '';
+ const check=window.RussianListenWriteFactory.validateLesson(lesson);
+ if(!check.ok)return '<section class="panel lesson-listen-write-error"><b>Nghe + viết tạm ẩn</b><span>Dữ liệu bài chưa hợp lệ.</span></section>';
+ const lw=ensureLessonListenWriteState(lesson);
+ const model=lessonListenWriteModel(lesson);
+ const rule=listenWriteRuleFor(lesson.level);
+ const rendered=window.RussianListenWriteFactory.renderExercise(model,{attempted:lw.attempted,choice:lw.choice,input:lw.input,result:lw.result});
+ const itemCount=arr(lesson.items).length;
+ return `<section class="panel lesson-listen-write-panel" data-lw-lesson="${esc(lesson.lessonId)}">
+   <header class="lesson-listen-write-head"><div><span class="chip">🎧 NGHE + VIẾT · ${esc(lesson.level)}</span><h3>${esc(lesson.title)}</h3><p>Nội dung gắn trực tiếp với bài ${esc(lesson.lessonId)}; bài khác dùng dữ liệu riêng, không dùng chung sai ngữ cảnh.</p></div><div class="lesson-listen-write-nav"><button class="btn" data-lw-nav="item-prev">← Mục</button><span class="chip">${Number(lw.itemIndex||0)+1}/${itemCount}</span><button class="btn" data-lw-nav="item-next">Mục →</button></div></header>
+   <div class="lesson-listen-write-modes">${[['learn','Học'],['practice','Luyện'],['dictation','Chính tả'],['review','Ôn']].map(([key,label])=>`<button class="btn ${lw.mode===key?'active':''}" data-lw-mode="${key}">${label}</button>`).join('')}</div>
+   ${rule?`<small class="lesson-listen-write-rule">Mức ${esc(rule.level)} · mặc định: ${esc(rule.defaultSessionMode)} · loại nội dung cho phép: ${arr(rule.allowedContentTypes).map(esc).join(', ')}</small>`:''}
+   ${rendered}
+   <div class="lesson-listen-write-drill-nav"><button class="btn" data-lw-nav="drill-prev">← Bài nghe</button><button class="btn" data-lw-nav="drill-next">Bài nghe →</button></div>
+ </section>`;
+}
+function handwritingListenWriteFor(item){
+ const id=str(item?.id||'');
+ return getHandwritingListenWrite().find(x=>str(x?.handwritingId)===id)||null;
+}
 function getWriting(){return byStage(call('getWriting',[],DB))}
 function title(){const route=NAV.find(n=>n[0]===state.view); $('#pageTitle').textContent=route?route[2]:'Tổng quan'; const ui=A.ui||{}; const subs={overview:ui.overviewSubtitle,learning:ui.learningSubtitle,dialogue:ui.dialogueSubtitle,writing:ui.writingSubtitle,media:ui.mediaSubtitle,vocab:ui.vocabSubtitle,grammar:ui.grammarSubtitle,mindmap:ui.mindmapSubtitle,storage:ui.storageSubtitle}; $('#pageSub').textContent=subs[state.view]||ui.subtitle||''}
 function buildShell(){ applyInterface(); $('#subjectLogo').textContent=A.ui?.logo||'Я'; $('#subjectTitle').textContent=A.ui?.title||'Tiếng Nga Bauman'; $('#subjectSubtitle').textContent=A.ui?.subtitle||''; $('#coreLabel').textContent=A.ui?.coreLabel||'V12.82 LEARNING INTEGRITY FINAL'; $('#stageLabel').textContent=A.ui?.stageLabel||'Giai đoạn'; $('#stageSelect').innerHTML=stages().map(s=>`<option value="${esc(s.id)}">${esc(s.title)}</option>`).join(''); $('#stageSelect').value=state.stage; $('#nav').innerHTML=NAV.map(n=>`<button data-view="${esc(n[0])}" class="${state.view===n[0]?'active':''}"><b>${n[1]}</b><span>${esc(n[2])}</span></button>`).join(''); const tb=$('#themeBtn'); if(tb){tb.textContent='☀️ Giao diện';tb.classList.add('theme-light-button');} }
@@ -1322,6 +1404,7 @@ function renderTheory(lessons,concepts,currentLessonArg){
    </div>
    <div class="slide-strip v1257-slide-strip v1261-slide-strip v1271-slide-strip" aria-label="Thanh chọn slide">${slides.map((sl,i)=>`<button class="slide-nav compact-slide v1271-slide-pill ${i===idx?'active':''}" data-slide="${i}" title="${esc(sl.title||lesson?.title||'Slide')}"><span>${String(i+1).padStart(2,'0')}</span><b>${esc(sl.title||lesson?.title||'Slide')}</b></button>`).join('')}</div>
    <div class="lesson-content slidebox v1257-lesson-content v1261-lesson-content v1271-lesson-content v1295-theory-scroll" tabindex="0"><article class="slide v1271-slide-page v1295-slide-page">${slideBody(slide,lesson)}</article></div>
+   ${renderLessonListenWritePanel(lesson?.id||lessonKey(lesson))}
  </section>`
 }
 
@@ -2242,6 +2325,16 @@ function renderWriting(){
  const showGuide=state.handwritingShowGuide===true;
  const showLines=state.handwritingShowLines!==false;
  const cues=practicalStrokeCue(item,state.handwritingStep);
+ const listenWrite=handwritingAudioEntry(item);
+ const audioExample=listenWrite?.soundExamples?.[0]||null;
+ const speechReady=handwritingSpeechAvailable();
+ const audioContextLabel=listenWrite?.soundKind==='sign'?'Từ ngữ cảnh':'Âm / ví dụ';
+ const audioNameKey=[str(item?.id||'hand'),'name','normal','0'].join(':');
+ const audioExampleKey=[str(item?.id||'hand'),'example','normal','0'].join(':');
+ const audioSlowKey=[str(item?.id||'hand'),'example','slow','0'].join(':');
+ const listenWriteProgress=handwritingLetterProgress(item);
+ const listenWriteSummary=handwritingProgressSummary();
+ const sessionMode=state.handwritingSessionMode||'learn';
  return `<div class="writing-studio step4-writing-studio step36-handwriting-studio">
    <section class="panel writing-hero compact-hero flat-hero writing-final-head step4-writing-head step36-writing-head">
      <div><span class="chip">HANDWRITING FIRST · SAFE ROUND 2</span><h3>Luyện chữ viết tay Nga thông dụng</h3><p>Chữ in chỉ để nhận mặt trong sách/bảng. Phần luyện chính là chữ viết tay: nhìn mẫu, xem hình nét, tô theo rồi chép xuống vở thật.</p></div>
@@ -2255,6 +2348,26 @@ function renderWriting(){
          <div class="print-ref"><span>Chữ in để nhìn</span><b>${esc(printSample)}</b></div>
          <div class="hand-ref" data-handwriting-authority="${esc(handwritingPresentationAuthority(item).kind)}"><span>${esc(handwritingPresentationAuthority(item).label)}</span><strong>${esc(handSample)}</strong><small>${esc(handwritingPresentationAuthority(item).note)}</small></div>
          <p>${esc(A.handwritingNote?.(item)||item.note||'Tập chữ viết tay, chữ in chỉ dùng để nhận diện khi đọc.')}</p>
+         ${listenWrite?`<section class="hand-listen-write-card" aria-label="Nghe và luyện viết chữ Nga">
+           <div class="hand-listen-write-head"><div><b>🎧 Nghe + viết</b><small>${esc(listenWrite.soundKind==='sign'?'Dấu chữ: nghe tên và từ ngữ cảnh, không tạo âm độc lập.':'Nghe trước, sau đó viết ngay trên bảng bên phải.')}</small></div><span class="chip">${esc(listenWrite.letter)}</span></div>
+           <div class="hand-session-tabs">
+             ${[['learn','Học'],['practice','Luyện'],['dictation','Chính tả'],['review','Ôn lỗi']].map(([key,label])=>`<button class="btn ${sessionMode===key?'active':''}" data-hand-session="${key}">${label}</button>`).join('')}
+           </div>
+           <div class="hand-progress-summary">
+             <span><b>${listenWriteSummary.attempted}/${listenWriteSummary.total}</b> chữ đã luyện</span>
+             <span><b>${listenWriteSummary.strong}</b> vững</span>
+             <span><b>${listenWriteSummary.weak}</b> cần ôn</span>
+             <button class="btn" data-act="hand-adaptive-next">Ôn thích ứng →</button>
+           </div>
+           <div class="hand-letter-progress"><span>Chữ này</span><b>${Number(listenWriteProgress.attempts||0)} lần</b><span>✓ ${Number(listenWriteProgress.correct||0)}</span><span>✕ ${Number(listenWriteProgress.wrong||0)}</span><span>✍ ${Number(listenWriteProgress.self||0)}</span></div>
+           <div class="hand-listen-write-actions">
+             <button class="btn ${activeHandwritingAudioKey===audioNameKey?'is-playing':''}" data-act="hand-speak-name" data-hand-audio="${esc(audioNameKey)}" ${speechReady?'':'disabled'} aria-label="Nghe tên chữ ${esc(listenWrite.letter)}">🔊 Tên chữ</button>
+             <button class="btn green ${activeHandwritingAudioKey===audioExampleKey?'is-playing':''}" data-act="hand-speak-example" data-hand-audio="${esc(audioExampleKey)}" ${speechReady&&audioExample?'':'disabled'} aria-label="Nghe ${esc(audioContextLabel)}">🔊 ${esc(audioContextLabel)}</button>
+             <button class="btn ${activeHandwritingAudioKey===audioSlowKey?'is-playing':''}" data-act="hand-speak-example-slow" data-hand-audio="${esc(audioSlowKey)}" ${speechReady&&audioExample?'':'disabled'} aria-label="Nghe chậm">🐢 Chậm</button>
+           </div>
+           <div class="hand-listen-write-target"><span>Tên chữ</span><strong>${esc(listenWrite.letterNameText)}</strong>${audioExample?`<span>${esc(audioContextLabel)}</span><strong lang="ru">${esc(audioExample.text)}</strong>`:''}</div>
+           ${speechReady?'':'<small class="hand-audio-fallback">Thiết bị chưa có phát âm; phần tô/viết vẫn dùng bình thường.</small>'}
+         </section>`:''}
        </div>
        <div class="step4-mode-card step36-mode-card v1285-mode-card"><h4>Chế độ luyện</h4><div class="step4-mode-grid">
          ${['view','trace','free'].map(m=>`<button class="btn ${practice===m?'active':''}" data-hand-practice="${m}">${esc(writingPracticeName(m))}</button>`).join('')}
@@ -2263,6 +2376,7 @@ function renderWriting(){
      </aside>
      <main class="panel handwriting-sheet hand-right-practice step4-right-board step36-right-board">
        <div class="practice-head step4-practice-head step36-practice-head v1285-practice-head"><div><span class="chip">Bảng phải · Tập viết</span><h3>${esc(handSample)}</h3><p>Viết theo mẫu chữ tay đã chọn. Tập trung nét sạch, khoảng cách đều, không cần xem thẻ thứ tự nét.</p></div><div class="mini-copy-line"><b>Chép vở:</b><span>${esc(item.copy||handSample)}</span></div></div>
+       ${renderHandwritingExercise(item)}
        <div class="writing-tools compact-tools step4-writing-tools step36-writing-tools"><label>Nét <input id="penSize" type="range" min="2" max="18" value="${penSize}"></label><button class="dot active" data-pen-color="#111827" title="Đen"></button><button class="dot red" data-pen-color="#9f1239" title="Đỏ"></button><button class="dot blue-dot" data-pen-color="#1d4ed8" title="Xanh"></button><button class="btn" data-act="undo-canvas">↶ Hoàn tác</button><button class="btn" data-act="clear-line">Xóa dòng luyện</button><button class="btn" data-act="clear-canvas">Xóa bảng</button><button class="btn" data-act="toggle-guide">${showGuide?'Tắt mẫu mờ':'Bật mẫu mờ'}</button><button class="btn" data-act="toggle-lines">${showLines?'Tắt đường kẻ':'Bật đường kẻ'}</button><button class="btn blue" data-act="download-canvas">Tải ảnh</button></div>
        <div class="paper pro-paper step4-paper step36-paper"><canvas id="writingCanvas" class="writingCanvas" width="2048" height="1180"></canvas></div>
        <div class="step4-footnote step36-footnote v1285-writing-footnote"><span>Quy trình gọn: nhìn mẫu → viết trên bảng → chép lại vào vở thật.</span><span>Phím tắt: ←/→ đổi mẫu, Backspace hoàn tác.</span></div>
@@ -2757,9 +2871,9 @@ function storageGroups(){return [
 ];}
 function dataSourceMeta(name){return A.getDataSourceMeta?A.getDataSourceMeta(name):(A.dataSourceMeta&&A.dataSourceMeta[name])||{};}
 function sourceLabel(name){return dataSourceMeta(name)?.label||({
- curriculum:'Lộ trình & giai đoạn',lessons:'Bài học',grammar:'Ngữ pháp gốc','grammar-path':'Ngữ pháp chuyên sâu',vocab:'Từ vựng',mindmap:'Mind map ôn tập',exercises:'Bài tập',tests:'Kiểm tra',simulations:'Mô phỏng / nghe nói',speaking:'Nghe/Nói cơ bản','dialogue-bauman-az':'Đối thoại Bauman A-Z','deep-speaking-bauman':'Luyện nói sâu Bauman','speaking-link-index':'Cầu nối Đối thoại - Deep',handwriting:'Mẫu chữ',writing:'Nhiệm vụ viết',videos:'Video / Audio','knowledge-index':'Chỉ mục kiến thức'
+ curriculum:'Lộ trình & giai đoạn',lessons:'Bài học',grammar:'Ngữ pháp gốc','grammar-path':'Ngữ pháp chuyên sâu',vocab:'Từ vựng',mindmap:'Mind map ôn tập',exercises:'Bài tập',tests:'Kiểm tra',simulations:'Mô phỏng / nghe nói',speaking:'Nghe/Nói cơ bản','dialogue-bauman-az':'Đối thoại Bauman A-Z','deep-speaking-bauman':'Luyện nói sâu Bauman','speaking-link-index':'Cầu nối Đối thoại - Deep',handwriting:'Mẫu chữ','handwriting-listen-write':'Nghe + viết chữ',writing:'Nhiệm vụ viết',videos:'Video / Audio','knowledge-index':'Chỉ mục kiến thức'
 })[name]||name;}
-function sourceIcon(name){return ({curriculum:'🧭',lessons:'📘',grammar:'🧩','grammar-path':'🧬',vocab:'🗃️',mindmap:'🧠',exercises:'📝',tests:'🧪',simulations:'🎙️',speaking:'🎧','dialogue-bauman-az':'💬','deep-speaking-bauman':'🎙️','speaking-link-index':'🔗',handwriting:'✍️',writing:'📄',videos:'🎬','knowledge-index':'🔎'})[name]||'📦';}
+function sourceIcon(name){return ({curriculum:'🧭',lessons:'📘',grammar:'🧩','grammar-path':'🧬',vocab:'🗃️',mindmap:'🧠',exercises:'📝',tests:'🧪',simulations:'🎙️',speaking:'🎧','dialogue-bauman-az':'💬','deep-speaking-bauman':'🎙️','speaking-link-index':'🔗',handwriting:'✍️','handwriting-listen-write':'🎧',writing:'📄',videos:'🎬','knowledge-index':'🔎'})[name]||'📦';}
 function sourceFilePath(name){const meta=dataSourceMeta(name); return meta?.path||optionalSourcePath(name)||`${DATA_ROOT}${name}.json`; }
 function sourceOrigin(name){const meta=dataSourceMeta(name); return meta?.group||'Local data'; }
 function sourcePlannedCount(name){const meta=dataSourceMeta(name); return Number(meta?.plannedCount||meta?.count||0)||0;}
@@ -3120,7 +3234,208 @@ function applyInput(el){const k=el.dataset.input; if(!k)return; let v=el.value; 
   }
   if(k==='testLevel'){state.testIndex=0;state.testAnswer=null;} if(k==='reviewLevel'){state.reviewIndex=0;state.reviewPage=0;state.reviewAnswer=null;state.reviewLesson='all';} if(k==='reviewFilter'||k==='reviewLesson'){state.reviewIndex=0;state.reviewPage=0;state.reviewAnswer=null;} if(k==='exerciseLevel')state.exerciseIndex=0; if(k==='practiceGroup'||k==='practiceDifficulty'){state.practiceDialogueId='';state.practiceLineIndex=0;} if(k==='dialogueGroup'||k==='dialogueDifficulty'){state.dialogueId='';state.dialogueLineIndex=0;} if(k==='deepSpeakingId'){state.deepSpeakingStep=0;} if(k==='grammarLevel'){state.grammarTrack='all';state.grammarIndex=0;} if(k==='grammarTrack'){state.grammarIndex=0;} if(k==='mindmapId'){state.mindmapNode='';}
  } else state[k]=v; save(); render();}
-function speak(text,rate=.85){ if(!text||!('speechSynthesis' in window))return; const u=new SpeechSynthesisUtterance(text); u.lang=A.speech?.lang||'ru-RU'; u.rate=rate; speechSynthesis.cancel(); speechSynthesis.speak(u); }
+let activeHandwritingAudioKey='';
+function markHandwritingAudioPlaying(key,on){
+ activeHandwritingAudioKey=on?key:'';
+ document.querySelectorAll('[data-hand-audio]').forEach(el=>el.classList.toggle('is-playing',on&&el.dataset.handAudio===key));
+}
+function speak(text,rate=.85,callbacks={}){ if(!text||!('speechSynthesis' in window))return false; const u=new SpeechSynthesisUtterance(text); u.lang=A.speech?.lang||'ru-RU'; u.rate=rate; if(callbacks.onstart)u.onstart=callbacks.onstart; if(callbacks.onend)u.onend=callbacks.onend; if(callbacks.onerror)u.onerror=callbacks.onerror; speechSynthesis.cancel(); speechSynthesis.speak(u); return true; }
+function handwritingSpeechAvailable(){return typeof window!=='undefined'&&'speechSynthesis' in window&&typeof SpeechSynthesisUtterance!=='undefined'}
+function handwritingAudioEntry(item){return handwritingListenWriteFor(item)}
+function handwritingAudioTarget(item,kind='name',exampleIndex=0){
+ const audio=handwritingAudioEntry(item);
+ if(!audio)return null;
+ if(kind==='name')return {text:str(audio.letterNameText),label:'Tên chữ'};
+ const examples=arr(audio.soundExamples);
+ const ex=examples[Math.max(0,Math.min(Number(exampleIndex)||0,Math.max(0,examples.length-1)))]||examples[0];
+ return ex?.text?{text:str(ex.text),label:ex.kind==='syllable'?'Âm tiết':'Ví dụ',stress:ex.stress||null}:null;
+}
+function speakHandwriting(item,kind='name',slow=false,exampleIndex=0){
+ const target=handwritingAudioTarget(item,kind,exampleIndex);
+ if(!target?.text){toast('Chưa có dữ liệu phát âm cho mẫu chữ này.');return false}
+ if(!handwritingSpeechAvailable()){toast('Thiết bị chưa hỗ trợ phát âm. Bạn vẫn có thể tiếp tục luyện viết.');return false}
+ const key=[str(item?.id||'hand'),kind,slow?'slow':'normal',String(exampleIndex||0)].join(':');
+ const clear=()=>markHandwritingAudioPlaying(key,false);
+ const ok=speak(target.text,slow?.62:.85,{onstart:()=>markHandwritingAudioPlaying(key,true),onend:clear,onerror:clear});
+ if(!ok)toast('Không thể phát âm lúc này. Phần luyện viết vẫn hoạt động bình thường.');
+ return !!ok;
+}
+function handwritingProgressRoot(){
+ if(!state.handwritingListenWriteProgress||typeof state.handwritingListenWriteProgress!=='object')state.handwritingListenWriteProgress={byLetter:{}};
+ if(!state.handwritingListenWriteProgress.byLetter||typeof state.handwritingListenWriteProgress.byLetter!=='object')state.handwritingListenWriteProgress.byLetter={};
+ return state.handwritingListenWriteProgress;
+}
+function handwritingLetterProgress(item){
+ const root=handwritingProgressRoot();
+ const id=str(item?.id||'');
+ return root.byLetter[id]||{attempts:0,correct:0,wrong:0,self:0,lastResult:null,lastAt:0,byKind:{}};
+}
+function handwritingKindProgress(item,kind){
+ const p=handwritingLetterProgress(item);
+ return p.byKind?.[kind]||{attempts:0,correct:0,wrong:0,self:0,lastResult:null,lastAt:0};
+}
+function recordHandwritingAttempt(item,drill,result){
+ const root=handwritingProgressRoot();
+ const id=str(item?.id||'');
+ if(!id||!drill?.kind)return;
+ const prev=handwritingLetterProgress(item);
+ const next={...prev,byKind:{...(prev.byKind||{})}};
+ next.attempts=Number(next.attempts||0)+1;
+ if(result==='correct')next.correct=Number(next.correct||0)+1;
+ else if(result==='wrong')next.wrong=Number(next.wrong||0)+1;
+ else next.self=Number(next.self||0)+1;
+ next.lastResult=result;
+ next.lastAt=Date.now();
+ const kp={...handwritingKindProgress(item,drill.kind)};
+ kp.attempts=Number(kp.attempts||0)+1;
+ if(result==='correct')kp.correct=Number(kp.correct||0)+1;
+ else if(result==='wrong')kp.wrong=Number(kp.wrong||0)+1;
+ else kp.self=Number(kp.self||0)+1;
+ kp.lastResult=result;
+ kp.lastAt=next.lastAt;
+ next.byKind[drill.kind]=kp;
+ root.byLetter[id]=next;
+}
+function handwritingSessionKinds(mode){
+ return ({
+  learn:['hear_select','hear_trace','hear_write'],
+  practice:['syllable_write','word_dictation','stress_mark','sound_spelling_discrimination'],
+  dictation:['hear_write','syllable_write','word_dictation'],
+  review:[]
+ })[mode]||['hear_select','hear_trace','hear_write'];
+}
+function handwritingExerciseList(item){
+ const all=arr(handwritingAudioEntry(item)?.drills);
+ const mode=state.handwritingSessionMode||'learn';
+ if(mode==='review'){
+   const weak=all.filter(d=>{const p=handwritingKindProgress(item,d.kind);return Number(p.wrong||0)>Number(p.correct||0)||p.lastResult==='wrong';});
+   return weak.length?weak:all;
+ }
+ const allowed=handwritingSessionKinds(mode);
+ const filtered=all.filter(d=>allowed.includes(d.kind));
+ return filtered.length?filtered:all;
+}
+function handwritingProgressSummary(){
+ const root=handwritingProgressRoot();
+ const ids=getHandwritingListenWrite().map(x=>x.handwritingId);
+ let attempted=0,strong=0,weak=0,totalAttempts=0,totalCorrect=0,totalWrong=0;
+ for(const id of ids){
+   const p=root.byLetter[id];
+   if(!p)continue;
+   const attempts=Number(p.attempts||0),correct=Number(p.correct||0),wrong=Number(p.wrong||0);
+   totalAttempts+=attempts; totalCorrect+=correct; totalWrong+=wrong;
+   if(attempts>0)attempted++;
+   const graded=correct+wrong;
+   if(wrong>correct||p.lastResult==='wrong')weak++;
+   if(graded>=3&&correct/graded>=.8)strong++;
+ }
+ return {total:ids.length,attempted,strong,weak,totalAttempts,totalCorrect,totalWrong};
+}
+function handwritingWeaknessScore(item){
+ const p=handwritingLetterProgress(item);
+ const attempts=Number(p.attempts||0),correct=Number(p.correct||0),wrong=Number(p.wrong||0);
+ return wrong*5+(p.lastResult==='wrong'?4:0)+(attempts===0?2:0)-Math.min(correct,4);
+}
+function handwritingAdaptiveItems(){
+ return getHandwriting().filter(item=>handwritingAudioEntry(item)).slice().sort((a,b)=>{
+   const score=handwritingWeaknessScore(b)-handwritingWeaknessScore(a);
+   if(score!==0)return score;
+   const pa=handwritingLetterProgress(a),pb=handwritingLetterProgress(b);
+   return Number(pa.lastAt||0)-Number(pb.lastAt||0)||str(a.id).localeCompare(str(b.id));
+ });
+}
+function openAdaptiveHandwriting(){
+ const ranked=handwritingAdaptiveItems();
+ const target=ranked[0];
+ if(!target){toast('Chưa có chữ phù hợp để ôn.');return}
+ const all=getHandwriting(),idx=all.findIndex(x=>x.id===target.id);
+ if(idx<0)return;
+ state.handwritingIndex=idx;
+ state.handwritingSessionMode='review';
+ resetHandwritingExerciseResponse(true);
+ strokes=[];
+ save();render();
+}
+function currentHandwritingExercise(item){
+ const drills=handwritingExerciseList(item);
+ if(!drills.length)return null;
+ const idx=Math.max(0,Math.min(Number(state.handwritingExerciseIndex)||0,drills.length-1));
+ if(idx!==state.handwritingExerciseIndex)state.handwritingExerciseIndex=idx;
+ return drills[idx]||null;
+}
+function resetHandwritingExerciseResponse(resetIndex=false){
+ if(resetIndex)state.handwritingExerciseIndex=0;
+ state.handwritingExerciseInput='';
+ state.handwritingExerciseChoice='';
+ state.handwritingExerciseAttempted=false;
+ state.handwritingExerciseReveal=false;
+ state.handwritingExerciseResult=null;
+}
+function handwritingExerciseKindLabel(kind){
+ return ({hear_select:'Nghe → chọn chữ',hear_trace:'Nghe → tô/viết',hear_write:'Nghe → viết chữ',syllable_write:'Nghe → viết âm tiết',word_dictation:'Nghe chính tả từ',stress_mark:'Nghe → chọn trọng âm',sound_spelling_discrimination:'Nghe → chọn chữ viết'})[kind]||'Bài nghe–viết';
+}
+function normalizeHandwritingAnswer(value){
+ return str(value).normalize('NFC').trim().toLocaleLowerCase('ru-RU').replace(/\s+/g,' ');
+}
+function handwritingExerciseUsesChoice(drill){return arr(drill?.choices).length>0}
+function handwritingExerciseIsCanvasOnly(drill){return drill?.kind==='hear_trace'}
+function speakHandwritingExercise(item,slow=false){
+ const drill=currentHandwritingExercise(item);
+ if(!drill?.audioText){toast('Bài này chưa có audio.');return false}
+ if(!handwritingSpeechAvailable()){toast('Thiết bị chưa hỗ trợ phát âm. Canvas vẫn dùng bình thường.');return false}
+ const key=[str(item?.id||'hand'),'exercise',String(state.handwritingExerciseIndex||0),slow?'slow':'normal'].join(':');
+ const clear=()=>markHandwritingAudioPlaying(key,false);
+ return !!speak(drill.audioText,slow?.62:.85,{onstart:()=>markHandwritingAudioPlaying(key,true),onend:clear,onerror:clear});
+}
+function evaluateHandwritingExercise(item){
+ const drill=currentHandwritingExercise(item);
+ if(!drill)return;
+ state.handwritingExerciseAttempted=true;
+ state.handwritingExerciseReveal=true;
+ if(handwritingExerciseIsCanvasOnly(drill)){
+   state.handwritingExerciseResult='self';
+   recordHandwritingAttempt(item,drill,'self');
+   save();render();return;
+ }
+ const response=handwritingExerciseUsesChoice(drill)?state.handwritingExerciseChoice:state.handwritingExerciseInput;
+ if(!str(response).trim()){
+   state.handwritingExerciseAttempted=false;
+   state.handwritingExerciseReveal=false;
+   toast('Hãy chọn hoặc nhập đáp án trước khi kiểm tra.');
+   return;
+ }
+ state.handwritingExerciseResult=normalizeHandwritingAnswer(response)===normalizeHandwritingAnswer(drill.answer)?'correct':'wrong';
+ recordHandwritingAttempt(item,drill,state.handwritingExerciseResult);
+ save();render();
+}
+function moveHandwritingExercise(item,delta){
+ const drills=handwritingExerciseList(item);
+ if(!drills.length)return;
+ state.handwritingExerciseIndex=(Math.max(0,Number(state.handwritingExerciseIndex)||0)+delta+drills.length)%drills.length;
+ resetHandwritingExerciseResponse(false);
+ strokes=[];
+ save();render();
+}
+function renderHandwritingExercise(item){
+ const drills=handwritingExerciseList(item);
+ const drill=currentHandwritingExercise(item);
+ if(!drill)return '';
+ const idx=Math.max(0,Number(state.handwritingExerciseIndex)||0);
+ const choiceMode=handwritingExerciseUsesChoice(drill);
+ const canvasOnly=handwritingExerciseIsCanvasOnly(drill);
+ const audioKey=[str(item?.id||'hand'),'exercise',String(idx),'normal'].join(':');
+ const slowKey=[str(item?.id||'hand'),'exercise',String(idx),'slow'].join(':');
+ const result=state.handwritingExerciseResult;
+ const status=result==='correct'?'✓ Đúng':result==='wrong'?'✕ Chưa đúng':result==='self'?'Đã viết · đối chiếu mẫu':'';
+ const modeLabel=({learn:'Học',practice:'Luyện',dictation:'Chính tả',review:'Ôn lỗi'})[state.handwritingSessionMode||'learn']||'Học';
+ const prompt=canvasOnly?'Nghe rồi viết/tô trên canvas bên dưới. Khi xong mới mở đáp án.':choiceMode?'Nghe trước, sau đó chọn đáp án.':'Nghe trước, viết trên canvas nếu cần rồi nhập câu trả lời để kiểm tra.';
+ return `<section class="hand-exercise-card" data-hand-exercise-kind="${esc(drill.kind)}">
+   <header class="hand-exercise-head"><div><span class="chip">${esc(modeLabel)} · BÀI ${idx+1}/${drills.length}</span><h4>${esc(handwritingExerciseKindLabel(drill.kind))}</h4><p>${esc(prompt)}</p></div><div class="hand-exercise-audio"><button class="btn green ${activeHandwritingAudioKey===audioKey?'is-playing':''}" data-act="hand-exercise-play" data-hand-audio="${esc(audioKey)}">🔊 Nghe đề</button><button class="btn ${activeHandwritingAudioKey===slowKey?'is-playing':''}" data-act="hand-exercise-play-slow" data-hand-audio="${esc(slowKey)}">🐢 Chậm</button></div></header>
+   ${choiceMode?`<div class="hand-exercise-choices">${arr(drill.choices).map(choice=>`<button class="btn ${state.handwritingExerciseChoice===choice?'active':''}" data-hand-choice="${esc(choice)}">${esc(choice)}</button>`).join('')}</div>`:canvasOnly?'':`<label class="hand-exercise-input"><span>Đáp án của bạn</span><input class="input" data-hand-exercise-input="1" value="${esc(state.handwritingExerciseInput||'')}" autocomplete="off" spellcheck="false" lang="ru" placeholder="Gõ chữ / âm tiết / từ vừa nghe"></label>`}
+   <div class="hand-exercise-actions"><button class="btn" data-act="hand-exercise-prev">← Bài trước</button><button class="btn primary" data-act="hand-exercise-check">${canvasOnly?'Đã viết xong → xem đáp án':'Kiểm tra'}</button><button class="btn" data-act="hand-exercise-retry">Làm lại</button><button class="btn" data-act="hand-exercise-next">Bài tiếp →</button></div>
+   ${state.handwritingExerciseAttempted&&state.handwritingExerciseReveal?`<div class="hand-exercise-feedback ${esc(result||'')}"><b>${esc(status)}</b><span>Đáp án: <strong lang="ru">${esc(drill.answer)}</strong></span>${drill.hint?`<small>${esc(drill.hint)}</small>`:''}</div>`:'<div class="hand-exercise-hidden-answer">Đáp án được khóa đến sau lần làm đầu tiên.</div>'}
+ </section>`;
+}
 function initCanvas(){canvas=$('#writingCanvas'); if(!canvas||canvas.dataset.ready)return; ctx=canvas.getContext('2d'); ctx.lineCap='round';ctx.lineJoin='round'; canvas.dataset.ready='1'; const pos=e=>{const r=canvas.getBoundingClientRect(); return {x:(e.clientX-r.left)*canvas.width/r.width,y:(e.clientY-r.top)*canvas.height/r.height}}; const start=e=>{e.preventDefault(); drawing=true; currentStroke={color:penColor,size:penSize,points:[pos(e)]}; strokes.push(currentStroke); drawCanvas()}; const move=e=>{if(!drawing)return; e.preventDefault(); currentStroke.points.push(pos(e)); drawCanvas()}; const end=()=>{drawing=false;currentStroke=null}; canvas.addEventListener('pointerdown',start); canvas.addEventListener('pointermove',move); window.addEventListener('pointerup',end); canvas.addEventListener('touchstart',e=>e.preventDefault(),{passive:false}); drawCanvas();}
 function drawCanvas(){if(!ctx)return; ctx.clearRect(0,0,canvas.width,canvas.height); drawCanvasGuide(); for(const s of strokes){if(s.points.length<2)continue; ctx.strokeStyle=s.color; ctx.lineWidth=s.size; ctx.beginPath(); ctx.moveTo(s.points[0].x,s.points[0].y); s.points.forEach(p=>ctx.lineTo(p.x,p.y)); ctx.stroke();}}
 function drawCanvasGuide(){
@@ -3336,7 +3651,7 @@ function handleClick(e){
   if(b.dataset.mindmapNode){state.mindmapNode=b.dataset.mindmapNode;save();render();return}
  if(b.dataset.writing){state.writingMode=b.dataset.writing;save();render();return}
  if(b.dataset.handPractice){state.handwritingPractice=b.dataset.handPractice;save();render();return}
- if('handIndex' in b.dataset){state.handwritingIndex=Number(b.dataset.handIndex)||0;state.handwritingStep=0;strokes=[]; if(state.modalType==='hand-grid')closeModal(); save();render();return}
+ if('handIndex' in b.dataset){state.handwritingIndex=Number(b.dataset.handIndex)||0;state.handwritingStep=0;resetHandwritingExerciseResponse(true);strokes=[]; if(state.modalType==='hand-grid')closeModal(); save();render();return}
  if('handStep' in b.dataset){state.handwritingStep=Number(b.dataset.handStep)||0;save();render();return}
  if('writeIndex' in b.dataset){state.writingIndex=Number(b.dataset.writeIndex)||0;save();render();return}
  if(b.dataset.penColor){penColor=b.dataset.penColor;toast('Đã đổi màu bút');return}
@@ -3360,6 +3675,26 @@ function handleClick(e){
  if(b.dataset.deepUnit){state.deepSpeakingId=b.dataset.deepUnit;state.deepSpeakingMode=state.deepSpeakingMode||'overview';state.deepSpeakingStep=0;save();render();return}
  if(b.dataset.deepMode){state.deepSpeakingMode=b.dataset.deepMode;state.deepSpeakingStep=0;save();render();return}
  if(b.dataset.deepSpeak){speak(b.dataset.deepSpeak,.82);return}
+ if(b.dataset.lwMode){
+   const lesson=listenWriteLessonFor(activeLessonContext().id);
+   if(lesson){const lw=ensureLessonListenWriteState(lesson);lw.mode=['learn','practice','dictation','review'].includes(b.dataset.lwMode)?b.dataset.lwMode:(listenWriteRuleFor(lesson.level)?.defaultSessionMode||'learn');lw.drillIndex=0;resetLessonListenWriteResponse();save();render();}
+   return;
+ }
+ if(b.dataset.lwChoice!==undefined){
+   const lesson=listenWriteLessonFor(activeLessonContext().id);
+   if(lesson){const lw=ensureLessonListenWriteState(lesson);lw.choice=b.dataset.lwChoice||'';lw.attempted=false;lw.result=null;save();render();}
+   return;
+ }
+ if(b.dataset.lwNav){
+   const lesson=listenWriteLessonFor(activeLessonContext().id);
+   if(lesson){
+     const [kind,dir]=b.dataset.lwNav.split('-');
+     lessonListenWriteMove(lesson,kind,dir==='next'?1:-1);
+   }
+   return;
+ }
+ if('handChoice' in b.dataset){state.handwritingExerciseChoice=b.dataset.handChoice||'';state.handwritingExerciseResult=null;state.handwritingExerciseAttempted=false;state.handwritingExerciseReveal=false;save();render();return}
+ if('handSession' in b.dataset){state.handwritingSessionMode=['learn','practice','dictation','review'].includes(b.dataset.handSession)?b.dataset.handSession:'learn';resetHandwritingExerciseResponse(true);save();render();return}
  const act=b.dataset.act; if(!act)return;
  if(act==='confirm-cancel'){closeModal(); return;}
  if(act==='ai-run'){state.aiDraft=$('#aiPrompt')?.value||''; state.aiOutput=aiGenerate('custom',state.aiDraft); save(); openModal(renderAiMentor(),'ai')}
@@ -3436,8 +3771,27 @@ function handleClick(e){
  if(act==='deep-prev'){state.deepSpeakingStep=Math.max(0,(Number(state.deepSpeakingStep)||0)-1);save();render();return}
  if(act==='deep-mark-ok'){const unit=currentDeepUnit(currentDialogue()); if(unit){const id=deepUnitKey(unit); state.deepSpeakingProgress.done[id]=Date.now(); delete state.deepSpeakingProgress.weak[id]; save();render();toast('Đã đánh dấu nói ổn');}return}
  if(act==='deep-mark-weak'){const unit=currentDeepUnit(currentDialogue()); if(unit){const id=deepUnitKey(unit); state.deepSpeakingProgress.weak[id]=Date.now(); save();render();toast('Đã đưa vào Ôn luyện nói sâu');}return}
- if(act==='prev-hand'){const h=getHandwriting(); state.handwritingIndex=h.length?(state.handwritingIndex-1+h.length)%h.length:0;state.handwritingStep=0;strokes=[];save();render()}
- if(act==='next-hand'){const h=getHandwriting(); state.handwritingIndex=h.length?(state.handwritingIndex+1)%h.length:0;state.handwritingStep=0;strokes=[];save();render()}
+ if(b.dataset.lwAct){
+   const lesson=listenWriteLessonFor(activeLessonContext().id);
+   if(lesson){
+     if(b.dataset.lwAct==='play')lessonListenWritePlay(lesson,false);
+     if(b.dataset.lwAct==='play-slow')lessonListenWritePlay(lesson,true);
+     if(b.dataset.lwAct==='check')lessonListenWriteCheck(lesson);
+   }
+   return;
+ }
+ if(act==='hand-speak-name'){const h=getHandwriting(),item=h[state.handwritingIndex]||{};speakHandwriting(item,'name',false,0)}
+ if(act==='hand-speak-example'){const h=getHandwriting(),item=h[state.handwritingIndex]||{};speakHandwriting(item,'example',false,0)}
+ if(act==='hand-speak-example-slow'){const h=getHandwriting(),item=h[state.handwritingIndex]||{};speakHandwriting(item,'example',true,0)}
+ if(act==='hand-exercise-play'){const h=getHandwriting(),item=h[state.handwritingIndex]||{};speakHandwritingExercise(item,false)}
+ if(act==='hand-exercise-play-slow'){const h=getHandwriting(),item=h[state.handwritingIndex]||{};speakHandwritingExercise(item,true)}
+ if(act==='hand-exercise-check'){const h=getHandwriting(),item=h[state.handwritingIndex]||{};evaluateHandwritingExercise(item)}
+ if(act==='hand-exercise-retry'){resetHandwritingExerciseResponse(false);save();render()}
+ if(act==='hand-exercise-prev'){const h=getHandwriting(),item=h[state.handwritingIndex]||{};moveHandwritingExercise(item,-1)}
+ if(act==='hand-exercise-next'){const h=getHandwriting(),item=h[state.handwritingIndex]||{};moveHandwritingExercise(item,1)}
+ if(act==='hand-adaptive-next')openAdaptiveHandwriting();
+ if(act==='prev-hand'){const h=getHandwriting(); state.handwritingIndex=h.length?(state.handwritingIndex-1+h.length)%h.length:0;state.handwritingStep=0;resetHandwritingExerciseResponse(true);strokes=[];save();render()}
+ if(act==='next-hand'){const h=getHandwriting(); state.handwritingIndex=h.length?(state.handwritingIndex+1)%h.length:0;state.handwritingStep=0;resetHandwritingExerciseResponse(true);strokes=[];save();render()}
  if(act==='undo-canvas'){strokes.pop();drawCanvas()}
  if(act==='clear-line'){clearCurrentPracticeLine()}
  if(act==='clear-canvas'){strokes=[];drawCanvas()}
@@ -3474,6 +3828,12 @@ function handleChange(e){
  if(e.target.dataset.input)applyInput(e.target)
 }
 function handleInput(e){
+ if(e.target.dataset.lwInput==='1'){
+   const lesson=listenWriteLessonFor(activeLessonContext().id);
+   if(lesson){const lw=ensureLessonListenWriteState(lesson);lw.input=e.target.value;lw.attempted=false;lw.result=null;save();}
+   return;
+ }
+ if(e.target.dataset.handExerciseInput==='1'){state.handwritingExerciseInput=e.target.value;state.handwritingExerciseResult=null;state.handwritingExerciseAttempted=false;state.handwritingExerciseReveal=false;save();return;}
  const k=e.target.dataset.input;
  if(e.target.id==='penSize'){penSize=Number(e.target.value)||6;return;} if(!k||['dialogueGroup','dialogueDifficulty','practiceGroup','practiceDifficulty','deepSpeakingId','mediaCat','testLevel','reviewLevel','reviewFilter','reviewLesson','examLevel','examCycle','examPaperType','examPaperLevel'].includes(k))return;
  if(k==='writingDraft'){state[k]=e.target.value; save(); return;}
@@ -3514,8 +3874,8 @@ function handleKeys(e){
  }
  if(state.view==='writing'&&state.writingMode==='handwriting'){
    const h=getHandwriting(), item=h[state.handwritingIndex]||{}, steps=handwritingStrokeSteps(item);
-   if(e.key==='ArrowLeft'){state.handwritingIndex=h.length?(state.handwritingIndex-1+h.length)%h.length:0;state.handwritingStep=0;strokes=[];save();render();e.preventDefault();return}
-   if(e.key==='ArrowRight'){state.handwritingIndex=h.length?(state.handwritingIndex+1)%h.length:0;state.handwritingStep=0;strokes=[];save();render();e.preventDefault();return}
+   if(e.key==='ArrowLeft'){state.handwritingIndex=h.length?(state.handwritingIndex-1+h.length)%h.length:0;state.handwritingStep=0;resetHandwritingExerciseResponse(true);strokes=[];save();render();e.preventDefault();return}
+   if(e.key==='ArrowRight'){state.handwritingIndex=h.length?(state.handwritingIndex+1)%h.length:0;state.handwritingStep=0;resetHandwritingExerciseResponse(true);strokes=[];save();render();e.preventDefault();return}
    if(e.key==='ArrowUp'){state.handwritingStep=Math.max(0,state.handwritingStep-1);save();render();e.preventDefault();return}
    if(e.key==='ArrowDown'){state.handwritingStep=Math.min(Math.max(0,steps.length-1),state.handwritingStep+1);save();render();e.preventDefault();return}
    if(e.key==='Backspace'){strokes.pop();drawCanvas();e.preventDefault();return}

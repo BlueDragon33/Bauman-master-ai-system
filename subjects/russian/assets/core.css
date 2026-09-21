@@ -9605,3 +9605,67 @@ body.presentation-active .toast{z-index:2147483003!important;}
 .stage-readiness-navigator p{margin:0;opacity:.78}
 .stage-readiness-navigator .btn{flex:0 0 auto}
 @media(max-width:760px){.stage-readiness-navigator{align-items:stretch;flex-direction:column}.stage-readiness-navigator .btn{width:100%}}
+
+/* RHW2 · handwriting listen + write */
+.hand-listen-write-card{margin-top:12px;padding:12px;border:1px solid rgba(148,163,184,.28);border-radius:14px;background:rgba(248,250,252,.88);display:grid;gap:10px}
+.hand-listen-write-head{display:flex;align-items:flex-start;justify-content:space-between;gap:12px}
+.hand-listen-write-head>div{display:grid;gap:3px}
+.hand-listen-write-head small,.hand-audio-fallback{color:var(--muted,#64748b);line-height:1.45}
+.hand-listen-write-actions{display:flex;flex-wrap:wrap;gap:8px}
+.hand-listen-write-actions .btn.is-playing{outline:2px solid currentColor;outline-offset:2px;transform:translateY(-1px)}
+.hand-listen-write-target{display:grid;grid-template-columns:auto 1fr auto 1fr;gap:6px 10px;align-items:center;padding:9px 10px;border-radius:10px;background:rgba(255,255,255,.72)}
+.hand-listen-write-target span{font-size:12px;color:var(--muted,#64748b)}
+.hand-listen-write-target strong{font-size:16px}
+@media (max-width:760px){.hand-listen-write-target{grid-template-columns:auto 1fr}.hand-listen-write-actions .btn{flex:1 1 auto;min-height:42px}}
+@media (prefers-reduced-motion:reduce){.hand-listen-write-actions .btn.is-playing{transform:none}}
+
+/* RHW3 · interactive listen-write exercise engine */
+.hand-exercise-card{margin:12px 0;padding:14px;border:1px solid rgba(148,163,184,.28);border-radius:16px;background:rgba(255,255,255,.82);display:grid;gap:12px}
+.hand-exercise-head{display:flex;align-items:flex-start;justify-content:space-between;gap:14px}
+.hand-exercise-head>div:first-child{display:grid;gap:4px}
+.hand-exercise-head h4{margin:0;font-size:17px}
+.hand-exercise-head p{margin:0;color:var(--muted,#64748b);line-height:1.45}
+.hand-exercise-audio,.hand-exercise-actions,.hand-exercise-choices{display:flex;flex-wrap:wrap;gap:8px}
+.hand-exercise-choices .btn.active{outline:2px solid currentColor;outline-offset:2px}
+.hand-exercise-input{display:grid;gap:6px}
+.hand-exercise-input>span{font-size:12px;color:var(--muted,#64748b);font-weight:700}
+.hand-exercise-feedback,.hand-exercise-hidden-answer{padding:10px 12px;border-radius:12px;display:grid;gap:4px}
+.hand-exercise-hidden-answer{background:rgba(241,245,249,.8);color:var(--muted,#64748b)}
+.hand-exercise-feedback.correct{background:rgba(220,252,231,.75)}
+.hand-exercise-feedback.wrong{background:rgba(254,226,226,.75)}
+.hand-exercise-feedback.self{background:rgba(219,234,254,.72)}
+.hand-exercise-feedback small{color:var(--muted,#64748b)}
+@media (max-width:760px){.hand-exercise-head{display:grid}.hand-exercise-audio .btn,.hand-exercise-actions .btn{flex:1 1 140px;min-height:42px}.hand-exercise-choices .btn{min-width:64px;min-height:42px}}
+
+/* RHW4 · progress, session modes and adaptive review */
+.hand-session-tabs{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:6px}
+.hand-session-tabs .btn{min-width:0;padding-inline:8px}
+.hand-session-tabs .btn.active{outline:2px solid currentColor;outline-offset:1px}
+.hand-progress-summary{display:grid;grid-template-columns:repeat(3,minmax(0,1fr)) auto;gap:8px;align-items:center;padding:9px 10px;border-radius:12px;background:rgba(241,245,249,.8)}
+.hand-progress-summary span{display:grid;gap:2px;font-size:11px;color:var(--muted,#64748b)}
+.hand-progress-summary b{font-size:15px;color:var(--text,#0f172a)}
+.hand-letter-progress{display:flex;flex-wrap:wrap;gap:6px 10px;align-items:center;font-size:12px;color:var(--muted,#64748b)}
+.hand-letter-progress b{color:var(--text,#0f172a)}
+@media (max-width:760px){.hand-session-tabs{grid-template-columns:repeat(2,minmax(0,1fr))}.hand-progress-summary{grid-template-columns:repeat(3,minmax(0,1fr))}.hand-progress-summary .btn{grid-column:1/-1}}
+
+/* RHW7 · lesson-bound ListenWrite factory surface */
+.lesson-listen-write-panel{margin-top:14px;padding:16px;border:1px solid rgba(148,163,184,.28);border-radius:18px;background:rgba(255,255,255,.88);display:grid;gap:12px}
+.lesson-listen-write-head{display:flex;align-items:flex-start;justify-content:space-between;gap:14px}
+.lesson-listen-write-head h3{margin:4px 0 0}
+.lesson-listen-write-head p{margin:4px 0 0;color:var(--muted,#64748b);line-height:1.45}
+.lesson-listen-write-nav,.lesson-listen-write-modes,.lesson-listen-write-drill-nav{display:flex;flex-wrap:wrap;gap:8px;align-items:center}
+.lesson-listen-write-modes .btn.active{outline:2px solid currentColor;outline-offset:1px}
+.lesson-listen-write-rule{color:var(--muted,#64748b);line-height:1.5}
+.listen-write-factory-exercise{display:grid;gap:10px;padding:14px;border:1px solid rgba(148,163,184,.24);border-radius:14px;background:rgba(248,250,252,.86)}
+.listen-write-factory-exercise>header{display:flex;justify-content:space-between;gap:12px;align-items:flex-start}
+.listen-write-factory-exercise>header strong{font-size:18px}
+.listen-write-factory-audio,.listen-write-factory-choices{display:flex;flex-wrap:wrap;gap:8px}
+.listen-write-factory-choices button.active{outline:2px solid currentColor;outline-offset:1px}
+.listen-write-factory-exercise input{min-height:42px;border:1px solid rgba(148,163,184,.4);border-radius:10px;padding:0 12px;font:inherit}
+.listen-write-factory-feedback,.listen-write-factory-hidden{padding:10px 12px;border-radius:10px}
+.listen-write-factory-feedback.correct{background:rgba(220,252,231,.78)}
+.listen-write-factory-feedback.wrong{background:rgba(254,226,226,.78)}
+.listen-write-factory-feedback.self{background:rgba(219,234,254,.75)}
+.listen-write-factory-hidden{background:rgba(241,245,249,.8);color:var(--muted,#64748b)}
+.lesson-listen-write-error{margin-top:14px;padding:14px;display:grid;gap:4px}
+@media (max-width:760px){.lesson-listen-write-head{display:grid}.lesson-listen-write-nav .btn,.lesson-listen-write-modes .btn,.lesson-listen-write-drill-nav .btn,.listen-write-factory-audio button{flex:1 1 120px;min-height:42px}.listen-write-factory-exercise>header{display:grid}}

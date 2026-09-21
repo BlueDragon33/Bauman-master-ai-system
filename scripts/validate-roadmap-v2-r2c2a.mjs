@@ -52,7 +52,7 @@ assert.deepEqual(report.summary,{
 const blobs=Object.fromEntries(report.sources.map(x=>[x.id,x.gitBlobSha]));
 assert.deepEqual(blobs,{
   legacyLessons:'caacdf2b0813c1300af215608c4222ca61669184',
-  theoryOverlay:'9e4a0a0b8d33c21b2e343c09f2152b5c53b5bb7e',
+  theoryOverlay:'b4a7007af01118369a5da37927269f5138ee4b7f',
   theoryFramework:'fb3a9a052e6c467c03bea5204dae10303ba73766',
   chapterSpine:'db067682cce0389939048d5aabcaef38c6bad0e6',
   roadmapSpec:'fd1c3f179d66922faf6ac9363772f3d072851d00'

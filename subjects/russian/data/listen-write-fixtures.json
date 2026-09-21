@@ -1,0 +1,73 @@
+[
+  {
+    "schema": "RUSSIAN_LISTEN_WRITE_LESSON_V1",
+    "id": "LW_FIXTURE_WORD",
+    "lessonId": "RHW6_FIXTURE_WORD",
+    "stage": "vn",
+    "level": "A0",
+    "title": "Word listen-write fixture",
+    "items": [
+      {
+        "id": "LW_ITEM_WORD_MAMA",
+        "contentType": "word",
+        "printSample": "мама",
+        "handwritingSample": "мама",
+        "drills": [
+          {
+            "kind": "word_dictation",
+            "audioText": "мама",
+            "answer": "мама",
+            "choices": [],
+            "hint": null,
+            "stress": null
+          },
+          {
+            "kind": "stress_mark",
+            "audioText": "мама",
+            "answer": "ма́ма",
+            "choices": [
+              "ма́ма",
+              "мама́"
+            ],
+            "hint": "Выберите правильное ударение.",
+            "stress": "ма́ма"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "schema": "RUSSIAN_LISTEN_WRITE_LESSON_V1",
+    "id": "LW_FIXTURE_SENTENCE",
+    "lessonId": "RHW6_FIXTURE_SENTENCE",
+    "stage": "vn",
+    "level": "A0",
+    "title": "Sentence listen-write fixture",
+    "items": [
+      {
+        "id": "LW_ITEM_SENTENCE_INTRO",
+        "contentType": "sentence",
+        "printSample": "Меня зовут Нам.",
+        "handwritingSample": "Меня зовут Нам.",
+        "drills": [
+          {
+            "kind": "word_dictation",
+            "audioText": "Меня зовут Нам.",
+            "answer": "Меня зовут Нам.",
+            "choices": [],
+            "hint": null,
+            "stress": null
+          },
+          {
+            "kind": "hear_write",
+            "audioText": "Меня зовут Нам.",
+            "answer": "Меня зовут Нам.",
+            "choices": [],
+            "hint": "Запишите предложение полностью.",
+            "stress": null
+          }
+        ]
+      }
+    ]
+  }
+]

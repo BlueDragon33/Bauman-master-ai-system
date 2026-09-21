@@ -1,14 +1,15 @@
-/* Bauman Math Runtime Health V5
+/* Bauman Math Runtime Health V6
  * Aggregates existing selfCheck APIs. UI/diagnostic only.
  */
 (function mathRuntimeHealth(global){
   'use strict';
-  const RELEASE='MATH_RUNTIME_HEALTH_V5';
+  const RELEASE='MATH_RUNTIME_HEALTH_V6';
   let lastReport=null;
   const $=(s,r=document)=>r.querySelector(s);
   const esc=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]||c));
   const MODULES=[
     ['E129 Theory',()=>global.BAUMAN_MATH_THEORY_E129?.selfCheck?.()],
+    ['E186 Canonical Route',()=>global.BAUMAN_MATH_E186_LESSON_FIRST?.selfCheck?.()],
     ['Program Frame E130',()=>global.BAUMAN_MATH_E130_PROGRAM_FRAME?.selfCheck?.()],
     ['Math Workspace',()=>global.BAUMAN_MATH_WORKSPACE?.selfCheck?.()],
     ['Premium UI',()=>global.BAUMAN_MATH_PREMIUM?.selfCheck?.()],

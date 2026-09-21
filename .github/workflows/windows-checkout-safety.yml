@@ -2,7 +2,9 @@ name: Windows checkout safety
 
 on:
   push:
-    branches: [main]
+    branches:
+      - main
+      - stabilization/roadmap-v2-reconcile-current-runtime
   pull_request:
     branches: [main]
   workflow_dispatch:

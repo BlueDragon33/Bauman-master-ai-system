@@ -11,7 +11,7 @@ window.SUBJECT_ADAPTER = {
   externalDataRoot: 'external-data/',
   manifestPath: 'subject-manifest.json',
   oldStorageKeys: ['bauman_universal_core_v1_russian','bauman_subject_core_v5_russian','ru_clean_controller_v4','ru_clean_controller_v3','ru_clean_controller_v2','ru_clean_controller_v1'],
-  dataFiles: ['curriculum','lessons','grammar','grammar-path','vocab','mindmap','exercises','tests','simulations','speaking','handwriting','writing','videos','knowledge-index'],
+  dataFiles: ['curriculum','lessons','grammar','grammar-path','vocab','mindmap','exercises','tests','simulations','speaking','handwriting','handwriting-listen-write','listen-write-lessons','listen-write-level-rules','writing','videos','knowledge-index'],
   optionalDataFiles: ['dialogue-bauman-az','deep-speaking-bauman','speaking-link-index'],
   dataSourceMeta: {
     curriculum:{label:'Lộ trình & giai đoạn',path:'data/curriculum.json',group:'Lõi môn học',required:true,plannedCount:2,description:'Cây giai đoạn và module học'},
@@ -28,6 +28,9 @@ window.SUBJECT_ADAPTER = {
     'deep-speaking-bauman':{label:'Luyện nói sâu Bauman',path:'data/deep-speaking-bauman.json',group:'Đối thoại & Deep Bauman',required:false,lazy:true,plannedCount:1140,kind:'Deep drill / monologue / Q&A',description:'Bộ luyện phản xạ, shadowing, monologue và Q&A áp lực'},
     'speaking-link-index':{label:'Cầu nối Đối thoại - Deep Speaking',path:'data/speaking-link-index.json',group:'Đối thoại & Deep Bauman',required:false,lazy:true,plannedCount:1058,kind:'Bản đồ liên kết',description:'Cầu nối từ hội thoại Bauman A-Z sang unit Deep Speaking'},
     handwriting:{label:'Mẫu chữ',path:'data/handwriting.json',group:'Luyện viết',required:true,plannedCount:48,description:'Mẫu chữ in/viết tay'},
+    'handwriting-listen-write':{label:'Nghe + viết chữ',path:'data/handwriting-listen-write.json',group:'Luyện viết',required:true,plannedCount:33,description:'Tên chữ, ví dụ âm theo ngữ cảnh và bài nghe-viết cho bảng chữ cái'},
+    'listen-write-lessons':{label:'Nghe + viết theo bài',path:'data/listen-write-lessons.json',group:'Luyện viết',required:true,plannedCount:10,description:'Binding nghe-viết theo lessonId cho các bài R01-R10'},
+    'listen-write-level-rules':{label:'Luật mức Nghe + viết',path:'data/listen-write-level-rules.json',group:'Luyện viết',required:true,plannedCount:3,description:'Quy tắc A0/A1/A2 và mở rộng dữ liệu cho bài mới'},
     writing:{label:'Nhiệm vụ viết',path:'data/writing.json',group:'Luyện viết',required:true,plannedCount:42,description:'Nhiệm vụ viết câu/đoạn'},
     videos:{label:'Video / Audio',path:'data/videos.json',group:'Video/Audio',required:true,plannedCount:24,description:'Nguồn video/audio học tiếng Nga'},
     'knowledge-index':{label:'Chỉ mục kiến thức',path:'data/knowledge-index.json',group:'Lõi môn học',required:true,plannedCount:26,description:'Chỉ mục tra cứu kiến thức'}
@@ -233,6 +236,9 @@ window.SUBJECT_ADAPTER = {
   getDeepSpeaking(db){ return Array.isArray(db['deep-speaking-bauman']) ? db['deep-speaking-bauman'] : []; },
   getSpeakingLinkIndex(db){ return db['speaking-link-index'] && typeof db['speaking-link-index']==='object' ? db['speaking-link-index'] : {}; },
   getHandwriting(db){ return Array.isArray(db.handwriting) ? db.handwriting : []; },
+  getHandwritingListenWrite(db){ return Array.isArray(db['handwriting-listen-write']) ? db['handwriting-listen-write'] : []; },
+  getListenWriteLessons(db){ return Array.isArray(db['listen-write-lessons']) ? db['listen-write-lessons'] : []; },
+  getListenWriteLevelRules(db){ return db['listen-write-level-rules'] && typeof db['listen-write-level-rules']==='object' ? db['listen-write-level-rules'] : {}; },
   getWriting(db){ return Array.isArray(db.writing) ? db.writing : []; },
   getMedia(db){ return Array.isArray(db.videos) ? db.videos : []; },
   stageOf(item){ return item?.stage || ''; },

@@ -1,0 +1,46 @@
+{
+  "schema": "RUSSIAN_HANDWRITING_LISTEN_WRITE_CONTRACT_V1",
+  "version": "1.0.0-rhw1",
+  "sourceData": "subjects/russian/data/handwriting.json",
+  "scope": {
+    "alphabetMode": "alphabet",
+    "requiredAlphabetCount": 33,
+    "futureModes": ["word","sentence","academic"]
+  },
+  "playback": {
+    "language": "ru-RU",
+    "normalRate": 0.85,
+    "slowRate": 0.62,
+    "cancelPreviousBeforePlay": true,
+    "networkRequired": false,
+    "writingAvailableWhenSpeechUnavailable": true
+  },
+  "pronunciation": {
+    "requiredFields": ["handwritingId","letterNameText","soundKind","soundExamples"],
+    "soundKinds": ["vowel","consonant","sign"],
+    "minimumExamples": 1,
+    "maximumExamples": 4,
+    "isolatedPhonemeTtsRequired": false,
+    "preferPlayableRussianText": true
+  },
+  "exerciseKinds": [
+    "hear_select",
+    "hear_trace",
+    "hear_write",
+    "syllable_write",
+    "word_dictation",
+    "stress_mark",
+    "sound_spelling_discrimination"
+  ],
+  "feedbackPolicy": {
+    "revealBeforeAttempt": false,
+    "retryAllowed": true,
+    "writingCanvasAlwaysAvailable": true,
+    "storeMistakesForAdaptiveReview": true
+  },
+  "contentPolicy": {
+    "imageFirstVocabularyKeepsVietnameseTranslationOut": true,
+    "russianExamplesMayBeShownWithoutVietnameseMeaning": true,
+    "copyrightSourceUsedAsPedagogicalPatternOnly": true
+  }
+}

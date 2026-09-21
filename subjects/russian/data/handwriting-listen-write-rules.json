@@ -1,0 +1,31 @@
+{
+  "schema": "RUSSIAN_HANDWRITING_LISTEN_WRITE_RULES_V1",
+  "version": "1.0.0-rhw1",
+  "signLetters": {
+    "Ъ": {
+      "letterNameText": "твёрдый знак",
+      "independentPhoneme": false,
+      "policy": "play letter name and contextual word only"
+    },
+    "Ь": {
+      "letterNameText": "мягкий знак",
+      "independentPhoneme": false,
+      "policy": "play letter name and contextual word only"
+    }
+  },
+  "contextualVowels": {
+    "Е": {"requiresContextExamples": true, "note": "value changes with position and preceding consonant"},
+    "Ё": {"requiresContextExamples": true, "note": "always preserve two dots in learning content"},
+    "Ю": {"requiresContextExamples": true, "note": "use contextual examples rather than one fixed isolated sound"},
+    "Я": {"requiresContextExamples": true, "note": "use contextual examples rather than one fixed isolated sound"}
+  },
+  "hardSoftPolicy": {
+    "consonantsUseContext": true,
+    "doNotTeachOneTtsUtteranceAsUniversalPhoneme": true,
+    "preferredContexts": ["CV syllable","real Russian word"]
+  },
+  "stressPolicy": {
+    "wordDrillsMayRequireStress": true,
+    "stressAnswerMustBeExplicitWhenExerciseKindIsStressMark": true
+  }
+}
