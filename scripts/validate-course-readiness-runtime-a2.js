@@ -25,7 +25,7 @@ assert(!/window\.save\s*\(/.test(runtime),'A2 must not call Main save()');
 assert(!/schedule\.entries\s*\[[^\]]+\]\s*=/.test(runtime),'A2 must not mutate schedule entries');
 assert(!/return \{id:'COMPLETED'/.test(runtime),'A2 must not fabricate course completion');
 assert(!runtime.includes('function patchApp(')&&!runtime.includes('appendPanel()'),'A2 must not append a new Home surface');
-assert(!runtime.includes('bootstrapEventRuntime'),'A2 must not bootstrap A3 event runtime');
+assert(runtime.includes('function bootstrapEventRuntime()'),'A2/A3 bridge must bootstrap Event runtime only after A2 gate opened');
 assert(runtime.includes("return {id:null,label:'Chưa ghi kết quả vòng đời'"),'Lifecycle must remain unknown without completion evidence');
 assert(runtime.includes("if(course?.courseLocalReadiness)return {type:'LOCAL_DIAGNOSTIC_PENDING'"),'d01 must use local English readiness path');
 assert(runtime.includes('target nội bộ')&&runtime.includes('Pass/fail · không gán target 90'),'A2 event UI must preserve graded/pass-fail policy');
