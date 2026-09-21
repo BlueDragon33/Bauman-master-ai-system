@@ -1,7 +1,7 @@
 {
   "id": "bauman_math_theory_lecture_content_e146_c03_complete",
   "schema": "bauman_math_content_records_v1",
-  "version": "E188_C04_L04_CONTENT_FACTORY_C1_C6_PASS",
+  "version": "E189_C04_L05_CONTENT_FACTORY_C1_C5",
   "title": "Bài giảng lý thuyết Toán · Nội dung học tập",
   "role": "content",
   "frameSource": "theory_lecture_frame.json",
@@ -13573,12 +13573,680 @@
         "softwareOutputTrustExplanation": "PASS",
         "browserBaseline": "PENDING_E164"
       }
+    },
+    {
+      "lessonId": "MATH-VN-C04-xac_suat_co_ban_va_bien_-L05-expectation-variance-covariance-correlation-e189",
+      "chapterId": "MATH-VN-C04-xac_suat_co_ban_va_bien_",
+      "lessonTitle": "§4.5 · Kỳ vọng, phương sai, hiệp phương sai và tương quan",
+      "title": "§4.5 · Kỳ vọng, phương sai, hiệp phương sai và tương quan",
+      "orderInChapter": 5,
+      "identityDecision": {
+        "status": "NEW_CANONICAL_CONTENT_ID",
+        "reason": "C04 canonical content sequence, no legacy lesson identity.",
+        "chapterIdStable": true,
+        "parallelIdentitySystemCreated": false
+      },
+      "programLectureId": "MATH-PROG-L12-probability-random-variables",
+      "programLectureIds": [
+        "MATH-PROG-L12-probability-random-variables",
+        "MATH-PROG-L13-mathematical-statistics",
+        "MATH-PROG-L14-stochastic-processes-time-series",
+        "MATH-PROG-L17-ai-machine-learning-math-foundations"
+      ],
+      "programAnchorTitle": "Xác suất, moments và dependence",
+      "roadmapRole": "probability_foundation_for_data_networks_and_ai",
+      "baumanFocus": "Tóm tắt distribution bằng expectation/variance, mô tả linear co-variation bằng covariance/correlation, phân biệt population moments với sample estimates và independence với zero correlation.",
+      "pureLayer": [
+        "expectation",
+        "variance",
+        "standard deviation",
+        "covariance",
+        "correlation",
+        "linearity of expectation"
+      ],
+      "appliedLayer": [
+        "sensor uncertainty",
+        "feature dependence",
+        "noise scale",
+        "population moments",
+        "linear dependence diagnostics"
+      ],
+      "bridgeQuestion": "Distribution được tóm tắt bằng center/spread thế nào và hai random variables cùng biến thiên tuyến tính ra sao?",
+      "auditStatus": "REVIEW",
+      "sourceAnchors": {
+        "stageId": "vn",
+        "disciplineId": "probability_statistics_inference",
+        "chapterId": "MATH-VN-C04-xac_suat_co_ban_va_bien_",
+        "programLectureId": "MATH-PROG-L12-probability-random-variables",
+        "officialCurriculum": "bmstu_iu5_2026_curriculum"
+      },
+      "tags": [
+        "expectation",
+        "variance",
+        "standard deviation",
+        "covariance",
+        "correlation",
+        "independence"
+      ],
+      "learningContract": {
+        "governingQuestion": "Expectation/variance/covariance/correlation đo object nào, có units gì, và quan hệ nào tồn tại giữa independence và zero covariance?",
+        "whyNeeded": "Moments là ngôn ngữ nền cho sensor noise, covariance matrices, PCA, state estimation, statistics và ML feature analysis.",
+        "prerequisiteGates": [
+          "Hiểu distribution/PMF/PDF từ §4.1–§4.4.",
+          "Biết weighted sum/integral ở mức trực giác.",
+          "Biết dot product/centering từ C01–C02.",
+          "Sample estimators N vs N-1 chưa cần; sẽ sang C05."
+        ],
+        "measurableLearningOutcomes": [
+          "LO1: Tính expectation của discrete RV và giải thích nó là probability-weighted center, không nhất thiết là possible outcome.",
+          "LO2: Tính variance bằng E[(X-μ)^2] và E[X²]-μ²; phân biệt units của variance và standard deviation.",
+          "LO3: Dùng linearity E[aX+b]=aE[X]+b và Var(aX+b)=a²Var(X).",
+          "LO4: Tính covariance và đọc sign như linear co-variation.",
+          "LO5: Chuẩn hóa covariance thành correlation ρ và giải thích scale-free range [-1,1] khi standard deviations >0.",
+          "LO6: Giải thích independence ⇒ zero covariance (khi moments hữu hạn) nhưng zero covariance ⇏ independence nói chung.",
+          "LO7: Dùng deterministic weighted-moment code để verify examples và không lẫn population moments với sample estimators."
+        ],
+        "exactScope": [
+          "expectation",
+          "variance",
+          "standard deviation",
+          "covariance",
+          "correlation",
+          "independence implication",
+          "population moments"
+        ],
+        "explicitDeferrals": [
+          "Sample mean/sample variance/unbiased estimators → C05.",
+          "Covariance matrix/PCA revisiting → later C05/C07.",
+          "Conditional expectation → later probability.",
+          "Autocovariance/time series → later stochastic-process chapter."
+        ],
+        "canonicalTerminology": {
+          "expectation": "kỳ vọng",
+          "variance": "phương sai",
+          "standardDeviation": "độ lệch chuẩn",
+          "covariance": "hiệp phương sai",
+          "correlation": "hệ số tương quan",
+          "populationMoment": "moment của phân phối/tổng thể",
+          "uncorrelated": "không tương quan tuyến tính"
+        },
+        "symbols": {
+          "μ=E[X]": "expectation",
+          "Var(X)=E[(X-μ)^2]": "variance",
+          "σ_X=sqrt(Var(X))": "standard deviation",
+          "Cov(X,Y)=E[(X-μ_X)(Y-μ_Y)]": "covariance",
+          "ρ=Cov(X,Y)/(σ_Xσ_Y)": "correlation"
+        },
+        "continuity": {
+          "previous": "§4.4 · Biến ngẫu nhiên liên tục, CDF/PDF và phân phối chuẩn",
+          "next": "§4.6 · Nhiễu cảm biến, bất định và Monte Carlo nhập môn"
+        }
+      },
+      "technicalRussian": {
+        "terms": [
+          [
+            "математическое ожидание",
+            "kỳ vọng"
+          ],
+          [
+            "дисперсия",
+            "phương sai"
+          ],
+          [
+            "стандартное отклонение",
+            "độ lệch chuẩn"
+          ],
+          [
+            "ковариация",
+            "hiệp phương sai"
+          ],
+          [
+            "корреляция",
+            "tương quan"
+          ],
+          [
+            "независимость",
+            "độc lập"
+          ],
+          [
+            "центр распределения",
+            "trung tâm phân phối"
+          ],
+          [
+            "разброс",
+            "độ phân tán"
+          ],
+          [
+            "момент распределения",
+            "moment phân phối"
+          ]
+        ],
+        "commandVerbs": [
+          [
+            "усредните",
+            "hãy lấy trung bình"
+          ],
+          [
+            "вычислите",
+            "hãy tính"
+          ],
+          [
+            "нормируйте",
+            "hãy chuẩn hóa"
+          ],
+          [
+            "объясните",
+            "hãy giải thích"
+          ]
+        ],
+        "oralFrames": [
+          "Математическое ожидание — это среднее по распределению, а не обязательно возможное значение.",
+          "Дисперсия измеряет средний квадрат отклонения от математического ожидания.",
+          "Независимость влечёт нулевую ковариацию, но обратное утверждение в общем случае неверно."
+        ]
+      },
+      "sourceProvenance": [
+        {
+          "id": "bmstu_iu5_2026_curriculum",
+          "kind": "official_curriculum",
+          "url": "https://home.science.iu5.bmstu.ru/study-plans/iu5-master-program.pdf",
+          "supports": [
+            "probability/statistics foundation for data/AI systems"
+          ]
+        },
+        {
+          "id": "mit_18600_probability_notes",
+          "kind": "authoritative_university_material",
+          "url": "https://ocw.mit.edu/courses/18-600-probability-and-random-variables-fall-2019/pages/lecture-notes/",
+          "supports": [
+            "expectation of discrete random variables",
+            "variance and Binomial probability progression"
+          ]
+        },
+        {
+          "id": "mit_6041_recitations_covariance",
+          "kind": "authoritative_university_material",
+          "url": "https://ocw.mit.edu/courses/6-041-probabilistic-systems-analysis-and-applied-probability-spring-2006/pages/recitations/",
+          "supports": [
+            "expectation, variance, covariance, correlation and independence exercises"
+          ]
+        },
+        {
+          "id": "numpy_cov",
+          "kind": "official_documentation",
+          "url": "https://numpy.org/doc/stable/reference/generated/numpy.cov.html",
+          "supports": [
+            "covariance computation conventions"
+          ]
+        },
+        {
+          "id": "numpy_corrcoef",
+          "kind": "official_documentation",
+          "url": "https://numpy.org/doc/stable/reference/generated/numpy.corrcoef.html",
+          "supports": [
+            "correlation coefficient computation and relation to covariance"
+          ]
+        }
+      ],
+      "generatedMaterial": {
+        "status": "AI_DRAFT_REVIEWED_IN_CONTENT_FACTORY",
+        "lineage": "Generated population-moment lesson anchored to MIT probability materials and NumPy covariance/correlation docs.",
+        "canonicalSourceReplacement": false
+      },
+      "contentFactory": {
+        "C1": "PASS",
+        "C2": "PASS",
+        "C3": "PASS",
+        "C4": "PASS",
+        "C5": "PASS",
+        "C6": {
+          "software": "STATIC_QA_PENDING",
+          "user": "PENDING",
+          "blockers": 0,
+          "majors": 0,
+          "inheritedDeferredGate": "E164",
+          "acceptance": "PENDING_C6"
+        }
+      },
+      "slides": [
+        {
+          "role": "problem_framing",
+          "title": "ORIENT · Một distribution cần center, spread và dependence summaries",
+          "blocks": [
+            {
+              "type": "text",
+              "title": "Câu hỏi điều khiển",
+              "body": "Hai sensors có thể cùng mean nhưng khác noise spread; hai features có thể cùng tăng/giảm. Expectation/variance/covariance/correlation tóm tắt các khía cạnh khác nhau."
+            },
+            {
+              "type": "formula",
+              "title": "Four summaries",
+              "body": "E[X], Var(X), Cov(X,Y), Corr(X,Y)"
+            },
+            {
+              "type": "text",
+              "title": "Vì sao cần",
+              "body": "Covariance matrices, PCA, filtering, regression và uncertainty budgets đều xây trên các moments này."
+            },
+            {
+              "type": "qa",
+              "title": "Retrieval",
+              "body": "Normal N(μ,σ²) ở §4.4 đã gợi ý center/spread parameters nào?"
+            }
+          ]
+        },
+        {
+          "role": "deep_essence",
+          "title": "REACTIVATION · Expectation là weighted center của distribution",
+          "blocks": [
+            {
+              "type": "formula",
+              "title": "Discrete",
+              "body": "E[X]=Σ_x x p_X(x)"
+            },
+            {
+              "type": "formula",
+              "title": "Continuous",
+              "body": "E[X]=∫ x f_X(x) dx khi integral tồn tại"
+            },
+            {
+              "type": "text",
+              "title": "Not necessarily attainable",
+              "body": "Fair die E[X]=3.5 dù không outcome nào bằng 3.5."
+            },
+            {
+              "type": "qa",
+              "title": "Tự nói lại",
+              "body": "Tại sao expectation không nên gọi đơn giản là 'giá trị có khả năng xảy ra nhất'?"
+            }
+          ]
+        },
+        {
+          "role": "counter_intuition",
+          "title": "COUNTER-INTUITION · Zero covariance không đồng nghĩa independence",
+          "blocks": [
+            {
+              "type": "formula",
+              "title": "Counterexample",
+              "body": "X∈{-1,0,1} equiprobable; Y=X²"
+            },
+            {
+              "type": "text",
+              "title": "Dependence",
+              "body": "Biết X quyết định Y hoàn toàn; Y không independent of X."
+            },
+            {
+              "type": "formula",
+              "title": "But covariance",
+              "body": "E[X]=0, E[XY]=E[X³]=0 ⇒ Cov(X,Y)=0"
+            },
+            {
+              "type": "qa",
+              "title": "Diagnostic",
+              "body": "Correlation 0 ở example này có nghĩa 'không có relationship' không?"
+            }
+          ]
+        },
+        {
+          "role": "real_bridge",
+          "title": "CONTEXT · Sensor noise scale và shared disturbances",
+          "blocks": [
+            {
+              "type": "text",
+              "title": "Variance",
+              "body": "Error variance lớn hơn nghĩa distribution spread lớn hơn quanh mean, theo squared units."
+            },
+            {
+              "type": "text",
+              "title": "Standard deviation",
+              "body": "σ có cùng units với sensor error, nên dễ diễn giải trực tiếp hơn variance."
+            },
+            {
+              "type": "text",
+              "title": "Covariance",
+              "body": "Hai sensor errors cùng bị temperature drift có thể có positive covariance."
+            },
+            {
+              "type": "qa",
+              "title": "Decision question",
+              "body": "Positive covariance tự động chứng minh temperature là cause chung không?"
+            }
+          ]
+        },
+        {
+          "role": "notation",
+          "title": "FORMALIZE · Variance và standard deviation",
+          "blocks": [
+            {
+              "type": "formula",
+              "title": "Definitions",
+              "body": "μ=E[X]\nVar(X)=E[(X-μ)^2]=E[X²]-μ²\nσ_X=√Var(X)"
+            },
+            {
+              "type": "text",
+              "title": "Units",
+              "body": "Nếu X tính bằng volt, variance tính V²; standard deviation tính V."
+            },
+            {
+              "type": "text",
+              "title": "Nonnegative",
+              "body": "Variance ≥0 vì expectation của square deviation."
+            },
+            {
+              "type": "qa",
+              "title": "Quick check",
+              "body": "Constant random variable X=c có variance bao nhiêu?"
+            }
+          ]
+        },
+        {
+          "role": "core_formula",
+          "title": "CORE · Linearity và scaling laws",
+          "blocks": [
+            {
+              "type": "formula",
+              "title": "Expectation",
+              "body": "E[aX+b]=aE[X]+b"
+            },
+            {
+              "type": "formula",
+              "title": "Variance",
+              "body": "Var(aX+b)=a²Var(X)"
+            },
+            {
+              "type": "formula",
+              "title": "Covariance scaling",
+              "body": "Cov(aX+b,cY+d)=ac Cov(X,Y)"
+            },
+            {
+              "type": "qa",
+              "title": "Interpret",
+              "body": "Cộng constant offset vào sensor có đổi variance không? Nhân gain 10 đổi variance bao nhiêu lần?"
+            }
+          ]
+        },
+        {
+          "role": "assumption_gate",
+          "title": "ASSUMPTION GATE · Correlation only standardizes linear covariance",
+          "blocks": [
+            {
+              "type": "formula",
+              "title": "Correlation",
+              "body": "ρ=Cov(X,Y)/(σ_Xσ_Y), σ_X,σ_Y>0"
+            },
+            {
+              "type": "text",
+              "title": "Range",
+              "body": "-1≤ρ≤1 under finite nonzero variances."
+            },
+            {
+              "type": "text",
+              "title": "Scope",
+              "body": "ρ captures standardized linear association; nonlinear deterministic dependence can still have ρ=0."
+            },
+            {
+              "type": "qa",
+              "title": "Gate",
+              "body": "Nếu one variable constant nên σ=0, correlation formula có được định nghĩa không?"
+            }
+          ]
+        },
+        {
+          "role": "mini_case",
+          "title": "E1 SIMPLE · #heads distribution từ §4.1",
+          "blocks": [
+            {
+              "type": "formula",
+              "title": "Distribution",
+              "body": "X∈{0,1,2}, p={1/4,1/2,1/4}"
+            },
+            {
+              "type": "formula",
+              "title": "Expectation",
+              "body": "E[X]=0·1/4+1·1/2+2·1/4=1"
+            },
+            {
+              "type": "formula",
+              "title": "Variance",
+              "body": "E[X²]=0+1/2+4/4=1.5 ⇒ Var=1.5-1²=0.5"
+            },
+            {
+              "type": "qa",
+              "title": "Std",
+              "body": "σ=√0.5≈0.7071 heads."
+            }
+          ]
+        },
+        {
+          "role": "interpretation",
+          "title": "E2 CONTEXTUAL · Perfect linear relation and covariance units",
+          "blocks": [
+            {
+              "type": "formula",
+              "title": "Relation",
+              "body": "Y=2X+3"
+            },
+            {
+              "type": "formula",
+              "title": "Moments",
+              "body": "Cov(X,Y)=2Var(X)\nCorr(X,Y)=+1 when Var(X)>0"
+            },
+            {
+              "type": "text",
+              "title": "Units",
+              "body": "Cov units = units(X)×units(Y); correlation has no units."
+            },
+            {
+              "type": "qa",
+              "title": "Negative scale",
+              "body": "Nếu Y=-2X+3, correlation sign đổi thế nào?"
+            }
+          ]
+        },
+        {
+          "role": "simulation",
+          "title": "BEGINNER ENTRY · Weighted population moments, no sample-estimator ambiguity",
+          "blocks": [
+            {
+              "type": "code",
+              "title": "Deterministic weighted moments",
+              "body": "import numpy as np\n\nx=np.array([0.,1.,2.])\np=np.array([0.25,0.5,0.25])\nmu=np.sum(p*x)\nvar=np.sum(p*(x-mu)**2)\nassert np.allclose(mu,1.0)\nassert np.allclose(var,0.5)\n\nu=np.array([-1.,0.,1.])\nq=np.ones(3)/3\ny=u**2\nmu_u=np.sum(q*u); mu_y=np.sum(q*y)\ncov=np.sum(q*(u-mu_u)*(y-mu_y))\nassert np.allclose(cov,0.0)"
+            },
+            {
+              "type": "text",
+              "title": "BEGINNER ENTRY · population probabilities",
+              "body": "Ở đây p/q là exact distribution weights, không phải dataset estimator. Không xuất hiện N-1 correction."
+            },
+            {
+              "type": "text",
+              "title": "Software trust",
+              "body": "np.cov defaults/conventions concern sample-data estimation; trước khi dùng library phải biết đang tính population moment hay sample estimator."
+            },
+            {
+              "type": "qa",
+              "title": "Experiment",
+              "body": "Thay y=2u+3; compute covariance/correlation manually and verify correlation +1."
+            }
+          ]
+        },
+        {
+          "role": "common_mistakes",
+          "title": "MISCONCEPTION MAP · 5 lỗi về moments/dependence",
+          "blocks": [
+            {
+              "type": "text",
+              "title": "MAJOR · «Expectation must be a possible outcome»",
+              "body": "Không; fair die mean 3.5."
+            },
+            {
+              "type": "text",
+              "title": "MAJOR · «Variance has same units as X»",
+              "body": "Variance squared units; standard deviation same units."
+            },
+            {
+              "type": "text",
+              "title": "MAJOR · «Zero covariance ⇒ independent»",
+              "body": "Sai generally; X and X² counterexample."
+            },
+            {
+              "type": "text",
+              "title": "MAJOR · «Correlation ⇒ causation»",
+              "body": "Correlation does not identify causal mechanism."
+            },
+            {
+              "type": "text",
+              "title": "MAJOR · «Population variance = sample variance formula automatically»",
+              "body": "Estimation conventions differ; C05 handles sample estimators."
+            }
+          ]
+        },
+        {
+          "role": "application",
+          "title": "E3 TRANSFER · Uncertainty/dependence audit",
+          "blocks": [
+            {
+              "type": "qa",
+              "title": "Task 1",
+              "body": "X distribution {-1,0,2} with probabilities {.2,.5,.3}: calculate E,Var,σ."
+            },
+            {
+              "type": "qa",
+              "title": "Task 2",
+              "body": "Y=5X-7: derive E[Y],Var(Y),Corr(X,Y) if Var(X)>0."
+            },
+            {
+              "type": "qa",
+              "title": "Task 3",
+              "body": "Two sensor errors have correlation .8. Nêu what it says and two things it does NOT prove."
+            },
+            {
+              "type": "qa",
+              "title": "Task 4",
+              "body": "Construct dependent X,Y with zero covariance and explain relationship."
+            }
+          ]
+        },
+        {
+          "role": "practice",
+          "title": "PRACTICE LADDER · P0 → P3",
+          "blocks": [
+            {
+              "type": "qa",
+              "title": "P0 · Recognition",
+              "body": "Classify units/meaning of expectation, variance, std, covariance, correlation."
+            },
+            {
+              "type": "qa",
+              "title": "P1 · Guided",
+              "body": "Use X∈{0,1,2} PMF to compute μ,E[X²],Var,σ."
+            },
+            {
+              "type": "qa",
+              "title": "P2 · Independent",
+              "body": "Create finite joint distribution, calculate μX,μY,Cov,Corr manually and code-check."
+            },
+            {
+              "type": "qa",
+              "title": "P3 · Transfer",
+              "body": "Build a zero-correlation-but-dependent example and explain why linear summary misses dependence."
+            }
+          ]
+        },
+        {
+          "role": "professor_qa",
+          "title": "ASSESSMENT · D0 / D1 / D2",
+          "blocks": [
+            {
+              "type": "qa",
+              "title": "D0 RECALL",
+              "body": "Define expectation, variance, covariance, correlation and their units."
+            },
+            {
+              "type": "qa",
+              "title": "D1 APPLICATION",
+              "body": "Given finite joint distribution, compute all moments/correlation and test independence separately."
+            },
+            {
+              "type": "qa",
+              "title": "D2 EXPLAIN / ORAL",
+              "body": "Explain 60–90 seconds: «Why does independence imply zero covariance but zero covariance not imply independence?»"
+            },
+            {
+              "type": "text",
+              "title": "Mastery evidence",
+              "body": "Pass when learner distinguishes distribution moments from sample estimators and correlation from independence/causality."
+            }
+          ]
+        },
+        {
+          "role": "bridge",
+          "title": "TECHNICAL RUSSIAN + NEXT · moments sang Monte Carlo/noise",
+          "blocks": [
+            {
+              "type": "text",
+              "title": "9 thuật ngữ",
+              "body": "математическое ожидание · дисперсия · стандартное отклонение · ковариация · корреляция · независимость · центр распределения · разброс · момент распределения"
+            },
+            {
+              "type": "text",
+              "title": "4 động từ",
+              "body": "усредните — lấy trung bình; вычислите — tính; нормируйте — chuẩn hóa; объясните — giải thích."
+            },
+            {
+              "type": "text",
+              "title": "Khung vấn đáp",
+              "body": "«Дисперсия измеряет средний квадрат отклонения.»\n«Независимость влечёт нулевую ковариацию, но обратное утверждение неверно.»"
+            },
+            {
+              "type": "text",
+              "title": "Cầu sang §4.6",
+              "body": "§4.6 dùng distribution + moments để mô phỏng sensor uncertainty và propagate bất định bằng Monte Carlo ở mức nhập môn."
+            }
+          ]
+        },
+        {
+          "role": "takeaway",
+          "title": "REVIEW · 6 facts trước uncertainty simulation",
+          "blocks": [
+            {
+              "type": "text",
+              "title": "1",
+              "body": "Expectation = probability-weighted center, not necessarily possible value."
+            },
+            {
+              "type": "text",
+              "title": "2",
+              "body": "Variance measures mean squared deviation; std restores original units."
+            },
+            {
+              "type": "text",
+              "title": "3",
+              "body": "Offsets do not change variance; scaling by a multiplies variance by a²."
+            },
+            {
+              "type": "text",
+              "title": "4",
+              "body": "Covariance has product units and describes linear co-variation."
+            },
+            {
+              "type": "text",
+              "title": "5",
+              "body": "Correlation standardizes covariance and is unitless."
+            },
+            {
+              "type": "text",
+              "title": "6",
+              "body": "Independence ⇒ zero covariance; converse fails generally."
+            }
+          ]
+        }
+      ]
     }
   ],
   "lastContentPass": {
-    "id": "E188",
-    "lessonId": "MATH-VN-C04-xac_suat_co_ban_va_bien_-L04-continuous-cdf-pdf-normal-e187",
-    "status": "LOCAL_CONTENT_QA_PASS_GLOBAL_BROWSER_BASELINE_PENDING",
+    "id": "E189",
+    "lessonId": "MATH-VN-C04-xac_suat_co_ban_va_bien_-L05-expectation-variance-covariance-correlation-e189",
+    "status": "C1_C5_PASS_C6_PENDING",
     "generatedAt": "2026-09-21",
     "inheritedRuntimeGate": "E164"
   },
