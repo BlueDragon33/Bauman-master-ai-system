@@ -32,10 +32,18 @@ try{
   const appOpen=await page.evaluate(()=>!document.getElementById('appRoot')?.classList.contains('hidden'));
   if(!appOpen){const login=page.locator('#loginBtn');if(await login.isVisible())await login.click()}
   await page.waitForFunction(()=>!document.getElementById('appRoot')?.classList.contains('hidden'),null,{timeout:10000});
-  await page.waitForFunction(()=>Boolean(window.BAUMAN_COURSE_READINESS_2026&&window.BAUMAN_EVENT_READINESS_2026&&window.BAUMAN_GRADE_CONTROL_2026&&window.BAUMAN_GRADING_POLICY_2024),null,{timeout:15000});
+  await page.waitForFunction(()=>Boolean(window.BAUMAN_COURSE_READINESS_2026&&window.BAUMAN_EVENT_READINESS_2026),null,{timeout:15000});
 
   assert.equal(await page.locator('#page-home [data-event14c="ledger"]').count(),0,'A3 must not add Event ledger to Home');
   assert.equal(await page.locator('#page-home [data-grade14d="ledger"]').count(),0,'A3 must not add Grade ledger to Home');
+  assert.equal(await page.evaluate(()=>Boolean(window.BAUMAN_GRADE_CONTROL_2026)),false,'A3 Grade runtime must stay lazy before grade action');
+
+  await page.evaluate(()=>window.app.openHomeFrame('progress'));await page.waitForSelector('#modalRoot [data-course14b-progress="s1"]');
+  await page.evaluate(()=>window.openOfficialCoursePhase2('d04'));await page.waitForSelector('#modalRoot .course14b-modal');
+  assert.ok(await page.getByRole('button',{name:'Readiness'}).count()>0,'course modal missing A3 readiness action');
+  assert.ok(await page.getByRole('button',{name:'Kết quả'}).count()>0,'course modal missing A3 grade action');
+  await page.getByRole('button',{name:'Kết quả'}).first().click();
+  await page.waitForFunction(()=>Boolean(window.BAUMAN_GRADE_CONTROL_2026&&window.BAUMAN_GRADING_POLICY_2024),null,{timeout:15000});
 
   const result=await page.evaluate(()=>{
     const e=window.BAUMAN_EVENT_READINESS_2026,g=window.BAUMAN_GRADE_CONTROL_2026,c=window.BAUMAN_COURSE_READINESS_2026,key='bauman_current_user_fullcode_v1';
@@ -65,14 +73,11 @@ try{
   assert.equal(result.stored.supplementEntryVerified,false);assert.equal(result.stored.supplementEntryCounted,null);
   assert.equal(result.isolated.id,'RESULT_UNRECORDED');assert.equal(result.scheduleUnchanged,true);assert.equal(result.lifeBefore.id,result.lifeAfter.id);
 
-  await page.evaluate(()=>window.app.openHomeFrame('progress'));await page.waitForSelector('#modalRoot [data-course14b-progress="s1"]');
-  await page.evaluate(()=>window.openOfficialCoursePhase2('d04'));await page.waitForSelector('#modalRoot .course14b-modal');
-  assert.ok(await page.getByRole('button',{name:'Readiness'}).count()>0,'course modal missing A3 readiness action');
-  assert.ok(await page.getByRole('button',{name:'Kết quả'}).count()>0,'course modal missing A3 grade action');
-
   await page.reload({waitUntil:'domcontentloaded',timeout:30000});
   await page.waitForFunction(()=>document.documentElement.dataset.baumanDeviceAccess==='authorized',null,{timeout:15000});
-  await page.waitForFunction(()=>Boolean(window.BAUMAN_EVENT_READINESS_2026&&window.BAUMAN_GRADE_CONTROL_2026),null,{timeout:15000});
+  await page.waitForFunction(()=>Boolean(window.BAUMAN_EVENT_READINESS_2026),null,{timeout:15000});
+  await page.evaluate(()=>window.BAUMAN_EVENT_READINESS_2026.ensureGradeRuntime());
+  await page.waitForFunction(()=>Boolean(window.BAUMAN_GRADE_CONTROL_2026&&window.BAUMAN_GRADING_POLICY_2024),null,{timeout:15000});
   const persisted=await page.evaluate(()=>({event:window.BAUMAN_EVENT_READINESS_2026.eventState('d04','Экз'),grade:window.BAUMAN_GRADE_CONTROL_2026.resultState('d04','Экз')}));
   assert.equal(persisted.event.id,'EVENT_READY');assert.equal(persisted.grade.id,'RESULT_TARGET_MET');
 
