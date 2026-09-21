@@ -4,6 +4,7 @@ on:
   push:
     paths:
       - 'assets/data/official-curriculum-iu5-2026.json'
+      - 'assets/data/course-learning-architecture-s1-2026.json'
       - 'foundation/content-registry/**'
       - 'scripts/validate-foundation-l10-promotion.mjs'
       - '.github/workflows/content-asset-provenance-gate.yml'
@@ -38,6 +39,7 @@ on:
   pull_request:
     paths:
       - 'assets/data/official-curriculum-iu5-2026.json'
+      - 'assets/data/course-learning-architecture-s1-2026.json'
       - 'foundation/content-registry/**'
       - 'scripts/validate-foundation-l10-promotion.mjs'
       - '.github/workflows/content-asset-provenance-gate.yml'
@@ -80,6 +82,8 @@ jobs:
           node-version: '20'
       - name: Validate IU5 2026 curriculum and prerequisite registry
         run: node scripts/validate-academic-2026.js
+      - name: Validate Semester 1 course-learning architecture
+        run: node scripts/validate-course-learning-architecture-s1-2026.js
       - name: Validate prerequisite content coverage audit
         run: node scripts/validate-prerequisite-coverage-2026.js
       - name: Validate P9 Markov / Queueing / Simulation pack
@@ -110,6 +114,7 @@ jobs:
         run: node scripts/validate-scheduler-apply-13f.js
       - name: Check Academic and Device Gate runtime JavaScript syntax
         run: |
+          node --check scripts/validate-course-learning-architecture-s1-2026.js
           node --check assets/js/academic-main.js
           node --check assets/js/academic-scheduler-preview.js
           node --check assets/js/academic-scheduler-apply.js
