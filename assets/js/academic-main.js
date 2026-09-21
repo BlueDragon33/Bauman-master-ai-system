@@ -76,7 +76,7 @@
     const c=window.BAUMAN_CURRICULUM_2026;if(!c)return null;let hit=byId(c.disciplines,id)||byId(c.practices,id)||byId(c.gia,id)||byId(c.electiveGroups,id);if(hit)return hit;
     for(const g of c.electiveGroups||[]){const opt=byId(g.options,id);if(opt)return {...opt,credits:g.credits,hours:g.hours,semesters:[g.semester],assessment:g.assessment,kind:'elective_option'}}return null;
   }
-  function dependencyFor(courseId){return byId(window.BAUMAN_PREREQ_2026?.courseDependencies,courseId)||{critical:[],support:[]}}
+  function dependencyFor(courseId){return (window.BAUMAN_PREREQ_2026?.courseDependencies||[]).find(x=>x.courseId===courseId)||{critical:[],support:[]}}
   function courseReadiness(courseId){
     const dep=dependencyFor(courseId);if(!(dep.critical||[]).length)return {id:'unassessed',label:'Không có gate bắt buộc',score:null,critical:[]};
     const rows=dep.critical.map(id=>({gate:gateById(id),state:gateState(gateById(id))}));if(rows.some(x=>x.state.id==='unassessed'))return {id:'unassessed',label:'Chưa chẩn đoán đủ',score:null,critical:rows};
