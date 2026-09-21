@@ -1,0 +1,41 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "RUSSIAN_HANDWRITING_LISTEN_WRITE_ITEM_V1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["id","handwritingId","letter","letterNameText","soundKind","soundExamples","drills"],
+  "properties": {
+    "id": {"type":"string","pattern":"^RHW_[A-Z0-9_]+$"},
+    "handwritingId": {"type":"string","pattern":"^HW_AZ_[0-9]{2}$"},
+    "letter": {"type":"string","minLength":1},
+    "letterNameText": {"type":"string","minLength":1},
+    "soundKind": {"enum":["vowel","consonant","sign"]},
+    "soundExamples": {
+      "type":"array","minItems":1,"maxItems":4,
+      "items":{
+        "type":"object","additionalProperties":false,
+        "required":["text","kind"],
+        "properties":{
+          "text":{"type":"string","minLength":1},
+          "kind":{"enum":["letter_name","syllable","word","context"]},
+          "stress":{"type":["string","null"]},
+          "note":{"type":["string","null"]}
+        }
+      }
+    },
+    "drills":{
+      "type":"array","minItems":1,
+      "items":{
+        "type":"object","additionalProperties":false,
+        "required":["kind","audioText","answer"],
+        "properties":{
+          "kind":{"enum":["hear_select","hear_trace","hear_write","syllable_write","word_dictation","stress_mark","sound_spelling_discrimination"]},
+          "audioText":{"type":"string","minLength":1},
+          "answer":{"type":"string","minLength":1},
+          "choices":{"type":"array","items":{"type":"string","minLength":1}},
+          "hint":{"type":["string","null"]}
+        }
+      }
+    }
+  }
+}
