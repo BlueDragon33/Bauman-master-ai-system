@@ -1,0 +1,148 @@
+/* Russian Future Reference UI · dedicated Russian-learning presentation layer
+ * Visual-only. Keeps core routes/data/state authoritative.
+ */
+body.ru-reference-ui.ru-future-ui{
+  --rf-bg:#eef4ff;--rf-surface:#fff;--rf-surface-soft:#f7faff;--rf-line:#dce7f5;
+  --rf-text:#102a56;--rf-muted:#6e83a2;--rf-blue:#2868f6;--rf-violet:#7256f5;
+  --rf-cyan:#28b8e9;--rf-green:#17b889;--rf-pink:#ef5d91;--rf-orange:#f59a32;
+  --rf-shadow:0 12px 32px rgba(41,76,128,.10);--rf-shadow-sm:0 6px 18px rgba(41,76,128,.08);
+  margin:0!important;background:var(--rf-bg)!important;color:var(--rf-text)!important;
+}
+.ru-future-ui .ru-app-shell{display:grid!important;grid-template-columns:220px minmax(0,1fr)!important;min-height:100vh!important;background:var(--rf-bg)!important}
+.ru-future-ui .ru-sidebar{position:sticky!important;top:0!important;height:100vh!important;padding:18px 14px 18px!important;box-sizing:border-box!important;background:
+ radial-gradient(circle at 15% 12%,rgba(56,129,255,.32),transparent 25%),
+ linear-gradient(180deg,#102b64 0%,#071b42 58%,#07152f 100%)!important;border-right:0!important;box-shadow:12px 0 34px rgba(19,51,103,.12)!important;overflow:auto!important}
+.ru-future-ui .ru-brand{display:flex!important;align-items:center!important;gap:11px!important;padding:0 7px 10px!important;border:0!important}
+.ru-future-ui .ru-brand .logo{width:43px!important;height:43px!important;display:grid!important;place-items:center!important;border-radius:15px!important;background:linear-gradient(145deg,#fff,#dce9ff)!important;color:#285ed4!important;border:1px solid rgba(255,255,255,.7)!important;box-shadow:0 8px 22px rgba(0,0,0,.16)!important;font-size:23px!important;font-weight:900!important}
+.ru-future-ui .ru-brand h1{margin:0!important;color:#fff!important;font:800 18px/1.05 Inter,system-ui,sans-serif!important;letter-spacing:-.02em!important}
+.ru-future-ui .ru-brand p{margin:5px 0 0!important;color:#a9c3ee!important;font-size:9px!important;line-height:1.3!important}
+.ru-future-ui .ru-brand-caption{margin:0 8px 14px!important;color:#8fb1e3!important;font-size:8px!important;letter-spacing:.16em!important}
+.ru-future-ui .ru-stage-box{margin:0 4px 13px!important;padding:9px!important;border:1px solid rgba(255,255,255,.11)!important;border-radius:13px!important;background:rgba(255,255,255,.06)!important}
+.ru-future-ui .ru-stage-box label{display:block!important;color:#96b7e9!important;font-size:8px!important;margin-bottom:5px!important}
+.ru-future-ui .ru-stage-box select{width:100%!important;height:34px!important;background:rgba(7,26,62,.72)!important;border:1px solid rgba(255,255,255,.12)!important;color:#eaf2ff!important;border-radius:9px!important;font-size:9px!important}
+.ru-future-ui .ru-nav{display:grid!important;gap:5px!important}
+.ru-future-ui .ru-nav button{min-height:43px!important;padding:0 11px!important;display:grid!important;grid-template-columns:28px 1fr!important;align-items:center!important;border:1px solid transparent!important;border-radius:12px!important;background:transparent!important;color:#bfd0eb!important;text-align:left!important;cursor:pointer!important}
+.ru-future-ui .ru-nav button b{font-size:17px!important;color:#a9c4f2!important;text-align:center!important}
+.ru-future-ui .ru-nav button span{font-size:11px!important;font-weight:650!important;color:inherit!important}
+.ru-future-ui .ru-nav button:hover{background:rgba(255,255,255,.07)!important;color:#fff!important}
+.ru-future-ui .ru-nav button.active{background:linear-gradient(135deg,#316ce8,#3959cb)!important;border-color:rgba(255,255,255,.18)!important;color:#fff!important;box-shadow:0 10px 22px rgba(28,84,213,.28)!important}
+.ru-future-ui .ru-nav button.active b{color:#fff!important}
+.ru-future-ui .ru-sidebar-quote{margin-top:17px!important;padding:16px 11px 6px!important;border:0!important;background:linear-gradient(180deg,transparent,rgba(10,37,82,.58))!important;color:#d7e7ff!important}
+.ru-future-ui .ru-sidebar-quote span{display:block!important;color:#d8e7ff!important;font:italic 12px/1.5 Georgia,serif!important}
+.ru-future-ui .ru-sidebar-quote small{display:block!important;margin-top:7px!important;color:#8eacd8!important;font-size:8px!important}
+.ru-future-ui .ru-sidebar-quote b{display:none!important}
+.ru-future-ui .ru-main{min-width:0!important;background:
+ radial-gradient(circle at 78% 0%,rgba(180,211,255,.48),transparent 24%),
+ linear-gradient(180deg,#f7fbff 0,#edf4ff 58%,#f8fbff 100%)!important}
+.ru-future-ui .ru-right-rail{display:none!important}
+.ru-future-ui .ru-topbar{position:sticky!important;top:0!important;z-index:30!important;height:70px!important;min-height:70px!important;padding:11px 18px!important;display:grid!important;grid-template-columns:minmax(280px,520px) 1fr auto!important;gap:16px!important;align-items:center!important;background:rgba(247,251,255,.88)!important;border-bottom:1px solid rgba(184,204,232,.72)!important;backdrop-filter:blur(16px)!important;box-shadow:0 4px 18px rgba(41,76,128,.05)!important}
+.ru-future-ui .ru-global-search-wrap{height:42px!important;padding:0 12px!important;border:1px solid #d5e2f3!important;border-radius:14px!important;background:#fff!important;box-shadow:var(--rf-shadow-sm)!important}
+.ru-future-ui .ru-search-icon{color:#7892b7!important}.ru-future-ui .ru-global-search{color:#193760!important;font-size:11px!important}.ru-future-ui .ru-global-search::placeholder{color:#91a3bd!important}
+.ru-future-ui .ru-global-search-wrap kbd{background:#f1f5fb!important;border-color:#dfe8f4!important;color:#8293ab!important}
+.ru-future-ui .ru-search-hints{background:#fff!important;border-color:#d7e4f3!important;box-shadow:0 18px 42px rgba(50,78,122,.14)!important}
+.ru-future-ui .ru-search-hints button{color:#29466d!important}.ru-future-ui .ru-search-hints button:hover{background:#edf4ff!important;color:#1f55cf!important}
+.ru-future-ui .ru-page-context{border:0!important;padding:0!important;min-width:0!important}
+.ru-future-ui .ru-page-context .kicker{color:#6d86aa!important;font-size:7px!important}.ru-future-ui .ru-page-context h2{color:#17345e!important;font-size:15px!important}.ru-future-ui .ru-page-context p{display:none!important}
+.ru-future-ui .ru-top-actions{display:flex!important;align-items:center!important;gap:7px!important}
+.ru-future-ui .ru-top-actions .btn{height:39px!important;min-width:39px!important;padding:0 12px!important;border:1px solid #d6e2f2!important;border-radius:12px!important;background:#fff!important;color:#28456f!important;box-shadow:var(--rf-shadow-sm)!important}
+.ru-future-ui .ru-top-actions #aiBtn{background:linear-gradient(135deg,#6450ed,#7a5cf4)!important;border-color:#7259ef!important;color:#fff!important}
+.ru-future-ui .ru-top-actions .status{padding:7px 9px!important;border-radius:10px!important;background:#e9fbf5!important;color:#148365!important;font-size:8px!important}
+.ru-future-ui .ru-view{padding:13px 18px 30px!important;max-width:1500px!important;margin:0 auto!important}
+
+/* Shared light-surface system for all existing tabs */
+.ru-future-ui .panel,.ru-future-ui .optional-data-gate,.ru-future-ui .deep-dialogue-panel,.ru-future-ui .deep-review-panel{
+  background:rgba(255,255,255,.96)!important;border:1px solid var(--rf-line)!important;color:var(--rf-text)!important;
+  box-shadow:var(--rf-shadow-sm)!important;border-radius:16px!important
+}
+.ru-future-ui h1,.ru-future-ui h2,.ru-future-ui h3,.ru-future-ui h4,.ru-future-ui strong{color:#142f5a!important}
+.ru-future-ui p,.ru-future-ui small,.ru-future-ui .note{color:var(--rf-muted)!important}
+.ru-future-ui .chip{border:1px solid #d9e5f4!important;background:#eef4ff!important;color:#48658e!important}
+.ru-future-ui .btn{border:1px solid #d7e3f2!important;background:#fff!important;color:#2a486f!important;box-shadow:none!important}
+.ru-future-ui .btn:hover{border-color:#aac8f5!important;background:#f4f8ff!important;color:#1d55cb!important}
+.ru-future-ui .btn.primary{background:linear-gradient(135deg,#326df1,#6355ee)!important;border-color:#5064ee!important;color:#fff!important}
+.ru-future-ui .btn.green{background:linear-gradient(135deg,#12a67e,#22c69b)!important;border-color:#1eb28e!important;color:#fff!important}
+.ru-future-ui .btn.warn{background:#fff4df!important;border-color:#f1d59a!important;color:#9a641d!important}
+.ru-future-ui .input,.ru-future-ui .textarea,.ru-future-ui select,.ru-future-ui input:not(.ru-global-search):not(#ruRailAiPrompt),.ru-future-ui textarea{background:#fff!important;border-color:#d7e3f2!important;color:#234264!important}
+.ru-future-ui input::placeholder,.ru-future-ui textarea::placeholder{color:#9aabc0!important}
+.ru-future-ui .modal{background:rgba(21,42,75,.38)!important;backdrop-filter:blur(12px)!important}
+.ru-future-ui .modal-card{background:#f8fbff!important;border-color:#d6e2f2!important;color:#18375f!important;box-shadow:0 28px 80px rgba(28,50,88,.22)!important}
+.ru-future-ui .modal-close{background:#edf3fb!important;color:#526984!important}
+
+/* Future overview */
+.ru-future-ui .overview-v128{gap:11px!important}
+.ru-future-ui .overview-top-only-hero{min-height:248px!important;padding:30px 34px!important;border-radius:19px!important;border:1px solid #cfe0f5!important;box-shadow:var(--rf-shadow)!important;overflow:hidden!important;background:
+ radial-gradient(circle at 77% 27%,rgba(255,255,255,.86) 0 5%,transparent 6%),
+ radial-gradient(circle at 83% 17%,rgba(255,218,118,.54) 0 1.4%,transparent 1.6%),
+ linear-gradient(115deg,rgba(244,250,255,.98) 0 48%,rgba(205,230,255,.92) 72%,rgba(232,242,255,.96) 100%)!important}
+.ru-future-ui .overview-top-only-hero:before,.ru-future-ui .overview-top-only-hero:after{content:none!important}
+.ru-future-ui .rf-hero{position:relative;z-index:2;max-width:690px}
+.ru-future-ui .rf-hero-eyebrow{display:inline-flex;padding:6px 10px;border-radius:999px;background:#e9f2ff;color:#2d66ce;font-size:9px;font-weight:850;letter-spacing:.08em}
+.ru-future-ui .rf-hero h2{margin:11px 0 8px!important;max-width:620px;color:#12346b!important;font:850 34px/1.08 Inter,system-ui,sans-serif!important;letter-spacing:-.035em!important}
+.ru-future-ui .rf-hero h2 em{font-style:normal;color:#2868f6}
+.ru-future-ui .rf-hero p{max-width:640px!important;margin:0!important;color:#405f87!important;font-size:12px!important;line-height:1.55!important}
+.ru-future-ui .rf-hero-pills{display:flex;flex-wrap:wrap;gap:7px;margin-top:15px}.ru-future-ui .rf-hero-pills span{padding:7px 10px;border:1px solid #d3e2f4;border-radius:999px;background:rgba(255,255,255,.82);color:#355a85;font-size:9px;font-weight:700}
+.ru-future-ui .rf-skyline{position:absolute;right:24px;bottom:0;width:39%;height:88%;pointer-events:none;opacity:.92}
+.ru-future-ui .rf-skyline:before{content:'МОСКВА';position:absolute;right:3%;top:8%;color:rgba(39,88,166,.12);font:900 43px/1 Inter,system-ui;letter-spacing:.13em}
+.ru-future-ui .rf-tower{position:absolute;bottom:0;width:42px;border-radius:12px 12px 0 0;background:linear-gradient(180deg,#f3c95c,#e98953 25%,#b84c53 55%,#7f3970);box-shadow:0 10px 30px rgba(84,77,130,.18)}
+.ru-future-ui .rf-tower:before{content:'';position:absolute;left:50%;transform:translateX(-50%) rotate(45deg);top:-26px;width:33px;height:33px;border-radius:55% 55% 48% 55%;background:linear-gradient(135deg,#53b7e9,#3167dc 48%,#ffd366 50%,#e96a6a);border:3px solid rgba(255,255,255,.65)}
+.ru-future-ui .rf-tower:after{content:'';position:absolute;left:50%;top:-43px;width:3px;height:18px;background:#d5a63c}
+.ru-future-ui .rf-tower.t1{right:4%;height:92px}.ru-future-ui .rf-tower.t2{right:17%;height:135px;width:48px}.ru-future-ui .rf-tower.t3{right:31%;height:108px}.ru-future-ui .rf-tower.t4{right:44%;height:76px;width:36px}.ru-future-ui .rf-tower.t5{right:56%;height:116px;width:39px}
+.ru-future-ui .rf-hero-cta{position:absolute;left:34px;bottom:25px;z-index:4;height:39px;padding:0 15px;border:0;border-radius:11px;background:linear-gradient(135deg,#326df1,#6756f3);color:#fff;font-size:10px;font-weight:800;box-shadow:0 10px 22px rgba(74,92,229,.22);cursor:pointer}
+
+/* exact overview rhythm inspired by reference */
+.ru-future-ui .rf-progress-strip{display:grid;grid-template-columns:1.15fr repeat(3,1fr);gap:0;padding:12px 8px;border:1px solid var(--rf-line);border-radius:17px;background:#fff;box-shadow:var(--rf-shadow-sm)}
+.ru-future-ui .rf-progress-item{min-height:61px;padding:7px 17px;display:grid;grid-template-columns:44px 1fr;gap:10px;align-items:center;border-right:1px solid #e5edf7}.ru-future-ui .rf-progress-item:last-child{border-right:0}
+.ru-future-ui .rf-progress-icon{width:42px;height:42px;display:grid;place-items:center;border-radius:50%;background:#edf4ff;color:#2765ec;font-weight:900;font-size:14px}.ru-future-ui .rf-progress-item:nth-child(2) .rf-progress-icon{background:#e8fbf4;color:#13a57c}.ru-future-ui .rf-progress-item:nth-child(3) .rf-progress-icon{background:#fff0e6;color:#ef7b27}.ru-future-ui .rf-progress-item:nth-child(4) .rf-progress-icon{background:#eeeaff;color:#6851e7}
+.ru-future-ui .rf-progress-copy span{display:block;color:#7185a2;font-size:8px}.ru-future-ui .rf-progress-copy b{display:block;margin-top:2px;color:#1b3963!important;font-size:13px!important}.ru-future-ui .rf-progress-copy i{display:block;height:4px;margin-top:7px;border-radius:999px;background:#e3ecf7;overflow:hidden}.ru-future-ui .rf-progress-copy i:after{content:'';display:block;width:var(--rf-p,35%);height:100%;border-radius:999px;background:linear-gradient(90deg,#2969f6,#7156f4)}
+.ru-future-ui .rf-module-grid{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:10px}
+.ru-future-ui .rf-module-card{position:relative;min-height:145px;padding:14px;border:1px solid rgba(185,207,235,.78);border-radius:17px;background:linear-gradient(145deg,var(--rf-card1),var(--rf-card2));text-align:left;color:#1d3c66;cursor:pointer;overflow:hidden;box-shadow:var(--rf-shadow-sm);transition:transform .18s,box-shadow .18s}
+.ru-future-ui .rf-module-card:hover{transform:translateY(-2px);box-shadow:var(--rf-shadow)}
+.ru-future-ui .rf-module-head{display:flex;align-items:center;gap:9px}.ru-future-ui .rf-module-icon{width:40px;height:40px;display:grid;place-items:center;border-radius:12px;background:var(--rf-accent);color:#fff;font-size:19px;box-shadow:0 8px 16px color-mix(in srgb,var(--rf-accent) 22%,transparent)}
+.ru-future-ui .rf-module-card h4{margin:0!important;color:var(--rf-title)!important;font-size:14px!important}.ru-future-ui .rf-module-card p{margin:4px 0 0!important;color:#647b9c!important;font-size:8px!important}
+.ru-future-ui .rf-module-card ul{margin:12px 0 0;padding:0;list-style:none;display:grid;gap:6px}.ru-future-ui .rf-module-card li{position:relative;padding-left:12px;color:#3d5a7d;font-size:8px;line-height:1.25}.ru-future-ui .rf-module-card li:before{content:'';position:absolute;left:0;top:4px;width:5px;height:5px;border-radius:50%;background:var(--rf-accent)}
+.ru-future-ui .rf-module-listen{--rf-card1:#edf5ff;--rf-card2:#f8fbff;--rf-accent:#3177f5;--rf-title:#2057bd}.ru-future-ui .rf-module-alpha{--rf-card1:#fff0f6;--rf-card2:#fff9fc;--rf-accent:#ec5c8c;--rf-title:#c33169}.ru-future-ui .rf-module-vocab{--rf-card1:#e9fbf4;--rf-card2:#f7fffb;--rf-accent:#13b485;--rf-title:#087e5e}.ru-future-ui .rf-module-grammar{--rf-card1:#f0edff;--rf-card2:#faf9ff;--rf-accent:#6853ee;--rf-title:#4d3bc5}.ru-future-ui .rf-module-write{--rf-card1:#fff4e5;--rf-card2:#fffaf4;--rf-accent:#f39a32;--rf-title:#bd671b}
+.ru-future-ui .rf-dashboard-lower{display:grid;grid-template-columns:1.2fr .9fr .92fr;gap:10px}
+.ru-future-ui .rf-dashboard-card{min-height:224px;padding:14px;border:1px solid var(--rf-line);border-radius:17px;background:#fff;box-shadow:var(--rf-shadow-sm);overflow:hidden}
+.ru-future-ui .rf-card-head{display:flex;align-items:flex-start;justify-content:space-between;gap:10px;margin-bottom:10px}.ru-future-ui .rf-card-head h4{margin:0!important;font-size:14px!important}.ru-future-ui .rf-card-head span{color:#7c90aa;font-size:8px}.ru-future-ui .rf-link{border:0;background:transparent;color:#2f68e5;font-size:8px;font-weight:750;cursor:pointer}
+.ru-future-ui .rf-today-list{display:grid;gap:8px}.ru-future-ui .rf-today-task{display:grid;grid-template-columns:34px 1fr auto;gap:9px;align-items:center;padding:8px;border:1px solid #e1eaf5;border-radius:12px;background:#fbfdff}.ru-future-ui .rf-today-task>span{width:32px;height:32px;display:grid;place-items:center;border-radius:10px;background:#edf4ff;color:#2f66e5;font-weight:900}.ru-future-ui .rf-today-task b{font-size:9px!important}.ru-future-ui .rf-today-task small{display:block;margin-top:2px;font-size:7px!important}.ru-future-ui .rf-today-task button{padding:6px 9px;border:0;border-radius:8px;background:#346cf0;color:#fff;font-size:7px;font-weight:750;cursor:pointer}
+.ru-future-ui .rf-pron-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px}.ru-future-ui .rf-pron-word{position:relative;padding:11px;border:1px solid #e1eaf5;border-radius:12px;background:#fbfdff}.ru-future-ui .rf-pron-word b{display:block;font-size:13px!important}.ru-future-ui .rf-pron-word small{font-size:8px!important}.ru-future-ui .rf-pron-word button{position:absolute;right:8px;top:9px;width:26px;height:26px;border:0;border-radius:50%;background:#eaf2ff;color:#2868f6;cursor:pointer}
+.ru-future-ui .rf-week-wrap{display:grid;grid-template-columns:94px 1fr;gap:12px;align-items:center}.ru-future-ui .rf-week-ring{--v:68;width:88px;height:88px;display:grid;place-items:center;border-radius:50%;background:conic-gradient(#306cf4 calc(var(--v)*1%),#e7edf7 0);position:relative}.ru-future-ui .rf-week-ring:after{content:'';position:absolute;inset:9px;border-radius:50%;background:#fff}.ru-future-ui .rf-week-ring b{z-index:1;font-size:18px!important}.ru-future-ui .rf-week-lines{display:grid;gap:7px}.ru-future-ui .rf-week-lines span{display:flex;justify-content:space-between;color:#647b9c;font-size:8px}.ru-future-ui .rf-week-lines b{font-size:8px!important}
+.ru-future-ui .rf-roadmap{grid-column:2/4;min-height:106px}.ru-future-ui .rf-roadmap-track{display:grid;grid-template-columns:repeat(6,1fr);gap:5px;position:relative;padding-top:4px}.ru-future-ui .rf-roadmap-track:before{content:'';position:absolute;left:8%;right:8%;top:19px;height:4px;border-radius:999px;background:linear-gradient(90deg,#3275f4,#54b4f0,#24bb8a,#f1a239,#ee5f8c,#7653ee)}.ru-future-ui .rf-road-step{position:relative;text-align:center;z-index:1}.ru-future-ui .rf-road-step i{width:30px;height:30px;margin:auto;display:grid;place-items:center;border:4px solid #fff;border-radius:50%;background:var(--step,#3275f4);color:#fff;font-style:normal;font-size:8px;font-weight:900;box-shadow:0 4px 10px rgba(41,76,128,.12)}.ru-future-ui .rf-road-step b{display:block;margin-top:7px;font-size:7px!important;line-height:1.25!important}
+.ru-future-ui .ru-legacy-overview-details{border-color:#dce7f5!important;background:#fff!important;box-shadow:var(--rf-shadow-sm)!important}.ru-future-ui .ru-legacy-overview-details>summary{background:#f8fbff!important;color:#355477!important}.ru-future-ui .ru-legacy-overview-details>summary:before{background:#edf4ff!important;color:#2969f4!important;border-color:#d5e3f4!important}
+
+/* consistent intro for every non-overview tab */
+.ru-future-ui .rf-tab-intro{position:relative;margin-bottom:11px;padding:16px 18px;display:grid;grid-template-columns:1fr auto;gap:18px;align-items:center;border:1px solid var(--rf-line);border-radius:17px;background:linear-gradient(120deg,#fff 0,#f4f8ff 62%,#eef3ff 100%);box-shadow:var(--rf-shadow-sm);overflow:hidden}
+.ru-future-ui .rf-tab-intro:after{content:'Я';position:absolute;right:132px;top:-35px;color:rgba(69,100,183,.055);font:900 116px/1 Georgia,serif;transform:rotate(-9deg)}
+.ru-future-ui .rf-tab-intro span{color:#3b6fd8;font-size:8px;font-weight:850;letter-spacing:.08em}.ru-future-ui .rf-tab-intro h3{margin:4px 0 3px!important;font-size:20px!important;letter-spacing:-.02em}.ru-future-ui .rf-tab-intro p{margin:0!important;max-width:740px;font-size:9px!important;line-height:1.45!important}.ru-future-ui .rf-tab-badges{display:flex;gap:6px;flex-wrap:wrap;justify-content:flex-end}.ru-future-ui .rf-tab-badges b{padding:6px 9px;border:1px solid #d7e4f4;border-radius:999px;background:#fff;color:#506b8d!important;font-size:7px!important}
+
+/* normalize existing complex tab layouts */
+.ru-future-ui .learn-canva-shell,.ru-future-ui .writing-studio,.ru-future-ui .vocab-studio,.ru-future-ui .grammar-luxe-shell,.ru-future-ui .mindmap-luxe-shell,.ru-future-ui .media-hub,.ru-future-ui .storage-arsenal{color:var(--rf-text)!important}
+.ru-future-ui .learn-compact-modebar,.ru-future-ui .mindmap-hero,.ru-future-ui .storage-arsenal-hero{background:#fff!important}
+.ru-future-ui .learn-canva-grid{gap:11px!important}.ru-future-ui .learn-canva-side{border-radius:16px!important}.ru-future-ui .learn-item,.ru-future-ui .source-tile,.ru-future-ui .vocab-mini-row,.ru-future-ui .grammar-nav-card,.ru-future-ui .media-tile,.ru-future-ui .storage-tree-file,.ru-future-ui .arsenal-file-card{background:#f8fbff!important;border-color:#dfe8f4!important;color:#345274!important}
+.ru-future-ui .learn-item.active,.ru-future-ui .source-tile.active,.ru-future-ui .vocab-mini-row.active,.ru-future-ui .grammar-nav-card.active,.ru-future-ui .media-tile.active,.ru-future-ui .arsenal-file-card.active{background:linear-gradient(90deg,#e9f2ff,#f3f0ff)!important;border-color:#7ba9ef!important;color:#1f4d9f!important}
+.ru-future-ui .answer-card{background:#f8fbff!important;border-color:#dce7f4!important;color:#345274!important}.ru-future-ui .answer-card.active{border-color:#73a4ef!important;background:#edf4ff!important}.ru-future-ui .answer-card.correct-choice{border-color:#65caae!important;background:#eafaf5!important}.ru-future-ui .answer-card.wrong-choice{border-color:#ee9aaa!important;background:#fff0f3!important}
+.ru-future-ui .writingCanvas{background:#fff!important;border-color:#dce7f4!important}.ru-future-ui .mind-stage{background:radial-gradient(circle at center,#fff,#f3f7ff 65%)!important;border-color:#dce7f4!important}
+.ru-future-ui .storage-arsenal-main,.ru-future-ui .storage-arsenal-layout,.ru-future-ui .media-player,.ru-future-ui .dialogue-studio,.ru-future-ui .grammar-main-card{border-radius:16px!important}
+
+/* Responsive */
+@media(max-width:1180px){
+ .ru-future-ui .ru-app-shell{grid-template-columns:190px minmax(0,1fr)!important}
+ .ru-future-ui .rf-module-grid{grid-template-columns:repeat(3,1fr)}.ru-future-ui .rf-module-card:nth-child(4),.ru-future-ui .rf-module-card:nth-child(5){grid-column:auto}
+ .ru-future-ui .rf-dashboard-lower{grid-template-columns:1fr 1fr}.ru-future-ui .rf-roadmap{grid-column:1/-1}.ru-future-ui .rf-dashboard-card:first-child{grid-row:span 2}
+ .ru-future-ui .rf-skyline{width:34%;opacity:.65}
+}
+@media(max-width:860px){
+ .ru-future-ui .ru-app-shell{grid-template-columns:1fr!important}.ru-future-ui .ru-sidebar{position:relative!important;height:auto!important;max-height:none!important;padding:12px!important}.ru-future-ui .ru-nav{grid-template-columns:repeat(3,1fr)!important}.ru-future-ui .ru-sidebar-quote,.ru-future-ui .ru-stage-box{display:none!important}
+ .ru-future-ui .ru-topbar{grid-template-columns:1fr auto!important;height:auto!important;min-height:64px!important}.ru-future-ui .ru-page-context{display:none!important}.ru-future-ui .ru-view{padding:10px!important}
+ .ru-future-ui .overview-top-only-hero{min-height:260px!important;padding:23px!important}.ru-future-ui .rf-hero h2{font-size:28px!important}.ru-future-ui .rf-skyline{opacity:.28;width:50%}.ru-future-ui .rf-hero-cta{left:23px;bottom:20px}
+ .ru-future-ui .rf-progress-strip{grid-template-columns:1fr 1fr}.ru-future-ui .rf-progress-item:nth-child(2){border-right:0}.ru-future-ui .rf-progress-item{border-bottom:1px solid #e5edf7}.ru-future-ui .rf-progress-item:nth-child(3),.ru-future-ui .rf-progress-item:nth-child(4){border-bottom:0}
+ .ru-future-ui .rf-module-grid{grid-template-columns:1fr 1fr}.ru-future-ui .rf-dashboard-lower{grid-template-columns:1fr}.ru-future-ui .rf-dashboard-card:first-child{grid-row:auto}.ru-future-ui .rf-roadmap{grid-column:auto}
+ .ru-future-ui .rf-tab-intro{grid-template-columns:1fr}.ru-future-ui .rf-tab-badges{justify-content:flex-start}
+}
+@media(max-width:560px){
+ .ru-future-ui .ru-nav{grid-template-columns:1fr 1fr!important}.ru-future-ui .ru-topbar{padding:9px!important;gap:8px!important}.ru-future-ui .ru-global-search-wrap{min-width:0}.ru-future-ui .ru-top-actions .status{display:none!important}
+ .ru-future-ui .rf-progress-strip,.ru-future-ui .rf-module-grid{grid-template-columns:1fr}.ru-future-ui .rf-progress-item{border-right:0!important;border-bottom:1px solid #e5edf7!important}.ru-future-ui .rf-progress-item:last-child{border-bottom:0!important}
+ .ru-future-ui .rf-roadmap-track{grid-template-columns:repeat(3,1fr);row-gap:12px}.ru-future-ui .rf-roadmap-track:before{display:none}
+ .ru-future-ui .rf-pron-grid{grid-template-columns:1fr}.ru-future-ui .rf-week-wrap{grid-template-columns:78px 1fr}.ru-future-ui .rf-week-ring{width:72px;height:72px}
+ .ru-future-ui .rf-skyline{display:none}.ru-future-ui .rf-hero h2{font-size:24px!important}.ru-future-ui .rf-hero p{font-size:10px!important}
+}
