@@ -1,7 +1,7 @@
 {
   "id": "bauman_math_theory_lecture_content_e146_c03_complete",
   "schema": "bauman_math_content_records_v1",
-  "version": "E174_C03_L01_CONTENT_FACTORY_C1_C6_PASS",
+  "version": "E175_C03_L02_CONTENT_FACTORY_C1_C5",
   "title": "Bài giảng lý thuyết Toán · Nội dung học tập",
   "role": "content",
   "frameSource": "theory_lecture_frame.json",
@@ -7466,226 +7466,662 @@
       "chapterId": "MATH-VN-C03-ham_so_ao_ham_va_gradien",
       "lessonTitle": "§3.2 · Đạo hàm và độ nhạy của hệ thống",
       "title": "§3.2 · Đạo hàm và độ nhạy của hệ thống",
-      "programLectureId": "MATH-PROG-L03-calculus-gradient-optimization",
+      "orderInChapter": 2,
+      "programLectureId": "MATH-PROG-L05-calculus-gradient",
       "programLectureIds": [
-        "MATH-PROG-L03-calculus-gradient-optimization",
+        "MATH-PROG-L05-calculus-gradient",
+        "MATH-PROG-L06-optimization",
         "MATH-PROG-L17-ai-machine-learning-math-foundations"
       ],
       "programAnchorTitle": "Giải tích, gradient và tối ưu",
       "roadmapRole": "foundation_before_prep",
-      "baumanFocus": "Hiểu đạo hàm như độ nhạy cục bộ của đầu ra theo đầu vào, nền cho điều khiển, tối ưu, gradient descent và phân tích sai số.",
+      "baumanFocus": "Khôi phục derivative như local rate of change và local linear approximation; đọc đúng units/sign/magnitude, dùng finite differences để verify và hiểu numerical sensitivity trước khi sang partial derivative/gradient.",
+      "pureLayer": [
+        "đạo hàm",
+        "rate of change",
+        "tangent",
+        "local linearization",
+        "finite difference",
+        "differentiability"
+      ],
+      "appliedLayer": [
+        "system sensitivity",
+        "sensor response",
+        "velocity",
+        "numerical derivative",
+        "gradient preparation"
+      ],
+      "bridgeQuestion": "Một thay đổi rất nhỏ ở input sẽ làm output đổi bao nhiêu, và khi nào derivative là mô hình tuyến tính cục bộ đáng tin?",
+      "auditStatus": "REVIEW",
       "sourceAnchors": {
         "stageId": "vn",
-        "disciplineId": "calculus_optimization",
+        "disciplineId": "calculus_multivariable",
         "chapterId": "MATH-VN-C03-ham_so_ao_ham_va_gradien",
-        "programLectureId": "MATH-PROG-L03-calculus-gradient-optimization"
+        "programLectureId": "MATH-PROG-L05-calculus-gradient",
+        "officialCurriculum": "bmstu_iu5_2026_curriculum"
       },
       "tags": [
         "derivative",
+        "rate of change",
         "sensitivity",
-        "local linearization",
-        "optimization",
-        "control"
+        "linear approximation",
+        "finite difference",
+        "NumPy"
       ],
+      "learningContract": {
+        "governingQuestion": "Derivative đo sensitivity cục bộ thế nào, dùng đơn vị và dấu ra sao, và làm sao kiểm analytical derivative bằng numerical finite differences?",
+        "whyNeeded": "Derivative là building block của gradient, local approximation, optimization, control sensitivity và backpropagation.",
+        "prerequisiteGates": [
+          "Xác định được function contract từ §3.1.",
+          "Biết input variable nào đang thay đổi và parameter nào fixed.",
+          "Không yêu cầu nhớ derivative rules đầy đủ; reactivation bắt đầu từ slope/rate.",
+          "Biết Python function evaluation ở mức beginner."
+        ],
+        "measurableLearningOutcomes": [
+          "LO1: Giải thích derivative tại một điểm như instantaneous/local rate of change và slope của local linear approximation.",
+          "LO2: Tính derivative của polynomial/basic functions đơn giản và đọc đúng sign/magnitude.",
+          "LO3: Ghi đúng units của derivative là output-unit/input-unit.",
+          "LO4: Dùng f(x+Δx)≈f(x)+f'(x)Δx để dự đoán local change và đánh giá approximation error.",
+          "LO5: Dùng central finite difference để kiểm analytical derivative với h hợp lý.",
+          "LO6: Giải thích vì sao h quá lớn gây truncation error và h quá nhỏ có thể gây floating-point cancellation.",
+          "LO7: Nhận ra khi function nhiều variables thì sensitivity theo từng coordinate dẫn tới partial derivatives/gradient."
+        ],
+        "exactScope": [
+          "single-variable derivative",
+          "rate of change",
+          "local linear approximation",
+          "units",
+          "central finite difference",
+          "sensitivity"
+        ],
+        "explicitDeferrals": [
+          "Partial derivatives/gradient → §3.3.",
+          "Gradient descent → §3.4.",
+          "Second derivative/Hessian optimization conditions → §3.5.",
+          "Chain rule/backprop → §3.6.",
+          "Rigorous epsilon-delta limits → not required in this preparation lesson."
+        ],
+        "canonicalTerminology": {
+          "derivative": "đạo hàm",
+          "rateOfChange": "tốc độ thay đổi",
+          "sensitivity": "độ nhạy",
+          "tangent": "tiếp tuyến",
+          "linearApproximation": "xấp xỉ tuyến tính cục bộ",
+          "finiteDifference": "sai phân hữu hạn",
+          "stepSize": "bước h",
+          "differentiable": "khả vi"
+        },
+        "symbols": {
+          "f'(x)": "derivative at x",
+          "Δx": "finite input perturbation",
+          "Δf": "finite output change",
+          "df≈f'(x)dx": "local linear relation",
+          "D_h f(x)": "finite-difference approximation"
+        },
+        "continuity": {
+          "previous": "§3.1 · Hàm số như mô hình đầu vào–đầu ra",
+          "next": "§3.3 · Gradient như hướng thay đổi nhanh nhất"
+        }
+      },
+      "technicalRussian": {
+        "terms": [
+          [
+            "производная",
+            "đạo hàm"
+          ],
+          [
+            "скорость изменения",
+            "tốc độ thay đổi"
+          ],
+          [
+            "чувствительность",
+            "độ nhạy"
+          ],
+          [
+            "касательная",
+            "tiếp tuyến"
+          ],
+          [
+            "линейное приближение",
+            "xấp xỉ tuyến tính"
+          ],
+          [
+            "приращение",
+            "gia số"
+          ],
+          [
+            "конечная разность",
+            "sai phân hữu hạn"
+          ],
+          [
+            "шаг",
+            "bước"
+          ],
+          [
+            "дифференцируемость",
+            "tính khả vi"
+          ]
+        ],
+        "commandVerbs": [
+          [
+            "найдите",
+            "hãy tìm"
+          ],
+          [
+            "оцените",
+            "hãy ước lượng"
+          ],
+          [
+            "сравните",
+            "hãy so sánh"
+          ],
+          [
+            "объясните",
+            "hãy giải thích"
+          ]
+        ],
+        "oralFrames": [
+          "Производная измеряет локальную скорость изменения функции.",
+          "Единицы производной равны единицам выхода, делённым на единицы входа.",
+          "Конечная разность используется для численной проверки аналитической производной."
+        ]
+      },
+      "sourceProvenance": [
+        {
+          "id": "bmstu_iu5_2026_curriculum",
+          "kind": "official_curriculum",
+          "url": "https://home.science.iu5.bmstu.ru/study-plans/iu5-master-program.pdf",
+          "supports": [
+            "preparation context for analytical models, data analysis, machine learning and optimization"
+          ]
+        },
+        {
+          "id": "mit_derivative_rate_change",
+          "kind": "authoritative_university_material",
+          "url": "https://ocw.mit.edu/courses/18-01sc-single-variable-calculus-fall-2010/pages/1.-differentiation/part-a-definition-and-basic-rules/session-3-derivative-as-rate-of-change/",
+          "supports": [
+            "derivative as rate of change",
+            "physical interpretation and sensitivity to measurement changes"
+          ]
+        },
+        {
+          "id": "mit_tangent_linear_approx",
+          "kind": "authoritative_university_material",
+          "url": "https://www.ocw.mit.edu/ans7870/18/18.013a/textbook/HTML/chapter06/section01.html",
+          "supports": [
+            "derivative as tangent slope",
+            "local linear approximation"
+          ]
+        },
+        {
+          "id": "numpy_gradient",
+          "kind": "official_documentation",
+          "url": "https://numpy.org/doc/stable/reference/generated/numpy.gradient.html",
+          "supports": [
+            "sampled numerical gradients use finite-difference formulas",
+            "spacing affects derivative estimates"
+          ]
+        }
+      ],
+      "generatedMaterial": {
+        "status": "AI_DRAFT_REVIEWED_IN_CONTENT_FACTORY",
+        "lineage": "Generated reactivation lesson anchored to MIT derivative/rate and tangent approximation material plus NumPy finite-difference documentation.",
+        "canonicalSourceReplacement": false
+      },
+      "contentFactory": {
+        "C1": "PASS",
+        "C2": "PASS",
+        "C3": "PASS",
+        "C4": "PASS",
+        "C5": "PASS",
+        "C6": {
+          "software": "STATIC_QA_PENDING",
+          "user": "PENDING",
+          "blockers": 0,
+          "majors": 0,
+          "inheritedDeferredGate": "E164",
+          "acceptance": "PENDING_C6"
+        }
+      },
       "slides": [
         {
           "role": "problem_framing",
-          "title": "Đạo hàm đo độ nhạy của đầu ra",
+          "title": "ORIENT · Derivative trả lời 'output nhạy tới input đến mức nào?'",
+          "sourceRefs": [
+            "mit_derivative_rate_change",
+            "mit_tangent_linear_approx"
+          ],
           "blocks": [
             {
               "type": "text",
-              "title": "Ý chính",
-              "body": "Khi đầu vào thay đổi một lượng nhỏ, đầu ra thay đổi bao nhiêu? Đạo hàm trả lời câu hỏi này ở mức cục bộ, quanh một điểm đang xét."
+              "title": "Câu hỏi điều khiển",
+              "body": "Nếu input đổi một lượng rất nhỏ quanh x0, output f(x) đổi bao nhiêu? Derivative f'(x0) là hệ số sensitivity cục bộ."
+            },
+            {
+              "type": "text",
+              "title": "Vì sao cần",
+              "body": "Trong control, sensing và ML, ta thường cần biết error/output nhạy tới parameter/input nào. Derivative biến câu hỏi đó thành con số có dấu, magnitude và units."
+            },
+            {
+              "type": "formula",
+              "title": "Local relation",
+              "body": "f(x0+Δx) ≈ f(x0) + f'(x0)Δx"
+            },
+            {
+              "type": "qa",
+              "title": "Retrieval",
+              "body": "Nếu f'(x0)=0, có chắc f đang constant quanh x0 không? Không; chỉ nói local first-order slope bằng 0."
             }
           ]
         },
         {
           "role": "deep_essence",
-          "title": "Đạo hàm là tốc độ thay đổi tức thời",
+          "title": "REACTIVATION · Từ slope trung bình tới slope tức thời",
           "blocks": [
             {
               "type": "formula",
-              "title": "Định nghĩa",
-              "body": "f'(x) = lim_{h -> 0} (f(x+h)-f(x))/h"
+              "title": "Average rate",
+              "body": "[f(x+h)-f(x)]/h"
+            },
+            {
+              "type": "formula",
+              "title": "Derivative idea",
+              "body": "f'(x)=lim_(h→0) [f(x+h)-f(x)]/h"
             },
             {
               "type": "text",
-              "title": "Diễn giải",
-              "body": "Đạo hàm là tỷ lệ thay đổi của đầu ra trên thay đổi rất nhỏ của đầu vào."
+              "title": "Trực giác",
+              "body": "Average slope dùng một khoảng hữu hạn. Derivative là slope mà function tiến gần tới khi khoảng quan sát co lại quanh point."
+            },
+            {
+              "type": "qa",
+              "title": "Tự nói lại",
+              "body": "Tại sao derivative là local property chứ không mô tả toàn bộ graph?"
             }
           ]
         },
         {
           "role": "counter_intuition",
-          "title": "Đạo hàm không mô tả toàn bộ hàm",
+          "title": "COUNTER-INTUITION · Derivative không phải 'Δy/Δx' với bất kỳ bước nào",
           "blocks": [
             {
               "type": "text",
-              "title": "Điểm dễ nhầm",
-              "body": "Đạo hàm tại một điểm chỉ là thông tin cục bộ. Với hàm phi tuyến, độ nhạy có thể thay đổi mạnh ở vùng khác."
+              "title": "Finite change",
+              "body": "Δf/Δx trên một bước lớn là average rate, không nhất thiết bằng derivative tại endpoint hay midpoint."
+            },
+            {
+              "type": "text",
+              "title": "Curvature matters",
+              "body": "Khi function cong, local slope thay đổi theo x. Một secant slope có thể che mất sensitivity thật tại point."
+            },
+            {
+              "type": "text",
+              "title": "Numerical check",
+              "body": "Finite difference chỉ xấp xỉ derivative; quality phụ thuộc h, smoothness và floating-point."
+            },
+            {
+              "type": "qa",
+              "title": "Diagnostic",
+              "body": "Với f=x^2, slope từ x=0 tới x=2 là 2. Derivative tại x=2 là 4. Vì sao không mâu thuẫn?"
             }
           ]
         },
         {
           "role": "real_bridge",
-          "title": "Độ nhạy trong kỹ thuật",
+          "title": "CONTEXT · Position→velocity và model input→sensitivity",
           "blocks": [
             {
+              "type": "formula",
+              "title": "Motion",
+              "body": "p(t)=2t^2+3t [m]\nv(t)=p'(t)=4t+3 [m/s]"
+            },
+            {
               "type": "text",
-              "title": "Ví dụ",
-              "body": "Nếu tăng dòng điện một chút làm nhiệt độ tăng rất nhanh, hệ có độ nhạy cao. Nếu đạo hàm nhỏ, hệ ít phản ứng với thay đổi nhỏ của đầu vào."
+              "title": "At t=2 s",
+              "body": "p(2)=14 m; v(2)=11 m/s. Local time increase 0.01 s predicts position increase ≈0.11 m."
+            },
+            {
+              "type": "text",
+              "title": "Engineering reading",
+              "body": "Derivative units m/s tell physical meaning directly. A raw number '11' without units is incomplete."
+            },
+            {
+              "type": "qa",
+              "title": "Decision question",
+              "body": "Nếu output là voltage [V] và input temperature [°C], derivative units là gì?"
             }
           ]
         },
         {
           "role": "notation",
-          "title": "Ký hiệu đạo hàm",
+          "title": "FORMALIZE · Derivative value, sign, magnitude, units",
           "blocks": [
             {
-              "type": "formula",
-              "title": "Ký hiệu",
-              "body": "dy/dx = f'(x)"
+              "type": "text",
+              "title": "Sign",
+              "body": "f'>0: output locally increases with input; f'<0: locally decreases; f'=0: first-order flat."
+            },
+            {
+              "type": "text",
+              "title": "Magnitude",
+              "body": "|f'| lớn nghĩa output nhạy hơn cho cùng small input perturbation, nhưng phải đọc cùng units/scales."
             },
             {
               "type": "formula",
-              "title": "Vi phân gần đúng",
-              "body": "Delta y ≈ f'(x) Delta x"
+              "title": "Units",
+              "body": "units(f') = units(output) / units(input)"
+            },
+            {
+              "type": "qa",
+              "title": "Quick check",
+              "body": "Một sensor calibration có f'=0.02 V/kPa. Pressure tăng 5 kPa nhỏ quanh operating point dự đoán voltage đổi khoảng bao nhiêu?"
             }
           ]
         },
         {
           "role": "core_formula",
-          "title": "Tuyến tính hóa cục bộ",
+          "title": "CORE · Tangent/local linear approximation",
+          "sourceRefs": [
+            "mit_tangent_linear_approx"
+          ],
           "blocks": [
             {
               "type": "formula",
-              "title": "Xấp xỉ tuyến tính",
-              "body": "f(x+h) ≈ f(x) + f'(x)h"
+              "title": "Approximation",
+              "body": "f(x0+Δx) ≈ f(x0)+f'(x0)Δx"
             },
             {
               "type": "text",
-              "title": "Ý nghĩa",
-              "body": "Quanh một điểm nhỏ, hàm phi tuyến có thể được xấp xỉ bằng đường thẳng tiếp tuyến."
+              "title": "Meaning",
+              "body": "Gần x0, differentiable function được thay bằng đường thẳng có cùng value và slope tại x0."
+            },
+            {
+              "type": "text",
+              "title": "Error behavior",
+              "body": "Approximation tốt khi Δx đủ nhỏ và curvature không quá lớn; derivative chỉ giữ first-order effect."
+            },
+            {
+              "type": "qa",
+              "title": "Retrieve",
+              "body": "Nếu Δx gấp đôi nhưng vẫn đủ nhỏ, first-order predicted Δf thay đổi thế nào?"
             }
           ]
         },
         {
           "role": "assumption_gate",
-          "title": "Điều kiện dùng tuyến tính hóa",
+          "title": "ASSUMPTION GATE · Derivative có thể không tồn tại hoặc không hữu ích",
           "blocks": [
             {
               "type": "text",
-              "title": "Điều kiện",
-              "body": "Tuyến tính hóa chỉ đáng tin khi h nhỏ, hàm đủ trơn và điểm đang xét không nằm gần ngưỡng gián đoạn, bão hòa hoặc vùng nhiễu mạnh."
+              "title": "Nondifferentiable points",
+              "body": "Corners, discontinuities hoặc domain boundaries có thể phá two-sided derivative."
+            },
+            {
+              "type": "text",
+              "title": "Operating region",
+              "body": "Một physical model có thể differentiable về công thức nhưng không valid ngoài operating range."
+            },
+            {
+              "type": "text",
+              "title": "Local vs global",
+              "body": "Derivative đúng local không đảm bảo extrapolation xa. Sensitivity có thể thay đổi mạnh theo state."
+            },
+            {
+              "type": "qa",
+              "title": "Gate",
+              "body": "|x| tại x=0 có derivative hai phía không? Left/right slopes nói gì?"
             }
           ]
         },
         {
           "role": "mini_case",
-          "title": "Mini case: cảm biến nhiệt",
+          "title": "E1 SIMPLE · f(x)=x² tại x=3",
           "blocks": [
             {
+              "type": "formula",
+              "title": "Analytical",
+              "body": "f(x)=x^2 ⇒ f'(x)=2x ⇒ f'(3)=6"
+            },
+            {
               "type": "text",
-              "title": "Case",
-              "body": "Nếu T=f(I), đạo hàm dT/dI cho biết nhiệt độ nhạy thế nào với dòng điện. Độ nhạy lớn gợi ý cần giới hạn dòng hoặc tăng làm mát."
+              "title": "Meaning",
+              "body": "Quanh x=3, tăng input 0.01 dự đoán output tăng ≈0.06."
+            },
+            {
+              "type": "formula",
+              "title": "Exact comparison",
+              "body": "f(3.01)-f(3)=9.0601-9=0.0601"
+            },
+            {
+              "type": "qa",
+              "title": "Error",
+              "body": "First-order prediction sai 0.0001. Error đến từ term bậc hai nào?"
             }
           ]
         },
         {
           "role": "interpretation",
-          "title": "Dấu và độ lớn của đạo hàm",
+          "title": "E2 CONTEXTUAL · Local prediction cho motion model",
           "blocks": [
             {
-              "type": "text",
-              "title": "Dương",
-              "body": "Đầu ra tăng khi đầu vào tăng."
+              "type": "formula",
+              "title": "Model",
+              "body": "p(t)=2t^2+3t\np'(t)=4t+3"
             },
             {
               "type": "text",
-              "title": "Âm",
-              "body": "Đầu ra giảm khi đầu vào tăng."
+              "title": "At t=2",
+              "body": "p(2)=14; p'(2)=11."
             },
             {
-              "type": "text",
-              "title": "Gần 0",
-              "body": "Đầu ra ít nhạy tại điểm đang xét hoặc hệ đang ở vùng bão hòa."
+              "type": "formula",
+              "title": "Predict t=2.01",
+              "body": "p(2.01)≈14+11(0.01)=14.11\nExact=14.1102"
+            },
+            {
+              "type": "qa",
+              "title": "Transfer nhẹ",
+              "body": "Nếu Δt=0.5 s, local approximation còn tốt như Δt=0.01 không? Không nhất thiết; cần check error."
             }
           ]
         },
         {
           "role": "simulation",
-          "title": "Thí nghiệm đạo hàm số bằng Python",
+          "title": "BEGINNER ENTRY · Central finite difference để verify derivative",
+          "sourceRefs": [
+            "numpy_gradient"
+          ],
           "blocks": [
             {
               "type": "code",
-              "title": "Công cụ",
-              "body": "def numerical_derivative(f,x,h=1e-5):\n    return (f(x+h)-f(x))/h"
+              "title": "Deterministic check",
+              "body": "import numpy as np\n\ndef f(x):\n    return x**2\n\ndef central_diff(f, x, h=1e-5):\n    return (f(x+h)-f(x-h))/(2*h)\n\nanalytic = 2*3.0\nnumeric = central_diff(f, 3.0, 1e-5)\nassert np.allclose(numeric, analytic, rtol=1e-9, atol=1e-9)\n\nxs = np.linspace(-2,2,101)\nys = xs**2\ndy = np.gradient(ys, xs)"
+            },
+            {
+              "type": "text",
+              "title": "BEGINNER ENTRY · central difference",
+              "body": "Central difference dùng points hai phía và thường chính xác hơn forward difference cùng step cho smooth function."
+            },
+            {
+              "type": "text",
+              "title": "Software trust",
+              "body": "h không càng nhỏ càng tốt vô hạn. Quá lớn → truncation; quá nhỏ → subtraction cancellation/round-off. Verify trên nhiều h."
+            },
+            {
+              "type": "qa",
+              "title": "Experiment",
+              "body": "Thử h=1e-1,1e-3,1e-6,1e-10. Ghi absolute error thay vì chỉ nhìn numeric derivative."
             }
           ]
         },
         {
           "role": "common_mistakes",
-          "title": "Lỗi thường gặp",
+          "title": "MISCONCEPTION MAP · 5 lỗi về derivative",
           "blocks": [
             {
               "type": "text",
-              "title": "Lỗi",
-              "body": "Dùng h quá lớn khi tính đạo hàm số; dùng h quá nhỏ gây lỗi làm tròn; áp dụng tuyến tính hóa quá xa điểm đang xét; quên đơn vị của đạo hàm."
+              "title": "MAJOR · «Derivative = finite Δy/Δx bất kỳ»",
+              "body": "Finite ratio là average slope; derivative là local limit/slope."
+            },
+            {
+              "type": "text",
+              "title": "MAJOR · «f'=0 nghĩa f constant»",
+              "body": "Chỉ first-order slope zero tại point; có thể là extremum hoặc flat inflection."
+            },
+            {
+              "type": "text",
+              "title": "MAJOR · «Derivative không có units»",
+              "body": "Sensitivity units rất quan trọng trong engineering."
+            },
+            {
+              "type": "text",
+              "title": "MAJOR · «h càng nhỏ càng chính xác»",
+              "body": "Floating-point cancellation tạo lower bound thực tế."
+            },
+            {
+              "type": "text",
+              "title": "MAJOR · «Local derivative cho phép extrapolate xa»",
+              "body": "Local linearization có region of validity."
             }
           ]
         },
         {
           "role": "application",
-          "title": "Ứng dụng lập trình",
+          "title": "E3 TRANSFER · Sensitivity audit cho model mới",
           "blocks": [
             {
-              "type": "text",
-              "title": "Nhiệm vụ",
-              "body": "Viết hàm tính đạo hàm số và so sánh với đạo hàm giải tích của f(x)=x^2, sin(x), exp(x). Ghi nhận sai số theo h."
+              "type": "qa",
+              "title": "Task 1",
+              "body": "Sensor y=0.5T+2 [V], T [°C]. Nêu derivative và units; dự đoán change khi T tăng 0.2°C."
+            },
+            {
+              "type": "qa",
+              "title": "Task 2",
+              "body": "Cost C(q)=q^2+10q. Tại q=20, derivative nói gì về marginal cost? Đơn vị là gì nếu C USD và q units?"
+            },
+            {
+              "type": "qa",
+              "title": "Task 3",
+              "body": "Một code function có kink tại x=0. Thiết kế left/right finite-difference diagnostic để phát hiện non-differentiability."
+            },
+            {
+              "type": "qa",
+              "title": "Task 4",
+              "body": "Nêu một tình huống derivative analytic đúng nhưng physical model không còn valid vì ra ngoài domain."
             }
           ]
         },
         {
           "role": "practice",
-          "title": "Bài luyện tập",
+          "title": "PRACTICE LADDER · P0 → P3",
           "blocks": [
             {
-              "type": "text",
-              "title": "Bài tập",
-              "body": "Cho f(x)=x^3-2x. Tính f'(x), đánh giá tại x=1 và giải thích độ nhạy của đầu ra quanh điểm này."
+              "type": "qa",
+              "title": "P0 · Recognition",
+              "body": "5 graphs/descriptions: nhận sign của derivative và units từ context."
+            },
+            {
+              "type": "qa",
+              "title": "P1 · Guided",
+              "body": "f(x)=3x^2-2x: tính f'(x), f'(2), local prediction tại 2.01, compare exact."
+            },
+            {
+              "type": "qa",
+              "title": "P2 · Independent",
+              "body": "Tự chọn smooth polynomial, derive analytic derivative, viết central_diff và tạo error table theo 4 h."
+            },
+            {
+              "type": "qa",
+              "title": "P3 · Transfer",
+              "body": "Tạo physical function với units, chọn operating point, dùng derivative dự đoán sensitivity và xác định safe Δx range bằng error threshold."
             }
           ]
         },
         {
           "role": "professor_qa",
-          "title": "Vấn đáp kiểm tra hiểu sâu",
+          "title": "ASSESSMENT · D0 / D1 / D2",
           "blocks": [
             {
               "type": "qa",
-              "title": "Câu hỏi",
-              "body": "Vì sao đạo hàm là thông tin cục bộ? Khi nào tuyến tính hóa có thể gây kết luận sai trong hệ kỹ thuật?"
+              "title": "D0 RECALL",
+              "body": "Định nghĩa derivative như local rate, viết local linear approximation và derivative units."
+            },
+            {
+              "type": "qa",
+              "title": "D1 APPLICATION",
+              "body": "Cho một nonlinear scalar model. Derive f', verify finite difference trên 3 points + 3 h, báo approximation error và units."
+            },
+            {
+              "type": "qa",
+              "title": "D2 EXPLAIN / ORAL",
+              "body": "Giải thích 60–90 giây: «Derivative khác average finite change thế nào, và vì sao numerical derivative cần chọn h?»"
+            },
+            {
+              "type": "text",
+              "title": "Mastery evidence",
+              "body": "Đạt khi learner có thể nối analytical derivative, physical sensitivity và numerical verification; nhớ rule đơn lẻ không đủ."
             }
           ]
         },
         {
           "role": "bridge",
-          "title": "Cầu sang gradient",
+          "title": "TECHNICAL RUSSIAN + NEXT · derivative sang gradient",
           "blocks": [
             {
               "type": "text",
-              "title": "Liên kết",
-              "body": "Với nhiều biến đầu vào, mỗi biến có một độ nhạy riêng. Gom các độ nhạy đó thành vector ta có gradient."
+              "title": "9 thuật ngữ",
+              "body": "производная · скорость изменения · чувствительность · касательная · линейное приближение · приращение · конечная разность · шаг · дифференцируемость"
+            },
+            {
+              "type": "text",
+              "title": "4 động từ",
+              "body": "найдите — tìm; оцените — ước lượng; сравните — so sánh; объясните — giải thích."
+            },
+            {
+              "type": "text",
+              "title": "Khung vấn đáp",
+              "body": "«Производная измеряет локальную скорость изменения функции.»\n«Единицы производной равны единицам выхода, делённым на единицы входа.»"
+            },
+            {
+              "type": "text",
+              "title": "Cầu sang §3.3",
+              "body": "Một input variable có một derivative. Khi x có nhiều coordinates, ta hỏi sensitivity theo từng coordinate; các partial derivatives được gom thành gradient."
             }
           ]
         },
         {
           "role": "takeaway",
-          "title": "Kết luận cần nhớ",
+          "title": "REVIEW · 6 điều mang sang multivariable calculus",
           "blocks": [
             {
               "type": "text",
-              "title": "Cốt lõi",
-              "body": "Đạo hàm là độ nhạy cục bộ của đầu ra theo đầu vào và là viên gạch đầu tiên của tối ưu."
+              "title": "1",
+              "body": "Derivative = local rate/slope, không phải arbitrary secant."
+            },
+            {
+              "type": "text",
+              "title": "2",
+              "body": "f(x+Δx)≈f(x)+f'(x)Δx cho local linearization."
+            },
+            {
+              "type": "text",
+              "title": "3",
+              "body": "Sign và magnitude phải đọc cùng units."
+            },
+            {
+              "type": "text",
+              "title": "4",
+              "body": "Derivative có thể không tồn tại ở kink/discontinuity."
+            },
+            {
+              "type": "text",
+              "title": "5",
+              "body": "Finite differences verify implementation nhưng phụ thuộc h/floating-point."
+            },
+            {
+              "type": "text",
+              "title": "6",
+              "body": "Nhiều inputs ⇒ partial derivatives ⇒ gradient."
             }
           ]
         }
@@ -8622,9 +9058,9 @@
     }
   ],
   "lastContentPass": {
-    "id": "E174",
-    "lessonId": "MATH-VN-C03-giai_tich_dao_ham_gradient-L01-function-as-input-output-model-e145",
-    "status": "LOCAL_CONTENT_QA_PASS_GLOBAL_BROWSER_BASELINE_PENDING",
+    "id": "E175",
+    "lessonId": "MATH-VN-C03-giai_tich_dao_ham_gradient-L02-derivative-system-sensitivity-e145",
+    "status": "C1_C5_PASS_C6_PENDING",
     "generatedAt": "2026-09-21",
     "inheritedRuntimeGate": "E164"
   },
