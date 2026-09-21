@@ -1,7 +1,7 @@
 {
   "id": "bauman_math_theory_lecture_content_e146_c03_complete",
   "schema": "bauman_math_content_records_v1",
-  "version": "E174_C03_L01_CONTENT_FACTORY_C1_C5",
+  "version": "E174_C03_L01_CONTENT_FACTORY_C1_C6_PASS",
   "title": "Bài giảng lý thuyết Toán · Nội dung học tập",
   "role": "content",
   "frameSource": "theory_lecture_frame.json",
@@ -6997,12 +6997,12 @@
         "C4": "PASS",
         "C5": "PASS",
         "C6": {
-          "software": "STATIC_QA_PENDING",
-          "user": "PENDING",
+          "software": "PASS_STATIC_AFTER_E166_E173",
+          "user": "PASS",
           "blockers": 0,
           "majors": 0,
           "inheritedDeferredGate": "E164",
-          "acceptance": "PENDING_C6"
+          "acceptance": "LOCAL_CONTENT_QA_PASS_GLOBAL_BROWSER_BASELINE_PENDING"
         }
       },
       "slides": [
@@ -7444,7 +7444,22 @@
             }
           ]
         }
-      ]
+      ],
+      "qaEvidence": {
+        "functionContracts": "PASS",
+        "scalarVectorFunctionShapes": "PASS",
+        "deterministicPythonEvaluation": "PASS",
+        "chapterIdCanonical": "PASS",
+        "schemaAndIds": "PASS",
+        "adjacentContinuity": "PASS",
+        "representationChannels": "PASS",
+        "practiceP0P3": "PASS",
+        "assessmentD0D1D2": "PASS",
+        "misconceptionDiagnostics": "PASS",
+        "technicalRussian": "PASS",
+        "softwareOutputTrustExplanation": "PASS",
+        "browserBaseline": "PENDING_E164"
+      }
     },
     {
       "lessonId": "MATH-VN-C03-giai_tich_dao_ham_gradient-L02-derivative-system-sensitivity-e145",
@@ -8609,7 +8624,7 @@
   "lastContentPass": {
     "id": "E174",
     "lessonId": "MATH-VN-C03-giai_tich_dao_ham_gradient-L01-function-as-input-output-model-e145",
-    "status": "C1_C5_PASS_C6_PENDING",
+    "status": "LOCAL_CONTENT_QA_PASS_GLOBAL_BROWSER_BASELINE_PENDING",
     "generatedAt": "2026-09-21",
     "inheritedRuntimeGate": "E164"
   },
