@@ -55,7 +55,8 @@ for(const test of [
   'tests/course-readiness-browser-a2.mjs',
   'tests/event-grade-browser-a3.mjs',
   'tests/transcript-honors-browser-a4.mjs',
-  'tests/academic-command-center-browser-a5.mjs'
+  'tests/academic-command-center-browser-a5.mjs',
+  'tests/phase2-current-main-browser-a6.mjs'
 ])assert(workflow.includes(test),`A6 workflow missing browser regression ${test}`);
 
 assert(workflow.includes('Validate A5 Academic Command Center'),'A6 workflow lost A5 static gate');
@@ -64,4 +65,4 @@ assert(!/CLOUDFLARE_API_TOKEN/.test(workflow),'Academic gate must not consume de
 
 if(errors.length){console.error(`A6_CURRENT_MAIN_INTEGRATION_FAIL (${errors.length})`);for(const e of errors)console.error('- '+e);process.exit(1)}
 console.log('A6_CURRENT_MAIN_INTEGRATION_PASS');
-console.log(JSON.stringify({validators:validators.length,courses:expected.length,semanticSeparation:true,d01English:true,commandCenterReadOnly:true,browserCoverage:5,productionMutation:false},null,2));
+console.log(JSON.stringify({validators:validators.length,courses:expected.length,semanticSeparation:true,d01English:true,commandCenterReadOnly:true,browserCoverage:6,productionMutation:false},null,2));
