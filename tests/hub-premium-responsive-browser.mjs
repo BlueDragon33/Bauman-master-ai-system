@@ -246,21 +246,53 @@ try{
     canonicalVisible:[...document.querySelectorAll('#page-roadmap .canva-roadmap-page,#page-roadmap [data-academic2026="roadmap"]')].some(el=>getComputedStyle(el).display!=='none'),
     heroTitle:document.querySelector('#page-roadmap .hub-rm-hero h1')?.textContent?.trim()||'',
     stageTitles:[...document.querySelectorAll('#page-roadmap .hub-rm-stage-card h3')].map(x=>x.textContent.trim()),
-    filterLabels:[...document.querySelectorAll('#page-roadmap [data-rm-filter]')].map(x=>x.textContent.replace(/\s+/g,' ').trim())
+    filterLabels:[...document.querySelectorAll('#page-roadmap [data-rm-filter]')].map(x=>x.textContent.replace(/\s+/g,' ').trim()),
+    brandTitle:document.querySelector('.brand b')?.textContent?.trim()||'',
+    brandSub:document.querySelector('.brand small')?.textContent?.trim()||'',
+    topNavBackground:getComputedStyle(document.querySelector('#hubRoadmapTopNav')).backgroundColor
   }));
   assert.deepEqual([roadmapAudit.stages,roadmapAudit.filters,roadmapAudit.levels,roadmapAudit.sideCards],[4,5,4,4],'Roadmap reference structure drift');
   const roadmapChrome=await page.evaluate(()=>window.BAUMAN_HUB_ROADMAP_V3?.selfCheck?.()||window.BAUMAN_HUB_ROADMAP_V2?.selfCheck?.());
-  assert.equal(roadmapChrome?.topNav,7,'Roadmap V3 top navigation must expose seven reference actions');
-  assert.equal(roadmapChrome?.journey,true,'Roadmap V3 journey card is missing');
-  assert.equal(roadmapChrome?.chromeActive,true,'Roadmap V3 route chrome is not active');
+  assert.equal(roadmapChrome?.topNav,7,'Roadmap V4 top navigation must expose seven reference actions');
+  assert.equal(roadmapChrome?.journey,true,'Roadmap V4 journey card is missing');
+  assert.equal(roadmapChrome?.chromeActive,true,'Roadmap V4 route chrome is not active');
   assert.equal(roadmapAudit.canonicalVisible,false,'Canonical roadmap leaked below the reference roadmap');
   assert.equal(roadmapAudit.heroTitle,'Lộ trình học tập tổng hợp','Roadmap hero title drift');
-  assert.deepEqual(roadmapAudit.stageTitles,['Giai đoạn 1: Nền tảng','Giai đoạn 2: Củng cố','Giai đoạn 3: Chuyên sâu','Giai đoạn 4: Ứng dụng'],'Roadmap V3 stage semantics drift');
-  assert.ok(roadmapAudit.filterLabels.some(x=>x.includes('Hòa nhập Nga')),'Roadmap V3 missing Hòa nhập Nga filter');
+  assert.deepEqual(roadmapAudit.stageTitles,['Giai đoạn 1: Nền tảng','Giai đoạn 2: Củng cố','Giai đoạn 3: Chuyên sâu','Giai đoạn 4: Ứng dụng'],'Roadmap V4 stage semantics drift');
+  assert.ok(roadmapAudit.filterLabels.some(x=>x.includes('Hòa nhập Nga')),'Roadmap V4 missing Hòa nhập Nga filter');
+  assert.equal(roadmapAudit.brandTitle,'BAUMAN HUB','Roadmap V4 route brand title drift');
+  assert.equal(roadmapAudit.brandSub,'Русский язык','Roadmap V4 route brand subtitle drift');
+  assert.notEqual(roadmapAudit.topNavBackground,'rgb(255, 255, 255)','Roadmap V4 top navigation regressed to white tabs');
   assert.ok(roadmapAudit.scroll<=roadmapAudit.client+2,`Roadmap desktop horizontal overflow ${roadmapAudit.scroll}/${roadmapAudit.client}`);
+  const roadmapGeometry=await page.evaluate(()=>{
+    const rect=s=>{const r=document.querySelector(s)?.getBoundingClientRect();return r?{x:r.x,y:r.y,w:r.width,h:r.height,b:r.bottom}:null};
+    return {
+      vw:innerWidth,vh:innerHeight,
+      sidebar:rect('.sidebar'),
+      topbar:rect('.topbar'),
+      hero:rect('#page-roadmap .hub-rm-hero'),
+      stages:rect('#page-roadmap .hub-rm-stages'),
+      stageCards:[...document.querySelectorAll('#page-roadmap .hub-rm-stage-card')].map(el=>{const r=el.getBoundingClientRect();return {w:r.width,h:r.height,y:r.y}}),
+      content:rect('#page-roadmap .hub-rm-content'),
+      main:rect('#page-roadmap .hub-rm-main'),
+      rail:rect('#page-roadmap .hub-rm-rail')
+    };
+  });
+  assert.ok(roadmapGeometry.sidebar.w/roadmapGeometry.vw>0.10&&roadmapGeometry.sidebar.w/roadmapGeometry.vw<0.14,'Roadmap sidebar width drifted from reference');
+  assert.ok(roadmapGeometry.topbar.h/roadmapGeometry.vh>0.04&&roadmapGeometry.topbar.h/roadmapGeometry.vh<0.07,'Roadmap topbar height drifted from reference');
+  assert.ok(roadmapGeometry.hero.h>78&&roadmapGeometry.hero.h<125,'Roadmap hero height drifted from reference');
+  assert.equal(roadmapGeometry.stageCards.length,4,'Roadmap stage geometry missing cards');
+  assert.ok(roadmapGeometry.stageCards.every(x=>x.h>150&&x.h<210),'Roadmap stage card height drifted from reference');
+  assert.ok(Math.max(...roadmapGeometry.stageCards.map(x=>x.y))-Math.min(...roadmapGeometry.stageCards.map(x=>x.y))<3,'Roadmap stage cards are vertically misaligned');
+  assert.ok(roadmapGeometry.rail.w/roadmapGeometry.content.w>0.20&&roadmapGeometry.rail.w/roadmapGeometry.content.w<0.30,'Roadmap right rail width drifted from reference');
+  assert.ok(Math.abs(roadmapGeometry.main.y-roadmapGeometry.rail.y)<3,'Roadmap main and right rail are not top-aligned');
+  assert.ok(roadmapGeometry.main.h>500,'Roadmap main detail panel is too shallow for the supplied reference');
+  assert.ok(roadmapGeometry.rail.h>500,'Roadmap right rail is too shallow for the supplied reference');
   await page.locator('#page-roadmap [data-rm-filter="russian"]').click();
   await page.waitForFunction(()=>document.querySelector('#page-roadmap [data-rm-filter="russian"]')?.classList.contains('active')===true);
-  await page.screenshot({path:path.join(OUT,'roadmap-reference-v3-1920x1080.png'),fullPage:true});
+  const activeRoadmapFilter=await page.locator('#page-roadmap [data-rm-filter="russian"]').evaluate(el=>getComputedStyle(el).backgroundImage+'|'+getComputedStyle(el).backgroundColor);
+  assert.ok(!/rgb\(255, 255, 255\)/.test(activeRoadmapFilter),'Roadmap V4 active subject filter is not visually highlighted');
+  await page.screenshot({path:path.join(OUT,'roadmap-reference-v4-1920x1080.png'),fullPage:true});
   await page.locator('#page-roadmap [data-rm-filter="technical"]').click();
   await page.waitForFunction(()=>document.querySelector('#page-roadmap [data-rm-filter="technical"]')?.classList.contains('active')===true);
   assert.ok(await page.locator('#page-roadmap [data-rm-course]').count()>0,'Technical roadmap filter returned no courses');
@@ -300,7 +332,7 @@ try{
   }
 
   assert.deepEqual(errors,[],'Hub emitted console/page errors');
-  fs.writeFileSync(path.join(OUT,'summary.json'),JSON.stringify({status:'PASS',mode:'safe-additive-shell+app-manager-access',subjects:content.subjectIds.length,viewports:cases.map(x=>x[0]),planningWrapper:content.planningWrapper,safeCheck:content.safeCheck,managedAccess:content.managedAccess,staticOwnershipGate:'PASS',referenceHomeV4:'PASS',roadmapReferenceV3:'PASS',appearancePresets:'PASS',errors},null,2));
+  fs.writeFileSync(path.join(OUT,'summary.json'),JSON.stringify({status:'PASS',mode:'safe-additive-shell+app-manager-access',subjects:content.subjectIds.length,viewports:cases.map(x=>x[0]),planningWrapper:content.planningWrapper,safeCheck:content.safeCheck,managedAccess:content.managedAccess,staticOwnershipGate:'PASS',referenceHomeV4:'PASS',roadmapReferenceV4:'PASS',appearancePresets:'PASS',errors},null,2));
   console.log('Hub safe additive responsive acceptance PASS');
 }finally{
   await browser?.close();

@@ -3,7 +3,7 @@
    Uses only existing BAUMAN_DATA/state; does not replace canonical roadmap semantics. */
 (()=>{
   'use strict';
-  const RELEASE='HUB_ROADMAP_COMPREHENSIVE_V3_2026_09';
+  const RELEASE='HUB_ROADMAP_REFERENCE_V4_2026_09';
   const STORAGE_FILTER='bauman.roadmap.v1.filter';
   const STORAGE_OPEN='bauman.roadmap.v1.open';
   const q=(s,r=document)=>r.querySelector(s);
@@ -16,9 +16,9 @@
 
   const PHASES=[
     {id:'foundation',n:1,title:'Giai đoạn 1: Nền tảng',short:'Nền tảng',subtitle:'Xây dựng nền tảng vững chắc',source:['prepare'],tone:'green'},
-    {id:'preparatory',n:2,title:'Giai đoạn 2: Củng cố',short:'Củng cố',subtitle:'Dự bị tiếng Nga và khoa học nền tại Nga',source:['preparatory'],tone:'blue'},
-    {id:'deep',n:3,title:'Giai đoạn 3: Chuyên sâu',short:'Chuyên sâu',subtitle:'Chính khóa Bauman · HK1–HK2',source:['m1','m2','bauman'],tone:'violet'},
-    {id:'application',n:4,title:'Giai đoạn 4: Ứng dụng',short:'Ứng dụng',subtitle:'НИР sâu · thực nghiệm · ВКР',source:['m3','m4'],tone:'red'}
+    {id:'preparatory',n:2,title:'Giai đoạn 2: Củng cố',short:'Củng cố',subtitle:'Mở rộng kiến thức · dự bị tiếng Nga và khoa học nền',source:['preparatory'],tone:'blue'},
+    {id:'deep',n:3,title:'Giai đoạn 3: Chuyên sâu',short:'Chuyên sâu',subtitle:'Nâng cao và chuyên ngành · Bauman HK1–HK2',source:['m1','m2','bauman'],tone:'violet'},
+    {id:'application',n:4,title:'Giai đoạn 4: Ứng dụng',short:'Ứng dụng',subtitle:'Sẵn sàng cho tương lai · НИР · thực nghiệm · ВКР',source:['m3','m4'],tone:'red'}
   ];
   const FILTERS=[
     {id:'all',label:'Tất cả',icon:'▦',subjects:null},
@@ -206,8 +206,44 @@
 
   function setRoadmapChrome(active){
     document.body.dataset.hubRoadmapV3=active?'1':'0';
+    document.body.dataset.hubRoadmapV4=active?'1':'0';
     q('#hubRoadmapTopNav')?.classList.toggle('hidden',!active);
     q('#hubRoadmapJourney')?.classList.toggle('hidden',!active);
+    const brand=q('.brand'),brandTitle=q('.brand b'),brandSub=q('.brand small');
+    if(brandTitle&&!brandTitle.dataset.rmOriginal)brandTitle.dataset.rmOriginal=brandTitle.textContent||'BAUMAN';
+    if(brandSub&&!brandSub.dataset.rmOriginal)brandSub.dataset.rmOriginal=brandSub.textContent||'MASTER HUB';
+    if(brandTitle)brandTitle.textContent=active?'BAUMAN HUB':brandTitle.dataset.rmOriginal;
+    if(brandSub)brandSub.textContent=active?'Русский язык':brandSub.dataset.rmOriginal;
+    brand?.classList.toggle('hub-rm-brand-active',active);
+    const nav=q('#nav');
+    if(nav){
+      const visiblePages=new Set(['home','roadmap','schedule','subjects']);
+      const visibleActions=new Set(['study','exercise','exam','review','achievement','settings']);
+      qa(':scope > button',nav).forEach(btn=>{
+        const page=btn.dataset.page||'',action=btn.dataset.safeNav||'';
+        const show=page?visiblePages.has(page):(action?visibleActions.has(action):true);
+        btn.classList.toggle('hub-rm-v4-hidden',active&&!show);
+        if(active&&page==='subjects'){btn.classList.remove('hub-nav-reference-hidden');const span=q('span',btn);if(span)span.textContent='Tài liệu';btn.title='Tài liệu'}
+        if(active&&page==='schedule')btn.classList.remove('hub-nav-reference-hidden');
+        if(active&&action==='study'){const span=q('span',btn);if(span)span.textContent='Học bài';btn.title='Học bài'}
+        if(active&&action==='review'){const span=q('span',btn);if(span)span.textContent='Ôn tập';btn.title='Ôn tập'}
+        if(active&&action==='achievement'){const span=q('span',btn);if(span)span.textContent='Thành tích';btn.title='Thành tích'}
+      });
+      const order=[
+        q(':scope > button[data-page="home"]',nav),
+        q(':scope > button[data-safe-nav="study"]',nav),
+        q(':scope > button[data-page="roadmap"]',nav),
+        q(':scope > button[data-page="schedule"]',nav),
+        q(':scope > button[data-safe-nav="exercise"]',nav),
+        q(':scope > button[data-safe-nav="exam"]',nav),
+        q(':scope > button[data-page="subjects"]',nav),
+        q(':scope > button[data-safe-nav="review"]',nav),
+        q(':scope > button[data-safe-nav="achievement"]',nav),
+        q(':scope > button[data-safe-nav="settings"]',nav)
+      ].filter(Boolean);
+      if(active)order.forEach(btn=>nav.appendChild(btn));
+      if(!active)window.BAUMAN_HUB_LEARNING_CLUSTER?.apply?.();
+    }
   }
 
   function render(){
@@ -219,11 +255,11 @@
     const active=FILTERS.find(x=>x.id===activeFilter())||FILTERS[0];
     host.insertAdjacentHTML('afterbegin','<section class="hub-roadmap-v3" data-roadmap-reference="'+RELEASE+'">'+
       '<header class="hub-rm-hero">'+
-        '<div><h1>Lộ trình học tập tổng hợp</h1><p>Theo dõi tiến độ học tập theo từng giai đoạn và từng nhóm môn học</p></div>'+
-        '<blockquote>“Маленькие шаги<br>приводят к большим целям.”<small>— Bauman Master Hub</small></blockquote>'+
+        '<div><h1>Lộ trình học tập tổng hợp</h1><p>Theo dõi tiến độ học tập theo từng giai đoạn và từng môn học</p></div>'+
+        '<blockquote>“Маленькие шаги<br>приводят к большим целям.”<small>— Bauman Hub</small></blockquote>'+
       '</header>'+
       '<section class="hub-rm-stages">'+
-        '<div class="hub-rm-block-head"><div><h2>Lộ trình theo giai đoạn</h2><p>4 nhóm hiển thị được ánh xạ trực tiếp từ GĐ1 · GĐ2 · HK1–2 · HK3–4 hiện có</p></div></div>'+
+        '<div class="hub-rm-block-head"><div><h2>Lộ trình theo giai đoạn</h2><p>4 giai đoạn đồng hành cùng mục tiêu của bạn</p></div></div>'+
         '<div class="hub-rm-stage-grid">'+stageCards()+'</div>'+
       '</section>'+
       '<div class="hub-rm-content">'+
@@ -300,6 +336,7 @@
   let attempts=0;
   const boot=()=>{attempts++;if(!patch()&&attempts<30)setTimeout(boot,120)};
   if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',boot,{once:true});else boot();
-  window.BAUMAN_HUB_ROADMAP_V3={release:RELEASE,render,selfCheck,setFilter};
-  window.BAUMAN_HUB_ROADMAP_V2=window.BAUMAN_HUB_ROADMAP_V3;
+  window.BAUMAN_HUB_ROADMAP_V4={release:RELEASE,render,selfCheck,setFilter};
+  window.BAUMAN_HUB_ROADMAP_V3=window.BAUMAN_HUB_ROADMAP_V4;
+  window.BAUMAN_HUB_ROADMAP_V2=window.BAUMAN_HUB_ROADMAP_V4;
 })();
