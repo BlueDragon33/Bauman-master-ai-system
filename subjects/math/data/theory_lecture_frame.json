@@ -1,7 +1,7 @@
 {
   "id": "bauman_math_theory_lecture_frame_e109",
   "schema": "bauman_math_theory_lecture_frame_v1",
-  "version": "E114_SPECIALIZED_DATA_VAULT_ROUTER",
+  "version": "E172_C02_CONTENT_STATUS_RECONCILED",
   "subject": "math",
   "title": "Bài giảng lý thuyết · Khung",
   "purpose": "Khung quản lý bài giảng lý thuyết. Từ E110 toàn bộ nguồn phụ cũng tách khung/nội dung tương tự.",
@@ -88,10 +88,15 @@
               "bridgeQuestion": "Khi nào ma trận là phép biến đổi, khi nào là dữ liệu?",
               "targetOutcome": "Nắm ma trận như ngôn ngữ mô tả biến đổi dữ liệu và trạng thái hệ.",
               "suggestedLessonCount": 6,
-              "contentStatus": "empty_waiting_for_theory_lecture_content",
+              "contentStatus": "content_factory_complete_runtime_pending",
               "contentSource": "theory_lecture_content.json",
               "chapterScope": "bauman_core_active",
-              "locked": false
+              "locked": false,
+              "contentRecordCount": 6,
+              "contentFactoryVersion": "E171",
+              "contentAuditStatus": "LOCAL_PASS_GLOBAL_BROWSER_PENDING",
+              "runtimeGate": "E164",
+              "lastContentFactoryPass": "2026-09-21"
             }
           ]
         },
@@ -2441,10 +2446,15 @@
       "bridgeQuestion": "Khi nào ma trận là phép biến đổi, khi nào là dữ liệu?",
       "targetOutcome": "Nắm ma trận như ngôn ngữ mô tả biến đổi dữ liệu và trạng thái hệ.",
       "suggestedLessonCount": 6,
-      "contentStatus": "empty_waiting_for_theory_lecture_content",
+      "contentStatus": "content_factory_complete_runtime_pending",
       "contentSource": "theory_lecture_content.json",
       "chapterScope": "bauman_core_active",
-      "locked": false
+      "locked": false,
+      "contentRecordCount": 6,
+      "contentFactoryVersion": "E171",
+      "contentAuditStatus": "LOCAL_PASS_GLOBAL_BROWSER_PENDING",
+      "runtimeGate": "E164",
+      "lastContentFactoryPass": "2026-09-21"
     },
     {
       "chapterId": "MATH-VN-C03-ham_so_ao_ham_va_gradien",
@@ -4437,7 +4447,7 @@
     "bridgeQuestion": "how pure math connects to application",
     "auditStatus": "PASS | REVIEW | RISK"
   },
-  "updatedAt": "2026-06-22",
+  "updatedAt": "2026-09-21",
   "contentVaultRole": "frame",
   "legacySource": "lessons.json",
   "searchKeys": [
