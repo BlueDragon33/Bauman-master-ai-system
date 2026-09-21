@@ -252,3 +252,10 @@ Accepted terminal head: `63c2feee44918fad767ceb7027c8380b7439f510`
 - Whole System Integration Gate — run `35564638969` — PASS, including both static integration and browser-system acceptance.
 
 The terminal marker is accepted. RHW1–RHW7 and S01–S38 are complete. The post-RHW7 audit found no required RHW8: future ordinary lessons extend Listen+Write through validated data bindings and the frozen RHW6 factory; a new RHWx-Hy opens only if a genuinely new capability cannot be represented by the current schema/factory.
+
+
+## Promotion scope cleanup
+
+- 2026-09-21: removed unrelated Math/Roadmap/recovery changes from PR #72 before promotion.
+- Promotion diff is restricted to Russian Listen+Write runtime/data/docs/tests plus the Russian/system integration gate wiring required to validate it.
+- Re-run all PR gates on the cleaned head before merge.
