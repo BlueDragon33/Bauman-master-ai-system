@@ -1,7 +1,7 @@
 {
   "id": "bauman_math_theory_lecture_content_e146_c03_complete",
   "schema": "bauman_math_content_records_v1",
-  "version": "E167_C02_L02_CONTENT_FACTORY_C1_C6_PASS",
+  "version": "E168_C02_L03_CONTENT_FACTORY_C1_C5",
   "title": "Bài giảng lý thuyết Toán · Nội dung học tập",
   "role": "content",
   "frameSource": "theory_lecture_frame.json",
@@ -4049,222 +4049,667 @@
       "chapterId": "MATH-VN-C02-ma_tran_va_phep_bien_oi_",
       "lessonTitle": "§2.3 · Hạng ma trận, không gian cột và thông tin độc lập",
       "title": "§2.3 · Hạng ma trận, không gian cột và thông tin độc lập",
+      "orderInChapter": 3,
       "programLectureId": "MATH-PROG-L02-vector-spaces-linear-maps",
       "programLectureIds": [
         "MATH-PROG-L02-vector-spaces-linear-maps",
-        "MATH-PROG-L09-topology-metric-spaces",
+        "MATH-PROG-L01-linear-algebra-basic",
         "MATH-PROG-L17-ai-machine-learning-math-foundations"
       ],
       "programAnchorTitle": "Không gian vectơ và ánh xạ tuyến tính",
       "roadmapRole": "foundation_before_prep",
-      "baumanFocus": "Hiểu rank như số hướng thông tin độc lập mà ma trận giữ được, nền cho giải hệ, giảm chiều, kiểm tra phụ thuộc đặc trưng và PCA.",
+      "baumanFocus": "Hiểu rank như số hướng thông tin tuyến tính độc lập; nối column space với khả năng tạo output; phân biệt exact rank và numerical/effective rank qua singular values và tolerance.",
+      "pureLayer": [
+        "hạng ma trận",
+        "không gian cột",
+        "độc lập tuyến tính",
+        "pivot directions",
+        "singular values"
+      ],
+      "appliedLayer": [
+        "đặc trưng dư thừa",
+        "cảm biến phụ thuộc",
+        "effective rank",
+        "NumPy matrix_rank",
+        "SVD diagnostics"
+      ],
+      "bridgeQuestion": "Một ma trận thật sự mang bao nhiêu hướng thông tin độc lập, và vì sao dữ liệu nhiễu khiến rank cần được đọc bằng singular values chứ không chỉ bằng một con số?",
+      "auditStatus": "REVIEW",
       "sourceAnchors": {
         "stageId": "vn",
         "disciplineId": "linear_algebra_data_space",
         "chapterId": "MATH-VN-C02-ma_tran_va_phep_bien_oi_",
-        "programLectureId": "MATH-PROG-L02-vector-spaces-linear-maps"
+        "programLectureId": "MATH-PROG-L02-vector-spaces-linear-maps",
+        "officialCurriculum": "bmstu_iu5_2026_curriculum"
       },
       "tags": [
         "rank",
         "column space",
-        "linear independence",
-        "information",
-        "PCA"
+        "independence",
+        "singular values",
+        "effective rank",
+        "NumPy",
+        "IU-5"
       ],
+      "learningContract": {
+        "governingQuestion": "Rank đo chính xác điều gì về ma trận và dữ liệu, và làm sao phân biệt rank đại số với rank có ý nghĩa số trong dữ liệu thực?",
+        "whyNeeded": "Nền trực tiếp cho khả nghịch, solve, least squares, condition number, PCA/SVD và đánh giá đặc trưng/cảm biến dư thừa.",
+        "prerequisiteGates": [
+          "Hiểu span và độc lập tuyến tính từ C01.",
+          "Hiểu matrix-vector transform từ §2.1.",
+          "Hiểu composition và column interpretation từ §2.2.",
+          "Biết cột của A sinh ra mọi output Ax."
+        ],
+        "measurableLearningOutcomes": [
+          "LO1: Giải thích rank(A)=dim Col(A) như số hướng cột độc lập và không đồng nhất rank với số hàng/cột.",
+          "LO2: Tìm rank của một ma trận nhỏ bằng quan hệ phụ thuộc cột hoặc row reduction và chỉ ra một basis của column space từ các cột gốc.",
+          "LO3: Dùng điều kiện b∈Col(A) để giải thích khi nào Ax=b có thể có nghiệm.",
+          "LO4: Chẩn đoán dữ liệu/feature redundancy từ rank thiếu và giải thích rank thấp có thể là cấu trúc tốt hoặc lỗi thu thập.",
+          "LO5: Dùng np.linalg.matrix_rank và np.linalg.svd để xem singular values, đồng thời giải thích vai trò của tolerance.",
+          "LO6: Phân biệt exact rank với numerical/effective rank trên một ma trận gần phụ thuộc tuyến tính.",
+          "LO7: Chuẩn bị đúng cầu nối: full column/row rank liên quan trực tiếp đến uniqueness/invertibility ở §2.4."
+        ],
+        "exactScope": [
+          "rank và column space",
+          "independent directions",
+          "pivot columns",
+          "Ax=b và Col(A)",
+          "SVD singular values như diagnostic",
+          "numerical/effective rank"
+        ],
+        "explicitDeferrals": [
+          "Null space/rank-nullity chỉ giới thiệu tối thiểu, không mở rộng thành chương riêng.",
+          "Inverse và nghiệm duy nhất → §2.4.",
+          "Condition number → §2.4.",
+          "PCA/SVD decomposition sâu → §2.6 và chương PCA."
+        ],
+        "canonicalTerminology": {
+          "rank": "hạng ma trận",
+          "columnSpace": "không gian cột",
+          "rowSpace": "không gian hàng",
+          "pivotColumn": "cột trụ/pivot column",
+          "independentDirection": "hướng độc lập",
+          "rankDeficient": "thiếu hạng",
+          "singularValue": "giá trị kỳ dị",
+          "numericalRank": "hạng số/numerical rank",
+          "effectiveRank": "hạng hiệu dụng"
+        },
+        "symbols": {
+          "Col(A)": "span của các cột của A",
+          "rank(A)": "dim Col(A)",
+          "r": "rank(A)",
+          "σ_i": "singular value thứ i",
+          "tol": "ngưỡng quyết định singular value nào được xem là zero"
+        },
+        "continuity": {
+          "previous": "§2.2 · Phép nhân ma trận và pipeline tuyến tính",
+          "next": "§2.4 · Nghịch đảo, giải hệ và điều kiện tồn tại nghiệm"
+        }
+      },
+      "technicalRussian": {
+        "terms": [
+          [
+            "ранг матрицы",
+            "hạng ma trận"
+          ],
+          [
+            "пространство столбцов",
+            "không gian cột"
+          ],
+          [
+            "линейная независимость",
+            "độc lập tuyến tính"
+          ],
+          [
+            "базис",
+            "cơ sở"
+          ],
+          [
+            "ведущий столбец",
+            "cột pivot"
+          ],
+          [
+            "дефицит ранга",
+            "thiếu hạng"
+          ],
+          [
+            "сингулярное значение",
+            "giá trị kỳ dị"
+          ],
+          [
+            "численный ранг",
+            "hạng số"
+          ],
+          [
+            "порог",
+            "ngưỡng"
+          ]
+        ],
+        "commandVerbs": [
+          [
+            "найдите",
+            "hãy tìm"
+          ],
+          [
+            "определите",
+            "hãy xác định"
+          ],
+          [
+            "сравните",
+            "hãy so sánh"
+          ],
+          [
+            "объясните",
+            "hãy giải thích"
+          ]
+        ],
+        "oralFrames": [
+          "Ранг матрицы равен размерности пространства её столбцов.",
+          "Этот столбец линейно зависит от остальных и не добавляет нового направления.",
+          "Численный ранг зависит от выбранного порога для малых сингулярных значений."
+        ]
+      },
+      "sourceProvenance": [
+        {
+          "id": "bmstu_iu5_2026_curriculum",
+          "kind": "official_curriculum",
+          "url": "https://home.science.iu5.bmstu.ru/study-plans/iu5-master-program.pdf",
+          "supports": [
+            "IU-5 preparation context for multidimensional data analysis, analytical models and machine learning"
+          ]
+        },
+        {
+          "id": "mit_1806_column_space_nullspace",
+          "kind": "authoritative_university_material",
+          "url": "https://ocw.mit.edu/courses/18-06sc-linear-algebra-fall-2011/pages/ax-b-and-the-four-subspaces/column-space-and-nullspace/",
+          "supports": [
+            "column space interpretation of Ax=b",
+            "rank as dimension of the column space"
+          ]
+        },
+        {
+          "id": "numpy_matrix_rank",
+          "kind": "official_documentation",
+          "url": "https://numpy.org/doc/stable/reference/generated/numpy.linalg.matrix_rank.html",
+          "supports": [
+            "matrix_rank uses an SVD-based threshold",
+            "rank depends on singular values relative to tolerance"
+          ]
+        },
+        {
+          "id": "numpy_svd",
+          "kind": "official_documentation",
+          "url": "https://numpy.org/doc/stable/reference/generated/numpy.linalg.svd.html",
+          "supports": [
+            "SVD returns singular values",
+            "singular values ordered for 2D decomposition diagnostics"
+          ]
+        }
+      ],
+      "generatedMaterial": {
+        "status": "AI_DRAFT_REVIEWED_IN_CONTENT_FACTORY",
+        "lineage": "Generated examples/assessments anchored to BMSTU curriculum context, MIT column-space material and NumPy matrix_rank/SVD documentation.",
+        "canonicalSourceReplacement": false
+      },
+      "contentFactory": {
+        "C1": "PASS",
+        "C2": "PASS",
+        "C3": "PASS",
+        "C4": "PASS",
+        "C5": "PASS",
+        "C6": {
+          "software": "STATIC_QA_PENDING",
+          "user": "PENDING",
+          "blockers": 0,
+          "majors": 0,
+          "inheritedDeferredGate": "E164",
+          "acceptance": "PENDING_C6"
+        }
+      },
       "slides": [
         {
           "role": "problem_framing",
-          "title": "Rank đo số hướng thông tin độc lập",
+          "title": "ORIENT · Nhiều cột không đồng nghĩa nhiều thông tin",
+          "sourceRefs": [
+            "mit_1806_column_space_nullspace",
+            "bmstu_iu5_2026_curriculum"
+          ],
           "blocks": [
             {
               "type": "text",
-              "title": "Ý chính",
-              "body": "Một ma trận có thể có nhiều cột nhưng không phải mọi cột đều mang thông tin mới. Rank cho biết số hướng độc lập thật sự trong ma trận."
+              "title": "Câu hỏi điều khiển",
+              "body": "Một matrix có 20 feature columns nhưng nếu 8 cột chỉ là tổ hợp tuyến tính của các cột còn lại, hệ có thật sự 20 hướng thông tin độc lập không? Rank trả lời câu hỏi này."
+            },
+            {
+              "type": "text",
+              "title": "Vì sao cần",
+              "body": "Trong dữ liệu cảm biến, feature engineering và mô hình tuyến tính, cột dư thừa có thể làm hệ khó giải thích hoặc không xác định duy nhất. Rank cho biết số hướng tuyến tính độc lập mà matrix thực sự giữ."
+            },
+            {
+              "type": "formula",
+              "title": "Câu định nghĩa lõi",
+              "body": "rank(A)=dim Col(A)\nCol(A)=span(c_1,...,c_n)"
+            },
+            {
+              "type": "qa",
+              "title": "Retrieval",
+              "body": "Nếu c3=c1+c2 thì thêm c3 có làm rank tăng không? Hãy trả lời trước khi xem ví dụ."
             }
           ]
         },
         {
           "role": "deep_essence",
-          "title": "Rank là chiều của không gian cột",
+          "title": "REACTIVATION · Span + independence trở thành rank",
           "blocks": [
             {
               "type": "text",
+              "title": "Kiến thức cũ",
+              "body": "C01 đã học span và độc lập tuyến tính. Column space chỉ là span của các cột matrix. Rank là dimension của span đó."
+            },
+            {
+              "type": "text",
               "title": "Bản chất",
-              "body": "Không gian cột là span của các cột của A. Rank(A) là số cột độc lập tuyến tính tối đa, tức chiều của không gian cột."
+              "body": "Rank không đếm bao nhiêu cột đang tồn tại; rank đếm bao nhiêu cột độc lập tối đa cần để sinh toàn bộ column space."
+            },
+            {
+              "type": "formula",
+              "title": "Bound",
+              "body": "Nếu A∈R^(m×n): rank(A)≤min(m,n)"
+            },
+            {
+              "type": "qa",
+              "title": "Tự nói lại",
+              "body": "Ma trận 1000×10 có rank tối đa bao nhiêu? Vì sao không thể rank=1000?"
             }
           ]
         },
         {
           "role": "counter_intuition",
-          "title": "Nhiều cột không đồng nghĩa với nhiều thông tin",
+          "title": "COUNTER-INTUITION · Thêm feature có thể không thêm direction",
           "blocks": [
             {
+              "type": "formula",
+              "title": "Ví dụ",
+              "body": "c1=[1,0,1]^T\nc2=[0,1,1]^T\nc3=[1,1,2]^T=c1+c2"
+            },
+            {
               "type": "text",
-              "title": "Điểm dễ nhầm",
-              "body": "Nếu một cột là tổ hợp tuyến tính của các cột khác, nó không thêm hướng thông tin mới. Dữ liệu rộng nhưng rank thấp có thể chứa phụ thuộc mạnh."
+              "title": "Kết luận",
+              "body": "A=[c1 c2 c3] có 3 cột nhưng chỉ 2 hướng độc lập, nên rank(A)=2."
+            },
+            {
+              "type": "text",
+              "title": "Hậu quả dữ liệu",
+              "body": "Một feature được tính chính xác từ hai feature khác không thêm linear information. Nó có thể vẫn hữu ích về semantics, nhưng không tăng rank."
+            },
+            {
+              "type": "qa",
+              "title": "Diagnostic",
+              "body": "Nếu thêm c4=7c1-3c2, rank tối đa có đổi không? Điều gì phải đúng để rank tăng?"
             }
           ]
         },
         {
           "role": "real_bridge",
-          "title": "Rank trong dữ liệu cảm biến và đặc trưng",
+          "title": "CONTEXT · Rank trong cảm biến và feature space",
           "blocks": [
             {
               "type": "text",
-              "title": "Ví dụ",
-              "body": "Ba cảm biến đo cùng hiện tượng với hệ số khác nhau có thể tạo ma trận nhiều cột nhưng rank thấp. Mô hình học máy khi đó nhận nhiều đặc trưng nhưng ít thông tin độc lập."
+              "title": "Cảm biến phụ thuộc",
+              "body": "Nếu sensor3 luôn bằng sensor1+sensor2 do thiết kế hoặc preprocessing, ba kênh không mang ba hướng độc lập."
+            },
+            {
+              "type": "text",
+              "title": "Rank thấp có thể tốt",
+              "body": "Dữ liệu có thể thật sự nằm gần một subspace thấp chiều; đó là tín hiệu cấu trúc và mở đường cho compression/PCA."
+            },
+            {
+              "type": "text",
+              "title": "Rank thấp cũng có thể xấu",
+              "body": "Có thể là sensor chết, thiếu excitation, feature bị copy hoặc pipeline tạo cột trùng. Cần đọc rank cùng bối cảnh kỹ thuật."
+            },
+            {
+              "type": "qa",
+              "title": "Decision question",
+              "body": "Một feature gần hằng trong mọi mẫu có khả năng đóng góp mạnh vào rank/effective rank không? Vì sao?"
             }
           ]
         },
         {
           "role": "notation",
-          "title": "Không gian cột, hàng và rank",
+          "title": "FORMALIZE · Column space và khả năng tạo output",
+          "sourceRefs": [
+            "mit_1806_column_space_nullspace"
+          ],
           "blocks": [
             {
               "type": "formula",
-              "title": "Column space",
-              "body": "Col(A) = span(c_1, c_2, ..., c_n)"
+              "title": "Image của transform",
+              "body": "Ax = x1 c1 + ... + xn cn\n⇒ mọi output Ax nằm trong Col(A)."
             },
             {
               "type": "formula",
-              "title": "Rank",
-              "body": "rank(A) = dim Col(A) = dim Row(A)"
+              "title": "Điều kiện solvability",
+              "body": "Ax=b có ít nhất một nghiệm ⇔ b∈Col(A)."
+            },
+            {
+              "type": "text",
+              "title": "Rank nói gì",
+              "body": "Nếu rank(A)=r thì mọi output của transform sống trong một subspace r chiều của R^m."
+            },
+            {
+              "type": "qa",
+              "title": "Quick check",
+              "body": "Nếu A là 3×2 rank 2, Ax có thể phủ toàn R^3 không? Vì sao?"
             }
           ]
         },
         {
           "role": "core_formula",
-          "title": "Rank và nghiệm hệ tuyến tính",
+          "title": "CORE · Pivot columns tạo basis của column space",
           "blocks": [
             {
               "type": "text",
-              "title": "Ý nghĩa",
-              "body": "Rank cho biết hệ phương trình có bao nhiêu ràng buộc độc lập. Khi rank thấp, có phương trình hoặc đặc trưng phụ thuộc nhau."
+              "title": "Row reduction để tìm pivot positions",
+              "body": "Ta có thể row-reduce để xác định cột nào là pivot, nhưng basis của Col(A) phải lấy các cột tương ứng từ A gốc, không lấy cột của RREF."
             },
             {
               "type": "formula",
-              "title": "Điều kiện nhất quán",
-              "body": "Ax=b có nghiệm khi b thuộc Col(A)"
+              "title": "Rank",
+              "body": "r = số pivot = số cột độc lập = dim Col(A)"
+            },
+            {
+              "type": "text",
+              "title": "Vì sao lấy cột gốc",
+              "body": "Row operations thay đổi column space theo nghĩa các vector cụ thể, dù giữ relations cần để nhận ra pivot positions."
+            },
+            {
+              "type": "qa",
+              "title": "Misconception check",
+              "body": "Tìm pivot trên RREF xong có được dùng chính pivot columns của RREF làm basis cho Col(A) gốc không? Trả lời cẩn thận."
             }
           ]
         },
         {
           "role": "assumption_gate",
-          "title": "Điều kiện tính rank trong dữ liệu số",
+          "title": "ASSUMPTION GATE · Exact rank và numerical rank không hoàn toàn giống nhau",
+          "sourceRefs": [
+            "numpy_matrix_rank",
+            "numpy_svd"
+          ],
           "blocks": [
             {
               "type": "text",
-              "title": "Điều kiện",
-              "body": "Với dữ liệu thực và nhiễu, rank số học có thể khác rank thực tế. Cần ngưỡng singular value hoặc SVD để đánh giá rank hiệu dụng."
+              "title": "Exact algebra",
+              "body": "Trong toán chính xác, một singular value khác 0 dù cực nhỏ vẫn góp vào rank."
+            },
+            {
+              "type": "text",
+              "title": "Numerical data",
+              "body": "Trong floating-point và dữ liệu nhiễu, rất nhỏ có thể là noise hoặc near-dependence. Numerical rank cần tolerance để quyết định singular value nào xem như zero."
+            },
+            {
+              "type": "formula",
+              "title": "SVD lens",
+              "body": "A=UΣV^T\nσ1≥σ2≥...≥0\nNumerical rank ≈ số σ_i > tol"
+            },
+            {
+              "type": "qa",
+              "title": "Gate",
+              "body": "Nếu singular values là [10,1,1e-11], rank nên là 3 hay 2? Câu trả lời phụ thuộc điều gì?"
             }
           ]
         },
         {
           "role": "mini_case",
-          "title": "Mini case: đặc trưng phụ thuộc tuyến tính",
+          "title": "E1 SIMPLE · Nhìn phụ thuộc cột để tìm rank",
           "blocks": [
             {
+              "type": "formula",
+              "title": "Matrix",
+              "body": "A=[[1,0,1],[0,1,1],[1,1,2]]"
+            },
+            {
               "type": "text",
-              "title": "Case",
-              "body": "Nếu feature3 = feature1 + feature2, ma trận dữ liệu có một cột phụ thuộc. Rank không tăng dù thêm feature3, nhưng mô hình có thể bị đa cộng tuyến."
+              "title": "Columns",
+              "body": "c3=c1+c2 nên c3 không thêm direction. c1,c2 độc lập ⇒ rank(A)=2."
+            },
+            {
+              "type": "text",
+              "title": "Column-space basis",
+              "body": "Một basis tự nhiên là {c1,c2}. Không duy nhất, nhưng phải gồm hai vector độc lập sinh cùng Col(A)."
+            },
+            {
+              "type": "qa",
+              "title": "Sanity",
+              "body": "Vector b=[2,3,5]^T có nằm trong Col(A) không? Hãy thử viết b=2c1+3c2."
             }
           ]
         },
         {
           "role": "interpretation",
-          "title": "Rank thấp có thể tốt hoặc xấu",
+          "title": "E2 CONTEXTUAL · Gần phụ thuộc: algebraic rank có thể tăng nhưng thông tin mới rất yếu",
           "blocks": [
             {
-              "type": "text",
-              "title": "Tốt",
-              "body": "Rank thấp có thể cho thấy dữ liệu nằm trên cấu trúc chiều thấp, thuận lợi cho giảm chiều."
+              "type": "formula",
+              "title": "Perturbation",
+              "body": "Aε=[[1,0,1],[0,1,1],[1,1,2+ε]], ε=1e-10"
             },
             {
               "type": "text",
-              "title": "Xấu",
-              "body": "Rank thấp cũng có thể cho thấy đặc trưng thừa, cảm biến lỗi hoặc thiếu kích thích trong thí nghiệm."
+              "title": "Exact view",
+              "body": "Với ε≠0, ba cột không còn phụ thuộc chính xác; algebraic rank có thể là 3."
+            },
+            {
+              "type": "text",
+              "title": "Numerical view",
+              "body": "Nhưng một singular value sẽ rất nhỏ. Với tolerance lớn hơn mức đó, effective/numerical rank có thể vẫn được đọc là 2."
+            },
+            {
+              "type": "qa",
+              "title": "Transfer nhẹ",
+              "body": "Tại sao không nên chỉ báo 'rank=3' rồi kết luận dữ liệu có ba hướng mạnh như nhau?"
             }
           ]
         },
         {
           "role": "simulation",
-          "title": "Thí nghiệm rank bằng Python",
+          "title": "BEGINNER ENTRY · matrix_rank + SVD, luôn xem singular values",
+          "sourceRefs": [
+            "numpy_matrix_rank",
+            "numpy_svd"
+          ],
           "blocks": [
             {
               "type": "code",
-              "title": "Công cụ",
-              "body": "np.linalg.matrix_rank(A)\nU,S,Vt = np.linalg.svd(A)\nprint(S)"
+              "title": "Deterministic check",
+              "body": "import numpy as np\n\nA = np.array([[1.,0.,1.],[0.,1.,1.],[1.,1.,2.]])\nAe = np.array([[1.,0.,1.],[0.,1.,1.],[1.,1.,2.+1e-10]])\n\nprint(np.linalg.matrix_rank(A))\nprint(np.linalg.svd(A, compute_uv=False))\nprint(np.linalg.matrix_rank(Ae))\nprint(np.linalg.svd(Ae, compute_uv=False))\nprint(np.linalg.matrix_rank(Ae, tol=1e-9))"
             },
             {
               "type": "text",
-              "title": "Mục tiêu",
-              "body": "So sánh rank khi thêm một cột độc lập và khi thêm một cột phụ thuộc tuyến tính."
+              "title": "BEGINNER ENTRY · đọc kết quả",
+              "body": "A phải cho rank 2. Ae có thể cho default numerical rank 3 vì perturbation lớn hơn machine threshold, nhưng nếu đặt tol=1e-9 thì small singular direction được xem là zero và rank về 2."
+            },
+            {
+              "type": "text",
+              "title": "Software trust",
+              "body": "matrix_rank không đo 'số feature hữu ích' một cách tuyệt đối; nó áp dụng một threshold lên singular values. Threshold phải được hiểu trong scale/noise của bài toán."
+            },
+            {
+              "type": "qa",
+              "title": "Experiment",
+              "body": "Thử tol=1e-6,1e-9,1e-12. Rank thay đổi khi nào? Đừng đổi dữ liệu, chỉ đổi tiêu chuẩn 'đủ lớn'."
             }
           ]
         },
         {
           "role": "common_mistakes",
-          "title": "Lỗi thường gặp",
+          "title": "MISCONCEPTION MAP · 5 lỗi về rank",
           "blocks": [
             {
               "type": "text",
-              "title": "Lỗi",
-              "body": "Đếm số cột thay rank; bỏ qua nhiễu số; không chuẩn hóa dữ liệu trước khi đánh giá phụ thuộc; nhầm rank cao với mô hình tốt."
+              "title": "MAJOR · «rank = số cột»",
+              "body": "Sai nếu có phụ thuộc tuyến tính. Diagnostic: cho c3=c1+c2."
+            },
+            {
+              "type": "text",
+              "title": "MAJOR · «rank thấp luôn xấu»",
+              "body": "Có thể là cấu trúc low-dimensional hữu ích hoặc redundancy/lỗi. Diagnostic: yêu cầu nêu cả hai khả năng."
+            },
+            {
+              "type": "text",
+              "title": "MAJOR · «RREF columns là basis Col(A)»",
+              "body": "Pivot positions từ RREF, nhưng basis của original column space lấy cột tương ứng từ A gốc."
+            },
+            {
+              "type": "text",
+              "title": "MAJOR · «matrix_rank là chân lý không phụ thuộc tol»",
+              "body": "Numerical rank phụ thuộc singular values và tolerance."
+            },
+            {
+              "type": "text",
+              "title": "MAJOR · «rank=full nghĩa hệ luôn ổn định»",
+              "body": "Full rank không đảm bảo well-conditioned. Ma trận gần suy biến vẫn full rank; condition number để §2.4."
             }
           ]
         },
         {
           "role": "application",
-          "title": "Ứng dụng lập trình",
+          "title": "E3 TRANSFER · Audit redundancy của feature matrix",
           "blocks": [
             {
-              "type": "text",
-              "title": "Nhiệm vụ",
-              "body": "Viết hàm báo cáo shape, rank, singular values và cảnh báo nếu rank thấp hơn số đặc trưng. Dùng kết quả để đề xuất loại bỏ đặc trưng phụ thuộc."
+              "type": "qa",
+              "title": "Task 1",
+              "body": "Một X có 6 columns nhưng rank(X_centered)=4. Nêu ít nhất hai giải thích kỹ thuật khác nhau."
+            },
+            {
+              "type": "qa",
+              "title": "Task 2",
+              "body": "Singular values=[120,30,4,0.8,1e-7,2e-9]. Với tol=1e-6, numerical rank là bao nhiêu? Với tol=1e-8 thì sao?"
+            },
+            {
+              "type": "qa",
+              "title": "Task 3",
+              "body": "Nếu muốn biết Ax=b có thể giải chính xác cho một b cụ thể, rank(A) một mình đủ chưa? Cần kiểm điều gì về b?"
+            },
+            {
+              "type": "qa",
+              "title": "Task 4",
+              "body": "Feature 5=feature1-feature2 đúng tuyệt đối. Bạn có xóa ngay feature5 không? Trả lời cả góc nhìn linear information và semantics."
             }
           ]
         },
         {
           "role": "practice",
-          "title": "Bài luyện tập",
+          "title": "PRACTICE LADDER · P0 → P3",
           "blocks": [
             {
-              "type": "text",
-              "title": "Bài tập",
-              "body": "Cho A có cột c3 = 2c1 - c2. Dự đoán rank tối đa. Sau đó tạo ví dụ số trong Python và kiểm bằng matrix_rank."
+              "type": "qa",
+              "title": "P0 · Recognition",
+              "body": "5 matrix nhỏ: chọn matrix nào full rank/deficient bằng quan sát cột. Evidence ≥4/5."
+            },
+            {
+              "type": "qa",
+              "title": "P1 · Guided",
+              "body": "Với A=[[1,0,1],[0,1,1],[1,1,2]], chỉ ra relation c3=c1+c2, basis Col(A), rank và một b chắc chắn thuộc Col(A)."
+            },
+            {
+              "type": "qa",
+              "title": "P2 · Independent",
+              "body": "Tự tạo matrix 4×3 rank 2 bằng cách tạo hai cột độc lập và cột thứ ba là linear combination. Kiểm matrix_rank + singular values."
+            },
+            {
+              "type": "qa",
+              "title": "P3 · Transfer",
+              "body": "Tạo near-dependent matrix bằng perturbation nhỏ, thử 3 tolerance và viết 3 câu giải thích exact vs numerical rank."
             }
           ]
         },
         {
           "role": "professor_qa",
-          "title": "Vấn đáp kiểm tra hiểu sâu",
+          "title": "ASSESSMENT · D0 / D1 / D2",
           "blocks": [
             {
               "type": "qa",
-              "title": "Câu hỏi",
-              "body": "Vì sao b phải nằm trong Col(A) thì Ax=b mới có nghiệm? Rank thấp khi nào là dấu hiệu cấu trúc, khi nào là dấu hiệu lỗi dữ liệu?"
+              "title": "D0 RECALL",
+              "body": "Nêu rank=dim Col(A), bound rank≤min(m,n), và điều kiện Ax=b solvable theo column space."
+            },
+            {
+              "type": "qa",
+              "title": "D1 APPLICATION",
+              "body": "Cho matrix 4×3 có một cột phụ thuộc. Tìm basis Col(A), rank, kiểm bằng NumPy, rồi perturb một phần tử để xem singular values thay đổi."
+            },
+            {
+              "type": "qa",
+              "title": "D2 EXPLAIN / ORAL",
+              "body": "Giải thích 60–90 giây: «Vì sao rank thấp có thể là cấu trúc tốt hoặc lỗi, và vì sao matrix_rank cần được đọc cùng singular values/tolerance?»"
+            },
+            {
+              "type": "text",
+              "title": "Mastery evidence",
+              "body": "Đạt khi D1 xác định đúng independent directions và D2 phân biệt được exact/numerical rank; chỉ đọc một số rank từ NumPy không đủ."
             }
           ]
         },
         {
           "role": "bridge",
-          "title": "Cầu sang nghịch đảo và giải hệ",
+          "title": "TECHNICAL RUSSIAN + NEXT · rank dẫn tới nghiệm và inverse",
           "blocks": [
             {
               "type": "text",
-              "title": "Liên kết",
-              "body": "Rank đầy đủ là điều kiện quan trọng để ma trận vuông có nghịch đảo và hệ tuyến tính có nghiệm duy nhất. Bài tiếp theo đi vào nghịch đảo và giải hệ."
+              "title": "9 thuật ngữ",
+              "body": "ранг матрицы · пространство столбцов · линейная независимость · базис · ведущий столбец · дефицит ранга · сингулярное значение · численный ранг · порог"
+            },
+            {
+              "type": "text",
+              "title": "4 động từ",
+              "body": "найдите — tìm; определите — xác định; сравните — so sánh; объясните — giải thích."
+            },
+            {
+              "type": "text",
+              "title": "Khung vấn đáp",
+              "body": "«Ранг матрицы равен размерности пространства её столбцов.»\n«Численный ранг зависит от выбранного порога для малых сингулярных значений.»"
+            },
+            {
+              "type": "text",
+              "title": "Cầu sang §2.4",
+              "body": "Rank cho biết có mất direction hay không. §2.4 sẽ hỏi mạnh hơn: khi nào Ax=b có nghiệm duy nhất, khi nào A có inverse, và khi nào full-rank nhưng vẫn numerically dangerous."
             }
           ]
         },
         {
           "role": "takeaway",
-          "title": "Kết luận cần nhớ",
+          "title": "REVIEW · 6 điều cần mang sang solve/inverse",
           "blocks": [
             {
               "type": "text",
-              "title": "Cốt lõi",
-              "body": "Rank là thước đo số hướng thông tin độc lập mà ma trận thật sự mang theo."
+              "title": "1",
+              "body": "rank(A)=dim Col(A): số direction cột độc lập."
+            },
+            {
+              "type": "text",
+              "title": "2",
+              "body": "Số cột không bằng số information directions nếu có linear dependence."
+            },
+            {
+              "type": "text",
+              "title": "3",
+              "body": "Ax=b solvable khi b∈Col(A)."
+            },
+            {
+              "type": "text",
+              "title": "4",
+              "body": "Pivot positions giúp chọn basis từ cột gốc của A."
+            },
+            {
+              "type": "text",
+              "title": "5",
+              "body": "Real data cần nhìn singular values và tolerance, không chỉ một integer rank."
+            },
+            {
+              "type": "text",
+              "title": "6",
+              "body": "Full rank chưa đồng nghĩa stable; condition number là câu chuyện kế tiếp."
             }
           ]
         }
@@ -6320,9 +6765,9 @@
     }
   ],
   "lastContentPass": {
-    "id": "E167",
-    "lessonId": "MATH-VN-C02-ma_tran_va_phep_bien_oi_-L02-matrix-multiplication-pipeline-e142",
-    "status": "LOCAL_CONTENT_QA_PASS_GLOBAL_BROWSER_BASELINE_PENDING",
+    "id": "E168",
+    "lessonId": "MATH-VN-C02-ma_tran_va_phep_bien_oi_-L03-rank-column-space-independent-information-e142",
+    "status": "C1_C5_PASS_C6_PENDING",
     "generatedAt": "2026-09-21",
     "inheritedRuntimeGate": "E164"
   }
