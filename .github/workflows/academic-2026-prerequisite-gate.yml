@@ -12,14 +12,18 @@ on:
       - 'assets/data/prerequisite-content-coverage-2026.json'
       - 'assets/data/prerequisite-packs/**'
       - 'assets/js/academic-main.js'
+      - 'assets/js/academic-course-runtime.js'
       - 'assets/js/academic-scheduler-preview.js'
       - 'assets/js/academic-scheduler-apply.js'
       - 'assets/js/platform/runtime-config.js'
       - 'assets/js/platform/device-access-gate.js'
       - 'assets/css/academic-2026.css'
+      - 'assets/css/academic-course-2026.css'
       - 'assets/css/device-access-gate.css'
       - 'index.html'
       - 'scripts/validate-academic-2026.js'
+      - 'scripts/validate-course-learning-architecture-s1-2026.js'
+      - 'scripts/validate-course-readiness-runtime-a2.js'
       - 'scripts/validate-prerequisite-coverage-2026.js'
       - 'scripts/validate-p09-markov-queueing.js'
       - 'scripts/validate-p06-database-fundamentals.js'
@@ -35,6 +39,7 @@ on:
       - 'scripts/validate-scheduler-preview-13d.js'
       - 'scripts/validate-scheduler-apply-13f.js'
       - 'tests/academic-browser-acceptance-13e.mjs'
+      - 'tests/course-readiness-browser-a2.mjs'
       - '.github/workflows/academic-2026-prerequisite-gate.yml'
   pull_request:
     paths:
@@ -47,14 +52,18 @@ on:
       - 'assets/data/prerequisite-content-coverage-2026.json'
       - 'assets/data/prerequisite-packs/**'
       - 'assets/js/academic-main.js'
+      - 'assets/js/academic-course-runtime.js'
       - 'assets/js/academic-scheduler-preview.js'
       - 'assets/js/academic-scheduler-apply.js'
       - 'assets/js/platform/runtime-config.js'
       - 'assets/js/platform/device-access-gate.js'
       - 'assets/css/academic-2026.css'
+      - 'assets/css/academic-course-2026.css'
       - 'assets/css/device-access-gate.css'
       - 'index.html'
       - 'scripts/validate-academic-2026.js'
+      - 'scripts/validate-course-learning-architecture-s1-2026.js'
+      - 'scripts/validate-course-readiness-runtime-a2.js'
       - 'scripts/validate-prerequisite-coverage-2026.js'
       - 'scripts/validate-p09-markov-queueing.js'
       - 'scripts/validate-p06-database-fundamentals.js'
@@ -70,6 +79,7 @@ on:
       - 'scripts/validate-scheduler-preview-13d.js'
       - 'scripts/validate-scheduler-apply-13f.js'
       - 'tests/academic-browser-acceptance-13e.mjs'
+      - 'tests/course-readiness-browser-a2.mjs'
       - '.github/workflows/academic-2026-prerequisite-gate.yml'
 
 jobs:
@@ -84,6 +94,8 @@ jobs:
         run: node scripts/validate-academic-2026.js
       - name: Validate Semester 1 course-learning architecture
         run: node scripts/validate-course-learning-architecture-s1-2026.js
+      - name: Validate A2 course readiness runtime
+        run: node scripts/validate-course-readiness-runtime-a2.js
       - name: Validate prerequisite content coverage audit
         run: node scripts/validate-prerequisite-coverage-2026.js
       - name: Validate P9 Markov / Queueing / Simulation pack
@@ -115,6 +127,9 @@ jobs:
       - name: Check Academic and Device Gate runtime JavaScript syntax
         run: |
           node --check scripts/validate-course-learning-architecture-s1-2026.js
+          node --check scripts/validate-course-readiness-runtime-a2.js
+          node --check assets/js/academic-course-runtime.js
+          node --check tests/course-readiness-browser-a2.mjs
           node --check assets/js/academic-main.js
           node --check assets/js/academic-scheduler-preview.js
           node --check assets/js/academic-scheduler-apply.js
@@ -163,6 +178,11 @@ jobs:
           BAUMAN_E2E_BASE_URL: http://127.0.0.1:4173/
           BAUMAN_E2E_ARTIFACT_DIR: artifacts/browser-13e
         run: node tests/academic-browser-acceptance-13e.mjs
+      - name: Run A2 Course Readiness browser acceptance
+        env:
+          BAUMAN_E2E_BASE_URL: http://127.0.0.1:4173/
+          BAUMAN_E2E_ARTIFACT_DIR: artifacts/browser-a2
+        run: node tests/course-readiness-browser-a2.mjs
       - name: Show static server log on failure
         if: failure()
         run: cat /tmp/bauman-http.log || true
