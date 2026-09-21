@@ -89,7 +89,7 @@ This does **not** authorize production deployment. Runtime capabilities that req
 ## Safety boundary
 
 - Roadmap V2 remains terminally closed unless a separately approved architecture track is opened.
-- Preserve Hub, Math, Russian, Foundation, Device Gate, Academic and Content Review behavior already promoted to current `main`.
+- Preserve Hub, Math, Russian, Foundation, Device Gate, Academic, Content Review and Deep Study Journal behavior already promoted to current `main`.
 - Do not merge stale historical candidate branches.
 - No implicit production deploy/publish.
 - Any future defect starts as a scoped Fx hardening step from current `main`.
@@ -103,5 +103,5 @@ This does **not** authorize production deployment. Runtime capabilities that req
 4. Do not reconstruct completed Issues #28 or #81 from stale branches.
 5. Preserve Content Review metadata-only ownership and role boundaries.
 6. Preserve Deep Study Journal as non-authoritative learner reflection; it must not become mastery/diagnostic/scheduler/progress evidence implicitly.
-6. Audit open issues/PRs and current contracts before creating new work.
+7. Audit open issues/PRs and current contracts before creating new work.
 8. Create a new round only for a concrete defect, explicit missing capability or newly requested feature.
