@@ -1,7 +1,7 @@
 {
   "id": "bauman_math_theory_lecture_content_e146_c03_complete",
   "schema": "bauman_math_content_records_v1",
-  "version": "E146_C01_C02_COMPLETE_C03_L01_L06",
+  "version": "E165_C02_L01_CONTENT_FACTORY_C1_C6",
   "title": "Bài giảng lý thuyết Toán · Nội dung học tập",
   "role": "content",
   "frameSource": "theory_lecture_frame.json",
@@ -2689,6 +2689,7 @@
       "chapterId": "MATH-VN-C02-ma_tran_va_phep_bien_oi_",
       "lessonTitle": "§2.1 · Ma trận như dữ liệu và phép biến đổi",
       "title": "§2.1 · Ma trận như dữ liệu và phép biến đổi",
+      "orderInChapter": 1,
       "programLectureId": "MATH-PROG-L02-vector-spaces-linear-maps",
       "programLectureIds": [
         "MATH-PROG-L02-vector-spaces-linear-maps",
@@ -2697,219 +2698,647 @@
       ],
       "programAnchorTitle": "Không gian vectơ và ánh xạ tuyến tính",
       "roadmapRole": "foundation_before_prep",
-      "baumanFocus": "Hiểu ma trận vừa là bảng dữ liệu vừa là toán tử biến đổi vector, nền cho pipeline dữ liệu, điều khiển, PCA và mô hình tuyến tính.",
+      "baumanFocus": "Phân biệt ma trận dữ liệu với ma trận toán tử; hiểu Ax bằng cả hàng-dot-product và tổ hợp cột; kiểm tính tuyến tính, shape, đơn vị và kết quả NumPy. Đây là nền trực tiếp để đọc các mô hình tuyến tính, phân tích dữ liệu đa chiều và machine learning trong lộ trình IU-5.",
+      "pureLayer": [
+        "ma trận",
+        "ánh xạ tuyến tính",
+        "nhân ma trận-vector",
+        "hàng/cột",
+        "domain/codomain",
+        "tính tuyến tính"
+      ],
+      "appliedLayer": [
+        "ma trận dữ liệu",
+        "biến đổi vector đặc trưng",
+        "cập nhật trạng thái tuyến tính",
+        "NumPy matmul",
+        "kiểm chứng số học"
+      ],
+      "bridgeQuestion": "Làm sao biết một bảng số đang đóng vai trò dữ liệu hay một toán tử, và làm sao kiểm rằng phép biến đổi ta viết thực sự tuyến tính?",
+      "auditStatus": "REVIEW",
       "sourceAnchors": {
         "stageId": "vn",
         "disciplineId": "linear_algebra_data_space",
         "chapterId": "MATH-VN-C02-ma_tran_va_phep_bien_oi_",
-        "programLectureId": "MATH-PROG-L02-vector-spaces-linear-maps"
+        "programLectureId": "MATH-PROG-L02-vector-spaces-linear-maps",
+        "officialCurriculum": "bmstu_iu5_2026_curriculum"
       },
       "tags": [
         "matrix",
-        "linear transform",
+        "linear transformation",
+        "matrix-vector multiplication",
         "data matrix",
-        "state transition",
-        "PCA"
+        "shape",
+        "NumPy",
+        "IU-5"
       ],
+      "learningContract": {
+        "governingQuestion": "Một ma trận nên được đọc như bảng dữ liệu hay như ánh xạ tuyến tính, và bằng chứng nào cho phép ta tin vào cách đọc đó?",
+        "whyNeeded": "Nền để học phân tích dữ liệu đa chiều, analytical models, machine learning, PCA và các pipeline biến đổi dữ liệu trong chương trình IU-5.",
+        "prerequisiteGates": [
+          "Nhận ra vector và số chiều của vector.",
+          "Tính được dot product đơn giản hoặc khôi phục nhanh bằng ví dụ.",
+          "Nhớ khái niệm basis/span ở mức trực giác.",
+          "Biết quy ước §1.6: ma trận dữ liệu có thể dùng hàng=mẫu, cột=đặc trưng."
+        ],
+        "measurableLearningOutcomes": [
+          "LO1: Phân loại đúng ít nhất 4/5 tình huống thành ma trận dữ liệu, ma trận toán tử hoặc chưa đủ thông tin.",
+          "LO2: Dự đoán đúng shape của y=Ax từ A∈R^(m×n), x∈R^n và phát hiện phép nhân không hợp lệ.",
+          "LO3: Tính đúng một phép nhân ma trận-vector 2×2 bằng tay và giải thích cùng kết quả theo hàng lẫn theo cột.",
+          "LO4: Kiểm tra một quy tắc T(x) có tuyến tính hay không bằng additivity và homogeneity trên ví dụ cụ thể.",
+          "LO5: Viết và chạy được đoạn NumPy tối thiểu dùng @, kiểm shape và đối chiếu với kết quả tay bằng allclose với tolerance tường minh.",
+          "LO6: Giải thích bằng lời vì sao code chạy được chưa đủ để kết luận mô hình đúng nghĩa kỹ thuật."
+        ],
+        "exactScope": [
+          "ma trận như cấu trúc dữ liệu",
+          "ma trận như biểu diễn của ánh xạ tuyến tính",
+          "Ax theo hàng và theo cột",
+          "shape/domain/codomain",
+          "kiểm tính tuyến tính",
+          "NumPy @ và kiểm chứng"
+        ],
+        "explicitDeferrals": [
+          "Nhân ma trận-matrix và composition → §2.2.",
+          "Rank và số hướng thông tin độc lập → §2.3.",
+          "Nghịch đảo/solve/condition number → §2.4.",
+          "Đổi cơ sở, projection hình học sâu hơn → §2.5.",
+          "PCA/eigen/SVD → các chương sau."
+        ],
+        "canonicalTerminology": {
+          "matrix": "ma trận",
+          "dataMatrix": "ma trận dữ liệu",
+          "linearTransformation": "phép biến đổi/ánh xạ tuyến tính",
+          "row": "hàng",
+          "column": "cột",
+          "entry": "phần tử ma trận",
+          "shape": "kích thước/shape",
+          "domain": "không gian vào",
+          "codomain": "không gian ra"
+        },
+        "symbols": {
+          "A": "A ∈ R^(m×n), ma trận toán tử",
+          "x": "x ∈ R^n, vector đầu vào",
+          "y": "y = Ax ∈ R^m, vector đầu ra",
+          "X": "X ∈ R^(N×d), ma trận dữ liệu theo quy ước hàng=mẫu, cột=đặc trưng",
+          "a_i^T": "hàng thứ i của A",
+          "c_j": "cột thứ j của A"
+        },
+        "continuity": {
+          "previous": "§1.6 · Từ vector sang ma trận dữ liệu",
+          "next": "§2.2 · Phép nhân ma trận và pipeline tuyến tính"
+        }
+      },
+      "technicalRussian": {
+        "terms": [
+          [
+            "матрица",
+            "ma trận"
+          ],
+          [
+            "строка",
+            "hàng"
+          ],
+          [
+            "столбец",
+            "cột"
+          ],
+          [
+            "элемент матрицы",
+            "phần tử ma trận"
+          ],
+          [
+            "линейное преобразование",
+            "phép biến đổi tuyến tính"
+          ],
+          [
+            "входной вектор",
+            "vector đầu vào"
+          ],
+          [
+            "выходной вектор",
+            "vector đầu ra"
+          ],
+          [
+            "размерность",
+            "số chiều/kích thước"
+          ],
+          [
+            "умножение матрицы на вектор",
+            "phép nhân ma trận với vector"
+          ]
+        ],
+        "commandVerbs": [
+          [
+            "вычислите",
+            "hãy tính"
+          ],
+          [
+            "определите",
+            "hãy xác định"
+          ],
+          [
+            "проверьте",
+            "hãy kiểm tra"
+          ],
+          [
+            "объясните",
+            "hãy giải thích"
+          ]
+        ],
+        "oralFrames": [
+          "Матрица A задаёт линейное преобразование из R^n в R^m.",
+          "Размерности согласованы, потому что число столбцов A равно размерности x.",
+          "Этот результат нельзя интерпретировать, пока не определены смысл и единицы координат."
+        ]
+      },
+      "sourceProvenance": [
+        {
+          "id": "bmstu_iu5_2026_curriculum",
+          "kind": "official_curriculum",
+          "url": "https://home.science.iu5.bmstu.ru/study-plans/iu5-master-program.pdf",
+          "supports": [
+            "BMSTU IU-5 master direction 09.04.01 and the 2026 two-year curriculum",
+            "curriculum contains Analytical Models of automated information-processing/control systems, Multidimensional Data Analysis in AI systems, and Machine Learning Methods in automated information-processing/control systems"
+          ]
+        },
+        {
+          "id": "mit_1806_linear_transformations",
+          "kind": "authoritative_university_material",
+          "url": "https://ocw.mit.edu/courses/18-06sc-linear-algebra-fall-2011/pages/positive-definite-matrices-and-applications/linear-transformations-and-their-matrices/",
+          "supports": [
+            "matrix-vector multiplication as representation of a linear transformation",
+            "input vector mapped to an output vector, possibly in a different-dimensional space"
+          ]
+        },
+        {
+          "id": "numpy_matmul",
+          "kind": "official_documentation",
+          "url": "https://numpy.org/doc/stable/reference/generated/numpy.matmul.html",
+          "supports": [
+            "NumPy @/matmul matrix-product semantics",
+            "dimension compatibility requirements for matrix multiplication"
+          ]
+        },
+        {
+          "id": "numpy_allclose",
+          "kind": "official_documentation",
+          "url": "https://numpy.org/doc/stable/reference/generated/numpy.allclose.html",
+          "supports": [
+            "numerical verification with explicit relative and absolute tolerances"
+          ]
+        }
+      ],
+      "generatedMaterial": {
+        "status": "AI_DRAFT_REVIEWED_IN_CONTENT_FACTORY",
+        "lineage": "Generated examples and assessments derived from the lesson contract and anchored to official BMSTU curriculum + MIT linear algebra + NumPy documentation.",
+        "canonicalSourceReplacement": false
+      },
+      "contentFactory": {
+        "C1": "PASS",
+        "C2": "PASS",
+        "C3": "PASS",
+        "C4": "PASS",
+        "C5": "PASS",
+        "C6": {
+          "software": "STATIC_PASS_BROWSER_BASELINE_INHERITED_PENDING",
+          "user": "PASS",
+          "blockers": 0,
+          "majors": 0,
+          "inheritedDeferredGate": "E164 runtime selector/browser smoke"
+        }
+      },
       "slides": [
         {
           "role": "problem_framing",
-          "title": "Ma trận là cây cầu giữa dữ liệu và biến đổi",
+          "title": "ORIENT · Một ma trận có thể là dữ liệu hoặc là hành động",
+          "sourceRefs": [
+            "bmstu_iu5_2026_curriculum",
+            "mit_1806_linear_transformations"
+          ],
           "blocks": [
             {
               "type": "text",
-              "title": "Ý chính",
-              "body": "Trong kỹ thuật, ma trận không chỉ là bảng số. Nó có thể lưu nhiều vector dữ liệu, mô tả phép biến đổi, biểu diễn quan hệ giữa biến và làm lõi cho mô phỏng tuyến tính."
+              "title": "Câu hỏi điều khiển bài học",
+              "body": "Khi nhìn thấy một bảng số A hoặc X, đừng hỏi ngay «tính gì?». Hãy hỏi trước: bảng này đang lưu quan sát hay đang mô tả một phép biến đổi? Cùng hình thức m×n nhưng hai vai trò dẫn đến cách đọc, kiểm tra và diễn giải hoàn toàn khác nhau."
+            },
+            {
+              "type": "text",
+              "title": "Vì sao cần cho IU-5",
+              "body": "Chương trình IU-5 09.04.01 có các học phần như mô hình phân tích của hệ xử lý thông tin và điều khiển, phân tích dữ liệu đa chiều trong hệ AI và phương pháp machine learning. Bài này không thay thế các học phần đó; nó khôi phục ngôn ngữ ma trận để có thể đọc mô hình và dữ liệu trong các học phần ấy."
+            },
+            {
+              "type": "text",
+              "title": "Learning outcomes",
+              "body": "Kết thúc bài, bạn phải phân loại vai trò của ma trận, dự đoán shape, tính Ax bằng tay, giải thích Ax theo hàng và theo cột, kiểm tính tuyến tính, rồi dùng NumPy để tính và tự kiểm chứng kết quả."
+            },
+            {
+              "type": "qa",
+              "title": "Retrieval trước khi học",
+              "body": "Không nhìn công thức: nếu A có 3 hàng và 5 cột, vector x phải có bao nhiêu thành phần để Ax hợp lệ? Đừng xem đáp án ngay; hãy giải thích bằng câu «mỗi hàng của A cần dot product với toàn bộ x»."
             }
           ]
         },
         {
           "role": "deep_essence",
-          "title": "Hai cách đọc một ma trận",
+          "title": "OBSERVE · REACTIVATION — từ vector cũ sang ma trận",
           "blocks": [
             {
               "type": "text",
-              "title": "Dữ liệu",
-              "body": "Nếu các hàng là mẫu và các cột là đặc trưng, ma trận là kho dữ liệu có cấu trúc."
+              "title": "REACTIVATION · kiến thức đã từng học",
+              "body": "Bạn đã từng làm đại số tuyến tính nên không cần học lại từ đầu. Hãy khôi phục ba mảnh: vector là danh sách tọa độ có nghĩa; dot product ghép hai vector cùng chiều thành một số; nhiều vector có thể xếp thành bảng. Ma trận xuất hiện khi ta tổ chức nhiều vector hoặc khi ta muốn mô tả một quy tắc biến đổi vector."
+            },
+            {
+              "type": "formula",
+              "title": "Hai cách đọc cần tách rõ",
+              "body": "DỮ LIỆU: X ∈ R^(N×d)\nN hàng = N mẫu, d cột = d đặc trưng.\n\nTOÁN TỬ: A ∈ R^(m×n)\nx ∈ R^n  --A-->  y = Ax ∈ R^m"
             },
             {
               "type": "text",
-              "title": "Toán tử",
-              "body": "Nếu ma trận nhân với vector, nó biến vector đầu vào thành vector đầu ra theo một quy luật tuyến tính."
+              "title": "Điểm nối với §1.6",
+              "body": "§1.6 đã dùng X để gom nhiều vector mẫu. Bây giờ ta giữ cách đọc đó cho X, nhưng thêm cách đọc mới: A không nhất thiết chứa «các mẫu»; A có thể là quy tắc biến đổi mọi vector đầu vào phù hợp."
+            },
+            {
+              "type": "qa",
+              "title": "Tự nói lại",
+              "body": "Hãy nói một câu phân biệt X và A mà không dùng từ «bảng số». Nếu chưa nói được, bạn chưa tách được dữ liệu khỏi toán tử."
             }
           ]
         },
         {
           "role": "counter_intuition",
-          "title": "Cùng một ma trận có thể mang nhiều ý nghĩa",
+          "title": "EXAMPLE · Cùng là m×n nhưng ý nghĩa không nằm trong con số",
           "blocks": [
             {
               "type": "text",
-              "title": "Điểm dễ nhầm",
-              "body": "Ma trận X trong dữ liệu và ma trận A trong biến đổi tuyến tính có thể cùng là bảng số, nhưng ý nghĩa khác nhau. X chứa quan sát; A mô tả cách biến đổi."
+              "title": "Tình huống 1 · data matrix",
+              "body": "X=[[20,0.8],[35,1.1],[50,1.4]] có thể là 3 mẫu với 2 feature. Từng hàng là một quan sát; bản thân X chưa nói «hãy biến đổi một vector»."
+            },
+            {
+              "type": "text",
+              "title": "Tình huống 2 · operator",
+              "body": "A=[[2,-1],[1,3]] đi cùng quy tắc y=Ax. Lúc này từng hàng của A là một linear functional tạo một thành phần của y; từng cột cho biết một tọa độ đầu vào đóng góp vào toàn bộ đầu ra thế nào."
+            },
+            {
+              "type": "text",
+              "title": "Điểm phản trực giác",
+              "body": "Không thể quyết định vai trò chỉ bằng shape hay bằng việc nó được lưu trong np.array. Phải có semantic contract: hàng/cột nghĩa là gì, input/output là gì, đơn vị nào, và phép toán dự định là gì."
+            },
+            {
+              "type": "qa",
+              "title": "Chẩn đoán",
+              "body": "Một file CSV 1000×8 và một ma trận A 1000×8 có thể giống shape. Thông tin tối thiểu nào cần thêm để biết cái nào là dữ liệu, cái nào là toán tử?"
             }
           ]
         },
         {
           "role": "real_bridge",
-          "title": "Ma trận trong hệ thống kỹ thuật",
+          "title": "CONTEXT · Từ hệ kỹ thuật sang không gian dữ liệu",
+          "sourceRefs": [
+            "bmstu_iu5_2026_curriculum"
+          ],
           "blocks": [
             {
               "type": "text",
-              "title": "Ví dụ",
-              "body": "Trong điều khiển, x_{t+1}=A x_t mô tả trạng thái kế tiếp. Trong AI, X chứa dữ liệu huấn luyện. Trong đồ họa, A có thể xoay, co giãn hoặc chiếu vector."
+              "title": "Ví dụ kỹ thuật tự nhiên",
+              "body": "Với trạng thái x=[position, velocity], ma trận A có thể mô tả cập nhật trạng thái gần đúng trong một bước thời gian. Đây là cách đọc operator, phù hợp với nền Automation/Control mà bạn đã từng học."
+            },
+            {
+              "type": "formula",
+              "title": "Mô hình vận tốc không đổi",
+              "body": "Δt = 0.5 s\nA = [[1, 0.5],[0, 1]]\nx = [10 m, 2 m/s]\nAx = [11 m, 2 m/s]"
+            },
+            {
+              "type": "text",
+              "title": "Đơn vị không biến mất",
+              "body": "Các phần tử của A phải mang đơn vị thích hợp để tổng ở mỗi hàng có nghĩa vật lý. Số 0.5 trong ô (1,2) ở ví dụ trên là thời gian 0.5 s; nhờ đó 0.5 s × 2 m/s tạo ra 1 m."
+            },
+            {
+              "type": "qa",
+              "title": "Câu hỏi kỹ thuật",
+              "body": "Nếu đổi Δt thành 2 s nhưng vẫn giữ A như cũ, code vẫn chạy. Kết quả có còn đúng mô hình không? Hãy giải thích bằng đơn vị và semantic contract."
             }
           ]
         },
         {
           "role": "notation",
-          "title": "Ký hiệu ma trận",
+          "title": "FORMALIZE · Shape là hợp đồng giữa domain và codomain",
+          "sourceRefs": [
+            "mit_1806_linear_transformations",
+            "numpy_matmul"
+          ],
           "blocks": [
             {
               "type": "formula",
-              "title": "Ma trận m x n",
-              "body": "A in R^{m x n}\na_ij = phần tử hàng i, cột j"
+              "title": "Ký hiệu chuẩn",
+              "body": "A ∈ R^(m×n), x ∈ R^n, y = Ax ∈ R^m\nA có n cột vì mỗi hàng phải ghép với n tọa độ của x.\nA có m hàng vì ta tạo ra m thành phần đầu ra."
             },
             {
               "type": "formula",
-              "title": "Vector đầu vào/đầu ra",
-              "body": "y = A x, với x in R^n và y in R^m"
+              "title": "Dạng phần tử",
+              "body": "y_i = Σ_(j=1)^n a_ij x_j\nMỗi y_i là dot product giữa hàng i của A và x."
+            },
+            {
+              "type": "text",
+              "title": "Không chỉ là kiểm lỗi shape",
+              "body": "n mô tả số bậc tự do đầu vào; m mô tả số đại lượng đầu ra. Vì vậy shape là một phần của mô hình toán học. Một phép nhân sai shape thường báo rằng domain/codomain đang bị mô tả sai."
+            },
+            {
+              "type": "qa",
+              "title": "Quick check",
+              "body": "A ∈ R^(4×3), x ∈ R^3. y nằm trong không gian nào? Nếu x ∈ R^4 thì lỗi là lỗi cú pháp hay lỗi mô hình?"
             }
           ]
         },
         {
           "role": "core_formula",
-          "title": "Ma trận nhân vector",
+          "title": "CORE · Ax có hai cách hiểu bổ sung cho nhau",
+          "sourceRefs": [
+            "mit_1806_linear_transformations"
+          ],
           "blocks": [
             {
               "type": "formula",
-              "title": "Dạng hàng",
-              "body": "y_i = a_i · x"
+              "title": "Góc nhìn theo hàng",
+              "body": "Nếu a_i^T là hàng i của A:\ny_i = a_i^T x.\nMỗi hàng là một phép đo tuyến tính trên x."
+            },
+            {
+              "type": "formula",
+              "title": "Góc nhìn theo cột",
+              "body": "Nếu c_j là cột j của A:\nAx = x_1 c_1 + x_2 c_2 + ... + x_n c_n.\nĐầu ra là tổ hợp tuyến tính các cột của A với hệ số chính là tọa độ của x."
             },
             {
               "type": "text",
-              "title": "Diễn giải",
-              "body": "Mỗi thành phần đầu ra là dot product giữa một hàng của A và vector x. Vì vậy A là tập các phép đo tuyến tính đặt lên x."
+              "title": "Vì sao cần cả hai",
+              "body": "Góc nhìn hàng thuận tiện để tính từng đầu ra; góc nhìn cột giải thích hình học: ảnh của mọi x nằm trong span của các cột. Đây là cầu trực tiếp tới rank, column space và bài §2.3."
+            },
+            {
+              "type": "qa",
+              "title": "Retrieve",
+              "body": "Không tính số: nếu cột thứ 3 của A bằng 0, thay đổi x_3 có ảnh hưởng Ax không? Trả lời theo góc nhìn tổ hợp cột."
             }
           ]
         },
         {
           "role": "assumption_gate",
-          "title": "Điều kiện đúng chiều",
+          "title": "ASSUMPTION GATE · Khi nào quy tắc thực sự tuyến tính?",
           "blocks": [
             {
+              "type": "formula",
+              "title": "Hai điều kiện",
+              "body": "T(u+v)=T(u)+T(v)\nT(αu)=αT(u)\nVới T(x)=Ax, cả hai điều kiện đúng do tính phân phối và kết hợp của phép nhân/cộng."
+            },
+            {
               "type": "text",
-              "title": "Điều kiện",
-              "body": "A x chỉ xác định khi số cột của A bằng số chiều của x. Sai chiều là lỗi mô hình, không chỉ là lỗi lập trình."
+              "title": "Khi nào thất bại",
+              "body": "Quy tắc y=Ax+b với b≠0 là affine, không tuyến tính theo nghĩa nghiêm ngặt vì T(0)=b≠0. ReLU(Ax), saturation, clipping hay logic điều kiện cũng không còn là ánh xạ tuyến tính toàn cục."
+            },
+            {
+              "type": "text",
+              "title": "Điều kiện diễn giải",
+              "body": "Ngay cả khi T là tuyến tính về toán, diễn giải kỹ thuật vẫn cần các tọa độ có nghĩa, unit/scale phù hợp và domain đúng. «Tuyến tính» không đồng nghĩa «mô hình đúng cho mọi chế độ vận hành»."
+            },
+            {
+              "type": "qa",
+              "title": "Diagnostic",
+              "body": "Quy tắc T(x)=2x+[1,0] có thỏa T(0)=0 không? Chỉ dựa trên câu hỏi này, bạn đã có thể kết luận gì?"
             }
           ]
         },
         {
           "role": "mini_case",
-          "title": "Mini case: biến đổi trạng thái robot",
+          "title": "E1 SIMPLE · Tính tay để thấy cơ chế",
           "blocks": [
             {
+              "type": "formula",
+              "title": "Dữ liệu nhỏ",
+              "body": "A = [[2,-1],[1,3]], x=[4,2]^T"
+            },
+            {
               "type": "text",
-              "title": "Case",
-              "body": "Nếu x=[position, velocity], ma trận A có thể mô tả cập nhật gần đúng sau một bước thời gian: vị trí mới phụ thuộc vị trí cũ và vận tốc cũ."
+              "title": "Theo hàng",
+              "body": "y_1=2·4+(-1)·2=6; y_2=1·4+3·2=10. Vậy y=[6,10]^T."
+            },
+            {
+              "type": "text",
+              "title": "Theo cột",
+              "body": "c_1=[2,1]^T, c_2=[-1,3]^T. Ax=4c_1+2c_2=[8,4]+[-2,6]=[6,10]. Hai cách đọc phải cho cùng kết quả."
+            },
+            {
+              "type": "qa",
+              "title": "Câu hỏi cơ chế",
+              "body": "Nếu chỉ thay x_2 từ 2 thành 3, đầu ra thay đổi đúng bằng vector nào? Không nhân lại toàn bộ; hãy dùng góc nhìn theo cột."
             }
           ]
         },
         {
           "role": "interpretation",
-          "title": "Đọc ma trận theo hàng và cột",
+          "title": "E2 CONTEXTUAL · Ma trận trạng thái không phải ma trận dữ liệu",
           "blocks": [
             {
               "type": "text",
-              "title": "Theo hàng",
-              "body": "Mỗi hàng là một phép đo tuyến tính tạo ra một thành phần đầu ra."
+              "title": "Bối cảnh",
+              "body": "A=[[1,0.5],[0,1]] và x=[10,2] biểu diễn một bước cập nhật trạng thái [position, velocity] với Δt=0.5 s. A là operator; x là một state vector."
+            },
+            {
+              "type": "formula",
+              "title": "Tính",
+              "body": "Ax = [1·10 + 0.5·2, 0·10 + 1·2] = [11,2]."
             },
             {
               "type": "text",
-              "title": "Theo cột",
-              "body": "Mỗi cột cho biết một biến đầu vào đóng góp vào toàn bộ vector đầu ra thế nào."
+              "title": "So với data matrix",
+              "body": "Nếu ta ghi 1000 trạng thái [position,velocity] theo thời gian thành X∈R^(1000×2), X là data matrix. Cùng hai cột nhưng X và A trả lời hai câu hỏi khác nhau: «đã quan sát gì?» và «state được biến đổi thế nào?»."
+            },
+            {
+              "type": "qa",
+              "title": "Transfer nhẹ",
+              "body": "Một ma trận 2×2 có tên scaler = [[1/100,0],[0,1/10]] dùng để chuẩn hóa hai feature. Đây là dữ liệu hay operator? Cần nói rõ input/output nào."
             }
           ]
         },
         {
           "role": "simulation",
-          "title": "Thí nghiệm biến đổi vector bằng Python",
+          "title": "BEGINNER ENTRY · NumPy là máy tính, không phải nguồn chân lý",
+          "sourceRefs": [
+            "numpy_matmul",
+            "numpy_allclose"
+          ],
           "blocks": [
             {
               "type": "code",
-              "title": "Công cụ",
-              "body": "A.shape\ny = A @ x\nnp.allclose(A @ (u+v), A@u + A@v)"
+              "title": "Code tối thiểu, deterministic",
+              "body": "import numpy as np\n\nA = np.array([[2., -1.], [1., 3.]])\nx = np.array([4., 2.])\ny = A @ x\n\nexpected = np.array([6., 10.])\nassert A.shape == (2, 2)\nassert x.shape == (2,)\nassert y.shape == (2,)\nassert np.allclose(y, expected, rtol=1e-12, atol=1e-12)\nprint(y)"
             },
             {
               "type": "text",
-              "title": "Mục tiêu",
-              "body": "Kiểm tra tính tuyến tính: A(u+v)=Au+Av và A(alpha u)=alpha Au."
+              "title": "BEGINNER ENTRY · đọc @",
+              "body": "Với ndarray, @ thực hiện matrix product. Ở đây A là 2-D và x là 1-D nên kết quả là vector 1-D. Hãy in A.shape, x.shape và y.shape trước khi tin vào con số."
+            },
+            {
+              "type": "text",
+              "title": "Tại sao output đáng tin hơn",
+              "body": "Ta có hai nguồn kiểm độc lập: kết quả tay [6,10] và invariant shape. allclose chỉ xác nhận sai khác số nằm trong tolerance đã khai báo; nó không xác nhận ý nghĩa vật lý hay semantic contract."
+            },
+            {
+              "type": "qa",
+              "title": "Parameter experiment",
+              "body": "Thay x=[4,3]. Trước khi chạy code, dự đoán y bằng góc nhìn cột. Sau đó mới dùng @ để kiểm."
             }
           ]
         },
         {
           "role": "common_mistakes",
-          "title": "Lỗi thường gặp",
+          "title": "MISCONCEPTION MAP · Bẫy cần chẩn đoán",
           "blocks": [
             {
               "type": "text",
-              "title": "Lỗi",
-              "body": "Nhầm dữ liệu với toán tử; nhân sai chiều; không ghi rõ quy ước hàng/cột; xem mọi bảng số là ma trận biến đổi dù chỉ là dữ liệu quan sát."
+              "title": "MAJOR · «Mọi bảng số đều là phép biến đổi»",
+              "body": "Vì cùng được lưu dưới dạng array nên rất dễ đồng nhất data matrix với operator. Sửa: hỏi rõ semantic contract và phép toán dự định. Diagnostic: «hàng thứ i là mẫu hay là một linear functional?» Evidence: learner phải nêu input/output."
+            },
+            {
+              "type": "text",
+              "title": "MAJOR · «Code chạy nghĩa là mô hình đúng»",
+              "body": "NumPy chỉ kiểm quy tắc array/matmul, không kiểm unit, feature order hay ý nghĩa biến. Diagnostic: cho A và x đúng shape nhưng tráo feature order; learner phải phát hiện kết quả vô nghĩa dù code chạy."
+            },
+            {
+              "type": "text",
+              "title": "MAJOR · «Ax là nhân từng phần tử»",
+              "body": "Matrix-vector product dùng tổng tích theo hàng, không phải elementwise multiplication. Diagnostic: yêu cầu giải thích vì sao y có m phần tử khi A có m hàng."
+            },
+            {
+              "type": "text",
+              "title": "MINOR→MAJOR tùy ngữ cảnh · «Ax+b vẫn tuyến tính»",
+              "body": "Bias làm quy tắc affine nếu b≠0. Diagnostic: kiểm T(0). Trong ML thuật ngữ «linear layer» đôi khi vẫn có bias trong implementation, nên phải tách tên gọi thực hành khỏi định nghĩa toán."
             }
           ]
         },
         {
           "role": "application",
-          "title": "Ứng dụng lập trình",
+          "title": "E3 TRANSFER · Phân loại trước, rồi mới tính",
           "blocks": [
             {
               "type": "text",
-              "title": "Nhiệm vụ",
-              "body": "Viết hàm kiểm tra shape của A và x trước khi nhân. In diễn giải: số cột A phải bằng số thành phần của x."
+              "title": "Tình huống mới",
+              "body": "Bạn nhận hai object: X có shape (500,3), mô tả 500 bản ghi [temperature,current,vibration]; B=[[1,0,0],[0,0.1,0],[0,0,2]] dùng để đổi scale/weight ba feature."
+            },
+            {
+              "type": "qa",
+              "title": "Nhiệm vụ 1 · classify",
+              "body": "X và B đang đóng vai trò gì? Hãy trả lời bằng câu đầy đủ, không chỉ «matrix». Chỉ ra domain/codomain của B."
+            },
+            {
+              "type": "qa",
+              "title": "Nhiệm vụ 2 · shape reasoning",
+              "body": "Với một sample x∈R^3, Bx có shape gì? Với toàn bộ X theo quy ước hàng=mẫu, biểu thức X @ B.T có shape gì? Tại sao cần transpose trong quy ước này?"
+            },
+            {
+              "type": "qa",
+              "title": "Nhiệm vụ 3 · failure mode",
+              "body": "Nếu cột temperature thực ra là °C nhưng bạn tưởng là K, shape vẫn đúng. Loại gate nào phải bắt lỗi này: syntax, numerical hay semantic/unit?"
             }
           ]
         },
         {
           "role": "practice",
-          "title": "Bài luyện tập",
+          "title": "PRACTICE LADDER · P0 → P3",
           "blocks": [
             {
-              "type": "text",
-              "title": "Bài tập",
-              "body": "Cho A = [[1,2],[0,1]] và x=[3,4]. Tính y=Ax. Giải thích mỗi hàng của A đã đo gì từ x."
+              "type": "qa",
+              "title": "P0 · Recognition",
+              "body": "Trong 5 mô tả ngắn, phân loại object thành data matrix / operator / chưa đủ thông tin. Evidence đạt: ≥4/5 đúng và nêu được dấu hiệu quyết định."
+            },
+            {
+              "type": "qa",
+              "title": "P1 · Guided",
+              "body": "Cho A=[[3,1],[-2,4]], x=[2,-1]. Điền từng dot product hàng, tính y, rồi viết lại cùng kết quả như tổ hợp hai cột của A."
+            },
+            {
+              "type": "qa",
+              "title": "P2 · Independent",
+              "body": "Tự viết NumPy tạo A,x; kiểm shape; tính y=A@x; tự tạo expected từ phép tính tay; dùng np.allclose với rtol=atol=1e-12. Không copy code mẫu."
+            },
+            {
+              "type": "qa",
+              "title": "P3 · Transfer",
+              "body": "Cho T(x)=Ax+b và một bảng log X. Hãy: (1) xác định object nào là dữ liệu/toán tử, (2) kiểm T có tuyến tính không, (3) nêu một lỗi semantic mà NumPy không thể tự phát hiện."
             }
           ]
         },
         {
           "role": "professor_qa",
-          "title": "Vấn đáp kiểm tra hiểu sâu",
+          "title": "ASSESSMENT · D0 / D1 / D2, không suy mastery từ click",
           "blocks": [
             {
               "type": "qa",
-              "title": "Câu hỏi",
-              "body": "Khi nào ma trận là dữ liệu, khi nào là phép biến đổi? Vì sao phải kiểm shape trước khi diễn giải kết quả?"
+              "title": "D0 RECALL",
+              "body": "Nêu điều kiện shape để Ax tồn tại và hai điều kiện định nghĩa tính tuyến tính. Evidence: đúng ký hiệu và không nhầm với affine."
+            },
+            {
+              "type": "qa",
+              "title": "D1 APPLICATION · trọng số cao nhất",
+              "body": "A∈R^(3×2), x∈R^2. Tự chọn số cụ thể cho A,x, tính Ax bằng hai cách, kiểm bằng NumPy, rồi thay đổi một tọa độ x và dự đoán delta-y mà không nhân lại toàn bộ."
+            },
+            {
+              "type": "qa",
+              "title": "D2 EXPLAIN / ORAL",
+              "body": "Giải thích trong 60–90 giây: «Vì sao một np.array 2-D chưa đủ để gọi là linear transformation, và vì sao code chạy chưa chứng minh mô hình đúng?»"
+            },
+            {
+              "type": "text",
+              "title": "Mastery evidence",
+              "body": "Đạt bài khi D1 độc lập đúng, D2 giải thích được semantic contract và software trust, không chỉ mở slide/chạy code mẫu. Một click hoặc một phép tính dễ không được tính là mastery."
             }
           ]
         },
         {
           "role": "bridge",
-          "title": "Cầu sang phép nhân ma trận",
+          "title": "TECHNICAL RUSSIAN + NEXT · đủ dùng đúng lúc",
           "blocks": [
             {
               "type": "text",
-              "title": "Liên kết",
-              "body": "Nếu một ma trận biến đổi vector, thì nhiều ma trận nối tiếp tạo thành pipeline biến đổi. Bài tiếp theo học phép nhân ma trận như cách ghép các biến đổi."
+              "title": "9 thuật ngữ",
+              "body": "матрица · строка · столбец · элемент матрицы · линейное преобразование · входной вектор · выходной вектор · размерность · умножение матрицы на вектор"
+            },
+            {
+              "type": "text",
+              "title": "4 động từ lệnh",
+              "body": "вычислите — tính; определите — xác định; проверьте — kiểm tra; объясните — giải thích."
+            },
+            {
+              "type": "text",
+              "title": "Khung vấn đáp",
+              "body": "«Матрица A задаёт линейное преобразование из R^n в R^m.»\n«Размерности согласованы, потому что число столбцов A равно размерности x.»"
+            },
+            {
+              "type": "text",
+              "title": "Cầu sang §2.2",
+              "body": "Bài này biến một vector bằng một ma trận. §2.2 sẽ ghép nhiều phép biến đổi: nếu y=Bx và z=Ay thì z=A(Bx)=(AB)x. Trọng tâm kế tiếp là thứ tự và shape của pipeline."
             }
           ]
         },
         {
           "role": "takeaway",
-          "title": "Kết luận cần nhớ",
+          "title": "REVIEW · 6 điều phải mang sang bài sau",
           "blocks": [
             {
               "type": "text",
-              "title": "Cốt lõi",
-              "body": "Ma trận có hai đời sống: bảng dữ liệu và toán tử tuyến tính. Muốn dùng đúng phải biết mình đang đọc nó theo nghĩa nào."
+              "title": "1–2 · Vai trò và shape",
+              "body": "Ma trận có thể là dữ liệu hoặc operator; vai trò đến từ semantic contract. Với A∈R^(m×n), x∈R^n thì Ax∈R^m."
+            },
+            {
+              "type": "text",
+              "title": "3–4 · Hai cách đọc Ax",
+              "body": "Theo hàng: mỗi output là dot product. Theo cột: output là tổ hợp tuyến tính các cột. Hai cách phải thống nhất."
+            },
+            {
+              "type": "text",
+              "title": "5 · Linearity",
+              "body": "Tuyến tính cần additivity + homogeneity; Ax+b với b≠0 là affine theo định nghĩa toán."
+            },
+            {
+              "type": "text",
+              "title": "6 · Trust but verify",
+              "body": "Dùng NumPy để tính nhanh, nhưng tin kết quả khi đã kiểm shape, đối chiếu ví dụ tay/invariant với tolerance phù hợp, và xác nhận unit + feature order + ý nghĩa mô hình."
             }
           ]
         }
@@ -5415,5 +5844,12 @@
         }
       ]
     }
-  ]
+  ],
+  "lastContentPass": {
+    "id": "E165",
+    "lessonId": "MATH-VN-C02-ma_tran_va_phep_bien_oi_-L01-matrix-as-data-and-transform-e142",
+    "status": "CONTENT_QA_PASS_RUNTIME_BASELINE_INHERITED_PENDING",
+    "generatedAt": "2026-09-21",
+    "inheritedRuntimeGate": "E164"
+  }
 }
