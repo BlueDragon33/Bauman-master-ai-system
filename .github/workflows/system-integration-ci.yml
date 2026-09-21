@@ -2,9 +2,7 @@ name: Whole System Integration Gate
 
 on:
   push:
-    branches:
-      - main
-      - stabilization/roadmap-v2-reconcile-current-runtime
+    branches: [main]
     paths:
       - "index.html"
       - "assets/**"
