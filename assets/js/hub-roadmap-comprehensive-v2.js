@@ -16,9 +16,9 @@
 
   const PHASES=[
     {id:'foundation',n:1,title:'Giai đoạn 1: Nền tảng',short:'Nền tảng',subtitle:'Xây dựng nền tảng vững chắc',source:['prepare'],tone:'green'},
-    {id:'preparatory',n:2,title:'Giai đoạn 2: Củng cố',short:'Củng cố',subtitle:'Dự bị tiếng Nga và khoa học nền tại Nga',source:['preparatory'],tone:'blue'},
-    {id:'deep',n:3,title:'Giai đoạn 3: Chuyên sâu',short:'Chuyên sâu',subtitle:'Chính khóa Bauman · HK1–HK2',source:['m1','m2','bauman'],tone:'violet'},
-    {id:'application',n:4,title:'Giai đoạn 4: Ứng dụng',short:'Ứng dụng',subtitle:'НИР sâu · thực nghiệm · ВКР',source:['m3','m4'],tone:'red'}
+    {id:'preparatory',n:2,title:'Giai đoạn 2: Củng cố',short:'Củng cố',subtitle:'Mở rộng kiến thức · dự bị tiếng Nga và khoa học nền',source:['preparatory'],tone:'blue'},
+    {id:'deep',n:3,title:'Giai đoạn 3: Chuyên sâu',short:'Chuyên sâu',subtitle:'Nâng cao và chuyên ngành · Bauman HK1–HK2',source:['m1','m2','bauman'],tone:'violet'},
+    {id:'application',n:4,title:'Giai đoạn 4: Ứng dụng',short:'Ứng dụng',subtitle:'Sẵn sàng cho tương lai · НИР · thực nghiệm · ВКР',source:['m3','m4'],tone:'red'}
   ];
   const FILTERS=[
     {id:'all',label:'Tất cả',icon:'▦',subjects:null},
@@ -209,6 +209,12 @@
     document.body.dataset.hubRoadmapV4=active?'1':'0';
     q('#hubRoadmapTopNav')?.classList.toggle('hidden',!active);
     q('#hubRoadmapJourney')?.classList.toggle('hidden',!active);
+    const brand=q('.brand'),brandTitle=q('.brand b'),brandSub=q('.brand small');
+    if(brandTitle&&!brandTitle.dataset.rmOriginal)brandTitle.dataset.rmOriginal=brandTitle.textContent||'BAUMAN';
+    if(brandSub&&!brandSub.dataset.rmOriginal)brandSub.dataset.rmOriginal=brandSub.textContent||'MASTER HUB';
+    if(brandTitle)brandTitle.textContent=active?'BAUMAN HUB':brandTitle.dataset.rmOriginal;
+    if(brandSub)brandSub.textContent=active?'Русский язык':brandSub.dataset.rmOriginal;
+    brand?.classList.toggle('hub-rm-brand-active',active);
     const nav=q('#nav');
     if(nav){
       const visiblePages=new Set(['home','roadmap','schedule','subjects']);
