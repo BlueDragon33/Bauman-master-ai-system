@@ -1,12 +1,7 @@
 name: Academic 2026 Phase2 Current-Main Promotion Gate
 
 on:
-  push:
-    branches:
-      - academic/phase2-current-main-rebuild
-  pull_request:
-    branches:
-      - main
+  workflow_dispatch:
 
 permissions:
   contents: read
@@ -17,6 +12,7 @@ concurrency:
 
 jobs:
   promotion-static:
+    if: github.ref == 'refs/heads/academic/phase2-current-main-rebuild'
     runs-on: ubuntu-24.04
     timeout-minutes: 15
     steps:
