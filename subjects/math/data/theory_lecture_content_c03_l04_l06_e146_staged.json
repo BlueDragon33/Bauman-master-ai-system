@@ -1,7 +1,7 @@
 {
   "id": "bauman_math_theory_lecture_content_c03_l04_l06_e146_staged",
   "schema": "bauman_math_content_records_v1",
-  "version": "E146_C03_L04_L06_STAGED",
+  "version": "E180_C03_L04_L06_SYNCED_TO_CONTENT_FACTORY",
   "title": "C03 · Giải tích, đạo hàm và gradient · Nội dung staged §3.4–§3.6",
   "role": "content_staged_for_merge",
   "targetFile": "subjects/math/data/theory_lecture_content.json",
@@ -13,714 +13,2047 @@
       "chapterId": "MATH-VN-C03-ham_so_ao_ham_va_gradien",
       "lessonTitle": "§3.4 · Gradient descent và learning rate",
       "title": "§3.4 · Gradient descent và learning rate",
-      "programLectureId": "MATH-PROG-L03-calculus-gradient-optimization",
+      "orderInChapter": 4,
+      "programLectureId": "MATH-PROG-L06-optimization",
       "programLectureIds": [
-        "MATH-PROG-L03-calculus-gradient-optimization",
-        "MATH-PROG-L17-ai-machine-learning-math-foundations",
-        "MATH-PROG-L02-vector-spaces-linear-maps"
+        "MATH-PROG-L06-optimization",
+        "MATH-PROG-L05-calculus-gradient",
+        "MATH-PROG-L17-ai-machine-learning-math-foundations"
       ],
-      "programAnchorTitle": "Giải tích, gradient và tối ưu",
+      "programAnchorTitle": "Tối ưu và phương pháp gradient",
       "roadmapRole": "foundation_before_prep",
-      "baumanFocus": "Nắm gradient descent như quy trình cập nhật tham số để giảm sai số, hiểu vai trò learning rate, hội tụ, dao động và lỗi triển khai thường gặp trong mô hình AI/kỹ thuật.",
+      "baumanFocus": "Hiểu gradient descent như lặp local descent direction với learning rate; phân tích quadratic 1D/2D để thấy convergence, oscillation và divergence; theo dõi objective/gradient norm thay vì tin một trajectory mù.",
+      "pureLayer": [
+        "gradient descent",
+        "step size",
+        "learning rate",
+        "quadratic objective",
+        "convergence",
+        "descent direction"
+      ],
+      "appliedLayer": [
+        "loss minimization",
+        "parameter update",
+        "optimization trace",
+        "NumPy simulation",
+        "ML training intuition"
+      ],
+      "bridgeQuestion": "Biết hướng -gradient rồi, phải đi bao xa mỗi bước để giảm objective mà không overshoot hoặc diverge?",
+      "auditStatus": "REVIEW",
       "sourceAnchors": {
         "stageId": "vn",
-        "disciplineId": "calculus_optimization",
+        "disciplineId": "calculus_multivariable",
         "chapterId": "MATH-VN-C03-ham_so_ao_ham_va_gradien",
-        "programLectureId": "MATH-PROG-L03-calculus-gradient-optimization"
+        "programLectureId": "MATH-PROG-L06-optimization",
+        "officialCurriculum": "bmstu_iu5_2026_curriculum"
       },
       "tags": [
         "gradient descent",
         "learning rate",
         "optimization",
-        "loss",
-        "convergence"
+        "convergence",
+        "quadratic loss",
+        "NumPy"
       ],
+      "learningContract": {
+        "governingQuestion": "Gradient descent update hoạt động thế nào và learning rate kiểm soát tốc độ, dao động, divergence ra sao?",
+        "whyNeeded": "Đây là thuật toán nền cho tối ưu tham số trong ML và nhiều bài toán fitting; cần hiểu trước khi học optimality và backprop.",
+        "prerequisiteGates": [
+          "Hiểu gradient là local steepest Euclidean ascent direction từ §3.3.",
+          "Hiểu -gradient là local descent direction first-order.",
+          "Biết local linear approximation và scalar/vector arithmetic.",
+          "Biết Python loop/NumPy ở mức beginner entry."
+        ],
+        "measurableLearningOutcomes": [
+          "LO1: Viết đúng update x_{k+1}=x_k-α∇f(x_k) và giải thích vai trò từng thành phần.",
+          "LO2: Với quadratic 1D, suy recurrence của error và xác định miền α gây convergence/oscillation/divergence.",
+          "LO3: Tự chạy deterministic gradient-descent trace và đọc objective, gradient norm, step norm.",
+          "LO4: Phân biệt learning rate quá nhỏ, phù hợp và quá lớn bằng trajectory evidence.",
+          "LO5: Giải thích vì sao -gradient là local descent direction nhưng một bước hữu hạn vẫn có thể tăng loss nếu α quá lớn.",
+          "LO6: Nhận biết ill-scaled quadratic gây zig-zag và nối vấn đề này với scaling/preconditioning.",
+          "LO7: Nêu stopping criteria tối thiểu dựa trên gradient norm, objective change, step norm và iteration budget."
+        ],
+        "exactScope": [
+          "basic gradient descent",
+          "constant learning rate",
+          "quadratic analysis",
+          "convergence trace",
+          "stopping signals",
+          "scale sensitivity"
+        ],
+        "explicitDeferrals": [
+          "Momentum/Adam/RMSProp → later ML optimization.",
+          "Line search convergence theory → later optimization.",
+          "Stochastic/minibatch gradients → later ML.",
+          "Convex convergence rates/proofs → advanced optimization."
+        ],
+        "canonicalTerminology": {
+          "gradientDescent": "hạ gradient/gradient descent",
+          "learningRate": "learning rate/bước học",
+          "stepSize": "độ dài bước",
+          "iteration": "lần lặp",
+          "convergence": "hội tụ",
+          "oscillation": "dao động",
+          "divergence": "phân kỳ",
+          "stoppingCriterion": "tiêu chí dừng"
+        },
+        "symbols": {
+          "x_k": "parameter vector at iteration k",
+          "α": "learning rate/step size",
+          "g_k": "∇f(x_k)",
+          "x_{k+1}=x_k-αg_k": "gradient-descent update",
+          "||g_k||": "gradient norm used as one stopping signal"
+        },
+        "continuity": {
+          "previous": "§3.3 · Gradient như hướng thay đổi nhanh nhất",
+          "next": "§3.5 · Hàm mất mát, cực trị và điều kiện tối ưu"
+        }
+      },
+      "technicalRussian": {
+        "terms": [
+          [
+            "градиентный спуск",
+            "gradient descent"
+          ],
+          [
+            "скорость обучения",
+            "learning rate"
+          ],
+          [
+            "шаг",
+            "bước"
+          ],
+          [
+            "итерация",
+            "lần lặp"
+          ],
+          [
+            "сходимость",
+            "hội tụ"
+          ],
+          [
+            "колебание",
+            "dao động"
+          ],
+          [
+            "расходимость",
+            "phân kỳ"
+          ],
+          [
+            "норма градиента",
+            "gradient norm"
+          ],
+          [
+            "критерий остановки",
+            "tiêu chí dừng"
+          ]
+        ],
+        "commandVerbs": [
+          [
+            "обновите",
+            "hãy cập nhật"
+          ],
+          [
+            "выберите",
+            "hãy chọn"
+          ],
+          [
+            "проследите",
+            "hãy theo dõi"
+          ],
+          [
+            "объясните",
+            "hãy giải thích"
+          ]
+        ],
+        "oralFrames": [
+          "Градиентный спуск обновляет параметры в направлении отрицательного градиента.",
+          "Слишком большой шаг может увеличить функцию и вызвать расходимость.",
+          "Сходимость нужно контролировать по значению функции, норме градиента и размеру шага."
+        ]
+      },
+      "sourceProvenance": [
+        {
+          "id": "bmstu_iu5_2026_curriculum",
+          "kind": "official_curriculum",
+          "url": "https://home.science.iu5.bmstu.ru/study-plans/iu5-master-program.pdf",
+          "supports": [
+            "preparation context for optimization, AI and machine-learning coursework"
+          ]
+        },
+        {
+          "id": "mit_18065_gradient_descent",
+          "kind": "authoritative_university_material",
+          "url": "https://ocw.mit.edu/courses/18-065-matrix-methods-in-data-analysis-signal-processing-and-machine-learning-spring-2018/resources/lecture-22-gradient-descent-downhill-to-a-minimum/",
+          "supports": [
+            "gradient descent update as movement downhill using first derivatives",
+            "quadratic examples and zig-zag behavior"
+          ]
+        },
+        {
+          "id": "mit_67220_gradient_descent",
+          "kind": "authoritative_university_material",
+          "url": "https://ocw.mit.edu/courses/6-7220j-nonlinear-optimization-spring-2025/pages/calendar/",
+          "supports": [
+            "gradient descent as a first-order optimization method",
+            "descent lemmas and first-order algorithm context"
+          ]
+        }
+      ],
+      "generatedMaterial": {
+        "status": "AI_DRAFT_REVIEWED_IN_CONTENT_FACTORY",
+        "lineage": "Generated foundation lesson anchored to MIT gradient-descent/optimization material and prior gradient lesson.",
+        "canonicalSourceReplacement": false
+      },
+      "contentFactory": {
+        "C1": "PASS",
+        "C2": "PASS",
+        "C3": "PASS",
+        "C4": "PASS",
+        "C5": "PASS",
+        "C6": {
+          "software": "PASS_STATIC_AFTER_E166_E173",
+          "user": "PASS",
+          "blockers": 0,
+          "majors": 0,
+          "inheritedDeferredGate": "E164",
+          "acceptance": "LOCAL_CONTENT_QA_PASS_GLOBAL_BROWSER_BASELINE_PENDING"
+        }
+      },
       "slides": [
         {
           "role": "problem_framing",
-          "title": "Gradient descent biến đạo hàm thành cách tự cải thiện mô hình",
+          "title": "ORIENT · Biết hướng giảm vẫn chưa biết nên đi bao xa",
+          "sourceRefs": [
+            "mit_18065_gradient_descent"
+          ],
           "blocks": [
             {
               "type": "text",
-              "title": "Ý chính",
-              "body": "Sau khi biết gradient chỉ hướng tăng nhanh nhất, ta đi ngược hướng đó để giảm sai số. Gradient descent là vòng lặp: đo sai số, tính hướng sửa, bước một bước nhỏ, rồi kiểm tra lại."
+              "title": "Câu hỏi điều khiển",
+              "body": "-∇f cho hướng giảm cục bộ, nhưng update thực tế cần một độ dài bước α. Chọn α sai có thể làm loss giảm rất chậm, dao động hoặc tăng."
+            },
+            {
+              "type": "formula",
+              "title": "Update",
+              "body": "x_{k+1}=x_k-α∇f(x_k)"
+            },
+            {
+              "type": "text",
+              "title": "Learning contract",
+              "body": "Bài này tập trung vào constant learning rate trên quadratic để thấy cơ chế rõ trước khi gặp optimizer phức tạp."
+            },
+            {
+              "type": "qa",
+              "title": "Retrieval",
+              "body": "Nếu α=0 thì update làm gì? Nếu ∇f=0 thì update làm gì?"
             }
           ]
         },
         {
           "role": "deep_essence",
-          "title": "Tối ưu là điều khiển chuyển động trong không gian tham số",
+          "title": "REACTIVATION · -gradient là local direction, α biến direction thành step",
           "blocks": [
             {
               "type": "text",
-              "title": "Bản chất",
-              "body": "Tham số theta của mô hình tạo thành một điểm trong không gian nhiều chiều. Mỗi lần cập nhật theta là một bước di chuyển trên bề mặt hàm mất mát để tìm vùng có lỗi nhỏ hơn."
+              "title": "Từ §3.3",
+              "body": "Gradient mô tả first-order sensitivity. Step -α∇f kết hợp direction với magnitude."
+            },
+            {
+              "type": "formula",
+              "title": "First-order change",
+              "body": "f(x-αg)≈f(x)-α||g||^2, g=∇f(x)"
+            },
+            {
+              "type": "text",
+              "title": "Nhưng approximation chỉ local",
+              "body": "Với α đủ nhỏ, first-order model gợi ý loss giảm. α lớn có thể đi ra khỏi vùng approximation."
+            },
+            {
+              "type": "qa",
+              "title": "Tự nói lại",
+              "body": "Vì sao 'negative gradient' đúng hướng không đồng nghĩa 'bất kỳ step size nào' cũng giảm loss?"
             }
           ]
         },
         {
           "role": "counter_intuition",
-          "title": "Bước nhanh chưa chắc học nhanh",
+          "title": "COUNTER-INTUITION · Bước lớn hơn không luôn nhanh hơn",
           "blocks": [
             {
               "type": "text",
-              "title": "Điểm dễ nhầm",
-              "body": "Learning rate lớn có thể nhảy qua nghiệm tốt hoặc làm loss dao động. Learning rate quá nhỏ thì quá trình học lê bước, giống một robot đi dò đường nhưng mỗi lần chỉ dịch một hạt bụi."
+              "title": "Too small",
+              "body": "α quá nhỏ: loss thường giảm nhưng cần rất nhiều iterations."
+            },
+            {
+              "type": "text",
+              "title": "Too large",
+              "body": "α quá lớn: overshoot qua minimum, oscillate hoặc diverge."
+            },
+            {
+              "type": "text",
+              "title": "Sweet region",
+              "body": "Một α phù hợp cân bằng progress mỗi bước với local model validity."
+            },
+            {
+              "type": "qa",
+              "title": "Diagnostic",
+              "body": "Nếu loss xen kẽ hai phía minimum với amplitude giảm dần, đó có thể là convergence kiểu nào?"
             }
           ]
         },
         {
           "role": "real_bridge",
-          "title": "Gradient descent trong AI, điều khiển và nhận dạng hệ thống",
+          "title": "CONTEXT · Loss training là một trajectory, không phải một phép tính",
           "blocks": [
             {
               "type": "text",
-              "title": "Ví dụ",
-              "body": "Huấn luyện mạng neural, fitting đường cong cảm biến, hiệu chỉnh tham số bộ điều khiển và nhận dạng mô hình động lực đều dùng cùng ý tưởng: giảm sai số bằng các bước cập nhật có hướng."
+              "title": "Training view",
+              "body": "Optimizer tạo sequence w0,w1,... chứ không nhảy thẳng tới optimum."
+            },
+            {
+              "type": "text",
+              "title": "Logs",
+              "body": "Mỗi iteration nên có ít nhất objective, gradient norm và step norm để biết đang tiến triển hay hỏng."
+            },
+            {
+              "type": "text",
+              "title": "Stop vs fail",
+              "body": "Gradient nhỏ có thể là near-stationary; loss tăng nhanh hoặc NaN là failure signal, không phải 'training khó' bình thường."
+            },
+            {
+              "type": "qa",
+              "title": "Decision question",
+              "body": "Nếu loss giảm nhưng gradient norm vẫn lớn, nên kết luận đã hội tụ chưa?"
             }
           ]
         },
         {
           "role": "notation",
-          "title": "Ký hiệu cập nhật tham số",
+          "title": "FORMALIZE · Quadratic 1D cho phép nhìn toàn bộ recurrence",
           "blocks": [
             {
               "type": "formula",
-              "title": "Cập nhật một chiều",
-              "body": "theta_{k+1} = theta_k - alpha dJ/dtheta"
+              "title": "Objective",
+              "body": "f(w)=1/2 (w-3)^2\nf'(w)=w-3"
             },
             {
               "type": "formula",
-              "title": "Cập nhật nhiều chiều",
-              "body": "theta_{k+1} = theta_k - alpha grad J(theta_k)"
+              "title": "Update",
+              "body": "w_{k+1}=w_k-α(w_k-3)"
             },
             {
-              "type": "text",
-              "title": "Tên gọi",
-              "body": "alpha là learning rate; J(theta) là hàm mất mát; grad J là vector đạo hàm riêng theo các tham số."
+              "type": "formula",
+              "title": "Error recurrence",
+              "body": "e_k=w_k-3 ⇒ e_{k+1}=(1-α)e_k"
+            },
+            {
+              "type": "qa",
+              "title": "Quick check",
+              "body": "Convergence cần |1-α|<1. Suy ra interval α nào?"
             }
           ]
         },
         {
           "role": "core_formula",
-          "title": "Vòng lặp gradient descent tối thiểu",
+          "title": "CORE · α điều khiển contraction factor",
           "blocks": [
             {
               "type": "formula",
-              "title": "Thuật toán",
-              "body": "1. y_hat = f(x; theta)\n2. J = loss(y_hat, y)\n3. g = grad J(theta)\n4. theta = theta - alpha g"
+              "title": "Convergent interval",
+              "body": "0<α<2 cho f(w)=1/2(w-3)^2"
             },
             {
               "type": "text",
-              "title": "Ý nghĩa",
-              "body": "Bước 1 dự đoán, bước 2 đo sai, bước 3 tìm hướng làm sai số tăng, bước 4 đi ngược hướng đó."
+              "title": "0<α<1",
+              "body": "Error giữ sign và co dần về 0."
+            },
+            {
+              "type": "text",
+              "title": "1<α<2",
+              "body": "Error đổi sign mỗi bước nhưng magnitude vẫn co: oscillatory convergence."
+            },
+            {
+              "type": "qa",
+              "title": "Boundaries",
+              "body": "α=1 cho gì? α=2 cho gì? α>2 cho gì?"
             }
           ]
         },
         {
           "role": "assumption_gate",
-          "title": "Điều kiện để bước gradient đáng tin",
+          "title": "ASSUMPTION GATE · Một α tốt phụ thuộc curvature/scale",
           "blocks": [
             {
               "type": "text",
-              "title": "Điều kiện",
-              "body": "Hàm mất mát cần đủ trơn ở vùng đang học, gradient phải tính đúng hoặc xấp xỉ đủ ổn, dữ liệu không quá nhiễu, và learning rate phải phù hợp với độ cong của bề mặt loss."
+              "title": "1D lesson",
+              "body": "Interval ổn định trên phụ thuộc curvature của quadratic, không có một α universal."
+            },
+            {
+              "type": "formula",
+              "title": "General quadratic intuition",
+              "body": "f(x)=1/2 x^T H x\nlargest curvature direction chi phối upper stable step."
+            },
+            {
+              "type": "text",
+              "title": "Scaling effect",
+              "body": "Ill-scaled coordinates tạo curvature rất khác nhau, gây zig-zag hoặc ép α nhỏ."
+            },
+            {
+              "type": "qa",
+              "title": "Gate",
+              "body": "Nếu rescale một variable 1000×, có nên kỳ vọng α cũ vẫn tốt?"
             }
           ]
         },
         {
           "role": "mini_case",
-          "title": "Mini case: fitting đường thẳng cho dữ liệu cảm biến",
+          "title": "E1 SIMPLE · α=0.5 hội tụ đều",
           "blocks": [
             {
+              "type": "formula",
+              "title": "Start",
+              "body": "w0=0, optimum w*=3, α=0.5"
+            },
+            {
               "type": "text",
-              "title": "Case",
-              "body": "Mô hình y_hat = ax + b dự đoán nhiệt độ từ dòng điện. Gradient descent chỉnh a và b để giảm sai số giữa y_hat và y đo được. Nếu alpha hợp lý, đường thẳng dần ôm dữ liệu tốt hơn."
+              "title": "Trace",
+              "body": "w1=1.5, w2=2.25, w3=2.625, ..."
+            },
+            {
+              "type": "formula",
+              "title": "Loss",
+              "body": "f(w0)=4.5; f(w1)=1.125; f(w2)=0.28125"
+            },
+            {
+              "type": "qa",
+              "title": "Sanity",
+              "body": "Error mỗi bước nhân với factor nào?"
             }
           ]
         },
         {
           "role": "interpretation",
-          "title": "Learning rate là tay ga của thuật toán",
+          "title": "E2 CONTEXTUAL · α=1.5 oscillate nhưng vẫn hội tụ",
           "blocks": [
             {
-              "type": "text",
-              "title": "Quá nhỏ",
-              "body": "Loss giảm đều nhưng rất chậm, tốn nhiều vòng lặp."
+              "type": "formula",
+              "title": "Error factor",
+              "body": "1-α=-0.5"
             },
             {
               "type": "text",
-              "title": "Vừa đủ",
-              "body": "Loss giảm ổn định và nhanh."
+              "title": "Trace",
+              "body": "w0=0 → w1=4.5 → w2=2.25 → w3=3.375 → ..."
             },
             {
               "type": "text",
-              "title": "Quá lớn",
-              "body": "Loss nhảy loạn, tăng trở lại hoặc không hội tụ."
+              "title": "Interpretation",
+              "body": "Đi qua lại hai phía optimum nhưng distance giảm một nửa mỗi bước."
+            },
+            {
+              "type": "qa",
+              "title": "Transfer nhẹ",
+              "body": "α=2.2 cho factor -1.2. Magnitude error sẽ làm gì?"
             }
           ]
         },
         {
           "role": "simulation",
-          "title": "Thí nghiệm gradient descent bằng Python",
+          "title": "BEGINNER ENTRY · Trace objective, gradient norm và step norm",
           "blocks": [
             {
               "type": "code",
-              "title": "Công cụ",
-              "body": "theta = theta - alpha * grad\nloss_history.append(loss)\n\n# kiểm tra hội tụ\nif abs(loss_history[-1]-loss_history[-2]) < eps:\n    stop = True"
+              "title": "Deterministic code",
+              "body": "def f(w):\n    return 0.5*(w-3.0)**2\n\ndef grad(w):\n    return w-3.0\n\ndef run(alpha, w=0.0, steps=8):\n    trace=[]\n    for k in range(steps):\n        g=grad(w)\n        step=-alpha*g\n        trace.append((k,w,f(w),abs(g),abs(step)))\n        w=w+step\n    return trace\n\nfor a in (0.1,0.5,1.5,2.2):\n    print(a, run(a, steps=5))"
             },
             {
               "type": "text",
-              "title": "Mục tiêu",
-              "body": "Vẽ loss theo vòng lặp với alpha nhỏ, vừa, lớn để thấy ba kiểu: chậm, hội tụ tốt, dao động."
+              "title": "BEGINNER ENTRY · đừng chỉ print final w",
+              "body": "Trajectory mới cho biết slow/oscillatory/divergent behavior."
+            },
+            {
+              "type": "text",
+              "title": "Software trust",
+              "body": "Một final value gần optimum sau ít steps không đủ đánh giá optimizer; cần trace, tolerances và reproducible initial condition."
+            },
+            {
+              "type": "qa",
+              "title": "Experiment",
+              "body": "So sánh α=0.1,0.5,1.5,2.2 về monotonic loss, oscillation và divergence."
             }
           ]
         },
         {
           "role": "common_mistakes",
-          "title": "Lỗi thường gặp khi dùng gradient descent",
+          "title": "MISCONCEPTION MAP · 5 lỗi về gradient descent",
           "blocks": [
             {
               "type": "text",
-              "title": "Lỗi",
-              "body": "Không chuẩn hóa đặc trưng; chọn alpha theo cảm tính; không theo dõi loss; nhầm dấu cộng/trừ trong cập nhật; kết luận mô hình sai trong khi chỉ là learning rate sai."
+              "title": "MAJOR · «-gradient luôn giảm loss»",
+              "body": "Direction đúng local; step hữu hạn quá lớn có thể tăng loss."
+            },
+            {
+              "type": "text",
+              "title": "MAJOR · «learning rate lớn hơn luôn nhanh hơn»",
+              "body": "Có stability limit."
+            },
+            {
+              "type": "text",
+              "title": "MAJOR · «loss giảm là đã hội tụ»",
+              "body": "Cần xem gradient/step/objective change và criterion."
+            },
+            {
+              "type": "text",
+              "title": "MAJOR · «một α dùng tốt cho mọi scaling»",
+              "body": "Coordinate scale/curvature thay đổi stable range."
+            },
+            {
+              "type": "text",
+              "title": "MAJOR · «gradient descent đảm bảo global minimum»",
+              "body": "Không với objective nonconvex nói chung."
             }
           ]
         },
         {
           "role": "application",
-          "title": "Ứng dụng lập trình cho mô hình nhỏ",
+          "title": "E3 TRANSFER · Audit một training trace",
           "blocks": [
             {
-              "type": "text",
-              "title": "Nhiệm vụ",
-              "body": "Viết vòng lặp train tuyến tính y_hat = ax+b. In loss mỗi 10 epoch, lưu best theta, dừng sớm khi loss không giảm, và kiểm tra dữ liệu đầu vào đã normalize chưa."
+              "type": "qa",
+              "title": "Task 1",
+              "body": "Trace A: loss giảm chậm 1% mỗi 100 steps, gradient còn lớn. Chẩn đoán khả năng α quá nhỏ."
+            },
+            {
+              "type": "qa",
+              "title": "Task 2",
+              "body": "Trace B: loss xen kẽ tăng/giảm và amplitude phình ra. Chẩn đoán learning rate."
+            },
+            {
+              "type": "qa",
+              "title": "Task 3",
+              "body": "Trace C: gradient norm <1e-8, step norm <1e-10, loss gần như không đổi. Nêu lý do hợp lý để stop và caveat."
+            },
+            {
+              "type": "qa",
+              "title": "Task 4",
+              "body": "Quadratic 2D có curvature 1 và 100. Vì sao một α phù hợp direction 1 có thể quá lớn direction 2?"
             }
           ]
         },
         {
           "role": "practice",
-          "title": "Bài luyện tập",
+          "title": "PRACTICE LADDER · P0 → P3",
           "blocks": [
             {
-              "type": "text",
-              "title": "Bài tập",
-              "body": "Cho J(theta)=theta^2. Bắt đầu theta=10. Tính 5 bước cập nhật với alpha=0.1 và alpha=1.1. So sánh quỹ đạo theta và giải thích vì sao một trường hợp ổn định hơn."
+              "type": "qa",
+              "title": "P0 · Recognition",
+              "body": "Nhìn 5 traces và phân loại slow/convergent oscillation/divergent/stationary."
+            },
+            {
+              "type": "qa",
+              "title": "P1 · Guided",
+              "body": "Với f=0.5(w-3)^2, chạy tay 4 steps cho α=0.5 và α=1.5."
+            },
+            {
+              "type": "qa",
+              "title": "P2 · Independent",
+              "body": "Viết optimizer loop deterministic, log objective/grad/step và implement 2 stopping criteria."
+            },
+            {
+              "type": "qa",
+              "title": "P3 · Transfer",
+              "body": "Tạo quadratic 2D ill-scaled, thử 3 learning rates và giải thích zig-zag bằng curvature."
             }
           ]
         },
         {
           "role": "professor_qa",
-          "title": "Vấn đáp kiểm tra hiểu sâu",
+          "title": "ASSESSMENT · D0 / D1 / D2",
           "blocks": [
             {
               "type": "qa",
-              "title": "Câu hỏi",
-              "body": "Vì sao gradient descent đi theo -grad J chứ không phải grad J? Learning rate liên quan thế nào đến độ cong của hàm mất mát? Khi loss không giảm, cần kiểm tra những gì trước khi đổi mô hình?"
+              "title": "D0 RECALL",
+              "body": "Viết update rule, giải thích α và nêu ít nhất 3 stopping signals."
+            },
+            {
+              "type": "qa",
+              "title": "D1 APPLICATION",
+              "body": "Phân tích exact recurrence của 1D quadratic, xác định stable α interval và verify bằng code."
+            },
+            {
+              "type": "qa",
+              "title": "D2 EXPLAIN / ORAL",
+              "body": "Giải thích 60–90 giây: «Vì sao negative gradient đúng hướng nhưng learning rate vẫn quyết định convergence?»"
+            },
+            {
+              "type": "text",
+              "title": "Mastery evidence",
+              "body": "Đạt khi learner đọc được trace, chọn/biện minh α trên quadratic và không hứa global convergence."
             }
           ]
         },
         {
           "role": "bridge",
-          "title": "Cầu sang hàm mất mát và cực trị",
+          "title": "TECHNICAL RUSSIAN + NEXT · descent sang optimality",
           "blocks": [
             {
               "type": "text",
-              "title": "Liên kết",
-              "body": "Gradient descent cần một bề mặt để đi trên đó. Bề mặt ấy chính là hàm mất mát. Bài sau làm rõ loss, cực tiểu, cực đại, điểm yên ngựa và điều kiện tối ưu."
+              "title": "9 thuật ngữ",
+              "body": "градиентный спуск · скорость обучения · шаг · итерация · сходимость · колебание · расходимость · норма градиента · критерий остановки"
+            },
+            {
+              "type": "text",
+              "title": "4 động từ",
+              "body": "обновите — cập nhật; выберите — chọn; проследите — theo dõi; объясните — giải thích."
+            },
+            {
+              "type": "text",
+              "title": "Khung vấn đáp",
+              "body": "«Слишком большой шаг может увеличить функцию и вызвать расходимость.»\n«Сходимость нужно контролировать по значению функции, норме градиента и размеру шага.»"
+            },
+            {
+              "type": "text",
+              "title": "Cầu sang §3.5",
+              "body": "Gradient descent tìm stationary region. §3.5 hỏi: stationary point nào là minimum, maximum hay saddle, và Hessian/convexity nói gì?"
             }
           ]
         },
         {
           "role": "takeaway",
-          "title": "Kết luận cần nhớ",
+          "title": "REVIEW · 6 điều trước optimality",
           "blocks": [
             {
               "type": "text",
-              "title": "Cốt lõi",
-              "body": "Gradient descent là cơ chế cập nhật tham số theo hướng giảm loss. Learning rate quyết định bước đi, và bước đi đúng quan trọng không kém hướng đi đúng."
+              "title": "1",
+              "body": "Update = current point - learning rate × gradient."
+            },
+            {
+              "type": "text",
+              "title": "2",
+              "body": "Negative gradient là local descent direction, không bảo đảm finite step giảm loss."
+            },
+            {
+              "type": "text",
+              "title": "3",
+              "body": "Learning rate quá nhỏ chậm; quá lớn oscillate/diverge."
+            },
+            {
+              "type": "text",
+              "title": "4",
+              "body": "Quadratic cho phép phân tích stability bằng error recurrence."
+            },
+            {
+              "type": "text",
+              "title": "5",
+              "body": "Scale/curvature quyết định step-size difficulty."
+            },
+            {
+              "type": "text",
+              "title": "6",
+              "body": "Theo dõi objective + gradient norm + step norm, không chỉ final parameter."
             }
           ]
         }
-      ]
+      ],
+      "qaEvidence": {
+        "quadraticRecurrence": "PASS",
+        "learningRateRegimes": "PASS",
+        "traceInstrumentation": "PASS",
+        "scaleCurvatureCaveat": "PASS",
+        "chapterIdCanonical": "PASS",
+        "schemaAndIds": "PASS",
+        "adjacentContinuity": "PASS",
+        "representationChannels": "PASS",
+        "practiceP0P3": "PASS",
+        "assessmentD0D1D2": "PASS",
+        "misconceptionDiagnostics": "PASS",
+        "technicalRussian": "PASS",
+        "softwareOutputTrustExplanation": "PASS",
+        "browserBaseline": "PENDING_E164"
+      }
     },
     {
       "lessonId": "MATH-VN-C03-giai_tich_dao_ham_gradient-L05-loss-extrema-optimality-e146",
       "chapterId": "MATH-VN-C03-ham_so_ao_ham_va_gradien",
       "lessonTitle": "§3.5 · Hàm mất mát, cực trị và điều kiện tối ưu",
       "title": "§3.5 · Hàm mất mát, cực trị và điều kiện tối ưu",
-      "programLectureId": "MATH-PROG-L03-calculus-gradient-optimization",
+      "orderInChapter": 5,
+      "programLectureId": "MATH-PROG-L06-optimization",
       "programLectureIds": [
-        "MATH-PROG-L03-calculus-gradient-optimization",
-        "MATH-PROG-L17-ai-machine-learning-math-foundations",
-        "MATH-PROG-L02-vector-spaces-linear-maps"
+        "MATH-PROG-L06-optimization",
+        "MATH-PROG-L05-calculus-gradient",
+        "MATH-PROG-L17-ai-machine-learning-math-foundations"
       ],
-      "programAnchorTitle": "Giải tích, gradient và tối ưu",
+      "programAnchorTitle": "Tối ưu và điều kiện cực trị",
       "roadmapRole": "foundation_before_prep",
-      "baumanFocus": "Hiểu hàm mất mát như mục tiêu tối ưu, phân biệt cực tiểu/cực đại/điểm yên ngựa, điều kiện tối ưu và rủi ro khi loss không phản ánh đúng yêu cầu kỹ thuật.",
+      "baumanFocus": "Phân biệt stationary point, local/global minimum, maximum và saddle; dùng gradient + Hessian/eigenvalue sign để phân loại quadratic examples; hiểu convexity như trường hợp làm local/global reasoning dễ hơn.",
+      "pureLayer": [
+        "stationary point",
+        "local minimum",
+        "global minimum",
+        "maximum",
+        "saddle point",
+        "Hessian",
+        "convexity"
+      ],
+      "appliedLayer": [
+        "loss landscape",
+        "optimization diagnostics",
+        "quadratic models",
+        "Hessian eigenvalues",
+        "NumPy eigvalsh"
+      ],
+      "bridgeQuestion": "Gradient bằng 0 nói được điều gì, chưa nói được điều gì, và curvature/Hessian giúp phân loại stationary point ra sao?",
+      "auditStatus": "REVIEW",
       "sourceAnchors": {
         "stageId": "vn",
-        "disciplineId": "calculus_optimization",
+        "disciplineId": "calculus_multivariable",
         "chapterId": "MATH-VN-C03-ham_so_ao_ham_va_gradien",
-        "programLectureId": "MATH-PROG-L03-calculus-gradient-optimization"
+        "programLectureId": "MATH-PROG-L06-optimization",
+        "officialCurriculum": "bmstu_iu5_2026_curriculum"
       },
       "tags": [
-        "loss function",
-        "extrema",
-        "optimality",
+        "loss",
+        "stationary point",
+        "minimum",
+        "maximum",
+        "saddle",
         "Hessian",
-        "validation"
+        "convexity",
+        "optimality"
       ],
+      "learningContract": {
+        "governingQuestion": "Khi gradient bằng 0, làm sao quyết định đó là minimum, maximum hay saddle, và khi nào local optimum cũng là global optimum?",
+        "whyNeeded": "Gradient descent thường tìm vùng gradient nhỏ; cần biết cách diễn giải stationary point và curvature trước khi nối sang loss landscape/backprop.",
+        "prerequisiteGates": [
+          "Hiểu gradient và stationary point từ §3.3.",
+          "Hiểu gradient descent trace từ §3.4.",
+          "Biết matrix eigenvalue/rank ở mức nền từ C02.",
+          "Không yêu cầu nhớ Hessian trước; Hessian được giới thiệu như matrix của second partial derivatives."
+        ],
+        "measurableLearningOutcomes": [
+          "LO1: Phân biệt local minimum, global minimum, local maximum và saddle bằng định nghĩa/geometry.",
+          "LO2: Nêu first-order necessary condition ∇f(x*)=0 cho interior differentiable unconstrained local optimum và giải thích vì sao không sufficient.",
+          "LO3: Lập Hessian 2×2 cho quadratic đơn giản và dùng eigenvalue signs để phân loại stationary point.",
+          "LO4: Nhận diện positive definite/negative definite/indefinite Hessian ở mức applied interpretation.",
+          "LO5: Giải thích convexity ở mức nền: với differentiable convex objective, mọi local minimum là global; với twice-differentiable convex objective, Hessian PSD trên domain.",
+          "LO6: Dùng NumPy eigvalsh để kiểm eigenvalue signs của symmetric Hessian và đối chiếu với analytical classification.",
+          "LO7: Không nhầm small gradient, exact stationary point và solved optimization problem."
+        ],
+        "exactScope": [
+          "stationary points",
+          "first-order necessary condition",
+          "Hessian",
+          "second-order classification",
+          "convexity intuition",
+          "loss landscape interpretation"
+        ],
+        "explicitDeferrals": [
+          "KKT/constrained optimization → later optimization.",
+          "Newton/quasi-Newton methods → later numerical optimization.",
+          "Convex-analysis proofs/duality → advanced optimization.",
+          "High-dimensional Hessian-free methods → later ML."
+        ],
+        "canonicalTerminology": {
+          "stationaryPoint": "điểm dừng/stationary point",
+          "localMinimum": "cực tiểu địa phương",
+          "globalMinimum": "cực tiểu toàn cục",
+          "localMaximum": "cực đại địa phương",
+          "saddlePoint": "điểm yên ngựa",
+          "Hessian": "ma trận Hessian",
+          "positiveDefinite": "xác định dương",
+          "negativeDefinite": "xác định âm",
+          "indefinite": "không xác định dấu",
+          "convex": "lồi"
+        },
+        "symbols": {
+          "∇f(x*)=0": "first-order stationary condition",
+          "H(x)=∇²f(x)": "Hessian",
+          "λ_i(H)": "Hessian eigenvalues",
+          "H≻0": "positive definite",
+          "H≺0": "negative definite",
+          "H indefinite": "mixed-sign curvature"
+        },
+        "continuity": {
+          "previous": "§3.4 · Gradient descent và learning rate",
+          "next": "§3.6 · Từ gradient sang backpropagation và tối ưu ML"
+        }
+      },
+      "technicalRussian": {
+        "terms": [
+          [
+            "точка стационарности",
+            "stationary point"
+          ],
+          [
+            "локальный минимум",
+            "local minimum"
+          ],
+          [
+            "глобальный минимум",
+            "global minimum"
+          ],
+          [
+            "локальный максимум",
+            "local maximum"
+          ],
+          [
+            "седловая точка",
+            "saddle point"
+          ],
+          [
+            "матрица Гессе",
+            "Hessian"
+          ],
+          [
+            "положительно определённая",
+            "positive definite"
+          ],
+          [
+            "выпуклая функция",
+            "convex function"
+          ],
+          [
+            "условие оптимальности",
+            "điều kiện tối ưu"
+          ]
+        ],
+        "commandVerbs": [
+          [
+            "найдите",
+            "hãy tìm"
+          ],
+          [
+            "классифицируйте",
+            "hãy phân loại"
+          ],
+          [
+            "проверьте",
+            "hãy kiểm tra"
+          ],
+          [
+            "объясните",
+            "hãy giải thích"
+          ]
+        ],
+        "oralFrames": [
+          "Нулевой градиент является необходимым условием внутреннего локального экстремума, но не достаточным.",
+          "Знак собственных значений матрицы Гессе описывает локальную кривизну.",
+          "Для выпуклой функции любой локальный минимум является глобальным."
+        ]
+      },
+      "sourceProvenance": [
+        {
+          "id": "bmstu_iu5_2026_curriculum",
+          "kind": "official_curriculum",
+          "url": "https://home.science.iu5.bmstu.ru/study-plans/iu5-master-program.pdf",
+          "supports": [
+            "preparation context for optimization and machine-learning coursework"
+          ]
+        },
+        {
+          "id": "mit_67220_first_order_optimality",
+          "kind": "authoritative_university_material",
+          "url": "https://ocw.mit.edu/courses/6-7220j-nonlinear-optimization-spring-2025/resources/mit6_7220_s25_lec02_pdf/",
+          "supports": [
+            "first-order optimality conditions for unconstrained optimization",
+            "stationary points as necessary local-optimum candidates"
+          ]
+        },
+        {
+          "id": "mit_67220_hessian_second_order",
+          "kind": "authoritative_university_material",
+          "url": "https://ocw.mit.edu/courses/6-7220j-nonlinear-optimization-spring-2025/mit6_7220_s25_lec17.pdf",
+          "supports": [
+            "Hessian and second-order Taylor approximation",
+            "second-order curvature information"
+          ]
+        },
+        {
+          "id": "numpy_eigvalsh",
+          "kind": "official_documentation",
+          "url": "https://numpy.org/doc/stable/reference/generated/numpy.linalg.eigvalsh.html",
+          "supports": [
+            "eigenvalues of real symmetric/Hermitian matrices for Hessian sign checks"
+          ]
+        }
+      ],
+      "generatedMaterial": {
+        "status": "AI_DRAFT_REVIEWED_IN_CONTENT_FACTORY",
+        "lineage": "Generated foundation lesson anchored to MIT first/second-order optimization materials and NumPy symmetric-eigenvalue tooling.",
+        "canonicalSourceReplacement": false
+      },
+      "contentFactory": {
+        "C1": "PASS",
+        "C2": "PASS",
+        "C3": "PASS",
+        "C4": "PASS",
+        "C5": "PASS",
+        "C6": {
+          "software": "PASS_STATIC_AFTER_E166_E173",
+          "user": "PASS",
+          "blockers": 0,
+          "majors": 0,
+          "inheritedDeferredGate": "E164",
+          "acceptance": "LOCAL_CONTENT_QA_PASS_GLOBAL_BROWSER_BASELINE_PENDING"
+        }
+      },
       "slides": [
         {
           "role": "problem_framing",
-          "title": "Hàm mất mát biến mục tiêu học thành một con số cần giảm",
+          "title": "ORIENT · Gradient nhỏ chưa có nghĩa đã tìm đúng minimum",
+          "sourceRefs": [
+            "mit_67220_first_order_optimality"
+          ],
           "blocks": [
             {
               "type": "text",
-              "title": "Ý chính",
-              "body": "Mô hình không tự biết mình tốt hay kém. Hàm mất mát J đo độ sai giữa dự đoán và thực tế, rồi biến mục tiêu kỹ thuật thành bài toán tìm cực trị."
+              "title": "Câu hỏi điều khiển",
+              "body": "Optimizer dừng khi gradient nhỏ. Nhưng point đó là minimum, maximum, saddle hay chỉ gần stationary vì tolerance?"
+            },
+            {
+              "type": "text",
+              "title": "Vì sao cần",
+              "body": "Trong nonconvex loss, stationary points có nhiều loại. Muốn diễn giải training result cần tách first-order condition khỏi curvature/global claims."
+            },
+            {
+              "type": "formula",
+              "title": "Candidate condition",
+              "body": "∇f(x*)=0"
+            },
+            {
+              "type": "qa",
+              "title": "Retrieval",
+              "body": "Từ §3.3: f(x,y)=x^2-y^2 tại (0,0) có gradient zero. Nó có phải minimum không?"
             }
           ]
         },
         {
           "role": "deep_essence",
-          "title": "Loss là la bàn, nhưng cũng có thể là mê cung",
+          "title": "REACTIVATION · Stationary chỉ là ứng viên first-order",
           "blocks": [
             {
               "type": "text",
-              "title": "Bản chất",
-              "body": "Một loss tốt phải phản ánh đúng điều ta cần tối ưu. Nếu loss lệch mục tiêu thật, thuật toán vẫn tối ưu rất chăm chỉ, chỉ là chăm chỉ đi nhầm hành lang."
+              "title": "Local minimum",
+              "body": "Có neighborhood quanh x* sao cho f(x*)≤f(x) trong neighborhood."
+            },
+            {
+              "type": "text",
+              "title": "Global minimum",
+              "body": "f(x*)≤f(x) cho mọi x trong domain."
+            },
+            {
+              "type": "text",
+              "title": "Stationary",
+              "body": "∇f(x*)=0 nói local first-order slope vanish; chưa phân loại curvature."
+            },
+            {
+              "type": "qa",
+              "title": "Tự nói lại",
+              "body": "Vì sao 'stationary' là tên trung tính tốt hơn 'minimum candidate' trong nonconvex landscape?"
             }
           ]
         },
         {
           "role": "counter_intuition",
-          "title": "Loss nhỏ không luôn đồng nghĩa hệ thống tốt trong đời thật",
+          "title": "COUNTER-INTUITION · Gradient zero xuất hiện ở cả min, max và saddle",
           "blocks": [
             {
-              "type": "text",
-              "title": "Điểm dễ nhầm",
-              "body": "Mô hình có thể loss thấp trên dữ liệu huấn luyện nhưng kém trên dữ liệu mới. Có thể tối ưu đúng con số nhưng sai yêu cầu kỹ thuật như an toàn, độ trễ, năng lượng hoặc độ bền."
+              "type": "formula",
+              "title": "Minimum",
+              "body": "f1=x^2+y^2, ∇f1(0,0)=0"
+            },
+            {
+              "type": "formula",
+              "title": "Maximum",
+              "body": "f2=-(x^2+y^2), ∇f2(0,0)=0"
+            },
+            {
+              "type": "formula",
+              "title": "Saddle",
+              "body": "f3=x^2-y^2, ∇f3(0,0)=0"
+            },
+            {
+              "type": "qa",
+              "title": "Diagnostic",
+              "body": "Một first-order checker chỉ nhìn gradient có phân biệt được ba functions này tại origin không?"
             }
           ]
         },
         {
           "role": "real_bridge",
-          "title": "Loss trong dự đoán, phân loại và điều khiển",
+          "title": "CONTEXT · Loss landscape cần curvature evidence",
           "blocks": [
             {
               "type": "text",
-              "title": "Ví dụ",
-              "body": "Hồi quy thường dùng MSE hoặc MAE. Phân loại dùng cross-entropy. Điều khiển có thể cộng sai lệch vị trí, năng lượng điều khiển và mức vi phạm ràng buộc vào cùng một cost."
+              "title": "Training stop",
+              "body": "Gradient norm nhỏ là stopping signal nhưng không là certification của good optimum."
+            },
+            {
+              "type": "text",
+              "title": "Flat directions",
+              "body": "Một loss có thể rất phẳng theo vài directions; parameter có thể không xác định tốt dù gradient nhỏ."
+            },
+            {
+              "type": "text",
+              "title": "Saddle directions",
+              "body": "Curvature dương ở direction này và âm ở direction khác tạo saddle."
+            },
+            {
+              "type": "qa",
+              "title": "Decision question",
+              "body": "Nếu loss value thấp, gradient nhỏ nhưng Hessian có negative eigenvalue, point đó có là strict local minimum không?"
             }
           ]
         },
         {
           "role": "notation",
-          "title": "Ký hiệu loss, risk và cực trị",
+          "title": "FORMALIZE · Hessian là matrix second partial derivatives",
+          "sourceRefs": [
+            "mit_67220_hessian_second_order"
+          ],
           "blocks": [
             {
               "type": "formula",
-              "title": "MSE",
-              "body": "J(theta) = (1/m) sum_{i=1}^m (f(x_i;theta)-y_i)^2"
+              "title": "Definition",
+              "body": "H_ij(x)=∂²f/(∂x_i∂x_j)"
             },
             {
               "type": "formula",
-              "title": "Điểm cực tiểu cục bộ",
-              "body": "theta* is local minimum if J(theta*) <= J(theta) near theta*"
+              "title": "Quadratic local model",
+              "body": "f(x+Δ)≈f(x)+∇f(x)^TΔ + 1/2 Δ^T H(x) Δ"
             },
             {
-              "type": "formula",
-              "title": "Điểm dừng",
-              "body": "grad J(theta*) = 0"
+              "type": "text",
+              "title": "At stationary point",
+              "body": "Khi ∇f=0, quadratic curvature term trở thành local classifier chính."
+            },
+            {
+              "type": "qa",
+              "title": "Quick check",
+              "body": "Hessian của f=x^2+3y^2 là matrix nào?"
             }
           ]
         },
         {
           "role": "core_formula",
-          "title": "Điều kiện tối ưu bậc một và bậc hai",
+          "title": "CORE · Eigenvalue signs phân loại strict quadratic curvature",
           "blocks": [
             {
-              "type": "formula",
-              "title": "Bậc một",
-              "body": "grad J(theta*) = 0"
+              "type": "text",
+              "title": "Positive definite",
+              "body": "Tất cả eigenvalues >0 ⇒ mọi nonzero direction có positive curvature ⇒ strict local minimum candidate."
             },
             {
-              "type": "formula",
-              "title": "Bậc hai một biến",
-              "body": "f''(x*) > 0: local minimum\nf''(x*) < 0: local maximum"
+              "type": "text",
+              "title": "Negative definite",
+              "body": "Tất cả eigenvalues <0 ⇒ strict local maximum candidate."
             },
             {
-              "type": "formula",
-              "title": "Nhiều biến",
-              "body": "Hessian H positive definite suggests local minimum"
+              "type": "text",
+              "title": "Indefinite",
+              "body": "Có cả positive và negative eigenvalues ⇒ saddle."
+            },
+            {
+              "type": "qa",
+              "title": "Zero eigenvalues",
+              "body": "Nếu có eigenvalue=0 thì second-order test có thể inconclusive; cần higher-order/problem structure."
             }
           ]
         },
         {
           "role": "assumption_gate",
-          "title": "Điều kiện dùng điều kiện tối ưu",
+          "title": "ASSUMPTION GATE · Second-order test có điều kiện",
           "blocks": [
             {
               "type": "text",
-              "title": "Điều kiện",
-              "body": "Hàm cần khả vi quanh điểm xét. Điều kiện grad J=0 chỉ cho điểm dừng, không tự đảm bảo cực tiểu. Với hàm không lồi, có thể gặp cực tiểu cục bộ, điểm yên ngựa hoặc vùng phẳng."
+              "title": "Interior + smoothness",
+              "body": "Các statements chuẩn giả định point interior và function đủ differentiable quanh point."
+            },
+            {
+              "type": "text",
+              "title": "Semidefinite is weaker",
+              "body": "H PSD tại một stationary point không tự động chứng minh strict minimum nếu zero-curvature directions tồn tại."
+            },
+            {
+              "type": "text",
+              "title": "Constraints change conditions",
+              "body": "Nếu có constraints, ∇f=0 không còn là general necessary condition; KKT/normal cones để sau."
+            },
+            {
+              "type": "qa",
+              "title": "Gate",
+              "body": "f(x)=x^4 tại x=0 có f''(0)=0 nhưng vẫn minimum. Điều này minh họa gì?"
             }
           ]
         },
         {
           "role": "mini_case",
-          "title": "Mini case: chọn loss cho cảm biến nhiễu",
+          "title": "E1 SIMPLE · Minimum quadratic",
           "blocks": [
             {
+              "type": "formula",
+              "title": "Function",
+              "body": "f=x^2+2y^2"
+            },
+            {
+              "type": "formula",
+              "title": "Gradient/Hessian",
+              "body": "∇f=[2x,4y]^T\nH=[[2,0],[0,4]]"
+            },
+            {
               "type": "text",
-              "title": "Case",
-              "body": "Nếu dữ liệu có vài outlier rất lớn, MSE phạt outlier mạnh và có thể kéo mô hình lệch. MAE ít nhạy outlier hơn. Chọn loss phụ thuộc bản chất nhiễu và mục tiêu sử dụng."
+              "title": "Classification",
+              "body": "Eigenvalues 2,4 >0 ⇒ origin strict local minimum; vì function convex quadratic, đây cũng là global minimum."
+            },
+            {
+              "type": "qa",
+              "title": "Sanity",
+              "body": "Nếu đổi coefficient y² từ +2 thành -2, classification đổi thế nào?"
             }
           ]
         },
         {
           "role": "interpretation",
-          "title": "Cực trị dưới góc nhìn bề mặt loss",
+          "title": "E2 CONTEXTUAL · Saddle có descent direction dù gradient zero",
           "blocks": [
             {
-              "type": "text",
-              "title": "Cực tiểu",
-              "body": "Vùng xung quanh đều có loss cao hơn."
+              "type": "formula",
+              "title": "Function",
+              "body": "g=x^2-y^2\nH=[[2,0],[0,-2]]"
             },
             {
               "type": "text",
-              "title": "Cực đại",
-              "body": "Vùng xung quanh đều có loss thấp hơn, thường không phải mục tiêu khi train."
+              "title": "Directions",
+              "body": "Theo x-axis function tăng từ 0; theo y-axis function giảm từ 0."
             },
             {
               "type": "text",
-              "title": "Điểm yên ngựa",
-              "body": "Một hướng giống cực tiểu, hướng khác giống cực đại; mạng neural lớn gặp điểm yên ngựa thường xuyên."
+              "title": "Classification",
+              "body": "Eigenvalues mixed signs ⇒ indefinite Hessian ⇒ saddle."
+            },
+            {
+              "type": "qa",
+              "title": "Transfer nhẹ",
+              "body": "Gradient descent exactly khởi tạo tại saddle với exact gradient zero sẽ làm gì nếu không có noise/perturbation?"
             }
           ]
         },
         {
           "role": "simulation",
-          "title": "Thí nghiệm so sánh loss bằng Python",
+          "title": "BEGINNER ENTRY · Dùng eigvalsh kiểm symmetric Hessian",
+          "sourceRefs": [
+            "numpy_eigvalsh"
+          ],
           "blocks": [
             {
               "type": "code",
-              "title": "Công cụ",
-              "body": "mse = ((y_pred - y_true)**2).mean()\nmae = abs(y_pred - y_true).mean()\n\n# quét theta để xem bề mặt loss\nloss_grid = [loss(theta) for theta in theta_values]"
+              "title": "Deterministic classifier",
+              "body": "import numpy as np\n\nHs = {\n    'min': np.array([[2.,0.],[0.,4.]]),\n    'max': np.array([[-2.,0.],[0.,-4.]]),\n    'saddle': np.array([[2.,0.],[0.,-2.]])\n}\nfor name,H in Hs.items():\n    lam=np.linalg.eigvalsh(H)\n    print(name, lam)\n\nassert np.all(np.linalg.eigvalsh(Hs['min']) > 0)\nassert np.all(np.linalg.eigvalsh(Hs['max']) < 0)\nls=np.linalg.eigvalsh(Hs['saddle'])\nassert np.any(ls>0) and np.any(ls<0)"
             },
             {
               "type": "text",
-              "title": "Mục tiêu",
-              "body": "Tạo một bộ dữ liệu có outlier, so sánh nghiệm khi tối ưu MSE và MAE để thấy loss ảnh hưởng trực tiếp đến tham số học được."
+              "title": "BEGINNER ENTRY · eigvalsh",
+              "body": "Hessian của smooth scalar function thường symmetric dưới regularity phù hợp; eigvalsh tận dụng cấu trúc symmetric."
+            },
+            {
+              "type": "text",
+              "title": "Software trust",
+              "body": "Eigenvalues phụ thuộc Hessian tại point. Nếu Hessian được tính sai hoặc point chưa thật stationary, classifier cũng sai."
+            },
+            {
+              "type": "qa",
+              "title": "Experiment",
+              "body": "Thử H=diag(2,0). Second-order classifier có đủ để kết luận strict minimum không?"
             }
           ]
         },
         {
           "role": "common_mistakes",
-          "title": "Lỗi thường gặp với hàm mất mát",
+          "title": "MISCONCEPTION MAP · 5 lỗi về optimality",
           "blocks": [
             {
               "type": "text",
-              "title": "Lỗi",
-              "body": "Chọn loss vì quen tay; chỉ xem train loss mà bỏ validation loss; quên đơn vị vật lý của sai số; nhầm cực tiểu cục bộ với nghiệm toàn cục; bỏ qua ràng buộc an toàn."
+              "title": "MAJOR · «gradient=0 ⇒ minimum»",
+              "body": "Sai: max/saddle cũng stationary."
+            },
+            {
+              "type": "text",
+              "title": "MAJOR · «PSD Hessian tại point ⇒ strict minimum»",
+              "body": "Zero eigenvalues có thể làm test inconclusive."
+            },
+            {
+              "type": "text",
+              "title": "MAJOR · «local minimum = global minimum»",
+              "body": "Chỉ trong special structure như convexity mới có guarantee phù hợp."
+            },
+            {
+              "type": "text",
+              "title": "MAJOR · «low loss + small gradient = solved»",
+              "body": "Cần task tolerance, curvature, constraints và validation."
+            },
+            {
+              "type": "text",
+              "title": "MAJOR · «unconstrained rules áp dụng nguyên xi khi có constraints»",
+              "body": "Constraints thay đổi optimality conditions."
             }
           ]
         },
         {
           "role": "application",
-          "title": "Ứng dụng lập trình: log đúng thứ cần tối ưu",
+          "title": "E3 TRANSFER · Classify loss surfaces bằng evidence",
           "blocks": [
             {
-              "type": "text",
-              "title": "Nhiệm vụ",
-              "body": "Khi train, lưu train loss, validation loss, metric kỹ thuật và tham số tốt nhất. Với bài toán điều khiển, tách từng thành phần cost để biết hệ đang sai do vị trí, năng lượng hay ràng buộc."
+              "type": "qa",
+              "title": "Task 1",
+              "body": "H eigenvalues [0.2,3,10], gradient≈0. Classify local curvature và nêu điều gì chưa biết global."
+            },
+            {
+              "type": "qa",
+              "title": "Task 2",
+              "body": "H eigenvalues [-1,-0.1,-5], gradient=0. Classification?"
+            },
+            {
+              "type": "qa",
+              "title": "Task 3",
+              "body": "H eigenvalues [-2,0.5,4], gradient=0. Classification?"
+            },
+            {
+              "type": "qa",
+              "title": "Task 4",
+              "body": "H eigenvalues [0,2,3]. Nêu vì sao second-order test không đủ cho strict classification along zero direction."
             }
           ]
         },
         {
           "role": "practice",
-          "title": "Bài luyện tập",
+          "title": "PRACTICE LADDER · P0 → P3",
           "blocks": [
             {
-              "type": "text",
-              "title": "Bài tập",
-              "body": "Cho dữ liệu dự đoán nhiệt có một điểm đo lỗi rất lớn. Giải thích khi nào nên dùng MSE, khi nào nên dùng MAE, và khi nào cần Huber loss. Liên hệ với yêu cầu cảnh báo quá nhiệt."
+              "type": "qa",
+              "title": "P0 · Recognition",
+              "body": "5 stationary points với Hessian spectra: phân loại min/max/saddle/inconclusive."
+            },
+            {
+              "type": "qa",
+              "title": "P1 · Guided",
+              "body": "Tính gradient + Hessian cho x²+xy+y²; giải stationary point và classify bằng eigenvalues."
+            },
+            {
+              "type": "qa",
+              "title": "P2 · Independent",
+              "body": "Tự tạo 3 quadratic forms có min/max/saddle, verify bằng eigvalsh và sample directions."
+            },
+            {
+              "type": "qa",
+              "title": "P3 · Transfer",
+              "body": "Tạo function với Hessian zero ở stationary point nhưng vẫn minimum, giải thích vì sao second-order test inconclusive."
             }
           ]
         },
         {
           "role": "professor_qa",
-          "title": "Vấn đáp kiểm tra hiểu sâu",
+          "title": "ASSESSMENT · D0 / D1 / D2",
           "blocks": [
             {
               "type": "qa",
-              "title": "Câu hỏi",
-              "body": "Vì sao grad J=0 chưa đủ để kết luận cực tiểu? Một loss tối ưu trên dữ liệu huấn luyện có thể thất bại ngoài thực tế vì những nguyên nhân nào? Chọn loss có phải là quyết định kỹ thuật không?"
+              "title": "D0 RECALL",
+              "body": "Nêu first-order necessary condition, Hessian và sign patterns cho strict min/max/saddle."
+            },
+            {
+              "type": "qa",
+              "title": "D1 APPLICATION",
+              "body": "Cho một 2D polynomial. Tìm stationary points, tính Hessian tại từng point, classify bằng eigenvalues và verify numerically."
+            },
+            {
+              "type": "qa",
+              "title": "D2 EXPLAIN / ORAL",
+              "body": "Giải thích 60–90 giây: «Vì sao gradient zero chưa đủ và Hessian/convexity bổ sung thông tin gì?»"
+            },
+            {
+              "type": "text",
+              "title": "Mastery evidence",
+              "body": "Đạt khi learner phân biệt candidate/classification/global guarantee và biết lúc nào second-order test inconclusive."
             }
           ]
         },
         {
           "role": "bridge",
-          "title": "Cầu sang backpropagation",
+          "title": "TECHNICAL RUSSIAN + NEXT · optimality sang backprop",
           "blocks": [
             {
               "type": "text",
-              "title": "Liên kết",
-              "body": "Khi loss phụ thuộc vào hàng nghìn hoặc hàng triệu tham số trong mạng neural, ta cần cách tính gradient hiệu quả. Backpropagation chính là kỹ thuật truyền đạo hàm qua chuỗi phép toán."
+              "title": "9 thuật ngữ",
+              "body": "точка стационарности · локальный минимум · глобальный минимум · локальный максимум · седловая точка · матрица Гессе · положительно определённая · выпуклая функция · условие оптимальности"
+            },
+            {
+              "type": "text",
+              "title": "4 động từ",
+              "body": "найдите — tìm; классифицируйте — phân loại; проверьте — kiểm tra; объясните — giải thích."
+            },
+            {
+              "type": "text",
+              "title": "Khung vấn đáp",
+              "body": "«Нулевой градиент является необходимым условием, но не достаточным.»\n«Знак собственных значений матрицы Гессе описывает локальную кривизну.»"
+            },
+            {
+              "type": "text",
+              "title": "Cầu sang §3.6",
+              "body": "Từ đây câu hỏi còn lại là: với computation graph/layered model rất lớn, làm sao tính gradient hiệu quả cho mọi parameters? Đó là chain rule và backpropagation."
             }
           ]
         },
         {
           "role": "takeaway",
-          "title": "Kết luận cần nhớ",
+          "title": "REVIEW · 6 facts trước backprop",
           "blocks": [
             {
               "type": "text",
-              "title": "Cốt lõi",
-              "body": "Hàm mất mát định nghĩa điều mô hình đang cố giảm. Cực trị và điều kiện tối ưu giúp hiểu nơi thuật toán dừng, nhưng chất lượng thật còn phụ thuộc dữ liệu, ràng buộc và metric kỹ thuật."
+              "title": "1",
+              "body": "Stationary = gradient zero; không đồng nghĩa minimum."
+            },
+            {
+              "type": "text",
+              "title": "2",
+              "body": "Hessian captures local second-order curvature."
+            },
+            {
+              "type": "text",
+              "title": "3",
+              "body": "Positive definite ⇒ strict local min candidate at stationary point."
+            },
+            {
+              "type": "text",
+              "title": "4",
+              "body": "Indefinite ⇒ saddle."
+            },
+            {
+              "type": "text",
+              "title": "5",
+              "body": "Zero eigenvalues có thể làm second-order test inconclusive."
+            },
+            {
+              "type": "text",
+              "title": "6",
+              "body": "Convex structure biến local minimum thành global minimum; nonconvex thì không."
             }
           ]
         }
-      ]
+      ],
+      "qaEvidence": {
+        "stationaryVsOptimum": "PASS",
+        "hessianSignClassification": "PASS",
+        "convexityScope": "PASS",
+        "secondOrderInconclusiveCase": "PASS",
+        "chapterIdCanonical": "PASS",
+        "schemaAndIds": "PASS",
+        "adjacentContinuity": "PASS",
+        "representationChannels": "PASS",
+        "practiceP0P3": "PASS",
+        "assessmentD0D1D2": "PASS",
+        "misconceptionDiagnostics": "PASS",
+        "technicalRussian": "PASS",
+        "softwareOutputTrustExplanation": "PASS",
+        "browserBaseline": "PENDING_E164"
+      }
     },
     {
       "lessonId": "MATH-VN-C03-giai_tich_dao_ham_gradient-L06-gradient-backprop-ml-optimization-e146",
       "chapterId": "MATH-VN-C03-ham_so_ao_ham_va_gradien",
       "lessonTitle": "§3.6 · Từ gradient sang backpropagation và tối ưu ML",
       "title": "§3.6 · Từ gradient sang backpropagation và tối ưu ML",
-      "programLectureId": "MATH-PROG-L03-calculus-gradient-optimization",
+      "orderInChapter": 6,
+      "programLectureId": "MATH-PROG-L17-ai-machine-learning-math-foundations",
       "programLectureIds": [
-        "MATH-PROG-L03-calculus-gradient-optimization",
         "MATH-PROG-L17-ai-machine-learning-math-foundations",
-        "MATH-PROG-L02-vector-spaces-linear-maps"
+        "MATH-PROG-L05-calculus-gradient",
+        "MATH-PROG-L06-optimization"
       ],
-      "programAnchorTitle": "Giải tích, gradient và tối ưu",
+      "programAnchorTitle": "Nền tảng toán cho AI và học máy",
       "roadmapRole": "foundation_before_prep",
-      "baumanFocus": "Liên kết gradient, chain rule, backpropagation và training loop ML để hiểu cách mô hình nhiều tầng tính gradient, cập nhật trọng số và kiểm soát lỗi train thực tế.",
+      "baumanFocus": "Nối function composition + chain rule + gradient thành computation graph/backprop; tính gradient của scalar loss theo parameters bằng local derivatives; phân biệt backprop/autodiff với optimizer update.",
+      "pureLayer": [
+        "chain rule",
+        "computation graph",
+        "local derivative",
+        "reverse-mode differentiation",
+        "gradient accumulation",
+        "Jacobian preview"
+      ],
+      "appliedLayer": [
+        "backpropagation",
+        "autograd",
+        "loss gradient",
+        "parameter update",
+        "gradient check",
+        "ML optimization"
+      ],
+      "bridgeQuestion": "Làm sao tính gradient của một scalar loss theo rất nhiều parameters mà không khai triển toàn bộ đạo hàm bằng tay?",
+      "auditStatus": "REVIEW",
       "sourceAnchors": {
         "stageId": "vn",
-        "disciplineId": "calculus_optimization",
+        "disciplineId": "calculus_multivariable",
         "chapterId": "MATH-VN-C03-ham_so_ao_ham_va_gradien",
-        "programLectureId": "MATH-PROG-L03-calculus-gradient-optimization"
+        "programLectureId": "MATH-PROG-L17-ai-machine-learning-math-foundations",
+        "officialCurriculum": "bmstu_iu5_2026_curriculum"
       },
       "tags": [
-        "backpropagation",
         "chain rule",
+        "backpropagation",
         "autograd",
-        "optimizer",
-        "machine learning"
+        "computational graph",
+        "gradient",
+        "PyTorch",
+        "ML optimization"
       ],
+      "learningContract": {
+        "governingQuestion": "Backpropagation dùng chain rule trên computation graph thế nào để tính gradients, và gradients đó khác parameter-update algorithm ra sao?",
+        "whyNeeded": "Đây là cầu cuối từ calculus foundation sang machine learning: loss gradient phải được tính hiệu quả trước khi optimizer có thể cập nhật weights.",
+        "prerequisiteGates": [
+          "Hiểu function composition từ §3.1.",
+          "Hiểu derivative/local sensitivity từ §3.2.",
+          "Hiểu gradient/vector sensitivity từ §3.3.",
+          "Hiểu gradient descent update từ §3.4.",
+          "Hiểu loss/stationary point từ §3.5."
+        ],
+        "measurableLearningOutcomes": [
+          "LO1: Áp dụng scalar chain rule cho composition 2–4 nodes và ghi đúng local derivatives.",
+          "LO2: Vẽ/đọc computation graph đơn giản gồm inputs, parameters, intermediate, prediction và scalar loss.",
+          "LO3: Tính backward gradients cho model ŷ=wx+b, L=0.5(ŷ-y)^2 và kiểm bằng tính tay.",
+          "LO4: Giải thích reverse-mode/backprop truyền incoming gradient từ loss về leaves bằng local chain-rule products.",
+          "LO5: Phân biệt backprop/autograd (gradient computation) với optimizer/gradient descent (parameter update).",
+          "LO6: Dùng PyTorch autograd example tối thiểu và kiểm w.grad/b.grad bằng expected analytical values.",
+          "LO7: Nhận biết gradient accumulation/zeroing và dùng finite-difference gradient check như diagnostic độc lập."
+        ],
+        "exactScope": [
+          "scalar chain rule",
+          "computation graph",
+          "reverse propagation",
+          "parameter gradients",
+          "autograd beginner entry",
+          "optimizer separation",
+          "gradient checking"
+        ],
+        "explicitDeferrals": [
+          "Full Jacobian calculus and vector-Jacobian products → later matrix-calculus/NN chapter.",
+          "Deep network architectures → later AI subject.",
+          "Vanishing/exploding gradients → later neural-net training.",
+          "Momentum/Adam and schedulers → later ML optimization.",
+          "Custom autograd functions → later software/ML engineering."
+        ],
+        "canonicalTerminology": {
+          "chainRule": "quy tắc dây chuyền",
+          "computationGraph": "đồ thị tính toán",
+          "forwardPass": "lan truyền xuôi/forward pass",
+          "backwardPass": "lan truyền ngược/backward pass",
+          "backpropagation": "backpropagation",
+          "automaticDifferentiation": "vi phân tự động",
+          "localDerivative": "đạo hàm cục bộ",
+          "incomingGradient": "gradient truyền vào",
+          "gradientAccumulation": "tích lũy gradient",
+          "optimizer": "bộ tối ưu"
+        },
+        "symbols": {
+          "ŷ": "model prediction",
+          "L": "scalar loss",
+          "∂L/∂w": "loss gradient w.r.t. parameter w",
+          "g_out": "incoming gradient from downstream node",
+          "g_in=g_out·local_derivative": "scalar chain-rule backward step"
+        },
+        "continuity": {
+          "previous": "§3.5 · Hàm mất mát, cực trị và điều kiện tối ưu",
+          "next": "Chương 4 · Tích phân và phương trình vi phân nền"
+        }
+      },
+      "technicalRussian": {
+        "terms": [
+          [
+            "правило цепочки",
+            "chain rule"
+          ],
+          [
+            "вычислительный граф",
+            "computation graph"
+          ],
+          [
+            "прямой проход",
+            "forward pass"
+          ],
+          [
+            "обратное распространение",
+            "backpropagation"
+          ],
+          [
+            "автоматическое дифференцирование",
+            "automatic differentiation"
+          ],
+          [
+            "локальная производная",
+            "local derivative"
+          ],
+          [
+            "градиент параметра",
+            "parameter gradient"
+          ],
+          [
+            "накопление градиента",
+            "gradient accumulation"
+          ],
+          [
+            "оптимизатор",
+            "optimizer"
+          ]
+        ],
+        "commandVerbs": [
+          [
+            "вычислите",
+            "hãy tính"
+          ],
+          [
+            "распространите",
+            "hãy truyền"
+          ],
+          [
+            "сравните",
+            "hãy so sánh"
+          ],
+          [
+            "объясните",
+            "hãy giải thích"
+          ]
+        ],
+        "oralFrames": [
+          "Обратное распространение применяет правило цепочки от функции потерь к параметрам.",
+          "Backprop вычисляет градиенты, а оптимизатор использует их для обновления параметров.",
+          "Численная проверка градиента полезна как независимый диагностический тест."
+        ]
+      },
+      "sourceProvenance": [
+        {
+          "id": "bmstu_iu5_2026_curriculum",
+          "kind": "official_curriculum",
+          "url": "https://home.science.iu5.bmstu.ru/study-plans/iu5-master-program.pdf",
+          "supports": [
+            "preparation context for machine-learning and AI coursework"
+          ]
+        },
+        {
+          "id": "stanford_cs231n_backprop_2026",
+          "kind": "authoritative_university_material",
+          "url": "https://cs231n.stanford.edu/slides/2026/section_2_backprop.pdf",
+          "supports": [
+            "backpropagation computes gradients through a chain of operations",
+            "chain rule and modular computation-graph interpretation"
+          ]
+        },
+        {
+          "id": "pytorch_autograd_tutorial",
+          "kind": "official_documentation",
+          "url": "https://docs.pytorch.org/tutorials/beginner/basics/autograd_tutorial.html",
+          "supports": [
+            "autograd records computational operations and computes gradients using the chain rule",
+            "loss.backward and parameter grad access"
+          ]
+        },
+        {
+          "id": "pytorch_autograd_mechanics",
+          "kind": "official_documentation",
+          "url": "https://docs.pytorch.org/docs/stable/notes/autograd",
+          "supports": [
+            "reverse automatic differentiation over a recorded computation graph",
+            "gradient propagation from outputs toward graph leaves"
+          ]
+        }
+      ],
+      "generatedMaterial": {
+        "status": "AI_DRAFT_REVIEWED_IN_CONTENT_FACTORY",
+        "lineage": "Generated bridge lesson anchored to Stanford CS231N backprop material and PyTorch autograd documentation, reusing C03 calculus foundations.",
+        "canonicalSourceReplacement": false
+      },
+      "contentFactory": {
+        "C1": "PASS",
+        "C2": "PASS",
+        "C3": "PASS",
+        "C4": "PASS",
+        "C5": "PASS",
+        "C6": {
+          "software": "PASS_STATIC_AFTER_E166_E173",
+          "user": "PASS",
+          "blockers": 0,
+          "majors": 0,
+          "inheritedDeferredGate": "E164",
+          "acceptance": "LOCAL_CONTENT_QA_PASS_GLOBAL_BROWSER_BASELINE_PENDING"
+        }
+      },
       "slides": [
         {
           "role": "problem_framing",
-          "title": "Backpropagation là cách tính gradient cho mô hình nhiều tầng",
+          "title": "ORIENT · Gradient của loss phải đi qua cả chuỗi tính toán",
+          "sourceRefs": [
+            "stanford_cs231n_backprop_2026",
+            "pytorch_autograd_tutorial"
+          ],
           "blocks": [
             {
               "type": "text",
-              "title": "Ý chính",
-              "body": "Khi mô hình là chuỗi nhiều phép biến đổi, gradient của loss theo tham số sâu bên trong không thể tính thủ công từng cái. Backpropagation dùng quy tắc dây chuyền để truyền sai số từ đầu ra ngược về các lớp trước."
+              "title": "Câu hỏi điều khiển",
+              "body": "Nếu loss L phụ thuộc prediction, prediction phụ thuộc nhiều layers/parameters, làm sao lấy ∂L/∂parameter mà không khai triển biểu thức khổng lồ?"
+            },
+            {
+              "type": "text",
+              "title": "Câu trả lời",
+              "body": "Tách computation thành local operations; forward tính values, backward dùng chain rule truyền gradients từ loss ngược về parameters."
+            },
+            {
+              "type": "formula",
+              "title": "Core pattern",
+              "body": "forward: input → intermediate → output → loss\nbackward: ∂L/∂loss → ... → ∂L/∂parameter"
+            },
+            {
+              "type": "qa",
+              "title": "Retrieval",
+              "body": "Backprop tạo parameter update hay chỉ tạo gradients? Parameter update thuộc optimizer."
             }
           ]
         },
         {
           "role": "deep_essence",
-          "title": "Backprop không phải phép màu, chỉ là chain rule có tổ chức",
+          "title": "REACTIVATION · Chain rule nối các local sensitivities",
           "blocks": [
             {
+              "type": "formula",
+              "title": "Scalar chain",
+              "body": "z=g(x), y=f(z)\ndy/dx = (dy/dz)(dz/dx)"
+            },
+            {
               "type": "text",
-              "title": "Bản chất",
-              "body": "Mạng neural là hàm hợp: đầu vào đi xuôi để tạo dự đoán, loss đo sai số, đạo hàm đi ngược để biết mỗi trọng số chịu trách nhiệm bao nhiêu trong sai số đó."
+              "title": "Local view",
+              "body": "Mỗi node chỉ cần biết local derivative của operation mình và incoming gradient từ downstream."
+            },
+            {
+              "type": "formula",
+              "title": "Backward message",
+              "body": "g_in = g_out × local_derivative"
+            },
+            {
+              "type": "qa",
+              "title": "Tự nói lại",
+              "body": "Vì sao modular local derivatives tốt hơn tự khai triển derivative toàn model bằng tay?"
             }
           ]
         },
         {
           "role": "counter_intuition",
-          "title": "Sai số đi ngược, dữ liệu không đi ngược",
+          "title": "COUNTER-INTUITION · Backprop không phải gradient descent",
           "blocks": [
             {
               "type": "text",
-              "title": "Điểm dễ nhầm",
-              "body": "Backprop không đảo ngược quá trình dự đoán. Nó truyền gradient của loss qua các phép toán đã lưu từ forward pass. Cái quay về là thông tin đạo hàm, không phải mẫu dữ liệu."
+              "title": "Backprop/autodiff",
+              "body": "Tính ∂L/∂parameters."
+            },
+            {
+              "type": "text",
+              "title": "Optimizer",
+              "body": "Dùng gradients để quyết định update, ví dụ w←w-α∂L/∂w."
+            },
+            {
+              "type": "text",
+              "title": "Separation matters",
+              "body": "Cùng gradients có thể dùng với SGD, momentum, Adam hoặc chỉ để sensitivity analysis."
+            },
+            {
+              "type": "qa",
+              "title": "Diagnostic",
+              "body": "Nếu gọi loss.backward() nhưng không gọi optimizer step, parameters tự đổi không?"
             }
           ]
         },
         {
           "role": "real_bridge",
-          "title": "Từ perceptron nhỏ đến mạng sâu",
+          "title": "CONTEXT · Một linear neuron đủ để thấy toàn backprop",
           "blocks": [
             {
-              "type": "text",
-              "title": "Ví dụ",
-              "body": "Một mạng nhận vector cảm biến, qua nhiều lớp tạo dự đoán lỗi thiết bị. Loss ở đầu ra được truyền ngược để cập nhật từng trọng số, từ lớp cuối đến lớp đầu."
+              "type": "formula",
+              "title": "Forward",
+              "body": "ŷ = wx+b\nL = 1/2(ŷ-y)^2"
+            },
+            {
+              "type": "formula",
+              "title": "Local derivatives",
+              "body": "∂L/∂ŷ=ŷ-y\n∂ŷ/∂w=x\n∂ŷ/∂b=1"
+            },
+            {
+              "type": "formula",
+              "title": "Backprop",
+              "body": "∂L/∂w=(ŷ-y)x\n∂L/∂b=ŷ-y"
+            },
+            {
+              "type": "qa",
+              "title": "Decision question",
+              "body": "Nếu x=0, gradient theo w là gì dù prediction error khác zero?"
             }
           ]
         },
         {
           "role": "notation",
-          "title": "Ký hiệu hàm hợp và chain rule",
+          "title": "FORMALIZE · Computation graph là DAG của values và operations",
+          "sourceRefs": [
+            "pytorch_autograd_mechanics"
+          ],
           "blocks": [
             {
-              "type": "formula",
-              "title": "Hàm hợp",
-              "body": "y = f_3(f_2(f_1(x)))"
+              "type": "text",
+              "title": "Leaves",
+              "body": "Inputs/parameters ở leaves; scalar loss thường ở root/output side của differentiation task."
             },
             {
-              "type": "formula",
-              "title": "Quy tắc dây chuyền",
-              "body": "dJ/dw = dJ/da · da/dz · dz/dw"
+              "type": "text",
+              "title": "Forward pass",
+              "body": "Tính intermediate values và ghi operations cần cho derivative."
             },
             {
-              "type": "formula",
-              "title": "Cập nhật",
-              "body": "w = w - alpha dJ/dw"
+              "type": "text",
+              "title": "Backward pass",
+              "body": "Bắt đầu gradient 1 tại scalar loss rồi propagate bằng chain rule về leaves."
+            },
+            {
+              "type": "qa",
+              "title": "Quick check",
+              "body": "Tại sao scalar loss thuận tiện cho backward() mặc định hơn arbitrary vector output?"
             }
           ]
         },
         {
           "role": "core_formula",
-          "title": "Quy trình forward, backward, update",
+          "title": "CORE · Example số hoàn chỉnh bằng tay",
           "blocks": [
             {
               "type": "formula",
-              "title": "Forward",
-              "body": "x -> z1 -> a1 -> z2 -> y_hat -> J"
+              "title": "Values",
+              "body": "x=2, y=5, w=1, b=0\nŷ=2\nL=1/2(2-5)^2=4.5"
             },
             {
               "type": "formula",
-              "title": "Backward",
-              "body": "dJ/dy_hat -> dJ/dz2 -> dJ/dw2 -> dJ/da1 -> dJ/dw1"
+              "title": "Gradients",
+              "body": "∂L/∂ŷ=-3\n∂L/∂w=(-3)(2)=-6\n∂L/∂b=-3"
             },
             {
-              "type": "text",
-              "title": "Update",
-              "body": "Optimizer dùng gradient để cập nhật trọng số. SGD, Momentum, RMSProp và Adam khác nhau ở cách dùng lịch sử gradient."
+              "type": "formula",
+              "title": "One GD step α=0.1",
+              "body": "w_new=1-0.1(-6)=1.6\nb_new=0-0.1(-3)=0.3"
+            },
+            {
+              "type": "qa",
+              "title": "Result",
+              "body": "New prediction at x=2 is 3.5; new loss 1.125. Gradient step giảm loss trong example này."
             }
           ]
         },
         {
           "role": "assumption_gate",
-          "title": "Điều kiện để gradient truyền được",
+          "title": "ASSUMPTION GATE · Computation graph và differentiability",
           "blocks": [
             {
               "type": "text",
-              "title": "Điều kiện",
-              "body": "Các phép toán cần khả vi hoặc có đạo hàm gần đúng/subgradient. Cần lưu giá trị trung gian của forward pass. Hàm kích hoạt, chuẩn hóa dữ liệu và khởi tạo trọng số ảnh hưởng mạnh đến gradient."
+              "title": "Differentiable operations",
+              "body": "Backprop cần derivative rules cho operations trên path đang dùng; non-differentiable points cần convention/subgradient/special handling tùy operator."
+            },
+            {
+              "type": "text",
+              "title": "Scalar loss",
+              "body": "Training thường tối ưu scalar objective; vector outputs phải được reduced/paired with upstream vector for backward products."
+            },
+            {
+              "type": "text",
+              "title": "Graph correctness",
+              "body": "Autograd differentiates graph bạn thực sự coded, không graph bạn intended."
+            },
+            {
+              "type": "qa",
+              "title": "Gate",
+              "body": "Nếu data preprocessing vô tình detach/copy làm mất gradient path, autograd có thể tính đúng trên graph còn lại nhưng training logic vẫn sai không?"
             }
           ]
         },
         {
           "role": "mini_case",
-          "title": "Mini case: một mạng hai lớp dự đoán lỗi cảm biến",
+          "title": "E1 SIMPLE · Chain rule ba nodes",
           "blocks": [
             {
+              "type": "formula",
+              "title": "Graph",
+              "body": "x → z=x^2 → y=3z → L=(y-12)^2"
+            },
+            {
+              "type": "formula",
+              "title": "At x=2",
+              "body": "z=4, y=12, L=0 ⇒ dL/dx=0"
+            },
+            {
               "type": "text",
-              "title": "Case",
-              "body": "Input x là vector đặc trưng. Lớp ẩn tạo biểu diễn a1. Đầu ra y_hat dự đoán xác suất lỗi. Cross-entropy tạo loss, backprop tính gradient cho W2 rồi W1 để cả bộ trích đặc trưng và bộ phân loại cùng được sửa."
+              "title": "Perturbed point",
+              "body": "At x=1: z=1,y=3,L=81; dL/dy=2(3-12)=-18, dy/dz=3, dz/dx=2 ⇒ dL/dx=-108."
+            },
+            {
+              "type": "qa",
+              "title": "Sanity",
+              "body": "Sign negative tại x=1 nói tăng x nhỏ làm L tăng hay giảm?"
             }
           ]
         },
         {
           "role": "interpretation",
-          "title": "Gradient nói tham số nào cần chịu trách nhiệm",
+          "title": "E2 CONTEXTUAL · Branching graph phải cộng gradient contributions",
           "blocks": [
             {
+              "type": "formula",
+              "title": "Branch",
+              "body": "L = a(x)+b(x) ⇒ dL/dx = da/dx + db/dx"
+            },
+            {
               "type": "text",
-              "title": "Diễn giải",
-              "body": "Nếu dJ/dw lớn, thay đổi nhỏ ở w ảnh hưởng mạnh đến loss. Nếu gradient gần 0, w ít được cập nhật, có thể vì mô hình đã ổn, vùng bão hòa, learning rate/activation không phù hợp hoặc gradient bị biến mất."
+              "title": "Graph meaning",
+              "body": "Nếu một variable ảnh hưởng loss qua nhiều downstream paths, reverse-mode phải accumulate contributions từ mọi path."
+            },
+            {
+              "type": "text",
+              "title": "Framework behavior",
+              "body": "Autograd systems accumulate gradient contributions at shared leaves/nodes."
+            },
+            {
+              "type": "qa",
+              "title": "Transfer nhẹ",
+              "body": "Nếu x được dùng hai lần trong y=x^2+3x, derivative có một hay hai contributions?"
             }
           ]
         },
         {
           "role": "simulation",
-          "title": "Thí nghiệm autograd tối giản",
+          "title": "BEGINNER ENTRY · PyTorch autograd đối chiếu analytical gradient",
+          "sourceRefs": [
+            "pytorch_autograd_tutorial"
+          ],
           "blocks": [
             {
               "type": "code",
-              "title": "Công cụ",
-              "body": "loss.backward()\noptimizer.step()\noptimizer.zero_grad()\n\n# kiểm tra gradient\nfor name, p in model.named_parameters():\n    print(name, p.grad.norm())"
+              "title": "Deterministic PyTorch check",
+              "body": "import torch\n\nx = torch.tensor(2.0)\ny = torch.tensor(5.0)\nw = torch.tensor(1.0, requires_grad=True)\nb = torch.tensor(0.0, requires_grad=True)\n\npred = w*x + b\nloss = 0.5*(pred-y)**2\nloss.backward()\n\nassert torch.allclose(w.grad, torch.tensor(-6.0))\nassert torch.allclose(b.grad, torch.tensor(-3.0))\nprint(pred.item(), loss.item(), w.grad.item(), b.grad.item())"
             },
             {
               "type": "text",
-              "title": "Mục tiêu",
-              "body": "Theo dõi norm gradient từng lớp để phát hiện lớp học quá chậm, gradient nổ hoặc gradient biến mất."
+              "title": "BEGINNER ENTRY · read grads",
+              "body": "w.grad và b.grad chứa loss derivatives với respect to leaves sau backward."
+            },
+            {
+              "type": "text",
+              "title": "Software trust",
+              "body": "Autograd gradient nên được spot-check bằng analytical hoặc finite differences trên model nhỏ; framework correctness không thay model/graph correctness."
+            },
+            {
+              "type": "qa",
+              "title": "Gradient accumulation",
+              "body": "Nếu backward lần nữa mà không zero grad, nhiều frameworks/PyTorch sẽ accumulate. Vì sao training loop cần zero gradients?"
             }
           ]
         },
         {
           "role": "common_mistakes",
-          "title": "Lỗi thường gặp khi train mạng",
+          "title": "MISCONCEPTION MAP · 5 lỗi về backprop",
           "blocks": [
             {
               "type": "text",
-              "title": "Lỗi",
-              "body": "Quên zero_grad; cập nhật trước khi backward; learning rate quá lớn; activation bão hòa; dữ liệu chưa normalize; chỉ nhìn accuracy mà không nhìn loss và gradient norm."
+              "title": "MAJOR · «Backprop cập nhật weights»",
+              "body": "Backprop computes gradients; optimizer updates weights."
+            },
+            {
+              "type": "text",
+              "title": "MAJOR · «Chain rule chỉ nhân một path»",
+              "body": "Branching graph cần sum contributions từ paths."
+            },
+            {
+              "type": "text",
+              "title": "MAJOR · «Autograd đúng nghĩa model đúng»",
+              "body": "Autograd differentiates coded graph, kể cả semantic model sai."
+            },
+            {
+              "type": "text",
+              "title": "MAJOR · «grad tự reset sau backward»",
+              "body": "PyTorch accumulates gradients unless zeroed/cleared."
+            },
+            {
+              "type": "text",
+              "title": "MAJOR · «Phải tạo full Jacobian»",
+              "body": "Reverse-mode cho scalar loss có thể propagate gradient products mà không materialize full Jacobians."
             }
           ]
         },
         {
           "role": "application",
-          "title": "Ứng dụng lập trình cho tối ưu ML",
+          "title": "E3 TRANSFER · Audit một training step",
           "blocks": [
             {
-              "type": "text",
-              "title": "Nhiệm vụ",
-              "body": "Tạo training loop có forward, loss, backward, step, zero_grad. Log loss, validation metric, gradient norm và learning rate. Thêm gradient clipping nếu gradient nổ."
+              "type": "qa",
+              "title": "Task 1",
+              "body": "Model ŷ=w1x1+w2x2+b, MSE scalar loss. Viết local derivatives và parameter gradients cho một sample."
+            },
+            {
+              "type": "qa",
+              "title": "Task 2",
+              "body": "Vẽ computation graph và đánh dấu forward values/backward gradient messages."
+            },
+            {
+              "type": "qa",
+              "title": "Task 3",
+              "body": "Thiết kế finite-difference check cho w1 và so với autograd w1.grad."
+            },
+            {
+              "type": "qa",
+              "title": "Task 4",
+              "body": "Tách rõ thứ tự training step: zero grad → forward → loss → backward → optimizer step. Giải thích nếu đảo sai."
             }
           ]
         },
         {
           "role": "practice",
-          "title": "Bài luyện tập",
+          "title": "PRACTICE LADDER · P0 → P3",
           "blocks": [
             {
-              "type": "text",
-              "title": "Bài tập",
-              "body": "Vẽ sơ đồ forward/backward cho mô hình y_hat = sigmoid(w2 * relu(w1*x + b1) + b2). Ghi rõ gradient cần đi qua những phép toán nào trước khi cập nhật w1."
+              "type": "qa",
+              "title": "P0 · Recognition",
+              "body": "Trong 6 statements, phân loại forward computation / local derivative / backward propagation / optimizer update."
+            },
+            {
+              "type": "qa",
+              "title": "P1 · Guided",
+              "body": "Tính tay full gradients cho ŷ=wx+b, squared loss với một sample, rồi chạy one gradient step."
+            },
+            {
+              "type": "qa",
+              "title": "P2 · Independent",
+              "body": "Tự tạo scalar computation graph 4 operations, derive gradient by chain rule, verify finite difference."
+            },
+            {
+              "type": "qa",
+              "title": "P3 · Transfer",
+              "body": "Tạo branching graph có shared variable, chứng minh gradient cần sum path contributions, verify autograd."
             }
           ]
         },
         {
           "role": "professor_qa",
-          "title": "Vấn đáp kiểm tra hiểu sâu",
+          "title": "ASSESSMENT · D0 / D1 / D2",
           "blocks": [
             {
               "type": "qa",
-              "title": "Câu hỏi",
-              "body": "Backprop khác gradient descent ở điểm nào? Vì sao cần lưu intermediate values từ forward pass? Khi gradient của lớp đầu gần 0 liên tục, em sẽ kiểm tra những nguyên nhân nào?"
+              "title": "D0 RECALL",
+              "body": "Nêu scalar chain rule, forward/backward pass, gradient accumulation và optimizer separation."
+            },
+            {
+              "type": "qa",
+              "title": "D1 APPLICATION",
+              "body": "Cho computation graph nhỏ có branch. Tính forward values, every local derivative, backward gradients, rồi verify bằng code."
+            },
+            {
+              "type": "qa",
+              "title": "D2 EXPLAIN / ORAL",
+              "body": "Giải thích 60–90 giây: «Backprop khác gradient descent thế nào và vì sao reverse-mode hiệu quả cho scalar loss với nhiều parameters?»"
+            },
+            {
+              "type": "text",
+              "title": "Mastery evidence",
+              "body": "Đạt khi learner có thể làm chain rule trên graph mới, kiểm gradient độc lập và không nhầm gradient computation với parameter update."
             }
           ]
         },
         {
           "role": "bridge",
-          "title": "Cầu sang tối ưu nâng cao và mô hình lớn",
+          "title": "TECHNICAL RUSSIAN + NEXT · kết thúc C03",
           "blocks": [
             {
               "type": "text",
-              "title": "Liên kết",
-              "body": "Sau backprop, câu hỏi thực tế là làm sao train ổn định hơn: mini-batch, momentum, Adam, scheduler, regularization, batch normalization và kiểm soát overfitting."
+              "title": "9 thuật ngữ",
+              "body": "правило цепочки · вычислительный граф · прямой проход · обратное распространение · автоматическое дифференцирование · локальная производная · градиент параметра · накопление градиента · оптимизатор"
+            },
+            {
+              "type": "text",
+              "title": "4 động từ",
+              "body": "вычислите — tính; распространите — truyền; сравните — so sánh; объясните — giải thích."
+            },
+            {
+              "type": "text",
+              "title": "Khung vấn đáp",
+              "body": "«Обратное распространение применяет правило цепочки от функции потерь к параметрам.»\n«Backprop вычисляет градиенты, а оптимизатор использует их для обновления параметров.»"
+            },
+            {
+              "type": "text",
+              "title": "Cầu sang Chương 4",
+              "body": "C03 đã phục hồi function→derivative→gradient→descent→optimality→backprop. Chương kế tiếp chuyển sang tích phân/phương trình vi phân để mô tả tích lũy và dynamics liên tục."
             }
           ]
         },
         {
           "role": "takeaway",
-          "title": "Kết luận cần nhớ",
+          "title": "REVIEW · 6 cầu nối từ calculus sang ML",
           "blocks": [
             {
               "type": "text",
-              "title": "Cốt lõi",
-              "body": "Backpropagation tính gradient hiệu quả cho mô hình nhiều tầng. Gradient descent dùng các gradient đó để cập nhật tham số; optimizer quyết định cách bước đi trên bề mặt loss."
+              "title": "1",
+              "body": "Computation graph tách model thành local operations."
+            },
+            {
+              "type": "text",
+              "title": "2",
+              "body": "Backprop là chain rule chạy ngược để tính gradients."
+            },
+            {
+              "type": "text",
+              "title": "3",
+              "body": "Shared paths cần gradient accumulation."
+            },
+            {
+              "type": "text",
+              "title": "4",
+              "body": "Autograd computes gradients; optimizer updates parameters."
+            },
+            {
+              "type": "text",
+              "title": "5",
+              "body": "Gradient checking là diagnostic độc lập hữu ích trên model nhỏ."
+            },
+            {
+              "type": "text",
+              "title": "6",
+              "body": "Framework có thể differentiate graph sai về semantics; software evidence không thay model validation."
             }
           ]
         }
-      ]
+      ],
+      "qaEvidence": {
+        "chainRuleGraph": "PASS",
+        "manualBackprop": "PASS",
+        "optimizerSeparation": "PASS",
+        "gradientAccumulation": "PASS",
+        "pytorchAutogradEntry": "PASS",
+        "chapterIdCanonical": "PASS",
+        "schemaAndIds": "PASS",
+        "adjacentContinuity": "PASS",
+        "representationChannels": "PASS",
+        "practiceP0P3": "PASS",
+        "assessmentD0D1D2": "PASS",
+        "misconceptionDiagnostics": "PASS",
+        "technicalRussian": "PASS",
+        "softwareOutputTrustExplanation": "PASS",
+        "browserBaseline": "PENDING_E164"
+      }
     }
   ],
   "reconciledChapterId": {
     "id": "E173",
-    "legacyChapterId": "MATH-VN-C03-giai_tich_dao_ham_gradient",
     "canonicalChapterId": "MATH-VN-C03-ham_so_ao_ham_va_gradien",
     "lessonIdsPreserved": true
-  }
+  },
+  "supersedes": "E146_STAGED_CONTENT",
+  "syncStatus": "SYNCED_TO_RUNTIME_CONTENT_E177_E179",
+  "syncedAt": "2026-09-21"
 }
