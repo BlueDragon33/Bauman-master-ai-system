@@ -1,7 +1,7 @@
 {
   "id": "bauman_math_theory_lecture_content_e146_c03_complete",
   "schema": "bauman_math_content_records_v1",
-  "version": "E179_C03_L06_CONTENT_FACTORY_C1_C6_PASS",
+  "version": "E181_C04_L01_CONTENT_FACTORY_C1_C5",
   "title": "Bài giảng lý thuyết Toán · Nội dung học tập",
   "role": "content",
   "frameSource": "theory_lecture_frame.json",
@@ -10847,12 +10847,687 @@
         "softwareOutputTrustExplanation": "PASS",
         "browserBaseline": "PENDING_E164"
       }
+    },
+    {
+      "lessonId": "MATH-VN-C04-xac_suat_co_ban_va_bien_-L01-random-variable-distribution-e181",
+      "chapterId": "MATH-VN-C04-xac_suat_co_ban_va_bien_",
+      "lessonTitle": "§4.1 · Từ bất định đến biến ngẫu nhiên và phân phối",
+      "title": "§4.1 · Từ bất định đến biến ngẫu nhiên và phân phối",
+      "orderInChapter": 1,
+      "identityDecision": {
+        "status": "NEW_CANONICAL_CONTENT_ID",
+        "reason": "C04 canonical chapter exists and explicitly allows lesson generation, but no C04 theory lesson record/legacy identity exists.",
+        "chapterIdStable": true,
+        "parallelIdentitySystemCreated": false
+      },
+      "programLectureId": "MATH-PROG-L12-probability-random-variables",
+      "programLectureIds": [
+        "MATH-PROG-L12-probability-random-variables",
+        "MATH-PROG-L13-mathematical-statistics",
+        "MATH-PROG-L14-stochastic-processes-time-series",
+        "MATH-PROG-L17-ai-machine-learning-math-foundations"
+      ],
+      "programAnchorTitle": "Xác suất và biến ngẫu nhiên",
+      "roadmapRole": "probability_foundation_for_data_networks_and_ai",
+      "baumanFocus": "Khôi phục mô hình xác suất từ experiment→sample space→event→probability, rồi định nghĩa random variable như function trên sample space và distribution như xác suất được đẩy sang các giá trị của random variable.",
+      "pureLayer": [
+        "sample space",
+        "event",
+        "probability law",
+        "random variable",
+        "distribution",
+        "indicator variable"
+      ],
+      "appliedLayer": [
+        "sensor uncertainty",
+        "failure event",
+        "binary indicator",
+        "simulation frequency",
+        "data uncertainty"
+      ],
+      "bridgeQuestion": "Làm sao biến một thí nghiệm bất định thành biến số có phân phối để dùng trong dữ liệu, cảm biến và AI?",
+      "auditStatus": "REVIEW",
+      "sourceAnchors": {
+        "stageId": "vn",
+        "disciplineId": "probability_statistics_inference",
+        "chapterId": "MATH-VN-C04-xac_suat_co_ban_va_bien_",
+        "programLectureId": "MATH-PROG-L12-probability-random-variables",
+        "officialCurriculum": "bmstu_iu5_2026_curriculum"
+      },
+      "tags": [
+        "probability",
+        "sample space",
+        "event",
+        "random variable",
+        "distribution",
+        "uncertainty",
+        "simulation"
+      ],
+      "learningContract": {
+        "governingQuestion": "Outcome, event, probability, random variable và distribution khác nhau thế nào và nối với nhau bằng mapping nào?",
+        "whyNeeded": "Mọi chương thống kê, sensor noise, Bayesian reasoning, uncertainty và stochastic modeling đều cần phân biệt chính xác các object này.",
+        "prerequisiteGates": [
+          "Biết set/subset ở mức trực giác; nếu quên sẽ kích hoạt bằng examples.",
+          "Biết function/mapping từ C03 §3.1.",
+          "Không yêu cầu xác suất trước đó còn nhớ; bài bắt đầu từ experiment/sample space.",
+          "Python/NumPy simulation được dạy ở beginner entry, không giả định thống kê/code fluency."
+        ],
+        "measurableLearningOutcomes": [
+          "LO1: Từ một experiment đơn giản, liệt kê sample space Ω và phân biệt outcome ω với event A⊆Ω.",
+          "LO2: Kiểm một probability assignment đơn giản theo non-negativity, normalization và additivity trên disjoint events.",
+          "LO3: Định nghĩa random variable X như function trên sample space và tính X(ω) cho từng outcome.",
+          "LO4: Từ X và P trên Ω, lập distribution/PMF của X trong ví dụ rời rạc nhỏ.",
+          "LO5: Phân biệt exact model probability với empirical relative frequency từ simulation.",
+          "LO6: Dùng seeded NumPy simulation để ước lượng distribution và so với exact probabilities.",
+          "LO7: Viết một engineering uncertainty contract gồm experiment, outcome, event quan tâm, random variable đo lường và units."
+        ],
+        "exactScope": [
+          "sample space",
+          "outcome",
+          "event",
+          "probability axioms intuition",
+          "random variable as mapping",
+          "discrete distribution/PMF entry",
+          "seeded simulation"
+        ],
+        "explicitDeferrals": [
+          "Conditional probability, independence, Bayes → §4.2.",
+          "Bernoulli/binomial models in depth → §4.3.",
+          "Continuous density/CDF/normal → §4.4.",
+          "Expectation/variance/covariance → §4.5.",
+          "Sensor-noise Monte Carlo and uncertainty application → §4.6."
+        ],
+        "canonicalTerminology": {
+          "experiment": "thí nghiệm ngẫu nhiên",
+          "outcome": "kết quả sơ cấp",
+          "sampleSpace": "không gian mẫu",
+          "event": "biến cố",
+          "probabilityLaw": "luật xác suất",
+          "randomVariable": "biến ngẫu nhiên",
+          "distribution": "phân phối",
+          "pmf": "hàm khối xác suất",
+          "indicator": "biến chỉ thị"
+        },
+        "symbols": {
+          "Ω": "sample space",
+          "ω∈Ω": "one outcome",
+          "A⊆Ω": "event",
+          "P(A)": "probability of event A",
+          "X:Ω→R": "random variable",
+          "p_X(x)=P(X=x)": "PMF for discrete X"
+        },
+        "continuity": {
+          "previous": "§3.6 · Từ gradient sang backpropagation và tối ưu ML",
+          "next": "§4.2 · Xác suất có điều kiện, độc lập và Bayes"
+        }
+      },
+      "technicalRussian": {
+        "terms": [
+          [
+            "случайный эксперимент",
+            "thí nghiệm ngẫu nhiên"
+          ],
+          [
+            "элементарный исход",
+            "outcome"
+          ],
+          [
+            "пространство исходов",
+            "không gian mẫu"
+          ],
+          [
+            "событие",
+            "biến cố"
+          ],
+          [
+            "вероятность",
+            "xác suất"
+          ],
+          [
+            "случайная величина",
+            "biến ngẫu nhiên"
+          ],
+          [
+            "распределение",
+            "phân phối"
+          ],
+          [
+            "функция вероятности",
+            "hàm xác suất"
+          ],
+          [
+            "индикатор",
+            "biến chỉ thị"
+          ]
+        ],
+        "commandVerbs": [
+          [
+            "перечислите",
+            "hãy liệt kê"
+          ],
+          [
+            "определите",
+            "hãy xác định"
+          ],
+          [
+            "вычислите",
+            "hãy tính"
+          ],
+          [
+            "объясните",
+            "hãy giải thích"
+          ]
+        ],
+        "oralFrames": [
+          "Случайная величина — это функция на пространстве элементарных исходов.",
+          "Событие является подмножеством пространства исходов.",
+          "Эмпирическая частота приближает вероятность, но не является её определением."
+        ]
+      },
+      "sourceProvenance": [
+        {
+          "id": "bmstu_iu5_2026_curriculum",
+          "kind": "official_curriculum",
+          "url": "https://home.science.iu5.bmstu.ru/study-plans/iu5-master-program.pdf",
+          "supports": [
+            "preparation context for data analysis, uncertainty and machine learning"
+          ]
+        },
+        {
+          "id": "mit_1805_probability_reading",
+          "kind": "authoritative_university_material",
+          "url": "https://ocw.mit.edu/courses/18-05-introduction-to-probability-and-statistics-spring-2022/mit18_05_s22_probability.pdf",
+          "supports": [
+            "experiment, sample space, event and probability terminology",
+            "basic probability modeling"
+          ]
+        },
+        {
+          "id": "mit_61200_random_variables_2024",
+          "kind": "authoritative_university_material",
+          "url": "https://ocw.mit.edu/courses/6-1200j-mathematics-for-computer-science-spring-2024/mit6_1200j_s24_lec21.pdf",
+          "supports": [
+            "random variable as a function on the sample space",
+            "events induced by random-variable values"
+          ]
+        },
+        {
+          "id": "numpy_rng_binomial",
+          "kind": "official_documentation",
+          "url": "https://numpy.org/doc/stable/reference/random/generated/numpy.random.Generator.binomial.html",
+          "supports": [
+            "seeded simulation of Bernoulli/binomial trials for empirical-frequency exercises"
+          ]
+        }
+      ],
+      "generatedMaterial": {
+        "status": "AI_DRAFT_REVIEWED_IN_CONTENT_FACTORY",
+        "lineage": "Generated first canonical C04 lesson anchored to MIT probability/random-variable materials, existing C04 roadmap and NumPy seeded simulation.",
+        "canonicalSourceReplacement": false
+      },
+      "contentFactory": {
+        "C1": "PASS",
+        "C2": "PASS",
+        "C3": "PASS",
+        "C4": "PASS",
+        "C5": "PASS",
+        "C6": {
+          "software": "STATIC_QA_PENDING",
+          "user": "PENDING",
+          "blockers": 0,
+          "majors": 0,
+          "inheritedDeferredGate": "E164",
+          "acceptance": "PENDING_C6"
+        }
+      },
+      "slides": [
+        {
+          "role": "problem_framing",
+          "title": "ORIENT · Bất định cần object rõ trước khi tính",
+          "sourceRefs": [
+            "mit_1805_probability_reading"
+          ],
+          "blocks": [
+            {
+              "type": "text",
+              "title": "Câu hỏi điều khiển",
+              "body": "Một sensor có thể đọc nhiều giá trị; một packet có thể thành công hoặc thất bại. Ta mô tả 'có thể xảy ra gì', 'biến cố nào quan tâm' và 'con số ngẫu nhiên nào đo được' bằng các object khác nhau."
+            },
+            {
+              "type": "formula",
+              "title": "Chuỗi object",
+              "body": "experiment → outcome ω∈Ω → event A⊆Ω → P(A)\nrandom variable X:Ω→R → distribution of X"
+            },
+            {
+              "type": "text",
+              "title": "Vì sao cần",
+              "body": "Nếu nhầm outcome, event, random variable và distribution, công thức sau này về expectation/Bayes/noise có thể đúng ký hiệu nhưng sai object."
+            },
+            {
+              "type": "qa",
+              "title": "Retrieval",
+              "body": "Function C03 map input→output. Random variable cũng là function; domain đặc biệt của nó là gì?"
+            }
+          ]
+        },
+        {
+          "role": "deep_essence",
+          "title": "REACTIVATION · Sample space là tập mọi outcomes được model cho phép",
+          "blocks": [
+            {
+              "type": "text",
+              "title": "Experiment",
+              "body": "Quy trình lặp được về mặt mô hình với outcome chưa biết trước."
+            },
+            {
+              "type": "formula",
+              "title": "Coin twice",
+              "body": "Ω={HH,HT,TH,TT}"
+            },
+            {
+              "type": "text",
+              "title": "Outcome vs event",
+              "body": "HT là một outcome. 'Đúng một head' là event A={HT,TH}, tức một subset của Ω."
+            },
+            {
+              "type": "qa",
+              "title": "Tự nói lại",
+              "body": "'Ít nhất một head' là outcome hay event? Hãy liệt kê subset."
+            }
+          ]
+        },
+        {
+          "role": "counter_intuition",
+          "title": "COUNTER-INTUITION · Random variable không phải 'một số tự nhiên nhảy ngẫu nhiên'",
+          "sourceRefs": [
+            "mit_61200_random_variables_2024"
+          ],
+          "blocks": [
+            {
+              "type": "text",
+              "title": "Definition",
+              "body": "Random variable X là function gán mỗi outcome ω một giá trị X(ω). Randomness đến từ outcome chưa biết, không phải từ function mapping tùy tiện."
+            },
+            {
+              "type": "formula",
+              "title": "Heads count",
+              "body": "X(HH)=2; X(HT)=1; X(TH)=1; X(TT)=0"
+            },
+            {
+              "type": "text",
+              "title": "Many-to-one",
+              "body": "Nhiều outcomes có thể cho cùng X value. Distribution gom probability của các outcomes cùng giá trị."
+            },
+            {
+              "type": "qa",
+              "title": "Diagnostic",
+              "body": "HT và TH khác outcomes nhưng có thể cùng X=1. Điều này có mâu thuẫn function không?"
+            }
+          ]
+        },
+        {
+          "role": "real_bridge",
+          "title": "CONTEXT · Event failure và random measurement trong hệ kỹ thuật",
+          "blocks": [
+            {
+              "type": "text",
+              "title": "Binary event",
+              "body": "Packet delivery experiment có event F='packet mất'."
+            },
+            {
+              "type": "text",
+              "title": "Indicator RV",
+              "body": "I_F=1 nếu failure xảy ra, 0 nếu không. Indicator biến event thành random variable số."
+            },
+            {
+              "type": "text",
+              "title": "Measurement RV",
+              "body": "Sensor error E có thể map mỗi physical/random outcome thành sai số tính bằng °C, m/s² hoặc volt."
+            },
+            {
+              "type": "qa",
+              "title": "Decision question",
+              "body": "'Sensor error >2°C' là random variable hay event induced by random variable?"
+            }
+          ]
+        },
+        {
+          "role": "notation",
+          "title": "FORMALIZE · Probability law trên events",
+          "blocks": [
+            {
+              "type": "formula",
+              "title": "Core rules",
+              "body": "P(A)≥0\nP(Ω)=1\nA∩B=∅ ⇒ P(A∪B)=P(A)+P(B)"
+            },
+            {
+              "type": "text",
+              "title": "Complement",
+              "body": "P(A^c)=1-P(A) suy ra từ normalization + additivity."
+            },
+            {
+              "type": "text",
+              "title": "Equal likelihood is special",
+              "body": "Chỉ khi model nói outcomes equiprobable mới dùng favorable/total counting trực tiếp."
+            },
+            {
+              "type": "qa",
+              "title": "Quick check",
+              "body": "Nếu P(HH)=0.4,P(HT)=0.3,P(TH)=0.2,P(TT)=0.1 thì model hợp lệ không? Sum và non-negativity nói gì?"
+            }
+          ]
+        },
+        {
+          "role": "core_formula",
+          "title": "CORE · Distribution được induced từ X và P",
+          "blocks": [
+            {
+              "type": "formula",
+              "title": "Discrete PMF",
+              "body": "p_X(x)=P(X=x)=Σ_{ω:X(ω)=x} P({ω})"
+            },
+            {
+              "type": "formula",
+              "title": "Two fair coins",
+              "body": "P(X=0)=1/4\nP(X=1)=2/4=1/2\nP(X=2)=1/4"
+            },
+            {
+              "type": "text",
+              "title": "Distribution loses outcome detail",
+              "body": "Distribution of X chỉ giữ probability theo X values; nó có thể quên khác biệt giữa outcomes cùng mapping value."
+            },
+            {
+              "type": "qa",
+              "title": "Retrieve",
+              "body": "Tổng PMF trên mọi possible X values phải bằng bao nhiêu?"
+            }
+          ]
+        },
+        {
+          "role": "assumption_gate",
+          "title": "ASSUMPTION GATE · Probability model không đồng nghĩa observed frequency",
+          "blocks": [
+            {
+              "type": "text",
+              "title": "Model probability",
+              "body": "P được định nghĩa bởi model/assumptions hoặc estimated from data; trong lesson toy coin ta đặt fair-coin law."
+            },
+            {
+              "type": "text",
+              "title": "Empirical frequency",
+              "body": "Simulation/sample cho relative frequency. Với finite n, nó thường lệch exact P."
+            },
+            {
+              "type": "text",
+              "title": "Model mismatch",
+              "body": "Nếu real coin/sensor không theo assumptions, nhiều samples chỉ estimate real process chứ không cứu một model sai."
+            },
+            {
+              "type": "qa",
+              "title": "Gate",
+              "body": "100 tosses có 57 heads có chứng minh P(H)=0.57 chính xác không?"
+            }
+          ]
+        },
+        {
+          "role": "mini_case",
+          "title": "E1 SIMPLE · Hai lần tung đồng xu",
+          "blocks": [
+            {
+              "type": "formula",
+              "title": "Sample space",
+              "body": "Ω={HH,HT,TH,TT}, mỗi outcome P=1/4"
+            },
+            {
+              "type": "text",
+              "title": "Event",
+              "body": "A='đúng một head'={HT,TH}, P(A)=1/2."
+            },
+            {
+              "type": "text",
+              "title": "Random variable",
+              "body": "X=#heads có values {0,1,2} với PMF {1/4,1/2,1/4}."
+            },
+            {
+              "type": "qa",
+              "title": "Sanity",
+              "body": "Event {X≥1} tương ứng subset nào của Ω và probability bao nhiêu?"
+            }
+          ]
+        },
+        {
+          "role": "interpretation",
+          "title": "E2 CONTEXTUAL · Packet success indicator",
+          "blocks": [
+            {
+              "type": "text",
+              "title": "Experiment",
+              "body": "Gửi một packet; outcome success/failure."
+            },
+            {
+              "type": "formula",
+              "title": "Indicator",
+              "body": "X=1 nếu success, X=0 nếu failure\nP(X=1)=p, P(X=0)=1-p"
+            },
+            {
+              "type": "text",
+              "title": "Distribution",
+              "body": "Đây là Bernoulli random variable; §4.3 sẽ học model này sâu hơn."
+            },
+            {
+              "type": "qa",
+              "title": "Transfer nhẹ",
+              "body": "Event 'success' có thể viết bằng random-variable notation thế nào?"
+            }
+          ]
+        },
+        {
+          "role": "simulation",
+          "title": "BEGINNER ENTRY · Seeded simulation: frequency xấp xỉ probability",
+          "sourceRefs": [
+            "numpy_rng_binomial"
+          ],
+          "blocks": [
+            {
+              "type": "code",
+              "title": "Deterministic simulation",
+              "body": "import numpy as np\n\nrng = np.random.default_rng(20260921)\ntrials = rng.binomial(n=1, p=0.5, size=(10000,2))\nX = trials.sum(axis=1)\ncounts = np.bincount(X, minlength=3)\nfreq = counts / len(X)\nprint(counts, freq)\nassert counts.sum() == 10000\nassert np.allclose(freq.sum(), 1.0)"
+            },
+            {
+              "type": "text",
+              "title": "BEGINNER ENTRY · seed",
+              "body": "Seed làm experiment reproducible cho learning/debugging; nó không biến samples thành deterministic probability law."
+            },
+            {
+              "type": "text",
+              "title": "Software trust",
+              "body": "Empirical freq nên gần [0.25,0.5,0.25] với n lớn, nhưng test không nên đòi exact equality."
+            },
+            {
+              "type": "qa",
+              "title": "Experiment",
+              "body": "Thử n=20,200,20000 với cùng p. So sánh deviation của empirical frequencies."
+            }
+          ]
+        },
+        {
+          "role": "common_mistakes",
+          "title": "MISCONCEPTION MAP · 5 lỗi xác suất nền",
+          "blocks": [
+            {
+              "type": "text",
+              "title": "MAJOR · «Outcome = event»",
+              "body": "Outcome là một phần tử Ω; event là subset."
+            },
+            {
+              "type": "text",
+              "title": "MAJOR · «Random variable = event»",
+              "body": "RV là function; event có thể được induced như {X∈B}."
+            },
+            {
+              "type": "text",
+              "title": "MAJOR · «Distribution = list samples»",
+              "body": "Distribution là probability law trên values, samples chỉ là observations."
+            },
+            {
+              "type": "text",
+              "title": "MAJOR · «Mọi outcomes đều equally likely»",
+              "body": "Chỉ đúng nếu model nói vậy."
+            },
+            {
+              "type": "text",
+              "title": "MAJOR · «Empirical frequency chính là exact P»",
+              "body": "Finite-sample frequency là estimate/observation."
+            }
+          ]
+        },
+        {
+          "role": "application",
+          "title": "E3 TRANSFER · Uncertainty contract cho sensor",
+          "blocks": [
+            {
+              "type": "qa",
+              "title": "Task 1",
+              "body": "IMU sample có error E [m/s²]. Viết experiment, sample space ở mức conceptual, random variable E và event |E|>0.2."
+            },
+            {
+              "type": "qa",
+              "title": "Task 2",
+              "body": "Một quality test trả pass/fail. Tạo indicator X và distribution bằng parameter p."
+            },
+            {
+              "type": "qa",
+              "title": "Task 3",
+              "body": "Cho four outcomes probabilities 0.1,0.2,0.3,0.4 và mapping X=[0,0,1,2]. Tính PMF X."
+            },
+            {
+              "type": "qa",
+              "title": "Task 4",
+              "body": "Nêu một assumption khiến simulated distribution khác real sensor distribution."
+            }
+          ]
+        },
+        {
+          "role": "practice",
+          "title": "PRACTICE LADDER · P0 → P3",
+          "blocks": [
+            {
+              "type": "qa",
+              "title": "P0 · Recognition",
+              "body": "10 objects: classify experiment/outcome/event/random variable/value/distribution."
+            },
+            {
+              "type": "qa",
+              "title": "P1 · Guided",
+              "body": "Hai coin tosses: liệt kê Ω, event exactly-one-head, X=#heads và PMF."
+            },
+            {
+              "type": "qa",
+              "title": "P2 · Independent",
+              "body": "Tự tạo finite sample space 4–6 outcomes, assign valid probabilities, define many-to-one X và derive PMF."
+            },
+            {
+              "type": "qa",
+              "title": "P3 · Transfer",
+              "body": "Mô hình một failure/sensor scenario thực tế thành uncertainty contract và seeded simulation."
+            }
+          ]
+        },
+        {
+          "role": "professor_qa",
+          "title": "ASSESSMENT · D0 / D1 / D2",
+          "blocks": [
+            {
+              "type": "qa",
+              "title": "D0 RECALL",
+              "body": "Định nghĩa Ω, outcome, event, probability law, random variable và discrete distribution."
+            },
+            {
+              "type": "qa",
+              "title": "D1 APPLICATION",
+              "body": "Cho finite probability space + mapping X. Tính event probabilities và PMF; verify PMF sums to 1; simulate frequencies."
+            },
+            {
+              "type": "qa",
+              "title": "D2 EXPLAIN / ORAL",
+              "body": "Giải thích 60–90 giây: «Vì sao random variable là function và vì sao empirical frequency không phải định nghĩa probability?»"
+            },
+            {
+              "type": "text",
+              "title": "Mastery evidence",
+              "body": "Đạt khi learner chuyển được scenario mới thành đúng mathematical objects và không lẫn distribution với samples."
+            }
+          ]
+        },
+        {
+          "role": "bridge",
+          "title": "TECHNICAL RUSSIAN + NEXT · probability sang conditioning/Bayes",
+          "blocks": [
+            {
+              "type": "text",
+              "title": "9 thuật ngữ",
+              "body": "случайный эксперимент · элементарный исход · пространство исходов · событие · вероятность · случайная величина · распределение · функция вероятности · индикатор"
+            },
+            {
+              "type": "text",
+              "title": "4 động từ",
+              "body": "перечислите — liệt kê; определите — xác định; вычислите — tính; объясните — giải thích."
+            },
+            {
+              "type": "text",
+              "title": "Khung vấn đáp",
+              "body": "«Случайная величина — это функция на пространстве элементарных исходов.»\n«Событие является подмножеством пространства исходов.»"
+            },
+            {
+              "type": "text",
+              "title": "Cầu sang §4.2",
+              "body": "Bài này mô tả unconditional probability. §4.2 hỏi probability thay đổi thế nào khi biết thêm thông tin: conditional probability, independence và Bayes."
+            }
+          ]
+        },
+        {
+          "role": "takeaway",
+          "title": "REVIEW · 6 object không được lẫn",
+          "blocks": [
+            {
+              "type": "text",
+              "title": "1",
+              "body": "Experiment tạo một outcome ω trong sample space Ω."
+            },
+            {
+              "type": "text",
+              "title": "2",
+              "body": "Event là subset của Ω."
+            },
+            {
+              "type": "text",
+              "title": "3",
+              "body": "Probability law gán xác suất cho events và tổng probability là 1."
+            },
+            {
+              "type": "text",
+              "title": "4",
+              "body": "Random variable X là function trên outcomes."
+            },
+            {
+              "type": "text",
+              "title": "5",
+              "body": "Distribution gom probability theo values của X."
+            },
+            {
+              "type": "text",
+              "title": "6",
+              "body": "Simulation frequency xấp xỉ/estimate model probability; không đồng nhất hai khái niệm."
+            }
+          ]
+        }
+      ]
     }
   ],
   "lastContentPass": {
-    "id": "E179",
-    "lessonId": "MATH-VN-C03-giai_tich_dao_ham_gradient-L06-gradient-backprop-ml-optimization-e146",
-    "status": "LOCAL_CONTENT_QA_PASS_GLOBAL_BROWSER_BASELINE_PENDING",
+    "id": "E181",
+    "lessonId": "MATH-VN-C04-xac_suat_co_ban_va_bien_-L01-random-variable-distribution-e181",
+    "status": "C1_C5_PASS_C6_PENDING",
     "generatedAt": "2026-09-21",
     "inheritedRuntimeGate": "E164"
   },
