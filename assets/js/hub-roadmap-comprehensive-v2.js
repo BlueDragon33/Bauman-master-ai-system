@@ -3,7 +3,7 @@
    Uses only existing BAUMAN_DATA/state; does not replace canonical roadmap semantics. */
 (()=>{
   'use strict';
-  const RELEASE='HUB_ROADMAP_COMPREHENSIVE_V3_2026_09';
+  const RELEASE='HUB_ROADMAP_COMPREHENSIVE_V4_2026_09';
   const STORAGE_FILTER='bauman.roadmap.v1.filter';
   const STORAGE_OPEN='bauman.roadmap.v1.open';
   const q=(s,r=document)=>r.querySelector(s);
@@ -170,7 +170,7 @@
       '<article class="hub-rm-side-card hub-rm-plan">'+
         '<div class="hub-rm-plan-icon">✦</div>'+
         '<div><h3>Gợi ý kế hoạch tự động</h3><p>Dựa trên giai đoạn, tiến độ môn và lịch hiện có để mở trang lập kế hoạch.</p></div>'+
-        '<button data-rm-action="schedule">Tạo kế hoạch ngay　→</button>'+
+        '<button data-rm-action="autoschedule">Tạo kế hoạch ngay　→</button>'+
       '</article>'+
     '</aside>';
   }
@@ -254,7 +254,7 @@
     if(action==='subjects'){e.preventDefault();window.app?.page?.('subjects');return}
     if(action==='schedule'){e.preventDefault();window.app?.page?.('schedule');return}
     if(action==='progress'){e.preventDefault();window.app?.openHomeFrame?.('progress');return}
-    if(action==='current'){e.preventDefault();const phase=phaseForState();const target=phase.source[0];if(window.selectRoadmapStage)window.selectRoadmapStage(target);return}
+    if(action==='current'){e.preventDefault();const phase=phaseForState();const target=q('[data-rm-level="'+phase.id+'"]',q('#page-roadmap'));target?.scrollIntoView({behavior:'smooth',block:'center'});return}if(action==='autoschedule'){e.preventDefault();window.showAutoScheduleSettings?.();return}
   }
 
   function patch(){
@@ -300,6 +300,6 @@
   let attempts=0;
   const boot=()=>{attempts++;if(!patch()&&attempts<30)setTimeout(boot,120)};
   if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',boot,{once:true});else boot();
-  window.BAUMAN_HUB_ROADMAP_V3={release:RELEASE,render,selfCheck,setFilter};
-  window.BAUMAN_HUB_ROADMAP_V2=window.BAUMAN_HUB_ROADMAP_V3;
+  window.BAUMAN_HUB_ROADMAP_V4={release:RELEASE,render,selfCheck,setFilter};window.BAUMAN_HUB_ROADMAP_V3=window.BAUMAN_HUB_ROADMAP_V4;
+  window.BAUMAN_HUB_ROADMAP_V2=window.BAUMAN_HUB_ROADMAP_V4;
 })();
