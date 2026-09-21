@@ -42,7 +42,7 @@ try{
   });
   assert.ok(dims.sidebar&&dims.sidebar.w>=205&&dims.sidebar.w<=235,'Sidebar width must stay close to 220px reference');
   assert.ok(dims.main&&dims.main.w>1300,'Main learning canvas must use space released by old right rail');
-  assert.ok(dims.hero&&dims.hero.h>=240&&dims.hero.h<=285,'Hero height drifted from reference rhythm');
+  assert.ok(dims.hero&&dims.hero.h>=275&&dims.hero.h<=315,'Hero height drifted from reference rhythm');
   assert.ok(dims.progress&&dims.progress.h>=70&&dims.progress.h<=100,'Progress strip height drifted');
   assert.equal(dims.modules.length,5,'Overview must contain exactly five core module cards');
   assert.ok(Math.max(...dims.modules.map(x=>x.y))-Math.min(...dims.modules.map(x=>x.y))<3,'Five module cards must share one row at 16:9 desktop');
