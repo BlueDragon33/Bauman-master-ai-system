@@ -1,6 +1,6 @@
 'use strict';
 (function(){
-  const VERSION='Academic Phase2 Current-Main · A2 Course Readiness Runtime';
+  const VERSION='Academic Phase2 Current-Main · A2 Course Readiness + A3 Evidence Bridge';
   const ARCH_URL='assets/data/course-learning-architecture-s1-2026.json';
   const COURSE_ORDER=['d01','d02','d03','d04','d05','d06','d15','p02'];
   let architecture=null;
@@ -107,11 +107,14 @@
     return map[block.evidenceClass]||block.evidenceClass||'—';
   }
   function eventRows(course){
-    const axis=eventAxis(course.courseId),enhanced=Boolean(window.BAUMAN_EVENT_READINESS_2026);
+    const axis=eventAxis(course.courseId),eventReady=Boolean(window.BAUMAN_EVENT_READINESS_2026),gradeReady=Boolean(window.BAUMAN_GRADE_CONTROL_2026);
     return (axis.events||[]).map(e=>{
       const unresolved=/^unresolved/.test(e.timing||'')||e.reason==='timing_unresolved',stateLabel=e.label||e.state||'EVENT_UNASSESSED';
-      const content=`<b>${h(e.code)}</b><span>${e.gradingNature==='graded'?`Có điểm · target nội bộ ${h(e.internalTarget)}`:'Pass/fail · không gán target 90'}</span><small>${h(stateLabel)}</small>`;
-      return enhanced&&!unresolved?`<button class="course14b-event" onclick="openAcademicEventReadiness2026('${h(course.courseId)}','${h(e.code)}')">${content}</button>`:`<div class="course14b-event">${content}</div>`;
+      const content=`<span class="course14b-event-copy"><b>${h(e.code)}</b><span>${e.gradingNature==='graded'?`Có điểm · target nội bộ ${h(e.internalTarget)}`:'Pass/fail · không gán target 90'}</span><small>${h(stateLabel)}</small></span>`;
+      if(unresolved)return `<div class="course14b-event course14b-event-a3 locked">${content}<span class="course14b-event-lock">Timing chưa khóa</span></div>`;
+      const readiness=eventReady?`<button class="btn" onclick="openAcademicEventReadiness2026('${h(course.courseId)}','${h(e.code)}')">Readiness</button>`:'<span class="course14b-event-lock">A3 đang tải</span>';
+      const grade=gradeReady?`<button class="btn" onclick="openAcademicGradeResult2026('${h(course.courseId)}','${h(e.code)}')">Kết quả</button>`:'';
+      return `<div class="course14b-event course14b-event-a3">${content}<span class="course14b-event-actions">${readiness}${grade}</span></div>`;
     }).join('');
   }
   function blockersHtml(course){
@@ -143,6 +146,14 @@
     return true;
   }
 
+  function bootstrapEventRuntime(){
+    if(!document.querySelector('link[data-phase2-event-style]')){
+      const link=document.createElement('link');link.rel='stylesheet';link.href='assets/css/academic-event-2026.css';link.dataset.phase2EventStyle='1';document.head.appendChild(link);
+    }
+    if(window.BAUMAN_EVENT_READINESS_2026||document.querySelector('script[data-phase2-event-runtime]'))return;
+    const script=document.createElement('script');script.src='assets/js/academic-event-runtime.js';script.dataset.phase2EventRuntime='1';script.async=false;document.body.appendChild(script);
+  }
+
   async function fetchJson(url){const r=await fetch(url,{cache:'no-cache'});if(!r.ok)throw new Error(`${url} HTTP ${r.status}`);return r.json()}
   async function waitBase(timeout=15000){const start=Date.now();while(Date.now()-start<timeout){if(phase1()&&prereq()&&curriculum()&&window.app?.__academic13fApplyPatched)return true;await new Promise(r=>setTimeout(r,50))}return false}
   async function load(){
@@ -150,6 +161,7 @@
       architecture=await fetchJson(ARCH_URL);window.BAUMAN_COURSE_ARCHITECTURE_S1_2026=architecture;
       if(!(await waitBase()))throw new Error('Phase1 Academic runtime did not become ready');
       if(!patchProgressFrame())throw new Error('Could not patch Progress frame after Academic scheduler Apply layer');
+      setTimeout(bootstrapEventRuntime,0);
       if(!window.openOfficialCoursePhase1)window.openOfficialCoursePhase1=window.openOfficialCourse2026;
       window.openOfficialCourse2026=openCourse;
       console.info(VERSION,{architecture:architecture.version,courses:architecture.courses?.length||0,readOnly:true,surface:'progress-modal'});
@@ -157,7 +169,7 @@
   }
   window.openOfficialCoursePhase2=openCourse;
   window.openCourseReadinessOverview2026=openOverview;
-  window.BAUMAN_COURSE_READINESS_2026=Object.freeze({version:VERSION,load,prereqAxis,lifecycleAxis,eventAxis,fallbackEventAxis,gateRows,nextAction,courseById,renderProgressSummary,readOnly:true,architectureUrl:ARCH_URL,surface:'progress-modal'});
+  window.BAUMAN_COURSE_READINESS_2026=Object.freeze({version:VERSION,load,prereqAxis,lifecycleAxis,eventAxis,fallbackEventAxis,gateRows,nextAction,courseById,renderProgressSummary,readOnly:true,architectureUrl:ARCH_URL,surface:'progress-modal',a3EvidenceBridge:true});
   if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',()=>setTimeout(load,0),{once:true});
   else setTimeout(load,0)
 })();
