@@ -170,7 +170,7 @@
       '<article class="hub-rm-side-card hub-rm-plan">'+
         '<div class="hub-rm-plan-icon">✦</div>'+
         '<div><h3>Gợi ý kế hoạch tự động</h3><p>Dựa trên giai đoạn, tiến độ môn và lịch hiện có để mở trang lập kế hoạch.</p></div>'+
-        '<button data-rm-action="schedule">Tạo kế hoạch ngay　→</button>'+
+        '<button data-rm-action="autoschedule">Tạo kế hoạch ngay　→</button>'+
       '</article>'+
     '</aside>';
   }
@@ -290,7 +290,8 @@
     if(action==='subjects'){e.preventDefault();window.app?.page?.('subjects');return}
     if(action==='schedule'){e.preventDefault();window.app?.page?.('schedule');return}
     if(action==='progress'){e.preventDefault();window.app?.openHomeFrame?.('progress');return}
-    if(action==='current'){e.preventDefault();const phase=phaseForState();const target=phase.source[0];if(window.selectRoadmapStage)window.selectRoadmapStage(target);return}
+    if(action==='current'){e.preventDefault();const phase=phaseForState();const target=q('[data-rm-level="'+phase.id+'"]',q('#page-roadmap'));target?.scrollIntoView({behavior:'smooth',block:'center'});return}
+    if(action==='autoschedule'){e.preventDefault();window.showAutoScheduleSettings?.();return}
   }
 
   function patch(){

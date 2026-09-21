@@ -296,6 +296,15 @@ try{
   await page.locator('#page-roadmap [data-rm-filter="technical"]').click();
   await page.waitForFunction(()=>document.querySelector('#page-roadmap [data-rm-filter="technical"]')?.classList.contains('active')===true);
   assert.ok(await page.locator('#page-roadmap [data-rm-course]').count()>0,'Technical roadmap filter returned no courses');
+  await page.evaluate(()=>{window.__rmScrollTarget='';const orig=Element.prototype.scrollIntoView;window.__rmOrigScrollIntoView=orig;Element.prototype.scrollIntoView=function(){window.__rmScrollTarget=this?.dataset?.rmLevel||this?.className||''}});
+  await page.locator('#page-roadmap [data-rm-action="current"]').click();
+  await page.waitForFunction(()=>!!window.__rmScrollTarget);
+  assert.equal(await page.evaluate(()=>window.__rmScrollTarget),'foundation','Current-stage action did not target the actual current roadmap level');
+  await page.evaluate(()=>{if(window.__rmOrigScrollIntoView)Element.prototype.scrollIntoView=window.__rmOrigScrollIntoView;delete window.__rmOrigScrollIntoView;delete window.__rmScrollTarget});
+  await page.locator('#page-roadmap [data-rm-action="autoschedule"]').click();
+  await page.waitForSelector('#modalRoot .schedule-settings-modal.auto-mode',{state:'visible',timeout:10000});
+  assert.match(await page.locator('#modalRoot').innerText(),/Cài đặt lịch tự động/,'Roadmap auto-plan action did not open Auto Scheduler settings');
+  await page.locator('#modalRoot [data-action="close-modal"]').first().click();
 
   const cases=[['tuf-f15-1920x1080',1920,1080],['laptop-1536x864',1536,864],['ipad-3x2',1180,787],['iphone-19_5x9',390,844]];
   for(const [label,width,height] of cases){
