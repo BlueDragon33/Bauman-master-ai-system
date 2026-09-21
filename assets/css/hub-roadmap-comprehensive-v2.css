@@ -601,3 +601,94 @@ body[data-hub-roadmap-v4="1"] .side-note span{display:none!important}
   #page-roadmap .hub-rm-course-grid{grid-template-columns:1fr 1fr}
   #page-roadmap .hub-rm-rail{grid-template-columns:1fr}
 }
+
+
+/* V4.1 screenshot reconciliation against supplied 1672x941 reference. */
+body[data-hub-roadmap-v4="1"] #hubRoadmapTopNav{
+  background:#0b2949!important;
+  border:0!important;
+}
+body[data-hub-roadmap-v4="1"] #hubRoadmapTopNav button{
+  border:0!important;
+  border-bottom:3px solid transparent!important;
+  border-radius:0!important;
+  background:#0b2949!important;
+  box-shadow:none!important;
+  color:#d7e5f2!important;
+}
+body[data-hub-roadmap-v4="1"] #hubRoadmapTopNav button:hover{
+  background:#0f355d!important;
+  color:#fff!important;
+}
+body[data-hub-roadmap-v4="1"] #hubRoadmapTopNav button.active{
+  background:linear-gradient(180deg,#165fae 0%,#0d447e 100%)!important;
+  border-bottom-color:#31a6ff!important;
+  color:#fff!important;
+  box-shadow:inset 0 -10px 22px rgba(33,133,236,.13)!important;
+}
+body[data-hub-roadmap-v4="1"] #hubRoadmapTopNav button.active i{color:#64b7ff!important}
+
+body[data-hub-roadmap-v4="1"] #page-roadmap{
+  min-height:calc(100dvh - 74px)!important;
+}
+body[data-hub-roadmap-v4="1"] #page-roadmap .hub-roadmap-v3{
+  min-height:calc(100dvh - 82px)!important;
+  grid-template-rows:auto auto minmax(0,1fr)!important;
+}
+body[data-hub-roadmap-v4="1"] #page-roadmap .hub-rm-content{
+  min-height:0!important;
+  height:100%!important;
+  align-items:stretch!important;
+}
+body[data-hub-roadmap-v4="1"] #page-roadmap .hub-rm-main,
+body[data-hub-roadmap-v4="1"] #page-roadmap .hub-rm-subject-panel{
+  height:100%!important;
+  min-height:520px!important;
+}
+body[data-hub-roadmap-v4="1"] #page-roadmap .hub-rm-subject-panel{
+  display:flex!important;
+  flex-direction:column!important;
+}
+body[data-hub-roadmap-v4="1"] #page-roadmap .hub-rm-levels{
+  flex:1 1 auto!important;
+  min-height:0!important;
+  display:flex!important;
+  flex-direction:column!important;
+  gap:6px!important;
+}
+body[data-hub-roadmap-v4="1"] #page-roadmap .hub-rm-level.open{
+  flex:1 1 auto!important;
+}
+body[data-hub-roadmap-v4="1"] #page-roadmap .hub-rm-level:not(.open){
+  flex:0 0 auto!important;
+}
+body[data-hub-roadmap-v4="1"] #page-roadmap .hub-rm-course-grid{
+  align-content:start!important;
+}
+body[data-hub-roadmap-v4="1"] #page-roadmap .hub-rm-rail{
+  height:100%!important;
+  min-height:520px!important;
+  grid-template-rows:132px 116px minmax(170px,1fr) 122px!important;
+  align-content:stretch!important;
+}
+body[data-hub-roadmap-v4="1"] #page-roadmap .hub-rm-side-card{
+  min-height:0!important;
+  overflow:hidden!important;
+}
+
+/* Match the reference header/sidebar proportions more closely on 16:9 desktops. */
+@media(min-width:1500px) and (min-height:900px){
+  body[data-hub-roadmap-v4="1"] .app{grid-template-columns:210px minmax(0,1fr)!important}
+  body[data-hub-roadmap-v4="1"] .sidebar{width:210px!important}
+  body[data-hub-roadmap-v4="1"] #page-roadmap .hub-rm-content{
+    grid-template-columns:minmax(0,1fr) 372px!important;
+  }
+  body[data-hub-roadmap-v4="1"] #page-roadmap .hub-rm-main,
+  body[data-hub-roadmap-v4="1"] #page-roadmap .hub-rm-subject-panel,
+  body[data-hub-roadmap-v4="1"] #page-roadmap .hub-rm-rail{
+    min-height:560px!important;
+  }
+  body[data-hub-roadmap-v4="1"] #page-roadmap .hub-rm-rail{
+    grid-template-rows:138px 120px minmax(180px,1fr) 124px!important;
+  }
+}
