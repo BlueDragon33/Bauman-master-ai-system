@@ -1,7 +1,7 @@
 {
   "id": "bauman_math_theory_lecture_content_e146_c03_complete",
   "schema": "bauman_math_content_records_v1",
-  "version": "E170_C02_L05_CONTENT_FACTORY_C1_C6_PASS",
+  "version": "E171_C02_L06_CONTENT_FACTORY_C1_C5",
   "title": "Bài giảng lý thuyết Toán · Nội dung học tập",
   "role": "content",
   "frameSource": "theory_lecture_frame.json",
@@ -6099,217 +6099,675 @@
       "chapterId": "MATH-VN-C02-ma_tran_va_phep_bien_oi_",
       "lessonTitle": "§2.6 · Từ ma trận sang PCA và mô hình tuyến tính",
       "title": "§2.6 · Từ ma trận sang PCA và mô hình tuyến tính",
-      "programLectureId": "MATH-PROG-L02-vector-spaces-linear-maps",
+      "orderInChapter": 6,
+      "programLectureId": "MATH-PROG-L17-ai-machine-learning-math-foundations",
       "programLectureIds": [
-        "MATH-PROG-L02-vector-spaces-linear-maps",
         "MATH-PROG-L17-ai-machine-learning-math-foundations",
-        "MATH-PROG-L09-topology-metric-spaces"
+        "MATH-PROG-L02-vector-spaces-linear-maps",
+        "MATH-PROG-L01-linear-algebra-basic"
       ],
-      "programAnchorTitle": "Không gian vectơ và ánh xạ tuyến tính",
+      "programAnchorTitle": "Nền tảng toán cho AI và học máy",
       "roadmapRole": "foundation_before_prep",
-      "baumanFocus": "Kết nối ma trận dữ liệu với PCA, covariance, projection và mô hình tuyến tính như nền để học machine learning và xử lý tín hiệu.",
+      "baumanFocus": "Nối ma trận dữ liệu với hai pipeline cốt lõi: PCA như centering + tìm directions phương sai lớn + projection, và linear model như matrix-vector scoring y=Xw. Mục tiêu là hiểu luồng matrix, shape và interpretation trước khi học PCA/ML sâu.",
+      "pureLayer": [
+        "data matrix",
+        "centering",
+        "covariance",
+        "SVD/PCA bridge",
+        "orthogonal projection",
+        "linear model"
+      ],
+      "appliedLayer": [
+        "dimensionality reduction",
+        "feature representation",
+        "reconstruction",
+        "linear scoring",
+        "NumPy",
+        "scikit-learn PCA bridge"
+      ],
+      "bridgeQuestion": "Làm sao cùng một data matrix X dẫn tới PCA để đổi biểu diễn và tới linear model để tạo prediction/score, trong khi vẫn giữ đúng shape và ý nghĩa từng matrix?",
+      "auditStatus": "REVIEW",
       "sourceAnchors": {
         "stageId": "vn",
         "disciplineId": "linear_algebra_data_space",
         "chapterId": "MATH-VN-C02-ma_tran_va_phep_bien_oi_",
-        "programLectureId": "MATH-PROG-L02-vector-spaces-linear-maps"
+        "programLectureId": "MATH-PROG-L17-ai-machine-learning-math-foundations",
+        "officialCurriculum": "bmstu_iu5_2026_curriculum"
       },
       "tags": [
         "PCA",
         "covariance",
+        "SVD",
         "linear model",
+        "data matrix",
         "projection",
-        "data matrix"
+        "dimensionality reduction",
+        "IU-5"
       ],
+      "learningContract": {
+        "governingQuestion": "Từ X với rows=samples, columns=features, làm sao tạo một low-dimensional representation bằng PCA và một output bằng linear model mà không nhầm centering, axis, shape hay interpretation?",
+        "whyNeeded": "Đây là cầu trực tiếp từ đại số tuyến tính sang phân tích dữ liệu đa chiều và machine learning trong lộ trình IU-5.",
+        "prerequisiteGates": [
+          "Hiểu data matrix convention từ §1.6/§2.1.",
+          "Hiểu matrix multiplication/pipeline từ §2.2.",
+          "Hiểu rank/singular values từ §2.3.",
+          "Hiểu projection/orthogonal basis từ §2.5."
+        ],
+        "measurableLearningOutcomes": [
+          "LO1: Với X∈R^(N×d), center đúng theo feature axis và giải thích vì sao mean vector có d components.",
+          "LO2: Viết covariance matrix C=Xc^T Xc/(N-1), dự đoán shape d×d và giải thích diagonal/off-diagonal.",
+          "LO3: Giải thích PCA ở mức bridge: chọn orthogonal directions có variance lớn và project Xc lên k directions.",
+          "LO4: Tính projection Z=Xc W_k và reconstruction Xhat=Z W_k^T+μ trên ví dụ rank-1 đơn giản.",
+          "LO5: Dùng SVD của Xc để kiểm principal directions/singular values và liên hệ rank với số components có variance khác zero.",
+          "LO6: Dùng y=Xw để đọc linear model theo batch, dự đoán shape và giải thích mỗi output là dot product sample-weight.",
+          "LO7: Phân biệt centering, scaling, PCA projection và linear prediction; không gọi tất cả là một 'matrix transform' mơ hồ."
+        ],
+        "exactScope": [
+          "rows=samples convention",
+          "feature centering",
+          "sample covariance",
+          "PCA projection bridge",
+          "SVD bridge",
+          "linear batch model y=Xw"
+        ],
+        "explicitDeferrals": [
+          "Eigenvalue proof và optimization derivation của PCA → PCA chapter.",
+          "Whitening → later PCA/data preprocessing.",
+          "Regression fitting/normal equations/regularization → statistics/ML chapter.",
+          "Classification/logistic/softmax → ML chapter.",
+          "Nonlinear neural networks → later AI chapter."
+        ],
+        "canonicalTerminology": {
+          "centering": "trừ trung bình/centering",
+          "covarianceMatrix": "ma trận hiệp phương sai",
+          "principalComponent": "thành phần chính",
+          "principalDirection": "hướng chính",
+          "explainedVariance": "phương sai giải thích",
+          "projection": "phép chiếu",
+          "reconstruction": "tái tạo",
+          "linearModel": "mô hình tuyến tính",
+          "weightVector": "vector trọng số"
+        },
+        "symbols": {
+          "X": "N×d data matrix, rows=samples",
+          "μ": "d-dimensional feature mean",
+          "Xc": "centered data matrix",
+          "C": "d×d covariance matrix",
+          "W_k": "d×k matrix of selected orthonormal directions",
+          "Z": "N×k projected representation",
+          "w": "d-dimensional linear-model weights",
+          "y": "N-dimensional scores/predictions"
+        },
+        "continuity": {
+          "previous": "§2.5 · Phép biến đổi tuyến tính trong hình học và dữ liệu",
+          "next": "Chương 3 · Vi tích phân nhiều biến và tối ưu"
+        }
+      },
+      "technicalRussian": {
+        "terms": [
+          [
+            "матрица данных",
+            "ma trận dữ liệu"
+          ],
+          [
+            "центрирование",
+            "centering"
+          ],
+          [
+            "ковариационная матрица",
+            "ma trận hiệp phương sai"
+          ],
+          [
+            "метод главных компонент",
+            "PCA"
+          ],
+          [
+            "главная компонента",
+            "thành phần chính"
+          ],
+          [
+            "объяснённая дисперсия",
+            "phương sai giải thích"
+          ],
+          [
+            "проекция",
+            "phép chiếu"
+          ],
+          [
+            "снижение размерности",
+            "giảm chiều"
+          ],
+          [
+            "линейная модель",
+            "mô hình tuyến tính"
+          ]
+        ],
+        "commandVerbs": [
+          [
+            "центрируйте",
+            "hãy center"
+          ],
+          [
+            "вычислите",
+            "hãy tính"
+          ],
+          [
+            "спроецируйте",
+            "hãy chiếu"
+          ],
+          [
+            "объясните",
+            "hãy giải thích"
+          ]
+        ],
+        "oralFrames": [
+          "Перед PCA данные нужно центрировать по признакам.",
+          "Главные компоненты задают ортогональные направления с большой дисперсией.",
+          "В линейной модели y=Xw каждая строка X образует скалярное произведение с w."
+        ]
+      },
+      "sourceProvenance": [
+        {
+          "id": "bmstu_iu5_2026_curriculum",
+          "kind": "official_curriculum",
+          "url": "https://home.science.iu5.bmstu.ru/study-plans/iu5-master-program.pdf",
+          "supports": [
+            "IU-5 curriculum context includes multidimensional data analysis in AI systems and machine-learning methods"
+          ]
+        },
+        {
+          "id": "sklearn_pca",
+          "kind": "official_documentation",
+          "url": "https://scikit-learn.org/stable/modules/generated/sklearn.decomposition.PCA.html",
+          "supports": [
+            "PCA is linear dimensionality reduction using SVD",
+            "input is centered but not automatically feature-scaled"
+          ]
+        },
+        {
+          "id": "numpy_cov",
+          "kind": "official_documentation",
+          "url": "https://numpy.org/doc/stable/reference/generated/numpy.cov.html",
+          "supports": [
+            "covariance matrix interpretation and rowvar convention"
+          ]
+        },
+        {
+          "id": "numpy_svd",
+          "kind": "official_documentation",
+          "url": "https://numpy.org/doc/stable/reference/generated/numpy.linalg.svd.html",
+          "supports": [
+            "SVD factorization and singular values used as PCA/rank bridge"
+          ]
+        }
+      ],
+      "generatedMaterial": {
+        "status": "AI_DRAFT_REVIEWED_IN_CONTENT_FACTORY",
+        "lineage": "Generated bridge lesson anchored to official scikit-learn PCA and NumPy covariance/SVD documentation plus C02 matrix foundations.",
+        "canonicalSourceReplacement": false
+      },
+      "contentFactory": {
+        "C1": "PASS",
+        "C2": "PASS",
+        "C3": "PASS",
+        "C4": "PASS",
+        "C5": "PASS",
+        "C6": {
+          "software": "STATIC_QA_PENDING",
+          "user": "PENDING",
+          "blockers": 0,
+          "majors": 0,
+          "inheritedDeferredGate": "E164",
+          "acceptance": "PENDING_C6"
+        }
+      },
       "slides": [
         {
           "role": "problem_framing",
-          "title": "Ma trận là ngôn ngữ nền của PCA và mô hình tuyến tính",
+          "title": "ORIENT · Cùng data matrix X, hai câu hỏi: biểu diễn và dự đoán",
+          "sourceRefs": [
+            "bmstu_iu5_2026_curriculum",
+            "sklearn_pca"
+          ],
           "blocks": [
             {
               "type": "text",
-              "title": "Ý chính",
-              "body": "Khi dữ liệu được xếp thành ma trận, ta có thể tìm hướng thông tin chính, giảm chiều, lọc nhiễu và xây mô hình dự đoán tuyến tính."
+              "title": "Câu hỏi điều khiển",
+              "body": "PCA hỏi: data biến thiên mạnh theo directions nào và có thể biểu diễn bằng ít dimensions hơn không? Linear model hỏi: từ mỗi sample x, weighted sum nào tạo score/prediction?"
+            },
+            {
+              "type": "text",
+              "title": "Vì sao cần",
+              "body": "Hai pipeline cùng bắt đầu từ X nhưng mục tiêu khác. Nếu không tách rõ, dễ nhầm projection matrix của PCA với weight vector của model hoặc quên centering."
+            },
+            {
+              "type": "formula",
+              "title": "Hai pipeline",
+              "body": "PCA: X → center Xc → learn W_k → Z=Xc W_k\nLinear model: X → y=Xw"
+            },
+            {
+              "type": "qa",
+              "title": "Retrieval",
+              "body": "Nếu X có N samples và d features, shape X là gì theo convention của môn này?"
             }
           ]
         },
         {
           "role": "deep_essence",
-          "title": "PCA tìm cơ sở mới cho dữ liệu",
+          "title": "REACTIVATION · §1.6 data matrix + §2.5 projection",
           "blocks": [
             {
               "type": "text",
-              "title": "Bản chất",
-              "body": "PCA không tạo phép màu; nó đổi cơ sở để trục đầu tiên giữ nhiều phương sai nhất, trục sau giữ phần độc lập còn lại theo thứ tự giảm dần."
+              "title": "Kiến thức cũ",
+              "body": "X có rows=samples, columns=features. Projection lên một orthonormal basis mới là matrix multiplication; PCA chỉ thêm quy tắc học basis từ data variance."
+            },
+            {
+              "type": "formula",
+              "title": "Centering",
+              "body": "μ=(1/N)Σ_i x_i ∈ R^d\nXc = X - 1 μ^T"
+            },
+            {
+              "type": "text",
+              "title": "Tại sao center",
+              "body": "PCA muốn đo directions biến thiên quanh trung tâm data cloud, không muốn mean offset trở thành direction chính giả."
+            },
+            {
+              "type": "qa",
+              "title": "Tự nói lại",
+              "body": "Centering theo feature nghĩa lấy mean theo axis nào khi X shape (N,d)? Với NumPy rows=samples, mean(axis=0)."
             }
           ]
         },
         {
           "role": "counter_intuition",
-          "title": "Giảm chiều không luôn làm mất phần quan trọng",
+          "title": "COUNTER-INTUITION · PCA không tự động chuẩn hóa scale",
+          "sourceRefs": [
+            "sklearn_pca"
+          ],
           "blocks": [
             {
               "type": "text",
-              "title": "Điểm dễ nhầm",
-              "body": "Nếu dữ liệu có cấu trúc chiều thấp, bỏ các hướng phương sai nhỏ có thể giảm nhiễu mà vẫn giữ phần chính. Nhưng nếu hướng nhỏ chứa tín hiệu hiếm, giảm chiều có thể nguy hiểm."
+              "title": "Center ≠ scale",
+              "body": "Trừ mean làm mỗi feature mean≈0 nhưng không làm standard deviation bằng 1."
+            },
+            {
+              "type": "text",
+              "title": "Hậu quả",
+              "body": "Feature có scale/variance lớn có thể chi phối principal directions. Có nên standardize hay không là modeling decision dựa trên units/meaning."
+            },
+            {
+              "type": "text",
+              "title": "scikit-learn behavior",
+              "body": "PCA centers input nhưng không tự scale từng feature trước SVD. Vì vậy preprocessing policy phải tách riêng."
+            },
+            {
+              "type": "qa",
+              "title": "Diagnostic",
+              "body": "Temperature đo °C và pressure đo Pa; variance pressure lớn hơn nhiều chỉ vì unit. PCA trực tiếp có thể ưu tiên feature nào? Có nên scale không phải câu hỏi toán thuần túy."
             }
           ]
         },
         {
           "role": "real_bridge",
-          "title": "Ứng dụng trong dữ liệu kỹ thuật",
+          "title": "CONTEXT · Data compression và linear scoring",
           "blocks": [
             {
               "type": "text",
-              "title": "Ví dụ",
-              "body": "Trong dữ liệu cảm biến, PCA giúp phát hiện mode vận hành chính. Trong ảnh và tín hiệu, nó giúp nén dữ liệu hoặc tách hướng biến thiên quan trọng."
+              "title": "PCA use",
+              "body": "Sensor matrix d=20 nhưng effective rank gần 4. PCA có thể tạo Z với 4 components để giữ phần lớn linear variance."
+            },
+            {
+              "type": "text",
+              "title": "Linear model use",
+              "body": "Sau preprocessing, score cho mỗi sample có thể là y_i=w^T x_i. Batch form gom tất cả sample thành y=Xw."
+            },
+            {
+              "type": "text",
+              "title": "Pipeline composition",
+              "body": "Nếu model dùng PCA features, y=Zβ=(Xc W_k)β. Đây là composition từ §2.2, nhưng centering là affine preprocessing."
+            },
+            {
+              "type": "qa",
+              "title": "Decision question",
+              "body": "Nếu dùng PCA rồi linear model, W_k và β có cùng vai trò không? Một cái đổi representation, một cái tạo output."
             }
           ]
         },
         {
           "role": "notation",
-          "title": "Ma trận dữ liệu đã center",
+          "title": "FORMALIZE · Covariance từ centered data",
+          "sourceRefs": [
+            "numpy_cov"
+          ],
           "blocks": [
             {
               "type": "formula",
-              "title": "Center",
-              "body": "X_c = X - 1 mu^T"
+              "title": "Rows=samples convention",
+              "body": "Xc∈R^(N×d)\nC = (1/(N-1)) Xc^T Xc ∈ R^(d×d)"
             },
             {
-              "type": "formula",
-              "title": "Covariance",
-              "body": "C = (1/(m-1)) X_c^T X_c"
+              "type": "text",
+              "title": "Diagonal",
+              "body": "C_jj là sample variance của feature j."
+            },
+            {
+              "type": "text",
+              "title": "Off-diagonal",
+              "body": "C_jk đo mức hai features biến thiên cùng nhau theo linear covariance."
+            },
+            {
+              "type": "qa",
+              "title": "Quick shape",
+              "body": "Xc shape (1000,8). C shape gì? Vì sao phải là feature×feature chứ không sample×sample trong công thức này?"
             }
           ]
         },
         {
           "role": "core_formula",
-          "title": "Projection PCA và mô hình tuyến tính",
+          "title": "CORE · PCA là chọn orthogonal directions có variance lớn",
+          "sourceRefs": [
+            "sklearn_pca",
+            "numpy_svd"
+          ],
           "blocks": [
             {
               "type": "formula",
-              "title": "PCA projection",
-              "body": "Z = X_c W_k"
+              "title": "Projection",
+              "body": "W_k∈R^(d×k), W_k^T W_k=I\nZ=Xc W_k ∈ R^(N×k)"
             },
             {
               "type": "formula",
-              "title": "Linear model",
-              "body": "y = X w + b"
+              "title": "Reconstruction",
+              "body": "Xhat = Z W_k^T + μ"
             },
             {
               "type": "text",
-              "title": "Liên hệ",
-              "body": "Cả PCA và mô hình tuyến tính đều phụ thuộc vào cách ma trận biến đổi vector đặc trưng."
+              "title": "SVD bridge",
+              "body": "Nếu Xc=UΣV^T, columns tương ứng của V cung cấp principal directions. Singular values liên hệ strength/variance theo directions đó."
+            },
+            {
+              "type": "qa",
+              "title": "Retrieve",
+              "body": "Nếu k<d, reconstruction có luôn bằng X chính xác không? Chỉ khi discarded directions không mang variation/information cần giữ."
             }
           ]
         },
         {
           "role": "assumption_gate",
-          "title": "Điều kiện trước PCA và mô hình tuyến tính",
+          "title": "ASSUMPTION GATE · PCA variance ≠ usefulness cho mọi task",
           "blocks": [
             {
               "type": "text",
-              "title": "Điều kiện",
-              "body": "Dữ liệu cần được center, scale khi cần, kiểm missing/outlier, và hiểu rõ đặc trưng nào có đơn vị đo áp đảo. Nếu không, hướng PCA hoặc trọng số mô hình có thể sai nghĩa."
+              "title": "Variance criterion",
+              "body": "PCA không dùng labels; nó giữ directions variance lớn."
+            },
+            {
+              "type": "text",
+              "title": "Task relevance",
+              "body": "Một low-variance direction vẫn có thể quan trọng cho classification/control/safety. Explained variance không đồng nghĩa explained task value."
+            },
+            {
+              "type": "text",
+              "title": "Center/scale policy",
+              "body": "PCA result phụ thuộc centering và scale. Thay unit có thể thay directions nếu không standardize."
+            },
+            {
+              "type": "qa",
+              "title": "Gate",
+              "body": "Có được chọn k chỉ vì cumulative explained variance 95% mà bỏ qua downstream task không? Không; đây là criterion cần validation theo mục tiêu."
             }
           ]
         },
         {
           "role": "mini_case",
-          "title": "Mini case: giảm chiều dữ liệu cảm biến",
+          "title": "E1 SIMPLE · Rank-1 data cloud cho PCA hoàn hảo",
           "blocks": [
             {
+              "type": "formula",
+              "title": "Data",
+              "body": "X=[[1,2],[2,4],[3,6]]\nμ=[2,4]\nXc=[[-1,-2],[0,0],[1,2]]"
+            },
+            {
+              "type": "formula",
+              "title": "Covariance",
+              "body": "C=(1/2)Xc^T Xc=[[1,2],[2,4]]"
+            },
+            {
               "type": "text",
-              "title": "Case",
-              "body": "Một hệ có 12 cảm biến nhưng chỉ 3 mode vận hành chính. PCA có thể chiếu dữ liệu về 3 chiều để quan sát trạng thái, phát hiện điểm lạc và giảm nhiễu."
+              "title": "Principal direction",
+              "body": "Data nằm đúng trên direction [1,2]. Unit direction w=[1,2]/√5. Orthogonal direction có zero variance."
+            },
+            {
+              "type": "qa",
+              "title": "Sanity",
+              "body": "Rank(Xc) là bao nhiêu? PCA cần bao nhiêu component để reconstruct centered data chính xác?"
             }
           ]
         },
         {
           "role": "interpretation",
-          "title": "Đọc PCA bằng ngôn ngữ ma trận",
+          "title": "E2 CONTEXTUAL · Projection và reconstruction",
           "blocks": [
             {
+              "type": "formula",
+              "title": "Project",
+              "body": "w=[1,2]/√5\nz=Xc w=[-√5,0,√5]^T"
+            },
+            {
+              "type": "formula",
+              "title": "Reconstruct",
+              "body": "Xc_hat = z w^T = Xc\nXhat=Xc_hat+μ=X"
+            },
+            {
               "type": "text",
-              "title": "Diễn giải",
-              "body": "W_k chứa các hướng cơ sở mới. Z là tọa độ dữ liệu sau khi chiếu. Phương sai giải thích cho biết mỗi hướng giữ bao nhiêu thông tin biến thiên."
+              "title": "Vì sao exact ở ví dụ này",
+              "body": "Centered data rank=1 và ta giữ đúng direction duy nhất có variation. Không có component thông tin nào bị discard."
+            },
+            {
+              "type": "qa",
+              "title": "Transfer nhẹ",
+              "body": "Nếu thêm noise nhỏ vuông góc direction [1,2], reconstruction với k=1 còn exact không? Sai số sẽ nằm ở discarded direction."
             }
           ]
         },
         {
           "role": "simulation",
-          "title": "Thí nghiệm PCA tối giản bằng Python",
+          "title": "BEGINNER ENTRY · NumPy SVD + covariance + linear score",
+          "sourceRefs": [
+            "numpy_cov",
+            "numpy_svd"
+          ],
           "blocks": [
             {
               "type": "code",
-              "title": "Công cụ",
-              "body": "Xc = X - X.mean(axis=0)\nU,S,Vt = np.linalg.svd(Xc, full_matrices=False)\nZ = Xc @ Vt[:k].T"
+              "title": "Deterministic check",
+              "body": "import numpy as np\n\nX = np.array([[1.,2.],[2.,4.],[3.,6.]])\nmu = X.mean(axis=0)\nXc = X - mu\nC = Xc.T @ Xc / (len(X)-1)\nU, s, Vt = np.linalg.svd(Xc, full_matrices=False)\nw1 = Vt[0]\nz = Xc @ w1\nXhat = np.outer(z, w1) + mu\nassert np.allclose(C, [[1.,2.],[2.,4.]])\nassert np.linalg.matrix_rank(Xc) == 1\nassert np.allclose(Xhat, X)\n\nX2 = np.array([[1.,2.],[2.,1.],[3.,0.]])\nw = np.array([2.,-1.])\ny = X2 @ w\nassert np.allclose(y, [0.,3.,6.])"
+            },
+            {
+              "type": "text",
+              "title": "BEGINNER ENTRY · đọc SVD",
+              "body": "s cho biết strength của orthogonal directions trong centered data. Rank-1 example chỉ có một nonzero singular direction đáng kể."
+            },
+            {
+              "type": "text",
+              "title": "Software trust",
+              "body": "SVD/PCA output có sign ambiguity: principal direction w và -w mô tả cùng axis. Đừng viết test bắt buộc exact sign; test subspace/reconstruction/variance."
+            },
+            {
+              "type": "qa",
+              "title": "Experiment",
+              "body": "Nhân w1 với -1 và z với -1. Reconstruction có đổi không? Đây là sign symmetry quan trọng khi test PCA."
             }
           ]
         },
         {
           "role": "common_mistakes",
-          "title": "Lỗi thường gặp",
+          "title": "MISCONCEPTION MAP · 5 lỗi ở cầu PCA/linear model",
           "blocks": [
             {
               "type": "text",
-              "title": "Lỗi",
-              "body": "Quên center; không scale dữ liệu khác đơn vị; nghĩ PCA là supervised; chọn số chiều chỉ theo tỷ lệ phương sai mà không xét nhiệm vụ kỹ thuật."
+              "title": "MAJOR · «Centering = standardization»",
+              "body": "Sai. Center chỉ trừ mean; standardize còn chia scale/std."
+            },
+            {
+              "type": "text",
+              "title": "MAJOR · «PCA components là original features tốt nhất»",
+              "body": "Principal components thường là linear combinations của original features."
+            },
+            {
+              "type": "text",
+              "title": "MAJOR · «Variance lớn = task importance lớn»",
+              "body": "PCA unsupervised, không biết target/safety objective."
+            },
+            {
+              "type": "text",
+              "title": "MAJOR · «Vt[0] sign phải cố định»",
+              "body": "Eigen/singular directions có sign ambiguity; w và -w là cùng axis."
+            },
+            {
+              "type": "text",
+              "title": "MAJOR · «Xw và XW_k là cùng nhiệm vụ»",
+              "body": "Xw tạo một score/output; XW_k tạo representation k-dimensional."
             }
           ]
         },
         {
           "role": "application",
-          "title": "Ứng dụng lập trình",
+          "title": "E3 TRANSFER · Audit pipeline PCA → linear model",
           "blocks": [
             {
-              "type": "text",
-              "title": "Nhiệm vụ",
-              "body": "Viết pipeline: clean dữ liệu, center/scale, SVD, chọn k, chiếu Z, rồi kiểm reconstruction error và giải thích các thành phần chính."
+              "type": "qa",
+              "title": "Task 1 · shapes",
+              "body": "X:500×20, W_k:20×5, β:5. Ghi shape Z=XcW_k và y=Zβ."
+            },
+            {
+              "type": "qa",
+              "title": "Task 2 · preprocessing",
+              "body": "Hai features khác unit mạnh. Nêu quyết định cần làm trước PCA và vì sao không có đáp án mặc định."
+            },
+            {
+              "type": "qa",
+              "title": "Task 3 · task relevance",
+              "body": "Component thứ 6 chỉ giải thích 1% variance nhưng correlation mạnh với safety target. Có tự động bỏ không? Giải thích."
+            },
+            {
+              "type": "qa",
+              "title": "Task 4 · trust",
+              "body": "PCA component sign đảo giữa hai runs/library versions nhưng reconstruction/subspace giữ nguyên. Đây có phải lỗi không?"
             }
           ]
         },
         {
           "role": "practice",
-          "title": "Bài luyện tập",
+          "title": "PRACTICE LADDER · P0 → P3",
           "blocks": [
             {
-              "type": "text",
-              "title": "Bài tập",
-              "body": "Tạo ma trận dữ liệu có 5 đặc trưng, trong đó 2 đặc trưng phụ thuộc gần tuyến tính vào các đặc trưng còn lại. Dùng SVD để quan sát singular values và chọn số chiều hợp lý."
+              "type": "qa",
+              "title": "P0 · Recognition",
+              "body": "Phân loại 6 operation: centering / scaling / PCA projection / reconstruction / linear score / covariance."
+            },
+            {
+              "type": "qa",
+              "title": "P1 · Guided",
+              "body": "Tính μ, Xc, C cho X=[[1,2],[2,4],[3,6]]; dự đoán rank và principal direction."
+            },
+            {
+              "type": "qa",
+              "title": "P2 · Independent",
+              "body": "Tự tạo 5 samples nằm trên một line 2D, chạy SVD, project k=1, reconstruct và kiểm error≈0."
+            },
+            {
+              "type": "qa",
+              "title": "P3 · Transfer",
+              "body": "Thêm noise orthogonal, so reconstruction error k=1 với singular values; sau đó tạo linear score từ projected feature và giải thích từng shape."
             }
           ]
         },
         {
           "role": "professor_qa",
-          "title": "Vấn đáp kiểm tra hiểu sâu",
+          "title": "ASSESSMENT · D0 / D1 / D2",
           "blocks": [
             {
               "type": "qa",
-              "title": "Câu hỏi",
-              "body": "Vì sao PCA cần center dữ liệu? Khi nào hướng phương sai lớn không phải hướng hữu ích nhất cho nhiệm vụ dự đoán?"
+              "title": "D0 RECALL",
+              "body": "Viết Xc, covariance C, projection Z và batch linear model y=Xw với shape đúng."
+            },
+            {
+              "type": "qa",
+              "title": "D1 APPLICATION",
+              "body": "Cho dataset 6×3 có một dependent feature. Center, tính rank/SVD, chọn k, project/reconstruct, rồi tạo một linear score deterministic."
+            },
+            {
+              "type": "qa",
+              "title": "D2 EXPLAIN / ORAL",
+              "body": "Giải thích 60–90 giây: «PCA và linear model đều dùng matrix multiplication nhưng mục tiêu, learned object và output khác nhau thế nào?»"
+            },
+            {
+              "type": "text",
+              "title": "Mastery evidence",
+              "body": "Đạt khi learner không nhầm center/scale, projection/prediction, và giải thích được PCA variance criterion cùng software sign ambiguity."
             }
           ]
         },
         {
           "role": "bridge",
-          "title": "Cầu sang Giải tích và gradient",
+          "title": "TECHNICAL RUSSIAN + NEXT · kết thúc C02, sang tối ưu",
           "blocks": [
             {
               "type": "text",
-              "title": "Liên kết",
-              "body": "Sau vector và ma trận, bước tiếp theo là hiểu hàm mất mát thay đổi theo tham số thế nào. Đó là vai trò của đạo hàm và gradient trong tối ưu."
+              "title": "9 thuật ngữ",
+              "body": "матрица данных · центрирование · ковариационная матрица · метод главных компонент · главная компонента · объяснённая дисперсия · проекция · снижение размерности · линейная модель"
+            },
+            {
+              "type": "text",
+              "title": "4 động từ",
+              "body": "центрируйте — center; вычислите — tính; спроецируйте — chiếu; объясните — giải thích."
+            },
+            {
+              "type": "text",
+              "title": "Khung vấn đáp",
+              "body": "«Перед PCA данные нужно центрировать по признакам.»\n«В линейной модели y=Xw каждая строка X образует скалярное произведение с w.»"
+            },
+            {
+              "type": "text",
+              "title": "Cầu sang Chương 3",
+              "body": "C02 đã cho representation và linear algebra pipeline. Chương 3 sẽ thêm đạo hàm/gradient để trả lời: làm sao tìm parameters tốt nhất thay vì chỉ áp dụng matrix đã biết?"
             }
           ]
         },
         {
           "role": "takeaway",
-          "title": "Kết luận cần nhớ",
+          "title": "REVIEW · 6 cầu nối từ matrix sang AI/data",
           "blocks": [
             {
               "type": "text",
-              "title": "Cốt lõi",
-              "body": "PCA và mô hình tuyến tính đều là câu chuyện ma trận biến đổi dữ liệu; khác nhau ở mục tiêu: PCA tìm cấu trúc không giám sát, mô hình tuyến tính tìm quan hệ dự đoán."
+              "title": "1",
+              "body": "Rows=samples, columns=features: ghi convention trước mọi công thức."
+            },
+            {
+              "type": "text",
+              "title": "2",
+              "body": "PCA cần centering; centering không đồng nghĩa scaling."
+            },
+            {
+              "type": "text",
+              "title": "3",
+              "body": "Covariance C=Xc^TXc/(N-1) là feature×feature."
+            },
+            {
+              "type": "text",
+              "title": "4",
+              "body": "PCA: Z=XcW_k; reconstruction dùng W_k^T và mean."
+            },
+            {
+              "type": "text",
+              "title": "5",
+              "body": "Linear model batch: y=Xw; mỗi row tạo dot product với weights."
+            },
+            {
+              "type": "text",
+              "title": "6",
+              "body": "Variance/subspace và prediction/task relevance là hai câu hỏi khác nhau."
             }
           ]
         }
@@ -7702,9 +8160,9 @@
     }
   ],
   "lastContentPass": {
-    "id": "E170",
-    "lessonId": "MATH-VN-C02-ma_tran_va_phep_bien_oi_-L05-linear-transform-geometry-data-e143",
-    "status": "LOCAL_CONTENT_QA_PASS_GLOBAL_BROWSER_BASELINE_PENDING",
+    "id": "E171",
+    "lessonId": "MATH-VN-C02-ma_tran_va_phep_bien_oi_-L06-matrix-to-pca-linear-model-e143",
+    "status": "C1_C5_PASS_C6_PENDING",
     "generatedAt": "2026-09-21",
     "inheritedRuntimeGate": "E164"
   }
