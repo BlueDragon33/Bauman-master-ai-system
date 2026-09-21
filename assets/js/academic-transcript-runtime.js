@@ -129,7 +129,21 @@
     catch(err){console.warn('A4 transcript runtime disabled safely:',err)}
   }
 
+  let commandCenterLoadPromise=null;
+  function ensureCommandCenterRuntime(){
+    if(window.BAUMAN_ACADEMIC_COMMAND_CENTER_2026)return Promise.resolve(window.BAUMAN_ACADEMIC_COMMAND_CENTER_2026);
+    if(commandCenterLoadPromise)return commandCenterLoadPromise;
+    commandCenterLoadPromise=new Promise((resolve,reject)=>{
+      if(!document.querySelector('link[data-phase2-command-a5-style]')){const link=document.createElement('link');link.rel='stylesheet';link.href='assets/css/academic-command-center-2026.css';link.dataset.phase2CommandA5Style='1';document.head.appendChild(link)}
+      const waitReady=()=>{const started=Date.now();(function poll(){if(window.BAUMAN_ACADEMIC_COMMAND_CENTER_2026)return resolve(window.BAUMAN_ACADEMIC_COMMAND_CENTER_2026);if(Date.now()-started>15000)return reject(new Error('A5 Command Center runtime did not become ready'));setTimeout(poll,50)})()};
+      let script=document.querySelector('script[data-phase2-command-a5-runtime]');
+      if(script){waitReady();return}
+      script=document.createElement('script');script.src='assets/js/academic-command-center-runtime.js';script.dataset.phase2CommandA5Runtime='1';script.async=false;script.addEventListener('load',waitReady,{once:true});script.addEventListener('error',()=>reject(new Error('A5 Command Center runtime failed to load')),{once:true});document.body.appendChild(script);
+    }).catch(err=>{commandCenterLoadPromise=null;throw err});
+    return commandCenterLoadPromise;
+  }
+
   window.openAcademicTranscriptEntry2026=openEntry;window.saveAcademicTranscriptEntry2026=saveFromUi;window.clearAcademicTranscriptEntry2026=clearFromUi;window.openAcademicTranscriptOverviewA4=openOverview;
-  window.BAUMAN_TRANSCRIPT_HONORS_2026=Object.freeze({version:VERSION,load,candidateRows,facultativeRows,rowById,entryState,recordEntry,clearEntry,rawEntry,projection,honorsEvaluation,renderPanel,openOverview,storageKey:STORE_KEY,userScoped:true,eventAutoPromotion:false,schedulerMutation:false,courseCompletionMutation:false,policyUrl:POLICY_URL,curriculumUrl:CURRICULUM_URL,surface:'progress-modal',homeSurfaceAdded:false,a5Bootstrap:false});
+  window.BAUMAN_TRANSCRIPT_HONORS_2026=Object.freeze({version:VERSION,load,candidateRows,facultativeRows,rowById,entryState,recordEntry,clearEntry,rawEntry,projection,honorsEvaluation,renderPanel,openOverview,ensureCommandCenterRuntime,storageKey:STORE_KEY,userScoped:true,eventAutoPromotion:false,schedulerMutation:false,courseCompletionMutation:false,policyUrl:POLICY_URL,curriculumUrl:CURRICULUM_URL,surface:'progress-modal',homeSurfaceAdded:false,a5Bootstrap:false,lazyCommandCenterLoad:true});
   if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',()=>setTimeout(load,0),{once:true});else setTimeout(load,0)
 })();
