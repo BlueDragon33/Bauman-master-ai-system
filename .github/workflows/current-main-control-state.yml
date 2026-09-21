@@ -1,0 +1,38 @@
+name: Current-Main Control-State Gate
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - "CODEX_STATE.md"
+      - "CODEX_TASK.md"
+      - "docs/roadmap_v2/CURRENT_EXECUTION_STATE.md"
+      - "control/application-management.contract.json"
+      - "scripts/validate-current-main-control-state.mjs"
+      - ".github/workflows/current-main-control-state.yml"
+  pull_request:
+    branches: [main]
+    paths:
+      - "CODEX_STATE.md"
+      - "CODEX_TASK.md"
+      - "docs/roadmap_v2/CURRENT_EXECUTION_STATE.md"
+      - "control/application-management.contract.json"
+      - "scripts/validate-current-main-control-state.mjs"
+      - ".github/workflows/current-main-control-state.yml"
+
+permissions:
+  contents: read
+
+jobs:
+  validate-current-main-control-state:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22.13.0"
+      - name: Parse validator
+        run: node --check scripts/validate-current-main-control-state.mjs
+      - name: Validate current-main control state
+        run: node scripts/validate-current-main-control-state.mjs
