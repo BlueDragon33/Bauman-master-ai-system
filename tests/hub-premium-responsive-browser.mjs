@@ -290,6 +290,8 @@ try{
   assert.ok(roadmapGeometry.rail.h>500,'Roadmap right rail is too shallow for the supplied reference');
   await page.locator('#page-roadmap [data-rm-filter="russian"]').click();
   await page.waitForFunction(()=>document.querySelector('#page-roadmap [data-rm-filter="russian"]')?.classList.contains('active')===true);
+  const activeRoadmapFilter=await page.locator('#page-roadmap [data-rm-filter="russian"]').evaluate(el=>getComputedStyle(el).backgroundImage+'|'+getComputedStyle(el).backgroundColor);
+  assert.ok(!/rgb\(255, 255, 255\)/.test(activeRoadmapFilter),'Roadmap V4 active subject filter is not visually highlighted');
   await page.screenshot({path:path.join(OUT,'roadmap-reference-v4-1920x1080.png'),fullPage:true});
   await page.locator('#page-roadmap [data-rm-filter="technical"]').click();
   await page.waitForFunction(()=>document.querySelector('#page-roadmap [data-rm-filter="technical"]')?.classList.contains('active')===true);
