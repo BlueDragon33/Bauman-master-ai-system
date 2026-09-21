@@ -1,7 +1,7 @@
 {
   "id": "bauman_math_theory_lecture_frame_e109",
   "schema": "bauman_math_theory_lecture_frame_v1",
-  "version": "E180_C02_C03_CONTENT_STATUS_RECONCILED",
+  "version": "E182_C04_PARTIAL_CONTENT_STATUS",
   "subject": "math",
   "title": "Bài giảng lý thuyết · Khung",
   "purpose": "Khung quản lý bài giảng lý thuyết. Từ E110 toàn bộ nguồn phụ cũng tách khung/nội dung tương tự.",
@@ -183,10 +183,15 @@
               "bridgeQuestion": "Tại sao dữ liệu đo luôn cần xác suất đi kèm?",
               "targetOutcome": "Biết mô tả bất định bằng biến ngẫu nhiên và phân phối.",
               "suggestedLessonCount": 6,
-              "contentStatus": "empty_waiting_for_theory_lecture_content",
+              "contentStatus": "content_factory_partial_runtime_pending",
               "contentSource": "theory_lecture_content.json",
               "chapterScope": "bauman_core_active",
-              "locked": false
+              "locked": false,
+              "contentRecordCount": 1,
+              "contentFactoryVersion": "E182",
+              "contentAuditStatus": "PARTIAL_LOCAL_PASS_GLOBAL_BROWSER_PENDING",
+              "runtimeGate": "E164",
+              "lastContentFactoryPass": "2026-09-21"
             },
             {
               "chapterId": "MATH-VN-C05-thong_ke_mo_ta_va_du_lie",
@@ -2535,10 +2540,15 @@
       "bridgeQuestion": "Tại sao dữ liệu đo luôn cần xác suất đi kèm?",
       "targetOutcome": "Biết mô tả bất định bằng biến ngẫu nhiên và phân phối.",
       "suggestedLessonCount": 6,
-      "contentStatus": "empty_waiting_for_theory_lecture_content",
+      "contentStatus": "content_factory_partial_runtime_pending",
       "contentSource": "theory_lecture_content.json",
       "chapterScope": "bauman_core_active",
-      "locked": false
+      "locked": false,
+      "contentRecordCount": 1,
+      "contentFactoryVersion": "E182",
+      "contentAuditStatus": "PARTIAL_LOCAL_PASS_GLOBAL_BROWSER_PENDING",
+      "runtimeGate": "E164",
+      "lastContentFactoryPass": "2026-09-21"
     },
     {
       "chapterId": "MATH-VN-C05-thong_ke_mo_ta_va_du_lie",
