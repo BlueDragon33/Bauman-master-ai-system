@@ -1,8 +1,8 @@
 # CODEX_STATE
 
-Current task: `BAUMAN_PROJECT_STATE_POST_DSJ_PACKAGED_READINESS_RECONCILIATION`
+Current task: `BAUMAN_PROJECT_STATE_POST_CONTROL_STATE_GATE_V1_RECONCILIATION`
 
-Status: `ROADMAP_V2_COMPLETE · RUSSIAN_LISTEN_WRITE_PROMOTED · ACADEMIC_PHASE2_A1_A6_PROMOTED · DEVICE_CONTRACT_V6_PROMOTED · CONTENT_REVIEW_V1_PROMOTED · DEEP_STUDY_JOURNAL_V1_PROMOTED · DSJ_PACKAGED_READINESS_FX_PROMOTED · CURRENT_MAIN_CLEAN`
+Status: `ROADMAP_V2_COMPLETE · RUSSIAN_LISTEN_WRITE_PROMOTED · ACADEMIC_PHASE2_A1_A6_PROMOTED · DEVICE_CONTRACT_V6_PROMOTED · CONTENT_REVIEW_V1_PROMOTED · DEEP_STUDY_JOURNAL_V1_PROMOTED · DSJ_PACKAGED_READINESS_FX_PROMOTED · CURRENT_MAIN_CONTROL_STATE_GATE_V1_PROMOTED · CURRENT_MAIN_CLEAN`
 
 Date: 2026-09-21
 Branch: `main`
@@ -24,6 +24,7 @@ Promoted current-main capabilities:
 - Content Review API v1 — PR #82 merged as `eac09a5005bda44371ee26aed784bccfc50877a8`.
 - Deep Study Journal v1 — Issue #84 promoted as `a2e642867ba99ea34c1b49eb378f78f927e563bb`.
 - Deep Study Journal packaged-readiness Fx — PR #88 merged as `9b32c56dd10dff379231da201fd1970e781ed2f0`.
+- Current-Main Control-State Gate v1 — PR #90 merged as `56db4ba323e2380d861277d71bf488f0012544ce`.
 
 ## Device Contract v6
 
@@ -96,6 +97,28 @@ Validated after merge on current `main`:
 - Bauman Cloudflare Preview CI run `35619956696` — SUCCESS;
 - Windows checkout safety run `35619956691` — SUCCESS.
 
+## Current-Main Control-State Gate v1
+
+PR #90 adds a dedicated fail-closed governance gate for the project control-state records.
+
+It validates:
+
+- `CODEX_STATE.md` and `CODEX_TASK.md` point to the same current task;
+- current-main and fail-closed markers remain intact;
+- the authoritative Roadmap remains complete at L35 and does not silently become L36;
+- Roadmap production/runtime activation remains disconnected;
+- Application Management contract readiness contains no explicit `missing` capability;
+- production deploy still requires explicit promotion after preview;
+- Content Review remains metadata-only and does not store learning-content bodies;
+- Deep Study Journal remains reflection-only and non-authoritative.
+
+Validated on current `main` after merge:
+
+- Current-Main Control-State Gate run `35621426865` — SUCCESS;
+- Windows checkout safety run `35621426949` — SUCCESS.
+
+This is a governance/CI hardening track only. It does not extend Roadmap V2 and does not enable production execution.
+
 ## Intentional capability layering
 
 The base control worker intentionally keeps `learningAccessGate: false` until the deployment/preview wrapper verifies D1 + app-origin readiness. Do not flatten this fail-closed layering.
@@ -119,7 +142,7 @@ This does **not** authorize production deployment. Runtime capabilities that req
 
 1. Start all new work from current `main`.
 2. Treat `docs/roadmap_v2/CURRENT_EXECUTION_STATE.md` as authoritative for Roadmap history.
-3. Treat PRs #72, #76, #79, #82, #88 and Deep Study Journal v1 commit `a2e642867ba99ea34c1b49eb378f78f927e563bb` as promoted current-main behavior.
+3. Treat PRs #72, #76, #79, #82, #88, #90 and Deep Study Journal v1 commit `a2e642867ba99ea34c1b49eb378f78f927e563bb` as promoted current-main behavior.
 4. Do not reconstruct completed Issues #28 or #81 from stale branches.
 5. Preserve Content Review metadata-only ownership and role boundaries.
 6. Preserve Deep Study Journal as non-authoritative learner reflection; it must not become mastery/diagnostic/scheduler/progress evidence implicitly.
