@@ -118,7 +118,7 @@ test("local Bauman control uses an isolated D1 binding", async () => {
 
 test("machine-readable contract records the E2E-verified learning gate and isolated preview", async () => {
   const contract = await json("../../control/application-management.contract.json");
-  assert.equal(contract.contractVersion, 5);
+  assert.equal(contract.contractVersion, 6);
   assert.equal(contract.controlService.protocol, "bauman-control-v4");
   assert.equal(contract.requiredDeviceContract.namespace, "BM-");
   assert.equal(contract.requiredDeviceContract.challengeSingleUse, true);
@@ -131,6 +131,35 @@ test("machine-readable contract records the E2E-verified learning gate and isola
   assert.equal(contract.cloudflarePreview.productionDataIsolated, true);
   assert.equal(contract.cloudflarePreview.chatgptSitesFallbackAllowed, false);
   assert.equal(contract.policy.centralMayClaimLearningGateOnlyAfterLiveCapabilityProbe, true);
+});
+
+
+test("Issue #28 device metadata and admin mutation contract are complete", async () => {
+  const store = await source("../src/device-store.ts");
+  const migration = await source("../migrations/0003_device_metadata_contract.sql");
+  assert.match(store, /BM-\$\{key\.slice\(0, 4\)\}-\$\{key\.slice\(4, 8\)\}-\$\{key\.slice\(8, 12\)\}-\$\{key\.slice\(12, 16\)\}/);
+  assert.match(store, /platform: row\.platform/);
+  assert.match(store, /browser: row\.browser/);
+  assert.match(store, /payload\.operation === "unblock"/);
+  assert.match(store, /payload\.operation === "set_edit_permission"/);
+  assert.match(store, /device_unblocked/);
+  assert.match(store, /device_edit_permission_changed/);
+  assert.match(migration, /ADD COLUMN platform TEXT/);
+  assert.match(migration, /ADD COLUMN browser TEXT/);
+});
+
+test("runtime worker denies protected learning data without a live approved device session", async () => {
+  const runtime = await source("../../cloudflare/runtime-worker.mjs");
+  const gate = await source("../../assets/js/platform/device-access-gate.js");
+  assert.match(runtime, /RUNTIME_SESSION_COOKIE = '__Host-bauman_session'/);
+  assert.match(runtime, /protectedLearningAsset/);
+  assert.match(runtime, /\/api\/runtime\/session/);
+  assert.match(runtime, /\/api\/device\/heartbeat/);
+  assert.match(runtime, /DEVICE_SESSION_REQUIRED/);
+  assert.match(runtime, /set-cookie/);
+  assert.match(gate, /bindRuntimeSession/);
+  assert.match(gate, /platform: detectPlatform\(\)/);
+  assert.match(gate, /browser: detectBrowser\(\)/);
 });
 
 test("Bauman topology remains under one level-1 hub", async () => {
