@@ -4,7 +4,7 @@
  */
 (function mathActivityStudio(global){
   'use strict';
-  const RELEASE='MATH_ACTIVITY_STUDIO_V3';
+  const RELEASE='MATH_ACTIVITY_STUDIO_V1';
   const $=(s,r=document)=>r.querySelector(s);
   const esc=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
   const clip=(s,n=420)=>{s=String(s??'').replace(/\s+/g,' ').trim();return s.length>n?s.slice(0,n-1)+'…':s};
@@ -43,15 +43,10 @@
     if(dbRecords.length)return dbRecords;
     return recordsOf(cache[THEORY_SOURCE]?.data);
   }
-  function bridgedLesson(){
-    const id=lessonId(),bridge=global.BAUMAN_MATH_THEORY_E129;
-    try{return id&&bridge?.lessonRecord?bridge.lessonRecord(id):null}catch(_){return null}
-  }
-  function currentTheory(){const bridged=bridgedLesson();if(bridged?.record)return bridged.record;const id=lessonId();return theoryRecords().find(r=>(r.lessonId||r.id)===id)||null}
-  function currentTheorySource(){const bridged=bridgedLesson();if(bridged?.record)return bridged.source||'e129-bridge';return global.DB?.theory_lecture_content?'runtime-db':(cache[THEORY_SOURCE]?.ok?'e240-durable-fallback':'unavailable')}
+  function currentTheory(){const id=lessonId();return theoryRecords().find(r=>(r.lessonId||r.id)===id)||null}
   function chapterId(){
-    const rec=currentTheory();
-    return String(state().e129ChapterId||rec?.chapterId||'');
+    const id=lessonId(),records=theoryRecords();
+    return String(records.find(r=>(r.lessonId||r.id)===id)?.chapterId||state().e129ChapterId||'');
   }
 
   async function fetchJson(path){
@@ -108,14 +103,9 @@
     const act=activity(),meta=META[act],view=$('#view');
     const active=!!meta&&state().view==='learning'&&act!=='theory'&&!!view;
     document.body.classList.toggle('math-activity-studio-active',active);
-    const routeFallback=view&&$('.e169-activity-card',view);
-    if(!active){
-      if(routeFallback){routeFallback.hidden=false;routeFallback.removeAttribute('aria-hidden');routeFallback.removeAttribute('data-math-activity-fallback');}
-      return false;
-    }
+    if(!active)return false;
     let host=$('#mathActivityStudio');
-    if(!host){host=document.createElement('section');host.id='mathActivityStudio';host.className='math-activity-studio';if(routeFallback)routeFallback.parentNode.insertBefore(host,routeFallback);else view.prepend(host)}
-    if(routeFallback){routeFallback.hidden=true;routeFallback.setAttribute('aria-hidden','true');routeFallback.setAttribute('data-math-activity-fallback','hidden-by-studio');}
+    if(!host){host=document.createElement('section');host.id='mathActivityStudio';host.className='math-activity-studio';const old=$('.e169-activity-card',view);if(old)old.parentNode.insertBefore(host,old);else view.prepend(host)}
     const statuses=sourceStatuses();
     const companion=[];
     (SOURCES[act]||[]).forEach(([kind,path])=>{const c=cache[path];if(c?.data)matched(kind,c.data).slice(0,6).forEach(r=>companion.push(companionCard(kind,r)))});
@@ -138,7 +128,7 @@
   function action(a){if(a==='theory')backTheory();if(a==='lab')global.BAUMAN_MATH_SIMULATION_SOURCE?.openForCurrent?.()||global.BAUMAN_MATH_WORKSPACE?.openLab?.();if(a==='control')global.BAUMAN_MATH_WORKSPACE?.openControl?.();if(a==='formula')global.BAUMAN_MATH_NAVIGATION?.openFormulaFocus?.();if(a==='library')global.BAUMAN_MATH_STUDY_LIBRARY?.open?.();if(a==='vault')global.BAUMAN_MATH_THEORY_E129?.openTheoryVault?.()}
   function schedule(ms=150){clearTimeout(timer);timer=setTimeout(()=>load().then(render),ms)}
   function bind(){document.addEventListener('click',e=>{const a=e.target.closest('[data-activity-action]')?.dataset.activityAction;if(a){e.preventDefault();action(a);return}if(e.target.closest('[data-e186-pick="activity"],[data-e169-pick-activity],[data-math-nav],[data-e129-back-theory],[data-e129-nav]'))schedule(180)},true)}
-  function selfCheck(){const act=activity(),view=$('#view'),fallback=view&&$('.e169-activity-card',view),fallbackVisible=!!(fallback&&!fallback.hidden&&fallback.offsetParent!==null),matches=sourceStatuses().reduce((s,x)=>s+x.match,0),embedded=roleSlides().length;return{release:RELEASE,ready:!!$('#mathActivityStudio'),activity:act,lessonId:lessonId()||null,canonicalSources:(SOURCES[act]||[]).length,companionMatches:matches,embeddedFallbackSlides:embedded,degradedMode:act!=='theory'&&matches===0&&embedded>0,noContentAvailable:act!=='theory'&&matches===0&&embedded===0,routeFallbackHidden:!!(fallback&&fallback.hidden),routeFallbackVisible:fallbackVisible,theorySource:currentTheorySource(),sampleRecordsRendered:false,academicWrites:false,mutationObserver:false,newRouteEngine:false}}
+  function selfCheck(){const act=activity();return{release:RELEASE,ready:!!$('#mathActivityStudio'),activity:act,lessonId:lessonId()||null,canonicalSources:(SOURCES[act]||[]).length,companionMatches:sourceStatuses().reduce((s,x)=>s+x.match,0),embeddedFallbackSlides:roleSlides().length,theorySource:global.DB?.theory_lecture_content?'runtime-db':(cache[THEORY_SOURCE]?.ok?'e240-durable-fallback':'unavailable'),sampleRecordsRendered:false,academicWrites:false,mutationObserver:false,newRouteEngine:false}}
   function init(){if(!document.body||document.body.dataset.mathActivityStudio==='1')return;document.body.dataset.mathActivityStudio='1';bind();load().then(()=>{render();[500,1200,2400].forEach(ms=>setTimeout(render,ms))});global.BAUMAN_MATH_ACTIVITY_STUDIO={release:RELEASE,refresh:()=>schedule(0),render,selfCheck}}
   if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',init,{once:true});else init();
 })(window);
