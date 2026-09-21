@@ -262,8 +262,9 @@
   function pillList(items){ items=arr(items).filter(Boolean); return items.length?'<div class="e129-pill-row">'+items.map(function(x){return '<span class="e129-pill">'+H(x)+'</span>';}).join('')+'</div>':'<p class="e129-muted">Chưa có dữ liệu lớp này trong khung.</p>'; }
   function blockHtml(b){
     if(!b || typeof b!=='object') return '<p>'+H(b)+'</p>';
-    var title=S(b.title||b.type||'Nội dung'); var body=S(b.body||b.content||b.text||'');
-    if((S(b.type).toLowerCase()==='formula') || /formula|công thức|ký hiệu/i.test(title)) return '<pre>'+H(title+'\n'+body)+'</pre>';
+    var title=S(b.title||b.type||'Nội dung'); var body=S(b.body||b.content||b.text||''); var type=S(b.type).toLowerCase();
+    if(type==='code') return '<h3>'+H(title)+'</h3><pre class="e129-code-block" data-e129-block-type="code">'+H(body||'Chưa có mã nguồn.')+'</pre>';
+    if((type==='formula') || /formula|công thức|ký hiệu/i.test(title)) return '<pre data-e129-block-type="formula">'+H(title+'\n'+body)+'</pre>';
     return '<h3>'+H(title)+'</h3><p>'+H(body||'Chưa có nội dung chi tiết.')+'</p>';
   }
   function slideHtml(sl,i){
