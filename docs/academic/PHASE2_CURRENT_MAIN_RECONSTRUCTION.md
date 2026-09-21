@@ -1,6 +1,6 @@
 # Academic Phase2 · Current-Main Reconstruction
 
-Status: `A5_IMPLEMENTED · GATE_PENDING`
+Status: `A6_IMPLEMENTED · GATE_PENDING`
 
 Baseline: `main@2be2db9ade895d4ec9ba21b0cf1143aef8635e13`
 
@@ -71,4 +71,12 @@ A4 gate passed on head `13c25203939b3cb5bf11b91cc6315c4a8ec36510`: Windows check
 - `assets/js/academic-transcript-runtime.js` exposes the lazy A5 asset bridge without automatic bootstrap; `assets/js/academic-course-runtime.js` exposes the explicit Progress action.
 - Static and browser gates cover exact 8-course scope, decision precedence, read-only boundaries, honors projection caveat, user isolation, schedule non-mutation, mobile layout, and Home non-regression.
 
-A5 remains pending until the current branch passes its triggered gate set.
+A5 gate passed on head `8068535b1f81c80061d9f935e350b00ab57b47c4`: Windows checkout, Cloudflare Preview CI, Academic 2026 Prerequisite Gate including A5 browser acceptance, and Whole System Integration Gate all SUCCESS.
+
+## A6 implementation
+
+- Added `assets/data/phase2-current-main-promotion-manifest-2026.json` as the exact current-main promotion allowlist. Historical PR #38 remains evidence/reference only and is not merge authority.
+- Added `scripts/validate-phase2-current-main-integration-a6.js` to re-run A1–A5 semantic validators and assert cross-layer separation: d01 English ownership, unresolved multi-semester allocation, no fabricated completion, no event→grade→transcript auto-promotion, read-only Command Center, and complete browser coverage.
+- Added `scripts/validate-phase2-current-main-promotion-a6.js` to compare `origin/main...HEAD` against the allowlist, reject deletions/unapproved paths, protect high-risk runtime/deployment boundaries, and require manual preview-only deployment policy.
+- Academic CI now checks out full history for the promotion diff audit and runs both A6 validators before browser acceptance.
+- A6 does not authorize merge or production deployment. The candidate remains `CANDIDATE_ONLY` until all triggered gates pass on the final head.
