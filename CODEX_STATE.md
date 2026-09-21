@@ -1,8 +1,8 @@
 # CODEX_STATE
 
-Current task: `BAUMAN_PROJECT_STATE_POST_CONTROL_STATE_GATE_V1_RECONCILIATION`
+Current task: `BAUMAN_PROJECT_STATE_POST_RUSSIAN_FUTURE_UI_RECONCILIATION`
 
-Status: `ROADMAP_V2_COMPLETE · RUSSIAN_LISTEN_WRITE_PROMOTED · ACADEMIC_PHASE2_A1_A6_PROMOTED · DEVICE_CONTRACT_V6_PROMOTED · CONTENT_REVIEW_V1_PROMOTED · DEEP_STUDY_JOURNAL_V1_PROMOTED · DSJ_PACKAGED_READINESS_FX_PROMOTED · CURRENT_MAIN_CONTROL_STATE_GATE_V1_PROMOTED · CURRENT_MAIN_CLEAN`
+Status: `ROADMAP_V2_COMPLETE · RUSSIAN_LISTEN_WRITE_PROMOTED · ACADEMIC_PHASE2_A1_A6_PROMOTED · DEVICE_CONTRACT_V6_PROMOTED · CONTENT_REVIEW_V1_PROMOTED · DEEP_STUDY_JOURNAL_V1_PROMOTED · DSJ_PACKAGED_READINESS_FX_PROMOTED · CURRENT_MAIN_CONTROL_STATE_GATE_V1_PROMOTED · CURRENT_MAIN_CONTROL_STATE_GATE_V1_1_PROMOTED · RUSSIAN_FUTURE_REFERENCE_UI_PROMOTED · CURRENT_MAIN_CLEAN`
 
 Date: 2026-09-21
 Branch: `main`
@@ -25,6 +25,8 @@ Promoted current-main capabilities:
 - Deep Study Journal v1 — Issue #84 promoted as `a2e642867ba99ea34c1b49eb378f78f927e563bb`.
 - Deep Study Journal packaged-readiness Fx — PR #88 merged as `9b32c56dd10dff379231da201fd1970e781ed2f0`.
 - Current-Main Control-State Gate v1 — PR #90 merged as `56db4ba323e2380d861277d71bf488f0012544ce`.
+- Current-Main Control-State Gate v1.1 — PR #93 merged as `804cb00b306d18247fba00453864783754de4cf0`.
+- Russian Future Reference UI — PR #92 merged as `530649914820d54e992c5d840621e1ff0631f836`.
 
 ## Device Contract v6
 
@@ -119,6 +121,47 @@ Validated on current `main` after merge:
 
 This is a governance/CI hardening track only. It does not extend Roadmap V2 and does not enable production execution.
 
+## Current-Main Control-State Gate v1.1
+
+PR #93 hardens the governance gate by validating that every promoted 40-character SHA recorded in the promoted-capabilities section is unique and is an actual ancestor of the current HEAD. It keeps full git history available to the validator and preserves all existing L35, production-disconnected, Content Review and Deep Study Journal invariants.
+
+Promoted on current `main` as merge commit `804cb00b306d18247fba00453864783754de4cf0`.
+
+## Russian Future Reference UI
+
+PR #92 promotes the redesigned dedicated Russian-learning interface while preserving existing routes, data ownership, learner state and offline/package contracts.
+
+The promoted UI includes:
+
+- reference-proportioned 220px desktop sidebar with responsive 190px/mobile behavior;
+- wide main learning canvas with the old fixed right rail removed from layout;
+- modern hero, progress strip, five-module overview and lower dashboard grid;
+- consistent presentation treatment for existing Russian tabs;
+- direct and packaged browser acceptance for 16:9 geometry, responsive behavior and horizontal-overflow protection.
+
+Two concrete integration defects were found and fixed before promotion:
+
+- legacy core CSS forced the sidebar to 286px instead of the 220px reference width;
+- inherited main-canvas sizing prevented the learning canvas from using the space released by the removed right rail.
+
+Validated before merge on PR #92 head `5687e47bc5cf0f84f268bf561b726c40e4c61000`:
+
+- Whole System Integration Gate run `35624915374` — SUCCESS, including direct and packaged Russian Future UI acceptance;
+- Russian Reference UI Gate — SUCCESS;
+- Bauman Cloudflare Preview CI — SUCCESS;
+- Foundation Domain Model Gate — SUCCESS;
+- Windows checkout safety — SUCCESS.
+
+Validated again after merge on current `main` merge commit `530649914820d54e992c5d840621e1ff0631f836`:
+
+- Whole System Integration Gate run `35625361323` — SUCCESS, including packaged Russian Future UI acceptance;
+- Russian Reference UI Gate — SUCCESS;
+- Bauman Cloudflare Preview CI — SUCCESS;
+- Foundation Domain Model Gate — SUCCESS;
+- Windows checkout safety — SUCCESS.
+
+This is a UI/runtime presentation promotion only. It does not create L36 and does not authorize production deployment.
+
 ## Intentional capability layering
 
 The base control worker intentionally keeps `learningAccessGate: false` until the deployment/preview wrapper verifies D1 + app-origin readiness. Do not flatten this fail-closed layering.
@@ -142,7 +185,7 @@ This does **not** authorize production deployment. Runtime capabilities that req
 
 1. Start all new work from current `main`.
 2. Treat `docs/roadmap_v2/CURRENT_EXECUTION_STATE.md` as authoritative for Roadmap history.
-3. Treat PRs #72, #76, #79, #82, #88, #90 and Deep Study Journal v1 commit `a2e642867ba99ea34c1b49eb378f78f927e563bb` as promoted current-main behavior.
+3. Treat PRs #72, #76, #79, #82, #88, #90, #92, #93 and Deep Study Journal v1 commit `a2e642867ba99ea34c1b49eb378f78f927e563bb` as promoted current-main behavior.
 4. Do not reconstruct completed Issues #28 or #81 from stale branches.
 5. Preserve Content Review metadata-only ownership and role boundaries.
 6. Preserve Deep Study Journal as non-authoritative learner reflection; it must not become mastery/diagnostic/scheduler/progress evidence implicitly.
