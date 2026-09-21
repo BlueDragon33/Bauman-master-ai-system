@@ -1,5 +1,70 @@
 # CODEX_STATE
 
+Current task: E165 C02 §2.1 content factory + E166 local code-block structural repair.
+
+Status: LOCAL_CONTENT_QA_PASS_GLOBAL_BROWSER_BASELINE_PENDING
+
+Branch: `codex/e150-c01-l01-clean-replacement`
+Base branch: `codex/e146-merge-c03-l04-l06`
+Main sync status: `stacked_branch`
+
+LESSON:
+- C02 §2.1 · Ma trận như dữ liệu và phép biến đổi
+
+Execution:
+- C1 Learning Contract: PASS
+- C2 Deep Core Content: PASS
+- C3 Visual + Example Architecture: PASS
+- C4 Practice + Computational Tool: PASS
+- C5 Misconception + Assessment: PASS
+- C6 Software Tester: PASS (static)
+- C6 User Tester: PASS
+- Numerical/code verification: PASS
+- BLOCKER: 0
+- MAJOR: 0
+
+Local defect found and repaired:
+- E166 fixed code blocks being flattened into paragraph/formula semantics across E129 → E132.
+- E129 now preserves `code` with a preformatted block.
+- E132 keeps `code` distinct from `formula` in Full and Compact modes.
+- JS syntax checks PASS.
+- Cache keys bumped to v166.
+
+Files changed:
+- `subjects/math/data/theory_lecture_content.json`
+- `subjects/math/assets/theory_skin/theory-tab-E129.js`
+- `subjects/math/assets/theory_skin/theory-slideshow-E132.js`
+- `subjects/math/assets/theory_skin/theory-slideshow-E132.css`
+- `subjects/math/index.html`
+- `CODEX_STATE.md`
+
+Academic strengthening:
+- measurable LO contract
+- data-matrix vs linear-operator distinction
+- row-dot-product + column-combination interpretations
+- linearity/affine failure gate
+- E1 simple / E2 contextual / E3 transfer
+- P0→P3 practice ladder
+- D0/D1/D2 assessment
+- misconception diagnostics
+- beginner NumPy entry with explicit verification
+- JIT Russian overlay
+- provenance to BMSTU IU-5 curriculum, MIT OCW and NumPy docs
+
+Deferred:
+- E164 browser/runtime selector + E132 visual baseline remains required before global display acceptance.
+- C02 frame still contains stale `contentStatus: empty_waiting_for_theory_lecture_content` even though content records exist; defer to a local frame-status reconciliation pass, do not broaden current lesson scope.
+
+Main sync:
+- NOT RUN. Do not pull main for this checkpoint.
+
+Next:
+- C02 §2.2 · Phép nhân ma trận và pipeline tuyến tính
+- Execute exactly C1→C6 for that lesson.
+- Keep E164 runtime baseline deferred unless browser capability becomes available.
+
+---
+
 Current task: E164 runtime selector probe hardening.
 
 Status: STATIC_PROBE_PASS_BROWSER_EXECUTION_REQUIRED
