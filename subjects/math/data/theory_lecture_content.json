@@ -1,7 +1,7 @@
 {
   "id": "bauman_math_theory_lecture_content_e146_c03_complete",
   "schema": "bauman_math_content_records_v1",
-  "version": "E182_C04_L01_CONTENT_FACTORY_C1_C6_PASS",
+  "version": "E183_C04_L02_CONTENT_FACTORY_C1_C5",
   "title": "Bài giảng lý thuyết Toán · Nội dung học tập",
   "role": "content",
   "frameSource": "theory_lecture_frame.json",
@@ -11538,12 +11538,676 @@
         "softwareOutputTrustExplanation": "PASS",
         "browserBaseline": "PENDING_E164"
       }
+    },
+    {
+      "lessonId": "MATH-VN-C04-xac_suat_co_ban_va_bien_-L02-conditioning-independence-bayes-e183",
+      "chapterId": "MATH-VN-C04-xac_suat_co_ban_va_bien_",
+      "lessonTitle": "§4.2 · Xác suất có điều kiện, độc lập và Bayes",
+      "title": "§4.2 · Xác suất có điều kiện, độc lập và Bayes",
+      "orderInChapter": 2,
+      "identityDecision": {
+        "status": "NEW_CANONICAL_CONTENT_ID",
+        "reason": "C04 has no legacy lesson identities; continue canonical sequence under existing chapter.",
+        "chapterIdStable": true,
+        "parallelIdentitySystemCreated": false
+      },
+      "programLectureId": "MATH-PROG-L12-probability-random-variables",
+      "programLectureIds": [
+        "MATH-PROG-L12-probability-random-variables",
+        "MATH-PROG-L13-mathematical-statistics",
+        "MATH-PROG-L17-ai-machine-learning-math-foundations"
+      ],
+      "programAnchorTitle": "Xác suất và biến ngẫu nhiên",
+      "roadmapRole": "probability_foundation_for_data_networks_and_ai",
+      "baumanFocus": "Hiểu conditioning như cập nhật không gian xác suất khi biết thêm thông tin; phân biệt independence với disjointness; dùng total probability và Bayes cho fault/sensor inference có base-rate effects.",
+      "pureLayer": [
+        "conditional probability",
+        "multiplication rule",
+        "independence",
+        "total probability",
+        "Bayes rule"
+      ],
+      "appliedLayer": [
+        "fault diagnosis",
+        "sensor alarm",
+        "base rate",
+        "network reliability",
+        "probabilistic inference"
+      ],
+      "bridgeQuestion": "Khi có thêm evidence B, xác suất của A thay đổi thế nào và khi nào evidence thật sự không làm thay đổi niềm tin về A?",
+      "auditStatus": "REVIEW",
+      "sourceAnchors": {
+        "stageId": "vn",
+        "disciplineId": "probability_statistics_inference",
+        "chapterId": "MATH-VN-C04-xac_suat_co_ban_va_bien_",
+        "programLectureId": "MATH-PROG-L12-probability-random-variables",
+        "officialCurriculum": "bmstu_iu5_2026_curriculum"
+      },
+      "tags": [
+        "conditional probability",
+        "independence",
+        "Bayes",
+        "total probability",
+        "fault detection",
+        "base rate"
+      ],
+      "learningContract": {
+        "governingQuestion": "Conditioning, independence và Bayes nối prior/evidence/posterior bằng những xác suất nào, và làm sao tránh nhầm P(A|B) với P(B|A)?",
+        "whyNeeded": "Đây là nền của diagnosis, sensor fusion, Bayesian inference, classification metrics và probabilistic decision-making.",
+        "prerequisiteGates": [
+          "Phân biệt outcome/event/probability từ §4.1.",
+          "Biết intersection A∩B và complement ở mức set intuition.",
+          "Biết probability values trong [0,1] và total probability of Ω=1.",
+          "Không yêu cầu Bayes đã nhớ; bắt đầu từ conditional probability."
+        ],
+        "measurableLearningOutcomes": [
+          "LO1: Tính P(A|B) từ P(A∩B),P(B) và giải thích conditioning là restrict-renormalize.",
+          "LO2: Dùng multiplication rule P(A∩B)=P(A|B)P(B).",
+          "LO3: Kiểm independence qua P(A∩B)=P(A)P(B) hoặc P(A|B)=P(A) khi P(B)>0.",
+          "LO4: Phân biệt independent events với mutually exclusive events.",
+          "LO5: Dùng law of total probability trên partition để tính evidence probability.",
+          "LO6: Dùng Bayes để tính posterior trong fault-alarm case và giải thích base-rate effect.",
+          "LO7: Viết deterministic code kiểm prior→likelihood→evidence→posterior và sanity-check posterior bounds/normalization."
+        ],
+        "exactScope": [
+          "conditional probability",
+          "multiplication rule",
+          "independence",
+          "total probability",
+          "Bayes rule",
+          "base-rate diagnosis"
+        ],
+        "explicitDeferrals": [
+          "Conditional random-variable distributions → later probability/statistics.",
+          "Naive Bayes classifiers → ML subject.",
+          "Continuous Bayes densities → later probability.",
+          "Bayesian parameter estimation → statistics chapter."
+        ],
+        "canonicalTerminology": {
+          "conditionalProbability": "xác suất có điều kiện",
+          "independence": "độc lập",
+          "mutuallyExclusive": "xung khắc",
+          "prior": "prior/xác suất tiên nghiệm",
+          "likelihood": "likelihood",
+          "evidence": "evidence",
+          "posterior": "posterior/xác suất hậu nghiệm",
+          "totalProbability": "xác suất toàn phần"
+        },
+        "symbols": {
+          "P(A|B)": "conditional probability of A given B",
+          "P(A∩B)": "joint event probability",
+          "P(A)P(B)": "joint probability when A,B independent",
+          "P(B)=Σ_i P(B|A_i)P(A_i)": "total probability over a partition",
+          "P(A|B)=P(B|A)P(A)/P(B)": "Bayes rule"
+        },
+        "continuity": {
+          "previous": "§4.1 · Từ bất định đến biến ngẫu nhiên và phân phối",
+          "next": "§4.3 · Biến ngẫu nhiên rời rạc: Bernoulli và Binomial"
+        }
+      },
+      "technicalRussian": {
+        "terms": [
+          [
+            "условная вероятность",
+            "xác suất có điều kiện"
+          ],
+          [
+            "независимость",
+            "độc lập"
+          ],
+          [
+            "несовместные события",
+            "biến cố xung khắc"
+          ],
+          [
+            "теорема Байеса",
+            "định lý Bayes"
+          ],
+          [
+            "априорная вероятность",
+            "prior"
+          ],
+          [
+            "апостериорная вероятность",
+            "posterior"
+          ],
+          [
+            "правдоподобие",
+            "likelihood"
+          ],
+          [
+            "полная вероятность",
+            "xác suất toàn phần"
+          ],
+          [
+            "пересечение событий",
+            "giao của biến cố"
+          ]
+        ],
+        "commandVerbs": [
+          [
+            "условьте",
+            "hãy điều kiện hóa"
+          ],
+          [
+            "вычислите",
+            "hãy tính"
+          ],
+          [
+            "сравните",
+            "hãy so sánh"
+          ],
+          [
+            "объясните",
+            "hãy giải thích"
+          ]
+        ],
+        "oralFrames": [
+          "Условная вероятность пересчитывает вероятность события при известном условии.",
+          "Независимость означает, что знание одного события не меняет вероятность другого.",
+          "Теорема Байеса объединяет априорную вероятность и правдоподобие для получения апостериорной вероятности."
+        ]
+      },
+      "sourceProvenance": [
+        {
+          "id": "bmstu_iu5_2026_curriculum",
+          "kind": "official_curriculum",
+          "url": "https://home.science.iu5.bmstu.ru/study-plans/iu5-master-program.pdf",
+          "supports": [
+            "preparation context for probabilistic reasoning in data/AI systems"
+          ]
+        },
+        {
+          "id": "mit_6041_conditioning_bayes",
+          "kind": "authoritative_university_material",
+          "url": "https://ocw.mit.edu/courses/6-041sc-probabilistic-systems-analysis-and-applied-probability-fall-2013/pages/unit-i/lecture-2/",
+          "supports": [
+            "conditional probability",
+            "multiplication rule",
+            "total probability",
+            "Bayes rule"
+          ]
+        },
+        {
+          "id": "mit_res6012_independence",
+          "kind": "authoritative_university_material",
+          "url": "https://ocw.mit.edu/courses/res-6-012-introduction-to-probability-spring-2018/pages/part-i-the-fundamentals/",
+          "supports": [
+            "independence and conditional independence distinctions",
+            "conditioning/Bayes progression"
+          ]
+        },
+        {
+          "id": "mit_1805_conditional_bayes",
+          "kind": "authoritative_university_material",
+          "url": "https://ocw.mit.edu/courses/18-05-introduction-to-probability-and-statistics-spring-2022/resources/mit18_05_s22_lec03_pdf/",
+          "supports": [
+            "Bayes formula and inversion of conditional probabilities"
+          ]
+        }
+      ],
+      "generatedMaterial": {
+        "status": "AI_DRAFT_REVIEWED_IN_CONTENT_FACTORY",
+        "lineage": "Generated C04 conditioning/Bayes lesson anchored to MIT probability materials and existing C04 roadmap.",
+        "canonicalSourceReplacement": false
+      },
+      "contentFactory": {
+        "C1": "PASS",
+        "C2": "PASS",
+        "C3": "PASS",
+        "C4": "PASS",
+        "C5": "PASS",
+        "C6": {
+          "software": "STATIC_QA_PENDING",
+          "user": "PENDING",
+          "blockers": 0,
+          "majors": 0,
+          "inheritedDeferredGate": "E164",
+          "acceptance": "PENDING_C6"
+        }
+      },
+      "slides": [
+        {
+          "role": "problem_framing",
+          "title": "ORIENT · Biết thêm evidence làm sample space được nhìn lại",
+          "sourceRefs": [
+            "mit_6041_conditioning_bayes"
+          ],
+          "blocks": [
+            {
+              "type": "text",
+              "title": "Câu hỏi điều khiển",
+              "body": "Nếu biết B đã xảy ra, ta không còn phân bổ probability trên toàn Ω như trước; ta tập trung vào B và renormalize probabilities bên trong B."
+            },
+            {
+              "type": "formula",
+              "title": "Conditional probability",
+              "body": "P(A|B)=P(A∩B)/P(B), P(B)>0"
+            },
+            {
+              "type": "text",
+              "title": "Vì sao cần",
+              "body": "Fault diagnosis, alarm interpretation và sensor evidence đều là câu hỏi 'xác suất hypothesis sau khi biết evidence'."
+            },
+            {
+              "type": "qa",
+              "title": "Retrieval",
+              "body": "Nếu A⊆B thì A∩B bằng gì? P(A|B) rút gọn thế nào?"
+            }
+          ]
+        },
+        {
+          "role": "deep_essence",
+          "title": "REACTIVATION · Conditioning = restrict rồi renormalize",
+          "blocks": [
+            {
+              "type": "text",
+              "title": "Restrict",
+              "body": "Giữ lại outcomes trong B."
+            },
+            {
+              "type": "text",
+              "title": "Renormalize",
+              "body": "Chia probability mass còn lại cho P(B) để tổng bên trong B trở lại 1."
+            },
+            {
+              "type": "formula",
+              "title": "Multiplication rule",
+              "body": "P(A∩B)=P(A|B)P(B)=P(B|A)P(A)"
+            },
+            {
+              "type": "qa",
+              "title": "Tự nói lại",
+              "body": "Vì sao denominator P(B) bắt buộc khác 0 trong elementary conditional probability?"
+            }
+          ]
+        },
+        {
+          "role": "counter_intuition",
+          "title": "COUNTER-INTUITION · P(A|B) không phải P(B|A)",
+          "blocks": [
+            {
+              "type": "text",
+              "title": "Direction matters",
+              "body": "P(alarm|fault) đo sensor sensitivity; P(fault|alarm) đo diagnosis posterior. Hai câu hỏi khác nhau."
+            },
+            {
+              "type": "text",
+              "title": "Base rate",
+              "body": "Posterior còn phụ thuộc prior P(fault), nên test rất nhạy vẫn có thể có nhiều false alarms khi fault hiếm."
+            },
+            {
+              "type": "formula",
+              "title": "Bayes",
+              "body": "P(A|B)=P(B|A)P(A)/P(B)"
+            },
+            {
+              "type": "qa",
+              "title": "Diagnostic",
+              "body": "Một test có P(+|disease)=0.99 có đồng nghĩa P(disease|+)=0.99 không?"
+            }
+          ]
+        },
+        {
+          "role": "real_bridge",
+          "title": "CONTEXT · Alarm lỗi hiếm và base-rate effect",
+          "blocks": [
+            {
+              "type": "formula",
+              "title": "Model",
+              "body": "P(F)=0.01\nP(A|F)=0.95\nP(A|F^c)=0.05"
+            },
+            {
+              "type": "formula",
+              "title": "Evidence",
+              "body": "P(A)=0.95·0.01 + 0.05·0.99 = 0.059"
+            },
+            {
+              "type": "formula",
+              "title": "Posterior",
+              "body": "P(F|A)=0.0095/0.059 ≈ 0.1610"
+            },
+            {
+              "type": "qa",
+              "title": "Interpretation",
+              "body": "Alarm tăng fault probability từ 1% lên ~16.1%, nhưng không lên 95%. Prior hiếm giải thích vì sao."
+            }
+          ]
+        },
+        {
+          "role": "notation",
+          "title": "FORMALIZE · Independence khác xung khắc",
+          "blocks": [
+            {
+              "type": "formula",
+              "title": "Independence",
+              "body": "P(A∩B)=P(A)P(B)"
+            },
+            {
+              "type": "formula",
+              "title": "Equivalent when P(B)>0",
+              "body": "P(A|B)=P(A)"
+            },
+            {
+              "type": "text",
+              "title": "Mutually exclusive",
+              "body": "A∩B=∅. Nếu cả A,B có probability dương, mutually exclusive events không independent."
+            },
+            {
+              "type": "qa",
+              "title": "Quick check",
+              "body": "Hai outcomes khác nhau của một single die roll có independent không? Chúng xung khắc."
+            }
+          ]
+        },
+        {
+          "role": "core_formula",
+          "title": "CORE · Total probability tạo denominator của Bayes",
+          "blocks": [
+            {
+              "type": "formula",
+              "title": "Partition",
+              "body": "{A_i} disjoint, ∪A_i=Ω\nP(B)=Σ_i P(B|A_i)P(A_i)"
+            },
+            {
+              "type": "formula",
+              "title": "Binary fault case",
+              "body": "P(A)=P(A|F)P(F)+P(A|F^c)P(F^c)"
+            },
+            {
+              "type": "text",
+              "title": "Bayes pipeline",
+              "body": "prior × likelihood → unnormalized joint; sum over hypotheses → evidence; divide → posterior."
+            },
+            {
+              "type": "qa",
+              "title": "Retrieve",
+              "body": "Posterior probabilities over an exhaustive hypothesis partition must sum to bao nhiêu?"
+            }
+          ]
+        },
+        {
+          "role": "assumption_gate",
+          "title": "ASSUMPTION GATE · Independence là model claim, không phải mặc định",
+          "blocks": [
+            {
+              "type": "text",
+              "title": "Evidence needed",
+              "body": "Không được nhân P(A)P(B) chỉ vì convenient; independence phải đến từ model/design hoặc được justified."
+            },
+            {
+              "type": "text",
+              "title": "Conditional independence",
+              "body": "Hai variables/events có thể dependent marginally nhưng independent khi conditioned on a third context; học sâu để sau."
+            },
+            {
+              "type": "text",
+              "title": "Causality caveat",
+              "body": "P(A|B) là probabilistic association under conditioning, không tự động là causal effect của B lên A."
+            },
+            {
+              "type": "qa",
+              "title": "Gate",
+              "body": "Hai sensors cùng bị ảnh hưởng bởi nhiệt độ chung: có nên mặc định independent errors không?"
+            }
+          ]
+        },
+        {
+          "role": "mini_case",
+          "title": "E1 SIMPLE · Deck/card conditioning",
+          "blocks": [
+            {
+              "type": "text",
+              "title": "Model",
+              "body": "Rút một lá từ standard deck. A='Ace', B='Spade'."
+            },
+            {
+              "type": "formula",
+              "title": "Conditional",
+              "body": "P(A|B)=1/13 vì trong 13 spades có 1 ace."
+            },
+            {
+              "type": "formula",
+              "title": "Independence check",
+              "body": "P(A)=4/52=1/13, nên A và B independent trong model này."
+            },
+            {
+              "type": "qa",
+              "title": "Sanity",
+              "body": "P(A∩B)=1/52 có bằng P(A)P(B) không?"
+            }
+          ]
+        },
+        {
+          "role": "interpretation",
+          "title": "E2 CONTEXTUAL · Confusion matrix probabilities",
+          "blocks": [
+            {
+              "type": "text",
+              "title": "Fault detector",
+              "body": "Sensitivity = P(alarm|fault); false-positive rate = P(alarm|no fault)."
+            },
+            {
+              "type": "text",
+              "title": "Posterior precision-like quantity",
+              "body": "P(fault|alarm) phụ thuộc cả likelihoods và fault base rate."
+            },
+            {
+              "type": "text",
+              "title": "Operational meaning",
+              "body": "Một detector có sensitivity cao chưa chắc alarm đáng tin nếu false-positive rate không rất thấp so với rare-event prior."
+            },
+            {
+              "type": "qa",
+              "title": "Transfer nhẹ",
+              "body": "Giảm false-positive rate từ 5% xuống 0.5% sẽ tác động posterior fault|alarm theo hướng nào?"
+            }
+          ]
+        },
+        {
+          "role": "simulation",
+          "title": "BEGINNER ENTRY · Bayes bằng code deterministic",
+          "blocks": [
+            {
+              "type": "code",
+              "title": "Fault alarm calculation",
+              "body": "p_fault = 0.01\np_alarm_given_fault = 0.95\np_alarm_given_ok = 0.05\n\np_alarm = p_alarm_given_fault*p_fault + p_alarm_given_ok*(1-p_fault)\np_fault_given_alarm = p_alarm_given_fault*p_fault / p_alarm\n\nassert abs(p_alarm - 0.059) < 1e-12\nassert abs(p_fault_given_alarm - 0.16101694915254236) < 1e-12\nassert 0 <= p_fault_given_alarm <= 1\nprint(p_alarm, p_fault_given_alarm)"
+            },
+            {
+              "type": "text",
+              "title": "BEGINNER ENTRY · explicit names",
+              "body": "Tên biến dài nhưng làm rõ direction của conditional probability; tránh p1,p2 khiến dễ đảo Bayes."
+            },
+            {
+              "type": "text",
+              "title": "Software trust",
+              "body": "Code đúng arithmetic nhưng posterior chỉ đáng tin khi priors/likelihoods đúng với operating population."
+            },
+            {
+              "type": "qa",
+              "title": "Experiment",
+              "body": "Giữ sensitivity 0.95, false-positive 0.05; thử prior 0.001,0.01,0.1 và xem posterior thay đổi."
+            }
+          ]
+        },
+        {
+          "role": "common_mistakes",
+          "title": "MISCONCEPTION MAP · 5 lỗi điều kiện/Bayes",
+          "blocks": [
+            {
+              "type": "text",
+              "title": "MAJOR · «P(A|B)=P(B|A)»",
+              "body": "Direction condition/hypothesis khác nhau."
+            },
+            {
+              "type": "text",
+              "title": "MAJOR · «Independent = mutually exclusive»",
+              "body": "Với positive probabilities, xung khắc tạo dependence cực mạnh."
+            },
+            {
+              "type": "text",
+              "title": "MAJOR · «Bayes bỏ qua prior»",
+              "body": "Posterior phụ thuộc prior."
+            },
+            {
+              "type": "text",
+              "title": "MAJOR · «P(A∩B)=P(A)P(B) luôn đúng»",
+              "body": "Chỉ khi independent."
+            },
+            {
+              "type": "text",
+              "title": "MAJOR · «Conditional probability là causal effect»",
+              "body": "Không có intervention/causal assumptions thì chưa."
+            }
+          ]
+        },
+        {
+          "role": "application",
+          "title": "E3 TRANSFER · Diagnose a rare failure",
+          "blocks": [
+            {
+              "type": "qa",
+              "title": "Task 1",
+              "body": "Failure prior 0.002, detector TPR 0.9, FPR 0.01. Tính P(alarm) và P(failure|alarm)."
+            },
+            {
+              "type": "qa",
+              "title": "Task 2",
+              "body": "Tăng prior lên 0.02 nhưng giữ detector. Posterior đổi thế nào? Giải thích base-rate."
+            },
+            {
+              "type": "qa",
+              "title": "Task 3",
+              "body": "Hai alarms cùng một power-supply noise source. Có được nhân likelihoods như independent sensors không? Nêu risk."
+            },
+            {
+              "type": "qa",
+              "title": "Task 4",
+              "body": "Cho P(A)=0.4,P(B)=0.5,P(A∩B)=0.2. Kiểm independence và tính both conditionals."
+            }
+          ]
+        },
+        {
+          "role": "practice",
+          "title": "PRACTICE LADDER · P0 → P3",
+          "blocks": [
+            {
+              "type": "qa",
+              "title": "P0 · Recognition",
+              "body": "10 expressions: phân biệt joint/conditional/prior/likelihood/posterior."
+            },
+            {
+              "type": "qa",
+              "title": "P1 · Guided",
+              "body": "Dùng fault example 1%/95%/5% đi từng bước total probability → Bayes."
+            },
+            {
+              "type": "qa",
+              "title": "P2 · Independent",
+              "body": "Tự tạo binary hypothesis/evidence model, tính posterior bằng tay và code, kiểm sum=1."
+            },
+            {
+              "type": "qa",
+              "title": "P3 · Transfer",
+              "body": "Mô hình hai sensor evidence với một shared-cause caveat; chỉ ra chỗ independence assumption cần kiểm."
+            }
+          ]
+        },
+        {
+          "role": "professor_qa",
+          "title": "ASSESSMENT · D0 / D1 / D2",
+          "blocks": [
+            {
+              "type": "qa",
+              "title": "D0 RECALL",
+              "body": "Viết conditional probability, independence, total probability và Bayes formulas."
+            },
+            {
+              "type": "qa",
+              "title": "D1 APPLICATION",
+              "body": "Giải rare-event detector problem, tính evidence/posterior, rồi sensitivity analysis theo prior và FPR."
+            },
+            {
+              "type": "qa",
+              "title": "D2 EXPLAIN / ORAL",
+              "body": "Giải thích 60–90 giây: «Vì sao P(test+|disease) cao không có nghĩa P(disease|test+) cao?»"
+            },
+            {
+              "type": "text",
+              "title": "Mastery evidence",
+              "body": "Đạt khi learner không đảo conditional directions, kiểm base rate và nói rõ independence assumptions."
+            }
+          ]
+        },
+        {
+          "role": "bridge",
+          "title": "TECHNICAL RUSSIAN + NEXT · Bayes sang Bernoulli/Binomial",
+          "blocks": [
+            {
+              "type": "text",
+              "title": "9 thuật ngữ",
+              "body": "условная вероятность · независимость · несовместные события · теорема Байеса · априорная вероятность · апостериорная вероятность · правдоподобие · полная вероятность · пересечение событий"
+            },
+            {
+              "type": "text",
+              "title": "4 động từ",
+              "body": "условьте — điều kiện hóa; вычислите — tính; сравните — so sánh; объясните — giải thích."
+            },
+            {
+              "type": "text",
+              "title": "Khung vấn đáp",
+              "body": "«Независимость означает, что знание одного события не меняет вероятность другого.»\n«Теорема Байеса объединяет априорную вероятность и правдоподобие.»"
+            },
+            {
+              "type": "text",
+              "title": "Cầu sang §4.3",
+              "body": "§4.1–§4.2 xây probability model. §4.3 đưa model vào random variables rời rạc phổ biến: Bernoulli cho một trial và Binomial cho số successes trong n trials độc lập."
+            }
+          ]
+        },
+        {
+          "role": "takeaway",
+          "title": "REVIEW · 6 điều không đảo",
+          "blocks": [
+            {
+              "type": "text",
+              "title": "1",
+              "body": "P(A|B)=P(A∩B)/P(B)."
+            },
+            {
+              "type": "text",
+              "title": "2",
+              "body": "P(A|B) và P(B|A) là hai quantities khác."
+            },
+            {
+              "type": "text",
+              "title": "3",
+              "body": "Independence ⇒ P(A∩B)=P(A)P(B)."
+            },
+            {
+              "type": "text",
+              "title": "4",
+              "body": "Mutually exclusive positive-probability events không independent."
+            },
+            {
+              "type": "text",
+              "title": "5",
+              "body": "Total probability xây evidence denominator."
+            },
+            {
+              "type": "text",
+              "title": "6",
+              "body": "Bayes posterior phụ thuộc prior + likelihood; model assumptions quyết định trust."
+            }
+          ]
+        }
+      ]
     }
   ],
   "lastContentPass": {
-    "id": "E182",
-    "lessonId": "MATH-VN-C04-xac_suat_co_ban_va_bien_-L01-random-variable-distribution-e181",
-    "status": "LOCAL_CONTENT_QA_PASS_GLOBAL_BROWSER_BASELINE_PENDING",
+    "id": "E183",
+    "lessonId": "MATH-VN-C04-xac_suat_co_ban_va_bien_-L02-conditioning-independence-bayes-e183",
+    "status": "C1_C5_PASS_C6_PENDING",
     "generatedAt": "2026-09-21",
     "inheritedRuntimeGate": "E164"
   },
