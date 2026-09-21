@@ -30,6 +30,8 @@ test("Bauman v4 publishes real device control only when D1 is ready", async () =
   assert.match(worker, /p256ChallengeProof: ready && appOriginReady/);
   assert.match(worker, /revocableDeviceSessions: ready && appOriginReady/);
   assert.match(worker, /learningAccessGate: false/);
+  assert.match(worker, /contentReviewApi: reviewReady/);
+  assert.match(worker, /contentReviewMetadataOnly: true/);
 });
 
 test("Cloudflare preview promotes learningAccessGate only after D1 and app origin are ready", async () => {
@@ -118,7 +120,7 @@ test("local Bauman control uses an isolated D1 binding", async () => {
 
 test("machine-readable contract records the E2E-verified learning gate and isolated preview", async () => {
   const contract = await json("../../control/application-management.contract.json");
-  assert.equal(contract.contractVersion, 6);
+  assert.equal(contract.contractVersion, 7);
   assert.equal(contract.controlService.protocol, "bauman-control-v4");
   assert.equal(contract.requiredDeviceContract.namespace, "BM-");
   assert.equal(contract.requiredDeviceContract.challengeSingleUse, true);
@@ -146,6 +148,43 @@ test("Issue #28 device metadata and admin mutation contract are complete", async
   assert.match(store, /device_edit_permission_changed/);
   assert.match(migration, /ADD COLUMN platform TEXT/);
   assert.match(migration, /ADD COLUMN browser TEXT/);
+});
+
+test("Content Review v1 is metadata-only, role-gated and compare-and-set protected", async () => {
+  const worker = await source("../src/index.ts");
+  const store = await source("../src/content-review-store.ts");
+  const migration = await source("../migrations/0004_content_review.sql");
+  const contract = await json("../../control/application-management.contract.json");
+
+  assert.match(migration, /CREATE TABLE IF NOT EXISTS bm_content_reviews/);
+  assert.match(migration, /CREATE TABLE IF NOT EXISTS bm_content_review_commands/);
+  assert.match(migration, /content_hash TEXT NOT NULL/);
+  assert.doesNotMatch(migration, /content_body|body_json|learning_content/i);
+
+  assert.match(worker, /\/api\/control\/content-reviews/);
+  assert.match(worker, /\/api\/control\/content-review-commands/);
+  assert.match(worker, /CONTENT_REVIEW_NOT_MIGRATED/);
+
+  assert.match(store, /REVIEWER_REQUIRED/);
+  assert.match(store, /PUBLISHER_REQUIRED/);
+  assert.match(store, /expectedStatus/);
+  assert.match(store, /COMMAND_ID_PAYLOAD_MISMATCH/);
+  assert.match(store, /COMMAND_REQUIRES_RECONCILIATION/);
+  assert.match(store, /content_review_submitted/);
+  assert.match(store, /content_review_approved/);
+  assert.match(store, /content_review_rejected/);
+  assert.match(store, /content_review_published/);
+  assert.match(store, /metadataOnly: true/);
+
+  assert.equal(contract.contractVersion, 7);
+  assert.equal(contract.readiness.contentReviewApi, "implemented-requires-d1");
+  assert.equal(contract.contentReview.owner, "Bauman-master-ai-system");
+  assert.equal(contract.contentReview.metadataOnly, true);
+  assert.equal(contract.contentReview.learningContentStoredInControlDatabase, false);
+  assert.deepEqual(contract.contentReview.operations.publish.roles, ["publisher", "owner"]);
+  assert.equal(contract.contentReview.commandSemantics.blindReplayForbidden, true);
+  assert.equal(contract.policy.applicationManagementMayEditLearningContent, false);
+  assert.equal(contract.policy.contentReviewStoresLearningContent, false);
 });
 
 test("runtime worker denies protected learning data without a live approved device session", async () => {

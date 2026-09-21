@@ -11,6 +11,11 @@ import {
   type BaumanControlIdentity,
   type BaumanControlRole,
 } from "./device-store";
+import {
+  createBaumanContentReview,
+  executeBaumanContentReviewCommand,
+  listBaumanContentReviews,
+} from "./content-review-store";
 
 interface Env {
   BAUMAN_CONTROL_SERVICE_SECRET?: string;
@@ -175,6 +180,25 @@ async function databaseReady(env: Env) {
   }
 }
 
+async function contentReviewReady(env: Env) {
+  if (!env.DB) return false;
+  try {
+    await env.DB.prepare("SELECT review_id FROM bm_content_reviews LIMIT 1").first();
+    await env.DB.prepare("SELECT command_id FROM bm_content_review_commands LIMIT 1").first();
+    return true;
+  } catch {
+    return false;
+  }
+}
+
+async function requireContentReviewDatabase(env: Env) {
+  const database = requireDatabase(env);
+  if (!(await contentReviewReady(env))) {
+    throw new BaumanDeviceError("Content Review Bauman chưa được migrate.", 503, "CONTENT_REVIEW_NOT_MIGRATED");
+  }
+  return database;
+}
+
 async function body(request: Request) {
   const parsed = await request.json().catch(() => null);
   if (!parsed || typeof parsed !== "object" || Array.isArray(parsed)) {
@@ -231,6 +255,7 @@ async function controlRoute(request: Request, env: Env, url: URL) {
     const identity = await authenticate(request, env);
     if (request.method === "GET" && url.pathname === "/api/control/status") {
       const ready = await databaseReady(env);
+      const reviewReady = await contentReviewReady(env);
       const appOriginReady = Boolean(configuredOrigin(env.BAUMAN_APP_ORIGIN));
       return json(request, env, {
         ok: true,
@@ -244,6 +269,8 @@ async function controlRoute(request: Request, env: Env, url: URL) {
           deviceRegistry: "Bauman-master-ai-system",
           deviceSessions: "Bauman-master-ai-system",
           audit: "Bauman-master-ai-system",
+          contentReviewMetadata: "Bauman-master-ai-system",
+          learningContent: "Bauman-master-ai-system",
           subclients: "Bauman-master-ai-system",
           centralRole: "policy-and-remote-admin-only",
         },
@@ -258,7 +285,7 @@ async function controlRoute(request: Request, env: Env, url: URL) {
           p256Proof: ready && appOriginReady ? "available" : "configuration-required",
           revocableDeviceSessions: ready && appOriginReady ? "available" : "configuration-required",
           accessGate: "missing",
-          contentReviewApi: "missing",
+          contentReviewApi: reviewReady ? "available" : "configuration-required",
         },
         capabilities: {
           deviceRegistry: ready,
@@ -274,12 +301,16 @@ async function controlRoute(request: Request, env: Env, url: URL) {
           p256DeviceIdentity: ready,
           p256ChallengeProof: ready && appOriginReady,
           revocableDeviceSessions: ready && appOriginReady,
+          contentReviewApi: reviewReady,
+          contentReviewMetadataOnly: true,
           learningAccessGate: false,
         },
         endpoints: {
           devices: "/api/control/devices",
           deviceCommands: "/api/control/device-commands",
           audit: "/api/control/audit",
+          contentReviews: "/api/control/content-reviews",
+          contentReviewCommands: "/api/control/content-review-commands",
           subclients: "/api/control/subclients",
           deviceRegister: "/api/device/register",
           deviceChallenge: "/api/device/challenge",
@@ -313,6 +344,24 @@ async function controlRoute(request: Request, env: Env, url: URL) {
       return json(request, env, { ok: true, application: TOKEN_APP, ...command });
     }
 
+    if (url.pathname === "/api/control/content-reviews") {
+      const database = await requireContentReviewDatabase(env);
+      if (request.method === "GET") {
+        const reviews = await listBaumanContentReviews(database, identity, url.searchParams.get("status"));
+        return json(request, env, { ok: true, application: TOKEN_APP, reviews });
+      }
+      if (request.method === "POST") {
+        const created = await createBaumanContentReview(database, identity, await body(request));
+        return json(request, env, { ok: true, application: TOKEN_APP, ...created }, 201);
+      }
+    }
+
+    if (request.method === "POST" && url.pathname === "/api/control/content-review-commands") {
+      const database = await requireContentReviewDatabase(env);
+      const command = await executeBaumanContentReviewCommand(database, identity, await body(request));
+      return json(request, env, { ok: true, application: TOKEN_APP, ...command });
+    }
+
     if (request.method === "GET" && url.pathname === "/api/control/audit") {
       if (identity.role === "viewer") throw new BaumanDeviceError("Cần quyền reviewer trở lên để đọc audit Bauman.", 403, "REVIEWER_REQUIRED");
       const database = requireDatabase(env);
@@ -343,6 +392,7 @@ export default {
 
     if (request.method === "GET" && url.pathname === "/health") {
       const ready = await databaseReady(env);
+      const reviewReady = await contentReviewReady(env);
       return json(request, env, {
         ok: true,
         application: TOKEN_APP,
@@ -350,6 +400,7 @@ export default {
         independentRuntime: true,
         controlMode: "device-control-v4",
         databaseReady: ready,
+        contentReviewReady: reviewReady,
         appOriginConfigured: Boolean(configuredOrigin(env.BAUMAN_APP_ORIGIN)),
         checkedAt: Date.now(),
       }, 200, "none");
