@@ -13,7 +13,7 @@ assert(JSON.stringify(policy.ratingScale.map(x=>[x.min,x.max,x.grade5Scale]))===
 assert(policy.hubPolicy?.gradedEventSafetyTarget===90,'internal graded-event safety target must remain 90');
 assert(policy.hubPolicy?.supplementCounting==='forbidden_without_verified_transcript_entry_structure','A3 must not infer transcript counting');
 
-for(const token of ['A3 Event Evidence','bauman_academic_2026_event_readiness_v1','function eventState(','function courseEventAxis(','function recordEvidence(','homeSurfaceAdded:false',"surface:'course-progress-modal'"])assert(event.includes(token),`A3 event runtime missing ${token}`);
+for(const token of ['A3 Event Evidence','bauman_academic_2026_event_readiness_v1','function eventState(','function courseEventAxis(','function recordEvidence(','function ensureGradeRuntime(','lazyGradeLoad:true','homeSurfaceAdded:false',"surface:'course-progress-modal'"])assert(event.includes(token),`A3 event runtime missing ${token}`);
 for(const token of ['A3 Grade Evidence Ledger','bauman_academic_2026_grade_results_v1','function resultState(','function recordResult(','supplementEntryVerified:false','supplementEntryCounted:null','homeSurfaceAdded:false',"transcriptBootstrap:false"])assert(grade.includes(token),`A3 grade runtime missing ${token}`);
 for(const src of [event,grade]){
   assert(!/schedule\.entries\s*\[[^\]]+\]\s*=/.test(src),'A3 must not mutate scheduler entries');
@@ -23,9 +23,10 @@ for(const src of [event,grade]){
   assert(!src.includes('function patchHome()'),'A3 must not patch Home');
 }
 assert(!grade.includes('bootstrapTranscriptRuntime'),'A3 must not bootstrap A4 transcript runtime');
+assert(!event.includes('setTimeout(bootstrapGradeRuntime'),'A3 Grade runtime must not auto-load in Hub background');
 assert(course.includes('function bootstrapEventRuntime()'),'A2 runtime must bootstrap A3 event evidence');
 assert(course.includes('assets/js/academic-event-runtime.js')&&course.includes('assets/css/academic-event-2026.css'),'A3 event assets missing from current-main bridge');
-assert(course.includes('openAcademicEventReadiness2026')&&course.includes('openAcademicGradeResult2026'),'course modal must expose readiness and grade actions');
+assert(course.includes('openAcademicEventReadiness2026')&&course.includes('openAcademicGradeEvidenceA3'),'course modal must expose readiness and lazy grade actions');
 assert(course.includes('a3EvidenceBridge:true'),'A3 bridge marker missing');
 assert(css.includes('.course14b-event-a3')&&css.includes('@media(max-width:520px)'),'A3 course modal responsive controls missing');
 
