@@ -1,0 +1,134 @@
+name: Academic 2026 Phase2 Current-Main Promotion Gate
+
+on:
+  push:
+    branches:
+      - academic/phase2-current-main-rebuild
+  pull_request:
+    branches:
+      - main
+
+permissions:
+  contents: read
+
+concurrency:
+  group: academic-phase2-current-main-promotion-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  promotion-static:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 15
+    steps:
+      - name: Checkout full candidate history
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - name: Fetch current main promotion base
+        run: git fetch --no-tags origin main:refs/remotes/origin/main
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22.13.0'
+      - name: Validate A1 through A5 and A6 integration
+        shell: bash
+        run: |
+          set -euo pipefail
+          node scripts/validate-academic-2026.js
+          node scripts/validate-course-learning-architecture-s1-2026.js
+          node scripts/validate-course-readiness-runtime-a2.js
+          node scripts/validate-event-grade-runtime-a3.js
+          node scripts/validate-transcript-honors-runtime-a4.js
+          node scripts/validate-academic-command-center-a5.js
+          node scripts/validate-phase2-current-main-integration-a6.js
+      - name: Validate A6 promotion allowlist and production boundary
+        run: node scripts/validate-phase2-current-main-promotion-a6.js
+      - name: Syntax-check A2 through A6 runtime and browser gates
+        shell: bash
+        run: |
+          set -euo pipefail
+          node --check assets/js/academic-course-runtime.js
+          node --check assets/js/academic-event-runtime.js
+          node --check assets/js/academic-grade-runtime.js
+          node --check assets/js/academic-transcript-runtime.js
+          node --check assets/js/academic-command-center-runtime.js
+          node --check tests/course-readiness-browser-a2.mjs
+          node --check tests/event-grade-browser-a3.mjs
+          node --check tests/transcript-honors-browser-a4.mjs
+          node --check tests/academic-command-center-browser-a5.mjs
+          node --check tests/phase2-current-main-browser-a6.mjs
+      - name: Promotion boundary summary
+        shell: bash
+        run: |
+          set -euo pipefail
+          echo "Candidate SHA: $GITHUB_SHA"
+          echo "Main SHA: $(git rev-parse origin/main)"
+          echo "Changed paths vs main: $(git diff --name-only origin/main...HEAD | wc -l)"
+          echo 'State: CANDIDATE_ONLY'
+          echo 'Auto merge: disabled'
+          echo 'Auto deploy: disabled'
+          echo 'Production mutation: forbidden'
+
+  promotion-browser:
+    needs: promotion-static
+    runs-on: ubuntu-24.04
+    timeout-minutes: 30
+    steps:
+      - name: Checkout candidate
+        uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22.13.0'
+      - name: Install Playwright Chromium
+        run: |
+          printf '{"private":true,"type":"module"}\n' > package.json
+          npm install --no-save --no-audit --no-fund playwright@1.55.0
+          npx playwright install --with-deps chromium
+      - name: Start candidate static Hub
+        shell: bash
+        run: |
+          python3 -m http.server 4173 --bind 127.0.0.1 > /tmp/bauman-a6-http.log 2>&1 &
+          for i in {1..30}; do
+            if curl -fsS http://127.0.0.1:4173/ >/dev/null; then exit 0; fi
+            sleep 1
+          done
+          cat /tmp/bauman-a6-http.log
+          exit 1
+      - name: Run A2 through A6 browser regression chain
+        shell: bash
+        env:
+          BAUMAN_E2E_BASE_URL: http://127.0.0.1:4173/
+        run: |
+          set -euo pipefail
+          BAUMAN_E2E_ARTIFACT_DIR=artifacts/promotion/browser-a2 node tests/course-readiness-browser-a2.mjs
+          BAUMAN_E2E_ARTIFACT_DIR=artifacts/promotion/browser-a3 node tests/event-grade-browser-a3.mjs
+          BAUMAN_E2E_ARTIFACT_DIR=artifacts/promotion/browser-a4 node tests/transcript-honors-browser-a4.mjs
+          BAUMAN_E2E_ARTIFACT_DIR=artifacts/promotion/browser-a5 node tests/academic-command-center-browser-a5.mjs
+          BAUMAN_E2E_ARTIFACT_DIR=artifacts/promotion/browser-a6 node tests/phase2-current-main-browser-a6.mjs
+      - name: Write candidate evidence summary
+        if: success()
+        shell: bash
+        run: |
+          mkdir -p artifacts/promotion
+          cat > artifacts/promotion/promotion-result.json <<EOF
+          {
+            "status": "PASS",
+            "state": "CANDIDATE_ONLY",
+            "candidateSha": "$GITHUB_SHA",
+            "autoMerge": false,
+            "autoDeploy": false,
+            "productionMutation": false,
+            "browserChain": ["A2","A3","A4","A5","A6"],
+            "offlineAfterLoad": true
+          }
+          EOF
+      - name: Show static server log on failure
+        if: failure()
+        run: cat /tmp/bauman-a6-http.log || true
+      - name: Upload A6 promotion evidence
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: academic-phase2-current-main-promotion-${{ github.run_id }}
+          path: artifacts/promotion
+          if-no-files-found: warn
+          retention-days: 14

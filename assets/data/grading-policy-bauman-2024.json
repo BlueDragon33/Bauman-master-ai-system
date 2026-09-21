@@ -1,0 +1,24 @@
+{
+  "schema": "bauman_grading_policy_reference_v1",
+  "version": "BAUMAN_GRADING_POLICY_2024_REFERENCE_V1",
+  "verifiedAt": "2026-09-12",
+  "source": {
+    "titleRu": "Положение о текущем контроле успеваемости и промежуточной аттестации обучающихся в МГТУ им. Н.Э. Баумана",
+    "url": "https://mf.bmstu.ru/assets/info/uu/ot/educontrol/docs/Pologhenie_o_tekuschem_KU_i_PAO_2024.pdf",
+    "approvedByOrder": "27.02.2024 № 02.01-02/106",
+    "documentNumber": "01-01-ПЛ-003 01-2024",
+    "relevantSection": "7.1, Table 3"
+  },
+  "ratingScale": [
+    {"min":85,"max":100,"examDifferentiatedCredit":"отлично","grade5Scale":5,"credit":"зачет"},
+    {"min":71,"max":84,"examDifferentiatedCredit":"хорошо","grade5Scale":4,"credit":"зачет"},
+    {"min":60,"max":70,"examDifferentiatedCredit":"удовлетворительно","grade5Scale":3,"credit":"зачет"},
+    {"min":0,"max":59,"examDifferentiatedCredit":"неудовлетворительно / не аттестован","grade5Scale":2,"credit":"незачет"}
+  ],
+  "hubPolicy": {
+    "gradedEventSafetyTarget": 90,
+    "meaning": "Internal planning safety target only. It is not an additional official BMSTU grade boundary.",
+    "supplementCounting": "forbidden_without_verified_transcript_entry_structure",
+    "courseCompletionInference": "forbidden_from_single_event_result"
+  }
+}

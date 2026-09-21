@@ -1,9 +1,9 @@
 {
   "schema": "bauman_prerequisite_pack_v1",
-  "version": "P0_TECHNICAL_RUSSIAN_IU5_2026_V1",
+  "version": "P0_TECHNICAL_RUSSIAN_IU5_2026_V2_D01_INTEGRITY",
   "gateId": "P0",
   "title": "Tiếng Nga kỹ thuật theo học phần / Технический русский по дисциплинам",
-  "verifiedAt": "2026-09-10",
+  "verifiedAt": "2026-09-21",
   "notOfficialAdministrativePrerequisite": true,
   "purpose": "Tái sử dụng module Russian hiện có và thêm lớp ánh xạ ngôn ngữ đúng nhu cầu học thuật IU5: đọc yêu cầu, hiểu thuật ngữ, trình bày lời giải, nghe chỉ dẫn và vấn đáp theo học phần. Không tạo thêm một khóa tiếng Nga tổng quát mới.",
   "mastery": {
@@ -22,6 +22,7 @@
     "overwritesExistingRussianLessons": false,
     "duplicatesGeneralRussianCurriculum": false,
     "courseSpecificMappingOnly": true,
+    "excludesForeignLanguageCourseD01": true,
     "mainBranchMutation": false,
     "officialCourseNamesComeOnlyFromLockedCurriculum": true,
     "glossaryTermsAreLearningSupportNotOfficialSyllabusClaims": true
@@ -39,7 +40,6 @@
     {"lessonIds":["R14"],"role":"technical_problem_explanation","reuse":"цель задачи, входные данные, алгоритм, выходной результат, ограничение, точность"}
   ],
   "officialTargets": [
-    {"courseId":"d01","role":"primary","reason":"P0 là prerequisite critical cho học phần ngoại ngữ và là nền ngôn ngữ cho toàn chương trình."},
     {"courseId":"d02","role":"support","reason":"Cần đọc/diễn đạt khái niệm phương pháp luận và trả lời học thuật."},
     {"courseId":"d03","role":"support","reason":"Cần đọc đề mô hình, mô tả giả thiết, trạng thái, hàng đợi và kết luận định lượng."},
     {"courseId":"d04","role":"support","reason":"Cần diễn đạt ma trận dữ liệu, covariance/correlation/PCA và giải thích kết quả."},
@@ -234,7 +234,7 @@
   "scopeGuard": {
     "required":["technical prompt reading","class and lab listening","course assessment vocabulary","math-data-CS terminology","structured technical explanation","academic oral Q&A","course-specific just-in-time glossary","NIR/VKR research communication"],
     "deferByDefault":["rare literary vocabulary","broad philology study","translation perfection before comprehension","memorizing thousands of unrelated words","course-independent jargon expansion"],
-    "rule":"P0 optimizes functional academic performance in actual IU5 coursework; it does not replace STANKIN Russian or claim that a glossary term is an official course syllabus item."
+    "rule":"P0 optimizes functional Russian academic performance in actual IU5 coursework; it does not replace STANKIN Russian, does not replace the Л2 English Foreign Language course d01, and does not claim that a glossary term is an official course syllabus item."
   },
   "sourceEvidence": [
     {"kind":"official_curriculum","path":"assets/data/official-curriculum-iu5-2026.json","locked":true,"use":"official course identity, semester and assessment codes only"},
