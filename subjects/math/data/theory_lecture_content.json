@@ -2900,11 +2900,13 @@
         "C4": "PASS",
         "C5": "PASS",
         "C6": {
-          "software": "STATIC_PASS_BROWSER_BASELINE_INHERITED_PENDING",
+          "software": "PASS_STATIC_AFTER_E166",
           "user": "PASS",
           "blockers": 0,
           "majors": 0,
-          "inheritedDeferredGate": "E164 runtime selector/browser smoke"
+          "repairedDefect": "E166 preserves code-block semantics E129→E132",
+          "inheritedDeferredGate": "E164",
+          "acceptance": "LOCAL_CONTENT_QA_PASS_GLOBAL_BROWSER_BASELINE_PENDING"
         }
       },
       "slides": [
@@ -3342,7 +3344,20 @@
             }
           ]
         }
-      ]
+      ],
+      "qaEvidence": {
+        "numericalExamples": "PASS",
+        "deterministicCodeExecution": "PASS",
+        "schemaAndIds": "PASS",
+        "adjacentContinuity": "PASS",
+        "representationChannels": "PASS",
+        "practiceP0P3": "PASS",
+        "assessmentD0D1D2": "PASS",
+        "misconceptionDiagnostics": "PASS",
+        "technicalRussian": "PASS",
+        "softwareOutputTrustExplanation": "PASS",
+        "browserBaseline": "PENDING_E164"
+      }
     },
     {
       "lessonId": "MATH-VN-C02-ma_tran_va_phep_bien_oi_-L02-matrix-multiplication-pipeline-e142",
@@ -5846,10 +5861,11 @@
     }
   ],
   "lastContentPass": {
-    "id": "E165",
+    "id": "E165+E166",
     "lessonId": "MATH-VN-C02-ma_tran_va_phep_bien_oi_-L01-matrix-as-data-and-transform-e142",
-    "status": "CONTENT_QA_PASS_RUNTIME_BASELINE_INHERITED_PENDING",
+    "status": "LOCAL_CONTENT_QA_PASS_GLOBAL_BROWSER_BASELINE_PENDING",
     "generatedAt": "2026-09-21",
-    "inheritedRuntimeGate": "E164"
+    "inheritedRuntimeGate": "E164",
+    "localStructuralRepair": "E166"
   }
 }
