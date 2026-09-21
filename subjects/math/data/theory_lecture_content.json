@@ -1,7 +1,7 @@
 {
   "id": "bauman_math_theory_lecture_content_e146_c03_complete",
   "schema": "bauman_math_content_records_v1",
-  "version": "E186_C04_L03_CONTENT_FACTORY_C1_C6_PASS",
+  "version": "E187_C04_L04_CONTENT_FACTORY_C1_C5",
   "title": "Bài giảng lý thuyết Toán · Nội dung học tập",
   "role": "content",
   "frameSource": "theory_lecture_frame.json",
@@ -12893,12 +12893,676 @@
         "softwareOutputTrustExplanation": "PASS",
         "browserBaseline": "PENDING_E164"
       }
+    },
+    {
+      "lessonId": "MATH-VN-C04-xac_suat_co_ban_va_bien_-L04-continuous-cdf-pdf-normal-e187",
+      "chapterId": "MATH-VN-C04-xac_suat_co_ban_va_bien_",
+      "lessonTitle": "§4.4 · Biến ngẫu nhiên liên tục, CDF/PDF và phân phối chuẩn",
+      "title": "§4.4 · Biến ngẫu nhiên liên tục, CDF/PDF và phân phối chuẩn",
+      "orderInChapter": 4,
+      "identityDecision": {
+        "status": "NEW_CANONICAL_CONTENT_ID",
+        "reason": "C04 canonical content sequence, no legacy lesson identity.",
+        "chapterIdStable": true,
+        "parallelIdentitySystemCreated": false
+      },
+      "programLectureId": "MATH-PROG-L12-probability-random-variables",
+      "programLectureIds": [
+        "MATH-PROG-L12-probability-random-variables",
+        "MATH-PROG-L13-mathematical-statistics",
+        "MATH-PROG-L14-stochastic-processes-time-series",
+        "MATH-PROG-L17-ai-machine-learning-math-foundations"
+      ],
+      "programAnchorTitle": "Xác suất và biến ngẫu nhiên",
+      "roadmapRole": "probability_foundation_for_data_networks_and_ai",
+      "baumanFocus": "Chuyển từ PMF rời rạc sang CDF/PDF liên tục; hiểu interval probability là diện tích, point probability bằng 0; dùng Normal distribution như model noise có μ,σ chứ không mặc định cho mọi data.",
+      "pureLayer": [
+        "continuous random variable",
+        "CDF",
+        "PDF",
+        "normal distribution",
+        "standardization",
+        "interval probability"
+      ],
+      "appliedLayer": [
+        "sensor noise",
+        "measurement uncertainty",
+        "threshold probability",
+        "normal model",
+        "simulation"
+      ],
+      "bridgeQuestion": "Với biến liên tục, probability nằm ở đâu nếu từng point có xác suất 0, và CDF/PDF mô tả uncertainty thế nào?",
+      "auditStatus": "REVIEW",
+      "sourceAnchors": {
+        "stageId": "vn",
+        "disciplineId": "probability_statistics_inference",
+        "chapterId": "MATH-VN-C04-xac_suat_co_ban_va_bien_",
+        "programLectureId": "MATH-PROG-L12-probability-random-variables",
+        "officialCurriculum": "bmstu_iu5_2026_curriculum"
+      },
+      "tags": [
+        "continuous random variable",
+        "CDF",
+        "PDF",
+        "normal distribution",
+        "sensor noise",
+        "standardization"
+      ],
+      "learningContract": {
+        "governingQuestion": "CDF và PDF của biến liên tục liên hệ thế nào với interval probabilities, và Normal(μ,σ²) nên được diễn giải/kiểm giả định ra sao?",
+        "whyNeeded": "Sensor noise, measurement errors, confidence intervals và nhiều statistical models dùng continuous distributions.",
+        "prerequisiteGates": [
+          "Hiểu random variable/distribution từ §4.1.",
+          "Hiểu discrete PMF từ §4.3 để so sánh.",
+          "Biết integral như area ở mức trực giác; không cần kỹ thuật tích phân sâu.",
+          "Biết mean/variance chưa bắt buộc; μ,σ ở bài này được hiểu là location/scale parameters, công thức moment để §4.5."
+        ],
+        "measurableLearningOutcomes": [
+          "LO1: Phân biệt PMF với CDF/PDF và giải thích vì sao PDF value không phải point probability.",
+          "LO2: Dùng CDF F(x)=P(X≤x) để tính interval probability F(b)-F(a).",
+          "LO3: Kiểm PDF bằng non-negativity và total area 1.",
+          "LO4: Giải thích P(X=x)=0 cho continuous X nhưng x vẫn có thể là realized value.",
+          "LO5: Đọc Normal(μ,σ²), chuẩn hóa Z=(X-μ)/σ và tính probability qua CDF.",
+          "LO6: Dùng deterministic normal-CDF code và seeded simulation để đối chiếu probability interval.",
+          "LO7: Nêu diagnostics/caveats trước khi giả định sensor noise Normal."
+        ],
+        "exactScope": [
+          "continuous RV",
+          "CDF",
+          "PDF",
+          "interval probability",
+          "Normal distribution",
+          "standardization",
+          "simulation"
+        ],
+        "explicitDeferrals": [
+          "Expectation/variance derivations → §4.5.",
+          "Joint continuous distributions/covariance → §4.5.",
+          "CLT → later probability/statistics.",
+          "Statistical normality tests → statistics chapter."
+        ],
+        "canonicalTerminology": {
+          "continuousRV": "biến ngẫu nhiên liên tục",
+          "cdf": "hàm phân phối tích lũy",
+          "pdf": "hàm mật độ xác suất",
+          "normal": "phân phối chuẩn",
+          "meanParameter": "tham số vị trí μ",
+          "standardDeviation": "độ lệch chuẩn σ",
+          "standardize": "chuẩn hóa z-score",
+          "intervalProbability": "xác suất trên khoảng"
+        },
+        "symbols": {
+          "F_X(x)=P(X≤x)": "CDF",
+          "f_X(x)": "PDF when density exists",
+          "P(a<X≤b)=F(b)-F(a)": "interval probability",
+          "P(a≤X≤b)=∫_a^b f_X(x)dx": "area under density",
+          "X~N(μ,σ²)": "Normal distribution",
+          "Z=(X-μ)/σ": "standardization"
+        },
+        "continuity": {
+          "previous": "§4.3 · Biến ngẫu nhiên rời rạc: Bernoulli và Binomial",
+          "next": "§4.5 · Kỳ vọng, phương sai, hiệp phương sai và tương quan"
+        }
+      },
+      "technicalRussian": {
+        "terms": [
+          [
+            "непрерывная случайная величина",
+            "biến ngẫu nhiên liên tục"
+          ],
+          [
+            "функция распределения",
+            "CDF"
+          ],
+          [
+            "плотность вероятности",
+            "PDF"
+          ],
+          [
+            "нормальное распределение",
+            "phân phối chuẩn"
+          ],
+          [
+            "среднее",
+            "trung bình/μ"
+          ],
+          [
+            "стандартное отклонение",
+            "độ lệch chuẩn"
+          ],
+          [
+            "интервал",
+            "khoảng"
+          ],
+          [
+            "стандартизация",
+            "chuẩn hóa"
+          ],
+          [
+            "площадь под плотностью",
+            "diện tích dưới mật độ"
+          ]
+        ],
+        "commandVerbs": [
+          [
+            "интегрируйте",
+            "hãy tích phân"
+          ],
+          [
+            "стандартизируйте",
+            "hãy chuẩn hóa"
+          ],
+          [
+            "вычислите",
+            "hãy tính"
+          ],
+          [
+            "объясните",
+            "hãy giải thích"
+          ]
+        ],
+        "oralFrames": [
+          "Для непрерывной случайной величины вероятность отдельной точки равна нулю.",
+          "Вероятность интервала равна площади под плотностью на этом интервале.",
+          "Нормальное распределение является модельным предположением, а не универсальным законом для любых данных."
+        ]
+      },
+      "sourceProvenance": [
+        {
+          "id": "bmstu_iu5_2026_curriculum",
+          "kind": "official_curriculum",
+          "url": "https://home.science.iu5.bmstu.ru/study-plans/iu5-master-program.pdf",
+          "supports": [
+            "probability/statistics foundation for data and AI systems"
+          ]
+        },
+        {
+          "id": "mit_6041_continuous_rv",
+          "kind": "authoritative_university_material",
+          "url": "https://ocw.mit.edu/courses/6-041sc-probabilistic-systems-analysis-and-applied-probability-fall-2013/",
+          "supports": [
+            "continuous random variables, CDF and Normal distribution in applied probability"
+          ]
+        },
+        {
+          "id": "mit_probability_random_variables_notes",
+          "kind": "authoritative_university_material",
+          "url": "https://ocw.mit.edu/courses/18-600-probability-and-random-variables-fall-2019/pages/lecture-notes/",
+          "supports": [
+            "discrete-to-continuous random-variable progression and probability distributions"
+          ]
+        },
+        {
+          "id": "numpy_rng_normal",
+          "kind": "official_documentation",
+          "url": "https://numpy.org/doc/stable/reference/random/generated/numpy.random.Generator.normal.html",
+          "supports": [
+            "seeded Normal random variate simulation"
+          ]
+        }
+      ],
+      "generatedMaterial": {
+        "status": "AI_DRAFT_REVIEWED_IN_CONTENT_FACTORY",
+        "lineage": "Generated continuous-RV lesson from MIT probability materials and NumPy normal simulation docs.",
+        "canonicalSourceReplacement": false
+      },
+      "contentFactory": {
+        "C1": "PASS",
+        "C2": "PASS",
+        "C3": "PASS",
+        "C4": "PASS",
+        "C5": "PASS",
+        "C6": {
+          "software": "STATIC_QA_PENDING",
+          "user": "PENDING",
+          "blockers": 0,
+          "majors": 0,
+          "inheritedDeferredGate": "E164",
+          "acceptance": "PENDING_C6"
+        }
+      },
+      "slides": [
+        {
+          "role": "problem_framing",
+          "title": "ORIENT · Continuous probability lives on intervals, not points",
+          "blocks": [
+            {
+              "type": "text",
+              "title": "Câu hỏi điều khiển",
+              "body": "Nếu X có thể nhận continuum values, từng exact value có probability 0. Vậy probability được mô tả bằng CDF/PDF trên intervals như thế nào?"
+            },
+            {
+              "type": "formula",
+              "title": "Core",
+              "body": "F(x)=P(X≤x)\nP(a<X≤b)=F(b)-F(a)"
+            },
+            {
+              "type": "text",
+              "title": "Vì sao cần",
+              "body": "Measurement noise, latency, temperature error và nhiều physical variables là continuous-valued."
+            },
+            {
+              "type": "qa",
+              "title": "Retrieval",
+              "body": "PMF của discrete X gán probability cho point values. Continuous X có dùng cùng cách đó được không?"
+            }
+          ]
+        },
+        {
+          "role": "deep_essence",
+          "title": "REACTIVATION · CDF làm việc cho cả discrete và continuous",
+          "blocks": [
+            {
+              "type": "text",
+              "title": "CDF",
+              "body": "F_X(x)=P(X≤x) luôn nằm trong [0,1], không giảm và tiến tới 0/1 ở hai tails phù hợp."
+            },
+            {
+              "type": "text",
+              "title": "Continuous density",
+              "body": "Khi CDF đủ trơn, PDF f là derivative của F; probability interval là area dưới f."
+            },
+            {
+              "type": "formula",
+              "title": "Density relation",
+              "body": "F(x)=∫_{-∞}^x f(t)dt\nf(x)=F'(x) khi derivative tồn tại"
+            },
+            {
+              "type": "qa",
+              "title": "Tự nói lại",
+              "body": "CDF tại x là cumulative probability; PDF tại x là density height. Hai quantities có cùng units không?"
+            }
+          ]
+        },
+        {
+          "role": "counter_intuition",
+          "title": "COUNTER-INTUITION · PDF có thể >1 mà vẫn hợp lệ",
+          "blocks": [
+            {
+              "type": "text",
+              "title": "Density not probability",
+              "body": "f(x) là density per unit x. Probability là area f(x)dx, nên height có thể vượt 1 nếu support hẹp."
+            },
+            {
+              "type": "formula",
+              "title": "Uniform example",
+              "body": "X~Uniform(0,0.5): f(x)=2 trên [0,0.5], total area=2×0.5=1"
+            },
+            {
+              "type": "text",
+              "title": "Point probability",
+              "body": "P(X=x)=0 với continuous distribution dù x nằm trong support."
+            },
+            {
+              "type": "qa",
+              "title": "Diagnostic",
+              "body": "PDF(x)=2 có vi phạm probability≤1 không? Không, vì 2 không phải point probability."
+            }
+          ]
+        },
+        {
+          "role": "real_bridge",
+          "title": "CONTEXT · Sensor error as Normal model",
+          "blocks": [
+            {
+              "type": "text",
+              "title": "Model",
+              "body": "E~N(0,σ²) có thể dùng như first approximation cho zero-mean measurement noise nếu data/process support assumption."
+            },
+            {
+              "type": "text",
+              "title": "Threshold",
+              "body": "P(|E|≤σ) đo probability error nằm trong one-standard-deviation interval under Normal model."
+            },
+            {
+              "type": "text",
+              "title": "Caveat",
+              "body": "Outliers, bias, saturation, multimodal regimes hoặc temporal dependence có thể phá Normal assumption."
+            },
+            {
+              "type": "qa",
+              "title": "Decision question",
+              "body": "Một histogram nhìn bell-shaped có đủ để chứng minh iid Gaussian noise không?"
+            }
+          ]
+        },
+        {
+          "role": "notation",
+          "title": "FORMALIZE · PDF và CDF contracts",
+          "blocks": [
+            {
+              "type": "formula",
+              "title": "PDF checks",
+              "body": "f(x)≥0\n∫_{-∞}^{∞} f(x)dx=1"
+            },
+            {
+              "type": "formula",
+              "title": "Interval",
+              "body": "P(a≤X≤b)=∫_a^b f(x)dx = F(b)-F(a)"
+            },
+            {
+              "type": "text",
+              "title": "Endpoint irrelevance",
+              "body": "Với continuous X, ≤ hay < ở finite endpoints không đổi probability vì point masses bằng 0."
+            },
+            {
+              "type": "qa",
+              "title": "Quick check",
+              "body": "Nếu F(2)=0.8,F(1)=0.3 thì P(1<X≤2)=?"
+            }
+          ]
+        },
+        {
+          "role": "core_formula",
+          "title": "CORE · Normal distribution và standardization",
+          "blocks": [
+            {
+              "type": "formula",
+              "title": "Normal PDF",
+              "body": "f(x)=1/(σ√(2π)) exp(-(x-μ)^2/(2σ²)), σ>0"
+            },
+            {
+              "type": "formula",
+              "title": "Standardize",
+              "body": "Z=(X-μ)/σ ⇒ Z~N(0,1)"
+            },
+            {
+              "type": "text",
+              "title": "Location/scale",
+              "body": "μ shifts center; σ controls horizontal spread and density height."
+            },
+            {
+              "type": "qa",
+              "title": "Retrieve",
+              "body": "Nếu X=μ+2σ thì z-score bằng bao nhiêu?"
+            }
+          ]
+        },
+        {
+          "role": "assumption_gate",
+          "title": "ASSUMPTION GATE · Normal is a model, not a default",
+          "blocks": [
+            {
+              "type": "text",
+              "title": "Check mechanism",
+              "body": "Additive accumulation of many small effects may motivate Normal approximation, but not every noise source has that mechanism."
+            },
+            {
+              "type": "text",
+              "title": "Check tails",
+              "body": "Safety/reliability can depend on tail probabilities; Gaussian tails may understate heavy-tail risks."
+            },
+            {
+              "type": "text",
+              "title": "Check stationarity/context",
+              "body": "μ,σ may change across regimes; a single Normal can hide mixtures."
+            },
+            {
+              "type": "qa",
+              "title": "Gate",
+              "body": "Sensor occasionally clips at maximum value. Is a single unbounded Normal exact?"
+            }
+          ]
+        },
+        {
+          "role": "mini_case",
+          "title": "E1 SIMPLE · Uniform(0,1) CDF/PDF",
+          "blocks": [
+            {
+              "type": "formula",
+              "title": "PDF",
+              "body": "f(x)=1 for 0≤x≤1, else 0"
+            },
+            {
+              "type": "formula",
+              "title": "CDF",
+              "body": "F(x)=0 (x<0); x (0≤x≤1); 1 (x>1)"
+            },
+            {
+              "type": "text",
+              "title": "Interval",
+              "body": "P(0.2≤X≤0.7)=0.7-0.2=0.5."
+            },
+            {
+              "type": "qa",
+              "title": "Point",
+              "body": "P(X=0.5)=0 despite 0.5 being a valid possible realized value."
+            }
+          ]
+        },
+        {
+          "role": "interpretation",
+          "title": "E2 CONTEXTUAL · Standard Normal one-sigma interval",
+          "blocks": [
+            {
+              "type": "formula",
+              "title": "Standard result",
+              "body": "P(|Z|≤1)=Φ(1)-Φ(-1)≈0.6826894921"
+            },
+            {
+              "type": "text",
+              "title": "Sensor model",
+              "body": "Nếu E~N(0,σ²), khoảng [-σ,+σ] chứa khoảng 68.27% mass under exact Normal model."
+            },
+            {
+              "type": "text",
+              "title": "Not a guarantee",
+              "body": "Đây là probability under model, không phải deterministic bound cho từng measurement."
+            },
+            {
+              "type": "qa",
+              "title": "Transfer nhẹ",
+              "body": "Khoảng μ±σ của X~N(μ,σ²) có cùng standardized probability không?"
+            }
+          ]
+        },
+        {
+          "role": "simulation",
+          "title": "BEGINNER ENTRY · Normal CDF + seeded simulation",
+          "sourceRefs": [
+            "numpy_rng_normal"
+          ],
+          "blocks": [
+            {
+              "type": "code",
+              "title": "Deterministic CDF and simulation",
+              "body": "from math import erf, sqrt\nimport numpy as np\n\ndef normal_cdf(x, mu=0.0, sigma=1.0):\n    z=(x-mu)/(sigma*sqrt(2.0))\n    return 0.5*(1.0+erf(z))\n\np1=normal_cdf(1)-normal_cdf(-1)\nassert abs(p1-0.6826894921370859) < 1e-12\n\nrng=np.random.default_rng(20260921)\ns=rng.normal(0.0,1.0,size=50000)\nfreq=np.mean(np.abs(s)<=1.0)\nprint(p1,freq)"
+            },
+            {
+              "type": "text",
+              "title": "BEGINNER ENTRY · exact CDF vs simulation",
+              "body": "CDF formula/model gives exact probability for assumed Normal; simulation frequency fluctuates."
+            },
+            {
+              "type": "text",
+              "title": "Software trust",
+              "body": "Seeded simulation tests code/reasoning, not whether real sensor noise is Gaussian."
+            },
+            {
+              "type": "qa",
+              "title": "Experiment",
+              "body": "Thử sample sizes 100,1000,100000; empirical one-sigma frequency stabilizes quanh model value."
+            }
+          ]
+        },
+        {
+          "role": "common_mistakes",
+          "title": "MISCONCEPTION MAP · 5 lỗi continuous probability",
+          "blocks": [
+            {
+              "type": "text",
+              "title": "MAJOR · «PDF(x)=P(X=x)»",
+              "body": "Point probability is 0; PDF is density."
+            },
+            {
+              "type": "text",
+              "title": "MAJOR · «PDF cannot exceed 1»",
+              "body": "Density height can exceed 1 if total area stays 1."
+            },
+            {
+              "type": "text",
+              "title": "MAJOR · «P(X=x)=0 means impossible»",
+              "body": "Individual points can be realized despite zero mass."
+            },
+            {
+              "type": "text",
+              "title": "MAJOR · «σ and σ² same parameter»",
+              "body": "Normal notation N(μ,σ²) uses variance inside second slot convention."
+            },
+            {
+              "type": "text",
+              "title": "MAJOR · «Noise is always Normal»",
+              "body": "Normality is modeling assumption requiring evidence/context."
+            }
+          ]
+        },
+        {
+          "role": "application",
+          "title": "E3 TRANSFER · Threshold probability for measurement error",
+          "blocks": [
+            {
+              "type": "qa",
+              "title": "Task 1",
+              "body": "E~N(0,0.2²). Standardize threshold |E|≤0.4 and compute probability via Φ."
+            },
+            {
+              "type": "qa",
+              "title": "Task 2",
+              "body": "Explain units of PDF f_E(e): if E in volts, density units are 1/volt."
+            },
+            {
+              "type": "qa",
+              "title": "Task 3",
+              "body": "A sensor has hard saturation at ±5V. Explain why an unbounded Normal may need truncation/mixture/model change."
+            },
+            {
+              "type": "qa",
+              "title": "Task 4",
+              "body": "Given CDF values F(10)=0.3,F(12)=0.85, compute P(10<X≤12) without needing PDF."
+            }
+          ]
+        },
+        {
+          "role": "practice",
+          "title": "PRACTICE LADDER · P0 → P3",
+          "blocks": [
+            {
+              "type": "qa",
+              "title": "P0 · Recognition",
+              "body": "Classify expressions as PDF height / CDF / point probability / interval probability."
+            },
+            {
+              "type": "qa",
+              "title": "P1 · Guided",
+              "body": "Uniform(0,2): derive PDF,CDF and probabilities of three intervals."
+            },
+            {
+              "type": "qa",
+              "title": "P2 · Independent",
+              "body": "Implement normal_cdf with erf; calculate three z-score interval probabilities and verify symmetry."
+            },
+            {
+              "type": "qa",
+              "title": "P3 · Transfer",
+              "body": "Choose a sensor-noise scenario where Normal is questionable; propose diagnostic/model caveat."
+            }
+          ]
+        },
+        {
+          "role": "professor_qa",
+          "title": "ASSESSMENT · D0 / D1 / D2",
+          "blocks": [
+            {
+              "type": "qa",
+              "title": "D0 RECALL",
+              "body": "Define CDF/PDF, normalization, interval probability and Normal standardization."
+            },
+            {
+              "type": "qa",
+              "title": "D1 APPLICATION",
+              "body": "Given continuous model, compute interval probabilities by CDF/PDF, standardize Normal case and compare seeded simulation."
+            },
+            {
+              "type": "qa",
+              "title": "D2 EXPLAIN / ORAL",
+              "body": "Explain 60–90 seconds: «Why can PDF exceed 1 while P(X=x)=0, and why is Normal only a model assumption?»"
+            },
+            {
+              "type": "text",
+              "title": "Mastery evidence",
+              "body": "Pass when learner separates density/probability and can translate threshold events into CDF calculations."
+            }
+          ]
+        },
+        {
+          "role": "bridge",
+          "title": "TECHNICAL RUSSIAN + NEXT · distribution sang moments/dependence",
+          "blocks": [
+            {
+              "type": "text",
+              "title": "9 thuật ngữ",
+              "body": "непрерывная случайная величина · функция распределения · плотность вероятности · нормальное распределение · среднее · стандартное отклонение · интервал · стандартизация · площадь под плотностью"
+            },
+            {
+              "type": "text",
+              "title": "4 động từ",
+              "body": "интегрируйте — tích phân; стандартизируйте — chuẩn hóa; вычислите — tính; объясните — giải thích."
+            },
+            {
+              "type": "text",
+              "title": "Khung vấn đáp",
+              "body": "«Вероятность интервала равна площади под плотностью.»\n«Нормальное распределение является модельным предположением.»"
+            },
+            {
+              "type": "text",
+              "title": "Cầu sang §4.5",
+              "body": "Distribution trả lời xác suất ở đâu. §4.5 tóm tắt distribution bằng expectation/variance và mô tả quan hệ giữa hai random variables bằng covariance/correlation."
+            }
+          ]
+        },
+        {
+          "role": "takeaway",
+          "title": "REVIEW · 6 facts trước moments",
+          "blocks": [
+            {
+              "type": "text",
+              "title": "1",
+              "body": "CDF = cumulative probability and works broadly."
+            },
+            {
+              "type": "text",
+              "title": "2",
+              "body": "PDF = density; interval probability = area."
+            },
+            {
+              "type": "text",
+              "title": "3",
+              "body": "Continuous point probability is zero."
+            },
+            {
+              "type": "text",
+              "title": "4",
+              "body": "PDF may exceed 1; total area must be 1."
+            },
+            {
+              "type": "text",
+              "title": "5",
+              "body": "Normal N(μ,σ²) standardizes with z=(x-μ)/σ."
+            },
+            {
+              "type": "text",
+              "title": "6",
+              "body": "Gaussian noise is an assumption to validate, not a universal truth."
+            }
+          ]
+        }
+      ]
     }
   ],
   "lastContentPass": {
-    "id": "E186",
-    "lessonId": "MATH-VN-C04-xac_suat_co_ban_va_bien_-L03-bernoulli-binomial-e185",
-    "status": "LOCAL_CONTENT_QA_PASS_GLOBAL_BROWSER_BASELINE_PENDING",
+    "id": "E187",
+    "lessonId": "MATH-VN-C04-xac_suat_co_ban_va_bien_-L04-continuous-cdf-pdf-normal-e187",
+    "status": "C1_C5_PASS_C6_PENDING",
     "generatedAt": "2026-09-21",
     "inheritedRuntimeGate": "E164"
   },
