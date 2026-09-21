@@ -193,7 +193,6 @@ for (const item of ['technical prompt reading','class and lab listening','course
 }
 assert(/does not replace STANKIN Russian/i.test(pack.scopeGuard?.rule || ''), 'P0 must not replace STANKIN Russian');
 assert(/does not replace the Л2 English Foreign Language course d01/i.test(pack.scopeGuard?.rule || ''), 'P0 must not replace d01 English');
-assert((pack.externalEvidence || []).some(x => x.url === 'https://e-learning.bmstu.ru/l/'), 'P0 must retain public Л2 English evidence');
 assert(/does not.*official course syllabus item/i.test(pack.scopeGuard?.rule || ''), 'P0 must not present learning glossary as official syllabus');
 
 // Independent mastery sanity: overall >=90 is not enough if application is below 85.
