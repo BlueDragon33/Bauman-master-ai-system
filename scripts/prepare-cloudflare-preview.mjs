@@ -167,6 +167,8 @@ for (const resource of [
   'assets/css/device-access-gate.css',
   'assets/js/platform/runtime-config.js',
   'assets/js/platform/device-access-gate.js',
+  'assets/css/deep-study-journal-v1.css',
+  'assets/js/deep-study-journal-v1.js',
   'assets/js/data.js',
   'assets/js/main.js',
   'assets/js/planning-main.js',
@@ -199,7 +201,10 @@ for (const oversizedOriginal of [
 }
 if (!html.includes('assets/js/platform/runtime-config.js') || !html.includes('assets/js/platform/device-access-gate.js')) {
   throw new Error('Bauman runtime is missing the device-access bootstrap scripts.');
+}for (const resource of ['assets/css/deep-study-journal-v1.css', 'assets/js/deep-study-journal-v1.js']) {
+  if (!html.includes(resource)) throw new Error(`Bauman runtime is missing Deep Study Journal reference: ${resource}`);
 }
+
 const russianHtml = fs.readFileSync(path.join(runtimeDist, 'subjects/russian/index.html'), 'utf8');
 if (!russianHtml.includes('assets/handwriting-glyph-authority.js')) throw new Error('Russian runtime is missing handwriting glyph authority script reference.');
 if (!russianHtml.includes('assets/handwriting-recognition.js')) throw new Error('Russian runtime is missing handwriting recognition script reference.');
