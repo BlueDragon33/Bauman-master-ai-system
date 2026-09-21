@@ -1,7 +1,7 @@
 {
   "id": "bauman_math_theory_lecture_content_e146_c03_complete",
   "schema": "bauman_math_content_records_v1",
-  "version": "E175_C03_L02_CONTENT_FACTORY_C1_C6_PASS",
+  "version": "E176_C03_L03_CONTENT_FACTORY_C1_C5",
   "title": "Bài giảng lý thuyết Toán · Nội dung học tập",
   "role": "content",
   "frameSource": "theory_lecture_frame.json",
@@ -8148,217 +8148,646 @@
       "chapterId": "MATH-VN-C03-ham_so_ao_ham_va_gradien",
       "lessonTitle": "§3.3 · Gradient như hướng thay đổi nhanh nhất",
       "title": "§3.3 · Gradient như hướng thay đổi nhanh nhất",
-      "programLectureId": "MATH-PROG-L03-calculus-gradient-optimization",
+      "orderInChapter": 3,
+      "programLectureId": "MATH-PROG-L05-calculus-gradient",
       "programLectureIds": [
-        "MATH-PROG-L03-calculus-gradient-optimization",
-        "MATH-PROG-L17-ai-machine-learning-math-foundations",
-        "MATH-PROG-L02-vector-spaces-linear-maps"
+        "MATH-PROG-L05-calculus-gradient",
+        "MATH-PROG-L06-optimization",
+        "MATH-PROG-L17-ai-machine-learning-math-foundations"
       ],
       "programAnchorTitle": "Giải tích, gradient và tối ưu",
       "roadmapRole": "foundation_before_prep",
-      "baumanFocus": "Hiểu gradient như vector độ nhạy nhiều chiều và hướng tăng nhanh nhất của hàm mất mát hoặc hàm mục tiêu.",
+      "baumanFocus": "Từ partial derivatives sang gradient; hiểu directional derivative, local linearization nhiều biến và vì sao ∇f chỉ hướng tăng nhanh nhất theo Euclidean coordinates hiện tại.",
+      "pureLayer": [
+        "partial derivative",
+        "gradient",
+        "directional derivative",
+        "local linearization",
+        "steepest ascent",
+        "norm"
+      ],
+      "appliedLayer": [
+        "loss sensitivity",
+        "parameter sensitivity",
+        "finite-difference gradient check",
+        "optimization bridge",
+        "feature scaling awareness"
+      ],
+      "bridgeQuestion": "Khi input có nhiều coordinates, hướng nào làm output tăng nhanh nhất và vì sao negative gradient trở thành hướng giảm cục bộ tự nhiên?",
+      "auditStatus": "REVIEW",
       "sourceAnchors": {
         "stageId": "vn",
-        "disciplineId": "calculus_optimization",
+        "disciplineId": "calculus_multivariable",
         "chapterId": "MATH-VN-C03-ham_so_ao_ham_va_gradien",
-        "programLectureId": "MATH-PROG-L03-calculus-gradient-optimization"
+        "programLectureId": "MATH-PROG-L05-calculus-gradient",
+        "officialCurriculum": "bmstu_iu5_2026_curriculum"
       },
       "tags": [
         "gradient",
         "partial derivative",
-        "loss function",
-        "optimization",
-        "machine learning"
+        "directional derivative",
+        "steepest ascent",
+        "sensitivity",
+        "optimization"
       ],
+      "learningContract": {
+        "governingQuestion": "Gradient gom sensitivity theo từng coordinate như thế nào, và quan hệ ∇f·u giải thích hướng tăng/giảm cục bộ ra sao?",
+        "whyNeeded": "Gradient là object cốt lõi cho gradient descent, loss optimization, sensitivity analysis và backpropagation.",
+        "prerequisiteGates": [
+          "Hiểu function contract §3.1.",
+          "Hiểu single-variable derivative/local linearization §3.2.",
+          "Biết dot product/norm từ C01.",
+          "Biết vector coordinates và units có ý nghĩa."
+        ],
+        "measurableLearningOutcomes": [
+          "LO1: Tính đúng partial derivatives và gradient của scalar function hai/ba biến đơn giản.",
+          "LO2: Viết local approximation f(x+Δx)≈f(x)+∇f(x)^TΔx.",
+          "LO3: Tính directional derivative D_u f=∇f·u cho unit direction u.",
+          "LO4: Giải thích bằng Cauchy–Schwarz trực giác rằng maximum directional derivative bằng ||∇f|| theo hướng ∇f/||∇f||.",
+          "LO5: Dùng negative gradient để dự đoán local decrease nhưng không nhầm với guarantee global optimum.",
+          "LO6: Verify analytical gradient bằng coordinate-wise central differences.",
+          "LO7: Giải thích coordinate scaling/units ảnh hưởng Euclidean gradient direction và vì sao normalization/preconditioning có thể cần sau này."
+        ],
+        "exactScope": [
+          "partial derivatives",
+          "gradient vector",
+          "directional derivative",
+          "steepest local direction",
+          "first-order multivariable approximation",
+          "finite-difference gradient check"
+        ],
+        "explicitDeferrals": [
+          "Gradient descent algorithm details → §3.4.",
+          "Hessian/second-order optimality → §3.5.",
+          "Chain rule/backprop → §3.6.",
+          "Natural gradient/preconditioning theory → later optimization."
+        ],
+        "canonicalTerminology": {
+          "partialDerivative": "đạo hàm riêng",
+          "gradient": "gradient",
+          "directionalDerivative": "đạo hàm theo hướng",
+          "steepestAscent": "hướng tăng nhanh nhất",
+          "steepestDescent": "hướng giảm nhanh nhất",
+          "localLinearization": "xấp xỉ tuyến tính nhiều biến",
+          "unitDirection": "vector hướng đơn vị"
+        },
+        "symbols": {
+          "∂f/∂x_i": "partial derivative w.r.t. coordinate i",
+          "∇f": "column vector of partial derivatives",
+          "u": "unit direction, ||u||=1",
+          "D_u f": "∇f^T u",
+          "Δf": "≈∇f^T Δx"
+        },
+        "continuity": {
+          "previous": "§3.2 · Đạo hàm và độ nhạy của hệ thống",
+          "next": "§3.4 · Gradient descent và learning rate"
+        }
+      },
+      "technicalRussian": {
+        "terms": [
+          [
+            "частная производная",
+            "đạo hàm riêng"
+          ],
+          [
+            "градиент",
+            "gradient"
+          ],
+          [
+            "направленная производная",
+            "đạo hàm theo hướng"
+          ],
+          [
+            "направление",
+            "hướng"
+          ],
+          [
+            "единичный вектор",
+            "vector đơn vị"
+          ],
+          [
+            "скорость изменения",
+            "tốc độ thay đổi"
+          ],
+          [
+            "локальное приближение",
+            "xấp xỉ cục bộ"
+          ],
+          [
+            "наискорейший рост",
+            "tăng nhanh nhất"
+          ],
+          [
+            "наискорейший спад",
+            "giảm nhanh nhất"
+          ]
+        ],
+        "commandVerbs": [
+          [
+            "найдите",
+            "hãy tìm"
+          ],
+          [
+            "вычислите",
+            "hãy tính"
+          ],
+          [
+            "нормируйте",
+            "hãy chuẩn hóa"
+          ],
+          [
+            "объясните",
+            "hãy giải thích"
+          ]
+        ],
+        "oralFrames": [
+          "Градиент состоит из частных производных по всем координатам.",
+          "Направленная производная равна скалярному произведению градиента и единичного направления.",
+          "Отрицательный градиент задаёт локальное направление наискорейшего спада в выбранных евклидовых координатах."
+        ]
+      },
+      "sourceProvenance": [
+        {
+          "id": "bmstu_iu5_2026_curriculum",
+          "kind": "official_curriculum",
+          "url": "https://home.science.iu5.bmstu.ru/study-plans/iu5-master-program.pdf",
+          "supports": [
+            "preparation context for analytical models, AI/data analysis and optimization"
+          ]
+        },
+        {
+          "id": "mit_multivariable_partial_derivatives",
+          "kind": "authoritative_university_material",
+          "url": "https://ocw.mit.edu/courses/18-02sc-multivariable-calculus-fall-2010/pages/2.-partial-derivatives/",
+          "supports": [
+            "partial derivatives measure rates of change",
+            "gradient and tangent approximation organize multivariable derivatives and optimization"
+          ]
+        },
+        {
+          "id": "numpy_gradient",
+          "kind": "official_documentation",
+          "url": "https://numpy.org/doc/stable/reference/generated/numpy.gradient.html",
+          "supports": [
+            "finite-difference numerical gradient concepts and spacing dependence"
+          ]
+        }
+      ],
+      "generatedMaterial": {
+        "status": "AI_DRAFT_REVIEWED_IN_CONTENT_FACTORY",
+        "lineage": "Generated multivariable-gradient lesson anchored to MIT partial-derivative/gradient teaching and numerical finite-difference verification.",
+        "canonicalSourceReplacement": false
+      },
+      "contentFactory": {
+        "C1": "PASS",
+        "C2": "PASS",
+        "C3": "PASS",
+        "C4": "PASS",
+        "C5": "PASS",
+        "C6": {
+          "software": "STATIC_QA_PENDING",
+          "user": "PENDING",
+          "blockers": 0,
+          "majors": 0,
+          "inheritedDeferredGate": "E164",
+          "acceptance": "PENDING_C6"
+        }
+      },
       "slides": [
         {
           "role": "problem_framing",
-          "title": "Gradient mở rộng đạo hàm sang nhiều chiều",
+          "title": "ORIENT · Một derivative không đủ khi input là vector",
+          "sourceRefs": [
+            "mit_multivariable_partial_derivatives"
+          ],
           "blocks": [
             {
               "type": "text",
-              "title": "Ý chính",
-              "body": "Khi hàm phụ thuộc nhiều biến, ta cần biết đầu ra nhạy với từng biến thế nào. Gradient gom các đạo hàm riêng thành một vector."
+              "title": "Câu hỏi điều khiển",
+              "body": "Nếu loss phụ thuộc vào hàng nghìn parameters, thay đổi coordinate nào làm loss tăng/giảm mạnh nhất? Gradient gom local sensitivities thành một vector để trả lời."
+            },
+            {
+              "type": "text",
+              "title": "Vì sao cần",
+              "body": "Optimization cần một direction trong parameter space, không chỉ một slope. Gradient là cầu nối từ scalar loss sang update vector."
+            },
+            {
+              "type": "formula",
+              "title": "Definition",
+              "body": "f:R^n→R\n∇f(x)=[∂f/∂x1,...,∂f/∂xn]^T"
+            },
+            {
+              "type": "qa",
+              "title": "Retrieval",
+              "body": "Nếu f:R^5→R, gradient có bao nhiêu components và sống trong không gian nào?"
             }
           ]
         },
         {
           "role": "deep_essence",
-          "title": "Gradient là vector độ nhạy",
+          "title": "REACTIVATION · Partial derivative = sensitivity theo một coordinate",
           "blocks": [
             {
+              "type": "text",
+              "title": "Hold others fixed",
+              "body": "∂f/∂x_i hỏi output đổi thế nào khi chỉ x_i đổi nhỏ còn các coordinates khác giữ cố định."
+            },
+            {
               "type": "formula",
-              "title": "Gradient",
-              "body": "grad f(x) = [partial f/partial x_1, ..., partial f/partial x_n]^T"
+              "title": "Example form",
+              "body": "f(x,y)=x^2+2y^2\n∂f/∂x=2x\n∂f/∂y=4y"
             },
             {
               "type": "text",
-              "title": "Diễn giải",
-              "body": "Mỗi thành phần cho biết nếu thay đổi một biến một chút, hàm sẽ thay đổi theo hướng nào và mạnh bao nhiêu."
+              "title": "Gradient",
+              "body": "Tại (1,2): ∇f=[2,8]^T. Hai numbers là sensitivities theo axes hiện tại."
+            },
+            {
+              "type": "qa",
+              "title": "Tự nói lại",
+              "body": "Component gradient lớn hơn có luôn nghĩa variable đó 'quan trọng hơn' không? Chưa chắc nếu units/scales khác."
             }
           ]
         },
         {
           "role": "counter_intuition",
-          "title": "Gradient không phải hướng đi tốt nhất cho mọi mục tiêu",
+          "title": "COUNTER-INTUITION · Gradient direction phụ thuộc coordinate scaling",
           "blocks": [
             {
               "type": "text",
-              "title": "Điểm dễ nhầm",
-              "body": "Gradient là hướng tăng nhanh nhất. Nếu muốn giảm hàm mất mát, ta đi theo hướng âm gradient. Nếu có ràng buộc hoặc scale lệch, hướng tốt thực tế có thể cần điều chỉnh."
+              "title": "Euclidean coordinates",
+              "body": "'Steepest' được định nghĩa theo notion of unit step ||u||=1 trong coordinates đang dùng."
+            },
+            {
+              "type": "text",
+              "title": "Rescaling",
+              "body": "Đổi variable từ meters sang millimeters làm numerical partial derivative thay scale; raw gradient components/direction có thể đổi."
+            },
+            {
+              "type": "text",
+              "title": "Interpretation",
+              "body": "Gradient vẫn đúng trong coordinates mới, nhưng so components across units mà không normalize/precondition có thể gây hiểu sai."
+            },
+            {
+              "type": "qa",
+              "title": "Diagnostic",
+              "body": "Parameter1 đo volts, parameter2 đo microseconds. Có nên so trực tiếp 2 gradient components chỉ bằng magnitude không?"
             }
           ]
         },
         {
           "role": "real_bridge",
-          "title": "Gradient trong học máy",
+          "title": "CONTEXT · Loss landscape và parameter sensitivity",
           "blocks": [
             {
               "type": "text",
-              "title": "Ví dụ",
-              "body": "Loss L(theta) đo mô hình sai bao nhiêu. Gradient grad L(theta) cho biết thay đổi từng tham số theta sẽ làm loss tăng/giảm ra sao."
+              "title": "Loss",
+              "body": "J(w1,w2) là scalar error surface. Gradient tại một point là local sensitivity vector trong parameter plane."
+            },
+            {
+              "type": "text",
+              "title": "Positive direction",
+              "body": "Move theo +∇J làm J tăng nhanh nhất cục bộ cho unit Euclidean step."
+            },
+            {
+              "type": "text",
+              "title": "Negative direction",
+              "body": "Move theo -∇J làm first-order change âm mạnh nhất. Đây là intuition của gradient descent."
+            },
+            {
+              "type": "qa",
+              "title": "Decision question",
+              "body": "-∇J đảm bảo đi tới global minimum không? Không; nó chỉ là local first-order direction."
             }
           ]
         },
         {
           "role": "notation",
-          "title": "Đạo hàm riêng và gradient",
+          "title": "FORMALIZE · Local linearization nhiều biến",
           "blocks": [
             {
               "type": "formula",
-              "title": "Đạo hàm riêng",
-              "body": "partial f/partial x_i"
+              "title": "First-order approximation",
+              "body": "f(x+Δx) ≈ f(x) + ∇f(x)^T Δx"
+            },
+            {
+              "type": "text",
+              "title": "Dot product meaning",
+              "body": "Gradient projects onto chosen perturbation Δx. Only component of Δx aligned with gradient contributes maximally to first-order change."
             },
             {
               "type": "formula",
-              "title": "Gradient descent",
-              "body": "x_{k+1} = x_k - eta grad f(x_k)"
+              "title": "Directional derivative",
+              "body": "D_u f(x)=∇f(x)^T u, ||u||=1"
+            },
+            {
+              "type": "qa",
+              "title": "Quick check",
+              "body": "Nếu u orthogonal với ∇f, first-order directional derivative bằng bao nhiêu?"
             }
           ]
         },
         {
           "role": "core_formula",
-          "title": "Đạo hàm theo hướng",
+          "title": "CORE · Vì sao gradient là hướng tăng nhanh nhất",
           "blocks": [
             {
               "type": "formula",
-              "title": "Directional derivative",
-              "body": "D_u f(x) = grad f(x) · u, với ||u||=1"
+              "title": "Cauchy–Schwarz",
+              "body": "D_u f=∇f^T u ≤ ||∇f||·||u|| = ||∇f||"
             },
             {
               "type": "text",
-              "title": "Ý nghĩa",
-              "body": "Hàm tăng nhanh nhất khi u cùng hướng gradient và giảm nhanh nhất khi u ngược hướng gradient."
+              "title": "Equality",
+              "body": "Maximum đạt khi u cùng hướng gradient: u*=∇f/||∇f|| nếu gradient khác zero."
+            },
+            {
+              "type": "formula",
+              "title": "Steepest decrease",
+              "body": "min_(||u||=1) D_u f = -||∇f|| tại u=-∇f/||∇f||"
+            },
+            {
+              "type": "qa",
+              "title": "Retrieve",
+              "body": "Nếu ∇f=0, công thức 'normalize gradient' gặp vấn đề gì và first-order information nói gì?"
             }
           ]
         },
         {
           "role": "assumption_gate",
-          "title": "Điều kiện dùng gradient descent",
+          "title": "ASSUMPTION GATE · Gradient zero không tự động là minimum",
           "blocks": [
             {
               "type": "text",
-              "title": "Điều kiện",
-              "body": "Hàm cần đủ trơn hoặc có gradient xấp xỉ được. Learning rate eta phải phù hợp; quá lớn gây dao động, quá nhỏ làm học chậm."
+              "title": "Stationary point",
+              "body": "∇f=0 chỉ nói first-order slope zero theo mọi direction."
+            },
+            {
+              "type": "text",
+              "title": "Có thể là gì",
+              "body": "Local minimum, local maximum hoặc saddle point đều có thể stationary."
+            },
+            {
+              "type": "text",
+              "title": "Need second-order/context",
+              "body": "Phân loại stationary point cần curvature/Hessian hoặc problem structure; để §3.5."
+            },
+            {
+              "type": "qa",
+              "title": "Gate",
+              "body": "f(x,y)=x^2-y^2 tại (0,0) có gradient zero. Đây có phải minimum không?"
             }
           ]
         },
         {
           "role": "mini_case",
-          "title": "Mini case: tối ưu tham số mô hình tuyến tính",
+          "title": "E1 SIMPLE · f=x²+2y² tại (1,2)",
           "blocks": [
             {
+              "type": "formula",
+              "title": "Gradient",
+              "body": "∇f=[2x,4y]^T ⇒ ∇f(1,2)=[2,8]^T"
+            },
+            {
+              "type": "formula",
+              "title": "Gradient norm",
+              "body": "||∇f||=√(2^2+8^2)=√68"
+            },
+            {
               "type": "text",
-              "title": "Case",
-              "body": "Với y_hat = Xw, loss = mean((Xw-y)^2). Gradient theo w cho biết mỗi trọng số cần tăng hay giảm để giảm sai số."
+              "title": "Direction",
+              "body": "Steepest ascent unit direction=[2,8]/√68. Steepest descent là vector đối dấu."
+            },
+            {
+              "type": "qa",
+              "title": "Sanity",
+              "body": "Tại point này, y-coordinate sensitivity lớn hơn x-coordinate theo current units bao nhiêu lần?"
             }
           ]
         },
         {
           "role": "interpretation",
-          "title": "Đọc gradient như bản đồ địa hình",
+          "title": "E2 CONTEXTUAL · Directional derivative theo hướng cụ thể",
           "blocks": [
             {
+              "type": "formula",
+              "title": "Direction",
+              "body": "u=[3/5,4/5], ||u||=1"
+            },
+            {
+              "type": "formula",
+              "title": "Directional derivative",
+              "body": "D_u f=[2,8]·[3/5,4/5]=6/5+32/5=38/5=7.6"
+            },
+            {
               "type": "text",
-              "title": "Diễn giải",
-              "body": "Nếu loss là độ cao trên địa hình tham số, gradient chỉ hướng lên dốc nhanh nhất. Tối ưu là đi xuống dốc có kiểm soát."
+              "title": "Compare maximum",
+              "body": "Maximum possible unit directional derivative là √68≈8.246, nên hướng u tăng nhanh nhưng chưa tối đa."
+            },
+            {
+              "type": "qa",
+              "title": "Transfer nhẹ",
+              "body": "Hướng -u cho directional derivative bao nhiêu? Ý nghĩa sign?"
             }
           ]
         },
         {
           "role": "simulation",
-          "title": "Thí nghiệm gradient bằng Python",
+          "title": "BEGINNER ENTRY · Verify gradient bằng central differences",
+          "sourceRefs": [
+            "numpy_gradient"
+          ],
           "blocks": [
             {
               "type": "code",
-              "title": "Công cụ",
-              "body": "grad = 2 * X.T @ (X @ w - y) / len(y)\nw = w - eta * grad"
+              "title": "Deterministic gradient check",
+              "body": "import numpy as np\n\ndef f(v):\n    x, y = v\n    return x*x + 2*y*y\n\ndef grad_analytic(v):\n    x, y = v\n    return np.array([2*x, 4*y], dtype=float)\n\ndef grad_fd(f, v, h=1e-5):\n    v = np.array(v, dtype=float)\n    g = np.zeros_like(v)\n    for i in range(len(v)):\n        e = np.zeros_like(v); e[i] = 1.0\n        g[i] = (f(v+h*e)-f(v-h*e))/(2*h)\n    return g\n\nv = np.array([1.,2.])\nassert np.allclose(grad_fd(f,v), grad_analytic(v), rtol=1e-9, atol=1e-9)"
+            },
+            {
+              "type": "text",
+              "title": "BEGINNER ENTRY · coordinate checks",
+              "body": "Finite-difference mỗi coordinate giữ others fixed, đúng với definition partial derivative."
+            },
+            {
+              "type": "text",
+              "title": "Software trust",
+              "body": "Gradient check cần scale-aware tolerance và nhiều h/points. Pass ở một point không chứng minh symbolic formula đúng toàn domain."
+            },
+            {
+              "type": "qa",
+              "title": "Experiment",
+              "body": "Thay function thành f=x^2-y^2. Verify gradient tại (1,1), rồi kiểm point (0,0) có gradient zero nhưng saddle."
             }
           ]
         },
         {
           "role": "common_mistakes",
-          "title": "Lỗi thường gặp",
+          "title": "MISCONCEPTION MAP · 5 lỗi về gradient",
           "blocks": [
             {
               "type": "text",
-              "title": "Lỗi",
-              "body": "Nhầm gradient với âm gradient; chọn learning rate tùy tiện; không scale đặc trưng; nghĩ gradient bằng 0 luôn là cực tiểu tốt."
+              "title": "MAJOR · «Gradient là một số»",
+              "body": "Với scalar function nhiều variables, gradient là vector."
+            },
+            {
+              "type": "text",
+              "title": "MAJOR · «Partial derivative đổi tất cả variables»",
+              "body": "Một partial derivative thay một coordinate, giữ others fixed."
+            },
+            {
+              "type": "text",
+              "title": "MAJOR · «Gradient zero = minimum»",
+              "body": "Có thể maximum/saddle."
+            },
+            {
+              "type": "text",
+              "title": "MAJOR · «-gradient luôn tới global optimum»",
+              "body": "Chỉ local descent direction first-order."
+            },
+            {
+              "type": "text",
+              "title": "MAJOR · «Component lớn nhất = parameter quan trọng nhất»",
+              "body": "Units/scales/coordinate metric ảnh hưởng magnitude."
             }
           ]
         },
         {
           "role": "application",
-          "title": "Ứng dụng lập trình",
+          "title": "E3 TRANSFER · Gradient sensitivity audit",
           "blocks": [
             {
-              "type": "text",
-              "title": "Nhiệm vụ",
-              "body": "Cài đặt gradient descent cho hồi quy tuyến tính một biến và nhiều biến. Vẽ loss theo số bước để kiểm tra hội tụ."
+              "type": "qa",
+              "title": "Task 1",
+              "body": "J(w1,w2)=w1^2+10w2^2 tại (1,1). Tính gradient, normalized steepest direction và giải thích scale."
+            },
+            {
+              "type": "qa",
+              "title": "Task 2",
+              "body": "Dùng direction u=[1,1]/√2. Tính D_u J và compare ||∇J||."
+            },
+            {
+              "type": "qa",
+              "title": "Task 3",
+              "body": "Rescale coordinate z2=100w2. Raw gradient components đổi ra sao về units/magnitude? Điều gì không nên kết luận vội?"
+            },
+            {
+              "type": "qa",
+              "title": "Task 4",
+              "body": "Tạo scalar function 3 variables, viết analytical gradient và finite-difference checker."
             }
           ]
         },
         {
           "role": "practice",
-          "title": "Bài luyện tập",
+          "title": "PRACTICE LADDER · P0 → P3",
           "blocks": [
             {
-              "type": "text",
-              "title": "Bài tập",
-              "body": "Cho f(x,y)=x^2+3y^2. Tính gradient tại (1,2), xác định hướng tăng nhanh nhất và bước giảm đầu tiên với eta=0.1."
+              "type": "qa",
+              "title": "P0 · Recognition",
+              "body": "5 scalar functions: identify number of gradient components and partial-variable names."
+            },
+            {
+              "type": "qa",
+              "title": "P1 · Guided",
+              "body": "f=x^2+xy+y^2: tính partials, gradient tại (1,2), directional derivative theo [1,0] và [0,1]."
+            },
+            {
+              "type": "qa",
+              "title": "P2 · Independent",
+              "body": "Tự chọn quadratic 3 variables, derive gradient, verify finite differences trên 3 deterministic points."
+            },
+            {
+              "type": "qa",
+              "title": "P3 · Transfer",
+              "body": "Tạo same physical model với two coordinate scalings; compare raw gradients và giải thích metric/scaling effect."
             }
           ]
         },
         {
           "role": "professor_qa",
-          "title": "Vấn đáp kiểm tra hiểu sâu",
+          "title": "ASSESSMENT · D0 / D1 / D2",
           "blocks": [
             {
               "type": "qa",
-              "title": "Câu hỏi",
-              "body": "Vì sao gradient phụ thuộc scale của biến? Tại sao chuẩn hóa đặc trưng giúp gradient descent ổn định hơn?"
+              "title": "D0 RECALL",
+              "body": "Định nghĩa partial derivative, gradient, directional derivative và local linearization."
+            },
+            {
+              "type": "qa",
+              "title": "D1 APPLICATION",
+              "body": "Cho scalar function 3 variables. Tính analytical gradient, verify numerically, tìm steepest unit direction và dự đoán Δf cho small Δx."
+            },
+            {
+              "type": "qa",
+              "title": "D2 EXPLAIN / ORAL",
+              "body": "Giải thích 60–90 giây: «Vì sao gradient là steepest Euclidean direction và vì sao scaling variables có thể đổi raw gradient direction?»"
+            },
+            {
+              "type": "text",
+              "title": "Mastery evidence",
+              "body": "Đạt khi learner nối partials→gradient→directional derivative→local change và hiểu coordinate caveat."
             }
           ]
         },
         {
           "role": "bridge",
-          "title": "Cầu sang tối ưu hóa",
+          "title": "TECHNICAL RUSSIAN + NEXT · gradient sang descent",
           "blocks": [
             {
               "type": "text",
-              "title": "Liên kết",
-              "body": "Gradient cho biết hướng. Bài sau học cách chọn bước đi, điều kiện hội tụ, cực tiểu địa phương và các biến thể tối ưu."
+              "title": "9 thuật ngữ",
+              "body": "частная производная · градиент · направленная производная · направление · единичный вектор · скорость изменения · локальное приближение · наискорейший рост · наискорейший спад"
+            },
+            {
+              "type": "text",
+              "title": "4 động từ",
+              "body": "найдите — tìm; вычислите — tính; нормируйте — chuẩn hóa; объясните — giải thích."
+            },
+            {
+              "type": "text",
+              "title": "Khung vấn đáp",
+              "body": "«Направленная производная равна скалярному произведению градиента и единичного направления.»\n«Отрицательный градиент задаёт локальное направление наискорейшего спада.»"
+            },
+            {
+              "type": "text",
+              "title": "Cầu sang §3.4",
+              "body": "Biết hướng giảm mới là nửa bài toán. §3.4 thêm learning rate: đi bao xa theo -gradient để giảm loss mà không overshoot/diverge?"
             }
           ]
         },
         {
           "role": "takeaway",
-          "title": "Kết luận cần nhớ",
+          "title": "REVIEW · 6 facts trước gradient descent",
           "blocks": [
             {
               "type": "text",
-              "title": "Cốt lõi",
-              "body": "Gradient là vector độ nhạy nhiều chiều; âm gradient là hướng giảm nhanh nhất của hàm mục tiêu trong mô hình trơn."
+              "title": "1",
+              "body": "Gradient là vector partial derivatives."
+            },
+            {
+              "type": "text",
+              "title": "2",
+              "body": "Δf≈∇f^TΔx là local first-order model."
+            },
+            {
+              "type": "text",
+              "title": "3",
+              "body": "D_u f=∇f·u với unit u."
+            },
+            {
+              "type": "text",
+              "title": "4",
+              "body": "+gradient steepest ascent; -gradient steepest descent locally."
+            },
+            {
+              "type": "text",
+              "title": "5",
+              "body": "∇f=0 không đủ phân loại optimum."
+            },
+            {
+              "type": "text",
+              "title": "6",
+              "body": "Gradient magnitude/direction phụ thuộc coordinate scaling/metric."
             }
           ]
         }
@@ -9074,9 +9503,9 @@
     }
   ],
   "lastContentPass": {
-    "id": "E175",
-    "lessonId": "MATH-VN-C03-giai_tich_dao_ham_gradient-L02-derivative-system-sensitivity-e145",
-    "status": "LOCAL_CONTENT_QA_PASS_GLOBAL_BROWSER_BASELINE_PENDING",
+    "id": "E176",
+    "lessonId": "MATH-VN-C03-giai_tich_dao_ham_gradient-L03-gradient-direction-fastest-change-e145",
+    "status": "C1_C5_PASS_C6_PENDING",
     "generatedAt": "2026-09-21",
     "inheritedRuntimeGate": "E164"
   },
