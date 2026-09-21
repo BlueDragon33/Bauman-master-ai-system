@@ -287,7 +287,7 @@ try{
   await page.locator('#page-roadmap [data-rm-action="autoschedule"]').click();
   await page.waitForSelector('#modalRoot .schedule-settings-modal.auto-mode',{state:'visible',timeout:10000});
   assert.match(await page.locator('#modalRoot').innerText(),/Cài đặt lịch tự động/,'Roadmap auto-plan action did not open Auto Scheduler settings');
-  await page.locator('#modalRoot [data-action="close-modal"]').click();
+  await page.locator('#modalRoot [data-action="close-modal"]').first().click();
 
   const cases=[['tuf-f15-1920x1080',1920,1080],['laptop-1536x864',1536,864],['ipad-3x2',1180,787],['iphone-19_5x9',390,844]];
   for(const [label,width,height] of cases){
