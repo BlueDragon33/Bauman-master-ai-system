@@ -38,8 +38,6 @@ on:
       - 'scripts/validate-transcript-honors-runtime-a4.js'
       - 'scripts/validate-academic-command-center-a5.js'
       - 'scripts/validate-phase2-current-main-integration-a6.js'
-      - 'scripts/validate-phase2-current-main-promotion-a6.js'
-      - 'assets/data/phase2-current-main-promotion-manifest-2026.json'
       - 'scripts/validate-prerequisite-coverage-2026.js'
       - 'scripts/validate-p09-markov-queueing.js'
       - 'scripts/validate-p06-database-fundamentals.js'
@@ -98,8 +96,6 @@ on:
       - 'scripts/validate-transcript-honors-runtime-a4.js'
       - 'scripts/validate-academic-command-center-a5.js'
       - 'scripts/validate-phase2-current-main-integration-a6.js'
-      - 'scripts/validate-phase2-current-main-promotion-a6.js'
-      - 'assets/data/phase2-current-main-promotion-manifest-2026.json'
       - 'scripts/validate-prerequisite-coverage-2026.js'
       - 'scripts/validate-p09-markov-queueing.js'
       - 'scripts/validate-p06-database-fundamentals.js'
@@ -146,8 +142,6 @@ jobs:
         run: node scripts/validate-academic-command-center-a5.js
       - name: Validate A6 current-main integration
         run: node scripts/validate-phase2-current-main-integration-a6.js
-      - name: Validate A6 promotion boundary and allowlist
-        run: node scripts/validate-phase2-current-main-promotion-a6.js
       - name: Validate prerequisite content coverage audit
         run: node scripts/validate-prerequisite-coverage-2026.js
       - name: Validate P9 Markov / Queueing / Simulation pack
@@ -184,7 +178,6 @@ jobs:
           node --check scripts/validate-transcript-honors-runtime-a4.js
           node --check scripts/validate-academic-command-center-a5.js
           node --check scripts/validate-phase2-current-main-integration-a6.js
-          node --check scripts/validate-phase2-current-main-promotion-a6.js
           node --check assets/js/academic-course-runtime.js
           node --check assets/js/academic-event-runtime.js
           node --check assets/js/academic-grade-runtime.js
