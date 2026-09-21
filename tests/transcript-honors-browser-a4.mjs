@@ -10,7 +10,8 @@ const errors=[],failed=[];
 const must=(c,m)=>{if(!c)throw new Error(m)};
 
 async function mockControl(page){
-  const deviceId='device-a4',deviceCode='BM-A4AA-BBBB-CCCC-DDDD',cors={'access-control-allow-origin':'*','access-control-allow-headers':'*'};
+  const deviceId='4'.repeat(64),deviceCode='BM-A4-001';
+  const cors={'access-control-allow-origin':'*','access-control-allow-methods':'GET,POST,OPTIONS','access-control-allow-headers':'content-type,authorization','cache-control':'no-store'};
   await page.route('http://127.0.0.1:3003/**',async route=>{
     const req=route.request();if(req.method()==='OPTIONS')return route.fulfill({status:204,headers:cors,body:''});
     const u=new URL(req.url()),headers={...cors,'content-type':'application/json'},send=body=>route.fulfill({status:200,headers,body:JSON.stringify(body)});
