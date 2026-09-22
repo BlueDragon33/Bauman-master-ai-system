@@ -70,7 +70,9 @@ must(!js.includes('base+Math.round'),'Skill cards must not synthesize fake per-s
 must(!js.includes('mini-progress'),'Skill cards must not display invented per-skill progress bars');
 for(const token of ['ru-future-ui','rf-progress-strip','rf-module-grid','rf-dashboard-lower','rf-tab-intro','grid-template-columns:220px minmax(0,1fr)','display:none!important']) must(futureCss.includes(token),`Future UI CSS missing ${token}`);
 for(const token of ['RUSSIAN_FUTURE_REFERENCE_UI_V1','upgradeOverview','upgradeTabIntro','data-rf-speak','Nghe & Nói','Bảng chữ cái','Lộ trình kỹ năng']) must(futureJs.includes(token),`Future UI runtime missing ${token}`);
-must(futureJs.includes("title.textContent='Tiếng Nga'"),'Future UI must expose Russian-only visible brand');
+must(futureJs.includes("setText(title,'Tiếng Nga')"),'Future UI must expose Russian-only visible brand');
+must(futureJs.includes("function setText(el,value){if(el&&el.textContent!==value)el.textContent=value}"),'Future UI text writes must remain idempotent');
+must(futureJs.includes("quote&&quote.dataset.rfFutureQuote!=='1'"),'Future UI quote render must remain one-shot and observer-safe');
 must(!futureJs.includes('Bauman Hub'),'Future UI must not restore Bauman Hub branding');
 must(futureJs.includes('MutationObserver'),'Future UI must survive core rerenders');
 

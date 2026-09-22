@@ -40,20 +40,27 @@
     const map={vn:['A1','Khởi động'],prep:['A2','Dự bị'],hk1:['B1','Học thuật'],hk2:['B2','Học thuật'],hk3:['C1','Nghiên cứu'],hk4:['C1+','Bảo vệ'],all:['A1→C1','Tổng hợp']};
     return map[st.stage||'vn']||map.vn;
   }
+  function setText(el,value){if(el&&el.textContent!==value)el.textContent=value}
+  function setAttr(el,name,value){if(el&&el.getAttribute(name)!==value)el.setAttribute(name,value)}
   function upgradeBrand(){
     document.body.classList.add('ru-future-ui');
     const title=document.getElementById('subjectTitle'),sub=document.getElementById('subjectSubtitle');
-    if(title)title.textContent='Tiếng Nga';
-    if(sub)sub.textContent='Nghe • Nói • Đọc • Viết';
-    const cap=document.querySelector('.ru-brand-caption');if(cap)cap.textContent='MỞ MỘT NGÔN NGỮ · MỞ RỘNG THẾ GIỚI';
+    setText(title,'Tiếng Nga');
+    setText(sub,'Nghe • Nói • Đọc • Viết');
+    setText(document.querySelector('.ru-brand-caption'),'MỞ MỘT NGÔN NGỮ · MỞ RỘNG THẾ GIỚI');
     const quote=document.querySelector('.ru-sidebar-quote');
-    if(quote)quote.innerHTML='<span>“Язык открывает новый мир”</span><small>Một ngôn ngữ mới mở ra một thế giới mới.</small>';
-    const core=document.getElementById('coreLabel');if(core)core.textContent='TIẾNG NGA · HỌC MỖI NGÀY';
+    if(quote&&quote.dataset.rfFutureQuote!=='1'){
+      quote.dataset.rfFutureQuote='1';
+      quote.innerHTML='<span>“Язык открывает новый мир”</span><small>Một ngôn ngữ mới mở ra một thế giới mới.</small>';
+    }
+    setText(document.getElementById('coreLabel'),'TIẾNG NGA · HỌC MỖI NGÀY');
     const search=document.getElementById('russianGlobalSearch');
-    if(search){search.placeholder='Tìm bài học, từ vựng, ngữ pháp...';search.setAttribute('aria-label','Tìm trong site Tiếng Nga')}
+    setAttr(search,'placeholder','Tìm bài học, từ vựng, ngữ pháp...');
+    setAttr(search,'aria-label','Tìm trong site Tiếng Nga');
     document.querySelectorAll('#nav button[data-view]').forEach(btn=>{
       const meta=NAV_META[btn.dataset.view];if(!meta)return;
-      const b=btn.querySelector('b'),span=btn.querySelector('span');if(b)b.textContent=meta[0];if(span)span.textContent=meta[1];
+      setText(btn.querySelector('b'),meta[0]);
+      setText(btn.querySelector('span'),meta[1]);
     });
   }
   function heroHtml(){

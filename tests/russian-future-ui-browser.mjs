@@ -33,6 +33,20 @@ try{
   assert.match(await page.locator('#subjectSubtitle').innerText(),/Nghe.*Nói.*Đọc.*Viết/);
   assert.equal(await page.locator('.ru-right-rail').evaluate(el=>getComputedStyle(el).display),'none','Fixed right rail must be removed from future layout');
 
+  const idleMutationCount=await page.evaluate(async()=>{
+    const root=document.querySelector('.ru-app-shell');
+    let count=0;
+    const observer=new MutationObserver(records=>{
+      count+=records.filter(r=>r.type==='childList'||(r.type==='attributes'&&r.attributeName==='class')).length;
+    });
+    observer.observe(root,{subtree:true,childList:true,attributes:true,attributeFilter:['class']});
+    window.RUSSIAN_FUTURE_UI.upgrade();
+    await new Promise(resolve=>requestAnimationFrame(()=>requestAnimationFrame(resolve)));
+    observer.disconnect();
+    return count;
+  });
+  assert.equal(idleMutationCount,0,'Repeated future UI upgrade must be DOM-idempotent and must not self-trigger MutationObserver churn');
+
   const dims=await page.evaluate(()=> {
     const box=s=>{const r=document.querySelector(s)?.getBoundingClientRect();return r?{x:r.x,y:r.y,w:r.width,h:r.height}:null};
     const modules=[...document.querySelectorAll('.rf-module-card')].map(el=>{const r=el.getBoundingClientRect();return{x:r.x,y:r.y,w:r.width,h:r.height}});
