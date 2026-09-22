@@ -1,8 +1,8 @@
 # CODEX_STATE
 
-Current task: `BAUMAN_PROJECT_STATE_POST_RUSSIAN_FUTURE_UI_IDEMPOTENCE_RECONCILIATION`
+Current task: `BAUMAN_PROJECT_STATE_POST_RUSSIAN_FUTURE_UI_PACKAGE_READINESS_RECONCILIATION`
 
-Status: `ROADMAP_V2_COMPLETE · RUSSIAN_LISTEN_WRITE_PROMOTED · ACADEMIC_PHASE2_A1_A6_PROMOTED · DEVICE_CONTRACT_V6_PROMOTED · CONTENT_REVIEW_V1_PROMOTED · DEEP_STUDY_JOURNAL_V1_PROMOTED · DSJ_PACKAGED_READINESS_FX_PROMOTED · CURRENT_MAIN_CONTROL_STATE_GATE_V1_PROMOTED · CURRENT_MAIN_CONTROL_STATE_GATE_V1_1_PROMOTED · RUSSIAN_FUTURE_REFERENCE_UI_PROMOTED · RUSSIAN_FUTURE_UI_IDEMPOTENCE_FX_PROMOTED · CURRENT_MAIN_CLEAN`
+Status: `ROADMAP_V2_COMPLETE · RUSSIAN_LISTEN_WRITE_PROMOTED · ACADEMIC_PHASE2_A1_A6_PROMOTED · DEVICE_CONTRACT_V6_PROMOTED · CONTENT_REVIEW_V1_PROMOTED · DEEP_STUDY_JOURNAL_V1_PROMOTED · DSJ_PACKAGED_READINESS_FX_PROMOTED · CURRENT_MAIN_CONTROL_STATE_GATE_V1_PROMOTED · CURRENT_MAIN_CONTROL_STATE_GATE_V1_1_PROMOTED · RUSSIAN_FUTURE_REFERENCE_UI_PROMOTED · RUSSIAN_FUTURE_UI_IDEMPOTENCE_FX_PROMOTED · RUSSIAN_FUTURE_UI_PACKAGE_READINESS_FX_PROMOTED · CURRENT_MAIN_CLEAN`
 
 Date: 2026-09-22
 Branch: `main`
@@ -28,6 +28,7 @@ Promoted current-main capabilities:
 - Current-Main Control-State Gate v1.1 — PR #93 merged as `804cb00b306d18247fba00453864783754de4cf0`.
 - Russian Future Reference UI — PR #92 merged as `530649914820d54e992c5d840621e1ff0631f836`.
 - Russian Future UI idempotence Fx — PR #95 merged as `06e3c56308d71ff3ce8f8b3cedf12242c2b0c1f9`.
+- Russian Future UI package-readiness Fx — PR #97 merged as `00605feb7dbdfbb9c6f1e5399d75c1af96211af4`.
 
 ## Device Contract v6
 
@@ -187,6 +188,28 @@ Promoted as current-main commit `06e3c56308d71ff3ce8f8b3cedf12242c2b0c1f9`.
 
 This is a scoped Fx hardening step only. It does not create L36, change route/data/state authority, or authorize production deployment.
 
+## Russian Future UI package-readiness Fx
+
+PR #97 hardens the promoted Russian Future UI package boundary so accepted runtime packages fail fast instead of relying only on later browser discovery.
+
+Hardening:
+
+- ChatGPT Site materialization now requires `subjects/russian/assets/russian-future-ui.css` and `subjects/russian/assets/russian-future-ui.js`;
+- Cloudflare preview materialization requires the same two assets;
+- both package paths verify that packaged Russian HTML still references the Future UI CSS/JS;
+- the Russian Reference UI validator locks those package-readiness assertions so they cannot silently disappear.
+
+Validated on PR #97 final head `b790e356b7171cfdf8093332c9b53a9ae2259636`:
+
+- Russian Reference UI Gate run `35671117245` — SUCCESS;
+- Windows checkout safety run `35671117243` — SUCCESS;
+- Bauman Cloudflare Preview CI run `35671117362` — SUCCESS;
+- Whole System Integration Gate run `35671117241` — SUCCESS, including materialized ChatGPT Site and packaged Russian Future UI acceptance.
+
+Promoted as current-main commit `00605feb7dbdfbb9c6f1e5399d75c1af96211af4`.
+
+This is package/readiness hardening only. It does not create L36, change learning authority, or authorize production deployment.
+
 ## Intentional capability layering
 
 The base control worker intentionally keeps `learningAccessGate: false` until the deployment/preview wrapper verifies D1 + app-origin readiness. Do not flatten this fail-closed layering.
@@ -210,7 +233,7 @@ This does **not** authorize production deployment. Runtime capabilities that req
 
 1. Start all new work from current `main`.
 2. Treat `docs/roadmap_v2/CURRENT_EXECUTION_STATE.md` as authoritative for Roadmap history.
-3. Treat PRs #72, #76, #79, #82, #88, #90, #92, #93, #95 and Deep Study Journal v1 commit `a2e642867ba99ea34c1b49eb378f78f927e563bb` as promoted current-main behavior.
+3. Treat PRs #72, #76, #79, #82, #88, #90, #92, #93, #95, #97 and Deep Study Journal v1 commit `a2e642867ba99ea34c1b49eb378f78f927e563bb` as promoted current-main behavior.
 4. Do not reconstruct completed Issues #28 or #81 from stale branches.
 5. Preserve Content Review metadata-only ownership and role boundaries.
 6. Preserve Deep Study Journal as non-authoritative learner reflection; it must not become mastery/diagnostic/scheduler/progress evidence implicitly.
