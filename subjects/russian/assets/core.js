@@ -1724,8 +1724,7 @@ function vocabVisualHtml(info,back=false){
  const tags=arr(info.tags).slice(0,4);
  const symbols=uniq([...(arr(info.symbols)), info.emoji, tags.includes('greeting')?'👋':'', tags.includes('academic')?'🎓':''].filter(Boolean)).slice(0,5);
  const img=info.image?`<img src="${esc(info.image)}" alt="${esc(info.visualLabel||info.term)}">`:symbols.map(x=>`<span>${esc(x)}</span>`).join('');
- const tagHtml=tags.length?`<div class="visual-tags">${tags.map(t=>`<em>${esc(t)}</em>`).join('')}</div>`:'';
- return `<div class="visual-meaning ${back?'back':''}"><div class="visual-symbols">${img||'<span>🧠</span>'}</div><b>${esc(info.displayVisualLabel||info.visualLabel||info.term||'hình dung')}</b>${back?`<small>${esc(info.displayWhenUse||info.whenUse||info.displayMeaning||info.meaningRu||info.meaningVi||'')}</small>${tagHtml}`:''}</div>`
+ return `<div class="visual-meaning ${back?'back':''}"><div class="visual-symbols">${img||'<span>🧠</span>'}</div><b>${esc(info.displayVisualLabel||info.visualLabel||info.term||'образ')}</b>${back?`<small>${esc(info.displayWhenUse||info.whenUse||info.displayMeaning||info.meaningRu||'')}</small>`:''}</div>`
 }
 
 
