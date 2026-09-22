@@ -1624,45 +1624,45 @@ function startLineRecording(){
  try{rec.start()}catch(_){state.speechRecording=false; save(); render(); toast('Micro chưa sẵn sàng')}
 }
 
-function isVietnamVocab(v){return (stageOf(v)||state.stage)==='vn'||/Việt Nam/i.test(str(v?.stage_title_vi||''))}
-function tagViLabel(tags){
- const map={greeting:'chào hỏi',time:'thời gian',academic:'học tập',dorm:'ký túc xá',office:'giấy tờ',transport:'di chuyển',food:'ăn uống',canteen:'nhà ăn',health:'sức khỏe',technology:'công nghệ',research:'nghiên cứu',shopping:'mua sắm'};
+function vocabVisualCategoryRu(tags){
+ const map={greeting:'приветствие',time:'время',academic:'учёба',dorm:'общежитие',office:'документы',transport:'транспорт',food:'еда',canteen:'столовая',health:'здоровье',technology:'технологии',research:'исследование',shopping:'покупки'};
  for(const t of arr(tags)){const k=lower(t); if(map[k])return map[k];}
- return arr(tags)[0]||'giao tiếp';
+ return 'ситуация общения';
 }
-function makeVietnamVocabDisplay(v,base){
- const tag=tagViLabel(base.tags);
- const term=str(base.term||'từ này');
- const meaning=str(base.meaningRu||v?.meaning_ru||'').trim()||str(base.visualLabel||v?.illustration_label_ru||'').trim()||`Контекст: ${term}`;
- const meaningNote=base.tags.includes('greeting')?'Ý nghĩa giao tiếp: mở kênh đối thoại, thể hiện thái độ lịch sự và bắt đầu cuộc nói chuyện đúng nghi thức.'
-  :base.tags.includes('time')?'Ý nghĩa: chỉ mốc thời gian hoặc nhịp sinh hoạt để người nghe hiểu khi nào việc học, gặp gỡ hoặc di chuyển diễn ra.'
-  :base.tags.includes('academic')?'Ý nghĩa học thuật: gắn với hoạt động trong lớp, hỏi bài, nghe giảng, ghi chú hoặc trao đổi với giáo viên/bạn học.'
-  :base.tags.includes('dorm')?'Ý nghĩa sinh hoạt: mô tả nhu cầu ở ký túc xá như phòng, tầng, chìa khóa, bếp, đồ dùng hoặc quy tắc chung.'
-  :base.tags.includes('office')?'Ý nghĩa hành chính: dùng để xác định giấy tờ, thủ tục, đăng ký, visa hoặc thông tin cần xác nhận.'
-  :base.tags.includes('transport')?'Ý nghĩa định hướng: giúp hỏi đường, xác định điểm đến, phương tiện hoặc vị trí khi di chuyển.'
-  :base.tags.includes('food')||base.tags.includes('canteen')?'Ý nghĩa giao dịch: dùng khi chọn món, hỏi giá, thanh toán hoặc diễn đạt nhu cầu ăn uống.'
-  :base.tags.includes('health')?'Ý nghĩa chăm sóc sức khỏe: diễn đạt triệu chứng, nhu cầu thuốc, bác sĩ hoặc trợ giúp y tế.'
-  :base.tags.includes('technology')?'Ý nghĩa chuyên môn: liên quan máy tính, dữ liệu, lập trình, thiết bị hoặc môi trường học kỹ thuật.'
-  :base.tags.includes('research')?'Ý nghĩa nghiên cứu: dùng trong báo cáo, seminar, thí nghiệm, НИР, ВКР hoặc trao đổi học thuật.'
-  :`Ý nghĩa: giúp nhận diện ý chính trong tình huống ${tag}, sau đó biến từ/cụm thành một câu nói có mục đích.`;
- const app=base.tags.includes('greeting')?'Ứng dụng: dùng khi vào lớp, gặp giáo viên, nói với bạn ở ký túc xá, phòng giáo vụ hoặc mở đầu tin nhắn.'
-  :base.tags.includes('time')?'Ứng dụng: dùng khi hỏi lịch học, hẹn gặp, nói giờ mở cửa, thời hạn nộp bài hoặc kế hoạch trong ngày.'
-  :base.tags.includes('academic')?'Ứng dụng: dùng trong lớp dự bị, giờ seminar, khi hỏi bài, xin nhắc lại, trao đổi bài tập hoặc ghi chú bài giảng.'
-  :base.tags.includes('dorm')?'Ứng dụng: dùng ở ký túc xá, quầy bảo vệ, phòng ở, bếp chung, khu giặt đồ hoặc khi nói với bạn cùng phòng.'
-  :base.tags.includes('office')?'Ứng dụng: dùng tại phòng giáo vụ, nơi đăng ký cư trú, quầy tiếp nhận hồ sơ, khi làm visa/thẻ sinh viên.'
-  :base.tags.includes('transport')?'Ứng dụng: dùng ở metro, bến xe, taxi, ngoài đường hoặc khi tìm đường tới trường/ký túc xá.'
-  :base.tags.includes('food')||base.tags.includes('canteen')?'Ứng dụng: dùng ở столовая, quán cà phê, siêu thị, cửa hàng tiện lợi hoặc khi gọi món.'
-  :base.tags.includes('health')?'Ứng dụng: dùng ở hiệu thuốc, phòng y tế, bệnh viện, khi báo triệu chứng hoặc xin hỗ trợ.'
-  :base.tags.includes('technology')?'Ứng dụng: dùng trong phòng máy, bài tập lập trình, nhóm dự án, trao đổi dữ liệu hoặc cấu hình thiết bị.'
-  :base.tags.includes('research')?'Ứng dụng: dùng trong phòng lab, seminar, báo cáo НИР/ВКР, viết email học thuật hoặc thảo luận đề tài.'
-  :`Ứng dụng: dùng trong môi trường ${tag}, ưu tiên nghe mẫu rồi nói lại trong một câu thực tế với ${term}.`;
- const visual=base.visualLabel&&/[А-Яа-яЁё]/.test(base.visualLabel)?tag:base.visualLabel||tag;
- return {displayMeaning:meaning,displayMeaningNote:meaningNote,displayWhenUse:meaningNote,displayApplication:app,displayVisualLabel:visual};
+function makeImmersiveVocabDisplay(v,base){
+ const category=vocabVisualCategoryRu(base.tags);
+ const term=str(base.term||'слово');
+ const explicitRu=str(v?.meaning_ru||v?.definition_ru||'').trim();
+ const meaning=explicitRu||`Контекст: ${term} · ${category}.`;
+ const context=base.tags.includes('greeting')?'Ситуация: начало разговора и вежливое приветствие.'
+  :base.tags.includes('time')?'Ситуация: время, расписание, встреча или план на день.'
+  :base.tags.includes('academic')?'Ситуация: занятие, семинар, вопрос преподавателю или работа с учебным материалом.'
+  :base.tags.includes('dorm')?'Ситуация: общежитие, комната, общая кухня или разговор с соседом.'
+  :base.tags.includes('office')?'Ситуация: документы, регистрация, виза или обращение в учебный офис.'
+  :base.tags.includes('transport')?'Ситуация: метро, автобус, такси, маршрут или вопрос о дороге.'
+  :base.tags.includes('food')||base.tags.includes('canteen')?'Ситуация: столовая, кафе, магазин, выбор еды или оплата.'
+  :base.tags.includes('health')?'Ситуация: аптека, медпункт, врач или просьба о помощи.'
+  :base.tags.includes('technology')?'Ситуация: компьютер, данные, программирование или техническая лаборатория.'
+  :base.tags.includes('research')?'Ситуация: лаборатория, семинар, НИР, ВКР или обсуждение исследования.'
+  :`Ситуация: ${category}. Свяжите слово с картинкой, звуком и короткой русской фразой.`;
+ const practice=base.tags.includes('greeting')?'Практика: послушайте, повторите и начните короткий диалог.'
+  :base.tags.includes('time')?'Практика: назовите время или задайте короткий вопрос о расписании.'
+  :base.tags.includes('academic')?'Практика: произнесите слово и используйте его в одной учебной фразе.'
+  :base.tags.includes('dorm')?'Практика: представьте ситуацию в общежитии и скажите одну полезную фразу.'
+  :base.tags.includes('office')?'Практика: назовите документ или действие и задайте один короткий вопрос.'
+  :base.tags.includes('transport')?'Практика: покажите направление на схеме и произнесите фразу вслух.'
+  :base.tags.includes('food')||base.tags.includes('canteen')?'Практика: выберите предмет на картинке и произнесите фразу для заказа или покупки.'
+  :base.tags.includes('health')?'Практика: свяжите слово с симптомом, предметом или местом и произнесите фразу.'
+  :base.tags.includes('technology')?'Практика: свяжите слово с устройством или действием и скажите техническую фразу.'
+  :base.tags.includes('research')?'Практика: используйте слово в одной фразе о лаборатории или исследовании.'
+  :`Практика: послушайте «${term}», повторите и скажите короткую фразу по картинке.`;
+ const visual=/[А-Яа-яЁё]/.test(str(base.visualLabel||''))?str(base.visualLabel):category;
+ return {displayMeaning:meaning,displayMeaningNote:context,displayWhenUse:context,displayApplication:practice,displayVisualLabel:visual};
 }
 function vocabInfo(v){
  const term=A.vocabTerm?.(v)||v?.ru||v?.phrase_ru||v?.front||v?.word||'';
  const pron=A.vocabPron?.(v)||v?.pronunciation||v?.pron||v?.transcription||'';
- const meaningRu=v?.meaning_ru||v?.meaning||A.vocabMeaning?.(v)||v?.definition||'';
+ const meaningRu=v?.meaning_ru||v?.definition_ru||'';
  const meaningVi=v?.meaning_vi||v?.vi_vi||'';
  const english=v?.clue_en||v?.en||(/^[A-Za-z ,;:'"()\-\/]+$/.test(str(v?.vi||''))?v.vi:'');
  const example=A.vocabExample?.(v)||v?.example||v?.voice_text||term;
@@ -1670,17 +1670,17 @@ function vocabInfo(v){
  const application=[v?.stage_title_vi||stageTitle(stageOf(v)||state.stage), v?.illustration_label_ru, arr(v?.tags).join(' · ')].filter(Boolean).join(' · ');
  const tags=arr(v?.tags);
  const base={term,pron,meaningRu,meaningVi,english,example,whenUse,application,tags,emoji:v?.image_emoji||v?.emoji||'',image:v?.image||v?.image_url||v?.picture||'',visualLabel:v?.illustration_label_ru||v?.visual_label||v?.semantic_label||''};
- const display=isVietnamVocab(v)?makeVietnamVocabDisplay(v,base):{displayMeaning:meaningVi||english||meaningRu,displayWhenUse:whenUse,displayApplication:application,displayVisualLabel:base.visualLabel};
+ const display=makeImmersiveVocabDisplay(v,base);
  return {...base,...display,...inferVocabVisual({...base,...display,visualLabel:display.displayVisualLabel||base.visualLabel})};
 }
 function inferVocabVisual(info){
  const hay=lower([info.term,info.meaningRu,info.meaningVi,info.english,info.application,arr(info.tags).join(' ')].join(' '));
  const rules=[
-  [/привет|здрав|доброе|hello|greeting|поздор/i,['👋','🙂'],'приветствие'],[/утро|вечер|день|ноч|time|время/i,['🌅','⏰'],'thời điểm'],[/спасибо|благодар|thank/i,['🙏','✨'],'cảm ơn'],[/извин|простите|sorry/i,['🙇','💬'],'xin lỗi'],[/да|нет|можно|нельзя|confirm|agree/i,['✅','🚫'],'xác nhận'],[/вопрос|спрос|как|что|где|когда|почему|question/i,['❓','💬'],'câu hỏi'],
-  [/университет|бауман|студент|преподав|лекц|семинар|academic|study|class/i,['🎓','🏛️'],'học thuật'],[/книга|тетрад|ручка|доска|писать|читать|урок/i,['📚','✍️'],'đồ học tập'],[/общежит|комнат|ключ|этаж|кровать|душ|кухн|dorm/i,['🏢','🛏️'],'ký túc xá'],[/паспорт|виза|документ|анкета|регистрац|office/i,['📄','🛂'],'giấy tờ'],[/метро|автобус|такси|дорог|улиц|останов|transport|route/i,['🚇','🗺️'],'di chuyển'],[/магазин|купить|стоить|цена|деньги|рубл|shop|price/i,['🛒','₽'],'mua sắm'],[/еда|чай|кофе|хлеб|суп|столов|кафе|food|canteen/i,['🍽️','☕'],'ăn uống'],[/врач|аптек|болит|температур|здоров|doctor|health/i,['🏥','💊'],'sức khỏe'],[/телефон|интернет|почта|сообщ|звон|email|call/i,['📱','✉️'],'liên lạc'],[/компьютер|данн|код|программ|алгоритм|ai|machine|data/i,['💻','🤖'],'công nghệ'],[/работ|лаборатор|нир|вкр|отчет|проект|research/i,['🔬','📊'],'nghiên cứu'],[/число|один|два|три|сколько|номер|math/i,['🔢','➗'],'số lượng']
+  [/привет|здрав|доброе|hello|greeting|поздор/i,['👋','🙂'],'приветствие'],[/утро|вечер|день|ноч|time|время/i,['🌅','⏰'],'время'],[/спасибо|благодар|thank/i,['🙏','✨'],'благодарность'],[/извин|простите|sorry/i,['🙇','💬'],'извинение'],[/да|нет|можно|нельзя|confirm|agree/i,['✅','🚫'],'подтверждение'],[/вопрос|спрос|как|что|где|когда|почему|question/i,['❓','💬'],'вопрос'],
+  [/университет|бауман|студент|преподав|лекц|семинар|academic|study|class/i,['🎓','🏛️'],'учёба'],[/книга|тетрад|ручка|доска|писать|читать|урок/i,['📚','✍️'],'учебные вещи'],[/общежит|комнат|ключ|этаж|кровать|душ|кухн|dorm/i,['🏢','🛏️'],'общежитие'],[/паспорт|виза|документ|анкета|регистрац|office/i,['📄','🛂'],'документы'],[/метро|автобус|такси|дорог|улиц|останов|transport|route/i,['🚇','🗺️'],'транспорт'],[/магазин|купить|стоить|цена|деньги|рубл|shop|price/i,['🛒','₽'],'покупки'],[/еда|чай|кофе|хлеб|суп|столов|кафе|food|canteen/i,['🍽️','☕'],'еда'],[/врач|аптек|болит|температур|здоров|doctor|health/i,['🏥','💊'],'здоровье'],[/телефон|интернет|почта|сообщ|звон|email|call/i,['📱','✉️'],'связь'],[/компьютер|данн|код|программ|алгоритм|ai|machine|data/i,['💻','🤖'],'технологии'],[/работ|лаборатор|нир|вкр|отчет|проект|research/i,['🔬','📊'],'исследование'],[/число|один|два|три|сколько|номер|math/i,['🔢','➗'],'числа']
  ];
  for(const [re,icons,label] of rules){if(re.test(hay))return {emoji:info.emoji||icons[0],symbols:uniq([info.emoji,...icons].filter(Boolean)),visualLabel:info.visualLabel||label};}
- return {emoji:info.emoji||'🧠',symbols:uniq([info.emoji||'🧠','💭'].filter(Boolean)),visualLabel:info.visualLabel||'gợi nhớ trực quan'};
+ return {emoji:info.emoji||'🧠',symbols:uniq([info.emoji||'🧠','💭'].filter(Boolean)),visualLabel:info.visualLabel||'визуальный контекст'};
 }
 
 function clip(v,n=150){v=str(v); return v.length>n?v.slice(0,n-1)+'…':v}
@@ -1696,34 +1696,14 @@ function renderRelatedConcepts(concepts,limit=3){return arr(concepts).slice(0,li
 function vocabMeaningNoteText(info){
  const raw=str(info.displayMeaningNote||'').trim();
  if(raw)return raw;
- const hay=lower([info.term,info.meaningRu,info.meaningVi,info.english,info.visualLabel,arr(info.tags).join(' ')].join(' '));
- if(/привет|здрав|доброе|hello|greeting|chào/.test(hay))return 'Ý nghĩa giao tiếp: dùng để mở đầu tương tác, tạo thái độ lịch sự và báo hiệu rằng bạn sẵn sàng nói chuyện.';
- if(/спасибо|thank|cảm ơn|благодар/.test(hay))return 'Ý nghĩa giao tiếp: thể hiện sự biết ơn, giữ phép lịch sự và làm cuộc trao đổi mềm hơn.';
- if(/извин|простите|sorry|xin lỗi/.test(hay))return 'Ý nghĩa giao tiếp: nhận lỗi nhẹ, xin phép chen vào hoặc làm dịu tình huống trước khi nói tiếp.';
- if(/где|куда|дорог|метро|автобус|transport|đường/.test(hay))return 'Ý nghĩa: xác định vị trí, hướng đi hoặc phương tiện để người nghe hiểu bạn cần chỉ dẫn.';
- if(/сколько|цена|стоить|магазин|рубл|price|mua/.test(hay))return 'Ý nghĩa: hỏi hoặc xác nhận giá trị, số lượng, chi phí trong một giao dịch đơn giản.';
- if(/университет|бауман|студент|преподав|урок|class|academic/.test(hay))return 'Ý nghĩa học tập: liên quan lớp học, bài giảng, giáo viên, sinh viên hoặc thao tác học thuật.';
- if(/общежит|dorm|ký túc|комнат/.test(hay))return 'Ý nghĩa sinh hoạt: mô tả nhu cầu, đồ vật, vị trí hoặc quy tắc trong không gian ký túc xá.';
- if(/паспорт|виза|документ|регистрац/.test(hay))return 'Ý nghĩa hành chính: dùng để nói về giấy tờ, thủ tục, xác nhận danh tính hoặc đăng ký.';
- if(/еда|чай|кофе|столов|кафе|food/.test(hay))return 'Ý nghĩa giao dịch/sinh hoạt: diễn đạt nhu cầu ăn uống, gọi món, chọn đồ hoặc hỏi thông tin món.';
- return 'Ý nghĩa: giải thích vai trò của từ/cụm trong câu, tức nó giúp truyền đạt ý định gì cho người nghe.';
+ return `Ситуация: ${info.displayVisualLabel||info.visualLabel||'общение'}. Сначала смотрите на образ, затем слушайте и повторяйте русскую фразу.`;
 }
 function vocabApplicationText(info){
  const raw=str(info.displayApplication||'').trim();
- if(raw && !/^Giai đoạn/i.test(raw))return raw;
- const hay=lower([info.term,info.meaningRu,info.meaningVi,info.english,info.visualLabel,info.application,arr(info.tags).join(' ')].join(' '));
- if(/общежит|dorm|ký túc|комнат/.test(hay))return 'Ứng dụng: dùng trong ký túc xá, phòng ở, bếp chung, quầy bảo vệ hoặc khi nói với bạn cùng phòng.';
- if(/университет|бауман|студент|преподав|лекц|class|academic/.test(hay))return 'Ứng dụng: dùng trong lớp dự bị, seminar, phòng học, email học thuật hoặc khi trao đổi với giáo viên/bạn học.';
- if(/паспорт|виза|документ|регистрац|office/.test(hay))return 'Ứng dụng: dùng tại phòng giáo vụ, nơi đăng ký cư trú, quầy hồ sơ, thủ tục visa hoặc xác nhận thông tin.';
- if(/магазин|купить|цена|рубл|shop|price/.test(hay))return 'Ứng dụng: dùng ở siêu thị, cửa hàng, quầy thanh toán, khi hỏi giá hoặc cần hỗ trợ mua đồ.';
- if(/метро|автобус|такси|дорог|улиц|transport/.test(hay))return 'Ứng dụng: dùng ở metro, bến xe, taxi, ngoài đường hoặc khi tìm đường tới trường/ký túc xá.';
- if(/еда|чай|кофе|столов|кафе|food|canteen/.test(hay))return 'Ứng dụng: dùng ở столовая, quán cà phê, cửa hàng tiện lợi hoặc khi gọi món và thanh toán.';
- if(/врач|аптек|болит|температур|здоров|doctor|health/.test(hay))return 'Ứng dụng: dùng ở hiệu thuốc, phòng y tế, bệnh viện hoặc khi mô tả triệu chứng để xin hỗ trợ.';
- if(/компьютер|данн|код|программ|алгоритм|ai|machine|data/.test(hay))return 'Ứng dụng: dùng trong phòng máy, giờ lập trình, dự án AI/dữ liệu hoặc khi trao đổi bài kỹ thuật.';
- if(/работ|лаборатор|нир|вкр|отчет|проект|research/.test(hay))return 'Ứng dụng: dùng trong phòng lab, seminar, báo cáo НИР/ВКР hoặc khi thảo luận đề tài nghiên cứu.';
- return 'Ứng dụng: dùng trong hội thoại thực tế; nghe mẫu, nhắc lại đúng ngữ cảnh rồi đặt vào một câu ngắn.';
+ if(raw)return raw;
+ return `Практика: послушайте «${str(info.term||'слово')}», повторите и используйте его в короткой русской фразе.`;
 }
-function vocabDialogueExampleLines(info){
+function vocabDialogueExampleLinesfunction vocabDialogueExampleLines(info){
  const term=str(info.term||'').trim()||'это слово';
  const hay=lower([info.term,info.meaningRu,info.meaningVi,info.english,info.visualLabel,arr(info.tags).join(' ')].join(' '));
  if(/привет|здрав|доброе|hello|greeting|chào/.test(hay))return [`A: ${term}!`,`B: Здравствуйте. Как дела?`,`A: Хорошо, спасибо. А у вас?`];
@@ -2414,7 +2394,7 @@ function renderVocab(){
   const term=info.term||'—';
   const termLen=[...str(term)].length;
   const termSizeClass=termLen>24?'term-xxlong':termLen>15?'term-xlong':termLen>9?'term-long':'term-normal';
-  const meaning=info.displayMeaning||info.meaningRu||info.displayVisualLabel||'Giải thích bằng ngữ cảnh trực quan.';
+  const meaning=info.displayMeaning||info.meaningRu||info.displayVisualLabel||'Контекст по картинке и ситуации.';
   const example=info.example||'';
   const meaningNote=vocabMeaningNoteText(info);
   const application=vocabApplicationText(info);
@@ -2423,7 +2403,7 @@ function renderVocab(){
   const visualBack=vocabVisualHtml(info,true);
   const dialogueExample=vocabDialogueExampleHtml(info);
   const front=`<div class="v1310-flash-face v1312-flash-face"><div class="v1312-flash-visual">${visual}</div><div class="term ${termSizeClass}">${esc(term)}</div><div class="v1310-pron">${esc(info.pron||'Bấm để xem gợi ý')}</div></div>`;
-  const back=`<div class="v1310-flash-face v1312-flash-face flipped"><div class="v1312-flash-visual back">${visualBack}</div><span>Hiểu qua ngữ cảnh</span><div class="meaning" lang="ru">${esc(meaning)}</div>${example?`<small>${esc(example)}</small>`:''}</div>`;
+  const back=`<div class="v1310-flash-face v1312-flash-face flipped"><div class="v1312-flash-visual back">${visualBack}</div><span>Hiểu qua hình và ngữ cảnh Nga</span><div class="meaning" lang="ru">${esc(meaning)}</div>${example?`<small>${esc(example)}</small>`:''}</div>`;
   return `<div class="vocab-studio step37-vocab-safe canva3-vocab canva3-vocab-no-hero v1303-vocab-safe v1310-vocab-polish v1311-vocab-luxe v1312-vocab-chibi">
    <div class="vocab-desk step37-vocab-desk canva3-vocab-desk v1303-vocab-desk v1310-vocab-desk">
      <aside class="panel vocab-page-list v1303-vocab-list v1310-vocab-list" aria-label="Danh sách 20 thẻ từ hiện tại">
@@ -2431,10 +2411,10 @@ function renderVocab(){
        <div class="vocab-list-scroll clean-scroll v1310-vocab-scroll">${sideRows}</div>
      </aside>
      <main class="panel vocab-card-panel canva3-card-panel canva3-card-panel-actions v1303-vocab-card-panel v1310-vocab-main">
-       <header class="v1310-vocab-top v1311-vocab-top"><div><span class="chip">Thẻ ${state.vocabIndex+1}/${list.length}</span><h3>${esc(term)}</h3></div><small>${esc(info.pron||'Bấm thẻ để lật nghĩa')}</small></header>
+       <header class="v1310-vocab-top v1311-vocab-top"><div><span class="chip">Thẻ ${state.vocabIndex+1}/${list.length}</span><h3>${esc(term)}</h3></div><small>${esc(info.pron||'Bấm thẻ để xem ngữ cảnh')}</small></header>
        <button class="flash visual-flash canva3-flash v1303-flash v1310-flash ${flipped?'flipped':''}" data-act="toggle-vocab-flip"><div class="flash-inner v1303-flash-inner v1310-flash-inner">${flipped?back:front}</div></button>
        <div class="vocab-actions canva3-card-actions v1310-vocab-actions" aria-label="Điều khiển flashcard"><button class="btn" data-act="prev-vocab">← Trước</button><button class="btn green" data-act="speak-vocab">🔊 Nghe</button><button class="btn primary" data-act="toggle-vocab-flip">${flipped?'Mặt từ':'Lật gợi ý'}</button><button class="btn" data-act="next-vocab">Sau →</button></div>
-       <section class="v1310-vocab-detail v1313-vocab-detail v1314-vocab-detail" aria-label="Chi tiết thẻ từ"><article><b>Giải thích tiếng Nga</b><p lang="ru">${esc(meaning)}</p></article><article><b>Ý nghĩa</b><p>${esc(meaningNote)}</p></article><article><b>Ứng dụng</b><p>${esc(application)}</p></article></section>
+       <section class="v1310-vocab-detail v1313-vocab-detail v1314-vocab-detail" aria-label="Chi tiết thẻ từ"><article><b>Giải thích bằng tiếng Nga</b><p lang="ru">${esc(meaning)}</p></article><article><b>Ngữ cảnh Nga</b><p lang="ru">${esc(meaningNote)}</p></article><article><b>Thực hành</b><p lang="ru">${esc(application)}</p></article></section>
        ${dialogueExample}
      </main>
    </div>
