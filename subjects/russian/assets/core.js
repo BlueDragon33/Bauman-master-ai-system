@@ -1703,7 +1703,7 @@ function vocabApplicationText(info){
  if(raw)return raw;
  return `Практика: послушайте «${str(info.term||'слово')}», повторите и используйте его в короткой русской фразе.`;
 }
-function vocabDialogueExampleLinesfunction vocabDialogueExampleLines(info){
+function vocabDialogueExampleLines(info){
  const term=str(info.term||'').trim()||'это слово';
  const hay=lower([info.term,info.meaningRu,info.meaningVi,info.english,info.visualLabel,arr(info.tags).join(' ')].join(' '));
  if(/привет|здрав|доброе|hello|greeting|chào/.test(hay))return [`A: ${term}!`,`B: Здравствуйте. Как дела?`,`A: Хорошо, спасибо. А у вас?`];
