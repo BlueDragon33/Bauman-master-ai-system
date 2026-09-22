@@ -17,6 +17,8 @@ const contentContract=read('assets/content-contract.js');
 const contentContractCss=read('assets/content-contract.css');
 const core=read('assets/core.js');
 const adapter=read('assets/subject-adapter.js');
+const chatgptPackage=fs.readFileSync(path.resolve('scripts/prepare-chatgpt-site.mjs'),'utf8');
+const previewPackage=fs.readFileSync(path.resolve('scripts/prepare-cloudflare-preview.mjs'),'utf8');
 
 for(const id of ['app','nav','stageSelect','view','modal','modalBody','toast','themeBtn','aiBtn','pageTitle','pageSub','coreLabel','saveState']){
   must(index.includes(`id="${id}"`),`Missing required runtime id: ${id}`);
@@ -75,6 +77,13 @@ must(futureJs.includes("function setText(el,value){if(el&&el.textContent!==value
 must(futureJs.includes("quote&&quote.dataset.rfFutureQuote!=='1'"),'Future UI quote render must remain one-shot and observer-safe');
 must(!futureJs.includes('Bauman Hub'),'Future UI must not restore Bauman Hub branding');
 must(futureJs.includes('MutationObserver'),'Future UI must survive core rerenders');
+for(const [name,source] of [['ChatGPT Site',chatgptPackage],['Cloudflare preview',previewPackage]]){
+  for(const asset of ['subjects/russian/assets/russian-future-ui.css','subjects/russian/assets/russian-future-ui.js']){
+    must(source.includes(asset),`${name} package must require Russian Future UI asset: ${asset}`);
+  }
+}
+must(chatgptPackage.includes('Packaged Russian Future UI reference missing'),'ChatGPT Site package must validate Russian Future UI HTML references');
+must(previewPackage.includes('Russian Future UI reference missing'),'Cloudflare preview package must validate Russian Future UI HTML references');
 
 for(const token of ['RUSSIAN_CONTENT_CONTRACT_V1','normalizeVocab','latin_transliteration','orthographic_yo','missing','Hệ thống không tự đoán','textForVocab']){
   must(contentContract.includes(token),`Content contract missing truthful-language token: ${token}`);
