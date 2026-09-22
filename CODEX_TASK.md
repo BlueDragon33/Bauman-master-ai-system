@@ -1,13 +1,13 @@
 # CODEX_TASK
 
-Task: `BAUMAN_PROJECT_STATE_POST_RUSSIAN_FUTURE_UI_IDEMPOTENCE_RECONCILIATION`
+Task: `BAUMAN_PROJECT_STATE_POST_RUSSIAN_FUTURE_UI_PACKAGE_READINESS_RECONCILIATION`
 Mode: `CHAT_FIRST / CURRENT_MAIN / FAIL_CLOSED`
 
 ## Current objective
 
-Keep future work aligned with the true current-main baseline after Deep Study Journal v1, packaged-readiness Fx #88, Current-Main Control-State Gate v1.1, the promoted Russian Future Reference UI, and Russian Future UI idempotence Fx #95.
+Keep future work aligned with the true current-main baseline after Deep Study Journal v1, packaged-readiness Fx #88, Current-Main Control-State Gate v1.1, the promoted Russian Future Reference UI, Russian Future UI idempotence Fx #95, and Russian Future UI package-readiness Fx #97.
 
-Roadmap V2 is complete through L35. Russian Listen+Write, Academic Phase2 A1→A6, Device Contract v6, Content Review API v1, Deep Study Journal v1, its packaged-readiness Fx #88, Current-Main Control-State Gate v1.1, Russian Future Reference UI and Russian Future UI idempotence Fx #95 are promoted.
+Roadmap V2 is complete through L35. Russian Listen+Write, Academic Phase2 A1→A6, Device Contract v6, Content Review API v1, Deep Study Journal v1, its packaged-readiness Fx #88, Current-Main Control-State Gate v1.1, Russian Future Reference UI, Russian Future UI idempotence Fx #95 and Russian Future UI package-readiness Fx #97 are promoted.
 
 ## Mandatory sequence
 
@@ -30,6 +30,7 @@ Roadmap V2 is complete through L35. Russian Listen+Write, Academic Phase2 A1→A
 12. Preserve Current-Main Control-State Gate v1.1 and ensure future CODEX_STATE/CODEX_TASK reconciliations pass promoted-SHA ancestry validation.
 13. Preserve the Russian Future Reference UI geometry and packaging invariants: 220px desktop sidebar, wide main canvas, no fixed right rail, no horizontal overflow, and direct + packaged browser acceptance.
 14. Preserve Russian Future UI idempotence: a settled repeated `RUSSIAN_FUTURE_UI.upgrade()` must not create child/class mutations or self-trigger MutationObserver churn.
+15. Preserve Russian Future UI package readiness: ChatGPT Site and Cloudflare preview materializers must require the Future UI CSS/JS and verify packaged Russian HTML references them.
 
 ## Protected contracts
 
@@ -46,6 +47,7 @@ Roadmap V2 is complete through L35. Russian Listen+Write, Academic Phase2 A1→A
 - CODEX_STATE/CODEX_TASK divergence and stale/non-ancestor promoted SHAs must fail closed through Current-Main Control-State Gate v1.1.
 - Russian Future Reference UI must preserve existing Russian routes/data/state ownership and direct + packaged offline/runtime behavior.
 - Russian Future UI presentation upgrades must remain DOM-idempotent and observer-safe.
+- Russian Future UI CSS/JS package assets and HTML references must fail closed during materialization.
 
 ## Completion condition
 
@@ -56,4 +58,5 @@ Roadmap V2 is complete through L35. Russian Listen+Write, Academic Phase2 A1→A
 - Current-Main Control-State Gate v1 (PR #90) and v1.1 hardening (PR #93) are promoted;
 - Russian Future Reference UI (PR #92) is promoted and its pre-merge + post-merge Whole System/direct/packaged gates are recorded as SUCCESS;
 - Russian Future UI idempotence Fx (PR #95) is promoted as `06e3c56308d71ff3ce8f8b3cedf12242c2b0c1f9`, with Russian Reference UI, Cloudflare Preview, Windows checkout and Whole System direct + packaged Future UI gates recorded as SUCCESS;
+- Russian Future UI package-readiness Fx (PR #97) is promoted as `00605feb7dbdfbb9c6f1e5399d75c1af96211af4`, with fail-fast ChatGPT Site/Cloudflare package checks and Whole System packaged Future UI acceptance recorded as SUCCESS;
 - future work resumes from current `main` only when a concrete defect, missing capability or explicit feature request exists.
