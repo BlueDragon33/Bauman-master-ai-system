@@ -100,6 +100,12 @@ must(optionalLoader.includes('if(!dataset)return nativeFetch(input,init)'),'Opti
 
 must(core.includes('if(b.dataset.route)'),'Core data-route contract missing');
 must(core.includes('if(b.dataset.aiQuick)'),'Core data-ai-quick contract missing');
+must(core.includes('function makeImmersiveVocabDisplay'),'Visual vocabulary immersion helper missing');
+must(core.includes('const display=makeImmersiveVocabDisplay(v,base)'),'Vocabulary rendering must always use immersive display projection');
+must(!core.includes('function makeVietnamVocabDisplay'),'Legacy Vietnamese vocabulary display helper must not return');
+must(!core.includes('displayMeaning:meaningVi||english||meaningRu'),'Vocabulary must not prefer translated meaning in the visible learning surface');
+must(core.includes('<article><b>Ngữ cảnh Nga</b><p lang="ru">'),'Vocabulary context block must remain Russian-only');
+must(core.includes('<article><b>Thực hành</b><p lang="ru">'),'Vocabulary practice block must remain Russian-only');
 must(core.includes("if(act==='route-modal')"),'Core route-modal contract missing');
 must(core.includes("if(act==='ai-run')"),'Core AI run action missing');
 must(adapter.includes("storageKey: 'bauman_russian_survival_master_v11_clean_skeleton'"),'Unexpected Russian storage key');
