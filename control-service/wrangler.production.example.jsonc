@@ -1,0 +1,21 @@
+{
+  "$schema": "node_modules/wrangler/config-schema.json",
+  "name": "bauman-control",
+  "main": "src/cloudflare-preview.ts",
+  "compatibility_date": "2026-09-01",
+  "compatibility_flags": ["nodejs_compat"],
+  "vars": {
+    "APPLICATION_MANAGEMENT_ORIGIN": "__APPLICATION_MANAGEMENT_PRODUCTION_ORIGIN__",
+    "BAUMAN_APP_ORIGIN": "__BAUMAN_RUNTIME_PRODUCTION_ORIGIN__",
+    "BAUMAN_DEPLOYMENT_CHANNEL": "cloudflare-production",
+    "BAUMAN_BUILD_REVISION": "__BAUMAN_BUILD_REVISION__"
+  },
+  "d1_databases": [
+    {
+      "binding": "DB",
+      "database_name": "bauman-control-db",
+      "database_id": "__BAUMAN_CONTROL_PRODUCTION_D1_DATABASE_ID__",
+      "migrations_dir": "migrations"
+    }
+  ]
+}

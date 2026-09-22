@@ -1,0 +1,97 @@
+name: Bauman Cloudflare Production Publish Gate CI
+
+on:
+  pull_request:
+    branches: [main]
+    paths:
+      - ".github/workflows/cloudflare-production-ci.yml"
+      - ".github/workflows/deploy-bauman-production.yml"
+      - "control-service/wrangler.production.example.jsonc"
+      - "wrangler.runtime.production.example.jsonc"
+      - "scripts/prepare-cloudflare-production.mjs"
+      - "scripts/validate-cloudflare-production.mjs"
+      - "cloudflare/**"
+      - "index.html"
+      - "assets/**"
+      - "subjects/**"
+      - "foundation/**"
+      - "control-service/**"
+  push:
+    branches: [main]
+    paths:
+      - ".github/workflows/cloudflare-production-ci.yml"
+      - ".github/workflows/deploy-bauman-production.yml"
+      - "control-service/wrangler.production.example.jsonc"
+      - "wrangler.runtime.production.example.jsonc"
+      - "scripts/prepare-cloudflare-production.mjs"
+      - "scripts/validate-cloudflare-production.mjs"
+      - "cloudflare/**"
+      - "index.html"
+      - "assets/**"
+      - "subjects/**"
+      - "foundation/**"
+      - "control-service/**"
+
+permissions:
+  contents: read
+
+jobs:
+  production-publish-gate:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 25
+    env:
+      BAUMAN_CONTROL_PREVIEW_D1_DATABASE_ID: 11111111-1111-4111-8111-111111111111
+      BAUMAN_CONTROL_PRODUCTION_D1_DATABASE_ID: 22222222-2222-4222-8222-222222222222
+      APPLICATION_MANAGEMENT_PRODUCTION_ORIGIN: https://application-management.example.com
+      BAUMAN_CONTROL_PREVIEW_ORIGIN: https://bauman-control-preview.example.com
+      BAUMAN_RUNTIME_PREVIEW_ORIGIN: https://bauman-runtime-preview.example.com
+      BAUMAN_CONTROL_PRODUCTION_ORIGIN: https://bauman-control.example.com
+      BAUMAN_RUNTIME_PRODUCTION_ORIGIN: https://bauman.example.com
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22.13.0"
+
+      - name: Install Bauman Control dependencies
+        working-directory: control-service
+        run: npm ci --no-audit --no-fund
+
+      - name: Validate production publish boundary
+        run: node scripts/validate-cloudflare-production.mjs
+
+      - name: Preserve preview boundary
+        run: node scripts/validate-cloudflare-preview.mjs
+
+      - name: Preserve runtime and control regressions
+        shell: bash
+        run: |
+          set -euo pipefail
+          node scripts/runtime-device-gate-regression.mjs
+          (cd control-service && npm run gate)
+
+      - name: Materialize production package with isolated fake CI bindings
+        run: node scripts/prepare-cloudflare-production.mjs
+
+      - name: Dry-run Bauman Control production artifact
+        working-directory: control-service
+        run: npx wrangler deploy --dry-run --outdir dist-production --config wrangler.production.jsonc
+
+      - name: Dry-run Bauman Learning Runtime production artifact
+        run: npx --yes wrangler@4.92.0 deploy --dry-run --outdir .wrangler/runtime-production --config wrangler.runtime.production.jsonc
+
+      - name: Assert production artifact identity
+        shell: bash
+        run: |
+          set -euo pipefail
+          grep -q '"name": "bauman-control"' control-service/wrangler.production.jsonc
+          grep -q '"database_name": "bauman-control-db"' control-service/wrangler.production.jsonc
+          grep -q '"BAUMAN_DEPLOYMENT_CHANNEL": "cloudflare-production"' control-service/wrangler.production.jsonc
+          grep -q '"name": "bauman-master-ai"' wrangler.runtime.production.jsonc
+          grep -q '"BAUMAN_DEPLOYMENT_CHANNEL": "cloudflare-production"' wrangler.runtime.production.jsonc
+          test -f runtime-dist/subjects/russian/assets/russian-future-ui.css
+          test -f runtime-dist/subjects/russian/assets/russian-future-ui.js
+          test -f runtime-dist/subjects/russian/data/chunks/dialogue-bauman-az/manifest.json
+          test -f runtime-dist/subjects/russian/data/chunks/deep-speaking-bauman/manifest.json
