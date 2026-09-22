@@ -178,6 +178,8 @@ for (const resource of [
   'subjects/russian/assets/handwriting-recognition.js',
   'subjects/russian/assets/russian-reference-ui.js',
   'subjects/russian/assets/russian-reference-ui-polish.css',
+  'subjects/russian/assets/russian-future-ui.css',
+  'subjects/russian/assets/russian-future-ui.js',
   'subjects/russian/assets/russian-optional-data-loader.js',
   'subjects/shared/foundation-identity-bootstrap.js',
   'subjects/shared/foundation-identity-persistence.js',
@@ -210,6 +212,9 @@ const russianHtml = fs.readFileSync(path.join(runtimeDist, 'subjects/russian/ind
 if (!russianHtml.includes('assets/handwriting-glyph-authority.js')) throw new Error('Russian runtime is missing handwriting glyph authority script reference.');
 if (!russianHtml.includes('assets/handwriting-recognition.js')) throw new Error('Russian runtime is missing handwriting recognition script reference.');
 if (russianHtml.indexOf('assets/handwriting-glyph-authority.js') > russianHtml.indexOf('assets/handwriting-recognition.js')) throw new Error('Russian glyph authority must load before handwriting recognition.');
+for (const resource of ['assets/russian-future-ui.css', 'assets/russian-future-ui.js']) {
+  if (!russianHtml.includes(resource)) throw new Error(`Russian Future UI reference missing: ${resource}`);
+}
 for (const resource of [
   '../../foundation/domain-model/canonical-identity-runtime.js',
   '../../foundation/domain-model/identity-overlay-store.js',
