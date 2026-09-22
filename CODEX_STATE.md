@@ -1,10 +1,10 @@
 # CODEX_STATE
 
-Current task: `BAUMAN_PROJECT_STATE_POST_RUSSIAN_FUTURE_UI_RECONCILIATION`
+Current task: `BAUMAN_PROJECT_STATE_POST_RUSSIAN_FUTURE_UI_IDEMPOTENCE_RECONCILIATION`
 
-Status: `ROADMAP_V2_COMPLETE · RUSSIAN_LISTEN_WRITE_PROMOTED · ACADEMIC_PHASE2_A1_A6_PROMOTED · DEVICE_CONTRACT_V6_PROMOTED · CONTENT_REVIEW_V1_PROMOTED · DEEP_STUDY_JOURNAL_V1_PROMOTED · DSJ_PACKAGED_READINESS_FX_PROMOTED · CURRENT_MAIN_CONTROL_STATE_GATE_V1_PROMOTED · CURRENT_MAIN_CONTROL_STATE_GATE_V1_1_PROMOTED · RUSSIAN_FUTURE_REFERENCE_UI_PROMOTED · CURRENT_MAIN_CLEAN`
+Status: `ROADMAP_V2_COMPLETE · RUSSIAN_LISTEN_WRITE_PROMOTED · ACADEMIC_PHASE2_A1_A6_PROMOTED · DEVICE_CONTRACT_V6_PROMOTED · CONTENT_REVIEW_V1_PROMOTED · DEEP_STUDY_JOURNAL_V1_PROMOTED · DSJ_PACKAGED_READINESS_FX_PROMOTED · CURRENT_MAIN_CONTROL_STATE_GATE_V1_PROMOTED · CURRENT_MAIN_CONTROL_STATE_GATE_V1_1_PROMOTED · RUSSIAN_FUTURE_REFERENCE_UI_PROMOTED · RUSSIAN_FUTURE_UI_IDEMPOTENCE_FX_PROMOTED · CURRENT_MAIN_CLEAN`
 
-Date: 2026-09-21
+Date: 2026-09-22
 Branch: `main`
 Base: `main`
 
@@ -27,6 +27,7 @@ Promoted current-main capabilities:
 - Current-Main Control-State Gate v1 — PR #90 merged as `56db4ba323e2380d861277d71bf488f0012544ce`.
 - Current-Main Control-State Gate v1.1 — PR #93 merged as `804cb00b306d18247fba00453864783754de4cf0`.
 - Russian Future Reference UI — PR #92 merged as `530649914820d54e992c5d840621e1ff0631f836`.
+- Russian Future UI idempotence Fx — PR #95 merged as `06e3c56308d71ff3ce8f8b3cedf12242c2b0c1f9`.
 
 ## Device Contract v6
 
@@ -162,6 +163,30 @@ Validated again after merge on current `main` merge commit `530649914820d54e992c
 
 This is a UI/runtime presentation promotion only. It does not create L36 and does not authorize production deployment.
 
+## Russian Future UI idempotence Fx
+
+PR #95 closes a concrete presentation-runtime defect found during current-main audit after Russian Future Reference UI promotion.
+
+Root cause and fix:
+
+- `russian-future-ui.js` observes subtree child/class mutations so it can re-apply the presentation layer after core rerenders;
+- `upgradeBrand()` previously rewrote visible text and quote HTML on every upgrade even when values were unchanged;
+- those writes could create new `childList` mutations and schedule another `requestAnimationFrame` upgrade, causing avoidable self-churn/CPU work;
+- brand/nav/search writes are now idempotent, and the sidebar quote is rendered once per Future UI activation;
+- browser acceptance now proves a repeated settled `RUSSIAN_FUTURE_UI.upgrade()` produces zero child/class mutations;
+- the static Russian UI validator now checks the semantic brand/idempotence contract instead of requiring one exact source-code spelling.
+
+Validated on PR #95 final head `896d04030dc25459ef40988f5fd0dad91c0027c6`:
+
+- Russian Reference UI Gate run `35670598805` — SUCCESS;
+- Windows checkout safety run `35670598873` — SUCCESS;
+- Bauman Cloudflare Preview CI run `35670598842` — SUCCESS;
+- Whole System Integration Gate run `35670598844` — SUCCESS, including direct Russian Future UI acceptance and packaged Russian Future UI acceptance.
+
+Promoted as current-main commit `06e3c56308d71ff3ce8f8b3cedf12242c2b0c1f9`.
+
+This is a scoped Fx hardening step only. It does not create L36, change route/data/state authority, or authorize production deployment.
+
 ## Intentional capability layering
 
 The base control worker intentionally keeps `learningAccessGate: false` until the deployment/preview wrapper verifies D1 + app-origin readiness. Do not flatten this fail-closed layering.
@@ -185,7 +210,7 @@ This does **not** authorize production deployment. Runtime capabilities that req
 
 1. Start all new work from current `main`.
 2. Treat `docs/roadmap_v2/CURRENT_EXECUTION_STATE.md` as authoritative for Roadmap history.
-3. Treat PRs #72, #76, #79, #82, #88, #90, #92, #93 and Deep Study Journal v1 commit `a2e642867ba99ea34c1b49eb378f78f927e563bb` as promoted current-main behavior.
+3. Treat PRs #72, #76, #79, #82, #88, #90, #92, #93, #95 and Deep Study Journal v1 commit `a2e642867ba99ea34c1b49eb378f78f927e563bb` as promoted current-main behavior.
 4. Do not reconstruct completed Issues #28 or #81 from stale branches.
 5. Preserve Content Review metadata-only ownership and role boundaries.
 6. Preserve Deep Study Journal as non-authoritative learner reflection; it must not become mastery/diagnostic/scheduler/progress evidence implicitly.
