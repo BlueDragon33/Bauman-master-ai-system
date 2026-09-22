@@ -85,6 +85,24 @@ try{
     assert.equal(visible,true,'Future intro missing for '+view);
     const overflow=await page.evaluate(()=>document.documentElement.scrollWidth-window.innerWidth);
     assert.ok(overflow<=2,'Horizontal overflow in '+view+': '+overflow);
+    if(view==='vocab'){
+      await page.waitForSelector('.vocab-studio .v1310-vocab-detail',{timeout:10000});
+      const immersion=await page.evaluate(()=>{
+        const paragraphs=[...document.querySelectorAll('.v1310-vocab-detail article p')].map(el=>el.textContent.trim());
+        const vietnamese=/[ăâđêôơưáàảãạắằẳẵặấầẩẫậéèẻẽẹếềểễệíìỉĩịóòỏõọốồổỗộớờởỡợúùủũụứừửữựýỳỷỹỵ]/i;
+        const visual=document.querySelector('.v1310-flash .visual-symbols');
+        return {
+          paragraphs,
+          hasVietnamese:paragraphs.some(text=>vietnamese.test(text)),
+          allRussianContext:paragraphs.every(text=>/[А-Яа-яЁё]/.test(text)),
+          visualChildren:visual?.children?.length||0
+        };
+      });
+      assert.equal(immersion.paragraphs.length,3,'Vocab immersion detail must keep three contextual learning blocks');
+      assert.equal(immersion.hasVietnamese,false,'Vocab learning content must not display Vietnamese translation/explanation');
+      assert.equal(immersion.allRussianContext,true,'Vocab contextual learning blocks must stay in Russian');
+      assert.ok(immersion.visualChildren>=1,'Vocab card must keep an image or visual-symbol cue');
+    }
   }
 
   await page.click('#nav [data-view="overview"]');
