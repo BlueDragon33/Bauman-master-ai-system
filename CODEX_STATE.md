@@ -1,8 +1,8 @@
 # CODEX_STATE
 
-Current task: `BAUMAN_PROJECT_STATE_POST_RUSSIAN_FUTURE_UI_PACKAGE_READINESS_RECONCILIATION`
+Current task: `BAUMAN_PROJECT_STATE_POST_RUSSIAN_VOCAB_VISUAL_IMMERSION_RECONCILIATION`
 
-Status: `ROADMAP_V2_COMPLETE · RUSSIAN_LISTEN_WRITE_PROMOTED · ACADEMIC_PHASE2_A1_A6_PROMOTED · DEVICE_CONTRACT_V6_PROMOTED · CONTENT_REVIEW_V1_PROMOTED · DEEP_STUDY_JOURNAL_V1_PROMOTED · DSJ_PACKAGED_READINESS_FX_PROMOTED · CURRENT_MAIN_CONTROL_STATE_GATE_V1_PROMOTED · CURRENT_MAIN_CONTROL_STATE_GATE_V1_1_PROMOTED · RUSSIAN_FUTURE_REFERENCE_UI_PROMOTED · RUSSIAN_FUTURE_UI_IDEMPOTENCE_FX_PROMOTED · RUSSIAN_FUTURE_UI_PACKAGE_READINESS_FX_PROMOTED · CURRENT_MAIN_CLEAN`
+Status: `ROADMAP_V2_COMPLETE · RUSSIAN_LISTEN_WRITE_PROMOTED · ACADEMIC_PHASE2_A1_A6_PROMOTED · DEVICE_CONTRACT_V6_PROMOTED · CONTENT_REVIEW_V1_PROMOTED · DEEP_STUDY_JOURNAL_V1_PROMOTED · DSJ_PACKAGED_READINESS_FX_PROMOTED · CURRENT_MAIN_CONTROL_STATE_GATE_V1_PROMOTED · CURRENT_MAIN_CONTROL_STATE_GATE_V1_1_PROMOTED · RUSSIAN_FUTURE_REFERENCE_UI_PROMOTED · RUSSIAN_FUTURE_UI_IDEMPOTENCE_FX_PROMOTED · RUSSIAN_FUTURE_UI_PACKAGE_READINESS_FX_PROMOTED · RUSSIAN_VOCAB_VISUAL_IMMERSION_V1_PROMOTED · CURRENT_MAIN_CLEAN`
 
 Date: 2026-09-22
 Branch: `main`
@@ -29,6 +29,7 @@ Promoted current-main capabilities:
 - Russian Future Reference UI — PR #92 merged as `530649914820d54e992c5d840621e1ff0631f836`.
 - Russian Future UI idempotence Fx — PR #95 merged as `06e3c56308d71ff3ce8f8b3cedf12242c2b0c1f9`.
 - Russian Future UI package-readiness Fx — PR #97 merged as `00605feb7dbdfbb9c6f1e5399d75c1af96211af4`.
+- Russian Vocabulary Visual Immersion v1 — PR #99 merged as `e8108f25d6e3dd686116c6f13589ddc913c95e68`.
 
 ## Device Contract v6
 
@@ -210,6 +211,38 @@ Promoted as current-main commit `00605feb7dbdfbb9c6f1e5399d75c1af96211af4`.
 
 This is package/readiness hardening only. It does not create L36, change learning authority, or authorize production deployment.
 
+## Russian Vocabulary Visual Immersion v1
+
+PR #99 closes a concrete learning-surface gap found during current-main audit: the Russian vocabulary runtime still exposed Vietnamese explanatory meaning/application text and could fall back to Vietnamese/English clues, despite the accepted visual-first vocabulary method.
+
+Promoted behavior:
+
+- source vocabulary JSON/data remains preserved; no destructive migration or ownership change;
+- visible vocabulary learning uses existing image/emoji/symbol cues plus Russian contextual explanation and practice;
+- the visible learning projection no longer prefers Vietnamese or English meaning fields;
+- Russian-context and practice blocks remain marked as Russian content;
+- hidden visual-card fallback no longer leaks `meaningVi`;
+- raw metadata tags are not rendered as translation clues;
+- existing Russian routes, learner state, SRS, handwriting, offline and package contracts remain unchanged.
+
+Regression hardening:
+
+- Russian Reference UI/static validation fails if the legacy Vietnamese display helper or translated-meaning preference returns;
+- listening/visual-first validation checks the semantic immersion contract instead of one legacy implementation spelling;
+- Russian Future UI browser acceptance verifies that visible vocabulary learning paragraphs contain Russian context, do not expose Vietnamese translation/explanation, and retain a visual cue;
+- the same browser acceptance runs against both direct runtime and the materialized ChatGPT Site package.
+
+Validated on PR #99 final head `fb0d29e8af4820da1fc5e50268286303db286715`:
+
+- Russian Reference UI Gate run `35673600925` — SUCCESS;
+- Windows checkout safety run `35673600932` — SUCCESS;
+- Bauman Cloudflare Preview CI run `35673600975` — SUCCESS;
+- Whole System Integration Gate run `35673600924` — SUCCESS, including direct and packaged Russian Future UI acceptance.
+
+Promoted as current-main commit `e8108f25d6e3dd686116c6f13589ddc913c95e68`.
+
+This is a separate current-main learning-surface capability track. It does not create L36, change learning/mastery authority, or authorize production deployment.
+
 ## Intentional capability layering
 
 The base control worker intentionally keeps `learningAccessGate: false` until the deployment/preview wrapper verifies D1 + app-origin readiness. Do not flatten this fail-closed layering.
@@ -233,7 +266,7 @@ This does **not** authorize production deployment. Runtime capabilities that req
 
 1. Start all new work from current `main`.
 2. Treat `docs/roadmap_v2/CURRENT_EXECUTION_STATE.md` as authoritative for Roadmap history.
-3. Treat PRs #72, #76, #79, #82, #88, #90, #92, #93, #95, #97 and Deep Study Journal v1 commit `a2e642867ba99ea34c1b49eb378f78f927e563bb` as promoted current-main behavior.
+3. Treat PRs #72, #76, #79, #82, #88, #90, #92, #93, #95, #97, #99 and Deep Study Journal v1 commit `a2e642867ba99ea34c1b49eb378f78f927e563bb` as promoted current-main behavior.
 4. Do not reconstruct completed Issues #28 or #81 from stale branches.
 5. Preserve Content Review metadata-only ownership and role boundaries.
 6. Preserve Deep Study Journal as non-authoritative learner reflection; it must not become mastery/diagnostic/scheduler/progress evidence implicitly.
