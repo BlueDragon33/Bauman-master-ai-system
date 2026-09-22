@@ -1,0 +1,174 @@
+name: Bauman Cloudflare Production Deploy
+
+on:
+  workflow_dispatch:
+    inputs:
+      confirm:
+        description: "Gõ DEPLOY_PRODUCTION để publish Bauman Control + Learning Runtime lên production"
+        required: true
+        type: string
+
+permissions:
+  contents: read
+
+concurrency:
+  group: bauman-cloudflare-production
+  cancel-in-progress: false
+
+jobs:
+  deploy-production:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 40
+    environment: bauman-production
+    env:
+      CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+      CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+      BAUMAN_CONTROL_PREVIEW_D1_DATABASE_ID: ${{ secrets.BAUMAN_CONTROL_PREVIEW_D1_DATABASE_ID }}
+      BAUMAN_CONTROL_PRODUCTION_D1_DATABASE_ID: ${{ secrets.BAUMAN_CONTROL_PRODUCTION_D1_DATABASE_ID }}
+      BAUMAN_CONTROL_PRODUCTION_SERVICE_SECRET: ${{ secrets.BAUMAN_CONTROL_PRODUCTION_SERVICE_SECRET }}
+      APPLICATION_MANAGEMENT_PRODUCTION_ORIGIN: ${{ vars.APPLICATION_MANAGEMENT_PRODUCTION_ORIGIN }}
+      BAUMAN_CONTROL_PREVIEW_ORIGIN: ${{ vars.BAUMAN_CONTROL_PREVIEW_ORIGIN }}
+      BAUMAN_RUNTIME_PREVIEW_ORIGIN: ${{ vars.BAUMAN_RUNTIME_PREVIEW_ORIGIN }}
+      BAUMAN_CONTROL_PRODUCTION_ORIGIN: ${{ vars.BAUMAN_CONTROL_PRODUCTION_ORIGIN }}
+      BAUMAN_RUNTIME_PRODUCTION_ORIGIN: ${{ vars.BAUMAN_RUNTIME_PRODUCTION_ORIGIN }}
+
+    steps:
+      - name: Require explicit production confirmation
+        shell: bash
+        run: |
+          set -euo pipefail
+          if [[ "${{ inputs.confirm }}" != "DEPLOY_PRODUCTION" ]]; then
+            echo '::error::Production deployment cancelled. Enter DEPLOY_PRODUCTION exactly.'
+            exit 1
+          fi
+
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: "22.13.0"
+
+      - name: Require production credentials and isolated bindings
+        shell: bash
+        run: |
+          set -euo pipefail
+          for key in CLOUDFLARE_API_TOKEN CLOUDFLARE_ACCOUNT_ID BAUMAN_CONTROL_PREVIEW_D1_DATABASE_ID BAUMAN_CONTROL_PRODUCTION_D1_DATABASE_ID BAUMAN_CONTROL_PRODUCTION_SERVICE_SECRET APPLICATION_MANAGEMENT_PRODUCTION_ORIGIN BAUMAN_CONTROL_PREVIEW_ORIGIN BAUMAN_RUNTIME_PREVIEW_ORIGIN BAUMAN_CONTROL_PRODUCTION_ORIGIN BAUMAN_RUNTIME_PRODUCTION_ORIGIN; do
+            if [[ -z "${!key:-}" ]]; then
+              echo "::error::$key is required in the bauman-production GitHub environment."
+              exit 1
+            fi
+          done
+          if [[ ${#BAUMAN_CONTROL_PRODUCTION_SERVICE_SECRET} -lt 32 ]]; then
+            echo '::error::BAUMAN_CONTROL_PRODUCTION_SERVICE_SECRET must contain at least 32 characters.'
+            exit 1
+          fi
+
+      - name: Install Bauman Control dependencies
+        working-directory: control-service
+        run: npm ci --no-audit --no-fund
+
+      - name: Validate production publish boundary
+        run: node scripts/validate-cloudflare-production.mjs
+
+      - name: Preserve existing runtime and control regressions
+        shell: bash
+        run: |
+          set -euo pipefail
+          node scripts/runtime-device-gate-regression.mjs
+          (cd control-service && npm run gate)
+
+      - name: Verify exact preview revision before production
+        shell: bash
+        run: |
+          set -euo pipefail
+          curl --fail --silent --show-error --max-time 20 "$BAUMAN_CONTROL_PREVIEW_ORIGIN/__deployment" > /tmp/bauman-preview-control.json
+          curl --fail --silent --show-error --max-time 20 "$BAUMAN_RUNTIME_PREVIEW_ORIGIN/__deployment" > /tmp/bauman-preview-runtime.json
+          EXPECTED="$GITHUB_SHA" node --input-type=module - <<'NODE'
+          import fs from 'node:fs';
+          const expected = process.env.EXPECTED;
+          const control = JSON.parse(fs.readFileSync('/tmp/bauman-preview-control.json', 'utf8'));
+          const runtime = JSON.parse(fs.readFileSync('/tmp/bauman-preview-runtime.json', 'utf8'));
+          for (const [name, value] of [['control', control], ['runtime', runtime]]) {
+            if (value.channel !== 'cloudflare-preview') throw new Error(`${name}: preview channel mismatch`);
+            if (value.revision !== expected) throw new Error(`${name}: preview revision ${value.revision} !== expected ${expected}`);
+          }
+          if (control.application !== 'bauman-master-ai' || control.runtime !== 'control-service' || !control.databaseReady) {
+            throw new Error('Bauman Control preview is not deployment-ready.');
+          }
+          if (runtime.application !== 'bauman-master-ai' || runtime.runtime !== 'learning-runtime' || !runtime.controlOriginConfigured) {
+            throw new Error('Bauman Learning Runtime preview is not deployment-ready.');
+          }
+          console.log('Exact-revision preview promotion gate PASS.');
+          NODE
+
+      - name: Materialize isolated production configs and runtime assets
+        run: node scripts/prepare-cloudflare-production.mjs
+
+      - name: Dry-run all production artifacts before any remote mutation
+        shell: bash
+        run: |
+          set -euo pipefail
+          (cd control-service && npx wrangler deploy --dry-run --outdir dist-production --config wrangler.production.jsonc)
+          npx --yes wrangler@4.92.0 deploy --dry-run --outdir .wrangler/runtime-production --config wrangler.runtime.production.jsonc
+
+      - name: Apply migrations to Bauman production D1
+        working-directory: control-service
+        run: npx wrangler d1 migrations apply bauman-control-db --remote --config wrangler.production.jsonc
+
+      - name: Deploy Bauman Control production Worker
+        working-directory: control-service
+        run: npx wrangler deploy --config wrangler.production.jsonc
+
+      - name: Install or rotate Bauman production control secret
+        working-directory: control-service
+        shell: bash
+        run: printf '%s' "$BAUMAN_CONTROL_PRODUCTION_SERVICE_SECRET" | npx wrangler secret put BAUMAN_CONTROL_SERVICE_SECRET --config wrangler.production.jsonc
+
+      - name: Deploy Bauman Learning Runtime production Worker
+        run: npx --yes wrangler@4.92.0 deploy --config wrangler.runtime.production.jsonc
+
+      - name: Smoke test production stack
+        shell: bash
+        run: |
+          set -euo pipefail
+          curl --fail --silent --show-error --max-time 20 "$BAUMAN_CONTROL_PRODUCTION_ORIGIN/__deployment" > /tmp/bauman-prod-control.json
+          curl --fail --silent --show-error --max-time 20 "$BAUMAN_RUNTIME_PRODUCTION_ORIGIN/__deployment" > /tmp/bauman-prod-runtime.json
+          EXPECTED="$GITHUB_SHA" node --input-type=module - <<'NODE'
+          import fs from 'node:fs';
+          const expected = process.env.EXPECTED;
+          const control = JSON.parse(fs.readFileSync('/tmp/bauman-prod-control.json', 'utf8'));
+          const runtime = JSON.parse(fs.readFileSync('/tmp/bauman-prod-runtime.json', 'utf8'));
+          if (control.application !== 'bauman-master-ai' || control.runtime !== 'control-service') throw new Error('Production Control identity mismatch.');
+          if (control.channel !== 'cloudflare-production' || control.revision !== expected || !control.databaseReady) throw new Error('Production Control read-back mismatch.');
+          if (runtime.application !== 'bauman-master-ai' || runtime.runtime !== 'learning-runtime') throw new Error('Production Runtime identity mismatch.');
+          if (runtime.channel !== 'cloudflare-production' || runtime.revision !== expected || !runtime.controlOriginConfigured) throw new Error('Production Runtime read-back mismatch.');
+          NODE
+
+          curl --fail --silent --show-error --max-time 20             -H "Authorization: Bearer $BAUMAN_CONTROL_PRODUCTION_SERVICE_SECRET"             -H "x-control-actor: github-production-smoke"             -H "x-control-role: owner"             "$BAUMAN_CONTROL_PRODUCTION_ORIGIN/api/control/status" > /tmp/bauman-prod-status.json
+          node --input-type=module - <<'NODE'
+          import fs from 'node:fs';
+          const value = JSON.parse(fs.readFileSync('/tmp/bauman-prod-status.json', 'utf8'));
+          if (value.application !== 'bauman-master-ai') throw new Error('Production control status application mismatch.');
+          if (value.readiness?.deviceRegistry !== 'available') throw new Error('Production device registry is not ready.');
+          if (!value.capabilities?.learningAccessGate) throw new Error('Production learning access gate is not live.');
+          NODE
+
+          curl --fail --silent --show-error --max-time 20 "$BAUMAN_RUNTIME_PRODUCTION_ORIGIN/" > /tmp/bauman-prod-home.html
+          grep -Fq "name=\"bauman-control-origin\" content=\"$BAUMAN_CONTROL_PRODUCTION_ORIGIN\"" /tmp/bauman-prod-home.html
+          grep -Fq 'assets/js/platform/device-access-gate.js' /tmp/bauman-prod-home.html
+          curl --fail --silent --show-error --max-time 20 "$BAUMAN_RUNTIME_PRODUCTION_ORIGIN/subjects/russian/" > /tmp/bauman-prod-russian.html
+          grep -Fq 'assets/russian-future-ui.js' /tmp/bauman-prod-russian.html
+          grep -Fq 'assets/russian-future-ui.css' /tmp/bauman-prod-russian.html
+          grep -Fq 'assets/russian-optional-data-loader.js' /tmp/bauman-prod-russian.html
+
+      - name: Production deployment summary
+        shell: bash
+        run: |
+          echo 'Bauman production deployment completed.'
+          echo 'Control Worker: bauman-control'
+          echo 'D1: bauman-control-db'
+          echo 'Learning Worker: bauman-master-ai'
+          echo "Revision: $GITHUB_SHA"
+          echo 'Promotion source: exact same revision verified live in Cloudflare preview before production.'
