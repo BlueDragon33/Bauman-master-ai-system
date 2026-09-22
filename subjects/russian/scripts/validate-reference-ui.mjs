@@ -104,6 +104,8 @@ must(core.includes('function makeImmersiveVocabDisplay'),'Visual vocabulary imme
 must(core.includes('const display=makeImmersiveVocabDisplay(v,base)'),'Vocabulary rendering must always use immersive display projection');
 must(!core.includes('function makeVietnamVocabDisplay'),'Legacy Vietnamese vocabulary display helper must not return');
 must(!core.includes('displayMeaning:meaningVi||english||meaningRu'),'Vocabulary must not prefer translated meaning in the visible learning surface');
+must(!core.includes('info.meaningRu||info.meaningVi'),'Vocabulary visual fallback must not leak Vietnamese meaning');
+must(!core.includes('class="visual-tags"'),'Vocabulary learning card must not expose raw metadata tags as translation clues');
 must(core.includes('<article><b>Ngữ cảnh Nga</b><p lang="ru">'),'Vocabulary context block must remain Russian-only');
 must(core.includes('<article><b>Thực hành</b><p lang="ru">'),'Vocabulary practice block must remain Russian-only');
 must(core.includes("if(act==='route-modal')"),'Core route-modal contract missing');
