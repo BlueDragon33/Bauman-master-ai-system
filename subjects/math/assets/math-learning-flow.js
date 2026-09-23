@@ -133,7 +133,8 @@
             role,
             title:String(block?.title||slide?.title||'Tự kiểm'),
             prompt:parsed.prompt,
-            reference:parsed.reference
+            reference:parsed.reference,
+            reviewStepId:role==='practice'?'practice':role==='takeaway'||role==='mastery_close'?'summary':'selfcheck'
           });
         });
       });
@@ -157,7 +158,9 @@
           role:'assessment',
           title:String(item?.cluster||item?.level||'Assessment'),
           prompt,
-          reference:String(item?.answer||item?.expectedAnswer||'').trim()
+          reference:String(item?.answer||item?.expectedAnswer||'').trim(),
+          reviewStepId:'selfcheck',
+          learningOutcomeRefs:Array.isArray(item?.learningOutcomeRefs)?item.learningOutcomeRefs:[]
         });
       });
     }
@@ -172,7 +175,7 @@
       if(value==='review')review++;
       if(value==='understood')understood++;
     });
-    return{items,total:items.length,answered,review,understood,complete:items.length>0&&answered===items.length};
+    return{items:items.map(item=>({...item,state:answers[item.id]||''})),total:items.length,answered,review,understood,complete:items.length>0&&answered===items.length};
   }
   function completionState(id,rec=recordById(id)){
     const steps=stepsForRecord(rec),st=lessonState(id,rec);
