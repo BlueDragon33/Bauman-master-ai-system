@@ -18,7 +18,10 @@
 .ru-flow-head{min-width:0;display:grid;gap:1px;align-content:center}
 .ru-flow-head>span{font-size:8px;font-weight:900;letter-spacing:.12em;color:#3267a6;white-space:nowrap}
 .ru-flow-head>b{overflow:hidden;color:var(--text,#1d2735);font-size:12px;line-height:1.2;text-overflow:ellipsis;white-space:nowrap}
-.ru-flow-head>small{color:var(--muted,#68758a);font-size:9px;line-height:1.2;white-space:nowrap}
+.ru-flow-meta{min-width:0;display:flex;align-items:center;gap:5px}
+.ru-flow-meta>small{overflow:hidden;color:var(--muted,#68758a);font-size:9px;line-height:1.2;text-overflow:ellipsis;white-space:nowrap}
+.ru-flow-review{flex:0 0 auto;height:20px;padding:0 6px;border:1px solid rgba(166,90,18,.22);border-radius:7px;background:#fff3e7;color:#92500f;font-size:8px;font-weight:800;cursor:pointer}
+.ru-flow-review:hover{background:#ffe8d0}.ru-flow-review:focus-visible{outline:2px solid #3267a6;outline-offset:1px}
 .ru-flow-steps{min-width:0;display:flex;align-items:center;gap:5px;margin:0;padding:2px 1px;overflow-x:auto;overflow-y:hidden;scrollbar-width:thin}
 .ru-flow-step{
   position:relative;
@@ -48,7 +51,7 @@
 .ru-flow-step:focus-visible{outline:2px solid #3267a6;outline-offset:2px}
 @media (max-width:760px){
   .ru-lesson-flow{--ru-flow-compact-height:76px;grid-template-columns:118px minmax(0,1fr);gap:7px;padding:7px}
-  .ru-flow-head>b{font-size:11px}.ru-flow-head>small{font-size:8px}
+  .ru-flow-head>b{font-size:11px}.ru-flow-meta>small{font-size:8px}
   .ru-flow-step{flex-basis:92px;height:48px;min-height:48px;padding:5px 6px}
 }
 @media (max-width:430px){
