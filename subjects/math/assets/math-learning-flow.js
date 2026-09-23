@@ -90,7 +90,61 @@
     const all=allState(),raw=all[id]||{};
     const steps=stepsForRecord(rec);
     const visited=normalizeVisited(raw.visited,steps);
-    return {...raw,active:normalizeActive(raw.active,steps),visited,lastAt:Number(raw.lastAt||0)};
+    const check=raw.check&&typeof raw.check==='object'?raw.check:{};
+    return {...raw,active:normalizeActive(raw.active,steps),visited,check,completedAt:Number(raw.completedAt||0),lastAt:Number(raw.lastAt||0)};
+  }
+  function splitCheckBody(body){
+    const text=String(body||'').trim();
+    const match=text.match(/^([\s\S]*?)(?:\s+(?:Trả lời|Đáp án)\s*:\s*)([\s\S]+)$/i);
+    return match?{prompt:match[1].trim(),reference:match[2].trim()}:{prompt:text,reference:''};
+  }
+  function checkItemsForRecord(rec){
+    const preferred=['professor_qa','practice','takeaway','mastery_close'];
+    const slides=Array.isArray(rec?.slides)?rec.slides:[];
+    const items=[];
+    preferred.forEach(role=>{
+      slides.forEach((slide,si)=>{
+        if(String(slide?.role||'').toLowerCase()!==role)return;
+        (slide?.blocks||[]).forEach((block,bi)=>{
+          if(String(block?.type||'').toLowerCase()!=='qa')return;
+          if(String(block?.title||'').trim().toLowerCase()==='trace')return;
+          const parsed=splitCheckBody(block?.body||block?.content||block?.text||'');
+          if(!parsed.prompt||/^LO\d+(?:\s*;|$)/i.test(parsed.prompt))return;
+          items.push({
+            id:`${slide?.id||role+'-'+si}::${bi}`,
+            role,
+            title:String(block?.title||slide?.title||'Tự kiểm'),
+            prompt:parsed.prompt,
+            reference:parsed.reference
+          });
+        });
+      });
+    });
+    return items.slice(0,6);
+  }
+  function checkSummary(id,rec=recordById(id)){
+    const items=checkItemsForRecord(rec),st=lessonState(id,rec),answers=st.check||{};
+    let answered=0,review=0,understood=0;
+    items.forEach(item=>{
+      const value=answers[item.id];
+      if(value==='review'||value==='understood')answered++;
+      if(value==='review')review++;
+      if(value==='understood')understood++;
+    });
+    return{items,total:items.length,answered,review,understood,complete:items.length>0&&answered===items.length};
+  }
+  function completionState(id,rec=recordById(id)){
+    const steps=stepsForRecord(rec),st=lessonState(id,rec);
+    const visitedCount=steps.filter(x=>st.visited?.[x.id]).length;
+    const check=checkSummary(id,rec);
+    return{
+      stepsVisited:visitedCount,
+      totalSteps:steps.length,
+      allStepsVisited:steps.length>0&&visitedCount===steps.length,
+      check,
+      eligible:steps.length>0&&visitedCount===steps.length&&check.complete,
+      completedAt:Number(st.completedAt||0)
+    };
   }
   function writeLessonState(id,patch){
     if(!id)return false;
@@ -106,6 +160,8 @@
     const visitedCount=steps.filter(x=>st.visited?.[x.id]).length;
     const activeId=normalizeActive(st.active,steps);
     const activeIndex=Math.max(0,steps.findIndex(x=>x.id===activeId));
+    const check=checkSummary(id,rec);
+    const completed=Number(st.completedAt||0)>0;
     return {
       lessonId:id||null,
       visitedCount,
@@ -114,7 +170,11 @@
       activeStep:steps[activeIndex]?.id||steps[0]?.id||'understand',
       activeStepLabel:steps[activeIndex]?.label||steps[0]?.label||'Hiểu',
       activeStepIndex:activeIndex+1,
-      status:visitedCount>0?'started':'not_started',
+      checkTotal:check.total,
+      checkAnswered:check.answered,
+      reviewNeeded:check.review,
+      completedAt:Number(st.completedAt||0),
+      status:completed?'completed':visitedCount>0?'started':'not_started',
       lastAt:Number(st.lastAt||0)
     };
   }
