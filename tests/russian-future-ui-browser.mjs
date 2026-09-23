@@ -80,6 +80,24 @@ try{
     assert.ok(dashboardText.includes(label),'Overview summary missing '+label);
   }
 
+  await page.locator('#aiBtn').focus();
+  await page.locator('#aiBtn').click();
+  await page.waitForSelector('#modal:not(.hidden)',{state:'visible',timeout:10000});
+  const modalState=await page.evaluate(()=>{
+    const modal=document.getElementById('modal');
+    return {role:modal?.getAttribute('role'),ariaModal:modal?.getAttribute('aria-modal'),ariaHidden:modal?.getAttribute('aria-hidden'),focusInside:Boolean(modal?.contains(document.activeElement))};
+  });
+  assert.equal(modalState.role,'dialog','Modal must expose dialog semantics');
+  assert.equal(modalState.ariaModal,'true','Modal must be modal to assistive technology');
+  assert.equal(modalState.ariaHidden,'false','Open modal must be exposed to assistive technology');
+  assert.equal(modalState.focusInside,true,'Opening a modal must move keyboard focus inside it');
+  await page.keyboard.press('Shift+Tab');
+  assert.equal(await page.evaluate(()=>document.getElementById('modal')?.contains(document.activeElement)),true,'Shift+Tab must stay trapped inside modal');
+  await page.keyboard.press('Escape');
+  await page.waitForSelector('#modal.hidden',{state:'attached',timeout:5000});
+  assert.equal(await page.locator('#modal').getAttribute('aria-hidden'),'true','Closed modal must be hidden from assistive technology');
+  await page.waitForFunction(()=>document.activeElement?.id==='aiBtn',null,{timeout:5000});
+
   const tabs=['media','dialogue','vocab','grammar','writing'];
   for(const view of tabs){
     await page.click('#nav [data-view="'+view+'"]');
@@ -88,6 +106,16 @@ try{
     assert.equal(visible,true,'Future intro missing for '+view);
     const overflow=await page.evaluate(()=>document.documentElement.scrollWidth-window.innerWidth);
     assert.ok(overflow<=2,'Horizontal overflow in '+view+': '+overflow);
+    if(view==='media'){
+      await page.waitForSelector('.step54-listening-plan',{state:'visible',timeout:10000});
+      const mediaFlow=await page.evaluate(()=>({
+        tasks:[...document.querySelectorAll('.step54-listening-plan article')].map(x=>x.textContent||''),
+        speakRoute:document.querySelector('.v1256-media-actions [data-route]')?.dataset.route||''
+      }));
+      assert.equal(mediaFlow.tasks.length,4,'Video learning flow must keep four bounded steps');
+      for(const label of ['Trước khi xem','Lượt nghe đầu','Lượt nghe lại','Sau khi xem'])assert.equal(mediaFlow.tasks.some(x=>x.includes(label)),true,'Video flow missing '+label);
+      assert.match(mediaFlow.speakRoute,/"view":"dialogue"/,'Video must link into Nghe & Nói instead of duplicating speaking content');
+    }
     if(view==='dialogue'){
       await page.waitForSelector('.transcript-listen-first',{state:'visible',timeout:10000});
       assert.equal(await page.locator('[data-act="toggle-vi"]').isDisabled(),true,'Translation control must stay disabled before transcript reveal');
