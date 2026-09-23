@@ -350,9 +350,9 @@
   function ensure(){
     const main=$('.main'),view=$('#view');if(!main||!view)return;
     let host=$('#mathLearningFlow');
-    if(!host){host=document.createElement('section');host.id='mathLearningFlow';main.insertBefore(host,view);}
+    if(!host){host=document.createElement('section');host.id='mathLearningFlow';host.setAttribute('role','region');host.setAttribute('aria-label','Trình phát bài học Toán');main.insertBefore(host,view);}
     let bar=$('#mathLearningStudybar');
-    if(!bar){bar=document.createElement('section');bar.id='mathLearningStudybar';bar.className='math-lf-studybar';document.body.appendChild(bar);}
+    if(!bar){bar=document.createElement('section');bar.id='mathLearningStudybar';bar.className='math-lf-studybar';bar.setAttribute('role','navigation');bar.setAttribute('aria-label','Điều khiển bài học');document.body.appendChild(bar);}
   }
   function checkPanelHtml(cur,rec,st){
     const summary=checkSummary(cur.id,rec);
