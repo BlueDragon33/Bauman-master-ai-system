@@ -7,11 +7,11 @@ const fail=m=>{throw new Error(m)};
 const must=(cond,m)=>{if(!cond)fail(m)};
 
 const index=read('index.html');
-const css=read('assets/russian-reference-ui.css');
-const polish=read('assets/russian-reference-ui-polish.css');
-const futureCss=read('assets/russian-future-ui.css');
+const css=read('assets/russian-future-ui.css');
+const polish=css;
+const futureCss=css;
 const futureJs=read('assets/russian-future-ui.js');
-const js=read('assets/russian-reference-ui.js');
+const js=futureJs;
 const optionalLoader=read('assets/russian-optional-data-loader.js');
 const contentContract=read('assets/content-contract.js');
 const contentContractCss=read('assets/content-contract.css');
@@ -23,17 +23,19 @@ const previewPackage=fs.readFileSync(path.resolve('scripts/prepare-cloudflare-pr
 for(const id of ['app','nav','stageSelect','view','modal','modalBody','toast','themeBtn','aiBtn','pageTitle','pageSub','coreLabel','saveState']){
   must(index.includes(`id="${id}"`),`Missing required runtime id: ${id}`);
 }
-for(const ref of ['assets/core.css','assets/russian.css','assets/russian-reference-ui.css','assets/russian-reference-ui-polish.css','assets/russian-future-ui.css','assets/learning-state.css','assets/content-contract.css','assets/subject-adapter.js','assets/content-contract.js','assets/planning-bridge.js','assets/russian-optional-data-loader.js','assets/core.js','assets/russian-reference-ui.js','assets/russian-future-ui.js']){
+for(const ref of ['assets/core.css','assets/russian.css','assets/russian-future-ui.css','assets/learning-state.css','assets/content-contract.css','assets/subject-adapter.js','assets/content-contract.js','assets/planning-bridge.js','assets/russian-optional-data-loader.js','assets/core.js','assets/russian-future-ui.js']){
   must(index.includes(ref),`Missing asset reference: ${ref}`);
 }
-must(index.indexOf('assets/russian-reference-ui.css')<index.indexOf('assets/russian-reference-ui-polish.css'),'Polish CSS must load after reference UI CSS');
+must(index.indexOf('assets/core.css')<index.indexOf('assets/russian.css'),'Russian theme must load after core CSS');
+must(index.indexOf('assets/russian.css')<index.indexOf('assets/russian-future-ui.css'),'Canonical Russian presentation CSS must load after subject theme');
 must(index.indexOf('assets/subject-adapter.js')<index.indexOf('assets/content-contract.js'),'Content contract must load after subject adapter');
 must(index.indexOf('assets/content-contract.js')<index.indexOf('assets/core.js'),'Content contract must normalize adapter before core.js');
 must(index.indexOf('assets/russian-optional-data-loader.js')<index.indexOf('assets/core.js'),'Optional chunk loader must bootstrap before core.js');
-must(index.indexOf('assets/core.js')<index.indexOf('assets/russian-reference-ui.js'),'Reference UI JS must load after core.js');
-must(index.indexOf('assets/russian-reference-ui.js')<index.indexOf('assets/russian-future-ui.js'),'Future UI must load after reference UI enhancer');
-must(index.indexOf('assets/russian-reference-ui-polish.css')<index.indexOf('assets/russian-future-ui.css'),'Future CSS must load last among Russian presentation layers');
-must(index.includes('id="russianRightRail"'),'Missing right AI rail');
+must(index.indexOf('assets/core.js')<index.indexOf('assets/russian-future-ui.js'),'Canonical Future UI must load after core.js');
+must(!index.includes('assets/russian-reference-ui.css'),'Legacy reference presentation CSS must not be loaded');
+must(!index.includes('assets/russian-reference-ui-polish.css'),'Legacy polish presentation CSS must not be loaded');
+must(!index.includes('assets/russian-reference-ui.js'),'Legacy reference UI runtime must not be loaded');
+must(!index.includes('id="russianRightRail"'),'Fixed right rail must not return to the learning shell');
 must(index.includes('id="russianGlobalSearch"'),'Missing global search');
 must(index.includes('data-ai-quick='),'AI rail must expose core AI Mentor quick-action contract');
 must(!index.includes('/priˈvʲet/'),'Right rail must not expose a hard-coded pronunciation sample as canonical data');
@@ -60,8 +62,8 @@ new Function(contentContract);
 new Function(futureJs);
 must(js.includes("window.SUBJECT_ADAPTER?.storageKey"),'Dashboard must use adapter storage key');
 must(js.includes('MutationObserver'),'Dashboard enhancer must follow core renders');
-must(js.includes("getElementById('aiBtn')"),'AI rail custom prompt must open existing AI Mentor');
-must(js.includes("document.querySelector('[data-act=\"ai-run\"]')"),'AI rail custom prompt must reuse core AI run action');
+must(js.includes("aiQuick:'intro'"),'Command search must expose the existing AI Mentor');
+must(js.includes('function bindSearch()'),'Canonical UI runtime must own command search binding');
 must(js.includes("data-act=\"route-modal\""),'Dashboard must reuse route modal contract');
 must(js.includes('data-route'),'Dashboard shortcuts must use core routing contract');
 must(js.includes("aiQuick:'intro'"),'Global search must be able to open AI Mentor');
@@ -112,6 +114,23 @@ must(core.includes("if(act==='route-modal')"),'Core route-modal contract missing
 must(core.includes("if(act==='ai-run')"),'Core AI run action missing');
 must(adapter.includes("storageKey: 'bauman_russian_survival_master_v11_clean_skeleton'"),'Unexpected Russian storage key');
 must(adapter.includes("optionalDataFiles: ['dialogue-bauman-az','deep-speaking-bauman','speaking-link-index']"),'Unexpected optional Russian dataset contract');
+must(adapter.includes('primaryNav: ['),'Primary learner navigation contract missing');
+for(const route of ["['overview','⌂','Tổng quan']","['media','◉','Video']","['dialogue','◌','Nghe & Nói']","['vocab','▣','Từ vựng']","['grammar','▥','Ngữ pháp']","['writing','✎','Luyện chữ']"]){
+  must(adapter.includes(route),`Primary learner navigation missing: ${route}`);
+}
+must(core.includes('const PRIMARY_NAV=A.primaryNav||NAV;'),'Core must separate visible primary navigation from full route registry');
+must(core.includes("$('#nav').innerHTML=PRIMARY_NAV.map"),'Sidebar must render the compact primary navigation');
+must(core.includes('const views=NAV.map'),'Full route registry must remain authoritative for deep-link/state compatibility');
+must(core.includes('class="vocab-progressive-details"'),'Vocabulary advanced content must use progressive disclosure');
+must(core.includes('<summary>Chi tiết'),'Vocabulary details disclosure label missing');
+must(core.includes('class="vocab-micro-context"'),'Vocabulary card must expose a short Russian micro-context');
+must(!core.includes('info.term,info.meaningRu,info.meaningVi,info.english,info.application'),'Visual inference must not depend on Vietnamese/English meaning fields');
+must(!core.includes('info.term,info.meaningRu,info.meaningVi,info.english,info.visualLabel'),'Dialogue presentation inference must not depend on translated meaning fields');
+must((futureJs.match(/new MutationObserver/g)||[]).length===1,'Canonical Russian presentation runtime must own exactly one MutationObserver');
+must(!fs.existsSync(path.join(root,'assets/russian-reference-ui.css')),'Legacy reference CSS must be removed after consolidation');
+must(!fs.existsSync(path.join(root,'assets/russian-reference-ui-polish.css')),'Legacy polish CSS must be removed after consolidation');
+must(!fs.existsSync(path.join(root,'assets/russian-reference-ui.js')),'Legacy reference UI runtime must be removed after consolidation');
 
 console.log('RUSSIAN_REFERENCE_UI_GATE=PASS');
+console.log('Presentation: canonical Future UI only; compact nav; progressive Russian-first vocabulary.');
 console.log('Checks: shell, self-contained visuals, responsive layout, JS parse, truthful progress, truthful Russian content contract, optional chunk loading, accessibility, routing, AI and schedule integration.');
