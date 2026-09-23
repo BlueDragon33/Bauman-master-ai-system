@@ -88,6 +88,19 @@ try{
     assert.equal(visible,true,'Future intro missing for '+view);
     const overflow=await page.evaluate(()=>document.documentElement.scrollWidth-window.innerWidth);
     assert.ok(overflow<=2,'Horizontal overflow in '+view+': '+overflow);
+    if(view==='dialogue'){
+      await page.waitForSelector('.transcript-listen-first',{state:'visible',timeout:10000});
+      assert.equal(await page.locator('[data-act="toggle-vi"]').isDisabled(),true,'Translation control must stay disabled before transcript reveal');
+      const beforeListen=await page.evaluate(()=>window.__RF_SPEECH.count);
+      await page.locator('[data-act="speak-line"]').click();
+      await page.waitForFunction(before=>window.__RF_SPEECH.count>before,beforeListen,{timeout:5000});
+      await page.locator('[data-act="toggle-transcript"]').click();
+      await page.waitForFunction(()=>/[А-Яа-яЁё]/.test(document.querySelector('.speech-content-board .russian-line')?.textContent||''),null,{timeout:10000});
+      assert.equal(await page.locator('.transcript-listen-first').count(),0,'Listening activity must reveal transcript only after learner action');
+      assert.equal(await page.locator('[data-act="toggle-vi"]').isDisabled(),false,'Translation control may unlock only after transcript reveal');
+      await page.locator('[data-act="toggle-transcript"]').click();
+      await page.waitForSelector('.transcript-listen-first',{state:'visible',timeout:10000});
+    }
     if(view==='vocab'){
       const details=page.locator('.vocab-studio details.vocab-progressive-details');
       await details.waitFor({state:'attached',timeout:10000});
