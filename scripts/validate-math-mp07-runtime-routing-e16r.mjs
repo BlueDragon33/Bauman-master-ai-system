@@ -9,6 +9,7 @@ const theoryTab=read("subjects/math/assets/theory_skin/theory-tab-E129.js");
 const activity=read("subjects/math/assets/math-activity-studio.js");
 const sim=read("subjects/math/assets/math-simulation-source.js");
 const professor=read("subjects/math/assets/math-professor-drill.js");
+const formulaLibrary=read("subjects/math/assets/math-formula-library.js");
 
 for(const token of ["primaryContentSource: 'theory_lecture_content'","data/theory_lecture_content.json","legacySource: 'lessons'"]){
   if(!theoryTab.includes(token))fail("E129 theory route missing token: "+token);
@@ -23,6 +24,11 @@ if(!process.exitCode)ok("Activity Studio routes all m_p07 activity stores to mod
 if(!sim.includes("const CANONICAL='data/simulation_content.json'"))fail("simulation source no longer canonical");
 if(!professor.includes("data/professor_qa_content.json")||!professor.includes("data/question_bank_content.json"))fail("professor drill canonical assessment routes missing");
 if(!process.exitCode)ok("simulation and professor drill canonical routes intact");
+
+if(!formulaLibrary.includes("data/formula_content.json")||!formulaLibrary.includes("canonicalMerge:true")||!formulaLibrary.includes("data/formulas-or-patterns.json")){
+  fail("Formula Library must merge canonical formula_content with legacy fallback");
+}
+if(!process.exitCode)ok("Formula Library exposes canonical formula_content without dropping legacy formulas");
 
 const expected={
  "subjects/math/data/formula_content.json":24,
