@@ -31,7 +31,7 @@ try{
 
   assert.equal((await page.locator('#subjectTitle').innerText()).trim(),'Tiếng Nga','Russian-only visible brand drifted');
   assert.match(await page.locator('#subjectSubtitle').innerText(),/Nghe.*Nói.*Đọc.*Viết/);
-  assert.equal(await page.locator('.ru-right-rail').evaluate(el=>getComputedStyle(el).display),'none','Fixed right rail must be removed from future layout');
+  assert.equal(await page.locator('.ru-right-rail').count(),0,'Fixed right rail must be absent from the canonical learning shell');
 
   const idleMutationCount=await page.evaluate(async()=>{
     const root=document.querySelector('.ru-app-shell');
@@ -68,16 +68,11 @@ try{
   assert.ok(dims.scroll<=dims.vw+2,'Future Russian UI must not horizontally overflow at reference viewport');
 
   const dashboardText=await page.locator('.rf-dashboard').innerText();
-  for(const label of ['Nghe & Nói','Bảng chữ cái','Từ vựng','Ngữ pháp','Luyện chữ','Hôm nay học gì?','Phát âm nhanh','Tiến độ hiện tại','Lộ trình kỹ năng']){
+  for(const label of ['HỌC TIẾP','CẦN ÔN','Kế hoạch hôm nay','5 kỹ năng chính','Video','Nghe & Nói','Luyện chữ','Từ vựng','Ngữ pháp','Ôn tập trọng điểm']){
     assert.ok(dashboardText.includes(label),'Overview summary missing '+label);
   }
 
-  await page.locator('[data-rf-speak="привет"]').click();
-  const speech=await page.evaluate(()=>window.__RF_SPEECH);
-  assert.equal(speech.last?.text,'привет');
-  assert.equal(speech.last?.lang,'ru-RU');
-
-  const tabs=['learning','media','writing','vocab','grammar','dialogue','mindmap','storage'];
+  const tabs=['media','dialogue','vocab','grammar','writing'];
   for(const view of tabs){
     await page.click('#nav [data-view="'+view+'"]');
     await page.waitForSelector('#view > .rf-tab-intro[data-view="'+view+'"]',{timeout:10000});
@@ -102,6 +97,12 @@ try{
       assert.equal(immersion.hasVietnamese,false,'Vocab learning content must not display Vietnamese translation/explanation');
       assert.equal(immersion.allRussianContext,true,'Vocab contextual learning blocks must stay in Russian');
       assert.ok(immersion.visualChildren>=1,'Vocab card must keep an image or visual-symbol cue');
+      const beforeSpeech=await page.evaluate(()=>window.__RF_SPEECH.count);
+      await page.locator('[data-act="speak-vocab"]').click();
+      const vocabSpeech=await page.evaluate(()=>window.__RF_SPEECH);
+      assert.ok(vocabSpeech.count>beforeSpeech,'Vocabulary audio action must invoke Russian speech');
+      assert.equal(vocabSpeech.last?.lang,'ru-RU','Vocabulary audio must use Russian locale');
+      assert.match(vocabSpeech.last?.text||'',/[А-Яа-яЁё]/,'Vocabulary audio must speak Russian text');
     }
   }
 
