@@ -51,11 +51,17 @@
   function saveBookmarks(value){jsonSet(BOOKMARK_KEY,value.slice(0,100))}
 
   function records(){
-    const raw=global.DB?.theory_lecture_content;
-    if(Array.isArray(raw))return raw;
-    if(Array.isArray(raw?.records))return raw.records;
-    if(Array.isArray(raw?.lessons))return raw.lessons;
-    if(Array.isArray(raw?.items))return raw.items;
+    // E240 durable payload is the authoritative lesson-content source used by
+    // the current Reader. Prefer it so Lesson Check/steps cannot drift from
+    // what the learner actually sees. DB remains a compatibility fallback.
+    const durable=global.BAUMAN_MATH_E240_THEORY_CONTENT_SOURCE?.getPayload?.();
+    const sources=[durable,global.DB?.theory_lecture_content];
+    for(const raw of sources){
+      if(Array.isArray(raw)&&raw.length)return raw;
+      if(Array.isArray(raw?.records)&&raw.records.length)return raw.records;
+      if(Array.isArray(raw?.lessons)&&raw.lessons.length)return raw.lessons;
+      if(Array.isArray(raw?.items)&&raw.items.length)return raw.items;
+    }
     return [];
   }
   function currentLesson(){
