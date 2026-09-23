@@ -2466,7 +2466,7 @@ function renderVocab(){
      <main class="panel vocab-card-panel canva3-card-panel canva3-card-panel-actions v1303-vocab-card-panel v1310-vocab-main" data-vocab-term="${esc(term)}" data-vocab-index="${state.vocabIndex}">
        <header class="v1310-vocab-top v1311-vocab-top"><div><span class="chip">Thẻ ${state.vocabIndex+1}/${list.length}</span><h3>${esc(term)}</h3></div><small>${esc(info.pron||'Bấm thẻ để xem ngữ cảnh')}</small></header>
        <button class="flash visual-flash canva3-flash v1303-flash v1310-flash ${flipped?'flipped':''}" data-act="toggle-vocab-flip"><div class="flash-inner v1303-flash-inner v1310-flash-inner">${flipped?back:front}</div></button>
-       <div class="vocab-actions canva3-card-actions v1310-vocab-actions" aria-label="Điều khiển flashcard"><button class="btn" data-act="prev-vocab">← Trước</button><button class="btn green" data-act="speak-vocab">🔊 Nghe</button><button class="btn primary" data-act="toggle-vocab-flip">${flipped?'Mặt từ':'Lật gợi ý'}</button><button class="btn" data-act="next-vocab">Sau →</button></div>
+       <div class="vocab-actions canva3-card-actions v1310-vocab-actions" aria-label="Điều khiển flashcard"><button class="btn" data-act="prev-vocab">← Trước</button><button class="btn green" data-act="speak-vocab">🔊 Nghe</button><button class="btn" data-act="speak-vocab-slow">🐢 Chậm</button><button class="btn primary" data-act="toggle-vocab-flip">${flipped?'Mặt từ':'Lật gợi ý'}</button><button class="btn" data-act="next-vocab">Sau →</button></div>
        <details class="vocab-progressive-details">
          <summary>Chi tiết <span>Ví dụ · ngữ cảnh · thực hành</span></summary>
          <div class="vocab-progressive-body">
@@ -3279,6 +3279,21 @@ function markHandwritingAudioPlaying(key,on){
  activeHandwritingAudioKey=on?key:'';
  document.querySelectorAll('[data-hand-audio]').forEach(el=>el.classList.toggle('is-playing',on&&el.dataset.handAudio===key));
 }
+function speakVocabItem(v,slow=false){
+ const normalized=A.normalizeVocab?.(v)||{};
+ const term=A.vocabTerm?.(v)||normalized.term||v?.ru||v?.phrase_ru||'';
+ const sourceAudio=str(normalized.audio||v?.audio||v?.audio_url||v?.audioUrl||'').trim();
+ const fallback=()=>speak(term,slow?.62:.85);
+ if(!sourceAudio)return fallback();
+ try{
+  const player=new Audio(sourceAudio);
+  player.playbackRate=slow?.75:1;
+  player.addEventListener('error',fallback,{once:true});
+  const play=player.play();
+  if(play?.catch)play.catch(fallback);
+  return true;
+ }catch(_){return fallback()}
+}
 function speak(text,rate=.85,callbacks={}){ if(!text||!('speechSynthesis' in window))return false; const u=new SpeechSynthesisUtterance(text); u.lang=A.speech?.lang||'ru-RU'; u.rate=rate; if(callbacks.onstart)u.onstart=callbacks.onstart; if(callbacks.onend)u.onend=callbacks.onend; if(callbacks.onerror)u.onerror=callbacks.onerror; speechSynthesis.cancel(); speechSynthesis.speak(u); return true; }
 function handwritingSpeechAvailable(){return typeof window!=='undefined'&&'speechSynthesis' in window&&typeof SpeechSynthesisUtterance!=='undefined'}
 function handwritingAudioEntry(item){return handwritingListenWriteFor(item)}
@@ -3844,7 +3859,8 @@ function handleClick(e){
  if(act==='vocab-clear-filter'){state.vocabQuery='';state.vocabIndex=0;state.vocabPage=0;state.vocabFlipped=false;save();render();return}
  if(act==='prev-vocab'){state.vocabIndex=Math.max(0,state.vocabIndex-1);state.vocabPage=Math.floor(state.vocabIndex/(VOCAB_PAGE_SIZE||20));state.vocabFlipped=false;save();render()}
  if(act==='next-vocab'){const voc=getVocab();state.vocabIndex=voc.length?Math.min(voc.length-1,state.vocabIndex+1):0;state.vocabPage=Math.floor(state.vocabIndex/(VOCAB_PAGE_SIZE||20));state.vocabFlipped=false;save();render()}
- if(act==='speak-vocab'){const v=getVocab()[state.vocabIndex]||{}; speak(A.vocabTerm?.(v)||v.ru||v.phrase_ru)}
+ if(act==='speak-vocab'){const v=getVocab()[state.vocabIndex]||{}; speakVocabItem(v,false)}
+ if(act==='speak-vocab-slow'){const v=getVocab()[state.vocabIndex]||{}; speakVocabItem(v,true)}
  if(act==='toggle-vocab-flip'){state.vocabFlipped=!state.vocabFlipped;save();render()}
  if(act==='open-hand-grid')openModal(renderHandGridModal(),'hand-grid');
  if(act==='media-groups')openModal(renderMediaGroupManager(),'media-groups');
