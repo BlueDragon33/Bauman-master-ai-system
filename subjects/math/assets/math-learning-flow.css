@@ -2,14 +2,14 @@
  * Reader orchestration UI only. No academic source writes or route ownership.
  */
 :root{
-  --mlf-panel:rgba(5,20,38,.91);
-  --mlf-panel-2:rgba(8,29,51,.78);
-  --mlf-line:rgba(87,164,222,.18);
-  --mlf-cyan:#4fd7ff;
-  --mlf-gold:#f3c767;
-  --mlf-green:#42d69e;
-  --mlf-text:#eaf6ff;
-  --mlf-muted:#7894ad;
+  --mlf-panel:var(--math-surface);
+  --mlf-panel-2:var(--math-surface-soft);
+  --mlf-line:var(--math-line);
+  --mlf-cyan:var(--math-cyan);
+  --mlf-gold:var(--math-warm);
+  --mlf-green:var(--math-success);
+  --mlf-text:var(--math-text);
+  --mlf-muted:var(--math-muted);
 }
 #mathLearningFlow{display:none;margin:0 auto 12px;max-width:1600px;}
 body.math-learning-flow-active:not(.e129-theory-storage):not(.e129-presenting) #mathLearningFlow{display:grid;gap:9px;}
