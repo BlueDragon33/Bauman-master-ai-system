@@ -13,7 +13,7 @@ const PACKAGE_ROOT=A.packageRoot||'subjects/russian/';
 const NAV=A.nav||[['overview','🧭','Tổng quan'],['learning','🎓','Học tập'],['dialogue','💬','Đối thoại'],['writing','✍️','Viết'],['media','🎬','Video/Audio'],['vocab','🗂️','Từ vựng'],['grammar','🧩','Ngữ pháp'],['mindmap','🧠','Mind map'],['storage','🗄️','Lưu trữ']];
 const PRIMARY_NAV=A.primaryNav||NAV;
 const LEARN_TABS=A.learningTabs||[['theory','📘','Lý thuyết'],['exercises','📝','Bài tập'],['practice','🎙️','Nghe/Nói'],['review','🔁','Ôn tập'],['exam','🧪','Kiểm tra']];
-const DEFAULT={stage:'vn',view:'overview',learnTab:'theory',lessonId:'',slide:0,lessonQuery:'',conceptQuery:'',exerciseLevel:'all',exerciseIndex:0,testLevel:'easy',testIndex:0,testAnswer:null,reviewLevel:'easy',reviewFilter:'all',reviewLesson:'all',reviewIndex:0,reviewPage:0,reviewAnswer:null,reviewProgress:{done:{},flagged:{},wrong:{}},examLevel:'easy',examCycle:'auto',examPaperLevel:'easy',examPaperType:'standard',examIndex:0,examPage:0,examAnswer:null,examProgress:{answers:{},marked:{},submitted:false,submittedAt:null,result:null,wrong:{},paperResults:{}},examHistory:[],remedialPlan:{active:false,cards:[],completed:{},createdAt:null,lastExamAt:null,lastScore:null},dialogueId:'',dialogueGroup:'all',dialogueDifficulty:'all',dialogueQuery:'',dialogueLineIndex:0,dialogueRole:'all',dialogueHideVi:false,dialoguePeople:'2',dialogueMinutes:'10',dialogueMode:'shadow_roleplay',dialogueScenario:'classroom',practiceDialogueId:'',practiceGroup:'all',practiceDifficulty:'all',practiceQuery:'',practiceLineIndex:0,practiceRole:'all',practiceHideVi:false,practiceSpeechResults:{},dialogueSpeechResults:{},deepSpeakingId:'',deepSpeakingMode:'overview',deepSpeakingStep:0,deepSpeakingProgress:{done:{},weak:{},attempts:{},lastMode:{}},optionalDataLoading:{},optionalDataError:{},speechResults:{},speechRecording:false,speechAutoNext:false,mediaCat:'all',mediaQuery:'',mediaView:'list',mediaId:'',vocabQuery:'',vocabIndex:0,vocabPage:0,vocabFlipped:false,grammarLevel:'all',grammarTrack:'all',grammarQuery:'',grammarIndex:0,mindmapId:'roadmap-map',mindmapNode:'',mindmapFontScale:14,mindmapDrag:{},mindmapLayoutVersion:'v13_32_clean',writingMode:'handwriting',handwritingIndex:0,handwritingQuery:'',handwritingStep:0,handwritingPractice:'trace',handwritingShowGuide:true,handwritingShowLines:true,handwritingExerciseIndex:0,handwritingExerciseInput:'',handwritingExerciseChoice:'',handwritingExerciseAttempted:false,handwritingExerciseReveal:false,handwritingExerciseResult:null,handwritingSessionMode:'learn',handwritingListenWriteProgress:{byLetter:{}},lessonListenWrite:{lessonId:'',itemIndex:0,drillIndex:0,mode:'',input:'',choice:'',attempted:false,result:null},writingIndex:0,writingQuery:'',writingDraft:'',storageFile:'curriculum',storageGroup:'all',storageText:'',storagePreviewLimit:0,storagePreviewAutoCollapsedV1322:false,storageQuery:'',storageTreeOpen:{},aiDraft:'',aiOutput:'',interfaceTheme:'clean',interfaceDensity:'normal',hostTask:null,planningBundle:null,routeEdit:false,routeManual:null,routeFocus:'today',testSession:{answered:0,correct:0,targetQuestions:100,targetScore:80,seen:{}},recentAccess:[],stageGate:null,examGateSource:null,stageTransitions:[],lastStageTransition:null};
+const DEFAULT={stage:'vn',view:'overview',learnTab:'theory',lessonId:'',slide:0,lessonQuery:'',conceptQuery:'',exerciseLevel:'all',exerciseIndex:0,testLevel:'easy',testIndex:0,testAnswer:null,reviewLevel:'easy',reviewFilter:'all',reviewLesson:'all',reviewIndex:0,reviewPage:0,reviewAnswer:null,reviewProgress:{done:{},flagged:{},wrong:{}},examLevel:'easy',examCycle:'auto',examPaperLevel:'easy',examPaperType:'standard',examIndex:0,examPage:0,examAnswer:null,examProgress:{answers:{},marked:{},submitted:false,submittedAt:null,result:null,wrong:{},paperResults:{}},examHistory:[],remedialPlan:{active:false,cards:[],completed:{},createdAt:null,lastExamAt:null,lastScore:null},dialogueId:'',dialogueGroup:'all',dialogueDifficulty:'all',dialogueQuery:'',dialogueLineIndex:0,dialogueRole:'all',dialogueHideVi:false,dialogueShowTranscript:false,dialoguePeople:'2',dialogueMinutes:'10',dialogueMode:'shadow_roleplay',dialogueScenario:'classroom',practiceDialogueId:'',practiceGroup:'all',practiceDifficulty:'all',practiceQuery:'',practiceLineIndex:0,practiceRole:'all',practiceHideVi:false,practiceShowTranscript:false,practiceSpeechResults:{},dialogueSpeechResults:{},deepSpeakingId:'',deepSpeakingMode:'overview',deepSpeakingStep:0,deepSpeakingProgress:{done:{},weak:{},attempts:{},lastMode:{}},optionalDataLoading:{},optionalDataError:{},speechResults:{},speechRecording:false,speechAutoNext:false,mediaCat:'all',mediaQuery:'',mediaView:'list',mediaId:'',vocabQuery:'',vocabIndex:0,vocabPage:0,vocabFlipped:false,grammarLevel:'all',grammarTrack:'all',grammarQuery:'',grammarIndex:0,mindmapId:'roadmap-map',mindmapNode:'',mindmapFontScale:14,mindmapDrag:{},mindmapLayoutVersion:'v13_32_clean',writingMode:'handwriting',handwritingIndex:0,handwritingQuery:'',handwritingStep:0,handwritingPractice:'trace',handwritingShowGuide:true,handwritingShowLines:true,handwritingExerciseIndex:0,handwritingExerciseInput:'',handwritingExerciseChoice:'',handwritingExerciseAttempted:false,handwritingExerciseReveal:false,handwritingExerciseResult:null,handwritingSessionMode:'learn',handwritingListenWriteProgress:{byLetter:{}},lessonListenWrite:{lessonId:'',itemIndex:0,drillIndex:0,mode:'',input:'',choice:'',attempted:false,result:null},writingIndex:0,writingQuery:'',writingDraft:'',storageFile:'curriculum',storageGroup:'all',storageText:'',storagePreviewLimit:0,storagePreviewAutoCollapsedV1322:false,storageQuery:'',storageTreeOpen:{},aiDraft:'',aiOutput:'',interfaceTheme:'clean',interfaceDensity:'normal',hostTask:null,planningBundle:null,routeEdit:false,routeManual:null,routeFocus:'today',testSession:{answered:0,correct:0,targetQuestions:100,targetScore:80,seen:{}},recentAccess:[],stageGate:null,examGateSource:null,stageTransitions:[],lastStageTransition:null};
 let DB={},state={...DEFAULT},canvas=null,ctx=null,drawing=false,strokes=[],currentStroke=null,penColor='#111827',penSize=6,speechRecognizer=null;
 const $=(s,r=document)=>r.querySelector(s), $$=(s,r=document)=>Array.from(r.querySelectorAll(s));
 const arr=v=>Array.isArray(v)?v:[], str=v=>String(v??''), esc=v=>str(v).replace(/[&<>"']/g,m=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[m])), lower=v=>str(v).toLowerCase();
@@ -1469,6 +1469,7 @@ function renderPractice(){
  const line=turns[idx]||turns[0]||{};
  const role=state.practiceRole||'all';
  const hideVi=!!state.practiceHideVi;
+ const showTranscript=!!state.practiceShowTranscript;
  const result=speakingResultFor(active,idx);
  const prog=dialogueProgress(active);
  const roleStats=dialogueRoleStats(active,role);
@@ -1478,8 +1479,8 @@ function renderPractice(){
  const difficulty=A.dialogueDifficulty?.(active)||active?.difficulty||active?.level||'Dễ';
  const title=A.dialogueTitle?.(active)||active?.title||'Chọn bài nghe-nhại';
  const purpose=A.dialogueSubtitle?.(active)||active?.purpose||active?.context_title_vi||'Nghe mẫu, nhìn câu, hiểu nghĩa và nhại lại theo nội dung cho trước.';
- const currentRu=esc(targetText||'Chọn một tình huống ở cột trái để bắt đầu luyện nghe-nhại.');
- const currentVi=hideVi?'':dialogueVi(line);
+ const currentRu=showTranscript?esc(targetText||'Chọn một tình huống ở cột trái để bắt đầu luyện nghe-nhại.'):'<span class="transcript-listen-first">Nghe câu mẫu trước · mở transcript khi thật sự cần</span>';
+ const currentVi=showTranscript&&!hideVi?dialogueVi(line):'';
  const cueText=role==='all'?'Nghe mẫu rồi nhại câu hiện tại':(isMine?'Đến lượt bạn nhại câu này':'Nghe vai còn lại để giữ mạch');
  const roleName=role==='all'?'Nghe + nhại toàn đoạn':`Nhại vai ${role}`;
  const hints=lineTokenHints(targetText);
@@ -1487,12 +1488,12 @@ function renderPractice(){
  return `<section class="panel v1294-speech-room v1295-speech-room">
    <header class="v1294-speech-head v1295-speech-head">
      <div class="v1294-speech-title v1295-speech-title"><span class="chip">🎙️ NGHE/NHẠI · ${esc(ctx.id)} · ${esc(difficulty)}</span><small>${esc(title)}</small></div>
-     <div class="v1294-speech-toolbar v1295-speech-toolbar"><button class="btn ${role==='all'?'active':''}" data-act="role-all">Nghe + nhại</button><button class="btn ${role==='A'?'active':''}" data-act="role-a">Vai A</button><button class="btn ${role==='B'?'active':''}" data-act="role-b">Vai B</button><button class="btn" data-act="toggle-vi">${hideVi?'Hiện nghĩa':'Ẩn nghĩa'}</button></div>
+     <div class="v1294-speech-toolbar v1295-speech-toolbar"><button class="btn ${role==='all'?'active':''}" data-act="role-all">Nghe + nhại</button><button class="btn ${role==='A'?'active':''}" data-act="role-a">Vai A</button><button class="btn ${role==='B'?'active':''}" data-act="role-b">Vai B</button><button class="btn ${showTranscript?'active':''}" data-act="toggle-transcript">${showTranscript?'Ẩn transcript':'Hiện transcript'}</button><button class="btn" data-act="toggle-vi" ${showTranscript?'':'disabled'}>${hideVi?'Hiện nghĩa':'Ẩn nghĩa'}</button></div>
    </header>
    <div class="v1294-speech-progress"><article><b>Chế độ</b><span>${esc(roleName)}</span></article><article><b>Tiến độ chung</b><span>${prog.ok}/${prog.total} câu đạt · ${prog.percent}%</span></article><article><b>Tiến độ vai</b><span>${roleStats.ok}/${roleStats.total} câu · ${roleStats.percent}%</span></article></div>
    <article class="v1294-current-line ${isMine?'student-turn':'listener-turn'} speech-content-board">
      <div class="speaker">${esc(lineRole)}</div>
-     <div class="v1294-current-body"><label>Câu ${turns.length?idx+1:0}/${turns.length||0} · ${esc(cueText)}</label><div class="russian-line">${currentRu}</div>${currentVi?`<p>${esc(currentVi)}</p>`:''}${hints.length?`<div class="speech-hints">${hints.map(x=>`<span>${esc(x)}</span>`).join('')}</div>`:''}</div>
+     <div class="v1294-current-body"><label>Câu ${turns.length?idx+1:0}/${turns.length||0} · ${esc(cueText)}</label><div class="russian-line">${currentRu}</div>${currentVi?`<p>${esc(currentVi)}</p>`:''}${showTranscript&&hints.length?`<div class="speech-hints">${hints.map(x=>`<span>${esc(x)}</span>`).join('')}</div>`:''}</div>
      <button class="btn green speech-ok-corner" data-act="mark-line-ok">✓ Đã nói ổn</button>
    </article>
    <div class="v1294-speech-actions"><button class="btn" data-act="prev-line">← Câu trước</button><button class="btn green" data-act="speak-line">🔊 Nghe mẫu</button><button class="btn" data-act="speak-line-slow">🐢 Nghe chậm</button><button class="btn" data-act="record-line">🎙️ Nhại lại</button><button class="btn primary" data-act="next-line">Câu tiếp →</button></div>
@@ -1562,6 +1563,8 @@ function activeRole(){return inPracticeMode()?(state.practiceRole||'all'):(state
 function setActiveRole(role){if(inPracticeMode())state.practiceRole=role; else state.dialogueRole=role}
 function activeHideVi(){return inPracticeMode()?!!state.practiceHideVi:!!state.dialogueHideVi}
 function toggleActiveHideVi(){if(inPracticeMode())state.practiceHideVi=!state.practiceHideVi; else state.dialogueHideVi=!state.dialogueHideVi}
+function activeShowTranscript(){return inPracticeMode()?!!state.practiceShowTranscript:!!state.dialogueShowTranscript}
+function toggleActiveTranscript(){if(inPracticeMode())state.practiceShowTranscript=!state.practiceShowTranscript; else state.dialogueShowTranscript=!state.dialogueShowTranscript}
 function activeSpeechResults(){const k=inPracticeMode()?'practiceSpeechResults':'dialogueSpeechResults'; state[k]=state[k]||{}; return state[k]}
 function currentDialogue(){const list=currentDialogueList(); return list.find(x=>(x.id||x.title)===currentDialogueId())||list[0]||{};}
 function dialogueTurns(d){return arr(A.dialogueTurns?.(d)||d?.utterances||d?.turns)}
@@ -2077,6 +2080,7 @@ function renderDialogue(){
  const line=turns[idx]||turns[0]||{};
  const role=state.dialogueRole||'all';
  const hideVi=!!state.dialogueHideVi;
+ const showTranscript=!!state.dialogueShowTranscript;
  const result=speakingResultFor(active,idx);
  const prog=dialogueProgress(active);
  const roleStats=dialogueRoleStats(active,role);
@@ -2087,7 +2091,7 @@ function renderDialogue(){
  const title=A.dialogueTitle?.(active)||active?.title||'Chọn hội thoại';
  const purpose=A.dialogueSubtitle?.(active)||active?.purpose||arr(active?.communicative_functions_vi).join(', ')||'Nghe mẫu, chọn vai và đối đáp trong tình huống thật.';
  const group=A.dialogueGroup?.(active)||active?.group||'Đối thoại';
- const currentVi=hideVi?'':dialogueVi(line);
+ const currentVi=showTranscript&&!hideVi?dialogueVi(line):'';
  const cueText=role==='all'?'Nghe mẫu rồi nhại câu hiện tại':(isMine?'Đến lượt bạn đối đáp':'Nghe vai còn lại, chuẩn bị trả lời');
  const roleName=role==='all'?'Nghe + đối đáp toàn đoạn':`Đối đáp vai ${role}`;
  const hints=arr(active?.vocabulary_seed_ru).slice(0,5).length?arr(active?.vocabulary_seed_ru).slice(0,5):lineTokenHints(targetText);
@@ -2096,12 +2100,12 @@ function renderDialogue(){
    <section class="panel v1294-speech-room v1295-speech-room dialogue-nine-room">
      <header class="v1294-speech-head v1295-speech-head dialogue-nine-head">
        <div class="v1294-speech-title v1295-speech-title"><span class="chip">💬 ĐỐI THOẠI · ${esc(difficulty)}</span><small>${esc(title)}</small><p>${esc(purpose)}</p></div>
-       <div class="v1294-speech-toolbar v1295-speech-toolbar dialogue-nine-toolbar"><button class="btn soft dialogue-setup-btn" data-act="dialogue-setup">⚙️ Thiết lập</button><button class="btn ${role==='all'?'active':''}" data-act="role-all">Nghe + đối đáp</button><button class="btn ${role==='A'?'active':''}" data-act="role-a">Vai A</button><button class="btn ${role==='B'?'active':''}" data-act="role-b">Vai B</button><button class="btn" data-act="toggle-vi">${hideVi?'Hiện nghĩa':'Ẩn nghĩa'}</button></div>
+       <div class="v1294-speech-toolbar v1295-speech-toolbar dialogue-nine-toolbar"><button class="btn soft dialogue-setup-btn" data-act="dialogue-setup">⚙️ Thiết lập</button><button class="btn ${role==='all'?'active':''}" data-act="role-all">Nghe + đối đáp</button><button class="btn ${role==='A'?'active':''}" data-act="role-a">Vai A</button><button class="btn ${role==='B'?'active':''}" data-act="role-b">Vai B</button><button class="btn ${showTranscript?'active':''}" data-act="toggle-transcript">${showTranscript?'Ẩn transcript':'Hiện transcript'}</button><button class="btn" data-act="toggle-vi" ${showTranscript?'':'disabled'}>${hideVi?'Hiện nghĩa':'Ẩn nghĩa'}</button></div>
      </header>
      <div class="v1294-speech-progress dialogue-nine-progress"><article><b>Chế độ</b><span>${esc(roleName)}</span></article><article><b>Tiến độ chung</b><span>${prog.ok}/${prog.total} câu đạt · ${prog.percent}%</span></article><article><b>Tiến độ vai</b><span>${roleStats.ok}/${roleStats.total} câu · ${roleStats.percent}%</span></article><article><b>Chủ điểm</b><span>${esc(group)}</span></article></div>
      <article class="v1294-current-line dialogue-nine-current ${isMine?'student-turn':'listener-turn'} speech-content-board">
        <div class="speaker">${esc(lineRole)}</div>
-       <div class="v1294-current-body"><label>Câu ${turns.length?idx+1:0}/${turns.length||0} · ${esc(cueText)}</label><div class="russian-line">${esc(targetText||'Chọn một tình huống ở danh sách bên dưới để bắt đầu đối thoại.')}</div>${currentVi?`<p>${esc(currentVi)}</p>`:''}${hints.length?`<div class="speech-hints">${hints.map(x=>`<span>${esc(x)}</span>`).join('')}</div>`:''}</div>
+       <div class="v1294-current-body"><label>Câu ${turns.length?idx+1:0}/${turns.length||0} · ${esc(cueText)}</label><div class="russian-line">${showTranscript?esc(targetText||'Chọn một tình huống ở danh sách bên dưới để bắt đầu đối thoại.'):'<span class="transcript-listen-first">Nghe câu mẫu trước · mở transcript khi thật sự cần</span>'}</div>${currentVi?`<p>${esc(currentVi)}</p>`:''}${showTranscript&&hints.length?`<div class="speech-hints">${hints.map(x=>`<span>${esc(x)}</span>`).join('')}</div>`:''}</div>
        <button class="btn green speech-ok-corner" data-act="mark-line-ok">✓ Tôi nói ổn</button>
      </article>
      <div class="v1294-speech-actions dialogue-nine-actions"><button class="btn" data-act="prev-line">← Câu trước</button><button class="btn green" data-act="speak-line">🔊 Câu mẫu</button><button class="btn" data-act="speak-line-slow">🐢 Chậm</button><button class="btn blue" data-act="speak-dialogue">Nghe cả đoạn</button><button class="btn" data-act="record-line">🎙️ Đối đáp</button><button class="btn" data-act="next-role-line">Câu của tôi →</button><button class="btn primary" data-act="next-line">Câu tiếp →</button></div>
@@ -3772,6 +3776,7 @@ function handleClick(e){
  if(act==='role-all'){setActiveRole('all');save();render()}
  if(act==='role-a'){setActiveRole('A');save();render()}
  if(act==='role-b'){setActiveRole('B');save();render()}
+ if(act==='toggle-transcript'){toggleActiveTranscript();save();render()}
  if(act==='toggle-vi'){toggleActiveHideVi();save();render()}
  if(act==='prev-line')moveDialogueLine(-1);
  if(act==='next-line')moveDialogueLine(1);
