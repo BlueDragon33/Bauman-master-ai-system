@@ -1,32 +1,69 @@
-/* Bauman Math Formula Library V1
- * Primary source: populated data/formulas-or-patterns.json.
- * formula_content.json remains clean-architecture companion source and is not populated from sampleRecord.
+/* Bauman Math Formula Library V2
+ * Canonical source: data/formula_content.json.
+ * Legacy formulas-or-patterns.json is merged as a compatibility fallback.
  */
 (function mathFormulaLibrary(global){
   'use strict';
-  const RELEASE='MATH_FORMULA_LIBRARY_V1';
-  const DATA_PATH='data/formulas-or-patterns.json';
+  const RELEASE='MATH_FORMULA_LIBRARY_V2_CANONICAL_MERGE';
+  const CANONICAL_PATH='data/formula_content.json';
+  const LEGACY_PATH='data/formulas-or-patterns.json';
   const FAVORITE_KEY='bauman_math_formula_favorites_v1';
   const $=(s,r=document)=>r.querySelector(s);
   const $$=(s,r=document)=>Array.from(r.querySelectorAll(s));
   const esc=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
   const clip=(s,n=90)=>{s=String(s??'').replace(/\s+/g,' ').trim();return s.length>n?s.slice(0,n-1)+'…':s};
-  let items=[],filtered=[],selected=0,group='all',loaded=false,error=null;
+  let items=[],filtered=[],selected=0,group='all',loaded=false,error=null,sourceSummary='chưa tải';
 
   function favorites(){try{return JSON.parse(localStorage.getItem(FAVORITE_KEY)||'[]')}catch(_){return[]}}
   function setFavorites(v){try{localStorage.setItem(FAVORITE_KEY,JSON.stringify([...new Set(v)]))}catch(_){}}
   function isFavorite(id){return favorites().includes(id)}
   function toggleFavorite(id){const list=favorites();setFavorites(list.includes(id)?list.filter(x=>x!==id):[id,...list]);renderStage();renderList()}
+  function canonicalRecords(raw){return Array.isArray(raw)?raw:Array.isArray(raw?.records)?raw.records:[]}
+  function legacyRecords(raw){return Array.isArray(raw)?raw:Array.isArray(raw?.items)?raw.items:[]}
+  function groupFor(r){
+    if(r.group)return r.group;
+    const id=String(r.logicalLessonId||'');
+    if(['m_p07_t03','m_p07_t04','m_p07_t05'].includes(id))return 'statistics';
+    if(id==='m_p07_t02')return 'statistics';
+    if(id.startsWith('m_p07_'))return 'linear_algebra';
+    return 'other';
+  }
+  function normalizeCanonical(r){
+    return {
+      ...r,
+      id:r.id||r.formulaId,
+      name:r.name||r.title||r.formulaId,
+      latex:r.latex||r.formula||'',
+      formula:r.formula||r.latex||'',
+      group:groupFor(r),
+      whenToUse:r.whenToUse||r.usage||r.purpose||('Bài '+String(r.logicalLessonId||r.lessonId||'')),
+      example:r.example||'',
+      commonMistakes:Array.isArray(r.commonMistakes)?r.commonMistakes:[]
+    };
+  }
+  async function fetchJson(path){
+    const r=await fetch(path,{cache:'no-store'});
+    if(!r.ok)throw new Error(`${path} HTTP ${r.status}`);
+    return r.json();
+  }
   async function load(){
     if(loaded)return items;
-    try{const r=await fetch(DATA_PATH,{cache:'no-store'});if(!r.ok)throw new Error(`${DATA_PATH} HTTP ${r.status}`);const raw=await r.json();items=Array.isArray(raw)?raw:Array.isArray(raw?.items)?raw.items:[];loaded=true;error=null;}
-    catch(e){items=[];loaded=true;error=String(e?.message||e)}
+    let canonical=[],legacy=[],errors=[];
+    try{canonical=canonicalRecords(await fetchJson(CANONICAL_PATH)).map(normalizeCanonical)}catch(e){errors.push(String(e?.message||e))}
+    try{legacy=legacyRecords(await fetchJson(LEGACY_PATH))}catch(e){errors.push(String(e?.message||e))}
+    const merged=new Map();
+    canonical.forEach(x=>{if(x&&x.id)merged.set(String(x.id),x)});
+    legacy.forEach((x,i)=>{const id=String(x?.id||x?.formulaId||`legacy-${i}`);if(!merged.has(id))merged.set(id,{...x,id})});
+    items=[...merged.values()];
+    sourceSummary=`${canonical.length} canonical + ${legacy.length} legacy`;
+    loaded=true;
+    error=items.length?null:(errors.join(' | ')||'Không có công thức');
     applyFilter();return items;
   }
   function ensure(){
     if(!$('#mathFormulaLibrary')){
       const layer=document.createElement('section');layer.id='mathFormulaLibrary';layer.className='math-formula-library';
-      layer.innerHTML=`<div class="math-fl-shell"><header class="math-fl-head"><div><small>Formula Library</small><h2>Thư viện Công thức Toán Bauman</h2><p>Nguồn thật: formulas-or-patterns.json · tìm kiếm toàn môn · không sửa dữ liệu nguồn.</p></div><div class="math-fl-actions"><button data-fl="current">Công thức bài hiện tại</button><button data-fl="close">Đóng ×</button></div></header><div class="math-fl-toolbar"><input id="mathFlSearch" class="math-fl-search" type="search" placeholder="Tìm: cosine, ma trận, Bayes, gradient, Fourier…"><div id="mathFlGroups" class="math-fl-groups"></div><span id="mathFlCount" class="math-fl-count">0 công thức</span></div><div class="math-fl-body"><nav id="mathFlList" class="math-fl-list"></nav><main id="mathFlStage" class="math-fl-stage"></main></div></div>`;
+      layer.innerHTML=`<div class="math-fl-shell"><header class="math-fl-head"><div><small>Formula Library</small><h2>Thư viện Công thức Toán Bauman</h2><p>Nguồn: formula_content.json (canonical) + formulas-or-patterns.json (legacy fallback) · chỉ đọc.</p></div><div class="math-fl-actions"><button data-fl="current">Công thức bài hiện tại</button><button data-fl="close">Đóng ×</button></div></header><div class="math-fl-toolbar"><input id="mathFlSearch" class="math-fl-search" type="search" placeholder="Tìm: cosine, ma trận, Bayes, gradient, Fourier…"><div id="mathFlGroups" class="math-fl-groups"></div><span id="mathFlCount" class="math-fl-count">0 công thức</span></div><div class="math-fl-body"><nav id="mathFlList" class="math-fl-list"></nav><main id="mathFlStage" class="math-fl-stage"></main></div></div>`;
       document.body.appendChild(layer);layer.addEventListener('click',e=>{if(e.target===layer)close()});$('#mathFlSearch')?.addEventListener('input',()=>{applyFilter();render()});
     }
     ensureNav();ensureFormulaFocusLink();
@@ -82,7 +119,7 @@
     },true);
     document.addEventListener('keydown',e=>{if((e.ctrlKey||e.metaKey)&&e.shiftKey&&e.key.toLowerCase()==='f'){e.preventDefault();open()}if(e.key==='Escape')close()});
   }
-  function selfCheck(){return{release:RELEASE,ready:!!$('#mathFormulaLibrary'),source:DATA_PATH,loaded,total:items.length,groups:groups().length,favorites:favorites().length,formulaContentSampleRecordUsed:false,academicWrites:false,mutationObserver:false}}
+  function selfCheck(){return{release:RELEASE,ready:!!$('#mathFormulaLibrary'),canonicalSource:CANONICAL_PATH,legacySource:LEGACY_PATH,sourceSummary,loaded,total:items.length,groups:groups().length,favorites:favorites().length,formulaContentSampleRecordUsed:false,canonicalMerge:true,academicWrites:false,mutationObserver:false}}
   function init(){if(!document.body||document.body.dataset.mathFormulaLibrary==='1')return;document.body.dataset.mathFormulaLibrary='1';ensure();bind();load().then(()=>{render();[500,1200,2400].forEach(ms=>setTimeout(()=>{ensureNav();ensureFormulaFocusLink()},ms))});global.BAUMAN_MATH_FORMULA_LIBRARY={release:RELEASE,open,close,refresh:render,selfCheck}}
   if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',init,{once:true});else init();
 })(window);
