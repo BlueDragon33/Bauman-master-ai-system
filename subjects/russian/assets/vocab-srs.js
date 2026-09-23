@@ -219,7 +219,8 @@
       <details class="ru-vocab-mining"><summary><b>Sentence Mining</b><span>${mined.length} câu của thẻ này</span></summary><div class="ru-vocab-mining-body"><div class="ru-vocab-mining-actions"><button type="button" class="btn soft" data-ru-srs-mine-source>Lưu câu nguồn nếu có</button><div><input id="ruVocabMineInput" class="input" placeholder="Tự viết một câu tiếng Nga dùng từ này…"><button type="button" class="btn" data-ru-srs-mine-user>Lưu câu của tôi</button></div></div><div class="ru-vocab-sentence-list">${sentenceList(key)}</div></div></details>
       <details class="ru-vocab-speaking-bridge"><summary><b>Cầu nối Nghe/Nói</b><span>chỉ exact vocabulary seed</span></summary><div class="ru-vocab-speaking-body"><button type="button" class="btn soft" data-ru-srs-find-speaking>Kiểm tra liên kết thật</button><div class="ru-vocab-speaking-list">${speakingList(card)}</div></div></details>`:
       `${flowTaskHtml(mode)}${notice&&!drillResult()?`<div class="ru-vocab-srs-notice">${esc(notice)}</div>`:''}`;
-    panel.innerHTML=`<header><div><span>LEARNING FLOW · THẺ ${index+1}</span><h4>${mode==='review'?esc(term):esc(FLOW_LABELS[mode])}</h4><p>${mode==='review'?esc(cardStatus(card)):'Khám phá → nhận diện → nghe → nói → nhớ lại → viết → ôn.'}${activeDue?' · đang ôn thẻ đến hạn':''}</p></div><div class="ru-vocab-srs-summary"><button type="button" data-ru-srs-open-due><b>${due.length}</b><small>đến hạn</small></button><span><b>${scheduled.length}</b><small>đã hẹn</small></span><span><b>${Object.keys(state.sentences).length}</b><small>câu đã lưu</small></span></div></header>${flowNavHtml(mode)}${reviewPanel}`;
+    const html=`<header><div><span>LEARNING FLOW · THẺ ${index+1}</span><h4>${mode==='review'?esc(term):esc(FLOW_LABELS[mode])}</h4><p>${mode==='review'?esc(cardStatus(card)):'Khám phá → nhận diện → nghe → nói → nhớ lại → viết → ôn.'}${activeDue?' · đang ôn thẻ đến hạn':''}</p></div><div class="ru-vocab-srs-summary"><button type="button" data-ru-srs-open-due><b>${due.length}</b><small>đến hạn</small></button><span><b>${scheduled.length}</b><small>đã hẹn</small></span><span><b>${Object.keys(state.sentences).length}</b><small>câu đã lưu</small></span></div></header>${flowNavHtml(mode)}${reviewPanel}`;
+    if(panel.innerHTML!==html)panel.innerHTML=html;
   }
   function routeWithVocabIndex(target){const node=target.closest?.('[data-route]');if(!node)return null;try{const r=JSON.parse(node.dataset.route||'{}');return r?.view==='vocab'&&r.vocabIndex!==undefined?r:null}catch(_){return null}}
   function shouldAbandon(target){
@@ -253,8 +254,6 @@
     if(shouldAbandon(target))abandonActiveDue();
   },true);
   document.addEventListener('keydown',event=>{if(event.key!=='Enter')return;if(event.target?.id==='ruVocabMineInput'){event.preventDefault();mineUser();return;}if(event.target?.id==='ruVocabFlowInput'){event.preventDefault();checkTyped();}},true);
-  document.addEventListener('DOMContentLoaded',()=>{
-    const view=document.getElementById('view');if(view)new MutationObserver(scheduleRender).observe(view,{childList:true,subtree:true});scheduleRender();
-  });
-  window.RussianVocabSrs={schema:SCHEMA,get:()=>JSON.parse(JSON.stringify(state)),dueCards,scheduledCards,rate,openIndex,mineSource,findSpeakingLinks,setFlowMode,flow:[...FLOW],gaps:[...GAPS]};
+  if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',scheduleRender,{once:true});else scheduleRender();
+  window.RussianVocabSrs={schema:SCHEMA,get:()=>JSON.parse(JSON.stringify(state)),dueCards,scheduledCards,rate,openIndex,mineSource,findSpeakingLinks,setFlowMode,refresh:scheduleRender,flow:[...FLOW],gaps:[...GAPS]};
 })();
