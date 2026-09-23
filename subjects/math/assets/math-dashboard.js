@@ -99,30 +99,36 @@
     const cur=currentLesson(),snap=learningSnapshot(),list=visits();
     const total=Number(snap?.totalSteps||0),done=Number(snap?.visitedCount||0);
     const stepIndex=Number(snap?.activeStepIndex||1),stepLabel=snap?.activeStepLabel||'Lý thuyết';
-    const pct=Math.max(0,Math.min(100,Number(snap?.percent||0)));
+    const completed=Number(snap?.completedAt||0)>0;
+    const reviewNeeded=Number(snap?.reviewNeeded||0);
+    const pct=completed?100:Math.max(0,Math.min(100,Number(snap?.percent||0)));
 
     if($('#mathV2LessonTitle')) $('#mathV2LessonTitle').textContent=cur.id?cur.title:'Bắt đầu từ lộ trình học';
-    if($('#mathV2LessonMeta')) $('#mathV2LessonMeta').textContent=cur.id?`${cur.id} · Bước ${stepIndex}/${total||'—'} · ${stepLabel}`:'Chưa có tiến độ thật. Chọn lộ trình để bắt đầu đúng chương và bài.';
+    if($('#mathV2LessonMeta')) $('#mathV2LessonMeta').textContent=cur.id?(completed?`${cur.id} · Đã hoàn thành Lesson Check`:`${cur.id} · Bước ${stepIndex}/${total||'—'} · ${stepLabel}`):'Chưa có tiến độ thật. Chọn lộ trình để bắt đầu đúng chương và bài.';
     if($('#mathHomeProgressBar')) $('#mathHomeProgressBar').style.width=`${pct}%`;
     if($('#mathHomePct')) $('#mathHomePct').textContent=`${pct}%`;
-    if($('#mathHomeStep')) $('#mathHomeStep').textContent=`Bước ${stepIndex}/${total||'—'} · ${stepLabel}`;
+    if($('#mathHomeStep')) $('#mathHomeStep').textContent=completed?(reviewNeeded?`Hoàn thành · ${reviewNeeded} mục cần ôn`:'Hoàn thành · Đã đạt'):`Bước ${stepIndex}/${total||'—'} · ${stepLabel}`;
     if($('#mathV2Visited')) $('#mathV2Visited').textContent=String(list.length);
     if($('#mathHomeStepsDone')) $('#mathHomeStepsDone').textContent=`${done}/${total}`;
     if($('#mathHomeStage')) $('#mathHomeStage').textContent=currentStageLabel();
     if($('#mathHomeChapter')) $('#mathHomeChapter').textContent=snap?.chapterId||'Chương theo Reader hiện tại';
-    if($('#mathHomeGoal')) $('#mathHomeGoal').textContent=cur.id?`Hoàn thành ${cur.title}`:'Chọn bài đầu tiên trong lộ trình';
-    if($('#mathHomeGoalNote')) $('#mathHomeGoalNote').textContent=cur.id?`Tiếp theo: ${stepLabel}. Công cụ nâng cao chỉ mở khi bước học cần đến.`:'Lộ trình sẽ dẫn tới bài phù hợp, không yêu cầu tự ghép tài nguyên.';
+    if($('#mathHomeGoal')) $('#mathHomeGoal').textContent=cur.id?(completed?'Chọn bài tiếp theo':`Hoàn thành ${cur.title}`):'Chọn bài đầu tiên trong lộ trình';
+    if($('#mathHomeGoalNote')) $('#mathHomeGoalNote').textContent=cur.id?(completed?(reviewNeeded?'Lesson Check đã lưu. Ôn các mục còn yếu rồi tiếp tục lộ trình.':'Bài đã đạt. Tiếp tục bài kế tiếp trong lộ trình.'):`Tiếp theo: ${stepLabel}. Công cụ nâng cao chỉ mở khi bước học cần đến.`):'Lộ trình sẽ dẫn tới bài phù hợp, không yêu cầu tự ghép tài nguyên.';
+    const review=$('#mathHomeReviewState');
+    if(review){
+      review.innerHTML=reviewNeeded?`<b>${reviewNeeded} mục cần ôn từ Lesson Check.</b><span>Đây là dữ liệu tự đánh giá đã lưu của bài hiện tại, không phải điểm số suy diễn.</span>`:'<b>Hiện chưa có nội dung cần ôn.</b><span>Chỉ các điểm yếu có bằng chứng từ Lesson Check mới xuất hiện ở đây.</span>';
+    }
     const cta=$('[data-math-v2-action="continue"]');
     if(cta){
-      cta.textContent=cur.id?'Tiếp tục học →':'Bắt đầu học →';
-      cta.setAttribute('aria-label',cur.id?'Tiếp tục bài học hiện tại':'Mở lộ trình để bắt đầu học');
+      cta.textContent=!cur.id?'Bắt đầu học →':completed?'Tiếp tục lộ trình →':'Tiếp tục học →';
+      cta.setAttribute('aria-label',!cur.id?'Mở lộ trình để bắt đầu học':completed?'Mở lộ trình để chọn bài tiếp theo':'Tiếp tục bài học hiện tại');
     }
   }
 
   function action(name){
     if(name==='continue'){
-      const cur=currentLesson();
-      global.BAUMAN_MATH_NAVIGATION?.route?.(cur.id?'learn':'roadmap');
+      const cur=currentLesson(),snap=learningSnapshot();
+      global.BAUMAN_MATH_NAVIGATION?.route?.(!cur.id||Number(snap?.completedAt||0)>0?'roadmap':'learn');
       return;
     }
     if(name==='roadmap'){global.BAUMAN_MATH_NAVIGATION?.route?.('roadmap');return;}
