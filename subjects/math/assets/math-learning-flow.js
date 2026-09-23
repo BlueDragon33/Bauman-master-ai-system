@@ -75,19 +75,28 @@
   function assessmentFor(id){return assessmentCache[id]?.data||null}
   function loadAssessment(id){
     const path=ASSESSMENT_SOURCES[id];
-    if(!path||assessmentCache[id]?.loading||assessmentCache[id]?.loaded)return;
-    assessmentCache[id]={loading:true,loaded:false,data:null,error:null};
-    fetch(path,{cache:'no-store'}).then(r=>{if(!r.ok)throw new Error(`${path} HTTP ${r.status}`);return r.json()}).then(data=>{
-      assessmentCache[id]={loading:false,loaded:true,data,error:null};
-      schedule(0);
-    }).catch(error=>{
-      assessmentCache[id]={loading:false,loaded:true,data:null,error:String(error?.message||error)};
-      schedule(0);
-    });
+    if(!path)return Promise.resolve(null);
+    const cached=assessmentCache[id];
+    if(cached?.loaded)return Promise.resolve(cached.data||null);
+    if(cached?.promise)return cached.promise;
+    const entry={loading:true,loaded:false,data:null,error:null,promise:null};
+    entry.promise=fetch(path,{cache:'no-store'})
+      .then(r=>{if(!r.ok)throw new Error(`${path} HTTP ${r.status}`);return r.json()})
+      .then(data=>{
+        assessmentCache[id]={loading:false,loaded:true,data,error:null,promise:Promise.resolve(data)};
+        schedule(0);
+        return data;
+      })
+      .catch(error=>{
+        assessmentCache[id]={loading:false,loaded:true,data:null,error:String(error?.message||error),promise:Promise.resolve(null)};
+        schedule(0);
+        return null;
+      });
+    assessmentCache[id]=entry;
+    return entry.promise;
   }
   function ensureAssessment(id){
-    if(id&&ASSESSMENT_SOURCES[id])loadAssessment(id);
-    return id?assessmentCache[id]||null:null;
+    return id&&ASSESSMENT_SOURCES[id]?loadAssessment(id):Promise.resolve(null);
   }
   function slides(){return $$('.e129-slide').filter(x=>x.offsetParent!==null)}
   function rolesForRecord(rec){return new Set((rec?.slides||[]).map(s=>String(s?.role||'').toLowerCase()).filter(Boolean))}
@@ -501,12 +510,17 @@
     render();return true;
   }
   function openLessonCheck(){
-    const cur=currentLesson();ensureAssessment(cur.id);
-    const rec=currentRecord(),steps=stepsForRecord(rec);
-    const self=steps.find(x=>x.id==='selfcheck');
-    if(self)activate(self.id);
-    else render();
-    setTimeout(()=>$('.math-lf-check')?.scrollIntoView({behavior:'smooth',block:'center'}),80);
+    const cur=currentLesson();
+    const show=()=>{
+      const rec=currentRecord(),steps=stepsForRecord(rec);
+      const self=steps.find(x=>x.id==='selfcheck');
+      if(self)activate(self.id);
+      else render();
+      setTimeout(()=>$('.math-lf-check')?.scrollIntoView({behavior:'smooth',block:'center'}),80);
+    };
+    const pending=ensureAssessment(cur.id);
+    if(assessmentCache[cur.id]?.loaded)show();
+    else pending.finally(show);
   }
   function completeLesson(){
     const cur=currentLesson(),rec=currentRecord(),gate=completionState(cur.id,rec);
@@ -603,7 +617,7 @@
     if(!document.body||document.body.dataset.mathLearningFlow==='1')return;
     document.body.dataset.mathLearningFlow='1';bind();refresh();
     [350,850,1600,2800].forEach(ms=>setTimeout(refresh,ms));
-    global.BAUMAN_MATH_LEARNING_FLOW={release:RELEASE,refresh,activate,toggleBookmark,toggleNotes,openContextLab,openLessonCheck,completeLesson,resume,resumePointer,resumeSnapshot,reviewQueue,snapshot,lessonSnapshot,chapterSnapshot,completionState,checkSummary,selfCheck};
+    global.BAUMAN_MATH_LEARNING_FLOW={release:RELEASE,refresh,activate,toggleBookmark,toggleNotes,openContextLab,openLessonCheck,completeLesson,resume,resumePointer,resumeSnapshot,reviewQueue,snapshot,lessonSnapshot,chapterSnapshot,completionState,checkSummary,ensureAssessment,selfCheck};
   }
   if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',init,{once:true});else init();
 })(window);
