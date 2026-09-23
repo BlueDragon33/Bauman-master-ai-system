@@ -132,6 +132,10 @@ try{
   });
   await noSpeechPage.goto(url,{waitUntil:'domcontentloaded',timeout:30000});
   await noSpeechPage.waitForSelector('#nav [data-view="writing"]',{timeout:30000});
+  const mobileNavToggle=noSpeechPage.locator('.rf-sidebar-toggle');
+  await mobileNavToggle.waitFor({state:'visible',timeout:10000});
+  await mobileNavToggle.click();
+  await noSpeechPage.waitForFunction(()=>document.body.classList.contains('rf-sidebar-open'),null,{timeout:5000});
   await noSpeechPage.click('#nav [data-view="writing"]');
   await noSpeechPage.waitForSelector('.hand-listen-write-card',{timeout:15000});
   assert.equal(await noSpeechPage.locator('[data-act="hand-speak-name"]').isDisabled(),true,'Speech-unavailable name control must be disabled');
