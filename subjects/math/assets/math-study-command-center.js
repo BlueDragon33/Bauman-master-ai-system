@@ -55,7 +55,7 @@
   function decorateWorkbench(){
     const host=$('#mathActivityStudio');if(!host||!document.body.classList.contains('math-activity-studio-active'))return;
     const saved=notes(),active=session();
-    $('.math-activity-card',host).forEach((card,index)=>{
+    $$('.math-activity-card',host).forEach((card,index)=>{
       const role=card.querySelector('.role')?.textContent?.trim()||'activity',title=card.querySelector('h4')?.textContent?.trim()||'item';
       const key=card.dataset.sccKey||`${currentLessonId()}::${currentActivity()}::${hash(`${role}|${title}|${index}`)}`;card.dataset.sccKey=key;
       let box=$('.math-workbench',card);
@@ -99,7 +99,7 @@
     const p=parseKey(key);if(!p.lessonId||!selectCanonicalLesson(p.lessonId))return;
     const activity=['exercises','practice','application','review','exam'].includes(p.activity)?p.activity:'theory';
     setTimeout(()=>global.BAUMAN_MATH_NAVIGATION?.route?.(activity),160);
-    setTimeout(()=>{const card=$('.math-activity-card').find(x=>x.dataset.sccKey===key);if(card){card.classList.add('math-scc-focus');card.scrollIntoView({behavior:'smooth',block:'center'});setTimeout(()=>card.classList.remove('math-scc-focus'),2600)}},620);
+    setTimeout(()=>{const card=$$('.math-activity-card').find(x=>x.dataset.sccKey===key);if(card){card.classList.add('math-scc-focus');card.scrollIntoView({behavior:'smooth',block:'center'});setTimeout(()=>card.classList.remove('math-scc-focus'),2600)}},620);
   }
   function openProfessor(){global.BAUMAN_MATH_PROFESSOR_DRILL?.open?.()}
   function openFormula(){global.BAUMAN_MATH_FORMULA_LIBRARY?.open?.()||global.BAUMAN_MATH_NAVIGATION?.route?.('formula')}
