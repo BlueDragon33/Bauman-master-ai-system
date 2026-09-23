@@ -21,13 +21,33 @@
   let speakingPromise=null;
   function write(){state.updatedAt=now();try{localStorage.setItem(STORAGE_KEY,JSON.stringify(state))}catch(e){console.warn('Russian vocab SRS save failed',e)};window.dispatchEvent(new CustomEvent('russian:vocab-srs',{detail:{state}}));scheduleRender();}
   function scheduleRender(){if(renderQueued)return;renderQueued=true;requestAnimationFrame(()=>{renderQueued=false;render();});}
-  const indexNow=()=>Math.max(0,Number(readCore().vocabIndex)||0);
-  const keyFor=index=>`vocab:${Math.max(0,Number(index)||0)}`;
-  function termNow(){const host=document.querySelector('.vocab-card-panel,.v1310-vocab-main');return clean(host?.dataset.vocabTerm)||clean(document.querySelector('.v1310-vocab-top h3,.vocab-card-panel .term')?.textContent)||`Thẻ ${indexNow()+1}`;}
-  const routeFor=index=>({view:'vocab',vocabIndex:Number(index)||0,vocabPage:Math.floor((Number(index)||0)/20)});
+  const cardHost=()=>document.querySelector('.vocab-card-panel,.v1310-vocab-main');
+  const filteredIndexNow=()=>Math.max(0,Number(readCore().vocabIndex)||0);
+  const sourceIndexNow=()=>Math.max(0,Number(cardHost()?.dataset.vocabSourceIndex??filteredIndexNow())||0);
+  const stageIndexNow=()=>Math.max(0,Number(cardHost()?.dataset.vocabStageIndex??filteredIndexNow())||0);
+  const sourceIdNow=()=>clean(cardHost()?.dataset.vocabKey);
+  const stageNow=()=>clean(readCore().stage)||'vn';
+  const indexNow=stageIndexNow;
+  const legacyKeyFor=index=>`vocab:${Math.max(0,Number(index)||0)}`;
+  const keyFor=()=>sourceIdNow()?`vocab-id:${sourceIdNow()}`:`vocab-stage:${stageNow()}:${stageIndexNow()}`;
+  function currentMeta(){return {key:keyFor(),sourceId:sourceIdNow(),sourceIndex:sourceIndexNow(),stageIndex:stageIndexNow(),stage:stageNow(),term:termNow()};}
+  function termNow(){const host=cardHost();return clean(host?.dataset.vocabTerm)||clean(document.querySelector('.v1310-vocab-top h3,.vocab-card-panel .term')?.textContent)||`Thẻ ${stageIndexNow()+1}`;}
+  const routeFor=(index,card={})=>({view:'vocab',vocabStage:clean(card.stage)||stageNow(),vocabKey:clean(card.sourceId)||'',vocabQuery:'',vocabIndex:clean(card.sourceId)?0:(Number(index)||0),vocabPage:clean(card.sourceId)?0:Math.floor((Number(index)||0)/20)});
   function plusDays(days){const d=new Date();d.setDate(d.getDate()+Number(days||0));return d.toISOString();}
-  function dueCards(){const t=Date.now();return Object.values(state.cards).filter(x=>x?.dueAt&&Date.parse(x.dueAt)<=t).sort((a,b)=>Date.parse(a.dueAt)-Date.parse(b.dueAt));}
-  function scheduledCards(){const t=Date.now();return Object.values(state.cards).filter(x=>x?.dueAt&&Date.parse(x.dueAt)>t).sort((a,b)=>Date.parse(a.dueAt)-Date.parse(b.dueAt));}
+  function dueCards(){const t=Date.now();return Object.values(state.cards).filter(x=>!x?.migratedTo&&x?.dueAt&&Date.parse(x.dueAt)<=t).sort((a,b)=>Date.parse(a.dueAt)-Date.parse(b.dueAt));}
+  function scheduledCards(){const t=Date.now();return Object.values(state.cards).filter(x=>!x?.migratedTo&&x?.dueAt&&Date.parse(x.dueAt)>t).sort((a,b)=>Date.parse(a.dueAt)-Date.parse(b.dueAt));}
+  function stableCard(meta=currentMeta()){
+    if(state.cards[meta.key])return state.cards[meta.key];
+    const core=readCore(),legacyKey=legacyKeyFor(meta.stageIndex),legacy=state.cards[legacyKey];
+    if(!core.vocabQuery&&!core.vocabFocusKey&&legacy&&!legacy.migratedTo&&clean(legacy.stage)===meta.stage){
+      const migrated={...legacy,key:meta.key,index:meta.stageIndex,stageIndex:meta.stageIndex,sourceIndex:meta.sourceIndex,sourceId:meta.sourceId,stage:meta.stage,migratedFrom:legacyKey};
+      state.cards[meta.key]=migrated;
+      state.cards[legacyKey]={...legacy,migratedTo:meta.key};
+      try{localStorage.setItem(STORAGE_KEY,JSON.stringify({...state,updatedAt:now()}))}catch(_){}
+      return migrated;
+    }
+    return {};
+  }
   function sentencesFor(key){return Object.values(state.sentences).filter(x=>x?.vocabKey===key).sort((a,b)=>Date.parse(b.savedAt||0)-Date.parse(a.savedAt||0));}
   function formatDue(iso){
     if(!iso)return 'Chưa lên lịch';
@@ -45,7 +65,7 @@
   function flowMode(){return FLOW.includes(state.flowMode)?state.flowMode:'discover';}
   function setFlowMode(mode){
     if(!FLOW.includes(mode))return;
-    state.flowMode=mode;state.drill={key:keyFor(indexNow()),mode,answer:'',result:null};
+    state.flowMode=mode;state.drill={key:keyFor(),mode,answer:'',result:null};
     notice='';write();
   }
   function visibleCandidateTerms(){
@@ -58,21 +78,21 @@
     const others=unique.filter(x=>normalizeAnswer(x)!==normalizeAnswer(current)).sort((a,b)=>hash(a)-hash(b)).slice(0,3);
     return [current,...others].sort((a,b)=>hash(a+'x')-hash(b+'x'));
   }
-  function ensureExposure(key,index,term){
-    const prev=state.cards[key]||{};
+  function ensureExposure(key,index,term,meta=currentMeta()){
+    const prev=stableCard(meta);
     if(prev.exposedAt)return prev;
-    const next={...prev,key,index,term,exposedAt:now(),exposure:'visual_audio_context'};
+    const next={...prev,key,index,stageIndex:meta.stageIndex,sourceIndex:meta.sourceIndex,sourceId:meta.sourceId,stage:meta.stage,term,exposedAt:now(),exposure:'visual_audio_context'};
     state.cards[key]=next;
     try{localStorage.setItem(STORAGE_KEY,JSON.stringify({...state,updatedAt:now()}))}catch(_){}
     return next;
   }
   function drillResult(){
     const d=state.drill||{};
-    if(d.key!==keyFor(indexNow())||d.mode!==flowMode())return null;
+    if(d.key!==keyFor()||d.mode!==flowMode())return null;
     return d.result||null;
   }
   function setDrillResult(answer,ok){
-    state.drill={key:keyFor(indexNow()),mode:flowMode(),answer:clean(answer),result:ok?'correct':'wrong'};
+    state.drill={key:keyFor(),mode:flowMode(),answer:clean(answer),result:ok?'correct':'wrong'};
     notice=ok?'Đúng. Chuyển sang bước kế tiếp khi bạn sẵn sàng.':'Chưa đúng. Nghe/nhìn lại rồi thử thêm một lượt.';
     write();
   }
@@ -118,7 +138,7 @@
   }
   function rate(kind){
     if(!['forgot','unsure','recalled'].includes(kind))return;
-    const index=indexNow(), key=keyFor(index), prev=state.cards[key]||{}, at=now(), term=termNow();
+    const meta=currentMeta(),index=meta.stageIndex,key=meta.key,prev=stableCard(meta),at=now(),term=meta.term;
     if(!prev.exposedAt){setNotice('Thẻ này chưa được học. Hãy bắt đầu từ Khám phá trước khi đưa vào SRS.');return;}
     let successStreak=Number(prev.successStreak||0), lapses=Number(prev.lapses||0), dueAt=at, reason='srs_forgot', gapDays=0;
     if(kind==='forgot'){
@@ -129,9 +149,9 @@
       successStreak+=1;gapDays=GAPS[Math.min(Math.max(0,successStreak-1),GAPS.length-1)]||1;dueAt=plusDays(gapDays);reason='srs_scheduled_recall';
     }
     const ratings={forgot:Number(prev.ratings?.forgot||0),unsure:Number(prev.ratings?.unsure||0),recalled:Number(prev.ratings?.recalled||0)};ratings[kind]++;
-    state.cards[key]={...prev,key,index,term,firstReviewedAt:prev.firstReviewedAt||at,lastReviewedAt:at,lastRating:kind,ratings,reviewCount:Number(prev.reviewCount||0)+1,successStreak,lapses,gapDays,dueAt,reason,stage:clean(readCore().stage)||prev.stage||''};
+    state.cards[key]={...prev,key,index,stageIndex:meta.stageIndex,sourceIndex:meta.sourceIndex,sourceId:meta.sourceId,term,firstReviewedAt:prev.firstReviewedAt||at,lastReviewedAt:at,lastRating:kind,ratings,reviewCount:Number(prev.reviewCount||0)+1,successStreak,lapses,gapDays,dueAt,reason,stage:meta.stage};
     write();
-    window.RussianLearningState?.addReview?.(key,reason,routeFor(index),`Từ vựng · ${term}`,dueAt);
+    window.RussianLearningState?.addReview?.(key,reason,routeFor(index,state.cards[key]),`Từ vựng · ${term}`,dueAt);
     if(sessionStorage.getItem(ACTIVE_DUE_KEY)===key)sessionStorage.removeItem(ACTIVE_DUE_KEY);
     markLearningEvidence(kind);
     const label=kind==='forgot'?'Đã giữ thẻ ở hàng ôn ngay':kind==='unsure'?`Đã hẹn ôn lại sau ${gapDays} ngày`:`Đã hẹn ôn lại sau ${gapDays} ngày`;
@@ -139,21 +159,22 @@
   }
   function abandonActiveDue(){
     const active=sessionStorage.getItem(ACTIVE_DUE_KEY);if(!active)return;
-    const index=indexNow(), key=keyFor(index);if(active!==key){sessionStorage.removeItem(ACTIVE_DUE_KEY);return;}
-    const prev=state.cards[key]||{};const at=now();
-    state.cards[key]={...prev,key,index,term:prev.term||termNow(),abandoned:Number(prev.abandoned||0)+1,dueAt:at,reason:'abandoned',lastAbandonedAt:at};
-    write();window.RussianLearningState?.addReview?.(key,'abandoned',routeFor(index),`Từ vựng bỏ dở · ${prev.term||termNow()}`,at);sessionStorage.removeItem(ACTIVE_DUE_KEY);
+    const meta=currentMeta(),index=meta.stageIndex,key=meta.key;if(active!==key){sessionStorage.removeItem(ACTIVE_DUE_KEY);return;}
+    const prev=stableCard(meta);const at=now();
+    state.cards[key]={...prev,key,index,stageIndex:meta.stageIndex,sourceIndex:meta.sourceIndex,sourceId:meta.sourceId,stage:meta.stage,term:prev.term||meta.term,abandoned:Number(prev.abandoned||0)+1,dueAt:at,reason:'abandoned',lastAbandonedAt:at};
+    write();window.RussianLearningState?.addReview?.(key,'abandoned',routeFor(index,state.cards[key]),`Từ vựng bỏ dở · ${prev.term||meta.term}`,at);sessionStorage.removeItem(ACTIVE_DUE_KEY);
   }
-  function openIndex(index,markDue=false){
-    const target=Math.max(0,Number(index)||0), core=readCore();
-    if((core.view||'')==='vocab'){
-      const visible=document.querySelector(`[data-vocab="${target}"]`);
-      if(visible){visible.click();if(markDue)sessionStorage.setItem(ACTIVE_DUE_KEY,keyFor(target));return;}
+  function openIndex(index,markDue=false,card=null){
+    const target=Math.max(0,Number(index)||0),core=readCore(),item=card||{};
+    const activeKey=clean(item.key)||legacyKeyFor(target);
+    if((core.view||'')==='vocab'&&!core.vocabQuery&&!core.vocabFocusKey){
+      const visible=document.querySelector(`[data-vocab-stage-index="${target}"]`);
+      if(visible){visible.click();if(markDue)sessionStorage.setItem(ACTIVE_DUE_KEY,activeKey);return;}
     }
-    const next={...core,view:'vocab',vocabIndex:target,vocabPage:Math.floor(target/20),vocabFlipped:false};
-    try{localStorage.setItem(CORE_KEY,JSON.stringify(next));if(markDue)sessionStorage.setItem(ACTIVE_DUE_KEY,keyFor(target));location.reload();}catch(e){console.warn('Cannot open vocab index',e)}
+    const next={...core,view:'vocab',stage:clean(item.stage)||core.stage||'vn',vocabFocusKey:clean(item.sourceId),vocabQuery:'',vocabIndex:clean(item.sourceId)?0:target,vocabPage:clean(item.sourceId)?0:Math.floor(target/20),vocabFlipped:false};
+    try{localStorage.setItem(CORE_KEY,JSON.stringify(next));if(markDue)sessionStorage.setItem(ACTIVE_DUE_KEY,activeKey);location.reload();}catch(e){console.warn('Cannot open vocab index',e)}
   }
-  function openNextDue(){const item=dueCards()[0];if(!item){setNotice('Hiện không có thẻ nào đến hạn.');return;}openIndex(item.index,true);}
+  function openNextDue(){const item=dueCards()[0];if(!item){setNotice('Hiện không có thẻ nào đến hạn.');return;}openIndex(item.stageIndex??item.index,true,item);}
   async function loadVocabItem(index){
     if(!vocabPromise)vocabPromise=fetch('data/vocab.json',{cache:'force-cache'}).then(r=>r.ok?r.json():Promise.reject(new Error('Không đọc được vocab.json')));
     try{const data=await vocabPromise;return Array.isArray(data)?data[index]||null:null;}finally{setTimeout(()=>{vocabPromise=null;},0);}
@@ -161,20 +182,20 @@
   function normalized(item){return A.normalizeVocab?A.normalizeVocab(item):{term:clean(item?.ru||item?.phrase_ru||item?.front),meaningVi:clean(item?.meaning_vi||item?.vi),english:clean(item?.clue_en),meaningRu:clean(item?.meaning_ru||item?.meaning),stage:clean(item?.stage),tags:Array.isArray(item?.tags)?item.tags:[]};}
   function saveSentence(entry){state.sentences[entry.id]=entry;write();markLearningEvidence('');}
   async function mineSource(){
-    const index=indexNow(), key=keyFor(index);setNotice('Đang kiểm tra câu nguồn của thẻ…');
+    const meta=currentMeta(),index=meta.stageIndex,key=meta.key;setNotice('Đang kiểm tra câu nguồn của thẻ…');
     try{
-      const item=await loadVocabItem(index);if(!item){setNotice('Không tìm thấy dữ liệu nguồn của thẻ này.');return;}
+      const item=await loadVocabItem(meta.sourceIndex);if(!item){setNotice('Không tìm thấy dữ liệu nguồn của thẻ này.');return;}
       const n=normalized(item), sentence=clean(item.example||item.example_ru||''), term=clean(n.term||termNow());
       if(!sentence||lower(sentence)===lower(term)){setNotice('Nguồn của thẻ này chỉ lặp lại chính từ/cụm, nên không lưu như một câu ngữ cảnh.');return;}
-      const id=`source:${key}`;saveSentence({id,vocabKey:key,index,term,sentence,meaning:clean(n.meaningRu||''),source:'vocab.example',stage:clean(n.stage),tags:Array.isArray(n.tags)?n.tags:[],savedAt:state.sentences[id]?.savedAt||now()});
+      const id=`source:${key}`;saveSentence({id,vocabKey:key,index,stageIndex:meta.stageIndex,sourceIndex:meta.sourceIndex,sourceId:meta.sourceId,term,sentence,meaning:clean(n.meaningRu||''),source:'vocab.example',stage:clean(n.stage)||meta.stage,tags:Array.isArray(n.tags)?n.tags:[],savedAt:state.sentences[id]?.savedAt||now()});
       setNotice('Đã lưu câu ví dụ thật từ dữ liệu nguồn vào Sentence Mining.');
     }catch(e){setNotice('Không thể đọc câu nguồn: '+clean(e?.message||e));}
   }
   function mineUser(){
     const input=document.getElementById('ruVocabMineInput'), sentence=clean(input?.value);if(!sentence){setNotice('Nhập một câu tiếng Nga trước khi lưu.');return;}
     if(!/[А-Яа-яЁё]/.test(sentence)){setNotice('Câu tự lưu cần có chữ Cyrillic để tránh biến phiên tự Latin thành câu tiếng Nga.');return;}
-    const index=indexNow(), key=keyFor(index), term=termNow(), id=`user:${key}:${Date.now()}`;
-    saveSentence({id,vocabKey:key,index,term,sentence,source:'user_sentence',stage:clean(readCore().stage),savedAt:now()});if(input)input.value='';setNotice('Đã lưu câu của bạn. Câu tự viết được giữ tách biệt với dữ liệu nguồn.');
+    const meta=currentMeta(),index=meta.stageIndex,key=meta.key,term=meta.term,id=`user:${key}:${Date.now()}`;
+    saveSentence({id,vocabKey:key,index,stageIndex:meta.stageIndex,sourceIndex:meta.sourceIndex,sourceId:meta.sourceId,term,sentence,source:'user_sentence',stage:meta.stage,savedAt:now()});if(input)input.value='';setNotice('Đã lưu câu của bạn. Câu tự viết được giữ tách biệt với dữ liệu nguồn.');
   }
   function deleteSentence(id){if(state.sentences[id]){delete state.sentences[id];write();setNotice('Đã bỏ câu khỏi Sentence Mining.');}}
   async function loadSpeaking(){
@@ -182,7 +203,7 @@
     try{return await speakingPromise;}finally{setTimeout(()=>{speakingPromise=null;},0);}
   }
   async function findSpeakingLinks(){
-    const index=indexNow(), key=keyFor(index), card=state.cards[key]||{}, term=lower(termNow());if(!term)return;
+    const meta=currentMeta(),index=meta.stageIndex,key=meta.key,card=stableCard(meta),term=lower(meta.term);if(!term)return;
     setNotice('Đang kiểm tra exact vocabulary seed trong kho Nghe/Nói…');
     try{
       const data=await loadSpeaking();const matches=(Array.isArray(data)?data:[]).filter(item=>Array.isArray(item?.vocabulary_seed_ru)&&item.vocabulary_seed_ru.some(x=>lower(x)===term)).slice(0,20).map(item=>({id:clean(item.id||item.title),lessonId:clean(item.lessonId||item.lesson_id||item.routeId||item.chapterId),title:clean(item.title||item.context_title_vi||item.title_ru||item.id)})).filter(x=>x.id&&x.lessonId);
@@ -191,7 +212,7 @@
     }catch(e){setNotice('Không kiểm tra được kho Nghe/Nói: '+clean(e?.message||e));}
   }
   function openSpeaking(id){
-    const key=keyFor(indexNow()), card=state.cards[key]||{}, match=(card.speakingMatches||[]).find(x=>x.id===id);if(!match)return;
+    const meta=currentMeta(),key=meta.key,card=stableCard(meta),match=(card.speakingMatches||[]).find(x=>x.id===id);if(!match)return;
     const core=readCore(), next={...core,view:'learning',learnTab:'practice',lessonId:match.lessonId,practiceDialogueId:match.id,practiceLineIndex:0,practiceGroup:'all',practiceDifficulty:'all'};
     try{localStorage.setItem(CORE_KEY,JSON.stringify(next));window.RussianLearningState?.setResume?.({view:'learning',learnTab:'practice',lessonId:match.lessonId,practiceDialogueId:match.id,practiceLineIndex:0},'vocab_exact_seed');location.reload();}catch(e){console.warn('Cannot open speaking match',e)}
   }
@@ -207,9 +228,9 @@
   function render(){
     const core=readCore(), host=document.querySelector('.vocab-card-panel,.v1310-vocab-main');
     if((core.view||'')!=='vocab'||!host){document.getElementById('ruVocabSrs')?.remove();return;}
-    const index=indexNow(), key=keyFor(index), mode=flowMode(), term=termNow();
-    let card=state.cards[key]||{};
-    if(mode==='discover')card=ensureExposure(key,index,term);
+    const meta=currentMeta(),index=meta.stageIndex,key=meta.key,mode=flowMode(),term=meta.term;
+    let card=stableCard(meta);
+    if(mode==='discover')card=ensureExposure(key,index,term,meta);
     const due=dueCards(), scheduled=scheduledCards(), mined=sentencesFor(key), activeDue=sessionStorage.getItem(ACTIVE_DUE_KEY)===key;
     const shell=host.closest('.vocab-studio');host.dataset.vocabFlow=mode;if(shell)shell.dataset.vocabFlow=mode;
     let panel=document.getElementById('ruVocabSrs');
@@ -236,7 +257,7 @@
     const target=event.target;
     const cardMove=target.closest?.('[data-vocab],[data-act="next-vocab"],[data-act="prev-vocab"]');
     if(cardMove){state.flowMode='discover';state.drill={};try{localStorage.setItem(STORAGE_KEY,JSON.stringify({...state,updatedAt:now()}))}catch(_){}}
-        const indexed=routeWithVocabIndex(target);if(indexed){event.preventDefault();event.stopImmediatePropagation();openIndex(Number(indexed.vocabIndex)||0,false);return;}
+        const indexed=routeWithVocabIndex(target);if(indexed){event.preventDefault();event.stopImmediatePropagation();openIndex(Number(indexed.vocabIndex)||0,false,null);return;}
     const modeBtn=target.closest?.('[data-ru-vocab-mode]');if(modeBtn){event.preventDefault();setFlowMode(modeBtn.dataset.ruVocabMode);return;}
     const choice=target.closest?.('[data-ru-vocab-choice]');if(choice){event.preventDefault();checkChoice(choice.dataset.ruVocabChoice);return;}
     if(target.closest?.('[data-ru-vocab-play]')){event.preventDefault();playCoreVocab();return;}
