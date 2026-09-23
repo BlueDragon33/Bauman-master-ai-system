@@ -88,19 +88,31 @@
     input.dataset.rfSearchBound='1';
     const keyHint=input.closest('.ru-global-search-wrap')?.querySelector('kbd');
     if(keyHint)keyHint.textContent=/Mac|iPhone|iPad/i.test(navigator.platform||navigator.userAgent||'')?'⌘ K':'Ctrl K';
-    const close=()=>hints.classList.add('hidden');
+    const close=()=>{hints.classList.add('hidden');input.setAttribute('aria-expanded','false')};
     const choose=item=>{runSearchResult(item);input.value='';close()};
     const paint=()=>{
       const matches=searchMatches(input.value);
       const grouped=new Map();
       matches.forEach((m,i)=>{const g=m.group||'KẾT QUẢ';if(!grouped.has(g))grouped.set(g,[]);grouped.get(g).push({m,i})});
-      hints.innerHTML=Array.from(grouped.entries()).map(([group,items])=>'<section class="rf-search-group"><b>'+esc(group)+'</b>'+items.map(({m,i})=>'<button type="button" data-rf-search-index="'+i+'"><span>'+esc(m.label)+'</span>'+(m.meta?'<small>'+esc(m.meta)+'</small>':'')+'</button>').join('')+'</section>').join('');
+      hints.innerHTML=Array.from(grouped.entries()).map(([group,items])=>'<section class="rf-search-group" role="group" aria-label="'+esc(group)+'"><b>'+esc(group)+'</b>'+items.map(({m,i})=>'<button type="button" role="option" data-rf-search-index="'+i+'"><span>'+esc(m.label)+'</span>'+(m.meta?'<small>'+esc(m.meta)+'</small>':'')+'</button>').join('')+'</section>').join('');
       hints.classList.toggle('hidden',!matches.length);
+      input.setAttribute('aria-expanded',matches.length?'true':'false');
       Array.from(hints.querySelectorAll('button')).forEach(b=>{const i=Number(b.dataset.rfSearchIndex);b.addEventListener('click',()=>choose(matches[i]),{once:true})});
     };
     input.addEventListener('input',paint);
     input.addEventListener('focus',paint);
-    input.addEventListener('keydown',e=>{if(e.key==='Enter'){const m=searchMatches(input.value)[0];if(m){e.preventDefault();choose(m)}}if(e.key==='Escape')close()});
+    input.addEventListener('keydown',e=>{
+      if(e.key==='Enter'){const m=searchMatches(input.value)[0];if(m){e.preventDefault();choose(m)}return}
+      if(e.key==='ArrowDown'){const first=hints.querySelector('button');if(first&&!hints.classList.contains('hidden')){e.preventDefault();first.focus()}return}
+      if(e.key==='Escape')close();
+    });
+    hints.addEventListener('keydown',e=>{
+      const buttons=Array.from(hints.querySelectorAll('button'));const current=e.target.closest?.('button');const i=buttons.indexOf(current);
+      if(e.key==='Escape'){e.preventDefault();close();input.focus();return}
+      if(e.key==='ArrowDown'&&i>=0){e.preventDefault();buttons[(i+1)%buttons.length]?.focus();return}
+      if(e.key==='ArrowUp'&&i>=0){e.preventDefault();(i===0?input:buttons[i-1])?.focus();return}
+      if(e.key==='Enter'&&i>=0){e.preventDefault();current.click()}
+    });
     document.addEventListener('keydown',e=>{if((e.ctrlKey||e.metaKey)&&e.key.toLowerCase()==='k'){e.preventDefault();input.focus();input.select()}});
     document.addEventListener('click',e=>{if(!e.target.closest('.ru-global-search-wrap'))close()});
   }
