@@ -6,6 +6,7 @@ const {chromium}=await import(process.env.BAUMAN_PLAYWRIGHT_MODULE||'playwright'
 const BASE=process.env.BAUMAN_E2E_BASE_URL||'http://127.0.0.1:4173/';
 const OUT=process.env.BAUMAN_E2E_ARTIFACT_DIR||'artifacts/math-study-command-center';
 const LESSON='MATH-VN-C01-vector_trong_khong_gian_-L05-subspace-data-representation-e140';
+const STATE_KEY='bauman_math_learning_flow_v1';
 const NOTES_KEY='bauman_math_activity_notes_v1';
 const SESSION_KEY='bauman_math_activity_session_v1';
 const report={status:'RUNNING',lessonId:LESSON,consoleErrors:[],pageErrors:[],failedRequests:[],httpErrors:[],checks:{}};
@@ -49,17 +50,22 @@ try{
   await page.waitForSelector(`[data-current-lesson="${LESSON}"]`,{timeout:10000});
   await page.waitForFunction(id=>window.BAUMAN_MATH_LEARNING_FLOW?.selfCheck?.().lessonId===id,LESSON,{timeout:10000});
 
-  // Create one real weak point through canonical Lesson Check instead of writing a retired mastery store.
-  const steps=await page.evaluate(()=>window.BAUMAN_MATH_LEARNING_FLOW.selfCheck().sourceDrivenSteps);
-  for(const step of steps)await page.evaluate(id=>window.BAUMAN_MATH_LEARNING_FLOW.activate(id),step);
-  await page.evaluate(()=>window.BAUMAN_MATH_LEARNING_FLOW.openLessonCheck());
-  await page.waitForSelector('.math-lf-check-item',{timeout:10000});
-  const checkCount=await page.locator('.math-lf-check-item').count();
-  assert.ok(checkCount>=1,'L05 Lesson Check has no source-backed item');
-  await page.locator('.math-lf-check-item').nth(0).locator('[data-lf-check-state="review"]').click();
-  for(let i=1;i<checkCount;i++)await page.locator('.math-lf-check-item').nth(i).locator('[data-lf-check-state="understood"]').click();
+  // Seed the canonical learner-state store using real Lesson Check IDs.
+  // This test validates Command Center projection; UI interaction is covered by math-learning-journey-browser.mjs.
+  const sourceCheck=await page.evaluate(id=>window.BAUMAN_MATH_LEARNING_FLOW.checkSummary(id),LESSON);
+  assert.ok(sourceCheck.total>=1,'L05 has no source-backed Lesson Check items');
+  const checkCount=sourceCheck.total;
+  await page.evaluate(({lessonId,stateKey,items})=>{
+    const all=JSON.parse(localStorage.getItem(stateKey)||'{}');
+    const now=Date.now();
+    const check={};items.forEach((item,index)=>{check[item.id]=index===0?'review':'understood'});
+    all[lessonId]={...(all[lessonId]||{}),active:'selfcheck',visited:{...((all[lessonId]||{}).visited||{}),selfcheck:true},check,lastAt:now};
+    all._meta={...(all._meta||{}),schemaVersion:2,currentLessonId:lessonId,currentStepId:'selfcheck',lastActivityAt:now};
+    localStorage.setItem(stateKey,JSON.stringify(all));
+    window.BAUMAN_MATH_LEARNING_FLOW.refresh();
+  },{lessonId:LESSON,stateKey:STATE_KEY,items:sourceCheck.items});
   const checkState=await page.evaluate(id=>window.BAUMAN_MATH_LEARNING_FLOW.checkSummary(id),LESSON);
-  assert.equal(checkState.review,1,'Lesson Check did not persist one review item');
+  assert.equal(checkState.review,1,'Canonical fixture did not create exactly one review item');
 
   await page.evaluate(()=>window.BAUMAN_MATH_NAVIGATION.route('review'));
   await page.waitForFunction(()=>document.body.dataset.mathPrimaryRoute==='review',null,{timeout:10000});
