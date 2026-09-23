@@ -67,3 +67,33 @@ body.math-ws-focus #mathPremiumDashboard,body.math-ws-focus #mathV2Dashboard{dis
   #mathLearningFlow{margin-bottom:8px}.math-lf-head{grid-template-columns:1fr;padding:10px}.math-lf-head-actions{overflow:auto}.math-lf-steps{padding:7px;grid-auto-columns:110px}.math-lf-context{grid-template-columns:1fr}.math-lf-context-right{overflow:auto}.math-lf-studybar{left:7px;right:7px;bottom:7px;transform:none;width:auto;grid-template-columns:auto minmax(0,1fr) auto}.math-lf-studybar .math-lf-study-buttons button span{display:none}.math-lf-studybar button{padding:0 8px}.math-lf-title-copy h3{font-size:12px}.math-lf-context-left{display:none}
 }
 @media(max-width:480px){.math-lf-studybar{grid-template-columns:auto 1fr auto}.math-lf-study-current small{display:none}.math-lf-study-current b{font-size:9px}.math-lf-head-actions button{padding:6px 7px}.math-lf-step{min-width:104px}}
+
+
+/* L14 · Lesson Check + completion */
+.math-lf-complete-badge{display:inline-flex;margin-top:6px;padding:4px 7px;border:1px solid rgba(66,214,158,.24);border-radius:999px;background:rgba(25,112,82,.13);color:#72deb5;font-size:7.5px;font-weight:900;letter-spacing:.04em}
+.math-lf-check{display:grid;gap:9px;padding:11px;border-top:1px solid rgba(89,158,211,.12);background:rgba(3,15,29,.48)}
+.math-lf-check-head{display:flex;justify-content:space-between;gap:14px;align-items:flex-start}
+.math-lf-check-head>div>span,.math-lf-check-empty span{display:block;color:#69cfff;font-size:7.5px;font-weight:950;letter-spacing:.14em}
+.math-lf-check-head h4{margin:4px 0 0;color:#e9f5fd;font-size:12px}
+.math-lf-check-head p,.math-lf-check-empty p{margin:4px 0 0;color:#6f8ca3;font-size:8.5px;line-height:1.5}
+.math-lf-check-head aside{min-width:94px;text-align:right}
+.math-lf-check-head aside b{display:block;color:#f1cb69;font-size:18px}
+.math-lf-check-head aside span{display:block;margin-top:2px;color:#7895aa;font-size:8px}
+.math-lf-check-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:7px}
+.math-lf-check-item{display:grid;gap:7px;padding:10px;border:1px solid rgba(82,151,204,.13);border-radius:11px;background:rgba(6,25,44,.56)}
+.math-lf-check-item.assessed{border-color:rgba(72,178,231,.23)}
+.math-lf-check-item[data-check-status="review"]{border-color:rgba(235,178,75,.23);background:rgba(92,62,18,.10)}
+.math-lf-check-item header{display:flex;gap:8px;align-items:center}
+.math-lf-check-item header span{flex:none;color:#5ecbfa;font-size:7.5px;font-weight:900}
+.math-lf-check-item header b{color:#cfe0ec;font-size:8.5px}
+.math-lf-check-item>p{margin:0;color:#9cb2c3;font-size:9px;line-height:1.55}
+.math-lf-check-item details{border-top:1px solid rgba(80,149,199,.10);padding-top:6px}
+.math-lf-check-item summary{color:#6fcfff;font-size:8px;cursor:pointer}
+.math-lf-check-item details p{margin:6px 0 0;color:#8ca8bb;font-size:8.5px;line-height:1.5}
+.math-lf-check-source-note{padding:7px 8px;border:1px dashed rgba(88,151,198,.15);border-radius:8px;color:#637f95;font-size:7.5px;line-height:1.45}
+.math-lf-check-actions{display:flex;gap:6px}
+.math-lf-check-actions button{border:1px solid rgba(81,151,205,.15);border-radius:8px;background:rgba(8,30,51,.55);color:#91aabd;padding:6px 8px;font-size:8px;font-weight:850;cursor:pointer}
+.math-lf-check-actions button:hover,.math-lf-check-actions button.active{border-color:rgba(66,199,255,.35);background:rgba(20,103,155,.18);color:#e7f8ff}
+.math-lf-check-actions button.review.active{border-color:rgba(235,178,75,.36);background:rgba(125,83,21,.17);color:#f5cf78}
+.math-lf-check-empty>div{padding:9px 10px;border:1px dashed rgba(92,155,204,.16);border-radius:10px}
+@media(max-width:760px){.math-lf-check-grid{grid-template-columns:1fr}.math-lf-check-head{display:grid}.math-lf-check-head aside{text-align:left}}
