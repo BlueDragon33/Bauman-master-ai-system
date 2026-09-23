@@ -64,6 +64,41 @@ body.math-nav-ready .math-unified-nav-button.active{background:var(--mn-nav-acti
 .math-roadmap-loading,.math-roadmap-empty{min-height:220px;display:grid;place-items:center;align-content:center;gap:8px;padding:30px;border:1px dashed rgba(86,158,216,.18);border-radius:16px;color:#7895aa;text-align:center;}
 .math-roadmap-empty b{color:#dceefa;}
 
+/* Chapter overview */
+.math-chapter-shell{display:grid;gap:14px;max-width:1280px;margin:0 auto 32px;}
+.math-chapter-back{justify-self:start;border:0;background:transparent;color:#75cfff;padding:3px 0;font-size:9px;font-weight:850;cursor:pointer;}
+.math-chapter-head{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:22px;align-items:center;padding:22px;border:1px solid rgba(86,158,216,.17);border-radius:18px;background:linear-gradient(145deg,rgba(5,18,34,.94),rgba(8,28,49,.88));}
+.math-chapter-head>div>span,.math-chapter-context article>span,.math-chapter-lessons>header span{display:block;color:#69cfff;font-size:8px;font-weight:900;letter-spacing:.13em;text-transform:uppercase;}
+.math-chapter-head h2{margin:6px 0 7px;color:#f5f9ff;font-size:24px;line-height:1.3;}
+.math-chapter-head p{margin:0;max-width:850px;color:#8ea8bd;font-size:10.5px;line-height:1.65;}
+.math-chapter-head aside{min-width:160px;padding:13px 16px;border:1px solid rgba(75,178,239,.17);border-radius:14px;background:rgba(22,92,137,.10);text-align:center;}
+.math-chapter-head aside b{display:block;color:#f1ce73;font-size:25px;}
+.math-chapter-head aside span,.math-chapter-head aside strong{display:block;margin-top:3px;color:#7897ae;font-size:8px;}
+.math-chapter-head aside strong{color:#9fdcf3;}
+.math-chapter-context{display:grid;grid-template-columns:1.1fr 1fr 1fr;gap:10px;}
+.math-chapter-context article{padding:14px;border:1px solid rgba(84,156,214,.13);border-radius:14px;background:rgba(5,20,37,.66);}
+.math-chapter-context p{margin:8px 0 0;color:#91aabd;font-size:10px;line-height:1.6;}
+.math-chapter-context article>div{display:flex;gap:6px;flex-wrap:wrap;margin-top:9px;}
+.math-chapter-context i{font-style:normal;padding:5px 7px;border:1px solid rgba(83,158,214,.13);border-radius:8px;background:rgba(17,55,83,.25);color:#b5ccdc;font-size:8px;}
+.math-chapter-context em{font-style:normal;color:#6f899e;font-size:8px;}
+.math-chapter-source-note{padding:9px 11px;border-left:2px solid rgba(99,188,239,.32);color:#6f8da3;font-size:8.5px;line-height:1.5;}
+.math-chapter-lessons{display:grid;gap:8px;}
+.math-chapter-lessons>header{display:flex;justify-content:space-between;gap:12px;align-items:end;margin:2px 0 3px;}
+.math-chapter-lessons>header h3{margin:4px 0 0;color:#e8f4fc;font-size:16px;}
+.math-chapter-lessons>header>b{color:#7696ad;font-size:9px;}
+.math-chapter-lesson{display:grid;grid-template-columns:40px minmax(0,1fr) auto;gap:12px;align-items:center;padding:13px 14px;border:1px solid rgba(84,156,214,.13);border-radius:13px;background:rgba(5,20,37,.62);}
+.math-chapter-lesson[data-lesson-status="learning"]{border-color:rgba(63,183,255,.23);background:linear-gradient(135deg,rgba(10,48,78,.68),rgba(5,20,37,.64));}
+.math-chapter-lesson-no{width:34px;height:34px;display:grid;place-items:center;border-radius:10px;background:rgba(48,145,203,.09);color:#72cdf5;font-size:9px;font-weight:900;}
+.math-chapter-lesson-copy{min-width:0;}
+.math-chapter-lesson-title{display:flex;gap:8px;align-items:center;min-width:0;}
+.math-chapter-lesson-title span{flex:none;padding:3px 6px;border-radius:999px;border:1px solid rgba(87,155,211,.14);color:#809bb0;font-size:7px;font-weight:850;}
+.math-chapter-lesson-title h3{margin:0;color:#eaf5fd;font-size:12px;line-height:1.35;}
+.math-chapter-lesson-copy p{margin:4px 0 0;color:#708da3;font-size:8.5px;}
+.math-chapter-lesson-progress{height:4px;max-width:420px;margin-top:7px;overflow:hidden;border-radius:999px;background:rgba(255,255,255,.055);}
+.math-chapter-lesson-progress i{display:block;width:0;height:100%;border-radius:inherit;background:linear-gradient(90deg,#2db9ff,#4bdcb8);}
+.math-chapter-lesson>button{border:1px solid rgba(68,183,249,.24);border-radius:10px;background:rgba(17,116,185,.14);color:#dff5ff;padding:8px 10px;font-size:9px;font-weight:850;cursor:pointer;}
+.math-chapter-lesson>button:hover{background:rgba(17,116,185,.25);}
+
 /* Formula Focus drawer */
 .math-formula-focus{
   position:fixed;inset:0;z-index:95;display:none;place-items:center;padding:18px;background:rgba(1,7,16,.76);backdrop-filter:blur(12px);
@@ -114,7 +149,9 @@ body.math-nav-ready .math-unified-nav-button.active{background:var(--mn-nav-acti
   .math-formula-focus-body{grid-template-columns:1fr;}
   .math-formula-index{display:flex;overflow:auto;border-right:0;border-bottom:1px solid rgba(110,171,218,.12);}
   .math-formula-index button{min-width:180px;}
-  .math-roadmap-head,.math-roadmap-chapter{grid-template-columns:1fr;}
+  .math-roadmap-head,.math-roadmap-chapter,.math-chapter-head,.math-chapter-context,.math-chapter-lesson{grid-template-columns:1fr;}
+  .math-chapter-lesson-no{display:none;}
+  .math-chapter-lesson>button{width:100%;}
   .math-roadmap-head aside{min-width:0;text-align:left;}
   .math-roadmap-meta{min-width:0;}
 }
