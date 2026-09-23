@@ -223,6 +223,34 @@
   }
 
   function clearHighlights(){slides().forEach(x=>x.classList.remove('math-lf-highlight'))}
+  function clearReveals(){
+    $('.math-lf-reveal').forEach(x=>x.remove());
+    $('[data-e129-block-index][hidden]').forEach(x=>x.hidden=false);
+    $('.e129-slide[data-lf-reveal-level]').forEach(x=>x.removeAttribute('data-lf-reveal-level'));
+  }
+  function applyReveal(slide,level){
+    if(!slide)return;
+    const nodes=$('[data-e129-block-index]',slide);
+    nodes.forEach(node=>{
+      const index=Number(node.dataset.e129BlockIndex||0);
+      node.hidden=level==='all'?false:index>=Number(level);
+    });
+    slide.dataset.lfRevealLevel=String(level);
+    $('.math-lf-reveal button',slide).forEach(btn=>btn.classList.toggle('active',btn.dataset.lfReveal===String(level)));
+  }
+  function prepareExampleReveal(slide){
+    if(!slide)return false;
+    const indices=[...new Set($('[data-e129-block-index]',slide).map(x=>Number(x.dataset.e129BlockIndex||0)))].sort((a,b)=>a-b);
+    if(indices.length<=1)return false;
+    $('.math-lf-reveal',slide)?.remove();
+    const bar=document.createElement('div');
+    bar.className='math-lf-reveal';
+    bar.innerHTML=`<span>Tự giải trước khi mở toàn bộ</span><div><button type="button" data-lf-reveal="1">Chỉ phần mở đầu</button>${indices.length>2?'<button type="button" data-lf-reveal="2">Mở thêm 1 phần</button>':''}<button type="button" data-lf-reveal="all">Xem đầy đủ</button></div>`;
+    const firstHeading=Array.from(slide.children).find(x=>x.tagName==='H3');
+    if(firstHeading)firstHeading.after(bar);else slide.prepend(bar);
+    applyReveal(slide,1);
+    return true;
+  }
   function highlight(el){
     if(!el)return false;
     clearHighlights();el.classList.add('math-lf-highlight');el.scrollIntoView({behavior:'smooth',block:'center'});
@@ -233,15 +261,19 @@
     const step=steps.find(x=>x.id===stepId);if(!step)return;
     const persisted=writeLessonState(cur.id,{active:stepId,visited:{[stepId]:true}});
     if(!persisted){toast('Không lưu được tiến độ trên thiết bị. Trạng thái hoàn thành sẽ không được giả lập.');return;}
+    clearReveals();
     render();
     const hit=findSlideByRoles(step.roles||[],rec);
-    if(!highlight(hit))toast(`Bước ${step.label} chưa có nội dung riêng trong bài này.`);
+    if(!highlight(hit)){toast(`Bước ${step.label} chưa có nội dung riêng trong bài này.`);return;}
+    if(step.id==='example')prepareExampleReveal(hit);
   }
   function toggleNotes(){const cur=currentLesson();if(!cur.id)return;const st=lessonState(cur.id);writeLessonState(cur.id,{notesOpen:!st.notesOpen});render();setTimeout(()=>$('#mathLfNote')?.focus(),30)}
   function toggleFocus(){document.body.classList.toggle('math-ws-focus');toast(document.body.classList.contains('math-ws-focus')?'Đã bật chế độ tập trung':'Đã tắt chế độ tập trung')}
 
   function bind(){
     document.addEventListener('click',e=>{
+      const reveal=e.target.closest('[data-lf-reveal]');
+      if(reveal){e.preventDefault();applyReveal(reveal.closest('.e129-slide'),reveal.dataset.lfReveal);return;}
       const step=e.target.closest('[data-lf-step]');if(step){e.preventDefault();activate(step.dataset.lfStep);return;}
       const action=e.target.closest('[data-lf]')?.dataset.lf;
       if(action){
