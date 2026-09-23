@@ -128,6 +128,28 @@ try{
       assert.ok(slowUsesTts||slowUsesSource,'Slow vocabulary audio must use the same source/TTS audio path');
       const slowRate=slowUsesSource?slowAudio.audio.last?.rate:slowAudio.speech.last?.rate;
       assert.ok(Number(slowRate)<Number(normalRate),'Slow vocabulary audio must actually reduce playback rate');
+      const identity=await page.evaluate(()=>{
+        const panel=document.querySelector('.vocab-card-panel,.v1310-vocab-main');
+        return {key:panel?.dataset.vocabKey||'',sourceIndex:Number(panel?.dataset.vocabSourceIndex),stageIndex:Number(panel?.dataset.vocabStageIndex),term:panel?.dataset.vocabTerm||''};
+      });
+      assert.ok(identity.key,'Vocabulary card must expose a stable source key');
+      assert.ok(Number.isFinite(identity.sourceIndex)&&Number.isFinite(identity.stageIndex),'Vocabulary card must expose canonical source and stage indices');
+      await page.waitForFunction(key=>Boolean(window.RussianVocabSrs?.get?.().cards?.['vocab-id:'+key]),identity.key,{timeout:10000});
+      await page.evaluate(({term})=>{
+        const b=document.createElement('button');b.hidden=true;b.dataset.route=JSON.stringify({view:'vocab',vocabQuery:term,vocabKey:'',vocabIndex:0});document.body.appendChild(b);b.click();b.remove();
+      },identity);
+      await page.waitForFunction(key=>document.querySelector('.vocab-card-panel,.v1310-vocab-main')?.dataset.vocabKey===key,identity.key,{timeout:10000});
+      const filteredIdentity=await page.evaluate(()=>{
+        const panel=document.querySelector('.vocab-card-panel,.v1310-vocab-main');
+        return {key:panel?.dataset.vocabKey||'',sourceIndex:Number(panel?.dataset.vocabSourceIndex),stageIndex:Number(panel?.dataset.vocabStageIndex)};
+      });
+      assert.equal(filteredIdentity.key,identity.key,'Vocabulary identity must survive query filtering');
+      assert.equal(filteredIdentity.sourceIndex,identity.sourceIndex,'Canonical vocabulary source index must survive query filtering');
+      assert.equal(filteredIdentity.stageIndex,identity.stageIndex,'Stage-relative vocabulary index must survive query filtering');
+      await page.evaluate(({stageIndex})=>{
+        const b=document.createElement('button');b.hidden=true;b.dataset.route=JSON.stringify({view:'vocab',vocabQuery:'',vocabKey:'',vocabIndex:stageIndex});document.body.appendChild(b);b.click();b.remove();
+      },identity);
+      await page.waitForFunction(key=>document.querySelector('.vocab-card-panel,.v1310-vocab-main')?.dataset.vocabKey===key,identity.key,{timeout:10000});
     }
   }
 
