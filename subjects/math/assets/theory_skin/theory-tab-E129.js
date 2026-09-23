@@ -375,15 +375,16 @@
     }).join('');
   }
   function pillList(items){ items=arr(items).filter(Boolean); return items.length?'<div class="e129-pill-row">'+items.map(function(x){return '<span class="e129-pill">'+H(x)+'</span>';}).join('')+'</div>':'<p class="e129-muted">Chưa có dữ liệu lớp này trong khung.</p>'; }
-  function blockHtml(b){
-    if(!b || typeof b!=='object') return '<p>'+H(b)+'</p>';
-    var title=S(b.title||b.type||'Nội dung'); var body=S(b.body||b.content||b.text||'');
-    if((S(b.type).toLowerCase()==='formula') || /formula|công thức|ký hiệu/i.test(title)) return '<pre>'+H(title+'\n'+body)+'</pre>';
-    return '<h3>'+H(title)+'</h3><p>'+H(body||'Chưa có nội dung chi tiết.')+'</p>';
+  function blockHtml(b,bi){
+    if(!b || typeof b!=='object') return '<p data-e129-block-index="'+bi+'" data-e129-block-type="text">'+H(b)+'</p>';
+    var title=S(b.title||b.type||'Nội dung'); var body=S(b.body||b.content||b.text||''); var type=S(b.type||'text').toLowerCase();
+    var attrs=' data-e129-block-index="'+bi+'" data-e129-block-type="'+H(type)+'"';
+    if((type==='formula') || /formula|công thức|ký hiệu/i.test(title)) return '<pre'+attrs+'>'+H(title+'\n'+body)+'</pre>';
+    return '<h3'+attrs+' data-e129-block-part="title">'+H(title)+'</h3><p'+attrs+' data-e129-block-part="body">'+H(body||'Chưa có nội dung chi tiết.')+'</p>';
   }
   function slideHtml(sl,i){
-    var blocks=arr(sl&&sl.blocks);
-    return '<article class="e129-slide"><h3>'+(i+1)+'. '+H(sl&& (sl.title||sl.role) || 'Slide')+'</h3>'+(blocks.length?blocks.map(blockHtml).join(''):'<p>'+H(sl&& (sl.body||sl.content||sl.text) || 'Slide chưa có block chi tiết.')+'</p>')+'</article>';
+    var blocks=arr(sl&&sl.blocks); var role=S(sl&&sl.role||'');
+    return '<article class="e129-slide" data-e129-slide-role="'+H(role)+'"><h3>'+(i+1)+'. '+H(sl&& (sl.title||sl.role) || 'Slide')+'</h3>'+(blocks.length?blocks.map(function(b,bi){return blockHtml(b,bi);}).join(''):'<p>'+H(sl&& (sl.body||sl.content||sl.text) || 'Slide chưa có block chi tiết.')+'</p>')+'</article>';
   }
   function renderContent(ch,records,legacy){
     if(records.length){
