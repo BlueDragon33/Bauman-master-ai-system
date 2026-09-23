@@ -539,7 +539,7 @@
         if(action==='complete')completeLesson();
         return;
       }
-      if(e.target.closest('[data-e129-chapter],[data-e129-lesson],[data-e129-stage],[data-e169-pick-activity],[data-e129-back-theory],[data-e129-refresh]'))schedule(220);
+      if(e.target.closest('[data-e129-chapter],[data-e129-lesson],[data-e129-stage],[data-e186-pick],[data-e169-pick-activity],[data-e129-back-theory],[data-e129-refresh]'))schedule(220);
     },true);
     document.addEventListener('bauman:math:exercise-result',e=>{
       const d=e.detail||{},id=String(d.lessonId||'');
