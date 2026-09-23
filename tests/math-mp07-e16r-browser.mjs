@@ -40,14 +40,14 @@ try{
   async function activity(lessonId,activityId,minMatches){
     await page.evaluate(({lessonId,activityId})=>{
       const st=window.__BAUMAN_CORE_API?.state||window.__MATH_STATE||{};
-      const physicalChapter=(lessonId.match(/^MATH-VN-C(\\d{2})-/)||[])[1]||'';
+      const physicalChapter=(lessonId.match(/^MATH-VN-C(\d{2})-/)||[])[1]||'';
       const chapterId=physicalChapter?('c'+physicalChapter):'c01';
       const courseId=Number(physicalChapter)>=4?'pure-analysis':'pure-algebra';
       const route={moduleId:'pure',courseId,chapterId,lessonId,activityId};
       st.view='learning';st.learnTab=activityId;st.e129LessonId=lessonId;
       st.e186Path={...(st.e186Path||{}),...route};
       st.e169Path={...(st.e169Path||{}),...route,contentId:lessonId};
-      st.e129ChapterId=lessonId.replace(/-E16R.*$/,'').replace(/-L\\d+.*$/,'');
+      st.e129ChapterId=lessonId.replace(/-E16R.*$/,'').replace(/-L\d+.*$/,'');
       window.BAUMAN_MATH_ACTIVITY_STUDIO.render();
     },{lessonId,activityId});
     await page.waitForFunction(({lessonId,activityId,minMatches})=>{
