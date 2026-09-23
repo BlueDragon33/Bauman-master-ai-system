@@ -5,7 +5,7 @@
 (function mathNavigation(global){
   'use strict';
   const RELEASE='MATH_LEARNER_NAV_IA_V1';
-  let active='overview', timer=0;
+  let active='overview', timer=0,formulaFocus=null,commandFocus=null;
   const $=(s,r=document)=>r.querySelector(s);
   const $$=(s,r=document)=>Array.from(r.querySelectorAll(s));
   const esc=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
@@ -311,8 +311,8 @@
 
   function ensureFormulaFocus(){
     if($('#mathFormulaFocus')) return;
-    const layer=document.createElement('section'); layer.id='mathFormulaFocus'; layer.className='math-formula-focus';
-    layer.innerHTML='<div class="math-formula-focus-shell"><header class="math-formula-focus-head"><div><span class="math-formula-focus-kicker">Formula Focus</span><h2>Công thức trong bài đang mở</h2><p>Đọc trực tiếp từ Reader hiện tại; không tạo hay sửa công thức nguồn.</p></div><button type="button" class="math-formula-close" data-formula-close>×</button></header><div class="math-formula-focus-body"><nav id="mathFormulaIndex" class="math-formula-index"></nav><main id="mathFormulaStage" class="math-formula-stage"></main></div></div>';
+    const layer=document.createElement('section'); layer.id='mathFormulaFocus'; layer.className='math-formula-focus'; layer.setAttribute('role','dialog'); layer.setAttribute('aria-modal','true'); layer.setAttribute('aria-labelledby','mathFormulaFocusTitle'); layer.setAttribute('aria-hidden','true');
+    layer.innerHTML='<div class="math-formula-focus-shell"><header class="math-formula-focus-head"><div><span class="math-formula-focus-kicker">Formula Focus</span><h2 id="mathFormulaFocusTitle">Công thức trong bài đang mở</h2><p>Đọc trực tiếp từ Reader hiện tại; không tạo hay sửa công thức nguồn.</p></div><button type="button" class="math-formula-close" data-formula-close aria-label="Đóng công thức">×</button></header><div class="math-formula-focus-body"><nav id="mathFormulaIndex" class="math-formula-index"></nav><main id="mathFormulaStage" class="math-formula-stage"></main></div></div>';
     document.body.appendChild(layer);
     layer.addEventListener('click',e=>{ if(e.target===layer||e.target.closest('[data-formula-close]')) closeFormulaFocus(); });
   }
@@ -326,13 +326,13 @@
     stage.innerHTML=`<article class="math-formula-stage-card"><span>Công thức ${pick+1}/${list.length}</span><pre>${esc(item.text)}</pre>${item.note?`<p>${esc(item.note.slice(0,700))}</p>`:''}</article>`;
     $$('[data-formula-index]',index).forEach(b=>b.addEventListener('click',()=>renderFormulaFocus(Number(b.dataset.formulaIndex)||0)));
   }
-  function openFormulaFocus(){ renderFormulaFocus(0); $('#mathFormulaFocus')?.classList.add('open'); }
-  function closeFormulaFocus(){ $('#mathFormulaFocus')?.classList.remove('open'); }
+  function openFormulaFocus(){ formulaFocus=document.activeElement;renderFormulaFocus(0);const layer=$('#mathFormulaFocus');layer?.classList.add('open');layer?.setAttribute('aria-hidden','false');setTimeout(()=>$('.math-formula-close',layer)?.focus(),20); }
+  function closeFormulaFocus(){ const layer=$('#mathFormulaFocus');layer?.classList.remove('open');layer?.setAttribute('aria-hidden','true');if(formulaFocus&&typeof formulaFocus.focus==='function')setTimeout(()=>formulaFocus.focus(),0);formulaFocus=null; }
 
   function ensureCommand(){
     if($('#mathCommandPalette')) return;
-    const layer=document.createElement('section'); layer.id='mathCommandPalette'; layer.className='math-command-palette';
-    layer.innerHTML='<div class="math-command-shell"><input id="mathCommandSearch" class="math-command-search" type="search" autocomplete="off" placeholder="Đi tới: Học, Tài nguyên, Mô phỏng, Công thức…"><div id="mathCommandList" class="math-command-list"></div></div>';
+    const layer=document.createElement('section'); layer.id='mathCommandPalette'; layer.className='math-command-palette'; layer.setAttribute('role','dialog'); layer.setAttribute('aria-modal','true'); layer.setAttribute('aria-label','Đi tới chức năng hoặc tài nguyên'); layer.setAttribute('aria-hidden','true');
+    layer.innerHTML='<div class="math-command-shell"><input id="mathCommandSearch" class="math-command-search" type="search" autocomplete="off" aria-label="Tìm chức năng hoặc tài nguyên" placeholder="Đi tới: Học, Tài nguyên, Mô phỏng, Công thức…"><div id="mathCommandList" class="math-command-list"></div></div>';
     document.body.appendChild(layer);
     layer.addEventListener('click',e=>{ if(e.target===layer) closeCommand(); });
     $('#mathCommandSearch')?.addEventListener('input',renderCommandList);
@@ -350,8 +350,8 @@
     host.innerHTML=list.map((x,i)=>`<button type="button" class="math-command-item ${i===0?'active':''}" data-command-route="${x.id}"><i>${x.icon}</i><span><b>${esc(x.label)}</b><small>${esc(x.group)} · ${esc(x.sub)}</small></span><kbd>${esc(x.key)}</kbd></button>`).join('')||'<div class="math-formula-stage-empty">Không có chức năng phù hợp.</div>';
     $$('[data-command-route]',host).forEach(b=>b.addEventListener('click',()=>{const id=b.dataset.commandRoute;closeCommand();route(id);}));
   }
-  function openCommand(){ ensureCommand(); renderCommandList(); $('#mathCommandPalette')?.classList.add('open'); const s=$('#mathCommandSearch'); if(s){s.value='';s.focus();renderCommandList();} }
-  function closeCommand(){ $('#mathCommandPalette')?.classList.remove('open'); }
+  function openCommand(){ ensureCommand();commandFocus=document.activeElement;renderCommandList();const layer=$('#mathCommandPalette');layer?.classList.add('open');layer?.setAttribute('aria-hidden','false'); const s=$('#mathCommandSearch'); if(s){s.value='';s.focus();renderCommandList();} }
+  function closeCommand(){ const layer=$('#mathCommandPalette');layer?.classList.remove('open');layer?.setAttribute('aria-hidden','true');if(commandFocus&&typeof commandFocus.focus==='function')setTimeout(()=>commandFocus.focus(),0);commandFocus=null; }
 
   function syncFromRuntime(){
     if(document.body.classList.contains('math-roadmap-active')){setActive('roadmap');return;}
@@ -374,6 +374,15 @@
       if(e.target.closest('[data-e129-nav],[data-e186-pick],[data-e169-pick-activity],[data-e129-back-theory],[data-e129-open-vault],[data-e129-refresh]')) scheduleSync(160);
     },true);
     document.addEventListener('keydown',e=>{
+      const openLayer=$('#mathCommandPalette.open')||$('#mathFormulaFocus.open');
+      if(e.key==='Tab'&&openLayer){
+        const focusable=$('button:not([disabled]),input:not([disabled]),a[href],[tabindex]:not([tabindex="-1"])',openLayer).filter(x=>x.offsetParent!==null);
+        if(focusable.length){
+          const first=focusable[0],last=focusable[focusable.length-1];
+          if(e.shiftKey&&document.activeElement===first){e.preventDefault();last.focus();return;}
+          if(!e.shiftKey&&document.activeElement===last){e.preventDefault();first.focus();return;}
+        }
+      }
       if((e.ctrlKey||e.metaKey)&&e.key.toLowerCase()==='k'){e.preventDefault();openCommand();return;}
       if(e.key==='Escape'){closeCommand();closeFormulaFocus();}
       if(!e.ctrlKey&&!e.metaKey&&!e.altKey&&document.activeElement===document.body){
