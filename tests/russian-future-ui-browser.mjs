@@ -63,34 +63,42 @@ try{
   assert.equal(idleMutationCount,0,'Repeated future UI upgrade must be DOM-idempotent and must not self-trigger MutationObserver churn');
 
   const dims=await page.evaluate(()=> {
-    const box=s=>{const r=document.querySelector(s)?.getBoundingClientRect();return r?{x:r.x,y:r.y,w:r.width,h:r.height}:null};
+    const box=s=>{const r=document.querySelector(s)?.getBoundingClientRect();return r?{x:r.x,y:r.y,w:r.width,h:r.height,b:r.bottom}:null};
     const modules=[...document.querySelectorAll('.rf-module-card')].map(el=>{const r=el.getBoundingClientRect();return{x:r.x,y:r.y,w:r.width,h:r.height}});
     return {
       vw:innerWidth,scroll:document.documentElement.scrollWidth,
       sidebar:box('.ru-sidebar'),main:box('.ru-main'),view:box('.ru-view'),hero:box('.overview-top-only-hero'),
+      continueCard:box('.rf-continue-card'),today:box('.rf-today-plan'),review:box('.rf-review-now'),path:box('.rf-learning-path'),
       progress:box('.rf-progress-strip'),modules,
       bodyFont:parseFloat(getComputedStyle(document.querySelector('.ru-view')).fontSize),
       viewComputed:{maxWidth:getComputedStyle(document.querySelector('.ru-view')).maxWidth,width:getComputedStyle(document.querySelector('.ru-view')).width,boxSizing:getComputedStyle(document.querySelector('.ru-view')).boxSizing},
-      shellComputed:{columns:getComputedStyle(document.querySelector('.ru-app-shell')).gridTemplateColumns,mainWidth:getComputedStyle(document.querySelector('.ru-main')).width},
-      lower:box('.rf-dashboard-lower')
+      shellComputed:{columns:getComputedStyle(document.querySelector('.ru-app-shell')).gridTemplateColumns,mainWidth:getComputedStyle(document.querySelector('.ru-main')).width}
     };
   });
   assert.ok(dims.sidebar&&dims.sidebar.w>=205&&dims.sidebar.w<=235,'Sidebar width must stay close to 220px reference');
   assert.ok(dims.main&&dims.main.w>1300,'Main shell must still use space released by the old right rail');
   assert.ok(dims.view&&dims.view.w<=1122&&dims.view.w>=1080,'Learning content container must stay near the 1120px canonical max-width: '+JSON.stringify({view:dims.view,viewComputed:dims.viewComputed,shell:dims.shellComputed}));
   assert.ok(dims.bodyFont>=15,'Primary learning content must not fall below 15px body text');
-  assert.ok(dims.hero&&dims.hero.h>=275&&dims.hero.h<=315,'Hero height drifted from reference rhythm');
-  assert.ok(dims.progress&&dims.progress.h>=70&&dims.progress.h<=100,'Progress strip height drifted');
+  assert.ok(dims.hero&&dims.hero.h>=210&&dims.hero.h<=235,'Overview hero must stay compact enough to expose learner action above the fold');
+  assert.ok(dims.continueCard&&dims.continueCard.y>dims.hero.y&&dims.continueCard.y<dims.hero.b+50,'Continue Learning must follow the compact hero immediately');
+  assert.ok(dims.today&&dims.review&&Math.abs(dims.today.y-dims.review.y)<3,'Today and truthful review status must share the next decision row');
+  assert.ok(dims.path&&dims.path.y>dims.today.y,'Compact Learning Path must follow the primary learning actions');
+  assert.ok(dims.progress&&dims.progress.y>dims.path.y,'Secondary statistics must appear after the learning path');
   assert.equal(dims.modules.length,5,'Overview must contain exactly five core module cards');
-  assert.ok(Math.max(...dims.modules.map(x=>x.y))-Math.min(...dims.modules.map(x=>x.y))<3,'Five module cards must share one row at 16:9 desktop');
-  assert.ok(Math.max(...dims.modules.map(x=>x.w))-Math.min(...dims.modules.map(x=>x.w))<4,'Five module cards must have balanced widths');
-  assert.ok(dims.lower&&dims.lower.w<=1122&&dims.lower.w>900,'Lower dashboard must stay inside the canonical learning container');
+  const moduleRows=[...new Set(dims.modules.map(x=>Math.round(x.y)))];
+  assert.ok(moduleRows.length>=3,'Five skill cards must wrap to at most two columns instead of one dense five-card row');
+  assert.ok(Math.min(...dims.modules.map(x=>x.w))>450,'Desktop skill cards must remain readable at the canonical two-column width');
   assert.ok(dims.scroll<=dims.vw+2,'Future Russian UI must not horizontally overflow at reference viewport');
 
   const dashboardText=await page.locator('.rf-dashboard').innerText();
-  for(const label of ['HỌC TIẾP','CẦN ÔN','Kế hoạch hôm nay','5 kỹ năng chính','Video','Nghe & Nói','Luyện chữ','Từ vựng','Ngữ pháp','Ôn tập trọng điểm']){
+  for(const label of ['HỌC TIẾP','CẦN ÔN','Hôm nay','5 kỹ năng chính','Video','Nghe & Nói','Luyện chữ','Từ vựng','Ngữ pháp','Learning Path','Khởi động','Âm & chữ','Nghe nói cơ bản','A1','A2 / Dự bị','Tiếng Nga học thuật']){
     assert.ok(dashboardText.includes(label),'Overview summary missing '+label);
   }
+  assert.equal(await page.locator('.rf-module-progress').count(),5,'Each core skill card must expose one truthful progress/evidence line');
+  assert.equal(await page.locator('.rf-road-step').count(),6,'Overview Learning Path must contain exactly six canonical stages');
+  assert.equal(await page.locator('.rf-road-step[aria-current="step"]').count(),1,'Learning Path must expose one current stage');
+  assert.match(await page.locator('.rf-review-now').innerText(),/Chưa có nội dung đến hạn\./,'Fresh learner state must not synthesize review work');
+  assert.equal(await page.locator('.rf-review-now button').count(),0,'Empty Review Queue must not show a fake review CTA');
   assert.equal(await page.locator('#ruLessonFlow').count(),0,'Overview must not duplicate the lesson-detail stepper');
 
   await page.locator('#aiBtn').focus();
