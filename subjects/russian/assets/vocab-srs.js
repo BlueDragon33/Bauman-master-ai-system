@@ -36,6 +36,22 @@
   function plusDays(days){const d=new Date();d.setDate(d.getDate()+Number(days||0));return d.toISOString();}
   function dueCards(){const t=Date.now();return Object.values(state.cards).filter(x=>!x?.migratedTo&&x?.dueAt&&Date.parse(x.dueAt)<=t).sort((a,b)=>Date.parse(a.dueAt)-Date.parse(b.dueAt));}
   function scheduledCards(){const t=Date.now();return Object.values(state.cards).filter(x=>!x?.migratedTo&&x?.dueAt&&Date.parse(x.dueAt)>t).sort((a,b)=>Date.parse(a.dueAt)-Date.parse(b.dueAt));}
+  function sourceKeyForItem(item,index=0){const id=clean(item?.id||item?.source_id);return id?`vocab-id:${id}`:`vocab-source:${Math.max(0,Number(index)||0)}`;}
+  function statusForItem(item,index=0){
+    const card=state.cards[sourceKeyForItem(item,index)]||null;
+    if(!card?.exposedAt)return 'new';
+    const due=card.dueAt&&Date.parse(card.dueAt)<=Date.now();
+    const difficult=Number(card.lapses||0)>0||['forgot','unsure'].includes(card.lastRating);
+    if(due)return 'due';
+    if(difficult)return 'difficult';
+    return 'learned';
+  }
+  function filterItems(items,status='all'){
+    const list=Array.isArray(items)?items:[];
+    if(status==='all')return list;
+    if(status==='learned')return list.filter((item,i)=>statusForItem(item,i)!=='new');
+    return list.filter((item,i)=>statusForItem(item,i)===status);
+  }
   function stableCard(meta=currentMeta()){
     if(state.cards[meta.key])return state.cards[meta.key];
     const core=readCore(),legacyKey=legacyKeyFor(meta.stageIndex),legacy=state.cards[legacyKey];
@@ -277,5 +293,5 @@
   },true);
   document.addEventListener('keydown',event=>{if(event.key!=='Enter')return;if(event.target?.id==='ruVocabMineInput'){event.preventDefault();mineUser();return;}if(event.target?.id==='ruVocabFlowInput'){event.preventDefault();checkTyped();}},true);
   if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',scheduleRender,{once:true});else scheduleRender();
-  window.RussianVocabSrs={schema:SCHEMA,get:()=>JSON.parse(JSON.stringify(state)),dueCards,scheduledCards,rate,openIndex,mineSource,findSpeakingLinks,setFlowMode,refresh:scheduleRender,flow:[...FLOW],gaps:[...GAPS]};
+  window.RussianVocabSrs={schema:SCHEMA,get:()=>JSON.parse(JSON.stringify(state)),dueCards,scheduledCards,statusForItem,filterItems,rate,openIndex,mineSource,findSpeakingLinks,setFlowMode,refresh:scheduleRender,flow:[...FLOW],gaps:[...GAPS]};
 })();
