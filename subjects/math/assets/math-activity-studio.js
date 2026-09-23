@@ -30,7 +30,7 @@
     exercises:{title:'Bài tập · Củng cố tư duy',kicker:'Exercise Studio',desc:'Ưu tiên bài tập/câu hỏi canonical theo lessonId; nếu nguồn companion chưa có record, dùng đúng slide practice/vấn đáp đã có trong bài lý thuyết.'},
     practice:{title:'Thực hành · Hiện thực hóa',kicker:'Practice Studio',desc:'Kết nối bài đang học với mô phỏng và phần thực hành đã có. Không tự sinh code hay test case khi nguồn chưa cung cấp.'},
     application:{title:'Ứng dụng · Kỹ thuật',kicker:'Application Studio',desc:'Đọc tình huống ứng dụng canonical hoặc các slide application/real bridge của chính bài đang học.'},
-    review:{title:'Ôn tập · Hệ thống hóa',kicker:'Review Studio',desc:'Gom takeaway, bridge và công thức của bài hiện tại; ưu tiên review pack canonical khi có dữ liệu.'},
+    review:{title:'Ôn tập · Đúng điểm yếu',kicker:'Review Studio',desc:'Ưu tiên các mục bạn đã đánh dấu Cần ôn trong Lesson Check; chỉ dùng review pack canonical khi có dữ liệu thật phù hợp.'},
     exam:{title:'Kiểm tra · Đánh giá',kicker:'Assessment Studio',desc:'Chỉ hiển thị câu hỏi/blueprint/vấn đáp đã tồn tại trong nguồn. Không tự gọi đây là đề thi đầy đủ khi companion source chưa có record.'}
   };
 
@@ -148,6 +148,27 @@
     return '';
   }
 
+  function reviewEvidenceCards(){
+    const id=lessonId();
+    const summary=global.BAUMAN_MATH_LEARNING_FLOW?.checkSummary?.(id);
+    const weak=Array.isArray(summary?.items)?summary.items.filter(x=>x.state==='review'):[];
+    return weak.map((item,index)=>`<article class="math-activity-card math-review-evidence-card">
+      <span class="role">LESSON CHECK · CẦN ÔN</span>
+      <h4>${esc(item.title||`Mục ôn ${index+1}`)}</h4>
+      <p>${esc(clip(item.prompt||'',520))}</p>
+      <div class="math-review-evidence-meta"><span><b>Vì sao chọn</b>Bạn đã đánh dấu Cần ôn trong Lesson Check.</span><span><b>Thời lượng</b>Chưa được khai báo trong nguồn.</span></div>
+      ${Array.isArray(item.learningOutcomeRefs)&&item.learningOutcomeRefs.length?`<div class="math-review-evidence-refs">${item.learningOutcomeRefs.map(x=>`<i>${esc(x)}</i>`).join('')}</div>`:''}
+      <button type="button" class="math-activity-btn" data-review-step="${esc(item.reviewStepId||'selfcheck')}">Ôn lại phần liên quan →</button>
+    </article>`);
+  }
+  function openReviewStep(stepId){
+    backTheory();
+    setTimeout(()=>{
+      if(global.BAUMAN_MATH_LEARNING_FLOW?.activate)global.BAUMAN_MATH_LEARNING_FLOW.activate(stepId||'selfcheck');
+      else toast('Lesson Player chưa sẵn sàng để mở phần ôn.');
+    },220);
+  }
+
   function sourceStatuses(){
     const cfg=SOURCES[activity()]||[];
     return cfg.map(([kind,path])=>{const c=cache[path];const count=c?.records?.length||0;const match=c?.data?matched(kind,c.data).length:0;return{kind,path,ok:c?.ok!==false,count,match,error:c?.error||''}});
@@ -163,11 +184,12 @@
     const companion=[];
     (SOURCES[act]||[]).forEach(([kind,path])=>{const c=cache[path];if(c?.data)matched(kind,c.data).slice(0,6).forEach(r=>companion.push(companionCard(kind,r)))});
     const fallback=roleSlides().map(slideCard);
-    const cards=companion.length?companion:fallback;
+    const reviewEvidence=act==='review'?reviewEvidenceCards():[];
+    const cards=act==='review'?reviewEvidence:(companion.length?companion:fallback);
     const id=lessonId(),ch=chapterId();
     const sourceHtml=statuses.map(x=>`<span class="math-activity-source ${x.match?'live':'fallback'}"><i></i>${esc(x.path.replace('data/',''))}: ${x.count} records · ${x.match} match</span>`).join('')+`<span class="math-activity-source ${fallback.length?'live':'fallback'}"><i></i>theory embedded: ${fallback.length} semantic slide</span>`;
-    const sourceMode=companion.length?'COMPANION_CANONICAL':'EMBEDDED_THEORY_FALLBACK';
-    host.innerHTML=`<header class="math-activity-hero"><div><span class="math-activity-kicker">${esc(meta.kicker)}</span><h2>${esc(meta.title)}</h2><p>${esc(meta.desc)}</p></div><div class="math-activity-hero-actions"><button class="math-activity-btn primary" data-activity-action="theory">← Bài lý thuyết</button><button class="math-activity-btn" data-activity-action="lab">∿ Math Lab</button><button class="math-activity-btn" data-activity-action="control">☷ Nội dung</button></div></header><div class="math-activity-source-strip">${sourceHtml}</div><div class="math-activity-grid"><section class="math-activity-panel"><div class="math-activity-panel-head"><h3>Nội dung khả dụng</h3><span>${cards.length} mục · ${sourceMode}</span></div><div class="math-activity-cards">${cards.length?cards.join(''):`<div class="math-activity-empty">Chưa có companion record và bài hiện tại cũng chưa có slide semantic phù hợp. Studio không tự sinh nội dung thay thế.</div>`}</div></section><aside class="math-activity-panel"><div class="math-activity-panel-head"><h3>Ngữ cảnh</h3><span>read-only</span></div><div class="math-activity-side"><div class="math-activity-status"><b>${esc(id||'Chưa gắn lessonId')}</b><span>${esc(ch||'Chưa xác định chapterId')}</span><strong>${sourceMode}</strong></div><div class="math-activity-status"><b>Chính sách nguồn</b><span>sampleRecord trong các *_content.json chỉ là schema example/DRAFT và không được render như dữ liệu học thật.</span></div><div class="math-activity-next"><button data-activity-action="formula"><span>∑ Công thức bài hiện tại</span><b>→</b></button><button data-activity-action="library"><span>★ Study Library</span><b>→</b></button><button data-activity-action="vault"><span>▣ DataVault E129</span><b>→</b></button></div></div></aside></div>`;
+    const sourceMode=act==='review'?'LESSON_CHECK_EVIDENCE':companion.length?'COMPANION_CANONICAL':'EMBEDDED_THEORY_FALLBACK';
+    host.innerHTML=`<header class="math-activity-hero"><div><span class="math-activity-kicker">${esc(meta.kicker)}</span><h2>${esc(meta.title)}</h2><p>${esc(meta.desc)}</p></div><div class="math-activity-hero-actions"><button class="math-activity-btn primary" data-activity-action="theory">← Bài lý thuyết</button><button class="math-activity-btn" data-activity-action="lab">∿ Math Lab</button><button class="math-activity-btn" data-activity-action="control">☷ Nội dung</button></div></header><div class="math-activity-source-strip">${sourceHtml}</div><div class="math-activity-grid"><section class="math-activity-panel"><div class="math-activity-panel-head"><h3>Nội dung khả dụng</h3><span>${cards.length} mục · ${sourceMode}</span></div><div class="math-activity-cards">${cards.length?cards.join(''):`<div class="math-activity-empty">${act==='review'?'Hiện chưa có nội dung cần ôn. Lesson Check chưa ghi nhận điểm yếu nào cho bài hiện tại.':'Chưa có companion record và bài hiện tại cũng chưa có slide semantic phù hợp. Studio không tự sinh nội dung thay thế.'}</div>`}</div></section><aside class="math-activity-panel"><div class="math-activity-panel-head"><h3>Ngữ cảnh</h3><span>read-only</span></div><div class="math-activity-side"><div class="math-activity-status"><b>${esc(id||'Chưa gắn lessonId')}</b><span>${esc(ch||'Chưa xác định chapterId')}</span><strong>${sourceMode}</strong></div><div class="math-activity-status"><b>Chính sách nguồn</b><span>sampleRecord trong các *_content.json chỉ là schema example/DRAFT và không được render như dữ liệu học thật.</span></div><div class="math-activity-next"><button data-activity-action="formula"><span>∑ Công thức bài hiện tại</span><b>→</b></button><button data-activity-action="library"><span>★ Study Library</span><b>→</b></button><button data-activity-action="vault"><span>▣ DataVault E129</span><b>→</b></button></div></div></aside></div>`;
     try{global.BAUMAN_MATH_ACTIVITY_MASTERY?.refresh?.()}catch(_){ }
     try{global.BAUMAN_MATH_STUDY_COMMAND_CENTER?.refresh?.()}catch(_){ }
     return true;
@@ -211,6 +233,7 @@
   }
   function schedule(ms=150){clearTimeout(timer);timer=setTimeout(()=>load().then(render),ms)}
   function bind(){document.addEventListener('click',e=>{
+    const reviewStep=e.target.closest('[data-review-step]');if(reviewStep){e.preventDefault();openReviewStep(reviewStep.dataset.reviewStep);return}
     const check=e.target.closest('[data-exercise-check]');if(check){e.preventDefault();checkExercise(check);return}
     const review=e.target.closest('[data-exercise-review-step]');if(review){e.preventDefault();reviewStep(review.dataset.exerciseReviewStep);return}
     const a=e.target.closest('[data-activity-action]')?.dataset.activityAction;if(a){e.preventDefault();action(a);return}
