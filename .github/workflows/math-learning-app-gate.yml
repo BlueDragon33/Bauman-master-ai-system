@@ -4,6 +4,7 @@ on:
   pull_request:
     paths:
       - 'subjects/math/**'
+      - 'tests/math-learning-journey-browser.mjs'
       - '.github/workflows/math-learning-app-gate.yml'
   workflow_dispatch:
 
@@ -32,3 +33,41 @@ jobs:
             node --check "$file"
           done < <(find subjects/math/assets subjects/math/tools -type f -name '*.js' -print0)
           node --check subjects/math/sw.js
+
+  browser-journey:
+    needs: validate
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Install browser test runtime
+        run: |
+          npm install --no-save --package-lock=false playwright@1.55.0
+          npx playwright install --with-deps chromium
+      - name: Start static test server
+        shell: bash
+        run: |
+          set -euo pipefail
+          python3 -m http.server 4173 --bind 127.0.0.1 >/tmp/math-e2e-server.log 2>&1 &
+          echo $! >/tmp/math-e2e-server.pid
+          for i in {1..30}; do
+            if curl --fail --silent http://127.0.0.1:4173/ >/dev/null; then exit 0; fi
+            sleep 1
+          done
+          cat /tmp/math-e2e-server.log
+          exit 1
+      - name: Run learner journey acceptance
+        env:
+          BAUMAN_E2E_BASE_URL: http://127.0.0.1:4173/
+          BAUMAN_E2E_ARTIFACT_DIR: artifacts/math-learning-journey
+        run: node tests/math-learning-journey-browser.mjs
+      - name: Upload learner journey artifacts
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: math-learning-journey
+          path: artifacts/math-learning-journey
+          if-no-files-found: warn
