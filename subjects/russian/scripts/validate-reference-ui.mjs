@@ -134,6 +134,10 @@ must(core.includes('const views=NAV.map'),'Full route registry must remain autho
 must(core.includes('class="vocab-progressive-details"'),'Vocabulary advanced content must use progressive disclosure');
 must(core.includes('<summary>Chi tiết'),'Vocabulary details disclosure label missing');
 must(core.includes('class="vocab-micro-context"'),'Vocabulary card must expose a short Russian micro-context');
+must(core.includes('data-act="speak-vocab-slow"'),'Vocabulary card must expose optional slow audio');
+must(core.includes('function speakVocabItem(v,slow=false)'),'Vocabulary audio must stay in the canonical core audio path');
+must(core.includes("player.playbackRate=slow?.75:1"),'Source vocabulary audio must support slower playback');
+must(core.includes("speak(term,slow?.62:.85)"),'Vocabulary TTS fallback must support slower playback');
 must(!core.includes('info.term,info.meaningRu,info.meaningVi,info.english,info.application'),'Visual inference must not depend on Vietnamese/English meaning fields');
 must(!core.includes('info.term,info.meaningRu,info.meaningVi,info.english,info.visualLabel'),'Dialogue presentation inference must not depend on translated meaning fields');
 must((futureJs.match(/new MutationObserver/g)||[]).length===1,'Canonical Russian presentation runtime must own exactly one MutationObserver');
