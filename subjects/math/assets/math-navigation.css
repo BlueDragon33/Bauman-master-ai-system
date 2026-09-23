@@ -2,11 +2,11 @@
  * Navigation/visual bridge only. Existing E129/Workspace/DataVault routes remain authoritative.
  */
 :root{
-  --mn-nav-line:rgba(107,172,230,.14);
+  --mn-nav-line:var(--math-line);
   --mn-nav-hover:rgba(38,168,255,.09);
   --mn-nav-active:linear-gradient(100deg,rgba(13,94,177,.88),rgba(17,121,213,.50));
-  --mn-nav-gold:#f2bd52;
-  --mn-nav-cyan:#60d8ff;
+  --mn-nav-gold:var(--math-warm);
+  --mn-nav-cyan:var(--math-cyan);
 }
 
 /* Keep legacy route buttons in DOM for E129/runtime compatibility, but present one clean navigation system. */
