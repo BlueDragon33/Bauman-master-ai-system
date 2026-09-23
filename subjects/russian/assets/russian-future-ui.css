@@ -192,7 +192,7 @@ body.ru-reference-ui.ru-future-ui .modal-close{background:#edf3fb!important;colo
 .ru-future-ui .storage-arsenal-main,.ru-future-ui .storage-arsenal-layout,.ru-future-ui .media-player,.ru-future-ui .dialogue-studio,.ru-future-ui .grammar-main-card{border-radius:16px!important}
 
 /* Responsive */
-@media(max-width:1180px){
+@media(max-width:1320px){
  .ru-future-ui .ru-app-shell{grid-template-columns:var(--rf-sidebar-compact) minmax(0,1fr)!important}
  .ru-future-ui .ru-sidebar{width:var(--rf-sidebar-compact)!important;min-width:var(--rf-sidebar-compact)!important;max-width:var(--rf-sidebar-compact)!important}
  .ru-future-ui .ru-brand h1,.ru-future-ui .ru-brand p,.ru-future-ui .ru-nav span,.ru-future-ui .select-label,.ru-future-ui .ru-sidebar .input{display:block!important}
