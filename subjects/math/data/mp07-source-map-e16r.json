@@ -5,7 +5,7 @@
   "moduleTitle": "Hiệp phương sai, tương quan và PCA nhập môn",
   "stageId": "prepare",
   "architecture": "logical_module_over_physical_content",
-  "status": "B2_B3_STAGED_FOR_AUDIT",
+  "status": "CONTENT_IMPORTED_DAG_READY_PENDING_RUNTIME_GATE",
   "correction": {
     "invalidClaim": "E15 treated MATH-VN-LA-C07 as a completed physical chapter with populated sidecars.",
     "repositoryTruth": [
@@ -43,14 +43,15 @@
       "legacyAnchors": [
         "MATH-PREP-LA2-C10-L07"
       ],
-      "coverage": "COVERED_BY_MODERN_ANCHOR",
+      "coverage": "ACTIVE_MODERN_ANCHOR",
       "resolution": {
         "mode": "reuse_existing_modern_theory",
         "lessonIds": [
           "MATH-VN-C01-vector_trong_khong_gian_-L06-vector-to-data-matrix-e140",
           "MATH-VN-C02-ma_tran_va_phep_bien_oi_-L01-matrix-as-data-and-transform-e142"
         ]
-      }
+      },
+      "prerequisiteLogicalIds": []
     },
     {
       "logicalId": "m_p07_t02",
@@ -62,11 +63,14 @@
       "legacyAnchors": [
         "MATH-HK2-MLB-C25-L07"
       ],
-      "coverage": "STAGED_FOR_ACADEMIC_AUDIT",
+      "coverage": "IMPORTED_MODERN_THEORY",
       "resolution": {
         "mode": "staged_new_theory",
         "bundle": "subjects/math/content_bundles/theory/e16r_mp07_missing_cores_bundle.json"
-      }
+      },
+      "prerequisiteLogicalIds": [
+        "m_p07_t01"
+      ]
     },
     {
       "logicalId": "m_p07_t03",
@@ -78,11 +82,14 @@
       "legacyAnchors": [
         "MATH-VN-PS-C05-L05"
       ],
-      "coverage": "STAGED_FOR_ACADEMIC_AUDIT",
+      "coverage": "IMPORTED_MODERN_THEORY",
       "resolution": {
         "mode": "staged_new_theory",
         "bundle": "subjects/math/content_bundles/theory/e16r_mp07_missing_cores_bundle.json"
-      }
+      },
+      "prerequisiteLogicalIds": [
+        "m_p07_t02"
+      ]
     },
     {
       "logicalId": "m_p07_t04",
@@ -94,11 +101,14 @@
       "legacyAnchors": [
         "MATH-PREP-PS2-C15-L06"
       ],
-      "coverage": "STAGED_FOR_ACADEMIC_AUDIT",
+      "coverage": "IMPORTED_MODERN_THEORY",
       "resolution": {
         "mode": "staged_new_theory",
         "bundle": "subjects/math/content_bundles/theory/e16r_mp07_missing_cores_bundle.json"
-      }
+      },
+      "prerequisiteLogicalIds": [
+        "m_p07_t03"
+      ]
     },
     {
       "logicalId": "m_p07_t05",
@@ -111,11 +121,15 @@
       "legacyAnchors": [
         "MATH-PREP-LA2-C10-L05"
       ],
-      "coverage": "STAGED_FOR_ACADEMIC_AUDIT",
+      "coverage": "IMPORTED_MODERN_THEORY",
       "resolution": {
         "mode": "staged_new_theory",
         "bundle": "subjects/math/content_bundles/theory/e16r_mp07_missing_cores_bundle.json"
-      }
+      },
+      "prerequisiteLogicalIds": [
+        "m_p07_t03",
+        "m_p07_t04"
+      ]
     },
     {
       "logicalId": "m_p07_t06",
@@ -130,12 +144,15 @@
         "MATH-PREP-LA2-C10-L01",
         "MATH-PREP-LA2-C10-L05"
       ],
-      "coverage": "STAGED_UPGRADE_CANDIDATE",
+      "coverage": "ACTIVE_UPGRADED_MODERN_ANCHOR",
       "resolution": {
         "mode": "staged_replacement_upgrade",
         "bundle": "subjects/math/content_bundles/theory/e16r_mp07_pca_anchor_upgrade_bundle.json",
         "targetLessonId": "MATH-VN-C02-ma_tran_va_phep_bien_oi_-L06-matrix-to-pca-linear-model-e143"
-      }
+      },
+      "prerequisiteLogicalIds": [
+        "m_p07_t05"
+      ]
     },
     {
       "logicalId": "m_p07_t07",
@@ -149,12 +166,15 @@
       "legacyAnchors": [
         "MATH-PREP-LA2-C10-L06"
       ],
-      "coverage": "STAGED_UPGRADE_CANDIDATE",
+      "coverage": "ACTIVE_UPGRADED_MODERN_ANCHOR",
       "resolution": {
         "mode": "staged_replacement_upgrade",
         "bundle": "subjects/math/content_bundles/theory/e16r_mp07_pca_anchor_upgrade_bundle.json",
         "targetLessonId": "MATH-VN-C02-ma_tran_va_phep_bien_oi_-L06-matrix-to-pca-linear-model-e143"
-      }
+      },
+      "prerequisiteLogicalIds": [
+        "m_p07_t06"
+      ]
     },
     {
       "logicalId": "m_p07_t08",
@@ -168,12 +188,15 @@
       "legacyAnchors": [
         "MATH-PREP-LA2-C10-L08"
       ],
-      "coverage": "STAGED_UPGRADE_CANDIDATE",
+      "coverage": "ACTIVE_UPGRADED_MODERN_ANCHOR",
       "resolution": {
         "mode": "staged_replacement_upgrade",
         "bundle": "subjects/math/content_bundles/theory/e16r_mp07_pca_anchor_upgrade_bundle.json",
         "targetLessonId": "MATH-VN-C02-ma_tran_va_phep_bien_oi_-L06-matrix-to-pca-linear-model-e143"
-      }
+      },
+      "prerequisiteLogicalIds": [
+        "m_p07_t07"
+      ]
     }
   ],
   "contentGate": {
@@ -193,8 +216,15 @@
   },
   "recoveryProgress": {
     "B1": "PASS_SOURCE_MAP_ARCHITECTURE_RECOVERY",
-    "B2": "STAGED_4_MISSING_CORES_40_SLIDES",
-    "B3": "STAGED_PCA_ANCHOR_UPGRADE_16_TO_22_SLIDES",
-    "next": "ACADEMIC_AND_SCHEMA_GATE"
+    "B2": "PASS_4_MISSING_CORES_IMPORTED",
+    "B3": "PASS_PCA_ANCHOR_UPGRADED_16_TO_22_SLIDES",
+    "C": "PASS_MODERN_SIDECARS_IMPORTED_24_64_16_16_8_48_8",
+    "D": "PASS_PREREQUISITE_DAG_AND_LINK_INTEGRITY",
+    "next": "E_RUNTIME_REGRESSION_AND_CI"
+  },
+  "legacyStatus": {
+    "mastery-map.json": "INTENTIONALLY_EMPTY_LEGACY_NOT_RUNTIME_MASTERY_AUTHORITY",
+    "content-index.json": "INTENTIONALLY_EMPTY_LEGACY_NO_E16R_COMPLETION_EVIDENCE",
+    "rule": "Do not fabricate legacy counts to reproduce E15 report. Runtime-active modern sources and link integrity are authoritative."
   }
 }
