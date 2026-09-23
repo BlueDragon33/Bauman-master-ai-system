@@ -232,7 +232,7 @@
     if(a==='vault')global.BAUMAN_MATH_THEORY_E129?.openTheoryVault?.();
   }
   function schedule(ms=150){clearTimeout(timer);timer=setTimeout(()=>load().then(render),ms)}
-  function bind(){document.addEventListener('click',e=>{
+  function bind(){global.addEventListener('bauman:math:route-changed',()=>schedule(40));document.addEventListener('click',e=>{
     const reviewStep=e.target.closest('[data-review-step]');if(reviewStep){e.preventDefault();openReviewStep(reviewStep.dataset.reviewStep);return}
     const check=e.target.closest('[data-exercise-check]');if(check){e.preventDefault();checkExercise(check);return}
     const review=e.target.closest('[data-exercise-review-step]');if(review){e.preventDefault();reviewStep(review.dataset.exerciseReviewStep);return}
