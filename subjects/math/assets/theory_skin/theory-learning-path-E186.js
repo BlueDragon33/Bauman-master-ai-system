@@ -5,7 +5,7 @@
  */
 (function(){
   'use strict';
-  var RELEASE='E195_C03_LESSON_PICKER_FIX';
+  var RELEASE='E196_E240_DURABLE_LESSON_OPTIONS';
   var C01_CHAPTER_ID='MATH-VN-C01-vector_trong_khong_gian_';
   var HIERARCHY=[
     {id:'pure',code:'I',title:'Toán học Thuần túy',en:'Pure Mathematics Module',courses:[
@@ -93,7 +93,7 @@
   function chapter(mid,cid,chid){var c=course(mid,cid);return ((c&&c.chapters)||[]).find(function(x){return x.id===chid;})||((c&&c.chapters)||[])[0];}
   function activity(id){return ACTIVITIES.find(function(x){return x.id===id;})||ACTIVITIES[0];}
   function cleanLessonTitle(v){return S(v).replace(/^\s*§\s*/,'Bài ').replace(/\b§(?=\d)/g,'Bài ').replace(/^\s*Bài\s+Bài\s+/,'Bài ').replace(/^\s*ài\s+Bài\s+/,'Bài ').trim();}
-  function records(){var db=window.DB||{}, raw=db.theory_lecture_content||{}, list=Array.isArray(raw)?raw:(raw.records||raw.lessons||raw.items||[]);return Array.isArray(list)?list:[];}
+  function records(){var db=window.DB||{}, raw=db.theory_lecture_content||{}, list=Array.isArray(raw)?raw:(raw.records||raw.lessons||raw.items||[]);if(Array.isArray(list)&&list.length)return list;try{raw=window.BAUMAN_MATH_E240_THEORY_CONTENT_SOURCE&&window.BAUMAN_MATH_E240_THEORY_CONTENT_SOURCE.getPayload?window.BAUMAN_MATH_E240_THEORY_CONTENT_SOURCE.getPayload():{};list=Array.isArray(raw)?raw:(raw.records||raw.lessons||raw.items||[]);}catch(_){list=[];}return Array.isArray(list)?list:[];}
   function frames(){var db=window.DB||{}, raw=db.theory_lecture_frame||{}, out=[];(raw.stages||[]).forEach(function(st){(st.disciplines||[]).forEach(function(d){(d.chapters||[]).forEach(function(ch){out.push(ch);});});});(raw.chapters||[]).forEach(function(ch){out.push(ch);});return out;}
   function frameByNo(no){return frames().find(function(ch){return Number(ch.chapterNo||ch.localChapterNo||ch.globalChapterNo||0)===Number(no);})||null;}
   function currentFrame(){var p=path(), ch=chapter(p.moduleId,p.courseId,p.chapterId);return frameByNo(ch&&ch.no);}
