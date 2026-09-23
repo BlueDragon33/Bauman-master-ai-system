@@ -114,9 +114,9 @@ try{
 
   assert.equal(await page.evaluate(()=>window.RussianLearningSearch?.isVocabularyLoaded?.()),false,'Large vocabulary dataset must remain unloaded before the learner opens Vocabulary');
 
-  const tabs=['media','dialogue','vocab','grammar','writing'];
+  const tabs=['media','learning','vocab','grammar','writing'];
   for(const view of tabs){
-    await page.click('#nav [data-view="'+view+'"]');
+    await page.click(view==='learning'?'#nav [data-view="learning"][data-learn="practice"]':'#nav [data-view="'+view+'"]');
     await page.waitForSelector('#view > .rf-tab-intro[data-view="'+view+'"]',{timeout:10000});
     const visible=await page.locator('#view > .rf-tab-intro').isVisible();
     assert.equal(visible,true,'Future intro missing for '+view);
@@ -130,9 +130,10 @@ try{
       }));
       assert.equal(mediaFlow.tasks.length,4,'Video learning flow must keep four bounded steps');
       for(const label of ['Trước khi xem','Lượt nghe đầu','Lượt nghe lại','Sau khi xem'])assert.equal(mediaFlow.tasks.some(x=>x.includes(label)),true,'Video flow missing '+label);
-      assert.match(mediaFlow.speakRoute,/"view":"dialogue"/,'Video must link into Nghe & Nói instead of duplicating speaking content');
+      assert.match(mediaFlow.speakRoute,/"view":"learning"/,'Video must link into the core Nghe & Nói learning route');
+      assert.match(mediaFlow.speakRoute,/"learnTab":"practice"/,'Video must enter the speaking practice tab directly');
     }
-    if(view==='dialogue'){
+    if(view==='learning'){
       await page.waitForSelector('.transcript-listen-first',{state:'visible',timeout:10000});
       assert.equal(await page.locator('[data-act="toggle-vi"]').isDisabled(),true,'Translation control must stay disabled before transcript reveal');
       const beforeListen=await page.evaluate(()=>window.__RF_SPEECH.count);
