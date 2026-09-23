@@ -76,13 +76,14 @@
   }
   function chapterProgress(records){
     const ids=records.map(x=>x.lessonId||x.id).filter(Boolean);
-    try{return global.BAUMAN_MATH_LEARNING_FLOW?.chapterSnapshot?.(ids)||{lessonCount:ids.length,startedLessons:0,visitedSteps:0,totalSteps:ids.length*9,percent:0,status:'not_started'}}catch(_){
-      return {lessonCount:ids.length,startedLessons:0,visitedSteps:0,totalSteps:ids.length*9,percent:0,status:'not_started'};
+    try{return global.BAUMAN_MATH_LEARNING_FLOW?.chapterSnapshot?.(ids)||{lessonCount:ids.length,startedLessons:0,completedLessons:0,visitedSteps:0,totalSteps:ids.length*9,percent:0,completionPercent:0,status:'not_started'}}catch(_){
+      return {lessonCount:ids.length,startedLessons:0,completedLessons:0,visitedSteps:0,totalSteps:ids.length*9,percent:0,completionPercent:0,status:'not_started'};
     }
   }
   function roadmapStatus(ch,records,progress){
     if(ch.locked) return {key:'locked',label:'Đang khóa'};
     if(!records.length) return {key:'empty',label:'Chưa có học liệu'};
+    if(progress.status==='completed') return {key:'completed',label:'Đã hoàn thành'};
     if(progress.startedLessons>0) return {key:'learning',label:'Đang học'};
     return {key:'not-started',label:'Chưa học'};
   }
@@ -105,13 +106,13 @@
       const actual=records.length;
       const planned=Number(ch.suggestedLessonCount)||actual;
       const canOpen=actual>0&&!ch.locked;
-      const progressText=progress.startedLessons>0?`${progress.percent}% đã học qua`:'Chưa có tiến độ';
+      const progressText=progress.startedLessons>0?`${progress.completedLessons||0}/${actual} bài hoàn thành · ${progress.percent}% bước đã mở`:'Chưa có tiến độ';
       return `<article class="math-roadmap-chapter" data-roadmap-status="${status.key}">
         <div class="math-roadmap-chapter-main">
           <div class="math-roadmap-chapter-kicker"><span>Chương ${esc(ch.localChapterNo||ch.chapterNo||'')}</span><span class="math-roadmap-status">${esc(status.label)}</span></div>
           <h4>${esc(ch.chapterTitle||ch.chapterId)}</h4>
           <p>${esc(ch.targetOutcome||ch.bridgeQuestion||'Mục tiêu chương chưa có trong khung hiện tại.')}</p>
-          <div class="math-roadmap-progress" aria-label="Tiến độ học đã ghi nhận"><i style="width:${Math.max(0,Math.min(100,progress.percent))}%"></i></div>
+          <div class="math-roadmap-progress" aria-label="Tỷ lệ bài đã hoàn thành"><i style="width:${Math.max(0,Math.min(100,progress.completionPercent||0))}%"></i></div>
           <small>${esc(progressText)}</small>
         </div>
         <div class="math-roadmap-meta">
@@ -161,16 +162,17 @@
       const lessons=records.map((rec,index)=>{
         const id=rec.lessonId||rec.id||'';
         const lp=lessonProgress(id);
+        const completed=Number(lp.completedAt||0)>0;
         const started=lp.visitedCount>0;
-        const status=started?'Đang học':'Chưa học';
-        const cta=started?'Tiếp tục':'Bắt đầu';
+        const status=completed?'Đã hoàn thành':started?'Đang học':'Chưa học';
+        const cta=completed?'Xem lại':started?'Tiếp tục':'Bắt đầu';
         const slideCount=Array.isArray(rec.slides)?rec.slides.length:0;
-        return `<article class="math-chapter-lesson" data-lesson-status="${started?'learning':'not-started'}">
+        return `<article class="math-chapter-lesson" data-lesson-status="${completed?'completed':started?'learning':'not-started'}">`
           <div class="math-chapter-lesson-no">${String(index+1).padStart(2,'0')}</div>
           <div class="math-chapter-lesson-copy">
             <div class="math-chapter-lesson-title"><span>${esc(status)}</span><h3>${esc(rec.title||rec.lessonTitle||id)}</h3></div>
-            <p>${slideCount?slideCount+' phần nội dung trong bài':'Nội dung bài đã được ánh xạ vào Reader'} · ${started?esc(lp.activeStepLabel)+' · '+lp.percent+'% bước đã mở':'Chưa có tiến độ học'}</p>
-            <div class="math-chapter-lesson-progress"><i style="width:${Math.max(0,Math.min(100,lp.percent))}%"></i></div>
+            <p>${slideCount?slideCount+' phần nội dung trong bài':'Nội dung bài đã được ánh xạ vào Reader'} · ${completed?'Đã hoàn thành Lesson Check':started?esc(lp.activeStepLabel)+' · '+lp.percent+'% bước đã mở':'Chưa có tiến độ học'}</p>
+            <div class="math-chapter-lesson-progress"><i style="width:${completed?100:Math.max(0,Math.min(100,lp.percent))}%"></i></div>
           </div>
           <button type="button" data-math-chapter-lesson="${esc(id)}" data-math-chapter-id="${esc(chapterId)}" data-math-chapter-stage="${esc(stageId||ch.stageId||'')}">${cta} →</button>
         </article>`;
@@ -183,7 +185,7 @@
             <h2>${esc(ch.chapterTitle||chapterId)}</h2>
             <p>${esc(ch.targetOutcome||'Mục tiêu chương chưa được khai báo trong nguồn.')}</p>
           </div>
-          <aside><b>${progress.startedLessons}/${records.length}</b><span>bài đã bắt đầu</span><strong>${progress.percent}% bước đã mở</strong></aside>
+          <aside><b>${progress.completedLessons||0}/${records.length}</b><span>bài đã hoàn thành</span><strong>${progress.startedLessons} bài đã bắt đầu · ${progress.percent}% bước đã mở</strong></aside>
         </header>
         <section class="math-chapter-context">
           <article><span>TẠI SAO CẦN HỌC</span><p>${esc(ch.bridgeQuestion||'Khung hiện tại chưa khai báo cầu nối ứng dụng riêng cho chương này.')}</p></article>
