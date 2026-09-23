@@ -1,0 +1,97 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://bauman.local/schemas/exercise-feedback.schema.json",
+  "title": "Bauman Math Exercise Feedback Contract",
+  "description": "Optional contract for exercises that can be graded deterministically in the learner UI. Records that do not satisfy this contract remain self-check/manual and must not be auto-graded.",
+  "type": "object",
+  "required": [
+    "exerciseId",
+    "lessonId",
+    "chapterId",
+    "prompt",
+    "answerType",
+    "correctAnswer",
+    "feedback",
+    "reviewStepId"
+  ],
+  "properties": {
+    "exerciseId": {"type": "string", "minLength": 1},
+    "lessonId": {"type": "string", "minLength": 1},
+    "chapterId": {"type": "string", "minLength": 1},
+    "title": {"type": "string"},
+    "level": {"type": "string"},
+    "prompt": {"type": "string", "minLength": 1},
+    "answerType": {
+      "type": "string",
+      "enum": ["multiple_choice", "numeric", "exact_text"]
+    },
+    "options": {
+      "type": "array",
+      "minItems": 2,
+      "items": {"type": ["string", "number"]}
+    },
+    "correctAnswer": {
+      "type": ["string", "number", "integer", "boolean"]
+    },
+    "numericTolerance": {
+      "type": "number",
+      "minimum": 0
+    },
+    "conceptIds": {
+      "type": "array",
+      "uniqueItems": true,
+      "items": {"type": "string", "minLength": 1}
+    },
+    "formulaIds": {
+      "type": "array",
+      "uniqueItems": true,
+      "items": {"type": "string", "minLength": 1}
+    },
+    "reviewStepId": {
+      "type": "string",
+      "enum": ["understand", "visualize", "example", "formula", "application", "practice", "selfcheck", "summary"]
+    },
+    "feedback": {
+      "type": "object",
+      "required": ["correct", "incorrect"],
+      "properties": {
+        "correct": {"type": "string", "minLength": 1},
+        "incorrect": {"type": "string", "minLength": 1},
+        "commonMistakes": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "required": ["message"],
+            "properties": {
+              "answer": {"type": ["string", "number", "integer", "boolean"]},
+              "message": {"type": "string", "minLength": 1},
+              "reviewStepId": {
+                "type": "string",
+                "enum": ["understand", "visualize", "example", "formula", "application", "practice", "selfcheck", "summary"]
+              }
+            },
+            "additionalProperties": true
+          }
+        }
+      },
+      "additionalProperties": true
+    },
+    "retryPolicy": {
+      "type": "object",
+      "properties": {
+        "allowRetry": {"type": "boolean"},
+        "maxAttempts": {"type": "integer", "minimum": 1},
+        "showSolutionAfterAttempts": {"type": "integer", "minimum": 1}
+      },
+      "additionalProperties": true
+    },
+    "solution": {"type": "string"}
+  },
+  "allOf": [
+    {
+      "if": {"properties": {"answerType": {"const": "multiple_choice"}}},
+      "then": {"required": ["options"]}
+    }
+  ],
+  "additionalProperties": true
+}
