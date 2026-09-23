@@ -134,26 +134,17 @@
     return {kind:'reinforce',step:'check',label:'Ôn củng cố / kiểm tra lại'};
   }
   function esc(v){return clean(v).replace(/[&<>"']/g,m=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[m]));}
-  function routeAttr(route){return JSON.stringify(route||{}).replace(/&/g,'&amp;').replace(/'/g,'&#39;').replace(/</g,'&lt;');}
-  function scopeLabel(scope){return scope==='lesson'?'Gắn bài':'Hỗ trợ giai đoạn';}
   function panelHtml(ls){
-    const adaptive=adaptiveNext(ls),next=adaptive?.step||null,active=readCore();
-    const rows=STEP_ORDER.map((step,i)=>{
+    const adaptive=adaptiveNext(ls),next=adaptive?.kind==='step'?adaptive.step:null;
+    const rows=STEP_ORDER.map(step=>{
       const m=META[step],s=ls.steps[step],st=statusFor(step,s);
-      return `<button class="ru-flow-step ${esc(st.key)} ${next===step?'recommended':''}" data-ru-flow-step="${step}">
-        <i>${m.icon}</i><span><small>${String(i+1).padStart(2,'0')} · ${scopeLabel(m.scope)}</small><b>${esc(m.label)}</b><em>${esc(m.detail)}</em></span><strong>${esc(st.label)}</strong>
+      const current=next===step;
+      return `<button type="button" class="ru-flow-step ${esc(st.key)} ${current?'recommended':''}" data-ru-flow-step="${step}" aria-current="${current?'step':'false'}" title="${esc(m.label)} · ${esc(st.label)}">
+        <i aria-hidden="true">${m.icon}</i><span><b>${esc(m.label)}</b><small>${esc(st.label)}</small></span>
       </button>`;
     }).join('');
     const evidence=CORE_STEPS.filter(x=>hasMeaningfulEvidence(x,ls.steps[x])).length;
-    const context=(active.view==='vocab'||active.view==='grammar')
-      ?'Bạn đang dùng tài nguyên hỗ trợ theo giai đoạn. Việc mở phần này không tự nâng trạng thái bài học.'
-      :'Tiến độ chỉ tăng khi có bằng chứng thao tác phù hợp; mở màn hình đơn thuần không được tính là đã học.';
-    const foot=adaptive?.kind==='review'
-      ?`<span><b>Ưu tiên sửa trước:</b> ${esc(adaptive.label)} · Review Queue đang đến hạn.</span><button type="button" data-route='${routeAttr(adaptive.route)}' data-ru-adaptive-review="${esc(adaptive.item?.id)}" class="btn primary">Mở đúng lỗi →</button>`
-      :(adaptive?.kind==='step'
-        ?`<span><b>Tiếp theo gợi ý:</b> ${esc(META[next].label)}</span><button type="button" data-ru-flow-step="${next}" class="btn primary">Mở bước tiếp theo →</button>`
-        :`<span><b>Đã có bằng chứng ở ${CORE_STEPS.length} bước cốt lõi.</b> Không còn lỗi đến hạn của bài này; chuyển sang củng cố.</span><button type="button" data-ru-flow-step="check" class="btn primary">Luyện kiểm tra tiếp →</button>`);
-    return `<header class="ru-flow-head"><div><span>LEARNING FLOW · ${esc(ls.id)}</span><h3>${esc(ls.title)}</h3><p>${esc(context)}</p></div><div class="ru-flow-evidence"><b>${evidence}/${CORE_STEPS.length}</b><small>bước cốt lõi có bằng chứng</small></div></header><div class="ru-flow-steps">${rows}</div><footer class="ru-flow-foot">${foot}</footer>`;
+    return `<header class="ru-flow-head"><span>LESSON · ${esc(ls.id)}</span><b title="${esc(ls.title)}">${esc(ls.title)}</b><small>${evidence}/${CORE_STEPS.length} bằng chứng</small></header><nav class="ru-flow-steps" aria-label="Tiến trình bài ${esc(ls.id)}">${rows}</nav>`;
   }
   let renderQueued=false,lastSig='',writingStrokeActive=false,writingStrokeMoved=false;
   function scheduleRender(){
@@ -163,14 +154,14 @@
   function renderPanel(){
     const view=document.getElementById('view');if(!view)return;
     const core=readCore();
-    if(['overview','storage','mindmap'].includes(core.view||'overview')){
+    if((core.view||'overview')!=='learning'){
       document.getElementById('ruLessonFlow')?.remove();lastSig='';return;
     }
     const id=activeLessonId();if(!id)return;
     const ls=lessonState(id),learningState=window.RussianLearningState?.get?.()||{};
     const adaptive=adaptiveNext(ls),sig=JSON.stringify([core.view,core.learnTab,id,ls.steps,flow.updatedAt,learningState.updatedAt,adaptive?.kind,adaptive?.item?.id||'']);
     let panel=document.getElementById('ruLessonFlow');
-    if(!panel){panel=document.createElement('section');panel.id='ruLessonFlow';panel.className='ru-lesson-flow';view.prepend(panel);}
+    if(!panel){panel=document.createElement('section');panel.id='ruLessonFlow';panel.className='ru-lesson-flow';panel.setAttribute('aria-label','Tiến trình bài học');view.prepend(panel);}
     if(sig!==lastSig){panel.innerHTML=panelHtml(ls);lastSig=sig;}
   }
   function click(selector){const el=document.querySelector(selector);if(el){el.click();return true}return false;}
