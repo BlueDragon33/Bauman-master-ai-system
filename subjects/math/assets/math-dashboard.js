@@ -14,8 +14,9 @@
   function saveVisits(list){try{localStorage.setItem(VISIT_KEY,JSON.stringify(list.slice(0,40)))}catch(_){}}
   function currentLesson(){
     const host=$('[data-current-lesson]');
-    const id=host?.getAttribute('data-current-lesson')||global.__MATH_STATE?.e129LessonId||'';
-    const title=(host?.querySelector('.e169-reader-title h2,h2')||$('.e169-reader-title h2')||$('.e129-placeholder h2'))?.textContent?.trim()||'Chưa chọn bài học';
+    const resume=global.BAUMAN_MATH_LEARNING_FLOW?.resumeSnapshot?.()||null;
+    const id=host?.getAttribute('data-current-lesson')||global.__MATH_STATE?.e129LessonId||resume?.lessonId||'';
+    const title=(host?.querySelector('.e169-reader-title h2,h2')||$('.e169-reader-title h2')||$('.e129-placeholder h2'))?.textContent?.trim()||resume?.lessonTitle||'Chưa chọn bài học';
     return {id,title};
   }
   function recordVisit(){
