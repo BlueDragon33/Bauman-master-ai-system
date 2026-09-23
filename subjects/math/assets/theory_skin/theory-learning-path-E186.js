@@ -5,7 +5,7 @@
  */
 (function(){
   'use strict';
-  var RELEASE='E196_E240_DURABLE_LESSON_OPTIONS';
+  var RELEASE='E197_FAIL_SAFE_CANONICAL_LESSON_IDENTITY';
   var C01_CHAPTER_ID='MATH-VN-C01-vector_trong_khong_gian_';
   var HIERARCHY=[
     {id:'pure',code:'I',title:'Toán học Thuần túy',en:'Pure Mathematics Module',courses:[
@@ -103,7 +103,7 @@
     var stat=staticLessons(p.chapterId);if(stat.length)return stat.map(function(x){return {id:x.id,label:x.label,sub:'Chọn bài trước, rồi chọn phân mục học tập.'};});
     var ch=chapter(p.moduleId,p.courseId,p.chapterId);return [{id:p.chapterId+'-overview',label:'Bài '+(ch&&ch.no||'')+'.1 · Bài giảng tổng quan',sub:'Khung bài tạm cho chương này.'}];
   }
-  function ensureLesson(){var p=path(), opts=lessonOptions();if(!opts.length)return p;var ok=opts.some(function(x){return x.id===p.lessonId;});if(!p.lessonId||!ok||/-overview$/.test(S(p.lessonId))){p.lessonId=opts[0].id;}return p;}
+  function ensureLesson(){var p=path(), opts=lessonOptions();if(!opts.length)return p;var hasCanonical=opts.some(function(x){return !/-overview$/.test(S(x.id));});var currentIsCanonical=!!p.lessonId&&!/-overview$/.test(S(p.lessonId));if(currentIsCanonical&&!hasCanonical)return p;var ok=opts.some(function(x){return x.id===p.lessonId;});if(!p.lessonId||!ok||/-overview$/.test(S(p.lessonId))){p.lessonId=opts[0].id;}return p;}
   function lessonLabel(){ensureLesson();var p=path(), opts=lessonOptions(), hit=opts.find(function(x){return x.id===p.lessonId;})||opts[0];return hit?hit.label:'Chọn bài';}
   function activityLabel(){return activity(path().activityId).label;}
   function displayChapterTitle(ch){
