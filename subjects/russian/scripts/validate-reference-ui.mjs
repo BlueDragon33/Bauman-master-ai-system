@@ -39,6 +39,9 @@ must(!index.includes('id="russianRightRail"'),'Fixed right rail must not return 
 must(index.includes('<body class="ru-reference-ui ru-future-ui">'),'Canonical Future UI must be active at first paint');
 must(index.includes('id="russianGlobalSearch"'),'Missing global search');
 must(index.includes('id="aiBtn"'),'Topbar must retain the core AI Mentor entry point');
+must(index.includes('role="dialog"'),'Modal must expose dialog semantics');
+must(index.includes('aria-modal="true"'),'Modal must declare aria-modal');
+must(index.includes('aria-label="Đóng hộp thoại"'),'Modal close button must have an accessible name');
 must(!index.includes('/priˈvʲet/'),'Learning shell must not expose a hard-coded pronunciation sample as canonical data');
 
 for(const token of ['.grammar-examples-first','.grammar-pattern-strip','.grammar-concept-details','.ru-app-shell','.rf-continue-band','.rf-today-plan','.rf-module-grid','.rf-dashboard-lower','.vocab-progressive-details','@media (max-width:1080px)','@media (max-width:760px)','@media (max-width:480px)']){
@@ -115,7 +118,11 @@ must(!core.includes('class="visual-tags"'),'Vocabulary learning card must not ex
 must(core.includes('<article><b>Ngữ cảnh Nga</b><p lang="ru">'),'Vocabulary context block must remain Russian-only');
 must(core.includes('<article><b>Thực hành</b><p lang="ru">'),'Vocabulary practice block must remain Russian-only');
 must(core.includes("if(act==='route-modal')"),'Core route-modal contract missing');
+must(core.includes('function trapModalFocus(e)'),'Modal keyboard focus trap missing');
+must(core.includes("if(e.key==='Escape'){e.preventDefault();closeModal();return true;}"),'Escape must close any active modal');
+must(core.includes('modalReturnFocus'),'Modal must restore focus to the opener');
 must(core.includes("if(act==='ai-run')"),'Core AI run action missing');
+for(const token of ['Trước khi xem','Lượt nghe đầu','Lượt nghe lại','Sau khi xem','Nghe xong nói lại']) must(core.includes(token),`Video learning flow missing: ${token}`);
 must(adapter.includes("storageKey: 'bauman_russian_survival_master_v11_clean_skeleton'"),'Unexpected Russian storage key');
 must(adapter.includes("optionalDataFiles: ['dialogue-bauman-az','deep-speaking-bauman','speaking-link-index']"),'Unexpected optional Russian dataset contract');
 must(adapter.includes('primaryNav: ['),'Primary learner navigation contract missing');
