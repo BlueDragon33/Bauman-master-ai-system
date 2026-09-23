@@ -5,7 +5,7 @@ const VERSION='Russian Survival Master V13.33 · Route Grammar Mind Check';
 const DATA_FILES=A.dataFiles||['curriculum','lessons','grammar','grammar-path','vocab','mindmap','exercises','tests','simulations','speaking','handwriting','writing','videos','knowledge-index'];
 const OPTIONAL_DATA_FILES=A.optionalDataFiles||['dialogue-bauman-az','deep-speaking-bauman','speaking-link-index'];
 const ALL_STORAGE_FILES=Array.from(new Set([...DATA_FILES,...OPTIONAL_DATA_FILES]));
-const DEFERRED_CORE_DATA=new Set(['vocab']);
+const DEFERRED_CORE_DATA=new Set(['vocab','tests']);
 const deferredCoreLoads={};
 const DATA_ROOT=A.dataRoot||'data/';
 const EXTERNAL_DATA_ROOT=A.externalDataRoot||'external-data/';
@@ -786,12 +786,13 @@ function runConfirmedAction(action){
  toast('Không nhận diện được hành động xác nhận');
 }
 
-function overviewStats(){return [['Bài học',call('getLessons',[],DB).length],['Từ vựng',call('getVocabulary',[],DB).length],['Hội thoại',call('getDialogues',[],DB).length],['Câu test',call('getTests',[],DB).length]]}
+function sourceDisplayCount(name,getter){if(DB[name])return getter();const planned=Number(A.dataSourceMeta?.[name]?.plannedCount||0);return DEFERRED_CORE_DATA.has(name)&&planned?planned:0}
+function overviewStats(){return [['Bài học',call('getLessons',[],DB).length],['Từ vựng',sourceDisplayCount('vocab',()=>call('getVocabulary',[],DB).length)],['Hội thoại',call('getDialogues',[],DB).length],['Câu test',sourceDisplayCount('tests',()=>call('getTests',[],DB).length)]]}
 function todayMissionText(){const mission=state.hostTask||{}; const fromBundle=state.planningBundle?.today?.goal||state.planningBundle?.mission?.target||state.planningBundle?.mission?.title||''; return mission.target||mission.title||mission.goal||mission.output||fromBundle||'Chưa đồng bộ được'}
 function syncStateLabel(){return (state.hostTask||state.planningBundle)?'Đã nhận từ Main':'Chờ Main'}
 function learningProgress(){const answered=Number(state.testSession?.answered||0); const correct=Number(state.testSession?.correct||0); const accuracy=answered?Math.round(correct*100/answered):0; return {answered,accuracy,lesson:state.lessonId||'Chưa chọn',stage:stageTitle()}}
 function dataCount(name){const d=DB[name]; return Array.isArray(d)?d.length:(Array.isArray(d?.questions)?d.questions.length:(d&&typeof d==='object'?Object.keys(d).length:0))}
-function healthSummary(){const required=['curriculum','lessons','vocab','speaking','tests','videos','handwriting','writing']; const missing=required.filter(f=>!DB[f]||dataCount(f)===0); const warnings=[]; if(!call('getLessons',[],DB).length)warnings.push('chưa có bài học'); if(!call('getVocabulary',[],DB).length)warnings.push('chưa có từ vựng'); if(!call('getDialogues',[],DB).length)warnings.push('chưa có hội thoại'); return {ok:!missing.length&&!warnings.length,missing,warnings};}
+function healthSummary(){const required=['curriculum','lessons','vocab','speaking','tests','videos','handwriting','writing']; const missing=required.filter(f=>!DEFERRED_CORE_DATA.has(f)&&(!DB[f]||dataCount(f)===0)); const warnings=[]; if(!call('getLessons',[],DB).length)warnings.push('chưa có bài học'); if(DB.vocab&&!call('getVocabulary',[],DB).length)warnings.push('chưa có từ vựng'); if(!call('getDialogues',[],DB).length)warnings.push('chưa có hội thoại'); return {ok:!missing.length&&!warnings.length,missing,warnings};}
 function renderHealthStrip(){return ''}
 function clampVisibleState(){
  const lessons=getLessons(); if(state.lessonId&&!byId(lessons,state.lessonId))state.lessonId=''; const lesson=currentLesson(); clampSlideIndex(lesson);
@@ -1381,6 +1382,10 @@ function learningListForMode(){
  return {title:'Học tập', hint:'', items:''};
 }
 function renderLearning(){
+ if(['review','exam'].includes(state.learnTab)&&!DB.tests){
+  ensureDeferredCoreData('tests');
+  return `<section class="panel learning-recovery-card" aria-live="polite"><span class="chip">🧪 Ôn tập & kiểm tra</span><h3>Đang mở ngân hàng câu hỏi…</h3><p>Ngân hàng kiểm tra chỉ được tải khi bạn thực sự vào Ôn tập hoặc Kiểm tra, để việc mở Site không phải kéo theo gần 8 MB dữ liệu không dùng.</p></section>`;
+ }
  const lessons=getLessons(), concepts=getConcepts();
  const ctx=activeLessonContext();
  const current=ctx.lesson;
