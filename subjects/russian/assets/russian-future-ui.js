@@ -231,8 +231,34 @@
       speechSynthesis.cancel();const u=new SpeechSynthesisUtterance(text);u.lang='ru-RU';u.rate=.82;speechSynthesis.speak(u);
     }catch(_){}
   }
+  function upgradeMobileShell(){
+    const topbar=document.querySelector('.ru-topbar'),sidebar=document.querySelector('.ru-sidebar');
+    if(!topbar||!sidebar)return;
+    if(!sidebar.id)sidebar.id='russianLearningNav';
+    let toggle=topbar.querySelector('.rf-sidebar-toggle');
+    if(!toggle){
+      toggle=document.createElement('button');
+      toggle.type='button';
+      toggle.className='rf-sidebar-toggle';
+      toggle.setAttribute('aria-label','Mở điều hướng học tập');
+      toggle.setAttribute('aria-controls',sidebar.id);
+      toggle.setAttribute('aria-expanded','false');
+      toggle.textContent='☰';
+      topbar.prepend(toggle);
+    }
+    let scrim=document.querySelector('.rf-sidebar-scrim');
+    if(!scrim){scrim=document.createElement('button');scrim.type='button';scrim.className='rf-sidebar-scrim';scrim.setAttribute('aria-label','Đóng điều hướng học tập');document.body.appendChild(scrim);}
+    if(toggle.dataset.rfDrawerBound==='1')return;
+    toggle.dataset.rfDrawerBound='1';
+    const close=(restore=false)=>{document.body.classList.remove('rf-sidebar-open');toggle.setAttribute('aria-expanded','false');if(restore)toggle.focus();};
+    toggle.addEventListener('click',()=>{const open=!document.body.classList.contains('rf-sidebar-open');document.body.classList.toggle('rf-sidebar-open',open);toggle.setAttribute('aria-expanded',open?'true':'false');if(open)sidebar.querySelector('button.active,button,select')?.focus();});
+    scrim.addEventListener('click',()=>close(true));
+    sidebar.addEventListener('click',e=>{if(e.target.closest('#nav button[data-view]')&&matchMedia('(max-width:767px)').matches)close(false)});
+    document.addEventListener('keydown',e=>{if(e.key==='Escape'&&document.body.classList.contains('rf-sidebar-open')){e.preventDefault();close(true)}});
+  }
   function bind(){
     bindSearch();
+    upgradeMobileShell();
     if(document.documentElement.dataset.rfBound==='1')return;
     document.documentElement.dataset.rfBound='1';
     document.addEventListener('click',e=>{
